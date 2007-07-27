@@ -6,13 +6,13 @@
 #include <cairo-dock.h>
 
 
-void dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory);
+void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory);
 
 
-void dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory);
+void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory);
 
 
-void dustbin_about (GtkMenuItem *menu_item, gpointer *data);
+void cd_dustbin_about (GtkMenuItem *menu_item, gpointer *data);
 
 
 #endif

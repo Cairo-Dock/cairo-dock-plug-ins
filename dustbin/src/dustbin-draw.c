@@ -14,12 +14,12 @@ extern cairo_surface_t *my_dustbin_pEmptyBinSurface;
 extern cairo_surface_t *my_dustbin_pFullBinSurface;
 extern GtkWidget **my_dustbin_pShowToggleList;
 extern GtkWidget **my_dustbin_pDeleteToggleList;
+extern int my_dustbin_iState;
 
 
-gboolean dustbin_check_trashes (Icon *icon)
+gboolean cd_dustbin_check_trashes (Icon *icon)
 {
-	static int s_iLastState = -1;
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	GDir *dir;
 	int i = 0, iNewState = 0;
@@ -38,30 +38,30 @@ gboolean dustbin_check_trashes (Icon *icon)
 			cFirstFileInBin = g_dir_read_name (dir);
 			if (cFirstFileInBin != NULL)
 			{
-				g_print ("%s est rempli\n", my_dustbin_cTrashDirectoryList[i]);
+				//g_print ("%s est rempli\n", my_dustbin_cTrashDirectoryList[i]);
 				if (my_dustbin_pTrashState[i] != CD_DUSTBIN_FULL)
 				{
 					my_dustbin_pTrashState[i] = CD_DUSTBIN_FULL;
-					g_signal_handlers_block_matched (G_OBJECT (my_dustbin_pShowToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) dustbin_show_trash, NULL);
-					g_signal_handlers_block_matched (G_OBJECT (my_dustbin_pDeleteToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) dustbin_delete_trash, NULL);
+					g_signal_handlers_block_matched (G_OBJECT (my_dustbin_pShowToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) cd_dustbin_show_trash, NULL);
+					g_signal_handlers_block_matched (G_OBJECT (my_dustbin_pDeleteToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) cd_dustbin_delete_trash, NULL);
 					gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (my_dustbin_pShowToggleList[i]), TRUE);
 					gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (my_dustbin_pDeleteToggleList[i]), TRUE);
-					g_signal_handlers_unblock_matched (G_OBJECT (my_dustbin_pShowToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) dustbin_show_trash, NULL);
-					g_signal_handlers_unblock_matched (G_OBJECT (my_dustbin_pDeleteToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) dustbin_delete_trash, NULL);
+					g_signal_handlers_unblock_matched (G_OBJECT (my_dustbin_pShowToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) cd_dustbin_show_trash, NULL);
+					g_signal_handlers_unblock_matched (G_OBJECT (my_dustbin_pDeleteToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) cd_dustbin_delete_trash, NULL);
 				}
 			}
 			else
 			{
-				g_print ("%s est vide\n", my_dustbin_cTrashDirectoryList[i]);
+				//g_print ("%s est vide\n", my_dustbin_cTrashDirectoryList[i]);
 				if (my_dustbin_pTrashState[i] != CD_DUSTBIN_EMPTY)
 				{
 					my_dustbin_pTrashState[i] = CD_DUSTBIN_EMPTY;
-					g_signal_handlers_block_matched (G_OBJECT (my_dustbin_pShowToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) dustbin_show_trash, NULL);
-					g_signal_handlers_block_matched (G_OBJECT (my_dustbin_pDeleteToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) dustbin_delete_trash, NULL);
+					g_signal_handlers_block_matched (G_OBJECT (my_dustbin_pShowToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) cd_dustbin_show_trash, NULL);
+					g_signal_handlers_block_matched (G_OBJECT (my_dustbin_pDeleteToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) cd_dustbin_delete_trash, NULL);
 					gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (my_dustbin_pShowToggleList[i]), FALSE);
 					gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (my_dustbin_pDeleteToggleList[i]), FALSE);
-					g_signal_handlers_unblock_matched (G_OBJECT (my_dustbin_pShowToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) dustbin_show_trash, NULL);
-					g_signal_handlers_unblock_matched (G_OBJECT (my_dustbin_pDeleteToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) dustbin_delete_trash, NULL);
+					g_signal_handlers_unblock_matched (G_OBJECT (my_dustbin_pShowToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) cd_dustbin_show_trash, NULL);
+					g_signal_handlers_unblock_matched (G_OBJECT (my_dustbin_pDeleteToggleList[i]), G_SIGNAL_MATCH_FUNC, 0, 0, NULL, (void*) cd_dustbin_delete_trash, NULL);
 				}
 			}
 			iNewState += my_dustbin_pTrashState[i];
@@ -71,9 +71,9 @@ gboolean dustbin_check_trashes (Icon *icon)
 		i ++;
 	}
 	
-	if (s_iLastState != iNewState)
+	if (my_dustbin_iState != iNewState)
 	{
-		s_iLastState = iNewState;
+		my_dustbin_iState = iNewState;
 		double fMaxScale = 1 + g_fAmplitude;
 		cairo_save (my_dustbin_pCairoContext);
 		
@@ -85,7 +85,7 @@ gboolean dustbin_check_trashes (Icon *icon)
 		
 		if (iNewState == CD_DUSTBIN_EMPTY)
 		{
-			g_print (" -> on a vide la corbeille\n");
+			//g_print (" -> on a vide la corbeille\n");
 			g_return_val_if_fail (my_dustbin_pEmptyBinSurface != NULL, TRUE);
 			cairo_set_source_surface (my_dustbin_pCairoContext,
 				my_dustbin_pEmptyBinSurface,
@@ -94,7 +94,7 @@ gboolean dustbin_check_trashes (Icon *icon)
 		}
 		else
 		{
-			g_print (" -> on a rempli la corbeille\n");
+			//g_print (" -> on a rempli la corbeille\n");
 			g_return_val_if_fail (my_dustbin_pFullBinSurface != NULL, TRUE);
 			cairo_set_source_surface (my_dustbin_pCairoContext,
 				my_dustbin_pFullBinSurface,
@@ -103,9 +103,9 @@ gboolean dustbin_check_trashes (Icon *icon)
 		}
 		cairo_paint (my_dustbin_pCairoContext);
 		cairo_restore (my_dustbin_pCairoContext);
+		cairo_dock_redraw_my_icon (icon);
 	}
 	
-	cairo_dock_redraw_my_icon (icon);
 	return TRUE;
 }
 

@@ -23,7 +23,6 @@ int my_iSidUpdateClock = 0;
 Icon *my_pIcon = NULL;
 cairo_t *my_pCairoContext = NULL;
 GHashTable *my_pThemeTable = NULL;
-GtkWidget *my_pCalendar = NULL;
 
 cairo_surface_t*	g_pBackgroundSurface = NULL;
 cairo_surface_t*	g_pForegroundSurface = NULL;
@@ -158,16 +157,15 @@ gboolean cd_clock_config (void)
 
 gboolean cd_clock_action (void)
 {
-	g_print ("%s ()\n", __func__);
-	//if (my_pCalendar == NULL)
-	{
-		GtkWidget *pDialog = gtk_dialog_new ();
-	      
-	      GtkWidget *pCalendar = gtk_calendar_new ();
-	      gtk_container_add (GTK_DIALOG (pDialog)->vbox, pCalendar);
-		gtk_dialog_run (GTK_DIALOG (pDialog));
-		gtk_widget_destroy (pDialog);
-	}
+	//g_print ("%s ()\n", __func__);
+	GtkWidget *pDialog = gtk_dialog_new ();
+      
+      GtkWidget *pCalendar = gtk_calendar_new ();
+      gtk_container_add (GTK_DIALOG (pDialog)->vbox, pCalendar);
+      gtk_widget_show (pCalendar);
+	gtk_dialog_run (GTK_DIALOG (pDialog));
+	gtk_widget_destroy (pDialog);
+	
 	return TRUE;
 }
 

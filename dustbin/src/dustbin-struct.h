@@ -1,6 +1,6 @@
 
-#ifndef __DUSTBIN_STRUCT__
-#define  __DUSTBIN_STRUCT__
+#ifndef __CD_DUSTBIN_STRUCT__
+#define  __CD_DUSTBIN_STRUCT__
 
 
 typedef enum {

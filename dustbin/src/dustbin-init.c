@@ -25,11 +25,12 @@ GtkWidget **my_dustbin_pDeleteToggleList = NULL;
 cairo_surface_t *my_dustbin_pEmptyBinSurface = NULL;
 cairo_surface_t *my_dustbin_pFullBinSurface = NULL;
 GHashTable *my_dustbin_pThemeTable = NULL;
+int my_dustbin_iState = -1;
 
 
-Icon *dustbin_init (cairo_t *pSourceContext, GError **erreur)
+Icon *cd_dustbin_init (cairo_t *pSourceContext, GError **erreur)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-in/%s", g_cCairoDockDataDir, CD_DUSTBIN_USER_DATA_DIR);
 	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR))
@@ -62,7 +63,7 @@ Icon *dustbin_init (cairo_t *pSourceContext, GError **erreur)
 	//\_______________ On lit le fichier de conf.
 	int iOriginalWidth = 1, iOriginalHeight = 1;
 	gchar *cName = NULL, *cThemeName = NULL;
-	dustbin_read_conf_file (my_dustbin_cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName, &cThemeName);
+	cd_dustbin_read_conf_file (my_dustbin_cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName, &cThemeName);
 	
 	//\_______________ On cree nos entrees dans le menu qui sera appele lors d'un clic droit.
 	GtkWidget *pModuleMenu = gtk_menu_new ();
@@ -93,7 +94,7 @@ Icon *dustbin_init (cairo_t *pSourceContext, GError **erreur)
 		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item), FALSE);
 		
 		gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleSubMenu), menu_item);
-		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (dustbin_show_trash), my_dustbin_cTrashDirectoryList[i]);
+		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_dustbin_show_trash), my_dustbin_cTrashDirectoryList[i]);
 		
 		my_dustbin_pShowToggleList[i] = menu_item;
 		
@@ -101,7 +102,7 @@ Icon *dustbin_init (cairo_t *pSourceContext, GError **erreur)
 	}
 	menu_item = gtk_menu_item_new_with_label ("Show All");
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleSubMenu), menu_item);
-	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (dustbin_show_trash), NULL);
+	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_dustbin_show_trash), NULL);
 	
 	
 	menu_item = gtk_menu_item_new_with_label ("Delete Trash");
@@ -118,7 +119,7 @@ Icon *dustbin_init (cairo_t *pSourceContext, GError **erreur)
 		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item), FALSE);
 		
 		gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleSubMenu), menu_item);
-		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (dustbin_delete_trash), my_dustbin_cTrashDirectoryList[i]);
+		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_dustbin_delete_trash), my_dustbin_cTrashDirectoryList[i]);
 		
 		my_dustbin_pDeleteToggleList[i] = menu_item;
 		
@@ -126,13 +127,13 @@ Icon *dustbin_init (cairo_t *pSourceContext, GError **erreur)
 	}
 	menu_item = gtk_menu_item_new_with_label ("Delete All");
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleSubMenu), menu_item);
-	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (dustbin_delete_trash), NULL);
+	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_dustbin_delete_trash), NULL);
 	
 	
 	g_string_free (sLabel, TRUE);
 	menu_item = gtk_menu_item_new_with_label ("About");
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleMenu), menu_item);
-	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (dustbin_about), NULL);
+	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_dustbin_about), NULL);
 	
 	
 	//\_______________ On cree notre icone.
@@ -142,7 +143,7 @@ Icon *dustbin_init (cairo_t *pSourceContext, GError **erreur)
 	
 	
 	//\_______________ On charge le theme choisi.
-	g_print ("theme : %s\n", cThemeName);
+	//g_print ("theme : %s\n", cThemeName);
 	if (cThemeName != NULL)
 	{
 		gchar *cThemePath = g_hash_table_lookup (my_dustbin_pThemeTable, cThemeName);
@@ -165,7 +166,7 @@ Icon *dustbin_init (cairo_t *pSourceContext, GError **erreur)
 		while ((cElementName = g_dir_read_name (dir)) != NULL)
 		{
 			cElementPath = g_strdup_printf ("%s/%s", cThemePath, cElementName);
-			g_print ("  %s\n", cElementPath);
+			//g_print ("  %s\n", cElementPath);
 			if (strncmp (cElementName, "trashcan_full", 13) == 0)
 				my_dustbin_pFullBinSurface = cairo_dock_create_surface_from_image (cElementPath,
 					my_dustbin_pCairoContext,
@@ -192,20 +193,22 @@ Icon *dustbin_init (cairo_t *pSourceContext, GError **erreur)
 		}
 		g_dir_close (dir);
 	}
+	g_return_val_if_fail (my_dustbin_pFullBinSurface != NULL, NULL);
 	
 	//\_______________ On lance le timer.
 	my_dustbin_pTrashState = g_new0 (int, i);
-	dustbin_check_trashes (my_dustbin_pIcon);
-	my_dustbin_iSidCheckTrashes = g_timeout_add ((int) (1000 * my_dustbin_fCheckInterval), (GSourceFunc) dustbin_check_trashes, (gpointer) my_dustbin_pIcon);
+	my_dustbin_iState = -1;
+	cd_dustbin_check_trashes (my_dustbin_pIcon);
+	my_dustbin_iSidCheckTrashes = g_timeout_add ((int) (1000 * my_dustbin_fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) my_dustbin_pIcon);
 	
 	
 	g_free (cName);
 	return my_dustbin_pIcon;
 }
 
-void dustbin_stop (void)
+void cd_dustbin_stop (void)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	g_source_remove (my_dustbin_iSidCheckTrashes);
 	my_dustbin_iSidCheckTrashes = 0;
@@ -231,7 +234,7 @@ void dustbin_stop (void)
 	my_dustbin_pFullBinSurface = NULL;
 }
 
-gboolean dustbin_config (void)
+gboolean cd_dustbin_config (void)
 {
 	gchar *cConfFilePath = g_strdup_printf ("%s/plug-in/%s/%s", g_cCairoDockDataDir, CD_DUSTBIN_USER_DATA_DIR, CD_DUSTBIN_CONF_FILE);
 	
@@ -239,7 +242,7 @@ gboolean dustbin_config (void)
 	return TRUE;
 }
 
-gboolean dustbin_action (void)
+gboolean cd_dustbin_action (void)
 {
 	g_print ("%s ()\n", __func__);
 	return TRUE;

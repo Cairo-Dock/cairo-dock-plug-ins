@@ -15,7 +15,7 @@ extern cairo_surface_t *my_dustbin_pFullBinSurface;
 extern GHashTable *my_dustbin_pThemeTable;
 
 
-void dustbin_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, gchar **cName, gchar **cThemeName)
+void cd_dustbin_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, gchar **cName, gchar **cThemeName)
 {
 	GError *erreur = NULL;
 	

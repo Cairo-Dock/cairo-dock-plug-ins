@@ -1,8 +1,8 @@
 
 SUBDIRS = . themes
 
-datatrucdir = $(pkgdatadir)
+datadustbindir = $(pkgdatadir)
 
-datatruc_DATA = \
+datadustbin_DATA = \
 	dustbin.conf
 

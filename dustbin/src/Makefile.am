@@ -1,11 +1,11 @@
  #dnl Process this file with automake to produce Makefile.in
 
 lib_LTLIBRARIES = \
-	libdustbin.la
+	libcd-dustbin.la
 
 
-libdustbin_la_SOURCES = \
-	dustbin-sdustbint.h\
+libcd_dustbin_la_SOURCES = \
+	dustbin-struct.h\
 	dustbin-init.c\
 	dustbin-init.h\
 	dustbin-draw.c\
@@ -16,25 +16,25 @@ libdustbin_la_SOURCES = \
 	dustbin-menu-functions.h
 
 
-libdustbin_la_CFLAGS = \
+libcd_dustbin_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DCD_DUSTBIN_SHARE_DATA_DIR=\""$(datadir)/dustbin"\"\
+	-DCD_DUSTBIN_SHARE_DATA_DIR=\""$(datadir)/cd-dustbin"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall
 
 
-libdustbin_la_LIBADD = \
+libcd_dustbin_la_LIBADD = \
 	$(PACKAGE_LIBS) -lm
 
 
-libdustbin_la_LDFLAGS =\
+libcd_dustbin_la_LDFLAGS =\
 	-version-info 1:0:0
 
 
 moduledustbindir = `pkg-config cairo-dock --variable=pluginsdir`
 
 moduledustbin_DATA = \
-	.libs/libdustbin.so
+	.libs/libcd-dustbin.so
 
