@@ -193,7 +193,11 @@ Icon *cd_dustbin_init (cairo_t *pSourceContext, GError **erreur)
 		}
 		g_dir_close (dir);
 	}
-	g_return_val_if_fail (my_dustbin_pFullBinSurface != NULL, NULL);
+	if (my_dustbin_pFullBinSurface == NULL || my_dustbin_pFullBinSurface == NULL)
+	{
+		g_set_error (erreur, 1, 1, "Attention : couldn't find images, this theme is not valid");
+		return NULL;
+	}
 	
 	//\_______________ On lance le timer.
 	my_dustbin_pTrashState = g_new0 (int, i);
