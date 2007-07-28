@@ -195,8 +195,7 @@ Icon *cd_dustbin_init (cairo_t *pSourceContext, GError **erreur)
 	}
 	if (my_dustbin_pFullBinSurface == NULL || my_dustbin_pFullBinSurface == NULL)
 	{
-		g_set_error (erreur, 1, 1, "Attention : couldn't find images, this theme is not valid");
-		return NULL;
+		g_print ("Attention : couldn't find images, this theme is not valid");
 	}
 	
 	//\_______________ On lance le timer.
