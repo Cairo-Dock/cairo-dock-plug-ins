@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-Icon *cd_clock_init (cairo_t *pSourceContext, GError **erreur);
+Icon *cd_clock_init (GtkWidget *pWidget, GError **erreur);
 
 
 void cd_clock_stop (void);

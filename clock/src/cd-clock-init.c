@@ -21,11 +21,12 @@ int my_iTheme = 0;
 
 int my_iSidUpdateClock = 0;
 Icon *my_pIcon = NULL;
+GtkWidget *my_pWidget = NULL;
 cairo_t *my_pCairoContext = NULL;
 GHashTable *my_pThemeTable = NULL;
 
-cairo_surface_t*	g_pBackgroundSurface = NULL;
-cairo_surface_t*	g_pForegroundSurface = NULL;
+cairo_surface_t* g_pBackgroundSurface = NULL;
+cairo_surface_t* g_pForegroundSurface = NULL;
 RsvgDimensionData my_DimensionData;
 RsvgHandle *my_pSvgHandles[CLOCK_ELEMENTS];
 
@@ -47,7 +48,7 @@ char my_cFileNames[CLOCK_ELEMENTS][30] =
 };
 
 
-Icon *cd_clock_init (cairo_t *pSourceContext, GError **erreur)
+Icon *cd_clock_init (GtkWidget *pWidget, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-in/%s", g_cCairoDockDataDir, CD_CLOCK_USER_DATA_DIR);
@@ -101,8 +102,12 @@ Icon *cd_clock_init (cairo_t *pSourceContext, GError **erreur)
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_clock_about), NULL);
 	
 	//\_______________ On cree notre icone.
+	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pWidget->window);
 	my_pIcon = cairo_dock_create_icon_for_applet (pSourceContext, iOriginalWidth, iOriginalHeight, cName, pModuleMenu);
-	my_pCairoContext = cairo_create (my_pIcon->pIconBuffer);  // le 'pSourceContext' ne nous appartient pas !
+	cairo_destroy (pSourceContext);
+	
+	my_pWidget = pWidget;
+	my_pCairoContext = cairo_create (my_pIcon->pIconBuffer);
 	g_return_val_if_fail (my_pCairoContext != NULL, NULL);
 	rsvg_handle_get_dimensions (my_pSvgHandles[CLOCK_DROP_SHADOW], &my_DimensionData);
 	
@@ -159,10 +164,10 @@ gboolean cd_clock_action (void)
 {
 	//g_print ("%s ()\n", __func__);
 	GtkWidget *pDialog = gtk_dialog_new ();
-      
-      GtkWidget *pCalendar = gtk_calendar_new ();
-      gtk_container_add (GTK_DIALOG (pDialog)->vbox, pCalendar);
-      gtk_widget_show (pCalendar);
+	
+	GtkWidget *pCalendar = gtk_calendar_new ();
+	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (pDialog)->vbox), pCalendar);
+	gtk_widget_show (pCalendar);
 	gtk_dialog_run (GTK_DIALOG (pDialog));
 	gtk_widget_destroy (pDialog);
 	

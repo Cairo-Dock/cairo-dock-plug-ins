@@ -14,6 +14,7 @@
 
 gchar *my_dustbin_cConfFilePath = NULL;
 Icon *my_dustbin_pIcon = NULL;
+GtkWidget *my_dustbin_pWidget = NULL;
 cairo_t *my_dustbin_pCairoContext = NULL;
 double my_dustbin_fCheckInterval;
 int my_dustbin_iSidCheckTrashes = 0;
@@ -28,7 +29,7 @@ GHashTable *my_dustbin_pThemeTable = NULL;
 int my_dustbin_iState = -1;
 
 
-Icon *cd_dustbin_init (cairo_t *pSourceContext, GError **erreur)
+Icon *cd_dustbin_init (GtkWidget *pWidget, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	
@@ -137,8 +138,12 @@ Icon *cd_dustbin_init (cairo_t *pSourceContext, GError **erreur)
 	
 	
 	//\_______________ On cree notre icone.
+	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pWidget->window);
 	my_dustbin_pIcon = cairo_dock_create_icon_for_applet (pSourceContext, iOriginalWidth, iOriginalHeight, cName, pModuleMenu);
-	my_dustbin_pCairoContext = cairo_create (my_dustbin_pIcon->pIconBuffer);  // le 'pSourceContext' ne nous appartient pas !
+	cairo_destroy (pSourceContext);
+	
+	my_dustbin_pWidget = pWidget;
+	my_dustbin_pCairoContext = cairo_create (my_dustbin_pIcon->pIconBuffer);
 	g_return_val_if_fail (my_dustbin_pCairoContext != NULL, NULL);
 	
 	

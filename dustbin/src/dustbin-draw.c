@@ -9,6 +9,7 @@
 
 extern gchar **my_dustbin_cTrashDirectoryList;
 extern int *my_dustbin_pTrashState;
+extern GtkWidget *my_dustbin_pWidget;
 extern cairo_t *my_dustbin_pCairoContext;
 extern cairo_surface_t *my_dustbin_pEmptyBinSurface;
 extern cairo_surface_t *my_dustbin_pFullBinSurface;
@@ -103,7 +104,7 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 		}
 		cairo_paint (my_dustbin_pCairoContext);
 		cairo_restore (my_dustbin_pCairoContext);
-		cairo_dock_redraw_my_icon (icon);
+		cairo_dock_redraw_my_icon (icon, my_dustbin_pWidget);
 	}
 	
 	return TRUE;

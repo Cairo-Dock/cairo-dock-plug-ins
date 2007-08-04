@@ -10,6 +10,7 @@
 
 extern Icon *my_pIcon;
 extern cairo_t *my_pCairoContext;
+extern GtkWidget *my_pWidget;
 
 extern gboolean my_bShowDate;
 extern gboolean my_bShowSeconds;
@@ -38,7 +39,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 		cd_clock_draw_text (my_pCairoContext, &epoch_tm);
 	
 	
-	cairo_dock_redraw_my_icon (icon);
+	cairo_dock_redraw_my_icon (icon, my_pWidget);
 	
 	return TRUE;
 }

@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-Icon *cd_dustbin_init (cairo_t *pSourceContext, GError **erreur);
+Icon *cd_dustbin_init (GtkWidget *pWidget, GError **erreur);
 
 
 void cd_dustbin_stop (void);
