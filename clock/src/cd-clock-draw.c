@@ -2,6 +2,7 @@
 #include <time.h>
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
+#include "cairo-dock.h"
 
 #include "cd-clock-config.h"
 #include "cd-clock-struct.h"
@@ -39,7 +40,8 @@ gboolean cd_clock_update_with_time (Icon *icon)
 		cd_clock_draw_text (my_pCairoContext, &epoch_tm);
 	
 	
-	cairo_dock_redraw_my_icon (icon, my_pWidget);
+	if (! g_pMainDock->bAtBottom)
+		cairo_dock_redraw_my_icon (icon, my_pWidget);
 	
 	return TRUE;
 }

@@ -156,7 +156,7 @@ gboolean cd_clock_config (void)
 {
 	gchar *cConfFilePath = g_strdup_printf ("%s/plug-in/%s/%s", g_cCairoDockDataDir, CD_CLOCK_USER_DATA_DIR, CD_CLOCK_CONF_FILE);
 	
-	cairo_dock_edit_conf_file (NULL, cConfFilePath, "Clock appet's config.");
+	cairo_dock_edit_conf_file (NULL, cConfFilePath, "Clock appet's config.", 0, 0);
 	return TRUE;
 }
 
