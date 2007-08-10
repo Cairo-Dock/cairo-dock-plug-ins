@@ -1,4 +1,5 @@
 SUBDIRS = \
 	Crystal\
 	Gion\
-	NuoveXT-2
+	NuoveXT-2\
+	OpenClipArt1

@@ -38,7 +38,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 				i ++;
 			}
 		}
-		g_print (">>> %s\n", sCommand->str);
+		//g_print (">>> %s\n", sCommand->str);
 		system (sCommand->str);
 		g_string_free (sCommand, TRUE);
 	}
@@ -61,7 +61,7 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 			i ++;
 		}
 	}
-	g_print (">>> %s\n", sCommand->str);
+	//g_print (">>> %s\n", sCommand->str);
 	system (sCommand->str);
 	g_string_free (sCommand, TRUE);
 }

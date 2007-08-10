@@ -1,6 +1,7 @@
 
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
+#include "cairo-dock.h"
 
 #include "dustbin-struct.h"
 #include "dustbin-menu-functions.h"
@@ -104,7 +105,8 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 		}
 		cairo_paint (my_dustbin_pCairoContext);
 		cairo_restore (my_dustbin_pCairoContext);
-		cairo_dock_redraw_my_icon (icon, my_dustbin_pWidget);
+		if (! g_pMainDock->bAtBottom)
+			cairo_dock_redraw_my_icon (icon, my_dustbin_pWidget);
 	}
 	
 	return TRUE;

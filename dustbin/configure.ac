@@ -34,5 +34,7 @@ AC_CONFIG_FILES([Makefile
 		data/themes/Makefile
 		data/themes/Gion/Makefile
 		data/themes/Crystal/Makefile
-		data/themes/NuoveXT-2/Makefile])
+		data/themes/NuoveXT-2/Makefile
+		data/themes/OpenClipArt1/Makefile
+		])
 AC_OUTPUT

@@ -246,13 +246,19 @@ gboolean cd_dustbin_config (void)
 {
 	gchar *cConfFilePath = g_strdup_printf ("%s/plug-in/%s/%s", g_cCairoDockDataDir, CD_DUSTBIN_USER_DATA_DIR, CD_DUSTBIN_CONF_FILE);
 	
-	cairo_dock_edit_conf_file (NULL, cConfFilePath, "Dustbin appet's config.");
+	cairo_dock_edit_conf_file (NULL, cConfFilePath, "Dustbin appet's config.", 0, 0);
 	return TRUE;
 }
 
 gboolean cd_dustbin_action (void)
 {
-	g_print ("%s ()\n", __func__);
+	g_print ("You can manage many Trash directories with this applet. Right click on its icon to see which Trash directories are already being monitored.\n");
+	
+	if (my_dustbin_cTrashDirectoryList != NULL)
+		cd_dustbin_show_trash (NULL, my_dustbin_cTrashDirectoryList[0]);
+	else
+		g_print ("No Trash directory specified !\n");
+	
 	return TRUE;
 }
 
