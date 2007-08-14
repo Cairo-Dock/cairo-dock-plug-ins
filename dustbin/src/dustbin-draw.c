@@ -105,7 +105,7 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 		}
 		cairo_paint (my_dustbin_pCairoContext);
 		cairo_restore (my_dustbin_pCairoContext);
-		if (! g_pMainDock->bAtBottom)
+		if (! g_pMainDock->bAtBottom || ! g_bAutoHide)
 			cairo_dock_redraw_my_icon (icon, my_dustbin_pWidget);
 	}
 	

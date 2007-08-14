@@ -1,4 +1,11 @@
+/**********************************************************************************
 
+This file is a part of the cairo-dock clock applet, 
+released under the terms of the GNU General Public License.
+
+Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+
+**********************************************************************************/
 #include "stdlib.h"
 
 #include "cd-clock-struct.h"
@@ -156,7 +163,7 @@ gboolean cd_clock_config (void)
 {
 	gchar *cConfFilePath = g_strdup_printf ("%s/plug-in/%s/%s", g_cCairoDockDataDir, CD_CLOCK_USER_DATA_DIR, CD_CLOCK_CONF_FILE);
 	
-	cairo_dock_edit_conf_file (NULL, cConfFilePath, "Clock appet's config.", 0, 0);
+	cairo_dock_edit_conf_file (NULL, cConfFilePath, "Clock appet's config.", 450, 450);
 	return TRUE;
 }
 

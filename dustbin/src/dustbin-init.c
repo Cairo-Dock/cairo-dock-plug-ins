@@ -182,7 +182,9 @@ Icon *cd_dustbin_init (GtkWidget *pWidget, GError **erreur)
 					(int) my_dustbin_pIcon->fHeight,
 					&fImageWidth,
 					&fImageHeight,
-					0);
+					0,
+					1,
+					FALSE);
 			else if (strncmp (cElementName, "trashcan_empty", 14) == 0)
 				my_dustbin_pEmptyBinSurface = cairo_dock_create_surface_from_image (cElementPath,
 					my_dustbin_pCairoContext,
@@ -193,7 +195,9 @@ Icon *cd_dustbin_init (GtkWidget *pWidget, GError **erreur)
 					(int) my_dustbin_pIcon->fHeight,
 					&fImageWidth,
 					&fImageHeight,
-					0);
+					0,
+					1,
+					FALSE);
 			g_free (cElementPath);
 		}
 		g_dir_close (dir);
@@ -246,13 +250,13 @@ gboolean cd_dustbin_config (void)
 {
 	gchar *cConfFilePath = g_strdup_printf ("%s/plug-in/%s/%s", g_cCairoDockDataDir, CD_DUSTBIN_USER_DATA_DIR, CD_DUSTBIN_CONF_FILE);
 	
-	cairo_dock_edit_conf_file (NULL, cConfFilePath, "Dustbin appet's config.", 0, 0);
+	cairo_dock_edit_conf_file (NULL, cConfFilePath, "Dustbin appet's config.", 400, 400);
 	return TRUE;
 }
 
 gboolean cd_dustbin_action (void)
 {
-	g_print ("You can manage many Trash directories with this applet. Right click on its icon to see which Trash directories are already being monitored.\n");
+	g_print ("_Note_ : You can manage many Trash directories with this applet.\n Right click on its icon to see which Trash directories are already being monitored.\n");
 	
 	if (my_dustbin_cTrashDirectoryList != NULL)
 		cd_dustbin_show_trash (NULL, my_dustbin_cTrashDirectoryList[0]);
