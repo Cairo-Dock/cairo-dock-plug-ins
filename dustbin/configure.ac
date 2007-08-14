@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-dustbin],[1.0.5],[Fabrice Rey (fabounet_03@yahoo.fr)])
+AC_INIT([cd-dustbin],[1.1.0],[Fabrice Rey (fabounet_03@yahoo.fr)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
