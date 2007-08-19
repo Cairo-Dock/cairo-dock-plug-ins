@@ -55,10 +55,10 @@ char my_cFileNames[CLOCK_ELEMENTS][30] =
 };
 
 
-Icon *cd_clock_init (GtkWidget *pWidget, GError **erreur)
+Icon *cd_clock_init (GtkWidget *pWidget, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
-	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-in/%s", g_cCairoDockDataDir, CD_CLOCK_USER_DATA_DIR);
+	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-in/%s", g_cCurrentThemePath, CD_CLOCK_USER_DATA_DIR);
 	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR))
 	{
 		g_print ("directory %s doesn't exist, trying to fix it ...\n", cUserDataDirPath);
@@ -75,14 +75,15 @@ Icon *cd_clock_init (GtkWidget *pWidget, GError **erreur)
 	//\_______________ On charge la liste des themes disponibles.
 	GError *tmp_erreur = NULL;
 	gchar *cThemesDir = g_strdup_printf ("%s/themes", CD_CLOCK_SHARE_DATA_DIR);
-	my_pThemeTable = cairo_dock_list_themes (cThemesDir, &tmp_erreur);
+	my_pThemeTable = cairo_dock_list_themes (cThemesDir, NULL, &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
 		g_propagate_error (erreur, tmp_erreur);
 		return NULL;
 	}
 	
-	my_cConfFilePath = g_strdup_printf ("%s/plug-in/%s/%s", g_cCairoDockDataDir, CD_CLOCK_USER_DATA_DIR, CD_CLOCK_CONF_FILE);
+	my_cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_CLOCK_CONF_FILE);
+	g_free (cUserDataDirPath);
 	cairo_dock_update_conf_file_with_hash_table (my_cConfFilePath, my_pThemeTable, "MODULE", "theme", 1, "Theme (for analogic display only) :");
 	
 	int i;
@@ -136,6 +137,7 @@ Icon *cd_clock_init (GtkWidget *pWidget, GError **erreur)
 	my_iSidUpdateClock = g_timeout_add ((my_bShowSeconds ? 1000 : 60000), (GSourceFunc) cd_clock_update_with_time, (gpointer) my_pIcon);
 	
 	g_free (cName);
+	*cConfFilePath = g_strdup (my_cConfFilePath);
 	return my_pIcon;
 }
 
@@ -157,14 +159,6 @@ void cd_clock_stop (void)
 	}
 	g_hash_table_destroy (my_pThemeTable);
 	my_pThemeTable = NULL;
-}
-
-gboolean cd_clock_config (void)
-{
-	gchar *cConfFilePath = g_strdup_printf ("%s/plug-in/%s/%s", g_cCairoDockDataDir, CD_CLOCK_USER_DATA_DIR, CD_CLOCK_CONF_FILE);
-	
-	cairo_dock_edit_conf_file (NULL, cConfFilePath, "Clock appet's config.", 450, 450);
-	return TRUE;
 }
 
 gboolean cd_clock_action (void)

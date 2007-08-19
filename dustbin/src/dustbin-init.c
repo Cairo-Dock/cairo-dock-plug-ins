@@ -29,11 +29,11 @@ GHashTable *my_dustbin_pThemeTable = NULL;
 int my_dustbin_iState = -1;
 
 
-Icon *cd_dustbin_init (GtkWidget *pWidget, GError **erreur)
+Icon *cd_dustbin_init (GtkWidget *pWidget, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	
-	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-in/%s", g_cCairoDockDataDir, CD_DUSTBIN_USER_DATA_DIR);
+	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-ins/%s", g_cCurrentThemePath, CD_DUSTBIN_USER_DATA_DIR);
 	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR))
 	{
 		g_print ("directory %s doesn't exist, trying to fix it ...\n", cUserDataDirPath);
@@ -50,14 +50,15 @@ Icon *cd_dustbin_init (GtkWidget *pWidget, GError **erreur)
 	//\_______________ On charge la liste des themes disponibles.
 	GError *tmp_erreur = NULL;
 	gchar *cThemesDir = g_strdup_printf ("%s/themes", CD_DUSTBIN_SHARE_DATA_DIR);
-	my_dustbin_pThemeTable = cairo_dock_list_themes (cThemesDir, &tmp_erreur);
+	my_dustbin_pThemeTable = cairo_dock_list_themes (cThemesDir, NULL, &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
 		g_propagate_error (erreur, tmp_erreur);
 		return NULL;
 	}
 	
-	my_dustbin_cConfFilePath = g_strdup_printf ("%s/plug-in/%s/%s", g_cCairoDockDataDir, CD_DUSTBIN_USER_DATA_DIR, CD_DUSTBIN_CONF_FILE);
+	my_dustbin_cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_DUSTBIN_CONF_FILE);
+	g_free (cUserDataDirPath);
 	cairo_dock_update_conf_file_with_hash_table (my_dustbin_cConfFilePath, my_dustbin_pThemeTable, "MODULE", "theme", 1, "Theme :");
 	
 	
@@ -215,6 +216,7 @@ Icon *cd_dustbin_init (GtkWidget *pWidget, GError **erreur)
 	
 	
 	g_free (cName);
+	*cConfFilePath = g_strdup (my_dustbin_cConfFilePath);
 	return my_dustbin_pIcon;
 }
 
@@ -246,13 +248,6 @@ void cd_dustbin_stop (void)
 	my_dustbin_pFullBinSurface = NULL;
 }
 
-gboolean cd_dustbin_config (void)
-{
-	gchar *cConfFilePath = g_strdup_printf ("%s/plug-in/%s/%s", g_cCairoDockDataDir, CD_DUSTBIN_USER_DATA_DIR, CD_DUSTBIN_CONF_FILE);
-	
-	cairo_dock_edit_conf_file (NULL, cConfFilePath, "Dustbin appet's config.", 400, 400);
-	return TRUE;
-}
 
 gboolean cd_dustbin_action (void)
 {

@@ -6,13 +6,10 @@
 #include <cairo-dock.h>
 
 
-Icon *cd_dustbin_init (GtkWidget *pWidget, GError **erreur);
+Icon *cd_dustbin_init (GtkWidget *pWidget, gchar **cConfFilePath, GError **erreur);
 
 
 void cd_dustbin_stop (void);
-
-
-gboolean cd_dustbin_config (void);
 
 
 gboolean cd_dustbin_action (void);
