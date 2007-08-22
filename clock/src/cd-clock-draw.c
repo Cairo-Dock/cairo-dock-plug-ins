@@ -300,4 +300,3 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pCairoContext, int width, int 
 	cairo_set_source_surface (my_pCairoContext, g_pForegroundSurface, 0.0f, 0.0f);
 	cairo_paint (my_pCairoContext);
 }
-
