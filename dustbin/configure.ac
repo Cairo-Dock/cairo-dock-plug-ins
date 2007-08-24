@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-dustbin],[1.2.1],[Fabrice Rey (fabounet_03@yahoo.fr)])
+AC_INIT([cd-dustbin],[1.2.7],[Fabrice Rey (fabounet_03@yahoo.fr)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -36,5 +36,6 @@ AC_CONFIG_FILES([Makefile
 		data/themes/Crystal/Makefile
 		data/themes/NuoveXT-2/Makefile
 		data/themes/OpenClipArt1/Makefile
+		data/themes/DroplineNeu/Makefile
 		])
 AC_OUTPUT
