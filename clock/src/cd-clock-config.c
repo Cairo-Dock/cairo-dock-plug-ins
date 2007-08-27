@@ -19,8 +19,6 @@ extern gboolean my_bShowSeconds;
 extern gboolean my_bOldStyle;
 extern gboolean my_b24Mode;
 extern GHashTable *my_pThemeTable;
-extern cairo_t *my_pCairoContext;
-extern Icon *my_pIcon;
 
 extern RsvgHandle *my_pSvgHandles[CLOCK_ELEMENTS];
 extern char my_cFileNames[CLOCK_ELEMENTS][30];

@@ -15,6 +15,7 @@
 gchar *my_dustbin_cConfFilePath = NULL;
 Icon *my_dustbin_pIcon = NULL;
 GtkWidget *my_dustbin_pWidget = NULL;
+CairoDock *my_dustbin_pDock = NULL;
 cairo_t *my_dustbin_pCairoContext = NULL;
 double my_dustbin_fCheckInterval;
 int my_dustbin_iSidCheckTrashes = 0;
@@ -29,7 +30,7 @@ GHashTable *my_dustbin_pThemeTable = NULL;
 int my_dustbin_iState = -1;
 
 
-Icon *cd_dustbin_init (GtkWidget *pWidget, gchar **cConfFilePath, GError **erreur)
+Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	
@@ -72,8 +73,11 @@ Icon *cd_dustbin_init (GtkWidget *pWidget, gchar **cConfFilePath, GError **erreu
 	GtkWidget *pModuleSubMenu;
 	GtkWidget *menu_item;
 	int i = 0;
-	while (my_dustbin_cTrashDirectoryList[i] != NULL)
-		i ++;
+	if (my_dustbin_cTrashDirectoryList != NULL)
+	{
+		while (my_dustbin_cTrashDirectoryList[i] != NULL)
+			i ++;
+	}
 	my_dustbin_iNbTrash = i;
 	
 	my_dustbin_pShowToggleList = g_new0 (GtkWidget *, my_dustbin_iNbTrash);
@@ -87,20 +91,23 @@ Icon *cd_dustbin_init (GtkWidget *pWidget, gchar **cConfFilePath, GError **erreu
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), pModuleSubMenu);
 	
 	i = 0;
-	while (my_dustbin_cTrashDirectoryList[i] != NULL)
+	if (my_dustbin_cTrashDirectoryList != NULL)
 	{
-		g_string_printf (sLabel, "Show %s", my_dustbin_cTrashDirectoryList[i]);
-		
-		//menu_item = gtk_menu_item_new_with_label (sLabel->str);
-		menu_item = gtk_check_menu_item_new_with_label (sLabel->str);
-		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item), FALSE);
-		
-		gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleSubMenu), menu_item);
-		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_dustbin_show_trash), my_dustbin_cTrashDirectoryList[i]);
-		
-		my_dustbin_pShowToggleList[i] = menu_item;
-		
-		i ++;
+		while (my_dustbin_cTrashDirectoryList[i] != NULL)
+		{
+			g_string_printf (sLabel, "Show %s", my_dustbin_cTrashDirectoryList[i]);
+			
+			//menu_item = gtk_menu_item_new_with_label (sLabel->str);
+			menu_item = gtk_check_menu_item_new_with_label (sLabel->str);
+			gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item), FALSE);
+			
+			gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleSubMenu), menu_item);
+			g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_dustbin_show_trash), my_dustbin_cTrashDirectoryList[i]);
+			
+			my_dustbin_pShowToggleList[i] = menu_item;
+			
+			i ++;
+		}
 	}
 	menu_item = gtk_menu_item_new_with_label ("Show All");
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleSubMenu), menu_item);
@@ -112,20 +119,23 @@ Icon *cd_dustbin_init (GtkWidget *pWidget, gchar **cConfFilePath, GError **erreu
 	pModuleSubMenu = gtk_menu_new ();
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), pModuleSubMenu);
 	i = 0;
-	while (my_dustbin_cTrashDirectoryList[i] != NULL)
+	if (my_dustbin_cTrashDirectoryList != NULL)
 	{
-		g_string_printf (sLabel, "Delete %s", my_dustbin_cTrashDirectoryList[i]);
-		
-		//menu_item = gtk_menu_item_new_with_label (sLabel->str);
-		menu_item = gtk_check_menu_item_new_with_label (sLabel->str);
-		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item), FALSE);
-		
-		gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleSubMenu), menu_item);
-		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_dustbin_delete_trash), my_dustbin_cTrashDirectoryList[i]);
-		
-		my_dustbin_pDeleteToggleList[i] = menu_item;
-		
-		i ++;
+		while (my_dustbin_cTrashDirectoryList[i] != NULL)
+		{
+			g_string_printf (sLabel, "Delete %s", my_dustbin_cTrashDirectoryList[i]);
+			
+			//menu_item = gtk_menu_item_new_with_label (sLabel->str);
+			menu_item = gtk_check_menu_item_new_with_label (sLabel->str);
+			gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item), FALSE);
+			
+			gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleSubMenu), menu_item);
+			g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_dustbin_delete_trash), my_dustbin_cTrashDirectoryList[i]);
+			
+			my_dustbin_pDeleteToggleList[i] = menu_item;
+			
+			i ++;
+		}
 	}
 	menu_item = gtk_menu_item_new_with_label ("Delete All");
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleSubMenu), menu_item);
@@ -139,11 +149,12 @@ Icon *cd_dustbin_init (GtkWidget *pWidget, gchar **cConfFilePath, GError **erreu
 	
 	
 	//\_______________ On cree notre icone.
-	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pWidget->window);
-	my_dustbin_pIcon = cairo_dock_create_icon_for_applet (pSourceContext, iOriginalWidth, iOriginalHeight, cName, pModuleMenu);
+	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
+	my_dustbin_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, pModuleMenu);
 	cairo_destroy (pSourceContext);
 	
-	my_dustbin_pWidget = pWidget;
+	my_dustbin_pDock = pDock;
+	my_dustbin_pWidget = pDock->pWidget;
 	my_dustbin_pCairoContext = cairo_create (my_dustbin_pIcon->pIconBuffer);
 	g_return_val_if_fail (my_dustbin_pCairoContext != NULL, NULL);
 	
@@ -253,7 +264,7 @@ gboolean cd_dustbin_action (void)
 {
 	g_print ("_Note_ : You can manage many Trash directories with this applet.\n Right click on its icon to see which Trash directories are already being monitored.\n");
 	
-	if (my_dustbin_cTrashDirectoryList != NULL)
+	if (my_dustbin_cTrashDirectoryList != NULL && my_dustbin_cTrashDirectoryList[0] != NULL)
 		cd_dustbin_show_trash (NULL, my_dustbin_cTrashDirectoryList[0]);
 	else
 		g_print ("No Trash directory specified !\n");

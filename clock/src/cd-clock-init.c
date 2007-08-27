@@ -18,7 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #define CD_CLOCK_CONF_FILE "clock.conf"
 #define CD_CLOCK_USER_DATA_DIR "clock"
 
-
+CairoDock *my_pDock = NULL;
 gchar *my_cConfFilePath = NULL;
 gboolean my_bShowDate;
 gboolean my_bShowSeconds;
@@ -55,7 +55,7 @@ char my_cFileNames[CLOCK_ELEMENTS][30] =
 };
 
 
-Icon *cd_clock_init (GtkWidget *pWidget, gchar **cConfFilePath, GError **erreur)
+Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-in/%s", g_cCurrentThemePath, CD_CLOCK_USER_DATA_DIR);
@@ -110,17 +110,18 @@ Icon *cd_clock_init (GtkWidget *pWidget, gchar **cConfFilePath, GError **erreur)
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_clock_about), NULL);
 	
 	//\_______________ On cree notre icone.
-	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pWidget->window);
-	my_pIcon = cairo_dock_create_icon_for_applet (pSourceContext, iOriginalWidth, iOriginalHeight, cName, pModuleMenu);
+	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
+	my_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, pModuleMenu);
 	cairo_destroy (pSourceContext);
 	
-	my_pWidget = pWidget;
+	my_pDock = pDock;
+	my_pWidget = pDock->pWidget;
 	my_pCairoContext = cairo_create (my_pIcon->pIconBuffer);
 	g_return_val_if_fail (my_pCairoContext != NULL, NULL);
 	rsvg_handle_get_dimensions (my_pSvgHandles[CLOCK_DROP_SHADOW], &my_DimensionData);
 	
 	//\_______________ On charge les surfaces d'arriere-plan et d'avant-plan.
-	cairo_set_operator (my_pCairoContext, CAIRO_OPERATOR_SOURCE);
+	///cairo_set_operator (my_pCairoContext, CAIRO_OPERATOR_SOURCE);
 	g_pBackgroundSurface = update_surface (g_pBackgroundSurface,
 		my_pCairoContext,
 		my_pIcon->fWidth * (1 + g_fAmplitude),

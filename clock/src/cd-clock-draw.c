@@ -19,6 +19,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 extern Icon *my_pIcon;
 extern cairo_t *my_pCairoContext;
 extern GtkWidget *my_pWidget;
+extern CairoDock *my_pDock;
 
 extern gboolean my_bShowDate;
 extern gboolean my_bShowSeconds;
@@ -48,7 +49,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 	
 	
 	if (! g_pMainDock->bAtBottom || ! g_bAutoHide)
-		cairo_dock_redraw_my_icon (icon, my_pWidget);
+		cairo_dock_redraw_my_icon (icon, my_pDock);
 	
 	return TRUE;
 }
@@ -198,7 +199,7 @@ cairo_surface_t* update_surface (cairo_surface_t* pOldSurface,
 }
 
 
-void cd_clock_draw_old_fashionned_clock (cairo_t *pCairoContext, int width, int height, double fMaxScale, struct tm *pTime)
+void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int height, double fMaxScale, struct tm *pTime)
 {
 	//g_print ("%s (%dx%d)\n", __func__, width, height);
 	static double fHalfX;
@@ -214,89 +215,89 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pCairoContext, int width, int 
 	int g_iMinutes = pTime->tm_min;
 	int g_iHours = pTime->tm_hour;
 	
-	cairo_set_operator (my_pCairoContext, CAIRO_OPERATOR_SOURCE);
+	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_SOURCE);
 	
-	cairo_set_source_surface (my_pCairoContext, g_pBackgroundSurface, 0.0f, 0.0f);
-	cairo_paint (my_pCairoContext);
+	cairo_set_source_surface (pSourceContext, g_pBackgroundSurface, 0.0f, 0.0f);
+	cairo_paint (pSourceContext);
 	
-	cairo_set_operator (my_pCairoContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
 	
-	cairo_save (my_pCairoContext);
-	cairo_scale (my_pCairoContext,
+	cairo_save (pSourceContext);
+	cairo_scale (pSourceContext,
 		(double) width / (double) my_DimensionData.width * fMaxScale,
 		(double) height / (double) my_DimensionData.height * fMaxScale);
 		
-	cairo_translate (my_pCairoContext, fHalfX, fHalfY);
-	cairo_rotate (my_pCairoContext, -G_PI/2.0f);
+	cairo_translate (pSourceContext, fHalfX, fHalfY);
+	cairo_rotate (pSourceContext, -G_PI/2.0f);
 	
 	if (my_bShowDate)
 	{
-		cairo_save (my_pCairoContext);
-		cairo_set_source_rgb (my_pCairoContext, 1.0f, 0.5f, 0.0f);
-		cairo_set_line_width (my_pCairoContext, 5.0f);
-		cairo_text_extents (my_pCairoContext, cDateBuffer, &textExtents);
-		cairo_rotate (my_pCairoContext, (G_PI/180.0f) * 90.0f);
-		cairo_move_to (my_pCairoContext,
+		cairo_save (pSourceContext);
+		cairo_set_source_rgb (pSourceContext, 1.0f, 0.5f, 0.0f);
+		cairo_set_line_width (pSourceContext, 5.0f);
+		cairo_text_extents (pSourceContext, cDateBuffer, &textExtents);
+		cairo_rotate (pSourceContext, (G_PI/180.0f) * 90.0f);
+		cairo_move_to (pSourceContext,
 			-textExtents.width / 2.0f,
 			2.0f * textExtents.height);
 		
 		strftime (cDateBuffer, 50, "%a%d%b", pTime);
-		cairo_show_text (my_pCairoContext, cDateBuffer);
-		cairo_restore (my_pCairoContext);
+		cairo_show_text (pSourceContext, cDateBuffer);
+		cairo_restore (pSourceContext);
 	}
 	
-	cairo_save (my_pCairoContext);
-	cairo_translate (my_pCairoContext, fShadowOffsetX, fShadowOffsetY);
-	cairo_rotate (my_pCairoContext, (G_PI/ 12.0f * g_iHours + (G_PI/ 720.0f) * g_iMinutes));
+	cairo_save (pSourceContext);
+	cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
+	cairo_rotate (pSourceContext, (G_PI/ 12.0f * g_iHours + (G_PI/ 720.0f) * g_iMinutes));
 
-	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_HOUR_HAND_SHADOW], my_pCairoContext);
+	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_HOUR_HAND_SHADOW], pSourceContext);
 	
-	cairo_restore (my_pCairoContext);
+	cairo_restore (pSourceContext);
 	
-	cairo_save (my_pCairoContext);
-	cairo_translate (my_pCairoContext, fShadowOffsetX, fShadowOffsetY);
-	cairo_rotate (my_pCairoContext, (G_PI/30.0f) * g_iMinutes);
+	cairo_save (pSourceContext);
+	cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
+	cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iMinutes);
 	
-	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_MINUTE_HAND_SHADOW], my_pCairoContext);
+	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_MINUTE_HAND_SHADOW], pSourceContext);
 	
-	cairo_restore (my_pCairoContext);
-	
-	if (my_bShowSeconds)
-	{
-		cairo_save (my_pCairoContext);
-		cairo_translate (my_pCairoContext, fShadowOffsetX, fShadowOffsetY);
-		cairo_rotate (my_pCairoContext, (G_PI/30.0f) * g_iSeconds);
-		
-		rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_SECOND_HAND_SHADOW], my_pCairoContext);
-		
-		cairo_restore (my_pCairoContext);
-	}
-	
-	cairo_save (my_pCairoContext);
-	cairo_rotate (my_pCairoContext, (g_iHours % 12) * G_PI/6 + g_iMinutes * G_PI/360.0f);
-	
-	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_HOUR_HAND], my_pCairoContext);
-	
-	cairo_restore (my_pCairoContext);
-	
-	cairo_save (my_pCairoContext);
-	cairo_rotate (my_pCairoContext, (G_PI/30.0f) * g_iMinutes);
-	
-	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_MINUTE_HAND], my_pCairoContext);
-	
-	cairo_restore (my_pCairoContext);
+	cairo_restore (pSourceContext);
 	
 	if (my_bShowSeconds)
 	{
-		cairo_save (my_pCairoContext);
-		cairo_rotate (my_pCairoContext, (G_PI/30.0f) * g_iSeconds);
+		cairo_save (pSourceContext);
+		cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
+		cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iSeconds);
 		
-		rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_SECOND_HAND], my_pCairoContext);
-		cairo_restore (my_pCairoContext);
+		rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_SECOND_HAND_SHADOW], pSourceContext);
+		
+		cairo_restore (pSourceContext);
 	}
 	
-	cairo_restore (my_pCairoContext);
+	cairo_save (pSourceContext);
+	cairo_rotate (pSourceContext, (g_iHours % 12) * G_PI/6 + g_iMinutes * G_PI/360.0f);
 	
-	cairo_set_source_surface (my_pCairoContext, g_pForegroundSurface, 0.0f, 0.0f);
-	cairo_paint (my_pCairoContext);
+	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_HOUR_HAND], pSourceContext);
+	
+	cairo_restore (pSourceContext);
+	
+	cairo_save (pSourceContext);
+	cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iMinutes);
+	
+	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_MINUTE_HAND], pSourceContext);
+	
+	cairo_restore (pSourceContext);
+	
+	if (my_bShowSeconds)
+	{
+		cairo_save (pSourceContext);
+		cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iSeconds);
+		
+		rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_SECOND_HAND], pSourceContext);
+		cairo_restore (pSourceContext);
+	}
+	
+	cairo_restore (pSourceContext);
+	
+	cairo_set_source_surface (pSourceContext, g_pForegroundSurface, 0.0f, 0.0f);
+	cairo_paint (pSourceContext);
 }

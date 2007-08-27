@@ -73,7 +73,7 @@ void cd_dustbin_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight,
 		g_key_file_set_string (fconf, "MODULE", "trash directories", my_dustbin_cTrashDirectoryList[0]);
 		bFlushConfFileNeeded = TRUE;
 	}
-	if (my_dustbin_cTrashDirectoryList != NULL && strcmp (my_dustbin_cTrashDirectoryList[0], "") == 0)
+	if (my_dustbin_cTrashDirectoryList != NULL && my_dustbin_cTrashDirectoryList[0] != NULL && strcmp (my_dustbin_cTrashDirectoryList[0], "") == 0)
 	{
 		g_strfreev (my_dustbin_cTrashDirectoryList);
 		my_dustbin_cTrashDirectoryList = NULL;
