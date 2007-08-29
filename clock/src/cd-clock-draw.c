@@ -47,9 +47,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 	else
 		cd_clock_draw_text (my_pCairoContext, &epoch_tm);
 	
-	
-	if (! g_pMainDock->bAtBottom || ! g_bAutoHide)
-		cairo_dock_redraw_my_icon (icon, my_pDock);
+	cairo_dock_redraw_my_icon (icon, my_pDock);
 	
 	return TRUE;
 }
