@@ -47,7 +47,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 
 void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 {
-	GString *sCommand = g_string_new (g_cDefaultFileBrowser);
+	GString *sCommand = g_string_new ("xdg-open");
 	if (cDirectory != NULL)
 	{
 		g_string_append_printf (sCommand, " %s", cDirectory);

@@ -3,4 +3,6 @@ SUBDIRS = \
 	Gion\
 	NuoveXT-2\
 	OpenClipArt1\
-	DroplineNeu
+	DroplineNeu\
+	Metal\
+	Human
