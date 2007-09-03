@@ -84,7 +84,7 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	my_cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_CLOCK_CONF_FILE);
 	g_free (cUserDataDirPath);
-	cairo_dock_update_conf_file_with_hash_table (my_cConfFilePath, my_pThemeTable, "MODULE", "theme", 1, "Theme (for analogic display only) :");
+	cairo_dock_update_conf_file_with_hash_table (my_cConfFilePath, my_pThemeTable, "MODULE", "theme", 1, "Theme (for analogic display only) :", FALSE);
 	
 	int i;
 	for (i = 0; i < CLOCK_ELEMENTS; i ++)
