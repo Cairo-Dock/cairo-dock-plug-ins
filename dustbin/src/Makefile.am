@@ -20,6 +20,7 @@ libcd_dustbin_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	-DCD_DUSTBIN_SHARE_DATA_DIR=\""$(datadir)/cd-dustbin"\"\
+	-DCD_DUSTBIN_README_FILE=\""readme"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall

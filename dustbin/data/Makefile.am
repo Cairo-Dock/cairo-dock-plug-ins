@@ -4,5 +4,6 @@ SUBDIRS = . themes
 datadustbindir = $(pkgdatadir)
 
 datadustbin_DATA = \
-	dustbin.conf
+	dustbin.conf\
+	readme
 
