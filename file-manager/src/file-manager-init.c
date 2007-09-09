@@ -32,11 +32,14 @@ FileManagerIsMountingPointFunc file_manager_is_mounting_point = NULL;
 FileManagerMountFunc file_manager_mount = NULL;
 FileManagerUnmountFunc file_manager_unmount = NULL;
 FileManagerAddMonitorFunc file_manager_add_monitor;
+FileManagerAddMonitorFunc file_manager_remove_monitor;
+
+FileManagerSortType g_fm_iSortType = FILE_MANAGER_SORT_BY_NAME;
 
 
 Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
-	//g_print ("%s ()\n", __func__);
+	g_print ("%s ()\n", __func__);
 	/*gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-in/%s", g_cCurrentThemePath, FILE_MANAGER_USER_DATA_DIR);
 	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR))
 	{
@@ -126,6 +129,8 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 		return NULL;
 	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_add_monitor", (gpointer) &file_manager_add_monitor))
 		return NULL;
+	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_remove_monitor", (gpointer) &file_manager_remove_monitor))
+		return NULL;
 	g_print ("chargement du backend VFS OK\n");
 	
 	if (! file_manager_init_backend (file_monitor_action_on_event))
@@ -140,6 +145,8 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	cairo_dock_launch_uri_func = file_manager_launch_icon;
 	cairo_dock_load_directory_func = file_manager_create_dock_from_directory;
 	
+	g_hash_table_foreach (g_hDocksTable, file_manager_reload_directories, NULL);
+	
 	//g_free (cUserDataDirPath);
 	//g_free (cName);
 	return my_fm_pIcon;
@@ -147,11 +154,11 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 
 void file_manager_stop (void)
 {
-	g_print ("OK a plus !\n");
+	my_fm_pIcon = NULL;
 	
 	g_module_close (s_fm_pBackendModule);
 	s_fm_pBackendModule = NULL;
-	my_fm_pIcon = NULL;
+	
 	cairo_dock_add_uri_func = NULL;
 	cairo_dock_launch_uri_func = NULL;
 	cairo_dock_load_directory_func = NULL;

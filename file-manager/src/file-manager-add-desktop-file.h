@@ -11,5 +11,5 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 
 void file_manager_launch_icon (Icon *icon);
 
-#endif
 
+#endif

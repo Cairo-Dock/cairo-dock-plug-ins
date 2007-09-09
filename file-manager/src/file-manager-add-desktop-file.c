@@ -20,6 +20,8 @@ extern FileManagerIsMountingPointFunc file_manager_is_mounting_point;
 extern FileManagerMountFunc file_manager_mount;
 extern FileManagerUnmountFunc file_manager_unmount;
 
+extern FileManagerSortType g_fm_iSortType;
+
 gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, double fOrder, CairoDock *pDock, GError **erreur)
 {
 	g_print ("%s (%s)\n", __func__, cURI);
@@ -41,13 +43,14 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 	//\___________________ On renseigne ce qu'on peut.
 	g_key_file_set_double (pKeyFile, "Desktop Entry", "Order", fOrder);
 	g_key_file_set_string (pKeyFile, "Desktop Entry", "Container", cDockName);
-	g_key_file_set_boolean (pKeyFile, "Desktop Entry", "Is URI", TRUE);
+	g_key_file_set_string (pKeyFile, "Desktop Entry", "Base URI", cURI);
 	
 	
 	//\___________________ On renseigne les champs propres au type mime.
 	gchar *cIconName = NULL, *cName = NULL, *cRealURI = NULL;
 	gboolean bIsDirectory, bIsMountPoint;
-	file_manager_get_file_info (cURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &bIsMountPoint);
+	double fUnusedOrder;
+	file_manager_get_file_info (cURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &bIsMountPoint, &fUnusedOrder, g_fm_iSortType);
 	g_print (" -> cIconName : %s; bIsDirectory : %d; bIsMountPoint : %d\n", cIconName, bIsDirectory, bIsMountPoint);
 	
 	g_key_file_set_string (pKeyFile, "Desktop Entry", "Name", cName);

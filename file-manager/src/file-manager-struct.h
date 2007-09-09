@@ -26,6 +26,16 @@ typedef enum {
 	FILE_MANAGER_NB_EVENT_TYPE
 	} FileManagerEventType;
 
+typedef enum {
+	FILE_MANAGER_SORT_BY_NAME=0,
+	FILE_MANAGER_SORT_BY_DATE,
+	FILE_MANAGER_SORT_BY_SIZE,
+	FILE_MANAGER_SORT_BY_TYPE
+	} FileManagerSortType;
+
+#define FILE_MANAGER_VFS_ROOT "_vfsroot_"
+#define FILE_MANAGER_NETWORK "_network_"
+
 typedef void (*FileManagerOnEventFunc) (FileManagerEventType iEventType, const gchar *cURI, Icon *pIcon);
 
 
@@ -33,10 +43,10 @@ typedef void (*FileManagerOnEventFunc) (FileManagerEventType iEventType, const g
 typedef gboolean (*FileManagerInitFunc) (FileManagerOnEventFunc);
 
 
-typedef void (*FileManagerGetFileInfoFunc) (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint);
+typedef void (*FileManagerGetFileInfoFunc) (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint, double *fOrder, FileManagerSortType iSortType);
 
 
-typedef GList * (*FileManagerListDirectoryFunc) (gchar *cURI);
+typedef GList * (*FileManagerListDirectoryFunc) (gchar *cURI, FileManagerSortType g_fm_iSortType);
 
 
 typedef void (*FileManagerLaunchUriFunc) (gchar *cURI);
