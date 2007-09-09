@@ -17,28 +17,33 @@ Inspiration was taken from the "xdg" project :-)
 #include "file-manager-vfs-gnome.h"
 
 
-FileManagerOnEventFunc s_fm_GnomeOnEventFunc = NULL;
+static GHashTable *s_fm_MonitorHandleTable = NULL;
+static FileManagerOnEventFunc s_fm_GnomeOnEventFunc = NULL;
 
 
 gboolean _file_manager_init_backend (FileManagerOnEventFunc pCallback)
 {
 	s_fm_GnomeOnEventFunc = pCallback;
 	
-	return (gnome_vfs_init ());
+	if (s_fm_MonitorHandleTable != NULL)
+		g_hash_table_destroy (s_fm_MonitorHandleTable);
+	
+	s_fm_MonitorHandleTable = g_hash_table_new_full (g_direct_hash,
+		g_direct_equal,
+		g_free,
+		(GDestroyNotify) gnome_vfs_monitor_cancel);  // le GnomeVFSMonitorHandle est-il libere lors du gnome_vfs_monitor_cancel () ?
+	
+	return (gnome_vfs_init ());  // ne fait rien si gnome-vfs est deja initialise.
 }
 
 
-static gchar * file_manager_read_file (gchar *cURI)
+/*static gchar * file_manager_read_file (gchar *cURI)
 {
 	g_print ("%s (%s)\n", __func__, cURI);
 	
 	GString *sFileData = g_string_new ("");
 	gchar *cBuffer = g_new0 (gchar, 1024 + 1);
 	GnomeVFSFileSize iNbBytesRead = 0;
-	/*gchar *cBuffer = g_new0 (gchar, 1024);
-	size_t bufSize = FILE_MANAGER_INITIAL_BUFFER_SIZE;
-	GnomeVFSFileSize bytes_read;
-	int pos=0;*/
 	gchar * cFullURI = gnome_vfs_make_uri_from_input (cURI);
 	g_print ("cFullURI : %s\n", cFullURI);
 	GnomeVFSHandle *handle = NULL;
@@ -70,20 +75,23 @@ static gchar * file_manager_read_file (gchar *cURI)
 	gchar *cFileData = sFileData->str;
 	g_string_free (sFileData, FALSE);
 	return cFileData;
-}
-
-
+}*/
 static gboolean file_manager_follow_desktop_link (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint)
 {
 	g_print ("%s (%s)\n", __func__, cBaseURI);
 	GError *erreur = NULL;
 	
-	gchar *cFileData = file_manager_read_file (cBaseURI);
+	//gchar *cFileData = file_manager_read_file (cBaseURI);
+	gchar *cFileData = NULL;
+	int iFileSize = 0;
+	if (gnome_vfs_read_entire_file (cBaseURI, &iFileSize, &cFileData) != GNOME_VFS_OK)
+	{
+		g_print ("Attention : couldn't read %s\n", cBaseURI);
+		return FALSE;
+	}
 	g_print (" => %s\n", cFileData);
 	
 	GKeyFile *pKeyFile = g_key_file_new ();
-	//g_key_file_load_from_file (pKeyFile, cDesktopFilePath, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
-	//g_free (cDesktopFilePath);
 	g_key_file_load_from_data (pKeyFile,
 		cFileData,
 		-1,
@@ -121,16 +129,17 @@ static gboolean file_manager_follow_desktop_link (gchar *cBaseURI, gchar **cName
 }
 
 
-void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint)
+void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint, double *fOrder, FileManagerSortType iSortType)
 {
 	g_print ("%s (%s)\n", __func__, cBaseURI);
 	
 	GnomeVFSResult r;
 	GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
 	gchar *cFullURI = gnome_vfs_make_uri_from_input (cBaseURI);
+	g_print ("  cFullURI : %s\n", cFullURI);
 	
 	GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
-
+	
 	r = gnome_vfs_get_file_info (cFullURI, info, infoOpts);
 	if (r != GNOME_VFS_OK) 
 	{
@@ -143,10 +152,12 @@ void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, 
 	GnomeVFSFileInfoFields valid = info->valid_fields;
 	
 	const gchar *cMimeType = gnome_vfs_file_info_get_mime_type (info);
+	g_print ("  cMimeType : %s\n", cMimeType);
 	if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (cMimeType, "application/x-desktop") == 0)
 	{
 		gnome_vfs_file_info_unref (info);
 		file_manager_follow_desktop_link (cFullURI, cName, cURI, cIconName, bIsDirectory, bIsMountPoint);
+		*fOrder = 0;
 		return ;
 	}
 	g_free (cFullURI);
@@ -159,27 +170,43 @@ void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, 
 		*bIsDirectory = (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY);
 	else
 		*bIsDirectory = FALSE;
-	
-	GnomeIconLookupResultFlags iconLookupResultFlags;
-	*cIconName = gnome_icon_lookup (gtk_icon_theme_get_default (),
-		NULL,
-		NULL /* const char *file_uri */,
-		NULL,
-		info,
-		info->mime_type,
-		GNOME_ICON_LOOKUP_FLAGS_NONE,  // GNOME_ICON_LOOKUP_FLAGS_ALLOW_SVG_AS_THEMSELVES
-		&iconLookupResultFlags);
+	if (strncmp (cMimeType, "image", 5) == 0 && strncmp (cBaseURI, "file://", 7) == 0)
+	{
+		*cIconName = g_strdup (cBaseURI+7);
+	}
+	else
+	{
+		GnomeIconLookupResultFlags iconLookupResultFlags;
+		*cIconName = gnome_icon_lookup (gtk_icon_theme_get_default (),
+			NULL,
+			NULL /* const char *file_uri */,
+			NULL,
+			info,
+			info->mime_type,
+			GNOME_ICON_LOOKUP_FLAGS_NONE,  // GNOME_ICON_LOOKUP_FLAGS_ALLOW_SVG_AS_THEMSELVES
+			&iconLookupResultFlags);
+	}
 	
 	gboolean bIsMounted;
 	gchar *cActivationURI = _file_manager_is_mounting_point (*cURI, &bIsMounted);
 	*bIsMountPoint = (cActivationURI != NULL);  // a priori toujours FALSE.
 	g_free (cActivationURI);
 	
+	if (iSortType == FILE_MANAGER_SORT_BY_DATE)
+		*fOrder = info->mtime;
+	else if (iSortType == FILE_MANAGER_SORT_BY_SIZE)
+		*fOrder = info->size;
+	else if (iSortType == FILE_MANAGER_SORT_BY_TYPE)
+		*fOrder = info->type;
+	else
+		*fOrder = 0;
+	
 	gnome_vfs_file_info_unref (info);
 }
 
 
-GList *_file_manager_list_directory (gchar *cURI)
+
+GList *_file_manager_list_directory (gchar *cURI, FileManagerSortType iSortType)
 {
 	g_print ("%s ()\n", __func__);
 	
@@ -217,7 +244,6 @@ GList *_file_manager_list_directory (gchar *cURI)
 		gchar *cFileURI;
 		GnomeIconLookupResultFlags iconLookupResultFlags;
 		Icon *icon;
-		int iOrder = 0;
 		while(1)
 		{
 			r = gnome_vfs_directory_read_next (handle, info);
@@ -246,23 +272,44 @@ GList *_file_manager_list_directory (gchar *cURI)
 				}
 				
 				icon = g_new0 (Icon, 1);
-				icon->bIsURI = TRUE;
+				icon->cBaseURI = cFileURI;
 				icon->iType = CAIRO_DOCK_LAUNCHER;
-				icon->acCommand = g_strdup (cFileURI);
-				icon->acName = g_strdup (info->name);
-				icon->acFileName = gnome_icon_lookup (gtk_icon_theme_get_default (),
-					NULL,
-					NULL /* const char *file_uri */,
-					NULL,
-					info,
-					info->mime_type,
-					GNOME_ICON_LOOKUP_FLAGS_NONE,
-					&iconLookupResultFlags);
-				icon->fOrder = iOrder ++;
+				if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (info->mime_type, "application/x-desktop") == 0)
+				{
+					gboolean bIsDirectory = FALSE;
+					file_manager_follow_desktop_link (cFileURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->bIsMountingPoint);
+					g_print ("  bIsDirectory : %d\n", bIsDirectory);
+					
+				}
+				else
+				{
+					icon->acCommand = g_strdup (cFileURI);
+					icon->acName = g_strdup (info->name);
+					if (strncmp (info->mime_type, "image", 5) == 0 && strncmp (cFileURI, "file://", 7) == 0)
+					{
+						icon->acFileName = g_strdup (cFileURI+7);
+					}
+					else
+					{
+						icon->acFileName = gnome_icon_lookup (gtk_icon_theme_get_default (),
+							NULL,
+							NULL, // file_uri.
+							NULL,
+							info,
+							info->mime_type,
+							GNOME_ICON_LOOKUP_FLAGS_NONE,
+							&iconLookupResultFlags);
+					}
+				}
+				if (iSortType == FILE_MANAGER_SORT_BY_SIZE && (valid & GNOME_VFS_FILE_INFO_FIELDS_SIZE))
+					icon->fOrder = info->size;
+				else if (iSortType == FILE_MANAGER_SORT_BY_DATE && (valid & GNOME_VFS_FILE_INFO_FIELDS_MTIME))
+					icon->fOrder = info->mtime;
+				else if (iSortType == FILE_MANAGER_SORT_BY_DATE && (valid & GNOME_VFS_FILE_INFO_FIELDS_TYPE))
+					icon->fOrder = info->type;
 				pIconList = g_list_prepend (pIconList, icon);
 				
 				gnome_vfs_uri_unref (fileUri);
-				g_free (cFileURI);
 			}
 			gnome_vfs_file_info_clear (info);
 		}
@@ -270,11 +317,12 @@ GList *_file_manager_list_directory (gchar *cURI)
 		
 		gnome_vfs_directory_close (handle);
 		gnome_vfs_file_info_unref (info);
+		
+		pIconList = file_manager_sort_files (pIconList, iSortType);
 	}
 	
 	return pIconList;
 }
-
 
 
 
@@ -396,6 +444,7 @@ static void file_manager_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
 }
 
 
+
 void _file_manager_add_monitor (Icon *pIcon)
 {
 	GnomeVFSMonitorHandle *pHandle = NULL;
@@ -408,5 +457,13 @@ void _file_manager_add_monitor (Icon *pIcon)
 	{
 		g_print ("Attention : couldn't add monitor function to %s\n  I will not be able to receive events about this file\n", pIcon->acCommand);
 	}
+	else
+	{
+		g_hash_table_insert (s_fm_MonitorHandleTable, g_strdup (pIcon->acCommand), pHandle);
+	}
 }
 
+void _file_manager_remove_monitor (Icon *pIcon)
+{
+	g_hash_table_remove (s_fm_MonitorHandleTable, pIcon->acCommand);
+}

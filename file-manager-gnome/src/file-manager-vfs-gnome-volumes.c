@@ -18,18 +18,24 @@ Inspiration was taken from the "xdg" project :-)
 static Icon * file_manager_create_icon_from_volume (GnomeVFSVolume *pVolume)
 {
 	Icon *icon = g_new0 (Icon, 1);
+	icon->iType = CAIRO_DOCK_LAUNCHER;
 	icon->acName = gnome_vfs_volume_get_display_name (pVolume);
 	icon->acFileName = gnome_vfs_volume_get_icon (pVolume);
 	icon->acCommand = gnome_vfs_volume_get_activation_uri (pVolume);  // gnome_vfs_volume_get_device_path (pVolume)
+	icon->cBaseURI = g_strdup (icon->acCommand);  // A VERIFIER ...
+	g_print ("%s () : %s\n", icon->acCommand);
 	return icon;
 }
 
 static Icon * file_manager_create_icon_from_drive (GnomeVFSDrive *pDrive)
 {
 	Icon *icon = g_new0 (Icon, 1);
+	icon->iType = CAIRO_DOCK_LAUNCHER;
 	icon->acName = gnome_vfs_drive_get_display_name (pDrive);
 	icon->acFileName = gnome_vfs_drive_get_icon (pDrive);
-	icon->acCommand = gnome_vfs_drive_get_activation_uri (pDrive);  // gnome_vfs_drive_get_device_path (pDrive); 
+	icon->acCommand = gnome_vfs_drive_get_activation_uri (pDrive);  // gnome_vfs_drive_get_device_path (pDrive);
+	icon->cBaseURI = g_strdup (icon->acCommand);  // A VERIFIER ...
+	g_print ("%s () : %s\n", icon->acCommand); 
 	return icon;
 }
 
