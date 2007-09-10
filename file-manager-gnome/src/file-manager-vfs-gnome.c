@@ -454,8 +454,9 @@ void _file_manager_rename_file (gchar *cOldURI, gchar *cNewName)
 	gchar *cPath = gnome_vfs_uri_extract_dirname (pVfsUri);
 	gnome_vfs_uri_unref (pVfsUri);
 	
-	gchar *cNewURI = g_strdup_printf ("%s%s", cPath, cNewName);
+	gchar *cNewURI = g_strdup_printf ("%s/%s", cPath, cNewName);
 	g_free (cPath);
+	g_print (" %s -> %s\n", cOldURI, cNewURI);
 	
 	GnomeVFSResult r= gnome_vfs_move (cOldURI,
 		cNewURI,

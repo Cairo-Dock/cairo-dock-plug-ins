@@ -77,8 +77,9 @@ static void file_manager_rename (GtkMenuItem *menu_item, gpointer *data)
 	GtkWidget *pEntry = gtk_entry_new ();
 	gtk_entry_set_text (GTK_ENTRY (pEntry), icon->acName);
 	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), pEntry);
+	gtk_widget_show_all (GTK_DIALOG (dialog)->vbox);
 	int answer = gtk_dialog_run (GTK_DIALOG (dialog));
-	if (answer == GTK_RESPONSE_YES)
+	if (answer == GTK_RESPONSE_OK)
 	{
 		file_manager_rename_file (icon->acCommand, gtk_entry_get_text (GTK_ENTRY (pEntry)));
 	}
@@ -89,7 +90,7 @@ static void file_manager_properties (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDock *pDock = data[0];
 	Icon *icon = data[1];
-	g_print ("%s (%s)\n", __func__, icon->acName);
+	//g_print ("%s (%s)\n", __func__, icon->acName);
 	
 	guint64 iSize = 0;
 	time_t iLastModificationTime = 0;
@@ -101,10 +102,10 @@ static void file_manager_properties (GtkMenuItem *menu_item, gpointer *data)
 		GTK_DIALOG_DESTROY_WITH_PARENT,
 		GTK_MESSAGE_INFO,
 		GTK_BUTTONS_OK_CANCEL,
-		"Rename to :");
-	GtkWidget *pEntry = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (pEntry), icon->acName);
-	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), pEntry);
+		"Properties :");
+	
+	
+	gtk_widget_show_all (GTK_DIALOG (dialog)->vbox);
 	int answer = gtk_dialog_run (GTK_DIALOG (dialog));
 	gtk_widget_destroy (dialog);
 	
