@@ -10,7 +10,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include <cairo-dock.h>
 
-#include "file-manager-struct.h"
 #include "file-manager-load-directory.h"
 
 extern FileManagerGetFileInfoFunc file_manager_get_file_info;

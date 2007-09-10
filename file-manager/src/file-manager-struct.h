@@ -10,7 +10,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #define  __FILE_MANAGER_STRUCT__
 
 #include <glib.h>
-
+#include <cairo-dock.h>
 
 typedef enum {
 	FILE_MANAGER_UNKNOWN=0,
@@ -60,5 +60,9 @@ typedef void (*FileManagerUnmountFunc) (gchar *cURI);
 
 typedef void (*FileManagerAddMonitorFunc) (Icon *pIcon);
 
+
+typedef void (*FileManagerDeleteFileFunc) (gchar *cURI);
+typedef void (*FileManagerRenameFileFunc) (gchar *cOldURI, gchar *cNewName);
+typedef void (*FileManagerFilePropertiesFunc) (gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask);
 
 #endif

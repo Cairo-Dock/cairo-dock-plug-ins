@@ -94,4 +94,3 @@ void file_manager_launch_icon (Icon *icon)
 {
 	file_manager_launch_uri (icon->acCommand);
 }
-

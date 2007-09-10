@@ -33,6 +33,9 @@ FileManagerMountFunc file_manager_mount = NULL;
 FileManagerUnmountFunc file_manager_unmount = NULL;
 FileManagerAddMonitorFunc file_manager_add_monitor;
 FileManagerAddMonitorFunc file_manager_remove_monitor;
+FileManagerDeleteFileFunc file_manager_delete_file;
+FileManagerRenameFileFunc file_manager_rename_file;
+FileManagerFilePropertiesFunc file_manager_get_file_properties;
 
 FileManagerSortType g_fm_iSortType = FILE_MANAGER_SORT_BY_NAME;
 
@@ -62,16 +65,6 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	gchar *cName = NULL;
 	file_manager_read_conf_file (*cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName);*/
 	
-	
-	//\_______________ On cree nos entrees dans le menu qui sera appele lors d'un clic droit.
-	/*GtkWidget *pMenu = gtk_menu_new ();
-	GtkWidget *menu_item;
-	
-	menu_item = gtk_menu_item_new_with_label ("About");
-	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), menu_item);
-	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (file_manager_about), NULL);*/
-	
-	
 	//\_______________ On cree notre icone.
 	my_fm_pIcon = NULL;
 	my_fm_pDock = pDock;
@@ -96,7 +89,7 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	
 	if (iDesktopEnv == FILE_MANAGER_UNKNOWN)
 	{
-		 g_set_error (erreur, 1, 1, "Attention : couldn't guesse desktop environment, this module will not be active");
+		 g_set_error (erreur, 1, 1, "Attention : couldn't guess desktop environment, this module will not be active");
 		return NULL;
 	}
 	if (iDesktopEnv == FILE_MANAGER_KDE)  // le backend de KDE n'est pas encore implemente.
@@ -131,6 +124,12 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 		return NULL;
 	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_remove_monitor", (gpointer) &file_manager_remove_monitor))
 		return NULL;
+	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_delete_file", (gpointer) &file_manager_delete_file))
+		return NULL;
+	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_rename_file", (gpointer) &file_manager_rename_file))
+		return NULL;
+	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_get_file_properties", (gpointer) &file_manager_get_file_properties))
+		return NULL;
 	g_print ("chargement du backend VFS OK\n");
 	
 	if (! file_manager_init_backend (file_monitor_action_on_event))
@@ -145,7 +144,9 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	cairo_dock_launch_uri_func = file_manager_launch_icon;
 	cairo_dock_load_directory_func = file_manager_create_dock_from_directory;
 	
-	g_hash_table_foreach (g_hDocksTable, file_manager_reload_directories, NULL);
+	g_hash_table_foreach (g_hDocksTable, (GHFunc) file_manager_reload_directories, NULL);
+	
+	cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) file_manager_notification_build_menu, CAIRO_DOCK_RUN_FIRST);
 	
 	//g_free (cUserDataDirPath);
 	//g_free (cName);

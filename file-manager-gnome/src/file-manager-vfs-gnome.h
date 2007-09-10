@@ -13,7 +13,7 @@ gboolean _file_manager_init_backend (FileManagerOnEventFunc pCallback);
 void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint, double *fOrder, FileManagerSortType iSortType);
 
 
-GList *_file_manager_list_directory (gchar *cURI, FileManagerSortType iSortType);
+GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortType);
 
 
 void _file_manager_launch_uri (gchar *cURI);
@@ -28,6 +28,13 @@ void _file_manager_unmount (gchar *cURI);
 
 void _file_manager_add_monitor (Icon *pIcon);
 void _file_manager_remove_monitor (Icon *pIcon);
+
+
+void _file_manager_delete_file (gchar *cURI);
+
+void _file_manager_rename_file (gchar *cOldURI, gchar *cNewName);
+
+void _file_manager_get_file_properties (gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask);
 
 
 #endif

@@ -5,6 +5,7 @@
 
 #include <cairo-dock.h>
 
+#include "file-manager-struct.h"
 
 void file_manager_create_dock_from_directory (Icon *pIcon);
 

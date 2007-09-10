@@ -13,6 +13,8 @@ Inspiration was taken from the "xdg" project :-)
 #include <libgnomeui/libgnomeui.h>
 #include <libgnomevfs/gnome-vfs.h>
 
+#include <file-manager-load-directory.h>
+
 #include "file-manager-vfs-gnome-volumes.h"
 #include "file-manager-vfs-gnome.h"
 
@@ -37,45 +39,6 @@ gboolean _file_manager_init_backend (FileManagerOnEventFunc pCallback)
 }
 
 
-/*static gchar * file_manager_read_file (gchar *cURI)
-{
-	g_print ("%s (%s)\n", __func__, cURI);
-	
-	GString *sFileData = g_string_new ("");
-	gchar *cBuffer = g_new0 (gchar, 1024 + 1);
-	GnomeVFSFileSize iNbBytesRead = 0;
-	gchar * cFullURI = gnome_vfs_make_uri_from_input (cURI);
-	g_print ("cFullURI : %s\n", cFullURI);
-	GnomeVFSHandle *handle = NULL;
-	
-	GnomeVFSResult r = gnome_vfs_open (&handle, cFullURI, GNOME_VFS_OPEN_READ);
-	g_free (cFullURI);
-	g_return_val_if_fail (r == GNOME_VFS_OK, NULL);
-	
-	while (1)
-	{
-		r = gnome_vfs_read (handle, cBuffer, 1024, &iNbBytesRead);
-		if (r == GNOME_VFS_ERROR_EOF)
-			break ;
-		if (r!=GNOME_VFS_OK) 
-		{
-			g_free (cBuffer);
-			g_string_free (sFileData, TRUE);
-			gnome_vfs_close (handle);
-			return NULL;
-		}
-		g_string_append (sFileData, cBuffer);
-		memset (cBuffer, 0, 1024);
-	}
-	
-	g_string_append (sFileData, cBuffer);
-	g_free (cBuffer);
-	gnome_vfs_close (handle);
-	
-	gchar *cFileData = sFileData->str;
-	g_string_free (sFileData, FALSE);
-	return cFileData;
-}*/
 static gboolean file_manager_follow_desktop_link (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint)
 {
 	g_print ("%s (%s)\n", __func__, cBaseURI);
@@ -206,11 +169,20 @@ void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, 
 
 
 
-GList *_file_manager_list_directory (gchar *cURI, FileManagerSortType iSortType)
+GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortType)
 {
+	g_return_val_if_fail (cBaseURI != NULL, NULL);
 	g_print ("%s ()\n", __func__);
 	
 	GList *pIconList = NULL;
+	
+	gchar *cURI;
+	if (strcmp (cBaseURI, FILE_MANAGER_VFS_ROOT) == 0)
+		cURI = "computer://";
+	else if (strcmp (cBaseURI, FILE_MANAGER_NETWORK) == 0)
+		cURI = "network://";
+	else
+		cURI = cBaseURI;
 	
 	gchar * cFullURI = gnome_vfs_make_uri_from_input (cURI);
 	g_print ("cFullURI : %s\n", cFullURI);
@@ -466,4 +438,64 @@ void _file_manager_add_monitor (Icon *pIcon)
 void _file_manager_remove_monitor (Icon *pIcon)
 {
 	g_hash_table_remove (s_fm_MonitorHandleTable, pIcon->acCommand);
+}
+
+
+void _file_manager_delete_file (gchar *cURI)
+{
+	GnomeVFSResult r = gnome_vfs_unlink (cURI);
+	if (r != GNOME_VFS_OK)
+		g_print ("Attention : couldn't delete this file.\nnCheck that you have writing rights on this file.\n");
+}
+
+void _file_manager_rename_file (gchar *cOldURI, gchar *cNewName)
+{
+	GnomeVFSURI *pVfsUri = gnome_vfs_uri_new (cOldURI);
+	gchar *cPath = gnome_vfs_uri_extract_dirname (pVfsUri);
+	gnome_vfs_uri_unref (pVfsUri);
+	
+	gchar *cNewURI = g_strdup_printf ("%s%s", cPath, cNewName);
+	g_free (cPath);
+	
+	GnomeVFSResult r= gnome_vfs_move (cOldURI,
+		cNewURI,
+		FALSE);
+	if (r != GNOME_VFS_OK)
+		g_print ("Attention : couldn't reame this file.\nCheck that you have writing rights, and that new name does not already exist.\n");
+	g_free (cNewURI);
+}
+
+void _file_manager_get_file_properties (gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask)
+{
+	GnomeVFSResult r;
+	GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
+	gchar *cFullURI = gnome_vfs_make_uri_from_input (cURI);
+	g_print ("  cFullURI : %s\n", cFullURI);
+	
+	GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
+	
+	r = gnome_vfs_get_file_info (cFullURI, info, infoOpts);
+	if (r != GNOME_VFS_OK) 
+	{
+		g_print ("Attention : couldn't get file info for '%s'\n", cFullURI);
+		g_free (cFullURI);
+		gnome_vfs_file_info_unref (info);
+		return ;
+	}
+	
+	GnomeVFSFileInfoFields valid = info->valid_fields;
+	
+	if (valid & GNOME_VFS_FILE_INFO_FIELDS_SIZE)
+		*iSize = info->size;
+	if (valid & GNOME_VFS_FILE_INFO_FIELDS_MTIME)
+		*iLastModificationTime = info->mtime;
+	if (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE)
+		*cMimeType = g_strdup (info->mime_type);
+	if (valid & GNOME_VFS_FILE_INFO_FIELDS_IDS)
+		*iUID = info->uid;
+	if (valid & GNOME_VFS_FILE_INFO_FIELDS_IDS)
+		*iGID = info->gid;
+	if (valid & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS)
+		*iPermissionsMask = info->permissions;
+	gnome_vfs_file_info_unref (info);
 }

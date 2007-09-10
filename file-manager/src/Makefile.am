@@ -45,4 +45,6 @@ file_managerincludedir =\
 	$(includedir)/file-manager
 
 file_managerinclude_HEADERS =\
-	file-manager-struct.h
+	file-manager-struct.h\
+	file-manager-load-directory.h\
+	file-manager-add-desktop-file.h
