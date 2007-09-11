@@ -4,5 +4,6 @@ SUBDIRS = .
 datatrucdir = $(pkgdatadir)
 
 datatruc_DATA = \
-	file-manager.conf
+	file-manager.conf\
+	readme
 

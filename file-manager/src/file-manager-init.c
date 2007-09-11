@@ -35,9 +35,16 @@ FileManagerAddMonitorFunc file_manager_add_monitor;
 FileManagerAddMonitorFunc file_manager_remove_monitor;
 FileManagerDeleteFileFunc file_manager_delete_file;
 FileManagerRenameFileFunc file_manager_rename_file;
+FileManagerMoveFileFunc file_manager_move_file;
 FileManagerFilePropertiesFunc file_manager_get_file_properties;
 
 FileManagerSortType g_fm_iSortType = FILE_MANAGER_SORT_BY_NAME;
+
+gchar *file_manager_pre_init (void)
+{
+        g_print ("%s/%s", FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_README_FILE);
+        return g_strdup_printf ("%s/%s", FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_README_FILE);
+}
 
 
 Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
@@ -127,6 +134,8 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_delete_file", (gpointer) &file_manager_delete_file))
 		return NULL;
 	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_rename_file", (gpointer) &file_manager_rename_file))
+		return NULL;
+	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_move_file", (gpointer) &file_manager_move_file))
 		return NULL;
 	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_get_file_properties", (gpointer) &file_manager_get_file_properties))
 		return NULL;

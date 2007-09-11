@@ -64,7 +64,7 @@ gchar *cd_clock_pre_init (void)
 Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
-	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-in/%s", g_cCurrentThemePath, CD_CLOCK_USER_DATA_DIR);
+	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-ins/%s", g_cCurrentThemePath, CD_CLOCK_USER_DATA_DIR);
 	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR))
 	{
 		g_print ("directory %s doesn't exist, trying to fix it ...\n", cUserDataDirPath);
@@ -90,7 +90,7 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	my_cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_CLOCK_CONF_FILE);
 	g_free (cUserDataDirPath);
-	cairo_dock_update_conf_file_with_hash_table (my_cConfFilePath, my_pThemeTable, "MODULE", "theme", 1, NULL, FALSE, TRUE, (GHFunc) cairo_dock_write_one_theme_name);
+	cairo_dock_update_conf_file_with_hash_table (my_cConfFilePath, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
 	
 	int i;
 	for (i = 0; i < CLOCK_ELEMENTS; i ++)

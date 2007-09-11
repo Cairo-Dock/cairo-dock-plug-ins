@@ -12,5 +12,8 @@ void file_manager_about (GtkMenuItem *menu_item, gpointer *data);
 gboolean file_manager_notification_build_menu (gpointer *data);
 
 
+gboolean file_manager_notification_drop_data (gpointer *data);
+
+
 #endif
 

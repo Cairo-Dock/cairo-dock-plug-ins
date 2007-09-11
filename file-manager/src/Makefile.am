@@ -22,6 +22,7 @@ libfile_manager_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DFILE_MANAGER_SHARE_DATA_DIR=\""$(datadir)/file-manager"\"\
 	-DFILE_MANAGER_BACKEND_DIR=\""${libdir}"\"\
+	-DFILE_MANAGER_README_FILE=\""readme"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall

@@ -34,6 +34,8 @@ void _file_manager_delete_file (gchar *cURI);
 
 void _file_manager_rename_file (gchar *cOldURI, gchar *cNewName);
 
+void _file_manager_move_file (gchar *cURI, gchar *cDirectoryURI);
+
 void _file_manager_get_file_properties (gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask);
 
 

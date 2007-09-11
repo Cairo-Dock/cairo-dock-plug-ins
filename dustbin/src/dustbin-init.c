@@ -66,7 +66,7 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	my_dustbin_cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_DUSTBIN_CONF_FILE);
 	g_free (cUserDataDirPath);
-	cairo_dock_update_conf_file_with_hash_table (my_dustbin_cConfFilePath, my_dustbin_pThemeTable, "MODULE", "theme", 1, NULL, FALSE, TRUE, (GHFunc) cairo_dock_write_one_theme_name);
+	cairo_dock_update_conf_file_with_hash_table (my_dustbin_cConfFilePath, my_dustbin_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
 	
 	
 	//\_______________ On lit le fichier de conf.

@@ -5,6 +5,8 @@
 
 #include <cairo-dock.h>
 
+gchar *file_manager_pre_init (void);
+
 
 Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur);
 

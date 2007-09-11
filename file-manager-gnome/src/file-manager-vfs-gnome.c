@@ -466,6 +466,17 @@ void _file_manager_rename_file (gchar *cOldURI, gchar *cNewName)
 	g_free (cNewURI);
 }
 
+void _file_manager_move_file (gchar *cURI, gchar *cDirectoryURI)
+{
+	g_print (" %s -> %s\n", cURI, cDirectoryURI);
+	
+	GnomeVFSResult r= gnome_vfs_move (cURI,
+		cDirectoryURI,
+		FALSE);
+	if (r != GNOME_VFS_OK)
+		g_print ("Attention : couldn't move this file.\nCheck that you have writing rights, and that the name does not already exist.\n");
+}
+
 void _file_manager_get_file_properties (gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask)
 {
 	GnomeVFSResult r;
