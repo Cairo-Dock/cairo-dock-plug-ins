@@ -49,3 +49,29 @@ gboolean cd_clock_notification_click_icon (gpointer *data)
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
+
+gboolean cd_clock_notification_build_menu (gpointer *data)
+{
+	if (data[1] == my_pIcon)
+	{
+		CairoDock *pDock = data[0];
+		Icon *icon = data[1];
+		GtkWidget *menu = data[2];
+		
+		GtkWidget *menu_item;
+		menu_item = gtk_menu_item_new_with_label ("Clock");
+		gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+		
+		GtkWidget *pSubMenu = gtk_menu_new ();
+		gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), pSubMenu);
+		
+		menu_item = gtk_menu_item_new_with_label ("Set up time and date");
+		gtk_menu_shell_append  (GTK_MENU_SHELL (pSubMenu), menu_item);
+		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_clock_launch_time_admin), NULL);
+		
+		menu_item = gtk_menu_item_new_with_label ("About");
+		gtk_menu_shell_append  (GTK_MENU_SHELL (pSubMenu), menu_item);
+		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_clock_about), NULL);
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}

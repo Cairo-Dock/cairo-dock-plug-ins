@@ -1,4 +1,11 @@
+/**********************************************************************************
 
+This file is a part of the cairo-dock clock applet, 
+released under the terms of the GNU General Public License.
+
+Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+
+**********************************************************************************/
 #include <stdlib.h>
 
 #include "dustbin-menu-functions.h"
@@ -6,6 +13,7 @@
 
 extern gchar **my_dustbin_cTrashDirectoryList;
 extern Icon *my_dustbin_pIcon;
+extern GtkWidget *my_dustbin_pMenu;
 
 void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 {
@@ -95,6 +103,22 @@ gboolean cd_dustbin_notification_click_icon (gpointer *data)
 			g_print ("No Trash directory specified !\n");
 		
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+
+gboolean cd_dustbin_notification_build_menu (gpointer *data)
+{
+	if (data[1] == my_dustbin_pIcon)
+	{
+		GtkWidget *menu = data[2];
+		
+		GtkWidget *menu_item;
+		menu_item = gtk_menu_item_new_with_label ("Dustbin");
+		gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
+		
+		gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), my_dustbin_pMenu);
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

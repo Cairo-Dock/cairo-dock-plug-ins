@@ -1,4 +1,11 @@
+/**********************************************************************************
 
+This file is a part of the cairo-dock clock applet, 
+released under the terms of the GNU General Public License.
+
+Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+
+**********************************************************************************/
 #include "stdlib.h"
 #include "string.h"
 
@@ -15,6 +22,8 @@
 Icon *my_dustbin_pIcon = NULL;
 GtkWidget *my_dustbin_pWidget = NULL;
 CairoDock *my_dustbin_pDock = NULL;
+GtkWidget *my_dustbin_pMenu = NULL;
+
 cairo_t *my_dustbin_pCairoContext = NULL;
 double my_dustbin_fCheckInterval;
 int my_dustbin_iSidCheckTrashes = 0;
@@ -78,7 +87,7 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	cd_dustbin_read_conf_file (*cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName, &cThemeName);
 	
 	//\_______________ On cree nos entrees dans le menu qui sera appele lors d'un clic droit.
-	GtkWidget *pModuleMenu = gtk_menu_new ();
+	my_dustbin_pMenu = gtk_menu_new ();
 	GtkWidget *pModuleSubMenu;
 	GtkWidget *menu_item;
 	int i = 0;
@@ -95,7 +104,7 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	GString *sLabel = g_string_new ("");
 	
 	menu_item = gtk_menu_item_new_with_label ("Show Trash");
-	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleMenu), menu_item);
+	gtk_menu_shell_append  (GTK_MENU_SHELL (my_dustbin_pMenu), menu_item);
 	pModuleSubMenu = gtk_menu_new ();
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), pModuleSubMenu);
 	
@@ -124,7 +133,7 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	
 	menu_item = gtk_menu_item_new_with_label ("Delete Trash");
-	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleMenu), menu_item);
+	gtk_menu_shell_append  (GTK_MENU_SHELL (my_dustbin_pMenu), menu_item);
 	pModuleSubMenu = gtk_menu_new ();
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), pModuleSubMenu);
 	i = 0;
@@ -153,13 +162,13 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	g_string_free (sLabel, TRUE);
 	menu_item = gtk_menu_item_new_with_label ("About");
-	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleMenu), menu_item);
+	gtk_menu_shell_append  (GTK_MENU_SHELL (my_dustbin_pMenu), menu_item);
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_dustbin_about), NULL);
 	
 	
 	//\_______________ On cree notre icone.
 	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
-	my_dustbin_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL, pModuleMenu);
+	my_dustbin_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL, NULL);
 	cairo_destroy (pSourceContext);
 	
 	my_dustbin_pDock = pDock;
@@ -230,6 +239,7 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	//\_______________ On enregistre nos notifications.
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_dustbin_notification_click_icon, CAIRO_DOCK_RUN_FIRST);
+	cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) cd_dustbin_notification_build_menu, CAIRO_DOCK_RUN_FIRST);
 	
 	//\_______________ On lance le timer.
 	my_dustbin_pTrashState = g_new0 (int, i);
@@ -246,6 +256,14 @@ void cd_dustbin_stop (void)
 {
 	//g_print ("%s ()\n", __func__);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_dustbin_notification_click_icon);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) cd_dustbin_notification_build_menu);
+	
+	g_free (my_dustbin_pShowToggleList);  // leurs elements sont rattaches au menu.
+	g_free (my_dustbin_pDeleteToggleList);
+	my_dustbin_iNbTrash = 0;
+	
+	gtk_widget_destroy (my_dustbin_pMenu);
+	my_dustbin_pMenu = NULL;
 	
 	g_source_remove (my_dustbin_iSidCheckTrashes);
 	my_dustbin_iSidCheckTrashes = 0;

@@ -12,12 +12,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include <glib.h>
 #include <cairo-dock.h>
 
-typedef enum {
-	FILE_MANAGER_UNKNOWN=0,
-	FILE_MANAGER_GNOME,
-	FILE_MANAGER_KDE,
-	FILE_MANAGER_XDG
-	} FileManagerDesktopEnv;
 
 typedef enum {
 	FILE_MANAGER_ICON_MODIFIED=0,

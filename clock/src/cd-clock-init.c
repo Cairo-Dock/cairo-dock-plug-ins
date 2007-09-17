@@ -108,7 +108,7 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	cd_clock_read_conf_file (*cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName);
 	
 	//\_______________ On cree nos entrees dans le menu qui sera appele lors d'un clic droit.
-	GtkWidget *pModuleMenu = gtk_menu_new ();
+	/*GtkWidget *pModuleMenu = gtk_menu_new ();
 	GtkWidget *menu_item;
 	
 	menu_item = gtk_menu_item_new_with_label ("Set up time and date");
@@ -117,11 +117,11 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	menu_item = gtk_menu_item_new_with_label ("About");
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleMenu), menu_item);
-	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_clock_about), NULL);
+	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_clock_about), NULL);*/
 	
 	//\_______________ On cree notre icone.
 	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
-	my_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL, pModuleMenu);
+	my_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL, NULL);
 	cairo_destroy (pSourceContext);
 	
 	my_pDock = pDock;
@@ -145,6 +145,7 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	//\_______________ On enregistre nos notifications.
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_clock_notification_click_icon, CAIRO_DOCK_RUN_FIRST);
+	cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) cd_clock_notification_build_menu, CAIRO_DOCK_RUN_FIRST);
 	
 	//\_______________ On lance le timer.
 	cd_clock_update_with_time (my_pIcon);
@@ -158,6 +159,7 @@ void cd_clock_stop (void)
 {
 	//g_print ("%s ()\n", __func__);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_clock_notification_click_icon);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) cd_clock_notification_build_menu);
 	
 	g_source_remove (my_iSidUpdateClock);
 	my_iSidUpdateClock = 0;

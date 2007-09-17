@@ -76,33 +76,20 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	my_fm_pDock = pDock;
 	
 	//\_______________ On charge le backend qui va bien.
-	FileManagerDesktopEnv iDesktopEnv = FILE_MANAGER_UNKNOWN;
-	const gchar * cEnv = g_getenv ("GNOME_DESKTOP_SESSION_ID");
-	if (cEnv == NULL || *cEnv == '\0')
-	{
-		cEnv = g_getenv ("KDE_FULL_SESSION");
-		if (cEnv == NULL || *cEnv == '\0')
-		{
-			iDesktopEnv = FILE_MANAGER_UNKNOWN;
-		}
-		else
-			iDesktopEnv = FILE_MANAGER_KDE;
-	}
-	else
-	{
-		iDesktopEnv = FILE_MANAGER_GNOME;
-	}
-	
-	if (iDesktopEnv == FILE_MANAGER_UNKNOWN)
+	CairoDockDesktopEnv iDesktopEnv = cairo_dock_guess_environment ();
+	if (iDesktopEnv == CAIRO_DOCK_UNKNOWN_ENV)
 	{
 		 g_set_error (erreur, 1, 1, "Attention : couldn't guess desktop environment, this module will not be active");
 		return NULL;
 	}
-	if (iDesktopEnv == FILE_MANAGER_KDE)  // le backend de KDE n'est pas encore implemente.
-		iDesktopEnv = FILE_MANAGER_XDG;
+	if (iDesktopEnv == CAIRO_DOCK_KDE)  // le backend de KDE n'est pas encore implemente.
+	{
+		 g_set_error (erreur, 1, 1, "Attention : this module does not yet support KDE virtual file system. Any help is greatly welcome for this !");
+		return NULL;
+	}
 	
 	gchar *cBackendPath = NULL;
-	cBackendPath = g_strdup_printf ("%s/libfile-manager-%s.so", FILE_MANAGER_BACKEND_DIR, (iDesktopEnv == FILE_MANAGER_GNOME ? "gnome" : (iDesktopEnv == FILE_MANAGER_KDE ? "kde" : "xdg")));
+	cBackendPath = g_strdup_printf ("%s/libfile-manager-%s.so", FILE_MANAGER_BACKEND_DIR, (iDesktopEnv == CAIRO_DOCK_GNOME ? "gnome" : (iDesktopEnv == CAIRO_DOCK_KDE ? "kde" : "xdg")));
 	s_fm_pBackendModule = g_module_open (cBackendPath, G_MODULE_BIND_LAZY);
 	if (s_fm_pBackendModule == NULL)
 	{

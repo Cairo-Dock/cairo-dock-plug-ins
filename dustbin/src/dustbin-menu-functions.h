@@ -17,5 +17,6 @@ void cd_dustbin_about (GtkMenuItem *menu_item, gpointer *data);
 
 gboolean cd_dustbin_notification_click_icon (gpointer *data);
 
+gboolean cd_dustbin_notification_build_menu (gpointer *data);
 
 #endif
