@@ -42,7 +42,6 @@ FileManagerSortType g_fm_iSortType = FILE_MANAGER_SORT_BY_NAME;
 
 gchar *file_manager_pre_init (void)
 {
-        g_print ("%s/%s", FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_README_FILE);
         return g_strdup_printf ("%s/%s", FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_README_FILE);
 }
 
@@ -156,6 +155,7 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	g_hash_table_foreach (g_hDocksTable, (GHFunc) file_manager_reload_directories, NULL);
 	
 	cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) file_manager_notification_build_menu, CAIRO_DOCK_RUN_FIRST);
+	cairo_dock_register_notification (CAIRO_DOCK_DROP_DATA, (CairoDockNotificationFunc) file_manager_notification_drop_data, CAIRO_DOCK_RUN_AFTER);
 	
 	//g_free (cUserDataDirPath);
 	//g_free (cName);

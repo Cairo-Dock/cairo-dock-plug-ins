@@ -10,6 +10,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "cd-clock-menu-functions.h"
 
+extern CairoDock *my_pDock;
+extern Icon *my_pIcon;
 
 void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 {
@@ -27,4 +29,23 @@ void cd_clock_about (GtkMenuItem *menu_item, gpointer *data)
 	
 	gtk_dialog_run (GTK_DIALOG (pMessageDialog));
 	gtk_widget_destroy (pMessageDialog);
+}
+
+
+gboolean cd_clock_notification_click_icon (gpointer *data)
+{
+	g_print ("%s ()\n", __func__);
+	if (data[0] == my_pIcon)
+	{
+		GtkWidget *pDialog = gtk_dialog_new ();
+		
+		GtkWidget *pCalendar = gtk_calendar_new ();
+		gtk_container_add (GTK_CONTAINER (GTK_DIALOG (pDialog)->vbox), pCalendar);
+		gtk_widget_show (pCalendar);
+		gtk_dialog_run (GTK_DIALOG (pDialog));
+		gtk_widget_destroy (pDialog);
+		
+		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

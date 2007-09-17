@@ -26,7 +26,7 @@ extern FileManagerSortType g_fm_iSortType;
 
 void file_manager_create_dock_from_directory (Icon *pIcon)
 {
-	CairoDock *pDock = cairo_dock_create_new_dock (GDK_WINDOW_TYPE_HINT_MENU, pIcon->acName);
+	/*CairoDock *pDock = cairo_dock_create_new_dock (GDK_WINDOW_TYPE_HINT_MENU, pIcon->acName);
 	cairo_dock_reference_dock (pDock);  // on le fait tout de suite pour avoir la bonne reference avant le 'load'.
 	
 	pDock->icons = file_manager_list_directory (pIcon->acCommand, g_fm_iSortType);
@@ -37,7 +37,9 @@ void file_manager_create_dock_from_directory (Icon *pIcon)
 	
 	while (gtk_events_pending ())
 		gtk_main_iteration ();
-	gtk_widget_hide (pDock->pWidget);
+	gtk_widget_hide (pDock->pWidget);*/
+	GList *pIconList = file_manager_list_directory (pIcon->acCommand, g_fm_iSortType);
+	pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, pIcon->acName);
 	
 	file_manager_add_monitor (pIcon);
 }

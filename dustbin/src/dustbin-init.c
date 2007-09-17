@@ -12,7 +12,6 @@
 #define CD_DUSTBIN_USER_DATA_DIR "dustbin"
 
 
-gchar *my_dustbin_cConfFilePath = NULL;
 Icon *my_dustbin_pIcon = NULL;
 GtkWidget *my_dustbin_pWidget = NULL;
 CairoDock *my_dustbin_pDock = NULL;
@@ -41,18 +40,24 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	//g_print ("%s ()\n", __func__);
 	
 	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-ins/%s", g_cCurrentThemePath, CD_DUSTBIN_USER_DATA_DIR);
-	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR))
+	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_IS_DIR))
 	{
 		g_print ("directory %s doesn't exist, trying to fix it ...\n", cUserDataDirPath);
 		
 		gchar *command = g_strdup_printf ("mkdir -p %s", cUserDataDirPath);
 		system (command);
 		g_free (command);
-		
-		command = g_strdup_printf ("cp %s/%s %s", CD_DUSTBIN_SHARE_DATA_DIR, CD_DUSTBIN_CONF_FILE, cUserDataDirPath);
+	}
+	
+	*cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_DUSTBIN_CONF_FILE);
+	if (! g_file_test (*cConfFilePath, G_FILE_TEST_EXISTS))
+	{
+		gchar *command = g_strdup_printf ("cp %s/%s %s", CD_DUSTBIN_SHARE_DATA_DIR, CD_DUSTBIN_CONF_FILE, cUserDataDirPath);
 		system (command);
 		g_free (command);
 	}
+	g_free (cUserDataDirPath);
+	
 	
 	//\_______________ On charge la liste des themes disponibles.
 	GError *tmp_erreur = NULL;
@@ -64,15 +69,13 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 		return NULL;
 	}
 	
-	my_dustbin_cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_DUSTBIN_CONF_FILE);
-	g_free (cUserDataDirPath);
-	cairo_dock_update_conf_file_with_hash_table (my_dustbin_cConfFilePath, my_dustbin_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
+	cairo_dock_update_conf_file_with_hash_table (*cConfFilePath, my_dustbin_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
 	
 	
 	//\_______________ On lit le fichier de conf.
 	int iOriginalWidth = 1, iOriginalHeight = 1;
 	gchar *cName = NULL, *cThemeName = NULL;
-	cd_dustbin_read_conf_file (my_dustbin_cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName, &cThemeName);
+	cd_dustbin_read_conf_file (*cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName, &cThemeName);
 	
 	//\_______________ On cree nos entrees dans le menu qui sera appele lors d'un clic droit.
 	GtkWidget *pModuleMenu = gtk_menu_new ();
@@ -156,7 +159,7 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	//\_______________ On cree notre icone.
 	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
-	my_dustbin_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, pModuleMenu);
+	my_dustbin_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL, pModuleMenu);
 	cairo_destroy (pSourceContext);
 	
 	my_dustbin_pDock = pDock;
@@ -225,6 +228,9 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 		g_print ("Attention : couldn't find images, this theme is not valid");
 	}
 	
+	//\_______________ On enregistre nos notifications.
+	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_dustbin_notification_click_icon, CAIRO_DOCK_RUN_FIRST);
+	
 	//\_______________ On lance le timer.
 	my_dustbin_pTrashState = g_new0 (int, i);
 	my_dustbin_iState = -1;
@@ -233,13 +239,13 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	
 	g_free (cName);
-	*cConfFilePath = g_strdup (my_dustbin_cConfFilePath);
 	return my_dustbin_pIcon;
 }
 
 void cd_dustbin_stop (void)
 {
 	//g_print ("%s ()\n", __func__);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_dustbin_notification_click_icon);
 	
 	g_source_remove (my_dustbin_iSidCheckTrashes);
 	my_dustbin_iSidCheckTrashes = 0;
@@ -247,9 +253,6 @@ void cd_dustbin_stop (void)
 	
 	cairo_destroy (my_dustbin_pCairoContext);
 	my_dustbin_pCairoContext = NULL;
-	
-	g_free (my_dustbin_cConfFilePath);
-	my_dustbin_cConfFilePath = NULL;
 	
 	g_free (my_dustbin_pTrashState);
 	my_dustbin_pTrashState = NULL;
@@ -265,16 +268,4 @@ void cd_dustbin_stop (void)
 	my_dustbin_pFullBinSurface = NULL;
 }
 
-
-gboolean cd_dustbin_action (void)
-{
-	g_print ("_Note_ : You can manage many Trash directories with this applet.\n Right click on its icon to see which Trash directories are already being monitored.\n");
-	
-	if (my_dustbin_cTrashDirectoryList != NULL && my_dustbin_cTrashDirectoryList[0] != NULL)
-		cd_dustbin_show_trash (NULL, my_dustbin_cTrashDirectoryList[0]);
-	else
-		g_print ("No Trash directory specified !\n");
-	
-	return TRUE;
-}
 

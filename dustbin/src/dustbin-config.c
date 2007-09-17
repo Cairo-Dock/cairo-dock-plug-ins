@@ -20,19 +20,8 @@ void cd_dustbin_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight,
 	GError *erreur = NULL;
 	
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
-	
-	GKeyFile *fconf = g_key_file_new ();
-	
-	g_key_file_load_from_file (fconf, cConfFilePath, G_KEY_FILE_KEEP_COMMENTS, &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
-	}
-	
-	bFlushConfFileNeeded = cairo_dock_read_header_applet_conf_file (fconf, iWidth, iHeight, cName);
-	
+	GKeyFile *fconf = cairo_dock_read_header_applet_conf_file (cConfFilePath, iWidth, iHeight, cName, &bFlushConfFileNeeded);
+	g_return_if_fail (fconf != NULL);
 	
 	*cThemeName = g_key_file_get_string (fconf, "MODULE", "theme", &erreur);
 	if (erreur != NULL)

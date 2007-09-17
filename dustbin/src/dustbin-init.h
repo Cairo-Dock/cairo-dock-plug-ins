@@ -15,8 +15,5 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 void cd_dustbin_stop (void);
 
 
-gboolean cd_dustbin_action (void);
-
-
 #endif
 

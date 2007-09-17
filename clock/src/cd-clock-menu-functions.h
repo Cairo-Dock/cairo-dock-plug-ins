@@ -11,5 +11,8 @@ void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data);
 void cd_clock_about (GtkMenuItem *menu_item, gpointer *data);
 
 
+gboolean cd_clock_notification_click_icon (gpointer *data);
+
+
 #endif
 

@@ -15,8 +15,6 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur);
 void cd_clock_stop (void);
 
 
-gboolean cd_clock_action (void);
-
 
 #endif
 

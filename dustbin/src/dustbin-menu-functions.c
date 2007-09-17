@@ -5,7 +5,7 @@
 
 
 extern gchar **my_dustbin_cTrashDirectoryList;
-
+extern Icon *my_dustbin_pIcon;
 
 void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 {
@@ -80,3 +80,21 @@ void cd_dustbin_about (GtkMenuItem *menu_item, gpointer *data)
 	gtk_widget_destroy (pMessageDialog);
 }
 
+
+
+gboolean cd_dustbin_notification_click_icon (gpointer *data)
+{
+	//g_print ("%s ()\n", __func__);
+	if (data[0] == my_dustbin_pIcon)
+	{
+		g_print ("_Note_ : You can manage many Trash directories with this applet.\n Right click on its icon to see which Trash directories are already being monitored.\n");
+		
+		if (my_dustbin_cTrashDirectoryList != NULL && my_dustbin_cTrashDirectoryList[0] != NULL)
+			cd_dustbin_show_trash (NULL, my_dustbin_cTrashDirectoryList[0]);
+		else
+			g_print ("No Trash directory specified !\n");
+		
+		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}

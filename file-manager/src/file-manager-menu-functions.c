@@ -45,12 +45,13 @@ static void file_manager_mount_unmount (GtkMenuItem *menu_item, gpointer *data)
 	g_print ("%s (%s)\n", __func__, icon->acName);
 	
 	gboolean bIsMounted = FALSE;
-	gchar *cMountPointID = file_manager_is_mounting_point (icon->cBaseURI, &bIsMounted);
+	gchar *cMountPointID = file_manager_is_mounting_point (icon->acCommand, &bIsMounted);
+	g_print ("  cMountPointID : %s; bIsMounted : %d\n", cMountPointID, bIsMounted);
 	
 	if (! bIsMounted)
-		file_manager_mount (icon->cBaseURI);
+		file_manager_mount (icon->acCommand);
 	else
-		file_manager_unmount (icon->cBaseURI);
+		file_manager_unmount (icon->acCommand);
 	
 	g_free (cMountPointID);
 }
@@ -196,7 +197,8 @@ gboolean file_manager_notification_build_menu (gpointer *data)
 		if (icon->bIsMountingPoint)
 		{
 			gboolean bIsMounted = FALSE;
-			gchar *cMountPointID = file_manager_is_mounting_point (icon->cBaseURI, &bIsMounted);
+			gchar *cMountPointID = file_manager_is_mounting_point (icon->acCommand, &bIsMounted);
+			g_print ("  cMountPointID : %s; bIsMounted : %d\n", cMountPointID, bIsMounted);
 			g_free (cMountPointID);
 			
 			menu_item = gtk_menu_item_new_with_label (bIsMounted ? "Unmount" : "Mount");
@@ -227,7 +229,7 @@ gboolean file_manager_notification_build_menu (gpointer *data)
 }
 
 
-gboolean cairo_dock_notification_drop_data (gpointer *data)
+gboolean file_manager_notification_drop_data (gpointer *data)
 {
 	gchar *cReceivedData = data[0];
 	Icon *icon = data[1];
@@ -238,7 +240,7 @@ gboolean cairo_dock_notification_drop_data (gpointer *data)
 	if (strncmp (cReceivedData, "file://", 7) == 0 && g_str_has_suffix (cReceivedData, ".desktop"))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (pDock);
+	Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (pDock, NULL);
 	if (pPointingIcon != NULL && pPointingIcon->cBaseURI != NULL)  // on a lache dans un dock qui est un repertoire, on copie donc le fichier dedans.
 	{
 		g_print (" -> copie de %s dans %s\n", cReceivedData, pPointingIcon->cBaseURI);

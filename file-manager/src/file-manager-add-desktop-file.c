@@ -78,10 +78,10 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 	
 	
 	//\___________________ On lui choisit un nom de fichier tel qu'il n'y ait pas de collision.
-	cNewDesktopFileName = cairo_dock_generate_desktop_filename (g_cCurrentThemePath);
+	cNewDesktopFileName = cairo_dock_generate_desktop_filename (g_cCurrentLaunchersPath);
 	
 	//\___________________ On ecrit tout.
-	gchar *cNewDesktopFilePath = g_strdup_printf ("%s/%s", g_cCurrentThemePath, cNewDesktopFileName);
+	gchar *cNewDesktopFilePath = g_strdup_printf ("%s/%s", g_cCurrentLaunchersPath, cNewDesktopFileName);
 	cairo_dock_write_keys_to_file (pKeyFile, cNewDesktopFilePath);
 	g_free (cNewDesktopFilePath);
 	g_key_file_free (pKeyFile);

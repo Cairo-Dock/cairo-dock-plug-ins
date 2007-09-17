@@ -19,7 +19,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #define CD_CLOCK_USER_DATA_DIR "clock"
 
 CairoDock *my_pDock = NULL;
-gchar *my_cConfFilePath = NULL;
 gboolean my_bShowDate;
 gboolean my_bShowSeconds;
 gboolean my_b24Mode;
@@ -65,18 +64,23 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-ins/%s", g_cCurrentThemePath, CD_CLOCK_USER_DATA_DIR);
-	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR))
+	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_IS_DIR))
 	{
 		g_print ("directory %s doesn't exist, trying to fix it ...\n", cUserDataDirPath);
 		
 		gchar *command = g_strdup_printf ("mkdir -p %s", cUserDataDirPath);
 		system (command);
 		g_free (command);
-		
-		command = g_strdup_printf ("cp %s/%s %s", CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_CONF_FILE, cUserDataDirPath);
+	}
+	
+	*cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_CLOCK_CONF_FILE);
+	if (! g_file_test (*cConfFilePath, G_FILE_TEST_IS_DIR))
+	{
+		gchar *command = g_strdup_printf ("cp %s/%s %s", CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_CONF_FILE, cUserDataDirPath);
 		system (command);
 		g_free (command);
 	}
+	
 	
 	//\_______________ On charge la liste des themes disponibles.
 	GError *tmp_erreur = NULL;
@@ -88,9 +92,9 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 		return NULL;
 	}
 	
-	my_cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_CLOCK_CONF_FILE);
+	
 	g_free (cUserDataDirPath);
-	cairo_dock_update_conf_file_with_hash_table (my_cConfFilePath, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
+	cairo_dock_update_conf_file_with_hash_table (*cConfFilePath, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
 	
 	int i;
 	for (i = 0; i < CLOCK_ELEMENTS; i ++)
@@ -101,7 +105,7 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	//\_______________ On lit le fichier de conf.
 	int iOriginalWidth = 1, iOriginalHeight = 1;
 	gchar *cName = NULL;
-	cd_clock_read_conf_file (my_cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName);
+	cd_clock_read_conf_file (*cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName);
 	
 	//\_______________ On cree nos entrees dans le menu qui sera appele lors d'un clic droit.
 	GtkWidget *pModuleMenu = gtk_menu_new ();
@@ -117,7 +121,7 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	//\_______________ On cree notre icone.
 	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
-	my_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, pModuleMenu);
+	my_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL, pModuleMenu);
 	cairo_destroy (pSourceContext);
 	
 	my_pDock = pDock;
@@ -139,25 +143,27 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 		my_pIcon->fHeight * (1 + g_fAmplitude),
 		KIND_FOREGROUND);
 	
+	//\_______________ On enregistre nos notifications.
+	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_clock_notification_click_icon, CAIRO_DOCK_RUN_FIRST);
+	
 	//\_______________ On lance le timer.
 	cd_clock_update_with_time (my_pIcon);
 	my_iSidUpdateClock = g_timeout_add ((my_bShowSeconds ? 1000 : 60000), (GSourceFunc) cd_clock_update_with_time, (gpointer) my_pIcon);
 	
 	g_free (cName);
-	*cConfFilePath = g_strdup (my_cConfFilePath);
 	return my_pIcon;
 }
 
 void cd_clock_stop (void)
 {
 	//g_print ("%s ()\n", __func__);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_clock_notification_click_icon);
+	
 	g_source_remove (my_iSidUpdateClock);
 	my_iSidUpdateClock = 0;
 	my_pIcon = NULL;
 	cairo_destroy (my_pCairoContext);
 	my_pCairoContext = NULL;
-	g_free (my_cConfFilePath);
-	my_cConfFilePath = NULL;
 	int i;
 	for (i = 0; i < CLOCK_ELEMENTS; i ++)
 	{
@@ -167,18 +173,3 @@ void cd_clock_stop (void)
 	g_hash_table_destroy (my_pThemeTable);
 	my_pThemeTable = NULL;
 }
-
-gboolean cd_clock_action (void)
-{
-	//g_print ("%s ()\n", __func__);
-	GtkWidget *pDialog = gtk_dialog_new ();
-	
-	GtkWidget *pCalendar = gtk_calendar_new ();
-	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (pDialog)->vbox), pCalendar);
-	gtk_widget_show (pCalendar);
-	gtk_dialog_run (GTK_DIALOG (pDialog));
-	gtk_widget_destroy (pDialog);
-	
-	return TRUE;
-}
-

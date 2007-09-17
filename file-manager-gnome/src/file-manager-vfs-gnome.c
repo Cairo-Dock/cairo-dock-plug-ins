@@ -339,16 +339,22 @@ gchar *_file_manager_is_mounting_point (gchar *cURI, gboolean *bIsMounted)
 {
 	g_print ("%s (%s)\n", __func__, cURI);
 	GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
-	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cURI);
+	gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
+	g_print (" cLocalPath : %s\n", cLocalPath);
+	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cLocalPath);
+	g_free (cLocalPath);
 	if (pVolume == NULL)
 	{
+		g_print ("Attention : no volum associated to %s\n", cURI);
 		*bIsMounted = FALSE;
 		return NULL;
 	}
 	else
 	{
 		gchar *cMountPointID = gnome_vfs_volume_get_activation_uri (pVolume);
+		
 		*bIsMounted = gnome_vfs_volume_is_mounted (pVolume);
+		g_print ("  bIsMounted <- %d\n", *bIsMounted);
 		
 		gnome_vfs_volume_unref (pVolume);
 		return cMountPointID;
@@ -358,10 +364,15 @@ gchar *_file_manager_is_mounting_point (gchar *cURI, gboolean *bIsMounted)
 
 gchar * _file_manager_mount (gchar *cURI)
 {
-	g_print ("%s ()\n", __func__);
+	g_print ("%s (%s)\n", __func__, cURI);
 	
+	gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
+	g_print (" cLocalPath : %s\n", cLocalPath);
 	GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
-	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cURI);
+	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cLocalPath);
+	g_free (cLocalPath);
+	g_return_if_fail (pVolume != NULL);
+	
 	GnomeVFSDrive *pDrive = gnome_vfs_volume_get_drive (pVolume);
 	
 	gnome_vfs_drive_mount (pDrive, NULL, NULL);
@@ -376,10 +387,15 @@ gchar * _file_manager_mount (gchar *cURI)
 
 void _file_manager_unmount (gchar *cURI)
 {
-	g_print ("%s ()\n", __func__);
+	g_print ("%s (%s)\n", __func__, cURI);
 	
 	GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
-	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cURI);
+	gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
+	g_print (" cLocalPath : %s\n", cLocalPath);
+	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cLocalPath);
+	g_free (cLocalPath);
+	g_return_if_fail (pVolume != NULL);
+	
 	gnome_vfs_volume_unmount (pVolume, NULL, NULL);
 	gnome_vfs_volume_unref (pVolume);
 }

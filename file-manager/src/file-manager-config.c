@@ -22,15 +22,11 @@ void file_manager_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeigh
 	
 	GKeyFile *fconf = g_key_file_new ();
 	
-	bFlushConfFileNeeded = cairo_dock_read_header_applet_conf_file (fconf, iWidth, iHeight, cName);
-	
-	
-	g_print ("now I will read the rest of my conf file\n");
-	
 	
 	if (bFlushConfFileNeeded)
 	{
 		cairo_dock_write_keys_to_file (fconf, cConfFilePath);
 	}
+	g_key_file_free (fconf);
 }
 
