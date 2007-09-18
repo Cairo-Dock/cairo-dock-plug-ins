@@ -110,7 +110,7 @@ gboolean cd_dustbin_notification_click_icon (gpointer *data)
 
 gboolean cd_dustbin_notification_build_menu (gpointer *data)
 {
-	if (data[1] == my_dustbin_pIcon)
+	if (data[0] == my_dustbin_pIcon)
 	{
 		GtkWidget *menu = data[2];
 		

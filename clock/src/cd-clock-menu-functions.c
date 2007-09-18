@@ -52,10 +52,8 @@ gboolean cd_clock_notification_click_icon (gpointer *data)
 
 gboolean cd_clock_notification_build_menu (gpointer *data)
 {
-	if (data[1] == my_pIcon)
+	if (data[0] == my_pIcon)
 	{
-		CairoDock *pDock = data[0];
-		Icon *icon = data[1];
 		GtkWidget *menu = data[2];
 		
 		GtkWidget *menu_item;
