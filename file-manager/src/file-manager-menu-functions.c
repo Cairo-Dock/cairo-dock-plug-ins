@@ -26,8 +26,7 @@ extern FileManagerFilePropertiesFunc file_manager_get_file_properties;
 
 void file_manager_about (GtkMenuItem *menu_item, gpointer *data)
 {
-	GtkWidget *pWidget = data[0];
-	GtkWidget *pMessageDialog = gtk_message_dialog_new (GTK_WINDOW (pWidget),
+	GtkWidget *pMessageDialog = gtk_message_dialog_new (NULL,
 		GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 		GTK_MESSAGE_INFO,
 		GTK_BUTTONS_CLOSE,
@@ -40,8 +39,8 @@ void file_manager_about (GtkMenuItem *menu_item, gpointer *data)
 
 static void file_manager_mount_unmount (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDock *pDock = data[0];
-	Icon *icon = data[1];
+	Icon *icon = data[0];
+	CairoDock *pDock = data[1];
 	g_print ("%s (%s)\n", __func__, icon->acName);
 	
 	gboolean bIsMounted = FALSE;
@@ -58,8 +57,8 @@ static void file_manager_mount_unmount (GtkMenuItem *menu_item, gpointer *data)
 
 static void file_manager_delete (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDock *pDock = data[0];
-	Icon *icon = data[1];
+	Icon *icon = data[0];
+	CairoDock *pDock = data[1];
 	g_print ("%s (%s)\n", __func__, icon->acName);
 	
 	gchar *question = g_strdup_printf ("You're about to delete this file (%s) from your hard-disk. Sure ?", icon->acCommand);
@@ -79,8 +78,8 @@ static void file_manager_delete (GtkMenuItem *menu_item, gpointer *data)
 
 static void file_manager_rename (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDock *pDock = data[0];
-	Icon *icon = data[1];
+	Icon *icon = data[0];
+	CairoDock *pDock = data[1];
 	g_print ("%s (%s)\n", __func__, icon->acName);
 	
 	GtkWidget *dialog = gtk_message_dialog_new (GTK_WINDOW (pDock->pWidget),
@@ -102,8 +101,8 @@ static void file_manager_rename (GtkMenuItem *menu_item, gpointer *data)
 
 static void file_manager_properties (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDock *pDock = data[0];
-	Icon *icon = data[1];
+	Icon *icon = data[0];
+	CairoDock *pDock = data[1];
 	//g_print ("%s (%s)\n", __func__, icon->acName);
 	
 	guint64 iSize = 0;
@@ -154,8 +153,8 @@ static void file_manager_properties (GtkMenuItem *menu_item, gpointer *data)
 
 static void file_manager_remove_from_dock (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDock *pDock = data[0];
-	Icon *icon = data[1];
+	Icon *icon = data[0];
+	CairoDock *pDock = data[1];
 	g_print ("%s (%s)\n", __func__, icon->acName);
 	
 	gchar *question = g_strdup_printf ("You're about to remove this icon (%s) from the dock (it will not alter the files on your hard-disk). Sure ?", icon->acName);
@@ -186,8 +185,8 @@ static void file_manager_remove_from_dock (GtkMenuItem *menu_item, gpointer *dat
 
 gboolean file_manager_notification_build_menu (gpointer *data)
 {
-	CairoDock *pDock = data[0];
-	Icon *icon = data[1];
+	Icon *icon = data[0];
+	CairoDock *pDock = data[1];
 	GtkWidget *menu = data[2];
 	
 	GtkWidget *menu_item;

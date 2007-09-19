@@ -48,7 +48,7 @@ gchar *file_manager_pre_init (void)
 
 Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	/*gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-in/%s", g_cCurrentThemePath, FILE_MANAGER_USER_DATA_DIR);
 	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR))
 	{
@@ -79,12 +79,12 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	CairoDockDesktopEnv iDesktopEnv = cairo_dock_guess_environment ();
 	if (iDesktopEnv == CAIRO_DOCK_UNKNOWN_ENV)
 	{
-		 g_set_error (erreur, 1, 1, "Attention : couldn't guess desktop environment, this module will not be active");
+		 g_set_error (erreur, 1, 1, "Attention : couldn't guess desktop environment, the file-manager will not be active");
 		return NULL;
 	}
 	if (iDesktopEnv == CAIRO_DOCK_KDE)  // le backend de KDE n'est pas encore implemente.
 	{
-		 g_set_error (erreur, 1, 1, "Attention : this module does not yet support KDE virtual file system. Any help is greatly welcome for this !");
+		 g_set_error (erreur, 1, 1, "Attention : the file-manager does not yet support KDE virtual file system. Any help is greatly welcome for this !");
 		return NULL;
 	}
 	
@@ -125,7 +125,7 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 		return NULL;
 	if (! g_module_symbol (s_fm_pBackendModule, "_file_manager_get_file_properties", (gpointer) &file_manager_get_file_properties))
 		return NULL;
-	g_print ("chargement du backend VFS OK\n");
+	//g_print ("chargement du backend VFS OK\n");
 	
 	if (! file_manager_init_backend (file_monitor_action_on_event))
 	{
