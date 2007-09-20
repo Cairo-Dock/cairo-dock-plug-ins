@@ -51,7 +51,7 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-ins/%s", g_cCurrentThemePath, CD_DUSTBIN_USER_DATA_DIR);
 	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_IS_DIR))
 	{
-		g_print ("directory %s doesn't exist, trying to fix it ...\n", cUserDataDirPath);
+		g_print ("directory %s doesn't exist, I will try to add it.\n", cUserDataDirPath);
 		
 		gchar *command = g_strdup_printf ("mkdir -p %s", cUserDataDirPath);
 		system (command);

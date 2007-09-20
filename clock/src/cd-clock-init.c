@@ -56,6 +56,7 @@ char my_cFileNames[CLOCK_ELEMENTS][30] =
 
 gchar *cd_clock_pre_init (void)
 {
+	//g_print ("%s ()\n", __func__);
 	return g_strdup_printf ("%s/%s", CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_README_FILE);
 }
 
@@ -66,7 +67,7 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-ins/%s", g_cCurrentThemePath, CD_CLOCK_USER_DATA_DIR);
 	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_IS_DIR))
 	{
-		g_print ("directory %s doesn't exist, trying to fix it ...\n", cUserDataDirPath);
+		g_print ("directory %s doesn't exist, I will try to add it.\n", cUserDataDirPath);
 		
 		gchar *command = g_strdup_printf ("mkdir -p %s", cUserDataDirPath);
 		system (command);
@@ -74,7 +75,7 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	}
 	
 	*cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_CLOCK_CONF_FILE);
-	if (! g_file_test (*cConfFilePath, G_FILE_TEST_IS_DIR))
+	if (! g_file_test (*cConfFilePath, G_FILE_TEST_EXISTS))
 	{
 		gchar *command = g_strdup_printf ("cp %s/%s %s", CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_CONF_FILE, cUserDataDirPath);
 		system (command);
