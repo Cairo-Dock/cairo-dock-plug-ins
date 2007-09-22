@@ -27,12 +27,11 @@ int my_iTheme = 0;
 
 int my_iSidUpdateClock = 0;
 Icon *my_pIcon = NULL;
-GtkWidget *my_pWidget = NULL;
 cairo_t *my_pCairoContext = NULL;
 GHashTable *my_pThemeTable = NULL;
 
-cairo_surface_t* g_pBackgroundSurface = NULL;
-cairo_surface_t* g_pForegroundSurface = NULL;
+cairo_surface_t* my_pBackgroundSurface = NULL;
+cairo_surface_t* my_pForegroundSurface = NULL;
 RsvgDimensionData my_DimensionData;
 RsvgHandle *my_pSvgHandles[CLOCK_ELEMENTS];
 
@@ -64,6 +63,7 @@ gchar *cd_clock_pre_init (void)
 Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
+	//\_______________ On verifie que nos fichiers existent.
 	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-ins/%s", g_cCurrentThemePath, CD_CLOCK_USER_DATA_DIR);
 	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_IS_DIR))
 	{
@@ -93,56 +93,42 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 		return NULL;
 	}
 	
-	
 	g_free (cUserDataDirPath);
 	cairo_dock_update_conf_file_with_hash_table (*cConfFilePath, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
 	
 	int i;
 	for (i = 0; i < CLOCK_ELEMENTS; i ++)
-	{
 		my_pSvgHandles[i] = NULL;
-	}
+	
 	
 	//\_______________ On lit le fichier de conf.
 	int iOriginalWidth = 1, iOriginalHeight = 1;
 	gchar *cName = NULL;
 	cd_clock_read_conf_file (*cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName);
 	
-	//\_______________ On cree nos entrees dans le menu qui sera appele lors d'un clic droit.
-	/*GtkWidget *pModuleMenu = gtk_menu_new ();
-	GtkWidget *menu_item;
-	
-	menu_item = gtk_menu_item_new_with_label ("Set up time and date");
-	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleMenu), menu_item);
-	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_clock_launch_time_admin), NULL);
-	
-	menu_item = gtk_menu_item_new_with_label ("About");
-	gtk_menu_shell_append  (GTK_MENU_SHELL (pModuleMenu), menu_item);
-	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK (cd_clock_about), NULL);*/
 	
 	//\_______________ On cree notre icone.
-	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
-	my_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL, NULL);
-	cairo_destroy (pSourceContext);
-	
+	my_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL);
 	my_pDock = pDock;
-	my_pWidget = pDock->pWidget;
 	my_pCairoContext = cairo_create (my_pIcon->pIconBuffer);
-	g_return_val_if_fail (my_pCairoContext != NULL, NULL);
-	rsvg_handle_get_dimensions (my_pSvgHandles[CLOCK_DROP_SHADOW], &my_DimensionData);
+	g_return_val_if_fail (cairo_status (my_pCairoContext) == CAIRO_STATUS_SUCCESS, NULL);
+	
 	
 	//\_______________ On charge les surfaces d'arriere-plan et d'avant-plan.
-	///cairo_set_operator (my_pCairoContext, CAIRO_OPERATOR_SOURCE);
-	g_pBackgroundSurface = update_surface (g_pBackgroundSurface,
-		my_pCairoContext,
+	cairo_t* pSourceContext = cairo_create (my_pIcon->pIconBuffer);
+	g_return_val_if_fail (cairo_status (pSourceContext) == CAIRO_STATUS_SUCCESS, NULL);
+	
+	my_pBackgroundSurface = update_surface (NULL,
+		pSourceContext,
 		my_pIcon->fWidth * (1 + g_fAmplitude),
 		my_pIcon->fHeight * (1 + g_fAmplitude),
 		KIND_BACKGROUND);
-	g_pForegroundSurface = update_surface (g_pForegroundSurface,
-		my_pCairoContext,
+	my_pForegroundSurface = update_surface (NULL,
+		pSourceContext,
 		my_pIcon->fWidth * (1 + g_fAmplitude),
 		my_pIcon->fHeight * (1 + g_fAmplitude),
 		KIND_FOREGROUND);
+	cairo_destroy (pSourceContext);
 	
 	//\_______________ On enregistre nos notifications.
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_clock_notification_click_icon, CAIRO_DOCK_RUN_FIRST);
@@ -165,6 +151,7 @@ void cd_clock_stop (void)
 	g_source_remove (my_iSidUpdateClock);
 	my_iSidUpdateClock = 0;
 	my_pIcon = NULL;
+	
 	cairo_destroy (my_pCairoContext);
 	my_pCairoContext = NULL;
 	int i;
@@ -173,6 +160,12 @@ void cd_clock_stop (void)
 		rsvg_handle_free (my_pSvgHandles[i]);
 		my_pSvgHandles[i] = NULL;
 	}
+	
+	cairo_surface_destroy (my_pForegroundSurface);
+	my_pForegroundSurface = NULL;
+	cairo_surface_destroy (my_pBackgroundSurface);
+	my_pBackgroundSurface = NULL;
+	
 	g_hash_table_destroy (my_pThemeTable);
 	my_pThemeTable = NULL;
 }

@@ -34,7 +34,7 @@ void cd_clock_about (GtkMenuItem *menu_item, gpointer *data)
 
 gboolean cd_clock_notification_click_icon (gpointer *data)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	if (data[0] == my_pIcon)
 	{
 		GtkWidget *pDialog = gtk_dialog_new ();

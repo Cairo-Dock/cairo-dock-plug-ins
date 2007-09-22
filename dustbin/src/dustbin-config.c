@@ -13,60 +13,29 @@ extern gchar **my_dustbin_cTrashDirectoryList;
 extern cairo_surface_t *my_dustbin_pEmptyBinSurface;
 extern cairo_surface_t *my_dustbin_pFullBinSurface;
 extern GHashTable *my_dustbin_pThemeTable;
+extern gchar *my_dustbin_cBrowser;
 
 
 void cd_dustbin_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, gchar **cName, gchar **cThemeName)
 {
 	GError *erreur = NULL;
-	
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
-	GKeyFile *fconf = cairo_dock_read_header_applet_conf_file (cConfFilePath, iWidth, iHeight, cName, &bFlushConfFileNeeded);
-	g_return_if_fail (fconf != NULL);
 	
-	*cThemeName = g_key_file_get_string (fconf, "MODULE", "theme", &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
-		*cThemeName = g_strdup ("default");  // valeur par defaut.
-		g_key_file_set_string (fconf, "MODULE", "theme", *cThemeName);
-		bFlushConfFileNeeded = TRUE;
-	}
-	if (*cThemeName != NULL && strcmp (*cThemeName, "") == 0)
-	{
-		g_free (*cThemeName);
-		*cThemeName = NULL;
-	}
+	GKeyFile *pKeyFile = cairo_dock_read_header_applet_conf_file (cConfFilePath, iWidth, iHeight, cName, &bFlushConfFileNeeded);
+	g_return_if_fail (pKeyFile != NULL);
 	
-	my_dustbin_fCheckInterval = g_key_file_get_double (fconf, "MODULE", "check interval", &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
-		my_dustbin_fCheckInterval = FALSE;  // valeur par defaut.
-		g_key_file_set_double (fconf, "MODULE", "check interval", my_dustbin_fCheckInterval);
-		bFlushConfFileNeeded = TRUE;
-	}
+	*cThemeName = cairo_dock_get_string_key_value (pKeyFile, "MODULE", "theme", &bFlushConfFileNeeded, "default");
+	
+	my_dustbin_fCheckInterval = cairo_dock_get_double_key_value (pKeyFile, "MODULE", "check interval", &bFlushConfFileNeeded, 2.);
+	
+	my_dustbin_cBrowser = cairo_dock_get_string_key_value (pKeyFile, "MODULE", "file browser", &bFlushConfFileNeeded, "xdg-open");
 	
 	gsize length = 0;
-	my_dustbin_cTrashDirectoryList = g_key_file_get_string_list (fconf, "MODULE", "trash directories", &length, &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
-		my_dustbin_cTrashDirectoryList = g_new0 (gchar *, 2);
-		my_dustbin_cTrashDirectoryList[0] = g_strdup_printf ("%s/.Trash", getenv ("HOME"));  // valeur par defaut.
-		g_key_file_set_string (fconf, "MODULE", "trash directories", my_dustbin_cTrashDirectoryList[0]);
-		bFlushConfFileNeeded = TRUE;
-	}
-	if (my_dustbin_cTrashDirectoryList != NULL && my_dustbin_cTrashDirectoryList[0] != NULL && strcmp (my_dustbin_cTrashDirectoryList[0], "") == 0)
-	{
-		g_strfreev (my_dustbin_cTrashDirectoryList);
-		my_dustbin_cTrashDirectoryList = NULL;
-	}
+	gchar *cDefaultTrashDir = g_strdup_printf ("%s/.Trash", getenv ("HOME"));
+	my_dustbin_cTrashDirectoryList = cairo_dock_get_string_list_key_value (pKeyFile, "MODULE", "trash directories", &bFlushConfFileNeeded, &length, cDefaultTrashDir);
+	g_free (cDefaultTrashDir);
+	
+	
 	int i = 0;
 	if (my_dustbin_cTrashDirectoryList != NULL)
 	{
@@ -85,10 +54,8 @@ void cd_dustbin_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight,
 	
 	
 	if (bFlushConfFileNeeded)
-	{
-		cairo_dock_write_keys_to_file (fconf, cConfFilePath);
-	}
+		cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
 	
-	g_key_file_free (fconf);
+	g_key_file_free (pKeyFile);
 }
 

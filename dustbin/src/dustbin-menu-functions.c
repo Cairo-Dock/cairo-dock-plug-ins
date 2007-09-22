@@ -10,10 +10,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "dustbin-menu-functions.h"
 
-
 extern gchar **my_dustbin_cTrashDirectoryList;
 extern Icon *my_dustbin_pIcon;
 extern GtkWidget *my_dustbin_pMenu;
+extern gchar *my_dustbin_cBrowser;
+
 
 void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 {
@@ -55,7 +56,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 
 void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 {
-	GString *sCommand = g_string_new ("xdg-open");
+	GString *sCommand = g_string_new (my_dustbin_cBrowser);
 	if (cDirectory != NULL)
 	{
 		g_string_append_printf (sCommand, " %s", cDirectory);

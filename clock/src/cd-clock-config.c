@@ -20,10 +20,9 @@ extern gboolean my_bOldStyle;
 extern gboolean my_b24Mode;
 extern GHashTable *my_pThemeTable;
 
+extern RsvgDimensionData my_DimensionData;
 extern RsvgHandle *my_pSvgHandles[CLOCK_ELEMENTS];
 extern char my_cFileNames[CLOCK_ELEMENTS][30];
-extern cairo_surface_t *g_pBackgroundSurface;
-extern cairo_surface_t *g_pForegroundSurface;
 
 
 void cd_clock_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, gchar **cName)
@@ -31,73 +30,19 @@ void cd_clock_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, g
 	GError *erreur = NULL;
 	
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
-	GKeyFile *fconf = cairo_dock_read_header_applet_conf_file (cConfFilePath, iWidth, iHeight, cName, &bFlushConfFileNeeded);
-	g_return_if_fail (fconf != NULL);
+	GKeyFile *pKeyFile = cairo_dock_read_header_applet_conf_file (cConfFilePath, iWidth, iHeight, cName, &bFlushConfFileNeeded);
+	g_return_if_fail (pKeyFile != NULL);
 	
-	my_bShowDate = g_key_file_get_boolean (fconf, "MODULE", "show date", &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
-		my_bShowDate = TRUE;  // valeur par defaut.
-		g_key_file_set_boolean (fconf, "MODULE", "show date", my_bShowDate);
-		bFlushConfFileNeeded = TRUE;
-	}
+	my_bShowDate = cairo_dock_get_boolean_key_value (pKeyFile, "MODULE", "show date", &bFlushConfFileNeeded, TRUE);
 	
-	my_bShowSeconds = g_key_file_get_boolean (fconf, "MODULE", "show seconds", &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
-		my_bShowSeconds = TRUE;  // valeur par defaut.
-		g_key_file_set_boolean (fconf, "MODULE", "show seconds", my_bShowSeconds);
-		bFlushConfFileNeeded = TRUE;
-	}
+	my_bShowSeconds = cairo_dock_get_boolean_key_value (pKeyFile, "MODULE", "show seconds", &bFlushConfFileNeeded, TRUE);
 	
-	my_b24Mode = g_key_file_get_boolean (fconf, "MODULE", "24h mode", &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
-		my_b24Mode = TRUE;  // valeur par defaut.
-		g_key_file_set_boolean (fconf, "MODULE", "24h mode", my_b24Mode);
-		bFlushConfFileNeeded = TRUE;
-	}
+	my_b24Mode = cairo_dock_get_boolean_key_value (pKeyFile, "MODULE", "24h mode", &bFlushConfFileNeeded, TRUE);
 	
-	my_bOldStyle = g_key_file_get_boolean (fconf, "MODULE", "old fashion style", &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
-		my_bOldStyle = FALSE;  // valeur par defaut.
-		g_key_file_set_boolean (fconf, "MODULE", "old fashion style", my_bOldStyle);
-		bFlushConfFileNeeded = TRUE;
-	}
+	my_bOldStyle = cairo_dock_get_boolean_key_value (pKeyFile, "MODULE", "old fashion style", &bFlushConfFileNeeded, FALSE);
 	
-	gchar *cThemeName = g_key_file_get_string (fconf, "MODULE", "theme", &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
-		cThemeName = g_strdup ("default");  // valeur par defaut.
-		g_key_file_set_string (fconf, "MODULE", "theme", cThemeName);
-		bFlushConfFileNeeded = TRUE;
-	}
-	if (cThemeName != NULL && strcmp (cThemeName, "") == 0)
-	{
-		g_free (cThemeName);
-		cThemeName = NULL;
-	}
+	gchar *cThemeName = cairo_dock_get_string_key_value (pKeyFile, "MODULE", "theme", &bFlushConfFileNeeded, "default");
 	
-	if (bFlushConfFileNeeded)
-	{
-		cairo_dock_write_keys_to_file (fconf, cConfFilePath);
-	}
 	
 	//\_______________ On charge le theme choisi.
 	if (cThemeName != NULL)
@@ -116,8 +61,17 @@ void cd_clock_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, g
 			//g_print (" + %s\n", cElementPath);
 			g_free (cElementPath);
 		}
+		rsvg_handle_get_dimensions (my_pSvgHandles[CLOCK_DROP_SHADOW], &my_DimensionData);
+	}
+	else
+	{
+		my_DimensionData.width = 48;  // valeur par defaut si aucun theme.
+		my_DimensionData.height = 48;
 	}
 	
-	g_key_file_free (fconf);
+	
+	if (bFlushConfFileNeeded)
+		cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
+	
+	g_key_file_free (pKeyFile);
 }
-

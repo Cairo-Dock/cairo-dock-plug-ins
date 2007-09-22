@@ -18,18 +18,15 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 extern Icon *my_pIcon;
 extern cairo_t *my_pCairoContext;
-extern GtkWidget *my_pWidget;
 extern CairoDock *my_pDock;
 
 extern gboolean my_bShowDate;
 extern gboolean my_bShowSeconds;
 extern gboolean my_b24Mode;
 extern int my_bOldStyle;
-extern int my_iTheme;
-extern GHashTable *my_pThemeTable;
 
-extern cairo_surface_t *g_pBackgroundSurface;
-extern cairo_surface_t *g_pForegroundSurface;
+extern cairo_surface_t *my_pBackgroundSurface;
+extern cairo_surface_t *my_pForegroundSurface;
 extern RsvgDimensionData my_DimensionData;
 extern RsvgHandle *my_pSvgHandles[CLOCK_ELEMENTS];
 
@@ -38,6 +35,11 @@ static char cDateBuffer[50];
 
 gboolean cd_clock_update_with_time (Icon *icon)
 {
+	static gboolean bBusy = FALSE;
+	if (bBusy)
+		return TRUE;
+	bBusy = TRUE;
+	
 	time_t epoch = (time_t) time (NULL);
 	struct tm epoch_tm;
 	localtime_r (&epoch, &epoch_tm);
@@ -49,6 +51,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 	
 	cairo_dock_redraw_my_icon (icon, my_pDock);
 	
+	bBusy = FALSE;
 	return TRUE;
 }
 
@@ -68,8 +71,6 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 	strftime (cDateBuffer, 50, sFormat->str, pTime);
 	g_string_free (sFormat, TRUE);
 	
-	
-	cairo_save (pSourceContext);
 	
 	cairo_set_tolerance (pSourceContext, 0.1);
 	
@@ -104,6 +105,7 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 	cairo_translate (pCairoContext, -ink.x, -ink.y);
 	
 	pango_cairo_show_layout (pCairoContext, pLayout);
+	cairo_destroy (pCairoContext);
 	
 	//double fTextXOffset = log.width / 2. - ink.x;
 	//double fTextYOffset = log.height     - ink.y;
@@ -118,16 +120,15 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 		0);
 	cairo_paint (pSourceContext);
 	
-	cairo_destroy (pCairoContext);
-	
+	cairo_surface_destroy (pNewSurface);
 	g_object_unref (pLayout);
-	cairo_restore (pSourceContext);
 }
 
 
 
 void draw_background (cairo_t* pDrawingContext, int iWidth, int iHeight)
 {
+	//g_print ("%s (%.2f, %.2f)\n", __func__, (double) iWidth / (double) my_DimensionData.width, (double) iHeight / (double) my_DimensionData.height);
 	/* clear context */
 	cairo_scale (pDrawingContext,
 		(double) iWidth / (double) my_DimensionData.width,
@@ -137,13 +138,17 @@ void draw_background (cairo_t* pDrawingContext, int iWidth, int iHeight)
 	cairo_paint (pDrawingContext);
 	
 	/* draw stuff */
-	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_DROP_SHADOW], pDrawingContext);
-	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_FACE], pDrawingContext);
-	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_MARKS], pDrawingContext);
+	if (my_pSvgHandles[CLOCK_DROP_SHADOW] != NULL)
+		rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_DROP_SHADOW], pDrawingContext);
+	if (my_pSvgHandles[CLOCK_FACE] != NULL)
+		rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_FACE], pDrawingContext);
+	if (my_pSvgHandles[CLOCK_MARKS] != NULL)
+		rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_MARKS], pDrawingContext);
 }
 
 void draw_foreground (cairo_t* pDrawingContext, int iWidth, int iHeight)
 {
+	//g_print ("%s (%.2f, %.2f)\n", __func__, (double) iWidth / (double) my_DimensionData.width, (double) iHeight / (double) my_DimensionData.height);
 	/* clear context */
 	cairo_scale (pDrawingContext,
 		(double) iWidth / (double) my_DimensionData.width,
@@ -153,9 +158,12 @@ void draw_foreground (cairo_t* pDrawingContext, int iWidth, int iHeight)
 	cairo_paint (pDrawingContext);
 	
 	/* draw stuff */
-	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_FACE_SHADOW], pDrawingContext);
-	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_GLASS], pDrawingContext);
-	rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_FRAME], pDrawingContext);
+	if (my_pSvgHandles[CLOCK_FACE_SHADOW] != NULL)
+		rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_FACE_SHADOW], pDrawingContext);
+	if (my_pSvgHandles[CLOCK_GLASS] != NULL)
+		rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_GLASS], pDrawingContext);
+	if (my_pSvgHandles[CLOCK_FRAME] != NULL)
+		rsvg_handle_render_cairo (my_pSvgHandles[CLOCK_FRAME], pDrawingContext);
 }
 
 cairo_surface_t* update_surface (cairo_surface_t* pOldSurface,
@@ -164,6 +172,7 @@ cairo_surface_t* update_surface (cairo_surface_t* pOldSurface,
 								int iHeight,
 								SurfaceKind kind)
 {
+	//g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
 	cairo_surface_t* pNewSurface = NULL;
 	cairo_t* pDrawingContext = NULL;
 	
@@ -173,12 +182,10 @@ cairo_surface_t* update_surface (cairo_surface_t* pOldSurface,
 		CAIRO_CONTENT_COLOR_ALPHA,
 		iWidth,
 		iHeight);
-	if (cairo_surface_status (pNewSurface) != CAIRO_STATUS_SUCCESS)
-		return NULL;
+	g_return_val_if_fail (cairo_surface_status (pNewSurface) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	pDrawingContext = cairo_create (pNewSurface);
-	if (cairo_status (pDrawingContext) != CAIRO_STATUS_SUCCESS)
-		return NULL;
+	g_return_val_if_fail (cairo_status (pDrawingContext) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	switch (kind)
 	{
@@ -200,11 +207,11 @@ cairo_surface_t* update_surface (cairo_surface_t* pOldSurface,
 void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int height, double fMaxScale, struct tm *pTime)
 {
 	//g_print ("%s (%dx%d)\n", __func__, width, height);
-	static double fHalfX;
-	static double fHalfY;
-	static double fShadowOffsetX = -0.75f;
-	static double fShadowOffsetY = 0.75f;
-	static cairo_text_extents_t textExtents;
+	double fHalfX;
+	double fHalfY;
+	double fShadowOffsetX = -0.75f;
+	double fShadowOffsetY = 0.75f;
+	cairo_text_extents_t textExtents;
 	
 	fHalfX = my_DimensionData.width / 2.0f;
 	fHalfY = my_DimensionData.height / 2.0f;
@@ -213,12 +220,15 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 	int g_iMinutes = pTime->tm_min;
 	int g_iHours = pTime->tm_hour;
 	
+	//cairo_set_tolerance (pSourceContext, 0.1);
+	cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_SOURCE);
-	
-	cairo_set_source_surface (pSourceContext, g_pBackgroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
 	
+	//cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
+	cairo_set_source_surface (pSourceContext, my_pBackgroundSurface, 0.0f, 0.0f);
+	cairo_paint (pSourceContext);
 	
 	cairo_save (pSourceContext);
 	cairo_scale (pSourceContext,
@@ -232,14 +242,14 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 	{
 		cairo_save (pSourceContext);
 		cairo_set_source_rgb (pSourceContext, 1.0f, 0.5f, 0.0f);
-		cairo_set_line_width (pSourceContext, 5.0f);
+		cairo_set_line_width (pSourceContext, 8.0f);
+		strftime (cDateBuffer, 50, "%a%d%b", pTime);
 		cairo_text_extents (pSourceContext, cDateBuffer, &textExtents);
 		cairo_rotate (pSourceContext, (G_PI/180.0f) * 90.0f);
 		cairo_move_to (pSourceContext,
 			-textExtents.width / 2.0f,
 			2.0f * textExtents.height);
 		
-		strftime (cDateBuffer, 50, "%a%d%b", pTime);
 		cairo_show_text (pSourceContext, cDateBuffer);
 		cairo_restore (pSourceContext);
 	}
@@ -296,6 +306,6 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 	
 	cairo_restore (pSourceContext);
 	
-	cairo_set_source_surface (pSourceContext, g_pForegroundSurface, 0.0f, 0.0f);
+	cairo_set_source_surface (pSourceContext, my_pForegroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
 }

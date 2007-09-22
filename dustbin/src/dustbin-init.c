@@ -36,6 +36,7 @@ cairo_surface_t *my_dustbin_pEmptyBinSurface = NULL;
 cairo_surface_t *my_dustbin_pFullBinSurface = NULL;
 GHashTable *my_dustbin_pThemeTable = NULL;
 int my_dustbin_iState = -1;
+gchar *my_dustbin_cBrowser = NULL;
 
 
 gchar *cd_dustbin_pre_init (void)
@@ -86,7 +87,8 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	gchar *cName = NULL, *cThemeName = NULL;
 	cd_dustbin_read_conf_file (*cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName, &cThemeName);
 	
-	//\_______________ On cree nos entrees dans le menu qui sera appele lors d'un clic droit.
+	
+	//\_______________ On cree notre menu qui sera appele lors d'un clic droit.
 	my_dustbin_pMenu = gtk_menu_new ();
 	GtkWidget *pModuleSubMenu;
 	GtkWidget *menu_item;
@@ -168,7 +170,7 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	//\_______________ On cree notre icone.
 	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
-	my_dustbin_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL, NULL);
+	my_dustbin_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL);
 	cairo_destroy (pSourceContext);
 	
 	my_dustbin_pDock = pDock;
@@ -284,6 +286,9 @@ void cd_dustbin_stop (void)
 	if (my_dustbin_pFullBinSurface != NULL)
 		cairo_surface_destroy (my_dustbin_pFullBinSurface);
 	my_dustbin_pFullBinSurface = NULL;
+	
+	g_free (my_dustbin_cBrowser);
+	my_dustbin_cBrowser = NULL;
 }
 
 
