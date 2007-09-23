@@ -14,10 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 extern FileManagerGetFileInfoFunc file_manager_get_file_info;
 extern FileManagerListDirectoryFunc file_manager_list_directory;
-extern FileManagerLaunchUriFunc file_manager_launch_uri;
-extern FileManagerIsMountingPointFunc file_manager_is_mounting_point;
-extern FileManagerMountFunc file_manager_mount;
-extern FileManagerUnmountFunc file_manager_unmount;
 extern FileManagerAddMonitorFunc file_manager_add_monitor;
 extern FileManagerAddMonitorFunc file_manager_remove_monitor;
 
@@ -26,32 +22,55 @@ extern FileManagerSortType g_fm_iSortType;
 
 void file_manager_create_dock_from_directory (Icon *pIcon)
 {
-	/*CairoDock *pDock = cairo_dock_create_new_dock (GDK_WINDOW_TYPE_HINT_MENU, pIcon->acName);
-	cairo_dock_reference_dock (pDock);  // on le fait tout de suite pour avoir la bonne reference avant le 'load'.
-	
-	pDock->icons = file_manager_list_directory (pIcon->acCommand, g_fm_iSortType);
-	
-	cairo_dock_load_buffers_in_one_dock (pDock);
-	
-	pIcon->pSubDock = pDock;
-	
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
-	gtk_widget_hide (pDock->pWidget);*/
 	GList *pIconList = file_manager_list_directory (pIcon->acCommand, g_fm_iSortType);
 	pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, pIcon->acName);
 	
 	file_manager_add_monitor (pIcon);
 }
 
-
-static Icon *file_manager_create_icon_from_URI (gchar *cURI, CairoDock *pDock)
+void file_manager_alter_icon_if_necessary (Icon *pIcon, CairoDock *pDock)
+{
+	Icon *pNewIcon = file_manager_create_icon_from_URI (pIcon->cBaseURI, pDock);
+	g_return_if_fail (pNewIcon != NULL);
+	
+	
+	if (strcmp (pIcon->acName, pNewIcon->acName) != 0 || strcmp (pIcon->acFileName, pNewIcon->acFileName) != 0 || pIcon->fOrder != pNewIcon->fOrder)
+	{
+		cairo_dock_remove_one_icon_from_dock (pDock, pIcon);
+		
+		cairo_dock_insert_icon_in_dock (pNewIcon, pDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
+		
+		if (pIcon->pSubDock != NULL)
+		{
+			pNewIcon->pSubDock == pIcon->pSubDock;
+			pIcon->pSubDock = NULL;
+			
+			if (pNewIcon->acName != NULL && strcmp (pIcon->acName, pNewIcon->acName) != 0)
+			{
+				g_hash_table_steal (g_hDocksTable, pIcon->acName);
+				g_hash_table_insert (g_hDocksTable, pNewIcon->acName, pNewIcon->pSubDock);
+			}
+		}
+		
+		cairo_dock_free_icon (pIcon);
+	}
+	else
+	{
+		cairo_dock_free_icon (pNewIcon);
+	}
+}
+Icon *file_manager_create_icon_from_URI (gchar *cURI, CairoDock *pDock)
 {
 	Icon *pNewIcon = g_new0 (Icon, 1);
 	pNewIcon->iType = CAIRO_DOCK_LAUNCHER;
 	pNewIcon->cBaseURI = g_strdup (cURI);
 	gboolean bIsDirectory;
-	file_manager_get_file_info (cURI, &pNewIcon->acName, &pNewIcon->acCommand, &pNewIcon->acFileName, &bIsDirectory, &pNewIcon->bIsMountingPoint, &pNewIcon->fOrder, g_fm_iSortType);
+	file_manager_get_file_info (cURI, &pNewIcon->acName, &pNewIcon->acCommand, &pNewIcon->acFileName, &bIsDirectory, &pNewIcon->bIsMountingPoint, &pNewIcon->iVolumeID, &pNewIcon->fOrder, g_fm_iSortType);
+	if (pNewIcon->acName == NULL)
+	{
+		cairo_dock_free_icon (pNewIcon);
+		return NULL;
+	}
 	
 	if (bIsDirectory)
 	{
@@ -88,6 +107,7 @@ static Icon *file_manager_create_icon_from_URI (gchar *cURI, CairoDock *pDock)
 }
 void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar *cURI, Icon *pIcon)
 {
+	g_print ("%s ()\n", __func__);
 	g_print ("%s (%d sur %s)\n", __func__, iEventType, cURI);
 	
 	if (iEventType == FILE_MANAGER_ICON_DELETED)
@@ -131,33 +151,20 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 	{
 		Icon *pConcernedIcon;
 		CairoDock *pParentDock;
-		if (pIcon->pSubDock != NULL)
+		if (strcmp (pIcon->cBaseURI, cURI) == 0)
+		{
+			pConcernedIcon = pIcon;
+			pParentDock = cairo_dock_search_container_from_icon (pIcon);
+		}
+		else if (pIcon->pSubDock != NULL)
 		{
 			pConcernedIcon = cairo_dock_get_icon_with_base_uri (pIcon->pSubDock->icons, cURI);
 			g_return_if_fail (pConcernedIcon != NULL);
 			pParentDock = pIcon->pSubDock;
 		}
-		else
-		{
-			pConcernedIcon = pIcon;
-			pParentDock = cairo_dock_search_container_from_icon (pIcon);
-		}
 		g_print ("%s est modifiee\n", pConcernedIcon->acName);
 		
-		Icon *pNewIcon = file_manager_create_icon_from_URI (cURI, pParentDock);
-		
-		if (strcmp (pConcernedIcon->acName, pNewIcon->acName) != 0 || strcmp (pConcernedIcon->acFileName, pNewIcon->acFileName) != 0 || pConcernedIcon->fOrder != pNewIcon->fOrder)
-		{
-			cairo_dock_remove_one_icon_from_dock (pParentDock, pConcernedIcon);
-			
-			cairo_dock_insert_icon_in_dock (pNewIcon, pIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
-			cairo_dock_update_dock_size (pParentDock, pParentDock->iMaxIconHeight, pParentDock->iMinDockWidth);
-			cairo_dock_free_icon (pConcernedIcon);
-		}
-		else
-		{
-			cairo_dock_free_icon (pNewIcon);
-		}
+		file_manager_alter_icon_if_necessary (pConcernedIcon, pParentDock);
 	}
 }
 
@@ -169,17 +176,44 @@ void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer d
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		if (icon->cBaseURI != NULL && icon->pSubDock != NULL && icon->pSubDock->icons == NULL)
+		if (icon->cBaseURI != NULL)
 		{
-			icon->pSubDock->icons = file_manager_list_directory (icon->acCommand, g_fm_iSortType);
-			cairo_dock_load_buffers_in_one_dock (icon->pSubDock);
-			
-			file_manager_add_monitor (icon);
+			if (icon->pSubDock != NULL && icon->pSubDock->icons == NULL)
+			{
+				icon->pSubDock->icons = file_manager_list_directory (icon->acCommand, g_fm_iSortType);
+				cairo_dock_load_buffers_in_one_dock (icon->pSubDock);
+				
+				file_manager_add_monitor (icon);
+			}
+			if (icon->bIsMountingPoint)
+				file_manager_alter_icon_if_necessary (icon, pDock);
 		}
 	}
 }
 
-
+void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gpointer data)
+{
+	GList *ic;
+	Icon *icon;
+	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		if (icon->cBaseURI != NULL && icon->pSubDock != NULL && icon->pSubDock->icons != NULL)
+		{
+			GList *pIconList = icon->pSubDock->icons;
+			icon->pSubDock->icons = NULL;
+			
+			Icon *icon;
+			GList *ic;
+			for (ic = pIconList; ic != NULL; ic = ic->next)
+			{
+				icon = ic->data;
+				cairo_dock_free_icon (icon);
+			}
+			g_list_free (pIconList);
+		}
+	}
+}
 
 
 static int file_manager_sort_by_name (Icon *icon1, Icon *icon2)

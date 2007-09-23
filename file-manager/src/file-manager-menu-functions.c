@@ -13,11 +13,13 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "file-manager-struct.h"
 #include "file-manager-add-desktop-file.h"
+#include "file-manager-load-directory.h"
 #include "file-manager-menu-functions.h"
 
+extern FileManagerLaunchUriFunc file_manager_launch_uri;
+extern FileManagerIsMountingPointFunc file_manager_is_mounting_point;
 extern FileManagerMountFunc file_manager_mount;
 extern FileManagerUnmountFunc file_manager_unmount;
-extern FileManagerIsMountingPointFunc file_manager_is_mounting_point;
 extern FileManagerDeleteFileFunc file_manager_delete_file;
 extern FileManagerRenameFileFunc file_manager_rename_file;
 extern FileManagerMoveFileFunc file_manager_move_file;
@@ -44,15 +46,25 @@ static void file_manager_mount_unmount (GtkMenuItem *menu_item, gpointer *data)
 	g_print ("%s (%s)\n", __func__, icon->acName);
 	
 	gboolean bIsMounted = FALSE;
-	gchar *cMountPointID = file_manager_is_mounting_point (icon->acCommand, &bIsMounted);
-	g_print ("  cMountPointID : %s; bIsMounted : %d\n", cMountPointID, bIsMounted);
+	gchar *cActivationURI = file_manager_is_mounting_point (icon->acCommand, &bIsMounted);
+	g_print ("  cActivationURI : %s; bIsMounted : %d\n", cActivationURI, bIsMounted);
+	g_free (cActivationURI);
 	
 	if (! bIsMounted)
-		file_manager_mount (icon->acCommand);
+	{
+		cActivationURI = file_manager_mount (icon->iVolumeID);
+		g_print ("apres montage : cActivationURI : %s\n", cActivationURI);
+		g_free (cActivationURI);
+	}
 	else
 		file_manager_unmount (icon->acCommand);
 	
-	g_free (cMountPointID);
+	cairo_dock_remove_one_icon_from_dock (pDock, icon);
+	
+	Icon *pNewIcon = file_manager_create_icon_from_URI (icon->cBaseURI, pDock);
+	cairo_dock_insert_icon_in_dock (pNewIcon, pDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
+	
+	cairo_dock_free_icon (icon);
 }
 
 static void file_manager_delete (GtkMenuItem *menu_item, gpointer *data)
@@ -196,9 +208,9 @@ gboolean file_manager_notification_build_menu (gpointer *data)
 		if (icon->bIsMountingPoint)
 		{
 			gboolean bIsMounted = FALSE;
-			gchar *cMountPointID = file_manager_is_mounting_point (icon->acCommand, &bIsMounted);
-			g_print ("  cMountPointID : %s; bIsMounted : %d\n", cMountPointID, bIsMounted);
-			g_free (cMountPointID);
+			gchar *cActivationURI = file_manager_is_mounting_point (icon->acCommand, &bIsMounted);
+			g_print ("  cActivationURI : %s; bIsMounted : %d\n", cActivationURI, bIsMounted);
+			g_free (cActivationURI);
 			
 			menu_item = gtk_menu_item_new_with_label (bIsMounted ? "Unmount" : "Mount");
 			gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
@@ -275,6 +287,42 @@ gboolean file_manager_notification_drop_data (gpointer *data)
 			if (pDock->iSidShrinkDown == 0)  // on lance l'animation.
 				pDock->iSidShrinkDown = g_timeout_add (50, (GSourceFunc) cairo_dock_shrink_down, (gpointer) pDock);
 		}
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+
+gboolean file_manager_notification_click_icon (gpointer *data)
+{
+	Icon *icon = data[0];
+	
+	if (CAIRO_DOCK_IS_URI_LAUNCHER (icon))
+	{
+		g_print ("%s ()\n", __func__);
+		
+		gboolean bIsMounted = TRUE;
+		
+		if (icon->iVolumeID > 0 && ! bIsMounted)
+		{
+			GtkWidget *dialog = gtk_message_dialog_new (GTK_WINDOW (NULL),
+				GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_MESSAGE_QUESTION,
+				GTK_BUTTONS_YES_NO,
+				"Do you want to mount this point ?");
+			int answer = gtk_dialog_run (GTK_DIALOG (dialog));
+			gtk_widget_destroy (dialog);
+			if (answer != GTK_RESPONSE_YES)
+				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			
+			gchar *cActivatedURI = file_manager_mount (icon->iVolumeID);
+			g_print (" cActivatedURI : %s\n", cActivatedURI);
+			if (cActivatedURI != NULL)
+				file_manager_launch_uri (cActivatedURI);
+			g_free (cActivatedURI);
+		}
+		else
+			file_manager_launch_uri (icon->acCommand);
+		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

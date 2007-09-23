@@ -33,11 +33,11 @@ typedef enum {
 typedef void (*FileManagerOnEventFunc) (FileManagerEventType iEventType, const gchar *cURI, Icon *pIcon);
 
 
-
 typedef gboolean (*FileManagerInitFunc) (FileManagerOnEventFunc);
+typedef void (*FileManagerStopFunc) (void);
 
 
-typedef void (*FileManagerGetFileInfoFunc) (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint, double *fOrder, FileManagerSortType iSortType);
+typedef void (*FileManagerGetFileInfoFunc) (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint, int *iVolumeID, double *fOrder, FileManagerSortType iSortType);
 
 
 typedef GList * (*FileManagerListDirectoryFunc) (gchar *cURI, FileManagerSortType g_fm_iSortType);
@@ -47,8 +47,7 @@ typedef void (*FileManagerLaunchUriFunc) (gchar *cURI);
 
 
 typedef gchar * (*FileManagerIsMountingPointFunc) (gchar *cURI, gboolean *bIsMounted);
-
-typedef gchar * (*FileManagerMountFunc) (gchar *cURI);
+typedef gchar * (*FileManagerMountFunc) (int iVolumeID);
 typedef void (*FileManagerUnmountFunc) (gchar *cURI);
 
 

@@ -16,11 +16,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 extern FileManagerGetFileInfoFunc file_manager_get_file_info;
 extern FileManagerListDirectoryFunc file_manager_list_directory;
 extern FileManagerLaunchUriFunc file_manager_launch_uri;
-extern FileManagerIsMountingPointFunc file_manager_is_mounting_point;
-extern FileManagerMountFunc file_manager_mount;
-extern FileManagerUnmountFunc file_manager_unmount;
 
 extern FileManagerSortType g_fm_iSortType;
+
 
 gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, double fOrder, CairoDock *pDock, GError **erreur)
 {
@@ -49,8 +47,9 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 	//\___________________ On renseigne les champs propres au type mime.
 	gchar *cIconName = NULL, *cName = NULL, *cRealURI = NULL;
 	gboolean bIsDirectory, bIsMountPoint;
+	int iVolumeID;
 	double fUnusedOrder;
-	file_manager_get_file_info (cURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &bIsMountPoint, &fUnusedOrder, g_fm_iSortType);
+	file_manager_get_file_info (cURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &bIsMountPoint, &iVolumeID, &fUnusedOrder, g_fm_iSortType);
 	g_print (" -> cIconName : %s; bIsDirectory : %d; bIsMountPoint : %d\n", cIconName, bIsDirectory, bIsMountPoint);
 	
 	g_key_file_set_string (pKeyFile, "Desktop Entry", "Name", cName);
@@ -89,8 +88,3 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 	return cNewDesktopFileName;
 }
 
-
-void file_manager_launch_icon (Icon *icon)
-{
-	file_manager_launch_uri (icon->acCommand);
-}
