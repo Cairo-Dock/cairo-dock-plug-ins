@@ -29,19 +29,30 @@ extern cairo_surface_t *my_pBackgroundSurface;
 extern cairo_surface_t *my_pForegroundSurface;
 extern RsvgDimensionData my_DimensionData;
 extern RsvgHandle *my_pSvgHandles[CLOCK_ELEMENTS];
+extern GPtrArray *my_pAlarms;
 
-static char cDateBuffer[50];
+#define CD_CLOCK_DATE_BUFFER_LENGTH 50
+static char cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
+
+
+void cd_clock_free_alarm (CDClockAlarm *pAlarm)
+{
+	g_free (pAlarm->cMessage);
+	g_free (pAlarm);
+}
 
 
 gboolean cd_clock_update_with_time (Icon *icon)
 {
 	static gboolean bBusy = FALSE;
+	static int iLastCheckedMinute = -1;
+	static struct tm epoch_tm;
+	
 	if (bBusy)
 		return TRUE;
 	bBusy = TRUE;
 	
 	time_t epoch = (time_t) time (NULL);
-	struct tm epoch_tm;
 	localtime_r (&epoch, &epoch_tm);
 	
 	if (my_bOldStyle)
@@ -50,6 +61,55 @@ gboolean cd_clock_update_with_time (Icon *icon)
 		cd_clock_draw_text (my_pCairoContext, &epoch_tm);
 	
 	cairo_dock_redraw_my_icon (icon, my_pDock);
+	
+	if (!my_bShowSeconds || epoch_tm.tm_min != iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement à exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur my_bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.
+	{
+		iLastCheckedMinute = epoch_tm.tm_min;
+		CDClockAlarm *pAlarm;
+		int i;
+		for (i = 0; i < my_pAlarms->len; i ++)
+		{
+			pAlarm = g_ptr_array_index (my_pAlarms, i);
+			
+			if (epoch_tm.tm_hour == pAlarm->iHour && epoch_tm.tm_min == pAlarm->iMinute)
+			{
+				gboolean bShowAlarm = FALSE, bRemoveAlarm = FALSE;
+				if (pAlarm->iDayOfWeek > 0)
+				{
+					if (pAlarm->iDayOfWeek == 1)
+						bShowAlarm = TRUE;
+					else if (pAlarm->iDayOfWeek - 1 == epoch_tm.tm_wday)
+						bShowAlarm = TRUE;
+					else if (epoch_tm.tm_wday == 0 || epoch_tm.tm_wday == 6)  // week-end
+						if (pAlarm->iDayOfWeek == 9)
+							bShowAlarm = TRUE;
+						else if (pAlarm->iDayOfWeek == 8)
+							bShowAlarm = TRUE;
+				}
+				else if (pAlarm->iDayOfMonth > 0)
+					bShowAlarm = (pAlarm->iDayOfMonth - 1 == epoch_tm.tm_mday);
+				else  // c'est une alarme qui ne se repete pas.
+				{
+					bShowAlarm = TRUE;
+					bRemoveAlarm = TRUE;
+				}
+				
+				if (bShowAlarm)
+				{
+					g_print ("Dring ! %s\n", pAlarm->cMessage);
+					cairo_dock_show_temporary_dialog (pAlarm->cMessage, my_pIcon, my_pDock, 60e3);
+				}
+				
+				if (bRemoveAlarm)
+				{
+					g_print ("Cette alarme ne sera pas répétée\n");
+					g_ptr_array_remove_index (my_pAlarms, i);
+					cd_clock_free_alarm (pAlarm);
+					/// A FAIRE : effacer l'heure dans le fichier de conf pour cette alarme.
+				}
+			}
+		}
+	}
 	
 	bBusy = FALSE;
 	return TRUE;
@@ -68,7 +128,7 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 	if (my_bShowDate)
 		g_string_append (sFormat, "\n%a%d%b");
 	
-	strftime (cDateBuffer, 50, sFormat->str, pTime);
+	strftime (cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
 	g_string_free (sFormat, TRUE);
 	
 	
@@ -243,7 +303,7 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 		cairo_save (pSourceContext);
 		cairo_set_source_rgb (pSourceContext, 1.0f, 0.5f, 0.0f);
 		cairo_set_line_width (pSourceContext, 8.0f);
-		strftime (cDateBuffer, 50, "%a%d%b", pTime);
+		strftime (cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a%d%b", pTime);
 		cairo_text_extents (pSourceContext, cDateBuffer, &textExtents);
 		cairo_rotate (pSourceContext, (G_PI/180.0f) * 90.0f);
 		cairo_move_to (pSourceContext,

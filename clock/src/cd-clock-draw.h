@@ -7,6 +7,9 @@
 #include "cd-clock-struct.h"
 
 
+void cd_clock_free_alarm (CDClockAlarm *pAlarm);
+
+
 gboolean cd_clock_update_with_time (Icon *icon);
 
 

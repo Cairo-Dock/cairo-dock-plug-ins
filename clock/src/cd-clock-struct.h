@@ -2,6 +2,7 @@
 #ifndef __CD_CLOCK_STRUCT__
 #define  __CD_CLOCK_STRUCT__
 
+#include <glib.h>
 
 typedef enum _LayerElement
 {
@@ -26,6 +27,17 @@ typedef enum _SurfaceKind
 	KIND_FOREGROUND
 } SurfaceKind;
 
+
+typedef struct {
+	int iHour;
+	int iMinute;
+	int iDayOfWeek;
+	int iDayOfMonth;
+	gchar *cMessage;
+	} CDClockAlarm;
+
+#define CD_CLOCK_CONF_FILE "clock.conf"
+#define CD_CLOCK_USER_DATA_DIR "clock"
 
 #endif
 

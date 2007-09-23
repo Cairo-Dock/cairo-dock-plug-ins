@@ -7,6 +7,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 **********************************************************************************/
 #include <string.h>
+#include <stdlib.h>
 
 #include <cairo-dock.h>
 
@@ -23,6 +24,61 @@ extern GHashTable *my_pThemeTable;
 extern RsvgDimensionData my_DimensionData;
 extern RsvgHandle *my_pSvgHandles[CLOCK_ELEMENTS];
 extern char my_cFileNames[CLOCK_ELEMENTS][30];
+extern GPtrArray *my_pAlarms;
+
+#define CD_CLOCK_MAX_NB_ALARMS 3
+#define CD_CLOCK_NB_FREQUENCIES 12
+static gchar *my_s_Frequencies[CD_CLOCK_NB_FREQUENCIES+1] = {"Never", "Day", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Week Day", "Week End", "Month", NULL};
+
+
+static void _cd_clock_load_alarms (GKeyFile *pKeyFile, gboolean *bFlushConfFileNeeded)
+{
+	CDClockAlarm *pAlarm;
+	gboolean bAlarmOK;
+	int iAlarmNumber, iHour, iMinute;
+	GString *sKeyName = g_string_new ("");
+	
+	for (iAlarmNumber = 1; iAlarmNumber < CD_CLOCK_MAX_NB_ALARMS+1; iAlarmNumber ++)
+	{
+		bAlarmOK = FALSE;
+		g_string_printf (sKeyName, "time%d", iAlarmNumber);
+		gchar *cUserTime = cairo_dock_get_string_key_value (pKeyFile, "ALARM", sKeyName->str, bFlushConfFileNeeded, NULL);
+		if (cUserTime != NULL)
+		{
+			if (sscanf(cUserTime, "%d:%d", &iHour, &iMinute) == 2 && iHour < 24 && iMinute < 59 && iHour >= 0 && iMinute >= 0)
+				bAlarmOK = TRUE;
+		}
+		
+		if (bAlarmOK)
+		{
+			pAlarm = g_new0 (CDClockAlarm, 1);
+			g_ptr_array_add (my_pAlarms, pAlarm);
+			
+			pAlarm->iHour = iHour;
+			pAlarm->iMinute= iMinute;
+			
+			g_string_printf (sKeyName, "repeat%d", iAlarmNumber);
+			gchar *cFrequency = cairo_dock_get_string_key_value (pKeyFile, "ALARM", sKeyName->str, bFlushConfFileNeeded, "Every Day");
+			int iFrequency = cairo_dock_get_number_from_name (cFrequency, my_s_Frequencies);
+			
+			if (iFrequency > 0)
+			{
+				g_print ("cette alarme a la frequence %d\n", iFrequency);
+				if (iFrequency < 11)
+					pAlarm->iDayOfWeek = iFrequency - 1;
+				else
+				{
+					g_string_printf (sKeyName, "day%d", iAlarmNumber);
+					pAlarm->iDayOfMonth = cairo_dock_get_integer_key_value (pKeyFile, "ALARM", sKeyName->str, bFlushConfFileNeeded, 1);
+				}
+			}
+			
+			g_string_printf (sKeyName, "message%d", iAlarmNumber);
+			pAlarm->cMessage = cairo_dock_get_string_key_value (pKeyFile, "ALARM", sKeyName->str, bFlushConfFileNeeded, "Wake Up !");
+		}
+	}
+	g_string_free (sKeyName, TRUE);
+}
 
 
 void cd_clock_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, gchar **cName)
@@ -42,6 +98,9 @@ void cd_clock_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, g
 	my_bOldStyle = cairo_dock_get_boolean_key_value (pKeyFile, "MODULE", "old fashion style", &bFlushConfFileNeeded, FALSE);
 	
 	gchar *cThemeName = cairo_dock_get_string_key_value (pKeyFile, "MODULE", "theme", &bFlushConfFileNeeded, "default");
+	
+	my_pAlarms = g_ptr_array_new ();
+	_cd_clock_load_alarms (pKeyFile, &bFlushConfFileNeeded);
 	
 	
 	//\_______________ On charge le theme choisi.
@@ -71,7 +130,14 @@ void cd_clock_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, g
 	
 	
 	if (bFlushConfFileNeeded)
-		cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
-	
+	{
+		gchar *cCommand = g_strdup_printf ("/bin/cp %s/%s %s", CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_CONF_FILE, cConfFilePath);
+		system (cCommand);
+		g_free (cCommand);
+		
+		cairo_dock_replace_values_in_conf_file (cConfFilePath, pKeyFile, TRUE, 0);
+		
+		cairo_dock_update_conf_file_with_hash_table (cConfFilePath, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
+	}	
 	g_key_file_free (pKeyFile);
 }

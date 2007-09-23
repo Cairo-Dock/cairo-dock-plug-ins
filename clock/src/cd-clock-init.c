@@ -15,9 +15,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "cd-clock-init.h"
 
 
-#define CD_CLOCK_CONF_FILE "clock.conf"
-#define CD_CLOCK_USER_DATA_DIR "clock"
-
 CairoDock *my_pDock = NULL;
 gboolean my_bShowDate;
 gboolean my_bShowSeconds;
@@ -35,6 +32,7 @@ cairo_surface_t* my_pForegroundSurface = NULL;
 RsvgDimensionData my_DimensionData;
 RsvgHandle *my_pSvgHandles[CLOCK_ELEMENTS];
 
+GPtrArray *my_pAlarms = NULL;
 
 char my_cFileNames[CLOCK_ELEMENTS][30] =
 {
@@ -168,4 +166,13 @@ void cd_clock_stop (void)
 	
 	g_hash_table_destroy (my_pThemeTable);
 	my_pThemeTable = NULL;
+	
+	CDClockAlarm *pAlarm;
+	for (i = 0; i < my_pAlarms->len; i ++)
+	{
+		pAlarm = g_ptr_array_index (my_pAlarms, i);
+		cd_clock_free_alarm (pAlarm);
+	}
+	g_ptr_array_free (my_pAlarms, TRUE);
+	my_pAlarms = NULL;
 }
