@@ -17,7 +17,7 @@ extern FileManagerGetFileInfoFunc file_manager_get_file_info;
 extern FileManagerListDirectoryFunc file_manager_list_directory;
 extern FileManagerLaunchUriFunc file_manager_launch_uri;
 
-extern FileManagerSortType g_fm_iSortType;
+extern FileManagerSortType my_fm_iSortType;
 
 
 gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, double fOrder, CairoDock *pDock, GError **erreur)
@@ -46,11 +46,11 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 	
 	//\___________________ On renseigne les champs propres au type mime.
 	gchar *cIconName = NULL, *cName = NULL, *cRealURI = NULL;
-	gboolean bIsDirectory, bIsMountPoint;
+	gboolean bIsDirectory;
 	int iVolumeID;
 	double fUnusedOrder;
-	file_manager_get_file_info (cURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &bIsMountPoint, &iVolumeID, &fUnusedOrder, g_fm_iSortType);
-	g_print (" -> cIconName : %s; bIsDirectory : %d; bIsMountPoint : %d\n", cIconName, bIsDirectory, bIsMountPoint);
+	file_manager_get_file_info (cURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fUnusedOrder, my_fm_iSortType);
+	g_print (" -> cIconName : %s; bIsDirectory : %d; iVolumeID : %d\n", cIconName, bIsDirectory, iVolumeID);
 	
 	g_key_file_set_string (pKeyFile, "Desktop Entry", "Name", cName);
 	g_free (cName);
@@ -73,7 +73,7 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 			bIsDirectory = FALSE;
 	}
 	g_key_file_set_boolean (pKeyFile, "Desktop Entry", "Is container", bIsDirectory);
-	g_key_file_set_boolean (pKeyFile, "Desktop Entry", "Is mounting point", bIsMountPoint);
+	g_key_file_set_boolean (pKeyFile, "Desktop Entry", "Is mounting point", (iVolumeID > 0));
 	
 	
 	//\___________________ On lui choisit un nom de fichier tel qu'il n'y ait pas de collision.

@@ -48,26 +48,7 @@ gchar *cd_dustbin_pre_init (void)
 Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
-	
-	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-ins/%s", g_cCurrentThemePath, CD_DUSTBIN_USER_DATA_DIR);
-	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_IS_DIR))
-	{
-		g_print ("directory %s doesn't exist, I will try to add it.\n", cUserDataDirPath);
-		
-		gchar *command = g_strdup_printf ("mkdir -p %s", cUserDataDirPath);
-		system (command);
-		g_free (command);
-	}
-	
-	*cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_DUSTBIN_CONF_FILE);
-	if (! g_file_test (*cConfFilePath, G_FILE_TEST_EXISTS))
-	{
-		gchar *command = g_strdup_printf ("cp %s/%s %s", CD_DUSTBIN_SHARE_DATA_DIR, CD_DUSTBIN_CONF_FILE, cUserDataDirPath);
-		system (command);
-		g_free (command);
-	}
-	g_free (cUserDataDirPath);
-	
+	*cConfFilePath = cairo_dock_check_conf_file_exists (CD_DUSTBIN_USER_DATA_DIR, CD_DUSTBIN_SHARE_DATA_DIR, CD_DUSTBIN_CONF_FILE);
 	
 	//\_______________ On charge la liste des themes disponibles.
 	GError *tmp_erreur = NULL;

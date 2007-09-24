@@ -36,7 +36,13 @@ FileManagerRenameFileFunc file_manager_rename_file;
 FileManagerMoveFileFunc file_manager_move_file;
 FileManagerFilePropertiesFunc file_manager_get_file_properties;
 
-FileManagerSortType g_fm_iSortType = FILE_MANAGER_SORT_BY_NAME;
+
+gchar *my_fm_cIconFileName = NULL;
+FileManagerSortType my_fm_iSortType = FILE_MANAGER_SORT_BY_NAME;
+gboolean my_fm_bShowVolumes;
+gboolean my_fm_bShowNetwork;
+CairoDockDesktopEnv my_fm_iDesktopEnv;
+
 
 gchar *file_manager_pre_init (void)
 {
@@ -47,19 +53,7 @@ gchar *file_manager_pre_init (void)
 Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
-	/*gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-in/%s", g_cCurrentThemePath, FILE_MANAGER_USER_DATA_DIR);
-	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR))
-	{
-		g_print ("directory %s doesn't exist, I will try to add it.\n", cUserDataDirPath);
-		
-		gchar *command = g_strdup_printf ("mkdir -p %s", cUserDataDirPath);
-		system (command);
-		g_free (command);
-		
-		command = g_strdup_printf ("cp %s/%s %s", FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_CONF_FILE, cUserDataDirPath);
-		system (command);
-		g_free (command);
-	}*/
+	*cConfFilePath = cairo_dock_check_conf_file_exists (FILE_MANAGER_USER_DATA_DIR, FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_CONF_FILE);
 	
 	
 	//\_______________ On lit le fichier de conf.
@@ -71,20 +65,20 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	
 	
 	//\_______________ On charge le backend qui va bien.
-	CairoDockDesktopEnv iDesktopEnv = cairo_dock_guess_environment ();
-	if (iDesktopEnv == CAIRO_DOCK_UNKNOWN_ENV)
+	my_fm_iDesktopEnv = cairo_dock_guess_environment ();
+	if (my_fm_iDesktopEnv == CAIRO_DOCK_UNKNOWN_ENV)
 	{
 		 g_set_error (erreur, 1, 1, "couldn't guess desktop environment, the file-manager will not be active");
 		return NULL;
 	}
-	if (iDesktopEnv == CAIRO_DOCK_KDE)  // le backend de KDE n'est pas encore implemente.
+	if (my_fm_iDesktopEnv == CAIRO_DOCK_KDE)  // le backend de KDE n'est pas encore implemente.
 	{
 		 g_set_error (erreur, 1, 1, "the file-manager plug-in does not yet support KDE virtual file system. Any help is greatly welcome for this !");
 		return NULL;
 	}
 	
 	gchar *cBackendPath = NULL;
-	cBackendPath = g_strdup_printf ("%s/libfile-manager-%s.so", FILE_MANAGER_BACKEND_DIR, (iDesktopEnv == CAIRO_DOCK_GNOME ? "gnome" : (iDesktopEnv == CAIRO_DOCK_KDE ? "kde" : "xdg")));
+	cBackendPath = g_strdup_printf ("%s/libfile-manager-%s.so", FILE_MANAGER_BACKEND_DIR, (my_fm_iDesktopEnv == CAIRO_DOCK_GNOME ? "gnome" : (my_fm_iDesktopEnv == CAIRO_DOCK_KDE ? "kde" : "xdg")));
 	s_fm_pBackendModule = g_module_open (cBackendPath, G_MODULE_BIND_LAZY);
 	if (s_fm_pBackendModule == NULL)
 	{
@@ -161,5 +155,7 @@ void file_manager_stop (void)
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) file_manager_notification_click_icon);
 	
 	g_hash_table_foreach (g_hDocksTable, (GHFunc) file_manager_unload_directories, NULL);
+	
+	g_free (my_fm_cIconFileName);
+	my_fm_cIconFileName = NULL;
 }
-

@@ -37,7 +37,7 @@ typedef gboolean (*FileManagerInitFunc) (FileManagerOnEventFunc);
 typedef void (*FileManagerStopFunc) (void);
 
 
-typedef void (*FileManagerGetFileInfoFunc) (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint, int *iVolumeID, double *fOrder, FileManagerSortType iSortType);
+typedef void (*FileManagerGetFileInfoFunc) (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, FileManagerSortType iSortType);
 
 
 typedef GList * (*FileManagerListDirectoryFunc) (gchar *cURI, FileManagerSortType g_fm_iSortType);
@@ -46,9 +46,10 @@ typedef GList * (*FileManagerListDirectoryFunc) (gchar *cURI, FileManagerSortTyp
 typedef void (*FileManagerLaunchUriFunc) (gchar *cURI);
 
 
+typedef void (*FileManagerMountCallback) (gpointer *data);
 typedef gchar * (*FileManagerIsMountingPointFunc) (gchar *cURI, gboolean *bIsMounted);
-typedef gchar * (*FileManagerMountFunc) (int iVolumeID);
-typedef void (*FileManagerUnmountFunc) (gchar *cURI);
+typedef gchar * (*FileManagerMountFunc) (int iVolumeID, FileManagerMountCallback pCallback, gpointer *data);
+typedef void (*FileManagerUnmountFunc) (gchar *cURI, FileManagerMountCallback pCallback, gpointer *data);
 
 
 typedef void (*FileManagerAddMonitorFunc) (Icon *pIcon);

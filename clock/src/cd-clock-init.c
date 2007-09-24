@@ -62,23 +62,7 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	//\_______________ On verifie que nos fichiers existent.
-	gchar *cUserDataDirPath = g_strdup_printf ("%s/plug-ins/%s", g_cCurrentThemePath, CD_CLOCK_USER_DATA_DIR);
-	if (! g_file_test (cUserDataDirPath, G_FILE_TEST_IS_DIR))
-	{
-		g_print ("directory %s doesn't exist, I will try to add it.\n", cUserDataDirPath);
-		
-		gchar *command = g_strdup_printf ("mkdir -p %s", cUserDataDirPath);
-		system (command);
-		g_free (command);
-	}
-	
-	*cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, CD_CLOCK_CONF_FILE);
-	if (! g_file_test (*cConfFilePath, G_FILE_TEST_EXISTS))
-	{
-		gchar *command = g_strdup_printf ("cp %s/%s %s", CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_CONF_FILE, cUserDataDirPath);
-		system (command);
-		g_free (command);
-	}
+	*cConfFilePath = cairo_dock_check_conf_file_exists (CD_CLOCK_USER_DATA_DIR, CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_CONF_FILE);
 	
 	
 	//\_______________ On charge la liste des themes disponibles.
@@ -91,7 +75,6 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 		return NULL;
 	}
 	
-	g_free (cUserDataDirPath);
 	cairo_dock_update_conf_file_with_hash_table (*cConfFilePath, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
 	
 	int i;

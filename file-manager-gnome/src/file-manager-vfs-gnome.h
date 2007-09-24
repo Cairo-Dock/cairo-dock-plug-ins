@@ -11,7 +11,7 @@ gboolean _file_manager_init_backend (FileManagerOnEventFunc pCallback);
 void _file_manager_stop_backend (void);
 
 
-void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, gboolean *bIsMountPoint, int *iVolumeID, double *fOrder, FileManagerSortType iSortType);
+void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, FileManagerSortType iSortType);
 
 
 GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortType);
@@ -22,9 +22,9 @@ void _file_manager_launch_uri (gchar *cURI);
 
 gchar * _file_manager_is_mounting_point (gchar *cURI, gboolean *bIsMounted);
 
-gchar * _file_manager_mount (int iVolumeID);
+gchar * _file_manager_mount (int iVolumeID, FileManagerMountCallback pCallback, gpointer *data);
 
-void _file_manager_unmount (gchar *cURI);
+void _file_manager_unmount (gchar *cURI, FileManagerMountCallback pCallback, gpointer *data);
 
 
 void _file_manager_add_monitor (Icon *pIcon);

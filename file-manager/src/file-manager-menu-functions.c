@@ -39,6 +39,19 @@ void file_manager_about (GtkMenuItem *menu_item, gpointer *data)
 }
 
 
+void file_manager_replace_icon (gpointer *data)
+{
+	Icon *icon = data[0];
+	CairoDock *pDock = data[1];
+	g_print ("%s (%s)\n", __func__, icon->acName);
+	
+	cairo_dock_remove_one_icon_from_dock (pDock, icon);
+	
+	Icon *pNewIcon = file_manager_create_icon_from_URI (icon->cBaseURI, pDock);
+	cairo_dock_insert_icon_in_dock (pNewIcon, pDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
+	
+	cairo_dock_free_icon (icon);
+}
 static void file_manager_mount_unmount (GtkMenuItem *menu_item, gpointer *data)
 {
 	Icon *icon = data[0];
@@ -52,19 +65,12 @@ static void file_manager_mount_unmount (GtkMenuItem *menu_item, gpointer *data)
 	
 	if (! bIsMounted)
 	{
-		cActivationURI = file_manager_mount (icon->iVolumeID);
+		cActivationURI = file_manager_mount (icon->iVolumeID, file_manager_replace_icon, data);
 		g_print ("apres montage : cActivationURI : %s\n", cActivationURI);
 		g_free (cActivationURI);
 	}
 	else
-		file_manager_unmount (icon->acCommand);
-	
-	cairo_dock_remove_one_icon_from_dock (pDock, icon);
-	
-	Icon *pNewIcon = file_manager_create_icon_from_URI (icon->cBaseURI, pDock);
-	cairo_dock_insert_icon_in_dock (pNewIcon, pDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
-	
-	cairo_dock_free_icon (icon);
+		file_manager_unmount (icon->acCommand, file_manager_replace_icon, data);
 }
 
 static void file_manager_delete (GtkMenuItem *menu_item, gpointer *data)
@@ -85,6 +91,18 @@ static void file_manager_delete (GtkMenuItem *menu_item, gpointer *data)
 	if (answer == GTK_RESPONSE_YES)
 	{
 		file_manager_delete_file (icon->acCommand);
+		
+		cairo_dock_remove_icon_from_dock (pDock, icon);
+		cairo_dock_update_dock_size (pDock, pDock->iMaxIconHeight, pDock->iMinDockWidth);
+		
+		if (icon->acDesktopFileName != NULL)
+		{
+			gchar *icon_path = g_strdup_printf ("%s/%s", g_cCurrentLaunchersPath, icon->acDesktopFileName);
+			g_remove (icon_path);
+			g_free (icon_path);
+		}
+		
+		cairo_dock_free_icon (icon);
 	}
 }
 
@@ -126,21 +144,32 @@ static void file_manager_properties (GtkMenuItem *menu_item, gpointer *data)
 	GtkWidget *dialog = gtk_message_dialog_new (GTK_WINDOW (pDock->pWidget),
 		GTK_DIALOG_DESTROY_WITH_PARENT,
 		GTK_MESSAGE_INFO,
-		GTK_BUTTONS_OK_CANCEL,
+		GTK_BUTTONS_OK,
 		"Properties :");
 	
 	GString *sInfo = g_string_new ("");
 	g_string_printf (sInfo, "<b>%s</b>", icon->acName);
-	GtkWidget *pFrame = gtk_frame_new (sInfo->str);
+	
+	GtkWidget *pLabel= gtk_label_new (NULL);
+	gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
+	gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
+	
+	GtkWidget *pFrame = gtk_frame_new (NULL);
+	gtk_container_set_border_width (GTK_CONTAINER (pFrame), 3);
+	gtk_frame_set_label_widget (GTK_FRAME (pFrame), pLabel);
 	gtk_frame_set_shadow_type (GTK_FRAME (pFrame), GTK_SHADOW_OUT);
 	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), pFrame);
 	
 	GtkWidget *pVBox = gtk_vbox_new (FALSE, 3);
 	gtk_container_add (GTK_CONTAINER (pFrame), pVBox);
 	
-	GtkWidget *pLabel = gtk_label_new (NULL);
+	pLabel = gtk_label_new (NULL);
 	gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
 	g_string_printf (sInfo, "<u>Size</u> : %d bytes", iSize);
+	if (iSize > 1024*1024)
+		g_string_append_printf (sInfo, " (%.1f Mo)", 1. * iSize / 1024 / 1024);
+	else if (iSize > 1024)
+		g_string_append_printf (sInfo, " (%.1f Ko)", 1. * iSize / 1024);
 	gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 	gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 	
@@ -149,9 +178,36 @@ static void file_manager_properties (GtkMenuItem *menu_item, gpointer *data)
 	struct tm epoch_tm;
 	localtime_r (&iLastModificationTime, &epoch_tm);  // et non pas gmtime_r.
 	gchar *cTimeChain = g_new0 (gchar, 100);
-	strftime (cTimeChain, 100, "%T", &epoch_tm);
+	strftime (cTimeChain, 100, "%F, %T", &epoch_tm);
 	g_string_printf (sInfo, "<u>Last Modification</u> : %s", cTimeChain);
 	g_free (cTimeChain);
+	gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
+	gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
+	
+	if (cMimeType != NULL)
+	{
+		pLabel = gtk_label_new (NULL);
+		gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
+		g_string_printf (sInfo, "<u>Mime Type</u> : %s", cMimeType);
+		gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
+		gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
+	}
+	
+	GtkWidget *pSeparator = gtk_hseparator_new ();
+	gtk_container_add (GTK_CONTAINER (pVBox), pSeparator);
+	
+	pLabel = gtk_label_new (NULL);
+	gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
+	g_string_printf (sInfo, "<u>User ID</u> : %d / <u>Group ID</u> : %d", iUID, iGID);
+	gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
+	gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
+	
+	pLabel = gtk_label_new (NULL);
+	gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
+	int iOwnerPermissions = iPermissionsMask >> 6;  // 8*8.
+	int iGroupPermissions = (iPermissionsMask - (iOwnerPermissions << 6)) >> 3;
+	int iOthersPermissions = (iPermissionsMask % 8);
+	g_string_printf (sInfo, "<u>Permissions</u> : %d / %d / %d", iOwnerPermissions, iGroupPermissions, iOthersPermissions);
 	gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 	gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 	
@@ -163,7 +219,7 @@ static void file_manager_properties (GtkMenuItem *menu_item, gpointer *data)
 	g_free (cMimeType);
 }
 
-static void file_manager_remove_from_dock (GtkMenuItem *menu_item, gpointer *data)
+/*static void file_manager_remove_from_dock (GtkMenuItem *menu_item, gpointer *data)
 {
 	Icon *icon = data[0];
 	CairoDock *pDock = data[1];
@@ -192,7 +248,7 @@ static void file_manager_remove_from_dock (GtkMenuItem *menu_item, gpointer *dat
 		pDock->iSidShrinkDown = g_timeout_add (50, (GSourceFunc) cairo_dock_shrink_down, (gpointer) pDock);
 	
 	cairo_dock_mark_theme_as_modified (TRUE);
-}
+}*/
 
 
 gboolean file_manager_notification_build_menu (gpointer *data)
@@ -205,7 +261,7 @@ gboolean file_manager_notification_build_menu (gpointer *data)
 	
 	if (CAIRO_DOCK_IS_URI_LAUNCHER (icon))
 	{
-		if (icon->bIsMountingPoint)
+		if (icon->iVolumeID > 0)
 		{
 			gboolean bIsMounted = FALSE;
 			gchar *cActivationURI = file_manager_is_mounting_point (icon->acCommand, &bIsMounted);
@@ -230,9 +286,9 @@ gboolean file_manager_notification_build_menu (gpointer *data)
 			gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 			g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(file_manager_properties), data);
 			
-			menu_item = gtk_menu_item_new_with_label ("Remove from dock");
-			gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-			g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(file_manager_remove_from_dock), data);
+			//menu_item = gtk_menu_item_new_with_label ("Remove from dock");
+			//gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+			//g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(file_manager_remove_from_dock), data);
 		}
 		return (icon->acDesktopFileName != NULL ? CAIRO_DOCK_LET_PASS_NOTIFICATION : CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 	}
@@ -314,7 +370,7 @@ gboolean file_manager_notification_click_icon (gpointer *data)
 			if (answer != GTK_RESPONSE_YES)
 				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 			
-			gchar *cActivatedURI = file_manager_mount (icon->iVolumeID);
+			gchar *cActivatedURI = file_manager_mount (icon->iVolumeID, file_manager_replace_icon, data);
 			g_print (" cActivatedURI : %s\n", cActivatedURI);
 			if (cActivatedURI != NULL)
 				file_manager_launch_uri (cActivatedURI);

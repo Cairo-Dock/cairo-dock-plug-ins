@@ -17,12 +17,12 @@ extern FileManagerListDirectoryFunc file_manager_list_directory;
 extern FileManagerAddMonitorFunc file_manager_add_monitor;
 extern FileManagerAddMonitorFunc file_manager_remove_monitor;
 
-extern FileManagerSortType g_fm_iSortType;
+extern FileManagerSortType my_fm_iSortType;
 
 
 void file_manager_create_dock_from_directory (Icon *pIcon)
 {
-	GList *pIconList = file_manager_list_directory (pIcon->acCommand, g_fm_iSortType);
+	GList *pIconList = file_manager_list_directory (pIcon->acCommand, my_fm_iSortType);
 	pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, pIcon->acName);
 	
 	file_manager_add_monitor (pIcon);
@@ -65,7 +65,7 @@ Icon *file_manager_create_icon_from_URI (gchar *cURI, CairoDock *pDock)
 	pNewIcon->iType = CAIRO_DOCK_LAUNCHER;
 	pNewIcon->cBaseURI = g_strdup (cURI);
 	gboolean bIsDirectory;
-	file_manager_get_file_info (cURI, &pNewIcon->acName, &pNewIcon->acCommand, &pNewIcon->acFileName, &bIsDirectory, &pNewIcon->bIsMountingPoint, &pNewIcon->iVolumeID, &pNewIcon->fOrder, g_fm_iSortType);
+	file_manager_get_file_info (cURI, &pNewIcon->acName, &pNewIcon->acCommand, &pNewIcon->acFileName, &bIsDirectory, &pNewIcon->iVolumeID, &pNewIcon->fOrder, my_fm_iSortType);
 	if (pNewIcon->acName == NULL)
 	{
 		cairo_dock_free_icon (pNewIcon);
@@ -77,7 +77,7 @@ Icon *file_manager_create_icon_from_URI (gchar *cURI, CairoDock *pDock)
 		g_print ("  c'est un sous-repertoire\n");
 	}
 	
-	if (g_fm_iSortType == FILE_MANAGER_SORT_BY_NAME)
+	if (my_fm_iSortType == FILE_MANAGER_SORT_BY_NAME)
 	{
 		GList *ic;
 		Icon *icon;
@@ -180,12 +180,12 @@ void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer d
 		{
 			if (icon->pSubDock != NULL && icon->pSubDock->icons == NULL)
 			{
-				icon->pSubDock->icons = file_manager_list_directory (icon->acCommand, g_fm_iSortType);
+				icon->pSubDock->icons = file_manager_list_directory (icon->acCommand, my_fm_iSortType);
 				cairo_dock_load_buffers_in_one_dock (icon->pSubDock);
 				
 				file_manager_add_monitor (icon);
 			}
-			if (icon->bIsMountingPoint)
+			if (icon->iVolumeID > 0)
 				file_manager_alter_icon_if_necessary (icon, pDock);
 		}
 	}
