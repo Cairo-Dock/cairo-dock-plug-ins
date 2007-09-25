@@ -1,0 +1,9 @@
+
+SUBDIRS = . 
+
+datalogoutdir = $(pkgdatadir)
+
+datalogout_DATA = \
+	logout.conf\
+	readme
+
