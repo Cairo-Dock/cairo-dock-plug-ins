@@ -6,7 +6,7 @@
 #include <glib.h>
 
 
-void file_manager_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, gchar **cName);
+void file_manager_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, gchar **cName, gchar **cIconName);
 
 
 #endif

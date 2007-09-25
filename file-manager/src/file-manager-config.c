@@ -17,14 +17,13 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 static gchar *s_tSortTypes[3+1] = {"Name", "Size", "Date", NULL};
 static gchar *s_tBackendNames[3+1] = {"Auto", "Gnome", "KDE", NULL};
 
-extern gchar *my_fm_cIconFileName;
 extern FileManagerSortType my_fm_iSortType;
 extern gboolean my_fm_bShowVolumes;
 extern gboolean my_fm_bShowNetwork;
 extern CairoDockDesktopEnv my_fm_iDesktopEnv;
 
 
-void file_manager_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, gchar **cName)
+void file_manager_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, gchar **cName, gchar **cIconName)
 {
 	GError *erreur = NULL;
 	
@@ -33,10 +32,10 @@ void file_manager_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeigh
 	GKeyFile *pKeyFile = cairo_dock_read_header_applet_conf_file (cConfFilePath, iWidth, iHeight, cName, &bFlushConfFileNeeded);
 	g_return_if_fail (pKeyFile != NULL);
 	
-	my_fm_bShowVolumes = cairo_dock_get_boolean_key_value (pKeyFile, "ICON", "show volumes", &bFlushConfFileNeeded, TRUE);
+	my_fm_bShowVolumes = cairo_dock_get_boolean_key_value (pKeyFile, "ICON", "show volumes", &bFlushConfFileNeeded, FALSE);
 	my_fm_bShowNetwork = cairo_dock_get_boolean_key_value (pKeyFile, "ICON", "show network", &bFlushConfFileNeeded, FALSE);
 	
-	my_fm_cIconFileName = cairo_dock_get_string_key_value (pKeyFile, "ICON", "icon", &bFlushConfFileNeeded, "gnome-background-image.png");
+	*cIconName = cairo_dock_get_string_key_value (pKeyFile, "ICON", "icon", &bFlushConfFileNeeded, "gnome-background-image.png");
 	
 	
 	gchar *cSortType = cairo_dock_get_string_key_value (pKeyFile, "MODULE", "sort type", &bFlushConfFileNeeded, s_tSortTypes[0]);

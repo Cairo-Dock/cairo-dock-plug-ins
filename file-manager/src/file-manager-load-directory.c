@@ -22,7 +22,8 @@ extern FileManagerSortType my_fm_iSortType;
 
 void file_manager_create_dock_from_directory (Icon *pIcon)
 {
-	GList *pIconList = file_manager_list_directory (pIcon->acCommand, my_fm_iSortType);
+	g_free (pIcon->acCommand);
+	GList *pIconList = file_manager_list_directory (pIcon->cBaseURI, my_fm_iSortType, &pIcon->acCommand);
 	pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, pIcon->acName);
 	
 	file_manager_add_monitor (pIcon);
@@ -38,7 +39,7 @@ void file_manager_alter_icon_if_necessary (Icon *pIcon, CairoDock *pDock)
 	{
 		cairo_dock_remove_one_icon_from_dock (pDock, pIcon);
 		
-		cairo_dock_insert_icon_in_dock (pNewIcon, pDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
+		cairo_dock_insert_icon_in_dock (pNewIcon, pDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);  // on met a jour la taille du dock pour le fXMin/fXMax, et eventuellement la taille de l'icone peut aussi avoir change.
 		
 		if (pIcon->pSubDock != NULL)
 		{
@@ -180,7 +181,8 @@ void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer d
 		{
 			if (icon->pSubDock != NULL && icon->pSubDock->icons == NULL)
 			{
-				icon->pSubDock->icons = file_manager_list_directory (icon->acCommand, my_fm_iSortType);
+				g_free (icon->acCommand);
+				icon->pSubDock->icons = file_manager_list_directory (icon->cBaseURI, my_fm_iSortType, &icon->acCommand);
 				cairo_dock_load_buffers_in_one_dock (icon->pSubDock);
 				
 				file_manager_add_monitor (icon);
@@ -198,8 +200,10 @@ void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gpointer d
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		if (icon->cBaseURI != NULL && icon->pSubDock != NULL && icon->pSubDock->icons != NULL)
+		if (icon->cBaseURI != NULL && icon->pSubDock != NULL)  //  && icon->pSubDock->icons != NULL
 		{
+			file_manager_remove_monitor (icon);
+			
 			GList *pIconList = icon->pSubDock->icons;
 			icon->pSubDock->icons = NULL;
 			

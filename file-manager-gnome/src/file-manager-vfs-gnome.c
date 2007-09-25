@@ -52,7 +52,6 @@ static gboolean file_manager_follow_desktop_link (gchar *cBaseURI, gchar **cName
 	g_print ("%s (%s)\n", __func__, cBaseURI);
 	GError *erreur = NULL;
 	
-	//gchar *cFileData = file_manager_read_file (cBaseURI);
 	gchar *cFileData = NULL;
 	int iFileSize = 0;
 	if (gnome_vfs_read_entire_file (cBaseURI, &iFileSize, &cFileData) != GNOME_VFS_OK)
@@ -60,7 +59,7 @@ static gboolean file_manager_follow_desktop_link (gchar *cBaseURI, gchar **cName
 		g_print ("Attention : couldn't read %s\n", cBaseURI);
 		return FALSE;
 	}
-	g_print (" => %s\n", cFileData);
+	//g_print (" => %s\n", cFileData);
 	
 	GKeyFile *pKeyFile = g_key_file_new ();
 	g_key_file_load_from_data (pKeyFile,
@@ -77,7 +76,7 @@ static gboolean file_manager_follow_desktop_link (gchar *cBaseURI, gchar **cName
 	}
 
 	gchar *cType = g_key_file_get_value (pKeyFile, "Desktop Entry", "Type", NULL);
-	g_print ("cType : %s\n", cType);
+	//g_print ("  cType : %s\n", cType);
 	if (strncmp (cType, "Link", 4) != 0 && strncmp (cType, "FSDevice", 8) != 0)
 	{
 		g_free(cType);
@@ -108,7 +107,7 @@ void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, 
 	GnomeVFSResult r;
 	GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
 	gchar *cFullURI = gnome_vfs_make_uri_from_input (cBaseURI);
-	g_print ("  cFullURI : %s\n", cFullURI);
+	g_print (" -> cFullURI : %s\n", cFullURI);
 	
 	GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
 	
@@ -175,10 +174,10 @@ void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, 
 
 
 
-GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortType)
+GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortType, gchar **cFullURI)
 {
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
-	g_print ("%s ()\n", __func__);
+	g_print ("%s (%s)\n", __func__, cBaseURI);
 	
 	GList *pIconList = NULL;
 	
@@ -190,18 +189,19 @@ GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortT
 	else
 		cURI = cBaseURI;
 	
-	gchar * cFullURI = gnome_vfs_make_uri_from_input (cURI);
-	g_print ("cFullURI : %s\n", cFullURI);
+	*cFullURI = gnome_vfs_make_uri_from_input (cURI);  // pas franchement necessaire ...
+	g_return_val_if_fail (*cFullURI != NULL, NULL);
+	g_print (" -> cFullURI : %s\n", *cFullURI);
 	
-	if (strcmp (cFullURI, "tvolumes:") == 0)
+	if (strcmp (*cFullURI, "tvolumes:") == 0)
 	{
 		pIconList = file_manager_list_volumes ();
 	}
-	else if (strcmp (cFullURI, "tdrives:") == 0)
+	else if (strcmp (*cFullURI, "tdrives:") == 0)
 	{
 		pIconList = file_manager_list_drives ();
 	}
-	else if (strcmp (cFullURI, "vfsroot://") == 0)
+	else if (strcmp (*cFullURI, "vfsroot://") == 0)
 	{
 		pIconList = file_pmanager_list_vfs_root ();
 	}
@@ -210,14 +210,14 @@ GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortT
 		GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
 		GnomeVFSDirectoryHandle *handle = NULL;
 		GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
-		GnomeVFSResult r = gnome_vfs_directory_open (&handle, cFullURI, infoOpts);
+		GnomeVFSResult r = gnome_vfs_directory_open (&handle, *cFullURI, infoOpts);
 		if (r!=GNOME_VFS_OK) 
 		{
 			return NULL;
 		}
 		
-		GnomeVFSURI* dirUri = gnome_vfs_uri_new (cFullURI);
-		g_print ("dirUri : %s\n", dirUri);
+		GnomeVFSURI* dirUri = gnome_vfs_uri_new (*cFullURI);
+		g_print ("  dirUri : %s\n", dirUri);
 		GnomeVFSURI* fileUri;
 		gchar *cFileURI;
 		GnomeIconLookupResultFlags iconLookupResultFlags;
@@ -256,7 +256,7 @@ GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortT
 				{
 					gboolean bIsDirectory = FALSE;
 					file_manager_follow_desktop_link (cFileURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
-					g_print ("  bIsDirectory : %d\n", bIsDirectory);
+					g_print ("  bIsDirectory : %d; iVolumeID : %d\n", bIsDirectory, icon->iVolumeID);
 					
 				}
 				else
@@ -343,11 +343,12 @@ static void _file_manager_mount_callback (gboolean succeeded, char *error, char 
 		g_print ("Attention : failed to mount (%s ; %s)\n", error, detailed_error);
 	else
 	{
-		FileManagerMountCallback pCallback = data[0];
-		pCallback (data[1]);
+		FileManagerMountCallback pOnSuccessCallback = data[0];
+		g_usleep (1e5);  // si on lit le .drive tout de suite, il ne contient pas les bonnes infos !...
+		pOnSuccessCallback (data[1]);
 	}
 }
-gchar * _file_manager_mount (int iVolumeID, FileManagerMountCallback pCallback, gpointer *data)
+void _file_manager_mount (int iVolumeID, FileManagerMountCallback pOnSuccessCallback, gpointer *data)
 {
 	static gpointer *data2 = NULL;
 	g_print ("%s (ID:%d)\n", __func__, iVolumeID);
@@ -361,19 +362,16 @@ gchar * _file_manager_mount (int iVolumeID, FileManagerMountCallback pCallback, 
 	
 	GnomeVFSDrive *pDrive = gnome_vfs_volume_get_drive (pVolume);*/
 	GnomeVFSDrive *pDrive = gnome_vfs_volume_monitor_get_drive_by_id (pVolumeMonitor, iVolumeID);
-	g_return_val_if_fail (pDrive != NULL, NULL);
+	g_return_if_fail (pDrive != NULL);
 	
 	if (data2 == NULL)
 		data2 = g_new (gpointer, 2);
-	data2[0] = pCallback;
+	data2[0] = pOnSuccessCallback;
 	data2[1] = data;
 	gnome_vfs_drive_mount (pDrive, (GnomeVFSVolumeOpCallback)_file_manager_mount_callback, data2);
-	gchar *cActivatedURI = gnome_vfs_drive_get_activation_uri (pDrive); ///gnome_vfs_volume_get_activation_uri (pVolume);
 	
 	///gnome_vfs_volume_unref (pVolume);
 	gnome_vfs_drive_unref (pDrive);
-	
-	return cActivatedURI;
 }
 
 
@@ -383,11 +381,11 @@ static void _file_manager_unmount_callback (gboolean succeeded, char *error, cha
 		g_print ("Attention : failed to unmount (%s ; %s)\n", error, detailed_error);
 	else
 	{
-		FileManagerMountCallback pCallback = data[0];
-		pCallback (data[1]);
+		FileManagerMountCallback pOnSuccessCallback = data[0];
+		pOnSuccessCallback (data[1]);
 	}
 }
-void _file_manager_unmount (gchar *cURI, FileManagerMountCallback pCallback, gpointer *data)
+void _file_manager_unmount (gchar *cURI, FileManagerMountCallback pOnSuccessCallback, gpointer *data)
 {
 	static gpointer *data2 = NULL;
 	g_print ("%s (%s)\n", __func__, cURI);
@@ -401,7 +399,7 @@ void _file_manager_unmount (gchar *cURI, FileManagerMountCallback pCallback, gpo
 	
 	if (data2 == NULL)
 		data2 = g_new (gpointer, 2);
-	data2[0] = pCallback;
+	data2[0] = pOnSuccessCallback;
 	data2[1] = data;
 	gnome_vfs_volume_unmount (pVolume, (GnomeVFSVolumeOpCallback)_file_manager_unmount_callback, data2);
 	gnome_vfs_volume_unref (pVolume);

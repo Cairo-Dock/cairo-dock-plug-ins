@@ -14,8 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "file-manager-add-desktop-file.h"
 
 extern FileManagerGetFileInfoFunc file_manager_get_file_info;
-extern FileManagerListDirectoryFunc file_manager_list_directory;
-extern FileManagerLaunchUriFunc file_manager_launch_uri;
 
 extern FileManagerSortType my_fm_iSortType;
 

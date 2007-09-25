@@ -36,8 +36,8 @@ FileManagerRenameFileFunc file_manager_rename_file;
 FileManagerMoveFileFunc file_manager_move_file;
 FileManagerFilePropertiesFunc file_manager_get_file_properties;
 
-
-gchar *my_fm_cIconFileName = NULL;
+Icon *my_fm_pIcon = NULL;
+CairoDock *my_fm_pDock = NULL;
 FileManagerSortType my_fm_iSortType = FILE_MANAGER_SORT_BY_NAME;
 gboolean my_fm_bShowVolumes;
 gboolean my_fm_bShowNetwork;
@@ -55,13 +55,10 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	//g_print ("%s ()\n", __func__);
 	*cConfFilePath = cairo_dock_check_conf_file_exists (FILE_MANAGER_USER_DATA_DIR, FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_CONF_FILE);
 	
-	
 	//\_______________ On lit le fichier de conf.
-	*cConfFilePath = NULL;
-	/*cConfFilePath = g_strdup_printf ("%s/%s", cUserDataDirPath, FILE_MANAGER_CONF_FILE);
 	int iOriginalWidth = 1, iOriginalHeight = 1;
-	gchar *cName = NULL;
-	file_manager_read_conf_file (*cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName);*/
+	gchar *cName = NULL, *cIconName = NULL;
+	file_manager_read_conf_file (*cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName, &cIconName);
 	
 	
 	//\_______________ On charge le backend qui va bien.
@@ -126,36 +123,57 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 		return NULL;
 	}
 	
-	cairo_dock_add_uri_func = file_manager_add_desktop_file_from_uri;
-	cairo_dock_load_directory_func = file_manager_create_dock_from_directory;
 	
+	//\_______________ On cree notre icone.
+	my_fm_pDock = pDock;
+	if ((my_fm_bShowVolumes || my_fm_bShowNetwork) && cName != NULL)
+	{
+		my_fm_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, cIconName);
+		
+		if (! my_fm_bShowVolumes)
+			my_fm_pIcon->cBaseURI = g_strdup (FILE_MANAGER_NETWORK);
+		else if (! my_fm_bShowNetwork)
+			my_fm_pIcon->cBaseURI = g_strdup (FILE_MANAGER_VFS_ROOT);
+		else
+			my_fm_pIcon->cBaseURI = g_strdup (FILE_MANAGER_VFS_ROOT_NETWORK);
+		file_manager_create_dock_from_directory (my_fm_pIcon);  // on cree son sous-dock ici, car l'icone n'est pas encore inseree dans le dock, et ne sera donc pas rechargee.
+	}
+	
+	
+	//\_______________ On charge tous les repertoires.
 	g_hash_table_foreach (g_hDocksTable, (GHFunc) file_manager_reload_directories, NULL);
 	
-	cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) file_manager_notification_build_menu, CAIRO_DOCK_RUN_FIRST);
-	cairo_dock_register_notification (CAIRO_DOCK_DROP_DATA, (CairoDockNotificationFunc) file_manager_notification_drop_data, CAIRO_DOCK_RUN_AFTER);
-	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) file_manager_notification_click_icon, CAIRO_DOCK_RUN_FIRST);
 	
-	//g_free (cUserDataDirPath);
-	//g_free (cName);
-	return NULL;
+	//\_______________ On enregistre nos notifications.
+	cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) file_manager_notification_build_menu, CAIRO_DOCK_RUN_FIRST);
+	cairo_dock_register_notification (CAIRO_DOCK_DROP_DATA, (CairoDockNotificationFunc) file_manager_notification_drop_data, CAIRO_DOCK_RUN_FIRST);
+	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) file_manager_notification_click_icon, CAIRO_DOCK_RUN_FIRST);
+	cairo_dock_register_notification (CAIRO_DOCK_REMOVE_ICON, (CairoDockNotificationFunc) file_manager_notification_remove_icon, CAIRO_DOCK_RUN_FIRST);
+	
+	g_free (cIconName);
+	g_free (cName);
+	return my_fm_pIcon;
 }
 
 void file_manager_stop (void)
 {
 	file_manager_stop_backend ();
 	
-	cairo_dock_add_uri_func = NULL;
-	cairo_dock_load_directory_func = NULL;
+	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) file_manager_notification_build_menu);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_DROP_DATA, (CairoDockNotificationFunc) file_manager_notification_drop_data);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) file_manager_notification_click_icon);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_REMOVE_ICON, (CairoDockNotificationFunc) file_manager_notification_remove_icon);
+	
+	g_hash_table_foreach (g_hDocksTable, (GHFunc) file_manager_unload_directories, NULL);
 	
 	g_module_close (s_fm_pBackendModule);
 	s_fm_pBackendModule = NULL;
 	
-	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) file_manager_notification_build_menu);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_DROP_DATA, (CairoDockNotificationFunc) file_manager_notification_drop_data);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) file_manager_notification_click_icon);
-	
-	g_hash_table_foreach (g_hDocksTable, (GHFunc) file_manager_unload_directories, NULL);
-	
-	g_free (my_fm_cIconFileName);
-	my_fm_cIconFileName = NULL;
+	if (my_fm_pIcon != NULL && my_fm_pIcon->pSubDock != NULL)
+	{
+		cairo_dock_destroy_dock (my_fm_pIcon->pSubDock, my_fm_pIcon->acName, NULL, NULL);
+		my_fm_pIcon->pSubDock = NULL;
+		my_fm_pIcon = NULL;
+	}
+	my_fm_pDock = NULL;
 }

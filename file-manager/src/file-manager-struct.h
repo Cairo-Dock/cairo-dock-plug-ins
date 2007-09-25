@@ -29,6 +29,7 @@ typedef enum {
 
 #define FILE_MANAGER_VFS_ROOT "_vfsroot_"
 #define FILE_MANAGER_NETWORK "_network_"
+#define FILE_MANAGER_VFS_ROOT_NETWORK "_vfsroot+network_"
 
 typedef void (*FileManagerOnEventFunc) (FileManagerEventType iEventType, const gchar *cURI, Icon *pIcon);
 
@@ -40,7 +41,7 @@ typedef void (*FileManagerStopFunc) (void);
 typedef void (*FileManagerGetFileInfoFunc) (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, FileManagerSortType iSortType);
 
 
-typedef GList * (*FileManagerListDirectoryFunc) (gchar *cURI, FileManagerSortType g_fm_iSortType);
+typedef GList * (*FileManagerListDirectoryFunc) (gchar *cURI, FileManagerSortType g_fm_iSortType, gchar **cFullURI);
 
 
 typedef void (*FileManagerLaunchUriFunc) (gchar *cURI);
@@ -48,7 +49,7 @@ typedef void (*FileManagerLaunchUriFunc) (gchar *cURI);
 
 typedef void (*FileManagerMountCallback) (gpointer *data);
 typedef gchar * (*FileManagerIsMountingPointFunc) (gchar *cURI, gboolean *bIsMounted);
-typedef gchar * (*FileManagerMountFunc) (int iVolumeID, FileManagerMountCallback pCallback, gpointer *data);
+typedef void (*FileManagerMountFunc) (int iVolumeID, FileManagerMountCallback pCallback, gpointer *data);
 typedef void (*FileManagerUnmountFunc) (gchar *cURI, FileManagerMountCallback pCallback, gpointer *data);
 
 

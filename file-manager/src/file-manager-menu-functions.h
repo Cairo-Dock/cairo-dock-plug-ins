@@ -9,6 +9,9 @@
 void file_manager_about (GtkMenuItem *menu_item, gpointer *data);
 
 
+gboolean file_manager_notification_remove_icon (gpointer *data);
+
+
 gboolean file_manager_notification_build_menu (gpointer *data);
 
 
