@@ -320,21 +320,21 @@ gboolean file_manager_notification_drop_data (gpointer *data)
 	Icon *icon = data[1];
 	double fOrder = *((double *) data[2]);
 	CairoDock *pDock = data[3];
-	g_print ("%s (%s)\n", __func__, cReceivedData);
+	g_print ("%s (%s, %.2f)\n", __func__, cReceivedData, fOrder);
 	
 	if (strncmp (cReceivedData, "file://", 7) == 0 && g_str_has_suffix (cReceivedData, ".desktop"))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (pDock, NULL);
-	if (pPointingIcon != NULL && pPointingIcon->cBaseURI != NULL)  // on a lache dans un dock qui est un repertoire, on copie donc le fichier dedans.
-	{
-		g_print (" -> copie de %s dans %s\n", cReceivedData, pPointingIcon->cBaseURI);
-		file_manager_move_file (cReceivedData, pPointingIcon->cBaseURI);
-	}
-	else if (fOrder == CAIRO_DOCK_LAST_ORDER && icon->cBaseURI != NULL && icon->pSubDock != NULL)  // on a lache sur une icone qui est un repertoire, on copie donc le fichier dedans.
+	if (fOrder == CAIRO_DOCK_LAST_ORDER && icon->cBaseURI != NULL && (icon->pSubDock != NULL || icon->iVolumeID > 0))  // on a lache sur une icone qui est un repertoire, on copie donc le fichier dedans.
 	{
 		g_print (" -> copie de %s dans %s\n", cReceivedData, icon->cBaseURI);
 		file_manager_move_file (cReceivedData, icon->cBaseURI);
+	}
+	else if (pPointingIcon != NULL && pPointingIcon->cBaseURI != NULL)  // on a lache dans un dock qui est un repertoire, on copie donc le fichier dedans.
+	{
+		g_print (" -> copie de %s dans %s\n", cReceivedData, pPointingIcon->cBaseURI);
+		file_manager_move_file (cReceivedData, pPointingIcon->cBaseURI);
 	}
 	else  // on a lache dans un dock de conteneurs, on y rajoute un .desktop.
 	{

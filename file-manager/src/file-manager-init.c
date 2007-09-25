@@ -146,7 +146,7 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	
 	//\_______________ On enregistre nos notifications.
 	cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) file_manager_notification_build_menu, CAIRO_DOCK_RUN_FIRST);
-	cairo_dock_register_notification (CAIRO_DOCK_DROP_DATA, (CairoDockNotificationFunc) file_manager_notification_drop_data, CAIRO_DOCK_RUN_FIRST);
+	cairo_dock_register_notification (CAIRO_DOCK_DROP_DATA, (CairoDockNotificationFunc) file_manager_notification_drop_data, CAIRO_DOCK_RUN_AFTER);
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) file_manager_notification_click_icon, CAIRO_DOCK_RUN_FIRST);
 	cairo_dock_register_notification (CAIRO_DOCK_REMOVE_ICON, (CairoDockNotificationFunc) file_manager_notification_remove_icon, CAIRO_DOCK_RUN_FIRST);
 	
