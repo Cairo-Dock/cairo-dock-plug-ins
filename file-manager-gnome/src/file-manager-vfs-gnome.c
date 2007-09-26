@@ -30,10 +30,10 @@ gboolean _file_manager_init_backend (FileManagerOnEventFunc pCallback)
 	if (s_fm_MonitorHandleTable != NULL)
 		g_hash_table_destroy (s_fm_MonitorHandleTable);
 	
-	s_fm_MonitorHandleTable = g_hash_table_new_full (g_direct_hash,
-		g_direct_equal,
+	s_fm_MonitorHandleTable = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
 		g_free,
-		(GDestroyNotify) gnome_vfs_monitor_cancel);  // le GnomeVFSMonitorHandle est-il libere lors du gnome_vfs_monitor_cancel () ?
+		(GDestroyNotify) NULL);  // le GnomeVFSMonitorHandle est-il libere lors du gnome_vfs_monitor_cancel () ?
 	
 	return (gnome_vfs_init ());  // ne fait rien si gnome-vfs est deja initialise.
 }
@@ -341,13 +341,11 @@ static void _file_manager_mount_callback (gboolean succeeded, char *error, char 
 {
 	if (! succeeded)
 		g_print ("Attention : failed to mount (%s ; %s)\n", error, detailed_error);
-	else
-	{
-		FileManagerMountCallback pOnSuccessCallback = data[0];
-		g_usleep (1e5);  // si on lit le .drive tout de suite, il ne contient pas les bonnes infos !...
-		pOnSuccessCallback (data[1]);
-	}
+	
+	FileManagerMountCallback pOnSuccessCallback = data[3];
+	pOnSuccessCallback (data[0], data[1], GPOINTER_TO_INT (data[2]), succeeded);
 }
+
 void _file_manager_mount (int iVolumeID, FileManagerMountCallback pOnSuccessCallback, gpointer *data)
 {
 	static gpointer *data2 = NULL;
@@ -365,26 +363,17 @@ void _file_manager_mount (int iVolumeID, FileManagerMountCallback pOnSuccessCall
 	g_return_if_fail (pDrive != NULL);
 	
 	if (data2 == NULL)
-		data2 = g_new (gpointer, 2);
-	data2[0] = pOnSuccessCallback;
-	data2[1] = data;
+		data2 = g_new (gpointer, 4);
+	data2[0] = data[0];
+	data2[1] = data[1];
+	data2[2] = GINT_TO_POINTER (TRUE);
+	data2[3] = pOnSuccessCallback;
 	gnome_vfs_drive_mount (pDrive, (GnomeVFSVolumeOpCallback)_file_manager_mount_callback, data2);
 	
 	///gnome_vfs_volume_unref (pVolume);
 	gnome_vfs_drive_unref (pDrive);
 }
 
-
-static void _file_manager_unmount_callback (gboolean succeeded, char *error, char *detailed_error, gpointer *data)
-{
-	if (! succeeded)
-		g_print ("Attention : failed to unmount (%s ; %s)\n", error, detailed_error);
-	else
-	{
-		FileManagerMountCallback pOnSuccessCallback = data[0];
-		pOnSuccessCallback (data[1]);
-	}
-}
 void _file_manager_unmount (gchar *cURI, FileManagerMountCallback pOnSuccessCallback, gpointer *data)
 {
 	static gpointer *data2 = NULL;
@@ -398,10 +387,13 @@ void _file_manager_unmount (gchar *cURI, FileManagerMountCallback pOnSuccessCall
 	g_return_if_fail (pVolume != NULL);
 	
 	if (data2 == NULL)
-		data2 = g_new (gpointer, 2);
-	data2[0] = pOnSuccessCallback;
-	data2[1] = data;
-	gnome_vfs_volume_unmount (pVolume, (GnomeVFSVolumeOpCallback)_file_manager_unmount_callback, data2);
+		data2 = g_new (gpointer, 4);
+	data2[0] = data[0];
+	data2[1] = data[1];
+	data2[2] = GINT_TO_POINTER (FALSE);
+	data2[3] = pOnSuccessCallback;
+	gnome_vfs_volume_unmount (pVolume, (GnomeVFSVolumeOpCallback)_file_manager_mount_callback, data2);
+	
 	gnome_vfs_volume_unref (pVolume);
 }
 
@@ -413,7 +405,7 @@ static void file_manager_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
 	GnomeVFSMonitorEventType event_type,
 	Icon *pIcon)
 {
-	g_print ("%s (%d)\n", __func__, event_type);
+	g_print ("%s (%d sur %x)\n", __func__, event_type, pIcon);
 	
 	FileManagerEventType iEventType;
 	switch (event_type)
@@ -437,28 +429,58 @@ static void file_manager_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
 }
 
 
-
-void _file_manager_add_monitor (Icon *pIcon)
+static void file_manager_add_one_monitor (Icon *pIcon, gchar *cURI, gboolean bDirectory)
 {
 	GnomeVFSMonitorHandle *pHandle = NULL;
 	GnomeVFSResult r = gnome_vfs_monitor_add (&pHandle,
-		pIcon->acCommand,
-		(pIcon->pSubDock != NULL ? GNOME_VFS_MONITOR_DIRECTORY : GNOME_VFS_MONITOR_FILE),
+		cURI,
+		(bDirectory ? GNOME_VFS_MONITOR_DIRECTORY : GNOME_VFS_MONITOR_FILE),
 		(GnomeVFSMonitorCallback) file_manager_gnome_monitor_callback,
 		pIcon);
 	if (r != GNOME_VFS_OK)
 	{
-		g_print ("Attention : couldn't add monitor function to %s\n  I will not be able to receive events about this file\n", pIcon->acCommand);
+		g_print ("Attention : couldn't add monitor function to %s\n  I will not be able to receive events about this file\n", cURI);
 	}
 	else
 	{
-		g_hash_table_insert (s_fm_MonitorHandleTable, g_strdup (pIcon->acCommand), pHandle);
+		g_print (">>> moniteur ajoute sur %s (%x)\n", cURI, pIcon);
+		g_hash_table_insert (s_fm_MonitorHandleTable, g_strdup (cURI), pHandle);
+	}
+}
+void _file_manager_add_monitor (Icon *pIcon)
+{
+	if (pIcon->iVolumeID > 0)
+	{
+		file_manager_add_one_monitor (pIcon, pIcon->cBaseURI, FALSE);
+		if (pIcon->pSubDock != NULL && pIcon->acCommand != NULL)
+			file_manager_add_one_monitor (pIcon, pIcon->acCommand, TRUE);
+	}
+	else
+	{
+		file_manager_add_one_monitor (pIcon, pIcon->acCommand, (pIcon->pSubDock != NULL));
 	}
 }
 
+static void file_manager_remove_one_monitor (Icon *pIcon, gchar *cURI)
+{
+	g_print (">>> moniteur supprime sur %s (%x)\n", cURI, pIcon);
+	GnomeVFSMonitorHandle *pHandle = g_hash_table_lookup (s_fm_MonitorHandleTable, cURI);
+	if (pHandle != NULL)
+		gnome_vfs_monitor_cancel (pHandle);
+	g_hash_table_remove (s_fm_MonitorHandleTable, cURI);
+}
 void _file_manager_remove_monitor (Icon *pIcon)
 {
-	g_hash_table_remove (s_fm_MonitorHandleTable, pIcon->acCommand);
+	if (pIcon->iVolumeID > 0)
+	{
+		file_manager_remove_one_monitor (pIcon, pIcon->cBaseURI);
+		if (pIcon->pSubDock != NULL && pIcon->acCommand != NULL)
+			file_manager_remove_one_monitor (pIcon, pIcon->acCommand);
+	}
+	else
+	{
+		file_manager_remove_one_monitor (pIcon, pIcon->acCommand);
+	}
 }
 
 

@@ -16,8 +16,10 @@ extern FileManagerGetFileInfoFunc file_manager_get_file_info;
 extern FileManagerListDirectoryFunc file_manager_list_directory;
 extern FileManagerAddMonitorFunc file_manager_add_monitor;
 extern FileManagerAddMonitorFunc file_manager_remove_monitor;
+extern FileManagerIsMountingPointFunc file_manager_is_mounting_point;
 
 extern FileManagerSortType my_fm_iSortType;
+extern Icon *my_fm_pIcon;
 
 
 void file_manager_create_dock_from_directory (Icon *pIcon)
@@ -29,18 +31,19 @@ void file_manager_create_dock_from_directory (Icon *pIcon)
 	file_manager_add_monitor (pIcon);
 }
 
-void file_manager_alter_icon_if_necessary (Icon *pIcon, CairoDock *pDock)
+static Icon *file_manager_alter_icon_if_necessary (Icon *pIcon, CairoDock *pDock)
 {
 	Icon *pNewIcon = file_manager_create_icon_from_URI (pIcon->cBaseURI, pDock);
-	g_return_if_fail (pNewIcon != NULL);
-	
+	g_return_val_if_fail (pNewIcon != NULL && pNewIcon->acName != NULL, NULL);
 	
 	if (strcmp (pIcon->acName, pNewIcon->acName) != 0 || strcmp (pIcon->acFileName, pNewIcon->acFileName) != 0 || pIcon->fOrder != pNewIcon->fOrder)
 	{
 		cairo_dock_remove_one_icon_from_dock (pDock, pIcon);
+		if (pIcon->acDesktopFileName != NULL)
+			file_manager_remove_monitor (pIcon);
 		
-		cairo_dock_insert_icon_in_dock (pNewIcon, pDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);  // on met a jour la taille du dock pour le fXMin/fXMax, et eventuellement la taille de l'icone peut aussi avoir change.
-		
+		pNewIcon->acDesktopFileName = g_strdup (pIcon->acDesktopFileName);
+		pNewIcon->cParentDockName = g_strdup (pIcon->cParentDockName);
 		if (pIcon->pSubDock != NULL)
 		{
 			pNewIcon->pSubDock == pIcon->pSubDock;
@@ -50,14 +53,26 @@ void file_manager_alter_icon_if_necessary (Icon *pIcon, CairoDock *pDock)
 			{
 				g_hash_table_steal (g_hDocksTable, pIcon->acName);
 				g_hash_table_insert (g_hDocksTable, pNewIcon->acName, pNewIcon->pSubDock);
-			}
+			}  // else : detruire le sous-dock.
 		}
+		pNewIcon->fX = pIcon->fX;
+		pNewIcon->fXAtRest = pIcon->fXAtRest;
+		pNewIcon->fDrawX = pIcon->fDrawX;
+		
+		cairo_dock_insert_icon_in_dock (pNewIcon, pDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);  // on met a jour la taille du dock pour le fXMin/fXMax, et eventuellement la taille de l'icone peut aussi avoir change.
+		
+		cairo_dock_redraw_my_icon (pNewIcon, pDock);
+		
+		if (pNewIcon->acDesktopFileName != NULL)
+			file_manager_add_monitor (pNewIcon);
 		
 		cairo_dock_free_icon (pIcon);
+		return pNewIcon;
 	}
 	else
 	{
 		cairo_dock_free_icon (pNewIcon);
+		return pIcon;
 	}
 }
 Icon *file_manager_create_icon_from_URI (gchar *cURI, CairoDock *pDock)
@@ -108,7 +123,6 @@ Icon *file_manager_create_icon_from_URI (gchar *cURI, CairoDock *pDock)
 }
 void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar *cURI, Icon *pIcon)
 {
-	g_print ("%s ()\n", __func__);
 	g_print ("%s (%d sur %s)\n", __func__, iEventType, cURI);
 	
 	if (iEventType == FILE_MANAGER_ICON_DELETED)
@@ -129,6 +143,8 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 		g_print ("%s est supprimee\n", pConcernedIcon->acName);
 		
 		cairo_dock_remove_one_icon_from_dock (pParentDock, pConcernedIcon);
+		if (pConcernedIcon->acDesktopFileName != NULL)
+			file_manager_remove_monitor (pConcernedIcon);
 		cairo_dock_update_dock_size (pParentDock, pParentDock->iMaxIconHeight, pParentDock->iMinDockWidth);
 		cairo_dock_free_icon (pConcernedIcon);
 		/*if (! pIcon->pSubDock->bInside && pIcon->pSubDock->bAtBottom)
@@ -152,30 +168,44 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 	{
 		Icon *pConcernedIcon;
 		CairoDock *pParentDock;
-		if (strcmp (pIcon->cBaseURI, cURI) == 0)
+		if (strcmp (pIcon->cBaseURI, cURI) == 0)  // c'est l'icone elle-meme.
 		{
 			pConcernedIcon = pIcon;
 			pParentDock = cairo_dock_search_container_from_icon (pIcon);
 		}
-		else if (pIcon->pSubDock != NULL)
+		else if (pIcon->pSubDock != NULL)  // c'est a l'interieur du repertoire qu'elle represente.
 		{
 			pConcernedIcon = cairo_dock_get_icon_with_base_uri (pIcon->pSubDock->icons, cURI);
 			g_return_if_fail (pConcernedIcon != NULL);
 			pParentDock = pIcon->pSubDock;
 		}
-		g_print ("%s est modifiee\n", pConcernedIcon->acName);
+		g_print ("%s est modifiee (iRefCount:%d)\n", pConcernedIcon->acName, pParentDock->iRefCount);
 		
-		file_manager_alter_icon_if_necessary (pConcernedIcon, pParentDock);
+		Icon *pNewIcon = file_manager_alter_icon_if_necessary (pConcernedIcon, pParentDock);
+		
+		if (pNewIcon != NULL && pNewIcon != pConcernedIcon && pNewIcon->iVolumeID > 0)
+		{
+			gboolean bIsMounted;
+			gchar *cActivationURI = file_manager_is_mounting_point (pNewIcon->acCommand, &bIsMounted);
+			g_free (cActivationURI);
+			gchar *cMessage = g_strdup_printf ("%s is now %s", pNewIcon->acName, (bIsMounted ? "mounted" : "unmounted"));
+			
+			cairo_dock_show_temporary_dialog (cMessage, pNewIcon, pParentDock, 4000);
+			g_free (cMessage);
+		}
 	}
 }
 
 
 void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer data)
 {
-	GList *ic;
+	if (pDock == my_fm_pIcon->pSubDock)  // il vient d'etre cree, on ne le recharge donc pas.
+		return ;
+	GList *ic = pDock->icons, *next_ic;
 	Icon *icon;
-	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	while (ic != NULL)
 	{
+		next_ic = ic->next;
 		icon = ic->data;
 		if (icon->cBaseURI != NULL)
 		{
@@ -184,12 +214,18 @@ void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer d
 				g_free (icon->acCommand);
 				icon->pSubDock->icons = file_manager_list_directory (icon->cBaseURI, my_fm_iSortType, &icon->acCommand);
 				cairo_dock_load_buffers_in_one_dock (icon->pSubDock);
-				
-				file_manager_add_monitor (icon);
 			}
+			
 			if (icon->iVolumeID > 0)
-				file_manager_alter_icon_if_necessary (icon, pDock);
+			{
+				Icon *pNewIcon = file_manager_alter_icon_if_necessary (icon, pDock);  // les infos dans le .desktop ne sont pas a jour.
+				if (pNewIcon == icon)
+					file_manager_add_monitor (pNewIcon);
+			}
+			else
+				file_manager_add_monitor (icon);
 		}
+		ic = next_ic;
 	}
 }
 
@@ -200,21 +236,24 @@ void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gpointer d
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		if (icon->cBaseURI != NULL && icon->pSubDock != NULL)  //  && icon->pSubDock->icons != NULL
+		if (icon->cBaseURI != NULL)  //  && icon->pSubDock->icons != NULL
 		{
 			file_manager_remove_monitor (icon);
 			
-			GList *pIconList = icon->pSubDock->icons;
-			icon->pSubDock->icons = NULL;
-			
-			Icon *icon;
-			GList *ic;
-			for (ic = pIconList; ic != NULL; ic = ic->next)
+			if (icon->pSubDock != NULL)
 			{
-				icon = ic->data;
-				cairo_dock_free_icon (icon);
+				GList *pIconList = icon->pSubDock->icons;
+				icon->pSubDock->icons = NULL;
+				
+				Icon *icon;
+				GList *ic;
+				for (ic = pIconList; ic != NULL; ic = ic->next)
+				{
+					icon = ic->data;
+					cairo_dock_free_icon (icon);
+				}
+				g_list_free (pIconList);
 			}
-			g_list_free (pIconList);
 		}
 	}
 }

@@ -45,7 +45,8 @@ void file_manager_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeigh
 	gchar *cVFSBackend = cairo_dock_get_string_key_value (pKeyFile, "MODULE", "force vfs", &bFlushConfFileNeeded, s_tBackendNames[0]);
 	my_fm_iDesktopEnv = cairo_dock_get_number_from_name (cVFSBackend, s_tBackendNames);
 	g_free (cVFSBackend);
-	
+	if (my_fm_iDesktopEnv == 0)
+		my_fm_iDesktopEnv = cairo_dock_guess_environment ();
 	
 	if (bFlushConfFileNeeded)
 	{

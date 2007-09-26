@@ -47,7 +47,7 @@ typedef GList * (*FileManagerListDirectoryFunc) (gchar *cURI, FileManagerSortTyp
 typedef void (*FileManagerLaunchUriFunc) (gchar *cURI);
 
 
-typedef void (*FileManagerMountCallback) (gpointer *data);
+typedef void (*FileManagerMountCallback) (Icon *icon, CairoDock *pDock, gboolean bMounting, gboolean bSuccess);
 typedef gchar * (*FileManagerIsMountingPointFunc) (gchar *cURI, gboolean *bIsMounted);
 typedef void (*FileManagerMountFunc) (int iVolumeID, FileManagerMountCallback pCallback, gpointer *data);
 typedef void (*FileManagerUnmountFunc) (gchar *cURI, FileManagerMountCallback pCallback, gpointer *data);

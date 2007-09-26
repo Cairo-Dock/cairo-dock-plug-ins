@@ -62,7 +62,6 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	
 	
 	//\_______________ On charge le backend qui va bien.
-	my_fm_iDesktopEnv = cairo_dock_guess_environment ();
 	if (my_fm_iDesktopEnv == CAIRO_DOCK_UNKNOWN_ENV)
 	{
 		 g_set_error (erreur, 1, 1, "couldn't guess desktop environment, the file-manager will not be active");
@@ -79,7 +78,7 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	s_fm_pBackendModule = g_module_open (cBackendPath, G_MODULE_BIND_LAZY);
 	if (s_fm_pBackendModule == NULL)
 	{
-		g_set_error (erreur, 1, 1, "Attention : while opening backend '%s' : (%s)", cBackendPath, g_module_error ());
+		g_set_error (erreur, 1, 1, "while opening backend '%s' : (%s)", cBackendPath, g_module_error ());
 		g_free (cBackendPath);
 		return NULL;
 	}
@@ -157,8 +156,6 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 
 void file_manager_stop (void)
 {
-	file_manager_stop_backend ();
-	
 	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) file_manager_notification_build_menu);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_DROP_DATA, (CairoDockNotificationFunc) file_manager_notification_drop_data);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) file_manager_notification_click_icon);
@@ -166,6 +163,7 @@ void file_manager_stop (void)
 	
 	g_hash_table_foreach (g_hDocksTable, (GHFunc) file_manager_unload_directories, NULL);
 	
+	file_manager_stop_backend ();
 	g_module_close (s_fm_pBackendModule);
 	s_fm_pBackendModule = NULL;
 	

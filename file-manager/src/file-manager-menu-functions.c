@@ -18,6 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 extern FileManagerLaunchUriFunc file_manager_launch_uri;
 extern FileManagerListDirectoryFunc file_manager_list_directory;
+extern FileManagerAddMonitorFunc file_manager_add_monitor;
 extern FileManagerAddMonitorFunc file_manager_remove_monitor;
 extern FileManagerIsMountingPointFunc file_manager_is_mounting_point;
 extern FileManagerMountFunc file_manager_mount;
@@ -43,29 +44,18 @@ void file_manager_about (GtkMenuItem *menu_item, gpointer *data)
 }
 
 
-static void file_manager_replace_mounting_icon_on_succes (gpointer *data)
+static void file_manager_action_after_mounting (Icon *icon, CairoDock *pDock, gboolean bMounting, gboolean bSuccess)  // FileManagerMountCallback.
 {
-	Icon *icon = data[0];
-	CairoDock *pDock = data[1];
-	g_print ("%s (%s)\n", __func__, icon->acName);
+	g_print ("%s (%s, %d, %d)\n", __func__, icon->acName, bMounting, bSuccess);
 	
-	cairo_dock_remove_one_icon_from_dock (pDock, icon);
-	
-	int iNbTests = 0;
-	Icon *pNewIcon = NULL;
-	do
+	gchar *cMessage;
+	if (! bSuccess)
 	{
-		 cairo_dock_free_icon (pNewIcon);
-		 pNewIcon = file_manager_create_icon_from_URI (icon->cBaseURI, pDock);
-		 iNbTests ++;
+		cMessage = g_strdup_printf ("failed to %s %s", (bMounting ? "mount" : "unmount"), icon->acName);
+		cairo_dock_show_temporary_dialog (cMessage, icon, pDock, 4000);
+		
+		g_free (cMessage);
 	}
-	while ((pNewIcon->acFileName == NULL || strcmp (pNewIcon->acFileName, icon->acFileName) == 0 || pNewIcon->acName == NULL || strcmp (pNewIcon->acName, icon->acName) == 0) && iNbTests < 3);
-	
-	if (icon->acDesktopFileName != NULL)
-		pNewIcon->acDesktopFileName = g_strdup (icon->acDesktopFileName);
-	cairo_dock_insert_icon_in_dock (pNewIcon, pDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
-	
-	cairo_dock_free_icon (icon);
 }
 static void file_manager_mount_unmount (GtkMenuItem *menu_item, gpointer *data)
 {
@@ -80,10 +70,10 @@ static void file_manager_mount_unmount (GtkMenuItem *menu_item, gpointer *data)
 	
 	if (! bIsMounted)
 	{
-		file_manager_mount (icon->iVolumeID, file_manager_replace_mounting_icon_on_succes, data);
+		file_manager_mount (icon->iVolumeID, file_manager_action_after_mounting, data);
 	}
 	else
-		file_manager_unmount (icon->acCommand, file_manager_replace_mounting_icon_on_succes, data);
+		file_manager_unmount (icon->acCommand, file_manager_action_after_mounting, data);
 }
 
 static void file_manager_delete (GtkMenuItem *menu_item, gpointer *data)
@@ -232,39 +222,11 @@ static void file_manager_properties (GtkMenuItem *menu_item, gpointer *data)
 	g_free (cMimeType);
 }
 
-/*static void file_manager_remove_from_dock (GtkMenuItem *menu_item, gpointer *data)
-{
-	Icon *icon = data[0];
-	CairoDock *pDock = data[1];
-	g_print ("%s (%s)\n", __func__, icon->acName);
-	
-	gchar *question = g_strdup_printf ("You're about to remove this icon (%s) from the dock (it will not alter the files on your hard-disk). Sure ?", icon->acName);
-	GtkWidget *dialog = gtk_message_dialog_new (GTK_WINDOW (pDock->pWidget),
-		GTK_DIALOG_DESTROY_WITH_PARENT,
-		GTK_MESSAGE_QUESTION,
-		GTK_BUTTONS_YES_NO,
-		question);
-	g_free (question);
-	int answer = gtk_dialog_run (GTK_DIALOG (dialog));
-	gtk_widget_destroy (dialog);
-	if (answer == GTK_RESPONSE_YES)
-	{
-		if (icon->acDesktopFileName != NULL)
-		{
-			gchar *icon_path = g_strdup_printf ("%s/%s", g_cCurrentThemePath, icon->acDesktopFileName);
-			g_remove (icon_path);
-			g_free (icon_path);
-		}
-	}
-	icon->fPersonnalScale = 1.0;
-	if (pDock->iSidShrinkDown == 0)
-		pDock->iSidShrinkDown = g_timeout_add (50, (GSourceFunc) cairo_dock_shrink_down, (gpointer) pDock);
-	
-	cairo_dock_mark_theme_as_modified (TRUE);
-}*/
+
 gboolean file_manager_notification_remove_icon (gpointer *data)
 {
 	Icon *icon = data[0];
+	g_print ("%s (%s, %s, %s)\n", __func__, icon->acName, icon->cBaseURI, icon->acDesktopFileName);
 	
 	if (icon->cBaseURI != NULL && icon->acDesktopFileName != NULL)
 		file_manager_remove_monitor (icon);
@@ -373,11 +335,14 @@ gboolean file_manager_notification_drop_data (gpointer *data)
 					//	gtk_main_iteration ();
 					//gtk_widget_hide (pNewIcon->pSubDock->pWidget);
 				}
+				
+				file_manager_add_monitor (pNewIcon);
+				
 				cairo_dock_insert_icon_in_dock (pNewIcon, pDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
+				
+				if (pDock->iSidShrinkDown == 0)  // on lance l'animation.
+					pDock->iSidShrinkDown = g_timeout_add (50, (GSourceFunc) cairo_dock_shrink_down, (gpointer) pDock);
 			}
-			
-			if (pDock->iSidShrinkDown == 0)  // on lance l'animation.
-				pDock->iSidShrinkDown = g_timeout_add (50, (GSourceFunc) cairo_dock_shrink_down, (gpointer) pDock);
 		}
 	}
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
@@ -393,7 +358,8 @@ gboolean file_manager_notification_click_icon (gpointer *data)
 		g_print ("%s ()\n", __func__);
 		
 		gboolean bIsMounted = TRUE;
-		
+		gchar *cActivationURI = file_manager_is_mounting_point (icon->acCommand, &bIsMounted);
+		g_free (cActivationURI);
 		if (icon->iVolumeID > 0 && ! bIsMounted)
 		{
 			GtkWidget *dialog = gtk_message_dialog_new (GTK_WINDOW (NULL),
@@ -406,7 +372,7 @@ gboolean file_manager_notification_click_icon (gpointer *data)
 			if (answer != GTK_RESPONSE_YES)
 				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 			
-			file_manager_mount (icon->iVolumeID, file_manager_replace_mounting_icon_on_succes, data);
+			file_manager_mount (icon->iVolumeID, file_manager_action_after_mounting, data);
 		}
 		else
 			file_manager_launch_uri (icon->acCommand);
