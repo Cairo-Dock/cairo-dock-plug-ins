@@ -199,7 +199,7 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 
 void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer data)
 {
-	if (pDock == my_fm_pIcon->pSubDock)  // il vient d'etre cree, on ne le recharge donc pas.
+	if (my_fm_pIcon != NULL && pDock == my_fm_pIcon->pSubDock)  // il vient d'etre cree, on ne le recharge donc pas.
 		return ;
 	GList *ic = pDock->icons, *next_ic;
 	Icon *icon;
