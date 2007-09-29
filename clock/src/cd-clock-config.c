@@ -131,11 +131,12 @@ void cd_clock_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, g
 	
 	if (bFlushConfFileNeeded)
 	{
-		gchar *cCommand = g_strdup_printf ("/bin/cp %s/%s %s", CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_CONF_FILE, cConfFilePath);
+		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, CD_CLOCK_SHARE_DATA_DIR);
+		/*gchar *cCommand = g_strdup_printf ("/bin/cp %s/%s %s", CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_CONF_FILE, cConfFilePath);
 		system (cCommand);
 		g_free (cCommand);
 		
-		cairo_dock_replace_values_in_conf_file (cConfFilePath, pKeyFile, TRUE, 0);
+		cairo_dock_replace_values_in_conf_file (cConfFilePath, pKeyFile, TRUE, 0);*/
 		
 		cairo_dock_update_conf_file_with_hash_table (cConfFilePath, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
 	}	

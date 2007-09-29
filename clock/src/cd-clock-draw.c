@@ -171,6 +171,7 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 	//double fTextYOffset = log.height     - ink.y;
 	double fMaxScale = 1 + g_fAmplitude;
 	
+	cairo_save (pSourceContext);
 	cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
 	cairo_scale (pSourceContext, my_pIcon->fWidth * fMaxScale / ink.width, my_pIcon->fHeight * fMaxScale / ink.height);
@@ -179,6 +180,7 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 		0,
 		0);
 	cairo_paint (pSourceContext);
+	cairo_restore (pSourceContext);
 	
 	cairo_surface_destroy (pNewSurface);
 	g_object_unref (pLayout);
