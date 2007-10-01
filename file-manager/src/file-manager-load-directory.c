@@ -24,6 +24,7 @@ extern Icon *my_fm_pIcon;
 
 void file_manager_create_dock_from_directory (Icon *pIcon)
 {
+	g_print ("%s ()\n", __func__);
 	g_free (pIcon->acCommand);
 	GList *pIconList = file_manager_list_directory (pIcon->cBaseURI, my_fm_iSortType, &pIcon->acCommand);
 	pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, pIcon->acName);
@@ -38,6 +39,7 @@ static Icon *file_manager_alter_icon_if_necessary (Icon *pIcon, CairoDock *pDock
 	
 	if (strcmp (pIcon->acName, pNewIcon->acName) != 0 || strcmp (pIcon->acFileName, pNewIcon->acFileName) != 0 || pIcon->fOrder != pNewIcon->fOrder)
 	{
+		g_print ("  on remplace %s\n", pIcon->acName);
 		cairo_dock_remove_one_icon_from_dock (pDock, pIcon);
 		if (pIcon->acDesktopFileName != NULL)
 			file_manager_remove_monitor (pIcon);
@@ -201,6 +203,8 @@ void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer d
 {
 	if (my_fm_pIcon != NULL && pDock == my_fm_pIcon->pSubDock)  // il vient d'etre cree, on ne le recharge donc pas.
 		return ;
+	g_print ("%s (%s)\n", __func__, cName);
+	
 	GList *ic = pDock->icons, *next_ic;
 	Icon *icon;
 	while (ic != NULL)
@@ -209,6 +213,7 @@ void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer d
 		icon = ic->data;
 		if (icon->cBaseURI != NULL)
 		{
+			g_print ("  on recharge %s\n", icon->cBaseURI);
 			if (icon->pSubDock != NULL && icon->pSubDock->icons == NULL)
 			{
 				g_free (icon->acCommand);
@@ -218,6 +223,7 @@ void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer d
 			
 			if (icon->iVolumeID > 0)
 			{
+				g_print ("  iVolumeID:%d\n", icon->iVolumeID);
 				Icon *pNewIcon = file_manager_alter_icon_if_necessary (icon, pDock);  // les infos dans le .desktop ne sont pas a jour.
 				if (pNewIcon == icon)
 					file_manager_add_monitor (pNewIcon);

@@ -33,7 +33,7 @@ gboolean _file_manager_init_backend (FileManagerOnEventFunc pCallback)
 	s_fm_MonitorHandleTable = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
 		g_free,
-		(GDestroyNotify) NULL);  // le GnomeVFSMonitorHandle est-il libere lors du gnome_vfs_monitor_cancel () ?
+		(GDestroyNotify) gnome_vfs_monitor_cancel);  // le GnomeVFSMonitorHandle est-il libere lors du gnome_vfs_monitor_cancel () ?
 	
 	return (gnome_vfs_init ());  // ne fait rien si gnome-vfs est deja initialise.
 }
@@ -465,8 +465,8 @@ static void file_manager_remove_one_monitor (Icon *pIcon, gchar *cURI)
 {
 	g_print (">>> moniteur supprime sur %s (%x)\n", cURI, pIcon);
 	GnomeVFSMonitorHandle *pHandle = g_hash_table_lookup (s_fm_MonitorHandleTable, cURI);
-	if (pHandle != NULL)
-		gnome_vfs_monitor_cancel (pHandle);
+	//if (pHandle != NULL)
+	//	gnome_vfs_monitor_cancel (pHandle);
 	g_hash_table_remove (s_fm_MonitorHandleTable, cURI);
 }
 void _file_manager_remove_monitor (Icon *pIcon)

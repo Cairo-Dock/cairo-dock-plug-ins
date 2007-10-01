@@ -171,7 +171,7 @@ void file_manager_stop (void)
 	{
 		cairo_dock_destroy_dock (my_fm_pIcon->pSubDock, my_fm_pIcon->acName, NULL, NULL);
 		my_fm_pIcon->pSubDock = NULL;
-		my_fm_pIcon = NULL;
 	}
+	my_fm_pIcon = NULL;
 	my_fm_pDock = NULL;
 }
