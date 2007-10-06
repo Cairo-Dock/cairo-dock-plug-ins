@@ -63,7 +63,7 @@ static void _cd_clock_load_alarms (GKeyFile *pKeyFile, gboolean *bFlushConfFileN
 			
 			if (iFrequency > 0)
 			{
-				g_print ("cette alarme a la frequence %d\n", iFrequency);
+				//g_print ("cette alarme a la frequence %d\n", iFrequency);
 				if (iFrequency < 11)
 					pAlarm->iDayOfWeek = iFrequency - 1;
 				else

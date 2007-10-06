@@ -98,10 +98,7 @@ gboolean cd_dustbin_notification_click_icon (gpointer *data)
 	{
 		g_print ("_Note_ : You can manage many Trash directories with this applet.\n Right click on its icon to see which Trash directories are already being monitored.\n");
 		
-		if (my_dustbin_cTrashDirectoryList != NULL && my_dustbin_cTrashDirectoryList[0] != NULL)
-			cd_dustbin_show_trash (NULL, my_dustbin_cTrashDirectoryList[0]);
-		else
-			g_print ("No Trash directory specified !\n");
+		cd_dustbin_show_trash (NULL, "trash:/");  // my_dustbin_cTrashDirectoryList[0]
 		
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
