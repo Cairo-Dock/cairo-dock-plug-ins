@@ -20,6 +20,7 @@ gboolean my_bShowDate;
 gboolean my_bShowSeconds;
 gboolean my_b24Mode;
 gboolean my_bOldStyle;
+double my_fTextColor[4];
 int my_iTheme = 0;
 
 int my_iSidUpdateClock = 0;

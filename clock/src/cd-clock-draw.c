@@ -24,6 +24,7 @@ extern gboolean my_bShowDate;
 extern gboolean my_bShowSeconds;
 extern gboolean my_b24Mode;
 extern int my_bOldStyle;
+extern double my_fTextColor[4];
 
 extern cairo_surface_t *my_pBackgroundSurface;
 extern cairo_surface_t *my_pForegroundSurface;
@@ -161,7 +162,7 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 		ink.width + 2,
 		ink.height + 2);
 	cairo_t *pCairoContext = cairo_create (pNewSurface);
-	cairo_set_source_rgb (pCairoContext, 0.0, 0.0, 0.5);
+	cairo_set_source_rgba (pCairoContext, my_fTextColor[0], my_fTextColor[1], my_fTextColor[2], my_fTextColor[3]);
 	cairo_translate (pCairoContext, -ink.x, -ink.y);
 	
 	pango_cairo_show_layout (pCairoContext, pLayout);

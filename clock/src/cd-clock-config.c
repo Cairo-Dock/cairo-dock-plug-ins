@@ -19,6 +19,7 @@ extern gboolean my_bShowDate;
 extern gboolean my_bShowSeconds;
 extern gboolean my_bOldStyle;
 extern gboolean my_b24Mode;
+extern double my_fTextColor[4];
 extern GHashTable *my_pThemeTable;
 
 extern RsvgDimensionData my_DimensionData;
@@ -98,6 +99,9 @@ void cd_clock_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, g
 	my_bOldStyle = cairo_dock_get_boolean_key_value (pKeyFile, "MODULE", "old fashion style", &bFlushConfFileNeeded, FALSE);
 	
 	gchar *cThemeName = cairo_dock_get_string_key_value (pKeyFile, "MODULE", "theme", &bFlushConfFileNeeded, "default");
+	
+	double couleur[4] = {0., 0., 0.5, 1.};
+	cairo_dock_get_double_list_key_value (pKeyFile, "MODULE", "text color", &bFlushConfFileNeeded, my_fTextColor, 4, couleur);
 	
 	my_pAlarms = g_ptr_array_new ();
 	_cd_clock_load_alarms (pKeyFile, &bFlushConfFileNeeded);
