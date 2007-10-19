@@ -12,6 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 extern gchar **my_dustbin_cTrashDirectoryList;
 extern Icon *my_dustbin_pIcon;
+extern CairoDock *my_dustbin_pDock;
 extern GtkWidget *my_dustbin_pMenu;
 extern gchar *my_dustbin_cBrowser;
 
@@ -48,7 +49,13 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 			}
 		}
 		//g_print (">>> %s\n", sCommand->str);
-		system (sCommand->str);
+		GError *erreur = NULL;
+		g_spawn_command_line_async (sCommand->str, &erreur);
+		if (erreur != NULL)
+		{
+			g_print ("Attention : when trying to execute '%s' : %s\n", sCommand->str, erreur->message);
+			g_error_free (erreur);
+		}
 		g_string_free (sCommand, TRUE);
 	}
 }
@@ -71,7 +78,16 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		}
 	}
 	//g_print (">>> %s\n", sCommand->str);
-	system (sCommand->str);
+	GError *erreur = NULL;
+	g_spawn_command_line_async (sCommand->str, &erreur);
+	if (erreur != NULL)
+	{
+		g_print ("Attention : when trying to execute '%s' : %s\n", sCommand->str, erreur->message);
+		g_error_free (erreur);
+		gchar *cTipMessage = g_strdup_printf ("An problem occured\nIf '%s' is not your usual file browser, you can change it in the conf panel of this module", my_dustbin_cBrowser);
+		cairo_dock_show_temporary_dialog (cTipMessage, my_dustbin_pIcon, my_dustbin_pDock, 5000);
+		g_free (cTipMessage);
+	}
 	g_string_free (sCommand, TRUE);
 }
 
