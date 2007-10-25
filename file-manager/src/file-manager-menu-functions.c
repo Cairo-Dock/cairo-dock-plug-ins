@@ -96,7 +96,7 @@ static void file_manager_delete (GtkMenuItem *menu_item, gpointer *data)
 		file_manager_delete_file (icon->acCommand);
 		
 		cairo_dock_remove_icon_from_dock (pDock, icon);
-		cairo_dock_update_dock_size (pDock, pDock->iMaxIconHeight, pDock->iMinDockWidth);
+		cairo_dock_update_dock_size (pDock);
 		
 		if (icon->acDesktopFileName != NULL)
 		{

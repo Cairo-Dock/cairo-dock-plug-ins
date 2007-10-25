@@ -147,7 +147,7 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 		cairo_dock_remove_one_icon_from_dock (pParentDock, pConcernedIcon);
 		if (pConcernedIcon->acDesktopFileName != NULL)
 			file_manager_remove_monitor (pConcernedIcon);
-		cairo_dock_update_dock_size (pParentDock, pParentDock->iMaxIconHeight, pParentDock->iMinDockWidth);
+		cairo_dock_update_dock_size (pParentDock);
 		cairo_dock_free_icon (pConcernedIcon);
 		/*if (! pIcon->pSubDock->bInside && pIcon->pSubDock->bAtBottom)
 			pConcernedIcon->fPersonnalScale = .05;
