@@ -31,7 +31,7 @@ Icon *cd_logout_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	my_logout_iDesktopEnv = cairo_dock_guess_environment ();
 	if (my_logout_iDesktopEnv == CAIRO_DOCK_UNKNOWN_ENV)
 	{
-		 g_set_error (erreur, 1, 1, "couldn't guess desktop environment, this module will not be active\nAny help is greatly welcome to fix this !");
+		 g_set_error (erreur, 1, 1, "couldn't guess desktop environment, this module will not be active");
 		return NULL;
 	}
 	

@@ -88,7 +88,7 @@ GList *file_manager_list_drives (void)
 			icon = file_manager_create_icon_from_drive (pDrive);
 			pIconList = g_list_prepend (pIconList, icon);
 			
-			icon->pSubDock = cairo_dock_create_new_dock (GDK_WINDOW_TYPE_HINT_MENU, icon->acName);
+			icon->pSubDock = cairo_dock_create_new_dock (GDK_WINDOW_TYPE_HINT_MENU, icon->acName, NULL);
 			cairo_dock_reference_dock (icon->pSubDock);
 			
 			pMountedVolumesList = gnome_vfs_drive_get_mounted_volumes (pDrive);

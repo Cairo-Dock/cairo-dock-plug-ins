@@ -42,7 +42,10 @@ void _file_manager_stop_backend (void)
 {
 	s_fm_GnomeOnEventFunc = NULL;
 	if (s_fm_MonitorHandleTable != NULL)
+	{
 		g_hash_table_destroy (s_fm_MonitorHandleTable);
+		s_fm_MonitorHandleTable = NULL;
+	}
 }
 
 
