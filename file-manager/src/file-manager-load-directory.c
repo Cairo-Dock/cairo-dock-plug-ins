@@ -235,7 +235,7 @@ void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer d
 	}
 }
 
-void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gpointer data)
+void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gboolean *bSomeMonitorRemoved)
 {
 	GList *ic;
 	Icon *icon;
@@ -245,6 +245,7 @@ void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gpointer d
 		if (icon->cBaseURI != NULL)  //  && icon->pSubDock->icons != NULL
 		{
 			file_manager_remove_monitor (icon);
+			*bSomeMonitorRemoved = TRUE;
 			
 			if (icon->pSubDock != NULL)
 			{

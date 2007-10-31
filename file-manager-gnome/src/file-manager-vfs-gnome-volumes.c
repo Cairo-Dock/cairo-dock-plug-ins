@@ -88,8 +88,7 @@ GList *file_manager_list_drives (void)
 			icon = file_manager_create_icon_from_drive (pDrive);
 			pIconList = g_list_prepend (pIconList, icon);
 			
-			icon->pSubDock = cairo_dock_create_new_dock (GDK_WINDOW_TYPE_HINT_MENU, icon->acName, NULL);
-			cairo_dock_reference_dock (icon->pSubDock);
+			GList *pSubIconList = NULL;
 			
 			pMountedVolumesList = gnome_vfs_drive_get_mounted_volumes (pDrive);
 			for (pSubListElement = pMountedVolumesList; pSubListElement != NULL; pSubListElement = pSubListElement->next)
@@ -99,11 +98,13 @@ GList *file_manager_list_drives (void)
 				if (gnome_vfs_volume_is_user_visible (pMountedVolume))
 				{
 					volume_icon = file_manager_create_icon_from_volume (pMountedVolume);
-					icon->pSubDock->icons = g_list_prepend (icon->pSubDock->icons, volume_icon);
+					pSubIconList = g_list_prepend (pSubIconList, volume_icon);
 				}
 				gnome_vfs_volume_unref (pMountedVolume);
 			}
 			g_list_free (pMountedVolumesList);
+			
+			icon->pSubDock = cairo_dock_create_subdock_from_scratch (pSubIconList, icon->acName);
 		}
 		gnome_vfs_drive_unref (pDrive);
 	}

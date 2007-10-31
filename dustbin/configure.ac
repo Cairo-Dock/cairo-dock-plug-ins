@@ -9,6 +9,11 @@ AC_CONFIG_HEADER([config.h])
 AM_INIT_AUTOMAKE([foreign])
 AC_PROG_LIBTOOL
 
+
+pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/dustbin]
+AC_SUBST(pkgdatadir)
+
+
 # Checks for programs.
 AC_PROG_CC
 

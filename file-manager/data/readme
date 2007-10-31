@@ -1,3 +1,5 @@
 <u>Author</u> : <b>Fabounet</b>
 <i>A plug-in that adds file-managing abilities to cairo-dock.
-You can drop files, directories and mount points in the dock.</i>
+You can drop files, directories and mount points in the dock,
+and basically interact with the files that are into the dock.
+To configure it, right-click->cairo-dock->configure->modules->file_manager</i>

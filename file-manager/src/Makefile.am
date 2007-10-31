@@ -20,7 +20,7 @@ libfile_manager_la_SOURCES = \
 libfile_manager_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DFILE_MANAGER_SHARE_DATA_DIR=\""$(datadir)/file-manager"\"\
+	-DFILE_MANAGER_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
 	-DFILE_MANAGER_BACKEND_DIR=\""${libdir}"\"\
 	-DFILE_MANAGER_README_FILE=\""readme"\"\
 	-std=c99\

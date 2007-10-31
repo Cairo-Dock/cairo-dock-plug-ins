@@ -42,10 +42,7 @@ void _file_manager_stop_backend (void)
 {
 	s_fm_GnomeOnEventFunc = NULL;
 	if (s_fm_MonitorHandleTable != NULL)
-	{
 		g_hash_table_destroy (s_fm_MonitorHandleTable);
-		s_fm_MonitorHandleTable = NULL;
-	}
 }
 
 
@@ -189,6 +186,8 @@ GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortT
 		cURI = "computer://";
 	else if (strcmp (cBaseURI, FILE_MANAGER_NETWORK) == 0)
 		cURI = "network://";
+	else if (strcmp (cBaseURI, FILE_MANAGER_VFS_ROOT_NETWORK) == 0)
+		cURI = "computer://";
 	else
 		cURI = cBaseURI;
 	
