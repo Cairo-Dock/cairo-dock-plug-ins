@@ -465,11 +465,14 @@ void _file_manager_add_monitor (Icon *pIcon)
 
 static void file_manager_remove_one_monitor (Icon *pIcon, gchar *cURI)
 {
-	g_print (">>> moniteur supprime sur %s (%x)\n", cURI, pIcon);
-	GnomeVFSMonitorHandle *pHandle = g_hash_table_lookup (s_fm_MonitorHandleTable, cURI);
-	//if (pHandle != NULL)
-	//	gnome_vfs_monitor_cancel (pHandle);
-	g_hash_table_remove (s_fm_MonitorHandleTable, cURI);
+	if (cURI != NULL)
+	{
+		g_print (">>> moniteur supprime sur %s (%x)\n", cURI, pIcon);
+		//GnomeVFSMonitorHandle *pHandle = g_hash_table_lookup (s_fm_MonitorHandleTable, cURI);
+		//if (pHandle != NULL)
+		//	gnome_vfs_monitor_cancel (pHandle);
+		g_hash_table_remove (s_fm_MonitorHandleTable, cURI);
+	}
 }
 void _file_manager_remove_monitor (Icon *pIcon)
 {
