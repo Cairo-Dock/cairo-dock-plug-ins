@@ -161,12 +161,10 @@ void file_manager_stop (void)
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) file_manager_notification_click_icon);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_REMOVE_ICON, (CairoDockNotificationFunc) file_manager_notification_remove_icon);
 	
-	gboolean bSomeMonitorRemoved = FALSE;
-	g_hash_table_foreach (g_hDocksTable, (GHFunc) file_manager_unload_directories, &bSomeMonitorRemoved);
+	g_hash_table_foreach (g_hDocksTable, (GHFunc) file_manager_unload_directories, NULL);
 	
 	file_manager_stop_backend ();
-	if (bSomeMonitorRemoved)  // hack pourri, sinon on se prend un seg-fault mysterieux :-(
-		g_module_close (s_fm_pBackendModule);
+	g_module_close (s_fm_pBackendModule);
 	s_fm_pBackendModule = NULL;
 	
 	if (my_fm_pIcon != NULL && my_fm_pIcon->pSubDock != NULL)

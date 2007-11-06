@@ -235,7 +235,7 @@ void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer d
 	}
 }
 
-void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gboolean *bSomeMonitorRemoved)
+void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gpointer data)
 {
 	GList *ic;
 	Icon *icon;
@@ -245,19 +245,19 @@ void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gboolean *
 		if (icon->cBaseURI != NULL)  //  && icon->pSubDock->icons != NULL
 		{
 			file_manager_remove_monitor (icon);
-			*bSomeMonitorRemoved = TRUE;
 			
 			if (icon->pSubDock != NULL)
 			{
+				g_print ("  on vide le sous-dock de %s\n", icon->acName);
 				GList *pIconList = icon->pSubDock->icons;
 				icon->pSubDock->icons = NULL;
 				
-				Icon *icon;
+				Icon *pSubIcon;
 				GList *ic;
 				for (ic = pIconList; ic != NULL; ic = ic->next)
 				{
-					icon = ic->data;
-					cairo_dock_free_icon (icon);
+					pSubIcon = ic->data;
+					cairo_dock_free_icon (pSubIcon);
 				}
 				g_list_free (pIconList);
 			}
