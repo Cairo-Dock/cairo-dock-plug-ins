@@ -75,7 +75,7 @@ void cd_rendering_set_subdock_position_caroussel (Icon *pPointedIcon, CairoDock 
 void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->iFlatDockWidth, pDock->iScrollOffset);
-	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->iFlatDockWidth, my_rendering_fForegroundRatio)) + 1;
+	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->iFlatDockWidth, my_rendering_fForegroundRatio, 2 * g_iDockRadius + 2 * g_iFrameMargin + g_iDockLineWidth));
 	pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
 	
 	int iEllipseHeight = (1 + g_fAmplitude) * pDock->iMaxIconHeight + my_rendering_iGapOnEllipse;

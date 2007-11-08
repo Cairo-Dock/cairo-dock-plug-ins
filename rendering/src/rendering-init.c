@@ -46,7 +46,7 @@ Icon *cd_rendering_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	//\_______________ On enregistre les vues.
 	cd_rendering_register_caroussel_renderer ();
 	
-	//cd_rendering_register_parabole_renderer ();
+	cd_rendering_register_parabole_renderer ();
 	
 	cairo_dock_set_all_views_to_default ();
 	
@@ -56,7 +56,7 @@ Icon *cd_rendering_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 void cd_rendering_stop (void)
 {
 	cairo_dock_remove_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME);
-	//cairo_dock_remove_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);
 	
 	cairo_dock_reset_all_views ();
 }

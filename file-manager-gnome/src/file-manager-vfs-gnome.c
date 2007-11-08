@@ -50,7 +50,7 @@ void _file_manager_stop_backend (void)
 
 
 
-static gboolean file_manager_follow_desktop_link (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID)
+static gboolean file_manager_get_file_info_from_desktop_link (gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID)
 {
 	g_print ("%s (%s)\n", __func__, cBaseURI);
 	GError *erreur = NULL;
@@ -139,7 +139,7 @@ void _file_manager_get_file_info (gchar *cBaseURI, gchar **cName, gchar **cURI, 
 	if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (cMimeType, "application/x-desktop") == 0)
 	{
 		gnome_vfs_file_info_unref (info);
-		file_manager_follow_desktop_link (cFullURI, cName, cURI, cIconName, bIsDirectory, iVolumeID);
+		file_manager_get_file_info_from_desktop_link (cFullURI, cName, cURI, cIconName, bIsDirectory, iVolumeID);
 		*fOrder = 0;
 		return ;
 	}
@@ -260,7 +260,7 @@ GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortT
 				if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (info->mime_type, "application/x-desktop") == 0)
 				{
 					gboolean bIsDirectory = FALSE;
-					file_manager_follow_desktop_link (cFileURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
+					file_manager_get_file_info_from_desktop_link (cFileURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
 					g_print ("  bIsDirectory : %d; iVolumeID : %d\n", bIsDirectory, icon->iVolumeID);
 					
 				}
@@ -492,14 +492,13 @@ void _file_manager_remove_monitor (Icon *pIcon)
 }
 
 
-void _file_manager_delete_file (gchar *cURI)
+gboolean _file_manager_delete_file (gchar *cURI)
 {
 	GnomeVFSResult r = gnome_vfs_unlink (cURI);
-	if (r != GNOME_VFS_OK)
-		g_print ("Attention : couldn't delete this file.\nCheck that you have writing rights on this file.\n");
+	return (r == GNOME_VFS_OK);
 }
 
-void _file_manager_rename_file (gchar *cOldURI, gchar *cNewName)
+gboolean _file_manager_rename_file (gchar *cOldURI, const gchar *cNewName)
 {
 	GnomeVFSURI *pVfsUri = gnome_vfs_uri_new (cOldURI);
 	gchar *cPath = gnome_vfs_uri_extract_dirname (pVfsUri);
@@ -512,20 +511,18 @@ void _file_manager_rename_file (gchar *cOldURI, gchar *cNewName)
 	GnomeVFSResult r= gnome_vfs_move (cOldURI,
 		cNewURI,
 		FALSE);
-	if (r != GNOME_VFS_OK)
-		g_print ("Attention : couldn't rename this file.\nCheck that you have writing rights, and that the new name does not already exist.\n");
 	g_free (cNewURI);
+	return (r == GNOME_VFS_OK);
 }
 
-void _file_manager_move_file (gchar *cURI, gchar *cDirectoryURI)
+gboolean _file_manager_move_file (gchar *cURI, gchar *cDirectoryURI)
 {
 	g_print (" %s -> %s\n", cURI, cDirectoryURI);
 	
 	GnomeVFSResult r= gnome_vfs_move (cURI,
 		cDirectoryURI,
 		FALSE);
-	if (r != GNOME_VFS_OK)
-		g_print ("Attention : couldn't move this file.\nCheck that you have writing rights, and that the name does not already exist.\n");
+	return (r == GNOME_VFS_OK);
 }
 
 void _file_manager_get_file_properties (gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask)

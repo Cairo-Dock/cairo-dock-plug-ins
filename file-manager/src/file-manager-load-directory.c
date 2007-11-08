@@ -125,13 +125,19 @@ Icon *file_manager_create_icon_from_URI (gchar *cURI, CairoDock *pDock)
 }
 void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar *cURI, Icon *pIcon)
 {
+	g_return_if_fail (cURI != NULL && pIcon != NULL);
 	g_print ("%s (%d sur %s)\n", __func__, iEventType, cURI);
 	
 	if (iEventType == FILE_MANAGER_ICON_DELETED)
 	{
 		Icon *pConcernedIcon;
 		CairoDock *pParentDock;
-		if (pIcon->pSubDock != NULL)
+		if (strcmp (cURI, pIcon->cBaseURI) == 0)
+		{
+			pConcernedIcon = pIcon;
+			pParentDock = cairo_dock_search_container_from_icon (pIcon);
+		}
+		else if (pIcon->pSubDock != NULL)
 		{
 			pConcernedIcon = cairo_dock_get_icon_with_base_uri (pIcon->pSubDock->icons, cURI);
 			g_return_if_fail (pConcernedIcon != NULL);
@@ -139,13 +145,13 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 		}
 		else
 		{
-			pConcernedIcon = pIcon;
-			pParentDock = cairo_dock_search_container_from_icon (pIcon);
+			g_print ("  on n'aurait pas du recevoir cet evenement !\n");
+			return ;
 		}
-		g_print ("%s est supprimee\n", pConcernedIcon->acName);
+		g_print ("  %s sera supprimee\n", pConcernedIcon->acName);
 		
 		cairo_dock_remove_one_icon_from_dock (pParentDock, pConcernedIcon);
-		if (pConcernedIcon->acDesktopFileName != NULL)
+		if (pConcernedIcon->acDesktopFileName != NULL)  // alors elle a un moniteur.
 			file_manager_remove_monitor (pConcernedIcon);
 		cairo_dock_update_dock_size (pParentDock);
 		cairo_dock_free_icon (pConcernedIcon);
@@ -158,13 +164,15 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 	}
 	else if (iEventType == FILE_MANAGER_ICON_CREATED)
 	{
-		Icon *pNewIcon = file_manager_create_icon_from_URI (cURI, pIcon->pSubDock);
-		
-		cairo_dock_insert_icon_in_dock (pNewIcon, pIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
-		/*if (! pIcon->pSubDock->bInside && g_bAutoHide && pIcon->pSubDock->bAtBottom)
-			pNewIcon->fPersonnalScale = - 0.05;
-		if (pIcon->pSubDock->iSidShrinkDown == 0)
-			pIcon->pSubDock->iSidShrinkDown = g_timeout_add (50, (GSourceFunc) cairo_dock_shrink_down, (gpointer) pIcon->pSubDock);*/
+		if (strcmp (cURI, pIcon->cBaseURI) != 0 && pIcon->pSubDock != NULL)  // dans des cas foirreux, il se peut que le fichier soit cree alors qu'il existait deja dans le dock.
+		{
+			Icon *pNewIcon = file_manager_create_icon_from_URI (cURI, pIcon->pSubDock);
+			
+			cairo_dock_insert_icon_in_dock (pNewIcon, pIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
+			g_print ("  %s a ete insere\n", pNewIcon->acName);
+			/*if (pIcon->pSubDock->iSidShrinkDown == 0)
+				pIcon->pSubDock->iSidShrinkDown = g_timeout_add (50, (GSourceFunc) cairo_dock_shrink_down, (gpointer) pIcon->pSubDock);*/
+		}
 	}
 	else if (iEventType == FILE_MANAGER_ICON_MODIFIED)
 	{
@@ -181,7 +189,7 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 			g_return_if_fail (pConcernedIcon != NULL);
 			pParentDock = pIcon->pSubDock;
 		}
-		g_print ("%s est modifiee (iRefCount:%d)\n", pConcernedIcon->acName, pParentDock->iRefCount);
+		g_print ("  %s est modifiee (iRefCount:%d)\n", pConcernedIcon->acName, pParentDock->iRefCount);
 		
 		Icon *pNewIcon = file_manager_alter_icon_if_necessary (pConcernedIcon, pParentDock);
 		

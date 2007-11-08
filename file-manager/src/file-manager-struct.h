@@ -56,9 +56,9 @@ typedef void (*FileManagerUnmountFunc) (gchar *cURI, FileManagerMountCallback pC
 typedef void (*FileManagerAddMonitorFunc) (Icon *pIcon);
 
 
-typedef void (*FileManagerDeleteFileFunc) (gchar *cURI);
-typedef void (*FileManagerRenameFileFunc) (gchar *cOldURI, gchar *cNewName);
-typedef void (*FileManagerMoveFileFunc) (gchar *cURI, gchar *cDirectoryURI);
+typedef gboolean (*FileManagerDeleteFileFunc) (gchar *cURI);
+typedef gboolean (*FileManagerRenameFileFunc) (gchar *cOldURI, const gchar *cNewName);
+typedef gboolean (*FileManagerMoveFileFunc) (gchar *cURI, gchar *cDirectoryURI);
 typedef void (*FileManagerFilePropertiesFunc) (gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask);
 
 #endif
