@@ -25,7 +25,7 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 	gchar *cNewDesktopFileName = NULL;
 	
 	//\___________________ On ouvre le patron.
-	gchar *cDesktopFileTemplate = cairo_dock_get_template_path ("launcher");
+	gchar *cDesktopFileTemplate = cairo_dock_get_launcher_template_conf_file ();
 	
 	GKeyFile *pKeyFile = g_key_file_new ();
 	g_key_file_load_from_file (pKeyFile, cDesktopFileTemplate, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &tmp_erreur);
@@ -75,7 +75,7 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 	
 	
 	//\___________________ On lui choisit un nom de fichier tel qu'il n'y ait pas de collision.
-	cNewDesktopFileName = cairo_dock_generate_desktop_filename (g_cCurrentLaunchersPath);
+	cNewDesktopFileName = cairo_dock_generate_desktop_filename ("file-launcher.desktop", g_cCurrentLaunchersPath);
 	
 	//\___________________ On ecrit tout.
 	gchar *cNewDesktopFilePath = g_strdup_printf ("%s/%s", g_cCurrentLaunchersPath, cNewDesktopFileName);
