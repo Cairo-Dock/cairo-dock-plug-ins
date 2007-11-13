@@ -16,7 +16,7 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 
 
 void file_manager_reload_directories (gchar *cName, CairoDock *pDock, gpointer data);
-void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gpointer data);
+void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gboolean *bSomethingUnloaded);
 
 
 GList *file_manager_sort_files (GList *pIconList, FileManagerSortType iSortType);

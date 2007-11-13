@@ -430,7 +430,8 @@ static void file_manager_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
 		default :
 		return ;
 	}
-	s_fm_GnomeOnEventFunc (iEventType, info_uri, pIcon);
+	if (s_fm_GnomeOnEventFunc != NULL)
+		s_fm_GnomeOnEventFunc (iEventType, info_uri, pIcon);
 }
 
 
