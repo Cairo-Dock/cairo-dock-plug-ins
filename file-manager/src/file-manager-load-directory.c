@@ -167,9 +167,10 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 		if (strcmp (cURI, pIcon->cBaseURI) != 0 && pIcon->pSubDock != NULL)  // dans des cas foirreux, il se peut que le fichier soit cree alors qu'il existait deja dans le dock.
 		{
 			Icon *pNewIcon = file_manager_create_icon_from_URI (cURI, pIcon->pSubDock);
+			g_return_if_fail (pNewIcon != NULL);
 			
 			cairo_dock_insert_icon_in_dock (pNewIcon, pIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO);
-			g_print ("  %s a ete insere\n", pNewIcon->acName);
+			g_print ("  %s a ete insere(e)\n", (pNewIcon != NULL ? pNewIcon->acName : "aucune icone"));
 			/*if (pIcon->pSubDock->iSidShrinkDown == 0)
 				pIcon->pSubDock->iSidShrinkDown = g_timeout_add (50, (GSourceFunc) cairo_dock_shrink_down, (gpointer) pIcon->pSubDock);*/
 		}
@@ -182,6 +183,7 @@ void file_monitor_action_on_event (FileManagerEventType iEventType, const gchar 
 		{
 			pConcernedIcon = pIcon;
 			pParentDock = cairo_dock_search_container_from_icon (pIcon);
+			g_return_if_fail (pParentDock != NULL);
 		}
 		else if (pIcon->pSubDock != NULL)  // c'est a l'interieur du repertoire qu'elle represente.
 		{
