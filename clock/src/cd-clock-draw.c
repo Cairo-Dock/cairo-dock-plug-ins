@@ -61,6 +61,20 @@ gboolean cd_clock_update_with_time (Icon *icon)
 	else
 		cd_clock_draw_text (my_pCairoContext, &epoch_tm);
 	
+	if (my_pDock->bUseReflect)
+	{
+		cairo_surface_t *pReflet = icon->pReflectionBuffer;
+		icon->pReflectionBuffer = NULL;
+		cairo_surface_destroy (pReflet);
+		
+		icon->pReflectionBuffer = cairo_dock_create_reflection_surface (icon->pIconBuffer,
+			my_pCairoContext,
+			(my_pDock->bHorizontalDock ? icon->fWidth : icon->fHeight) * (1 + g_fAmplitude),
+			(my_pDock->bHorizontalDock ? icon->fHeight : icon->fWidth) * (1 + g_fAmplitude),
+			my_pDock->bHorizontalDock);
+	}
+	
+	
 	cairo_dock_redraw_my_icon (icon, my_pDock);
 	
 	if (!my_bShowSeconds || epoch_tm.tm_min != iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement à exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur my_bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.

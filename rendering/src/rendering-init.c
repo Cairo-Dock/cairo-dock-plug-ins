@@ -17,9 +17,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #define CD_RENDERING_CONF_FILE "rendering.conf"
 #define CD_RENDERING_USER_DATA_DIR "rendering"
 
-double my_rendering_fInclination;
-int my_rendering_iGapOnEllipse;
 double my_rendering_fForegroundRatio;
+double my_rendering_iGapOnEllipse;
 gboolean my_rendering_bRotateIconsOnEllipse = FALSE;
 
 double my_rendering_fParabolePower = .5;

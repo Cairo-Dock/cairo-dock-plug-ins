@@ -11,10 +11,12 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "rendering-config.h"
 
-extern double my_rendering_fInclination;
-extern int my_rendering_iGapOnEllipse;
 extern double my_rendering_fForegroundRatio;
+extern double my_rendering_iGapOnEllipse;;
 extern gboolean my_rendering_bRotateIconsOnEllipse;
+
+extern double my_rendering_fParabolePower;
+extern double my_rendering_fParaboleFactor;
 
 
 void cd_rendering_read_conf_file (gchar *cConfFilePath)
@@ -31,13 +33,9 @@ void cd_rendering_read_conf_file (gchar *cConfFilePath)
 		return ;
 	}
 	
-	
-	double fAngle = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "angle", &bFlushConfFileNeeded, 30.);
-	my_rendering_fInclination = tan (fAngle * G_PI / 180.);
-	
-	my_rendering_iGapOnEllipse = cairo_dock_get_integer_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10);
-	
 	my_rendering_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5);
+	
+	my_rendering_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, .5);
 	
 	my_rendering_bRotateIconsOnEllipse = ! cairo_dock_get_boolean_key_value (pKeyFile, "Caroussel", "show face", &bFlushConfFileNeeded, FALSE);
 	

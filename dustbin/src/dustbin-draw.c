@@ -114,6 +114,19 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 		cairo_paint (my_dustbin_pCairoContext);
 		cairo_restore (my_dustbin_pCairoContext);
 		
+		if (my_dustbin_pDock->bUseReflect)
+		{
+			cairo_surface_t *pReflet = icon->pReflectionBuffer;
+			icon->pReflectionBuffer = NULL;
+			cairo_surface_destroy (pReflet);
+			
+			icon->pReflectionBuffer = cairo_dock_create_reflection_surface (icon->pIconBuffer,
+				my_dustbin_pCairoContext,
+				(my_dustbin_pDock->bHorizontalDock ? icon->fWidth : icon->fHeight) * (1 + g_fAmplitude),
+				(my_dustbin_pDock->bHorizontalDock ? icon->fHeight : icon->fWidth) * (1 + g_fAmplitude),
+				my_dustbin_pDock->bHorizontalDock);
+		}
+		
 		cairo_dock_redraw_my_icon (icon, my_dustbin_pDock);
 	}
 	
