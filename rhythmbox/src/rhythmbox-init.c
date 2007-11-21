@@ -46,7 +46,6 @@ Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 {
 	g_print ("%s ()\n", __func__);
 	
-
 	rhythmbox_pDock = pDock;
 	
 	//\_______________ On verifie que nos fichiers existent.
@@ -61,9 +60,11 @@ Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	rhythmbox_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, conf_defaultTitle, NULL);
 	rhythmbox_pCairoContext = cairo_create (rhythmbox_pIcon->pIconBuffer);
 	
+	GString *sImagePath = g_string_new ("");
 	//Chargement de l'image "default"
+	g_string_printf (sImagePath, "%s/default.svg", RHYTHMBOX_SHARE_DATA_DIR);
 	rhythmbox_pSurface = cairo_dock_create_surface_from_image (
-		g_strdup_printf ("%s/default.svg", RHYTHMBOX_SHARE_DATA_DIR),
+		sImagePath->str,
 		rhythmbox_pCairoContext,
 		1 + g_fAmplitude,
 		(int) rhythmbox_pIcon->fWidth,
@@ -74,8 +75,9 @@ Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 		0, 1, FALSE
 	);
 	//Chargement de l'image "pause"
+	g_string_printf (sImagePath, "%s/pause.svg", RHYTHMBOX_SHARE_DATA_DIR);
 	rhythmbox_pPauseSurface = cairo_dock_create_surface_from_image (
-		g_strdup_printf ("%s/pause.svg", RHYTHMBOX_SHARE_DATA_DIR),
+		sImagePath->str,
 		rhythmbox_pCairoContext,
 		1 + g_fAmplitude,
 		(int) rhythmbox_pIcon->fWidth,
@@ -86,8 +88,9 @@ Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 		0, 1, FALSE
 	);
 	//Chargement de l'image "play"
+	g_string_printf (sImagePath, "%s/pause.svg", RHYTHMBOX_SHARE_DATA_DIR);
 	rhythmbox_pPlaySurface = cairo_dock_create_surface_from_image (
-		g_strdup_printf ("%s/play.svg", RHYTHMBOX_SHARE_DATA_DIR),
+		sImagePath->str,
 		rhythmbox_pCairoContext,
 		1 + g_fAmplitude,
 		(int) rhythmbox_pIcon->fWidth,
@@ -98,8 +101,9 @@ Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 		0, 1, FALSE
 	);
 	//Chargement de l'image "stop"
+	g_string_printf (sImagePath, "%s/pause.svg", RHYTHMBOX_SHARE_DATA_DIR);
 	rhythmbox_pStopSurface = cairo_dock_create_surface_from_image (
-		g_strdup_printf ("%s/stop.svg", RHYTHMBOX_SHARE_DATA_DIR),
+		sImagePath->str,
 		rhythmbox_pCairoContext,
 		1 + g_fAmplitude,
 		(int) rhythmbox_pIcon->fWidth,
@@ -110,8 +114,9 @@ Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 		0, 1, FALSE
 	);
 	//Chargement de l'image "play"
+	g_string_printf (sImagePath, "%s/pause.svg", RHYTHMBOX_SHARE_DATA_DIR);
 	rhythmbox_pBrokenSurface = cairo_dock_create_surface_from_image (
-		g_strdup_printf ("%s/broken.svg", RHYTHMBOX_SHARE_DATA_DIR),
+		sImagePath->str,
 		rhythmbox_pCairoContext,
 		1 + g_fAmplitude,
 		(int) rhythmbox_pIcon->fWidth,
@@ -121,10 +126,12 @@ Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 		&fImageWidth, &fImageHeight,
 		0, 1, FALSE
 	);
+	g_string_free (sImagePath, TRUE);
 	
 	if(rhythmbox_dbus_enable)
 	{
 		cairo_set_source_surface (rhythmbox_pCairoContext,rhythmbox_pSurface,0,0);
+		
 	}
 	else
 	{
@@ -132,6 +139,18 @@ Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	}
 	
 	cairo_paint (rhythmbox_pCairoContext);
+	
+	rhythmbox_pIcon->pReflectionBuffer = cairo_dock_create_reflection_surface (rhythmbox_pIcon->pIconBuffer,
+		rhythmbox_pCairoContext,
+		(rhythmbox_pDock->bHorizontalDock ? rhythmbox_pIcon->fWidth : rhythmbox_pIcon->fHeight) * (1 + g_fAmplitude),
+		(rhythmbox_pDock->bHorizontalDock ? rhythmbox_pIcon->fHeight : rhythmbox_pIcon->fWidth) * (1 + g_fAmplitude),
+		rhythmbox_pDock->bHorizontalDock);
+	rhythmbox_pIcon->pFullIconBuffer = cairo_dock_create_icon_surface_with_reflexion (rhythmbox_pIcon->pIconBuffer,
+		rhythmbox_pIcon->pReflectionBuffer,
+		rhythmbox_pCairoContext,
+		(rhythmbox_pDock->bHorizontalDock ? rhythmbox_pIcon->fWidth : rhythmbox_pIcon->fHeight) * (1 + g_fAmplitude),
+		(rhythmbox_pDock->bHorizontalDock ? rhythmbox_pIcon->fHeight : rhythmbox_pIcon->fWidth) * (1 + g_fAmplitude),
+		rhythmbox_pDock->bHorizontalDock);
 	
 	//Enregistrement des notifications	
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) rhythmbox_action, CAIRO_DOCK_RUN_FIRST);
@@ -147,10 +166,22 @@ Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 void cd_rhythmbox_stop (void)
 {
 	g_print ("%s ()\n", __func__);
+	rhythmbox_pIcon->pIconBuffer = NULL;  // car c'est l'un des tampons.
 	rhythmbox_pIcon = NULL;
 	
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) rhythmbox_action);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) rhythmbox_notification_build_menu);
+	
+	cairo_surface_destroy (rhythmbox_pSurface);
+	rhythmbox_pSurface = NULL;
+	cairo_surface_destroy (rhythmbox_pPlaySurface);
+	rhythmbox_pPlaySurface = NULL;
+	cairo_surface_destroy (rhythmbox_pPauseSurface);
+	rhythmbox_pPauseSurface = NULL;
+	cairo_surface_destroy (rhythmbox_pStopSurface);
+	rhythmbox_pStopSurface = NULL;
+	cairo_surface_destroy (rhythmbox_pBrokenSurface);
+	rhythmbox_pBrokenSurface = NULL;
 }
 
 //*********************************************************************************

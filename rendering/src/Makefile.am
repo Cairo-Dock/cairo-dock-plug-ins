@@ -18,7 +18,9 @@ libcd_rendering_la_SOURCES = \
 	rendering-caroussel.c\
 	rendering-caroussel.h\
 	rendering-parabole.c\
-	rendering-parabole.h
+	rendering-parabole.h\
+	rendering-3D-plane.c\
+	rendering-3D-plane.h
 
 
 libcd_rendering_la_CFLAGS = \
