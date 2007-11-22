@@ -13,7 +13,7 @@ void cd_rendering_set_subdock_position_caroussel (Icon *pPointedIcon, CairoDock 
 void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock);
 
 
-void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxIconHeight, int iMaxIconWidth, int iEllipseHeight, gboolean bDirectionUp, double fExtraWidth, double fLinearWidth);
+void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxIconHeight, int iMaxIconWidth, int iEllipseHeight, gboolean bDirectionUp, double fExtraWidth, double fLinearWidth, double fXFirstIcon);
 
 void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDock, double fRatio);
 

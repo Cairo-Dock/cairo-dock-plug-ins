@@ -278,7 +278,7 @@ void file_manager_unload_directories (gchar *cName, CairoDock *pDock, gboolean *
 }
 
 
-static int file_manager_sort_by_name (Icon *icon1, Icon *icon2)
+/*static int file_manager_sort_by_name (Icon *icon1, Icon *icon2)
 {
 	gchar *cURI_1 = g_ascii_strdown (icon1->acName, -1);
 	gchar *cURI_2 = g_ascii_strdown (icon2->acName, -1);
@@ -316,4 +316,4 @@ GList *file_manager_sort_files (GList *pIconList, FileManagerSortType iSortType)
 		pSortedIconList = g_list_sort (pIconList, (GCompareFunc) file_manager_sort_by_other);
 	}
 	return pSortedIconList;
-}
+}*/

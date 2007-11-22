@@ -145,7 +145,7 @@ Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 		(rhythmbox_pDock->bHorizontalDock ? rhythmbox_pIcon->fWidth : rhythmbox_pIcon->fHeight) * (1 + g_fAmplitude),
 		(rhythmbox_pDock->bHorizontalDock ? rhythmbox_pIcon->fHeight : rhythmbox_pIcon->fWidth) * (1 + g_fAmplitude),
 		rhythmbox_pDock->bHorizontalDock);
-	rhythmbox_pIcon->pFullIconBuffer = cairo_dock_create_icon_surface_with_reflexion (rhythmbox_pIcon->pIconBuffer,
+	rhythmbox_pIcon->pFullIconBuffer = cairo_dock_create_icon_surface_with_reflection (rhythmbox_pIcon->pIconBuffer,
 		rhythmbox_pIcon->pReflectionBuffer,
 		rhythmbox_pCairoContext,
 		(rhythmbox_pDock->bHorizontalDock ? rhythmbox_pIcon->fWidth : rhythmbox_pIcon->fHeight) * (1 + g_fAmplitude),

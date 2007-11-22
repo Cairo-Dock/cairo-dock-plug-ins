@@ -301,7 +301,10 @@ GList *_file_manager_list_directory (gchar *cBaseURI, FileManagerSortType iSortT
 		gnome_vfs_directory_close (handle);
 		gnome_vfs_file_info_unref (info);
 		
-		pIconList = file_manager_sort_files (pIconList, iSortType);
+		if (iSortType == FILE_MANAGER_SORT_BY_NAME)
+			pIconList = cairo_dock_sort_icons_by_name (pIconList);
+		else
+			pIconList = cairo_dock_sort_icons_by_order (pIconList);
 	}
 	
 	return pIconList;

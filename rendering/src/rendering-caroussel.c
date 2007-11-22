@@ -96,11 +96,11 @@ void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 }
 
 
-void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxIconHeight, int iMaxIconWidth, int iEllipseHeight, gboolean bDirectionUp, double fExtraWidth, double fLinearWidth)
+void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxIconHeight, int iMaxIconWidth, int iEllipseHeight, gboolean bDirectionUp, double fExtraWidth, double fLinearWidth, double fXFirstIcon)
 {
-	double fXIconCenter = icon->fX + icon->fWidth * icon->fScale / 2;  // abscisse du centre de l'icone.
+	double fXIconCenter = icon->fX + icon->fWidth * icon->fScale / 2 - fXFirstIcon;  // abscisse du centre de l'icone.
 	double fTheta = (fXIconCenter - .5*fLinearWidth) / fLinearWidth * 2 * G_PI;  // changement de repere, dans ]-pi, pi[.
-	//g_print ("fXIconCenter : %.2f => Theta : %.2f (%dx%d)\n", fXIconCenter, fTheta, iCurrentWidth, iCurrentHeight);
+	g_print ("fXIconCenter : %.2f / %.2f => Theta : %.2f (%dx%d)\n", fXIconCenter, fLinearWidth, fTheta, iCurrentWidth, iCurrentHeight);
 	
 	double a = .5 * iEllipseHeight;  // parametres de l'ellipse, theta=0 en bas (c'est-a-dire devant nous).
 	double b = .5 * (iCurrentWidth - fExtraWidth - (my_rendering_bRotateIconsOnEllipse ? 0 : iMaxIconWidth));
@@ -128,7 +128,7 @@ void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int i
 		icon->fAlpha = MAX (0.4, sin (fTheta) * sin (fTheta));
 	}
 	icon->fDrawY = fYIconBottomDraw  - (bDirectionUp ? icon->fHeight * icon->fScale : 0);
-	//g_print ("%s : fTheta = %.2f ; fWidthFactor = %.2f ; fDrawX = %.2f\n", icon->acName, fTheta, icon->fWidthFactor, icon->fDrawX);
+	g_print ("%s : fTheta = %.2f ; fWidthFactor = %.2f ; fDrawX = %.2f\n", icon->acName, fTheta, icon->fWidthFactor, icon->fDrawX);
 }
 
 
@@ -258,12 +258,14 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 	int iFrameHeight = iEllipseHeight + 2 * g_iFrameMargin + g_fReflectSize;
 	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (iFrameHeight, my_rendering_fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
 	double fLinearWidth = cairo_dock_get_current_dock_width_linear (pDock);
+	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+	double fXFirstIcon = (pFirstIcon != NULL ? pFirstIcon->fX : 0);
 	Icon* icon;
 	GList* ic;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		cd_rendering_calculate_construction_parameters_caroussel (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iMaxIconHeight, 48, iEllipseHeight, g_bDirectionUp, fExtraWidth, fLinearWidth);  // il manque un pDock->iMaxIconWidth...
+		cd_rendering_calculate_construction_parameters_caroussel (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iMaxIconHeight, 48, iEllipseHeight, g_bDirectionUp, fExtraWidth, fLinearWidth, fXFirstIcon);  // il manque un pDock->iMaxIconWidth...
 		cairo_dock_manage_animations (icon, pDock);
 	}
 	
