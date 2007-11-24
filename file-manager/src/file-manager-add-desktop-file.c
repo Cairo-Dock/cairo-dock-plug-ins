@@ -60,13 +60,14 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 	
 	if (bIsDirectory)
 	{
-		GtkWidget *dialog = gtk_message_dialog_new (GTK_WINDOW (pDock->pWidget),
+		/*GtkWidget *dialog = gtk_message_dialog_new (GTK_WINDOW (pDock->pWidget),
 			GTK_DIALOG_DESTROY_WITH_PARENT,
 			GTK_MESSAGE_QUESTION,
 			GTK_BUTTONS_YES_NO,
-			"Do you want to monitor this directory ?");
+			"Do you want to monitor the content of the directory ?");
 		int answer = gtk_dialog_run (GTK_DIALOG (dialog));
-		gtk_widget_destroy (dialog);
+		gtk_widget_destroy (dialog);*/
+		int answer = cairo_dock_ask_general_question_and_wait ("Do you want to monitor the content of the directory ?");
 		if (answer != GTK_RESPONSE_YES)
 			bIsDirectory = FALSE;
 	}
