@@ -44,13 +44,13 @@ gboolean my_fm_bShowNetwork;
 CairoDockDesktopEnv my_fm_iDesktopEnv;
 
 
-gchar *file_manager_pre_init (void)
+gchar *pre_init (void)
 {
         return g_strdup_printf ("%s/%s", FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_README_FILE);
 }
 
 
-Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
+Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	*cConfFilePath = cairo_dock_check_conf_file_exists (FILE_MANAGER_USER_DATA_DIR, FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_CONF_FILE);
@@ -154,7 +154,7 @@ Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	return my_fm_pIcon;
 }
 
-void file_manager_stop (void)
+void stop (void)
 {
 	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) file_manager_notification_build_menu);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_DROP_DATA, (CairoDockNotificationFunc) file_manager_notification_drop_data);

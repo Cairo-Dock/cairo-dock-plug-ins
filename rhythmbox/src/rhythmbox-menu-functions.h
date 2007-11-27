@@ -12,5 +12,6 @@ void rhythmbox_about (GtkMenuItem *menu_item, gpointer *data);
 
 gboolean rhythmbox_notification_build_menu (gpointer *data);
 
+gboolean rhythmbox_action (gpointer *data);
 
 #endif

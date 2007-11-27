@@ -15,11 +15,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "dustbin-draw.h"
 
 
-extern CairoDock *my_dustbin_pDock;
+extern CairoDock *myDock;
 extern gchar **my_dustbin_cTrashDirectoryList;
 extern int *my_dustbin_pTrashState;
 extern GtkWidget *my_dustbin_pWidget;
-extern cairo_t *my_dustbin_pCairoContext;
+extern cairo_t *myDrawContext;
 extern cairo_surface_t *my_dustbin_pEmptyBinSurface;
 extern cairo_surface_t *my_dustbin_pFullBinSurface;
 extern GtkWidget **my_dustbin_pShowToggleList;
@@ -85,19 +85,19 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 	{
 		my_dustbin_iState = iNewState;
 		double fMaxScale = 1 + g_fAmplitude;
-		cairo_save (my_dustbin_pCairoContext);
+		cairo_save (myDrawContext);
 		
-		cairo_set_source_rgba (my_dustbin_pCairoContext, 0.0, 0.0, 0.0, 0.0);
-		cairo_set_operator (my_dustbin_pCairoContext, CAIRO_OPERATOR_SOURCE);
-		cairo_paint (my_dustbin_pCairoContext);
+		cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
+		cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
+		cairo_paint (myDrawContext);
 		
-		cairo_set_operator (my_dustbin_pCairoContext, CAIRO_OPERATOR_OVER);
+		cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 		
 		if (iNewState == CD_DUSTBIN_EMPTY)
 		{
 			//g_print (" -> on a vide la corbeille\n");
 			g_return_val_if_fail (my_dustbin_pEmptyBinSurface != NULL, TRUE);
-			cairo_set_source_surface (my_dustbin_pCairoContext,
+			cairo_set_source_surface (myDrawContext,
 				my_dustbin_pEmptyBinSurface,
 				0,
 				0);
@@ -106,28 +106,28 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 		{
 			//g_print (" -> on a rempli la corbeille\n");
 			g_return_val_if_fail (my_dustbin_pFullBinSurface != NULL, TRUE);
-			cairo_set_source_surface (my_dustbin_pCairoContext,
+			cairo_set_source_surface (myDrawContext,
 				my_dustbin_pFullBinSurface,
 				0,
 				0);
 		}
-		cairo_paint (my_dustbin_pCairoContext);
-		cairo_restore (my_dustbin_pCairoContext);
+		cairo_paint (myDrawContext);
+		cairo_restore (myDrawContext);
 		
-		if (my_dustbin_pDock->bUseReflect)
+		if (myDock->bUseReflect)
 		{
 			cairo_surface_t *pReflet = icon->pReflectionBuffer;
 			icon->pReflectionBuffer = NULL;
 			cairo_surface_destroy (pReflet);
 			
 			icon->pReflectionBuffer = cairo_dock_create_reflection_surface (icon->pIconBuffer,
-				my_dustbin_pCairoContext,
-				(my_dustbin_pDock->bHorizontalDock ? icon->fWidth : icon->fHeight) * (1 + g_fAmplitude),
-				(my_dustbin_pDock->bHorizontalDock ? icon->fHeight : icon->fWidth) * (1 + g_fAmplitude),
-				my_dustbin_pDock->bHorizontalDock);
+				myDrawContext,
+				(myDock->bHorizontalDock ? icon->fWidth : icon->fHeight) * (1 + g_fAmplitude),
+				(myDock->bHorizontalDock ? icon->fHeight : icon->fWidth) * (1 + g_fAmplitude),
+				myDock->bHorizontalDock);
 		}
 		
-		cairo_dock_redraw_my_icon (icon, my_dustbin_pDock);
+		cairo_dock_redraw_my_icon (icon, myDock);
 	}
 	
 	return TRUE;

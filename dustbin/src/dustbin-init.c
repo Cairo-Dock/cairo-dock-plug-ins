@@ -19,12 +19,12 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #define CD_DUSTBIN_USER_DATA_DIR "dustbin"
 
 
-Icon *my_dustbin_pIcon = NULL;
+Icon *myIcon = NULL;
 GtkWidget *my_dustbin_pWidget = NULL;
-CairoDock *my_dustbin_pDock = NULL;
+CairoDock *myDock = NULL;
 GtkWidget *my_dustbin_pMenu = NULL;
 
-cairo_t *my_dustbin_pCairoContext = NULL;
+cairo_t *myDrawContext = NULL;
 double my_dustbin_fCheckInterval;
 int my_dustbin_iSidCheckTrashes = 0;
 gchar **my_dustbin_cTrashDirectoryList = NULL;
@@ -39,13 +39,13 @@ int my_dustbin_iState = -1;
 gchar *my_dustbin_cBrowser = NULL;
 
 
-gchar *cd_dustbin_pre_init (void)
+gchar *pre_init (void)
 {
 	return g_strdup_printf ("%s/%s", CD_DUSTBIN_SHARE_DATA_DIR, CD_DUSTBIN_README_FILE);
 }
 
 
-Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
+Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	*cConfFilePath = cairo_dock_check_conf_file_exists (CD_DUSTBIN_USER_DATA_DIR, CD_DUSTBIN_SHARE_DATA_DIR, CD_DUSTBIN_CONF_FILE);
@@ -151,13 +151,13 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	//\_______________ On cree notre icone.
 	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
-	my_dustbin_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL);
+	myIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL);
 	cairo_destroy (pSourceContext);
 	
-	my_dustbin_pDock = pDock;
+	myDock = pDock;
 	my_dustbin_pWidget = pDock->pWidget;
-	my_dustbin_pCairoContext = cairo_create (my_dustbin_pIcon->pIconBuffer);
-	g_return_val_if_fail (my_dustbin_pCairoContext != NULL, NULL);
+	myDrawContext = cairo_create (myIcon->pIconBuffer);
+	g_return_val_if_fail (myDrawContext != NULL, NULL);
 	
 	
 	//\_______________ On charge le theme choisi.
@@ -187,12 +187,12 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 			//g_print ("  %s\n", cElementPath);
 			if (strncmp (cElementName, "trashcan_full", 13) == 0)
 				my_dustbin_pFullBinSurface = cairo_dock_create_surface_from_image (cElementPath,
-					my_dustbin_pCairoContext,
+					myDrawContext,
 					1 + g_fAmplitude,
-					(int) my_dustbin_pIcon->fWidth,
-					(int) my_dustbin_pIcon->fHeight,
-					(int) my_dustbin_pIcon->fWidth,
-					(int) my_dustbin_pIcon->fHeight,
+					(int) myIcon->fWidth,
+					(int) myIcon->fHeight,
+					(int) myIcon->fWidth,
+					(int) myIcon->fHeight,
 					&fImageWidth,
 					&fImageHeight,
 					0,
@@ -200,12 +200,12 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 					FALSE);
 			else if (strncmp (cElementName, "trashcan_empty", 14) == 0)
 				my_dustbin_pEmptyBinSurface = cairo_dock_create_surface_from_image (cElementPath,
-					my_dustbin_pCairoContext,
+					myDrawContext,
 					1 + g_fAmplitude,
-					(int) my_dustbin_pIcon->fWidth,
-					(int) my_dustbin_pIcon->fHeight,
-					(int) my_dustbin_pIcon->fWidth,
-					(int) my_dustbin_pIcon->fHeight,
+					(int) myIcon->fWidth,
+					(int) myIcon->fHeight,
+					(int) myIcon->fWidth,
+					(int) myIcon->fHeight,
 					&fImageWidth,
 					&fImageHeight,
 					0,
@@ -227,15 +227,15 @@ Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	//\_______________ On lance le timer.
 	my_dustbin_pTrashState = g_new0 (int, i);
 	my_dustbin_iState = -1;
-	cd_dustbin_check_trashes (my_dustbin_pIcon);
-	my_dustbin_iSidCheckTrashes = g_timeout_add ((int) (1000 * my_dustbin_fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) my_dustbin_pIcon);
+	cd_dustbin_check_trashes (myIcon);
+	my_dustbin_iSidCheckTrashes = g_timeout_add ((int) (1000 * my_dustbin_fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
 	
 	
 	g_free (cName);
-	return my_dustbin_pIcon;
+	return myIcon;
 }
 
-void cd_dustbin_stop (void)
+void stop (void)
 {
 	//g_print ("%s ()\n", __func__);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_dustbin_notification_click_icon);
@@ -250,10 +250,10 @@ void cd_dustbin_stop (void)
 	
 	g_source_remove (my_dustbin_iSidCheckTrashes);
 	my_dustbin_iSidCheckTrashes = 0;
-	my_dustbin_pIcon = NULL;
+	myIcon = NULL;
 	
-	cairo_destroy (my_dustbin_pCairoContext);
-	my_dustbin_pCairoContext = NULL;
+	cairo_destroy (myDrawContext);
+	myDrawContext = NULL;
 	
 	g_free (my_dustbin_pTrashState);
 	my_dustbin_pTrashState = NULL;

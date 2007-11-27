@@ -5,13 +5,13 @@
 #include <cairo-dock.h>
 
 
-gchar *file_manager_pre_init (void);
+gchar *pre_init (void);
 
 
-Icon *file_manager_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur);
+Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur);
 
 
-void file_manager_stop (void);
+void stop (void);
 
 
 #endif

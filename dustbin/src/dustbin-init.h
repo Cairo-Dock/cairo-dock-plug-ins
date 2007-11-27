@@ -6,13 +6,13 @@
 #include <cairo-dock.h>
 
 
-gchar *cd_dustbin_pre_init (void);
+gchar *pre_init (void);
 
 
-Icon *cd_dustbin_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur);
+Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur);
 
 
-void cd_dustbin_stop (void);
+void stop (void);
 
 
 #endif

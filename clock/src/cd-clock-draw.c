@@ -16,9 +16,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "cd-clock-draw.h"
 
 
-extern Icon *my_pIcon;
-extern cairo_t *my_pCairoContext;
-extern CairoDock *my_pDock;
+extern Icon *myIcon;
+extern cairo_t *myDrawContext;
+extern CairoDock *myDock;
 
 extern gboolean my_bShowDate;
 extern gboolean my_bShowSeconds;
@@ -57,25 +57,25 @@ gboolean cd_clock_update_with_time (Icon *icon)
 	localtime_r (&epoch, &epoch_tm);
 	
 	if (my_bOldStyle)
-		cd_clock_draw_old_fashionned_clock (my_pCairoContext, (int) icon->fWidth, (int) icon->fHeight, (1 + g_fAmplitude), &epoch_tm);
+		cd_clock_draw_old_fashionned_clock (myDrawContext, (int) icon->fWidth, (int) icon->fHeight, (1 + g_fAmplitude), &epoch_tm);
 	else
-		cd_clock_draw_text (my_pCairoContext, &epoch_tm);
+		cd_clock_draw_text (myDrawContext, &epoch_tm);
 	
-	if (my_pDock->bUseReflect)
+	if (myDock->bUseReflect)
 	{
 		cairo_surface_t *pReflet = icon->pReflectionBuffer;
 		icon->pReflectionBuffer = NULL;
 		cairo_surface_destroy (pReflet);
 		
 		icon->pReflectionBuffer = cairo_dock_create_reflection_surface (icon->pIconBuffer,
-			my_pCairoContext,
-			(my_pDock->bHorizontalDock ? icon->fWidth : icon->fHeight) * (1 + g_fAmplitude),
-			(my_pDock->bHorizontalDock ? icon->fHeight : icon->fWidth) * (1 + g_fAmplitude),
-			my_pDock->bHorizontalDock);
+			myDrawContext,
+			(myDock->bHorizontalDock ? icon->fWidth : icon->fHeight) * (1 + g_fAmplitude),
+			(myDock->bHorizontalDock ? icon->fHeight : icon->fWidth) * (1 + g_fAmplitude),
+			myDock->bHorizontalDock);
 	}
 	
 	
-	cairo_dock_redraw_my_icon (icon, my_pDock);
+	cairo_dock_redraw_my_icon (icon, myDock);
 	
 	if (!my_bShowSeconds || epoch_tm.tm_min != iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement à exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur my_bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.
 	{
@@ -112,7 +112,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 				if (bShowAlarm)
 				{
 					g_print ("Dring ! %s\n", pAlarm->cMessage);
-					cairo_dock_show_temporary_dialog (pAlarm->cMessage, my_pIcon, my_pDock, 60e3);
+					cairo_dock_show_temporary_dialog (pAlarm->cMessage, myIcon, myDock, 60e3);
 				}
 				
 				if (bRemoveAlarm)
@@ -147,11 +147,11 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 	g_string_free (sFormat, TRUE);
 	
 	
-	cairo_set_tolerance (pSourceContext, 0.1);
-	
+	cairo_set_tolerance (pSourceContext, 0.5);
 	cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (pSourceContext);
+	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
 	
 	
 	PangoLayout *pLayout = pango_cairo_create_layout (pSourceContext);
@@ -189,7 +189,7 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 	cairo_save (pSourceContext);
 	cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
-	cairo_scale (pSourceContext, my_pIcon->fWidth * fMaxScale / ink.width, my_pIcon->fHeight * fMaxScale / ink.height);
+	cairo_scale (pSourceContext, myIcon->fWidth * fMaxScale / ink.width, myIcon->fHeight * fMaxScale / ink.height);
 	cairo_set_source_surface (pSourceContext,
 		pNewSurface,
 		0,
@@ -301,9 +301,8 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 	cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (pSourceContext);
-	
-	//cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
+	
 	cairo_set_source_surface (pSourceContext, my_pBackgroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
 	

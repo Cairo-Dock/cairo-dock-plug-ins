@@ -10,8 +10,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "cd-clock-menu-functions.h"
 
-extern CairoDock *my_pDock;
-extern Icon *my_pIcon;
+extern CairoDock *myDock;
+extern Icon *myIcon;
 
 void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 {
@@ -35,7 +35,7 @@ void cd_clock_about (GtkMenuItem *menu_item, gpointer *data)
 gboolean cd_clock_notification_click_icon (gpointer *data)
 {
 	//g_print ("%s ()\n", __func__);
-	if (data[0] == my_pIcon)
+	if (data[0] == myIcon)
 	{
 		GtkWidget *pDialog = gtk_dialog_new ();
 		
@@ -52,7 +52,7 @@ gboolean cd_clock_notification_click_icon (gpointer *data)
 
 gboolean cd_clock_notification_build_menu (gpointer *data)
 {
-	if (data[0] == my_pIcon)
+	if (data[0] == myIcon)
 	{
 		GtkWidget *menu = data[2];
 		

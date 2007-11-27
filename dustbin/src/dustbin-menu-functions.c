@@ -11,8 +11,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "dustbin-menu-functions.h"
 
 extern gchar **my_dustbin_cTrashDirectoryList;
-extern Icon *my_dustbin_pIcon;
-extern CairoDock *my_dustbin_pDock;
+extern Icon *myIcon;
+extern CairoDock *myDock;
 extern GtkWidget *my_dustbin_pMenu;
 extern gchar *my_dustbin_cBrowser;
 
@@ -85,7 +85,7 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		g_print ("Attention : when trying to execute '%s' : %s\n", sCommand->str, erreur->message);
 		g_error_free (erreur);
 		gchar *cTipMessage = g_strdup_printf ("An problem occured\nIf '%s' is not your usual file browser, you can change it in the conf panel of this module", my_dustbin_cBrowser);
-		cairo_dock_show_temporary_dialog (cTipMessage, my_dustbin_pIcon, my_dustbin_pDock, 5000);
+		cairo_dock_show_temporary_dialog (cTipMessage, myIcon, myDock, 5000);
 		g_free (cTipMessage);
 	}
 	g_string_free (sCommand, TRUE);
@@ -110,7 +110,7 @@ void cd_dustbin_about (GtkMenuItem *menu_item, gpointer *data)
 gboolean cd_dustbin_notification_click_icon (gpointer *data)
 {
 	//g_print ("%s ()\n", __func__);
-	if (data[0] == my_dustbin_pIcon)
+	if (data[0] == myIcon)
 	{
 		g_print ("_Note_ : You can manage many Trash directories with this applet.\n Right click on its icon to see which Trash directories are already being monitored.\n");
 		
@@ -124,7 +124,7 @@ gboolean cd_dustbin_notification_click_icon (gpointer *data)
 
 gboolean cd_dustbin_notification_build_menu (gpointer *data)
 {
-	if (data[0] == my_dustbin_pIcon)
+	if (data[0] == myIcon)
 	{
 		GtkWidget *menu = data[2];
 		

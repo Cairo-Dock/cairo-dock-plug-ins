@@ -15,7 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "cd-clock-init.h"
 
 
-CairoDock *my_pDock = NULL;
+CairoDock *myDock = NULL;
 gboolean my_bShowDate;
 gboolean my_bShowSeconds;
 gboolean my_b24Mode;
@@ -24,8 +24,8 @@ double my_fTextColor[4];
 int my_iTheme = 0;
 
 int my_iSidUpdateClock = 0;
-Icon *my_pIcon = NULL;
-cairo_t *my_pCairoContext = NULL;
+Icon *myIcon = NULL;
+cairo_t *myDrawContext = NULL;
 GHashTable *my_pThemeTable = NULL;
 
 cairo_surface_t* my_pBackgroundSurface = NULL;
@@ -52,14 +52,14 @@ char my_cFileNames[CLOCK_ELEMENTS][30] =
 };
 
 
-gchar *cd_clock_pre_init (void)
+gchar *pre_init (void)
 {
 	//g_print ("%s ()\n", __func__);
 	return g_strdup_printf ("%s/%s", CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_README_FILE);
 }
 
 
-Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
+Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	//\_______________ On verifie que nos fichiers existent.
@@ -90,25 +90,25 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	
 	//\_______________ On cree notre icone.
-	my_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL);
-	my_pDock = pDock;
-	my_pCairoContext = cairo_create (my_pIcon->pIconBuffer);
-	g_return_val_if_fail (cairo_status (my_pCairoContext) == CAIRO_STATUS_SUCCESS, NULL);
+	myIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, NULL);
+	myDock = pDock;
+	myDrawContext = cairo_create (myIcon->pIconBuffer);
+	g_return_val_if_fail (cairo_status (myDrawContext) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	
 	//\_______________ On charge les surfaces d'arriere-plan et d'avant-plan.
-	cairo_t* pSourceContext = cairo_create (my_pIcon->pIconBuffer);
+	cairo_t* pSourceContext = cairo_create (myIcon->pIconBuffer);
 	g_return_val_if_fail (cairo_status (pSourceContext) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	my_pBackgroundSurface = update_surface (NULL,
 		pSourceContext,
-		my_pIcon->fWidth * (1 + g_fAmplitude),
-		my_pIcon->fHeight * (1 + g_fAmplitude),
+		myIcon->fWidth * (1 + g_fAmplitude),
+		myIcon->fHeight * (1 + g_fAmplitude),
 		KIND_BACKGROUND);
 	my_pForegroundSurface = update_surface (NULL,
 		pSourceContext,
-		my_pIcon->fWidth * (1 + g_fAmplitude),
-		my_pIcon->fHeight * (1 + g_fAmplitude),
+		myIcon->fWidth * (1 + g_fAmplitude),
+		myIcon->fHeight * (1 + g_fAmplitude),
 		KIND_FOREGROUND);
 	cairo_destroy (pSourceContext);
 	
@@ -117,14 +117,14 @@ Icon *cd_clock_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) cd_clock_notification_build_menu, CAIRO_DOCK_RUN_FIRST);
 	
 	//\_______________ On lance le timer.
-	cd_clock_update_with_time (my_pIcon);
-	my_iSidUpdateClock = g_timeout_add ((my_bShowSeconds ? 1000 : 60000), (GSourceFunc) cd_clock_update_with_time, (gpointer) my_pIcon);
+	cd_clock_update_with_time (myIcon);
+	my_iSidUpdateClock = g_timeout_add ((my_bShowSeconds ? 1000 : 60000), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
 	
 	g_free (cName);
-	return my_pIcon;
+	return myIcon;
 }
 
-void cd_clock_stop (void)
+void stop (void)
 {
 	//g_print ("%s ()\n", __func__);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_clock_notification_click_icon);
@@ -132,10 +132,10 @@ void cd_clock_stop (void)
 	
 	g_source_remove (my_iSidUpdateClock);
 	my_iSidUpdateClock = 0;
-	my_pIcon = NULL;
+	myIcon = NULL;
 	
-	cairo_destroy (my_pCairoContext);
-	my_pCairoContext = NULL;
+	cairo_destroy (myDrawContext);
+	myDrawContext = NULL;
 	int i;
 	for (i = 0; i < CLOCK_ELEMENTS; i ++)
 	{

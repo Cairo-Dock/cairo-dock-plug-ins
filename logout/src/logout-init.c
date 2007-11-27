@@ -16,13 +16,13 @@ CairoDock *my_logout_pDock = NULL;
 CairoDockDesktopEnv my_logout_iDesktopEnv;
 
 
-gchar *cd_logout_pre_init (void)
+gchar *pre_init (void)
 {
 	return g_strdup_printf ("%s/%s", CD_LOGOUT_SHARE_DATA_DIR, CD_LOGOUT_README_FILE);
 }
 
 
-Icon *cd_logout_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
+Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	//\_______________ On verifie la presence des fichiers necessaires.
@@ -54,7 +54,7 @@ Icon *cd_logout_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	return my_logout_pIcon;
 }
 
-void cd_logout_stop (void)
+void stop (void)
 {
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_logout_notification_click_icon);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) cd_logout_notification_build_menu);
@@ -62,5 +62,3 @@ void cd_logout_stop (void)
 	my_logout_pIcon = NULL;
 	my_logout_pDock = NULL;
 }
-
-

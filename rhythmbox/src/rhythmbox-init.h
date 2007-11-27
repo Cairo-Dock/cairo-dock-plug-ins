@@ -1,15 +1,14 @@
-#ifndef __rhythmbox_INIT__
-#define  __rhythmbox_INIT__
+#ifndef __RHYTHMBOX_INIT__
+#define  __RHYTHMBOX_INIT__
 
 #include <cairo-dock.h>
-#include <dbus/dbus-glib.h>
 
-gchar *cd_rhythmbox_pre_init (void);
-Icon *cd_rhythmbox_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur);
-void cd_rhythmbox_stop (void);
-gboolean rhythmbox_action (gpointer *data);
-void rhythmbox_onChangeSong(DBusGProxy *player_proxy, const gchar *uri, gpointer data);
-void rhythmbox_onChangePlaying(DBusGProxy *player_proxy,gboolean playing, gpointer data);
+
+gchar *pre_init (void);
+
+Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur);
+
+void stop (void);
+
 
 #endif
-

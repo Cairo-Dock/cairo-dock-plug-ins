@@ -28,13 +28,13 @@ double my_rendering_fParabolePower = .5;
 double my_rendering_fParaboleFactor = .33;
 
 
-gchar *cd_rendering_pre_init (void)
+gchar *pre_init (void)
 {
 	return g_strdup_printf ("%s/%s", CD_RENDERING_SHARE_DATA_DIR, CD_RENDERING_README_FILE);
 }
 
 
-Icon *cd_rendering_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
+Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	//\_______________ On verifie la presence des fichiers necessaires.
@@ -57,7 +57,7 @@ Icon *cd_rendering_init (CairoDock *pDock, gchar **cConfFilePath, GError **erreu
 	return NULL;
 }
 
-void cd_rendering_stop (void)
+void stop (void)
 {
 	cairo_dock_remove_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME);
