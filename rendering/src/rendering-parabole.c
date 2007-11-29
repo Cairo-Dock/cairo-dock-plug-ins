@@ -48,19 +48,22 @@ void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *
 {
 	CairoDock *pSubDock = pPointedIcon->pSubDock;
 	int iMouseX = pDock->iMouseX;
-	int iX = iMouseX + (-iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2) / 2;
+	//int iX = iMouseX + (-iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2) / 2;
+	int iX = iMouseX;
 	
 	if (pDock->iWindowPositionX + pPointedIcon->fDrawX < g_iScreenWidth[pDock->bHorizontalDock] / 2)
 	{
+		iX = iMouseX + (-iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2) / 2;
 		pSubDock->fAlign = 0;
-		pSubDock->iGapX = (pDock->iGapY + pDock->iMaxDockHeight);
-		pSubDock->iGapY = iX + pDock->iWindowPositionX - pSubDock->iMaxDockHeight / 2;
+		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
+		pSubDock->iGapX = iX + pDock->iWindowPositionX - pSubDock->iMaxDockHeight / 2;
 	}
 	else
 	{
+		iX = iMouseX + pPointedIcon->fWidth;
 		pSubDock->fAlign = 1;
-		pSubDock->iGapX = -(pDock->iGapY + pDock->iMaxDockHeight);
-		pSubDock->iGapY = g_iScreenWidth[pDock->bHorizontalDock] - (iX + pDock->iWindowPositionX) - pSubDock->iMaxDockHeight / 2;
+		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
+		pSubDock->iGapX =  pDock->iWindowPositionX + iX - g_iScreenWidth[pDock->bHorizontalDock];
 	}
 }
 
@@ -68,26 +71,29 @@ void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *
 void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->iFlatDockWidth, pDock->iScrollOffset);
-	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->iFlatDockWidth, 1., 2));
+	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->iFlatDockWidth, 1., 0));
 	pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
 	
 	int iParabolicDeviation = my_rendering_fParaboleFactor * pDock->iMaxDockWidth;
-	pDock->iMaxDockHeight = iParabolicDeviation + pDock->iMaxIconHeight;  // pDock->iMaxIconHeight/2 en haut et en bas.
+	pDock->iMaxDockHeight = iParabolicDeviation + pDock->iMaxIconHeight * (1 + g_fAmplitude) + g_iLabelSize;  // pDock->iMaxIconHeight/2 en haut et en bas.
 	
 	pDock->iDecorationsWidth = 0;
 	pDock->iDecorationsHeight = 0;
 	
-	pDock->iMinDockWidth = pDock->iFlatDockWidth + 2 * g_iDockRadius + 2 * g_iFrameMargin + g_iDockLineWidth;  // A voir ...
-	pDock->iMinDockHeight = pDock->iMaxIconHeight + 2 * g_iFrameMargin + 2 * g_iDockLineWidth;
+	pDock->iMinDockWidth = pDock->iFlatDockWidth;
+	pDock->iMinDockHeight = pDock->iMaxIconHeight;
 }
 
 
-void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iFlatDockWidth, gboolean bDirectionUp)
+void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iFlatDockWidth, gboolean bDirectionUp, double fAlign, gboolean bHorizontalDock)
 {
 	double fXIconCenter = icon->fX + icon->fWidth * icon->fScale / 2;  // abscisse du centre de l'icone.
-	g_print ("fXIconCenter : %.2f / %d\n", fXIconCenter, iCurrentWidth);
+	//g_print ("fXIconCenter : %.2f / %d\n", fXIconCenter, iCurrentWidth);
 	//double fYIconCenter = my_rendering_fParaboleFactor * iCurrentWidth * pow (fXIconCenter / iCurrentWidth, my_rendering_fParabolePower);
-	double fYIconCenter = my_rendering_fParaboleFactor * pow (pow (1.*iCurrentWidth, 1./my_rendering_fParabolePower) - pow (iCurrentWidth - fXIconCenter, 1./my_rendering_fParabolePower), my_rendering_fParabolePower);
+	double fMaxYIconCenter = pow (1.*iCurrentWidth, 1./my_rendering_fParabolePower);
+	double fYIconCenter = my_rendering_fParaboleFactor * pow (fMaxYIconCenter - pow ((fAlign == 0 ? iCurrentWidth - fXIconCenter : fXIconCenter), 1./my_rendering_fParabolePower), my_rendering_fParabolePower);
+	//if (fAlign == 1.)
+	//	fYIconCenter = fMaxYIconCenter - fYIconCenter;
 	if (bDirectionUp)
 		fYIconCenter = iCurrentHeight - fYIconCenter;
 	
@@ -128,7 +134,7 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 	//\____________________ On dessine la ficelle qui les joint.
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 	if (g_iStringLineWidth > 0)
-		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, TRUE);
+		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE);
 	
 	//\____________________ On dessine les icones et les etiquettes.
 	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
@@ -166,7 +172,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		cd_rendering_calculate_construction_parameters_parabole (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iFlatDockWidth, g_bDirectionUp);
+		cd_rendering_calculate_construction_parameters_parabole (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iFlatDockWidth, g_bDirectionUp, pDock->fAlign, pDock->bHorizontalDock);
 		cairo_dock_manage_animations (icon, pDock);
 	}
 	
