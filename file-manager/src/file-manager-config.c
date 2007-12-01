@@ -14,9 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "file-manager-config.h"
 
 
-static gchar *s_tSortTypes[3+1] = {"Name", "Size", "Date", NULL};
-static gchar *s_tBackendNames[3+1] = {"Auto", "Gnome", "KDE", NULL};
-
 extern FileManagerSortType my_fm_iSortType;
 extern gboolean my_fm_bShowVolumes;
 extern gboolean my_fm_bShowNetwork;
@@ -38,13 +35,11 @@ void file_manager_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeigh
 	*cIconName = cairo_dock_get_string_key_value (pKeyFile, "ICON", "icon", &bFlushConfFileNeeded, "gnome-background-image.png");
 	
 	
-	gchar *cSortType = cairo_dock_get_string_key_value (pKeyFile, "MODULE", "sort type", &bFlushConfFileNeeded, s_tSortTypes[0]);
-	my_fm_iSortType = cairo_dock_get_number_from_name (cSortType, s_tSortTypes);
-	g_free (cSortType);
+	my_fm_iSortType = cairo_dock_get_integer_key_value (pKeyFile, "MODULE", "sort type", &bFlushConfFileNeeded, FILE_MANAGER_SORT_BY_NAME);
+	if (my_fm_iSortType < 0 || my_fm_iSortType >= FILE_MANAGER_NB_SORTS)
+		my_fm_iSortType = FILE_MANAGER_SORT_BY_NAME;
 	
-	gchar *cVFSBackend = cairo_dock_get_string_key_value (pKeyFile, "MODULE", "force vfs", &bFlushConfFileNeeded, s_tBackendNames[0]);
-	my_fm_iDesktopEnv = cairo_dock_get_number_from_name (cVFSBackend, s_tBackendNames);
-	g_free (cVFSBackend);
+	my_fm_iDesktopEnv = cairo_dock_get_integer_key_value (pKeyFile, "MODULE", "force_vfs", &bFlushConfFileNeeded, 0);  // 0 <=> automatique.
 	if (my_fm_iDesktopEnv == 0)
 		my_fm_iDesktopEnv = cairo_dock_guess_environment ();
 	

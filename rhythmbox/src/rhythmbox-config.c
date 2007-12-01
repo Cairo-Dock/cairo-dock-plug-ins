@@ -23,7 +23,7 @@ void rhythmbox_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, 
 	
 	conf_timeDialogs = cairo_dock_get_double_key_value (pKeyFile, "Configuration", "time_dialogs", &bFlushConfFileNeeded, 3000);
 	
-	conf_changeAnimation = cairo_dock_get_animation_type_key_value (pKeyFile, "Configuration", "change_animation", &bFlushConfFileNeeded, "rotate");
+	conf_changeAnimation = cairo_dock_get_animation_type_key_value (pKeyFile, "Configuration", "change_animation", &bFlushConfFileNeeded, CAIRO_DOCK_ROTATE);
 	
 	if (bFlushConfFileNeeded)
 	{
