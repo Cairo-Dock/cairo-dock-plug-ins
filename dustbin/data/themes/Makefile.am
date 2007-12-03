@@ -5,4 +5,5 @@ SUBDIRS = \
 	OpenClipArt1\
 	DroplineNeu\
 	Metal\
-	Human
+	Human\
+	Silver

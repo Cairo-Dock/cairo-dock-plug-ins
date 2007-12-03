@@ -44,5 +44,6 @@ AC_CONFIG_FILES([Makefile
 		data/themes/DroplineNeu/Makefile
 		data/themes/Human/Makefile
 		data/themes/Metal/Makefile
+		data/themes/Silver/Makefile
 		])
 AC_OUTPUT
