@@ -96,10 +96,12 @@ gboolean cd_clock_update_with_time (Icon *icon)
 					else if (pAlarm->iDayOfWeek - 1 == epoch_tm.tm_wday)
 						bShowAlarm = TRUE;
 					else if (epoch_tm.tm_wday == 0 || epoch_tm.tm_wday == 6)  // week-end
+					{
 						if (pAlarm->iDayOfWeek == 9)
 							bShowAlarm = TRUE;
-						else if (pAlarm->iDayOfWeek == 8)
-							bShowAlarm = TRUE;
+					}
+					else if (pAlarm->iDayOfWeek == 8)
+						bShowAlarm = TRUE;
 				}
 				else if (pAlarm->iDayOfMonth > 0)
 					bShowAlarm = (pAlarm->iDayOfMonth - 1 == epoch_tm.tm_mday);
