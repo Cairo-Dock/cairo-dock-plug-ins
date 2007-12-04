@@ -59,8 +59,9 @@ static void _cd_clock_load_alarms (GKeyFile *pKeyFile, gboolean *bFlushConfFileN
 			pAlarm->iMinute= iMinute;
 			
 			g_string_printf (sKeyName, "repeat%d", iAlarmNumber);
-			gchar *cFrequency = cairo_dock_get_string_key_value (pKeyFile, "ALARM", sKeyName->str, bFlushConfFileNeeded, "Every Day");
-			int iFrequency = cairo_dock_get_number_from_name (cFrequency, my_s_Frequencies);
+			//gchar *cFrequency = cairo_dock_get_string_key_value (pKeyFile, "ALARM", sKeyName->str, bFlushConfFileNeeded, "Every Day");
+			//int iFrequency = cairo_dock_get_number_from_name (cFrequency, my_s_Frequencies);
+			int iFrequency = cairo_dock_get_integer_key_value (pKeyFile, "ALARM", sKeyName->str, bFlushConfFileNeeded, 1);
 			
 			if (iFrequency > 0)
 			{
