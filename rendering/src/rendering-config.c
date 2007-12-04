@@ -47,7 +47,7 @@ void cd_rendering_read_conf_file (gchar *cConfFilePath)
 	//if (! bFlushConfFileNeeded)  // pour l'instant on n'a pas de traduction en francais...
 	//	bFlushConfFileNeeded = cairo_dock_conf_file_needs_update (pKeyFile);
 	if (bFlushConfFileNeeded)
-		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, CD_RENDERING_SHARE_DATA_DIR);
+		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, MY_APPLET_SHARE_DATA_DIR);
 	
 	g_key_file_free (pKeyFile);
 }

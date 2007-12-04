@@ -15,8 +15,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "rendering-init.h"
 
 
-#define CD_RENDERING_CONF_FILE "rendering.conf"
-#define CD_RENDERING_USER_DATA_DIR "rendering"
+#define MY_APPLET_CONF_FILE "rendering.conf"
+#define MY_APPLET_USER_DATA_DIR "rendering"
 
 double my_rendering_fInclinationOnHorizon;  // inclinaison de la ligne de fuite vers l'horizon.
 
@@ -28,9 +28,15 @@ double my_rendering_fParabolePower = .5;
 double my_rendering_fParaboleFactor = .33;
 
 
-gchar *pre_init (void)
+CairoDockVisitCard *pre_init (void)
 {
-	return g_strdup_printf ("%s/%s", CD_RENDERING_SHARE_DATA_DIR, CD_RENDERING_README_FILE);
+	CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
+	pVisitCard->cModuleName = g_strdup ("rendering");
+	pVisitCard->cReadmeFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_README_FILE);
+	pVisitCard->iMajorVersionNeeded = 1;
+	pVisitCard->iMinorVersionNeeded = 4;
+	pVisitCard->iMicroVersionNeeded = 5;
+	return pVisitCard;
 }
 
 
@@ -38,7 +44,7 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	//\_______________ On verifie la presence des fichiers necessaires.
-	*cConfFilePath = cairo_dock_check_conf_file_exists (CD_RENDERING_USER_DATA_DIR, CD_RENDERING_SHARE_DATA_DIR, CD_RENDERING_CONF_FILE);
+	*cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
 	
 	
 	//\_______________ On lit le fichier de conf.
@@ -52,16 +58,16 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	//cd_rendering_register_parabole_renderer ();  // pas encore ...
 	
-	cairo_dock_set_all_views_to_default ();
+	///cairo_dock_set_all_views_to_default ();
 	
 	return NULL;
 }
 
 void stop (void)
 {
-	cairo_dock_remove_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME);
-	cairo_dock_remove_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME);
-	//cairo_dock_remove_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);
+	cairo_dock_remove_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME);
+	cairo_dock_remove_renderer (MY_APPLET_3D_PLANE_VIEW_NAME);
+	//cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
 	
 	cairo_dock_reset_all_views ();
 }

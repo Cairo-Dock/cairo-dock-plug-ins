@@ -183,12 +183,12 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 void cd_rendering_register_parabole_renderer (void)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
-	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-parabolic-view", CD_RENDERING_SHARE_DATA_DIR);
+	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-parabolic-view", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_parabole;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_parabole;  // cairo_dock_apply_wave_effect;
 	pRenderer->render = cd_rendering_render_parabole;
 	pRenderer->render_optimized = NULL;
 	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_parabole;
 	
-	cairo_dock_register_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME, pRenderer);
+	cairo_dock_register_renderer (MY_APPLET_PARABOLIC_VIEW_NAME, pRenderer);
 }

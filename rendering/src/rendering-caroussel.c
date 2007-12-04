@@ -277,7 +277,7 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 void cd_rendering_register_caroussel_renderer (void)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
-	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-caroussel-view", CD_RENDERING_SHARE_DATA_DIR);
+	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-caroussel-view", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_caroussel;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_caroussel;  // cairo_dock_apply_wave_effect;
 	pRenderer->render = cd_rendering_render_caroussel;
@@ -285,5 +285,5 @@ void cd_rendering_register_caroussel_renderer (void)
 	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_caroussel;
 	pRenderer->bUseReflect = TRUE;
 	
-	cairo_dock_register_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME, pRenderer);
+	cairo_dock_register_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME, pRenderer);
 }

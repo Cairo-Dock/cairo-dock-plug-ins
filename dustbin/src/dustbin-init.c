@@ -15,8 +15,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "dustbin-init.h"
 
 
-#define CD_DUSTBIN_CONF_FILE "dustbin.conf"
-#define CD_DUSTBIN_USER_DATA_DIR "dustbin"
+#define MY_APPLET_CONF_FILE "dustbin.conf"
+#define MY_APPLET_USER_DATA_DIR "dustbin"
 
 
 Icon *myIcon = NULL;
@@ -39,20 +39,26 @@ int my_dustbin_iState = -1;
 gchar *my_dustbin_cBrowser = NULL;
 
 
-gchar *pre_init (void)
+CairoDockVisitCard *pre_init (void)
 {
-	return g_strdup_printf ("%s/%s", CD_DUSTBIN_SHARE_DATA_DIR, CD_DUSTBIN_README_FILE);
+	CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
+	pVisitCard->cModuleName = g_strdup ("dustbin");
+	pVisitCard->cReadmeFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_README_FILE);
+	pVisitCard->iMajorVersionNeeded = 1;
+	pVisitCard->iMinorVersionNeeded = 4;
+	pVisitCard->iMicroVersionNeeded = 5;
+	return pVisitCard;
 }
 
 
 Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
-	*cConfFilePath = cairo_dock_check_conf_file_exists (CD_DUSTBIN_USER_DATA_DIR, CD_DUSTBIN_SHARE_DATA_DIR, CD_DUSTBIN_CONF_FILE);
+	*cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
 	
 	//\_______________ On charge la liste des themes disponibles.
 	GError *tmp_erreur = NULL;
-	gchar *cThemesDir = g_strdup_printf ("%s/themes", CD_DUSTBIN_SHARE_DATA_DIR);
+	gchar *cThemesDir = g_strdup_printf ("%s/themes", MY_APPLET_SHARE_DATA_DIR);
 	my_dustbin_pThemeTable = cairo_dock_list_themes (cThemesDir, NULL, &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{

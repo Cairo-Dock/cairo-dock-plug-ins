@@ -4,11 +4,11 @@
 #include "rhythmbox-draw.h"
 #include "rhythmbox-dbus.h"
 
-#define RHYTHMBOX_DBUS_OBJECT "org.gnome.Rhythmbox"
-#define RHYTHMBOX_DBUS_PATH_PLAYER "/org/gnome/Rhythmbox/Player"
-#define RHYTHMBOX_DBUS_INTERFACE_PLAYER "org.gnome.Rhythmbox.Player"
-#define RHYTHMBOX_DBUS_PATH_SHELL "/org/gnome/Rhythmbox/Shell"
-#define RHYTHMBOX_DBUS_INTERFACE_SHELL "org.gnome.Rhythmbox.Shell"
+#define MY_APPLET_DBUS_OBJECT "org.gnome.Rhythmbox"
+#define MY_APPLET_DBUS_PATH_PLAYER "/org/gnome/Rhythmbox/Player"
+#define MY_APPLET_DBUS_INTERFACE_PLAYER "org.gnome.Rhythmbox.Player"
+#define MY_APPLET_DBUS_PATH_SHELL "/org/gnome/Rhythmbox/Shell"
+#define MY_APPLET_DBUS_INTERFACE_SHELL "org.gnome.Rhythmbox.Shell"
 
 DBusGConnection *dbus_connexion;
 DBusGProxy *dbus_proxy_player;
@@ -50,16 +50,16 @@ gboolean rhythmbox_dbus_init (void)
 
 		dbus_proxy_player = dbus_g_proxy_new_for_name (
 			dbus_connexion,
-			RHYTHMBOX_DBUS_OBJECT,
-			RHYTHMBOX_DBUS_PATH_PLAYER,
-			RHYTHMBOX_DBUS_INTERFACE_PLAYER
+			MY_APPLET_DBUS_OBJECT,
+			MY_APPLET_DBUS_PATH_PLAYER,
+			MY_APPLET_DBUS_INTERFACE_PLAYER
 		);
 		
 		dbus_proxy_shell = dbus_g_proxy_new_for_name (
 			dbus_connexion,
-			RHYTHMBOX_DBUS_OBJECT,
-			RHYTHMBOX_DBUS_PATH_SHELL,
-			RHYTHMBOX_DBUS_INTERFACE_SHELL
+			MY_APPLET_DBUS_OBJECT,
+			MY_APPLET_DBUS_PATH_SHELL,
+			MY_APPLET_DBUS_INTERFACE_SHELL
 		);
 		
 		dbus_g_proxy_add_signal(dbus_proxy_player, "playingUriChanged",

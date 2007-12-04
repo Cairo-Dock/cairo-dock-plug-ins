@@ -19,8 +19,8 @@ libcd_clock_la_SOURCES = \
 libcd_clock_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DCD_CLOCK_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
-	-DCD_CLOCK_README_FILE=\""readme"\"\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	-DMY_APPLET_README_FILE=\""readme"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall

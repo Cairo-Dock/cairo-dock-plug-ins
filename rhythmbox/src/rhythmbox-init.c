@@ -7,8 +7,8 @@
 #include "rhythmbox-menu-functions.h"
 #include "rhythmbox-init.h"
 
-#define RHYTHMBOX_CONF_FILE "rhythmbox.conf"
-#define RHYTHMBOX_USER_DATA_DIR "rhythmbox"
+#define MY_APPLET_CONF_FILE "rhythmbox.conf"
+#define MY_APPLET_USER_DATA_DIR "rhythmbox"
 
 
 Icon *myIcon = NULL;
@@ -29,11 +29,15 @@ static gboolean rhythmbox_dbus_enable = FALSE;
 //*********************************************************************************
 // rhythmbox_pre_init() : Fonction de pré-initialisation
 //*********************************************************************************
-gchar *pre_init (void)
+CairoDockVisitCard *pre_init (void)
 {
-	//g_print ("%s ()\n", __func__);
-	rhythmbox_dbus_enable = rhythmbox_dbus_init();
-	return g_strdup_printf ("%s/%s", RHYTHMBOX_SHARE_DATA_DIR, RHYTHMBOX_README_FILE);
+	CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
+	pVisitCard->cModuleName = g_strdup ("rhythmbox");
+	pVisitCard->cReadmeFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_README_FILE);
+	pVisitCard->iMajorVersionNeeded = 1;
+	pVisitCard->iMinorVersionNeeded = 4;
+	pVisitCard->iMicroVersionNeeded = 5;
+	return pVisitCard;
 }
 
 //*********************************************************************************
@@ -45,7 +49,7 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	myDock = pDock;
 	
 	//\_______________ On verifie que nos fichiers existent.
-	*cConfFilePath = cairo_dock_check_conf_file_exists (RHYTHMBOX_USER_DATA_DIR, RHYTHMBOX_SHARE_DATA_DIR, RHYTHMBOX_CONF_FILE);
+	*cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
 	
 	//Lecture du fichier de configuration
 	int iOriginalWidth = 48, iOriginalHeight = 48;
@@ -60,35 +64,35 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	GString *sImagePath = g_string_new ("");
 	//Chargement de l'image "default"
-	g_string_printf (sImagePath, "%s/default.svg", RHYTHMBOX_SHARE_DATA_DIR);
+	g_string_printf (sImagePath, "%s/default.svg", MY_APPLET_SHARE_DATA_DIR);
 	rhythmbox_pSurface = cairo_dock_load_image_for_icon (myDrawContext,
 		sImagePath->str,
 		myIcon->fWidth * (1 + g_fAmplitude),
 		myIcon->fHeight * (1 + g_fAmplitude));
 	
 	//Chargement de l'image "pause"
-	g_string_printf (sImagePath, "%s/pause.svg", RHYTHMBOX_SHARE_DATA_DIR);
+	g_string_printf (sImagePath, "%s/pause.svg", MY_APPLET_SHARE_DATA_DIR);
 	rhythmbox_pPauseSurface = cairo_dock_load_image_for_icon (myDrawContext,
 		sImagePath->str,
 		myIcon->fWidth * (1 + g_fAmplitude),
 		myIcon->fHeight * (1 + g_fAmplitude));
 	
 	//Chargement de l'image "play"
-	g_string_printf (sImagePath, "%s/pause.svg", RHYTHMBOX_SHARE_DATA_DIR);
+	g_string_printf (sImagePath, "%s/pause.svg", MY_APPLET_SHARE_DATA_DIR);
 	rhythmbox_pPlaySurface = cairo_dock_load_image_for_icon (myDrawContext,
 		sImagePath->str,
 		myIcon->fWidth * (1 + g_fAmplitude),
 		myIcon->fHeight * (1 + g_fAmplitude));
 	
 	//Chargement de l'image "stop"
-	g_string_printf (sImagePath, "%s/pause.svg", RHYTHMBOX_SHARE_DATA_DIR);
+	g_string_printf (sImagePath, "%s/pause.svg", MY_APPLET_SHARE_DATA_DIR);
 	rhythmbox_pStopSurface = cairo_dock_load_image_for_icon (myDrawContext,
 		sImagePath->str,
 		myIcon->fWidth * (1 + g_fAmplitude),
 		myIcon->fHeight * (1 + g_fAmplitude));
 	
 	//Chargement de l'image "play"
-	g_string_printf (sImagePath, "%s/pause.svg", RHYTHMBOX_SHARE_DATA_DIR);
+	g_string_printf (sImagePath, "%s/pause.svg", MY_APPLET_SHARE_DATA_DIR);
 	rhythmbox_pBrokenSurface = cairo_dock_load_image_for_icon (myDrawContext,
 		sImagePath->str,
 		myIcon->fWidth * (1 + g_fAmplitude),

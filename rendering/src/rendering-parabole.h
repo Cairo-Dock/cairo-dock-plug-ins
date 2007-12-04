@@ -4,7 +4,7 @@
 
 #include "cairo-dock.h"
 
-#define CD_RENDERING_PARABOLIC_VIEW_NAME "Parabolic"
+#define MY_APPLET_PARABOLIC_VIEW_NAME "Parabolic"
 
 
 void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *pParentDock);

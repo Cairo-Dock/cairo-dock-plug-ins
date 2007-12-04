@@ -4,7 +4,7 @@
 
 #include "cairo-dock.h"
 
-#define CD_RENDERING_3D_PLANE_VIEW_NAME "3D plane"
+#define MY_APPLET_3D_PLANE_VIEW_NAME "3D plane"
 
 
 void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock);

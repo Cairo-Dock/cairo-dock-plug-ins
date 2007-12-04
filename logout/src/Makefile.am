@@ -16,8 +16,8 @@ libcd_logout_la_SOURCES = \
 libcd_logout_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DCD_LOGOUT_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
-	-DCD_LOGOUT_README_FILE=\""readme"\"\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	-DMY_APPLET_README_FILE=\""readme"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall

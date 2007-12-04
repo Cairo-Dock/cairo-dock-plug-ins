@@ -28,8 +28,8 @@ libcd_rendering_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	$(glitz_cflags) \
 	$(include_glitz)\
-	-DCD_RENDERING_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
-	-DCD_RENDERING_README_FILE=\""readme"\"\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	-DMY_APPLET_README_FILE=\""readme"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall

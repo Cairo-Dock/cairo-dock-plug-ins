@@ -4,7 +4,7 @@
 
 #include "cairo-dock.h"
 
-#define CD_RENDERING_CAROUSSEL_VIEW_NAME "Caroussel"
+#define MY_APPLET_CAROUSSEL_VIEW_NAME "Caroussel"
 
 
 void cd_rendering_set_subdock_position_caroussel (Icon *pPointedIcon, CairoDock *pParentDock);

@@ -16,8 +16,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "file-manager-init.h"
 
 
-#define FILE_MANAGER_CONF_FILE "file-manager.conf"
-#define FILE_MANAGER_USER_DATA_DIR "file-manager"
+#define MY_APPLET_CONF_FILE "file-manager.conf"
+#define MY_APPLET_USER_DATA_DIR "file-manager"
 
 static GModule *s_fm_pBackendModule = NULL;
 
@@ -44,16 +44,22 @@ gboolean my_fm_bShowNetwork;
 CairoDockDesktopEnv my_fm_iDesktopEnv;
 
 
-gchar *pre_init (void)
+CairoDockVisitCard *pre_init (void)
 {
-        return g_strdup_printf ("%s/%s", FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_README_FILE);
+	CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
+	pVisitCard->cModuleName = g_strdup ("file-manager");
+	pVisitCard->cReadmeFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_README_FILE);
+	pVisitCard->iMajorVersionNeeded = 1;
+	pVisitCard->iMinorVersionNeeded = 4;
+	pVisitCard->iMicroVersionNeeded = 5;
+	return pVisitCard;
 }
 
 
 Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
-	*cConfFilePath = cairo_dock_check_conf_file_exists (FILE_MANAGER_USER_DATA_DIR, FILE_MANAGER_SHARE_DATA_DIR, FILE_MANAGER_CONF_FILE);
+	*cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
 	
 	//\_______________ On lit le fichier de conf.
 	int iOriginalWidth = 1, iOriginalHeight = 1;
@@ -74,7 +80,7 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	}
 	
 	gchar *cBackendPath = NULL;
-	cBackendPath = g_strdup_printf ("%s/libfile-manager-%s.so", FILE_MANAGER_BACKEND_DIR, (my_fm_iDesktopEnv == CAIRO_DOCK_GNOME ? "gnome" : (my_fm_iDesktopEnv == CAIRO_DOCK_KDE ? "kde" : "xdg")));
+	cBackendPath = g_strdup_printf ("%s/libfile-manager-%s.so", MY_APPLET_BACKEND_DIR, (my_fm_iDesktopEnv == CAIRO_DOCK_GNOME ? "gnome" : (my_fm_iDesktopEnv == CAIRO_DOCK_KDE ? "kde" : "xdg")));
 	s_fm_pBackendModule = g_module_open (cBackendPath, G_MODULE_BIND_LAZY);
 	if (s_fm_pBackendModule == NULL)
 	{

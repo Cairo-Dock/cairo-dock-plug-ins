@@ -137,7 +137,7 @@ void cd_clock_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, g
 	//	bFlushConfFileNeeded = cairo_dock_conf_file_needs_update (pKeyFile);
 	if (bFlushConfFileNeeded)
 	{
-		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, CD_CLOCK_SHARE_DATA_DIR);
+		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, MY_APPLET_SHARE_DATA_DIR);
 		
 		cairo_dock_update_conf_file_with_hash_table (cConfFilePath, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
 	}

@@ -52,10 +52,16 @@ char my_cFileNames[CLOCK_ELEMENTS][30] =
 };
 
 
-gchar *pre_init (void)
+CairoDockVisitCard *pre_init (void)
 {
 	//g_print ("%s ()\n", __func__);
-	return g_strdup_printf ("%s/%s", CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_README_FILE);
+	CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
+	pVisitCard->cModuleName = g_strdup ("clock");
+	pVisitCard->cReadmeFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_README_FILE);
+	pVisitCard->iMajorVersionNeeded = 1;
+	pVisitCard->iMinorVersionNeeded = 4;
+	pVisitCard->iMicroVersionNeeded = 5;
+	return pVisitCard;
 }
 
 
@@ -63,12 +69,12 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	//\_______________ On verifie que nos fichiers existent.
-	*cConfFilePath = cairo_dock_check_conf_file_exists (CD_CLOCK_USER_DATA_DIR, CD_CLOCK_SHARE_DATA_DIR, CD_CLOCK_CONF_FILE);
+	*cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
 	
 	
 	//\_______________ On charge la liste des themes disponibles.
 	GError *tmp_erreur = NULL;
-	gchar *cThemesDir = g_strdup_printf ("%s/themes", CD_CLOCK_SHARE_DATA_DIR);
+	gchar *cThemesDir = g_strdup_printf ("%s/themes", MY_APPLET_SHARE_DATA_DIR);
 	my_pThemeTable = cairo_dock_list_themes (cThemesDir, NULL, &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{

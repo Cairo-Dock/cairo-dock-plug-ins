@@ -291,7 +291,7 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 void cd_rendering_register_3D_plane_renderer (void)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
-	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-3D-plane-view", CD_RENDERING_SHARE_DATA_DIR);
+	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-3D-plane-view", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_3D_plane;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_3D_plane;
 	pRenderer->render = cd_rendering_render_3D_plane;
@@ -299,5 +299,5 @@ void cd_rendering_register_3D_plane_renderer (void)
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
 	pRenderer->bUseReflect = TRUE;
 	
-	cairo_dock_register_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME, pRenderer);
+	cairo_dock_register_renderer (MY_APPLET_3D_PLANE_VIEW_NAME, pRenderer);
 }

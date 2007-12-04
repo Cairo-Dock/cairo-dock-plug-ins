@@ -6,8 +6,8 @@
 #include "logout-init.h"
 
 
-#define CD_LOGOUT_CONF_FILE "logout.conf"
-#define CD_LOGOUT_USER_DATA_DIR "logout"
+#define MY_APPLET_CONF_FILE "logout.conf"
+#define MY_APPLET_USER_DATA_DIR "logout"
 
 
 Icon *my_logout_pIcon = NULL;
@@ -16,9 +16,15 @@ CairoDock *my_logout_pDock = NULL;
 CairoDockDesktopEnv my_logout_iDesktopEnv;
 
 
-gchar *pre_init (void)
+CairoDockVisitCard *pre_init (void)
 {
-	return g_strdup_printf ("%s/%s", CD_LOGOUT_SHARE_DATA_DIR, CD_LOGOUT_README_FILE);
+	CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
+	pVisitCard->cModuleName = g_strdup ("logout");
+	pVisitCard->cReadmeFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_README_FILE);
+	pVisitCard->iMajorVersionNeeded = 1;
+	pVisitCard->iMinorVersionNeeded = 4;
+	pVisitCard->iMicroVersionNeeded = 5;
+	return pVisitCard;
 }
 
 
@@ -26,7 +32,7 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
 	//g_print ("%s ()\n", __func__);
 	//\_______________ On verifie la presence des fichiers necessaires.
-	*cConfFilePath = cairo_dock_check_conf_file_exists (CD_LOGOUT_USER_DATA_DIR, CD_LOGOUT_SHARE_DATA_DIR, CD_LOGOUT_CONF_FILE);
+	*cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
 	
 	my_logout_iDesktopEnv = cairo_dock_guess_environment ();
 	if (my_logout_iDesktopEnv == CAIRO_DOCK_UNKNOWN_ENV)
