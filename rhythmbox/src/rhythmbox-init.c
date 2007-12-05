@@ -101,21 +101,9 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	g_string_free (sImagePath, TRUE);
 	
 	if (rhythmbox_dbus_enable)
-		cairo_dock_set_icon_surface (myDrawContext, rhythmbox_pSurface);
+		cairo_dock_set_icon_surface_with_reflect (myDrawContext, rhythmbox_pSurface, myIcon, myDock);
 	else
-		cairo_dock_set_icon_surface (myDrawContext, rhythmbox_pBrokenSurface);
-	
-	myIcon->pReflectionBuffer = cairo_dock_create_reflection_surface (myIcon->pIconBuffer,
-		myDrawContext,
-		(myDock->bHorizontalDock ? myIcon->fWidth : myIcon->fHeight) * (1 + g_fAmplitude),
-		(myDock->bHorizontalDock ? myIcon->fHeight : myIcon->fWidth) * (1 + g_fAmplitude),
-		myDock->bHorizontalDock);
-	myIcon->pFullIconBuffer = cairo_dock_create_icon_surface_with_reflection (myIcon->pIconBuffer,
-		myIcon->pReflectionBuffer,
-		myDrawContext,
-		(myDock->bHorizontalDock ? myIcon->fWidth : myIcon->fHeight) * (1 + g_fAmplitude),
-		(myDock->bHorizontalDock ? myIcon->fHeight : myIcon->fWidth) * (1 + g_fAmplitude),
-		myDock->bHorizontalDock);
+		cairo_dock_set_icon_surface_with_reflect (myDrawContext, rhythmbox_pBrokenSurface, myIcon, myDock);
 	
 	//Enregistrement des notifications	
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) rhythmbox_action, CAIRO_DOCK_RUN_FIRST);

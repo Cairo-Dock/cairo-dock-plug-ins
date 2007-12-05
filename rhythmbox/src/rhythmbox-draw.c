@@ -24,7 +24,7 @@ void rhythmbox_iconWitness(int animationLenght)
 //*********************************************************************************
 void rhythmbox_setIconSurface(cairo_surface_t *pSurface)
 {
-	cairo_dock_set_icon_surface (myDrawContext, pSurface);
+	cairo_dock_set_icon_surface_with_reflect (myDrawContext, pSurface, myIcon, myDock);
 	
 	cairo_dock_redraw_my_icon (myIcon, myDock);
 }
