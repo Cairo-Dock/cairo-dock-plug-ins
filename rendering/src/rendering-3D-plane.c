@@ -248,7 +248,7 @@ void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pAr
 			if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 			{
 				cairo_save (pCairoContext);
-				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect);
+				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, pDock->iDecorationsHeight, my_rendering_fInclinationOnHorizon);
 				cairo_restore (pCairoContext);
 			}
 			
