@@ -9,6 +9,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include <math.h>
 #include <cairo-dock.h>
 
+#include "rendering-3D-plane.h"
 #include "rendering-config.h"
 
 extern double my_rendering_fInclinationOnHorizon;
@@ -21,7 +22,7 @@ extern double my_rendering_fParabolePower;
 extern double my_rendering_fParaboleFactor;
 
 
-void cd_rendering_read_conf_file (gchar *cConfFilePath)
+void cd_rendering_read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator)
 {
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
 	
@@ -39,6 +40,9 @@ void cd_rendering_read_conf_file (gchar *cConfFilePath)
 	my_rendering_fInclinationOnHorizon = tan (fInclinationAngle * G_PI / 180.);
 	
 	my_rendering_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5);
+	
+	*bFlatSeparator = cairo_dock_get_boolean_key_value (pKeyFile, "Inclinated Plane", "flat separator", &bFlushConfFileNeeded, TRUE);
+	
 	
 	my_rendering_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10);
 	

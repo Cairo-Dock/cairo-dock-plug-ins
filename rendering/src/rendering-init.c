@@ -26,6 +26,7 @@ gboolean my_rendering_bRotateIconsOnEllipse;  // tourner les icones de profil ou
 
 double my_rendering_fParabolePower = .5;
 double my_rendering_fParaboleFactor = .33;
+cairo_surface_t *my_pFlatSeparatorSurface = NULL;
 
 
 CairoDockVisitCard *pre_init (void)
@@ -48,7 +49,8 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	
 	//\_______________ On lit le fichier de conf.
-	cd_rendering_read_conf_file (*cConfFilePath);
+	gboolean bFlatSeparator;
+	cd_rendering_read_conf_file (*cConfFilePath, &bFlatSeparator);
 	
 	
 	//\_______________ On enregistre les vues.
@@ -60,6 +62,13 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	///cairo_dock_set_all_views_to_default ();
 	
+	if (bFlatSeparator)
+	{
+		cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
+		my_pFlatSeparatorSurface = cd_rendering_create_flat_separator_surface (pSourceContext, 150, 150);
+		cairo_destroy (pSourceContext);
+	}
+	
 	return NULL;
 }
 
@@ -68,6 +77,9 @@ void stop (void)
 	cairo_dock_remove_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_3D_PLANE_VIEW_NAME);
 	//cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
+	
+	cairo_surface_destroy (my_pFlatSeparatorSurface);
+	my_pFlatSeparatorSurface = NULL;
 	
 	cairo_dock_reset_all_views ();
 }

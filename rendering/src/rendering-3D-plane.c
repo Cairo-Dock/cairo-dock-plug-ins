@@ -43,6 +43,7 @@ extern double g_fAmplitude;
 extern int g_iLabelSize;
 
 extern double my_rendering_fInclinationOnHorizon;
+extern cairo_surface_t *my_pFlatSeparatorSurface;
 
 
 void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
@@ -81,6 +82,121 @@ void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iC
 	}
 }
 
+
+cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceContext, int iWidth, int iHeight)
+{
+	cairo_pattern_t *pStripesPattern = cairo_pattern_create_linear (0.0f,
+		iHeight,
+		0.,
+		0.);
+	g_return_val_if_fail (cairo_pattern_status (pStripesPattern) == CAIRO_STATUS_SUCCESS, NULL);
+	
+	cairo_pattern_set_extend (pStripesPattern, CAIRO_EXTEND_NONE);
+	
+	double fStep;
+	double y = 0, h0 = sqrt (1.*iHeight), hk = h0;
+	int k = 0;
+	for (k = 0; k < h0; k ++)
+	{
+		g_print ("step : %f ; y = %.2f\n", 1.*hk / iHeight, y);
+		cairo_pattern_add_color_stop_rgba (pStripesPattern,
+			y,
+			0.,
+			0.,
+			0.,
+			0.);
+		y += 1.*hk / iHeight;
+		cairo_pattern_add_color_stop_rgba (pStripesPattern,
+			y,
+			0.,
+			0.,
+			0.,
+			0.);
+		cairo_pattern_add_color_stop_rgba (pStripesPattern,
+			y,
+			g_fStripesColorDark[0],
+			g_fStripesColorDark[1],
+			g_fStripesColorDark[2],
+			g_fStripesColorDark[3]);
+		y += 1.*hk / iHeight;
+		cairo_pattern_add_color_stop_rgba (pStripesPattern,
+			y,
+			g_fStripesColorDark[0],
+			g_fStripesColorDark[1],
+			g_fStripesColorDark[2],
+			g_fStripesColorDark[3]);
+		hk --;
+	}
+	
+	cairo_surface_t *pNewSurface = cairo_surface_create_similar (cairo_get_target (pSourceContext),
+		CAIRO_CONTENT_COLOR_ALPHA,
+		iWidth,
+		iHeight);
+	cairo_t *pImageContext = cairo_create (pNewSurface);
+	cairo_set_source (pImageContext, pStripesPattern);
+	cairo_paint (pImageContext);
+	
+	cairo_pattern_destroy (pStripesPattern);
+	cairo_destroy (pImageContext);
+	
+	return pNewSurface;
+}
+
+static void cd_rendering_one_3D_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock)
+{
+	int sens;
+	double fDockOffsetX, fDockOffsetY;
+	if (g_bDirectionUp)
+	{
+		sens = 1;
+		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - g_iDockLineWidth;
+	}
+	else
+	{
+		sens = -1;
+		fDockOffsetY = pDock->iDecorationsHeight + g_iDockLineWidth;
+	}
+	
+	double fInclination = my_rendering_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
+	//g_print ("fInclination : %f\n", fInclination);
+	double fEpsilon = .1 * icon->fWidth;
+	double fDeltaX = pDock->iDecorationsHeight * fInclination;
+	double fHeight = pDock->iDecorationsHeight;
+	if (fDeltaX + 2 * fEpsilon > icon->fWidth)
+	{
+		fDeltaX = icon->fWidth - 2 * fEpsilon - 1;
+		fHeight = fDeltaX / fInclination;
+	}
+	fDockOffsetY += sens * (pDock->iDecorationsHeight - fHeight) / 2;
+	
+	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->iCurrentWidth / 2)  // on est a droite.
+	{
+		fDockOffsetX = icon->fDrawX + fEpsilon + icon->fWidth * (icon->fScale - 1) / 2;
+		cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);  // coin haut gauche.
+		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
+		//g_print ("droite : fDeltaX:%f; fEpsilon:%f\n", fDeltaX, fEpsilon);
+		
+		cairo_rel_line_to (pCairoContext, icon->fWidth - 2 * fEpsilon - fDeltaX, 0);
+		cairo_rel_line_to (pCairoContext, fDeltaX + fEpsilon, fHeight);
+		cairo_rel_line_to (pCairoContext, - icon->fWidth + fDeltaX, 0);
+		cairo_rel_line_to (pCairoContext, - fDeltaX + fEpsilon, - fHeight);
+		//cairo_close_path (pCairoContext);
+	}
+	else  // a gauche.
+	{
+		fDockOffsetX = icon->fDrawX + fDeltaX + fEpsilon + icon->fWidth * (icon->fScale - 1) / 2;
+		cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);  // coin haut gauche.
+		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
+		//g_print ("gauche : fDeltaX:%f; fEpsilon:%f\n", fDeltaX, fEpsilon);
+		
+		cairo_rel_line_to (pCairoContext, icon->fWidth - fDeltaX - 2 * fEpsilon, 0);
+		cairo_rel_line_to (pCairoContext, - fDeltaX + fEpsilon, fHeight);
+		cairo_rel_line_to (pCairoContext, - icon->fWidth + fDeltaX + fEpsilon , 0);
+		cairo_rel_line_to (pCairoContext, fDeltaX + fEpsilon, - fHeight);
+	}
+	cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface, 0, 0);
+	cairo_fill_preserve (pCairoContext);
+}
 
 void cd_rendering_render_3D_plane (CairoDock *pDock)
 {
@@ -138,7 +254,30 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
-	cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
+	///cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
+	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	if (pFirstDrawnElement != NULL)
+	{
+		double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
+		Icon *icon;
+		GList *ic = pFirstDrawnElement;
+		do
+		{
+			icon = ic->data;
+			
+			cairo_save (pCairoContext);
+			
+			if (CAIRO_DOCK_IS_SEPARATOR (icon) && my_pFlatSeparatorSurface != NULL)
+				cd_rendering_one_3D_separator (icon, pCairoContext, pDock);
+			else
+				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, pDock->iDecorationsHeight, 0.);
+			
+			cairo_restore (pCairoContext);
+			
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+		} while (ic != pFirstDrawnElement);
+	}
+	
 	
 	cairo_destroy (pCairoContext);
 #ifdef HAVE_GLITZ

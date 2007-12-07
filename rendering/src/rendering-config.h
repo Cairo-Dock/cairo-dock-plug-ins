@@ -6,7 +6,7 @@
 #include <glib.h>
 
 
-void cd_rendering_read_conf_file (gchar *cConfFilePath);
+void cd_rendering_read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator);
 
 
 #endif
