@@ -5,12 +5,12 @@ lib_LTLIBRARIES = \
 
 
 libcd_logout_la_SOURCES = \
-	logout-init.c\
-	logout-init.h\
-	logout-config.c\
-	logout-config.h\
-	logout-menu-functions.c\
-	logout-menu-functions.h
+	applet-init.c\
+	applet-init.h\
+	applet-config.c\
+	applet-config.h\
+	applet-notifications.c\
+	applet-notifications.h
 
 
 libcd_logout_la_CFLAGS = \

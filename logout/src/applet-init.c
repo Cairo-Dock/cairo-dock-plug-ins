@@ -1,17 +1,17 @@
 
 #include "stdlib.h"
 
-#include "logout-config.h"
-#include "logout-menu-functions.h"
-#include "logout-init.h"
+#include "applet-config.h"
+#include "applet-notifications.h"
+#include "applet-init.h"
 
 
 #define MY_APPLET_CONF_FILE "logout.conf"
 #define MY_APPLET_USER_DATA_DIR "logout"
 
 
-Icon *my_logout_pIcon = NULL;
-CairoDock *my_logout_pDock = NULL;
+Icon *myIcon = NULL;
+CairoDock *myDock = NULL;
 
 CairoDockDesktopEnv my_logout_iDesktopEnv;
 
@@ -47,8 +47,8 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	cd_logout_read_conf_file (*cConfFilePath, &iOriginalWidth, &iOriginalHeight, &cName, &cIconName);
 	
 	//\_______________ On cree notre icone.
-	my_logout_pIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, cIconName);
-	my_logout_pDock = pDock;
+	myIcon = cairo_dock_create_icon_for_applet (pDock, iOriginalWidth, iOriginalHeight, cName, cIconName);
+	myDock = pDock;
 	
 	//\_______________ On enregistre nos notifications.
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_logout_notification_click_icon, CAIRO_DOCK_RUN_FIRST);
@@ -57,7 +57,7 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	g_free (cName);
 	g_free (cIconName);
-	return my_logout_pIcon;
+	return myIcon;
 }
 
 void stop (void)
@@ -65,6 +65,6 @@ void stop (void)
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_logout_notification_click_icon);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) cd_logout_notification_build_menu);
 	
-	my_logout_pIcon = NULL;
-	my_logout_pDock = NULL;
+	myIcon = NULL;
+	myDock = NULL;
 }
