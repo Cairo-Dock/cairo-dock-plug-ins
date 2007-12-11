@@ -62,7 +62,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	
 	pDock->iMinDockWidth = pDock->iFlatDockWidth + fExtraWidth;
-	pDock->iMinDockHeight = pDock->iMaxIconHeight + g_fReflectSize + 2 * g_iFrameMargin + 2 * g_iDockLineWidth;
+	pDock->iMinDockHeight = g_iDockLineWidth + g_iFrameMargin + g_fReflectSize + pDock->iMaxIconHeight;
 }
 
 
@@ -170,7 +170,7 @@ static void cd_rendering_one_3D_separator_horizontal (Icon *icon, cairo_t *pCair
 	}
 	fDockOffsetY += sens * (pDock->iDecorationsHeight - fHeight) / 2;
 	double fBigWidth = icon->fWidth - fDeltaX, fLittleWidth = icon->fWidth - fDeltaX - 2 * fEpsilon;
-	
+	///cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
 	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->iCurrentWidth / 2)  // on est a droite.
 	{
 		fDockOffsetX = icon->fDrawX + fEpsilon + icon->fWidth * (icon->fScale - 1) / 2;
@@ -185,8 +185,8 @@ static void cd_rendering_one_3D_separator_horizontal (Icon *icon, cairo_t *pCair
 		
 		if (! g_bDirectionUp)
 			cairo_scale (pCairoContext, 1, -1);
-		//cairo_move_to (pCairoContext, 0, 0);
 		cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], - fEpsilon, 0);
+		///cairo_set_source_rgba (pCairoContext, 1, 1, 1, 0);
 	}
 	else  // a gauche.
 	{
@@ -202,10 +202,11 @@ static void cd_rendering_one_3D_separator_horizontal (Icon *icon, cairo_t *pCair
 		
 		if (! g_bDirectionUp)
 			cairo_scale (pCairoContext, 1, -1);
-		//cairo_move_to (pCairoContext, 0, 0);
 		cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], - fDeltaX - fEpsilon, 0);
+		///cairo_set_source_rgba (pCairoContext, 1, 1, 1, 0);
 	}
 	cairo_fill_preserve (pCairoContext);
+	///cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 }
 static void cd_rendering_one_3D_separator_vertical (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock)
 {
@@ -280,6 +281,18 @@ static void cd_rendering_one_3D_separator (Icon *icon, cairo_t *pCairoContext, C
 }
 
 
+void cairo_dock_draw_frame_border (cairo_t *pCairoContext, double fLineWidth, double fDockOffsetX, double fDockOffsetY, double fFrameWidth, double fFrameHeight, double fRadius, double fInclination)
+{
+	double fDeltaXForLoop = (fFrameHeight + fLineWidth - 2 * fRadius) * fInclination;
+	
+	cairo_move_to (pCairoContext, fDockOffsetX - fDeltaXForLoop, fDockOffsetY + (g_bDirectionUp ? fFrameHeight - fLineWidth/2: fLineWidth/2));
+	cairo_rel_line_to (pCairoContext, fFrameWidth + 2 * fDeltaXForLoop, 0);
+	
+	cairo_set_line_width (pCairoContext, fLineWidth);
+	cairo_set_source_rgba (pCairoContext, g_fLineColor[0], g_fLineColor[1], g_fLineColor[2], g_fLineColor[3]);
+	cairo_stroke (pCairoContext);
+}
+
 void cd_rendering_render_3D_plane (CairoDock *pDock)
 {
 	//\____________________ On cree le contexte du dessin.
@@ -290,6 +303,7 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (pCairoContext);
+	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 	
 	//\____________________ On trace le cadre.
 	double fChangeAxes = 0.5 * (pDock->iCurrentWidth - pDock->iMaxDockWidth);
@@ -305,16 +319,16 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 	if (g_bDirectionUp)
 	{
 		sens = 1;
-		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - 1.5 * fLineWidth;
+		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth;
 	}
 	else
 	{
 		sens = -1;
-		fDockOffsetY = pDock->iDecorationsHeight + 1.5 * fLineWidth;
+		fDockOffsetY = pDock->iDecorationsHeight + fLineWidth;
 	}
 	
 	cairo_save (pCairoContext);
-	cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, my_rendering_fInclinationOnHorizon, pDock->bHorizontalDock);
+	cairo_dock_draw_frame (pCairoContext, fRadius, 1, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, my_rendering_fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
 	
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (g_bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
@@ -329,8 +343,11 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 	}
 	cairo_restore (pCairoContext);
 	
+	/**cairo_save (pCairoContext);
+	cairo_dock_draw_frame_border (pCairoContext, fLineWidth, fDockOffsetX, fDockOffsetY, fDockWidth, pDock->iDecorationsHeight, fRadius, my_rendering_fInclinationOnHorizon);
+	cairo_restore (pCairoContext);*/
+	
 	//\____________________ On dessine la ficelle qui les joint.
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 	if (g_iStringLineWidth > 0)
 		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, (my_pFlatSeparatorSurface != NULL));
 	

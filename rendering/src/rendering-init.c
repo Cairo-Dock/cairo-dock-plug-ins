@@ -61,9 +61,9 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	//cd_rendering_register_parabole_renderer ();  // pas encore ...
 	
-	///cairo_dock_set_all_views_to_default ();
+	cairo_dock_set_all_views_to_default ();
 	
-	if (bFlatSeparator)
+	if (bFlatSeparator && g_bUseSeparator)
 	{
 		cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
 		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (pSourceContext, 150, 150);

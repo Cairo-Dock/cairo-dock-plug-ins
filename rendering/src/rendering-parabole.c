@@ -132,7 +132,6 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 	
 	
 	//\____________________ On dessine la ficelle qui les joint.
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 	if (g_iStringLineWidth > 0)
 		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, FALSE);
 	

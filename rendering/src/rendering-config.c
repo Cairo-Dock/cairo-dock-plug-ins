@@ -44,7 +44,7 @@ void cd_rendering_read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator
 	
 	*bFlatSeparator = cairo_dock_get_boolean_key_value (pKeyFile, "Inclinated Plane", "flat separator", &bFlushConfFileNeeded, TRUE);
 	
-	double couleur[4] = {1.0, 1.0, 0.8, 1.0};
+	double couleur[4] = {0.9,0.9,1.0,1.0};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Inclinated Plane", "separator color", &bFlushConfFileNeeded, my_fSeparatorColor, 4, couleur);
 	
 	my_rendering_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10);
