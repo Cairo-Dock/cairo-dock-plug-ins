@@ -6,13 +6,11 @@
 #include <cairo-dock.h>
 
 
-void cd_logout_about (GtkMenuItem *menu_item, gpointer *data);
+CD_APPLET_ABOUT_H
 
+CD_APPLET_ON_CLICK_H
 
-gboolean cd_logout_notification_click_icon (gpointer *data);
-
-gboolean cd_logout_notification_build_menu (gpointer *data);
+CD_APPLET_ON_BUILD_MENU_H
 
 
 #endif
-

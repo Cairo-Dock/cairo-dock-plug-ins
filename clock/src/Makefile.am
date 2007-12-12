@@ -5,15 +5,15 @@ lib_LTLIBRARIES = \
 
 
 libcd_clock_la_SOURCES = \
-	cd-clock-struct.h\
-	cd-clock-init.c\
-	cd-clock-init.h\
-	cd-clock-draw.c\
-	cd-clock-draw.h\
-	cd-clock-config.c\
-	cd-clock-config.h\
-	cd-clock-menu-functions.c\
-	cd-clock-menu-functions.h
+	applet-struct.h\
+	applet-init.c\
+	applet-init.h\
+	applet-draw.c\
+	applet-draw.h\
+	applet-config.c\
+	applet-config.h\
+	applet-notifications.c\
+	applet-notifications.h
 
 
 libcd_clock_la_CFLAGS = \

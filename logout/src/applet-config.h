@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-void cd_logout_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight, gchar **cName, gchar **cIconName);
+CD_APPLET_CONFIG_H
 
 
 #endif

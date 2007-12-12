@@ -42,7 +42,7 @@ void cd_rendering_read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator
 	
 	my_rendering_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5);
 	
-	*bFlatSeparator = cairo_dock_get_boolean_key_value (pKeyFile, "Inclinated Plane", "flat separator", &bFlushConfFileNeeded, TRUE);
+	*bFlatSeparator = cairo_dock_get_boolean_key_value (pKeyFile, "Inclinated Plane", "flat separator", &bFlushConfFileNeeded, FALSE);
 	
 	double couleur[4] = {0.9,0.9,1.0,1.0};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Inclinated Plane", "separator color", &bFlushConfFileNeeded, my_fSeparatorColor, 4, couleur);
