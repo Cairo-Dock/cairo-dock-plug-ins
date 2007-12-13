@@ -150,7 +150,7 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_save (pCairoContext);
 		
 		//g_print ("redessin a gauche de %s\n", icon->acName);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, pDock->iDecorationsHeight, my_rendering_fInclinationOnHorizon);
+		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect);
 		
 		cairo_restore (pCairoContext);
 		
@@ -161,7 +161,7 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_save (pCairoContext);
 		
 		//g_print ("redessin a droite de %s\n", icon->acName);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, pDock->iDecorationsHeight, my_rendering_fInclinationOnHorizon);
+		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect);
 		
 		cairo_restore (pCairoContext);
 		

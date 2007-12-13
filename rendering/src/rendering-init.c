@@ -70,6 +70,11 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], pSourceContext, 150, 150, -G_PI / 2);
 		cairo_destroy (pSourceContext);
 	}
+	else
+	{
+		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
+		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
+	}
 	
 	return NULL;
 }

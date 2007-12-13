@@ -54,7 +54,7 @@ void cd_dustbin_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeight,
 	
 	
 	if (bFlushConfFileNeeded)
-		cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
+		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, MY_APPLET_SHARE_DATA_DIR);
 	
 	g_key_file_free (pKeyFile);
 }

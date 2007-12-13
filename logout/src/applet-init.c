@@ -6,7 +6,6 @@
 #include "applet-init.h"
 
 
-#define MY_APPLET_CONF_FILE "logout.conf"
 #define MY_APPLET_USER_DATA_DIR "logout"
 
 
