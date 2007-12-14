@@ -91,18 +91,21 @@ CD_APPLET_CONFIG_BEGIN ("Horloge", NULL)
 	
 	
 	//\_______________ On charge la liste des themes disponibles.
-	gchar *cThemesDir = g_strdup_printf ("%s/themes", MY_APPLET_SHARE_DATA_DIR);
-	my_pThemeTable = cairo_dock_list_themes (cThemesDir, NULL, &erreur);
-	if (erreur != NULL)
+	if (my_pThemeTable == NULL)
 	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
+		gchar *cThemesDir = g_strdup_printf ("%s/themes", MY_APPLET_SHARE_DATA_DIR);
+		my_pThemeTable = cairo_dock_list_themes (cThemesDir, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			g_print ("Attention : %s\n", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+		}
+		g_free (cThemesDir);
 	}
-	g_free (cThemesDir);
 	
 	
-	//\_______________ On charge le theme choisi.
+	//\_______________ On charge le theme choisi (on peut le faire ici car on n'a pas besoin de connaitre les dimmensions de l'icone.
 	if (cThemeName != NULL && my_pThemeTable != NULL)
 	{
 		gchar *cThemePath = g_hash_table_lookup (my_pThemeTable, cThemeName);

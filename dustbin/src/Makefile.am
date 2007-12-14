@@ -5,15 +5,15 @@ lib_LTLIBRARIES = \
 
 
 libcd_dustbin_la_SOURCES = \
-	dustbin-struct.h\
-	dustbin-init.c\
-	dustbin-init.h\
-	dustbin-draw.c\
-	dustbin-draw.h\
-	dustbin-config.c\
-	dustbin-config.h\
-	dustbin-menu-functions.c\
-	dustbin-menu-functions.h
+	applet-struct.h\
+	applet-init.c\
+	applet-init.h\
+	applet-draw.c\
+	applet-draw.h\
+	applet-config.c\
+	applet-config.h\
+	applet-notifications.c\
+	applet-notifications.h
 
 
 libcd_dustbin_la_CFLAGS = \
@@ -21,6 +21,8 @@ libcd_dustbin_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
+	-DMY_APPLET_CONF_FILE=\""dustbin.conf"\"\
+	-DMY_APPLET_USER_DATA_DIR=\""dustbin"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall
@@ -34,7 +36,6 @@ libcd_dustbin_la_LDFLAGS =\
 	-version-info 1:0:0
 
 
-moduledustbindir = `pkg-config cairo-dock --variable=pluginsdir`
-
-moduledustbin_DATA = \
+moduledir = `pkg-config cairo-dock --variable=pluginsdir`
+module_DATA = \
 	.libs/libcd-dustbin.so

@@ -16,9 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "applet-draw.h"
 
 
-extern Icon *myIcon;
-extern cairo_t *myDrawContext;
-extern CairoDock *myDock;
+CD_APPLET_INCLUDE_MY_VARS
 
 extern gboolean my_bShowDate;
 extern gboolean my_bShowSeconds;

@@ -50,11 +50,10 @@ char my_cFileNames[CLOCK_ELEMENTS][30] = {
 CD_APPLET_DEFINITION ("clock", 1, 4, 5)
 
 
-CD_APPLET_INIT_BEGIN
+CD_APPLET_INIT_BEGIN (erreur)
 	//\_______________ On met a jour la liste des themes disponibles.
 	if (my_pThemeTable != NULL)
-		cairo_dock_update_conf_file_with_hash_table (cAppletConfFilePath, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
-	
+		cairo_dock_update_conf_file_with_hash_table (CD_APPLET_MY_CONF_FILE, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name);
 	
 	//\_______________ On construit les surfaces d'arriere-plan et d'avant-plan une bonne fois pour toutes.
 	my_pBackgroundSurface = update_surface (NULL,
@@ -93,7 +92,7 @@ CD_APPLET_STOP_BEGIN
 	g_source_remove (my_iSidUpdateClock);
 	my_iSidUpdateClock = 0;
 	
-	//\_______________ On libere toutes les ressources.
+	//\_______________ On libere toutes nos ressources.
 	int i;
 	for (i = 0; i < CLOCK_ELEMENTS; i ++)
 	{

@@ -10,8 +10,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "applet-notifications.h"
 
-extern CairoDock *myDock;
-extern Icon *myIcon;
+CD_APPLET_INCLUDE_MY_VARS
 
 
 void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
@@ -36,8 +35,7 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = NULL;
-	CD_APPLET_ADD_SUB_MENU ("Clock", pSubMenu, pAppletMenu)
+	CD_APPLET_ADD_SUB_MENU ("Clock", pSubMenu, CD_APPLET_MY_MENU)
 	
 	CD_APPLET_ADD_IN_MENU ("Set up time and date", cd_clock_launch_time_admin, pSubMenu)
 	

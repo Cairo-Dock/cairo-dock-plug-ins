@@ -36,8 +36,5 @@ typedef struct {
 	gchar *cMessage;
 	} CDClockAlarm;
 
-#define MY_APPLET_CONF_FILE "clock.conf"
-#define MY_APPLET_USER_DATA_DIR "clock"
-
 #endif
 

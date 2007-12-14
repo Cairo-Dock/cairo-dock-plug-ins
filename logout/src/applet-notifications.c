@@ -5,8 +5,7 @@
 
 #include "applet-notifications.h"
 
-extern Icon *myIcon;
-extern CairoDock *myDock;
+CD_APPLET_INCLUDE_MY_VARS
 
 extern CairoDockDesktopEnv my_logout_iDesktopEnv;
 
@@ -37,7 +36,6 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = NULL;
 	CD_APPLET_ADD_SUB_MENU("Logout", pSubMenu, pAppletMenu)
 	/*pMenuItem = gtk_menu_item_new_with_label ("Logout");
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);

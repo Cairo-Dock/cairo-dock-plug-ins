@@ -15,7 +15,7 @@ CairoDockDesktopEnv my_logout_iDesktopEnv;
 CD_APPLET_DEFINITION ("logout", 1, 4, 5)
 
 
-CD_APPLET_INIT_BEGIN
+CD_APPLET_INIT_BEGIN (erreur)
 	//\_______________ Notre action depend du bureau.
 	my_logout_iDesktopEnv = cairo_dock_guess_environment ();
 	/*if (my_logout_iDesktopEnv == CAIRO_DOCK_UNKNOWN_ENV)
