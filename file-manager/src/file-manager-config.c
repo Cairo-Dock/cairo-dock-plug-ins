@@ -29,17 +29,17 @@ void file_manager_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeigh
 	GKeyFile *pKeyFile = cairo_dock_read_header_applet_conf_file (cConfFilePath, iWidth, iHeight, cName, &bFlushConfFileNeeded);
 	g_return_if_fail (pKeyFile != NULL);
 	
-	my_fm_bShowVolumes = cairo_dock_get_boolean_key_value (pKeyFile, "ICON", "show volumes", &bFlushConfFileNeeded, FALSE);
-	my_fm_bShowNetwork = cairo_dock_get_boolean_key_value (pKeyFile, "ICON", "show network", &bFlushConfFileNeeded, FALSE);
+	my_fm_bShowVolumes = cairo_dock_get_boolean_key_value (pKeyFile, "ICON", "show volumes", &bFlushConfFileNeeded, FALSE, NULL, NULL);
+	my_fm_bShowNetwork = cairo_dock_get_boolean_key_value (pKeyFile, "ICON", "show network", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	
-	*cIconName = cairo_dock_get_string_key_value (pKeyFile, "ICON", "icon", &bFlushConfFileNeeded, "gnome-background-image.png");
+	*cIconName = cairo_dock_get_string_key_value (pKeyFile, "ICON", "icon", &bFlushConfFileNeeded, "gnome-background-image.png", NULL, NULL);
 	
 	
-	my_fm_iSortType = cairo_dock_get_integer_key_value (pKeyFile, "MODULE", "sort type", &bFlushConfFileNeeded, FILE_MANAGER_SORT_BY_NAME);
+	my_fm_iSortType = cairo_dock_get_integer_key_value (pKeyFile, "MODULE", "sort type", &bFlushConfFileNeeded, FILE_MANAGER_SORT_BY_NAME, NULL, NULL);
 	if (my_fm_iSortType < 0 || my_fm_iSortType >= FILE_MANAGER_NB_SORTS)
 		my_fm_iSortType = FILE_MANAGER_SORT_BY_NAME;
 	
-	my_fm_iDesktopEnv = cairo_dock_get_integer_key_value (pKeyFile, "MODULE", "force_vfs", &bFlushConfFileNeeded, 0);  // 0 <=> automatique.
+	my_fm_iDesktopEnv = cairo_dock_get_integer_key_value (pKeyFile, "MODULE", "force_vfs", &bFlushConfFileNeeded, 0, NULL, NULL);  // 0 <=> automatique.
 	if (my_fm_iDesktopEnv == 0)
 		my_fm_iDesktopEnv = cairo_dock_guess_environment ();
 	

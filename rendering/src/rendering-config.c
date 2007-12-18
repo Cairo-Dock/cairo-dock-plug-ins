@@ -37,19 +37,19 @@ void cd_rendering_read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator
 		return ;
 	}
 	
-	double fInclinationAngle  = cairo_dock_get_double_key_value (pKeyFile, "Inclinated Plane", "inclination", &bFlushConfFileNeeded, 35);
+	double fInclinationAngle  = cairo_dock_get_double_key_value (pKeyFile, "Inclinated Plane", "inclination", &bFlushConfFileNeeded, 35, NULL, NULL);
 	my_rendering_fInclinationOnHorizon = tan (fInclinationAngle * G_PI / 180.);
 	
-	my_rendering_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5);
+	my_rendering_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5, NULL, NULL);
 	
-	*bFlatSeparator = cairo_dock_get_boolean_key_value (pKeyFile, "Inclinated Plane", "flat separator", &bFlushConfFileNeeded, FALSE);
+	*bFlatSeparator = cairo_dock_get_boolean_key_value (pKeyFile, "Inclinated Plane", "flat separator", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	
 	double couleur[4] = {0.9,0.9,1.0,1.0};
-	cairo_dock_get_double_list_key_value (pKeyFile, "Inclinated Plane", "separator color", &bFlushConfFileNeeded, my_fSeparatorColor, 4, couleur);
+	cairo_dock_get_double_list_key_value (pKeyFile, "Inclinated Plane", "separator color", &bFlushConfFileNeeded, my_fSeparatorColor, 4, couleur, NULL, NULL);
 	
-	my_rendering_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10);
+	my_rendering_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10, NULL, NULL);
 	
-	my_rendering_bRotateIconsOnEllipse = ! cairo_dock_get_boolean_key_value (pKeyFile, "Caroussel", "show face", &bFlushConfFileNeeded, FALSE);
+	my_rendering_bRotateIconsOnEllipse = ! cairo_dock_get_boolean_key_value (pKeyFile, "Caroussel", "show face", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	
 	//if (! bFlushConfFileNeeded)  // pour l'instant on n'a pas de traduction en francais...
 	//	bFlushConfFileNeeded = cairo_dock_conf_file_needs_update (pKeyFile);
