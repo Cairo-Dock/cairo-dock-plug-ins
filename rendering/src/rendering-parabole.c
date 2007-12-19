@@ -23,23 +23,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include <rendering-parabole.h>
 
-extern double g_fSubDockSizeRatio;
-
-extern gint g_iScreenWidth[2];
-extern gint g_iScreenHeight[2];
-extern gint g_iMaxAuthorizedWidth;
-
-extern gint g_iDockLineWidth;
-extern gint g_iDockRadius;
-extern double g_fLineColor[4];
-extern gint g_iFrameMargin;
-extern gint g_iStringLineWidth;
-extern double g_fStringColor[4];
-
-extern gboolean g_bDirectionUp;
-extern double g_fAmplitude;
-extern int g_iLabelSize;
-
 extern double my_rendering_fParabolePower;
 extern double my_rendering_fParaboleFactor;
 
@@ -71,11 +54,20 @@ void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *
 void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->iFlatDockWidth, pDock->iScrollOffset);
-	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->iFlatDockWidth, 1., 0));
-	pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
+	//pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->iFlatDockWidth, 1., 0));
+	GList* ic;
+	Icon *icon;
+	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		icon->fXMax = icon->fXAtRest + 2*icon->fWidth;
+		icon->fXMin = icon->fXAtRest - 2*icon->fWidth;
+	}
+	
+	pDock->iMaxDockWidth = MIN (pDock->iFlatDockWidth, g_iMaxAuthorizedWidth) + 10;
 	
 	int iParabolicDeviation = my_rendering_fParaboleFactor * pDock->iMaxDockWidth;
-	pDock->iMaxDockHeight = iParabolicDeviation + pDock->iMaxIconHeight * (1 + g_fAmplitude) + g_iLabelSize;  // pDock->iMaxIconHeight/2 en haut et en bas.
+	pDock->iMaxDockHeight = iParabolicDeviation + pDock->iMaxIconHeight * (1 + 0) + g_iLabelSize;  // pDock->iMaxIconHeight/2 en haut et en bas.
 	
 	pDock->iDecorationsWidth = 0;
 	pDock->iDecorationsHeight = 0;
@@ -104,7 +96,7 @@ void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iC
 	if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= iCurrentWidth)
 		icon->fAlpha = 1;
 	else
-		icon->fAlpha = .25;
+		icon->fAlpha = .85;
 	
 	icon->fDrawY = fYIconCenter  - icon->fHeight * icon->fScale / 2;
 }
@@ -155,9 +147,21 @@ CairoDockMousePositionType cd_rendering_check_if_mouse_inside_parabole (CairoDoc
 }
 
 
+Icon *cairo_dock_apply_no_wave_effect (CairoDock *pDock)
+{
+	//\_______________ On calcule la position du curseur dans le referentiel du dock a plat.
+	int dx = pDock->iMouseX - pDock->iCurrentWidth / 2;  // ecart par rapport au milieu du dock a plat.
+	int x_abs = dx + pDock->iFlatDockWidth / 2;  // ecart par rapport a la gauche du dock minimal  plat.
+	
+	//\_______________ On calcule l'ensemble des parametres des icones.
+	double fMagnitude = 0.;
+	Icon *pPointedIcon = cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, pDock->iFlatDockWidth, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->fAlign, pDock->fFoldingFactor);
+	return pPointedIcon;
+}
+
 Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 {
-	Icon *pPointedIcon = cairo_dock_apply_wave_effect (pDock);
+	Icon *pPointedIcon = cairo_dock_apply_no_wave_effect (pDock);
 	
 	CairoDockMousePositionType iMousePositionType = cd_rendering_check_if_mouse_inside_parabole (pDock);
 	
@@ -184,7 +188,7 @@ void cd_rendering_register_parabole_renderer (void)
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-parabolic-view", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_parabole;
-	pRenderer->calculate_icons = cd_rendering_calculate_icons_parabole;  // cairo_dock_apply_wave_effect;
+	pRenderer->calculate_icons = cd_rendering_calculate_icons_parabole;  // cairo_dock_apply_no_wave_effect;
 	pRenderer->render = cd_rendering_render_parabole;
 	pRenderer->render_optimized = NULL;
 	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_parabole;

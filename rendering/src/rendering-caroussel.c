@@ -23,25 +23,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include <rendering-caroussel.h>
 
-
-extern double g_fSubDockSizeRatio;
-
-extern gint g_iScreenWidth[2];
-extern gint g_iScreenHeight[2];
-extern gint g_iMaxAuthorizedWidth;
-
-extern gint g_iDockLineWidth;
-extern gint g_iDockRadius;
-extern double g_fLineColor[4];
-extern gint g_iFrameMargin;
-extern gint g_iStringLineWidth;
-extern double g_fStringColor[4];
-
-extern gboolean g_bDirectionUp;
-extern double g_fAmplitude;
-extern int g_iLabelSize;
-extern double g_fReflectSize;
-
 extern double my_rendering_fInclinationOnHorizon;
 
 extern double my_rendering_fForegroundRatio;

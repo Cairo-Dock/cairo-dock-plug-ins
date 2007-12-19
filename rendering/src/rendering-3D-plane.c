@@ -23,25 +23,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "rendering-3D-plane.h"
 
-extern double g_fSubDockSizeRatio;
-
-extern gint g_iScreenWidth[2];
-extern gint g_iScreenHeight[2];
-extern gint g_iMaxAuthorizedWidth;
-
-extern gint g_iDockLineWidth;
-extern gint g_iDockRadius;
-extern double g_fLineColor[4];
-extern gint g_iFrameMargin;
-extern gint g_iStringLineWidth;
-extern double g_fStringColor[4];
-
-extern double g_fReflectSize;
-
-extern gboolean g_bDirectionUp;
-extern double g_fAmplitude;
-extern int g_iLabelSize;
-
 extern double my_rendering_fInclinationOnHorizon;
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern double my_fSeparatorColor[4];
@@ -99,7 +80,7 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceCon
 	int k = 0;
 	for (k = 0; k < h0 / fStep; k ++)
 	{
-		g_print ("step : %f ; y = %.2f\n", 1.*hk / iHeight, y);
+		//g_print ("step : %f ; y = %.2f\n", 1.*hk / iHeight, y);
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
 			y,
 			0.,
