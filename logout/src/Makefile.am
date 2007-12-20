@@ -18,6 +18,7 @@ libcd_logout_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""logout.conf"\"\
 	-std=c99\
 	-O3

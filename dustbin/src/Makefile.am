@@ -21,6 +21,7 @@ libcd_dustbin_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""dustbin.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""dustbin"\"\
 	-std=c99\
