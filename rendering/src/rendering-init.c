@@ -59,7 +59,7 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	cd_rendering_register_3D_plane_renderer ();
 	
-	cd_rendering_register_parabole_renderer ();  // pas encore ...
+	//cd_rendering_register_parabole_renderer ();  // pas encore ...
 	
 	cairo_dock_set_all_views_to_default ();
 	
@@ -83,7 +83,7 @@ void stop (void)
 {
 	cairo_dock_remove_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_3D_PLANE_VIEW_NAME);
-	cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
+	//cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
 	
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;

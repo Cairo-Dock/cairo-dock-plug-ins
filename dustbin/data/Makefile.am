@@ -5,5 +5,6 @@ datadustbindir = $(pkgdatadir)
 
 datadustbin_DATA = \
 	dustbin.conf\
-	readme
+	readme\
+	preview.png
 

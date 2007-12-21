@@ -5,4 +5,5 @@ dataclockdir = $(pkgdatadir)
 
 dataclock_DATA = \
 	clock.conf\
-	readme
+	readme\
+	preview.png
