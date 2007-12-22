@@ -3,12 +3,10 @@
 
 #include <cairo-dock.h>
 
-#include "rhythmbox-struct.h"
-
 void rhythmbox_iconWitness(int animationLenght);
 
-void rhythmbox_setIconSurface(cairo_surface_t *Surface);
+void update_icon(gboolean make_witness);
 
-void rhythmbox_setIconName(const gchar *IconName);
+void music_dialog(void);
 
 #endif

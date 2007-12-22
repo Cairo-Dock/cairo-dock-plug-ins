@@ -4,16 +4,14 @@
 #include <dbus/dbus-glib.h>
 
 gboolean rhythmbox_dbus_init(void);
+void dbus_detect_rhythmbox(void);
 
-int rhythmbox_getPlaying(void);
-gchar *rhythmbox_getPlayingUri(void);
-
-int rhythmbox_getElapsed(void);
-
-gchar *rhythmbox_getSongName(const gchar *uri);
-
-void rhythmbox_onChangeSong(DBusGProxy *player_proxy, const gchar *uri, gpointer data);
-void rhythmbox_onChangePlaying(DBusGProxy *player_proxy,gboolean playing, gpointer data);
-
+void rhythmbox_getPlaying(void);
+void rhythmbox_getPlayingUri(void);
+void rhythmbox_getElapsed(void);
+void getSongInfos(void);
+void onChangeSong(DBusGProxy *player_proxy, const gchar *uri, gpointer data);
+void onChangePlaying(DBusGProxy *player_proxy,gboolean playing, gpointer data);
+void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data);
 
 #endif

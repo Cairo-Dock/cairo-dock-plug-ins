@@ -1,33 +1,44 @@
-#include <stdlib.h>
+#include <string.h>
+
 #include <dbus/dbus-glib.h>
 
 #include "rhythmbox-draw.h"
 #include "rhythmbox-dbus.h"
 
-#define MY_APPLET_DBUS_OBJECT "org.gnome.Rhythmbox"
-#define MY_APPLET_DBUS_PATH_PLAYER "/org/gnome/Rhythmbox/Player"
-#define MY_APPLET_DBUS_INTERFACE_PLAYER "org.gnome.Rhythmbox.Player"
-#define MY_APPLET_DBUS_PATH_SHELL "/org/gnome/Rhythmbox/Shell"
-#define MY_APPLET_DBUS_INTERFACE_SHELL "org.gnome.Rhythmbox.Shell"
+#define RHYTHMBOX_DBUS_OBJECT 
+#define RHYTHMBOX_DBUS_PATH_PLAYER 
+#define RHYTHMBOX_DBUS_INTERFACE_PLAYER 
+#define RHYTHMBOX_DBUS_PATH_SHELL 
+#define RHYTHMBOX_DBUS_INTERFACE_SHELL 
+#define RHYTHMBOX_DBUS_SERVICE_NAME "org.gnome.Rhythmbox"
 
 DBusGConnection *dbus_connexion;
+DBusGProxy *dbus_proxy_dbus;
 DBusGProxy *dbus_proxy_player;
 DBusGProxy *dbus_proxy_shell;
 
-extern Icon *myIcon;
-extern CairoDock *myDock;
-extern cairo_t *myDrawContext;
+CD_APPLET_INCLUDE_MY_VARS
 
 extern gchar *conf_defaultTitle;
 extern gboolean conf_enableDialogs;
+extern gboolean conf_enableCover;
 extern double conf_timeDialogs;
+extern gchar *conf_quickInfoType;
 
 extern cairo_surface_t *rhythmbox_pPlaySurface;
 extern cairo_surface_t *rhythmbox_pPauseSurface;
 extern cairo_surface_t *rhythmbox_pStopSurface;
 
-static gboolean rhythmbox_opening = FALSE;
-static gboolean rhythmbox_playing = FALSE;
+extern gboolean rhythmbox_opening;
+extern gboolean rhythmbox_playing;
+extern gboolean cover_exist;
+extern int playing_duration;
+extern int playing_track;
+extern gchar *playing_uri;
+extern const gchar *playing_artist;
+extern const gchar *playing_album;
+extern const gchar *playing_title;
+
 
 //*********************************************************************************
 // rhythmbox_dbus_init() : Initialise la connexion d-bus
@@ -41,48 +52,86 @@ gboolean rhythmbox_dbus_init (void)
 	
 	if(!dbus_connexion)
 	{
-		g_print ("échouée\n");
+		g_print ("echouee\n");
 		return FALSE;
 	}
 	else
 	{
-		g_print ("réussie\n");
+		g_print ("reussie\n");
 
 		dbus_proxy_player = dbus_g_proxy_new_for_name (
 			dbus_connexion,
-			MY_APPLET_DBUS_OBJECT,
-			MY_APPLET_DBUS_PATH_PLAYER,
-			MY_APPLET_DBUS_INTERFACE_PLAYER
+			RHYTHMBOX_DBUS_SERVICE_NAME,
+			"/org/gnome/Rhythmbox/Player",
+			"org.gnome.Rhythmbox.Player"
 		);
 		
 		dbus_proxy_shell = dbus_g_proxy_new_for_name (
 			dbus_connexion,
-			MY_APPLET_DBUS_OBJECT,
-			MY_APPLET_DBUS_PATH_SHELL,
-			MY_APPLET_DBUS_INTERFACE_SHELL
+			RHYTHMBOX_DBUS_SERVICE_NAME,
+			"/org/gnome/Rhythmbox/Shell",
+			"org.gnome.Rhythmbox.Shell"
 		);
 		
-		dbus_g_proxy_add_signal(dbus_proxy_player, "playingUriChanged",
-			G_TYPE_STRING,
-			G_TYPE_INVALID);
-		dbus_g_proxy_connect_signal(dbus_proxy_player, "playingUriChanged",
-			G_CALLBACK(rhythmbox_onChangeSong), NULL, NULL);
+		dbus_proxy_dbus = dbus_g_proxy_new_for_name (
+			dbus_connexion,
+			"org.freedesktop.DBus",
+			"/",
+			"org.freedesktop.DBus"
+		);
 		
 		dbus_g_proxy_add_signal(dbus_proxy_player, "playingChanged",
 			G_TYPE_BOOLEAN,
 			G_TYPE_INVALID);
 		dbus_g_proxy_connect_signal(dbus_proxy_player, "playingChanged",
-			G_CALLBACK(rhythmbox_onChangePlaying), NULL, NULL);
-	
+			G_CALLBACK(onChangePlaying), NULL, NULL);
+			
+		dbus_g_proxy_add_signal(dbus_proxy_player, "playingUriChanged",
+			G_TYPE_STRING,
+			G_TYPE_INVALID);
+		dbus_g_proxy_connect_signal(dbus_proxy_player, "playingUriChanged",
+			G_CALLBACK(onChangeSong), NULL, NULL);
+		
+		dbus_g_proxy_add_signal(dbus_proxy_player, "elapsedChanged",
+			G_TYPE_UINT,
+			G_TYPE_INVALID);
+		dbus_g_proxy_connect_signal(dbus_proxy_player, "elapsedChanged",
+			G_CALLBACK(onElapsedChanged), NULL, NULL);
 		return TRUE;
 	}
+}
+
+void dbus_detect_rhythmbox(void)
+{
+	g_print ("%s ()\n",__func__);
+	gchar **name_list = NULL;
+	
+	rhythmbox_opening = FALSE;
+	if(dbus_g_proxy_call (dbus_proxy_dbus, "ListNames", NULL,
+		G_TYPE_INVALID,
+		G_TYPE_STRV,
+		&name_list,
+		G_TYPE_INVALID))
+	{
+		g_print("  detection du service Rhythmbox...\n");
+		int i;
+		for (i = 0; name_list[i] != NULL; i ++)
+		{
+			if (strcmp (name_list[i], RHYTHMBOX_DBUS_SERVICE_NAME) == 0)
+			{
+				rhythmbox_opening = TRUE;
+				break;
+			}
+		}
+	}
+	g_strfreev (name_list);
 }
 
 
 //*********************************************************************************
 // rhythmbox_getPlaying() : Test si Rhythmbox joue de la musique ou non
 //*********************************************************************************
-int rhythmbox_getPlaying (void)
+void rhythmbox_getPlaying (void)
 {
 	g_print ("%s ()\n",__func__);
 	gboolean playing;
@@ -92,83 +141,78 @@ int rhythmbox_getPlaying (void)
 		G_TYPE_BOOLEAN, &playing,
 		G_TYPE_INVALID);
 	
-	return playing ? 1 : 0;
+	rhythmbox_playing = playing;
 }
 
 
 //*********************************************************************************
 // rhythmbox_getPlayingUri() : Retourne l'adresse de la musique jouée
 //*********************************************************************************
-gchar *rhythmbox_getPlayingUri(void)
+void rhythmbox_getPlayingUri(void)
 {
 	g_print ("%s ()\n",__func__);
-	gchar *playing_uri;
 	
-	if(dbus_g_proxy_call (dbus_proxy_player, "getPlayingUri", NULL,
+	g_free (playing_uri);
+	playing_uri = NULL;
+	dbus_g_proxy_call (dbus_proxy_player, "getPlayingUri", NULL,
 		G_TYPE_INVALID,
-		G_TYPE_STRING, &playing_uri,
-		G_TYPE_INVALID))
-	{	
-		return playing_uri;
-	}
-	else return NULL;
+		G_TYPE_STRING, &playing_uri ,
+		G_TYPE_INVALID);
 }
 
 
 //*********************************************************************************
 // rhythmbox_getElapsed() : Retourne le temps écoulé pour la musique joué
 //*********************************************************************************
-int rhythmbox_getElapsed(void)
+void rhythmbox_getElapsed(void)
 {	
 	g_print ("%s ()\n",__func__);
 	int time_elapsed;
 	
 	dbus_g_proxy_call (dbus_proxy_player, "getElapsed", NULL,
 		G_TYPE_INVALID,
-		G_TYPE_INT, &time_elapsed,
+		G_TYPE_UINT, &time_elapsed,
 		G_TYPE_INVALID);
-	
-	g_print ("Elapsed : %s\n",time_elapsed);
-	
-	return time_elapsed;
+	g_print(" -> %ds\n",time_elapsed);
 }
 
-
-//*********************************************************************************
-// rhythmbox_getSongName() : Retourne le titre musical d'un adresse
-//*********************************************************************************
-gchar *rhythmbox_getSongName(const gchar *uri)
-{
-	g_print ("%s ()\n",__func__);
+void getSongInfos(void)
+{	
 	GHashTable *data_list = NULL;
 	GValue *value;
-	gchar *artist, *title;
+	const gchar *data;
 	
-	if(!dbus_g_proxy_call (dbus_proxy_shell, "getSongProperties", NULL,
-		G_TYPE_STRING, uri,
+	if(dbus_g_proxy_call (dbus_proxy_shell, "getSongProperties", NULL,
+		G_TYPE_STRING, playing_uri,
 		G_TYPE_INVALID,
 		dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),
 		&data_list,
 		G_TYPE_INVALID))
 	{
-		return conf_defaultTitle;
+		value = (GValue *) g_hash_table_lookup(data_list, "artist");
+		if (value != NULL && G_VALUE_HOLDS_STRING(value)) playing_artist = g_value_get_string(value);
+		else playing_artist = "Inconnu";
+
+		value = (GValue *) g_hash_table_lookup(data_list, "album");
+		if (value != NULL && G_VALUE_HOLDS_STRING(value)) playing_album = g_value_get_string(value);
+		else playing_album = "Inconnu";
+
+		value = (GValue *) g_hash_table_lookup(data_list, "title");
+		if (value != NULL && G_VALUE_HOLDS_STRING(value)) playing_title = g_value_get_string(value);
+		else playing_title = "Inconnu";
+
+		value = (GValue *) g_hash_table_lookup(data_list, "track-number");
+		if (value != NULL && G_VALUE_HOLDS_UINT(value)) playing_track = g_value_get_uint(value);
+		else playing_track = 0;
+
+		value = (GValue *) g_hash_table_lookup(data_list, "duration");
+		if (value != NULL && G_VALUE_HOLDS_UINT(value)) playing_duration = g_value_get_uint(value);
+		else playing_duration = 0;
 	}
 	else
 	{
-		value = (GValue *) g_hash_table_lookup(data_list, "title");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value))
-		{
-			title = g_value_get_string(value);
-		}
-		else title = "Titre inconnu";
-		
-		value = (GValue *) g_hash_table_lookup(data_list, "artist");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value))
-		{
-			artist = g_value_get_string(value);
-		}
-		else artist = "Artiste inconnu";
-		return g_strdup_printf ("%s - %s",artist,title);
+		g_free (playing_uri);
+		playing_uri = NULL;
 	}
 }
 
@@ -176,51 +220,73 @@ gchar *rhythmbox_getSongName(const gchar *uri)
 //*********************************************************************************
 // rhythmbox_onChangeSong() : Fonction executée à chaque changement de musique
 //*********************************************************************************
-void rhythmbox_onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
+void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 {
-	if (myIcon == NULL)
-		return ;
-	g_print ("%s ()\n",__func__);
+	g_print ("%s (%s)\n",__func__,uri);
 	
-	if(rhythmbox_playing)
+	cairo_dock_remove_quick_info (myIcon);
+	
+	g_free (playing_uri);
+	if(uri != NULL)
 	{
-		gchar *songName;
-		
-		songName = rhythmbox_getSongName(uri);
-		rhythmbox_setIconName( songName );
-		rhythmbox_iconWitness(1);
-		
-		if(conf_enableDialogs)
-		{
-			cairo_dock_show_temporary_dialog (songName,myIcon,myDock,conf_timeDialogs);
-		}
+		playing_uri = g_strdup (uri);
+		rhythmbox_opening = TRUE;
+		getSongInfos();
 	}
 	else
 	{
-		rhythmbox_setIconName(conf_defaultTitle);
-		rhythmbox_setIconSurface( rhythmbox_pStopSurface );
-		rhythmbox_opening = FALSE;
+		playing_uri = NULL;
+		cover_exist = FALSE;
+		playing_uri = NULL;
+		playing_artist = NULL;
+		playing_album = NULL;
+		playing_title = NULL;
+		playing_duration = 0;
+		playing_track = 0;
+		
+		dbus_detect_rhythmbox();
 	}
+	update_icon(TRUE);
 }
 
 //*********************************************************************************
 // rhythmbox_onChangeSong() : Fonction executée à chaque changement play/pause
 //*********************************************************************************
-void rhythmbox_onChangePlaying(DBusGProxy *player_proxy,gboolean playing, gpointer data)
+void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
 {
-	if (myIcon == NULL)
-		return ;
 	g_print ("%s ()\n",__func__);
-	
-	if(playing)
-	{
-		rhythmbox_setIconSurface( rhythmbox_pPlaySurface );
-		rhythmbox_opening = TRUE;
-	}
-	else if(rhythmbox_opening)
-	{
-		rhythmbox_setIconSurface( rhythmbox_pPauseSurface );
-	}
-	
 	rhythmbox_playing = playing;
+	if(!cover_exist && playing_uri != NULL)
+	{
+		if(playing)
+		{
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pPlaySurface)
+		}
+		else
+		{
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pPauseSurface)
+		}
+	}
+}
+
+//*********************************************************************************
+// rhythmbox_elapsedChanged() : Fonction executée à chaque changement de temps joué
+//*********************************************************************************
+void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
+{
+	if(elapsed > 0)
+	{
+		gchar *cQuickInfo;
+		if(strcmp(conf_quickInfoType,"elapsed") == 0)
+		{
+			cQuickInfo = g_strdup_printf ("%d", elapsed);
+			cairo_dock_set_quick_info (myDrawContext, cQuickInfo, myIcon);
+		}
+		else if(strcmp(conf_quickInfoType,"rest") == 0)
+		{
+			cQuickInfo = g_strdup_printf ("%d", (playing_duration - elapsed));
+			cairo_dock_set_quick_info (myDrawContext, cQuickInfo, myIcon);
+		}
+		g_free (cQuickInfo);
+	}
 }

@@ -5,7 +5,6 @@ lib_LTLIBRARIES = \
 
 
 libcd_rhythmbox_la_SOURCES = \
-	rhythmbox-struct.h\
 	rhythmbox-init.c\
 	rhythmbox-init.h\
 	rhythmbox-draw.c\
@@ -23,6 +22,9 @@ libcd_rhythmbox_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_CONF_FILE=\""rhythmbox.conf"\"\
+	-DMY_APPLET_USER_DATA_DIR=\""clock"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall

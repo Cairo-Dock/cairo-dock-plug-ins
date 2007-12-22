@@ -1,17 +1,16 @@
-#ifndef __rhythmbox_MENU_FUNC__
-#define  __rhythmbox_MENU_FUNC__
+#ifndef __RHYTHMBOX_MENU_FUNC__
+#define  __RHYTHMBOX_MENU_FUNC__
 
 #include <cairo-dock.h>
 
-void rhythmbox_previous (GtkMenuItem *menu_item, gpointer *data);
-void rhythmbox_next (GtkMenuItem *menu_item, gpointer *data);
-void rhythmbox_pause (GtkMenuItem *menu_item, gpointer *data);
-void rhythmbox_play (GtkMenuItem *menu_item, gpointer *data);
 
-void rhythmbox_about (GtkMenuItem *menu_item, gpointer *data);
+CD_APPLET_ABOUT_H
 
-gboolean rhythmbox_notification_build_menu (gpointer *data);
+CD_APPLET_ON_CLICK_H
 
-gboolean rhythmbox_action (gpointer *data);
+CD_APPLET_ON_MIDDLE_CLICK_H
+
+CD_APPLET_ON_BUILD_MENU_H
+
 
 #endif
