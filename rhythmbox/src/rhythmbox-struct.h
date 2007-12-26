@@ -1,5 +1,14 @@
-#ifndef __rythmbox_STRUCT__
-#define  __rythmbox_STRUCT__
+#ifndef __RYTHMBOX_STRUCT__
+#define  __RYTHMBOX_STRUCT__
+
+
+typedef enum {
+	MY_APPLET_NOTHING = 0,
+	MY_APPLET_TIME_ELAPSED,
+	MY_APPLET_TIME_LEFT,
+	MY_APPLET_TRACK,
+	MY_APPLET_NB_QUICK_INFO_TYPE
+	} MyAppletQuickInfoType;
+
 
 #endif
-

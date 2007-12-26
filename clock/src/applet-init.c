@@ -47,7 +47,7 @@ char my_cFileNames[CLOCK_ELEMENTS][30] = {
 	"clock-frame.svg" };
 
 
-CD_APPLET_DEFINITION ("clock", 1, 4, 5)
+CD_APPLET_DEFINITION ("clock", 1, 4, 6)
 
 
 CD_APPLET_INIT_BEGIN (erreur)

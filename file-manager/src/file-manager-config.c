@@ -43,10 +43,11 @@ void file_manager_read_conf_file (gchar *cConfFilePath, int *iWidth, int *iHeigh
 	if (my_fm_iDesktopEnv == 0)
 		my_fm_iDesktopEnv = cairo_dock_guess_environment ();
 	
+	if (! bFlushConfFileNeeded)
+		bFlushConfFileNeeded = cairo_dock_conf_file_needs_update (pKeyFile, MY_APPLET_VERSION);
 	if (bFlushConfFileNeeded)
-	{
-		cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
-	}
+		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, MY_APPLET_SHARE_DATA_DIR);
+	
 	g_key_file_free (pKeyFile);
 }
 

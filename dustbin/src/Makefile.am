@@ -24,6 +24,8 @@ libcd_dustbin_la_CFLAGS = \
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""dustbin.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""dustbin"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-dustbin"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall

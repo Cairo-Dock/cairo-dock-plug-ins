@@ -3,7 +3,11 @@
 
 #include <dbus/dbus-glib.h>
 
-gboolean rhythmbox_dbus_init(void);
+
+gboolean rhythmbox_dbus_pre_init (void);
+void rhythmbox_dbus_init(void);
+void rhythmbox_dbus_stop (void);
+
 void dbus_detect_rhythmbox(void);
 
 void rhythmbox_getPlaying(void);

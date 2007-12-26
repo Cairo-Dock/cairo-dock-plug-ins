@@ -14,7 +14,8 @@ libcd_rhythmbox_la_SOURCES = \
 	rhythmbox-dbus.c\
 	rhythmbox-dbus.h\
 	rhythmbox-menu-functions.c\
-	rhythmbox-menu-functions.h
+	rhythmbox-menu-functions.h\
+	rhythmbox-struct.h
 
 
 libcd_rhythmbox_la_CFLAGS = \
@@ -24,7 +25,9 @@ libcd_rhythmbox_la_CFLAGS = \
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""rhythmbox.conf"\"\
-	-DMY_APPLET_USER_DATA_DIR=\""clock"\"\
+	-DMY_APPLET_USER_DATA_DIR=\""rhythmbox"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-rhythmbox"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall

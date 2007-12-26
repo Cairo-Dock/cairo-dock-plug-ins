@@ -1,6 +1,8 @@
 #include <stdlib.h>
-#include "rhythmbox-menu-functions.h"
+
+#include "rhythmbox-dbus.h"
 #include "rhythmbox-draw.h"
+#include "rhythmbox-menu-functions.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -104,7 +106,8 @@ CD_APPLET_ON_CLICK_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	g_print ("%s ()\n", __func__);
 	
-	if(rhythmbox_getPlaying())
+	rhythmbox_getPlaying();
+	if (rhythmbox_playing)
 	{
 		g_spawn_command_line_async ("rhythmbox-client --next", NULL);
 	}

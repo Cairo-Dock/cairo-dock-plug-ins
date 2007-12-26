@@ -23,6 +23,8 @@ libfile_manager_la_CFLAGS = \
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
 	-DMY_APPLET_BACKEND_DIR=\""${libdir}"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""file-manager"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall

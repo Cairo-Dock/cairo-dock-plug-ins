@@ -37,7 +37,8 @@ CairoDockVisitCard *pre_init (void)
 	pVisitCard->cReadmeFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_README_FILE);
 	pVisitCard->iMajorVersionNeeded = 1;
 	pVisitCard->iMinorVersionNeeded = 4;
-	pVisitCard->iMicroVersionNeeded = 5;
+	pVisitCard->iMicroVersionNeeded = 6;
+	pVisitCard->cGettextDomain = g_strdup (MY_APPLET_GETTEXT_DOMAIN);
 	return pVisitCard;
 }
 

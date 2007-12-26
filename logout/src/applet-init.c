@@ -6,13 +6,10 @@
 #include "applet-init.h"
 
 
-#define MY_APPLET_USER_DATA_DIR "logout"
-
-
 CairoDockDesktopEnv my_logout_iDesktopEnv;
 
 
-CD_APPLET_DEFINITION ("logout", 1, 4, 5)
+CD_APPLET_DEFINITION ("logout", 1, 4, 6)
 
 
 CD_APPLET_INIT_BEGIN (erreur)

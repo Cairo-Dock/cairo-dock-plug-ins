@@ -1,5 +1,6 @@
 #include "string.h"
 
+#include "rhythmbox-struct.h"
 #include "rhythmbox-draw.h"
 
 //Inclusion des variables de dessins
@@ -17,7 +18,7 @@ extern CairoDockAnimationType conf_changeAnimation;
 extern gboolean conf_enableDialogs;
 extern gboolean conf_enableCover;
 extern double conf_timeDialogs;
-extern gchar *conf_quickInfoType;
+extern MyAppletQuickInfoType conf_quickInfoType;
 
 //Inclusion des variables d'etats
 extern gboolean rhythmbox_opening;
@@ -44,11 +45,21 @@ void update_icon(gboolean make_witness)
 		gchar *songName,*cover;
 		
 		songName = g_strdup_printf("%s - %s",playing_artist,playing_title);
+		g_print ("  songName : %s\n", songName);
 		CD_APPLET_SET_NAME_FOR_MY_ICON (songName);
 		g_free (songName);
-	
+		
+		//Affichage de l'info-rapide.
+		if(conf_quickInfoType == MY_APPLET_TRACK)
+		{
+			gchar *cQuickInfo = g_strdup_printf ("%d", playing_track);
+			cairo_dock_set_quick_info (myDrawContext, cQuickInfo, myIcon);  // inutile de redessiner notre icone, ce sera fait plusl oin.
+			g_free (cQuickInfo);
+		}
+		
 		//Affichage de l'album
 		cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), playing_artist,playing_album);
+		g_print ("  cover : %s\n", cover);
 		if(g_file_test (cover, G_FILE_TEST_EXISTS) && conf_enableCover)
 		{
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (cover);
@@ -68,13 +79,7 @@ void update_icon(gboolean make_witness)
 		}
 		g_free (cover);
 		
-		if(strcmp(conf_quickInfoType,"track") == 0)
-		{
-			gchar *cQuickInfo = g_strdup_printf ("%d", playing_track);
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cQuickInfo)
-			g_free (cQuickInfo);
-		}
-	
+		
 		if(make_witness)
 		{
 			rhythmbox_iconWitness(1);

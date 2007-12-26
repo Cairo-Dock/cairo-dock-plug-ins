@@ -26,7 +26,7 @@ const gchar *playing_title = NULL;
 
 
 CD_APPLET_PRE_INIT_BEGIN ("Rhythmbox", 1, 4, 5) \
-	rhythmbox_dbus_enable = rhythmbox_dbus_init();
+	rhythmbox_dbus_enable = rhythmbox_dbus_pre_init();
 CD_APPLET_PRE_INIT_END
 
 
@@ -52,23 +52,26 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	g_string_free (sImagePath, TRUE);
 	
-	
 	if (rhythmbox_dbus_enable)
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pSurface)
+		rhythmbox_dbus_init ();
+		
+		dbus_detect_rhythmbox();
+		if(rhythmbox_opening)
+		{
+			rhythmbox_getPlaying();
+			rhythmbox_getPlayingUri();
+			getSongInfos();
+			update_icon( FALSE );
+		}
+		else
+		{
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pSurface)
+		}
 	}
 	else
 	{
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pBrokenSurface)
-	}
-	
-	dbus_detect_rhythmbox();
-	if(rhythmbox_opening)
-	{
-		rhythmbox_getPlaying();
-		rhythmbox_getPlayingUri();
-		getSongInfos();
-		update_icon( FALSE );
 	}
 	
 	//Enregistrement des notifications	
@@ -82,6 +85,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
+	
+	rhythmbox_dbus_stop ();
 	
 	g_free (conf_defaultTitle);
 	conf_defaultTitle = NULL;
