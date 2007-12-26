@@ -98,7 +98,8 @@ void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iC
 	else
 		icon->fAlpha = .85;
 	
-	icon->fDrawY = fYIconCenter  - icon->fHeight * icon->fScale / 2;
+	icon->fDrawY = fYIconCenter - icon->fHeight * icon->fScale / 2;
+	icon->fOrientation = .7;
 }
 
 
