@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-dustbin],[1.0.0],[Fabrice Rey (fabounet_03@yahoo.fr)])
+AC_INIT([cd-dustbin],[1.0.1],[Fabrice Rey (fabounet_03@yahoo.fr)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -12,6 +12,14 @@ AC_PROG_LIBTOOL
 
 pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/dustbin]
 AC_SUBST(pkgdatadir)
+
+
+IT_PROG_INTLTOOL([0.35.0])
+AC_SUBST(ALL_LINGUAS)
+AM_GLIB_GNU_GETTEXT
+GETTEXT_PACKAGE=cd-dustbin
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
+AC_SUBST(GETTEXT_PACKAGE)
 
 
 # Checks for programs.
@@ -35,6 +43,7 @@ PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
+		po/Makefile.in
 		data/Makefile
 		data/themes/Makefile
 		data/themes/Gion/Makefile

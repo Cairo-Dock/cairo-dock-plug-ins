@@ -17,17 +17,17 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #define MY_APPLET_CONF_FILE "rendering.conf"
 #define MY_APPLET_USER_DATA_DIR "rendering"
 
-double my_rendering_fInclinationOnHorizon;  // inclinaison de la ligne de fuite vers l'horizon.
+double my_fInclinationOnHorizon;  // inclinaison de la ligne de fuite vers l'horizon.
 
 cairo_surface_t *my_pFlatSeparatorSurface[2];
 double my_fSeparatorColor[4];
 
-double my_rendering_fForegroundRatio;  // fraction des icones presentes en avant-plan (represente donc l'etirement en profondeur de l'ellipse).
-double my_rendering_iGapOnEllipse;  // regle la profondeur du caroussel.
-gboolean my_rendering_bRotateIconsOnEllipse;  // tourner les icones de profil ou pas.
+double my_fForegroundRatio;  // fraction des icones presentes en avant-plan (represente donc l'etirement en profondeur de l'ellipse).
+double my_iGapOnEllipse;  // regle la profondeur du caroussel.
+gboolean my_bRotateIconsOnEllipse;  // tourner les icones de profil ou pas.
 
-double my_rendering_fParabolePower = .5;
-double my_rendering_fParaboleFactor = .33;
+double my_fParabolePower = .5;
+double my_fParaboleFactor = .33;
 
 
 CairoDockVisitCard *pre_init (void)

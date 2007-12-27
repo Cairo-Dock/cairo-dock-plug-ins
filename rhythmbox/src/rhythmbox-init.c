@@ -25,7 +25,7 @@ const gchar *playing_album = NULL;
 const gchar *playing_title = NULL;
 
 
-CD_APPLET_PRE_INIT_BEGIN ("Rhythmbox", 1, 4, 5) \
+CD_APPLET_PRE_INIT_BEGIN ("Rhythmbox", 1, 4, 6)
 	rhythmbox_dbus_enable = rhythmbox_dbus_pre_init();
 CD_APPLET_PRE_INIT_END
 

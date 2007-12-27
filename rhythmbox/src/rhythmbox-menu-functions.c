@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <glib/gi18n.h>
 
 #include "rhythmbox-dbus.h"
 #include "rhythmbox-draw.h"
@@ -56,7 +57,7 @@ static void rhythmbox_music (GtkMenuItem *menu_item, gpointer *data)
 //*********************************************************************************
 // Informations sur l'applet et l'auteur.
 //*********************************************************************************
-CD_APPLET_ABOUT ("Applet by Necropotame (Adrien Pilleboue)")
+CD_APPLET_ABOUT (_D("Applet by Necropotame (Adrien Pilleboue)"))
 
 
 //*********************************************************************************
@@ -64,11 +65,11 @@ CD_APPLET_ABOUT ("Applet by Necropotame (Adrien Pilleboue)")
 // Cette fonction remplit le menu principal avec les actions previous, next, et information.
 //*********************************************************************************
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_IN_MENU ("Previous", rhythmbox_previous, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (_D("Previous"), rhythmbox_previous, CD_APPLET_MY_MENU)
 	
-	CD_APPLET_ADD_IN_MENU ("Next", rhythmbox_next, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (_D("Next"), rhythmbox_next, CD_APPLET_MY_MENU)
 	
-	CD_APPLET_ADD_IN_MENU ("Information", rhythmbox_music, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (_D("Information"), rhythmbox_music, CD_APPLET_MY_MENU)
 	
 	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU)
 CD_APPLET_ON_BUILD_MENU_END

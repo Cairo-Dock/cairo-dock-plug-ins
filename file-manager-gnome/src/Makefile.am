@@ -15,6 +15,7 @@ libfile_manager_gnome_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	-std=c99\
+	-Werror-implicit-function-declaration\
 	-O3
 #	-g -ggdb -W -Wall
 

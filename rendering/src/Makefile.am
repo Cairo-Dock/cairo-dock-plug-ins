@@ -33,7 +33,9 @@ libcd_rendering_la_CFLAGS = \
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-rendering"\"\
 	-std=c99\
+	-Werror-implicit-function-declaration\
 	-O3
+#	-Wno-unused-parameter
 #	-g -ggdb -W -Wall
 
 

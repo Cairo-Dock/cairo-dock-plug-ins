@@ -1,4 +1,5 @@
 #include "string.h"
+#include <glib/gi18n.h>
 
 #include "rhythmbox-struct.h"
 #include "rhythmbox-draw.h"
@@ -98,7 +99,7 @@ void update_icon(gboolean make_witness)
 
 void music_dialog(void)
 {
-	gchar *message = g_strdup_printf("Artist : %s\nAlbum : %s\nTitle : %s",playing_artist,playing_album,playing_title);
+	gchar *message = g_strdup_printf(_D("Artist : %s\nAlbum : %s\nTitle : %s"),playing_artist,playing_album,playing_title);
 	cairo_dock_show_temporary_dialog (message,myIcon,myDock,conf_timeDialogs);
 	g_free (message);
 }

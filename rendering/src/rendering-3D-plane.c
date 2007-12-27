@@ -23,7 +23,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "rendering-3D-plane.h"
 
-extern double my_rendering_fInclinationOnHorizon;
+extern double my_fInclinationOnHorizon;
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern double my_fSeparatorColor[4];
 
@@ -32,9 +32,9 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->iFlatDockWidth, pDock->iScrollOffset);
 	
-	pDock->iDecorationsHeight = (pDock->iMaxIconHeight + g_fReflectSize + 2 * g_iFrameMargin) / sqrt (1 + my_rendering_fInclinationOnHorizon * my_rendering_fInclinationOnHorizon);
+	pDock->iDecorationsHeight = (pDock->iMaxIconHeight + g_fReflectSize + 2 * g_iFrameMargin) / sqrt (1 + my_fInclinationOnHorizon * my_fInclinationOnHorizon);
 	
-	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, my_rendering_fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
+	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, my_fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->iFlatDockWidth, 1., fExtraWidth));
 	pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
 	
@@ -139,7 +139,7 @@ static void cd_rendering_one_3D_separator_horizontal (Icon *icon, cairo_t *pCair
 		fDockOffsetY = pDock->iDecorationsHeight + g_iDockLineWidth;
 	}
 	
-	double fInclination = my_rendering_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
+	double fInclination = my_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
 	//g_print ("fInclination : %f\n", fInclination);
 	double fEpsilon = .1 * icon->fWidth;
 	double fDeltaX = pDock->iDecorationsHeight * fInclination;
@@ -204,7 +204,7 @@ static void cd_rendering_one_3D_separator_vertical (Icon *icon, cairo_t *pCairoC
 		fDockOffsetY = pDock->iDecorationsHeight + g_iDockLineWidth;
 	}
 	
-	double fInclination = my_rendering_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
+	double fInclination = my_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
 	//g_print ("fInclination : %f\n", fInclination);
 	double fEpsilon = .1 * icon->fWidth;
 	double fDeltaX = pDock->iDecorationsHeight * fInclination;
@@ -310,7 +310,7 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 	}
 	
 	cairo_save (pCairoContext);
-	cairo_dock_draw_frame (pCairoContext, fRadius, 1, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, my_rendering_fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
+	cairo_dock_draw_frame (pCairoContext, fRadius, 1, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
 	
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (g_bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
@@ -326,7 +326,7 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 	cairo_restore (pCairoContext);
 	
 	/**cairo_save (pCairoContext);
-	cairo_dock_draw_frame_border (pCairoContext, fLineWidth, fDockOffsetX, fDockOffsetY, fDockWidth, pDock->iDecorationsHeight, fRadius, my_rendering_fInclinationOnHorizon);
+	cairo_dock_draw_frame_border (pCairoContext, fLineWidth, fDockOffsetX, fDockOffsetY, fDockWidth, pDock->iDecorationsHeight, fRadius, my_fInclinationOnHorizon);
 	cairo_restore (pCairoContext);*/
 	
 	//\____________________ On dessine la ficelle qui les joint.

@@ -24,6 +24,7 @@ libcd_logout_la_CFLAGS = \
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-logout"\"\
 	-std=c99\
+	-Werror-implicit-function-declaration\
 	-O3
 #	-g -ggdb -W -Wall
 

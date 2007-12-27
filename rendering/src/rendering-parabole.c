@@ -23,9 +23,16 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include <rendering-parabole.h>
 
-extern double my_rendering_fParabolePower;
-extern double my_rendering_fParaboleFactor;
+extern double my_fParabolePower;
+extern double my_fParaboleFactor;
 
+double my_fParaboleCurvature = 0.5;  // puissance de x (alpha).
+double my_fParaboleRatio = .33;  // ratio hauteur / largeur fixe => coef de la parabole (lambda).
+
+#define fCurve(x, lambda, alpha) (lambda * pow (x, alpha))
+#define fCurve_(x, lambda, alpha) (x != 0 ? lambda * alpha * pow (x, alpha - 1) : (alpha > 1 ? 0 : alpha < 1 ? 1e6 : alpha * lambda))
+#define fCurveInv(y, lambda, alpha) pow (y / lambda, 1. / alpha)
+#define fCurveInv_(y, lambda, alpha) (y != 0 ? alpha * y * pow (lambda / y, 1. / alpha) : (alpha > 1 ? 0 : alpha < 1 ? 1e6 : alpha * pow (lambda, 1. / alpha)))
 
 void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *pDock)
 {
@@ -66,7 +73,7 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	
 	pDock->iMaxDockWidth = MIN (pDock->iFlatDockWidth, g_iMaxAuthorizedWidth) + 10;
 	
-	int iParabolicDeviation = my_rendering_fParaboleFactor * pDock->iMaxDockWidth;
+	int iParabolicDeviation = my_fParaboleFactor * pDock->iMaxDockWidth;
 	pDock->iMaxDockHeight = iParabolicDeviation + pDock->iMaxIconHeight * (1 + 0) + g_iLabelSize;  // pDock->iMaxIconHeight/2 en haut et en bas.
 	
 	pDock->iDecorationsWidth = 0;
@@ -76,14 +83,88 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	pDock->iMinDockHeight = pDock->iMaxIconHeight;
 }
 
+void cd_rendering_calculate_next_point (double xn, double yn, double ds, double lambda, double alpha, double *fXNext, double *fYNext, double *fOrientation)
+{
+	if (ds <= 0)
+	{
+		return ;
+	}
+	double k1, k2, k3, k4, k;
+	double Txn, Tyn, Tn;
+	double Txnplus1_2, Tynplus1_2, Tnplus1_2, xnplus1_2, ynplus1_2;
+	double  xnplus1, ynplus1;
+	
+	// k1.
+	k1 = fCurve_ (xn, lambda, alpha);
+	
+	// k2.
+	Tn = sqrt (1 + k1 * k1);
+	Txn = 1. / Tn;
+	Tyn = k1 / Tn;
+	*fOrientation = atan (Txn / Tyn);
+	if (k1 > 1)
+	{
+		
+		ynplus1_2 = yn + ds/2 * Tyn;
+		k2 = fCurveInv_ (ynplus1_2, lambda, alpha);
+	}
+	else
+	{
+		
+		xnplus1_2 = xn + ds/2 * Txn;
+		k2 =fCurve_ (xnplus1_2, lambda, alpha);
+	}
+	
+	// k3.
+	Tnplus1_2 = sqrt (1 + k2 * k2);
+	if (k2 > 1)
+	{
+		Tynplus1_2 = k2 / Tnplus1_2;
+		ynplus1_2 = yn + ds/2 * Tynplus1_2;
+		k3 = fCurveInv_ (ynplus1_2, lambda, alpha);
+	}
+	else
+	{
+		Txnplus1_2 = 1. / Tnplus1_2;
+		xnplus1_2 = xn + ds/2 * Txnplus1_2;
+		k3 = fCurve_ (xnplus1_2, lambda, alpha);
+	}
+	
+	// k4.
+	Tnplus1_2 = sqrt (1 + k3 * k3);
+	if (k3 > 1)
+	{
+		Tynplus1_2 = k3 / Tnplus1_2;
+		ynplus1 = yn + ds * Tynplus1_2;
+		k4 = fCurveInv_ (ynplus1, lambda, alpha);
+	}
+	else
+	{
+		Txnplus1_2 = 1. / Tnplus1_2;
+		xnplus1 = xn + ds * Txnplus1_2;
+		k4 = fCurve_ (xnplus1, lambda, alpha);
+	}
+	
+	// k.
+	k = (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+	
+	// (xn+1, yn+1).
+	Tn = sqrt (1 + k * k);
+	Txn = 1. / Tn;
+	Tyn = k / Tn;
+	*fXNext = xn+ ds * Txn;
+	*fYNext = yn+ ds * Tyn;
+	*fOrientation = atan (Txn / Tyn);
+}
+
 
 void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iFlatDockWidth, gboolean bDirectionUp, double fAlign, gboolean bHorizontalDock)
 {
 	double fXIconCenter = icon->fX + icon->fWidth * icon->fScale / 2;  // abscisse du centre de l'icone.
 	//g_print ("fXIconCenter : %.2f / %d\n", fXIconCenter, iCurrentWidth);
-	//double fYIconCenter = my_rendering_fParaboleFactor * iCurrentWidth * pow (fXIconCenter / iCurrentWidth, my_rendering_fParabolePower);
-	double fMaxYIconCenter = pow (1.*iCurrentWidth, 1./my_rendering_fParabolePower);
-	double fYIconCenter = my_rendering_fParaboleFactor * pow (fMaxYIconCenter - pow ((fAlign == 0 ? iCurrentWidth - fXIconCenter : fXIconCenter), 1./my_rendering_fParabolePower), my_rendering_fParabolePower);
+	//double fYIconCenter = my_fParaboleFactor * iCurrentWidth * pow (fXIconCenter / iCurrentWidth, my_fParabolePower);
+	double fMaxYIconCenter = pow (1.*iCurrentWidth, 1./my_fParabolePower);
+	double fYIconCenter = my_fParaboleFactor * pow (fMaxYIconCenter - pow ((fAlign == 0 ? iCurrentWidth - fXIconCenter : fXIconCenter), 1./my_fParabolePower), my_fParabolePower);
 	//if (fAlign == 1.)
 	//	fYIconCenter = fMaxYIconCenter - fYIconCenter;
 	if (bDirectionUp)
@@ -171,13 +252,38 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	//\____________________ On calcule les position/etirements/alpha des icones.
 	cd_rendering_check_if_mouse_inside_parabole (pDock);
 	
-	Icon* icon;
+	Icon* icon, *prev_icon;
 	GList* ic;
+	double x = 0, y = 0, theta = 0;
+	double alpha = my_fParaboleCurvature, lambda = my_fParaboleRatio * pow (pDock->iCurrentWidth, 1 - alpha), ds;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
 		cd_rendering_calculate_construction_parameters_parabole (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iFlatDockWidth, g_bDirectionUp, pDock->fAlign, pDock->bHorizontalDock);
 		cairo_dock_manage_animations (icon, pDock);
+		
+		if (ic->prev != NULL)
+		{
+			prev_icon = ic->prev->data;
+			ds = (prev_icon->fHeight + g_iIconGap) * (1 - pDock->fFoldingFactor);
+			cd_rendering_calculate_next_point (prev_icon->fX, prev_icon->fY, ds, lambda, alpha, &x, &y, &theta);
+			g_print ("ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x, y, theta/G_PI*180);
+			
+			ds += (prev_icon->fWidth / 2 * tan (theta - prev_icon->fOrientation)) * (1 - pDock->fFoldingFactor);
+			cd_rendering_calculate_next_point (prev_icon->fX, prev_icon->fY, ds, lambda, alpha, &x, &y, &theta);
+			g_print ("  ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x, y, theta/G_PI*180);
+			icon->fX = x;
+			icon->fY = y;
+		}
+		else
+		{
+			icon->fX = 0;
+			icon->fY = 0;
+		}
+		
+		icon->fDrawX = icon->fX - 0*icon->fWidth/2 * cos (theta);
+		icon->fDrawY = pDock->iCurrentHeight - icon->fY - icon->fHeight - 0*icon->fWidth/2 * sin (theta);
+		icon->fOrientation = theta;
 	}
 	
 	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);

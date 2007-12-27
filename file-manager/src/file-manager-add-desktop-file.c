@@ -25,7 +25,7 @@ gchar * file_manager_add_desktop_file_from_uri (gchar *cURI, gchar *cDockName, d
 	gchar *cNewDesktopFileName = NULL;
 	
 	//\___________________ On ouvre le patron.
-	gchar *cDesktopFileTemplate = cairo_dock_get_launcher_template_conf_file ();
+	gchar *cDesktopFileTemplate = cairo_dock_get_launcher_template_conf_file (FALSE);
 	
 	GKeyFile *pKeyFile = g_key_file_new ();
 	g_key_file_load_from_file (pKeyFile, cDesktopFileTemplate, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &tmp_erreur);

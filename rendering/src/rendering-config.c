@@ -12,14 +12,14 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "rendering-3D-plane.h"
 #include "rendering-config.h"
 
-extern double my_rendering_fInclinationOnHorizon;
+extern double my_fInclinationOnHorizon;
 
-extern double my_rendering_fForegroundRatio;
-extern double my_rendering_iGapOnEllipse;
-extern gboolean my_rendering_bRotateIconsOnEllipse;
+extern double my_fForegroundRatio;
+extern double my_iGapOnEllipse;
+extern gboolean my_bRotateIconsOnEllipse;
 
-extern double my_rendering_fParabolePower;
-extern double my_rendering_fParaboleFactor;
+extern double my_fParabolePower;
+extern double my_fParaboleFactor;
 extern double my_fSeparatorColor[4];
 
 
@@ -38,18 +38,18 @@ void cd_rendering_read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator
 	}
 	
 	double fInclinationAngle  = cairo_dock_get_double_key_value (pKeyFile, "Inclinated Plane", "inclination", &bFlushConfFileNeeded, 35, NULL, NULL);
-	my_rendering_fInclinationOnHorizon = tan (fInclinationAngle * G_PI / 180.);
+	my_fInclinationOnHorizon = tan (fInclinationAngle * G_PI / 180.);
 	
-	my_rendering_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5, NULL, NULL);
+	my_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5, NULL, NULL);
 	
 	*bFlatSeparator = cairo_dock_get_boolean_key_value (pKeyFile, "Inclinated Plane", "flat separator", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	
 	double couleur[4] = {0.9,0.9,1.0,1.0};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Inclinated Plane", "separator color", &bFlushConfFileNeeded, my_fSeparatorColor, 4, couleur, NULL, NULL);
 	
-	my_rendering_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10, NULL, NULL);
+	my_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10, NULL, NULL);
 	
-	my_rendering_bRotateIconsOnEllipse = ! cairo_dock_get_boolean_key_value (pKeyFile, "Caroussel", "show face", &bFlushConfFileNeeded, FALSE, NULL, NULL);
+	my_bRotateIconsOnEllipse = ! cairo_dock_get_boolean_key_value (pKeyFile, "Caroussel", "show face", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	
 	if (! bFlushConfFileNeeded)
 		bFlushConfFileNeeded = cairo_dock_conf_file_needs_update (pKeyFile, MY_APPLET_VERSION);

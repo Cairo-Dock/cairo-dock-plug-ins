@@ -29,6 +29,7 @@ libcd_rhythmbox_la_CFLAGS = \
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-rhythmbox"\"\
 	-std=c99\
+	-Werror-implicit-function-declaration\
 	-O3
 #	-g -ggdb -W -Wall
 

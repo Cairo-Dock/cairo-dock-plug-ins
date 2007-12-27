@@ -19,7 +19,7 @@ void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 }
 
 
-CD_APPLET_ABOUT ("This is a clock applet made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\n The analogic representation is a port of the well-known Cairo-Clock from MacSlow (http://macslow.thepimp.net).")
+CD_APPLET_ABOUT (_D("This is the Cairo-Dock's clock applet\n made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\nThe analogic representation is a port of the well-known Cairo-Clock\n from MacSlow (http://macslow.thepimp.net)."))
 
 
 CD_APPLET_ON_CLICK_BEGIN
