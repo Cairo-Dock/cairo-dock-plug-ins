@@ -1,0 +1,124 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
+#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2007-12-11\n"
+"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "ICON"
+msgstr "ICONE"
+
+msgid "Desired icon size for this applet"
+msgstr "Taille d'icône souhaitée pour cette applet"
+
+msgid "width :"
+msgstr "largeur :"
+
+msgid "height :"
+msgstr "hauteur :"
+
+msgid "Default title :"
+msgstr "Titre par défaut :"
+
+msgid "Configuration"
+msgstr "Configuration"
+
+msgid "Info-bubbles"
+msgstr "Info-bulles"
+
+msgid "Activate info-bubbles ?"
+msgstr "Activer les info-bulles ?"
+
+msgid "Time length of info-bubbles :"
+msgstr "Durée des info-bulles :"
+
+msgid "in ms."
+msgstr "en ms."
+
+msgid "Animations"
+msgstr "Animations"
+
+msgid "bounce"
+msgstr "rebond"
+
+msgid "rotate"
+msgstr "rotation"
+
+msgid "blink"
+msgstr "clignotement"
+
+msgid "pulse"
+msgstr "pulsation"
+
+msgid "upside-down"
+msgstr "sens dessus-dessous"
+
+msgid "wobbly"
+msgstr "élastique"
+
+msgid "random"
+msgstr "aléatoire"
+
+msgid "Animation when music changes :"
+msgstr "Animation au changement de musique"
+
+msgid "Display"
+msgstr "Affichage"
+
+msgid "Display album's cover instead of icon ?"
+msgstr "Afficher l'album au lieu de l'icône ?"
+
+msgid "nothing"
+msgstr "rien"
+
+msgid "elapsed time"
+msgstr "temps écoulé"
+
+msgid "left time"
+msgstr "temps restant"
+
+msgid "n° of track"
+msgstr "n° de piste"
+
+msgid "Information to display on the icon :"
+msgstr "Information à afficher sur l'icône :"
+
+#: src/rhythmbox-draw.c:101 src/rhythmbox-draw.c:102
+#, c-format
+msgid ""
+"Artist : %s\n"
+"Album : %s\n"
+"Title : %s"
+msgstr ""
+"Artiste : %s\n"
+"Album : %s\n"
+"Titre : %s"
+
+#: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
+
+#: src/rhythmbox-menu-functions.c:67 src/rhythmbox-menu-functions.c:68
+msgid "Previous"
+msgstr "Précédent"
+
+#: src/rhythmbox-menu-functions.c:69 src/rhythmbox-menu-functions.c:70
+msgid "Next"
+msgstr "Suivant"
+
+#: src/rhythmbox-menu-functions.c:71 src/rhythmbox-menu-functions.c:72
+msgid "Information"
+msgstr "Information"

@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
+#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2007-12-11\n"
+"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "ICON"
+msgstr "ICONE"
+
+msgid "Desired icon size for this applet"
+msgstr "Taille d'icône souhaitée pour cette applet"
+
+msgid "width :"
+msgstr "largeur :"
+
+msgid "height :"
+msgstr "hauteur :"
+
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+
+msgid "MODULE"
+msgstr "MODULE"
+
+msgid "Behaviour"
+msgstr "Comportement"
+
+msgid "Show the date ?"
+msgstr "Montrer la date ?"
+
+msgid "Show seconds ?"
+msgstr "Montrer les secondes ?"
+
+msgid "if not, then the applet will update time once a minute, saving CPU."
+msgstr ""
+"Si non, alors l'applet se rafraîchira une fois par minute, épargnant le CPU."
+
+msgid "Should the time be displayed as a 24h format ?"
+msgstr "Afficher l'heure au format 24h ?"
+
+msgid "for numeric format only."
+msgstr "pour l'affichage en mode numérique seulement."
+
+msgid "Style"
+msgstr "Style"
+
+msgid "Use the analogic view ?"
+msgstr "Utiliser la vue analogique ?"
+
+msgid ""
+"The analogic view is based on CairoClock; otherwise it will be displayed in "
+"a numeric way."
+msgstr ""
+"La vue analogique est basée sur CairoClock; autrement il sera affiché en "
+"mode numérique."
+
+msgid "Text color for the numeric display:"
+msgstr "Couleur du texte pour l'affiche numérique:"
+
+msgid "List of available themes for the analogic display :"
+msgstr "Liste des thèmes disponibles pour la vue analogique :"
+
+msgid "ALARM"
+msgstr "ALARME"
+
+msgid "Alarm n°1"
+msgstr "Alarme n°1"
+
+msgid "Time you want to be notified :"
+msgstr "Heure de la notification :"
+
+msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
+msgstr "de la forme xx:xx. Par exemple, 20:35 pour 8:35pm"
+
+msgid "Never"
+msgstr "Jamais"
+
+msgid "Day"
+msgstr "Jours"
+
+msgid "Monday"
+msgstr "Lundi"
+
+msgid "Tuesday"
+msgstr "Mardi"
+
+msgid "Wednesday"
+msgstr "Mercredi"
+
+msgid "Thursday"
+msgstr "Jeudi"
+
+msgid "Friday"
+msgstr "Vendredi"
+
+msgid "Saturday"
+msgstr "Samedi"
+
+msgid "Sunday"
+msgstr "Dimanche"
+
+msgid "Week Day"
+msgstr "Jours de la semaine"
+
+msgid "Week End"
+msgstr "Week Ends"
+
+msgid "Month"
+msgstr "Mois"
+
+msgid "Repeat every"
+msgstr "Répeter tous les"
+
+msgid "If every month, which day of the month ? :"
+msgstr "Si chaque mois, quel jour du mois ? :"
+
+msgid "Message you want to use to be notified :"
+msgstr "Message utilisé pour être notifié :"
+
+msgid "Alarm n°2"
+msgstr "Alarme n°2"
+
+msgid "Alarm n°3"
+msgstr "Alarme n°3"
+
+#: src/applet-notifications.c:22
+msgid ""
+"This is the Cairo-Dock's clock applet\n"
+" made by Fabrice Rey (fabounet_03@yahoo.fr).\n"
+"The analogic representation is a port of the well-known Cairo-Clock\n"
+" from MacSlow (http://macslow.thepimp.net)."
+msgstr "Ceci est l'applet horloge de Cairo-Dock\n"
+"écrite par Fabrice Rey (fabounet_03@yahoo.fr).\n"
+"La représentation analogique est un port de la fameuse Cairo-Clock\n"
+" écrite par MacSlow (http://macslow.thepimp.net)."
