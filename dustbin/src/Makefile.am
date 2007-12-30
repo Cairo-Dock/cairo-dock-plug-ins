@@ -16,6 +16,8 @@ libcd_dustbin_la_SOURCES = \
 	applet-notifications.h
 
 
+dock_version = `pkg-config --modversion cairo-dock`
+
 libcd_dustbin_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
@@ -26,6 +28,7 @@ libcd_dustbin_la_CFLAGS = \
 	-DMY_APPLET_USER_DATA_DIR=\""dustbin"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-dustbin"\"\
+	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall
