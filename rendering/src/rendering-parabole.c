@@ -26,8 +26,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 extern double my_fParabolePower;
 extern double my_fParaboleFactor;
 
-double my_fParaboleCurvature = 0.5;  // puissance de x (alpha).
-double my_fParaboleRatio = .33;  // ratio hauteur / largeur fixe => coef de la parabole (lambda).
+double my_fParaboleCurvature = .5;  // puissance de x (alpha).
+double my_fParaboleRatio = 3;  // ratio hauteur / largeur fixe => coef de la parabole (lambda).
 
 #define fCurve(x, lambda, alpha) (lambda * pow (x, alpha))
 #define fCurve_(x, lambda, alpha) (x != 0 ? lambda * alpha * pow (x, alpha - 1) : (alpha > 1 ? 0 : alpha < 1 ? 1e6 : alpha * lambda))
@@ -43,14 +43,15 @@ void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *
 	
 	if (pDock->iWindowPositionX + pPointedIcon->fDrawX < g_iScreenWidth[pDock->bHorizontalDock] / 2)
 	{
-		iX = iMouseX + (-iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2) / 2;
+		iX = iMouseX + MIN (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
+		g_print ("recalage : %.2d\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
 		pSubDock->fAlign = 0;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
-		pSubDock->iGapX = iX + pDock->iWindowPositionX - pSubDock->iMaxDockHeight / 2;
+		pSubDock->iGapX = iX + pDock->iWindowPositionX - 0*pSubDock->iMaxDockWidth;
 	}
 	else
 	{
-		iX = iMouseX + pPointedIcon->fWidth;
+		iX = iMouseX + MAX (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
 		pSubDock->fAlign = 1;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
 		pSubDock->iGapX =  pDock->iWindowPositionX + iX - g_iScreenWidth[pDock->bHorizontalDock];
@@ -71,10 +72,21 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 		icon->fXMin = icon->fXAtRest - 2*icon->fWidth;
 	}
 	
-	pDock->iMaxDockWidth = MIN (pDock->iFlatDockWidth, g_iMaxAuthorizedWidth) + 10;
+	/*pDock->iMaxDockWidth = MIN (pDock->iFlatDockWidth, g_iMaxAuthorizedWidth) + 10;
 	
 	int iParabolicDeviation = my_fParaboleFactor * pDock->iMaxDockWidth;
-	pDock->iMaxDockHeight = iParabolicDeviation + pDock->iMaxIconHeight * (1 + 0) + g_iLabelSize;  // pDock->iMaxIconHeight/2 en haut et en bas.
+	pDock->iMaxDockHeight = iParabolicDeviation + pDock->iMaxIconHeight * (1 + 0) + g_iLabelSize;  // pDock->iMaxIconHeight/2 en haut et en bas.*/
+	
+	if (my_fParaboleRatio < 1)
+	{
+		pDock->iMaxDockWidth = pDock->iFlatDockWidth;
+		pDock->iMaxDockHeight = my_fParaboleRatio * pDock->iMaxDockWidth + pDock->iMaxIconHeight;  // ce serait plutot MaxIconWidth mais bon ...
+	}
+	else
+	{
+		pDock->iMaxDockHeight = pDock->iFlatDockWidth + pDock->iMaxIconHeight;
+		pDock->iMaxDockWidth = pDock->iMaxDockHeight / my_fParaboleRatio;
+	}
 	
 	pDock->iDecorationsWidth = 0;
 	pDock->iDecorationsHeight = 0;
@@ -104,13 +116,11 @@ void cd_rendering_calculate_next_point (double xn, double yn, double ds, double 
 	*fOrientation = atan (Txn / Tyn);
 	if (k1 > 1)
 	{
-		
 		ynplus1_2 = yn + ds/2 * Tyn;
 		k2 = fCurveInv_ (ynplus1_2, lambda, alpha);
 	}
 	else
 	{
-		
 		xnplus1_2 = xn + ds/2 * Txn;
 		k2 =fCurve_ (xnplus1_2, lambda, alpha);
 	}
@@ -199,18 +209,62 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 	
 	//\____________________ On trace le cadre.
 	
-	
 	//\____________________ On dessine les decorations dedans.
 	
 	//\____________________ On dessine le cadre.
-	
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (g_iStringLineWidth > 0)
 		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, FALSE);
 	
-	//\____________________ On dessine les icones et les etiquettes.
+	
+	//\____________________ On dessine les etiquettes.
+	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	if (pFirstDrawnElement == NULL)
+		return;
+	
 	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
+	double fDockMagnitude = 0;
+	Icon *icon;
+	GList *ic = pFirstDrawnElement;
+	do
+	{
+		icon = ic->data;
+		
+		cairo_save (pCairoContext);
+		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect);
+		cairo_restore (pCairoContext);
+		
+		if (icon->pTextBuffer != NULL)
+		{
+			cairo_save (pCairoContext);
+			cairo_translate (pCairoContext, icon->fDrawX, icon->fDrawY);
+			
+			cairo_rotate (pCairoContext, icon->fOrientation);
+			if (pDock->fAlign == 1)
+			{
+				cairo_set_source_surface (pCairoContext,
+					icon->pTextBuffer,
+					icon->fWidth,
+					0);
+			}
+			else
+			{
+				cairo_set_source_surface (pCairoContext,
+					icon->pTextBuffer,
+					- icon->iTextWidth,
+					0);
+			}
+			cairo_paint (pCairoContext);
+			
+			cairo_restore (pCairoContext);
+		}
+		
+		
+		ic = cairo_dock_get_next_element (ic, pDock->icons);
+	} while (ic != pFirstDrawnElement);
+	
+	
 	cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
 	
 	cairo_destroy (pCairoContext);
@@ -243,6 +297,8 @@ Icon *cairo_dock_apply_no_wave_effect (CairoDock *pDock)
 
 Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 {
+	if (pDock->icons == NULL)
+		return NULL;
 	Icon *pPointedIcon = cairo_dock_apply_no_wave_effect (pDock);
 	
 	CairoDockMousePositionType iMousePositionType = cd_rendering_check_if_mouse_inside_parabole (pDock);
@@ -254,37 +310,56 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	
 	Icon* icon, *prev_icon;
 	GList* ic;
+	double alpha = my_fParaboleCurvature, lambda = my_fParaboleRatio * pow (pDock->iCurrentWidth, 1 - alpha), ds, prev_width;
 	double x = 0, y = 0, theta = 0;
-	double alpha = my_fParaboleCurvature, lambda = my_fParaboleRatio * pow (pDock->iCurrentWidth, 1 - alpha), ds;
-	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	double x_ = 0, y_ = 0, theta_ = G_PI/2 - atan (fCurve_(0, lambda, alpha));
+	if (pDock->fAlign == 1)
+		theta_ = -theta_;
+	//g_print ("theta_ : %.2fdeg\n", theta_);
+	
+	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	ic = pFirstDrawnElement;
+	//for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	do
 	{
 		icon = ic->data;
-		cd_rendering_calculate_construction_parameters_parabole (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iFlatDockWidth, g_bDirectionUp, pDock->fAlign, pDock->bHorizontalDock);
-		cairo_dock_manage_animations (icon, pDock);
 		
-		if (ic->prev != NULL)
+		if (ic != pFirstDrawnElement)
 		{
-			prev_icon = ic->prev->data;
-			ds = (prev_icon->fHeight + g_iIconGap) * (1 - pDock->fFoldingFactor);
-			cd_rendering_calculate_next_point (prev_icon->fX, prev_icon->fY, ds, lambda, alpha, &x, &y, &theta);
-			g_print ("ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x, y, theta/G_PI*180);
+			ds = icon->fHeight * (1 - pDock->fFoldingFactor);
+			cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
+			//g_print ("ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
 			
-			ds += (prev_icon->fWidth / 2 * tan (theta - prev_icon->fOrientation)) * (1 - pDock->fFoldingFactor);
-			cd_rendering_calculate_next_point (prev_icon->fX, prev_icon->fY, ds, lambda, alpha, &x, &y, &theta);
-			g_print ("  ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x, y, theta/G_PI*180);
-			icon->fX = x;
-			icon->fY = y;
+			ds += prev_icon->fWidth / 2 * fabs (tan (theta_ - theta)) * (1 - pDock->fFoldingFactor);
+			cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
+			//g_print ("  ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
+		}
+		
+		if (pDock->fAlign == 1)
+		{
+			icon->fDrawX = pDock->iCurrentWidth - x_ - icon->fWidth + 0*(icon->fWidth * cos (theta_) + icon->fHeight * sin (theta_)) / 2;
+			icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight + (icon->fWidth * sin (theta_) + icon->fHeight * cos (theta_)) / 2;
+			icon->fOrientation = - theta_;
 		}
 		else
 		{
-			icon->fX = 0;
-			icon->fY = 0;
+			icon->fDrawX = x_ + (icon->fWidth * cos (theta_) + icon->fHeight * sin( theta_)) / 2;
+			icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight - (icon->fWidth * sin (theta_) + icon->fHeight * cos (theta_)) / 2;
+			icon->fOrientation = theta_;
 		}
+		icon->fAlpha = 1;
+		icon->fWidthFactor = 1.;
+		icon->fHeightFactor = 1.;
 		
-		icon->fDrawX = icon->fX - 0*icon->fWidth/2 * cos (theta);
-		icon->fDrawY = pDock->iCurrentHeight - icon->fY - icon->fHeight - 0*icon->fWidth/2 * sin (theta);
-		icon->fOrientation = theta;
-	}
+		x = x_;
+		y = y_;
+		theta = theta_;
+		prev_icon = icon;
+		
+		cairo_dock_manage_animations (icon, pDock);
+		
+		ic = cairo_dock_get_next_element (ic, pDock->icons);
+	} while (ic != pFirstDrawnElement);
 	
 	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
 }

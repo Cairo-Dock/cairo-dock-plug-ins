@@ -13,6 +13,8 @@ libcd_logout_la_SOURCES = \
 	applet-notifications.h
 
 
+dock_version = `pkg-config --modversion cairo-dock`
+
 libcd_logout_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
@@ -23,6 +25,7 @@ libcd_logout_la_CFLAGS = \
 	-DMY_APPLET_USER_DATA_DIR=\""logout"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-logout"\"\
+	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3
@@ -37,8 +40,8 @@ libcd_logout_la_LDFLAGS =\
 	-version-info 1:0:0
 
 
-modulelogoutdir = `pkg-config cairo-dock --variable=pluginsdir`
+moduledir = `pkg-config cairo-dock --variable=pluginsdir`
 
-modulelogout_DATA = \
+module_DATA = \
 	.libs/libcd-logout.so
 

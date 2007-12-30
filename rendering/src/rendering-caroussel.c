@@ -91,6 +91,7 @@ void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int i
 	fYIconBottomDraw = (bDirectionUp ? a * cos (fTheta) + iMaxIconHeight + a : a + g_iDockLineWidth - a * cos (fTheta));
 	
 	icon->fHeightFactor = 1.;
+	icon->fOrientation = 0.;
 	
 	if (my_bRotateIconsOnEllipse)
 		icon->fWidthFactor = (G_PI / 2 - fabs (fTheta)) * 2 / G_PI;

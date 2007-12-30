@@ -37,7 +37,7 @@ CD_APPLET_ON_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Clock", pSubMenu, CD_APPLET_MY_MENU)
 	
-	CD_APPLET_ADD_IN_MENU ("Set up time and date", cd_clock_launch_time_admin, pSubMenu)
+	CD_APPLET_ADD_IN_MENU (_D("Set up time and date"), cd_clock_launch_time_admin, pSubMenu)
 	
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END

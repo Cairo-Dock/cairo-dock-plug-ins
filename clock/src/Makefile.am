@@ -16,6 +16,8 @@ libcd_clock_la_SOURCES = \
 	applet-notifications.h
 
 
+dock_version = `pkg-config --modversion cairo-dock`
+
 libcd_clock_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
@@ -26,6 +28,7 @@ libcd_clock_la_CFLAGS = \
 	-DMY_APPLET_USER_DATA_DIR=\""clock"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-clock"\"\
+	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall
@@ -39,8 +42,8 @@ libcd_clock_la_LDFLAGS =\
 	-version-info 1:0:0
 
 
-moduleclockdir = `pkg-config cairo-dock --variable=pluginsdir`
+moduledir = `pkg-config cairo-dock --variable=pluginsdir`
 
-moduleclock_DATA = \
+module_DATA = \
 	.libs/libcd-clock.so
 

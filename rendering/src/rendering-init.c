@@ -39,13 +39,14 @@ CairoDockVisitCard *pre_init (void)
 	pVisitCard->iMinorVersionNeeded = 4;
 	pVisitCard->iMicroVersionNeeded = 6;
 	pVisitCard->cGettextDomain = g_strdup (MY_APPLET_GETTEXT_DOMAIN);
+	pVisitCard->cDockVersionOnCompilation = g_strdup (MY_APPLET_DOCK_VERSION);
 	return pVisitCard;
 }
 
 
 Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 {
-	//g_print ("%s ()\n", __func__);
+	//g_print ("%s (%s)\n", __func__, MY_APPLET_DOCK_VERSION);
 	//\_______________ On verifie la presence des fichiers necessaires.
 	*cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
 	
@@ -60,7 +61,7 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	cd_rendering_register_3D_plane_renderer ();
 	
-	//cd_rendering_register_parabole_renderer ();  // pas encore ...
+	cd_rendering_register_parabole_renderer ();  // pas encore ...
 	
 	cairo_dock_set_all_views_to_default ();
 	
@@ -84,7 +85,7 @@ void stop (void)
 {
 	cairo_dock_remove_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_3D_PLANE_VIEW_NAME);
-	//cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
+	cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
 	
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;

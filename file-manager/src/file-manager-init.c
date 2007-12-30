@@ -53,6 +53,7 @@ CairoDockVisitCard *pre_init (void)
 	pVisitCard->iMinorVersionNeeded = 4;
 	pVisitCard->iMicroVersionNeeded = 6;
 	pVisitCard->cGettextDomain = g_strdup (MY_APPLET_GETTEXT_DOMAIN);
+	pVisitCard->cDockVersionOnCompilation = g_strdup (MY_APPLET_DOCK_VERSION);
 	return pVisitCard;
 }
 

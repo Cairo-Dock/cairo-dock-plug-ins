@@ -23,6 +23,8 @@ libcd_rendering_la_SOURCES = \
 	rendering-3D-plane.h
 
 
+dock_version = `pkg-config --modversion cairo-dock`
+
 libcd_rendering_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
@@ -32,6 +34,7 @@ libcd_rendering_la_CFLAGS = \
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-rendering"\"\
+	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3
@@ -48,8 +51,8 @@ libcd_rendering_la_LDFLAGS =\
 	-version-info 1:0:0
 
 
-modulerenderingdir = `pkg-config cairo-dock --variable=pluginsdir`
+moduledir = `pkg-config cairo-dock --variable=pluginsdir`
 
-modulerendering_DATA = \
+module_DATA = \
 	.libs/libcd-rendering.so
 

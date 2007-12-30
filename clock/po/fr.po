@@ -140,10 +140,15 @@ msgstr "Alarme n°3"
 #: src/applet-notifications.c:22
 msgid ""
 "This is the Cairo-Dock's clock applet\n"
-" made by Fabrice Rey (fabounet_03@yahoo.fr).\n"
+" made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\n"
 "The analogic representation is a port of the well-known Cairo-Clock\n"
 " from MacSlow (http://macslow.thepimp.net)."
-msgstr "Ceci est l'applet horloge de Cairo-Dock\n"
+msgstr ""
+"Ceci est l'applet horloge de Cairo-Dock\n"
 "écrite par Fabrice Rey (fabounet_03@yahoo.fr).\n"
 "La représentation analogique est un port de la fameuse Cairo-Clock\n"
 " écrite par MacSlow (http://macslow.thepimp.net)."
+
+#: src/applet-notifications.c:40
+msgid "Set up time and date"
+msgstr "Régler la date et l'heure"

@@ -54,6 +54,7 @@ void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iC
 	icon->fWidthFactor = 1.;
 	icon->fHeightFactor = 1.;
 	icon->fDeltaYReflection = 0.;
+	icon->fOrientation = 0.;
 	if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= iCurrentWidth)
 	{
 		icon->fAlpha = 1;

@@ -18,6 +18,8 @@ libcd_rhythmbox_la_SOURCES = \
 	rhythmbox-struct.h
 
 
+dock_version = `pkg-config --modversion cairo-dock`
+
 libcd_rhythmbox_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
@@ -28,6 +30,7 @@ libcd_rhythmbox_la_CFLAGS = \
 	-DMY_APPLET_USER_DATA_DIR=\""rhythmbox"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-rhythmbox"\"\
+	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3
@@ -42,8 +45,8 @@ libcd_rhythmbox_la_LDFLAGS =\
 	-version-info 1:0:0
 
 
-modulerhythmboxdir = `pkg-config cairo-dock --variable=pluginsdir`
+moduledir = `pkg-config cairo-dock --variable=pluginsdir`
 
-modulerhythmbox_DATA = \
+module_DATA = \
 	.libs/libcd-rhythmbox.so
 
