@@ -21,32 +21,34 @@ int *my_pTrashState = NULL;
 int my_iNbTrash = 0;
 cairo_surface_t *my_pEmptyBinSurface = NULL;
 cairo_surface_t *my_pFullBinSurface = NULL;
-GHashTable *my_pThemeTable = NULL;
-gchar *my_theme = NULL;
+//GHashTable *my_pThemeTable = NULL;
+//gchar *my_theme = NULL;
+gchar *my_cThemePath = NULL;
 int my_iState = -1;
 gchar *my_cBrowser = NULL;
 
 
-CD_APPLET_DEFINITION ("dustbin", 1, 4, 6)
+CD_APPLET_DEFINITION ("dustbin", 1, 4, 7)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
 	//\_______________ On met a jour la liste des themes disponibles.
-	if (my_pThemeTable != NULL)
-		cairo_dock_update_conf_file_with_hash_table (CD_APPLET_MY_CONF_FILE, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name, TRUE, FALSE);
+	/*if (my_pThemeTable != NULL)
+		cairo_dock_update_conf_file_with_hash_table (CD_APPLET_MY_CONF_FILE, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name, TRUE, FALSE);*/
 	
 	
 	//\_______________ On charge le theme choisi.
 	//g_print ("theme : %s\n", cThemeName);
-	if (my_theme != NULL)
+	/*if (my_theme != NULL)
 	{
 		gchar *cThemePath = g_hash_table_lookup (my_pThemeTable, my_theme);
 		if (cThemePath == NULL)
 			cThemePath = g_hash_table_lookup (my_pThemeTable, "Gion");
-		g_return_val_if_fail (cThemePath != NULL, NULL);
-		
+		g_return_val_if_fail (cThemePath != NULL, NULL);*/
+	if (my_cThemePath != NULL)
+	{
 		GError *tmp_erreur = NULL;
-		GDir *dir = g_dir_open (cThemePath, 0, &tmp_erreur);
+		GDir *dir = g_dir_open (my_cThemePath, 0, &tmp_erreur);
 		if (tmp_erreur != NULL)
 		{
 			g_propagate_error (erreur, tmp_erreur);
@@ -58,7 +60,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		gchar *cElementPath;
 		while ((cElementName = g_dir_read_name (dir)) != NULL)
 		{
-			cElementPath = g_strdup_printf ("%s/%s", cThemePath, cElementName);
+			cElementPath = g_strdup_printf ("%s/%s", my_cThemePath, cElementName);
 			//g_print ("  %s\n", cElementPath);
 			if (strncmp (cElementName, "trashcan_full", 13) == 0)
 				my_pFullBinSurface = cairo_dock_create_surface_for_icon (cElementPath,
@@ -80,16 +82,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 	}
 	
 	
-	//\_______________ Poue le menu appele lors d'un clic droit.
-	int i = 0;
-	if (my_cTrashDirectoryList != NULL)
-	{
-		while (my_cTrashDirectoryList[i] != NULL)
-			i ++;
-	}
-	my_iNbTrash = i;
-
-	
 	//\_______________ On enregistre nos notifications.
 	cairo_dock_register_first_notifications (CAIRO_DOCK_CLICK_ICON,
 		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK,
@@ -98,9 +90,18 @@ CD_APPLET_INIT_BEGIN (erreur)
 		-1);
 	
 	
-	//\_______________ On lance le timer.
+	//\_______________ On initialise l'etat des poubelles.
+	int i = 0;
+	if (my_cTrashDirectoryList != NULL)
+	{
+		while (my_cTrashDirectoryList[i] != NULL)
+			i ++;
+	}
+	my_iNbTrash = i;
 	my_pTrashState = g_new0 (int, i);
 	my_iState = -1;
+	
+	//\_______________ On lance le timer.
 	cd_dustbin_check_trashes (myIcon);
 	my_iSidCheckTrashes = g_timeout_add ((int) (1000 * my_fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
 CD_APPLET_INIT_END
@@ -124,10 +125,12 @@ CD_APPLET_STOP_BEGIN
 	g_free (my_pTrashState);
 	my_pTrashState = NULL;
 	
-	g_hash_table_destroy (my_pThemeTable);
+	/*g_hash_table_destroy (my_pThemeTable);
 	my_pThemeTable = NULL;
 	g_free (my_theme);
-	my_theme = NULL;
+	my_theme = NULL;*/
+	g_free (my_cThemePath);
+	my_cThemePath = NULL;
 	
 	if (my_pEmptyBinSurface != NULL)
 		cairo_surface_destroy (my_pEmptyBinSurface);

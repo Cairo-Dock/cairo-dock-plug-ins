@@ -44,7 +44,7 @@ extern const gchar *playing_title;
 //*********************************************************************************
 // rhythmbox_dbus_pre_init() : Initialise la connexion d-bus
 //*********************************************************************************
-gboolean rhythmbox_dbus_pre_init (void)
+gboolean rhythmbox_dbus_get_dbus (void)
 {
 	g_print ("%s ()\n",__func__);
 
@@ -97,7 +97,7 @@ gboolean rhythmbox_dbus_pre_init (void)
 }
 
 
-void rhythmbox_dbus_init (void)
+void rhythmbox_dbus_connect_to_bus (void)
 {
 	g_print ("%s ()\n",__func__);
 	dbus_g_proxy_connect_signal(dbus_proxy_player, "playingChanged",
@@ -110,7 +110,7 @@ void rhythmbox_dbus_init (void)
 		G_CALLBACK(onElapsedChanged), NULL, NULL);
 }
 
-void rhythmbox_dbus_stop (void)
+void rhythmbox_dbus_disconnect_from_bus (void)
 {
 	g_print ("%s ()\n",__func__);
 	dbus_g_proxy_disconnect_signal(dbus_proxy_player, "playingChanged",

@@ -14,12 +14,13 @@ extern gchar **my_cTrashDirectoryList;
 extern cairo_surface_t *my_pEmptyBinSurface;
 extern cairo_surface_t *my_pFullBinSurface;
 extern GHashTable *my_pThemeTable;
-extern gchar *my_theme;
+//extern gchar *my_theme;
+extern gchar *my_cThemePath;
 extern gchar *my_cBrowser;
 
 
 CD_APPLET_CONFIG_BEGIN ("Poubelle", NULL)
-	my_theme = CD_CONFIG_GET_STRING_WITH_DEFAULT ("MODULE", "theme", "default");
+	//my_theme = CD_CONFIG_GET_STRING_WITH_DEFAULT ("MODULE", "theme", "default");
 	
 	my_fCheckInterval = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("MODULE", "check interval", 2.);
 	
@@ -46,13 +47,14 @@ CD_APPLET_CONFIG_BEGIN ("Poubelle", NULL)
 		}
 	}
 	
-	//\_______________ On charge la liste des themes disponibles.
-	gchar *cThemesDir = g_strdup_printf ("%s/themes", MY_APPLET_SHARE_DATA_DIR);
+	//\_______________ On liste les themes disponibles et on recupere celui choisi.
+	my_cThemePath = CD_CONFIG_GET_THEME_PATH ("MODULE", "theme", "themes", "Gion");
+	/*gchar *cThemesDir = g_strdup_printf ("%s/themes", MY_APPLET_SHARE_DATA_DIR);
 	my_pThemeTable = cairo_dock_list_themes (cThemesDir, NULL, &erreur);
 	if (erreur != NULL)
 	{
 		g_print ("Attention : %s\n", erreur->message);
 		g_error_free (erreur);
 		return ;
-	}
+	}*/
 CD_APPLET_CONFIG_END

@@ -44,18 +44,19 @@ void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *
 	if (pDock->iWindowPositionX + pPointedIcon->fDrawX < g_iScreenWidth[pDock->bHorizontalDock] / 2)
 	{
 		iX = iMouseX + MIN (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
-		g_print ("recalage : %.2d\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
+		g_print ("recalage : %.2f (%d)\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);
 		pSubDock->fAlign = 0;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
-		pSubDock->iGapX = iX + pDock->iWindowPositionX - 0*pSubDock->iMaxDockWidth;
+		pSubDock->iGapX = iX + pDock->iWindowPositionX - 0*pSubDock->iMaxDockWidth - pSubDock->iMaxLabelWidth;
 	}
 	else
 	{
 		iX = iMouseX + MAX (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
 		pSubDock->fAlign = 1;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
-		pSubDock->iGapX =  pDock->iWindowPositionX + iX - g_iScreenWidth[pDock->bHorizontalDock];
+		pSubDock->iGapX =  pDock->iWindowPositionX + iX - g_iScreenWidth[pDock->bHorizontalDock] + pSubDock->iMaxLabelWidth;
 	}
+	g_print ("pSubDock->iGapY : %d\n", pSubDock->iGapY);
 }
 
 
@@ -65,12 +66,15 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	//pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->iFlatDockWidth, 1., 0));
 	GList* ic;
 	Icon *icon;
+	pDock->iMaxLabelWidth = 0;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
 		icon->fXMax = icon->fXAtRest + 2*icon->fWidth;
 		icon->fXMin = icon->fXAtRest - 2*icon->fWidth;
+		pDock->iMaxLabelWidth = MAX (pDock->iMaxLabelWidth, icon->iTextWidth);
 	}
+	g_print ("> iMaxLabelWidth : %d\n", pDock->iMaxLabelWidth);
 	
 	/*pDock->iMaxDockWidth = MIN (pDock->iFlatDockWidth, g_iMaxAuthorizedWidth) + 10;
 	
@@ -87,6 +91,13 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 		pDock->iMaxDockHeight = pDock->iFlatDockWidth + pDock->iMaxIconHeight;
 		pDock->iMaxDockWidth = pDock->iMaxDockHeight / my_fParaboleRatio;
 	}
+	g_print ("> a plat : %d -> %dx%d\n", pDock->iFlatDockWidth, pDock->iMaxDockWidth, pDock->iMaxDockHeight);
+	
+	pDock->iMaxDockWidth += pDock->iMaxLabelWidth;  // theta(0) = 0 => texte horizontal.
+	
+	double fOrientationMax = G_PI/2 - atan (my_fParaboleRatio * my_fParaboleCurvature);  // fCurve_ (W) se simplifie ici.
+	pDock->iMaxDockHeight += pDock->iMaxLabelWidth * sin (fOrientationMax);  // thetaMax est atteint en x=W.
+	g_print ("> fOrientationMax : %.2fdeg -> %dx%d\n", fOrientationMax/G_PI*180., pDock->iMaxDockWidth, pDock->iMaxDockHeight);
 	
 	pDock->iDecorationsWidth = 0;
 	pDock->iDecorationsHeight = 0;
@@ -168,7 +179,7 @@ void cd_rendering_calculate_next_point (double xn, double yn, double ds, double 
 }
 
 
-void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iFlatDockWidth, gboolean bDirectionUp, double fAlign, gboolean bHorizontalDock)
+/*void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iFlatDockWidth, gboolean bDirectionUp, double fAlign, gboolean bHorizontalDock)
 {
 	double fXIconCenter = icon->fX + icon->fWidth * icon->fScale / 2;  // abscisse du centre de l'icone.
 	//g_print ("fXIconCenter : %.2f / %d\n", fXIconCenter, iCurrentWidth);
@@ -191,12 +202,13 @@ void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iC
 	
 	icon->fDrawY = fYIconCenter - icon->fHeight * icon->fScale / 2;
 	icon->fOrientation = .7;
-}
-
+}*/
 
 
 void cd_rendering_render_parabole (CairoDock *pDock)
 {
+	g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
+	
 	//\____________________ On cree le contexte du dessin.
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pDock);
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
@@ -310,7 +322,9 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	
 	Icon* icon, *prev_icon;
 	GList* ic;
-	double alpha = my_fParaboleCurvature, lambda = my_fParaboleRatio * pow (pDock->iCurrentWidth, 1 - alpha), ds, prev_width;
+	double fParaboleRatio = (pDock->iCurrentHeight - pDock->iMaxIconHeight) / (pDock->iCurrentWidth - pDock->iMaxLabelWidth);
+	double alpha = my_fParaboleCurvature, lambda = fParaboleRatio * pow (pDock->iCurrentWidth - pDock->iMaxLabelWidth, 1 - alpha), ds, prev_width;
+	g_print ("> fParaboleRatio = %.2f -> lambda = %.2f\n", fParaboleRatio, lambda);
 	double x = 0, y = 0, theta = 0;
 	double x_ = 0, y_ = 0, theta_ = G_PI/2 - atan (fCurve_(0, lambda, alpha));
 	if (pDock->fAlign == 1)
@@ -320,6 +334,8 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	ic = pFirstDrawnElement;
 	//for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	double fOrientationMax = G_PI/2 - atan (my_fParaboleRatio * my_fParaboleCurvature);
+	double fTopMargin = pDock->iMaxLabelWidth * sin (fOrientationMax);
 	do
 	{
 		icon = ic->data;
@@ -337,13 +353,13 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		
 		if (pDock->fAlign == 1)
 		{
-			icon->fDrawX = pDock->iCurrentWidth - x_ - icon->fWidth + 0*(icon->fWidth * cos (theta_) + icon->fHeight * sin (theta_)) / 2;
+			icon->fDrawX = pDock->iCurrentWidth - pDock->iMaxLabelWidth - x_ - icon->fWidth + 0*(icon->fWidth * cos (theta_) + icon->fHeight * sin (theta_)) / 2;
 			icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight + (icon->fWidth * sin (theta_) + icon->fHeight * cos (theta_)) / 2;
 			icon->fOrientation = - theta_;
 		}
 		else
 		{
-			icon->fDrawX = x_ + (icon->fWidth * cos (theta_) + icon->fHeight * sin( theta_)) / 2;
+			icon->fDrawX = x_ + pDock->iMaxLabelWidth + (icon->fWidth * cos (theta_) + icon->fHeight * sin( theta_)) / 2;
 			icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight - (icon->fWidth * sin (theta_) + icon->fHeight * cos (theta_)) / 2;
 			icon->fOrientation = theta_;
 		}

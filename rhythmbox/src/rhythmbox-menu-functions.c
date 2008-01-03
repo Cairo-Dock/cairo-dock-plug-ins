@@ -7,6 +7,7 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
+extern gboolean rhythmbox_dbus_enable;
 extern gboolean rhythmbox_opening;
 extern gboolean rhythmbox_playing;
 extern int conf_timeDialogs;
@@ -65,12 +66,14 @@ CD_APPLET_ABOUT (_D("Applet by Necropotame (Adrien Pilleboue)"))
 // Cette fonction remplit le menu principal avec les actions previous, next, et information.
 //*********************************************************************************
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_IN_MENU (_D("Previous"), rhythmbox_previous, CD_APPLET_MY_MENU)
-	
-	CD_APPLET_ADD_IN_MENU (_D("Next"), rhythmbox_next, CD_APPLET_MY_MENU)
-	
-	CD_APPLET_ADD_IN_MENU (_D("Information"), rhythmbox_music, CD_APPLET_MY_MENU)
-	
+	if (rhythmbox_dbus_enable)
+	{
+		CD_APPLET_ADD_IN_MENU (_D("Previous"), rhythmbox_previous, CD_APPLET_MY_MENU)
+		
+		CD_APPLET_ADD_IN_MENU (_D("Next"), rhythmbox_next, CD_APPLET_MY_MENU)
+		
+		CD_APPLET_ADD_IN_MENU (_D("Information"), rhythmbox_music, CD_APPLET_MY_MENU)
+	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU)
 CD_APPLET_ON_BUILD_MENU_END
 

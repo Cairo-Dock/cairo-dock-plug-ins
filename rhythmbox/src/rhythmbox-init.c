@@ -25,9 +25,7 @@ const gchar *playing_album = NULL;
 const gchar *playing_title = NULL;
 
 
-CD_APPLET_PRE_INIT_BEGIN ("Rhythmbox", 1, 4, 6)
-	rhythmbox_dbus_enable = rhythmbox_dbus_pre_init();
-CD_APPLET_PRE_INIT_END
+CD_APPLET_DEFINITION ("Rhythmbox", 1, 4, 6)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
@@ -52,9 +50,14 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	g_string_free (sImagePath, TRUE);
 	
+	//Si le bus n'a pas encore ete acquis, on le recupere.
+	if (! rhythmbox_dbus_enable)
+		rhythmbox_dbus_enable = rhythmbox_dbus_get_dbus();
+	
+	//Si le bus a ete acquis, on y connecte nos signaux.
 	if (rhythmbox_dbus_enable)
 	{
-		rhythmbox_dbus_init ();
+		rhythmbox_dbus_connect_to_bus ();
 		
 		dbus_detect_rhythmbox();
 		if(rhythmbox_opening)
@@ -69,7 +72,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 			CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pSurface)
 		}
 	}
-	else
+	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pBrokenSurface)
 	}
@@ -86,7 +89,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	rhythmbox_dbus_stop ();
+	rhythmbox_dbus_disconnect_from_bus ();
 	
 	g_free (conf_defaultTitle);
 	conf_defaultTitle = NULL;

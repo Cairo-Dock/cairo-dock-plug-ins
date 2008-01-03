@@ -523,9 +523,24 @@ gboolean _file_manager_move_file (gchar *cURI, gchar *cDirectoryURI)
 {
 	g_print (" %s -> %s\n", cURI, cDirectoryURI);
 	
-	GnomeVFSResult r= gnome_vfs_move (cURI,
-		cDirectoryURI,
+	GnomeVFSURI *pVfsUri = gnome_vfs_uri_new (cURI);
+	gchar *cFileName = gnome_vfs_uri_extract_short_name (pVfsUri);
+	g_print ("pVfsUri : %s; cFileName : %s\n", pVfsUri->text, cFileName);
+	
+	GnomeVFSURI *pVfsDirUri = gnome_vfs_uri_new (cDirectoryURI);
+	g_print ("pVfsDirUri : %s\n", pVfsDirUri->text);
+	
+	GnomeVFSURI *pVfsNewUri = gnome_vfs_uri_append_file_name (pVfsDirUri, cFileName);
+	g_print ("pVfsNewUri : %s\n", pVfsNewUri->text);
+	
+	GnomeVFSResult r = gnome_vfs_move_uri (pVfsUri,
+		pVfsNewUri,
 		FALSE);
+	
+	gnome_vfs_uri_unref (pVfsUri);
+	gnome_vfs_uri_unref (pVfsDirUri);
+	gnome_vfs_uri_unref (pVfsNewUri);
+	g_free (cFileName);
 	return (r == GNOME_VFS_OK);
 }
 

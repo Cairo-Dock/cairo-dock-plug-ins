@@ -20,7 +20,8 @@ extern gboolean my_bShowSeconds;
 extern gboolean my_bOldStyle;
 extern gboolean my_b24Mode;
 extern double my_fTextColor[4];
-extern GHashTable *my_pThemeTable;
+//extern GHashTable *my_pThemeTable;
+extern gchar *my_cThemePath;
 
 extern RsvgDimensionData my_DimensionData;
 extern RsvgHandle *my_pSvgHandles[CLOCK_ELEMENTS];
@@ -38,7 +39,7 @@ CD_APPLET_CONFIG_BEGIN ("Horloge", NULL)
 	my_bShowSeconds 	= CD_CONFIG_GET_BOOLEAN ("MODULE", "show seconds");
 	my_b24Mode 			= CD_CONFIG_GET_BOOLEAN ("MODULE", "24h mode");
 	my_bOldStyle 			= CD_CONFIG_GET_BOOLEAN ("MODULE", "old fashion style");
-	gchar *cThemeName 	= CD_CONFIG_GET_STRING_WITH_DEFAULT ("MODULE", "theme", "default");
+	//gchar *cThemeName 	= CD_CONFIG_GET_STRING_WITH_DEFAULT ("MODULE", "theme", "default");
 	double couleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("MODULE", "text color", my_fTextColor, couleur);
 	
@@ -90,8 +91,9 @@ CD_APPLET_CONFIG_BEGIN ("Horloge", NULL)
 	g_string_free (sKeyName, TRUE);
 	
 	
-	//\_______________ On charge la liste des themes disponibles.
-	if (my_pThemeTable == NULL)
+	//\_______________ On liste les themes disponibles et on recupere celui choisi.
+	my_cThemePath = CD_CONFIG_GET_THEME_PATH ("MODULE", "theme", "themes", "default");
+	/*if (my_pThemeTable == NULL)
 	{
 		gchar *cThemesDir = g_strdup_printf ("%s/themes", MY_APPLET_SHARE_DATA_DIR);
 		my_pThemeTable = cairo_dock_list_themes (cThemesDir, NULL, &erreur);
@@ -102,32 +104,5 @@ CD_APPLET_CONFIG_BEGIN ("Horloge", NULL)
 			erreur = NULL;
 		}
 		g_free (cThemesDir);
-	}
-	
-	
-	//\_______________ On charge le theme choisi (on peut le faire ici car on n'a pas besoin de connaitre les dimmensions de l'icone.
-	if (cThemeName != NULL && my_pThemeTable != NULL)
-	{
-		gchar *cThemePath = g_hash_table_lookup (my_pThemeTable, cThemeName);
-		if (cThemePath == NULL)
-			cThemePath = g_hash_table_lookup (my_pThemeTable, "default");
-		g_return_if_fail (cThemePath != NULL);
-		gchar *cElementPath;
-		int i;
-		for (i = 0; i < CLOCK_ELEMENTS; i ++)
-		{
-			cElementPath = g_strdup_printf ("%s/%s", cThemePath, my_cFileNames[i]);
-			
-			my_pSvgHandles[i] = rsvg_handle_new_from_file (cElementPath, NULL);
-			//g_print (" + %s\n", cElementPath);
-			g_free (cElementPath);
-		}
-		rsvg_handle_get_dimensions (my_pSvgHandles[CLOCK_DROP_SHADOW], &my_DimensionData);
-	}
-	else
-	{
-		my_DimensionData.width = 48;  // valeur par defaut si aucun theme.
-		my_DimensionData.height = 48;
-	}
-	g_free (cThemeName);
+	}*/
 CD_APPLET_CONFIG_END

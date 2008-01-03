@@ -138,10 +138,10 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 	if (my_bShowSeconds)
 		g_string_printf (sFormat, "%T");
 	else
-		g_string_printf (sFormat, "%R");
+		g_string_printf (sFormat, " %R");
 	
 	if (my_bShowDate)
-		g_string_append (sFormat, "\n%a%d%b");
+		g_string_append (sFormat, "\n%a %d %b");
 	
 	strftime (cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
 	g_string_free (sFormat, TRUE);
