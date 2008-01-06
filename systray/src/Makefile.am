@@ -18,6 +18,8 @@ libcd_systray_la_SOURCES = \
 	na-marshal.h\
 	na-marshal.c
 
+dock_version = `pkg-config --modversion cairo-dock`
+
 libcd_systray_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
