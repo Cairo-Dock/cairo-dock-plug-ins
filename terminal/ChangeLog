@@ -1,0 +1,11 @@
+2008-01-02  GESTES Cedric  <gestes_c@epita.fr>
+
+	* src/Makefile.am (-DMY_APPLET_DOCK_VERSION): added define
+
+	* data/terminal.conf: add version
+
+2007-12-26  GESTES Cedric  <gestes_c@epita.fr>
+
+	* src/terminal-config.c: blabla
+
+
