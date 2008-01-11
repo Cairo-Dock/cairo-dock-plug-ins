@@ -7,6 +7,13 @@ gboolean dbus_get_dbus (void);
 void dbus_connect_to_bus(void);
 void dbus_disconnect_from_bus (void);
 
-void onBatteryChanged(DBusGProxy *proxy, gboolean onBattery, gpointer data);
+gboolean get_on_battery(void);
+void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data);
+void update_stats(void);
+void detect_battery(void);
 
+void power_halt(void);
+void power_hibernate(void);
+void power_suspend(void);
+void power_reboot(void);
 #endif
