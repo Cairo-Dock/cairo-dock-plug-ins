@@ -44,6 +44,5 @@ PKG_CHECK_MODULES(PACKAGE, "cairo-dock dbus-glib-1 dbus-1")
 AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
-		data/Makefile
-		data/rhythmbox.conf])
+		data/Makefile])
 AC_OUTPUT

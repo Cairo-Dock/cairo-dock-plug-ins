@@ -51,7 +51,7 @@ void update_icon(gboolean make_witness)
 		g_free (songName);
 		
 		//Affichage de l'info-rapide.
-		if(conf_quickInfoType == MY_APPLET_TRACK)
+		if(conf_quickInfoType == MY_APPLET_TRACK && playing_track > 0)
 		{
 			gchar *cQuickInfo = g_strdup_printf ("%d", playing_track);
 			cairo_dock_set_quick_info (myDrawContext, cQuickInfo, myIcon);  // inutile de redessiner notre icone, ce sera fait plusl oin.

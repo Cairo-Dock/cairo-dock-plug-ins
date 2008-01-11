@@ -81,17 +81,20 @@ msgstr "Affichage"
 msgid "Display album's cover instead of icon ?"
 msgstr "Afficher l'album au lieu de l'icône ?"
 
-msgid "nothing"
+msgid "Nothing"
 msgstr "rien"
 
-msgid "elapsed time"
-msgstr "temps écoulé"
+msgid "Elapsed time"
+msgstr "Temps écoulé"
 
-msgid "left time"
-msgstr "temps restant"
+msgid "Left time"
+msgstr "Temps restant"
 
-msgid "n° of track"
-msgstr "n° de piste"
+msgid "Percentage"
+msgstr "Pourcentage"
+
+msgid "Number of track"
+msgstr "Numero de piste"
 
 msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"

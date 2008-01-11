@@ -27,7 +27,6 @@ const gchar *playing_title = NULL;
 
 CD_APPLET_DEFINITION ("Rhythmbox", 1, 4, 6)
 
-
 CD_APPLET_INIT_BEGIN (erreur)
 	conf_defaultTitle = g_strdup (myIcon->acName);
 	

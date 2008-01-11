@@ -1,17 +1,9 @@
 #include <string.h>
-
 #include <dbus/dbus-glib.h>
 
 #include "rhythmbox-struct.h"
 #include "rhythmbox-draw.h"
 #include "rhythmbox-dbus.h"
-
-#define RHYTHMBOX_DBUS_OBJECT 
-#define RHYTHMBOX_DBUS_PATH_PLAYER 
-#define RHYTHMBOX_DBUS_INTERFACE_PLAYER 
-#define RHYTHMBOX_DBUS_PATH_SHELL 
-#define RHYTHMBOX_DBUS_INTERFACE_SHELL 
-#define RHYTHMBOX_DBUS_SERVICE_NAME "org.gnome.Rhythmbox"
 
 DBusGConnection *dbus_connexion;
 DBusGProxy *dbus_proxy_dbus;
@@ -62,14 +54,14 @@ gboolean rhythmbox_dbus_get_dbus (void)
 		
 		dbus_proxy_player = dbus_g_proxy_new_for_name (
 			dbus_connexion,
-			RHYTHMBOX_DBUS_SERVICE_NAME,
+			"org.gnome.Rhythmbox",
 			"/org/gnome/Rhythmbox/Player",
 			"org.gnome.Rhythmbox.Player"
 		);
 		
 		dbus_proxy_shell = dbus_g_proxy_new_for_name (
 			dbus_connexion,
-			RHYTHMBOX_DBUS_SERVICE_NAME,
+			"org.gnome.Rhythmbox",
 			"/org/gnome/Rhythmbox/Shell",
 			"org.gnome.Rhythmbox.Shell"
 		);
@@ -142,7 +134,7 @@ void dbus_detect_rhythmbox(void)
 		int i;
 		for (i = 0; name_list[i] != NULL; i ++)
 		{
-			if (strcmp (name_list[i], RHYTHMBOX_DBUS_SERVICE_NAME) == 0)
+			if (strcmp (name_list[i], "org.gnome.Rhythmbox") == 0)
 			{
 				rhythmbox_opening = TRUE;
 				break;
@@ -311,13 +303,43 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 		//g_print ("%s () : %ds\n", __func__, elapsed);
 		if(conf_quickInfoType == MY_APPLET_TIME_ELAPSED)
 		{
-			gchar *cQuickInfo = g_strdup_printf ("%d", elapsed);
+			gchar *cQuickInfo;
+			if(elapsed < 60)
+			{
+				cQuickInfo = g_strdup_printf ("%i", elapsed);
+			}
+			else
+			{
+				int min = elapsed / 60;
+				int sec = elapsed % 60;
+				if(sec < 10) cQuickInfo = g_strdup_printf ("%i:0%i", min,sec);
+				else cQuickInfo = g_strdup_printf ("%i:%i", min,sec);
+			}
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cQuickInfo);
 			g_free (cQuickInfo);
 		}
 		else if(conf_quickInfoType == MY_APPLET_TIME_LEFT)
 		{
-			gchar *cQuickInfo = g_strdup_printf ("%d", (playing_duration - elapsed));
+			gchar *cQuickInfo;
+			int time = playing_duration - elapsed;
+			if(time < 60)
+			{
+				cQuickInfo = g_strdup_printf ("%i", time);
+			}
+			else
+			{
+				int min = time / 60;
+				int sec = time % 60;
+				if(sec < 10) cQuickInfo = g_strdup_printf ("%i:0%i", min,sec);
+				else cQuickInfo = g_strdup_printf ("%i:%i", min,sec);
+				
+			}
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cQuickInfo);
+			g_free (cQuickInfo);
+		}
+		else if(conf_quickInfoType == MY_APPLET_PERCENTAGE)
+		{
+			gchar *cQuickInfo = g_strdup_printf ("%d%s", ((elapsed*100/playing_duration)),"%");
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cQuickInfo);
 			g_free (cQuickInfo);
 		}
