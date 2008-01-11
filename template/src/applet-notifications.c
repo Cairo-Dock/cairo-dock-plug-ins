@@ -11,7 +11,7 @@ CD_APPLET_INCLUDE_MY_VARS
 extern CairoDockDesktopEnv my_logout_iDesktopEnv;
 
 
-CD_APPLET_ABOUT (_D("This is a very simple logout applet\n made by Fabrice Rey for Cairo-Dock"))
+CD_APPLET_ABOUT (_D("This is the CD_APPLET_NAME applet\n made by CD_MY_NAME for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN

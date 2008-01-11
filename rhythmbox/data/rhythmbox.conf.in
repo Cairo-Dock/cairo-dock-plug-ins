@@ -1,0 +1,38 @@
+#!fr;@VERSION@
+
+[ICON]
+
+#F[Desired icon size for this applet]
+frame1 = 
+#i width :
+width = 48
+#i height :
+height = 48
+#F
+frame1_fin = 
+
+#s Default title :
+name = Rythmbox
+
+
+[Configuration]
+
+#F[Info-bubbles]
+frame2=
+#b Activate info-bubbles ?
+enable_dialogs=true
+#i Time length of info-bubbles :
+#{in ms.}
+time_dialogs=3000
+
+#F[Animations]
+frame3=
+#r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
+change_animation=1
+
+#F[Display]
+frame3=
+#b Display album's cover instead of icon ?
+enable_cover=true
+#r[nothing;elapsed time;left time;n° of track] Information to display on the icon :
+quick-info_type=1

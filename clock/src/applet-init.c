@@ -96,11 +96,8 @@ CD_APPLET_INIT_BEGIN (erreur)
 		KIND_FOREGROUND);
 	
 	//\_______________ On enregistre nos notifications.
-	cairo_dock_register_first_notifications (CAIRO_DOCK_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK,
-		CAIRO_DOCK_BUILD_MENU,
-		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU,
-		-1);
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	
 	//\_______________ On lance le timer.
 	cd_clock_update_with_time (myIcon);
@@ -110,11 +107,8 @@ CD_APPLET_INIT_END
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
-	cairo_dock_remove_notification_funcs (CAIRO_DOCK_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK,
-		CAIRO_DOCK_BUILD_MENU,
-		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU,
-		-1);
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
 	//\_______________ On stoppe le timer.
 	g_source_remove (my_iSidUpdateClock);

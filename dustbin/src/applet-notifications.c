@@ -7,6 +7,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 **********************************************************************************/
 #include <stdlib.h>
+#include <string.h>
 #include <glib/gi18n.h>
 
 #include "applet-notifications.h"
@@ -72,6 +73,52 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
+
+
+CD_APPLET_ON_DROP_DATA_BEGIN
+	g_print ("  %s --> a la poubelle !\n", CD_APPLET_RECEIVED_DATA);
+	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
+	gboolean bIsDirectory;
+	int iVolumeID = 0;
+	double fOrder;
+	if (cairo_dock_fm_get_file_info (CD_APPLET_RECEIVED_DATA,
+		&cName,
+		&cURI,
+		&cIconName,
+		&bIsDirectory,
+		&iVolumeID,
+		&fOrder,
+		0))
+	{
+		if (iVolumeID > 0)
+			cairo_dock_fm_unmount_full (cURI, iVolumeID, cairo_dock_fm_action_after_mounting, myIcon, myDock);
+		else
+			cairo_dock_fm_move_file (cURI, "trash:/");
+			//cairo_dock_fm_delete_file (cURI);
+	}
+	else
+	{
+		gchar *cHostname = NULL;
+		GError *erreur = NULL;
+		gchar *cFileName = g_filename_from_uri (CD_APPLET_RECEIVED_DATA, &cHostname, &erreur);
+		if (erreur != NULL)
+		{
+			g_print ("Attention : can't fins valid URI for '%s' : %s\n", CD_APPLET_RECEIVED_DATA, erreur->message);
+			g_error_free (erreur);
+		}
+		else if ((cHostname == NULL || strcmp (cHostname, "localhost") == 0) && my_cTrashDirectoryList != NULL)
+		{
+			gchar *cCommand = g_strdup_printf ("mv %s %s", cFileName,my_cTrashDirectoryList[0]);
+			system (cCommand);
+			g_free (cCommand);
+		}
+		g_free (cFileName);
+		g_free (cHostname);
+	}
+	g_free (cName);
+	g_free (cURI);
+	g_free (cIconName);
+CD_APPLET_ON_DROP_DATA_END
 
 
 void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)

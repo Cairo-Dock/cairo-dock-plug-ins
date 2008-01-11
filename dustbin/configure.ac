@@ -45,6 +45,7 @@ AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
 		data/Makefile
+		data/dustbin.conf
 		data/themes/Makefile
 		data/themes/Gion/Makefile
 		data/themes/Crystal/Makefile

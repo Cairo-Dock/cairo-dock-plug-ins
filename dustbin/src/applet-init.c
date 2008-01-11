@@ -32,19 +32,7 @@ CD_APPLET_DEFINITION ("dustbin", 1, 4, 7)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
-	//\_______________ On met a jour la liste des themes disponibles.
-	/*if (my_pThemeTable != NULL)
-		cairo_dock_update_conf_file_with_hash_table (CD_APPLET_MY_CONF_FILE, my_pThemeTable, "MODULE", "theme", NULL, (GHFunc) cairo_dock_write_one_theme_name, TRUE, FALSE);*/
-	
-	
 	//\_______________ On charge le theme choisi.
-	//g_print ("theme : %s\n", cThemeName);
-	/*if (my_theme != NULL)
-	{
-		gchar *cThemePath = g_hash_table_lookup (my_pThemeTable, my_theme);
-		if (cThemePath == NULL)
-			cThemePath = g_hash_table_lookup (my_pThemeTable, "Gion");
-		g_return_val_if_fail (cThemePath != NULL, NULL);*/
 	if (my_cThemePath != NULL)
 	{
 		GError *tmp_erreur = NULL;
@@ -61,17 +49,11 @@ CD_APPLET_INIT_BEGIN (erreur)
 		while ((cElementName = g_dir_read_name (dir)) != NULL)
 		{
 			cElementPath = g_strdup_printf ("%s/%s", my_cThemePath, cElementName);
-			//g_print ("  %s\n", cElementPath);
+			g_print ("  %s\n", cElementPath);
 			if (strncmp (cElementName, "trashcan_full", 13) == 0)
-				my_pFullBinSurface = cairo_dock_create_surface_for_icon (cElementPath,
-					myDrawContext,
-					myIcon->fWidth * (1 + g_fAmplitude),
-					myIcon->fHeight * (1 + g_fAmplitude));
+				my_pFullBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cElementPath)
 			else if (strncmp (cElementName, "trashcan_empty", 14) == 0)
-				my_pEmptyBinSurface = cairo_dock_create_surface_for_icon (cElementPath,
-					myDrawContext,
-					myIcon->fWidth * (1 + g_fAmplitude),
-					myIcon->fHeight * (1 + g_fAmplitude));
+				my_pEmptyBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cElementPath)
 			g_free (cElementPath);
 		}
 		g_dir_close (dir);
@@ -81,14 +63,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 		g_print ("Attention : couldn't find images, this theme is not valid");
 	}
 	
-	
 	//\_______________ On enregistre nos notifications.
-	cairo_dock_register_first_notifications (CAIRO_DOCK_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK,
-		CAIRO_DOCK_BUILD_MENU,
-		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU,
-		-1);
-	
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT
 	
 	//\_______________ On initialise l'etat des poubelles.
 	int i = 0;
@@ -109,11 +87,9 @@ CD_APPLET_INIT_END
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
-	cairo_dock_remove_notification_funcs (CAIRO_DOCK_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK,
-		CAIRO_DOCK_BUILD_MENU,
-		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU,
-		-1);
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT
 	
 	//\_______________ On stoppe le timer.
 	g_source_remove (my_iSidCheckTrashes);

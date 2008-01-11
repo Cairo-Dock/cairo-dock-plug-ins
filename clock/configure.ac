@@ -45,6 +45,7 @@ AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
 		data/Makefile
+		data/clock.conf
 		data/themes/Makefile
 		data/themes/antique/Makefile
 		data/themes/default/Makefile

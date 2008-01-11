@@ -36,5 +36,6 @@ PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		data/Makefile])
+		data/Makefile
+		data/rendering.conf])
 AC_OUTPUT
