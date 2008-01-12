@@ -22,15 +22,28 @@ frame1 =
 #R1[] Choose one of the available themes :/
 theme = Gion
 
-#F
-frame1_ =
+#s Name of an image to overwrite the theme's empty image :
+empty image = 
 
-#f[0.0;10.0] Interval of time to check if dustbin is full/empty :
-#{in seconds}
+#s Name of an image to overwrite the theme's full image :
+full image = 
+
+#F[Config]
+frame2 =
+
+#D99 Here you can specify a list of additionnal Trash directories to monitor :/
+additionnal directories = 
+
+#b Display number of trashes in dustbins ?
+display nb trashes = true
+
+#X[Desktop-less support]
+frame2 =
+
+#f[0.2;10.0] Interval of time to check if dustbin is full/empty :
+#{in seconds, only used if you can't monitor directories.}
 check interval = 2.0
 
-#D99 Here you can specify a list of Trash directory :/
-trash directories = ~/.Trash
-
-#s File browser used to show a trash :
-file browser = nautilus
+#s Default file browser used to show a trash :
+#{Only use this if you notice that the applet can't display the trash on click.}
+file browser = 
