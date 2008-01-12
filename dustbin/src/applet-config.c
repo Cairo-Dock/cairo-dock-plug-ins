@@ -16,45 +16,44 @@ extern cairo_surface_t *my_pFullBinSurface;
 extern GHashTable *my_pThemeTable;
 //extern gchar *my_theme;
 extern gchar *my_cThemePath;
-extern gchar *my_cBrowser;
-
+extern gchar *my_cDefaultBrowser;
+extern gchar *my_cEmptyUserImage;
+extern gchar *my_cFullUserImage;
+extern gboolean my_bDisplayNbTrashes;
 
 CD_APPLET_CONFIG_BEGIN ("Poubelle", NULL)
-	//my_theme = CD_CONFIG_GET_STRING_WITH_DEFAULT ("MODULE", "theme", "default");
-	
 	my_fCheckInterval = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("MODULE", "check interval", 2.);
 	
-	my_cBrowser = CD_CONFIG_GET_STRING_WITH_DEFAULT ("MODULE", "file browser", "xdg-open");
+	my_cDefaultBrowser = CD_CONFIG_GET_STRING_WITH_DEFAULT ("MODULE", "file browser", "xdg-open");
 	
 	//\_______________ On recupere la liste des repertoires faisant office de poubelle.
 	gsize length = 0;
-	gchar *cDefaultTrashDir = g_strdup_printf ("%s/.Trash", getenv ("HOME"));
-	my_cTrashDirectoryList = CD_CONFIG_GET_STRING_LIST_WITH_DEFAULT ("MODULE", "trash directories", &length, cDefaultTrashDir);
-	g_free (cDefaultTrashDir);
+	gchar **cAdditionnalDirectoriesList = CD_CONFIG_GET_STRING_LIST ("MODULE", "additionnal directories", &length);
+	
+	my_cTrashDirectoryList = g_new0 (gchar *, length + 2);  // + 2 pour le repertoire par defaut et le NULL final.
+	my_cTrashDirectoryList[0] = cairo_dock_fm_get_trash_path (g_getenv ("HOME"));
+	
 	int i = 0;
-	if (my_cTrashDirectoryList != NULL)
+	if (cAdditionnalDirectoriesList != NULL)
 	{
 		gchar *cCompletePath;
-		while (my_cTrashDirectoryList[i] != NULL)
+		while (cAdditionnalDirectoriesList[i] != NULL)
 		{
-			if (*my_cTrashDirectoryList[i] == '~')
-			{
-				cCompletePath = g_strdup_printf ("%s%s", getenv ("HOME"), my_cTrashDirectoryList[i]+1);
-				g_free (my_cTrashDirectoryList[i]);
-				my_cTrashDirectoryList[i] = cCompletePath;
-			}
+			if (*cAdditionnalDirectoriesList[i] == '~')
+				my_cTrashDirectoryList[i+1] = g_strdup_printf ("%s%s", getenv ("HOME"), cAdditionnalDirectoriesList[i]+1);
+			else
+				my_cTrashDirectoryList[i+1] = g_strdup (cAdditionnalDirectoriesList[i]);
 			i ++;
 		}
+		g_strfreev (cAdditionnalDirectoriesList);
 	}
 	
 	//\_______________ On liste les themes disponibles et on recupere celui choisi.
 	my_cThemePath = CD_CONFIG_GET_THEME_PATH ("MODULE", "theme", "themes", "Gion");
-	/*gchar *cThemesDir = g_strdup_printf ("%s/themes", MY_APPLET_SHARE_DATA_DIR);
-	my_pThemeTable = cairo_dock_list_themes (cThemesDir, NULL, &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		return ;
-	}*/
+	
+	my_cEmptyUserImage = CD_CONFIG_GET_STRING ("MODULE", "empty image");
+	my_cFullUserImage = CD_CONFIG_GET_STRING ("MODULE", "full image");
+	
+	my_bDisplayNbTrashes = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("MODULE", "display nb trashes", TRUE);
+	
 CD_APPLET_CONFIG_END

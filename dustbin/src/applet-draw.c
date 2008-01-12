@@ -21,6 +21,68 @@ extern int *my_pTrashState;
 extern cairo_surface_t *my_pEmptyBinSurface;
 extern cairo_surface_t *my_pFullBinSurface;
 extern int my_iState;
+extern gboolean my_bDisplayNbTrashes;
+extern int my_iNbTrashes;
+
+int cd_dustbin_count_trashes (gchar *cDirectory)
+{
+	g_print ("%s (%s)\n", __func__, cDirectory);
+	GError *erreur = NULL;
+	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
+	if (erreur != NULL)
+	{
+		g_print ("Attention : %s\n", erreur->message);
+		g_error_free (erreur);
+		return -1;
+	}
+	
+	int iNbTrashes = 0;
+	const gchar *cFileName;
+	while ((cFileName = g_dir_read_name (dir)) != NULL)
+	{
+		iNbTrashes ++;
+	}
+	
+	g_dir_close (dir);
+	return iNbTrashes;
+}
+
+
+void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
+{
+	g_print ("%s (%d)\n", __func__, my_iNbTrashes);
+	gchar *cQuickInfo = NULL;
+	switch (iEventType)
+	{
+		case CAIRO_DOCK_FILE_DELETED :
+			g_print ("1 dechet de moins\n");
+			if (g_atomic_int_dec_and_test (&my_iNbTrashes))  // devient nul.
+			{
+				g_print ("la poubelle se vide\n");
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+				CD_APPLET_SET_SURFACE_ON_MY_ICON (my_pEmptyBinSurface)
+			}
+			else
+			{
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW ("%d", my_iNbTrashes)
+			}
+		break ;
+		
+		case CAIRO_DOCK_FILE_CREATED :
+			g_print ("1 dechet de plus\n");
+			if (g_atomic_int_exchange_and_add (&my_iNbTrashes, 1) == 0)  // il etait nul avant l'incrementation.
+			{
+				g_print ("la poubelle se remplit\n");
+				CD_APPLET_SET_SURFACE_ON_MY_ICON (my_pFullBinSurface)
+			}
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW ("%d", my_iNbTrashes)
+		break ;
+		
+		default :
+			break;
+	}
+	g_print (" -> my_iNbTrashes=%d\n", my_iNbTrashes);
+}
 
 
 gboolean cd_dustbin_check_trashes (Icon *icon)
