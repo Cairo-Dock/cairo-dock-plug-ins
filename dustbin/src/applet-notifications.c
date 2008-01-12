@@ -24,7 +24,7 @@ CD_APPLET_ABOUT (_D("This is the dustbin applet for Cairo-Dock\n made by Fabrice
 
 CD_APPLET_ON_CLICK_BEGIN
 	g_print ("_Note_ : You can manage many Trash directories with this applet.\n Right click on its icon to see which Trash directories are already being monitored.\n");
-	cd_dustbin_show_trash (NULL, "trash:/");  // my_cTrashDirectoryList[0]
+	cd_dustbin_show_trash (NULL, "trash:/");
 CD_APPLET_ON_CLICK_END
 
 
@@ -81,20 +81,6 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	gboolean bIsDirectory;
 	int iVolumeID = 0;
 	double fOrder;
-	/*if (strncmp (CD_APPLET_RECEIVED_DATA, "x-nautilus-desktop://", 21) == 0)
-	{
-		gchar *cNautilusFile = g_strdup_printf ("computer://%s", CD_APPLET_RECEIVED_DATA+21);
-		if (g_str_has_suffix ( CD_APPLET_RECEIVED_DATA, ".volume"))
-		{
-			cNautilusFile[strlen(cNautilusFile)-6] = '\0';
-			gchar *cNautilusDrive = g_strdup_printf (cNautilusFile, ".drive");
-			g_free (cNautilusFile);
-			g_print ("cNautilusDrive : %s\n", cNautilusDrive);
-			cairo_dock_fm_unmount_full (cNautilusDrive, 0, cairo_dock_fm_action_after_mounting, myIcon, myDock);
-		}
-	}*/
-	///x-nautilus-desktop:///Lecteur%20de%20musique%20Samsung%20YP-U2.volume
-	///computer:///Lecteur%2520de%2520musique%2520Samsung%2520YP-U2.drive
 	if (cairo_dock_fm_get_file_info (CD_APPLET_RECEIVED_DATA,
 		&cName,
 		&cURI,
@@ -137,21 +123,15 @@ CD_APPLET_ON_DROP_DATA_END
 
 void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 {
-	gchar *question;
+	gchar *cQuestion;
 	if (cDirectory != NULL)
-		question = g_strdup_printf (_D("You're about to delete all files in %s. Sure ?"), cDirectory);
+		cQuestion = g_strdup_printf (_D("You're about to delete all files in %s. Sure ?"), cDirectory);
 	else if (my_cTrashDirectoryList != NULL)
-		question = g_strdup_printf (_D("You're about to delete all files in all dustbins. Sure ?"));
+		cQuestion = g_strdup_printf (_D("You're about to delete all files in all dustbins. Sure ?"));
 	else
 		return;
-	GtkWidget *dialog = gtk_message_dialog_new (NULL,
-		GTK_DIALOG_DESTROY_WITH_PARENT,
-		GTK_MESSAGE_QUESTION,
-		GTK_BUTTONS_YES_NO,
-		question);
-	g_free (question);
-	int answer = gtk_dialog_run (GTK_DIALOG (dialog));
-	gtk_widget_destroy (dialog);
+	int answer = cairo_dock_ask_question_and_wait (cQuestion, myIcon, myDock);
+	g_free (cQuestion);
 	if (answer == GTK_RESPONSE_YES)
 	{
 		GString *sCommand = g_string_new ("rm -rf ");
@@ -212,8 +192,8 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		}
 		g_string_free (sCommand, TRUE);
 	}
-	else if (cDirectory != NULL)
+	else
 	{
-		cairo_dock_fm_launch_uri (cDirectory);
+		cairo_dock_fm_launch_uri (cDirectory != NULL ? cDirectory : "trash:/");
 	}
 }

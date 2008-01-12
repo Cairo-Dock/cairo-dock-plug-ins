@@ -33,7 +33,7 @@ int cd_dustbin_count_trashes (gchar *cDirectory)
 	{
 		g_print ("Attention : %s\n", erreur->message);
 		g_error_free (erreur);
-		return -1;
+		return 0;
 	}
 	
 	int iNbTrashes = 0;
