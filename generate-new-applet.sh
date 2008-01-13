@@ -35,8 +35,8 @@ else
 fi
 mv template.conf.in "$AppletName.conf.in"
 
-sed "s/CD_APPLET_NAME/$AppletName/g" readme > tmp
-sed "s/CD_MY_NAME/$MyName/g" tmp > readme
+sed "s/CD_APPLET_NAME/$AppletName/g" readme.in > tmp
+sed "s/CD_MY_NAME/$MyName/g" tmp > readme.in
 
 sed "s/CD_APPLET_NAME/$AppletName/g" Makefile.am > tmp
 mv tmp Makefile.am

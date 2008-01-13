@@ -247,7 +247,7 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 {
 	g_print ("%s (%s)\n",__func__,uri);
 	
-	cairo_dock_remove_quick_info (myIcon);
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 	
 	g_free (playing_uri);
 	if(uri != NULL && *uri != '\0')
