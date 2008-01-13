@@ -1,2 +1,3 @@
+<b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>Fabounet</b>
 <i>A <span color='#0000FF'>clock applet</span> based on the MacSlow's Cairo-Clock for the analogic view.</i>
