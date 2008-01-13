@@ -35,5 +35,6 @@ PKG_CHECK_MODULES(PACKAGE, cairo-dock gnome-vfs-2.0 libgnomeui-2.0)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		data/Makefile])
+		data/Makefile
+		data/readme])
 AC_OUTPUT

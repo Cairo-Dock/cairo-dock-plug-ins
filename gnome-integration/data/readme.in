@@ -1,3 +1,4 @@
+<b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>Fabounet</b>
 <i>This applet provides functions for a better integration into a <span color='#0000FF'>GNOME environnement</span>
   It is auto-activated, so you don't need to activate it.</i>

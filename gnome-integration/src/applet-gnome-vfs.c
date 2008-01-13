@@ -106,11 +106,25 @@ static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBase
 
 void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, CairoDockFMSortType iSortType)
 {
+	g_return_if_fail (cBaseURI != NULL);
 	g_print ("%s (%s)\n", __func__, cBaseURI);
 	
 	GnomeVFSResult r;
 	GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
-	gchar *cFullURI = gnome_vfs_make_uri_from_input (cBaseURI);
+	
+	gchar *cFullURI;
+	if (strncmp (cBaseURI, "x-nautilus-desktop://", 21) == 0)
+	{
+		gchar *cNautilusFile = g_strdup_printf ("computer://%s", cBaseURI+21);
+		if (g_str_has_suffix (cBaseURI, ".volume"))
+		{
+			cNautilusFile[strlen(cNautilusFile)-7] = '\0';
+			cFullURI = g_strdup_printf ("%s.drive", cNautilusFile);
+			g_free (cNautilusFile);
+		}
+	}
+	else
+		cFullURI = gnome_vfs_make_uri_from_input (cBaseURI);
 	g_print (" -> cFullURI : %s\n", cFullURI);
 	
 	GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
@@ -237,7 +251,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		}
 		
 		GnomeVFSURI* dirUri = gnome_vfs_uri_new (*cFullURI);
-		g_print ("  dirUri : %s\n", dirUri);
+		g_print ("  dirUri : %s\n", dirUri->text);
 		GnomeVFSURI* fileUri;
 		gchar *cFileURI;
 		GnomeIconLookupResultFlags iconLookupResultFlags;
@@ -591,6 +605,7 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 
 gchar *vfs_backend_get_trash_path (const gchar *cNearURI)
 {
+	g_print ("%s (%s)\n", __func__, cNearURI);
 	gchar *cTrashPath = g_strdup_printf ("%s/.Trash", g_getenv ("HOME"));
 	if (g_file_test (cTrashPath, G_FILE_TEST_EXISTS))
 		return cTrashPath;
