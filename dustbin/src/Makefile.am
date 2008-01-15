@@ -13,7 +13,9 @@ libcd_dustbin_la_SOURCES = \
 	applet-config.c\
 	applet-config.h\
 	applet-notifications.c\
-	applet-notifications.h
+	applet-notifications.h\
+	applet-trashes-manager.c\
+	applet-trashes-manager.h
 
 
 dock_version = `pkg-config --modversion cairo-dock`

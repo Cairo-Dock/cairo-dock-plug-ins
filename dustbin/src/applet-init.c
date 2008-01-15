@@ -12,22 +12,26 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "applet-draw.h"
 #include "applet-config.h"
 #include "applet-notifications.h"
+#include "applet-trashes-manager.h"
+#include "applet-struct.h"
 #include "applet-init.h"
 
 double my_fCheckInterval;
 int my_iSidCheckTrashes = 0;
-gchar **my_cTrashDirectoryList = NULL;
+GList *my_pTrashDirectoryList = NULL;
+gchar **my_cAdditionnalDirectoriesList = NULL;
 int *my_pTrashState = NULL;
-int my_iNbTrash = 0;
 cairo_surface_t *my_pEmptyBinSurface = NULL;
 cairo_surface_t *my_pFullBinSurface = NULL;
 gchar *my_cThemePath = NULL;
 int my_iState = -1;
 int my_iNbTrashes = 0;
+CdDustbinInfotype my_iQuickInfoType;
+int my_iQuickInfoValue = 0;
 gchar *my_cDefaultBrowser = NULL;
 gchar *my_cEmptyUserImage = NULL;
 gchar *my_cFullUserImage = NULL;
-gboolean my_bDisplayNbTrashes;
+int my_iSizeLimit;
 
 CD_APPLET_DEFINITION ("dustbin", 1, 4, 7)
 
@@ -82,39 +86,52 @@ CD_APPLET_INIT_BEGIN (erreur)
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT
 	
 	//\_______________ On initialise l'etat des poubelles.
-	my_iNbTrash = 0;
-	while (my_cTrashDirectoryList[my_iNbTrash] != NULL)
-		my_iNbTrash ++;
-	my_pTrashState = g_new0 (int, my_iNbTrash);
 	my_iState = -1;
 	
-	
 	//\_______________ On commence a surveiller les repertoires.
-	int i = 0;
-	gboolean bMonitoringOK = FALSE;
-	while (my_cTrashDirectoryList[i] != NULL)
+	gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), TRUE);
+	gboolean bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath);
+	
+	if (my_cAdditionnalDirectoriesList != NULL)
 	{
-		if (cairo_dock_fm_add_monitor_full (my_cTrashDirectoryList[i], TRUE, NULL, cd_dustbin_on_file_event, myIcon))
+		int i = 0;
+		while (my_cAdditionnalDirectoriesList[i] != NULL)
 		{
-			my_iNbTrashes += cd_dustbin_count_trashes (my_cTrashDirectoryList[i]);
-			bMonitoringOK = TRUE;
+			if (*my_cAdditionnalDirectoriesList[i] == '~')
+				bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup_printf ("%s%s", getenv ("HOME"), my_cAdditionnalDirectoriesList[i]+1));
+			else
+				bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup (my_cAdditionnalDirectoriesList[i]));
+			i ++;
 		}
-		i ++;
+		g_strfreev (my_cAdditionnalDirectoriesList);
+		my_cAdditionnalDirectoriesList = NULL;
 	}
 	g_print ("  %d dechets actuellement (%d)\n", my_iNbTrashes, bMonitoringOK);
 	
+	cd_dustbin_draw_quick_info (FALSE);
 	if (my_iNbTrashes == 0)
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (my_pEmptyBinSurface)
 	}
 	else
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", my_iNbTrashes);
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (my_pFullBinSurface)
 	}
 	
-	if (! bMonitoringOK && my_cTrashDirectoryList[0] != NULL)
+	GError *tmp_erreur = NULL;
+	if (!g_thread_supported ()) g_thread_init (NULL);
+	GThread* pThread = g_thread_create ((GThreadFunc) cd_dustbin_measure_all_dustbins,
+		NULL,
+		FALSE,
+		&tmp_erreur);
+	if (tmp_erreur != NULL)
+	{
+		g_print ("Attention : %s\n", tmp_erreur->message);
+		g_error_free (tmp_erreur);
+		tmp_erreur = NULL;
+	}
+	
+	if (! bMonitoringOK && my_pTrashDirectoryList != NULL)
 	{
 		cd_dustbin_check_trashes (myIcon);
 		my_iSidCheckTrashes = g_timeout_add ((int) (1000 * my_fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
@@ -129,12 +146,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT
 	
 	//\_______________ On stoppe la surveillance.
-	int i = 0;
-	while (my_cTrashDirectoryList[i] != NULL)
-	{
-		cairo_dock_fm_remove_monitor_full (my_cTrashDirectoryList[i], FALSE, NULL);
-		i ++;
-	}
+	cd_dustbin_remove_all_dustbins ();
 	
 	if (my_iSidCheckTrashes != 0)
 	{
@@ -143,9 +155,8 @@ CD_APPLET_STOP_BEGIN
 	}
 	
 	//\_______________ On libere toutes nos ressources.
-	my_iNbTrash = 0;
+	my_iQuickInfoValue = 0;
 	my_iNbTrashes = 0;
-	g_strfreev (my_cTrashDirectoryList);
 	
 	g_free (my_pTrashState);
 	my_pTrashState = NULL;

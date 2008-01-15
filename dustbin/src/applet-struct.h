@@ -8,5 +8,11 @@ typedef enum {
 	CD_DUSTBIN_FULL
 	} CdDustbinState;
 
-#endif
+typedef enum {
+	CD_DUSTBIN_INFO_NONE = 0,
+	CD_DUSTBIN_INFO_NUMBER,
+	CD_DUSTBIN_INFO_WEIGHT
+	} CdDustbinInfotype;
 
+
+#endif

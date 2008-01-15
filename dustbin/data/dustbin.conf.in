@@ -34,8 +34,12 @@ frame2 =
 #D99 Here you can specify a list of additionnal Trash directories to monitor :/
 additionnal directories = 
 
-#b Display number of trashes in dustbins ?
-display nb trashes = true
+#r[None;Number of files;Total weight] Display the following quick info :
+quick info = 1
+
+#i Maximum size of dustbins :
+#{in Mb. You will be notified when you go over this limit.}
+size limit = 0
 
 #X[Desktop-less support]
 frame2 =

@@ -12,45 +12,26 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
+#include "applet-trashes-manager.h"
 #include "applet-draw.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern gchar **my_cTrashDirectoryList;
+extern GList *my_pTrashDirectoryList;
 extern int *my_pTrashState;
 extern cairo_surface_t *my_pEmptyBinSurface;
 extern cairo_surface_t *my_pFullBinSurface;
 extern int my_iState;
 extern gboolean my_bDisplayNbTrashes;
+extern int my_iQuickInfoValue;
+extern int my_iQuickInfoType;
 extern int my_iNbTrashes;
 
-int cd_dustbin_count_trashes (gchar *cDirectory)
-{
-	g_print ("%s (%s)\n", __func__, cDirectory);
-	GError *erreur = NULL;
-	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
-	if (erreur != NULL)
-	{
-		g_print ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		return 0;
-	}
-	
-	int iNbTrashes = 0;
-	const gchar *cFileName;
-	while ((cFileName = g_dir_read_name (dir)) != NULL)
-	{
-		iNbTrashes ++;
-	}
-	
-	g_dir_close (dir);
-	return iNbTrashes;
-}
-
+static int s_iSidCalculateDustbin = 0;
 
 void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
 {
-	g_print ("%s (%d)\n", __func__, my_iNbTrashes);
+	g_print ("%s (%d)\n", __func__, my_iQuickInfoValue);
 	gchar *cQuickInfo = NULL;
 	switch (iEventType)
 	{
@@ -59,12 +40,14 @@ void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cUR
 			if (g_atomic_int_dec_and_test (&my_iNbTrashes))  // devient nul.
 			{
 				g_print ("la poubelle se vide\n");
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+				cd_dustbin_draw_quick_info (FALSE);
 				CD_APPLET_SET_SURFACE_ON_MY_ICON (my_pEmptyBinSurface)
+				cd_dustbin_draw_quick_info (0);
 			}
 			else
 			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW ("%d", my_iNbTrashes)
+				cd_dustbin_measure_all_dustbins (NULL);
+				cd_dustbin_draw_quick_info (TRUE);
 			}
 		break ;
 		
@@ -75,13 +58,14 @@ void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cUR
 				g_print ("la poubelle se remplit\n");
 				CD_APPLET_SET_SURFACE_ON_MY_ICON (my_pFullBinSurface)
 			}
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW ("%d", my_iNbTrashes)
+			my_iQuickInfoValue += cd_dustbin_measure_one_file (cURI, my_iQuickInfoType);
+			cd_dustbin_draw_quick_info (TRUE);
 		break ;
 		
 		default :
 			break;
 	}
-	g_print (" -> my_iNbTrashes=%d\n", my_iNbTrashes);
+	g_print (" -> my_iNbTrashes = %d\n", my_iNbTrashes);
 }
 
 
@@ -93,9 +77,12 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 	int i = 0, iNewState = 0;
 	const gchar *cFirstFileInBin;
 	GError *erreur = NULL;
-	while (my_cTrashDirectoryList[i] != NULL)
+	gchar *cOneDustbinPath;
+	GList *pElement;
+	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 	{
-		dir = g_dir_open (my_cTrashDirectoryList[i], 0, &erreur);
+		cOneDustbinPath = pElement->data;
+		dir = g_dir_open (cOneDustbinPath, 0, &erreur);
 		if (erreur != NULL)
 		{
 			g_error_free (erreur);
@@ -106,25 +93,11 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 			cFirstFileInBin = g_dir_read_name (dir);
 			if (cFirstFileInBin != NULL)
 			{
-				//g_print ("%s est rempli\n", my_cTrashDirectoryList[i]);
-				if (my_pTrashState[i] != CD_DUSTBIN_FULL)
-				{
-					my_pTrashState[i] = CD_DUSTBIN_FULL;
-				}
+				iNewState = CD_DUSTBIN_FULL;
+				break ;
 			}
-			else
-			{
-				//g_print ("%s est vide\n", my_cTrashDirectoryList[i]);
-				if (my_pTrashState[i] != CD_DUSTBIN_EMPTY)
-				{
-					my_pTrashState[i] = CD_DUSTBIN_EMPTY;
-				}
-			}
-			iNewState += my_pTrashState[i];
-			
 			g_dir_close (dir);
 		}
-		i ++;
 	}
 	
 	if (my_iState != iNewState)
@@ -151,4 +124,37 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 	}
 	
 	return TRUE;
+}
+
+
+void cd_dustbin_draw_quick_info (gboolean bRedraw)
+{
+	if (my_iQuickInfoValue == 0 || my_iQuickInfoType == CD_DUSTBIN_INFO_NONE)
+	{
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+	}
+	else
+	{
+		if (my_iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+		{
+			g_print ("my_iQuickInfoValue : %db\n", my_iQuickInfoValue);
+			if (my_iQuickInfoValue < 1e3)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%db", my_iQuickInfoValue)
+			else if (my_iQuickInfoValue < 1e6)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dK", (int) (my_iQuickInfoValue/1e3))
+			else if (my_iQuickInfoValue < 1e9)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dM", (int) (my_iQuickInfoValue/1e6))
+			else
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dG", (int) (my_iQuickInfoValue/1e9))
+		}
+		else
+		{
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", my_iQuickInfoValue)
+		}
+	}
+	
+	if (bRedraw)
+	{
+		CD_APPLET_REDRAW_MY_ICON
+	}
 }
