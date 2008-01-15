@@ -121,6 +121,21 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 			cNautilusFile[strlen(cNautilusFile)-7] = '\0';
 			cFullURI = g_strdup_printf ("%s.drive", cNautilusFile);
 			g_free (cNautilusFile);
+			gchar **cSplit = g_strsplit (cFullURI, "%20", -1);
+			if (cSplit != NULL && cSplit[0] != NULL)
+			{
+				int i = 0;
+				g_free (cFullURI);
+				GString *sURI = g_string_new (cSplit[0]);
+				for (i = 1; cSplit[i] != NULL; i ++)
+				{
+					g_print ("%d) %s\n", i, cSplit[i]);
+					g_string_append_printf (sURI, "%%2520%s", cSplit[i]);
+				}
+				cFullURI = sURI->str;
+				g_string_free (sURI, FALSE);
+			}
+			g_strfreev (cSplit);
 		}
 	}
 	else
@@ -434,7 +449,7 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 		data2 = g_new (gpointer, 5);
 	data2[0] = pCallback;
 	data2[1] = GINT_TO_POINTER (FALSE);
-	data2[2] = icon->acName;
+	data2[2] = gnome_vfs_volume_get_display_name (pVolume);
 	data2[3] = icon;
 	data2[4] = pDock;
 	gnome_vfs_volume_unmount (pVolume, (GnomeVFSVolumeOpCallback)_vfs_backend_mount_callback, data2);
@@ -603,7 +618,7 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 }
 
 
-gchar *vfs_backend_get_trash_path (const gchar *cNearURI)
+gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNecessary)
 {
 	g_print ("%s (%s)\n", __func__, cNearURI);
 	gchar *cTrashPath = g_strdup_printf ("%s/.Trash", g_getenv ("HOME"));
