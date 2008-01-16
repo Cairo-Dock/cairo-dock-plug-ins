@@ -491,12 +491,12 @@ static void _vfs_backend_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
 }
 
 
-void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockFMMonitorCallback pCallback, Icon *pIcon)
+void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockFMMonitorCallback pCallback, gpointer user_data)
 {
 	GnomeVFSMonitorHandle *pHandle = NULL;
 	gpointer *data = g_new0 (gpointer, 3);
 	data[0] = pCallback;
-	data[1] = pIcon;
+	data[1] = user_data;
 	GnomeVFSResult r = gnome_vfs_monitor_add (&pHandle,
 		cURI,
 		(bDirectory ? GNOME_VFS_MONITOR_DIRECTORY : GNOME_VFS_MONITOR_FILE),
@@ -509,7 +509,7 @@ void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockF
 	}
 	else
 	{
-		g_print (">>> moniteur ajoute sur %s (%x)\n", cURI, pIcon);
+		g_print (">>> moniteur ajoute sur %s (%x)\n", cURI, user_data);
 		data[2] = pHandle;
 		g_hash_table_insert (s_fm_MonitorHandleTable, g_strdup (cURI), data);
 	}
@@ -621,7 +621,25 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNecessary)
 {
 	g_print ("%s (%s)\n", __func__, cNearURI);
-	gchar *cTrashPath = g_strdup_printf ("%s/.Trash", g_getenv ("HOME"));
+	
+	GnomeVFSURI *near_uri = gnome_vfs_uri_new (cNearURI);
+	GnomeVFSURI *result = NULL;
+	GnomeVFSResult r = gnome_vfs_find_directory (near_uri,
+		GNOME_VFS_DIRECTORY_KIND_TRASH,
+		&result,
+		bCreateIfNecessary,
+		TRUE,
+		7*8*8+5*8+5);
+	gnome_vfs_uri_unref (near_uri);
+	if (r == GNOME_VFS_OK)
+	{
+		gchar *cTrashURI = g_strdup (result->text);
+		gnome_vfs_uri_unref (result);
+		return cTrashURI;
+	}
+	else
+		return NULL;
+	/*gchar *cTrashPath = g_strdup_printf ("%s/.Trash", g_getenv ("HOME"));
 	if (g_file_test (cTrashPath, G_FILE_TEST_EXISTS))
 		return cTrashPath;
 	else
@@ -635,10 +653,27 @@ gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNece
 			g_free (cTrashPath);
 			return NULL;
 		}
-	}
+	}*/
 }
 
 gchar *vfs_backend_get_desktop_path (void)
 {
-	return g_strdup_printf ("%s/Desktop", g_getenv ("HOME"));
+	GnomeVFSURI *near_uri = gnome_vfs_uri_new ("file:///home");
+	GnomeVFSURI *result = NULL;
+	GnomeVFSResult r = gnome_vfs_find_directory (near_uri,
+		GNOME_VFS_DIRECTORY_KIND_DESKTOP,
+		&result,
+		TRUE,
+		TRUE,
+		7*8*8+5*8+5);
+	gnome_vfs_uri_unref (near_uri);
+	if (r == GNOME_VFS_OK)
+	{
+		gchar *cDesktopURI = g_strdup (result->text);
+		gnome_vfs_uri_unref (result);
+		return cDesktopURI;
+	}
+	else
+		return NULL;
+	//return g_strdup_printf ("%s/Desktop", g_getenv ("HOME"));
 }
