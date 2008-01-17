@@ -32,17 +32,22 @@ full image =
 frame2 =
 
 #D99 Here you can specify a list of additionnal Trash directories to monitor :/
+#{They don't even need to be real trash directories.}
 additionnal directories = 
 
-#r[None;Number of files;Total weight] Display the following quick info :
+#r[None;Number of trashes;Total number of files;Total weight] Display the following quick info :
 quick info = 1
 
-#i Maximum size of dustbins :
-#{in Mb. You will be notified when you go over this limit.}
+#i Maximum total size of all dustbins :
+#{in Mb. You will be notified when you go over this limit. Set 0 to not use it.}
 size limit = 0
 
+#i Maximum size authorized for each dustbin :
+#{in Mb. You will be notified when you go over this limit. Set 0 to not use it.}
+global size limit = 0
+
 #X[Desktop-less support]
-frame2 =
+frame3 =
 
 #f[0.2;10.0] Interval of time to check if dustbin is full/empty :
 #{in seconds, only used if you can't monitor directories.}

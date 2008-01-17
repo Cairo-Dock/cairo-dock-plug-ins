@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-dustbin],[2.0.0-beta2],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cd-dustbin],[2.0.0-beta3],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -39,7 +39,7 @@ AC_TYPE_PID_T
 # Checks for library functions.
 AC_CHECK_FUNCS([sscanf])
 
-PKG_CHECK_MODULES(PACKAGE, cairo-dock)
+PKG_CHECK_MODULES(PACKAGE, cairo-dock gthread-2.0)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile

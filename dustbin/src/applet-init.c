@@ -1,6 +1,6 @@
 /**********************************************************************************
 
-This file is a part of the cairo-dock clock applet, 
+This file is a part of the cairo-dock project, 
 released under the terms of the GNU General Public License.
 
 Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
@@ -25,13 +25,14 @@ cairo_surface_t *my_pEmptyBinSurface = NULL;
 cairo_surface_t *my_pFullBinSurface = NULL;
 gchar *my_cThemePath = NULL;
 int my_iState = -1;
-int my_iNbTrashes = 0;
+int my_iNbTrashes = 0, my_iNbFiles = 0, my_iSize = 0;
 CdDustbinInfotype my_iQuickInfoType;
 int my_iQuickInfoValue = 0;
 gchar *my_cDefaultBrowser = NULL;
 gchar *my_cEmptyUserImage = NULL;
 gchar *my_cFullUserImage = NULL;
-int my_iSizeLimit;
+int my_iGlobalSizeLimit, my_iSizeLimit;
+gchar *my_cDialogIconPath = NULL;
 
 CD_APPLET_DEFINITION ("dustbin", 1, 4, 7)
 
@@ -68,10 +69,16 @@ CD_APPLET_INIT_BEGIN (erreur)
 			cElementPath = g_strdup_printf ("%s/%s", my_cThemePath, cElementName);
 			g_print ("  %s\n", cElementPath);
 			if (strncmp (cElementName, "trashcan_full", 13) == 0)
+			{
+				my_cDialogIconPath = cElementPath;
 				my_pFullBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cElementPath)
-			else if (strncmp (cElementName, "trashcan_empty", 14) == 0)
-				my_pEmptyBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cElementPath)
-			g_free (cElementPath);
+			}
+			else
+			{
+				if (strncmp (cElementName, "trashcan_empty", 14) == 0)
+					my_pEmptyBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cElementPath)
+				g_free (cElementPath);
+			}
 		}
 		g_dir_close (dir);
 	}
@@ -90,7 +97,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	//\_______________ On commence a surveiller les repertoires.
 	gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), TRUE);
-	gboolean bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath);
+	gboolean bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath, 0);
 	
 	if (my_cAdditionnalDirectoriesList != NULL)
 	{
@@ -98,15 +105,17 @@ CD_APPLET_INIT_BEGIN (erreur)
 		while (my_cAdditionnalDirectoriesList[i] != NULL)
 		{
 			if (*my_cAdditionnalDirectoriesList[i] == '~')
-				bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup_printf ("%s%s", getenv ("HOME"), my_cAdditionnalDirectoriesList[i]+1));
+				bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup_printf ("%s%s", getenv ("HOME"), my_cAdditionnalDirectoriesList[i]+1), 0);
 			else
-				bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup (my_cAdditionnalDirectoriesList[i]));
+				bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup (my_cAdditionnalDirectoriesList[i]), 0);
 			i ++;
 		}
+		g_print ("  %d dossier(s) poubelle\n", i);
 		g_strfreev (my_cAdditionnalDirectoriesList);
 		my_cAdditionnalDirectoriesList = NULL;
 	}
 	g_print ("  %d dechets actuellement (%d)\n", my_iNbTrashes, bMonitoringOK);
+	
 	
 	cd_dustbin_draw_quick_info (FALSE);
 	if (my_iNbTrashes == 0)
@@ -118,23 +127,24 @@ CD_APPLET_INIT_BEGIN (erreur)
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (my_pFullBinSurface)
 	}
 	
-	GError *tmp_erreur = NULL;
-	if (!g_thread_supported ()) g_thread_init (NULL);
-	GThread* pThread = g_thread_create ((GThreadFunc) cd_dustbin_measure_all_dustbins,
-		NULL,
-		FALSE,
-		&tmp_erreur);
-	if (tmp_erreur != NULL)
-	{
-		g_print ("Attention : %s\n", tmp_erreur->message);
-		g_error_free (tmp_erreur);
-		tmp_erreur = NULL;
-	}
+	if (!g_thread_supported ())
+		g_thread_init (NULL);
 	
-	if (! bMonitoringOK && my_pTrashDirectoryList != NULL)
+	if (bMonitoringOK)
 	{
-		cd_dustbin_check_trashes (myIcon);
-		my_iSidCheckTrashes = g_timeout_add ((int) (1000 * my_fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
+		if (my_iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || my_iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+		{
+			cd_dustbin_add_message (NULL, NULL);
+		}
+	}
+	else  // methode par defaut.
+	{
+		if (my_pTrashDirectoryList != NULL)
+		{
+			g_print ("***utilisation par defaut\n");
+			cd_dustbin_check_trashes (myIcon);
+			my_iSidCheckTrashes = g_timeout_add ((int) (1000 * my_fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
+		}
 	}
 CD_APPLET_INIT_END
 
@@ -155,8 +165,8 @@ CD_APPLET_STOP_BEGIN
 	}
 	
 	//\_______________ On libere toutes nos ressources.
-	my_iQuickInfoValue = 0;
-	my_iNbTrashes = 0;
+	g_atomic_int_set (&my_iQuickInfoValue, 0);
+	my_iNbTrashes = 0, my_iNbFiles = 0, my_iSize = 0;
 	
 	g_free (my_pTrashState);
 	my_pTrashState = NULL;
@@ -178,5 +188,6 @@ CD_APPLET_STOP_BEGIN
 	my_cEmptyUserImage = NULL;
 	g_free (my_cFullUserImage);
 	my_cFullUserImage = NULL;
+	g_free (my_cDialogIconPath);
 	
 CD_APPLET_STOP_END

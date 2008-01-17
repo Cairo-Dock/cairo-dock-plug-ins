@@ -19,6 +19,8 @@ extern GList *my_pTrashDirectoryList;
 extern gchar *my_cDefaultBrowser;
 extern int my_iSizeLimit;
 extern int my_iQuickInfoType;
+extern int my_iNbFiles, my_iSize;
+extern gchar *my_cDialogIconPath;
 
 CD_APPLET_ABOUT (_D("This is the dustbin applet for Cairo-Dock\n made by Fabrice Rey (fabounet@users.berlios.de)"))
 
@@ -100,7 +102,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			cairo_dock_fm_move_file (cURI, cDustbinPath);
 			if (! cd_dustbin_is_monitored (cDustbinPath))
 			{
-				cd_dustbin_add_one_dustbin (cDustbinPath);
+				cd_dustbin_add_one_dustbin (cDustbinPath, 0);
 			}
 			g_free (cDustbinPath);
 			//cairo_dock_fm_delete_file (cURI);
@@ -118,7 +120,8 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		}
 		else if ((cHostname == NULL || strcmp (cHostname, "localhost") == 0) && my_pTrashDirectoryList != NULL)
 		{
-			gchar *cCommand = g_strdup_printf ("mv %s %s", cFileName, my_pTrashDirectoryList->data);
+			CdDustbin *pDustbin = my_pTrashDirectoryList->data;
+			gchar *cCommand = g_strdup_printf ("mv %s %s", cFileName, pDustbin->cPath);
 			system (cCommand);
 			g_free (cCommand);
 		}
@@ -129,3 +132,19 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	g_free (cURI);
 	g_free (cIconName);
 CD_APPLET_ON_DROP_DATA_END
+
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+	GString *sInfo = g_string_new ("");
+	g_string_printf (sInfo, "%d files for %dMb in all dustbins :\n", my_iNbFiles, my_iSize);
+	CdDustbin *pDustbin;
+	GList *pElement;
+	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	{
+		pDustbin = pElement->data;
+		g_string_printf (sInfo, "  %d files for %dMb id in%s\n", pDustbin->iNbFiles, pDustbin->iSize, pDustbin->cPath);
+	}
+	
+	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myDock, 0, my_cDialogIconPath);
+	
+	g_string_free (sInfo, TRUE);
+CD_APPLET_ON_MIDDLE_CLICK_END

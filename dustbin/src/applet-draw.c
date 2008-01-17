@@ -1,16 +1,16 @@
 /**********************************************************************************
 
-This file is a part of the cairo-dock clock applet, 
+This file is a part of the cairo-dock project, 
 released under the terms of the GNU General Public License.
 
 Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
 
 **********************************************************************************/
+#include <string.h>
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
 #include "cairo-dock.h"
 
-#include "applet-struct.h"
 #include "applet-notifications.h"
 #include "applet-trashes-manager.h"
 #include "applet-draw.h"
@@ -23,43 +23,96 @@ extern cairo_surface_t *my_pEmptyBinSurface;
 extern cairo_surface_t *my_pFullBinSurface;
 extern int my_iState;
 extern gboolean my_bDisplayNbTrashes;
-extern int my_iQuickInfoValue;
+extern int my_iNbFiles, my_iSize;
 extern int my_iQuickInfoType;
 extern int my_iNbTrashes;
+extern int my_iSizeLimit, my_iGlobalSizeLimit;
 
-static int s_iSidCalculateDustbin = 0;
+static int s_iSidDelayMeasure = 0;
 
-void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
+
+static int _cd_dustbin_compare_dustbins (const CdDustbin *pDustbin, const gchar *cDustbinPath)
 {
-	g_print ("%s (%d)\n", __func__, my_iQuickInfoValue);
+	if (pDustbin->cPath == NULL)
+		return -1;
+	if (cDustbinPath == NULL)
+		return 1;
+	return (strcmp (pDustbin->cPath, cDustbinPath));
+}
+CdDustbin *cd_dustbin_find_dustbin_from_uri (const gchar *cDustbinPath)
+{
+	GList *pElement = g_list_find_custom (my_pTrashDirectoryList, cDustbinPath, (GCompareFunc) _cd_dustbin_compare_dustbins);
+	if (pElement != NULL)
+		return pElement->data;
+	else
+		return NULL;
+}
+
+
+static gboolean _cd_dustbin_launch_measure_delayed (gpointer *data)
+{
+	cd_dustbin_add_message (data[0], data[1]);
+	g_free (data);
+	return FALSE;
+}
+void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, CdDustbin *pDustbin)
+{
+	g_return_if_fail (pDustbin != NULL);
+	g_print ("%s (%d,%d)\n", __func__, my_iNbFiles, my_iSize);
 	gchar *cQuickInfo = NULL;
 	switch (iEventType)
 	{
 		case CAIRO_DOCK_FILE_DELETED :
 			g_print ("1 dechet de moins\n");
+			if (s_iSidDelayMeasure != 0)
+			{
+				g_source_remove (s_iSidDelayMeasure);
+				s_iSidDelayMeasure = 0;
+			}
+			
+			g_atomic_int_add (&pDustbin->iNbTrashes, -1);
+			
 			if (g_atomic_int_dec_and_test (&my_iNbTrashes))  // devient nul.
 			{
 				g_print ("la poubelle se vide\n");
-				cd_dustbin_draw_quick_info (FALSE);
+				g_atomic_int_set (&my_iNbFiles, 0);  // inutile de calculer dans ce cas.
+				g_atomic_int_set (&my_iSize, 0);  // inutile de calculer dans ce cas.
+				pDustbin->iNbFiles = 0;
+				pDustbin->iSize = 0;
+				cd_dustbin_draw_quick_info (FALSE);  // on redessine juste en-dessous.
 				CD_APPLET_SET_SURFACE_ON_MY_ICON (my_pEmptyBinSurface)
-				cd_dustbin_draw_quick_info (0);
 			}
-			else
+			else if (my_iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
 			{
-				cd_dustbin_measure_all_dustbins (NULL);
 				cd_dustbin_draw_quick_info (TRUE);
+			}
+			else if (my_iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || my_iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+			{
+				gpointer *data = g_new (gpointer, 2);
+				data[0] = NULL;
+				data[1] = pDustbin;
+				s_iSidDelayMeasure = g_timeout_add (500, (GSourceFunc) _cd_dustbin_launch_measure_delayed, data);  // on retarde le recalcul de 1 seconde, car il y'a probablement d'autres fichiers qui vont arriver.
 			}
 		break ;
 		
 		case CAIRO_DOCK_FILE_CREATED :
 			g_print ("1 dechet de plus\n");
+			
+			g_atomic_int_add (&pDustbin->iNbTrashes, 1);
+			
 			if (g_atomic_int_exchange_and_add (&my_iNbTrashes, 1) == 0)  // il etait nul avant l'incrementation.
 			{
 				g_print ("la poubelle se remplit\n");
 				CD_APPLET_SET_SURFACE_ON_MY_ICON (my_pFullBinSurface)
 			}
-			my_iQuickInfoValue += cd_dustbin_measure_one_file (cURI, my_iQuickInfoType);
-			cd_dustbin_draw_quick_info (TRUE);
+			if (my_iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
+			{
+				cd_dustbin_draw_quick_info (TRUE);
+			}
+			else if (my_iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || my_iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+			{
+				cd_dustbin_add_message (g_strdup(cURI), pDustbin);
+			}
 		break ;
 		
 		default :
@@ -129,32 +182,70 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 
 void cd_dustbin_draw_quick_info (gboolean bRedraw)
 {
-	if (my_iQuickInfoValue == 0 || my_iQuickInfoType == CD_DUSTBIN_INFO_NONE)
+	if (my_iQuickInfoType == CD_DUSTBIN_INFO_NONE)
+		return ;
+	if (my_iNbTrashes == 0)
 	{
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
 	}
+	else if (my_iNbTrashes < 0)
+	{
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...")
+	}
 	else
 	{
-		if (my_iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+		if (my_iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
 		{
-			g_print ("my_iQuickInfoValue : %db\n", my_iQuickInfoValue);
-			if (my_iQuickInfoValue < 1e3)
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%db", my_iQuickInfoValue)
-			else if (my_iQuickInfoValue < 1e6)
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dK", (int) (my_iQuickInfoValue/1e3))
-			else if (my_iQuickInfoValue < 1e9)
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dM", (int) (my_iQuickInfoValue/1e6))
-			else
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dG", (int) (my_iQuickInfoValue/1e9))
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", my_iNbTrashes)
 		}
-		else
+		else if (my_iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", my_iQuickInfoValue)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", my_iNbFiles)
+		}
+		else if (my_iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+		{
+			if (my_iSize < 1024)
+			{
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%db", my_iSize)
+			}
+			else if (my_iSize < 1024*1024)
+			{
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dK", (int) (my_iSize>>10))
+			}
+			else if (my_iSize < 1024*1024*1024)
+			{
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dM", (int) (my_iSize>>20))
+			}
+			else
+			{
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dG", (int) (my_iSize>>30))
+			}
 		}
 	}
 	
 	if (bRedraw)
 	{
 		CD_APPLET_REDRAW_MY_ICON
+	}
+}
+
+
+void cd_dustbin_signal_full_dustbin (void)
+{
+	gboolean bOneDustbinFull = FALSE;
+	CdDustbin *pDustbin;
+	GList *pElement;
+	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	{
+		pDustbin = pElement->data;
+		if (my_iSizeLimit != 0 && pDustbin->iSize > my_iSizeLimit)
+		{
+			cairo_dock_show_temporary_dialog_with_icon ("%s is full !", myIcon, myDock, CD_DUSTBIN_DIALOG_DURATION, NULL, pDustbin->cPath);
+			bOneDustbinFull = TRUE;
+		}
+	}
+	if (! bOneDustbinFull && my_iGlobalSizeLimit != 0 && my_iSize > my_iGlobalSizeLimit)
+	{
+		cairo_dock_show_temporary_dialog_with_icon ("I'm full !", myIcon, myDock, CD_DUSTBIN_DIALOG_DURATION, NULL);
 	}
 }
