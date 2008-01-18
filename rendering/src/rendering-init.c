@@ -26,9 +26,8 @@ double my_fForegroundRatio;  // fraction des icones presentes en avant-plan (rep
 double my_iGapOnEllipse;  // regle la profondeur du caroussel.
 gboolean my_bRotateIconsOnEllipse;  // tourner les icones de profil ou pas.
 
-double my_fParabolePower = .5;
-double my_fParaboleFactor = .33;
-
+double my_fParaboleCurvature;  // puissance de x.
+double my_fParaboleRatio;  // hauteur/largeur.
 
 CairoDockVisitCard *pre_init (void)
 {
@@ -61,7 +60,7 @@ Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
 	
 	cd_rendering_register_3D_plane_renderer ();
 	
-	cd_rendering_register_parabole_renderer ();  // pas encore ...
+	cd_rendering_register_parabole_renderer ();
 	
 	cairo_dock_set_all_views_to_default ();
 	

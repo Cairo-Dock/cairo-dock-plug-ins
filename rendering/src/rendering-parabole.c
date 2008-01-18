@@ -23,11 +23,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include <rendering-parabole.h>
 
-extern double my_fParabolePower;
-extern double my_fParaboleFactor;
-
-double my_fParaboleCurvature = .5;  // puissance de x (alpha).
-double my_fParaboleRatio = 3;  // ratio hauteur / largeur fixe => coef de la parabole (lambda).
+extern double my_fParaboleCurvature;  // puissance de x (alpha).
+extern double my_fParaboleRatio;  // ratio hauteur / largeur fixe => coef de la parabole (lambda).
 
 #define fCurve(x, lambda, alpha) (lambda * pow (x, alpha))
 #define fCurve_(x, lambda, alpha) (x != 0 ? lambda * alpha * pow (x, alpha - 1) : (alpha > 1 ? 0 : alpha < 1 ? 1e6 : alpha * lambda))
@@ -62,6 +59,7 @@ void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *
 
 static void cd_rendering_calculate_next_point (double xn, double yn, double ds, double lambda, double alpha, double *fXNext, double *fYNext, double *fOrientation)
 {
+	//g_print ("%s ((%.2f;%.2f), +%.2f\n", __func__, xn, yn, ds);
 	if (ds <= 0)
 	{
 		return ;
@@ -73,6 +71,7 @@ static void cd_rendering_calculate_next_point (double xn, double yn, double ds, 
 	
 	// k1.
 	k1 = fCurve_ (xn, lambda, alpha);
+	//g_print ("k1 : %.2f ; ", k1);
 	
 	// k2.
 	Tn = sqrt (1 + k1 * k1);
@@ -89,6 +88,7 @@ static void cd_rendering_calculate_next_point (double xn, double yn, double ds, 
 		xnplus1_2 = xn + ds/2 * Txn;
 		k2 =fCurve_ (xnplus1_2, lambda, alpha);
 	}
+	//g_print ("k2 : %.2f ; ", k2);
 	
 	// k3.
 	Tnplus1_2 = sqrt (1 + k2 * k2);
@@ -104,6 +104,7 @@ static void cd_rendering_calculate_next_point (double xn, double yn, double ds, 
 		xnplus1_2 = xn + ds/2 * Txnplus1_2;
 		k3 = fCurve_ (xnplus1_2, lambda, alpha);
 	}
+	//g_print ("k3 : %.2f ; ", k3);
 	
 	// k4.
 	Tnplus1_2 = sqrt (1 + k3 * k3);
@@ -119,9 +120,10 @@ static void cd_rendering_calculate_next_point (double xn, double yn, double ds, 
 		xnplus1 = xn + ds * Txnplus1_2;
 		k4 = fCurve_ (xnplus1, lambda, alpha);
 	}
+	//g_print ("k4 : %.2f \n", k4);
 	
 	// k.
-	k = (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+	k = 1/(1/k1 + 2 / k2 + 2 / k3 + 1/k4) * 6;
 	
 	// (xn+1, yn+1).
 	Tn = sqrt (1 + k * k);
@@ -130,6 +132,37 @@ static void cd_rendering_calculate_next_point (double xn, double yn, double ds, 
 	*fXNext = xn+ ds * Txn;
 	*fYNext = yn+ ds * Tyn;
 	*fOrientation = atan (Txn / Tyn);
+}
+
+static void _cd_rendering_calculate_parabole_extent (GList *pIconList, double alpha, double lambda, double *fWidth, double *fHeight)
+{
+	double ds;
+	double x = 0, y = 0, theta = 0;
+	double x_ = 0, y_ = 0, theta_ = G_PI/2 - atan (fCurve_(0, lambda, alpha));
+	GList *ic;
+	Icon *icon, *prev_icon;
+	for (ic = pIconList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		
+		if (ic->prev != NULL)
+		{
+			ds = icon->fHeight * (1 - 0) + g_iIconGap;
+			cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
+			//g_print ("ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
+			
+			ds += prev_icon->fWidth / 2 * fabs (tan (theta_ - theta)) * (1 - 0);
+			cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
+			//g_print ("  ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
+		}
+		
+		x = x_;
+		y = y_;
+		theta = theta_;
+		prev_icon = icon;
+	}
+	*fWidth = x;
+	*fHeight = y;
 }
 
 void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
@@ -153,58 +186,32 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	int iParabolicDeviation = my_fParaboleFactor * pDock->iMaxDockWidth;
 	pDock->iMaxDockHeight = iParabolicDeviation + pDock->iMaxIconHeight * (1 + 0) + g_iLabelSize;  // pDock->iMaxIconHeight/2 en haut et en bas.*/
 	
-	double fParaboleRatio = my_fParaboleRatio;
-	double alpha = my_fParaboleCurvature, lambda = fParaboleRatio * pow (MAX (0, pDock->iCurrentWidth - pDock->iMaxLabelWidth), 1 - alpha), ds, prev_width;
-	double x = 0, y = 0, theta = 0;
-	double x_ = 0, y_ = 0, theta_ = G_PI/2 - atan (fCurve_(0, lambda, alpha));
-	if (pDock->fAlign == 1)
-		theta_ = -theta_;
-	Icon *prev_icon;
-	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	double alpha = my_fParaboleCurvature, lambda;
+	double h=0, w=0, h_, w_;
+	if (my_fParaboleRatio > 1)
 	{
-		icon = ic->data;
-		
-		if (ic->prev != NULL)
+		h_ = pDock->iFlatDockWidth;
+		do
 		{
-			ds = icon->fHeight * (1 - pDock->fFoldingFactor);
-			cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
-			//g_print ("ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
+			h = h_;
+			w = h / my_fParaboleRatio;
+			lambda = h / pow (w, alpha);
+			g_print ("-> %.2fx%.2f , %.2f\n", w, h, lambda);
 			
-			ds += prev_icon->fWidth / 2 * fabs (tan (theta_ - theta)) * (1 - pDock->fFoldingFactor);
-			cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
-			//g_print ("  ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
+			_cd_rendering_calculate_parabole_extent (pDock->icons, alpha, lambda, &w_, &h_);
 		}
+		while (fabs (h - h_ >2));
 		
-		x = x_;
-		y = y_;
-		theta = theta_;
-		prev_icon = icon;
+		h = h_;
+		w = w_;
+		lambda = h / pow (w, alpha);
+		g_print ("=> %.2fx%.2f , %.2f\n", w, h, lambda);
 	}
 	
-	if (my_fParaboleRatio < 1)
-	{
-		pDock->iMaxDockWidth = y + pDock->iMaxIconHeight;
-		pDock->iMaxDockHeight = my_fParaboleRatio * y + pDock->iMaxIconHeight;  // ce serait plutot MaxIconWidth mais bon ...
-	}
-	else
-	{
-		pDock->iMaxDockHeight = y + pDock->iMaxIconHeight;
-		pDock->iMaxDockWidth = y / my_fParaboleRatio + pDock->iMaxIconHeight;
-	}
-	/*if (my_fParaboleRatio < 1)
-	{
-		pDock->iMaxDockWidth = pDock->iFlatDockWidth;
-		pDock->iMaxDockHeight = my_fParaboleRatio * pDock->iMaxDockWidth + pDock->iMaxIconHeight;  // ce serait plutot MaxIconWidth mais bon ...
-	}
-	else
-	{
-		pDock->iMaxDockHeight = pDock->iFlatDockWidth + pDock->iMaxIconHeight;
-		pDock->iMaxDockWidth = pDock->iMaxDockHeight / my_fParaboleRatio;
-	}*/
-	g_print ("> a plat : %d -> %dx%d\n", pDock->iFlatDockWidth, pDock->iMaxDockWidth, pDock->iMaxDockHeight);
+	pDock->iMaxDockHeight = h + pDock->iMaxIconHeight * sqrt (5./4.);
+	pDock->iMaxDockWidth = w + pDock->iMaxIconHeight * (.5+sqrt(5./4.));  // ce serait plutot MaxIconWidth mais bon ...
 	
 	pDock->iMaxDockWidth += pDock->iMaxLabelWidth;  // theta(0) = 0 => texte horizontal.
-	
 	double fOrientationMax = G_PI/2 - atan (my_fParaboleRatio * my_fParaboleCurvature);  // fCurve_ (W) se simplifie ici.
 	pDock->iMaxDockHeight += pDock->iMaxLabelWidth * sin (fOrientationMax);  // thetaMax est atteint en x=W.
 	g_print ("> fOrientationMax : %.2fdeg -> %dx%d\n", fOrientationMax/G_PI*180., pDock->iMaxDockWidth, pDock->iMaxDockHeight);
@@ -217,35 +224,9 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 }
 
 
-/*void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iFlatDockWidth, gboolean bDirectionUp, double fAlign, gboolean bHorizontalDock)
-{
-	double fXIconCenter = icon->fX + icon->fWidth * icon->fScale / 2;  // abscisse du centre de l'icone.
-	//g_print ("fXIconCenter : %.2f / %d\n", fXIconCenter, iCurrentWidth);
-	//double fYIconCenter = my_fParaboleFactor * iCurrentWidth * pow (fXIconCenter / iCurrentWidth, my_fParabolePower);
-	double fMaxYIconCenter = pow (1.*iCurrentWidth, 1./my_fParabolePower);
-	double fYIconCenter = my_fParaboleFactor * pow (fMaxYIconCenter - pow ((fAlign == 0 ? iCurrentWidth - fXIconCenter : fXIconCenter), 1./my_fParabolePower), my_fParabolePower);
-	//if (fAlign == 1.)
-	//	fYIconCenter = fMaxYIconCenter - fYIconCenter;
-	if (bDirectionUp)
-		fYIconCenter = iCurrentHeight - fYIconCenter;
-	
-	icon->fWidthFactor = 1.;
-	icon->fHeightFactor = 1.;
-	
-	icon->fDrawX = icon->fX;
-	if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= iCurrentWidth)
-		icon->fAlpha = 1;
-	else
-		icon->fAlpha = .85;
-	
-	icon->fDrawY = fYIconCenter - icon->fHeight * icon->fScale / 2;
-	icon->fOrientation = .7;
-}*/
-
-
 void cd_rendering_render_parabole (CairoDock *pDock)
 {
-	g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
+	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
 	
 	//\____________________ On cree le contexte du dessin.
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pDock);
@@ -274,7 +255,7 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 		return;
 	
 	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
-	double fDockMagnitude = 0;
+	double fDockMagnitude = 1;
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
 	do
@@ -296,16 +277,17 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
 					icon->fWidth,
-					0);
+					(icon->fHeight - icon->iTextHeight)/2);
 			}
 			else
 			{
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
 					- icon->iTextWidth,
-					0);
+					(icon->fHeight - icon->iTextHeight)/2);
 			}
-			cairo_paint (pCairoContext);
+			cairo_paint_with_alpha (pCairoContext, 1 - pDock->fFoldingFactor);
+			//cairo_paint (pCairoContext);
 			
 			cairo_restore (pCairoContext);
 		}
@@ -315,7 +297,7 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 	} while (ic != pFirstDrawnElement);
 	
 	
-	cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
+	//cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
 	
 	cairo_destroy (pCairoContext);
 #ifdef HAVE_GLITZ
@@ -360,9 +342,11 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	
 	Icon* icon, *prev_icon;
 	GList* ic;
-	double fParaboleRatio = (pDock->iCurrentHeight - pDock->iMaxIconHeight) / (pDock->iCurrentWidth - pDock->iMaxLabelWidth);
-	double alpha = my_fParaboleCurvature, lambda = fParaboleRatio * pow (MAX (0, pDock->iCurrentWidth - pDock->iMaxLabelWidth), 1 - alpha), ds, prev_width;
-	g_print ("> fParaboleRatio = %.2f -> lambda = %.2f\n", fParaboleRatio, lambda);
+	double w = pDock->iCurrentWidth - pDock->iMaxLabelWidth - pDock->iMaxIconHeight * (.5+sqrt(5./4.));
+	double h = my_fParaboleRatio * w;
+	double alpha = my_fParaboleCurvature, lambda =h / pow (w, alpha);
+	//g_print ("> lambda = %.2f\n", lambda);
+	double ds;
 	double x = 0, y = 0, theta = 0;
 	double x_ = 0, y_ = 0, theta_ = G_PI/2 - atan (fCurve_(0, lambda, alpha));
 	if (pDock->fAlign == 1)
@@ -381,7 +365,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		
 		if (ic != pFirstDrawnElement)
 		{
-			ds = icon->fHeight * (1 - pDock->fFoldingFactor);
+			ds = icon->fHeight * (1 - pDock->fFoldingFactor) + g_iIconGap;
 			cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
 			//g_print ("ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
 			
@@ -390,16 +374,15 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 			//g_print ("  ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
 		}
 		
+		icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight;
 		if (pDock->fAlign == 1)
 		{
-			icon->fDrawX = pDock->iCurrentWidth - pDock->iMaxLabelWidth - x_ - icon->fWidth + 0*(icon->fWidth * cos (theta_) + icon->fHeight * sin (theta_)) / 2;
-			icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight + (icon->fWidth * sin (theta_) + 0*icon->fHeight * cos (theta_)) / 2;
+			icon->fDrawX = pDock->iCurrentWidth - pDock->iMaxLabelWidth - x_ - icon->fWidth;
 			icon->fOrientation = - theta_;
 		}
 		else
 		{
-			icon->fDrawX = x_ + pDock->iMaxLabelWidth + (icon->fWidth * cos (theta_) + icon->fHeight * sin( theta_)) / 2;
-			icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight - (icon->fWidth * sin (theta_) + 0*icon->fHeight * cos (theta_)) / 2;
+			icon->fDrawX = x_ + pDock->iMaxLabelWidth + pDock->iMaxIconHeight/2 - icon->fWidth/2;
 			icon->fOrientation = theta_;
 		}
 		icon->fScale = 1.;
