@@ -1,3 +1,6 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>Fabounet</b>
-<i>A <span color='#0000FF'>trash applet</span> that can handle several trash directories.</i>
+<i>Manage your disks space with this <span color='#0000FF'>trash applet</span> !</i>
+It can handle several trash directories,
+ warn you if you use too much space,
+ and display usefull info about your dustbins.

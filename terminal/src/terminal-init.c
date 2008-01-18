@@ -28,16 +28,17 @@
 
 extern t_terminal term;
 
-CD_APPLET_DEFINITION ("terminal", 0, 0, 2)
+
+CD_APPLET_DEFINITION ("terminal", 1, 4, 7)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
-  if (term.dialog && term.vterm) {
-    term_dialog_apply_settings(term.vterm);
-  }
-  cairo_dock_register_first_notifications (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK,
-                                           CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU,
-                                           -1);
+	if (term.dialog && term.vterm) {
+	term_dialog_apply_settings(term.vterm);
+	}
+	
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
 
 
@@ -47,7 +48,6 @@ CD_APPLET_STOP_BEGIN
 /*     cairo_dock_isolate_dialog (term.dialog, FALSE); */
 /*   } */
 /*   term.dialog = NULL; */
-  cairo_dock_remove_notification_funcs (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK,
-                                        CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU,
-                                        -1);
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_STOP_END

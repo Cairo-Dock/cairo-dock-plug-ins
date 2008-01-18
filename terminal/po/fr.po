@@ -1,0 +1,112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
+#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2007-12-11\n"
+"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "ICON"
+msgstr "ICONE"
+
+msgid "Desired icon size for this applet"
+msgstr "Taille d'icône souhaitée pour cette applet"
+
+msgid "width :"
+msgstr "largeur :"
+
+msgid "height :"
+msgstr "hauteur :"
+
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+
+msgid "MODULE"
+msgstr "MODULE"
+
+msgid "Theme"
+msgstr "Thème"
+
+msgid "Choose one of the available themes :"
+msgstr "Choisissez un des thèmes disponibles :"
+
+msgid "Interval of time to check if dustbin is full/empty :"
+msgstr ""
+"Intervalle de temps pour la vérification de la poubelle (vide/pleine) :"
+
+msgid "in seconds"
+msgstr "en secondes"
+
+msgid "Here you can specify a list of Trash directory :"
+msgstr "Ici vous pouvez spécifier une liste de répertoires poubelle ;"
+
+msgid "File browser used to show a trash :"
+msgstr "Navigateur de fichier pour visualiser la poubelle ;"
+
+#: src/applet-notifications.c:21
+msgid ""
+"This is the dustbin applet for Cairo-Dock\n"
+" made by Fabrice Rey (fabounet_03@yahoo.fr)"
+msgstr ""
+"Ceci est l'applet poubelle de Cairo-Dock\n"
+" écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
+
+#: src/applet-notifications.c:42
+msgid "Show Trash"
+msgstr "Ouvrir la poubelle"
+
+#: src/applet-notifications.c:54
+msgid "Show All"
+msgstr "Ouvrir toutes"
+
+#: src/applet-notifications.c:56
+msgid "Delete Trash"
+msgstr "Vider la poubelle"
+
+#: src/applet-notifications.c:69
+msgid "Delete All"
+msgstr "Vider toutes"
+
+#: src/applet-notifications.c:81
+#, c-format
+msgid "You're about to delete all files in %s. Sure ?"
+msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
+
+#: src/applet-notifications.c:83
+msgid "You're about to delete all files all dustbins. Sure ?"
+msgstr ""
+"Vous êtes sur le point de détruire tous les fichiers de toutes les "
+"poubelles. Sur ?"
+
+#: src/applet-notifications.c:145
+#, c-format
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual file browser,\n"
+"you can change it in the conf panel of this module"
+msgstr ""
+"Un problème est survenu.\n"
+"Si '%s' n'est pas votre navigateur de fichier usuel,\n"
+"vous pouvez le changer dans le panneau de conf de cette applet."
+
+#: src/applet-notifications.c:48
+#, c-format
+msgid "Show %s"
+msgstr "Ouvrir %s"
+
+#: src/applet-notifications.c:62
+#, c-format
+msgid "Delete %s"
+msgstr "Vider %s"

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-logout],[1.0.0],[Fabrice Rey (fabounet_03@yahoo.fr)])
+AC_INIT([cd-logout],[1.1.0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -37,5 +37,6 @@ PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 AC_CONFIG_FILES([Makefile
 		src/Makefile
 		data/Makefile
+		data/readme
 		data/rendering.conf])
 AC_OUTPUT

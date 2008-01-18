@@ -1,6 +1,6 @@
-#!en;1.0.1
+#!en;@VERSION@
 
-[ICON]
+[Icon]
 #F[Size of the icon you wish this applet has (in pixels)]
 frame1 =
 #i width :
@@ -14,10 +14,10 @@ frame1_fin =
 #s Name of the icon as it will appear in its label in cairo-dock :
 name = terminal
 
-[MODULE]
+#S Icon's name :
+icon = gnome-terminal
 
-#S Name of the main icon :
-main icon=gnome-terminal
+[Module]
 
 [GUI]
 #e+[0;65535] Transparency (65535 = opaque) (you should restart)

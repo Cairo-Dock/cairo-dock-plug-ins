@@ -70,3 +70,10 @@ cd ../po
 sed "s/CD_APPLET_NAME/$AppletName/g" fr.po > tmp
 sed "s/CD_MY_NAME/$MyName/g" tmp > fr.po
 rm -f tmp
+
+
+cd $CD_APPLET_NAME
+
+autoreconf -isvf && ./configure --prefix=/usr --enable-glitz && make
+
+echo "now it's your turn ! type sudo make install to install it."

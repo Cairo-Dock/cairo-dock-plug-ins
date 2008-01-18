@@ -83,34 +83,34 @@ static CairoDockDialog *terminal_new_dialog()
   return dialog;
 }
 
-CD_APPLET_ON_CLICK_BEGIN
-  if (!term.dialog) {
-    term.dialog = terminal_new_dialog();
-    }
-  else {
-    cairo_dock_unhide_dialog(term.dialog);
-    term_dialog_apply_settings(term.vterm);
-  }
 
+CD_APPLET_ON_CLICK_BEGIN
+	if (!term.dialog) {
+	term.dialog = terminal_new_dialog();
+	}
+	else {
+	cairo_dock_unhide_dialog(term.dialog);
+	term_dialog_apply_settings(term.vterm);
+	}
 CD_APPLET_ON_CLICK_END
+
 
 static void on_reload(GtkMenuItem *menu_item, gpointer *data)
 {
-  if (term.dialog) {
-    cairo_dock_isolate_dialog(term.dialog);
-    cairo_dock_dialog_unreference(term.dialog);
-    cairo_dock_dialog_unreference(term.dialog);
-    term.dialog = NULL;
-    term.vterm = NULL;
-  }
-  term.dialog = terminal_new_dialog();
+	if (term.dialog) {
+		cairo_dock_isolate_dialog(term.dialog);
+		cairo_dock_dialog_unreference(term.dialog);
+		cairo_dock_dialog_unreference(term.dialog);
+		term.dialog = NULL;
+		term.vterm = NULL;
+	}
+	term.dialog = terminal_new_dialog();
 }
 
-
 CD_APPLET_ON_BUILD_MENU_BEGIN
-  CD_APPLET_ADD_SUB_MENU("Terminal", pSubMenu, pAppletMenu)
-  CD_APPLET_ADD_IN_MENU("Reload", on_reload, pSubMenu)
-  CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+	CD_APPLET_ADD_SUB_MENU("Terminal", pSubMenu, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU("Reload", on_reload, pSubMenu)
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 
 

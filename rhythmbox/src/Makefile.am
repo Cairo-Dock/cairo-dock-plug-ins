@@ -29,7 +29,7 @@ libcd_rhythmbox_la_CFLAGS = \
 	-DMY_APPLET_CONF_FILE=\""rhythmbox.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""rhythmbox"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-rhythmbox"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\

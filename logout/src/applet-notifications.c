@@ -8,26 +8,18 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern CairoDockDesktopEnv my_logout_iDesktopEnv;
-
 
 CD_APPLET_ABOUT (_D("This is a very simple logout applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	if (my_logout_iDesktopEnv == CAIRO_DOCK_GNOME)
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 	{
 		system ("gnome-session-save --kill --gui");
 	}
-	else if (my_logout_iDesktopEnv == CAIRO_DOCK_KDE)
+	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 	{
-		GtkWidget *dialog = gtk_message_dialog_new (NULL,
-			GTK_DIALOG_DESTROY_WITH_PARENT,
-			GTK_MESSAGE_QUESTION,
-			GTK_BUTTONS_YES_NO,
-			"Log out ?");
-		int answer = gtk_dialog_run (GTK_DIALOG (dialog));
-		gtk_widget_destroy (dialog);
+		int answer = cairo_dock_ask_question_and_wait ("Log out ?", myIcon, myDock);
 		if (answer == GTK_RESPONSE_YES)
 		{
 			system ("dcop ksmserver default logout 0 0 0");  // kdmctl shutdown reboot forcenow  // kdeinit_shutdown

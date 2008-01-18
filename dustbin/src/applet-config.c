@@ -45,7 +45,7 @@ CD_APPLET_CONFIG_BEGIN ("Corbeille", NULL)
 	my_cEmptyUserImage = CD_CONFIG_GET_STRING ("MODULE", "empty image");
 	my_cFullUserImage = CD_CONFIG_GET_STRING ("MODULE", "full image");
 	
-	my_iSizeLimit = CD_CONFIG_GET_INTEGER ("MODULE", "size limit") << 6;
-	my_iGlobalSizeLimit = CD_CONFIG_GET_INTEGER ("MODULE", "global size limit") << 6;
+	my_iSizeLimit = CD_CONFIG_GET_INTEGER ("MODULE", "size limit") << 20;
+	my_iGlobalSizeLimit = CD_CONFIG_GET_INTEGER ("MODULE", "global size limit") << 20;
 	my_iQuickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("MODULE", "quick info", CD_DUSTBIN_INFO_NB_TRASHES);
 CD_APPLET_CONFIG_END

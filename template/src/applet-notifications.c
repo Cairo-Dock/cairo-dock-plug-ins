@@ -1,7 +1,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <signal.h>
 #include <glib/gi18n.h>
 
 #include "applet-notifications.h"

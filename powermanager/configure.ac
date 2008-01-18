@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-powermanager],[1.0.0],[Adrien Pilleboue (adrien.pilleboue@gmail.com)])
+AC_INIT([cd-powermanager],[1.0.1],[Adrien Pilleboue (adrien.pilleboue@gmail.com)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -35,5 +35,7 @@ PKG_CHECK_MODULES(PACKAGE, "cairo-dock dbus-glib-1 dbus-1")
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		data/Makefile])
+		data/Makefile
+		data/powermanager.conf
+		data/readme])
 AC_OUTPUT

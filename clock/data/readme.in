@@ -1,3 +1,7 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>Fabounet</b>
-<i>A <span color='#0000FF'>clock applet</span> based on the MacSlow's Cairo-Clock for the analogic view.</i>
+<i>Display time and date in you dock with the <span color='#0000FF'>clock applet</span> !</i>
+ 2 view are available : numeric and analogic, based on <i>Cairo-Clock</i>.
+ It can warn you with alarms,
+ can display a calendar,
+ and allow you to setup time and date.

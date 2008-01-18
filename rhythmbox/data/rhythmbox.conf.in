@@ -1,6 +1,6 @@
-#!fr;@VERSION@
+#!en;@VERSION@
 
-[ICON]
+[Icon]
 
 #F[Desired icon size for this applet]
 frame1 = 

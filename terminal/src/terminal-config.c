@@ -40,18 +40,16 @@ static void set_color(GdkColor *color, double src[3]) {
 }
 
 CD_APPLET_CONFIG_BEGIN ("terminal", "gnome-terminal")
-{
-  //0 means completely transparent and 65535 opaque
-  term.transparency = (guint16)cairo_dock_get_double_key_value (pKeyFile, "GUI", "terminal transparency", &bFlushConfFileNeeded, 55000., NULL, NULL);
-
-  term.always_on_top = cairo_dock_get_boolean_key_value (pKeyFile, "GUI", "always on top", &bFlushConfFileNeeded, FALSE, NULL, NULL);
-
-  double color_back[3] = {1., 1., 1.};
-  cairo_dock_get_double_list_key_value (pKeyFile, "GUI", "background color", &bFlushConfFileNeeded, color_back, 3, color_back, NULL, NULL);
-  set_color(&term.backcolor, color_back);
-
-  double color_fore[3] = {0., 0., 0.};
-  cairo_dock_get_double_list_key_value (pKeyFile, "GUI", "foreground color", &bFlushConfFileNeeded, color_fore, 3, color_fore, NULL, NULL);
-  set_color(&term.forecolor, color_fore);
-}
+	//0 means completely transparent and 65535 opaque
+	term.transparency = (guint16)cairo_dock_get_double_key_value (pKeyFile, "GUI", "terminal transparency", &bFlushConfFileNeeded, 55000., NULL, NULL);
+	
+	term.always_on_top = cairo_dock_get_boolean_key_value (pKeyFile, "GUI", "always on top", &bFlushConfFileNeeded, FALSE, NULL, NULL);
+	
+	double color_back[3] = {1., 1., 1.};
+	cairo_dock_get_double_list_key_value (pKeyFile, "GUI", "background color", &bFlushConfFileNeeded, color_back, 3, color_back, NULL, NULL);
+	set_color(&term.backcolor, color_back);
+	
+	double color_fore[3] = {0., 0., 0.};
+	cairo_dock_get_double_list_key_value (pKeyFile, "GUI", "foreground color", &bFlushConfFileNeeded, color_fore, 3, color_fore, NULL, NULL);
+	set_color(&term.forecolor, color_fore);
 CD_APPLET_CONFIG_END

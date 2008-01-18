@@ -27,3 +27,9 @@ gap on ellipse = 10
 
 #b Always show icons' face ? (otherwise they will turn)
 show face = false
+
+[Parabolic]
+
+curvature = .5
+
+ratio = 5

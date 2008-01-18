@@ -35,24 +35,24 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Dustbin", pModuleSubMenu, CD_APPLET_MY_MENU)
 	
 	GString *sLabel = g_string_new ("");
-	gchar *cOneDustbinPath;
+	CdDustbin *pDustbin;
 	GList *pElement;
 	
 	CD_APPLET_ADD_SUB_MENU (_D("Show Trash"), pShowSubMenu, pModuleSubMenu)
 	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 	{
-		cOneDustbinPath = pElement->data;
-		g_string_printf (sLabel, _D("Show %s"), cOneDustbinPath);
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_show_trash, pShowSubMenu, cOneDustbinPath)
+		pDustbin = pElement->data;
+		g_string_printf (sLabel, _D("Show %s"), pDustbin->cPath);
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_show_trash, pShowSubMenu, pDustbin->cPath)
 	}
 	CD_APPLET_ADD_IN_MENU (_D("Show All"), cd_dustbin_show_trash, pShowSubMenu)
 	
 	CD_APPLET_ADD_SUB_MENU (_D("Delete Trash"), pDeleteSubMenu, pModuleSubMenu)
 	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 	{
-		cOneDustbinPath = pElement->data;
-		g_string_printf (sLabel, _D("Delete %s"), cOneDustbinPath);
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_delete_trash, pDeleteSubMenu, cOneDustbinPath)
+		pDustbin = pElement->data;
+		g_string_printf (sLabel, _D("Delete %s"), pDustbin->cPath);
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_delete_trash, pDeleteSubMenu, pDustbin->cPath)
 	}
 	CD_APPLET_ADD_IN_MENU (_D("Delete All"), cd_dustbin_delete_trash, pDeleteSubMenu)
 	
@@ -133,15 +133,16 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	g_free (cIconName);
 CD_APPLET_ON_DROP_DATA_END
 
+
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	GString *sInfo = g_string_new ("");
-	g_string_printf (sInfo, "%d files for %dMb in all dustbins :\n", my_iNbFiles, my_iSize);
+	g_string_printf (sInfo, "%.2fMb for %d files in all dustbins :\n", 1.*my_iSize/(1024*1024), my_iNbFiles);
 	CdDustbin *pDustbin;
 	GList *pElement;
 	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
-		g_string_printf (sInfo, "  %d files for %dMb id in%s\n", pDustbin->iNbFiles, pDustbin->iSize, pDustbin->cPath);
+		g_string_append_printf (sInfo, "  %.2fM for %d files for in %s\n", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
 	}
 	
 	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myDock, 0, my_cDialogIconPath);

@@ -28,7 +28,7 @@ extern int my_iQuickInfoType;
 extern int my_iNbTrashes;
 extern int my_iSizeLimit, my_iGlobalSizeLimit;
 
-static int s_iSidDelayMeasure = 0;
+//static int s_iSidDelayMeasure = 0;
 
 
 static int _cd_dustbin_compare_dustbins (const CdDustbin *pDustbin, const gchar *cDustbinPath)
@@ -49,12 +49,12 @@ CdDustbin *cd_dustbin_find_dustbin_from_uri (const gchar *cDustbinPath)
 }
 
 
-static gboolean _cd_dustbin_launch_measure_delayed (gpointer *data)
+/*static gboolean _cd_dustbin_launch_measure_delayed (gpointer *data)
 {
 	cd_dustbin_add_message (data[0], data[1]);
 	g_free (data);
 	return FALSE;
-}
+}*/
 void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, CdDustbin *pDustbin)
 {
 	g_return_if_fail (pDustbin != NULL);
@@ -64,17 +64,18 @@ void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cUR
 	{
 		case CAIRO_DOCK_FILE_DELETED :
 			g_print ("1 dechet de moins\n");
-			if (s_iSidDelayMeasure != 0)
+			/*if (s_iSidDelayMeasure != 0)
 			{
 				g_source_remove (s_iSidDelayMeasure);
 				s_iSidDelayMeasure = 0;
-			}
+			}*/
 			
 			g_atomic_int_add (&pDustbin->iNbTrashes, -1);
 			
 			if (g_atomic_int_dec_and_test (&my_iNbTrashes))  // devient nul.
 			{
 				g_print ("la poubelle se vide\n");
+				cd_dustbin_remove_all_messages ();
 				g_atomic_int_set (&my_iNbFiles, 0);  // inutile de calculer dans ce cas.
 				g_atomic_int_set (&my_iSize, 0);  // inutile de calculer dans ce cas.
 				pDustbin->iNbFiles = 0;
@@ -88,10 +89,11 @@ void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cUR
 			}
 			else if (my_iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || my_iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 			{
-				gpointer *data = g_new (gpointer, 2);
+				/*gpointer *data = g_new (gpointer, 2);
 				data[0] = NULL;
 				data[1] = pDustbin;
-				s_iSidDelayMeasure = g_timeout_add (500, (GSourceFunc) _cd_dustbin_launch_measure_delayed, data);  // on retarde le recalcul de 1 seconde, car il y'a probablement d'autres fichiers qui vont arriver.
+				s_iSidDelayMeasure = g_timeout_add (500, (GSourceFunc) _cd_dustbin_launch_measure_delayed, data);  // on retarde le recalcul de 1 seconde, car il y'a probablement d'autres fichiers qui vont arriver.*/
+				cd_dustbin_add_message (NULL, pDustbin);
 			}
 		break ;
 		
@@ -184,6 +186,7 @@ void cd_dustbin_draw_quick_info (gboolean bRedraw)
 {
 	if (my_iQuickInfoType == CD_DUSTBIN_INFO_NONE)
 		return ;
+	g_print ("%s (%d)\n", __func__, my_iNbTrashes);
 	if (my_iNbTrashes == 0)
 	{
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
@@ -232,6 +235,7 @@ void cd_dustbin_draw_quick_info (gboolean bRedraw)
 
 void cd_dustbin_signal_full_dustbin (void)
 {
+	g_print ("%s (%d,%d)\n", __func__, my_iSizeLimit, my_iGlobalSizeLimit);
 	gboolean bOneDustbinFull = FALSE;
 	CdDustbin *pDustbin;
 	GList *pElement;
