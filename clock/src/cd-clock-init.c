@@ -34,6 +34,7 @@ RsvgDimensionData my_DimensionData;
 RsvgHandle *my_pSvgHandles[CLOCK_ELEMENTS];
 
 GPtrArray *my_pAlarms = NULL;
+gchar *my_cSetupTimeCommand = NULL;
 
 char my_cFileNames[CLOCK_ELEMENTS][30] =
 {
@@ -165,4 +166,7 @@ void stop (void)
 	}
 	g_ptr_array_free (my_pAlarms, TRUE);
 	my_pAlarms = NULL;
+	
+	g_free (my_cSetupTimeCommand);
+	my_cSetupTimeCommand = NULL;
 }

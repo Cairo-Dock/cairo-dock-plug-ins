@@ -19,8 +19,8 @@ name = horloge
 #F[Behaviour]
 frame1 =
 
-#b Show the date ?
-show date = true
+#r[No;On icon; On label] Show the date :
+show date = 1
 
 #b Show seconds ?
 #{if not, then the applet will update time once a minute, saving CPU.}
@@ -44,6 +44,12 @@ text color = 0.0; 0.0; 0.5; 1.
 
 #R1[] List of available themes for the analogic display :/
 theme = glassy
+
+#F[Setup time and date]
+frame3 =
+#s Specific command to run :
+#{Let empty to use default command.}
+setup command =
 
 [Alarm]
 

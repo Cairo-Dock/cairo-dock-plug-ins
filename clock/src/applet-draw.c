@@ -18,7 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern gboolean my_bShowDate;
+extern CDClockDatePosition my_iShowDate;
 extern gboolean my_bShowSeconds;
 extern gboolean my_b24Mode;
 extern int my_bOldStyle;
@@ -45,6 +45,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 {
 	static gboolean bBusy = FALSE;
 	static int iLastCheckedMinute = -1;
+	static int iLastCheckedDay = -1, iLastCheckedMonth = -1, iLastCheckedYear = -1;
 	static struct tm epoch_tm;
 	
 	if (bBusy)
@@ -72,6 +73,15 @@ gboolean cd_clock_update_with_time (Icon *icon)
 			myDock->bHorizontalDock);
 	}
 	
+	if (my_iShowDate == CLOCK_DATE_ON_LABEL && (epoch_tm.tm_mday != iLastCheckedDay || epoch_tm.tm_mon != iLastCheckedMonth || epoch_tm.tm_year != iLastCheckedYear))
+	{
+		strftime (cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", &epoch_tm);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (cDateBuffer)
+		
+		iLastCheckedDay = epoch_tm.tm_mday;
+		iLastCheckedMonth = epoch_tm.tm_mon;
+		iLastCheckedYear = epoch_tm.tm_year;
+	}
 	
 	cairo_dock_redraw_my_icon (icon, myDock);
 	
@@ -140,7 +150,7 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 	else
 		g_string_printf (sFormat, " %R");
 	
-	if (my_bShowDate)
+	if (my_iShowDate == CLOCK_DATE_ON_ICON)
 		g_string_append (sFormat, "\n%a %d %b");
 	
 	strftime (cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
@@ -314,7 +324,7 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 	cairo_translate (pSourceContext, fHalfX, fHalfY);
 	cairo_rotate (pSourceContext, -G_PI/2.0f);
 	
-	if (my_bShowDate)
+	if (my_iShowDate == CLOCK_DATE_ON_ICON)
 	{
 		cairo_save (pSourceContext);
 		cairo_set_source_rgb (pSourceContext, 1.0f, 0.5f, 0.0f);

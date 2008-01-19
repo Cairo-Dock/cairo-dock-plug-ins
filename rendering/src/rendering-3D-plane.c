@@ -348,7 +348,7 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 			
 			cairo_save (pCairoContext);
 			
-			if (CAIRO_DOCK_IS_SEPARATOR (icon) && my_pFlatSeparatorSurface[0] != NULL)
+			if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->acFileName == NULL && my_pFlatSeparatorSurface[0] != NULL)
 				cd_rendering_one_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock);
 			else
 				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect);

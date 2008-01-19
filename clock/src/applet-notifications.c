@@ -10,12 +10,33 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "applet-notifications.h"
 
+extern gchar *my_cSetupTimeCommand;
+
 CD_APPLET_INCLUDE_MY_VARS
 
 
 void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 {
-	system ("gksu time-admin &");
+	GError *erreur = NULL;
+	if (my_cSetupTimeCommand != NULL)
+	{
+		g_spawn_command_line_async (my_cSetupTimeCommand, &erreur);
+		
+	}
+	else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
+	{
+		g_spawn_command_line_async ("gksu time-admin", &erreur);
+	}
+	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
+	{
+		g_spawn_command_line_async ("kcmshell kde-clock.desktop", &erreur);
+	}
+	
+	if (erreur != NULL)
+	{
+		g_print ("Attention : when trying to execute '%s' : %s\n", my_cSetupTimeCommand, erreur->message);
+		g_error_free (erreur);
+	}
 }
 
 

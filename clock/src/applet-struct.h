@@ -36,5 +36,13 @@ typedef struct {
 	gchar *cMessage;
 	} CDClockAlarm;
 
+typedef enum
+{
+	CLOCK_NO_DATE = 0,
+	CLOCK_DATE_ON_ICON,
+	CLOCK_DATE_ON_LABEL
+} CDClockDatePosition;
+
+
 #endif
 

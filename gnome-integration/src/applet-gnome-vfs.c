@@ -196,7 +196,8 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		}
 		else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
 		{
-			*cIconName = cFilePath;
+			*cIconName = g_strdup (cFilePath);
+			cairo_dock_remove_html_spaces (*cIconName);
 		}
 		g_free (cHostname);
 	}
@@ -312,11 +313,24 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				{
 					icon->acCommand = g_strdup (cFileURI);
 					icon->acName = g_strdup (info->name);
-					if (strncmp (info->mime_type, "image", 5) == 0 && strncmp (cFileURI, "file://", 7) == 0)
+					icon->acFileName = NULL;
+					if (strncmp (info->mime_type, "image", 5) == 0)  // && strncmp (cFileURI, "file://", 7) == 0
 					{
-						icon->acFileName = g_strdup (cFileURI+7);
+						gchar *cHostname = NULL;
+						GError *erreur = NULL;
+						gchar *cFilePath = g_filename_from_uri (cFileURI, &cHostname, &erreur);
+						if (erreur != NULL)
+						{
+							g_error_free (erreur);
+						}
+						else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
+						{
+							icon->acFileName = g_strdup (cFilePath);
+							cairo_dock_remove_html_spaces (icon->acFileName);
+						}
+						g_free (cHostname);
 					}
-					else
+					if (icon->acFileName == NULL)
 					{
 						icon->acFileName = gnome_icon_lookup (gtk_icon_theme_get_default (),
 							NULL,
