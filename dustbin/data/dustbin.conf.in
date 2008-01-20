@@ -22,10 +22,10 @@ frame1 =
 #R1[] Choose one of the available themes :/
 theme = Gion
 
-#s Name of an image to overwrite the theme's empty image :
+#S Name of an image to overwrite the theme's empty image :
 empty image = 
 
-#s Name of an image to overwrite the theme's full image :
+#S Name of an image to overwrite the theme's full image :
 full image = 
 
 #F[Config]

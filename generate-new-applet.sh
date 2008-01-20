@@ -13,6 +13,7 @@ read -p "Enter the default icon of your applet (Just type enter if you'll draw i
 
 echo "creation de l'arborescence de l'applet $AppletName ..."
 cp -r template $AppletName
+find $AppletName -name ".svn" -execdir rm -rf .svn \;
 
 
 cd $AppletName
