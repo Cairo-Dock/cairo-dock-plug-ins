@@ -1,4 +1,12 @@
+/******************************************************************************
 
+This file is a part of the cairo-dock program, 
+released under the terms of the GNU General Public License.
+
+Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+Inspiration was taken from the "xdg" project :-)
+
+******************************************************************************/
 #include <cairo-dock.h>
 
 #include "applet-config.h"

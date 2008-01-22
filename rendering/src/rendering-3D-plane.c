@@ -127,6 +127,7 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceCon
 
 static void cd_rendering_one_3D_separator_horizontal (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock)
 {
+	//g_print ("%s ()\n", __func__);
 	int sens;
 	double fDockOffsetX, fDockOffsetY;
 	if (g_bDirectionUp)

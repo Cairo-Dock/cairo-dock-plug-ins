@@ -222,7 +222,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 
 
 
-GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, gchar **cFullURI)
+GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gchar **cFullURI)
 {
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
 	g_print ("%s (%s)\n", __func__, cBaseURI);
@@ -301,7 +301,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				
 				icon = g_new0 (Icon, 1);
 				icon->cBaseURI = cFileURI;
-				icon->iType = CAIRO_DOCK_LAUNCHER;
+				icon->iType = iNewIconsType;
 				if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (info->mime_type, "application/x-desktop") == 0)
 				{
 					gboolean bIsDirectory = FALSE;
@@ -480,8 +480,8 @@ static void _vfs_backend_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
 	gpointer *data)
 {
 	CairoDockFMMonitorCallback pCallback = data[0];
-	Icon *pIcon = data[1];
-	g_print ("%s (%d sur %x)\n", __func__, event_type, pIcon);
+	gpointer user_data = data[1];
+	g_print ("%s (%d , data : %x)\n", __func__, event_type, user_data);
 	
 	CairoDockFMEventType iEventType;
 	switch (event_type)
@@ -501,7 +501,7 @@ static void _vfs_backend_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
 		default :
 		return ;
 	}
-	pCallback (iEventType, info_uri, pIcon);
+	pCallback (iEventType, info_uri, user_data);
 }
 
 

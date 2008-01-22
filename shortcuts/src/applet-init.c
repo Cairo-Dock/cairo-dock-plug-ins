@@ -1,8 +1,18 @@
+/******************************************************************************
 
+This file is a part of the cairo-dock program, 
+released under the terms of the GNU General Public License.
+
+Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+Inspiration was taken from the "xdg" project :-)
+
+******************************************************************************/
 #include "stdlib.h"
+#include "string.h"
 
 #include "applet-config.h"
 #include "applet-notifications.h"
+#include "applet-bookmarks.h"
 #include "applet-init.h"
 
 gboolean my_bListDrives;
@@ -10,14 +20,18 @@ gboolean my_bListNetwork;
 gboolean my_bListBookmarks;
 gboolean my_bUseSeparator;
 gchar *my_cRenderer = NULL;
+GList *my_pBookmarkIconList = NULL;
 
 CD_APPLET_DEFINITION ("shortcuts", 1, 4, 7)
 
 
-void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
+void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
 {
-	g_print ("%s () : un signet en plus ou en moins\n", __func__);
-	
+	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 6);
+}
+void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
+{
+	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 8);
 }
 
 CD_APPLET_INIT_BEGIN (erreur)
@@ -26,7 +40,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	if (my_bListDrives)
 	{
-		pIconList = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_VFS_ROOT, CAIRO_DOCK_FM_SORT_BY_NAME, &cFullURI);
+		pIconList = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_VFS_ROOT, CAIRO_DOCK_FM_SORT_BY_NAME, 6, &cFullURI);
 		g_print ("  cFullURI : %s\n", cFullURI);
 		g_free (cFullURI);
 		if (pIconList == NULL)
@@ -34,79 +48,58 @@ CD_APPLET_INIT_BEGIN (erreur)
 			g_set_error (erreur, 1, 1, "%s () : couldn't detect any drives", __func__);
 			return NULL;
 		}
+		
+		if (! cairo_dock_fm_add_monitor_full (CAIRO_DOCK_FM_VFS_ROOT, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, NULL))
+			g_print ("Attention : can't monitor drives\n");
 	}
 	
 	if (my_bListNetwork)
 	{
-		GList *pIconList2 = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_NETWORK, CAIRO_DOCK_FM_SORT_BY_NAME, &cFullURI);
+		GList *pIconList2 = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_NETWORK, CAIRO_DOCK_FM_SORT_BY_NAME, 8, &cFullURI);
 		g_print ("  cFullURI : %s\n", cFullURI);
 		g_free (cFullURI);
+		
+		if (my_bUseSeparator)
+		{
+			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (myDrawContext, CAIRO_DOCK_LAUNCHER, myDock);
+			pIconList = g_list_append (pIconList, pSeparatorIcon);
+		}
+		
 		pIconList = g_list_concat (pIconList, pIconList2);
+		
+		if (! cairo_dock_fm_add_monitor_full (CAIRO_DOCK_FM_NETWORK, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_network, NULL))
+			g_print ("Attention : can't monitor network\n");
 	}
 	
 	if (my_bListBookmarks)
 	{
-		gchar *cBookmarkFilsPath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
-		if (! g_file_test (cBookmarkFilsPath, G_FILE_TEST_EXISTS))
+		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
+		if (! g_file_test (cBookmarkFilePath, G_FILE_TEST_EXISTS))
 		{
-			FILE *f = fopen (cBookmarkFilsPath, "a");
+			FILE *f = fopen (cBookmarkFilePath, "a");
 			fclose (f);
 		}
 		
-		gchar *cContent = NULL;
-		gsize length=0;
-		GError *tmp_erreur = NULL;
-		g_file_get_contents  (cBookmarkFilsPath, &cContent, &length, &tmp_erreur);
-		if (tmp_erreur != NULL)
+		GList *pIconList2 = cd_shortcuts_get_bookmarks (cBookmarkFilePath);
+		
+		if (my_bUseSeparator)
 		{
-			g_print ("Attention : %s\n  no bookmark will be available\n", tmp_erreur->message);
-			g_error_free (tmp_erreur);
+			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (myDrawContext, CAIRO_DOCK_LAUNCHER, myDock);
+			pIconList = g_list_append (pIconList, pSeparatorIcon);
 		}
-		else
-		{
-			GList *pIconList2 = NULL;
-			gchar **cBookmarksList = g_strsplit (cContent, "\n", -1);
-			gchar *cOneBookmark;
-			Icon *pNewIcon;
-			gchar *cName, *cRealURI, *cIconName;
-			gboolean bIsDirectory;
-			int iVolumeID;
-			double fOrder;
-			int i = 0;
-			for (i = 0; cBookmarksList[i] != NULL; i ++)
-			{
-				cOneBookmark = cBookmarksList[i];
-				if (cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType))
-				{
-					pNewIcon = g_new0 (Icon, 1);
-					pNewIcon->iType = CAIRO_DOCK_LAUNCHER;
-					pNewIcon->cBaseURI = cOneBookmark;
-					pNewIcon->acName = cName;
-					pNewIcon->acCommand = cRealURI;
-					pNewIcon->acFileName = cIconName;
-					pNewIcon->iVolumeID = iVolumeID;
-					pNewIcon->fOrder = fOrder;
-					pIconList = g_list_append (pIconList, pNewIcon);
-				}
-				else
-				{
-					g_free (cOneBookmark);
-				}
-			}
-			g_free (cBookmarksList);
-			
-			if (! cairo_dock_fm_add_monitor_full (cBookmarkFilsPath, FALSE, NULL, (CairoDockFMMonitorCallback) cairo_dock_fm_action_on_file_event, NULL))
-				g_print ("Attention : can't monitor bookmarks\n");
-		}
-		g_free (cBookmarkFilsPath);
-		g_free (cContent);
+		
+		pIconList = g_list_concat (pIconList, pIconList2);
+		
+		if (! cairo_dock_fm_add_monitor_full (cBookmarkFilePath, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_bookmarks, NULL))
+			g_print ("Attention : can't monitor bookmarks\n");
+		
+		g_free (cBookmarkFilePath);
 	}
 	
 	myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
 	cairo_dock_set_renderer (myIcon->pSubDock, my_cRenderer);
 	cairo_dock_update_dock_size (myIcon->pSubDock);
 	
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 CD_APPLET_INIT_END
@@ -114,12 +107,20 @@ CD_APPLET_INIT_END
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
-	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	
 	//\_______________ On libere toutes nos ressources.
+	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
+	cairo_dock_fm_remove_monitor_full (cBookmarkFilePath, FALSE, NULL);
+	g_free (cBookmarkFilePath);
+	
+	my_pBookmarkIconList = NULL;  // fait partie de myIcon->pSubDock->icons, donc ne pas desallouer a la main.
+	
 	cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+	g_print ("  myIcon->pSubDock <- %x\n", myIcon->pSubDock);
+	myIcon->pSubDock = NULL;  // normalement inutile.
 	
 	g_free (my_cRenderer);
+	my_cRenderer = NULL;
 CD_APPLET_STOP_END

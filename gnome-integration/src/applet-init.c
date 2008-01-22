@@ -59,9 +59,9 @@ CairoDockVisitCard *pre_init (void)
 }
 
 
-Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
+Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
 {
-	*cConfFilePath = NULL;
+	pModule->cConfFilePath = NULL;
 	return NULL;
 }
 
