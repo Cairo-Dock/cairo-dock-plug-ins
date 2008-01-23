@@ -28,7 +28,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 static void _cd_shortcuts_remove_bookmark (GtkMenuItem *menu_item, gchar *cURI)
 {
-	cd_shortcuts_remove_bookmark (cURI);
+	cd_shortcuts_remove_one_bookmark (cURI);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (CD_APPLET_CLICKED_ICON == myIcon)

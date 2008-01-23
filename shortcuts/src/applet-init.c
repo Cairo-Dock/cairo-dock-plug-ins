@@ -42,33 +42,35 @@ CD_APPLET_INIT_BEGIN (erreur)
 	{
 		pIconList = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_VFS_ROOT, CAIRO_DOCK_FM_SORT_BY_NAME, 6, &cFullURI);
 		g_print ("  cFullURI : %s\n", cFullURI);
-		g_free (cFullURI);
 		if (pIconList == NULL)
 		{
 			g_set_error (erreur, 1, 1, "%s () : couldn't detect any drives", __func__);
 			return NULL;
 		}
 		
-		if (! cairo_dock_fm_add_monitor_full (CAIRO_DOCK_FM_VFS_ROOT, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, NULL))
+		if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, NULL))
 			g_print ("Attention : can't monitor drives\n");
+		g_free (cFullURI);
 	}
 	
 	if (my_bListNetwork)
 	{
 		GList *pIconList2 = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_NETWORK, CAIRO_DOCK_FM_SORT_BY_NAME, 8, &cFullURI);
 		g_print ("  cFullURI : %s\n", cFullURI);
-		g_free (cFullURI);
 		
-		if (my_bUseSeparator)
+		if (my_bUseSeparator && pIconList2 != NULL)
 		{
-			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (myDrawContext, CAIRO_DOCK_LAUNCHER, myDock);
+			//Icon *pSeparatorIcon = cairo_dock_create_separator_icon (myDrawContext, CAIRO_DOCK_LAUNCHER, myIcon->pSubDock, CAIRO_DOCK_APPLY_RATIO);
+			Icon *pSeparatorIcon = g_new0 (Icon, 1);
+			pSeparatorIcon->iType = 7;
 			pIconList = g_list_append (pIconList, pSeparatorIcon);
 		}
 		
 		pIconList = g_list_concat (pIconList, pIconList2);
 		
-		if (! cairo_dock_fm_add_monitor_full (CAIRO_DOCK_FM_NETWORK, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_network, NULL))
+		if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_network, NULL))
 			g_print ("Attention : can't monitor network\n");
+		g_free (cFullURI);
 	}
 	
 	if (my_bListBookmarks)
@@ -80,11 +82,13 @@ CD_APPLET_INIT_BEGIN (erreur)
 			fclose (f);
 		}
 		
-		GList *pIconList2 = cd_shortcuts_get_bookmarks (cBookmarkFilePath);
+		GList *pIconList2 = cd_shortcuts_list_bookmarks (cBookmarkFilePath);
 		
 		if (my_bUseSeparator)
 		{
-			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (myDrawContext, CAIRO_DOCK_LAUNCHER, myDock);
+			//Icon *pSeparatorIcon = cairo_dock_create_separator_icon (myDrawContext, CAIRO_DOCK_LAUNCHER, myIcon->pSubDock, CAIRO_DOCK_APPLY_RATIO);
+			Icon *pSeparatorIcon = g_new0 (Icon, 1);
+			pSeparatorIcon->iType = 9;
 			pIconList = g_list_append (pIconList, pSeparatorIcon);
 		}
 		
