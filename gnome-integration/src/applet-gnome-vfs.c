@@ -418,7 +418,6 @@ static void _vfs_backend_mount_callback (gboolean succeeded, char *error, char *
 
 void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock)
 {
-	static gpointer *data2 = NULL;
 	g_return_if_fail (iVolumeID > 0);
 	g_print ("%s (ID:%d)\n", __func__, iVolumeID);
 	
@@ -433,8 +432,7 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 	GnomeVFSDrive *pDrive = gnome_vfs_volume_monitor_get_drive_by_id (pVolumeMonitor, iVolumeID);
 	g_return_if_fail (pDrive != NULL);
 	
-	if (data2 == NULL)
-		data2 = g_new (gpointer, 5);
+	gpointer *data2 = g_new (gpointer, 5);
 	data2[0] = pCallback;
 	data2[1] = GINT_TO_POINTER (TRUE);
 	data2[2] = gnome_vfs_drive_get_display_name (pDrive);
@@ -448,7 +446,6 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 
 void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock)
 {
-	static gpointer *data2 = NULL;
 	g_return_if_fail (cURI != NULL);
 	g_print ("%s (%s)\n", __func__, cURI);
 	
@@ -459,8 +456,7 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 	g_free (cLocalPath);
 	g_return_if_fail (pVolume != NULL);
 	
-	if (data2 == NULL)
-		data2 = g_new (gpointer, 5);
+	gpointer *data2 = g_new (gpointer, 5);
 	data2[0] = pCallback;
 	data2[1] = GINT_TO_POINTER (FALSE);
 	data2[2] = gnome_vfs_volume_get_display_name (pVolume);
