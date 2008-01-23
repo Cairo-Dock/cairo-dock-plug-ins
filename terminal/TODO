@@ -1,9 +1,7 @@
 cairo-applet:
-  - draw the transparent window
   - allow to move/resize it
-  - store size in pref
+  - store size/pos in pref
 
-- support multiple tab
 - copy/paste
 - one button to close the window
 - global shortcut to hide/show the terminal

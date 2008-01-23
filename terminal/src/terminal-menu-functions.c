@@ -36,16 +36,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_ABOUT ("This is a very simple terminal applet made by Cedric GESTES for Cairo-Dock")
 
-static gboolean on_terminal_button_press_dialog (GtkWidget* pWidget,
-                                                 GdkEventButton* pButton,
-                                                 Icon *pIcon)
-{
-  cairo_dock_hide_dialog (term.dialog);
-  return 0;
-
-}
-
-void term_dialog_apply_settings(GtkWidget *vterm)
+static void term_dialog_apply_settings(GtkWidget *vterm)
 {
   if (vterm) {
     vte_terminal_set_opacity(VTE_TERMINAL(vterm), term.transparency);
@@ -55,21 +46,40 @@ void term_dialog_apply_settings(GtkWidget *vterm)
     gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
 }
 
-static void on_terminal_child_exited                   (VteTerminal *vteterminal,
-                                                        t_terminal  *t)
+
+void term_tab_apply_settings()
 {
-  printf("child exited\n");
-  if (!(t && t->vterm))
-    return;
-  vte_terminal_fork_command(VTE_TERMINAL(t->vterm),
-                            NULL,
-                            NULL,
-                            NULL,
-                            "~/",
-                            FALSE,
-                            FALSE,
-                            FALSE);
+  int sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(term.tab));
+  GtkWidget *vterm = NULL;
+
+  for (int i = 0; i < sz; ++i) {
+    vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(term.tab), i);
+    term_dialog_apply_settings(vterm);
+  }
 }
+
+static void on_terminal_child_exited(VteTerminal *vteterminal,
+                                     gpointer t)
+{
+  gint p = gtk_notebook_page_num(GTK_NOTEBOOK(term.tab), GTK_WIDGET(vteterminal));
+  gint sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(term.tab));
+
+  if (sz > 1)
+    gtk_notebook_remove_page(GTK_NOTEBOOK(term.tab), p);
+  else {
+    //TODO: echo somethink on the term, to say it's okay
+    applet_hide_dialog(term.dialog);
+    vte_terminal_fork_command(VTE_TERMINAL(vteterminal),
+                              NULL,
+                              NULL,
+                              NULL,
+                              "~/",
+                              FALSE,
+                              FALSE,
+                              FALSE);
+  }
+}
+
 
 /* static gboolean applet_on_key_press_cb(GtkWidget *window, GdkEventKey *event, t_terminal *terminal) */
 /* { */
@@ -96,13 +106,11 @@ static void on_terminal_child_exited                   (VteTerminal *vteterminal
 /* } */
 
 
-static CairoDockDialog *terminal_new_dialog()
+static void terminal_new_tab()
 {
-  CairoDockDialog *dialog;
   GtkWidget *vterm = NULL;
 
   vterm = vte_terminal_new();
-  term.vterm = vterm;
   //transparency enable, otherwise we cant change value after
   vte_terminal_set_opacity(VTE_TERMINAL(vterm), term.transparency);
   vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
@@ -114,56 +122,61 @@ static CairoDockDialog *terminal_new_dialog()
                             FALSE,
                             FALSE,
                             FALSE);
-  //  dialog = cairo_dock_build_dialog("terminal", myIcon, myDock, "", vterm, GTK_BUTTONS_NONE, NULL, NULL);
-  dialog = applet_build_dialog (myDock, vterm, NULL);
+  g_signal_connect (G_OBJECT (vterm), "child-exited",
+                    G_CALLBACK (on_terminal_child_exited), 0);
 
-  g_signal_connect (G_OBJECT (vterm),
-                    "child-exited",
-                    G_CALLBACK (on_terminal_child_exited),
-                    &term);
-  //g_signal_connect (G_OBJECT (dialog->pWidget), "key-press-event", G_CALLBACK (applet_on_key_press_cb), &term);
+  gtk_notebook_append_page(GTK_NOTEBOOK(term.tab), vterm, NULL);
+  gtk_widget_show(vterm);
+}
 
-/*   g_signal_connect (G_OBJECT (dialog->pWidget), */
-/*                     "button-press-event", */
-/*                     G_CALLBACK (on_terminal_button_press_dialog), */
-/*                     myIcon); */
-/*   cairo_dock_dialog_reference(dialog); */
+static CairoDockDialog *terminal_new_dialog()
+{
+  CairoDockDialog *dialog;
+  GtkWidget *vterm = NULL;
+
+  term.tab = gtk_notebook_new();
+  terminal_new_tab();
+  gtk_widget_show(term.tab);
+
+  dialog = applet_build_dialog (myDock, term.tab, NULL);
+
   term.dialog = dialog;
-  term_dialog_apply_settings(vterm);
+  term_tab_apply_settings();
   return dialog;
 }
 
 
 CD_APPLET_ON_CLICK_BEGIN
-        if (!term.dialog) {
-          term.dialog = terminal_new_dialog();
-	}
-	else {
-          applet_unhide_dialog(term.dialog);
-          term_dialog_apply_settings(term.vterm);
-	}
+  if (!term.dialog) {
+    term.dialog = terminal_new_dialog();
+  }
+  else {
+    applet_unhide_dialog(term.dialog);
+    term_tab_apply_settings();
+  }
 CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-        applet_hide_dialog(term.dialog);
+  applet_hide_dialog(term.dialog);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-static void on_reload(GtkMenuItem *menu_item, gpointer *data)
+static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
 {
-/* 	if (term.dialog) { */
-/* 		cairo_dock_isolate_dialog(term.dialog); */
-/* 		cairo_dock_dialog_unreference(term.dialog); */
-/* 		cairo_dock_dialog_unreference(term.dialog); */
-/* 		term.dialog = NULL; */
-/* 		term.vterm = NULL; */
-/* 	} */
-/* 	term.dialog = terminal_new_dialog(); */
+  terminal_new_tab();
+  term_tab_apply_settings();
+}
+
+static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
+{
+  gint p = gtk_notebook_get_current_page(GTK_NOTEBOOK(term.tab));
+  gtk_notebook_remove_page(GTK_NOTEBOOK(term.tab), p);
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU("Terminal", pSubMenu, CD_APPLET_MY_MENU)
-//	CD_APPLET_ADD_IN_MENU("Reload", on_reload, pSubMenu)
+        CD_APPLET_ADD_IN_MENU("New Tab", on_new_tab, pSubMenu)
+        CD_APPLET_ADD_IN_MENU("Close the current Tab", on_close_tab, pSubMenu)
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 

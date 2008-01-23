@@ -1,3 +1,14 @@
+2008-01-23  GESTES Cedric  <gestes_c@epita.fr>
+	* src/cairo-applet.c : new Dialog
+	* removed reload
+	* added basic support for tab
+	* when user enter exit in a shell:
+	   - (tab# > 1) it close the tab
+	   - (tab# = 1) hide the window and restart the shell
+	* left click : show
+	* right click : hide
+
+
 2008-01-02  GESTES Cedric  <gestes_c@epita.fr>
 
 	* src/Makefile.am (-DMY_APPLET_DOCK_VERSION): added define
