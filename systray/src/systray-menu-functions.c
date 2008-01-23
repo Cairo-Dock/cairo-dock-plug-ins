@@ -45,7 +45,7 @@ static CairoDockDialog *systray_new_dialog()
 {
   systray.tray = tray_init(myDock->pWidget);
   systray.dialog = applet_build_dialog (myDock, systray.tray->widget, NULL);
-
+  gtk_widget_set_size_request(systray.dialog->pWidget, 24, 24);
   systray_dialog_apply_settings();
   return systray.dialog;
 }

@@ -139,6 +139,7 @@ static CairoDockDialog *terminal_new_dialog()
   gtk_widget_show(term.tab);
 
   dialog = applet_build_dialog (myDock, term.tab, NULL);
+  gtk_widget_set_size_request(dialog->pWidget, 600, 400);
 
   term.dialog = dialog;
   term_tab_apply_settings();
