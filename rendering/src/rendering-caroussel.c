@@ -56,13 +56,13 @@ void cd_rendering_set_subdock_position_caroussel (Icon *pPointedIcon, CairoDock 
 
 void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 {
-	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->iFlatDockWidth, pDock->iScrollOffset);
+	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
 	int iEllipseHeight = (1 + g_fAmplitude) * pDock->iMaxIconHeight / sqrt (1 + my_fInclinationOnHorizon * my_fInclinationOnHorizon) + my_iGapOnEllipse;
 	pDock->iDecorationsHeight = iEllipseHeight + 2 * g_iFrameMargin + g_fReflectSize;
 	
 	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, my_fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
-	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->iFlatDockWidth, my_fForegroundRatio, fExtraWidth));  // fExtraWidth/2 de chaque cote.
+	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, my_fForegroundRatio, fExtraWidth));  // fExtraWidth/2 de chaque cote.
 	pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
 	
 	pDock->iMaxDockHeight = g_iDockLineWidth + g_iFrameMargin + g_fReflectSize + iEllipseHeight + pDock->iMaxIconHeight;  // de bas en haut;
@@ -73,7 +73,7 @@ void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 	pDock->iMinDockHeight = pDock->iMaxIconHeight + g_fReflectSize + 2 * g_iFrameMargin + 2 * g_iDockLineWidth;
 	
 	fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iMinDockHeight, my_fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
-	pDock->iMinDockWidth = MIN (pDock->iMaxDockWidth, pDock->iFlatDockWidth + fExtraWidth);
+	pDock->iMinDockWidth = MIN (pDock->iMaxDockWidth, pDock->fFlatDockWidth + fExtraWidth);
 }
 
 

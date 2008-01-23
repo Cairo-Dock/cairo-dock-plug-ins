@@ -10,6 +10,9 @@
 void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *pParentDock);
 
 
+void cd_rendering_calculate_reference_parabole (double alpha);
+
+
 void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock);
 
 

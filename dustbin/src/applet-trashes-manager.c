@@ -408,13 +408,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 			}
 		}
 		g_print (">>> %s\n", sCommand->str);
-		GError *erreur = NULL;
-		g_spawn_command_line_async (sCommand->str, &erreur);
-		if (erreur != NULL)
-		{
-			g_print ("Attention : when trying to execute '%s' : %s\n", sCommand->str, erreur->message);
-			g_error_free (erreur);
-		}
+		//system (sCommand->str);  // g_spawn_command_line_async() ne marche pas pour celle-la.
 		g_string_free (sCommand, TRUE);
 	}
 }
