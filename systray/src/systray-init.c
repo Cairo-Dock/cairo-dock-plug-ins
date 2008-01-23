@@ -37,27 +37,18 @@ CD_APPLET_DEFINITION ("systray", 0, 0, 6)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
-{
   if (systray.dialog) {
     systray_dialog_apply_settings();
   }
-  //check if we can have a tray manager
-/*   if (!systray.dialog) */
-/*     g_return_val_if_fail(!na_tray_manager_check_running (gtk_widget_get_screen(pDock->pWidget)), NULL); */
 
-  cairo_dock_register_first_notifications (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK,
-                                           CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU,
-                                           -1);
-}
+  CD_APPLET_REGISTER_FOR_CLICK_EVENT
+  CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
+  CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-{
-  cairo_dock_remove_notification_funcs (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK,
-                                        CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU,
-                                        -1);
-}
+  CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
+  CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
+  CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_STOP_END
-
-

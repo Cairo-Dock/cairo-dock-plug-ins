@@ -26,6 +26,7 @@
 #include "systray-menu-functions.h"
 #include "systray-init.h"
 #include "cd-tray.h"
+#include "cairo-applet.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -33,14 +34,6 @@ CD_APPLET_ABOUT("This is a simple systray applet made by Cedric GESTES for Cairo
 
 extern t_systray systray;
 
-static gboolean on_systray_button_press_dialog (GtkWidget* pWidget,
-                                                GdkEventButton* pButton,
-                                                Icon *pIcon)
-{
-  cairo_dock_hide_dialog(systray.dialog);
-  return 0;
-
-}
 
 void systray_dialog_apply_settings()
 {
@@ -51,12 +44,8 @@ void systray_dialog_apply_settings()
 static CairoDockDialog *systray_new_dialog()
 {
   systray.tray = tray_init(myDock->pWidget);
-  systray.dialog = cairo_dock_build_dialog ("systray",myIcon, myDock, "", systray.tray->widget, GTK_BUTTONS_NONE, NULL, NULL);
-  g_signal_connect (G_OBJECT (systray.dialog->pWidget),
-                    "button-press-event",
-                    G_CALLBACK (on_systray_button_press_dialog),
-                    myIcon);
-  cairo_dock_dialog_reference(systray.dialog);
+  systray.dialog = applet_build_dialog (myDock, systray.tray->widget, NULL);
+
   systray_dialog_apply_settings();
   return systray.dialog;
 }
@@ -66,10 +55,15 @@ CD_APPLET_ON_CLICK_BEGIN
     systray.dialog = systray_new_dialog();
     }
   else {
-    cairo_dock_unhide_dialog(systray.dialog);
+    applet_unhide_dialog(systray.dialog);
     gtk_window_set_keep_above(GTK_WINDOW(systray.dialog->pWidget), systray.always_on_top);
   }
 CD_APPLET_ON_CLICK_END
+
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+  applet_hide_dialog(systray.dialog);
+CD_APPLET_ON_MIDDLE_CLICK_END
+
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
   CD_APPLET_ADD_SUB_MENU("Systray", pSubMenu, pAppletMenu)
