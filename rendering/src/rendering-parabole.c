@@ -241,7 +241,7 @@ static void _cd_rendering_calculate_parabole_extent (GList *pIconList, double al
 
 void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 {
-	pDock->bHorizontalDock = CAIRO_DOCK_VERTICAL;
+	///pDock->bHorizontalDock = CAIRO_DOCK_VERTICAL;
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
 	//pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 0));
