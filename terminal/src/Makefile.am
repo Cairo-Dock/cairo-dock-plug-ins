@@ -10,7 +10,9 @@ libcd_terminal_la_SOURCES = \
 	terminal-config.c\
 	terminal-config.h\
 	terminal-menu-functions.c\
-	terminal-menu-functions.h
+	terminal-menu-functions.h\
+	cairo-applet.c\
+	cairo-applet.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 

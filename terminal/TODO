@@ -1,3 +1,8 @@
+cairo-applet:
+  - draw the transparent window
+  - allow to move/resize it
+  - store size in pref
+
 - support multiple tab
 - copy/paste
 - one button to close the window

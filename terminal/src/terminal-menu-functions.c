@@ -25,6 +25,7 @@
 
 #include <vte/vte.h>
 
+#include "cairo-applet.h"
 #include "terminal-init.h"
 #include "terminal-menu-functions.h"
 
@@ -54,6 +55,47 @@ void term_dialog_apply_settings(GtkWidget *vterm)
     gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
 }
 
+static void on_terminal_child_exited                   (VteTerminal *vteterminal,
+                                                        t_terminal  *t)
+{
+  printf("child exited\n");
+  if (!(t && t->vterm))
+    return;
+  vte_terminal_fork_command(VTE_TERMINAL(t->vterm),
+                            NULL,
+                            NULL,
+                            NULL,
+                            "~/",
+                            FALSE,
+                            FALSE,
+                            FALSE);
+}
+
+/* static gboolean applet_on_key_press_cb(GtkWidget *window, GdkEventKey *event, t_terminal *terminal) */
+/* { */
+
+/*   if (!(terminal && terminal->vterm)) */
+/*     return FALSE; */
+/*   // Checks if the modifiers control and shift are pressed */
+/*   if (event->state & GDK_CONTROL_MASK && event->state & GDK_SHIFT_MASK) */
+/*     { */
+/*       gchar *key = gdk_keyval_name (gdk_keyval_to_lower (event->keyval)); */
+
+/*       // Copy */
+/*       if (! strncmp (key, "c", 1)) vte_terminal_copy_clipboard (VTE_TERMINAL (terminal->vterm)); */
+/*       // Paste */
+/*       if (! strncmp (key, "v", 1)) vte_terminal_paste_clipboard (VTE_TERMINAL (terminal->vterm)); */
+/*       // Signify that event has been handled */
+/*       return TRUE; */
+/*     } */
+/*   else */
+/*     { */
+/*       // Signify that event has not been handled */
+/*       return FALSE; */
+/*     } */
+/* } */
+
+
 static CairoDockDialog *terminal_new_dialog()
 {
   CairoDockDialog *dialog;
@@ -72,12 +114,20 @@ static CairoDockDialog *terminal_new_dialog()
                             FALSE,
                             FALSE,
                             FALSE);
-  dialog = cairo_dock_build_dialog("terminal", myIcon, myDock, "", vterm, GTK_BUTTONS_NONE, NULL, NULL);
-  g_signal_connect (G_OBJECT (dialog->pWidget),
-                    "button-press-event",
-                    G_CALLBACK (on_terminal_button_press_dialog),
-                    myIcon);
-  cairo_dock_dialog_reference(dialog);
+  //  dialog = cairo_dock_build_dialog("terminal", myIcon, myDock, "", vterm, GTK_BUTTONS_NONE, NULL, NULL);
+  dialog = applet_build_dialog (myDock, vterm, NULL);
+
+  g_signal_connect (G_OBJECT (vterm),
+                    "child-exited",
+                    G_CALLBACK (on_terminal_child_exited),
+                    &term);
+  //g_signal_connect (G_OBJECT (dialog->pWidget), "key-press-event", G_CALLBACK (applet_on_key_press_cb), &term);
+
+/*   g_signal_connect (G_OBJECT (dialog->pWidget), */
+/*                     "button-press-event", */
+/*                     G_CALLBACK (on_terminal_button_press_dialog), */
+/*                     myIcon); */
+/*   cairo_dock_dialog_reference(dialog); */
   term.dialog = dialog;
   term_dialog_apply_settings(vterm);
   return dialog;
@@ -85,31 +135,35 @@ static CairoDockDialog *terminal_new_dialog()
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	if (!term.dialog) {
-	term.dialog = terminal_new_dialog();
+        if (!term.dialog) {
+          term.dialog = terminal_new_dialog();
 	}
 	else {
-	cairo_dock_unhide_dialog(term.dialog);
-	term_dialog_apply_settings(term.vterm);
+          applet_unhide_dialog(term.dialog);
+          term_dialog_apply_settings(term.vterm);
 	}
 CD_APPLET_ON_CLICK_END
+
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+        applet_hide_dialog(term.dialog);
+CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 static void on_reload(GtkMenuItem *menu_item, gpointer *data)
 {
-	if (term.dialog) {
-		cairo_dock_isolate_dialog(term.dialog);
-		cairo_dock_dialog_unreference(term.dialog);
-		cairo_dock_dialog_unreference(term.dialog);
-		term.dialog = NULL;
-		term.vterm = NULL;
-	}
-	term.dialog = terminal_new_dialog();
+/* 	if (term.dialog) { */
+/* 		cairo_dock_isolate_dialog(term.dialog); */
+/* 		cairo_dock_dialog_unreference(term.dialog); */
+/* 		cairo_dock_dialog_unreference(term.dialog); */
+/* 		term.dialog = NULL; */
+/* 		term.vterm = NULL; */
+/* 	} */
+/* 	term.dialog = terminal_new_dialog(); */
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU("Terminal", pSubMenu, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU("Reload", on_reload, pSubMenu)
+//	CD_APPLET_ADD_IN_MENU("Reload", on_reload, pSubMenu)
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 
