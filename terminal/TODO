@@ -1,6 +1,7 @@
 cairo-applet:
   - allow to move/resize it
   - store size/pos in pref
+  - dont store pos when window is hidden
 
 - copy/paste
 - one button to close the window
