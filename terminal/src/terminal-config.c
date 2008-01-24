@@ -25,12 +25,15 @@
 #include "terminal-init.h"
 
 t_terminal term = {
-  35555.,
-  FALSE,
-  { 0, 0, 0, 0 },
-  { 0, 0, 0, 0 },
-  NULL,
-  NULL
+	35555.,
+	FALSE,
+	{ 0, 0, 0, 0 },
+	{ 0, 0, 0, 0 },
+	NULL,
+	NULL,
+	NULL,
+	25,
+	80
 };
 
 static void set_color(GdkColor *color, double src[3]) {
@@ -41,15 +44,18 @@ static void set_color(GdkColor *color, double src[3]) {
 
 CD_APPLET_CONFIG_BEGIN ("terminal", "gnome-terminal")
 	//0 means completely transparent and 65535 opaque
-	term.transparency = (guint16)cairo_dock_get_double_key_value (pKeyFile, "GUI", "terminal transparency", &bFlushConfFileNeeded, 55000., NULL, NULL);
+	term.transparency = (guint16) (CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("GUI", "terminal transparency", .84) * 65535);  // 55000
 	
-	term.always_on_top = cairo_dock_get_boolean_key_value (pKeyFile, "GUI", "always on top", &bFlushConfFileNeeded, FALSE, NULL, NULL);
+	term.always_on_top = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("GUI", "always on top", FALSE);
 	
 	double color_back[3] = {1., 1., 1.};
-	cairo_dock_get_double_list_key_value (pKeyFile, "GUI", "background color", &bFlushConfFileNeeded, color_back, 3, color_back, NULL, NULL);
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("GUI", "background color", color_back, color_back);
 	set_color(&term.backcolor, color_back);
 	
 	double color_fore[3] = {0., 0., 0.};
-	cairo_dock_get_double_list_key_value (pKeyFile, "GUI", "foreground color", &bFlushConfFileNeeded, color_fore, 3, color_fore, NULL, NULL);
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("GUI", "foreground color", color_fore, color_fore);
 	set_color(&term.forecolor, color_fore);
+	
+	term.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb lines", 25);
+	term.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb columns", 80);
 CD_APPLET_CONFIG_END

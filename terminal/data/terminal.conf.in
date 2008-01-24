@@ -17,17 +17,21 @@ name = terminal
 #S Icon's name :
 icon = gnome-terminal
 
-[Module]
-
 [GUI]
-#e+[0;65535] Transparency (65535 = opaque) (you should restart)
-terminal transparency=true
+#e[0;1] Terminal's transparency :
+#{needs to restart the applet.}
+terminal transparency=.84
 
-#b always on top?
+#b Always on top ?
 always on top=false
 
-#c3[0;1] Foreground color (r, v, b, a):
+#c3[0;1] Foreground color (r, v, b):
 foreground color= 1.; 1.; 1.
 
-#c3[0;1] Background color (r, v, b, a):
+#c3[0;1] Background color (r, v, b):
 background color= 0.; 0.; 0.
+
+#I-[5;999] Size of the terminal (line x columns) :
+nb lines = 25
+#I-[5;999] ...
+nb columns = 80

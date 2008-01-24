@@ -44,12 +44,12 @@ CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-/*   if (term.dialog) { */
-/*     cairo_dock_dialog_unreference(term.dialog); */
-/*     cairo_dock_isolate_dialog (term.dialog, FALSE); */
-/*   } */
-/*   term.dialog = NULL; */
-  CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
-  CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
-  CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
+	/**g_print ("stop terminal\n");
+	if (term.dialog)
+		cairo_dock_dialog_unreference (term.dialog);  // detruira aussi le widget terminal qui lui est associe.
+	term.dialog = NULL;
+	term.vterm = NULL;*/
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_STOP_END

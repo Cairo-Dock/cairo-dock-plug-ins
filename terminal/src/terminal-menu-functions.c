@@ -27,6 +27,7 @@
 
 #include "cairo-applet.h"
 #include "terminal-init.h"
+#include "terminal-callbacks.h"
 #include "terminal-menu-functions.h"
 
 extern t_terminal term;
@@ -114,6 +115,7 @@ static void terminal_new_tab()
   //transparency enable, otherwise we cant change value after
   vte_terminal_set_opacity(VTE_TERMINAL(vterm), term.transparency);
   vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
+  vte_terminal_set_size (VTE_TERMINAL (vterm), term.iNbColumns, term.iNbRows);
   vte_terminal_fork_command(VTE_TERMINAL(vterm),
                             NULL,
                             NULL,
@@ -123,8 +125,8 @@ static void terminal_new_tab()
                             FALSE,
                             FALSE);
   g_signal_connect (G_OBJECT (vterm), "child-exited",
-                    G_CALLBACK (on_terminal_child_exited), 0);
-
+                    G_CALLBACK (on_terminal_child_exited), NULL);
+  cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received));
   gtk_notebook_append_page(GTK_NOTEBOOK(term.tab), vterm, NULL);
   gtk_widget_show(vterm);
 }
