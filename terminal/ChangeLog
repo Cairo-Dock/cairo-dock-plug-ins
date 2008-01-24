@@ -1,5 +1,7 @@
 2008-01-24  Cedric GESTES  <gestes_c@epita.fr>
 
+	* src/terminal-menu-functions.c: added popup menu for tabs
+
 	* src/cairo-applet.c (applet_build_dialog): removed the frame container, fixed terminal size
 
 2008-01-23  GESTES Cedric  <gestes_c@epita.fr>

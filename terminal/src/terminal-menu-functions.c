@@ -37,6 +37,23 @@ CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_ABOUT ("This is a very simple terminal applet made by Cedric GESTES for Cairo-Dock")
 
+
+
+  static void terminal_new_tab();
+
+static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
+{
+  terminal_new_tab();
+  term_tab_apply_settings();
+}
+
+static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
+{
+  gint p = gtk_notebook_get_current_page(GTK_NOTEBOOK(term.tab));
+  if (gtk_notebook_get_n_pages(GTK_NOTEBOOK(term.tab)) > 1)
+    gtk_notebook_remove_page(GTK_NOTEBOOK(term.tab), p);
+}
+
 static void term_dialog_apply_settings(GtkWidget *vterm)
 {
   if (vterm) {
@@ -83,8 +100,71 @@ static void on_terminal_child_exited(VteTerminal *vteterminal,
 }
 
 
+
+static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gchar *cReceivedData)
+{
+	static gpointer *my_data = NULL;
+	if (my_data == NULL)
+		my_data = g_new0 (gpointer, 2);
+	my_data[0] = pWidget;
+	my_data[1] = cReceivedData;
+	GtkWidget *menu = gtk_menu_new ();
+
+	GtkWidget *menu_item, *image;
+	menu_item = gtk_image_menu_item_new_with_label (_("Copy"));
+	image = gtk_image_new_from_stock (GTK_STOCK_JUSTIFY_LEFT, GTK_ICON_SIZE_MENU);
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+/* 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_copy), my_data); */
+
+	menu_item = gtk_separator_menu_item_new ();
+	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+
+	menu_item = gtk_image_menu_item_new_with_label ("New Tab");
+	image = gtk_image_new_from_stock (GTK_STOCK_JUMP_TO, GTK_ICON_SIZE_MENU);
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_new_tab), 0);
+
+	menu_item = gtk_image_menu_item_new_with_label ("Close Tab");
+	image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_MENU);
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_close_tab), 0);
+
+	return menu;
+}
+
+gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, t_terminal *terminal)
+{
+  printf("HEREEE\n");
+  static gchar *cReceivedData = NULL;  // on en peut recevoir qu'un drop a la fois, donc pas de collision possible.
+/*   if (!(terminal && terminal->vterm)) */
+/*     return FALSE; */
+  //TODO: window should be replaced with the good vterm
+  if (event->button == 1)
+    return FALSE;
+  GtkWidget *menu = _terminal_build_menu_tab (window, cReceivedData);
+
+  gtk_widget_show_all (menu);
+
+  gtk_menu_popup (GTK_MENU (menu),
+                  NULL,
+                  NULL,
+                  NULL,
+                  NULL,
+                  1,
+                  gtk_get_current_event_time ());
+  return TRUE;
+}
+
+
+/* static gboolean            on_terminal_press_cb                      (GtkWidget      *widget, */
+/*                                                         GdkEventButton *event, */
+/*                                                         gpointer        user_data) */
 /* static gboolean applet_on_key_press_cb(GtkWidget *window, GdkEventKey *event, t_terminal *terminal) */
 /* { */
+
 
 /*   if (!(terminal && terminal->vterm)) */
 /*     return FALSE; */
@@ -127,6 +207,9 @@ static void terminal_new_tab()
                             FALSE);
   g_signal_connect (G_OBJECT (vterm), "child-exited",
                     G_CALLBACK (on_terminal_child_exited), NULL);
+  g_signal_connect (G_OBJECT (vterm), "button-release-event",
+                    G_CALLBACK (applet_on_terminal_press_cb), &term);
+
   cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received));
   gtk_notebook_append_page(GTK_NOTEBOOK(term.tab), vterm, NULL);
   gtk_widget_show(vterm);
@@ -141,6 +224,8 @@ static CairoDockDialog *terminal_new_dialog()
   terminal_new_tab();
   gtk_widget_show(term.tab);
 
+  g_signal_connect (G_OBJECT (term.tab), "button-release-event",
+                    G_CALLBACK (applet_on_terminal_press_cb), &term);
   dialog = applet_build_dialog (myDock, term.tab, NULL);
   //gtk_widget_set_size_request(dialog->pWidget, 600, 400);
 
@@ -165,17 +250,6 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
-{
-  terminal_new_tab();
-  term_tab_apply_settings();
-}
-
-static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
-{
-  gint p = gtk_notebook_get_current_page(GTK_NOTEBOOK(term.tab));
-  gtk_notebook_remove_page(GTK_NOTEBOOK(term.tab), p);
-}
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU("Terminal", pSubMenu, CD_APPLET_MY_MENU)
