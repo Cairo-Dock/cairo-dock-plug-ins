@@ -57,6 +57,10 @@ static gboolean applet_on_expose_dialog (GtkWidget *pWidget,
   cairo_close_path (pCairoContext);
   cairo_stroke (pCairoContext);
 
+/*   cairo_set_source_rgba (pCairoContext, 1., 1., 1., 1.); */
+  cairo_rectangle(pCairoContext, border, border, (w - (border << 1)), (h - (border << 1)));
+  cairo_fill(pCairoContext);
+
   cairo_destroy (pCairoContext);
   return FALSE;
 }
@@ -107,7 +111,7 @@ CairoDockDialog *applet_build_dialog (CairoDock *pDock, GtkWidget *pInteractiveW
 	gtk_window_set_keep_above(GTK_WINDOW(pWindow), TRUE);
 	gtk_window_set_skip_pager_hint(GTK_WINDOW(pWindow), TRUE);
 	gtk_window_set_skip_taskbar_hint(GTK_WINDOW(pWindow), TRUE);
-	gtk_window_set_gravity(GTK_WINDOW(pWindow), GDK_GRAVITY_STATIC);
+	//gtk_window_set_gravity(GTK_WINDOW(pWindow), GDK_GRAVITY_STATIC);
 
 /* 	gtk_window_set_type_hint (GTK_WINDOW (pWindow), GDK_WINDOW_TYPE_HINT_MENU); */
         //GTK_WIDGET_SET_FLAGS (pWindow, GTK_CAN_FOCUS);  // a priori inutile mais bon.
@@ -152,16 +156,18 @@ CairoDockDialog *applet_build_dialog (CairoDock *pDock, GtkWidget *pInteractiveW
         pDialog->pInteractiveWidget = pInteractiveWidget;
 	if (pInteractiveWidget != NULL)
 	{
-          GtkWidget *pFrame = gtk_frame_new(0);
-          gtk_container_set_border_width  (GTK_CONTAINER(pFrame), 10);
-          gtk_container_add(GTK_CONTAINER(pWindow), pFrame);
-          gtk_container_add(GTK_CONTAINER(pFrame), pInteractiveWidget);
-          g_signal_connect (G_OBJECT (pFrame), "expose-event",
+          //GtkWidget *pFrame = gtk_frame_new(0);
+          gtk_container_set_border_width  (GTK_CONTAINER(pWindow), 10);
+          //          gtk_container_add(GTK_CONTAINER(pWindow), pFrame);
+          //  gtk_container_add(GTK_CONTAINER(pFrame), pInteractiveWidget);
+          gtk_window_set_default_size(GTK_WINDOW(pWindow), 32, 32);
+          gtk_container_add(GTK_CONTAINER(pWindow), pInteractiveWidget);
+          g_signal_connect (G_OBJECT (pWindow), "expose-event",
                             G_CALLBACK (applet_on_expose_dialog), pDialog);
 
-          gtk_widget_set_size_request(pWindow, 0, 0);
+          //gtk_widget_set_size_request(pWindow, 0, 0);
 
-          gtk_widget_show_all (pFrame);
+          gtk_widget_show_all (pWindow);
 	}
 	return pDialog;
 }

@@ -62,10 +62,12 @@ tray_icon_message_cancelled (NaTrayManager *manager,
 
 static void tray_resize_container(TrayApplet *applet)
 {
-/*   GtkRequisition req; */
+  GtkRequisition req;
 
-/*   gtk_widget_size_request(applet->box, &req); */
-/*   gtk_window_set_default_size(systray.dialog->pWidget, req.width, req.height); */
+/*   gtk_widget_size_request(GTK_WIDGET(applet->box), &req); */
+/*   if (systray.dialog && &systray.dialog->pWidget) */
+/*     gtk_widget_set_size_request(GTK_WINDOW(systray.dialog->pWidget), req.width, req.height); */
+  //    gtk_window_set_default_size(GTK_WINDOW(systray.dialog->pWidget), req.width, req.height);
 }
 
 
@@ -197,10 +199,8 @@ TrayApplet* tray_init (GtkWidget *parent)
   gtk_widget_set_colormap (applet->box, gdk_screen_get_rgb_colormap (screen));
 
   applet->widget = gtk_event_box_new ();
-  gtk_event_box_set_visible_window (GTK_EVENT_BOX (applet->widget), TRUE);
-
-
-  gtk_widget_set_colormap (applet->widget, gdk_screen_get_rgb_colormap (screen));
+  gtk_event_box_set_visible_window(GTK_EVENT_BOX (applet->widget), TRUE);
+  gtk_widget_set_colormap(applet->widget, gdk_screen_get_rgb_colormap (screen));
   gtk_container_add (GTK_CONTAINER (applet->widget), applet->box);
 
   return applet;

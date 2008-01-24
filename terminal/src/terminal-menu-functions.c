@@ -42,6 +42,7 @@ static void term_dialog_apply_settings(GtkWidget *vterm)
   if (vterm) {
     vte_terminal_set_opacity(VTE_TERMINAL(vterm), term.transparency);
     vte_terminal_set_colors(VTE_TERMINAL(vterm), &term.forecolor, &term.backcolor, NULL, 0);
+    vte_terminal_set_size(VTE_TERMINAL(vterm), term.iNbColumns, term.iNbRows);
   }
   if (term.dialog)
     gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
@@ -141,7 +142,7 @@ static CairoDockDialog *terminal_new_dialog()
   gtk_widget_show(term.tab);
 
   dialog = applet_build_dialog (myDock, term.tab, NULL);
-  gtk_widget_set_size_request(dialog->pWidget, 600, 400);
+  //gtk_widget_set_size_request(dialog->pWidget, 600, 400);
 
   term.dialog = dialog;
   term_tab_apply_settings();
