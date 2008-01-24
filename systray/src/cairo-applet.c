@@ -159,7 +159,7 @@ CairoDockDialog *applet_build_dialog (CairoDock *pDock, GtkWidget *pInteractiveW
           g_signal_connect (G_OBJECT (pFrame), "expose-event",
                             G_CALLBACK (applet_on_expose_dialog), pDialog);
 
-          gtk_widget_set_size_request(pWindow, 0, 0);
+          //gtk_widget_set_size_request(pWindow, 0, 0);
 
           gtk_widget_show_all (pFrame);
 	}

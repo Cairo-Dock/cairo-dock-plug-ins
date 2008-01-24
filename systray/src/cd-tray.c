@@ -24,11 +24,12 @@
 #include <math.h>
 
 #include <cairo-dock.h>
-
+#include "cairo-applet.h"
 #include "cd-tray.h"
+#include "systray-init.h"
 
 CD_APPLET_INCLUDE_MY_VARS
-
+extern t_systray systray;
 
 static const guint icon_size_w = 24;
 static const guint icon_size_h = 24;
@@ -59,6 +60,16 @@ tray_icon_message_cancelled (NaTrayManager *manager,
 
 
 
+static void tray_resize_container(TrayApplet *applet)
+{
+/*   GtkRequisition req; */
+
+/*   gtk_widget_size_request(applet->box, &req); */
+/*   gtk_window_set_default_size(systray.dialog->pWidget, req.width, req.height); */
+}
+
+
+
 static gboolean idle_redraw_cb (TrayApplet *applet)
 {
   applet->idle_redraw_id = 0;
@@ -86,12 +97,13 @@ tray_icon_added (NaTrayManager *manager,
   applet->icons = g_list_append (applet->icons, icon);
 
   gtk_widget_set_colormap(icon, gdk_screen_get_rgb_colormap (gdk_screen_get_default()));
-  gtk_widget_set_size_request(icon, icon_size_w, icon_size_h);
+  //gtk_widget_set_size_request(icon, icon_size_w, icon_size_h);
 
   //gtk_widget_show(icon);
   gtk_box_pack_start(GTK_BOX(applet->box), icon, TRUE, TRUE, 0);
   //dont know why but it's screew up if we dont do that
-  gtk_widget_set_size_request(applet->box, icon_size_w * g_list_length(applet->icons), icon_size_h);
+  //  gtk_widget_set_size_request(applet->box, icon_size_w * g_list_length(applet->icons), icon_size_h);
+  tray_resize_container(applet);
 
   force_redraw(applet);
 }
@@ -102,7 +114,9 @@ tray_icon_removed (NaTrayManager *manager,
                    TrayApplet     *applet)
 {
   applet->icons = g_list_remove (applet->icons, icon);
-  gtk_widget_set_size_request(applet->box, icon_size_w * g_list_length(applet->icons), icon_size_h);
+  //  gtk_widget_set_size_request(applet->box, icon_size_w * g_list_length(applet->icons), icon_size_h);
+  tray_resize_container(applet);
+
   gtk_container_remove(GTK_CONTAINER(applet->box), icon);
 }
 
@@ -138,7 +152,6 @@ static gboolean tray_clean_up(GtkWidget *widget,
 
 static NaTrayManager *na_tray_man_bah_cest_moche = NULL;
 
-
 TrayApplet* tray_init (GtkWidget *parent)
 {
   TrayApplet *applet = g_new0 (TrayApplet, 1);
@@ -152,8 +165,8 @@ TrayApplet* tray_init (GtkWidget *parent)
 
   applet->box = gtk_hbox_new(TRUE, 0);
   gtk_widget_show(applet->box);
-  gtk_widget_set_size_request(applet->box, icon_size_w*10, icon_size_h + 6);
-
+  //gtk_widget_set_size_request(applet->box, icon_size_w*10, icon_size_h + 6);
+  tray_resize_container(applet);
   applet->icons = NULL;
 
   if (na_tray_manager_check_running(screen)) {
