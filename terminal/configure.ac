@@ -49,5 +49,6 @@ AC_CONFIG_FILES([Makefile
 		src/Makefile
 		data/Makefile
 		data/readme
-		data/terminal.conf])
+		data/terminal.conf
+		po/Makefile.in])
 AC_OUTPUT
