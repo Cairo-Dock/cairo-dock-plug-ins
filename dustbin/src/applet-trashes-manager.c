@@ -408,7 +408,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 			}
 		}
 		g_print (">>> %s\n", sCommand->str);
-		//system (sCommand->str);  // g_spawn_command_line_async() ne marche pas pour celle-la.
+		system (sCommand->str);  // g_spawn_command_line_async() ne marche pas pour celle-la.
 		g_string_free (sCommand, TRUE);
 	}
 }

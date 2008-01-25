@@ -136,13 +136,13 @@ CD_APPLET_ON_DROP_DATA_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	GString *sInfo = g_string_new ("");
-	g_string_printf (sInfo, "%.2fMb for %d files in all dustbins :\n", 1.*my_iSize/(1024*1024), my_iNbFiles);
+	g_string_printf (sInfo, "%.2fMb for %d files in all dustbins :", 1.*my_iSize/(1024*1024), my_iNbFiles);
 	CdDustbin *pDustbin;
 	GList *pElement;
 	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
-		g_string_append_printf (sInfo, "  %.2fM for %d files for in %s\n", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
+		g_string_append_printf (sInfo, "\n  %.2fM for %d files for in %s", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
 	}
 	
 	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myDock, 0, my_cDialogIconPath);
