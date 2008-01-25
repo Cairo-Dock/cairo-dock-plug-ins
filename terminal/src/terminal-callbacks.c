@@ -101,16 +101,34 @@ static GtkWidget *_terminal_build_menu (GtkWidget *pWidget, gchar *cReceivedData
 
 void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gint x, gint y, GtkSelectionData *selection_data, guint info, guint t, gpointer data)
 {
-	static gchar *cReceivedData = NULL;  // on en peut recevoir qu'un drop a la fois, donc pas de collision possible.
+	static gchar *cReceivedData = NULL;  // il faut pouvoir le passer aux callbacks. Le probleme c'est qu'il disparait a la fin de cette fonction, donc il faut le dupliquer. Comme on n'est pas sur que l'une des callbacks sera effectivement appelee, ce ne peut pas etre elles qui le desalloueront. Donc on le fait ici, d'ou la variable statique. On ne peut recevoir qu'un drop a la fois, donc pas de collision possible.
 	g_print ("%s ()\n", __func__);
 
 	g_free (cReceivedData);
-	cReceivedData = g_strdup ((gchar *) selection_data->data);
-	gchar *str = strrchr (cReceivedData, '\n');
-	if (str != NULL)
-		*(str-1) = '\0';  // on vire les retrours chariot.
-	g_print (">>> cReceivedData : %s\n", cReceivedData);
+	cReceivedData = (gchar *) selection_data->data;
+	g_return_if_fail (cReceivedData != NULL);
 
+	int length = strlen (cReceivedData);
+	if (cReceivedData[length-1] == '\n')
+		cReceivedData[--length] = '\0';  // on vire le retour chariot final.
+	if (cReceivedData[length-1] == '\r')
+		cReceivedData[--length] = '\0';  // on vire ce ... c'est quoi ce truc ??!
+	g_print ("cReceivedData : %s\n", cReceivedData);
+	
+	if (strncmp (cReceivedData, "file://", 7) == 0)  // on gere le cas des URI.
+	{
+		GError *erreur = NULL;
+		cReceivedData = g_filename_from_uri (cReceivedData, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			g_print ("Attention : %s\n", erreur->message);
+			g_error_free (erreur);
+			return ;
+		}
+	}
+	else
+		cReceivedData = g_strdup (cReceivedData);
+	
 	GtkWidget *menu = _terminal_build_menu (pWidget, cReceivedData);
 
 	gtk_widget_show_all (menu);
