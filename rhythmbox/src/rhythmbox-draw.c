@@ -97,7 +97,11 @@ void update_icon(gboolean make_witness)
 
 void music_dialog(void)
 {
-	gchar *message = g_strdup_printf(_D("Artist : %s\nAlbum : %s\nTitle : %s"),playing_artist,playing_album,playing_title);
-	cairo_dock_show_temporary_dialog (message,myIcon,myDock,conf_timeDialogs);
-	g_free (message);
+	cairo_dock_show_temporary_dialog (_D("Artist : %s\nAlbum : %s\nTitle : %s"),
+		myIcon,
+		myDock,
+		conf_timeDialogs,
+		playing_artist != NULL ? playing_artist : _D("Unknown"),
+		playing_album != NULL ? playing_album : _D("Unknown"),
+		playing_title != NULL ? playing_title : _D("Unknown"));
 }

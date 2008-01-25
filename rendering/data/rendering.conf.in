@@ -30,6 +30,11 @@ show face = false
 
 [Parabolic]
 
+#e[.1;2] Curvature :
 curvature = .5
 
+#e[.1;2] Ratio height/width :
 ratio = 5
+
+wave amplitude = .2
+

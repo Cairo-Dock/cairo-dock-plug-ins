@@ -28,6 +28,7 @@ gboolean my_bRotateIconsOnEllipse;  // tourner les icones de profil ou pas.
 
 double my_fParaboleCurvature;  // puissance de x.
 double my_fParaboleRatio;  // hauteur/largeur.
+double my_fParaboleAmplitude;
 
 CairoDockVisitCard *pre_init (void)
 {
@@ -43,16 +44,16 @@ CairoDockVisitCard *pre_init (void)
 }
 
 
-Icon *init (CairoDock *pDock, gchar **cConfFilePath, GError **erreur)
+Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
 {
 	//g_print ("%s (%s)\n", __func__, MY_APPLET_DOCK_VERSION);
 	//\_______________ On verifie la presence des fichiers necessaires.
-	*cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
+	pModule->cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
 	
 	
 	//\_______________ On lit le fichier de conf.
 	gboolean bFlatSeparator;
-	cd_rendering_read_conf_file (*cConfFilePath, &bFlatSeparator);
+	cd_rendering_read_conf_file (pModule->cConfFilePath, &bFlatSeparator);
 	
 	
 	//\_______________ On enregistre les vues.

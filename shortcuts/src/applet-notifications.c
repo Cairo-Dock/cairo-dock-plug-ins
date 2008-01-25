@@ -40,6 +40,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		g_print (" menu sur %s(%s)\n", CD_APPLET_CLICKED_ICON->acName, CD_APPLET_CLICKED_ICON->cBaseURI);
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (_D("Remove this bookmark"), _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI)
+		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
 CD_APPLET_ON_BUILD_MENU_END
 

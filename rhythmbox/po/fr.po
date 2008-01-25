@@ -110,6 +110,9 @@ msgstr ""
 "Album : %s\n"
 "Titre : %s"
 
+msgid "Unknown"
+msgstr "Inconnu"
+
 #: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
