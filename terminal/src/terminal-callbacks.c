@@ -9,7 +9,7 @@ extern t_terminal term;
 
 static void _terminal_write_command_with_data (GtkWidget *pWidget, gchar *cCommand, gchar *cData)
 {
-	gchar *cCommandLine = g_strconcat (cCommand, cData, NULL);
+	gchar *cCommandLine = g_strdup_printf ("%s \"%s\"", cCommand, cData);
 	vte_terminal_feed_child (VTE_TERMINAL (pWidget), cCommandLine, strlen (cCommandLine));
 	g_free (cCommandLine);
 	gtk_widget_grab_focus (pWidget);
@@ -26,28 +26,28 @@ static void _terminal_cd (GtkMenuItem *menu_item, gpointer *data)
 	GtkWidget *pWidget = data[0];
 	gchar *cReceivedData = data[1];
 	g_print ("%s (%s)\n", __func__, cReceivedData);
-	_terminal_write_command_with_data (pWidget, "cd ", cReceivedData);
+	_terminal_write_command_with_data (pWidget, "cd", cReceivedData);
 }
 static void _terminal_cp (GtkMenuItem *menu_item, gpointer *data)
 {
 	GtkWidget *pWidget = data[0];
 	gchar *cReceivedData = data[1];
 	g_print ("%s (%s)\n", __func__, cReceivedData);
-	_terminal_write_command_with_data (pWidget, "cp -r ", cReceivedData);
+	_terminal_write_command_with_data (pWidget, "cp -r", cReceivedData);
 }
 static void _terminal_mv (GtkMenuItem *menu_item, gpointer *data)
 {
 	GtkWidget *pWidget = data[0];
 	gchar *cReceivedData = data[1];
 	g_print ("%s (%s)\n", __func__, cReceivedData);
-	_terminal_write_command_with_data (pWidget, "mv ", cReceivedData);
+	_terminal_write_command_with_data (pWidget, "mv", cReceivedData);
 }
 static void _terminal_rm (GtkMenuItem *menu_item, gpointer *data)
 {
 	GtkWidget *pWidget = data[0];
 	gchar *cReceivedData = data[1];
 	g_print ("%s (%s)\n", __func__, cReceivedData);
-	_terminal_write_command_with_data (pWidget, "rm -r ", cReceivedData);
+	_terminal_write_command_with_data (pWidget, "rm -r", cReceivedData);
 }
 
 
