@@ -10,6 +10,8 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 
 void cd_shortcuts_remove_one_bookmark (const gchar *cURI);
 
+void cd_shortcuts_add_one_bookmark (const gchar *cURI);
+
 
 GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath);
 

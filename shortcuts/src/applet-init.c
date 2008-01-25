@@ -106,6 +106,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
+	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT
 CD_APPLET_INIT_END
 
 
@@ -113,6 +114,7 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT
 	
 	//\_______________ On libere toutes nos ressources.
 	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));

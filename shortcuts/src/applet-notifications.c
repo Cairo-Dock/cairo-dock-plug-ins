@@ -44,3 +44,37 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 CD_APPLET_ON_BUILD_MENU_END
 
+
+CD_APPLET_ON_DROP_DATA_BEGIN
+	g_print ("  nouveau signet : %s\n", CD_APPLET_RECEIVED_DATA);
+	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
+	gboolean bIsDirectory;
+	int iVolumeID = 0;
+	double fOrder;
+	if (cairo_dock_fm_get_file_info (CD_APPLET_RECEIVED_DATA,
+		&cName,
+		&cURI,
+		&cIconName,
+		&bIsDirectory,
+		&iVolumeID,
+		&fOrder,
+		0))
+	{
+		if (! iVolumeID && ! bIsDirectory)
+		{
+			g_print ("ce n'est pas un signet\n");
+		}
+		else
+		{
+			cd_shortcuts_add_one_bookmark (cURI);
+		}
+	}
+	else
+	{
+		g_print ("couldn't get info about '%s', we won't add it\n", CD_APPLET_RECEIVED_DATA);
+	}
+	g_free (cName);
+	g_free (cURI);
+	g_free (cIconName);
+CD_APPLET_ON_DROP_DATA_END
+

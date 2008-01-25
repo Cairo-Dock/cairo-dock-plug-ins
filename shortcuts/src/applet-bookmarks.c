@@ -152,6 +152,22 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 	g_free (cBookmarkFilePath);
 }
 
+void cd_shortcuts_add_one_bookmark (const gchar *cURI)
+{
+	g_return_if_fail (cURI != NULL);
+	g_print ("%s (%s)\n", __func__, cURI);
+	
+	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
+	FILE *f = fopen (cBookmarkFilePath, "a");
+	if (f != NULL)
+	{
+		gchar *cNewLine = g_strconcat ("\n", cURI, NULL);
+		fputs(cNewLine, f);
+		g_free (cNewLine);
+		fclose (f);
+	}
+	g_free (cBookmarkFilePath);
+}
 
 GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 {
