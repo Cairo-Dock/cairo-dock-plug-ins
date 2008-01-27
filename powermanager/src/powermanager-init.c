@@ -32,7 +32,7 @@ CD_APPLET_DEFINITION ("PowerManager", 1, 4, 7)
 
 CD_APPLET_INIT_BEGIN (erreur)
 	conf_defaultTitle = g_strdup (myIcon->acName);
-	
+
 	GString *sImagePath = g_string_new ("");  // ce serait bien de pouvoir choisir ses icones, comme dans l'applet logout...
 	//Chargement de l'image "default"
 	g_string_printf (sImagePath, "%s/battery_44.svg", MY_APPLET_SHARE_DATA_DIR);
@@ -61,10 +61,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 	powermanager_pSurfaceBroken = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 
 	g_string_free (sImagePath, TRUE);
-	
+
 	//Si le bus n'a pas encore ete acquis, on le recupere.
 	if (!dbus_enable) dbus_enable = dbus_get_dbus();
-	
+
 	//Si le bus a ete acquis, on y connecte nos signaux.
 	if (dbus_enable)
 	{
@@ -85,27 +85,31 @@ CD_APPLET_INIT_BEGIN (erreur)
 	{
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (powermanager_pSurfaceBroken)
 	}
-	
+
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
 
+
+CD_APPLET_CONFIGURE_BEGIN
+CD_APPLET_CONFIGURE_END
+
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	
+
 	if (dbus_enable)
 	{
 		dbus_disconnect_from_bus ();
-		
+
 		if(battery_present)
 		{
 			g_source_remove (checkLoop);
 			checkLoop = 0;
 		}
 	}
-	
+
 	g_free (conf_defaultTitle);
 	conf_defaultTitle = NULL;
-	
+
 	cairo_surface_destroy (powermanager_pSurfaceBattery44);
 	powermanager_pSurfaceBattery44 = NULL;
 	cairo_surface_destroy (powermanager_pSurfaceBattery34);

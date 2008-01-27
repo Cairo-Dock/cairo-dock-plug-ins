@@ -1,6 +1,6 @@
 /******************************************************************************
 
-This file is a part of the cairo-dock program, 
+This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
 Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
@@ -49,22 +49,22 @@ Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
 	//g_print ("%s (%s)\n", __func__, MY_APPLET_DOCK_VERSION);
 	//\_______________ On verifie la presence des fichiers necessaires.
 	pModule->cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
-	
-	
+
+
 	//\_______________ On lit le fichier de conf.
 	gboolean bFlatSeparator;
 	cd_rendering_read_conf_file (pModule->cConfFilePath, &bFlatSeparator);
-	
-	
+
+
 	//\_______________ On enregistre les vues.
 	cd_rendering_register_caroussel_renderer ();
-	
+
 	cd_rendering_register_3D_plane_renderer ();
-	
+
 	cd_rendering_register_parabole_renderer ();
-	
+
 	cairo_dock_set_all_views_to_default ();
-	
+
 	if (bFlatSeparator && g_bUseSeparator)
 	{
 		cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
@@ -77,21 +77,24 @@ Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
 		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
 		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
 	}
-	
+
 	return NULL;
 }
+
+CD_APPLET_CONFIGURE_BEGIN
+CD_APPLET_CONFIGURE_END
 
 void stop (void)
 {
 	cairo_dock_remove_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_3D_PLANE_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
-	
+
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
 	my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
-	
+
 	cairo_dock_reset_all_views ();
 }
 

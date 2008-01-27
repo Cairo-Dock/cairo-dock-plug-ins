@@ -4,6 +4,7 @@ This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
 Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+imported from cairo-dialog.c to cairo-applet.c by Cedric GESTES <ctaf42@gmail.com>
 
 ******************************************************************************/
 #include <stdlib.h>
@@ -12,14 +13,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include <cairo-dock.h>
 #include "cairo-applet.h"
-
-
-static gboolean applet_on_expose_dialog_dummy (GtkWidget *pWidget,
-                                               GdkEventExpose *pExpose,
-                                               gpointer pDialog)
-{
-  return FALSE;
-}
 
 static gboolean applet_on_expose_dialog (GtkWidget *pWidget,
                                          GdkEventExpose *pExpose,
@@ -81,95 +74,55 @@ static gboolean applet_on_expose_dialog (GtkWidget *pWidget,
 void applet_free_dialog (CairoDockDialog *pDialog)
 {
   if (pDialog == NULL)
-		return ;
+    return;
 
-	g_print ("%s ()\n", __func__);
+  g_print ("%s ()\n", __func__);
 
-	cairo_surface_destroy (pDialog->pTextBuffer);
-	pDialog->pTextBuffer = NULL;
+  cairo_surface_destroy (pDialog->pTextBuffer);
+  pDialog->pTextBuffer = NULL;
 
-	gtk_widget_destroy (pDialog->pWidget);  // detruit aussi le widget interactif.
-	pDialog->pWidget = NULL;
+  gtk_widget_destroy (pDialog->pWidget);  // detruit aussi le widget interactif.
+  pDialog->pWidget = NULL;
 
-	if (pDialog->pUserData != NULL && pDialog->pFreeUserDataFunc != NULL)
-		pDialog->pFreeUserDataFunc (pDialog->pUserData);
+  if (pDialog->pUserData != NULL && pDialog->pFreeUserDataFunc != NULL)
+    pDialog->pFreeUserDataFunc (pDialog->pUserData);
 
-	g_free (pDialog);
+  g_free (pDialog);
 }
 
 
 CairoDockDialog *applet_build_dialog (CairoDock *pDock, GtkWidget *pInteractiveWidget, gpointer data)
 {
+  CairoDockDialog *pDialog = g_new0 (CairoDockDialog, 1);
+  GtkWidget* pWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 
-	//\________________ On cree un dialogue qu'on insere immediatement dans la liste.
-	CairoDockDialog *pDialog = g_new0 (CairoDockDialog, 1);
-	GtkWidget* pWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  pDialog->pWidget = pWindow;
+  pDialog->pUserData = data;
+  pDialog->pInteractiveWidget = pInteractiveWidget;
 
-        pDialog->pWidget = pWindow;
+  gtk_window_stick(GTK_WINDOW(pWindow));
+  gtk_window_set_keep_above(GTK_WINDOW(pWindow), TRUE);
+  gtk_window_set_skip_pager_hint(GTK_WINDOW(pWindow), TRUE);
+  gtk_window_set_skip_taskbar_hint(GTK_WINDOW(pWindow), TRUE);
+  cairo_dock_set_colormap_for_window(pWindow);
+  gtk_widget_set_app_paintable(pWindow, TRUE);
+  gtk_window_set_decorated(GTK_WINDOW(pWindow), FALSE);
+  gtk_window_set_resizable(GTK_WINDOW(pWindow), TRUE);
+  gtk_window_set_title(GTK_WINDOW(pWindow), "cairo-dock-dialog");
+  gtk_widget_add_events(pWindow, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
 
-        gtk_window_stick(GTK_WINDOW(pWindow));
-	gtk_window_set_keep_above(GTK_WINDOW(pWindow), TRUE);
-	gtk_window_set_skip_pager_hint(GTK_WINDOW(pWindow), TRUE);
-	gtk_window_set_skip_taskbar_hint(GTK_WINDOW(pWindow), TRUE);
-	//gtk_window_set_gravity(GTK_WINDOW(pWindow), GDK_GRAVITY_STATIC);
-
-/* 	gtk_window_set_type_hint (GTK_WINDOW (pWindow), GDK_WINDOW_TYPE_HINT_MENU); */
-        //GTK_WIDGET_SET_FLAGS (pWindow, GTK_CAN_FOCUS);  // a priori inutile mais bon.
-
-	cairo_dock_set_colormap_for_window(pWindow);
-
-	gtk_widget_set_app_paintable(pWindow, TRUE);
-	gtk_window_set_decorated(GTK_WINDOW(pWindow), FALSE);
-	gtk_window_set_resizable(GTK_WINDOW(pWindow), TRUE);
-	gtk_window_set_title(GTK_WINDOW(pWindow), "cairo-dock-dialog");
-
-	gtk_widget_add_events(pWindow, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
-
-	gtk_widget_show_all(pWindow);
-
-
-	//\________________ On ajoute les widgets necessaires aux interactions avec l'utilisateur.
-	pDialog->pUserData = data;
-
-	//\________________ On connecte les signaux utiles.
-/* 	g_signal_connect (G_OBJECT (pWindow), */
-/* 		"configure-event", */
-/* 		G_CALLBACK (applet_on_configure_dialog), */
-/* 		pDialog); */
-/* 	g_signal_connect (G_OBJECT (pWindow), */
-/* 		"button-press-event", */
-/* 		G_CALLBACK (applet_on_button_press_dialog), */
-/* 		pDialog); */
-/* 	g_signal_connect (G_OBJECT (pWindow), */
-/* 		"button-release-event", */
-/* 		G_CALLBACK (applet_on_button_press_dialog), */
-/* 		pDialog); */
-/* 	g_signal_connect (G_OBJECT (pWindow), */
-/* 		"enter-notify-event", */
-/* 		G_CALLBACK (applet_on_enter_dialog), */
-/* 		pDialog); */
-/* 	g_signal_connect (G_OBJECT (pWindow), */
-/* 		"leave-notify-event", */
-/* 		G_CALLBACK (applet_on_leave_dialog), */
-/* 		pDialog); */
-
-        pDialog->pInteractiveWidget = pInteractiveWidget;
-	if (pInteractiveWidget != NULL)
-	{
-          //GtkWidget *pFrame = gtk_frame_new(0);
-          gtk_container_set_border_width  (GTK_CONTAINER(pWindow), 10);
-          //          gtk_container_add(GTK_CONTAINER(pWindow), pFrame);
-          //  gtk_container_add(GTK_CONTAINER(pFrame), pInteractiveWidget);
-          gtk_window_set_default_size(GTK_WINDOW(pWindow), 32, 32);
-          gtk_container_add(GTK_CONTAINER(pWindow), pInteractiveWidget);
-          g_signal_connect (G_OBJECT (pWindow), "expose-event",
-                            G_CALLBACK (applet_on_expose_dialog), pDialog);
-
-          //gtk_widget_set_size_request(pWindow, 0, 0);
-
-          gtk_widget_show_all (pWindow);
-	}
-	return pDialog;
+  //\________________ On ajoute les widgets necessaires aux interactions avec l'utilisateur.
+  if (pInteractiveWidget != NULL)
+    {
+      //the border is were cairo paint
+      gtk_container_set_border_width(GTK_CONTAINER(pWindow), 10);
+      gtk_window_set_default_size(GTK_WINDOW(pWindow), 32, 32);
+      gtk_container_add(GTK_CONTAINER(pWindow), pInteractiveWidget);
+      g_signal_connect (G_OBJECT (pWindow), "expose-event",
+                        G_CALLBACK (applet_on_expose_dialog), pDialog);
+    }
+  gtk_widget_show_all(pWindow);
+  return pDialog;
 }
 
 

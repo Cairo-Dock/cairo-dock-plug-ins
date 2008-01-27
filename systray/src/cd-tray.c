@@ -98,16 +98,9 @@ tray_icon_added (NaTrayManager *manager,
                  TrayApplet     *applet)
 {
   applet->icons = g_list_append (applet->icons, icon);
-
   gtk_widget_set_colormap(icon, gdk_screen_get_rgb_colormap (gdk_screen_get_default()));
-  //gtk_widget_set_size_request(icon, icon_size_w, icon_size_h);
-
-  //gtk_widget_show(icon);
   gtk_box_pack_start(GTK_BOX(applet->box), icon, TRUE, TRUE, 0);
-  //dont know why but it's screew up if we dont do that
-  //  gtk_widget_set_size_request(applet->box, icon_size_w * g_list_length(applet->icons), icon_size_h);
   tray_resize_container(applet);
-
   force_redraw(applet);
 }
 
@@ -117,9 +110,7 @@ tray_icon_removed (NaTrayManager *manager,
                    TrayApplet     *applet)
 {
   applet->icons = g_list_remove (applet->icons, icon);
-  //  gtk_widget_set_size_request(applet->box, icon_size_w * g_list_length(applet->icons), icon_size_h);
   tray_resize_container(applet);
-
   gtk_container_remove(GTK_CONTAINER(applet->box), icon);
 }
 

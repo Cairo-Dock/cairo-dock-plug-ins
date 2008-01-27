@@ -72,6 +72,7 @@ void term_tab_apply_settings()
   GtkWidget *vterm = NULL;
 
   for (int i = 0; i < sz; ++i) {
+    printf("settings...\n");
     vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(term.tab), i);
     term_dialog_apply_settings(vterm);
   }

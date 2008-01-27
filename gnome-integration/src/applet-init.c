@@ -7,7 +7,7 @@
 
 /******************************************************************************
 
-This file is a part of the cairo-dock program, 
+This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
 Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
@@ -30,13 +30,13 @@ CairoDockVisitCard *pre_init (void)
 	pVisitCard->cPreviewFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_PREVIEW_FILE);
 	pVisitCard->cGettextDomain = g_strdup (MY_APPLET_GETTEXT_DOMAIN);
 	pVisitCard->cDockVersionOnCompilation = g_strdup (MY_APPLET_DOCK_VERSION);
-	
+
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 	{
 		if (init_vfs_backend ())
 		{
 			CairoDockVFSBackend *pVFSBackend = g_new0 (CairoDockVFSBackend, 1);
-			
+
 			pVFSBackend->get_file_info = vfs_backend_get_file_info;
 			pVFSBackend->get_file_properties = vfs_backend_get_file_properties;
 			pVFSBackend->list_directory = vfs_backend_list_directory;
@@ -54,7 +54,7 @@ CairoDockVisitCard *pre_init (void)
 			cairo_dock_fm_register_vfs_backend (pVFSBackend);
 		}
 	}
-	
+
 	return pVisitCard;
 }
 
@@ -63,6 +63,10 @@ Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
 {
 	pModule->cConfFilePath = NULL;
 	return NULL;
+}
+
+void configure()
+{
 }
 
 void stop (void)

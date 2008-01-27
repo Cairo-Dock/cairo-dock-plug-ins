@@ -1,6 +1,6 @@
 /**********************************************************************************
 
-This file is a part of the cairo-dock clock applet, 
+This file is a part of the cairo-dock clock applet,
 released under the terms of the GNU General Public License.
 
 Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
@@ -59,7 +59,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		for (i = 0; i < CLOCK_ELEMENTS; i ++)
 		{
 			g_string_printf (sElementPath, "%s/%s", my_cThemePath, my_cFileNames[i]);
-			
+
 			my_pSvgHandles[i] = rsvg_handle_new_from_file (sElementPath->str, NULL);
 			//g_print (" + %s\n", cElementPath);
 		}
@@ -71,7 +71,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		my_DimensionData.width = 48;  // valeur par defaut si aucun theme.
 		my_DimensionData.height = 48;
 	}
-	
+
 	//\_______________ On construit les surfaces d'arriere-plan et d'avant-plan une bonne fois pour toutes.
 	my_pBackgroundSurface = update_surface (NULL,
 		myDrawContext,
@@ -83,26 +83,29 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myIcon->fWidth * (1 + g_fAmplitude),
 		myIcon->fHeight * (1 + g_fAmplitude),
 		KIND_FOREGROUND);
-	
+
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
-	
+
 	//\_______________ On lance le timer.
 	cd_clock_update_with_time (myIcon);
 	my_iSidUpdateClock = g_timeout_add ((my_bShowSeconds ? 1e3: 60e3), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
 CD_APPLET_INIT_END
+
+CD_APPLET_CONFIGURE_BEGIN
+CD_APPLET_CONFIGURE_END
 
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	
+
 	//\_______________ On stoppe le timer.
 	g_source_remove (my_iSidUpdateClock);
 	my_iSidUpdateClock = 0;
-	
+
 	//\_______________ On libere toutes nos ressources.
 	int i;
 	for (i = 0; i < CLOCK_ELEMENTS; i ++)
@@ -110,15 +113,15 @@ CD_APPLET_STOP_BEGIN
 		rsvg_handle_free (my_pSvgHandles[i]);
 		my_pSvgHandles[i] = NULL;
 	}
-	
+
 	cairo_surface_destroy (my_pForegroundSurface);
 	my_pForegroundSurface = NULL;
 	cairo_surface_destroy (my_pBackgroundSurface);
 	my_pBackgroundSurface = NULL;
-	
+
 	g_free (my_cThemePath);
 	my_cThemePath = NULL;
-	
+
 	CDClockAlarm *pAlarm;
 	for (i = 0; i < my_pAlarms->len; i ++)
 	{
@@ -127,7 +130,7 @@ CD_APPLET_STOP_BEGIN
 	}
 	g_ptr_array_free (my_pAlarms, TRUE);
 	my_pAlarms = NULL;
-	
+
 	g_free (my_cSetupTimeCommand);
 	my_cSetupTimeCommand = NULL;
 CD_APPLET_STOP_END

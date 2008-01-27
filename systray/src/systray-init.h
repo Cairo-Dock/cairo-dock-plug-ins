@@ -25,6 +25,7 @@
 
 #include <cairo-dock.h>
 #include "cd-tray.h"
+
 CD_APPLET_H
 
 typedef struct s_systray {

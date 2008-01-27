@@ -37,14 +37,16 @@ CD_APPLET_DEFINITION ("systray", 0, 0, 6)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
-  if (systray.dialog) {
-    systray_dialog_apply_settings();
-  }
-
   CD_APPLET_REGISTER_FOR_CLICK_EVENT
   CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
   CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
+
+CD_APPLET_CONFIGURE_BEGIN
+  if (systray.dialog) {
+    systray_dialog_apply_settings();
+  }
+CD_APPLET_CONFIGURE_END
 
 
 CD_APPLET_STOP_BEGIN
