@@ -81,8 +81,9 @@ Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
 	return NULL;
 }
 
-CD_APPLET_CONFIGURE_BEGIN
-CD_APPLET_CONFIGURE_END
+void configure()
+{
+}
 
 void stop (void)
 {
