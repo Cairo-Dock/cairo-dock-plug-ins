@@ -1,3 +1,23 @@
+/*
+** Login : <ctaf42@gmail.com>
+** Started on  Sun Jan 27 18:35:38 2008 Cedric GESTES
+** $Id$
+**
+** Copyright (C) 2008 Cedric GESTES
+** This program is free software; you can redistribute it and/or modify
+** it under the terms of the GNU General Public License as published by
+** the Free Software Foundation; either version 3 of the License, or
+** (at your option) any later version.
+**
+** This program is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
+**
+** You should have received a copy of the GNU General Public License
+** along with this program; if not, write to the Free Software
+** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+*/
 
 #ifndef __CAIRO_APPLET_H__
 #define  __CAIRO_APPLET_H__
@@ -5,17 +25,6 @@
 #include <glib.h>
 
 #include "cairo-dock-struct.h"
-
-/* #include <stdlib.h> */
-/* #include <string.h> */
-/* #include <math.h> */
-
-/* #include "cairo-dock-struct.h" */
-/* #include "cairo-dock-icons.h" */
-/* #include "cairo-dock-dock-factory.h" */
-/* #include "cairo-dock-load.h" */
-/* #include "cairo-dock-draw.h" */
-/* #include "cairo-dock-dialogs.h" */
 
 gboolean applet_dialog_reference (CairoDockDialog *pDialog);
 
@@ -31,20 +40,5 @@ CairoDockDialog *applet_build_dialog (CairoDock *pDock, GtkWidget *pInteractiveW
 void applet_hide_dialog (CairoDockDialog *pDialog);
 
 void applet_unhide_dialog (CairoDockDialog *pDialog);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif

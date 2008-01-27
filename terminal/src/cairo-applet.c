@@ -1,12 +1,25 @@
-/******************************************************************************
+/*
+** Login : <ctaf42@gmail.com>
+** Started on  Sun Jan 27 18:35:38 2008 Cedric GESTES
+** $Id$
+**
+** Copyright (C) 2008 Cedric GESTES
+** This program is free software; you can redistribute it and/or modify
+** it under the terms of the GNU General Public License as published by
+** the Free Software Foundation; either version 3 of the License, or
+** (at your option) any later version.
+**
+** This program is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
+**
+** You should have received a copy of the GNU General Public License
+** along with this program; if not, write to the Free Software
+** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+*/
 
-This file is a part of the cairo-dock program,
-released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
-imported from cairo-dialog.c to cairo-applet.c by Cedric GESTES <ctaf42@gmail.com>
-
-******************************************************************************/
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
