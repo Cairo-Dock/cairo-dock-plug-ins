@@ -62,12 +62,13 @@ tray_icon_message_cancelled (NaTrayManager *manager,
 
 static void tray_resize_container(TrayApplet *applet)
 {
-  GtkRequisition req;
+/*   GtkRequisition req; */
 
 /*   gtk_widget_size_request(GTK_WIDGET(applet->box), &req); */
 /*   if (systray.dialog && &systray.dialog->pWidget) */
-/*     gtk_widget_set_size_request(GTK_WINDOW(systray.dialog->pWidget), req.width, req.height); */
-  //    gtk_window_set_default_size(GTK_WINDOW(systray.dialog->pWidget), req.width, req.height);
+/* /\*     gtk_widget_set_size_request(GTK_WINDOW(systray.dialog->pWidget), req.width, req.height); *\/ */
+/*   //    gtk_window_set_default_size(GTK_WINDOW(systray.dialog->pWidget), req.width, req.height); */
+/*   gtk_window_resize(GTK_WINDOW(systray.dialog->pWidget), req.width, req.height); */
 }
 
 

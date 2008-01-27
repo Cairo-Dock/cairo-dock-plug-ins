@@ -22,8 +22,8 @@ static gboolean applet_on_expose_dialog_dummy (GtkWidget *pWidget,
 }
 
 static gboolean applet_on_expose_dialog (GtkWidget *pWidget,
-                                  GdkEventExpose *pExpose,
-                                  CairoDockDialog *pDialog)
+                                         GdkEventExpose *pExpose,
+                                         CairoDockDialog *pDialog)
 {
   gint w = 0, h = 0;
   int border = 7;
@@ -178,9 +178,13 @@ static gint root_x = 0, root_y = 0;
 
 void applet_hide_dialog(CairoDockDialog *pDialog)
 {
+  gint x, y;
+
   if (!pDialog)
     return ;
-  gtk_window_get_position(GTK_WINDOW(pDialog->pWidget), &root_x, &root_y);
+  gtk_window_get_position(GTK_WINDOW(pDialog->pWidget), &x, &y);
+  root_x = (x > 0 ? x : root_x);
+  root_y = (y > 0 ? y : root_y);
   gtk_widget_hide (pDialog->pWidget);
 }
 
