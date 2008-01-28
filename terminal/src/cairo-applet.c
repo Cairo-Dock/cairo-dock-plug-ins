@@ -71,6 +71,63 @@ static gboolean applet_on_expose_dialog (GtkWidget *pWidget,
   return FALSE;
 }
 
+static void applet_on_click_close(GtkButton *button, gpointer   user_data)
+{
+}
+
+static volatile gboolean loool_kikou_mdr_move = FALSE;
+static volatile gint loool_x = 0, loool_y = 0;
+
+static gboolean applet_on_release(GtkWidget      *widget,
+                                  GdkEventButton *event,
+                                  gpointer        user_data)
+{
+  loool_kikou_mdr_move = FALSE;
+  return TRUE;
+}
+
+static gboolean applet_on_click(GtkWidget      *widget,
+                                GdkEventButton *event,
+                                gpointer        user_data)
+{
+  if (((GdkEventButton *)event)->button == 1) {
+    loool_kikou_mdr_move = TRUE;
+    loool_x = -((GdkEventButton *)event)->x;
+    loool_y = -((GdkEventButton *)event)->y;
+    return TRUE;
+  }
+}
+
+static gboolean applet_on_event_move(GtkWidget *widget,
+                                     GdkEvent *event,
+                                     CairoDockDialog *pDialog)
+{
+  if (loool_kikou_mdr_move && event->type == GDK_MOTION_NOTIFY) {
+    gtk_window_move(GTK_WINDOW(pDialog->pWidget), event->motion.x_root + loool_x, event->motion.y_root + loool_y);
+    return TRUE;
+  }
+  return FALSE;
+}
+
+static void applet_on_click_nba(GtkButton *button, CairoDockDialog *pDialog)
+{
+  gchar *lbl = gtk_button_get_label(button);
+
+  if (!strcmp(lbl, "on top")) {
+    gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), FALSE);
+    gtk_window_set_keep_below(GTK_WINDOW(pDialog->pWidget), FALSE);
+    gtk_button_set_label(button, "normal");
+  } else if (!strcmp(lbl, "below")) {
+    gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), TRUE);
+    gtk_button_set_label(button, "on top");
+  } else if (!strcmp(lbl, "normal")) {
+    gtk_window_set_keep_below(GTK_WINDOW(pDialog->pWidget), TRUE);
+    gtk_button_set_label(button, "below");
+  }
+}
+
+
+
 /* void applet_isolate_dialog (CairoDockDialog *pDialog) */
 /* { */
 /* 	if (pDialog == NULL) */
@@ -89,8 +146,6 @@ void applet_free_dialog (CairoDockDialog *pDialog)
   if (pDialog == NULL)
     return;
 
-  g_print ("%s ()\n", __func__);
-
   cairo_surface_destroy (pDialog->pTextBuffer);
   pDialog->pTextBuffer = NULL;
 
@@ -106,6 +161,7 @@ void applet_free_dialog (CairoDockDialog *pDialog)
 
 CairoDockDialog *applet_build_dialog (CairoDock *pDock, GtkWidget *pInteractiveWidget, gpointer data)
 {
+  GtkWidget* vbox, *hbox, *btn;
   CairoDockDialog *pDialog = g_new0 (CairoDockDialog, 1);
   GtkWidget* pWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 
@@ -122,18 +178,40 @@ CairoDockDialog *applet_build_dialog (CairoDock *pDock, GtkWidget *pInteractiveW
   gtk_window_set_decorated(GTK_WINDOW(pWindow), FALSE);
   gtk_window_set_resizable(GTK_WINDOW(pWindow), TRUE);
   gtk_window_set_title(GTK_WINDOW(pWindow), "cairo-dock-dialog");
-  gtk_widget_add_events(pWindow, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
+  gtk_widget_add_events(pWindow, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_POINTER_MOTION_MASK);
+  //the border is were cairo paint
+  gtk_container_set_border_width(GTK_CONTAINER(pWindow), 10);
+  gtk_window_set_default_size(GTK_WINDOW(pWindow), 32, 32);
+  g_signal_connect (G_OBJECT (pWindow), "expose-event",
+                    G_CALLBACK (applet_on_expose_dialog), pDialog);
 
-  //\________________ On ajoute les widgets necessaires aux interactions avec l'utilisateur.
+  vbox = gtk_vbox_new(0, 0);
+  gtk_container_add(GTK_CONTAINER(pWindow), vbox);
+
+  hbox = gtk_hbox_new(0, 1);
+  gtk_box_pack_start(GTK_BOX(vbox), hbox, 0, 0, 0);
+
+  btn = gtk_button_new_with_label("X");
+  gtk_box_pack_end(GTK_BOX(hbox), btn, 0, 1, 0);
+  g_signal_connect (G_OBJECT (btn), "clicked",
+                    G_CALLBACK (applet_on_click_close), pDialog);
+
+  btn = gtk_button_new_with_label("on top");
+  gtk_box_pack_end(GTK_BOX(hbox), btn, 0, 1, 1);
+  g_signal_connect (G_OBJECT (btn), "clicked",
+                    G_CALLBACK (applet_on_click_nba), pDialog);
+
+
+  g_signal_connect (G_OBJECT (pWindow), "event",
+                    G_CALLBACK (applet_on_event_move), pDialog);
+  g_signal_connect (G_OBJECT (pWindow), "button-press-event",
+                    G_CALLBACK (applet_on_click), pDialog);
+  g_signal_connect (G_OBJECT (pWindow), "button-release-event",
+                    G_CALLBACK (applet_on_release), pDialog);
+
+  //user widget
   if (pInteractiveWidget != NULL)
-    {
-      //the border is were cairo paint
-      gtk_container_set_border_width(GTK_CONTAINER(pWindow), 10);
-      gtk_window_set_default_size(GTK_WINDOW(pWindow), 32, 32);
-      gtk_container_add(GTK_CONTAINER(pWindow), pInteractiveWidget);
-      g_signal_connect (G_OBJECT (pWindow), "expose-event",
-                        G_CALLBACK (applet_on_expose_dialog), pDialog);
-    }
+    gtk_box_pack_start(GTK_BOX(vbox), pInteractiveWidget, 0, 0, 0);
   gtk_widget_show_all(pWindow);
   return pDialog;
 }
