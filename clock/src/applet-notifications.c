@@ -14,6 +14,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 CD_APPLET_INCLUDE_MY_VARS
 
 extern AppletConfig myConfig;
+extern AppletData myData;
+
 
 void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 {
@@ -60,3 +62,11 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU (_D("Set up time and date"), cd_clock_launch_time_admin, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
+
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+	if (myData.iAlarmPID > 0)
+	{
+		kill (myData.iAlarmPID, 1);
+		myData.iAlarmPID = 0;
+	}
+CD_APPLET_ON_MIDDLE_CLICK_END

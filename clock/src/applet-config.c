@@ -26,6 +26,7 @@ static gchar *my_s_Frequencies[CD_CLOCK_NB_FREQUENCIES+1] = {"Never", "Day", "Su
 
 CD_APPLET_CONFIG_BEGIN ("Horloge", NULL)
 	reset_config ();
+	
 	//\_______________ On recupere les parametres de fonctionnement.
 	myConfig.iShowDate 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "show date", CLOCK_DATE_ON_LABEL);
 	myConfig.bShowSeconds 		= CD_CONFIG_GET_BOOLEAN ("Module", "show seconds");
@@ -112,7 +113,6 @@ void reset_config (void)
 	myConfig.cSetupTimeCommand = NULL;
 	
 	memset (&myConfig, 0, sizeof (AppletConfig));
-	
 }
 
 void reset_data (void)

@@ -59,9 +59,3 @@ CD_APPLET_CONFIG_BEGIN ("terminal", "gnome-terminal")
 	term.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb lines", 25);
 	term.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb columns", 80);
 CD_APPLET_CONFIG_END
-
-
-CD_APPLET_RESET_DATA_BEGIN
-	
-CD_APPLET_RESET_DATA_END
-

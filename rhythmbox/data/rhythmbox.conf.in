@@ -34,5 +34,5 @@ change_animation=1
 frame3=
 #b Display album's cover instead of icon ?
 enable_cover=true
-#r[nothing;elapsed time;left time;n° of track] Information to display on the icon :
+#r[nothing;time elapsed;time left;time in %n;° of track] Information to display on the icon :
 quick-info_type=1

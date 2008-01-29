@@ -5,12 +5,18 @@
 
 
 CD_APPLET_CONFIG_BEGIN (CD_APPLET_LABEL, CD_APPLET_ICON)
+	reset_config ();
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	
 CD_APPLET_CONFIG_END
 
 
-CD_APPLET_RESET_DATA_BEGIN
-	//\_________________ On libere toutes les ressources allouees lors de l'init et qui sont liees a notre config ou a celle du dock.
+void reset_config (void)
+{
 	
-CD_APPLET_RESET_DATA_END
+}
+
+void reset_data (void)
+{
+	
+}

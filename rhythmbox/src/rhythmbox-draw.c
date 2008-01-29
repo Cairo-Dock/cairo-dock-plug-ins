@@ -4,85 +4,62 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-draw.h"
 
-//Inclusion des variables de dessins
 CD_APPLET_INCLUDE_MY_VARS
 
-extern cairo_surface_t *rhythmbox_pSurface;
-extern cairo_surface_t *rhythmbox_pPlaySurface;
-extern cairo_surface_t *rhythmbox_pPauseSurface;
-extern cairo_surface_t *rhythmbox_pStopSurface;
-extern cairo_surface_t *rhythmbox_pCover;
+extern AppletConfig myConfig;
+extern AppletData myData;
 
-//Inclusion des variables de configuration
-extern gchar *conf_defaultTitle;
-extern CairoDockAnimationType conf_changeAnimation;
-extern gboolean conf_enableDialogs;
-extern gboolean conf_enableCover;
-extern double conf_timeDialogs;
-extern MyAppletQuickInfoType conf_quickInfoType;
 
-//Inclusion des variables d'etats
-extern gboolean rhythmbox_opening;
-extern gboolean rhythmbox_playing;
-extern gboolean cover_exist;
-extern int playing_duration;
-extern int playing_track;
-extern gchar *playing_uri;
-extern const gchar *playing_artist;
-extern const gchar *playing_album;
-extern const gchar *playing_title;
-
-void rhythmbox_iconWitness(int animationLenght)
+void rhythmbox_iconWitness(int animationLength)
 {
-	CD_APPLET_ANIMATE_MY_ICON (conf_changeAnimation, animationLenght)
+	CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength)
 }
 
 
 void update_icon(gboolean make_witness)
 {
 	g_print ("%s ()\n",__func__);
-	if(playing_uri != NULL)
+	if(myData.playing_uri != NULL)
 	{
-		gchar *songName,*cover;
-		
-		songName = g_strdup_printf("%s - %s",playing_artist,playing_title);
+		//Affichage de la chanson courante.
+		gchar *songName = g_strdup_printf("%s - %s", myData.playing_artist, myData.playing_title);
 		g_print ("  songName : %s\n", songName);
 		CD_APPLET_SET_NAME_FOR_MY_ICON (songName);
 		g_free (songName);
 		
 		//Affichage de l'info-rapide.
-		if(conf_quickInfoType == MY_APPLET_TRACK && playing_track > 0)
+		if(myConfig.quickInfoType == MY_APPLET_TRACK && myData.playing_track > 0)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", playing_track);  // inutile de redessiner notre icone, ce sera fait plus loin.
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.playing_track);  // inutile de redessiner notre icone, ce sera fait plus loin.
 		}
 		
-		//Affichage de l'album
-		cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), playing_artist,playing_album);
+		//Affichage de la couverture de l'album.
+		gchar *cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
 		g_print ("  cover : %s\n", cover);
-		if(g_file_test (cover, G_FILE_TEST_EXISTS) && conf_enableCover)
+		if(g_file_test (cover, G_FILE_TEST_EXISTS) && myConfig.enableCover)
 		{
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (cover);
-			cover_exist = TRUE;
+			myData.cover_exist = TRUE;
 		}
 		else
 		{
-			if(rhythmbox_playing)
+			if(myData.playing)
 			{
-				CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pPlaySurface);
+				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pPlaySurface);
 			}
 			else
 			{
-				CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pPauseSurface);
+				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pPauseSurface);
 			}
-			cover_exist = FALSE;
+			myData.cover_exist = FALSE;
 		}
 		g_free (cover);
 		
-		
+		//Animation de l'icone et dialogue.
 		if(make_witness)
 		{
 			rhythmbox_iconWitness(1);
-			if(conf_enableDialogs)
+			if(myConfig.enableDialogs)
 			{
 				music_dialog();
 			}
@@ -90,8 +67,8 @@ void update_icon(gboolean make_witness)
 	}
 	else
 	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (conf_defaultTitle);
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pSurface);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurface);
 	}
 }
 
@@ -100,8 +77,8 @@ void music_dialog(void)
 	cairo_dock_show_temporary_dialog (_D("Artist : %s\nAlbum : %s\nTitle : %s"),
 		myIcon,
 		myDock,
-		conf_timeDialogs,
-		playing_artist != NULL ? playing_artist : _D("Unknown"),
-		playing_album != NULL ? playing_album : _D("Unknown"),
-		playing_title != NULL ? playing_title : _D("Unknown"));
+		myConfig.timeDialogs,
+		myData.playing_artist != NULL ? myData.playing_artist : _D("Unknown"),
+		myData.playing_album != NULL ? myData.playing_album : _D("Unknown"),
+		myData.playing_title != NULL ? myData.playing_title : _D("Unknown"));
 }

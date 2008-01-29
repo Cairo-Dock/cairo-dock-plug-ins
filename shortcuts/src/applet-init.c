@@ -13,13 +13,11 @@ Inspiration was taken from the "xdg" project :-)
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-bookmarks.h"
+#include "applet-struct.h"
 #include "applet-init.h"
 
-gboolean my_bListDrives;
-gboolean my_bListNetwork;
-gboolean my_bListBookmarks;
-gboolean my_bUseSeparator;
-gchar *my_cRenderer = NULL;
+extern AppletConfig myConfig;
+extern AppletData myData;
 
 
 CD_APPLET_DEFINITION ("shortcuts", 1, 4, 7)
@@ -40,14 +38,14 @@ static void _load_icons (GError **erreur)
 	GList *pIconList = NULL;
 	gchar *cFullURI = NULL;
 	
-	if (my_bListDrives)
+	if (myConfig.bListDrives)
 	{
 		pIconList = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_VFS_ROOT, CAIRO_DOCK_FM_SORT_BY_NAME, 6, &cFullURI);
 		g_print ("  cFullURI : %s\n", cFullURI);
 		if (pIconList == NULL)
 		{
 			g_set_error (erreur, 1, 1, "%s () : couldn't detect any drives", __func__);
-			return NULL;
+			return ;
 		}
 		
 		if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, NULL))
@@ -55,12 +53,12 @@ static void _load_icons (GError **erreur)
 		g_free (cFullURI);
 	}
 	
-	if (my_bListNetwork)
+	if (myConfig.bListNetwork)
 	{
 		GList *pIconList2 = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_NETWORK, CAIRO_DOCK_FM_SORT_BY_NAME, 8, &cFullURI);
 		g_print ("  cFullURI : %s\n", cFullURI);
 		
-		if (my_bUseSeparator && pIconList2 != NULL)
+		if (myConfig.bUseSeparator && pIconList2 != NULL)
 		{
 			//Icon *pSeparatorIcon = cairo_dock_create_separator_icon (myDrawContext, CAIRO_DOCK_LAUNCHER, myIcon->pSubDock, CAIRO_DOCK_APPLY_RATIO);
 			Icon *pSeparatorIcon = g_new0 (Icon, 1);
@@ -75,7 +73,7 @@ static void _load_icons (GError **erreur)
 		g_free (cFullURI);
 	}
 		
-	if (my_bListBookmarks)
+	if (myConfig.bListBookmarks)
 	{
 		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
 		if (! g_file_test (cBookmarkFilePath, G_FILE_TEST_EXISTS))
@@ -86,7 +84,7 @@ static void _load_icons (GError **erreur)
 		
 		GList *pIconList2 = cd_shortcuts_list_bookmarks (cBookmarkFilePath);
 		
-		if (my_bUseSeparator)
+		if (myConfig.bUseSeparator)
 		{
 			//Icon *pSeparatorIcon = cairo_dock_create_separator_icon (myDrawContext, CAIRO_DOCK_LAUNCHER, myIcon->pSubDock, CAIRO_DOCK_APPLY_RATIO);
 			Icon *pSeparatorIcon = g_new0 (Icon, 1);
@@ -103,7 +101,7 @@ static void _load_icons (GError **erreur)
 	}
 	
 	myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-	cairo_dock_set_renderer (myIcon->pSubDock, my_cRenderer);
+	cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
 	cairo_dock_update_dock_size (myIcon->pSubDock);
 }
 
@@ -127,6 +125,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT
+	
+	reset_config ();
+	reset_data ();
 CD_APPLET_STOP_END
 
 
@@ -135,6 +136,8 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On charge les icones dans un sous-dock.
+		reset_data ();
+		
 		GError *erreur = NULL;
 		_load_icons (&erreur);
 		if (erreur != NULL)

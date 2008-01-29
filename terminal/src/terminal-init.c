@@ -39,7 +39,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 CD_APPLET_INIT_END
 
 
-
 CD_APPLET_STOP_BEGIN
 	g_print ("stop terminal\n");
 	if (term.dialog)

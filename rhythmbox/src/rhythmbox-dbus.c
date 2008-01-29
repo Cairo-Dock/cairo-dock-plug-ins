@@ -3,34 +3,18 @@
 
 #include "rhythmbox-struct.h"
 #include "rhythmbox-draw.h"
+#include "rhythmbox-struct.h"
 #include "rhythmbox-dbus.h"
 
-DBusGConnection *dbus_connexion;
-DBusGProxy *dbus_proxy_dbus;
-DBusGProxy *dbus_proxy_player;
-DBusGProxy *dbus_proxy_shell;
+static DBusGConnection *dbus_connexion;
+static DBusGProxy *dbus_proxy_dbus;
+static DBusGProxy *dbus_proxy_player;
+static DBusGProxy *dbus_proxy_shell;
+
+extern AppletConfig myConfig;
+extern AppletData myData;
 
 CD_APPLET_INCLUDE_MY_VARS
-
-extern gchar *conf_defaultTitle;
-extern gboolean conf_enableDialogs;
-extern gboolean conf_enableCover;
-extern double conf_timeDialogs;
-extern MyAppletQuickInfoType conf_quickInfoType;
-
-extern cairo_surface_t *rhythmbox_pPlaySurface;
-extern cairo_surface_t *rhythmbox_pPauseSurface;
-extern cairo_surface_t *rhythmbox_pStopSurface;
-
-extern gboolean rhythmbox_opening;
-extern gboolean rhythmbox_playing;
-extern gboolean cover_exist;
-extern int playing_duration;
-extern int playing_track;
-extern gchar *playing_uri;
-extern const gchar *playing_artist;
-extern const gchar *playing_album;
-extern const gchar *playing_title;
 
 
 //*********************************************************************************
@@ -123,7 +107,7 @@ void dbus_detect_rhythmbox(void)
 	g_print ("%s ()\n",__func__);
 	gchar **name_list = NULL;
 	
-	rhythmbox_opening = FALSE;
+	myData.opening = FALSE;
 	if(dbus_g_proxy_call (dbus_proxy_dbus, "ListNames", NULL,
 		G_TYPE_INVALID,
 		G_TYPE_STRV,
@@ -136,7 +120,7 @@ void dbus_detect_rhythmbox(void)
 		{
 			if (strcmp (name_list[i], "org.gnome.Rhythmbox") == 0)
 			{
-				rhythmbox_opening = TRUE;
+				myData.opening = TRUE;
 				break;
 			}
 		}
@@ -151,14 +135,11 @@ void dbus_detect_rhythmbox(void)
 void rhythmbox_getPlaying (void)
 {
 	g_print ("%s ()\n",__func__);
-	gboolean playing;
 	
 	dbus_g_proxy_call (dbus_proxy_player, "getPlaying", NULL,
 		G_TYPE_INVALID,
-		G_TYPE_BOOLEAN, &playing,
+		G_TYPE_BOOLEAN, &myData.playing,
 		G_TYPE_INVALID);
-	
-	rhythmbox_playing = playing;
 }
 
 
@@ -169,11 +150,12 @@ void rhythmbox_getPlayingUri(void)
 {
 	g_print ("%s ()\n",__func__);
 	
-	g_free (playing_uri);
-	playing_uri = NULL;
+	g_free (myData.playing_uri);
+	myData.playing_uri = NULL;
+	
 	dbus_g_proxy_call (dbus_proxy_player, "getPlayingUri", NULL,
 		G_TYPE_INVALID,
-		G_TYPE_STRING, &playing_uri ,
+		G_TYPE_STRING, &myData.playing_uri ,
 		G_TYPE_INVALID);
 }
 
@@ -200,42 +182,42 @@ void getSongInfos(void)
 	const gchar *data;
 	
 	if(dbus_g_proxy_call (dbus_proxy_shell, "getSongProperties", NULL,
-		G_TYPE_STRING, playing_uri,
+		G_TYPE_STRING, myData.playing_uri,
 		G_TYPE_INVALID,
 		dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),
 		&data_list,
 		G_TYPE_INVALID))
 	{
 		value = (GValue *) g_hash_table_lookup(data_list, "artist");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) playing_artist = g_value_get_string(value);
-		else playing_artist = "Inconnu";
-		g_print ("  playing_artist <- %s\n", playing_artist);
+		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_artist = g_value_get_string(value);
+		else myData.playing_artist = NULL;
+		g_print ("  playing_artist <- %s\n", myData.playing_artist);
 		
 		value = (GValue *) g_hash_table_lookup(data_list, "album");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) playing_album = g_value_get_string(value);
-		else playing_album = "Inconnu";
-		g_print ("  playing_album <- %s\n", playing_album);
+		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_album = g_value_get_string(value);
+		else myData.playing_album = NULL;
+		g_print ("  playing_album <- %s\n", myData.playing_album);
 		
 		value = (GValue *) g_hash_table_lookup(data_list, "title");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) playing_title = g_value_get_string(value);
-		else playing_title = "Inconnu";
-		g_print ("  playing_title <- %s\n", playing_title);
+		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_title = g_value_get_string(value);
+		else myData.playing_title = NULL;
+		g_print ("  playing_title <- %s\n", myData.playing_title);
 		
 		value = (GValue *) g_hash_table_lookup(data_list, "track-number");
-		if (value != NULL && G_VALUE_HOLDS_UINT(value)) playing_track = g_value_get_uint(value);
-		else playing_track = 0;
-		g_print ("  playing_track <- %d\n", playing_track);
+		if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.playing_track = g_value_get_uint(value);
+		else myData.playing_track = 0;
+		g_print ("  playing_track <- %d\n", myData.playing_track);
 		
 		value = (GValue *) g_hash_table_lookup(data_list, "duration");
-		if (value != NULL && G_VALUE_HOLDS_UINT(value)) playing_duration = g_value_get_uint(value);
-		else playing_duration = 0;
-		g_print ("  playing_duration <- %ds\n", playing_duration);
+		if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.playing_duration = g_value_get_uint(value);
+		else myData.playing_duration = 0;
+		g_print ("  playing_duration <- %ds\n", myData.playing_duration);
 	}
 	else
 	{
 		g_print ("  peut pas recevoir les proprietes\n");
-		g_free (playing_uri);
-		playing_uri = NULL;
+		g_free (myData.playing_uri);
+		myData.playing_uri = NULL;
 	}
 }
 
@@ -249,23 +231,23 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 	
 	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 	
-	g_free (playing_uri);
+	g_free (myData.playing_uri);
 	if(uri != NULL && *uri != '\0')
 	{
-		playing_uri = g_strdup (uri);
-		rhythmbox_opening = TRUE;
+		myData.playing_uri = g_strdup (uri);
+		myData.opening = TRUE;
 		getSongInfos();
 	}
 	else
 	{
-		playing_uri = NULL;
-		cover_exist = FALSE;
-		playing_uri = NULL;
-		playing_artist = NULL;
-		playing_album = NULL;
-		playing_title = NULL;
-		playing_duration = 0;
-		playing_track = 0;
+		myData.playing_uri = NULL;
+		myData.cover_exist = FALSE;
+		myData.playing_uri = NULL;
+		myData.playing_artist = NULL;
+		myData.playing_album = NULL;
+		myData.playing_title = NULL;
+		myData.playing_duration = 0;
+		myData.playing_track = 0;
 		
 		dbus_detect_rhythmbox();
 	}
@@ -278,17 +260,17 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
 {
 	g_print ("%s ()\n",__func__);
-	rhythmbox_playing = playing;
-	if(!cover_exist && playing_uri != NULL)
+	myData.playing = playing;
+	if(! myData.cover_exist && myData.playing_uri != NULL)
 	{
-		g_print ("  playing_uri : %s\n", playing_uri);
-		if(playing)
+		g_print ("  playing_uri : %s\n", myData.playing_uri);
+		if(myData.playing)
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pPlaySurface)
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pPlaySurface)
 		}
 		else
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pPauseSurface)
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pPauseSurface)
 		}
 	}
 }
@@ -301,7 +283,7 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 	if(elapsed > 0)
 	{
 		//g_print ("%s () : %ds\n", __func__, elapsed);
-		if(conf_quickInfoType == MY_APPLET_TIME_ELAPSED)
+		if(myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED)
 		{
 			gchar *cQuickInfo;
 			if(elapsed < 60)
@@ -312,34 +294,31 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 			{
 				int min = elapsed / 60;
 				int sec = elapsed % 60;
-				if(sec < 10) cQuickInfo = g_strdup_printf ("%i:0%i", min,sec);
-				else cQuickInfo = g_strdup_printf ("%i:%i", min,sec);
+				cQuickInfo = g_strdup_printf ("%i:%.02d", min,sec);
 			}
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cQuickInfo);
 			g_free (cQuickInfo);
 		}
-		else if(conf_quickInfoType == MY_APPLET_TIME_LEFT)
+		else if(myConfig.quickInfoType == MY_APPLET_TIME_LEFT)
 		{
 			gchar *cQuickInfo;
-			int time = playing_duration - elapsed;
+			int time = myData.playing_duration - elapsed;
 			if(time < 60)
 			{
-				cQuickInfo = g_strdup_printf ("%i", time);
+				cQuickInfo = g_strdup_printf ("-%i", time);
 			}
 			else
 			{
 				int min = time / 60;
 				int sec = time % 60;
-				if(sec < 10) cQuickInfo = g_strdup_printf ("%i:0%i", min,sec);
-				else cQuickInfo = g_strdup_printf ("%i:%i", min,sec);
-				
+				cQuickInfo = g_strdup_printf ("-%i:%.02d", min,sec);
 			}
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cQuickInfo);
 			g_free (cQuickInfo);
 		}
-		else if(conf_quickInfoType == MY_APPLET_PERCENTAGE)
+		else if(myConfig.quickInfoType == MY_APPLET_PERCENTAGE)
 		{
-			gchar *cQuickInfo = g_strdup_printf ("%d%s", ((elapsed*100/playing_duration)),"%");
+			gchar *cQuickInfo = g_strdup_printf ("%d%%", ((100.*elapsed/myData.playing_duration)));
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cQuickInfo);
 			g_free (cQuickInfo);
 		}

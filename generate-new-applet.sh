@@ -73,7 +73,7 @@ sed "s/CD_MY_NAME/$MyName/g" tmp > fr.po
 rm -f tmp
 
 
-cd $CD_APPLET_NAME
+cd ..
 
 autoreconf -isvf && ./configure --prefix=/usr --enable-glitz && make
 

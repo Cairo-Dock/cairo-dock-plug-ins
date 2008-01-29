@@ -3,14 +3,14 @@
 
 #include "rhythmbox-dbus.h"
 #include "rhythmbox-draw.h"
+#include "rhythmbox-struct.h"
 #include "rhythmbox-menu-functions.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern gboolean rhythmbox_dbus_enable;
-extern gboolean rhythmbox_opening;
-extern gboolean rhythmbox_playing;
-extern int conf_timeDialogs;
+extern AppletConfig myConfig;
+extern AppletData myData;
+
 
 //*********************************************************************************
 // rhythmbox_previous : Joue la piste précédante
@@ -66,7 +66,7 @@ CD_APPLET_ABOUT (_D("Applet by Necropotame (Adrien Pilleboue)"))
 // Cette fonction remplit le menu principal avec les actions previous, next, et information.
 //*********************************************************************************
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	if (rhythmbox_dbus_enable)
+	if (myData.dbus_enable)
 	{
 		CD_APPLET_ADD_IN_MENU (_D("Previous"), rhythmbox_previous, CD_APPLET_MY_MENU)
 		
@@ -85,9 +85,9 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_CLICK_BEGIN
 	g_print ("%s ()\n", __func__);
 	
-	if(rhythmbox_opening)
+	if(myData.opening)
 	{
-		if(rhythmbox_playing)
+		if(myData.playing)
 		{
 			g_spawn_command_line_async ("rhythmbox-client --pause", NULL);
 		}
@@ -111,7 +111,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	g_print ("%s ()\n", __func__);
 	
 	rhythmbox_getPlaying();
-	if (rhythmbox_playing)
+	if (myData.playing)
 	{
 		g_spawn_command_line_async ("rhythmbox-client --next", NULL);
 	}

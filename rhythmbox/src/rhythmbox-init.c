@@ -4,25 +4,11 @@
 #include "rhythmbox-config.h"
 #include "rhythmbox-dbus.h"
 #include "rhythmbox-menu-functions.h"
+#include "rhythmbox-struct.h"
 #include "rhythmbox-init.h"
 
-cairo_surface_t *rhythmbox_pSurface = NULL;
-cairo_surface_t *rhythmbox_pPlaySurface = NULL;
-cairo_surface_t *rhythmbox_pPauseSurface = NULL;
-cairo_surface_t *rhythmbox_pBrokenSurface = NULL;
-cairo_surface_t *rhythmbox_pCover = NULL;
-
-gchar *conf_defaultTitle = NULL;
-gboolean rhythmbox_dbus_enable = FALSE;
-gboolean rhythmbox_opening = FALSE;
-gboolean rhythmbox_playing = FALSE;
-gboolean cover_exist = FALSE;
-int playing_duration = 0;
-int playing_track = 0;
-gchar *playing_uri = NULL;
-const gchar *playing_artist = NULL;
-const gchar *playing_album = NULL;
-const gchar *playing_title = NULL;
+extern AppletConfig myConfig;
+extern AppletData myData;
 
 
 CD_APPLET_DEFINITION ("Rhythmbox", 1, 4, 6)
@@ -33,39 +19,39 @@ static void _load_surfaces (void)
 	GString *sImagePath = g_string_new ("");  // ce serait bien de pouvoir choisir ses icones, comme dans l'applet logout...
 	//Chargement de l'image "default"
 	g_string_printf (sImagePath, "%s/stop.svg", MY_APPLET_SHARE_DATA_DIR);
-	rhythmbox_pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+	myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 
 	//Chargement de l'image "pause"
 	g_string_printf (sImagePath, "%s/pause.svg", MY_APPLET_SHARE_DATA_DIR);
-	rhythmbox_pPauseSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+	myData.pPauseSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 
 	//Chargement de l'image "play"
 	g_string_printf (sImagePath, "%s/play.svg", MY_APPLET_SHARE_DATA_DIR);
-	rhythmbox_pPlaySurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+	myData.pPlaySurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 
 	//Chargement de l'image "broken"
 	g_string_printf (sImagePath, "%s/broken.svg", MY_APPLET_SHARE_DATA_DIR);
-	rhythmbox_pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+	myData.pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 
 	g_string_free (sImagePath, TRUE);
 }
 
 CD_APPLET_INIT_BEGIN (erreur)
-	conf_defaultTitle = g_strdup (myIcon->acName);
+	myConfig.defaultTitle = g_strdup (myIcon->acName);
 	
 	_load_surfaces ();
 	
 	//Si le bus n'a pas encore ete acquis, on le recupere.
-	if (! rhythmbox_dbus_enable)
-		rhythmbox_dbus_enable = rhythmbox_dbus_get_dbus();
+	if (! myData.dbus_enable)
+		myData.dbus_enable = rhythmbox_dbus_get_dbus();
 	
 	//Si le bus a ete acquis, on y connecte nos signaux.
-	if (rhythmbox_dbus_enable)
+	if (myData.dbus_enable)
 	{
 		rhythmbox_dbus_connect_to_bus ();
 		
 		dbus_detect_rhythmbox();
-		if(rhythmbox_opening)
+		if(myData.opening)
 		{
 			rhythmbox_getPlaying();
 			rhythmbox_getPlayingUri();
@@ -74,12 +60,12 @@ CD_APPLET_INIT_BEGIN (erreur)
 		}
 		else
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pSurface)
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurface)
 		}
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pBrokenSurface)
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pBrokenSurface)
 	}
 	
 	//Enregistrement des notifications
@@ -96,16 +82,8 @@ CD_APPLET_STOP_BEGIN
 	
 	rhythmbox_dbus_disconnect_from_bus ();
 	
-	g_free (conf_defaultTitle);
-	conf_defaultTitle = NULL;
-	
-	g_free (playing_uri);
-	playing_uri = NULL;
-	playing_artist = NULL;
-	playing_album = NULL;
-	playing_title = NULL;
-	playing_duration = 0;
-	playing_track = 0;
+	reset_config ();
+	reset_data ();
 CD_APPLET_STOP_END
 
 
@@ -115,10 +93,23 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		g_free (conf_defaultTitle);
-		conf_defaultTitle = g_strdup (myIcon->acName);
+		myConfig.defaultTitle = g_strdup (myIcon->acName);  // libere dans le reset_config() precedemment appele.
 	}
 	
 	//\_______________ On redessine notre icone.
-	update_icon( FALSE );
+	if (myData.dbus_enable)
+	{
+		if(myData.opening)
+		{
+			update_icon( FALSE );
+		}
+		else
+		{
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurface)
+		}
+	}
+	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
+	{
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pBrokenSurface)
+	}
 CD_APPLET_RELOAD_END

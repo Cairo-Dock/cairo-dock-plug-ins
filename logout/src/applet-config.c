@@ -5,9 +5,17 @@
 
 
 CD_APPLET_CONFIG_BEGIN ("log-out", "gnome-logout")
+	reset_config ();
 	
 CD_APPLET_CONFIG_END
 
-CD_APPLET_RESET_DATA_BEGIN
+
+void reset_config (void)
+{
 	
-CD_APPLET_RESET_DATA_END
+}
+
+void reset_data (void)
+{
+	
+}

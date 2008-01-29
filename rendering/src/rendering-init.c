@@ -93,7 +93,7 @@ void stop (void)
 	
 	reset_data ();
 	
-	cairo_dock_reset_all_views ();
+	cairo_dock_reset_all_views ();  // inutile de faire cairo_dock_set_all_views_to_default () puisqu'on ne peut desactiver un module qu'en validant la config du dock.
 }
 
 

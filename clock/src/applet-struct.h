@@ -63,6 +63,7 @@ typedef struct {
 	RsvgDimensionData DimensionData;
 	RsvgHandle *pSvgHandles[CLOCK_ELEMENTS];
 	int iSidUpdateClock;
+	GPid iAlarmPID;
 	} AppletData;
 
 #endif

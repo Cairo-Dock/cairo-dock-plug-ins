@@ -21,8 +21,10 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	//\_________________ On libere toutes les ressources qui ne sont pas deja liberees par le reset_data.
 	
+	//\_________________ On libere toutes nos ressources.
+	reset_config ();
+	reset_data ();
 CD_APPLET_STOP_END
 
 

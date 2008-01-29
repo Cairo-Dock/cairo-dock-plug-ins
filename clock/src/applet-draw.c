@@ -119,10 +119,10 @@ gboolean cd_clock_update_with_time (Icon *icon)
 					cairo_dock_show_temporary_dialog (pAlarm->cMessage, myIcon, myDock, 60e3);
 					if (pAlarm->cCommand != NULL)
 					{
-						if (s_iCommandPID > 0)
+						if (myData.iAlarmPID > 0)
 						{
-							kill (s_iCommandPID, 1);
-							s_iCommandPID = 0;
+							kill (myData.iAlarmPID, 1);
+							myData.iAlarmPID = 0;
 						}
 						GError *erreur = NULL;
 						gchar **argv = g_strsplit (pAlarm->cCommand, " ", -1);
@@ -132,14 +132,16 @@ gboolean cd_clock_update_with_time (Icon *icon)
 							0,
 							NULL,
 							NULL,
-							&s_iCommandPID,
+							&myData.iAlarmPID,
 							&erreur);
 						if (erreur != NULL)
 						{
 							g_print ("Attention : when trying to execute '%s' : %s\n", pAlarm->cCommand, erreur->message);
 							g_error_free (erreur);
+							myData.iAlarmPID = 0;
 						}
-						g_print (" --> child_pid : %d\n", s_iCommandPID);
+						g_strfreev (argv);
+						g_print (" --> child_pid : %d\n", myData.iAlarmPID);
 					}
 				}
 				

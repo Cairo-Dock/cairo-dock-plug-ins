@@ -19,7 +19,7 @@ name = Battery
 
 #F[Quick info]
 frame2=
-#s[charge;time;nothing] Information to be displayed on the icon :
+#s[nothing;charge;time] Information to be displayed on the icon :
 quick_info_type=charge
 
 #F[Warnings]

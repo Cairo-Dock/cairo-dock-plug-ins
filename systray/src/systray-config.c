@@ -31,8 +31,3 @@ CD_APPLET_CONFIG_BEGIN ("systray", "gnome-panel-notification-area")
   systray.always_on_top = cairo_dock_get_boolean_key_value (pKeyFile, "GUI", "always on top", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 }
 CD_APPLET_CONFIG_END
-
-
-CD_APPLET_RESET_DATA_BEGIN
-	
-CD_APPLET_RESET_DATA_END

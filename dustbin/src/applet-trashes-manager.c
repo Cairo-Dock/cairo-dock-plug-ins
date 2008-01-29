@@ -21,6 +21,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 CD_APPLET_INCLUDE_MY_VARS
 
 extern AppletConfig myConfig;
+extern AppletData myData;
 
 static GStaticRWLock s_mTasksMutex = G_STATIC_RW_LOCK_INIT;
 static GList *s_pTasksList = NULL;
@@ -63,29 +64,29 @@ gpointer cd_dustbin_threaded_calculation (gpointer data)
 		//\________________________ On traite le message.
 		if (pDustbin == NULL)  // recalcul complet.
 		{
-			cd_dustbin_measure_all_dustbins (&myConfig.iNbFiles, &myConfig.iSize);
+			cd_dustbin_measure_all_dustbins (&myData.iNbFiles, &myData.iSize);
 		}
 		else if (cURI == NULL)
 		{
-			g_atomic_int_add (&myConfig.iNbFiles, - pDustbin->iNbFiles);
-			g_atomic_int_add (&myConfig.iSize, - pDustbin->iSize);
+			g_atomic_int_add (&myData.iNbFiles, - pDustbin->iNbFiles);
+			g_atomic_int_add (&myData.iSize, - pDustbin->iSize);
 			cd_dustbin_measure_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
-			g_atomic_int_add (&myConfig.iNbFiles, pDustbin->iNbFiles);
-			g_atomic_int_add (&myConfig.iSize, pDustbin->iSize);
+			g_atomic_int_add (&myData.iNbFiles, pDustbin->iNbFiles);
+			g_atomic_int_add (&myData.iSize, pDustbin->iSize);
 		}
 		else  // calcul d'un fichier supplementaire.
 		{
 			cd_dustbin_measure_one_file (cURI, myConfig.iQuickInfoType, pDustbin, &iNbFiles, &iSize);
 			pDustbin->iNbFiles += iNbFiles;
 			pDustbin->iSize += iSize;
-			g_atomic_int_add (&myConfig.iNbFiles, iNbFiles);
-			g_atomic_int_add (&myConfig.iSize, iSize);
+			g_atomic_int_add (&myData.iNbFiles, iNbFiles);
+			g_atomic_int_add (&myData.iSize, iSize);
 		}
 		g_free (cURI);
 	}
 	while (1);
 	
-	g_print ("*** fin du thread -> %dfichiers , %db\n", myConfig.iNbFiles, myConfig.iSize);
+	g_print ("*** fin du thread -> %dfichiers , %db\n", myData.iNbFiles, myData.iSize);
 	
 	return NULL;
 }
@@ -156,7 +157,7 @@ static gboolean _cd_dustbin_check_for_redraw (gpointer data)
 	if (! iThreadIsRunning)
 	{
 		s_iSidTimerRedraw = 0;
-		g_print ("  redessin (%d,%d)\n", myConfig.iNbFiles, myConfig.iSize);
+		g_print ("  redessin (%d,%d)\n", myData.iNbFiles, myData.iSize);
 		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 			cd_dustbin_draw_quick_info (TRUE);
 		cd_dustbin_signal_full_dustbin ();
@@ -204,8 +205,8 @@ void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin)
 	{
 		cd_dustbin_remove_all_messages ();
 		s_pTasksList = g_list_prepend (s_pTasksList, pNewMessage);
-		g_atomic_int_set (&myConfig.iNbFiles, -1);  // en cours.
-		g_atomic_int_set (&myConfig.iSize, -1);  // en cours.
+		g_atomic_int_set (&myData.iNbFiles, -1);  // en cours.
+		g_atomic_int_set (&myData.iSize, -1);  // en cours.
 		cd_dustbin_draw_quick_info (TRUE);
 	}
 	else if (cURI == NULL)
@@ -246,17 +247,13 @@ int cd_dustbin_count_trashes (gchar *cDirectory)
 	}
 	
 	int iNbTrashes = 0;
-	struct stat buf;
-	const gchar *cFileName;
-	GString *sFilePath = g_string_new ("");
-	while ((cFileName = g_dir_read_name (dir)) != NULL)
+	while (g_dir_read_name (dir) != NULL)
 	{
 		iNbTrashes ++;
 	}
 	
-	g_string_free (sFilePath, TRUE);
 	g_dir_close (dir);
-	return (iNbTrashes);
+	return iNbTrashes;
 }
 
 void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
@@ -363,7 +360,7 @@ void cd_dustbin_measure_all_dustbins (int *iNbFiles, int *iSize)
 	int iNbFilesHere, iSizeHere;
 	CdDustbin *pDustbin;
 	GList *pElement;
-	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		
@@ -381,7 +378,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 	gchar *cQuestion;
 	if (cDirectory != NULL)
 		cQuestion = g_strdup_printf (_D("You're about to delete all files in %s. Sure ?"), cDirectory);
-	else if (myConfig.pTrashDirectoryList != NULL)
+	else if (myData.pDustbinsList != NULL)
 		cQuestion = g_strdup_printf (_D("You're about to delete all files in all dustbins. Sure ?"));
 	else
 		return;
@@ -398,7 +395,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		{
 			CdDustbin *pDustbin;
 			GList *pElement;
-			for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+			for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 			{
 				pDustbin = pElement->data;
 				g_string_append_printf (sCommand, "%s/* ", pDustbin->cPath);
@@ -419,11 +416,11 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		{
 			g_string_append_printf (sCommand, " %s", cDirectory);
 		}
-		else if (myConfig.pTrashDirectoryList != NULL)
+		else if (myData.pDustbinsList != NULL)
 		{
 			CdDustbin *pDustbin;
 			GList *pElement;
-			for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+			for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 			{
 				pDustbin = pElement->data;
 				g_string_append_printf (sCommand, " %s", pDustbin->cPath);
@@ -455,7 +452,7 @@ void cd_dustbin_sum_all_measures (int *iNbFiles, int *iSize)
 	int iTotalMeasure = 0;
 	CdDustbin *pDustbin;
 	GList *pElement;
-	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		g_atomic_int_add (iNbFiles, pDustbin->iNbFiles);
@@ -470,7 +467,7 @@ gboolean cd_dustbin_is_monitored (gchar *cDustbinPath)
 	g_return_val_if_fail (cDustbinPath != NULL, FALSE);
 	CdDustbin *pDustbin;
 	GList *pElement;
-	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		if (pDustbin->cPath != NULL && strcmp (pDustbin->cPath, cDustbinPath) == 0)
@@ -487,13 +484,13 @@ gboolean cd_dustbin_add_one_dustbin (gchar *cDustbinPath, int iAuthorizedWeight)
 	CdDustbin *pDustbin = g_new0 (CdDustbin, 1);
 	pDustbin->cPath = cDustbinPath;
 	pDustbin->iAuthorizedWeight = iAuthorizedWeight;
-	myConfig.pTrashDirectoryList = g_list_prepend (myConfig.pTrashDirectoryList, pDustbin);
+	myData.pDustbinsList = g_list_prepend (myData.pDustbinsList, pDustbin);
 	
 	if (cairo_dock_fm_add_monitor_full (cDustbinPath, TRUE, NULL, (CairoDockFMMonitorCallback) cd_dustbin_on_file_event, pDustbin))
 	{
 		pDustbin->iNbTrashes = cd_dustbin_count_trashes (cDustbinPath);
-		g_atomic_int_add (&myConfig.iNbTrashes, pDustbin->iNbTrashes);
-		g_print ("  myConfig.iNbTrashes <- %d\n", myConfig.iNbTrashes);
+		g_atomic_int_add (&myData.iNbTrashes, pDustbin->iNbTrashes);
+		g_print ("  myConfig.iNbTrashes <- %d\n", myData.iNbTrashes);
 		return TRUE;
 	}
 	else
@@ -514,12 +511,12 @@ void cd_dustbin_remove_all_dustbins (void)
 	
 	CdDustbin *pDustbin;
 	GList *pElement;
-	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		cairo_dock_fm_remove_monitor_full (pDustbin->cPath, FALSE, NULL);
 		cd_dustbin_free_dustbin (pDustbin);
 	}
-	g_list_free (myConfig.pTrashDirectoryList);
-	myConfig.pTrashDirectoryList = NULL;
+	g_list_free (myData.pDustbinsList);
+	myData.pDustbinsList = NULL;
 }

@@ -668,3 +668,29 @@ void cd_rendering_register_parabole_renderer (void)
 	
 	cairo_dock_register_renderer (MY_APPLET_PARABOLIC_VIEW_NAME, pRenderer);
 }
+
+
+
+
+static void cd_rendering_calculate_delta_for_anchor (CairoDock *pDock, double *fAnchorDelta)
+{
+	if (pDock->icons == NULL)
+		return ;
+	
+	Icon *pFirstIcon = pDock->icons->data;
+	Icon *pPointedIcon = pFirstIcon;
+	GList *ic;
+	int x_abs;
+	for (x_abs = 0; x_abs < pDock->fFlatDockWidth; x_abs ++)
+	{
+		cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, pDock->fMagnitudeMax, pDock->fFlatDockWidth, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->fAlign, 0);
+		
+		fAnchorDelta[x_abs] = pFirstIcon->fX;
+		
+		if (x_abs > pPointedIcon->fXAtRest)
+		{
+			ic = ic->next;
+			pPointedIcon = ic->data;
+		}
+	}
+}

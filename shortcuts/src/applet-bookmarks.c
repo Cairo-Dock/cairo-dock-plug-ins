@@ -3,9 +3,11 @@
 #include <string.h>
 #include <glib/gi18n.h>
 
+#include "applet-struct.h"
 #include "applet-bookmarks.h"
 
-extern gboolean my_bUseSeparator;
+extern AppletConfig myConfig;
+extern AppletData myData;
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -13,7 +15,7 @@ CD_APPLET_INCLUDE_MY_VARS
 static void _cd_shortcuts_detach_one_bookmark (Icon *icon, CairoDock *pDock, GList **pList)
 {
 	*pList = g_list_append (*pList, icon);
-	cairo_dock_detach_icon_from_dock (icon, pDock, my_bUseSeparator);
+	cairo_dock_detach_icon_from_dock (icon, pDock, myConfig.bUseSeparator);
 }
 void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
 {
@@ -58,7 +60,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 					g_print (" = 1 signet : %s\n", cOneBookmark);
 					pPrevBookmarkIconList = g_list_remove (pPrevBookmarkIconList, pExistingIcon);
 					pExistingIcon->fOrder = fCurrentOrder ++;
-					cairo_dock_insert_icon_in_dock (pExistingIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, my_bUseSeparator);
+					cairo_dock_insert_icon_in_dock (pExistingIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
 					g_free (cOneBookmark);
 				}
 				else  // on la cree.
@@ -76,7 +78,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 						pNewIcon->fOrder = fCurrentOrder ++;
 						
 						cairo_dock_load_one_icon_from_scratch (pNewIcon, myIcon->pSubDock);
-						cairo_dock_insert_icon_in_dock (pNewIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, my_bUseSeparator);
+						cairo_dock_insert_icon_in_dock (pNewIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
 					}
 					else
 					{
@@ -95,7 +97,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 			if (pFirstBookmarkIcon == NULL && pSeparatorIcon != NULL)
 			{
 				g_print ("on enleve l'ancien separateur\n");
-				cairo_dock_detach_icon_from_dock (pSeparatorIcon, myIcon->pSubDock, my_bUseSeparator);
+				cairo_dock_detach_icon_from_dock (pSeparatorIcon, myIcon->pSubDock, myConfig.bUseSeparator);
 				cairo_dock_free_icon (pSeparatorIcon);
 			}
 		}

@@ -2,20 +2,19 @@
 #include <dbus/dbus-glib.h>
 
 #include "powermanager-draw.h"
+#include "powermanager-struct.h"
 #include "powermanager-dbus.h"
 
-DBusGConnection *dbus_connexion_session;
-DBusGConnection *dbus_connexion_system;
-DBusGProxy *dbus_proxy_power;
-DBusGProxy *dbus_proxy_battery;
+static DBusGConnection *dbus_connexion_session;
+static DBusGConnection *dbus_connexion_system;
+static DBusGProxy *dbus_proxy_power;
+static DBusGProxy *dbus_proxy_battery;
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern gboolean dbus_enable;
-extern gboolean battery_present;
-extern gboolean on_battery;
-extern int battery_time;
-extern int battery_charge;
+extern AppletConfig myConfig;
+extern AppletData myData;
+
 
 gboolean dbus_get_dbus (void)
 {
@@ -75,31 +74,25 @@ gboolean get_on_battery(void)
 {
 	dbus_g_proxy_call (dbus_proxy_power, "GetOnBattery", NULL,
 		G_TYPE_INVALID,
-		G_TYPE_BOOLEAN, &on_battery,
+		G_TYPE_BOOLEAN, &myData.on_battery,
 		G_TYPE_INVALID);
 }
 
 void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
 {
-	if(onBattery)
-	{
-		on_battery = 1;
-	}
-	else
-	{
-		on_battery = 0;
-	}
+	myData.on_battery = onBattery;
+	
 	update_icon();
 }
 
 void update_stats(void)
 {
-	if(battery_present)
+	if(myData.battery_present)
 	{
 		dbus_g_proxy_call (dbus_proxy_battery, "GetPropertyInteger", NULL,
 			G_TYPE_STRING,"battery.charge_level.percentage",
 			G_TYPE_INVALID,
-			G_TYPE_INT, &battery_charge,
+			G_TYPE_INT, &myData.battery_charge,
 			G_TYPE_INVALID);
 	}
 	update_icon();
@@ -110,7 +103,7 @@ void detect_battery(void)
 	dbus_g_proxy_call (dbus_proxy_battery, "GetPropertyBoolean", NULL,
 		G_TYPE_STRING,"battery.present",
 		G_TYPE_INVALID,
-		G_TYPE_BOOLEAN, &battery_present,
+		G_TYPE_BOOLEAN, &myData.battery_present,
 		G_TYPE_INVALID);
 }
 

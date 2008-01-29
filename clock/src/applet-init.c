@@ -14,7 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-init.h"
 
-
 extern AppletConfig myConfig;
 extern AppletData myData;
 
@@ -129,5 +128,7 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_surface_destroy (myData.pForegroundSurface);
 		cairo_surface_destroy (myData.pBackgroundSurface);
 		_load_back_and_fore_ground ();
+		
+		cd_clock_update_with_time (myIcon);
 	}
 CD_APPLET_RELOAD_END

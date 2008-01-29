@@ -24,6 +24,7 @@
 
 #include <cairo-dock.h>
 
+
 CD_APPLET_CONFIG_H
 
 

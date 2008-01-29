@@ -1,39 +1,46 @@
-#include <cairo-dock.h>
+#include <string.h>
 
 #include "rhythmbox-struct.h"
 #include "rhythmbox-config.h"
 
-extern cairo_surface_t *rhythmbox_pSurface;
-extern cairo_surface_t *rhythmbox_pPlaySurface;
-extern cairo_surface_t *rhythmbox_pPauseSurface;
-extern cairo_surface_t *rhythmbox_pStopSurface;
-extern cairo_surface_t *rhythmbox_pCover;
-extern cairo_surface_t *rhythmbox_pBrokenSurface;
+AppletConfig myConfig;
+AppletData myData;
 
-CairoDockAnimationType conf_changeAnimation;
-gboolean conf_enableDialogs;
-double conf_timeDialogs;
-gboolean conf_enableCover;
-MyAppletQuickInfoType conf_quickInfoType;
 
 CD_APPLET_CONFIG_BEGIN ("Rhythmbox", NULL)
-	conf_enableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");
-	conf_enableCover 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_cover");
-	conf_timeDialogs 		= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "time_dialogs", 3000);
-	conf_changeAnimation 	= CD_CONFIG_GET_ANIMATION_WITH_DEFAULT ("Configuration", "change_animation", CAIRO_DOCK_ROTATE);
-	conf_quickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
+	reset_config ();
+	
+	myConfig.enableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");
+	myConfig.enableCover 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_cover");
+	myConfig.timeDialogs 		= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "time_dialogs", 3000);
+	myConfig.changeAnimation 	= CD_CONFIG_GET_ANIMATION_WITH_DEFAULT ("Configuration", "change_animation", CAIRO_DOCK_ROTATE);
+	myConfig.quickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
 CD_APPLET_CONFIG_END
 
 
-CD_APPLET_RESET_DATA_BEGIN
-	cairo_surface_destroy (rhythmbox_pSurface);
-	rhythmbox_pSurface = NULL;
-	cairo_surface_destroy (rhythmbox_pPlaySurface);
-	rhythmbox_pPlaySurface = NULL;
-	cairo_surface_destroy (rhythmbox_pPauseSurface);
-	rhythmbox_pPauseSurface = NULL;
-	cairo_surface_destroy (rhythmbox_pCover);
-	rhythmbox_pCover = NULL;
-	cairo_surface_destroy (rhythmbox_pBrokenSurface);
-	rhythmbox_pBrokenSurface = NULL;
-CD_APPLET_RESET_DATA_END
+void reset_config (void)
+{
+	g_free (myConfig.defaultTitle);
+	myConfig.defaultTitle = NULL;
+	
+	memset (&myConfig, 0, sizeof (AppletConfig));
+}
+
+void reset_data (void)
+{
+	cairo_surface_destroy (myData.pSurface);
+	myData.pSurface = NULL;
+	cairo_surface_destroy (myData.pPlaySurface);
+	myData.pPlaySurface = NULL;
+	cairo_surface_destroy (myData.pPauseSurface);
+	myData.pPauseSurface = NULL;
+	cairo_surface_destroy (myData.pCover);
+	myData.pCover = NULL;
+	cairo_surface_destroy (myData.pBrokenSurface);
+	myData.pBrokenSurface = NULL;
+	
+	g_free (myData.playing_uri);
+	myData.playing_uri = NULL;
+	
+	memset (&myData, 0, sizeof (AppletData));
+}

@@ -53,6 +53,6 @@ frame3 =
 #{in seconds, only used if you can't monitor directories.}
 check interval = 2.0
 
-#s Default file browser used to show a trash :
+#s Alternative file browser used to show a trash :
 #{Only use this if you notice that the applet can't display the trash on click.}
-file browser = 
+alternative file browser = 

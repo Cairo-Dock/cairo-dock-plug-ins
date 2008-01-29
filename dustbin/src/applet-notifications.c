@@ -16,6 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 CD_APPLET_INCLUDE_MY_VARS
 
 extern AppletConfig myConfig;
+extern AppletData myData;
 
 
 CD_APPLET_ABOUT (_D("This is the dustbin applet for Cairo-Dock\n made by Fabrice Rey (fabounet@users.berlios.de)"))
@@ -35,7 +36,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GList *pElement;
 	
 	CD_APPLET_ADD_SUB_MENU (_D("Show Trash"), pShowSubMenu, pModuleSubMenu)
-	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		g_string_printf (sLabel, _D("Show %s"), pDustbin->cPath);
@@ -44,7 +45,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_IN_MENU (_D("Show All"), cd_dustbin_show_trash, pShowSubMenu)
 	
 	CD_APPLET_ADD_SUB_MENU (_D("Delete Trash"), pDeleteSubMenu, pModuleSubMenu)
-	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		g_string_printf (sLabel, _D("Delete %s"), pDustbin->cPath);
@@ -114,9 +115,9 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			g_print ("Attention : can't find valid URI for '%s' : %s\n", CD_APPLET_RECEIVED_DATA, erreur->message);
 			g_error_free (erreur);
 		}
-		else if ((cHostname == NULL || strcmp (cHostname, "localhost") == 0) && myConfig.pTrashDirectoryList != NULL)
+		else if ((cHostname == NULL || strcmp (cHostname, "localhost") == 0) && myData.pDustbinsList != NULL)
 		{
-			CdDustbin *pDustbin = myConfig.pTrashDirectoryList->data;
+			CdDustbin *pDustbin = myData.pDustbinsList->data;
 			gchar *cCommand = g_strdup_printf ("mv %s %s", cFileName, pDustbin->cPath);
 			system (cCommand);
 			g_free (cCommand);
@@ -132,16 +133,16 @@ CD_APPLET_ON_DROP_DATA_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	GString *sInfo = g_string_new ("");
-	g_string_printf (sInfo, "%.2fMb for %d files in all dustbins :", 1.*myConfig.iSize/(1024*1024), myConfig.iNbFiles);
+	g_string_printf (sInfo, "%.2fMb for %d files in all dustbins :", 1.*myData.iSize/(1024*1024), myData.iNbFiles);
 	CdDustbin *pDustbin;
 	GList *pElement;
-	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		g_string_append_printf (sInfo, "\n  %.2fM for %d files for in %s", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
 	}
 	
-	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myDock, 0, myConfig.cDialogIconPath);
+	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myDock, 0, myData.cDialogIconPath);
 	
 	g_string_free (sInfo, TRUE);
 CD_APPLET_ON_MIDDLE_CLICK_END
