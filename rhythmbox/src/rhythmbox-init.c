@@ -27,9 +27,9 @@ const gchar *playing_title = NULL;
 
 CD_APPLET_DEFINITION ("Rhythmbox", 1, 4, 6)
 
-CD_APPLET_INIT_BEGIN (erreur)
-	conf_defaultTitle = g_strdup (myIcon->acName);
 
+static void _load_surfaces (void)
+{
 	GString *sImagePath = g_string_new ("");  // ce serait bien de pouvoir choisir ses icones, comme dans l'applet logout...
 	//Chargement de l'image "default"
 	g_string_printf (sImagePath, "%s/stop.svg", MY_APPLET_SHARE_DATA_DIR);
@@ -48,16 +48,22 @@ CD_APPLET_INIT_BEGIN (erreur)
 	rhythmbox_pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 
 	g_string_free (sImagePath, TRUE);
+}
 
+CD_APPLET_INIT_BEGIN (erreur)
+	conf_defaultTitle = g_strdup (myIcon->acName);
+	
+	_load_surfaces ();
+	
 	//Si le bus n'a pas encore ete acquis, on le recupere.
 	if (! rhythmbox_dbus_enable)
 		rhythmbox_dbus_enable = rhythmbox_dbus_get_dbus();
-
+	
 	//Si le bus a ete acquis, on y connecte nos signaux.
 	if (rhythmbox_dbus_enable)
 	{
 		rhythmbox_dbus_connect_to_bus ();
-
+		
 		dbus_detect_rhythmbox();
 		if(rhythmbox_opening)
 		{
@@ -75,37 +81,24 @@ CD_APPLET_INIT_BEGIN (erreur)
 	{
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (rhythmbox_pBrokenSurface)
 	}
-
+	
 	//Enregistrement des notifications
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
 
-CD_APPLET_CONFIGURE_BEGIN
-CD_APPLET_CONFIGURE_END
 
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-
+	
 	rhythmbox_dbus_disconnect_from_bus ();
-
+	
 	g_free (conf_defaultTitle);
 	conf_defaultTitle = NULL;
-
-	cairo_surface_destroy (rhythmbox_pSurface);
-	rhythmbox_pSurface = NULL;
-	cairo_surface_destroy (rhythmbox_pPlaySurface);
-	rhythmbox_pPlaySurface = NULL;
-	cairo_surface_destroy (rhythmbox_pPauseSurface);
-	rhythmbox_pPauseSurface = NULL;
-	cairo_surface_destroy (rhythmbox_pCover);
-	rhythmbox_pCover = NULL;
-	cairo_surface_destroy (rhythmbox_pBrokenSurface);
-	rhythmbox_pBrokenSurface = NULL;
-
+	
 	g_free (playing_uri);
 	playing_uri = NULL;
 	playing_artist = NULL;
@@ -114,3 +107,18 @@ CD_APPLET_STOP_BEGIN
 	playing_duration = 0;
 	playing_track = 0;
 CD_APPLET_STOP_END
+
+
+CD_APPLET_RELOAD_BEGIN
+	//\_______________ On recharge les donnees qui ont pu changer.
+	_load_surfaces ();
+	
+	if (CD_APPLET_MY_CONFIG_CHANGED)
+	{
+		g_free (conf_defaultTitle);
+		conf_defaultTitle = g_strdup (myIcon->acName);
+	}
+	
+	//\_______________ On redessine notre icone.
+	update_icon( FALSE );
+CD_APPLET_RELOAD_END

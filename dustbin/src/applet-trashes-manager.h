@@ -8,6 +8,8 @@
 
 gpointer cd_dustbin_threaded_calculation (gpointer data);
 
+void cd_dustbin_remove_all_messages (void);
+
 void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin);
 
 

@@ -6,13 +6,7 @@
 #include <cairo-dock.h>
 
 
-CairoDockVisitCard *pre_init (void);
-
-
-Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur);
-
-
-void stop (void);
+CD_APPLET_H
 
 
 #endif

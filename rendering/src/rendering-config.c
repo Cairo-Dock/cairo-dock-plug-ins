@@ -24,9 +24,11 @@ extern double my_fSeparatorColor[4];
 
 extern double my_fParaboleCurvature;
 extern double my_fParaboleRatio;
-extern double my_fParaboleAmplitude;
+extern double my_fParaboleMagnitude;
 
-void cd_rendering_read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator)
+extern cairo_surface_t *my_pFlatSeparatorSurface[2];
+
+void read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator)
 {
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
 	
@@ -60,7 +62,7 @@ void cd_rendering_read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator
 	
 	my_fParaboleRatio = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "ratio", &bFlushConfFileNeeded, 5, NULL, NULL);
 	
-	my_fParaboleAmplitude = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "wave amplitude", &bFlushConfFileNeeded, .2, NULL, NULL);
+	my_fParaboleMagnitude = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "wave magnitude", &bFlushConfFileNeeded, .2, NULL, NULL);
 	
 	if (! bFlushConfFileNeeded)
 		bFlushConfFileNeeded = cairo_dock_conf_file_needs_update (pKeyFile, MY_APPLET_VERSION);
@@ -68,4 +70,13 @@ void cd_rendering_read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator
 		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, MY_APPLET_SHARE_DATA_DIR);
 	
 	g_key_file_free (pKeyFile);
+}
+
+
+void reset_data (void)
+{
+	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
+	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
+	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
+	my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
 }

@@ -3,6 +3,7 @@
 #define  __CD_CLOCK_STRUCT__
 
 #include <glib.h>
+#include <cairo-dock.h>
 
 typedef enum _LayerElement
 {
@@ -34,6 +35,7 @@ typedef struct {
 	int iDayOfWeek;
 	int iDayOfMonth;
 	gchar *cMessage;
+	gchar *cCommand;
 	} CDClockAlarm;
 
 typedef enum
@@ -43,6 +45,25 @@ typedef enum
 	CLOCK_DATE_ON_LABEL
 } CDClockDatePosition;
 
+
+typedef struct {
+	CDClockDatePosition iShowDate;
+	gboolean bShowSeconds;
+	gboolean bOldStyle;
+	gboolean b24Mode;
+	double fTextColor[4];
+	gchar *cThemePath;
+	GPtrArray *pAlarms;
+	gchar *cSetupTimeCommand;
+	} AppletConfig;
+
+typedef struct {
+	cairo_surface_t *pBackgroundSurface;
+	cairo_surface_t *pForegroundSurface;
+	RsvgDimensionData DimensionData;
+	RsvgHandle *pSvgHandles[CLOCK_ELEMENTS];
+	int iSidUpdateClock;
+	} AppletData;
 
 #endif
 

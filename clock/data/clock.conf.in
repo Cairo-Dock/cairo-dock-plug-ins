@@ -69,6 +69,10 @@ day1 =
 #s Message you want to use to be notified :
 message1 = 
 
+#s Command to execute :
+#{For exemple, < play /path/to/file/ogg >.}
+command1 = 
+
 #F[Alarm n°2]
 frame2 = 
 
@@ -85,6 +89,9 @@ day2 =
 #s Message you want to use to be notified :
 message2 = 
 
+#s Command to execute :
+#{For exemple, < play /path/to/file/ogg >.}
+command2 = 
 
 #F[Alarm n°3]
 frame3 = 
@@ -101,3 +108,7 @@ day3 =
 
 #s Message you want to use to be notified :
 message3 = 
+
+#s Command to execute :
+#{For exemple, < play /path/to/file/ogg >.}
+command3 = 

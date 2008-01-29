@@ -8,19 +8,19 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 **********************************************************************************/
 #include <stdlib.h>
 
+#include "applet-struct.h"
 #include "applet-notifications.h"
-
-extern gchar *my_cSetupTimeCommand;
 
 CD_APPLET_INCLUDE_MY_VARS
 
+extern AppletConfig myConfig;
 
 void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 {
 	GError *erreur = NULL;
-	if (my_cSetupTimeCommand != NULL)
+	if (myConfig.cSetupTimeCommand != NULL)
 	{
-		g_spawn_command_line_async (my_cSetupTimeCommand, &erreur);
+		g_spawn_command_line_async (myConfig.cSetupTimeCommand, &erreur);
 		
 	}
 	else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
@@ -34,7 +34,7 @@ void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 	
 	if (erreur != NULL)
 	{
-		g_print ("Attention : when trying to execute '%s' : %s\n", my_cSetupTimeCommand, erreur->message);
+		g_print ("Attention : when trying to execute '%s' : %s\n", myConfig.cSetupTimeCommand, erreur->message);
 		g_error_free (erreur);
 	}
 }

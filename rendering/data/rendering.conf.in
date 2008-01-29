@@ -30,11 +30,12 @@ show face = false
 
 [Parabolic]
 
-#e[.1;2] Curvature :
+#e[0.1;2] Curvature :
 curvature = .5
 
-#e[.1;2] Ratio height/width :
+#e[0.1;10] Ratio height/width :
 ratio = 5
 
-wave amplitude = .2
-
+#e[0;1] Magnitude of the wave :
+#{0 means the wave is totally flat, 1 means the wave is identical to other views.}
+wave magnitude= .2

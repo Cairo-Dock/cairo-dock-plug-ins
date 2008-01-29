@@ -30,13 +30,14 @@ CairoDockVisitCard *pre_init (void)
 	pVisitCard->cPreviewFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_PREVIEW_FILE);
 	pVisitCard->cGettextDomain = g_strdup (MY_APPLET_GETTEXT_DOMAIN);
 	pVisitCard->cDockVersionOnCompilation = g_strdup (MY_APPLET_DOCK_VERSION);
-
+	pVisitCard->cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
+	
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 	{
 		if (init_vfs_backend ())
 		{
 			CairoDockVFSBackend *pVFSBackend = g_new0 (CairoDockVFSBackend, 1);
-
+			
 			pVFSBackend->get_file_info = vfs_backend_get_file_info;
 			pVFSBackend->get_file_properties = vfs_backend_get_file_properties;
 			pVFSBackend->list_directory = vfs_backend_list_directory;
@@ -61,12 +62,12 @@ CairoDockVisitCard *pre_init (void)
 
 Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
 {
-	pModule->cConfFilePath = NULL;
 	return NULL;
 }
 
-void configure()
+gboolean reload (gchar *cConfFilePath)
 {
+	return TRUE;
 }
 
 void stop (void)

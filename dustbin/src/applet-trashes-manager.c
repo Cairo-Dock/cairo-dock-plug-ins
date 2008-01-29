@@ -15,15 +15,12 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "cairo-dock.h"
 
 #include "applet-draw.h"
+#include "applet-struct.h"
 #include "applet-trashes-manager.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern GList *my_pTrashDirectoryList;
-extern gchar *my_cDefaultBrowser;
-extern int my_iQuickInfoType;
-extern int my_iNbTrashes, my_iNbFiles, my_iSize;
-extern int my_iSizeLimit;
+extern AppletConfig myConfig;
 
 static GStaticRWLock s_mTasksMutex = G_STATIC_RW_LOCK_INIT;
 static GList *s_pTasksList = NULL;
@@ -66,29 +63,29 @@ gpointer cd_dustbin_threaded_calculation (gpointer data)
 		//\________________________ On traite le message.
 		if (pDustbin == NULL)  // recalcul complet.
 		{
-			cd_dustbin_measure_all_dustbins (&my_iNbFiles, &my_iSize);
+			cd_dustbin_measure_all_dustbins (&myConfig.iNbFiles, &myConfig.iSize);
 		}
 		else if (cURI == NULL)
 		{
-			g_atomic_int_add (&my_iNbFiles, - pDustbin->iNbFiles);
-			g_atomic_int_add (&my_iSize, - pDustbin->iSize);
-			cd_dustbin_measure_directory (pDustbin->cPath, my_iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
-			g_atomic_int_add (&my_iNbFiles, pDustbin->iNbFiles);
-			g_atomic_int_add (&my_iSize, pDustbin->iSize);
+			g_atomic_int_add (&myConfig.iNbFiles, - pDustbin->iNbFiles);
+			g_atomic_int_add (&myConfig.iSize, - pDustbin->iSize);
+			cd_dustbin_measure_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
+			g_atomic_int_add (&myConfig.iNbFiles, pDustbin->iNbFiles);
+			g_atomic_int_add (&myConfig.iSize, pDustbin->iSize);
 		}
 		else  // calcul d'un fichier supplementaire.
 		{
-			cd_dustbin_measure_one_file (cURI, my_iQuickInfoType, pDustbin, &iNbFiles, &iSize);
+			cd_dustbin_measure_one_file (cURI, myConfig.iQuickInfoType, pDustbin, &iNbFiles, &iSize);
 			pDustbin->iNbFiles += iNbFiles;
 			pDustbin->iSize += iSize;
-			g_atomic_int_add (&my_iNbFiles, iNbFiles);
-			g_atomic_int_add (&my_iSize, iSize);
+			g_atomic_int_add (&myConfig.iNbFiles, iNbFiles);
+			g_atomic_int_add (&myConfig.iSize, iSize);
 		}
 		g_free (cURI);
 	}
 	while (1);
 	
-	g_print ("*** fin du thread -> %dfichiers , %db\n", my_iNbFiles, my_iSize);
+	g_print ("*** fin du thread -> %dfichiers , %db\n", myConfig.iNbFiles, myConfig.iSize);
 	
 	return NULL;
 }
@@ -159,8 +156,8 @@ static gboolean _cd_dustbin_check_for_redraw (gpointer data)
 	if (! iThreadIsRunning)
 	{
 		s_iSidTimerRedraw = 0;
-		g_print ("  redessin (%d,%d)\n", my_iNbFiles, my_iSize);
-		if (my_iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || my_iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+		g_print ("  redessin (%d,%d)\n", myConfig.iNbFiles, myConfig.iSize);
+		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 			cd_dustbin_draw_quick_info (TRUE);
 		cd_dustbin_signal_full_dustbin ();
 		return FALSE;
@@ -207,8 +204,8 @@ void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin)
 	{
 		cd_dustbin_remove_all_messages ();
 		s_pTasksList = g_list_prepend (s_pTasksList, pNewMessage);
-		g_atomic_int_set (&my_iNbFiles, -1);  // en cours.
-		g_atomic_int_set (&my_iSize, -1);  // en cours.
+		g_atomic_int_set (&myConfig.iNbFiles, -1);  // en cours.
+		g_atomic_int_set (&myConfig.iSize, -1);  // en cours.
 		cd_dustbin_draw_quick_info (TRUE);
 	}
 	else if (cURI == NULL)
@@ -366,11 +363,11 @@ void cd_dustbin_measure_all_dustbins (int *iNbFiles, int *iSize)
 	int iNbFilesHere, iSizeHere;
 	CdDustbin *pDustbin;
 	GList *pElement;
-	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		
-		cd_dustbin_measure_directory (pDustbin->cPath, my_iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
+		cd_dustbin_measure_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
 		
 		g_atomic_int_add (iNbFiles, pDustbin->iNbFiles);
 		g_atomic_int_add (iSize, pDustbin->iSize);
@@ -384,7 +381,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 	gchar *cQuestion;
 	if (cDirectory != NULL)
 		cQuestion = g_strdup_printf (_D("You're about to delete all files in %s. Sure ?"), cDirectory);
-	else if (my_pTrashDirectoryList != NULL)
+	else if (myConfig.pTrashDirectoryList != NULL)
 		cQuestion = g_strdup_printf (_D("You're about to delete all files in all dustbins. Sure ?"));
 	else
 		return;
@@ -401,7 +398,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		{
 			CdDustbin *pDustbin;
 			GList *pElement;
-			for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+			for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 			{
 				pDustbin = pElement->data;
 				g_string_append_printf (sCommand, "%s/* ", pDustbin->cPath);
@@ -415,18 +412,18 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 
 void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 {
-	if (my_cDefaultBrowser != NULL)
+	if (myConfig.cDefaultBrowser != NULL)
 	{
-		GString *sCommand = g_string_new (my_cDefaultBrowser);
+		GString *sCommand = g_string_new (myConfig.cDefaultBrowser);
 		if (cDirectory != NULL)
 		{
 			g_string_append_printf (sCommand, " %s", cDirectory);
 		}
-		else if (my_pTrashDirectoryList != NULL)
+		else if (myConfig.pTrashDirectoryList != NULL)
 		{
 			CdDustbin *pDustbin;
 			GList *pElement;
-			for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+			for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 			{
 				pDustbin = pElement->data;
 				g_string_append_printf (sCommand, " %s", pDustbin->cPath);
@@ -441,8 +438,8 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		{
 			g_print ("Attention : when trying to execute '%s' : %s\n", sCommand->str, erreur->message);
 			g_error_free (erreur);
-			//gchar *cTipMessage = g_strdup_printf ("A problem occured\nIf '%s' is not your usual file browser, you can change it in the conf panel of this module", my_cDefaultBrowser);
-			cairo_dock_show_temporary_dialog (_D("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myDock, 5000, my_cDefaultBrowser);
+			//gchar *cTipMessage = g_strdup_printf ("A problem occured\nIf '%s' is not your usual file browser, you can change it in the conf panel of this module", myConfig.cDefaultBrowser);
+			cairo_dock_show_temporary_dialog (_D("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myDock, 5000, myConfig.cDefaultBrowser);
 			//g_free (cTipMessage);
 		}
 		g_string_free (sCommand, TRUE);
@@ -458,7 +455,7 @@ void cd_dustbin_sum_all_measures (int *iNbFiles, int *iSize)
 	int iTotalMeasure = 0;
 	CdDustbin *pDustbin;
 	GList *pElement;
-	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		g_atomic_int_add (iNbFiles, pDustbin->iNbFiles);
@@ -473,7 +470,7 @@ gboolean cd_dustbin_is_monitored (gchar *cDustbinPath)
 	g_return_val_if_fail (cDustbinPath != NULL, FALSE);
 	CdDustbin *pDustbin;
 	GList *pElement;
-	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		if (pDustbin->cPath != NULL && strcmp (pDustbin->cPath, cDustbinPath) == 0)
@@ -490,13 +487,13 @@ gboolean cd_dustbin_add_one_dustbin (gchar *cDustbinPath, int iAuthorizedWeight)
 	CdDustbin *pDustbin = g_new0 (CdDustbin, 1);
 	pDustbin->cPath = cDustbinPath;
 	pDustbin->iAuthorizedWeight = iAuthorizedWeight;
-	my_pTrashDirectoryList = g_list_prepend (my_pTrashDirectoryList, pDustbin);
+	myConfig.pTrashDirectoryList = g_list_prepend (myConfig.pTrashDirectoryList, pDustbin);
 	
 	if (cairo_dock_fm_add_monitor_full (cDustbinPath, TRUE, NULL, (CairoDockFMMonitorCallback) cd_dustbin_on_file_event, pDustbin))
 	{
 		pDustbin->iNbTrashes = cd_dustbin_count_trashes (cDustbinPath);
-		g_atomic_int_add (&my_iNbTrashes, pDustbin->iNbTrashes);
-		g_print ("  my_iNbTrashes <- %d\n", my_iNbTrashes);
+		g_atomic_int_add (&myConfig.iNbTrashes, pDustbin->iNbTrashes);
+		g_print ("  myConfig.iNbTrashes <- %d\n", myConfig.iNbTrashes);
 		return TRUE;
 	}
 	else
@@ -517,12 +514,12 @@ void cd_dustbin_remove_all_dustbins (void)
 	
 	CdDustbin *pDustbin;
 	GList *pElement;
-	for (pElement = my_pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
+	for (pElement = myConfig.pTrashDirectoryList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
 		cairo_dock_fm_remove_monitor_full (pDustbin->cPath, FALSE, NULL);
 		cd_dustbin_free_dustbin (pDustbin);
 	}
-	g_list_free (my_pTrashDirectoryList);
-	my_pTrashDirectoryList = NULL;
+	g_list_free (myConfig.pTrashDirectoryList);
+	myConfig.pTrashDirectoryList = NULL;
 }
