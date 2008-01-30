@@ -21,6 +21,7 @@ static void _terminal_copy (GtkMenuItem *menu_item, gpointer *data)
 	g_print ("%s (%s)\n", __func__, cReceivedData);
 	_terminal_write_command_with_data (pWidget, "", cReceivedData);
 }
+
 static void _terminal_cd (GtkMenuItem *menu_item, gpointer *data)
 {
 	GtkWidget *pWidget = data[0];
