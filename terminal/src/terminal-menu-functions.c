@@ -29,6 +29,7 @@
 #include "terminal-init.h"
 #include "terminal-callbacks.h"
 #include "terminal-menu-functions.h"
+#include <tomboykeybinder.h>
 
 extern t_terminal term;
 
@@ -38,6 +39,24 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT ("This is a very simple terminal applet made by Cedric GESTES for Cairo-Dock");
 
 static void terminal_new_tab();
+
+
+static void onKeybindingPull (const char *keystring, gpointer dialog)
+{
+  //  printf("{{##OnKeybindingPull\n");
+  if (dialog)
+    cd_desklet_show((CairoDockDesklet *)dialog);
+}
+
+gboolean terminal_keygrabber_bind(const gchar *keystr, CairoDockDesklet *dialog)
+{
+  return tomboy_keybinder_bind(keystr, onKeybindingPull, (gpointer)dialog);
+}
+
+void terminal_keygrabber_unbind(const gchar *keystr)
+{
+  tomboy_keybinder_unbind(keystr, onKeybindingPull);
+}
 
 static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
 {
@@ -60,10 +79,17 @@ static void term_dialog_apply_settings(GtkWidget *vterm)
 /*     vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), FALSE); */
     vte_terminal_set_opacity(VTE_TERMINAL(vterm), term.transparency);
     vte_terminal_set_size(VTE_TERMINAL(vterm), term.iNbColumns, term.iNbRows);
-    //    gtk_widget_queue_draw(vterm);
+    //    gtk_widget_queue_draw(term.dialog->pWidget);
+
+
   }
   if (term.dialog)
     gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
+
+  terminal_keygrabber_unbind(term.prev_shortcut);
+  term.prev_shortcut = term.shortcut;
+  terminal_keygrabber_bind(term.shortcut, term.dialog);
+
 }
 
 
@@ -176,6 +202,8 @@ static void applet_on_terminal_eof(VteTerminal *vteterminal,
   printf("youkata EOF\n");
 }
 
+
+
 static void terminal_new_tab()
 {
   GtkWidget *vterm = NULL;
@@ -216,6 +244,11 @@ static CairoDockDesklet *terminal_new_dialog()
   g_signal_connect (G_OBJECT (term.tab), "button-release-event",
                     G_CALLBACK (applet_on_terminal_press_cb), &term);
   term.dialog = cd_desklet_new(0, term.tab, 0, 0);
+
+  tomboy_keybinder_init();
+  terminal_keygrabber_bind(term.shortcut, term.dialog);
+  term.prev_shortcut = term.shortcut;
+
   term_tab_apply_settings();
   return term.dialog;
 }

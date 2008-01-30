@@ -141,19 +141,9 @@ void cd_desklet_free(CairoDockDesklet *pDialog)
   g_free(pDialog);
 }
 
-static gboolean cd_desklet_on_focus_in(GtkWidget *widget,
-                                       GdkEventFocus *event,
-                                       CairoDockDesklet *pDialog)
-{
-  if (!pDialog)
-    return FALSE;
-  gtk_widget_queue_draw(pDialog->pWidget);
-  return FALSE;
-}
-
-static gboolean cd_desklet_on_focus_out(GtkWidget *widget,
-                                 GdkEventFocus *event,
-                                 CairoDockDesklet *pDialog)
+static gboolean cd_desklet_on_focus_in_out(GtkWidget *widget,
+                                           GdkEventFocus *event,
+                                           CairoDockDesklet *pDialog)
 {
   if (!pDialog)
     return FALSE;
@@ -216,9 +206,9 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
   g_signal_connect (G_OBJECT (pWindow), "button-release-event",
                     G_CALLBACK (cd_desklet_on_release), pDialog);
   g_signal_connect (G_OBJECT (pWindow), "focus-in-event",
-                    G_CALLBACK (cd_desklet_on_focus_in), pDialog);
+                    G_CALLBACK (cd_desklet_on_focus_in_out), pDialog);
   g_signal_connect (G_OBJECT (pWindow), "focus-out-event",
-                    G_CALLBACK (cd_desklet_on_focus_out), pDialog);
+                    G_CALLBACK (cd_desklet_on_focus_in_out), pDialog);
 
   //user widget
   if (pInteractiveWidget != NULL)

@@ -35,3 +35,6 @@ background color= 0.; 0.; 0.
 nb lines = 25
 #I-[5;999] ...
 nb columns = 80
+
+#s Shortcut to show the terminal
+shortcut = <Ctrl>F1

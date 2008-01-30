@@ -30,16 +30,22 @@ CD_APPLET_H
 
 
 typedef struct s_terminal {
-	guint16  transparency;
-	gboolean always_on_top;
-	GdkColor backcolor;
-	GdkColor forecolor;
+  guint16  transparency;
+  gboolean always_on_top;
+  GdkColor backcolor;
+  GdkColor forecolor;
 
-	CairoDockDesklet *dialog;
-	GtkWidget *tab;
+  CairoDockDesklet *dialog;
+  GtkWidget *tab;
 
-	gint iNbRows;
-	gint iNbColumns;
+  gint iNbRows;
+  gint iNbColumns;
+
+  gchar *shortcut;
+  gchar *prev_shortcut;
+
+  gint x;
+  gint y;
 } t_terminal;
 
 

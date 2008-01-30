@@ -34,7 +34,9 @@ t_terminal term = {
 	NULL,
 	NULL,
 	25,
-	80
+	80,
+        NULL,
+        NULL
 };
 
 
