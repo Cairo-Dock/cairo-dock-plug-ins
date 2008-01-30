@@ -29,6 +29,8 @@ typedef struct {
   NaTrayManager  *manager;
   GtkWidget      *box;
   GtkWidget      *widget;
+  GdkScreen      *screen;
+
   GList          *icons;
   guint          idle_redraw_id;
 } TrayApplet;

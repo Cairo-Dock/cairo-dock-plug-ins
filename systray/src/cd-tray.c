@@ -100,6 +100,7 @@ tray_icon_added (NaTrayManager *manager,
   applet->icons = g_list_append (applet->icons, icon);
   gtk_widget_set_colormap(icon, gdk_screen_get_rgb_colormap (gdk_screen_get_default()));
   gtk_box_pack_start(GTK_BOX(applet->box), icon, TRUE, TRUE, 0);
+  gtk_widget_set_size_request(icon, 24, 24);
   tray_resize_container(applet);
   force_redraw(applet);
 }
@@ -144,7 +145,31 @@ static gboolean tray_clean_up(GtkWidget *widget,
   g_object_unref (tray);
 }
 
-static NaTrayManager *na_tray_man_bah_cest_moche = NULL;
+static void tray_create_widget(TrayApplet *applet)
+{
+  applet->manager = na_tray_manager_new();
+  if (!na_tray_manager_manage_screen (applet->manager, applet->screen))
+    g_warning ("The notification area could not manage the screen \n");
+  g_signal_connect (applet->box, "delete-event",
+                    G_CALLBACK (tray_clean_up), applet);
+
+  g_signal_connect (applet->manager, "tray_icon_added",
+                    G_CALLBACK (tray_icon_added), applet);
+  g_signal_connect (applet->manager, "tray_icon_removed",
+                    G_CALLBACK (tray_icon_removed), applet);
+  g_signal_connect (applet->manager, "message_sent",
+                    G_CALLBACK (tray_icon_message_sent), applet);
+  g_signal_connect (applet->manager, "message_cancelled",
+                    G_CALLBACK (tray_icon_message_cancelled), applet);
+  gtk_widget_set_colormap (applet->box, gdk_screen_get_rgb_colormap (applet->screen));
+  gtk_container_add (GTK_CONTAINER (applet->widget), applet->box);
+}
+
+static void tray_icon_cb_click_steal(GtkWidget *w, TrayApplet* applet)
+{
+  gtk_container_remove(GTK_CONTAINER(applet->widget), w);
+  tray_create_widget(applet);
+}
 
 TrayApplet* tray_init (GtkWidget *parent)
 {
@@ -162,38 +187,24 @@ TrayApplet* tray_init (GtkWidget *parent)
   //gtk_widget_set_size_request(applet->box, icon_size_w*10, icon_size_h + 6);
   tray_resize_container(applet);
   applet->icons = NULL;
-
-  if (na_tray_manager_check_running(screen)) {
-    g_warning ("There is already another notification area running on this screen\n");
-    //we delete the previous task man
-    g_object_unref(na_tray_man_bah_cest_moche);
-    g_warning ("There is already another notification area running on this screen\n");
-  }
-
-  applet->manager = na_tray_manager_new();
-  na_tray_man_bah_cest_moche = applet->manager;
-
-  if (!na_tray_manager_manage_screen (applet->manager, screen))
-    g_warning ("The notification area could not manage the screen \n");
-
-  g_signal_connect (applet->box, "delete-event",
-                    G_CALLBACK (tray_clean_up), applet);
-
-  g_signal_connect (applet->manager, "tray_icon_added",
-                    G_CALLBACK (tray_icon_added), applet);
-  g_signal_connect (applet->manager, "tray_icon_removed",
-                    G_CALLBACK (tray_icon_removed), applet);
-  g_signal_connect (applet->manager, "message_sent",
-                    G_CALLBACK (tray_icon_message_sent), applet);
-  g_signal_connect (applet->manager, "message_cancelled",
-                    G_CALLBACK (tray_icon_message_cancelled), applet);
-
-  gtk_widget_set_colormap (applet->box, gdk_screen_get_rgb_colormap (screen));
+  applet->screen = screen;
 
   applet->widget = gtk_event_box_new ();
   gtk_event_box_set_visible_window(GTK_EVENT_BOX (applet->widget), TRUE);
   gtk_widget_set_colormap(applet->widget, gdk_screen_get_rgb_colormap (screen));
-  gtk_container_add (GTK_CONTAINER (applet->widget), applet->box);
+
+  if (na_tray_manager_check_running(screen)) {
+    GtkWidget *w;
+
+    g_warning ("There is already another notification area running on this screen\n");
+    w = gtk_button_new_with_label("steal systray icons");
+    gtk_container_add (GTK_CONTAINER (applet->widget), w);
+    g_signal_connect (w, "clicked",
+                      G_CALLBACK (tray_icon_cb_click_steal), applet);
+    return applet;
+  }
+
+  tray_create_widget(applet);
 
   return applet;
 }

@@ -179,7 +179,7 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
   gtk_box_pack_start(GTK_BOX(hbox), vbox, 0, 0, 0);
 
   btn = gtk_button_new_with_label("X");
-  gtk_box_pack_start(GTK_BOX(vbox), btn, 0, 0, 0);
+/*   gtk_box_pack_start(GTK_BOX(vbox), btn, 0, 0, 0); */
   g_signal_connect (G_OBJECT (btn), "clicked",
                     G_CALLBACK (cd_desklet_on_click_close), pDialog);
 

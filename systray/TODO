@@ -1,5 +1,2 @@
-  - composite + cairo to draw icon in the dock
-
-
+  - composite + cairo to draw icon in the dock ?
   - clean tray-manager on exit
-  - ask if we should steal systray from gnome-panel

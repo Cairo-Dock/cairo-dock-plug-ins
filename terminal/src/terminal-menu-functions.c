@@ -55,9 +55,12 @@ static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
 static void term_dialog_apply_settings(GtkWidget *vterm)
 {
   if (vterm) {
-    vte_terminal_set_opacity(VTE_TERMINAL(vterm), term.transparency);
     vte_terminal_set_colors(VTE_TERMINAL(vterm), &term.forecolor, &term.backcolor, NULL, 0);
+/*     vte_terminal_set_background_saturation(VTE_TERMINAL(vterm), 1.0); */
+/*     vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), FALSE); */
+    vte_terminal_set_opacity(VTE_TERMINAL(vterm), term.transparency);
     vte_terminal_set_size(VTE_TERMINAL(vterm), term.iNbColumns, term.iNbRows);
+    //    gtk_widget_queue_draw(vterm);
   }
   if (term.dialog)
     gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
@@ -70,7 +73,6 @@ void term_tab_apply_settings()
   GtkWidget *vterm = NULL;
 
   for (int i = 0; i < sz; ++i) {
-    printf("settings...\n");
     vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(term.tab), i);
     term_dialog_apply_settings(vterm);
   }
@@ -85,7 +87,8 @@ static void on_terminal_child_exited(VteTerminal *vteterminal,
   if (sz > 1)
     gtk_notebook_remove_page(GTK_NOTEBOOK(term.tab), p);
   else {
-    //TODO: echo somethink on the term, to say it's okay
+    // \r needed to return to the beginning of the line
+    vte_terminal_feed(VTE_TERMINAL(vteterminal), "Shell exited. Another one is launching...\r\n\n", -1);
     cd_desklet_hide(term.dialog);
     vte_terminal_fork_command(VTE_TERMINAL(vteterminal),
                               NULL,
@@ -167,36 +170,11 @@ gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, t
                   gtk_get_current_event_time ());
   return TRUE;
 }
-
-
-/* static gboolean            on_terminal_press_cb                      (GtkWidget      *widget, */
-/*                                                         GdkEventButton *event, */
-/*                                                         gpointer        user_data) */
-/* static gboolean applet_on_key_press_cb(GtkWidget *window, GdkEventKey *event, t_terminal *terminal) */
-/* { */
-
-
-/*   if (!(terminal && terminal->vterm)) */
-/*     return FALSE; */
-/*   // Checks if the modifiers control and shift are pressed */
-/*   if (event->state & GDK_CONTROL_MASK && event->state & GDK_SHIFT_MASK) */
-/*     { */
-/*       gchar *key = gdk_keyval_name (gdk_keyval_to_lower (event->keyval)); */
-
-/*       // Copy */
-/*       if (! strncmp (key, "c", 1)) vte_terminal_copy_clipboard (VTE_TERMINAL (terminal->vterm)); */
-/*       // Paste */
-/*       if (! strncmp (key, "v", 1)) vte_terminal_paste_clipboard (VTE_TERMINAL (terminal->vterm)); */
-/*       // Signify that event has been handled */
-/*       return TRUE; */
-/*     } */
-/*   else */
-/*     { */
-/*       // Signify that event has not been handled */
-/*       return FALSE; */
-/*     } */
-/* } */
-
+static void applet_on_terminal_eof(VteTerminal *vteterminal,
+                                   gpointer     user_data)
+{
+  printf("youkata EOF\n");
+}
 
 static void terminal_new_tab()
 {
@@ -219,6 +197,8 @@ static void terminal_new_tab()
                     G_CALLBACK (on_terminal_child_exited), NULL);
   g_signal_connect (G_OBJECT (vterm), "button-release-event",
                     G_CALLBACK (applet_on_terminal_press_cb), &term);
+  g_signal_connect (G_OBJECT (vterm), "eof",
+                    G_CALLBACK (applet_on_terminal_eof), &term);
 
   cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received));
   gtk_notebook_append_page(GTK_NOTEBOOK(term.tab), vterm, NULL);
