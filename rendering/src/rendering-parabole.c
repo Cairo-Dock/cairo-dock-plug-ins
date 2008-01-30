@@ -26,6 +26,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 extern double my_fParaboleCurvature;  // puissance de x (alpha).
 extern double my_fParaboleRatio;  // ratio hauteur / largeur fixe => coef de la parabole (lambda).
 extern double my_fParaboleMagnitude;
+int my_iParaboleTextGap = 3;
 
 static double *s_pReferenceParaboleS = NULL;
 static double *s_pReferenceParaboleX = NULL;
@@ -281,7 +282,8 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 		icon->fXMin = icon->fXAtRest - 1e4;
 		pDock->iMaxLabelWidth = MAX (pDock->iMaxLabelWidth, icon->iTextWidth);
 	}
-	g_print ("> iMaxLabelWidth : %d\n", pDock->iMaxLabelWidth);
+	g_print ("> iMaxLabelWidth : %d+%d\n", pDock->iMaxLabelWidth, my_iParaboleTextGap);
+	pDock->iMaxLabelWidth += my_iParaboleTextGap;
 	
 	double alpha = my_fParaboleCurvature, lambda;
 	double h=0, w=0, h_, w_;
@@ -308,8 +310,8 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 		g_print ("=> %.2fx%.2f , %.2f\n", w, h, lambda);
 	}
 	
-	pDock->iMaxDockHeight = h + pDock->iMaxIconHeight * sqrt (5./4.);
-	pDock->iMaxDockWidth = w + pDock->iMaxIconHeight * (.5+sqrt(5./4.));  // ce serait plutot MaxIconWidth mais bon ...
+	pDock->iMaxDockHeight = h + pDock->iMaxIconHeight * sqrt (5./4.) * (1 + my_fParaboleMagnitude * g_fAmplitude);
+	pDock->iMaxDockWidth = w + pDock->iMaxIconHeight * (.5+sqrt(5./4.)) * (1 + my_fParaboleMagnitude * g_fAmplitude);  // ce serait plutot MaxIconWidth mais bon ...
 	
 	pDock->iMaxDockWidth += pDock->iMaxLabelWidth;  // theta(0) = 0 => texte horizontal.
 	double fOrientationMax = G_PI/2 - atan (my_fParaboleRatio * my_fParaboleCurvature);  // fCurve_ (W) se simplifie ici.
@@ -376,14 +378,14 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 			{
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
-					icon->fWidth,
+					icon->fWidth * icon->fScale + my_iParaboleTextGap,
 					(icon->fHeight * icon->fScale - icon->iTextHeight)/2);
 			}
 			else
 			{
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
-					- icon->iTextWidth,
+					- (icon->iTextWidth + my_iParaboleTextGap),
 					(icon->fHeight * icon->fScale - icon->iTextHeight)/2);
 			}
 			cairo_paint_with_alpha (pCairoContext, (1 - pDock->fFoldingFactor) * (1 - pDock->fFoldingFactor));
@@ -512,13 +514,14 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		return NULL;
 	
 	//\____________________ On calcule la projection du curseur sur la courbe.
+	double fMaxScale =  1. + my_fParaboleMagnitude * g_fAmplitude;
 	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
-	double w = MAX (1, pDock->iCurrentWidth - pDock->iMaxLabelWidth - pDock->iMaxIconHeight * (.5+sqrt(5./4.)));
+	double w = MAX (1, pDock->iCurrentWidth - pDock->iMaxLabelWidth - pDock->iMaxIconHeight * (.5+sqrt(5./4.)) * fMaxScale);
 	double h = my_fParaboleRatio * w;
-	double alpha = my_fParaboleCurvature, lambda =h / pow (w, alpha);
+	double alpha = my_fParaboleCurvature, lambda = h / pow (w, alpha);
 	//g_print ("> lambda = %.2f\n", lambda);
 	double fXOnCurve, fYOnCurve;
-	fXOnCurve = (pDock->fAlign == 0 ? pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight : pDock->iCurrentWidth - (pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight));
+	fXOnCurve = (pDock->fAlign == 0 ? pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale : pDock->iCurrentWidth - (pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale));
 	fYOnCurve = pDock->iCurrentHeight - pDock->iMouseY;
 	cd_rendering_project_cursor_on_curve (fXOnCurve, fYOnCurve, lambda, alpha, &fXOnCurve, &fYOnCurve);
 	g_print (" on curve : %.2f;%.2f\n", fXOnCurve, fYOnCurve);
@@ -528,11 +531,11 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	
 	if (pDock->fAlign == 0)
 	{
-		fXOnCurve = fXOnCurve + pDock->iMaxLabelWidth + .5*pDock->iMaxIconHeight;
+		fXOnCurve = fXOnCurve + pDock->iMaxLabelWidth + .5*pDock->iMaxIconHeight * fMaxScale;
 	}
 	else
 	{
-		fXOnCurve = pDock->iCurrentWidth - (fXOnCurve - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight);
+		fXOnCurve = pDock->iCurrentWidth - (fXOnCurve - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale);
 	}
 	fYOnCurve = pDock->iCurrentHeight - fYOnCurve;
 	g_print (" => %.2f;%.2f (%d ; %d)\n", fXOnCurve, fYOnCurve, pDock->iMouseX, pDock->iMouseY);
@@ -607,12 +610,12 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight * icon->fScale;
 		if (pDock->fAlign == 1)
 		{
-			icon->fDrawX = pDock->iCurrentWidth - (x_ + pDock->iMaxLabelWidth + pDock->iMaxIconHeight/2 - icon->fWidth * icon->fScale/2);
+			icon->fDrawX = pDock->iCurrentWidth - (x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - icon->fWidth * icon->fScale/2);
 			icon->fOrientation = - theta_;
 		}
 		else
 		{
-			icon->fDrawX = x_ + pDock->iMaxLabelWidth + pDock->iMaxIconHeight/2 - icon->fWidth * icon->fScale/2;
+			icon->fDrawX = x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - icon->fWidth * icon->fScale/2;
 			icon->fOrientation = theta_;
 		}
 		///icon->fScale = 1.;
@@ -692,5 +695,8 @@ static void cd_rendering_calculate_delta_for_anchor (CairoDock *pDock, double *f
 			ic = ic->next;
 			pPointedIcon = ic->data;
 		}
+		
+		
+		
 	}
 }
