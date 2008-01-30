@@ -48,25 +48,26 @@ static gboolean cd_desklet_on_expose(GtkWidget *pWidget,
   cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
   cairo_paint (pCairoContext);
 
-  //set the color
-  cairo_set_source_rgba (pCairoContext, 1., 1., 1., 0.7);
-  cairo_set_line_width (pCairoContext, 10.0);
-  cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_ROUND);
+  if (gtk_window_is_active(GTK_WINDOW(pDialog->pWidget))) {
+    //set the color
+    cairo_set_source_rgba (pCairoContext, 1., 1., 1., 0.7);
+    cairo_set_line_width (pCairoContext, 10.0);
+    cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_ROUND);
 
-  //draw a rounded square
-  gtk_window_get_size(GTK_WINDOW(pDialog->pWidget), &w, &h);
-  cairo_move_to (pCairoContext, border, border);
-  cairo_rel_line_to (pCairoContext, w - (border << 1), 0);
-  cairo_rel_line_to (pCairoContext, 0, h - (border << 1));
-  cairo_rel_line_to (pCairoContext, -(w - (border << 1)) , 0);
-  cairo_set_line_join (pCairoContext, CAIRO_LINE_JOIN_ROUND);
-  cairo_close_path (pCairoContext);
-  cairo_stroke (pCairoContext);
+    //draw a rounded square
+    gtk_window_get_size(GTK_WINDOW(pDialog->pWidget), &w, &h);
+    cairo_move_to (pCairoContext, border, border);
+    cairo_rel_line_to (pCairoContext, w - (border << 1), 0);
+    cairo_rel_line_to (pCairoContext, 0, h - (border << 1));
+    cairo_rel_line_to (pCairoContext, -(w - (border << 1)) , 0);
+    cairo_set_line_join (pCairoContext, CAIRO_LINE_JOIN_ROUND);
+    cairo_close_path (pCairoContext);
+    cairo_stroke (pCairoContext);
 
-/*   cairo_set_source_rgba (pCairoContext, 1., 1., 1., 1.); */
-  cairo_rectangle(pCairoContext, border, border, (w - (border << 1)), (h - (border << 1)));
-  cairo_fill(pCairoContext);
-
+    /*   cairo_set_source_rgba (pCairoContext, 1., 1., 1., 1.); */
+    cairo_rectangle(pCairoContext, border, border, (w - (border << 1)), (h - (border << 1)));
+    cairo_fill(pCairoContext);
+  }
   cairo_destroy (pCairoContext);
   return FALSE;
 }
@@ -140,6 +141,25 @@ void cd_desklet_free(CairoDockDesklet *pDialog)
   g_free(pDialog);
 }
 
+static gboolean cd_desklet_on_focus_in(GtkWidget *widget,
+                                       GdkEventFocus *event,
+                                       CairoDockDesklet *pDialog)
+{
+  if (!pDialog)
+    return FALSE;
+  gtk_widget_queue_draw(pDialog->pWidget);
+  return FALSE;
+}
+
+static gboolean cd_desklet_on_focus_out(GtkWidget *widget,
+                                 GdkEventFocus *event,
+                                 CairoDockDesklet *pDialog)
+{
+  if (!pDialog)
+    return FALSE;
+  gtk_widget_queue_draw(pDialog->pWidget);
+  return FALSE;
+}
 
 CairoDockDesklet *cd_desklet_new(Icon *pIcon,
                                  GtkWidget *pInteractiveWidget,
@@ -165,7 +185,7 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
   gtk_window_set_decorated(GTK_WINDOW(pWindow), FALSE);
   gtk_window_set_resizable(GTK_WINDOW(pWindow), TRUE);
   gtk_window_set_title(GTK_WINDOW(pWindow), "cairo-dock-dialog");
-  gtk_widget_add_events(pWindow, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_POINTER_MOTION_MASK);
+  gtk_widget_add_events(pWindow, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_POINTER_MOTION_MASK | GDK_FOCUS_CHANGE_MASK);
   //the border is were cairo paint
   gtk_container_set_border_width(GTK_CONTAINER(pWindow), 10);
   gtk_window_set_default_size(GTK_WINDOW(pWindow), 32, 32);
@@ -195,6 +215,10 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
                     G_CALLBACK (cd_desklet_on_click), pDialog);
   g_signal_connect (G_OBJECT (pWindow), "button-release-event",
                     G_CALLBACK (cd_desklet_on_release), pDialog);
+  g_signal_connect (G_OBJECT (pWindow), "focus-in-event",
+                    G_CALLBACK (cd_desklet_on_focus_in), pDialog);
+  g_signal_connect (G_OBJECT (pWindow), "focus-out-event",
+                    G_CALLBACK (cd_desklet_on_focus_out), pDialog);
 
   //user widget
   if (pInteractiveWidget != NULL)
