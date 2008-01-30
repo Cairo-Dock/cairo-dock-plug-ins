@@ -25,7 +25,7 @@
 
 #include <vte/vte.h>
 
-#include "cairo-applet.h"
+#include "cairo-dock-desklet.h"
 #include "terminal-init.h"
 #include "terminal-callbacks.h"
 #include "terminal-menu-functions.h"
@@ -35,11 +35,9 @@ extern t_terminal term;
 CD_APPLET_INCLUDE_MY_VARS
 
 
-CD_APPLET_ABOUT ("This is a very simple terminal applet made by Cedric GESTES for Cairo-Dock")
+CD_APPLET_ABOUT ("This is a very simple terminal applet made by Cedric GESTES for Cairo-Dock");
 
-
-
-  static void terminal_new_tab();
+static void terminal_new_tab();
 
 static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
 {
@@ -88,7 +86,7 @@ static void on_terminal_child_exited(VteTerminal *vteterminal,
     gtk_notebook_remove_page(GTK_NOTEBOOK(term.tab), p);
   else {
     //TODO: echo somethink on the term, to say it's okay
-    applet_hide_dialog(term.dialog);
+    cd_desklet_hide(term.dialog);
     vte_terminal_fork_command(VTE_TERMINAL(vteterminal),
                               NULL,
                               NULL,
@@ -101,6 +99,14 @@ static void on_terminal_child_exited(VteTerminal *vteterminal,
 }
 
 
+static void _terminal_copy (GtkMenuItem *menu_item, GtkWidget *data)
+{
+  vte_terminal_copy_clipboard(VTE_TERMINAL(data));
+}
+static void _terminal_paste (GtkMenuItem *menu_item, GtkWidget *data)
+{
+  vte_terminal_paste_clipboard(VTE_TERMINAL(data));
+}
 
 static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gchar *cReceivedData)
 {
@@ -116,7 +122,13 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gchar *cReceived
 	image = gtk_image_new_from_stock (GTK_STOCK_JUSTIFY_LEFT, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-/* 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_copy), my_data); */
+        g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_copy), pWidget);
+
+	menu_item = gtk_image_menu_item_new_with_label (_("Paste"));
+	image = gtk_image_new_from_stock (GTK_STOCK_JUSTIFY_LEFT, GTK_ICON_SIZE_MENU);
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+ 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_paste), pWidget);
 
 	menu_item = gtk_separator_menu_item_new ();
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
@@ -138,11 +150,8 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gchar *cReceived
 
 gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, t_terminal *terminal)
 {
-  printf("HEREEE\n");
   static gchar *cReceivedData = NULL;  // on en peut recevoir qu'un drop a la fois, donc pas de collision possible.
-/*   if (!(terminal && terminal->vterm)) */
-/*     return FALSE; */
-  //TODO: window should be replaced with the good vterm
+
   if (event->button == 1)
     return FALSE;
   GtkWidget *menu = _terminal_build_menu_tab (window, cReceivedData);
@@ -216,9 +225,8 @@ static void terminal_new_tab()
   gtk_widget_show(vterm);
 }
 
-static CairoDockDialog *terminal_new_dialog()
+static CairoDockDesklet *terminal_new_dialog()
 {
-  CairoDockDialog *dialog;
   GtkWidget *vterm = NULL;
 
   term.tab = gtk_notebook_new();
@@ -227,12 +235,9 @@ static CairoDockDialog *terminal_new_dialog()
 
   g_signal_connect (G_OBJECT (term.tab), "button-release-event",
                     G_CALLBACK (applet_on_terminal_press_cb), &term);
-  dialog = applet_build_dialog (myDock, term.tab, NULL);
-  //gtk_widget_set_size_request(dialog->pWidget, 600, 400);
-
-  term.dialog = dialog;
+  term.dialog = cd_desklet_new(0, term.tab, 0, 0);
   term_tab_apply_settings();
-  return dialog;
+  return term.dialog;
 }
 
 
@@ -241,13 +246,13 @@ CD_APPLET_ON_CLICK_BEGIN
     term.dialog = terminal_new_dialog();
   }
   else {
-    applet_unhide_dialog(term.dialog);
+    cd_desklet_show(term.dialog);
     term_tab_apply_settings();
   }
 CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-  applet_hide_dialog(term.dialog);
+  cd_desklet_hide(term.dialog);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 

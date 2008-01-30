@@ -24,7 +24,7 @@
 #include <math.h>
 
 #include <cairo-dock.h>
-#include "cairo-applet.h"
+//#include "cairo-dock-desklet.h"
 #include "cd-tray.h"
 #include "systray-init.h"
 

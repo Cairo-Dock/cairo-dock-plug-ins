@@ -25,13 +25,14 @@
 
 #include <cairo-dock.h>
 #include "cd-tray.h"
+#include "cairo-dock-desklet.h"
 
 CD_APPLET_H
 
 typedef struct s_systray {
   TrayApplet
 *tray;
-  CairoDockDialog *dialog;
+  CairoDockDesklet *dialog;
 
   gboolean always_on_top;
 } t_systray;

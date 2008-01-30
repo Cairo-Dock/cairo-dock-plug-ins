@@ -114,7 +114,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 	if (cReceivedData[length-1] == '\r')
 		cReceivedData[--length] = '\0';  // on vire ce ... c'est quoi ce truc ??!
 	g_print ("cReceivedData : %s\n", cReceivedData);
-	
+
 	if (strncmp (cReceivedData, "file://", 7) == 0)  // on gere le cas des URI.
 	{
 		GError *erreur = NULL;
@@ -128,7 +128,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 	}
 	else
 		cReceivedData = g_strdup (cReceivedData);
-	
+
 	GtkWidget *menu = _terminal_build_menu (pWidget, cReceivedData);
 
 	gtk_widget_show_all (menu);
@@ -145,6 +145,6 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 
 gboolean on_terminal_button_press_dialog (GtkWidget* pWidget, GdkEventButton* pButton, gpointer data)  // a connecter au dialog->pWidget.
 {
-	cairo_dock_hide_dialog (term.dialog);
+	cd_desklet_hide(term.dialog);
 	return FALSE;
 }

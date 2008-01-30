@@ -24,7 +24,7 @@
 
 
 #include <cairo-dock.h>
-
+#include "cairo-dock-desklet.h"
 
 CD_APPLET_H
 
@@ -34,11 +34,10 @@ typedef struct s_terminal {
 	gboolean always_on_top;
 	GdkColor backcolor;
 	GdkColor forecolor;
-	
-	GtkWidget *vterm;
-	CairoDockDialog *dialog;
+
+	CairoDockDesklet *dialog;
 	GtkWidget *tab;
-	
+
 	gint iNbRows;
 	gint iNbColumns;
 } t_terminal;

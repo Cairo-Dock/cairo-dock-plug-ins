@@ -26,7 +26,7 @@
 #include "systray-menu-functions.h"
 #include "systray-init.h"
 #include "cd-tray.h"
-#include "cairo-applet.h"
+#include "cairo-dock-desklet.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -41,12 +41,12 @@ void systray_dialog_apply_settings()
     gtk_window_set_keep_above(GTK_WINDOW(systray.dialog->pWidget), systray.always_on_top);
 }
 
-static CairoDockDialog *systray_new_dialog()
+static CairoDockDesklet *systray_new_dialog()
 {
   GtkRequisition req;
 
   systray.tray = tray_init(myDock->pWidget);
-  systray.dialog = applet_build_dialog (myDock, systray.tray->widget, NULL);
+  systray.dialog = cd_desklet_new (0, systray.tray->widget, 0, 0);
   gtk_widget_size_request(GTK_WIDGET(systray.tray->box), &req);
   gtk_window_resize(GTK_WINDOW(systray.dialog->pWidget), 24, 24);
   systray_dialog_apply_settings();
@@ -56,16 +56,16 @@ static CairoDockDialog *systray_new_dialog()
 CD_APPLET_ON_CLICK_BEGIN
   if (!systray.dialog) {
     systray.dialog = systray_new_dialog();
-    applet_unhide_dialog(systray.dialog);
+    cd_desklet_show(systray.dialog);
     }
   else {
-    applet_unhide_dialog(systray.dialog);
+    cd_desklet_show(systray.dialog);
     gtk_window_set_keep_above(GTK_WINDOW(systray.dialog->pWidget), systray.always_on_top);
   }
 CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-  applet_hide_dialog(systray.dialog);
+  cd_desklet_hide(systray.dialog);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 

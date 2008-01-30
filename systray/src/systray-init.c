@@ -26,7 +26,6 @@
 #include "systray-init.h"
 #include "cd-tray.h"
 
-//extern t_systray systray;
 t_systray systray = {
   NULL,
   NULL,
@@ -44,6 +43,10 @@ CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
+        //TODO: remove the window
+        //remove the tray manager
+        cd_desklet_free(systray.dialog);
+        systray.dialog = 0;
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
@@ -51,11 +54,6 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	if (CD_APPLET_MY_CONFIG_CHANGED)
-	{
-		if (systray.dialog)
-		{
-			systray_dialog_apply_settings();
-		}
-	}
+	if (CD_APPLET_MY_CONFIG_CHANGED && systray.dialog)
+          systray_dialog_apply_settings();
 CD_APPLET_RELOAD_END

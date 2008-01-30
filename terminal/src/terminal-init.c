@@ -24,39 +24,41 @@
 #include "terminal-config.h"
 #include "terminal-menu-functions.h"
 #include "terminal-init.h"
+#include "cairo-dock-desklet.h"
 
-
-extern t_terminal term;
+t_terminal term = {
+	35555.,
+	FALSE,
+	{ 0, 0, 0, 0 },
+	{ 0, 0, 0, 0 },
+	NULL,
+	NULL,
+	25,
+	80
+};
 
 
 CD_APPLET_DEFINITION ("terminal", 1, 4, 7)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
+  CD_APPLET_REGISTER_FOR_CLICK_EVENT
+  CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
+  CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-	g_print ("stop terminal\n");
-	if (term.dialog)
-		cairo_dock_dialog_unreference (term.dialog);  // detruira aussi le widget terminal qui lui est associe.
-	term.dialog = NULL;
-	term.vterm = NULL;
-	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
+  g_print ("stop terminal\n");
+  cd_desklet_free(term.dialog);
+  term.dialog = NULL;
+  CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
+  CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
+  CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	if (CD_APPLET_MY_CONFIG_CHANGED)
-	{
-		if (term.dialog)
-		{
-			term_tab_apply_settings();
-		}
-	}
+  if (CD_APPLET_MY_CONFIG_CHANGED && term.dialog)
+    term_tab_apply_settings();
 CD_APPLET_RELOAD_END
