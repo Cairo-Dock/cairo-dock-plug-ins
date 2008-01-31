@@ -1,5 +1,5 @@
 #dnl Process this file with automake to produce Makefile.in
 
-SUBDIRS = . src data
+SUBDIRS = . src data po
 
 EXTRA_DIST = TODO ChangeLog

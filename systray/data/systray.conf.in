@@ -1,4 +1,4 @@
-#!
+#!en;@VERSION@
 
 [ICON]
 #F[Size of the icon you wish this applet has (in pixels)]
@@ -22,3 +22,6 @@ main icon=gnome-panel-notification-area
 [GUI]
 #b always on top?
 always on top=false
+
+#k Shortkey to toggle the systray
+shortkey = <Ctrl>F2

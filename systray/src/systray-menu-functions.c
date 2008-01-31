@@ -34,11 +34,34 @@ CD_APPLET_ABOUT("This is a simple systray applet made by Cedric GESTES for Cairo
 
 extern t_systray systray;
 
+static CairoDockDesklet *systray_new_dialog();
+static void onKeybindingPull (const char *keystring, gpointer user_data);
+
+static void onKeybindingPull (const char *keystring, gpointer user_data)
+{
+  //  printf("{{##OnKeybindingPull\n");
+  if (user_data) {
+    cd_desklet_show((CairoDockDesklet *)user_data);
+    return;
+  }
+  if (!systray.dialog) {
+    systray.dialog = systray_new_dialog();
+    cd_desklet_show(systray.dialog);
+    //rebind with the dialog
+    cd_keybinder_unbind(systray.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
+    systray.prev_shortcut = systray.shortcut;
+    cd_keybinder_bind(systray.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)systray.dialog);
+  }
+}
 
 void systray_dialog_apply_settings()
 {
   if (systray.dialog)
     gtk_window_set_keep_above(GTK_WINDOW(systray.dialog->pWidget), systray.always_on_top);
+  cd_keybinder_unbind(systray.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
+  systray.prev_shortcut = systray.shortcut;
+  cd_keybinder_bind(systray.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)systray.dialog);
+
 }
 
 static CairoDockDesklet *systray_new_dialog()
@@ -50,6 +73,9 @@ static CairoDockDesklet *systray_new_dialog()
   gtk_widget_size_request(GTK_WIDGET(systray.tray->box), &req);
   gtk_window_resize(GTK_WINDOW(systray.dialog->pWidget), 24, 24);
   systray_dialog_apply_settings();
+/*   cd_keybinder_bind(systray.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)systray.dialog); */
+/*   systray.prev_shortcut = systray.shortcut; */
+
   return systray.dialog;
 }
 

@@ -29,5 +29,8 @@ extern t_systray systray;
 CD_APPLET_CONFIG_BEGIN ("systray", "gnome-panel-notification-area")
 {
   systray.always_on_top = cairo_dock_get_boolean_key_value (pKeyFile, "GUI", "always on top", &bFlushConfFileNeeded, FALSE, NULL, NULL);
+
+  systray.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F2");
+  systray.prev_shortcut = systray.shortcut;
 }
 CD_APPLET_CONFIG_END

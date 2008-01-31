@@ -30,11 +30,12 @@
 CD_APPLET_H
 
 typedef struct s_systray {
-  TrayApplet
-*tray;
+  TrayApplet *tray;
   CairoDockDesklet *dialog;
 
   gboolean always_on_top;
+  gchar *shortcut;
+  gchar *prev_shortcut;
 } t_systray;
 
 #endif
