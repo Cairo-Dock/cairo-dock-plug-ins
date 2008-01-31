@@ -146,13 +146,13 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gchar *cReceived
 
 	GtkWidget *menu_item, *image;
 	menu_item = gtk_image_menu_item_new_with_label (_("Copy"));
-	image = gtk_image_new_from_stock (GTK_STOCK_JUSTIFY_LEFT, GTK_ICON_SIZE_MENU);
+	image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
         g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_copy), pWidget);
 
 	menu_item = gtk_image_menu_item_new_with_label (_("Paste"));
-	image = gtk_image_new_from_stock (GTK_STOCK_JUSTIFY_LEFT, GTK_ICON_SIZE_MENU);
+	image = gtk_image_new_from_stock (GTK_STOCK_PASTE, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
  	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_paste), pWidget);
@@ -161,13 +161,13 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gchar *cReceived
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 
 	menu_item = gtk_image_menu_item_new_with_label ("New Tab");
-	image = gtk_image_new_from_stock (GTK_STOCK_JUMP_TO, GTK_ICON_SIZE_MENU);
+	image = gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_new_tab), 0);
 
 	menu_item = gtk_image_menu_item_new_with_label ("Close Tab");
-	image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_MENU);
+	image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_close_tab), 0);
@@ -249,6 +249,7 @@ static CairoDockDesklet *terminal_new_dialog()
 
 
 CD_APPLET_ON_CLICK_BEGIN
+{
   if (!term.dialog) {
     term.dialog = terminal_new_dialog();
   }
@@ -256,19 +257,25 @@ CD_APPLET_ON_CLICK_BEGIN
     cd_desklet_show(term.dialog);
     term_tab_apply_settings();
   }
+}
 CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+{
   cd_desklet_hide(term.dialog);
+}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU("Terminal", pSubMenu, CD_APPLET_MY_MENU)
-        CD_APPLET_ADD_IN_MENU("New Tab", on_new_tab, pSubMenu)
-        CD_APPLET_ADD_IN_MENU("Close the current Tab", on_close_tab, pSubMenu)
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+{
+  CD_APPLET_ADD_SUB_MENU("Terminal", pSubMenu, CD_APPLET_MY_MENU);
+  CD_APPLET_ADD_IN_MENU("New Tab", on_new_tab, pSubMenu);
+  CD_APPLET_ADD_IN_MENU("Close the current Tab", on_close_tab, pSubMenu);
+  CD_APPLET_ADD_SEPARATOR();
+  CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+}
 CD_APPLET_ON_BUILD_MENU_END
 
 
