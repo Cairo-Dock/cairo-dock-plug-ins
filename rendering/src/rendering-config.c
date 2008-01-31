@@ -25,6 +25,7 @@ extern double my_fSeparatorColor[4];
 extern double my_fParaboleCurvature;
 extern double my_fParaboleRatio;
 extern double my_fParaboleMagnitude;
+extern int my_iParaboleTextGap;
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 
@@ -63,6 +64,8 @@ void read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator)
 	my_fParaboleRatio = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "ratio", &bFlushConfFileNeeded, 5, NULL, NULL);
 	
 	my_fParaboleMagnitude = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "wave magnitude", &bFlushConfFileNeeded, .2, NULL, NULL);
+	
+	my_iParaboleTextGap = cairo_dock_get_integer_key_value (pKeyFile, "Parabolic", "text gap", &bFlushConfFileNeeded, 3, NULL, NULL);
 	
 	if (! bFlushConfFileNeeded)
 		bFlushConfFileNeeded = cairo_dock_conf_file_needs_update (pKeyFile, MY_APPLET_VERSION);

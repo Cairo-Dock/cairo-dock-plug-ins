@@ -160,21 +160,6 @@ void rhythmbox_getPlayingUri(void)
 }
 
 
-//*********************************************************************************
-// rhythmbox_getElapsed() : Retourne le temps écoulé pour la musique joué
-//*********************************************************************************
-void rhythmbox_getElapsed(void)
-{	
-	g_print ("%s ()\n",__func__);
-	int time_elapsed;
-	
-	dbus_g_proxy_call (dbus_proxy_player, "getElapsed", NULL,
-		G_TYPE_INVALID,
-		G_TYPE_UINT, &time_elapsed,
-		G_TYPE_INVALID);
-	g_print(" -> %ds\n",time_elapsed);
-}
-
 void getSongInfos(void)
 {	
 	GHashTable *data_list = NULL;
@@ -229,7 +214,7 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 {
 	g_print ("%s (%s)\n",__func__,uri);
 	
-	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);  // on redessine a la fin.
 	
 	g_free (myData.playing_uri);
 	if(uri != NULL && *uri != '\0')
@@ -296,7 +281,7 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 				int sec = elapsed % 60;
 				cQuickInfo = g_strdup_printf ("%i:%.02d", min,sec);
 			}
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cQuickInfo);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW (cQuickInfo)
 			g_free (cQuickInfo);
 		}
 		else if(myConfig.quickInfoType == MY_APPLET_TIME_LEFT)
@@ -313,13 +298,13 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 				int sec = time % 60;
 				cQuickInfo = g_strdup_printf ("-%i:%.02d", min,sec);
 			}
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cQuickInfo);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW (cQuickInfo)
 			g_free (cQuickInfo);
 		}
 		else if(myConfig.quickInfoType == MY_APPLET_PERCENTAGE)
 		{
 			gchar *cQuickInfo = g_strdup_printf ("%d%%", ((100.*elapsed/myData.playing_duration)));
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cQuickInfo);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW (cQuickInfo)
 			g_free (cQuickInfo);
 		}
 	}

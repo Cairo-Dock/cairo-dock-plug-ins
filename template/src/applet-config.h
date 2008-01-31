@@ -2,7 +2,6 @@
 #ifndef __APPLET_CONFIG__
 #define  __APPLET_CONFIG__
 
-
 #include <cairo-dock.h>
 
 
@@ -15,4 +14,3 @@ void reset_data (void);
 
 
 #endif
-

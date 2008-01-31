@@ -29,7 +29,7 @@ gboolean my_bRotateIconsOnEllipse;  // tourner les icones de profil ou pas.
 double my_fParaboleCurvature;  // puissance de x.
 double my_fParaboleRatio;  // hauteur/largeur.
 double my_fParaboleMagnitude;
-
+int my_iParaboleTextGap;
 
 CairoDockVisitCard *pre_init (void)
 {

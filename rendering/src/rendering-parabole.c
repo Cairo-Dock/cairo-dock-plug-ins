@@ -26,7 +26,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 extern double my_fParaboleCurvature;  // puissance de x (alpha).
 extern double my_fParaboleRatio;  // ratio hauteur / largeur fixe => coef de la parabole (lambda).
 extern double my_fParaboleMagnitude;
-int my_iParaboleTextGap = 3;
+extern int my_iParaboleTextGap;
 
 static double *s_pReferenceParaboleS = NULL;
 static double *s_pReferenceParaboleX = NULL;
@@ -232,38 +232,6 @@ double cd_rendering_interpol_curvilign_abscisse (double x, double y, double lamb
 }
 
 
-
-static void _cd_rendering_calculate_parabole_extent (GList *pIconList, double alpha, double lambda, double *fWidth, double *fHeight)  // donne le bas de la derniere icone.
-{
-	double ds;
-	double x = 0, y = 0, theta = 0;
-	double x_ = 0, y_ = 0, theta_ = G_PI/2 - atan (fCurve_(0, lambda, alpha));
-	GList *ic;
-	Icon *icon, *prev_icon;
-	for (ic = pIconList; ic != NULL; ic = ic->next)
-	{
-		icon = ic->data;
-		
-		if (ic->prev != NULL)
-		{
-			ds = icon->fHeight * (1 - 0) + g_iIconGap;
-			cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
-			//g_print ("ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
-			
-			ds += prev_icon->fWidth / 2 * fabs (tan (theta_ - theta)) * (1 - 0);
-			cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
-			//g_print ("  ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
-		}
-		
-		x = x_;
-		y = y_;
-		theta = theta_;
-		prev_icon = icon;
-	}
-	*fWidth = x;
-	*fHeight = y;
-}
-
 void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 {
 	///pDock->bHorizontalDock = CAIRO_DOCK_VERTICAL;
@@ -289,7 +257,6 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	double h=0, w=0, h_, w_;
 	if (my_fParaboleRatio > 1)
 	{
-		///h_ = pDock->fFlatDockWidth;
 		h_ = iMaxDockWidth;
 		do
 		{
@@ -298,7 +265,6 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 			lambda = h / pow (w, alpha);
 			g_print ("-> %.2fx%.2f , %.2f\n", w, h, lambda);
 			
-			///_cd_rendering_calculate_parabole_extent (pDock->icons, alpha, lambda, &w_, &h_);
 			h_ = cd_rendering_interpol (iMaxDockWidth, s_pReferenceParaboleS, s_pReferenceParaboleY);
 			w_ = h_ / my_fParaboleRatio;
 		}
@@ -404,14 +370,6 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 #endif
 }
 
-CairoDockMousePositionType cd_rendering_check_if_mouse_inside_parabole (CairoDock *pDock)
-{
-	CairoDockMousePositionType iMousePositionType = (pDock->bInside ? CAIRO_DOCK_MOUSE_INSIDE : CAIRO_DOCK_MOUSE_OUTSIDE);
-	
-	/// A completer.
-	return iMousePositionType;
-}
-
 
 static double cd_rendering_project_cursor_on_curve_x (double x0, double y0, double lambda, double alpha)
 {
@@ -420,7 +378,7 @@ static double cd_rendering_project_cursor_on_curve_x (double x0, double y0, doub
 		return 0;
 	double xM, yM;  // M se balade sur la courbe.
 	double x_inf = 0, x_max = fCurveInv (y0, lambda, alpha), x_sup = x_max;  // bornes de l'intervalle de xM.
-	double nx, ny=1;  // verteur normal a la courbe.
+	double nx, ny=1;  // vecteur normal a la courbe.
 	double k;  // parametre de la droite normale a la courbe.
 	double y_;
 	do
@@ -507,6 +465,35 @@ static double cd_rendering_project_cursor_on_curve (double x0, double y0, double
 	*fYOnCurve = yM;
 }
 
+static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCurvilignAbscisse, double fMagnitude)
+{
+	g_print ("%s (%.2f)\n", __func__, fCurvilignAbscisse);
+	
+	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+	if (pFirstIcon == NULL || fCurvilignAbscisse <= 0)
+		return 0;
+	double fWaveOffset, fWaveExtrema;
+	double x_abs = fCurvilignAbscisse;
+	int nb_iter = 0;
+	
+	do
+	{
+		g_print ("  x_abs : %.2f\n", x_abs);
+		cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, pDock->fFlatDockWidth, pDock->fFlatDockWidth, pDock->iCurrentHeight, 0*pDock->fAlign, pDock->fFoldingFactor);
+		fWaveOffset = - pFirstIcon->fX;
+		
+		fWaveExtrema = fWaveOffset + x_abs;
+		x_abs += (fCurvilignAbscisse - fWaveExtrema) / 2;
+		if (x_abs > (int) pDock->fFlatDockWidth)
+			x_abs = (int) pDock->fFlatDockWidth;
+		g_print ("  -> fWaveExtrema : %.2f\n", fWaveExtrema);
+		
+		nb_iter ++;
+	}
+	while (fabs (fWaveExtrema - fCurvilignAbscisse) > 1 && nb_iter < 20);
+	
+	return x_abs;
+}
 
 Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 {
@@ -521,8 +508,9 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	double alpha = my_fParaboleCurvature, lambda = h / pow (w, alpha);
 	//g_print ("> lambda = %.2f\n", lambda);
 	double fXOnCurve, fYOnCurve;
-	fXOnCurve = (pDock->fAlign == 0 ? pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale : pDock->iCurrentWidth - (pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale));
+	fXOnCurve = (pDock->fAlign == 0 ? pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale : pDock->iCurrentWidth - pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale);
 	fYOnCurve = pDock->iCurrentHeight - pDock->iMouseY;
+	g_print (" mouse : %d;%d\n", pDock->iMouseX, pDock->iMouseY);
 	cd_rendering_project_cursor_on_curve (fXOnCurve, fYOnCurve, lambda, alpha, &fXOnCurve, &fYOnCurve);
 	g_print (" on curve : %.2f;%.2f\n", fXOnCurve, fYOnCurve);
 	
@@ -535,29 +523,24 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	}
 	else
 	{
-		fXOnCurve = pDock->iCurrentWidth - (fXOnCurve - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale);
+		fXOnCurve = pDock->iCurrentWidth - fXOnCurve - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale;
 	}
 	fYOnCurve = pDock->iCurrentHeight - fYOnCurve;
 	g_print (" => %.2f;%.2f (%d ; %d)\n", fXOnCurve, fYOnCurve, pDock->iMouseX, pDock->iMouseY);
 	
-	//\____________________ On en deduit l'icone pointee.
+	//\____________________ On en deduit ou appliquer la vague pour que la crete soit a la position du curseur sur la courbe.
 	Icon *pPointedIcon = NULL;
-	int x_abs = fCurvilignAbscisse;  // ecart par rapport a la gauche du dock minimal  plat.
-	
-	//\_______________ On calcule l'ensemble des parametres des icones.
 	double fMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex) * pDock->fMagnitudeMax;
-	fMagnitude = MIN (fMagnitude, my_fParaboleMagnitude);
-	pPointedIcon = cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, pDock->fFlatDockWidth, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->fAlign, pDock->fFoldingFactor);
+	//int x_abs = fCurvilignAbscisse;  // ecart par rapport a la gauche du dock minimal  plat.
+	int x_abs = (int) round (cd_rendering_calculate_wave_position (pDock, fCurvilignAbscisse, fMagnitude));
+	g_print (" => x_abs : %d (fMagnitude:%.2f ; fFoldingFactor:%.2f)\n", x_abs, fMagnitude, pDock->fFoldingFactor);
+	
+	//\_______________ On en deduit l'ensemble des parametres des icones.
+	pPointedIcon = cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, (int) pDock->fFlatDockWidth, (int) pDock->fFlatDockWidth, pDock->iCurrentHeight, 0*pDock->fAlign, pDock->fFoldingFactor);
 	g_print (" => pPointedIcon : %s; %.2f\n", pPointedIcon->acName, pPointedIcon->fX);
 	
-	CairoDockMousePositionType iMousePositionType = cd_rendering_check_if_mouse_inside_parabole (pDock);
 	
-	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
-	
-	cairo_dock_mark_avoiding_mouse_icons_linear (pDock);
-	
-	
-	//\____________________ On calcule les position/etirements/alpha des icones.
+	//\____________________ On en deduit les position/etirements/alpha des icones.
 	Icon* icon, *prev_icon;
 	GList* ic;
 	double ds, s=0;
@@ -570,41 +553,20 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	ic = pFirstDrawnElement;
 	Icon *pFirstIcon = pFirstDrawnElement->data;
-	//for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	double fOrientationMax = G_PI/2 - atan (my_fParaboleRatio * my_fParaboleCurvature);
 	double fTopMargin = pDock->iMaxLabelWidth * sin (fOrientationMax);
 	do
 	{
 		icon = ic->data;
 		
-		if (ic != pFirstDrawnElement)  // else ds = icon->fX - icon->fXMin;
+		if (ic != pFirstDrawnElement)  // on ancre la 1ere icone a l'origine.
 		{
-			///ds = icon->fHeight * (1 - pDock->fFoldingFactor) + g_iIconGap;
 			ds = icon->fX - prev_icon->fX;
-			/*cd_rendering_calculate_next_point (x, y, ds/2, lambda, alpha, &x_, &y_, &theta_);
-			g_print ("ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);
-			x = x_;
-			y = y_;
-			cd_rendering_calculate_next_point (x, y, ds/2, lambda, alpha, &x_, &y_, &theta_);
-			g_print ("ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);*/
-			/**ds += prev_icon->fWidth / 2 * fabs (tan (theta_ - theta)) * (1 - pDock->fFoldingFactor);
-			cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
-			g_print ("  ds = %.2f => (%.2f;%.2f), %.2fdeg\n", ds, x_, y_, theta_/G_PI*180);*/
-			
 			s = icon->fX - pFirstIcon->fX;
+			g_print (" %s : %.2f + %.2f (x %.2f)\n", icon->acName, s, ds, icon->fScale);
 			y_ = cd_rendering_interpol (s, s_pReferenceParaboleS, s_pReferenceParaboleY);
 			x_ = fCurveInv (y_, lambda, alpha);
 			theta_ = G_PI/2 - atan (fCurve_(x_, lambda, alpha));
-			
-			if (s-ds - g_iIconGap * prev_icon->fScale / 2 < fCurvilignAbscisse && fCurvilignAbscisse < s - g_iIconGap * prev_icon->fScale / 2)
-			{
-				prev_icon->bPointed = TRUE;
-				g_print (" => en fait, pPointedIcon : %s; %.2f\n", prev_icon->acName, prev_icon->fX);
-			}
-			else
-			{
-				prev_icon->bPointed = FALSE;
-			}
 		}
 		
 		icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight * icon->fScale;
@@ -618,40 +580,42 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 			icon->fDrawX = x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - icon->fWidth * icon->fScale/2;
 			icon->fOrientation = theta_;
 		}
-		///icon->fScale = 1.;
 		icon->fAlpha = 1;
 		icon->fWidthFactor = 1.;
 		icon->fHeightFactor = 1.;
 		
 		x = x_;
 		y = y_;
+		//g_print (" %s : (%.2f ; %.2f)\n", icon->acName, x, y);
 		theta = theta_;
 		prev_icon = icon;
-		s += ds;
-		
-		//g_print (" * %.2f;%.2f\n", icon->fDrawX, icon->fDrawY);
-		/*if (fXOnCurve > icon->fDrawX && fXOnCurve < icon->fDrawX + icon->fWidth && fYOnCurve > icon->fDrawY && fYOnCurve < icon->fDrawY + icon->fHeight)
-		{
-			icon->bPointed = TRUE;
-			pPointedIcon = icon;
-		}
-		else
-			icon->bPointed = FALSE;*/
 		
 		cairo_dock_manage_animations (icon, pDock);
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
 	
-	if (s < fCurvilignAbscisse && fCurvilignAbscisse < s + ds)
+	g_print ("  derniere icone : %.2f (s:%.2f)\n", icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX, fCurvilignAbscisse);
+	CairoDockMousePositionType iMousePositionType;
+	if (fCurvilignAbscisse > icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX + (pDock->fFoldingFactor > 0 ? 20 : 0) || fCurvilignAbscisse < 0)
 	{
-		prev_icon->bPointed = TRUE;
-		g_print (" => en fait, pPointedIcon : %s; %.2f\n", icon->acName, icon->fX);
+		g_print ("<<< on sort de la parabole >>>\n");
+		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+	}
+	else if (((fXOnCurve - pDock->iMouseX) * (fXOnCurve - pDock->iMouseX) + (fYOnCurve - pDock->iMouseY) * (fYOnCurve - pDock->iMouseY)) > 3600 && ((pDock->fAlign == 0 && pDock->iMouseX > fXOnCurve) || (pDock->fAlign == 1 && pDock->iMouseX < fXOnCurve)))
+	{
+		g_print ("<<< on est a plus de 60 pixels de la parabole >>>\n");
+		iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
 	}
 	else
 	{
-		prev_icon->bPointed = FALSE;
+		iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
 	}
+	
+	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
+	
+	cairo_dock_mark_avoiding_mouse_icons_linear (pDock);
+	
 	
 	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
 }
@@ -670,33 +634,4 @@ void cd_rendering_register_parabole_renderer (void)
 	cd_rendering_calculate_reference_parabole (my_fParaboleCurvature);
 	
 	cairo_dock_register_renderer (MY_APPLET_PARABOLIC_VIEW_NAME, pRenderer);
-}
-
-
-
-
-static void cd_rendering_calculate_delta_for_anchor (CairoDock *pDock, double *fAnchorDelta)
-{
-	if (pDock->icons == NULL)
-		return ;
-	
-	Icon *pFirstIcon = pDock->icons->data;
-	Icon *pPointedIcon = pFirstIcon;
-	GList *ic;
-	int x_abs;
-	for (x_abs = 0; x_abs < pDock->fFlatDockWidth; x_abs ++)
-	{
-		cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, pDock->fMagnitudeMax, pDock->fFlatDockWidth, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->fAlign, 0);
-		
-		fAnchorDelta[x_abs] = pFirstIcon->fX;
-		
-		if (x_abs > pPointedIcon->fXAtRest)
-		{
-			ic = ic->next;
-			pPointedIcon = ic->data;
-		}
-		
-		
-		
-	}
 }

@@ -3,9 +3,13 @@
 #include <string.h>
 #include <glib/gi18n.h>
 
+#include "applet-struct.h"
 #include "applet-notifications.h"
 
 CD_APPLET_INCLUDE_MY_VARS
+
+extern AppletConfig myConfig;
+extern AppletData myData;
 
 
 CD_APPLET_ABOUT (_D("This is the CD_APPLET_NAME applet\n made by CD_MY_NAME for Cairo-Dock"))

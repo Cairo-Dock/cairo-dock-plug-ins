@@ -16,9 +16,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-trashes-manager.h"
 #include "applet-config.h"
 
-
-AppletConfig myConfig;
-AppletData myData;
+extern AppletConfig myConfig;
+extern AppletData myData;
 
 
 CD_APPLET_CONFIG_BEGIN ("Corbeille", NULL)

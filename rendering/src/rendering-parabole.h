@@ -22,8 +22,6 @@ void cd_rendering_render_icons_parabole (cairo_t *pCairoContext, CairoDock *pDoc
 
 void cd_rendering_render_parabole (CairoDock *pDock);
 
-CairoDockMousePositionType cd_rendering_check_if_mouse_inside_parabole (CairoDock *pDock);
-
 Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock);
 
 

@@ -49,6 +49,8 @@ static void _load_surfaces (void)
 CD_APPLET_INIT_BEGIN (erreur)
 	myConfig.defaultTitle = g_strdup (myIcon->acName);
 	
+	_load_surfaces ();
+	
 	//Si le bus n'a pas encore ete acquis, on le recupere.
 	if (! myData.dbus_enable)
 		myData.dbus_enable = dbus_get_dbus();

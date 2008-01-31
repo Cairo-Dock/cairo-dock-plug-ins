@@ -30,17 +30,22 @@ void reset_data (void)
 {
 	cairo_surface_destroy (myData.pSurface);
 	myData.pSurface = NULL;
+	cairo_surface_destroy (myData.pStopSurface);
+	myData.pStopSurface = NULL;
 	cairo_surface_destroy (myData.pPlaySurface);
 	myData.pPlaySurface = NULL;
 	cairo_surface_destroy (myData.pPauseSurface);
 	myData.pPauseSurface = NULL;
-	cairo_surface_destroy (myData.pCover);
-	myData.pCover = NULL;
 	cairo_surface_destroy (myData.pBrokenSurface);
 	myData.pBrokenSurface = NULL;
+	
+	cairo_surface_destroy (myData.pCover);
+	myData.pCover = NULL;
 	
 	g_free (myData.playing_uri);
 	myData.playing_uri = NULL;
 	
+	gboolean dbus_enable = myData.dbus_enable;
 	memset (&myData, 0, sizeof (AppletData));
+	myData.dbus_enable = dbus_enable;
 }

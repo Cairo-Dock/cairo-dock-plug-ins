@@ -18,21 +18,25 @@ static void _load_surfaces (void)
 {
 	GString *sImagePath = g_string_new ("");  // ce serait bien de pouvoir choisir ses icones, comme dans l'applet logout...
 	//Chargement de l'image "default"
-	g_string_printf (sImagePath, "%s/stop.svg", MY_APPLET_SHARE_DATA_DIR);
+	g_string_printf (sImagePath, "%s/default.svg", MY_APPLET_SHARE_DATA_DIR);
 	myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-
+	
+	//Chargement de l'image "stop"
+	g_string_printf (sImagePath, "%s/stop.svg", MY_APPLET_SHARE_DATA_DIR);
+	myData.pStopSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+	
 	//Chargement de l'image "pause"
 	g_string_printf (sImagePath, "%s/pause.svg", MY_APPLET_SHARE_DATA_DIR);
 	myData.pPauseSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-
+	
 	//Chargement de l'image "play"
 	g_string_printf (sImagePath, "%s/play.svg", MY_APPLET_SHARE_DATA_DIR);
 	myData.pPlaySurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-
+	
 	//Chargement de l'image "broken"
 	g_string_printf (sImagePath, "%s/broken.svg", MY_APPLET_SHARE_DATA_DIR);
 	myData.pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-
+	
 	g_string_free (sImagePath, TRUE);
 }
 

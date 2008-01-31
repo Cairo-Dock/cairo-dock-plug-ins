@@ -49,5 +49,7 @@ void reset_data (void)
 	cairo_surface_destroy (myData.pSurfaceBroken);
 	myData.pSurfaceBroken = NULL;
 	
+	gboolean dbus_enable = myData.dbus_enable;
 	memset (&myData, 0, sizeof (AppletData));
+	myData.dbus_enable = dbus_enable;
 }
