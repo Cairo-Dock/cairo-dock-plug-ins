@@ -29,7 +29,7 @@
 #include "terminal-init.h"
 #include "terminal-callbacks.h"
 #include "terminal-menu-functions.h"
-#include <tomboykeybinder.h>
+#include <cairo-dock-keybinder.h>
 
 extern t_terminal term;
 
@@ -41,21 +41,11 @@ CD_APPLET_ABOUT ("This is a very simple terminal applet made by Cedric GESTES fo
 static void terminal_new_tab();
 
 
-static void onKeybindingPull (const char *keystring, gpointer dialog)
+static void onKeybindingPull (const char *keystring, gpointer user_data)
 {
   //  printf("{{##OnKeybindingPull\n");
-  if (dialog)
-    cd_desklet_show((CairoDockDesklet *)dialog);
-}
-
-gboolean terminal_keygrabber_bind(const gchar *keystr, CairoDockDesklet *dialog)
-{
-  return tomboy_keybinder_bind(keystr, onKeybindingPull, (gpointer)dialog);
-}
-
-void terminal_keygrabber_unbind(const gchar *keystr)
-{
-  tomboy_keybinder_unbind(keystr, onKeybindingPull);
+  if (user_data)
+    cd_desklet_show((CairoDockDesklet *)user_data);
 }
 
 static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
@@ -86,9 +76,9 @@ static void term_dialog_apply_settings(GtkWidget *vterm)
   if (term.dialog)
     gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
 
-  terminal_keygrabber_unbind(term.prev_shortcut);
+  cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
   term.prev_shortcut = term.shortcut;
-  terminal_keygrabber_bind(term.shortcut, term.dialog);
+  cd_keybinder_bind(term.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)term.dialog);
 
 }
 
@@ -245,8 +235,7 @@ static CairoDockDesklet *terminal_new_dialog()
                     G_CALLBACK (applet_on_terminal_press_cb), &term);
   term.dialog = cd_desklet_new(0, term.tab, 0, 0);
 
-  tomboy_keybinder_init();
-  terminal_keygrabber_bind(term.shortcut, term.dialog);
+  cd_keybinder_bind(term.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)term.dialog);
   term.prev_shortcut = term.shortcut;
 
   term_tab_apply_settings();

@@ -1,5 +1,3 @@
-- global shortcut to hide/show the terminal
-
 --
 speedlauncher :
   - global hotkey to bring a window to launch app
