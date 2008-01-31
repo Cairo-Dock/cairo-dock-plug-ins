@@ -176,6 +176,7 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
   gtk_window_set_resizable(GTK_WINDOW(pWindow), TRUE);
   gtk_window_set_title(GTK_WINDOW(pWindow), "cairo-dock-dialog");
   gtk_widget_add_events(pWindow, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_POINTER_MOTION_MASK | GDK_FOCUS_CHANGE_MASK);
+  gtk_window_set_policy(GTK_WINDOW(pWindow), 0, 0, 1);
   //the border is were cairo paint
   gtk_container_set_border_width(GTK_CONTAINER(pWindow), 10);
   gtk_window_set_default_size(GTK_WINDOW(pWindow), 32, 32);
