@@ -47,7 +47,8 @@ CD_APPLET_CONFIG_BEGIN ("terminal", "gnome-terminal")
   CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("GUI", "foreground color", color_fore, color_fore);
   set_color(&term.forecolor, color_fore);
 
-  term.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortcut", "<Ctrl>F1");
+  term.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F1");
+  term.prev_shortcut = term.shortcut;
 /*   term.x = CD_CONFIG_GET_INTEGER_WITH_DEFAULT("GUI", "x position", 50); */
 /*   term.y = CD_CONFIG_GET_INTEGER_WITH_DEFAULT("GUI", "y position", 50); */
   term.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb lines", 25);

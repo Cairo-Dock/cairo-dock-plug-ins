@@ -29,7 +29,6 @@
 #include "terminal-init.h"
 #include "terminal-callbacks.h"
 #include "terminal-menu-functions.h"
-#include <cairo-dock-keybinder.h>
 
 extern t_terminal term;
 
@@ -39,13 +38,24 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT ("This is a very simple terminal applet made by Cedric GESTES for Cairo-Dock");
 
 static void terminal_new_tab();
+static CairoDockDesklet *terminal_new_dialog();
+static void onKeybindingPull (const char *keystring, gpointer user_data);
 
 
 static void onKeybindingPull (const char *keystring, gpointer user_data)
 {
   //  printf("{{##OnKeybindingPull\n");
-  if (user_data)
+  if (user_data) {
     cd_desklet_show((CairoDockDesklet *)user_data);
+    return;
+  }
+  if (!term.dialog) {
+    term.dialog = terminal_new_dialog();
+    //rebind with the dialog
+    cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
+    term.prev_shortcut = term.shortcut;
+    cd_keybinder_bind(term.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)term.dialog);
+  }
 }
 
 static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
@@ -70,28 +80,26 @@ static void term_dialog_apply_settings(GtkWidget *vterm)
     vte_terminal_set_opacity(VTE_TERMINAL(vterm), term.transparency);
     vte_terminal_set_size(VTE_TERMINAL(vterm), term.iNbColumns, term.iNbRows);
     //    gtk_widget_queue_draw(term.dialog->pWidget);
-
-
   }
-  if (term.dialog)
-    gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
-
-  cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
-  term.prev_shortcut = term.shortcut;
-  cd_keybinder_bind(term.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)term.dialog);
-
 }
 
 
 void term_tab_apply_settings()
 {
-  int sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(term.tab));
+  int sz = 0;
   GtkWidget *vterm = NULL;
 
-  for (int i = 0; i < sz; ++i) {
-    vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(term.tab), i);
-    term_dialog_apply_settings(vterm);
+  if (term.dialog) {
+    sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(term.tab));
+    for (int i = 0; i < sz; ++i) {
+      vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(term.tab), i);
+      term_dialog_apply_settings(vterm);
+    }
+    gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
   }
+  cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
+  term.prev_shortcut = term.shortcut;
+  cd_keybinder_bind(term.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)term.dialog);
 }
 
 static void on_terminal_child_exited(VteTerminal *vteterminal,
@@ -234,9 +242,6 @@ static CairoDockDesklet *terminal_new_dialog()
   g_signal_connect (G_OBJECT (term.tab), "button-release-event",
                     G_CALLBACK (applet_on_terminal_press_cb), &term);
   term.dialog = cd_desklet_new(0, term.tab, 0, 0);
-
-  cd_keybinder_bind(term.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)term.dialog);
-  term.prev_shortcut = term.shortcut;
 
   term_tab_apply_settings();
   return term.dialog;

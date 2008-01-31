@@ -36,5 +36,5 @@ nb lines = 25
 #I-[5;999] ...
 nb columns = 80
 
-#s Shortcut to show the terminal
-shortcut = <Ctrl>F1
+#k Shortkey to show the terminal
+shortkey = <Ctrl>F1
