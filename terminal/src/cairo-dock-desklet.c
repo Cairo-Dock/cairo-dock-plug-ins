@@ -48,26 +48,29 @@ static gboolean cd_desklet_on_expose(GtkWidget *pWidget,
   cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
   cairo_paint (pCairoContext);
 
-  if (gtk_window_is_active(GTK_WINDOW(pDialog->pWidget))) {
-    //set the color
+  //set the color
+  if (gtk_window_is_active(GTK_WINDOW(pDialog->pWidget)))
     cairo_set_source_rgba (pCairoContext, 1., 1., 1., 0.7);
-    cairo_set_line_width (pCairoContext, 10.0);
-    cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_ROUND);
+  else
+    cairo_set_source_rgba (pCairoContext, 1., 1., 1., 0.3);
 
-    //draw a rounded square
-    gtk_window_get_size(GTK_WINDOW(pDialog->pWidget), &w, &h);
-    cairo_move_to (pCairoContext, border, border);
-    cairo_rel_line_to (pCairoContext, w - (border << 1), 0);
-    cairo_rel_line_to (pCairoContext, 0, h - (border << 1));
-    cairo_rel_line_to (pCairoContext, -(w - (border << 1)) , 0);
-    cairo_set_line_join (pCairoContext, CAIRO_LINE_JOIN_ROUND);
-    cairo_close_path (pCairoContext);
-    cairo_stroke (pCairoContext);
+  cairo_set_line_width (pCairoContext, 10.0);
+  cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_ROUND);
 
-    /*   cairo_set_source_rgba (pCairoContext, 1., 1., 1., 1.); */
-    cairo_rectangle(pCairoContext, border, border, (w - (border << 1)), (h - (border << 1)));
-    cairo_fill(pCairoContext);
-  }
+  //draw a rounded square
+  gtk_window_get_size(GTK_WINDOW(pDialog->pWidget), &w, &h);
+  cairo_move_to (pCairoContext, border, border);
+  cairo_rel_line_to (pCairoContext, w - (border << 1), 0);
+  cairo_rel_line_to (pCairoContext, 0, h - (border << 1));
+  cairo_rel_line_to (pCairoContext, -(w - (border << 1)) , 0);
+  cairo_set_line_join (pCairoContext, CAIRO_LINE_JOIN_ROUND);
+  cairo_close_path (pCairoContext);
+  cairo_stroke (pCairoContext);
+
+  /*   cairo_set_source_rgba (pCairoContext, 1., 1., 1., 1.); */
+  cairo_rectangle(pCairoContext, border, border, (w - (border << 1)), (h - (border << 1)));
+  cairo_fill(pCairoContext);
+
   cairo_destroy (pCairoContext);
   return FALSE;
 }
