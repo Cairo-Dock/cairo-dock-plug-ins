@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-rhythmbox],[1.0.2],[Adrien Pilleboue (adrien.pilleboue@gmail.com)])
+AC_INIT([cd-Xgamma],[0.0.1],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -13,12 +13,12 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-rhythmbox
+GETTEXT_PACKAGE=cd-Xgamma
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
 AC_SUBST(GETTEXT_PACKAGE)
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rhythmbox]
+pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/Xgamma]
 AC_SUBST(pkgdatadir)
 
 
@@ -39,12 +39,12 @@ AC_TYPE_PID_T
 # Checks for library functions.
 AC_CHECK_FUNCS([sscanf])
 
-PKG_CHECK_MODULES(PACKAGE, "cairo-dock dbus-glib-1 dbus-1")
+PKG_CHECK_MODULES(PACKAGE, cairo-dock x11 xxf86vm)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
 		data/Makefile
-		data/rhythmbox.conf
-		data/readme])
+		data/readme
+		data/Xgamma.conf])
 AC_OUTPUT

@@ -236,7 +236,7 @@ void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin)
 
 int cd_dustbin_count_trashes (gchar *cDirectory)
 {
-	g_print ("%s (%s)\n", __func__, cDirectory);
+	//g_print ("%s (%s)\n", __func__, cDirectory);
 	GError *erreur = NULL;
 	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
 	if (erreur != NULL)
