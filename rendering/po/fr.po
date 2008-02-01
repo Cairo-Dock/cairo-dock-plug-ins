@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
+#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2007-12-11\n"
+"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#!en;@VERSION@
+
+msgid "Inclinated Plane"
+msgstr "Plan incliné"
+
+msgid "Inclination of the plane :"
+msgstr "Inclinaison du plan :"
+
+msgid "In degrees, regarding the vertical position. It's a sort of inclination of the plane on the horizontal, giving the 3D feeling. So setting it to 0 means the plane is not inclined at all (vertical)."
+msgstr "En degrés, par rapport à la position verticale. C'est une sorte d'inclinaison du plan sur l'horizontal, donnant l'impression de 3D. Donc le mettre à 0 signifie que le plan n'est pas incliné du tout (horizontal)."
+
+msgid "Use a flat separator instead of the defined separator icon ?"
+msgstr "Utiliser un séparateur plat au lieu de l'icône définie des séparateurs ?"
+
+msgid "If so, you can specify its color:"
+msgstr "Si oui, précisez sa couleur:"
+
+msgid "red, blue, green, alpha"
+msgstr "rougle, vert, bleu, alpha"
+
+msgid "Caroussel"
+msgstr "Carroussel"
+
+msgid "Percentage of the dock's width that appears on the foreground :"
+msgstr "Pourcentage de la largeur du dock qui apparaît à l'avant-plan :"
+
+msgid "0.5 means the dock is half-folded, so half the icons are on the foreground, and half are on the background."
+msgstr "0.5 signifie que le dock est à moitié replié, donc la moitié des icônes sont à l'avant-plan, et la motié à l'arrière-pan."
+
+msgid "Depth of the plane :"
+msgstr "Profondeur du plan :"
+
+msgid "The greater, the deeper. It is in fact the gap between background icons' bottom and foreground icons' top (in pixels)."
+msgstr "Plus c'est grand, plus le plan est profond. C'est en fait l'écart entre le bas des icônes de l'arrière-plan, et le haut des icônes d'avant-plan (en pixels)."
+
+msgid "Always show icons' face ?"
+msgstr "Toujours montrer les icônes de face ?"
+
+msgid "otherwise they will turn."
+msgstr "sinon elles tourneront."
+
+msgid "Parabolic"
+msgstr "Parabolique"
+
+msgid "Curvature :"
+msgstr "Courbure :"
+
+msgid "Ratio height/width :"
+msgstr "Ratio hauteur/largeur :"
+
+msgid "Magnitude of the wave :"
+msgstr "Magnitude de la vague :"
+
+msgid "0 means the wave is totally flat, 1 means the wave is identical to other views."
+msgstr "0 signifie que la vague est totalement plate, 1 que la vague est identique aux autres vues."
+
+msgid "Space between icons and their label :"
+msgstr "Espace entre les icônes et leur label :"
+
+msgid "in pixels."
+msgstr "en pixels."

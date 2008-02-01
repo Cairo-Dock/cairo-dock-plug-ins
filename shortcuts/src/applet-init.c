@@ -100,9 +100,12 @@ static void _load_icons (GError **erreur)
 		g_free (cBookmarkFilePath);
 	}
 	
-	myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-	cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
-	cairo_dock_update_dock_size (myIcon->pSubDock);
+	if (myConfig.bListDrives || myConfig.bListNetwork || myConfig.bListBookmarks)  // l'applet peut faire "show desktop".
+	{
+		myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
+		cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
+		cairo_dock_update_dock_size (myIcon->pSubDock);
+	}
 }
 
 CD_APPLET_INIT_BEGIN (erreur)

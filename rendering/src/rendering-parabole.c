@@ -39,6 +39,8 @@ static double *s_pReferenceParaboleT = NULL;
 #define fCurveInv_(y, lambda, alpha) (y != 0 ? alpha * y * pow (lambda / y, 1. / alpha) : (alpha > 1 ? 0 : alpha < 1 ? 1e6 : alpha * pow (lambda, 1. / alpha)))
 
 #define REFERENCE_PARABOLE_NB_POINTS 1000
+#define PARABOLE_DISTANCE_OUT2 4900
+#define PARABOLE_DISTANCE_EDGE2 2500
 
 void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *pDock)
 {
@@ -485,7 +487,10 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 		fWaveExtrema = fWaveOffset + x_abs;
 		x_abs += (fCurvilignAbscisse - fWaveExtrema) / 2;
 		if (x_abs > (int) pDock->fFlatDockWidth)
+		{
 			x_abs = (int) pDock->fFlatDockWidth;
+			break ;
+		}
 		g_print ("  -> fWaveExtrema : %.2f\n", fWaveExtrema);
 		
 		nb_iter ++;
@@ -572,7 +577,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight * icon->fScale;
 		if (pDock->fAlign == 1)
 		{
-			icon->fDrawX = pDock->iCurrentWidth - (x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - icon->fWidth * icon->fScale/2);
+			icon->fDrawX = pDock->iCurrentWidth - (x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - 0*icon->fWidth * icon->fScale/2);
 			icon->fOrientation = - theta_;
 		}
 		else
@@ -597,15 +602,20 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	
 	g_print ("  derniere icone : %.2f (s:%.2f)\n", icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX, fCurvilignAbscisse);
 	CairoDockMousePositionType iMousePositionType;
-	if (fCurvilignAbscisse > icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX + (pDock->fFoldingFactor > 0 ? 20 : 0) || fCurvilignAbscisse < 0)
+	if (fCurvilignAbscisse > icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX - (pDock->fFoldingFactor > 0 ? 20 : 0) || fCurvilignAbscisse < 0)
 	{
 		g_print ("<<< on sort de la parabole >>>\n");
 		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 	}
-	else if (((fXOnCurve - pDock->iMouseX) * (fXOnCurve - pDock->iMouseX) + (fYOnCurve - pDock->iMouseY) * (fYOnCurve - pDock->iMouseY)) > 3600 && ((pDock->fAlign == 0 && pDock->iMouseX > fXOnCurve) || (pDock->fAlign == 1 && pDock->iMouseX < fXOnCurve)))
+	else if ((pDock->fAlign == 0 && pDock->iMouseX > fXOnCurve) || (pDock->fAlign == 1 && pDock->iMouseX < fXOnCurve))
 	{
-		g_print ("<<< on est a plus de 60 pixels de la parabole >>>\n");
-		iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
+		double fDistanceToCurve2 = (fXOnCurve - pDock->iMouseX) * (fXOnCurve - pDock->iMouseX) + (fYOnCurve - pDock->iMouseY) * (fYOnCurve - pDock->iMouseY);
+		if (fDistanceToCurve2 > PARABOLE_DISTANCE_OUT2)
+			iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+		else if (fDistanceToCurve2 < PARABOLE_DISTANCE_EDGE2)
+			iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
+		else
+			iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
 	}
 	else
 	{

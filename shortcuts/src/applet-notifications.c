@@ -46,6 +46,8 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_DROP_DATA_BEGIN
+	if (myIcon == NULL || myIcon->pSubDock == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	g_print ("  nouveau signet : %s\n", CD_APPLET_RECEIVED_DATA);
 	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
 	gboolean bIsDirectory;
