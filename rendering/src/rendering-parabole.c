@@ -514,7 +514,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	//g_print ("> lambda = %.2f\n", lambda);
 	double fXOnCurve, fYOnCurve;
 	fXOnCurve = (pDock->fAlign == 0 ? pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale : pDock->iCurrentWidth - pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale);
-	fYOnCurve = pDock->iCurrentHeight - pDock->iMouseY;
+	fYOnCurve = (g_bDirectionUp ? pDock->iCurrentHeight - pDock->iMouseY : pDock->iMouseY);
 	g_print (" mouse : %d;%d\n", pDock->iMouseX, pDock->iMouseY);
 	cd_rendering_project_cursor_on_curve (fXOnCurve, fYOnCurve, lambda, alpha, &fXOnCurve, &fYOnCurve);
 	g_print (" on curve : %.2f;%.2f\n", fXOnCurve, fYOnCurve);
