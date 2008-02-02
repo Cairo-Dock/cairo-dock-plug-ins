@@ -574,7 +574,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 			theta_ = G_PI/2 - atan (fCurve_(x_, lambda, alpha));
 		}
 		
-		icon->fDrawY = pDock->iCurrentHeight - y_ - icon->fHeight * icon->fScale;
+		icon->fDrawY = (g_bDirectionUp ? pDock->iCurrentHeight - y_ - icon->fHeight * icon->fScale : y_);
 		if (pDock->fAlign == 1)
 		{
 			icon->fDrawX = pDock->iCurrentWidth - (x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - 0*icon->fWidth * icon->fScale/2);
