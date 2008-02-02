@@ -578,12 +578,12 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		if (pDock->fAlign == 1)
 		{
 			icon->fDrawX = pDock->iCurrentWidth - (x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - 0*icon->fWidth * icon->fScale/2);
-			icon->fOrientation = - theta_;
+			icon->fOrientation = (g_bDirectionUp ? - theta_ : theta_);
 		}
 		else
 		{
 			icon->fDrawX = x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - icon->fWidth * icon->fScale/2;
-			icon->fOrientation = theta_;
+			icon->fOrientation = (g_bDirectionUp ? theta_ : - theta_);
 		}
 		icon->fAlpha = 1;
 		icon->fWidthFactor = 1.;
