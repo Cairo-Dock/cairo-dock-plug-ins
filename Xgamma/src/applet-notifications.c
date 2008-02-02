@@ -51,7 +51,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 static void _xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data)
 {
-	if (iAnswer == GTK_RESPONSE_YES)
+	if (iAnswer == GTK_RESPONSE_OK)
 	{
 		g_print ("%s (ok)\n");
 	}

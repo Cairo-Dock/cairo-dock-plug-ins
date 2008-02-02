@@ -1,4 +1,5 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>Fabrice Rey</b>
 <i>Setup the gama of your screen directly from the dock.
- It is a simple port of <span color='#0000FF'>xgamma</span>.</i>
+ It is a simple port of <span color='#0000FF'>xgamma</span>.
+ </i>
