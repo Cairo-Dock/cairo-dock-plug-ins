@@ -14,10 +14,9 @@ frame1_fin =
 #s Name of the icon as it will appear in its label in cairo-dock :
 name = systray
 
-[MODULE]
+#S Icon's name :
+icon = gnome-panel-notification-area
 
-#S Name of the main icon :
-main icon=gnome-panel-notification-area
 
 [GUI]
 #b always on top?
