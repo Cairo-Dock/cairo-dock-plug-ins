@@ -135,23 +135,18 @@ static void _terminal_paste (GtkMenuItem *menu_item, GtkWidget *data)
   vte_terminal_paste_clipboard(VTE_TERMINAL(data));
 }
 
-static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gchar *cReceivedData)
+static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget)
 {
-	static gpointer *my_data = NULL;
-	if (my_data == NULL)
-		my_data = g_new0 (gpointer, 2);
-	my_data[0] = pWidget;
-	my_data[1] = cReceivedData;
 	GtkWidget *menu = gtk_menu_new ();
 
 	GtkWidget *menu_item, *image;
-	menu_item = gtk_image_menu_item_new_with_label (_("Copy"));
+	menu_item = gtk_image_menu_item_new_with_label (_D("Copy"));
 	image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
         g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_copy), pWidget);
 
-	menu_item = gtk_image_menu_item_new_with_label (_("Paste"));
+	menu_item = gtk_image_menu_item_new_with_label (_D("Paste"));
 	image = gtk_image_new_from_stock (GTK_STOCK_PASTE, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
@@ -160,13 +155,13 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gchar *cReceived
 	menu_item = gtk_separator_menu_item_new ();
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 
-	menu_item = gtk_image_menu_item_new_with_label ("New Tab");
+	menu_item = gtk_image_menu_item_new_with_label (_D("New Tab"));
 	image = gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_new_tab), 0);
 
-	menu_item = gtk_image_menu_item_new_with_label ("Close Tab");
+	menu_item = gtk_image_menu_item_new_with_label (_D("Close Tab"));
 	image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
@@ -177,22 +172,21 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gchar *cReceived
 
 gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, t_terminal *terminal)
 {
-  static gchar *cReceivedData = NULL;  // on en peut recevoir qu'un drop a la fois, donc pas de collision possible.
-
-  if (event->button == 1)
-    return FALSE;
-  GtkWidget *menu = _terminal_build_menu_tab (window, cReceivedData);
-
-  gtk_widget_show_all (menu);
-
-  gtk_menu_popup (GTK_MENU (menu),
-                  NULL,
-                  NULL,
-                  NULL,
-                  NULL,
-                  1,
-                  gtk_get_current_event_time ());
-  return TRUE;
+	if (event->button == 3)
+	{
+		GtkWidget *menu = _terminal_build_menu_tab (window);
+		
+		gtk_widget_show_all (menu);
+		
+		gtk_menu_popup (GTK_MENU (menu),
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			1,
+			gtk_get_current_event_time ());
+	}
+	return FALSE;
 }
 static void applet_on_terminal_eof(VteTerminal *vteterminal,
                                    gpointer     user_data)
@@ -271,8 +265,8 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
   CD_APPLET_ADD_SUB_MENU("Terminal", pSubMenu, CD_APPLET_MY_MENU);
-  CD_APPLET_ADD_IN_MENU("New Tab", on_new_tab, pSubMenu);
-  CD_APPLET_ADD_IN_MENU("Close the current Tab", on_close_tab, pSubMenu);
+  CD_APPLET_ADD_IN_MENU(_D("New Tab"), on_new_tab, pSubMenu);
+  CD_APPLET_ADD_IN_MENU(_D("Close the current Tab"), on_close_tab, pSubMenu);
   CD_APPLET_ADD_SEPARATOR();
   CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }

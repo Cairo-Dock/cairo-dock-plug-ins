@@ -568,7 +568,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		{
 			ds = icon->fX - prev_icon->fX;
 			s = icon->fX - pFirstIcon->fX;
-			g_print (" %s : %.2f + %.2f (x %.2f)\n", icon->acName, s, ds, icon->fScale);
+			//g_print (" %s : %.2f + %.2f (x %.2f)\n", icon->acName, s, ds, icon->fScale);
 			y_ = cd_rendering_interpol (s, s_pReferenceParaboleS, s_pReferenceParaboleY);
 			x_ = fCurveInv (y_, lambda, alpha);
 			theta_ = G_PI/2 - atan (fCurve_(x_, lambda, alpha));
@@ -602,7 +602,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	
 	g_print ("  derniere icone : %.2f (s:%.2f)\n", icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX, fCurvilignAbscisse);
 	CairoDockMousePositionType iMousePositionType;
-	if (fCurvilignAbscisse > icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX - (pDock->fFoldingFactor > 0 ? 20 : 0) || fCurvilignAbscisse < 0)
+	if (fCurvilignAbscisse > icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX - (pDock->fFoldingFactor > 0 ? 20 : 0) || fCurvilignAbscisse <= 0)
 	{
 		g_print ("<<< on sort de la parabole >>>\n");
 		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
