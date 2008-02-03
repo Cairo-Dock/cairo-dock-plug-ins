@@ -5,7 +5,8 @@ datasystraydir = $(pkgdatadir)
 
 datasystray_DATA = \
 	systray.conf\
-	readme
+	readme\
+	preview.png
 
 EXTRA_DIST =    systray.conf\
 	        readme

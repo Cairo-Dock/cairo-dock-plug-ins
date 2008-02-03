@@ -16,4 +16,5 @@ datapowermanager_DATA = \
 	charge_44.svg\
 	sector.svg\
 	readme\
-	powermanager.conf
+	powermanager.conf\
+	preview.png
