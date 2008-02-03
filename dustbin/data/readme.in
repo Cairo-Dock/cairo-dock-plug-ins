@@ -2,5 +2,6 @@
 <u>Author</u> : <b>Fabounet</b>
 <i>Manage your disks space with this <span color='#0000FF'>trash applet</span> !</i>
 It can handle several trash directories,
+ threw files or unmount disks with drag'n'drop,
  warn you if you use too much space,
  and display usefull info about your dustbins.

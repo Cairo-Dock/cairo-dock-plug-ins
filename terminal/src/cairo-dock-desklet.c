@@ -123,9 +123,11 @@ static void cd_desklet_on_click_nbt(GtkButton *button, CairoDockDesklet *pDialog
     gtk_button_set_label(button, "n");
   } else if (!strcmp(lbl, "b")) {
     gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), TRUE);
+    gtk_window_set_keep_below(GTK_WINDOW(pDialog->pWidget), FALSE);
     gtk_button_set_label(button, "t");
   } else if (!strcmp(lbl, "n")) {
     gtk_window_set_keep_below(GTK_WINDOW(pDialog->pWidget), TRUE);
+    gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), FALSE);
     gtk_button_set_label(button, "b");
   }
 }
