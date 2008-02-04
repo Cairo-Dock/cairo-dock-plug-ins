@@ -200,7 +200,6 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
                     G_CALLBACK (cd_desklet_on_click_close), pDialog);*/
 
   btn = gtk_button_new_with_label("t");
-  gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), TRUE);
   gtk_box_pack_start(GTK_BOX(vbox), btn, 0, 0, 0);
   g_signal_connect (G_OBJECT (btn), "clicked",
                     G_CALLBACK (cd_desklet_on_click_nbt), pDialog);
@@ -241,5 +240,5 @@ void cd_desklet_show(CairoDockDesklet *pDialog)
   if (!pDialog)
     return;
   gtk_window_present(GTK_WINDOW(pDialog->pWidget));
-  gtk_window_move(GTK_WINDOW(pDialog->pWidget), pDialog->x, pDialog->y);
+  //gtk_window_move(GTK_WINDOW(pDialog->pWidget), pDialog->x, pDialog->y);
 }
