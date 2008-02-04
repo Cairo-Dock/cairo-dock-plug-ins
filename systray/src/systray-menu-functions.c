@@ -61,7 +61,6 @@ void systray_dialog_apply_settings()
   cd_keybinder_unbind(systray.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
   systray.prev_shortcut = systray.shortcut;
   cd_keybinder_bind(systray.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)systray.dialog);
-
 }
 
 static CairoDockDesklet *systray_new_dialog()
@@ -73,31 +72,29 @@ static CairoDockDesklet *systray_new_dialog()
   gtk_widget_size_request(GTK_WIDGET(systray.tray->box), &req);
   gtk_window_resize(GTK_WINDOW(systray.dialog->pWidget), 24, 24);
   systray_dialog_apply_settings();
-/*   cd_keybinder_bind(systray.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)systray.dialog); */
-/*   systray.prev_shortcut = systray.shortcut; */
-
   return systray.dialog;
 }
 
 CD_APPLET_ON_CLICK_BEGIN
-  if (!systray.dialog) {
+{
+  if (!systray.dialog)
     systray.dialog = systray_new_dialog();
-    cd_desklet_show(systray.dialog);
-    }
-  else {
-    cd_desklet_show(systray.dialog);
-    gtk_window_set_keep_above(GTK_WINDOW(systray.dialog->pWidget), systray.always_on_top);
-  }
+  cd_desklet_show(systray.dialog);
+}
 CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+{
   cd_desklet_hide(systray.dialog);
+}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-  CD_APPLET_ADD_SUB_MENU("Systray", pSubMenu, pAppletMenu)
-  CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+{
+  CD_APPLET_ADD_SUB_MENU("Systray", pSubMenu, pAppletMenu);
+  CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+}
 CD_APPLET_ON_BUILD_MENU_END
 
 

@@ -181,6 +181,10 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
   gtk_window_set_resizable(GTK_WINDOW(pWindow), TRUE);
   gtk_window_set_title(GTK_WINDOW(pWindow), "cairo-dock-dialog");
   gtk_widget_add_events(pWindow, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_POINTER_MOTION_MASK | GDK_FOCUS_CHANGE_MASK);
+
+  //for compiz fusion "widget layer"
+  //set behaviour in compiz to: (name=cairo-dock type=utility)
+  gtk_window_set_type_hint(GTK_WINDOW(pWindow), GDK_WINDOW_TYPE_HINT_UTILITY);
   gtk_window_set_policy(GTK_WINDOW(pWindow), 0, 0, 1);
   //the border is were cairo paint
   gtk_container_set_border_width(GTK_CONTAINER(pWindow), 10);
@@ -195,7 +199,7 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
   gtk_box_pack_start(GTK_BOX(hbox), vbox, 0, 0, 0);
 
 /*  btn = gtk_button_new_with_label("X");
-   gtk_box_pack_start(GTK_BOX(vbox), btn, 0, 0, 0); 
+   gtk_box_pack_start(GTK_BOX(vbox), btn, 0, 0, 0);
   g_signal_connect (G_OBJECT (btn), "clicked",
                     G_CALLBACK (cd_desklet_on_click_close), pDialog);*/
 

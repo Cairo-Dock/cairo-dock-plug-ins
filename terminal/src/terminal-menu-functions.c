@@ -51,6 +51,7 @@ static void onKeybindingPull (const char *keystring, gpointer user_data)
   }
   if (!term.dialog) {
     term.dialog = terminal_new_dialog();
+    cd_desklet_show(term.dialog);
     //rebind with the dialog
     cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
     term.prev_shortcut = term.shortcut;
@@ -175,9 +176,9 @@ gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, t
 	if (event->button == 3)
 	{
 		GtkWidget *menu = _terminal_build_menu_tab (window);
-		
+
 		gtk_widget_show_all (menu);
-		
+
 		gtk_menu_popup (GTK_MENU (menu),
 			NULL,
 			NULL,
@@ -244,15 +245,12 @@ static CairoDockDesklet *terminal_new_dialog()
 
 CD_APPLET_ON_CLICK_BEGIN
 {
-  if (!term.dialog) {
+  if (!term.dialog)
     term.dialog = terminal_new_dialog();
-  }
-  else {
-    cd_desklet_show(term.dialog);
-    term_tab_apply_settings();
-  }
+  cd_desklet_show(term.dialog);
 }
 CD_APPLET_ON_CLICK_END
+
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 {
