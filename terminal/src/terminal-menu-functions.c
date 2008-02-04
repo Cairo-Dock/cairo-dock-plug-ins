@@ -96,7 +96,7 @@ void term_tab_apply_settings()
       vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(term.tab), i);
       term_dialog_apply_settings(vterm);
     }
-    gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
+    //    gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
   }
   cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
   term.prev_shortcut = term.shortcut;

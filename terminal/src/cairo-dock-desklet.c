@@ -113,23 +113,100 @@ static gboolean cd_desklet_on_event(GtkWidget *widget,
   return FALSE;
 }
 
+static void cd_desklet_on_above(GtkWidget *widget, CairoDockDesklet *pDialog)
+{
+  gtk_window_set_keep_below(GTK_WINDOW(pDialog->pWidget), FALSE);
+  gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), TRUE);
+}
+
+static void cd_desklet_on_normal(GtkWidget *widget, CairoDockDesklet *pDialog)
+{
+  gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), FALSE);
+  gtk_window_set_keep_below(GTK_WINDOW(pDialog->pWidget), FALSE);
+}
+
+static void cd_desklet_on_below(GtkWidget *widget, CairoDockDesklet *pDialog)
+{
+  gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), FALSE);
+  gtk_window_set_keep_below(GTK_WINDOW(pDialog->pWidget), TRUE);
+}
+
+static void cd_desklet_on_widget_layer(GtkWidget *widget, CairoDockDesklet *pDialog)
+{
+  cd_desklet_hide(pDialog);
+  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
+    gtk_window_set_type_hint(GTK_WINDOW(pDialog->pWidget), GDK_WINDOW_TYPE_HINT_UTILITY);
+  else
+    gtk_window_set_type_hint(GTK_WINDOW(pDialog->pWidget), GDK_WINDOW_TYPE_HINT_NORMAL);
+  cd_desklet_show(pDialog);
+}
+
+static GtkWidget *cd_desklet_build_menu(CairoDockDesklet *pDialog)
+{
+  GtkWidget *menu = gtk_menu_new ();
+  GtkWidget *menu_item, *image;
+  GSList *group = NULL;
+
+  menu_item = gtk_image_menu_item_new_with_label(_D("Close"));
+  image = gtk_image_new_from_stock(GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
+  gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menu_item), image);
+  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item);
+  g_signal_connect(G_OBJECT(menu_item), "activate", G_CALLBACK(cd_desklet_on_click_close), pDialog);
+
+  menu_item = gtk_separator_menu_item_new ();
+  gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+
+/*   menu_item = gtk_image_menu_item_new_with_label(_D("Always on top")); */
+/*   image = gtk_image_new_from_stock(GTK_STOCK_GOTO_TOP, GTK_ICON_SIZE_MENU); */
+/*   gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menu_item), image); */
+/*   gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item); */
+/*   g_signal_connect(G_OBJECT(menu_item), "activate", G_CALLBACK(cd_desklet_on_above), pDialog); */
+
+/*   menu_item = gtk_image_menu_item_new_with_label(_D("Normal")); */
+/*   image = gtk_image_new_from_stock(GTK_STOCK_PROPERTIES, GTK_ICON_SIZE_MENU); */
+/*   gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menu_item), image); */
+/*   gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item); */
+/*   g_signal_connect(G_OBJECT(menu_item), "activate", G_CALLBACK(cd_desklet_on_normal), pDialog); */
+
+/*   menu_item = gtk_image_menu_item_new_with_label(_D("Always below")); */
+/*   image = gtk_image_new_from_stock(GTK_STOCK_GOTO_BOTTOM, GTK_ICON_SIZE_MENU); */
+/*   gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menu_item), image); */
+/*   gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item); */
+/*   g_signal_connect(G_OBJECT(menu_item), "activate", G_CALLBACK(cd_desklet_on_below), pDialog); */
+
+  menu_item = gtk_radio_menu_item_new_with_label(group, _D("Always on top"));
+  group = gtk_radio_menu_item_get_group(GTK_RADIO_MENU_ITEM(menu_item));
+  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item);
+  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menu_item), TRUE);
+  g_signal_connect(G_OBJECT(menu_item), "activate", G_CALLBACK(cd_desklet_on_above), pDialog);
+
+  menu_item = gtk_radio_menu_item_new_with_label(group, _D("Normal"));
+  group = gtk_radio_menu_item_get_group(GTK_RADIO_MENU_ITEM(menu_item));
+  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item);
+  g_signal_connect(G_OBJECT(menu_item), "activate", G_CALLBACK(cd_desklet_on_normal), pDialog);
+
+  menu_item = gtk_radio_menu_item_new_with_label(group, _D("Always below"));
+  group = gtk_radio_menu_item_get_group(GTK_RADIO_MENU_ITEM(menu_item));
+  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item);
+  g_signal_connect(G_OBJECT(menu_item), "activate", G_CALLBACK(cd_desklet_on_below), pDialog);
+
+
+
+
+  menu_item = gtk_separator_menu_item_new ();
+  gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+
+  //  menu_item = gtk_image_menu_item_new_with_label(_D("Compiz Fusion Widget"));
+  menu_item = gtk_check_menu_item_new_with_label(_D("Compiz Fusion Widget"));
+  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item);
+  g_signal_connect(G_OBJECT(menu_item), "activate", G_CALLBACK(cd_desklet_on_widget_layer), pDialog);
+
+  return menu;
+}
+
 static void cd_desklet_on_click_nbt(GtkButton *button, CairoDockDesklet *pDialog)
 {
-  const gchar *lbl = gtk_button_get_label(GTK_BUTTON(button));
-
-  if (!strcmp(lbl, "t")) {
-    gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), FALSE);
-    gtk_window_set_keep_below(GTK_WINDOW(pDialog->pWidget), FALSE);
-    gtk_button_set_label(button, "n");
-  } else if (!strcmp(lbl, "b")) {
-    gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), TRUE);
-    gtk_window_set_keep_below(GTK_WINDOW(pDialog->pWidget), FALSE);
-    gtk_button_set_label(button, "t");
-  } else if (!strcmp(lbl, "n")) {
-    gtk_window_set_keep_below(GTK_WINDOW(pDialog->pWidget), TRUE);
-    gtk_window_set_keep_above(GTK_WINDOW(pDialog->pWidget), FALSE);
-    gtk_button_set_label(button, "b");
-  }
+  gtk_menu_popup(GTK_MENU(pDialog->pMenu), NULL, NULL, NULL, NULL, 1, gtk_get_current_event_time());
 }
 
 
@@ -184,7 +261,7 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
 
   //for compiz fusion "widget layer"
   //set behaviour in compiz to: (name=cairo-dock type=utility)
-  gtk_window_set_type_hint(GTK_WINDOW(pWindow), GDK_WINDOW_TYPE_HINT_UTILITY);
+  //gtk_window_set_type_hint(GTK_WINDOW(pWindow), GDK_WINDOW_TYPE_HINT_UTILITY);
   gtk_window_set_policy(GTK_WINDOW(pWindow), 0, 0, 1);
   //the border is were cairo paint
   gtk_container_set_border_width(GTK_CONTAINER(pWindow), 10);
@@ -203,7 +280,7 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
   g_signal_connect (G_OBJECT (btn), "clicked",
                     G_CALLBACK (cd_desklet_on_click_close), pDialog);*/
 
-  btn = gtk_button_new_with_label("t");
+  btn = gtk_button_new_with_label("-");
   gtk_box_pack_start(GTK_BOX(vbox), btn, 0, 0, 0);
   g_signal_connect (G_OBJECT (btn), "clicked",
                     G_CALLBACK (cd_desklet_on_click_nbt), pDialog);
@@ -219,6 +296,10 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
                     G_CALLBACK (cd_desklet_on_focus_in_out), pDialog);
   g_signal_connect (G_OBJECT (pWindow), "focus-out-event",
                     G_CALLBACK (cd_desklet_on_focus_in_out), pDialog);
+
+
+  pDialog->pMenu = cd_desklet_build_menu(pDialog);
+  gtk_widget_show_all(pDialog->pMenu);
 
   //user widget
   if (pInteractiveWidget != NULL)

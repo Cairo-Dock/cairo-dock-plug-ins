@@ -56,8 +56,8 @@ static void onKeybindingPull (const char *keystring, gpointer user_data)
 
 void systray_dialog_apply_settings()
 {
-  if (systray.dialog)
-    gtk_window_set_keep_above(GTK_WINDOW(systray.dialog->pWidget), systray.always_on_top);
+/*   if (systray.dialog) */
+/*     gtk_window_set_keep_above(GTK_WINDOW(systray.dialog->pWidget), systray.always_on_top); */
   cd_keybinder_unbind(systray.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
   systray.prev_shortcut = systray.shortcut;
   cd_keybinder_bind(systray.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)systray.dialog);
