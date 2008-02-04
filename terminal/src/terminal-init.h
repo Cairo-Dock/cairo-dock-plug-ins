@@ -29,24 +29,26 @@
 CD_APPLET_H
 
 
-typedef struct s_terminal {
+/*typedef struct s_terminal {
   guint16  transparency;
   gboolean always_on_top;
   GdkColor backcolor;
   GdkColor forecolor;
 
-  CairoDockDesklet *dialog;
+  CairoDockDesklet *desklet;
+  CairoDockDialog *dialog;
   GtkWidget *tab;
 
   gint iNbRows;
   gint iNbColumns;
+  gboolean bIsDetached;
 
   gchar *shortcut;
   gchar *prev_shortcut;
 
   gint x;
   gint y;
-} t_terminal;
+} t_terminal;*/
 
 
 #endif

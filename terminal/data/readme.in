@@ -1,3 +1,4 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>Cedric GESTES ctaf42@gmail.com</b>
-<i>Add a <span color='#0000FF'>terminal</span> to your dock !</i>
+<i>Add a <span color='#0000FF'>terminal</span> to your dock !
+ You can drag'n'drop files or text into it and select an action.</i>

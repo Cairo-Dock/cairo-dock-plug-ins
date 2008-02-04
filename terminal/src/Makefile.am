@@ -14,7 +14,8 @@ libcd_terminal_la_SOURCES = \
 	cairo-dock-desklet.c\
 	cairo-dock-desklet.h\
 	terminal-callbacks.c\
-	terminal-callbacks.h
+	terminal-callbacks.h\
+	terminal-struct.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 

@@ -66,9 +66,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 		
 		myData.bVideoExtensionOK = TRUE;
 	}
-	
-	
-	
 CD_APPLET_INIT_END
 
 

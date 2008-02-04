@@ -602,7 +602,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	
 	g_print ("  derniere icone : %.2f (s:%.2f)\n", icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX, fCurvilignAbscisse);
 	CairoDockMousePositionType iMousePositionType;
-	if (fCurvilignAbscisse > icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX - (pDock->fFoldingFactor > 0 ? 20 : 0) || fCurvilignAbscisse <= 0)
+	if (! pDock->bInside || fCurvilignAbscisse > icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX - (pDock->fFoldingFactor > 0 ? 20 : 0) || fCurvilignAbscisse <= 0)
 	{
 		g_print ("<<< on sort de la parabole >>>\n");
 		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;

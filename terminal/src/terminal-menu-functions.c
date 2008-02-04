@@ -28,9 +28,11 @@
 #include "cairo-dock-desklet.h"
 #include "terminal-init.h"
 #include "terminal-callbacks.h"
+#include "terminal-struct.h"
 #include "terminal-menu-functions.h"
 
-extern t_terminal term;
+extern AppletConfig myConfig;
+extern AppletData myData;
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -38,26 +40,29 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT ("This is a very simple terminal applet made by Cedric GESTES for Cairo-Dock");
 
 static void terminal_new_tab();
-static CairoDockDesklet *terminal_new_dialog();
-static void onKeybindingPull (const char *keystring, gpointer user_data);
+///static CairoDockDesklet *terminal_new_dialog();
+static void terminal_build_new_dialog (void);
+///static void onKeybindingPull (const char *keystring, gpointer user_data);
 
 
-static void onKeybindingPull (const char *keystring, gpointer user_data)
+void onKeybindingPull (const char *keystring, gpointer user_data)
 {
   //  printf("{{##OnKeybindingPull\n");
-  if (user_data) {
-    cd_desklet_show((CairoDockDesklet *)user_data);
-    return;
-  }
-  if (!term.dialog) {
-    term.dialog = terminal_new_dialog();
-    cd_desklet_show(term.dialog);
+	g_print ("%s ()\n", __func__);
+	if (myData.desklet)
+		cd_desklet_show((CairoDockDesklet *)myData.desklet);
+	else if (myData.dialog)
+		cairo_dock_unhide_dialog (myData.dialog);
+  	else {
+    ///myData.desklet = terminal_new_dialog();
+    terminal_build_new_dialog ();
     //rebind with the dialog
-    cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
-    term.prev_shortcut = term.shortcut;
-    cd_keybinder_bind(term.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)term.dialog);
+    ///cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
+    ///term.prev_shortcut = term.shortcut;
+    cd_keybinder_bind(myConfig.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer) NULL);
   }
 }
+
 
 static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
 {
@@ -67,54 +72,56 @@ static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
 
 static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
 {
-  gint p = gtk_notebook_get_current_page(GTK_NOTEBOOK(term.tab));
-  if (gtk_notebook_get_n_pages(GTK_NOTEBOOK(term.tab)) > 1)
-    gtk_notebook_remove_page(GTK_NOTEBOOK(term.tab), p);
+  gint p = gtk_notebook_get_current_page(GTK_NOTEBOOK(myData.tab));
+  if (gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab)) > 1)
+    gtk_notebook_remove_page(GTK_NOTEBOOK(myData.tab), p);
 }
 
-static void term_dialog_apply_settings(GtkWidget *vterm)
+static void term_apply_settings_on_vterm(GtkWidget *vterm)
 {
-  if (vterm) {
-    vte_terminal_set_colors(VTE_TERMINAL(vterm), &term.forecolor, &term.backcolor, NULL, 0);
-/*     vte_terminal_set_background_saturation(VTE_TERMINAL(vterm), 1.0); */
-/*     vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), FALSE); */
-    vte_terminal_set_opacity(VTE_TERMINAL(vterm), term.transparency);
-    vte_terminal_set_size(VTE_TERMINAL(vterm), term.iNbColumns, term.iNbRows);
-    //    gtk_widget_queue_draw(term.dialog->pWidget);
-  }
+	g_return_if_fail (vterm != NULL);
+	vte_terminal_set_colors(VTE_TERMINAL(vterm), &myConfig.forecolor, &myConfig.backcolor, NULL, 0);
+	/*     vte_terminal_set_background_saturation(VTE_TERMINAL(vterm), 1.0); */
+	/*     vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), FALSE); */
+	vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
+	vte_terminal_set_size(VTE_TERMINAL(vterm), myConfig.iNbColumns, myConfig.iNbRows);
+	//    gtk_widget_queue_draw(myData.desklet->pWidget);
 }
 
 
 void term_tab_apply_settings()
 {
-  int sz = 0;
-  GtkWidget *vterm = NULL;
-
-  if (term.dialog) {
-    sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(term.tab));
-    for (int i = 0; i < sz; ++i) {
-      vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(term.tab), i);
-      term_dialog_apply_settings(vterm);
-    }
-    //    gtk_window_set_keep_above(GTK_WINDOW(term.dialog->pWidget), term.always_on_top);
-  }
-  cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
-  term.prev_shortcut = term.shortcut;
-  cd_keybinder_bind(term.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)term.dialog);
+	int sz = 0;
+	GtkWidget *vterm = NULL;
+	
+	if (myData.tab) {
+		sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab));
+		for (int i = 0; i < sz; ++i) {
+			vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
+			term_apply_settings_on_vterm(vterm);
+		}
+	}
+	if (myData.desklet)
+	{
+		gtk_window_set_keep_above(GTK_WINDOW(myData.desklet->pWidget), myConfig.always_on_top);
+	}
+	///cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
+	///term.prev_shortcut = term.shortcut;
+	cd_keybinder_bind(myConfig.shortcut, (CDBindkeyHandler)onKeybindingPull, (gpointer)NULL);
 }
 
 static void on_terminal_child_exited(VteTerminal *vteterminal,
                                      gpointer t)
 {
-  gint p = gtk_notebook_page_num(GTK_NOTEBOOK(term.tab), GTK_WIDGET(vteterminal));
-  gint sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(term.tab));
+  gint p = gtk_notebook_page_num(GTK_NOTEBOOK(myData.tab), GTK_WIDGET(vteterminal));
+  gint sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab));
 
   if (sz > 1)
-    gtk_notebook_remove_page(GTK_NOTEBOOK(term.tab), p);
+    gtk_notebook_remove_page(GTK_NOTEBOOK(myData.tab), p);
   else {
     // \r needed to return to the beginning of the line
     vte_terminal_feed(VTE_TERMINAL(vteterminal), "Shell exited. Another one is launching...\r\n\n", -1);
-    cd_desklet_hide(term.dialog);
+    cd_desklet_hide(myData.desklet);
     vte_terminal_fork_command(VTE_TERMINAL(vteterminal),
                               NULL,
                               NULL,
@@ -171,14 +178,14 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget)
 	return menu;
 }
 
-gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, t_terminal *terminal)
+gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, gpointer user_data)
 {
 	if (event->button == 3)
 	{
 		GtkWidget *menu = _terminal_build_menu_tab (window);
-
+		
 		gtk_widget_show_all (menu);
-
+		
 		gtk_menu_popup (GTK_MENU (menu),
 			NULL,
 			NULL,
@@ -203,9 +210,9 @@ static void terminal_new_tab()
 
   vterm = vte_terminal_new();
   //transparency enable, otherwise we cant change value after
-  vte_terminal_set_opacity(VTE_TERMINAL(vterm), term.transparency);
+  vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
   vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
-  vte_terminal_set_size (VTE_TERMINAL (vterm), term.iNbColumns, term.iNbRows);
+  vte_terminal_set_size (VTE_TERMINAL (vterm), myConfig.iNbColumns, myConfig.iNbRows);
   vte_terminal_fork_command(VTE_TERMINAL(vterm),
                             NULL,
                             NULL,
@@ -217,47 +224,66 @@ static void terminal_new_tab()
   g_signal_connect (G_OBJECT (vterm), "child-exited",
                     G_CALLBACK (on_terminal_child_exited), NULL);
   g_signal_connect (G_OBJECT (vterm), "button-release-event",
-                    G_CALLBACK (applet_on_terminal_press_cb), &term);
+                    G_CALLBACK (applet_on_terminal_press_cb), NULL);
   g_signal_connect (G_OBJECT (vterm), "eof",
-                    G_CALLBACK (applet_on_terminal_eof), &term);
+                    G_CALLBACK (applet_on_terminal_eof), NULL);
 
   cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received));
-  gtk_notebook_append_page(GTK_NOTEBOOK(term.tab), vterm, NULL);
+  gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, NULL);
   gtk_widget_show(vterm);
 }
 
-static CairoDockDesklet *terminal_new_dialog()
+static void terminal_build_new_dialog()
 {
-  GtkWidget *vterm = NULL;
-
-  term.tab = gtk_notebook_new();
-  terminal_new_tab();
-  gtk_widget_show(term.tab);
-
-  g_signal_connect (G_OBJECT (term.tab), "button-release-event",
-                    G_CALLBACK (applet_on_terminal_press_cb), &term);
-  term.dialog = cd_desklet_new(0, term.tab, 0, 0);
-
-  term_tab_apply_settings();
-  return term.dialog;
+	GtkWidget *vterm = NULL;
+	
+	myData.tab = gtk_notebook_new();
+	terminal_new_tab();
+	gtk_widget_show(myData.tab);
+	
+	g_signal_connect (G_OBJECT (myData.tab), "button-release-event",
+		G_CALLBACK (applet_on_terminal_press_cb), NULL);  // utile de l'ajouter au notebook ?
+	
+	if (myConfig.bIsInitiallyDetached)
+	{
+		myData.desklet = cd_desklet_new(0, myData.tab, 0, 0);
+		gtk_window_set_keep_above(GTK_WINDOW(myData.desklet->pWidget), myConfig.always_on_top);
+	}
+	else
+	{
+		myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+	}
+	///return myData.desklet;
 }
 
 
 CD_APPLET_ON_CLICK_BEGIN
 {
-  if (!term.dialog)
-    term.dialog = terminal_new_dialog();
-  cd_desklet_show(term.dialog);
+	if (myData.desklet)
+	{
+		cd_desklet_show(myData.desklet);
+	}
+	else if (myData.dialog)
+	{
+		cairo_dock_unhide_dialog (myData.dialog);
+	}
+	else
+	{
+		terminal_build_new_dialog ();
+		term_tab_apply_settings();
+	}
 }
 CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 {
-  cd_desklet_hide(term.dialog);
+	if (myData.desklet)
+		cd_desklet_hide(myData.desklet);
+	else if (myData.dialog)
+		cairo_dock_hide_dialog (myData.dialog);
 }
 CD_APPLET_ON_MIDDLE_CLICK_END
-
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
@@ -269,5 +295,3 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
   CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }
 CD_APPLET_ON_BUILD_MENU_END
-
-

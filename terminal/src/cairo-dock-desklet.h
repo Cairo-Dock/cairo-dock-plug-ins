@@ -37,9 +37,6 @@ typedef struct _CairoDockDesklet
   /// le widget d'interaction utilisateur (GtkEntry, GtkHScale, etc).
   GtkWidget *pInteractiveWidget;
 
-  ///the menu
-  GtkWidget *pMenu;
-
   //window position
   gint x;
   gint y;
@@ -68,6 +65,7 @@ void cd_desklet_free(CairoDockDesklet *pDialog);
 void cd_desklet_hide(CairoDockDesklet *pDialog);
 void cd_desklet_show(CairoDockDesklet *pDialog);
 
+GtkWidget *cd_desklet_steal_widget_from_desklet (CairoDockDesklet *pDialog);
 
 
 #endif

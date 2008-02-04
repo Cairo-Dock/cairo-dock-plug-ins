@@ -2,10 +2,12 @@
 #include <string.h>
 #include <vte/vte.h>
 
-#include "terminal-init.h"
+#include "terminal-struct.h"
 #include "terminal-callbacks.h"
 
-extern t_terminal term;
+
+extern AppletConfig myConfig;
+extern AppletData myData;
 
 static void _terminal_write_command_with_data (GtkWidget *pWidget, gchar *cCommand, gchar *cData)
 {
@@ -146,6 +148,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 
 gboolean on_terminal_button_press_dialog (GtkWidget* pWidget, GdkEventButton* pButton, gpointer data)  // a connecter au dialog->pWidget.
 {
-	cd_desklet_hide(term.dialog);
+	if (myData.dialog)
+		cairo_dock_hide_dialog (myData.dialog);
 	return FALSE;
 }

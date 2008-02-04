@@ -38,3 +38,6 @@ nb columns = 80
 
 #k Shortkey to show the terminal
 shortkey = <Ctrl>F1
+
+#b Should the terminal be detached from the dock ?
+is detached = FALSE

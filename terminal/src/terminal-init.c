@@ -21,52 +21,61 @@
 
 #include "stdlib.h"
 
-#include "terminal-config.h"
-#include "terminal-menu-functions.h"
-#include "terminal-init.h"
 #include "cairo-dock-desklet.h"
 
-t_terminal term = {
-	35555.,
-	FALSE,
-	{ 0, 0, 0, 0 },
-	{ 0, 0, 0, 0 },
-	NULL,
-	NULL,
-	25,
-	80,
-        NULL,
-        NULL
-};
+#include "terminal-config.h"
+#include "terminal-menu-functions.h"
+#include "terminal-struct.h"
+#include "terminal-init.h"
 
+AppletConfig myConfig;
+AppletData myData;
 
 CD_APPLET_DEFINITION ("terminal", 1, 4, 7)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
 {
-  CD_APPLET_REGISTER_FOR_CLICK_EVENT;
-  CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
-  CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-  term_tab_apply_settings();
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 }
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
 {
-  cd_desklet_free(term.dialog);
-  term.dialog = NULL;
-  CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
-  CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
-  CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	
+	//\_________________ On libere toutes nos ressources.
+	reset_config ();
+	reset_data ();
 }
 CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
 {
-  if (CD_APPLET_MY_CONFIG_CHANGED)
-    term_tab_apply_settings();
+	if (CD_APPLET_MY_CONFIG_CHANGED)
+	{
+		if (myData.dialog && myConfig.bIsInitiallyDetached)  // il faut le detacher.
+		{
+			myData.tab = cairo_dock_steal_widget_from_dialog (myData.dialog);
+			cairo_dock_dialog_unreference (myData.dialog);
+			myData.dialog = NULL;
+			myData.desklet = cd_desklet_new(0, myData.tab, 0, 0);
+			gtk_window_set_keep_above(GTK_WINDOW(myData.desklet->pWidget), myConfig.always_on_top);
+		}
+		if (myData.desklet && ! myConfig.bIsInitiallyDetached)
+		{
+			myData.tab = cd_desklet_steal_widget_from_desklet (myData.desklet);
+			cd_desklet_free(myData.desklet);
+			myData.desklet = NULL;
+			myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		}
+		term_tab_apply_settings();
+	}
 }
 CD_APPLET_RELOAD_END
