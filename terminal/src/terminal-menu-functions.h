@@ -35,9 +35,9 @@ CD_APPLET_ON_MIDDLE_CLICK_H
 CD_APPLET_ON_BUILD_MENU_H
 
 
-void onKeybindingPull (const char *keystring, gpointer user_data);
+void term_on_keybinding_pull(const char *keystring, gpointer user_data);
 
-void term_tab_apply_settings();
+void term_apply_settings();
 
 
 #endif

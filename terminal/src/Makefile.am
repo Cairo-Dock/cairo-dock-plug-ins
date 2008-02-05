@@ -31,7 +31,7 @@ libcd_terminal_la_CFLAGS = \
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
         -DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-std=c99\
-	-O3 \
+	-O3 -W -Werror\
 	$(LIBVTE_CFLAGS)
 #	-g -ggdb -W -Wall
 

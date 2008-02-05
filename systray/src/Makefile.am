@@ -33,7 +33,7 @@ libcd_systray_la_CFLAGS = \
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-systray"\"\
         -DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
-	-std=c99\
+	-std=c99 -W -Werror\
 	-O3
 #	-g -ggdb -W -Wall
 

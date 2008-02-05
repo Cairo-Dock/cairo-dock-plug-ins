@@ -36,6 +36,8 @@ typedef struct _CairoDockDesklet
   Icon *pIcon;
   /// le widget d'interaction utilisateur (GtkEntry, GtkHScale, etc).
   GtkWidget *pInteractiveWidget;
+  ///the menu
+  GtkWidget *pMenu;
 
   //window position
   gint x;
