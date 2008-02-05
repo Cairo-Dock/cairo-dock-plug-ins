@@ -14,4 +14,5 @@ SUBDIRS = \
 	simple\
 	simple-24\
 	tango\
-	zen
+	zen\
+	I,Clock
