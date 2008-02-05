@@ -7,4 +7,4 @@ SUBDIRS = \
 	Metal\
 	Human\
 	Silver\
-	I,Dustbin
+	I_Dustbin
