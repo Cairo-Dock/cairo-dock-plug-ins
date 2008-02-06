@@ -25,7 +25,6 @@
 
 #include <vte/vte.h>
 
-#include "cairo-dock-desklet.h"
 #include "terminal-init.h"
 #include "terminal-callbacks.h"
 #include "terminal-struct.h"

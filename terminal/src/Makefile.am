@@ -11,8 +11,6 @@ libcd_terminal_la_SOURCES = \
 	terminal-config.h\
 	terminal-menu-functions.c\
 	terminal-menu-functions.h\
-	cairo-dock-desklet.c\
-	cairo-dock-desklet.h\
 	terminal-callbacks.c\
 	terminal-callbacks.h\
 	terminal-struct.h

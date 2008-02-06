@@ -21,8 +21,6 @@
 
 #include "stdlib.h"
 
-#include "cairo-dock-desklet.h"
-
 #include "terminal-config.h"
 #include "terminal-menu-functions.h"
 #include "terminal-struct.h"
