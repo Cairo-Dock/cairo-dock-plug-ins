@@ -3,8 +3,11 @@
 
 #include "applet-config.h"
 #include "applet-notifications.h"
+#include "applet-struct.h"
 #include "applet-init.h"
 
+AppletConfig myConfig;
+AppletData myData;
 
 CD_APPLET_DEFINITION ("logout", 1, 4, 7)
 

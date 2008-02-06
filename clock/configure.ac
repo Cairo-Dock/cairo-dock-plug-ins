@@ -64,6 +64,6 @@ AC_CONFIG_FILES([Makefile
 		data/themes/simple/Makefile
 		data/themes/simple-24/Makefile
 		data/themes/tango/Makefile
-		data/themes/I,Clock/Makefile
+		data/themes/I_Clock/Makefile
 		data/themes/zen/Makefile])
 AC_OUTPUT

@@ -47,9 +47,10 @@ static gboolean cd_desklet_on_expose(GtkWidget *pWidget,
   cairo_set_source_rgba (pCairoContext, 0., 0., 0., 0.);
   cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
   cairo_paint (pCairoContext);
+cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 
   //set the color
-  if (gtk_window_is_active(GTK_WINDOW(pDialog->pWidget)))
+  if (gtk_window_is_active(GTK_WINDOW(pDialog->pWidget)))  /// je verrais bien un changement au survol (utiliser un flag bIsInside et les enter & leave events.) On pourrait meme avoir les 3 etats.
     cairo_set_source_rgba (pCairoContext, 1., 1., 1., 0.7);
   else
     cairo_set_source_rgba (pCairoContext, 1., 1., 1., 0.3);
@@ -92,7 +93,7 @@ static gboolean cd_desklet_on_click(GtkWidget      *widget,
                                     GdkEventButton *event,
                                     CairoDockDesklet *dialog)
 {
-  if (((GdkEventButton *)event)->button == 1) {
+  if (((GdkEventButton *)event)->button == 1) {  /// utiliser le champ 'state' des MotionEvent, comme pour les docks.
     dialog->moving = TRUE;
     dialog->diff_x = -((GdkEventButton *)event)->x;
     dialog->diff_y = -((GdkEventButton *)event)->y;
@@ -236,8 +237,8 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
   gtk_widget_set_app_paintable(pWindow, TRUE);
   gtk_window_set_decorated(GTK_WINDOW(pWindow), FALSE);
   gtk_window_set_resizable(GTK_WINDOW(pWindow), TRUE);
-  gtk_window_set_title(GTK_WINDOW(pWindow), "cairo-dock-desklet");
-  gtk_widget_add_events(pWindow, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_POINTER_MOTION_MASK | GDK_FOCUS_CHANGE_MASK);
+  gtk_window_set_title(GTK_WINDOW(pWindow), "cairo-dock-desklet");  /// tilte = nom de l'applet, et class = "cairo-dock-desklet" serait peut-etre plus interessant pour le WM.
+  gtk_widget_add_events(pWindow, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_FOCUS_CHANGE_MASK);
   gtk_window_set_policy(GTK_WINDOW(pWindow), 0, 0, 1);
   //the border is were cairo paint
   gtk_container_set_border_width(GTK_CONTAINER(pWindow), 10);
@@ -257,15 +258,15 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
                     G_CALLBACK (cd_desklet_on_click_nbt), pDialog);
 
   g_signal_connect (G_OBJECT (pWindow), "event",
-                    G_CALLBACK (cd_desklet_on_event), pDialog);
+                    G_CALLBACK (cd_desklet_on_event), pDialog);  /// motion-notify
   g_signal_connect (G_OBJECT (pWindow), "button-press-event",
-                    G_CALLBACK (cd_desklet_on_click), pDialog);
+                    G_CALLBACK (cd_desklet_on_click), pDialog);  /// il manque un configure-event por choper la taille et la position.
   g_signal_connect (G_OBJECT (pWindow), "button-release-event",
                     G_CALLBACK (cd_desklet_on_release), pDialog);
   g_signal_connect (G_OBJECT (pWindow), "focus-in-event",
-                    G_CALLBACK (cd_desklet_on_focus_in_out), pDialog);
+                    G_CALLBACK (cd_desklet_on_focus_in_out), pDialog);  /// distinguer les 2 pour eviter d'avoir a faire le test dans le dessin.
   g_signal_connect (G_OBJECT (pWindow), "focus-out-event",
-                    G_CALLBACK (cd_desklet_on_focus_in_out), pDialog);
+                    G_CALLBACK (cd_desklet_on_focus_in_out), pDialog);  /// pourquoi pas enter-notify-event et leave-notify-event au fait ?
 
   pDialog->pMenu = cd_desklet_build_menu(pDialog);
   gtk_widget_show_all(pDialog->pMenu);
@@ -273,6 +274,7 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
   //user widget
   if (pInteractiveWidget != NULL)
   {
+    g_print ("ref = %d\n", pInteractiveWidget->object.parent_instance.ref_count);
     if (gtk_widget_get_parent (pInteractiveWidget) != NULL)
       {
         gtk_object_ref((gpointer)pInteractiveWidget);
@@ -282,6 +284,7 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
       gtk_object_ref((gpointer)pInteractiveWidget);
     gtk_box_pack_start(GTK_BOX(hbox), pInteractiveWidget, 1, 1, 0);
     gtk_object_unref((gpointer)pInteractiveWidget);
+    g_print ("pack -> ref = %d\n", pInteractiveWidget->object.parent_instance.ref_count);
   }
 
   gtk_widget_show_all(pWindow);
@@ -311,15 +314,21 @@ void cd_desklet_show(CairoDockDesklet *pDialog)
 
 GtkWidget *cd_desklet_steal_widget_from_desklet (CairoDockDesklet *pDialog)
 {
-  static GtkWidget *pWidgetCatcher = NULL;
-  if (pWidgetCatcher == NULL)
-    pWidgetCatcher = gtk_hbox_new (0, FALSE);
-
-  GtkWidget *pInteractiveWidget = pDialog->pInteractiveWidget;
-  if (pInteractiveWidget != NULL)
-    {
-      gtk_widget_reparent (pInteractiveWidget, pWidgetCatcher);  // j'ai rien trouve de mieux pour empecher que le 'pInteractiveWidget' ne soit pas detruit avec le dialogue apres l'appel de la callback (g_object_ref ne marche pas).
-      pDialog->pInteractiveWidget = NULL;
-    }
-  return pInteractiveWidget;
+	static GtkWidget *pWidgetCatcher = NULL;
+	if (pWidgetCatcher == NULL)
+		pWidgetCatcher = gtk_hbox_new (0, FALSE);
+	
+	GtkWidget *pInteractiveWidget = pDialog->pInteractiveWidget;
+	if (pInteractiveWidget != NULL)
+	{
+		gtk_widget_reparent (pInteractiveWidget, pWidgetCatcher);  // j'ai rien trouve de mieux pour empecher que le 'pInteractiveWidget' ne soit pas detruit avec le dialogue apres l'appel de la callback (g_object_ref ne marche pas).
+		g_print ("reparent -> ref = %d\n", pInteractiveWidget->object.parent_instance.ref_count);
+		
+		gtk_object_ref (GTK_OBJECT (pInteractiveWidget));
+		gtk_widget_unparent (pInteractiveWidget);
+		g_print ("ref+unparent -> ref = %d\n", pInteractiveWidget->object.parent_instance.ref_count);
+		
+		pDialog->pInteractiveWidget = NULL;
+	}
+	return pInteractiveWidget;
 }

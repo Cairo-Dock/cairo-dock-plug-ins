@@ -10,8 +10,8 @@ libcd_logout_la_SOURCES = \
 	applet-config.c\
 	applet-config.h\
 	applet-notifications.c\
-	applet-notifications.h
-
+	applet-notifications.h\
+	applet-struct.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 

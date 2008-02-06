@@ -4,7 +4,11 @@
 #include <signal.h>
 #include <glib/gi18n.h>
 
+#include "applet-struct.h"
 #include "applet-notifications.h"
+
+extern AppletConfig myConfig;
+extern AppletData myData;
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -13,7 +17,11 @@ CD_APPLET_ABOUT (_D("This is a very simple logout applet\n made by Fabrice Rey f
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
+	if (myConfig.cUserAction != NULL)
+	{
+		system (myConfig.cUserAction);
+	}
+	else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 	{
 		system ("gnome-session-save --kill --gui");
 	}
@@ -24,6 +32,10 @@ CD_APPLET_ON_CLICK_BEGIN
 		{
 			system ("dcop ksmserver default logout 0 0 0");  // kdmctl shutdown reboot forcenow  // kdeinit_shutdown
 		}
+	}
+	else
+	{
+		g_print ("couldn't guess what to do to log out.\n");
 	}
 CD_APPLET_ON_CLICK_END
 

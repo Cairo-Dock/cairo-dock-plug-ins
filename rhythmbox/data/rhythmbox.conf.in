@@ -14,11 +14,10 @@ frame1_fin =
 #s Default title :
 name = Rythmbox
 
-
 [Configuration]
 
 #F[Info-bubbles]
-frame2=
+frame_info=
 #b Activate info-bubbles ?
 enable_dialogs=true
 #i Time length of info-bubbles :
@@ -26,13 +25,31 @@ enable_dialogs=true
 time_dialogs=3000
 
 #F[Animations]
-frame3=
+frame_anim=
 #r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
 change_animation=1
 
 #F[Display]
-frame3=
+frame_disp=
 #b Display album's cover instead of icon ?
 enable_cover=true
 #r[nothing;time elapsed;time left;time in %n;° of track] Information to display on the icon :
 quick-info_type=1
+
+#F[Personnalisation]
+frame_app =
+#S Name of an image for the 'default' icon :
+#{Let t empty to use the default icon.}
+default icon = 
+#S Name of an image for the 'play' icon :
+#{Let t empty to use the default icon.}
+play icon = 
+#S Name of an image for the 'stop' icon :
+#{Let t empty to use the default icon.}
+stop icon = 
+#S Name of an image for the 'pause' icon :
+#{Let t empty to use the default icon.}
+pause icon = 
+#S Name of an image for the 'broken' icon :
+#{Let t empty to use the default icon.}
+broken icon = 

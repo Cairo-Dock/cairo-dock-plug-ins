@@ -20,6 +20,11 @@ typedef struct {
 	CairoDockAnimationType changeAnimation;
 	MyAppletQuickInfoType quickInfoType;
 	gchar *defaultTitle;
+	gchar *cDefaultIcon;
+	gchar *cPlayIcon;
+	gchar *cPauseIcon;
+	gchar *cStopIcon;
+	gchar *cBrokenIcon;
 	} AppletConfig;
 
 typedef struct {

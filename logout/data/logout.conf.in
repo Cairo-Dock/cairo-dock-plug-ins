@@ -16,3 +16,9 @@ name = quitter
 
 #S Icon's name :
 icon = gnome-session-halt
+
+[Configuration]
+
+#s User-defined command to execute to log-out :
+#{Let empty to execute the default comand.}
+user action =
