@@ -51,6 +51,7 @@ cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 
   //set the color
   if (gtk_window_is_active(GTK_WINDOW(pDialog->pWidget)))  /// je verrais bien un changement au survol (utiliser un flag bIsInside et les enter & leave events.) On pourrait meme avoir les 3 etats.
+    ///eviter a tous prix les flags qui servent a rien qd on peut determiner l'etat autrement, flag a mettre a js = source d'erreur
     cairo_set_source_rgba (pCairoContext, 1., 1., 1., 0.7);
   else
     cairo_set_source_rgba (pCairoContext, 1., 1., 1., 0.3);
@@ -265,6 +266,7 @@ CairoDockDesklet *cd_desklet_new(Icon *pIcon,
                     G_CALLBACK (cd_desklet_on_release), pDialog);
   g_signal_connect (G_OBJECT (pWindow), "focus-in-event",
                     G_CALLBACK (cd_desklet_on_focus_in_out), pDialog);  /// distinguer les 2 pour eviter d'avoir a faire le test dans le dessin.
+  ///non justement
   g_signal_connect (G_OBJECT (pWindow), "focus-out-event",
                     G_CALLBACK (cd_desklet_on_focus_in_out), pDialog);  /// pourquoi pas enter-notify-event et leave-notify-event au fait ?
 
@@ -317,17 +319,17 @@ GtkWidget *cd_desklet_steal_widget_from_desklet (CairoDockDesklet *pDialog)
 	static GtkWidget *pWidgetCatcher = NULL;
 	if (pWidgetCatcher == NULL)
 		pWidgetCatcher = gtk_hbox_new (0, FALSE);
-	
+
 	GtkWidget *pInteractiveWidget = pDialog->pInteractiveWidget;
 	if (pInteractiveWidget != NULL)
 	{
 		gtk_widget_reparent (pInteractiveWidget, pWidgetCatcher);  // j'ai rien trouve de mieux pour empecher que le 'pInteractiveWidget' ne soit pas detruit avec le dialogue apres l'appel de la callback (g_object_ref ne marche pas).
 		g_print ("reparent -> ref = %d\n", pInteractiveWidget->object.parent_instance.ref_count);
-		
+
 		gtk_object_ref (GTK_OBJECT (pInteractiveWidget));
 		gtk_widget_unparent (pInteractiveWidget);
 		g_print ("ref+unparent -> ref = %d\n", pInteractiveWidget->object.parent_instance.ref_count);
-		
+
 		pDialog->pInteractiveWidget = NULL;
 	}
 	return pInteractiveWidget;
