@@ -94,6 +94,11 @@ void update_stats(void)
 			G_TYPE_INVALID,
 			G_TYPE_INT, &myData.battery_charge,
 			G_TYPE_INVALID);
+		dbus_g_proxy_call (dbus_proxy_battery, "GetPropertyInteger", NULL,
+			G_TYPE_STRING,"battery.remaining_time",
+			G_TYPE_INVALID,
+			G_TYPE_INT, &myData.battery_time,
+			G_TYPE_INVALID);
 	}
 	update_icon();
 }

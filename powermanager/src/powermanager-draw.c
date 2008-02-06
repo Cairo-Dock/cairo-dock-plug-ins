@@ -18,8 +18,15 @@ void iconWitness(int animationLenght)
 void update_icon(void)
 {
 	if(myData.battery_present)
-	{
-		cairo_dock_set_quick_info (myDrawContext, g_strdup_printf ("%d%s", myData.battery_charge,"%"), myIcon);
+	{g_print("Type d'affichage : %u\n",myConfig.quickInfoType);
+		if(myConfig.quickInfoType == MY_APPLET_TIME)
+		{
+			cairo_dock_set_quick_info (myDrawContext, format_time(myData.battery_time), myIcon);
+		}
+		else if(myConfig.quickInfoType == MY_APPLET_CHARGE)
+		{
+			cairo_dock_set_quick_info (myDrawContext, g_strdup_printf ("%d%s", myData.battery_charge,"%"), myIcon);
+		}
 		if(myData.on_battery)
 		{
 			if(myData.battery_charge >= 95)
@@ -51,4 +58,24 @@ void update_icon(void)
 	{
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceSector)
 	}
+}
+
+gchar *format_time(int seconde)
+{
+	if(myData.on_battery)
+	{
+		int hours = seconde / 3600;
+		int minutes = (seconde % 3600) / 60;
+		if(hours > 0)
+		{
+			if(minutes < 10) return g_strdup_printf("%ih0%i",hours,minutes);
+			else return g_strdup_printf("%ih%i",hours,minutes);
+		}
+		else
+		{
+			if(minutes > 0) return g_strdup_printf("%i",minutes);
+			else return NULL;
+		}
+	}
+	else return NULL;
 }

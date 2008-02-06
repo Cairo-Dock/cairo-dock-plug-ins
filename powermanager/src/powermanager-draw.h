@@ -5,5 +5,6 @@
 
 void iconWitness(int animationLenght);
 void update_icon(void);
+gchar *format_time(int seconde);
 
 #endif

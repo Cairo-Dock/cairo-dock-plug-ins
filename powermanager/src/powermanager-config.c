@@ -10,6 +10,7 @@ AppletData myData;
 CD_APPLET_CONFIG_BEGIN ("PowerManager", NULL)
 	reset_config ();
 	
+	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick_info_type", MY_APPLET_TIME);
 	
 CD_APPLET_CONFIG_END
 
