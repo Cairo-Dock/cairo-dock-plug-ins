@@ -13,7 +13,7 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm);
 gboolean cd_clock_update_with_time (Icon *icon);
 
 
-void cd_clock_draw_text (cairo_t *pCairoContext, struct tm *pTime);
+void cd_clock_draw_text (cairo_t *pCairoContext, int width, int height, double fMaxScale, struct tm *pTime);
 
 
 

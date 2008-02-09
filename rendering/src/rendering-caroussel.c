@@ -30,7 +30,7 @@ extern double my_iGapOnEllipse;
 extern gboolean my_bRotateIconsOnEllipse;
 
 
-void cd_rendering_set_subdock_position_caroussel (Icon *pPointedIcon, CairoDock *pDock)
+/*void cd_rendering_set_subdock_position_caroussel (Icon *pPointedIcon, CairoDock *pDock)
 {
 	CairoDock *pSubDock = pPointedIcon->pSubDock;
 	int iMouseX = pDock->iMouseX;
@@ -51,7 +51,7 @@ void cd_rendering_set_subdock_position_caroussel (Icon *pPointedIcon, CairoDock 
 		else
 			pSubDock->iGapY = iX + pDock->iWindowPositionX - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 0.
 	}
-}
+}*/
 
 
 void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
@@ -263,7 +263,7 @@ void cd_rendering_register_caroussel_renderer (void)
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_caroussel;  // cairo_dock_apply_wave_effect;
 	pRenderer->render = cd_rendering_render_caroussel;
 	pRenderer->render_optimized = NULL;
-	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_caroussel;
+	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;  // cd_rendering_set_subdock_position_caroussel
 	pRenderer->bUseReflect = TRUE;
 	
 	cairo_dock_register_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME, pRenderer);

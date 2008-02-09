@@ -7,7 +7,7 @@
 #define MY_APPLET_CAROUSSEL_VIEW_NAME "Caroussel"
 
 
-void cd_rendering_set_subdock_position_caroussel (Icon *pPointedIcon, CairoDock *pParentDock);
+//void cd_rendering_set_subdock_position_caroussel (Icon *pPointedIcon, CairoDock *pParentDock);
 
 
 void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock);

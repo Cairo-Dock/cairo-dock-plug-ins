@@ -49,12 +49,13 @@ gboolean cd_clock_update_with_time (Icon *icon)
 	time_t epoch = (time_t) time (NULL);
 	localtime_r (&epoch, &epoch_tm);
 	
+	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 	if (myConfig.bOldStyle)
-		cd_clock_draw_old_fashionned_clock (myDrawContext, (int) icon->fWidth, (int) icon->fHeight, (1 + g_fAmplitude), &epoch_tm);
+		cd_clock_draw_old_fashionned_clock (myDrawContext, (int) icon->fWidth, (int) icon->fHeight, fMaxScale, &epoch_tm);
 	else
-		cd_clock_draw_text (myDrawContext, &epoch_tm);
+		cd_clock_draw_text (myDrawContext, (int) icon->fWidth, (int) icon->fHeight, fMaxScale, &epoch_tm);
 	
-	if (myDock->bUseReflect)
+	if (myDock != NULL && myDock->bUseReflect)
 	{
 		cairo_surface_t *pReflet = icon->pReflectionBuffer;
 		icon->pReflectionBuffer = NULL;
@@ -77,7 +78,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 		iLastCheckedYear = epoch_tm.tm_year;
 	}
 	
-	cairo_dock_redraw_my_icon (icon, myDock);
+	cairo_dock_redraw_my_icon (icon, (myDock != NULL ? myDock : myDesklet));
 	
 	if (!myConfig.bShowSeconds || epoch_tm.tm_min != iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement à exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.
 	{
@@ -116,7 +117,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 				if (bShowAlarm)
 				{
 					g_print ("Dring ! %s\n", pAlarm->cMessage);
-					cairo_dock_show_temporary_dialog (pAlarm->cMessage, myIcon, myDock, 60e3);
+					cairo_dock_show_temporary_dialog (pAlarm->cMessage, myIcon, g_pMainDock, 60e3);
 					if (pAlarm->cCommand != NULL)
 					{
 						if (myData.iAlarmPID > 0)
@@ -161,7 +162,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 }
 
 
-void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
+void cd_clock_draw_text (cairo_t *pSourceContext, int width, int height, double fMaxScale, struct tm *pTime)
 {
 	GString *sFormat = g_string_new ("");
 	
@@ -214,12 +215,11 @@ void cd_clock_draw_text (cairo_t *pSourceContext, struct tm *pTime)
 	
 	//double fTextXOffset = log.width / 2. - ink.x;
 	//double fTextYOffset = log.height     - ink.y;
-	double fMaxScale = 1 + g_fAmplitude;
 	
 	cairo_save (pSourceContext);
 	cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
-	cairo_scale (pSourceContext, myIcon->fWidth * fMaxScale / ink.width, myIcon->fHeight * fMaxScale / ink.height);
+	cairo_scale (pSourceContext, width * fMaxScale / ink.width, height * fMaxScale / ink.height);
 	cairo_set_source_surface (pSourceContext,
 		pNewSurface,
 		0,

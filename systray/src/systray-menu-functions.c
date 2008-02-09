@@ -41,12 +41,12 @@ static void onKeybindingPull (const char *keystring, gpointer user_data)
 {
   //  printf("{{##OnKeybindingPull\n");
   if (user_data) {
-    cd_desklet_show((CairoDockDesklet *)user_data);
+    cairo_dock_show_desklet((CairoDockDesklet *)user_data);
     return;
   }
   if (!systray.dialog) {
     systray.dialog = systray_new_dialog();
-    cd_desklet_show(systray.dialog);
+    cairo_dock_show_desklet(systray.dialog);
     //rebind with the dialog
     cd_keybinder_unbind(systray.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
     systray.prev_shortcut = systray.shortcut;
@@ -68,7 +68,7 @@ static CairoDockDesklet *systray_new_dialog()
   GtkRequisition req;
 
   systray.tray = tray_init(myDock->pWidget);
-  systray.dialog = cd_desklet_new (0, systray.tray->widget, 0, 0);
+  systray.dialog = cairo_dock_create_desklet (0, systray.tray->widget, 0, 0);
   gtk_widget_size_request(GTK_WIDGET(systray.tray->box), &req);
   gtk_window_resize(GTK_WINDOW(systray.dialog->pWidget), 24, 24);
   systray_dialog_apply_settings();
@@ -79,13 +79,13 @@ CD_APPLET_ON_CLICK_BEGIN
 {
   if (!systray.dialog)
     systray.dialog = systray_new_dialog();
-  cd_desklet_show(systray.dialog);
+  cairo_dock_show_desklet(systray.dialog);
 }
 CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 {
-  cd_desklet_hide(systray.dialog);
+  cairo_dock_hide_desklet(systray.dialog);
 }
 CD_APPLET_ON_MIDDLE_CLICK_END
 

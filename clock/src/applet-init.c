@@ -63,16 +63,18 @@ static void _load_theme (void)
 static void _load_back_and_fore_ground (void)
 {
 	g_print("%s ()\n", __func__);
+	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+	
 	//\_______________ On construit les surfaces d'arriere-plan et d'avant-plan une bonne fois pour toutes.
 	myData.pBackgroundSurface = update_surface (NULL,
 		myDrawContext,
-		myIcon->fWidth * (1 + g_fAmplitude),
-		myIcon->fHeight * (1 + g_fAmplitude),
+		myIcon->fWidth * fMaxScale,
+		myIcon->fHeight * fMaxScale,
 		KIND_BACKGROUND);
 	myData.pForegroundSurface = update_surface (NULL,
 		myDrawContext,
-		myIcon->fWidth * (1 + g_fAmplitude),
-		myIcon->fHeight * (1 + g_fAmplitude),
+		myIcon->fWidth * fMaxScale,
+		myIcon->fHeight * fMaxScale,
 		KIND_FOREGROUND);
 }
 

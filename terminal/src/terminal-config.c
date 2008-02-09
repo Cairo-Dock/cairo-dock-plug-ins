@@ -97,7 +97,7 @@ void reset_data (void)
 {
   cairo_dock_dialog_unreference (myData.dialog);  // l'autre reference sera enlevee par la destruction de notre icone.
   myData.dialog = NULL;
-  cd_desklet_free(myData.desklet);
+  cairo_dock_free_desklet(myData.desklet);
   myData.desklet = NULL;
   myData.tab = NULL;  // detruit avec l'une des 2 structures precedentes.
   memset (&myData, 0, sizeof (AppletData));

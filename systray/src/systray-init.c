@@ -49,7 +49,7 @@ CD_APPLET_INIT_END
 
 CD_APPLET_STOP_BEGIN
 {
-  cd_desklet_free(systray.dialog);
+  cairo_dock_free_desklet (systray.dialog);
   systray.dialog = 0;
   CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
   CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;

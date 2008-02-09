@@ -1,11 +1,26 @@
-/******************************************************************************
+/*********************************************************************************
 
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
-******************************************************************************/
+On definit une courbe de la forme y = f(x); on decide de prendre
+    f : x |--> lambda * x ^ alpha.
+On se ramene a un dock lineaire en passant aux coordonnees curvilignes par la formule :
+    s = int (0, x, sqrt (1 + f'(x)^2)dx),
+ce qui nous donne un systeme de 2 equations a 2 inconnnues (x et y)
+En approximant l'integrale par une somme discrete, on se rend compte qu'on peut re-ecrire le probleme sous la forme d'une equa-diff du 1er ordre.
+On utilise alors une méthode de Runge-Kutta d'ordre 4, ce qui pour un nombre d'icones N peu eleve donne un tres bon resultat.
+Pour optimiser le calcul, on remarque par un changement de variable idoine que l'on a la relation :
+    s_lambda(x) = s_lambda'(c*x) / c, avec c = (lambda / lambda')^(1 / (alpha - 1))
+ce qui nous permet de calculer une parabole par interpolation lineaire sur une parabole de reference.
+La vague se rajoute dans un 2eme temps. On cherche a ancrer la 1ere icone en (0,0).
+Pour se faire, on calcule la position de la crete de la vague par une suite convergente :
+    sn+1 = vague (sn)
+La position sur la vague est deduite de la position du curseur par projection normale sur la courbe; on remarque qu'on peut borner s dans un intervalle de largeur moyenne egale a L/2. On procede alors par dichotomie sur ce segment en prolongeant en chaque point suivant grad(f) jusqu'a tomber sur le curseur.
+Voila pour la petite explication :-)
+*********************************************************************************/
 #include <math.h>
 #include <string.h>
 #include <stdio.h>
@@ -480,13 +495,13 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 	
 	do
 	{
-		g_print ("  x_abs : %.2f\n", x_abs);
+		g_print ("  x_abs : %.2f / %.2f\n", x_abs, pDock->fFlatDockWidth);
 		cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, pDock->fFlatDockWidth, pDock->fFlatDockWidth, pDock->iCurrentHeight, 0*pDock->fAlign, pDock->fFoldingFactor);
 		fWaveOffset = - pFirstIcon->fX;
 		
 		fWaveExtrema = fWaveOffset + x_abs;
 		x_abs += (fCurvilignAbscisse - fWaveExtrema) / 2;
-		if (x_abs > (int) pDock->fFlatDockWidth)
+		if (x_abs > (int) pDock->fFlatDockWidth + fWaveOffset)
 		{
 			x_abs = (int) pDock->fFlatDockWidth;
 			break ;
@@ -495,7 +510,7 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 		
 		nb_iter ++;
 	}
-	while (fabs (fWaveExtrema - fCurvilignAbscisse) > 1 && nb_iter < 20);
+	while (fabs (fWaveExtrema - fCurvilignAbscisse) > 1 && nb_iter < 15);
 	
 	return x_abs;
 }

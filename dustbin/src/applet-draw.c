@@ -118,7 +118,7 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 	if ((myData.iNbTrashes == -1) || (myData.iNbTrashes == 0 && iNewState != 0) || (myData.iNbTrashes != 0 && iNewState == 0))
 	{
 		myData.iNbTrashes = iNewState;
-		double fMaxScale = 1 + g_fAmplitude;
+		double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 		cairo_save (myDrawContext);
 		
 		if (iNewState == 0)

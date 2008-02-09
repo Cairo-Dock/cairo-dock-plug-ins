@@ -61,16 +61,16 @@ CD_APPLET_RELOAD_BEGIN
     {
       if (myData.dialog && myConfig.bIsInitiallyDetached)  // il faut le detacher.
         {
-          myData.tab = cairo_dock_steal_widget_from_dialog (myData.dialog);
+          myData.tab = cairo_dock_steal_widget_from_its_container (myData.tab);
           cairo_dock_dialog_unreference (myData.dialog);
           myData.dialog = NULL;
-          myData.desklet = cd_desklet_new(0, myData.tab, 0, 0);
+          myData.desklet = cairo_dock_create_desklet(myIcon, myData.tab);
           gtk_window_set_keep_above(GTK_WINDOW(myData.desklet->pWidget), myConfig.always_on_top);
         }
       if (myData.desklet && ! myConfig.bIsInitiallyDetached)
         {
-          myData.tab = cd_desklet_steal_widget_from_desklet (myData.desklet);
-          cd_desklet_free(myData.desklet);
+          myData.tab = cairo_dock_steal_widget_from_its_container (myData.tab);
+          cairo_dock_free_desklet (myData.desklet);
           myData.desklet = NULL;
           myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
         }

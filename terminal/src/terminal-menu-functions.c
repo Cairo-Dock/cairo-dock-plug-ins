@@ -49,7 +49,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
   //  printf("{{##OnKeybindingPull\n");
   g_print ("%s ()\n", __func__);
   if (myData.desklet)
-    cd_desklet_show(myData.desklet);
+    cairo_dock_show_desklet(myData.desklet);
   else if (myData.dialog)
     cairo_dock_unhide_dialog(myData.dialog);
   else {
@@ -82,7 +82,9 @@ static void term_apply_settings_on_vterm(GtkWidget *vterm)
   vte_terminal_set_colors(VTE_TERMINAL(vterm), &myConfig.forecolor, &myConfig.backcolor, NULL, 0);
   /*     vte_terminal_set_background_saturation(VTE_TERMINAL(vterm), 1.0); */
   /*     vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), FALSE); */
+#if GTK_MINOR_VERSION >= 12
   vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
+#endif
   vte_terminal_set_size(VTE_TERMINAL(vterm), myConfig.iNbColumns, myConfig.iNbRows);
   //    gtk_widget_queue_draw(myData.desklet->pWidget);
 }
@@ -118,7 +120,7 @@ static void on_terminal_child_exited(VteTerminal *vteterminal,
   else {
     // \r needed to return to the beginning of the line
     vte_terminal_feed(VTE_TERMINAL(vteterminal), "Shell exited. Another one is launching...\r\n\n", -1);
-    cd_desklet_hide(myData.desklet);
+    cairo_dock_hide_desklet(myData.desklet);
     vte_terminal_fork_command(VTE_TERMINAL(vteterminal),
                               NULL,
                               NULL,
@@ -207,7 +209,9 @@ static void terminal_new_tab()
 
   vterm = vte_terminal_new();
   //transparency enable, otherwise we cant change value after
+#if GTK_MINOR_VERSION >= 12
   vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
+#endif
   vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
   vte_terminal_set_size (VTE_TERMINAL (vterm), myConfig.iNbColumns, myConfig.iNbRows);
   vte_terminal_fork_command(VTE_TERMINAL(vterm),
@@ -226,8 +230,10 @@ static void terminal_new_tab()
                     G_CALLBACK (applet_on_terminal_eof), NULL);
 
   cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received));
-  gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, NULL);
+  int num_new_tab = gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, NULL);  /// creer un widget avec un label et un bouton 'close' a mettre a la place du NULL. garder une trace du label pour pouvoir le changer plus tard (numerotation ou repertoire courant ou nom utilisateur).
   gtk_widget_show(vterm);
+  g_print ("num_new_tab : %d\n", num_new_tab);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
 }
 
 static void terminal_build_new_dialog()
@@ -243,7 +249,7 @@ static void terminal_build_new_dialog()
 
   if (myConfig.bIsInitiallyDetached)
     {
-      myData.desklet = cd_desklet_new(0, myData.tab, 0, 0);
+      myData.desklet = cairo_dock_create_desklet(myIcon, myData.tab);
       gtk_window_set_keep_above(GTK_WINDOW(myData.desklet->pWidget), myConfig.always_on_top);
     }
   else
@@ -257,7 +263,7 @@ static void terminal_build_new_dialog()
 CD_APPLET_ON_CLICK_BEGIN
 {
   if (myData.desklet)
-    cd_desklet_show(myData.desklet);
+    cairo_dock_show_desklet(myData.desklet);
   else if (myData.dialog)
     cairo_dock_unhide_dialog(myData.dialog);
   else
@@ -269,7 +275,7 @@ CD_APPLET_ON_CLICK_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 {
   if (myData.desklet)
-    cd_desklet_hide(myData.desklet);
+    cairo_dock_hide_desklet(myData.desklet);
   else if (myData.dialog)
     cairo_dock_hide_dialog (myData.dialog);
 }
