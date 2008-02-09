@@ -19,11 +19,11 @@ static void _cd_shortcuts_detach_one_bookmark (Icon *icon, CairoDock *pDock, GLi
 }
 void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
 {
-	g_print ("%s (%d)\n", __func__, iEventType);
+	cd_message ("%s (%d)\n", __func__, iEventType);
 	
 	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)
 	{
-		g_print ("  un signet en plus ou en moins\n");
+		cd_message ("  un signet en plus ou en moins\n");
 		//\____________________ On detache les icones des signets.
 		GList *pPrevBookmarkIconList = NULL;
 		Icon *pSeparatorIcon = cairo_dock_foreach_icons_of_type (myIcon->pSubDock, 10, (CairoDockForeachIconFunc) _cd_shortcuts_detach_one_bookmark, &pPrevBookmarkIconList);
@@ -36,7 +36,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 		g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &tmp_erreur);
 		if (tmp_erreur != NULL)
 		{
-			g_print ("Attention : %s\n", tmp_erreur->message);
+			cd_message ("Attention : %s\n", tmp_erreur->message);
 			g_error_free (tmp_erreur);
 		}
 		else
@@ -57,7 +57,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pPrevBookmarkIconList, cOneBookmark);
 				if (pExistingIcon != NULL)  // on la reinsere a sa place.
 				{
-					g_print (" = 1 signet : %s\n", cOneBookmark);
+					cd_message (" = 1 signet : %s\n", cOneBookmark);
 					pPrevBookmarkIconList = g_list_remove (pPrevBookmarkIconList, pExistingIcon);
 					pExistingIcon->fOrder = fCurrentOrder ++;
 					cairo_dock_insert_icon_in_dock (pExistingIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
@@ -67,7 +67,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 				{
 					if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType))
 					{
-						g_print (" + 1 signet : %s\n", cOneBookmark);
+						cd_message (" + 1 signet : %s\n", cOneBookmark);
 						pNewIcon = g_new0 (Icon, 1);
 						pNewIcon->iType = 10;
 						pNewIcon->cBaseURI = cOneBookmark;
@@ -96,7 +96,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 			Icon *pFirstBookmarkIcon = cairo_dock_get_first_icon_of_type (myIcon->pSubDock->icons, 10);
 			if (pFirstBookmarkIcon == NULL && pSeparatorIcon != NULL)
 			{
-				g_print ("on enleve l'ancien separateur\n");
+				cd_message ("on enleve l'ancien separateur\n");
 				cairo_dock_detach_icon_from_dock (pSeparatorIcon, myIcon->pSubDock, myConfig.bUseSeparator);
 				cairo_dock_free_icon (pSeparatorIcon);
 			}
@@ -109,7 +109,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
-	g_print ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)\n", __func__, cURI);
 	
 	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
 	gchar *cContent = NULL;
@@ -118,7 +118,7 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
-		g_print ("Attention : %s\n", tmp_erreur->message);
+		cd_message ("Attention : %s\n", tmp_erreur->message);
 		g_error_free (tmp_erreur);
 	}
 	else
@@ -144,7 +144,7 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 		g_file_set_contents (cBookmarkFilePath, sNewContent->str, -1, &tmp_erreur);
 		if (tmp_erreur != NULL)
 		{
-			g_print ("Attention : %s\n", tmp_erreur->message);
+			cd_message ("Attention : %s\n", tmp_erreur->message);
 			g_error_free (tmp_erreur);
 		}
 		
@@ -157,7 +157,7 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 void cd_shortcuts_add_one_bookmark (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
-	g_print ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)\n", __func__, cURI);
 	
 	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
 	FILE *f = fopen (cBookmarkFilePath, "a");
@@ -179,7 +179,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
-		g_print ("Attention : %s\n  no bookmark will be available\n", tmp_erreur->message);
+		cd_message ("Attention : %s\n  no bookmark will be available\n", tmp_erreur->message);
 		g_error_free (tmp_erreur);
 		return NULL;
 	}
@@ -201,7 +201,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 			cOneBookmark = cBookmarksList[i];
 			if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType))
 			{
-				g_print (" + 1 signet : %s\n", cOneBookmark);
+				cd_message (" + 1 signet : %s\n", cOneBookmark);
 				pNewIcon = g_new0 (Icon, 1);
 				pNewIcon->iType = 10;
 				pNewIcon->cBaseURI = cOneBookmark;

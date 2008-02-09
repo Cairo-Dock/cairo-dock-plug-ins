@@ -23,7 +23,7 @@ double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 	
 	if (!XF86VidModeGetGamma (dpy, DefaultScreen (dpy), pGamma))
 	{
-		g_print ("Attention : unable to query gamma correction\n");
+		cd_message ("Attention : unable to query gamma correction\n");
 		return 0;
 	}
 	return (pGamma->red + pGamma->blue + pGamma->green) / 3;
@@ -37,7 +37,7 @@ void xgamma_set_gamma (XF86VidModeGamma *pGamma)
 	
 	if (!XF86VidModeSetGamma(dpy, DefaultScreen (dpy), pGamma))
 	{
-		g_print ("Attention : unable to set gamma correction\n");
+		cd_message ("Attention : unable to set gamma correction\n");
 	}
 }
 
@@ -46,7 +46,7 @@ void xgamma_set_gamma (XF86VidModeGamma *pGamma)
 static void on_scale_value_changed (GtkRange *range, gpointer data)
 {
 	int iChannelNumber = GPOINTER_TO_INT (data);
-	g_print ("%s (%d, %.2f)\n", __func__, iChannelNumber, gtk_range_get_value (GTK_RANGE (range)));
+	cd_message ("%s (%d, %.2f)\n", __func__, iChannelNumber, gtk_range_get_value (GTK_RANGE (range)));
 	
 	switch (iChannelNumber)
 	{

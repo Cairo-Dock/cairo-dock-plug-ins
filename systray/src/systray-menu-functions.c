@@ -39,7 +39,7 @@ static void onKeybindingPull (const char *keystring, gpointer user_data);
 
 static void onKeybindingPull (const char *keystring, gpointer user_data)
 {
-  //  printf("{{##OnKeybindingPull\n");
+  //  cd_message ("{{##OnKeybindingPull\n");
   if (user_data) {
     cairo_dock_show_desklet((CairoDockDesklet *)user_data);
     return;

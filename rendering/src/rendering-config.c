@@ -38,7 +38,7 @@ void read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator)
 	g_key_file_load_from_file (pKeyFile, cConfFilePath, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
 	if (erreur != NULL)
 	{
-		g_print ("Attention : %s\n", erreur->message);
+		cd_message ("Attention : %s\n", erreur->message);
 		g_error_free (erreur);
 		return ;
 	}

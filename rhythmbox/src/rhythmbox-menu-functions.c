@@ -17,7 +17,7 @@ extern AppletData myData;
 //*********************************************************************************
 static void rhythmbox_previous (GtkMenuItem *menu_item, gpointer *data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("%s ()\n", __func__);
 	
 	g_spawn_command_line_async ("rhythmbox-client --previous", NULL);
 }
@@ -27,7 +27,7 @@ static void rhythmbox_previous (GtkMenuItem *menu_item, gpointer *data)
 //*********************************************************************************
 static void rhythmbox_next (GtkMenuItem *menu_item, gpointer *data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("%s ()\n", __func__);
 	g_spawn_command_line_async ("rhythmbox-client --next", NULL);
 }
 
@@ -36,7 +36,7 @@ static void rhythmbox_next (GtkMenuItem *menu_item, gpointer *data)
 //*********************************************************************************
 static void rhythmbox_pause (GtkMenuItem *menu_item, gpointer *data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("%s ()\n", __func__);
 	g_spawn_command_line_async ("rhythmbox-client --pause", NULL);
 }
 
@@ -45,7 +45,7 @@ static void rhythmbox_pause (GtkMenuItem *menu_item, gpointer *data)
 //*********************************************************************************
 static void rhythmbox_play (GtkMenuItem *menu_item, gpointer *data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("%s ()\n", __func__);
 	g_spawn_command_line_async ("rhythmbox-client --play", NULL);
 }
 
@@ -83,7 +83,7 @@ CD_APPLET_ON_BUILD_MENU_END
 // Cette fonction met le lecteur en pause ou en lecture selon son état.
 //*********************************************************************************
 CD_APPLET_ON_CLICK_BEGIN
-	g_print ("%s ()\n", __func__);
+	cd_message ("%s ()\n", __func__);
 	
 	if(myData.opening)
 	{
@@ -108,7 +108,7 @@ CD_APPLET_ON_CLICK_END
 // Cette fonction passe a la chanson suivante.
 //*********************************************************************************
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	g_print ("%s ()\n", __func__);
+	cd_message ("%s ()\n", __func__);
 	
 	rhythmbox_getPlaying();
 	if (myData.playing)

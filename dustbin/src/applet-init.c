@@ -54,7 +54,7 @@ static void _load_theme (GError **erreur)
 		while ((cElementName = g_dir_read_name (dir)) != NULL)
 		{
 			cElementPath = g_strdup_printf ("%s/%s", myConfig.cThemePath, cElementName);
-			g_print ("  %s\n", cElementPath);
+			cd_message ("  %s\n", cElementPath);
 			if (strncmp (cElementName, "trashcan_full", 13) == 0 && myConfig.cFullUserImage == NULL)
 			{
 				myData.cDialogIconPath = cElementPath;
@@ -71,7 +71,7 @@ static void _load_theme (GError **erreur)
 	}
 	if (myData.pFullBinSurface == NULL || myData.pFullBinSurface == NULL)
 	{
-		g_print ("Attention : couldn't find images, this theme is not valid");
+		cd_message ("Attention : couldn't find images, this theme is not valid");
 	}
 }
 
@@ -106,9 +106,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 				bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup (myConfig.cAdditionnalDirectoriesList[i]), 0);
 			i ++;
 		}
-		g_print ("  %d dossier(s) poubelle\n", i);
+		cd_message ("  %d dossier(s) poubelle\n", i);
 	}
-	g_print ("  %d dechets actuellement (%d)\n", myData.iNbTrashes, bMonitoringOK);
+	cd_message ("  %d dechets actuellement (%d)\n", myData.iNbTrashes, bMonitoringOK);
 	
 	
 	cd_dustbin_draw_quick_info (FALSE);
@@ -136,7 +136,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	{
 		if (myConfig.cAdditionnalDirectoriesList != NULL)
 		{
-			g_print ("***utilisation par defaut\n");
+			cd_message ("***utilisation par defaut\n");
 			myData.iNbTrashes = -1;
 			cd_dustbin_check_trashes (myIcon);
 			myData.iSidCheckTrashes = g_timeout_add ((int) (1000 * myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
@@ -182,7 +182,7 @@ CD_APPLET_RELOAD_BEGIN
 	_load_theme (&erreur);
 	if (erreur != NULL)
 	{
-		g_print ("Attention : %s\n", erreur->message);
+		cd_message ("Attention : %s\n", erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -214,9 +214,9 @@ CD_APPLET_RELOAD_BEGIN
 					bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup (myConfig.cAdditionnalDirectoriesList[i]), 0);
 				i ++;
 			}
-			g_print ("  %d dossier(s) poubelle\n", i);
+			cd_message ("  %d dossier(s) poubelle\n", i);
 		}
-		g_print ("  %d dechets actuellement (%d)\n", myData.iNbTrashes, bMonitoringOK);
+		cd_message ("  %d dechets actuellement (%d)\n", myData.iNbTrashes, bMonitoringOK);
 		
 		
 		cd_dustbin_draw_quick_info (FALSE);
@@ -240,7 +240,7 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			if (myConfig.cAdditionnalDirectoriesList != NULL)
 			{
-				g_print ("***utilisation par defaut\n");
+				cd_message ("***utilisation par defaut\n");
 				myData.iNbTrashes = -1;
 				cd_dustbin_check_trashes (myIcon);
 				myData.iSidCheckTrashes = g_timeout_add ((int) (1000 * myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);

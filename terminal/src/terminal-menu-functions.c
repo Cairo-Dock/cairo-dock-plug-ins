@@ -3,6 +3,9 @@
 ** Started on  Fri Nov 30 05:31:31 2007 GESTES Cedric
 ** $Id$
 **
+** Author(s):
+**  - Cedric GESTES <ctaf42@gmail.com>
+**
 ** Copyright (C) 2007 GESTES Cedric
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -46,19 +49,12 @@ static void terminal_build_new_dialog (void);
 
 void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 {
-  //  printf("{{##OnKeybindingPull\n");
-  g_print ("%s ()\n", __func__);
   if (myData.desklet)
     cairo_dock_show_desklet(myData.desklet);
   else if (myData.dialog)
     cairo_dock_unhide_dialog(myData.dialog);
   else {
-    ///myData.desklet = terminal_new_dialog();
-    terminal_build_new_dialog ();
-    //rebind with the dialog
-    ///cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
-    ///term.prev_shortcut = term.shortcut;
-    //cd_keybinder_bind(myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull, (gpointer) NULL);
+    terminal_build_new_dialog();
   }
 }
 
@@ -198,7 +194,7 @@ gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, g
 static void applet_on_terminal_eof(VteTerminal *vteterminal,
                                    gpointer     user_data)
 {
-  printf("youkata EOF\n");
+  cd_message ("youkata EOF\n");
 }
 
 
@@ -232,7 +228,7 @@ static void terminal_new_tab()
   cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received));
   int num_new_tab = gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, NULL);  /// creer un widget avec un label et un bouton 'close' a mettre a la place du NULL. garder une trace du label pour pouvoir le changer plus tard (numerotation ou repertoire courant ou nom utilisateur).
   gtk_widget_show(vterm);
-  g_print ("num_new_tab : %d\n", num_new_tab);
+  cd_message ("num_new_tab : %d\n", num_new_tab);
   gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
 }
 
@@ -270,7 +266,6 @@ CD_APPLET_ON_CLICK_BEGIN
     terminal_build_new_dialog();
 }
 CD_APPLET_ON_CLICK_END
-
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 {

@@ -41,7 +41,7 @@ static void _load_icons (GError **erreur)
 	if (myConfig.bListDrives)
 	{
 		pIconList = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_VFS_ROOT, CAIRO_DOCK_FM_SORT_BY_NAME, 6, &cFullURI);
-		g_print ("  cFullURI : %s\n", cFullURI);
+		cd_message ("  cFullURI : %s\n", cFullURI);
 		if (pIconList == NULL)
 		{
 			g_set_error (erreur, 1, 1, "%s () : couldn't detect any drives", __func__);
@@ -49,14 +49,14 @@ static void _load_icons (GError **erreur)
 		}
 		
 		if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, NULL))
-			g_print ("Attention : can't monitor drives\n");
+			cd_message ("Attention : can't monitor drives\n");
 		g_free (cFullURI);
 	}
 	
 	if (myConfig.bListNetwork)
 	{
 		GList *pIconList2 = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_NETWORK, CAIRO_DOCK_FM_SORT_BY_NAME, 8, &cFullURI);
-		g_print ("  cFullURI : %s\n", cFullURI);
+		cd_message ("  cFullURI : %s\n", cFullURI);
 		
 		if (myConfig.bUseSeparator && pIconList2 != NULL)
 		{
@@ -69,7 +69,7 @@ static void _load_icons (GError **erreur)
 		pIconList = g_list_concat (pIconList, pIconList2);
 		
 		if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_network, NULL))
-			g_print ("Attention : can't monitor network\n");
+			cd_message ("Attention : can't monitor network\n");
 		g_free (cFullURI);
 	}
 		
@@ -95,7 +95,7 @@ static void _load_icons (GError **erreur)
 		pIconList = g_list_concat (pIconList, pIconList2);
 		
 		if (! cairo_dock_fm_add_monitor_full (cBookmarkFilePath, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_bookmarks, NULL))
-			g_print ("Attention : can't monitor bookmarks\n");
+			cd_message ("Attention : can't monitor bookmarks\n");
 		
 		g_free (cBookmarkFilePath);
 	}
@@ -145,7 +145,7 @@ CD_APPLET_RELOAD_BEGIN
 		_load_icons (&erreur);
 		if (erreur != NULL)
 		{
-			g_print ("Attention : %s\n", erreur->message);
+			cd_message ("Attention : %s\n", erreur->message);
 			g_error_free (erreur);
 			return FALSE;
 		}

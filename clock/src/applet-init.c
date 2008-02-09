@@ -38,7 +38,7 @@ CD_APPLET_DEFINITION ("clock", 1, 5, 0)
 
 static void _load_theme (void)
 {
-	g_print("%s (%s)\n", __func__, myConfig.cThemePath);
+	cd_message ("%s (%s)\n", __func__, myConfig.cThemePath);
 	//\_______________ On charge le theme choisi (on n'a pas besoin de connaitre les dimmensions de l'icone).
 	if (myConfig.cThemePath != NULL)
 	{
@@ -62,7 +62,7 @@ static void _load_theme (void)
 }
 static void _load_back_and_fore_ground (void)
 {
-	g_print("%s ()\n", __func__);
+	cd_message ("%s ()\n", __func__);
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 	
 	//\_______________ On construit les surfaces d'arriere-plan et d'avant-plan une bonne fois pour toutes.
@@ -108,7 +108,7 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	g_print("%s (%s)\n", __func__, CD_APPLET_MY_CONF_FILE);
+	cd_message ("%s (%s)\n", __func__, CD_APPLET_MY_CONF_FILE);
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On stoppe le timer.

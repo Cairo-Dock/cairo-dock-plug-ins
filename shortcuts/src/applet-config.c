@@ -47,7 +47,7 @@ void reset_data (void)
 	g_free (cBookmarkFilePath);
 	
 	cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-	g_print ("  myIcon->pSubDock <- %x\n", myIcon->pSubDock);
+	cd_message ("  myIcon->pSubDock <- %x\n", myIcon->pSubDock);
 	myIcon->pSubDock = NULL;  // normalement inutile.
 	
 	memset (&myData, 0, sizeof (AppletData));

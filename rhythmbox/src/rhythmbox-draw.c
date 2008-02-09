@@ -18,12 +18,12 @@ void rhythmbox_iconWitness(int animationLength)
 
 void update_icon(gboolean make_witness)
 {
-	g_print ("%s ()\n",__func__);
+	cd_message ("%s ()\n",__func__);
 	if(myData.playing_uri != NULL)
 	{
 		//Affichage de la chanson courante.
 		gchar *songName = g_strdup_printf("%s - %s", myData.playing_artist, myData.playing_title);
-		g_print ("  songName : %s\n", songName);
+		cd_message ("  songName : %s\n", songName);
 		CD_APPLET_SET_NAME_FOR_MY_ICON (songName);
 		g_free (songName);
 		
@@ -35,7 +35,7 @@ void update_icon(gboolean make_witness)
 		
 		//Affichage de la couverture de l'album.
 		gchar *cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
-		g_print ("  cover : %s\n", cover);
+		cd_message ("  cover : %s\n", cover);
 		if(g_file_test (cover, G_FILE_TEST_EXISTS) && myConfig.enableCover)
 		{
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (cover);

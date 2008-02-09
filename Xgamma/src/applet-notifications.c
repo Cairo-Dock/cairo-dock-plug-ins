@@ -53,11 +53,11 @@ static void _xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data
 {
 	if (iAnswer == GTK_RESPONSE_OK)
 	{
-		g_print ("%s (ok)\n");
+		cd_message ("%s (ok)\n");
 	}
 	else
 	{
-		g_print ("%s (cancel)\n", __func__);
+		cd_message ("%s (cancel)\n", __func__);
 		myData.Xgamma = myData.XoldGamma;
 		xgamma_set_gamma (&myData.Xgamma);
 	}

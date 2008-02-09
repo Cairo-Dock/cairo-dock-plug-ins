@@ -87,7 +87,7 @@ CD_APPLET_CONFIG_BEGIN ("Horloge", NULL)
 	
 	//\_______________ On liste les themes disponibles et on recupere celui choisi.
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "default");
-	g_print (" -> %s\n", myConfig.cThemePath);
+	cd_message (" -> %s\n", myConfig.cThemePath);
 CD_APPLET_CONFIG_END
 
 

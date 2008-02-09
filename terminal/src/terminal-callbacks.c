@@ -20,7 +20,7 @@ static void _terminal_copy (GtkMenuItem *menu_item, gpointer *data)
 {
 	GtkWidget *pWidget = data[0];
 	gchar *cReceivedData = data[1];
-	g_print ("%s (%s)\n", __func__, cReceivedData);
+	cd_message ("%s (%s)\n", __func__, cReceivedData);
 	_terminal_write_command_with_data (pWidget, "", cReceivedData);
 }
 
@@ -28,28 +28,28 @@ static void _terminal_cd (GtkMenuItem *menu_item, gpointer *data)
 {
 	GtkWidget *pWidget = data[0];
 	gchar *cReceivedData = data[1];
-	g_print ("%s (%s)\n", __func__, cReceivedData);
+	cd_message ("%s (%s)\n", __func__, cReceivedData);
 	_terminal_write_command_with_data (pWidget, "cd", cReceivedData);
 }
 static void _terminal_cp (GtkMenuItem *menu_item, gpointer *data)
 {
 	GtkWidget *pWidget = data[0];
 	gchar *cReceivedData = data[1];
-	g_print ("%s (%s)\n", __func__, cReceivedData);
+	cd_message ("%s (%s)\n", __func__, cReceivedData);
 	_terminal_write_command_with_data (pWidget, "cp -r", cReceivedData);
 }
 static void _terminal_mv (GtkMenuItem *menu_item, gpointer *data)
 {
 	GtkWidget *pWidget = data[0];
 	gchar *cReceivedData = data[1];
-	g_print ("%s (%s)\n", __func__, cReceivedData);
+	cd_message ("%s (%s)\n", __func__, cReceivedData);
 	_terminal_write_command_with_data (pWidget, "mv", cReceivedData);
 }
 static void _terminal_rm (GtkMenuItem *menu_item, gpointer *data)
 {
 	GtkWidget *pWidget = data[0];
 	gchar *cReceivedData = data[1];
-	g_print ("%s (%s)\n", __func__, cReceivedData);
+	cd_message ("%s (%s)\n", __func__, cReceivedData);
 	_terminal_write_command_with_data (pWidget, "rm -r", cReceivedData);
 }
 
@@ -105,7 +105,7 @@ static GtkWidget *_terminal_build_menu (GtkWidget *pWidget, gchar *cReceivedData
 void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gint x, gint y, GtkSelectionData *selection_data, guint info, guint t, gpointer data)
 {
 	static gchar *cReceivedData = NULL;  // il faut pouvoir le passer aux callbacks. Le probleme c'est qu'il disparait a la fin de cette fonction, donc il faut le dupliquer. Comme on n'est pas sur que l'une des callbacks sera effectivement appelee, ce ne peut pas etre elles qui le desalloueront. Donc on le fait ici, d'ou la variable statique. On ne peut recevoir qu'un drop a la fois, donc pas de collision possible.
-	g_print ("%s ()\n", __func__);
+	cd_message ("%s ()\n", __func__);
 
 	g_free (cReceivedData);
 	cReceivedData = (gchar *) selection_data->data;
@@ -116,7 +116,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 		cReceivedData[--length] = '\0';  // on vire le retour chariot final.
 	if (cReceivedData[length-1] == '\r')
 		cReceivedData[--length] = '\0';  // on vire ce ... c'est quoi ce truc ??!
-	g_print ("cReceivedData : %s\n", cReceivedData);
+	cd_message ("cReceivedData : %s\n", cReceivedData);
 
 	if (strncmp (cReceivedData, "file://", 7) == 0)  // on gere le cas des URI.
 	{
@@ -124,7 +124,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 		cReceivedData = g_filename_from_uri (cReceivedData, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			g_print ("Attention : %s\n", erreur->message);
+			cd_message ("Attention : %s\n", erreur->message);
 			g_error_free (erreur);
 			return ;
 		}

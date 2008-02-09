@@ -35,7 +35,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else
 	{
-		g_print ("couldn't guess what to do to log out.\n");
+		cd_message ("couldn't guess what to do to log out.\n");
 	}
 CD_APPLET_ON_CLICK_END
 

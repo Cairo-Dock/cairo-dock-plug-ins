@@ -116,7 +116,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 				
 				if (bShowAlarm)
 				{
-					g_print ("Dring ! %s\n", pAlarm->cMessage);
+					cd_message ("Dring ! %s\n", pAlarm->cMessage);
 					cairo_dock_show_temporary_dialog (pAlarm->cMessage, myIcon, g_pMainDock, 60e3);
 					if (pAlarm->cCommand != NULL)
 					{
@@ -137,18 +137,18 @@ gboolean cd_clock_update_with_time (Icon *icon)
 							&erreur);
 						if (erreur != NULL)
 						{
-							g_print ("Attention : when trying to execute '%s' : %s\n", pAlarm->cCommand, erreur->message);
+							cd_message ("Attention : when trying to execute '%s' : %s\n", pAlarm->cCommand, erreur->message);
 							g_error_free (erreur);
 							myData.iAlarmPID = 0;
 						}
 						g_strfreev (argv);
-						g_print (" --> child_pid : %d\n", myData.iAlarmPID);
+						cd_message (" --> child_pid : %d\n", myData.iAlarmPID);
 					}
 				}
 				
 				if (bRemoveAlarm)
 				{
-					g_print ("Cette alarme ne sera pas répétée\n");
+					cd_message ("Cette alarme ne sera pas répétée\n");
 					g_ptr_array_remove_index (myConfig.pAlarms, i);
 					cd_clock_free_alarm (pAlarm);
 					/// A FAIRE : effacer l'heure dans le fichier de conf pour cette alarme.

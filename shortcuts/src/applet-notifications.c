@@ -38,7 +38,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == 10)
 	{
-		g_print (" menu sur %s(%s)\n", CD_APPLET_CLICKED_ICON->acName, CD_APPLET_CLICKED_ICON->cBaseURI);
+		cd_message (" menu sur %s(%s)\n", CD_APPLET_CLICKED_ICON->acName, CD_APPLET_CLICKED_ICON->cBaseURI);
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (_D("Remove this bookmark"), _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI)
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
@@ -48,7 +48,7 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_DROP_DATA_BEGIN
 	if (myIcon == NULL || myIcon->pSubDock == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	g_print ("  nouveau signet : %s\n", CD_APPLET_RECEIVED_DATA);
+	cd_message ("  nouveau signet : %s\n", CD_APPLET_RECEIVED_DATA);
 	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
 	gboolean bIsDirectory;
 	int iVolumeID = 0;
@@ -64,7 +64,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	{
 		if (! iVolumeID && ! bIsDirectory)
 		{
-			g_print ("ce n'est pas un signet\n");
+			cd_message ("ce n'est pas un signet\n");
 		}
 		else
 		{
@@ -73,7 +73,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	}
 	else
 	{
-		g_print ("couldn't get info about '%s', we won't add it\n", CD_APPLET_RECEIVED_DATA);
+		cd_message ("couldn't get info about '%s', we won't add it\n", CD_APPLET_RECEIVED_DATA);
 	}
 	g_free (cName);
 	g_free (cURI);

@@ -18,20 +18,20 @@ extern AppletData myData;
 
 gboolean dbus_get_dbus (void)
 {
-	g_print ("%s ()\n",__func__);
+	cd_message ("%s ()\n",__func__);
 
-	g_print ("Connexion au bus ... ");
+	cd_message ("Connexion au bus ... ");
 	dbus_connexion_session = dbus_g_bus_get(DBUS_BUS_SESSION, NULL);
 	dbus_connexion_system = dbus_g_bus_get(DBUS_BUS_SYSTEM, NULL);
 	
 	if(!dbus_connexion_session || !dbus_connexion_system)
 	{
-		g_print ("echouee\n");
+		cd_message ("echouee\n");
 		return FALSE;
 	}
 	else
 	{
-		g_print ("reussie\n");
+		cd_message ("reussie\n");
 
 		dbus_proxy_power = dbus_g_proxy_new_for_name (
 			dbus_connexion_session,
@@ -57,17 +57,17 @@ gboolean dbus_get_dbus (void)
 
 void dbus_connect_to_bus (void)
 {
-	g_print ("%s ()\n",__func__);
+	cd_message ("%s ()\n",__func__);
 	dbus_g_proxy_connect_signal(dbus_proxy_power, "OnBatteryChanged",
 		G_CALLBACK(on_battery_changed), NULL, NULL);
 }
 
 void dbus_disconnect_from_bus (void)
 {
-	g_print ("%s ()\n",__func__);
+	cd_message ("%s ()\n",__func__);
 	dbus_g_proxy_disconnect_signal(dbus_proxy_power, "OnBatteryChanged",
 		G_CALLBACK(on_battery_changed), NULL);
-	g_print ("OnBatteryChanged deconnecte\n");
+	cd_message ("OnBatteryChanged deconnecte\n");
 }
 
 gboolean get_on_battery(void)
