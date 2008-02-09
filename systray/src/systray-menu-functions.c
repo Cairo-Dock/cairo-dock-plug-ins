@@ -68,7 +68,10 @@ static CairoDockDesklet *systray_new_dialog()
   GtkRequisition req;
 
   systray.tray = tray_init(myDock->pWidget);
-  systray.dialog = cairo_dock_create_desklet (0, systray.tray->widget, 0, 0);
+  systray.dialog = cairo_dock_create_desklet (0, systray.tray->widget);
+  //we always want the minimal size
+  //  gtk_window_set_policy(GTK_WINDOW(systray.dialog->pWidget), 0, 0, 1);
+  gtk_window_set_resizable(GTK_WINDOW(systray.dialog->pWidget), FALSE);
   gtk_widget_size_request(GTK_WIDGET(systray.tray->box), &req);
   gtk_window_resize(GTK_WINDOW(systray.dialog->pWidget), 24, 24);
   systray_dialog_apply_settings();
