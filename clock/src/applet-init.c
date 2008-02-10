@@ -47,7 +47,7 @@ static void _load_theme (void)
 		for (i = 0; i < CLOCK_ELEMENTS; i ++)
 		{
 			g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, s_cFileNames[i]);
-			
+
 			myData.pSvgHandles[i] = rsvg_handle_new_from_file (sElementPath->str, NULL);
 			//g_print (" + %s\n", cElementPath);
 		}
@@ -62,9 +62,9 @@ static void _load_theme (void)
 }
 static void _load_back_and_fore_ground (void)
 {
-	cd_message ("%s ()\n", __func__);
+	cd_debug ("\n");
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	
+
 	//\_______________ On construit les surfaces d'arriere-plan et d'avant-plan une bonne fois pour toutes.
 	myData.pBackgroundSurface = update_surface (NULL,
 		myDrawContext,
@@ -81,11 +81,11 @@ static void _load_back_and_fore_ground (void)
 CD_APPLET_INIT_BEGIN (erreur)
 	_load_theme ();
 	_load_back_and_fore_ground ();
-	
+
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
-	
+
 	//\_______________ On lance le timer.
 	cd_clock_update_with_time (myIcon);
 	myData.iSidUpdateClock = g_timeout_add ((myConfig.bShowSeconds ? 1e3: 60e3), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
@@ -96,11 +96,11 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	
+
 	//\_______________ On stoppe le timer.
 	g_source_remove (myData.iSidUpdateClock);
 	myData.iSidUpdateClock = 0;
-	
+
 	reset_config ();
 	reset_data ();
 CD_APPLET_STOP_END
@@ -108,18 +108,18 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	cd_message ("%s (%s)\n", __func__, CD_APPLET_MY_CONF_FILE);
+	cd_debug ("%s\n", CD_APPLET_MY_CONF_FILE);
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On stoppe le timer.
 		g_source_remove (myData.iSidUpdateClock);
 		myData.iSidUpdateClock = 0;
-		
+
 		//\_______________ On charge notre theme.
 		_load_theme ();
 		//\_______________ On charge les surfaces d'avant et arriere-plan.
 		_load_back_and_fore_ground ();
-		
+
 		//\_______________ On relance le timer.
 		cd_clock_update_with_time (myIcon);
 		myData.iSidUpdateClock = g_timeout_add ((myConfig.bShowSeconds ? 1e3: 60e3), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
@@ -130,7 +130,7 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_surface_destroy (myData.pForegroundSurface);
 		cairo_surface_destroy (myData.pBackgroundSurface);
 		_load_back_and_fore_ground ();
-		
+
 		cd_clock_update_with_time (myIcon);
 	}
 CD_APPLET_RELOAD_END
