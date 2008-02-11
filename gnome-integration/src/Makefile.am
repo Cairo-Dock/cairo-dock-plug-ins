@@ -8,7 +8,9 @@ libcd_gnome_integration_la_SOURCES = \
 	applet-init.c\
 	applet-init.h\
 	applet-gnome-vfs.c\
-	applet-gnome-vfs.h
+	applet-gnome-vfs.h\
+	applet-utils.c\
+	applet-utils.h
 
 
 dock_version = `pkg-config --modversion cairo-dock`

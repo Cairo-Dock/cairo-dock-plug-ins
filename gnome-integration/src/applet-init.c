@@ -16,6 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "stdlib.h"
 
 #include "applet-gnome-vfs.h"
+#include "applet-utils.h"
 #include "applet-init.h"
 
 
@@ -52,6 +53,7 @@ CairoDockVisitCard *pre_init (void)
 			pVFSBackend->move = vfs_backend_move_file;
 			pVFSBackend->get_trash_path = vfs_backend_get_trash_path;
 			pVFSBackend->get_desktop_path = vfs_backend_get_desktop_path;
+			pVFSBackend->logout = env_backend_logout;
 			cairo_dock_fm_register_vfs_backend (pVFSBackend);
 		}
 	}

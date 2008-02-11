@@ -21,21 +21,24 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		system (myConfig.cUserAction);
 	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
-	{
-		system ("gnome-session-save --kill --gui");
-	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-	{
-		int answer = cairo_dock_ask_question_and_wait ("Log out ?", myIcon, myDock);
-		if (answer == GTK_RESPONSE_YES)
-		{
-			system ("dcop ksmserver default logout 0 0 0");  // kdmctl shutdown reboot forcenow  // kdeinit_shutdown
-		}
-	}
 	else
 	{
-		cd_message ("couldn't guess what to do to log out.\n");
+		gboolean bLoggedOut = cairo_dock_fm_logout ();
+		if (! bLoggedOut)
+		{
+			if (g_iDesktopEnv == CAIRO_DOCK_KDE)
+			{
+				int answer = cairo_dock_ask_question_and_wait ("Log out ?", myIcon, myDock);
+				if (answer == GTK_RESPONSE_YES)
+				{
+					system ("dcop ksmserver default logout 0 0 0");  // kdmctl shutdown reboot forcenow  // kdeinit_shutdown
+				}
+			}
+			else
+			{
+				cd_message ("couldn't guess what to do to log out.\n");
+			}
+		}
 	}
 CD_APPLET_ON_CLICK_END
 
