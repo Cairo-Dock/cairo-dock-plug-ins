@@ -21,11 +21,11 @@ void update_icon(void)
 	{g_print("Type d'affichage : %u\n",myConfig.quickInfoType);
 		if(myConfig.quickInfoType == MY_APPLET_TIME)
 		{
-			cairo_dock_set_quick_info (myDrawContext, format_time(myData.battery_time), myIcon);
+			cairo_dock_set_quick_info (myDrawContext, format_time(myData.battery_time), myIcon, (myDock != NULL ? 1 + g_fAmplitude : 1));
 		}
 		else if(myConfig.quickInfoType == MY_APPLET_CHARGE)
 		{
-			cairo_dock_set_quick_info (myDrawContext, g_strdup_printf ("%d%s", myData.battery_charge,"%"), myIcon);
+			cairo_dock_set_quick_info (myDrawContext, g_strdup_printf ("%d%s", myData.battery_charge,"%"), myIcon, (myDock != NULL ? 1 + g_fAmplitude : 1));
 		}
 		if(myData.on_battery)
 		{
