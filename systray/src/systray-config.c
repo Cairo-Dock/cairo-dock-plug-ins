@@ -20,17 +20,40 @@
 */
 
 #include <cairo-dock.h>
+#include <string.h>
 
 #include "systray-config.h"
 #include "systray-init.h"
+#include "systray-menu-functions.h"
+#include "systray-struct.h"
 
-extern t_systray systray;
+extern AppletConfig myConfig;
+extern AppletData myData;
+
 
 CD_APPLET_CONFIG_BEGIN ("systray", "gnome-panel-notification-area")
 {
-  systray.always_on_top = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("GUI", "always on top", TRUE);
-
-  systray.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F2");
-  systray.prev_shortcut = systray.shortcut;
+  myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F2");
 }
 CD_APPLET_CONFIG_END
+
+
+void reset_config(void)
+{
+  if (myConfig.shortcut)
+    cd_keybinder_unbind(myConfig.shortcut, (CDBindkeyHandler)systray_on_keybinding_pull);
+  g_free (myConfig.shortcut);
+  myConfig.shortcut = NULL;
+  memset (&myConfig, 0, sizeof (AppletConfig));
+}
+
+void reset_data(void)
+{
+  cairo_dock_dialog_unreference(myData.dialog);  // l'autre reference sera enlevee par la destruction de notre icone.
+  myData.dialog = NULL;
+  cairo_dock_free_desklet(myData.desklet);
+  myData.desklet = NULL;
+  //destroy with the widget by previous function
+  myData.tray = NULL;
+  memset (&myData, 0, sizeof (AppletData));
+}

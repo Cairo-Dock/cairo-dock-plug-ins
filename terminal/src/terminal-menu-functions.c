@@ -53,9 +53,8 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
     cairo_dock_show_desklet(myData.desklet);
   else if (myData.dialog)
     cairo_dock_unhide_dialog(myData.dialog);
-  else {
+  else
     terminal_build_new_dialog();
-  }
 }
 
 
@@ -98,8 +97,8 @@ void term_apply_settings()
       term_apply_settings_on_vterm(vterm);
     }
   }
-  if (myData.desklet)
-    gtk_window_set_keep_above(GTK_WINDOW(myData.desklet->pWidget), myConfig.always_on_top);
+/*   if (myData.desklet) */
+/*     gtk_window_set_keep_above(GTK_WINDOW(myData.desklet->pWidget), myConfig.always_on_top); */
   ///cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
   ///term.prev_shortcut = term.shortcut;
   cd_keybinder_bind(myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull, (gpointer)NULL);
@@ -243,15 +242,14 @@ static void terminal_build_new_dialog()
   g_signal_connect (G_OBJECT (myData.tab), "button-release-event",
                     G_CALLBACK (applet_on_terminal_press_cb), NULL);  // utile de l'ajouter au notebook ?
 
-  if (myConfig.bIsInitiallyDetached)
-    {
+/*   if (myConfig.bIsInitiallyDetached) */
+/*     { */
       myData.desklet = cairo_dock_create_desklet(myIcon, myData.tab);
-      gtk_window_set_keep_above(GTK_WINDOW(myData.desklet->pWidget), myConfig.always_on_top);
-    }
-  else
-    {
-      myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
-    }
+/*     } */
+/*   else */
+/*     { */
+/*       myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL); */
+/*     } */
   term_apply_settings();
 }
 

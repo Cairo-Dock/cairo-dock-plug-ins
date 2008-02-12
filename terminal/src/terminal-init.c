@@ -59,21 +59,20 @@ CD_APPLET_RELOAD_BEGIN
 {
   if (CD_APPLET_MY_CONFIG_CHANGED)
     {
-      if (myData.dialog && myConfig.bIsInitiallyDetached)  // il faut le detacher.
-        {
-          myData.tab = cairo_dock_steal_widget_from_its_container (myData.tab);
-          cairo_dock_dialog_unreference (myData.dialog);
-          myData.dialog = NULL;
-          myData.desklet = cairo_dock_create_desklet(myIcon, myData.tab);
-          gtk_window_set_keep_above(GTK_WINDOW(myData.desklet->pWidget), myConfig.always_on_top);
-        }
-      if (myData.desklet && ! myConfig.bIsInitiallyDetached)
-        {
-          myData.tab = cairo_dock_steal_widget_from_its_container (myData.tab);
-          cairo_dock_free_desklet (myData.desklet);
-          myData.desklet = NULL;
-          myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
-        }
+/*       if (myData.dialog && myConfig.bIsInitiallyDetached)  // il faut le detacher. */
+/*         { */
+/*           myData.tab = cairo_dock_steal_widget_from_its_container (myData.tab); */
+/*           cairo_dock_dialog_unreference (myData.dialog); */
+/*           myData.dialog = NULL; */
+/*           myData.desklet = cairo_dock_create_desklet(myIcon, myData.tab); */
+/*         } */
+/*       if (myData.desklet && ! myConfig.bIsInitiallyDetached) */
+/*         { */
+/*           myData.tab = cairo_dock_steal_widget_from_its_container (myData.tab); */
+/*           cairo_dock_free_desklet (myData.desklet); */
+/*           myData.desklet = NULL; */
+/*           myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL); */
+/*         } */
       term_apply_settings();
     }
 }

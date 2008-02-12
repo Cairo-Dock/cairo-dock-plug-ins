@@ -17,10 +17,31 @@ name = systray
 #S Icon's name :
 icon = gnome-panel-notification-area
 
+[Desklet]
+
+can detach = false
+
+#i[48;256] Desklet's dimension (width x height) :
+width=256
+#i[48;256] ...
+height=196
+
+#i Desklet's position (x ; y) :
+x position=0
+#i ...
+y position=0
+
+#b Is detached ?
+initially detached=false
+
+#b Keep below ?
+keep below=false
+#b Keep above ?
+keep above=false
+#b Keep on widget layer ?
+on widget layer=false
+
 
 [GUI]
-#b always on top?
-always on top=false
-
 #k Shortkey to toggle the systray
 shortkey = <Ctrl>F2

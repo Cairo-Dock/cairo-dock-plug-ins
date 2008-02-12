@@ -17,6 +17,7 @@ CD_APPLET_ABOUT (_D("This is a very simple logout applet\n made by Fabrice Rey f
 
 
 CD_APPLET_ON_CLICK_BEGIN
+{
 	if (myConfig.cUserAction != NULL)
 	{
 		system (myConfig.cUserAction);
@@ -40,10 +41,13 @@ CD_APPLET_ON_CLICK_BEGIN
 			}
 		}
 	}
+}
 CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("Logout", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+{
+        CD_APPLET_ADD_SUB_MENU ("Logout", pSubMenu, CD_APPLET_MY_MENU);
+        CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+}
 CD_APPLET_ON_BUILD_MENU_END

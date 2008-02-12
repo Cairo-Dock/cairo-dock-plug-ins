@@ -46,9 +46,6 @@ on widget layer=false
 #{needs to restart the applet.}
 terminal transparency=.84
 
-#b Always on top ?
-always on top=false
-
 #c3[0;1] Foreground color (r, v, b):
 foreground color= 1.; 1.; 1.
 
@@ -62,6 +59,3 @@ nb columns = 80
 
 #k Shortkey to show the terminal
 shortkey = <Ctrl>F1
-
-#b Should the terminal be detached from the dock ?
-is detached = FALSE

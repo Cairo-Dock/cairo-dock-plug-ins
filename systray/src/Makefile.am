@@ -16,7 +16,8 @@ libcd_systray_la_SOURCES = \
 	na-tray-manager.h\
 	na-tray-manager.c\
 	na-marshal.h\
-	na-marshal.c
+	na-marshal.c\
+	systray-struct.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 

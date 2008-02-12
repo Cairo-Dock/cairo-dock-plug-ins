@@ -25,35 +25,33 @@
 #include "systray-menu-functions.h"
 #include "systray-init.h"
 #include "cd-tray.h"
+#include "systray-struct.h"
 
-t_systray systray = {
-  NULL,
-  NULL,
-  FALSE,
-  NULL,
-  NULL
-};
+AppletConfig myConfig;
+AppletData myData;
 
 CD_APPLET_DEFINITION ("systray", 1, 4, 7)
 
 
 CD_APPLET_INIT_BEGIN (erreur);
 {
-  systray_dialog_apply_settings();
   CD_APPLET_REGISTER_FOR_CLICK_EVENT;
   CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
   CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+  systray_apply_settings();
 }
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
 {
-  cairo_dock_free_desklet (systray.dialog);
-  systray.dialog = 0;
   CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
   CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
   CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+
+  //\_________________ On libere toutes nos ressources.
+  reset_config ();
+  reset_data ();
 }
 CD_APPLET_STOP_END
 
@@ -61,6 +59,6 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 {
   if (CD_APPLET_MY_CONFIG_CHANGED)
-    systray_dialog_apply_settings();
+    systray_apply_settings();
 }
 CD_APPLET_RELOAD_END
