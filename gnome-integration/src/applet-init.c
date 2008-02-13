@@ -54,6 +54,7 @@ CairoDockVisitCard *pre_init (void)
 			pVFSBackend->get_trash_path = vfs_backend_get_trash_path;
 			pVFSBackend->get_desktop_path = vfs_backend_get_desktop_path;
 			pVFSBackend->logout = env_backend_logout;
+			pVFSBackend->setup_time = env_backend_setup_time;
 			cairo_dock_fm_register_vfs_backend (pVFSBackend);
 		}
 	}

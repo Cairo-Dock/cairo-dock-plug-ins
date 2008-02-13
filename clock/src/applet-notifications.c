@@ -23,7 +23,6 @@ void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 	if (myConfig.cSetupTimeCommand != NULL)
 	{
 		g_spawn_command_line_async (myConfig.cSetupTimeCommand, &erreur);
-		
 	}
 	else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 	{

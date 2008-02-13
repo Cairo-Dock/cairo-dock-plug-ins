@@ -12,6 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "rendering-caroussel.h"
 #include "rendering-parabole.h"
 #include "rendering-3D-plane.h"
+//#include "rendering-rainbow.h"
 #include "rendering-init.h"
 
 #define MY_APPLET_CONF_FILE "rendering.conf"
@@ -76,6 +77,8 @@ Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
 	
 	cd_rendering_register_parabole_renderer ();
 	
+	//cd_rendering_register_rainbow_renderer ();  // pas encore ...
+	
 	cairo_dock_set_all_views_to_default ();
 	
 	//\_______________ On charge le separateur plat.
@@ -90,6 +93,7 @@ void stop (void)
 	cairo_dock_remove_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_3D_PLANE_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
+	//cairo_dock_remove_renderer (MY_APPLET_RAINBOW_VIEW_NAME);
 	
 	reset_data ();
 	

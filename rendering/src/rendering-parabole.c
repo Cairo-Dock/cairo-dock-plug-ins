@@ -334,7 +334,7 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, FALSE);
 	
 	
-	//\____________________ On dessine les etiquettes.
+	//\____________________ On dessine les icones et leurs etiquettes, mais separement.
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	if (pFirstDrawnElement == NULL)
 		return;
@@ -589,7 +589,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 			theta_ = G_PI/2 - atan (fCurve_(x_, lambda, alpha));
 		}
 		
-		icon->fDrawY = (g_bDirectionUp ? pDock->iCurrentHeight - y_ - icon->fHeight * icon->fScale : y_);
+		icon->fDrawY = (g_bDirectionUp ? pDock->iCurrentHeight - (y_ + icon->fHeight * icon->fScale) * (1 - pDock->fFoldingFactor) : y_ * (1 - pDock->fFoldingFactor));
 		if (pDock->fAlign == 1)
 		{
 			icon->fDrawX = pDock->iCurrentWidth - (x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - 0*icon->fWidth * icon->fScale/2);

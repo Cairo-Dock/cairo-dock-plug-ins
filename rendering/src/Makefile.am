@@ -21,7 +21,8 @@ libcd_rendering_la_SOURCES = \
 	rendering-parabole.h\
 	rendering-3D-plane.c\
 	rendering-3D-plane.h
-
+#	rendering-rainbow.c
+#	rendering-rainbow.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 
