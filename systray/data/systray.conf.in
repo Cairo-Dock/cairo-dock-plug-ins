@@ -1,6 +1,6 @@
 #!en;@VERSION@
 
-[ICON]
+[Icon]
 #F[Size of the icon you wish this applet has (in pixels)]
 frame1 =
 #i width :
