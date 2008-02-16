@@ -87,6 +87,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myIcon->fHeight = MAX (1, myDesklet->iHeight - 2 * g_iDockRadius);
 		myIcon->fDrawX = g_iDockRadius;
 		myIcon->fDrawY = g_iDockRadius;
+		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 		myDesklet->renderer = cd_clock_draw_in_desklet;
@@ -127,6 +128,7 @@ CD_APPLET_RELOAD_BEGIN
 		myIcon->fHeight = MAX (1, myDesklet->iHeight - 2 * g_iDockRadius);
 		myIcon->fDrawX = g_iDockRadius;
 		myIcon->fDrawY = g_iDockRadius;
+		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 		myDesklet->renderer = cd_clock_draw_in_desklet;
