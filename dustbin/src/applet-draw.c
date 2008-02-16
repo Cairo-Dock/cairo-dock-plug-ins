@@ -147,23 +147,23 @@ void cd_dustbin_draw_quick_info (gboolean bRedraw)
 	if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NONE)
 		return ;
 	cd_message ("%s (%d)\n", __func__, myData.iNbTrashes);
-	if (myData.iNbTrashes == 0)
+	if (cd_dustbin_is_calculating ())
+	{
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%s...", (myDesklet != NULL ? _("calculating") : ""))
+	}
+	else if (myData.iNbTrashes == 0)
 	{
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
-	}
-	else if (myData.iNbTrashes < 0)
-	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...")
 	}
 	else
 	{
 		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.iNbTrashes)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%s", myData.iNbTrashes, (myDesklet != NULL ? _(" trashes") : ""))
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.iNbFiles)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%s", myData.iNbFiles, (myDesklet != NULL ? _(" files") : ""))
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 		{
@@ -171,11 +171,11 @@ void cd_dustbin_draw_quick_info (gboolean bRedraw)
 			{
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%db", myData.iSize)
 			}
-			else if (myData.iSize < 1024*1024)
+			else if (myData.iSize < (1 << 20))
 			{
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dK", (int) (myData.iSize>>10))
 			}
-			else if (myData.iSize < 1024*1024*1024)
+			else if (myData.iSize < (1 << 30))
 			{
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dM", (int) (myData.iSize>>20))
 			}

@@ -77,12 +77,22 @@ static void _load_theme (GError **erreur)
 
 CD_APPLET_INIT_BEGIN (erreur)
 	//\_______________ On charge le theme choisi.
+	if (myDesklet != NULL)
+	{
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - 2 * g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - 2 * g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius;
+		myIcon->fDrawY = g_iDockRadius;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;
+	}
 	GError *tmp_erreur = NULL;
 	_load_theme (&tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
 		g_propagate_error (erreur, tmp_erreur);
-		return NULL;
+		return;
 	}
 	
 	//\_______________ On enregistre nos notifications.
@@ -92,6 +102,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	
 	//\_______________ On commence a surveiller les repertoires.
+	myData.iNbTrashes = -1;
 	gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), TRUE);
 	gboolean bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath, 0);  // cDustbinPath ne nous appartient plus.
 	
@@ -111,7 +122,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 	cd_message ("  %d dechets actuellement (%d)\n", myData.iNbTrashes, bMonitoringOK);
 	
 	
-	cd_dustbin_draw_quick_info (FALSE);
 	if (myData.iNbTrashes == 0)
 	{
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface)
@@ -137,7 +147,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 		if (myConfig.cAdditionnalDirectoriesList != NULL)
 		{
 			cd_message ("***utilisation par defaut\n");
-			myData.iNbTrashes = -1;
 			cd_dustbin_check_trashes (myIcon);
 			myData.iSidCheckTrashes = g_timeout_add ((int) (1000 * myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
 		}
@@ -168,6 +177,16 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge notre theme.
+	if (myDesklet != NULL)
+	{
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - 2 * g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - 2 * g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius;
+		myIcon->fDrawY = g_iDockRadius;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;
+	}
 	if (myData.pEmptyBinSurface != NULL)
 	{
 		cairo_surface_destroy (myData.pEmptyBinSurface);
@@ -200,6 +219,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		//\_______________ On commence a surveiller les repertoires.
+		myData.iNbTrashes = -1;
 		gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), TRUE);
 		gboolean bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath, 0);  // cDustbinPath ne nous appartient plus.
 		
@@ -218,8 +238,6 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		cd_message ("  %d dechets actuellement (%d)\n", myData.iNbTrashes, bMonitoringOK);
 		
-		
-		cd_dustbin_draw_quick_info (FALSE);
 		if (myData.iNbTrashes == 0)
 		{
 			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface)

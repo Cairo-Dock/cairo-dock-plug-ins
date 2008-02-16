@@ -20,19 +20,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "applet-init.h"
 
 
-CairoDockVisitCard *pre_init (void)
-{
-	CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
-	pVisitCard->cModuleName = g_strdup ("gnome integration");
-	pVisitCard->cReadmeFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_README_FILE);
-	pVisitCard->iMajorVersionNeeded = 1;
-	pVisitCard->iMinorVersionNeeded = 4;
-	pVisitCard->iMicroVersionNeeded = 7;
-	pVisitCard->cPreviewFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_PREVIEW_FILE);
-	pVisitCard->cGettextDomain = g_strdup (MY_APPLET_GETTEXT_DOMAIN);
-	pVisitCard->cDockVersionOnCompilation = g_strdup (MY_APPLET_DOCK_VERSION);
-	pVisitCard->cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
-	
+CD_APPLET_PRE_INIT_BEGIN("gnome integration", 1, 4, 7)
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 	{
 		if (init_vfs_backend ())
@@ -58,17 +46,15 @@ CairoDockVisitCard *pre_init (void)
 			cairo_dock_fm_register_vfs_backend (pVFSBackend);
 		}
 	}
-
-	return pVisitCard;
-}
+CD_APPLET_PRE_INIT_END
 
 
-Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
+void init (GKeyFile *pKeyFile, Icon *pIcon, CairoDockContainer *pContainer, gchar *cConfFilePath, GError **erreur)
 {
-	return NULL;
+	
 }
 
-gboolean reload (gchar *cConfFilePath)
+gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoDockContainer *pNewContainer)
 {
 	return TRUE;
 }

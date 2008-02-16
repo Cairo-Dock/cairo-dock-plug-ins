@@ -35,6 +35,12 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 }
 
 
+void cd_clock_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
+{
+	cairo_set_source_surface (pCairoContext, myIcon->pIconBuffer, 0.0, 0.0);
+	cairo_paint (pCairoContext);
+}
+
 gboolean cd_clock_update_with_time (Icon *icon)
 {
 	static gboolean bBusy = FALSE;
@@ -78,7 +84,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 		iLastCheckedYear = epoch_tm.tm_year;
 	}
 	
-	cairo_dock_redraw_my_icon (icon, (myDock != NULL ? myDock : myDesklet));
+	CD_APPLET_REDRAW_MY_ICON
 	
 	if (!myConfig.bShowSeconds || epoch_tm.tm_min != iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement à exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.
 	{
@@ -177,13 +183,14 @@ void cd_clock_draw_text (cairo_t *pSourceContext, int width, int height, double 
 	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
 	g_string_free (sFormat, TRUE);
 	
-	
-	cairo_set_tolerance (pSourceContext, 0.5);
-	cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
-	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (pSourceContext);
-	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
-	
+	if (myDesklet == NULL)
+	{
+		cairo_set_tolerance (pSourceContext, 0.5);
+		cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
+		cairo_set_operator (pSourceContext, CAIRO_OPERATOR_SOURCE);
+		cairo_paint (pSourceContext);
+		cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
+	}
 	
 	PangoLayout *pLayout = pango_cairo_create_layout (pSourceContext);
 	PangoFontDescription *pDesc = pango_font_description_new ();

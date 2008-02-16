@@ -19,8 +19,6 @@ icon = gnome-panel-notification-area
 
 [Desklet]
 
-can detach = true
-
 #i[48;256] Desklet's dimension (width x height) :
 width=256
 #i[48;256] ...

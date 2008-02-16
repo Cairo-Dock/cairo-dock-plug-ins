@@ -52,12 +52,8 @@ CD_APPLET_CONFIG_BEGIN ("terminal", "gnome-terminal")
   set_color(&myConfig.forecolor, color_fore);
 
   myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F1");
-  /*   myConfig.x = CD_CONFIG_GET_INTEGER_WITH_DEFAULT("GUI", "x position", 50); */
-  /*   myConfig.y = CD_CONFIG_GET_INTEGER_WITH_DEFAULT("GUI", "y position", 50); */
   myConfig.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb lines", 25);
   myConfig.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb columns", 80);
-
-/* 	myConfig.bIsInitiallyDetached = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("GUI", "is detached", FALSE); */
 }
 CD_APPLET_CONFIG_END
 
@@ -73,10 +69,15 @@ void reset_config (void)
 
 void reset_data (void)
 {
-  cairo_dock_dialog_unreference (myData.dialog);  // l'autre reference sera enlevee par la destruction de notre icone.
-  myData.dialog = NULL;
-  cairo_dock_free_desklet(myData.desklet);
-  myData.desklet = NULL;
-  myData.tab = NULL;  // detruit avec l'une des 2 structures precedentes.
-  memset (&myData, 0, sizeof (AppletData));
+	if (myData.dialog)
+	{
+		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
+		myData.dialog = NULL;
+	}
+	else
+	{
+		gtk_widget_destroy (myData.tab);
+	}
+	myData.tab = NULL;
+	memset (&myData, 0, sizeof (AppletData));
 }

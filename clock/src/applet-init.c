@@ -6,6 +6,7 @@ released under the terms of the GNU General Public License.
 Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 **********************************************************************************/
+#include <string.h>
 #include "stdlib.h"
 
 #include "applet-struct.h"
@@ -79,13 +80,24 @@ static void _load_back_and_fore_ground (void)
 }
 
 CD_APPLET_INIT_BEGIN (erreur)
+	//\_______________ On charge nos surfaces.
+	if (myDesklet != NULL)
+	{
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - 2 * g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - 2 * g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius;
+		myIcon->fDrawY = g_iDockRadius;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = cd_clock_draw_in_desklet;
+	}
 	_load_theme ();
 	_load_back_and_fore_ground ();
-
+	
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
-
+	
 	//\_______________ On lance le timer.
 	cd_clock_update_with_time (myIcon);
 	myData.iSidUpdateClock = g_timeout_add ((myConfig.bShowSeconds ? 1e3: 60e3), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
@@ -109,6 +121,16 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	cd_debug ("%s\n", CD_APPLET_MY_CONF_FILE);
+	if (myDesklet != NULL)
+	{
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - 2 * g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - 2 * g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius;
+		myIcon->fDrawY = g_iDockRadius;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = cd_clock_draw_in_desklet;
+	}
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On stoppe le timer.
@@ -126,7 +148,7 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else
 	{
-		//\_______________ On charge les surfaces d'avant et arriere-plan, les autres ne dependent pas de g_fAmplitude.
+		//\_______________ On charge les surfaces d'avant et arriere-plan, les rsvg_handle ne dependent pas de g_fAmplitude.
 		cairo_surface_destroy (myData.pForegroundSurface);
 		cairo_surface_destroy (myData.pBackgroundSurface);
 		_load_back_and_fore_ground ();

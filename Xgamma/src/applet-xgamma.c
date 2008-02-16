@@ -12,13 +12,15 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "applet-struct.h"
 #include "applet-xgamma.h"
 
+CD_APPLET_INCLUDE_MY_VARS
+
 extern AppletConfig myConfig;
 extern AppletData myData;
 
 
 double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 {
-	g_return_if_fail (pGamma != NULL);
+	g_return_val_if_fail (pGamma != NULL, 1);
 	const Display *dpy = cairo_dock_get_Xdisplay ();
 	
 	if (!XF86VidModeGetGamma (dpy, DefaultScreen (dpy), pGamma))
@@ -120,4 +122,51 @@ void xgamma_create_scales_widget (void)
 	myData.pGreenScale = _xgamma_add_channel_widget (myData.pWidget, "Green :", 2, &myData.iGreenScaleSignalID);
 	
 	myData.pBlueScale = _xgamma_add_channel_widget (myData.pWidget, "Blue :", 3, &myData.iBlueScaleSignalID);
+	
+	gtk_widget_show_all (myData.pWidget);
+}
+
+void xgamma_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
+{
+	
+}
+
+void xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data)
+{
+	if (iAnswer == GTK_RESPONSE_OK)
+	{
+		cd_message ("%s (ok)\n");
+	}
+	else
+	{
+		cd_message ("%s (cancel)\n", __func__);
+		myData.Xgamma = myData.XoldGamma;
+		xgamma_set_gamma (&myData.Xgamma);
+	}
+	cairo_dock_hide_dialog (myData.pDialog);  // apres cette fonction, ref --
+}
+
+void xgamma_build_and_show_widget (void)
+{
+	cd_message ("");
+	xgamma_create_scales_widget ();
+	
+	if (myDock)
+	{
+		myData.pDialog = myData.pDialog = cairo_dock_build_dialog (_D("Set up gamma :"),
+			myIcon,
+			myDock,
+			NULL,
+			myData.pWidget,
+			GTK_BUTTONS_OK_CANCEL,
+			(CairoDockActionOnAnswerFunc) xgamma_apply_values,
+			NULL,
+			NULL);
+		///cairo_dock_dialog_reference (myData.pDialog);  // on prend une reference; elle sera enleve lors du stop, par nous _et_ par le dock qui detruira notre icone.
+	}
+	else
+	{
+		cairo_dock_add_interactive_widget_to_desklet (myData.pWidget, myDesklet);
+		myDesklet->renderer = xgamma_draw_in_desklet;
+	}
 }

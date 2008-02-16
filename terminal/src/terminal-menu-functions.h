@@ -35,9 +35,15 @@ CD_APPLET_ON_MIDDLE_CLICK_H
 CD_APPLET_ON_BUILD_MENU_H
 
 
+
 void term_on_keybinding_pull(const char *keystring, gpointer user_data);
 
 void term_apply_settings();
+
+
+void terminal_build_tab (void);
+void terminal_build_and_show_tab (void);
+void term_draw_in_desklet (cairo_t *pCairoContext, gpointer data);
 
 
 #endif

@@ -17,29 +17,29 @@ name = CD_APPLET_LABEL
 #S Icon's name :
 icon = CD_APPLET_ICON
 
-[Desklet]
 
-can detach = false
+#Uncomment the following group when you will want to make your applet detachable.
+#[Desklet]
 
-#i[48;256] Desklet's dimension (width x height) :
-width=92
-#i[48;256] ...
-height=92
+##i[48;256] Desklet's dimension (width x height) :
+#width=92
+##i[48;256] ...
+#height=92
 
-#i Desklet's position (x ; y) :
-x position=0
-#i ...
-y position=0
+##i Desklet's position (x ; y) :
+#x position=0
+##i ...
+#y position=0
 
-#b Is detached ?
-initially detached=false
+##b Is detached ?
+#initially detached=false
 
-#b Keep below ?
-keep below=false
-#b Keep above ?
-keep above=false
-#b Keep on widget layer ?
-on widget layer=false
+##b Keep below ?
+#keep below=false
+##b Keep above ?
+#keep above=false
+##b Keep on widget layer ?
+#on widget layer=false
 
 [Configuration]
 

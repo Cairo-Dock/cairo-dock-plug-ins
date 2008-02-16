@@ -43,7 +43,6 @@ libcd_gnome_integration_la_LDFLAGS =\
 
 
 moduledir = `pkg-config cairo-dock --variable=pluginsdir`
-
 module_DATA = \
 	.libs/libcd-gnome-integration.so
 

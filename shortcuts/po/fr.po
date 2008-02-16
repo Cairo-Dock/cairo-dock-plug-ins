@@ -41,4 +41,4 @@ msgstr "Nom de l'icône :"
 
 #: src/applet-notifications.c:13
 msgid "This is the shortcuts applet\n made by Fabounet for Cairo-Dock"
-msgstr "Ceci l'applet shortcuts\n écrite par Fabounet pour Cairo-Dock"
+msgstr "Ceci est l'applet shortcuts\n écrite par Fabounet pour Cairo-Dock"

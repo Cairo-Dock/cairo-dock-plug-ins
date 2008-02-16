@@ -33,7 +33,6 @@ typedef struct {
 } AppletConfig;
 
 typedef struct {
-  CairoDockDesklet *desklet;
   CairoDockDialog *dialog;
   TrayApplet *tray;
 } AppletData;

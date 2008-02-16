@@ -32,19 +32,8 @@ double my_fParaboleRatio;  // hauteur/largeur.
 double my_fParaboleMagnitude;
 int my_iParaboleTextGap;
 
-CairoDockVisitCard *pre_init (void)
-{
-	CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
-	pVisitCard->cModuleName = g_strdup ("rendering");
-	pVisitCard->cReadmeFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_README_FILE);
-	pVisitCard->iMajorVersionNeeded = 1;
-	pVisitCard->iMinorVersionNeeded = 4;
-	pVisitCard->iMicroVersionNeeded = 6;
-	pVisitCard->cGettextDomain = g_strdup (MY_APPLET_GETTEXT_DOMAIN);
-	pVisitCard->cDockVersionOnCompilation = g_strdup (MY_APPLET_DOCK_VERSION);
-	pVisitCard->cConfFilePath = cairo_dock_check_conf_file_exists (MY_APPLET_USER_DATA_DIR, MY_APPLET_SHARE_DATA_DIR, MY_APPLET_CONF_FILE);
-	return pVisitCard;
-}
+
+CD_APPLET_DEFINITION("rendering", 1, 4, 7)
 
 
 static void _load_flat_separator (gboolean bFlatSeparator, CairoDock *pDock)
@@ -63,12 +52,12 @@ static void _load_flat_separator (gboolean bFlatSeparator, CairoDock *pDock)
 	}
 }
 
-Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
+void init (GKeyFile *pKeyFile, Icon *pIcon, CairoDockContainer *pContainer, gchar *cConfFilePath, GError **erreur)
 {
 	//g_print ("%s (%s)\n", __func__, MY_APPLET_DOCK_VERSION);
 	//\_______________ On lit le fichier de conf.
 	gboolean bFlatSeparator;
-	read_conf_file (pModule->cConfFilePath, &bFlatSeparator);
+	read_conf_file (pKeyFile, &bFlatSeparator);
 	
 	//\_______________ On enregistre les vues.
 	cd_rendering_register_caroussel_renderer ();
@@ -82,9 +71,7 @@ Icon *init (CairoDock *pDock, CairoDockModule *pModule, GError **erreur)
 	cairo_dock_set_all_views_to_default ();
 	
 	//\_______________ On charge le separateur plat.
-	_load_flat_separator (bFlatSeparator, pDock);
-	
-	return NULL;
+	_load_flat_separator (bFlatSeparator, g_pMainDock);
 }
 
 
@@ -101,9 +88,9 @@ void stop (void)
 }
 
 
-gboolean reload (gchar *cConfFilePath)
+gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoDockContainer *pNewContainer)
 {
-	if (cConfFilePath != NULL)
+	if (pKeyFile != NULL)
 	{
 		reset_data ();
 		

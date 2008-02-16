@@ -49,11 +49,15 @@ void reset_config(void)
 
 void reset_data(void)
 {
-  cairo_dock_dialog_unreference(myData.dialog);  // l'autre reference sera enlevee par la destruction de notre icone.
-  myData.dialog = NULL;
-  cairo_dock_free_desklet(myData.desklet);
-  myData.desklet = NULL;
-  //destroy with the widget by previous function
-  myData.tray = NULL;
-  memset (&myData, 0, sizeof (AppletData));
+  if (myData.dialog)
+	{
+		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
+		myData.dialog = NULL;
+	}
+	else
+	{
+		gtk_widget_destroy (myData.tray->widget);
+	}
+	myData.tray = NULL;
+	memset (&myData, 0, sizeof (AppletData));
 }

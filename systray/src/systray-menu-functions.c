@@ -30,7 +30,7 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-CD_APPLET_ABOUT("This is a simple systray applet made by Cedric GESTES for Cairo-Dock");
+CD_APPLET_ABOUT("This is a simple systray applet\n made by Cedric GESTES for Cairo-Dock");
 
 extern AppletConfig myConfig;
 extern AppletData myData;
@@ -40,12 +40,17 @@ void systray_on_keybinding_pull (const char *keystring, gpointer user_data);
 
 void systray_on_keybinding_pull (const char *keystring, gpointer user_data)
 {
-  if (myData.desklet)
-    cairo_dock_show_desklet((CairoDockDesklet *)user_data);
-  else if (myData.dialog)
-    cairo_dock_unhide_dialog(myData.dialog);
-  else
-    systray_build_new_dialog();
+	if (myData.tray)
+	{
+		if (myDesklet)
+			cairo_dock_show_desklet(myDesklet);
+		else if (myData.dialog)
+			cairo_dock_unhide_dialog(myData.dialog);
+	}
+	else
+	{
+		systray_build_and_show ();
+	}
 }
 
 void systray_apply_settings()
@@ -53,36 +58,52 @@ void systray_apply_settings()
   cd_keybinder_bind(myConfig.shortcut, (CDBindkeyHandler)systray_on_keybinding_pull, 0);
 }
 
-static void systray_build_new_dialog()
+void systray_build_and_show (void)
 {
-  GtkRequisition req;
-
-  myData.tray = tray_init(myDock->pWidget);
-  myData.desklet = cairo_dock_create_desklet (myIcon, myData.tray->widget);
-  //we always want the minimal size
-  gtk_window_set_resizable(GTK_WINDOW(myData.desklet->pWidget), FALSE);
-  gtk_widget_size_request(GTK_WIDGET(myData.tray->box), &req);
-  gtk_window_resize(GTK_WINDOW(myData.desklet->pWidget), 24, 24);
-  systray_apply_settings();
+	myData.tray = tray_init(g_pMainDock->pWidget);
+	gtk_widget_show (myData.tray->widget);
+	
+	systray_apply_settings();
+	
+	if (myDock)
+	{
+		myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myDock, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+	}
+	else
+	{
+		cairo_dock_add_interactive_widget_to_desklet (myData.tray->widget, myDesklet);
+		myDesklet->renderer = systray_draw_in_desklet;
+		gtk_window_set_resizable(GTK_WINDOW(myDesklet->pWidget), FALSE);
+		gtk_window_resize(GTK_WINDOW(myDesklet->pWidget), 24, 24);
+	}
 }
+
+void systray_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
+{
+	
+}
+
 
 CD_APPLET_ON_CLICK_BEGIN
 {
-  if (myData.desklet)
-    cairo_dock_show_desklet(myData.desklet);
-  else if (myData.dialog)
-    cairo_dock_unhide_dialog(myData.dialog);
-  else
-    systray_build_new_dialog();
+	if (! myData.tray)
+		systray_build_and_show ();
+	else if (myDesklet)
+		cairo_dock_show_desklet (myDesklet);
+	else if (myData.dialog)
+		cairo_dock_unhide_dialog(myData.dialog);
 }
 CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 {
-  if (myData.desklet)
-    cairo_dock_hide_desklet(myData.desklet);
-  else if (myData.dialog)
-    cairo_dock_hide_dialog (myData.dialog);
+	if (myData.tray)
+	{
+		if (myDesklet)
+			cairo_dock_hide_desklet(myDesklet);
+		else if (myData.dialog)
+			cairo_dock_hide_dialog (myData.dialog);
+	}
 }
 CD_APPLET_ON_MIDDLE_CLICK_END
 

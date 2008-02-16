@@ -19,5 +19,11 @@ void xgamma_set_gamma (XF86VidModeGamma *pGamma);
 
 void xgamma_create_scales_widget (void);
 
+void xgamma_draw_in_desklet (cairo_t *pCairoContext, gpointer data);
+
+void xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data);
+
+void xgamma_build_and_show_widget (void);
+
 
 #endif

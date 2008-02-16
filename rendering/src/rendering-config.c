@@ -29,19 +29,9 @@ extern int my_iParaboleTextGap;
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 
-void read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator)
+void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
 {
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
-	
-	GError *erreur = NULL;
-	GKeyFile *pKeyFile = g_key_file_new ();
-	g_key_file_load_from_file (pKeyFile, cConfFilePath, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
-	if (erreur != NULL)
-	{
-		cd_message ("Attention : %s\n", erreur->message);
-		g_error_free (erreur);
-		return ;
-	}
 	
 	double fInclinationAngle  = cairo_dock_get_double_key_value (pKeyFile, "Inclinated Plane", "inclination", &bFlushConfFileNeeded, 35, NULL, NULL);
 	my_fInclinationOnHorizon = tan (fInclinationAngle * G_PI / 180.);
@@ -66,13 +56,6 @@ void read_conf_file (gchar *cConfFilePath, gboolean *bFlatSeparator)
 	my_fParaboleMagnitude = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "wave magnitude", &bFlushConfFileNeeded, .2, NULL, NULL);
 	
 	my_iParaboleTextGap = cairo_dock_get_integer_key_value (pKeyFile, "Parabolic", "text gap", &bFlushConfFileNeeded, 3, NULL, NULL);
-	
-	if (! bFlushConfFileNeeded)
-		bFlushConfFileNeeded = cairo_dock_conf_file_needs_update (pKeyFile, MY_APPLET_VERSION);
-	if (bFlushConfFileNeeded)
-		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, MY_APPLET_SHARE_DATA_DIR);
-	
-	g_key_file_free (pKeyFile);
 }
 
 

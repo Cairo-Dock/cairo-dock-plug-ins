@@ -38,7 +38,8 @@ CD_APPLET_INIT_BEGIN (erreur);
   CD_APPLET_REGISTER_FOR_CLICK_EVENT;
   CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
   CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-  systray_apply_settings();
+  if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
+		systray_build_and_show ();
 }
 CD_APPLET_INIT_END
 
@@ -58,7 +59,34 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 {
-  if (CD_APPLET_MY_CONFIG_CHANGED)
-    systray_apply_settings();
+	if (CD_APPLET_MY_CONFIG_CHANGED)
+	{
+		if (! myData.tray)
+		{
+			if (myDesklet != NULL)  // on cree le systray pour avoir qqch a afficher dans le desklet.
+				systray_build_and_show ();
+		}
+		else if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
+		{
+			if (myDesklet != NULL)  // il faut passer du dialogue au desklet.
+			{
+				myData.tray->widget = cairo_dock_steal_widget_from_its_container (myData.tray->widget);
+				cairo_dock_dialog_unreference (myData.dialog);
+				myData.dialog = NULL;
+				cairo_dock_add_interactive_widget_to_desklet (myData.tray->widget, myDesklet);
+				myDesklet->renderer = systray_draw_in_desklet;
+			}
+			else  // il faut passer du desklet au dialogue
+			{
+				myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myDock, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+				cairo_dock_hide_dialog (myData.dialog);
+			}
+		}
+		
+		if (myData.tray)
+		{
+			systray_apply_settings();
+		}
+	}
 }
 CD_APPLET_RELOAD_END

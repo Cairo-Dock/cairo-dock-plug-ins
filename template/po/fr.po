@@ -41,4 +41,4 @@ msgstr "Nom de l'icône :"
 
 #: src/applet-notifications.c:13
 msgid "This is the CD_APPLET_NAME applet\n made by CD_MY_NAME for Cairo-Dock"
-msgstr "Ceci l'applet CD_APPLET_NAME\n écrite par CD_MY_NAME pour Cairo-Dock"
+msgstr "Ceci est l'applet CD_APPLET_NAME\n écrite par CD_MY_NAME pour Cairo-Dock"

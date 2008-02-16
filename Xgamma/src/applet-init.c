@@ -47,25 +47,28 @@ CD_APPLET_INIT_BEGIN (erreur)
 		if (dpy == NULL)
 		{
 			g_set_error (erreur, 1, 1, "%s () : unable to get X display", __func__);
-			return NULL;
+			return ;
 		}
 		
 		int MajorVersion, MinorVersion;
 		if (!XF86VidModeQueryVersion(dpy, &MajorVersion, &MinorVersion))
 		{
 			g_set_error (erreur, 1, 1, "%s () : unable to query video extension version", __func__);
-			return NULL;
+			return ;
 		}
 		
 		int EventBase, ErrorBase;
 		if (!XF86VidModeQueryExtension(dpy, &EventBase, &ErrorBase))
 		{
 			g_set_error (erreur, 1, 1, "%s () : unable to query video extension information", __func__);
-			return NULL;
+			return ;
 		}
 		
 		myData.bVideoExtensionOK = TRUE;
 	}
+	
+	if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
+		xgamma_build_and_show_widget ();
 CD_APPLET_INIT_END
 
 
@@ -85,10 +88,34 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		
-	}
-	else
-	{
-		
+		if (! myData.pWidget)
+		{
+			if (myDesklet != NULL)  // on cree le widget pour avoir qqch a afficher dans le desklet.
+				xgamma_build_and_show_widget ();
+		}
+		else if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
+		{
+			if (myDesklet != NULL)  // il faut passer du dialogue au desklet.
+			{
+				myData.pWidget = cairo_dock_steal_widget_from_its_container (myData.pWidget);
+				cairo_dock_dialog_unreference (myData.pDialog);
+				myData.pDialog = NULL;
+				cairo_dock_add_interactive_widget_to_desklet (myData.pWidget, myDesklet);
+				myDesklet->renderer = xgamma_draw_in_desklet;
+			}
+			else  // il faut passer du desklet au dialogue
+			{
+				myData.pDialog = cairo_dock_build_dialog (_D("Set up gamma :"),
+					myIcon,
+					myDock,
+					NULL,
+					myData.pWidget,
+					GTK_BUTTONS_OK_CANCEL,
+					(CairoDockActionOnAnswerFunc) xgamma_apply_values,
+					NULL,
+					NULL);
+				cairo_dock_hide_dialog (myData.pDialog);
+			}
+		}
 	}
 CD_APPLET_RELOAD_END

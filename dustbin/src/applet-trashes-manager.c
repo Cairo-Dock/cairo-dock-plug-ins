@@ -150,6 +150,12 @@ void cd_dustbin_remove_messages (CdDustbin *pDustbin)
 }
 
 
+gboolean cd_dustbin_is_calculating (void)
+{
+	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
+	return (iThreadIsRunning != 0 || s_iSidDelayMeasure != 0 || myData.iNbTrashes == -1);
+}
+
 static gboolean _cd_dustbin_check_for_redraw (gpointer data)
 {
 	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
@@ -207,7 +213,6 @@ void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin)
 		s_pTasksList = g_list_prepend (s_pTasksList, pNewMessage);
 		g_atomic_int_set (&myData.iNbFiles, -1);  // en cours.
 		g_atomic_int_set (&myData.iSize, -1);  // en cours.
-		cd_dustbin_draw_quick_info (TRUE);
 	}
 	else if (cURI == NULL)
 	{
@@ -230,6 +235,8 @@ void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin)
 		}
 		s_iSidDelayMeasure = g_timeout_add (400, (GSourceFunc) _cd_dustbin_launch_measure_delayed, NULL);  // on retarde le calcul, car il y'a probablement d'autres fichiers qui vont arriver.
 	}
+	if (pDustbin == NULL)
+		cd_dustbin_draw_quick_info (TRUE);
 }
 
 
@@ -258,7 +265,7 @@ int cd_dustbin_count_trashes (gchar *cDirectory)
 
 void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
 {
-	cd_message ("%s (%s)\n", __func__, cDirectory);
+	cd_debug ("%s (%s)\n", __func__, cDirectory);
 	g_atomic_int_set (iNbFiles, 0);
 	g_atomic_int_set (iSize, 0);
 
@@ -295,13 +302,13 @@ void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoTyp
 		{
 			if (S_ISDIR (buf.st_mode))
 			{
-				cd_message ("  %s est un repertoire\n", sFilePath->str);
+				cd_debug ("  %s est un repertoire\n", sFilePath->str);
 				iNbFilesSubDir = 0;
 				iSizeSubDir = 0;
 				cd_dustbin_measure_directory (sFilePath->str, iInfoType, pDustbin, &iNbFilesSubDir, &iSizeSubDir);
 				g_atomic_int_add (iNbFiles, iNbFilesSubDir);
 				g_atomic_int_add (iSize, iSizeSubDir);
-				cd_message ("  + %d fichiers dans ce sous-repertoire\n", iNbFilesSubDir );
+				cd_debug ("  + %d fichiers dans ce sous-repertoire\n", iNbFilesSubDir );
 			}
 			else
 			{
@@ -317,7 +324,7 @@ void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoTyp
 
 void cd_dustbin_measure_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
 {
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_debug ("%s (%s)\n", __func__, cURI);
 	
 	GError *erreur = NULL;
 	gchar *cFilePath = g_filename_from_uri (cURI, NULL, &erreur);

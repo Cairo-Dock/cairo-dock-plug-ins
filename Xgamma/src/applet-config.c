@@ -32,8 +32,16 @@ void reset_config (void)
 
 void reset_data (void)
 {
-	cairo_dock_dialog_unreference (myData.pDialog);  // l'autre reference sera enlevee par la destruction de notre icone.
-	myData.pDialog = NULL;
+	if (myData.pDialog)
+	{
+		cairo_dock_dialog_unreference (myData.pDialog);  // detruit aussi le widget interactif.
+		myData.pDialog = NULL;
+	}
+	else
+	{
+		gtk_widget_destroy (myData.pWidget);
+	}
+	myData.pWidget = NULL;
 	
 	memset (&myData, 0, sizeof (AppletData));
 }

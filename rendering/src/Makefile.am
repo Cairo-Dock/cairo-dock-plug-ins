@@ -36,6 +36,9 @@ libcd_rendering_la_CFLAGS = \
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""none"\"\
+	-DMY_APPLET_CONF_FILE=\""rendering.conf"\"\
+	-DMY_APPLET_USER_DATA_DIR=\""rendering"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3

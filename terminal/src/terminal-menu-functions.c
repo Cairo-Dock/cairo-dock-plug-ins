@@ -42,19 +42,21 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT ("This is a very simple terminal applet made by Cedric GESTES for Cairo-Dock");
 
 static void terminal_new_tab();
-///static CairoDockDesklet *terminal_new_dialog();
-static void terminal_build_new_dialog (void);
-///static void onKeybindingPull (const char *keystring, gpointer user_data);
 
 
 void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 {
-  if (myData.desklet)
-    cairo_dock_show_desklet(myData.desklet);
-  else if (myData.dialog)
-    cairo_dock_unhide_dialog(myData.dialog);
-  else
-    terminal_build_new_dialog();
+	if (myData.tab)
+	{
+		if (myDesklet)
+			cairo_dock_show_desklet(myDesklet);
+		else if (myData.dialog)
+			cairo_dock_unhide_dialog(myData.dialog);
+	}
+	else
+	{
+		terminal_build_and_show_tab ();
+	}
 }
 
 
@@ -115,7 +117,6 @@ static void on_terminal_child_exited(VteTerminal *vteterminal,
   else {
     // \r needed to return to the beginning of the line
     vte_terminal_feed(VTE_TERMINAL(vteterminal), "Shell exited. Another one is launching...\r\n\n", -1);
-    cairo_dock_hide_desklet(myData.desklet);
     vte_terminal_fork_command(VTE_TERMINAL(vteterminal),
                               NULL,
                               NULL,
@@ -231,46 +232,51 @@ static void terminal_new_tab()
   gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
 }
 
-static void terminal_build_new_dialog()
+void terminal_build_and_show_tab (void)
 {
-  GtkWidget *vterm = NULL;
+	myData.tab = gtk_notebook_new();
+	terminal_new_tab();
+	gtk_widget_show(myData.tab);
+	
+	term_apply_settings();
+	
+	if (myDock)
+	{
+		myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+	}
+	else
+	{
+		cairo_dock_add_interactive_widget_to_desklet (myData.tab, myDesklet);
+		myDesklet->renderer = term_draw_in_desklet;
+	}
+}
 
-  myData.tab = gtk_notebook_new();
-  terminal_new_tab();
-  gtk_widget_show(myData.tab);
-
-  g_signal_connect (G_OBJECT (myData.tab), "button-release-event",
-                    G_CALLBACK (applet_on_terminal_press_cb), NULL);  // utile de l'ajouter au notebook ?
-
-/*   if (myConfig.bIsInitiallyDetached) */
-/*     { */
-      myData.desklet = cairo_dock_create_desklet(myIcon, myData.tab);
-/*     } */
-/*   else */
-/*     { */
-/*       myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL); */
-/*     } */
-  term_apply_settings();
+void term_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
+{
+	
 }
 
 
 CD_APPLET_ON_CLICK_BEGIN
 {
-  if (myData.desklet)
-    cairo_dock_show_desklet(myData.desklet);
-  else if (myData.dialog)
-    cairo_dock_unhide_dialog(myData.dialog);
-  else
-    terminal_build_new_dialog();
+	if (! myData.tab)
+		terminal_build_and_show_tab ();
+	else if (myDesklet)
+		cairo_dock_show_desklet (myDesklet);
+	else if (myData.dialog)
+		cairo_dock_unhide_dialog(myData.dialog);
 }
 CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 {
-  if (myData.desklet)
-    cairo_dock_hide_desklet(myData.desklet);
-  else if (myData.dialog)
-    cairo_dock_hide_dialog (myData.dialog);
+	if (myData.tab)
+	{
+		if (myDesklet)
+			cairo_dock_hide_desklet(myDesklet);
+		else if (myData.dialog)
+			cairo_dock_hide_dialog (myData.dialog);
+	}
 }
 CD_APPLET_ON_MIDDLE_CLICK_END
 

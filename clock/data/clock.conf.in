@@ -16,8 +16,6 @@ name = horloge
 
 [Desklet]
 
-can detach = true
-
 #i[48;256] Desklet's dimension (width x height) :
 width=92
 #i[48;256] ...

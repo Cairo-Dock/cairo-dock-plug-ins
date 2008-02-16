@@ -12,6 +12,7 @@ void cd_dustbin_remove_all_messages (void);
 
 void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin);
 
+gboolean cd_dustbin_is_calculating (void);
 
 
 int cd_dustbin_count_trashes (gchar *cDirectory);

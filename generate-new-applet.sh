@@ -7,13 +7,13 @@ if test -e $AppletName; then
 fi
 read -p "Enter your name : " MyName
 read -p "Enter an e-mail adress to contact you for bugs or congratulations : " MyMail
-read -p "Enter the default label of your applet (Just type enter to not have a label) :" AppletLabel
-read -p "Enter the default icon of your applet (Just type enter if you'll draw it dynamically) :" AppletIcon
+read -p "Enter the default label of your applet (Just type enter to leave it empty for the moment) :" AppletLabel
+read -p "Enter the default icon of your applet (Just type enter if you'll draw it dynamically, for exemple like the 'clock' or the 'dustbin' applet) :" AppletIcon
 
 
 echo "creation de l'arborescence de l'applet $AppletName ..."
 cp -r template $AppletName
-find $AppletName -name ".svn" -execdir rm -rf .svn \;
+find $AppletName -name ".svn" -execdir rm -rf .svn \; > /dev/null
 
 
 cd $AppletName
@@ -25,7 +25,7 @@ mv tmp configure.ac
 
 cd data
 if test "x$AppletLabel" = "x"; then
-	sed "/CD_APPLET_LABEL/d" template.conf.in > tmp
+	sed "s/CD_APPLET_LABEL/$AppletName/g" template.conf.in > tmp
 else
 	sed "s/CD_APPLET_LABEL/$AppletLabel/g" template.conf.in > tmp
 fi
