@@ -26,8 +26,16 @@ extern double my_fParaboleCurvature;
 extern double my_fParaboleRatio;
 extern double my_fParaboleMagnitude;
 extern int my_iParaboleTextGap;
+extern gboolean my_bDrawTextWhileUnfolding;
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
+
+extern int my_iSpaceBetweenRows;
+extern int my_iSpaceBetweenIcons;
+extern double my_fRainbowMagnitude;
+extern int my_iRainbowNbIconsMin;
+extern double my_fRainbowConeOffset;
+
 
 void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
 {
@@ -56,6 +64,19 @@ void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
 	my_fParaboleMagnitude = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "wave magnitude", &bFlushConfFileNeeded, .2, NULL, NULL);
 	
 	my_iParaboleTextGap = cairo_dock_get_integer_key_value (pKeyFile, "Parabolic", "text gap", &bFlushConfFileNeeded, 3, NULL, NULL);
+	
+	my_bDrawTextWhileUnfolding  = cairo_dock_get_boolean_key_value (pKeyFile, "Parabolic", "draw text", &bFlushConfFileNeeded, TRUE, NULL, NULL);
+	
+	
+	my_iSpaceBetweenRows = cairo_dock_get_integer_key_value (pKeyFile, "Rainbow", "space between rows", &bFlushConfFileNeeded, 10, NULL, NULL);
+	
+	my_iSpaceBetweenIcons = cairo_dock_get_integer_key_value (pKeyFile, "Rainbow", "space between icons", &bFlushConfFileNeeded, 8, NULL, NULL);
+	
+	my_fRainbowMagnitude = cairo_dock_get_double_key_value (pKeyFile, "Rainbow", "wave magnitude", &bFlushConfFileNeeded, .3, NULL, NULL);
+	
+	my_iRainbowNbIconsMin = cairo_dock_get_integer_key_value (pKeyFile, "Rainbow", "nb icons min", &bFlushConfFileNeeded, 3, NULL, NULL);
+	
+	my_fRainbowConeOffset = G_PI * (1 - cairo_dock_get_double_key_value (pKeyFile, "Rainbow", "cone", &bFlushConfFileNeeded, 130, NULL, NULL) / 180) / 2;
 }
 
 

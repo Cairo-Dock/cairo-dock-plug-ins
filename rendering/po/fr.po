@@ -18,64 +18,112 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#!en;@VERSION@
-
+#: ../data/messages:1
 msgid "Inclinated Plane"
 msgstr "Plan incliné"
 
+#: ../data/messages:5
 msgid "Inclination of the plane :"
 msgstr "Inclinaison du plan :"
 
-msgid "In degrees, regarding the vertical position. It's a sort of inclination of the plane on the horizontal, giving the 3D feeling. So setting it to 0 means the plane is not inclined at all (vertical)."
-msgstr "En degrés, par rapport à la position verticale. C'est une sorte d'inclinaison du plan sur l'horizontal, donnant l'impression de 3D. Donc le mettre à 0 signifie que le plan n'est pas incliné du tout (horizontal)."
+#: ../data/messages:3
+msgid ""
+"In degrees, regarding the vertical position. It's a sort of inclination of "
+"the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+"the plane is not inclined at all (vertical)."
+msgstr ""
+"En degrés, par rapport à la position verticale. C'est une sorte "
+"d'inclinaison du plan sur l'horizontal, donnant l'impression de 3D. Donc le "
+"mettre à 0 signifie que le plan n'est pas incliné du tout (horizontal)."
 
+#: ../data/messages:7
 msgid "Use a flat separator instead of the defined separator icon ?"
-msgstr "Utiliser un séparateur plat au lieu de l'icône définie des séparateurs ?"
+msgstr ""
+"Utiliser un séparateur plat au lieu de l'icône définie des séparateurs ?"
 
+#: ../data/messages:11
 msgid "If so, you can specify its color:"
 msgstr "Si oui, précisez sa couleur:"
 
+#: ../data/messages:9
 msgid "red, blue, green, alpha"
 msgstr "rougle, vert, bleu, alpha"
 
+#: ../data/messages:13
 msgid "Caroussel"
 msgstr "Carroussel"
 
+#: ../data/messages:17
 msgid "Percentage of the dock's width that appears on the foreground :"
 msgstr "Pourcentage de la largeur du dock qui apparaît à l'avant-plan :"
 
-msgid "0.5 means the dock is half-folded, so half the icons are on the foreground, and half are on the background."
-msgstr "0.5 signifie que le dock est à moitié replié, donc la moitié des icônes sont à l'avant-plan, et la motié à l'arrière-pan."
+#: ../data/messages:15
+msgid ""
+"0.5 means the dock is half-folded, so half the icons are on the foreground, "
+"and half are on the background."
+msgstr ""
+"0.5 signifie que le dock est à moitié replié, donc la moitié des icônes sont "
+"à l'avant-plan, et la motié à l'arrière-pan."
 
+#: ../data/messages:21
 msgid "Depth of the plane :"
 msgstr "Profondeur du plan :"
 
-msgid "The greater, the deeper. It is in fact the gap between background icons' bottom and foreground icons' top (in pixels)."
-msgstr "Plus c'est grand, plus le plan est profond. C'est en fait l'écart entre le bas des icônes de l'arrière-plan, et le haut des icônes d'avant-plan (en pixels)."
+#: ../data/messages:19
+msgid ""
+"The greater, the deeper. It is in fact the gap between background icons' "
+"bottom and foreground icons' top (in pixels)."
+msgstr ""
+"Plus c'est grand, plus le plan est profond. C'est en fait l'écart entre le "
+"bas des icônes de l'arrière-plan, et le haut des icônes d'avant-plan (en "
+"pixels)."
 
+#: ../data/messages:25
 msgid "Always show icons' face ?"
 msgstr "Toujours montrer les icônes de face ?"
 
+#: ../data/messages:23
 msgid "otherwise they will turn."
 msgstr "sinon elles tourneront."
 
+#: ../data/messages:27
 msgid "Parabolic"
 msgstr "Parabolique"
 
+#: ../data/messages:31
 msgid "Curvature :"
 msgstr "Courbure :"
 
+#: ../data/messages:35
 msgid "Ratio height/width :"
 msgstr "Ratio hauteur/largeur :"
 
+#: ../data/messages:39
 msgid "Magnitude of the wave :"
 msgstr "Magnitude de la vague :"
 
-msgid "0 means the wave is totally flat, 1 means the wave is identical to other views."
-msgstr "0 signifie que la vague est totalement plate, 1 que la vague est identique aux autres vues."
+#: ../data/messages:37
+msgid ""
+"0 means the wave is totally flat, 1 means the wave is identical to other "
+"views."
+msgstr ""
+"0 signifie que la vague est totalement plate, 1 que la vague est identique "
+"aux autres vues."
 
+#: ../data/messages:43
 msgid "Space between icons and their label :"
 msgstr "Espace entre les icônes et leur label :"
 
+#: ../data/messages:41
 msgid "in pixels."
 msgstr "en pixels."
+
+#: ../data/messages:29
+msgid "it's the 'a' in y=k*x^a"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"not including the labels. The 'k' coef will be adjusted to preserve this "
+"ratio."
+msgstr ""

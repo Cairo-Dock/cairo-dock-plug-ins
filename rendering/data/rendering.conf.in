@@ -44,3 +44,26 @@ wave magnitude= .2
 #i[0;20] Space between icons and their label :
 #{in pixels.}
 text gap = 3
+
+#b Draw labels while unfolding ?
+#{It may recquire more CPU during the unfolding animation, except if you launch Cairo-Dock with Glitz.}
+draw text = true
+
+[Rainbow]
+
+#i[0;40] Space between rows :
+space between rows = 10
+
+#i[0;40] Space between icons :
+space between icons = 8
+
+#e[0;1] Magnitude of the wave :
+#{0 means the wave is totally flat, 1 means the wave is identical to other views.}
+wave magnitude = .3
+
+#i[0;20] Number of icons on the first row :
+nb icons min = 3
+
+#e[60;180] Cone's width :
+#{in degree. The smaller, the more the cone is narrow. 180° means the cone is widely opened.}
+cone = 130

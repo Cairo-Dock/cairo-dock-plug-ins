@@ -12,7 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "rendering-caroussel.h"
 #include "rendering-parabole.h"
 #include "rendering-3D-plane.h"
-//#include "rendering-rainbow.h"
+#include "rendering-rainbow.h"
 #include "rendering-init.h"
 
 #define MY_APPLET_CONF_FILE "rendering.conf"
@@ -31,6 +31,13 @@ double my_fParaboleCurvature;  // puissance de x.
 double my_fParaboleRatio;  // hauteur/largeur.
 double my_fParaboleMagnitude;
 int my_iParaboleTextGap;
+gboolean my_bDrawTextWhileUnfolding;
+
+int my_iSpaceBetweenRows = 10;
+int my_iSpaceBetweenIcons = 0;
+double my_fRainbowMagnitude = .3;
+int my_iRainbowNbIconsMin = 1;
+double my_fRainbowConeOffset = (60./180.*G_PI);
 
 
 CD_APPLET_DEFINITION("rendering", 1, 4, 7)
@@ -66,7 +73,7 @@ void init (GKeyFile *pKeyFile, Icon *pIcon, CairoDockContainer *pContainer, gcha
 	
 	cd_rendering_register_parabole_renderer ();
 	
-	//cd_rendering_register_rainbow_renderer ();  // pas encore ...
+	cd_rendering_register_rainbow_renderer ();  // pas encore ...
 	
 	cairo_dock_set_all_views_to_default ();
 	
@@ -80,7 +87,7 @@ void stop (void)
 	cairo_dock_remove_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_3D_PLANE_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
-	//cairo_dock_remove_renderer (MY_APPLET_RAINBOW_VIEW_NAME);
+	cairo_dock_remove_renderer (MY_APPLET_RAINBOW_VIEW_NAME);
 	
 	reset_data ();
 	
@@ -95,7 +102,7 @@ gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoDockContainer *p
 		reset_data ();
 		
 		gboolean bFlatSeparator;
-		read_conf_file (cConfFilePath, &bFlatSeparator);
+		read_conf_file (pKeyFile, &bFlatSeparator);
 		
 		cairo_dock_set_all_views_to_default ();
 		

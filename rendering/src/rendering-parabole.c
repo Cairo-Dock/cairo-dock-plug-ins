@@ -42,6 +42,7 @@ extern double my_fParaboleCurvature;  // puissance de x (alpha).
 extern double my_fParaboleRatio;  // ratio hauteur / largeur fixe => coef de la parabole (lambda).
 extern double my_fParaboleMagnitude;
 extern int my_iParaboleTextGap;
+extern gboolean my_bDrawTextWhileUnfolding;
 
 static double *s_pReferenceParaboleS = NULL;
 static double *s_pReferenceParaboleX = NULL;
@@ -255,6 +256,7 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	pDock->fMagnitudeMax = my_fParaboleMagnitude;
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
+	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
 	int iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 0));
 	GList* ic;
 	Icon *icon;
@@ -348,10 +350,10 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 		icon = ic->data;
 		
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, FALSE);
+		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, FALSE, pDock->iCurrentWidth);
 		cairo_restore (pCairoContext);
 		
-		if (icon->pTextBuffer != NULL)
+		if (icon->pTextBuffer != NULL && (my_bDrawTextWhileUnfolding || pDock->fFoldingFactor == 0))
 		{
 			cairo_save (pCairoContext);
 			cairo_translate (pCairoContext, icon->fDrawX, icon->fDrawY);
@@ -371,7 +373,10 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 					- (icon->iTextWidth + my_iParaboleTextGap),
 					(icon->fHeight * icon->fScale - icon->iTextHeight)/2);
 			}
-			cairo_paint_with_alpha (pCairoContext, (1 - pDock->fFoldingFactor) * (1 - pDock->fFoldingFactor));
+			if (pDock->fFoldingFactor != 0)
+				cairo_paint_with_alpha (pCairoContext, (1 - pDock->fFoldingFactor) * (1 - pDock->fFoldingFactor));
+			else
+				cairo_paint (pCairoContext);
 			
 			cairo_restore (pCairoContext);
 		}
@@ -592,7 +597,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		icon->fDrawY = (g_bDirectionUp ? pDock->iCurrentHeight - (y_ + icon->fHeight * icon->fScale) * (1 - pDock->fFoldingFactor) : y_ * (1 - pDock->fFoldingFactor));
 		if (pDock->fAlign == 1)
 		{
-			icon->fDrawX = pDock->iCurrentWidth - (x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - 0*icon->fWidth * icon->fScale/2);
+			icon->fDrawX = pDock->iCurrentWidth - (x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale + icon->fWidth * icon->fScale/2);
 			icon->fOrientation = (g_bDirectionUp ? - theta_ : theta_);
 		}
 		else
@@ -650,6 +655,7 @@ void cd_rendering_register_parabole_renderer (void)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-parabolic-view", MY_APPLET_SHARE_DATA_DIR);
+	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-parabolic.png", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_parabole;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_parabole;
 	pRenderer->render = cd_rendering_render_parabole;

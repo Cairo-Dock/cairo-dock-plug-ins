@@ -352,7 +352,7 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 			if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->acFileName == NULL && my_pFlatSeparatorSurface[0] != NULL)
 				cd_rendering_one_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock);
 			else
-				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE);
+				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth);
 			
 			cairo_restore (pCairoContext);
 			
@@ -472,8 +472,7 @@ void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pAr
 				if (CAIRO_DOCK_IS_SEPARATOR (icon) && my_pFlatSeparatorSurface[0] != NULL)
 					cd_rendering_one_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock);
 				else
-					cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE);
-				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE);
+					cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth);
 				cairo_restore (pCairoContext);
 			}
 			
@@ -517,6 +516,7 @@ void cd_rendering_register_3D_plane_renderer (void)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-3D-plane-view", MY_APPLET_SHARE_DATA_DIR);
+	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-3D-plane.png", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_3D_plane;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_3D_plane;
 	pRenderer->render = cd_rendering_render_3D_plane;

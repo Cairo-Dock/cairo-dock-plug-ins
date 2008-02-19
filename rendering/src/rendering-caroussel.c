@@ -132,7 +132,7 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_save (pCairoContext);
 		
 		//g_print ("redessin a gauche de %s\n", icon->acName);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE);
+		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth);
 		
 		cairo_restore (pCairoContext);
 		
@@ -143,7 +143,7 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_save (pCairoContext);
 		
 		//g_print ("redessin a droite de %s\n", icon->acName);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE);
+		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth);
 		
 		cairo_restore (pCairoContext);
 		
@@ -259,6 +259,7 @@ void cd_rendering_register_caroussel_renderer (void)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-caroussel-view", MY_APPLET_SHARE_DATA_DIR);
+	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-caroussel.png", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_caroussel;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_caroussel;  // cairo_dock_apply_wave_effect;
 	pRenderer->render = cd_rendering_render_caroussel;
