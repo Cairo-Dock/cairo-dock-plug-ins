@@ -21,27 +21,34 @@ msgstr ""
 msgid "ICON"
 msgstr "ICONE"
 
+#: ../data/messages:3
 msgid "Desired icon size for this applet"
 msgstr "Taille d'icône souhaitée pour cette applet"
 
+#: ../data/messages:5
 msgid "width :"
 msgstr "largeur :"
 
+#: ../data/messages:7
 msgid "height :"
 msgstr "hauteur :"
 
+#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 msgid "MODULE"
 msgstr "MODULE"
 
+#: ../data/messages:33
 msgid "Theme"
 msgstr "Thème"
 
+#: ../data/messages:35
 msgid "Choose one of the available themes :"
 msgstr "Choisissez un des thèmes disponibles :"
 
+#: ../data/messages:69
 msgid "Interval of time to check if dustbin is full/empty :"
 msgstr ""
 "Intervalle de temps pour la vérification de la poubelle (vide/pleine) :"
@@ -63,23 +70,23 @@ msgstr ""
 "Ceci est l'applet poubelle de Cairo-Dock\n"
 " écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
 
-#: src/applet-notifications.c:42
+#: src/applet-notifications.c:42 ../src/applet-notifications.c:38
 msgid "Show Trash"
 msgstr "Ouvrir la poubelle"
 
-#: src/applet-notifications.c:54
+#: src/applet-notifications.c:54 ../src/applet-notifications.c:45
 msgid "Show All"
 msgstr "Ouvrir toutes"
 
-#: src/applet-notifications.c:56
+#: src/applet-notifications.c:56 ../src/applet-notifications.c:47
 msgid "Delete Trash"
 msgstr "Vider la poubelle"
 
-#: src/applet-notifications.c:69
+#: src/applet-notifications.c:69 ../src/applet-notifications.c:54
 msgid "Delete All"
 msgstr "Vider toutes"
 
-#: src/applet-notifications.c:81
+#: src/applet-notifications.c:81 ../src/applet-trashes-manager.c:387
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
@@ -90,7 +97,7 @@ msgstr ""
 "Vous êtes sur le point de détruire tous les fichiers de toutes les "
 "poubelles. Sur ?"
 
-#: src/applet-notifications.c:145
+#: src/applet-notifications.c:145 ../src/applet-trashes-manager.c:446
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -101,12 +108,167 @@ msgstr ""
 "Si '%s' n'est pas votre navigateur de fichier usuel,\n"
 "vous pouvez le changer dans le panneau de conf de cette applet."
 
-#: src/applet-notifications.c:48
+#: src/applet-notifications.c:48 ../src/applet-notifications.c:42
 #, c-format
 msgid "Show %s"
 msgstr "Ouvrir %s"
 
-#: src/applet-notifications.c:62
+#: src/applet-notifications.c:62 ../src/applet-notifications.c:51
 #, c-format
 msgid "Delete %s"
 msgstr "Vider %s"
+
+#: ../src/applet-draw.c:152
+msgid "calculating"
+msgstr ""
+
+#: ../src/applet-draw.c:162
+msgid " trashes"
+msgstr ""
+
+#: ../src/applet-draw.c:166
+msgid " files"
+msgstr ""
+
+#: ../src/applet-notifications.c:22
+msgid ""
+"This is the dustbin applet for Cairo-Dock\n"
+" made by Fabrice Rey (fabounet@users.berlios.de)"
+msgstr ""
+
+#: ../src/applet-notifications.c:68
+#, c-format
+msgid "%s is now unmounted"
+msgstr ""
+
+#: ../src/applet-notifications.c:72
+#, c-format
+msgid "failed to unmount %s"
+msgstr ""
+
+#: ../src/applet-trashes-manager.c:389
+msgid "You're about to delete all files in all dustbins. Sure ?"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:13
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:15
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock-desklet & type=utility)"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Module"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Name of an image to overwrite the theme's empty image :"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Name of an image to overwrite the theme's full image :"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Config"
+msgstr ""
+
+#: ../data/messages:43
+msgid "They don't even need to be real trash directories."
+msgstr ""
+
+#: ../data/messages:45
+msgid ""
+"Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Display the following quick info :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "None"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Number of trashes"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Total number of files"
+msgstr ""
+
+#: ../data/messages:55
+msgid "Total weight"
+msgstr ""
+
+#: ../data/messages:57 ../data/messages:61
+msgid ""
+"in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Maximum total size of all dustbins :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "Maximum size authorized for each dustbin :"
+msgstr ""
+
+#: ../data/messages:65
+msgid "Desktop-less support"
+msgstr ""
+
+#: ../data/messages:67
+msgid "in seconds, only used if you can't monitor directories."
+msgstr ""
+
+#: ../data/messages:71
+msgid ""
+"Only use this if you notice that the applet can't display the trash on click."
+msgstr ""
+
+#: ../data/messages:73
+msgid "Alternative file browser used to show a trash :"
+msgstr ""

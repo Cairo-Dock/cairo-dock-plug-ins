@@ -21,63 +21,83 @@ msgstr ""
 msgid "ICON"
 msgstr "ICONE"
 
+#: ../data/messages:3
 msgid "Desired icon size for this applet"
 msgstr "Taille d'icône souhaitée pour cette applet"
 
+#: ../data/messages:5
 msgid "width :"
 msgstr "largeur :"
 
+#: ../data/messages:7
 msgid "height :"
 msgstr "hauteur :"
 
+#: ../data/messages:9
 msgid "Default title :"
 msgstr "Titre par défaut :"
 
+#: ../data/messages:11
 msgid "Configuration"
 msgstr "Configuration"
 
+#: ../data/messages:13
 msgid "Info-bubbles"
 msgstr "Info-bulles"
 
+#: ../data/messages:15
 msgid "Activate info-bubbles ?"
 msgstr "Activer les info-bulles ?"
 
+#: ../data/messages:19
 msgid "Time length of info-bubbles :"
 msgstr "Durée des info-bulles :"
 
+#: ../data/messages:17
 msgid "in ms."
 msgstr "en ms."
 
+#: ../data/messages:21
 msgid "Animations"
 msgstr "Animations"
 
+#: ../data/messages:25
 msgid "bounce"
 msgstr "rebond"
 
+#: ../data/messages:27
 msgid "rotate"
 msgstr "rotation"
 
+#: ../data/messages:29
 msgid "blink"
 msgstr "clignotement"
 
+#: ../data/messages:31
 msgid "pulse"
 msgstr "pulsation"
 
+#: ../data/messages:33
 msgid "upside-down"
 msgstr "sens dessus-dessous"
 
+#: ../data/messages:35
 msgid "wobbly"
 msgstr "élastique"
 
+#: ../data/messages:37
 msgid "random"
 msgstr "aléatoire"
 
+#: ../data/messages:23
 msgid "Animation when music changes :"
 msgstr "Animation au changement de musique"
 
+#: ../data/messages:39
 msgid "Display"
 msgstr "Affichage"
 
+#: ../data/messages:41
 msgid "Display album's cover instead of icon ?"
 msgstr "Afficher l'album au lieu de l'icône ?"
 
@@ -96,10 +116,12 @@ msgstr "Pourcentage"
 msgid "Number of track"
 msgstr "Numero de piste"
 
+#: ../data/messages:43
 msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
 #: src/rhythmbox-draw.c:101 src/rhythmbox-draw.c:102
+#: ../src/rhythmbox-draw.c:77
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -110,21 +132,81 @@ msgstr ""
 "Album : %s\n"
 "Titre : %s"
 
+#: ../src/rhythmbox-draw.c:81 ../src/rhythmbox-draw.c:82
+#: ../src/rhythmbox-draw.c:83
 msgid "Unknown"
 msgstr "Inconnu"
 
 #: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
+#: ../src/rhythmbox-menu-functions.c:61
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
 
 #: src/rhythmbox-menu-functions.c:67 src/rhythmbox-menu-functions.c:68
+#: ../src/rhythmbox-menu-functions.c:71
 msgid "Previous"
 msgstr "Précédent"
 
 #: src/rhythmbox-menu-functions.c:69 src/rhythmbox-menu-functions.c:70
+#: ../src/rhythmbox-menu-functions.c:73
 msgid "Next"
 msgstr "Suivant"
 
 #: src/rhythmbox-menu-functions.c:71 src/rhythmbox-menu-functions.c:72
+#: ../src/rhythmbox-menu-functions.c:75
 msgid "Information"
 msgstr "Information"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:45
+msgid "nothing"
+msgstr ""
+
+#: ../data/messages:47
+msgid "time elapsed"
+msgstr ""
+
+#: ../data/messages:49
+msgid "time left"
+msgstr ""
+
+#: ../data/messages:51
+#, c-format
+msgid "time in %n"
+msgstr ""
+
+#: ../data/messages:53
+msgid "° of track"
+msgstr ""
+
+#: ../data/messages:55
+msgid "Personnalisation"
+msgstr ""
+
+#: ../data/messages:57 ../data/messages:61 ../data/messages:65
+#: ../data/messages:69 ../data/messages:73
+msgid "Let t empty to use the default icon."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Name of an image for the 'default' icon :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "Name of an image for the 'play' icon :"
+msgstr ""
+
+#: ../data/messages:67
+msgid "Name of an image for the 'stop' icon :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Name of an image for the 'pause' icon :"
+msgstr ""
+
+#: ../data/messages:75
+msgid "Name of an image for the 'broken' icon :"
+msgstr ""

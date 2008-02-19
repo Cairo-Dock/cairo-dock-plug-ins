@@ -23,7 +23,7 @@ icon = gnome-main-menu
 list drives = true
 
 #b List network ?
-list network = true
+list network = false
 
 #b List bookmarks ?
 #{GTK bookmarks, that are used by Nautilus for exemple.}

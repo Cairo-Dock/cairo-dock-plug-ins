@@ -20,21 +20,24 @@ icon = gnome-term-night
 [Desklet]
 
 #i[48;256] Desklet's dimension (width x height) :
+#{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
 #i[48;256] ...
 height=92
 
 #i Desklet's position (x ; y) :
+#{Depending on your WindowManager, you can move it with ALT + left_click}
 x position=0
 #i ...
 y position=0
 
-#b Is detached ?
+#b Is detached from the dock ?
 initially detached=false
 
-#b Keep below ?
+#b Keep below other windows ?
 keep below=false
-#b Keep above ?
+#b Keep above other windows ?
 keep above=false
 #b Keep on widget layer ?
+#{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock-desklet & type=utility)}
 on widget layer=false

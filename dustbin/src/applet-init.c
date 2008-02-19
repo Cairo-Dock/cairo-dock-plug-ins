@@ -17,7 +17,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("dustbin", 1, 4, 7)
+CD_APPLET_DEFINITION ("dustbin", 1, 5, 0)
 
 AppletConfig myConfig;
 AppletData myData;
@@ -71,7 +71,7 @@ static void _load_theme (GError **erreur)
 	}
 	if (myData.pFullBinSurface == NULL || myData.pFullBinSurface == NULL)
 	{
-		cd_message ("Attention : couldn't find images, this theme is not valid");
+		cd_warning ("Attention : couldn't find images, this theme is not valid");
 	}
 }
 
@@ -103,9 +103,11 @@ CD_APPLET_INIT_BEGIN (erreur)
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	
 	//\_______________ On commence a surveiller les repertoires.
-	myData.iNbTrashes = -1;
+	myData.iNbTrashes = 0;
+	gboolean bMonitoringOK = FALSE;
 	gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), TRUE);
-	gboolean bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath, 0);  // cDustbinPath ne nous appartient plus.
+	if (cDustbinPath != NULL)
+		bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath, 0);  // cDustbinPath ne nous appartient plus.
 	
 	if (myConfig.cAdditionnalDirectoriesList != NULL)
 	{
@@ -118,12 +120,12 @@ CD_APPLET_INIT_BEGIN (erreur)
 				bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup (myConfig.cAdditionnalDirectoriesList[i]), 0);
 			i ++;
 		}
-		cd_message ("  %d dossier(s) poubelle\n", i);
+		cd_message ("  %d dossier(s) poubelle", i);
 	}
-	cd_message ("  %d dechets actuellement (%d)\n", myData.iNbTrashes, bMonitoringOK);
+	cd_message ("  %d dechet(s) actuellement (%d)", myData.iNbTrashes, bMonitoringOK);
 	
 	
-	if (myData.iNbTrashes == 0)
+	if (myData.iNbTrashes <= 0)
 	{
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface)
 	}
@@ -147,7 +149,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	{
 		if (myConfig.cAdditionnalDirectoriesList != NULL)
 		{
-			cd_message ("***utilisation par defaut\n");
+			cd_message ("***methode par defaut");
 			cd_dustbin_check_trashes (myIcon);
 			myData.iSidCheckTrashes = g_timeout_add ((int) (1000 * myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
 		}
@@ -204,7 +206,7 @@ CD_APPLET_RELOAD_BEGIN
 	_load_theme (&erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -222,7 +224,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		//\_______________ On commence a surveiller les repertoires.
-		myData.iNbTrashes = -1;
+		myData.iNbTrashes = 0;
 		gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), TRUE);
 		gboolean bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath, 0);  // cDustbinPath ne nous appartient plus.
 		
@@ -237,11 +239,11 @@ CD_APPLET_RELOAD_BEGIN
 					bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup (myConfig.cAdditionnalDirectoriesList[i]), 0);
 				i ++;
 			}
-			cd_message ("  %d dossier(s) poubelle\n", i);
+			cd_message ("  %d dossier(s) poubelle", i);
 		}
-		cd_message ("  %d dechets actuellement (%d)\n", myData.iNbTrashes, bMonitoringOK);
+		cd_message ("  %d dechet(s) actuellement (%d)", myData.iNbTrashes, bMonitoringOK);
 		
-		if (myData.iNbTrashes == 0)
+		if (myData.iNbTrashes <= 0)
 		{
 			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface)
 		}
@@ -261,7 +263,7 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			if (myConfig.cAdditionnalDirectoriesList != NULL)
 			{
-				cd_message ("***utilisation par defaut\n");
+				cd_message ("***methode par defaut");
 				myData.iNbTrashes = -1;
 				cd_dustbin_check_trashes (myIcon);
 				myData.iSidCheckTrashes = g_timeout_add ((int) (1000 * myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);

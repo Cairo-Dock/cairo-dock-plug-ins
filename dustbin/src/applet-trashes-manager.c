@@ -38,7 +38,7 @@ gpointer cd_dustbin_threaded_calculation (gpointer data)
 		g_static_rw_lock_writer_lock (&s_mTasksMutex);
 		if (s_pTasksList == NULL)  // aucun message dans la file d'attente, on quitte.
 		{
-			cd_message ("*** plus de message, on quitte le thread.\n");
+			cd_message ("*** plus de message, on quitte le thread.");
 			g_atomic_int_set (&s_iThreadIsRunning, 0);
 			g_static_rw_lock_writer_unlock (&s_mTasksMutex);
 			break;
@@ -49,7 +49,7 @@ gpointer cd_dustbin_threaded_calculation (gpointer data)
 		CdDustbinMessage *pMessage = pFirstElement->data;
 		CdDustbin *pDustbin = pMessage->pDustbin;
 		gchar *cURI = pMessage->cURI;
-		cd_message ("*** recuperation du message : %s\n", cURI);
+		cd_message ("*** recuperation du message : %s", cURI);
 		
 		//\________________________ On l'enleve de la liste.
 		s_pTasksList = g_list_remove (s_pTasksList, pMessage);
@@ -86,7 +86,7 @@ gpointer cd_dustbin_threaded_calculation (gpointer data)
 	}
 	while (1);
 	
-	cd_message ("*** fin du thread -> %dfichiers , %db\n", myData.iNbFiles, myData.iSize);
+	cd_message ("*** fin du thread -> %dfichiers , %db", myData.iNbFiles, myData.iSize);
 	
 	return NULL;
 }
@@ -153,13 +153,13 @@ void cd_dustbin_remove_messages (CdDustbin *pDustbin)
 gboolean cd_dustbin_is_calculating (void)
 {
 	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
-	return (iThreadIsRunning != 0 || s_iSidDelayMeasure != 0 || myData.iNbTrashes == -1);
+	return (iThreadIsRunning != 0 || s_iSidDelayMeasure != 0/* || s_pTasksList != NULL*/);
 }
 
 static gboolean _cd_dustbin_check_for_redraw (gpointer data)
 {
 	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
-	cd_message ("%s (%d)\n", __func__, iThreadIsRunning);
+	cd_message ("%s (%d)", __func__, iThreadIsRunning);
 	if (! iThreadIsRunning)
 	{
 		s_iSidTimerRedraw = 0;
@@ -173,7 +173,7 @@ static gboolean _cd_dustbin_check_for_redraw (gpointer data)
 }
 static void _cd_dustbin_launch_measure (void)
 {
-	cd_message ("%s ()\n", __func__);
+	cd_message ("");
 	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1))  // il etait egal a 0, on lui met 1 et on lance le thread.
 	{
 		cd_message (" ==> lancement du thread de calcul\n");
@@ -200,7 +200,7 @@ static gboolean _cd_dustbin_launch_measure_delayed (gpointer *data)
 }
 void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin)
 {
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 	g_static_rw_lock_writer_lock (&s_mTasksMutex);
 	
 	CdDustbinMessage *pNewMessage = g_new (CdDustbinMessage, 1);
@@ -229,7 +229,7 @@ void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin)
 	{
 		if (s_iSidDelayMeasure != 0)
 		{
-			cd_message ("  lancement calcul retarde\n");
+			cd_message ("  lancement calcul retarde");
 			g_source_remove (s_iSidDelayMeasure);
 			s_iSidDelayMeasure = 0;
 		}
@@ -248,7 +248,7 @@ int cd_dustbin_count_trashes (gchar *cDirectory)
 	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return 0;
 	}
@@ -265,7 +265,7 @@ int cd_dustbin_count_trashes (gchar *cDirectory)
 
 void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
 {
-	cd_debug ("%s (%s)\n", __func__, cDirectory);
+	cd_debug ("%s (%s)", __func__, cDirectory);
 	g_atomic_int_set (iNbFiles, 0);
 	g_atomic_int_set (iSize, 0);
 
@@ -273,7 +273,7 @@ void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoTyp
 	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
@@ -302,13 +302,13 @@ void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoTyp
 		{
 			if (S_ISDIR (buf.st_mode))
 			{
-				cd_debug ("  %s est un repertoire\n", sFilePath->str);
+				cd_debug ("  %s est un repertoire", sFilePath->str);
 				iNbFilesSubDir = 0;
 				iSizeSubDir = 0;
 				cd_dustbin_measure_directory (sFilePath->str, iInfoType, pDustbin, &iNbFilesSubDir, &iSizeSubDir);
 				g_atomic_int_add (iNbFiles, iNbFilesSubDir);
 				g_atomic_int_add (iSize, iSizeSubDir);
-				cd_debug ("  + %d fichiers dans ce sous-repertoire\n", iNbFilesSubDir );
+				cd_debug ("  + %d fichiers dans ce sous-repertoire", iNbFilesSubDir );
 			}
 			else
 			{
@@ -324,13 +324,13 @@ void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoTyp
 
 void cd_dustbin_measure_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
 {
-	cd_debug ("%s (%s)\n", __func__, cURI);
+	cd_debug ("%s (%s)", __func__, cURI);
 	
 	GError *erreur = NULL;
 	gchar *cFilePath = g_filename_from_uri (cURI, NULL, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		g_atomic_int_set (iNbFiles, 0);
 		g_atomic_int_set (iSize, 0);
@@ -360,7 +360,7 @@ void cd_dustbin_measure_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDu
 
 void cd_dustbin_measure_all_dustbins (int *iNbFiles, int *iSize)
 {
-	cd_message ("%s ()\n", __func__);
+	cd_message ("");
 	g_atomic_int_set (iNbFiles, 0);
 	g_atomic_int_set (iSize, 0);
 	
@@ -408,7 +408,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 				g_string_append_printf (sCommand, "%s/* ", pDustbin->cPath);
 			}
 		}
-		cd_message (">>> %s\n", sCommand->str);
+		cd_message (">>> %s", sCommand->str);
 		system (sCommand->str);  // g_spawn_command_line_async() ne marche pas pour celle-la.
 		g_string_free (sCommand, TRUE);
 	}
@@ -440,7 +440,7 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		g_spawn_command_line_async (sCommand->str, &erreur);
 		if (erreur != NULL)
 		{
-			cd_message ("Attention : when trying to execute '%s' : %s\n", sCommand->str, erreur->message);
+			cd_warning ("Attention : when trying to execute '%s' : %s", sCommand->str, erreur->message);
 			g_error_free (erreur);
 			//gchar *cTipMessage = g_strdup_printf ("A problem occured\nIf '%s' is not your usual file browser, you can change it in the conf panel of this module", myConfig.cDefaultBrowser);
 			cairo_dock_show_temporary_dialog (_D("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myDock, 5000, myConfig.cDefaultBrowser);
@@ -486,7 +486,7 @@ gboolean cd_dustbin_is_monitored (gchar *cDustbinPath)
 gboolean cd_dustbin_add_one_dustbin (gchar *cDustbinPath, int iAuthorizedWeight)
 {
 	g_return_val_if_fail (cDustbinPath != NULL, FALSE);
-	cd_message ("%s (%s)\n", __func__, cDustbinPath);
+	cd_message ("%s (%s)", __func__, cDustbinPath);
 	
 	CdDustbin *pDustbin = g_new0 (CdDustbin, 1);
 	pDustbin->cPath = cDustbinPath;
@@ -497,7 +497,7 @@ gboolean cd_dustbin_add_one_dustbin (gchar *cDustbinPath, int iAuthorizedWeight)
 	{
 		pDustbin->iNbTrashes = cd_dustbin_count_trashes (cDustbinPath);
 		g_atomic_int_add (&myData.iNbTrashes, pDustbin->iNbTrashes);
-		cd_message ("  myConfig.iNbTrashes <- %d\n", myData.iNbTrashes);
+		cd_message ("  myConfig.iNbTrashes <- %d", myData.iNbTrashes);
 		return TRUE;
 	}
 	else

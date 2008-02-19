@@ -110,3 +110,67 @@ msgstr "Ouvrir %s"
 #, c-format
 msgid "Delete %s"
 msgstr "Vider %s"
+
+#: ../src/powermanager-menu-functions.c:16
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:25
+msgid "Halt"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:26
+msgid "Hibernate"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:27
+msgid "Suspend"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:28
+msgid "Reboot"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Icon size"
+msgstr ""
+
+#: ../data/messages:5
+msgid "Width :"
+msgstr ""
+
+#: ../data/messages:7
+msgid "Height :"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Icon name :"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Quick info"
+msgstr ""
+
+#: ../data/messages:15
+msgid "Information to be displayed on the icon :"
+msgstr ""
+
+#: ../data/messages:17
+msgid "nothing"
+msgstr ""
+
+#: ../data/messages:19
+msgid "charge"
+msgstr ""
+
+#: ../data/messages:21
+msgid "time"
+msgstr ""
