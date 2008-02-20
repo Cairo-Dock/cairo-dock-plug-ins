@@ -1,3 +1,4 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
 /*
 ** Login : <ctaf42@gmail.com>
 ** Started on  Fri Nov 30 05:31:31 2007 GESTES Cedric
@@ -99,10 +100,6 @@ void term_apply_settings()
       term_apply_settings_on_vterm(vterm);
     }
   }
-/*   if (myData.desklet) */
-/*     gtk_window_set_keep_above(GTK_WINDOW(myData.desklet->pWidget), myConfig.always_on_top); */
-  ///cd_keybinder_unbind(term.prev_shortcut, (CDBindkeyHandler)onKeybindingPull);
-  ///term.prev_shortcut = term.shortcut;
   cd_keybinder_bind(myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull, (gpointer)NULL);
 }
 
@@ -194,7 +191,7 @@ gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, g
 static void applet_on_terminal_eof(VteTerminal *vteterminal,
                                    gpointer     user_data)
 {
-  cd_message ("youkata EOF\n");
+  cd_debug ("youkata EOF\n");
 }
 
 
@@ -226,7 +223,8 @@ static void terminal_new_tab()
                     G_CALLBACK (applet_on_terminal_eof), NULL);
 
   cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received));
-  int num_new_tab = gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, NULL);  /// creer un widget avec un label et un bouton 'close' a mettre a la place du NULL. garder une trace du label pour pouvoir le changer plus tard (numerotation ou repertoire courant ou nom utilisateur).
+  int num_new_tab = gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, NULL);
+ /// creer un widget avec un label et un bouton 'close' a mettre a la place du NULL. garder une trace du label pour pouvoir le changer plus tard (numerotation ou repertoire courant ou nom utilisateur).
   gtk_widget_show(vterm);
   cd_message ("num_new_tab : %d\n", num_new_tab);
   gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
@@ -237,9 +235,9 @@ void terminal_build_and_show_tab (void)
 	myData.tab = gtk_notebook_new();
 	terminal_new_tab();
 	gtk_widget_show(myData.tab);
-	
+
 	term_apply_settings();
-	
+
 	if (myDock)
 	{
 		myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
@@ -253,7 +251,7 @@ void terminal_build_and_show_tab (void)
 
 void term_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 {
-	
+
 }
 
 
@@ -272,10 +270,8 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 {
 	if (myData.tab)
 	{
-		if (myDesklet)
-			cairo_dock_hide_desklet(myDesklet);
-		else if (myData.dialog)
-			cairo_dock_hide_dialog (myData.dialog);
+          if (myData.dialog)
+            cairo_dock_hide_dialog (myData.dialog);
 	}
 }
 CD_APPLET_ON_MIDDLE_CLICK_END

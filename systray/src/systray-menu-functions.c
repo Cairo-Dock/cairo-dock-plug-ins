@@ -1,3 +1,4 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
 /*
 ** Login : <ctaf42@gmail.com>
 ** Started on  Fri Nov 30 05:31:31 2007 GESTES Cedric
@@ -62,27 +63,27 @@ void systray_build_and_show (void)
 {
 	myData.tray = tray_init(g_pMainDock->pWidget);
 	gtk_widget_show (myData.tray->widget);
-	
+
 	systray_apply_settings();
-	
+
 	if (myDock)
 	{
 		myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myDock, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 		gtk_window_set_resizable(GTK_WINDOW(myData.dialog->pWidget), FALSE);
-		gtk_window_resize(GTK_WINDOW(myData.dialog->pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
+		//	gtk_window_resize(GTK_WINDOW(myData.dialog->pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
 	}
 	else
 	{
 		cairo_dock_add_interactive_widget_to_desklet (myData.tray->widget, myDesklet);
 		myDesklet->renderer = systray_draw_in_desklet;
 		gtk_window_set_resizable(GTK_WINDOW(myDesklet->pWidget), FALSE);
-		gtk_window_resize(GTK_WINDOW(myDesklet->pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
+//		gtk_window_resize(GTK_WINDOW(myDesklet->pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
 	}
 }
 
 void systray_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 {
-	
+
 }
 
 
@@ -101,9 +102,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 {
 	if (myData.tray)
 	{
-		if (myDesklet)
-			cairo_dock_hide_desklet(myDesklet);
-		else if (myData.dialog)
+		if (myData.dialog)
 			cairo_dock_hide_dialog (myData.dialog);
 	}
 }
