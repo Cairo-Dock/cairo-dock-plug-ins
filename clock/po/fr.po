@@ -189,7 +189,7 @@ msgstr "Régler la date et l'heure"
 
 #: ../data/messages:1
 msgid "Icon"
-msgstr "Icone"
+msgstr "Icône"
 
 #: ../data/messages:11
 msgid "Desklet"
@@ -200,8 +200,6 @@ msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"Suivant votre Gestionnaire de Fenetres, vous pouvez le redmensionner avec "
-"ALT + clic_milieu ou ALT + clic_gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -210,8 +208,8 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
-"Suivant votre Gestionnaire de Fenetres, vous pouvez le déplacer avec ALT + "
-"clic_droit."
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -223,19 +221,19 @@ msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:23
 msgid "Keep below other windows ?"
-msgstr "Garder en-dessous les autres fenetres ?"
+msgstr "Garder en-dessous des autres fenêtres ?"
 
 #: ../data/messages:25
 msgid "Keep above other windows ?"
-msgstr "Garder au-dessus les autres fenetres ?"
+msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock-desklet & type=utility)"
+"dock & type=utility)"
 msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, réglez son comportement "
-"dans Compiz à : (name=cairo-dock-desklet & type=utility)"
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"

@@ -53,14 +53,14 @@ void stop_vfs_backend (void)
 
 static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID)
 {
-	cd_message ("%s (%s)\n", __func__, cBaseURI);
+	cd_message ("%s (%s)", __func__, cBaseURI);
 	GError *erreur = NULL;
 	
 	gchar *cFileData = NULL;
 	int iFileSize = 0;
 	if (gnome_vfs_read_entire_file (cBaseURI, &iFileSize, &cFileData) != GNOME_VFS_OK)
 	{
-		cd_message ("Attention : couldn't read %s\n", cBaseURI);
+		cd_warning ("Attention : couldn't read %s", cBaseURI);
 		return FALSE;
 	}
 	//g_print (" => %s\n", cFileData);
@@ -74,7 +74,7 @@ static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBase
 	g_free (cFileData);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -107,7 +107,7 @@ static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBase
 void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, CairoDockFMSortType iSortType)
 {
 	g_return_if_fail (cBaseURI != NULL);
-	cd_message ("%s (%s)\n", __func__, cBaseURI);
+	cd_message ("%s (%s)", __func__, cBaseURI);
 	
 	GnomeVFSResult r;
 	GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
@@ -140,14 +140,14 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	}
 	else
 		cFullURI = gnome_vfs_make_uri_from_input (cBaseURI);
-	cd_message (" -> cFullURI : %s\n", cFullURI);
+	cd_message (" -> cFullURI : %s", cFullURI);
 	
 	GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
 	
 	r = gnome_vfs_get_file_info (cFullURI, info, infoOpts);
 	if (r != GNOME_VFS_OK) 
 	{
-		cd_message ("Attention : couldn't get file info for '%s'\n", cFullURI);
+		cd_warning ("Attention : couldn't get file info for '%s'", cFullURI);
 		g_free (cFullURI);
 		gnome_vfs_file_info_unref (info);
 		return ;
@@ -165,7 +165,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	GnomeVFSFileInfoFields valid = info->valid_fields;
 	
 	const gchar *cMimeType = gnome_vfs_file_info_get_mime_type (info);
-	cd_message ("  cMimeType : %s\n", cMimeType);
+	cd_message ("  cMimeType : %s", cMimeType);
 	if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (cMimeType, "application/x-desktop") == 0)
 	{
 		gnome_vfs_file_info_unref (info);
@@ -222,10 +222,10 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 
 
 
-GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gchar **cFullURI)
+GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, gchar **cFullURI)
 {
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
-	cd_message ("%s (%s)\n", __func__, cBaseURI);
+	cd_message ("%s (%s)", __func__, cBaseURI);
 	
 	GList *pIconList = NULL;
 	
@@ -241,129 +241,113 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	
 	*cFullURI = gnome_vfs_make_uri_from_input (cURI);  // pas franchement necessaire ...
 	g_return_val_if_fail (*cFullURI != NULL, NULL);
-	cd_message (" -> cFullURI : %s\n", *cFullURI);
+	cd_message (" -> cFullURI : %s", *cFullURI);
 	
-	/*if (strcmp (*cFullURI, "tvolumes:") == 0)
+	GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
+	GnomeVFSDirectoryHandle *handle = NULL;
+	GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
+	GnomeVFSResult r = gnome_vfs_directory_open (&handle, *cFullURI, infoOpts);
+	if (r!=GNOME_VFS_OK) 
 	{
-		pIconList = file_manager_list_volumes ();
+		return NULL;
 	}
-	else if (strcmp (*cFullURI, "tdrives:") == 0)
+	
+	GnomeVFSURI* dirUri = gnome_vfs_uri_new (*cFullURI);
+	cd_message ("  dirUri : %s", dirUri->text);
+	GnomeVFSURI* fileUri;
+	gchar *cFileURI;
+	GnomeIconLookupResultFlags iconLookupResultFlags;
+	Icon *icon;
+	while(1)
 	{
-		pIconList = file_manager_list_drives ();
-	}
-	else if (strcmp (*cFullURI, "vfsroot://") == 0)
-	{
-		pIconList = file_pmanager_list_vfs_root ();
-	}
-	else*/
-	{
-		GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
-		GnomeVFSDirectoryHandle *handle = NULL;
-		GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
-		GnomeVFSResult r = gnome_vfs_directory_open (&handle, *cFullURI, infoOpts);
-		if (r!=GNOME_VFS_OK) 
-		{
-			return NULL;
-		}
+		r = gnome_vfs_directory_read_next (handle, info);
+		if (r == GNOME_VFS_ERROR_EOF)
+			break;
+		if (r != GNOME_VFS_OK) 
+			continue ;
 		
-		GnomeVFSURI* dirUri = gnome_vfs_uri_new (*cFullURI);
-		cd_message ("  dirUri : %s\n", dirUri->text);
-		GnomeVFSURI* fileUri;
-		gchar *cFileURI;
-		GnomeIconLookupResultFlags iconLookupResultFlags;
-		Icon *icon;
-		while(1)
+		if (strcmp (info->name, ".") != 0 && strcmp (info->name, "..") != 0 && (bListHiddenFiles || info->name[0] != '.'))
 		{
-			r = gnome_vfs_directory_read_next (handle, info);
-			if (r == GNOME_VFS_ERROR_EOF)
-				break;
-			if (r != GNOME_VFS_OK) 
-				continue ;
+			fileUri = gnome_vfs_uri_append_path (dirUri, info->name);
+			cFileURI = gnome_vfs_uri_to_string (fileUri, GNOME_VFS_URI_HIDE_NONE);
+			cd_message (" + cFileURI : %s", cFileURI);
 			
-			if (strcmp (info->name, ".") != 0 && strcmp (info->name, "..") != 0)
+			GnomeVFSFileInfoFields valid = info->valid_fields;
+			if (valid & GNOME_VFS_FILE_INFO_FIELDS_TYPE)
 			{
-				fileUri = gnome_vfs_uri_append_path (dirUri, info->name);
-				cFileURI = gnome_vfs_uri_to_string (fileUri, GNOME_VFS_URI_HIDE_NONE);
-				cd_message (" + cFileURI : %s\n", cFileURI);
-				
-				GnomeVFSFileInfoFields valid = info->valid_fields;
-				if (valid & GNOME_VFS_FILE_INFO_FIELDS_TYPE)
+				if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY)
 				{
-					if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY)
-					{
-						
-					}
-					else if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK)
-					{
-						
-					}
-				}
-				
-				icon = g_new0 (Icon, 1);
-				icon->cBaseURI = cFileURI;
-				icon->iType = iNewIconsType;
-				if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (info->mime_type, "application/x-desktop") == 0)
-				{
-					gboolean bIsDirectory = FALSE;
-					file_manager_get_file_info_from_desktop_link (cFileURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
-					cd_message ("  bIsDirectory : %d; iVolumeID : %d\n", bIsDirectory, icon->iVolumeID);
 					
 				}
-				else
+				else if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK)
 				{
-					icon->acCommand = g_strdup (cFileURI);
-					icon->acName = g_strdup (info->name);
-					icon->acFileName = NULL;
-					if (strncmp (info->mime_type, "image", 5) == 0)  // && strncmp (cFileURI, "file://", 7) == 0
-					{
-						gchar *cHostname = NULL;
-						GError *erreur = NULL;
-						gchar *cFilePath = g_filename_from_uri (cFileURI, &cHostname, &erreur);
-						if (erreur != NULL)
-						{
-							g_error_free (erreur);
-						}
-						else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
-						{
-							icon->acFileName = g_strdup (cFilePath);
-							cairo_dock_remove_html_spaces (icon->acFileName);
-						}
-						g_free (cHostname);
-					}
-					if (icon->acFileName == NULL)
-					{
-						icon->acFileName = gnome_icon_lookup (gtk_icon_theme_get_default (),
-							NULL,
-							NULL, // file_uri.
-							NULL,
-							info,
-							info->mime_type,
-							GNOME_ICON_LOOKUP_FLAGS_NONE,
-							&iconLookupResultFlags);
-					}
+					
 				}
-				if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE && (valid & GNOME_VFS_FILE_INFO_FIELDS_SIZE))
-					icon->fOrder = info->size;
-				else if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE && (valid & GNOME_VFS_FILE_INFO_FIELDS_MTIME))
-					icon->fOrder = info->mtime;
-				else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE && (valid & GNOME_VFS_FILE_INFO_FIELDS_TYPE))
-					icon->fOrder = info->type;
-				pIconList = g_list_prepend (pIconList, icon);
-				
-				gnome_vfs_uri_unref (fileUri);
 			}
-			gnome_vfs_file_info_clear (info);
+			
+			icon = g_new0 (Icon, 1);
+			icon->cBaseURI = cFileURI;
+			icon->iType = iNewIconsType;
+			if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (info->mime_type, "application/x-desktop") == 0)
+			{
+				gboolean bIsDirectory = FALSE;
+				file_manager_get_file_info_from_desktop_link (cFileURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
+				cd_message ("  bIsDirectory : %d; iVolumeID : %d", bIsDirectory, icon->iVolumeID);
+			}
+			else
+			{
+				icon->acCommand = g_strdup (cFileURI);
+				icon->acName = g_strdup (info->name);
+				icon->acFileName = NULL;
+				if (strncmp (info->mime_type, "image", 5) == 0)  // && strncmp (cFileURI, "file://", 7) == 0
+				{
+					gchar *cHostname = NULL;
+					GError *erreur = NULL;
+					gchar *cFilePath = g_filename_from_uri (cFileURI, &cHostname, &erreur);
+					if (erreur != NULL)
+					{
+						g_error_free (erreur);
+					}
+					else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
+					{
+						icon->acFileName = g_strdup (cFilePath);
+						cairo_dock_remove_html_spaces (icon->acFileName);
+					}
+					g_free (cHostname);
+				}
+				if (icon->acFileName == NULL)
+				{
+					icon->acFileName = gnome_icon_lookup (gtk_icon_theme_get_default (),
+						NULL,
+						NULL, // file_uri.
+						NULL,
+						info,
+						info->mime_type,
+						GNOME_ICON_LOOKUP_FLAGS_NONE,
+						&iconLookupResultFlags);
+				}
+			}
+			if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE && (valid & GNOME_VFS_FILE_INFO_FIELDS_SIZE))
+				icon->fOrder = info->size;
+			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE && (valid & GNOME_VFS_FILE_INFO_FIELDS_MTIME))
+				icon->fOrder = info->mtime;
+			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE && (valid & GNOME_VFS_FILE_INFO_FIELDS_TYPE))
+				icon->fOrder = info->type;
+			pIconList = g_list_prepend (pIconList, icon);
+			
+			gnome_vfs_uri_unref (fileUri);
 		}
-		gnome_vfs_uri_unref (dirUri);
-		
-		gnome_vfs_directory_close (handle);
-		gnome_vfs_file_info_unref (info);
-		
-		if (iSortType == CAIRO_DOCK_FM_SORT_BY_NAME)
-			pIconList = cairo_dock_sort_icons_by_name (pIconList);
-		else
-			pIconList = cairo_dock_sort_icons_by_order (pIconList);
+		gnome_vfs_file_info_clear (info);
 	}
+	gnome_vfs_uri_unref (dirUri);
+	
+	gnome_vfs_directory_close (handle);
+	gnome_vfs_file_info_unref (info);
+	
+	if (iSortType == CAIRO_DOCK_FM_SORT_BY_NAME)
+		pIconList = cairo_dock_sort_icons_by_name (pIconList);
+	else
+		pIconList = cairo_dock_sort_icons_by_order (pIconList);
 	
 	return pIconList;
 }
@@ -378,15 +362,15 @@ void vfs_backend_launch_uri (const gchar *cURI)
 
 gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 {
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 	GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
 	gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
-	cd_message (" cLocalPath : %s\n", cLocalPath);
+	cd_message (" cLocalPath : %s", cLocalPath);
 	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cLocalPath);
 	g_free (cLocalPath);
 	if (pVolume == NULL)
 	{
-		cd_message ("Attention : no volum associated to %s\n", cURI);
+		cd_warning ("Attention : no volum associated to %s", cURI);
 		*bIsMounted = FALSE;
 		return NULL;
 	}
@@ -395,7 +379,7 @@ gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 		gchar *cMountPointID = gnome_vfs_volume_get_activation_uri (pVolume);
 		
 		*bIsMounted = gnome_vfs_volume_is_mounted (pVolume);
-		cd_message ("  bIsMounted <- %d\n", *bIsMounted);
+		cd_message ("  bIsMounted <- %d", *bIsMounted);
 		
 		gnome_vfs_volume_unref (pVolume);
 		return cMountPointID;
@@ -405,9 +389,9 @@ gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 
 static void _vfs_backend_mount_callback (gboolean succeeded, char *error, char *detailed_error, gpointer *data)
 {
-	cd_message ("%s (%d)\n", __func__, succeeded);
+	cd_message ("%s (%d)", __func__, succeeded);
 	if (! succeeded)
-		cd_message ("Attention : failed to mount (%s ; %s)\n", error, detailed_error);
+		cd_warning ("Attention : failed to mount (%s ; %s)", error, detailed_error);
 	
 	CairoDockFMMountCallback pCallback = data[0];
 	
@@ -419,7 +403,7 @@ static void _vfs_backend_mount_callback (gboolean succeeded, char *error, char *
 void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock)
 {
 	g_return_if_fail (iVolumeID > 0);
-	cd_message ("%s (ID:%d)\n", __func__, iVolumeID);
+	cd_message ("%s (ID:%d)", __func__, iVolumeID);
 	
 	///gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
 	///g_print (" cLocalPath : %s\n", cLocalPath);
@@ -447,11 +431,11 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock)
 {
 	g_return_if_fail (cURI != NULL);
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 	
 	GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
 	gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
-	cd_message (" cLocalPath : %s\n", cLocalPath);
+	cd_message (" cLocalPath : %s", cLocalPath);
 	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cLocalPath);
 	g_free (cLocalPath);
 	g_return_if_fail (pVolume != NULL);
@@ -477,7 +461,7 @@ static void _vfs_backend_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
 {
 	CairoDockFMMonitorCallback pCallback = data[0];
 	gpointer user_data = data[1];
-	cd_message ("%s (%d , data : %x)\n", __func__, event_type, user_data);
+	cd_message ("%s (%d , data : %x)", __func__, event_type, user_data);
 	
 	CairoDockFMEventType iEventType;
 	switch (event_type)
@@ -514,12 +498,12 @@ void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockF
 		data);
 	if (r != GNOME_VFS_OK)
 	{
-		cd_message ("Attention : couldn't add monitor function to %s\n  I will not be able to receive events about this file\n", cURI);
+		cd_warning ("Attention : couldn't add monitor function to %s\n  I will not be able to receive events about this file", cURI);
 		g_free (data);
 	}
 	else
 	{
-		cd_message (">>> moniteur ajoute sur %s (%x)\n", cURI, user_data);
+		cd_message (">>> moniteur ajoute sur %s (%x)", cURI, user_data);
 		data[2] = pHandle;
 		g_hash_table_insert (s_fm_MonitorHandleTable, g_strdup (cURI), data);
 	}
@@ -529,7 +513,7 @@ void vfs_backend_remove_monitor (const gchar *cURI)
 {
 	if (cURI != NULL)
 	{
-		cd_message (">>> moniteur supprime sur %s\n", cURI);
+		cd_message (">>> moniteur supprime sur %s", cURI);
 		g_hash_table_remove (s_fm_MonitorHandleTable, cURI);
 	}
 }
@@ -550,7 +534,7 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 	
 	gchar *cNewURI = g_strdup_printf ("%s/%s", cPath, cNewName);
 	g_free (cPath);
-	cd_message (" %s -> %s\n", cOldURI, cNewURI);
+	cd_message (" %s -> %s", cOldURI, cNewURI);
 	
 	GnomeVFSResult r= gnome_vfs_move (cOldURI,
 		cNewURI,
@@ -561,13 +545,13 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 
 gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 {
-	cd_message (" %s -> %s\n", cURI, cDirectoryURI);
+	cd_message (" %s -> %s", cURI, cDirectoryURI);
 	
 	GnomeVFSURI *pVfsUri = gnome_vfs_uri_new (cURI);
 	g_return_val_if_fail (pVfsUri != NULL, FALSE);
 	
 	gchar *cFileName = gnome_vfs_uri_extract_short_name (pVfsUri);
-	cd_message ("  pVfsUri : %s; cFileName : %s\n", pVfsUri->text, cFileName);
+	cd_message ("  pVfsUri : %s; cFileName : %s", pVfsUri->text, cFileName);
 	
 	GnomeVFSURI *pVfsDirUri = gnome_vfs_uri_new (cDirectoryURI);
 	if (pVfsDirUri == NULL)
@@ -576,10 +560,10 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 		g_free (cFileName);
 		return FALSE;
 	}
-	cd_message ("  pVfsDirUri : %s\n", pVfsDirUri->text);
+	cd_message ("  pVfsDirUri : %s", pVfsDirUri->text);
 	
 	GnomeVFSURI *pVfsNewUri = gnome_vfs_uri_append_file_name (pVfsDirUri, cFileName);
-	cd_message ("  pVfsNewUri : %s\n", pVfsNewUri->text);
+	cd_message ("  pVfsNewUri : %s", pVfsNewUri->text);
 	
 	GnomeVFSResult r = gnome_vfs_move_uri (pVfsUri,
 		pVfsNewUri,
@@ -597,14 +581,14 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 	GnomeVFSResult r;
 	GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
 	gchar *cFullURI = gnome_vfs_make_uri_from_input (cURI);
-	cd_message ("  cFullURI : %s\n", cFullURI);
+	cd_message ("  cFullURI : %s", cFullURI);
 	
 	GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
 	
 	r = gnome_vfs_get_file_info (cFullURI, info, infoOpts);
 	if (r != GNOME_VFS_OK) 
 	{
-		cd_message ("Attention : couldn't get file info for '%s'\n", cFullURI);
+		cd_warning ("Attention : couldn't get file info for '%s'", cFullURI);
 		g_free (cFullURI);
 		gnome_vfs_file_info_unref (info);
 		return ;
@@ -630,7 +614,7 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 
 gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNecessary)
 {
-	cd_message ("%s (%s)\n", __func__, cNearURI);
+	cd_message ("%s (%s)", __func__, cNearURI);
 	
 	GnomeVFSURI *near_uri = gnome_vfs_uri_new (cNearURI);
 	GnomeVFSURI *result = NULL;
@@ -649,21 +633,6 @@ gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNece
 	}
 	else
 		return NULL;
-	/*gchar *cTrashPath = g_strdup_printf ("%s/.Trash", g_getenv ("HOME"));
-	if (g_file_test (cTrashPath, G_FILE_TEST_EXISTS))
-		return cTrashPath;
-	else
-	{
-		g_free (cTrashPath);
-		cTrashPath = g_strdup_printf ("%s/.trash", g_getenv ("HOME"));
-		if (g_file_test (cTrashPath, G_FILE_TEST_EXISTS))
-			return cTrashPath;
-		else
-		{
-			g_free (cTrashPath);
-			return NULL;
-		}
-	}*/
 }
 
 gchar *vfs_backend_get_desktop_path (void)
@@ -685,5 +654,4 @@ gchar *vfs_backend_get_desktop_path (void)
 	}
 	else
 		return NULL;
-	//return g_strdup_printf ("%s/Desktop", g_getenv ("HOME"));
 }

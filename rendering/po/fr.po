@@ -98,11 +98,11 @@ msgstr "Courbure :"
 msgid "Ratio height/width :"
 msgstr "Ratio hauteur/largeur :"
 
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:57
 msgid "Magnitude of the wave :"
 msgstr "Magnitude de la vague :"
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:55
 msgid ""
 "0 means the wave is totally flat, 1 means the wave is identical to other "
 "views."
@@ -126,4 +126,40 @@ msgstr ""
 msgid ""
 "not including the labels. The 'k' coef will be adjusted to preserve this "
 "ratio."
+msgstr ""
+
+#: ../data/messages:45
+msgid ""
+"It may recquire more CPU during the unfolding animation, except if you "
+"launch Cairo-Dock with Glitz."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Draw labels while unfolding ?"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Rainbow"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Space between rows :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Space between icons :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "Number of icons on the first row :"
+msgstr ""
+
+#: ../data/messages:61
+msgid ""
+"in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+"widely opened."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Cone's width :"
 msgstr ""

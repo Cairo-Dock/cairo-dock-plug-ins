@@ -39,5 +39,5 @@ keep below=false
 #b Keep above other windows ?
 keep above=false
 #b Keep on widget layer ?
-#{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock-desklet & type=utility)}
+#{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false

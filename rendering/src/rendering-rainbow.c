@@ -37,9 +37,10 @@ void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 	double fMaxScale =  1. + my_fRainbowMagnitude * g_fAmplitude;
 	int iMaxIconWidth = pDock->iMaxIconHeight + my_iSpaceBetweenIcons;
 	double fCone = G_PI - 2 * my_fRainbowConeOffset;
-	int iMinRadius = my_iRainbowNbIconsMin * iMaxIconWidth * fMaxScale / fCone;
+	int iNbIcons = g_list_length (pDock->icons);
+	int iMinRadius = MIN (my_iRainbowNbIconsMin, iNbIcons) * iMaxIconWidth * fMaxScale / fCone;
 	
-	int iNbRows = (int) ceil (sqrt (2 * g_list_length (pDock->icons) / fCone / fMaxScale) + .5);  /// approximation, utiliser la formule complete...
+	int iNbRows = (int) ceil (sqrt (2 * iNbIcons / fCone / fMaxScale) + .5);  /// approximation, utiliser la formule complete...
 	
 	pDock->iMaxDockHeight = iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale + iMinRadius;
 	pDock->iMaxDockWidth = 2 * (pDock->iMaxDockHeight * cos (my_fRainbowConeOffset));
@@ -256,7 +257,8 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	double fMaxScale =  1. + my_fRainbowMagnitude * g_fAmplitude;
 	int iMaxIconWidth = pDock->iMaxIconHeight + my_iSpaceBetweenIcons;
 	double fCone = G_PI - 2 * my_fRainbowConeOffset;
-	int iMinRadius = my_iRainbowNbIconsMin * iMaxIconWidth * fMaxScale / fCone;
+	int iNbIcons = g_list_length (pDock->icons);
+	int iMinRadius = MIN (my_iRainbowNbIconsMin, iNbIcons) * iMaxIconWidth * fMaxScale / fCone;
 	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
 	double w = pDock->iCurrentWidth;
 	double h = pDock->iCurrentHeight;

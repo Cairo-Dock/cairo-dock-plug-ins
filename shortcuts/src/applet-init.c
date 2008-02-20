@@ -43,7 +43,7 @@ static GList * _load_icons (GError **erreur)
 	
 	if (myConfig.bListDrives)
 	{
-		pIconList = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_VFS_ROOT, CAIRO_DOCK_FM_SORT_BY_NAME, 6, &cFullURI);
+		pIconList = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_VFS_ROOT, CAIRO_DOCK_FM_SORT_BY_NAME, 6, FALSE, &cFullURI);
 		cd_message ("  cFullURI : %s", cFullURI);
 		if (pIconList == NULL)
 		{
@@ -58,7 +58,7 @@ static GList * _load_icons (GError **erreur)
 	
 	if (myConfig.bListNetwork)
 	{
-		GList *pIconList2 = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_NETWORK, CAIRO_DOCK_FM_SORT_BY_NAME, 8, &cFullURI);
+		GList *pIconList2 = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_NETWORK, CAIRO_DOCK_FM_SORT_BY_NAME, 8, FALSE, &cFullURI);
 		cd_message ("  cFullURI : %s", cFullURI);
 		
 		if (myConfig.bUseSeparator && pIconList2 != NULL)
