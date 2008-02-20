@@ -204,7 +204,7 @@ TrayApplet* tray_init (GtkWidget *parent)
 
   //get the real parent
   while (widget->parent)
-        widget = widget->parent;
+    widget = widget->parent;
   screen = gtk_widget_get_screen(GTK_WIDGET(widget));
 
   applet->box = gtk_hbox_new(TRUE, 0);
@@ -223,6 +223,7 @@ TrayApplet* tray_init (GtkWidget *parent)
 
     g_warning ("There is already another notification area running on this screen\n");
     w = gtk_button_new_with_label("TRY to steal systray icons");
+    gtk_widget_show(w);
     gtk_container_add (GTK_CONTAINER (applet->widget), w);
     g_signal_connect (w, "clicked",
                       G_CALLBACK (tray_icon_cb_click_steal), applet);
