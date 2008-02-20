@@ -1,3 +1,4 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
 /*
 ** Login : <ctaf42@gmail.com>
 ** Started on  Fri Nov 30 05:31:31 2007 GESTES Cedric

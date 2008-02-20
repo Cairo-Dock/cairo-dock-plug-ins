@@ -19,17 +19,16 @@ icon = gnome-panel-notification-area
 
 [Desklet]
 
-#i[48;256] Desklet's dimension (width x height) :
-#{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
-width=92
-#i[48;256] ...
-height=92
-
 #i Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click}
 x position=0
 #i ...
 y position=0
+
+use size=false
+
+#b Always draw icon in the dock ?
+always draw icon=true
 
 #b Is detached from the dock ?
 initially detached=false
