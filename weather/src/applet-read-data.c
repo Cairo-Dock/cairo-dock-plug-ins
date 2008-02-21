@@ -23,11 +23,11 @@ extern AppletData myData;
 
 void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastFilePath)
 {
-	gboolean bTest = TRUE;
+	gboolean bTest = FALSE;
 	if (bTest)
 	{
-		*cCurrentConditionsFilePath = g_strdup ("/opt/cairo-dock/trunk/plug-ins/Weather/data/frxx0076.xml");
-		*cForecastFilePath = g_strdup ("/opt/cairo-dock/trunk/plug-ins/Weather/data/FRXX0076-meteo.xml");
+		*cCurrentConditionsFilePath = g_strdup ("/opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml");
+		*cForecastFilePath = g_strdup ("/opt/cairo-dock/trunk/plug-ins/weather/data/FRXX0076-meteo.xml");
 		return ;
 	}
 	gchar *cCommand;
