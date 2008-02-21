@@ -18,9 +18,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "ICON"
-msgstr "ICONE"
-
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
 msgstr "Taille d'icône souhaitée pour cette applet"
@@ -36,9 +33,6 @@ msgstr "hauteur :"
 #: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
-
-msgid "MODULE"
-msgstr "MODULE"
 
 #: ../data/messages:33
 msgid "Behaviour"
@@ -200,6 +194,8 @@ msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redommensionner avec "
+"ALT + clic_milieu ou ALT + clic_gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"

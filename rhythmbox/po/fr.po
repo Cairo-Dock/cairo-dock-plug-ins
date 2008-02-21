@@ -18,9 +18,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "ICON"
-msgstr "ICONE"
-
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
 msgstr "Taille d'icône souhaitée pour cette applet"
@@ -101,21 +98,6 @@ msgstr "Affichage"
 msgid "Display album's cover instead of icon ?"
 msgstr "Afficher l'album au lieu de l'icône ?"
 
-msgid "Nothing"
-msgstr "rien"
-
-msgid "Elapsed time"
-msgstr "Temps écoulé"
-
-msgid "Left time"
-msgstr "Temps restant"
-
-msgid "Percentage"
-msgstr "Pourcentage"
-
-msgid "Number of track"
-msgstr "Numero de piste"
-
 #: ../data/messages:43
 msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"
@@ -159,32 +141,32 @@ msgstr "Information"
 
 #: ../data/messages:1
 msgid "Icon"
-msgstr ""
+msgstr "Icône"
 
 #: ../data/messages:45
 msgid "nothing"
-msgstr ""
+msgstr "rien"
 
 #: ../data/messages:47
 msgid "time elapsed"
-msgstr ""
+msgstr "temps écoulé"
 
 #: ../data/messages:49
 msgid "time left"
-msgstr ""
+msgstr "temps restant"
 
 #: ../data/messages:51
 #, c-format
 msgid "time in %n"
-msgstr ""
+msgstr "temps en %s"
 
 #: ../data/messages:53
 msgid "° of track"
-msgstr ""
+msgstr "° de piste"
 
 #: ../data/messages:55
 msgid "Personnalisation"
-msgstr ""
+msgstr "Personnalisation"
 
 #: ../data/messages:57 ../data/messages:61 ../data/messages:65
 #: ../data/messages:69 ../data/messages:73

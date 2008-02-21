@@ -107,8 +107,8 @@ msgstr "Configuration"
 
 #: ../data/messages:35
 msgid "Let empty to execute the default command."
-msgstr ""
+msgstr "Laissez vide pour exécuter la commande par défaut."
 
 #: ../data/messages:37
 msgid "User-defined command to execute to log-out :"
-msgstr ""
+msgstr "Commande spécifique à exécuter pour se déloguer :"

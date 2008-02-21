@@ -202,11 +202,11 @@ msgstr "Module"
 
 #: ../data/messages:37
 msgid "Name of an image to overwrite the theme's empty image :"
-msgstr ""
+msgstr "Nom d'une image pour écraser l'image vide du thème :"
 
 #: ../data/messages:39
 msgid "Name of an image to overwrite the theme's full image :"
-msgstr ""
+msgstr "Nom d'une image pour écraser l'image pleine du thème :"
 
 #: ../data/messages:41
 msgid "Config"
@@ -223,7 +223,7 @@ msgstr ""
 
 #: ../data/messages:47
 msgid "Display the following quick info :"
-msgstr ""
+msgstr "Afficher l'info-rapide suivante :"
 
 #: ../data/messages:49
 msgid "None"
@@ -248,11 +248,11 @@ msgstr ""
 
 #: ../data/messages:59
 msgid "Maximum total size of all dustbins :"
-msgstr ""
+msgstr "Taille maximale totale des poubelles :"
 
 #: ../data/messages:63
 msgid "Maximum size authorized for each dustbin :"
-msgstr ""
+msgstr "Taille maximale autorisée pour chaque poubelle :"
 
 #: ../data/messages:65
 msgid "Desktop-less support"

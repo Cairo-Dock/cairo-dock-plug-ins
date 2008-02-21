@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2007 Cairo-Dock project
+# Copyright (C) 2007-2008 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
-# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007-2008.
 #
 #: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
 #: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
@@ -17,9 +17,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-msgid "ICON"
-msgstr "ICONE"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
@@ -37,9 +34,6 @@ msgstr "hauteur :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-msgid "MODULE"
-msgstr "MODULE"
-
 #: ../data/messages:11
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
@@ -55,40 +49,40 @@ msgstr ""
 
 #: ../src/applet-notifications.c:42 ../src/applet-notifications.c:41
 msgid "Remove this bookmark"
-msgstr ""
+msgstr "Supprimer ce signet"
 
 #: ../data/messages:1
 msgid "Icon"
-msgstr ""
+msgstr "Icône"
 
 #: ../data/messages:13
 msgid "Module"
-msgstr ""
+msgstr "Module"
 
 #: ../data/messages:15
 msgid "List drives and volumes ?"
-msgstr ""
+msgstr "Lister les disques et volumes ?"
 
 #: ../data/messages:17
 msgid "List network ?"
-msgstr ""
+msgstr "Lister les points réseau ?"
 
 #: ../data/messages:19
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
-msgstr ""
+msgstr "Signets GTK, utilisés par Nautilus par exemple."
 
 #: ../data/messages:21
 msgid "List bookmarks ?"
-msgstr ""
+msgstr "Lister les signets ?"
 
 #: ../data/messages:23
 msgid "Separate different shortcuts with separators ?"
-msgstr ""
+msgstr "Séparer les différents racourcis avec des séparateurs ?"
 
 #: ../data/messages:25
 msgid "Let it empty to use default sub-dock view."
-msgstr ""
+msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
 
 #: ../data/messages:27
 msgid "Name of the view used for the sub-dock :"
-msgstr ""
+msgstr "Nom de la vue utilisée pour le sous-dock :"

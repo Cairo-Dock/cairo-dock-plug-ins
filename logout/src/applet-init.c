@@ -16,10 +16,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 {
 	if (myDesklet != NULL)
 	{
-		myIcon->fWidth = MAX (1, myDesklet->iWidth - 2 * g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - 2 * g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius;
-		myIcon->fDrawY = g_iDockRadius;
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius/2;
+		myIcon->fDrawY = g_iDockRadius/2;
 		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
@@ -48,10 +48,10 @@ CD_APPLET_RELOAD_BEGIN
 {
 	if (myDesklet != NULL)
 	{
-		myIcon->fWidth = MAX (1, myDesklet->iWidth - 2 * g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - 2 * g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius;
-		myIcon->fDrawY = g_iDockRadius;
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius/2;
+		myIcon->fDrawY = g_iDockRadius/2;
 		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
