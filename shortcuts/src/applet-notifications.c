@@ -45,7 +45,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_DROP_DATA_BEGIN
-	if (myIcon == NULL || myIcon->pSubDock == NULL)
+	if (myIcon->pSubDock == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	cd_message ("  nouveau signet : %s\n", CD_APPLET_RECEIVED_DATA);
 	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
@@ -63,7 +63,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	{
 		if (! iVolumeID && ! bIsDirectory)
 		{
-			cd_message ("ce n'est pas un signet\n");
+			cd_warning ("this can't be a bookmark\n");
 		}
 		else
 		{
@@ -72,10 +72,9 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	}
 	else
 	{
-		cd_message ("couldn't get info about '%s', we won't add it\n", CD_APPLET_RECEIVED_DATA);
+		cd_warning ("couldn't get info about '%s', we won't add it\n", CD_APPLET_RECEIVED_DATA);
 	}
 	g_free (cName);
 	g_free (cURI);
 	g_free (cIconName);
 CD_APPLET_ON_DROP_DATA_END
-

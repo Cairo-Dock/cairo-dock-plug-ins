@@ -14,8 +14,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
-AppletConfig myConfig;
-AppletData myData;
+extern AppletConfig myConfig;
+extern AppletData myData;
 
 
 CD_APPLET_CONFIG_BEGIN ("Shortcuts", "gnome-main-menu")
@@ -46,7 +46,6 @@ void reset_data (void)
 	g_free (cBookmarkFilePath);
 	
 	cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-	cd_message ("  myIcon->pSubDock <- %x\n", myIcon->pSubDock);
 	myIcon->pSubDock = NULL;  // normalement inutile.
 	
 	memset (&myData, 0, sizeof (AppletData));

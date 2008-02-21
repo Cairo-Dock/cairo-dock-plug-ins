@@ -12,8 +12,9 @@ libcd_shortcuts_la_SOURCES = \
 	applet-notifications.c\
 	applet-notifications.h\
 	applet-bookmarks.c\
-	applet-bookmarks.h
-
+	applet-bookmarks.h\
+	applet-load-icons.c\
+	applet-load-icons.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 

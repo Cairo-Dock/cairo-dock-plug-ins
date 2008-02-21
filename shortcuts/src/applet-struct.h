@@ -2,6 +2,7 @@
 #ifndef __APPLET_STRUCT__
 #define  __APPLET_STRUCT__
 
+#include <glib.h>
 
 typedef struct {
 	gboolean bListDrives;
