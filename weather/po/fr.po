@@ -1,0 +1,186 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2008 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007-2008.
+#
+#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
+#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2007-12-11\n"
+"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Taille d'icône souhaitée pour cette applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "largeur :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "hauteur :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+
+msgid "Icon's name :"
+msgstr "Nom de l'icône :"
+
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:21
+msgid ""
+"This is the weather applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"Ceci est l'applet weather\n"
+" écrite par Fabrice Rey pour Cairo-Dock"
+
+#: ../src/applet-notifications.c:63 ../src/applet-notifications.c:77
+msgid "Temperature"
+msgstr "Température"
+
+#: ../src/applet-notifications.c:64 ../src/applet-notifications.c:78
+msgid "Wind"
+msgstr "Vent"
+
+#: ../src/applet-notifications.c:65 ../src/applet-notifications.c:79
+msgid "Humidity"
+msgstr "Humidité"
+
+#: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
+msgid "SunRise"
+msgstr "Lever du soleil"
+
+#: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
+msgid "SunSet"
+msgstr "Coucher du soleil"
+
+#: ../src/applet-notifications.c:77
+msgid "feeled"
+msgstr "ressentie"
+
+#: ../src/applet-notifications.c:79
+msgid "Pressure"
+msgstr "Pression"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icône"
+
+#: ../data/messages:11 ../data/messages:31
+msgid "Configuration"
+msgstr "Configuration"
+
+#: ../data/messages:13 ../data/messages:33
+msgid "You can search it on www.weather.com"
+msgstr "Vous pouvez le chercher sur www.weather.com"
+
+#: ../data/messages:15 ../data/messages:35
+msgid "Code of your location :"
+msgstr "Code de votre location :"
+
+#: ../data/messages:17 ../data/messages:37
+msgid "Use International System Units ?"
+msgstr "Utiliser les unités du Système International ?"
+
+#: ../data/messages:19 ../data/messages:49
+msgid "Display current conditions on the icon instead of the default one ?"
+msgstr ""
+
+#: ../data/messages:21 ../data/messages:51
+msgid "Number of days you want to forecast :"
+msgstr "Nombre de jours à prédire :"
+
+#: ../data/messages:23 ../data/messages:53
+msgid "Display nights too ?"
+msgstr "Montrer les nuits aussi ?"
+
+#: ../data/messages:25 ../data/messages:55
+msgid "Display temperature as quick info ?"
+msgstr "Montrer la température en info-rapide ?"
+
+#: ../data/messages:27 ../data/messages:39
+msgid "in seconds. Set 0 to have never-ending dialogs."
+msgstr "en seconde. Mettez 0 pour ne pas avoir de contrainte de durée."
+
+#: ../data/messages:29 ../data/messages:41
+msgid "Duration of dialogs :"
+msgstr "Durée des dialogues :"
+
+#: ../data/messages:31 ../data/messages:43
+msgid "in minutes."
+msgstr "en minutes"
+
+#: ../data/messages:33 ../data/messages:45
+msgid "Interval of time between 2 checks :"
+msgstr "Intervalle de temps entre 2 vérifications :"
+
+#: ../data/messages:35 ../data/messages:59
+msgid "Let it empty to use default sub-dock view."
+msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
+
+#: ../data/messages:37 ../data/messages:61
+msgid "Name of the view used for the sub-dock :"
+msgstr "Nom de la vue utilisée pour le sous-dock :"
+
+#: ../data/messages:11
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:13
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:15
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Display"
+msgstr ""
+
+#: ../data/messages:57
+msgid "Choose one of the available themes :"
+msgstr ""
