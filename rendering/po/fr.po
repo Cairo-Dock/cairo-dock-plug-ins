@@ -136,23 +136,23 @@ msgstr ""
 
 #: ../data/messages:47
 msgid "Draw labels while unfolding ?"
-msgstr ""
+msgstr "Dessiner les étiquettes pendant le dépliage ?"
 
 #: ../data/messages:49
 msgid "Rainbow"
-msgstr ""
+msgstr "Arc-en-ciel"
 
 #: ../data/messages:51
 msgid "Space between rows :"
-msgstr ""
+msgstr "Espacement entre les lignes :"
 
 #: ../data/messages:53
 msgid "Space between icons :"
-msgstr ""
+msgstr "Espacement entre les icônes :"
 
 #: ../data/messages:59
 msgid "Number of icons on the first row :"
-msgstr ""
+msgstr "Nombre d'icônes dans la 1ère ligne :"
 
 #: ../data/messages:61
 msgid ""
@@ -162,4 +162,4 @@ msgstr ""
 
 #: ../data/messages:63
 msgid "Cone's width :"
-msgstr ""
+msgstr "Ouverture du cône :"

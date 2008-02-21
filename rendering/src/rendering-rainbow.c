@@ -44,7 +44,7 @@ void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 	
 	pDock->iMaxDockHeight = iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale + iMinRadius;
 	pDock->iMaxDockWidth = 2 * (pDock->iMaxDockHeight * cos (my_fRainbowConeOffset));
-	g_print ("iNbRows : %d => %dx%d (iMaxIconHeight = %d ; iMinRadius = %d ; fMaxScale = %.2f)\n", iNbRows, pDock->iMaxDockWidth, pDock->iMaxDockHeight, pDock->iMaxIconHeight, iMinRadius, fMaxScale);
+	cd_debug ("iNbRows : %d => %dx%d (iMaxIconHeight = %d ; iMinRadius = %d ; fMaxScale = %.2f)\n", iNbRows, pDock->iMaxDockWidth, pDock->iMaxDockHeight, pDock->iMaxIconHeight, iMinRadius, fMaxScale);
 	
 	pDock->iDecorationsWidth = 0;
 	pDock->iDecorationsHeight = 0;
@@ -101,7 +101,7 @@ static double _calculate_wave_offset (int x_abs, int iMaxIconHeight, double fMag
 	int iIconNumber = (x_abs + .5*my_iSpaceBetweenRows) / (iMaxIconHeight + my_iSpaceBetweenRows);
 	
 	int x_cumulated = iIconNumber * (iMaxIconHeight + my_iSpaceBetweenRows);
-	g_print (" iIconNumber : %d ; x_cumulated : %d\n", iIconNumber, x_cumulated);
+	cd_debug (" iIconNumber : %d ; x_cumulated : %d\n", iIconNumber, x_cumulated);
 	double fXMiddle = x_cumulated + iMaxIconHeight / 2;
 	double fPhase = (fXMiddle - x_abs) / g_iSinusoidWidth / fRatio * G_PI + G_PI / 2;
 	if (fPhase < 0)
@@ -120,7 +120,7 @@ static double _calculate_wave_offset (int x_abs, int iMaxIconHeight, double fMag
 	{
 		iIconNumber --;
 		x_cumulated = iIconNumber * (iMaxIconHeight + my_iSpaceBetweenRows);
-		g_print ("  %d) x_cumulated = %d\n", iIconNumber, x_cumulated);
+		//cd_debug ("  %d) x_cumulated = %d\n", iIconNumber, x_cumulated);
 		fXMiddle = x_cumulated + iMaxIconHeight / 2;
 		fPhase = (fXMiddle - x_abs) / g_iSinusoidWidth / fRatio * G_PI + G_PI / 2;
 		if (fPhase < 0)
@@ -140,7 +140,7 @@ static double _calculate_wave_offset (int x_abs, int iMaxIconHeight, double fMag
 }
 static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCurvilignAbscisse, double fMagnitude)
 {
-	g_print ("%s (%.2f)\n", __func__, fCurvilignAbscisse);
+	cd_debug ("%s (%.2f)\n", __func__, fCurvilignAbscisse);
 	
 	if (pDock->icons == NULL || fCurvilignAbscisse <= 0)
 		return 0;
@@ -151,7 +151,7 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 	
 	do
 	{
-		g_print ("  x_abs : %.2f\n", x_abs);
+		//cd_debug ("  x_abs : %.2f\n", x_abs);
 		fWaveOffset = _calculate_wave_offset (x_abs, pDock->iMaxIconHeight, fMagnitude, pDock->fFlatDockWidth, pDock->fFlatDockWidth, 0*pDock->fAlign, pDock->fFoldingFactor, fRatio);
 		
 		fWaveExtrema = fWaveOffset + x_abs;
@@ -164,7 +164,7 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 			x_abs = (int) pDock->fFlatDockWidth;
 			break ;
 		}
-		g_print ("  -> fWaveOffset : %.2f, fWaveExtrema : %.2f\n", fWaveOffset, fWaveExtrema);
+		//cd_debug ("  -> fWaveOffset : %.2f, fWaveExtrema : %.2f\n", fWaveOffset, fWaveExtrema);
 		
 		nb_iter ++;
 	}
@@ -177,7 +177,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 {
 	if (iNbRows == 0)
 		return 0;
-	g_print ("%s (%d, %.2f, %.2f, %d)\n", __func__, x_abs, fMagnitude, fFoldingFactor, iNbRows);
+	cd_debug ("%s (%d, %.2f, %.2f, %d)\n", __func__, x_abs, fMagnitude, fFoldingFactor, iNbRows);
 	if (x_abs < 0 && iWidth > 0)  // ces cas limite sont la pour empecher les icones de retrecir trop rapidement quend on sort par les cotes.
 		x_abs = -1;
 	else if (x_abs > fFlatDockWidth && iWidth > 0)
@@ -188,7 +188,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 	int iNumRow, iPointedRow=-1;
 	for (iNumRow = 0; iNumRow < iNbRows; iNumRow ++)
 	{
-		g_print (" ligne %d\n", iNumRow);
+		//cd_debug (" ligne %d\n", iNumRow);
 		fXMiddle = x_cumulated + .5*iMaxIconHeight;
 		
 		fPhase = (fXMiddle - x_abs) / g_iSinusoidWidth / fRatio * G_PI + G_PI / 2;
@@ -198,14 +198,14 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 			fPhase = G_PI;
 		fScale = 1 + fMagnitude * g_fAmplitude * sin (fPhase);
 		pScales[2*iNumRow] = fScale;
-		g_print ("  fScale : %.2f\n", fScale);
+		//cd_debug ("  fScale : %.2f\n", fScale);
 		
 		if (iPointedRow != -1)
 		{
 			fX = pScales[2*(iNumRow-1)+1] + (iMaxIconHeight + my_iSpaceBetweenRows) * pScales[2*(iNumRow-1)];
 			fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1. - fFoldingFactor);
 			pScales[2*iNumRow+1] = fX;
-			g_print ("  fX : %.2f (prev : %.2f , %.2f)\n", fX, pScales[2*(iNumRow-1)+1], pScales[2*(iNumRow-1)]);
+			//cd_debug ("  fX : %.2f (prev : %.2f , %.2f)\n", fX, pScales[2*(iNumRow-1)+1], pScales[2*(iNumRow-1)]);
 		}
 		
 		if (x_cumulated + iMaxIconHeight + .5*my_iSpaceBetweenRows >= x_abs && x_cumulated - .5*my_iSpaceBetweenRows <= x_abs && iPointedRow == -1)  // on a trouve la ligne sur laquelle on pointe.
@@ -213,9 +213,9 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 			iPointedRow = iNumRow;
 			fX = x_cumulated - 0*(fFlatDockWidth - iWidth) / 2 + (1 - fScale) * (x_abs - x_cumulated + .5*my_iSpaceBetweenRows);
 			fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1. - fFoldingFactor);
-			g_print ("  ligne pointee : %d\n", iPointedRow);
+			//cd_debug ("  ligne pointee : %d\n", iPointedRow);
 			pScales[2*iNumRow+1] = fX;
-			g_print ("  fX : %.2f\n", fX);
+			//cd_debug ("  fX : %.2f\n", fX);
 		}
 		
 		x_cumulated += iMaxIconHeight;
@@ -228,7 +228,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 		fX = x_cumulated - (fFlatDockWidth - iWidth) / 2 + (1 - fScale) * (iMaxIconHeight + .5*my_iSpaceBetweenRows);
 		fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1 - fFoldingFactor);
 		pScales[2*iNumRow+1] = fX;
-		g_print ("  fX : %.2f\n", fX);
+		//cd_debug ("  fX : %.2f\n", fX);
 	}
 	
 	for (iNumRow = iPointedRow-1; iNumRow >= 0; iNumRow --)
@@ -236,7 +236,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 		fX = pScales[2*(iNumRow+1)+1] - (iMaxIconHeight + my_iSpaceBetweenRows) * pScales[2*iNumRow];
 		fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1. - fFoldingFactor);
 		pScales[2*iNumRow+1] = fX;
-		g_print ("  fX : %.2f\n", fX);
+		//cd_debug ("  fX : %.2f\n", fX);
 	}
 	
 	fX = pScales[1];
@@ -263,9 +263,9 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	double w = pDock->iCurrentWidth;
 	double h = pDock->iCurrentHeight;
 	double fRadius, fTheta;
-	g_print (" mouse : (%d ; %d)\n", pDock->iMouseX, pDock->iMouseY);
+	cd_debug (" mouse : (%d ; %d)\n", pDock->iMouseX, pDock->iMouseY);
 	cd_rendering_get_polar_coords (pDock, &fRadius, &fTheta);
-	g_print (" polar : (%.2f ; %.2f)\n", fRadius, fTheta/G_PI*180.);
+	cd_debug (" polar : (%.2f ; %.2f)\n", fRadius, fTheta/G_PI*180.);
 	
 	double fCurvilignAbscisse = (fTheta > -G_PI/2 && fTheta < G_PI/2 ? MAX (0, fRadius - iMinRadius): 0);
 	
@@ -273,11 +273,11 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	Icon *pPointedIcon = NULL;
 	double fMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex) * pDock->fMagnitudeMax;
 	int x_abs = (int) round (cd_rendering_calculate_wave_position (pDock, fCurvilignAbscisse, fMagnitude));
-	g_print (" => x_abs : %d (fMagnitude:%.2f ; fFoldingFactor:%.2f)\n", x_abs, fMagnitude, pDock->fFoldingFactor);
+	cd_debug (" => x_abs : %d (fMagnitude:%.2f ; fFoldingFactor:%.2f)\n", x_abs, fMagnitude, pDock->fFoldingFactor);
 	
 	//\_______________ On en deduit l'amplitude de chaque ligne.
 	int iNbRows = round ((pDock->iMaxDockHeight- iMinRadius) / ((pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale));
-	g_print ("iNbRows : %d\n", iNbRows);
+	cd_debug ("iNbRows : %d\n", iNbRows);
 	double fFlatDockWidth = iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale;
 	double *pScales = g_new0 (double, 2*iNbRows+2);
 	cd_rendering_calculate_wave_on_each_lines (x_abs, pDock->iMaxIconHeight, fMagnitude, fFlatDockWidth, fFlatDockWidth, 0*pDock->fAlign, pDock->fFoldingFactor, fRatio, iNbRows, pScales);
@@ -309,7 +309,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 			fDeltaTheta = 2 * atan (iMaxIconWidth * fMaxScale / 2 / fNormalRadius);
 			iNbIconsOnRow = (int) (fCone / fDeltaTheta);
 			fThetaStart = - G_PI/2 + my_fRainbowConeOffset + (fCone - iNbIconsOnRow * fDeltaTheta) / 2 + fDeltaTheta / 2;
-			g_print ("on passe a la ligne %d (%d icones, fThetaStart = %.2fdeg, fCurrentRadius = %.2f(%.2f), fDeltaTheta = %.2f, fCurrentScale = %.2f)\n", iNbRow, iNbIconsOnRow, fThetaStart/G_PI*180, fCurrentRadius, fNormalRadius, fDeltaTheta/G_PI*180, fCurrentScale);
+			cd_debug ("on passe a la ligne %d (%d icones, fThetaStart = %.2fdeg, fCurrentRadius = %.2f(%.2f), fDeltaTheta = %.2f, fCurrentScale = %.2f)\n", iNbRow, iNbIconsOnRow, fThetaStart/G_PI*180, fCurrentRadius, fNormalRadius, fDeltaTheta/G_PI*180, fCurrentScale);
 		}
 		
 		icon->fX = fCurrentRadius + (g_bDirectionUp ? pDock->iMaxIconHeight * fCurrentScale : 0);
@@ -321,7 +321,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		{
 			icon->bPointed = TRUE;
 			pPointedIcon = icon;
-			g_print (" POINTED ICON : %s\n", pPointedIcon->acName);
+			cd_debug (" POINTED ICON : %s\n", pPointedIcon->acName);
 		}
 		else
 			icon->bPointed = FALSE;
@@ -330,7 +330,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		if (g_bDirectionUp)
 			icon->fDrawY = pDock->iCurrentHeight - icon->fDrawY;
 		icon->fDrawX = icon->fX * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta) + pDock->iCurrentWidth / 2;
-		g_print (" %.2fdeg ; (%.2f;%.2f)\n", fCurrentTheta/G_PI*180, icon->fDrawX, icon->fDrawY);
+		cd_debug (" %.2fdeg ; (%.2f;%.2f)\n", fCurrentTheta/G_PI*180, icon->fDrawX, icon->fDrawY);
 		
 		icon->fScale = fCurrentScale;
 		icon->fAlpha = 1;
@@ -351,7 +351,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	//g_print ("fRadius : %.2f ; limite : %.2f\n", fRadius, fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale);
 	if (! pDock->bInside || fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + g_iLabelSize - (pDock->fFoldingFactor > 0 ? 20 : 0) || fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset)
 	{
-		g_print ("<<< on sort du demi-disque >>>\n");
+		cd_debug ("<<< on sort du demi-disque >>>\n");
 		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 	}
 	else
