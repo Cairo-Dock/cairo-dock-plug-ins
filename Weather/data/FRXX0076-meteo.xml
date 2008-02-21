@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--This document is intended only for use by authorized licensees of The Weather Channel. Unauthorized use is prohibited. Copyright 1995-2005, The Weather Channel Interactive, Inc. All Rights Reserved.-->
+<weather ver="2.0">
+  <head>
+    <locale>en_US</locale>
+    <form>MEDIUM</form>
+    <ut>C</ut>
+    <ud>km</ud>
+    <us>km/h</us>
+    <up>mb</up>
+    <ur>mm</ur>
+  </head>
+  <loc id="FRXX0076">
+    <dnam>Paris, France</dnam>
+    <tm>3:18 PM</tm>
+    <lat>48.86</lat>
+    <lon>2.35</lon>
+    <sunr>7:53 AM</sunr>
+    <suns>6:17 PM</suns>
+    <zone>1</zone>
+  </loc>
+  <dayf>
+    <lsup>2/19/08 2:20 PM Local Time</lsup>
+    <day d="0" t="Tuesday" dt="Feb 19">
+      <hi>N/A</hi>
+      <low>5</low>
+      <sunr>7:53 AM</sunr>
+      <suns>6:17 PM</suns>
+      <part p="d">
+        <icon>44</icon>
+        <t>N/A</t>
+        <wind>
+          <s>N/A</s>
+          <gust>N/A</gust>
+          <d>N/A</d>
+          <t>N/A</t>
+        </wind>
+        <bt>N/A</bt>
+        <ppcp>60</ppcp>
+        <hmid>N/A</hmid>
+      </part>
+      <part p="n">
+        <icon>11</icon>
+        <t>Light Rain Late</t>
+        <wind>
+          <s>8</s>
+          <gust>N/A</gust>
+          <d>143</d>
+          <t>SE</t>
+        </wind>
+        <bt>Rain Late</bt>
+        <ppcp>60</ppcp>
+        <hmid>89</hmid>
+      </part>
+    </day>
+    <day d="1" t="Wednesday" dt="Feb 20">
+      <hi>11</hi>
+      <low>6</low>
+      <sunr>7:51 AM</sunr>
+      <suns>6:18 PM</suns>
+      <part p="d">
+        <icon>11</icon>
+        <t>Light Rain</t>
+        <wind>
+          <s>11</s>
+          <gust>N/A</gust>
+          <d>195</d>
+          <t>SSW</t>
+        </wind>
+        <bt>Light Rain</bt>
+        <ppcp>70</ppcp>
+        <hmid>87</hmid>
+      </part>
+      <part p="n">
+        <icon>20</icon>
+        <t>Foggy</t>
+        <wind>
+          <s>6</s>
+          <gust>N/A</gust>
+          <d>241</d>
+          <t>WSW</t>
+        </wind>
+        <bt>Foggy</bt>
+        <ppcp>20</ppcp>
+        <hmid>88</hmid>
+      </part>
+    </day>
+    <day d="2" t="Thursday" dt="Feb 21">
+      <hi>12</hi>
+      <low>7</low>
+      <sunr>7:50 AM</sunr>
+      <suns>6:20 PM</suns>
+      <part p="d">
+        <icon>20</icon>
+        <t>AM Fog / PM Clouds</t>
+        <wind>
+          <s>13</s>
+          <gust>N/A</gust>
+          <d>267</d>
+          <t>W</t>
+        </wind>
+        <bt>AM Fog</bt>
+        <ppcp>20</ppcp>
+        <hmid>77</hmid>
+      </part>
+      <part p="n">
+        <icon>20</icon>
+        <t>Fog Late</t>
+        <wind>
+          <s>10</s>
+          <gust>N/A</gust>
+          <d>243</d>
+          <t>WSW</t>
+        </wind>
+        <bt>Fog Late</bt>
+        <ppcp>10</ppcp>
+        <hmid>87</hmid>
+      </part>
+    </day>
+    <day d="3" t="Friday" dt="Feb 22">
+      <hi>14</hi>
+      <low>6</low>
+      <sunr>7:48 AM</sunr>
+      <suns>6:21 PM</suns>
+      <part p="d">
+        <icon>20</icon>
+        <t>AM Fog / PM Clouds</t>
+        <wind>
+          <s>18</s>
+          <gust>N/A</gust>
+          <d>253</d>
+          <t>WSW</t>
+        </wind>
+        <bt>AM Fog</bt>
+        <ppcp>10</ppcp>
+        <hmid>82</hmid>
+      </part>
+      <part p="n">
+        <icon>29</icon>
+        <t>Partly Cloudy</t>
+        <wind>
+          <s>5</s>
+          <gust>N/A</gust>
+          <d>345</d>
+          <t>NNW</t>
+        </wind>
+        <bt>P Cloudy</bt>
+        <ppcp>10</ppcp>
+        <hmid>87</hmid>
+      </part>
+    </day>
+    <day d="4" t="Saturday" dt="Feb 23">
+      <hi>15</hi>
+      <low>6</low>
+      <sunr>7:46 AM</sunr>
+      <suns>6:23 PM</suns>
+      <part p="d">
+        <icon>30</icon>
+        <t>Partly Cloudy</t>
+        <wind>
+          <s>10</s>
+          <gust>N/A</gust>
+          <d>108</d>
+          <t>ESE</t>
+        </wind>
+        <bt>P Cloudy</bt>
+        <ppcp>10</ppcp>
+        <hmid>79</hmid>
+      </part>
+      <part p="n">
+        <icon>33</icon>
+        <t>Mostly Clear</t>
+        <wind>
+          <s>10</s>
+          <gust>N/A</gust>
+          <d>132</d>
+          <t>SE</t>
+        </wind>
+        <bt>M Clear</bt>
+        <ppcp>0</ppcp>
+        <hmid>81</hmid>
+      </part>
+    </day>
+  </dayf>
+</weather>
+

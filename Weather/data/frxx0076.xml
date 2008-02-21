@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--This document is intended only for use by authorized licensees of The Weather Channel. Unauthorized use is prohibited. Copyright 1995-2005, The Weather Channel Interactive, Inc. All Rights Reserved.-->
+<weather ver="2.0">
+  <head>
+    <locale>en_US</locale>
+    <form>MEDIUM</form>
+    <ut>C</ut>
+    <ud>km</ud>
+    <us>km/h</us>
+    <up>mb</up>
+    <ur>mm</ur>
+  </head>
+  <loc id="FRXX0076">
+    <dnam>Paris, France</dnam>
+    <tm>3:17 PM</tm>
+    <lat>48.86</lat>
+    <lon>2.35</lon>
+    <sunr>7:53 AM</sunr>
+    <suns>6:17 PM</suns>
+    <zone>1</zone>
+  </loc>
+  <cc>
+    <lsup>2/19/08 3:00 PM Local Time</lsup>
+    <obst>Paris/Le Bourget, France</obst>
+    <tmp>11</tmp>
+    <flik>11</flik>
+    <t>Fair</t>
+    <icon>34</icon>
+    <bar>
+      <r>1021.0</r>
+      <d>steady</d>
+    </bar>
+    <wind>
+      <s>8</s>
+      <gust>N/A</gust>
+      <d>140</d>
+      <t>SE</t>
+    </wind>
+    <hmid>47</hmid>
+    <vis>10.0</vis>
+    <uv>
+      <i>1</i>
+      <t>Low</t>
+    </uv>
+    <dewp>0</dewp>
+    <moon>
+      <icon>13</icon>
+      <t>Waxing Gibbous</t>
+    </moon>
+  </cc>
+</weather>
+
