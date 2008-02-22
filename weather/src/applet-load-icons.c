@@ -30,6 +30,10 @@ static int s_iSidTimerRedraw = 0;
 	if (myConfig.bDisplayTemperature)\
 		pIcon->cQuickInfo = g_strdup_printf ("%s/%s", myData.days[i].cTempMin, myData.days[i].cTempMax);\
 	pIcon->fOrder = 2*i+j;\
+	pIcon->fScale = 1.;\
+	pIcon->fAlpha = 1.;\
+	pIcon->fWidthFactor = 1.;\
+	pIcon->fHeightFactor = 1.;\
 	pIcon->acCommand = g_strdup ("none");\
 	pIcon->cParentDockName = g_strdup (myIcon->acName);\
 	cd_debug (" + %s (%s , %s)\n", pIcon->acName, myData.days[i].part[j].cWeatherDescription, pIcon->acFileName);\
@@ -123,6 +127,10 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 			g_free (myIcon->acFileName);
 			myIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
+			if (myDock)
+			{
+				CD_APPLET_REDRAW_MY_ICON
+			}
 		}
 		
 		//\_______________________ On cree la liste des icones de prevision.
@@ -190,6 +198,7 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
 			}
 			cairo_destroy (pCairoContext);
+			gtk_widget_queue_draw (myDesklet->pWidget);
 		}
 		
 		//\_______________________ On lance le timer si necessaire.

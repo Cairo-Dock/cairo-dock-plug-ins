@@ -25,6 +25,7 @@ CD_APPLET_DEFINITION ("weather", 1, 5, 1)
 void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 {
 	g_print (" -> (%.2f;%.2f)\n", myIcon->fDrawX, myIcon->fDrawY);
+	cairo_save (pCairoContext);
 	cairo_translate (pCairoContext, myIcon->fDrawX, myIcon->fDrawY);
 	if (myIcon->pIconBuffer != NULL)
 	{
@@ -32,13 +33,14 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 		cairo_set_source_surface (pCairoContext, myIcon->pIconBuffer, 0.0, 0.0);
 		cairo_paint (pCairoContext);
 	}
-	
+	cairo_restore (pCairoContext);
+	//cairo_move_to (pCairoContext, 0, 0);
 	///cairo_translate (pCairoContext, myIcon->fWidth / 2, myIcon->fHeight / 2);
 	int iNumIcon=0, iNbIcons = g_list_length (myData.pDeskletIconList);
 	g_print ("%d icones\n", iNbIcons);
 	double fTheta = G_PI/2, fDeltaTheta = 2 * G_PI / iNbIcons;
 	
-	double a = 1.1*MAX (myIcon->fWidth, myIcon->fHeight)/2, b = 1.1*MIN (myIcon->fWidth, myIcon->fHeight)/2;
+	double a = MAX (myIcon->fWidth, myIcon->fHeight)/2 + .1*myDesklet->iWidth, b = MIN (myIcon->fWidth, myIcon->fHeight)/2 + .1*myDesklet->iHeight;
 	double c = sqrt (a * a - b * b);
 	double e = c / a;
 	//b = 1.1*myIcon->fHeight / 2;
@@ -59,15 +61,13 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 				(fRadius + 0*pIcon->fHeight) * sin (fTheta));
 			cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, -pIcon->fWidth/2, -pIcon->fHeight/2);
 			cairo_paint (pCairoContext);*/
-			pIcon->fScale = 1.;
-			pIcon->fAlpha = 1.;
-			pIcon->fDrawX = myIcon->fWidth / 2 + fRadius * cos (fTheta);
-			pIcon->fDrawY = myIcon->fHeight / 2 + fRadius * sin (fTheta);
-			cairo_dock_render_one_icon (pIcon, pCairoContext, CAIRO_DOCK_HORIZONTAL, 1, 1, FALSE, TRUE, myDesklet->iWidth);
+			pIcon->fDrawX = myIcon->fDrawX + myIcon->fWidth / 2 + fRadius * cos (fTheta)-pIcon->fWidth/2;
+			pIcon->fDrawY = myIcon->fDrawY + myIcon->fHeight / 2 + fRadius * sin (fTheta)-pIcon->fHeight/2;
+			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, myDesklet->iWidth);
 			
 			cairo_restore (pCairoContext);
 		}
-		fTheta -= fDeltaTheta;
+		fTheta += fDeltaTheta;
 	}
 }
 
@@ -132,6 +132,20 @@ CD_APPLET_RELOAD_BEGIN
 		reset_data ();
 		
 		cd_weather_launch_measure ();
+	}
+	else if (myDesklet != NULL)
+	{
+		GList* ic;
+		Icon *icon;
+		cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
+		for (ic = myData.pDeskletIconList; ic != NULL; ic = ic->next)
+		{
+			icon = ic->data;
+			icon->fWidth = MAX (1, (myDesklet->iWidth - g_iDockRadius) * .2);
+			icon->fHeight = MAX (1, (myDesklet->iHeight - g_iDockRadius) * .2);
+			cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
+		}
+		cairo_destroy (pCairoContext);
 	}
 	else
 	{
