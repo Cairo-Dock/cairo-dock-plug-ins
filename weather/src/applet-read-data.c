@@ -24,12 +24,6 @@ extern AppletData myData;
 void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastFilePath)
 {
 	gboolean bTest = FALSE;
-	if (bTest)
-	{
-		*cCurrentConditionsFilePath = g_strdup ("/opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml");
-		*cForecastFilePath = g_strdup ("/opt/cairo-dock/trunk/plug-ins/weather/data/FRXX0076-meteo.xml");
-		return ;
-	}
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)
 	{
@@ -37,6 +31,12 @@ void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastF
 		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s -o /dev/null", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), *cCurrentConditionsFilePath);
 		system (cCommand);
 		g_free (cCommand);
+		if (bTest)
+		{
+			cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml %s", *cCurrentConditionsFilePath);
+			system (cCommand);
+			g_free (cCommand);
+		}
 	}
 	
 	if (myConfig.iNbDays > 0)
@@ -45,6 +45,12 @@ void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastF
 		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s -o /dev/null", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), *cForecastFilePath);
 		system (cCommand);
 		g_free (cCommand);
+		if (bTest)
+		{
+			cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/FRXX0076-meteo.xml %s", *cForecastFilePath);
+			system (cCommand);
+			g_free (cCommand);
+		}
 	}
 }
 
@@ -61,7 +67,7 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 	gchar *nom, *visible, *name, *defaultsource = NULL, *source, *where;
 	xmlChar *contenu;
 	int i, j;
-	gchar *index_str;
+	gchar *index_str, *cDayName, *cDate, *str;
 	
 	xmlInitParser ();
 	
@@ -172,8 +178,19 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 						continue;
 					i = atoi (index_str);
 					g_free (index_str);
-					myData.days[i].cName = (gchar *) xmlGetProp (fils, (xmlChar *) "t");
-					myData.days[i].cDate = (gchar *) xmlGetProp (fils, (xmlChar *) "dt");
+					cDayName = (gchar *) xmlGetProp (fils, (xmlChar *) "t");
+					myData.days[i].cName = g_strdup (_D(cDayName));
+					g_free (cDayName);
+					cDate = (gchar *) xmlGetProp (fils, (xmlChar *) "dt");
+					str = strchr (cDate, ' ');
+					if (str != NULL)
+					{
+						*str = '\0';
+						myData.days[i].cDate = g_strconcat (_D(cDate), " ", str+1);
+						g_free (cDate);
+					}
+					else
+						myData.days[i].cDate = cDate;
 					for (petitfils = fils->children; petitfils != NULL; petitfils = petitfils->next)
 					{
 						if (xmlStrcmp (petitfils->name, (const xmlChar *) "hi") == 0)

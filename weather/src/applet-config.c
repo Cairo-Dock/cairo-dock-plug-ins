@@ -32,6 +32,8 @@ CD_APPLET_CONFIG_BEGIN ("Meteo", NULL)
 	
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "basic");
 	
+	myConfig.bDesklet3D = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "3D desket", FALSE);
+	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
 CD_APPLET_CONFIG_END
@@ -102,8 +104,11 @@ void reset_data (void)
 		_reset_current_one_day (&myData.days[i]);
 	}
 	
-	cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-	myIcon->pSubDock = NULL;  // normalement inutile.
+	if (myIcon->pSubDock != NULL)
+	{
+		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+		myIcon->pSubDock = NULL;
+	}
 	
 	memset (&myData, 0, sizeof (AppletData));
 }

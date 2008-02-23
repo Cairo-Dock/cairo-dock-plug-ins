@@ -70,7 +70,6 @@ gpointer cd_weather_threaded_calculation (gpointer data)
 	GError *erreur = NULL;
 	gchar *cCurrentConditionsFilePath = NULL, *cForecastFilePath = NULL;
 	cd_weather_get_data (&cCurrentConditionsFilePath, &cForecastFilePath);
-	gboolean bTest = TRUE;
 	
 	if (cCurrentConditionsFilePath != NULL)
 	{
@@ -80,7 +79,6 @@ gpointer cd_weather_threaded_calculation (gpointer data)
 			cd_warning ("Attention : %s", erreur->message);
 			g_error_free (erreur);
 		}
-		if (!bTest)
 		g_remove (cCurrentConditionsFilePath);
 		g_free (cCurrentConditionsFilePath);
 	}
@@ -93,7 +91,6 @@ gpointer cd_weather_threaded_calculation (gpointer data)
 			cd_warning ("Attention : %s", erreur->message);
 			g_error_free (erreur);
 		}
-		if (!bTest)
 		g_remove (cForecastFilePath);
 		g_free (cForecastFilePath);
 	}
@@ -139,13 +136,16 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 		//\_______________________ On efface l'ancienne liste.
 		if (myData.pDeskletIconList != NULL)
 		{
-			g_list_foreach (myData.pDeskletIconList, cairo_dock_free_icon, NULL);
+			g_list_foreach (myData.pDeskletIconList, (GFunc) cairo_dock_free_icon, NULL);
 			g_list_free (myData.pDeskletIconList);
 			myData.pDeskletIconList = NULL;
+			myData.iMaxIconHeight = 0;
+			myData.iMaxIconWidth = 0;
+			myData.fLinearWidth = 0;
 		}
 		if (myIcon->pSubDock != NULL)
 		{
-			g_list_foreach (myIcon->pSubDock->icons, cairo_dock_free_icon, NULL);
+			g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
 			g_list_free (myIcon->pSubDock->icons);
 			myIcon->pSubDock->icons = NULL;
 		}
@@ -193,13 +193,26 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 			for (ic = pIconList; ic != NULL; ic = ic->next)
 			{
 				icon = ic->data;
-				icon->fWidth = MAX (1, (myDesklet->iWidth - g_iDockRadius) * .2);
-				icon->fHeight = MAX (1, (myDesklet->iHeight - g_iDockRadius) * .2);
-				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
+				if (myConfig.bDesklet3D)
+				{
+					icon->fWidth = 0;
+					icon->fHeight = 0;
+				}
+				else
+				{
+					icon->fWidth = MAX (1, (myDesklet->iWidth - g_iDockRadius - myIcon->fWidth) / 2);
+					icon->fHeight = MAX (1, (myDesklet->iHeight - g_iDockRadius - myIcon->fHeight) / 2);
+				}
+				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, myConfig.bDesklet3D);
+				myData.iMaxIconHeight = MAX (myData.iMaxIconHeight, icon->fHeight);
+				myData.iMaxIconWidth = MAX (myData.iMaxIconWidth, icon->fWidth);
+				icon->fX = myData.fLinearWidth;
+				myData.fLinearWidth += icon->fWidth;
 			}
 			cairo_destroy (pCairoContext);
 			gtk_widget_queue_draw (myDesklet->pWidget);
 		}
+		myData.pFirstDrawnElement = myData.pDeskletIconList;
 		
 		//\_______________________ On lance le timer si necessaire.
 		if (myData.iSidTimer == 0)

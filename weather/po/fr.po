@@ -46,30 +46,35 @@ msgstr ""
 " écrite par Fabrice Rey pour Cairo-Dock"
 
 #: ../src/applet-notifications.c:63 ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:85 ../src/applet-notifications.c:99
 msgid "Temperature"
 msgstr "Température"
 
 #: ../src/applet-notifications.c:64 ../src/applet-notifications.c:78
+#: ../src/applet-notifications.c:86 ../src/applet-notifications.c:100
 msgid "Wind"
 msgstr "Vent"
 
 #: ../src/applet-notifications.c:65 ../src/applet-notifications.c:79
+#: ../src/applet-notifications.c:87 ../src/applet-notifications.c:101
 msgid "Humidity"
 msgstr "Humidité"
 
 #: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
+#: ../src/applet-notifications.c:88 ../src/applet-notifications.c:102
 msgid "SunRise"
 msgstr "Lever du soleil"
 
 #: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
+#: ../src/applet-notifications.c:88 ../src/applet-notifications.c:102
 msgid "SunSet"
 msgstr "Coucher du soleil"
 
-#: ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:77 ../src/applet-notifications.c:99
 msgid "feeled"
 msgstr "ressentie"
 
-#: ../src/applet-notifications.c:79
+#: ../src/applet-notifications.c:79 ../src/applet-notifications.c:101
 msgid "Pressure"
 msgstr "Pression"
 
@@ -135,7 +140,7 @@ msgstr "Nom de la vue utilisée pour le sous-dock :"
 
 #: ../data/messages:11
 msgid "Desklet"
-msgstr ""
+msgstr "Desklet"
 
 #: ../data/messages:13
 msgid ""
@@ -145,42 +150,104 @@ msgstr ""
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
-msgstr ""
+msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
-msgstr ""
+msgstr "Position du desklet (x ; y) :"
 
 #: ../data/messages:21
 msgid "Is detached from the dock ?"
-msgstr ""
+msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:23
 msgid "Keep below other windows ?"
-msgstr ""
+msgstr "Garder en-dessous des autres fenêtres ?"
 
 #: ../data/messages:25
 msgid "Keep above other windows ?"
-msgstr ""
+msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
-msgstr ""
+msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:47
 msgid "Display"
-msgstr ""
+msgstr "Affichage"
 
 #: ../data/messages:57
 msgid "Choose one of the available themes :"
+msgstr "Choississez l'un des thèmes disponibles :"
+
+msgid "Monday"
+msgstr "Lundi"
+
+msgid "Tuesday"
+msgstr "Mardi"
+
+msgid "Wednesday"
+msgstr "Mercredi"
+
+msgid "Thursday"
+msgstr "Jeudi"
+
+msgid "Friday"
+msgstr "Vendredi"
+
+msgid "Saturday"
+msgstr "Samedi"
+
+msgid "Sunday"
+msgstr "Dimanche"
+
+msgid "Jan"
+msgstr "Jan"
+
+msgid "Feb"
+msgstr "Fév"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Apr"
+msgstr "Avr"
+
+msgid "Jun"
+msgstr "Juin"
+
+msgid "Jui"
+msgstr "Juil"
+
+msgid "Aug"
+msgstr "Août"
+
+msgid "Sep"
+msgstr "Sep"
+
+msgid "Oct"
+msgstr "Oct"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Dec"
+msgstr "Déc"
+
+#: ../data/messages:63
+msgid "Render desklet in 3D ?"
 msgstr ""

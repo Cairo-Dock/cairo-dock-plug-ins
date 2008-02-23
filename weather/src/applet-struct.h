@@ -6,6 +6,8 @@
 
 #define WEATHER_NB_DAYS_MAX 5
 
+#define WEATHER_RATIO_ICON_DESKLET .5
+
 typedef struct {
 	gchar *cLocationCode;
 	gboolean bISUnits;
@@ -17,6 +19,7 @@ typedef struct {
 	gint cDialogDuration;
 	gint iCheckInterval;
 	gchar *cThemePath;
+	gboolean bDesklet3D;
 	} AppletConfig;
 
 typedef struct {
@@ -69,6 +72,10 @@ typedef struct {
 	Day days[WEATHER_NB_DAYS_MAX];
 	gint iSidTimer;
 	GList *pDeskletIconList;
+	gint iMaxIconHeight;
+	gint iMaxIconWidth;
+	gdouble fLinearWidth;
+	GList *pFirstDrawnElement;
 	} AppletData;
 
 
