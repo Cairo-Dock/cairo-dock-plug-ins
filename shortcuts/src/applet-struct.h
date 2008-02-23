@@ -4,6 +4,8 @@
 
 #include <glib.h>
 
+#define SHORTCUTS_DEFAULT_NAME "_shortcuts_"
+
 typedef struct {
 	gboolean bListDrives;
 	gboolean bListNetwork;

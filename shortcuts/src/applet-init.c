@@ -27,6 +27,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 	if (!g_thread_supported ())
 		g_thread_init (NULL);
 	
+	if (myIcon->acName == NULL || *myIcon->acName == '\0')
+		myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);
+	
 	//\_______________ On charge les icones dans un sous-dock.
 	cd_shortcuts_launch_measure ();  // asynchrone
 	
@@ -53,6 +56,9 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		//\_______________ On charge les icones dans un sous-dock.
 		reset_data ();
+		
+		if (myIcon->acName == NULL || *myIcon->acName == '\0')
+			myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);
 		
 		cd_shortcuts_launch_measure ();  // asynchrone
 	}

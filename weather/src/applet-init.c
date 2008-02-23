@@ -254,6 +254,8 @@ CD_APPLET_INIT_BEGIN (erreur)
 			G_CALLBACK (on_scroll_desklet),
 			myDesklet);
 	}
+	else if (myIcon->acName == NULL || *myIcon->acName == '\0')
+		myIcon->acName = g_strdup (WEATHER_DEFAULT_NAME);
 	
 	cd_weather_launch_measure ();
 	
@@ -309,6 +311,8 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iSidTimer = 0;
 		
 		reset_data ();
+		if (myIcon->acName == NULL || *myIcon->acName == '\0')
+			myIcon->acName = g_strdup (WEATHER_DEFAULT_NAME);
 		
 		cd_weather_launch_measure ();
 	}

@@ -8,6 +8,8 @@
 
 #define WEATHER_RATIO_ICON_DESKLET .5
 
+#define WEATHER_DEFAULT_NAME "weather"
+
 typedef struct {
 	gchar *cLocationCode;
 	gboolean bISUnits;
