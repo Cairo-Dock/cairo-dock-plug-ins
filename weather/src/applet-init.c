@@ -54,8 +54,8 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 				pIcon->fDrawY = myDesklet->iHeight / 2 + b * sin (fTheta) - pIcon->fHeight;
 				if (fTheta > G_PI && fTheta < 2*G_PI)  // arriere-plan.
 				{
-					pIcon->fScale = cos ((3*G_PI/2 - fTheta) / 3);
-					pIcon->fAlpha = cos ((3*G_PI/2 - fTheta) / 2);
+					pIcon->fScale = (1 + fabs (cos (fTheta))) / 2;
+					pIcon->fAlpha = (1 + fabs (cos (fTheta))) / 2;
 					g_print ("fScale : %.2f; fAlpha : %.2f\n", pIcon->fScale, pIcon->fAlpha);
 				}
 				else
