@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-weather],[0.2.0],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cd-weather],[0.3.0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -48,5 +48,6 @@ AC_CONFIG_FILES([Makefile
 		data/readme
 		data/weather.conf
 		data/themes/Makefile
-		data/themes/basic/Makefile])
+		data/themes/basic/Makefile
+		data/themes/WeatherPod/Makefile])
 AC_OUTPUT

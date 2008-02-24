@@ -1,3 +1,5 @@
 
-SUBDIRS = . basic
+SUBDIRS = .\
+	basic\
+	WeatherPod
 

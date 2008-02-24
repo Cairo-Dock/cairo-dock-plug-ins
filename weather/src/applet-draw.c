@@ -30,8 +30,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 		double fTheta = G_PI/2, fDeltaTheta = 2 * G_PI / iNbIcons;
 		
 		int iEllipseHeight = MIN (myIcon->fHeight, myDesklet->iHeight - 2 * (g_iLabelSize + g_fReflectSize) - 1);
-		double fInclinationOnHorizon = 40./180.*G_PI;
-		fInclinationOnHorizon = atan2 (myDesklet->iHeight, myDesklet->iWidth/4);
+		double fInclinationOnHorizon = atan2 (myDesklet->iHeight, myDesklet->iWidth/4);
 		
 		int iFrameHeight = iEllipseHeight + 0*2 * g_iFrameMargin + g_fReflectSize;
 		double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (iFrameHeight, fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
@@ -49,9 +48,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 			do
 			{
 				pIcon = ic->data;
-				fRadius = (bFlip ? sqrt (b * b / (1 - e * e * cos (G_PI/2-fTheta) * cos (G_PI/2-fTheta))) : sqrt (b * b / (1 - e * e * cos (fTheta) * cos (fTheta))));
-				pIcon->fDrawX = myDesklet->iWidth / 2 + a * cos (fTheta) - pIcon->fWidth/2;
-				pIcon->fDrawY = myDesklet->iHeight / 2 + b * sin (fTheta) - pIcon->fHeight;
+				
 				if (fTheta > G_PI && fTheta < 2*G_PI)  // arriere-plan.
 				{
 					pIcon->fScale = (1 + fabs (cos (fTheta))) / 2;
@@ -62,6 +59,9 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 					pIcon->fScale = 1.;
 					pIcon->fAlpha = 1.;
 				}
+				pIcon->fDrawX = myDesklet->iWidth / 2 + a * cos (fTheta) - pIcon->fWidth/2 * pIcon->fScale;
+				pIcon->fDrawY = myDesklet->iHeight / 2 + b * sin (fTheta) - pIcon->fHeight * pIcon->fScale;
+				
 				fTheta += fDeltaTheta;
 				ic = cairo_dock_get_next_element (ic, myData.pDeskletIconList);
 			}
