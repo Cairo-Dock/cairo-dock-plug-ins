@@ -31,6 +31,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 		
 		int iEllipseHeight = MIN (myIcon->fHeight, myDesklet->iHeight - 2 * (g_iLabelSize + g_fReflectSize) - 1);
 		double fInclinationOnHorizon = 40./180.*G_PI;
+		fInclinationOnHorizon = atan2 (myDesklet->iHeight, myDesklet->iWidth/4);
 		
 		int iFrameHeight = iEllipseHeight + 0*2 * g_iFrameMargin + g_fReflectSize;
 		double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (iFrameHeight, fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
@@ -97,7 +98,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 		if (fLineWidth > 0)
 		{
 			cairo_set_line_width (pCairoContext, fLineWidth);
-			cairo_set_source_rgba (pCairoContext, fColor[0], fColor[1], fColor[2], 1);
+			cairo_set_source_rgba (pCairoContext, fColor[0], fColor[1], fColor[2], 1.);
 			cairo_stroke (pCairoContext);
 		}
 		cairo_restore (pCairoContext);
