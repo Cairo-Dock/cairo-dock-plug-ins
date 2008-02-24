@@ -217,9 +217,9 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 								{
 									for (arrarrpetitfils = arrpetitfils->children; arrarrpetitfils != NULL; arrarrpetitfils = arrarrpetitfils->next)
 									{
-										if (xmlStrcmp (petitfils->name, (const xmlChar *) "s") == 0)
+										if (xmlStrcmp (arrarrpetitfils->name, (const xmlChar *) "s") == 0)
 											myData.days[i].part[j].cWindSpeed = xmlNodeGetContent (arrarrpetitfils);
-										else if (xmlStrcmp (petitfils->name, (const xmlChar *) "t") == 0)
+										else if (xmlStrcmp (arrarrpetitfils->name, (const xmlChar *) "t") == 0)
 											myData.days[i].part[j].cWindDirection = xmlNodeGetContent (arrarrpetitfils);
 									}
 								}

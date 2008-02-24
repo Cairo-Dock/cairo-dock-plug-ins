@@ -72,7 +72,8 @@ CairoDockDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
 	if (myDock != NULL)
 		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_remove_dialog_if_any, NULL);
 	else
-		g_list_foreach (myData.pDeskletIconList, (GFunc) cairo_dock_remove_dialog_if_any, NULL);
+		//g_list_foreach (myData.pDeskletIconList, (GFunc) cairo_dock_remove_dialog_if_any, NULL);
+		cairo_dock_remove_dialog_if_any (myIcon);
 	
 	int iNumDay = ((int) pIcon->fOrder) / 2, iPart = ((int) pIcon->fOrder) - 2 * iNumDay;
 	g_return_val_if_fail (iNumDay < myConfig.iNbDays && iPart < 2, NULL);

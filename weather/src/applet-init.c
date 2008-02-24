@@ -50,12 +50,13 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 			{
 				pIcon = ic->data;
 				fRadius = (bFlip ? sqrt (b * b / (1 - e * e * cos (G_PI/2-fTheta) * cos (G_PI/2-fTheta))) : sqrt (b * b / (1 - e * e * cos (fTheta) * cos (fTheta))));
-				pIcon->fDrawX = myDesklet->iWidth / 2 + fRadius * cos (fTheta) - pIcon->fWidth/2;
-				pIcon->fDrawY = myDesklet->iHeight / 2 + fRadius * sin (fTheta) - pIcon->fHeight;
-				if (fTheta > G_PI && fTheta < 3*G_PI/2)  // arriere-plan.
+				pIcon->fDrawX = myDesklet->iWidth / 2 + a * cos (fTheta) - pIcon->fWidth/2;
+				pIcon->fDrawY = myDesklet->iHeight / 2 + b * sin (fTheta) - pIcon->fHeight;
+				if (fTheta > G_PI && fTheta < 2*G_PI)  // arriere-plan.
 				{
-					pIcon->fScale = MAX (0.75, sin ((G_PI - fabs (fTheta)) / 3));
-					pIcon->fAlpha = MAX (0.5, sin (fTheta) * sin (fTheta));
+					pIcon->fScale = cos ((3*G_PI/2 - fTheta) / 3);
+					pIcon->fAlpha = cos ((3*G_PI/2 - fTheta) / 2);
+					g_print ("fScale : %.2f; fAlpha : %.2f\n", pIcon->fScale, pIcon->fAlpha);
 				}
 				else
 				{
@@ -67,6 +68,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 			}
 			while (ic != pFirstDrawnElement);
 		}
+		g_print ("---------\n");
 		
 		//\____________________ On trace le cadre.
 		cairo_translate (pCairoContext, 0, g_iLabelSize);
@@ -90,7 +92,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 		{
 			fColor[i] = (g_fDeskletColorInside[i] * myDesklet->iGradationCount + g_fDeskletColor[i] * (10 - myDesklet->iGradationCount)) / 10;
 		}
-		cairo_set_source_rgba (pCairoContext, fColor[0], fColor[1], fColor[2], .8);
+		cairo_set_source_rgba (pCairoContext, fColor[0], fColor[1], fColor[2], .75);
 		cairo_fill_preserve (pCairoContext);
 		cairo_restore (pCairoContext);
 		
@@ -103,6 +105,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 		}
 		cairo_restore (pCairoContext);
 		
+		//\____________________ On dessine les icones dans l'ordre qui va bien.
 		if (pFirstDrawnElement != NULL)
 		{
 			do
@@ -128,7 +131,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 				{
 					cairo_save (pCairoContext);
 					
-					if (pIcon->fDrawY + pIcon->fHeight < myDesklet->iHeight / 2 && pIcon->fDrawX + pIcon->fWidth/2 < myDesklet->iWidth / 2)  // arriere-plan gauche.
+					if (pIcon->fDrawY + pIcon->fHeight < myDesklet->iHeight / 2 && pIcon->fDrawX + pIcon->fWidth/2 <= myDesklet->iWidth / 2)  // arriere-plan gauche.
 						cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, myDesklet->iWidth);
 					
 					cairo_restore (pCairoContext);
@@ -152,7 +155,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 				{
 					cairo_save (pCairoContext);
 					
-					if (pIcon->fDrawY + pIcon->fHeight > myDesklet->iHeight / 2 && pIcon->fDrawX + pIcon->fWidth/2 > myDesklet->iWidth / 2)  // avant-plan droite.
+					if (pIcon->fDrawY + pIcon->fHeight >= myDesklet->iHeight / 2 && pIcon->fDrawX + pIcon->fWidth/2 > myDesklet->iWidth / 2)  // avant-plan droite.
 						cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, myDesklet->iWidth);
 					
 					cairo_restore (pCairoContext);
@@ -168,7 +171,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 				{
 					cairo_save (pCairoContext);
 					
-					if (pIcon->fDrawY + pIcon->fHeight > myDesklet->iHeight / 2 && pIcon->fDrawX + pIcon->fWidth/2 < myDesklet->iWidth / 2)  // avant-plan gauche.
+					if (pIcon->fDrawY + pIcon->fHeight >= myDesklet->iHeight / 2 && pIcon->fDrawX + pIcon->fWidth/2 <= myDesklet->iWidth / 2)  // avant-plan gauche.
 						cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, myDesklet->iWidth);
 					
 					cairo_restore (pCairoContext);
@@ -220,7 +223,10 @@ gboolean on_scroll_desklet (GtkWidget* pWidget,
 {
 	if (myData.pFirstDrawnElement != NULL)
 	{
-		myData.pFirstDrawnElement = cairo_dock_get_next_element (myData.pFirstDrawnElement, myData.pDeskletIconList);
+		if (pScroll->direction == GDK_SCROLL_UP)
+			myData.pFirstDrawnElement = cairo_dock_get_next_element (myData.pFirstDrawnElement, myData.pDeskletIconList);
+		else if (pScroll->direction == GDK_SCROLL_DOWN)
+			myData.pFirstDrawnElement = cairo_dock_get_previous_element (myData.pFirstDrawnElement, myData.pDeskletIconList);
 		gtk_widget_queue_draw (pDesklet->pWidget);
 	}
 }
