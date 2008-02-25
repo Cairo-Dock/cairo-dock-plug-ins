@@ -47,34 +47,41 @@ msgstr ""
 
 #: ../src/applet-notifications.c:63 ../src/applet-notifications.c:77
 #: ../src/applet-notifications.c:85 ../src/applet-notifications.c:99
+#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:106
 msgid "Temperature"
 msgstr "Température"
 
 #: ../src/applet-notifications.c:64 ../src/applet-notifications.c:78
 #: ../src/applet-notifications.c:86 ../src/applet-notifications.c:100
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:107
 msgid "Wind"
 msgstr "Vent"
 
 #: ../src/applet-notifications.c:65 ../src/applet-notifications.c:79
 #: ../src/applet-notifications.c:87 ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:108
 msgid "Humidity"
 msgstr "Humidité"
 
 #: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
 #: ../src/applet-notifications.c:88 ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:109
 msgid "SunRise"
 msgstr "Lever du soleil"
 
 #: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
 #: ../src/applet-notifications.c:88 ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:109
 msgid "SunSet"
 msgstr "Coucher du soleil"
 
 #: ../src/applet-notifications.c:77 ../src/applet-notifications.c:99
+#: ../src/applet-notifications.c:106
 msgid "feeled"
 msgstr "ressentie"
 
 #: ../src/applet-notifications.c:79 ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:108
 msgid "Pressure"
 msgstr "Pression"
 
@@ -146,7 +153,7 @@ msgstr "Desklet"
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -250,4 +257,4 @@ msgstr "Déc"
 
 #: ../data/messages:63
 msgid "Render desklet in 3D ?"
-msgstr ""
+msgstr "Dessiner le desklet en 3D ?"

@@ -135,9 +135,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 	}
 	
 	//\_______________ On lance la surveillancce de nos poubelles.
-	if (!g_thread_supported ())
-		g_thread_init (NULL);
-	
 	if (bMonitoringOK)
 	{
 		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)

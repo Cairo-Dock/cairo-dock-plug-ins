@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2008-02-25 15:58+0900\n"
+"Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
+"Language-Team: Japanese <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "アイコン"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "このアプレットのアイコンの大きさ"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "幅 :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高さ :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "ドックのラベル上に表示するアイコンの名前 :"
+
+msgid "Module"
+msgstr "モジュール"
+
+#: ../data/messages:11
+msgid "Icon's name :"
+msgstr "アイコンの名前 :"
+
+#: src/applet-notifications.c:13
+#: ../src/applet-notifications.c:16
+msgid ""
+"This is a very simple logout applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"これは Fabrice Rey によって Cairo-Dock 用に製作された\n"
+"とてもシンプルな logout アプレットです。"
+
+#: ../data/messages:11
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "デスクレット"
+
+#: ../data/messages:13
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+
+#: ../data/messages:15
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "デスクレットの寸法（幅×高さ） :"
+
+#: ../data/messages:17
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+
+#: ../data/messages:19
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "デスクレットの位置（X ; Y） :"
+
+#: ../data/messages:21
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "ドックから分離？"
+
+#: ../data/messages:23
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
+
+#: ../data/messages:25
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
+
+#: ../data/messages:27
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:29
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+#: ../data/messages:33
+msgid "Configuration"
+msgstr "設定"
+
+#: ../data/messages:35
+msgid "Let empty to execute the default command."
+msgstr "デフォルトのコマンドを実行するには空欄のままに。"
+
+#: ../data/messages:37
+msgid "User-defined command to execute to log-out :"
+msgstr "ログアウトを実行するユーザー定義コマンド :"
+

@@ -23,12 +23,12 @@ extern AppletData myData;
 
 void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastFilePath)
 {
-	gboolean bTest = FALSE;
+	gboolean bTest = TRUE;
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)
 	{
 		*cCurrentConditionsFilePath = g_strconcat (g_get_tmp_dir (), WEATHER_CURRENT_CONDITIONS_FILE, NULL);
-		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s -o /dev/null", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), *cCurrentConditionsFilePath);
+		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), *cCurrentConditionsFilePath);
 		system (cCommand);
 		g_free (cCommand);
 		if (bTest)
@@ -42,7 +42,7 @@ void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastF
 	if (myConfig.iNbDays > 0)
 	{
 		*cForecastFilePath = g_strconcat (g_get_tmp_dir (), WEATHER_FORECAST_FILE, NULL);
-		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s -o /dev/null", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), *cForecastFilePath);
+		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), *cForecastFilePath);
 		system (cCommand);
 		g_free (cCommand);
 		if (bTest)
@@ -186,7 +186,7 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 					if (str != NULL)
 					{
 						*str = '\0';
-						myData.days[i].cDate = g_strconcat (_D(cDate), " ", str+1);
+						myData.days[i].cDate = g_strconcat (_D(cDate), " ", str+1, NULL);
 						g_free (cDate);
 					}
 					else

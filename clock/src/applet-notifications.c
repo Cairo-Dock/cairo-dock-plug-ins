@@ -45,14 +45,9 @@ CD_APPLET_ABOUT (_D("This is the Cairo-Dock's clock applet\n made by Fabrice Rey
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	GtkWidget *pDialog = gtk_dialog_new ();
-	
+	cairo_dock_remove_dialog_if_any (myIcon);
 	GtkWidget *pCalendar = gtk_calendar_new ();
-	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (pDialog)->vbox), pCalendar);
-	gtk_widget_show (pCalendar);
-	
-	gtk_dialog_run (GTK_DIALOG (pDialog));
-	gtk_widget_destroy (pDialog);
+	cairo_dock_show_dialog_full (_("Calendar"), myIcon, myContainer, 0, NULL, GTK_BUTTONS_NONE, pCalendar, NULL, NULL, NULL);
 CD_APPLET_ON_CLICK_END
 
 
@@ -68,4 +63,5 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		kill (myData.iAlarmPID, 1);
 		myData.iAlarmPID = 0;
 	}
+	cairo_dock_remove_dialog_if_any (myIcon);
 CD_APPLET_ON_MIDDLE_CLICK_END

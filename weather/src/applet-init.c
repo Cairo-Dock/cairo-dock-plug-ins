@@ -21,23 +21,51 @@ AppletData myData;
 CD_APPLET_DEFINITION ("weather", 1, 5, 1)
 
 
-static gboolean on_scroll_desklet (GtkWidget* pWidget,
-			GdkEventScroll* pScroll,
-			CairoDockDesklet *pDesklet)
+static gboolean _cd_weather_rotate (gpointer data)
 {
-	if (myData.pFirstDrawnElement != NULL)
+	myData.iRotationCount += (myData.iRotationDirection == GDK_SCROLL_UP ? 1 : -1);
+	myData.fRotationAngle += (myData.iRotationDirection == GDK_SCROLL_UP ? 1 : -1) * 2 * G_PI / myData.iNbIcons / 10;
+	if (myData.fRotationAngle >= 2*G_PI)
+		myData.fRotationAngle -= 2*G_PI;
+	else if (myData.fRotationAngle < 0)
+		myData.fRotationAngle += 2*G_PI;
+	gtk_widget_queue_draw (myDesklet->pWidget);
+	if (abs (myData.iRotationCount) >= 10 || myData.iRotationCount == 0)
 	{
-		if (pScroll->direction == GDK_SCROLL_UP)
-			myData.pFirstDrawnElement = cairo_dock_get_next_element (myData.pFirstDrawnElement, myData.pDeskletIconList);
-		else if (pScroll->direction == GDK_SCROLL_DOWN)
-			myData.pFirstDrawnElement = cairo_dock_get_previous_element (myData.pFirstDrawnElement, myData.pDeskletIconList);
-		gtk_widget_queue_draw (pDesklet->pWidget);
+		myData.iRotationCount = 0;
+		myData.iSidRotation = 0;
+		return FALSE;
+	}
+	else
+		return TRUE;
+}
+
+static gboolean on_scroll_desklet (GtkWidget* pWidget,
+	GdkEventScroll* pScroll,
+	CairoDockDesklet *pDesklet)
+{
+	if (myData.pDeskletIconList != NULL && (pScroll->direction == GDK_SCROLL_DOWN || pScroll->direction == GDK_SCROLL_UP))
+	{
+		if (myData.iSidRotation == 0)
+		{
+			myData.iRotationDirection = pScroll->direction;
+			myData.iSidRotation = g_timeout_add (50, (GSourceFunc) _cd_weather_rotate, (gpointer) NULL);
+		}
+		else
+		{
+			if (pScroll->direction == myData.iRotationDirection)
+			{
+				myData.iRotationCount = 0;
+			}
+			else
+			{
+				myData.iRotationDirection = pScroll->direction;
+			}
+		}
+		_cd_weather_rotate (NULL);
 	}
 }
 CD_APPLET_INIT_BEGIN (erreur)
-	if (!g_thread_supported ())
-		g_thread_init (NULL);
-	
 	if (myDesklet != NULL)
 	{
 		if (myConfig.bDesklet3D)
@@ -51,7 +79,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 			myIcon->fHeight = MAX (1, (myDesklet->iHeight - g_iDockRadius) * WEATHER_RATIO_ICON_DESKLET);
 		}
 		myIcon->fDrawX = (myDesklet->iWidth - myIcon->fWidth) / 2;
-		myIcon->fDrawY = (myDesklet->iHeight - myIcon->fHeight) / 2;
+		myIcon->fDrawY = (myDesklet->iHeight - myIcon->fHeight) / 2 + (myConfig.bDesklet3D ? g_iLabelSize : 0);
 		myIcon->fScale = 1.;
 		myIcon->fAlpha = 1.;
 		myIcon->fWidthFactor = 1.;
@@ -105,7 +133,7 @@ CD_APPLET_RELOAD_BEGIN
 			myIcon->fHeight = MAX (1, (myDesklet->iHeight - g_iDockRadius) * WEATHER_RATIO_ICON_DESKLET);
 		}
 		myIcon->fDrawX = (myDesklet->iWidth - myIcon->fWidth) / 2;
-		myIcon->fDrawY = (myDesklet->iHeight - myIcon->fHeight) / 2;
+		myIcon->fDrawY = (myDesklet->iHeight - myIcon->fHeight) / 2 + (myConfig.bDesklet3D ? g_iLabelSize : 0);
 		myIcon->fScale = 1.;
 		myIcon->fAlpha = 1.;
 		myIcon->fWidthFactor = 1.;

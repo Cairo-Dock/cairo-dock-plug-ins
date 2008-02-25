@@ -24,25 +24,31 @@ CD_APPLET_ABOUT (_D("This is the weather applet\n made by Fabrice Rey for Cairo-
 CD_APPLET_ON_CLICK_BEGIN
 	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedDock == myIcon->pSubDock)
 	{
-		g_print (" clic sur %s\n", pClickedIcon->acName);
+		cd_debug (" clic sur %s", pClickedIcon->acName);
 		cd_weather_show_forecast_dialog (pClickedIcon);
 	}
 	else if (myDesklet != NULL && pClickedDock == myDesklet)
 	{
 		int iMouseX = - (int) myDesklet->diff_x;
 		int iMouseY = - (int) myDesklet->diff_y;
-		g_print (" clic en (%d;%d)\n", iMouseX, iMouseY);
+		cd_debug (" clic en (%d;%d)", iMouseX, iMouseY);
 		
-		GList* ic;
-		Icon *icon;
-		for (ic = myData.pDeskletIconList; ic != NULL; ic = ic->next)
+		if (myIcon->fDrawX < iMouseX && myIcon->fDrawX + myIcon->fWidth > iMouseX && myIcon->fDrawY < iMouseY && myIcon->fDrawY + myIcon->fHeight > iMouseY)
 		{
-			icon = ic->data;
-			if (icon->fDrawX < iMouseX && icon->fDrawX + icon->fWidth > iMouseX && icon->fDrawY < iMouseY && icon->fDrawY + icon->fHeight > iMouseY)
+			cd_weather_show_current_conditions_dialog ();
+		}
+		else
+		{
+			GList* ic;
+			Icon *icon;
+			for (ic = myData.pDeskletIconList; ic != NULL; ic = ic->next)
 			{
-				g_print (" clic sur %s\n", icon->acName);
-				cd_weather_show_forecast_dialog (icon);
-				break ;
+				icon = ic->data;
+				if (icon->fDrawX < iMouseX && icon->fDrawX + icon->fWidth * icon->fScale > iMouseX && icon->fDrawY < iMouseY && icon->fDrawY + icon->fHeight * icon->fScale > iMouseY)
+				{
+					cd_weather_show_forecast_dialog (icon);
+					break ;
+				}
 			}
 		}
 	}

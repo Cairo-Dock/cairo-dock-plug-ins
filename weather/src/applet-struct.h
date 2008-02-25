@@ -76,10 +76,12 @@ typedef struct {
 	Day days[WEATHER_NB_DAYS_MAX];
 	gint iSidTimer;
 	GList *pDeskletIconList;
-	gint iMaxIconHeight;
 	gint iMaxIconWidth;
-	gdouble fLinearWidth;
-	GList *pFirstDrawnElement;
+	gint iNbIcons;
+	guint iSidRotation;
+	gint iRotationDirection;
+	gint iRotationCount;
+	gdouble fRotationAngle;
 	} AppletData;
 
 

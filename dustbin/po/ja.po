@@ -1,0 +1,267 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2008-02-25 16:05+0900\n"
+"Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
+"Language-Team: Japanese <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "このアプレットのアイコンの大きさ"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "幅 :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高さ :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "ドックのラベル上に表示するアイコンの名前 :"
+
+#: ../data/messages:33
+msgid "Theme"
+msgstr "テーマ"
+
+#: ../data/messages:35
+msgid "Choose one of the available themes :"
+msgstr "利用可能なテーマから1つ選択 :"
+
+#: ../data/messages:69
+msgid "Interval of time to check if dustbin is full/empty :"
+msgstr "ゴミ箱が満杯か空かをチェックする間隔時間 :"
+
+msgid "in seconds"
+msgstr "秒単位"
+
+msgid "Here you can specify a list of Trash directory :"
+msgstr "ここでゴミ箱ディレクトリのリストの指定可能 :"
+
+msgid "File browser used to show a trash :"
+msgstr "ゴミ箱の表示に使用するファイルブラウザ :"
+
+#: src/applet-notifications.c:21
+msgid ""
+"This is the dustbin applet for Cairo-Dock\n"
+" made by Fabrice Rey (fabounet_03@yahoo.fr)"
+msgstr ""
+"これは Fabrice Rey (fabounet_03@yahoo.fr) により\n"
+"Cairo-Dock 用に製作された dustbin アプレットです。"
+
+#: src/applet-notifications.c:42
+#: ../src/applet-notifications.c:38
+msgid "Show Trash"
+msgstr "中身を表示"
+
+#: src/applet-notifications.c:54
+#: ../src/applet-notifications.c:45
+msgid "Show All"
+msgstr "すべて表示"
+
+#: src/applet-notifications.c:56
+#: ../src/applet-notifications.c:47
+msgid "Delete Trash"
+msgstr "中身を削除"
+
+#: src/applet-notifications.c:69
+#: ../src/applet-notifications.c:54
+msgid "Delete All"
+msgstr "すべて削除"
+
+#: src/applet-notifications.c:81
+#: ../src/applet-trashes-manager.c:387
+#, c-format
+msgid "You're about to delete all files in %s. Sure ?"
+msgstr "%s の全ファイルを削除しようとしています。よろしいですか？"
+
+#: src/applet-notifications.c:83
+msgid "You're about to delete all files all dustbins. Sure ?"
+msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
+
+#: src/applet-notifications.c:145
+#: ../src/applet-trashes-manager.c:446
+#, c-format
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual file browser,\n"
+"you can change it in the conf panel of this module"
+msgstr ""
+"問題が発生しました。\n"
+"'%s' が標準のファイルブラウザでない場合は、\n"
+"このモジュールの設定パネルで変更することができます。"
+
+#: src/applet-notifications.c:48
+#: ../src/applet-notifications.c:42
+#, c-format
+msgid "Show %s"
+msgstr "%s を表示"
+
+#: src/applet-notifications.c:62
+#: ../src/applet-notifications.c:51
+#, c-format
+msgid "Delete %s"
+msgstr "%s を削除"
+
+#: ../src/applet-draw.c:152
+msgid "calculating"
+msgstr "計算中"
+
+#: ../src/applet-draw.c:162
+msgid " trashes"
+msgstr "ゴミ"
+
+#: ../src/applet-draw.c:166
+msgid " files"
+msgstr "ファイル"
+
+#: ../src/applet-notifications.c:22
+msgid ""
+"This is the dustbin applet for Cairo-Dock\n"
+" made by Fabrice Rey (fabounet@users.berlios.de)"
+msgstr ""
+"これは Fabrice Rey (fabounet@users.berlios.de) により\n"
+"Cairo-Dock 用に製作された dustbin アプレットです。"
+
+#: ../src/applet-notifications.c:68
+#, c-format
+msgid "%s is now unmounted"
+msgstr "%s は現在アンマウントされています"
+
+#: ../src/applet-notifications.c:72
+#, c-format
+msgid "failed to unmount %s"
+msgstr "%s のアンマウントに失敗"
+
+#: ../src/applet-trashes-manager.c:389
+msgid "You're about to delete all files in all dustbins. Sure ?"
+msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "アイコン"
+
+#: ../data/messages:11
+msgid "Desklet"
+msgstr "デスクレット"
+
+#: ../data/messages:13
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+
+#: ../data/messages:15
+msgid "Desklet's dimension (width x height) :"
+msgstr "デスクレットの寸法（幅×高さ） "
+
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+
+#: ../data/messages:19
+msgid "Desklet's position (x ; y) :"
+msgstr "デスクレットの位置（X ; Y） :"
+
+#: ../data/messages:21
+msgid "Is detached from the dock ?"
+msgstr "ドックから分離？"
+
+#: ../data/messages:23
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
+
+#: ../data/messages:25
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
+
+#: ../data/messages:27
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+#: ../data/messages:31
+msgid "Module"
+msgstr "モジュール"
+
+#: ../data/messages:37
+msgid "Name of an image to overwrite the theme's empty image :"
+msgstr "テーマのゴミ箱空っぽ時画像に置き換える画像の名前 :"
+
+#: ../data/messages:39
+msgid "Name of an image to overwrite the theme's full image :"
+msgstr "テーマのゴミ箱満杯時画像に置き換える画像の名前 :"
+
+#: ../data/messages:41
+msgid "Config"
+msgstr "設定"
+
+#: ../data/messages:43
+msgid "They don't even need to be real trash directories."
+msgstr "システムの実際のゴミ箱用ディレクトリ（.Trash）でなくとも指定可能です。"
+
+#: ../data/messages:45
+msgid "Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr "監視対象に含める追加的なゴミ箱ディレクトリのリストの指定 :"
+
+#: ../data/messages:47
+msgid "Display the following quick info :"
+msgstr "以下の簡便情報を表示 :"
+
+#: ../data/messages:49
+msgid "None"
+msgstr "なし"
+
+#: ../data/messages:51
+msgid "Number of trashes"
+msgstr "ゴミの数"
+
+#: ../data/messages:53
+msgid "Total number of files"
+msgstr "ファイルの総数"
+
+#: ../data/messages:55
+msgid "Total weight"
+msgstr "総量"
+
+#: ../data/messages:57
+#: ../data/messages:61
+msgid "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+msgstr "Mb 単位。この上限値を越えた際に通知を行います。0 に設定すると通知を使用しません。"
+
+#: ../data/messages:59
+msgid "Maximum total size of all dustbins :"
+msgstr "全ゴミ箱の最大総量 :"
+
+#: ../data/messages:63
+msgid "Maximum size authorized for each dustbin :"
+msgstr "各ゴミ箱に割り当てる最大量 :"
+
+#: ../data/messages:65
+msgid "Desktop-less support"
+msgstr "無デスクトップのサポート"
+
+#: ../data/messages:67
+msgid "in seconds, only used if you can't monitor directories."
+msgstr "秒単位。ディレクトリを監視できない場合にのみ使用されます。"
+
+#: ../data/messages:71
+msgid "Only use this if you notice that the applet can't display the trash on click."
+msgstr "アプレットがクリックでゴミ箱の中身を表示できない場合にのみ使用してください。"
+
+#: ../data/messages:73
+msgid "Alternative file browser used to show a trash :"
+msgstr "ゴミ箱の表示に使用する代替ファイルブラウザ :"
+

@@ -139,9 +139,8 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 			g_list_foreach (myData.pDeskletIconList, (GFunc) cairo_dock_free_icon, NULL);
 			g_list_free (myData.pDeskletIconList);
 			myData.pDeskletIconList = NULL;
-			myData.iMaxIconHeight = 0;
+			myData.iNbIcons = 0;
 			myData.iMaxIconWidth = 0;
-			myData.fLinearWidth = 0;
 		}
 		if (myIcon->pSubDock != NULL)
 		{
@@ -187,6 +186,7 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 				myIcon->pSubDock = NULL;
 			}
 			myData.pDeskletIconList = pIconList;
+			myData.iNbIcons = g_list_length (myData.pDeskletIconList);
 			GList* ic;
 			Icon *icon;
 			cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
@@ -205,16 +205,12 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 					icon->fWidth = .2 * myDesklet->iWidth;
 					icon->fHeight = .2 * myDesklet->iHeight;
 				}
-				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, myConfig.bDesklet3D);
-				myData.iMaxIconHeight = MAX (myData.iMaxIconHeight, icon->fHeight);
 				myData.iMaxIconWidth = MAX (myData.iMaxIconWidth, icon->fWidth);
-				icon->fX = myData.fLinearWidth;
-				myData.fLinearWidth += icon->fWidth;
+				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, myConfig.bDesklet3D);
 			}
 			cairo_destroy (pCairoContext);
 			gtk_widget_queue_draw (myDesklet->pWidget);
 		}
-		myData.pFirstDrawnElement = myData.pDeskletIconList;
 		
 		//\_______________________ On lance le timer si necessaire.
 		if (myData.iSidTimer == 0)
@@ -231,7 +227,7 @@ void cd_weather_launch_measure (void)
 		cd_message (" ==> lancement du thread de calcul");
 		
 		if (s_iSidTimerRedraw == 0)
-			s_iSidTimerRedraw = g_timeout_add (200, (GSourceFunc) _cd_weather_check_for_redraw, (gpointer) NULL);
+			s_iSidTimerRedraw = g_timeout_add (250, (GSourceFunc) _cd_weather_check_for_redraw, (gpointer) NULL);
 		
 		GError *erreur = NULL;
 		GThread* pThread = g_thread_create ((GThreadFunc) cd_weather_threaded_calculation,
