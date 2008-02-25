@@ -10,6 +10,8 @@
 
 #define WEATHER_DEFAULT_NAME "weather"
 
+#define _display(cValue) (cValue == NULL || *cValue == 'N' ? "?" : cValue)
+
 typedef struct {
 	gchar *cLocationCode;
 	gboolean bISUnits;

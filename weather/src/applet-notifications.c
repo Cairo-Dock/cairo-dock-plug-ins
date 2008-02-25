@@ -83,10 +83,10 @@ CairoDockDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
 	cairo_dock_show_temporary_dialog_with_icon ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%s (%s)\n %s : %s\n %s : %s  %s %s",
 		(myDock != NULL ? pIcon : myIcon), (myDock != NULL ? myIcon->pSubDock : myDesklet), myConfig.cDialogDuration, pIcon->acFileName,
 		day->cName, day->cDate, part->cWeatherDescription,
-		_D("Temperature"), day->cTempMin, myData.units.cTemp, day->cTempMax, myData.units.cTemp,
-		_D("Wind"), part->cWindSpeed, myData.units.cSpeed, part->cWindDirection,
-		_D("Humidity"), part->cHumidity,  // unite ?...
-		_D("SunRise"), day->cSunRise, _("SunSet"), day->cSunSet);
+		_D("Temperature"), _display (day->cTempMin), myData.units.cTemp, _display (day->cTempMax), myData.units.cTemp,
+		_D("Wind"), _display (part->cWindSpeed), myData.units.cSpeed, _display (part->cWindDirection),
+		_D("Humidity"), _display (part->cHumidity),  // unite ?...
+		_D("SunRise"), _display (day->cSunRise), _("SunSet"), _display (day->cSunSet));
 }
 
 CairoDockDialog *cd_weather_show_current_conditions_dialog (void)
@@ -97,9 +97,9 @@ CairoDockDialog *cd_weather_show_current_conditions_dialog (void)
 	cairo_dock_show_temporary_dialog_with_icon ("%s (%s, %s)\n %s : %s%s (%s : %s%s)\n %s : %s%s (%s)\n %s : %s - %s : %s%s\n %s : %s  %s %s",
 		myIcon, myDesklet, myConfig.cDialogDuration, myIcon->acFileName,
 		cc->cWeatherDescription, cc->cDataAcquisitionDate, cc->cObservatory,
-		_D("Temperature"), cc->cTemp, myData.units.cTemp, _D("feeled"), cc->cFeeledTemp, myData.units.cTemp,
-		_D("Wind"), cc->cWindSpeed, myData.units.cSpeed, cc->cWindDirection,
-		_D("Humidity"), cc->cHumidity, _D("Pressure"), cc->cPressure, myData.units.cPressure,  // unite ?...
-		_D("SunRise"), cc->cSunRise, _D("SunSet"), cc->cSunSet);
+		_D("Temperature"), _display (cc->cTemp), myData.units.cTemp, _D("feeled"), _display (cc->cFeeledTemp), myData.units.cTemp,
+		_D("Wind"), _display (cc->cWindSpeed), myData.units.cSpeed, _display (cc->cWindDirection),
+		_D("Humidity"), _display (cc->cHumidity), _D("Pressure"), _display (cc->cPressure), myData.units.cPressure,  // unite ?...
+		_D("SunRise"), _display (cc->cSunRise), _D("SunSet"), _display (cc->cSunSet));
 }
 

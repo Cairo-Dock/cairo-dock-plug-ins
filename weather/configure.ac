@@ -49,5 +49,6 @@ AC_CONFIG_FILES([Makefile
 		data/weather.conf
 		data/themes/Makefile
 		data/themes/basic/Makefile
+		data/themes/Shiny/Makefile
 		data/themes/WeatherPod/Makefile])
 AC_OUTPUT

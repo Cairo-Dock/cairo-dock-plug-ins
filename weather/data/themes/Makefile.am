@@ -1,5 +1,6 @@
 
 SUBDIRS = .\
 	basic\
-	WeatherPod
+	WeatherPod\
+	Shiny
 

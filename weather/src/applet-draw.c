@@ -193,24 +193,29 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 		double c = sqrt (a * a - b * b);
 		double e = c / a;
 		gboolean bFlip = (myIcon->fHeight > myIcon->fWidth);
-		double fRadius;
 		Icon *pIcon;
-		GList *pElement;
-		for (pElement = myData.pDeskletIconList; pElement != NULL; pElement = pElement->next)
+		GList *ic;
+		GList *pFirstDrawnElement = (myData.pFirstDrawnElement != NULL ? myData.pFirstDrawnElement : myData.pDeskletIconList);
+		if (pFirstDrawnElement != NULL)
 		{
-			pIcon = pElement->data;
-			if (pIcon->pIconBuffer != NULL)
+			ic = pFirstDrawnElement;
+			do
 			{
-				cairo_save (pCairoContext);
-				
-				fRadius = (bFlip ? sqrt (b * b / (1 - e * e * cos (G_PI/2-fTheta) * cos (G_PI/2-fTheta))) : sqrt (b * b / (1 - e * e * cos (fTheta) * cos (fTheta))));
-				pIcon->fDrawX = myIcon->fDrawX + myIcon->fWidth / 2 + (bFlip ? b : a) * cos (fTheta) - pIcon->fWidth/2;
-				pIcon->fDrawY = myIcon->fDrawY + myIcon->fHeight / 2 + (bFlip ? a : b) * sin (fTheta) - pIcon->fHeight/2;
-				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, myDesklet->iWidth);
-				
-				cairo_restore (pCairoContext);
+				pIcon = ic->data;
+				if (pIcon->pIconBuffer != NULL)
+				{
+					cairo_save (pCairoContext);
+					
+					pIcon->fDrawX = myIcon->fDrawX + myIcon->fWidth / 2 + (bFlip ? b : a) * cos (fTheta) - pIcon->fWidth/2;
+					pIcon->fDrawY = myIcon->fDrawY + myIcon->fHeight / 2 + (bFlip ? a : b) * sin (fTheta) - pIcon->fHeight/2;
+					cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, myDesklet->iWidth);
+					
+					cairo_restore (pCairoContext);
+				}
+				fTheta += fDeltaTheta;
+				ic = cairo_dock_get_next_element (ic, myData.pDeskletIconList);
 			}
-			fTheta += fDeltaTheta;
+			while (ic != pFirstDrawnElement);
 		}
 	}
 }
