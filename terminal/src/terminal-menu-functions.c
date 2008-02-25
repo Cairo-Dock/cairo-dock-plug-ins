@@ -222,7 +222,7 @@ static void terminal_new_tab()
   g_signal_connect (G_OBJECT (vterm), "eof",
                     G_CALLBACK (applet_on_terminal_eof), NULL);
 
-  cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received));
+  cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received), NULL);
   int num_new_tab = gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, NULL);
  /// creer un widget avec un label et un bouton 'close' a mettre a la place du NULL. garder une trace du label pour pouvoir le changer plus tard (numerotation ou repertoire courant ou nom utilisateur).
   gtk_widget_show(vterm);
