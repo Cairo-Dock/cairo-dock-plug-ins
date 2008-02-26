@@ -35,8 +35,7 @@ msgstr "ドックのラベル上に表示するアイコンの名前 :"
 msgid "Icon's name :"
 msgstr "アイコンの名前 :"
 
-#: src/applet-notifications.c:13
-#: ../src/applet-notifications.c:20
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:20
 #: ../src/applet-notifications.c:19
 msgid ""
 "This is the shortcuts applet\n"
@@ -45,8 +44,7 @@ msgstr ""
 "これは Fabounet により製作された\n"
 "Cairo-Dock用の Shortcuts アプレットです。"
 
-#: ../src/applet-notifications.c:42
-#: ../src/applet-notifications.c:41
+#: ../src/applet-notifications.c:42 ../src/applet-notifications.c:41
 msgid "Remove this bookmark"
 msgstr "このブックマークを削除"
 
@@ -85,4 +83,3 @@ msgstr "デフォルトのサブ・ドックの外観を使用するには空欄
 #: ../data/messages:27
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
-

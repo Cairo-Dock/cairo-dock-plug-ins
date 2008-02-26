@@ -68,7 +68,7 @@ void systray_build_and_show (void)
 
 	if (myDock)
 	{
-		myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myDock, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myContainer, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 		gtk_window_set_resizable(GTK_WINDOW(myData.dialog->pWidget), FALSE);
 		//	gtk_window_resize(GTK_WINDOW(myData.dialog->pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
 	}

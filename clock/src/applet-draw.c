@@ -71,7 +71,8 @@ gboolean cd_clock_update_with_time (Icon *icon)
 			myDrawContext,
 			(myDock->bHorizontalDock ? icon->fWidth : icon->fHeight) * (1 + g_fAmplitude),
 			(myDock->bHorizontalDock ? icon->fHeight : icon->fWidth) * (1 + g_fAmplitude),
-			myDock->bHorizontalDock);
+			myDock->bHorizontalDock,
+			1 + g_fAmplitude);
 	}
 	
 	if (myConfig.iShowDate == CLOCK_DATE_ON_LABEL && (epoch_tm.tm_mday != iLastCheckedDay || epoch_tm.tm_mon != iLastCheckedMonth || epoch_tm.tm_year != iLastCheckedYear))

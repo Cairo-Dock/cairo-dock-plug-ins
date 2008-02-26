@@ -99,8 +99,7 @@ msgstr "アイコンの代わりにアルバムのカバーを表示？"
 msgid "Information to display on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: src/rhythmbox-draw.c:101
-#: src/rhythmbox-draw.c:102
+#: src/rhythmbox-draw.c:101 src/rhythmbox-draw.c:102
 #: ../src/rhythmbox-draw.c:77
 #, c-format
 msgid ""
@@ -112,32 +111,27 @@ msgstr ""
 "アルバム : %s\n"
 "タイトル : %s"
 
-#: ../src/rhythmbox-draw.c:81
-#: ../src/rhythmbox-draw.c:82
+#: ../src/rhythmbox-draw.c:81 ../src/rhythmbox-draw.c:82
 #: ../src/rhythmbox-draw.c:83
 msgid "Unknown"
 msgstr "不明"
 
-#: src/rhythmbox-menu-functions.c:59
-#: src/rhythmbox-menu-functions.c:60
+#: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
 #: ../src/rhythmbox-menu-functions.c:61
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
-#: src/rhythmbox-menu-functions.c:67
-#: src/rhythmbox-menu-functions.c:68
+#: src/rhythmbox-menu-functions.c:67 src/rhythmbox-menu-functions.c:68
 #: ../src/rhythmbox-menu-functions.c:71
 msgid "Previous"
 msgstr "前へ"
 
-#: src/rhythmbox-menu-functions.c:69
-#: src/rhythmbox-menu-functions.c:70
+#: src/rhythmbox-menu-functions.c:69 src/rhythmbox-menu-functions.c:70
 #: ../src/rhythmbox-menu-functions.c:73
 msgid "Next"
 msgstr "次へ"
 
-#: src/rhythmbox-menu-functions.c:71
-#: src/rhythmbox-menu-functions.c:72
+#: src/rhythmbox-menu-functions.c:71 src/rhythmbox-menu-functions.c:72
 #: ../src/rhythmbox-menu-functions.c:75
 msgid "Information"
 msgstr "情報"
@@ -171,11 +165,8 @@ msgstr "トラック番号"
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:57
-#: ../data/messages:61
-#: ../data/messages:65
-#: ../data/messages:69
-#: ../data/messages:73
+#: ../data/messages:57 ../data/messages:61 ../data/messages:65
+#: ../data/messages:69 ../data/messages:73
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
@@ -198,4 +189,3 @@ msgstr "'一時停止' アイコンの画像の名前 :"
 #: ../data/messages:75
 msgid "Name of an image for the 'broken' icon :"
 msgstr "'リンク切れ' アイコンの画像の名前 :"
-

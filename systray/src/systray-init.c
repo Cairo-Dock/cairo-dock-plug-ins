@@ -79,7 +79,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 			else  // il faut passer du desklet au dialogue
 			{
-				myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myDock, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+				myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myContainer, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 				cairo_dock_hide_dialog (myData.dialog);
 			}
 		}

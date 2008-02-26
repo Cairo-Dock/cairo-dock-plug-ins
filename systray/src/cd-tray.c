@@ -124,7 +124,7 @@ tray_icon_message_sent (NaTrayManager *manager,
                         TrayApplet     *applet)
 {
   g_warning ("tray_icon_message_sent : %s\n", text);
-  cairo_dock_show_temporary_dialog(text, myIcon, myDock, timeout);
+  cairo_dock_show_temporary_dialog(text, myIcon, myContainer, timeout);
 }
 
 static void tray_icon_message_cancelled (NaTrayManager *manager,

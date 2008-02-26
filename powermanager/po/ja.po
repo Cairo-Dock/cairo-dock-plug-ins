@@ -82,7 +82,9 @@ msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
 
 #: src/applet-notifications.c:83
 msgid "You're about to delete all files all dustbins. Sure ?"
-msgstr "Vous êtes sur le point de détruire tous les fichiers de toutes les poubelles. Sur ?"
+msgstr ""
+"Vous êtes sur le point de détruire tous les fichiers de toutes les "
+"poubelles. Sur ?"
 
 #: src/applet-notifications.c:145
 #, c-format
@@ -168,4 +170,3 @@ msgstr "充電量"
 #: ../data/messages:21
 msgid "time"
 msgstr "時間"
-

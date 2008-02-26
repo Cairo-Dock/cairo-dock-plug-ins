@@ -240,7 +240,7 @@ void terminal_build_and_show_tab (void)
 
 	if (myDock)
 	{
-		myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myDock, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myContainer, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 	}
 	else
 	{
