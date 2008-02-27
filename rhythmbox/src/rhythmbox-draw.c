@@ -15,15 +15,29 @@ void rhythmbox_iconWitness(int animationLength)
 	CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength)
 }
 
-
+gboolean _rhythmbox_check_cover_is_present (gpointer data)
+{
+	if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
+	{
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover)
+		CD_APPLET_REDRAW_MY_ICON
+		myData.cover_exist = TRUE;
+		myData.iSidCheckCover = 0;
+		return FALSE;
+	}
+	else
+	{
+		return TRUE;
+	}
+}
 void update_icon(gboolean make_witness)
 {
-	cd_message ("%s ()\n",__func__);
+	cd_message ("");
 	if(myData.playing_uri != NULL)
 	{
 		//Affichage de la chanson courante.
 		gchar *songName = g_strdup_printf("%s - %s", myData.playing_artist, myData.playing_title);
-		cd_message ("  songName : %s\n", songName);
+		cd_message ("  songName : %s", songName);
 		CD_APPLET_SET_NAME_FOR_MY_ICON (songName);
 		g_free (songName);
 		
@@ -34,12 +48,18 @@ void update_icon(gboolean make_witness)
 		}
 		
 		//Affichage de la couverture de l'album.
-		gchar *cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
-		cd_message ("  cover : %s\n", cover);
-		if(g_file_test (cover, G_FILE_TEST_EXISTS) && myConfig.enableCover)
+		//gchar *cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
+		//cd_message ("  cover : %s", cover);
+		if (myConfig.enableCover && myData.playing_cover != NULL && g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 		{
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (cover);
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+			CD_APPLET_REDRAW_MY_ICON
 			myData.cover_exist = TRUE;
+			if (myData.iSidCheckCover != 0)
+			{
+				g_source_remove (myData.iSidCheckCover);
+				myData.iSidCheckCover = 0;
+			}
 		}
 		else
 		{
@@ -52,8 +72,13 @@ void update_icon(gboolean make_witness)
 				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pPauseSurface);
 			}
 			myData.cover_exist = FALSE;
+			if (myConfig.enableCover && myData.playing_cover != NULL && myData.iSidCheckCover == 0)
+			{
+				g_print ("myData.playing_cover : %s mais n'existe pas encore !\n", myData.playing_cover);
+				myData.iSidCheckCover = g_timeout_add (1000, (GSourceFunc) _rhythmbox_check_cover_is_present, (gpointer) NULL);
+			}
 		}
-		g_free (cover);
+		//g_free (cover);
 		
 		//Animation de l'icone et dialogue.
 		if(make_witness)

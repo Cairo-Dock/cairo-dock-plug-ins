@@ -44,6 +44,8 @@ typedef struct {
 	const gchar *playing_artist;
 	const gchar *playing_album;
 	const gchar *playing_title;
+	gchar *playing_cover;
+	guint iSidCheckCover;
 	} AppletData;
 
 
