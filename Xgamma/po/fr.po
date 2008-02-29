@@ -47,7 +47,7 @@ msgstr ""
 " écrite par Fabrice Rey pour Cairo-Dock"
 
 #: ../src/applet-init.c:108 ../src/applet-notifications.c:34
-#: ../src/applet-xgamma.c:156
+#: ../src/applet-xgamma.c:156 ../src/applet-init.c:107
 msgid "Set up gamma :"
 msgstr "Réglez le gamma :"
 

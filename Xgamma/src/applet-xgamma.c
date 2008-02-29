@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 ******************************************************************************/
 
@@ -153,7 +153,7 @@ void xgamma_build_and_show_widget (void)
 	
 	if (myDock)
 	{
-		myData.pDialog = myData.pDialog = cairo_dock_build_dialog (_D("Set up gamma :"),
+		myData.pDialog = cairo_dock_build_dialog (_D("Set up gamma :"),
 			myIcon,
 			myDock,
 			NULL,

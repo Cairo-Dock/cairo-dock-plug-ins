@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 ******************************************************************************/
 
@@ -30,8 +30,7 @@ static gboolean s_bVideoExtensionChecked = FALSE;
 AppletConfig myConfig;
 AppletData myData;
 
-
-CD_APPLET_DEFINITION ("Xgamma", 1, 4, 7)
+CD_APPLET_DEFINITION ("Xgamma", 1, 5, 1)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
@@ -67,7 +66,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myData.bVideoExtensionOK = TRUE;
 	}
 	
-	if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
+	if (myDesklet != NULL)  // on cree le widget pour avoir qqch a afficher dans le desklet.
 		xgamma_build_and_show_widget ();
 CD_APPLET_INIT_END
 

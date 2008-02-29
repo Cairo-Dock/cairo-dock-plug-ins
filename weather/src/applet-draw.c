@@ -179,7 +179,7 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 				cairo_save (pCairoContext);
 				
 				pIcon->fDrawX = myIcon->fDrawX + myIcon->fWidth / 2 + (bFlip ? b : a) * cos (fTheta) - pIcon->fWidth/2;
-				pIcon->fDrawY = myIcon->fDrawY + myIcon->fHeight / 2 + (bFlip ? a : b) * sin (fTheta) - pIcon->fHeight/2;
+				pIcon->fDrawY = myIcon->fDrawY + myIcon->fHeight / 2 + (bFlip ? a : b) * sin (fTheta) - pIcon->fHeight/2 + g_iLabelSize;
 				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, myDesklet->iWidth);
 				
 				cairo_restore (pCairoContext);

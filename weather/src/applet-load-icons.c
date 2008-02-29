@@ -200,10 +200,8 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 				}
 				else
 				{
-					/*icon->fWidth = MAX (1, (myDesklet->iWidth - g_iDockRadius - myIcon->fWidth) / 2);
-					icon->fHeight = MAX (1, (myDesklet->iHeight - g_iDockRadius - myIcon->fHeight) / 2);*/
-					icon->fWidth = .2 * myDesklet->iWidth;
-					icon->fHeight = .2 * myDesklet->iHeight;
+					icon->fWidth = MAX (1, .2 * myDesklet->iWidth - g_iLabelSize);
+					icon->fHeight = MAX (1, .2 * myDesklet->iHeight - g_iLabelSize);
 				}
 				myData.iMaxIconWidth = MAX (myData.iMaxIconWidth, icon->fWidth);
 				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, myConfig.bDesklet3D);

@@ -2,5 +2,6 @@
 <u>Author</u> : <b>Fabrice Rey</b>
 <i>This applet displays <span color='#0000FF'>weather</span> into you dock.</i>
  It can detach itself to be a totally eye-candy 3D deskelt.
- You can have many valuable info by (middle)clicking on the icons.
+ You can have many valuable info by (middle)clicking on the icons,
+  and make icons scroll with mouse's wheel.
  Data are provided by www.weather.com.

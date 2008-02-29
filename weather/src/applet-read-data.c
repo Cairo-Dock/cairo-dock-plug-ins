@@ -23,7 +23,7 @@ extern AppletData myData;
 
 void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastFilePath)
 {
-	gboolean bTest = TRUE;
+	gboolean bTest = FALSE;
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)
 	{
@@ -31,12 +31,7 @@ void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastF
 		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), *cCurrentConditionsFilePath);
 		system (cCommand);
 		g_free (cCommand);
-		if (bTest)
-		{
-			cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml %s", *cCurrentConditionsFilePath);
-			system (cCommand);
-			g_free (cCommand);
-		}
+		
 	}
 	
 	if (myConfig.iNbDays > 0)
@@ -45,12 +40,17 @@ void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastF
 		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), *cForecastFilePath);
 		system (cCommand);
 		g_free (cCommand);
-		if (bTest)
-		{
-			cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/FRXX0076-meteo.xml %s", *cForecastFilePath);
-			system (cCommand);
-			g_free (cCommand);
-		}
+	}
+	
+	if (bTest && g_file_test ("/opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml", G_FILE_TEST_EXISTS))
+	{
+		cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml %s", *cCurrentConditionsFilePath);
+		system (cCommand);
+		g_free (cCommand);
+		
+		cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/FRXX0076-meteo.xml %s", *cForecastFilePath);
+		system (cCommand);
+		g_free (cCommand);
 	}
 }
 

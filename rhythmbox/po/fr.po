@@ -103,7 +103,7 @@ msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
 #: src/rhythmbox-draw.c:101 src/rhythmbox-draw.c:102
-#: ../src/rhythmbox-draw.c:77
+#: ../src/rhythmbox-draw.c:77 ../src/rhythmbox-draw.c:102
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -115,7 +115,8 @@ msgstr ""
 "Titre : %s"
 
 #: ../src/rhythmbox-draw.c:81 ../src/rhythmbox-draw.c:82
-#: ../src/rhythmbox-draw.c:83
+#: ../src/rhythmbox-draw.c:83 ../src/rhythmbox-draw.c:106
+#: ../src/rhythmbox-draw.c:107 ../src/rhythmbox-draw.c:108
 msgid "Unknown"
 msgstr "Inconnu"
 

@@ -1,3 +1,11 @@
+/******************************************************************************
+
+This file is a part of the cairo-dock program, 
+released under the terms of the GNU General Public License.
+
+Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+
+******************************************************************************/
 
 #include "stdlib.h"
 
@@ -27,8 +35,8 @@ CD_APPLET_STOP_BEGIN
 	
 	
 	//\_________________ On libere toutes nos ressources.
-	reset_config ();
 	reset_data ();
+	reset_config ();
 CD_APPLET_STOP_END
 
 

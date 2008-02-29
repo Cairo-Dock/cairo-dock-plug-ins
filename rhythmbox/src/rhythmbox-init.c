@@ -17,7 +17,7 @@ CD_APPLET_DEFINITION ("Rhythmbox", 1, 4, 6)
 static void _load_surfaces (void)
 {
 	gchar *cUserImagePath;
-	GString *sImagePath = g_string_new ("");  // ce serait bien de pouvoir choisir ses icones, comme dans l'applet logout...
+	GString *sImagePath = g_string_new ("");
 	//Chargement de l'image "default"
 	if (myConfig.cDefaultIcon != NULL)
 	{
@@ -35,7 +35,7 @@ static void _load_surfaces (void)
 	if (myConfig.cStopIcon != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cStopIcon);
-		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+		myData.pStopSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	else
@@ -48,7 +48,7 @@ static void _load_surfaces (void)
 	if (myConfig.cPauseIcon != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cPauseIcon);
-		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+		myData.pPauseSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	else
@@ -61,7 +61,7 @@ static void _load_surfaces (void)
 	if (myConfig.cPlayIcon != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cPlayIcon);
-		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+		myData.pPlaySurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	else
@@ -74,7 +74,7 @@ static void _load_surfaces (void)
 	if (myConfig.cBrokenIcon != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cBrokenIcon);
-		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+		myData.pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	else
