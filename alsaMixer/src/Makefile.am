@@ -13,6 +13,8 @@ libcd_AlsaMixer_la_SOURCES = \
 	applet-notifications.h\
 	applet-mixer.c\
 	applet-mixer.h\
+	applet-draw.h\
+	applet-draw.c\
 	applet-struct.h
 
 

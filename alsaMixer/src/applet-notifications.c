@@ -31,13 +31,20 @@ CD_APPLET_ON_CLICK_END
 
 static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 {
+	GError *erreur = NULL;
 	if (myConfig.cShowAdvancedMixerCommand != NULL)
 	{
-		system (myConfig.cShowAdvancedMixerCommand);
+		g_spawn_command_line_async (myConfig.cShowAdvancedMixerCommand, &erreur);
 	}
 	else
 	{
-		system ("gnome-volume-control");
+		g_spawn_command_line_async ("gnome-volume-control", &erreur);
+	}
+	
+	if (erreur != NULL)
+	{
+		cd_warning ("Attention : when trying to execute '%s' : %s", myConfig.cShowAdvancedMixerCommand, erreur->message);
+		g_error_free (erreur);
 	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
@@ -50,3 +57,9 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	mixer_switch_mute ();
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+void mixer_on_keybinding_pull (const char *keystring, gpointer user_data)
+{
+	mixer_show_hide_dialog ();
+}

@@ -107,15 +107,15 @@ msgid ""
 " made by Fabounet (Fabrice Rey) for Cairo-Dock"
 msgstr ""
 
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:13 ../data/messages:15 ../data/messages:31
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:15 ../data/messages:17
+#: ../data/messages:15 ../data/messages:17 ../data/messages:35
 msgid "Let empty to use the default sound card."
 msgstr ""
 
-#: ../data/messages:17 ../data/messages:19
+#: ../data/messages:17 ../data/messages:19 ../data/messages:37
 msgid "Sound card to control :"
 msgstr ""
 
@@ -123,27 +123,27 @@ msgstr ""
 msgid "Choose which mixer's element to control :"
 msgstr ""
 
-#: ../data/messages:21 ../data/messages:23
+#: ../data/messages:21 ../data/messages:23 ../data/messages:49
 msgid "Display volume :"
 msgstr ""
 
-#: ../data/messages:23 ../data/messages:25
+#: ../data/messages:23 ../data/messages:25 ../data/messages:51
 msgid "No"
 msgstr ""
 
-#: ../data/messages:25 ../data/messages:27
+#: ../data/messages:25 ../data/messages:27 ../data/messages:53
 msgid "On label"
 msgstr ""
 
-#: ../data/messages:27 ../data/messages:29
+#: ../data/messages:27 ../data/messages:29 ../data/messages:55
 msgid "On icon"
 msgstr ""
 
-#: ../src/applet-mixer.c:217
+#: ../src/applet-mixer.c:217 ../src/applet-mixer.c:248
 msgid "Set up volume :"
 msgstr ""
 
-#: ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:45
 msgid "Adjsut channels"
 msgstr ""
 
@@ -151,30 +151,92 @@ msgstr ""
 msgid "Let empty to use default one."
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:39
 msgid "Choose which channel to control :"
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:31 ../data/messages:57
 msgid "Choose an effet to apply on the icon according to volume :"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:33 ../data/messages:59
 msgid "None"
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:61
 msgid "Zoom"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:63
 msgid "Transparency"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:65
 msgid "Draw Bar"
 msgstr ""
 
 #: ../data/messages:41
 msgid "Command to run to show an advanced sound mixer :"
+msgstr ""
+
+#: ../src/applet-mixer.c:44
+#, c-format
+msgid "I couldn't open card '%s'"
+msgstr ""
+
+#: ../src/applet-mixer.c:49
+#, c-format
+msgid "Card '%s' opened but I couldn't get any info"
+msgstr ""
+
+#: ../src/applet-mixer.c:57
+msgid "I couldn't open the mixer"
+msgstr ""
+
+#: ../src/applet-mixer.c:64
+msgid "I couldn't attach the mixer to the card"
+msgstr ""
+
+#: ../src/applet-mixer.c:71
+msgid "I couldn't register options"
+msgstr ""
+
+#: ../src/applet-mixer.c:79
+msgid "I couldn't load the mixer"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Alsa"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Let empty to use the defaut command."
+msgstr ""
+
+#: ../data/messages:43
+msgid "Specific command to run to show an advanced sound mixer :"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Shortkey to show/hide the sound control dialog :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Display"
+msgstr ""
+
+#: ../data/messages:67 ../data/messages:71 ../data/messages:75
+msgid "Let empty to use the default one."
+msgstr ""
+
+#: ../data/messages:69
+msgid "Default icon :"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Broken icon :"
+msgstr ""
+
+#: ../data/messages:77
+msgid "Mute icon :"
 msgstr ""

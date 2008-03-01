@@ -12,17 +12,22 @@ void mixer_stop (void);
 
 gchar *mixer_get_elements_list (void);
 
-void mixer_fill_properties (void);
+void mixer_get_controlled_element (void);
+
 
 int mixer_get_mean_volume (void);
 
 
-void mixer_set_volume (int iVolume);
+void mixer_set_volume (int iNewVolume);
+
+gboolean mixer_is_mute (void);
 
 void mixer_switch_mute (void);
 
 
-GtkWidget *mixer_build_widget (void);
+GtkWidget *mixer_build_widget (gboolean bHorizontal);
+
+void mixer_set_volume_with_no_callback (GtkWidget *pScale, int iVolume);
 
 void mixer_show_hide_dialog (void);
 

@@ -2,7 +2,6 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
-#include <glib.h>
 #include <cairo-dock.h>
 #include <alsa/asoundlib.h>
 
@@ -28,26 +27,29 @@ typedef struct {
 	gchar *cShowAdvancedMixerCommand;
 	VolumeTypeDisplay iVolumeDisplay;
 	VolumeTypeEffect iVolumeEffect;
-	gchar *cDefaultLabel;
 	gchar *cDefaultIcon;
 	gchar *cBrokenIcon;
 	gchar *cMuteIcon;
+	gchar *cShortcut;
 	} AppletConfig;
 
 typedef struct {
 	snd_mixer_t *mixer_handle;
 	gchar *mixer_card_name;
 	gchar *mixer_device_name;
+	gchar *cErrorMessage;
 	snd_mixer_elem_t *pControledElement;
 	snd_mixer_selem_id_t *pControledID;
 	gboolean bHasMuteSwitch;
-	long iVolumeMin, iVolumeMax;
+	long iVolumeMin, iVolumeMax;  // volumes min et max en unites de la carte son.
 	guint iSidCheckVolume;
 	CairoDockDialog *pDialog;
 	cairo_surface_t *pSurface;
 	cairo_surface_t *pBrokenSurface;
 	cairo_surface_t *pMuteSurface;
-	int iCurrentVolume;
+	int iCurrentVolume;  // volume courant en %.
+	gboolean bIsMute;
+	GtkWidget *pScale;
 	} AppletData;
 
 
