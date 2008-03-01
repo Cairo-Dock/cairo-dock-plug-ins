@@ -131,6 +131,7 @@ static snd_mixer_elem_t *_mixer_get_element_by_name (gchar *cName)
 		if (strcmp (cName, snd_mixer_selem_get_name (elem)) == 0)
 			return elem;
 	}
+	myData.cErrorMessage = g_strdup_printf (_D("I couldn't find any element '%s'"), cName);
 	return NULL;
 }
 
