@@ -12,4 +12,7 @@ void reset_config (void);
 void reset_data (void);
 
 
+void reset_surfaces (void);;
+
+
 #endif

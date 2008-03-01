@@ -16,6 +16,8 @@ CD_APPLET_DEFINITION ("PowerManager", 1, 4, 7)
 
 static void _load_surfaces (void)
 {
+	reset_surfaces ();
+	
 	GString *sImagePath = g_string_new ("");
 	
 	g_string_printf (sImagePath, "%s/battery_44.svg", MY_APPLET_SHARE_DATA_DIR);

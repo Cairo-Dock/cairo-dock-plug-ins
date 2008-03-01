@@ -1,4 +1,6 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>Cedric GESTES ctaf42@gmail.com</b>
 <i>Add a <span color='#0000FF'>terminal</span> to your dock !
- You can drag'n'drop files or text into it and select an action.</i>
+ Left/middle click to show/hide terminal (You can bind a keyboard shortcut for it.)
+ You can open many tabs,
+ and drag'n'drop files or text into it and select an action.</i>

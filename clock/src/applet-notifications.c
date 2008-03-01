@@ -35,7 +35,7 @@ void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 	
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : when trying to execute '%s' : %s\n", myConfig.cSetupTimeCommand, erreur->message);
+		cd_warning ("Attention : when trying to execute '%s' : %s", myConfig.cSetupTimeCommand, erreur->message);
 		g_error_free (erreur);
 	}
 }

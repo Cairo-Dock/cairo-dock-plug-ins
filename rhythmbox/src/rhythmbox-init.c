@@ -19,6 +19,8 @@ static void _load_surfaces (void)
 	gchar *cUserImagePath;
 	GString *sImagePath = g_string_new ("");
 	//Chargement de l'image "default"
+	if (myData.pSurface != NULL)
+		cairo_surface_destroy (myData.pSurface);
 	if (myConfig.cDefaultIcon != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cDefaultIcon);
@@ -32,6 +34,8 @@ static void _load_surfaces (void)
 	}
 	
 	//Chargement de l'image "stop"
+	if (myData.pStopSurface != NULL)
+		cairo_surface_destroy (myData.pStopSurface);
 	if (myConfig.cStopIcon != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cStopIcon);
@@ -45,6 +49,8 @@ static void _load_surfaces (void)
 	}
 	
 	//Chargement de l'image "pause"
+	if (myData.pPauseSurface != NULL)
+		cairo_surface_destroy (myData.pPauseSurface);
 	if (myConfig.cPauseIcon != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cPauseIcon);
@@ -58,6 +64,8 @@ static void _load_surfaces (void)
 	}
 	
 	//Chargement de l'image "play"
+	if (myData.pPlaySurface != NULL)
+		cairo_surface_destroy (myData.pPlaySurface);
 	if (myConfig.cPlayIcon != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cPlayIcon);
@@ -71,6 +79,8 @@ static void _load_surfaces (void)
 	}
 	
 	//Chargement de l'image "broken"
+	if (myData.pBrokenSurface != NULL)
+		cairo_surface_destroy (myData.pBrokenSurface);
 	if (myConfig.cBrokenIcon != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cBrokenIcon);
