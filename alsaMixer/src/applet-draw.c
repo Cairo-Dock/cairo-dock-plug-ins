@@ -79,16 +79,7 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 	}
 	if (myDock != NULL && myDock->bUseReflect && myConfig.iVolumeEffect != VOLUME_NO_EFFECT)
 	{
-		cairo_surface_t *pReflet = myIcon->pReflectionBuffer;
-		myIcon->pReflectionBuffer = NULL;
-		cairo_surface_destroy (pReflet);
-		
-		myIcon->pReflectionBuffer = cairo_dock_create_reflection_surface (myIcon->pIconBuffer,
-			myDrawContext,
-			(myDock->bHorizontalDock ? myIcon->fWidth : myIcon->fHeight) * (1 + g_fAmplitude),
-			(myDock->bHorizontalDock ? myIcon->fHeight : myIcon->fWidth) * (1 + g_fAmplitude),
-			myDock->bHorizontalDock,
-			1 + g_fAmplitude);
+		cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
 	}
 	CD_APPLET_REDRAW_MY_ICON
 	
@@ -139,6 +130,8 @@ void mixer_draw_bar (cairo_surface_t *pSurface)
 	cairo_save (myDrawContext);
 	cairo_dock_set_icon_surface_with_reflect (myDrawContext, pSurface, myIcon, myContainer);  // on n'utilise pas la macro car on ne veut pas du redraw.
 	
+	cairo_restore (myDrawContext);
+	cairo_save (myDrawContext);
 	double fMaxScale = (myDock ? 1 + g_fAmplitude : 1);
 	cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (0.,
 		0.,
