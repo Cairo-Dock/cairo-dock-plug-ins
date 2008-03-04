@@ -87,7 +87,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	if (myData.pControledElement == NULL)
 	{
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pBrokenSurface)
-		gboolean bTest = TRUE;
+		gboolean bTest = FALSE;
 		if (bTest)
 		{
 			myData.iCurrentVolume = 100;
@@ -177,6 +177,8 @@ CD_APPLET_RELOAD_BEGIN
 		mixer_init (myConfig.card_id);
 		mixer_write_elements_list (CD_APPLET_MY_CONF_FILE, CD_APPLET_MY_KEY_FILE);
 		mixer_get_controlled_element ();
+		
+		cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) mixer_on_keybinding_pull, (gpointer)NULL);
 	}
 	
 	if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED && myDesklet)

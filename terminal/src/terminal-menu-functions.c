@@ -64,7 +64,6 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
 {
   terminal_new_tab();
-  term_apply_settings();
 }
 
 static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
@@ -228,6 +227,8 @@ static void terminal_new_tab()
   gtk_widget_show(vterm);
   cd_message ("num_new_tab : %d\n", num_new_tab);
   gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
+  
+  term_apply_settings_on_vterm (vterm);
 }
 
 void terminal_build_and_show_tab (void)

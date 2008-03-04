@@ -27,6 +27,11 @@ static int s_iSidTimerRedraw = 0;
 	pIcon = g_new0 (Icon, 1);\
 	pIcon->acName = g_strdup_printf ("%s", myData.days[i].cName);\
 	pIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
+	if (! g_file_test (pIcon->acFileName, G_FILE_TEST_EXISTS))\
+	{\
+		g_free (pIcon->acFileName);\
+		pIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
+	}\
 	if (myConfig.bDisplayTemperature)\
 		pIcon->cQuickInfo = g_strdup_printf ("%s/%s", _display (myData.days[i].cTempMin), _display (myData.days[i].cTempMax));\
 	pIcon->fOrder = 2*i+j;\

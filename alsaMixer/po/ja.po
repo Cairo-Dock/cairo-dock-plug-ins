@@ -140,10 +140,12 @@ msgid "On icon"
 msgstr ""
 
 #: ../src/applet-mixer.c:217 ../src/applet-mixer.c:248
+#: ../src/applet-mixer.c:265
 msgid "Set up volume :"
 msgstr ""
 
 #: ../src/applet-notifications.c:38 ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:52
 msgid "Adjsut channels"
 msgstr ""
 
@@ -239,4 +241,9 @@ msgstr ""
 
 #: ../data/messages:77
 msgid "Mute icon :"
+msgstr ""
+
+#: ../src/applet-mixer.c:134
+#, c-format
+msgid "I couldn't find any element '%s'"
 msgstr ""

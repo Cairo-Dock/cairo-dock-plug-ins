@@ -82,7 +82,6 @@ void reset_data (void)
 
 void mixer_write_elements_list (gchar *cConfFilePath, GKeyFile *pKeyFile)
 {
-	g_print ("%s ()\n", __func__);
 	gchar *cElements = mixer_get_elements_list ();
 	
 	cairo_dock_update_conf_file_with_list (pKeyFile, cConfFilePath, cElements, "Configuration", "mixer element", NULL);

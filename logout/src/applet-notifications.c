@@ -37,7 +37,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			}
 			else
 			{
-				cd_message ("couldn't guess what to do to log out.\n");
+				cd_warning ("couldn't guess what to do to log out.");
 			}
 		}
 	}

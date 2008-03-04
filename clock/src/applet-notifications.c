@@ -24,15 +24,20 @@ void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 	{
 		g_spawn_command_line_async (myConfig.cSetupTimeCommand, &erreur);
 	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
+	else
 	{
-		g_spawn_command_line_async ("gksu time-admin", &erreur);
+		if (! cairo_dock_fm_setup_time ())
+		{
+			if (g_iDesktopEnv == CAIRO_DOCK_KDE)
+			{
+				g_spawn_command_line_async ("kcmshell kde-clock.desktop", &erreur);
+			}
+			else
+			{
+				cd_warning ("couldn't guess what to do to set up time.");
+			}
+		}
 	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-	{
-		g_spawn_command_line_async ("kcmshell kde-clock.desktop", &erreur);
-	}
-	
 	if (erreur != NULL)
 	{
 		cd_warning ("Attention : when trying to execute '%s' : %s", myConfig.cSetupTimeCommand, erreur->message);

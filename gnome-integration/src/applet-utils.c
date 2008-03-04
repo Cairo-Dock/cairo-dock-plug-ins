@@ -22,7 +22,7 @@ void env_backend_setup_time (void)
 	g_spawn_command_line_async ("gksu time-admin", &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : when trying to execute '%s' : %s\n", "gksu time-admin", erreur->message);
+		cd_warning ("Attention : when trying to execute '%s' : %s", "gksu time-admin", erreur->message);
 		g_error_free (erreur);
 	}
 }

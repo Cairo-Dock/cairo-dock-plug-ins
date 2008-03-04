@@ -166,6 +166,7 @@ msgid "Alarm n°3"
 msgstr "Alarme n°3"
 
 #: src/applet-notifications.c:22 ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:49
 msgid ""
 "This is the Cairo-Dock's clock applet\n"
 " made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\n"
@@ -284,6 +285,6 @@ msgstr "Pra exemple, < play /chemin/vers/le/fichier.ogg >."
 msgid "Command to execute :"
 msgstr "Commande à exécuter"
 
-#: ../src/applet-notifications.c:50
+#: ../src/applet-notifications.c:50 ../src/applet-notifications.c:55
 msgid "Calendar"
 msgstr ""

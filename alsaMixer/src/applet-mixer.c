@@ -123,7 +123,9 @@ gchar *mixer_get_elements_list (void)
 
 static snd_mixer_elem_t *_mixer_get_element_by_name (gchar *cName)
 {
-	g_return_val_if_fail (cName != NULL && myData.mixer_handle != NULL, NULL);
+	if (myData.mixer_handle == NULL)
+		return NULL;
+	g_return_val_if_fail (cName != NULL, NULL);
 	
 	snd_mixer_elem_t *elem;
 	for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
@@ -216,6 +218,8 @@ GtkWidget *mixer_build_widget (gboolean bHorizontal)
 {
 	g_return_val_if_fail (myData.pControledElement != NULL, NULL);
 	GtkWidget *pScale = (bHorizontal ? gtk_hscale_new_with_range (0., 100., 5.) : gtk_vscale_new_with_range (0., 100., 5.));
+	if (! bHorizontal)
+		gtk_range_set_inverted (GTK_RANGE (pScale), TRUE);  // de bas en haut.
 	
 	myData.iCurrentVolume = mixer_get_mean_volume ();
 	gtk_range_set_value (GTK_RANGE (pScale), myData.iCurrentVolume);
