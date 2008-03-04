@@ -50,12 +50,12 @@ void reset_config(void)
 
 void reset_data(void)
 {
-  if (myData.dialog)
+	if (myData.dialog)
 	{
 		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
 		myData.dialog = NULL;
 	}
-	else
+	else if (myData.tray)
 	{
 		gtk_widget_destroy (myData.tray->widget);
 	}
