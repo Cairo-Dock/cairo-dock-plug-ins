@@ -17,11 +17,10 @@
    enable-background="new 0 0 128 128"
    xml:space="preserve"
    sodipodi:version="0.32"
-   inkscape:version="0.45"
+   inkscape:version="0.45.1"
    sodipodi:docname="broken.svg"
-   sodipodi:docbase="/home/necropotame/.cairo-dock/themes/Fabounet/plug-ins/rhythmbox"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   sodipodi:modified="true"><metadata
+   sodipodi:docbase="/home/changfu/Documents/Install/Cairo-Dock/plug-ins/rhythmbox/data"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"><metadata
    id="metadata177"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
          rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
@@ -338,7 +337,7 @@
      fx="-1.7356542"
      fy="-0.12271554"
      r="7.0727725" /></defs><sodipodi:namedview
-   inkscape:window-height="975"
+   inkscape:window-height="979"
    inkscape:window-width="1280"
    inkscape:pageshadow="2"
    inkscape:pageopacity="0.0"
@@ -349,11 +348,11 @@
    bordercolor="#666666"
    pagecolor="#ffffff"
    id="base"
-   inkscape:zoom="1"
-   inkscape:cx="116.67588"
-   inkscape:cy="77.006297"
+   inkscape:zoom="2.8284271"
+   inkscape:cx="95.729292"
+   inkscape:cy="53.146887"
    inkscape:window-x="0"
-   inkscape:window-y="48"
+   inkscape:window-y="44"
    inkscape:current-layer="Layer_1" />
 
 
