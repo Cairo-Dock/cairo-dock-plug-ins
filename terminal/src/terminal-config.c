@@ -37,7 +37,7 @@ static void set_color(GdkColor *color, double src[3]) {
   color->blue = (guint16)(src[2]* 65535.);
 }
 
-CD_APPLET_CONFIG_BEGIN ("terminal", "gnome-terminal")
+CD_APPLET_CONFIG_BEGIN
 {
   reset_config ();
   //0 means completely transparent and 65535 opaque

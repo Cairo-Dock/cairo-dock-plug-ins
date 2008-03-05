@@ -45,7 +45,7 @@ msgstr ""
 "Cairo-Dock用の Shortcuts アプレットです。"
 
 #: ../src/applet-notifications.c:42 ../src/applet-notifications.c:41
-#: ../src/applet-notifications.c:70 ../src/applet-notifications.c:80
+#: ../src/applet-notifications.c:49
 msgid "Remove this bookmark"
 msgstr "このブックマークを削除"
 
@@ -75,7 +75,7 @@ msgstr "ブックマークを一覧化？"
 
 #: ../data/messages:23 ../data/messages:43
 msgid "Separate different shortcuts with separators ?"
-msgstr "ショートカットを種類ごとにセパレータで分割？"
+msgstr "ショートカットを種類ごとに区切りで分割？"
 
 #: ../data/messages:25 ../data/messages:45
 msgid "Let it empty to use default sub-dock view."

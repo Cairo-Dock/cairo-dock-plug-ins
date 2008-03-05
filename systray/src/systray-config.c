@@ -32,7 +32,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN ("systray", "gnome-panel-notification-area")
+CD_APPLET_CONFIG_BEGIN
 {
   myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F2");
 }

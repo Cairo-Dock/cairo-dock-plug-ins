@@ -20,7 +20,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN ("Corbeille", NULL)
+CD_APPLET_CONFIG_BEGIN
 	reset_config ();
 	//\_______________ On recupere la liste des repertoires faisant office de poubelle.
 	gsize length = 0;

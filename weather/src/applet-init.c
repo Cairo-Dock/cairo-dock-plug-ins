@@ -141,6 +141,11 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 		myDesklet->renderer = cd_weather_draw_in_desklet;
+		if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
+			g_signal_connect (G_OBJECT (myDesklet->pWidget),
+				"scroll-event",
+				G_CALLBACK (on_scroll_desklet),
+				myDesklet);
 	}
 	g_return_val_if_fail (myConfig.cLocationCode != NULL, FALSE);
 	if (CD_APPLET_MY_CONFIG_CHANGED)

@@ -7,7 +7,7 @@ AppletConfig myConfig;
 AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN ("Rhythmbox", NULL)
+CD_APPLET_CONFIG_BEGIN
 	reset_config ();
 	
 	myConfig.enableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");

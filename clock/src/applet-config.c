@@ -24,7 +24,7 @@ AppletData myData;
 static gchar *my_s_Frequencies[CD_CLOCK_NB_FREQUENCIES+1] = {"Never", "Day", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Week Day", "Week End", "Month", NULL};
 
 
-CD_APPLET_CONFIG_BEGIN ("Horloge", NULL)
+CD_APPLET_CONFIG_BEGIN
 	reset_config ();
 	
 	//\_______________ On recupere les parametres de fonctionnement.

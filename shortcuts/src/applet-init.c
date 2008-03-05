@@ -13,6 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-bookmarks.h"
 #include "applet-load-icons.h"
+#include "applet-draw.h"
 #include "applet-struct.h"
 #include "applet-init.h"
 
@@ -79,9 +80,9 @@ CD_APPLET_RELOAD_BEGIN
 		for (ic = myData.pDeskletIconList; ic != NULL; ic = ic->next)
 		{
 			icon = ic->data;
-			icon->fWidth = 0;
-			icon->fHeight = 0;
-			cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, TRUE);
+			icon->fWidth = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
+			icon->fHeight = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
+			cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
 		}
 		cairo_destroy (pCairoContext);
 	}

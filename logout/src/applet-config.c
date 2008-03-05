@@ -9,7 +9,7 @@
 extern AppletConfig myConfig;
 extern AppletData myData;
 
-CD_APPLET_CONFIG_BEGIN ("log-out", "gnome-logout")
+CD_APPLET_CONFIG_BEGIN
 	reset_config ();
 	
 	myConfig.cUserAction = CD_CONFIG_GET_STRING ("Configuration", "user action");

@@ -49,6 +49,7 @@ msgstr ""
 
 #: ../src/applet-notifications.c:42 ../src/applet-notifications.c:41
 #: ../src/applet-notifications.c:70 ../src/applet-notifications.c:80
+#: ../src/applet-notifications.c:49
 msgid "Remove this bookmark"
 msgstr "Supprimer ce signet"
 

@@ -11,6 +11,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <glib/gi18n.h>
 
 #include "applet-struct.h"
+#include "applet-load-icons.h"
+#include "applet-draw.h"
 #include "applet-bookmarks.h"
 
 extern AppletConfig myConfig;
@@ -19,32 +21,44 @@ extern AppletData myData;
 CD_APPLET_INCLUDE_MY_VARS
 
 
-static void _cd_shortcuts_detach_one_bookmark (Icon *icon, CairoDock *pDock, GList **pList)
+static GList * _cd_shortcuts_detach_icon_from_list (Icon *icon, GList *pIconList, gboolean bUseSeparator)
+{
+	pIconList = g_list_remove (pIconList, icon);  // on s'en fout des separateurs en mode desklet.
+	return pIconList;
+}
+
+static void _cd_shortcuts_detach_one_bookmark (Icon *icon, GList **pList)
 {
 	*pList = g_list_append (*pList, icon);
-	cairo_dock_detach_icon_from_dock (icon, pDock, myConfig.bUseSeparator);
+	if (myIcon->pSubDock != NULL)
+		cairo_dock_detach_icon_from_dock (icon, myIcon->pSubDock, myConfig.bUseSeparator);
+	else
+	{
+		myData.pDeskletIconList = _cd_shortcuts_detach_icon_from_list (icon, myData.pDeskletIconList, myConfig.bUseSeparator);
+	}
 }
 void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
 {
 	cd_message ("%s (%d)", __func__, iEventType);
+	g_return_if_fail (myIcon->pSubDock != NULL || myDesklet);
 	
 	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)
 	{
 		cd_message ("  un signet en plus ou en moins");
 		//\____________________ On detache les icones des signets.
 		GList *pPrevBookmarkIconList = NULL;
-		Icon *pSeparatorIcon = cairo_dock_foreach_icons_of_type (myIcon->pSubDock, 10, (CairoDockForeachIconFunc) _cd_shortcuts_detach_one_bookmark, &pPrevBookmarkIconList);
+		Icon *pSeparatorIcon = cairo_dock_foreach_icons_of_type ((myDock ? myIcon->pSubDock->icons : myData.pDeskletIconList), 10, (CairoDockForeachIconFunc) _cd_shortcuts_detach_one_bookmark, &pPrevBookmarkIconList);
 		
 		//\____________________ On lit le fichier des signets.
 		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
 		gchar *cContent = NULL;
 		gsize length=0;
-		GError *tmp_erreur = NULL;
-		g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &tmp_erreur);
-		if (tmp_erreur != NULL)
+		GError *erreur = NULL;
+		g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
+		if (erreur != NULL)
 		{
-			cd_warning ("Attention : %s", tmp_erreur->message);
-			g_error_free (tmp_erreur);
+			cd_warning ("Attention : %s", erreur->message);
+			g_error_free (erreur);
 		}
 		else
 		{
@@ -64,17 +78,20 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pPrevBookmarkIconList, cOneBookmark);
 				if (pExistingIcon != NULL)  // on la reinsere a sa place.
 				{
-					cd_message (" = 1 signet : %s\n", cOneBookmark);
+					cd_message (" = 1 signet : %s", cOneBookmark);
 					pPrevBookmarkIconList = g_list_remove (pPrevBookmarkIconList, pExistingIcon);
 					pExistingIcon->fOrder = fCurrentOrder ++;
-					cairo_dock_insert_icon_in_dock (pExistingIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
+					if (myDock)
+						cairo_dock_insert_icon_in_dock (pExistingIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
+					else
+						myData.pDeskletIconList = g_list_append (myData.pDeskletIconList, pExistingIcon);
 					g_free (cOneBookmark);
 				}
 				else  // on la cree.
 				{
 					if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType))
 					{
-						cd_message (" + 1 signet : %s\n", cOneBookmark);
+						cd_message (" + 1 signet : %s", cOneBookmark);
 						pNewIcon = g_new0 (Icon, 1);
 						pNewIcon->iType = 10;
 						pNewIcon->cBaseURI = cOneBookmark;
@@ -83,9 +100,17 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 						pNewIcon->acFileName = cIconName;
 						pNewIcon->iVolumeID = iVolumeID;
 						pNewIcon->fOrder = fCurrentOrder ++;
+						if (myDesklet)
+						{
+							pNewIcon->fWidth = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
+							pNewIcon->fHeight = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
+						}
 						
-						cairo_dock_load_one_icon_from_scratch (pNewIcon, myIcon->pSubDock);
-						cairo_dock_insert_icon_in_dock (pNewIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
+						cairo_dock_load_one_icon_from_scratch (pNewIcon, (myDock ? CAIRO_DOCK_CONTAINER (myIcon->pSubDock) : myContainer));
+						if (myDock)
+							cairo_dock_insert_icon_in_dock (pNewIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
+						else
+							myData.pDeskletIconList = g_list_append (myData.pDeskletIconList, pNewIcon);
 					}
 					else
 					{
@@ -100,33 +125,44 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 			g_list_free (pPrevBookmarkIconList);
 			
 			//\____________________ On ajoute ou supprime un separateur.
-			Icon *pFirstBookmarkIcon = cairo_dock_get_first_icon_of_type (myIcon->pSubDock->icons, 10);
-			if (pFirstBookmarkIcon == NULL && pSeparatorIcon != NULL)
+			if (myDock)
 			{
-				cd_message ("on enleve l'ancien separateur\n");
-				cairo_dock_detach_icon_from_dock (pSeparatorIcon, myIcon->pSubDock, myConfig.bUseSeparator);
-				cairo_dock_free_icon (pSeparatorIcon);
+				Icon *pFirstBookmarkIcon = cairo_dock_get_first_icon_of_type (myIcon->pSubDock->icons, 10);
+				if (pFirstBookmarkIcon == NULL && pSeparatorIcon != NULL)
+				{
+					cd_message ("on enleve l'ancien separateur");
+					cairo_dock_detach_icon_from_dock (pSeparatorIcon, myIcon->pSubDock, myConfig.bUseSeparator);
+					cairo_dock_free_icon (pSeparatorIcon);
+				}
 			}
 		}
 		g_free (cBookmarkFilePath);
-		cairo_dock_update_dock_size (myIcon->pSubDock);
+		if (myDock)
+			cairo_dock_update_dock_size (myIcon->pSubDock);
+		else
+		{
+			cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
+			cd_shortcuts_load_tree (myData.pDeskletIconList, pCairoContext);
+			cairo_destroy (pCairoContext);
+			gtk_widget_queue_draw (myDesklet->pWidget);
+		}
 	}
 }
 
 void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 	
 	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
 	gchar *cContent = NULL;
 	gsize length=0;
-	GError *tmp_erreur = NULL;
-	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &tmp_erreur);
-	if (tmp_erreur != NULL)
+	GError *erreur = NULL;
+	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
+	if (erreur != NULL)
 	{
-		cd_message ("Attention : %s\n", tmp_erreur->message);
-		g_error_free (tmp_erreur);
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
 	}
 	else
 	{
@@ -148,11 +184,11 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 		}
 		g_free (cBookmarksList);
 		
-		g_file_set_contents (cBookmarkFilePath, sNewContent->str, -1, &tmp_erreur);
-		if (tmp_erreur != NULL)
+		g_file_set_contents (cBookmarkFilePath, sNewContent->str, -1, &erreur);
+		if (erreur != NULL)
 		{
-			cd_message ("Attention : %s\n", tmp_erreur->message);
-			g_error_free (tmp_erreur);
+			cd_warning ("Attention : %s", erreur->message);
+			g_error_free (erreur);
 		}
 		
 		g_string_free (sNewContent, TRUE);
@@ -164,7 +200,7 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 void cd_shortcuts_add_one_bookmark (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 	
 	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
 	FILE *f = fopen (cBookmarkFilePath, "a");
@@ -182,12 +218,12 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 {
 	gchar *cContent = NULL;
 	gsize length=0;
-	GError *tmp_erreur = NULL;
-	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &tmp_erreur);
-	if (tmp_erreur != NULL)
+	GError *erreur = NULL;
+	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
+	if (erreur != NULL)
 	{
-		cd_message ("Attention : %s\n  no bookmark will be available\n", tmp_erreur->message);
-		g_error_free (tmp_erreur);
+		cd_warning ("Attention : %s\n  no bookmark will be available", erreur->message);
+		g_error_free (erreur);
 		return NULL;
 	}
 	else

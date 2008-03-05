@@ -35,6 +35,7 @@ msgid "Icon's name :"
 msgstr "アイコンの名前 :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:24
 msgid ""
 "This is the weather applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -45,40 +46,52 @@ msgstr ""
 #: ../src/applet-notifications.c:63 ../src/applet-notifications.c:77
 #: ../src/applet-notifications.c:85 ../src/applet-notifications.c:99
 #: ../src/applet-notifications.c:92 ../src/applet-notifications.c:106
+#: ../src/applet-notifications.c:96 ../src/applet-notifications.c:110
+#: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
 msgid "Temperature"
 msgstr "気温"
 
 #: ../src/applet-notifications.c:64 ../src/applet-notifications.c:78
 #: ../src/applet-notifications.c:86 ../src/applet-notifications.c:100
 #: ../src/applet-notifications.c:93 ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:97 ../src/applet-notifications.c:111
+#: ../src/applet-notifications.c:225 ../src/applet-notifications.c:249
 msgid "Wind"
 msgstr "風"
 
 #: ../src/applet-notifications.c:65 ../src/applet-notifications.c:79
 #: ../src/applet-notifications.c:87 ../src/applet-notifications.c:101
 #: ../src/applet-notifications.c:94 ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:98 ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:226 ../src/applet-notifications.c:250
 msgid "Humidity"
 msgstr "湿度"
 
 #: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
 #: ../src/applet-notifications.c:88 ../src/applet-notifications.c:102
 #: ../src/applet-notifications.c:95 ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:99 ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:227 ../src/applet-notifications.c:251
 msgid "SunRise"
 msgstr "日の出"
 
 #: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
 #: ../src/applet-notifications.c:88 ../src/applet-notifications.c:102
 #: ../src/applet-notifications.c:95 ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:99 ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:227 ../src/applet-notifications.c:251
 msgid "SunSet"
 msgstr "日の入り"
 
 #: ../src/applet-notifications.c:77 ../src/applet-notifications.c:99
-#: ../src/applet-notifications.c:106
+#: ../src/applet-notifications.c:106 ../src/applet-notifications.c:110
+#: ../src/applet-notifications.c:248
 msgid "feeled"
 msgstr "体感温度"
 
 #: ../src/applet-notifications.c:79 ../src/applet-notifications.c:101
-#: ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:108 ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:250
 msgid "Pressure"
 msgstr "気圧"
 
@@ -262,4 +275,40 @@ msgstr "デスクレットを 3D 描画？"
 msgid ""
 "You can visit this URL to find it, for exemple : http://xoap.weather.com/"
 "search/search?where=Paris,France"
+msgstr ""
+
+#: ../src/applet-notifications.c:96
+msgid ""
+"Enter your location\n"
+" (for exemple : Paris, France)"
+msgstr ""
+
+#: ../src/applet-notifications.c:109 ../src/applet-notifications.c:123
+msgid ""
+"I couldn't get the info\n"
+" Is connexion alive ?"
+msgstr ""
+
+#: ../src/applet-notifications.c:156
+msgid "Choose your location :"
+msgstr ""
+
+#: ../src/applet-notifications.c:182
+msgid "Search for your location"
+msgstr ""
+
+#: ../src/applet-notifications.c:183
+msgid "Reload now"
+msgstr ""
+
+#: ../src/applet-notifications.c:208 ../src/applet-notifications.c:236
+msgid ""
+"No data were available\n"
+" is connection alive ?"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"Right click on the icon to let Cairo-Dock help you to find your location "
+"code."
 msgstr ""

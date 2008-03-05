@@ -50,4 +50,5 @@ theme_DATA =\
 		46.png	\
 		47.png	\
 		na.png\
-		preview
+		preview\
+		readme

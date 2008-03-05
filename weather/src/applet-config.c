@@ -18,7 +18,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN ("Meteo", NULL)
+CD_APPLET_CONFIG_BEGIN
 	reset_config ();
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.cLocationCode = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "location code", "FRXX0076");

@@ -17,7 +17,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN (CD_APPLET_LABEL, CD_APPLET_ICON)
+CD_APPLET_CONFIG_BEGIN
 	reset_config ();
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	
