@@ -24,25 +24,28 @@ static int s_iSidTimerRedraw = 0;
 
 
 #define _add_icon(i, j)\
-	pIcon = g_new0 (Icon, 1);\
-	pIcon->acName = g_strdup_printf ("%s", myData.days[i].cName);\
-	pIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
-	if (! g_file_test (pIcon->acFileName, G_FILE_TEST_EXISTS))\
+	if (myData.days[i].cName != NULL)\
 	{\
-		g_free (pIcon->acFileName);\
-		pIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
-	}\
-	if (myConfig.bDisplayTemperature)\
-		pIcon->cQuickInfo = g_strdup_printf ("%s/%s", _display (myData.days[i].cTempMin), _display (myData.days[i].cTempMax));\
-	pIcon->fOrder = 2*i+j;\
-	pIcon->fScale = 1.;\
-	pIcon->fAlpha = 1.;\
-	pIcon->fWidthFactor = 1.;\
-	pIcon->fHeightFactor = 1.;\
-	pIcon->acCommand = g_strdup ("none");\
-	pIcon->cParentDockName = g_strdup (myIcon->acName);\
-	cd_debug (" + %s (%s , %s)\n", pIcon->acName, myData.days[i].part[j].cWeatherDescription, pIcon->acFileName);\
-	pIconList = g_list_append (pIconList, pIcon);
+		pIcon = g_new0 (Icon, 1);\
+		pIcon->acName = g_strdup_printf ("%s", myData.days[i].cName);\
+		pIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
+		if (! g_file_test (pIcon->acFileName, G_FILE_TEST_EXISTS))\
+		{\
+			g_free (pIcon->acFileName);\
+			pIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
+		}\
+		if (myConfig.bDisplayTemperature)\
+			pIcon->cQuickInfo = g_strdup_printf ("%s/%s", _display (myData.days[i].cTempMin), _display (myData.days[i].cTempMax));\
+		pIcon->fOrder = 2*i+j;\
+		pIcon->fScale = 1.;\
+		pIcon->fAlpha = 1.;\
+		pIcon->fWidthFactor = 1.;\
+		pIcon->fHeightFactor = 1.;\
+		pIcon->acCommand = g_strdup ("none");\
+		pIcon->cParentDockName = g_strdup (myIcon->acName);\
+		cd_debug (" + %s (%s , %s)\n", pIcon->acName, myData.days[i].part[j].cWeatherDescription, pIcon->acFileName);\
+		pIconList = g_list_append (pIconList, pIcon);\
+	}
 
 static GList * _load_icons (void)
 {
@@ -83,6 +86,8 @@ gpointer cd_weather_threaded_calculation (gpointer data)
 		{
 			cd_warning ("Attention : %s", erreur->message);
 			g_error_free (erreur);
+			erreur = NULL;
+			myData.bErrorRetrievingData = TRUE;
 		}
 		g_remove (cCurrentConditionsFilePath);
 		g_free (cCurrentConditionsFilePath);
@@ -95,6 +100,8 @@ gpointer cd_weather_threaded_calculation (gpointer data)
 		{
 			cd_warning ("Attention : %s", erreur->message);
 			g_error_free (erreur);
+			erreur = NULL;
+			myData.bErrorRetrievingData = TRUE;
 		}
 		g_remove (cForecastFilePath);
 		g_free (cForecastFilePath);
@@ -127,7 +134,15 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
 			}
 			g_free (myIcon->acFileName);
-			myIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+			if (myData.bErrorRetrievingData)
+				myIcon->acFileName = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
+			else
+				myIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+			if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
+			{
+				g_free (myIcon->acFileName);
+				myIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+			}
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
 			if (myDock)
 			{
@@ -146,6 +161,7 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 			myData.pDeskletIconList = NULL;
 			myData.iNbIcons = 0;
 			myData.iMaxIconWidth = 0;
+			myDesklet->icons = NULL;
 		}
 		if (myIcon->pSubDock != NULL)
 		{
@@ -170,7 +186,7 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 			else  // on a deja notre sous-dock, on remplace juste ses icones.
 			{
 				cd_message ("  rechargement du sous-dock meteo");
-				if (pIconList == NULL)  // inutile de la garder.
+				if (pIconList == NULL)  // inutile de le garder.
 				{
 					cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 					myIcon->pSubDock = NULL;
@@ -191,6 +207,7 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 				myIcon->pSubDock = NULL;
 			}
 			myData.pDeskletIconList = pIconList;
+			myDesklet->icons = pIconList;
 			myData.iNbIcons = g_list_length (myData.pDeskletIconList);
 			GList* ic;
 			Icon *icon;
@@ -208,8 +225,8 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 					icon->fWidth = MAX (1, .2 * myDesklet->iWidth - g_iLabelSize);
 					icon->fHeight = MAX (1, .2 * myDesklet->iHeight - g_iLabelSize);
 				}
-				myData.iMaxIconWidth = MAX (myData.iMaxIconWidth, icon->fWidth);
 				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, myConfig.bDesklet3D);
+				myData.iMaxIconWidth = MAX (myData.iMaxIconWidth, icon->fWidth);
 			}
 			cairo_destroy (pCairoContext);
 			gtk_widget_queue_draw (myDesklet->pWidget);

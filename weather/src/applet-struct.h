@@ -8,7 +8,7 @@
 
 #define WEATHER_RATIO_ICON_DESKLET .5
 
-#define WEATHER_DEFAULT_NAME "weather"
+#define WEATHER_DEFAULT_NAME "_weather_"
 
 #define _display(cValue) (cValue == NULL || *cValue == 'N' ? "?" : cValue)
 
@@ -78,6 +78,7 @@ typedef struct {
 	GList *pDeskletIconList;
 	gint iMaxIconWidth;
 	gint iNbIcons;
+	gboolean bErrorRetrievingData;
 	guint iSidRotation;
 	gint iRotationDirection;
 	gint iRotationCount;

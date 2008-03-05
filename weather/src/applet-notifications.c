@@ -27,9 +27,9 @@ CD_APPLET_ON_CLICK_BEGIN
 		cd_debug (" clic sur %s", pClickedIcon->acName);
 		cd_weather_show_forecast_dialog (pClickedIcon);
 	}
-	else if (myDesklet != NULL && pClickedDock == myDesklet)
+	else if (myDesklet != NULL && pClickedDock == myDesklet && pClickedIcon != NULL)
 	{
-		int iMouseX = - (int) myDesklet->diff_x;
+		/*int iMouseX = - (int) myDesklet->diff_x;
 		int iMouseY = - (int) myDesklet->diff_y;
 		cd_debug (" clic en (%d;%d)", iMouseX, iMouseY);
 		
@@ -50,7 +50,11 @@ CD_APPLET_ON_CLICK_BEGIN
 					break ;
 				}
 			}
-		}
+		}*/
+		if (pClickedIcon == myIcon)
+			cd_weather_show_current_conditions_dialog ();
+		else
+			cd_weather_show_forecast_dialog (pClickedIcon);
 	}
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;

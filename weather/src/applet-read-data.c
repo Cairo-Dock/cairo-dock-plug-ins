@@ -74,14 +74,14 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 	doc = xmlParseFile (cDataFilePath);
 	if (doc == NULL)
 	{
-		cd_warning ("");
+		g_set_error (erreur, 1, 1, "file '%s' doesn't exist or is unreadable (no connection ?)", cDataFilePath);
 		return ;
 	}
 	
 	noeud = xmlDocGetRootElement (doc);
 	if ((noeud == NULL) || (xmlStrcmp (noeud->name, (const xmlChar *) "weather") != 0))
 	{
-		cd_warning ("");
+		g_set_error (erreur, 1, 1, "xml file '%s' is not well formed (weather.com may have changed its data format)", cDataFilePath);
 		return ;
 	}
 	

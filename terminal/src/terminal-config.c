@@ -74,7 +74,7 @@ void reset_data (void)
 		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
 		myData.dialog = NULL;
 	}
-	else
+	else if (myData.tab)
 	{
 		gtk_widget_destroy (myData.tab);
 	}

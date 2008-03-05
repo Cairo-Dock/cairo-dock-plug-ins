@@ -39,7 +39,7 @@ msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:20
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:19 ../src/applet-notifications.c:23
 msgid ""
 "This is the shortcuts applet\n"
 " made by Fabounet for Cairo-Dock"
@@ -48,6 +48,7 @@ msgstr ""
 " écrite par Fabounet pour Cairo-Dock"
 
 #: ../src/applet-notifications.c:42 ../src/applet-notifications.c:41
+#: ../src/applet-notifications.c:70 ../src/applet-notifications.c:80
 msgid "Remove this bookmark"
 msgstr "Supprimer ce signet"
 
@@ -55,34 +56,78 @@ msgstr "Supprimer ce signet"
 msgid "Icon"
 msgstr "Icône"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:33
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:35
 msgid "List drives and volumes ?"
 msgstr "Lister les disques et volumes ?"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:37
 msgid "List network ?"
 msgstr "Lister les points réseau ?"
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:39
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "Signets GTK, utilisés par Nautilus par exemple."
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:41
 msgid "List bookmarks ?"
 msgstr "Lister les signets ?"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:43
 msgid "Separate different shortcuts with separators ?"
 msgstr "Séparer les différents racourcis avec des séparateurs ?"
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:45
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:47
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr ""

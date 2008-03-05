@@ -26,11 +26,11 @@ static void _cd_shortcuts_detach_one_bookmark (Icon *icon, CairoDock *pDock, GLi
 }
 void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
 {
-	cd_message ("%s (%d)\n", __func__, iEventType);
+	cd_message ("%s (%d)", __func__, iEventType);
 	
 	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)
 	{
-		cd_message ("  un signet en plus ou en moins\n");
+		cd_message ("  un signet en plus ou en moins");
 		//\____________________ On detache les icones des signets.
 		GList *pPrevBookmarkIconList = NULL;
 		Icon *pSeparatorIcon = cairo_dock_foreach_icons_of_type (myIcon->pSubDock, 10, (CairoDockForeachIconFunc) _cd_shortcuts_detach_one_bookmark, &pPrevBookmarkIconList);
@@ -43,7 +43,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 		g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &tmp_erreur);
 		if (tmp_erreur != NULL)
 		{
-			cd_message ("Attention : %s\n", tmp_erreur->message);
+			cd_warning ("Attention : %s", tmp_erreur->message);
 			g_error_free (tmp_erreur);
 		}
 		else

@@ -257,3 +257,9 @@ msgstr "12月"
 #: ../data/messages:63
 msgid "Render desklet in 3D ?"
 msgstr "デスクレットを 3D 描画？"
+
+#: ../data/messages:33
+msgid ""
+"You can visit this URL to find it, for exemple : http://xoap.weather.com/"
+"search/search?where=Paris,France"
+msgstr ""

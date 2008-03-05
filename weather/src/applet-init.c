@@ -152,7 +152,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (myIcon->acName == NULL || *myIcon->acName == '\0')
 			myIcon->acName = g_strdup (WEATHER_DEFAULT_NAME);
 		
-		cd_weather_launch_measure ();
+		cd_weather_launch_measure ();  // asynchrone
 	}
 	else if (myDesklet != NULL)
 	{

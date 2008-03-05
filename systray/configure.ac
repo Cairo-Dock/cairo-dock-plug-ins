@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-systray],[0.1.1],[GESTES Cedric (ctaf42@gmail.com)])
+AC_INIT([cd-systray],[0.1.2],[GESTES Cedric (ctaf42@gmail.com)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

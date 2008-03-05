@@ -6,5 +6,6 @@ moduledir = $(pkgdatadir)
 module_DATA = \
 	weather.conf\
 	readme\
-	preview.png
+	preview.png\
+	broken.png
 

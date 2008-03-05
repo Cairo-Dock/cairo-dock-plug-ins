@@ -5,5 +5,7 @@ moduledir = $(pkgdatadir)
 
 module_DATA = \
 	shortcuts.conf\
-	readme
+	readme\
+	branche1.svg\
+	branche2.svg
 

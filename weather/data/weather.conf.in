@@ -43,7 +43,7 @@ on widget layer=false
 [Configuration]
 
 #s Code of your location :
-#{You can search it on www.weather.com}
+#{You can visit this URL to find it, for exemple : http://xoap.weather.com/search/search?where=Paris,France}
 location code = FRXX0076
 
 #b Use International System Units ?

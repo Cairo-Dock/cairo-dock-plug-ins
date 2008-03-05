@@ -29,57 +29,62 @@ msgstr "高さ :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#: ../data/messages:33 ../data/messages:31
+#: ../data/messages:33 ../data/messages:31 ../data/messages:29
 msgid "GUI"
 msgstr "GUI"
 
-#: ../data/messages:37 ../data/messages:35
+#: ../data/messages:37 ../data/messages:35 ../data/messages:33
 msgid "Terminal's transparency :"
 msgstr "端末の透明度 :"
 
-#: ../data/messages:35 ../data/messages:33
+#: ../data/messages:35 ../data/messages:33 ../data/messages:31
 msgid "needs to restart the applet."
 msgstr "アプレットの再起動が必要です。"
 
 msgid "Always on top ?"
 msgstr "常に最前面に表示？"
 
-#: ../data/messages:39 ../data/messages:37
+#: ../data/messages:39 ../data/messages:37 ../data/messages:35
 msgid "Foreground color (r, v, b):"
 msgstr "前面の色（赤、緑、青） :"
 
-#: ../data/messages:41 ../data/messages:39
+#: ../data/messages:41 ../data/messages:39 ../data/messages:37
 msgid "Background color (r, v, b):"
 msgstr "背景の色（赤、緑、青） :"
 
-#: ../data/messages:43 ../data/messages:41
+#: ../data/messages:43 ../data/messages:41 ../data/messages:39
 msgid "Size of the terminal (line x columns) :"
 msgstr "端末の大きさ（行×列） :"
 
 #: ../src/terminal-menu-functions.c:94 ../src/terminal-callbacks.c:68
 #: ../src/terminal-menu-functions.c:146 ../src/terminal-menu-functions.c:143
+#: ../src/terminal-menu-functions.c:142
 msgid "Copy"
 msgstr "コピー"
 
 #: ../src/terminal-init.c:82 ../src/terminal-menu-functions.c:245
-#: ../src/terminal-menu-functions.c:243
+#: ../src/terminal-menu-functions.c:243 ../src/terminal-menu-functions.c:244
 msgid "Terminal"
 msgstr "端末"
 
 #: ../src/terminal-menu-functions.c:152 ../src/terminal-menu-functions.c:149
+#: ../src/terminal-menu-functions.c:148
 msgid "Paste"
 msgstr "張り付け"
 
 #: ../src/terminal-menu-functions.c:161 ../src/terminal-menu-functions.c:287
 #: ../src/terminal-menu-functions.c:158 ../src/terminal-menu-functions.c:283
+#: ../src/terminal-menu-functions.c:157 ../src/terminal-menu-functions.c:284
 msgid "New Tab"
 msgstr "新しいタブ"
 
 #: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:164
+#: ../src/terminal-menu-functions.c:163
 msgid "Close Tab"
 msgstr "タブを閉じる"
 
 #: ../src/terminal-menu-functions.c:288 ../src/terminal-menu-functions.c:284
+#: ../src/terminal-menu-functions.c:285
 msgid "Close the current Tab"
 msgstr "現在のタブを閉じる"
 
@@ -125,19 +130,19 @@ msgstr ""
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:21 ../data/messages:23
+#: ../data/messages:21 ../data/messages:23 ../data/messages:19
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:23 ../data/messages:25
+#: ../data/messages:23 ../data/messages:25 ../data/messages:21
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:25 ../data/messages:27
+#: ../data/messages:25 ../data/messages:27 ../data/messages:23
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:27 ../data/messages:29
+#: ../data/messages:27 ../data/messages:29 ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -145,11 +150,11 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:31
+#: ../data/messages:29 ../data/messages:31 ../data/messages:27
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../data/messages:45 ../data/messages:43
+#: ../data/messages:45 ../data/messages:43 ../data/messages:41
 msgid "Shortkey to show the terminal"
 msgstr "端末を表示するショートカットキー :"
 

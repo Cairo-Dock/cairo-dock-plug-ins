@@ -18,7 +18,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN ("Shortcuts", "gnome-main-menu")
+CD_APPLET_CONFIG_BEGIN ()
 	reset_config ();
 	
 	myConfig.bListDrives = CD_CONFIG_GET_BOOLEAN ("Module", "list drives");
@@ -47,6 +47,17 @@ void reset_data (void)
 	
 	cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 	myIcon->pSubDock = NULL;  // normalement inutile.
+	
+	if (myData.pBrancheSurface[0]  != NULL)
+	{
+		cairo_surface_destroy (myData.pBrancheSurface[0]);
+		myData.pBrancheSurface[0] = NULL;
+	}
+	if (myData.pBrancheSurface[1]  != NULL)
+	{
+		cairo_surface_destroy (myData.pBrancheSurface[1]);
+		myData.pBrancheSurface[1] = NULL;
+	}
 	
 	memset (&myData, 0, sizeof (AppletData));
 }

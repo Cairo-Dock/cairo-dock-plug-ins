@@ -132,7 +132,7 @@ msgid "On icon"
 msgstr "Sur l'icône"
 
 #: ../src/applet-mixer.c:217 ../src/applet-mixer.c:248
-#: ../src/applet-mixer.c:265
+#: ../src/applet-mixer.c:265 ../src/applet-mixer.c:269
 msgid "Set up volume :"
 msgstr "Réglez le volume :"
 
@@ -231,7 +231,7 @@ msgstr ""
 msgid "Mute icon :"
 msgstr ""
 
-#: ../src/applet-mixer.c:134
+#: ../src/applet-mixer.c:134 ../src/applet-mixer.c:136
 #, c-format
 msgid "I couldn't find any element '%s'"
 msgstr ""
