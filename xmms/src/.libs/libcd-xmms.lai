@@ -14,7 +14,7 @@ library_names='libcd-xmms.so.1.0.0 libcd-xmms.so.1 libcd-xmms.so'
 old_library='libcd-xmms.a'
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/usr/local/lib /usr/lib/libgthread-2.0.la -lrt /usr/lib/libgtk-x11-2.0.la -lrsvg-2 /usr/lib/libgdk-x11-2.0.la /usr/lib/libatk-1.0.la /usr/lib/libpangocairo-1.0.la -lXext -lXinerama -lXi -lXrandr -lXcursor -lXcomposite -lXdamage /usr/lib/libpango-1.0.la /usr/local/lib/libcairo.la /usr/lib/libfreetype.la -lz -lfontconfig /usr/local/lib/libglitz.la -lpng12 -lXrender -lX11 -lXfixes /usr/lib/libgdk_pixbuf-2.0.la /usr/lib/libgobject-2.0.la /usr/lib/libgmodule-2.0.la -ldl /usr/lib/libglib-2.0.la -lm'
+dependency_libs=' /usr/lib/libgthread-2.0.la -lrt /usr/lib/libgtk-x11-2.0.la -lrsvg-2 /usr/lib/libgdk-x11-2.0.la /usr/lib/libatk-1.0.la /usr/lib/libpangocairo-1.0.la -lXext -lXinerama -lXi -lXrandr -lXcursor -lXcomposite -lXdamage /usr/lib/libpango-1.0.la /usr/lib/libcairo.la /usr/lib/libfreetype.la -lz -lfontconfig /usr/lib/libglitz.la -lpng12 -lXrender /usr/lib/libpixman-1.la -lX11 -lXfixes /usr/lib/libgdk_pixbuf-2.0.la /usr/lib/libgobject-2.0.la /usr/lib/libgmodule-2.0.la -ldl /usr/lib/libglib-2.0.la -lm'
 
 # Version information for libcd-xmms.
 current=1

@@ -9,7 +9,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN ("xmms", "xmms.svg")
+CD_APPLET_CONFIG_BEGIN
 	reset_config ();
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.quickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
