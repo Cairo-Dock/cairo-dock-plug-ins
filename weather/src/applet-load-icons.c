@@ -89,6 +89,8 @@ gpointer cd_weather_threaded_calculation (gpointer data)
 			erreur = NULL;
 			myData.bErrorRetrievingData = TRUE;
 		}
+		else
+			myData.bErrorRetrievingData = FALSE;
 		g_remove (cCurrentConditionsFilePath);
 		g_free (cCurrentConditionsFilePath);
 	}
@@ -103,12 +105,15 @@ gpointer cd_weather_threaded_calculation (gpointer data)
 			erreur = NULL;
 			myData.bErrorRetrievingData = TRUE;
 		}
+		else
+			myData.bErrorRetrievingData = FALSE;
 		g_remove (cForecastFilePath);
 		g_free (cForecastFilePath);
 	}
 	
 	g_atomic_int_set (&s_iThreadIsRunning, 0);
 	cd_message ("*** fin du thread");
+	g_print ("myData.bErrorRetrievingData : %d\n", myData.bErrorRetrievingData);
 	return NULL;
 }
 

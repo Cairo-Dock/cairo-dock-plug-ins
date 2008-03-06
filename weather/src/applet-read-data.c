@@ -33,7 +33,7 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 
 void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastFilePath)
 {
-	gboolean bTest = TRUE;
+	gboolean bTest = FALSE;
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)
 	{
@@ -64,7 +64,7 @@ void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastF
 	}
 }
 
-static xmlDocPtr _cd_weather_open_xml_file (gchar *cDataFilePath, xmlNodePtr *root_node, GError **erreur)
+static xmlDocPtr _cd_weather_open_xml_file (gchar *cDataFilePath, xmlNodePtr *root_node, gchar *cRootNodeName, GError **erreur)
 {
 	xmlInitParser ();
 	
@@ -76,7 +76,7 @@ static xmlDocPtr _cd_weather_open_xml_file (gchar *cDataFilePath, xmlNodePtr *ro
 	}
 	
 	xmlNodePtr noeud = xmlDocGetRootElement (doc);
-	if ((noeud == NULL) || (xmlStrcmp (noeud->name, (const xmlChar *) "weather") != 0))
+	if (noeud == NULL || xmlStrcmp (noeud->name, (const xmlChar *) cRootNodeName) != 0)
 	{
 		g_set_error (erreur, 1, 1, "xml file '%s' is not well formed (weather.com may have changed its data format)", cDataFilePath);
 		return doc;
@@ -97,7 +97,7 @@ GList *cd_weather_parse_location_data (gchar *cDataFilePath, GError **erreur)
 	
 	GError *tmp_erreur = NULL;
 	xmlNodePtr noeud;
-	xmlDocPtr doc = _cd_weather_open_xml_file (cDataFilePath, &noeud, &tmp_erreur);
+	xmlDocPtr doc = _cd_weather_open_xml_file (cDataFilePath, &noeud, "search", &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
 		g_propagate_error (erreur, tmp_erreur);
@@ -106,19 +106,13 @@ GList *cd_weather_parse_location_data (gchar *cDataFilePath, GError **erreur)
 	}
 	
 	GList *cLocationsList = NULL;
-	xmlNodePtr param, fils;
+	xmlNodePtr param;
 	for (param = noeud->xmlChildrenNode; param != NULL; param = param->next)
 	{
 		if (xmlStrcmp (param->name, (const xmlChar *) "loc") == 0)
 		{
-			for (fils = param->children; fils != NULL; fils = fils->next)
-			{
-				if (xmlStrcmp (fils->name, (const xmlChar *) "dnam") == 0)
-				{
-					cLocationsList = g_list_prepend (cLocationsList, xmlNodeGetContent (fils));
-					cLocationsList = g_list_prepend (cLocationsList,  xmlGetProp (fils, (xmlChar *) "id"));
-				}
-			}
+			cLocationsList = g_list_prepend (cLocationsList, xmlNodeGetContent (param));
+			cLocationsList = g_list_prepend (cLocationsList,  xmlGetProp (param, (xmlChar *) "id"));
 		}
 	}
 	_cd_weather_close_xml_file (doc);
@@ -130,7 +124,7 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 	
 	GError *tmp_erreur = NULL;
 	xmlNodePtr noeud;
-	xmlDocPtr doc = _cd_weather_open_xml_file (cDataFilePath, &noeud, &tmp_erreur);
+	xmlDocPtr doc = _cd_weather_open_xml_file (cDataFilePath, &noeud, "weather", &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
 		g_propagate_error (erreur, tmp_erreur);

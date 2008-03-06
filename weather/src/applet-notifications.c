@@ -114,8 +114,7 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, gpointer *d
 			g_free (cIconPath);
 			
 			g_error_free (erreur);
-			erreur = NULL;
-			myData.bErrorRetrievingData = TRUE;
+			erreur = NULL;  // on ne garde pas trace de l'erreur, c'est deja fait au (re)chargement.
 		}
 		else if (pLocationsList == NULL)
 		{
@@ -138,9 +137,9 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, gpointer *d
 			GList *list;
 			for (list = pLocationsList; list != NULL; list = list->next)
 			{
-				cLocationName = list->data;
-				list = list->next;
 				cLocationCode = list->data;
+				list = list->next;
+				cLocationName = list->data;
 				
 				g_string_printf (sOneLocation, "%s : %s", cLocationName, cLocationCode);
 				gtk_combo_box_append_text (GTK_COMBO_BOX (pCombo), sOneLocation->str);
