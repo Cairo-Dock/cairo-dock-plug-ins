@@ -55,4 +55,4 @@ nb lines = 25
 nb columns = 80
 
 #k Shortkey to show the terminal
-shortkey = <Ctrl>F1
+shortkey = <Shift><Ctrl>F1

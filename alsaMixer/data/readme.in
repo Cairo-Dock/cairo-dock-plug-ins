@@ -1,6 +1,8 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
 <i>This applet let you set up the <span color='#0000FF'>sound volume</span> from the dock.</i>
- Click on icon to show/hide volume control (You can bind a keyboard shortcut for it.)
- Middle click to set or unset to mute.
- You need to use an alsa sound driver.
+ Click on icon to show/hide volume control
+  (You can bind a keyboard shortcut for it.
+   You can also hide the dialog by clicking on it.)
+ Middle-click to set or unset to mute.
+ This applet works with the Alsa sound driver.

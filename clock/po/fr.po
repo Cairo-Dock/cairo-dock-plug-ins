@@ -179,7 +179,7 @@ msgstr ""
 " écrite par MacSlow (http://macslow.thepimp.net)."
 
 #: src/applet-notifications.c:40 ../src/applet-notifications.c:61
-#: ../src/applet-notifications.c:56
+#: ../src/applet-notifications.c:56 ../src/applet-notifications.c:68
 msgid "Set up time and date"
 msgstr "Régler la date et l'heure"
 
@@ -286,5 +286,6 @@ msgid "Command to execute :"
 msgstr "Commande à exécuter"
 
 #: ../src/applet-notifications.c:50 ../src/applet-notifications.c:55
+#: ../src/applet-notifications.c:56
 msgid "Calendar"
 msgstr ""

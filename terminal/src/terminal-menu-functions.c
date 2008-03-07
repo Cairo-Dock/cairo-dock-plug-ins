@@ -50,9 +50,19 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 	if (myData.tab)
 	{
 		if (myDesklet)
-			cairo_dock_show_desklet(myDesklet);
+		{
+			if (gtk_window_is_active (myDesklet->pWidget)
+				cairo_dock_hide_desklet(myDesklet);
+			else
+				cairo_dock_show_desklet(myDesklet);
+		}
 		else if (myData.dialog)
-			cairo_dock_unhide_dialog(myData.dialog);
+		{
+			if (GTK_WIDGET_VISIBLE (myData.dialog->pWidget)
+				cairo_dock_hide_dialog(myData.dialog);
+			else
+				cairo_dock_unhide_dialog(myData.dialog);
+		}
 	}
 	else
 	{

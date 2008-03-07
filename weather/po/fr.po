@@ -51,6 +51,7 @@ msgstr ""
 #: ../src/applet-notifications.c:92 ../src/applet-notifications.c:106
 #: ../src/applet-notifications.c:96 ../src/applet-notifications.c:110
 #: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
+#: ../src/applet-notifications.c:223 ../src/applet-notifications.c:247
 msgid "Temperature"
 msgstr "Température"
 
@@ -59,6 +60,7 @@ msgstr "Température"
 #: ../src/applet-notifications.c:93 ../src/applet-notifications.c:107
 #: ../src/applet-notifications.c:97 ../src/applet-notifications.c:111
 #: ../src/applet-notifications.c:225 ../src/applet-notifications.c:249
+#: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
 msgid "Wind"
 msgstr "Vent"
 
@@ -67,6 +69,7 @@ msgstr "Vent"
 #: ../src/applet-notifications.c:94 ../src/applet-notifications.c:108
 #: ../src/applet-notifications.c:98 ../src/applet-notifications.c:112
 #: ../src/applet-notifications.c:226 ../src/applet-notifications.c:250
+#: ../src/applet-notifications.c:225 ../src/applet-notifications.c:249
 msgid "Humidity"
 msgstr "Humidité"
 
@@ -75,6 +78,7 @@ msgstr "Humidité"
 #: ../src/applet-notifications.c:95 ../src/applet-notifications.c:109
 #: ../src/applet-notifications.c:99 ../src/applet-notifications.c:113
 #: ../src/applet-notifications.c:227 ../src/applet-notifications.c:251
+#: ../src/applet-notifications.c:226 ../src/applet-notifications.c:250
 msgid "SunRise"
 msgstr "Lever du soleil"
 
@@ -83,18 +87,19 @@ msgstr "Lever du soleil"
 #: ../src/applet-notifications.c:95 ../src/applet-notifications.c:109
 #: ../src/applet-notifications.c:99 ../src/applet-notifications.c:113
 #: ../src/applet-notifications.c:227 ../src/applet-notifications.c:251
+#: ../src/applet-notifications.c:226 ../src/applet-notifications.c:250
 msgid "SunSet"
 msgstr "Coucher du soleil"
 
 #: ../src/applet-notifications.c:77 ../src/applet-notifications.c:99
 #: ../src/applet-notifications.c:106 ../src/applet-notifications.c:110
-#: ../src/applet-notifications.c:248
+#: ../src/applet-notifications.c:248 ../src/applet-notifications.c:247
 msgid "feeled"
 msgstr "ressentie"
 
 #: ../src/applet-notifications.c:79 ../src/applet-notifications.c:101
 #: ../src/applet-notifications.c:108 ../src/applet-notifications.c:112
-#: ../src/applet-notifications.c:250
+#: ../src/applet-notifications.c:250 ../src/applet-notifications.c:249
 msgid "Pressure"
 msgstr "Pression"
 
@@ -287,24 +292,26 @@ msgid ""
 msgstr ""
 
 #: ../src/applet-notifications.c:109 ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:122
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
 msgstr ""
 
-#: ../src/applet-notifications.c:156
+#: ../src/applet-notifications.c:156 ../src/applet-notifications.c:155
 msgid "Choose your location :"
 msgstr ""
 
-#: ../src/applet-notifications.c:182
+#: ../src/applet-notifications.c:182 ../src/applet-notifications.c:181
 msgid "Search for your location"
 msgstr ""
 
-#: ../src/applet-notifications.c:183
+#: ../src/applet-notifications.c:183 ../src/applet-notifications.c:182
 msgid "Reload now"
 msgstr ""
 
 #: ../src/applet-notifications.c:208 ../src/applet-notifications.c:236
+#: ../src/applet-notifications.c:207 ../src/applet-notifications.c:235
 msgid ""
 "No data were available\n"
 " is connection alive ?"

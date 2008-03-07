@@ -175,7 +175,7 @@ msgstr ""
 "有名な Cairo-Clock からの移植です。"
 
 #: src/applet-notifications.c:40 ../src/applet-notifications.c:61
-#: ../src/applet-notifications.c:56
+#: ../src/applet-notifications.c:56 ../src/applet-notifications.c:68
 msgid "Set up time and date"
 msgstr "時刻と日付を設定"
 
@@ -282,5 +282,6 @@ msgid "Command to execute :"
 msgstr "実行するコマンド :"
 
 #: ../src/applet-notifications.c:50 ../src/applet-notifications.c:55
+#: ../src/applet-notifications.c:56
 msgid "Calendar"
 msgstr "カレンダー"

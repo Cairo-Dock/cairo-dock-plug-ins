@@ -292,7 +292,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			{
 				gboolean bIsDirectory = FALSE;
 				file_manager_get_file_info_from_desktop_link (cFileURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
-				cd_message ("  bIsDirectory : %d; iVolumeID : %d", bIsDirectory, icon->iVolumeID);
+				cd_message ("  bIsDirectory : %d; iVolumeID : %d; acFileName : %s", bIsDirectory, icon->iVolumeID, icon->acFileName);
 			}
 			else
 			{

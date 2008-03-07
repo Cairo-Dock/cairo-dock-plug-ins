@@ -58,7 +58,7 @@ mixer element = Front
 show mixer = 
 
 #k Shortkey to show/hide the sound control dialog :
-shortkey = <Ctrl>F3
+shortkey = <Shift><Ctrl>F3
 
 #F[Display]
 frame_disp =

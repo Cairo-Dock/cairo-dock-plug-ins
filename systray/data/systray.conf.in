@@ -40,4 +40,4 @@ on widget layer=false
 
 [GUI]
 #k Shortkey to toggle the systray
-shortkey = <Ctrl>F2
+shortkey = <Shift><Ctrl>F2
