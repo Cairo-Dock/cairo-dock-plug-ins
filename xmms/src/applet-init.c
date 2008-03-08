@@ -1,4 +1,5 @@
 #include "stdlib.h"
+#include <glib/gi18n.h>
 
 #include "applet-config.h"
 #include "applet-notifications.h"
@@ -87,13 +88,40 @@ static void _load_surfaces (void) {
 	g_string_free (sImagePath, TRUE);
 }
 
+int _remove_pipes() {
+  if (myConfig.cPlayer == MY_XMMS) {
+    return 0;
+  }
+  GString *sScriptPath = g_string_new ("");
+  gchar *cInfopipeFilePath;
+  if (myConfig.cPlayer == MY_AUDACIOUS) {
+    cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
+  }
+  else if (myConfig.cPlayer == MY_BANSHEE) {
+    cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
+  }
+  else if (myConfig.cPlayer == MY_EXAILE) {
+    cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
+  }
+  g_string_printf (sScriptPath, "rm %s", cInfopipeFilePath);
+  GError *erreur = NULL;
+  g_spawn_command_line_async (sScriptPath->str, &erreur);
+  if (erreur != NULL) {
+	  cd_warning ("Attention : when trying to execute 'infobanshee.sh", erreur->message);
+    g_error_free (erreur);
+	}
+	return 0;
+}
+
 CD_APPLET_INIT_BEGIN (erreur)
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
+	_remove_pipes();
 	_load_surfaces();
+	myData.playingTitle = "  ";
 	cd_xmms_update_title();
-	g_timeout_add (1000, (GSourceFunc) cd_xmms_read_pipe, (gpointer) NULL);
+	myData.pipeTimer = g_timeout_add (500, (GSourceFunc) cd_xmms_get_pipe, (gpointer) NULL);
 	
 CD_APPLET_INIT_END
 
@@ -106,8 +134,9 @@ CD_APPLET_STOP_BEGIN
 	
 	
 	//\_________________ On libere toutes nos ressources.
-	reset_config ();
-	reset_data ();
+	reset_config();
+	reset_data();
+	_remove_pipes();
 CD_APPLET_STOP_END
 
 
@@ -115,6 +144,7 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 	  _load_surfaces();
+	  _remove_pipes();
 		cd_xmms_update_title();
 	}
 	else {

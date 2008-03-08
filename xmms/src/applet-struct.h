@@ -7,6 +7,7 @@
 typedef enum {
 	MY_APPLET_NOTHING = 0,
 	MY_APPLET_TIME_ELAPSED,
+	MY_APPLET_TIME_LEFT,
 	MY_APPLET_TOTAL_TIME,
 	MY_APPLET_TRACK,
 	MY_APPLET_NB_QUICK_INFO_TYPE
@@ -15,12 +16,15 @@ typedef enum {
 typedef enum {
 	MY_XMMS = 0,
 	MY_AUDACIOUS,
+	MY_BANSHEE,
+	MY_EXAILE,
 } MyPlayerType;
 
 
 typedef struct {
 	gboolean enableDialogs;
 	gdouble timeDialogs;
+	gboolean enableAnim;
 	CairoDockAnimationType changeAnimation;
 	MyAppletQuickInfoType quickInfoType;
 	gchar *defaultTitle;
@@ -39,7 +43,8 @@ typedef struct {
 	cairo_surface_t *pStopSurface;
 	cairo_surface_t *pCover;
 	cairo_surface_t *pBrokenSurface;
-	const gchar *playingTitle;
+  gchar *playingTitle;
+  int pipeTimer;
 } AppletData;
 
 #endif

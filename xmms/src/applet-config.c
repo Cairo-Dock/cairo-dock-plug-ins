@@ -1,4 +1,4 @@
-
+#include <stdlib.h>
 #include <string.h>
 #include <cairo-dock.h>
 
@@ -8,14 +8,19 @@
 extern AppletConfig myConfig;
 extern AppletData myData;
 
+CD_APPLET_CONFIG_BEGIN //("xmms", "xmms.svg")
 
-CD_APPLET_CONFIG_BEGIN
 	reset_config ();
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.quickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
 	
 	myConfig.defaultTitle		= CD_CONFIG_GET_STRING ("Icon", "name");
 	myConfig.cPlayer = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "current-player", MY_XMMS);
+	
+	myConfig.enableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");
+	myConfig.timeDialogs 		= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "time_dialogs", 3000);
+	myConfig.enableAnim 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_anim");
+	myConfig.changeAnimation 	= CD_CONFIG_GET_ANIMATION_WITH_DEFAULT ("Configuration", "change_animation", CAIRO_DOCK_ROTATE);
 	
 	myConfig.cDefaultIcon 		= CD_CONFIG_GET_STRING ("Configuration", "default icon");
 	myConfig.cPlayIcon 			= CD_CONFIG_GET_STRING ("Configuration", "play icon");
@@ -56,7 +61,7 @@ void reset_data (void) {
 	cairo_surface_destroy (myData.pBrokenSurface);
 	myData.pBrokenSurface = NULL;
 	
-	myData.playingTitle = NULL;
-	
+	gtk_timeout_remove(myData.pipeTimer);
+
 	memset (&myData, 0, sizeof (AppletData));
 }

@@ -85,7 +85,71 @@ msgstr "Information afficher sur l'icône :"
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:45 ../data/messages:27
+msgid "Audio Player"
+msgstr "Lecteur Audio"
+
+msgid "Player to control:"
+msgstr "Lecteur a controler:"
+
+msgid "Action on music change"
+msgstr "Action au changement de musique"
+
+msgid "Animate icon ?"
+msgstr "Animer l'icon ?"
+
+#: ../data/messages:13
+msgid "Info-bubbles"
+msgstr "Info-bulles"
+
+#: ../data/messages:15
+msgid "Put a info-bubble ?"
+msgstr "Afficher une info-bulle ?"
+
+#: ../data/messages:19
+msgid "Time length of info-bubbles :"
+msgstr "Durée des info-bulles :"
+
+#: ../data/messages:17
+msgid "in ms."
+msgstr "en ms."
+
+#: ../data/messages:21
+msgid "Animations"
+msgstr "Animations"
+
+#: ../data/messages:25
+msgid "Bounce"
+msgstr "Rebond"
+
+#: ../data/messages:27
+msgid "Rotate"
+msgstr "Rotation"
+
+#: ../data/messages:29
+msgid "Blink"
+msgstr "Clignotement"
+
+#: ../data/messages:31
+msgid "Pulse"
+msgstr "Pulsation"
+
+#: ../data/messages:33
+msgid "Upside-down"
+msgstr "Sens dessus-dessous"
+
+#: ../data/messages:35
+msgid "Wobbly"
+msgstr "Élastique"
+
+#: ../data/messages:37
+msgid "Random"
+msgstr "Aléatoire"
+
+#: ../data/messages:23
+msgid "Animation when music changes :"
+msgstr "Animation au changement de musique"
+
+#: ../data/messages:45
 msgid "Nothing"
 msgstr "Rien"
 

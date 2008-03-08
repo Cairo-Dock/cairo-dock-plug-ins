@@ -1,19 +1,21 @@
 #!/bin/bash
 
 FILE="/tmp/audacious-info_$USER.0"
-rm $FILE
 
 STATUS=$(audtool playback-status)
+TITLE=$(audtool current-song)
 
-if [  "$STATUS" = "audtool: audacious server is not running!" ]
-then
-echo ""
+if [  "$STATUS" = "audtool: audacious server is not running!" ]; then
+  exit
+fi
+if [  "$TITLE" = "No song playing." ]; then
+  exit
+fi
 
-else
 echo "Audacious Emulated pipe" >> $FILE
 echo "Pipe created by ChAnGFu" >> $FILE
 #Status du player
-echo "status: $(audtool playback-status)" >> $FILE
+echo "status: $STATUS" >> $FILE
 #Ligne non lu du pipe
 echo "Info: Blank" >> $FILE
 #Position du morceaux
@@ -33,5 +35,4 @@ echo "Info: Blank" >> $FILE
 #Ligne non lu du pipe
 echo "Info: Blank" >> $FILE
 #Titre du son
-echo "nowTitle: $(audtool current-song)" >> $FILE
-fi
+echo "nowTitle: $TITLE" >> $FILE

@@ -12,5 +12,7 @@ module_DATA = \
 	stop.svg\
 	xmms.svg\
 	infoaudacious.sh\
+	infobanshee.sh\
+	infoexaile.sh\
 	preview.png
 

@@ -19,8 +19,14 @@ void cd_xmms_prev() {
   else if (myConfig.cPlayer == MY_AUDACIOUS) {
     g_spawn_command_line_async ("audacious -r", &erreur);
   }
+  else if (myConfig.cPlayer == MY_BANSHEE) {
+    g_spawn_command_line_async ("banshee --previous", &erreur);
+  }
+  else if (myConfig.cPlayer == MY_EXAILE) {
+    g_spawn_command_line_async ("exaile -p", &erreur);
+  }
   if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'xmms -r' : %s", erreur->message);
+		cd_warning ("Attention : when trying to execute 'previous on %d' : %s", myConfig.cPlayer, erreur->message);
 		g_error_free (erreur);
 	}
 }
@@ -32,8 +38,14 @@ void cd_xmms_pp() {
   else if (myConfig.cPlayer == MY_AUDACIOUS) {
     g_spawn_command_line_async ("audacious -t", &erreur);
   }
+  else if (myConfig.cPlayer == MY_BANSHEE) {
+    g_spawn_command_line_async ("banshee --toggle-playing", &erreur);
+  }
+  else if (myConfig.cPlayer == MY_EXAILE) {
+    g_spawn_command_line_async ("exaile -t", &erreur);
+  }
   if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'xmms -t' : %s", erreur->message);
+		cd_warning ("Attention : when trying to execute 'play pause on %d' : %s", myConfig.cPlayer, erreur->message);
 		g_error_free (erreur);
 	}
 }
@@ -45,8 +57,11 @@ void cd_xmms_s() {
   else if (myConfig.cPlayer == MY_AUDACIOUS) {
     g_spawn_command_line_async ("audacious -s", &erreur);
   }
+  else if (myConfig.cPlayer == MY_EXAILE) {
+    g_spawn_command_line_async ("exaile -s", &erreur);
+  }
   if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'xmms -s' : %s", erreur->message);
+		cd_warning ("Attention : when trying to execute 'stop on %d' : %s", myConfig.cPlayer, erreur->message);
 		g_error_free (erreur);
 	}
 }
@@ -58,30 +73,51 @@ void cd_xmms_next() {
   else if (myConfig.cPlayer == MY_AUDACIOUS) {
     g_spawn_command_line_async ("audacious -f", &erreur);
   }
+  else if (myConfig.cPlayer == MY_BANSHEE) {
+    g_spawn_command_line_async ("banshee --next", &erreur);
+  }
+  else if (myConfig.cPlayer == MY_EXAILE) {
+    g_spawn_command_line_async ("exaile -n", &erreur);
+  }
   if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'xmms -f' : %s", erreur->message);
+		cd_warning ("Attention : when trying to execute 'next on %d' : %s", myConfig.cPlayer, erreur->message);
 		g_error_free (erreur);
 	}
 }
 void cd_xmms_shuffle() {
   GError *erreur = NULL;
-  g_spawn_command_line_async ("xmms -S", &erreur);
+  if (myConfig.cPlayer == MY_XMMS) {
+    g_spawn_command_line_async ("xmms -S", &erreur);
+  }
+  else if (myConfig.cPlayer == MY_AUDACIOUS) {
+    g_spawn_command_line_async ("audtool playlist-repeat-toggle ", &erreur);
+  }
   if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'xmms -S' : %s", erreur->message);
+		cd_warning ("Attention : when trying to execute 'shuffle on %d' : %s", myConfig.cPlayer, erreur->message);
 		g_error_free (erreur);
 	}
 }
 void cd_xmms_repeat() {
   GError *erreur = NULL;
-  g_spawn_command_line_async ("xmms -R", &erreur);
+  if (myConfig.cPlayer == MY_XMMS) {
+    g_spawn_command_line_async ("xmms -R", &erreur);
+  }
+  else if (myConfig.cPlayer == MY_AUDACIOUS) {
+    g_spawn_command_line_async ("audtool playlist-shuffle-toggle", &erreur);
+  }
   if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'xmms -R' : %s", erreur->message);
+		cd_warning ("Attention : when trying to execute 'repeat on %d' : %s", myConfig.cPlayer, erreur->message);
 		g_error_free (erreur);
 	}
 }
 void cd_xmms_jumpbox() {
   GError *erreur = NULL;
-  g_spawn_command_line_async ("xmms -j", &erreur);
+  if (myConfig.cPlayer == MY_XMMS) {
+    g_spawn_command_line_async ("xmms -j", &erreur);
+  }
+  else if (myConfig.cPlayer == MY_AUDACIOUS) {
+    g_spawn_command_line_async ("audacious -j", &erreur);
+  }
   if (erreur != NULL) {
 		cd_warning ("Attention : when trying to execute 'xmms -j' : %s", erreur->message);
 		g_error_free (erreur);
@@ -100,10 +136,12 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("XMMS", pSubMenu, CD_APPLET_MY_MENU)
 	  CD_APPLET_ADD_IN_MENU (_D("Previous"), cd_xmms_prev, pSubMenu)
 	  CD_APPLET_ADD_IN_MENU (_D("Play/Pause"), cd_xmms_pp, pSubMenu)
-	  CD_APPLET_ADD_IN_MENU (_D("Stop"), cd_xmms_s, pSubMenu)
+	  if (myConfig.cPlayer != MY_BANSHEE) {
+	    CD_APPLET_ADD_IN_MENU (_D("Stop"), cd_xmms_s, pSubMenu)
+	  }
 	  CD_APPLET_ADD_IN_MENU (_D("Next"), cd_xmms_next, pSubMenu)
-	  CD_APPLET_ADD_IN_MENU (_D("Show JumpBox"), cd_xmms_jumpbox, pSubMenu)
-	  if (myConfig.cPlayer == MY_XMMS) {
+	  if ((myConfig.cPlayer != MY_BANSHEE) || (myConfig.cPlayer != MY_EXAILE)) {
+	    CD_APPLET_ADD_IN_MENU (_D("Show JumpBox"), cd_xmms_jumpbox, pSubMenu)
 	    CD_APPLET_ADD_SUB_MENU (_D("Options"), pOpsSubMenu, pSubMenu)
 	    CD_APPLET_ADD_IN_MENU (_D("Toggle Shuffle"), cd_xmms_shuffle, pOpsSubMenu)
 	    CD_APPLET_ADD_IN_MENU (_D("Toggle Repeat"), cd_xmms_repeat, pOpsSubMenu)

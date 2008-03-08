@@ -7,6 +7,6 @@
 
 
 CD_APPLET_H
-
+int _remove_pipes();
 
 #endif
