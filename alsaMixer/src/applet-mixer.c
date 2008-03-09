@@ -182,14 +182,14 @@ void mixer_set_volume (int iNewVolume)
 
 gboolean mixer_is_mute (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("");
 	g_return_val_if_fail (myData.pControledElement != NULL, FALSE);
 	if (snd_mixer_selem_has_playback_switch (myData.pControledElement))
 	{
 		int iSwitchLeft, iSwitchRight;
 		snd_mixer_selem_get_playback_switch (myData.pControledElement, SND_MIXER_SCHN_FRONT_LEFT, &iSwitchLeft);
 		snd_mixer_selem_get_playback_switch (myData.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT, &iSwitchRight);
-		g_print ("%d;%d\n", iSwitchLeft, iSwitchRight);
+		cd_debug ("%d;%d", iSwitchLeft, iSwitchRight);
 		return (iSwitchLeft == 0 && iSwitchRight == 0);
 	}
 	else
@@ -200,7 +200,6 @@ void mixer_switch_mute (void)
 {
 	g_return_if_fail (myData.pControledElement != NULL);
 	gboolean bIsMute = mixer_is_mute ();
-	g_print ("%s (%d)\n", __func__, ! bIsMute);
 	snd_mixer_selem_set_playback_switch_all (myData.pControledElement, bIsMute);
 	myData.bIsMute = ! bIsMute;
 	mixer_element_update_with_event (myData.pControledElement, 0);  // on ne recoit pas d'evenements pour nos actions.
@@ -217,7 +216,7 @@ static void on_change_volume (GtkRange *range, gpointer data)
 GtkWidget *mixer_build_widget (gboolean bHorizontal)
 {
 	g_return_val_if_fail (myData.pControledElement != NULL, NULL);
-	GtkWidget *pScale = (bHorizontal ? gtk_hscale_new_with_range (0., 100., 5.) : gtk_vscale_new_with_range (0., 100., 5.));
+	GtkWidget *pScale = (bHorizontal ? gtk_hscale_new_with_range (0., 100., .5*myConfig.iScrollVariation) : gtk_vscale_new_with_range (0., 100., .5*myConfig.iScrollVariation));
 	if (! bHorizontal)
 		gtk_range_set_inverted (GTK_RANGE (pScale), TRUE);  // de bas en haut.
 	

@@ -24,6 +24,8 @@ CD_APPLET_CONFIG_BEGIN
 	
 	myConfig.cShortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Shift><Ctrl>F3");
 	
+	myConfig.iScrollVariation = CD_CONFIG_GET_INTEGER ("Configuration", "scroll variation");
+	
 	
 	myConfig.iVolumeDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "display volume");
 	

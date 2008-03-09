@@ -31,6 +31,7 @@ typedef struct {
 	gchar *cBrokenIcon;
 	gchar *cMuteIcon;
 	gchar *cShortcut;
+	gint iScrollVariation;
 	} AppletConfig;
 
 typedef struct {
