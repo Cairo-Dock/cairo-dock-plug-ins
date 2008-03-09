@@ -64,6 +64,26 @@ static void _load_surfaces (void)
 }
 
 
+static gboolean _cd_mixer_on_enter (GtkWidget* pWidget,
+	GdkEventCrossing* pEvent,
+	gpointer data)
+{
+	if (myDesklet)
+	{
+		gtk_widget_show (myData.pScale);
+	}
+}
+gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
+	GdkEventCrossing* pEvent,
+	gpointer data)
+{
+	if (myDesklet)
+	{
+		if (! myDesklet->bInside)
+			gtk_widget_hide (myData.pScale);
+	}
+}
+
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet != NULL)
 	{
@@ -75,6 +95,17 @@ CD_APPLET_INIT_BEGIN (erreur)
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 		myDesklet->renderer = NULL;
+		if (myConfig.bHideScaleOnLeave)
+		{
+			g_signal_connect (G_OBJECT (myDesklet->pWidget),
+				"enter-notify-event",
+				G_CALLBACK (_cd_mixer_on_enter),
+				NULL);
+			g_signal_connect (G_OBJECT (myDesklet->pWidget),
+				"leave-notify-event",
+				G_CALLBACK (_cd_mixer_on_leave),
+				NULL);
+		}
 	}
 	
 	_load_surfaces ();
@@ -104,6 +135,15 @@ CD_APPLET_INIT_BEGIN (erreur)
 			gtk_box_pack_end (GTK_BOX (box), myData.pScale, FALSE, FALSE, 0);
 			gtk_widget_show_all (box);
 			gtk_container_add (GTK_CONTAINER (myDesklet->pWidget), box);
+			
+			g_signal_connect (G_OBJECT (myDesklet->pWidget),
+				"enter-notify-event",
+				G_CALLBACK (_cd_mixer_on_enter),
+				NULL);
+			g_signal_connect (G_OBJECT (myDesklet->pWidget),
+				"leave-notify-event",
+				G_CALLBACK (_cd_mixer_on_leave),
+				NULL);
 		}
 		
 		mixer_element_update_with_event (myData.pControledElement, 1);
@@ -179,6 +219,40 @@ CD_APPLET_RELOAD_BEGIN
 		mixer_get_controlled_element ();
 		
 		cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) mixer_on_keybinding_pull, (gpointer)NULL);
+		
+		if (myDesklet)
+		{
+			gulong iOnEnterCallbackID = g_signal_handler_find (myDesklet->pWidget,
+				G_SIGNAL_MATCH_FUNC,
+				0,
+				0,
+				NULL,
+				_cd_mixer_on_enter,
+				NULL);
+			if (myConfig.bHideScaleOnLeave && iOnEnterCallbackID <= 0)
+			{
+				g_signal_connect (G_OBJECT (myDesklet->pWidget),
+					"enter-notify-event",
+					G_CALLBACK (_cd_mixer_on_enter),
+					NULL);
+				g_signal_connect (G_OBJECT (myDesklet->pWidget),
+					"leave-notify-event",
+					G_CALLBACK (_cd_mixer_on_leave),
+					NULL);
+			}
+			else if (! myConfig.bHideScaleOnLeave && iOnEnterCallbackID > 0)
+			{
+				g_signal_handler_disconnect (G_OBJECT (myDesklet->pWidget), iOnEnterCallbackID);
+				gulong iOnLeaveCallbackID = g_signal_handler_find (myDesklet->pWidget,
+					G_SIGNAL_MATCH_FUNC,
+					0,
+					0,
+					NULL,
+					_cd_mixer_on_leave,
+					NULL);
+				g_signal_handler_disconnect (G_OBJECT (myDesklet->pWidget), iOnLeaveCallbackID);
+			}
+		}
 	}
 	
 	if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED && myDesklet)

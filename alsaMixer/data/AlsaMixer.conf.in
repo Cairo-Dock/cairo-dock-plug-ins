@@ -63,6 +63,10 @@ shortkey = <Shift><Ctrl>F3
 #i[1;50] Variation for 1 mouse scroll, in % :
 scroll variation = 5
 
+#b Hide the scale when mouse leaves the desklet ?
+hide on leave = false
+
+
 #F[Display]
 frame_disp =
 

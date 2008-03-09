@@ -204,38 +204,34 @@ msgid "Let empty to use the defaut command."
 msgstr ""
 
 #: ../data/messages:43
-msgid "Specific command to run to show an advanced sound mixer :"
-msgstr ""
+msgid "Open an advanced sound mixer with :"
+msgstr "Ouvrir un panneau de mixage avancé avec :"
 
 #: ../data/messages:45
 msgid "Shortkey to show/hide the sound control dialog :"
-msgstr ""
+msgstr "Raccourci clavier pour montrer/cacher le dialogue :"
 
 #: ../data/messages:47
 msgid "Display"
-msgstr ""
+msgstr "Affichage"
 
 #: ../data/messages:67 ../data/messages:71 ../data/messages:75
 msgid "Let empty to use the default one."
-msgstr ""
+msgstr "Laisser vide pour utiliser celle par défaut."
 
 #: ../data/messages:69
 msgid "Default icon :"
-msgstr ""
+msgstr "Icône 'défaut' :"
 
 #: ../data/messages:73
 msgid "Broken icon :"
-msgstr ""
+msgstr "Icône 'cassé'"
 
 #: ../data/messages:77
 msgid "Mute icon :"
-msgstr ""
+msgstr "Icône 'muet' :"
 
 #: ../src/applet-mixer.c:134 ../src/applet-mixer.c:136
 #, c-format
 msgid "I couldn't find any element '%s'"
-msgstr ""
-
-#: ../data/messages:57
-msgid "Choose an effet to apply on the icon according to volume :"
 msgstr ""

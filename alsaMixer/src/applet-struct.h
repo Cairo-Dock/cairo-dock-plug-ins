@@ -32,6 +32,7 @@ typedef struct {
 	gchar *cMuteIcon;
 	gchar *cShortcut;
 	gint iScrollVariation;
+	gboolean bHideScaleOnLeave;
 	} AppletConfig;
 
 typedef struct {

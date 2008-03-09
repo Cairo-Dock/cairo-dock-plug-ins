@@ -28,7 +28,7 @@ static struct snd_mixer_selem_regopt mixer_options;
 static int
 mixer_event (snd_mixer_t *mixer, unsigned int mask, snd_mixer_elem_t *elem)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	return 0;
 }
 
