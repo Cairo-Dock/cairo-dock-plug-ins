@@ -24,7 +24,7 @@ CD_APPLET_CONFIG_BEGIN //("xmms", "xmms.svg")
 	
 	myConfig.cDefaultIcon 		= CD_CONFIG_GET_STRING ("Configuration", "default icon");
 	myConfig.cPlayIcon 			= CD_CONFIG_GET_STRING ("Configuration", "play icon");
-	myConfig.cPauseIcon 		= CD_CONFIG_GET_STRING ("Configuration", "pauseicon");
+	myConfig.cPauseIcon 		= CD_CONFIG_GET_STRING ("Configuration", "pause icon");
 	myConfig.cStopIcon 		= CD_CONFIG_GET_STRING ("Configuration", "stop icon");
 	myConfig.cBrokenIcon 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 CD_APPLET_CONFIG_END
