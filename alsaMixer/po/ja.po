@@ -124,23 +124,28 @@ msgid "Choose which mixer's element to control :"
 msgstr ""
 
 #: ../data/messages:21 ../data/messages:23 ../data/messages:49
+#: ../data/messages:53
 msgid "Display volume :"
 msgstr ""
 
 #: ../data/messages:23 ../data/messages:25 ../data/messages:51
+#: ../data/messages:55
 msgid "No"
 msgstr ""
 
 #: ../data/messages:25 ../data/messages:27 ../data/messages:53
+#: ../data/messages:57
 msgid "On label"
 msgstr ""
 
 #: ../data/messages:27 ../data/messages:29 ../data/messages:55
+#: ../data/messages:59
 msgid "On icon"
 msgstr ""
 
 #: ../src/applet-mixer.c:217 ../src/applet-mixer.c:248
 #: ../src/applet-mixer.c:265 ../src/applet-mixer.c:269
+#: ../src/applet-mixer.c:268
 msgid "Set up volume :"
 msgstr ""
 
@@ -161,19 +166,19 @@ msgstr ""
 msgid "Choose an effet to apply on the icon according to volume :"
 msgstr ""
 
-#: ../data/messages:33 ../data/messages:59
+#: ../data/messages:33 ../data/messages:59 ../data/messages:63
 msgid "None"
 msgstr ""
 
-#: ../data/messages:35 ../data/messages:61
+#: ../data/messages:35 ../data/messages:61 ../data/messages:65
 msgid "Zoom"
 msgstr ""
 
-#: ../data/messages:37 ../data/messages:63
+#: ../data/messages:37 ../data/messages:63 ../data/messages:67
 msgid "Transparency"
 msgstr ""
 
-#: ../data/messages:39 ../data/messages:65
+#: ../data/messages:39 ../data/messages:65 ../data/messages:69
 msgid "Draw Bar"
 msgstr ""
 
@@ -223,23 +228,24 @@ msgstr ""
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:51
 msgid "Display"
 msgstr ""
 
 #: ../data/messages:67 ../data/messages:71 ../data/messages:75
+#: ../data/messages:79
 msgid "Let empty to use the default one."
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:73
 msgid "Default icon :"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:77
 msgid "Broken icon :"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:77 ../data/messages:81
 msgid "Mute icon :"
 msgstr ""
 
@@ -248,6 +254,14 @@ msgstr ""
 msgid "I couldn't find any element '%s'"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:61
 msgid "Effet to apply on the icon according to volume :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Variation for 1 mouse scroll, in % :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr ""

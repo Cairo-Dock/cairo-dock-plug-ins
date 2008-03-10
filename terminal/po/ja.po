@@ -58,33 +58,35 @@ msgstr "端末の大きさ（行×列） :"
 
 #: ../src/terminal-menu-functions.c:94 ../src/terminal-callbacks.c:68
 #: ../src/terminal-menu-functions.c:146 ../src/terminal-menu-functions.c:143
-#: ../src/terminal-menu-functions.c:142
+#: ../src/terminal-menu-functions.c:142 ../src/terminal-menu-functions.c:152
 msgid "Copy"
 msgstr "コピー"
 
 #: ../src/terminal-init.c:82 ../src/terminal-menu-functions.c:245
 #: ../src/terminal-menu-functions.c:243 ../src/terminal-menu-functions.c:244
+#: ../src/terminal-menu-functions.c:254
 msgid "Terminal"
 msgstr "端末"
 
 #: ../src/terminal-menu-functions.c:152 ../src/terminal-menu-functions.c:149
-#: ../src/terminal-menu-functions.c:148
+#: ../src/terminal-menu-functions.c:148 ../src/terminal-menu-functions.c:158
 msgid "Paste"
 msgstr "張り付け"
 
 #: ../src/terminal-menu-functions.c:161 ../src/terminal-menu-functions.c:287
 #: ../src/terminal-menu-functions.c:158 ../src/terminal-menu-functions.c:283
 #: ../src/terminal-menu-functions.c:157 ../src/terminal-menu-functions.c:284
+#: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:294
 msgid "New Tab"
 msgstr "新しいタブ"
 
 #: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:164
-#: ../src/terminal-menu-functions.c:163
+#: ../src/terminal-menu-functions.c:163 ../src/terminal-menu-functions.c:173
 msgid "Close Tab"
 msgstr "タブを閉じる"
 
 #: ../src/terminal-menu-functions.c:288 ../src/terminal-menu-functions.c:284
-#: ../src/terminal-menu-functions.c:285
+#: ../src/terminal-menu-functions.c:285 ../src/terminal-menu-functions.c:295
 msgid "Close the current Tab"
 msgstr "現在のタブを閉じる"
 

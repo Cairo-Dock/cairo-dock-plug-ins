@@ -61,33 +61,35 @@ msgstr "Taille du terminal (ligne x colonnes) :"
 
 #: ../src/terminal-menu-functions.c:94 ../src/terminal-callbacks.c:68
 #: ../src/terminal-menu-functions.c:146 ../src/terminal-menu-functions.c:143
-#: ../src/terminal-menu-functions.c:142
+#: ../src/terminal-menu-functions.c:142 ../src/terminal-menu-functions.c:152
 msgid "Copy"
 msgstr "Copier"
 
 #: ../src/terminal-init.c:82 ../src/terminal-menu-functions.c:245
 #: ../src/terminal-menu-functions.c:243 ../src/terminal-menu-functions.c:244
+#: ../src/terminal-menu-functions.c:254
 msgid "Terminal"
 msgstr "Terminal"
 
 #: ../src/terminal-menu-functions.c:152 ../src/terminal-menu-functions.c:149
-#: ../src/terminal-menu-functions.c:148
+#: ../src/terminal-menu-functions.c:148 ../src/terminal-menu-functions.c:158
 msgid "Paste"
 msgstr "Coller"
 
 #: ../src/terminal-menu-functions.c:161 ../src/terminal-menu-functions.c:287
 #: ../src/terminal-menu-functions.c:158 ../src/terminal-menu-functions.c:283
 #: ../src/terminal-menu-functions.c:157 ../src/terminal-menu-functions.c:284
+#: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:294
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
 #: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:164
-#: ../src/terminal-menu-functions.c:163
+#: ../src/terminal-menu-functions.c:163 ../src/terminal-menu-functions.c:173
 msgid "Close Tab"
 msgstr "Fermer l'onglet"
 
 #: ../src/terminal-menu-functions.c:288 ../src/terminal-menu-functions.c:284
-#: ../src/terminal-menu-functions.c:285
+#: ../src/terminal-menu-functions.c:285 ../src/terminal-menu-functions.c:295
 msgid "Close the current Tab"
 msgstr "Fermer l'onglet courant"
 
