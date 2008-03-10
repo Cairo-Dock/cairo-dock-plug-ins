@@ -19,6 +19,17 @@ gboolean cd_xmms_get_pipe() {
 		return TRUE;
 	bBusy = TRUE;
 	
+	if (myDesklet != NULL) {
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius/2;
+		myIcon->fDrawY = g_iDockRadius/2;
+		myIcon->fScale = 1;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;
+	}
+	
 	gchar *cInfopipeFilePath;
 	if (myConfig.cPlayer == MY_XMMS) {
     cInfopipeFilePath = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
@@ -104,6 +115,17 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 	if (bBusy)
 		return FALSE;
 	bBusy = TRUE;
+	
+	if (myDesklet != NULL) {
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius/2;
+		myIcon->fDrawY = g_iDockRadius/2;
+		myIcon->fScale = 1;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;
+	}
 	
   gchar *cContent = NULL;
 	gsize length=0;
