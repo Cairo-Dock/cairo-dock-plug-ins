@@ -32,7 +32,7 @@ gboolean _rhythmbox_check_cover_is_present (gpointer data)
 }
 void update_icon(gboolean make_witness)
 {
-	cd_message ("");
+	cd_message ("Update icon\n");
 	if(myData.playing_uri != NULL)
 	{
 		//Affichage de la chanson courante.
@@ -95,6 +95,7 @@ void update_icon(gboolean make_witness)
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurface);
 	}
+	CD_APPLET_REDRAW_MY_ICON
 }
 
 void music_dialog(void)

@@ -116,3 +116,35 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		g_spawn_command_line_async ("rhythmbox-client --next", NULL);
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+CD_APPLET_ON_DROP_DATA_BEGIN
+	cd_message ("  %s --> nouvelle pochette !\n", CD_APPLET_RECEIVED_DATA);
+
+	gboolean isJpeg = FALSE;
+	if(myData.playing_artist != NULL && myData.playing_album != NULL)
+	{
+		if(g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpg")) isJpeg = TRUE;
+		if(g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPG")) isJpeg = TRUE;
+		if(g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpeg")) isJpeg = TRUE;
+		if(g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPEG")) isJpeg = TRUE;
+		
+		if(isJpeg)
+		{
+			cd_debug("Le fichier est un JPEG\n");
+			GString *command = g_string_new ("");
+			if(strncmp(CD_APPLET_RECEIVED_DATA, "http://", 6) == 0)
+			{
+				cd_debug("Le fichier est distant\n");
+				g_string_printf (command, "wget -O %s/.gnome2/rhythmbox/covers/\"%s - %s.jpg\" %s",g_getenv ("HOME"),myData.playing_artist,myData.playing_album, CD_APPLET_RECEIVED_DATA);
+			}
+			else
+			{
+				cd_debug("Le fichier est local\n");
+				g_string_printf (command, "cp %s %s/.gnome2/rhythmbox/covers/\"%s - %s.jpg\"",CD_APPLET_RECEIVED_DATA,g_getenv ("HOME"), myData.playing_artist,myData.playing_album);
+			}
+			g_spawn_command_line_async (command->str, NULL);
+			cd_debug("La commande est passé\n");
+			g_string_free (command, TRUE);
+		}
+	}
+CD_APPLET_ON_DROP_DATA_END
