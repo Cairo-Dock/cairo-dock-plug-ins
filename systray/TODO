@@ -1,2 +1,3 @@
-  - composite + cairo to draw icon in the dock ?
+  - composite + cairo to draw icon in the dock
+?
   - clean tray-manager on exit

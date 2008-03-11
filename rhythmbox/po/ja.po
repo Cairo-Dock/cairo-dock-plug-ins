@@ -101,6 +101,7 @@ msgstr "アイコン上に表示する情報 :"
 
 #: src/rhythmbox-draw.c:101 src/rhythmbox-draw.c:102
 #: ../src/rhythmbox-draw.c:77 ../src/rhythmbox-draw.c:102
+#: ../src/rhythmbox-draw.c:103
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -114,6 +115,7 @@ msgstr ""
 #: ../src/rhythmbox-draw.c:81 ../src/rhythmbox-draw.c:82
 #: ../src/rhythmbox-draw.c:83 ../src/rhythmbox-draw.c:106
 #: ../src/rhythmbox-draw.c:107 ../src/rhythmbox-draw.c:108
+#: ../src/rhythmbox-draw.c:109
 msgid "Unknown"
 msgstr "不明"
 

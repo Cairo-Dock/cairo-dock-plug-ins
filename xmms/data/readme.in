@@ -1,8 +1,8 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
-<u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
+<u>Author</u> : <b>ChAnGFu (Remy Robertson)</b>
 <i>A applet dedicated for <span color='#0000FF'>control</span>XMMS, Audacious, Banshee & Exaile</i>
 <i>Keep in mind that only XMMS & Audacious are fully supported</i>
-<i>This applet is unstable when monitoring Banshee's and Exaile's info and will slow down your systeme (or not if you are lucky)</i>
+<i>This applet is still unstable when monitoring Banshee's and Exaile's info and will slow down your systeme (or not if you are lucky)</i>
 <i>Play/Pause on left click, Next song on middle click</i>
 <i>See configuration for other options</i>
 <i>Have fun!</i>

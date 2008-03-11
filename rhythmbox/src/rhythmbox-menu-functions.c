@@ -120,13 +120,12 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CD_APPLET_ON_DROP_DATA_BEGIN
 	cd_message ("  %s --> nouvelle pochette !", CD_APPLET_RECEIVED_DATA);
 
-	gboolean isJpeg = FALSE;
 	if(myData.playing_artist != NULL && myData.playing_album != NULL)
 	{
-		if(g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpg")) isJpeg = TRUE;
-		if(g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPG")) isJpeg = TRUE;
-		if(g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpeg")) isJpeg = TRUE;
-		if(g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPEG")) isJpeg = TRUE;
+		gboolean isJpeg = g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpg") 
+			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPG")
+			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpeg")
+			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPEG");
 		
 		if(isJpeg)
 		{
@@ -135,7 +134,11 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			if(strncmp(CD_APPLET_RECEIVED_DATA, "http://", 7) == 0)
 			{
 				cd_debug("Le fichier est distant");
-				g_string_printf (command, "wget -O %s/.gnome2/rhythmbox/covers/\"%s - %s.jpg\" %s",g_getenv ("HOME"),myData.playing_artist,myData.playing_album, CD_APPLET_RECEIVED_DATA);
+				g_string_printf (command, "wget -O %s/.gnome2/rhythmbox/covers/\"%s - %s.jpg\" %s",
+					g_getenv ("HOME"),
+					myData.playing_artist,
+					myData.playing_album,
+					CD_APPLET_RECEIVED_DATA);
 			}
 			else
 			{
@@ -151,6 +154,10 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			g_spawn_command_line_async (command->str, NULL);
 			cd_debug("La commande est passée");
 			g_string_free (command, TRUE);
+		}
+		else
+		{
+			/// Ajouter la musique a la liste de lecture ! :-D
 		}
 	}
 CD_APPLET_ON_DROP_DATA_END

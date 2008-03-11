@@ -28,6 +28,7 @@ libcd_gnome_integration_la_CFLAGS = \
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-gnome-integration"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DGNOME_VFS_VERSION=\""$(gnome_vfs_version)"\"\
+	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3

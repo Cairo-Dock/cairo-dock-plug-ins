@@ -28,6 +28,7 @@ libcd_terminal_la_CFLAGS = \
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
         -DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
+	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
 	-O3 -W -Werror\
 	$(LIBVTE_CFLAGS)

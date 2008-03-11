@@ -22,6 +22,9 @@ typedef struct {
 	gint iNbBranches;
 	gdouble fTreeWidthFactor, fTreeHeightFactor;
 	cairo_surface_t *pBrancheSurface[2];
+	gchar *cDisksURI;
+	gchar *cNetworkURI;
+	gchar *cBookmarksURI;
 	} AppletData;
 
 

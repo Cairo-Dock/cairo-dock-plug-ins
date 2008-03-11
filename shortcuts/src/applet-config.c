@@ -41,12 +41,38 @@ void reset_config (void)
 
 void reset_data (void)
 {
-	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
-	cairo_dock_fm_remove_monitor_full (cBookmarkFilePath, FALSE, NULL);
-	g_free (cBookmarkFilePath);
+	if (myData.cDisksURI != NULL)
+	{
+		cairo_dock_fm_remove_monitor_full (myData.cDisksURI, FALSE, NULL);
+		g_free (myData.cDisksURI);
+		myData.cDisksURI = NULL;
+	}
+	if (myData.cNetworkURI != NULL)
+	{
+		cairo_dock_fm_remove_monitor_full (myData.cNetworkURI, FALSE, NULL);
+		g_free (myData.cNetworkURI);
+		myData.cNetworkURI = NULL;
+	}
+	if (myData.cBookmarksURI != NULL)
+	{
+		cairo_dock_fm_remove_monitor_full (myData.cBookmarksURI, FALSE, NULL);
+		g_free (myData.cBookmarksURI);
+		myData.cBookmarksURI = NULL;
+	}
 	
-	cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-	myIcon->pSubDock = NULL;  // normalement inutile.
+	if (myIcon->pSubDock != NULL)
+	{
+		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+		myIcon->pSubDock = NULL;  // normalement inutile.
+	}
+	if (myData.pDeskletIconList != NULL)
+	{
+		g_list_foreach (myData.pDeskletIconList, (GFunc) cairo_dock_free_icon, NULL);
+		g_list_free (myData.pDeskletIconList);
+		myData.pDeskletIconList = NULL;
+		if (myDesklet)
+			myDesklet->icons = NULL;
+	}
 	
 	if (myData.pBrancheSurface[0]  != NULL)
 	{

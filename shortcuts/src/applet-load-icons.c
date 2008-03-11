@@ -52,7 +52,7 @@ static GList * _load_icons (GError **erreur)
 		
 		if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, NULL))
 			cd_warning ("Attention : can't monitor drives");
-		g_free (cFullURI);
+		myData.cDisksURI = cFullURI;
 	}
 	
 	if (myConfig.bListNetwork)
@@ -71,7 +71,7 @@ static GList * _load_icons (GError **erreur)
 		
 		if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_network, NULL))
 			cd_warning ("Attention : can't monitor network");
-		g_free (cFullURI);
+		myData.cNetworkURI = cFullURI;
 	}
 		
 	if (myConfig.bListBookmarks)
@@ -97,7 +97,7 @@ static GList * _load_icons (GError **erreur)
 		if (! cairo_dock_fm_add_monitor_full (cBookmarkFilePath, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_bookmarks, NULL))
 			cd_warning ("Attention : can't monitor bookmarks");
 		
-		g_free (cBookmarkFilePath);
+		myData.cBookmarksURI = cBookmarkFilePath;
 	}
 	
 	return pIconList;
@@ -134,7 +134,8 @@ static gboolean _cd_shortcuts_check_for_redraw (gpointer data)
 			g_list_free (myData.pDeskletIconList);
 			myData.pDeskletIconList = NULL;
 			myData.iNbIconsInTree = 0;
-			myDesklet->icons = NULL;
+			if (myDesklet)
+				myDesklet->icons = NULL;
 		}
 		if (myIcon->pSubDock != NULL)
 		{
@@ -144,11 +145,11 @@ static gboolean _cd_shortcuts_check_for_redraw (gpointer data)
 		}
 		
 		//\_______________________ On charge la nouvelle liste.
-		if (myDock)  // en mode 'dock', on affiche la meteo dans un sous-dock.
+		if (myDock)  // en mode 'dock', on affiche les raccourcis dans un sous-dock.
 		{
 			if (myIcon->pSubDock == NULL)
 			{
-				if (s_pIconList != NULL)  // l'applet peut montrer les conditions courantes.
+				if (s_pIconList != NULL)  // l'applet peut faire 'show desktop'.
 				{
 					cd_message ("  creation du sous-dock des raccourcis");
 					myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (s_pIconList, myIcon->acName);
@@ -199,6 +200,7 @@ static gboolean _cd_shortcuts_check_for_redraw (gpointer data)
 			gtk_widget_queue_draw (myDesklet->pWidget);
 		}
 		
+		s_pIconList = NULL;
 		return FALSE;
 	}
 	return TRUE;
