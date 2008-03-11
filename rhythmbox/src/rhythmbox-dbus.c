@@ -22,8 +22,6 @@ CD_APPLET_INCLUDE_MY_VARS
 //*********************************************************************************
 gboolean rhythmbox_dbus_get_dbus (void)
 {
-	cd_message ("");
-
 	cd_message ("Connexion au bus ... ");
 	dbus_connexion = dbus_g_bus_get(DBUS_BUS_SESSION, NULL);
 	
@@ -114,7 +112,7 @@ void dbus_detect_rhythmbox(void)
 		&name_list,
 		G_TYPE_INVALID))
 	{
-		cd_message ("  detection du service Rhythmbox...\n");
+		cd_message ("  detection du service Rhythmbox...");
 		int i;
 		for (i = 0; name_list[i] != NULL; i ++)
 		{

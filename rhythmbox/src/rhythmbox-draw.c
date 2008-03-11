@@ -32,7 +32,7 @@ gboolean _rhythmbox_check_cover_is_present (gpointer data)
 }
 void update_icon(gboolean make_witness)
 {
-	cd_message ("Update icon\n");
+	cd_message ("Update icon");
 	if(myData.playing_uri != NULL)
 	{
 		//Affichage de la chanson courante.
@@ -74,7 +74,7 @@ void update_icon(gboolean make_witness)
 			myData.cover_exist = FALSE;
 			if (myConfig.enableCover && myData.playing_cover != NULL && myData.iSidCheckCover == 0)
 			{
-				g_print ("myData.playing_cover : %s mais n'existe pas encore !\n", myData.playing_cover);
+				g_print ("myData.playing_cover : %s mais n'existe pas encore !", myData.playing_cover);
 				myData.iSidCheckCover = g_timeout_add (1000, (GSourceFunc) _rhythmbox_check_cover_is_present, (gpointer) NULL);
 			}
 		}
