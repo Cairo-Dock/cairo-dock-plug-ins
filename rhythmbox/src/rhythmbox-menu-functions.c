@@ -17,7 +17,7 @@ extern AppletData myData;
 //*********************************************************************************
 static void rhythmbox_previous (GtkMenuItem *menu_item, gpointer *data)
 {
-	cd_message ("%s ()\n", __func__);
+	cd_message ("");
 	
 	g_spawn_command_line_async ("rhythmbox-client --previous", NULL);
 }
@@ -27,7 +27,7 @@ static void rhythmbox_previous (GtkMenuItem *menu_item, gpointer *data)
 //*********************************************************************************
 static void rhythmbox_next (GtkMenuItem *menu_item, gpointer *data)
 {
-	cd_message ("%s ()\n", __func__);
+	cd_message ("");
 	g_spawn_command_line_async ("rhythmbox-client --next", NULL);
 }
 
@@ -36,7 +36,7 @@ static void rhythmbox_next (GtkMenuItem *menu_item, gpointer *data)
 //*********************************************************************************
 static void rhythmbox_pause (GtkMenuItem *menu_item, gpointer *data)
 {
-	cd_message ("%s ()\n", __func__);
+	cd_message ("");
 	g_spawn_command_line_async ("rhythmbox-client --pause", NULL);
 }
 
@@ -45,7 +45,7 @@ static void rhythmbox_pause (GtkMenuItem *menu_item, gpointer *data)
 //*********************************************************************************
 static void rhythmbox_play (GtkMenuItem *menu_item, gpointer *data)
 {
-	cd_message ("%s ()\n", __func__);
+	cd_message ("");
 	g_spawn_command_line_async ("rhythmbox-client --play", NULL);
 }
 
@@ -83,7 +83,7 @@ CD_APPLET_ON_BUILD_MENU_END
 // Cette fonction met le lecteur en pause ou en lecture selon son état.
 //*********************************************************************************
 CD_APPLET_ON_CLICK_BEGIN
-	cd_message ("%s ()\n", __func__);
+	cd_message ("");
 	
 	if(myData.opening)
 	{
@@ -108,7 +108,7 @@ CD_APPLET_ON_CLICK_END
 // Cette fonction passe a la chanson suivante.
 //*********************************************************************************
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	cd_message ("%s ()\n", __func__);
+	cd_message ("");
 	
 	rhythmbox_getPlaying();
 	if (myData.playing)
@@ -118,7 +118,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 CD_APPLET_ON_DROP_DATA_BEGIN
-	cd_message ("  %s --> nouvelle pochette !\n", CD_APPLET_RECEIVED_DATA);
+	cd_message ("  %s --> nouvelle pochette !", CD_APPLET_RECEIVED_DATA);
 
 	gboolean isJpeg = FALSE;
 	if(myData.playing_artist != NULL && myData.playing_album != NULL)
@@ -130,20 +130,26 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		
 		if(isJpeg)
 		{
-			cd_debug("Le fichier est un JPEG\n");
+			cd_debug("Le fichier est un JPEG");
 			GString *command = g_string_new ("");
-			if(strncmp(CD_APPLET_RECEIVED_DATA, "http://", 6) == 0)
+			if(strncmp(CD_APPLET_RECEIVED_DATA, "http://", 7) == 0)
 			{
-				cd_debug("Le fichier est distant\n");
+				cd_debug("Le fichier est distant");
 				g_string_printf (command, "wget -O %s/.gnome2/rhythmbox/covers/\"%s - %s.jpg\" %s",g_getenv ("HOME"),myData.playing_artist,myData.playing_album, CD_APPLET_RECEIVED_DATA);
 			}
 			else
 			{
-				cd_debug("Le fichier est local\n");
-				g_string_printf (command, "cp %s %s/.gnome2/rhythmbox/covers/\"%s - %s.jpg\"",CD_APPLET_RECEIVED_DATA,g_getenv ("HOME"), myData.playing_artist,myData.playing_album);
+				cd_debug("Le fichier est local");
+				gchar *cFilePath = (*CD_APPLET_RECEIVED_DATA == '/' ? g_strdup (CD_APPLET_RECEIVED_DATA) : g_filename_from_uri (CD_APPLET_RECEIVED_DATA, NULL, NULL));
+				g_string_printf (command, "cp %s %s/.gnome2/rhythmbox/covers/\"%s - %s.jpg\"",
+					cFilePath,
+					g_getenv ("HOME"),
+					myData.playing_artist,
+					myData.playing_album);
+				g_free (cFilePath);
 			}
 			g_spawn_command_line_async (command->str, NULL);
-			cd_debug("La commande est passé\n");
+			cd_debug("La commande est passée");
 			g_string_free (command, TRUE);
 		}
 	}
