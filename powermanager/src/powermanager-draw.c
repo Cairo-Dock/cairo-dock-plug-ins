@@ -9,7 +9,6 @@ CD_APPLET_INCLUDE_MY_VARS
 extern AppletConfig myConfig;
 extern AppletData myData;
 
-
 void iconWitness(int animationLenght)
 {
 	CD_APPLET_ANIMATE_MY_ICON (1, animationLenght)
@@ -62,20 +61,16 @@ void update_icon(void)
 
 gchar *format_time(int seconde)
 {
-	if(myData.on_battery)
+	int hours = seconde / 3600;
+	int minutes = (seconde % 3600) / 60;
+	if(hours > 0)
 	{
-		int hours = seconde / 3600;
-		int minutes = (seconde % 3600) / 60;
-		if(hours > 0)
-		{
-			if(minutes < 10) return g_strdup_printf("%ih0%i",hours,minutes);
-			else return g_strdup_printf("%ih%i",hours,minutes);
-		}
-		else
-		{
-			if(minutes > 0) return g_strdup_printf("%i",minutes);
-			else return NULL;
-		}
+		if(minutes < 10) return g_strdup_printf("%ih0%i",hours,minutes);
+		else return g_strdup_printf("%ih%i",hours,minutes);
 	}
-	else return NULL;
+	else
+	{
+		if(minutes > 0) return g_strdup_printf("%i",minutes);
+		else return NULL;
+	}
 }

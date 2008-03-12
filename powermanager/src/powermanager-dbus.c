@@ -99,21 +99,50 @@ void update_stats(void)
 	{
 		myData.battery_charge = get_stats("charge");
 		myData.battery_time = get_stats("time");
+		update_icon();
 	}
-	update_icon();
 }
 
 int get_stats(gchar *dataType)
 {
-	gchar **data_result = NULL;
+	GValueArray *gva;
+	GValue *gv;
+	GPtrArray *ptrarray = NULL;
+	GType g_type_ptrarray;
+	int i;
+	int x, y, col;
+
+	g_type_ptrarray = dbus_g_type_get_collection ("GPtrArray",
+		dbus_g_type_get_struct("GValueArray",
+			G_TYPE_INT,
+			G_TYPE_INT,
+			G_TYPE_INT,
+			G_TYPE_INVALID));
+		
 	dbus_g_proxy_call (dbus_proxy_stats, "GetData", NULL,
-		G_TYPE_STRING,dataType,
-		G_TYPE_INVALID,
-		dbus_g_type_get_map("GHashTable",G_TYPE_UINT),
-		&data_result,
-		G_TYPE_INVALID);
-	cd_debug("powermanager : Résultat : %i,%i,%i",data_result[0],data_result[1],data_result[2]);
-	return data_result[2];
+		 G_TYPE_STRING, dataType,
+		 G_TYPE_INVALID,
+		 g_type_ptrarray, &ptrarray,
+		 G_TYPE_INVALID);
+		 
+	for (i=0; i< ptrarray->len; i++)
+	{
+		gva = (GValueArray *) g_ptr_array_index (ptrarray, i);
+		gv = g_value_array_get_nth (gva, 0);
+		x = g_value_get_int (gv);
+		g_value_unset (gv);
+		gv = g_value_array_get_nth (gva, 1);
+		y = g_value_get_int (gv);
+		g_value_unset (gv);
+		gv = g_value_array_get_nth (gva, 2);
+		col = g_value_get_int (gv);
+		g_value_unset (gv);
+		g_value_array_free (gva);
+		cd_debug("powermanager : %i, %i, %i\n",x,y,col);
+	}
+	g_ptr_array_free (ptrarray, TRUE);
+	
+	return y;
 }
 
 void detect_battery(void)
