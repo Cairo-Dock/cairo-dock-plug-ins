@@ -10,7 +10,7 @@
 AppletConfig myConfig;
 AppletData myData;
 
-CD_APPLET_DEFINITION ("xmms", 1, 4, 7)
+CD_APPLET_DEFINITION ("xmms", 1, 4, 7,CAIRO_DOCK_CATEGORY_CONTROLER)
 
 static void _load_surfaces (void) {
 	gchar *cUserImagePath;

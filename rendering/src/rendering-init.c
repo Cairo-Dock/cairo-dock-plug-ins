@@ -40,7 +40,7 @@ int my_iRainbowNbIconsMin = 1;
 double my_fRainbowConeOffset = (60./180.*G_PI);
 
 
-CD_APPLET_DEFINITION("rendering", 1, 4, 7)
+CD_APPLET_DEFINITION("rendering", 1, 4, 7, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 static void _load_flat_separator (gboolean bFlatSeparator, CairoDock *pDock)

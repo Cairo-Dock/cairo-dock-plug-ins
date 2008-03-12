@@ -9,7 +9,7 @@
 AppletConfig myConfig;
 AppletData myData;
 
-CD_APPLET_DEFINITION ("logout", 1, 4, 7)
+CD_APPLET_DEFINITION ("logout", 1, 4, 7, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 CD_APPLET_INIT_BEGIN (erreur)

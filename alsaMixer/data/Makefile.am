@@ -8,5 +8,7 @@ module_DATA = \
 	readme\
 	default.svg\
 	mute.svg\
-	broken.svg
+	broken.svg\
+	preview.png\
+	icon.png
 

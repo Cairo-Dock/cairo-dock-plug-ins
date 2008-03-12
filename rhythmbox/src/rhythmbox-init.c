@@ -11,7 +11,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_DEFINITION ("Rhythmbox", 1, 4, 6)
+CD_APPLET_DEFINITION ("Rhythmbox", 1, 4, 6, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
 static void _load_surfaces (void)

@@ -18,7 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 AppletConfig myConfig;
 AppletData myData;
 
-CD_APPLET_DEFINITION ("weather", 1, 5, 1)
+CD_APPLET_DEFINITION ("weather", 1, 5, 1, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 static gboolean _cd_weather_rotate (gpointer data)

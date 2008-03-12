@@ -21,7 +21,7 @@ AppletConfig myConfig;
 AppletData myData;
 
 
-CD_APPLET_DEFINITION ("shortcuts", 1, 5, 0)
+CD_APPLET_DEFINITION ("shortcuts", 1, 5, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 CD_APPLET_INIT_BEGIN (erreur)

@@ -34,7 +34,7 @@ static char s_cFileNames[CLOCK_ELEMENTS][30] = {
 	"clock-frame.svg" };
 
 
-CD_APPLET_DEFINITION ("clock", 1, 5, 0)
+CD_APPLET_DEFINITION ("clock", 1, 5, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 static void _load_theme (void)

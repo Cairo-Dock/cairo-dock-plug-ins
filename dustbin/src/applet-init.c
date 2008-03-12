@@ -17,7 +17,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("dustbin", 1, 5, 0)
+CD_APPLET_DEFINITION ("dustbin", 1, 5, 0, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 AppletConfig myConfig;
 AppletData myData;

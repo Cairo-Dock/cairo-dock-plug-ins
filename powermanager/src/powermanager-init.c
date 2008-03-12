@@ -11,7 +11,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_DEFINITION ("PowerManager", 1, 4, 7)
+CD_APPLET_DEFINITION ("PowerManager", 1, 4, 7, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 static void _load_surfaces (void)

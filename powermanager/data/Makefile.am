@@ -17,4 +17,5 @@ datapowermanager_DATA = \
 	sector.svg\
 	readme\
 	powermanager.conf\
-	preview.png
+	preview.png\
+	icon.png

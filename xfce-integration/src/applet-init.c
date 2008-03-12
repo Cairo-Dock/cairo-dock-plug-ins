@@ -13,7 +13,7 @@ Written by Christophe Chapuis (for any bug report, please mail me to chris.chapu
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN("xfce integration", 1, 4, 7)
+CD_APPLET_PRE_INIT_BEGIN("xfce integration", 1, 4, 7, CAIRO_DOCK_CATEGORY_DESKTOP)
 	if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
 	{
 		if (init_vfs_backend ())

@@ -184,14 +184,11 @@ void cd_clock_draw_text (cairo_t *pSourceContext, int width, int height, double 
 	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
 	g_string_free (sFormat, TRUE);
 	
-	if (myDesklet == NULL)
-	{
-		cairo_set_tolerance (pSourceContext, 0.5);
-		cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
-		cairo_set_operator (pSourceContext, CAIRO_OPERATOR_SOURCE);
-		cairo_paint (pSourceContext);
-		cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
-	}
+	cairo_set_tolerance (pSourceContext, 0.5);
+	cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
+	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_SOURCE);
+	cairo_paint (pSourceContext);
+	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
 	
 	PangoLayout *pLayout = pango_cairo_create_layout (pSourceContext);
 	PangoFontDescription *pDesc = pango_font_description_new ();

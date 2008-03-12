@@ -6,5 +6,6 @@ moduledir = $(pkgdatadir)
 module_DATA = \
 	Xgamma.conf\
 	readme\
-	preview.png
+	preview.png\
+	icon.png
 

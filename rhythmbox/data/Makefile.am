@@ -11,4 +11,5 @@ datarhythmbox_DATA = \
 	stop.svg\
 	rhythmbox.conf\
 	readme\
-	preview.png
+	preview.png\
+	icon.png

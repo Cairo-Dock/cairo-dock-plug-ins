@@ -6,4 +6,5 @@ datasystraydir = $(pkgdatadir)
 datasystray_DATA = \
 	systray.conf\
 	readme\
-	preview.png
+	preview.png\
+	icon.png

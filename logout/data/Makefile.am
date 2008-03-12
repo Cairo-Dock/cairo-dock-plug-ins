@@ -6,5 +6,6 @@ datalogoutdir = $(pkgdatadir)
 datalogout_DATA = \
 	logout.conf\
 	readme\
-	preview.png
+	preview.png\
+	icon.png
 
