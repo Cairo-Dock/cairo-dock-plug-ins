@@ -8,6 +8,7 @@
 static DBusGConnection *dbus_connexion_session;
 static DBusGConnection *dbus_connexion_system;
 static DBusGProxy *dbus_proxy_power;
+static DBusGProxy *dbus_proxy_stats;
 static DBusGProxy *dbus_proxy_battery;
 
 CD_APPLET_INCLUDE_MY_VARS
@@ -38,6 +39,13 @@ gboolean dbus_get_dbus (void)
 			"org.freedesktop.PowerManagement",
 			"/org/freedesktop/PowerManagement",
 			"org.freedesktop.PowerManagement"
+		);
+
+		dbus_proxy_stats = dbus_g_proxy_new_for_name (
+			dbus_connexion_session,
+			"org.freedesktop.PowerManagement",
+			"/org/freedesktop/PowerManagement/Statistics",
+			"org.freedesktop.PowerManagement.Statistics"
 		);
 		
 		dbus_proxy_battery = dbus_g_proxy_new_for_name (
@@ -89,18 +97,23 @@ void update_stats(void)
 {
 	if(myData.battery_present)
 	{
-		dbus_g_proxy_call (dbus_proxy_battery, "GetPropertyInteger", NULL,
-			G_TYPE_STRING,"battery.charge_level.percentage",
-			G_TYPE_INVALID,
-			G_TYPE_INT, &myData.battery_charge,
-			G_TYPE_INVALID);
-		dbus_g_proxy_call (dbus_proxy_battery, "GetPropertyInteger", NULL,
-			G_TYPE_STRING,"battery.remaining_time",
-			G_TYPE_INVALID,
-			G_TYPE_INT, &myData.battery_time,
-			G_TYPE_INVALID);
+		myData.battery_charge = get_stats("charge");
+		myData.battery_time = get_stats("time");
 	}
 	update_icon();
+}
+
+int get_stats(gchar *dataType)
+{
+	gchar **data_result = NULL;
+	dbus_g_proxy_call (dbus_proxy_stats, "GetData", NULL,
+		G_TYPE_STRING,dataType,
+		G_TYPE_INVALID,
+		dbus_g_type_get_map("GHashTable",G_TYPE_UINT),
+		&data_result,
+		G_TYPE_INVALID);
+	cd_debug("powermanager : Résultat : %i,%i,%i",data_result[0],data_result[1],data_result[2]);
+	return data_result[2];
 }
 
 void detect_battery(void)

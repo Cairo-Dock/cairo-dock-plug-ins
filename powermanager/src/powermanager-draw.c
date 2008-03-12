@@ -18,7 +18,7 @@ void iconWitness(int animationLenght)
 void update_icon(void)
 {
 	if(myData.battery_present)
-	{g_print("Type d'affichage : %u\n",myConfig.quickInfoType);
+	{
 		if(myConfig.quickInfoType == MY_APPLET_TIME)
 		{
 			cairo_dock_set_quick_info (myDrawContext, format_time(myData.battery_time), myIcon, (myDock != NULL ? 1 + g_fAmplitude : 1));

@@ -11,6 +11,7 @@ gboolean get_on_battery(void);
 void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data);
 void update_stats(void);
 void detect_battery(void);
+int get_stats(gchar *dataType);
 
 void power_halt(void);
 void power_hibernate(void);
