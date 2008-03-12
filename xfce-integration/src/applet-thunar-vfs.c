@@ -310,7 +310,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	}
 	else if (strcmp (cBaseURI, CAIRO_DOCK_FM_NETWORK) == 0)
 	{
-    	cd_message (" -> Good try, but no, there's no network management in Thunar VFS !\n");
+    	cd_message (" -> Good try, but no, there's no network management in Thunar VFS !");
 
 	    if( cFullURI )
         	*cFullURI = g_strdup(CAIRO_DOCK_FM_NETWORK);
@@ -324,7 +324,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
     	*cFullURI = g_strdup(cURI);
 	g_return_val_if_fail (cURI != NULL, NULL);
 
-	cd_message (" -> cURI : %s\n", cURI);
+	cd_message (" -> cURI : %s", cURI);
 
 	ThunarFolder *folder = g_new( ThunarFolder, 1 );
 	folder->isJobFinished = FALSE;
@@ -333,10 +333,9 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : couldn't read %s\n", cURI);
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("couldn't read %s (%s)", cURI, erreur->message);
 		g_error_free (erreur);
-		return;
+		return NULL;
 	}
 	folder->job = thunar_vfs_listdir(pThunarPath, NULL);
 	thunar_vfs_path_unref(pThunarPath);
@@ -372,13 +371,13 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		{
 			icon = g_new0 (Icon, 1);
 			icon->cBaseURI = thunar_vfs_path_dup_uri(pThunarVfsInfo->path);
-			cd_message (" item in directory : %s\n", icon->cBaseURI);
+			cd_message (" item in directory : %s", icon->cBaseURI);
 			icon->iType = iNewIconsType;
 			if ( strcmp (thunar_vfs_mime_info_get_name(pThunarVfsInfo->mime_info), "application/x-desktop") == 0)
 			{
 				gboolean bIsDirectory = FALSE;
 				file_manager_get_file_info_from_desktop_link (icon->cBaseURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
-				cd_message ("  bIsDirectory : %d; iVolumeID : %d\n", bIsDirectory, icon->iVolumeID);
+				cd_message ("  bIsDirectory : %d; iVolumeID : %d", bIsDirectory, icon->iVolumeID);
 			}
 			else
 			{
@@ -393,6 +392,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 					if (erreur != NULL)
 					{
 						g_error_free (erreur);
+						erreur = NULL;
 					}
 					else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
 					{
@@ -464,7 +464,7 @@ static ThunarVfsVolume *thunar_find_volume_from_path (ThunarVfsPath *pThunarPath
         ThunarVfsInfo *pThunarVfsInfo = thunar_vfs_info_new_for_path(pThunarPath, &erreur);
         if (erreur != NULL)
         {
-            cd_message ("Attention : %s\n", erreur->message);
+            cd_warning ("Attention : %s", erreur->message);
             g_error_free (erreur);
         }
         else
@@ -484,13 +484,12 @@ void vfs_backend_launch_uri (const gchar *cURI)
 {
 	GError *erreur = NULL;
 	g_return_if_fail (cURI != NULL);
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : couldn't read %s\n", cURI);
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : couldn't read %s (%s)", cURI, erreur->message);
 		g_error_free (erreur);
 		return;
 	}
@@ -534,13 +533,13 @@ void vfs_backend_launch_uri (const gchar *cURI)
 			if( pMimeApplication )
 			{
 				GList *path_list = g_list_prepend (NULL, pThunarPath);
-				cd_message ("Launching %s ...\n", thunar_vfs_mime_handler_get_command(pMimeApplication) );
+				cd_message ("Launching %s ...", thunar_vfs_mime_handler_get_command(pMimeApplication) );
 				thunar_vfs_mime_handler_exec(pMimeApplication,gdk_screen_get_default (),path_list,&erreur);
 				g_list_free(path_list);
 				g_object_unref( pMimeApplication );
 				if (erreur != NULL)
 				{
-					cd_message ("Attention : %s\n", erreur->message);
+					cd_warning ("Attention : %s", erreur->message);
 					g_error_free (erreur);
 				}
 			}
@@ -556,14 +555,14 @@ void vfs_backend_launch_uri (const gchar *cURI)
 gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 {
 	GError *erreur = NULL;
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 
     ThunarVfsVolume *pThunarVolume = NULL;
 
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
 	{
-        cd_message ("ERROR : %s\n", erreur->message);
+        cd_warning ("ERROR : %s", erreur->message);
 		g_error_free (erreur);
 		return NULL;
 	}
@@ -574,7 +573,7 @@ gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 
 	if (pThunarVolume == NULL)
 	{
-		cd_message ("Attention : no volume associated to %s, guessing that it is mounted\n", cURI);
+		cd_warning ("Attention : no volume associated to %s, guessing that it is mounted", cURI);
 		*bIsMounted = TRUE;
 		return NULL;
 	}
@@ -584,7 +583,7 @@ gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 	gchar *cMountPointID = NULL;/*pMountPointVfsPath?thunar_vfs_path_dup_uri(pMountPointVfsPath):NULL;*/
     g_object_unref(pThunarVolume);
 
-	cd_message ("  bIsMounted <- %d\n", *bIsMounted);
+	cd_message ("  bIsMounted <- %d", *bIsMounted);
 
 	return cMountPointID;
 }
@@ -592,7 +591,7 @@ gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 
 static void _vfs_backend_mount_callback(ThunarVfsVolume *volume, gpointer *data)
 {
-	cd_message ("%s (%x)\n", __func__, data);
+	cd_message ("%s (%x)", __func__, data);
 
 	CairoDockFMMountCallback pCallback = data[0];
 
@@ -603,13 +602,12 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 {
 	GError *erreur = NULL;
 	g_return_if_fail (cURI != NULL);
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : couldn't read %s\n", cURI);
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : couldn't read %s (%s)", cURI, erreur->message);
 		g_error_free (erreur);
 		return;
 	}
@@ -619,7 +617,7 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 
 	if (pThunarVolume == NULL)
 	{
-		cd_message ("Attention : no volume associated to %s\n", cURI);
+		cd_warning ("Attention : no volume associated to %s", cURI);
 		return;
 	}
 
@@ -633,7 +631,7 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 
 	if( !thunar_vfs_volume_mount(pThunarVolume, NULL, &erreur) )
 	{
-		cd_message ("Attention, %s couldn't be mounted : %s\n",cURI, erreur->message);
+		cd_warning ("Attention, %s couldn't be mounted : %s",cURI, erreur->message);
 		g_error_free (erreur);
 	}
 	g_signal_handlers_disconnect_matched (pThunarVolume, G_SIGNAL_MATCH_DATA, 0, 0, NULL, NULL, data2);
@@ -645,13 +643,12 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 {
 	GError *erreur = NULL;
 	g_return_if_fail (cURI != NULL);
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : couldn't read %s\n", cURI);
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_message ("Attention : couldn't read %s (%s)", cURI, erreur->message);
 		g_error_free (erreur);
 		return;
 	}
@@ -661,8 +658,8 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 
 	if (pThunarVolume == NULL)
 	{
-		cd_message ("Attention : no volume associated to %s\n", cURI);
-		return NULL;
+		cd_warning ("Attention : no volume associated to %s", cURI);
+		return ;
 	}
 
 	gpointer *data2 = g_new (gpointer, 5);
@@ -692,7 +689,7 @@ static void _vfs_backend_thunar_monitor_callback(ThunarVfsMonitor *monitor,
 {
 	CairoDockFMMonitorCallback pCallback = data[0];
 	gpointer user_data = data[1];
-	cd_message ("%s (%d , data : %x)\n", __func__, event, user_data);
+	cd_message ("%s (%d , data : %x)", __func__, event, user_data);
 
 	CairoDockFMEventType iEventType;
 	switch (event)
@@ -721,12 +718,12 @@ void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockF
 {
 	GError *erreur = NULL;
 	g_return_if_fail (cURI != NULL);
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return;
 	}
@@ -754,12 +751,12 @@ void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockF
 
 	if (pHandle == NULL)
 	{
-		cd_message ("Attention : couldn't add monitor function to %s\n  I will not be able to receive events about this file\n", cURI);
+		cd_warning ("Attention : couldn't add monitor function to %s\n  I will not be able to receive events about this file", cURI);
 		g_free (data);
 	}
 	else
 	{
-		cd_message (">>> moniteur ajoute sur %s (%x)\n", cURI, user_data);
+		cd_message (">>> moniteur ajoute sur %s (%x)", cURI, user_data);
 		data[2] = pHandle;
 		g_hash_table_insert (s_fm_MonitorHandleTable, g_strdup (cURI), data);
 	}
@@ -767,7 +764,7 @@ void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockF
 
 void vfs_backend_remove_monitor (const gchar *cURI)
 {
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 	if (cURI != NULL)
 	{
 		gpointer *data = g_hash_table_lookup(s_fm_MonitorHandleTable,cURI);
@@ -782,7 +779,7 @@ void vfs_backend_remove_monitor (const gchar *cURI)
 			}
 		}
 
-		cd_message (">>> moniteur supprime sur %s\n", cURI);
+		cd_message (">>> moniteur supprime sur %s", cURI);
 		g_hash_table_remove (s_fm_MonitorHandleTable, cURI);
 	}
 }
@@ -791,12 +788,12 @@ void vfs_backend_remove_monitor (const gchar *cURI)
 gboolean vfs_backend_delete_file (const gchar *cURI)
 {
 	GError *erreur = NULL;
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -812,13 +809,13 @@ gboolean vfs_backend_delete_file (const gchar *cURI)
 gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 {
 	GError *erreur = NULL;
-	g_return_if_fail (cOldURI != NULL);
-	cd_message ("%s (%s)\n", __func__, cOldURI);
+	g_return_val_if_fail (cOldURI != NULL, FALSE);
+	cd_message ("%s (%s)", __func__, cOldURI);
 
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cOldURI, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -826,7 +823,7 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 	thunar_vfs_path_unref(pThunarPath);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -835,7 +832,7 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 	thunar_vfs_info_unref(pThunarVfsInfo);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -849,13 +846,13 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 	 @see thunar_vfs_move_file
 	*/
 	GError *erreur = NULL;
-	g_return_if_fail (cURI != NULL);
-	cd_message ("%s (%s, %s)\n", __func__, cURI, cDirectoryURI);
+	g_return_val_if_fail (cURI != NULL, FALSE);
+	cd_message ("%s (%s, %s)", __func__, cURI, cDirectoryURI);
 
 	ThunarVfsPath *pThunarPathFrom = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -866,7 +863,7 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 	if (erreur != NULL)
 	{
 		thunar_vfs_path_unref(pThunarPathFrom);
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -878,7 +875,7 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 
 	if (erreur != NULL)
 	{
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -891,12 +888,12 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 {
 	GError *erreur = NULL;
 	g_return_if_fail (cURI != NULL);
-	cd_message ("%s (%s)\n", __func__, cURI);
+	cd_message ("%s (%s)", __func__, cURI);
 
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return;
 	}
@@ -904,7 +901,7 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 	thunar_vfs_path_unref(pThunarPath);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return;
 	}
@@ -923,12 +920,12 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNecessary)
 {
 	GError *erreur = NULL;
-	cd_message ("%s (%s)\n", __func__, cNearURI);
+	cd_message ("%s (%s)", __func__, cNearURI);
 
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new("trash:/", &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return NULL;
 	}
@@ -953,12 +950,12 @@ gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNece
 gchar *vfs_backend_get_desktop_path (void)
 {
 	GError *erreur = NULL;
-	cd_message ("%s\n", __func__);
+	cd_message ("");
 
 	ThunarVfsPath *pThunarDesktopPath = thunar_vfs_path_new("desktop:/", &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Error is : %s\n", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return NULL;
 	}
@@ -979,5 +976,3 @@ gchar *vfs_backend_get_desktop_path (void)
 
 	return desktopPath;
 }
-
-
