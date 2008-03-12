@@ -51,6 +51,18 @@ static void _load_surfaces (void)
 CD_APPLET_INIT_BEGIN (erreur)
 	myConfig.defaultTitle = g_strdup (myIcon->acName);
 	
+	if (myDesklet != NULL)
+	{
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius/2;
+		myIcon->fDrawY = g_iDockRadius/2;
+		myIcon->fScale = 1;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;
+	}
+	
 	_load_surfaces ();
 	
 	//Si le bus n'a pas encore ete acquis, on le recupere.
@@ -102,6 +114,19 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
+	
+	if (myDesklet != NULL)
+	{
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius/2;
+		myIcon->fDrawY = g_iDockRadius/2;
+		myIcon->fScale = 1;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;
+	}
+	
 	//\_______________ On recharge les donnees qui ont pu changer.
 	_load_surfaces ();
 	
