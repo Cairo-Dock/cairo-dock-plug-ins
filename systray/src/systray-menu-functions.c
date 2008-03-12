@@ -81,7 +81,7 @@ void systray_build_and_show (void)
 	}
 }
 
-void systray_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
+void systray_draw_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet)
 {
 
 }

@@ -22,7 +22,13 @@ libcd_rendering_la_SOURCES = \
 	rendering-3D-plane.c\
 	rendering-3D-plane.h\
 	rendering-rainbow.c\
-	rendering-rainbow.h
+	rendering-rainbow.h\
+	rendering-desklet-caroussel.c\
+	rendering-desklet-caroussel.h\
+	rendering-desklet-tree.c\
+	rendering-desklet-tree.h\
+	rendering-desklet-simple.h\
+	rendering-desklet-simple.c
 
 dock_version = `pkg-config --modversion cairo-dock`
 

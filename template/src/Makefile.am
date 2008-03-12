@@ -4,7 +4,7 @@ lib_LTLIBRARIES = \
 	libcd-CD_APPLET_NAME.la
 
 
-libcd_CD_APPLET_NAME_la_SOURCES = \
+libcd_CD_LIB_NAME_la_SOURCES = \
 	applet-init.c\
 	applet-init.h\
 	applet-config.c\
@@ -16,7 +16,7 @@ libcd_CD_APPLET_NAME_la_SOURCES = \
 
 dock_version = `pkg-config --modversion cairo-dock`
 
-libcd_CD_APPLET_NAME_la_CFLAGS = \
+libcd_CD_LIB_NAME_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
@@ -34,11 +34,11 @@ libcd_CD_APPLET_NAME_la_CFLAGS = \
 #	-g -ggdb -W -Wall
 
 
-libcd_CD_APPLET_NAME_la_LIBADD = \
+libcd_CD_LIB_NAME_la_LIBADD = \
 	$(PACKAGE_LIBS) -lm
 
 
-libcd_CD_APPLET_NAME_la_LDFLAGS =\
+libcd_CD_LIB_NAME_la_LDFLAGS =\
 	-version-info 1:0:0
 
 

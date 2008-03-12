@@ -34,8 +34,6 @@ void cd_weather_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 		int iFrameHeight = iEllipseHeight + 0*2 * g_iFrameMargin + g_fReflectSize;
 		double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (iFrameHeight, fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
 		double a = MAX (myDesklet->iWidth - fExtraWidth - (my_bRotateIconsOnEllipse ? 0 : myData.iMaxIconWidth/2), iEllipseHeight)/2, b = MIN (myDesklet->iWidth - fExtraWidth - (my_bRotateIconsOnEllipse ? 0 : myData.iMaxIconWidth/2), iEllipseHeight)/2;
-		double c = sqrt (a * a - b * b);
-		double e = c / a;
 		Icon *pIcon;
 		GList *ic;
 		for (ic = myData.pDeskletIconList; ic != NULL; ic = ic->next)

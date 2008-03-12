@@ -260,7 +260,7 @@ void terminal_build_and_show_tab (void)
 	}
 }
 
-void term_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
+void term_draw_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet)
 {
 
 }

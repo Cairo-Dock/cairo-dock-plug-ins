@@ -64,6 +64,7 @@ static gboolean on_scroll_desklet (GtkWidget* pWidget,
 		}
 		_cd_weather_rotate (NULL);
 	}
+	return FALSE;
 }
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet != NULL)

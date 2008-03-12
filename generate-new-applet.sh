@@ -5,6 +5,7 @@ if test -e $AppletName; then
 	echo "Directory $AppletName already exists here; delete it before."
 	exit 1
 fi
+export LibName=`echo $AppletName | tr -- - _`
 read -p "Enter your name : " MyName
 read -p "Enter an e-mail adress to contact you for bugs or congratulations : " MyMail
 read -p "Enter the default label of your applet (Just type enter to leave it empty for the moment) :" AppletLabel
@@ -46,21 +47,10 @@ rm -f tmp
 
 cd ../src
 sed "s/CD_APPLET_NAME/$AppletName/g" Makefile.am > tmp
-mv tmp Makefile.am
+sed "s/CD_LIB_NAME/$LibName/g" tmp > Makefile.am
 
 sed "s/CD_APPLET_NAME/$AppletName/g" applet-init.c > tmp
 mv tmp applet-init.c
-
-if test "x$AppletLabel" = "x"; then
-	sed "s/CD_APPLET_LABEL/NULL/g" applet-config.c > tmp
-else
-	sed "s/CD_APPLET_LABEL/\"$AppletLabel\"/g" applet-config.c > tmp
-fi
-if test "x$AppletLabel" = "x"; then
-	sed "s/CD_APPLET_ICON/NULL/g" tmp > applet-config.c
-else
-	sed "s/CD_APPLET_ICON/\"$AppletIcon\"/g" tmp > applet-config.c
-fi
 
 sed "s/CD_APPLET_NAME/$AppletName/g" applet-notifications.c > tmp
 sed "s/CD_MY_NAME/$MyName/g" tmp > applet-notifications.c
