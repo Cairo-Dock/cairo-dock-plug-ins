@@ -365,8 +365,14 @@ libcd_wifi_la-applet-notifications.lo \
   /usr/include/librsvg-2/librsvg/rsvg.h \
   /usr/include/librsvg-2/librsvg/rsvg-cairo.h \
   /usr/include/cairo-dock/cairo-dock/cairo-dock-callbacks.h \
-  /usr/include/cairo-dock/cairo-dock/cairo-dock-draw.h \
+  /usr/include/cairo-dock/cairo-dock/cairo-dock-dbus.h \
+  /usr/include/dbus-1.0/dbus/dbus-glib.h \
+  /usr/include/dbus-1.0/dbus/dbus-shared.h \
+  /usr/include/dbus-1.0/dbus/dbus-glib-error-enum.h \
+  /usr/include/dbus-1.0/dbus/dbus-gtype-specialized.h \
+  /usr/include/dbus-1.0/dbus/dbus-glib-bindings.h \
   /usr/include/cairo-dock/cairo-dock/cairo-dock-struct.h \
+  /usr/include/cairo-dock/cairo-dock/cairo-dock-draw.h \
   /usr/include/cairo-dock/cairo-dock/cairo-dock-config.h \
   /usr/include/cairo-dock/cairo-dock/cairo-dock-load.h \
   /usr/include/cairo-dock/cairo-dock/cairo-dock-icons.h \
@@ -1231,9 +1237,21 @@ applet-struct.h:
 
 /usr/include/cairo-dock/cairo-dock/cairo-dock-callbacks.h:
 
-/usr/include/cairo-dock/cairo-dock/cairo-dock-draw.h:
+/usr/include/cairo-dock/cairo-dock/cairo-dock-dbus.h:
+
+/usr/include/dbus-1.0/dbus/dbus-glib.h:
+
+/usr/include/dbus-1.0/dbus/dbus-shared.h:
+
+/usr/include/dbus-1.0/dbus/dbus-glib-error-enum.h:
+
+/usr/include/dbus-1.0/dbus/dbus-gtype-specialized.h:
+
+/usr/include/dbus-1.0/dbus/dbus-glib-bindings.h:
 
 /usr/include/cairo-dock/cairo-dock/cairo-dock-struct.h:
+
+/usr/include/cairo-dock/cairo-dock/cairo-dock-draw.h:
 
 /usr/include/cairo-dock/cairo-dock/cairo-dock-config.h:
 
