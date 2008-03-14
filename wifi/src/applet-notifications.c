@@ -22,5 +22,5 @@ CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Wifi", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)  /// proposer de reverifier la presence d'une 'wireless extension' si no n'en a pas eu a u moment donne.
 CD_APPLET_ON_BUILD_MENU_END

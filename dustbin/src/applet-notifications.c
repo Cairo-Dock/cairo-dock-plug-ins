@@ -23,7 +23,7 @@ CD_APPLET_ABOUT (_D("This is the dustbin applet for Cairo-Dock\n made by Fabrice
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	cd_message ("_Note_ : You can manage many Trash directories with this applet.\n Right click on its icon to see which Trash directories are already being monitored.\n");
+	cd_message ("_Note_ : You can manage many Trash directories with this applet.\n Right click on its icon to see which Trash directories are already being monitored.");
 	cd_dustbin_show_trash (NULL, "trash:/");
 CD_APPLET_ON_CLICK_END
 
@@ -76,7 +76,7 @@ static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSucc
 	g_free (cMessage);
 }
 CD_APPLET_ON_DROP_DATA_BEGIN
-	cd_message ("  %s --> a la poubelle !\n", CD_APPLET_RECEIVED_DATA);
+	cd_message ("  %s --> a la poubelle !", CD_APPLET_RECEIVED_DATA);
 	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
 	gboolean bIsDirectory;
 	int iVolumeID = 0;
@@ -112,7 +112,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		gchar *cFileName = g_filename_from_uri (CD_APPLET_RECEIVED_DATA, &cHostname, &erreur);
 		if (erreur != NULL)
 		{
-			cd_message ("Attention : can't find valid URI for '%s' : %s\n", CD_APPLET_RECEIVED_DATA, erreur->message);
+			cd_warning ("Attention : can't find valid URI for '%s' : %s", CD_APPLET_RECEIVED_DATA, erreur->message);
 			g_error_free (erreur);
 		}
 		else if ((cHostname == NULL || strcmp (cHostname, "localhost") == 0) && myData.pDustbinsList != NULL)

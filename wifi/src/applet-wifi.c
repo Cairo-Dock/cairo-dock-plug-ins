@@ -62,36 +62,34 @@ gboolean cd_get_strength(Icon *icon) {
 		myDesklet->renderer = NULL;
 	}*/
 	
-  gchar *cContent = NULL;
+	gchar *cContent = NULL;
 	gsize length=0;
-	GError *tmp_erreur = NULL;
-	g_file_get_contents("/tmp/wifi", &cContent, &length, &tmp_erreur);
-	if (tmp_erreur != NULL) {
-		cd_message("Attention : %s\n", tmp_erreur->message);
-		g_error_free(tmp_erreur);
+	GError *erreur = NULL;
+	g_file_get_contents("/tmp/wifi", &cContent, &length, &erreur);  /// si 'no wireless extension' est renvoyer, stopper le timer, et proposer de reverifier dans le menu.
+	if (erreur != NULL) {
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free(erreur);
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
 	}
 	else {
-	  gchar *cQuickInfo;
 		gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 		g_free(cContent);
 		gchar *cOneInfopipe;
 		gchar **tcnt;
-    int flink,mlink,i=0;
-    int puissance;
-		cQuickInfo = " ";
+		int flink,mlink,i=0;
+		int puissance;
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
-			if (i == 5) {
+			if (i == 5) {  /// Pourquoi 5 ?? et s'il n'y a pas 5 info-pipe s? faut-il prendre le dernier ?
 			  tcnt = g_strsplit(cOneInfopipe," ", -1);
 			  tcnt = g_strsplit(tcnt[14],"=", -1);
 			  tcnt = g_strsplit(tcnt[1],"-", -1);
 			  flink = atoi(tcnt[1]);
 			  
 			  //Thanks to Ahmad Baitalmal & Brian Elliott Finley for thoses values (extracted from wifi-radar phyton script)
-			  cd_message("Signal Length : %d\n", flink);
+			  cd_message("Signal Length : %d", flink);
 			  if (flink == 0) {
 			    puissance = 0; //Problemes
 			  }
@@ -110,37 +108,37 @@ gboolean cd_get_strength(Icon *icon) {
 			  else if (flink <60) { //Excellent
 			    puissance = 100;
 			  }
-			  
-			  if ((puissance > 0)  && (puissance <= 20)) {
-			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p2Surface);
-			  }
-			  else if ((puissance > 20)  && (puissance <= 40)) {
-			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p4Surface);
-			  }
-			  else if ((puissance > 40)  && (puissance <= 60)) {
-			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p6Surface);
-			  }
-			  else if ((puissance > 60)  && (puissance <= 80)) {
-			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p8Surface);
-			  }
-			  else if ((puissance > 80)  && (puissance <= 100)) {
-			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p1Surface);
-			  }
-			  else {
-			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
-			  }
 			}
 		}
-		cQuickInfo = g_strdup_printf ("%d", puissance);
+		g_strfreev (cInfopipesList);
+		
 		if (myConfig.enableSSQ) {
-		  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(cQuickInfo);
+		  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d", puissance);
 		}
 		else {
 		  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
 		}
+		
+		 if ((puissance > 0)  && (puissance <= 20)) {
+		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p2Surface);
+		}
+		else if ((puissance > 20)  && (puissance <= 40)) {
+		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p4Surface);
+		}
+		else if ((puissance > 40)  && (puissance <= 60)) {
+		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p6Surface);
+		}
+		else if ((puissance > 60)  && (puissance <= 80)) {
+		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p8Surface);
+		}
+		else if ((puissance > 80)  && (puissance <= 100)) {
+		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p1Surface);
+		}
+		else {
+		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
+		}
   }
-  
-  CD_APPLET_REDRAW_MY_ICON
+
   bBusy = FALSE;
 	return FALSE;
 }

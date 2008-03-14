@@ -1,3 +1,3 @@
 #!/bin/bash
-rm /tmp/wifi
-iwconfig >> /tmp/wifi
+rm -f /tmp/wifi
+iwconfig > /tmp/wifi

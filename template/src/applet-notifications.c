@@ -20,7 +20,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_ABOUT (_D("This is the CD_APPLET_NAME applet\n made by CD_MY_NAME for Cairo-Dock"))
+CD_APPLET_ABOUT (D_("This is the CD_APPLET_NAME applet\n made by CD_MY_NAME for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN
