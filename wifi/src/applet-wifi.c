@@ -57,7 +57,7 @@ gboolean cd_get_strength(Icon *icon) {
 		g_free(cContent);
 		gchar *cOneInfopipe;
 		gchar **tcnt,**bcnt,*levelName;
-    int flink,mlink,i=0,puissance;
+    int flink,mlink,i=0,prcnt;
 		cQuickInfo = " ";
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
@@ -72,45 +72,26 @@ gboolean cd_get_strength(Icon *icon) {
 			  
 			  //Thanks to Ahmad Baitalmal & Brian Elliott Finley for thoses values (extracted from wifi-radar phyton script)
 			  cd_message("Signal Length : %d\n", flink);
-			  if (flink == 0) {
-			    puissance = 0; //Problemes
-			  }
-			  else if (flink >=90) { //Problemes
-			    puissance = 0;
-			  }
-			  else if (flink >=85) { //Très Faible 80
-			    puissance = 20;
-			  }
-			  else if (flink >=80) { //Faible 78
-			    puissance = 40;
-			  }
-			  else if (flink >=75) { //Moyen
-			    puissance = 60;
-			  }
-			  else if (flink >=60) { //Bon
-			    puissance = 80;
-			  }
-			  else if (flink <60) { //Excellent
-			    puissance = 100;
-			  }
 			  
-			  if ((puissance > 0)  && (puissance <= 20)) {
+			  prcnt = pourcent(flink);
+			  
+			  if ((prcnt > 0)  && (prcnt <= 20)) {
 			    levelName=_D("Very Low");
 			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p2Surface);
 			  }
-			  else if ((puissance > 20)  && (puissance <= 40)) {
+			  else if ((prcnt > 20)  && (prcnt <= 40)) {
 			    levelName=_D("Low");
 			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p4Surface);
 			  }
-			  else if ((puissance > 40)  && (puissance <= 60)) {
+			  else if ((prcnt > 40)  && (prcnt <= 60)) {
 			    levelName=_D("Middle");
 			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p6Surface);
 			  }
-			  else if ((puissance > 60)  && (puissance <= 80)) {
+			  else if ((prcnt > 60)  && (prcnt <= 80)) {
 			    levelName=_D("Good");
 			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p8Surface);
 			  }
-			  else if ((puissance > 80)  && (puissance <= 100)) {
+			  else if ((prcnt > 80)  && (prcnt <= 100)) {
 			    levelName=_D("Exellent");
 			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p1Surface);
 			  }
@@ -123,7 +104,7 @@ gboolean cd_get_strength(Icon *icon) {
 		if (myConfig.enableSSQ) {
 		  switch (myConfig.quickInfoType) {
 		    case 0: CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(levelName); break;
-		    case 1: cairo_dock_set_quick_info (myDrawContext, g_strdup_printf ("%d%s ",pourcent(flink),"%"), myIcon, (myDock != NULL ? 1 + g_fAmplitude : 1)); break;
+		    case 1: cairo_dock_set_quick_info (myDrawContext, g_strdup_printf ("%d%s ",prcnt,"%"), myIcon, (myDock != NULL ? 1 + g_fAmplitude : 1)); break;
 		    case 2: CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(g_strdup_printf ("%d", flink)); break;
 		  }
 		}

@@ -73,10 +73,10 @@ msgid "Signal Level in dBm"
 msgstr "Niveau du Signal en dBm"
 
 msgid "Very Low"
-msgstr "Très Faibles"
+msgstr "Très Faible"
 
 msgid "Low"
-msgstr "Faibles"
+msgstr "Faible"
 
 msgid "Middle"
 msgstr "Moyen"
