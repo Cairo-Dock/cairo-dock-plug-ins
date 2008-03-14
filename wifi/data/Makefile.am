@@ -13,4 +13,5 @@ module_DATA = \
   link-60.svg\
   link-80.svg\
   link-100.svg\
+  icon.png\
   wifi

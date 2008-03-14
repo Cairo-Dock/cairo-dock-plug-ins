@@ -22,6 +22,27 @@ icon = default.svg
 frame_info=
 #b Put Signal strength on quickinfo ?
 enable_ssq=true
+#r[Signal Strength;Signal Strength in percent;Signal Level in dBm] Information to display on the icon :
+signal_type=1
+
+#F[Personnalisation]
+frame_app =
+
+#S Name of an image for the 'very low' icon :
+#{Let t empty to use the default icon.}
+vl icon = 
+#S Name of an image for the 'low' icon :
+#{Let t empty to use the default icon.}
+l icon = 
+#S Name of an image for the 'middle' icon :
+#{Let t empty to use the default icon.}
+m icon = 
+#S Name of an image for the 'good' icon :
+#{Let t empty to use the default icon.}
+g icon = 
+#S Name of an image for the 'exellent' icon :
+#{Let t empty to use the default icon.}
+e icon = 
 
 [Desklet]
 #i[48;256] Desklet's dimension (width x height) :

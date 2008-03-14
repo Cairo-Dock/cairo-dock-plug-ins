@@ -5,5 +5,6 @@
 
 gboolean cd_wifi(Icon *icon);
 gboolean cd_get_strength(Icon *icon);
+int pourcent(int x);
 
 #endif

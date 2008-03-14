@@ -7,6 +7,13 @@
 typedef struct {
 	gchar *defaultTitle;
 	gboolean enableSSQ;
+	gchar *cDefault;
+	gchar *c2Surface;
+	gchar *c4Surface;
+	gchar *c6Surface;
+	gchar *c8Surface;
+	gchar *c1Surface;
+	int quickInfoType;
 } AppletConfig;
 
 typedef struct {

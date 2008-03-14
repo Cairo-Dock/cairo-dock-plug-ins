@@ -20,17 +20,6 @@ gboolean cd_wifi(Icon *icon) {
 		return TRUE;
 	bBusy = TRUE;
   
-  /*if (myDesklet != NULL) {
-		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;
-	}*/
-  
   GError *erreur = NULL;
   g_spawn_command_line_async (g_strdup_printf("bash %s/wifi", MY_APPLET_SHARE_DATA_DIR), &erreur);
   if (erreur != NULL) {
@@ -51,47 +40,43 @@ gboolean cd_get_strength(Icon *icon) {
 		return FALSE;
 	bBusy = TRUE;
 	
-	/*if (myDesklet != NULL) {
-		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;
-	}*/
-	
-	gchar *cContent = NULL;
+  gchar *cContent = NULL;
 	gsize length=0;
-	GError *erreur = NULL;
-	g_file_get_contents("/tmp/wifi", &cContent, &length, &erreur);  /// si 'no wireless extension' est renvoyer, stopper le timer, et proposer de reverifier dans le menu.
-	if (erreur != NULL) {
-		cd_warning ("Attention : %s", erreur->message);
-		g_error_free(erreur);
+	GError *tmp_erreur = NULL;
+	g_file_get_contents("/tmp/wifi", &cContent, &length, &tmp_erreur);
+	if ((tmp_erreur != NULL) || (cContent == NULL)) {
+		cd_message("Attention : %s\n", tmp_erreur->message);
+		g_error_free(tmp_erreur);
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
 		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
 	}
 	else {
+	  gchar *cQuickInfo;
 		gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 		g_free(cContent);
 		gchar *cOneInfopipe;
-		gchar **tcnt;
-		int flink,mlink,i=0;
-		int puissance;
+		gchar **tcnt,**bcnt,*levelName;
+    int flink,mlink,i=0,puissance;
+		cQuickInfo = " ";
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
-			if (i == 5) {  /// Pourquoi 5 ?? et s'il n'y a pas 5 info-pipe s? faut-il prendre le dernier ?
+			if (i == 5) {
 			  tcnt = g_strsplit(cOneInfopipe," ", -1);
-			  tcnt = g_strsplit(tcnt[14],"=", -1);
-			  tcnt = g_strsplit(tcnt[1],"-", -1);
+			  bcnt = g_strsplit(tcnt[14],"=", -1);
+			  if (bcnt[1] == NULL) {
+			    bcnt = g_strsplit(tcnt[14],":", -1);
+			  }
+			  tcnt = g_strsplit(bcnt[1],"-", -1);
 			  flink = atoi(tcnt[1]);
 			  
 			  //Thanks to Ahmad Baitalmal & Brian Elliott Finley for thoses values (extracted from wifi-radar phyton script)
-			  cd_message("Signal Length : %d", flink);
+			  cd_message("Signal Length : %d\n", flink);
 			  if (flink == 0) {
 			    puissance = 0; //Problemes
+			  }
+			  else if (flink >=90) { //Problemes
+			    puissance = 0;
 			  }
 			  else if (flink >=85) { //Très Faible 80
 			    puissance = 20;
@@ -108,37 +93,55 @@ gboolean cd_get_strength(Icon *icon) {
 			  else if (flink <60) { //Excellent
 			    puissance = 100;
 			  }
+			  
+			  if ((puissance > 0)  && (puissance <= 20)) {
+			    levelName=_D("Very Low");
+			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p2Surface);
+			  }
+			  else if ((puissance > 20)  && (puissance <= 40)) {
+			    levelName=_D("Low");
+			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p4Surface);
+			  }
+			  else if ((puissance > 40)  && (puissance <= 60)) {
+			    levelName=_D("Middle");
+			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p6Surface);
+			  }
+			  else if ((puissance > 60)  && (puissance <= 80)) {
+			    levelName=_D("Good");
+			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p8Surface);
+			  }
+			  else if ((puissance > 80)  && (puissance <= 100)) {
+			    levelName=_D("Exellent");
+			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p1Surface);
+			  }
+			  else {
+			    levelName=_D("None");
+			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
+			  }
 			}
 		}
-		g_strfreev (cInfopipesList);
-		
 		if (myConfig.enableSSQ) {
-		  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d", puissance);
+		  switch (myConfig.quickInfoType) {
+		    case 0: CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(levelName); break;
+		    case 1: cairo_dock_set_quick_info (myDrawContext, g_strdup_printf ("%d%s ",pourcent(flink),"%"), myIcon, (myDock != NULL ? 1 + g_fAmplitude : 1)); break;
+		    case 2: CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(g_strdup_printf ("%d", flink)); break;
+		  }
 		}
 		else {
 		  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
 		}
-		
-		 if ((puissance > 0)  && (puissance <= 20)) {
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p2Surface);
-		}
-		else if ((puissance > 20)  && (puissance <= 40)) {
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p4Surface);
-		}
-		else if ((puissance > 40)  && (puissance <= 60)) {
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p6Surface);
-		}
-		else if ((puissance > 60)  && (puissance <= 80)) {
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p8Surface);
-		}
-		else if ((puissance > 80)  && (puissance <= 100)) {
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.p1Surface);
-		}
-		else {
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
-		}
   }
-
+  
   bBusy = FALSE;
 	return FALSE;
+}
+
+int pourcent(int x) {
+  int y;
+  float p;
+  y = 90 - x;
+  if (y >30) { y = 30; }
+  else if (y<0) { y = 0; }
+  p = (y *0.03) *100;
+  return p;
 }
