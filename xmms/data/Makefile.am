@@ -14,5 +14,6 @@ module_DATA = \
 	infoaudacious.sh\
 	infobanshee.sh\
 	infoexaile.sh\
+	icon.png\
 	preview.png
 

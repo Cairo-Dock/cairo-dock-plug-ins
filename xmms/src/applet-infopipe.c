@@ -145,7 +145,7 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 		gchar *cOneInfopipe;
 		gchar **tcnt;
 		int **icnt;
-		gchar *titre;
+		gchar *titre=NULL;
 		int uSecPos, uSecTime, timeLeft;
 		int i = 0;
 		cQuickInfo = " ";
@@ -192,19 +192,24 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			}
 			else if (i == 12) {
 			  tcnt = g_strsplit(cOneInfopipe,"e: ", -1);
-			  CD_APPLET_SET_NAME_FOR_MY_ICON(tcnt[1]);
-			  
 			  titre = tcnt[1];
-			  if (strcmp(titre,myData.playingTitle) != 0) {
+			  
+			  if ((strcmp(titre,myData.playingTitle) != 0) && (titre != NULL)) {
+			    CD_APPLET_SET_NAME_FOR_MY_ICON(tcnt[1]);
 			    cd_message("On a changé de son! %s\n",titre);
 			    myData.playingTitle = titre;
-			   if (myConfig.enableAnim) {
+			    if (myConfig.enableAnim) {
 			      cd_xmms_animat_icon(1);
 			    }
 			    if (myConfig.enableDialogs) {
 			      cd_xmms_new_song_playing();
 			    }
 			  } 
+			  if (titre == NULL) {
+			    cQuickInfo = " ";
+			    CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+		      CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurface);
+		    }
 			  
 			}
 		}
