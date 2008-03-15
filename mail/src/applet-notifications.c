@@ -49,9 +49,46 @@ static void _cd_mail_add_account (GtkMenuItem *menu_item, gpointer *data)
     g_key_file_free(pKeyFile);
 }
 
+static void _cd_mail_remove_account (GtkMenuItem *menu_item, gpointer *data)
+{
+    XfceMailwatchMailbox *mailbox = (XfceMailwatchMailbox*)( data );
+
+    GKeyFile *pKeyFile = g_key_file_new();
+
+    if( g_key_file_load_from_file(pKeyFile,myIcon->pModule->cConfFilePath,
+					     G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
+					     NULL))
+    {
+        cd_mailwatch_remove_account (myData.mailwatch, mailbox);
+        xfce_mailwatch_save_config(myData.mailwatch, pKeyFile);
+        cairo_dock_write_keys_to_file (pKeyFile, myIcon->pModule->cConfFilePath);
+    }
+    g_key_file_free(pKeyFile);
+
+    xfce_mailwatch_force_update(myData.mailwatch);
+}
+
 CD_APPLET_ON_BUILD_MENU_BEGIN
+
+    GList *list_names = NULL, *list_data = NULL, *l = NULL, *l2 = NULL;
+    guint i;
+
 	CD_APPLET_ADD_SUB_MENU ("mail", pSubMenu, CD_APPLET_MY_MENU)
 		CD_APPLET_ADD_IN_MENU (_("Add a new mail account"), _cd_mail_add_account, pSubMenu)
+
+        cd_mailwatch_get_mailboxes_infos( myData.mailwatch, &list_names, &list_data );
+        if( list_names && list_data )
+        {
+            CD_APPLET_ADD_SUB_MENU (_("Remove a mail account"), pRemoveAccountSubMenu, pSubMenu)
+
+            /* add a "remove account" item for each mailbox */
+            for(l = list_names, l2 = list_data; l && l2; l = l->next, l2 = l2->next) {
+                CD_APPLET_ADD_IN_MENU_WITH_DATA (l->data, _cd_mail_remove_account, pRemoveAccountSubMenu, l2->data)
+            }
+            g_list_free( list_names );
+            g_list_free( list_data );
+        }
+
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 

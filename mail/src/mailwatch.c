@@ -300,6 +300,19 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
 
     g_return_val_if_fail(mailwatch, FALSE);
 
+    /* remove the old configuration in order to handle mailbox renaming */
+    guint old_nmailboxes;
+    gchar *old_mailbox_name;
+    old_nmailboxes = g_key_file_get_integer(pKeyFile, "Configuration", "nmailboxes", NULL);
+    for(i = 0; i < old_nmailboxes; i++) {
+        g_snprintf(buf, 32, "mailbox %d name", i);
+
+        old_mailbox_name = g_key_file_get_value(pKeyFile, "Configuration", buf, NULL);
+        g_key_file_remove_key(pKeyFile,"Configuration",buf, NULL);
+        g_key_file_remove_group(pKeyFile, old_mailbox_name, NULL);
+        g_free( old_mailbox_name );
+    }
+
     /* write out global config and index */
     g_key_file_set_integer(pKeyFile, "Configuration", "nmailboxes", g_list_length(mailwatch->mailboxes));
 
@@ -353,6 +366,31 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
     }
 
     return TRUE;
+}
+
+void cd_mailwatch_get_mailboxes_infos( XfceMailwatch *mailwatch, GList **list_names, GList **mailboxes_data  )
+{
+    GList *l;
+
+    if( !list_names ) return;
+    if( !mailboxes_data ) return;
+
+    /* we don't want to be trying to access the mailbox list while they might
+     * be in the process of being destroyed. */
+    g_mutex_lock(mailwatch->mailboxes_mx);
+
+    for(l = mailwatch->mailboxes; l; l = l->next) {
+        XfceMailwatchMailboxData *mdata = l->data;
+
+        if( mdata )
+        {
+            *list_names = g_list_append( *list_names, mdata->mailbox_name );
+            *mailboxes_data = g_list_append( *mailboxes_data, mdata->mailbox );
+        }
+    }
+
+    /* and we're done, unlock */
+    g_mutex_unlock(mailwatch->mailboxes_mx);
 }
 
 guint
@@ -477,6 +515,40 @@ xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
 
     if(do_signal)
         g_idle_add(mailwatch_signal_new_messages_idled, mailwatch);
+}
+
+void cd_mailwatch_remove_account (XfceMailwatch *mailwatch, XfceMailwatchMailbox *mailbox)
+{
+    GList *l;
+    XfceMailwatchMailboxData *mdata = NULL;
+
+    /* add a "remove account" item for each mailbox */
+    for(l = mailwatch->mailboxes; l; l = l->next) {
+        mdata = l->data;
+        if( mdata->mailbox == mailbox )
+            break;
+    }
+
+    if( l == NULL || mdata == NULL )
+    {
+        TRACE( "ATTENTION: cd_mailwatch_remove_account: account not found !" );
+    }
+    else
+    {
+        TRACE( "Removing account %s ...", mdata->mailbox_name );
+    }
+
+    /* batter up! */
+    g_mutex_lock(mailwatch->mailboxes_mx);
+
+    mailwatch->mailboxes = g_list_remove(mailwatch->mailboxes, mdata);
+    g_free(mdata->mailbox_name);
+    g_free(mdata);
+
+    /* you're out! */
+    g_mutex_unlock(mailwatch->mailboxes_mx);
+
+    mailbox->type->free_mailbox_func(mailbox);
 }
 
 static gboolean
