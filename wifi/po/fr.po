@@ -45,6 +45,9 @@ msgstr "Information"
 msgid "Put Signal strength on quickinfo ?"
 msgstr "Mettre la force du signal en quickinfo ?"
 
+msgid "Name of an image for the 'default' icon :"
+msgstr "Nom de l'image 'Par Defaut' :"
+
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Nom de l'image 'Très Faible' :"
 
@@ -89,6 +92,9 @@ msgstr "Excellent"
 
 msgid "None"
 msgstr "Aucun"
+
+msgid "Check for Wireless Extension"
+msgstr "Verifier les Extensions Wifi"
 
 #: src/applet-notifications.c:13
 msgid "This is the wifi applet\n made by ChAnGFu for Cairo-Dock"

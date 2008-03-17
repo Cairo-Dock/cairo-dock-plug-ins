@@ -27,13 +27,18 @@ gboolean cd_wifi(Icon *icon) {
     g_error_free (erreur);
 	}
 	
-	g_timeout_add (500, (GSourceFunc) cd_get_strength, (gpointer) myIcon); 
+	myData.strengthTimer = g_timeout_add (500, (GSourceFunc) cd_wifi_getStrength, (gpointer) myIcon); 
 	
   bBusy = FALSE;
-	return TRUE;
+  if (myData.isWirelessDevice == 0) {
+	  return FALSE;
+	}
+	else {
+	  return TRUE;
+	}
 }
 
-gboolean cd_get_strength(Icon *icon) {
+gboolean cd_wifi_getStrength(Icon *icon) {
   static gboolean bBusy = FALSE;
   
 	if (bBusy)
@@ -61,7 +66,18 @@ gboolean cd_get_strength(Icon *icon) {
 		cQuickInfo = " ";
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
-			if (i == 5) {
+			if ((i == 0) && (strcmp(cOneInfopipe,"Wifi") == 0)) {
+			  CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+		    CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+		    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
+		    cd_message("No wifi device found, timer stopped.\n");
+        myData.isWirelessDevice = 0;
+		    bBusy = FALSE;
+		    return FALSE;
+		  }
+			else if (i == 5) {
+			  myData.isWirelessDevice = 1; //Wireless Devices found
+			  
 			  tcnt = g_strsplit(cOneInfopipe," ", -1);
 			  bcnt = g_strsplit(tcnt[14],"=", -1);
 			  if (bcnt[1] == NULL) {
@@ -126,3 +142,18 @@ int pourcent(int x) {
   p = (y *0.03) *100;
   return p;
 }
+
+void cd_wifi_init(void) {
+	myData.isWirelessDevice = 1;
+	cd_wifi(myIcon);
+  myData.checkTimer = g_timeout_add (10000, (GSourceFunc) cd_wifi, (gpointer) myIcon);
+}
+
+void cd_wifi_wait(void) {
+  CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("Check...");
+	CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
+	myData.isWirelessDevice = 1;
+  myData.checkTimer = g_timeout_add (10000, (GSourceFunc) cd_wifi, (gpointer) myIcon);
+}
+

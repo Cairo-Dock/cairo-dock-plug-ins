@@ -112,12 +112,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = cd_get_strength;
+		myDesklet->renderer = NULL;
 	}
 	_load_surfaces();
-	cd_wifi(myIcon);
-  myData.checkTimer = g_timeout_add (10000, (GSourceFunc) cd_wifi, (gpointer) myIcon);
-  
+  cd_wifi_wait();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
@@ -151,5 +149,5 @@ CD_APPLET_RELOAD_BEGIN
 	  }
 	  
 	  _load_surfaces();
-	  cd_wifi(myIcon);
+    cd_wifi_wait();
 CD_APPLET_RELOAD_END

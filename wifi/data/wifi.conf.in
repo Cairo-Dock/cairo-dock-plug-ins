@@ -27,7 +27,9 @@ signal_type=1
 
 #F[Personnalisation]
 frame_app =
-
+#S Name of an image for the 'default' icon :
+#{Let t empty to use the default icon.}
+d icon = 
 #S Name of an image for the 'very low' icon :
 #{Let t empty to use the default icon.}
 vl icon = 

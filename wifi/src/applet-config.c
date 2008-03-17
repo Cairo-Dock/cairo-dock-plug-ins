@@ -16,7 +16,7 @@ CD_APPLET_CONFIG_BEGIN("Wifi", "default.svg");
 	myConfig.defaultTitle		= CD_CONFIG_GET_STRING ("Icon", "name");
 	myConfig.enableSSQ 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_ssq");
 	
-	myConfig.cDefault = CD_CONFIG_GET_STRING ("Icon", "icon");
+	myConfig.cDefault = CD_CONFIG_GET_STRING ("Configuration", "d icon");
 	
 	myConfig.c2Surface = CD_CONFIG_GET_STRING ("Configuration", "vl icon");
 	myConfig.c4Surface = CD_CONFIG_GET_STRING ("Configuration", "l icon");

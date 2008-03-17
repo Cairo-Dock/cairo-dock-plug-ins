@@ -25,6 +25,8 @@ typedef struct {
 	cairo_surface_t *p1Surface;
 	
 	int checkTimer;
+	int isWirelessDevice;
+	int strengthTimer;
 } AppletData;
 
 
