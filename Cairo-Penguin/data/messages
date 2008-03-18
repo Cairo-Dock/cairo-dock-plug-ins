@@ -1,0 +1,24 @@
+_("Icon")
+
+_("Desired icon size for this applet")
+
+_("width :")
+
+_("height :")
+
+_("Name of the icon as it will appear in its label in the dock :")
+
+_("Icon's name :")
+
+_("Configuration")
+
+_("Choose one of the available themes :")
+
+_("in seconds")
+
+_("Delay between animation changes :")
+
+_("Transparency of the penguin :")
+
+_("Let the penguin wander everywhere in the dock ?")
+

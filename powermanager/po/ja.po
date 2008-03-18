@@ -147,26 +147,70 @@ msgstr "高さ :"
 msgid "Icon name :"
 msgstr "アイコンの名前 :"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:31
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:33
 msgid "Quick info"
 msgstr "簡便情報"
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:35
 msgid "Information to be displayed on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:37
 msgid "nothing"
 msgstr "なし"
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:39
 msgid "charge"
 msgstr "充電量"
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:41
 msgid "time"
 msgstr "時間"
+
+#: ../data/messages:11
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:13
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:15
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr ""

@@ -380,6 +380,12 @@ void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pAr
 	
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pDock);
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
+	cairo_rectangle (pCairoContext,
+		pArea->x,
+		pArea->y,
+		pArea->width,
+		pArea->height);
+	cairo_clip (pCairoContext);
 	cairo_set_tolerance (pCairoContext, 0.5);
 	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);

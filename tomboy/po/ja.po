@@ -118,7 +118,7 @@ msgid "Unknown"
 msgstr "不明"
 
 #: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
-#: ../src/rhythmbox-menu-functions.c:61
+#: ../src/rhythmbox-menu-functions.c:61 ../src/tomboy-notifications.c:14
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
@@ -162,16 +162,17 @@ msgstr "時間の割合"
 msgid "° of track"
 msgstr "トラック番号"
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:11
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
 #: ../data/messages:57 ../data/messages:61 ../data/messages:65
-#: ../data/messages:69 ../data/messages:73
+#: ../data/messages:69 ../data/messages:73 ../data/messages:13
+#: ../data/messages:17 ../data/messages:21
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:15
 msgid "Name of an image for the 'default' icon :"
 msgstr "'デフォルト' アイコンの画像の名前 :"
 
@@ -187,6 +188,14 @@ msgstr "'停止' アイコンの画像の名前 :"
 msgid "Name of an image for the 'pause' icon :"
 msgstr "'一時停止' アイコンの画像の名前 :"
 
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:23
 msgid "Name of an image for the 'broken' icon :"
 msgstr "'リンク切れ' アイコンの画像の名前 :"
+
+#: ../src/tomboy-notifications.c:30
+msgid "Note name : "
+msgstr ""
+
+#: ../data/messages:19
+msgid "Name of an image for the 'close' icon :"
+msgstr ""
