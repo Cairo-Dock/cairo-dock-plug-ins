@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
+#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2007-12-11\n"
+"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/messages:1
+msgid "Inclinated Plane"
+msgstr "Plan incliné"
+
+#: ../data/messages:5
+msgid "Inclination of the plane :"
+msgstr "Inclinaison du plan :"
+
+#: ../data/messages:3
+msgid ""
+"In degrees, regarding the vertical position. It's a sort of inclination of "
+"the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+"the plane is not inclined at all (vertical)."
+msgstr ""
+"En degrés, par rapport à la position verticale. C'est une sorte "
+"d'inclinaison du plan sur l'horizontal, donnant l'impression de 3D. Donc le "
+"mettre à 0 signifie que le plan n'est pas incliné du tout (horizontal)."
+
+#: ../data/messages:7
+msgid "Use a flat separator instead of the defined separator icon ?"
+msgstr ""
+"Utiliser un séparateur plat au lieu de l'icône définie des séparateurs ?"
+
+#: ../data/messages:11
+msgid "If so, you can specify its color:"
+msgstr "Si oui, précisez sa couleur:"
+
+#: ../data/messages:9
+msgid "red, blue, green, alpha"
+msgstr "rougle, vert, bleu, alpha"
+
+#: ../data/messages:13
+msgid "Caroussel"
+msgstr "Carroussel"
+
+#: ../data/messages:17
+msgid "Percentage of the dock's width that appears on the foreground :"
+msgstr "Pourcentage de la largeur du dock qui apparaît à l'avant-plan :"
+
+#: ../data/messages:15
+msgid ""
+"0.5 means the dock is half-folded, so half the icons are on the foreground, "
+"and half are on the background."
+msgstr ""
+"0.5 signifie que le dock est à moitié replié, donc la moitié des icônes sont "
+"à l'avant-plan, et la motié à l'arrière-pan."
+
+#: ../data/messages:21
+msgid "Depth of the plane :"
+msgstr "Profondeur du plan :"
+
+#: ../data/messages:19
+msgid ""
+"The greater, the deeper. It is in fact the gap between background icons' "
+"bottom and foreground icons' top (in pixels)."
+msgstr ""
+"Plus c'est grand, plus le plan est profond. C'est en fait l'écart entre le "
+"bas des icônes de l'arrière-plan, et le haut des icônes d'avant-plan (en "
+"pixels)."
+
+#: ../data/messages:25
+msgid "Always show icons' face ?"
+msgstr "Toujours montrer les icônes de face ?"
+
+#: ../data/messages:23
+msgid "otherwise they will turn."
+msgstr "sinon elles tourneront."
+
+#: ../data/messages:27
+msgid "Parabolic"
+msgstr "Parabolique"
+
+#: ../data/messages:31
+msgid "Curvature :"
+msgstr "Courbure :"
+
+#: ../data/messages:35
+msgid "Ratio height/width :"
+msgstr "Ratio hauteur/largeur :"
+
+#: ../data/messages:39 ../data/messages:57
+msgid "Magnitude of the wave :"
+msgstr "Magnitude de la vague :"
+
+#: ../data/messages:37 ../data/messages:55
+msgid ""
+"0 means the wave is totally flat, 1 means the wave is identical to other "
+"views."
+msgstr ""
+"0 signifie que la vague est totalement plate, 1 que la vague est identique "
+"aux autres vues."
+
+#: ../data/messages:43
+msgid "Space between icons and their label :"
+msgstr "Espace entre les icônes et leur label :"
+
+#: ../data/messages:41
+msgid "in pixels."
+msgstr "en pixels."
+
+#: ../data/messages:29
+msgid "it's the 'a' in y=k*x^a"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"not including the labels. The 'k' coef will be adjusted to preserve this "
+"ratio."
+msgstr ""
+
+#: ../data/messages:45
+msgid ""
+"It may recquire more CPU during the unfolding animation, except if you "
+"launch Cairo-Dock with Glitz."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Draw labels while unfolding ?"
+msgstr "Dessiner les étiquettes pendant le dépliage ?"
+
+#: ../data/messages:49
+msgid "Rainbow"
+msgstr "Arc-en-ciel"
+
+#: ../data/messages:51
+msgid "Space between rows :"
+msgstr "Espacement entre les lignes :"
+
+#: ../data/messages:53
+msgid "Space between icons :"
+msgstr "Espacement entre les icônes :"
+
+#: ../data/messages:59
+msgid "Number of icons on the first row :"
+msgstr "Nombre d'icônes dans la 1ère ligne :"
+
+#: ../data/messages:61
+msgid ""
+"in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+"widely opened."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Cone's width :"
+msgstr "Ouverture du cône :"

@@ -1,0 +1,8 @@
+<b><u>cd-clock (v1.3.0)</u></b>
+<u>Author</u> : <b>Fabounet</b>
+<i>Display time and date in you dock with the <span color='#0000FF'>clock applet</span> !</i>
+ 2 view are available : numeric and analogic, based on <i>Cairo-Clock</i>.
+ It can detach itself to be the perfect clone of CairoClock.
+ It can warn you with alarms,
+  can display a calendar (left/middle click to show/hide it),
+  and allow you to setup time and date.

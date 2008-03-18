@@ -1,0 +1,4 @@
+ #!/bin/bash
+rm -f /tmp/wifi
+iwconfig > /tmp/wifi
+echo "Wifi" >> /tmp/wifi

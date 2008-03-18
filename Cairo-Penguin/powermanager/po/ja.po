@@ -1,0 +1,216 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2008-02-25 11:24+0900\n"
+"Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
+"Language-Team: Japanese <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "ICON"
+msgstr "アイコン"
+
+msgid "Desired icon size for this applet"
+msgstr "このアプレットのアイコンの大きさ"
+
+msgid "width :"
+msgstr "幅 :"
+
+msgid "height :"
+msgstr "高さ :"
+
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "ドックのラベル上に表示するアイコンの名前 :"
+
+msgid "MODULE"
+msgstr "モジュール"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "Choose one of the available themes :"
+msgstr "利用可能なテーマから1つ選択 :"
+
+msgid "Interval of time to check if dustbin is full/empty :"
+msgstr "Interval of time to check if dustbin is full/empty :"
+
+msgid "in seconds"
+msgstr "en secondes"
+
+msgid "Here you can specify a list of Trash directory :"
+msgstr "Ici vous pouvez spécifier une liste de répertoires poubelle ;"
+
+msgid "File browser used to show a trash :"
+msgstr "Navigateur de fichier pour visualiser la poubelle ;"
+
+#: src/applet-notifications.c:21
+msgid ""
+"This is the dustbin applet for Cairo-Dock\n"
+" made by Fabrice Rey (fabounet_03@yahoo.fr)"
+msgstr ""
+"Ceci est l'applet poubelle de Cairo-Dock\n"
+" écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
+
+#: src/applet-notifications.c:42
+msgid "Show Trash"
+msgstr "Ouvrir la poubelle"
+
+#: src/applet-notifications.c:54
+msgid "Show All"
+msgstr "Ouvrir toutes"
+
+#: src/applet-notifications.c:56
+msgid "Delete Trash"
+msgstr "Vider la poubelle"
+
+#: src/applet-notifications.c:69
+msgid "Delete All"
+msgstr "Vider toutes"
+
+#: src/applet-notifications.c:81
+#, c-format
+msgid "You're about to delete all files in %s. Sure ?"
+msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
+
+#: src/applet-notifications.c:83
+msgid "You're about to delete all files all dustbins. Sure ?"
+msgstr ""
+"Vous êtes sur le point de détruire tous les fichiers de toutes les "
+"poubelles. Sur ?"
+
+#: src/applet-notifications.c:145
+#, c-format
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual file browser,\n"
+"you can change it in the conf panel of this module"
+msgstr ""
+"Un problème est survenu.\n"
+"Si '%s' n'est pas votre navigateur de fichier usuel,\n"
+"vous pouvez le changer dans le panneau de conf de cette applet."
+
+#: src/applet-notifications.c:48
+#, c-format
+msgid "Show %s"
+msgstr "Ouvrir %s"
+
+#: src/applet-notifications.c:62
+#, c-format
+msgid "Delete %s"
+msgstr "Vider %s"
+
+#: ../src/powermanager-menu-functions.c:16
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
+
+#: ../src/powermanager-menu-functions.c:25
+msgid "Halt"
+msgstr "停止"
+
+#: ../src/powermanager-menu-functions.c:26
+msgid "Hibernate"
+msgstr "ハイバネート"
+
+#: ../src/powermanager-menu-functions.c:27
+msgid "Suspend"
+msgstr "サスペンド"
+
+#: ../src/powermanager-menu-functions.c:28
+msgid "Reboot"
+msgstr "再起動"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "アイコン"
+
+#: ../data/messages:3
+msgid "Icon size"
+msgstr "アイコンの大きさ"
+
+#: ../data/messages:5
+msgid "Width :"
+msgstr "幅 :"
+
+#: ../data/messages:7
+msgid "Height :"
+msgstr "高さ :"
+
+#: ../data/messages:9
+msgid "Icon name :"
+msgstr "アイコンの名前 :"
+
+#: ../data/messages:11 ../data/messages:31
+msgid "Configuration"
+msgstr "設定"
+
+#: ../data/messages:13 ../data/messages:33
+msgid "Quick info"
+msgstr "簡便情報"
+
+#: ../data/messages:15 ../data/messages:35
+msgid "Information to be displayed on the icon :"
+msgstr "アイコン上に表示する情報 :"
+
+#: ../data/messages:17 ../data/messages:37
+msgid "nothing"
+msgstr "なし"
+
+#: ../data/messages:19 ../data/messages:39
+msgid "charge"
+msgstr "充電量"
+
+#: ../data/messages:21 ../data/messages:41
+msgid "time"
+msgstr "時間"
+
+#: ../data/messages:11
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:13
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:15
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr ""

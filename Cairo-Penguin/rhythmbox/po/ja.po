@@ -1,0 +1,248 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2008-02-25 15:54+0900\n"
+"Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
+"Language-Team: Japanese <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "このアプレットのアイコンの大きさ"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "幅 :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高さ :"
+
+#: ../data/messages:9
+msgid "Default title :"
+msgstr "デフォルトのタイトル :"
+
+#: ../data/messages:11 ../data/messages:31
+msgid "Configuration"
+msgstr "設定"
+
+#: ../data/messages:13 ../data/messages:33
+msgid "Info-bubbles"
+msgstr "情報吹き出し"
+
+#: ../data/messages:15 ../data/messages:35
+msgid "Activate info-bubbles ?"
+msgstr "情報吹き出しを有効化？"
+
+#: ../data/messages:19 ../data/messages:39
+msgid "Time length of info-bubbles :"
+msgstr "情報吹き出しの表示継続時間 :"
+
+#: ../data/messages:17 ../data/messages:37
+msgid "in ms."
+msgstr "ミリ秒単位"
+
+#: ../data/messages:21 ../data/messages:41
+msgid "Animations"
+msgstr "アニメーション"
+
+#: ../data/messages:25 ../data/messages:45
+msgid "bounce"
+msgstr "バウンド"
+
+#: ../data/messages:27 ../data/messages:47
+msgid "rotate"
+msgstr "回転"
+
+#: ../data/messages:29 ../data/messages:49
+msgid "blink"
+msgstr "点滅"
+
+#: ../data/messages:31 ../data/messages:51
+msgid "pulse"
+msgstr "波動"
+
+#: ../data/messages:33 ../data/messages:53
+msgid "upside-down"
+msgstr "上下逆さま"
+
+#: ../data/messages:35 ../data/messages:55
+msgid "wobbly"
+msgstr "伸び縮み"
+
+#: ../data/messages:37 ../data/messages:57
+msgid "random"
+msgstr "ランダム"
+
+#: ../data/messages:23 ../data/messages:43
+msgid "Animation when music changes :"
+msgstr "音楽切り替わり時のアニメーション:"
+
+#: ../data/messages:39 ../data/messages:59
+msgid "Display"
+msgstr "表示"
+
+#: ../data/messages:41 ../data/messages:61
+msgid "Display album's cover instead of icon ?"
+msgstr "アイコンの代わりにアルバムのカバーを表示？"
+
+#: ../data/messages:43 ../data/messages:63
+msgid "Information to display on the icon :"
+msgstr "アイコン上に表示する情報 :"
+
+#: src/rhythmbox-draw.c:101 src/rhythmbox-draw.c:102
+#: ../src/rhythmbox-draw.c:77 ../src/rhythmbox-draw.c:102
+#: ../src/rhythmbox-draw.c:103
+#, c-format
+msgid ""
+"Artist : %s\n"
+"Album : %s\n"
+"Title : %s"
+msgstr ""
+"アーティスト : %s\n"
+"アルバム : %s\n"
+"タイトル : %s"
+
+#: ../src/rhythmbox-draw.c:81 ../src/rhythmbox-draw.c:82
+#: ../src/rhythmbox-draw.c:83 ../src/rhythmbox-draw.c:106
+#: ../src/rhythmbox-draw.c:107 ../src/rhythmbox-draw.c:108
+#: ../src/rhythmbox-draw.c:109
+msgid "Unknown"
+msgstr "不明"
+
+#: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
+#: ../src/rhythmbox-menu-functions.c:61
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
+
+#: src/rhythmbox-menu-functions.c:67 src/rhythmbox-menu-functions.c:68
+#: ../src/rhythmbox-menu-functions.c:71
+msgid "Previous"
+msgstr "前へ"
+
+#: src/rhythmbox-menu-functions.c:69 src/rhythmbox-menu-functions.c:70
+#: ../src/rhythmbox-menu-functions.c:73
+msgid "Next"
+msgstr "次へ"
+
+#: src/rhythmbox-menu-functions.c:71 src/rhythmbox-menu-functions.c:72
+#: ../src/rhythmbox-menu-functions.c:75
+msgid "Information"
+msgstr "情報"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "アイコン"
+
+#: ../data/messages:45 ../data/messages:65
+msgid "nothing"
+msgstr "なし"
+
+#: ../data/messages:47 ../data/messages:67
+msgid "time elapsed"
+msgstr "経過時間"
+
+#: ../data/messages:49 ../data/messages:69
+msgid "time left"
+msgstr "残り時間"
+
+#: ../data/messages:51
+#, c-format
+msgid "time in %n"
+msgstr "時間の割合"
+
+#: ../data/messages:53
+msgid "° of track"
+msgstr "トラック番号"
+
+#: ../data/messages:55 ../data/messages:75
+msgid "Personnalisation"
+msgstr "カスタマイズ"
+
+#: ../data/messages:57 ../data/messages:61 ../data/messages:65
+#: ../data/messages:69 ../data/messages:73 ../data/messages:77
+#: ../data/messages:81 ../data/messages:85 ../data/messages:89
+#: ../data/messages:93
+msgid "Let t empty to use the default icon."
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
+
+#: ../data/messages:59 ../data/messages:79
+msgid "Name of an image for the 'default' icon :"
+msgstr "'デフォルト' アイコンの画像の名前 :"
+
+#: ../data/messages:63 ../data/messages:83
+msgid "Name of an image for the 'play' icon :"
+msgstr "'再生' アイコンの画像の名前 :"
+
+#: ../data/messages:67 ../data/messages:87
+msgid "Name of an image for the 'stop' icon :"
+msgstr "'停止' アイコンの画像の名前 :"
+
+#: ../data/messages:71 ../data/messages:91
+msgid "Name of an image for the 'pause' icon :"
+msgstr "'一時停止' アイコンの画像の名前 :"
+
+#: ../data/messages:75 ../data/messages:95
+msgid "Name of an image for the 'broken' icon :"
+msgstr "'リンク切れ' アイコンの画像の名前 :"
+
+#: ../data/messages:11
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:13
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:15
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:71
+msgid "time in %"
+msgstr ""
+
+#: ../data/messages:73
+msgid "n° of track"
+msgstr ""
