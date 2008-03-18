@@ -188,7 +188,7 @@ msgstr "Laisser vide pour avoir l'icon par défault"
 
 #: ../data/messages:59 ../data/messages:39 ../data/messages:69
 msgid "Name of an image for the 'default' icon :"
-msgstr "Nom de l'image 'Par Default' :"
+msgstr "Nom de l'image 'Par Defaut' :"
 
 #: ../data/messages:63 ../data/messages:43 ../data/messages:73
 msgid "Name of an image for the 'play' icon :"

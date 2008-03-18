@@ -193,11 +193,9 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			else if (i == 12) {
 			  tcnt = g_strsplit(cOneInfopipe,"e: ", -1);
 			  titre = tcnt[1];
-			  
-			  if ((strcmp(titre,myData.playingTitle) != 0) && (titre != NULL)) {
-			    CD_APPLET_SET_NAME_FOR_MY_ICON(tcnt[1]);
-			    cd_message("On a changé de son! %s\n",titre);
+			  if ((strcmp(titre,myData.playingTitle) != 0) && (titre != NULL) && (strcmp(titre,"(null)") != 0)) {
 			    myData.playingTitle = titre;
+			    cd_message("On a changé de son! %s\n",titre);
 			    if (myConfig.enableAnim) {
 			      cd_xmms_animat_icon(1);
 			    }
@@ -205,14 +203,16 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			      cd_xmms_new_song_playing();
 			    }
 			  } 
-			  if (titre == NULL) {
-			    cQuickInfo = " ";
-			    CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		      CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurface);
-		    }
-			  
 			}
 		}
+		if ((titre == NULL) || (strcmp(titre,"(null)") == 0)) {
+			cQuickInfo = NULL;
+			CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+		  CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurface);
+	  }
+	  else {
+	    CD_APPLET_SET_NAME_FOR_MY_ICON(myData.playingTitle);
+	  }
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW(cQuickInfo);
   }
   cd_remove_pipes();
@@ -245,7 +245,7 @@ int cd_remove_pipes() {
   GError *erreur = NULL;
   g_spawn_command_line_async (sScriptPath->str, &erreur);
   if (erreur != NULL) {
-	  cd_warning ("Attention : when trying to execute 'infobanshee.sh", erreur->message);
+	  cd_warning ("Attention : when trying to execute 'remove pipe' %s", erreur->message);
     g_error_free (erreur);
 	}
 	return 0;
