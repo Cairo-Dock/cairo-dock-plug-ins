@@ -115,7 +115,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDesklet->renderer = NULL;
 	}
 	_load_surfaces();
-  cd_wifi_wait();
+  cd_wifi_wait("AppletINIT");
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
@@ -149,5 +149,5 @@ CD_APPLET_RELOAD_BEGIN
 	  }
 	  
 	  _load_surfaces();
-    cd_wifi_wait();
+    cd_wifi("AppletReload");
 CD_APPLET_RELOAD_END
