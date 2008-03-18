@@ -446,23 +446,6 @@ xfce_mailwatch_get_new_message_breakdown(XfceMailwatch *mailwatch,
     g_mutex_unlock(mailwatch->mailboxes_mx);
 }
 
-void
-xfce_mailwatch_force_update(XfceMailwatch *mailwatch)
-{
-    GList *l;
-
-    /* CLEAR! */
-    g_mutex_lock(mailwatch->mailboxes_mx);
-
-    for(l = mailwatch->mailboxes; l; l = l->next) {
-        XfceMailwatchMailboxData *mdata = l->data;
-        mdata->mailbox->type->force_update_callback(mdata->mailbox);
-    }
-
-    /* mmm, ten thousand volts */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
-}
-
 static gboolean
 mailwatch_signal_new_messages_idled(gpointer data)
 {
@@ -515,6 +498,25 @@ xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
 
     if(do_signal)
         g_idle_add(mailwatch_signal_new_messages_idled, mailwatch);
+}
+
+void
+xfce_mailwatch_force_update(XfceMailwatch *mailwatch)
+{
+    GList *l;
+
+    /* CLEAR! */
+    g_mutex_lock(mailwatch->mailboxes_mx);
+
+    for(l = mailwatch->mailboxes; l; l = l->next) {
+        XfceMailwatchMailboxData *mdata = l->data;
+        mdata->mailbox->type->force_update_callback(mdata->mailbox);
+    }
+
+    /* mmm, ten thousand volts */
+    g_mutex_unlock(mailwatch->mailboxes_mx);
+
+    g_idle_add(mailwatch_signal_new_messages_idled, mailwatch);
 }
 
 void cd_mailwatch_remove_account (XfceMailwatch *mailwatch, XfceMailwatchMailbox *mailbox)
@@ -908,6 +910,49 @@ config_edit_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     */
     config_do_edit_window(sel, GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(w))));
+}
+
+gboolean config_do_edit_window_2(GtkWidget *w, XfceMailwatch *mailwatch, XfceMailwatchMailbox *mailbox)
+{
+    GtkWindow *parent = GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(w)));
+    gboolean ret = FALSE;
+
+    /* _TOFE
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    */
+    GList *l;
+    XfceMailwatchMailboxData *mdata = NULL;
+
+    /* add a "remove account" item for each mailbox */
+    for(l = mailwatch->mailboxes; l; l = l->next) {
+        mdata = l->data;
+        if( mdata->mailbox == mailbox )
+            break;
+    }
+
+    gchar *mailbox_name = g_strdup(mdata->mailbox_name), *win_title = NULL, *new_mailbox_name = NULL;
+
+    /* pause the mailbox */
+    mailbox->type->set_activated_func(mailbox, FALSE);
+
+    win_title = g_strdup_printf(_("Edit Mailbox: %s"), mailbox_name);
+    if(config_run_addedit_window(win_title, parent,
+            mailbox_name, mailbox, &new_mailbox_name))
+    {
+        if(new_mailbox_name) {
+            g_free(mdata->mailbox_name);
+            mdata->mailbox_name = new_mailbox_name;
+        }
+
+        ret = TRUE;
+    }
+    g_free(win_title);
+    g_free(mailbox_name);
+
+    /* and unpause */
+    mailbox->type->set_activated_func(mailbox, TRUE);
+
+    return ret;
 }
 
 static void

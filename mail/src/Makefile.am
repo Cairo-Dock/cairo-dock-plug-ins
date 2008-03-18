@@ -40,6 +40,7 @@ libcd_mail_la_CFLAGS = \
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""cd_mail_icon.png"\"\
 	-std=c99\
+	-fgnu89-inline\
 	-Werror-implicit-function-declaration\
 	-O3
 #	-g -ggdb -W -Wall

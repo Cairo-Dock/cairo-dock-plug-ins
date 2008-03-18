@@ -24,6 +24,8 @@ CD_APPLET_CONFIG_BEGIN
 	myConfig.cNoMailUserImage = CD_CONFIG_GET_STRING ("Configuration", "no mail image");
 	myConfig.cHasMailUserImage = CD_CONFIG_GET_STRING ("Configuration", "has mail image");
 
+    myConfig.cMailApplication = CD_CONFIG_GET_STRING ("Configuration", "mail application");
+
     if( !myData.mailwatch )
         myData.mailwatch = xfce_mailwatch_new();
 

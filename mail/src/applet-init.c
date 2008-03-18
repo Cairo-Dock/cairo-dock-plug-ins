@@ -18,8 +18,7 @@ AppletConfig myConfig;
 AppletData myData;
 
 
-CD_APPLET_DEFINITION ("mail", 1, 5, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
-
+CD_APPLET_DEFINITION ("mail", 1, 5, 0, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 static void _load_surfaces (void) {
 	GString *sImagePath = g_string_new ("");
@@ -36,8 +35,21 @@ static void _load_surfaces (void) {
 }
 
 CD_APPLET_INIT_BEGIN (erreur)
+	if (myDesklet != NULL)
+	{
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius/2;
+		myIcon->fDrawY = g_iDockRadius/2;
+		myIcon->fScale = 1;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;
+	}
+
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 
 	//\_______________ On charge en priorite les images utilisateur.
     myData.pNoMailSurface = NULL;
@@ -75,6 +87,7 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 
 
 	//\_________________ On libere toutes nos ressources.
@@ -86,6 +99,18 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
+	if (myDesklet != NULL)
+	{
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius/2;
+		myIcon->fDrawY = g_iDockRadius/2;
+		myIcon->fScale = 1;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;
+	}
+
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{

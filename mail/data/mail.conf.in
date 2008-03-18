@@ -53,4 +53,6 @@ no mail image =
 #S Name of an image to overwrite the theme's has mail image :
 has mail image = 
 
+#S Path to application to launch on left-click
+mail application =
 
