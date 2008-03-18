@@ -1,5 +1,0 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
-<u>Author :</u> <b>Adrien Pilleboue (Necropotame)</b>
-<i>Control your <span color='#0000FF'>Rhythmbox</span> player directly in the dock !</i>
- Play/pause with left click, next song with middle click.
- You can drag and drop covers (jpg) on the icon to use them.
