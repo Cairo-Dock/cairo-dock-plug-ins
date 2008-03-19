@@ -16,88 +16,95 @@ CD_APPLET_DEFINITION ("wifi", 1, 4, 7, CAIRO_DOCK_CATEGORY_ACCESSORY);
 static void _load_surfaces (void) {
 	gchar *cUserImagePath;
 	GString *sImagePath = g_string_new ("");
+	int i;
 	
   //Chargement de l'image "default"
-  if (myData.pDefault != NULL) {
-		cairo_surface_destroy (myData.pDefault);
+  i = WIFI_QUALITY_NO_SIGNAL;
+  if (myData.pSurfaces[i] != NULL) {
+		cairo_surface_destroy (myData.pSurfaces[i]);
 	}
 	if (myConfig.cDefault != NULL) {
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cDefault);
-		myData.pDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	else {
 		g_string_printf (sImagePath, "%s/default.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 	}
 	
   //Chargement de l'image "20"
-  if (myData.p2Surface != NULL) {
-		cairo_surface_destroy (myData.p2Surface);
+  i = WIFI_QUALITY_VERY_LOW;
+  if (myData.pSurfaces[i] != NULL) {
+		cairo_surface_destroy (myData.pSurfaces[1]);
 	}
-	if (myConfig.c2Surface != NULL) {
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.c2Surface);
-		myData.p2Surface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+	if (myConfig.c20Surface != NULL) {
+		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.c20Surface);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	else {
 		g_string_printf (sImagePath, "%s/link-20.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.p2Surface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 	}
 	
 	//Chargement de l'image "40"
-	if (myData.p4Surface != NULL) {
-		cairo_surface_destroy (myData.p4Surface);
+	i = WIFI_QUALITY_LOW;
+	if (myData.pSurfaces[i] != NULL) {
+		cairo_surface_destroy (myData.pSurfaces[i]);
 	}
-	if (myConfig.c4Surface != NULL) {
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.c4Surface);
-		myData.p4Surface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+	if (myConfig.c40Surface != NULL) {
+		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.c40Surface);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	else {
 		g_string_printf (sImagePath, "%s/link-40.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.p4Surface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 	}
 	
 	//Chargement de l'image "60"
-	if (myData.p6Surface != NULL) {
-		cairo_surface_destroy (myData.p6Surface);
+	i = WIFI_QUALITY_MIDDLE;
+	if (myData.pSurfaces[i] != NULL) {
+		cairo_surface_destroy (myData.pSurfaces[i]);
 	}
-	if (myConfig.c6Surface != NULL) {
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.c6Surface);
-		myData.p6Surface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+	if (myConfig.c60Surface != NULL) {
+		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.c60Surface);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	else {
 		g_string_printf (sImagePath, "%s/link-60.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.p6Surface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 	}
 	
 	//Chargement de l'image "80"
-	if (myData.p8Surface != NULL) {
-		cairo_surface_destroy (myData.p8Surface);
+	i = WIFI_QUALITY_GOOD;
+	if (myData.pSurfaces[i] != NULL) {
+		cairo_surface_destroy (myData.pSurfaces[i]);
 	}
-	if (myConfig.c8Surface != NULL) {
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.c8Surface);
-		myData.p8Surface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+	if (myConfig.c80Surface != NULL) {
+		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.c80Surface);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	else {
 		g_string_printf (sImagePath, "%s/link-80.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.p8Surface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 	}
 	//Chargement de l'image "100"
-	if (myData.p1Surface != NULL) {
-		cairo_surface_destroy (myData.p1Surface);
+	i = WIFI_QUALITY_EXCELLENT;
+	if (myData.pSurfaces[i] != NULL) {
+		cairo_surface_destroy (myData.pSurfaces[i]);
 	}
-	if (myConfig.c1Surface != NULL) {
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.c1Surface);
-		myData.p1Surface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+	if (myConfig.c100Surface != NULL) {
+		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.c100Surface);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	else {
 		g_string_printf (sImagePath, "%s/link-100.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.p1Surface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+		myData.pSurfaces[i] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 	}
 	
 	g_string_free (sImagePath, TRUE);

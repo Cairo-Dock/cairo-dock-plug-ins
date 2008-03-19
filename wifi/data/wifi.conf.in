@@ -20,10 +20,8 @@ icon = default.svg
 [Configuration]
 #F[Information]
 frame_info=
-#b Put Signal strength on quickinfo ?
-enable_ssq=true
-#r[Signal Strength;Signal Strength in percent;Signal Level in dBm] Information to display on the icon :
-signal_type=1
+#r[None;Signal Strength level;Signal Strength in percent;Signal Level in dBm] Information to display on the icon :
+signal_type=2
 
 #F[Personnalisation]
 frame_app =

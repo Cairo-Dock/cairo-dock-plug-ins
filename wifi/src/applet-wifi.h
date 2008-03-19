@@ -6,7 +6,7 @@
 gboolean cd_wifi(gchar *origine);
 gboolean cd_wifi_getStrength(void);
 float pourcent(float x, float y);
-void cd_wifi_init(gchar *origine);
+//void cd_wifi_init(gchar *origine);
 void cd_wifi_wait(gchar *origine);
 
 #endif

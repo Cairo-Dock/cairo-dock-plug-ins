@@ -93,26 +93,26 @@ msgstr "Force du Signal en pourcent"
 msgid "Signal Level in dBm"
 msgstr "Niveau du Signal en dBm"
 
-#: ../src/applet-wifi.c:95
+#: ../src/applet-wifi.c:95 ../src/applet-wifi.c:99
 msgid "Very Low"
 msgstr "Très Faible"
 
-#: ../src/applet-wifi.c:99
+#: ../src/applet-wifi.c:99 ../src/applet-wifi.c:103
 msgid "Low"
 msgstr "Faible"
 
-#: ../src/applet-wifi.c:103
+#: ../src/applet-wifi.c:103 ../src/applet-wifi.c:107
 msgid "Middle"
 msgstr "Moyen"
 
-#: ../src/applet-wifi.c:107
+#: ../src/applet-wifi.c:107 ../src/applet-wifi.c:111
 msgid "Good"
 msgstr "Bon"
 
 msgid "Excellent"
 msgstr "Excellent"
 
-#: ../src/applet-wifi.c:115
+#: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119
 msgid "None"
 msgstr "Aucun"
 
@@ -176,7 +176,7 @@ msgstr ""
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../src/applet-wifi.c:111
+#: ../src/applet-wifi.c:111 ../src/applet-wifi.c:115
 msgid "Exellent"
 msgstr ""
 

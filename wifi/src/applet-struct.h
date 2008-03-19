@@ -4,25 +4,38 @@
 
 #include <cairo-dock.h>
 
+typedef enum {
+	WIFI_INFO_NONE = 0,
+	WIFI_INFO_SIGNAL_STRENGTH_LEVEL,
+	WIFI_INFO_SIGNAL_STRENGTH_PERCENT,
+	WIFI_INFO_SIGNAL_STRENGTH_DB,
+	WIFI_NB_INFO_TYPE
+	} CDWifiInfoType;
+
+typedef enum {
+	WIFI_QUALITY_NO_SIGNAL = 0,
+	WIFI_QUALITY_VERY_LOW,
+	WIFI_QUALITY_LOW,
+	WIFI_QUALITY_MIDDLE,
+	WIFI_QUALITY_GOOD,
+	WIFI_QUALITY_EXCELLENT,
+	WIFI_NB_QUALITY
+	} CDWifiQuality;
+
+
 typedef struct {
 	gchar *defaultTitle;
-	gboolean enableSSQ;
 	gchar *cDefault;
-	gchar *c2Surface;
-	gchar *c4Surface;
-	gchar *c6Surface;
-	gchar *c8Surface;
-	gchar *c1Surface;
-	int quickInfoType;
+	gchar *c20Surface;
+	gchar *c40Surface;
+	gchar *c60Surface;
+	gchar *c80Surface;
+	gchar *c100Surface;
+	CDWifiInfoType quickInfoType;
 } AppletConfig;
 
 typedef struct {
-  cairo_surface_t *pDefault;
-	cairo_surface_t *p2Surface;
-	cairo_surface_t *p4Surface;
-	cairo_surface_t *p6Surface;
-	cairo_surface_t *p8Surface;
-	cairo_surface_t *p1Surface;
+	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];
 	
 	int checkTimer;
 	int isWirelessDevice;
