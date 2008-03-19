@@ -15,7 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 extern AppletConfig myConfig;
 extern AppletData myData;
-
+extern Icon *myIcon;
 
 CD_APPLET_CONFIG_BEGIN
 	reset_config ();
@@ -42,6 +42,11 @@ void reset_config (void)
 
 void reset_data (void)
 {
+	if (myIcon->pSubDock != NULL)
+	{
+		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+		myIcon->pSubDock = NULL;
+	}
 
 	memset (&myData, 0, sizeof (AppletData));
 }

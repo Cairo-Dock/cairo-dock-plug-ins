@@ -27,6 +27,25 @@ extern AppletData myData;
 CD_APPLET_ABOUT (_D("This is the mail applet\n made by Christophe Chapuis for Cairo-Dock"))
 
 
+#define _add_icon(account_name, nbUnreadMails, i)\
+	if (account_name != NULL)\
+	{\
+		pIcon = g_new0 (Icon, 1);\
+		pIcon->acName = g_strdup_printf ("%s", account_name);\
+		pIcon->acFileName = g_strdup_printf ("%s/%s.svg", MY_APPLET_SHARE_DATA_DIR, nbUnreadMails>0?"cd_mail_newmail":"cd_mail_nomail");\
+		if (nbUnreadMails>0)\
+			pIcon->cQuickInfo = g_strdup_printf ("%d", nbUnreadMails);\
+		pIcon->fOrder = i;\
+		pIcon->fScale = 1.;\
+		pIcon->fAlpha = 1.;\
+		pIcon->fWidthFactor = 1.;\
+		pIcon->fHeightFactor = 1.;\
+		pIcon->acCommand = g_strdup ("none");\
+		pIcon->cParentDockName = g_strdup (myIcon->acName);\
+		cd_debug (" + %s\n", pIcon->acName);\
+		pIconList = g_list_append (pIconList, pIcon);\
+	}
+
 CD_APPLET_ON_CLICK_BEGIN
 
     // spawn the selected program
@@ -189,7 +208,66 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
 	}
     cd_message( "mailwatch_new_messages_changed_cb: Leaving." );
 
-    CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d mail%s", myData.iNbUnreadMails,myData.iNbUnreadMails>1?"s":"")
+    if( myData.iNbUnreadMails > 0 )
+    {
+        CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.iNbUnreadMails)
+    }
+    else
+    {
+        cairo_dock_remove_quick_info(myIcon);
+    }
+
+    {
+        GList *pIconList = NULL;
+        Icon *pIcon;
+
+        gchar **mailbox_names = NULL;
+        guint *new_message_counts = NULL;
+        gint i;
+
+        xfce_mailwatch_get_new_message_breakdown(myData.mailwatch, &mailbox_names, &new_message_counts);
+        if( mailbox_names[0] && mailbox_names[1] )
+        {
+            for(i = 0; mailbox_names[i]; i++)
+            {
+                _add_icon (mailbox_names[i], new_message_counts[i], i);
+            }
+        }
+
+        g_strfreev(mailbox_names);
+        g_free(new_message_counts);
+
+		if (myIcon->pSubDock != NULL)
+		{
+			g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
+			g_list_free (myIcon->pSubDock->icons);
+			myIcon->pSubDock->icons = NULL;
+		}
+        if (myIcon->pSubDock == NULL)
+        {
+            if (pIconList != NULL)
+            {
+                cd_message ("  creation du sous-dock mail");
+                myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
+                cairo_dock_update_dock_size (myIcon->pSubDock);
+            }
+        }
+        else  // on a deja notre sous-dock, on remplace juste ses icones.
+        {
+            cd_message ("  rechargement du sous-dock mail");
+            if (pIconList == NULL)  // inutile de le garder.
+            {
+                cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+                myIcon->pSubDock = NULL;
+            }
+            else
+            {
+                myIcon->pSubDock->icons = pIconList;
+                cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
+                cairo_dock_update_dock_size (myIcon->pSubDock);
+            }
+        }
+    }
 
     CD_APPLET_REDRAW_MY_ICON
 }
