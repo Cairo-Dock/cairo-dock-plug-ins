@@ -121,6 +121,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 		myDesklet->renderer = NULL;
 	}
+	
 	_load_surfaces();
 	cd_wifi_launch_measure();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -133,8 +134,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	if (myData.iSidTimer != 0)
-	{
+	if (myData.iSidTimer != 0) {
 		g_source_remove (myData.iSidTimer);
 		myData.iSidTimer = 0;
 	}
@@ -161,26 +161,21 @@ CD_APPLET_RELOAD_BEGIN
 	
 	_load_surfaces();
 	
-	if (CD_APPLET_MY_CONFIG_CHANGED)
-	{
-		if (myData.iSidTimer != 0)
-		{
+	if (CD_APPLET_MY_CONFIG_CHANGED) {
+		if (myData.iSidTimer != 0) {
 			g_source_remove (myData.iSidTimer);
 			myData.iSidTimer = 0;
 		}
 		
 		cd_wifi_launch_measure ();  // asynchrone
 	}
-	else if (myDesklet != NULL)
-	{
+	else if (myDesklet != NULL) {
 		cairo_surface_t *pSurface = myData.pSurfaces[myData.iPreviousQuality];
-		if (pSurface != NULL)
-		{
+		if (pSurface != NULL) {
 			CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
 		}
 	}
-	else
-	{
+	else {
 		// rien a faire, cairo-dock va recharger notre sous-dock.
 	}
 	

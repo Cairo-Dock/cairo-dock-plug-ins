@@ -15,16 +15,17 @@ CD_APPLET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.defaultTitle		= CD_CONFIG_GET_STRING ("Icon", "name");
 	
-	myConfig.cDefault = CD_CONFIG_GET_STRING ("Configuration", "d icon");
-	
-	myConfig.c20Surface = CD_CONFIG_GET_STRING ("Configuration", "vl icon");
-	myConfig.c40Surface = CD_CONFIG_GET_STRING ("Configuration", "l icon");
-	myConfig.c60Surface = CD_CONFIG_GET_STRING ("Configuration", "m icon");
-	myConfig.c80Surface	= CD_CONFIG_GET_STRING ("Configuration", "g icon");
-	myConfig.c100Surface = CD_CONFIG_GET_STRING ("Configuration", "e icon");
+	myConfig.cDefault = CD_CONFIG_GET_STRING ("Configuration", "icon_0");
+	myConfig.c20Surface = CD_CONFIG_GET_STRING ("Configuration", "icon_1");
+	myConfig.c40Surface = CD_CONFIG_GET_STRING ("Configuration", "icon_2");
+	myConfig.c60Surface = CD_CONFIG_GET_STRING ("Configuration", "icon_3");
+	myConfig.c80Surface	= CD_CONFIG_GET_STRING ("Configuration", "icon_4");
+	myConfig.c100Surface = CD_CONFIG_GET_STRING ("Configuration", "icon_5");
 	
 	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "signal_type", 1);
-	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", WIFI_INFO_SIGNAL_STRENGTH_PERCENT);
+	
+	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
+	myConfig.dCheckInterval = myConfig.iCheckInterval;
 CD_APPLET_CONFIG_END
 
 
@@ -52,8 +53,7 @@ void reset_data (void) {
 	myData.checkTimer = 0;
 	
 	int i;
-	for (i = 0; i < WIFI_NB_QUALITY; i ++)
-	{
+	for (i = 0; i < WIFI_NB_QUALITY; i ++)	{
 		cairo_surface_destroy (myData.pSurfaces[i]);
 		myData.pSurfaces[i] = NULL;
 	}

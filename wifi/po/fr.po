@@ -41,6 +41,12 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 msgid "Module"
 msgstr "Module"
 
+msgid "Delay between signal checks :"
+msgstr "Temps entre les vérifications :"
+
+msgid "in seconds."
+msgstr "en seconde."
+
 #: ../data/messages:11
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
@@ -90,8 +96,8 @@ msgid "Signal Strength in percent"
 msgstr "Force du Signal en pourcent"
 
 #: ../data/messages:25
-msgid "Signal Level in dBm"
-msgstr "Niveau du Signal en dBm"
+msgid "Raw Signal Informations"
+msgstr "Infos Brutes du Signal"
 
 #: ../src/applet-wifi.c:95 ../src/applet-wifi.c:99
 msgid "Very Low"
@@ -114,7 +120,10 @@ msgstr "Excellent"
 
 #: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119 ../data/messages:19
 msgid "None"
-msgstr "Aucun"
+msgstr "Aucune"
+
+msgid "Lost"
+msgstr "Perdue"
 
 #: ../src/applet-notifications.c:26
 msgid "Check for Wireless Extension"

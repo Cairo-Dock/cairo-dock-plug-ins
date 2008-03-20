@@ -16,6 +16,37 @@ name = Wifi
 #S Icon's name :
 icon = default.svg
 
+
+[Configuration]
+#F[Information]
+frame_info=
+#r[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
+signal_type=2
+#i[1;60] Delay between signal checks :
+#{in seconds.}
+delay = 10
+
+#F[Personnalisation]
+frame_app =
+#S Name of an image for the 'default' icon :
+#{Let t empty to use the default icon.}
+icon_0 = 
+#S Name of an image for the 'very low' icon :
+#{Let t empty to use the default icon.}
+icon_1 = 
+#S Name of an image for the 'low' icon :
+#{Let t empty to use the default icon.}
+icon_2 = 
+#S Name of an image for the 'middle' icon :
+#{Let t empty to use the default icon.}
+icon_3 = 
+#S Name of an image for the 'good' icon :
+#{Let t empty to use the default icon.}
+icon_4 = 
+#S Name of an image for the 'exellent' icon :
+#{Let t empty to use the default icon.}
+icon_5 = 
+
 [Desklet]
 #i[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
@@ -39,40 +70,4 @@ keep above=false
 #b Keep on widget layer ?
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
-
-
-[Configuration]
-
-#F[Configuration]
-frame_conf=
-
-#i[1;60] Delay between signal checks :
-#{in seconds.}
-delay = 10
-
-#F[Information]
-frame_info=
-#r[None;Signal Strength level;Signal Strength in percent;Signal Level in dBm] Information to display on the icon :
-signal_type=2
-
-#F[Personnalisation]
-frame_app =
-#S Name of an image for the 'default' icon :
-#{Let t empty to use the default icon.}
-d icon = 
-#S Name of an image for the 'very low' icon :
-#{Let t empty to use the default icon.}
-vl icon = 
-#S Name of an image for the 'low' icon :
-#{Let t empty to use the default icon.}
-l icon = 
-#S Name of an image for the 'middle' icon :
-#{Let t empty to use the default icon.}
-m icon = 
-#S Name of an image for the 'good' icon :
-#{Let t empty to use the default icon.}
-g icon = 
-#S Name of an image for the 'exellent' icon :
-#{Let t empty to use the default icon.}
-e icon = 
 
