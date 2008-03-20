@@ -75,7 +75,7 @@ typedef struct {
 	CurrentContitions currentConditions;
 	Day days[WEATHER_NB_DAYS_MAX];
 	gint iSidTimer;
-	GList *pDeskletIconList;
+	//GList *pDeskletIconList;
 	gint iMaxIconWidth;
 	gint iNbIcons;
 	gboolean bErrorRetrievingData;

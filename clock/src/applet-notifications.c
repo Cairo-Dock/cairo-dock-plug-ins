@@ -50,16 +50,23 @@ CD_APPLET_ABOUT (_D("This is the Cairo-Dock's clock applet\n made by Fabrice Rey
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	cairo_dock_remove_dialog_if_any (myIcon);
-	GtkWidget *pCalendar = gtk_calendar_new ();
-	gchar *cImagePath= g_strconcat (MY_APPLET_SHARE_DATA_DIR, "/dates.svg", NULL);
-	cairo_dock_show_dialog_full (_("Calendar"),
-		myIcon, myContainer,
-		0,
-		cImagePath, GTK_BUTTONS_NONE,
-		pCalendar,
-		NULL, NULL, NULL);
-	g_free (cImagePath);
+	if (myData.pCalendarDialog != NULL)
+	{
+		cairo_dock_dialog_unreference (myData.pCalendarDialog);
+		myData.pCalendarDialog = NULL;
+	}
+	else
+	{
+		GtkWidget *pCalendar = gtk_calendar_new ();
+		gchar *cImagePath= g_strconcat (MY_APPLET_SHARE_DATA_DIR, "/dates.svg", NULL);
+		myData.pCalendarDialog = cairo_dock_show_dialog_full (_("Calendar"),
+			myIcon, myContainer,
+			0,
+			cImagePath, GTK_BUTTONS_NONE,
+			pCalendar,
+			NULL, NULL, NULL);
+		g_free (cImagePath);
+	}
 CD_APPLET_ON_CLICK_END
 
 
@@ -76,4 +83,5 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		myData.iAlarmPID = 0;
 	}
 	cairo_dock_remove_dialog_if_any (myIcon);
+	myData.pCalendarDialog = NULL;
 CD_APPLET_ON_MIDDLE_CLICK_END

@@ -49,7 +49,7 @@ gboolean CD_APPLET_ON_CLICK (gpointer *data)
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->iMouseX >  (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->iMouseX < (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
-		myData.iCurrentPositionY = 0;
+		myData.iCurrentPositionY = (myConfig.bFree ? g_iDockLineWidth : 0);
 		PenguinAnimation *pAnimation = penguin_get_current_animation ();
 		int iNewAnimation;
 		int iRandom = g_random_int_range (0, 2);
@@ -97,7 +97,7 @@ static void _keep_quiet (GtkMenuItem *menu_item, gpointer *data)
 	
 	int iNewAnimation = penguin_choose_resting_animation ();
 	penguin_set_new_animation (iNewAnimation);
-	myData.iCurrentPositionY = 0;
+	myData.iCurrentPositionY = (myConfig.bFree ? g_iDockLineWidth : 0);
 	if (myConfig.bFree)
 	{
 		penguin_move_in_dock (NULL);

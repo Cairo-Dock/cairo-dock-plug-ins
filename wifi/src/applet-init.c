@@ -122,7 +122,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDesklet->renderer = NULL;
 	}
 	_load_surfaces();
-  cd_wifi_wait("AppletINIT");
+	cd_wifi_launch_measure();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
@@ -133,6 +133,11 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
+	if (myData.iSidTimer != 0)
+	{
+		g_source_remove (myData.iSidTimer);
+		myData.iSidTimer = 0;
+	}
 	
 	//\_________________ On libere toutes nos ressources.
 	reset_config ();
@@ -142,19 +147,42 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
+	if (myDesklet != NULL) {
+		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
+		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
+		myIcon->fDrawX = g_iDockRadius/2;
+		myIcon->fDrawY = g_iDockRadius/2;
+		myIcon->fScale = 1;
+		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;
+		cd_message("WH : %d %d", myDesklet->iWidth, myDesklet->iHeight);
+	}
+	
+	_load_surfaces();
+	
+	if (CD_APPLET_MY_CONFIG_CHANGED)
+	{
+		if (myData.iSidTimer != 0)
+		{
+			g_source_remove (myData.iSidTimer);
+			myData.iSidTimer = 0;
+		}
 		
-  if (myDesklet != NULL) {
-		  myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		  myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		  myIcon->fDrawX = g_iDockRadius/2;
-		  myIcon->fDrawY = g_iDockRadius/2;
-		  myIcon->fScale = 1;
-		  cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		  myDrawContext = cairo_create (myIcon->pIconBuffer);
-		  myDesklet->renderer = NULL;
-		  cd_message("WH : %d %d", myDesklet->iWidth, myDesklet->iHeight);
-	  }
-	  
-	  _load_surfaces();
-    cd_wifi("AppletReload");
+		cd_wifi_launch_measure ();  // asynchrone
+	}
+	else if (myDesklet != NULL)
+	{
+		cairo_surface_t *pSurface = myData.pSurfaces[myData.iPreviousQuality];
+		if (pSurface != NULL)
+		{
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+		}
+	}
+	else
+	{
+		// rien a faire, cairo-dock va recharger notre sous-dock.
+	}
+	
+	//cd_wifi("AppletReload");
 CD_APPLET_RELOAD_END

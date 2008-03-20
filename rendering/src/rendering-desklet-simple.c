@@ -36,3 +36,12 @@ void rendering_draw_icon_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *p
 		cairo_paint (pCairoContext);
 	}
 }
+
+
+void rendering_register_simple_desklet_renderer (void)
+{
+	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
+	pRenderer->render = rendering_draw_icon_in_desklet;
+	
+	cairo_dock_register_renderer (MY_APPLET_SIMPLE_DESKLET_RENDERER_NAME, pRenderer);
+}

@@ -142,7 +142,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		g_string_append_printf (sInfo, "\n  %.2fM for %d files for in %s", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
 	}
 	
-	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myDock, 0, myData.cDialogIconPath);
+	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myDock, 5000, myData.cDialogIconPath);
 	
 	g_string_free (sInfo, TRUE);
 CD_APPLET_ON_MIDDLE_CLICK_END

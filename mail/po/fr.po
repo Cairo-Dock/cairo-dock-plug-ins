@@ -46,6 +46,7 @@ msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:26
+#: ../src/applet-notifications.c:27
 msgid ""
 "This is the mail applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
@@ -101,11 +102,11 @@ msgstr ""
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:77 ../src/applet-notifications.c:119
 msgid "Add a new mail account"
 msgstr ""
 
-#: ../src/applet-notifications.c:82
+#: ../src/applet-notifications.c:82 ../src/applet-notifications.c:124
 msgid "Remove a mail account"
 msgstr ""
 
@@ -326,32 +327,32 @@ msgstr ""
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr ""
 
-#: ../src/mailwatch.c:646
+#: ../src/mailwatch.c:646 ../src/mailwatch.c:648
 msgid "This mailbox type does not require any configuration settings."
 msgstr ""
 
-#: ../src/mailwatch.c:672
+#: ../src/mailwatch.c:672 ../src/mailwatch.c:674
 msgid "Mailbox _Name:"
 msgstr ""
 
-#: ../src/mailwatch.c:738
+#: ../src/mailwatch.c:738 ../src/mailwatch.c:740 ../src/mailwatch.c:938
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr ""
 
-#: ../src/mailwatch.c:804
+#: ../src/mailwatch.c:804 ../src/mailwatch.c:806
 msgid "Select Mailbox Type"
 msgstr ""
 
-#: ../src/mailwatch.c:813
+#: ../src/mailwatch.c:813 ../src/mailwatch.c:815
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 
-#: ../src/mailwatch.c:871
+#: ../src/mailwatch.c:871 ../src/mailwatch.c:873
 msgid "Add New Mailbox"
 msgstr ""
 
-#: ../src/mailwatch.c:1015
+#: ../src/mailwatch.c:1015 ../src/mailwatch.c:1060
 msgid "Mailboxes"
 msgstr ""
 
@@ -365,4 +366,24 @@ msgstr ""
 
 #: ../data/messages:17
 msgid "Name of an image to overwrite the theme's has mail image :"
+msgstr ""
+
+#: ../src/applet-notifications.c:43
+#, c-format
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual mail application,\n"
+"you can change it in the conf panel of this module"
+msgstr ""
+
+#: ../src/applet-notifications.c:130
+msgid "Modify a mail account"
+msgstr ""
+
+#: ../src/applet-notifications.c:152
+msgid "No unread mail in your mailboxes"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Path to application to launch on left-click"
 msgstr ""

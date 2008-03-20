@@ -190,7 +190,6 @@ CD_APPLET_RELOAD_BEGIN
 		myDesklet->renderer = NULL;
 	}
 	
-	
 	//\_______________ On recharge les donnees qui ont pu changer.
 	_load_surfaces ();
 	

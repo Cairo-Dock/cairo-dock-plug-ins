@@ -13,5 +13,7 @@ datalogout_DATA = \
 	preview-caroussel.png\
 	preview-parabolic.png\
 	preview-3D-plane.png\
-	preview-rainbow.png
+	preview-rainbow.png\
+	branche1.svg\
+	branche2.svg
 

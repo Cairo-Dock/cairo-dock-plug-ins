@@ -47,7 +47,7 @@ static int s_iSidTimerRedraw = 0;
 		pIconList = g_list_append (pIconList, pIcon);\
 	}
 
-static GList * _load_icons (void)
+static GList * _list_icons (void)
 {
 	GList *pIconList = NULL;
 	
@@ -112,11 +112,38 @@ gpointer cd_weather_threaded_calculation (gpointer data)
 	}
 	
 	g_atomic_int_set (&s_iThreadIsRunning, 0);
-	cd_message ("*** fin du thread");
-	g_print ("myData.bErrorRetrievingData : %d\n", myData.bErrorRetrievingData);
+	cd_message ("*** fin du thread (bErrorRetrievingData : %d)", myData.bErrorRetrievingData);
 	return NULL;
 }
 
+
+static void _weather_draw_current_conditions (void)
+{
+	g_return_if_fail (myDrawContext != NULL);
+	if (myConfig.bCurrentConditions)
+	{
+		cd_message ("  chargement de l'icone meteo");
+		if (myConfig.bDisplayTemperature)
+		{
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp)
+		}
+		else
+		{
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+		}
+		g_free (myIcon->acFileName);
+		if (myData.bErrorRetrievingData)
+			myIcon->acFileName = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
+		else
+			myIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+		if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
+		{
+			g_free (myIcon->acFileName);
+			myIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+		}
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
+	}
+}
 
 static gboolean _cd_weather_check_for_redraw (gpointer data)
 {
@@ -125,48 +152,24 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 	if (! iThreadIsRunning)
 	{
 		s_iSidTimerRedraw = 0;
-		
-		//\_______________________ On recharge l'icone principale.
-		if (myConfig.bCurrentConditions)
+		if (myIcon == NULL)
 		{
-			cd_message ("  chargement de l'icone meteo");
-			if (myConfig.bDisplayTemperature)
-			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp)
-			}
-			else
-			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
-			}
-			g_free (myIcon->acFileName);
-			if (myData.bErrorRetrievingData)
-				myIcon->acFileName = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
-			else
-				myIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);
-			if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
-			{
-				g_free (myIcon->acFileName);
-				myIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.currentConditions.cIconNumber);
-			}
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
-			if (myDock)
-			{
-				CD_APPLET_REDRAW_MY_ICON
-			}
+			g_print ("annulation du chargement de la meteo\n");
+			return FALSE;
 		}
 		
 		//\_______________________ On cree la liste des icones de prevision.
-		GList *pIconList = _load_icons ();
+		GList *pIconList = _list_icons ();
 		
 		//\_______________________ On efface l'ancienne liste.
-		if (myData.pDeskletIconList != NULL)
+		if (myDesklet && myDesklet->icons != NULL)
 		{
-			g_list_foreach (myData.pDeskletIconList, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (myData.pDeskletIconList);
-			myData.pDeskletIconList = NULL;
-			myData.iNbIcons = 0;
-			myData.iMaxIconWidth = 0;
+			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+			g_list_free (myDesklet->icons);
 			myDesklet->icons = NULL;
+			//myData.iNbIcons = 0;
+			//myData.iMaxIconWidth = 0;
+			//myDesklet->icons = NULL;
 		}
 		if (myIcon->pSubDock != NULL)
 		{
@@ -176,7 +179,7 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 		}
 		
 		//\_______________________ On charge la nouvelle liste.
-		if (myDock != NULL)  // en mode 'dock', on affiche la meteo dans un sous-dock.
+		if (myDock)  // en mode 'dock', on affiche la meteo dans un sous-dock.
 		{
 			if (myIcon->pSubDock == NULL)
 			{
@@ -211,10 +214,13 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 				myIcon->pSubDock = NULL;
 			}
-			myData.pDeskletIconList = pIconList;
+			//myData.pDeskletIconList = pIconList;
 			myDesklet->icons = pIconList;
-			myData.iNbIcons = g_list_length (myData.pDeskletIconList);
-			GList* ic;
+			gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
+			myDrawContext = cairo_create (myIcon->pIconBuffer);
+			//myData.iNbIcons = g_list_length (myData.pDeskletIconList);
+			/*GList* ic;
 			Icon *icon;
 			cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
 			for (ic = pIconList; ic != NULL; ic = ic->next)
@@ -233,9 +239,16 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, myConfig.bDesklet3D);
 				myData.iMaxIconWidth = MAX (myData.iMaxIconWidth, icon->fWidth);
 			}
-			cairo_destroy (pCairoContext);
+			cairo_destroy (pCairoContext);*/
 			gtk_widget_queue_draw (myDesklet->pWidget);
 		}
+		
+		//\_______________________ On recharge l'icone principale.
+		_weather_draw_current_conditions ();  // ne lance pas le redraw.
+		if (myDesklet)
+			gtk_widget_queue_draw (myDesklet->pWidget);
+		else
+			CD_APPLET_REDRAW_MY_ICON
 		
 		//\_______________________ On lance le timer si necessaire.
 		if (myData.iSidTimer == 0)

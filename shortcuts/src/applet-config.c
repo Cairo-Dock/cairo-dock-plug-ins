@@ -62,19 +62,20 @@ void reset_data (void)
 	
 	if (myIcon->pSubDock != NULL)
 	{
-		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);  // detruit les icones avec.
 		myIcon->pSubDock = NULL;  // normalement inutile.
 	}
-	if (myData.pDeskletIconList != NULL)
+	//if (myData.pDeskletIconList != NULL)
+	/*if (myDesklet && myDesklet->icons != NULL)
 	{
-		g_list_foreach (myData.pDeskletIconList, (GFunc) cairo_dock_free_icon, NULL);
-		g_list_free (myData.pDeskletIconList);
-		myData.pDeskletIconList = NULL;
-		if (myDesklet)
-			myDesklet->icons = NULL;
-	}
+		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+		g_list_free (myDesklet->icons);
+		myDesklet->icons = NULL;
+		//if (myDesklet)
+		//	myDesklet->icons = NULL;
+	}*/
 	
-	if (myData.pBrancheSurface[0]  != NULL)
+	/*if (myData.pBrancheSurface[0]  != NULL)
 	{
 		cairo_surface_destroy (myData.pBrancheSurface[0]);
 		myData.pBrancheSurface[0] = NULL;
@@ -83,7 +84,7 @@ void reset_data (void)
 	{
 		cairo_surface_destroy (myData.pBrancheSurface[1]);
 		myData.pBrancheSurface[1] = NULL;
-	}
+	}*/
 	
 	memset (&myData, 0, sizeof (AppletData));
 }

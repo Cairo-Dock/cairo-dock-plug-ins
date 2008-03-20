@@ -21,7 +21,7 @@ AppletData myData;
 CD_APPLET_DEFINITION ("weather", 1, 5, 1, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
-static gboolean _cd_weather_rotate (gpointer data)
+/*static gboolean _cd_weather_rotate (gpointer data)
 {
 	myData.iRotationCount += (myData.iRotationDirection == GDK_SCROLL_UP ? 1 : -1);
 	myData.fRotationAngle += (myData.iRotationDirection == GDK_SCROLL_UP ? 1 : -1) * 2 * G_PI / myData.iNbIcons / 10;
@@ -65,9 +65,11 @@ static gboolean on_scroll_desklet (GtkWidget* pWidget,
 		_cd_weather_rotate (NULL);
 	}
 	return FALSE;
-}
+}*/
 CD_APPLET_INIT_BEGIN (erreur)
-	if (myDesklet != NULL)
+	if (myIcon->acName == NULL || *myIcon->acName == '\0')
+		myIcon->acName = g_strdup (WEATHER_DEFAULT_NAME);
+	/*if (myDesklet != NULL)
 	{
 		if (myConfig.bDesklet3D)
 		{
@@ -92,9 +94,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 			"scroll-event",
 			G_CALLBACK (on_scroll_desklet),
 			myDesklet);
-	}
-	else if (myIcon->acName == NULL || *myIcon->acName == '\0')
-		myIcon->acName = g_strdup (WEATHER_DEFAULT_NAME);
+	}*/
 	
 	cd_weather_launch_measure ();
 	
@@ -121,7 +121,7 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (myDesklet != NULL)
+	/*if (myDesklet != NULL)
 	{
 		if (myConfig.bDesklet3D)
 		{
@@ -147,7 +147,7 @@ CD_APPLET_RELOAD_BEGIN
 				"scroll-event",
 				G_CALLBACK (on_scroll_desklet),
 				myDesklet);
-	}
+	}*/
 	g_return_val_if_fail (myConfig.cLocationCode != NULL, FALSE);
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
@@ -162,7 +162,9 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else if (myDesklet != NULL)
 	{
-		GList* ic;
+		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
+		/*GList* ic;
 		Icon *icon;
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
 		for (ic = myData.pDeskletIconList; ic != NULL; ic = ic->next)
@@ -180,7 +182,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 			cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, myConfig.bDesklet3D);
 		}
-		cairo_destroy (pCairoContext);
+		cairo_destroy (pCairoContext);*/
 	}
 	else
 	{

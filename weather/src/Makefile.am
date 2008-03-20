@@ -15,9 +15,7 @@ libcd_weather_la_SOURCES = \
 	applet-read-data.c\
 	applet-read-data.h\
 	applet-load-icons.c\
-	applet-load-icons.h\
-	applet-draw.c\
-	applet-draw.h
+	applet-load-icons.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 

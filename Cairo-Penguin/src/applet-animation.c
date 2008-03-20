@@ -205,9 +205,9 @@ void penguin_calculate_new_position (PenguinAnimation *pAnimation, int iXMin, in
 		}
 	}
 	
-	if (myData.iCurrentPositionY < 0)
+	if (myData.iCurrentPositionY < (myConfig.bFree ? g_iDockLineWidth : 0))
 	{
-		myData.iCurrentPositionY = 0;
+		myData.iCurrentPositionY = (myConfig.bFree ? g_iDockLineWidth : 0);
 	}
 	else if (myData.iCurrentPositionY + pAnimation->iFrameHeight > iHeight)
 	{
@@ -318,7 +318,7 @@ int penguin_choose_next_animation (PenguinAnimation *pAnimation)
 {
 	g_print ("%s ()\n", __func__);
 	int iNewAnimation;
-	if (pAnimation->bEnding)  // le pingouin est en fin d'animation, on le relance.
+	if (pAnimation == NULL || pAnimation->bEnding)  // le pingouin est en fin d'animation, on le relance.
 	{
 		iNewAnimation = penguin_choose_beginning_animation ();
 	}
@@ -373,7 +373,7 @@ void penguin_set_new_animation (int iNewAnimation)
 			myData.iCurrentDirection = g_random_int_range (0, 2);  // [a;b[
 		else
 			myData.iCurrentDirection = 0;
-		myData.iCurrentPositionY = 0;
+		myData.iCurrentPositionY = (myConfig.bFree ? g_iDockLineWidth : 0);
 	}
 	else  // la direction reste la meme.
 	{

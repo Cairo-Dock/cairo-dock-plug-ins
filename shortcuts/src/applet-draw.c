@@ -20,7 +20,7 @@ extern AppletData myData;
 
 #define TREE_WIDTH 150
 #define TREE_HEIGHT 161
-static int s_iLeafPosition[2][3*3] = {{-30,40,1 , 60,105,0 , -45,120,1},{-60,65,0 , 55,115,1 , -30,115,0}};
+static int s_iLeafPosition[2][3*3] = {{-30,40,1 , 60,105,0 , -45,115,1},{-60,65,0 , 55,115,1 , -30,115,0}};
 
 void cd_shortcuts_load_tree (GList *pIconsList, cairo_t *pCairoContext)
 {

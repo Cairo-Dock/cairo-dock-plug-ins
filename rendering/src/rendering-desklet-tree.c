@@ -14,10 +14,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #define TREE_WIDTH 150
 #define TREE_HEIGHT 161
-static int s_iLeafPosition[2][3*3] = {{-30,40,1 , 60,105,0 , -45,120,1},{-60,65,0 , 55,115,1 , -30,115,0}};
+static int s_iLeafPosition[2][3*3] = {{-30,40,1 , 60,105,0 , -45,115,1},{-60,65,0 , 55,115,1 , -30,115,0}};
 
 
-CDTreeParameters *rendering_load_tree (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+CDTreeParameters *rendering_load_tree_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
 	g_print ("%s ()\n", __func__);
 	GList *pIconsList = pDesklet->icons;
@@ -69,38 +69,38 @@ CDTreeParameters *rendering_load_tree (CairoDockDesklet *pDesklet, cairo_t *pSou
 }
 
 
-void rendering_free_tree_parameters (CDTreeParameters *pTree, gboolean bFree)
+void rendering_free_tree_data (CairoDockDesklet *pDesklet)
 {
+	g_print ("%s ()\n", __func__);
+	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	if (pTree == NULL)
 		return ;
+	
 	cairo_surface_destroy (pTree->pBrancheSurface[0]);
 	cairo_surface_destroy (pTree->pBrancheSurface[1]);
 	
-	if (bFree)
-		g_free (pTree);
-	else
-		memset (pTree, 0, sizeof (CDTreeParameters));
+	g_free (pTree);
+	pDesklet->pRendererData = NULL;
 }
 
 
-void rendering_load_icons_for_tree (CairoDockDesklet *pDesklet)
+void rendering_load_icons_for_tree (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
 {
+	g_return_if_fail (pDesklet != NULL && pSourceContext != NULL);
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	if (pTree == NULL)
 		return ;
 	
 	GList* ic;
 	Icon *icon;
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_DOCK_CONTAINER (pDesklet));
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
 		icon->fWidth = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
 		icon->fHeight = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
 		
-		cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
+		cairo_dock_fill_icon_buffers (icon, pSourceContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
 	}
-	cairo_destroy (pCairoContext);
 }
 
 
@@ -108,6 +108,7 @@ void rendering_load_icons_for_tree (CairoDockDesklet *pDesklet)
 void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet)
 {
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
+	g_print ("%s (%x)\n", __func__, pTree);
 	if (pTree == NULL)
 		return ;
 	
@@ -116,7 +117,7 @@ void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *p
 	for (i = 0; i < pTree->iNbBranches; i ++)
 	{
 		cairo_save (pCairoContext);
-		//g_print (" branche %d en (%.2f;%.2f)\n", i, (w - myData.fTreeWidthFactor * TREE_WIDTH) / 2, h - i * TREE_HEIGHT * myData.fTreeHeightFactor);
+		//g_print (" branche %d en (%.2f;%.2f)\n", i, (w - pTree->fTreeWidthFactor * TREE_WIDTH) / 2, h - i * TREE_HEIGHT * pTree->fTreeHeightFactor);
 		cairo_translate (pCairoContext, (w - pTree->fTreeWidthFactor * TREE_WIDTH) / 2, h - (i + 1) * TREE_HEIGHT * pTree->fTreeHeightFactor);
 		cairo_set_source_surface (pCairoContext, pTree->pBrancheSurface[i%2], 0, 0);
 		cairo_paint (pCairoContext);
@@ -158,4 +159,16 @@ void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *p
 			}
 		}
 	}
+}
+
+
+void rendering_register_tree_desklet_renderer (void)
+{
+	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
+	pRenderer->render = rendering_draw_tree_in_desklet ;
+	pRenderer->load_data = rendering_load_tree_data;
+	pRenderer->free_data = rendering_free_tree_data;
+	pRenderer->load_icons = rendering_load_icons_for_tree;
+	
+	cairo_dock_register_desklet_renderer (MY_APPLET_TREE_DESKLET_RENDERER_NAME, pRenderer);
 }

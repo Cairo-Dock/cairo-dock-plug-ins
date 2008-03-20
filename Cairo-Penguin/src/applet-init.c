@@ -112,6 +112,6 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else
 	{
-		
+		// rien a faire, la taille du pinguoin est fixe.
 	}
 CD_APPLET_RELOAD_END

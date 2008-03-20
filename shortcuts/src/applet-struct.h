@@ -17,7 +17,7 @@ typedef struct {
 
 
 typedef struct {
-	GList *pDeskletIconList;
+	//GList *pDeskletIconList;
 	gint iNbIconsInTree;
 	gint iNbBranches;
 	gdouble fTreeWidthFactor, fTreeHeightFactor;

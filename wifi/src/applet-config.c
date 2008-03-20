@@ -24,6 +24,7 @@ CD_APPLET_CONFIG_BEGIN
 	myConfig.c100Surface = CD_CONFIG_GET_STRING ("Configuration", "e icon");
 	
 	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "signal_type", 1);
+	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", WIFI_INFO_SIGNAL_STRENGTH_PERCENT);
 CD_APPLET_CONFIG_END
 
 

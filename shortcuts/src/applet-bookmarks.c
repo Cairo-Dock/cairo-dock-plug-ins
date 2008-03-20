@@ -32,9 +32,9 @@ static void _cd_shortcuts_detach_one_bookmark (Icon *icon, GList **pList)
 	*pList = g_list_append (*pList, icon);
 	if (myIcon->pSubDock != NULL)
 		cairo_dock_detach_icon_from_dock (icon, myIcon->pSubDock, myConfig.bUseSeparator);
-	else
+	else if (myDesklet)
 	{
-		myData.pDeskletIconList = _cd_shortcuts_detach_icon_from_list (icon, myData.pDeskletIconList, myConfig.bUseSeparator);
+		myDesklet->icons = _cd_shortcuts_detach_icon_from_list (icon, myDesklet->icons, myConfig.bUseSeparator);
 	}
 }
 void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
@@ -47,7 +47,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 		cd_message ("  un signet en plus ou en moins");
 		//\____________________ On detache les icones des signets.
 		GList *pPrevBookmarkIconList = NULL;
-		Icon *pSeparatorIcon = cairo_dock_foreach_icons_of_type ((myDock ? myIcon->pSubDock->icons : myData.pDeskletIconList), 10, (CairoDockForeachIconFunc) _cd_shortcuts_detach_one_bookmark, &pPrevBookmarkIconList);
+		Icon *pSeparatorIcon = cairo_dock_foreach_icons_of_type ((myDock ? myIcon->pSubDock->icons : myDesklet->icons), 10, (CairoDockForeachIconFunc) _cd_shortcuts_detach_one_bookmark, &pPrevBookmarkIconList);
 		
 		//\____________________ On lit le fichier des signets.
 		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
@@ -66,7 +66,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 			g_free (cContent);
 			gchar *cOneBookmark;
 			Icon *pNewIcon;
-			gchar *cName, *cRealURI, *cIconName;
+			gchar *cName, *cRealURI, *cIconName, *cUserName;
 			gboolean bIsDirectory;
 			int iVolumeID;
 			double fOrder, fCurrentOrder = 0;
@@ -74,9 +74,24 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 			for (i = 0; cBookmarksList[i] != NULL; i ++)
 			{
 				cOneBookmark = cBookmarksList[i];
-				
+				cUserName = NULL;
+				if (cOneBookmark != NULL && *cOneBookmark == '/')  // ne devrait pas arriver si on ajoute les signets via le dock ou Nautilus.
+				{
+					gchar *tmp = g_strconcat ("file://", cOneBookmark, NULL);  // sinon launch_uri() ne marche pas sous Gnome.
+					g_free (cOneBookmark);
+					cOneBookmark = tmp;
+				}
+				else  // c'est une URI valide, on regarde si il y'a un nom utilisateur.
+				{
+					gchar *str = strrchr (cOneBookmark, ' ');
+					if (str != NULL)
+					{
+						cUserName = str + 1;
+						*str = '\0';
+					}
+				}
 				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pPrevBookmarkIconList, cOneBookmark);
-				if (pExistingIcon != NULL)  // on la reinsere a sa place.
+				if (pExistingIcon != NULL && (cUserName == NULL || strcmp (pExistingIcon->acName, cUserName) == 0))  // on la reinsere a sa place. Si le nom utilisateur a change, on se prend pas la tete, on la recree.
 				{
 					cd_message (" = 1 signet : %s", cOneBookmark);
 					pPrevBookmarkIconList = g_list_remove (pPrevBookmarkIconList, pExistingIcon);
@@ -84,7 +99,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 					if (myDock)
 						cairo_dock_insert_icon_in_dock (pExistingIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
 					else
-						myData.pDeskletIconList = g_list_append (myData.pDeskletIconList, pExistingIcon);
+						myDesklet->icons = g_list_append (myDesklet->icons, pExistingIcon);
 					g_free (cOneBookmark);
 				}
 				else  // on la cree.
@@ -95,6 +110,11 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 						pNewIcon = g_new0 (Icon, 1);
 						pNewIcon->iType = 10;
 						pNewIcon->cBaseURI = cOneBookmark;
+						if (cUserName != NULL)
+						{
+							g_free (cName);
+							cName = g_strdup (cUserName);
+						}
 						pNewIcon->acName = cName;
 						pNewIcon->acCommand = cRealURI;
 						pNewIcon->acFileName = cIconName;
@@ -111,8 +131,8 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 							cairo_dock_insert_icon_in_dock (pNewIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
 						else
 						{
-							myData.pDeskletIconList = g_list_append (myData.pDeskletIconList, pNewIcon);
-							myDesklet->icons = myData.pDeskletIconList;
+							myDesklet->icons = g_list_append (myDesklet->icons, pNewIcon);
+							//myDesklet->icons = myData.pDeskletIconList;
 						}
 					}
 					else
@@ -144,9 +164,11 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 			cairo_dock_update_dock_size (myIcon->pSubDock);
 		else
 		{
-			cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-			cd_shortcuts_load_tree (myData.pDeskletIconList, pCairoContext);
-			cairo_destroy (pCairoContext);
+			//myDesklet->icons = myData.pDeskletIconList;
+			//cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+			//cd_shortcuts_load_tree (myData.pDeskletIconList, pCairoContext);
+			//cairo_destroy (pCairoContext);
 			gtk_widget_queue_draw (myDesklet->pWidget);
 		}
 	}
@@ -177,6 +199,19 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 		for (i = 0; cBookmarksList[i] != NULL; i ++)
 		{
 			cOneBookmark = cBookmarksList[i];
+			
+			if (cOneBookmark != NULL && *cOneBookmark == '/')  // ne devrait pas arriver si on ajoute les signets via le dock ou Nautilus.
+			{
+				gchar *tmp = g_strconcat ("file://", cOneBookmark, NULL);  // sinon launch_uri() ne marche pas sous Gnome.
+				g_free (cOneBookmark);
+				cOneBookmark = tmp;
+			}
+			else  // c'est une URI valide, on regarde si il y'a un nom utilisateur.
+			{
+				gchar *str = strrchr (cOneBookmark, ' ');
+				if (str != NULL)
+					*str = '\0';
+			}
 			
 			if (*cOneBookmark != '\0' && strcmp (cOneBookmark, cURI) != 0)
 			{
@@ -237,7 +272,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 		
 		gchar *cOneBookmark;
 		Icon *pNewIcon;
-		gchar *cName, *cRealURI, *cIconName;
+		gchar *cName, *cRealURI, *cIconName, *cUserName;
 		gboolean bIsDirectory;
 		int iVolumeID;
 		double fOrder, fCurrentOrder = 0;
@@ -245,12 +280,33 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 		for (i = 0; cBookmarksList[i] != NULL; i ++)
 		{
 			cOneBookmark = cBookmarksList[i];
+			cUserName = NULL;
+			if (cOneBookmark != NULL && *cOneBookmark == '/')  // ne devrait pas arriver si on ajoute les signets via le dock ou Nautilus.
+			{
+				gchar *tmp = g_strconcat ("file://", cOneBookmark, NULL);  // sinon launch_uri() ne marche pas sous Gnome.
+				g_free (cOneBookmark);
+				cOneBookmark = tmp;
+			}
+			else  // c'est une URI valide, on regarde si il y'a un nom utilisateur.
+			{
+				gchar *str = strrchr (cOneBookmark, ' ');
+				if (str != NULL)
+				{
+					cUserName = str + 1;
+					*str = '\0';
+				}
+			}
 			if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType))
 			{
 				cd_message (" + 1 signet : %s\n", cOneBookmark);
 				pNewIcon = g_new0 (Icon, 1);
 				pNewIcon->iType = 10;
 				pNewIcon->cBaseURI = cOneBookmark;
+				if (cUserName != NULL)
+				{
+					g_free (cName);
+					cName = g_strdup (cUserName);
+				}
 				pNewIcon->acName = cName;
 				pNewIcon->acCommand = cRealURI;
 				pNewIcon->acFileName = cIconName;

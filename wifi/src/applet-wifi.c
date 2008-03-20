@@ -17,38 +17,124 @@ extern AppletData myData;
 
 static gchar *s_cLevelQualityName[WIFI_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Exellent")};
 
+static int s_iThreadIsRunning = 0;
+static int s_iSidTimerRedraw = 0;
 
-gboolean cd_wifi(gchar *origine) {
-  static gboolean bBusy = FALSE;
-  
-	if (bBusy)
-		return TRUE;
-	bBusy = TRUE;
-  
-  cd_debug("Wifi: Execution called from %s\n", origine);
-  
-  GError *erreur = NULL;
-  gchar *cCommand = g_strdup_printf("bash %s/wifi", MY_APPLET_SHARE_DATA_DIR);
-  g_spawn_command_line_async (cCommand, &erreur);
-  if (erreur != NULL) {
-	  cd_warning ("Attention : when trying to execute 'iwconfig", erreur->message);
-    g_error_free (erreur);
-	}
+
+gboolean cd_wifi_timer (gpointer data)
+{
+	cd_wifi_launch_measure ();
+	return TRUE;
+}
+
+gpointer cd_wifi_threaded_calculation (gpointer data)
+{
+	cd_wifi_get_data ();
+	
+	g_atomic_int_set (&s_iThreadIsRunning, 0);
+	cd_message ("*** fin du thread wifi");
+	return NULL;
+}
+
+void cd_wifi_get_data (void)
+{
+	gchar *cCommand = g_strdup_printf("%s/wifi", MY_APPLET_SHARE_DATA_DIR);
+	system (cCommand);
 	g_free (cCommand);
-	
-	if (myData.strengthTimer == 0)
-		myData.strengthTimer = g_timeout_add (500, (GSourceFunc) cd_wifi_getStrength, (gpointer) NULL);
-	
-  bBusy = FALSE;
-  if (myData.isWirelessDevice == 0) {
-	  return FALSE;
+}
+
+static gboolean _cd_wifi_check_for_redraw (gpointer data)
+{
+	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
+	cd_message ("%s (%d)", __func__, iThreadIsRunning);
+	if (! iThreadIsRunning)
+	{
+		s_iSidTimerRedraw = 0;
+		if (myIcon == NULL)
+		{
+			g_print ("annulation du chargement du wifi\n");
+			return FALSE;
+		}
+		
+		gboolean bResultOK = cd_wifi_getStrength ();
+		
+		//\_______________________ On lance le timer si necessaire.
+		if (bResultOK && myData.iSidTimer == 0)
+			myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
+		else if (! bResultOK && myData.iSidTimer != 0)
+		{
+			g_source_remove (myData.iSidTimer);
+			myData.iSidTimer = 0;
+		}
+		return FALSE;
 	}
-	else {
-	  return TRUE;
+	return TRUE;
+}
+void cd_wifi_launch_measure (void)
+{
+	cd_message ("");
+	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1))  // il etait egal a 0, on lui met 1 et on lance le thread.
+	{
+		cd_message (" ==> lancement du thread de calcul");
+		
+		if (s_iSidTimerRedraw == 0)
+			s_iSidTimerRedraw = g_timeout_add (333, (GSourceFunc) _cd_wifi_check_for_redraw, (gpointer) NULL);
+		
+		GError *erreur = NULL;
+		GThread* pThread = g_thread_create ((GThreadFunc) cd_wifi_threaded_calculation,
+			NULL,
+			FALSE,
+			&erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("Attention : %s", erreur->message);
+			g_error_free (erreur);
+		}
 	}
 }
 
 
+
+
+gboolean cd_wifi(gpointer data) {
+	static gboolean bBusy = FALSE;
+	if (bBusy)
+		return TRUE;
+	bBusy = TRUE;
+	
+	GError *erreur = NULL;
+	gchar *cCommand = g_strdup_printf("bash %s/wifi", MY_APPLET_SHARE_DATA_DIR);
+	g_spawn_command_line_async (cCommand, &erreur);
+	if (erreur != NULL) {
+		cd_warning ("Attention : when trying to execute 'iwconfig", erreur->message);
+		g_error_free (erreur);
+		}
+		g_free (cCommand);
+		
+		if (myData.strengthTimer == 0)
+			myData.strengthTimer = g_timeout_add (500, (GSourceFunc) cd_wifi_getStrength, (gpointer) NULL);
+		
+	bBusy = FALSE;
+	if (myData.isWirelessDevice == 0) {
+		return FALSE;
+	}
+	else {
+		return TRUE;
+	}
+}
+
+
+static float pourcent(float x, float y) {
+  float p=0;
+  if (x > y) {
+    x = y;
+  }
+  else if (x < 0) {
+   x = 0;
+  }
+  p = (x / y) *100;
+  return p;
+}
 static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *iMlink, int *iPercentage, CDWifiQuality *iQuality)
 {
 	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
@@ -122,7 +208,7 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 	
 	*iFlink = flink;
 	*iMlink = mlink;
-	if (prcnt == 0) {
+	if (prcnt <= 0) {
 		*iQuality = WIFI_QUALITY_NO_SIGNAL;
 	}
 	else if (prcnt < 20) {
@@ -144,25 +230,32 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 	return TRUE;
 }
 
+
+static void _wifi_draw_no_wireless_extension (void)
+{
+	CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+	CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[WIFI_QUALITY_NO_SIGNAL]);
+	cd_message("No wifi device found, timer stopped.");
+	myData.isWirelessDevice = 0;
+	myData.iPreviousQuality = WIFI_QUALITY_NO_SIGNAL;
+}
 gboolean cd_wifi_getStrength(void) {
-	static gboolean bBusy = FALSE;
-	
+	/*static gboolean bBusy = FALSE;
 	if (bBusy)
 		return FALSE;
-	bBusy = TRUE;
-	
+	bBusy = TRUE;*/
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
 	g_file_get_contents(WIFI_TMP_FILE, &cContent, &length, &erreur);
-	if (erreur != NULL)  // cContent ne peut pas etre NULL sans provoquer une erreur.
+	if (erreur != NULL)
 	{
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
-		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[WIFI_QUALITY_NO_SIGNAL]);
+		_wifi_draw_no_wireless_extension ();
+		return FALSE;
 	}
 	else {
 		int flink,mlink;
@@ -172,53 +265,43 @@ gboolean cd_wifi_getStrength(void) {
 		
 		if (! bAcquisitionOK)
 		{
-			CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-			CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[WIFI_QUALITY_NO_SIGNAL]);
-			cd_message("No wifi device found, timer stopped.");
-			myData.isWirelessDevice = 0;
-			bBusy = FALSE;
-			myData.strengthTimer = 0;
+			_wifi_draw_no_wireless_extension ();
+			//bBusy = FALSE;
+			//myData.strengthTimer = 0;
 			return FALSE;
 		}
 		
-		switch (myConfig.quickInfoType) {
-			case WIFI_INFO_NONE :
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
-			break;
-			case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(s_cLevelQualityName[iQuality]);
-			break;
-			case WIFI_INFO_SIGNAL_STRENGTH_PERCENT :
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", prcnt);
-			break;
-			case WIFI_INFO_SIGNAL_STRENGTH_DB :
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d/%d", flink, mlink);
-			break;
-		}
-		
-		cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
-		if (pSurface != NULL)
+		if (myData.iPreviousQuality != iQuality)
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+			switch (myConfig.quickInfoType) {
+				case WIFI_INFO_NONE :
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+				break;
+				case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(s_cLevelQualityName[iQuality]);
+				break;
+				case WIFI_INFO_SIGNAL_STRENGTH_PERCENT :
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", prcnt);
+				break;
+				case WIFI_INFO_SIGNAL_STRENGTH_DB :
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d/%d", flink, mlink);
+				break;
+			}
+			
+			cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
+			if (pSurface != NULL)
+			{
+				CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+			}
+			
+			myData.iPreviousQuality = iQuality;
 		}
 	}
-	
-	bBusy = FALSE;
-	return FALSE;
+	/*bBusy = FALSE;
+	return FALSE;*/
+	return TRUE;
 }
 
-float pourcent(float x, float y) {
-  float p=0;
-  if (x > y) {
-    x = y;
-  }
-  else if (x < 0) {
-   x = 0;
-  }
-  p = (x / y) *100;
-  return p;
-}
 
 /*void cd_wifi_init(gchar *origine) {
   cd_debug("Wifi: Initialisation called from %s\n", origine);
@@ -227,12 +310,12 @@ float pourcent(float x, float y) {
   myData.checkTimer = g_timeout_add (10000, (GSourceFunc) cd_wifi, (gpointer) origine);
 }*/
 
-void cd_wifi_wait(gchar *origine) {
-  cd_debug("Wifi: Check called from %s", origine);
-  CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("Check...");
+/*void cd_wifi_wait(void) {
+	g_return_if_fail (myData.checkTimer == 0);
+  ///CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON((myDock ? "..." : "Checking..."));
 	CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[WIFI_QUALITY_NO_SIGNAL]);
 	myData.isWirelessDevice = 1;
-  myData.checkTimer = g_timeout_add (10000, (GSourceFunc) cd_wifi, (gpointer) origine);
-}
+	myData.checkTimer = g_timeout_add (myConfig.iDelay, (GSourceFunc) cd_wifi, (gpointer) NULL);
+}*/
 

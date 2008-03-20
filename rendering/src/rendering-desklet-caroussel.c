@@ -49,7 +49,7 @@ static gboolean on_scroll_desklet (GtkWidget* pWidget,
 		if (pCaroussel->iSidRotation == 0)
 		{
 			pCaroussel->iRotationDirection = pScroll->direction;
-			pCaroussel->iSidRotation = g_timeout_add (50, (GSourceFunc) _caroussel_rotate, (gpointer) pCaroussel);
+			pCaroussel->iSidRotation = g_timeout_add (50, (GSourceFunc) _caroussel_rotate, (gpointer) pDesklet);
 		}
 		else
 		{
@@ -62,11 +62,11 @@ static gboolean on_scroll_desklet (GtkWidget* pWidget,
 				pCaroussel->iRotationDirection = pScroll->direction;
 			}
 		}
-		_caroussel_rotate (NULL);
+		_caroussel_rotate (pDesklet);
 	}
 	return FALSE;
 }
-CDCarousselParameters *rendering_load_caroussel (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gboolean bRotateIconsOnEllipse, gboolean b3D)
+CDCarousselParameters *rendering_load_caroussel_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
 	g_print ("%s ()\n", __func__);
 	GList *pIconsList = pDesklet->icons;
@@ -74,25 +74,15 @@ CDCarousselParameters *rendering_load_caroussel (CairoDockDesklet *pDesklet, cai
 		return NULL;
 	
 	CDCarousselParameters *pCaroussel = g_new0 (CDCarousselParameters, 1);
-	double fCentralSphereWidth, fCentralSphereHeight;
-	if (b3D)
+	
+	if (pConfig != NULL)
 	{
-		fCentralSphereWidth = MAX (1, MIN (pDesklet->iWidth, pDesklet->iHeight) * CAROUSSEL_RATIO_ICON_DESKLET);
-		fCentralSphereHeight = fCentralSphereWidth;
-	}
-	else
-	{
-		fCentralSphereWidth = MAX (1, (pDesklet->iWidth - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
-		fCentralSphereHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
+		pCaroussel->b3D = GPOINTER_TO_INT (pConfig[0]);
+		pCaroussel->bRotateIconsOnEllipse = GPOINTER_TO_INT (pConfig[1]);
 	}
 	
 	int iNbIcons = g_list_length (pIconsList);
 	pCaroussel->fDeltaTheta = 2 * G_PI / iNbIcons;
-	
-	pCaroussel->iEllipseHeight = MIN (fCentralSphereHeight, pDesklet->iHeight - 2 * (g_iLabelSize + g_fReflectSize) - 1);
-	pCaroussel->fInclinationOnHorizon = atan2 (pDesklet->iHeight, pDesklet->iWidth/4);
-	pCaroussel->iFrameHeight = pCaroussel->iEllipseHeight + 0*2 * g_iFrameMargin + g_fReflectSize;
-	pCaroussel->fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pCaroussel->iFrameHeight, pCaroussel->fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
 	
 	int iMaxIconWidth = 0;
 	Icon *icon;
@@ -102,11 +92,29 @@ CDCarousselParameters *rendering_load_caroussel (CairoDockDesklet *pDesklet, cai
 		icon = ic->data;
 		iMaxIconWidth = MAX (iMaxIconWidth, icon->fWidth);
 	}
-	pCaroussel->a = MAX (pDesklet->iWidth - pCaroussel->fExtraWidth - (bRotateIconsOnEllipse ? 0 : iMaxIconWidth/2), pCaroussel->iEllipseHeight)/2;
-	pCaroussel->b = MIN (pDesklet->iWidth - pCaroussel->fExtraWidth - (bRotateIconsOnEllipse ? 0 : iMaxIconWidth/2), pCaroussel->iEllipseHeight)/2;  // c = sqrt (a * a - b * b) ; e = c / a.
 	
-	pCaroussel->bRotateIconsOnEllipse = bRotateIconsOnEllipse;
-	pCaroussel->b3D = b3D;
+	double fCentralSphereWidth, fCentralSphereHeight;
+	if (pCaroussel->b3D)
+	{
+		fCentralSphereWidth = MAX (1, MIN (pDesklet->iWidth, pDesklet->iHeight) * CAROUSSEL_RATIO_ICON_DESKLET);
+		fCentralSphereHeight = fCentralSphereWidth;
+		
+		pCaroussel->iEllipseHeight = MIN (fCentralSphereHeight, pDesklet->iHeight - 2 * (g_iLabelSize + g_fReflectSize) - 1);
+		pCaroussel->fInclinationOnHorizon = atan2 (pDesklet->iHeight, pDesklet->iWidth/4);
+		pCaroussel->iFrameHeight = pCaroussel->iEllipseHeight + 0*2 * g_iFrameMargin + g_fReflectSize;
+		pCaroussel->fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pCaroussel->iFrameHeight, pCaroussel->fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
+		
+		pCaroussel->a = MAX (pDesklet->iWidth - pCaroussel->fExtraWidth - (pCaroussel->bRotateIconsOnEllipse ? 0 : iMaxIconWidth/2), pCaroussel->iEllipseHeight)/2;
+		pCaroussel->b = MIN (pDesklet->iWidth - pCaroussel->fExtraWidth - (pCaroussel->bRotateIconsOnEllipse ? 0 : iMaxIconWidth/2), pCaroussel->iEllipseHeight)/2;  // c = sqrt (a * a - b * b) ; e = c / a.
+	}
+	else
+	{
+		fCentralSphereWidth = MAX (1, (pDesklet->iWidth - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
+		fCentralSphereHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
+		
+		pCaroussel->a = MAX (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iWidth;
+		pCaroussel->b = MIN (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iHeight;
+	}
 	
 	gulong iOnScrollCallbackID = g_signal_handler_find (pDesklet->pWidget,
 		G_SIGNAL_MATCH_FUNC,
@@ -125,19 +133,29 @@ CDCarousselParameters *rendering_load_caroussel (CairoDockDesklet *pDesklet, cai
 }
 
 
-void rendering_free_caroussel_parameters (CDCarousselParameters *pCaroussel, gboolean bFree)
+void rendering_free_caroussel_data (CairoDockDesklet *pDesklet)
 {
+	g_print ("%s ()\n", __func__);
+	gulong iOnScrollCallbackID = g_signal_handler_find (pDesklet->pWidget,
+		G_SIGNAL_MATCH_FUNC,
+		0,
+		0,
+		NULL,
+		on_scroll_desklet,
+		NULL);
+	if (iOnScrollCallbackID != 0)
+		g_signal_handler_disconnect (G_OBJECT (pDesklet->pWidget), iOnScrollCallbackID);
+	
+	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
 		return ;
 	
-	if (bFree)
-		g_free (pCaroussel);
-	else
-		memset (pCaroussel, 0, sizeof (CDCarousselParameters));
+	g_free (pCaroussel);
+	pDesklet->pRendererData = NULL;
 }
 
 
-void rendering_load_icons_for_caroussel_desklet (CairoDockDesklet *pDesklet)
+void rendering_load_icons_for_caroussel (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -165,7 +183,6 @@ void rendering_load_icons_for_caroussel_desklet (CairoDockDesklet *pDesklet)
 	}
 	GList* ic;
 	Icon *icon;
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_DOCK_CONTAINER (pDesklet));
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
@@ -179,9 +196,8 @@ void rendering_load_icons_for_caroussel_desklet (CairoDockDesklet *pDesklet)
 			icon->fWidth = MAX (1, .2 * pDesklet->iWidth - g_iLabelSize);
 			icon->fHeight = MAX (1, .2 * pDesklet->iHeight - g_iLabelSize);
 		}
-		cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, pCaroussel->b3D);  // en 3D on charge les reflets.
+		cairo_dock_fill_icon_buffers (icon, pSourceContext, 1, CAIRO_DOCK_HORIZONTAL, pCaroussel->b3D);  // en 3D on charge les reflets.
 	}
-	cairo_destroy (pCairoContext);
 }
 
 
@@ -189,6 +205,7 @@ void rendering_load_icons_for_caroussel_desklet (CairoDockDesklet *pDesklet)
 void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
+	g_print ("%s(%x)\n", __func__, pCaroussel);
 	if (pCaroussel == NULL)
 		return ;
 	
@@ -347,4 +364,17 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDockDeskl
 				fTheta -= 2*G_PI;
 		}
 	}
+}
+
+
+
+void rendering_register_caroussel_desklet_renderer (void)
+{
+	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
+	pRenderer->render = rendering_draw_caroussel_in_desklet;
+	pRenderer->load_data = rendering_load_caroussel_data;
+	pRenderer->free_data = rendering_free_caroussel_data;
+	pRenderer->load_icons = rendering_load_icons_for_caroussel;
+	
+	cairo_dock_register_desklet_renderer (MY_APPLET_CAROUSSEL_DESKLET_RENDERER_NAME, pRenderer);
 }

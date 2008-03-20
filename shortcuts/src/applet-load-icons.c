@@ -46,8 +46,7 @@ static GList * _load_icons (GError **erreur)
 		cd_message ("  cFullURI : %s", cFullURI);
 		if (pIconList == NULL)
 		{
-			g_set_error (erreur, 1, 1, "%s () : couldn't detect any drives", __func__);
-			return NULL;
+			cd_warning ("couldn't detect any drives");  // on decide de poursuivre malgre tout, pour les signets.
 		}
 		
 		if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, NULL))
@@ -60,7 +59,7 @@ static GList * _load_icons (GError **erreur)
 		GList *pIconList2 = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_NETWORK, CAIRO_DOCK_FM_SORT_BY_NAME, 8, FALSE, &cFullURI);
 		cd_message ("  cFullURI : %s", cFullURI);
 		
-		if (myConfig.bUseSeparator && pIconList2 != NULL)
+		if (myConfig.bUseSeparator && pIconList2 != NULL && pIconList != NULL)
 		{
 			Icon *pSeparatorIcon = g_new0 (Icon, 1);
 			pSeparatorIcon->iType = 7;
@@ -85,7 +84,7 @@ static GList * _load_icons (GError **erreur)
 		
 		GList *pIconList2 = cd_shortcuts_list_bookmarks (cBookmarkFilePath);
 		
-		if (myConfig.bUseSeparator)
+		if (myConfig.bUseSeparator && pIconList2 != NULL && pIconList != NULL)
 		{
 			Icon *pSeparatorIcon = g_new0 (Icon, 1);
 			pSeparatorIcon->iType = 9;
@@ -125,17 +124,26 @@ static gboolean _cd_shortcuts_check_for_redraw (gpointer data)
 	if (! iThreadIsRunning)
 	{
 		s_iSidTimerRedraw = 0;
+		if (myIcon == NULL)
+		{
+			g_print ("annulation du chargement des raccourcis\n");
+			g_list_foreach (s_pIconList, cairo_dock_free_icon, NULL);
+			g_list_free (s_pIconList);
+			s_pIconList = NULL;
+			return FALSE;
+		}
 		cd_message ("  chargement du sous-dock des raccourcis");
 		
 		//\_______________________ On efface l'ancienne liste.
-		if (myData.pDeskletIconList != NULL)
+		//if (myData.pDeskletIconList != NULL)
+		if (myDesklet && myDesklet->icons != NULL)
 		{
-			g_list_foreach (myData.pDeskletIconList, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (myData.pDeskletIconList);
-			myData.pDeskletIconList = NULL;
+			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+			g_list_free (myDesklet->icons);
+			myDesklet->icons = NULL;
 			myData.iNbIconsInTree = 0;
-			if (myDesklet)
-				myDesklet->icons = NULL;
+			//if (myDesklet)
+			//	myDesklet->icons = NULL;
 		}
 		if (myIcon->pSubDock != NULL)
 		{
@@ -181,22 +189,31 @@ static gboolean _cd_shortcuts_check_for_redraw (gpointer data)
 				myIcon->pSubDock = NULL;
 			}
 			
-			cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-			cd_shortcuts_load_tree (s_pIconList, pCairoContext);
-			
-			GList* ic;
-			Icon *icon;
-			for (ic = s_pIconList; ic != NULL; ic = ic->next)
+			myDesklet->icons = s_pIconList;
+			//myData.pDeskletIconList = s_pIconList;
+			s_pIconList = NULL;
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+			/*cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
+			if (myDesklet->pRenderer == NULL)
 			{
-				icon = ic->data;
+				cd_shortcuts_load_tree (s_pIconList, pCairoContext);
+				myDesklet->renderer = cd_shortcuts_draw_in_desklet;
 				
-				icon->fWidth = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
-				icon->fHeight = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
-				
-				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
-				g_print (" + %.2fx%.2f\n", icon->fWidth, icon->fHeight);
+				GList* ic;
+				Icon *icon;
+				for (ic = s_pIconList; ic != NULL; ic = ic->next)
+				{
+					icon = ic->data;
+					
+					icon->fWidth = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
+					icon->fHeight = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
+					
+					cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
+					g_print (" + %.2fx%.2f\n", icon->fWidth, icon->fHeight);
+				}
 			}
-			cairo_destroy (pCairoContext);
+			cairo_destroy (pCairoContext);*/
+			
 			gtk_widget_queue_draw (myDesklet->pWidget);
 		}
 		

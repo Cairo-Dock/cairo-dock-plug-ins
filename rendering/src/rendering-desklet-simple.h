@@ -9,5 +9,7 @@
 
 void rendering_draw_icon_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet);
 
+void rendering_register_simple_desklet_renderer (void);
+
 
 #endif

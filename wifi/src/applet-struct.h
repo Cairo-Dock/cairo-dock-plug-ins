@@ -32,14 +32,17 @@ typedef struct {
 	gchar *c80Surface;
 	gchar *c100Surface;
 	CDWifiInfoType quickInfoType;
+	gint iCheckInterval;
 } AppletConfig;
 
 typedef struct {
 	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];
+	guint iSidTimer;
+	gint isWirelessDevice;
+	gint iPreviousQuality;
 	
-	int checkTimer;
-	int isWirelessDevice;
-	int strengthTimer;
+	gint checkTimer;
+	gint strengthTimer;
 } AppletData;
 
 

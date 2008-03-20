@@ -77,7 +77,7 @@ msgstr "Nom de l'image 'Bon' :"
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:17
 msgid "Information to display on the icon :"
 msgstr "Information a afficher sur l'icon :"
 
@@ -112,7 +112,7 @@ msgstr "Bon"
 msgid "Excellent"
 msgstr "Excellent"
 
-#: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119
+#: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119 ../data/messages:19
 msgid "None"
 msgstr "Aucun"
 
@@ -191,4 +191,8 @@ msgstr ""
 #: ../data/messages:29 ../data/messages:33 ../data/messages:37
 #: ../data/messages:41 ../data/messages:45 ../data/messages:49
 msgid "Let t empty to use the default icon."
+msgstr ""
+
+#: ../data/messages:21
+msgid "Signal Strength level"
 msgstr ""
