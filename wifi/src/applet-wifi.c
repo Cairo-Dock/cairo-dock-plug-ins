@@ -34,7 +34,8 @@ gpointer cd_wifi_threaded_calculation (gpointer data) {
 	return NULL;
 }
 
-void cd_wifi_get_data (void) {
+void cd_wifi_get_data (void)
+{
 	gchar *cCommand = g_strdup_printf("bash %s/wifi", MY_APPLET_SHARE_DATA_DIR);
 	system (cCommand);
 	g_free (cCommand);
@@ -204,7 +205,8 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 void _wifi_draw_no_wireless_extension (void) {
 	CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-	CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[WIFI_QUALITY_NO_SIGNAL]);
+	cd_wifi_set_surface (WIFI_QUALITY_NO_SIGNAL);
+	//CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[WIFI_QUALITY_NO_SIGNAL]);
 	myData.checkedTime = myData.checkedTime+1;
 	
 	if (myData.checkedTime == 1) {
@@ -236,8 +238,8 @@ void _wifi_draw_no_wireless_extension (void) {
 	myData.isWirelessDevice = 0;
 	myData.iPreviousQuality = WIFI_QUALITY_NO_SIGNAL;
 }
-
-gboolean cd_wifi_getStrength(void) {
+gboolean cd_wifi_getStrength(void)
+{
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
@@ -289,11 +291,59 @@ gboolean cd_wifi_getStrength(void) {
 		  break;
 	  }
 			
-	  cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
-	  if (pSurface != NULL) 	{
-		  CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
-	  }
+			cd_wifi_set_surface (iQuality);
+			/*cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
+			if (pSurface != NULL)
+			{
+				CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+			}*/
 			
 	}
 	return TRUE;
 }
+
+
+void cd_wifi_set_surface (CDWifiQuality iQuality)
+{
+	g_return_if_fail (iQuality < WIFI_NB_QUALITY);
+	
+	cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
+	if (pSurface == NULL)
+	{
+		if (myConfig.cUserImage[iQuality] != NULL)
+		{
+			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iQuality]);
+			myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+			g_free (cUserImagePath);
+		}
+		else
+		{
+			gchar *cImagePath = g_strdup_printf ("%s/link-%d.svg", MY_APPLET_SHARE_DATA_DIR, iQuality);
+			myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+			g_free (cImagePath);
+		}
+		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[iQuality]);
+	}
+	else
+	{
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+	}
+}
+
+
+
+/*void cd_wifi_init(gchar *origine) {
+  cd_debug("Wifi: Initialisation called from %s\n", origine);
+	myData.isWirelessDevice = 1;
+	cd_wifi("Wifi_Init");
+  myData.checkTimer = g_timeout_add (10000, (GSourceFunc) cd_wifi, (gpointer) origine);
+}*/
+
+/*void cd_wifi_wait(void) {
+	g_return_if_fail (myData.checkTimer == 0);
+  ///CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON((myDock ? "..." : "Checking..."));
+	CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[WIFI_QUALITY_NO_SIGNAL]);
+	myData.isWirelessDevice = 1;
+	myData.checkTimer = g_timeout_add (myConfig.iDelay, (GSourceFunc) cd_wifi, (gpointer) NULL);
+}*/
