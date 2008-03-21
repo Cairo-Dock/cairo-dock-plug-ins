@@ -7,11 +7,11 @@ module_DATA = \
 	wifi.conf\
 	readme\
 	preview.png\
-  default.svg\
-  link-20.svg\
-  link-40.svg\
-  link-60.svg\
-  link-80.svg\
-  link-100.svg\
-  icon.png\
-  wifi
+	link-0.svg\
+	link-1.svg\
+	link-2.svg\
+	link-3.svg\
+	link-4.svg\
+	link-5.svg\
+	icon.png\
+	wifi
