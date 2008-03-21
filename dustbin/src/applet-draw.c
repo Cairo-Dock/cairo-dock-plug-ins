@@ -42,18 +42,18 @@ CdDustbin *cd_dustbin_find_dustbin_from_uri (const gchar *cDustbinPath)
 void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, CdDustbin *pDustbin)
 {
 	g_return_if_fail (pDustbin != NULL);
-	cd_message ("%s (%d,%d)\n", __func__, myData.iNbFiles, myData.iSize);
+	cd_message ("%s (%d,%d)", __func__, myData.iNbFiles, myData.iSize);
 	gchar *cQuickInfo = NULL;
 	switch (iEventType)
 	{
 		case CAIRO_DOCK_FILE_DELETED :
-			cd_message ("1 dechet de moins\n");
+			cd_message ("1 dechet de moins");
 			
 			g_atomic_int_add (&pDustbin->iNbTrashes, -1);
 			
 			if (g_atomic_int_dec_and_test (&myData.iNbTrashes))  // devient nul.
 			{
-				cd_message ("la poubelle se vide\n");
+				cd_message ("la poubelle se vide");
 				cd_dustbin_remove_all_messages ();
 				g_atomic_int_set (&myData.iNbFiles, 0);  // inutile de calculer dans ce cas.
 				g_atomic_int_set (&myData.iSize, 0);  // inutile de calculer dans ce cas.
@@ -73,13 +73,13 @@ void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cUR
 		break ;
 		
 		case CAIRO_DOCK_FILE_CREATED :
-			cd_message ("1 dechet de plus\n");
+			cd_message ("1 dechet de plus");
 			
 			g_atomic_int_add (&pDustbin->iNbTrashes, 1);
 			
 			if (g_atomic_int_exchange_and_add (&myData.iNbTrashes, 1) == 0)  // il etait nul avant l'incrementation.
 			{
-				cd_message ("la poubelle se remplit\n");
+				cd_message ("la poubelle se remplit");
 				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface)
 			}
 			if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
@@ -95,7 +95,7 @@ void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cUR
 		default :
 			break;
 	}
-	cd_message (" -> myData.iNbTrashes = %d\n", myData.iNbTrashes);
+	cd_message (" -> myData.iNbTrashes = %d", myData.iNbTrashes);
 }
 
 
@@ -123,13 +123,13 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 		
 		if (iNewState == 0)
 		{
-			cd_message (" -> on a vide la corbeille\n");
+			cd_message (" -> on a vide la corbeille");
 			g_return_val_if_fail (myData.pEmptyBinSurface != NULL, TRUE);
 			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface)
 		}
 		else
 		{
-			cd_message (" -> on a rempli la corbeille\n");
+			cd_message (" -> on a rempli la corbeille");
 			g_return_val_if_fail (myData.pFullBinSurface != NULL, TRUE);
 			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface)
 		}
@@ -146,10 +146,10 @@ void cd_dustbin_draw_quick_info (gboolean bRedraw)
 {
 	if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NONE)
 		return ;
-	cd_message ("%s (%d)\n", __func__, myData.iNbTrashes);
+	cd_message ("%s (%d)", __func__, myData.iNbTrashes);
 	if (cd_dustbin_is_calculating ())
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%s...", (myDesklet != NULL ? _("calculating") : ""))
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%s...", (myDesklet != NULL ? D_("calculating") : ""))
 	}
 	else if (myData.iNbTrashes == 0)
 	{
@@ -159,11 +159,11 @@ void cd_dustbin_draw_quick_info (gboolean bRedraw)
 	{
 		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%s", myData.iNbTrashes, (myDesklet != NULL ? _(" trashes") : ""))
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%s", myData.iNbTrashes, (myDesklet != NULL ? D_(" trashes") : ""))
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%s", myData.iNbFiles, (myDesklet != NULL ? _(" files") : ""))
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%s", myData.iNbFiles, (myDesklet != NULL ? D_(" files") : ""))
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 		{
@@ -195,7 +195,7 @@ void cd_dustbin_draw_quick_info (gboolean bRedraw)
 
 void cd_dustbin_signal_full_dustbin (void)
 {
-	cd_message ("%s (%d,%d)\n", __func__, myConfig.iSizeLimit, myConfig.iGlobalSizeLimit);
+	cd_message ("%s (%d,%d)", __func__, myConfig.iSizeLimit, myConfig.iGlobalSizeLimit);
 	gboolean bOneDustbinFull = FALSE;
 	CdDustbin *pDustbin;
 	GList *pElement;

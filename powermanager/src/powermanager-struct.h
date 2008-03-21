@@ -14,6 +14,8 @@ typedef enum {
 typedef struct {
 	gchar *defaultTitle;
 	MyAppletQuickInfoType quickInfoType;
+	gint iCheckInterval;
+	
 	gboolean highBatteryWitness;
 	gboolean lowBatteryWitness;
 	gboolean lowBatteryValue;
@@ -34,10 +36,13 @@ typedef struct {
 	cairo_surface_t *pSurfaceSector;
 	cairo_surface_t *pSurfaceBroken;
 	gboolean dbus_enable;
-	gboolean on_battery;
 	gboolean battery_present;
+	gboolean on_battery;
 	gint battery_time;
 	gint battery_charge;
+	gboolean previously_on_battery;
+	gint previous_battery_time;
+	gint previous_battery_charge;
 	gint checkLoop;
 	} AppletData;
 

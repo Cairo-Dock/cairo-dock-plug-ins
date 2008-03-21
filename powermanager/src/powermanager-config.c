@@ -7,33 +7,30 @@ AppletConfig myConfig;
 AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
+CD_APPLET_GET_CONFIG_BEGIN
+	
+	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
+	
+	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "check interval", 10);
 	
 	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick_info_type", MY_APPLET_TIME);
 	
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
+	
 	g_free (myConfig.defaultTitle);
-	myConfig.defaultTitle = NULL;
 	
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
-
-void reset_data (void)
-{
-	reset_surfaces ();
-	
-	gboolean dbus_enable = myData.dbus_enable;
-	memset (&myData, 0, sizeof (AppletData));
-	myData.dbus_enable = dbus_enable;
-}
+CD_APPLET_RESET_CONFIG_END
 
 
-void reset_surfaces (void)
+CD_APPLET_RESET_DATA_BEGIN
+	//reset_surfaces ();
+CD_APPLET_RESET_DATA_END
+
+
+/*void reset_surfaces (void)
 {
 	if (myData.pSurfaceBattery44 != NULL)
 	{
@@ -95,4 +92,4 @@ void reset_surfaces (void)
 		cairo_surface_destroy (myData.pSurfaceBroken);
 		myData.pSurfaceBroken = NULL;
 	}
-}
+}*/

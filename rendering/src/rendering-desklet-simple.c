@@ -13,7 +13,22 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-desklet-simple.h"
 
 
-void rendering_draw_icon_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet)
+void rendering_load_icons_for_simple (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+{
+	g_return_if_fail (pDesklet != NULL && pSourceContext != NULL);
+	
+	Icon *pIcon = pDesklet->pIcon;
+	g_return_if_fail (pIcon != NULL);
+	pIcon->fWidth = MAX (1, pDesklet->iWidth - g_iDockRadius);
+	pIcon->fHeight = MAX (1, pDesklet->iHeight - g_iDockRadius);
+	pIcon->fDrawX = g_iDockRadius/2;
+	pIcon->fDrawY = g_iDockRadius/2;
+	pIcon->fScale = 1;
+	cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext, FALSE);  // pas de reflet.
+}
+
+
+void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet)
 {
 	Icon *pIcon = pDesklet->pIcon;
 	cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
@@ -41,7 +56,10 @@ void rendering_draw_icon_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *p
 void rendering_register_simple_desklet_renderer (void)
 {
 	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
-	pRenderer->render = rendering_draw_icon_in_desklet;
+	pRenderer->render = rendering_draw_simple_in_desklet ;
+	pRenderer->load_data = NULL;
+	pRenderer->free_data = NULL;
+	pRenderer->load_icons = rendering_load_icons_for_simple;
 	
-	cairo_dock_register_renderer (MY_APPLET_SIMPLE_DESKLET_RENDERER_NAME, pRenderer);
+	cairo_dock_register_desklet_renderer (MY_APPLET_SIMPLE_DESKLET_RENDERER_NAME, pRenderer);
 }

@@ -41,6 +41,10 @@ on widget layer=false
 
 [Configuration]
 
+#i[1;120] Interval of time between 2 checks :
+#{in seconds.}
+check interval = 10
+
 #F[Quick info]
 frame2=
 #s[nothing;charge;time] Information to be displayed on the icon :

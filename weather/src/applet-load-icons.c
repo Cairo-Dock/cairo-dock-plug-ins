@@ -123,7 +123,7 @@ static void _weather_draw_current_conditions (void)
 	if (myConfig.bCurrentConditions)
 	{
 		cd_message ("  chargement de l'icone meteo");
-		if (myConfig.bDisplayTemperature)
+		if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL)
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp)
 		}
@@ -131,15 +131,18 @@ static void _weather_draw_current_conditions (void)
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
 		}
+		
 		g_free (myIcon->acFileName);
 		if (myData.bErrorRetrievingData)
 			myIcon->acFileName = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
 		else
-			myIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);
-		if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
 		{
-			g_free (myIcon->acFileName);
-			myIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+			myIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+			if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
+			{
+				g_free (myIcon->acFileName);
+				myIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+			}
 		}
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
 	}

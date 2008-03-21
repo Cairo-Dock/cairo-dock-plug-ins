@@ -18,9 +18,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
-	
+CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bListDrives = CD_CONFIG_GET_BOOLEAN ("Module", "list drives");
 	myConfig.bListNetwork = CD_CONFIG_GET_BOOLEAN ("Module", "list network");
 	myConfig.bListBookmarks = CD_CONFIG_GET_BOOLEAN ("Module", "list bookmarks");
@@ -28,36 +26,29 @@ CD_APPLET_CONFIG_BEGIN
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Module", "renderer");
 	cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Module", "renderer");
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cRenderer);
-	myConfig.cRenderer = NULL;
-	
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void)
-{
+
+CD_APPLET_RESET_DATA_BEGIN
 	if (myData.cDisksURI != NULL)
 	{
 		cairo_dock_fm_remove_monitor_full (myData.cDisksURI, FALSE, NULL);
 		g_free (myData.cDisksURI);
-		myData.cDisksURI = NULL;
 	}
 	if (myData.cNetworkURI != NULL)
 	{
 		cairo_dock_fm_remove_monitor_full (myData.cNetworkURI, FALSE, NULL);
 		g_free (myData.cNetworkURI);
-		myData.cNetworkURI = NULL;
 	}
 	if (myData.cBookmarksURI != NULL)
 	{
 		cairo_dock_fm_remove_monitor_full (myData.cBookmarksURI, FALSE, NULL);
 		g_free (myData.cBookmarksURI);
-		myData.cBookmarksURI = NULL;
 	}
 	
 	if (myIcon->pSubDock != NULL)
@@ -85,6 +76,4 @@ void reset_data (void)
 		cairo_surface_destroy (myData.pBrancheSurface[1]);
 		myData.pBrancheSurface[1] = NULL;
 	}*/
-	
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

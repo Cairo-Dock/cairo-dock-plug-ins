@@ -99,7 +99,7 @@ void rendering_load_icons_for_tree (CairoDockDesklet *pDesklet, cairo_t *pSource
 		icon->fWidth = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
 		icon->fHeight = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
 		
-		cairo_dock_fill_icon_buffers (icon, pSourceContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
+		cairo_dock_fill_icon_buffers_for_desklet (icon, pSourceContext, FALSE);  // pas de reflet.
 	}
 }
 

@@ -10,6 +10,7 @@
 extern AppletConfig myConfig;
 extern AppletData myData;
 
+static gboolean dbus_enable = FALSE;
 
 CD_APPLET_DEFINITION ("Rhythmbox", 1, 4, 6, CAIRO_DOCK_CATEGORY_CONTROLER)
 
@@ -114,8 +115,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 	_load_surfaces ();
 	
 	//Si le bus n'a pas encore ete acquis, on le recupere.
-	if (! myData.dbus_enable)
-		myData.dbus_enable = rhythmbox_dbus_get_dbus();
+	if (! dbus_enable)
+		dbus_enable = rhythmbox_dbus_get_dbus();
+	myData.dbus_enable = dbus_enable;
 	
 	//Si le bus a ete acquis, on y connecte nos signaux.
 	if (myData.dbus_enable)

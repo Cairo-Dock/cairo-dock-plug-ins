@@ -35,11 +35,11 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 }
 
 
-void cd_clock_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
+/*void cd_clock_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 {
 	cairo_set_source_surface (pCairoContext, myIcon->pIconBuffer, myIcon->fDrawX, myIcon->fDrawY);
 	cairo_paint (pCairoContext);
-}
+}*/
 
 gboolean cd_clock_update_with_time (Icon *icon)
 {

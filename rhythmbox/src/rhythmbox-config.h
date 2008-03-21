@@ -4,12 +4,7 @@
 #include <cairo-dock.h>
 
 
-CD_APPLET_CONFIG_H
-
-
-void reset_config (void);
-
-void reset_data (void);
+CD_APPLET_CONFIG__H
 
 
 #endif

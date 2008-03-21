@@ -151,23 +151,23 @@ msgstr "アイコンの名前 :"
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:13 ../data/messages:33
+#: ../data/messages:13 ../data/messages:33 ../data/messages:37
 msgid "Quick info"
 msgstr "簡便情報"
 
-#: ../data/messages:15 ../data/messages:35
+#: ../data/messages:15 ../data/messages:35 ../data/messages:39
 msgid "Information to be displayed on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: ../data/messages:17 ../data/messages:37
+#: ../data/messages:17 ../data/messages:37 ../data/messages:41
 msgid "nothing"
 msgstr "なし"
 
-#: ../data/messages:19 ../data/messages:39
+#: ../data/messages:19 ../data/messages:39 ../data/messages:43
 msgid "charge"
 msgstr "充電量"
 
-#: ../data/messages:21 ../data/messages:41
+#: ../data/messages:21 ../data/messages:41 ../data/messages:45
 msgid "time"
 msgstr "時間"
 
@@ -213,4 +213,12 @@ msgstr ""
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:33
+msgid "in seconds."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Interval of time between 2 checks :"
 msgstr ""

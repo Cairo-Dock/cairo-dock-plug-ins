@@ -10,11 +10,13 @@
 extern AppletConfig myConfig;
 extern AppletData myData;
 
+static gboolean dbus_enable = FALSE;
 
-CD_APPLET_DEFINITION ("PowerManager", 1, 4, 7, CAIRO_DOCK_CATEGORY_ACCESSORY)
+
+CD_APPLET_DEFINITION ("PowerManager", 1, 5, 3, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
-static void _load_surfaces (void)
+/*static void _load_surfaces (void)
 {
 	reset_surfaces ();
 	
@@ -46,11 +48,9 @@ static void _load_surfaces (void)
 	myData.pSurfaceBroken = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 
 	g_string_free (sImagePath, TRUE);
-}
+}*/
 
 CD_APPLET_INIT_BEGIN (erreur)
-	myConfig.defaultTitle = g_strdup (myIcon->acName);
-	
 	if (myDesklet != NULL)
 	{
 		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
@@ -63,14 +63,15 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDesklet->renderer = NULL;
 	}
 	
-	_load_surfaces ();
+	//_load_surfaces ();  // on ne charge pas toutes les surfaces, car cela prend trop de memoire, et trop de temps au chargement, alors que ce n'est pas necessaire. En effet, on ne redessine que si il y'a changement. Or la batterie se vide lentement, et la recharge n'est pas non plus fulgurante, donc au total on redesine reellement l'icone 1 fois toutes les 10 minutes peut-etre, ce qui ne justifie pas de pre-charger les surfaces.
 	
 	//Si le bus n'a pas encore ete acquis, on le recupere.
-	if (! myData.dbus_enable)
-		myData.dbus_enable = dbus_get_dbus();
+	if (! dbus_enable)
+		dbus_enable = dbus_get_dbus();
+	myData.dbus_enable = dbus_enable;
 	
 	//Si le bus a ete acquis, on y connecte nos signaux.
-	if (myData.dbus_enable)
+	if (dbus_enable)
 	{
 		dbus_connect_to_bus ();
 		detect_battery();
@@ -78,16 +79,16 @@ CD_APPLET_INIT_BEGIN (erreur)
 		{
 			get_on_battery();
 			update_stats();
-			myData.checkLoop = g_timeout_add ((int) 10000, (GSourceFunc) update_stats, (gpointer) NULL);
+			myData.checkLoop = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 		}
 		else
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceSector)
+			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg")
 		}
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBroken)
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("broken.svg")
 	}
 	
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
@@ -97,7 +98,7 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	if (myData.dbus_enable)
+	if (dbus_enable)
 	{
 		dbus_disconnect_from_bus ();
 		
@@ -114,7 +115,6 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	
 	if (myDesklet != NULL)
 	{
 		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
@@ -128,28 +128,36 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	
 	//\_______________ On recharge les donnees qui ont pu changer.
-	_load_surfaces ();
+	//_load_surfaces ();
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)  // si la frequence du timer passe en conf, il faudra l'arreter et le relancer.
 	{
-		myConfig.defaultTitle = g_strdup (myIcon->acName);  // libere dans le reset_config() precedemment appele.
+		if(myData.checkLoop != 0)  // la frequence peut avoir change.
+		{
+			g_source_remove (myData.checkLoop);
+			myData.checkLoop = 0;
+		}
+		myData.checkLoop = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 	}
 	
 	//\_______________ On redessine notre icone.
-	if (myData.dbus_enable)
+	if (dbus_enable)
 	{
 		if(myData.battery_present)
 		{
+			myData.previously_on_battery = -1;  // pour forcer le redessin.
+			myData.previous_battery_charge = -1;
+			myData.previous_battery_time = -1;
 			update_stats();
 		}
 		else
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceSector)
+			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg")
 		}
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBroken)
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("broken.svg")
 	}
 	
 CD_APPLET_RELOAD_END

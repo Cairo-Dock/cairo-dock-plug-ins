@@ -18,59 +18,62 @@ void update_icon(void)
 {
 	if(myData.battery_present)
 	{
-		if(myConfig.quickInfoType == MY_APPLET_TIME)
+		if (myData.previous_battery_time != myData.battery_time)
 		{
-			cairo_dock_set_quick_info (myDrawContext, format_time(myData.battery_time), myIcon, (myDock != NULL ? 1 + g_fAmplitude : 1));
+			if(myConfig.quickInfoType == MY_APPLET_TIME)
+			{
+				int hours = myData.battery_time / 3600;
+				int minutes = (myData.battery_time % 3600) / 60;
+				if (hours != 0)
+				{
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dh%02d", hours, minutes)
+				}
+				else
+				{
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", minutes)
+				}
+			}
+			else if(myConfig.quickInfoType == MY_APPLET_CHARGE)
+			{
+				cairo_dock_set_quick_info (myDrawContext, g_strdup_printf ("%d%s", myData.battery_charge,"%"), myIcon, (myDock != NULL ? 1 + g_fAmplitude : 1));
+			}
 		}
-		else if(myConfig.quickInfoType == MY_APPLET_CHARGE)
+		
+		if (myData.previously_on_battery != myData.on_battery || myData.previous_battery_charge != myData.battery_charge)
 		{
-			cairo_dock_set_quick_info (myDrawContext, g_strdup_printf ("%d%s", myData.battery_charge,"%"), myIcon, (myDock != NULL ? 1 + g_fAmplitude : 1));
-		}
-		if(myData.on_battery)
-		{
-			if(myData.battery_charge >= 95)
-				{ CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBattery44) }
-			else if(myData.battery_charge >= 65)
-				{ CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBattery34) }
-			else if(myData.battery_charge >= 35)
-				{ CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBattery24) }
-			else if(myData.battery_charge >= 5)
-				{ CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBattery14) }
+			myData.previously_on_battery = myData.on_battery;
+			myData.previous_battery_charge = myData.battery_charge;
+			
+			if(myData.on_battery)
+			{
+				if(myData.battery_charge >= 95)
+					{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_44.svg") }
+				else if(myData.battery_charge >= 65)
+					{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_34.svg") }
+				else if(myData.battery_charge >= 35)
+					{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_24.svg") }
+				else if(myData.battery_charge >= 5)
+					{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_14.svg") }
+				else
+					{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_04.svg") }
+			}
 			else
-				{ CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBattery04) }
-		}
-		else
-		{
-			if(myData.battery_charge >= 95)
-				{ CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceCharge44) }
-			else if(myData.battery_charge >= 65)
-				{ CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceCharge34) }
-			else if(myData.battery_charge >= 35)
-				{ CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceCharge24) }
-			else if(myData.battery_charge >= 5)
-				{ CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceCharge14) }
-			else
-				{ CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceCharge04) }
+			{
+				if(myData.battery_charge >= 95)
+					{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_44.svg") }
+				else if(myData.battery_charge >= 65)
+					{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_34.svg") }
+				else if(myData.battery_charge >= 35)
+					{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_24.svg") }
+				else if(myData.battery_charge >= 5)
+					{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_14.svg") }
+				else
+					{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_04.svg") }
+			}
 		}
 	}
 	else
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceSector)
-	}
-}
-
-gchar *format_time(int seconde)
-{
-	int hours = seconde / 3600;
-	int minutes = (seconde % 3600) / 60;
-	if(hours > 0)
-	{
-		if(minutes < 10) return g_strdup_printf("%ih0%i",hours,minutes);
-		else return g_strdup_printf("%ih%i",hours,minutes);
-	}
-	else
-	{
-		if(minutes > 0) return g_strdup_printf("%i",minutes);
-		else return NULL;
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg")
 	}
 }

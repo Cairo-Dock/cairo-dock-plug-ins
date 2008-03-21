@@ -103,10 +103,12 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../src/applet-notifications.c:77 ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:138
 msgid "Add a new mail account"
 msgstr ""
 
 #: ../src/applet-notifications.c:82 ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:143
 msgid "Remove a mail account"
 msgstr ""
 
@@ -368,7 +370,7 @@ msgstr ""
 msgid "Name of an image to overwrite the theme's has mail image :"
 msgstr ""
 
-#: ../src/applet-notifications.c:43
+#: ../src/applet-notifications.c:43 ../src/applet-notifications.c:62
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -376,11 +378,11 @@ msgid ""
 "you can change it in the conf panel of this module"
 msgstr ""
 
-#: ../src/applet-notifications.c:130
+#: ../src/applet-notifications.c:130 ../src/applet-notifications.c:149
 msgid "Modify a mail account"
 msgstr ""
 
-#: ../src/applet-notifications.c:152
+#: ../src/applet-notifications.c:152 ../src/applet-notifications.c:171
 msgid "No unread mail in your mailboxes"
 msgstr ""
 

@@ -7,9 +7,7 @@ AppletConfig myConfig;
 AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
-	
+CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.enableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");
 	myConfig.enableCover 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_cover");
 	myConfig.timeDialogs 		= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "time_dialogs", 3000);
@@ -21,11 +19,10 @@ CD_APPLET_CONFIG_BEGIN
 	myConfig.cPauseIcon 		= CD_CONFIG_GET_STRING ("Configuration", "pause icon");
 	myConfig.cStopIcon 		= CD_CONFIG_GET_STRING ("Configuration", "stop icon");
 	myConfig.cBrokenIcon 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	myConfig.defaultTitle = NULL;
 	
@@ -39,12 +36,10 @@ void reset_config (void)
 	myConfig.cStopIcon = NULL;
 	g_free (myConfig.cBrokenIcon);
 	myConfig.cBrokenIcon = NULL;
-	
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void)
-{
+
+CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pSurface);
 	myData.pSurface = NULL;
 	cairo_surface_destroy (myData.pStopSurface);
@@ -61,8 +56,4 @@ void reset_data (void)
 	
 	g_free (myData.playing_uri);
 	myData.playing_uri = NULL;
-	
-	gboolean dbus_enable = myData.dbus_enable;
-	memset (&myData, 0, sizeof (AppletData));
-	myData.dbus_enable = dbus_enable;
-}
+CD_APPLET_RESET_DATA_END
