@@ -26,14 +26,9 @@ typedef enum {
 typedef struct {
 	gchar *defaultTitle;
 	gchar *cUserImage[WIFI_NB_QUALITY];
-	/*gchar *cDefault;
-	gchar *c20Surface;
-	gchar *c40Surface;
-	gchar *c60Surface;
-	gchar *c80Surface;
-	gchar *c100Surface;*/
 	CDWifiInfoType quickInfoType;
 	gint iCheckInterval;
+	gint dCheckInterval;
 } AppletConfig;
 
 typedef struct {
@@ -43,6 +38,7 @@ typedef struct {
 	CDWifiQuality iPreviousQuality;
 	
 	gint checkTimer;
+	gint checkedTime;
 	gint strengthTimer;
 } AppletData;
 
