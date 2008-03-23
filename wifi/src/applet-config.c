@@ -26,6 +26,7 @@ CD_APPLET_CONFIG_BEGIN
 	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "signal_type", 1);
 	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
 	myConfig.dCheckInterval = myConfig.iCheckInterval;
+	myConfig.hollowIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "hollow");
 CD_APPLET_CONFIG_END
 
 

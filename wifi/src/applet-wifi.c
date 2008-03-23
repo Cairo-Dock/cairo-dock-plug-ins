@@ -198,10 +198,20 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 
 void _wifi_draw_no_wireless_extension (void) {
 	CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-	cd_wifi_set_surface (WIFI_QUALITY_NO_SIGNAL);
-	myData.checkedTime = myData.checkedTime+1;
+	if ((myDesklet != NULL) && (myConfig.hollowIcon)) { //Blank Icon
+	  cairo_surface_t *pSurface;
+	  gchar *cImagePath = g_strdup_printf ("%s/blank.svg", MY_APPLET_SHARE_DATA_DIR);
+		pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+		g_free (cImagePath);
+	  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(" ");
+	  CD_APPLET_SET_SURFACE_ON_MY_ICON(pSurface);
+	}
+	else {
+	  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+	  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+	}
 	
+	myData.checkedTime = myData.checkedTime+1;
 	if (myData.checkedTime == 1) {
 	  myConfig.iCheckInterval = 60000; //check 1min
 	  if (myData.iSidTimer != 0) {
@@ -268,7 +278,7 @@ gboolean cd_wifi_getStrength(void) {
 	    myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
 	  }
 		
-		myData.checkedTime = 0; // On remet a zero le compteur
+		myData.checkedTime = 0; // Reset the check counter
 	  switch (myConfig.quickInfoType) {
 		  case WIFI_INFO_NONE :
 		    	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
