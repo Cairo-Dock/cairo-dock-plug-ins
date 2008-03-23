@@ -13,6 +13,8 @@ libcd_xmms_la_SOURCES = \
 	applet-notifications.h\
 	applet-infopipe.c\
 	applet-infopipe.h\
+	applet-draw.c\
+	applet-draw.h\
 	applet-struct.h
 
 

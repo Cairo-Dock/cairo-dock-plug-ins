@@ -20,9 +20,17 @@ typedef enum {
 	MY_EXAILE,
 } MyPlayerType;
 
+typedef enum {
+  sPlayerPlaying = 0,
+  sPlayerPaused,
+  sPlayerStopped,
+  sPlayerBroken,
+  sPlayerNone,
+} MyPlayerStatus;
 
 typedef struct {
 	gboolean enableDialogs;
+	gboolean extendedDesklet;
 	gdouble timeDialogs;
 	gboolean enableAnim;
 	CairoDockAnimationType changeAnimation;
@@ -44,6 +52,8 @@ typedef struct {
 	cairo_surface_t *pCover;
 	cairo_surface_t *pBrokenSurface;
   gchar *playingTitle;
+  MyPlayerStatus playingStatus;
+  gchar *lastQuickInfo;
   int pipeTimer;
 } AppletData;
 

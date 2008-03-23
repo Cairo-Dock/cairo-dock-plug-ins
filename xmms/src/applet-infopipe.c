@@ -1,9 +1,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n.h>
+#include <cairo-dock.h>
 
 #include "applet-struct.h"
 #include "applet-infopipe.h"
+#include "applet-draw.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -19,16 +21,7 @@ gboolean cd_xmms_get_pipe() {
 		return TRUE;
 	bBusy = TRUE;
 	
-	if (myDesklet != NULL) {
-		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;
-	}
+	//On avais ici les lignes pour le desklet (Inutile)
 	
 	gchar *cInfopipeFilePath;
 	if (myConfig.cPlayer == MY_XMMS) {
@@ -103,7 +96,6 @@ gboolean cd_xmms_get_pipe() {
 	}
 	
   cd_xmms_read_pipe(cInfopipeFilePath);
-  
   bBusy = FALSE;
 	return TRUE;
 }
@@ -116,18 +108,14 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 		return FALSE;
 	bBusy = TRUE;
 	
-	if (myDesklet != NULL) {
-		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+	//On avais ici les lignes pour le desklet (inutile)
+  /*if (myDesklet != NULL) {
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;
-	}
+	}*/
 	
   gchar *cContent = NULL;
+  gchar *cQuickInfo;
 	gsize length=0;
 	GError *tmp_erreur = NULL;
 	g_file_get_contents(cInfopipeFilePath, &cContent, &length, &tmp_erreur);
@@ -139,31 +127,26 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW(" ");
 	}
 	else {
-	  gchar *cQuickInfo;
 		gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 		g_free(cContent);
-		gchar *cOneInfopipe;
-		gchar **tcnt;
-		int **icnt;
-		gchar *titre=NULL;
-		int uSecPos, uSecTime, timeLeft;
-		int i = 0;
+		gchar *cOneInfopipe, **tcnt, *titre=NULL;
+		int **icnt, uSecPos, uSecTime, timeLeft, i=0;
 		cQuickInfo = " ";
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
 			if (i == 2) {
 			  tcnt = g_strsplit(cOneInfopipe," ", -1);
 			  if ((strcmp(tcnt[1],"Playing") == 0) || (strcmp(tcnt[1],"playing") == 0)) {
-			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pPlaySurface);
+          myData.playingStatus = sPlayerPlaying;
 			  }
 			  else if ((strcmp(tcnt[1],"Paused") == 0) || (strcmp(tcnt[1],"paused") == 0)) {
-			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pPauseSurface);
+			    myData.playingStatus = sPlayerPaused;
 			  }
 			  else if ((strcmp(tcnt[1],"Stopped") == 0) || (strcmp(tcnt[1],"stopped") == 0)) {
-			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pStopSurface);
+			    myData.playingStatus = sPlayerStopped;
 			  }
 			  else {
-			    CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBrokenSurface);
+			    myData.playingStatus = sPlayerBroken;
 			  }
 			}
 			else if ((i == 4) && (myConfig.quickInfoType == MY_APPLET_TRACK)) {
@@ -205,17 +188,17 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			  } 
 			}
 		}
-		if ((titre == NULL) || (strcmp(titre,"(null)") == 0)) {
-			cQuickInfo = NULL;
-			CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		  CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurface);
-	  }
-	  else {
-	    CD_APPLET_SET_NAME_FOR_MY_ICON(myData.playingTitle);
-	  }
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW(cQuickInfo);
+  }
+  
+  if ((myDesklet != NULL) && (myConfig.extendedDesklet)) {
+    cd_xmms_draw_in_desklet(myDrawContext, cQuickInfo);
+    //cd_xmms_draw_in_dock(cQuickInfo);
+  }
+  else {
+    cd_xmms_draw_in_dock(cQuickInfo);
   }
   cd_remove_pipes();
+  
   bBusy = FALSE;
 	return FALSE;
 }

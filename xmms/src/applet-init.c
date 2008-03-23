@@ -115,18 +115,24 @@ int _remove_pipes() {
 
 CD_APPLET_INIT_BEGIN (erreur)
   if (myDesklet != NULL) {
-		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
+		/*myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
 		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
 		myIcon->fDrawX = g_iDockRadius/2;
 		myIcon->fDrawY = g_iDockRadius/2;
 		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;
+		myDesklet->renderer = NULL; */
+		
+	  cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
+	
 	_remove_pipes();
 	_load_surfaces();
 	myData.playingTitle = "  ";
+	myData.lastQuickInfo = " ";
+	myData.playingStatus = sPlayerNone;
 	cd_xmms_update_title();
 	myData.pipeTimer = g_timeout_add (500, (GSourceFunc) cd_xmms_get_pipe, (gpointer) NULL);
 	
@@ -153,22 +159,20 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
+	if (myDesklet != NULL) {	  
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+	}
+	_load_surfaces();
+	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		if (myDesklet != NULL) {
-		  myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		  myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		  myIcon->fDrawX = g_iDockRadius/2;
-		  myIcon->fDrawY = g_iDockRadius/2;
-		  myIcon->fScale = 1;
-		  cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		  myDrawContext = cairo_create (myIcon->pIconBuffer);
-		  myDesklet->renderer = NULL;
-	  }
-	  _load_surfaces();
 	  _remove_pipes();
+		cd_xmms_update_title();
+	} 
+	else if (myDesklet != NULL) {
 		cd_xmms_update_title();
 	}
 	else {
-		cd_xmms_update_title();
+	  //Rien a faire
 	}
 CD_APPLET_RELOAD_END
