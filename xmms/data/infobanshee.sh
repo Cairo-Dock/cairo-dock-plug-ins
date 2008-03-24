@@ -52,4 +52,4 @@ echo "Info: Blank" >> $FILE
 #Ligne non lu du pipe
 echo "Info: Blank" >> $FILE
 #Titre du son
-echo "nowTitle:$GTITLE" >> $FILE
+echo "nowTitle: $GTITLE" >> $FILE
