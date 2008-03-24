@@ -18,63 +18,12 @@ AppletConfig myConfig;
 AppletData myData;
 
 
-CD_APPLET_DEFINITION ("mail", 1, 5, 0, CAIRO_DOCK_CATEGORY_DESKTOP)
-
-static void _load_surfaces (void) {
-	GString *sImagePath = g_string_new ("");
-
-	//Chargement de l'image "pas de mail"
-		g_string_printf (sImagePath, "%s/cd_mail_nomail.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pNoMailSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-
-	//Chargement de l'image "il y a un des mails"
-		g_string_printf (sImagePath, "%s/cd_mail_newmail.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pHasMailSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-
-	g_string_free (sImagePath, TRUE);
-}
+CD_APPLET_DEFINITION ("mail", 1, 5, 1, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 CD_APPLET_INIT_BEGIN (erreur)
-	if (myDesklet != NULL)
-	{
-		/*myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;*/
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-	}
-
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
-
-	//\_______________ On charge en priorite les images utilisateur.
-    myData.pNoMailSurface = NULL;
-    myData.pHasMailSurface = NULL;
-
-	_load_surfaces();
-
-	if (myConfig.cNoMailUserImage != NULL)
-	{
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cNoMailUserImage);
-		myData.pNoMailSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath)
-		g_free (cUserImagePath);
-	}
-	if (myConfig.cHasMailUserImage != NULL)
-	{
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cHasMailUserImage);
-		myData.pHasMailSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath)
-		g_free (cUserImagePath);
-	}
-    if( myData.pNoMailSurface )
-    {
-        CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pNoMailSurface);
-    }
 
     xfce_mailwatch_signal_connect(myData.mailwatch,
             XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED,
@@ -101,50 +50,14 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	if (myDesklet != NULL)
-	{
-		/*myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;*/
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-	}
-
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (CD_APPLET_MY_CONFIG_CHANGED)
+	if (CD_APPLET_MY_CONFIG_CHANGED )
 	{
-        //\_______________ On charge en priorite les images utilisateur.
-        myData.pNoMailSurface = NULL;
-        myData.pHasMailSurface = NULL;
-
-        _load_surfaces();
-
-        if (myConfig.cNoMailUserImage != NULL)
-        {
-            gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cNoMailUserImage);
-            myData.pNoMailSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath)
-            g_free (cUserImagePath);
-        }
-        if (myConfig.cHasMailUserImage != NULL)
-        {
-            gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cHasMailUserImage);
-            myData.pHasMailSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath)
-            g_free (cUserImagePath);
-        }
-        if( myData.pNoMailSurface )
-        {
-            CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pNoMailSurface)
-        }
 	}
 	else
 	{
-
 	}
-    CD_APPLET_REDRAW_MY_ICON
+
+    xfce_mailwatch_force_update(myData.mailwatch);
 
 CD_APPLET_RELOAD_END

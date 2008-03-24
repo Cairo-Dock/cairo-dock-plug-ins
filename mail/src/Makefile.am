@@ -42,8 +42,8 @@ libcd_mail_la_CFLAGS = \
 	-std=c99\
 	-fgnu89-inline\
 	-Werror-implicit-function-declaration\
-	-O3
-#	-g -ggdb -W -Wall
+	-g -ggdb -W
+#	-O3
 
 
 libcd_mail_la_LIBADD = \

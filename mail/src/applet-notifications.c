@@ -32,7 +32,7 @@ CD_APPLET_ABOUT (_D("This is the mail applet\n made by Christophe Chapuis for Ca
 	{\
 		pIcon = g_new0 (Icon, 1);\
 		pIcon->acName = g_strdup_printf ("%s", account_name);\
-		pIcon->acFileName = g_strdup_printf ("%s/%s.svg", MY_APPLET_SHARE_DATA_DIR, nbUnreadMails>0?"cd_mail_newmail":"cd_mail_nomail");\
+		pIcon->acFileName = g_strdup_printf ("%s", nbUnreadMails>0?myConfig.cHasMailUserImage:myConfig.cNoMailUserImage);\
 		if (nbUnreadMails>0)\
 			pIcon->cQuickInfo = g_strdup_printf ("%d", nbUnreadMails);\
 		pIcon->fOrder = i;\
@@ -42,7 +42,7 @@ CD_APPLET_ABOUT (_D("This is the mail applet\n made by Christophe Chapuis for Ca
 		pIcon->fHeightFactor = 1.;\
 		pIcon->acCommand = g_strdup ("none");\
 		pIcon->cParentDockName = g_strdup (myIcon->acName);\
-		cd_debug (" + %s\n", pIcon->acName);\
+		cd_debug (" + %s (%s)\n", pIcon->acName, pIcon->acFileName);\
 		pIconList = g_list_append (pIconList, pIcon);\
 	}
 
@@ -160,20 +160,29 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 
 void
-mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpointer user_data)
+_mail_draw_main_icon (void)
 {
-    myData.iNbUnreadMails = GPOINTER_TO_UINT( arg );
+	g_return_if_fail (myDrawContext != NULL);
 
-    cd_message( "mailwatch_new_messages_changed_cb: %d new messages !", myData.iNbUnreadMails );
 	if (myData.iNbUnreadMails <= 0)
 	{
 	    cairo_dock_remove_dialog_if_any (myIcon);
         cairo_dock_show_temporary_dialog (_("No unread mail in your mailboxes"), myIcon, myContainer, 1000);
-
+/*
 	    if( myData.pNoMailSurface )
 	    {
             CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pNoMailSurface)
-	    }
+        }
+        else */
+        {
+            g_free (myIcon->acFileName);
+
+            //Chargement de l'image "pas de mail"
+            myIcon->acFileName = g_strdup(myConfig.cNoMailUserImage);
+            CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
+        }
+
+        CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.iNbUnreadMails)
 	}
 	else
 	{
@@ -201,21 +210,28 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
 
         g_string_free(ttip_str, TRUE);
 
-	    if( myData.pHasMailSurface )
+/*	    if( myData.pHasMailSurface )
 	    {
             CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pHasMailSurface)
 	    }
-	}
-    cd_message( "mailwatch_new_messages_changed_cb: Leaving." );
+        else */
+        {
+            g_free (myIcon->acFileName);
+            //Chargement de l'image "il y a un des mails"
+            myIcon->acFileName = g_strdup(myConfig.cHasMailUserImage);
+            CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
+        }
 
-    if( myData.iNbUnreadMails > 0 )
-    {
-        CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.iNbUnreadMails)
-    }
-    else
-    {
-        cairo_dock_remove_quick_info(myIcon);
-    }
+        CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+	}
+}
+
+void
+mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpointer user_data)
+{
+    myData.iNbUnreadMails = GPOINTER_TO_UINT( arg );
+
+    cd_message( "mailwatch_new_messages_changed_cb: %d new messages !", myData.iNbUnreadMails );
 
     {
         GList *pIconList = NULL;
@@ -237,38 +253,66 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
         g_strfreev(mailbox_names);
         g_free(new_message_counts);
 
+        // on detruit l'ancienne liste d'icones (desklet ou sous-dock)
+		if (myDesklet && myDesklet->icons != NULL)
+		{
+			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+			g_list_free (myDesklet->icons);
+			myDesklet->icons = NULL;
+		}
 		if (myIcon->pSubDock != NULL)
 		{
 			g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
 			g_list_free (myIcon->pSubDock->icons);
 			myIcon->pSubDock->icons = NULL;
 		}
-        if (myIcon->pSubDock == NULL)
-        {
-            if (pIconList != NULL)
+		if( myDock )
+		{
+            if (myIcon->pSubDock == NULL)
             {
-                cd_message ("  creation du sous-dock mail");
-                myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-                cairo_dock_update_dock_size (myIcon->pSubDock);
+                if (pIconList != NULL)
+                {
+                    cd_message ("  creation du sous-dock mail");
+                    myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
+                    cairo_dock_update_dock_size (myIcon->pSubDock);
+                }
             }
-        }
-        else  // on a deja notre sous-dock, on remplace juste ses icones.
-        {
-            cd_message ("  rechargement du sous-dock mail");
-            if (pIconList == NULL)  // inutile de le garder.
+            else  // on a deja notre sous-dock, on remplace juste ses icones.
             {
-                cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-                myIcon->pSubDock = NULL;
+                cd_message ("  rechargement du sous-dock mail");
+                if (pIconList == NULL)  // inutile de le garder.
+                {
+                    cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+                    myIcon->pSubDock = NULL;
+                }
+                else
+                {
+                    myIcon->pSubDock->icons = pIconList;
+                    cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
+                    cairo_dock_update_dock_size (myIcon->pSubDock);
+                }
             }
-            else
-            {
-                myIcon->pSubDock->icons = pIconList;
-                cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
-                cairo_dock_update_dock_size (myIcon->pSubDock);
-            }
-        }
+		}
+		else
+		{
+			if (myIcon->pSubDock != NULL)
+			{
+				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+				myIcon->pSubDock = NULL;
+			}
+			myDesklet->icons = pIconList;
+
+            gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
+            cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
+			myDrawContext = cairo_create (myIcon->pIconBuffer);
+		}
     }
 
-    CD_APPLET_REDRAW_MY_ICON
+    _mail_draw_main_icon();
+
+    if (myDesklet)
+        gtk_widget_queue_draw (myDesklet->pWidget);
+    else
+        CD_APPLET_REDRAW_MY_ICON
 }
 

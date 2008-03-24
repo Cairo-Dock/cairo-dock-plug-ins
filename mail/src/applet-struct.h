@@ -8,17 +8,14 @@
 #include "cairo-dock.h"
 
 typedef struct {
-    gchar *cNoMailUserImage;
-    gchar *cHasMailUserImage;
-    gchar *cMailApplication;
+        gchar *cNoMailUserImage;
+        gchar *cHasMailUserImage;
+        gchar *cMailApplication;
 	} AppletConfig;
 
 typedef struct {
-	XfceMailwatch *mailwatch;
-
-	cairo_surface_t *pNoMailSurface;
-	cairo_surface_t *pHasMailSurface;
-	guint iNbUnreadMails;
+        XfceMailwatch *mailwatch;
+        guint iNbUnreadMails;
 	} AppletData;
 
 
