@@ -13,8 +13,7 @@ extern AppletData myData;
 
 void cd_xmms_prev() {
 	GError *erreur = NULL;
-	switch (myConfig.iPlayer)
-	{
+	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			g_spawn_command_line_async ("xmms -r", &erreur);
 		break;
@@ -38,8 +37,7 @@ void cd_xmms_prev() {
 
 void cd_xmms_pp() {
 	GError *erreur = NULL;
-	switch (myConfig.iPlayer)
-	{
+	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			g_spawn_command_line_async ("xmms -t", &erreur);
 		break;
@@ -62,8 +60,7 @@ void cd_xmms_pp() {
 }
 void cd_xmms_s() {
 	GError *erreur = NULL;
-	switch (myConfig.iPlayer)
-	{
+	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			g_spawn_command_line_async ("xmms -s", &erreur);
 		break;
@@ -83,8 +80,7 @@ void cd_xmms_s() {
 }
 void cd_xmms_next() {
 	GError *erreur = NULL;
-	switch (myConfig.iPlayer)
-	{
+	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			g_spawn_command_line_async ("xmms -f", &erreur);
 		break;
@@ -107,8 +103,7 @@ void cd_xmms_next() {
 }
 void cd_xmms_shuffle() {
 	GError *erreur = NULL;
-	switch (myConfig.iPlayer)
-	{
+	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			g_spawn_command_line_async ("xmms -S", &erreur);
 		break;
@@ -125,8 +120,7 @@ void cd_xmms_shuffle() {
 }
 void cd_xmms_repeat() {
 	GError *erreur = NULL;
-	switch (myConfig.iPlayer)
-	{
+	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			g_spawn_command_line_async ("xmms -R", &erreur);
 		break;
@@ -143,8 +137,7 @@ void cd_xmms_repeat() {
 }
 void cd_xmms_jumpbox() {
 	GError *erreur = NULL;
-	switch (myConfig.iPlayer)
-	{
+	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			g_spawn_command_line_async ("xmms -j", &erreur);
 		break;

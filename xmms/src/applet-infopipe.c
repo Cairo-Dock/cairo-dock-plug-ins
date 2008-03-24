@@ -22,8 +22,7 @@ gboolean cd_xmms_get_pipe(gpointer data) {
 	bBusy = TRUE;
 	
 	gchar *cInfopipeFilePath;
-	switch (myConfig.iPlayer)
-	{
+	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			cInfopipeFilePath = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
 		break ;
@@ -119,8 +118,7 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			if (i == 2) {
 				//tcnt = g_strsplit(cOneInfopipe," ", -1);
 				gchar *str = strchr (cOneInfopipe, ' ');
-				if (str != NULL)
-				{
+				if (str != NULL) {
 					while (*str == ' ')
 						str ++;
 					if ((strcmp (str, "Playing") == 0) || (strcmp (str, "playing") == 0))
@@ -138,16 +136,14 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			else if ((i == 4) && (myConfig.quickInfoType == MY_APPLET_TRACK)) {
 				//tcnt = g_strsplit(cOneInfopipe,":", -1);
 				gchar *str = strchr (cOneInfopipe, ':');
-				if (str != NULL)
-				{
+				if (str != NULL) {
 					cQuickInfo = g_strdup (str+1);
 				}
 			}
 			else if ((i == 5) && (myConfig.quickInfoType == MY_APPLET_TIME_LEFT)) {
 				//tcnt = g_strsplit(cOneInfopipe," ", -1);
 				gchar *str = strchr (cOneInfopipe, ' ');
-				if (str != NULL)
-				{
+				if (str != NULL) {
 					while (*str == ' ')
 						str ++;
 					uSecPos = atoi(str) * 1e-3;
@@ -156,8 +152,7 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			else if ((i == 6) && (myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED)) {
 				//tcnt = g_strsplit(cOneInfopipe," ", -1);
 				gchar *str = strchr (cOneInfopipe, ' ');
-				if (str != NULL)
-				{
+				if (str != NULL) {
 					while (*str == ' ')
 						str ++;
 					cQuickInfo = g_strdup (str);
@@ -166,8 +161,7 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			else if ((i == 7) && (myConfig.quickInfoType == MY_APPLET_TIME_LEFT)) {
 				//tcnt = g_strsplit(cOneInfopipe," ", -1);
 				gchar *str = strchr (cOneInfopipe, ' ');
-				if (str != NULL)
-				{
+				if (str != NULL) {
 					while (*str == ' ')
 						str ++;
 					uSecTime = atoi(str) * 1e-3;
@@ -180,8 +174,7 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			else if ((i == 8) && (myConfig.quickInfoType == MY_APPLET_TOTAL_TIME)) {
 				//tcnt = g_strsplit(cOneInfopipe," ", -1);
 				gchar *str = strchr (cOneInfopipe, ' ');
-				if (str != NULL)
-				{
+				if (str != NULL) {
 					while (*str == ' ')
 						str ++;
 					cQuickInfo = g_strdup (str);
@@ -191,9 +184,8 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 				//tcnt = g_strsplit(cOneInfopipe,"e: ", -1);
 				//titre = tcnt[1];
 				gchar *str = strchr (cOneInfopipe, 'e');
-				if (str != NULL)
-				{
-					titre = str+1;
+				if (str != NULL) {
+					titre = str+2;
 					if ((strcmp(titre,"(null)") != 0) && (myData.playingTitle == NULL || strcmp(titre, myData.playingTitle) != 0)) {
 						myData.playingTitle = g_strdup (titre);
 						cd_message("On a changé de son! %s",titre);
@@ -229,8 +221,7 @@ void cd_xmms_update_title() {
 //Fonction qui supprime les tuyaux émulés pour eviter des pics CPU
 void cd_remove_pipes() {
 	gchar *cInfopipeFilePath = NULL;
-	switch (myConfig.iPlayer)
-	{
+	switch (myConfig.iPlayer) {
 		case MY_AUDACIOUS :
 			cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
 		break;
