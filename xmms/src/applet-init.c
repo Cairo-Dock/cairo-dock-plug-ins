@@ -1,5 +1,5 @@
 #include "stdlib.h"
-#include <glib/gi18n.h>
+#include <glib/gstdio.h>
 
 #include "applet-config.h"
 #include "applet-notifications.h"
@@ -10,7 +10,7 @@
 AppletConfig myConfig;
 AppletData myData;
 
-CD_APPLET_DEFINITION ("xmms", 1, 4, 7, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("xmms", 1, 5, 3, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 static void _load_surfaces (void) {
 	gchar *cUserImagePath;
@@ -89,27 +89,23 @@ static void _load_surfaces (void) {
 }
 
 int _remove_pipes() {
-  if (myConfig.cPlayer == MY_XMMS) {
-    return 0;
-  }
-  GString *sScriptPath = g_string_new ("");
-  gchar *cInfopipeFilePath;
-  if (myConfig.cPlayer == MY_AUDACIOUS) {
-    cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
-  }
-  else if (myConfig.cPlayer == MY_BANSHEE) {
-    cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
-  }
-  else if (myConfig.cPlayer == MY_EXAILE) {
-    cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
-  }
-  g_string_printf (sScriptPath, "rm %s", cInfopipeFilePath);
-  GError *erreur = NULL;
-  g_spawn_command_line_async (sScriptPath->str, &erreur);
-  if (erreur != NULL) {
-	  cd_warning ("Attention : when trying to execute 'infobanshee.sh", erreur->message);
-    g_error_free (erreur);
+	gchar *cInfopipeFilePath = NULL;
+	switch (myConfig.iPlayer)
+	{
+		case MY_AUDACIOUS :
+			cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
+		break;
+		case MY_BANSHEE :
+			cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
+		break;
+		case MY_EXAILE :
+			cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
+		break;
+		default :  // xmms n'en a pas.
+		return 0;
 	}
+	g_remove (cInfopipeFilePath);
+	g_free (cInfopipeFilePath);
 	return 0;
 }
 
@@ -132,14 +128,13 @@ CD_APPLET_INIT_BEGIN (erreur)
 	_load_surfaces();
 	myData.playingTitle = "  ";
 	myData.lastQuickInfo = " ";
-	myData.playingStatus = sPlayerNone;
+	myData.playingStatus = PLAYER_NONE;
 	cd_xmms_update_title();
 	myData.pipeTimer = g_timeout_add (500, (GSourceFunc) cd_xmms_get_pipe, (gpointer) NULL);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
-	
 CD_APPLET_INIT_END
 
 
@@ -148,7 +143,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	
 	
 	//\_________________ On libere toutes nos ressources.
 	reset_config();
@@ -159,20 +153,17 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (myDesklet != NULL) {	  
+	if (myDesklet != NULL) {
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	_load_surfaces();
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-	  _remove_pipes();
-		cd_xmms_update_title();
-	} 
-	else if (myDesklet != NULL) {
+		_remove_pipes();
 		cd_xmms_update_title();
 	}
 	else {
-	  //Rien a faire
+		cd_xmms_update_title();
 	}
 CD_APPLET_RELOAD_END

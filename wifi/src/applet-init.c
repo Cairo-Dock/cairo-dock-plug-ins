@@ -64,10 +64,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		cd_wifi_launch_measure ();  // asynchrone
 	}
-	else if (myDesklet != NULL) {
-		cd_wifi_set_surface (myData.iPreviousQuality);
-	}
 	else {
-		// rien a faire, cairo-dock va recharger notre sous-dock.
+		cd_wifi_set_surface (myData.iPreviousQuality);
 	}
 CD_APPLET_RELOAD_END

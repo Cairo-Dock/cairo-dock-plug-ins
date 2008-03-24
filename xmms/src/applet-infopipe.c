@@ -13,7 +13,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 //Fonction qui definie quel tuyau a emprunter pour récupérer les infos
-//Ajout d'une condition pour que temps que le tuyau n'est pas en place il n'y ai pas lecture de l'information
+//Ajout d'une condition pour que tant que le tuyau n'est pas en place il n'y ait pas lecture de l'information
 gboolean cd_xmms_get_pipe() {
   static gboolean bBusy = FALSE;
   
@@ -24,10 +24,10 @@ gboolean cd_xmms_get_pipe() {
 	//On avais ici les lignes pour le desklet (Inutile)
 	
 	gchar *cInfopipeFilePath;
-	if (myConfig.cPlayer == MY_XMMS) {
+	if (myConfig.iPlayer == MY_XMMS) {
     cInfopipeFilePath = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
   }
-  else if (myConfig.cPlayer == MY_AUDACIOUS) {
+  else if (myConfig.iPlayer == MY_AUDACIOUS) {
     //Il faut émuler le pipe d'audacious par AUDTOOL
     cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
     
@@ -45,7 +45,7 @@ gboolean cd_xmms_get_pipe() {
   }
   
   //Le pipe est trop lent et cause des freezes...
-  else if (myConfig.cPlayer == MY_BANSHEE) {
+  else if (myConfig.iPlayer == MY_BANSHEE) {
     //Il faut émuler le pipe de banshee par le script
     cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
     
@@ -62,7 +62,7 @@ gboolean cd_xmms_get_pipe() {
   }
   
   //Le pipe est trop lent, récupération des infos une fois sur deux avec un pique du cpu lors de l'éxécution du script
-  else if (myConfig.cPlayer == MY_EXAILE) {
+  else if (myConfig.iPlayer == MY_EXAILE) {
     //Il faut émuler le pipe d'audacious par Exaile -q
     cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
     
@@ -79,14 +79,14 @@ gboolean cd_xmms_get_pipe() {
   }
   
   //On verifie si le pipe est mal défini (s'il y a une erreur dans la conf avec current-player ou pas de pipe), on sort.
-  if (cInfopipeFilePath == NULL) {
-   	CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+	if (cInfopipeFilePath == NULL) {
+		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBrokenSurface);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(" ");
 		CD_APPLET_REDRAW_MY_ICON;
 		cd_message("No Pipe to read");
 		bBusy = FALSE;
-		return TRUE;
+	return TRUE;
 	}
 	
 	//Si le pipe n'existe pas, on sort. Evite les cascades d'éxécution du script et de lire des données fausses
@@ -120,7 +120,7 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 	GError *tmp_erreur = NULL;
 	g_file_get_contents(cInfopipeFilePath, &cContent, &length, &tmp_erreur);
 	if (tmp_erreur != NULL) {
-		cd_message("Attention : %s\n", tmp_erreur->message);
+		cd_warning("Attention : %s", tmp_erreur->message);
 		g_error_free(tmp_erreur);
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurface);
@@ -135,19 +135,19 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
 			if (i == 2) {
-			  tcnt = g_strsplit(cOneInfopipe," ", -1);
-			  if ((strcmp(tcnt[1],"Playing") == 0) || (strcmp(tcnt[1],"playing") == 0)) {
-          myData.playingStatus = sPlayerPlaying;
-			  }
-			  else if ((strcmp(tcnt[1],"Paused") == 0) || (strcmp(tcnt[1],"paused") == 0)) {
-			    myData.playingStatus = sPlayerPaused;
-			  }
-			  else if ((strcmp(tcnt[1],"Stopped") == 0) || (strcmp(tcnt[1],"stopped") == 0)) {
-			    myData.playingStatus = sPlayerStopped;
-			  }
-			  else {
-			    myData.playingStatus = sPlayerBroken;
-			  }
+				tcnt = g_strsplit(cOneInfopipe," ", -1);
+				if ((strcmp(tcnt[1],"Playing") == 0) || (strcmp(tcnt[1],"playing") == 0)) {
+					myData.playingStatus = PLAYER_PLAYING;
+				}
+				else if ((strcmp(tcnt[1],"Paused") == 0) || (strcmp(tcnt[1],"paused") == 0)) {
+					myData.playingStatus = PLAYER_PAUSED;
+				}
+				else if ((strcmp(tcnt[1],"Stopped") == 0) || (strcmp(tcnt[1],"stopped") == 0)) {
+					myData.playingStatus = PLAYER_STOPPED;
+				}
+				else {
+					myData.playingStatus = PLAYER_BROKEN;
+				}
 			}
 			else if ((i == 4) && (myConfig.quickInfoType == MY_APPLET_TRACK)) {
 				tcnt = g_strsplit(cOneInfopipe,":", -1);
@@ -155,17 +155,17 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			}
 			else if ((i == 5) && (myConfig.quickInfoType == MY_APPLET_TIME_LEFT)) {
 				tcnt = g_strsplit(cOneInfopipe," ", -1);
-			  uSecPos = atoi(tcnt[1])/1000;
+				uSecPos = atoi(tcnt[1])/1000;
 			}
 			else if ((i == 6) && (myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED)) {
 				tcnt = g_strsplit(cOneInfopipe," ", -1);
-			  cQuickInfo = g_strdup_printf ("%s", tcnt[1]);
+				cQuickInfo = g_strdup_printf ("%s", tcnt[1]);
 			}
 			else if ((i == 7) && (myConfig.quickInfoType == MY_APPLET_TIME_LEFT)) {
 				tcnt = g_strsplit(cOneInfopipe," ", -1);
-			  uSecTime = atoi(tcnt[1])/1000;
-			  timeLeft = uSecTime - uSecPos;
-			  int min = timeLeft / 60;
+				uSecTime = atoi(tcnt[1])/1000;
+				timeLeft = uSecTime - uSecPos;
+				int min = timeLeft / 60;
 				int sec = timeLeft % 60;
 				cQuickInfo = g_strdup_printf ("%i:%.02d", min,sec);
 			}
@@ -178,7 +178,7 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 			  titre = tcnt[1];
 			  if ((strcmp(titre,myData.playingTitle) != 0) && (titre != NULL) && (strcmp(titre,"(null)") != 0)) {
 			    myData.playingTitle = titre;
-			    cd_message("On a changé de son! %s\n",titre);
+			    cd_message("On a changé de son! %s",titre);
 			    if (myConfig.enableAnim) {
 			      cd_xmms_animat_icon(1);
 			    }
@@ -204,24 +204,24 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 }
 
 void cd_xmms_update_title() {
-  cd_message("On met a jour le titre et le status de l'applet\n");
+  cd_message("On met a jour le titre et le status de l'applet");
   cd_xmms_get_pipe();
 }
 
 //Fonction qui supprime les tuyaux émulés pour eviter des pics CPU
 int cd_remove_pipes() {
-  if (myConfig.cPlayer == MY_XMMS) {
+  if (myConfig.iPlayer == MY_XMMS) {
     return 0;
   }
   GString *sScriptPath = g_string_new ("");
   gchar *cInfopipeFilePath;
-  if (myConfig.cPlayer == MY_AUDACIOUS) {
+  if (myConfig.iPlayer == MY_AUDACIOUS) {
     cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
   }
-  else if (myConfig.cPlayer == MY_BANSHEE) {
+  else if (myConfig.iPlayer == MY_BANSHEE) {
     cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
   }
-  else if (myConfig.cPlayer == MY_EXAILE) {
+  else if (myConfig.iPlayer == MY_EXAILE) {
     cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
   }
   g_string_printf (sScriptPath, "rm %s", cInfopipeFilePath);
@@ -236,7 +236,7 @@ int cd_remove_pipes() {
 
 //Fonction qui affiche la bulle au changement de musique
 void cd_xmms_new_song_playing(void) {
-	cairo_dock_show_temporary_dialog ("%s",	myIcon, myDock, myConfig.timeDialogs, myData.playingTitle);
+	cairo_dock_show_temporary_dialog ("%s", myIcon, myDock, myConfig.timeDialogs, myData.playingTitle);
 }
 //Fonction qui anime l'icone au changement de musique
 void cd_xmms_animat_icon(int animationLength) {

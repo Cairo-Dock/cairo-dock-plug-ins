@@ -14,33 +14,38 @@ extern AppletData myData;
 //Fonction de dessin en mode dock
 void cd_xmms_draw_in_dock (gchar *cQuickInfo) {
   if ((myData.playingTitle == NULL) || (strcmp(myData.playingTitle,"(null)") == 0)) { //Titre null ou absent on affiche l'etat inital de l'applet
-	  cQuickInfo = "  ";
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+		
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+		//g_free (myData.lastQuickInfo);
+		myData.lastQuickInfo = NULL;
+		
 		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurface);
 	}
 	else {
-	  CD_APPLET_SET_NAME_FOR_MY_ICON(myData.playingTitle);
-	  switch(myData.playingStatus) { //On Affiche le bon statut du lecteur
-      case sPlayerPlaying:
-        CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pPlaySurface);
-      break;
-      case sPlayerPaused:
-        CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pPauseSurface);
-      break;
-      case sPlayerStopped:
-        CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pStopSurface);
-      break;
-      case sPlayerBroken:
-        CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBrokenSurface);
-      break;
-    }
+		CD_APPLET_SET_NAME_FOR_MY_ICON(myData.playingTitle);
+		
+		if (strcmp(myData.lastQuickInfo,cQuickInfo) != 0) {
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(cQuickInfo);
+			//g_free (myData.lastQuickInfo);
+			myData.lastQuickInfo = cQuickInfo;
+		}
+		
+		switch(myData.playingStatus) { //On Affiche le bon statut du lecteur
+			case PLAYER_PLAYING:
+				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pPlaySurface);
+			break;
+			case PLAYER_PAUSED:
+				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pPauseSurface);
+			break;
+			case PLAYER_STOPPED:
+				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pStopSurface);
+			break;
+			case PLAYER_BROKEN:
+				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBrokenSurface);
+			break;
+		}
 	}
-	
-	if (strcmp(myData.lastQuickInfo,cQuickInfo) != 0) {
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(cQuickInfo);
-		myData.lastQuickInfo = cQuickInfo;
-  }
-  CD_APPLET_REDRAW_MY_ICON
 }
 
 //Fonction de dessin en mode desklet
@@ -66,7 +71,7 @@ void cd_xmms_draw_in_desklet (cairo_t *pCairoContext, gchar *cQuickInfo) {
 	pIcon->acName = g_strdup_printf ("%s", myData.playingTitle);
 	
   switch(myData.playingStatus) { //On Affiche le bon statut du lecteur
-    case sPlayerPlaying:
+    case PLAYER_PLAYING:
       if (myConfig.cPlayIcon != NULL) {
         pIcon->acFileName = g_strdup_printf ("%s",myConfig.cPlayIcon);
       }
@@ -74,7 +79,7 @@ void cd_xmms_draw_in_desklet (cairo_t *pCairoContext, gchar *cQuickInfo) {
         pIcon->acFileName = g_strdup_printf ("%s/play.svg", MY_APPLET_SHARE_DATA_DIR);
       }
     break;
-    case sPlayerPaused:
+    case PLAYER_PAUSED:
       if (myConfig.cPauseIcon != NULL) {
         pIcon->acFileName = g_strdup_printf ("%s",myConfig.cPauseIcon);
       }
@@ -82,7 +87,7 @@ void cd_xmms_draw_in_desklet (cairo_t *pCairoContext, gchar *cQuickInfo) {
         pIcon->acFileName = g_strdup_printf ("%s/pause.svg", MY_APPLET_SHARE_DATA_DIR);
       }
     break;
-    case sPlayerStopped:
+    case PLAYER_STOPPED:
       if (myConfig.cStopIcon != NULL) {
         pIcon->acFileName = g_strdup_printf ("%s",myConfig.cStopIcon);
       }
@@ -90,7 +95,7 @@ void cd_xmms_draw_in_desklet (cairo_t *pCairoContext, gchar *cQuickInfo) {
         pIcon->acFileName = g_strdup_printf ("%s/stop.svg", MY_APPLET_SHARE_DATA_DIR);
       }
     break;
-    case sPlayerBroken:
+    case PLAYER_BROKEN:
       if (myConfig.cBrokenIcon != NULL) {
         pIcon->acFileName = g_strdup_printf ("%s",myConfig.cBrokenIcon);
       }

@@ -21,11 +21,11 @@ typedef enum {
 } MyPlayerType;
 
 typedef enum {
-  sPlayerPlaying = 0,
-  sPlayerPaused,
-  sPlayerStopped,
-  sPlayerBroken,
-  sPlayerNone,
+	PLAYER_PLAYING = 0,
+	PLAYER_PAUSED,
+	PLAYER_STOPPED,
+	PLAYER_BROKEN,
+	PLAYER_NONE,
 } MyPlayerStatus;
 
 typedef struct {
@@ -41,20 +41,20 @@ typedef struct {
 	gchar *cPauseIcon;
 	gchar *cStopIcon;
 	gchar *cBrokenIcon;
-	MyPlayerType cPlayer;
+	MyPlayerType iPlayer;
 } AppletConfig;
 
 typedef struct {
-  cairo_surface_t *pSurface;
+	cairo_surface_t *pSurface;
 	cairo_surface_t *pPlaySurface;
 	cairo_surface_t *pPauseSurface;
 	cairo_surface_t *pStopSurface;
 	cairo_surface_t *pCover;
 	cairo_surface_t *pBrokenSurface;
-  gchar *playingTitle;
-  MyPlayerStatus playingStatus;
-  gchar *lastQuickInfo;
-  int pipeTimer;
+	gchar *playingTitle;
+	MyPlayerStatus playingStatus;
+	gchar *lastQuickInfo;
+	int pipeTimer;
 } AppletData;
 
 #endif
