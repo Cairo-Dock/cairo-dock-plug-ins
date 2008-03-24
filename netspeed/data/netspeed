@@ -1,0 +1,7 @@
+ #!/bin/bash < parAdOxxx_ZeRo
+rm -f /tmp/netspeed
+#Il est pas beau mon script hein ^^
+cat /proc/net/dev | sed -e '{1d;2d;3d}' -e "s/:/é/g" -e "s/ /_/g" | sed "s/_*\(.*\)é_*\([0-9][0-9]*\)__*[0-9][0-9]*__*[0-9][0-9]*__*[0-9][0-9]*__*[0-9][0-9]*__*[0-9][0-9]*__*[0-9][0-9]*__*[0-9][0-9]*__*\([0-9][0-9]*\)__*[0-9][0-9]*__*[0-9][0-9]*__*[0-9][0-9]*__*[0-9][0-9]*__*[0-9][0-9]*__*[0-9][0-9]*__*[0-9][0-9]*/\1>\2>\3/" > /tmp/netspeed
+echo time >> /tmp/netspeed
+date +%s%N >> /tmp/netspeed
+echo stop >> /tmp/netspeed

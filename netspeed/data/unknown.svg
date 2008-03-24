@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   id="svg2165"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   version="1.0"
+   sodipodi:docbase="/home/paradoxxx/svn/cairo-dock-plugin-dev-area/netspeed/data"
+   sodipodi:docname="unknown.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs2167">
+    <filter
+       inkscape:collect="always"
+       id="filter4270">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.3681571"
+         id="feGaussianBlur4272" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter7201">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.56135954"
+         id="feGaussianBlur7203" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.375"
+     inkscape:cx="100.43395"
+     inkscape:cy="123.07068"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:document-units="px"
+     inkscape:grid-bbox="true"
+     width="256px"
+     height="256px"
+     inkscape:window-width="822"
+     inkscape:window-height="598"
+     inkscape:window-x="1192"
+     inkscape:window-y="123" />
+  <metadata
+     id="metadata2170">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <path
+       sodipodi:type="star"
+       style="fill:#abaeab;fill-opacity:1;fill-rule:nonzero;filter:url(#filter4270);opacity:1"
+       id="path2177"
+       sodipodi:sides="3"
+       sodipodi:cx="128.72726"
+       sodipodi:cy="127.27273"
+       sodipodi:r1="124.48904"
+       sodipodi:r2="43.571159"
+       sodipodi:arg1="0.52639236"
+       sodipodi:arg2="1.5735899"
+       inkscape:flatsided="false"
+       inkscape:rounded="-1.25"
+       inkscape:randomized="0"
+       d="M 236.36363,189.81818 C 305.07917,71.563519 -8.1637687,170.46164 128.60555,170.84372 C 265.37486,171.22579 -47.310638,70.579086 20.743132,189.21583 C 88.796901,307.85256 159.77009,-12.87284 91.05454,105.38182 C 22.338994,223.63648 265.84435,3.1662533 129.07503,2.7841772 C -7.6942795,2.4021011 234.57548,224.22938 166.52171,105.59265 C 98.467939,-13.044095 167.64808,308.07284 236.36363,189.81818 z "
+       transform="matrix(1.0748874,0,0,1.0748874,-8.9059276,7.791537)" />
+    <path
+       sodipodi:type="star"
+       style="fill:#fff800;fill-opacity:1;fill-rule:nonzero;filter:url(#filter7201)"
+       id="path3291"
+       sodipodi:sides="3"
+       sodipodi:cx="128.72726"
+       sodipodi:cy="127.27273"
+       sodipodi:r1="124.48904"
+       sodipodi:r2="43.571159"
+       sodipodi:arg1="0.52639236"
+       sodipodi:arg2="1.5735899"
+       inkscape:flatsided="false"
+       inkscape:rounded="-1.25"
+       inkscape:randomized="0"
+       d="M 236.36363,189.81818 C 305.07917,71.563519 -8.1637687,170.46164 128.60555,170.84372 C 265.37486,171.22579 -47.310638,70.579086 20.743132,189.21583 C 88.796901,307.85256 159.77009,-12.87284 91.05454,105.38182 C 22.338994,223.63648 265.84435,3.1662533 129.07503,2.7841772 C -7.6942795,2.4021011 234.57548,224.22938 166.52171,105.59265 C 98.467939,-13.044095 167.64808,308.07284 236.36363,189.81818 z "
+       transform="matrix(0.9883932,0,0,0.9883932,1.5845996,18.207015)" />
+  </g>
+</svg>
