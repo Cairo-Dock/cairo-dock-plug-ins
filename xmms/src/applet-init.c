@@ -145,8 +145,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
 	//\_________________ On libere toutes nos ressources.
-	reset_config();
 	reset_data();
+	reset_config();
 	_remove_pipes();
 CD_APPLET_STOP_END
 

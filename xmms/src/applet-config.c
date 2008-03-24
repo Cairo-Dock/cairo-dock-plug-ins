@@ -63,7 +63,8 @@ void reset_data (void) {
 	cairo_surface_destroy (myData.pBrokenSurface);
 	myData.pBrokenSurface = NULL;
 	
-	g_source_remove(myData.pipeTimer);
+	if (myData.pipeTimer != 0)
+		g_source_remove(myData.pipeTimer);
 
 	memset (&myData, 0, sizeof (AppletData));
 }

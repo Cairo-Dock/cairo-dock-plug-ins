@@ -14,89 +14,76 @@ extern AppletData myData;
 
 //Fonction qui definie quel tuyau a emprunter pour récupérer les infos
 //Ajout d'une condition pour que tant que le tuyau n'est pas en place il n'y ait pas lecture de l'information
-gboolean cd_xmms_get_pipe() {
-  static gboolean bBusy = FALSE;
-  
+gboolean cd_xmms_get_pipe(gpointer data) {
+	static gboolean bBusy = FALSE;
 	if (bBusy)
 		return TRUE;
 	bBusy = TRUE;
 	
-	//On avais ici les lignes pour le desklet (Inutile)
-	
 	gchar *cInfopipeFilePath;
-	if (myConfig.iPlayer == MY_XMMS) {
-    cInfopipeFilePath = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
-  }
-  else if (myConfig.iPlayer == MY_AUDACIOUS) {
-    //Il faut émuler le pipe d'audacious par AUDTOOL
-    cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
-    
-    if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
-      GString *sScriptPath = g_string_new ("");
-      g_string_printf (sScriptPath, "bash %s/infoaudacious.sh", MY_APPLET_SHARE_DATA_DIR);
-      GError *erreur = NULL;
-      g_spawn_command_line_async (sScriptPath->str, &erreur);
-      if (erreur != NULL) {
-	      cd_warning ("Attention : when trying to execute 'infoaudacious.sh", erreur->message);
-        g_error_free (erreur);
-	    }
-    }
-    
-  }
-  
-  //Le pipe est trop lent et cause des freezes...
-  else if (myConfig.iPlayer == MY_BANSHEE) {
-    //Il faut émuler le pipe de banshee par le script
-    cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
-    
-    if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
-      GString *sScriptPath = g_string_new ("");
-      g_string_printf (sScriptPath, "bash %s/infobanshee.sh", MY_APPLET_SHARE_DATA_DIR);
-      GError *erreur = NULL;
-      g_spawn_command_line_async (sScriptPath->str, &erreur);
-      if (erreur != NULL) {
-  	    cd_warning ("Attention : when trying to execute 'infobanshee.sh", erreur->message);
-        g_error_free (erreur);
-	    }
-    }
-  }
-  
-  //Le pipe est trop lent, récupération des infos une fois sur deux avec un pique du cpu lors de l'éxécution du script
-  else if (myConfig.iPlayer == MY_EXAILE) {
-    //Il faut émuler le pipe d'audacious par Exaile -q
-    cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
-    
-    if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
-      GString *sScriptPath = g_string_new ("");
-      g_string_printf (sScriptPath, "bash %s/infoexaile.sh", MY_APPLET_SHARE_DATA_DIR);
-      GError *erreur = NULL;
-      g_spawn_command_line_async (sScriptPath->str, &erreur);
-      if (erreur != NULL) {
-	      cd_warning ("Attention : when trying to execute 'infoexaile.sh", erreur->message);
-        g_error_free (erreur);
-	    }
-    }
-  }
-  
-  //On verifie si le pipe est mal défini (s'il y a une erreur dans la conf avec current-player ou pas de pipe), on sort.
-	if (cInfopipeFilePath == NULL) {
-		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBrokenSurface);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(" ");
-		CD_APPLET_REDRAW_MY_ICON;
-		cd_message("No Pipe to read");
-		bBusy = FALSE;
-	return TRUE;
+	switch (myConfig.iPlayer)
+	{
+		case MY_XMMS :
+			cInfopipeFilePath = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
+		break ;
+		case MY_AUDACIOUS :  //Il faut émuler le pipe d'audacious par AUDTOOL
+			cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
+			
+			if (! g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS)) {
+				gchar *cCommand = g_strdup_printf ("bash %s/infoaudacious.sh", MY_APPLET_SHARE_DATA_DIR);
+				GError *erreur = NULL;
+				g_spawn_command_line_async (cCommand, &erreur);
+				if (erreur != NULL) {
+					cd_warning ("Attention : when trying to execute 'infoaudacious.sh", erreur->message);
+					g_error_free (erreur);
+					g_free (cCommand);
+				}
+			}
+		break ;
+		case MY_BANSHEE :  //Le pipe est trop lent et cause des freezes... // Il faut émuler le pipe de banshee par le script
+			cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
+			if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
+				gchar *cCommand = g_strdup_printf ("bash %s/infobanshee.sh", MY_APPLET_SHARE_DATA_DIR);
+				GError *erreur = NULL;
+				g_spawn_command_line_async (cCommand, &erreur);
+				if (erreur != NULL) {
+					cd_warning ("Attention : when trying to execute 'infobanshee.sh", erreur->message);
+					g_error_free (erreur);
+				}
+				g_free (cCommand);
+			}
+		break ;
+		case MY_EXAILE :  //Le pipe est trop lent, récupération des infos une fois sur deux avec un pique du cpu lors de l'éxécution du script // Il faut émuler le pipe d'audacious par Exaile -q
+			cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
+			if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
+				gchar *cCommand = g_strdup_printf ("bash %s/infoexaile.sh", MY_APPLET_SHARE_DATA_DIR);
+				GError *erreur = NULL;
+				g_spawn_command_line_async (cCommand, &erreur);
+				if (erreur != NULL) {
+					cd_warning ("Attention : when trying to execute 'infobanshee.sh", erreur->message);
+					g_error_free (erreur);
+				}
+				g_free (cCommand);
+			}
+		break ;
+		default :  // ne devrait pas arriver.
+			CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+			CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBrokenSurface);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(" ");
+			CD_APPLET_REDRAW_MY_ICON;
+			cd_message("No Pipe to read");
+			bBusy = FALSE;
+		return TRUE;
 	}
 	
 	//Si le pipe n'existe pas, on sort. Evite les cascades d'éxécution du script et de lire des données fausses
-  if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
+	if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
 		bBusy = FALSE;
-	  return TRUE;
+		return TRUE;
 	}
 	
-  cd_xmms_read_pipe(cInfopipeFilePath);
-  bBusy = FALSE;
+	cd_xmms_read_pipe(cInfopipeFilePath);
+	bBusy = FALSE;
 	return TRUE;
 }
 
@@ -205,7 +192,7 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 
 void cd_xmms_update_title() {
   cd_message("On met a jour le titre et le status de l'applet");
-  cd_xmms_get_pipe();
+  cd_xmms_get_pipe(NULL);
 }
 
 //Fonction qui supprime les tuyaux émulés pour eviter des pics CPU

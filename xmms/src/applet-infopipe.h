@@ -5,7 +5,7 @@
 
 #include <cairo-dock.h>
 
-gboolean cd_xmms_get_pipe();
+gboolean cd_xmms_get_pipe(gpointer data);
 gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath);
 void cd_xmms_update_title();
 int cd_remove_pipes();
