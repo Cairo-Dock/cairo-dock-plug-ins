@@ -47,7 +47,7 @@ typedef struct {
 	guint iSidCheckVolume;
 	CairoDockDialog *pDialog;
 	cairo_surface_t *pSurface;
-	cairo_surface_t *pBrokenSurface;
+	//cairo_surface_t *pBrokenSurface;
 	cairo_surface_t *pMuteSurface;
 	int iCurrentVolume;  // volume courant en %.
 	gboolean bIsMute;

@@ -25,7 +25,7 @@ double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 	
 	if (!XF86VidModeGetGamma (dpy, DefaultScreen (dpy), pGamma))
 	{
-		cd_message ("Attention : unable to query gamma correction\n");
+		cd_warning ("Attention : unable to query gamma correction");
 		return 0;
 	}
 	return (pGamma->red + pGamma->blue + pGamma->green) / 3;
@@ -39,7 +39,7 @@ void xgamma_set_gamma (XF86VidModeGamma *pGamma)
 	
 	if (!XF86VidModeSetGamma(dpy, DefaultScreen (dpy), pGamma))
 	{
-		cd_message ("Attention : unable to set gamma correction\n");
+		cd_warning ("Attention : unable to set gamma correction");
 	}
 }
 
@@ -48,7 +48,7 @@ void xgamma_set_gamma (XF86VidModeGamma *pGamma)
 static void on_scale_value_changed (GtkRange *range, gpointer data)
 {
 	int iChannelNumber = GPOINTER_TO_INT (data);
-	cd_message ("%s (%d, %.2f)\n", __func__, iChannelNumber, gtk_range_get_value (GTK_RANGE (range)));
+	cd_message ("%s (%d, %.2f)", __func__, iChannelNumber, gtk_range_get_value (GTK_RANGE (range)));
 	
 	switch (iChannelNumber)
 	{
@@ -126,20 +126,20 @@ void xgamma_create_scales_widget (void)
 	gtk_widget_show_all (myData.pWidget);
 }
 
-void xgamma_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
+/*void xgamma_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
 {
 	
-}
+}*/
 
 void xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data)
 {
 	if (iAnswer == GTK_RESPONSE_OK)
 	{
-		cd_message ("%s (ok)\n");
+		cd_message ("%s (ok)");
 	}
 	else
 	{
-		cd_message ("%s (cancel)\n", __func__);
+		cd_message ("%s (cancel)", __func__);
 		myData.Xgamma = myData.XoldGamma;
 		xgamma_set_gamma (&myData.Xgamma);
 	}
@@ -153,7 +153,7 @@ void xgamma_build_and_show_widget (void)
 	
 	if (myDock)
 	{
-		myData.pDialog = cairo_dock_build_dialog (_D("Set up gamma :"),
+		myData.pDialog = cairo_dock_build_dialog (D_("Set up gamma :"),
 			myIcon,
 			myDock,
 			NULL,
@@ -167,6 +167,7 @@ void xgamma_build_and_show_widget (void)
 	else
 	{
 		cairo_dock_add_interactive_widget_to_desklet (myData.pWidget, myDesklet);
-		myDesklet->renderer = xgamma_draw_in_desklet;
+		//myDesklet->renderer = xgamma_draw_in_desklet;
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
 }

@@ -24,7 +24,7 @@ void rendering_load_icons_for_simple (CairoDockDesklet *pDesklet, cairo_t *pSour
 	pIcon->fDrawX = g_iDockRadius/2;
 	pIcon->fDrawY = g_iDockRadius/2;
 	pIcon->fScale = 1;
-	cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext, FALSE);  // pas de reflet.
+	cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 }
 
 

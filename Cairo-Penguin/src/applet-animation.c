@@ -24,6 +24,8 @@ gboolean penguin_move_in_dock (gpointer data)
 {
 	static GdkRectangle area;
 	//g_print ("%s ()\n", __func__);
+	if (g_bAutoHide && myDock->bAtBottom)
+		return TRUE;
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	g_return_val_if_fail (pAnimation != NULL, TRUE);
@@ -61,11 +63,13 @@ gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 	gpointer data)
 {
 	//g_print ("%s (%d,%d ; %d;%d)\n", __func__, myData.iCurrentDirection, myData.iCurrentFrame, myData.iCurrentPositionX, myData.iCurrentPositionY);
+	if (g_bAutoHide && myDock->bAtBottom)
+		return FALSE;
+	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if (pAnimation == NULL)
-	{
 		return FALSE;
-	}
+	
 	g_return_val_if_fail (pAnimation->pSurfaces != NULL, FALSE);
 	cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
 	
@@ -97,6 +101,8 @@ gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 gboolean penguin_move_in_icon (gpointer data)
 {
 	//g_print ("%s (%d,%d) ; (%d,%d)\n", __func__, myData.iCurrentDirection, myData.iCurrentFrame, myData.iCurrentPositionX, myData.iCurrentPositionY);
+	if (g_bAutoHide && myDock->bAtBottom)
+		return TRUE;
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	g_return_val_if_fail (pAnimation != NULL && pAnimation->pSurfaces != NULL, TRUE);

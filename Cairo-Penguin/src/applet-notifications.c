@@ -25,7 +25,7 @@ static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 	N_("Hey, I'm here !"),
 	N_("Sorry but I'm busy right now."),
 	N_("I don't have time to play with you, I have to dig and mine all these icons."),
-	N_("You're dock is so messy ! Let me clean it."),
+	N_("Your dock is so messy ! Let me clean it."),
 	N_("Admit my superiority on you as a penguin !"),
 	N_("Wait, do you want to kill me ?!"),
 	N_("Do you know how much painful it is to be clicked on ??"),

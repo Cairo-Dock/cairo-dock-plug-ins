@@ -24,13 +24,13 @@ extern AppletData myData;
 
 int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 {
-	g_print ("%s (%d)\n", __func__, mask);
+	cd_debug ("%s (%d)", __func__, mask);
 	
 	if (mask != 0)
 	{
 		myData.iCurrentVolume = mixer_get_mean_volume ();
 		myData.bIsMute = mixer_is_mute ();
-		g_print (" iCurrentVolume <- %d bIsMute <- %d\n", myData.iCurrentVolume, myData.bIsMute);
+		cd_debug (" iCurrentVolume <- %d bIsMute <- %d", myData.iCurrentVolume, myData.bIsMute);
 	}
 	
 	switch (myConfig.iVolumeDisplay)
@@ -77,11 +77,6 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		default :
 		break;
 	}
-	if (myDock != NULL && myDock->bUseReflect && myConfig.iVolumeEffect != VOLUME_NO_EFFECT)
-	{
-		cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
-	}
-	CD_APPLET_REDRAW_MY_ICON
 	
 	if (myDesklet && myData.pScale && mask != 0)
 	{
@@ -96,18 +91,19 @@ void mixer_apply_zoom_effect (cairo_surface_t *pSurface)
 {
 	cairo_save (myDrawContext);
 	double fScale = .3 + .7 * myData.iCurrentVolume / 100.;
-	double fMaxScale = (myDock ? 1 + g_fAmplitude : 1);
+	/*double fMaxScale = (myDock ? 1 + g_fAmplitude : 1);
 	cairo_translate (myDrawContext, myIcon->fWidth * fMaxScale / 2 * (1 - fScale) , myIcon->fHeight * fMaxScale / 2 * (1 - fScale));
 	cairo_scale (myDrawContext, fScale, fScale);
-	cairo_dock_set_icon_surface_with_reflect (myDrawContext, pSurface, myIcon, myContainer);  // on n'utilise pas la macro car on ne veut pas du redraw.
+	cairo_dock_set_icon_surface_with_reflect (myDrawContext, pSurface, myIcon, myContainer);  // on n'utilise pas la macro car on ne veut pas du redraw.*/
+	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
 	cairo_restore (myDrawContext);
 }
 
 void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
 {
-	g_print ("%s (%x)\n", __func__, pSurface);
+	cd_debug ("%s (%x)", __func__, pSurface);
 	cairo_save (myDrawContext);
-	cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
+	/*cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (myDrawContext);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
@@ -121,7 +117,9 @@ void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
 			0.);
 		double fAlpha = .3 + .7 * myData.iCurrentVolume / 100.;
 		cairo_paint_with_alpha (myDrawContext, fAlpha);
-	}
+	}*/
+	double fAlpha = .3 + .7 * myData.iCurrentVolume / 100.;
+	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
 	cairo_restore (myDrawContext);
 }
 
@@ -132,7 +130,7 @@ void mixer_draw_bar (cairo_surface_t *pSurface)
 	
 	cairo_restore (myDrawContext);
 	cairo_save (myDrawContext);
-	double fMaxScale = (myDock ? 1 + g_fAmplitude : 1);
+	/*double fMaxScale = (myDock ? 1 + g_fAmplitude : 1);
 	cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (0.,
 		0.,
 		myIcon->fWidth * fMaxScale,
@@ -165,6 +163,9 @@ void mixer_draw_bar (cairo_surface_t *pSurface)
 	cairo_stroke (myDrawContext);
 	
 	cairo_pattern_destroy (pGradationPattern);
-	
+	*/
+	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.iCurrentVolume * .01)
 	cairo_restore (myDrawContext);
+	
+	CD_APPLET_REDRAW_MY_ICON
 }

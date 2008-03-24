@@ -10,7 +10,7 @@ AppletConfig myConfig;
 AppletData myData;
 
 
-CD_APPLET_DEFINITION ("wifi", 1, 4, 7, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("wifi", 1, 5, 3, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
 
 CD_APPLET_INIT_BEGIN (erreur)
@@ -19,7 +19,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
-  myData.iSidTimer == 0;
 	cd_wifi_launch_measure();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT

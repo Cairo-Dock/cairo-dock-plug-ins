@@ -41,9 +41,11 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 msgid "Module"
 msgstr "Module"
 
+#: ../data/messages:29
 msgid "Delay between signal checks :"
 msgstr "Temps entre les vérifications :"
 
+#: ../data/messages:27
 msgid "in seconds."
 msgstr "en seconde."
 
@@ -59,27 +61,27 @@ msgstr "Information"
 msgid "Put Signal strength on quickinfo ?"
 msgstr "Mettre la force du signal en quickinfo ?"
 
-#: ../data/messages:31
+#: ../data/messages:31 ../data/messages:35
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:39
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Nom de l'image 'Très Faible' :"
 
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:43
 msgid "Name of an image for the 'low' icon :"
 msgstr "Nom de l'image 'Faible' :"
 
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:47
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Nom de l'image 'Moyen' :"
 
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:51
 msgid "Name of an image for the 'good' icon :"
 msgstr "Nom de l'image 'Bon' :"
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:55
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
@@ -99,19 +101,19 @@ msgstr "Force du Signal en pourcent"
 msgid "Raw Signal Informations"
 msgstr "Infos Brutes du Signal"
 
-#: ../src/applet-wifi.c:95 ../src/applet-wifi.c:99
+#: ../src/applet-wifi.c:95 ../src/applet-wifi.c:99 ../src/applet-wifi.c:18
 msgid "Very Low"
 msgstr "Très Faible"
 
-#: ../src/applet-wifi.c:99 ../src/applet-wifi.c:103
+#: ../src/applet-wifi.c:99 ../src/applet-wifi.c:103 ../src/applet-wifi.c:18
 msgid "Low"
 msgstr "Faible"
 
-#: ../src/applet-wifi.c:103 ../src/applet-wifi.c:107
+#: ../src/applet-wifi.c:103 ../src/applet-wifi.c:107 ../src/applet-wifi.c:18
 msgid "Middle"
 msgstr "Moyen"
 
-#: ../src/applet-wifi.c:107 ../src/applet-wifi.c:111
+#: ../src/applet-wifi.c:107 ../src/applet-wifi.c:111 ../src/applet-wifi.c:18
 msgid "Good"
 msgstr "Bon"
 
@@ -119,6 +121,7 @@ msgid "Excellent"
 msgstr "Excellent"
 
 #: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119 ../data/messages:19
+#: ../src/applet-wifi.c:18
 msgid "None"
 msgstr "Aucune"
 
@@ -141,42 +144,51 @@ msgstr ""
 " écrite par ChAnGFu pour Cairo-Dock"
 
 #: ../data/messages:11 ../data/messages:19 ../data/messages:53
+#: ../data/messages:57
 msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13 ../data/messages:21 ../data/messages:55
+#: ../data/messages:59
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
 #: ../data/messages:15 ../data/messages:23 ../data/messages:57
+#: ../data/messages:61
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17 ../data/messages:25 ../data/messages:59
+#: ../data/messages:63
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
 #: ../data/messages:19 ../data/messages:27 ../data/messages:61
+#: ../data/messages:65
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
 #: ../data/messages:21 ../data/messages:29 ../data/messages:63
+#: ../data/messages:67
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:23 ../data/messages:31 ../data/messages:65
+#: ../data/messages:69
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
 #: ../data/messages:25 ../data/messages:33 ../data/messages:67
+#: ../data/messages:71
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27 ../data/messages:35 ../data/messages:69
+#: ../data/messages:73
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -185,26 +197,24 @@ msgstr ""
 "Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29 ../data/messages:37 ../data/messages:71
+#: ../data/messages:75
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../src/applet-wifi.c:111 ../src/applet-wifi.c:115
-msgid "Exellent"
-msgstr ""
-
 #: ../data/messages:13
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:31
 msgid "Personnalisation"
-msgstr ""
+msgstr "Personnalisation"
 
 #: ../data/messages:29 ../data/messages:33 ../data/messages:37
 #: ../data/messages:41 ../data/messages:45 ../data/messages:49
+#: ../data/messages:53
 msgid "Let t empty to use the default icon."
-msgstr ""
+msgstr "Laissez vide poue uriliser l'icône par défaut."
 
 #: ../data/messages:21
 msgid "Signal Strength level"
-msgstr ""
+msgstr "Niveau de force du signal"

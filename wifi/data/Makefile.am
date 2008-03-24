@@ -1,6 +1,4 @@
 
-SUBDIRS = . 
-
 moduledir = $(pkgdatadir)
 
 module_DATA = \
@@ -14,5 +12,4 @@ module_DATA = \
 	link-4.svg\
 	link-5.svg\
 	icon.png\
-	blank.svg\
 	wifi

@@ -75,7 +75,8 @@ CD_APPLET_RELOAD_BEGIN
 				cairo_dock_dialog_unreference (myData.dialog);
 				myData.dialog = NULL;
 				cairo_dock_add_interactive_widget_to_desklet (myData.tab, myDesklet);
-				myDesklet->renderer = term_draw_in_desklet;
+				//myDesklet->renderer = term_draw_in_desklet;
+				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 			}
 			else  // il faut passer du desklet au dialogue
 			{

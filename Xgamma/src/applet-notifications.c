@@ -22,7 +22,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_ABOUT (_D("This is the Xgamma applet\n made by Fabrice Rey for Cairo-Dock"))
+CD_APPLET_ABOUT (D_("This is the Xgamma applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN
@@ -31,7 +31,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		double fGamma = xgamma_get_gamma (&myData.Xgamma);
 		if (fGamma > 0)
 		{
-			fGamma = cairo_dock_show_value_and_wait (_D("Set up gamma :"), myIcon, myDock, fGamma, GAMMA_MAX);
+			fGamma = cairo_dock_show_value_and_wait (D_("Set up gamma :"), myIcon, myDock, fGamma, GAMMA_MAX);
 			if (fGamma > 0)
 			{
 				fGamma = MAX (fGamma, GAMMA_MIN);

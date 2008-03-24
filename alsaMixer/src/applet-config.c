@@ -68,8 +68,8 @@ void reset_data (void)
 	mixer_stop ();
 	cairo_surface_destroy (myData.pSurface);
 	myData.pSurface = NULL;
-	cairo_surface_destroy (myData.pBrokenSurface);
-	myData.pBrokenSurface = NULL;
+	/*cairo_surface_destroy (myData.pBrokenSurface);
+	myData.pBrokenSurface = NULL;*/
 	cairo_surface_destroy (myData.pMuteSurface);
 	myData.pMuteSurface = NULL;
 	cairo_dock_dialog_unreference (myData.pDialog);

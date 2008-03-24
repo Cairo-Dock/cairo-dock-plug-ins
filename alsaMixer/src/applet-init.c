@@ -11,7 +11,7 @@
 AppletConfig myConfig;
 AppletData myData;
 
-CD_APPLET_DEFINITION ("AlsaMixer", 1, 4, 7, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("AlsaMixer", 1, 5, 3, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
 static void _load_surfaces (void)
@@ -32,7 +32,7 @@ static void _load_surfaces (void)
 		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
 	}
 	
-	if (myData.pBrokenSurface != NULL)
+	/*if (myData.pBrokenSurface != NULL)
 		cairo_surface_destroy (myData.pBrokenSurface);
 	if (myConfig.cBrokenIcon != NULL)
 	{
@@ -44,7 +44,7 @@ static void _load_surfaces (void)
 	{
 		g_string_printf (sImagePath, "%s/broken.svg", MY_APPLET_SHARE_DATA_DIR);
 		myData.pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
+	}*/
 	
 	if (myData.pMuteSurface != NULL)
 		cairo_surface_destroy (myData.pMuteSurface);
@@ -93,8 +93,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myIcon->fDrawY = myDesklet->iHeight - myIcon->fHeight + 0*g_iDockRadius/2;
 		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		/*myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;*/
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;
 		if (myConfig.bHideScaleOnLeave)
 		{
 			g_signal_connect (G_OBJECT (myDesklet->pWidget),
@@ -117,14 +119,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	if (myData.pControledElement == NULL)
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pBrokenSurface)
-		gboolean bTest = FALSE;
-		if (bTest)
-		{
-			myData.iCurrentVolume = 100;
-			mixer_draw_bar (myData.pSurface);
-			CD_APPLET_REDRAW_MY_ICON
-		}
+		gchar *cImagePath = (myConfig.cBrokenIcon != NULL ? cairo_dock_generate_file_path (myConfig.cBrokenIcon) : g_strconcat (MY_APPLET_SHARE_DATA_DIR, "/broken.svg", NULL));
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (cImagePath)
+		g_free (cImagePath);
+		//CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pBrokenSurface)
 	}
 	else
 	{
@@ -186,8 +184,10 @@ CD_APPLET_RELOAD_BEGIN
 		myIcon->fDrawY = myDesklet->iHeight - myIcon->fHeight + 0*g_iDockRadius/2;
 		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		/*myDrawContext = cairo_create (myIcon->pIconBuffer);
+		myDesklet->renderer = NULL;*/
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;
 	}
 	
 	//\_______________ On recharge les donnees qui ont pu changer.
@@ -269,7 +269,10 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On redessine notre icone.
 	if (myData.pControledElement == NULL)
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pBrokenSurface)
+		gchar *cImagePath = (myConfig.cBrokenIcon != NULL ? cairo_dock_generate_file_path (myConfig.cBrokenIcon) : g_strconcat (MY_APPLET_SHARE_DATA_DIR, "/broken.svg", NULL));
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (cImagePath)
+		g_free (cImagePath);
+		//CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pBrokenSurface)
 	}
 	else
 	{

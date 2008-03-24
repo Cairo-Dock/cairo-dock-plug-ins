@@ -100,7 +100,7 @@ msgstr ""
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:23 ../src/applet-notifications.c:38
 msgid ""
 "This is the Cairo-Penguin applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -128,4 +128,69 @@ msgstr ""
 
 #: ../data/messages:23
 msgid "Let the penguin wander everywhere in the dock ?"
+msgstr ""
+
+#: ../src/applet-notifications.c:25
+msgid "Hey, I'm here !"
+msgstr ""
+
+#: ../src/applet-notifications.c:26
+msgid "Sorry but I'm busy right now."
+msgstr ""
+
+#: ../src/applet-notifications.c:27
+msgid ""
+"I don't have time to play with you, I have to dig and mine all these icons."
+msgstr ""
+
+#: ../src/applet-notifications.c:28
+msgid "You're dock is so messy ! Let me clean it."
+msgstr ""
+
+#: ../src/applet-notifications.c:29
+msgid "Admit my superiority on you as a penguin !"
+msgstr ""
+
+#: ../src/applet-notifications.c:30
+msgid "Wait, do you want to kill me ?!"
+msgstr ""
+
+#: ../src/applet-notifications.c:31
+msgid "Do you know how much painful it is to be clicked on ??"
+msgstr ""
+
+#: ../src/applet-notifications.c:32
+msgid "It's my dock now, mwahahaha !"
+msgstr ""
+
+#: ../src/applet-notifications.c:33
+msgid "I want to be a pirate !"
+msgstr ""
+
+#: ../src/applet-notifications.c:34
+msgid "You shall not pass !"
+msgstr ""
+
+#: ../src/applet-notifications.c:35
+msgid "I'm your father !"
+msgstr ""
+
+#: ../src/applet-notifications.c:130
+msgid "Keep quiet"
+msgstr ""
+
+#: ../src/applet-notifications.c:134
+msgid "Wake up"
+msgstr ""
+
+#: ../src/applet-notifications.c:137
+msgid "Start XPenguins"
+msgstr ""
+
+#: ../src/applet-notifications.c:138
+msgid "Stop XPenguins"
+msgstr ""
+
+#: ../src/applet-notifications.c:167 ../src/applet-notifications.c:169
+msgid "Zzzzz"
 msgstr ""

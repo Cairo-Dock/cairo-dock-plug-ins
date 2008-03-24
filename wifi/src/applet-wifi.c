@@ -15,7 +15,7 @@ extern AppletData myData;
 
 #define WIFI_TMP_FILE "/tmp/wifi"
 
-static gchar *s_cLevelQualityName[WIFI_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Exellent")};
+static gchar *s_cLevelQualityName[WIFI_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Excellent")};
 
 static int s_iThreadIsRunning = 0;
 static int s_iSidTimerRedraw = 0;
@@ -80,7 +80,7 @@ void cd_wifi_launch_measure (void) {
 	}
 }
 
-gboolean cd_wifi(gpointer data) {
+/*gboolean cd_wifi(gpointer data) {
 	static gboolean bBusy = FALSE;
 	if (bBusy)
 		return TRUE;
@@ -90,7 +90,7 @@ gboolean cd_wifi(gpointer data) {
 	gchar *cCommand = g_strdup_printf("bash %s/wifi", MY_APPLET_SHARE_DATA_DIR);
 	g_spawn_command_line_async (cCommand, &erreur);
 	if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'iwconfig", erreur->message);
+		cd_warning ("Attention : when trying to execute 'iwconfig'", erreur->message);
 		g_error_free (erreur);
 	}
 	g_free (cCommand);
@@ -105,7 +105,7 @@ gboolean cd_wifi(gpointer data) {
 	else {
 		return TRUE;
 	}
-}
+}*/
 
 static float pourcent(float x, float y) {
   float p=0;
@@ -198,20 +198,16 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 
 void _wifi_draw_no_wireless_extension (void) {
 	CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-	if ((myDesklet != NULL) && (myConfig.hollowIcon)) { //Blank Icon
-	  cairo_surface_t *pSurface;
-	  gchar *cImagePath = g_strdup_printf ("%s/blank.svg", MY_APPLET_SHARE_DATA_DIR);
-		pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
-		g_free (cImagePath);
-	  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(" ");
-	  CD_APPLET_SET_SURFACE_ON_MY_ICON(pSurface);
+	if (myConfig.hollowIcon) { //Blank Icon
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL);
 	}
 	else {
-	  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-	  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
+		cd_wifi_set_surface (WIFI_QUALITY_NO_SIGNAL);
 	}
 	
-	myData.checkedTime = myData.checkedTime+1;
+	myData.checkedTime ++;
 	if (myData.checkedTime == 1) {
 	  myConfig.iCheckInterval = 60000; //check 1min
 	  if (myData.iSidTimer != 0) {
@@ -229,7 +225,7 @@ void _wifi_draw_no_wireless_extension (void) {
 	  myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
 	}
 	else if (myData.checkedTime >= 3) {
-	  myConfig.iCheckInterval = 900000; //check 5min
+	  myConfig.iCheckInterval = 600000; //check 5min
 	  if (myData.iSidTimer != 0) {
 		  g_source_remove (myData.iSidTimer);
 		  myData.iSidTimer = 0;
@@ -260,42 +256,37 @@ gboolean cd_wifi_getStrength(void) {
 		CDWifiQuality iQuality;
 		gboolean bAcquisitionOK = _wifi_get_values_from_file (cContent, &flink, &mlink, &prcnt, &iQuality);
 		
-		if (! bAcquisitionOK) {
+		if (! bAcquisitionOK || prcnt < 0) {
 			_wifi_draw_no_wireless_extension();
-			return FALSE;
-		}
-		if (prcnt <= 0) {
-		  _wifi_draw_no_wireless_extension();
 			return FALSE;
 		}
 		
 		if (myConfig.iCheckInterval != myConfig.dCheckInterval) {
-	    myConfig.iCheckInterval = myConfig.dCheckInterval;
-	    if (myData.iSidTimer != 0) {
-		    g_source_remove (myData.iSidTimer);
-		    myData.iSidTimer = 0;
-	    }
-	    myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
-	  }
+			myConfig.iCheckInterval = myConfig.dCheckInterval;
+			if (myData.iSidTimer != 0) {
+				g_source_remove (myData.iSidTimer);
+				myData.iSidTimer = 0;
+			}
+			myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
+		}
 		
 		myData.checkedTime = 0; // Reset the check counter
-	  switch (myConfig.quickInfoType) {
-		  case WIFI_INFO_NONE :
-		    	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
-		  break;
-		  case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
-		   	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(_D(s_cLevelQualityName[iQuality]));
-		  break;
-		  case WIFI_INFO_SIGNAL_STRENGTH_PERCENT :
-			  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", prcnt);
-		  break;
-		  case WIFI_INFO_SIGNAL_STRENGTH_DB :
-			  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d/%d", flink, mlink);
-		  break;
-	  }
-			
-			cd_wifi_set_surface (iQuality);
-			
+		switch (myConfig.quickInfoType) {
+			case WIFI_INFO_NONE :
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+			break;
+			case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(_D(s_cLevelQualityName[iQuality]));
+			break;
+			case WIFI_INFO_SIGNAL_STRENGTH_PERCENT :
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", prcnt);
+			break;
+			case WIFI_INFO_SIGNAL_STRENGTH_DB :
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d/%d", flink, mlink);
+			break;
+		}
+		
+		cd_wifi_set_surface (iQuality);
 	}
 	return TRUE;
 }

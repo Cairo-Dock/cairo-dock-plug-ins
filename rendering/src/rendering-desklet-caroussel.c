@@ -165,7 +165,7 @@ void rendering_load_icons_for_caroussel (CairoDockDesklet *pDesklet, cairo_t *pS
 		if (pCaroussel->b3D)
 		{
 			pIcon->fWidth = MAX (1, MIN (pDesklet->iWidth, pDesklet->iHeight) * CAROUSSEL_RATIO_ICON_DESKLET);
-			pIcon->fHeight = pDesklet->pIcon->fWidth;
+			pIcon->fHeight = pIcon->fWidth;
 		}
 		else
 		{
@@ -173,13 +173,13 @@ void rendering_load_icons_for_caroussel (CairoDockDesklet *pDesklet, cairo_t *pS
 			pIcon->fHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
 		}
 		
-		pIcon->fDrawX = (pDesklet->iWidth - pDesklet->pIcon->fWidth) / 2;
-		pIcon->fDrawY = (pDesklet->iHeight - pDesklet->pIcon->fHeight) / 2 + (pCaroussel->b3D ? g_iLabelSize : 0);
+		pIcon->fDrawX = (pDesklet->iWidth - pIcon->fWidth) / 2;
+		pIcon->fDrawY = (pDesklet->iHeight - pIcon->fHeight) / 2 + (pCaroussel->b3D ? g_iLabelSize : 0);
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
-		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext, pCaroussel->b3D);  // en 3D on charge les reflets.
+		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 	}
 	GList* ic;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
@@ -195,7 +195,7 @@ void rendering_load_icons_for_caroussel (CairoDockDesklet *pDesklet, cairo_t *pS
 			pIcon->fWidth = MAX (1, .2 * pDesklet->iWidth - g_iLabelSize);
 			pIcon->fHeight = MAX (1, .2 * pDesklet->iHeight - g_iLabelSize);
 		}
-		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext, pCaroussel->b3D);  // en 3D on charge les reflets.
+		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 	}
 }
 

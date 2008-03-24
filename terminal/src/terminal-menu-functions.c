@@ -200,7 +200,7 @@ gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, g
 static void applet_on_terminal_eof(VteTerminal *vteterminal,
                                    gpointer     user_data)
 {
-  cd_debug ("youkata EOF\n");
+  cd_debug ("youkata EOF");
 }
 
 
@@ -235,7 +235,7 @@ static void terminal_new_tab()
   int num_new_tab = gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, NULL);
  /// creer un widget avec un label et un bouton 'close' a mettre a la place du NULL. garder une trace du label pour pouvoir le changer plus tard (numerotation ou repertoire courant ou nom utilisateur).
   gtk_widget_show(vterm);
-  cd_message ("num_new_tab : %d\n", num_new_tab);
+  cd_message ("num_new_tab : %d", num_new_tab);
   gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
   
   term_apply_settings_on_vterm (vterm);
@@ -251,19 +251,20 @@ void terminal_build_and_show_tab (void)
 
 	if (myDock)
 	{
-		myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myContainer, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		myData.dialog = cairo_dock_build_dialog (D_("Terminal"), myIcon, myContainer, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 	}
 	else
 	{
 		cairo_dock_add_interactive_widget_to_desklet (myData.tab, myDesklet);
-		myDesklet->renderer = term_draw_in_desklet;
+		//myDesklet->renderer = term_draw_in_desklet;
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
 }
 
-void term_draw_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet)
+/*void term_draw_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet)
 {
 
-}
+}*/
 
 
 CD_APPLET_ON_CLICK_BEGIN

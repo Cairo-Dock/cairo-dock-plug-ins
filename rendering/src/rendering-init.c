@@ -43,7 +43,7 @@ int my_iRainbowNbIconsMin = 1;
 double my_fRainbowConeOffset = (60./180.*G_PI);
 
 
-CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 4, 7, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 5, 3, CAIRO_DOCK_CATEGORY_DESKTOP)
 	rendering_register_tree_desklet_renderer ();
 	rendering_register_caroussel_desklet_renderer ();
 	rendering_register_simple_desklet_renderer ();
