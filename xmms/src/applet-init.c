@@ -1,5 +1,4 @@
 #include "stdlib.h"
-#include <glib/gstdio.h>
 
 #include "applet-config.h"
 #include "applet-notifications.h"
@@ -88,27 +87,6 @@ static void _load_surfaces (void) {
 	g_string_free (sImagePath, TRUE);
 }
 
-int _remove_pipes() {
-	gchar *cInfopipeFilePath = NULL;
-	switch (myConfig.iPlayer)
-	{
-		case MY_AUDACIOUS :
-			cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
-		break;
-		case MY_BANSHEE :
-			cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
-		break;
-		case MY_EXAILE :
-			cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
-		break;
-		default :  // xmms n'en a pas.
-		return 0;
-	}
-	g_remove (cInfopipeFilePath);
-	g_free (cInfopipeFilePath);
-	return 0;
-}
-
 CD_APPLET_INIT_BEGIN (erreur)
   if (myDesklet != NULL) {
 		/*myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
@@ -124,9 +102,8 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
-	_remove_pipes();
+	cd_remove_pipes();
 	_load_surfaces();
-	myData.playingTitle = "  ";
 	myData.lastQuickInfo = " ";
 	myData.playingStatus = PLAYER_NONE;
 	cd_xmms_update_title();
@@ -147,7 +124,7 @@ CD_APPLET_STOP_BEGIN
 	//\_________________ On libere toutes nos ressources.
 	reset_data();
 	reset_config();
-	_remove_pipes();
+	cd_remove_pipes();
 CD_APPLET_STOP_END
 
 
@@ -160,7 +137,7 @@ CD_APPLET_RELOAD_BEGIN
 	_load_surfaces();
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		_remove_pipes();
+		cd_remove_pipes();
 		cd_xmms_update_title();
 	}
 	else {

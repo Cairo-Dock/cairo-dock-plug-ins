@@ -162,8 +162,6 @@ void cd_xmms_draw_in_desklet (cairo_t *pCairoContext, gchar *cQuickInfo) {
 //Servira pour les boutons play pause stop next previous
 Icon *cd_xmms_create_icon_for_desklet (cairo_t *pSourceContext, int iWidth, int iHeight, gchar *cName, gchar *cIconFileName) {
 	Icon *icon = g_new0 (Icon, 1);
-	icon->iType = CAIRO_DOCK_APPLET;
-	icon->pModule = "cd-xmms";
 
 	icon->acName = g_strdup (cName);
 	icon->acFileName = g_strdup (cIconFileName);  // NULL si cIconFileName = NULL.

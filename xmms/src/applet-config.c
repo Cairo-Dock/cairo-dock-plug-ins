@@ -65,6 +65,9 @@ void reset_data (void) {
 	
 	if (myData.pipeTimer != 0)
 		g_source_remove(myData.pipeTimer);
-
+	
+	g_free (myData.playingTitle);
+	myData.playingTitle = NULL;
+	
 	memset (&myData, 0, sizeof (AppletData));
 }

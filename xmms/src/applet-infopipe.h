@@ -8,8 +8,8 @@
 gboolean cd_xmms_get_pipe(gpointer data);
 gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath);
 void cd_xmms_update_title();
-int cd_remove_pipes();
-void cd_xmms_animat_icon(int animationLength);
+void cd_remove_pipes();
+void cd_xmms_animate_icon(int animationLength);
 void cd_xmms_new_song_playing(void);
 
 #endif
