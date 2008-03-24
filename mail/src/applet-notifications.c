@@ -75,7 +75,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 static void _cd_mail_add_account (GtkMenuItem *menu_item, gpointer *data)
 {
     // display a dialog window to select the informations to show
-    config_add_btn_clicked_cb(GTK_WIDGET(myContainer->pWidget), myData.mailwatch);
+    config_add_btn_clicked_cb(NULL, myData.mailwatch);
 
     GKeyFile *pKeyFile = g_key_file_new();
 
@@ -118,7 +118,7 @@ static void _cd_mail_modify_account(GtkMenuItem *menu_item, gpointer *data)
 					     G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
 					     NULL))
     {
-        if( config_do_edit_window_2(GTK_WIDGET(myContainer->pWidget), myData.mailwatch, mailbox) )
+        if( config_do_edit_window_2(NULL, myData.mailwatch, mailbox) )
         {
             xfce_mailwatch_save_config(myData.mailwatch, pKeyFile);
             cairo_dock_write_keys_to_file (pKeyFile, myIcon->pModule->cConfFilePath);
