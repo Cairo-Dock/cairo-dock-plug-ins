@@ -83,7 +83,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 				}
 				else  // c'est une URI valide, on regarde si il y'a un nom utilisateur.
 				{
-					gchar *str = strrchr (cOneBookmark, ' ');
+					gchar *str = strchr (cOneBookmark, ' ');  // pas d'espace dans une URI, donc le 1er espace signifie la separation entre URI et nom utilisateur.
 					if (str != NULL)
 					{
 						cUserName = str + 1;
@@ -208,7 +208,7 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 			}
 			else  // c'est une URI valide, on regarde si il y'a un nom utilisateur.
 			{
-				gchar *str = strrchr (cOneBookmark, ' ');
+				gchar *str = strchr (cOneBookmark, ' ');  // pas d'espace dans une URI, donc le 1er espace signifie la separation entre URI et nom utilisateur.
 				if (str != NULL)
 					*str = '\0';
 			}
@@ -289,7 +289,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 			}
 			else  // c'est une URI valide, on regarde si il y'a un nom utilisateur.
 			{
-				gchar *str = strrchr (cOneBookmark, ' ');
+				gchar *str = strchr (cOneBookmark, ' ');  // pas d'espace dans une URI, donc le 1er espace signifie la separation entre URI et nom utilisateur.
 				if (str != NULL)
 				{
 					cUserName = str + 1;
