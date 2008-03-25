@@ -1,4 +1,3 @@
-
 #include "stdlib.h"
 
 #include "applet-config.h"
@@ -11,52 +10,38 @@ AppletConfig myConfig;
 AppletData myData;
 
 
-CD_APPLET_DEFINITION ("netspeed", 1, 4, 7, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("netspeed", 1, 5, 3, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
 static void _load_surfaces (void) {
-	gchar *cUserImagePath;
-	GString *sImagePath = g_string_new ("");
-	
 	//Chargement des images
 	if (myData.pDefault != NULL) {
 		cairo_surface_destroy (myData.pDefault);
 	}
-	g_string_printf (sImagePath, "%s/default.png", MY_APPLET_SHARE_DATA_DIR);
-	myData.pDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+	myData.pDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cDefault);
 	
 	if (myData.pUnknown != NULL) {
 		cairo_surface_destroy (myData.pUnknown);
 	}
-	g_string_printf (sImagePath, "%s/unknown.png", MY_APPLET_SHARE_DATA_DIR);
-	myData.pUnknown = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+	myData.pUnknown = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cUnknown);
 	
 	if (myData.pOk != NULL) {
 		cairo_surface_destroy (myData.pOk);
 	}
-	g_string_printf (sImagePath, "%s/ok.png", MY_APPLET_SHARE_DATA_DIR);
-	myData.pOk = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+	myData.pOk = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cOk);
 	
 	if (myData.pBad != NULL) {
 		cairo_surface_destroy (myData.pBad);
 	}
-	g_string_printf (sImagePath, "%s/bad.png", MY_APPLET_SHARE_DATA_DIR);
-	myData.pBad = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	
+	myData.pBad = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cBad);
 }
 
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet != NULL) {
-		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;
 	}
 	_load_surfaces();
-	cd_netspeed_wait("AppletINIT");
+	cd_netspeed_launch_analyse();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
@@ -67,7 +52,11 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	
+	if (myData.iSidTimer != 0) {
+		g_source_remove (myData.iSidTimer);
+		myData.iSidTimer = 0;
+	}
+
 	//\_________________ On libere toutes nos ressources.
 	reset_config ();
 	reset_data ();
@@ -77,17 +66,28 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (myDesklet != NULL) {
-		myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;
-		cd_message("WH : %d %d", myDesklet->iWidth, myDesklet->iHeight);
 	}
-	  
+	cairo_surface_destroy (myData.pDefault);
+	cairo_surface_destroy (myData.pUnknown);
+	cairo_surface_destroy (myData.pOk);
+	cairo_surface_destroy (myData.pBad);
+	myData.pDefault = NULL;
+	myData.pUnknown = NULL;
+	myData.pOk = NULL;
+	myData.pBad = NULL;
 	_load_surfaces();
-	cd_netspeed("AppletReload");
+	if (CD_APPLET_MY_CONFIG_CHANGED) {
+		if (myData.iSidTimer != 0) { // la frequence a pu changer.
+			g_source_remove (myData.iSidTimer);
+			myData.iSidTimer = 0;
+		}
+		
+		cd_netspeed_launch_analyse ();  // asynchrone
+	}
+	else {
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pDefault);
+	}	
 CD_APPLET_RELOAD_END

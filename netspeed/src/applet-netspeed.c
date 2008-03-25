@@ -14,51 +14,84 @@ CD_APPLET_INCLUDE_MY_VARS
 extern AppletConfig myConfig;
 extern AppletData myData;
 
-gboolean cd_netspeed(gchar *origine) {
-  static gboolean bBusy = FALSE;
-  
-	if (bBusy)
-		return TRUE;
-	bBusy = TRUE;
-  
-  cd_debug("netspeed: Execution called from %s\n", origine);
-  
-  GError *erreur = NULL;
-  g_spawn_command_line_async (g_strdup_printf("bash %s/netspeed", MY_APPLET_SHARE_DATA_DIR), &erreur);
-  if (erreur != NULL) {
-	  cd_warning ("Attention : when trying to catting /proc/net/dev", erreur->message);
-    g_error_free (erreur);
-	}
+#define NETSPEED_TMP_FILE "/tmp/netspeed"
+
+static int s_iThreadIsRunning = 0;
+static int s_iSidTimerRedraw = 0;
+
+gboolean cd_netspeed_timer (gpointer data) {
+	cd_netspeed_launch_analyse();
+	return TRUE;
+}
+
+gpointer cd_netspeed_threaded_calculation (gpointer data) {
+	cd_netspeed_get_data();
 	
-	myData.strengthTimer = g_timeout_add (500, (GSourceFunc) cd_netspeed_getRate, (gpointer) NULL); 
-	
-  bBusy = FALSE;
-  if (myData.interfaceFound == 0) {
-	  return FALSE;
+	g_atomic_int_set (&s_iThreadIsRunning, 0);
+	cd_message ("*** fin du thread netspeed");
+	return NULL;
+}
+
+void cd_netspeed_get_data (void) {
+	gchar *cCommand = g_strdup_printf("bash %s/netspeed", MY_APPLET_SHARE_DATA_DIR);
+	system (cCommand);
+	g_free (cCommand);
+}
+
+static gboolean _cd_netspeed_check_for_redraw (gpointer data) {
+	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
+	cd_message ("%s (%d)", __func__, iThreadIsRunning);
+	if (! iThreadIsRunning) {
+		s_iSidTimerRedraw = 0;
+		if (myIcon == NULL) {
+			g_print ("annulation du chargement de netspeed (myIcon == NULL)\n");
+			return FALSE;
+		}
+		
+		gboolean bResultOK = cd_netspeed_getRate();
+		
+		//\_______________________ On lance le timer si necessaire.
+		if (myData.iSidTimer == 0) {
+			myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_netspeed_timer, NULL);
+		}
+		return FALSE;
 	}
-	else {
-	  return TRUE;
+	return TRUE;
+}
+
+void cd_netspeed_launch_analyse (void) {
+	cd_message (" ");
+	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1)) {  //il etait egal a 0, on lui met 1 et on lance le thread.
+		cd_message (" ==> lancement du thread de calcul");
+		
+		GError *erreur = NULL;
+		GThread* pThread = g_thread_create ((GThreadFunc) cd_netspeed_threaded_calculation, NULL, FALSE, &erreur);
+		if (erreur != NULL) {
+			cd_warning ("Attention : %s", erreur->message);
+			g_error_free (erreur);
+		}
+				
+		if (s_iSidTimerRedraw == 0) {
+			s_iSidTimerRedraw = g_timeout_add (333, (GSourceFunc) _cd_netspeed_check_for_redraw, (gpointer) NULL);
+		}
+		
 	}
 }
 
-gboolean cd_netspeed_getRate(void) {
 
-  static gboolean bBusy = FALSE;
-  
-	if (bBusy)
-		return FALSE;
-	bBusy = TRUE;
-	
-  gchar *cContent = NULL;
+gboolean cd_netspeed_getRate(void) {
+  	gchar *cContent = NULL;
 	gsize length=0;
 	GError *tmp_erreur = NULL;
-	g_file_get_contents("/tmp/netspeed", &cContent, &length, &tmp_erreur);
-	if ((tmp_erreur != NULL) || (cContent == NULL)) {
+	g_file_get_contents(NETSPEED_TMP_FILE, &cContent, &length, &tmp_erreur);
+	if (tmp_erreur != NULL) {
 		cd_message("Attention : %s\n", tmp_erreur->message);
 		g_error_free(tmp_erreur);
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
+		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);
+
+		return FALSE;
 	}
 	else {
 		gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
@@ -68,7 +101,7 @@ gboolean cd_netspeed_getRate(void) {
     		static unsigned long long nUp = 0, nDown = 0;
     		static unsigned long long time = 0;
     		unsigned long long newTime, newNUp, newNDown, upRate = 0, downRate = 0;
-    		int prcnt, i;
+    		int i;
 		
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
@@ -78,7 +111,7 @@ gboolean cd_netspeed_getRate(void) {
 		    		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);
 		    		cd_message("No interface found, timer stopped.\n");
 				myData.interfaceFound = 0;
-		    		bBusy = FALSE;
+				g_strfreev (cInfopipesList);
 		    		return FALSE;
 		  	}
 			else {
@@ -102,6 +135,8 @@ gboolean cd_netspeed_getRate(void) {
 				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pUnknown);
 			}
 		}
+		
+		
 		cd_debug("netspeed -> last time -> %lld\n",time);
 		if(time != 0)
 		{
@@ -119,7 +154,7 @@ gboolean cd_netspeed_getRate(void) {
 			gchar downRateFormatted[11];
 			cd_netspeed_formatRate(upRate, &upRateFormatted);
 			cd_netspeed_formatRate(downRate, &downRateFormatted);
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("Up : %s - Down : %s", upRateFormatted,downRateFormatted);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("↑%s\n↓%s", upRateFormatted,downRateFormatted);
 
 			time = newTime;
 			nUp = newNUp;
@@ -132,28 +167,11 @@ gboolean cd_netspeed_getRate(void) {
 			nUp = newNUp;
 			nDown = newNDown;
 		}
-  }
-  
-  bBusy = FALSE;
-	return FALSE;
+		g_strfreev (cInfopipesList);
+	}  
+	return TRUE;
 }
 
-
-void cd_netspeed_init(gchar *origine) {
-  cd_debug("netspeed: Initialisation called from %s\n", origine);
-	myData.interfaceFound = 1;
-	cd_netspeed("netspeed_Init");
-  myData.checkTimer = g_timeout_add (1000, (GSourceFunc) cd_netspeed, (gpointer) origine);
-}
-
-void cd_netspeed_wait(gchar *origine) {
-  cd_debug("netspeed: Check called from %s\n", origine);
-  CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("Check...");
-	CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pDefault);
-	myData.interfaceFound = 1;
-  myData.checkTimer = g_timeout_add (1000, (GSourceFunc) cd_netspeed, (gpointer) origine);
-}
 // Prend un debit en octet par seconde et le transforme en une chaine de la forme : xxx yB/s
 void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 	int smallRate;
@@ -164,28 +182,27 @@ void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
  	else if (rate > 1000000000000)
  	{
  		smallRate = (int) (rate / 1000000000000);
- 		g_sprintf(debit, "%i TB/s", smallRate);
+ 		g_sprintf(debit, "%i %s/s", smallRate, D_("TB"));
  	}
  	else if (rate > 1000000000)
  	{
  		smallRate = (int) (rate / 1000000000); 
- 		g_sprintf(debit, "%i GB/s", smallRate);
+ 		g_sprintf(debit, "%i %s/s", smallRate, D_("TB"));
  	}
  	else if (rate > 1000000)
  	{
  		smallRate = (int) (rate / 1000000);
-  		g_sprintf(debit, "%i MB/s", smallRate);		
+  		g_sprintf(debit, "%i %s/s", smallRate, D_("MB"));		
  	}
  	else if (rate > 1000)
  	{
  		smallRate = (int) (rate / 1000);
-  		g_sprintf(debit, "%i KB/s", smallRate);	
+  		g_sprintf(debit, "%i %s/s", smallRate, D_("KB"));	
  	}
  	else
  	{
  		smallRate = rate;
-		g_sprintf(debit, "%i B/s", smallRate);
+		g_sprintf(debit, "%i %s/s", smallRate, D_("B"));
  	}
 }
 
-	

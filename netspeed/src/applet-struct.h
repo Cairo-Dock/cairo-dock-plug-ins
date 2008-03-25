@@ -7,7 +7,11 @@
 typedef struct {
 	gchar *defaultTitle;
 	gchar *cDefault;
-	int quickInfoType;
+	gchar *cUnknown;
+	gchar *cBad;
+	gchar *cOk;
+	gint iCheckInterval;
+	gint dCheckInterval;
 } AppletConfig;
 
 typedef struct {
@@ -15,9 +19,10 @@ typedef struct {
 	cairo_surface_t *pUnknown;	
 	cairo_surface_t *pBad;	
 	cairo_surface_t *pOk;	
-	int checkTimer;
-	int interfaceFound;	
-	int strengthTimer;
+	guint iSidTimer;
+	gint checkTimer;
+	gint interfaceFound;	
+//	gint strengthTimer;
 } AppletData;
 
 

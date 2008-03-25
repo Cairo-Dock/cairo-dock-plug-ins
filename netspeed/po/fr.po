@@ -114,13 +114,29 @@ msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:13
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:31
 msgid "Personnalisation"
-msgstr ""
+msgstr "Personnalisation"
 
 #: ../data/messages:29 ../data/messages:33 ../data/messages:37
 #: ../data/messages:41 ../data/messages:45 ../data/messages:49
 msgid "Let t empty to use the default icon."
-msgstr ""
+msgstr "Laissez vide pour utiliser l'icône par défaut."
+
+msgid "TB"
+msgstr "To"
+
+msgid "GB"
+msgstr "Go"
+
+msgid "MB"
+msgstr "Mo"
+
+msgid "KB"
+msgstr "Ko"
+
+msgid "B"
+msgstr "o"
+

@@ -3,9 +3,9 @@
 
 #include <cairo-dock.h>
 
-gboolean cd_netspeed(gchar *origine);
+gboolean cd_netspeed_timer(gpointer data);
 gboolean cd_netspeed_getRate(void);
-void cd_netspeed_init(gchar *origine);
-void cd_netspeed_wait(gchar *origine);
+void cd_netspeed_get_data (void);
+void cd_netspeed_launch_analyse(void);
 void cd_netspeed_formatRate(unsigned long long rate, gchar* debit);
 #endif

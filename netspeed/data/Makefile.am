@@ -1,6 +1,4 @@
 
-SUBDIRS = . 
-
 moduledir = $(pkgdatadir)
 
 module_DATA = \

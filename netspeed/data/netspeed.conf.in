@@ -17,10 +17,6 @@ name = netspeed
 icon = default.svg
 
 
-[Configuration]
-#F[Information]
-frame_info=
-
 [Desklet]
 #i[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
@@ -44,3 +40,10 @@ keep above=false
 #b Keep on widget layer ?
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
+
+[Configuration]
+#F[Information]
+frame_info=
+#i[1;60] Delay between signal checks :
+#{in seconds.}
+delay = 1
