@@ -1,4 +1,6 @@
 #!/bin/bash
+# Banshee Emulated pipe
+# Pipe created by ChAnGFu
 
 FILE="/tmp/banshee-info_$USER.0"
 
@@ -25,16 +27,12 @@ M=$(($POSITIONSEC/60))
 S=$(($POSITIONSEC%60))
 ETIME="$M:$S"
 
-echo "Banshee Emulated pipe" >> $FILE
-echo "Pipe created by ChAnGFu" >> $FILE
 #Status du player
 if [  "$STATUS" -eq "1" ]; then
   echo "status: Playing" >> $FILE
 elif [  "$STATUS" -eq "0" ]; then
   echo "status: Paused" >> $FILE
 fi
-#Ligne non lu du pipe
-echo "Info: Blank" >> $FILE
 #Position du morceaux
 echo "trackInPlaylist: N/A" >> $FILE
 #Position acutel en seconde 
@@ -45,11 +43,5 @@ echo "timeElapsed $ETIME" >> $FILE
 echo "totalTimeInSec $TTIMESEC" >> $FILE
 #Temps total du son
 echo "totalTime: $TTIME" >> $FILE
-#Ligne non lu du pipe
-echo "Info: Blank" >> $FILE
-#Ligne non lu du pipe
-echo "Info: Blank" >> $FILE
-#Ligne non lu du pipe
-echo "Info: Blank" >> $FILE
 #Titre du son
 echo "nowTitle: $GTITLE" >> $FILE

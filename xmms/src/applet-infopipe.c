@@ -13,6 +13,25 @@ CD_APPLET_INCLUDE_MY_VARS
 extern AppletConfig myConfig;
 extern AppletData myData;
 
+enum {
+	INFO_STATUS = 0,
+	INFO_TRACK_IN_PLAYLIST,
+	INFO_USEC_POSITION,
+	INFO_TIME_ELAPSED,
+	INFO_TOTAL_TIME_IN_SEC,
+	INFO_TOTAL_TIME,
+	INFO_NOW_TITLE,
+	NB_INFO
+} AppletInfoEnum;
+
+static int s_pLines[MY_NB_PLAYERS][NB_INFO] = {
+	{2,4,5,6,7,8,12} ,
+	{0,1,2,3,4,5,6} ,
+	{0,1,2,3,4,5,6} ,
+	{0,1,2,3,4,5,6} ,
+	};
+
+
 //Fonction qui definie quel tuyau a emprunter pour récupérer les infos
 //Ajout d'une condition pour que tant que le tuyau n'est pas en place il n'y ait pas lecture de l'information
 gboolean cd_xmms_get_pipe(gpointer data) {
@@ -47,7 +66,7 @@ gboolean cd_xmms_get_pipe(gpointer data) {
 				GError *erreur = NULL;
 				g_spawn_command_line_async (cCommand, &erreur);
 				if (erreur != NULL) {
-					cd_warning ("Attention : when trying to execute 'infobanshee.sh", erreur->message);
+					cd_warning ("Attention : when trying to execute 'infobanshee.sh' : %s", erreur->message);
 					g_error_free (erreur);
 				}
 				g_free (cCommand);
@@ -60,7 +79,7 @@ gboolean cd_xmms_get_pipe(gpointer data) {
 				GError *erreur = NULL;
 				g_spawn_command_line_async (cCommand, &erreur);
 				if (erreur != NULL) {
-					cd_warning ("Attention : when trying to execute 'infobanshee.sh", erreur->message);
+					cd_warning ("Attention : when trying to execute 'infoexaile.sh' : %s", erreur->message);
 					g_error_free (erreur);
 				}
 				g_free (cCommand);
@@ -113,9 +132,10 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 		gchar *cOneInfopipe, *titre=NULL;  // **tcnt
 		int uSecPos=0, uSecTime=0, timeLeft=0, i=0;
 		cQuickInfo = " ";
+		int *pLines = s_pLines[myConfig.iPlayer];
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
-			if (i == 2) {
+			if (i == pLines[INFO_STATUS]) {
 				//tcnt = g_strsplit(cOneInfopipe," ", -1);
 				gchar *str = strchr (cOneInfopipe, ' ');
 				if (str != NULL) {
@@ -133,54 +153,63 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 				else
 					myData.playingStatus = PLAYER_BROKEN;
 			}
-			else if ((i == 4) && (myConfig.quickInfoType == MY_APPLET_TRACK)) {
-				//tcnt = g_strsplit(cOneInfopipe,":", -1);
-				gchar *str = strchr (cOneInfopipe, ':');
-				if (str != NULL) {
-					cQuickInfo = g_strdup (str+1);
+			else if (i == pLines[INFO_TRACK_IN_PLAYLIST]) {
+				if (myConfig.quickInfoType == MY_APPLET_TRACK) {
+					//tcnt = g_strsplit(cOneInfopipe,":", -1);
+					gchar *str = strchr (cOneInfopipe, ':');
+					if (str != NULL)
+						cQuickInfo = g_strdup (str+1);
 				}
 			}
-			else if ((i == 5) && (myConfig.quickInfoType == MY_APPLET_TIME_LEFT)) {
-				//tcnt = g_strsplit(cOneInfopipe," ", -1);
-				gchar *str = strchr (cOneInfopipe, ' ');
-				if (str != NULL) {
-					while (*str == ' ')
-						str ++;
-					uSecPos = atoi(str) * 1e-3;
+			else if (i == pLines[INFO_USEC_POSITION]) {
+				if (myConfig.quickInfoType == MY_APPLET_TIME_LEFT) {
+					//tcnt = g_strsplit(cOneInfopipe," ", -1);
+					gchar *str = strchr (cOneInfopipe, ' ');
+					if (str != NULL) {
+						while (*str == ' ')
+							str ++;
+						uSecPos = atoi(str) * 1e-3;
+					}
 				}
 			}
-			else if ((i == 6) && (myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED)) {
-				//tcnt = g_strsplit(cOneInfopipe," ", -1);
-				gchar *str = strchr (cOneInfopipe, ' ');
-				if (str != NULL) {
-					while (*str == ' ')
-						str ++;
-					cQuickInfo = g_strdup (str);
+			else if (i == pLines[INFO_TIME_ELAPSED]) {
+				if (myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED) {
+					//tcnt = g_strsplit(cOneInfopipe," ", -1);
+					gchar *str = strchr (cOneInfopipe, ' ');
+					if (str != NULL) {
+						while (*str == ' ')
+							str ++;
+						cQuickInfo = g_strdup (str);
+					}
 				}
 			}
-			else if ((i == 7) && (myConfig.quickInfoType == MY_APPLET_TIME_LEFT)) {
-				//tcnt = g_strsplit(cOneInfopipe," ", -1);
-				gchar *str = strchr (cOneInfopipe, ' ');
-				if (str != NULL) {
-					while (*str == ' ')
-						str ++;
-					uSecTime = atoi(str) * 1e-3;
-					timeLeft = uSecTime - uSecPos;
-					int min = timeLeft / 60;
-					int sec = timeLeft % 60;
-					cQuickInfo = g_strdup_printf ("%d:%.02d", min,sec);
+			else if (i == pLines[INFO_TOTAL_TIME_IN_SEC]) {
+				if (myConfig.quickInfoType == MY_APPLET_TIME_LEFT) {
+					//tcnt = g_strsplit(cOneInfopipe," ", -1);
+					gchar *str = strchr (cOneInfopipe, ' ');
+					if (str != NULL) {
+						while (*str == ' ')
+							str ++;
+						uSecTime = atoi(str) * 1e-3;
+						timeLeft = uSecTime - uSecPos;
+						int min = timeLeft / 60;
+						int sec = timeLeft % 60;
+						cQuickInfo = g_strdup_printf ("%d:%.02d", min,sec);
+					}
 				}
 			}
-			else if ((i == 8) && (myConfig.quickInfoType == MY_APPLET_TOTAL_TIME)) {
-				//tcnt = g_strsplit(cOneInfopipe," ", -1);
-				gchar *str = strchr (cOneInfopipe, ' ');
-				if (str != NULL) {
-					while (*str == ' ')
-						str ++;
-					cQuickInfo = g_strdup (str);
+			else if (i == pLines[INFO_TOTAL_TIME]) {
+				if (myConfig.quickInfoType == MY_APPLET_TOTAL_TIME) {
+					//tcnt = g_strsplit(cOneInfopipe," ", -1);
+					gchar *str = strchr (cOneInfopipe, ' ');
+					if (str != NULL) {
+						while (*str == ' ')
+							str ++;
+						cQuickInfo = g_strdup (str);
+					}
 				}
 			}
-			else if (i == 12) {
+			else if (i == pLines[INFO_NOW_TITLE]) {
 				//tcnt = g_strsplit(cOneInfopipe,"e: ", -1);
 				//titre = tcnt[1];
 				gchar *str = strchr (cOneInfopipe, 'e');

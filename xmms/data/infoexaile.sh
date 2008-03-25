@@ -1,12 +1,11 @@
 #!/bin/bash
-#!/bin/bash
+# Exaile Emulated pipe
+# Pipe created by ChAnGFu
 
 FILE="/tmp/exaile-info_$USER.0"
 
 EXAILE=`ps aux | grep exaile | grep -v grep | grep -v info`
-if [ "$EXAILE" ]; then
-  echo ""
-else
+if [ "x$EXAILE" = "x" ]; then
   exit
 fi
 
@@ -32,12 +31,8 @@ POSITION=${TEST#*position: }
 POSITION=${POSITION#*[}
 POSITION=${POSITION%*]}
 
-echo "Exaile Emulated pipe" >> $FILE
-echo "Pipe created by ChAnGFu" >> $FILE
 #Status du player
 echo "status: $STATUS" >> $FILE
-#Ligne non lu du pipe
-echo "Info: Blank" >> $FILE
 #Position du morceaux
 echo "trackInPlaylist: N/A" >> $FILE
 #Position acutel en seconde 
@@ -48,11 +43,5 @@ echo "timeElapsed $POSITION" >> $FILE
 echo "totalTimeInSec 0" >> $FILE
 #Temps total du son
 echo "totalTime: $TTIME" >> $FILE
-#Ligne non lu du pipe
-echo "Info: Blank" >> $FILE
-#Ligne non lu du pipe
-echo "Info: Blank" >> $FILE
-#Ligne non lu du pipe
-echo "Info: Blank" >> $FILE
 #Titre du son
 echo "nowTitle: $GTITLE" >> $FILE

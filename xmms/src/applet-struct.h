@@ -18,6 +18,7 @@ typedef enum {
 	MY_AUDACIOUS,
 	MY_BANSHEE,
 	MY_EXAILE,
+	MY_NB_PLAYERS
 } MyPlayerType;
 
 typedef enum {
@@ -26,6 +27,7 @@ typedef enum {
 	PLAYER_STOPPED,
 	PLAYER_BROKEN,
 	PLAYER_NONE,
+	PLAYER_NB_STATUS
 } MyPlayerStatus;
 
 typedef struct {

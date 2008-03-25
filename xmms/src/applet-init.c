@@ -6,6 +6,8 @@
 #include "applet-init.h"
 #include "applet-infopipe.h"
 
+#define CD_XMMS_TIME_INTERVAL 1000
+
 AppletConfig myConfig;
 AppletData myData;
 
@@ -97,8 +99,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 		myDesklet->renderer = NULL; */
-		
-	  cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
@@ -107,7 +108,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.lastQuickInfo = " ";
 	myData.playingStatus = PLAYER_NONE;
 	cd_xmms_update_title();
-	myData.pipeTimer = g_timeout_add (500, (GSourceFunc) cd_xmms_get_pipe, (gpointer) NULL);
+	myData.pipeTimer = g_timeout_add (CD_XMMS_TIME_INTERVAL, (GSourceFunc) cd_xmms_get_pipe, (gpointer) NULL);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT

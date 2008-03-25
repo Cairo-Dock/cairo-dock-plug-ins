@@ -148,12 +148,12 @@ void cd_xmms_jumpbox() {
 		return ;
 	}
 	if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'xmms -j' : %s", erreur->message);
+		cd_warning ("Attention : when trying to execute 'jumpbox on %d' : %s", myConfig.iPlayer, erreur->message);
 		g_error_free (erreur);
 	}
 }
 
-CD_APPLET_ABOUT (_D("This is the xmms applet\n made by ChAnGFu for Cairo-Dock"))
+CD_APPLET_ABOUT (D_("This is the xmms applet\n made by ChAnGFu for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN
@@ -163,17 +163,17 @@ CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("XMMS", pSubMenu, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU (_D("Previous"), cd_xmms_prev, pSubMenu)
-	CD_APPLET_ADD_IN_MENU (_D("Play/Pause"), cd_xmms_pp, pSubMenu)
+	CD_APPLET_ADD_IN_MENU (D_("Previous"), cd_xmms_prev, pSubMenu)
+	CD_APPLET_ADD_IN_MENU (D_("Play/Pause"), cd_xmms_pp, pSubMenu)
 	if (myConfig.iPlayer != MY_BANSHEE) {
-		CD_APPLET_ADD_IN_MENU (_D("Stop"), cd_xmms_s, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Stop"), cd_xmms_s, pSubMenu)
 	}
-	CD_APPLET_ADD_IN_MENU (_D("Next"), cd_xmms_next, pSubMenu)
+	CD_APPLET_ADD_IN_MENU (D_("Next"), cd_xmms_next, pSubMenu)
 	if ((myConfig.iPlayer != MY_BANSHEE) && (myConfig.iPlayer != MY_EXAILE)) {
-		CD_APPLET_ADD_IN_MENU (_D("Show JumpBox"), cd_xmms_jumpbox, pSubMenu)
-		CD_APPLET_ADD_SUB_MENU (_D("Options"), pOpsSubMenu, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (_D("Toggle Shuffle"), cd_xmms_shuffle, pOpsSubMenu)
-		CD_APPLET_ADD_IN_MENU (_D("Toggle Repeat"), cd_xmms_repeat, pOpsSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), cd_xmms_jumpbox, pSubMenu)
+		CD_APPLET_ADD_SUB_MENU (D_("Options"), pOpsSubMenu, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), cd_xmms_shuffle, pOpsSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), cd_xmms_repeat, pOpsSubMenu)
 	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
