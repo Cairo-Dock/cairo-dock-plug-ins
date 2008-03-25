@@ -6,7 +6,7 @@
 #include "applet-init.h"
 #include "applet-infopipe.h"
 
-#define CD_XMMS_TIME_INTERVAL 1000
+#define CD_XMMS_TIME_INTERVAL 500
 
 AppletConfig myConfig;
 AppletData myData;
