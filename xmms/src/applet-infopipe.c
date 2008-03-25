@@ -186,7 +186,7 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 				gchar *str = strchr (cOneInfopipe, 'e');
 				if (str != NULL) {
 					titre = str+2;
-					if ((strcmp(titre,"(null)") != 0) && (myData.playingTitle == NULL || strcmp(titre, myData.playingTitle) != 0)) {
+					if ((strcmp(titre," (null)") != 0) && (myData.playingTitle == NULL || strcmp(titre, myData.playingTitle) != 0)) {
 						myData.playingTitle = g_strdup (titre);
 						cd_message("On a changé de son! %s",titre);
 						if (myConfig.enableAnim) {
