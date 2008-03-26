@@ -44,6 +44,6 @@ on widget layer=false
 [Configuration]
 #F[Information]
 frame_info=
-#i[1;60] Delay between signal checks :
-#{in seconds.}
-delay = 1
+#i[5;5000] Delay between signal checks :
+#{in milliseconds.}
+delay = 1000

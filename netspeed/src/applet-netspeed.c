@@ -102,7 +102,9 @@ gboolean cd_netspeed_getRate(void) {
     		static unsigned long long time = 0;
     		unsigned long long newTime, newNUp, newNDown, upRate = 0, downRate = 0;
     		int i;
-		
+		newTime = 0;
+		newNUp = 0;
+		newNDown = 0;
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
 			if ((i == 0) && (strcmp(cOneInfopipe,"netspeed") == 0)) {
@@ -137,7 +139,7 @@ gboolean cd_netspeed_getRate(void) {
 		}
 		
 		
-		cd_debug("netspeed -> last time -> %lld\n",time);
+		cd_debug("netspeed -> nOctets avant : ↑%llu ↓%llu \n maintenant : ↑%llu ↓%llu\n diff : ↑%llu ↓%llu \n temps precedent : %llu \n temps courant : %llu \n Diff %llu", nUp, nDown, newNUp, newNDown, newNUp - nUp, newNDown - nDown,time, newTime, newTime - time);
 		if(time != 0)
 		{
 			
@@ -148,14 +150,15 @@ gboolean cd_netspeed_getRate(void) {
 			{
 				upRate = (unsigned long long) (((newNUp - nUp) * 1000000000) / (newTime - time));
 				downRate = (unsigned long long) (((newNDown - nDown) * 1000000000) / (newTime - time));
-				cd_debug("Up : %lld - Down : %lld", upRate, downRate);
+				cd_debug("Up : %llu - Down : %llu", upRate, downRate);
 			}
 			gchar upRateFormatted[11];
 			gchar downRateFormatted[11];
 			cd_netspeed_formatRate(upRate, &upRateFormatted);
 			cd_netspeed_formatRate(downRate, &downRateFormatted);
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("↑%s\n↓%s", upRateFormatted,downRateFormatted);
-
+			if(inDebug == 1) cairo_dock_show_temporary_dialog(
+			"nOctets avant : ↑%llu ↓%llu \n maintenant : ↑%llu ↓%llu\n diff : ↑%llu ↓%llu \n temps precedent : %llu \n temps courant : %llu \n Diff %llu", myIcon, myContainer, myConfig.iCheckInterval, nUp, nDown, newNUp, newNDown, newNUp - nUp, newNDown - nDown,time, newTime, newTime - time);
 			time = newTime;
 			nUp = newNUp;
 			nDown = newNDown;
@@ -168,6 +171,8 @@ gboolean cd_netspeed_getRate(void) {
 			nDown = newNDown;
 		}
 		g_strfreev (cInfopipesList);
+
+		
 	}  
 	return TRUE;
 }

@@ -8,11 +8,11 @@
 extern AppletConfig myConfig;
 extern AppletData myData;
 
-
 CD_APPLET_GET_CONFIG_BEGIN
+
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
-	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
+	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 1000);
 	myConfig.dCheckInterval = myConfig.iCheckInterval;
 	myConfig.cDefault = g_strdup_printf ("%s/default.png", MY_APPLET_SHARE_DATA_DIR);
 	myConfig.cUnknown = g_strdup_printf ("%s/unknown.png", MY_APPLET_SHARE_DATA_DIR);

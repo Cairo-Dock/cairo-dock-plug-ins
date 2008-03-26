@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-netspeed],[0.0.8],[ChAnGFu (changfu@hollowproject.org)])
+AC_INIT([cd-netspeed],[0.0.9],[parAdOxxx_ZeRo (changfu@hollowproject.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

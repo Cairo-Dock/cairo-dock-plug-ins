@@ -2,7 +2,7 @@
 #define  __APPLET_NETSPEED__
 
 #include <cairo-dock.h>
-
+gboolean inDebug;
 gboolean cd_netspeed_timer(gpointer data);
 gboolean cd_netspeed_getRate(void);
 void cd_netspeed_get_data (void);

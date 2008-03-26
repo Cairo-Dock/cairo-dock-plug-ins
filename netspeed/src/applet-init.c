@@ -6,9 +6,9 @@
 #include "applet-init.h"
 #include "applet-netspeed.h"
 
+extern inDebug;
 
 CD_APPLET_DEFINITION ("netspeed", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY);
-
 
 static void _load_surfaces (void) {
 	//Chargement des images
@@ -38,6 +38,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
+	inDebug = 0;
 	_load_surfaces();
 	cd_netspeed_launch_analyse();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -49,7 +50,14 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	
+	cairo_surface_destroy (myData.pDefault);
+	cairo_surface_destroy (myData.pUnknown);
+	cairo_surface_destroy (myData.pOk);
+	cairo_surface_destroy (myData.pBad);
+	myData.pDefault = NULL;
+	myData.pUnknown = NULL;
+	myData.pOk = NULL;
+	myData.pBad = NULL;
 	if (myData.iSidTimer != 0) {
 		g_source_remove (myData.iSidTimer);
 		myData.iSidTimer = 0;
@@ -67,14 +75,6 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
-	cairo_surface_destroy (myData.pDefault);
-	cairo_surface_destroy (myData.pUnknown);
-	cairo_surface_destroy (myData.pOk);
-	cairo_surface_destroy (myData.pBad);
-	myData.pDefault = NULL;
-	myData.pUnknown = NULL;
-	myData.pOk = NULL;
-	myData.pBad = NULL;
 	_load_surfaces();
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		if (myData.iSidTimer != 0) { // la frequence a pu changer.
