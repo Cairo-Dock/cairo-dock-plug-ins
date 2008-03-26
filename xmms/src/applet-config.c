@@ -8,9 +8,7 @@
 extern AppletConfig myConfig;
 extern AppletData myData;
 
-CD_APPLET_CONFIG_BEGIN
-
-	reset_config ();
+CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.quickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
 	
@@ -29,10 +27,10 @@ CD_APPLET_CONFIG_BEGIN
 	myConfig.cPauseIcon 		= CD_CONFIG_GET_STRING ("Configuration", "pause icon");
 	myConfig.cStopIcon 		= CD_CONFIG_GET_STRING ("Configuration", "stop icon");
 	myConfig.cBrokenIcon 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void) {
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	myConfig.defaultTitle = NULL;
 	
@@ -46,12 +44,10 @@ void reset_config (void) {
 	myConfig.cStopIcon = NULL;
 	g_free (myConfig.cBrokenIcon);
 	myConfig.cBrokenIcon = NULL;
-	
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void) {
-	
+
+CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pSurface);
 	myData.pSurface = NULL;
 	cairo_surface_destroy (myData.pStopSurface);
@@ -68,6 +64,4 @@ void reset_data (void) {
 	
 	g_free (myData.playingTitle);
 	myData.playingTitle = NULL;
-	
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

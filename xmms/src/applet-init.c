@@ -3,15 +3,12 @@
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
-#include "applet-init.h"
+#include "applet-draw.h"
 #include "applet-infopipe.h"
+#include "applet-init.h"
 
-#define CD_XMMS_TIME_INTERVAL 500
 
-AppletConfig myConfig;
-AppletData myData;
-
-CD_APPLET_DEFINITION ("xmms", 1, 5, 3, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("xmms", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 static void _load_surfaces (void) {
 	gchar *cUserImagePath;
@@ -91,24 +88,19 @@ static void _load_surfaces (void) {
 
 CD_APPLET_INIT_BEGIN (erreur)
   if (myDesklet != NULL) {
-		/*myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL; */
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
 	cd_remove_pipes();
 	_load_surfaces();
-	myData.lastQuickInfo = " ";
+	
 	myData.playingStatus = PLAYER_NONE;
-	cd_xmms_update_title();
-	myData.pipeTimer = g_timeout_add (CD_XMMS_TIME_INTERVAL, (GSourceFunc) cd_xmms_get_pipe, (gpointer) NULL);
+	myData.previousPlayingStatus = -1;
+	myData.previousPlayingTitle = NULL;
+	myData.iPreviousTrackNumber = -1;
+	myData.iPreviousCurrentTime = -1;
+	cd_xmms_launch_measure ();
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
@@ -137,11 +129,16 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	_load_surfaces();
 	
+	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		cd_remove_pipes();
-		cd_xmms_update_title();
+		myData.playingStatus = PLAYER_NONE;
+		myData.previousPlayingStatus = -1;
+		myData.previousPlayingTitle = NULL;
+		myData.iPreviousTrackNumber = -1;
+		myData.iPreviousCurrentTime = -1;
+		// on ne fait rien, les modifs seront prises en compte au prochain coup de timer, dans au plus 1s.
 	}
-	else {
-		cd_xmms_update_title();
+	else {  // on redessine juste l'icone.
+		cd_xmms_draw_icon ();
 	}
 CD_APPLET_RELOAD_END

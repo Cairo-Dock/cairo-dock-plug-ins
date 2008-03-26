@@ -29,19 +29,21 @@ ETIME="$M:$S"
 
 #Status du player
 if [  "$STATUS" -eq "1" ]; then
-  echo "status: Playing" >> $FILE
+  echo "status: Playing" > $FILE
 elif [  "$STATUS" -eq "0" ]; then
-  echo "status: Paused" >> $FILE
+  echo "status: Paused" > $FILE
 fi
 #Position du morceaux
 echo "trackInPlaylist: N/A" >> $FILE
-#Position acutel en seconde 
+#Position actuelle en secondes
 echo "uSecPosition: $POSITIONSEC" >> $FILE
 #Temps écoulé
-echo "timeElapsed $ETIME" >> $FILE
-#Temps total en seconde
+#echo "timeElapsed $ETIME" >> $FILE
+echo "" >> $FILE
+#Temps total en secondes
 echo "totalTimeInSec $TTIMESEC" >> $FILE
 #Temps total du son
-echo "totalTime: $TTIME" >> $FILE
+#echo "totalTime: $TTIME" >> $FILE
+echo "" >> $FILE
 #Titre du son
 echo "nowTitle: $GTITLE" >> $FILE

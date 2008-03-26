@@ -5,11 +5,13 @@
 
 #include <cairo-dock.h>
 
-gboolean cd_xmms_get_pipe(gpointer data);
-gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath);
-void cd_xmms_update_title();
-void cd_remove_pipes();
-void cd_xmms_animate_icon(int animationLength);
-void cd_xmms_new_song_playing(void);
+gchar *cd_xmms_get_pipe(void);
+
+void cd_xmms_read_pipe(gchar *cInfopipeFilePath);
+
+
+void cd_xmms_launch_measure (void);
+
+void cd_remove_pipes(void);
 
 #endif

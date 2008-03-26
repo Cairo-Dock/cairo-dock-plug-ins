@@ -32,15 +32,15 @@ POSITION=${POSITION#*[}
 POSITION=${POSITION%*]}
 
 #Status du player
-echo "status: $STATUS" >> $FILE
+echo "status: $STATUS" > $FILE
 #Position du morceaux
 echo "trackInPlaylist: N/A" >> $FILE
-#Position acutel en seconde 
-echo "uSecPosition: 0" >> $FILE
+#Position actuelle en secondes
+echo "uSecPosition: N/A" >> $FILE
 #Temps écoulé
 echo "timeElapsed $POSITION" >> $FILE
-#Temps total en seconde
-echo "totalTimeInSec 0" >> $FILE
+#Temps total en secondes
+echo "totalTimeInSec N/A" >> $FILE
 #Temps total du son
 echo "totalTime: $TTIME" >> $FILE
 #Titre du son

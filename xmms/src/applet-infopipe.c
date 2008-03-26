@@ -13,10 +13,14 @@ CD_APPLET_INCLUDE_MY_VARS
 extern AppletConfig myConfig;
 extern AppletData myData;
 
+static int s_iThreadIsRunning = 0;
+static int s_iSidTimerRedraw = 0;
+static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;
+
 enum {
 	INFO_STATUS = 0,
 	INFO_TRACK_IN_PLAYLIST,
-	INFO_USEC_POSITION,
+	INFO_TIME_ELAPSED_IN_SEC,
 	INFO_TIME_ELAPSED,
 	INFO_TOTAL_TIME_IN_SEC,
 	INFO_TOTAL_TIME,
@@ -24,7 +28,7 @@ enum {
 	NB_INFO
 } AppletInfoEnum;
 
-static int s_pLines[MY_NB_PLAYERS][NB_INFO] = {
+static int s_pLineNumber[MY_NB_PLAYERS][NB_INFO] = {
 	{2,4,5,6,7,8,12} ,
 	{0,1,2,3,4,5,6} ,
 	{0,1,2,3,4,5,6} ,
@@ -32,88 +36,125 @@ static int s_pLines[MY_NB_PLAYERS][NB_INFO] = {
 	};
 
 
-//Fonction qui definie quel tuyau a emprunter pour récupérer les infos
-//Ajout d'une condition pour que tant que le tuyau n'est pas en place il n'y ait pas lecture de l'information
-gboolean cd_xmms_get_pipe(gpointer data) {
-	static gboolean bBusy = FALSE;
-	if (bBusy)
-		return TRUE;
-	bBusy = TRUE;
+gboolean cd_xmms_timer (gpointer data)
+{
+	cd_xmms_launch_measure ();
+	return TRUE;
+}
+
+gpointer cd_xmms_threaded_calculation (gpointer data)
+{
+	GError *erreur = NULL;
 	
-	gchar *cInfopipeFilePath;
+	gchar *cInfopipeFilePath = cd_xmms_get_pipe ();
+	
+	if (cInfopipeFilePath == NULL || ! g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS))
+	{
+		myData.playingStatus = PLAYER_NONE;
+	}
+	else
+	{
+		g_static_mutex_lock (&mutexData);
+		cd_xmms_read_pipe(cInfopipeFilePath);
+		g_static_mutex_unlock (&mutexData);
+	}
+	g_free (cInfopipeFilePath);
+	
+	g_atomic_int_set (&s_iThreadIsRunning, 0);
+	cd_message ("*** fin du thread xmms");
+	return NULL;
+}
+
+static gboolean _cd_xmms_check_for_redraw (gpointer data)
+{
+	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
+	cd_message ("%s (%d)", __func__, iThreadIsRunning);
+	if (! iThreadIsRunning)
+	{
+		s_iSidTimerRedraw = 0;
+		if (myIcon == NULL)
+		{
+			g_print ("annulation du chargement de la meteo\n");
+			return FALSE;
+		}
+		
+		//\_______________________ On recharge l'icone principale.
+		g_static_mutex_lock (&mutexData);
+		cd_xmms_draw_icon ();  // lance le redraw de l'icone.
+		g_static_mutex_unlock (&mutexData);
+		
+		//\_______________________ On lance le timer si necessaire.
+		if (myData.pipeTimer == 0)
+			myData.pipeTimer = g_timeout_add (1000, (GSourceFunc) cd_xmms_timer, NULL);
+		return FALSE;
+	}
+	return TRUE;
+}
+void cd_xmms_launch_measure (void)
+{
+	cd_message ("");
+	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1))  // il etait egal a 0, on lui met 1 et on lance le thread.
+	{
+		cd_message (" ==> lancement du thread de calcul");
+		
+		if (s_iSidTimerRedraw == 0)
+			s_iSidTimerRedraw = g_timeout_add (250, (GSourceFunc) _cd_xmms_check_for_redraw, (gpointer) NULL);
+		
+		GError *erreur = NULL;
+		GThread* pThread = g_thread_create ((GThreadFunc) cd_xmms_threaded_calculation,
+			NULL,
+			FALSE,
+			&erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("Attention : %s", erreur->message);
+			g_error_free (erreur);
+		}
+	}
+}
+
+
+//Fonction qui definie quel tuyau a emprunter pour récupérer les infos
+gchar *cd_xmms_get_pipe(void)
+{
+	gchar *cInfopipeFilePath = NULL;
+	gchar *cCommand = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			cInfopipeFilePath = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
 		break ;
 		case MY_AUDACIOUS :  //Il faut émuler le pipe d'audacious par AUDTOOL
 			cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
-			
 			if (! g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS)) {
-				gchar *cCommand = g_strdup_printf ("bash %s/infoaudacious.sh", MY_APPLET_SHARE_DATA_DIR);
-				GError *erreur = NULL;
-				g_spawn_command_line_async (cCommand, &erreur);
-				if (erreur != NULL) {
-					cd_warning ("Attention : when trying to execute 'infoaudacious.sh", erreur->message);
-					g_error_free (erreur);
-					g_free (cCommand);
-				}
+				cCommand = g_strdup_printf ("bash %s/infoaudacious.sh", MY_APPLET_SHARE_DATA_DIR);
+				system (cCommand);
 			}
 		break ;
 		case MY_BANSHEE :  //Le pipe est trop lent et cause des freezes... // Il faut émuler le pipe de banshee par le script
 			cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
 			if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
-				gchar *cCommand = g_strdup_printf ("bash %s/infobanshee.sh", MY_APPLET_SHARE_DATA_DIR);
-				GError *erreur = NULL;
-				g_spawn_command_line_async (cCommand, &erreur);
-				if (erreur != NULL) {
-					cd_warning ("Attention : when trying to execute 'infobanshee.sh' : %s", erreur->message);
-					g_error_free (erreur);
-				}
-				g_free (cCommand);
+				cCommand = g_strdup_printf ("bash %s/infobanshee.sh", MY_APPLET_SHARE_DATA_DIR);
+				system (cCommand);
 			}
 		break ;
 		case MY_EXAILE :  //Le pipe est trop lent, récupération des infos une fois sur deux avec un pique du cpu lors de l'éxécution du script // Il faut émuler le pipe d'audacious par Exaile -q
 			cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
 			if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
-				gchar *cCommand = g_strdup_printf ("bash %s/infoexaile.sh", MY_APPLET_SHARE_DATA_DIR);
-				GError *erreur = NULL;
-				g_spawn_command_line_async (cCommand, &erreur);
-				if (erreur != NULL) {
-					cd_warning ("Attention : when trying to execute 'infoexaile.sh' : %s", erreur->message);
-					g_error_free (erreur);
-				}
-				g_free (cCommand);
+				cCommand = g_strdup_printf ("bash %s/infoexaile.sh", MY_APPLET_SHARE_DATA_DIR);
+				system (cCommand);
 			}
 		break ;
-		default :  // ne devrait pas arriver.
-			CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-			CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBrokenSurface);
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(" ");
-			CD_APPLET_REDRAW_MY_ICON;
-			cd_message("No Pipe to read");
-			bBusy = FALSE;
-		return TRUE;
+		default :
+		break ;
 	}
+	g_free (cCommand);
 	
-	//Si le pipe n'existe pas, on sort. Evite les cascades d'éxécution du script et de lire des données fausses
-	if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
-		bBusy = FALSE;
-		return TRUE;
-	}
-	
-	cd_xmms_read_pipe(cInfopipeFilePath);
-	g_free (cInfopipeFilePath);
-	bBusy = FALSE;
-	return TRUE;
+	return cInfopipeFilePath;
 }
 
-//Fonction de lecture du tuyau et d'affichage des informations
-gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
-	static gboolean bBusy = FALSE;
-	if (bBusy)
-		return FALSE;
-	bBusy = TRUE;
-	
+//Fonction de lecture du tuyau.
+void cd_xmms_read_pipe(gchar *cInfopipeFilePath)
+{
 	gchar *cContent = NULL;
 	gchar *cQuickInfo = NULL;
 	gsize length=0;
@@ -122,23 +163,24 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 	if (erreur != NULL) {
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
-		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurface);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW(" ");
+		myData.playingStatus = PLAYER_NONE;
 	}
 	else {
 		gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 		g_free(cContent);
-		gchar *cOneInfopipe, *titre=NULL;  // **tcnt
-		int uSecPos=0, uSecTime=0, timeLeft=0, i=0;
-		cQuickInfo = " ";
-		int *pLines = s_pLines[myConfig.iPlayer];
+		gchar *cOneInfopipe;
+		myData.iTrackNumber = -1;
+		myData.iCurrentTime = -1;
+		myData.iSongLength = -1;
+		int *pLineNumber = s_pLineNumber[myConfig.iPlayer];
+		int i;
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
-			if (i == pLines[INFO_STATUS]) {
+			if (i == pLineNumber[INFO_STATUS]) {
 				//tcnt = g_strsplit(cOneInfopipe," ", -1);
 				gchar *str = strchr (cOneInfopipe, ' ');
 				if (str != NULL) {
+					str ++;
 					while (*str == ' ')
 						str ++;
 					if ((strcmp (str, "Playing") == 0) || (strcmp (str, "playing") == 0))
@@ -153,102 +195,110 @@ gboolean cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 				else
 					myData.playingStatus = PLAYER_BROKEN;
 			}
-			else if (i == pLines[INFO_TRACK_IN_PLAYLIST]) {
+			else if (i == pLineNumber[INFO_TRACK_IN_PLAYLIST]) {
 				if (myConfig.quickInfoType == MY_APPLET_TRACK) {
 					//tcnt = g_strsplit(cOneInfopipe,":", -1);
 					gchar *str = strchr (cOneInfopipe, ':');
-					if (str != NULL)
-						cQuickInfo = g_strdup (str+1);
+					if (str != NULL) {
+						str ++;
+						while (*str == ' ')
+							str ++;
+						myData.iTrackNumber = atoi (str);
+					}
 				}
 			}
-			else if (i == pLines[INFO_USEC_POSITION]) {
+			else if (i == pLineNumber[INFO_TIME_ELAPSED_IN_SEC]) {
+				if (myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.quickInfoType == MY_APPLET_TIME_LEFT) {
+					//tcnt = g_strsplit(cOneInfopipe," ", -1);
+					gchar *str = strchr (cOneInfopipe, ' ');
+					if (str != NULL) {
+						str ++;
+						while (*str == ' ')
+							str ++;
+						if (*str != 'N')
+							myData.iCurrentTime = atoi(str) * 1e-3;
+					}
+				}
+			}
+			else if (i == pLineNumber[INFO_TIME_ELAPSED]) {
+				if ((myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.quickInfoType == MY_APPLET_TIME_LEFT) && myData.iCurrentTime == -1) {
+					//tcnt = g_strsplit(cOneInfopipe," ", -1);
+					gchar *str = strchr (cOneInfopipe, ' ');
+					if (str != NULL) {
+						str ++;
+						while (*str == ' ')
+							str ++;
+						gchar *str2 = strchr (str, ':');
+						if (str2 == NULL)  // pas de minutes.
+						{
+							myData.iCurrentTime = atoi(str);
+						}
+						else
+						{
+							*str2 = '\0';
+							myData.iCurrentTime = atoi(str2+1) + 60*atoi (str);  // prions pour qu'ils n'ecrivent jamais les heures ...
+						}
+					}
+				}
+			}
+			else if (i == pLineNumber[INFO_TOTAL_TIME_IN_SEC]) {
 				if (myConfig.quickInfoType == MY_APPLET_TIME_LEFT) {
 					//tcnt = g_strsplit(cOneInfopipe," ", -1);
 					gchar *str = strchr (cOneInfopipe, ' ');
 					if (str != NULL) {
+						str ++;
 						while (*str == ' ')
 							str ++;
-						uSecPos = atoi(str) * 1e-3;
+						if (*str != 'N')
+							myData.iSongLength = atoi(str) * 1e-3;
 					}
 				}
 			}
-			else if (i == pLines[INFO_TIME_ELAPSED]) {
-				if (myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED) {
+			else if (i == pLineNumber[INFO_TOTAL_TIME]) {
+				if (myConfig.quickInfoType == MY_APPLET_TIME_LEFT && myData.iSongLength == -1) {
 					//tcnt = g_strsplit(cOneInfopipe," ", -1);
 					gchar *str = strchr (cOneInfopipe, ' ');
 					if (str != NULL) {
+						str ++;
 						while (*str == ' ')
 							str ++;
-						cQuickInfo = g_strdup (str);
+						gchar *str2 = strchr (str, ':');
+						if (str2 == NULL)  // pas de minutes.
+						{
+							myData.iSongLength = atoi(str);
+						}
+						else
+						{
+							*str2 = '\0';
+							myData.iSongLength = atoi(str2+1) + 60*atoi (str);  // prions pour qu'ils n'ecrivent jamais les heures ...
+						}
 					}
 				}
 			}
-			else if (i == pLines[INFO_TOTAL_TIME_IN_SEC]) {
-				if (myConfig.quickInfoType == MY_APPLET_TIME_LEFT) {
-					//tcnt = g_strsplit(cOneInfopipe," ", -1);
-					gchar *str = strchr (cOneInfopipe, ' ');
-					if (str != NULL) {
-						while (*str == ' ')
-							str ++;
-						uSecTime = atoi(str) * 1e-3;
-						timeLeft = uSecTime - uSecPos;
-						int min = timeLeft / 60;
-						int sec = timeLeft % 60;
-						cQuickInfo = g_strdup_printf ("%d:%.02d", min,sec);
-					}
-				}
-			}
-			else if (i == pLines[INFO_TOTAL_TIME]) {
-				if (myConfig.quickInfoType == MY_APPLET_TOTAL_TIME) {
-					//tcnt = g_strsplit(cOneInfopipe," ", -1);
-					gchar *str = strchr (cOneInfopipe, ' ');
-					if (str != NULL) {
-						while (*str == ' ')
-							str ++;
-						cQuickInfo = g_strdup (str);
-					}
-				}
-			}
-			else if (i == pLines[INFO_NOW_TITLE]) {
+			else if (i == pLineNumber[INFO_NOW_TITLE]) {
 				//tcnt = g_strsplit(cOneInfopipe,"e: ", -1);
 				//titre = tcnt[1];
-				gchar *str = strchr (cOneInfopipe, 'e');
+				gchar *str = strchr (cOneInfopipe, ':');
 				if (str != NULL) {
-					titre = str+2;
-					if ((strcmp(titre," (null)") != 0) && (myData.playingTitle == NULL || strcmp(titre, myData.playingTitle) != 0)) {
-						myData.playingTitle = g_strdup (titre);
-						cd_message("On a changé de son! %s",titre);
-						if (myConfig.enableAnim) {
-							cd_xmms_animate_icon(1);
-						}
-						if (myConfig.enableDialogs) {
-							cd_xmms_new_song_playing();
-						}
+					str ++;
+					while (*str == ' ')
+						str ++;
+					if ((strcmp(str," (null)") != 0) && (myData.playingTitle == NULL || strcmp(str, myData.playingTitle) != 0)) {
+						g_free (myData.playingTitle);
+						myData.playingTitle = g_strdup (str);
+						cd_message("On a changé de son! (%s)", myData.playingTitle);
 					}
 				}
 			}
-		}
+		}  // fin de parcours des lignes.
+		g_strfreev (cInfopipesList);
 	}
-	
-	if (myDesklet != NULL) {
-		if (myConfig.extendedDesklet)
-			cd_xmms_draw_in_desklet(myDrawContext, cQuickInfo);
-	}
-	else {
-		cd_xmms_draw_in_dock(cQuickInfo);
-	}
-	cd_remove_pipes();
-	bBusy = FALSE;
-	return FALSE;
+	cd_remove_pipes ();
 }
 
-void cd_xmms_update_title() {
-	cd_message("On met a jour le titre et le status de l'applet");
-	cd_xmms_get_pipe(NULL);
-}
 
 //Fonction qui supprime les tuyaux émulés pour eviter des pics CPU
-void cd_remove_pipes() {
+void cd_remove_pipes(void) {
 	gchar *cInfopipeFilePath = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_AUDACIOUS :
@@ -266,13 +316,4 @@ void cd_remove_pipes() {
 	g_remove (cInfopipeFilePath);
 	g_free (cInfopipeFilePath);
 	return ;
-}
-
-//Fonction qui affiche la bulle au changement de musique
-void cd_xmms_new_song_playing(void) {
-	cairo_dock_show_temporary_dialog ("%s", myIcon, myDock, myConfig.timeDialogs, myData.playingTitle);
-}
-//Fonction qui anime l'icone au changement de musique
-void cd_xmms_animate_icon(int animationLength) {
-	CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength)
 }
