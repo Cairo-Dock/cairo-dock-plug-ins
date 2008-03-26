@@ -17,8 +17,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
+CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "Classic");
 	
@@ -27,16 +26,12 @@ CD_APPLET_CONFIG_BEGIN
 	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "alpha");
 	
 	myConfig.bFree = CD_CONFIG_GET_BOOLEAN ("Configuration", "free");
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cThemePath);
-	myConfig.cThemePath = NULL;
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
-
+CD_APPLET_RESET_CONFIG_END
 
 
 static void _penguin_reset_one_animation (PenguinAnimation *pAnimation)
@@ -58,8 +53,7 @@ static void _penguin_reset_one_animation (PenguinAnimation *pAnimation)
 	}
 }
 
-void reset_data (void)
-{
+CD_APPLET_RESET_DATA_BEGIN
 	int i;
 	for (i = 0; i < myData.iNbAnimations; i++)
 	{
@@ -67,17 +61,9 @@ void reset_data (void)
 	}
 	
 	g_free (myData.pAnimations);
-	myData.pAnimations = NULL;
 	g_free (myData.pBeginningAnimations);
-	myData.pBeginningAnimations = NULL;
 	g_free (myData.pEndingAnimations);
-	myData.pEndingAnimations = NULL;
 	g_free (myData.pGoUpAnimations);
-	myData.pGoUpAnimations = NULL;
 	g_free (myData.pMovmentAnimations);
-	myData.pMovmentAnimations = NULL;
 	g_free (myData.pRestAnimations);
-	myData.pRestAnimations = NULL;
-	
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

@@ -276,42 +276,17 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 		//g_print ("%s () : %ds\n", __func__, elapsed);
 		if(myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED)
 		{
-			gchar *cQuickInfo;
-			if(elapsed < 60)
-			{
-				cQuickInfo = g_strdup_printf ("%i", elapsed);
-			}
-			else
-			{
-				int min = elapsed / 60;
-				int sec = elapsed % 60;
-				cQuickInfo = g_strdup_printf ("%i:%.02d", min,sec);
-			}
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW (cQuickInfo)
-			g_free (cQuickInfo);
+			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (elapsed)
+			CD_APPLET_REDRAW_MY_ICON
 		}
-		else if(myConfig.quickInfoType == MY_APPLET_TIME_LEFT)
+		else if(myConfig.quickInfoType == MY_APPLET_TIME_LEFT)  // avec un '-' devant.
 		{
-			gchar *cQuickInfo;
-			int time = myData.playing_duration - elapsed;
-			if(time < 60)
-			{
-				cQuickInfo = g_strdup_printf ("-%i", time);
-			}
-			else
-			{
-				int min = time / 60;
-				int sec = time % 60;
-				cQuickInfo = g_strdup_printf ("-%i:%.02d", min,sec);
-			}
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW (cQuickInfo)
-			g_free (cQuickInfo);
+			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (elapsed - myData.playing_duration)
+			CD_APPLET_REDRAW_MY_ICON
 		}
 		else if(myConfig.quickInfoType == MY_APPLET_PERCENTAGE)
 		{
-			gchar *cQuickInfo = g_strdup_printf ("%d%%", ((100.*elapsed/myData.playing_duration)));
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW (cQuickInfo)
-			g_free (cQuickInfo);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW ("%d%%", (int) (100.*elapsed/myData.playing_duration))
 		}
 	}
 }

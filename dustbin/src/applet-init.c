@@ -17,10 +17,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("dustbin", 1, 5, 3, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("dustbin", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 
-AppletConfig myConfig;
-AppletData myData;
 
 static void _load_theme (GError **erreur)
 {

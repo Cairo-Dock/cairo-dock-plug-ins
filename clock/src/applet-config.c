@@ -24,9 +24,7 @@ AppletData myData;
 static gchar *my_s_Frequencies[CD_CLOCK_NB_FREQUENCIES+1] = {"Never", "Day", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Week Day", "Week End", "Month", NULL};
 
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
-	
+CD_APPLET_GET_CONFIG_BEGIN
 	//\_______________ On recupere les parametres de fonctionnement.
 	myConfig.iShowDate 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "show date", CLOCK_DATE_ON_LABEL);
 	myConfig.bShowSeconds 		= CD_CONFIG_GET_BOOLEAN ("Module", "show seconds");
@@ -88,13 +86,11 @@ CD_APPLET_CONFIG_BEGIN
 	//\_______________ On liste les themes disponibles et on recupere celui choisi.
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "default");
 	cd_message (" -> %s\n", myConfig.cThemePath);
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cThemePath);
-	myConfig.cThemePath = NULL;
 	
 	CDClockAlarm *pAlarm;
 	int i;
@@ -106,37 +102,28 @@ void reset_config (void)
 			cd_clock_free_alarm (pAlarm);
 		}
 		g_ptr_array_free (myConfig.pAlarms, TRUE);
-		myConfig.pAlarms = NULL;
 	}
 	
 	g_free (myConfig.cSetupTimeCommand);
-	myConfig.cSetupTimeCommand = NULL;
-	
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void)
-{
+
+CD_APPLET_RESET_DATA_BEGIN
 	int i;
 	for (i = 0; i < CLOCK_ELEMENTS; i ++)
 	{
 		if (myData.pSvgHandles[i] != NULL)
 		{
 			rsvg_handle_free (myData.pSvgHandles[i]);
-			myData.pSvgHandles[i] = NULL;
 		}
 	}
 	
 	if (myData.pForegroundSurface != NULL)
 	{
 		cairo_surface_destroy (myData.pForegroundSurface);
-		myData.pForegroundSurface = NULL;
 	}
 	if (myData.pBackgroundSurface != NULL)
 	{
 		cairo_surface_destroy (myData.pBackgroundSurface);
-		myData.pBackgroundSurface = NULL;
 	}
-	
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

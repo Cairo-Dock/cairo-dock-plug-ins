@@ -18,8 +18,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
+CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.cLocationCode = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "location code", "FRXX0076");
 	myConfig.bISUnits = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "IS units", TRUE);
@@ -36,7 +35,7 @@ CD_APPLET_CONFIG_BEGIN
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
 static void _reset_units (Unit *pUnits)
@@ -83,17 +82,14 @@ static void _reset_current_one_day (Day *pDay)
 	}
 }
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cLocationCode);
 	g_free (myConfig.cRenderer);
 	g_free (myConfig.cThemePath);
-	
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void)
-{
+
+CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cLon);
 	g_free (myData.cLat);
 	_reset_units (&myData.units);
@@ -109,6 +105,4 @@ void reset_data (void)
 		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 		myIcon->pSubDock = NULL;
 	}
-	
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

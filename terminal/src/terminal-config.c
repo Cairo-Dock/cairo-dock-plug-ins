@@ -37,9 +37,7 @@ static void set_color(GdkColor *color, double src[3]) {
   color->blue = (guint16)(src[2]* 65535.);
 }
 
-CD_APPLET_CONFIG_BEGIN
-{
-  reset_config ();
+CD_APPLET_GET_CONFIG_BEGIN
   //0 means completely transparent and 65535 opaque
   myConfig.transparency = (guint16) (CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("GUI", "terminal transparency", .84) * 65535);  // 55000
 
@@ -54,21 +52,18 @@ CD_APPLET_CONFIG_BEGIN
   myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F1");
   myConfig.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb lines", 25);
   myConfig.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb columns", 80);
-}
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
   if (myConfig.shortcut)
     cd_keybinder_unbind(myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull);
   g_free (myConfig.shortcut);
   myConfig.shortcut = NULL;
-  memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void)
-{
+
+CD_APPLET_RESET_DATA_BEGIN
 	if (myData.dialog)
 	{
 		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
@@ -79,5 +74,4 @@ void reset_data (void)
 		gtk_widget_destroy (myData.tab);
 	}
 	myData.tab = NULL;
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

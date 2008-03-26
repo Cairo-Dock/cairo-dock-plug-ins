@@ -24,13 +24,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-init.h"
 
-
 static gboolean s_bVideoExtensionChecked = FALSE;
 
-AppletConfig myConfig;
-AppletData myData;
 
-CD_APPLET_DEFINITION ("Xgamma", 1, 5, 1, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("Xgamma", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 CD_APPLET_INIT_BEGIN (erreur)

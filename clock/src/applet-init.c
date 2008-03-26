@@ -15,9 +15,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-init.h"
 
-extern AppletConfig myConfig;
-extern AppletData myData;
-
 
 static char s_cFileNames[CLOCK_ELEMENTS][30] = {
 	"clock-drop-shadow.svg",
@@ -34,7 +31,7 @@ static char s_cFileNames[CLOCK_ELEMENTS][30] = {
 	"clock-frame.svg" };
 
 
-CD_APPLET_DEFINITION ("clock", 1, 5, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("clock", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 static void _load_theme (void)

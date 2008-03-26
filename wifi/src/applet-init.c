@@ -3,14 +3,12 @@
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
-#include "applet-init.h"
 #include "applet-wifi.h"
+#include "applet-draw.h"
+#include "applet-init.h"
 
-AppletConfig myConfig;
-AppletData myData;
 
-
-CD_APPLET_DEFINITION ("wifi", 1, 5, 3, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("wifi", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
 
 CD_APPLET_INIT_BEGIN (erreur)
@@ -56,6 +54,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 	}
 	
+	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		if (myData.iSidTimer != 0) { // la frequence a pu changer.
 			g_source_remove (myData.iSidTimer);
@@ -64,7 +63,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		cd_wifi_launch_measure ();  // asynchrone
 	}
-	else {
-		cd_wifi_set_surface (myData.iPreviousQuality);
+	else {  // on redessine juste l'icone.
+		cd_wifi_set_surface (myData.iQuality);
 	}
 CD_APPLET_RELOAD_END

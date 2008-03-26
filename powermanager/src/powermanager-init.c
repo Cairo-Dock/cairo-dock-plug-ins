@@ -7,65 +7,20 @@
 #include "powermanager-struct.h"
 #include "powermanager-init.h"
 
-extern AppletConfig myConfig;
-extern AppletData myData;
-
 static gboolean dbus_enable = FALSE;
 
 
-CD_APPLET_DEFINITION ("PowerManager", 1, 5, 3, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("PowerManager", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
-
-/*static void _load_surfaces (void)
-{
-	reset_surfaces ();
-	
-	GString *sImagePath = g_string_new ("");
-	
-	g_string_printf (sImagePath, "%s/battery_44.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceBattery44 = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/battery_34.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceBattery34 = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/battery_24.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceBattery24 = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/battery_14.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceBattery14 = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/battery_04.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceBattery04 = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/charge_44.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceCharge44 = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/charge_34.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceCharge34 = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/charge_24.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceCharge24 = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/charge_14.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceCharge14 = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/charge_04.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceCharge04 = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/sector.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceSector = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	g_string_printf (sImagePath, "%s/broken.svg", MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceBroken = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-
-	g_string_free (sImagePath, TRUE);
-}*/
 
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet != NULL)
 	{
-		/*myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;*/
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
-	//_load_surfaces ();  // on ne charge pas toutes les surfaces, car cela prend trop de memoire, et trop de temps au chargement, alors que ce n'est pas necessaire. En effet, on ne redessine que si il y'a changement. Or la batterie se vide lentement, et la recharge n'est pas non plus fulgurante, donc au total on redesine reellement l'icone 1 fois toutes les 10 minutes peut-etre, ce qui ne justifie pas de pre-charger les surfaces.
+	// on ne charge pas toutes les surfaces, car cela prend trop de memoire, et trop de temps au chargement, alors que ce n'est pas necessaire. En effet, on ne redessine que si il y'a changement. Or la batterie se vide lentement, et la recharge n'est pas non plus fulgurante, donc au total on redesine reellement l'icone 1 fois toutes les 10 minutes peut-etre, ce qui ne justifie pas de pre-charger les surfaces.
 	
 	//Si le bus n'a pas encore ete acquis, on le recupere.
 	if (! dbus_enable)
@@ -119,20 +74,9 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (myDesklet != NULL)
 	{
-		/*myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;*/
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
-	
-	//\_______________ On recharge les donnees qui ont pu changer.
-	//_load_surfaces ();
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)  // si la frequence du timer passe en conf, il faudra l'arreter et le relancer.
 	{

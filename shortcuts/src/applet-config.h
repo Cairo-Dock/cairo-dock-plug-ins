@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-CD_APPLET_CONFIG__H
+CD_APPLET_CONFIG_H
 
 
 #endif

@@ -35,8 +35,11 @@ typedef struct {
 typedef struct {
 	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];
 	guint iSidTimer;
-	gint isWirelessDevice;
-	CDWifiQuality iPreviousQuality;
+	CDWifiQuality iQuality, iPreviousQuality;
+	gint prcnt, prev_prcnt;
+	gint flink, prev_flink;
+	gint mlink, prev_mlink;
+	gboolean bAcquisitionOK;
 	
 	gint checkTimer;
 	gint checkedTime;

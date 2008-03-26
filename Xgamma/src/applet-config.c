@@ -17,31 +17,24 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
+CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN	
 	
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void)
-{
+
+CD_APPLET_RESET_DATA_BEGIN
 	if (myData.pDialog)
 	{
 		cairo_dock_dialog_unreference (myData.pDialog);  // detruit aussi le widget interactif.
-		myData.pDialog = NULL;
 	}
 	else
 	{
 		gtk_widget_destroy (myData.pWidget);
 	}
-	myData.pWidget = NULL;
-	
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

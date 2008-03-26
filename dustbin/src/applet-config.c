@@ -20,8 +20,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
+CD_APPLET_GET_CONFIG_BEGIN
 	//\_______________ On recupere la liste des repertoires faisant office de poubelle.
 	gsize length = 0;
 	myConfig.cAdditionnalDirectoriesList = CD_CONFIG_GET_STRING_LIST ("Module", "additionnal directories", &length);
@@ -39,45 +38,33 @@ CD_APPLET_CONFIG_BEGIN
 	myConfig.fCheckInterval = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Module", "check interval", 2.);
 	
 	myConfig.cDefaultBrowser = CD_CONFIG_GET_STRING ("Module", "alternative file browser");
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_strfreev (myConfig.cAdditionnalDirectoriesList);
-	myConfig.cAdditionnalDirectoriesList = NULL;
 	
 	g_free (myConfig.cThemePath);
-	myConfig.cThemePath = NULL;
 	g_free (myConfig.cEmptyUserImage);
-	myConfig.cEmptyUserImage = NULL;
 	g_free (myConfig.cFullUserImage);
-	myConfig.cFullUserImage = NULL;
 	
 	g_free (myConfig.cDefaultBrowser);
-	myConfig.cDefaultBrowser = NULL;
-	
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void)
-{
+
+CD_APPLET_RESET_DATA_BEGIN
 	g_atomic_int_set (&myData.iQuickInfoValue, 0);
 	
 	if (myData.pEmptyBinSurface != NULL)
 	{
 		cairo_surface_destroy (myData.pEmptyBinSurface);
-		myData.pEmptyBinSurface = NULL;
 	}
 	if (myData.pFullBinSurface != NULL)
 	{
 		cairo_surface_destroy (myData.pFullBinSurface);
-		myData.pFullBinSurface = NULL;
 	}
 	
 	g_free (myData.cDialogIconPath);
-	myData.cDialogIconPath = NULL;
 	
 	cd_dustbin_remove_all_dustbins ();
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

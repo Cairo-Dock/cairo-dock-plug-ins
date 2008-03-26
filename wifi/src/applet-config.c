@@ -9,9 +9,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
-	
+CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
 	
@@ -27,10 +25,10 @@ CD_APPLET_CONFIG_BEGIN
 	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
 	myConfig.dCheckInterval = myConfig.iCheckInterval;
 	myConfig.hollowIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "hollow");
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void) {
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	myConfig.defaultTitle = NULL;
 	
@@ -38,19 +36,12 @@ void reset_config (void) {
 	for (i = 0; i < WIFI_NB_QUALITY; i ++) {
 		g_free (myConfig.cUserImage[i]);
 	}
-	
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void) {
-	
-	g_source_remove (myData.checkTimer);
-	myData.checkTimer = 0;
-	
+
+CD_APPLET_RESET_DATA_BEGIN
 	int i;
 	for (i = 0; i < WIFI_NB_QUALITY; i ++) {
 		cairo_surface_destroy (myData.pSurfaces[i]);
 	}
-	
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

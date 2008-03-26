@@ -32,24 +32,22 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN
-{
-  myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F2");
-}
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_BEGIN
+	
+	myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F2");
+	
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config(void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
   if (myConfig.shortcut)
     cd_keybinder_unbind(myConfig.shortcut, (CDBindkeyHandler)systray_on_keybinding_pull);
   g_free (myConfig.shortcut);
   myConfig.shortcut = NULL;
-  memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data(void)
-{
+
+CD_APPLET_RESET_DATA_BEGIN
 	if (myData.dialog)
 	{
 		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
@@ -60,5 +58,4 @@ void reset_data(void)
 		gtk_widget_destroy (myData.tray->widget);
 	}
 	myData.tray = NULL;
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

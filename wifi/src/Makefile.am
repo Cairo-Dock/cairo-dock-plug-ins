@@ -13,6 +13,8 @@ libcd_wifi_la_SOURCES = \
 	applet-wifi.h\
 	applet-notifications.c\
 	applet-notifications.h\
+	applet-draw.c\
+	applet-draw.h\
 	applet-struct.h
 
 

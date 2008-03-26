@@ -1,10 +1,3 @@
-
-#include "stdlib.h"
-
-#include "applet-gnome-vfs.h"
-#include "applet-init.h"
-
-
 /******************************************************************************
 
 This file is a part of the cairo-dock program,
@@ -20,7 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN("gnome integration", 1, 4, 7, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_PRE_INIT_BEGIN("gnome integration", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 	{
 		if (init_vfs_backend ())

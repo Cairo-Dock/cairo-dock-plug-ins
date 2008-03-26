@@ -7,11 +7,10 @@
 #include "tomboy-struct.h"
 #include "tomboy-init.h"
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
+static gboolean dbus_enable = FALSE;
 
-CD_APPLET_DEFINITION ("TomBoy", 1, 5, 3)
+CD_APPLET_DEFINITION ("TomBoy", 1, 5, 4)
 
 CD_APPLET_INIT_BEGIN (erreur)
 	myConfig.defaultTitle = g_strdup (myIcon->acName);
@@ -19,10 +18,12 @@ CD_APPLET_INIT_BEGIN (erreur)
 	load_all_surfaces();
 	
 	//Si le bus n'a pas encore ete acquis, on le recupere.
-	if (!myData.dbus_enable) myData.dbus_enable = dbus_get_dbus();
+	if (! dbus_enable)
+		dbus_enable = dbus_get_dbus();
+	myData.dbus_enable = dbus_enable;
 	
 	//Si le bus a ete acquis, on y connecte nos signaux.
-	if (myData.dbus_enable)
+	if (dbus_enable)
 	{
 		dbus_connect_to_bus ();
 		dbus_detect_tomboy();
@@ -56,13 +57,8 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	load_all_surfaces();
 	
-	if (CD_APPLET_MY_CONFIG_CHANGED)
-	{
-		myConfig.defaultTitle = g_strdup (myIcon->acName);  // libere dans le reset_config() precedemment appele.
-	}
-	
 	//\_______________ On redessine notre icone.
-	if (myData.dbus_enable)
+	if (dbus_enable)
 	{
 		dbus_connect_to_bus ();
 		dbus_detect_tomboy();

@@ -19,7 +19,7 @@ extern AppletData myData;
 
 gboolean dbus_get_dbus (void)
 {
-	cd_message ("%s ()\n",__func__);
+	cd_message ("");
 
 	cd_message ("Connexion au bus ... ");
 	dbus_connexion_session = dbus_g_bus_get(DBUS_BUS_SESSION, NULL);
@@ -27,12 +27,12 @@ gboolean dbus_get_dbus (void)
 	
 	if(!dbus_connexion_session || !dbus_connexion_system)
 	{
-		cd_message ("echouee\n");
+		cd_message ("echouee");
 		return FALSE;
 	}
 	else
 	{
-		cd_message ("reussie\n");
+		cd_message ("reussie");
 
 		dbus_proxy_power = dbus_g_proxy_new_for_name (
 			dbus_connexion_session,
@@ -65,17 +65,17 @@ gboolean dbus_get_dbus (void)
 
 void dbus_connect_to_bus (void)
 {
-	cd_message ("%s ()\n",__func__);
+	cd_message ("");
 	dbus_g_proxy_connect_signal(dbus_proxy_power, "OnBatteryChanged",
 		G_CALLBACK(on_battery_changed), NULL, NULL);
 }
 
 void dbus_disconnect_from_bus (void)
 {
-	cd_message ("%s ()\n",__func__);
+	cd_message ("");
 	dbus_g_proxy_disconnect_signal(dbus_proxy_power, "OnBatteryChanged",
 		G_CALLBACK(on_battery_changed), NULL);
-	cd_message ("OnBatteryChanged deconnecte\n");
+	cd_message ("OnBatteryChanged deconnecte");
 }
 
 gboolean get_on_battery(void)
@@ -110,7 +110,7 @@ int get_stats(gchar *dataType)
 	GPtrArray *ptrarray = NULL;
 	GType g_type_ptrarray;
 	int i;
-	int x, y, col;
+	int x, y, col;  /// mettre des nom comprehensibles...
 
 	g_type_ptrarray = dbus_g_type_get_collection ("GPtrArray",
 		dbus_g_type_get_struct("GValueArray",
@@ -124,8 +124,8 @@ int get_stats(gchar *dataType)
 		 G_TYPE_INVALID,
 		 g_type_ptrarray, &ptrarray,
 		 G_TYPE_INVALID);
-		 
-	for (i=0; i< ptrarray->len; i++)
+	
+	for (i=0; i< ptrarray->len; i++)  /// il semble que seule la derniere valeur ait de l'interet ....
 	{
 		gva = (GValueArray *) g_ptr_array_index (ptrarray, i);
 		gv = g_value_array_get_nth (gva, 0);
@@ -138,11 +138,11 @@ int get_stats(gchar *dataType)
 		col = g_value_get_int (gv);
 		g_value_unset (gv);
 		g_value_array_free (gva);
-		cd_debug("powermanager : %i, %i, %i\n",x,y,col);
+		cd_debug("powermanager : %i, %i, %i",x,y,col);
 	}
 	g_ptr_array_free (ptrarray, TRUE);
 	
-	return y;
+	return y;  /// a quoi servent x et col alors ??
 }
 
 void detect_battery(void)

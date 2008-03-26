@@ -18,8 +18,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
+CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.bShowWidgetLayerDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "show widget layer");
 	
@@ -32,11 +31,10 @@ CD_APPLET_CONFIG_BEGIN
 	g_free (cHideImage);
 	
 	myConfig.cShortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Shift><Ctrl>F4");
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cShowImage);
 	myConfig.cShowImage = NULL;
 	g_free (myConfig.cHideImage);
@@ -45,10 +43,9 @@ void reset_config (void)
 		cd_keybinder_unbind(myConfig.cShortcut, (CDBindkeyHandler) cd_show_desklet_on_keybinding_pull);
 	g_free (myConfig.cShortcut);
 	myConfig.cShortcut = NULL;
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void)
-{
-	memset (&myData, 0, sizeof (AppletData));
-}
+
+CD_APPLET_RESET_DATA_BEGIN
+	
+CD_APPLET_RESET_DATA_END

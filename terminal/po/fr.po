@@ -67,7 +67,8 @@ msgstr "Copier"
 
 #: ../src/terminal-init.c:82 ../src/terminal-menu-functions.c:245
 #: ../src/terminal-menu-functions.c:243 ../src/terminal-menu-functions.c:244
-#: ../src/terminal-menu-functions.c:254
+#: ../src/terminal-menu-functions.c:254 ../src/terminal-init.c:83
+#: ../src/terminal-init.c:81
 msgid "Terminal"
 msgstr "Terminal"
 
@@ -80,6 +81,7 @@ msgstr "Coller"
 #: ../src/terminal-menu-functions.c:158 ../src/terminal-menu-functions.c:283
 #: ../src/terminal-menu-functions.c:157 ../src/terminal-menu-functions.c:284
 #: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:294
+#: ../src/terminal-menu-functions.c:295
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
@@ -90,6 +92,7 @@ msgstr "Fermer l'onglet"
 
 #: ../src/terminal-menu-functions.c:288 ../src/terminal-menu-functions.c:284
 #: ../src/terminal-menu-functions.c:285 ../src/terminal-menu-functions.c:295
+#: ../src/terminal-menu-functions.c:296
 msgid "Close the current Tab"
 msgstr "Fermer l'onglet courant"
 

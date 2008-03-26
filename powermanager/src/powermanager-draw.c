@@ -22,20 +22,11 @@ void update_icon(void)
 		{
 			if(myConfig.quickInfoType == MY_APPLET_TIME)
 			{
-				int hours = myData.battery_time / 3600;
-				int minutes = (myData.battery_time % 3600) / 60;
-				if (hours != 0)
-				{
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dh%02d", hours, minutes)
-				}
-				else
-				{
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", minutes)
-				}
+				CD_APPLET_SET_HOURS_MINUTES_AS_QUICK_INFO (myData.battery_time)
 			}
 			else if(myConfig.quickInfoType == MY_APPLET_CHARGE)
 			{
-				cairo_dock_set_quick_info (myDrawContext, g_strdup_printf ("%d%s", myData.battery_charge,"%"), myIcon, (myDock != NULL ? 1 + g_fAmplitude : 1));
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", myData.battery_charge)
 			}
 		}
 		

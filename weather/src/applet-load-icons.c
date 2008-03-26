@@ -217,32 +217,10 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 				myIcon->pSubDock = NULL;
 			}
-			//myData.pDeskletIconList = pIconList;
 			myDesklet->icons = pIconList;
 			gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
 			myDrawContext = cairo_create (myIcon->pIconBuffer);
-			//myData.iNbIcons = g_list_length (myData.pDeskletIconList);
-			/*GList* ic;
-			Icon *icon;
-			cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-			for (ic = pIconList; ic != NULL; ic = ic->next)
-			{
-				icon = ic->data;
-				if (myConfig.bDesklet3D)
-				{
-					icon->fWidth = 0;
-					icon->fHeight = 0;
-				}
-				else
-				{
-					icon->fWidth = MAX (1, .2 * myDesklet->iWidth - g_iLabelSize);
-					icon->fHeight = MAX (1, .2 * myDesklet->iHeight - g_iLabelSize);
-				}
-				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, myConfig.bDesklet3D);
-				myData.iMaxIconWidth = MAX (myData.iMaxIconWidth, icon->fWidth);
-			}
-			cairo_destroy (pCairoContext);*/
 			gtk_widget_queue_draw (myDesklet->pWidget);
 		}
 		

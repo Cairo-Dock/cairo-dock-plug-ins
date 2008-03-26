@@ -14,11 +14,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-init.h"
 
-AppletConfig myConfig;
-AppletData myData;
 
-
-CD_APPLET_DEFINITION ("CD_APPLET_NAME", 1, 4, 7, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("CD_APPLET_NAME", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 CD_APPLET_INIT_BEGIN (erreur)

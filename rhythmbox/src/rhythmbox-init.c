@@ -7,12 +7,9 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-init.h"
 
-extern AppletConfig myConfig;
-extern AppletData myData;
-
 static gboolean dbus_enable = FALSE;
 
-CD_APPLET_DEFINITION ("Rhythmbox", 1, 4, 6, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("Rhythmbox", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
 static void _load_surfaces (void)

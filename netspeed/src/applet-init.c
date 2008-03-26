@@ -6,11 +6,9 @@
 #include "applet-init.h"
 #include "applet-netspeed.h"
 
-AppletConfig myConfig;
-AppletData myData;
 
+CD_APPLET_DEFINITION ("netspeed", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
-CD_APPLET_DEFINITION ("netspeed", 1, 5, 3, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
 static void _load_surfaces (void) {
 	//Chargement des images

@@ -28,10 +28,8 @@
 #include "cd-tray.h"
 #include "systray-struct.h"
 
-AppletConfig myConfig;
-AppletData myData;
 
-CD_APPLET_DEFINITION ("systray", 1, 4, 7, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("systray", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 CD_APPLET_INIT_BEGIN (erreur);

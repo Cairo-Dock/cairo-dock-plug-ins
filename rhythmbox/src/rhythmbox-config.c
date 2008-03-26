@@ -24,36 +24,23 @@ CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
-	myConfig.defaultTitle = NULL;
 	
 	g_free (myConfig.cDefaultIcon);
-	myConfig.cDefaultIcon = NULL;
 	g_free (myConfig.cPlayIcon);
-	myConfig.cPlayIcon = NULL;
 	g_free (myConfig.cPauseIcon);
-	myConfig.cPauseIcon = NULL;
 	g_free (myConfig.cStopIcon);
-	myConfig.cStopIcon = NULL;
 	g_free (myConfig.cBrokenIcon);
-	myConfig.cBrokenIcon = NULL;
 CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pSurface);
-	myData.pSurface = NULL;
 	cairo_surface_destroy (myData.pStopSurface);
-	myData.pStopSurface = NULL;
 	cairo_surface_destroy (myData.pPlaySurface);
-	myData.pPlaySurface = NULL;
 	cairo_surface_destroy (myData.pPauseSurface);
-	myData.pPauseSurface = NULL;
 	cairo_surface_destroy (myData.pBrokenSurface);
-	myData.pBrokenSurface = NULL;
 	
 	cairo_surface_destroy (myData.pCover);
-	myData.pCover = NULL;
 	
 	g_free (myData.playing_uri);
-	myData.playing_uri = NULL;
 CD_APPLET_RESET_DATA_END

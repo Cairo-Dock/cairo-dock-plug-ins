@@ -16,12 +16,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-animation.h"
 #include "applet-init.h"
 
-AppletConfig myConfig;
-AppletData myData;
-
 static gboolean bDetached = FALSE;
 
-CD_APPLET_DEFINITION ("Cairo-Penguin", 1, 5, 3, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("Cairo-Penguin", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 CD_APPLET_INIT_BEGIN (erreur)

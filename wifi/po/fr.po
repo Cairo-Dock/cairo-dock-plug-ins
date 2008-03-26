@@ -41,11 +41,11 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:49
 msgid "Delay between signal checks :"
 msgstr "Temps entre les vérifications :"
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:47
 msgid "in seconds."
 msgstr "en seconde."
 
@@ -53,7 +53,7 @@ msgstr "en seconde."
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:35
 msgid "Information"
 msgstr "Information"
 
@@ -65,73 +65,79 @@ msgstr "Mettre la force du signal en quickinfo ?"
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
-#: ../data/messages:35 ../data/messages:39
+#: ../data/messages:35 ../data/messages:39 ../data/messages:61
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Nom de l'image 'Très Faible' :"
 
-#: ../data/messages:39 ../data/messages:43
+#: ../data/messages:39 ../data/messages:43 ../data/messages:65
 msgid "Name of an image for the 'low' icon :"
 msgstr "Nom de l'image 'Faible' :"
 
-#: ../data/messages:43 ../data/messages:47
+#: ../data/messages:43 ../data/messages:47 ../data/messages:69
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Nom de l'image 'Moyen' :"
 
-#: ../data/messages:47 ../data/messages:51
+#: ../data/messages:47 ../data/messages:51 ../data/messages:73
 msgid "Name of an image for the 'good' icon :"
 msgstr "Nom de l'image 'Bon' :"
 
-#: ../data/messages:51 ../data/messages:55
+#: ../data/messages:51 ../data/messages:55 ../data/messages:77
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
-#: ../data/messages:19 ../data/messages:17
+#: ../data/messages:19 ../data/messages:17 ../data/messages:37
 msgid "Information to display on the icon :"
 msgstr "Information a afficher sur l'icon :"
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:41
 msgid "Signal Strength"
 msgstr "Force du Signal"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:43
 msgid "Signal Strength in percent"
 msgstr "Force du Signal en pourcent"
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:45
 msgid "Raw Signal Informations"
 msgstr "Infos Brutes du Signal"
 
 #: ../src/applet-wifi.c:95 ../src/applet-wifi.c:99 ../src/applet-wifi.c:18
+#: ../src/applet-draw.c:15
 msgid "Very Low"
 msgstr "Très Faible"
 
 #: ../src/applet-wifi.c:99 ../src/applet-wifi.c:103 ../src/applet-wifi.c:18
+#: ../src/applet-draw.c:15
 msgid "Low"
 msgstr "Faible"
 
 #: ../src/applet-wifi.c:103 ../src/applet-wifi.c:107 ../src/applet-wifi.c:18
+#: ../src/applet-draw.c:15
 msgid "Middle"
 msgstr "Moyen"
 
 #: ../src/applet-wifi.c:107 ../src/applet-wifi.c:111 ../src/applet-wifi.c:18
+#: ../src/applet-draw.c:15
 msgid "Good"
 msgstr "Bon"
 
+#: ../src/applet-wifi.c:18 ../src/applet-draw.c:15
 msgid "Excellent"
 msgstr "Excellent"
 
 #: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119 ../data/messages:19
-#: ../src/applet-wifi.c:18
+#: ../src/applet-wifi.c:18 ../src/applet-draw.c:15 ../data/messages:39
 msgid "None"
 msgstr "Aucune"
 
 msgid "Lost"
 msgstr "Perdue"
 
+#: ../data/messages:53
 msgid "No icon when no wireless devices/connections found?"
 msgstr "Aucune icône quand aucun module wifi n'est trouver?"
 
-#: ../src/applet-notifications.c:26
+#: ../src/applet-notifications.c:26 ../src/applet-notifications.c:35
 msgid "Check for Wireless Extension"
 msgstr "Verifier les Extensions Wifi"
 
@@ -144,51 +150,51 @@ msgstr ""
 " écrite par ChAnGFu pour Cairo-Dock"
 
 #: ../data/messages:11 ../data/messages:19 ../data/messages:53
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13 ../data/messages:21 ../data/messages:55
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
 #: ../data/messages:15 ../data/messages:23 ../data/messages:57
-#: ../data/messages:61
+#: ../data/messages:61 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17 ../data/messages:25 ../data/messages:59
-#: ../data/messages:63
+#: ../data/messages:63 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
 #: ../data/messages:19 ../data/messages:27 ../data/messages:61
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
 #: ../data/messages:21 ../data/messages:29 ../data/messages:63
-#: ../data/messages:67
+#: ../data/messages:67 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:23 ../data/messages:31 ../data/messages:65
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
 #: ../data/messages:25 ../data/messages:33 ../data/messages:67
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27 ../data/messages:35 ../data/messages:69
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -197,24 +203,30 @@ msgstr ""
 "Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29 ../data/messages:37 ../data/messages:71
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:33
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:27 ../data/messages:31
+#: ../data/messages:27 ../data/messages:31 ../data/messages:51
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
 #: ../data/messages:29 ../data/messages:33 ../data/messages:37
 #: ../data/messages:41 ../data/messages:45 ../data/messages:49
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:55 ../data/messages:59
+#: ../data/messages:63 ../data/messages:67 ../data/messages:71
+#: ../data/messages:75
 msgid "Let t empty to use the default icon."
 msgstr "Laissez vide poue uriliser l'icône par défaut."
 
 #: ../data/messages:21
 msgid "Signal Strength level"
 msgstr "Niveau de force du signal"
+
+#: ../data/messages:57
+msgid "Name of an image for the 'no signal' icon :"
+msgstr ""

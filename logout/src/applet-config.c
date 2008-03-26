@@ -9,22 +9,17 @@
 extern AppletConfig myConfig;
 extern AppletData myData;
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
-	
+CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserAction = CD_CONFIG_GET_STRING ("Configuration", "user action");
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUserAction);
-	myConfig.cUserAction = NULL;
-	
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
+CD_APPLET_RESET_CONFIG_END
 
-void reset_data (void)
-{
-	memset (&myData, 0, sizeof (AppletData));
-}
+
+CD_APPLET_RESET_DATA_BEGIN
+	
+CD_APPLET_RESET_DATA_END
+

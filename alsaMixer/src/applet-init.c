@@ -8,10 +8,8 @@
 #include "applet-draw.h"
 #include "applet-init.h"
 
-AppletConfig myConfig;
-AppletData myData;
 
-CD_APPLET_DEFINITION ("AlsaMixer", 1, 5, 3, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("AlsaMixer", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
 static void _load_surfaces (void)

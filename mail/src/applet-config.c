@@ -17,8 +17,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 extern Icon *myIcon;
 
-CD_APPLET_CONFIG_BEGIN
-	reset_config ();
+CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 
 	myConfig.cNoMailUserImage = CD_CONFIG_GET_STRING ("Configuration", "no mail image");
@@ -43,24 +42,19 @@ CD_APPLET_CONFIG_BEGIN
         xfce_mailwatch_load_config(myData.mailwatch, pKeyFile);
     }
 
-CD_APPLET_CONFIG_END
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_config (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
     g_free( myConfig.cNoMailUserImage );
     g_free( myConfig.cHasMailUserImage );
+CD_APPLET_RESET_CONFIG_END
 
-	memset (&myConfig, 0, sizeof (AppletConfig));
-}
 
-void reset_data (void)
-{
+CD_APPLET_RESET_DATA_BEGIN
 	if (myIcon->pSubDock != NULL)
 	{
 		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 		myIcon->pSubDock = NULL;
 	}
-
-	memset (&myData, 0, sizeof (AppletData));
-}
+CD_APPLET_RESET_DATA_END

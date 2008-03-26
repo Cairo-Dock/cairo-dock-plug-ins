@@ -26,10 +26,8 @@
 #include "terminal-struct.h"
 #include "terminal-init.h"
 
-AppletConfig myConfig;
-AppletData myData;
 
-CD_APPLET_DEFINITION ("terminal", 1, 4, 7, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("terminal", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
