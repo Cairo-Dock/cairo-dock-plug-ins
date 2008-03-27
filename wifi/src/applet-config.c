@@ -5,8 +5,7 @@
 #include "applet-struct.h"
 #include "applet-config.h"
 
-extern AppletConfig myConfig;
-extern AppletData myData;
+CD_APPLET_INCLUDE_MY_VARS
 
 
 CD_APPLET_GET_CONFIG_BEGIN

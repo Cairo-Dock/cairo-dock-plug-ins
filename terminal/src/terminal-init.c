@@ -24,6 +24,7 @@
 #include "terminal-config.h"
 #include "terminal-menu-functions.h"
 #include "terminal-struct.h"
+#include "terminal-widget.h"
 #include "terminal-init.h"
 
 
@@ -58,6 +59,7 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 {
+	g_print ("reload terminal\n");
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		if (! myData.tab)
@@ -78,7 +80,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 			else  // il faut passer du desklet au dialogue
 			{
-				myData.dialog = cairo_dock_build_dialog (_D("Terminal"), myIcon, myContainer, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+				myData.dialog = cairo_dock_build_dialog (D_("Terminal"), myIcon, myContainer, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 				cairo_dock_hide_dialog (myData.dialog);
 			}
 		}

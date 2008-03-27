@@ -20,8 +20,6 @@ extern gboolean config_do_edit_window_2 (GtkWidget *w, XfceMailwatch *mailwatch,
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 
 CD_APPLET_ABOUT (_D("This is the mail applet\n made by Christophe Chapuis for Cairo-Dock"))

@@ -54,6 +54,7 @@ msgid "Information to display on the icon :"
 msgstr "Information a afficher sur l'icon :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:15
+#: ../src/applet-notifications.c:13
 msgid ""
 "This is the netspeed applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
@@ -61,7 +62,8 @@ msgstr ""
 "Ceci est l'applet netspeed\n"
 " écrite par parAdOxxx_ZeRo pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:35
+#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:36
 msgid "Waiting"
 msgstr "Waiting"
 
@@ -137,21 +139,26 @@ msgid "Let t empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #: ../src/applet-netspeed.c:185 ../src/applet-netspeed.c:190
+#: ../src/applet-netspeed.c:183 ../src/applet-netspeed.c:188
+#: ../src/applet-netspeed.c:193
 msgid "TB"
 msgstr "To"
 
 msgid "GB"
 msgstr "Go"
 
-#: ../src/applet-netspeed.c:195
+#: ../src/applet-netspeed.c:195 ../src/applet-netspeed.c:193
+#: ../src/applet-netspeed.c:198
 msgid "MB"
 msgstr "Mo"
 
-#: ../src/applet-netspeed.c:200
+#: ../src/applet-netspeed.c:200 ../src/applet-netspeed.c:198
+#: ../src/applet-netspeed.c:203
 msgid "KB"
 msgstr "Ko"
 
-#: ../src/applet-netspeed.c:205
+#: ../src/applet-netspeed.c:205 ../src/applet-netspeed.c:203
+#: ../src/applet-netspeed.c:208
 msgid "B"
 msgstr "o"
 
@@ -161,4 +168,12 @@ msgstr ""
 
 #: ../data/messages:39
 msgid "Delay between signal checks :"
+msgstr ""
+
+#: ../src/applet-notifications.c:38
+msgid "Debug"
+msgstr ""
+
+#: ../data/messages:37
+msgid "in milliseconds."
 msgstr ""

@@ -7,8 +7,6 @@
 #include "applet-struct.h"
 #include "applet-notifications.h"
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 CD_APPLET_INCLUDE_MY_VARS
 

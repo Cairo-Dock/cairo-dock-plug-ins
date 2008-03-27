@@ -13,8 +13,6 @@ static DBusGProxy *dbus_proxy_battery;
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 
 gboolean dbus_get_dbus (void)

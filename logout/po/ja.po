@@ -43,6 +43,7 @@ msgid "Icon's name :"
 msgstr "アイコンの名前 :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:16
+#: ../src/applet-notifications.c:14
 msgid ""
 "This is a very simple logout applet\n"
 " made by Fabrice Rey for Cairo-Dock"

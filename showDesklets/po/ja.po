@@ -101,6 +101,7 @@ msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../src/applet-notifications.c:23 ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:20 ../src/applet-notifications.c:19
 msgid ""
 "This is the showDesklets applet\n"
 " made by Fabrice Rey for Cairo-Dock"

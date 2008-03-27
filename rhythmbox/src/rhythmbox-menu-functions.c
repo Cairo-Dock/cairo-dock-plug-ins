@@ -8,8 +8,6 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 
 //*********************************************************************************

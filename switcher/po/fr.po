@@ -52,7 +52,7 @@ msgstr ""
 "Ceci l'applet switcher\n"
 " écrite par Cchumi pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:66
+#: ../src/applet-notifications.c:66 ../src/applet-notifications.c:75
 msgid "Reload now"
 msgstr ""
 

@@ -25,7 +25,11 @@ x position=0
 #i ...
 y position=0
 
-use size=false
+#i[48;256] Desklet's dimension (width x height) :
+#{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
+width=92
+#i[48;256] ...
+height=92
 
 #b Is detached from the dock ?
 initially detached=false
@@ -50,9 +54,10 @@ foreground color= 1.; 1.; 1.
 background color= 0.; 0.; 0.
 
 #I-[5;999] Size of the terminal (line x columns) :
+#{When the terminal is in a dialoh. When it is in a desklet, you can just resize the desklet as usual.}
 nb lines = 25
 #I-[5;999] ...
-nb columns = 80
+nb columns = 70
 
 #k Shortkey to show the terminal
 shortkey = <Shift><Ctrl>F1

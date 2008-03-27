@@ -7,8 +7,6 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 //*********************************************************************************
 // Informations sur l'applet et l'auteur.

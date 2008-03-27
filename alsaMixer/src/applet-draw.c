@@ -18,8 +18,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 
 int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)

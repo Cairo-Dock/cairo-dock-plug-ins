@@ -17,8 +17,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 static GList *s_pIconList = NULL;
 static int s_iThreadIsRunning = 0;

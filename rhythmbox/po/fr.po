@@ -104,7 +104,7 @@ msgstr "Information à afficher sur l'icône :"
 
 #: src/rhythmbox-draw.c:101 src/rhythmbox-draw.c:102
 #: ../src/rhythmbox-draw.c:77 ../src/rhythmbox-draw.c:102
-#: ../src/rhythmbox-draw.c:103
+#: ../src/rhythmbox-draw.c:103 ../src/rhythmbox-draw.c:101
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -118,27 +118,27 @@ msgstr ""
 #: ../src/rhythmbox-draw.c:81 ../src/rhythmbox-draw.c:82
 #: ../src/rhythmbox-draw.c:83 ../src/rhythmbox-draw.c:106
 #: ../src/rhythmbox-draw.c:107 ../src/rhythmbox-draw.c:108
-#: ../src/rhythmbox-draw.c:109
+#: ../src/rhythmbox-draw.c:109 ../src/rhythmbox-draw.c:105
 msgid "Unknown"
 msgstr "Inconnu"
 
 #: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
-#: ../src/rhythmbox-menu-functions.c:61
+#: ../src/rhythmbox-menu-functions.c:61 ../src/rhythmbox-menu-functions.c:59
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
 
 #: src/rhythmbox-menu-functions.c:67 src/rhythmbox-menu-functions.c:68
-#: ../src/rhythmbox-menu-functions.c:71
+#: ../src/rhythmbox-menu-functions.c:71 ../src/rhythmbox-menu-functions.c:69
 msgid "Previous"
 msgstr "Précédent"
 
 #: src/rhythmbox-menu-functions.c:69 src/rhythmbox-menu-functions.c:70
-#: ../src/rhythmbox-menu-functions.c:73
+#: ../src/rhythmbox-menu-functions.c:73 ../src/rhythmbox-menu-functions.c:71
 msgid "Next"
 msgstr "Suivant"
 
 #: src/rhythmbox-menu-functions.c:71 src/rhythmbox-menu-functions.c:72
-#: ../src/rhythmbox-menu-functions.c:75
+#: ../src/rhythmbox-menu-functions.c:75 ../src/rhythmbox-menu-functions.c:73
 msgid "Information"
 msgstr "Information"
 

@@ -56,24 +56,29 @@ msgid "Background color (r, v, b):"
 msgstr "Couleur d'arrière-plan (r, v, b):"
 
 #: ../data/messages:43 ../data/messages:41 ../data/messages:39
+#: ../data/messages:45
 msgid "Size of the terminal (line x columns) :"
 msgstr "Taille du terminal (ligne x colonnes) :"
 
 #: ../src/terminal-menu-functions.c:94 ../src/terminal-callbacks.c:68
 #: ../src/terminal-menu-functions.c:146 ../src/terminal-menu-functions.c:143
 #: ../src/terminal-menu-functions.c:142 ../src/terminal-menu-functions.c:152
+#: ../src/terminal-callbacks.c:66 ../src/terminal-menu-functions.c:150
+#: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:197
 msgid "Copy"
 msgstr "Copier"
 
 #: ../src/terminal-init.c:82 ../src/terminal-menu-functions.c:245
 #: ../src/terminal-menu-functions.c:243 ../src/terminal-menu-functions.c:244
 #: ../src/terminal-menu-functions.c:254 ../src/terminal-init.c:83
-#: ../src/terminal-init.c:81
+#: ../src/terminal-init.c:81 ../src/terminal-menu-functions.c:255
+#: ../src/terminal-widget.c:420
 msgid "Terminal"
 msgstr "Terminal"
 
 #: ../src/terminal-menu-functions.c:152 ../src/terminal-menu-functions.c:149
 #: ../src/terminal-menu-functions.c:148 ../src/terminal-menu-functions.c:158
+#: ../src/terminal-menu-functions.c:156 ../src/terminal-widget.c:203
 msgid "Paste"
 msgstr "Coller"
 
@@ -81,18 +86,22 @@ msgstr "Coller"
 #: ../src/terminal-menu-functions.c:158 ../src/terminal-menu-functions.c:283
 #: ../src/terminal-menu-functions.c:157 ../src/terminal-menu-functions.c:284
 #: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:294
-#: ../src/terminal-menu-functions.c:295
+#: ../src/terminal-menu-functions.c:295 ../src/terminal-menu-functions.c:165
+#: ../src/terminal-menu-functions.c:296 ../src/terminal-menu-functions.c:84
+#: ../src/terminal-widget.c:213
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
 #: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:164
 #: ../src/terminal-menu-functions.c:163 ../src/terminal-menu-functions.c:173
+#: ../src/terminal-menu-functions.c:171 ../src/terminal-widget.c:225
 msgid "Close Tab"
 msgstr "Fermer l'onglet"
 
 #: ../src/terminal-menu-functions.c:288 ../src/terminal-menu-functions.c:284
 #: ../src/terminal-menu-functions.c:285 ../src/terminal-menu-functions.c:295
-#: ../src/terminal-menu-functions.c:296
+#: ../src/terminal-menu-functions.c:296 ../src/terminal-menu-functions.c:297
+#: ../src/terminal-menu-functions.c:86
 msgid "Close the current Tab"
 msgstr "Fermer l'onglet courant"
 
@@ -102,27 +111,27 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Size of the icon you wish this applet has (in pixels)"
-msgstr ""
+msgstr "Taille désirée de l'icône dans le dock (en pixels)"
 
 #: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
-msgstr ""
+msgstr "Nom de l'icône qui apparaîtra dans son étiquette dans le dock ;"
 
 #: ../data/messages:11
 msgid "Icon's name :"
-msgstr ""
+msgstr "Nom de l'icône :"
 
 #: ../data/messages:11 ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:13 ../data/messages:15 ../data/messages:19
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:15 ../data/messages:17
+#: ../data/messages:15 ../data/messages:17 ../data/messages:21
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
@@ -161,9 +170,20 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:45 ../data/messages:43 ../data/messages:41
+#: ../data/messages:47
 msgid "Shortkey to show the terminal"
 msgstr "Raccourci clavier pour montrer le terminal :"
 
-#: ../data/messages:19
-msgid "Always draw icon in the dock ?"
+#: ../src/terminal-menu-functions.c:85 ../src/terminal-widget.c:219
+msgid "Rename Tab"
+msgstr ""
+
+#: ../src/terminal-widget.c:82
+msgid "Set title for this tab :"
+msgstr ""
+
+#: ../data/messages:43
+msgid ""
+"When the terminal is in a dialoh. When it is in a desklet, you can just "
+"resize the desklet as usual."
 msgstr ""

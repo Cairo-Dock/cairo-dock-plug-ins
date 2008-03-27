@@ -10,8 +10,6 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 static int s_iThreadIsRunning = 0;
 static int s_iSidTimerRedraw = 0;

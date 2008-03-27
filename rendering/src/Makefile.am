@@ -28,7 +28,9 @@ libcd_rendering_la_SOURCES = \
 	rendering-desklet-tree.c\
 	rendering-desklet-tree.h\
 	rendering-desklet-simple.h\
-	rendering-desklet-simple.c
+	rendering-desklet-simple.c\
+	rendering-desklet-controler.h\
+	rendering-desklet-controler.c
 
 dock_version = `pkg-config --modversion cairo-dock`
 

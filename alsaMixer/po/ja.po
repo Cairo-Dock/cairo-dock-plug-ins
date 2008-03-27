@@ -102,6 +102,7 @@ msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../src/applet-notifications.c:23 ../src/applet-notifications.c:24
+#: ../src/applet-notifications.c:22
 msgid ""
 "This is the AlsaMixer applet\n"
 " made by Fabounet (Fabrice Rey) for Cairo-Dock"
@@ -145,12 +146,12 @@ msgstr ""
 
 #: ../src/applet-mixer.c:217 ../src/applet-mixer.c:248
 #: ../src/applet-mixer.c:265 ../src/applet-mixer.c:269
-#: ../src/applet-mixer.c:268
+#: ../src/applet-mixer.c:268 ../src/applet-mixer.c:266
 msgid "Set up volume :"
 msgstr ""
 
 #: ../src/applet-notifications.c:38 ../src/applet-notifications.c:45
-#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:52 ../src/applet-notifications.c:50
 msgid "Adjsut channels"
 msgstr ""
 
@@ -186,29 +187,29 @@ msgstr ""
 msgid "Command to run to show an advanced sound mixer :"
 msgstr ""
 
-#: ../src/applet-mixer.c:44
+#: ../src/applet-mixer.c:44 ../src/applet-mixer.c:42
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr ""
 
-#: ../src/applet-mixer.c:49
+#: ../src/applet-mixer.c:49 ../src/applet-mixer.c:47
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr ""
 
-#: ../src/applet-mixer.c:57
+#: ../src/applet-mixer.c:57 ../src/applet-mixer.c:55
 msgid "I couldn't open the mixer"
 msgstr ""
 
-#: ../src/applet-mixer.c:64
+#: ../src/applet-mixer.c:64 ../src/applet-mixer.c:62
 msgid "I couldn't attach the mixer to the card"
 msgstr ""
 
-#: ../src/applet-mixer.c:71
+#: ../src/applet-mixer.c:71 ../src/applet-mixer.c:69
 msgid "I couldn't register options"
 msgstr ""
 
-#: ../src/applet-mixer.c:79
+#: ../src/applet-mixer.c:79 ../src/applet-mixer.c:77
 msgid "I couldn't load the mixer"
 msgstr ""
 

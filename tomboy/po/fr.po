@@ -122,6 +122,7 @@ msgstr "Inconnu"
 
 #: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
 #: ../src/rhythmbox-menu-functions.c:61 ../src/tomboy-notifications.c:14
+#: ../src/tomboy-notifications.c:12
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
 
@@ -195,7 +196,7 @@ msgstr ""
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:30
+#: ../src/tomboy-notifications.c:30 ../src/tomboy-notifications.c:28
 msgid "Note name : "
 msgstr ""
 

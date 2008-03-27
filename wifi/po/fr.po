@@ -102,31 +102,32 @@ msgid "Raw Signal Informations"
 msgstr "Infos Brutes du Signal"
 
 #: ../src/applet-wifi.c:95 ../src/applet-wifi.c:99 ../src/applet-wifi.c:18
-#: ../src/applet-draw.c:15
+#: ../src/applet-draw.c:15 ../src/applet-draw.c:13
 msgid "Very Low"
 msgstr "Très Faible"
 
 #: ../src/applet-wifi.c:99 ../src/applet-wifi.c:103 ../src/applet-wifi.c:18
-#: ../src/applet-draw.c:15
+#: ../src/applet-draw.c:15 ../src/applet-draw.c:13
 msgid "Low"
 msgstr "Faible"
 
 #: ../src/applet-wifi.c:103 ../src/applet-wifi.c:107 ../src/applet-wifi.c:18
-#: ../src/applet-draw.c:15
+#: ../src/applet-draw.c:15 ../src/applet-draw.c:13
 msgid "Middle"
 msgstr "Moyen"
 
 #: ../src/applet-wifi.c:107 ../src/applet-wifi.c:111 ../src/applet-wifi.c:18
-#: ../src/applet-draw.c:15
+#: ../src/applet-draw.c:15 ../src/applet-draw.c:13
 msgid "Good"
 msgstr "Bon"
 
-#: ../src/applet-wifi.c:18 ../src/applet-draw.c:15
+#: ../src/applet-wifi.c:18 ../src/applet-draw.c:15 ../src/applet-draw.c:13
 msgid "Excellent"
 msgstr "Excellent"
 
 #: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119 ../data/messages:19
 #: ../src/applet-wifi.c:18 ../src/applet-draw.c:15 ../data/messages:39
+#: ../src/applet-draw.c:13
 msgid "None"
 msgstr "Aucune"
 
@@ -138,10 +139,12 @@ msgid "No icon when no wireless devices/connections found?"
 msgstr "Aucune icône quand aucun module wifi n'est trouver?"
 
 #: ../src/applet-notifications.c:26 ../src/applet-notifications.c:35
+#: ../src/applet-notifications.c:33
 msgid "Check for Wireless Extension"
 msgstr "Verifier les Extensions Wifi"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:15
+#: ../src/applet-notifications.c:13
 msgid ""
 "This is the wifi applet\n"
 " made by ChAnGFu for Cairo-Dock"

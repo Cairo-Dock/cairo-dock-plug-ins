@@ -24,9 +24,8 @@
 #include <math.h>
 
 #include <cairo-dock.h>
-//#include "cairo-dock-desklet.h"
 #include "cd-tray.h"
-#include "systray-init.h"
+#include "systray-struct.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 extern t_systray systray;

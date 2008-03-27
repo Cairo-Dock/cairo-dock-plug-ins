@@ -6,8 +6,6 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 void load_surface(cairo_surface_t *pSurface, gchar *default_image, gchar *user_image)
 {

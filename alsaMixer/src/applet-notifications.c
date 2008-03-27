@@ -17,8 +17,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 
 CD_APPLET_ABOUT (_D("This is the AlsaMixer applet\n made by Fabounet (Fabrice Rey) for Cairo-Dock"))

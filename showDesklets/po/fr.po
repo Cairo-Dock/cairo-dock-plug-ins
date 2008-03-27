@@ -46,7 +46,8 @@ msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:23
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:22 ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the showDesklets applet\n"
 " made by Fabrice Rey for Cairo-Dock"

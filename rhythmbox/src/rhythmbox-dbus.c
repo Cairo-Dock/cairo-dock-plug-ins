@@ -11,8 +11,6 @@ static DBusGProxy *dbus_proxy_dbus;
 static DBusGProxy *dbus_proxy_player;
 static DBusGProxy *dbus_proxy_shell;
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 CD_APPLET_INCLUDE_MY_VARS
 

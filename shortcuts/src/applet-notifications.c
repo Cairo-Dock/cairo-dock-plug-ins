@@ -16,8 +16,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 
 CD_APPLET_ABOUT (_D("This is the shortcuts applet\n made by Fabounet for Cairo-Dock"))

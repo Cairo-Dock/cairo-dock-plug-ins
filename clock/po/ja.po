@@ -162,7 +162,7 @@ msgid "Alarm n°3"
 msgstr "第 3 アラーム"
 
 #: src/applet-notifications.c:22 ../src/applet-notifications.c:44
-#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:49 ../src/applet-notifications.c:47
 msgid ""
 "This is the Cairo-Dock's clock applet\n"
 " made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\n"
@@ -176,7 +176,7 @@ msgstr ""
 
 #: src/applet-notifications.c:40 ../src/applet-notifications.c:61
 #: ../src/applet-notifications.c:56 ../src/applet-notifications.c:68
-#: ../src/applet-notifications.c:75
+#: ../src/applet-notifications.c:75 ../src/applet-notifications.c:73
 msgid "Set up time and date"
 msgstr "時刻と日付を設定"
 
@@ -284,5 +284,6 @@ msgstr "実行するコマンド :"
 
 #: ../src/applet-notifications.c:50 ../src/applet-notifications.c:55
 #: ../src/applet-notifications.c:56 ../src/applet-notifications.c:62
+#: ../src/applet-notifications.c:60
 msgid "Calendar"
 msgstr "カレンダー"

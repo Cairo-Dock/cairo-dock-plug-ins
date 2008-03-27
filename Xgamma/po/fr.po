@@ -39,6 +39,7 @@ msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:25
+#: ../src/applet-notifications.c:23
 msgid ""
 "This is the Xgamma applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -48,7 +49,8 @@ msgstr ""
 
 #: ../src/applet-init.c:108 ../src/applet-notifications.c:34
 #: ../src/applet-xgamma.c:156 ../src/applet-init.c:107
-#: ../src/applet-init.c:105
+#: ../src/applet-init.c:105 ../src/applet-notifications.c:32
+#: ../src/applet-xgamma.c:154
 msgid "Set up gamma :"
 msgstr "Réglez le gamma :"
 

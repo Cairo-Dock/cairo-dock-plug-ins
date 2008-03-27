@@ -119,6 +119,7 @@ msgstr "不明"
 
 #: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
 #: ../src/rhythmbox-menu-functions.c:61 ../src/tomboy-notifications.c:14
+#: ../src/tomboy-notifications.c:12
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
@@ -192,7 +193,7 @@ msgstr "'一時停止' アイコンの画像の名前 :"
 msgid "Name of an image for the 'broken' icon :"
 msgstr "'リンク切れ' アイコンの画像の名前 :"
 
-#: ../src/tomboy-notifications.c:30
+#: ../src/tomboy-notifications.c:30 ../src/tomboy-notifications.c:28
 msgid "Note name : "
 msgstr ""
 

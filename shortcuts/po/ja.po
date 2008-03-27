@@ -37,6 +37,7 @@ msgstr "アイコンの名前 :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:20
 #: ../src/applet-notifications.c:19 ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:21
 msgid ""
 "This is the shortcuts applet\n"
 " made by Fabounet for Cairo-Dock"
@@ -45,7 +46,7 @@ msgstr ""
 "Cairo-Dock用の Shortcuts アプレットです。"
 
 #: ../src/applet-notifications.c:42 ../src/applet-notifications.c:41
-#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:49 ../src/applet-notifications.c:47
 msgid "Remove this bookmark"
 msgstr "このブックマークを削除"
 

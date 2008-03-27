@@ -24,11 +24,10 @@
 
 #include "terminal-struct.h"
 #include "terminal-init.h"
-#include "terminal-menu-functions.h"
+#include "terminal-widget.h"
 #include "terminal-config.h"
 
-extern AppletConfig myConfig;
-extern AppletData myData;
+CD_APPLET_INCLUDE_MY_VARS
 
 
 static void set_color(GdkColor *color, double src[3]) {
@@ -51,7 +50,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 
   myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F1");
   myConfig.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb lines", 25);
-  myConfig.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb columns", 80);
+  myConfig.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb columns", 70);
 CD_APPLET_GET_CONFIG_END
 
 

@@ -101,18 +101,19 @@ msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../src/applet-notifications.c:26 ../src/applet-notifications.c:27
+#: ../src/applet-notifications.c:25
 msgid ""
 "This is the mail applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
 msgstr ""
 
 #: ../src/applet-notifications.c:77 ../src/applet-notifications.c:119
-#: ../src/applet-notifications.c:138
+#: ../src/applet-notifications.c:138 ../src/applet-notifications.c:136
 msgid "Add a new mail account"
 msgstr ""
 
 #: ../src/applet-notifications.c:82 ../src/applet-notifications.c:124
-#: ../src/applet-notifications.c:143
+#: ../src/applet-notifications.c:143 ../src/applet-notifications.c:141
 msgid "Remove a mail account"
 msgstr ""
 
@@ -375,6 +376,7 @@ msgid "Name of an image to overwrite the theme's has mail image :"
 msgstr ""
 
 #: ../src/applet-notifications.c:43 ../src/applet-notifications.c:62
+#: ../src/applet-notifications.c:60
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -383,11 +385,12 @@ msgid ""
 msgstr ""
 
 #: ../src/applet-notifications.c:130 ../src/applet-notifications.c:149
+#: ../src/applet-notifications.c:147
 msgid "Modify a mail account"
 msgstr ""
 
 #: ../src/applet-notifications.c:152 ../src/applet-notifications.c:171
-#: ../src/applet-notifications.c:170
+#: ../src/applet-notifications.c:170 ../src/applet-notifications.c:168
 msgid "No unread mail in your mailboxes"
 msgstr ""
 

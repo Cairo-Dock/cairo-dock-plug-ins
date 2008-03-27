@@ -10,8 +10,6 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 #define WIFI_TMP_FILE "/tmp/wifi"
 

@@ -10,8 +10,6 @@ static DBusGConnection *dbus_connexion;
 static DBusGProxy *dbus_proxy_dbus;
 static DBusGProxy *dbus_proxy_tomboy;
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 CD_APPLET_INCLUDE_MY_VARS
 

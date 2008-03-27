@@ -108,22 +108,27 @@ msgid "Delete %s"
 msgstr "Vider %s"
 
 #: ../src/powermanager-menu-functions.c:16
+#: ../src/powermanager-menu-functions.c:14
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
 #: ../src/powermanager-menu-functions.c:25
+#: ../src/powermanager-menu-functions.c:23
 msgid "Halt"
 msgstr "停止"
 
 #: ../src/powermanager-menu-functions.c:26
+#: ../src/powermanager-menu-functions.c:24
 msgid "Hibernate"
 msgstr "ハイバネート"
 
 #: ../src/powermanager-menu-functions.c:27
+#: ../src/powermanager-menu-functions.c:25
 msgid "Suspend"
 msgstr "サスペンド"
 
 #: ../src/powermanager-menu-functions.c:28
+#: ../src/powermanager-menu-functions.c:26
 msgid "Reboot"
 msgstr "再起動"
 

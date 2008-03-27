@@ -28,13 +28,26 @@
 
 #include <cairo-dock.h>
 
+
+typedef struct s_systray {
+  TrayApplet *tray;
+  CairoDockDesklet *dialog;
+
+  gboolean always_on_top;
+  gchar *shortcut;
+  gchar *prev_shortcut;
+} t_systray;
+
+
 typedef struct {
   gchar *shortcut;
 } AppletConfig;
+
 
 typedef struct {
   CairoDockDialog *dialog;
   TrayApplet *tray;
 } AppletData;
+
 
 #endif 	    /* !SYSTRAY_STRUCT_H_ */

@@ -3,8 +3,7 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-config.h"
 
-AppletConfig myConfig;
-AppletData myData;
+CD_APPLET_INCLUDE_MY_VARS
 
 
 CD_APPLET_GET_CONFIG_BEGIN

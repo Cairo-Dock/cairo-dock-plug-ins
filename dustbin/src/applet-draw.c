@@ -17,9 +17,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
-
 
 static int _cd_dustbin_compare_dustbins (const CdDustbin *pDustbin, const gchar *cDustbinPath)
 {

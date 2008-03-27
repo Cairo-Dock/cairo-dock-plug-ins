@@ -33,8 +33,6 @@ CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_ABOUT("This is a simple systray applet\n made by Cedric GESTES for Cairo-Dock");
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 static void systray_build_new_dialog();
 void systray_on_keybinding_pull (const char *keystring, gpointer user_data);

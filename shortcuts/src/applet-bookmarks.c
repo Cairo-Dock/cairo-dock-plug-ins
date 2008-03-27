@@ -15,8 +15,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-draw.h"
 #include "applet-bookmarks.h"
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 CD_APPLET_INCLUDE_MY_VARS
 

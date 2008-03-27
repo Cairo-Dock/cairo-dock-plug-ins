@@ -61,22 +61,27 @@ msgstr ""
 "Cairo-Dock 用に製作された dustbin アプレットです。"
 
 #: src/applet-notifications.c:42 ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:36
 msgid "Show Trash"
 msgstr "中身を表示"
 
 #: src/applet-notifications.c:54 ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:43
 msgid "Show All"
 msgstr "すべて表示"
 
 #: src/applet-notifications.c:56 ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:45
 msgid "Delete Trash"
 msgstr "中身を削除"
 
 #: src/applet-notifications.c:69 ../src/applet-notifications.c:54
+#: ../src/applet-notifications.c:52
 msgid "Delete All"
 msgstr "すべて削除"
 
 #: src/applet-notifications.c:81 ../src/applet-trashes-manager.c:387
+#: ../src/applet-trashes-manager.c:385
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "%s の全ファイルを削除しようとしています。よろしいですか？"
@@ -86,6 +91,7 @@ msgid "You're about to delete all files all dustbins. Sure ?"
 msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
 
 #: src/applet-notifications.c:145 ../src/applet-trashes-manager.c:446
+#: ../src/applet-trashes-manager.c:444
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -97,28 +103,30 @@ msgstr ""
 "このモジュールの設定パネルで変更することができます。"
 
 #: src/applet-notifications.c:48 ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:40
 #, c-format
 msgid "Show %s"
 msgstr "%s を表示"
 
 #: src/applet-notifications.c:62 ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:49
 #, c-format
 msgid "Delete %s"
 msgstr "%s を削除"
 
-#: ../src/applet-draw.c:152
+#: ../src/applet-draw.c:152 ../src/applet-draw.c:149
 msgid "calculating"
 msgstr "計算中"
 
-#: ../src/applet-draw.c:162
+#: ../src/applet-draw.c:162 ../src/applet-draw.c:159
 msgid " trashes"
 msgstr "ゴミ"
 
-#: ../src/applet-draw.c:166
+#: ../src/applet-draw.c:166 ../src/applet-draw.c:163
 msgid " files"
 msgstr "ファイル"
 
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:22 ../src/applet-notifications.c:20
 msgid ""
 "This is the dustbin applet for Cairo-Dock\n"
 " made by Fabrice Rey (fabounet@users.berlios.de)"
@@ -126,17 +134,17 @@ msgstr ""
 "これは Fabrice Rey (fabounet@users.berlios.de) により\n"
 "Cairo-Dock 用に製作された dustbin アプレットです。"
 
-#: ../src/applet-notifications.c:68
+#: ../src/applet-notifications.c:68 ../src/applet-notifications.c:66
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s は現在アンマウントされています"
 
-#: ../src/applet-notifications.c:72
+#: ../src/applet-notifications.c:72 ../src/applet-notifications.c:70
 #, c-format
 msgid "failed to unmount %s"
 msgstr "%s のアンマウントに失敗"
 
-#: ../src/applet-trashes-manager.c:389
+#: ../src/applet-trashes-manager.c:389 ../src/applet-trashes-manager.c:387
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
 

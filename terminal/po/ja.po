@@ -53,24 +53,29 @@ msgid "Background color (r, v, b):"
 msgstr "背景の色（赤、緑、青） :"
 
 #: ../data/messages:43 ../data/messages:41 ../data/messages:39
+#: ../data/messages:45
 msgid "Size of the terminal (line x columns) :"
 msgstr "端末の大きさ（行×列） :"
 
 #: ../src/terminal-menu-functions.c:94 ../src/terminal-callbacks.c:68
 #: ../src/terminal-menu-functions.c:146 ../src/terminal-menu-functions.c:143
 #: ../src/terminal-menu-functions.c:142 ../src/terminal-menu-functions.c:152
+#: ../src/terminal-callbacks.c:66 ../src/terminal-menu-functions.c:150
+#: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:197
 msgid "Copy"
 msgstr "コピー"
 
 #: ../src/terminal-init.c:82 ../src/terminal-menu-functions.c:245
 #: ../src/terminal-menu-functions.c:243 ../src/terminal-menu-functions.c:244
 #: ../src/terminal-menu-functions.c:254 ../src/terminal-init.c:83
-#: ../src/terminal-init.c:81
+#: ../src/terminal-init.c:81 ../src/terminal-menu-functions.c:255
+#: ../src/terminal-widget.c:420
 msgid "Terminal"
 msgstr "端末"
 
 #: ../src/terminal-menu-functions.c:152 ../src/terminal-menu-functions.c:149
 #: ../src/terminal-menu-functions.c:148 ../src/terminal-menu-functions.c:158
+#: ../src/terminal-menu-functions.c:156 ../src/terminal-widget.c:203
 msgid "Paste"
 msgstr "張り付け"
 
@@ -78,18 +83,22 @@ msgstr "張り付け"
 #: ../src/terminal-menu-functions.c:158 ../src/terminal-menu-functions.c:283
 #: ../src/terminal-menu-functions.c:157 ../src/terminal-menu-functions.c:284
 #: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:294
-#: ../src/terminal-menu-functions.c:295
+#: ../src/terminal-menu-functions.c:295 ../src/terminal-menu-functions.c:165
+#: ../src/terminal-menu-functions.c:296 ../src/terminal-menu-functions.c:84
+#: ../src/terminal-widget.c:213
 msgid "New Tab"
 msgstr "新しいタブ"
 
 #: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:164
 #: ../src/terminal-menu-functions.c:163 ../src/terminal-menu-functions.c:173
+#: ../src/terminal-menu-functions.c:171 ../src/terminal-widget.c:225
 msgid "Close Tab"
 msgstr "タブを閉じる"
 
 #: ../src/terminal-menu-functions.c:288 ../src/terminal-menu-functions.c:284
 #: ../src/terminal-menu-functions.c:285 ../src/terminal-menu-functions.c:295
-#: ../src/terminal-menu-functions.c:296
+#: ../src/terminal-menu-functions.c:296 ../src/terminal-menu-functions.c:297
+#: ../src/terminal-menu-functions.c:86
 msgid "Close the current Tab"
 msgstr "現在のタブを閉じる"
 
@@ -113,7 +122,7 @@ msgstr "アイコンの名前 :"
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:13 ../data/messages:15 ../data/messages:19
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -121,7 +130,7 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:15 ../data/messages:17
+#: ../data/messages:15 ../data/messages:17 ../data/messages:21
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
@@ -160,9 +169,24 @@ msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:45 ../data/messages:43 ../data/messages:41
+#: ../data/messages:47
 msgid "Shortkey to show the terminal"
 msgstr "端末を表示するショートカットキー :"
 
 #: ../data/messages:19
 msgid "Always draw icon in the dock ?"
 msgstr "ドックに常にアイコンを表示？"
+
+#: ../src/terminal-menu-functions.c:85 ../src/terminal-widget.c:219
+msgid "Rename Tab"
+msgstr ""
+
+#: ../src/terminal-widget.c:82
+msgid "Set title for this tab :"
+msgstr ""
+
+#: ../data/messages:43
+msgid ""
+"When the terminal is in a dialoh. When it is in a desklet, you can just "
+"resize the desklet as usual."
+msgstr ""

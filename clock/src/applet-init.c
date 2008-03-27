@@ -15,7 +15,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-init.h"
 
-
 static char s_cFileNames[CLOCK_ELEMENTS][30] = {
 	"clock-drop-shadow.svg",
 	"clock-face.svg",

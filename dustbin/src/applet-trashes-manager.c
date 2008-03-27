@@ -20,8 +20,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 static GStaticRWLock s_mTasksMutex = G_STATIC_RW_LOCK_INIT;
 static GList *s_pTasksList = NULL;

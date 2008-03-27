@@ -13,8 +13,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 
 void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)

@@ -11,8 +11,6 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 #define NETSPEED_TMP_FILE "/tmp/netspeed"
 

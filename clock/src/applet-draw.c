@@ -19,8 +19,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern AppletConfig myConfig;
-extern AppletData myData;
 
 
 #define CD_CLOCK_DATE_BUFFER_LENGTH 50

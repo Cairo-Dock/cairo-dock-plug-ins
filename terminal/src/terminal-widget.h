@@ -19,21 +19,25 @@
 ** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-#ifndef __CD_TERMINAL_MENU_FUNC__
-#define  __CD_TERMINAL_MENU_FUNC__
+#ifndef __CD_TERMINAL_WIDGET__
+#define  __CD_TERMINAL_WIDGET__
 
 
 #include <cairo-dock.h>
 
 
-CD_APPLET_ABOUT_H
+void term_on_keybinding_pull(const char *keystring, gpointer user_data);
 
-CD_APPLET_ON_CLICK_H
+void terminal_rename_current_tab (void);
+void terminal_close_current_tab (void);
 
-CD_APPLET_ON_MIDDLE_CLICK_H
 
-CD_APPLET_ON_BUILD_MENU_H
+void term_apply_settings (void);
+
+
+void terminal_new_tab (void);
+
+void terminal_build_and_show_tab (void);
 
 
 #endif
-

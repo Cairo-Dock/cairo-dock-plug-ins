@@ -15,8 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-draw.h"
 #include "applet-config.h"
 
-AppletConfig myConfig;
-AppletData myData;
+CD_APPLET_INCLUDE_MY_VARS
 
 
 #define CD_CLOCK_MAX_NB_AlarmS 3
