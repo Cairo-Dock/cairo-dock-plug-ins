@@ -1,4 +1,5 @@
 #include <string.h>
+#include <dirent.h>
 #include <dbus/dbus-glib.h>
 
 #include "powermanager-draw.h"
@@ -13,12 +14,36 @@ static DBusGProxy *dbus_proxy_battery;
 
 CD_APPLET_INCLUDE_MY_VARS
 
+gchar* power_battery_name(void) {
+  DIR *dir_fd;
+  struct dirent *dir_data;
+  char *battery_base_dir="/proc/acpi/battery";
+  char *battery = "BAT0";
+    
+  dir_fd=opendir(battery_base_dir);
+  if(dir_fd!=NULL) {
+    int dir_found=0;
 
+    readdir(dir_fd);
+    readdir(dir_fd);
+
+    while( !dir_found && (dir_data=readdir(dir_fd))!=NULL ) {
+        battery = dir_data->d_name;
+        dir_found=1;
+    }
+
+    closedir(dir_fd);
+  }
+    
+  cd_message ("Battery Name: %s \n",battery);
+  return battery;
+}
 
 gboolean dbus_get_dbus (void)
 {
 	cd_message ("");
-
+  gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", power_battery_name());
+  
 	cd_message ("Connexion au bus ... ");
 	dbus_connexion_session = dbus_g_bus_get(DBUS_BUS_SESSION, NULL);
 	dbus_connexion_system = dbus_g_bus_get(DBUS_BUS_SYSTEM, NULL);
@@ -49,7 +74,7 @@ gboolean dbus_get_dbus (void)
 		dbus_proxy_battery = dbus_g_proxy_new_for_name (
 			dbus_connexion_system,
 			"org.freedesktop.Hal",
-			"/org/freedesktop/Hal/devices/acpi_BAT0",
+			batteryPath,
 			"org.freedesktop.Hal.Device"
 		);
 		
