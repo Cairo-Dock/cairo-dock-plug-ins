@@ -23,8 +23,7 @@ gboolean cd_wifi_timer (gpointer data) {
 	return TRUE;
 }
 
-gpointer cd_wifi_threaded_calculation (gpointer data)
-{
+gpointer cd_wifi_threaded_calculation (gpointer data) {
 	cd_wifi_get_data();
 	
 	g_static_mutex_lock (&mutexData);
@@ -111,7 +110,7 @@ static float pourcent(float x, float y) {
 }
 static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *iMlink, int *iPercentage, CDWifiQuality *iQuality) {
 	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
-	gchar *cOneInfopipe;
+	gchar *cOneInfopipe, **tcnt;
 	const gchar *levelName;
 	int flink=0, mlink=0, i=0,prcnt=0;
 	for (i = 0; cInfopipesList[i] != NULL; i ++) {
@@ -120,7 +119,7 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 			g_strfreev (cInfopipesList);
 			return FALSE;
 		}
-		else if (i == 5) {
+		else {
 			int c = 0, iNbSpace = 0;
 			gchar *cUtilInfo = NULL;
 			while (cOneInfopipe[c] != '\0') 	{

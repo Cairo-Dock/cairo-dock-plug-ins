@@ -24,6 +24,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
 	myConfig.dCheckInterval = myConfig.iCheckInterval;
 	myConfig.hollowIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "hollow");
+	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
 CD_APPLET_GET_CONFIG_END
 
 

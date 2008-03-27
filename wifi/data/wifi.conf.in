@@ -50,6 +50,8 @@ signal_type=2
 #i[1;60] Delay between signal checks :
 #{in seconds.}
 delay = 10
+#r[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to strength :
+effect=0
 
 #F[Personnalisation]
 frame_app =

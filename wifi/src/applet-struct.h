@@ -22,6 +22,12 @@ typedef enum {
 	WIFI_NB_QUALITY
 } CDWifiQuality;
 
+typedef enum {
+  WIFI_EFFECT_NONE = 0,
+  WIFI_EFFECT_ZOOM,
+  WIFI_EFFECT_TRANSPARENCY,
+  WIFI_EFFECT_BAR,
+} CDWifiEffect;
 
 typedef struct {
 	gchar *defaultTitle;
@@ -30,6 +36,7 @@ typedef struct {
 	gint iCheckInterval;
 	gint dCheckInterval;
 	gboolean hollowIcon;
+	CDWifiEffect iEffect;
 } AppletConfig;
 
 typedef struct {

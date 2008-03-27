@@ -134,6 +134,18 @@ msgstr "Aucune"
 msgid "Lost"
 msgstr "Perdue"
 
+msgid "Zoom"
+msgstr "Zoom"
+
+msgid "Transparency"
+msgstr "Transparence"
+
+msgid "Draw Bar"
+msgstr "Dessiner une barre"
+
+msgid "Effet to apply on the icon according to strength :"
+msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
+
 #: ../data/messages:53
 msgid "No icon when no wireless devices/connections found?"
 msgstr "Aucune icône quand aucun module wifi n'est trouver?"

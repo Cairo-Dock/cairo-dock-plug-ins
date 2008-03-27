@@ -10,5 +10,6 @@ void cd_wifi_draw_no_wireless_extension (void);
 
 void cd_wifi_draw_icon (void);
 
+void cd_wifi_draw_icon_with_effect (cairo_surface_t *pSurface);
 
 #endif
