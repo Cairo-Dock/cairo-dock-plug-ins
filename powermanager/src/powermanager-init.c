@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <cairo-dock.h>
 
 #include "powermanager-draw.h"
 #include "powermanager-config.h"
@@ -14,6 +15,7 @@ CD_APPLET_DEFINITION ("PowerManager", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
+	
 	if (myDesklet != NULL)
 	{
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
@@ -48,11 +50,13 @@ CD_APPLET_INIT_BEGIN (erreur)
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("broken.svg")
 	}
 	
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
+  CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
 	if (dbus_enable)

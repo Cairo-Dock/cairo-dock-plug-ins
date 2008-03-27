@@ -9,7 +9,7 @@ void dbus_disconnect_from_bus (void);
 
 gboolean get_on_battery(void);
 void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data);
-void update_stats(void);
+gboolean update_stats(void);
 void detect_battery(void);
 int get_stats(gchar *dataType);
 

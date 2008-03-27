@@ -5,5 +5,7 @@
 
 void iconWitness(int animationLenght);
 void update_icon(void);
+void cd_powermanager_bubble(void);
+void cd_powermanager_set_surface (gchar *svgFile);
 
 #endif

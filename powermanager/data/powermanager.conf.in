@@ -45,7 +45,10 @@ on widget layer=false
 #{in seconds.}
 check interval = 10
 
-#F[Quick info]
-frame2=
-#s[nothing;charge;time] Information to be displayed on the icon :
-quick_info_type=2
+#F[Information]
+frame_info=
+#r[nothing;charge;time] Information to be displayed on the icon :
+quick-info_type=2
+
+#r[nothing;zoom;transparency;draw bar] Effet to apply on the icon according to charge :
+effect=0

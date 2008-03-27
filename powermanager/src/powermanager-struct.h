@@ -4,12 +4,18 @@
 #include <cairo-dock.h>
 
 typedef enum {
-	MY_APPLET_NOTHING = 0,
-	MY_APPLET_CHARGE,
-	MY_APPLET_TIME,
-	MY_APPLET_NB_QUICK_INFO_TYPE
-	} MyAppletQuickInfoType;
+	POWER_MANAGER_NOTHING = 0,
+	POWER_MANAGER_CHARGE,
+	POWER_MANAGER_TIME,
+	POWER_MANAGER_NB_QUICK_INFO_TYPE
+  } MyAppletQuickInfoType;
 
+typedef enum {
+  POWER_MANAGER_EFFECT_NONE = 0,
+  POWER_MANAGER_EFFECT_ZOOM,
+  POWER_MANAGER_EFFECT_TRANSPARENCY,
+  POWER_MANAGER_EFFECT_BAR,
+  } MyAppletEffect;
 
 typedef struct {
 	gchar *defaultTitle;
@@ -19,7 +25,9 @@ typedef struct {
 	gboolean highBatteryWitness;
 	gboolean lowBatteryWitness;
 	gboolean lowBatteryValue;
-	} AppletConfig;
+	
+	MyAppletEffect iEffect;
+  } AppletConfig;
 
 
 typedef struct {
