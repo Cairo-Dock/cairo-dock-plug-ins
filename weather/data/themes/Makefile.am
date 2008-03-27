@@ -3,4 +3,7 @@ SUBDIRS = .\
 	basic\
 	WeatherPod\
 	Shiny\
-	crystal
+	crystal\
+	7degrees\
+	clear\
+	I_Weather

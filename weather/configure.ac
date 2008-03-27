@@ -51,5 +51,8 @@ AC_CONFIG_FILES([Makefile
 		data/themes/basic/Makefile
 		data/themes/Shiny/Makefile
 		data/themes/crystal/Makefile
+		data/themes/7degrees/Makefile
+		data/themes/clear/Makefile
+		data/themes/I_Weather/Makefile
 		data/themes/WeatherPod/Makefile])
 AC_OUTPUT

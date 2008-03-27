@@ -18,8 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define WEATHER_FORECAST_FILE "/cd-forecast"
 #define WEATHER_LOCATION_FILE "/cd-location"
 
-extern AppletConfig myConfig;
-extern AppletData myData;
+CD_APPLET_INCLUDE_MY_VARS
 
 
 gchar *cd_weather_get_location_data (gchar *cLocation)
