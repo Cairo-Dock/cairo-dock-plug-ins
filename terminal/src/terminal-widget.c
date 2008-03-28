@@ -45,11 +45,30 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 	{
 		if (myDesklet)
 		{
-			g_print ("%s (%d)\n", __func__, gtk_window_has_toplevel_focus (GTK_WINDOW (myDesklet->pWidget)));
-			if (gtk_window_has_toplevel_focus (GTK_WINDOW (myDesklet->pWidget)))
+			gboolean bHasFocus = (gtk_window_has_toplevel_focus (GTK_WINDOW (myDesklet->pWidget)) || GTK_WIDGET_HAS_FOCUS (myData.tab) || GTK_WIDGET_HAS_FOCUS (myDesklet->pWidget));
+			if (! bHasFocus)
+			{
+				GtkWidget *vterm;
+				int i, iNbPages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (myData.tab));
+				for (i = 0; i < iNbPages && ! bHasFocus; ++i)
+				{
+					vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
+					bHasFocus = GTK_WIDGET_HAS_FOCUS (vterm);
+				}
+			}
+			g_print ("%s (%d)\n", __func__, bHasFocus);
+			
+			if (bHasFocus)
+			{
 				cairo_dock_hide_desklet(myDesklet);
+			}
 			else
+			{
 				cairo_dock_show_desklet(myDesklet);
+				int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
+				GtkWidget *vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
+				gtk_widget_grab_focus (vterm);
+			}
 		}
 		else if (myData.dialog)
 		{
@@ -66,12 +85,15 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 }
 
 
-void terminal_rename_current_tab (void)
+void terminal_rename_tab (GtkWidget *vterm)
 {
 	g_print ("%s ()\n", __func__);
-	int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
-	GtkWidget *pPageChild = gtk_notebook_get_nth_page (GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
-	GtkWidget *pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), pPageChild);
+	if (vterm == NULL)
+	{
+		int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
+		vterm = gtk_notebook_get_nth_page (GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
+	}
+	GtkWidget *pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), vterm);
 	GList *pTabWidgetList = gtk_container_get_children (GTK_CONTAINER (pTabLabelWidget));
 	GtkLabel *pLabel;
 	const gchar *cCurrentName = NULL;
@@ -88,11 +110,21 @@ void terminal_rename_current_tab (void)
 	}
 }
 
-void terminal_close_current_tab (void)
+void terminal_close_tab (GtkWidget *vterm)
 {
-	gint p = gtk_notebook_get_current_page(GTK_NOTEBOOK(myData.tab));
 	if (gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab)) > 1)
-		gtk_notebook_remove_page(GTK_NOTEBOOK(myData.tab), p);
+	{
+		int iNumPage;
+		if (vterm == NULL)
+		{
+			iNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
+		}
+		else
+		{
+			iNumPage = gtk_notebook_page_num (GTK_NOTEBOOK(myData.tab), vterm);
+		}
+		gtk_notebook_remove_page(GTK_NOTEBOOK(myData.tab), iNumPage);
+	}
 }
 
 
@@ -101,7 +133,7 @@ static void term_apply_settings_on_vterm(GtkWidget *vterm)
   g_return_if_fail (vterm != NULL);
   vte_terminal_set_colors(VTE_TERMINAL(vterm), &myConfig.forecolor, &myConfig.backcolor, NULL, 0);
       //vte_terminal_set_background_saturation(VTE_TERMINAL(vterm), 1.0);
-      vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), TRUE);
+      //vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), TRUE);
 #if GTK_MINOR_VERSION >= 12
   vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
 #endif
@@ -179,32 +211,32 @@ static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
 {
 	terminal_new_tab();
 }
-static void on_rename_tab(GtkMenuItem *menu_item, gpointer *data)
+static void on_rename_tab(GtkMenuItem *menu_item, GtkWidget *vterm)
 {
-	terminal_rename_current_tab ();
+	terminal_rename_tab (vterm);
 }
-static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
+static void on_close_tab(GtkMenuItem *menu_item, GtkWidget *vterm)
 {
-	terminal_close_current_tab ();
+	terminal_close_tab (vterm);
 }
-static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gboolean bComplete)
+static GtkWidget *_terminal_build_menu_tab (GtkWidget *vterm)
 {
-  GtkWidget *menu = gtk_menu_new ();
-
-  GtkWidget *menu_item, *image;
-	if (bComplete)
+	GtkWidget *menu = gtk_menu_new ();
+	
+	GtkWidget *menu_item, *image;
+	if (vterm)
 	{
 		menu_item = gtk_image_menu_item_new_with_label (D_("Copy"));
 		image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_MENU);
 		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 		gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_copy), pWidget);
+		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_copy), vterm);
 		
 		menu_item = gtk_image_menu_item_new_with_label (D_("Paste"));
 		image = gtk_image_new_from_stock (GTK_STOCK_PASTE, GTK_ICON_SIZE_MENU);
 		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 		gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_paste), pWidget);
+		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_paste), vterm);
 		
 		menu_item = gtk_separator_menu_item_new ();
 		gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
@@ -214,28 +246,29 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *pWidget, gboolean bComple
   image = gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
   gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_new_tab), NULL);
+  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_new_tab), vterm);
   
-  menu_item = gtk_image_menu_item_new_with_label (D_("Rename Tab"));
+  menu_item = gtk_image_menu_item_new_with_label (D_("Rename this Tab"));
   image = gtk_image_new_from_stock (GTK_STOCK_EDIT, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
   gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_rename_tab), NULL);
+  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_rename_tab), vterm);
 
-  /*menu_item = gtk_image_menu_item_new_with_label (D_("Close Tab"));
+  menu_item = gtk_image_menu_item_new_with_label (D_("Close this Tab"));
   image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
   gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_close_tab), NULL);*/
+  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_close_tab), vterm);
 
   return menu;
 }
 
-static gboolean applet_on_terminal_press_cb(GtkWidget *window, GdkEventButton *event, gpointer user_data)
+static gboolean applet_on_terminal_press_cb(GtkWidget *vterm, GdkEventButton *event, gpointer user_data)
 {
+  g_print ("%s ()\n", __func__);
   if (event->button == 3)
     {
-      GtkWidget *menu = _terminal_build_menu_tab (window, TRUE);
+      GtkWidget *menu = _terminal_build_menu_tab (vterm);
 
       gtk_widget_show_all (menu);
 
@@ -266,7 +299,7 @@ static gboolean on_key_press_term (GtkWidget *pWidget,
 				terminal_new_tab();
 			break ;
 			case GDK_w :
-				on_close_tab (NULL, NULL);
+				terminal_close_tab (NULL);
 			break ;
 			default :
 			break ;
@@ -280,12 +313,11 @@ void terminal_new_tab(void)
 
   vterm = vte_terminal_new();
   //transparency enable, otherwise we cant change value after
-  vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), TRUE);
+  //vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), TRUE);
 #if GTK_MINOR_VERSION >= 12
   vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
 #endif
   vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
-  //vte_terminal_set_size (VTE_TERMINAL (vterm), myConfig.iNbColumns, myConfig.iNbRows);
   vte_terminal_fork_command(VTE_TERMINAL(vterm),
                             NULL,
                             NULL,
@@ -359,7 +391,7 @@ static void _hide_show_tab_button (GtkNotebook *pNotebook, int iNumPage, gboolea
 	}
 	g_list_free (pTabWidgetList);
 }
-static void on_current_page_change (GtkNotebook *pNotebook,
+static void on_switch_page (GtkNotebook *pNotebook,
 	GtkNotebookPage *pNextPage,
 	guint iNextNumPage,
 	gpointer user_data)
@@ -369,28 +401,83 @@ static void on_current_page_change (GtkNotebook *pNotebook,
 	_hide_show_tab_button (pNotebook, iCurrentNumPage, FALSE);
 	_hide_show_tab_button (pNotebook, iNextNumPage, TRUE);
 }
+static GtkWidget * _terminal_find_clicked_tab_child (int x, int y)  // x,y relativement au notebook.
+{
+	GtkRequisition requisition;
+	GtkWidget *pPageChild, *pTabLabelWidget, *vterm = NULL;
+	
+	int iMaxTabHeight = 0;
+	int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK (myData.tab));
+	pPageChild = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
+	pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), pPageChild);
+	gtk_widget_get_child_requisition (pTabLabelWidget, &requisition);
+	iMaxTabHeight = requisition.height;
+	g_print ("iMaxTabHeight : %d\n", iMaxTabHeight);
+	
+	int i, iNbPages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (myData.tab));
+	gint src_x, src_y, dest_x, dest_y;
+	for (i = 0; i < iNbPages; ++i)
+	{
+		pPageChild = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
+		pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), pPageChild);
+		gtk_widget_get_child_requisition (pTabLabelWidget, &requisition);
+		gtk_widget_translate_coordinates (myData.tab,
+			pTabLabelWidget,
+			x, y,
+			&dest_x,
+			&dest_y);
+		g_print ("%d) (%d;%d) (%dx%d)\n", i, dest_x, dest_y, requisition.width, requisition.height);
+		if (dest_x >= 0 && dest_y >= 0 && dest_x <= requisition.width && dest_y <= iMaxTabHeight)
+		{
+			vterm = pPageChild;
+			break;
+		}
+	}
+	return vterm;
+}
 static gboolean on_button_press_tab (GtkWidget* pWidget,
 	GdkEventButton* pButton,
-	gpointer data)
+	GtkWidget *vterm)
 {
+	g_print ("%s (%d;%d)\n", __func__, (int)pButton->x, (int)pButton->y);
+	
 	if (pButton->type == GDK_2BUTTON_PRESS)
 	{
-		terminal_rename_current_tab ();
+		if (vterm == NULL)
+			vterm = _terminal_find_clicked_tab_child (pButton->x, pButton->y);
+		if (vterm == NULL)
+			terminal_new_tab ();
+		else
+			terminal_rename_tab (vterm);
 	}
 	else if (pButton->button == 3)
 	{
-		GtkWidget *menu = _terminal_build_menu_tab (pWidget, FALSE);
-		
-		gtk_widget_show_all (menu);
-		
-		gtk_menu_popup (GTK_MENU (menu),
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			1,
-			gtk_get_current_event_time ());
-		return TRUE;  // on empeche le menu de cairo-dock d'apparaitre par-dessus.
+		if (vterm == NULL)
+			vterm = _terminal_find_clicked_tab_child (pButton->x, pButton->y);
+		if (vterm != NULL)
+		{
+			GtkWidget *menu = _terminal_build_menu_tab (vterm);
+			
+			gtk_widget_show_all (menu);
+			
+			gtk_menu_popup (GTK_MENU (menu),
+				NULL,
+				NULL,
+				NULL,
+				NULL,
+				1,
+				gtk_get_current_event_time ());
+			return TRUE;  // on empeche le menu de cairo-dock d'apparaitre par-dessus.
+		}
+	}
+	else if (pButton->button == 2)
+	{
+		if (vterm == NULL)
+			vterm = _terminal_find_clicked_tab_child (pButton->x, pButton->y);
+		if (vterm != NULL)
+		{
+			terminal_close_tab (vterm);
+		}
 	}
 	return FALSE;
 }
@@ -399,7 +486,7 @@ void terminal_build_and_show_tab (void)
 	myData.tab = gtk_notebook_new();
 	g_signal_connect (G_OBJECT (myData.tab),
 		"switch-page",
-		G_CALLBACK (on_current_page_change),
+		G_CALLBACK (on_switch_page),
 		NULL);
 	g_signal_connect (G_OBJECT (myData.tab),
 		"button-press-event",

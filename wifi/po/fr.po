@@ -66,22 +66,27 @@ msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
 #: ../data/messages:35 ../data/messages:39 ../data/messages:61
+#: ../data/messages:71
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Nom de l'image 'Très Faible' :"
 
 #: ../data/messages:39 ../data/messages:43 ../data/messages:65
+#: ../data/messages:75
 msgid "Name of an image for the 'low' icon :"
 msgstr "Nom de l'image 'Faible' :"
 
 #: ../data/messages:43 ../data/messages:47 ../data/messages:69
+#: ../data/messages:79
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Nom de l'image 'Moyen' :"
 
 #: ../data/messages:47 ../data/messages:51 ../data/messages:73
+#: ../data/messages:83
 msgid "Name of an image for the 'good' icon :"
 msgstr "Nom de l'image 'Bon' :"
 
 #: ../data/messages:51 ../data/messages:55 ../data/messages:77
+#: ../data/messages:87
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
@@ -127,26 +132,30 @@ msgstr "Excellent"
 
 #: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119 ../data/messages:19
 #: ../src/applet-wifi.c:18 ../src/applet-draw.c:15 ../data/messages:39
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:13 ../data/messages:53
 msgid "None"
 msgstr "Aucune"
 
 msgid "Lost"
 msgstr "Perdue"
 
+#: ../data/messages:55
 msgid "Zoom"
 msgstr "Zoom"
 
+#: ../data/messages:57
 msgid "Transparency"
 msgstr "Transparence"
 
+#: ../data/messages:59
 msgid "Draw Bar"
 msgstr "Dessiner une barre"
 
+#: ../data/messages:51
 msgid "Effet to apply on the icon according to strength :"
 msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:63
 msgid "No icon when no wireless devices/connections found?"
 msgstr "Aucune icône quand aucun module wifi n'est trouver?"
 
@@ -227,6 +236,7 @@ msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:27 ../data/messages:31 ../data/messages:51
+#: ../data/messages:61
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
@@ -234,7 +244,9 @@ msgstr "Personnalisation"
 #: ../data/messages:41 ../data/messages:45 ../data/messages:49
 #: ../data/messages:53 ../data/messages:55 ../data/messages:59
 #: ../data/messages:63 ../data/messages:67 ../data/messages:71
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:65 ../data/messages:69
+#: ../data/messages:73 ../data/messages:77 ../data/messages:81
+#: ../data/messages:85
 msgid "Let t empty to use the default icon."
 msgstr "Laissez vide poue uriliser l'icône par défaut."
 
@@ -242,6 +254,6 @@ msgstr "Laissez vide poue uriliser l'icône par défaut."
 msgid "Signal Strength level"
 msgstr "Niveau de force du signal"
 
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:67
 msgid "Name of an image for the 'no signal' icon :"
 msgstr ""

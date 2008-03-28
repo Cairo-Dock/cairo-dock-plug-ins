@@ -62,6 +62,7 @@ msgstr "端末の大きさ（行×列） :"
 #: ../src/terminal-menu-functions.c:142 ../src/terminal-menu-functions.c:152
 #: ../src/terminal-callbacks.c:66 ../src/terminal-menu-functions.c:150
 #: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:197
+#: ../src/terminal-widget.c:229
 msgid "Copy"
 msgstr "コピー"
 
@@ -69,13 +70,14 @@ msgstr "コピー"
 #: ../src/terminal-menu-functions.c:243 ../src/terminal-menu-functions.c:244
 #: ../src/terminal-menu-functions.c:254 ../src/terminal-init.c:83
 #: ../src/terminal-init.c:81 ../src/terminal-menu-functions.c:255
-#: ../src/terminal-widget.c:420
+#: ../src/terminal-widget.c:420 ../src/terminal-widget.c:507
 msgid "Terminal"
 msgstr "端末"
 
 #: ../src/terminal-menu-functions.c:152 ../src/terminal-menu-functions.c:149
 #: ../src/terminal-menu-functions.c:148 ../src/terminal-menu-functions.c:158
 #: ../src/terminal-menu-functions.c:156 ../src/terminal-widget.c:203
+#: ../src/terminal-widget.c:235
 msgid "Paste"
 msgstr "張り付け"
 
@@ -85,21 +87,15 @@ msgstr "張り付け"
 #: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:294
 #: ../src/terminal-menu-functions.c:295 ../src/terminal-menu-functions.c:165
 #: ../src/terminal-menu-functions.c:296 ../src/terminal-menu-functions.c:84
-#: ../src/terminal-widget.c:213
+#: ../src/terminal-widget.c:213 ../src/terminal-widget.c:245
 msgid "New Tab"
 msgstr "新しいタブ"
-
-#: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:164
-#: ../src/terminal-menu-functions.c:163 ../src/terminal-menu-functions.c:173
-#: ../src/terminal-menu-functions.c:171 ../src/terminal-widget.c:225
-msgid "Close Tab"
-msgstr "タブを閉じる"
 
 #: ../src/terminal-menu-functions.c:288 ../src/terminal-menu-functions.c:284
 #: ../src/terminal-menu-functions.c:285 ../src/terminal-menu-functions.c:295
 #: ../src/terminal-menu-functions.c:296 ../src/terminal-menu-functions.c:297
 #: ../src/terminal-menu-functions.c:86
-msgid "Close the current Tab"
+msgid "Close current Tab"
 msgstr "現在のタブを閉じる"
 
 #: ../data/messages:1
@@ -173,20 +169,28 @@ msgstr "ウィジェット・レイヤ上に表示？"
 msgid "Shortkey to show the terminal"
 msgstr "端末を表示するショートカットキー :"
 
-#: ../data/messages:19
-msgid "Always draw icon in the dock ?"
-msgstr "ドックに常にアイコンを表示？"
-
 #: ../src/terminal-menu-functions.c:85 ../src/terminal-widget.c:219
 msgid "Rename Tab"
 msgstr ""
 
-#: ../src/terminal-widget.c:82
+#: ../src/terminal-widget.c:82 ../src/terminal-widget.c:104
 msgid "Set title for this tab :"
 msgstr ""
 
 #: ../data/messages:43
 msgid ""
-"When the terminal is in a dialoh. When it is in a desklet, you can just "
+"When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
+msgstr ""
+
+#: ../src/terminal-menu-functions.c:85
+msgid "Rename current Tab"
+msgstr ""
+
+#: ../src/terminal-widget.c:251
+msgid "Rename this Tab"
+msgstr ""
+
+#: ../src/terminal-widget.c:257
+msgid "Close this Tab"
 msgstr ""

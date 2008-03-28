@@ -8,51 +8,57 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-
-static gchar *cIconName[PLAYER_NB_STATUS] = {"xmms.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
+static gchar *s_cIconName[PLAYER_NB_STATUS] = {"xmms.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 
 
 void cd_xmms_draw_icon (void)
 {
 	gboolean bNeedRedraw = FALSE;
-	switch (myConfig.quickInfoType)
+	if (myData.playingStatus == PLAYER_NONE)
 	{
-		case MY_APPLET_NOTHING :
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
-		break ;
-		
-		case MY_APPLET_TIME_ELAPSED :
-			if (myData.iCurrentTime != myData.iPreviousCurrentTime && myData.playingStatus != PLAYER_NONE)
-			{
-				myData.iPreviousCurrentTime = myData.iCurrentTime;
-				CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime)
-				bNeedRedraw = TRUE;
-			}
-		break ;
-		
-		case MY_APPLET_TIME_LEFT :
-			if (myData.iCurrentTime != myData.iPreviousCurrentTime && myData.playingStatus != PLAYER_NONE)
-			{
-				myData.iPreviousCurrentTime = myData.iCurrentTime;
-				CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength)
-				bNeedRedraw = TRUE;
-			}
-		break ;
-		
-		case MY_APPLET_TRACK :
-			if (myData.iTrackNumber != myData.iPreviousTrackNumber && myData.playingStatus != PLAYER_NONE)
-			{
-				myData.iPreviousTrackNumber = myData.iTrackNumber;
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d", myData.iTrackNumber);
-				bNeedRedraw = TRUE;
-			}
-		break ;
-		
-		default :
-		break;
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+	}
+	else
+	{
+		switch (myConfig.quickInfoType)
+		{
+			case MY_APPLET_NOTHING :
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+			break ;
+			
+			case MY_APPLET_TIME_ELAPSED :
+				if (myData.iCurrentTime != myData.iPreviousCurrentTime)
+				{
+					myData.iPreviousCurrentTime = myData.iCurrentTime;
+					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime)
+					bNeedRedraw = TRUE;
+				}
+			break ;
+			
+			case MY_APPLET_TIME_LEFT :
+				if (myData.iCurrentTime != myData.iPreviousCurrentTime)
+				{
+					myData.iPreviousCurrentTime = myData.iCurrentTime;
+					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength)
+					bNeedRedraw = TRUE;
+				}
+			break ;
+			
+			case MY_APPLET_TRACK :
+				if (myData.iTrackNumber != myData.iPreviousTrackNumber)
+				{
+					myData.iPreviousTrackNumber = myData.iTrackNumber;
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d", myData.iTrackNumber);
+					bNeedRedraw = TRUE;
+				}
+			break ;
+			
+			default :
+			break;
+		}
 	}
 	
-	if (myData.previousPlayingTitle != myData.playingTitle && myData.playingStatus != PLAYER_NONE)
+	if (myData.previousPlayingTitle != myData.playingTitle)
 	{
 		myData.previousPlayingTitle = myData.playingTitle;
 		if (myData.playingTitle == NULL || strcmp (myData.playingTitle, "(null)") == 0)
@@ -74,25 +80,7 @@ void cd_xmms_draw_icon (void)
 	if (myData.playingStatus != myData.previousPlayingStatus)  // changement de statut.
 	{
 		myData.previousPlayingStatus = myData.playingStatus;
-		switch(myData.playingStatus){  // le SET_SURFACE redessinera l'icone.
-			case PLAYER_NONE:
-				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurface);
-			break;
-			case PLAYER_PLAYING:
-				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pPlaySurface);
-			break;
-			case PLAYER_PAUSED:
-				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pPauseSurface);
-			break;
-			case PLAYER_STOPPED:
-				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pStopSurface);
-			break;
-			case PLAYER_BROKEN:
-				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBrokenSurface);
-			break;
-			default :
-			return ;
-		}
+		cd_xmms_set_surface (myData.playingStatus);
 	}
 	else if (bNeedRedraw)
 	{
@@ -253,7 +241,7 @@ void cd_xmms_set_surface (MyPlayerStatus iStatus)
 			g_free (cUserImagePath);
 		}
 		else {
-			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, cIconName[iStatus]);
+			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iStatus]);
 			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
 			g_free (cImagePath);
 		}

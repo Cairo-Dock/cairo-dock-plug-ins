@@ -30,6 +30,7 @@ typedef enum {
 } MyPlayerStatus;
 
 typedef struct {
+	gchar *defaultTitle;
 	gboolean enableDialogs;
 	gboolean extendedDesklet;
 	gdouble timeDialogs;
@@ -37,23 +38,11 @@ typedef struct {
 	CairoDockAnimationType changeAnimation;
 	MyAppletQuickInfoType quickInfoType;
 	gchar *cUserImage[PLAYER_NB_STATUS];
-	gchar *defaultTitle;
-	gchar *cDefaultIcon;
-	gchar *cPlayIcon;
-	gchar *cPauseIcon;
-	gchar *cStopIcon;
-	gchar *cBrokenIcon;
 	MyPlayerType iPlayer;
 } AppletConfig;
 
 typedef struct {
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
-	cairo_surface_t *pSurface;
-	cairo_surface_t *pPlaySurface;
-	cairo_surface_t *pPauseSurface;
-	cairo_surface_t *pStopSurface;
-	cairo_surface_t *pCover;
-	cairo_surface_t *pBrokenSurface;
 	gchar *playingTitle, *previousPlayingTitle;
 	MyPlayerStatus playingStatus, previousPlayingStatus;
 	gint iTrackNumber, iPreviousTrackNumber;

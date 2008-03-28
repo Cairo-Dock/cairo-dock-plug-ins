@@ -95,7 +95,7 @@ void rendering_load_icons_for_controler_desklet (CairoDockDesklet *pDesklet)
 		}
 		
 		pIcon->fDrawX = (pDesklet->iWidth - pDesklet->pIcon->fWidth) / 2;
-		pIcon->fDrawY = (pDesklet->iHeight - pDesklet->pIcon->fHeight) / 2 + (pControler->b3D ? g_iLabelSize : 0);
+		pIcon->fDrawY = g_iLabelSize;
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;

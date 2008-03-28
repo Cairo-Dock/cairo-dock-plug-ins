@@ -8,110 +8,17 @@
 #include "rhythmbox-init.h"
 
 static gboolean dbus_enable = FALSE;
+static gboolean s_bAppliInhibitedByMe = FALSE;
 
 CD_APPLET_DEFINITION ("Rhythmbox", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
-static void _load_surfaces (void)
-{
-	gchar *cUserImagePath;
-	GString *sImagePath = g_string_new ("");
-	//Chargement de l'image "default"
-	if (myData.pSurface != NULL)
-		cairo_surface_destroy (myData.pSurface);
-	if (myConfig.cDefaultIcon != NULL)
-	{
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cDefaultIcon);
-		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else
-	{
-		g_string_printf (sImagePath, "%s/default.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	//Chargement de l'image "stop"
-	if (myData.pStopSurface != NULL)
-		cairo_surface_destroy (myData.pStopSurface);
-	if (myConfig.cStopIcon != NULL)
-	{
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cStopIcon);
-		myData.pStopSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else
-	{
-		g_string_printf (sImagePath, "%s/stop.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pStopSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	//Chargement de l'image "pause"
-	if (myData.pPauseSurface != NULL)
-		cairo_surface_destroy (myData.pPauseSurface);
-	if (myConfig.cPauseIcon != NULL)
-	{
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cPauseIcon);
-		myData.pPauseSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else
-	{
-		g_string_printf (sImagePath, "%s/pause.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pPauseSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	//Chargement de l'image "play"
-	if (myData.pPlaySurface != NULL)
-		cairo_surface_destroy (myData.pPlaySurface);
-	if (myConfig.cPlayIcon != NULL)
-	{
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cPlayIcon);
-		myData.pPlaySurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else
-	{
-		g_string_printf (sImagePath, "%s/play.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pPlaySurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	//Chargement de l'image "broken"
-	if (myData.pBrokenSurface != NULL)
-		cairo_surface_destroy (myData.pBrokenSurface);
-	if (myConfig.cBrokenIcon != NULL)
-	{
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cBrokenIcon);
-		myData.pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else
-	{
-		g_string_printf (sImagePath, "%s/broken.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	g_string_free (sImagePath, TRUE);
-}
-
 CD_APPLET_INIT_BEGIN (erreur)
-	myConfig.defaultTitle = g_strdup (myIcon->acName);
-	
 	if (myDesklet != NULL)
 	{
-		/*myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;*/
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
-	
-	_load_surfaces ();
 	
 	//Si le bus n'a pas encore ete acquis, on le recupere.
 	if (! dbus_enable)
@@ -133,13 +40,16 @@ CD_APPLET_INIT_BEGIN (erreur)
 		}
 		else
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurface)
+			rhythmbox_set_surface (PLAYER_NONE);
 		}
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pBrokenSurface)
+		rhythmbox_set_surface (PLAYER_BROKEN);
 	}
+	
+	if (myConfig.bInhibateRhythmboxAppli)
+		s_bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox");
 	
 	//Enregistrement des notifications
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -157,31 +67,37 @@ CD_APPLET_STOP_BEGIN
 	
 	rhythmbox_dbus_disconnect_from_bus ();
 	
-	reset_config ();
+	if (s_bAppliInhibitedByMe)
+		cairo_dock_deinhibate_class ("rhythmbox");
+	s_bAppliInhibitedByMe = FALSE;
+	
 	reset_data ();
+	reset_config ();
 CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
+	//\_______________ On recharge les donnees qui ont pu changer.
 	if (myDesklet != NULL)
 	{
-		/*myIcon->fWidth = MAX (1, myDesklet->iWidth - g_iDockRadius);
-		myIcon->fHeight = MAX (1, myDesklet->iHeight - g_iDockRadius);
-		myIcon->fDrawX = g_iDockRadius/2;
-		myIcon->fDrawY = g_iDockRadius/2;
-		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		myDesklet->renderer = NULL;*/
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
-	//\_______________ On recharge les donnees qui ont pu changer.
-	_load_surfaces ();
+	
+	int i;
+	for (i = 0; i < PLAYER_NB_STATUS; i ++) { // reset surfaces.
+		if (myData.pSurfaces[i] != NULL) {
+			cairo_surface_destroy (myData.pSurfaces[i]);
+			myData.pSurfaces[i] = NULL;
+		}
+	}
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		myConfig.defaultTitle = g_strdup (myIcon->acName);  // libere dans le reset_config() precedemment appele.
+		if (s_bAppliInhibitedByMe && ! myConfig.bInhibateRhythmboxAppli)
+			cairo_dock_deinhibate_class ("rhythmbox");
+		else if (! s_bAppliInhibitedByMe && myConfig.bInhibateRhythmboxAppli)
+			s_bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox");
 	}
 	
 	//\_______________ On redessine notre icone.
@@ -193,11 +109,14 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurface)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+			rhythmbox_set_surface (PLAYER_NONE);
 		}
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pBrokenSurface)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+		rhythmbox_set_surface (PLAYER_BROKEN);
 	}
 CD_APPLET_RELOAD_END

@@ -9,7 +9,7 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-
+static gchar *s_cIconName[WIFI_NB_QUALITY] = {"link-0.svg", "link-1.svg", "link-2.svg", "link-3.svg", "link-4.svg", "link-5.svg"};
 static gchar *s_cLevelQualityName[WIFI_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Excellent")};
 
 
@@ -106,7 +106,7 @@ void cd_wifi_set_surface (CDWifiQuality iQuality) {
 			g_free (cUserImagePath);
 		}
 		else {
-			gchar *cImagePath = g_strdup_printf ("%s/link-%d.svg", MY_APPLET_SHARE_DATA_DIR, iQuality);
+			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iQuality]);
 			myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
 			g_free (cImagePath);
 		}
@@ -118,32 +118,28 @@ void cd_wifi_set_surface (CDWifiQuality iQuality) {
 }
 
 void cd_wifi_draw_icon_with_effect (cairo_surface_t *pSurface) {
-  switch (myConfig.iEffect) {
-    case WIFI_EFFECT_NONE:
-      CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
-    break;
-    case WIFI_EFFECT_ZOOM:
-     	cairo_save (myDrawContext);
-	    double fScale = .3 + .7 * myData.prcnt / 100.;
-	    CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
-      cairo_restore (myDrawContext);
-	  break;
-	  case WIFI_EFFECT_TRANSPARENCY: 
-	    cairo_save (myDrawContext);
-	    double fAlpha = .3 + .7 * myData.prcnt / 100.;
-	    CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
-	    cairo_restore (myDrawContext);
-	  break;
-	  case WIFI_EFFECT_BAR:
-	    cairo_save (myDrawContext);
-	    cairo_dock_set_icon_surface_with_reflect (myDrawContext, pSurface, myIcon, myContainer);  // on n'utilise pas la macro car on ne veut pas du redraw.
-	
-	    cairo_restore (myDrawContext);
-	    cairo_save (myDrawContext);
-	    CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.prcnt * .01)
-	    cairo_restore (myDrawContext);
-	
-	    CD_APPLET_REDRAW_MY_ICON
-	  break;
+	switch (myConfig.iEffect) {
+		case WIFI_EFFECT_NONE:
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+		break;
+		case WIFI_EFFECT_ZOOM:
+			cairo_save (myDrawContext);
+			double fScale = .3 + .7 * myData.prcnt / 100.;
+			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
+			cairo_restore (myDrawContext);
+		break;
+		case WIFI_EFFECT_TRANSPARENCY: 
+			cairo_save (myDrawContext);
+			double fAlpha = .3 + .7 * myData.prcnt / 100.;
+			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
+			cairo_restore (myDrawContext);
+		break;
+		case WIFI_EFFECT_BAR:
+			cairo_save (myDrawContext);
+			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.prcnt * .01)
+			cairo_restore (myDrawContext);
+		break;
+		default :
+		break;
 	}
 }

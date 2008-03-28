@@ -61,22 +61,22 @@ msgstr ""
 "Cairo-Dock 用に製作された dustbin アプレットです。"
 
 #: src/applet-notifications.c:42 ../src/applet-notifications.c:38
-#: ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:35
 msgid "Show Trash"
 msgstr "中身を表示"
 
 #: src/applet-notifications.c:54 ../src/applet-notifications.c:45
-#: ../src/applet-notifications.c:43
+#: ../src/applet-notifications.c:43 ../src/applet-notifications.c:42
 msgid "Show All"
 msgstr "すべて表示"
 
 #: src/applet-notifications.c:56 ../src/applet-notifications.c:47
-#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:45 ../src/applet-notifications.c:44
 msgid "Delete Trash"
 msgstr "中身を削除"
 
 #: src/applet-notifications.c:69 ../src/applet-notifications.c:54
-#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:52 ../src/applet-notifications.c:51
 msgid "Delete All"
 msgstr "すべて削除"
 
@@ -103,13 +103,13 @@ msgstr ""
 "このモジュールの設定パネルで変更することができます。"
 
 #: src/applet-notifications.c:48 ../src/applet-notifications.c:42
-#: ../src/applet-notifications.c:40
+#: ../src/applet-notifications.c:40 ../src/applet-notifications.c:39
 #, c-format
 msgid "Show %s"
 msgstr "%s を表示"
 
 #: src/applet-notifications.c:62 ../src/applet-notifications.c:51
-#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:49 ../src/applet-notifications.c:48
 #, c-format
 msgid "Delete %s"
 msgstr "%s を削除"
@@ -127,6 +127,7 @@ msgid " files"
 msgstr "ファイル"
 
 #: ../src/applet-notifications.c:22 ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the dustbin applet for Cairo-Dock\n"
 " made by Fabrice Rey (fabounet@users.berlios.de)"
@@ -135,11 +136,13 @@ msgstr ""
 "Cairo-Dock 用に製作された dustbin アプレットです。"
 
 #: ../src/applet-notifications.c:68 ../src/applet-notifications.c:66
+#: ../src/applet-notifications.c:65
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s は現在アンマウントされています"
 
 #: ../src/applet-notifications.c:72 ../src/applet-notifications.c:70
+#: ../src/applet-notifications.c:69
 #, c-format
 msgid "failed to unmount %s"
 msgstr "%s のアンマウントに失敗"

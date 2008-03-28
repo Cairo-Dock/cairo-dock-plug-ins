@@ -61,6 +61,10 @@ enable_cover=true
 #r[nothing;time elapsed;time left;time in %;n° of track] Information to display on the icon :
 quick-info_type=1
 
+#b Inhibate the rhythmbox's icon in taskbar ?
+#{It will prevent the rhythmbox's icon to appear in the task bar.}
+inhibate appli = true
+
 #F[Personnalisation]
 frame_app =
 #S Name of an image for the 'default' icon :

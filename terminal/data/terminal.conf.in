@@ -45,7 +45,7 @@ on widget layer=false
 [GUI]
 #e[0;1] Terminal's transparency :
 #{needs to restart the applet.}
-terminal transparency=.84
+terminal transparency=.6
 
 #c3[0;1] Foreground color (r, v, b):
 foreground color= 1.; 1.; 1.
@@ -54,7 +54,7 @@ foreground color= 1.; 1.; 1.
 background color= 0.; 0.; 0.
 
 #I-[5;999] Size of the terminal (line x columns) :
-#{When the terminal is in a dialoh. When it is in a desklet, you can just resize the desklet as usual.}
+#{When the terminal is in a dialog. When it is in a desklet, you can just resize the desklet as usual.}
 nb lines = 25
 #I-[5;999] ...
 nb columns = 70

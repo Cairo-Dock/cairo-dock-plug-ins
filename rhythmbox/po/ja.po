@@ -102,6 +102,7 @@ msgstr "アイコン上に表示する情報 :"
 #: src/rhythmbox-draw.c:101 src/rhythmbox-draw.c:102
 #: ../src/rhythmbox-draw.c:77 ../src/rhythmbox-draw.c:102
 #: ../src/rhythmbox-draw.c:103 ../src/rhythmbox-draw.c:101
+#: ../src/rhythmbox-draw.c:106
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -116,6 +117,8 @@ msgstr ""
 #: ../src/rhythmbox-draw.c:83 ../src/rhythmbox-draw.c:106
 #: ../src/rhythmbox-draw.c:107 ../src/rhythmbox-draw.c:108
 #: ../src/rhythmbox-draw.c:109 ../src/rhythmbox-draw.c:105
+#: ../src/rhythmbox-draw.c:110 ../src/rhythmbox-draw.c:111
+#: ../src/rhythmbox-draw.c:112
 msgid "Unknown"
 msgstr "不明"
 
@@ -164,34 +167,34 @@ msgstr "時間の割合"
 msgid "° of track"
 msgstr "トラック番号"
 
-#: ../data/messages:55 ../data/messages:75
+#: ../data/messages:55 ../data/messages:75 ../data/messages:79
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
 #: ../data/messages:57 ../data/messages:61 ../data/messages:65
 #: ../data/messages:69 ../data/messages:73 ../data/messages:77
 #: ../data/messages:81 ../data/messages:85 ../data/messages:89
-#: ../data/messages:93
+#: ../data/messages:93 ../data/messages:97
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:59 ../data/messages:79
+#: ../data/messages:59 ../data/messages:79 ../data/messages:83
 msgid "Name of an image for the 'default' icon :"
 msgstr "'デフォルト' アイコンの画像の名前 :"
 
-#: ../data/messages:63 ../data/messages:83
+#: ../data/messages:63 ../data/messages:83 ../data/messages:87
 msgid "Name of an image for the 'play' icon :"
 msgstr "'再生' アイコンの画像の名前 :"
 
-#: ../data/messages:67 ../data/messages:87
+#: ../data/messages:67 ../data/messages:87 ../data/messages:91
 msgid "Name of an image for the 'stop' icon :"
 msgstr "'停止' アイコンの画像の名前 :"
 
-#: ../data/messages:71 ../data/messages:91
+#: ../data/messages:71 ../data/messages:91 ../data/messages:95
 msgid "Name of an image for the 'pause' icon :"
 msgstr "'一時停止' アイコンの画像の名前 :"
 
-#: ../data/messages:75 ../data/messages:95
+#: ../data/messages:75 ../data/messages:95 ../data/messages:99
 msgid "Name of an image for the 'broken' icon :"
 msgstr "'リンク切れ' アイコンの画像の名前 :"
 
@@ -245,4 +248,12 @@ msgstr ""
 
 #: ../data/messages:73
 msgid "n° of track"
+msgstr ""
+
+#: ../data/messages:75
+msgid "It will prevent the rhythmbox's icon to appear in the task bar."
+msgstr ""
+
+#: ../data/messages:77
+msgid "Inhibate the rhythmbox's icon in taskbar ?"
 msgstr ""

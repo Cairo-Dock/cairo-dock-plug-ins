@@ -72,18 +72,18 @@ static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
 }
 static void on_rename_tab(GtkMenuItem *menu_item, gpointer *data)
 {
-	terminal_rename_current_tab ();
+	terminal_rename_tab (NULL);
 }
 static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
 {
-	terminal_close_current_tab ();
+	terminal_close_tab (NULL);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
 	CD_APPLET_ADD_SUB_MENU("Terminal", pSubMenu, CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_IN_MENU(D_("New Tab"), on_new_tab, pSubMenu);
-	CD_APPLET_ADD_IN_MENU(D_("Rename Tab"), on_rename_tab, pSubMenu);
-	CD_APPLET_ADD_IN_MENU(D_("Close the current Tab"), on_close_tab, pSubMenu);
+	CD_APPLET_ADD_IN_MENU(D_("Rename current Tab"), on_rename_tab, pSubMenu);
+	CD_APPLET_ADD_IN_MENU(D_("Close current Tab"), on_close_tab, pSubMenu);
 	CD_APPLET_ADD_SEPARATOR();
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }

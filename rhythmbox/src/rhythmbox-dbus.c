@@ -255,11 +255,11 @@ void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
 		cd_message ("  playing_uri : %s", myData.playing_uri);
 		if(myData.playing)
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pPlaySurface)
+			rhythmbox_set_surface (PLAYER_PLAYING);
 		}
 		else
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pPauseSurface)
+			rhythmbox_set_surface (PLAYER_PAUSED);
 		}
 	}
 }

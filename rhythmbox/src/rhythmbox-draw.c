@@ -6,6 +6,7 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
+static gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 
 
 void rhythmbox_iconWitness(int animationLength)
@@ -63,11 +64,11 @@ void update_icon(gboolean make_witness)
 		{
 			if(myData.playing)
 			{
-				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pPlaySurface);
+				rhythmbox_set_surface (PLAYER_PLAYING);
 			}
 			else
 			{
-				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pPauseSurface);
+				rhythmbox_set_surface (PLAYER_PAUSED);
 			}
 			myData.cover_exist = FALSE;
 			if (myConfig.enableCover && myData.playing_cover != NULL && myData.iSidCheckCover == 0)
@@ -91,18 +92,46 @@ void update_icon(gboolean make_witness)
 	else
 	{
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurface);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+		if (myData.opening)
+			rhythmbox_set_surface (PLAYER_STOPPED);  // je ne sais pas si en mode Stopped la chanson est NULL ou pas...
+		else
+			rhythmbox_set_surface (PLAYER_NONE);
 	}
 	CD_APPLET_REDRAW_MY_ICON
 }
 
 void music_dialog(void)
 {
-	cairo_dock_show_temporary_dialog (_D("Artist : %s\nAlbum : %s\nTitle : %s"),
+	cairo_dock_show_temporary_dialog (D_("Artist : %s\nAlbum : %s\nTitle : %s"),
 		myIcon,
 		myDock,
 		myConfig.timeDialogs,
-		myData.playing_artist != NULL ? myData.playing_artist : _D("Unknown"),
-		myData.playing_album != NULL ? myData.playing_album : _D("Unknown"),
-		myData.playing_title != NULL ? myData.playing_title : _D("Unknown"));
+		myData.playing_artist != NULL ? myData.playing_artist : D_("Unknown"),
+		myData.playing_album != NULL ? myData.playing_album : D_("Unknown"),
+		myData.playing_title != NULL ? myData.playing_title : D_("Unknown"));
+}
+
+
+void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
+{
+	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
+	
+	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];
+	if (pSurface == NULL) {
+		if (myConfig.cUserImage[iStatus] != NULL) {
+			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iStatus]);
+			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+			g_free (cUserImagePath);
+		}
+		else {
+			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iStatus]);
+			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+			g_free (cImagePath);
+		}
+		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[iStatus]);
+	}
+	else {
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+	}
 }

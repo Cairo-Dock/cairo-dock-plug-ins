@@ -28,8 +28,8 @@
 
 void term_on_keybinding_pull(const char *keystring, gpointer user_data);
 
-void terminal_rename_current_tab (void);
-void terminal_close_current_tab (void);
+void terminal_rename_tab (GtkWidget *vterm);
+void terminal_close_tab (GtkWidget *vterm);
 
 
 void term_apply_settings (void);

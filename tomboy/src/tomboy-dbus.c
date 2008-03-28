@@ -98,7 +98,7 @@ void dbus_detect_tomboy(void)
 		&name_list,
 		G_TYPE_INVALID))
 	{
-		cd_message ("tomboy : detection du service...\n");
+		cd_message ("tomboy : detection du service...");
 		int i;
 		for (i = 0; name_list[i] != NULL; i ++)
 		{
@@ -132,7 +132,7 @@ void onChangeNoteList(DBusGProxy *proxy,const gchar *note_name, gpointer data)
 
 gchar *getNoteTitle(gchar *note_name)
 {
-	cd_debug("tomboy : Chargement du titre : %s\n",note_name);
+	cd_debug("tomboy : Chargement du titre : %s",note_name);
 	gchar *note_title = NULL;
 	dbus_g_proxy_call (dbus_proxy_tomboy, "GetNoteTitle", NULL,
 		G_TYPE_STRING, note_name,
@@ -147,15 +147,15 @@ void registerNote(gchar *uri)
 {
 	myData.countNotes++;
 	TomBoyNote *pNote = g_new0 (TomBoyNote, 1);
-	pNote->name = g_strdup_printf ("%s", uri);
-	cd_message("tomboy : Enregistrement de la note %s\n",pNote->name);
+	pNote->name = g_strdup (uri);
+	cd_message("tomboy : Enregistrement de la note %s",pNote->name);
 	pNote->title = getNoteTitle(uri);
 	myData.noteList = g_list_prepend (myData.noteList, pNote);
 }
 
 void getAllNotes(void)
 {
-	cd_message("tomboy : getAllNotes\n");
+	cd_message("tomboy : getAllNotes");
 	
 	free_all_notes ();
 	
@@ -166,7 +166,7 @@ void getAllNotes(void)
 		G_TYPE_STRV,&note_list,
 		G_TYPE_INVALID))
 	{
-		cd_message ("tomboy : Liste des notes...\n");
+		cd_message ("tomboy : Liste des notes...");
 		int i;
 		for (i = 0; note_list[i] != NULL; i ++)
 		{
@@ -178,7 +178,7 @@ void getAllNotes(void)
 
 gchar *addNote(gchar *note_title)
 {
-	cd_debug("tomboy : Nouvelle note : %s\n",note_title);
+	cd_debug("tomboy : Nouvelle note : %s",note_title);
 	gchar *note_name = NULL;
 	dbus_g_proxy_call (dbus_proxy_tomboy, "CreateNamedNote", NULL,
 		G_TYPE_STRING, note_title,
@@ -190,7 +190,7 @@ gchar *addNote(gchar *note_title)
 
 void showNote(gchar *note_name)
 {
-	cd_debug("tomboy : Afficher une note : %s\n",note_name);
+	cd_debug("tomboy : Afficher une note : %s",note_name);
 	dbus_g_proxy_call (dbus_proxy_tomboy, "DisplayNote", NULL,
 		G_TYPE_STRING, note_name,
 		G_TYPE_INVALID,
@@ -199,6 +199,8 @@ void showNote(gchar *note_name)
 
 void free_note (TomBoyNote *pNote)
 {
+	if (pNote == NULL)
+		return ;
 	g_free (pNote->name);
 	g_free (pNote->title);
 	g_free (pNote);

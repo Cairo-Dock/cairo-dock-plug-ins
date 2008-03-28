@@ -1,12 +1,14 @@
 #ifndef __RHYTHMBOX_DRAW__
 #define  __RHYTHMBOX_DRAW__
 
-#include <cairo-dock.h>
+#include <rhythmbox-struct.h>
 
 void rhythmbox_iconWitness(int animationLenght);
 
 void update_icon(gboolean make_witness);
 
 void music_dialog(void);
+
+void rhythmbox_set_surface (MyAppletPlayerStatus iStatus);
 
 #endif

@@ -87,12 +87,8 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 
 void mixer_apply_zoom_effect (cairo_surface_t *pSurface)
 {
-	cairo_save (myDrawContext);
 	double fScale = .3 + .7 * myData.iCurrentVolume / 100.;
-	/*double fMaxScale = (myDock ? 1 + g_fAmplitude : 1);
-	cairo_translate (myDrawContext, myIcon->fWidth * fMaxScale / 2 * (1 - fScale) , myIcon->fHeight * fMaxScale / 2 * (1 - fScale));
-	cairo_scale (myDrawContext, fScale, fScale);
-	cairo_dock_set_icon_surface_with_reflect (myDrawContext, pSurface, myIcon, myContainer);  // on n'utilise pas la macro car on ne veut pas du redraw.*/
+	cairo_save (myDrawContext);
 	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
 	cairo_restore (myDrawContext);
 }
@@ -100,23 +96,8 @@ void mixer_apply_zoom_effect (cairo_surface_t *pSurface)
 void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
 {
 	cd_debug ("%s (%x)", __func__, pSurface);
-	cairo_save (myDrawContext);
-	/*cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (myDrawContext);
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
-	
-	if (pSurface != NULL)
-	{
-		cairo_set_source_surface (
-			myDrawContext,
-			pSurface,
-			0.,
-			0.);
-		double fAlpha = .3 + .7 * myData.iCurrentVolume / 100.;
-		cairo_paint_with_alpha (myDrawContext, fAlpha);
-	}*/
 	double fAlpha = .3 + .7 * myData.iCurrentVolume / 100.;
+	cairo_save (myDrawContext);
 	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
 	cairo_restore (myDrawContext);
 }
@@ -124,46 +105,6 @@ void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
 void mixer_draw_bar (cairo_surface_t *pSurface)
 {
 	cairo_save (myDrawContext);
-	cairo_dock_set_icon_surface_with_reflect (myDrawContext, pSurface, myIcon, myContainer);  // on n'utilise pas la macro car on ne veut pas du redraw.
-	
-	cairo_restore (myDrawContext);
-	cairo_save (myDrawContext);
-	/*double fMaxScale = (myDock ? 1 + g_fAmplitude : 1);
-	cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (0.,
-		0.,
-		myIcon->fWidth * fMaxScale,
-		0.);  // de gauche a droite.
-	g_return_if_fail (cairo_pattern_status (pGradationPattern) == CAIRO_STATUS_SUCCESS);
-	
-	cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
-	cairo_pattern_add_color_stop_rgba (pGradationPattern,
-		0.,
-		1.,
-		0.,
-		0.,
-		1.);
-	cairo_pattern_add_color_stop_rgba (pGradationPattern,
-		1.,
-		0.,
-		1.,
-		0.,
-		1.);
-	
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
-	
-	cairo_set_line_width (myDrawContext, 6);
-	cairo_set_line_cap (myDrawContext, CAIRO_LINE_CAP_ROUND);
-	
-	cairo_move_to (myDrawContext, 3, myIcon->fHeight * fMaxScale - 3);
-	cairo_rel_line_to (myDrawContext, (myIcon->fWidth * fMaxScale - 6) * myData.iCurrentVolume * .01, 0);
-	
-	cairo_set_source (myDrawContext, pGradationPattern);
-	cairo_stroke (myDrawContext);
-	
-	cairo_pattern_destroy (pGradationPattern);
-	*/
 	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.iCurrentVolume * .01)
 	cairo_restore (myDrawContext);
-	
-	CD_APPLET_REDRAW_MY_ICON
 }

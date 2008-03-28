@@ -65,22 +65,22 @@ msgstr ""
 " écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
 
 #: src/applet-notifications.c:42 ../src/applet-notifications.c:38
-#: ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:35
 msgid "Show Trash"
 msgstr "Ouvrir la poubelle"
 
 #: src/applet-notifications.c:54 ../src/applet-notifications.c:45
-#: ../src/applet-notifications.c:43
+#: ../src/applet-notifications.c:43 ../src/applet-notifications.c:42
 msgid "Show All"
 msgstr "Ouvrir toutes"
 
 #: src/applet-notifications.c:56 ../src/applet-notifications.c:47
-#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:45 ../src/applet-notifications.c:44
 msgid "Delete Trash"
 msgstr "Vider la poubelle"
 
 #: src/applet-notifications.c:69 ../src/applet-notifications.c:54
-#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:52 ../src/applet-notifications.c:51
 msgid "Delete All"
 msgstr "Vider toutes"
 
@@ -109,13 +109,13 @@ msgstr ""
 "vous pouvez le changer dans le panneau de conf de cette applet."
 
 #: src/applet-notifications.c:48 ../src/applet-notifications.c:42
-#: ../src/applet-notifications.c:40
+#: ../src/applet-notifications.c:40 ../src/applet-notifications.c:39
 #, c-format
 msgid "Show %s"
 msgstr "Ouvrir %s"
 
 #: src/applet-notifications.c:62 ../src/applet-notifications.c:51
-#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:49 ../src/applet-notifications.c:48
 #, c-format
 msgid "Delete %s"
 msgstr "Vider %s"
@@ -133,17 +133,20 @@ msgid " files"
 msgstr "fichiers"
 
 #: ../src/applet-notifications.c:22 ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the dustbin applet for Cairo-Dock\n"
 " made by Fabrice Rey (fabounet@users.berlios.de)"
 msgstr ""
 
 #: ../src/applet-notifications.c:68 ../src/applet-notifications.c:66
+#: ../src/applet-notifications.c:65
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s est maintenant démonté"
 
 #: ../src/applet-notifications.c:72 ../src/applet-notifications.c:70
+#: ../src/applet-notifications.c:69
 #, c-format
 msgid "failed to unmount %s"
 msgstr "échec au démontage de %s"

@@ -12,6 +12,14 @@ typedef enum {
 	MY_APPLET_NB_QUICK_INFO_TYPE
 	} MyAppletQuickInfoType;
 
+typedef enum {
+	PLAYER_NONE = 0,
+	PLAYER_PLAYING,
+	PLAYER_PAUSED,
+	PLAYER_STOPPED,
+	PLAYER_BROKEN,
+	PLAYER_NB_STATUS
+} MyAppletPlayerStatus;
 
 typedef struct {
 	gboolean enableDialogs;
@@ -20,20 +28,13 @@ typedef struct {
 	CairoDockAnimationType changeAnimation;
 	MyAppletQuickInfoType quickInfoType;
 	gchar *defaultTitle;
-	gchar *cDefaultIcon;
-	gchar *cPlayIcon;
-	gchar *cPauseIcon;
-	gchar *cStopIcon;
-	gchar *cBrokenIcon;
+	gchar *cUserImage[PLAYER_NB_STATUS];
+	gboolean bInhibateRhythmboxAppli;
 	} AppletConfig;
 
 typedef struct {
-	cairo_surface_t *pSurface;
-	cairo_surface_t *pPlaySurface;
-	cairo_surface_t *pPauseSurface;
-	cairo_surface_t *pStopSurface;
+	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
 	cairo_surface_t *pCover;
-	cairo_surface_t *pBrokenSurface;
 	gboolean dbus_enable;
 	gboolean opening;
 	gboolean playing;

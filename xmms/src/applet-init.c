@@ -10,90 +10,14 @@
 
 CD_APPLET_DEFINITION ("xmms", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
-static void _load_surfaces (void) {
-	gchar *cUserImagePath;
-	GString *sImagePath = g_string_new ("");
-	//Chargement de l'image "default"
-	if (myData.pSurface != NULL) {
-		cairo_surface_destroy (myData.pSurface);
-	}
-	if (myConfig.cDefaultIcon != NULL) {
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cDefaultIcon);
-		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else {
-		g_string_printf (sImagePath, "%s/xmms.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	//Chargement de l'image "stop"
-	if (myData.pStopSurface != NULL) {
-		cairo_surface_destroy (myData.pStopSurface);
-	}
-	if (myConfig.cStopIcon != NULL) {
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cStopIcon);
-		myData.pStopSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else {
-		g_string_printf (sImagePath, "%s/stop.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pStopSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	//Chargement de l'image "pause"
-	if (myData.pPauseSurface != NULL) {
-		cairo_surface_destroy (myData.pPauseSurface);
-	}
-	if (myConfig.cPauseIcon != NULL) {
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cPauseIcon);
-		myData.pPauseSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else {
-		g_string_printf (sImagePath, "%s/pause.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pPauseSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	//Chargement de l'image "play"
-	if (myData.pPlaySurface != NULL) {
-		cairo_surface_destroy (myData.pPlaySurface);
-	}
-	if (myConfig.cPlayIcon != NULL) {
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cPlayIcon);
-		myData.pPlaySurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else {
-		g_string_printf (sImagePath, "%s/play.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pPlaySurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	//Chargement de l'image "broken"
-	if (myData.pBrokenSurface != NULL) {
-		cairo_surface_destroy (myData.pBrokenSurface);
-	}
-	if (myConfig.cBrokenIcon != NULL) {
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cBrokenIcon);
-		myData.pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else {
-		g_string_printf (sImagePath, "%s/broken.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	g_string_free (sImagePath, TRUE);
-}
 
 CD_APPLET_INIT_BEGIN (erreur)
-  if (myDesklet != NULL) {
+	if (myDesklet) {
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
 	cd_remove_pipes();
-	_load_surfaces();
 	
 	myData.playingStatus = PLAYER_NONE;
 	myData.previousPlayingStatus = -1;
@@ -123,11 +47,18 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (myDesklet != NULL) {
+	if (myDesklet) {
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
-	_load_surfaces();
+	
+	int i;
+	for (i = 0; i < PLAYER_NB_STATUS; i ++) { // reset surfaces.
+		if (myData.pSurfaces[i] != NULL) {
+			cairo_surface_destroy (myData.pSurfaces[i]);
+			myData.pSurfaces[i] = NULL;
+		}
+	}
 	
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
@@ -136,7 +67,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.previousPlayingTitle = NULL;
 		myData.iPreviousTrackNumber = -1;
 		myData.iPreviousCurrentTime = -1;
-		// on ne fait rien, les modifs seront prises en compte au prochain coup de timer, dans au plus 1s.
+		// inutile de relancer le timer, sa frequence ne change pas. Inutile aussi de faire 1 iteration ici, les modifs seront prises en compte a la prochaine iteration, dans au plus 1s.
 	}
 	else {  // on redessine juste l'icone.
 		cd_xmms_draw_icon ();
