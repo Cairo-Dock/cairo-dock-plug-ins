@@ -47,6 +47,7 @@ typedef struct {
 	const gchar *playing_title;
 	gchar *playing_cover;
 	guint iSidCheckCover;
+	gboolean bAppliInhibitedByMe;
 	} AppletData;
 
 

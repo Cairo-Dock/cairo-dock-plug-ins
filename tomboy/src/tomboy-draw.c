@@ -9,7 +9,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 void load_surface(cairo_surface_t *pSurface, gchar *default_image, gchar *user_image)
 {
-	cd_message("tomboy : Chargement de la surface (%s)\n",user_image);
+	cd_message("tomboy : Chargement de la surface (%s)",user_image);
 	
 	GString *sImagePath = g_string_new ("");
 	if (pSurface != NULL)
@@ -76,11 +76,11 @@ void load_all_surfaces(void)
 	g_string_free (sImagePath, TRUE);
 }
 
-void update_icon(void)
+void update_icon(void)  /// je pense que ca meriterait d'etre traite comme les bookmarks de 'shortcuts', dont l'ajout/suppression sont optimises. Ca ne presse pas ceci dit ^_^
 {
 	if(myData.opening)
 	{
-		cd_message("tomboy : L'application est ouverte\n");
+		cd_message("tomboy : L'application est ouverte");
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceDefault)
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d",myData.countNotes)
 		
@@ -95,21 +95,19 @@ void update_icon(void)
 			pNote = pElement->data;
 			pIcon = g_new0 (Icon, 1);
 			pIcon->acName = g_strdup_printf ("%s", pNote->title);
-			cd_message("tomboy : Création de l'icône pour %s\n",pNote->name);
-			pIcon->cBaseURI = pNote->name;
+			cd_message("tomboy : Création de l'icône pour %s",pNote->name);
+			//pIcon->cBaseURI = pNote->name;  /// t'es sur ??
 			pIcon->fOrder = i;
 			pIcon->fScale = 1.;
 			pIcon->fAlpha = 1.;
-			pIcon->fWidth = 200;
-			pIcon->fHeight = 200;
+			pIcon->fWidth = 48;  /// inutile je pense ...
+			pIcon->fHeight = 48;
 			pIcon->fWidthFactor = 1.;
 			pIcon->fHeightFactor = 1.;
 			pIcon->acCommand = g_strdup ("none");
 			pIcon->cParentDockName = g_strdup (myIcon->acName);
 			pIcon->acFileName = g_strdup_printf ("%s/note.svg",MY_APPLET_SHARE_DATA_DIR);
 			pIconList = g_list_append (pIconList, pIcon);
-			
-			
 		}
 		
 		//On supprime les icones du sous-dock

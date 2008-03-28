@@ -128,15 +128,10 @@ void cd_powermanager_set_surface (gchar *svgFile) {
 	  break;
 	  case POWER_MANAGER_EFFECT_BAR:
 	    cairo_save (myDrawContext);
-	    cairo_dock_set_icon_surface_with_reflect (myDrawContext, pSurface, myIcon, myContainer);  // on n'utilise pas la macro car on ne veut pas du redraw.
-	
-	    cairo_restore (myDrawContext);
-	    cairo_save (myDrawContext);
 	    CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.battery_charge * .01)
 	    cairo_restore (myDrawContext);
-	
-	    CD_APPLET_REDRAW_MY_ICON
 	  break;
 	}
+	cairo_surface_destroy (pSurface);
 }
 

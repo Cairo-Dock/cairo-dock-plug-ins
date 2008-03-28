@@ -41,7 +41,7 @@ static int s_iSidTimerRedraw = 0;
 		pIcon->fHeightFactor = 1.;\
 		pIcon->acCommand = g_strdup ("none");\
 		pIcon->cParentDockName = g_strdup (myIcon->acName);\
-		cd_debug (" + %s (%s , %s)\n", pIcon->acName, myData.days[i].part[j].cWeatherDescription, pIcon->acFileName);\
+		cd_debug (" + %s (%s , %s)", pIcon->acName, myData.days[i].part[j].cWeatherDescription, pIcon->acFileName);\
 		pIconList = g_list_append (pIconList, pIcon);\
 	}
 

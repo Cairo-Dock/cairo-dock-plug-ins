@@ -8,7 +8,7 @@
 #include "rhythmbox-init.h"
 
 static gboolean dbus_enable = FALSE;
-static gboolean s_bAppliInhibitedByMe = FALSE;
+
 
 CD_APPLET_DEFINITION ("Rhythmbox", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
@@ -49,7 +49,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	}
 	
 	if (myConfig.bInhibateRhythmboxAppli)
-		s_bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox");
+		myData.bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox");
 	
 	//Enregistrement des notifications
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -67,9 +67,8 @@ CD_APPLET_STOP_BEGIN
 	
 	rhythmbox_dbus_disconnect_from_bus ();
 	
-	if (s_bAppliInhibitedByMe)
+	if (myData.bAppliInhibitedByMe)
 		cairo_dock_deinhibate_class ("rhythmbox");
-	s_bAppliInhibitedByMe = FALSE;
 	
 	reset_data ();
 	reset_config ();
@@ -94,10 +93,15 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (s_bAppliInhibitedByMe && ! myConfig.bInhibateRhythmboxAppli)
+		if (myData.bAppliInhibitedByMe && ! myConfig.bInhibateRhythmboxAppli)
+		{
 			cairo_dock_deinhibate_class ("rhythmbox");
-		else if (! s_bAppliInhibitedByMe && myConfig.bInhibateRhythmboxAppli)
-			s_bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox");
+			myData.bAppliInhibitedByMe = FALSE;
+		}
+		else if (! myData.bAppliInhibitedByMe && myConfig.bInhibateRhythmboxAppli)
+		{
+			myData.bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox");
+		}
 	}
 	
 	//\_______________ On redessine notre icone.
