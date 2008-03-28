@@ -116,7 +116,7 @@ void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
 	update_icon();
 }
 
-void update_stats(void)
+gboolean update_stats(void)
 {
 	if(myData.battery_present)
 	{
@@ -124,6 +124,7 @@ void update_stats(void)
 		myData.battery_time = get_stats("time");
 		update_icon();
 	}
+	return TRUE;
 }
 
 int get_stats(gchar *dataType)

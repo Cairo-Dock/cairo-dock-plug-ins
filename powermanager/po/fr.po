@@ -165,5 +165,13 @@ msgstr "Transparence"
 msgid "draw bar"
 msgstr "Dessiner une barre"
 
+msgid "Laptop on Battery \n Battery charged at:"
+msgstr "Portable sur Batterie \n Batterie chargée a:"
+ 
+msgid "Estimated time with Charge:"
+msgstr "Temps estimé de Charge:"
+
+msgid "Laptop on Charge \n Battery charged at:"
+msgstr "Portable en Charge \n Batterie chargée a:"
 msgid "Effet to apply on the icon according to charge :"
 msgstr "Effet à appliquer à l'icône en fonction de la charge :"
