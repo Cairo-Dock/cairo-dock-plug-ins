@@ -46,7 +46,7 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:9
 msgid "Icon name :"
 msgstr "Nom de l'icône :"
 
@@ -57,26 +57,31 @@ msgstr "Information afficher sur l'icône :"
 
 #: ../src/powermanager-menu-functions.c:16
 #: ../src/powermanager-menu-functions.c:14
+#: ../src/powermanager-menu-functions.c:15
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Applet par Necropotame (Adrien Pilleboue)"
 
 #: ../src/powermanager-menu-functions.c:25
 #: ../src/powermanager-menu-functions.c:23
+#: ../src/powermanager-menu-functions.c:30
 msgid "Halt"
 msgstr "Arrêter"
 
 #: ../src/powermanager-menu-functions.c:26
 #: ../src/powermanager-menu-functions.c:24
+#: ../src/powermanager-menu-functions.c:31
 msgid "Hibernate"
 msgstr "Hiberner"
 
 #: ../src/powermanager-menu-functions.c:27
 #: ../src/powermanager-menu-functions.c:25
+#: ../src/powermanager-menu-functions.c:32
 msgid "Suspend"
 msgstr "Mettre en Veille"
 
 #: ../src/powermanager-menu-functions.c:28
 #: ../src/powermanager-menu-functions.c:26
+#: ../src/powermanager-menu-functions.c:33
 msgid "Reboot"
 msgstr "Redémarrer"
 
@@ -89,6 +94,7 @@ msgid "Information to be displayed on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
 #: ../data/messages:17 ../data/messages:37 ../data/messages:41
+#: ../data/messages:49
 msgid "nothing"
 msgstr "Aucune"
 
@@ -156,22 +162,46 @@ msgstr "en secondes."
 msgid "Interval of time between 2 checks :"
 msgstr "Intervale entre 2 vérifications :"
 
+#: ../data/messages:51
 msgid "zoom"
 msgstr "Zoom"
 
+#: ../data/messages:53
 msgid "transparency"
 msgstr "Transparence"
 
+#: ../data/messages:55
 msgid "draw bar"
 msgstr "Dessiner une barre"
 
-msgid "Laptop on Battery \n Battery charged at:"
-msgstr "Portable sur Batterie \n Batterie chargée a:"
- 
+#: ../src/powermanager-draw.c:99
+msgid ""
+"Laptop on Battery \n"
+" Battery charged at:"
+msgstr ""
+"Portable sur Batterie \n"
+" Batterie chargée a:"
+
+#: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:103
 msgid "Estimated time with Charge:"
 msgstr "Temps estimé de Charge:"
 
-msgid "Laptop on Charge \n Battery charged at:"
-msgstr "Portable en Charge \n Batterie chargée a:"
+#: ../src/powermanager-draw.c:103
+msgid ""
+"Laptop on Charge \n"
+" Battery charged at:"
+msgstr ""
+"Portable en Charge \n"
+" Batterie chargée a:"
+
+#: ../data/messages:47
 msgid "Effet to apply on the icon according to charge :"
 msgstr "Effet à appliquer à l'icône en fonction de la charge :"
+
+#: ../data/messages:31
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Quick info"
+msgstr ""

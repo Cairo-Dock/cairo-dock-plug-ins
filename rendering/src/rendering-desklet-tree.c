@@ -105,7 +105,7 @@ void rendering_load_icons_for_tree (CairoDockDesklet *pDesklet, cairo_t *pSource
 
 
 
-void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet)
+void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet, gboolean bRenderOptimized)
 {
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	g_print ("%s (%x)\n", __func__, pTree);

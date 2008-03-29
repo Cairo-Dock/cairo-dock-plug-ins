@@ -11,8 +11,6 @@ height = 32
 frame1_ = 
 #s Name of the icon as it will appear in its label in the dock :
 name = XMMS
-#S Icon's name :
-icon = xmms.svg
 
 
 [Desklet]

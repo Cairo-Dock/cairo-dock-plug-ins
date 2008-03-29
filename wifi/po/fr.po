@@ -160,12 +160,12 @@ msgid "No icon when no wireless devices/connections found?"
 msgstr "Aucune icône quand aucun module wifi n'est trouver?"
 
 #: ../src/applet-notifications.c:26 ../src/applet-notifications.c:35
-#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:32
 msgid "Check for Wireless Extension"
 msgstr "Verifier les Extensions Wifi"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:15
-#: ../src/applet-notifications.c:13
+#: ../src/applet-notifications.c:13 ../src/applet-notifications.c:12
 msgid ""
 "This is the wifi applet\n"
 " made by ChAnGFu for Cairo-Dock"

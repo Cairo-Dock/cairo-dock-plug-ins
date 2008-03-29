@@ -11,7 +11,6 @@ module_DATA = \
 	play.svg\
 	stop.svg\
 	xmms.svg\
-	blank.svg\
 	infoaudacious.sh\
 	infobanshee.sh\
 	infoexaile.sh\

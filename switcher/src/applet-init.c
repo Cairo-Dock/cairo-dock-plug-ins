@@ -82,19 +82,13 @@ CD_APPLET_STOP_BEGIN
 	
 	g_source_remove (myData.loadaftercompiz);
 	myData.loadaftercompiz = 0;
-	
-	
-	//\_________________ On libere toutes nos ressources.
-	reset_config ();
-	reset_data ();
 CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-_load_surfaces();
-
-//cd_switcher_launch_measure ();
-
-myData.loadaftercompiz = g_timeout_add (1000, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
-
+	_load_surfaces();
+	
+	//cd_switcher_launch_measure ();
+	
+	myData.loadaftercompiz = g_timeout_add (1000, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
 CD_APPLET_RELOAD_END

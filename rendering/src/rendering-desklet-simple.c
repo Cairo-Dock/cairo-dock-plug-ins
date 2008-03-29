@@ -28,7 +28,7 @@ void rendering_load_icons_for_simple (CairoDockDesklet *pDesklet, cairo_t *pSour
 }
 
 
-void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet)
+void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet, gboolean bRenderOptimized)
 {
 	Icon *pIcon = pDesklet->pIcon;
 	cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);

@@ -166,10 +166,6 @@ CD_APPLET_STOP_BEGIN
 		g_source_remove (myData.iSidCheckVolume);
 		myData.iSidCheckVolume = 0;
 	}
-	
-	//\_________________ On libere toutes nos ressources.
-	reset_data ();
-	reset_config ();
 CD_APPLET_STOP_END
 
 

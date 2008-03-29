@@ -29,11 +29,6 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	
-	
-	//\_________________ On libere toutes nos ressources.
-	reset_data ();
-	reset_config ();
 CD_APPLET_STOP_END
 
 

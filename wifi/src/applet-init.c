@@ -32,10 +32,6 @@ CD_APPLET_STOP_BEGIN
 		g_source_remove (myData.iSidTimer);
 		myData.iSidTimer = 0;
 	}
-	
-	//\_________________ On libere toutes nos ressources.
-	reset_config ();
-	reset_data ();
 CD_APPLET_STOP_END
 
 

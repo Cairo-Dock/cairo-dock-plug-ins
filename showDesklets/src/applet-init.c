@@ -33,10 +33,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_show_desklet_active_window_changed);
-	
-	//\_________________ On libere toutes nos ressources.
-	reset_data ();
-	reset_config ();
 CD_APPLET_STOP_END
 
 

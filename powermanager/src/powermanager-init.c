@@ -69,9 +69,6 @@ CD_APPLET_STOP_BEGIN
 			myData.checkLoop = 0;
 		}
 	}
-	
-	reset_config ();
-	reset_data ();
 CD_APPLET_STOP_END
 
 

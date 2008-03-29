@@ -16,6 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "rendering-desklet-tree.h"
 #include "rendering-desklet-caroussel.h"
 #include "rendering-desklet-simple.h"
+#include "rendering-desklet-controler.h"
 #include "rendering-init.h"
 
 #define MY_APPLET_CONF_FILE "rendering.conf"
@@ -47,6 +48,7 @@ CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 	rendering_register_tree_desklet_renderer ();
 	rendering_register_caroussel_desklet_renderer ();
 	rendering_register_simple_desklet_renderer ();
+	rendering_register_controler_desklet_renderer ();
 CD_APPLET_PRE_INIT_END
 
 

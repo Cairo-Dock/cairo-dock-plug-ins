@@ -101,7 +101,7 @@ msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../src/applet-notifications.c:23 ../src/applet-notifications.c:38
-#: ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:37
 msgid ""
 "This is the Cairo-Penguin applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -177,26 +177,37 @@ msgid "I'm your father !"
 msgstr ""
 
 #: ../src/applet-notifications.c:130 ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:129
 msgid "Keep quiet"
 msgstr ""
 
 #: ../src/applet-notifications.c:134 ../src/applet-notifications.c:132
+#: ../src/applet-notifications.c:133
 msgid "Wake up"
 msgstr ""
 
 #: ../src/applet-notifications.c:137 ../src/applet-notifications.c:135
+#: ../src/applet-notifications.c:136
 msgid "Start XPenguins"
 msgstr ""
 
 #: ../src/applet-notifications.c:138 ../src/applet-notifications.c:136
+#: ../src/applet-notifications.c:137
 msgid "Stop XPenguins"
 msgstr ""
 
 #: ../src/applet-notifications.c:167 ../src/applet-notifications.c:169
-#: ../src/applet-notifications.c:165
+#: ../src/applet-notifications.c:165 ../src/applet-notifications.c:166
+#: ../src/applet-notifications.c:168
 msgid "Zzzzz"
 msgstr ""
 
 #: ../src/applet-notifications.c:26
 msgid "Your dock is so messy ! Let me clean it."
+msgstr ""
+
+#: ../src/applet-notifications.c:34
+msgid ""
+"- What will we do tonight Cortex ?\n"
+"- The same thing as every nights, Minus. Try to take over the Dock !"
 msgstr ""

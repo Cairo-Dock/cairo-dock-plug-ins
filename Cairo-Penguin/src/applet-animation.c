@@ -13,6 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-load-icons.h"
+#include "applet-notifications.h"
 #include "applet-animation.h"
 
 CD_APPLET_INCLUDE_MY_VARS
@@ -237,10 +238,26 @@ void penguin_advance_to_next_frame (PenguinAnimation *pAnimation)
 				
 				if (! myConfig.bFree)
 				{
-					CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL)
+					cairo_save (myDrawContext);  // on n'utilise pas CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL) car il nous cree le pFullIconBuffer qui apres ecrase notre dessin.
+					cairo_set_source_rgba (
+						myDrawContext,
+						0, 0, 0, 0);
+					cairo_paint (myDrawContext);
+					cairo_restore (myDrawContext);
+					
+					if (myIcon->pReflectionBuffer != NULL)
+					{
+						cairo_surface_destroy (myIcon->pReflectionBuffer);
+						myIcon->pReflectionBuffer = NULL;
+					}
+					CD_APPLET_REDRAW_MY_ICON
+				}
+				else  // on reste sur la derniere image de l'animation de fin.
+				{
+					myData.iCurrentFrame = pAnimation->iNbFrames - 1;
 				}
 				
-				penguin_start_animating_with_delay ();
+				penguin_start_animating_with_delay (FALSE);
 			}
 			else
 			{
@@ -261,7 +278,7 @@ int penguin_choose_movement_animation (void)
 	else
 	{
 		int iRandom = g_random_int_range (0, myData.iNbMovmentAnimations);  // [a;b[
-		g_print (  "0<%d<%d => %d\n", iRandom, myData.iNbMovmentAnimations, myData.pMovmentAnimations[iRandom]);
+		//g_print (  "0<%d<%d => %d\n", iRandom, myData.iNbMovmentAnimations, myData.pMovmentAnimations[iRandom]);
 		return myData.pMovmentAnimations[iRandom];
 	}
 }
@@ -274,7 +291,7 @@ int penguin_choose_go_up_animation (void)
 	else
 	{
 		int iRandom = g_random_int_range (0, myData.iNbGoUpAnimations);  // [a;b[
-		g_print (  "0<%d<%d => %d\n", iRandom, myData.iNbGoUpAnimations, myData.pGoUpAnimations[iRandom]);
+		//g_print (  "0<%d<%d => %d\n", iRandom, myData.iNbGoUpAnimations, myData.pGoUpAnimations[iRandom]);
 		return myData.pGoUpAnimations[iRandom];
 	}
 }
@@ -287,7 +304,7 @@ int penguin_choose_beginning_animation (void)
 	else
 	{
 		int iRandom = g_random_int_range (0, myData.iNbBeginningAnimations);  // [a;b[
-		g_print (  "0<%d<%d => %d\n", iRandom, myData.iNbBeginningAnimations, myData.pBeginningAnimations[iRandom]);
+		//g_print (  "0<%d<%d => %d\n", iRandom, myData.iNbBeginningAnimations, myData.pBeginningAnimations[iRandom]);
 		return myData.pBeginningAnimations[iRandom];
 	}
 }
@@ -300,7 +317,7 @@ int penguin_choose_ending_animation (void)
 	else
 	{
 		int iRandom = g_random_int_range (0, myData.iNbEndingAnimations);  // [a;b[
-		g_print (  "0<%d<%d => %d\n", iRandom, myData.iNbEndingAnimations, myData.pEndingAnimations[iRandom]);
+		//g_print (  "0<%d<%d => %d\n", iRandom, myData.iNbEndingAnimations, myData.pEndingAnimations[iRandom]);
 		return myData.pEndingAnimations[iRandom];
 	}
 }
@@ -313,7 +330,7 @@ int penguin_choose_resting_animation (void)
 	else
 	{
 		int iRandom = g_random_int_range (0, myData.iNbRestAnimations);  // [a;b[
-		g_print (  "0<%d<%d => %d\n", iRandom, myData.iNbRestAnimations, myData.pRestAnimations[iRandom]);
+		//g_print (  "0<%d<%d => %d\n", iRandom, myData.iNbRestAnimations, myData.pRestAnimations[iRandom]);
 		return myData.pRestAnimations[iRandom];
 	}
 }
@@ -430,19 +447,30 @@ static gboolean _penguin_restart_delayed (gpointer data)
 {
 	myData.iSidRestartDelayed = 0;
 	penguin_start_animating ();
-	if (myConfig.bFree)  // attention : c'est un hack moyen; il faudrait pouvoir indiquer a cairo-dock de ne pas inserer notre icone...
+	
+	gboolean bInit = GPOINTER_TO_INT (data);
+	if (bInit)
 	{
-		cairo_dock_detach_icon_from_dock (myIcon, myDock, g_bUseSeparator);
-		cairo_dock_update_dock_size (myDock);
+		g_print ("le pingouin demarre pour la 1ere fois\n");
+		cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK, CAIRO_DOCK_RUN_FIRST);
+		cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU, CAIRO_DOCK_RUN_FIRST);
+		cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK, CAIRO_DOCK_RUN_FIRST);
+		
+		if (myConfig.bFree)  // attention : c'est un hack moyen; il faudrait pouvoir indiquer a cairo-dock de ne pas inserer notre icone...
+		{
+			cairo_dock_detach_icon_from_dock (myIcon, myDock, g_bUseSeparator);
+			cairo_dock_update_dock_size (myDock);
+		}
+		else
+		{
+			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, g_bUseSeparator);
+		}
 	}
-	else
-	{
-		cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, g_bUseSeparator);
-	}
+	
 	return FALSE;
 }
-void penguin_start_animating_with_delay (void)
+void penguin_start_animating_with_delay (gboolean bInit)
 {
 	if (myData.iSidRestartDelayed == 0)
-		myData.iSidRestartDelayed = g_timeout_add (1000., (GSourceFunc) _penguin_restart_delayed, (gpointer) NULL);
+		myData.iSidRestartDelayed = g_timeout_add (1000., (GSourceFunc) _penguin_restart_delayed, (gpointer) GINT_TO_POINTER (bInit));
 }

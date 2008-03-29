@@ -73,10 +73,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
-	
-	//\_________________ On libere toutes nos ressources.
-	reset_config ();
-	reset_data ();
 CD_APPLET_STOP_END
 
 

@@ -79,6 +79,7 @@ void cd_xmms_draw_icon (void)
 	
 	if (myData.playingStatus != myData.previousPlayingStatus)  // changement de statut.
 	{
+		cd_message ("playingStatus : %d -> %d\n", myData.previousPlayingStatus, myData.playingStatus);
 		myData.previousPlayingStatus = myData.playingStatus;
 		cd_xmms_set_surface (myData.playingStatus);
 	}

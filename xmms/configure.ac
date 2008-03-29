@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-xmms],[0.0.9],[ChAnGFu (changfu972@hotmail.com)])
+AC_INIT([cd-xmms],[0.1.0],[ChAnGFu (changfu972@hotmail.com)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

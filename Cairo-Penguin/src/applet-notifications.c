@@ -18,7 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_INCLUDE_MY_VARS
 
 
-#define PENGUIN_NB_MESSAGES 11
+#define PENGUIN_NB_MESSAGES 12
 static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 	N_("Hey, I'm here !"),
 	N_("Sorry but I'm busy right now."),
@@ -30,7 +30,8 @@ static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 	N_("It's my dock now, mwahahaha !"),
 	N_("I want to be a pirate !"),
 	N_("You shall not pass !"),
-	N_("I'm your father !")};
+	N_("I'm your father !"),
+	N_("- What will we do tonight Cortex ?\n- The same thing as every nights, Minus. Try to take over the Dock !")};
 
 
 CD_APPLET_ABOUT (D_("This is the Cairo-Penguin applet\n made by Fabrice Rey for Cairo-Dock"))
@@ -178,10 +179,12 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK (gpointer *data)
 			{
 				iRandom = g_random_int_range (0, PENGUIN_NB_MESSAGES);  // [a;b[
 				Icon *pIcon = cairo_dock_get_pointed_icon (myDock->icons);
+				const gchar *cMessage = D_(s_pMessage[iRandom]);
+				int iDuration = 1000 + 25 * g_utf8_strlen (cMessage, -1);
 				if (pIcon != NULL)
-					myData.pDialog = cairo_dock_show_temporary_dialog (D_(s_pMessage[iRandom]), pIcon, myContainer, 2000);
+					myData.pDialog = cairo_dock_show_temporary_dialog (cMessage, pIcon, myContainer, iDuration);
 				else
-					myData.pDialog = cairo_dock_show_general_message (D_(s_pMessage[iRandom]), 2000);
+					myData.pDialog = cairo_dock_show_general_message (cMessage, iDuration);
 			}
 		}
 CD_APPLET_ON_MIDDLE_CLICK_END

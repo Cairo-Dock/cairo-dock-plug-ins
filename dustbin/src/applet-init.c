@@ -169,9 +169,6 @@ CD_APPLET_STOP_BEGIN
 		g_source_remove (myData.iSidCheckTrashes);
 		myData.iSidCheckTrashes = 0;
 	}
-	
-	reset_config ();
-	reset_data ();
 CD_APPLET_STOP_END
 
 

@@ -143,7 +143,16 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 			for (fils = param->children; fils != NULL; fils = fils->next)
 			{
 				if (xmlStrcmp (fils->name, (const xmlChar *) "ut") == 0)
-					myData.units.cTemp = xmlNodeGetContent (fils);
+				{
+					gchar *degree = xmlNodeGetContent (fils);
+					if (degree == NULL || *degree != '°')
+					{
+						myData.units.cTemp = g_strconcat ("°", degree, NULL);
+						g_free (degree);
+					}
+					else
+						myData.units.cTemp = degree;
+				}
 				else if (xmlStrcmp (fils->name, (const xmlChar *) "ud") == 0)
 					myData.units.cDistance = xmlNodeGetContent (fils);
 				else if (xmlStrcmp (fils->name, (const xmlChar *) "us") == 0)

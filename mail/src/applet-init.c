@@ -40,9 +40,6 @@ CD_APPLET_STOP_BEGIN
 
 	//\_________________ On libere toutes nos ressources.
     xfce_mailwatch_destroy(myData.mailwatch);
-
-	reset_data ();
-	reset_config ();
 CD_APPLET_STOP_END
 
 

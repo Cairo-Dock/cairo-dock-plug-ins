@@ -10,10 +10,35 @@
 
 CD_APPLET_DEFINITION ("xmms", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
+static gchar *s_cControlIconName[4] = {"play.svg", "pause.svg", "stop.svg", "broken.svg"};  // en attendant...
+#define _add_icon(i)\
+	pIcon = g_new0 (Icon, 1);\
+	pIcon->acName = NULL;\
+	pIcon->acFileName = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cControlIconName[i]);\
+	pIcon->fOrder = i;\
+	pIcon->fScale = 1.;\
+	pIcon->fAlpha = 1.;\
+	pIcon->fWidthFactor = 1.;\
+	pIcon->fHeightFactor = 1.;\
+	pIcon->acCommand = g_strdup ("none");\
+	pIcon->cParentDockName = NULL;\
+	myDesklet->icons = g_list_append (myDesklet->icons, pIcon);
 
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet) {
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		if (myConfig.extendedDesklet)
+		{
+			int i;
+			for (i = 0; i < 4; i ++)
+			{
+				_add_icon(i);
+			}
+			g_print ("mode etendu\n");
+			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Controler", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, data);
+		}
+		else
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
@@ -38,18 +63,17 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	//\_________________ On libere toutes nos ressources.
-	reset_data();
-	reset_config();
 	cd_remove_pipes();
 CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (myDesklet) {
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+	if (CD_APPLET_MY_CONFIG_CHANGED && CD_APPLET_MY_CONTAINER_TYPE_CHANGED && myDesklet && ! myConfig.extendedDesklet)
+	{
+		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+		g_list_free (myDesklet->icons);
+		myDesklet->icons = NULL;
 	}
 	
 	int i;
@@ -60,13 +84,25 @@ CD_APPLET_RELOAD_BEGIN
 		}
 	}
 	
+	if (myDesklet) {
+		if (myConfig.extendedDesklet)
+		{
+			g_print ("mode etendu\n");
+			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Controler", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, data);
+		}
+		else
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+	}
+	
 	//\_______________ On relance avec la nouvelle config ou on redessine.
+	myData.playingStatus = PLAYER_NONE;
+	myData.previousPlayingStatus = -1;
+	myData.previousPlayingTitle = NULL;
+	myData.iPreviousTrackNumber = -1;
+	myData.iPreviousCurrentTime = -1;
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		myData.playingStatus = PLAYER_NONE;
-		myData.previousPlayingStatus = -1;
-		myData.previousPlayingTitle = NULL;
-		myData.iPreviousTrackNumber = -1;
-		myData.iPreviousCurrentTime = -1;
 		// inutile de relancer le timer, sa frequence ne change pas. Inutile aussi de faire 1 iteration ici, les modifs seront prises en compte a la prochaine iteration, dans au plus 1s.
 	}
 	else {  // on redessine juste l'icone.

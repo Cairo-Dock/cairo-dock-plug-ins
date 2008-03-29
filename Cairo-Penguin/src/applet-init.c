@@ -22,13 +22,9 @@ CD_APPLET_DEFINITION ("Cairo-Penguin", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
-	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK, CAIRO_DOCK_RUN_FIRST);
-	cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU, CAIRO_DOCK_RUN_FIRST);
-	cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK, CAIRO_DOCK_RUN_FIRST);
-	
 	penguin_load_theme (myConfig.cThemePath);
 	
-	penguin_start_animating_with_delay ();
+	penguin_start_animating_with_delay (TRUE);
 CD_APPLET_INIT_END
 
 
@@ -56,10 +52,6 @@ CD_APPLET_STOP_BEGIN
 		NULL);
 	if (iOnExposeCallbackID > 0)
 		g_signal_handler_disconnect (G_OBJECT (myContainer->pWidget), iOnExposeCallbackID);
-	
-	//\_________________ On libere toutes nos ressources.
-	reset_data ();
-	reset_config ();
 CD_APPLET_STOP_END
 
 
@@ -82,7 +74,7 @@ CD_APPLET_RELOAD_BEGIN
 			area.x = (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX;
 			area.y = myDock->iCurrentHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight;
 			area.width = pAnimation->iFrameWidth;
-			area.height = pAnimation->iFrameHeight;
+			area.height = pAnimation->iFrameHeight + myDock->bUseReflect * g_fReflectSize;
 #ifdef HAVE_GLITZ
 			if (myContainer->pDrawFormat && myContainer->pDrawFormat->doublebuffer)
 				gtk_widget_queue_draw (myContainer->pWidget);

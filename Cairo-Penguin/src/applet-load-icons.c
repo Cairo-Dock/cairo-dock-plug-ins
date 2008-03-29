@@ -155,7 +155,7 @@ void penguin_load_theme (gchar *cThemePath)
 		cGroupName = pGroupList[i];
 		if (strcmp (cGroupName, "Theme") != 0 && strcmp (cGroupName, "Default") != 0)
 		{
-			g_print ("%d)\n", iNumAnimation);
+			cd_debug ("%d)", iNumAnimation);
 			pAnimation = &myData.pAnimations[iNumAnimation];
 			
 			cFileName = _penguin_get_animation_properties (pKeyFile, cGroupName, pAnimation);
@@ -167,27 +167,27 @@ void penguin_load_theme (gchar *cThemePath)
 			if (pAnimation->bEnding)
 			{
 				myData.pEndingAnimations[myData.iNbEndingAnimations++] = iNumAnimation;
-				g_print (" %s : ending\n", pAnimation->cFilePath);
+				cd_debug (" %s : ending", pAnimation->cFilePath);
 			}
 			else if (pAnimation->iDirection == PENGUIN_DOWN)  // descente.
 			{
 				myData.pBeginningAnimations[myData.iNbBeginningAnimations++] = iNumAnimation;
-				g_print (" %s : beginning\n", pAnimation->cFilePath);
+				cd_debug (" %s : beginning", pAnimation->cFilePath);
 			}
 			else if (pAnimation->iDirection == PENGUIN_UP)
 			{
 				myData.pGoUpAnimations[myData.iNbGoUpAnimations++] = iNumAnimation;
-				g_print (" %s : go up\n", pAnimation->cFilePath);
+				cd_debug (" %s : go up", pAnimation->cFilePath);
 			}
 			else if (pAnimation->iSpeed == 0 && pAnimation->iAcceleration == 0 && pAnimation->iNbFrames == 1)
 			{
 				myData.pRestAnimations[myData.iNbRestAnimations++] = iNumAnimation;
-				g_print (" %s : rest\n", pAnimation->cFilePath);
+				cd_debug (" %s : rest", pAnimation->cFilePath);
 			}
 			else
 			{
 				myData.pMovmentAnimations[myData.iNbMovmentAnimations++] = iNumAnimation;
-				g_print (" %s : moving\n", pAnimation->cFilePath);
+				cd_debug (" %s : moving", pAnimation->cFilePath);
 			}
 			
 			iNumAnimation ++;
@@ -218,7 +218,7 @@ void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSour
 	pAnimation->iFrameWidth = (int) fImageWidth / pAnimation->iNbFrames, pAnimation->iFrameHeight = (int) fImageHeight / pAnimation->iNbDirections;
 	if (pBigSurface != NULL)
 	{
-		g_print ("  surface chargee (%dx%d)\n", pAnimation->iFrameWidth, pAnimation->iFrameHeight);
+		cd_debug ("  surface chargee (%dx%d)", pAnimation->iFrameWidth, pAnimation->iFrameHeight);
 		pAnimation->pSurfaces = g_new (cairo_surface_t **, pAnimation->iNbDirections);
 		int i, j;
 		for (i = 0; i < pAnimation->iNbDirections; i ++)
@@ -226,7 +226,7 @@ void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSour
 			pAnimation->pSurfaces[i] = g_new (cairo_surface_t *, pAnimation->iNbFrames);
 			for (j = 0; j < pAnimation->iNbFrames; j ++)
 			{
-				g_print ("    dir %d, frame %d)\n", i, j);
+				cd_debug ("    dir %d, frame %d)", i, j);
 				pAnimation->pSurfaces[i][j] = cairo_surface_create_similar (cairo_get_target (pSourceContext),
 					CAIRO_CONTENT_COLOR_ALPHA,
 					pAnimation->iFrameWidth,

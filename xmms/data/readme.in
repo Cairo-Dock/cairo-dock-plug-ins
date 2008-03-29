@@ -3,6 +3,7 @@
 <i>An applet dedicated to <span color='#0000FF'>control XMMS, Audacious, Banshee &amp; Exaile</span>
 XMMS &amp; Audacious are fully supported,
  but Banshee and Exaile's monitoring is still experimental.
+ For XMMS, you have to install the 'xmms-infopipe' plug-in.
 Play/Pause on left click, Next song on middle click.
 See configuration for other options.
 Have fun!</i>

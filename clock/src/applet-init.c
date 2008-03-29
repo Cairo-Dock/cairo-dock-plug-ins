@@ -113,9 +113,6 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On stoppe le timer.
 	g_source_remove (myData.iSidUpdateClock);
 	myData.iSidUpdateClock = 0;
-
-	reset_config ();
-	reset_data ();
 CD_APPLET_STOP_END
 
 

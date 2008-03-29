@@ -109,26 +109,31 @@ msgstr "Vider %s"
 
 #: ../src/powermanager-menu-functions.c:16
 #: ../src/powermanager-menu-functions.c:14
+#: ../src/powermanager-menu-functions.c:15
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
 #: ../src/powermanager-menu-functions.c:25
 #: ../src/powermanager-menu-functions.c:23
+#: ../src/powermanager-menu-functions.c:30
 msgid "Halt"
 msgstr "停止"
 
 #: ../src/powermanager-menu-functions.c:26
 #: ../src/powermanager-menu-functions.c:24
+#: ../src/powermanager-menu-functions.c:31
 msgid "Hibernate"
 msgstr "ハイバネート"
 
 #: ../src/powermanager-menu-functions.c:27
 #: ../src/powermanager-menu-functions.c:25
+#: ../src/powermanager-menu-functions.c:32
 msgid "Suspend"
 msgstr "サスペンド"
 
 #: ../src/powermanager-menu-functions.c:28
 #: ../src/powermanager-menu-functions.c:26
+#: ../src/powermanager-menu-functions.c:33
 msgid "Reboot"
 msgstr "再起動"
 
@@ -165,6 +170,7 @@ msgid "Information to be displayed on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
 #: ../data/messages:17 ../data/messages:37 ../data/messages:41
+#: ../data/messages:49
 msgid "nothing"
 msgstr "なし"
 
@@ -226,4 +232,40 @@ msgstr ""
 
 #: ../data/messages:35
 msgid "Interval of time between 2 checks :"
+msgstr ""
+
+#: ../src/powermanager-draw.c:99
+msgid ""
+"Laptop on Battery \n"
+" Battery charged at:"
+msgstr ""
+
+#: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:103
+msgid "Estimated time with Charge:"
+msgstr ""
+
+#: ../src/powermanager-draw.c:103
+msgid ""
+"Laptop on Charge \n"
+" Battery charged at:"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Information"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Effet to apply on the icon according to charge :"
+msgstr ""
+
+#: ../data/messages:51
+msgid "zoom"
+msgstr ""
+
+#: ../data/messages:53
+msgid "transparency"
+msgstr ""
+
+#: ../data/messages:55
+msgid "draw bar"
 msgstr ""

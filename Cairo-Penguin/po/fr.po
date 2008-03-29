@@ -47,6 +47,7 @@ msgstr "Nom de l'icône :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:23
 #: ../src/applet-notifications.c:38 ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:37
 msgid ""
 "This is the Cairo-Penguin applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -163,7 +164,7 @@ msgstr "C'est mon dock à présent, mouwahahaha !"
 
 #: ../src/applet-notifications.c:33 ../src/applet-notifications.c:31
 msgid "I want to be a pirate !"
-msgstr "Je veux devenir un pirate !"
+msgstr "Je veux devenir pirate !"
 
 #: ../src/applet-notifications.c:34 ../src/applet-notifications.c:32
 msgid "You shall not pass !"
@@ -174,22 +175,33 @@ msgid "I'm your father !"
 msgstr "Je suis ton père !"
 
 #: ../src/applet-notifications.c:130 ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:129
 msgid "Keep quiet"
 msgstr "Reste tranquille !"
 
 #: ../src/applet-notifications.c:134 ../src/applet-notifications.c:132
+#: ../src/applet-notifications.c:133
 msgid "Wake up"
 msgstr "Réveill-toi !"
 
 #: ../src/applet-notifications.c:137 ../src/applet-notifications.c:135
+#: ../src/applet-notifications.c:136
 msgid "Start XPenguins"
 msgstr "Lancer XPenguins"
 
 #: ../src/applet-notifications.c:138 ../src/applet-notifications.c:136
+#: ../src/applet-notifications.c:137
 msgid "Stop XPenguins"
 msgstr "Arrêter XPenguins"
 
 #: ../src/applet-notifications.c:167 ../src/applet-notifications.c:169
-#: ../src/applet-notifications.c:165
+#: ../src/applet-notifications.c:165 ../src/applet-notifications.c:166
+#: ../src/applet-notifications.c:168
 msgid "Zzzzz"
 msgstr "Zzzzz"
+
+#: ../src/applet-notifications.c:34
+msgid ""
+"- What will we do tonight Cortex ?\n"
+"- The same thing as every nights, Minus. Try to take over the Dock !"
+msgstr ""

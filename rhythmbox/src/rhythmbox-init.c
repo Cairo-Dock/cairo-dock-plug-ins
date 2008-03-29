@@ -69,9 +69,6 @@ CD_APPLET_STOP_BEGIN
 	
 	if (myData.bAppliInhibitedByMe)
 		cairo_dock_deinhibate_class ("rhythmbox");
-	
-	reset_data ();
-	reset_config ();
 CD_APPLET_STOP_END
 
 

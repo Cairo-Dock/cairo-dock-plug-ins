@@ -31,7 +31,7 @@ int penguin_choose_next_animation (PenguinAnimation *pAnimation);
 void penguin_set_new_animation (int iNewAnimation);
 
 void penguin_start_animating (void);
-void penguin_start_animating_with_delay (void);
+void penguin_start_animating_with_delay (gboolean bInit);
 
 
 #endif
