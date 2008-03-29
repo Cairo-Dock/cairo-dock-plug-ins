@@ -65,7 +65,7 @@ msgstr "Taille du terminal (ligne x colonnes) :"
 #: ../src/terminal-menu-functions.c:142 ../src/terminal-menu-functions.c:152
 #: ../src/terminal-callbacks.c:66 ../src/terminal-menu-functions.c:150
 #: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:197
-#: ../src/terminal-widget.c:229
+#: ../src/terminal-widget.c:229 ../src/terminal-widget.c:290
 msgid "Copy"
 msgstr "Copier"
 
@@ -74,13 +74,14 @@ msgstr "Copier"
 #: ../src/terminal-menu-functions.c:254 ../src/terminal-init.c:83
 #: ../src/terminal-init.c:81 ../src/terminal-menu-functions.c:255
 #: ../src/terminal-widget.c:420 ../src/terminal-widget.c:507
+#: ../src/terminal-init.c:79 ../src/terminal-widget.c:569
 msgid "Terminal"
 msgstr "Terminal"
 
 #: ../src/terminal-menu-functions.c:152 ../src/terminal-menu-functions.c:149
 #: ../src/terminal-menu-functions.c:148 ../src/terminal-menu-functions.c:158
 #: ../src/terminal-menu-functions.c:156 ../src/terminal-widget.c:203
-#: ../src/terminal-widget.c:235
+#: ../src/terminal-widget.c:235 ../src/terminal-widget.c:296
 msgid "Paste"
 msgstr "Coller"
 
@@ -91,6 +92,7 @@ msgstr "Coller"
 #: ../src/terminal-menu-functions.c:295 ../src/terminal-menu-functions.c:165
 #: ../src/terminal-menu-functions.c:296 ../src/terminal-menu-functions.c:84
 #: ../src/terminal-widget.c:213 ../src/terminal-widget.c:245
+#: ../src/terminal-widget.c:306
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
@@ -175,6 +177,7 @@ msgid "Rename current Tab"
 msgstr "Rennomer l'onglet courant"
 
 #: ../src/terminal-widget.c:82 ../src/terminal-widget.c:104
+#: ../src/terminal-widget.c:165
 msgid "Set title for this tab :"
 msgstr "Définissez un titre pour cet onglet ;"
 
@@ -186,10 +189,14 @@ msgstr ""
 "Quand le terminal est dans un dialogue. Quand il est dans un desklet, vous "
 "pouvez le redimensionner comme d'habitude."
 
-#: ../src/terminal-widget.c:251
+#: ../src/terminal-widget.c:251 ../src/terminal-widget.c:312
 msgid "Rename this Tab"
 msgstr ""
 
-#: ../src/terminal-widget.c:257
+#: ../src/terminal-widget.c:257 ../src/terminal-widget.c:318
 msgid "Close this Tab"
+msgstr ""
+
+#: ../src/terminal-widget.c:157
+msgid "Select a color"
 msgstr ""

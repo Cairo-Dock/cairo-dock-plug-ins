@@ -85,9 +85,90 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 }
 
 
+static gchar *_get_label_and_color (const gchar *cLabel, GdkColor *pColor, gboolean *bColorSet)
+{
+	gchar *cUsefulLabel;
+	gchar *str = strchr (cLabel, '>');
+	if (cLabel != NULL && strncmp (cLabel, "<span color='", 13) == 0 && str != NULL)  // approximatif mais devrait suffire.
+	{
+		gchar *cColor = g_strndup (cLabel+13, 7);
+		if (pColor != NULL)
+			*bColorSet = gdk_color_parse (cColor, pColor);
+		g_free (cColor);
+		
+		cUsefulLabel = g_strdup (str+1);
+		str = strrchr (cLabel, '<');
+		if (str != NULL && strcmp (str, "</span>") == 0)
+			*str = '\0';
+	}
+	else
+	{
+		cUsefulLabel = g_strdup (cLabel);
+	}
+	return cUsefulLabel;
+}
+
 void terminal_rename_tab (GtkWidget *vterm)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
+	if (vterm == NULL)
+	{
+		int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
+		vterm = gtk_notebook_get_nth_page (GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
+	}
+	GtkWidget *pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), vterm);
+	GList *pTabWidgetList = gtk_container_get_children (GTK_CONTAINER (pTabLabelWidget));
+	GtkLabel *pLabel;
+	const gchar *cCurrentName;
+	if (pTabWidgetList != NULL && pTabWidgetList->data != NULL)
+	{
+		GtkLabel *pLabel = pTabWidgetList->data;
+		const gchar *cCurrentName = gtk_label_get_text (pLabel);
+		GdkColor color;
+		gboolean bColorSet = FALSE;
+		gchar *cUsefulLabel = _get_label_and_color (cCurrentName, &color, &bColorSet);
+		
+		gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set title for this tab :"), NULL, (myDock ? CAIRO_DOCK_CONTAINER (myData.dialog) : CAIRO_DOCK_CONTAINER (myDesklet)), cUsefulLabel);
+		g_free (cUsefulLabel);
+		
+		if (cNewName != NULL)
+		{
+			if (bColorSet)
+			{
+				gchar *cColor = gdk_color_to_string (&color);
+				gchar *cNewColoredName = g_strdup_printf ("<span color='%s'>%s</span>", cColor, cNewName);
+				gtk_label_set_markup (pLabel, cNewColoredName);
+				g_free (cNewColoredName);
+				g_free (cColor);
+			}
+			else
+			{
+				gtk_label_set_text (pLabel, cNewName);
+			}
+			g_free (cNewName);
+		}
+	}
+}
+
+static void _set_color (GtkColorSelection *pColorSelection, GtkLabel *pLabel)
+{
+	GdkColor color;
+	gtk_color_selection_get_current_color (pColorSelection, &color);
+	
+	gchar *cColor = gdk_color_to_string (&color);
+	
+	const gchar *cCurrentLabel = gtk_label_get_text (pLabel);
+	gchar *cUsefulLabel = _get_label_and_color (cCurrentLabel, NULL, NULL);
+	gchar *cNewLabel = g_strdup_printf ("<span color='%s'>%s</span>", cColor, cUsefulLabel);
+	gtk_label_set_markup (pLabel, cNewLabel);
+	
+	g_free (cNewLabel);
+	g_free (cUsefulLabel);
+	g_free (cColor);
+}
+void terminal_change_color_tab (GtkWidget *vterm)
+{
+	cd_message ("");
 	if (vterm == NULL)
 	{
 		int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
@@ -100,13 +181,25 @@ void terminal_rename_tab (GtkWidget *vterm)
 	if (pTabWidgetList != NULL && pTabWidgetList->data != NULL)
 	{
 		GtkLabel *pLabel = pTabWidgetList->data;
-		const gchar *cCurrentName = gtk_label_get_text (pLabel);
-		gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set title for this tab :"), NULL, (myDock ? CAIRO_DOCK_CONTAINER (myData.dialog) : CAIRO_DOCK_CONTAINER (myDesklet)), cCurrentName);
-		if (cNewName != NULL)
+		
+		GtkWidget *pColorDialog = gtk_color_selection_dialog_new (D_("Select a color"));
+		
+		const gchar *cCurrentLabel = gtk_label_get_text (pLabel);
+		GdkColor color;
+		gboolean bColorSet = FALSE;
+		gchar *cUsefulLabel = _get_label_and_color (cCurrentLabel, &color, &bColorSet);
+		if (bColorSet)
 		{
-			gtk_label_set_text (pLabel, cNewName);
-			g_free (cNewName);
+			gtk_color_selection_set_current_color (GTK_COLOR_SELECTION (((GtkColorSelectionDialog *) pColorDialog)->colorsel), &color);
 		}
+		
+		gtk_color_selection_set_has_opacity_control (GTK_COLOR_SELECTION (((GtkColorSelectionDialog *) pColorDialog)->colorsel), FALSE);
+		g_signal_connect (((GtkColorSelectionDialog *) pColorDialog)->colorsel, "color-changed", GTK_SIGNAL_FUNC (_set_color), pLabel);
+		gtk_widget_hide (((GtkColorSelectionDialog *) pColorDialog)->cancel_button);
+		gtk_widget_hide (((GtkColorSelectionDialog *) pColorDialog)->help_button);
+		g_signal_connect_swapped (((GtkColorSelectionDialog *) pColorDialog)->ok_button, "clicked", GTK_SIGNAL_FUNC (gtk_widget_destroy), pColorDialog);
+		
+		gtk_window_present (GTK_WINDOW (pColorDialog));
 	}
 }
 
@@ -207,15 +300,19 @@ static void _terminal_paste (GtkMenuItem *menu_item, GtkWidget *data)
 
 
 
-static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
+static void on_new_tab (GtkMenuItem *menu_item, gpointer *data)
 {
 	terminal_new_tab();
 }
-static void on_rename_tab(GtkMenuItem *menu_item, GtkWidget *vterm)
+static void on_rename_tab (GtkMenuItem *menu_item, GtkWidget *vterm)
 {
 	terminal_rename_tab (vterm);
 }
-static void on_close_tab(GtkMenuItem *menu_item, GtkWidget *vterm)
+static void on_change_tab_color (GtkMenuItem *menu_item, GtkWidget *vterm)
+{
+	terminal_change_color_tab (vterm);
+}
+static void on_close_tab (GtkMenuItem *menu_item, GtkWidget *vterm)
 {
 	terminal_close_tab (vterm);
 }
@@ -253,6 +350,12 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *vterm)
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
   gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
   g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_rename_tab), vterm);
+
+  menu_item = gtk_image_menu_item_new_with_label (D_("Change this Tab's color"));
+  image = gtk_image_new_from_stock (GTK_STOCK_COLOR_PICKER, GTK_ICON_SIZE_MENU);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+  gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_change_tab_color), vterm);
 
   menu_item = gtk_image_menu_item_new_with_label (D_("Close this Tab"));
   image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
@@ -343,6 +446,7 @@ void terminal_new_tab(void)
 	
 	gchar *cLabel = g_strdup_printf (" # %d ", gtk_notebook_get_n_pages (GTK_NOTEBOOK(myData.tab)) +1);
 	GtkWidget *pLabel = gtk_label_new (cLabel);
+	gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
 	g_free (cLabel);
 	gtk_box_pack_start (GTK_BOX (pHBox),
 		pLabel,
