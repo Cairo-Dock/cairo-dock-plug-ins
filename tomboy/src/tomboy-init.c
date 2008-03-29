@@ -10,7 +10,7 @@
 
 static gboolean dbus_enable = FALSE;
 
-CD_APPLET_DEFINITION ("TomBoy", 1, 5, 4)
+CD_APPLET_DEFINITION ("TomBoy", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 CD_APPLET_INIT_BEGIN (erreur)
 	myConfig.defaultTitle = g_strdup (myIcon->acName);
@@ -48,9 +48,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	
 	dbus_disconnect_from_bus ();
-	
-	reset_config ();
-	reset_data ();
 CD_APPLET_STOP_END
 
 

@@ -10,4 +10,5 @@ datarhythmbox_DATA = \
 	note.svg\
 	tomboy.conf\
 	readme\
+	icon.png\
 	preview.png

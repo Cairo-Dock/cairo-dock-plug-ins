@@ -15,19 +15,17 @@ CD_APPLET_INCLUDE_MY_VARS
 
 gboolean dbus_get_dbus (void)
 {
-	cd_message ("");
-
 	cd_message ("Connexion au bus ... ");
 	dbus_connexion = dbus_g_bus_get(DBUS_BUS_SESSION, NULL);
 	
 	if(!dbus_connexion)
 	{
-		cd_message ("echouee");
+		cd_message (" echouee");
 		return FALSE;
 	}
 	else
 	{
-		cd_message ("reussie");
+		cd_message (" reussie");
 		
 		dbus_proxy_tomboy = dbus_g_proxy_new_for_name (
 			dbus_connexion,
@@ -44,7 +42,7 @@ gboolean dbus_get_dbus (void)
 		);
 		
 		
-		dbus_g_proxy_add_signal(dbus_proxy_tomboy, "NoteDeleted",
+		dbus_g_proxy_add_signal(dbus_proxy_tomboy, "NoteDeleted",  // aie, ce signal n'a pas l'air d'exister dans la version Gutsy de tomboy... :-(
 			G_TYPE_STRING,
 			G_TYPE_STRING,
 			G_TYPE_INVALID);
@@ -114,18 +112,21 @@ void dbus_detect_tomboy(void)
 
 void onDeleteNote(DBusGProxy *proxy,const gchar *note_uri, const gchar *note_title, gpointer data)
 {
+	cd_message ("");
 	getAllNotes();
 	update_icon();
 }
 
 void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 {
+	cd_message ("");
 	registerNote(note_uri);
 	update_icon();
 }
 
 void onChangeNoteList(DBusGProxy *proxy,const gchar *note_name, gpointer data)
 {
+	cd_message ("");
 	getAllNotes();
 	update_icon();
 }
@@ -186,6 +187,17 @@ gchar *addNote(gchar *note_title)
 		G_TYPE_STRING,&note_name,
 		G_TYPE_INVALID);
 	return note_name;
+}
+
+void deleteNote(gchar *note_title)
+{
+	cd_debug("tomboy : Suppression note : %s",note_title);
+	gboolean bDelete = TRUE;
+	dbus_g_proxy_call (dbus_proxy_tomboy, "DeleteNote", NULL,
+		G_TYPE_STRING, note_title,
+		G_TYPE_INVALID,
+		G_TYPE_BOOLEAN,&bDelete,
+		G_TYPE_INVALID);
 }
 
 void showNote(gchar *note_name)

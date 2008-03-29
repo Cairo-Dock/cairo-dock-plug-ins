@@ -94,9 +94,9 @@ void update_icon(void)  /// je pense que ca meriterait d'etre traite comme les b
 		{	
 			pNote = pElement->data;
 			pIcon = g_new0 (Icon, 1);
-			pIcon->acName = g_strdup_printf ("%s", pNote->title);
-			cd_message("tomboy : Création de l'icône pour %s",pNote->name);
-			//pIcon->cBaseURI = pNote->name;  /// t'es sur ??
+			pIcon->acName = g_strdup (pNote->title);
+			cd_message("tomboy : Création de l'icône pour %s [%s]",pNote->name, pNote->title);
+			//pIcon->cBaseURI =  g_strdup (pNote->name);  /// je pense que le mettre la est pas tres heureux, il vaudrait mieux associer l'icone via une table de hachage avec 'name' comme cle, puisque celui-ci est unique. ...
 			pIcon->fOrder = i;
 			pIcon->fScale = 1.;
 			pIcon->fAlpha = 1.;
@@ -104,7 +104,7 @@ void update_icon(void)  /// je pense que ca meriterait d'etre traite comme les b
 			pIcon->fHeight = 48;
 			pIcon->fWidthFactor = 1.;
 			pIcon->fHeightFactor = 1.;
-			pIcon->acCommand = g_strdup ("none");
+			pIcon->acCommand = g_strdup (pNote->name);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca devient un vrai lanceur.
 			pIcon->cParentDockName = g_strdup (myIcon->acName);
 			pIcon->acFileName = g_strdup_printf ("%s/note.svg",MY_APPLET_SHARE_DATA_DIR);
 			pIconList = g_list_append (pIconList, pIcon);

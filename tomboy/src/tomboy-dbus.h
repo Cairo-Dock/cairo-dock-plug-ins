@@ -18,6 +18,7 @@ void registerNote(gchar *uri);
 void getAllNotes(void);
 gchar *getNoteTitle(gchar *note_name);
 gchar *addNote(gchar *note_name);
+void deleteNote(gchar *note_title);
 void showNote(gchar *note_id);
 
 void free_note (TomBoyNote *pNote);
