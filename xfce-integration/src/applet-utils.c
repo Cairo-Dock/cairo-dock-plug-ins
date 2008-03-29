@@ -1,6 +1,6 @@
 /******************************************************************************
 
-This file is a part of the cairo-dock program, 
+This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
 Written by Christophe Chapuis (for any bug report, please mail me to chris.chapuis@gmail.com)
@@ -13,8 +13,13 @@ Written by Christophe Chapuis (for any bug report, please mail me to chris.chapu
 
 void env_backend_logout (void)
 {
-    // mmmh what to put here, instead of a gnome session brutal exit ?
-	// system ("gnome-session-save --kill --gui");
+	GError *erreur = NULL;
+	g_spawn_command_line_async ("xfce4-session-logout", &erreur);
+	if (erreur != NULL)
+	{
+		cd_message ("Attention : when trying to execute '%s' : %s\n", "gksu time-admin", erreur->message);
+		g_error_free (erreur);
+	}
 }
 
 void env_backend_setup_time (void)

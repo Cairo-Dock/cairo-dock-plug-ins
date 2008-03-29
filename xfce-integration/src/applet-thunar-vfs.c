@@ -15,6 +15,9 @@ Inspiration was taken from the "gnome-integration" plug-in...
 
 static GHashTable *s_fm_MonitorHandleTable = NULL;
 
+static void _vfs_backend_volume_added_callback (ThunarVfsVolumeManager *manager, gpointer volumes, gpointer *data);
+static void _vfs_backend_volume_removed_callback (ThunarVfsVolumeManager *manager, gpointer volumes, gpointer *data);
+static ThunarVfsVolume *thunar_find_volume_from_path (ThunarVfsPath *pThunarPath);
 
 static void _vfs_backend_free_monitor_data (gpointer *data)
 {
@@ -53,6 +56,10 @@ void stop_vfs_backend (void)
 		g_hash_table_destroy (s_fm_MonitorHandleTable);
 		s_fm_MonitorHandleTable = NULL;
 	}
+
+    ThunarVfsVolumeManager *pThunarVolumeManager = thunar_vfs_volume_manager_get_default();
+	g_signal_handlers_disconnect_matched (pThunarVolumeManager, G_SIGNAL_MATCH_FUNC, 0, 0, NULL, NULL, _vfs_backend_volume_added_callback);
+	g_signal_handlers_disconnect_matched (pThunarVolumeManager, G_SIGNAL_MATCH_FUNC, 0, 0, NULL, NULL, _vfs_backend_volume_removed_callback);
 
 	thunar_vfs_shutdown();
 }
@@ -135,68 +142,91 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		return;
 	}
     ThunarVfsInfo *pThunarVfsInfo = thunar_vfs_info_new_for_path(pThunarPath, &erreur);
+
+    // distinguer les mounts points du reste
+    ThunarVfsVolume *pThunarVolume = thunar_find_volume_from_path (pThunarPath);
+
 	thunar_vfs_path_unref(pThunarPath);
 	if (erreur != NULL)
 	{
 		cd_message ("Attention : %s\n", erreur->message);
 		g_error_free (erreur);
-		return;
+		/* Si on a trouve un volume, le chemin peut ne pas exister et donc cette erreur peut etre acceptable */
+		if (pThunarVolume == NULL)
+		{
+            return;
+		}
 	}
 
-	if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
-		*fOrder = (double)pThunarVfsInfo->mtime;
-	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
-		*fOrder = (double)pThunarVfsInfo->size;
-	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
-		*fOrder = (double)pThunarVfsInfo->type;
-	else
-		*fOrder = 0;
-
-	*cName = g_strdup (pThunarVfsInfo->display_name);
-	*cURI = g_strdup (cBaseURI);
-	*bIsDirectory = ((pThunarVfsInfo->type & THUNAR_VFS_FILE_TYPE_DIRECTORY) != 0);
-	*cIconName = pThunarVfsInfo->custom_icon?g_strdup(pThunarVfsInfo->custom_icon):NULL;
-
-    ThunarVfsMimeInfo*pThunarMimeInfo = pThunarVfsInfo->mime_info;
-    if( pThunarMimeInfo )
+    *fOrder = 0;
+    if( pThunarVfsInfo )
     {
-	    const gchar *cMimeType = thunar_vfs_mime_info_get_name (pThunarMimeInfo);
-	    cd_message ("  cMimeType : %s\n", cMimeType);
-	    if ( *cIconName == NULL && cMimeType && strcmp (cMimeType, "application/x-desktop") == 0)
-	    {
-        	thunar_vfs_info_unref(pThunarVfsInfo);
-		    thunar_vfs_mime_info_unref( pThunarMimeInfo );
-		    file_manager_get_file_info_from_desktop_link (cBaseURI, cName, cURI, cIconName, bIsDirectory, iVolumeID);
-		    *fOrder = 0;
-		    return ;
-	    }
-
-    	/*On verra un peu plus tard pour les vignettes des images, hein*/
-	    if(*cIconName == NULL && (strncmp (cMimeType, "image", 5) == 0))
-	    {
-		    gchar *cHostname = NULL;
-		    gchar *cFilePath = g_filename_from_uri (cBaseURI, &cHostname, &erreur);
-		    if (erreur != NULL)
-		    {
-			    g_error_free (erreur);
-		    }
-		    else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
-		    {
-			    *cIconName = thunar_vfs_path_dup_string(pThunarPath);
-			    cairo_dock_remove_html_spaces (*cIconName);
-		    }
-		    g_free (cHostname);
-	    }
-
-	    if (*cIconName == NULL)
-	    {
-    	    *cIconName = g_strdup (thunar_vfs_mime_info_lookup_icon_name(pThunarMimeInfo, gtk_icon_theme_get_default()));
-	    }
+        if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
+            *fOrder = (double)pThunarVfsInfo->mtime;
+        else if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
+            *fOrder = (double)pThunarVfsInfo->size;
+        else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
+            *fOrder = (double)pThunarVfsInfo->type;
     }
 
-	*iVolumeID = (int)pThunarVfsInfo->device;
+	*cURI = g_strdup (cBaseURI);
 
-	thunar_vfs_info_unref(pThunarVfsInfo);
+    if( pThunarVolume )
+    {
+        *cName = g_strdup(thunar_vfs_volume_get_name( pThunarVolume ));
+        *iVolumeID = 1;
+        *bIsDirectory = FALSE;
+        *cIconName = g_strdup(thunar_vfs_volume_lookup_icon_name(pThunarVolume, gtk_icon_theme_get_default()));
+    }
+    else if( pThunarVfsInfo )
+    {
+        *cName = g_strdup (pThunarVfsInfo->display_name);
+        *iVolumeID = 0;
+        *bIsDirectory = ((pThunarVfsInfo->type & THUNAR_VFS_FILE_TYPE_DIRECTORY) != 0);
+        *cIconName = pThunarVfsInfo->custom_icon?g_strdup(pThunarVfsInfo->custom_icon):NULL;
+
+        ThunarVfsMimeInfo*pThunarMimeInfo = pThunarVfsInfo->mime_info;
+        if( pThunarMimeInfo )
+        {
+            const gchar *cMimeType = thunar_vfs_mime_info_get_name (pThunarMimeInfo);
+            cd_message ("  cMimeType : %s\n", cMimeType);
+            if ( *cIconName == NULL && cMimeType && strcmp (cMimeType, "application/x-desktop") == 0)
+            {
+                thunar_vfs_info_unref(pThunarVfsInfo);
+                thunar_vfs_mime_info_unref( pThunarMimeInfo );
+                file_manager_get_file_info_from_desktop_link (cBaseURI, cName, cURI, cIconName, bIsDirectory, iVolumeID);
+                *fOrder = 0;
+                return ;
+            }
+
+            /*On verra un peu plus tard pour les vignettes des images, hein*/
+            if(*cIconName == NULL && (strncmp (cMimeType, "image", 5) == 0))
+            {
+                gchar *cHostname = NULL;
+                gchar *cFilePath = g_filename_from_uri (cBaseURI, &cHostname, &erreur);
+                if (erreur != NULL)
+                {
+                    g_error_free (erreur);
+                }
+                else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
+                {
+                    *cIconName = thunar_vfs_path_dup_string(pThunarPath);
+                    cairo_dock_remove_html_spaces (*cIconName);
+                }
+                g_free (cHostname);
+            }
+
+            if (*cIconName == NULL)
+            {
+                *cIconName = g_strdup (thunar_vfs_mime_info_lookup_icon_name(pThunarMimeInfo, gtk_icon_theme_get_default()));
+            }
+        }
+    }
+
+    if( pThunarVfsInfo )
+    {
+        thunar_vfs_info_unref(pThunarVfsInfo);
+    }
 }
 
 
@@ -232,21 +262,23 @@ static void thunar_folder_finished (ThunarVfsJob *job, ThunarFolder *folder)
  * Attention: si l'URI demandee est CAIRO_DOCK_FM_VFS_ROOT, alors il faut retourner la liste des volumes !
  *    En effet dans ThunarVFS "root://" correspond simplement à "/"
  */
-GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gchar **cFullURI)
+GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, gchar **cFullURI)
 {
 	GError *erreur = NULL;
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
-	cd_message ("%s (%s)\n", __func__, cBaseURI);
+	cd_message ("%s (%s)", __func__, cBaseURI);
 
 	GList *pIconList = NULL;
 
 	const gchar *cURI = NULL;
 	if (strcmp (cBaseURI, CAIRO_DOCK_FM_VFS_ROOT) == 0)
 	{
-		cURI = "removable-media:///";
+		cURI = CAIRO_DOCK_FM_VFS_ROOT;
 
 		if( cFullURI )
+		{
 		    *cFullURI = g_strdup(cURI);
+		}
 
 		/* listons joyeusement les volumes */
 		ThunarVfsVolumeManager *pThunarVolumeManager = thunar_vfs_volume_manager_get_default();
@@ -278,7 +310,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			icon->acName = g_strdup(thunar_vfs_volume_get_name( pThunarVfsVolume ));
 			cd_debug (" -> icon->acName : %s\n", icon->acName);
 
-			icon->acFileName = thunar_vfs_volume_lookup_icon_name(pThunarVfsVolume, gtk_icon_theme_get_default());
+			icon->acFileName = g_strdup(thunar_vfs_volume_lookup_icon_name(pThunarVfsVolume, gtk_icon_theme_get_default()));
 			cd_debug (" -> icon->acFileName : %s\n", icon->acFileName);
 
 			erreur = NULL;
@@ -300,8 +332,6 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 
 				thunar_vfs_info_unref(pThunarVfsInfo);
 			}
-
-			thunar_vfs_path_unref(pThunarVfsPath);
 
 			pIconList = g_list_prepend (pIconList, icon);
 		}
@@ -429,9 +459,10 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	return pIconList;
 }
 
-static ThunarVfsVolume *thunar_find_volume_from_path (ThunarVfsPath *pThunarPath)
+ThunarVfsVolume *thunar_find_volume_from_path (ThunarVfsPath *pThunarPath)
 {
 	GError *erreur = NULL;
+    gchar *ltmp_path = NULL;
 
     ThunarVfsVolume *pThunarVolume = NULL;
 
@@ -450,9 +481,13 @@ static ThunarVfsVolume *thunar_find_volume_from_path (ThunarVfsPath *pThunarPath
         }
 
         ThunarVfsPath *pMountPointVfsPath = thunar_vfs_volume_get_mount_point(pThunarVolume);
-        if( thunar_vfs_path_is_ancestor( pThunarPath, pMountPointVfsPath ) )
+        ltmp_path = thunar_vfs_path_dup_uri(pMountPointVfsPath);
+        if( ltmp_path )
         {
-            g_object_ref(pThunarVolume);
+            g_free(ltmp_path);
+        }
+        if( thunar_vfs_path_equal(pThunarPath, pMountPointVfsPath) || thunar_vfs_path_is_ancestor( pThunarPath, pMountPointVfsPath ) )
+        {
             break;
         }
         pThunarVolume = NULL;
@@ -470,9 +505,15 @@ static ThunarVfsVolume *thunar_find_volume_from_path (ThunarVfsPath *pThunarPath
         else
         {
             ThunarVfsVolumeManager *pThunarVolumeManager = thunar_vfs_volume_manager_get_default();
-            ThunarVfsVolume *pThunarVolume = thunar_vfs_volume_manager_get_volume_by_info(pThunarVolumeManager, pThunarVfsInfo);
+            pThunarVolume = thunar_vfs_volume_manager_get_volume_by_info(pThunarVolumeManager, pThunarVfsInfo);
             g_object_unref(pThunarVolumeManager);
             thunar_vfs_info_unref(pThunarVfsInfo);
+
+            /* Skip the volumes that are not there or that are not removable */
+            if (!thunar_vfs_volume_is_present (pThunarVolume) || !thunar_vfs_volume_is_removable (pThunarVolume))
+            {
+                pThunarVolume = NULL;
+            }
         }
     }
 
@@ -502,7 +543,6 @@ void vfs_backend_launch_uri (const gchar *cURI)
 	{
 		thunar_vfs_path_unref(pThunarPath);
         pThunarPath = thunar_vfs_volume_get_mount_point(pThunarVolume);
-        g_object_unref(pThunarVolume);
 	}
 
     ThunarVfsInfo *pThunarVfsInfo = thunar_vfs_info_new_for_path(pThunarPath, &erreur);
@@ -510,7 +550,6 @@ void vfs_backend_launch_uri (const gchar *cURI)
 	{
 		cd_message ("Attention : %s\n", erreur->message);
 		g_error_free (erreur);
-		thunar_vfs_path_unref(pThunarPath);
 		return;
 	}
 
@@ -547,7 +586,6 @@ void vfs_backend_launch_uri (const gchar *cURI)
 		}
 	}
 
-	thunar_vfs_path_unref(pThunarPath);
 	thunar_vfs_info_unref(pThunarVfsInfo);
 }
 
@@ -580,8 +618,7 @@ gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 
 	*bIsMounted = thunar_vfs_volume_is_mounted(pThunarVolume);
 	ThunarVfsPath *pMountPointVfsPath = thunar_vfs_volume_get_mount_point(pThunarVolume);
-	gchar *cMountPointID = NULL;/*pMountPointVfsPath?thunar_vfs_path_dup_uri(pMountPointVfsPath):NULL;*/
-    g_object_unref(pThunarVolume);
+	gchar *cMountPointID = pMountPointVfsPath?thunar_vfs_path_dup_uri(pMountPointVfsPath):NULL;
 
 	cd_message ("  bIsMounted <- %d", *bIsMounted);
 
@@ -636,7 +673,6 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 	}
 	g_signal_handlers_disconnect_matched (pThunarVolume, G_SIGNAL_MATCH_DATA, 0, 0, NULL, NULL, data2);
 	g_free (data2);
-    g_object_unref(pThunarVolume);
 }
 
 void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock)
@@ -677,7 +713,50 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 	}
 	g_signal_handlers_disconnect_matched (pThunarVolume, G_SIGNAL_MATCH_DATA, 0, 0, NULL, NULL, data2);
 	g_free (data2);
-    g_object_unref(pThunarVolume);
+}
+
+static void _vfs_backend_volume_added_callback (ThunarVfsVolumeManager *manager,
+                                                gpointer                volumes,
+                                                gpointer                *data)
+{
+	CairoDockFMMonitorCallback pCallback = data[0];
+	gpointer user_data = data[1];
+	cd_message ("%s", __func__);
+
+	/* call the callback for each volume */
+    GList *pListVolumes = volumes;
+    for( ; pListVolumes != NULL; pListVolumes = pListVolumes->next )
+    {
+        ThunarVfsVolume *pThunarVolume = (ThunarVfsVolume *)pListVolumes->data;
+
+        ThunarVfsPath *pMountPointVfsPath = thunar_vfs_volume_get_mount_point(pThunarVolume);
+        gchar *info_uri = thunar_vfs_path_dup_uri(pMountPointVfsPath);
+
+        pCallback (CAIRO_DOCK_FILE_CREATED, info_uri, user_data);
+        g_free(info_uri);
+    }
+}
+
+static void _vfs_backend_volume_removed_callback (ThunarVfsVolumeManager *manager,
+                                                gpointer                volumes,
+                                                gpointer                *data)
+{
+	CairoDockFMMonitorCallback pCallback = data[0];
+	gpointer user_data = data[1];
+	cd_message ("%s", __func__);
+
+	/* call the callback for each volume */
+    GList *pListVolumes = volumes;
+    for( ; pListVolumes != NULL; pListVolumes = pListVolumes->next )
+    {
+        ThunarVfsVolume *pThunarVolume = (ThunarVfsVolume *)pListVolumes->data;
+
+        ThunarVfsPath *pMountPointVfsPath = thunar_vfs_volume_get_mount_point(pThunarVolume);
+        gchar *info_uri = thunar_vfs_path_dup_uri(pMountPointVfsPath);
+
+        pCallback (CAIRO_DOCK_FILE_DELETED, info_uri, user_data);
+        g_free(info_uri);
+    }
 }
 
 static void _vfs_backend_thunar_monitor_callback(ThunarVfsMonitor *monitor,
@@ -719,6 +798,24 @@ void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockF
 	GError *erreur = NULL;
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
+
+    // faire un gros cas particulier pour CAIRO_DOCK_FM_VFS_ROOT, qui est retourné lors du listing dudit répertoire
+    if( strcmp( cURI, CAIRO_DOCK_FM_VFS_ROOT ) == 0 )
+    {
+        // se brancher sur les signaux "volumes-added" et "volumes-removed" du volume manager
+        gpointer *data = g_new0 (gpointer, 2);
+        data[0] = pCallback;
+        data[1] = user_data;
+
+        ThunarVfsVolumeManager *pThunarVolumeManager = thunar_vfs_volume_manager_get_default();
+        // on nettoie d'abord, au cas ou
+        g_signal_handlers_disconnect_matched (pThunarVolumeManager, G_SIGNAL_MATCH_FUNC, 0, 0, NULL, NULL, _vfs_backend_volume_added_callback);
+        g_signal_handlers_disconnect_matched (pThunarVolumeManager, G_SIGNAL_MATCH_FUNC, 0, 0, NULL, NULL, _vfs_backend_volume_removed_callback);
+        // puis on se branche
+        g_signal_connect(pThunarVolumeManager, "volumes-added", G_CALLBACK (_vfs_backend_volume_added_callback), data);
+        g_signal_connect(pThunarVolumeManager, "volumes-removed", G_CALLBACK (_vfs_backend_volume_removed_callback), data);
+        return;
+    }
 
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
