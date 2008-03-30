@@ -36,7 +36,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 		detect_battery();
 		if(myData.battery_present)
 		{
+			double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+	
 			get_on_battery();
+			myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 			update_stats();
 			myData.checkLoop = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 		}
@@ -68,6 +71,8 @@ CD_APPLET_STOP_BEGIN
 			g_source_remove (myData.checkLoop);
 			myData.checkLoop = 0;
 		}
+		
+		free_cd_Gauge(myData.pGauge);
 	}
 CD_APPLET_STOP_END
 
@@ -94,6 +99,11 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if(myData.battery_present)
 		{
+			double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+			
+			free_cd_Gauge(myData.pGauge);
+			myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+						
 			myData.previously_on_battery = -1;  // pour forcer le redessin.
 			myData.previous_battery_charge = -1;
 			myData.previous_battery_time = -1;

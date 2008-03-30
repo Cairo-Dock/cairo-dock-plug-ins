@@ -47,6 +47,9 @@ check interval = 10
 
 #F[Information]
 frame_info=
+#R1[] List of available themes for the analogic display :/
+theme = radium
+
 #r[nothing;charge;time] Information to be displayed on the icon :
 quick-info_type=2
 

@@ -162,7 +162,6 @@ int get_stats(gchar *dataType)
 		col = g_value_get_int (gv);
 		g_value_unset (gv);
 		g_value_array_free (gva);
-		cd_debug("powermanager : %i, %i, %i",x,y,col);
 	}
 	g_ptr_array_free (ptrarray, TRUE);
 	

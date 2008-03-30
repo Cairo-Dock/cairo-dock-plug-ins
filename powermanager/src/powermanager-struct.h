@@ -3,6 +3,7 @@
 
 #include <cairo-dock.h>
 
+
 typedef enum {
 	POWER_MANAGER_NOTHING = 0,
 	POWER_MANAGER_CHARGE,
@@ -25,6 +26,7 @@ typedef struct {
 	gboolean highBatteryWitness;
 	gboolean lowBatteryWitness;
 	gboolean lowBatteryValue;
+	gchar *cThemePath;
 	
 	MyAppletEffect iEffect;
   } AppletConfig;
@@ -52,6 +54,7 @@ typedef struct {
 	gint previous_battery_time;
 	gint previous_battery_charge;
 	gint checkLoop;
+	Gauge *pGauge;
 	} AppletData;
 
 

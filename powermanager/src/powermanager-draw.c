@@ -32,38 +32,7 @@ void update_icon(void)
 			}
 		}
 		
-		if (myData.previously_on_battery != myData.on_battery || myData.previous_battery_charge != myData.battery_charge)
-		{
-			myData.previously_on_battery = myData.on_battery;
-			myData.previous_battery_charge = myData.battery_charge;
-			
-			if(myData.on_battery)
-			{
-				if(myData.battery_charge >= 95)
-					{ cd_powermanager_set_surface ("battery_44.svg"); }
-				else if(myData.battery_charge >= 65)
-					{ cd_powermanager_set_surface ("battery_34.svg"); }
-				else if(myData.battery_charge >= 35)
-					{ cd_powermanager_set_surface ("battery_24.svg"); }
-				else if(myData.battery_charge >= 5)
-					{ cd_powermanager_set_surface ("battery_14.svg"); }
-				else
-					{ cd_powermanager_set_surface ("battery_04.svg"); }
-			}
-			else
-			{
-				if(myData.battery_charge >= 95)
-					{ cd_powermanager_set_surface ("charge_44.svg"); }
-				else if(myData.battery_charge >= 65)
-					{ cd_powermanager_set_surface ("charge_34.svg"); }
-				else if(myData.battery_charge >= 35)
-					{ cd_powermanager_set_surface ("charge_24.svg"); }
-				else if(myData.battery_charge >= 5)
-					{ cd_powermanager_set_surface ("charge_14.svg"); }
-				else
-					{ cd_powermanager_set_surface ("charge_04.svg"); }
-			}
-		}
+		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.battery_charge / 100);
 	}
 	else
 	{
