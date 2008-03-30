@@ -17,7 +17,7 @@ void env_backend_logout (void)
 	g_spawn_command_line_async ("xfce4-session-logout", &erreur);
 	if (erreur != NULL)
 	{
-		cd_message ("Attention : when trying to execute '%s' : %s\n", "gksu time-admin", erreur->message);
+		cd_message ("Attention : when trying to execute '%s' : %s\n", "xfce4-session-logout", erreur->message);
 		g_error_free (erreur);
 	}
 }
