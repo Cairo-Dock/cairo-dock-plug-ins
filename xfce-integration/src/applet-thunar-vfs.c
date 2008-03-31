@@ -145,7 +145,11 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 
     // distinguer les mounts points du reste
     ThunarVfsVolume *pThunarVolume = thunar_find_volume_from_path (pThunarPath);
-
+    if (pThunarVolume != NULL)
+    	cd_message (" correspond a un volume (info : %x)\n", pThunarVfsInfo);
+	if (pThunarVfsInfo)
+		cd_message (" device : %d\n", pThunarVfsInfo->device);
+	
 	thunar_vfs_path_unref(pThunarPath);
 	if (erreur != NULL)
 	{
@@ -300,6 +304,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			/* il nous faut: URI, type, nom, icone */
 
 			icon->cBaseURI = thunar_vfs_path_dup_uri(pThunarVfsPath);
+			g_print ("mount point : %s\n", icon->cBaseURI);
 
 			icon->acCommand = thunar_vfs_path_dup_uri(pThunarVfsPath);
 			icon->iVolumeID = lVolumeFakeID;
@@ -473,30 +478,35 @@ const ThunarVfsVolume *thunar_find_volume_from_path (ThunarVfsPath *pThunarPath)
     for( ; pListVolumes != NULL; pListVolumes = pListVolumes->next )
     {
         pThunarVolume = (ThunarVfsVolume *)pListVolumes->data;
-
-        /* Skip the volumes that are not there or that are not removable */
-        if (!thunar_vfs_volume_is_present (pThunarVolume) || !thunar_vfs_volume_is_removable (pThunarVolume))
-        {
-            pThunarVolume = NULL;
-            continue;
-        }
-
+        
         ThunarVfsPath *pMountPointVfsPath = thunar_vfs_volume_get_mount_point(pThunarVolume);
         ltmp_path = thunar_vfs_path_dup_uri(pMountPointVfsPath);
         if( ltmp_path )
         {
+            g_print (" - %s\n", ltmp_path);
             g_free(ltmp_path);
         }
-        if( thunar_vfs_path_equal(pThunarPath, pMountPointVfsPath) || thunar_vfs_path_is_ancestor( pThunarPath, pMountPointVfsPath ) )
+        
+        /* Skip the volumes that are not there or that are not removable */
+        if (!thunar_vfs_volume_is_present (pThunarVolume) || !thunar_vfs_volume_is_removable (pThunarVolume))
         {
+            pThunarVolume = NULL;
+            g_print (" saute\n");
+            continue;
+        }
+
+        
+        if( thunar_vfs_path_equal(pThunarPath, pMountPointVfsPath) )  // || thunar_vfs_path_is_ancestor( pThunarPath, pMountPointVfsPath )
+        {
+            g_print (" trouve !\n");
             break;
         }
         pThunarVolume = NULL;
     }
 
-    if( pThunarVolume == NULL )
+   /* if( pThunarVolume == NULL )
     {
-        /* deuxieme methode: avec le vfs_info. */
+        // deuxieme methode: avec le vfs_info. 
         ThunarVfsInfo *pThunarVfsInfo = thunar_vfs_info_new_for_path(pThunarPath, &erreur);
         if (erreur != NULL)
         {
@@ -509,14 +519,15 @@ const ThunarVfsVolume *thunar_find_volume_from_path (ThunarVfsPath *pThunarPath)
             pThunarVolume = thunar_vfs_volume_manager_get_volume_by_info(pThunarVolumeManager, pThunarVfsInfo);
             g_object_unref(pThunarVolumeManager);
             thunar_vfs_info_unref(pThunarVfsInfo);
+            g_print ("2eme methode -> volume : %x\n", pThunarVolume);
 
-            /* Skip the volumes that are not there or that are not removable */
-            if (!thunar_vfs_volume_is_present (pThunarVolume) || !thunar_vfs_volume_is_removable (pThunarVolume))
+            // Skip the volumes that are not there or that are not removable 
+            if (pThunarVolume == NULL || !thunar_vfs_volume_is_present (pThunarVolume) || !thunar_vfs_volume_is_removable (pThunarVolume))
             {
                 pThunarVolume = NULL;
             }
         }
-    }
+    }*/
 
     return pThunarVolume;
 }
@@ -612,8 +623,8 @@ gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 
 	if (pThunarVolume == NULL)
 	{
-		cd_warning ("Attention : no volume associated to %s, guessing that it is mounted", cURI);
-		*bIsMounted = TRUE;
+		cd_warning ("Attention : no volume associated to %s, guessing that it is not mounted", cURI);
+		*bIsMounted = FALSE;
 		return NULL;
 	}
 
@@ -630,6 +641,26 @@ gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 static void _vfs_backend_mount_callback(ThunarVfsVolume *volume, gpointer *data)
 {
 	cd_message ("%s (%x)", __func__, data);
+	g_print ("%s (%x)", __func__, data);
+	
+	ThunarVfsVolumeManager *pThunarVolumeManager = thunar_vfs_volume_manager_get_default();
+	GList *pListVolumes = thunar_vfs_volume_manager_get_volumes(pThunarVolumeManager);
+	for( ; pListVolumes != NULL; pListVolumes = pListVolumes->next )
+	{
+		ThunarVfsVolume *pThunarVolume = (ThunarVfsVolume *)pListVolumes->data;
+	
+		/* Skip the volumes that are not there or that are not removable */
+		if (!thunar_vfs_volume_is_present (pThunarVolume) || !thunar_vfs_volume_is_removable (pThunarVolume))
+		{
+			pThunarVolume = NULL;
+			continue;
+		}
+	
+		ThunarVfsPath *pMountPointVfsPath = thunar_vfs_volume_get_mount_point(pThunarVolume);
+		gchar *ltmp_path = thunar_vfs_path_dup_uri(pMountPointVfsPath);
+		g_print (" + %s\n", ltmp_path);
+	}
+	
 
 	CairoDockFMMountCallback pCallback = data[0];
 
@@ -666,6 +697,7 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 	data2[3] = icon;
 	data2[4] = pDock;
 	g_signal_connect(pThunarVolume, "mounted", G_CALLBACK (_vfs_backend_mount_callback), data2);
+	g_signal_connect(pThunarVolume, "changed", G_CALLBACK (_vfs_backend_mount_callback), data2);
 
 	if( !thunar_vfs_volume_mount(pThunarVolume, NULL, &erreur) )
 	{
@@ -706,6 +738,7 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 	data2[3] = icon;
 	data2[4] = pDock;
 	g_signal_connect(pThunarVolume, "unmounted", G_CALLBACK (_vfs_backend_mount_callback), data2);
+	g_signal_connect(pThunarVolume, "changed", G_CALLBACK (_vfs_backend_mount_callback), data2);
 
 	if( !thunar_vfs_volume_unmount(pThunarVolume, NULL, &erreur) )
 	{
@@ -766,14 +799,47 @@ void _vfs_backend_volume_modified_callback (ThunarVfsVolumeManager *manager, Thu
 	gpointer user_data = data[1];
 	cd_message ("");
 	/// On a le volume tel qu'il est apres le montage/demontage. Du coup, son URI est la nouvelle. Or la modification se fait sur l'ancienne ...
-	/*const ThunarVfsPath *pMountPoint = thunar_vfs_volume_get_mount_point (pVolume);
-	gchar *cUri = thunar_vfs_path_dup_uri (pMountPoint);
-	//pCallback (CAIRO_DOCK_FILE_MODIFIED, cUri, user_data);
-	g_free (cUri);*/
 	
-	const gchar* cName = thunar_vfs_volume_get_name (pVolume);
-	g_print ("volume : %s\n", cName);
-	//pCallback (CAIRO_DOCK_FILE_MODIFIED, cName, user_data);
+	gboolean bMounted = thunar_vfs_volume_is_mounted(pVolume);
+	if (bMounted)  // on vient de le monter. avant c'etait /dev/sdb1, maintenant c'est /media/disk
+	{
+		const gchar* cName = thunar_vfs_volume_get_name (pVolume);
+		g_print ("volume to remove : %s\n", cName);
+		pCallback (CAIRO_DOCK_FILE_DELETED, cName, user_data);
+		
+		const ThunarVfsPath *pMountPoint = thunar_vfs_volume_get_mount_point (pVolume);
+		gchar *cUri = thunar_vfs_path_dup_uri (pMountPoint);
+		g_print ("new mount point : %s\n", cUri);
+		pCallback (CAIRO_DOCK_FILE_CREATED, cUri, user_data);
+		g_free (cUri);
+	}
+	else  // on vient de le demonter, avant c'etait /media/disk, mais maintenant aussi !
+	{
+		const ThunarVfsPath *pMountPoint = thunar_vfs_volume_get_mount_point (pVolume);
+		gchar *cUri = thunar_vfs_path_dup_uri (pMountPoint);
+		g_print ("mount point : %s\n", cUri);
+		
+		ThunarVfsVolumeManager *pThunarVolumeManager = thunar_vfs_volume_manager_get_default();
+		GList *pListVolumes = thunar_vfs_volume_manager_get_volumes(pThunarVolumeManager);
+		for( ; pListVolumes != NULL; pListVolumes = pListVolumes->next )
+		{
+			ThunarVfsVolume *pThunarVolume = (ThunarVfsVolume *)pListVolumes->data;
+		
+			/* Skip the volumes that are not there or that are not removable */
+			if (!thunar_vfs_volume_is_present (pThunarVolume) || !thunar_vfs_volume_is_removable (pThunarVolume))
+			{
+				pThunarVolume = NULL;
+				continue;
+			}
+		
+			ThunarVfsPath *pMountPointVfsPath = thunar_vfs_volume_get_mount_point(pThunarVolume);
+			gchar *ltmp_path = thunar_vfs_path_dup_uri(pMountPointVfsPath);
+			g_print (" + %s\n", ltmp_path);
+		}
+		
+		pCallback (CAIRO_DOCK_FILE_MODIFIED, cUri, user_data);
+		g_free (cUri);
+	}
 }
 
 
