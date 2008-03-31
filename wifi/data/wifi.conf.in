@@ -50,6 +50,12 @@ signal_type=2
 #i[1;60] Delay between signal checks :
 #{in seconds.}
 delay = 10
+
+#b Use a jauge instead of icônes?
+gauge=false
+#R1[] List of available themes for the analogic display :
+theme = radium
+
 #r[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to strength :
 effect=0
 

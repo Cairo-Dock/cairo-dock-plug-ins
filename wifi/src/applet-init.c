@@ -17,6 +17,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
+	//Initialisation de la jauge
+	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+	
 	cd_wifi_launch_measure();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
@@ -27,6 +31,9 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
+	
+	//On libère la mémoire de la jauge
+	free_cd_Gauge(myData.pGauge);
 	
 	if (myData.iSidTimer != 0) {
 		g_source_remove (myData.iSidTimer);
@@ -57,6 +64,10 @@ CD_APPLET_RELOAD_BEGIN
 			myData.iSidTimer = 0;
 		}
 		
+		//On recharge la jauge
+		free_cd_Gauge(myData.pGauge);
+		double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+	  myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 		cd_wifi_launch_measure ();  // asynchrone
 	}
 	else {  // on redessine juste l'icone.

@@ -25,12 +25,18 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.dCheckInterval = myConfig.iCheckInterval;
 	myConfig.hollowIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "hollow");
 	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
+	
+	myConfig.gaugeIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "gauge");
+	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
+	cd_message("gauge : Theme(%s)\n",myConfig.cGThemePath);
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	myConfig.defaultTitle = NULL;
+	g_free (myConfig.cGThemePath);
+	myConfig.cGThemePath = NULL;
 	
 	int i;
 	for (i = 0; i < WIFI_NB_QUALITY; i ++) {

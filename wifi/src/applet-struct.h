@@ -32,11 +32,16 @@ typedef enum {
 typedef struct {
 	gchar *defaultTitle;
 	gchar *cUserImage[WIFI_NB_QUALITY];
+	gchar *cGThemePath;
+	
 	CDWifiInfoType quickInfoType;
+	CDWifiEffect iEffect;
+	
 	gint iCheckInterval;
 	gint dCheckInterval;
 	gboolean hollowIcon;
-	CDWifiEffect iEffect;
+	
+	gboolean gaugeIcon;
 } AppletConfig;
 
 typedef struct {
@@ -51,6 +56,8 @@ typedef struct {
 	gint checkTimer;
 	gint checkedTime;
 	gint strengthTimer;
+	
+	Gauge *pGauge;
 } AppletData;
 
 

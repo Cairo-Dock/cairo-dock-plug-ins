@@ -155,6 +155,12 @@ msgstr "Dessiner une barre"
 msgid "Effet to apply on the icon according to strength :"
 msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
+msgid "Use a jauge instead of icônes?"
+msgstr "Utiliser une jauge au lieu des icônes?"
+
+msgid "List of available themes for the analogic display :"
+msgstr "Liste des thèmes disponible pour l'affichage analogique :"
+
 #: ../data/messages:53 ../data/messages:63
 msgid "No icon when no wireless devices/connections found?"
 msgstr "Aucune icône quand aucun module wifi n'est trouver?"
