@@ -87,7 +87,7 @@ gboolean cd_netspeed_getRate(void) {
 		g_error_free(tmp_erreur);
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);
+		/*CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);*/
 
 		return FALSE;
 	}
@@ -98,7 +98,8 @@ gboolean cd_netspeed_getRate(void) {
 		gchar **recup, *interface;
     		static unsigned long long nUp = 0, nDown = 0;
     		static unsigned long long time = 0;
-    		unsigned long long newTime, newNUp, newNDown, upRate = 0, downRate = 0;
+    		static unsigned long long maxRate = 0;
+    		unsigned long long newTime, newNUp, newNDown, upRate = 0, downRate = 0, sumRate = 0;
     		int i;
 		newTime = 0;
 		newNUp = 0;
@@ -108,7 +109,7 @@ gboolean cd_netspeed_getRate(void) {
 			if ((i == 0) && (strcmp(cOneInfopipe,"netspeed") == 0)) {
 				CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 		    		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-		    		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);
+		    		/*CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);*/
 		    		cd_message("No interface found, timer stopped.\n");
 				myData.interfaceFound = 0;
 				g_strfreev (cInfopipesList);
@@ -117,7 +118,7 @@ gboolean cd_netspeed_getRate(void) {
 			else {
 				myData.interfaceFound = 1; //Interface found
 				if(strcmp(cOneInfopipe,"time") == 0) {
-					cd_debug("netspeed -> read END !\n");	
+					//cd_debug("netspeed -> read END !\n");	
 					break;
 				}
 				if(strcmp(cOneInfopipe,"stop") == 0) {
@@ -131,13 +132,11 @@ gboolean cd_netspeed_getRate(void) {
 					newNDown += atoi(recup[1]);
 					newNUp += atoi(recup[2]);
 				}
-				cd_debug("netspeed -> read : Interface %s\n", interface);
-				CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pUnknown);
+				//cd_debug("netspeed -> read : Interface %s\n", interface);
+				/*CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pUnknown);*/
 			}
 		}
 		
-		
-		cd_debug("netspeed -> nOctets avant : ↑%llu ↓%llu \n maintenant : ↑%llu ↓%llu\n diff : ↑%llu ↓%llu \n temps precedent : %llu \n temps courant : %llu \n Diff %llu", nUp, nDown, newNUp, newNDown, newNUp - nUp, newNDown - nDown,time, newTime, newTime - time);
 		if(time != 0)
 		{
 			
@@ -150,13 +149,36 @@ gboolean cd_netspeed_getRate(void) {
 				downRate = (unsigned long long) (((newNDown - nDown) * 1000000000) / (newTime - time));
 				cd_debug("Up : %llu - Down : %llu", upRate, downRate);
 			}
+			sumRate = upRate + downRate;
+			if(sumRate > maxRate)
+			{
+				maxRate = sumRate;
+			}
 			gchar upRateFormatted[11];
 			gchar downRateFormatted[11];
 			cd_netspeed_formatRate(upRate, &upRateFormatted);
 			cd_netspeed_formatRate(downRate, &downRateFormatted);
+			if(inDebug == 1) 
+			{
+			cairo_dock_show_temporary_dialog(
+				"nOctets avant : ↑%llu ↓%llu \n maintenant : ↑%llu ↓%llu\n diff : ↑%llu ↓%llu \n \
+temps precedent : %llu \n temps courant : %llu \n Diff %llu \n sumRate : %llu \n maxRate : %llu",
+				myIcon, myContainer, myConfig.iCheckInterval,
+				nUp, nDown, newNUp, newNDown, newNUp - nUp, newNDown - nDown,
+				time, newTime, newTime - time, sumRate, maxRate);
+			}
+			else
+			{
+			cd_debug("nOctets avant : ↑%llu ↓%llu \n maintenant : ↑%llu ↓%llu\n diff : ↑%llu ↓%llu \n \
+temps precedent : %llu \n temps courant : %llu \n Diff %llu \n sumRate : %llu \n maxRate : %llu",
+				nUp, nDown, newNUp, newNDown, newNUp - nUp, newNDown - nDown,
+				time, newTime, newTime - time, sumRate, maxRate);
+			}
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("↑%s\n↓%s", upRateFormatted,downRateFormatted);
-			if(inDebug == 1) cairo_dock_show_temporary_dialog(
-			"nOctets avant : ↑%llu ↓%llu \n maintenant : ↑%llu ↓%llu\n diff : ↑%llu ↓%llu \n temps precedent : %llu \n temps courant : %llu \n Diff %llu", myIcon, myContainer, myConfig.iCheckInterval, nUp, nDown, newNUp, newNDown, newNUp - nUp, newNDown - nDown,time, newTime, newTime - time);
+			if(maxRate != 0)
+			{
+				make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) sumRate / maxRate);
+			}
 			time = newTime;
 			nUp = newNUp;
 			nDown = newNDown;

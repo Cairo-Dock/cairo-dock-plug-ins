@@ -6,23 +6,27 @@
 
 typedef struct {
 	gchar *defaultTitle;
-	gchar *cDefault;
+/*	gchar *cDefault;
 	gchar *cUnknown;
 	gchar *cBad;
-	gchar *cOk;
+	gchar *cOk;*/
 	gint iCheckInterval;
 	gint dCheckInterval;
+	
+	gchar *cGThemePath;
+	gboolean gaugeIcon; 
 } AppletConfig;
 
 typedef struct {
-	cairo_surface_t *pDefault;
+/*	cairo_surface_t *pDefault;
 	cairo_surface_t *pUnknown;	
 	cairo_surface_t *pBad;	
-	cairo_surface_t *pOk;	
+	cairo_surface_t *pOk;	*/
 	guint iSidTimer;
 	gint checkTimer;
 	gint interfaceFound;	
-//	gint strengthTimer;
+	
+	Gauge *pGauge;
 } AppletData;
 
 

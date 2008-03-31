@@ -44,6 +44,8 @@ on widget layer=false
 [Configuration]
 #F[Information]
 frame_info=
+#R1[] List of available themes for the analogic display :/
+theme = radium
 #i[5;5000] Delay between signal checks :
 #{in milliseconds.}
 delay = 1000
