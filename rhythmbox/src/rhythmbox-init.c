@@ -49,8 +49,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 	}
 	
 	if (myConfig.bInhibateRhythmboxAppli)
-		myData.bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox");
-	
+	{
+		myData.bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox", myIcon);
+	}
 	//Enregistrement des notifications
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
@@ -68,7 +69,7 @@ CD_APPLET_STOP_BEGIN
 	rhythmbox_dbus_disconnect_from_bus ();
 	
 	if (myData.bAppliInhibitedByMe)
-		cairo_dock_deinhibate_class ("rhythmbox");
+		cairo_dock_deinhibate_class ("rhythmbox", myIcon);
 CD_APPLET_STOP_END
 
 
@@ -92,12 +93,12 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (myData.bAppliInhibitedByMe && ! myConfig.bInhibateRhythmboxAppli)
 		{
-			cairo_dock_deinhibate_class ("rhythmbox");
+			cairo_dock_deinhibate_class ("rhythmbox", myIcon);
 			myData.bAppliInhibitedByMe = FALSE;
 		}
 		else if (! myData.bAppliInhibitedByMe && myConfig.bInhibateRhythmboxAppli)
 		{
-			myData.bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox");
+			myData.bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox", myIcon);
 		}
 	}
 	

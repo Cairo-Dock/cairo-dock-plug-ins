@@ -16,7 +16,6 @@ CD_APPLET_INCLUDE_MY_VARS
 static void rhythmbox_previous (GtkMenuItem *menu_item, gpointer *data)
 {
 	cd_message ("");
-	
 	g_spawn_command_line_async ("rhythmbox-client --previous", NULL);
 }
 
@@ -52,6 +51,21 @@ static void rhythmbox_music (GtkMenuItem *menu_item, gpointer *data)
 	music_dialog();
 }
 
+static void rhythmbox_show_appli (GtkMenuItem *menu_item, gpointer *data)
+{
+	cd_message ("");
+	GList *pList = cairo_dock_list_existing_appli_with_class ("rhythmbox");
+	Icon *pIcon;
+	GList *pElement;
+	for (pElement = pList; pElement != NULL; pElement = pElement->next)
+	{
+		pIcon = pElement->data;
+		if (CAIRO_DOCK_IS_VALID_APPLI (pIcon))
+		{
+			
+		}
+	}
+}
 
 //*********************************************************************************
 // Informations sur l'applet et l'auteur.

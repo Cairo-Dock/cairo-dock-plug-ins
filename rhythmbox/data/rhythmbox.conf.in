@@ -49,24 +49,30 @@ enable_dialogs=true
 #{in ms.}
 time_dialogs=3000
 
-#F[Animations]
+#F[Behaviour]
 frame_anim=
+
 #r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
-change_animation=1
+change_animation=5
+
+#b Steal the rhythmbox's icon in taskbar ?
+#{It will prevent the rhythmbox's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
+inhibate appli = true
+
 
 #F[Display]
 frame_disp=
+
 #b Display album's cover instead of icon ?
 enable_cover=true
+
 #r[nothing;time elapsed;time left;time in %;n° of track] Information to display on the icon :
 quick-info_type=1
 
-#b Inhibate the rhythmbox's icon in taskbar ?
-#{It will prevent the rhythmbox's icon to appear in the task bar.}
-inhibate appli = true
 
 #F[Personnalisation]
 frame_app =
+
 #S Name of an image for the 'default' icon :
 #{Let t empty to use the default icon.}
 default icon = 
