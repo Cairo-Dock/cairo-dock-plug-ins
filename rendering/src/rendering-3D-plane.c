@@ -475,6 +475,16 @@ void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pAr
 			if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 			{
 				cairo_save (pCairoContext);
+				
+				if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
+				{
+					icon->fAlpha = 1;
+				}
+				else
+				{
+					icon->fAlpha = .25;
+				}
+				
 				if (CAIRO_DOCK_IS_SEPARATOR (icon) && my_pFlatSeparatorSurface[0] != NULL)
 					cd_rendering_one_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock);
 				else
