@@ -12,4 +12,6 @@ void cd_wifi_draw_icon (void);
 
 void cd_wifi_draw_icon_with_effect (cairo_surface_t *pSurface);
 
+void cd_wifi_bubble(void);
+
 #endif

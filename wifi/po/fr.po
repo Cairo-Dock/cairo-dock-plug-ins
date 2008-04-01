@@ -265,8 +265,13 @@ msgstr "Niveau de force du signal"
 
 #: ../data/messages:57 ../data/messages:67 ../data/messages:73
 msgid "Name of an image for the 'no signal' icon :"
-msgstr ""
+msgstr "Nom de l'image 'Aucun Signal' :"
 
-#: ../data/messages:55
-msgid "radium"
-msgstr ""
+msgid "Wifi disabled."
+msgstr "Wifi désactivé."
+
+msgid "Wifi enabled. \n Connected on:"
+msgstr "Wifi activé. \n Connecté sur:"
+
+msgid "Signal Strength:"
+msgstr "Puissance du Signal:"

@@ -53,6 +53,8 @@ typedef struct {
 	gint mlink, prev_mlink;
 	gboolean bAcquisitionOK;
 	
+	gchar *iESSID, *iPreviousESSID;
+	
 	gint checkTimer;
 	gint checkedTime;
 	gint strengthTimer;

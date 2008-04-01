@@ -96,7 +96,6 @@ void cd_wifi_launch_measure (void) {
 	}
 }
 
-
 static float pourcent(float x, float y) {
   float p=0;
   if (x > y) {
@@ -111,6 +110,7 @@ static float pourcent(float x, float y) {
 static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *iMlink, int *iPercentage, CDWifiQuality *iQuality) {
 	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 	gchar *cOneInfopipe, **tcnt;
+	gchar *ESSID = NULL;
 	const gchar *levelName;
 	int flink=0, mlink=0, i=0,prcnt=0;
 	for (i = 0; cInfopipesList[i] != NULL; i ++) {
@@ -122,17 +122,20 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 		else {
 			int c = 0, iNbSpace = 0;
 			gchar *cUtilInfo = NULL;
-			while (cOneInfopipe[c] != '\0') 	{
+			while (cOneInfopipe[c] != '\0') {
 				if (cOneInfopipe[c] == ' ') {
 					iNbSpace ++;
+					if ((iNbSpace == 8) && (ESSID == NULL)) {
+					  ESSID = &cOneInfopipe[c+1];
+					}
 					if (iNbSpace == 11) {
 						cUtilInfo = &cOneInfopipe[c+1];
-						break ;
+						break;
 					}
 				}
 				c ++;
 			}
-			
+			 
 			if (cUtilInfo != NULL) {
 				gchar *str = strchr (cUtilInfo, '=');
 				if (str == NULL) {
@@ -156,6 +159,20 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 	}
 	g_strfreev (cInfopipesList);
 	
+	if (ESSID != NULL) {
+	  gchar *str = strchr (ESSID, '"');
+	  if (str != NULL) {
+	    ESSID = str + 1;
+	    str = strchr (ESSID, '"');
+	    if (str != NULL) {
+	      gchar **str2 = g_strsplit(ESSID, "\"", -1);
+	      ESSID = str2[0];
+	    }
+	    *str = '\0';
+	    cd_message("ESSID: %s", ESSID);
+	  }
+	}
+	
 	*iFlink = flink;
 	*iMlink = mlink;
 	if (prcnt <= 0) {
@@ -177,8 +194,15 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 		*iQuality = WIFI_QUALITY_EXCELLENT;
 	}
 	*iPercentage = prcnt;
+	
+	if (ESSID == NULL) {
+	  ESSID = _D("Unknow");
+	}
+	
+	myData.iESSID = ESSID;
 	return TRUE;
 }
+
 gboolean cd_wifi_getStrength(void) {
 	gchar *cContent = NULL;
 	gsize length=0;
