@@ -165,15 +165,6 @@ msgstr "temps écoulé"
 msgid "time left"
 msgstr "temps restant"
 
-#: ../data/messages:51
-#, c-format
-msgid "time in %n"
-msgstr "temps en %s"
-
-#: ../data/messages:53
-msgid "° of track"
-msgstr "° de piste"
-
 #: ../data/messages:55 ../data/messages:75 ../data/messages:79
 msgid "Personnalisation"
 msgstr "Personnalisation"
@@ -207,60 +198,61 @@ msgstr ""
 
 #: ../data/messages:11
 msgid "Desklet"
-msgstr ""
+msgstr "Desklet"
 
 #: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
-msgstr ""
+msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
-msgstr ""
+msgstr "Position du desklet (x ; y) :"
 
 #: ../data/messages:21
 msgid "Is detached from the dock ?"
-msgstr ""
+msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:23
 msgid "Keep below other windows ?"
-msgstr ""
+msgstr "Garder en-dessous des autres fenêtres ?"
 
 #: ../data/messages:25
 msgid "Keep above other windows ?"
-msgstr ""
+msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr ""
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-"
+"dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
-msgstr ""
+msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:71
 msgid "time in %"
-msgstr ""
+msgstr "temps en %"
 
 #: ../data/messages:73
 msgid "n° of track"
-msgstr ""
+msgstr "n° de piste"
 
 #: ../data/messages:75
-msgid "It will prevent the rhythmbox's icon to appear in the task bar."
-msgstr ""
+msgid "Steal the rhythmbox's icon in taskbar ?"
+msgstr "Voler l'icôone de la barre des tâches ?"
 
 #: ../data/messages:77
-msgid "Inhibate the rhythmbox's icon in taskbar ?"
-msgstr ""
+msgid "It will prevent the rhythmbox's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
+msgstr "Cela empêchera l'icône de Rhythmbox d'apparaître dans la barre des tâaches. L'icône de l'applet se comportera alors comme un lanceur, une appli et une applet."

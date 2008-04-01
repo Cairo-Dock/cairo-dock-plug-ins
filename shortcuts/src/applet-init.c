@@ -25,11 +25,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 	if (myIcon->acName == NULL || *myIcon->acName == '\0')
 		myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);
 	
-	/*if (myDesklet != NULL)
-	{
-		myDesklet->renderer = cd_shortcuts_draw_in_desklet;
-	}*/
-	
 	//\_______________ On charge les icones dans un sous-dock.
 	cd_shortcuts_launch_measure ();  // asynchrone
 	
@@ -49,11 +44,6 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	/*if (myDesklet != NULL)
-	{
-		myDesklet->renderer = cd_shortcuts_draw_in_desklet;
-	}*/
-	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On charge les icones dans un sous-dock.
@@ -64,22 +54,9 @@ CD_APPLET_RELOAD_BEGIN
 		
 		cd_shortcuts_launch_measure ();  // asynchrone
 	}
-	else if (myDesklet != NULL)
+	else if (myDesklet)
 	{
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		/*cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-		cd_shortcuts_load_tree (myData.pDeskletIconList, pCairoContext);
-		
-		GList* ic;
-		Icon *icon;
-		for (ic = myData.pDeskletIconList; ic != NULL; ic = ic->next)
-		{
-			icon = ic->data;
-			icon->fWidth = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
-			icon->fHeight = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
-			cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
-		}
-		cairo_destroy (pCairoContext);*/
 	}
 	else
 	{

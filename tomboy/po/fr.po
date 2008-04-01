@@ -205,10 +205,14 @@ msgstr ""
 msgid "Name of an image for the 'close' icon :"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:43
+#: ../src/tomboy-notifications.c:43 ../src/tomboy-notifications.c:47
 msgid "Add a note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:48
+#: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:53
 msgid "Delete this note"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:48
+msgid "Reload notes"
 msgstr ""

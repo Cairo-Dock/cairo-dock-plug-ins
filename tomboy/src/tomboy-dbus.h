@@ -14,6 +14,8 @@ void onDeleteNote(DBusGProxy *proxy,const gchar *note_uri, const gchar *note_tit
 void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data);
 void onChangeNoteList(DBusGProxy *proxy,const gchar *note_name, gpointer data);
 
+void reload_all_notes (void);
+
 void registerNote(gchar *uri);
 void getAllNotes(void);
 gchar *getNoteTitle(gchar *note_name);

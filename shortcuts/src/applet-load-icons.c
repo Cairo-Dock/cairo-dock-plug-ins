@@ -47,7 +47,7 @@ static GList * _load_icons (GError **erreur)
 			cd_warning ("couldn't detect any drives");  // on decide de poursuivre malgre tout, pour les signets.
 		}
 		
-		if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, NULL))
+		if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, myIcon))
 			cd_warning ("Attention : can't monitor drives");
 		myData.cDisksURI = cFullURI;
 	}

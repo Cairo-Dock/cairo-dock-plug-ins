@@ -90,19 +90,22 @@ msgid "Information"
 msgstr "Information"
 
 #: ../data/messages:15 ../data/messages:35 ../data/messages:39
+#: ../data/messages:41
 msgid "Information to be displayed on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
 #: ../data/messages:17 ../data/messages:37 ../data/messages:41
-#: ../data/messages:49
+#: ../data/messages:49 ../data/messages:43 ../data/messages:51
 msgid "nothing"
 msgstr "Aucune"
 
 #: ../data/messages:19 ../data/messages:39 ../data/messages:43
+#: ../data/messages:45
 msgid "charge"
 msgstr "Charge"
 
 #: ../data/messages:21 ../data/messages:41 ../data/messages:45
+#: ../data/messages:47
 msgid "time"
 msgstr "Temps"
 
@@ -162,19 +165,19 @@ msgstr "en secondes."
 msgid "Interval of time between 2 checks :"
 msgstr "Intervale entre 2 vérifications :"
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:53
 msgid "zoom"
 msgstr "Zoom"
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:55
 msgid "transparency"
 msgstr "Transparence"
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:57
 msgid "draw bar"
 msgstr "Dessiner une barre"
 
-#: ../src/powermanager-draw.c:99
+#: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:68
 msgid ""
 "Laptop on Battery \n"
 " Battery charged at:"
@@ -183,10 +186,11 @@ msgstr ""
 " Batterie chargée a:"
 
 #: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:103
+#: ../src/powermanager-draw.c:68 ../src/powermanager-draw.c:72
 msgid "Estimated time with Charge:"
 msgstr "Temps estimé de Charge:"
 
-#: ../src/powermanager-draw.c:103
+#: ../src/powermanager-draw.c:103 ../src/powermanager-draw.c:72
 msgid ""
 "Laptop on Charge \n"
 " Battery charged at:"
@@ -194,7 +198,7 @@ msgstr ""
 "Portable en Charge \n"
 " Batterie chargée a:"
 
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:49
 msgid "Effet to apply on the icon according to charge :"
 msgstr "Effet à appliquer à l'icône en fonction de la charge :"
 
@@ -204,4 +208,8 @@ msgstr ""
 
 #: ../data/messages:37
 msgid "Quick info"
+msgstr ""
+
+#: ../data/messages:39
+msgid "List of available themes for the analogic display :"
 msgstr ""

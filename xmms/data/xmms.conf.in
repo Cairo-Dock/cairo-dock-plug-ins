@@ -60,7 +60,7 @@ frame_anim=
 #b Animate icon ?
 enable_anim=false
 #r[Bounce;Rotate;Blink;Pulse;Upside-down;Wobbly;Random] Animation when music changes :
-change_animation=1
+change_animation=5
 
 #F[Personnalisation]
 frame_app =

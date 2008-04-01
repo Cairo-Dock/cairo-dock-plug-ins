@@ -42,7 +42,7 @@ gboolean dbus_get_dbus (void)
 		);
 		
 		
-		dbus_g_proxy_add_signal(dbus_proxy_tomboy, "NoteDeleted",  // aie, ce signal n'a pas l'air d'exister dans la version Gutsy de tomboy... :-(
+		dbus_g_proxy_add_signal(dbus_proxy_tomboy, "NoteDeleted",  // aie, ce signal n'a pas l'air d'exister dans la version Gutsy de tomboy (No marshaller for signature of signal 'NoteDeleted') :-(
 			G_TYPE_STRING,
 			G_TYPE_STRING,
 			G_TYPE_INVALID);
@@ -113,8 +113,7 @@ void dbus_detect_tomboy(void)
 void onDeleteNote(DBusGProxy *proxy,const gchar *note_uri, const gchar *note_title, gpointer data)
 {
 	cd_message ("");
-	getAllNotes();
-	update_icon();
+	reload_all_notes ();
 }
 
 void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
@@ -125,6 +124,12 @@ void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 }
 
 void onChangeNoteList(DBusGProxy *proxy,const gchar *note_name, gpointer data)
+{
+	cd_message ("");
+	reload_all_notes ();
+}
+
+void reload_all_notes (void)
 {
 	cd_message ("");
 	getAllNotes();

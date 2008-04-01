@@ -22,7 +22,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 {
 	if (! g_key_file_has_group (pKeyFile, cAnimationName))
 		return NULL;
-	g_print ("%s (%s)\n", __func__, cAnimationName);
+	cd_message ("%s (%s)", __func__, cAnimationName);
 	
 	gchar *cFileName = g_key_file_get_string (pKeyFile, cAnimationName, "file", NULL);
 	if (cFileName != NULL && *cFileName == '\0')
@@ -95,7 +95,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 void penguin_load_theme (gchar *cThemePath)
 {
 	g_return_if_fail (cThemePath != NULL);
-	g_print ("%s (%s)\n", __func__, cThemePath);
+	cd_message ("%s (%s)", __func__, cThemePath);
 	
 	//\___________________ On ouvre le fichier de conf.
 	gchar *cConfFilePath = g_strconcat (cThemePath, "/theme.conf", NULL);
@@ -202,7 +202,7 @@ void penguin_load_theme (gchar *cThemePath)
 
 void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSourceContext)
 {
-	g_print ("%s (%s)\n", __func__, pAnimation->cFilePath);
+	cd_message ("%s (%s)", __func__, pAnimation->cFilePath);
 	if (pAnimation->cFilePath == NULL)
 		return;
 	

@@ -22,7 +22,7 @@ CD_APPLET_INCLUDE_MY_VARS
 gboolean penguin_move_in_dock (gpointer data)
 {
 	static GdkRectangle area;
-	//g_print ("%s ()\n", __func__);
+	//cd_message ("");
 	if (g_bAutoHide && myDock->bAtBottom)
 		return TRUE;
 	
@@ -194,7 +194,7 @@ void penguin_calculate_new_position (PenguinAnimation *pAnimation, int iXMin, in
 				if (iRandom == 0)  // 1 chance sur 3.
 				{
 					myData.iCurrentDirection = 1 - myData.iCurrentDirection;
-					g_print ("myData.iCurrentDirection <- %d\n", myData.iCurrentDirection);
+					cd_debug ("myData.iCurrentDirection <- %d", myData.iCurrentDirection);
 				}
 				else
 				{
@@ -239,6 +239,7 @@ void penguin_advance_to_next_frame (PenguinAnimation *pAnimation)
 				if (! myConfig.bFree)
 				{
 					cairo_save (myDrawContext);  // on n'utilise pas CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL) car il nous cree le pFullIconBuffer qui apres ecrase notre dessin.
+					cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
 					cairo_set_source_rgba (
 						myDrawContext,
 						0, 0, 0, 0);
@@ -272,7 +273,7 @@ void penguin_advance_to_next_frame (PenguinAnimation *pAnimation)
 
 int penguin_choose_movement_animation (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	if (myData.iNbMovmentAnimations == 0)
 		return 0;
 	else
@@ -285,7 +286,7 @@ int penguin_choose_movement_animation (void)
 
 int penguin_choose_go_up_animation (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	if (myData.iNbGoUpAnimations == 0)
 		return penguin_choose_movement_animation ();
 	else
@@ -298,7 +299,7 @@ int penguin_choose_go_up_animation (void)
 
 int penguin_choose_beginning_animation (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	if (myData.iNbBeginningAnimations == 0)
 		return penguin_choose_movement_animation ();
 	else
@@ -311,7 +312,7 @@ int penguin_choose_beginning_animation (void)
 
 int penguin_choose_ending_animation (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	if (myData.iNbEndingAnimations == 0)
 		return penguin_choose_go_up_animation ();
 	else
@@ -324,7 +325,7 @@ int penguin_choose_ending_animation (void)
 
 int penguin_choose_resting_animation (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	if (myData.iNbRestAnimations == 0)
 		return penguin_choose_go_up_animation ();
 	else
@@ -337,7 +338,7 @@ int penguin_choose_resting_animation (void)
 
 int penguin_choose_next_animation (PenguinAnimation *pAnimation)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	int iNewAnimation;
 	if (pAnimation == NULL || pAnimation->bEnding)  // le pingouin est en fin d'animation, on le relance.
 	{
@@ -369,7 +370,7 @@ int penguin_choose_next_animation (PenguinAnimation *pAnimation)
 
 void penguin_set_new_animation (int iNewAnimation)
 {
-	g_print ("%s (%d)\n", __func__, iNewAnimation);
+	cd_message ("%s (%d)", __func__, iNewAnimation);
 	PenguinAnimation *pPreviousAnimation = penguin_get_current_animation ();
 	int iPreviousWidth = (pPreviousAnimation != NULL ? pPreviousAnimation->iFrameWidth : 0);
 	int iPreviousHeight = (pPreviousAnimation != NULL ? pPreviousAnimation->iFrameHeight : 0);
@@ -451,7 +452,7 @@ static gboolean _penguin_restart_delayed (gpointer data)
 	gboolean bInit = GPOINTER_TO_INT (data);
 	if (bInit)
 	{
-		g_print ("le pingouin demarre pour la 1ere fois\n");
+		cd_message ("le pingouin demarre pour la 1ere fois");
 		cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK, CAIRO_DOCK_RUN_FIRST);
 		cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU, CAIRO_DOCK_RUN_FIRST);
 		cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK, CAIRO_DOCK_RUN_FIRST);

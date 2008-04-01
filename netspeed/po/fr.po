@@ -140,7 +140,8 @@ msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #: ../src/applet-netspeed.c:185 ../src/applet-netspeed.c:190
 #: ../src/applet-netspeed.c:183 ../src/applet-netspeed.c:188
-#: ../src/applet-netspeed.c:193
+#: ../src/applet-netspeed.c:193 ../src/applet-netspeed.c:210
+#: ../src/applet-netspeed.c:215
 msgid "TB"
 msgstr "To"
 
@@ -148,17 +149,17 @@ msgid "GB"
 msgstr "Go"
 
 #: ../src/applet-netspeed.c:195 ../src/applet-netspeed.c:193
-#: ../src/applet-netspeed.c:198
+#: ../src/applet-netspeed.c:198 ../src/applet-netspeed.c:220
 msgid "MB"
 msgstr "Mo"
 
 #: ../src/applet-netspeed.c:200 ../src/applet-netspeed.c:198
-#: ../src/applet-netspeed.c:203
+#: ../src/applet-netspeed.c:203 ../src/applet-netspeed.c:225
 msgid "KB"
 msgstr "Ko"
 
 #: ../src/applet-netspeed.c:205 ../src/applet-netspeed.c:203
-#: ../src/applet-netspeed.c:208
+#: ../src/applet-netspeed.c:208 ../src/applet-netspeed.c:230
 msgid "B"
 msgstr "o"
 
@@ -166,7 +167,7 @@ msgstr "o"
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:41
 msgid "Delay between signal checks :"
 msgstr ""
 
@@ -174,6 +175,10 @@ msgstr ""
 msgid "Debug"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:39
 msgid "in milliseconds."
+msgstr ""
+
+#: ../data/messages:37
+msgid "List of available themes for the analogic display :"
 msgstr ""

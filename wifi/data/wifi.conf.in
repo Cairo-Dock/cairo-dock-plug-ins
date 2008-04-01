@@ -53,7 +53,7 @@ delay = 10
 
 #b Use a jauge instead of icônes?
 gauge=false
-#R1[] List of available themes for the analogic display :
+#R1[radium] List of available themes for the analogic display :
 theme = radium
 
 #r[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to strength :
