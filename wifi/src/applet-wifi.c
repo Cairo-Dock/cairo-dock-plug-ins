@@ -125,9 +125,6 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 			while (cOneInfopipe[c] != '\0') {
 				if (cOneInfopipe[c] == ' ') {
 					iNbSpace ++;
-					if ((iNbSpace == 8) && (ESSID == NULL)) {
-					  ESSID = &cOneInfopipe[c+1];
-					}
 					if (iNbSpace == 11) {
 						cUtilInfo = &cOneInfopipe[c+1];
 						break;
@@ -135,7 +132,6 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 				}
 				c ++;
 			}
-			 
 			if (cUtilInfo != NULL) {
 				gchar *str = strchr (cUtilInfo, '=');
 				if (str == NULL) {
@@ -158,20 +154,6 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 		}
 	}
 	g_strfreev (cInfopipesList);
-	
-	if (ESSID != NULL) {
-	  gchar *str = strchr (ESSID, '"');
-	  if (str != NULL) {
-	    ESSID = str + 1;
-	    str = strchr (ESSID, '"');
-	    if (str != NULL) {
-	      gchar **str2 = g_strsplit(ESSID, "\"", -1);
-	      ESSID = str2[0];
-	    }
-	    *str = '\0';
-	    cd_message("ESSID: %s", ESSID);
-	  }
-	}
 	
 	*iFlink = flink;
 	*iMlink = mlink;

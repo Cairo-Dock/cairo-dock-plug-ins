@@ -14,8 +14,8 @@ CD_APPLET_ABOUT (D_("This is the wifi applet\n made by ChAnGFu for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	//cd_wifi_launch_measure();
-	cd_wifi_bubble();
+	cd_wifi_launch_measure();
+	//cd_wifi_bubble();
 CD_APPLET_ON_CLICK_END
 
 

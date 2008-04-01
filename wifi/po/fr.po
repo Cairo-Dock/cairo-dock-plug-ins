@@ -275,3 +275,6 @@ msgstr "Wifi activé. \n Connecté sur:"
 
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
+
+msgid "Unknow"
+msgstr "Iconnu"
