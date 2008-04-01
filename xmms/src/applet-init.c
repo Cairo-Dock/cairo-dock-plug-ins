@@ -10,6 +10,8 @@
 
 CD_APPLET_DEFINITION ("xmms", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
+static gchar *s_cPlayerClass[MY_NB_PLAYERS] = {"xmms", "audacious", "banshee", "exaile"};
+
 static gchar *s_cControlIconName[4] = {"play.svg", "pause.svg", "stop.svg", "broken.svg"};  // en attendant...
 #define _add_icon(i)\
 	pIcon = g_new0 (Icon, 1);\
@@ -51,6 +53,11 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.iPreviousCurrentTime = -1;
 	cd_xmms_launch_measure ();
 	
+	if (myConfig.bStealTaskBarIcon)
+	{
+		cairo_dock_inhibate_class (s_cPlayerClass[myConfig.iPlayer], myIcon);
+	}
+	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
@@ -64,6 +71,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
 	cd_remove_pipes();
+	
+	if (myIcon->cClass != NULL)
+		cairo_dock_deinhibate_class (s_cPlayerClass[myConfig.iPlayer], myIcon);
 CD_APPLET_STOP_END
 
 
@@ -103,6 +113,17 @@ CD_APPLET_RELOAD_BEGIN
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
+		if (myIcon->cClass != NULL)  // on est en trian d'inhiber l'appli.
+		{
+			if (! myConfig.bStealTaskBarIcon || strcmp (myIcon->cClass, s_cPlayerClass[myConfig.iPlayer]) != 0)  // on ne veut plus l'inhiber ou on veut inhiber une autre.
+			{
+				cairo_dock_deinhibate_class (myIcon->cClass, myIcon);
+			}
+		}
+		if (myConfig.bStealTaskBarIcon && myIcon->cClass == NULL)  // on comence a inhiber l'appli si on ne le faisait pas, ou qu'on s'est arrete.
+		{
+			cairo_dock_inhibate_class (s_cPlayerClass[myConfig.iPlayer], myIcon);
+		}
 		// inutile de relancer le timer, sa frequence ne change pas. Inutile aussi de faire 1 iteration ici, les modifs seront prises en compte a la prochaine iteration, dans au plus 1s.
 	}
 	else {  // on redessine juste l'icone.

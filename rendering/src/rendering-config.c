@@ -36,7 +36,6 @@ extern double my_fRainbowMagnitude;
 extern int my_iRainbowNbIconsMin;
 extern double my_fRainbowConeOffset;
 
-
 void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
 {
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.

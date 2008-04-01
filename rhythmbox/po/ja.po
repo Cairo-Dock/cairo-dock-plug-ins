@@ -87,15 +87,15 @@ msgstr "ランダム"
 msgid "Animation when music changes :"
 msgstr "音楽切り替わり時のアニメーション:"
 
-#: ../data/messages:39 ../data/messages:59
+#: ../data/messages:39 ../data/messages:59 ../data/messages:63
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:41 ../data/messages:61
+#: ../data/messages:41 ../data/messages:61 ../data/messages:65
 msgid "Display album's cover instead of icon ?"
 msgstr "アイコンの代わりにアルバムのカバーを表示？"
 
-#: ../data/messages:43 ../data/messages:63
+#: ../data/messages:43 ../data/messages:63 ../data/messages:67
 msgid "Information to display on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
@@ -150,25 +150,25 @@ msgstr "情報"
 msgid "Icon"
 msgstr "アイコン"
 
-#: ../data/messages:45 ../data/messages:65
+#: ../data/messages:45 ../data/messages:65 ../data/messages:69
 msgid "nothing"
 msgstr "なし"
 
-#: ../data/messages:47 ../data/messages:67
+#: ../data/messages:47 ../data/messages:67 ../data/messages:71
 msgid "time elapsed"
 msgstr "経過時間"
 
-#: ../data/messages:49 ../data/messages:69
+#: ../data/messages:49 ../data/messages:69 ../data/messages:73
 msgid "time left"
 msgstr "残り時間"
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:71 ../data/messages:75
 #, c-format
-msgid "time in %n"
+msgid "time in %"
 msgstr "時間の割合"
 
-#: ../data/messages:53
-msgid "° of track"
+#: ../data/messages:53 ../data/messages:73 ../data/messages:77
+msgid "n° of track"
 msgstr "トラック番号"
 
 #: ../data/messages:55 ../data/messages:75 ../data/messages:79
@@ -204,55 +204,53 @@ msgstr "'リンク切れ' アイコンの画像の名前 :"
 
 #: ../data/messages:11
 msgid "Desklet"
-msgstr ""
+msgstr "デスクレット"
 
 #: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
-msgstr ""
+msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
-msgstr ""
+msgstr "デスクレットの位置（X ; Y） :"
 
 #: ../data/messages:21
 msgid "Is detached from the dock ?"
-msgstr ""
+msgstr "ドックから分離？"
 
 #: ../data/messages:23
 msgid "Keep below other windows ?"
-msgstr ""
+msgstr "他ウィンドウより常に下に？"
 
 #: ../data/messages:25
 msgid "Keep above other windows ?"
-msgstr ""
+msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
-msgstr ""
-
-#: ../data/messages:71
-msgid "time in %"
-msgstr ""
-
-#: ../data/messages:73
-msgid "n° of track"
-msgstr ""
+msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:75
 msgid "It will prevent the rhythmbox's icon to appear in the task bar."
@@ -260,4 +258,18 @@ msgstr ""
 
 #: ../data/messages:77
 msgid "Inhibate the rhythmbox's icon in taskbar ?"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Behaviour"
+msgstr ""
+
+#: ../data/messages:59
+msgid ""
+"It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+"icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+
+#: ../data/messages:61
+msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr ""

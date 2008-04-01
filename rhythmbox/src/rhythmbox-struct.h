@@ -29,7 +29,7 @@ typedef struct {
 	MyAppletQuickInfoType quickInfoType;
 	gchar *defaultTitle;
 	gchar *cUserImage[PLAYER_NB_STATUS];
-	gboolean bInhibateRhythmboxAppli;
+	gboolean bStealTaskBarIcon;
 	} AppletConfig;
 
 typedef struct {
@@ -47,7 +47,6 @@ typedef struct {
 	const gchar *playing_title;
 	gchar *playing_cover;
 	guint iSidCheckCover;
-	gboolean bAppliInhibitedByMe;
 	} AppletData;
 
 

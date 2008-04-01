@@ -90,15 +90,15 @@ msgstr "aléatoire"
 msgid "Animation when music changes :"
 msgstr "Animation au changement de musique"
 
-#: ../data/messages:39 ../data/messages:59
+#: ../data/messages:39 ../data/messages:59 ../data/messages:63
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:41 ../data/messages:61
+#: ../data/messages:41 ../data/messages:61 ../data/messages:65
 msgid "Display album's cover instead of icon ?"
 msgstr "Afficher l'album au lieu de l'icône ?"
 
-#: ../data/messages:43 ../data/messages:63
+#: ../data/messages:43 ../data/messages:63 ../data/messages:67
 msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
@@ -153,15 +153,15 @@ msgstr "Information"
 msgid "Icon"
 msgstr "Icône"
 
-#: ../data/messages:45 ../data/messages:65
+#: ../data/messages:45 ../data/messages:65 ../data/messages:69
 msgid "nothing"
 msgstr "rien"
 
-#: ../data/messages:47 ../data/messages:67
+#: ../data/messages:47 ../data/messages:67 ../data/messages:71
 msgid "time elapsed"
 msgstr "temps écoulé"
 
-#: ../data/messages:49 ../data/messages:69
+#: ../data/messages:49 ../data/messages:69 ../data/messages:73
 msgid "time left"
 msgstr "temps restant"
 
@@ -204,7 +204,9 @@ msgstr "Desklet"
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -212,7 +214,9 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -234,25 +238,43 @@ msgstr "Garder au-dessus des autres fenêtres ?"
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-"
-"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:75
 msgid "time in %"
 msgstr "temps en %"
 
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:77
 msgid "n° of track"
 msgstr "n° de piste"
 
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:61
 msgid "Steal the rhythmbox's icon in taskbar ?"
-msgstr "Voler l'icôone de la barre des tâches ?"
+msgstr "Voler l'icône de la barre des tâches ?"
+
+#: ../data/messages:77 ../data/messages:59
+msgid ""
+"It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+"icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+"Cela empêchera l'icône de Rhythmbox d'apparaître dans la barre des tâaches. "
+"L'icône de l'applet se comportera alors comme un lanceur, une appli et une "
+"applet."
+
+#: ../data/messages:75
+msgid "It will prevent the rhythmbox's icon to appear in the task bar."
+msgstr ""
 
 #: ../data/messages:77
-msgid "It will prevent the rhythmbox's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
-msgstr "Cela empêchera l'icône de Rhythmbox d'apparaître dans la barre des tâaches. L'icône de l'applet se comportera alors comme un lanceur, une appli et une applet."
+msgid "Inhibate the rhythmbox's icon in taskbar ?"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Behaviour"
+msgstr ""

@@ -37,11 +37,11 @@ double my_fParaboleMagnitude;
 int my_iParaboleTextGap;
 gboolean my_bDrawTextWhileUnfolding;
 
-int my_iSpaceBetweenRows = 10;
-int my_iSpaceBetweenIcons = 0;
-double my_fRainbowMagnitude = .3;
-int my_iRainbowNbIconsMin = 1;
-double my_fRainbowConeOffset = (60./180.*G_PI);
+int my_iSpaceBetweenRows;
+int my_iSpaceBetweenIcons;
+double my_fRainbowMagnitude;
+int my_iRainbowNbIconsMin;
+double my_fRainbowConeOffset;
 
 
 CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)

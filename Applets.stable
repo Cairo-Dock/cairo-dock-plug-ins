@@ -1,0 +1,24 @@
+###Core plug-ins :
+###you *should* integrate them in a whole, as they extend the dock's functionnalities.
+rendering
+gnome-integration
+xfce-integration
+shortcuts
+###Stable applets, considered as finished :
+clock
+logout
+dustbin
+showDesklets
+Xgamma
+alsaMixer
+weather
+###Stable applets, but still upgraded from time to time :
+terminal
+rhythmbox
+systray
+###Last applets, stable as far as we know, may still be under development :
+Cairo-Penguin
+powermanager
+wifi
+xmms
+###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.

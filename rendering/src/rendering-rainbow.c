@@ -78,7 +78,73 @@ void cd_rendering_render_rainbow (CairoDock *pDock)
 	
 	//\____________________ On dessine les icones avec leurs etiquettes.
 	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
-	cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
+	///cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
+	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	if (pFirstDrawnElement == NULL)
+		return;
+
+	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex)/** * pDock->fMagnitudeMax*/;
+	Icon *icon;
+	int iWidth = pDock->iCurrentWidth;
+	gboolean bHorizontalDock = pDock->bHorizontalDock;
+	GList *ic = pFirstDrawnElement;
+	do
+	{
+		icon = ic->data;
+
+		cairo_save (pCairoContext);
+		cairo_dock_render_one_icon (icon, pCairoContext, bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, ! g_bTextAlwaysHorizontal, pDock->iCurrentWidth);
+		
+		if (g_bTextAlwaysHorizontal && icon->pTextBuffer != NULL && icon->fScale > 1.01 && (! g_bLabelForPointedIconOnly || icon->bPointed) && icon->iCount == 0)  // 1.01 car sin(pi) = 1+epsilon :-/
+		{
+			double fOffsetX = -icon->fTextXOffset + icon->fWidthFactor * icon->fWidth * icon->fScale / 2;
+			if (fOffsetX < - icon->fDrawX)
+				fOffsetX = - icon->fDrawX;
+			else if (icon->fDrawX + fOffsetX + icon->iTextWidth > iWidth)
+				fOffsetX = iWidth - icon->iTextWidth - icon->fDrawX;
+			if (icon->fOrientation != 0 && ! g_bTextAlwaysHorizontal)
+			{
+				cairo_rotate (pCairoContext, icon->fOrientation);
+			}
+			/*if (fRatio < 1)  // bof, finalement spa top de reduire le texte.
+				cairo_scale (pCairoContext,
+					fRatio,
+					fRatio);*/
+			if (! bHorizontalDock && g_bTextAlwaysHorizontal)
+			{
+				cairo_set_source_surface (pCairoContext,
+					icon->pTextBuffer,
+					0,
+					0);
+			}
+			else if (bHorizontalDock)
+				cairo_set_source_surface (pCairoContext,
+					icon->pTextBuffer,
+					fOffsetX,
+					g_bDirectionUp ? -g_iLabelSize : icon->fHeight * icon->fScale - icon->fTextYOffset);
+			else
+				cairo_set_source_surface (pCairoContext,
+					icon->pTextBuffer,
+					g_bDirectionUp ? -g_iLabelSize : icon->fHeight * icon->fScale - icon->fTextYOffset,
+					fOffsetX);
+			
+			double fMagnitude;
+			if (g_bLabelForPointedIconOnly)
+			{
+				fMagnitude = fDockMagnitude;  // (icon->fScale - 1) / g_fAmplitude / sin (icon->fPhase);  // sin (phi ) != 0 puisque fScale > 1.
+			}
+			else
+			{
+				fMagnitude = (icon->fScale - 1) / g_fAmplitude / pDock->fMagnitudeMax;
+				fMagnitude *= (fMagnitude * g_fLabelAlphaThreshold + 1) / (g_fLabelAlphaThreshold + 1);
+			}
+			cairo_paint_with_alpha (pCairoContext, fMagnitude);
+		}
+		
+		cairo_restore (pCairoContext);
+
+		ic = cairo_dock_get_next_element (ic, pDock->icons);
+	} while (ic != pFirstDrawnElement);
 	
 	cairo_destroy (pCairoContext);
 #ifdef HAVE_GLITZ

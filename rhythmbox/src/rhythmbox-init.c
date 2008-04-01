@@ -48,9 +48,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 		rhythmbox_set_surface (PLAYER_BROKEN);
 	}
 	
-	if (myConfig.bInhibateRhythmboxAppli)
+	if (myConfig.bStealTaskBarIcon)
 	{
-		myData.bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox", myIcon);
+		cairo_dock_inhibate_class ("rhythmbox", myIcon);
 	}
 	//Enregistrement des notifications
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -68,7 +68,7 @@ CD_APPLET_STOP_BEGIN
 	
 	rhythmbox_dbus_disconnect_from_bus ();
 	
-	if (myData.bAppliInhibitedByMe)
+	if (myIcon->cClass != NULL)
 		cairo_dock_deinhibate_class ("rhythmbox", myIcon);
 CD_APPLET_STOP_END
 
@@ -91,14 +91,13 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myData.bAppliInhibitedByMe && ! myConfig.bInhibateRhythmboxAppli)
+		if (myIcon->cClass != NULL && ! myConfig.bStealTaskBarIcon)
 		{
 			cairo_dock_deinhibate_class ("rhythmbox", myIcon);
-			myData.bAppliInhibitedByMe = FALSE;
 		}
-		else if (! myData.bAppliInhibitedByMe && myConfig.bInhibateRhythmboxAppli)
+		else if (myIcon->cClass == NULL && myConfig.bStealTaskBarIcon)
 		{
-			myData.bAppliInhibitedByMe = cairo_dock_inhibate_class ("rhythmbox", myIcon);
+			cairo_dock_inhibate_class ("rhythmbox", myIcon);
 		}
 	}
 	

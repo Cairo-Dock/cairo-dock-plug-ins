@@ -39,6 +39,7 @@ typedef struct {
 	MyAppletQuickInfoType quickInfoType;
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	MyPlayerType iPlayer;
+	gboolean bStealTaskBarIcon;
 } AppletConfig;
 
 typedef struct {

@@ -141,7 +141,8 @@ msgstr "Laissez vide pour utiliser l'icône par défaut."
 #: ../src/applet-netspeed.c:185 ../src/applet-netspeed.c:190
 #: ../src/applet-netspeed.c:183 ../src/applet-netspeed.c:188
 #: ../src/applet-netspeed.c:193 ../src/applet-netspeed.c:210
-#: ../src/applet-netspeed.c:215
+#: ../src/applet-netspeed.c:215 ../src/applet-netspeed.c:211
+#: ../src/applet-netspeed.c:216
 msgid "TB"
 msgstr "To"
 
@@ -150,16 +151,19 @@ msgstr "Go"
 
 #: ../src/applet-netspeed.c:195 ../src/applet-netspeed.c:193
 #: ../src/applet-netspeed.c:198 ../src/applet-netspeed.c:220
+#: ../src/applet-netspeed.c:221
 msgid "MB"
 msgstr "Mo"
 
 #: ../src/applet-netspeed.c:200 ../src/applet-netspeed.c:198
 #: ../src/applet-netspeed.c:203 ../src/applet-netspeed.c:225
+#: ../src/applet-netspeed.c:226
 msgid "KB"
 msgstr "Ko"
 
 #: ../src/applet-netspeed.c:205 ../src/applet-netspeed.c:203
 #: ../src/applet-netspeed.c:208 ../src/applet-netspeed.c:230
+#: ../src/applet-netspeed.c:231
 msgid "B"
 msgstr "o"
 

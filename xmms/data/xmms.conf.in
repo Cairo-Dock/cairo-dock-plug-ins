@@ -44,23 +44,36 @@ on widget layer=false
 frame1 =
 #r[XMMS;Audacious;Banshee;Exaile] Player to control:
 current-player=0
+
+#b Steal the rhythmbox's icon in taskbar ?
+#{It will prevent the rhythmbox's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
+inhibate appli = true
+
+
+#F[Display]
+frame_disp=
+
 #r[Nothing;Time Elapsed;Time Left;N° of track] Information to display on the icon :
 quick-info_type=1
+
 #b Activate extended desklet mode ?
 extended_desklet=false
 
+
 #F[Action on music change]
 frame_info=
-#b Put a info-bubble ?
+#b Show an info-bubble ?
 enable_dialogs=true
 #i Time length of info-bubbles :
 #{in ms.}
 time_dialogs=3000
 frame_anim=
+
 #b Animate icon ?
-enable_anim=false
-#r[Bounce;Rotate;Blink;Pulse;Upside-down;Wobbly;Random] Animation when music changes :
+enable_anim=true
+#r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
 change_animation=5
+
 
 #F[Personnalisation]
 frame_app =
