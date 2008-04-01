@@ -43,7 +43,7 @@ void update_icon(void)
 }
 
 gchar *get_hours_minutes(int x) {
-  gchar *time;
+  gchar *time=_D("None");
   int h=0, m=0;
   m = x / 60;
   h = m / 60;

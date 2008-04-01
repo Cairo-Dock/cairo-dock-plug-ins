@@ -165,6 +165,7 @@ int get_stats(gchar *dataType)
 	}
 	g_ptr_array_free (ptrarray, TRUE);
 	
+	cd_debug ("PowerManager [%s]: %d", dataType, y); 
 	return y;  /// a quoi servent x et col alors ??
 }
 
