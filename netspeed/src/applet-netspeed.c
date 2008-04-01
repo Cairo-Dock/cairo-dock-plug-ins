@@ -179,6 +179,7 @@ temps precedent : %llu \n temps courant : %llu \n Diff %llu \n sumRate : %llu \n
 			{
 				make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) sumRate / maxRate);
 			}
+			CD_APPLET_REDRAW_MY_ICON
 			time = newTime;
 			nUp = newNUp;
 			nDown = newNDown;
