@@ -1,0 +1,188 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
+#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2007-12-11\n"
+"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icône"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Taille d'icône souhaitée pour cette applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "largeur :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "hauteur :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+
+msgid "Module"
+msgstr "Module"
+
+#: ../data/messages:11
+msgid "Icon's name :"
+msgstr "Nom de l'icône :"
+
+#: ../data/messages:15 ../data/messages:35
+msgid "Information"
+msgstr "Information"
+
+#: ../data/messages:19
+msgid "Information to display on the icon :"
+msgstr "Information a afficher sur l'icon :"
+
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:15
+#: ../src/applet-notifications.c:13
+msgid ""
+"This is the rame applet\n"
+" made by parAdOxxx_ZeRo for Cairo-Dock"
+msgstr ""
+"Ceci est l'applet rame\n"
+" écrite par parAdOxxx_ZeRo pour Cairo-Dock"
+
+#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:36
+msgid "Waiting"
+msgstr "Waiting"
+
+#: ../data/messages:11 ../data/messages:19 ../data/messages:53
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:13 ../data/messages:21 ../data/messages:55
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:15 ../data/messages:23 ../data/messages:57
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimension du desklet (largeur x hauteur) :"
+
+#: ../data/messages:17 ../data/messages:25 ../data/messages:59
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
+
+#: ../data/messages:19 ../data/messages:27 ../data/messages:61
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Position du desklet (x ; y) :"
+
+#: ../data/messages:21 ../data/messages:29 ../data/messages:63
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "Est-il détaché du dock ?"
+
+#: ../data/messages:23 ../data/messages:31 ../data/messages:65
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Garder en-dessous des autres fenêtres ?"
+
+#: ../data/messages:25 ../data/messages:33 ../data/messages:67
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Garder au-dessus des autres fenêtres ?"
+
+#: ../data/messages:27 ../data/messages:35 ../data/messages:69
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:29 ../data/messages:37 ../data/messages:71
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Garder sur la couche des widgets ?"
+
+#: ../data/messages:13 ../data/messages:33
+msgid "Configuration"
+msgstr "Configuration"
+
+#: ../data/messages:27 ../data/messages:31
+msgid "Personnalisation"
+msgstr "Personnalisation"
+
+#: ../data/messages:29 ../data/messages:33 ../data/messages:37
+#: ../data/messages:41 ../data/messages:45 ../data/messages:49
+msgid "Let t empty to use the default icon."
+msgstr "Laissez vide pour utiliser l'icône par défaut."
+
+#: ../src/applet-rame.c:185 ../src/applet-rame.c:190
+#: ../src/applet-rame.c:183 ../src/applet-rame.c:188
+#: ../src/applet-rame.c:193 ../src/applet-rame.c:210
+#: ../src/applet-rame.c:215 ../src/applet-rame.c:211
+#: ../src/applet-rame.c:216
+msgid "TB"
+msgstr "To"
+
+msgid "GB"
+msgstr "Go"
+
+#: ../src/applet-rame.c:195 ../src/applet-rame.c:193
+#: ../src/applet-rame.c:198 ../src/applet-rame.c:220
+#: ../src/applet-rame.c:221
+msgid "MB"
+msgstr "Mo"
+
+#: ../src/applet-rame.c:200 ../src/applet-rame.c:198
+#: ../src/applet-rame.c:203 ../src/applet-rame.c:225
+#: ../src/applet-rame.c:226
+msgid "KB"
+msgstr "Ko"
+
+#: ../src/applet-rame.c:205 ../src/applet-rame.c:203
+#: ../src/applet-rame.c:208 ../src/applet-rame.c:230
+#: ../src/applet-rame.c:231
+msgid "B"
+msgstr "o"
+
+#: ../data/messages:37
+msgid "in seconds."
+msgstr ""
+
+#: ../data/messages:39 ../data/messages:41
+msgid "Delay between signal checks :"
+msgstr ""
+
+#: ../src/applet-notifications.c:38
+msgid "Debug"
+msgstr ""
+
+#: ../data/messages:37 ../data/messages:39
+msgid "in milliseconds."
+msgstr ""
+
+#: ../data/messages:37
+msgid "List of available themes for the analogic display :"
+msgstr ""
