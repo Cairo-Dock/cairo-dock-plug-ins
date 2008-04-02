@@ -32,7 +32,37 @@ void update_icon(void)
 			}
 		}
 		
-		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.battery_charge / 100);
+		//make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.battery_charge / 100);
+		myData.previously_on_battery = myData.on_battery;
+		myData.previous_battery_charge = myData.battery_charge;
+		
+		if(myData.on_battery)
+		{
+			if(myData.battery_charge >= 95)
+				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_44.svg") }
+			else if(myData.battery_charge >= 65)
+				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_34.svg") }
+			else if(myData.battery_charge >= 35)
+				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_24.svg") }
+			else if(myData.battery_charge >= 5)
+				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_14.svg") }
+			else
+				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_04.svg") }
+		}
+		else
+		{
+			if(myData.battery_charge >= 95)
+				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_44.svg") }
+			else if(myData.battery_charge >= 65)
+				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_34.svg") }
+			else if(myData.battery_charge >= 35)
+				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_24.svg") }
+			else if(myData.battery_charge >= 5)
+				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_14.svg") }
+			else
+				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_04.svg") }
+		}
+		
 	}
 	else
 	{
