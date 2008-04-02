@@ -27,10 +27,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
   CD_APPLET_ADD_SUB_MENU ("PowerManager", pSubMenu, CD_APPLET_MY_MENU)
 	if (myData.dbus_enable)
 	{
-	    CD_APPLET_ADD_IN_MENU (_D("Halt"), power_halt, pSubMenu)
-		  CD_APPLET_ADD_IN_MENU (_D("Hibernate"), power_hibernate, pSubMenu)
-		  CD_APPLET_ADD_IN_MENU (_D("Suspend"), power_suspend, pSubMenu)
-		  CD_APPLET_ADD_IN_MENU (_D("Reboot"), power_reboot, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (_D("Halt"), power_halt, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (_D("Hibernate"), power_hibernate, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (_D("Suspend"), power_suspend, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (_D("Reboot"), power_reboot, pSubMenu)
 	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END

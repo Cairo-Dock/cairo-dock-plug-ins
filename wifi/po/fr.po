@@ -156,7 +156,7 @@ msgid "Effet to apply on the icon according to strength :"
 msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
 #: ../data/messages:51
-msgid "Use a jauge instead of icônes?"
+msgid "Use a jauge instead of icons?"
 msgstr "Utiliser une jauge au lieu des icônes?"
 
 #: ../data/messages:53
@@ -257,7 +257,7 @@ msgstr "Personnalisation"
 #: ../data/messages:85 ../data/messages:79 ../data/messages:83
 #: ../data/messages:87 ../data/messages:91
 msgid "Let t empty to use the default icon."
-msgstr "Laissez vide poue uriliser l'icône par défaut."
+msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #: ../data/messages:21
 msgid "Signal Strength level"
@@ -276,5 +276,5 @@ msgstr "Wifi activé. \n Connecté sur:"
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 
-msgid "Unknow"
+msgid "Unknown"
 msgstr "Iconnu"

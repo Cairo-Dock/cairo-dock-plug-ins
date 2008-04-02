@@ -35,7 +35,7 @@ gchar* power_battery_name(void) {
     closedir(dir_fd);
   }
     
-  cd_message ("Battery Name: %s \n",battery);
+  cd_message ("Battery Name: %s",battery);
   return battery;
 }
 
@@ -142,7 +142,7 @@ int get_stats(gchar *dataType)
 			G_TYPE_INT,
 			G_TYPE_INT,
 			G_TYPE_INVALID));
-		
+	
 	dbus_g_proxy_call (dbus_proxy_stats, "GetData", NULL,
 		 G_TYPE_STRING, dataType,
 		 G_TYPE_INVALID,

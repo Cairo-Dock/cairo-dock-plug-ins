@@ -16,8 +16,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
 	
-	myConfig.cThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
-	cd_message("gauge : Theme(%s)\n",myConfig.cThemePath);
+	///myConfig.cThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
+	///cd_message("gauge : Theme(%s)\n",myConfig.cThemePath);
 CD_APPLET_GET_CONFIG_END
 
 
@@ -25,7 +25,6 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cThemePath);
-	myConfig.cThemePath = NULL;
 	
 CD_APPLET_RESET_CONFIG_END
 

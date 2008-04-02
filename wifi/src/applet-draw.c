@@ -151,9 +151,9 @@ void cd_wifi_draw_icon_with_effect (cairo_surface_t *pSurface) {
 
 void cd_wifi_bubble(void) {
   if(myData.iQuality == WIFI_QUALITY_NO_SIGNAL) {
-	  cairo_dock_show_temporary_dialog ("%s", myIcon, myContainer, 6000, _D("Wifi disabled."));
+	  cairo_dock_show_temporary_dialog ("%s", myIcon, myContainer, 6000, D_("Wifi disabled."));
 	}
 	else {
-	  cairo_dock_show_temporary_dialog ("%s %s \n %s %d%%", myIcon, myContainer, 6000, _D("Wifi enabled. \n Connected on:"), myData.iESSID, _D("Signal Strength:"), myData.prcnt);
+	  cairo_dock_show_temporary_dialog ("%s %s \n %s %d%%", myIcon, myContainer, 6000, D_("Wifi enabled. \n Connected on:"), myData.cESSID, D_("Signal Strength:"), myData.prcnt);
 	}
 }

@@ -109,9 +109,8 @@ static float pourcent(float x, float y) {
 }
 static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *iMlink, int *iPercentage, CDWifiQuality *iQuality) {
 	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
-	gchar *cOneInfopipe, **tcnt;
-	gchar *ESSID = NULL;
-	const gchar *levelName;
+	gchar *cOneInfopipe;
+	const gchar *ESSID = NULL;
 	int flink=0, mlink=0, i=0,prcnt=0;
 	for (i = 0; cInfopipesList[i] != NULL; i ++) {
 		cOneInfopipe = cInfopipesList[i];
@@ -125,6 +124,9 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 			while (cOneInfopipe[c] != '\0') {
 				if (cOneInfopipe[c] == ' ') {
 					iNbSpace ++;
+					if ((iNbSpace == 8) && (ESSID == NULL)) { /// plutot que de compter les espaces, il est plus prudent de compter les mots. En effet les espaces on n'est pas sur qu'ils vont pas changer.
+					  ESSID = &cOneInfopipe[c+1];
+					}
 					if (iNbSpace == 11) {
 						cUtilInfo = &cOneInfopipe[c+1];
 						break;
@@ -151,9 +153,27 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 				}
 			}
 			
-		}
+		}  /// que fait-on des autres lignes ?? seule la derniere semble etre importante.
 	}
-	g_strfreev (cInfopipesList);
+	
+	const gchar *ESSID_ok = NULL;
+	if (ESSID != NULL) {
+	  gchar *str = strchr (ESSID, '"');
+	  if (str != NULL) {
+	    str ++;
+	    gchar *str2 = strchr (str, '"');
+	    if (str2 != NULL) {
+	      *str2 = '\0';
+	      //gchar **str2 = g_strsplit(ESSID, "\"", -1);
+	      //ESSID = str2[0];
+	      ESSID_ok = str;
+	      cd_message("ESSID: %s", ESSID_ok);
+	    }
+	  }
+	}
+	if (ESSID_ok == NULL) {
+		ESSID_ok = D_("Unknown");
+	}
 	
 	*iFlink = flink;
 	*iMlink = mlink;
@@ -177,11 +197,10 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 	}
 	*iPercentage = prcnt;
 	
-	if (ESSID == NULL) {
-	  ESSID = _D("Unknow");
-	}
+	g_free (myData.cESSID);
+	myData.cESSID = g_strdup (ESSID_ok);
 	
-	myData.iESSID = ESSID;
+	g_strfreev (cInfopipesList);
 	return TRUE;
 }
 

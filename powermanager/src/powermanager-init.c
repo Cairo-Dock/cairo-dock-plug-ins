@@ -66,7 +66,7 @@ CD_APPLET_STOP_BEGIN
 	{
 		dbus_disconnect_from_bus ();
 		
-		if(myData.battery_present)
+		if(myData.checkLoop != 0)
 		{
 			g_source_remove (myData.checkLoop);
 			myData.checkLoop = 0;
@@ -84,7 +84,7 @@ CD_APPLET_RELOAD_BEGIN
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
-	if (CD_APPLET_MY_CONFIG_CHANGED)  // si la frequence du timer passe en conf, il faudra l'arreter et le relancer.
+	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		if(myData.checkLoop != 0)  // la frequence peut avoir change.
 		{
@@ -103,7 +103,7 @@ CD_APPLET_RELOAD_BEGIN
 			
 			free_cd_Gauge(myData.pGauge);
 			myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-						
+			
 			myData.previously_on_battery = -1;  // pour forcer le redessin.
 			myData.previous_battery_charge = -1;
 			myData.previous_battery_time = -1;

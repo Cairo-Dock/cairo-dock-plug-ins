@@ -42,35 +42,39 @@ void update_icon(void)
 	//Il faut recharger l'icône car elle ne se met pas a jour a tout les coups
 }
 
-gchar *get_hours_minutes(int x) {
-  gchar *time=_D("None");
-  int h=0, m=0;
-  m = x / 60;
-  h = m / 60;
-  m = m - (h * 60);
-  if (m > 0)
-  {
-    time = g_strdup_printf("%dm", m);
-  }
-  if (h > 0)
-  {
-    time = g_strdup_printf("%dh%dm", h, m);
-  }
-  cd_message("%dh%dm", h, m);
-  return time;
+gchar *get_hours_minutes(int iTimeInSeconds) {
+	gchar *time;
+	int h=0, m=0;
+	m = iTimeInSeconds / 60;
+	h = m / 60;
+	m = m - (h * 60);
+	if (h > 0)
+	{
+		time = g_strdup_printf("%dh%02dm", h, m);
+	}
+	else if (m > 0)
+	{
+		time = g_strdup_printf("%dm", m);
+	}
+	else
+		time = g_strdup (D_("None"));
+	
+	cd_message("%dh%dm", h, m);
+	return time;
 }
 
 void cd_powermanager_bubble(void)
 {
-  gchar *hms = get_hours_minutes(myData.battery_time);
-  if(myData.on_battery)
+	gchar *hms = get_hours_minutes(myData.battery_time);
+	if(myData.on_battery)
 	{
-	  cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, _D("Laptop on Battery \n Battery charged at:"), myData.battery_charge, _D("Estimated time with Charge:"), hms);
+	  cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Battery \n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 	}
 	else
 	{
-	  cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, _D("Laptop on Charge \n Battery charged at:"), myData.battery_charge, _D("Estimated time with Charge:"), hms);
+	  cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Charge \n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 	}
+	g_free (hms);
 }
 
 void cd_powermanager_set_surface (gchar *svgFile) {	

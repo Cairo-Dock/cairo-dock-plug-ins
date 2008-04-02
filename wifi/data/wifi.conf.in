@@ -42,6 +42,11 @@ keep above=false
 on widget layer=false
 
 
+##b Use a jauge instead of icons?
+#gauge=false
+##R1[radium] List of available themes for the analogic display :
+#theme = radium
+
 [Configuration]
 #F[Information]
 frame_info=
@@ -51,10 +56,8 @@ signal_type=2
 #{in seconds.}
 delay = 10
 
-#b Use a jauge instead of icônes?
-gauge=false
-#R1[radium] List of available themes for the analogic display :
-theme = radium
+#F[Display]
+frame_dsip=
 
 #r[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to strength :
 effect=0

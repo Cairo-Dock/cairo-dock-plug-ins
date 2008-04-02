@@ -18,8 +18,8 @@ CD_APPLET_INIT_BEGIN (erreur)
 	}
 	
 	//Initialisation de la jauge
-	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+	///double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+	///myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 	
 	cd_wifi_launch_measure();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -65,9 +65,9 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		//On recharge la jauge
-		free_cd_Gauge(myData.pGauge);
+		/**free_cd_Gauge(myData.pGauge);
 		double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	  myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+		myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);*/
 		cd_wifi_launch_measure ();  // asynchrone
 	}
 	else {  // on redessine juste l'icone.

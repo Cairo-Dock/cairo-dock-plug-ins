@@ -20,12 +20,12 @@ CD_APPLET_ON_CLICK_END
 
 
 static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer *data) {
-		if (myData.iSidTimer != 0) {
-		  g_source_remove (myData.iSidTimer);
-		  myData.iSidTimer = 0;
-	  }
-	  myConfig.iCheckInterval = myConfig.dCheckInterval;
-	  cd_wifi_launch_measure();
+	if (myData.iSidTimer != 0) {
+		g_source_remove (myData.iSidTimer);
+		myData.iSidTimer = 0;
+	}
+	myConfig.iCheckInterval = myConfig.dCheckInterval;
+	cd_wifi_launch_measure();
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
