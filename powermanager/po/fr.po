@@ -188,7 +188,7 @@ msgstr ""
 #: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:103
 #: ../src/powermanager-draw.c:68 ../src/powermanager-draw.c:72
 msgid "Estimated time with Charge:"
-msgstr "Temps estimé de Charge:"
+msgstr "Autonomie estimé:"
 
 #: ../src/powermanager-draw.c:103 ../src/powermanager-draw.c:72
 msgid ""
@@ -197,6 +197,9 @@ msgid ""
 msgstr ""
 "Portable en Charge \n"
 " Batterie chargée a:"
+
+msgid "Set up power management"
+msgstr "Gestionnaire d'énergie"
 
 #: ../data/messages:47 ../data/messages:49
 msgid "Effet to apply on the icon according to charge :"
@@ -212,4 +215,4 @@ msgstr ""
 
 #: ../data/messages:39
 msgid "List of available themes for the analogic display :"
-msgstr ""
+msgstr "Liste des thèmes disponible pour l'affichage analogique :"

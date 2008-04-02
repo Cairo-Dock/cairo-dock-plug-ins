@@ -18,6 +18,18 @@ CD_APPLET_ON_CLICK_BEGIN
 	cd_powermanager_bubble();
 CD_APPLET_ON_CLICK_END
 
+void power_config(void) {
+  if (g_iDesktopEnv == CAIRO_DOCK_GNOME) {
+    system("gnome-power-preferences");
+  }
+  else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
+    //Ajouter les lignes de KDE
+  }
+  else if (g_iDesktopEnv == CAIRO_DOCK_XFCE) {
+   //Ajouter la commande d'XFCE
+  }
+}
+
 //*********************************************************************************
 // Fonction appelée a la construction du menu.
 // Cette fonction remplit le menu principal avec les actions previous, next, et information.
@@ -25,6 +37,7 @@ CD_APPLET_ON_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
   //on rajoute un sous menu, sinon ce n'est pas esthétique
   CD_APPLET_ADD_SUB_MENU ("PowerManager", pSubMenu, CD_APPLET_MY_MENU)
+  CD_APPLET_ADD_IN_MENU (_D("Set up power management"), power_config, pSubMenu)
 	if (myData.dbus_enable)
 	{
 		CD_APPLET_ADD_IN_MENU (_D("Halt"), power_halt, pSubMenu)
