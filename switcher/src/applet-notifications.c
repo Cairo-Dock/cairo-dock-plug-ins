@@ -23,9 +23,69 @@ static void _cd_switcher_reload (GtkMenuItem *menu_item, gpointer *data)
 	cd_switcher_launch_measure ();  // asynchrone
 }
 
+void _cd_switcher_cairo_main_icon (int iMouseX, int iMouseY)
+{
+		double fMaxScale = (myDock ? 1 + g_fAmplitude : 1);
+		double fMaxSScale = (myIcon->pSubDock ? 1 + g_fAmplitude : 1);
+		int fDrawX =  (int) myIcon->fDrawX;
+		int fDrawY =  (int) myIcon->fDrawY;
+		int MaxWidth = (int) myData.switcher.MaxWidthIcon;
+		int MaxHeightbyLine = (int) myData.switcher.MaxNbLigne;
+		int Maxdeskligne= (int) myData.switcher.NumDeskbyLigne;
+		int i;
+
+for (i = 0; i < g_iNbDesktops; i ++)
+	{
+if (iMouseY - fDrawY > 0 && iMouseY - fDrawY < MaxHeightbyLine)		
+		{
+			if (iMouseX - fDrawX > 0 && i * MaxWidth < MaxWidth)
+			{
+cd_message (" 1ere Ligne   ");
+cd_message (" Bureau : %d",i);
+
+myData.switcher.iDesktopViewportX = i;
+cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
+			}
+			else
+			if (iMouseX - fDrawX >= i * MaxWidth && i * MaxWidth < i+i* MaxWidth)
+			{
+cd_message (" 1ere Ligne   ");
+cd_message (" Bureau : %d",i);
+
+myData.switcher.iDesktopViewportX = i;
+cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
+			}	
+	}
+	else
+	{
+		if (iMouseY - fDrawY>=MaxHeightbyLine && iMouseY - fDrawY<= 2*MaxHeightbyLine)
+		
+			{			if (iMouseX - fDrawX > 0 && i * MaxWidth < MaxWidth)
+						{
+cd_message (" 2eme Ligne   ");
+cd_message (" Bureau  : %d",i);
+
+myData.switcher.iDesktopViewportX = i +Maxdeskligne;
+cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
+						}
+						else
+						if (iMouseX - fDrawX >= i * MaxWidth && i * MaxWidth < i+i* MaxWidth)
+						{
+cd_message (" 2eme Ligne   ");
+cd_message (" Bureau : %d",i);
+
+myData.switcher.iDesktopViewportX = i +Maxdeskligne;
+cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
+						}
+			}
+	}
+	}
+
+}
+
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myDock)
-	{
+	{	
 		gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 		g_print ("bDesktopIsVisible : %d\n", bDesktopIsVisible);
 		cairo_dock_show_hide_desktop (! bDesktopIsVisible);
@@ -33,40 +93,44 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 CD_APPLET_ON_CLICK_BEGIN
-	if (pClickedIcon == myIcon)
-		{	
+
 
 cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
-
-myData.switcher.iDesktopViewportX = myData.switcher.ScreenCurrentNums + 1;
 myData.switcher.iDesktopViewportY = myData.switcher.iNbViewportY;
-CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.switcher.ScreenCurrentNums)
-cd_debug (" Num Current Desks Clic  %d", myData.switcher.ScreenCurrentNums);
-cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
-cd_debug (" icone X %f", myIcon->fDrawX);
-cd_debug (" icone Y %f", myIcon->fDrawY);
-cd_debug (" Dock X %f", myDock->iMouseX);
-cd_debug (" Dock Y %f", myDock->iMouseY);
-cd_debug (" Dock Y %f", myDock->iCurrentHeight);
-cd_debug (" Dock Y %f", myDock->iCurrentWidth);
-//cd_switcher_launch_measure ();
-myData.loadaftercompiz = g_timeout_add (500, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
-}
-else
-	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_DOCK_CONTAINER (myIcon->pSubDock))  // on a clique sur une icone du sous-dock.
+
+
+if (myConfig.bCurrentView && myDesklet == NULL) 
 	{
+			cd_message (" Main Icon :");
+		int iMouseX =  myDock->iMouseX;
+		int iMouseY =  myDock->iMouseY;
+		_cd_switcher_cairo_main_icon(iMouseX, iMouseY);
+		
+		}
+		else if (myConfig.bCurrentView && myDesklet != NULL) 
+		{
+			
+cd_message (" Desklet :");
+int iMouseX = - (int) myDesklet->diff_x;
+		int iMouseY = - (int) myDesklet->diff_y;
+_cd_switcher_cairo_main_icon(iMouseX, iMouseY);
+
+		}
+		else if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_DOCK_CONTAINER (myIcon->pSubDock))  // on a clique sur une icone du sous-dock.
+				{
 
 		cd_debug (" clic sur %s", pClickedIcon->acName);
 myData.switcher.iDesktopViewportX = atoi (pClickedIcon->cQuickInfo);
-
+//myData.switcher.iDesktopViewportX = myData.switcher.ScreenCurrentNums +1;
 cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
-cd_switcher_launch_measure ();
 
-	}
-	
+
+
+				}
+
 else
-
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+
 
 CD_APPLET_ON_CLICK_END	
 
@@ -75,3 +139,5 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU (_("Reload now"), _cd_switcher_reload, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
+
+

@@ -29,7 +29,6 @@ static GList *s_pIconList = NULL;
 	pIcon = g_new0 (Icon, 1);\
 	if (myData.switcher.ScreenCurrentNums == i)\
 		{\
-	printf("current desks : %d \n", myData.switcher.ScreenCurrentNums);\
 	pIcon->acName = g_strdup_printf ("Courant %d",i);\
 	pIcon->acFileName = g_strdup_printf ("%s/workspaces.svg", MY_APPLET_SHARE_DATA_DIR);\
 	pIcon->cQuickInfo = g_strdup_printf ("%d",i);\
@@ -114,15 +113,7 @@ else
 		GList *pIconList = _load_icons ();
 		
 		//\_______________________ On efface l'ancienne liste.
-		if (myData.pDeskletIconList != NULL)
-		{
-			g_list_foreach (myData.pDeskletIconList, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (myData.pDeskletIconList);
-			myData.pDeskletIconList = NULL;
-			myData.iNbIcons = 0;
-			myData.iMaxIconWidth = 0;
-			myDesklet->icons = NULL;
-		}
+
 		if (myIcon->pSubDock != NULL)
 		{
 			g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
@@ -196,7 +187,12 @@ else
 
 			}
 
-	
+	if (myData.loadaftercompiz != 0)//\_______________________ On Tue le Timer.
+{
+cd_message ("timer = 0 ");
+		g_source_remove (myData.loadaftercompiz);
+	myData.loadaftercompiz = 0;
+}
 	}
 if (myConfig.bDisplayNumDesk)
 			{
@@ -214,13 +210,11 @@ cd_message ("  chargement de quick info NULL");
 	
 			}
 
-if (myData.loadaftercompiz != 0)//\_______________________ On Tue le Timer.
-{
-		g_source_remove (myData.loadaftercompiz);
-	myData.loadaftercompiz = 0;
-}
+
+cd_message (" passage 1");
 CD_APPLET_REDRAW_MY_ICON
-	return TRUE;
+	//return TRUE;
+cd_message ("  passage2 ");
 }
 
 void cd_switcher_launch_measure (void)

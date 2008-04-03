@@ -11,6 +11,7 @@ typedef struct {
 	gint iNbCols;
 	gint iNbRows;
 	gboolean bCurrentView;
+	gboolean bShowSubDock;
 	gboolean bDisplayNumDesk;
 	//MyAppletQuickInfoType quickInfoType;
 	gint iCheckInterval;
@@ -59,7 +60,10 @@ typedef struct
 	int iNbViewportY;
 	int iDesktopViewportX;
 	int iDesktopViewportY;
-	
+	double MaxWidthIcon;
+	double MaxHeightIcon;
+	double MaxNbLigne;
+	int NumDeskbyLigne;
 	int			i;
 }SwitcherApplet;
 
