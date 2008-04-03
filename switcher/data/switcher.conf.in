@@ -22,14 +22,14 @@ icon = workspaces.svg
 can detach = false
 
 #i[48;256] Desklet's dimension (width x height) :
-width=92
+width=150
 #i[48;256] ...
-height=92
+height=150
 
 #i Desklet's position (x ; y) :
-x position=0
+x position=100
 #i ...
-y position=0
+y position=100
 
 #b Is detached ?
 initially detached=false
@@ -43,25 +43,13 @@ on widget layer=false
 
 [Configuration]
 
-#i Duration of dialogs :
-#{in seconds. Set 0 to have never-ending dialogs.}
+#i Nombre de Bureaux :
 nombre de bureau = 8
 
-#i Interval of time between 2 checks :
-#{in minutes.}
-taille horizontale = 8
+#b Affiche l'icone principale simplifié ?
+Vue Simple = true
 
-#i[0;5] Number of days you want to forecast :
-taille verticale = 1
-
-#b Display current type of view on the icon instead of the default one ?
-complexe view = true
-
-#i Interval of time between 2 checks :
-#{in minutes.}
-check interval = 15
-
-#b Display current type of view on the icon instead of the default one ?
+#b Afficher Une info Rapide sur l'icone ?
 display numero desktop = false
 
 #S Default icon :
@@ -75,6 +63,3 @@ broken icon =
 #R1[] Name of the view used for the sub-dock :
 #{Let it empty to use default sub-dock view.}/
 renderer = 
-
-#b Render desklet in 3D ?
-3D desket = false
