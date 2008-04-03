@@ -6,16 +6,34 @@
 #include "powermanager-struct.h"
 #include "powermanager-dbus.h"
 
-static DBusGConnection *dbus_connexion_session;
-static DBusGConnection *dbus_connexion_system;
-static DBusGProxy *dbus_proxy_power;
-static DBusGProxy *dbus_proxy_stats;
-static DBusGProxy *dbus_proxy_battery;
+#define MY_BATTERY_DIR "/proc/acpi/battery"
+#define MY_BATTERY_NAME "BAT0"
+
+static DBusGConnection *dbus_connexion_system = NULL;
+static DBusGProxy *dbus_proxy_power = NULL;
+static DBusGProxy *dbus_proxy_stats = NULL;
+static DBusGProxy *dbus_proxy_battery = NULL;
 
 CD_APPLET_INCLUDE_MY_VARS
 
-gchar* power_battery_name(void) {
-  DIR *dir_fd;
+static const gchar* power_battery_name(void) {
+	GError *erreur = NULL;
+	GDir *dir = g_dir_open (MY_BATTERY_DIR, 0, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
+		return NULL;
+	}
+	
+	const gchar *cBatteryName;
+	cBatteryName = g_dir_read_name (dir);  // le 1er fichier trouve, ou NULL si aucun.
+	g_dir_close (dir);
+	if (cBatteryName == NULL)
+		cBatteryName = MY_BATTERY_NAME;  // utile ? si y'a rien dans ce repertoire, c'est surement qu'il n'y a pas de batterie non ?
+	cd_message ("Battery Name: %s", cBatteryName);
+	return cBatteryName;
+	/*DIR *dir_fd;
   struct dirent *dir_data;
   char *battery_base_dir="/proc/acpi/battery";
   char *battery = "BAT0";
@@ -34,71 +52,69 @@ gchar* power_battery_name(void) {
 
     closedir(dir_fd);
   }
-    
-  cd_message ("Battery Name: %s",battery);
-  return battery;
+  cd_message ("Battery Name: %s",battery);*/
 }
 
-gboolean dbus_get_dbus (void)
+gboolean dbus_connect_to_bus (void)
 {
 	cd_message ("");
-  gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", power_battery_name());
-  
-	cd_message ("Connexion au bus ... ");
-	dbus_connexion_session = dbus_g_bus_get(DBUS_BUS_SESSION, NULL);
-	dbus_connexion_system = dbus_g_bus_get(DBUS_BUS_SYSTEM, NULL);
 	
-	if(!dbus_connexion_session || !dbus_connexion_system)
+	if (dbus_connexion_system == NULL)
+		dbus_connexion_system = dbus_g_bus_get(DBUS_BUS_SYSTEM, NULL);
+	if (cairo_dock_bdus_is_enabled () && dbus_connexion_system != NULL)
 	{
-		cd_message ("echouee");
-		return FALSE;
-	}
-	else
-	{
-		cd_message ("reussie");
-
-		dbus_proxy_power = dbus_g_proxy_new_for_name (
-			dbus_connexion_session,
+		dbus_proxy_power = cairo_dock_create_new_dbus_proxy (
 			"org.freedesktop.PowerManagement",
 			"/org/freedesktop/PowerManagement",
 			"org.freedesktop.PowerManagement"
 		);
 
-		dbus_proxy_stats = dbus_g_proxy_new_for_name (
-			dbus_connexion_session,
+		dbus_proxy_stats = cairo_dock_create_new_dbus_proxy (
 			"org.freedesktop.PowerManagement",
 			"/org/freedesktop/PowerManagement/Statistics",
 			"org.freedesktop.PowerManagement.Statistics"
-		);
-		
-		dbus_proxy_battery = dbus_g_proxy_new_for_name (
-			dbus_connexion_system,
-			"org.freedesktop.Hal",
-			batteryPath,
-			"org.freedesktop.Hal.Device"
 		);
 		
 		dbus_g_proxy_add_signal(dbus_proxy_power, "OnBatteryChanged",
 			G_TYPE_BOOLEAN,
 			G_TYPE_INVALID);
 		
+		
+		gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", power_battery_name());
+		dbus_proxy_battery = dbus_g_proxy_new_for_name (
+			dbus_connexion_system,
+			"org.freedesktop.Hal",
+			batteryPath,
+			"org.freedesktop.Hal.Device"
+		);
+		g_free (batteryPath);
+		
 		return TRUE;
 	}
-}
-
-void dbus_connect_to_bus (void)
-{
-	cd_message ("");
-	dbus_g_proxy_connect_signal(dbus_proxy_power, "OnBatteryChanged",
-		G_CALLBACK(on_battery_changed), NULL, NULL);
+	return FALSE;
 }
 
 void dbus_disconnect_from_bus (void)
 {
 	cd_message ("");
-	dbus_g_proxy_disconnect_signal(dbus_proxy_power, "OnBatteryChanged",
-		G_CALLBACK(on_battery_changed), NULL);
-	cd_message ("OnBatteryChanged deconnecte");
+	if (dbus_proxy_power != NULL)
+	{
+		dbus_g_proxy_disconnect_signal(dbus_proxy_power, "OnBatteryChanged",
+			G_CALLBACK(on_battery_changed), NULL);
+		cd_message ("OnBatteryChanged deconnecte");
+		g_object_unref (dbus_proxy_power);
+		dbus_proxy_power = NULL;
+	}
+	if (dbus_proxy_battery != NULL)
+	{
+		g_object_unref (dbus_proxy_battery);
+		dbus_proxy_battery = NULL;
+	}
+	if (dbus_proxy_stats != NULL)
+	{
+		g_object_unref (dbus_proxy_stats);
+		dbus_proxy_stats = NULL;
+	}
 }
 
 gboolean get_on_battery(void)
@@ -171,11 +187,12 @@ int get_stats(gchar *dataType)
 
 void detect_battery(void)
 {
-	dbus_g_proxy_call (dbus_proxy_battery, "GetPropertyBoolean", NULL,
-		G_TYPE_STRING,"battery.present",
-		G_TYPE_INVALID,
-		G_TYPE_BOOLEAN, &myData.battery_present,
-		G_TYPE_INVALID);
+	if (dbus_proxy_battery != NULL)
+		dbus_g_proxy_call (dbus_proxy_battery, "GetPropertyBoolean", NULL,
+			G_TYPE_STRING,"battery.present",
+			G_TYPE_INVALID,
+			G_TYPE_BOOLEAN, &myData.battery_present,
+			G_TYPE_INVALID);
 }
 
 void power_halt(void)

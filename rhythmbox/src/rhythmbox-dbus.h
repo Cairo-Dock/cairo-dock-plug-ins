@@ -4,8 +4,7 @@
 #include <dbus/dbus-glib.h>
 
 
-gboolean rhythmbox_dbus_get_dbus (void);
-void rhythmbox_dbus_connect_to_bus(void);
+gboolean rhythmbox_dbus_connect_to_bus(void);
 void rhythmbox_dbus_disconnect_from_bus (void);
 
 void dbus_detect_rhythmbox(void);

@@ -116,24 +116,32 @@ msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 #: ../src/powermanager-menu-functions.c:25
 #: ../src/powermanager-menu-functions.c:23
 #: ../src/powermanager-menu-functions.c:30
+#: ../src/powermanager-menu-functions.c:43
+#: ../src/powermanager-menu-functions.c:49
 msgid "Halt"
 msgstr "停止"
 
 #: ../src/powermanager-menu-functions.c:26
 #: ../src/powermanager-menu-functions.c:24
 #: ../src/powermanager-menu-functions.c:31
+#: ../src/powermanager-menu-functions.c:44
+#: ../src/powermanager-menu-functions.c:50
 msgid "Hibernate"
 msgstr "ハイバネート"
 
 #: ../src/powermanager-menu-functions.c:27
 #: ../src/powermanager-menu-functions.c:25
 #: ../src/powermanager-menu-functions.c:32
+#: ../src/powermanager-menu-functions.c:45
+#: ../src/powermanager-menu-functions.c:51
 msgid "Suspend"
 msgstr "サスペンド"
 
 #: ../src/powermanager-menu-functions.c:28
 #: ../src/powermanager-menu-functions.c:26
 #: ../src/powermanager-menu-functions.c:33
+#: ../src/powermanager-menu-functions.c:46
+#: ../src/powermanager-menu-functions.c:52
 msgid "Reboot"
 msgstr "再起動"
 
@@ -238,6 +246,7 @@ msgid "Interval of time between 2 checks :"
 msgstr ""
 
 #: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:68
+#: ../src/powermanager-draw.c:71 ../src/powermanager-draw.c:101
 msgid ""
 "Laptop on Battery \n"
 " Battery charged at:"
@@ -245,10 +254,13 @@ msgstr ""
 
 #: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:103
 #: ../src/powermanager-draw.c:68 ../src/powermanager-draw.c:72
+#: ../src/powermanager-draw.c:71 ../src/powermanager-draw.c:75
+#: ../src/powermanager-draw.c:101 ../src/powermanager-draw.c:105
 msgid "Estimated time with Charge:"
 msgstr ""
 
 #: ../src/powermanager-draw.c:103 ../src/powermanager-draw.c:72
+#: ../src/powermanager-draw.c:75 ../src/powermanager-draw.c:105
 msgid ""
 "Laptop on Charge \n"
 " Battery charged at:"
@@ -276,4 +288,17 @@ msgstr ""
 
 #: ../data/messages:39
 msgid "List of available themes for the analogic display :"
+msgstr ""
+
+#: ../src/powermanager-draw.c:60 ../src/powermanager-draw.c:90
+msgid "None"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Display"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:40
+#: ../src/powermanager-menu-functions.c:46
+msgid "Set up power management"
 msgstr ""

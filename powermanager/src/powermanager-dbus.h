@@ -1,10 +1,10 @@
 #ifndef __POWERMANAGER_DBUS__
 #define  __POWERMANAGER_DBUS__
 
+#include <glib.h>
 #include <dbus/dbus-glib.h>
 
-gboolean dbus_get_dbus (void);
-void dbus_connect_to_bus(void);
+gboolean dbus_connect_to_bus(void);
 void dbus_disconnect_from_bus (void);
 
 gboolean get_on_battery(void);

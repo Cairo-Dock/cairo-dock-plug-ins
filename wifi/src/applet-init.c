@@ -24,6 +24,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	cd_wifi_launch_measure();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 CD_APPLET_INIT_END
 
 
@@ -31,9 +32,10 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	
 	//On libère la mémoire de la jauge
-	free_cd_Gauge(myData.pGauge);
+	///free_cd_Gauge(myData.pGauge);
 	
 	if (myData.iSidTimer != 0) {
 		g_source_remove (myData.iSidTimer);

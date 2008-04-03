@@ -39,28 +39,28 @@ void update_icon(void)
 		if(myData.on_battery)
 		{
 			if(myData.battery_charge >= 95)
-				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_44.svg") }
+				{ cd_powermanager_set_surface ("battery_44.svg"); }
 			else if(myData.battery_charge >= 65)
-				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_34.svg") }
+				{ cd_powermanager_set_surface ("battery_34.svg"); }
 			else if(myData.battery_charge >= 35)
-				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_24.svg") }
+				{ cd_powermanager_set_surface ("battery_24.svg"); }
 			else if(myData.battery_charge >= 5)
-				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_14.svg") }
+				{ cd_powermanager_set_surface ("battery_14.svg"); }
 			else
-				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("battery_04.svg") }
+				{ cd_powermanager_set_surface ("battery_04.svg"); }
 		}
 		else
 		{
 			if(myData.battery_charge >= 95)
-				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_44.svg") }
+				{ cd_powermanager_set_surface ("charge_44.svg"); }
 			else if(myData.battery_charge >= 65)
-				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_34.svg") }
+				{ cd_powermanager_set_surface ("charge_34.svg"); }
 			else if(myData.battery_charge >= 35)
-				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_24.svg") }
+				{ cd_powermanager_set_surface ("charge_24.svg"); }
 			else if(myData.battery_charge >= 5)
-				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_14.svg") }
+				{ cd_powermanager_set_surface ("charge_14.svg"); }
 			else
-				{ CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("charge_04.svg") }
+				{ cd_powermanager_set_surface ("charge_04.svg"); }
 		}
 		
 	}

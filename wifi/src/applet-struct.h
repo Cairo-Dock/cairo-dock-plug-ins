@@ -39,7 +39,6 @@ typedef struct {
 	
 	gint iCheckInterval;
 	gint dCheckInterval;
-	gboolean hollowIcon;
 	
 	gboolean gaugeIcon;
 } AppletConfig;

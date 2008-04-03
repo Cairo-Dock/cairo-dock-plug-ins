@@ -23,7 +23,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "signal_type", 1);
 	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
 	myConfig.dCheckInterval = myConfig.iCheckInterval;
-	myConfig.hollowIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "hollow");
 	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
 	
 	/**myConfig.gaugeIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "gauge");
@@ -48,4 +47,5 @@ CD_APPLET_RESET_DATA_BEGIN
 	for (i = 0; i < WIFI_NB_QUALITY; i ++) {
 		cairo_surface_destroy (myData.pSurfaces[i]);
 	}
+	g_free (myData.cESSID);
 CD_APPLET_RESET_DATA_END

@@ -8,7 +8,6 @@
 #include "tomboy-init.h"
 
 
-static gboolean dbus_enable = FALSE;
 
 CD_APPLET_DEFINITION ("TomBoy", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
@@ -17,15 +16,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	load_all_surfaces();
 	
-	//Si le bus n'a pas encore ete acquis, on le recupere.
-	if (! dbus_enable)
-		dbus_enable = dbus_get_dbus();
-	myData.dbus_enable = dbus_enable;
-	
-	//Si le bus a ete acquis, on y connecte nos signaux.
-	if (dbus_enable)
+	myData.dbus_enable = dbus_connect_to_bus ();
+	if (myData.dbus_enable)
 	{
-		dbus_connect_to_bus ();
 		dbus_detect_tomboy();
 		getAllNotes();
 		update_icon();
@@ -55,9 +48,8 @@ CD_APPLET_RELOAD_BEGIN
 	load_all_surfaces();
 	
 	//\_______________ On redessine notre icone.
-	if (dbus_enable)
+	if (myData.dbus_enable)
 	{
-		dbus_connect_to_bus ();
 		dbus_detect_tomboy();
 		getAllNotes();
 		update_icon();

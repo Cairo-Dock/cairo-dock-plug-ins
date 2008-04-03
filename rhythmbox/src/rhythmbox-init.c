@@ -7,8 +7,6 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-init.h"
 
-static gboolean dbus_enable = FALSE;
-
 
 CD_APPLET_DEFINITION ("Rhythmbox", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
@@ -20,16 +18,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
-	//Si le bus n'a pas encore ete acquis, on le recupere.
-	if (! dbus_enable)
-		dbus_enable = rhythmbox_dbus_get_dbus();
-	myData.dbus_enable = dbus_enable;
-	
-	//Si le bus a ete acquis, on y connecte nos signaux.
+	myData.dbus_enable = rhythmbox_dbus_connect_to_bus ();
 	if (myData.dbus_enable)
 	{
-		rhythmbox_dbus_connect_to_bus ();
-		
 		dbus_detect_rhythmbox();
 		if(myData.opening)
 		{

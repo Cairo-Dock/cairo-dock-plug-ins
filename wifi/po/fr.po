@@ -66,27 +66,27 @@ msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
 #: ../data/messages:35 ../data/messages:39 ../data/messages:61
-#: ../data/messages:71 ../data/messages:77
+#: ../data/messages:71 ../data/messages:77 ../data/messages:73
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Nom de l'image 'Très Faible' :"
 
 #: ../data/messages:39 ../data/messages:43 ../data/messages:65
-#: ../data/messages:75 ../data/messages:81
+#: ../data/messages:75 ../data/messages:81 ../data/messages:77
 msgid "Name of an image for the 'low' icon :"
 msgstr "Nom de l'image 'Faible' :"
 
 #: ../data/messages:43 ../data/messages:47 ../data/messages:69
-#: ../data/messages:79 ../data/messages:85
+#: ../data/messages:79 ../data/messages:85 ../data/messages:81
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Nom de l'image 'Moyen' :"
 
 #: ../data/messages:47 ../data/messages:51 ../data/messages:73
-#: ../data/messages:83 ../data/messages:89
+#: ../data/messages:83 ../data/messages:89 ../data/messages:85
 msgid "Name of an image for the 'good' icon :"
 msgstr "Nom de l'image 'Bon' :"
 
 #: ../data/messages:51 ../data/messages:55 ../data/messages:77
-#: ../data/messages:87 ../data/messages:93
+#: ../data/messages:87 ../data/messages:93 ../data/messages:89
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
@@ -133,25 +133,26 @@ msgstr "Excellent"
 #: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119 ../data/messages:19
 #: ../src/applet-wifi.c:18 ../src/applet-draw.c:15 ../data/messages:39
 #: ../src/applet-draw.c:13 ../data/messages:53 ../data/messages:59
+#: ../data/messages:55
 msgid "None"
 msgstr "Aucune"
 
 msgid "Lost"
 msgstr "Perdue"
 
-#: ../data/messages:55 ../data/messages:61
+#: ../data/messages:55 ../data/messages:61 ../data/messages:57
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../data/messages:57 ../data/messages:63
+#: ../data/messages:57 ../data/messages:63 ../data/messages:59
 msgid "Transparency"
 msgstr "Transparence"
 
-#: ../data/messages:59 ../data/messages:65
+#: ../data/messages:59 ../data/messages:65 ../data/messages:61
 msgid "Draw Bar"
 msgstr "Dessiner une barre"
 
-#: ../data/messages:51 ../data/messages:57
+#: ../data/messages:51 ../data/messages:57 ../data/messages:53
 msgid "Effet to apply on the icon according to strength :"
 msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
@@ -164,11 +165,13 @@ msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 
 #: ../data/messages:53 ../data/messages:63 ../data/messages:69
+#: ../data/messages:65
 msgid "No icon when no wireless devices/connections found?"
 msgstr "Aucune icône quand aucun module wifi n'est trouver?"
 
 #: ../src/applet-notifications.c:26 ../src/applet-notifications.c:35
 #: ../src/applet-notifications.c:33 ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:34
 msgid "Check for Wireless Extension"
 msgstr "Verifier les Extensions Wifi"
 
@@ -244,7 +247,7 @@ msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:27 ../data/messages:31 ../data/messages:51
-#: ../data/messages:61 ../data/messages:67
+#: ../data/messages:61 ../data/messages:67 ../data/messages:63
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
@@ -264,17 +267,30 @@ msgid "Signal Strength level"
 msgstr "Niveau de force du signal"
 
 #: ../data/messages:57 ../data/messages:67 ../data/messages:73
+#: ../data/messages:69
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Nom de l'image 'Aucun Signal' :"
 
+#: ../src/applet-draw.c:154 ../src/applet-draw.c:148 ../src/applet-draw.c:147
 msgid "Wifi disabled."
 msgstr "Wifi désactivé."
 
-msgid "Wifi enabled. \n Connected on:"
-msgstr "Wifi activé. \n Connecté sur:"
+#: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
+msgid ""
+"Wifi enabled. \n"
+" Connected on:"
+msgstr ""
+"Wifi activé. \n"
+" Connecté sur:"
 
+#: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 
+#: ../src/applet-wifi.c:175 ../src/applet-wifi.c:169
 msgid "Unknown"
-msgstr "Iconnu"
+msgstr "Inconnu"
+
+#: ../data/messages:51
+msgid "Display"
+msgstr "Affichage"

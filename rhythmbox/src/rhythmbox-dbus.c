@@ -6,10 +6,10 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-dbus.h"
 
-static DBusGConnection *dbus_connexion;
-static DBusGProxy *dbus_proxy_dbus;
-static DBusGProxy *dbus_proxy_player;
-static DBusGProxy *dbus_proxy_shell;
+//static DBusGConnection *dbus_connexion;
+//static DBusGProxy *dbus_proxy_dbus;
+static DBusGProxy *dbus_proxy_player = NULL;
+static DBusGProxy *dbus_proxy_shell = NULL;
 
 
 CD_APPLET_INCLUDE_MY_VARS
@@ -18,7 +18,7 @@ CD_APPLET_INCLUDE_MY_VARS
 //*********************************************************************************
 // rhythmbox_dbus_pre_init() : Initialise la connexion d-bus
 //*********************************************************************************
-gboolean rhythmbox_dbus_get_dbus (void)
+/*gboolean rhythmbox_dbus_get_dbus (void)
 {
 	cd_message ("Connexion au bus ... ");
 	dbus_connexion = dbus_g_bus_get(DBUS_BUS_SESSION, NULL);
@@ -66,62 +66,81 @@ gboolean rhythmbox_dbus_get_dbus (void)
 		
 		return TRUE;
 	}
-}
+}*/
 
 
-void rhythmbox_dbus_connect_to_bus (void)
+gboolean rhythmbox_dbus_connect_to_bus (void)
 {
 	cd_message ("");
-	dbus_g_proxy_connect_signal(dbus_proxy_player, "playingChanged",
-		G_CALLBACK(onChangePlaying), NULL, NULL);
+	if (cairo_dock_bdus_is_enabled ())
+	{
+		dbus_proxy_player = cairo_dock_create_new_dbus_proxy (
+			"org.gnome.Rhythmbox",
+			"/org/gnome/Rhythmbox/Player",
+			"org.gnome.Rhythmbox.Player"
+		);
 		
-	dbus_g_proxy_connect_signal(dbus_proxy_player, "playingUriChanged",
-		G_CALLBACK(onChangeSong), NULL, NULL);
-	
-	dbus_g_proxy_connect_signal(dbus_proxy_player, "elapsedChanged",
-		G_CALLBACK(onElapsedChanged), NULL, NULL);
+		dbus_proxy_shell = cairo_dock_create_new_dbus_proxy (
+			"org.gnome.Rhythmbox",
+			"/org/gnome/Rhythmbox/Shell",
+			"org.gnome.Rhythmbox.Shell"
+		);
+		
+		dbus_g_proxy_add_signal(dbus_proxy_player, "playingChanged",
+			G_TYPE_BOOLEAN,
+			G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(dbus_proxy_player, "playingUriChanged",
+			G_TYPE_STRING,
+			G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(dbus_proxy_player, "elapsedChanged",
+			G_TYPE_UINT,
+			G_TYPE_INVALID);
+		
+		dbus_g_proxy_connect_signal(dbus_proxy_player, "playingChanged",
+			G_CALLBACK(onChangePlaying), NULL, NULL);
+			
+		dbus_g_proxy_connect_signal(dbus_proxy_player, "playingUriChanged",
+			G_CALLBACK(onChangeSong), NULL, NULL);
+		
+		dbus_g_proxy_connect_signal(dbus_proxy_player, "elapsedChanged",
+			G_CALLBACK(onElapsedChanged), NULL, NULL);
+		
+		return TRUE;
+	}
+	return FALSE;
 }
 
 void rhythmbox_dbus_disconnect_from_bus (void)
 {
 	cd_message ("");
-	dbus_g_proxy_disconnect_signal(dbus_proxy_player, "playingChanged",
-		G_CALLBACK(onChangePlaying), NULL);
-	cd_message ("playingChanged deconnecte\n");
-	
-	dbus_g_proxy_disconnect_signal(dbus_proxy_player, "playingUriChanged",
-		G_CALLBACK(onChangeSong), NULL);
-	cd_message ("playingUriChanged deconnecte\n");
-	
-	dbus_g_proxy_disconnect_signal(dbus_proxy_player, "elapsedChanged",
-		G_CALLBACK(onElapsedChanged), NULL);
-	cd_message ("elapsedChanged deconnecte\n");
+	if (dbus_proxy_player != NULL)
+	{
+		dbus_g_proxy_disconnect_signal(dbus_proxy_player, "playingChanged",
+			G_CALLBACK(onChangePlaying), NULL);
+		cd_message ("playingChanged deconnecte\n");
+		
+		dbus_g_proxy_disconnect_signal(dbus_proxy_player, "playingUriChanged",
+			G_CALLBACK(onChangeSong), NULL);
+		cd_message ("playingUriChanged deconnecte\n");
+		
+		dbus_g_proxy_disconnect_signal(dbus_proxy_player, "elapsedChanged",
+			G_CALLBACK(onElapsedChanged), NULL);
+		cd_message ("elapsedChanged deconnecte\n");
+		
+		g_object_unref (dbus_proxy_player);
+		dbus_proxy_player = NULL;
+	}
+	if (dbus_proxy_shell != NULL)
+	{
+		g_object_unref (dbus_proxy_shell);
+		dbus_proxy_shell = NULL;
+	}
 }
 
 void dbus_detect_rhythmbox(void)
 {
 	cd_message ("");
-	gchar **name_list = NULL;
-	
-	myData.opening = FALSE;
-	if(dbus_g_proxy_call (dbus_proxy_dbus, "ListNames", NULL,
-		G_TYPE_INVALID,
-		G_TYPE_STRV,
-		&name_list,
-		G_TYPE_INVALID))
-	{
-		cd_message ("  detection du service Rhythmbox...");
-		int i;
-		for (i = 0; name_list[i] != NULL; i ++)
-		{
-			if (strcmp (name_list[i], "org.gnome.Rhythmbox") == 0)
-			{
-				myData.opening = TRUE;
-				break;
-			}
-		}
-	}
-	g_strfreev (name_list);
+	myData.opening = cairo_dock_dbus_detect_application ("org.gnome.Rhythmbox");
 }
 
 

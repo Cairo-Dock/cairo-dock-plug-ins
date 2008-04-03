@@ -5,8 +5,7 @@
 #include "tomboy-struct.h"
 
 
-gboolean dbus_get_dbus (void);
-void dbus_connect_to_bus(void);
+gboolean dbus_connect_to_bus(void);
 void dbus_disconnect_from_bus (void);
 void dbus_detect_tomboy(void);
 

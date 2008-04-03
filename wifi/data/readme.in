@@ -1,4 +1,6 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>ChAnGFu</b>
-<i>This <span color='#0000FF'>wifi</span> applet show you the signal strength</i>
-<i>of the first active connection</i>
+<i>This applet shows you the signal strength</i>
+<i>of the first active <span color='#0000FF'>wifi</span> connection</i>
+Left-click to pop-up some info,
+Middle-click to re-check immediately.

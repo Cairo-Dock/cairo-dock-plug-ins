@@ -17,14 +17,8 @@ void cd_wifi_draw_no_wireless_extension (void) {
 	if (myData.iPreviousQuality != myData.iQuality) {
 		myData.iPreviousQuality = myData.iQuality;
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		if (myConfig.hollowIcon) { //Blank Icon
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL);
-		}
-		else {
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 			cd_wifi_set_surface (WIFI_QUALITY_NO_SIGNAL);
-		}
 	}
 	
 	myData.checkedTime ++;
@@ -65,9 +59,8 @@ void cd_wifi_draw_icon (void) {
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
 			if (myData.iQuality != myData.iPreviousQuality) {
-				myData.iPreviousQuality = myData.iQuality;
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(D_(s_cLevelQualityName[myData.iQuality]));
-				bNeedRedraw = TRUE;
+				bNeedRedraw = TRUE;  // on ne met pas a jour iPreviousQuality ici, car on s'en sert encore un peu plus loin.
 			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_PERCENT :
@@ -99,55 +92,54 @@ void cd_wifi_set_surface (CDWifiQuality iQuality) {
 	g_return_if_fail (iQuality < WIFI_NB_QUALITY);
 	
 	if (myConfig.gaugeIcon) { //Gauge
-    make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
+    ///make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
   }
-  
 	else { //Icons
-  	cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
-	  if (pSurface == NULL) {
-	  	if (myConfig.cUserImage[iQuality] != NULL) {
-	  		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iQuality]);
-	  		myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-	  		g_free (cUserImagePath);
-	  	}
-	  	else {
-	  		gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iQuality]);
-	  		myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
-	  		g_free (cImagePath);
-	  	}
-	  	cd_wifi_draw_icon_with_effect (myData.pSurfaces[iQuality]);
-	  }
-	  else {
-	  	cd_wifi_draw_icon_with_effect (pSurface);
-	  }
-  }
+		cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
+		if (pSurface == NULL) {
+			if (myConfig.cUserImage[iQuality] != NULL) {
+				gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iQuality]);
+				myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+				g_free (cUserImagePath);
+			}
+			else {
+				gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iQuality]);
+				myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+				g_free (cImagePath);
+			}
+			cd_wifi_draw_icon_with_effect (myData.pSurfaces[iQuality]);
+		}
+		else {
+			cd_wifi_draw_icon_with_effect (pSurface);
+		}
+	}
 }
 
 void cd_wifi_draw_icon_with_effect (cairo_surface_t *pSurface) {
-  switch (myConfig.iEffect) {
-	  case WIFI_EFFECT_NONE:
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
-	  break;
-	  case WIFI_EFFECT_ZOOM:
-	  	cairo_save (myDrawContext);
-	  	double fScale = .3 + .7 * myData.prcnt / 100.;
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
-	  	cairo_restore (myDrawContext);
-	  break;
-	  case WIFI_EFFECT_TRANSPARENCY: 
-	  	cairo_save (myDrawContext);
-	  	double fAlpha = .3 + .7 * myData.prcnt / 100.;
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
-	  	cairo_restore (myDrawContext);
-	  break;
-	  case WIFI_EFFECT_BAR:
-	  	cairo_save (myDrawContext);
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.prcnt * .01)
-	  	cairo_restore (myDrawContext);
-	  break;
-	  default :
-	  break;
-  }
+	switch (myConfig.iEffect) {
+		  case WIFI_EFFECT_NONE:
+		  	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+		  break;
+		  case WIFI_EFFECT_ZOOM:
+		  	cairo_save (myDrawContext);
+		  	double fScale = .2 + .8 * myData.prcnt / 100.;
+		  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
+		  	cairo_restore (myDrawContext);
+		  break;
+		  case WIFI_EFFECT_TRANSPARENCY: 
+		  	cairo_save (myDrawContext);
+		  	double fAlpha = .2 + .8 * myData.prcnt / 100.;
+		  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
+		  	cairo_restore (myDrawContext);
+		  break;
+		  case WIFI_EFFECT_BAR:
+		  	cairo_save (myDrawContext);
+		  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.prcnt * .01)
+		  	cairo_restore (myDrawContext);
+		  break;
+		  default :
+		  break;
+	}
 }
 
 void cd_wifi_bubble(void) {

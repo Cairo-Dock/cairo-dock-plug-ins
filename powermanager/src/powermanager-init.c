@@ -8,8 +8,6 @@
 #include "powermanager-struct.h"
 #include "powermanager-init.h"
 
-static gboolean dbus_enable = FALSE;
-
 
 CD_APPLET_DEFINITION ("PowerManager", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
@@ -24,22 +22,17 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	// on ne charge pas toutes les surfaces, car cela prend trop de memoire, et trop de temps au chargement, alors que ce n'est pas necessaire. En effet, on ne redessine que si il y'a changement. Or la batterie se vide lentement, et la recharge n'est pas non plus fulgurante, donc au total on redesine reellement l'icone 1 fois toutes les 10 minutes peut-etre, ce qui ne justifie pas de pre-charger les surfaces.
 	
-	//Si le bus n'a pas encore ete acquis, on le recupere.
-	if (! dbus_enable)
-		dbus_enable = dbus_get_dbus();
-	myData.dbus_enable = dbus_enable;
-	
-	//Si le bus a ete acquis, on y connecte nos signaux.
-	if (dbus_enable)
+	myData.dbus_enable = dbus_connect_to_bus ();
+	if (myData.dbus_enable)
 	{
-		dbus_connect_to_bus ();
 		detect_battery();
 		if(myData.battery_present)
 		{
-			double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	
 			get_on_battery();
-			myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+			
+			///double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+			///myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+			
 			update_stats();
 			myData.checkLoop = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 		}
@@ -59,21 +52,18 @@ CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-  CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	if (dbus_enable)
+	dbus_disconnect_from_bus ();
+	
+	if(myData.checkLoop != 0)
 	{
-		dbus_disconnect_from_bus ();
-		
-		if(myData.checkLoop != 0)
-		{
-			g_source_remove (myData.checkLoop);
-			myData.checkLoop = 0;
-		}
-		
-		free_cd_Gauge(myData.pGauge);
+		g_source_remove (myData.checkLoop);
+		myData.checkLoop = 0;
 	}
+	
+	///free_cd_Gauge(myData.pGauge);
 CD_APPLET_STOP_END
 
 
@@ -95,14 +85,13 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	
 	//\_______________ On redessine notre icone.
-	if (dbus_enable)
+	if (myData.dbus_enable)
 	{
 		if(myData.battery_present)
 		{
-			double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-			
+			/**double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 			free_cd_Gauge(myData.pGauge);
-			myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+			myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);*/
 			
 			myData.previously_on_battery = -1;  // pour forcer le redessin.
 			myData.previous_battery_charge = -1;

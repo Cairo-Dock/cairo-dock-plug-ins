@@ -138,32 +138,27 @@ msgstr "Personnalisation"
 msgid "Let t empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../src/applet-rame.c:185 ../src/applet-rame.c:190
-#: ../src/applet-rame.c:183 ../src/applet-rame.c:188
-#: ../src/applet-rame.c:193 ../src/applet-rame.c:210
-#: ../src/applet-rame.c:215 ../src/applet-rame.c:211
-#: ../src/applet-rame.c:216
+#: ../src/applet-rame.c:185 ../src/applet-rame.c:190 ../src/applet-rame.c:183
+#: ../src/applet-rame.c:188 ../src/applet-rame.c:193 ../src/applet-rame.c:210
+#: ../src/applet-rame.c:215 ../src/applet-rame.c:211 ../src/applet-rame.c:216
 msgid "TB"
 msgstr "To"
 
 msgid "GB"
 msgstr "Go"
 
-#: ../src/applet-rame.c:195 ../src/applet-rame.c:193
-#: ../src/applet-rame.c:198 ../src/applet-rame.c:220
-#: ../src/applet-rame.c:221
+#: ../src/applet-rame.c:195 ../src/applet-rame.c:193 ../src/applet-rame.c:198
+#: ../src/applet-rame.c:220 ../src/applet-rame.c:221
 msgid "MB"
 msgstr "Mo"
 
-#: ../src/applet-rame.c:200 ../src/applet-rame.c:198
-#: ../src/applet-rame.c:203 ../src/applet-rame.c:225
-#: ../src/applet-rame.c:226
+#: ../src/applet-rame.c:200 ../src/applet-rame.c:198 ../src/applet-rame.c:203
+#: ../src/applet-rame.c:225 ../src/applet-rame.c:226
 msgid "KB"
 msgstr "Ko"
 
-#: ../src/applet-rame.c:205 ../src/applet-rame.c:203
-#: ../src/applet-rame.c:208 ../src/applet-rame.c:230
-#: ../src/applet-rame.c:231
+#: ../src/applet-rame.c:205 ../src/applet-rame.c:203 ../src/applet-rame.c:208
+#: ../src/applet-rame.c:230 ../src/applet-rame.c:231
 msgid "B"
 msgstr "o"
 
@@ -175,7 +170,7 @@ msgstr ""
 msgid "Delay between signal checks :"
 msgstr ""
 
-#: ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:35
 msgid "Debug"
 msgstr ""
 

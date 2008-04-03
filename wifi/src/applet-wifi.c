@@ -110,70 +110,65 @@ static float pourcent(float x, float y) {
 static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *iMlink, int *iPercentage, CDWifiQuality *iQuality) {
 	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 	gchar *cOneInfopipe;
-	const gchar *ESSID = NULL;
+	gchar *cESSID = NULL;
 	int flink=0, mlink=0, i=0,prcnt=0;
 	for (i = 0; cInfopipesList[i] != NULL; i ++) {
 		cOneInfopipe = cInfopipesList[i];
+		if (*cOneInfopipe == '\0')
+			continue;
+		
 		if ((i == 0) && (strcmp(cOneInfopipe,"Wifi") == 0)) {
 			g_strfreev (cInfopipesList);
 			return FALSE;
 		}
-		else {
-			int c = 0, iNbSpace = 0;
-			gchar *cUtilInfo = NULL;
-			while (cOneInfopipe[c] != '\0') {
-				if (cOneInfopipe[c] == ' ') {
-					iNbSpace ++;
-					if ((iNbSpace == 8) && (ESSID == NULL)) { /// plutot que de compter les espaces, il est plus prudent de compter les mots. En effet les espaces on n'est pas sur qu'ils vont pas changer.
-					  ESSID = &cOneInfopipe[c+1];
-					}
-					if (iNbSpace == 11) {
-						cUtilInfo = &cOneInfopipe[c+1];
-						break;
-					}
-				}
-				c ++;
-			}
-			if (cUtilInfo != NULL) {
-				gchar *str = strchr (cUtilInfo, '=');
-				if (str == NULL) {
-					str = strchr (cUtilInfo, ':');
-				}
-				if (str != NULL) {
-					cUtilInfo = str + 1;
-					str = strchr (cUtilInfo, '/');
-					if (str != NULL) {
+		else if (cESSID == NULL)
+		{
+			cESSID = g_strstr_len (cOneInfopipe, -1, "ESSID");  // eth1 IEEE 802.11g ESSID:"bla bla bla" 
+
+			if (cESSID != NULL)
+			{
+				cESSID += 6;  // on saute le ':' avec.
+				if (*cESSID == '"')  // on enleve les guillemets.
+				{
+					cESSID ++;
+					gchar *str = strchr (cESSID, '"');
+					if (str != NULL)
 						*str = '\0';
-						flink = atoi (cUtilInfo);
-						mlink = atoi (str+1);
-						
-						cd_debug("Signal Quality: %d/%d", flink, mlink);
-						prcnt = pourcent(flink,mlink);
-					}
+				}
+				else
+				{
+					cESSID = NULL;
 				}
 			}
-			
-		}  /// que fait-on des autres lignes ?? seule la derniere semble etre importante.
+		}
+		else  // on a deja trouve l'EESID qui vient en 1er, on peut donc chercher le reste.
+		{
+			if (strncmp (cOneInfopipe, "Link Quality", 12) == 0)  // Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm 
+			{
+				gchar *str = strchr (cOneInfopipe+12, '=');
+				if (str == NULL)
+					str = strchr (cOneInfopipe, ':');
+				if (str != NULL)
+				{
+					str ++;
+					flink = atoi (str);
+					
+					str = strchr (str, '/');
+					if (str != NULL)
+						mlink = atoi (str+1);
+					
+					cd_debug("Signal Quality: %d/%d", flink, mlink);
+					prcnt = pourcent(flink,mlink);
+				}
+				break ;  // les autres lignes ne nous importent peu.
+			}
+		}
 	}
 	
-	const gchar *ESSID_ok = NULL;
-	if (ESSID != NULL) {
-	  gchar *str = strchr (ESSID, '"');
-	  if (str != NULL) {
-	    str ++;
-	    gchar *str2 = strchr (str, '"');
-	    if (str2 != NULL) {
-	      *str2 = '\0';
-	      //gchar **str2 = g_strsplit(ESSID, "\"", -1);
-	      //ESSID = str2[0];
-	      ESSID_ok = str;
-	      cd_message("ESSID: %s", ESSID_ok);
-	    }
-	  }
-	}
-	if (ESSID_ok == NULL) {
-		ESSID_ok = D_("Unknown");
-	}
+	if (cESSID == NULL)
+		cESSID = D_("Unknown");
+	g_free (myData.cESSID);
+	myData.cESSID = g_strdup (cESSID);
 	
 	*iFlink = flink;
 	*iMlink = mlink;
@@ -196,9 +191,6 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 		*iQuality = WIFI_QUALITY_EXCELLENT;
 	}
 	*iPercentage = prcnt;
-	
-	g_free (myData.cESSID);
-	myData.cESSID = g_strdup (ESSID_ok);
 	
 	g_strfreev (cInfopipesList);
 	return TRUE;
