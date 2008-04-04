@@ -248,8 +248,8 @@ msgstr "Configuration"
 
 #: ../data/messages:27 ../data/messages:31 ../data/messages:51
 #: ../data/messages:61 ../data/messages:67 ../data/messages:63
-msgid "Personnalisation"
-msgstr "Personnalisation"
+msgid "Images"
+msgstr "Images"
 
 #: ../data/messages:29 ../data/messages:33 ../data/messages:37
 #: ../data/messages:41 ../data/messages:45 ../data/messages:49
@@ -294,3 +294,6 @@ msgstr "Inconnu"
 #: ../data/messages:51
 msgid "Display"
 msgstr "Affichage"
+
+msgid "Display the ESSID ?"
+msgstr "Afficher l'ESSID ?"

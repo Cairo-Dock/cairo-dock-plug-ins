@@ -57,13 +57,14 @@ signal_type=2
 delay = 10
 
 #F[Display]
-frame_dsip=
-
+frame_disp=
+#b Display the ESSID ?
+essid=true
 #r[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to strength :
 effect=0
 
-#F[Personnalisation]
-frame_app =
+#F[Images]
+frame_img =
 #S Name of an image for the 'no signal' icon :
 #{Let t empty to use the default icon.}
 icon_0 = 

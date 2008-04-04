@@ -41,6 +41,7 @@ typedef struct {
 	gint dCheckInterval;
 	
 	gboolean gaugeIcon;
+	gboolean iESSID;
 } AppletConfig;
 
 typedef struct {

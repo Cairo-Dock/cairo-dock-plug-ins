@@ -17,8 +17,8 @@ void cd_wifi_draw_no_wireless_extension (void) {
 	if (myData.iPreviousQuality != myData.iQuality) {
 		myData.iPreviousQuality = myData.iQuality;
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
-			cd_wifi_set_surface (WIFI_QUALITY_NO_SIGNAL);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
+		cd_wifi_set_surface (WIFI_QUALITY_NO_SIGNAL);
 	}
 	
 	myData.checkedTime ++;
@@ -79,13 +79,16 @@ void cd_wifi_draw_icon (void) {
 			}
 		break;
 	}
-	
+	if (myConfig.iESSID) {
+	  CD_APPLET_SET_NAME_FOR_MY_ICON(myData.cESSID);
+	}
 	if (myData.iQuality != myData.iPreviousQuality) {
 		myData.iPreviousQuality = myData.iQuality;
 		cd_wifi_set_surface (myData.iQuality);
 	}
-	else if (bNeedRedraw)
+	else if (bNeedRedraw) {
 		CD_APPLET_REDRAW_MY_ICON
+	}
 }
 
 void cd_wifi_set_surface (CDWifiQuality iQuality) {
