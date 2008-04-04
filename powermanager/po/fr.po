@@ -204,10 +204,10 @@ msgstr "Autonomie estimé:"
 #: ../src/powermanager-draw.c:103 ../src/powermanager-draw.c:72
 #: ../src/powermanager-draw.c:75 ../src/powermanager-draw.c:105
 msgid ""
-"Laptop on Charge \n"
+"Laptop on Charge. \n"
 " Battery charged at:"
 msgstr ""
-"Portable en Charge \n"
+"Portable en Charge. \n"
 " Batterie chargée à:"
 
 #: ../src/powermanager-menu-functions.c:40
@@ -238,3 +238,68 @@ msgstr "Aucun"
 #: ../data/messages:37
 msgid "Display"
 msgstr "Affichage"
+
+msgid "Alert"
+msgstr "Alerte"
+
+msgid "Alert when battery charged ?"
+msgstr "M'alerter quand la batterie est chargée ?"
+
+msgid "Alert when low battery ?"
+msgstr "M'alerter quand la charge est basse ?"
+
+msgid "Battery level :"
+msgstr "Niveau de batterie"
+
+msgid "in percent."
+msgstr "en pourcent"
+
+msgid "Animate icon during the alert ?"
+msgstr "Animer l'icône pendant l'alerte ?"
+
+msgid "Animation during alert :"
+msgstr "Animation pendant l'alerte :"
+
+msgid ""
+"PowerManager.\n"
+"Battery charge seems to be low"
+msgstr ""
+"PowerManager.\n"
+"Le niveau de la batterie semble être bas"
+
+msgid "Considering put your Laptop on charge."
+msgstr "Veuillez mettre votre portable en charge."
+
+msgid ""
+"PowerManager.\n"
+"Your battery is now Charged"
+msgstr ""
+"PowerManager.\n"
+"Votre batterie est maintenant chagrée"
+
+msgid "No Battery found."
+msgstr "Aucune Batterie trouvée."
+
+msgid "bounce"
+msgstr "Rebond"
+
+msgid "rotate"
+msgstr "Rotation"
+
+msgid "blink"
+msgstr "Clignotement"
+
+msgid "pulse"
+msgstr "Pulsation"
+
+msgid "upside-down"
+msgstr "Sens dessus-dessous"
+
+msgid "wobbly"
+msgstr "Élastique"
+
+msgid "random"
+msgstr "Aléatoire"
+
+#msgid ""
+#msgstr ""

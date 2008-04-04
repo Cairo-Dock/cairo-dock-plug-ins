@@ -23,9 +23,11 @@ typedef struct {
 	MyAppletQuickInfoType quickInfoType;
 	gint iCheckInterval;
 	
+	gboolean batteryWitness;
 	gboolean highBatteryWitness;
 	gboolean lowBatteryWitness;
-	gboolean lowBatteryValue;
+	CairoDockAnimationType batteryWitnessAnimation;
+	gint lowBatteryValue;
 	gchar *cThemePath;
 	
 	MyAppletEffect iEffect;
@@ -51,6 +53,7 @@ typedef struct {
 	gint battery_time;
 	gint battery_charge;
 	gboolean previously_on_battery;
+	gboolean alerted;
 	gint previous_battery_time;
 	gint previous_battery_charge;
 	gint checkLoop;

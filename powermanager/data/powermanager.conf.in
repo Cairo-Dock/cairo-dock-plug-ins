@@ -52,6 +52,19 @@ frame_info=
 
 #r[nothing;charge;time] Information to be displayed on the icon :
 quick-info_type=2
-
 #r[nothing;zoom;transparency;draw bar] Effet to apply on the icon according to charge :
 effect=0
+
+#F[Alert]
+frame_alert=
+#b Alert when battery charged ?
+high battery=true
+#b Alert when low battery ?
+low battery=true
+#i[1;90] Battery level :
+#{in percent.}
+low value = 10
+#b Animate icon during the alert ?
+battery witness=true
+#r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation during alert :
+battery animation=5

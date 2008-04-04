@@ -33,11 +33,18 @@ void update_icon(void)
 		}
 		
 		//make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.battery_charge / 100);
+		if (myData.previously_on_battery != myData.on_battery) {
+		  myData.alerted = FALSE;  //On a changer de statut, donc on réinitialise les alertes
+		}
 		myData.previously_on_battery = myData.on_battery;
 		myData.previous_battery_charge = myData.battery_charge;
 		
 		if(myData.on_battery)
-		{
+		{ 
+		  //Alert when battery charge is under a configured value
+		  if((myData.battery_charge <= myConfig.lowBatteryValue) && (myData.alerted != TRUE))
+		    { cd_powermanager_alert(1); }
+		    
 			if(myData.battery_charge >= 95)
 				{ cd_powermanager_set_surface ("battery_44.svg"); }
 			else if(myData.battery_charge >= 65)
@@ -51,6 +58,10 @@ void update_icon(void)
 		}
 		else
 		{
+		  //Alert when battery is charged
+		  if((myData.battery_charge == 100) && (myData.alerted != TRUE))
+		    { cd_powermanager_alert(0); }
+		    
 			if(myData.battery_charge >= 95)
 				{ cd_powermanager_set_surface ("charge_44.svg"); }
 			else if(myData.battery_charge >= 65)
@@ -95,16 +106,37 @@ gchar *get_hours_minutes(int iTimeInSeconds) {
 
 void cd_powermanager_bubble(void)
 {
-	gchar *hms = get_hours_minutes(myData.battery_time);
-	if(myData.on_battery)
+  if(myData.battery_present)
 	{
-	  cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Battery \n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
-	}
-	else
-	{
-	  cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Charge \n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
-	}
-	g_free (hms);
+  	gchar *hms = get_hours_minutes(myData.battery_time);
+  	if(myData.on_battery)
+  	{
+  	  cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+  	}
+  	else
+  	{
+  	  cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+  	}
+  	//g_free (hms);
+  }
+  else
+  {
+    cairo_dock_show_temporary_dialog ("%s", myIcon, myContainer, 6000, D_("No Battery found."));
+  }
+}
+
+void cd_powermanager_alert(int alert) {
+  gchar *hms = get_hours_minutes(myData.battery_time);
+  if ((alert == 1) && (myConfig.lowBatteryWitness)) {
+    cairo_dock_show_temporary_dialog ("%s (%d%%) \n %s %s \n %s", myIcon, myContainer, 6000, D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Considering put your Laptop on charge."));
+  }
+  else if ((alert == 0) && (myConfig.highBatteryWitness)) {
+    cairo_dock_show_temporary_dialog ("%s (%d%%) \n %s %s", myIcon, myContainer, 6000, D_("PowerManager.\n Your battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+  }
+  if (myConfig.batteryWitness) 
+    { CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, 3) }
+  //g_free (hms);
+  myData.alerted = TRUE;
 }
 
 void cd_powermanager_set_surface (gchar *svgFile) {	
