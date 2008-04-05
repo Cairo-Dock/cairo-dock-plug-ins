@@ -117,7 +117,7 @@ void cd_powermanager_bubble(void)
   	{
   	  cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
   	}
-  	//g_free (hms);
+  	g_free (hms);
   }
   else
   {
@@ -135,7 +135,7 @@ void cd_powermanager_alert(int alert) {
   }
   if (myConfig.batteryWitness) 
     { CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, 3) }
-  //g_free (hms);
+  g_free (hms);
   myData.alerted = TRUE;
 }
 

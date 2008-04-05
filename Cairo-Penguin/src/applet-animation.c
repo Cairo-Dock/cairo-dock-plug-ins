@@ -108,9 +108,9 @@ gboolean penguin_move_in_icon (gpointer data)
 	cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
 	g_return_val_if_fail (pSurface != NULL, TRUE);
 	
-	int iXMin = - myIcon->fWidth * myIcon->fScale / 2;
+	int iXMin = - myIcon->fWidth / myDock->fRatio * myIcon->fScale / 2;
 	int iXMax = - iXMin;
-	int iHeight = myIcon->fHeight * myIcon->fScale;
+	int iHeight = myIcon->fHeight / myDock->fRatio * myIcon->fScale;
 	
 	penguin_calculate_new_position (pAnimation, iXMin, iXMax, iHeight);
 	
@@ -142,8 +142,8 @@ gboolean penguin_move_in_icon (gpointer data)
 		
 		myIcon->pReflectionBuffer = cairo_dock_create_reflection_surface (myIcon->pIconBuffer,
 			myDrawContext,
-			(myDock->bHorizontalDock ? myIcon->fWidth : myIcon->fHeight) * (1 + g_fAmplitude),
-			(myDock->bHorizontalDock ? myIcon->fHeight : myIcon->fWidth) * (1 + g_fAmplitude),
+			(myDock->bHorizontalDock ? myIcon->fWidth : myIcon->fHeight) * (1 + g_fAmplitude) / myDock->fRatio,
+			(myDock->bHorizontalDock ? myIcon->fHeight : myIcon->fWidth) * (1 + g_fAmplitude) / myDock->fRatio,
 			myDock->bHorizontalDock,
 			1 + g_fAmplitude);
 	}
@@ -407,7 +407,7 @@ void penguin_set_new_animation (int iNewAnimation)
 			if (myConfig.bFree)
 				myData.iCurrentPositionY = myContainer->iHeight;
 			else
-				myData.iCurrentPositionY = myIcon->fHeight * myIcon->fScale;
+				myData.iCurrentPositionY = myIcon->fHeight / myDock->fRatio * myIcon->fScale;
 		}
 	}
 }

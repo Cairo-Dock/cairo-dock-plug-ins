@@ -141,38 +141,18 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 		else { // on a deja trouve l'EESID qui vient en 1er, on peut donc chercher le reste.
 		  cQuality = g_strstr_len (cOneInfopipe, -1, "Link Quality");
 		  if (cQuality != NULL) { //Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm 
-		    cQuality += 13;
+		    cQuality += 13;  // on saute le '=' avec.
 		    if (cQuality != NULL) {
 		      gchar *str = strchr (cQuality, '/');
 		      if (str != NULL) {
+		        *str = '\0';
 		        flink = atoi(cQuality);
 		        mlink = atoi(str+1);
-		        *str = '\0';
 		        prcnt = pourcent (flink, mlink);
 		      }
 		    }
 		    break; //Les autres lignes ne nous importent peu.
 		  }
-			/*if (strncmp (cOneInfopipe, "Link Quality", 12) == 0) {
-				gchar *str = strchr (cOneInfopipe+12, '=');
-				if (str == NULL)
-					str = strchr (cOneInfopipe, ':');
-					
-				cd_debug("Wifi: %s", str);
-				if (str != NULL) {
-				  
-					str ++;
-					flink = atoi (str);
-					
-					str = strchr (str, '/');
-					if (str != NULL)
-						mlink = atoi (str+1);
-					
-					//cd_debug("Signal Quality: %d/%d", flink, mlink);
-					prcnt = pourcent(flink,mlink);
-				}
-				break;
-			}*/
 		}
 	}
 	
@@ -205,7 +185,7 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 	}
 	*iPercentage = prcnt;
 	
-	g_strfreev (cInfopipesList);
+	g_strfreev (cInfopipesList);  // on le libere a la fin car cESSID pointait dessus.
 	return TRUE;
 }
 

@@ -198,6 +198,8 @@ msgstr ""
 #: ../src/powermanager-draw.c:68 ../src/powermanager-draw.c:72
 #: ../src/powermanager-draw.c:71 ../src/powermanager-draw.c:75
 #: ../src/powermanager-draw.c:101 ../src/powermanager-draw.c:105
+#: ../src/powermanager-draw.c:114 ../src/powermanager-draw.c:118
+#: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:134
 msgid "Estimated time with Charge:"
 msgstr "Autonomie estimé:"
 
@@ -232,6 +234,7 @@ msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 
 #: ../src/powermanager-draw.c:60 ../src/powermanager-draw.c:90
+#: ../src/powermanager-draw.c:101
 msgid "None"
 msgstr "Aucun"
 
@@ -239,27 +242,35 @@ msgstr "Aucun"
 msgid "Display"
 msgstr "Affichage"
 
+#: ../data/messages:57
 msgid "Alert"
 msgstr "Alerte"
 
+#: ../data/messages:59
 msgid "Alert when battery charged ?"
 msgstr "M'alerter quand la batterie est chargée ?"
 
+#: ../data/messages:61
 msgid "Alert when low battery ?"
 msgstr "M'alerter quand la charge est basse ?"
 
+#: ../data/messages:65
 msgid "Battery level :"
 msgstr "Niveau de batterie"
 
+#: ../data/messages:63
 msgid "in percent."
 msgstr "en pourcent"
 
+#: ../data/messages:67
 msgid "Animate icon during the alert ?"
 msgstr "Animer l'icône pendant l'alerte ?"
 
+#: ../data/messages:69
 msgid "Animation during alert :"
 msgstr "Animation pendant l'alerte :"
 
+#: ../src/powermanager-draw.c:131
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -267,6 +278,7 @@ msgstr ""
 "PowerManager.\n"
 "Le niveau de la batterie semble être bas"
 
+#: ../src/powermanager-draw.c:131
 msgid "Considering put your Laptop on charge."
 msgstr "Veuillez mettre votre portable en charge."
 
@@ -277,29 +289,52 @@ msgstr ""
 "PowerManager.\n"
 "Votre batterie est maintenant chagrée"
 
+#: ../src/powermanager-draw.c:124
 msgid "No Battery found."
 msgstr "Aucune Batterie trouvée."
 
+#: ../data/messages:71
 msgid "bounce"
 msgstr "Rebond"
 
+#: ../data/messages:73
 msgid "rotate"
 msgstr "Rotation"
 
+#: ../data/messages:75
 msgid "blink"
 msgstr "Clignotement"
 
+#: ../data/messages:77
 msgid "pulse"
 msgstr "Pulsation"
 
+#: ../data/messages:79
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
+#: ../data/messages:81
 msgid "wobbly"
 msgstr "Élastique"
 
+#: ../data/messages:83
 msgid "random"
 msgstr "Aléatoire"
 
-#msgid ""
-#msgstr ""
+#: ../src/powermanager-draw.c:114
+msgid ""
+"Laptop on Battery.\n"
+" Battery charged at:"
+msgstr ""
+
+#: ../src/powermanager-draw.c:118
+msgid ""
+"Laptop on Charge.\n"
+" Battery charged at:"
+msgstr ""
+
+#: ../src/powermanager-draw.c:134
+msgid ""
+"PowerManager.\n"
+" Your battery is now Charged"
+msgstr ""

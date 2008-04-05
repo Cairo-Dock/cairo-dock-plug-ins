@@ -53,6 +53,7 @@ msgstr ""
 " écrite par Cchumi pour Cairo-Dock"
 
 #: ../src/applet-notifications.c:66 ../src/applet-notifications.c:75
+#: ../src/applet-notifications.c:139
 msgid "Reload now"
 msgstr ""
 
@@ -116,26 +117,39 @@ msgstr ""
 msgid "Display current type of view on the icon instead of the default one ?"
 msgstr ""
 
-#: ../data/messages:47 ../data/messages:51
+#: ../data/messages:47 ../data/messages:51 ../data/messages:35
+#: ../data/messages:39
 msgid "Let empty to use the default one."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:49 ../data/messages:37
 msgid "Default icon :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:41
 msgid "Broken icon :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:43
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:45
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
 #: ../data/messages:59
 msgid "Render desklet in 3D ?"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Nombre de Bureaux :"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Affiche l'icone principale simplifié ?"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Afficher Une info Rapide sur l'icone ?"
 msgstr ""

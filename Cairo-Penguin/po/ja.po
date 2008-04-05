@@ -211,3 +211,7 @@ msgid ""
 "- What will we do tonight Cortex ?\n"
 "- The same thing as every nights, Minus. Try to take over the Dock !"
 msgstr ""
+
+#: ../src/applet-notifications.c:35
+msgid "For Aiur !"
+msgstr ""

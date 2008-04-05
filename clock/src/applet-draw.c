@@ -33,12 +33,6 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 }
 
 
-/*void cd_clock_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
-{
-	cairo_set_source_surface (pCairoContext, myIcon->pIconBuffer, myIcon->fDrawX, myIcon->fDrawY);
-	cairo_paint (pCairoContext);
-}*/
-
 gboolean cd_clock_update_with_time (Icon *icon)
 {
 	static gboolean bBusy = FALSE;
@@ -54,10 +48,11 @@ gboolean cd_clock_update_with_time (Icon *icon)
 	localtime_r (&epoch, &epoch_tm);
 	
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+	double fRatio = (myDock ? myDock->fRatio : 1);
 	if (myConfig.bOldStyle)
-		cd_clock_draw_old_fashionned_clock (myDrawContext, (int) icon->fWidth, (int) icon->fHeight, fMaxScale, &epoch_tm);
+		cd_clock_draw_old_fashionned_clock (myDrawContext, (int) icon->fWidth / fRatio, (int) icon->fHeight / fRatio, fMaxScale, &epoch_tm);
 	else
-		cd_clock_draw_text (myDrawContext, (int) icon->fWidth, (int) icon->fHeight, fMaxScale, &epoch_tm);
+		cd_clock_draw_text (myDrawContext, (int) icon->fWidth / fRatio, (int) icon->fHeight / fRatio, fMaxScale, &epoch_tm);
 	
 	if (myDock != NULL && myDock->bUseReflect)
 	{
@@ -67,8 +62,8 @@ gboolean cd_clock_update_with_time (Icon *icon)
 		
 		icon->pReflectionBuffer = cairo_dock_create_reflection_surface (icon->pIconBuffer,
 			myDrawContext,
-			(myDock->bHorizontalDock ? icon->fWidth : icon->fHeight) * (1 + g_fAmplitude),
-			(myDock->bHorizontalDock ? icon->fHeight : icon->fWidth) * (1 + g_fAmplitude),
+			(myDock->bHorizontalDock ? icon->fWidth : icon->fHeight) / fRatio * (1 + g_fAmplitude),
+			(myDock->bHorizontalDock ? icon->fHeight : icon->fWidth) / fRatio * (1 + g_fAmplitude),
 			myDock->bHorizontalDock,
 			1 + g_fAmplitude);
 	}
@@ -336,8 +331,16 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 	cairo_paint (pSourceContext);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
 	
+	double fRatio = (myDock ? myDock->fRatio : 1);
+	if (fRatio != 1)
+	{
+		cairo_save (pSourceContext);
+		//cairo_scale (pSourceContext, fRatio, fRatio);
+	}
 	cairo_set_source_surface (pSourceContext, myData.pBackgroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
+	//if (fRatio != 1)
+	//	cairo_restore (pSourceContext);
 	
 	cairo_save (pSourceContext);
 	cairo_scale (pSourceContext,
@@ -415,6 +418,13 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 	
 	cairo_restore (pSourceContext);
 	
+	if (fRatio != 1)
+	{
+		//cairo_save (pSourceContext);
+		//cairo_scale (pSourceContext,fRatio, fRatio);
+	}
 	cairo_set_source_surface (pSourceContext, myData.pForegroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
+	if (fRatio != 1)
+		cairo_restore (pSourceContext);
 }

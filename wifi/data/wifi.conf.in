@@ -48,6 +48,7 @@ on widget layer=false
 #theme = radium
 
 [Configuration]
+
 #F[Information]
 frame_info=
 #r[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
@@ -58,7 +59,7 @@ delay = 10
 
 #F[Display]
 frame_disp=
-#b Display the ESSID ?
+#b Overwrite the default label with the connection point name ?
 essid=true
 #r[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to strength :
 effect=0

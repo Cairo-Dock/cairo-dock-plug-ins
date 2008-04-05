@@ -7,6 +7,7 @@ AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
 AM_INIT_AUTOMAKE([foreign])
+AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 

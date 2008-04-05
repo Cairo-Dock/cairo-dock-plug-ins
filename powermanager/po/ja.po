@@ -256,6 +256,8 @@ msgstr ""
 #: ../src/powermanager-draw.c:68 ../src/powermanager-draw.c:72
 #: ../src/powermanager-draw.c:71 ../src/powermanager-draw.c:75
 #: ../src/powermanager-draw.c:101 ../src/powermanager-draw.c:105
+#: ../src/powermanager-draw.c:114 ../src/powermanager-draw.c:118
+#: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:134
 msgid "Estimated time with Charge:"
 msgstr ""
 
@@ -291,6 +293,7 @@ msgid "List of available themes for the analogic display :"
 msgstr ""
 
 #: ../src/powermanager-draw.c:60 ../src/powermanager-draw.c:90
+#: ../src/powermanager-draw.c:101
 msgid "None"
 msgstr ""
 
@@ -301,4 +304,92 @@ msgstr ""
 #: ../src/powermanager-menu-functions.c:40
 #: ../src/powermanager-menu-functions.c:46
 msgid "Set up power management"
+msgstr ""
+
+#: ../src/powermanager-draw.c:114
+msgid ""
+"Laptop on Battery.\n"
+" Battery charged at:"
+msgstr ""
+
+#: ../src/powermanager-draw.c:118
+msgid ""
+"Laptop on Charge.\n"
+" Battery charged at:"
+msgstr ""
+
+#: ../src/powermanager-draw.c:124
+msgid "No Battery found."
+msgstr ""
+
+#: ../src/powermanager-draw.c:131
+msgid ""
+"PowerManager.\n"
+"Battery charge seems to be low"
+msgstr ""
+
+#: ../src/powermanager-draw.c:131
+msgid "Considering put your Laptop on charge."
+msgstr ""
+
+#: ../src/powermanager-draw.c:134
+msgid ""
+"PowerManager.\n"
+" Your battery is now Charged"
+msgstr ""
+
+#: ../data/messages:57
+msgid "Alert"
+msgstr ""
+
+#: ../data/messages:59
+msgid "Alert when battery charged ?"
+msgstr ""
+
+#: ../data/messages:61
+msgid "Alert when low battery ?"
+msgstr ""
+
+#: ../data/messages:63
+msgid "in percent."
+msgstr ""
+
+#: ../data/messages:65
+msgid "Battery level :"
+msgstr ""
+
+#: ../data/messages:67
+msgid "Animate icon during the alert ?"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Animation during alert :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "bounce"
+msgstr ""
+
+#: ../data/messages:73
+msgid "rotate"
+msgstr ""
+
+#: ../data/messages:75
+msgid "blink"
+msgstr ""
+
+#: ../data/messages:77
+msgid "pulse"
+msgstr ""
+
+#: ../data/messages:79
+msgid "upside-down"
+msgstr ""
+
+#: ../data/messages:81
+msgid "wobbly"
+msgstr ""
+
+#: ../data/messages:83
+msgid "random"
 msgstr ""

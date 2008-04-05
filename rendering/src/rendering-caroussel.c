@@ -63,7 +63,7 @@ void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 	
 	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, my_fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, my_fForegroundRatio, fExtraWidth));  // fExtraWidth/2 de chaque cote.
-	pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
+	///pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
 	
 	pDock->iMaxDockHeight = g_iDockLineWidth + g_iFrameMargin + g_fReflectSize + iEllipseHeight + pDock->iMaxIconHeight;  // de bas en haut;
 	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, g_iDockLineWidth + g_iFrameMargin + (1 + g_fAmplitude) * pDock->iMaxIconHeight + g_fReflectSize + g_iLabelSize);
@@ -214,8 +214,8 @@ void cd_rendering_render_caroussel (CairoDock *pDock)
 		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, TRUE, FALSE);
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
-	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
-	cd_rendering_render_icons_caroussel (pCairoContext, pDock, fRatio);
+	///double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
+	cd_rendering_render_icons_caroussel (pCairoContext, pDock, pDock->fRatio);
 	
 	cairo_destroy (pCairoContext);
 #ifdef HAVE_GLITZ

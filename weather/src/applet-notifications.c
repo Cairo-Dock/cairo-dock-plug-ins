@@ -207,7 +207,7 @@ CairoDockDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
 			(myDock ? CAIRO_DOCK_CONTAINER (myIcon->pSubDock) : myContainer),
 			myConfig.cDialogDuration,
 			pIcon->acFileName);
-		return ;
+		return NULL;
 	}
 	
 	int iNumDay = ((int) pIcon->fOrder) / 2, iPart = ((int) pIcon->fOrder) - 2 * iNumDay;
@@ -235,7 +235,7 @@ CairoDockDialog *cd_weather_show_current_conditions_dialog (void)
 			myContainer,
 			myConfig.cDialogDuration,
 			myIcon->acFileName);
-		return ;
+		return NULL;
 	}
 	
 	CurrentContitions *cc = &myData.currentConditions;

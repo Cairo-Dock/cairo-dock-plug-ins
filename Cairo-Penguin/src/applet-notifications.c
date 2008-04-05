@@ -18,7 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_INCLUDE_MY_VARS
 
 
-#define PENGUIN_NB_MESSAGES 12
+#define PENGUIN_NB_MESSAGES 13
 static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 	N_("Hey, I'm here !"),
 	N_("Sorry but I'm busy right now."),
@@ -31,7 +31,8 @@ static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 	N_("I want to be a pirate !"),
 	N_("You shall not pass !"),
 	N_("I'm your father !"),
-	N_("- What will we do tonight Cortex ?\n- The same thing as every nights, Minus. Try to take over the Dock !")};
+	N_("- What will we do tonight Cortex ?\n- The same thing as every nights, Minus. Try to take over the Dock !"),
+	N_("For Aiur !")};
 
 
 CD_APPLET_ABOUT (D_("This is the Cairo-Penguin applet\n made by Fabrice Rey for Cairo-Dock"))

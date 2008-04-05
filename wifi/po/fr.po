@@ -133,7 +133,7 @@ msgstr "Excellent"
 #: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119 ../data/messages:19
 #: ../src/applet-wifi.c:18 ../src/applet-draw.c:15 ../data/messages:39
 #: ../src/applet-draw.c:13 ../data/messages:53 ../data/messages:59
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:57
 msgid "None"
 msgstr "Aucune"
 
@@ -141,18 +141,22 @@ msgid "Lost"
 msgstr "Perdue"
 
 #: ../data/messages:55 ../data/messages:61 ../data/messages:57
+#: ../data/messages:59
 msgid "Zoom"
 msgstr "Zoom"
 
 #: ../data/messages:57 ../data/messages:63 ../data/messages:59
+#: ../data/messages:61
 msgid "Transparency"
 msgstr "Transparence"
 
 #: ../data/messages:59 ../data/messages:65 ../data/messages:61
+#: ../data/messages:63
 msgid "Draw Bar"
 msgstr "Dessiner une barre"
 
 #: ../data/messages:51 ../data/messages:57 ../data/messages:53
+#: ../data/messages:55
 msgid "Effet to apply on the icon according to strength :"
 msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
@@ -248,6 +252,7 @@ msgstr "Configuration"
 
 #: ../data/messages:27 ../data/messages:31 ../data/messages:51
 #: ../data/messages:61 ../data/messages:67 ../data/messages:63
+#: ../data/messages:65
 msgid "Images"
 msgstr "Images"
 
@@ -272,10 +277,12 @@ msgid "Name of an image for the 'no signal' icon :"
 msgstr "Nom de l'image 'Aucun Signal' :"
 
 #: ../src/applet-draw.c:154 ../src/applet-draw.c:148 ../src/applet-draw.c:147
+#: ../src/applet-draw.c:150
 msgid "Wifi disabled."
 msgstr "Wifi désactivé."
 
 #: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
+#: ../src/applet-draw.c:153
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -284,10 +291,11 @@ msgstr ""
 " Connecté sur:"
 
 #: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
+#: ../src/applet-draw.c:153
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 
-#: ../src/applet-wifi.c:175 ../src/applet-wifi.c:169
+#: ../src/applet-wifi.c:175 ../src/applet-wifi.c:169 ../src/applet-wifi.c:182
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -297,3 +305,7 @@ msgstr "Affichage"
 
 msgid "Display the ESSID ?"
 msgstr "Afficher l'ESSID ?"
+
+#: ../data/messages:53
+msgid "Overwrite the default label with the connection point name ?"
+msgstr ""
