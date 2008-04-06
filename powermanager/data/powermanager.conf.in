@@ -54,7 +54,7 @@ quick-info_type=2
 effect=0
 
 #R1[] List of available themes for the analogic display :/
-theme = radium
+theme = battery
 
 #F[Alert]
 frame_alert=
