@@ -1,0 +1,11 @@
+#!/usr/bash
+pgrep compiz && COMPIZ=1 || COMPIZ=0
+rm -f /tmp/compiz
+
+test "$COMPIZ" == "0"
+if [ $? -eq 0 ]
+then
+  echo "Other" >> /tmp/compiz
+else
+  echo "Compiz" >> /tmp/compiz
+fi
