@@ -32,48 +32,50 @@ void update_icon(void)
 			}
 		}
 		
-		//make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.battery_charge / 100);
-		if (myData.previously_on_battery != myData.on_battery) {
-		  myData.previously_on_battery = myData.on_battery;
-		  myData.alerted = FALSE;  //On a changer de statut, donc on réinitialise les alertes
-		}
-		myData.previous_battery_charge = myData.battery_charge;
-		
-		if(myData.on_battery)
-		{ 
-		  //Alert when battery charge is under a configured value
-		  if((myData.battery_charge <= myConfig.lowBatteryValue) && (myData.alerted != TRUE))
-		    { cd_powermanager_alert(1); }
-		    
-			if(myData.battery_charge >= 95)
-				{ cd_powermanager_set_surface ("battery_44.svg"); }
-			else if(myData.battery_charge >= 65)
-				{ cd_powermanager_set_surface ("battery_34.svg"); }
-			else if(myData.battery_charge >= 35)
-				{ cd_powermanager_set_surface ("battery_24.svg"); }
-			else if(myData.battery_charge >= 5)
-				{ cd_powermanager_set_surface ("battery_14.svg"); }
-			else
-				{ cd_powermanager_set_surface ("battery_04.svg"); }
-		}
-		else
+		if (myData.previous_battery_charge != myData.battery_charge || myData.previously_on_battery != myData.on_battery)
 		{
-		  //Alert when battery is charged
-		  if((myData.battery_charge == 100) && (myData.alerted != TRUE))
-		    { cd_powermanager_alert(0); }
+		  if(myData.on_battery)
+		  { 
+		  //Alert when battery charge is under a configured value
+		    if((myData.battery_charge <= myConfig.lowBatteryValue) && (myData.alerted != TRUE))
+		      { cd_powermanager_alert(1); }
 		    
-			if(myData.battery_charge >= 95)
-				{ cd_powermanager_set_surface ("charge_44.svg"); }
-			else if(myData.battery_charge >= 65)
-				{ cd_powermanager_set_surface ("charge_34.svg"); }
-			else if(myData.battery_charge >= 35)
-				{ cd_powermanager_set_surface ("charge_24.svg"); }
-			else if(myData.battery_charge >= 5)
-				{ cd_powermanager_set_surface ("charge_14.svg"); }
-			else
-				{ cd_powermanager_set_surface ("charge_04.svg"); }
-		}
-		
+			  /*if(myData.battery_charge >= 95)
+				  { cd_powermanager_set_surface ("battery_44.svg"); }
+			  else if(myData.battery_charge >= 65)
+				  { cd_powermanager_set_surface ("battery_34.svg"); }
+			  else if(myData.battery_charge >= 35)
+				  { cd_powermanager_set_surface ("battery_24.svg"); }
+			  else if(myData.battery_charge >= 5)
+				  { cd_powermanager_set_surface ("battery_14.svg"); }
+			  else
+				  { cd_powermanager_set_surface ("battery_04.svg"); }*/
+		  }
+		  else
+		  {
+		    //Alert when battery is charged
+		    if((myData.battery_charge == 100) && (myData.alerted != TRUE))
+		      { cd_powermanager_alert(0); }
+		    
+			  /*if(myData.battery_charge >= 95)
+			  	{ cd_powermanager_set_surface ("charge_44.svg"); }
+			  else if(myData.battery_charge >= 65)
+			  	{ cd_powermanager_set_surface ("charge_34.svg"); }
+			  else if(myData.battery_charge >= 35)
+			  	{ cd_powermanager_set_surface ("charge_24.svg"); }
+			  else if(myData.battery_charge >= 5)
+			  	{ cd_powermanager_set_surface ("charge_14.svg"); }
+		  	else
+			  	{ cd_powermanager_set_surface ("charge_04.svg"); }*/
+		  }
+		  
+		  make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.battery_charge / 100);
+		  if (myData.previously_on_battery != myData.on_battery)
+		    myData.alerted = FALSE;  //On a changer de statut, donc on réinitialise les alertes
+      
+		  myData.previously_on_battery = myData.on_battery;
+		  myData.previous_battery_charge = myData.battery_charge;
+    }
 	}
 	else
 	{
@@ -103,7 +105,6 @@ gchar *get_hours_minutes(int iTimeInSeconds) {
 	else
 		time = g_strdup (D_("None"));
 	
-	//cd_message("%dh%dm", h, m);
 	return time;
 }
 
@@ -138,7 +139,7 @@ gboolean cd_powermanager_alert(int alert) {
   }
   if (myConfig.batteryWitness) 
     { CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, 3) }
-  g_free (hms);
+  //g_free (hms);
   myData.alerted = TRUE;
   return FALSE;
 }

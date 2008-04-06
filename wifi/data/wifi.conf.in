@@ -41,12 +41,6 @@ keep above=false
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
 
-
-##b Use a jauge instead of icons?
-#gauge=false
-##R1[radium] List of available themes for the analogic display :
-#theme = radium
-
 [Configuration]
 
 #F[Information]
@@ -66,6 +60,11 @@ effect=0
 
 #F[Images]
 frame_img =
+#b Use a jauge instead of icons?
+gauge=false
+#R1[radium] List of available themes for the analogic display :
+theme = radium
+
 #S Name of an image for the 'no signal' icon :
 #{Let t empty to use the default icon.}
 icon_0 = 

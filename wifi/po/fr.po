@@ -309,4 +309,4 @@ msgstr "Afficher l'ESSID ?"
 
 #: ../data/messages:53
 msgid "Overwrite the default label with the connection point name ?"
-msgstr ""
+msgstr "Ecraser l'étiquette par défaut avec le nom du point d'accès ?"

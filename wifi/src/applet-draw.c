@@ -95,7 +95,7 @@ void cd_wifi_set_surface (CDWifiQuality iQuality) {
 	g_return_if_fail (iQuality < WIFI_NB_QUALITY);
 	
 	if (myConfig.gaugeIcon) { //Gauge
-    ///make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
+    make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
   }
 	else { //Icons
 		cairo_surface_t *pSurface = myData.pSurfaces[iQuality];

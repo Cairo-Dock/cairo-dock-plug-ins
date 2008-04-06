@@ -39,8 +39,6 @@ keep above=false
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
 
-##R1[] List of available themes for the analogic display :/
-#theme = radium
 [Configuration]
 
 #i[1;120] Interval of time between 2 checks :
@@ -54,6 +52,9 @@ frame_info=
 quick-info_type=2
 #r[nothing;zoom;transparency;draw bar] Effet to apply on the icon according to charge :
 effect=0
+
+#R1[] List of available themes for the analogic display :/
+theme = radium
 
 #F[Alert]
 frame_alert=

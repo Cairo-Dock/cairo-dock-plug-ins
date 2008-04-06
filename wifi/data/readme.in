@@ -1,5 +1,5 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
-<u>Author</u> : <b>ChAnGFu</b>
+<u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
 <i>This applet shows you the signal strength</i>
 <i>of the first active <span color='#0000FF'>wifi</span> connection</i>
 Left-click to pop-up some info,
