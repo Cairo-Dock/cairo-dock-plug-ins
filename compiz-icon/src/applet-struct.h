@@ -15,8 +15,10 @@ typedef struct {
   gboolean iRendering;
   gboolean selfDecorator;
   gboolean protectDecorator;
+  gboolean fSwitch;
   compizWM iWM;
   gchar *cRenderer;
+  gchar *sDecoratorCMD;
   //cairo_surface_t *cSurface[3];
 } AppletConfig;
 

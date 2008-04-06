@@ -226,6 +226,7 @@ module_DATA = \
 	1.svg\
 	2.svg\
 	compiz\
+	compiz-kill\
 	icon.png
 
 all: all-recursive

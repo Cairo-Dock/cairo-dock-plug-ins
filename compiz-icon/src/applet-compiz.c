@@ -28,6 +28,7 @@ void _compiz_cmd(gchar *cmd) {
 
 gboolean cd_compiz_start_wm(void) {
   gchar *cmd = NULL;
+  cd_message("Compiz: Default WM: %d\n", myConfig.iWM);
   switch (myConfig.iWM) {
     case COMPIZ_FUSION: default: //Compiz
       cmd = "compiz.real --replace --ignore-desktop-hints ccp";
@@ -35,7 +36,7 @@ gboolean cd_compiz_start_wm(void) {
         cmd = g_strdup_printf("%s --loose-binding", cmd);
       }
       if (myConfig.iRendering) {
-        cmd = g_strdup_printf("%s --indirect rendering", cmd);
+        cmd = g_strdup_printf("%s --indirect-rendering", cmd);
       }
       if (myConfig.selfDecorator) {
         gchar *decorator = NULL;
@@ -47,6 +48,9 @@ gboolean cd_compiz_start_wm(void) {
         }
         cmd = g_strdup_printf("%s --sm-disable & %s", cmd, decorator);
       }
+      else {
+        cmd = g_strdup_printf("%s && emerald --replace", cmd);
+      }
       cmd = g_strdup_printf("%s &", cmd);
     break;
     case METACITY: case XFCE: //Gnome & XFCE
@@ -56,7 +60,12 @@ gboolean cd_compiz_start_wm(void) {
       cmd = "kwin --replace &";
     break;
   }
+  if (myConfig.sDecoratorCMD != NULL && myConfig.iWM != 0) { //On switch avec la commande perso
+    cmd = myConfig.sDecoratorCMD;
+    cmd = g_strdup_printf("%s &", cmd);
+  }
   if (cmd != NULL) {
+    cd_compiz_kill_compmgr(); //On tue tout les compositing managers
     _compiz_cmd(cmd);
     cd_compiz_launch_measure();
   }
@@ -65,7 +74,30 @@ gboolean cd_compiz_start_wm(void) {
   }
   return FALSE;
 }
-
+void cd_compiz_switch(void) {
+  if(myConfig.fSwitch) {
+    int i=0;
+    gchar *cmd;
+    if (myConfig.iWM == 0) { //On a compiz, on switch sur le systeme
+      if (g_iDesktopEnv == CAIRO_DOCK_GNOME) {
+        myConfig.iWM = METACITY;
+      }
+      else if (g_iDesktopEnv == CAIRO_DOCK_XFCE) {
+        myConfig.iWM = XFCE;
+      }
+      else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
+        myConfig.iWM = KWIN;
+      }
+      cd_message("Compiz: Swtiching to System WM.\n");
+    }
+    else { //On a pas comiz, on y revient
+      myConfig.iWM = COMPIZ_FUSION;
+      cd_message("Compiz: Switching to Compiz.\n");
+    }
+    cd_compiz_start_wm();
+    cd_compiz_launch_measure();
+  }
+}
 void cd_compiz_check_my_wm(void) {
   if (myConfig.protectDecorator) {
 	  if ((myData.iCompizIcon == 0) && (myConfig.iWM != 0)) { //on a compiz alors qu'on en veut pas
@@ -75,6 +107,12 @@ void cd_compiz_check_my_wm(void) {
 	    cd_compiz_start_wm(); 
 	  }
 	}
+}
+
+void cd_compiz_kill_compmgr(void) {
+	gchar *cCommand = g_strdup_printf("bash %s/compiz-kill", MY_APPLET_SHARE_DATA_DIR);
+	system (cCommand);
+	g_free (cCommand);
 }
 
 gboolean cd_compiz_timer(void) {

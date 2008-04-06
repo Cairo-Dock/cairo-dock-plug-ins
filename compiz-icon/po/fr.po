@@ -101,13 +101,25 @@ msgid "Windows Manager"
 msgstr "Gestionnaire de Fenêtres"
 
 msgid "Select your Windows Manager :"
-msgstr "Choissiez votre Gestionnaire de Fenêtres :"
+msgstr "Choisissez votre Gestionnaire de Fenêtres :"
 
-msgid "Protect my setting"
-msgstr "Proteger ma configurations"
+msgid "Fast Switching"
+msgstr "Changement Rapide"
+
+msgid "Allow you to switch beetwen Compiz & system's Windows Manager with middle click"
+msgstr "Vous permet d'échanger entre Compiz & le Gestionnaire de Fenêtres du système avec le clique du milieu"
+
+msgid "Protect my settings"
+msgstr "Proteger ma configuration"
 
 msgid "Reload default Windows Manager when missing"
 msgstr "Recharge le Gestionnaire de Fenêtres par defaut quand il est absent"
+
+msgid "Custom command for system's Window Manager :"
+msgstr "Commande personnalisé pour le Gestionnaire de Fenêtres système :"
+
+msgid "The applet will use this commande instead of default one"
+msgstr "L'applet utilisera cette commande au lieu de celle par défaut"
 
 msgid "Compiz Options"
 msgstr "Options de Compiz"
@@ -119,7 +131,7 @@ msgid "Indirect Rendering"
 msgstr "Rendu Indirect (Indirect Rendering)"
 
 msgid "Use system's Decorator"
-msgstr "Utiliser le Décorateur du systeme"
+msgstr "Utiliser le Décorateur du système"
 
 msgid "Disable Emerald and use default system Decorator"
 msgstr "Désactive Emerald et utilise le Décorateur par defaut du systeme"
