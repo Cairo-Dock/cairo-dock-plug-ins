@@ -45,7 +45,6 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL) {
 		if (pClickedIcon == myIcon)
-			//_compiz_action_by_id (0);
 			cd_compiz_launch_measure();
 		else
 			_compiz_action_by_id ((int) pClickedIcon->fOrder/2);
@@ -60,6 +59,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("compiz-icon", pSubMenu, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_SUB_MENU ("Compiz Icon", pSubMenu, CD_APPLET_MY_MENU)
+	  CD_APPLET_ADD_IN_MENU (D_("Switch Windows Decorator"), cd_compiz_switch_decorator, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END

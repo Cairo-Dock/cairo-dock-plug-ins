@@ -8,6 +8,7 @@ void _compiz_cmd(gchar *cmd);
 void _reload_wm(void);
 gboolean cd_compiz_start_wm(void);
 void cd_compiz_switch(void);
+void cd_compiz_switch_decorator(void);
 void cd_compiz_kill_compmgr(void);
 void cd_compiz_launch_measure(void);
 gpointer cd_compiz_threaded_calculation (gpointer data);

@@ -43,6 +43,9 @@ msgstr "Nom de l'icône :"
 msgid "This is the compiz-icon applet\n made by ChAnGFu for Cairo-Dock"
 msgstr "Ceci est l'applet compiz-icon\n écrite par ChAnGFu pour Cairo-Dock"
 
+msgid "Switch Windows Decorator"
+msgstr "Échanger le Décorateur de Fenêtres"
+
 #: ../data/messages:11
 msgid "Desklet"
 msgstr "Desklet"
@@ -116,7 +119,7 @@ msgid "Reload default Windows Manager when missing"
 msgstr "Recharge le Gestionnaire de Fenêtres par defaut quand il est absent"
 
 msgid "Custom command for system's Window Manager :"
-msgstr "Commande personnalisé pour le Gestionnaire de Fenêtres système :"
+msgstr "Commande personnalisée pour le Gestionnaire de Fenêtres système :"
 
 msgid "The applet will use this commande instead of default one"
 msgstr "L'applet utilisera cette commande au lieu de celle par défaut"

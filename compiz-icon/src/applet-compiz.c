@@ -68,6 +68,7 @@ gboolean cd_compiz_start_wm(void) {
     cd_compiz_kill_compmgr(); //On tue tout les compositing managers
     _compiz_cmd(cmd);
     cd_compiz_launch_measure();
+    g_free (cmd);
   }
   else {
     cd_message("Compiz: No Window Manager to launch, aborting.\n");
@@ -108,7 +109,26 @@ void cd_compiz_check_my_wm(void) {
 	  }
 	}
 }
-
+void cd_compiz_switch_decorator(void) {
+  gchar *cmd = NULL;
+  if (myData.isEmerald) {
+    if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
+         cmd = "gtk-window-decorator --replace &";
+    }
+    else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
+     cmd = "kde-window-decorator --replace &"; //A remplacer par le Decorateur de KDE
+    }
+    cd_message("Compiz: Switching to system's Decorator.\n");
+  }
+  else {
+    cmd = "emerald --replace &";
+    cd_message("Compiz: Switching to Emerald.\n");
+  }
+  if (cmd != NULL) {
+    _compiz_cmd(cmd);
+    cd_compiz_launch_measure();
+  }
+}
 void cd_compiz_kill_compmgr(void) {
 	gchar *cCommand = g_strdup_printf("bash %s/compiz-kill", MY_APPLET_SHARE_DATA_DIR);
 	system (cCommand);
@@ -182,23 +202,33 @@ static void _compiz_get_values_from_file (gchar *cContent) {
 		cOneInfopipe = cInfopipesList[i];
 		if (*cOneInfopipe == '\0')
 			continue;
-		if ((i == 0) && (strcmp(cOneInfopipe,"Compiz") == 0)) {
-		  cd_message("Compiz: Running");
-			myData.isCompiz = TRUE;
-			if (myData.iCompizIcon != 0) {
-			  myData.iCompizIcon = 0;
-			  myData.bNeedRedraw = TRUE;
-			}
-			break;
-		}
-		else {
-		  cd_message("Compiz: Not running");
-		  myData.isCompiz = FALSE;
-		  if (myData.iCompizIcon != 2) {
-		    myData.bNeedRedraw = TRUE;
-		    myData.iCompizIcon = 2;
+		if (i == 0) {
+		  if (strcmp(cOneInfopipe,"Compiz") == 0) {
+		    cd_message("Compiz: Running");
+			  myData.isCompiz = TRUE;
+			  if (myData.iCompizIcon != 0) {
+			    myData.iCompizIcon = 0;
+			    myData.bNeedRedraw = TRUE;
+			  }
 		  }
-		  break;
+		  else {
+		    cd_message("Compiz: Not running");
+		    myData.isCompiz = FALSE;
+		    if (myData.iCompizIcon != 2) {
+		      myData.bNeedRedraw = TRUE;
+		      myData.iCompizIcon = 2;
+		    }
+		  }
+		}
+	  if (i == 1) {
+	    if (strcmp(cOneInfopipe,"Emerald") == 0) {
+		    cd_message("Compiz: Emerald Running");
+			  myData.isEmerald = TRUE;
+		  }
+		  else {
+		    cd_message("Compiz: Emerald Not running");
+		    myData.isEmerald = FALSE;
+		  }
 		}
 	}
 	g_strfreev (cInfopipesList);

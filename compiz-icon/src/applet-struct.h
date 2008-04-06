@@ -25,6 +25,7 @@ typedef struct {
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 typedef struct {
   gint iCompizIcon;
+  gboolean isEmerald;
   gboolean isCompiz;
   gboolean bNeedRedraw;
   gboolean bAcquisitionOK;
