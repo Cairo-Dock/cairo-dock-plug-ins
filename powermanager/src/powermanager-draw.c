@@ -42,7 +42,6 @@ void update_icon(void)
 		
 		if(myData.on_battery)
 		{
-<<<<<<< .mine
 			//Alert when battery charge is under a configured value
 			if((myData.battery_charge <= myConfig.lowBatteryValue) && (myData.alerted != TRUE))
 			{
