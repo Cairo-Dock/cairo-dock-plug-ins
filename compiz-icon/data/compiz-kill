@@ -1,0 +1,4 @@
+#!/usr/bash
+kill $(pgrep compiz)
+kill $(pgrep xcompmgr)
+sleep 1
