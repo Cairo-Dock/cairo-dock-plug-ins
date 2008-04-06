@@ -296,6 +296,7 @@ msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 
 #: ../src/applet-wifi.c:175 ../src/applet-wifi.c:169 ../src/applet-wifi.c:182
+#: ../src/applet-wifi.c:162
 msgid "Unknown"
 msgstr "Inconnu"
 

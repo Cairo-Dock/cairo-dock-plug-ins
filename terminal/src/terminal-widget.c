@@ -27,6 +27,8 @@
 #include <string.h>
 #include <signal.h>
 #include <gdk/gdkkeysyms.h>
+// gdk.h semble necessaire pour certains
+#include <gdk/gdk.h>
 
 #include <vte/vte.h>
 

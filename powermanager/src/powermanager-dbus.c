@@ -7,7 +7,7 @@
 #include "powermanager-dbus.h"
 
 #define MY_BATTERY_DIR "/proc/acpi/battery"
-#define MY_BATTERY_NAME "BAT0"
+#define MY_DEFAULT_BATTERY_NAME "BAT0"
 
 static DBusGConnection *dbus_connexion_system = NULL;
 static DBusGProxy *dbus_proxy_power = NULL;
@@ -23,36 +23,53 @@ static const gchar* power_battery_name(void) {
 	{
 		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
-		return NULL;
+		return MY_DEFAULT_BATTERY_NAME;
 	}
 	
+	GString *sBatteryStateFilePath = g_string_new ("");
+	gchar *cContent = NULL, *cPresentLine;
+	gsize length=0;
 	const gchar *cBatteryName;
-	cBatteryName = g_dir_read_name (dir);  // le 1er fichier trouve, ou NULL si aucun.
+	do
+	{
+		cBatteryName = g_dir_read_name (dir);
+		if (cBatteryName == NULL)
+			break ;
+		
+		g_string_printf (sBatteryStateFilePath, "%s/%s/state", MY_BATTERY_DIR, cBatteryName);
+		gchar *cContent = NULL;
+		length=0;
+		g_file_get_contents(sBatteryStateFilePath->str, &cContent, &length, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning("Attention : %s", erreur->message);
+			g_error_free(erreur);
+			erreur = NULL;
+		}
+		else  // on cherche la ligne "present:                 yes"
+		{
+			cPresentLine = g_strstr_len (cContent, -1, "present");
+			if (cPresentLine != NULL)
+			{
+				cPresentLine += 7;
+				gchar *str = strchr (cPresentLine, '\n');  // on garde que cette ligne.
+				if (str != NULL)
+					*str = '\0';
+				if (g_strstr_len (cContent, -1, "yes") != NULL)  // on l'a trouvee !
+					break;
+			}
+		}
+		g_free (cContent);
+	}
+	while (1);
 	g_dir_close (dir);
 	if (cBatteryName == NULL)
-		cBatteryName = MY_BATTERY_NAME;  // utile ? si y'a rien dans ce repertoire, c'est surement qu'il n'y a pas de batterie non ?
-	cd_message ("Battery Name: %s", cBatteryName);
+	{
+		cd_warning ("No battery were found");
+		cBatteryName = MY_DEFAULT_BATTERY_NAME;  // utile ? si on a rien trouve, c'est surement qu'il n'y a pas de batterie non ?
+	}
+	cd_message ("Battery Name : %s", cBatteryName);
 	return cBatteryName;
-	/*DIR *dir_fd;
-  struct dirent *dir_data;
-  char *battery_base_dir="/proc/acpi/battery";
-  char *battery = "BAT0";
-    
-  dir_fd=opendir(battery_base_dir);
-  if(dir_fd!=NULL) {
-    int dir_found=0;
-
-    readdir(dir_fd);
-    readdir(dir_fd);
-
-    while( !dir_found && (dir_data=readdir(dir_fd))!=NULL ) {
-        battery = dir_data->d_name;
-        dir_found=1;
-    }
-
-    closedir(dir_fd);
-  }
-  cd_message ("Battery Name: %s",battery);*/
 }
 
 gboolean dbus_connect_to_bus (void)
