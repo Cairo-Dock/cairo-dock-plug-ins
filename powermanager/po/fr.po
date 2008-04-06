@@ -188,10 +188,10 @@ msgstr "Dessiner une barre"
 #: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:68
 #: ../src/powermanager-draw.c:71 ../src/powermanager-draw.c:101
 msgid ""
-"Laptop on Battery \n"
+"Laptop on Battery.\n"
 " Battery charged at:"
 msgstr ""
-"Portable sur Batterie \n"
+"Portable sur Batterie.\n"
 " Batterie chargée à:"
 
 #: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:103
@@ -206,10 +206,10 @@ msgstr "Autonomie estimé:"
 #: ../src/powermanager-draw.c:103 ../src/powermanager-draw.c:72
 #: ../src/powermanager-draw.c:75 ../src/powermanager-draw.c:105
 msgid ""
-"Laptop on Charge. \n"
+"Laptop on Charge.\n"
 " Battery charged at:"
 msgstr ""
-"Portable en Charge. \n"
+"Portable en Charge.\n"
 " Batterie chargée à:"
 
 #: ../src/powermanager-menu-functions.c:40
@@ -278,8 +278,7 @@ msgstr ""
 "PowerManager.\n"
 "Le niveau de la batterie semble être bas"
 
-#: ../src/powermanager-draw.c:131
-msgid "Considering put your Laptop on charge."
+msgid "Please put your Laptop on charge."
 msgstr "Veuillez mettre votre portable en charge."
 
 msgid ""
@@ -287,7 +286,7 @@ msgid ""
 "Your battery is now Charged"
 msgstr ""
 "PowerManager.\n"
-"Votre batterie est maintenant chagrée"
+"Votre batterie est maintenant Chargée"
 
 #: ../src/powermanager-draw.c:124
 msgid "No Battery found."
@@ -321,20 +320,3 @@ msgstr "Élastique"
 msgid "random"
 msgstr "Aléatoire"
 
-#: ../src/powermanager-draw.c:114
-msgid ""
-"Laptop on Battery.\n"
-" Battery charged at:"
-msgstr ""
-
-#: ../src/powermanager-draw.c:118
-msgid ""
-"Laptop on Charge.\n"
-" Battery charged at:"
-msgstr ""
-
-#: ../src/powermanager-draw.c:134
-msgid ""
-"PowerManager.\n"
-" Your battery is now Charged"
-msgstr ""

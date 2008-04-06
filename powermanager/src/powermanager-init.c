@@ -33,6 +33,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 			///double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 			///myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 			
+			myData.alerted = TRUE;
 			update_stats();
 			myData.checkLoop = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 		}
@@ -96,6 +97,7 @@ CD_APPLET_RELOAD_BEGIN
 			myData.previously_on_battery = -1;  // pour forcer le redessin.
 			myData.previous_battery_charge = -1;
 			myData.previous_battery_time = -1;
+			myData.alerted = TRUE;
 			update_stats();
 		}
 		else

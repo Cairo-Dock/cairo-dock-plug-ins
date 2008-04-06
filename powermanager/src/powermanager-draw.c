@@ -34,9 +34,9 @@ void update_icon(void)
 		
 		//make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.battery_charge / 100);
 		if (myData.previously_on_battery != myData.on_battery) {
+		  myData.previously_on_battery = myData.on_battery;
 		  myData.alerted = FALSE;  //On a changer de statut, donc on réinitialise les alertes
 		}
-		myData.previously_on_battery = myData.on_battery;
 		myData.previous_battery_charge = myData.battery_charge;
 		
 		if(myData.on_battery)
@@ -84,7 +84,10 @@ void update_icon(void)
 }
 
 gchar *get_hours_minutes(int iTimeInSeconds) {
-	gchar *time;
+	gchar *time = g_strdup (D_("None"));
+	if (iTimeInSeconds == NULL || iTimeInSeconds == 0) {
+	  return time;
+	}
 	int h=0, m=0;
 	m = iTimeInSeconds / 60;
 	h = m / 60;
@@ -100,7 +103,7 @@ gchar *get_hours_minutes(int iTimeInSeconds) {
 	else
 		time = g_strdup (D_("None"));
 	
-	cd_message("%dh%dm", h, m);
+	//cd_message("%dh%dm", h, m);
 	return time;
 }
 
@@ -125,18 +128,19 @@ void cd_powermanager_bubble(void)
   }
 }
 
-void cd_powermanager_alert(int alert) {
+gboolean cd_powermanager_alert(int alert) {
   gchar *hms = get_hours_minutes(myData.battery_time);
   if ((alert == 1) && (myConfig.lowBatteryWitness)) {
-    cairo_dock_show_temporary_dialog ("%s (%d%%) \n %s %s \n %s", myIcon, myContainer, 6000, D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Considering put your Laptop on charge."));
+    cairo_dock_show_temporary_dialog ("%s (%d%%) \n %s %s \n %s", myIcon, myContainer, 6000, D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
   }
   else if ((alert == 0) && (myConfig.highBatteryWitness)) {
-    cairo_dock_show_temporary_dialog ("%s (%d%%) \n %s %s", myIcon, myContainer, 6000, D_("PowerManager.\n Your battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+    cairo_dock_show_temporary_dialog ("%s (%d%%) \n %s %s ", myIcon, myContainer, 6000, D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
   }
   if (myConfig.batteryWitness) 
     { CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, 3) }
   g_free (hms);
   myData.alerted = TRUE;
+  return FALSE;
 }
 
 void cd_powermanager_set_surface (gchar *svgFile) {	

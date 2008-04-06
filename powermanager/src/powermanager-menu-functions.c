@@ -20,14 +20,11 @@ CD_APPLET_ON_CLICK_END
 
 void power_config(void) {  /// a mettre dans les plug-ins d'integration.
 	GError *erreur = NULL;
-	if (g_iDesktopEnv == CAIRO_DOCK_GNOME) {
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
 		g_spawn_command_line_async ("gnome-power-preferences", &erreur);
 	}
 	else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
 	//Ajouter les lignes de KDE
-	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_XFCE) {
-	//Ajouter la commande d'XFCE
 	}
 	if (erreur != NULL)
 	{
