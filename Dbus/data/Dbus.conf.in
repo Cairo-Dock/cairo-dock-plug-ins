@@ -1,0 +1,12 @@
+#!en;@VERSION@
+
+[Configuration]
+
+#b Let extern applications pop-up dialogs in the dock ?
+enable pop-up = true
+
+#b Let extern applications reboot the dock ?
+enable reboot = true
+
+#b Let extern applications show/hide the desklets ?
+enable desklets = true
