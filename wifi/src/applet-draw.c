@@ -53,6 +53,11 @@ void cd_wifi_draw_no_wireless_extension (void) {
 void cd_wifi_draw_icon (void) {
 	myData.checkedTime = 0; // Reset the check counter
 	gboolean bNeedRedraw = FALSE;
+	if (myData.iQuality != myData.iPreviousQuality) {
+		myData.iPreviousQuality = myData.iQuality;
+		
+		cd_wifi_set_surface (myData.iQuality);
+	}
 	switch (myConfig.quickInfoType) {
 		case WIFI_INFO_NONE :
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
@@ -60,14 +65,12 @@ void cd_wifi_draw_icon (void) {
 		case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
 			if (myData.iQuality != myData.iPreviousQuality) {
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(D_(s_cLevelQualityName[myData.iQuality]));
-				bNeedRedraw = TRUE;  // on ne met pas a jour iPreviousQuality ici, car on s'en sert encore un peu plus loin.
 			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_PERCENT :
 			if (myData.prev_prcnt != myData.prcnt) {
 				myData.prev_prcnt = myData.prcnt;
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", myData.prcnt);
-				bNeedRedraw = TRUE;
 			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_DB :
@@ -75,20 +78,13 @@ void cd_wifi_draw_icon (void) {
 				myData.prev_flink = myData.flink;
 				myData.prev_mlink = myData.mlink;
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d/%d", myData.flink, myData.mlink);
-				bNeedRedraw = TRUE;
 			}
 		break;
 	}
 	if (myConfig.iESSID) {
 	  CD_APPLET_SET_NAME_FOR_MY_ICON(myData.cESSID);
 	}
-	if (myData.iQuality != myData.iPreviousQuality) {
-		myData.iPreviousQuality = myData.iQuality;
-		cd_wifi_set_surface (myData.iQuality);
-	}
-	else if (bNeedRedraw) {
-		CD_APPLET_REDRAW_MY_ICON
-	}
+	CD_APPLET_REDRAW_MY_ICON
 }
 
 void cd_wifi_set_surface (CDWifiQuality iQuality) {
