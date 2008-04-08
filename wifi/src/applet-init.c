@@ -66,6 +66,7 @@ CD_APPLET_RELOAD_BEGIN
 			myData.iSidTimer = 0;
 		}
 		
+		myData.iFrequency = WIFI_FREQUENCY_NORMAL;
 		cd_wifi_launch_measure ();  // asynchrone
 	}
 	else {  // on redessine juste l'icone.

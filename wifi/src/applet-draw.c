@@ -20,38 +20,9 @@ void cd_wifi_draw_no_wireless_extension (void) {
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 		cd_wifi_set_surface (WIFI_QUALITY_NO_SIGNAL);
 	}
-	
-	myData.checkedTime ++;
-	if (myData.checkedTime == 1) {
-	  myConfig.iCheckInterval = 60000; //check 1min
-	  if (myData.iSidTimer != 0) {
-		  g_source_remove (myData.iSidTimer);
-		  myData.iSidTimer = 0;
-	  }
-	  myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
-	}
-	else if (myData.checkedTime == 2) {
-	  myConfig.iCheckInterval = 180000; //check 3min
-	  if (myData.iSidTimer != 0) {
-		  g_source_remove (myData.iSidTimer);
-		  myData.iSidTimer = 0;
-	  }
-	  myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
-	}
-	else if (myData.checkedTime >= 3) {
-	  myConfig.iCheckInterval = 600000; //check 5min
-	  if (myData.iSidTimer != 0) {
-		  g_source_remove (myData.iSidTimer);
-		  myData.iSidTimer = 0;
-	  }
-	  myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
-	}
-	
-	cd_message("No wifi device found, timer changed %d.",myConfig.iCheckInterval);
 }
 
 void cd_wifi_draw_icon (void) {
-	myData.checkedTime = 0; // Reset the check counter
 	gboolean bNeedRedraw = FALSE;
 	if (myData.iQuality != myData.iPreviousQuality) {
 		myData.iPreviousQuality = myData.iQuality;
@@ -91,7 +62,7 @@ void cd_wifi_set_surface (CDWifiQuality iQuality) {
 	g_return_if_fail (iQuality < WIFI_NB_QUALITY);
 	
 	if (myConfig.gaugeIcon) { //Gauge
-    make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
+		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
   }
 	else { //Icons
 		cairo_surface_t *pSurface = myData.pSurfaces[iQuality];

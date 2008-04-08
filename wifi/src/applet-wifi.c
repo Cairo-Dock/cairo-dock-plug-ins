@@ -53,19 +53,45 @@ static gboolean _cd_wifi_check_for_redraw (gpointer data) {
 		
 		g_static_mutex_lock (&mutexData);
 		if (myData.bAcquisitionOK)
+		{
 			cd_wifi_draw_icon ();
-		else
-			cd_wifi_draw_no_wireless_extension ();
-		g_static_mutex_unlock (&mutexData);
-		
-		if (myConfig.iCheckInterval != myConfig.dCheckInterval) {
-			myConfig.iCheckInterval = myConfig.dCheckInterval;
-			if (myData.iSidTimer != 0) {
+			if (myData.iFrequency != WIFI_FREQUENCY_NORMAL && myData.iSidTimer != 0)
+			{
+				myData.iFrequency = WIFI_FREQUENCY_NORMAL;
 				g_source_remove (myData.iSidTimer);
-				myData.iSidTimer = 0;
+				myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
 			}
-			myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
 		}
+		else
+		{
+			cd_wifi_draw_no_wireless_extension ();
+			if (myData.iFrequency < WIFI_FREQUENCY_SLEEP && myData.iSidTimer != 0)
+			{
+				g_source_remove (myData.iSidTimer);
+				
+				myData.iFrequency ++;
+				int iNewCheckInterval;
+				switch (myData.iFrequency)
+				{
+					case WIFI_FREQUENCY_LOW :
+						iNewCheckInterval = MAX (myConfig.iCheckInterval, 10000);  // 10s.
+					break ;
+					case WIFI_FREQUENCY_VERY_LOW :
+						iNewCheckInterval = MAX (myConfig.iCheckInterval, 30000);  // 30s.
+					break ;
+					case WIFI_FREQUENCY_SLEEP :
+						iNewCheckInterval = MAX (myConfig.iCheckInterval, 60000);  // 1mn.
+					break ;
+					default :  // ne doit pas arriver.
+						iNewCheckInterval = myConfig.iCheckInterval;
+					break ;
+				}
+				
+				cd_message ("No wifi device found, timer changed to frequency %d/%d.", myData.iFrequency, WIFI_NB_FREQUENCIES);
+				myData.iSidTimer = g_timeout_add (iNewCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
+			}
+		}
+		g_static_mutex_unlock (&mutexData);
 		
 		//\_______________________ On lance le timer si necessaire.
 		if (myData.iSidTimer == 0) {

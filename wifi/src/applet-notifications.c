@@ -23,7 +23,7 @@ static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer *
 		g_source_remove (myData.iSidTimer);
 		myData.iSidTimer = 0;
 	}
-	myConfig.iCheckInterval = myConfig.dCheckInterval;
+	myData.iFrequency = WIFI_FREQUENCY_NORMAL;
 	cd_wifi_launch_measure();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
