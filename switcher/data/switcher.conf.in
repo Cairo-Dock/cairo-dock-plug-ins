@@ -49,6 +49,9 @@ nombre de bureau = 8
 #b Affiche l'icone principale simplifié ?
 Vue Simple = true
 
+#b Affiche le sous dock Cairo ?
+SubDock = true
+
 #b Afficher Une info Rapide sur l'icone ?
 display numero desktop = false
 
