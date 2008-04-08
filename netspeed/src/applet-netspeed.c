@@ -96,10 +96,12 @@ gboolean cd_netspeed_getRate(void) {
 		g_free(cContent);
 		gchar *cOneInfopipe;
 		gchar **recup, *interface;
+		GList *pList = NULL;
+		double *pValue;
     		static unsigned long long nUp = 0, nDown = 0;
     		static unsigned long long time = 0;
-    		static unsigned long long maxRate = 0;
-    		unsigned long long newTime, newNUp, newNDown, upRate = 0, downRate = 0, sumRate = 0;
+    		static unsigned long long maxUpRate = 0, maxDownRate = 0;
+    		unsigned long long newTime, newNUp, newNDown, upRate = 0, downRate = 0;
     		int i;
 		newTime = 0;
 		newNUp = 0;
@@ -149,10 +151,13 @@ gboolean cd_netspeed_getRate(void) {
 				downRate = (unsigned long long) (((newNDown - nDown) * 1000000000) / (newTime - time));
 				cd_debug("Up : %llu - Down : %llu", upRate, downRate);
 			}
-			sumRate = upRate + downRate;
-			if(sumRate > maxRate)
+			if(upRate > maxUpRate)
 			{
-				maxRate = sumRate;
+				maxUpRate = upRate;
+			}
+			if(downRate > maxDownRate)
+			{
+				maxDownRate = downRate;
 			}
 			gchar upRateFormatted[11];
 			gchar downRateFormatted[11];
@@ -162,26 +167,44 @@ gboolean cd_netspeed_getRate(void) {
 			{
 			cairo_dock_show_temporary_dialog(
 				"nOctets avant : ↑%llu ↓%llu \n maintenant : ↑%llu ↓%llu\n diff : ↑%llu ↓%llu \n \
-temps precedent : %llu \n temps courant : %llu \n Diff %llu \n sumRate : %llu \n maxRate : %llu",
+temps precedent : %llu \n temps courant : %llu \n Diff %llu \n maxUpRate : %llu \n maxDownRate : %llu",
 				myIcon, myContainer, myConfig.iCheckInterval,
 				nUp, nDown, newNUp, newNDown, newNUp - nUp, newNDown - nDown,
-				time, newTime, newTime - time, sumRate, maxRate);
+				time, newTime, newTime - time, maxUpRate, maxDownRate);
 			}
 			else
 			{
 			cd_debug("nOctets avant : ↑%llu ↓%llu \n maintenant : ↑%llu ↓%llu\n diff : ↑%llu ↓%llu \n \
-temps precedent : %llu \n temps courant : %llu \n Diff %llu \n sumRate : %llu \n maxRate : %llu",
+temps precedent : %llu \n temps courant : %llu \n Diff %llu \n maxUpRate : %llu \n maxDownRate : %llu",
 				nUp, nDown, newNUp, newNDown, newNUp - nUp, newNDown - nDown,
-				time, newTime, newTime - time, sumRate, maxRate);
+				time, newTime, newTime - time, maxUpRate, maxDownRate);
 			}
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("↑%s\n↓%s", upRateFormatted,downRateFormatted);
-			if(maxRate != 0)
+			if((maxUpRate != 0) && (maxDownRate != 0))
 			{
-				make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) sumRate / maxRate);
+				pValue = g_new (double, 1);
+				*pValue = (double) upRate / maxUpRate;
+				pList = g_list_append (pList, pValue);
+				pValue = g_new (double, 1);
+				*pValue = (double) downRate / maxDownRate;
+				pList = g_list_append (pList, pValue);
+				//make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) sumRate / maxRate);
+				make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);	
+				
 			}
 			else
 			{
-				make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+				if(maxUpRate != 0) 
+				{
+					make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) upRate / maxUpRate);
+				}
+				else
+					if(maxDownRate != 0) 
+					{
+						make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) downRate / maxDownRate);
+					}
+					else
+						make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
 			}
 			time = newTime;
 			nUp = newNUp;
