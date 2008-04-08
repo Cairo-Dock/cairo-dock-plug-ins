@@ -18,7 +18,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	inDebug = 0;
 	//Initialisation de la jauge
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
  
 	cd_rame_launch_analyse();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -52,14 +52,14 @@ CD_APPLET_RELOAD_BEGIN
 			g_source_remove (myData.iSidTimer);
 			myData.iSidTimer = 0;
 		}
-		//On recharge la jauge
-		free_cd_Gauge(myData.pGauge);
-		double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-		myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-		// on relance l'analyse
-		cd_rame_launch_analyse ();
 	}
 	else {
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 	}	
+		//On recharge la jauge
+		free_cd_Gauge(myData.pGauge);
+		double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+		myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+		// on relance l'analyse
+		cd_rame_launch_analyse ();
 CD_APPLET_RELOAD_END
