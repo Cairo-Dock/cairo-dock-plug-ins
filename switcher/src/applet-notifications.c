@@ -101,7 +101,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CD_APPLET_ON_CLICK_BEGIN
 
 
-cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
+//cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
 myData.switcher.iDesktopViewportY = myData.switcher.iNbViewportY;
 
 

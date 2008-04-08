@@ -66,10 +66,10 @@ static GList * _load_icons (void)
 //myData.switcher.ScreenCurrentNums  = 0;
 
 cd_switcher_get_current_desktop (&myData.switcher.ScreenCurrentSizes, &myData.switcher.ScreenCurrentNums);
-
+//cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
 for (i = 0; i < myData.switcher.iNbViewportX; i ++)
 	{
-
+cd_message ("  myData.switcher.iNbViewportX : %d",myData.switcher.iNbViewportX);
 _add_icon (i);
 
 

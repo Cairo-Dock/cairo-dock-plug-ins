@@ -401,7 +401,7 @@ gboolean _cd_switcher_check_for_redraw_cairo (gpointer data)
 
 if (myConfig.bCurrentView)
 		{
-cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
+//cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
 switcher_draw_main_dock_icon (myData.pSurface);
 CD_APPLET_REDRAW_MY_ICON
 cd_message ("dessiner");
