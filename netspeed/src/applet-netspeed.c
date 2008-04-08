@@ -179,7 +179,10 @@ temps precedent : %llu \n temps courant : %llu \n Diff %llu \n sumRate : %llu \n
 			{
 				make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) sumRate / maxRate);
 			}
-			CD_APPLET_REDRAW_MY_ICON
+			else
+			{
+				make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+			}
 			time = newTime;
 			nUp = newNUp;
 			nDown = newNDown;
@@ -190,10 +193,11 @@ temps precedent : %llu \n temps courant : %llu \n Diff %llu \n sumRate : %llu \n
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("Loading");
 			nUp = newNUp;
 			nDown = newNDown;
-		}
-		g_strfreev (cInfopipesList);
+			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
 
-		
+		}
+		CD_APPLET_REDRAW_MY_ICON
+		g_strfreev (cInfopipesList);
 	}  
 	return TRUE;
 }

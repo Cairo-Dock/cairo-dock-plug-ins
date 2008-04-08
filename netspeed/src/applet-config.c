@@ -18,16 +18,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cOk = g_strdup_printf ("%s/ok.png", MY_APPLET_SHARE_DATA_DIR);
 	myConfig.cBad = g_strdup_printf ("%s/bad.png", MY_APPLET_SHARE_DATA_DIR);*/
 	//On charge le theme :
-	myConfig.gaugeIcon = CD_CONFIG_GET_BOOLEAN ("Configuration", "gauge");
-	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
-	cd_message("gauge (netspeed) : Theme(%s)\n",myConfig.cGThemePath);
+	myConfig.cThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "turbo-night");
+	cd_message("gauge (netspeed) : Theme(%s)\n",myConfig.cThemePath);
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
-	g_free (myConfig.cGThemePath);
-	myConfig.cGThemePath = NULL;
+	g_free (myConfig.cThemePath);
+	myConfig.cThemePath = NULL;
 
 /*	g_free(myConfig.cDefault);
 	g_free(myConfig.cUnknown);

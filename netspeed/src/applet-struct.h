@@ -12,9 +12,7 @@ typedef struct {
 	gchar *cOk;*/
 	gint iCheckInterval;
 	gint dCheckInterval;
-	
-	gchar *cGThemePath;
-	gboolean gaugeIcon; 
+	gchar *cThemePath;
 } AppletConfig;
 
 typedef struct {
