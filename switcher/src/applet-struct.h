@@ -84,6 +84,7 @@ typedef struct {
 	SwitcherApplet switcher;
 	gint iSidTimer;
 	GList *pDeskletIconList;
+	GList *pIconList;
 	gint iMaxIconWidth;
 	gint iNbIcons;
 	gboolean bErrorRetrievingData;

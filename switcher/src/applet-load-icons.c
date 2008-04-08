@@ -25,40 +25,13 @@ extern AppletData myData;
 static GList *s_pIconList = NULL;
 
 
-#define _add_icon(i)\
-	pIcon = g_new0 (Icon, 1);\
-	if (myData.switcher.ScreenCurrentNums == i)\
-		{\
-	pIcon->acName = g_strdup_printf ("Courant %d",i);\
-	pIcon->acFileName = g_strdup_printf ("%s/workspaces.svg", MY_APPLET_SHARE_DATA_DIR);\
-	pIcon->cQuickInfo = g_strdup_printf ("%d",i);\
-	pIcon->fScale = 1.;\
-	pIcon->fAlpha = .1;\
-	pIcon->fWidthFactor = 1.;\
-	pIcon->fHeightFactor = 1.;\
-	pIcon->acCommand = g_strdup ("none");\
-	pIcon->cParentDockName = g_strdup (myIcon->acName);\
-}\
-else\
-		{\
-	pIcon->acName = g_strdup_printf ("Bureau %d",i);\
-	pIcon->acFileName = g_strdup_printf ("%s/workspaces.svg", MY_APPLET_SHARE_DATA_DIR);\
-	pIcon->cQuickInfo = g_strdup_printf ("%d",i);\
-	pIcon->fScale = 1.;\
-	pIcon->fAlpha = 1.;\
-	pIcon->fWidthFactor = 1.;\
-	pIcon->fHeightFactor = 1.;\
-	pIcon->acCommand = g_strdup ("none");\
-	pIcon->cParentDockName = g_strdup (myIcon->acName);\
-	}\
-	pIconList = g_list_append (pIconList, pIcon);
 
 
 
 static GList * _load_icons (void)
 {	
 	
-	GList *pIconList = NULL;
+	myData.pIconList = NULL;
 	Icon *pIcon;	
 	int i;
 
@@ -70,14 +43,40 @@ cd_switcher_get_current_desktop (&myData.switcher.ScreenCurrentSizes, &myData.sw
 for (i = 0; i < myData.switcher.iNbViewportX; i ++)
 	{
 cd_message ("  myData.switcher.iNbViewportX : %d",myData.switcher.iNbViewportX);
-_add_icon (i);
+	pIcon = g_new0 (Icon, 1);
+	if (myData.switcher.ScreenCurrentNums == i)
+		{
+	pIcon->acName = g_strdup_printf ("Courant %d",i);
+	pIcon->acFileName = g_strdup_printf ("%s/workspaces.svg", MY_APPLET_SHARE_DATA_DIR);
+	pIcon->cQuickInfo = g_strdup_printf ("%d",i);
+	pIcon->fScale = 1.;
+	pIcon->fAlpha = 0.1;
+	pIcon->fWidthFactor = 1.;
+	pIcon->fHeightFactor = 1.;
+	pIcon->acCommand = g_strdup ("none");
+	pIcon->cParentDockName = g_strdup (myIcon->acName);
+}
+else
+		{
+	pIcon->acName = g_strdup_printf ("Bureau %d",i);
+	pIcon->acFileName = g_strdup_printf ("%s/workspaces.svg", MY_APPLET_SHARE_DATA_DIR);
+	pIcon->cQuickInfo = g_strdup_printf ("%d",i);
+	pIcon->fScale = 1.;
+	pIcon->fAlpha = 1.;
+	pIcon->fWidthFactor = 1.;
+	pIcon->fHeightFactor = 1.;
+	pIcon->acCommand = g_strdup ("none");
+	pIcon->cParentDockName = g_strdup (myIcon->acName);
+	}
+	myData.pIconList = g_list_append (myData.pIconList, pIcon);
+//_add_icon (i);
 
 
 
       }
 
 	
-	return pIconList;
+	return myData.pIconList;
 
 }
 
@@ -105,6 +104,12 @@ cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 
 _cd_switcher_check_for_redraw_cairo(NULL);
 
+}
+else
+{
+	if (myConfig.bShowSubDock)
+		{
+_cd_switcher_check_for_redraw_cairo(NULL);
 }
 else
 {
@@ -194,6 +199,7 @@ cd_message ("timer = 0 ");
 	myData.loadaftercompiz = 0;
 }
 	}
+}
 if (myConfig.bDisplayNumDesk)
 			{
 
@@ -209,7 +215,7 @@ cd_message ("  chargement de quick info NULL");
 
 	
 			}
-
+//}
 
 cd_message (" passage 1");
 CD_APPLET_REDRAW_MY_ICON

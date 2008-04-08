@@ -256,53 +256,73 @@ cairo_restore (pIconContext);
 
 
 
-void switcher_draw_subdock_icon_back (cairo_surface_t *pSurface)
+void switcher_draw_subdock_icon_back (cairo_t *pTestContext, Icon *pIcon, CairoDockContainer *pContainer)
 {
-	cairo_save (myDrawContext);
+	cairo_save (pTestContext);
 	//cairo_dock_set_icon_surface_with_reflect (myDrawContext, pSurface, myIcon, myContainer);  // on n'utilise pas la macro car on ne veut pas du redraw.
 	
-	cairo_restore (myDrawContext);
-	cairo_save (myDrawContext);
+	cairo_restore (pTestContext);
+	cairo_save (pTestContext);
 	double fMaxScale = (myDock ? 1 + g_fAmplitude : 1);
 	//double fMaxScale = 50.00;
-cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (myDrawContext);
-GList *pMainList = NULL;
-Icon *pIcon;
+cairo_set_operator (pTestContext, CAIRO_OPERATOR_SOURCE);
+	cairo_paint (pTestContext);
+GList *pSDList = NULL;
+//Icon *pIcon;
+printf("test : \n");
 	//cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 int i;
-for (i = 0; i < myData.switcher.iNbViewportX; i ++)
-	{
+//for (i = 0; i < myData.switcher.iNbViewportX; i ++)
+//	{
 	
 //while (i < g_iNbDesktops +1)
 //	{
-printf("i : %d \n", i);
+//printf("i : %d \n", i);
+//pIcon->acName = g_strdup_printf ("Bureau %d",i);
 
 
+//myData.pIconList = _load_icons ();
+	//pMainList = myData.pIconList;
+			//myIcon->pSubDock->icons = myData.pIconList;
+			//myData.iNbIcons = g_list_length (myData.pDeskletIconList);
+	//pSDList = g_list_append (pSDList, pIcon);
+	//}
+if (myData.pIconList != NULL) {
+  				cd_message ("  creation du sous-dock compiz");
+  				myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (myData.pIconList, myIcon->acName);
+  				cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
+  				cairo_dock_update_dock_size (myIcon->pSubDock);
+  			}
 
 
-
-	pIcon = g_new0 (Icon, 1);
-	if (myData.switcher.ScreenCurrentNums == i)
-		{
-	pIcon->cQuickInfo = g_strdup_printf ("%d",i);
-	pIcon->fScale = 1.;
-	pIcon->fAlpha = .1;
-	pIcon->fWidthFactor = 1.;
-	pIcon->fHeightFactor = 1.;
-	pIcon->cParentDockName = g_strdup (myIcon->acName);
+//return pSDList;
+//pMainList = myData.pIconList;				
+					//cd_message ("  creation du sous-dock Switcher");
+					//myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pSDList, myIcon->acName);
+printf("test 3 \n");
+					//cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
+					//cairo_dock_update_dock_size (myIcon->pSubDock);
+				printf("test 4 \n");
+			GList* ic;
+			//Icon *pIcon;
+			//pTestContext = cairo_dock_create_context_from_window (myIcon->pSubDock);
+if (myData.pIconList == NULL){
+printf("pMainList NULL \n");
 }
-else
-		{
-	pIcon->cQuickInfo = g_strdup_printf ("%d",i);
-	pIcon->fScale = 1.;
-	pIcon->fAlpha = 1.;
-	pIcon->fWidthFactor = 1.;
-	pIcon->fHeightFactor = 1.;
-	pIcon->cParentDockName = g_strdup (myIcon->acName);
-	}
-	pMainList = g_list_append (pMainList, pIcon);
+			for (ic = myData.pIconList; ic != NULL; ic = ic->next)
+			{
+printf("test 5 \n");
+				cairo_set_source_rgba(pTestContext,0.6, 0.6, 0.6, 0.6);
+ cairo_rectangle(pTestContext, pIcon->fWidth, 0,pIcon->fWidth , pIcon->fHeight);
+  cairo_stroke(pTestContext);
+cairo_set_source_rgba(pTestContext,0.6, 0.6, 0.6, 0.6);
+ cairo_fill(pTestContext);
+				
+				//cairo_dock_fill_icon_buffers (pIcon,pTestContext, 1, CAIRO_DOCK_HORIZONTAL, myConfig.bDesklet3D);
+				//myData.iMaxIconWidth = MAX (myData.iMaxIconWidth, pIcon->fWidth);
+				}
 
+	
 //cairo_set_source_rgb(myDrawContext, 0.6, 0.6, 0.6);
   //cairo_rectangle(myDrawContext, screenHW*j, 0,screenHW , defineline);
   //cairo_stroke(myDrawContext);
@@ -313,10 +333,10 @@ else
 
 
 
-}
+//}
 
 
-  cairo_destroy(myDrawContext);
+  cairo_destroy(pTestContext);
 	
 	//cairo_move_to (myDrawContext, 3, myIcon->fHeight * fMaxScale - 3);
 	//cairo_rel_line_to (myDrawContext, (myIcon->fWidth * fMaxScale - 6) * 1000 * .01, 0);
@@ -326,7 +346,7 @@ else
 	
 	//cairo_pattern_destroy (pGradationPattern);
 	
-	cairo_restore (myDrawContext);
+	cairo_restore (pTestContext);
 		
 }
 
@@ -371,6 +391,7 @@ gboolean switcher_draw_subdock_icon (gpointer data)
 
 	//
 
+
 cairo_surface_t *pSurface = myData.pSurface;
 
 	g_return_val_if_fail (pSurface != NULL, TRUE);
@@ -381,7 +402,7 @@ cairo_surface_t *pSurface = myData.pSurface;
 
 cairo_dock_set_icon_surface_full (myDrawContext, pSurface, 1., 1., myIcon, myContainer); 
 
-switcher_draw_subdock_icon_back  (NULL);
+switcher_draw_subdock_icon_back (myDrawContext, myIcon, myContainer);
 	
 		cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer); 
 		//cairo_dock_redraw_my_icon (myIcon, myContainer);
@@ -405,10 +426,14 @@ if (myConfig.bCurrentView)
 switcher_draw_main_dock_icon (myData.pSurface);
 CD_APPLET_REDRAW_MY_ICON
 cd_message ("dessiner");
+
+}
+//else
+//{
 	if (myConfig.bShowSubDock)
 		{
-//switcher_draw_subdock_icon (myData.pBrokenSurface);
-}
+cd_message ("dessiner sous dock cairo");
+//switcher_draw_subdock_icon (myData.pSurface);
 }
 else
 {

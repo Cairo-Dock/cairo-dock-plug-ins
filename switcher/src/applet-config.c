@@ -17,7 +17,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		//myConfig.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "taille verticale", 1);
 		//myConfig.iNbCols = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "taille horizontale", 8);
 		myConfig.bCurrentView = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Vue Simple", TRUE);
-		//myConfig.bShowSubDock = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "SubDock", TRUE);
+		myConfig.bShowSubDock = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "SubDock", TRUE);
 		myConfig.bDisplayNumDesk = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display numero desktop", FALSE);
 		//myConfig.iCheckInterval = 60000 * MAX (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "check interval", 15), 1);
 		myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Configuration", "default icon");
