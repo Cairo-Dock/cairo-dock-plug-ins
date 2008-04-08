@@ -94,6 +94,8 @@ gboolean cd_rame_getRate(void) {
 		g_free(cContent);
 		gchar *cOneInfopipe;
 		gchar **recup;
+		GList *pList = NULL;
+		double *pValue;
     		unsigned long long ramTotal = 0,  ramUsed = 0,  ramFree = 0,  ramShared = 0, ramBuffers = 0, ramCached = 0;
    		unsigned long long swapTotal = 0, swapUsed = 0, swapFree = 0;
     		unsigned int memPercent = 0;
@@ -145,11 +147,6 @@ gboolean cd_rame_getRate(void) {
 		{
 			swapPercent = 0;
 		}
-		/* On formate les données
-		gchar ramFormatted[11];
-		gchar swapRateFormatted[11];
-		cd_rame_format(upRate, &upRateFormatted);
-		cd_rame_format(downRate, &downRateFormatted);*/
 		if(inDebug == 1) 
 		{
 		cairo_dock_show_temporary_dialog(
@@ -168,44 +165,16 @@ swapTotalatoll : %llu , swapUsedatoll : %llu , swapFreeatoll : %llu",
 				swapTotal, swapUsed, swapFree);
 		}
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("M:%i%%\nS:%i%%", memPercent, swapPercent);
-		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) memPercent / 100);
+		pValue = g_new (double, 1);
+		*pValue = (double) memPercent / 100;
+		pList = g_list_append (pList, pValue);
+		pValue = g_new (double, 1);
+		*pValue = (double) swapPercent / 100;
+		pList = g_list_append (pList, pValue);
+		//make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) memPercent / 100);
+		make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);		
 		CD_APPLET_REDRAW_MY_ICON
 		g_strfreev (cInfopipesList);
 	}  
 	return TRUE;
 }
-
-// Prend un debit en octet par seconde et le transforme en une chaine de la forme : xxx yB/s
-/*void cd_rame_format(unsigned long long rate, gchar* debit) {
-	int smallRate;
-	if(rate > 1000000000000000)
-	{
-		g_sprintf(debit, "999+%s", smallRate, D_("TB"));
- 	}
- 	else if (rate > 1000000000000)
- 	{
- 		smallRate = (int) (rate / 1000000000000);
- 		g_sprintf(debit, "%i%s", smallRate, D_("TB"));
- 	}
- 	else if (rate > 1000000000)
- 	{
- 		smallRate = (int) (rate / 1000000000); 
- 		g_sprintf(debit, "%i%s", smallRate, D_("TB"));
- 	}
- 	else if (rate > 1000000)
- 	{
- 		smallRate = (int) (rate / 1000000);
-  		g_sprintf(debit, "%i%s", smallRate, D_("MB"));		
- 	}
- 	else if (rate > 1000)
- 	{
- 		smallRate = (int) (rate / 1000);
-  		g_sprintf(debit, "%i%s", smallRate, D_("KB"));	
- 	}
- 	else
- 	{
- 		smallRate = rate;
-		g_sprintf(debit, "%i%s", smallRate, D_("B"));
- 	}
-}*/
-

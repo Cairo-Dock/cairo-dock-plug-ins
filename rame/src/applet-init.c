@@ -19,7 +19,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	//Initialisation de la jauge
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
- 
+ 	make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,0);
 	cd_rame_launch_analyse();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
