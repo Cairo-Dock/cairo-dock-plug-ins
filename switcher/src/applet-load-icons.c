@@ -67,7 +67,7 @@ static GList * _load_icons (void)
 
 cd_switcher_get_current_desktop (&myData.switcher.ScreenCurrentSizes, &myData.switcher.ScreenCurrentNums);
 
-for (i = 0; i < g_iNbDesktops; i ++)
+for (i = 0; i < myData.switcher.iNbViewportX; i ++)
 	{
 
 _add_icon (i);

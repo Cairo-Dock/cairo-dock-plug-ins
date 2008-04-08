@@ -34,7 +34,8 @@ void _cd_switcher_cairo_main_icon (int iMouseX, int iMouseY)
 		int Maxdeskligne= (int) myData.switcher.NumDeskbyLigne;
 		int i;
 
-for (i = 0; i < g_iNbDesktops; i ++)
+cd_message (" Bureau : %d",myData.switcher.iNbViewportX);
+for (i = 0; i < myData.switcher.iNbViewportX; i ++)
 	{
 if (iMouseY - fDrawY > 0 && iMouseY - fDrawY < MaxHeightbyLine)		
 		{
@@ -44,6 +45,7 @@ cd_message (" 1ere Ligne   ");
 cd_message (" Bureau : %d",i);
 
 myData.switcher.iDesktopViewportX = i;
+cd_message ("myData.switcher.iDesktopViewportX : %d",myData.switcher.iDesktopViewportX);
 cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
 			}
 			else
@@ -53,6 +55,7 @@ cd_message (" 1ere Ligne   ");
 cd_message (" Bureau : %d",i);
 
 myData.switcher.iDesktopViewportX = i;
+cd_message ("myData.switcher.iDesktopViewportX : %d",myData.switcher.iDesktopViewportX);
 cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
 			}	
 	}
@@ -66,6 +69,7 @@ cd_message (" 2eme Ligne   ");
 cd_message (" Bureau  : %d",i);
 
 myData.switcher.iDesktopViewportX = i +Maxdeskligne;
+cd_message ("myData.switcher.iDesktopViewportX : %d",myData.switcher.iDesktopViewportX);
 cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
 						}
 						else
@@ -74,7 +78,9 @@ cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switc
 cd_message (" 2eme Ligne   ");
 cd_message (" Bureau : %d",i);
 
+
 myData.switcher.iDesktopViewportX = i +Maxdeskligne;
+cd_message ("myData.switcher.iDesktopViewportX : %d",myData.switcher.iDesktopViewportX);
 cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
 						}
 			}
@@ -122,6 +128,7 @@ _cd_switcher_cairo_main_icon(iMouseX, iMouseY);
 		cd_debug (" clic sur %s", pClickedIcon->acName);
 myData.switcher.iDesktopViewportX = atoi (pClickedIcon->cQuickInfo);
 //myData.switcher.iDesktopViewportX = myData.switcher.ScreenCurrentNums +1;
+cd_message ("myData.switcher.iDesktopViewportX : %d",myData.switcher.iDesktopViewportX);
 cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
 
 

@@ -163,9 +163,10 @@ void switcher_draw_main_dock_icon_back (cairo_t *pIconContext, Icon *pIcon, Cair
 	cairo_restore (pIconContext);
 	cairo_save (pIconContext);
 
+printf("myData.switcher.iNbViewportX : %d \n",myData.switcher.iNbViewportX);
 double fMaxScale = (myDock ? 1 + g_fAmplitude : 1); //coefficient Max icone Width
 myData.switcher.MaxNbLigne = pIcon->fHeight * fMaxScale / 2; //hauteur diviser par 2
-myData.switcher.NumDeskbyLigne = g_iNbDesktops / 2; //Bureau diviser par 2 : obtenir nombre de bureau par ligne
+myData.switcher.NumDeskbyLigne = myData.switcher.iNbViewportX / 2; //Bureau diviser par 2 : obtenir nombre de bureau par ligne
 myData.switcher.MaxWidthIcon = pIcon->fWidth * fMaxScale / myData.switcher.NumDeskbyLigne; //largeur icone
 myData.switcher.MaxHeightIcon = pIcon->fHeight * fMaxScale / myData.switcher.MaxNbLigne; //hauteur icone
 
@@ -173,7 +174,7 @@ cairo_set_source_rgba(pIconContext,0.9, 0.9, 0.9, 0.9);
 cairo_set_line_width (pIconContext,1.0);
 
 int i;
-	for (i = 1; i < g_iNbDesktops-1; i ++)
+	for (i = 1; i <myData.switcher.iNbViewportX-1; i ++)
 	{
 
 	if (i < myData.switcher.NumDeskbyLigne)
@@ -270,7 +271,7 @@ GList *pMainList = NULL;
 Icon *pIcon;
 	//cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 int i;
-for (i = 0; i < g_iNbDesktops; i ++)
+for (i = 0; i < myData.switcher.iNbViewportX; i ++)
 	{
 	
 //while (i < g_iNbDesktops +1)
@@ -400,6 +401,7 @@ gboolean _cd_switcher_check_for_redraw_cairo (gpointer data)
 
 if (myConfig.bCurrentView)
 		{
+cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
 switcher_draw_main_dock_icon (myData.pSurface);
 CD_APPLET_REDRAW_MY_ICON
 cd_message ("dessiner");
