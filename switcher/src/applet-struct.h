@@ -6,6 +6,7 @@
 #include <glib.h>
 
 #define SWITCHER_DEFAULT_NAME "Switcher"
+
 typedef struct {
 	gint iNbDesks;
 	gint iNbCols;
@@ -13,7 +14,6 @@ typedef struct {
 	gboolean bCurrentView;
 	gboolean bShowSubDock;
 	gboolean bDisplayNumDesk;
-	//MyAppletQuickInfoType quickInfoType;
 	gint iCheckInterval;
 	gchar *cDefaultIcon;
 	gchar *cBrokenIcon;
@@ -51,7 +51,7 @@ typedef struct
 
 
 typedef struct
-{	//struct Switcher_Applet	*mySwitcher;
+{
   	int 	*ScreenCurrentSize;
 	int 	*ScreenCurrentNum;
 	int ScreenCurrentNums;
@@ -67,16 +67,6 @@ typedef struct
 	int			i;
 }SwitcherApplet;
 
-typedef struct {
-	gint *numdesks;
-	gchar *cName;
-	gchar *cDate;
-	gchar *cTempMax;
-	gchar *cTempMin;
-	gchar *cSunRise;
-	gchar *cSunSet;
-	//DayPart part[2];
-	} Desk;
 
 typedef struct {
 	gint no_data;
@@ -88,7 +78,7 @@ typedef struct {
 	gint iMaxIconWidth;
 	gint iNbIcons;
 	gboolean bErrorRetrievingData;
-	int loadaftercompiz;
+	int LoadAfterCompiz;
 	int *g_iNbDesktops;
 	int iDesktopNumber;
 	cairo_surface_t *pSurface;

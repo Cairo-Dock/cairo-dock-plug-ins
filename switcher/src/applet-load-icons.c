@@ -35,11 +35,8 @@ static GList * _load_icons (void)
 	Icon *pIcon;	
 	int i;
 
-//myData.switcher.ScreenCurrentSizes=0;
-//myData.switcher.ScreenCurrentNums  = 0;
-
 cd_switcher_get_current_desktop (&myData.switcher.ScreenCurrentSizes, &myData.switcher.ScreenCurrentNums);
-//cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
+
 for (i = 0; i < myData.switcher.iNbViewportX; i ++)
 	{
 cd_message ("  myData.switcher.iNbViewportX : %d",myData.switcher.iNbViewportX);
@@ -50,7 +47,7 @@ cd_message ("  myData.switcher.iNbViewportX : %d",myData.switcher.iNbViewportX);
 	pIcon->acFileName = g_strdup_printf ("%s/workspaces.svg", MY_APPLET_SHARE_DATA_DIR);
 	pIcon->cQuickInfo = g_strdup_printf ("%d",i);
 	pIcon->fScale = 1.;
-	pIcon->fAlpha = 0.1;
+	pIcon->fAlpha = 1.;
 	pIcon->fWidthFactor = 1.;
 	pIcon->fHeightFactor = 1.;
 	pIcon->acCommand = g_strdup ("none");
@@ -62,7 +59,7 @@ else
 	pIcon->acFileName = g_strdup_printf ("%s/workspaces.svg", MY_APPLET_SHARE_DATA_DIR);
 	pIcon->cQuickInfo = g_strdup_printf ("%d",i);
 	pIcon->fScale = 1.;
-	pIcon->fAlpha = 1.;
+	pIcon->fAlpha = 0.3;
 	pIcon->fWidthFactor = 1.;
 	pIcon->fHeightFactor = 1.;
 	pIcon->acCommand = g_strdup ("none");
@@ -96,20 +93,19 @@ static gboolean _cd_switcher_check_for_redraw (gpointer data)
 			
 if (myIcon->pSubDock != NULL)
 {
+g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
+			g_list_free (myIcon->pSubDock->icons);
+			myIcon->pSubDock->icons = NULL;
+
 cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 					myIcon->pSubDock = NULL;
+
 					}
 				
-						cd_message ("  chargement de l'icone Switcher sans sous dock");
+						cd_message ("SWITCHER : chargement de l'icone Switcher sans sous dock");
 
 _cd_switcher_check_for_redraw_cairo(NULL);
 
-}
-else
-{
-	if (myConfig.bShowSubDock)
-		{
-_cd_switcher_check_for_redraw_cairo(NULL);
 }
 else
 {
@@ -135,7 +131,7 @@ else
 					if (pIconList != NULL) 
 					{
 					
-					cd_message ("  creation du sous-dock Switcher");
+					cd_message ("SWITCHER : creation du sous-dock Switcher");
 					myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
 					cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
 					cairo_dock_update_dock_size (myIcon->pSubDock);
@@ -144,7 +140,7 @@ else
 			}
 			else  // on a deja notre sous-dock, on remplace juste ses icones.
 			{
-				cd_message ("  rechargement du sous-dock Switcher");
+				cd_message ("SWITCHER : rechargement du sous-dock Switcher");
 				if (pIconList == NULL)  // inutile de le garder.
 				{
 					cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
@@ -192,35 +188,32 @@ else
 
 			}
 
-	if (myData.loadaftercompiz != 0)//\_______________________ On Tue le Timer.
+	if (myData.LoadAfterCompiz != 0)//\_______________________ On Tue le Timer.
 {
-cd_message ("timer = 0 ");
-		g_source_remove (myData.loadaftercompiz);
-	myData.loadaftercompiz = 0;
+cd_message ("SWITCHER : timer à 0 ");
+		g_source_remove (myData.LoadAfterCompiz);
+	myData.LoadAfterCompiz = 0;
 }
-	}
+	//}
 }
 if (myConfig.bDisplayNumDesk)
 			{
 
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.switcher.ScreenCurrentNums)
-	cd_message ("  chargement de quick info %d ", myData.switcher.ScreenCurrentNums);
+	cd_message ("SWITCHER : chargement de quick info %d ", myData.switcher.ScreenCurrentNums);
 
 			}
 			else
 			{
 
-cd_message ("  chargement de quick info NULL");
+cd_message ("SWITCHER : chargement de quick info NULL");
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
 
 	
 			}
-//}
 
-cd_message (" passage 1");
 CD_APPLET_REDRAW_MY_ICON
-	//return TRUE;
-cd_message ("  passage2 ");
+
 }
 
 void cd_switcher_launch_measure (void)

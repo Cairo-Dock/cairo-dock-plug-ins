@@ -6,9 +6,9 @@
 #include <cairo-dock.h>
 
 
-void switcher_draw_main_dock_icon (cairo_surface_t *pSurface);
+void switcher_draw_main_dock_icon_back (cairo_t *pIconContext, Icon *pIcon, CairoDockContainer *pContainer);
+gboolean switcher_draw_main_dock_icon (gpointer data);
 gboolean _cd_switcher_check_for_redraw_cairo (gpointer data);
-void switcher_draw_subdock_icon (cairo_surface_t *pSurface);
 
 
 #endif
