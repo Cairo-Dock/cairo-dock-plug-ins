@@ -52,11 +52,9 @@ static gboolean _cd_wifi_check_for_redraw (gpointer data) {
 		}
 		
 		g_static_mutex_lock (&mutexData);
-		if (myData.bAcquisitionOK)
-		{
+		if (myData.bAcquisitionOK) {
 			cd_wifi_draw_icon ();
-			if (myData.iFrequency != WIFI_FREQUENCY_NORMAL && myData.iSidTimer != 0)
-			{
+			if (myData.iFrequency != WIFI_FREQUENCY_NORMAL && myData.iSidTimer != 0) {
 				myData.iFrequency = WIFI_FREQUENCY_NORMAL;
 				g_source_remove (myData.iSidTimer);
 				myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
@@ -65,14 +63,12 @@ static gboolean _cd_wifi_check_for_redraw (gpointer data) {
 		else
 		{
 			cd_wifi_draw_no_wireless_extension ();
-			if (myData.iFrequency < WIFI_FREQUENCY_SLEEP && myData.iSidTimer != 0)
-			{
+			if (myData.iFrequency < WIFI_FREQUENCY_SLEEP && myData.iSidTimer != 0) {
 				g_source_remove (myData.iSidTimer);
 				
 				myData.iFrequency ++;
 				int iNewCheckInterval;
-				switch (myData.iFrequency)
-				{
+				switch (myData.iFrequency) {
 					case WIFI_FREQUENCY_LOW :
 						iNewCheckInterval = MAX (myConfig.iCheckInterval, 10000);  // 10s.
 					break ;

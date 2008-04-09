@@ -58,8 +58,7 @@ CD_APPLET_RELOAD_BEGIN
 			myData.pSurfaces[i] = NULL;
 		}
 	}
-	if (myData.pGauge != NULL)
-	{
+	if (myData.pGauge != NULL) {
 		free_cd_Gauge(myData.pGauge);
 		myData.pGauge = NULL;
 	}
@@ -81,6 +80,6 @@ CD_APPLET_RELOAD_BEGIN
 		cd_wifi_launch_measure ();  // asynchrone
 	}
 	else {  // on redessine juste l'icone.
-		cd_wifi_set_surface (myData.iQuality);
+		cd_wifi_draw_icon_with_effect (myData.iQuality);
 	}
 CD_APPLET_RELOAD_END
