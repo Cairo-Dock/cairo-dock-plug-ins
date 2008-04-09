@@ -41,7 +41,7 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:13
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
@@ -54,43 +54,43 @@ msgstr ""
 "Ceci est une applet très basique de log-out\n"
 " écrite par Fabrice Rey for Cairo-Dock"
 
-#: ../data/messages:11 ../data/messages:13
+#: ../data/messages:11 ../data/messages:13 ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:13 ../data/messages:15 ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:15 ../data/messages:17
+#: ../data/messages:15 ../data/messages:17 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17 ../data/messages:19
+#: ../data/messages:17 ../data/messages:19 ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:19 ../data/messages:21
+#: ../data/messages:19 ../data/messages:21 ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21 ../data/messages:23
+#: ../data/messages:21 ../data/messages:23 ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23 ../data/messages:25
+#: ../data/messages:23 ../data/messages:25 ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25 ../data/messages:27
+#: ../data/messages:25 ../data/messages:27 ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27 ../data/messages:29
+#: ../data/messages:27 ../data/messages:29 ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -98,18 +98,22 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:31
+#: ../data/messages:29 ../data/messages:31 ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:33
+#: ../data/messages:33 ../data/messages:35
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:37
 msgid "Let empty to execute the default command."
 msgstr "Laissez vide pour exécuter la commande par défaut."
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:39
 msgid "User-defined command to execute to log-out :"
 msgstr "Commande spécifique à exécuter pour se déloguer :"
+
+#: ../data/messages:11
+msgid "Let it empty to use the default icon."
+msgstr ""

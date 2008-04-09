@@ -58,6 +58,11 @@ CD_APPLET_RELOAD_BEGIN
 			myData.pSurfaces[i] = NULL;
 		}
 	}
+	if (myData.pGauge != NULL)
+	{
+		free_cd_Gauge(myData.pGauge);
+		myData.pGauge = NULL;
+	}
 	
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
@@ -66,15 +71,16 @@ CD_APPLET_RELOAD_BEGIN
 			myData.iSidTimer = 0;
 		}
 		
+		if (myConfig.bUseGauge)  // on ne veut plus des jauges.
+		{
+			double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+			myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+		}
+		
 		myData.iFrequency = WIFI_FREQUENCY_NORMAL;
 		cd_wifi_launch_measure ();  // asynchrone
 	}
 	else {  // on redessine juste l'icone.
 		cd_wifi_set_surface (myData.iQuality);
 	}
-	
-	//On recharge la jauge
-	free_cd_Gauge(myData.pGauge);
-	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 CD_APPLET_RELOAD_END

@@ -118,6 +118,7 @@ msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 #: ../src/powermanager-menu-functions.c:30
 #: ../src/powermanager-menu-functions.c:43
 #: ../src/powermanager-menu-functions.c:49
+#: ../src/powermanager-menu-functions.c:48
 msgid "Halt"
 msgstr "停止"
 
@@ -126,6 +127,7 @@ msgstr "停止"
 #: ../src/powermanager-menu-functions.c:31
 #: ../src/powermanager-menu-functions.c:44
 #: ../src/powermanager-menu-functions.c:50
+#: ../src/powermanager-menu-functions.c:49
 msgid "Hibernate"
 msgstr "ハイバネート"
 
@@ -134,6 +136,7 @@ msgstr "ハイバネート"
 #: ../src/powermanager-menu-functions.c:32
 #: ../src/powermanager-menu-functions.c:45
 #: ../src/powermanager-menu-functions.c:51
+#: ../src/powermanager-menu-functions.c:50
 msgid "Suspend"
 msgstr "サスペンド"
 
@@ -142,6 +145,7 @@ msgstr "サスペンド"
 #: ../src/powermanager-menu-functions.c:33
 #: ../src/powermanager-menu-functions.c:46
 #: ../src/powermanager-menu-functions.c:52
+#: ../src/powermanager-menu-functions.c:51
 msgid "Reboot"
 msgstr "再起動"
 
@@ -258,6 +262,12 @@ msgstr ""
 #: ../src/powermanager-draw.c:101 ../src/powermanager-draw.c:105
 #: ../src/powermanager-draw.c:114 ../src/powermanager-draw.c:118
 #: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:134
+#: ../src/powermanager-draw.c:119 ../src/powermanager-draw.c:123
+#: ../src/powermanager-draw.c:138 ../src/powermanager-draw.c:142
+#: ../src/powermanager-draw.c:115 ../src/powermanager-draw.c:127
+#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:150
+#: ../src/powermanager-draw.c:132 ../src/powermanager-draw.c:136
+#: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:155
 msgid "Estimated time with Charge:"
 msgstr ""
 
@@ -293,7 +303,11 @@ msgid "List of available themes for the analogic display :"
 msgstr ""
 
 #: ../src/powermanager-draw.c:60 ../src/powermanager-draw.c:90
-#: ../src/powermanager-draw.c:101
+#: ../src/powermanager-draw.c:101 ../src/powermanager-draw.c:96
+#: ../src/powermanager-draw.c:107 ../src/powermanager-draw.c:92
+#: ../src/powermanager-draw.c:103 ../src/powermanager-draw.c:104
+#: ../src/powermanager-draw.c:115 ../src/powermanager-draw.c:109
+#: ../src/powermanager-draw.c:120
 msgid "None"
 msgstr ""
 
@@ -303,26 +317,35 @@ msgstr ""
 
 #: ../src/powermanager-menu-functions.c:40
 #: ../src/powermanager-menu-functions.c:46
+#: ../src/powermanager-menu-functions.c:45
 msgid "Set up power management"
 msgstr ""
 
-#: ../src/powermanager-draw.c:114
+#: ../src/powermanager-draw.c:114 ../src/powermanager-draw.c:119
+#: ../src/powermanager-draw.c:115 ../src/powermanager-draw.c:127
+#: ../src/powermanager-draw.c:132
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
 msgstr ""
 
-#: ../src/powermanager-draw.c:118
+#: ../src/powermanager-draw.c:118 ../src/powermanager-draw.c:123
+#: ../src/powermanager-draw.c:119 ../src/powermanager-draw.c:131
+#: ../src/powermanager-draw.c:136
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
 msgstr ""
 
-#: ../src/powermanager-draw.c:124
+#: ../src/powermanager-draw.c:124 ../src/powermanager-draw.c:129
+#: ../src/powermanager-draw.c:125 ../src/powermanager-draw.c:137
+#: ../src/powermanager-draw.c:142
 msgid "No Battery found."
 msgstr ""
 
-#: ../src/powermanager-draw.c:131
+#: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:138
+#: ../src/powermanager-draw.c:134 ../src/powermanager-draw.c:146
+#: ../src/powermanager-draw.c:151
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -392,4 +415,16 @@ msgstr ""
 
 #: ../data/messages:83
 msgid "random"
+msgstr ""
+
+#: ../src/powermanager-draw.c:138 ../src/powermanager-draw.c:134
+#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:151
+msgid "Please put your Laptop on charge."
+msgstr ""
+
+#: ../src/powermanager-draw.c:142 ../src/powermanager-draw.c:138
+#: ../src/powermanager-draw.c:150 ../src/powermanager-draw.c:155
+msgid ""
+"PowerManager.\n"
+"Your battery is now Charged"
 msgstr ""

@@ -15,3 +15,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../data/messages:1
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Let extern applications pop-up dialogs in the dock ?"
+msgstr ""
+
+#: ../data/messages:5
+msgid "Let extern applications reboot the dock ?"
+msgstr ""
+
+#: ../data/messages:7
+msgid "Let extern applications show/hide the desklets ?"
+msgstr ""

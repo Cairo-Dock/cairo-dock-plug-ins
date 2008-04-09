@@ -39,25 +39,37 @@ keep above=false
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
 
+
 [Configuration]
 
 #i[1;120] Interval of time between 2 checks :
 #{in seconds.}
 check interval = 10
 
+
 #F[Display]
 frame_info=
 
-#r[nothing;charge;time] Information to be displayed on the icon :
-quick-info_type=2
+#S Icon's filename when on battery :
+battery icon = 
+#S Icon's filename when on charge :
+charge icon = 
 #r[nothing;zoom;transparency;draw bar] Effet to apply on the icon according to charge :
 effect=0
 
-#R1[] List of available themes for the analogic display :/
+
+#b Use a gauge instead of icons ?
+use gauge = false
+R1[] List of available gauges :/
 theme = battery
+
+#r[nothing;charge;time] Information to be displayed on the icon :
+quick-info_type=2
+
 
 #F[Alert]
 frame_alert=
+
 #b Alert when battery charged ?
 high battery=true
 #b Alert when low battery ?
@@ -65,6 +77,7 @@ low battery=true
 #i[1;90] Battery level :
 #{in percent.}
 low value = 10
+
 #b Animate icon during the alert ?
 battery witness=true
 #r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation during alert :

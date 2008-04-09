@@ -26,7 +26,7 @@ libcd_logout_la_CFLAGS = \
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
-	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
+	-DMY_APPLET_ICON_FILE=\""icon.svg"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3

@@ -43,12 +43,13 @@ typedef struct {
 	gchar *cGThemePath;
 	
 	CDWifiInfoType quickInfoType;
+	
+	gboolean bUseGauge;
 	CDWifiEffect iEffect;
 	
 	gint iCheckInterval;
 	
-	gboolean gaugeIcon;
-	gboolean iESSID;
+	gboolean bESSID;
 } AppletConfig;
 
 typedef struct {

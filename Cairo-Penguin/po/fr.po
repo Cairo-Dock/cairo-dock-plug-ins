@@ -182,7 +182,7 @@ msgstr "Reste tranquille !"
 #: ../src/applet-notifications.c:134 ../src/applet-notifications.c:132
 #: ../src/applet-notifications.c:133
 msgid "Wake up"
-msgstr "Réveill-toi !"
+msgstr "Réveille-toi !"
 
 #: ../src/applet-notifications.c:137 ../src/applet-notifications.c:135
 #: ../src/applet-notifications.c:136

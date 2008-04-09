@@ -1,5 +1,5 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
-<u>Author</u> : <b>Fabounet</b>
+<u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
 <i>Manage your disks space with this <span color='#0000FF'>trash applet</span> !</i>
 It can handle several trash directories,
  threw files or unmount disks with drag'n'drop,

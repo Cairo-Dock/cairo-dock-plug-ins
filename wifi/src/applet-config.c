@@ -22,12 +22,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "signal_type", 1);
 	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
+	
 	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
 	
-	myConfig.gaugeIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "gauge");
+	myConfig.bUseGauge = CD_CONFIG_GET_BOOLEAN ("Configuration", "use gauge");
 	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
-	cd_message("gauge : Theme(%s)\n",myConfig.cGThemePath);
-	myConfig.iESSID	= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "essid", TRUE);
+	cd_message("gauge : Theme '%s'",myConfig.cGThemePath);
+	myConfig.bESSID	= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "essid", TRUE);
 CD_APPLET_GET_CONFIG_END
 
 
@@ -48,5 +49,6 @@ CD_APPLET_RESET_DATA_BEGIN
 		cairo_surface_destroy (myData.pSurfaces[i]);
 	}
 	g_free (myData.cESSID);
-	/// et la jauge ?...
+	
+	free_cd_Gauge(myData.pGauge);
 CD_APPLET_RESET_DATA_END

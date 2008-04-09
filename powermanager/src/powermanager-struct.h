@@ -30,32 +30,22 @@ typedef struct {
 	gint lowBatteryValue;
 	gchar *cThemePath;
 	
+	gboolean bUseGauge;
+	gchar *cUserBatteryIconName;
+	gchar *cUserChargeIconName;
 	MyAppletEffect iEffect;
   } AppletConfig;
 
 
 typedef struct {
-	cairo_surface_t *pSurfaceBattery04;
-	cairo_surface_t *pSurfaceBattery14;
-	cairo_surface_t *pSurfaceBattery24;
-	cairo_surface_t *pSurfaceBattery34;
-	cairo_surface_t *pSurfaceBattery44;
-	cairo_surface_t *pSurfaceCharge04;
-	cairo_surface_t *pSurfaceCharge14;
-	cairo_surface_t *pSurfaceCharge24;
-	cairo_surface_t *pSurfaceCharge34;
-	cairo_surface_t *pSurfaceCharge44;
-	cairo_surface_t *pSurfaceSector;
-	cairo_surface_t *pSurfaceBroken;
+	cairo_surface_t *pSurfaceBattery;
+	cairo_surface_t *pSurfaceCharge;
 	gboolean dbus_enable;
 	gboolean battery_present;
-	gboolean on_battery;
-	gint battery_time;
-	gint battery_charge;
-	gboolean previously_on_battery;
+	gboolean on_battery, previously_on_battery;
+	gint battery_time, previous_battery_time;
+	gint battery_charge, previous_battery_charge;
 	gboolean alerted;
-	gint previous_battery_time;
-	gint previous_battery_charge;
 	gint checkLoop;
 	Gauge *pGauge;
 	} AppletData;

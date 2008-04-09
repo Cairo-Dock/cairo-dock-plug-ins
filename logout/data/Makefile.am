@@ -7,5 +7,5 @@ datalogout_DATA = \
 	logout.conf\
 	readme\
 	preview.png\
-	icon.png
+	icon.svg
 

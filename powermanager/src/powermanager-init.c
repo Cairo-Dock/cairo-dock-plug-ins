@@ -30,8 +30,11 @@ CD_APPLET_INIT_BEGIN (erreur)
 		{
 			get_on_battery();
 			
-			double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-			myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+			if (myConfig.bUseGauge)
+			{
+				double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+				myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+			}
 			
 			myData.alerted = TRUE;
 			update_stats();
@@ -63,8 +66,6 @@ CD_APPLET_STOP_BEGIN
 		g_source_remove (myData.checkLoop);
 		myData.checkLoop = 0;
 	}
-	
-	free_cd_Gauge(myData.pGauge);
 CD_APPLET_STOP_END
 
 
@@ -73,6 +74,12 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
+	}
+	
+	if (myData.pGauge != NULL)
+	{
+		free_cd_Gauge(myData.pGauge);
+		myData.pGauge = NULL;
 	}
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
@@ -90,15 +97,17 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if(myData.battery_present)
 		{
-			double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-			free_cd_Gauge(myData.pGauge);
-			myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-			
-			myData.previously_on_battery = -1;  // pour forcer le redessin.
-			myData.previous_battery_charge = -1;
-			myData.previous_battery_time = -1;
-			myData.alerted = TRUE;
-			update_stats();
+			if (myConfig.bUseGauge)  // On recharge la jauge.
+			{
+				double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+				myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+				
+				make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.battery_charge / 100);
+			}
+			else  // on redessine juste l'icone actuelle.
+			{
+				cd_powermanager_draw_icon_with_effect (myData.on_battery);
+			}
 		}
 		else
 		{

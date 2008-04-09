@@ -24,11 +24,6 @@ void cd_wifi_draw_no_wireless_extension (void) {
 
 void cd_wifi_draw_icon (void) {
 	gboolean bNeedRedraw = FALSE;
-	if (myData.iQuality != myData.iPreviousQuality) {
-		myData.iPreviousQuality = myData.iQuality;
-		
-		cd_wifi_set_surface (myData.iQuality);
-	}
 	switch (myConfig.quickInfoType) {
 		case WIFI_INFO_NONE :
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
@@ -52,41 +47,48 @@ void cd_wifi_draw_icon (void) {
 			}
 		break;
 	}
-	if (myConfig.iESSID) {
-	  CD_APPLET_SET_NAME_FOR_MY_ICON(myData.cESSID);
+	
+	if (myData.iQuality != myData.iPreviousQuality) {
+		myData.iPreviousQuality = myData.iQuality;
+		
+		if (myConfig.bUseGauge)
+		{
+			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
+		}
+		else
+		{
+			cd_wifi_set_surface (myData.iQuality);
+		}
+	}
+	
+	if (myConfig.bESSID && myData.cESSID != NULL && strcmp (myData.cESSID, myIcon->acName)) {
+		CD_APPLET_SET_NAME_FOR_MY_ICON(myData.cESSID);
 	}
 	CD_APPLET_REDRAW_MY_ICON
 }
 
-void cd_wifi_set_surface (CDWifiQuality iQuality) {
-	g_return_if_fail (iQuality < WIFI_NB_QUALITY);
-	
-	if (myConfig.gaugeIcon) { //Gauge
-		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
-  }
-	else { //Icons
-		cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
-		if (pSurface == NULL) {
-			if (myConfig.cUserImage[iQuality] != NULL) {
-				gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iQuality]);
-				myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-				g_free (cUserImagePath);
-			}
-			else {
-				gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iQuality]);
-				myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
-				g_free (cImagePath);
-			}
-			cd_wifi_draw_icon_with_effect (myData.pSurfaces[iQuality]);
-		}
-		else {
-			cd_wifi_draw_icon_with_effect (pSurface);
-		}
-	}
-}
 
-void cd_wifi_draw_icon_with_effect (cairo_surface_t *pSurface) {
-	switch (myConfig.iEffect) {
+void cd_wifi_draw_icon_with_effect (CDWifiQuality iQuality) {
+	cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
+	if (pSurface == NULL)
+	{
+		if (myConfig.cUserImage[iQuality] != NULL)
+		{
+			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iQuality]);
+			myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+			g_free (cUserImagePath);
+		}
+		else
+		{
+			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iQuality]);
+			myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+			g_free (cImagePath);
+		}
+		pSurface = myData.pSurfaces[iQuality];
+	}
+	
+	switch (myConfig.iEffect)
+	{
 		  case WIFI_EFFECT_NONE:
 		  	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
 		  break;

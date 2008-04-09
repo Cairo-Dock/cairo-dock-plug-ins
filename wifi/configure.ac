@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-wifi],[1.0.0],[ChAnGFu (changfu@hollowproject.org)])
+AC_INIT([cd-wifi],[1.0.1],[ChAnGFu (changfu@hollowproject.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

@@ -37,8 +37,8 @@ static const gchar* power_battery_name(void) {
 			break ;
 		
 		g_string_printf (sBatteryStateFilePath, "%s/%s/state", MY_BATTERY_DIR, cBatteryName);
-		gchar *cContent = NULL;
 		length=0;
+		cd_debug ("  examen de la batterie '%s' ...", sBatteryStateFilePath->str);
 		g_file_get_contents(sBatteryStateFilePath->str, &cContent, &length, &erreur);
 		if (erreur != NULL)
 		{
@@ -49,6 +49,7 @@ static const gchar* power_battery_name(void) {
 		else  // on cherche la ligne "present:                 yes"
 		{
 			cPresentLine = g_strstr_len (cContent, -1, "present");
+			cd_debug ("  -> %s", cPresentLine);
 			if (cPresentLine != NULL)
 			{
 				cPresentLine += 7;
@@ -98,12 +99,14 @@ gboolean dbus_connect_to_bus (void)
 		
 		
 		gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", power_battery_name());
+		cd_debug ("  batteryPath : %s\n", batteryPath);
 		dbus_proxy_battery = dbus_g_proxy_new_for_name (
 			dbus_connexion_system,
 			"org.freedesktop.Hal",
 			batteryPath,
 			"org.freedesktop.Hal.Device"
 		);
+		cd_debug ("  acquisition de la batterie : %x\n", dbus_proxy_battery);
 		g_free (batteryPath);
 		
 		return TRUE;

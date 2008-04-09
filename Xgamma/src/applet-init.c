@@ -63,8 +63,12 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myData.bVideoExtensionOK = TRUE;
 	}
 	
-	if (myDesklet != NULL)  // on cree le widget pour avoir qqch a afficher dans le desklet.
+	if (myDesklet)  // on cree le widget pour avoir qqch a afficher dans le desklet.
 		xgamma_build_and_show_widget ();
+	else if (myIcon->acFileName == NULL)
+	{
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+	}
 CD_APPLET_INIT_END
 
 
@@ -98,7 +102,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 			else  // il faut passer du desklet au dialogue
 			{
-				myData.pDialog = cairo_dock_build_dialog (_D("Set up gamma :"),
+				myData.pDialog = cairo_dock_build_dialog (D_("Set up gamma :"),
 					myIcon,
 					myDock,
 					NULL,
@@ -110,5 +114,10 @@ CD_APPLET_RELOAD_BEGIN
 				cairo_dock_hide_dialog (myData.pDialog);
 			}
 		}
+	}
+	
+	if (myIcon->acFileName == NULL)
+	{
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
 	}
 CD_APPLET_RELOAD_END

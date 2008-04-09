@@ -15,6 +15,7 @@ frame1_ =
 name = quitter
 
 #S Icon's name :
+#{Let it empty to use the default icon.}
 icon = gnome-session-halt
 
 [Desklet]

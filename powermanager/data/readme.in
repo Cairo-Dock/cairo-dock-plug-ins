@@ -1,3 +1,4 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author :</u> <b>Adrien Pilleboue (Necropotame)</b>
-<i>A <span color='#0000FF'>power manager</span> for laptop's battery</i>
+<i>A <span color='#0000FF'>power manager</span> for laptop's battery
+ It works with ACPI and DBus.</i>
