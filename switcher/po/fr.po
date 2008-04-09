@@ -49,107 +49,74 @@ msgid ""
 "This is the switcher applet\n"
 " made by Cchumi for Cairo-Dock"
 msgstr ""
-"Ceci l'applet switcher\n"
+"Ceci est l'applet switcher\n"
 " écrite par Cchumi pour Cairo-Dock"
 
 #: ../src/applet-notifications.c:66 ../src/applet-notifications.c:75
 #: ../src/applet-notifications.c:139
 msgid "Reload now"
-msgstr ""
+msgstr "Recharger"
 
 #: ../data/messages:1
 msgid "Icon"
-msgstr ""
+msgstr "Icône"
 
 #: ../data/messages:13
 msgid "Desklet"
-msgstr ""
+msgstr "Desklet"
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
-msgstr ""
+msgstr "Dimensions du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
-msgstr ""
+msgstr "Position du desklet (x ; y) :"
 
 #: ../data/messages:19
 msgid "Is detached ?"
-msgstr ""
+msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:21
 msgid "Keep below ?"
-msgstr ""
+msgstr "Garder en dessous des autres fenêtre ?"
 
 #: ../data/messages:23
 msgid "Keep above ?"
-msgstr ""
+msgstr "Garder au dessus des autres fenêtre ?"
 
 #: ../data/messages:25
 msgid "Keep on widget layer ?"
-msgstr ""
+msgstr "Garder sur la couche des Widgets ?"
 
 #: ../data/messages:27
 msgid "Configuration"
-msgstr ""
-
-#: ../data/messages:29
-msgid "in seconds. Set 0 to have never-ending dialogs."
-msgstr ""
-
-#: ../data/messages:31
-msgid "Duration of dialogs :"
-msgstr ""
-
-#: ../data/messages:33 ../data/messages:41
-msgid "in minutes."
-msgstr ""
-
-#: ../data/messages:35 ../data/messages:43
-msgid "Interval of time between 2 checks :"
-msgstr ""
-
-#: ../data/messages:37
-msgid "Number of days you want to forecast :"
-msgstr ""
-
-#: ../data/messages:39 ../data/messages:45
-msgid "Display current type of view on the icon instead of the default one ?"
-msgstr ""
-
-#: ../data/messages:47 ../data/messages:51 ../data/messages:35
-#: ../data/messages:39
-msgid "Let empty to use the default one."
-msgstr ""
+msgstr "Configuration"
 
 #: ../data/messages:49 ../data/messages:37
 msgid "Default icon :"
-msgstr ""
+msgstr "Icône par Défaut :"
 
 #: ../data/messages:53 ../data/messages:41
 msgid "Broken icon :"
-msgstr ""
-
-#: ../data/messages:55 ../data/messages:43
-msgid "Let it empty to use default sub-dock view."
-msgstr ""
+msgstr "Icône de Défaillance :"
 
 #: ../data/messages:57 ../data/messages:45
 msgid "Name of the view used for the sub-dock :"
-msgstr ""
+msgstr "Nom de la Vue utilisée "
 
 #: ../data/messages:59
 msgid "Render desklet in 3D ?"
-msgstr ""
+msgstr "Rendre en Desklet 3D ?"
 
 #: ../data/messages:29
-msgid "Nombre de Bureaux :"
-msgstr ""
+msgid "Number of Viewports"
+msgstr "Nombre de Bureaux :"
 
 #: ../data/messages:31
-msgid "Affiche l'icone principale simplifié ?"
-msgstr ""
+msgid "Show Light Icon ?"
+msgstr "Affiche l'icone principale simplifié ?"
 
 #: ../data/messages:33
-msgid "Afficher Une info Rapide sur l'icone ?"
-msgstr ""
+msgid "Show Quickinfo on the Icon ?"
+msgstr "Afficher Une info Rapide sur l'icone ?"
