@@ -53,7 +53,7 @@ msgstr ""
 " écrite par Cchumi pour Cairo-Dock"
 
 #: ../src/applet-notifications.c:66 ../src/applet-notifications.c:75
-#: ../src/applet-notifications.c:139
+#: ../src/applet-notifications.c:139 ../src/applet-notifications.c:150
 msgid "Reload now"
 msgstr "Recharger"
 
@@ -120,3 +120,15 @@ msgstr "Affiche l'icone principale simplifié ?"
 #: ../data/messages:33
 msgid "Show Quickinfo on the Icon ?"
 msgstr "Afficher Une info Rapide sur l'icone ?"
+
+#: ../data/messages:29
+msgid "Number of Viewports "
+msgstr ""
+
+#: ../data/messages:35 ../data/messages:39
+msgid "Let empty to use the default one."
+msgstr ""
+
+#: ../data/messages:43
+msgid "Let it empty to use default sub-dock view."
+msgstr ""

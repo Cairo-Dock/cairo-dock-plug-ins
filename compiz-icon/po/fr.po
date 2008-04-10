@@ -18,129 +18,203 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../data/messages:1
 msgid "Icon"
 msgstr "Icône"
 
+#: ../data/messages:3
 msgid "Desired icon size for this applet"
 msgstr "Taille d'icône souhaitée pour cette applet"
 
+#: ../data/messages:5
 msgid "width :"
 msgstr "largeur :"
 
+#: ../data/messages:7
 msgid "height :"
 msgstr "hauteur :"
 
+#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 msgid "Module"
 msgstr "Module"
 
+#: ../data/messages:11
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: src/applet-notifications.c:13
-msgid "This is the compiz-icon applet\n made by ChAnGFu for Cairo-Dock"
-msgstr "Ceci est l'applet compiz-icon\n écrite par ChAnGFu pour Cairo-Dock"
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:21
+msgid ""
+"This is the compiz-icon applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+"Ceci est l'applet compiz-icon\n"
+" écrite par ChAnGFu pour Cairo-Dock"
 
+#: ../src/applet-notifications.c:63
 msgid "Switch Windows Decorator"
 msgstr "Échanger le Décorateur de Fenêtres"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-"
-"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
+#: ../src/applet-load-icon.c:18
 msgid "Configure Compiz"
 msgstr "Configurer Compiz"
 
+#: ../src/applet-load-icon.c:18
 msgid "Emerald Manager"
 msgstr "Gestionnaire Emerald"
 
+#: ../src/applet-load-icon.c:18
 msgid "Reload WM"
 msgstr "Recharger WM"
 
+#: ../data/messages:35
 msgid "Windows Manager"
 msgstr "Gestionnaire de Fenêtres"
 
+#: ../data/messages:37
 msgid "Select your Windows Manager :"
 msgstr "Choisissez votre Gestionnaire de Fenêtres :"
 
+#: ../data/messages:49
 msgid "Fast Switching"
 msgstr "Changement Rapide"
 
-msgid "Allow you to switch beetwen Compiz & system's Windows Manager with middle click"
-msgstr "Vous permet d'échanger entre Compiz & le Gestionnaire de Fenêtres du système avec le clique du milieu"
+#: ../data/messages:47
+msgid ""
+"Allow you to switch beetwen Compiz & system's Windows Manager with middle "
+"click"
+msgstr ""
+"Vous permet d'échanger entre Compiz & le Gestionnaire de Fenêtres du système "
+"avec le clique du milieu"
 
+#: ../data/messages:53
 msgid "Protect my settings"
 msgstr "Proteger ma configuration"
 
+#: ../data/messages:51
 msgid "Reload default Windows Manager when missing"
 msgstr "Recharge le Gestionnaire de Fenêtres par defaut quand il est absent"
 
+#: ../data/messages:57
 msgid "Custom command for system's Window Manager :"
 msgstr "Commande personnalisée pour le Gestionnaire de Fenêtres système :"
 
+#: ../data/messages:55
 msgid "The applet will use this commande instead of default one"
 msgstr "L'applet utilisera cette commande au lieu de celle par défaut"
 
+#: ../data/messages:59
 msgid "Compiz Options"
 msgstr "Options de Compiz"
 
+#: ../data/messages:63
 msgid "Loose Binding"
 msgstr "Moins Contraignant (Loose Binding)"
 
+#: ../data/messages:67
 msgid "Indirect Rendering"
 msgstr "Rendu Indirect (Indirect Rendering)"
 
+#: ../data/messages:71
 msgid "Use system's Decorator"
 msgstr "Utiliser le Décorateur du système"
 
+#: ../data/messages:69
 msgid "Disable Emerald and use default system Decorator"
 msgstr "Désactive Emerald et utilise le Décorateur par defaut du systeme"
 
+#: ../data/messages:61 ../data/messages:65
 msgid "Use thoses options only if you know them."
 msgstr "Utilisez ces options seulement si vous les connaissez."
 
+#: ../data/messages:75
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
+
+#: ../src/applet-load-icon.c:19
+msgid "default"
+msgstr ""
+
+#: ../src/applet-load-icon.c:19
+msgid "broken"
+msgstr ""
+
+#: ../src/applet-load-icon.c:19
+msgid "other"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Compiz"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Metacity"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Kwin"
+msgstr ""
+
+#: ../data/messages:45
+msgid "XFCE"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Let it empty to use default sub-dock view."
+msgstr ""

@@ -36,7 +36,7 @@ gboolean penguin_move_in_dock (gpointer data)
 	
 	penguin_calculate_new_position (pAnimation, iXMin, iXMax, iHeight);
 	
-	area.x = (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + MIN (iPreviousPositionX, myData.iCurrentPositionX);
+	area.x = (myDock->iCurrentWidth - myDock->fFlatDockWidth) * .5 + MIN (iPreviousPositionX, myData.iCurrentPositionX);
 	area.y = myDock->iCurrentHeight - MAX (iPreviousPositionY, myData.iCurrentPositionY) - pAnimation->iFrameHeight;
 	area.width = abs (iPreviousPositionX - myData.iCurrentPositionX) + pAnimation->iFrameWidth;
 	area.height = abs (iPreviousPositionY - myData.iCurrentPositionY) + pAnimation->iFrameHeight;

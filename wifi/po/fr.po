@@ -67,26 +67,31 @@ msgstr "Nom de l'image 'Par Defaut' :"
 
 #: ../data/messages:35 ../data/messages:39 ../data/messages:61
 #: ../data/messages:71 ../data/messages:77 ../data/messages:73
+#: ../data/messages:79
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Nom de l'image 'Très Faible' :"
 
 #: ../data/messages:39 ../data/messages:43 ../data/messages:65
 #: ../data/messages:75 ../data/messages:81 ../data/messages:77
+#: ../data/messages:83
 msgid "Name of an image for the 'low' icon :"
 msgstr "Nom de l'image 'Faible' :"
 
 #: ../data/messages:43 ../data/messages:47 ../data/messages:69
 #: ../data/messages:79 ../data/messages:85 ../data/messages:81
+#: ../data/messages:87
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Nom de l'image 'Moyen' :"
 
 #: ../data/messages:47 ../data/messages:51 ../data/messages:73
 #: ../data/messages:83 ../data/messages:89 ../data/messages:85
+#: ../data/messages:91
 msgid "Name of an image for the 'good' icon :"
 msgstr "Nom de l'image 'Bon' :"
 
 #: ../data/messages:51 ../data/messages:55 ../data/messages:77
 #: ../data/messages:87 ../data/messages:93 ../data/messages:89
+#: ../data/messages:95
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
@@ -160,11 +165,11 @@ msgstr "Dessiner une barre"
 msgid "Effet to apply on the icon according to strength :"
 msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:65
 msgid "Use a jauge instead of icons?"
 msgstr "Utiliser une jauge au lieu des icônes?"
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:67
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 
@@ -252,7 +257,7 @@ msgstr "Configuration"
 
 #: ../data/messages:27 ../data/messages:31 ../data/messages:51
 #: ../data/messages:61 ../data/messages:67 ../data/messages:63
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:71
 msgid "Images"
 msgstr "Images"
 
@@ -263,7 +268,8 @@ msgstr "Images"
 #: ../data/messages:75 ../data/messages:65 ../data/messages:69
 #: ../data/messages:73 ../data/messages:77 ../data/messages:81
 #: ../data/messages:85 ../data/messages:79 ../data/messages:83
-#: ../data/messages:87 ../data/messages:91
+#: ../data/messages:87 ../data/messages:91 ../data/messages:89
+#: ../data/messages:93
 msgid "Let t empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
@@ -272,17 +278,19 @@ msgid "Signal Strength level"
 msgstr "Niveau de force du signal"
 
 #: ../data/messages:57 ../data/messages:67 ../data/messages:73
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:75
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Nom de l'image 'Aucun Signal' :"
 
 #: ../src/applet-draw.c:154 ../src/applet-draw.c:148 ../src/applet-draw.c:147
 #: ../src/applet-draw.c:150 ../src/applet-draw.c:121 ../src/applet-draw.c:117
+#: ../src/applet-draw.c:113
 msgid "Wifi disabled."
 msgstr "Wifi désactivé."
 
 #: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
 #: ../src/applet-draw.c:153 ../src/applet-draw.c:124 ../src/applet-draw.c:120
+#: ../src/applet-draw.c:116
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -292,11 +300,12 @@ msgstr ""
 
 #: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
 #: ../src/applet-draw.c:153 ../src/applet-draw.c:124 ../src/applet-draw.c:120
+#: ../src/applet-draw.c:116
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 
 #: ../src/applet-wifi.c:175 ../src/applet-wifi.c:169 ../src/applet-wifi.c:182
-#: ../src/applet-wifi.c:162 ../src/applet-wifi.c:188
+#: ../src/applet-wifi.c:162 ../src/applet-wifi.c:188 ../src/applet-wifi.c:184
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -310,3 +319,7 @@ msgstr "Afficher l'ESSID ?"
 #: ../data/messages:53
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Ecraser l'étiquette par défaut avec le nom du point d'accès ?"
+
+#: ../data/messages:69
+msgid "radium"
+msgstr ""
