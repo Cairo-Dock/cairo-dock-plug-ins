@@ -47,6 +47,8 @@ static void cd_dbus_callback_init(dbusCallback *server)
 void cd_dbus_launch_service (void)
 {
 	g_return_if_fail (server == NULL);
+	g_type_init();
+	
 	cd_message("dbus : Lancement du service");
 	server = g_object_new(cd_dbus_callback_get_type(), NULL);  // -> appelle cd_dbus_callback_class_init() et cd_dbus_callback_init().
 }

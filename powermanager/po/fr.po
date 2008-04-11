@@ -102,22 +102,23 @@ msgid "Information"
 msgstr "Information"
 
 #: ../data/messages:15 ../data/messages:35 ../data/messages:39
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:57
 msgid "Information to be displayed on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
 #: ../data/messages:17 ../data/messages:37 ../data/messages:41
 #: ../data/messages:49 ../data/messages:43 ../data/messages:51
+#: ../data/messages:45 ../data/messages:59
 msgid "nothing"
 msgstr "Aucune"
 
 #: ../data/messages:19 ../data/messages:39 ../data/messages:43
-#: ../data/messages:45
+#: ../data/messages:45 ../data/messages:61
 msgid "charge"
 msgstr "Charge"
 
 #: ../data/messages:21 ../data/messages:41 ../data/messages:45
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:63
 msgid "time"
 msgstr "Temps"
 
@@ -177,15 +178,15 @@ msgstr "en secondes."
 msgid "Interval of time between 2 checks :"
 msgstr "Intervale entre 2 vérifications :"
 
-#: ../data/messages:51 ../data/messages:53
+#: ../data/messages:51 ../data/messages:53 ../data/messages:47
 msgid "zoom"
 msgstr "Zoom"
 
-#: ../data/messages:53 ../data/messages:55
+#: ../data/messages:53 ../data/messages:55 ../data/messages:49
 msgid "transparency"
 msgstr "Transparence"
 
-#: ../data/messages:55 ../data/messages:57
+#: ../data/messages:55 ../data/messages:57 ../data/messages:51
 msgid "draw bar"
 msgstr "Dessiner une barre"
 
@@ -235,7 +236,7 @@ msgstr ""
 msgid "Set up power management"
 msgstr "Gestionnaire d'énergie"
 
-#: ../data/messages:47 ../data/messages:49
+#: ../data/messages:47 ../data/messages:49 ../data/messages:43
 msgid "Effet to apply on the icon according to charge :"
 msgstr "Effet à appliquer à l'icône en fonction de la charge :"
 
@@ -264,31 +265,31 @@ msgstr "Aucun"
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:65
 msgid "Alert"
 msgstr "Alerte"
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:67
 msgid "Alert when battery charged ?"
 msgstr "M'alerter quand la batterie est chargée ?"
 
-#: ../data/messages:61
+#: ../data/messages:61 ../data/messages:69
 msgid "Alert when low battery ?"
 msgstr "M'alerter quand la charge est basse ?"
 
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:73
 msgid "Battery level :"
 msgstr "Niveau de batterie"
 
-#: ../data/messages:63
+#: ../data/messages:63 ../data/messages:71
 msgid "in percent."
 msgstr "en pourcent"
 
-#: ../data/messages:67
+#: ../data/messages:67 ../data/messages:75
 msgid "Animate icon during the alert ?"
 msgstr "Animer l'icône pendant l'alerte ?"
 
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:77
 msgid "Animation during alert :"
 msgstr "Animation pendant l'alerte :"
 
@@ -324,30 +325,46 @@ msgstr ""
 msgid "No Battery found."
 msgstr "Aucune Batterie trouvée."
 
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:79
 msgid "bounce"
 msgstr "Rebond"
 
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:81
 msgid "rotate"
 msgstr "Rotation"
 
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:83
 msgid "blink"
 msgstr "Clignotement"
 
-#: ../data/messages:77
+#: ../data/messages:77 ../data/messages:85
 msgid "pulse"
 msgstr "Pulsation"
 
-#: ../data/messages:79
+#: ../data/messages:79 ../data/messages:87
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
-#: ../data/messages:81
+#: ../data/messages:81 ../data/messages:89
 msgid "wobbly"
 msgstr "Élastique"
 
-#: ../data/messages:83
+#: ../data/messages:83 ../data/messages:91
 msgid "random"
 msgstr "Aléatoire"
+
+#: ../data/messages:39
+msgid "Icon's filename when on battery :"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Icon's filename when on charge :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Use a gauge instead of icons ?"
+msgstr ""
+
+#: ../data/messages:55
+msgid "List of available gauges :"
+msgstr ""
