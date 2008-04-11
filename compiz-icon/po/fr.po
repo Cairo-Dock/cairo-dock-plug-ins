@@ -183,6 +183,10 @@ msgstr "Utilisez ces options seulement si vous les connaissez."
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
+#: ../data/messages:73
+msgid "Let it empty to use default sub-dock view."
+msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
+
 #: ../src/applet-load-icon.c:19
 msgid "default"
 msgstr ""
@@ -215,6 +219,23 @@ msgstr ""
 msgid "XFCE"
 msgstr ""
 
-#: ../data/messages:73
-msgid "Let it empty to use default sub-dock view."
-msgstr ""
+msgid "Name of an image for the 'default' icon :"
+msgstr "Nom de l'image 'Par Défaut' :"
+
+msgid "Name of an image for the 'broken' icon :"
+msgstr "Nom de l'image 'Cassée' :"
+
+msgid "Name of an image for the 'other wm' icon :"
+msgstr "Nom de l'image 'Autre wm' :"
+
+msgid "Name of an image for the 'setting' icon :"
+msgstr "Nom de l'image 'Configuration' :"
+
+msgid "Name of an image for the 'emerald' icon :"
+msgstr "Nom de l'image 'Emerald' :"
+
+msgid "Name of an image for the 'reload' icon :"
+msgstr "Nom de l'image 'Recharger' :"
+
+msgid "Let t empty to use the default icon."
+msgstr "Laisser vide pour avoir l'icon par défault"

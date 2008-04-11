@@ -27,6 +27,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.sDecoratorCMD = CD_CONFIG_GET_STRING ("Configuration", "ccmd");
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
+	
+	myConfig.cUserImage[COMPIZ_DEFAULT] 			= CD_CONFIG_GET_STRING ("Configuration", "default icon");
+	myConfig.cUserImage[COMPIZ_BROKEN] 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
+	myConfig.cUserImage[COMPIZ_OTHER] 		= CD_CONFIG_GET_STRING ("Configuration", "other icon");
+	myConfig.cUserImage[COMPIZ_SETTING] 		= CD_CONFIG_GET_STRING ("Configuration", "setting icon");
+	myConfig.cUserImage[COMPIZ_EMERALD] 		= CD_CONFIG_GET_STRING ("Configuration", "emerald icon");
+	myConfig.cUserImage[COMPIZ_RELOAD] 		= CD_CONFIG_GET_STRING ("Configuration", "reload icon");
 CD_APPLET_GET_CONFIG_END
 
 

@@ -26,7 +26,12 @@ static GList * _list_icons (void) {
 	for (i = 0; i < 3; i ++) {
 		pIcon = g_new0 (Icon, 1);
 	  pIcon->acName = g_strdup_printf ("%s", D_(s_iconName[i]));
-	  pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
+	  if (myConfig.cUserImage[i+3] != NULL) {
+	    pIcon->acFileName = cairo_dock_generate_file_path (myConfig.cUserImage[i+3]);
+	  }
+	  else {
+	    pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
+	  }
 	  pIcon->fOrder = 2*i;
 	  pIcon->fScale = 1.;
 	  pIcon->fAlpha = 1.;
@@ -46,10 +51,21 @@ void _compiz_draw (void) {
 	cd_message("Compiz: Mode de rendering: %s - WM: %d", myConfig.cRenderer, myConfig.iWM);
 	
 	g_free (myIcon->acFileName);
-	if (!myData.bAcquisitionOK)
-		myIcon->acFileName = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
+	if (!myData.bAcquisitionOK) {
+	  if (myConfig.cUserImage[COMPIZ_BROKEN] != NULL) {
+	    myIcon->acFileName = cairo_dock_generate_file_path (myConfig.cUserImage[COMPIZ_BROKEN]);
+	  }
+	  else {
+		  myIcon->acFileName = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
+	  }
+	}
 	else {
-		myIcon->acFileName = g_strdup_printf ("%s/%s.svg", MY_APPLET_SHARE_DATA_DIR, s_iconFile[myData.iCompizIcon]);
+	  if (myConfig.cUserImage[myData.iCompizIcon] != NULL) {
+	    myIcon->acFileName = cairo_dock_generate_file_path (myConfig.cUserImage[myData.iCompizIcon]);
+	  }
+	  else {
+		  myIcon->acFileName = g_strdup_printf ("%s/%s.svg", MY_APPLET_SHARE_DATA_DIR, s_iconFile[myData.iCompizIcon]);
+		}
 	}
 	CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
 

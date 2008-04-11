@@ -43,7 +43,7 @@ on widget layer=false
 
 [Configuration]
 #F[Windows Manager]
-frame1 = 
+frame_wm = 
 #r[Compiz;Metacity;Kwin;XFCE] Select your Windows Manager :
 WM=0
 #b Fast Switching
@@ -56,8 +56,14 @@ protect = true
 #{The applet will use this commande instead of default one}
 ccmd =
 
+#F
+frame_sub=
+#R1[] Name of the view used for the sub-dock :
+#{Let it empty to use default sub-dock view.}/
+renderer = 
+
 #F[Compiz Options]
-frame2 = 
+frame_co = 
 #b Loose Binding
 #{Use thoses options only if you know them.}
 binding = false
@@ -68,9 +74,24 @@ irendering = false
 #{Disable Emerald and use default system Decorator}
 decorator = true
 
-#F
-frame_sub=
-#R1[] Name of the view used for the sub-dock :
-#{Let it empty to use default sub-dock view.}/
-renderer = 
+#F[Images]
+frame_img = 
+#S Name of an image for the 'default' icon :
+#{Let t empty to use the default icon.}
+default icon = 
+#S Name of an image for the 'broken' icon :
+#{Let t empty to use the default icon.}
+broken icon = 
+#S Name of an image for the 'other wm' icon :
+#{Let t empty to use the default icon.}
+other icon = 
+#S Name of an image for the 'setting' icon :
+#{Let t empty to use the default icon.}
+setting icon = 
+#S Name of an image for the 'emerald' icon :
+#{Let t empty to use the default icon.}
+emerald icon = 
+#S Name of an image for the 'reload' icon :
+#{Let t empty to use the default icon.}
+reload icon = 
 

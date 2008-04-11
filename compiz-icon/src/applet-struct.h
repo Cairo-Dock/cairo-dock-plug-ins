@@ -9,6 +9,16 @@ typedef enum {
   XFCE,
 } compizWM;
 
+typedef enum {
+  COMPIZ_DEFAULT,
+  COMPIZ_BROKEN,
+  COMPIZ_OTHER,
+  COMPIZ_SETTING,
+  COMPIZ_EMERALD,
+  COMPIZ_RELOAD,
+  COMPIZ_NB_ITEMS,
+} compizIcons;
+
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
 	gboolean lBinding;
@@ -19,6 +29,7 @@ typedef struct {
   compizWM iWM;
   gchar *cRenderer;
   gchar *sDecoratorCMD;
+  gchar *cUserImage[COMPIZ_NB_ITEMS];
   //cairo_surface_t *cSurface[3];
 } AppletConfig;
 
