@@ -14,10 +14,9 @@ CD_APPLET_DEFINITION ("PowerManager", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 CD_APPLET_INIT_BEGIN (erreur)
 	
-	if (myDesklet != NULL)
+	if (myDesklet)
 	{
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	// on ne charge pas toutes les surfaces, car cela prend trop de memoire, et trop de temps au chargement, alors que ce n'est pas necessaire. En effet, on ne redessine que si il y'a changement. Or la batterie se vide lentement, et la recharge n'est pas non plus fulgurante, donc au total on redesine reellement l'icone 1 fois toutes les 10 minutes peut-etre, ce qui ne justifie pas de pre-charger les surfaces.
@@ -70,10 +69,9 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	if (myDesklet != NULL)
+	if (myDesklet)
 	{
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	if (myData.pGauge != NULL)

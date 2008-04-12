@@ -84,12 +84,12 @@ void update_icon(void)
 			if (myConfig.bUseGauge)
 			{
 				make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.battery_charge / 100);
+				bNeedRedraw = TRUE;
 			}
 			else
 			{
 				cd_powermanager_draw_icon_with_effect (myData.on_battery);
 			}
-			bNeedRedraw = TRUE;
 			myData.previously_on_battery = myData.on_battery;
 			myData.previous_battery_charge = myData.battery_charge;
 		}
