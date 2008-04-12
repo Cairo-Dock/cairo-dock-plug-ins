@@ -89,6 +89,7 @@ void update_icon(void)
 			else
 			{
 				cd_powermanager_draw_icon_with_effect (myData.on_battery);
+				bNeedRedraw = FALSE;
 			}
 			myData.previously_on_battery = myData.on_battery;
 			myData.previous_battery_charge = myData.battery_charge;
@@ -123,15 +124,20 @@ void cd_powermanager_bubble(void)
 	if(myData.battery_present)
 	{
 		gchar *hms = get_hours_minutes(myData.battery_time);
+		g_print ("debug : hms : %s\n", hms);
 		if(myData.on_battery)
 		{
+			g_print ("debug : %s %d%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 			cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 		}
 		else
 		{
+			g_print ("debug : %s %d%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 			cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 		}
+		g_print ("free de hms ...");
 		g_free (hms);
+		g_print (" ok\n");
 	}
 	else
 	{
@@ -142,19 +148,24 @@ void cd_powermanager_bubble(void)
 gboolean cd_powermanager_alert(int alert)
 {
 	gchar *hms = get_hours_minutes(myData.battery_time);
+	g_print ("debug : hms : %s\n", hms);
 	if ((alert == 1) && (myConfig.lowBatteryWitness))
 	{
+		g_print ("debug : %s (%d%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
 		cairo_dock_show_temporary_dialog ("%s (%d%%) \n %s %s \n %s", myIcon, myContainer, 6000, D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
 	}
 	else if ((alert == 0) && (myConfig.highBatteryWitness))
 	{
+		g_print ("debug : %s (%d%%) \n %s %s ", D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 		cairo_dock_show_temporary_dialog ("%s (%d%%) \n %s %s ", myIcon, myContainer, 6000, D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 	}
 	if (myConfig.batteryWitness) 
 	{
 		CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, 3)
 	}
+	g_print ("free de hms ...");
 	g_free (hms);
+	g_print (" ok\n");
 	myData.alerted = TRUE;
 	return FALSE;
 }
