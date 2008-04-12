@@ -161,35 +161,35 @@ msgstr "Commande personnalisée pour le Gestionnaire de Fenêtres système :"
 msgid "The applet will use this commande instead of default one"
 msgstr "L'applet utilisera cette commande au lieu de celle par défaut"
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:63
 msgid "Compiz Options"
 msgstr "Options de Compiz"
 
-#: ../data/messages:63
+#: ../data/messages:63 ../data/messages:67
 msgid "Loose Binding"
 msgstr "Moins Contraignant (Loose Binding)"
 
-#: ../data/messages:67
+#: ../data/messages:67 ../data/messages:71
 msgid "Indirect Rendering"
 msgstr "Rendu Indirect (Indirect Rendering)"
 
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:75
 msgid "Use system's Decorator"
 msgstr "Utiliser le Décorateur du système"
 
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:73
 msgid "Disable Emerald and use default system Decorator"
 msgstr "Désactive Emerald et utilise le Décorateur par defaut du systeme"
 
-#: ../data/messages:61 ../data/messages:65
+#: ../data/messages:61 ../data/messages:65 ../data/messages:69
 msgid "Use thoses options only if you know them."
 msgstr "Utilisez ces options seulement si vous les connaissez."
 
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:61
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:59
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
 
@@ -225,24 +225,32 @@ msgstr ""
 msgid "XFCE"
 msgstr ""
 
+#: ../data/messages:81
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Défaut' :"
 
+#: ../data/messages:85
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Cassée' :"
 
+#: ../data/messages:89
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "Nom de l'image 'Autre wm' :"
 
+#: ../data/messages:93
 msgid "Name of an image for the 'setting' icon :"
 msgstr "Nom de l'image 'Configuration' :"
 
+#: ../data/messages:97
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "Nom de l'image 'Emerald' :"
 
+#: ../data/messages:101
 msgid "Name of an image for the 'reload' icon :"
 msgstr "Nom de l'image 'Recharger' :"
 
+#: ../data/messages:79 ../data/messages:83 ../data/messages:87
+#: ../data/messages:91 ../data/messages:95 ../data/messages:99
 msgid "Let t empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icon par défault"
 

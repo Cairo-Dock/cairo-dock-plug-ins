@@ -188,34 +188,67 @@ msgstr ""
 msgid "Custom command for system's Window Manager :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:63
 msgid "Compiz Options"
 msgstr ""
 
-#: ../data/messages:61 ../data/messages:65
+#: ../data/messages:61 ../data/messages:65 ../data/messages:69
 msgid "Use thoses options only if you know them."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:63 ../data/messages:67
 msgid "Loose Binding"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:67 ../data/messages:71
 msgid "Indirect Rendering"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:73
 msgid "Disable Emerald and use default system Decorator"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:75
 msgid "Use system's Decorator"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:59
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:61
 msgid "Name of the view used for the sub-dock :"
+msgstr ""
+
+#: ../data/messages:77
+msgid "Images"
+msgstr ""
+
+#: ../data/messages:79 ../data/messages:83 ../data/messages:87
+#: ../data/messages:91 ../data/messages:95 ../data/messages:99
+msgid "Let t empty to use the default icon."
+msgstr ""
+
+#: ../data/messages:81
+msgid "Name of an image for the 'default' icon :"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Name of an image for the 'broken' icon :"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Name of an image for the 'other wm' icon :"
+msgstr ""
+
+#: ../data/messages:93
+msgid "Name of an image for the 'setting' icon :"
+msgstr ""
+
+#: ../data/messages:97
+msgid "Name of an image for the 'emerald' icon :"
+msgstr ""
+
+#: ../data/messages:101
+msgid "Name of an image for the 'reload' icon :"
 msgstr ""

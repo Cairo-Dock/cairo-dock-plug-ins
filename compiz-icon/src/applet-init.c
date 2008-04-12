@@ -24,10 +24,9 @@ CD_APPLET_INIT_BEGIN (erreur)
   myIcon->acFileName = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
 	CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
 	
-	myData.iCompizIcon = 1;
+	myData.iCompizIcon = COMPIZ_BROKEN;
 	myData.bAcquisitionOK = FALSE;
 	cd_compiz_launch_measure();
-	myData.iTimer = 0;
 	myData.iTimer = g_timeout_add (10000, (GSourceFunc) cd_compiz_timer, (gpointer) NULL);
 	
 	if (myConfig.forceConfig) {

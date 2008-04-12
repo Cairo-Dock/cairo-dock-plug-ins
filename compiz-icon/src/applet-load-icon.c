@@ -15,17 +15,18 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@hollow
   
 CD_APPLET_INCLUDE_MY_VARS
 
-static gchar *s_iconName[3] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Reload WM")};
-static gchar *s_iconFile[3] = {N_("default"), N_("broken"), N_("other")};
+#define MY_NB_ICONS 3
+static gchar *s_iconName[MY_NB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Reload WM")};
+static gchar *s_iconFile[MY_NB_ICONS] = {N_("default"), N_("broken"), N_("other")};
 
 static GList * _list_icons (void) {
 	GList *pIconList = NULL;
 	
 	Icon *pIcon;
 	int i;
-	for (i = 0; i < 3; i ++) {
+	for (i = 0; i < MY_NB_ICONS; i ++) {
 		pIcon = g_new0 (Icon, 1);
-	  pIcon->acName = g_strdup_printf ("%s", D_(s_iconName[i]));
+	  pIcon->acName = g_strdup (D_(s_iconName[i]));
 	  if (myConfig.cUserImage[i+3] != NULL) {
 	    pIcon->acFileName = cairo_dock_generate_file_path (myConfig.cUserImage[i+3]);
 	  }

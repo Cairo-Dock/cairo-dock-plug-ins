@@ -21,7 +21,7 @@ typedef enum {
 
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
-	gboolean lBinding;
+  gboolean lBinding;
   gboolean iRendering;
   gboolean selfDecorator;
   gboolean protectDecorator;

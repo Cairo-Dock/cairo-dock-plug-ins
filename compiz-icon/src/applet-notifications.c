@@ -38,23 +38,23 @@ static void _compiz_action_by_id (int k) {
   }
 }
 
-static void _compiz_menu_script_expo (void) {
-  GError *erreur = NULL;
-  gchar *cCommand = g_strdup_printf("bash %s/expo", MY_APPLET_SHARE_DATA_DIR);
+static void _compiz_menu_active_expo (void) {
+	GError *erreur = NULL;
+	gchar *cCommand = g_strdup_printf ("dbus-send --type=method_call --dest=org.freedesktop.compiz /org/freedesktop/compiz/expo/allscreens/expo org.freedesktop.compiz.activate string:'root' int32:%d", cairo_dock_get_root_id ());
 	g_spawn_command_line_async (cCommand, &erreur);
 	g_free (cCommand);
 	if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'expo' : %s", erreur->message);
+		cd_warning ("Attention : when trying to show expose : %s", erreur->message);
 		g_error_free (erreur);
 	}
 }
-static void _compiz_menu_script_wlayer (void) {
-  GError *erreur = NULL;
-  gchar *cCommand = g_strdup_printf("bash %s/wlayer", MY_APPLET_SHARE_DATA_DIR);
+static void _compiz_menu_toggle_wlayer (void) {
+	GError *erreur = NULL;
+	gchar *cCommand = g_strdup_printf ("dbus-send --type=method_call --dest=org.freedesktop.compiz /org/freedesktop/compiz/widget/allscreens/toggle org.freedesktop.compiz.activate string:'root' int32:%d", cairo_dock_get_root_id ());
 	g_spawn_command_line_async (cCommand, &erreur);
 	g_free (cCommand);
 	if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'wlayer' : %s", erreur->message);
+		cd_warning ("Attention : when trying to show layer : %s", erreur->message);
 		g_error_free (erreur);
 	}
 }
@@ -76,13 +76,14 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-  cd_compiz_switch();
+	if (pClickedIcon == myIcon)
+		cd_compiz_switch();
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Compiz Icon", pSubMenu, CD_APPLET_MY_MENU)
 	  CD_APPLET_ADD_IN_MENU (D_("Switch Windows Decorator"), cd_compiz_switch_decorator, pSubMenu)
-	  CD_APPLET_ADD_IN_MENU (D_("Toggle Exposition Mode"), _compiz_menu_script_expo, pSubMenu)
-	  CD_APPLET_ADD_IN_MENU (D_("Toggle Widgets Layer"), _compiz_menu_script_wlayer, pSubMenu)
+	  CD_APPLET_ADD_IN_MENU (D_("Toggle Exposition Mode"), _compiz_menu_active_expo, pSubMenu)
+	  CD_APPLET_ADD_IN_MENU (D_("Toggle Widgets Layer"), _compiz_menu_toggle_wlayer, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
