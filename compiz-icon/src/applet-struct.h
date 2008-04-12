@@ -10,7 +10,7 @@ typedef enum {
 } compizWM;
 
 typedef enum {
-  COMPIZ_DEFAULT,
+  COMPIZ_DEFAULT = 0,
   COMPIZ_BROKEN,
   COMPIZ_OTHER,
   COMPIZ_SETTING,
@@ -19,11 +19,21 @@ typedef enum {
   COMPIZ_NB_ITEMS,
 } compizIcons;
 
+typedef enum {
+	COMPIZ_NO_ACTION = 0,
+	COMPIZ_SWITCH_WM,
+	COMPIZ_LAYER,
+	COMPIZ_EXPO,
+	COMPIZ_SHOW_DESKTOP,
+	COMPIZ_NB_ACTIONS
+} compizAction;
+
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
   gboolean lBinding;
   gboolean iRendering;
   gboolean selfDecorator;
+  
   gboolean protectDecorator;
   gboolean forceConfig;
   gboolean fSwitch;
@@ -31,6 +41,7 @@ typedef struct {
   gchar *cRenderer;
   gchar *sDecoratorCMD;
   gchar *cUserImage[COMPIZ_NB_ITEMS];
+  compizAction iActionOnMiddleClick;
   //cairo_surface_t *cSurface[3];
 } AppletConfig;
 

@@ -21,61 +21,81 @@ static int s_iThreadIsRunning = 0;
 static int s_iSidTimerRedraw = 0;
 static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;
 
-void _compiz_cmd(gchar *cmd) {
-  cd_message("Compiz: Launching %s", cmd);
-	system (cmd);
+void _compiz_cmd(gchar *cCommand) {
+	cd_message("Compiz: Launching %s", cCommand);
+	GError *erreur = NULL;
+	g_spawn_command_line_async (cCommand, &erreur);
+	if (erreur != NULL) {
+		cd_warning ("Attention : when trying to execute '%s' : %s", cCommand, erreur->message);
+		g_error_free (erreur);
+	}
 }
 
 gboolean cd_compiz_start_wm(void) {
-  gchar *cmd = NULL;
-  cd_message("Compiz: Default WM: %d\n", myConfig.iWM);
-  switch (myConfig.iWM) {
-    case COMPIZ_FUSION: default: //Compiz
-      cmd = "compiz.real --replace --ignore-desktop-hints ccp";
-      if (myConfig.lBinding) {
-        cmd = g_strdup_printf("%s --loose-binding", cmd);
-      }
-      if (myConfig.iRendering) {
-        cmd = g_strdup_printf("%s --indirect-rendering", cmd);
-      }
-      if (myConfig.selfDecorator) {
-        gchar *decorator = NULL;
-        if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
-         decorator = "gtk-window-decorator --replace";
-        }
-        else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
-         decorator = "kde-window-decorator --replace"; //A remplacer par le Decorateur de KDE
-        }
-        cmd = g_strdup_printf("%s --sm-disable & %s", cmd, decorator);
-      }
-      else {
-        cmd = g_strdup_printf("%s && emerald --replace", cmd);
-      }
-      cmd = g_strdup_printf("%s &", cmd);
-    break;
-    case METACITY: case XFCE: //Gnome & XFCE
-      cmd = "metacity --replace &";
-    break;
-    case KWIN: //KDE
-      cmd = "kwin --replace &";
-    break;
-  }
-  if (myConfig.sDecoratorCMD != NULL && myConfig.iWM != 0) { //On switch avec la commande perso
-    cmd = myConfig.sDecoratorCMD;
-    cmd = g_strdup_printf("%s &", cmd);
-  }
-  if (cmd != NULL) {
-    cd_compiz_kill_compmgr(); //On tue tout les compositing managers
-    _compiz_cmd(cmd);
-    cd_compiz_launch_measure();
-    //g_free (cmd);
-  }
-  else {
-    cd_message("Compiz: No Window Manager to launch, aborting.\n");
-  }
-  return FALSE;
+	GString *sCommand = g_string_new ("");
+	//gchar *cmd = NULL;
+	cd_message("Compiz: Default WM: %d", myConfig.iWM);
+	if (myConfig.sDecoratorCMD != NULL && myConfig.iWM != 0) { //On switch avec la commande perso
+		g_string_printf (sCommand, "%s &", myConfig.sDecoratorCMD);
+		//cmd = myConfig.sDecoratorCMD;
+		//cmd = g_strdup_printf("%s &", cmd);
+	}
+	else
+	{
+		switch (myConfig.iWM) {
+			case COMPIZ_FUSION: //Compiz
+				g_string_assign (sCommand, "compiz.real --replace --ignore-desktop-hints ccp");
+				//cmd = "compiz.real --replace --ignore-desktop-hints ccp";
+				if (myConfig.lBinding) {
+				//cmd = g_strdup_printf("%s --loose-binding", cmd);
+				g_string_append (sCommand, " --loose-binding");
+				}
+				if (myConfig.iRendering) {
+				//cmd = g_strdup_printf("%s --indirect-rendering", cmd);
+				g_string_append (sCommand, " --indirect-rendering");
+				}
+				const gchar *decorator = NULL;
+				if (myConfig.selfDecorator) {
+				g_string_append (sCommand, " --sm-disable");
+				if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
+				decorator = "gtk-window-decorator";
+				}
+				else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
+				decorator = "kde-window-decorator"; //A remplacer par le Decorateur de KDE
+				}
+				//cmd = g_strdup_printf("%s --sm-disable & %s", cmd, decorator);
+				}
+				else {
+				//cmd = g_strdup_printf("%s && emerald --replace", cmd);
+				decorator = "emerald";
+				}
+				if (decorator != NULL)
+				g_string_append_printf (sCommand, " && %s --replace", decorator);
+				//cmd = g_strdup_printf("%s &", cmd);
+				g_string_append_c (sCommand, '&');
+			break;
+			case METACITY:
+			case XFCE: //Gnome & XFCE
+				//cmd = "metacity --replace &";
+				g_string_assign (sCommand, "metacity --replace &");
+			break;
+			case KWIN: //KDE
+				//cmd = "kwin --replace &";
+				g_string_assign (sCommand, "kwin --replace &");
+			break;
+			default :
+			return FALSE;
+		}
+	}
+	
+	cd_compiz_kill_compmgr(); //On tue tout les compositing managers
+	_compiz_cmd(sCommand->str);
+	cd_compiz_launch_measure();
+	
+	g_string_free (sCommand, TRUE);
+	return FALSE;
 }
-void cd_compiz_switch(void) {
+void cd_compiz_switch_manager(void) {
   if(myConfig.fSwitch) {
     int i=0;
     gchar *cmd;
@@ -89,11 +109,11 @@ void cd_compiz_switch(void) {
       else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
         myConfig.iWM = KWIN;
       }
-      cd_message("Compiz: Swtiching to System WM.\n");
+      cd_message("Compiz: Swtiching to System WM.");
     }
     else { //On a pas comiz, on y revient
       myConfig.iWM = COMPIZ_FUSION;
-      cd_message("Compiz: Switching to Compiz.\n");
+      cd_message("Compiz: Switching to Compiz.");
     }
     cd_compiz_start_wm();
     cd_compiz_launch_measure();
@@ -102,7 +122,7 @@ void cd_compiz_switch(void) {
 void cd_compiz_check_my_wm(void) {
   if (myConfig.protectDecorator) {
 	  if ((myData.iCompizIcon == 0) && (myConfig.iWM != 0)) { //on a compiz alors qu'on en veut pas
-	    cd_compiz_start_wm(); //On Tue le WM et on recharge
+	    cd_compiz_start_wm(); //On tue le WM et on recharge
 	  }
   	else if ((myData.iCompizIcon == 2) && (myConfig.iWM == 0)) { //on veut compiz mais on ne l'a pas, dangereux si la personne a un bug de CG
 	    cd_compiz_start_wm(); 
@@ -118,11 +138,11 @@ void cd_compiz_switch_decorator(void) {
     else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
      cmd = "kde-window-decorator --replace &"; //A remplacer par le Decorateur de KDE
     }
-    cd_message("Compiz: Switching to system's Decorator.\n");
+    cd_message("Compiz: Switching to system's Decorator.");
   }
   else {
     cmd = "emerald --replace &";
-    cd_message("Compiz: Switching to Emerald.\n");
+    cd_message("Compiz: Switching to Emerald.");
   }
   if (cmd != NULL) {
     _compiz_cmd(cmd);

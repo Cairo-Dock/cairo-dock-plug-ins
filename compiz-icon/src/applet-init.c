@@ -16,7 +16,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@hollow
 #include "applet-load-icon.h"
 #include "applet-compiz.h"
 
-CD_APPLET_DEFINITION ("compiz-icon", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("compiz-icon", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 CD_APPLET_INIT_BEGIN (erreur)

@@ -24,7 +24,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.selfDecorator = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "decorator", FALSE);
 	myConfig.forceConfig = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "force", FALSE);
 	myConfig.protectDecorator = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "protect", TRUE);
-	myConfig.fSwitch = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "switch", TRUE);
 	myConfig.sDecoratorCMD = CD_CONFIG_GET_STRING ("Configuration", "ccmd");
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
@@ -35,6 +34,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserImage[COMPIZ_SETTING] 		= CD_CONFIG_GET_STRING ("Configuration", "setting icon");
 	myConfig.cUserImage[COMPIZ_EMERALD] 		= CD_CONFIG_GET_STRING ("Configuration", "emerald icon");
 	myConfig.cUserImage[COMPIZ_RELOAD] 		= CD_CONFIG_GET_STRING ("Configuration", "reload icon");
+	
+	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER ("Configuration", "middle click");
 CD_APPLET_GET_CONFIG_END
 
 

@@ -41,14 +41,12 @@ keep above=false
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
 
+
 [Configuration]
 #F[Windows Manager]
 frame_wm = 
 #r[Compiz;Metacity;Kwin;XFCE] Select your Windows Manager :
 WM=0
-#b Fast Switching
-#{Allow you to switch beetwen Compiz & system's Windows Manager with middle click}
-switch = true
 #b Protect my settings
 #{Reload default Windows Manager when missing}
 protect = true
@@ -59,6 +57,13 @@ force = false
 #{The applet will use this commande instead of default one}
 ccmd =
 
+#F[Actions]
+frame_act = 
+
+#r[None;Switch WM;WidgetLayer;Expose;ShowDesktop] Choose an action for the middle click on the icon :
+#{Except for switching to another WM, you must activate the Dbus plugin in Compiz, along with the plug-in corresponding to the desired action.}
+middle click = 0
+
 #F
 frame_sub=
 #R1[] Name of the view used for the sub-dock :
@@ -67,13 +72,13 @@ renderer =
 
 #F[Compiz Options]
 frame_co = 
-#b Loose Binding
+#b Use Loose Binding ?
 #{Use thoses options only if you know them.}
 binding = false
-#b Indirect Rendering
+#b Use Indirect Rendering ?
 #{Use thoses options only if you know them.}
 irendering = false
-#b Use system's Decorator
+#b Use system's Decorator ?
 #{Disable Emerald and use default system Decorator}
 decorator = true
 
