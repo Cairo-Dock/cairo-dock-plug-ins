@@ -52,6 +52,9 @@ switch = true
 #b Protect my settings
 #{Reload default Windows Manager when missing}
 protect = true
+#b Force settings at startup
+#{Load default Windows Manager with options at startup.}
+force = false
 #s Custom command for system's Window Manager :
 #{The applet will use this commande instead of default one}
 ccmd =

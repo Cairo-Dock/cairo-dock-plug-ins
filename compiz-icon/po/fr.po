@@ -147,6 +147,12 @@ msgstr "Proteger ma configuration"
 msgid "Reload default Windows Manager when missing"
 msgstr "Recharge le Gestionnaire de Fenêtres par defaut quand il est absent"
 
+msgid "Force settings at startup"
+msgstr "Forcer ma configuration au démarrage"
+
+msgid "Load default Windows Manager with options at startup."
+msgstr "Charge le Gestionnaire de Fenêtres par defaut au démarrage."
+
 #: ../data/messages:57
 msgid "Custom command for system's Window Manager :"
 msgstr "Commande personnalisée pour le Gestionnaire de Fenêtres système :"
@@ -239,3 +245,9 @@ msgstr "Nom de l'image 'Recharger' :"
 
 msgid "Let t empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icon par défault"
+
+msgid "Toggle Exposition Mode"
+msgstr "Activer le Mode Exposition"
+
+msgid "Toggle Widgets Layer"
+msgstr "Activer la Couche des Widgets"

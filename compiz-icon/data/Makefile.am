@@ -8,6 +8,8 @@ module_DATA = \
 	readme\
 	compiz\
 	compiz-kill\
+	expo\
+	wlayer\
 	preview.png\
 	default.svg\
 	broken.svg\

@@ -1,4 +1,4 @@
-#!/usr/bash
+#!/bin/sh
 pgrep compiz && COMPIZ=1 || COMPIZ=0
 pgrep emerald && EMERALD=1 || EMERALD=0
 rm -f /tmp/compiz

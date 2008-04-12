@@ -22,6 +22,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.lBinding = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "binding", FALSE);
 	myConfig.iRendering = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "irendering", FALSE);
 	myConfig.selfDecorator = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "decorator", FALSE);
+	myConfig.forceConfig = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "force", FALSE);
 	myConfig.protectDecorator = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "protect", TRUE);
 	myConfig.fSwitch = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "switch", TRUE);
 	myConfig.sDecoratorCMD = CD_CONFIG_GET_STRING ("Configuration", "ccmd");

@@ -25,6 +25,7 @@ typedef struct {
   gboolean iRendering;
   gboolean selfDecorator;
   gboolean protectDecorator;
+  gboolean forceConfig;
   gboolean fSwitch;
   compizWM iWM;
   gchar *cRenderer;

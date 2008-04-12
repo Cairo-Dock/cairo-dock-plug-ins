@@ -68,7 +68,7 @@ gboolean cd_compiz_start_wm(void) {
     cd_compiz_kill_compmgr(); //On tue tout les compositing managers
     _compiz_cmd(cmd);
     cd_compiz_launch_measure();
-    g_free (cmd);
+    //g_free (cmd);
   }
   else {
     cd_message("Compiz: No Window Manager to launch, aborting.\n");

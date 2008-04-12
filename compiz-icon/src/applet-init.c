@@ -30,6 +30,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.iTimer = 0;
 	myData.iTimer = g_timeout_add (10000, (GSourceFunc) cd_compiz_timer, (gpointer) NULL);
 	
+	if (myConfig.forceConfig) {
+	  g_timeout_add (10000, (GSourceFunc) cd_compiz_start_wm, (gpointer) NULL);
+	}
+	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT

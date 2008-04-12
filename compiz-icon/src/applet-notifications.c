@@ -37,6 +37,27 @@ static void _compiz_action_by_id (int k) {
     break;
   }
 }
+
+static void _compiz_menu_script_expo (void) {
+  GError *erreur = NULL;
+  gchar *cCommand = g_strdup_printf("bash %s/expo", MY_APPLET_SHARE_DATA_DIR);
+	g_spawn_command_line_async (cCommand, &erreur);
+	g_free (cCommand);
+	if (erreur != NULL) {
+		cd_warning ("Attention : when trying to execute 'expo' : %s", erreur->message);
+		g_error_free (erreur);
+	}
+}
+static void _compiz_menu_script_wlayer (void) {
+  GError *erreur = NULL;
+  gchar *cCommand = g_strdup_printf("bash %s/wlayer", MY_APPLET_SHARE_DATA_DIR);
+	g_spawn_command_line_async (cCommand, &erreur);
+	g_free (cCommand);
+	if (erreur != NULL) {
+		cd_warning ("Attention : when trying to execute 'wlayer' : %s", erreur->message);
+		g_error_free (erreur);
+	}
+}
 CD_APPLET_ON_CLICK_BEGIN
 
 	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_DOCK_CONTAINER (myIcon->pSubDock)) {
@@ -61,5 +82,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Compiz Icon", pSubMenu, CD_APPLET_MY_MENU)
 	  CD_APPLET_ADD_IN_MENU (D_("Switch Windows Decorator"), cd_compiz_switch_decorator, pSubMenu)
+	  CD_APPLET_ADD_IN_MENU (D_("Toggle Exposition Mode"), _compiz_menu_script_expo, pSubMenu)
+	  CD_APPLET_ADD_IN_MENU (D_("Toggle Widgets Layer"), _compiz_menu_script_wlayer, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
