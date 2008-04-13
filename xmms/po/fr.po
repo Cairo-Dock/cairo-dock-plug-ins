@@ -88,7 +88,7 @@ msgstr "Nom de l'icône :"
 #: ../data/messages:17 ../data/messages:25 ../data/messages:27
 #: ../data/messages:47 ../data/messages:45 ../data/messages:51
 msgid "Information to display on the icon :"
-msgstr "Information afficher sur l'icône :"
+msgstr "Information a afficher sur l'icône :"
 
 #: ../data/messages:15 ../data/messages:23 ../data/messages:49
 msgid "Display"
@@ -118,7 +118,7 @@ msgstr "Info-bulles"
 
 #: ../data/messages:15 ../data/messages:41 ../data/messages:63
 #: ../data/messages:61 ../data/messages:59
-msgid "Put a info-bubble ?"
+msgid "Put an info-bubble ?"
 msgstr "Afficher une info-bulle ?"
 
 #: ../data/messages:19 ../data/messages:45 ../data/messages:67
@@ -137,37 +137,37 @@ msgstr "Animations"
 
 #: ../data/messages:25 ../data/messages:51 ../data/messages:73
 #: ../data/messages:71 ../data/messages:69
-msgid "Bounce"
+msgid "bounce"
 msgstr "Rebond"
 
 #: ../data/messages:27 ../data/messages:53 ../data/messages:75
 #: ../data/messages:73 ../data/messages:71
-msgid "Rotate"
+msgid "rotate"
 msgstr "Rotation"
 
 #: ../data/messages:29 ../data/messages:55 ../data/messages:77
 #: ../data/messages:75 ../data/messages:73
-msgid "Blink"
+msgid "blink"
 msgstr "Clignotement"
 
 #: ../data/messages:31 ../data/messages:57 ../data/messages:79
 #: ../data/messages:77 ../data/messages:75
-msgid "Pulse"
+msgid "pulse"
 msgstr "Pulsation"
 
 #: ../data/messages:33 ../data/messages:59 ../data/messages:81
 #: ../data/messages:79 ../data/messages:77
-msgid "Upside-down"
+msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
 #: ../data/messages:35 ../data/messages:61 ../data/messages:83
 #: ../data/messages:81 ../data/messages:79
-msgid "Wobbly"
+msgid "wobbly"
 msgstr "Élastique"
 
 #: ../data/messages:37 ../data/messages:63 ../data/messages:85
 #: ../data/messages:83 ../data/messages:81
-msgid "Random"
+msgid "random"
 msgstr "Aléatoire"
 
 #: ../data/messages:23 ../data/messages:49 ../data/messages:71
@@ -330,46 +330,16 @@ msgstr ""
 #: ../data/messages:59 ../data/messages:57 ../data/messages:55
 #: ../data/messages:61
 msgid "Activate extended desklet mode ?"
-msgstr ""
+msgstr "Activer le mode desklet étendue ?"
 
 #: ../data/messages:45
 msgid ""
-"It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+"It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
+"Cela empéchera l'icône du lecteur d'apparaitre dans la barre d'applications. L'icône"
+"de l'applet se comportera comme un lanceur, une application et un applet."
 
 #: ../data/messages:47
-msgid "Steal the rhythmbox's icon in taskbar ?"
-msgstr ""
-
-#: ../data/messages:65
-msgid "Show an info-bubble ?"
-msgstr ""
-
-#: ../data/messages:75
-msgid "bounce"
-msgstr ""
-
-#: ../data/messages:77
-msgid "rotate"
-msgstr ""
-
-#: ../data/messages:79
-msgid "blink"
-msgstr ""
-
-#: ../data/messages:81
-msgid "pulse"
-msgstr ""
-
-#: ../data/messages:83
-msgid "upside-down"
-msgstr ""
-
-#: ../data/messages:85
-msgid "wobbly"
-msgstr ""
-
-#: ../data/messages:87
-msgid "random"
-msgstr ""
+msgid "Steal the player's icon in taskbar ?"
+msgstr "Voler l'icône du lecteur dans la barre d'application ?"

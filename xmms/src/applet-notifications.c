@@ -11,6 +11,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 void cd_xmms_prev() {
 	GError *erreur = NULL;
+	myData.playingTitle = NULL; //Reseting the title to detect it for sure
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			g_spawn_command_line_async ("xmms -r", &erreur);
@@ -78,6 +79,7 @@ void cd_xmms_s() {
 }
 void cd_xmms_next() {
 	GError *erreur = NULL;
+	myData.playingTitle = NULL; //Resetting the title to detect it for sure
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 			g_spawn_command_line_async ("xmms -f", &erreur);

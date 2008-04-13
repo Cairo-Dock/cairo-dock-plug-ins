@@ -11,24 +11,19 @@ CD_APPLET_INCLUDE_MY_VARS
 static gchar *s_cIconName[PLAYER_NB_STATUS] = {"xmms.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 
 
-void cd_xmms_draw_icon (void)
-{
+void cd_xmms_draw_icon (void) {
 	gboolean bNeedRedraw = FALSE;
-	if (myData.playingStatus == PLAYER_NONE)
-	{
+	if (myData.playingStatus == PLAYER_NONE) {
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
 	}
-	else
-	{
-		switch (myConfig.quickInfoType)
-		{
+	else {
+		switch (myConfig.quickInfoType) {
 			case MY_APPLET_NOTHING :
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
 			break ;
 			
 			case MY_APPLET_TIME_ELAPSED :
-				if (myData.iCurrentTime != myData.iPreviousCurrentTime)
-				{
+				if (myData.iCurrentTime != myData.iPreviousCurrentTime) {
 					myData.iPreviousCurrentTime = myData.iCurrentTime;
 					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime)
 					bNeedRedraw = TRUE;
@@ -36,8 +31,7 @@ void cd_xmms_draw_icon (void)
 			break ;
 			
 			case MY_APPLET_TIME_LEFT :
-				if (myData.iCurrentTime != myData.iPreviousCurrentTime)
-				{
+				if (myData.iCurrentTime != myData.iPreviousCurrentTime) {
 					myData.iPreviousCurrentTime = myData.iCurrentTime;
 					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength)
 					bNeedRedraw = TRUE;
@@ -45,8 +39,7 @@ void cd_xmms_draw_icon (void)
 			break ;
 			
 			case MY_APPLET_TRACK :
-				if (myData.iTrackNumber != myData.iPreviousTrackNumber)
-				{
+				if (myData.iTrackNumber != myData.iPreviousTrackNumber) {
 					myData.iPreviousTrackNumber = myData.iTrackNumber;
 					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d", myData.iTrackNumber);
 					bNeedRedraw = TRUE;
@@ -58,33 +51,36 @@ void cd_xmms_draw_icon (void)
 		}
 	}
 	
-	if (myData.previousPlayingTitle != myData.playingTitle)
-	{
-		myData.previousPlayingTitle = myData.playingTitle;
-		if (myData.playingTitle == NULL || strcmp (myData.playingTitle, "(null)") == 0)
-		{
+	//cd_message("Previous: %s\nNow: %s", myData.previousPlayingTitle, myData.playingTitle);
+	if (myData.previousPlayingTitle != myData.playingTitle) {
+	  myData.previousPlayingTitle = myData.playingTitle;
+		if (myData.playingTitle == NULL || strcmp (myData.playingTitle, "(null)") == 0) {
 			CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle)
 		}
-		else
-		{
+		else {
+		  cd_message("Changing title to: %s", myData.playingTitle);
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.playingTitle)
-		}
-		if (myConfig.enableAnim) {
-			cd_xmms_animate_icon(1);
-		}
-		if (myConfig.enableDialogs) {
-			cd_xmms_new_song_playing();
+			if (myConfig.enableAnim) {
+		    cd_message("Animating for: %s", myData.playingTitle);
+			  cd_xmms_animate_icon(1);
+		  }
+		  if (myConfig.enableDialogs) {
+		    cd_message("Bubble for: %s", myData.playingTitle);
+			  cd_xmms_new_song_playing();
+		  }
 		}
 	}
 	
-	if (myData.playingStatus != myData.previousPlayingStatus)  // changement de statut.
-	{
-		cd_message ("playingStatus : %d -> %d\n", myData.previousPlayingStatus, myData.playingStatus);
+	if (myData.playingStatus != myData.previousPlayingStatus) {  // changement de statut.
+		cd_message ("PlayingStatus : %d -> %d\n", myData.previousPlayingStatus, myData.playingStatus);
 		myData.previousPlayingStatus = myData.playingStatus;
 		cd_xmms_set_surface (myData.playingStatus);
+		if (myData.playingStatus == 0) {
+		  myData.playingTitle = NULL; //Rien ne joue
+		  CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle)
+		}
 	}
-	else if (bNeedRedraw)
-	{
+	else if (bNeedRedraw) {
 		CD_APPLET_REDRAW_MY_ICON
 	}
 }
@@ -151,7 +147,6 @@ void cd_xmms_draw_icon (void)
 	pIcon->fDrawY = 0;
 	pIcon->fWidth = h-3;
 	pIcon->fHeight = h-3;
-	//cd_debug (" icone en (%.2f;%.2f) surface %s nom %s quickinfo %s", myIcon->fDrawX, myIcon->fDrawY, pIcon->acFileName, pIcon->acName, pIcon->cQuickInfo);
 	pIconList = g_list_append (pIconList, pIcon);
 	
 	//On détermine l'artist (par default le 1er avant le tiret)
@@ -162,7 +157,6 @@ void cd_xmms_draw_icon (void)
 	
 	//On affiche l'icon du status
 	cairo_dock_fill_one_icon_buffer (pIcon, pCairoContext, 1., CAIRO_DOCK_HORIZONTAL, FALSE);
-	//cairo_dock_fill_one_quick_info_buffer (pIcon, pCairoContext, 12, g_cLabelPolice, PANGO_WEIGHT_HEAVY, 10); 
 	cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, 10);
 	
 	//On affiche l'artiste en 1er
@@ -221,17 +215,15 @@ Icon *cd_xmms_create_icon_for_desklet (cairo_t *pSourceContext, int iWidth, int 
 void cd_xmms_new_song_playing(void) {
 	cairo_dock_show_temporary_dialog ("%s", myIcon, myContainer, myConfig.timeDialogs, myData.playingTitle);
 }
+
 //Fonction qui anime l'icone au changement de musique
 void cd_xmms_animate_icon(int animationLength) {
-	if (myDock)
-	{
+	if (myDock) {
 		CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength)
 	}
 }
 
-
-void cd_xmms_set_surface (MyPlayerStatus iStatus)
-{
+void cd_xmms_set_surface (MyPlayerStatus iStatus) {
 	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
 	
 	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];

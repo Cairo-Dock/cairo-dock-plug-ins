@@ -31,27 +31,23 @@ static int s_pLineNumber[MY_NB_PLAYERS][NB_INFO] = {
 	{0,1,2,3,4,5,6} ,
 	{0,1,2,3,4,5,6} ,
 	{0,1,2,3,4,5,6} ,
-	};
+};
 
 
-gboolean cd_xmms_timer (gpointer data)
-{
+gboolean cd_xmms_timer (gpointer data) {
 	cd_xmms_launch_measure ();
 	return TRUE;
 }
 
-gpointer cd_xmms_threaded_calculation (gpointer data)
-{
+gpointer cd_xmms_threaded_calculation (gpointer data) {
 	GError *erreur = NULL;
 	
 	gchar *cInfopipeFilePath = cd_xmms_get_pipe ();
 	
-	if (cInfopipeFilePath == NULL || ! g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS))
-	{
+	if (cInfopipeFilePath == NULL || ! g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS)) {
 		myData.playingStatus = PLAYER_NONE;
 	}
-	else
-	{
+	else {
 		g_static_mutex_lock (&mutexData);
 		cd_xmms_read_pipe(cInfopipeFilePath);
 		g_static_mutex_unlock (&mutexData);
@@ -63,15 +59,12 @@ gpointer cd_xmms_threaded_calculation (gpointer data)
 	return NULL;
 }
 
-static gboolean _cd_xmms_check_for_redraw (gpointer data)
-{
+static gboolean _cd_xmms_check_for_redraw (gpointer data) {
 	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
 	cd_message ("%s (%d)", __func__, iThreadIsRunning);
-	if (! iThreadIsRunning)
-	{
+	if (! iThreadIsRunning) {
 		s_iSidTimerRedraw = 0;
-		if (myIcon == NULL)
-		{
+		if (myIcon == NULL) {
 			g_print ("annulation du chargement de la meteo\n");
 			return FALSE;
 		}
@@ -88,11 +81,9 @@ static gboolean _cd_xmms_check_for_redraw (gpointer data)
 	}
 	return TRUE;
 }
-void cd_xmms_launch_measure (void)
-{
+void cd_xmms_launch_measure (void) {
 	cd_message ("");
-	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1))  // il etait egal a 0, on lui met 1 et on lance le thread.
-	{
+	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1)) { // il etait egal a 0, on lui met 1 et on lance le thread.
 		cd_message (" ==> lancement du thread de calcul");
 		
 		if (s_iSidTimerRedraw == 0)
@@ -113,8 +104,7 @@ void cd_xmms_launch_measure (void)
 
 
 //Fonction qui definie quel tuyau a emprunter pour récupérer les infos
-gchar *cd_xmms_get_pipe(void)
-{
+gchar *cd_xmms_get_pipe(void) {
 	gchar *cInfopipeFilePath = NULL;
 	gchar *cCommand = NULL;
 	switch (myConfig.iPlayer) {
@@ -151,8 +141,7 @@ gchar *cd_xmms_get_pipe(void)
 }
 
 //Fonction de lecture du tuyau.
-void cd_xmms_read_pipe(gchar *cInfopipeFilePath)
-{
+void cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 	gchar *cContent = NULL;
 	gchar *cQuickInfo = NULL;
 	gsize length=0;
@@ -175,7 +164,6 @@ void cd_xmms_read_pipe(gchar *cInfopipeFilePath)
 		for (i = 0; cInfopipesList[i] != NULL; i ++) {
 			cOneInfopipe = cInfopipesList[i];
 			if (i == pLineNumber[INFO_STATUS]) {
-				//tcnt = g_strsplit(cOneInfopipe," ", -1);
 				gchar *str = strchr (cOneInfopipe, ' ');
 				if (str != NULL) {
 					str ++;
@@ -195,7 +183,6 @@ void cd_xmms_read_pipe(gchar *cInfopipeFilePath)
 			}
 			else if (i == pLineNumber[INFO_TRACK_IN_PLAYLIST]) {
 				if (myConfig.quickInfoType == MY_APPLET_TRACK) {
-					//tcnt = g_strsplit(cOneInfopipe,":", -1);
 					gchar *str = strchr (cOneInfopipe, ':');
 					if (str != NULL) {
 						str ++;
@@ -207,7 +194,6 @@ void cd_xmms_read_pipe(gchar *cInfopipeFilePath)
 			}
 			else if (i == pLineNumber[INFO_TIME_ELAPSED_IN_SEC]) {
 				if (myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.quickInfoType == MY_APPLET_TIME_LEFT) {
-					//tcnt = g_strsplit(cOneInfopipe," ", -1);
 					gchar *str = strchr (cOneInfopipe, ' ');
 					if (str != NULL) {
 						str ++;
@@ -220,28 +206,24 @@ void cd_xmms_read_pipe(gchar *cInfopipeFilePath)
 			}
 			else if (i == pLineNumber[INFO_TIME_ELAPSED]) {
 				if ((myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.quickInfoType == MY_APPLET_TIME_LEFT) && myData.iCurrentTime == -1) {
-					//tcnt = g_strsplit(cOneInfopipe," ", -1);
 					gchar *str = strchr (cOneInfopipe, ' ');
 					if (str != NULL) {
 						str ++;
 						while (*str == ' ')
 							str ++;
 						gchar *str2 = strchr (str, ':');
-						if (str2 == NULL)  // pas de minutes.
-						{
+						if (str2 == NULL) { // pas de minutes.
 							myData.iCurrentTime = atoi(str);
 						}
-						else
-						{
+						else {
 							*str2 = '\0';
-							myData.iCurrentTime = atoi(str2+1) + 60*atoi (str);  // prions pour qu'ils n'ecrivent jamais les heures ...
+							myData.iCurrentTime = atoi(str2+1) + 60*atoi (str);  // prions pour qu'ils n'ecrivent jamais les heures ... xD
 						}
 					}
 				}
 			}
 			else if (i == pLineNumber[INFO_TOTAL_TIME_IN_SEC]) {
 				if (myConfig.quickInfoType == MY_APPLET_TIME_LEFT) {
-					//tcnt = g_strsplit(cOneInfopipe," ", -1);
 					gchar *str = strchr (cOneInfopipe, ' ');
 					if (str != NULL) {
 						str ++;
@@ -254,19 +236,16 @@ void cd_xmms_read_pipe(gchar *cInfopipeFilePath)
 			}
 			else if (i == pLineNumber[INFO_TOTAL_TIME]) {
 				if (myConfig.quickInfoType == MY_APPLET_TIME_LEFT && myData.iSongLength == -1) {
-					//tcnt = g_strsplit(cOneInfopipe," ", -1);
 					gchar *str = strchr (cOneInfopipe, ' ');
 					if (str != NULL) {
 						str ++;
 						while (*str == ' ')
 							str ++;
 						gchar *str2 = strchr (str, ':');
-						if (str2 == NULL)  // pas de minutes.
-						{
+						if (str2 == NULL) { // pas de minutes.
 							myData.iSongLength = atoi(str);
 						}
-						else
-						{
+						else {
 							*str2 = '\0';
 							myData.iSongLength = atoi(str2+1) + 60*atoi (str);  // prions pour qu'ils n'ecrivent jamais les heures ...
 						}
@@ -274,8 +253,6 @@ void cd_xmms_read_pipe(gchar *cInfopipeFilePath)
 				}
 			}
 			else if (i == pLineNumber[INFO_NOW_TITLE]) {
-				//tcnt = g_strsplit(cOneInfopipe,"e: ", -1);
-				//titre = tcnt[1];
 				gchar *str = strchr (cOneInfopipe, ':');
 				if (str != NULL) {
 					str ++;
