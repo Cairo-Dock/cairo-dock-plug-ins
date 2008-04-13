@@ -14,7 +14,7 @@ frame1_ =
 #s Name of the icon as it will appear in its label in the dock :
 name = Compiz Icon
 
-#S Icon's name :
+##S Icon's name :
 #icon = default.svg
 
 [Desklet]
@@ -47,18 +47,18 @@ on widget layer=false
 #F[Actions]
 frame_act = 
 
-#r[None;Switch WM;WidgetLayer;Expose;ShowDesktop] Choose an action for the middle click on the icon :
+#r[None;Switch WM;Widget Layer;Expose;Show Desktop] Choose an action for the middle click on the icon :
 #{Except for switching to another WM, you must activate the Dbus plugin in Compiz, along with the plug-in corresponding to the desired action.}
 middle click = 1
 
 #s Custom command for system's Windows Manager :
-#{This command will be used to launch the the system WM; let it blank to use the default one.}
+#{This command will be used to launch the system WM; let it blank to use the default one.}
 ccmd =
 
 #b Auto-reload Compiz ?
 #{If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then.}
 auto reload compiz = true
-#b Auto-reload the decorator ?
+#b Auto-reload the Decorator ?
 #{If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then.}
 auto reload decorator = true
 

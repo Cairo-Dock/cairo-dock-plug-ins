@@ -4,6 +4,7 @@ This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
 Written by Rémy Robertson (for any bug report, please mail me to changfu@hollowproject.org)
+Fabrice Rey <fabounet@users.berlios.de>
 
 ******************************************************************************/
 
@@ -38,8 +39,7 @@ static void _compiz_action_by_id (int k) {
   }
 }
 
-static void _compiz_dbus_action (const gchar *cCommand)
-{
+static void _compiz_dbus_action (const gchar *cCommand) {
 	if (! cairo_dock_dbus_detect_application ("org.freedesktop.compiz"))
 		cd_warning  ("Dbus plug-in must be activated in Compiz !");
 	GError *erreur = NULL;
@@ -51,20 +51,21 @@ static void _compiz_dbus_action (const gchar *cCommand)
 		g_error_free (erreur);
 	}
 }
+
 static void _compiz_menu_show_desktop (void) {
 	_compiz_dbus_action ("core/allscreens/show_desktop");
 }
+
 static void _compiz_menu_activate_expo (void) {
 	_compiz_dbus_action ("expo/allscreens/expo");
 }
+
 static void _compiz_menu_toggle_wlayer (void) {
 	_compiz_dbus_action ("widget/allscreens/toggle");
 }
 
-static void _action_on_click (compizAction iAction)
-{
-	switch (iAction)
-	{
+static void _action_on_click (compizAction iAction) {
+	switch (iAction) {
 		case COMPIZ_NO_ACTION :
 			return ;
 		break;
@@ -102,15 +103,13 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	if (pClickedIcon == myIcon)
-	{
+	if (pClickedIcon == myIcon) {
 		_action_on_click (myConfig.iActionOnMiddleClick);
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-static void cd_compiz_switch_decorator (GtkMenuItem *menu_item, gpointer *data)
-{
+static void cd_compiz_switch_decorator (GtkMenuItem *menu_item, gpointer *data) {
 	compizDecorator iDecorator = GPOINTER_TO_INT (data);
 	cd_compiz_start_decorator (iDecorator);
 }
@@ -122,8 +121,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cDecorators[DECORATOR_GTK], cd_compiz_switch_decorator, pDecoratorSubMenu, GINT_TO_POINTER (DECORATOR_GTK))
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cDecorators[DECORATOR_KDE], cd_compiz_switch_decorator, pDecoratorSubMenu, GINT_TO_POINTER (DECORATOR_KDE))
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cDecorators[DECORATOR_HELIODOR], cd_compiz_switch_decorator, pDecoratorSubMenu, GINT_TO_POINTER (DECORATOR_HELIODOR))
-		if (myConfig.cDecorators[DECORATOR_USER] != NULL)
-		{
+		if (myConfig.cDecorators[DECORATOR_USER] != NULL) {
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cDecorators[DECORATOR_USER], cd_compiz_switch_decorator, pDecoratorSubMenu, GINT_TO_POINTER (DECORATOR_USER))
 		}
 	CD_APPLET_ADD_IN_MENU (D_("Toggle Exposition Mode"), _compiz_menu_activate_expo, pSubMenu)

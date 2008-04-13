@@ -4,6 +4,7 @@ This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
 Written by Rémy Robertson (for any bug report, please mail me to changfu@hollowproject.org)
+Fabrice Rey <fabounet@users.berlios.de>
 
 ******************************************************************************/
 #include <string.h>
@@ -23,16 +24,13 @@ static int s_iSidTimerRedraw = 0;
 static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;
 
 
-void cd_compiz_start_system_wm (void)
-{
+void cd_compiz_start_system_wm (void) {
 	const gchar * cCommand = NULL;
-	if (myConfig.cUserWMCommand != NULL)
-	{
+	if (myConfig.cUserWMCommand != NULL) {
 		cCommand = myConfig.cUserWMCommand;
 	}
 	else {
-		switch (g_iDesktopEnv)
-		{
+		switch (g_iDesktopEnv) {
 			case CAIRO_DOCK_GNOME :
 			case CAIRO_DOCK_XFCE :
 				cCommand = "metacity --replace &";
@@ -50,23 +48,18 @@ void cd_compiz_start_system_wm (void)
 	cairo_dock_launch_command (cCommand);
 }
 
-void cd_compiz_start_compiz (void)
-{
+void cd_compiz_start_compiz (void) {
 	GString *sCommand = g_string_new ("");
 	g_string_assign (sCommand, "compiz.real --replace --ignore-desktop-hints ccp");
-	//cmd = "compiz.real --replace --ignore-desktop-hints ccp";
 	if (myConfig.lBinding) {
-		//cmd = g_strdup_printf("%s --loose-binding", cmd);
 		g_string_append (sCommand, " --loose-binding");
 	}
 	if (myConfig.iRendering) {
-		//cmd = g_strdup_printf("%s --indirect-rendering", cmd);
 		g_string_append (sCommand, " --indirect-rendering");
 	}
 	
 	if (strcmp (myConfig.cWindowDecorator, "emerald") != 0)
 		g_string_append (sCommand, " --sm-disable");  // pas de '&' a la fin.
-	//cmd = g_strdup_printf("%s &", cmd);
 	cd_debug ("%s (%s)", __func__, sCommand->str);
 	
 	myData.bCompizRestarted = TRUE;
@@ -78,13 +71,11 @@ void cd_compiz_start_compiz (void)
 	cd_compiz_start_favorite_decorator ();  // ca ne marche pas si on ecrit quelque chose du genre "compiz && emerald".
 }
 
-void cd_compiz_switch_manager(void)
-{
+void cd_compiz_switch_manager(void) {
 	cd_compiz_get_data ();
 	
 	gboolean bAcquisitionOK = cd_compiz_read_data ();
-	if (bAcquisitionOK)
-	{
+	if (bAcquisitionOK) {
 		if (myData.bCompizIsRunning)
 			cd_compiz_start_system_wm ();
 		else
@@ -93,8 +84,7 @@ void cd_compiz_switch_manager(void)
 }
 
 
-void cd_compiz_start_favorite_decorator (void)
-{
+void cd_compiz_start_favorite_decorator (void) {
 	g_print ("%s (%s)\n", __func__, myConfig.cWindowDecorator);
 	gchar *cCommand = g_strdup_printf ("%s --replace", myConfig.cWindowDecorator);
 	myData.bDecoratorRestarted = TRUE;
@@ -102,8 +92,7 @@ void cd_compiz_start_favorite_decorator (void)
 	g_free (cCommand);
 }
 
-void cd_compiz_start_decorator (compizDecorator iDecorator)
-{
+void cd_compiz_start_decorator (compizDecorator iDecorator) {
 	g_print ("%s (%d)\n", __func__, iDecorator);
 	g_return_if_fail (iDecorator >= 0 && iDecorator < COMPIZ_NB_DECORATORS && myConfig.cDecorators[iDecorator] != NULL);
 	gchar *cCommand = g_strdup_printf ("%s --replace", myConfig.cDecorators[iDecorator]);
@@ -118,18 +107,12 @@ void cd_compiz_kill_compmgr(void) {
 	g_free (cCommand);
 }
 
-
-
-
-static gboolean _cd_compiz_check_for_redraw (gpointer data)
-{
+static gboolean _cd_compiz_check_for_redraw (gpointer data) {
 	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
 	cd_message ("%s (%d)", __func__, iThreadIsRunning);
-	if (! iThreadIsRunning)
-	{
+	if (! iThreadIsRunning) {
 		s_iSidTimerRedraw = 0;
-		if (myIcon == NULL)
-		{
+		if (myIcon == NULL) {
 			cd_warning ("annulation du chargement de Compiz-Icon");
 			return FALSE;
 		}
@@ -140,15 +123,13 @@ static gboolean _cd_compiz_check_for_redraw (gpointer data)
 		
 		//g_print (" etat : %d - %d / action : %d - %d\n", myData.bCompizIsRunning, myData.bDecoratorIsRunning, myData.bCompizRestarted, myData.bDecoratorRestarted);
 		
-		if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz && ! myData.bCompizRestarted)
-		{
+		if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz && ! myData.bCompizRestarted) {
 			myData.bCompizRestarted = TRUE;  // c'est nous qui l'avons change.
-			cd_compiz_start_compiz ();  // relance aussi le decorateur.
+			cd_compiz_start_compiz ();  // relance compiz.
 		}
-		else if (! myData.bDecoratorIsRunning && myConfig.bAutoReloadDecorator && ! myData.bDecoratorRestarted)
-		{
+		else if (! myData.bDecoratorIsRunning && myConfig.bAutoReloadDecorator && ! myData.bDecoratorRestarted) {
 			myData.bDecoratorRestarted = TRUE;  // c'est nous qui l'avons change.
-			cd_compiz_start_favorite_decorator ();
+			cd_compiz_start_favorite_decorator (); // relance aussi le decorateur.
 		}
 		
 		if (myData.bCompizIsRunning)

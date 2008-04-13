@@ -7,8 +7,6 @@
 
 void _compiz_draw (void);
 void cd_compiz_build_icons (void);
-
-
 void cd_compiz_update_main_icon (void);
 
 

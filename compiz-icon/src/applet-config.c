@@ -4,6 +4,7 @@ This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
 Written by Rémy Robertson (for any bug report, please mail me to changfu@hollowproject.org)
+Fabrice Rey <fabounet@users.berlios.de>
 
 ******************************************************************************/
 
@@ -37,8 +38,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDecorators[DECORATOR_KDE] = "kde-window-decorator";
 	myConfig.cDecorators[DECORATOR_HELIODOR] = "heliodor";
 	compizDecorator i;
-	for (i = 0; i < DECORATOR_USER; i ++)  // on cherche si le decorateur choisi est dans la liste.
-	{
+	for (i = 0; i < DECORATOR_USER; i ++) { // on cherche si le decorateur choisi est dans la liste.
 		if (strcmp (myConfig.cDecorators[i], myConfig.cWindowDecorator) == 0)
 			break ;
 	}

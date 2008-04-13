@@ -4,6 +4,7 @@ This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
 Written by Rémy Robertson (for any bug report, please mail me to changfu@hollowproject.org)
+Fabrice Rey <fabounet@users.berlios.de>
 
 ******************************************************************************/
 #include <string.h>
@@ -50,7 +51,6 @@ static GList * _list_icons (void) {
 void _compiz_draw (void) {
 	g_return_if_fail (myDrawContext != NULL);
   cd_message ("  chargement de l'icone compiz");
-	//cd_message("Compiz: Mode de rendering: %s - WM: %d", myConfig.cRenderer, myConfig.iWM);
 	
 	g_free (myIcon->acFileName);
 	if (!myData.bAcquisitionOK) {
@@ -73,102 +73,25 @@ void _compiz_draw (void) {
 
 }
 
-
-/*gboolean cd_compiz_build_icons (void) {
-  if (myData.bNeedRedraw) {
-  	//\_______________________ On cree la liste des icones de prevision.
-  	GList *pIconList = _list_icons ();
-  	cd_message ("Compiz: On redessine le sous-dock/desklet");
-  	
-  	//\_______________________ On efface l'ancienne liste.
-  	if (myDesklet && myDesklet->icons != NULL) {
-  		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
-  		g_list_free (myDesklet->icons);
-  		myDesklet->icons = NULL;
-  	}
-  	if (myIcon->pSubDock != NULL) {
-  		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
-  		g_list_free (myIcon->pSubDock->icons);
-  		myIcon->pSubDock->icons = NULL;
-  	}
-  	
-  	//\_______________________ On charge la nouvelle liste.
-  	if (myDock) {
-  		if (myIcon->pSubDock == NULL) {
-  			if (pIconList != NULL) {
-  				cd_message ("  creation du sous-dock compiz");
-  				myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-  				cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
-  				cairo_dock_update_dock_size (myIcon->pSubDock);
-  			}
-  		}
-  		else {
-  			cd_message ("  rechargement du sous-dock compiz");
-  			if (pIconList == NULL) {
-  				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-  				myIcon->pSubDock = NULL;
-  			}
-  			else {
-  				myIcon->pSubDock->icons = pIconList;
-  				cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
-  				cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
-  				cairo_dock_update_dock_size (myIcon->pSubDock);
-  			}
-  		}
-  	}
-  	else {
-  		if (myIcon->pSubDock != NULL) {
-  			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-  			myIcon->pSubDock = NULL;
-  		}
-  		myDesklet->icons = pIconList;
-  		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-  		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
-  		myDrawContext = cairo_create (myIcon->pIconBuffer);
-  		gtk_widget_queue_draw (myDesklet->pWidget);
-  	}
-  		
-  	//\_______________________ On recharge l'icone principale.
-  	_compiz_draw ();  // ne lance pas le redraw.
-  	if (myDesklet)
-  		gtk_widget_queue_draw (myDesklet->pWidget);
-  	else
-  		CD_APPLET_REDRAW_MY_ICON
-		
-		cd_compiz_check_my_wm(); // On cherche s'il y a eu un changement non désiré		
-		myData.bNeedRedraw = FALSE;
-	}
-	return TRUE;
-}
-*/
-
-
-
-void cd_compiz_update_main_icon (void)
-{
+void cd_compiz_update_main_icon (void) {
 	gboolean bNeedsRedraw = FALSE;
-	if (myData.bAcquisitionOK)
-	{
-		if (myData.bCompizIsRunning && myData.iCompizIcon != COMPIZ_DEFAULT)
-		{
+	if (myData.bAcquisitionOK) {
+		if (myData.bCompizIsRunning && myData.iCompizIcon != COMPIZ_DEFAULT) {
 			g_print ("COMPIZ_DEFAULT\n");
 			myData.iCompizIcon = COMPIZ_DEFAULT;
 			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 			bNeedsRedraw = TRUE;
 			g_print ("myIcon->acFileName <- %s\n", myIcon->acFileName);
 		}
-		else if (! myData.bCompizIsRunning && myData.iCompizIcon != COMPIZ_OTHER)
-		{
+		else if (! myData.bCompizIsRunning && myData.iCompizIcon != COMPIZ_OTHER) {
 			g_print ("COMPIZ_OTHER\n");
 			myData.iCompizIcon = COMPIZ_OTHER;
 			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_OTHER], "other.svg");
 			bNeedsRedraw = TRUE;
 		}
 	}
-	else
-	{
-		if (myData.iCompizIcon != COMPIZ_BROKEN)
-		{
+	else {
+		if (myData.iCompizIcon != COMPIZ_BROKEN) {
 			g_print ("COMPIZ_BROKEN\n");
 			myData.iCompizIcon = COMPIZ_BROKEN;
 			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_OTHER], "broken.svg");
@@ -180,17 +103,14 @@ void cd_compiz_update_main_icon (void)
 }
 
 
-void cd_compiz_build_icons (void)
-{
+void cd_compiz_build_icons (void) {
 	GList *pIconList = _list_icons ();
-	if (myDock)
-	{
+	if (myDock) {
 		myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
 		cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
 		cairo_dock_update_dock_size (myIcon->pSubDock);
 	}
-	else
-	{
+	else {
 		myDesklet->icons = pIconList;
   		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
   		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);

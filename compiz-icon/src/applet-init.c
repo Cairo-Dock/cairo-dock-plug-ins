@@ -4,6 +4,7 @@ This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
 Written by Rémy Robertson (for any bug report, please mail me to changfu@hollowproject.org)
+Fabrice Rey <fabounet@users.berlios.de>
 
 ******************************************************************************/
 
@@ -22,18 +23,15 @@ CD_APPLET_DEFINITION ("compiz-icon", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 CD_APPLET_INIT_BEGIN (erreur)
 	cd_compiz_build_icons ();
 	
-	if (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz)
-	{
+	if (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz) {
 		myData.iCompizIcon = -1;
-		if (! myConfig.forceConfig)  // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
-		{
+		if (! myConfig.forceConfig) { // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
 			myData.bCompizRestarted = TRUE;
 			myData.bDecoratorRestarted = TRUE;
 		}
 		cd_compiz_launch_measure ();
 	}
-	else
-	{
+	else {
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 	}
 	
@@ -59,52 +57,42 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		
 		//\________________ les icones ont pu changer.
-		if (myIcon->pSubDock != NULL)
-		{
+		if (myIcon->pSubDock != NULL) {
 			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 			myIcon->pSubDock = NULL;
 		}
-		if (myDesklet && myDesklet->icons != NULL)
-		{
+		if (myDesklet && myDesklet->icons != NULL) {
 			g_list_foreach (myDesklet->icons, cairo_dock_free_icon, NULL);
 			g_list_free (myDesklet->icons);
 			myDesklet->icons = NULL;
 		}
 		cd_compiz_build_icons ();
 		
-		if (myData.iSidTimer != 0 && ! myConfig.bAutoReloadDecorator && ! myConfig.bAutoReloadCompiz)
-		{
+		if (myData.iSidTimer != 0 && ! myConfig.bAutoReloadDecorator && ! myConfig.bAutoReloadCompiz) {
 			g_source_remove(myData.iSidTimer);
 			myData.iSidTimer = 0;
 			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 		}
-		else if (myData.iSidTimer == 0 && (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz))
-		{
+		else if (myData.iSidTimer == 0 && (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz)) {
 			myData.iCompizIcon = -1;
-			if (! myConfig.forceConfig)  // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
-			{
+			if (! myConfig.forceConfig) { // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
 				myData.bCompizRestarted = TRUE;
 				myData.bDecoratorRestarted = TRUE;
 			}
 			cd_compiz_launch_measure ();
 		}
-		else
-		{
+		else {
 			if (myData.iSidTimer != 0)
 				myData.iCompizIcon = -1;
 			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 		}
 		
-		/**myData.bNeedRedraw = TRUE;
-		g_timeout_add (500, (GSourceFunc) cd_compiz_start_wm, (gpointer) NULL);
-		_cd_compiz_check_for_redraw();
-		cd_compiz_launch_measure();*/
 	}
 	else if (myDesklet != NULL) {
 		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
 	}
 	else {
-		//Kedal
+		//Rien a faire
 	}
 CD_APPLET_RELOAD_END
