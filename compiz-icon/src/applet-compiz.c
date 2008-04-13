@@ -21,6 +21,7 @@ static int s_iThreadIsRunning = 0;
 static int s_iSidTimerRedraw = 0;
 static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;
 
+/* System plutot que command_async sinon ca ne fonctionne pas.
 void _compiz_cmd(gchar *cCommand) {
 	cd_message("Compiz: Launching %s", cCommand);
 	GError *erreur = NULL;
@@ -29,6 +30,11 @@ void _compiz_cmd(gchar *cCommand) {
 		cd_warning ("Attention : when trying to execute '%s' : %s", cCommand, erreur->message);
 		g_error_free (erreur);
 	}
+}*/
+
+void _compiz_cmd(gchar *cmd) {
+  cd_message("Compiz: Launching %s", cmd);
+	system (cmd);
 }
 
 gboolean cd_compiz_start_wm(void) {
@@ -40,37 +46,36 @@ gboolean cd_compiz_start_wm(void) {
 		//cmd = myConfig.sDecoratorCMD;
 		//cmd = g_strdup_printf("%s &", cmd);
 	}
-	else
-	{
+	else {
 		switch (myConfig.iWM) {
 			case COMPIZ_FUSION: //Compiz
-				g_string_assign (sCommand, "compiz.real --replace --ignore-desktop-hints ccp");
-				//cmd = "compiz.real --replace --ignore-desktop-hints ccp";
+				  g_string_assign (sCommand, "compiz.real --replace --ignore-desktop-hints ccp");
+				  //cmd = "compiz.real --replace --ignore-desktop-hints ccp";
 				if (myConfig.lBinding) {
-				//cmd = g_strdup_printf("%s --loose-binding", cmd);
-				g_string_append (sCommand, " --loose-binding");
+				  //cmd = g_strdup_printf("%s --loose-binding", cmd);
+				  g_string_append (sCommand, " --loose-binding");
 				}
 				if (myConfig.iRendering) {
-				//cmd = g_strdup_printf("%s --indirect-rendering", cmd);
-				g_string_append (sCommand, " --indirect-rendering");
+				  //cmd = g_strdup_printf("%s --indirect-rendering", cmd);
+				  g_string_append (sCommand, " --indirect-rendering");
 				}
 				const gchar *decorator = NULL;
 				if (myConfig.selfDecorator) {
-				g_string_append (sCommand, " --sm-disable");
-				if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
-				decorator = "gtk-window-decorator";
-				}
-				else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
-				decorator = "kde-window-decorator"; //A remplacer par le Decorateur de KDE
-				}
-				//cmd = g_strdup_printf("%s --sm-disable & %s", cmd, decorator);
+				  g_string_append (sCommand, " --sm-disable");
+				  if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
+				    decorator = "gtk-window-decorator";
+				  }
+				  else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
+				    decorator = "kde-window-decorator"; //A remplacer par le Decorateur de KDE
+				  }
+				  //cmd = g_strdup_printf("%s --sm-disable & %s", cmd, decorator);
 				}
 				else {
-				//cmd = g_strdup_printf("%s && emerald --replace", cmd);
-				decorator = "emerald";
+				  //cmd = g_strdup_printf("%s && emerald --replace", cmd);
+				  decorator = "emerald";
 				}
 				if (decorator != NULL)
-				g_string_append_printf (sCommand, " && %s --replace", decorator);
+				  g_string_append_printf (sCommand, " & %s --replace", decorator);
 				//cmd = g_strdup_printf("%s &", cmd);
 				g_string_append_c (sCommand, '&');
 			break;

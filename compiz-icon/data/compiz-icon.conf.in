@@ -62,7 +62,7 @@ frame_act =
 
 #r[None;Switch WM;WidgetLayer;Expose;ShowDesktop] Choose an action for the middle click on the icon :
 #{Except for switching to another WM, you must activate the Dbus plugin in Compiz, along with the plug-in corresponding to the desired action.}
-middle click = 0
+middle click = 1
 
 #F
 frame_sub=
