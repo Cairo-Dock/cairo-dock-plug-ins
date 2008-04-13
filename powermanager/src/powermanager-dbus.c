@@ -16,7 +16,7 @@ static DBusGProxy *dbus_proxy_battery = NULL;
 
 CD_APPLET_INCLUDE_MY_VARS
 
-static const gchar* power_battery_name(void) {
+static  gchar* power_battery_name(void) {
 	GError *erreur = NULL;
 	GDir *dir = g_dir_open (MY_BATTERY_DIR, 0, &erreur);
 	if (erreur != NULL)
@@ -30,6 +30,7 @@ static const gchar* power_battery_name(void) {
 	gchar *cContent = NULL, *cPresentLine;
 	gsize length=0;
 	const gchar *cBatteryName;
+	gchar *cBatteryFound = NULL;
 	do
 	{
 		cBatteryName = g_dir_read_name (dir);
@@ -57,20 +58,17 @@ static const gchar* power_battery_name(void) {
 				if (str != NULL)
 					*str = '\0';
 				if (g_strstr_len (cContent, -1, "yes") != NULL)  // on l'a trouvee !
+				{
+					cBatteryFound = g_strdup (cBatteryName);
 					break;
+				}
 			}
 		}
 		g_free (cContent);
 	}
 	while (1);
 	g_dir_close (dir);
-	if (cBatteryName == NULL)
-	{
-		cd_warning ("No battery were found");
-		cBatteryName = MY_DEFAULT_BATTERY_NAME;  // utile ? si on a rien trouve, c'est surement qu'il n'y a pas de batterie non ?
-	}
-	cd_message ("Battery Name : %s", cBatteryName);
-	return cBatteryName;
+	return cBatteryFound;
 }
 
 gboolean dbus_connect_to_bus (void)
@@ -98,16 +96,29 @@ gboolean dbus_connect_to_bus (void)
 			G_TYPE_INVALID);
 		
 		
-		gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", power_battery_name());
-		cd_debug ("  batteryPath : %s\n", batteryPath);
-		dbus_proxy_battery = dbus_g_proxy_new_for_name (
-			dbus_connexion_system,
-			"org.freedesktop.Hal",
-			batteryPath,
-			"org.freedesktop.Hal.Device"
-		);
-		cd_debug ("  acquisition de la batterie : %x\n", dbus_proxy_battery);
-		g_free (batteryPath);
+		gchar *cBatteryName = power_battery_name();
+		if (cBatteryName == NULL)  // on n'a pas trouve de battterie nous-meme.
+		{
+			cBatteryName = MY_DEFAULT_BATTERY_NAME;  // utile ? si on a rien trouve, c'est surement qu'il n'y a pas de batterie non ?
+			cd_warning ("No battery were found, trying with default one : %s", cBatteryName);
+			detect_battery ();
+		}
+		else
+		{
+			cd_message ("Battery Name : %s", cBatteryName);
+			gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", power_battery_name());
+			cd_debug ("  batteryPath : %s", batteryPath);
+			dbus_proxy_battery = dbus_g_proxy_new_for_name (
+				dbus_connexion_system,
+				"org.freedesktop.Hal",
+				batteryPath,
+				"org.freedesktop.Hal.Device"
+			);
+			cd_debug ("  acquisition de la batterie -> %x", dbus_proxy_battery);
+			myData.battery_present = (dbus_proxy_battery != NULL);  // a priori toujours vrai.
+			g_free (batteryPath);
+			g_free (cBatteryName);
+		}
 		
 		return TRUE;
 	}
@@ -149,6 +160,7 @@ void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
 {
 	myData.on_battery = onBattery;
 	
+	update_stats();
 	update_icon();
 }
 

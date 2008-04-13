@@ -15,15 +15,14 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("showDesktop", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("showDesktop", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet)
 	{
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	if (myIcon->acFileName == NULL)
@@ -49,12 +48,14 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 	{
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	if (myIcon->acFileName == NULL)
+	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+		if (myIcon->acFileName == NULL)
+		{
+			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+		}
 	}
 CD_APPLET_RELOAD_END

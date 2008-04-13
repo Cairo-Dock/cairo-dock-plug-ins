@@ -77,10 +77,9 @@ static void _load_back_and_fore_ground (void)
 
 CD_APPLET_INIT_BEGIN (erreur)
 	//\_______________ On charge nos surfaces.
-	if (myDesklet != NULL)
+	if (myDesklet)
 	{
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	_load_theme ();
 	_load_back_and_fore_ground ();
@@ -110,12 +109,11 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	cd_debug ("%s\n", CD_APPLET_MY_CONF_FILE);
-	if (myDesklet != NULL)
+	if (myDesklet)
 	{
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
+	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On stoppe le timer.

@@ -12,19 +12,19 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@hollow
 #include "applet-struct.h"
 #include "applet-load-icon.h"
 #include "applet-compiz.h"
-  
+ 
 CD_APPLET_INCLUDE_MY_VARS
 
-#define MY_NB_ICONS 3
-static gchar *s_iconName[MY_NB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Reload WM")};
-static gchar *s_iconFile[MY_NB_ICONS] = {N_("default"), N_("broken"), N_("other")};
+#define MY_NB_SUB_ICONS 3
+static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Reload WM")};
+static gchar *s_iconFile[MY_NB_SUB_ICONS] = {N_("default"), N_("broken"), N_("other")};
 
 static GList * _list_icons (void) {
 	GList *pIconList = NULL;
 	
 	Icon *pIcon;
 	int i;
-	for (i = 0; i < MY_NB_ICONS; i ++) {
+	for (i = 0; i < MY_NB_SUB_ICONS; i ++) {
 		pIcon = g_new0 (Icon, 1);
 	  pIcon->acName = g_strdup (D_(s_iconName[i]));
 	  if (myConfig.cUserImage[i+3] != NULL) {
@@ -34,6 +34,7 @@ static GList * _list_icons (void) {
 	    pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
 	  }
 	  pIcon->fOrder = 2*i;
+	  pIcon->iType = 2*i;
 	  pIcon->fScale = 1.;
 	  pIcon->fAlpha = 1.;
 	  pIcon->fWidthFactor = 1.;
@@ -49,7 +50,7 @@ static GList * _list_icons (void) {
 void _compiz_draw (void) {
 	g_return_if_fail (myDrawContext != NULL);
   cd_message ("  chargement de l'icone compiz");
-	cd_message("Compiz: Mode de rendering: %s - WM: %d", myConfig.cRenderer, myConfig.iWM);
+	//cd_message("Compiz: Mode de rendering: %s - WM: %d", myConfig.cRenderer, myConfig.iWM);
 	
 	g_free (myIcon->acFileName);
 	if (!myData.bAcquisitionOK) {
@@ -57,7 +58,7 @@ void _compiz_draw (void) {
 	    myIcon->acFileName = cairo_dock_generate_file_path (myConfig.cUserImage[COMPIZ_BROKEN]);
 	  }
 	  else {
-		  myIcon->acFileName = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
+		  myIcon->acFileName = g_strdup_printf ("%s/broken.svg", MY_APPLET_SHARE_DATA_DIR);
 	  }
 	}
 	else {
@@ -73,12 +74,7 @@ void _compiz_draw (void) {
 }
 
 
-gboolean _cd_compiz_check_for_redraw (void) {
-	if (myIcon == NULL) {
-		g_print ("annulation du chargement de compiz\n");
-		return FALSE;
-	}
-		
+/*gboolean cd_compiz_build_icons (void) {
   if (myData.bNeedRedraw) {
   	//\_______________________ On cree la liste des icones de prevision.
   	GList *pIconList = _list_icons ();
@@ -143,4 +139,62 @@ gboolean _cd_compiz_check_for_redraw (void) {
 		myData.bNeedRedraw = FALSE;
 	}
 	return TRUE;
+}
+*/
+
+
+
+void cd_compiz_update_main_icon (void)
+{
+	gboolean bNeedsRedraw = FALSE;
+	if (myData.bAcquisitionOK)
+	{
+		if (myData.bCompizIsRunning && myData.iCompizIcon != COMPIZ_DEFAULT)
+		{
+			g_print ("COMPIZ_DEFAULT\n");
+			myData.iCompizIcon = COMPIZ_DEFAULT;
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
+			bNeedsRedraw = TRUE;
+			g_print ("myIcon->acFileName <- %s\n", myIcon->acFileName);
+		}
+		else if (! myData.bCompizIsRunning && myData.iCompizIcon != COMPIZ_OTHER)
+		{
+			g_print ("COMPIZ_OTHER\n");
+			myData.iCompizIcon = COMPIZ_OTHER;
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_OTHER], "other.svg");
+			bNeedsRedraw = TRUE;
+		}
+	}
+	else
+	{
+		if (myData.iCompizIcon != COMPIZ_BROKEN)
+		{
+			g_print ("COMPIZ_BROKEN\n");
+			myData.iCompizIcon = COMPIZ_BROKEN;
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_OTHER], "broken.svg");
+			bNeedsRedraw = TRUE;
+		}
+	}
+	if (bNeedsRedraw)
+		CD_APPLET_REDRAW_MY_ICON
+}
+
+
+void cd_compiz_build_icons (void)
+{
+	GList *pIconList = _list_icons ();
+	if (myDock)
+	{
+		myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
+		cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
+		cairo_dock_update_dock_size (myIcon->pSubDock);
+	}
+	else
+	{
+		myDesklet->icons = pIconList;
+  		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
+  		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
+  		myDrawContext = cairo_create (myIcon->pIconBuffer);
+  		gtk_widget_queue_draw (myDesklet->pWidget);
+	}
 }

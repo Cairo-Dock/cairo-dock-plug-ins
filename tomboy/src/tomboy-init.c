@@ -28,6 +28,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBroken)
 	}
 	
+	if (myConfig.bNoDeletedSignal)
+		myData.iSidCheckNotes = g_timeout_add ((int) (2000), (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
+	
 	//Enregistrement des notifications
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
@@ -40,6 +43,11 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	
+	if (myData.iSidCheckNotes != 0)
+	{
+		g_source_remove (myData.iSidCheckNotes);
+		myData.iSidCheckNotes = 0;
+	}
 	dbus_disconnect_from_bus ();
 CD_APPLET_STOP_END
 
@@ -50,9 +58,16 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On redessine notre icone.
 	if (myData.dbus_enable)
 	{
-		dbus_detect_tomboy();
 		getAllNotes();
 		update_icon();
+		
+		if (myConfig.bNoDeletedSignal && myData.iSidCheckNotes == 0)
+			myData.iSidCheckNotes = g_timeout_add ((int) (2000), (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
+		else if (! myConfig.bNoDeletedSignal && myData.iSidCheckNotes != 0)
+		{
+			g_source_remove (myData.iSidCheckNotes);
+			myData.iSidCheckNotes = 0;
+		}
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{

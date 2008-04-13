@@ -31,7 +31,7 @@ msgstr "高さ :"
 msgid "Default title :"
 msgstr "デフォルトのタイトル :"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:25
 msgid "Configuration"
 msgstr "設定"
 
@@ -194,7 +194,7 @@ msgid "Name of an image for the 'broken' icon :"
 msgstr "'リンク切れ' アイコンの画像の名前 :"
 
 #: ../src/tomboy-notifications.c:30 ../src/tomboy-notifications.c:28
-#: ../src/tomboy-notifications.c:27
+#: ../src/tomboy-notifications.c:27 ../src/tomboy-notifications.c:41
 msgid "Note name : "
 msgstr ""
 
@@ -203,13 +203,26 @@ msgid "Name of an image for the 'close' icon :"
 msgstr ""
 
 #: ../src/tomboy-notifications.c:43 ../src/tomboy-notifications.c:47
+#: ../src/tomboy-notifications.c:61
 msgid "Add a note"
 msgstr ""
 
 #: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:53
+#: ../src/tomboy-notifications.c:67
 msgid "Delete this note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:48
+#: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:62
 msgid "Reload notes"
+msgstr ""
+
+#: ../data/messages:27
+msgid ""
+"If your tomboy version is not recent enough, it may not have this signal. "
+"Only check this box if you notice some message like <<No marshaller for "
+"signature of signal 'NoteDeleted'>> in the terminal."
+msgstr ""
+
+#: ../data/messages:29
+msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr ""

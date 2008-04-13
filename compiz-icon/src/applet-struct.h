@@ -3,13 +3,6 @@
 #define  __CD_APPLET_STRUCT__
 
 typedef enum {
-  COMPIZ_FUSION = 0,
-  METACITY,
-  KWIN,
-  XFCE,
-} compizWM;
-
-typedef enum {
   COMPIZ_DEFAULT = 0,
   COMPIZ_BROKEN,
   COMPIZ_OTHER,
@@ -28,31 +21,45 @@ typedef enum {
 	COMPIZ_NB_ACTIONS
 } compizAction;
 
+typedef enum {
+	DECORATOR_EMERALD = 0,
+	DECORATOR_GTK,
+	DECORATOR_KDE,
+	DECORATOR_HELIODOR,
+	DECORATOR_USER,
+	COMPIZ_NB_DECORATORS
+} compizDecorator;
+
+
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
-  gboolean lBinding;
-  gboolean iRendering;
-  gboolean selfDecorator;
-  
-  gboolean protectDecorator;
-  gboolean forceConfig;
-  gboolean fSwitch;
-  compizWM iWM;
-  gchar *cRenderer;
-  gchar *sDecoratorCMD;
-  gchar *cUserImage[COMPIZ_NB_ITEMS];
-  compizAction iActionOnMiddleClick;
-  //cairo_surface_t *cSurface[3];
+	gboolean lBinding;
+	gboolean iRendering;
+	gboolean bSystemDecorator;
+	gboolean bAutoReloadCompiz;
+	gboolean bAutoReloadDecorator;
+	///gboolean protectDecorator;
+	gboolean forceConfig;
+	///compizWM iWM;
+	gchar *cRenderer;
+	gchar *cUserWMCommand;
+	gchar *cWindowDecorator;
+	gchar *cUserImage[COMPIZ_NB_ITEMS];
+	compizAction iActionOnMiddleClick;
+	const gchar *cDecorators[COMPIZ_NB_DECORATORS];
+	//cairo_surface_t *cSurface[3];
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 typedef struct {
-  gint iCompizIcon;
-  gboolean isEmerald;
-  gboolean isCompiz;
-  gboolean bNeedRedraw;
-  gboolean bAcquisitionOK;
-  gint iTimer;
+	gint iCompizIcon;
+	gboolean bDecoratorIsRunning;
+	gboolean bCompizIsRunning;
+	gboolean bNeedRedraw;
+	gboolean bAcquisitionOK;
+	gint iSidTimer;
+	gboolean bCompizRestarted;
+	gboolean bDecoratorRestarted;
 } AppletData;
 
 

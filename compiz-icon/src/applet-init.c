@@ -20,17 +20,21 @@ CD_APPLET_DEFINITION ("compiz-icon", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
-
-  myIcon->acFileName = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
-	CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
+	cd_compiz_build_icons ();
 	
-	myData.iCompizIcon = COMPIZ_BROKEN;
-	myData.bAcquisitionOK = FALSE;
-	cd_compiz_launch_measure();
-	myData.iTimer = g_timeout_add (10000, (GSourceFunc) cd_compiz_timer, (gpointer) NULL);
-	
-	if (myConfig.forceConfig) {
-	  g_timeout_add (10000, (GSourceFunc) cd_compiz_start_wm, (gpointer) NULL);
+	if (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz)
+	{
+		myData.iCompizIcon = -1;
+		if (! myConfig.forceConfig)  // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
+		{
+			myData.bCompizRestarted = TRUE;
+			myData.bDecoratorRestarted = TRUE;
+		}
+		cd_compiz_launch_measure ();
+	}
+	else
+	{
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 	}
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -44,22 +48,59 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	if (myData.iTimer != 0) {
-	  g_source_remove(myData.iTimer);
+	if (myData.iSidTimer != 0) {
+		g_source_remove(myData.iSidTimer);
 	}
-	
 CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-	  myData.bNeedRedraw = TRUE;
+		
+		//\________________ les icones ont pu changer.
+		if (myIcon->pSubDock != NULL)
+		{
+			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+			myIcon->pSubDock = NULL;
+		}
+		if (myDesklet && myDesklet->icons != NULL)
+		{
+			g_list_foreach (myDesklet->icons, cairo_dock_free_icon, NULL);
+			g_list_free (myDesklet->icons);
+			myDesklet->icons = NULL;
+		}
+		cd_compiz_build_icons ();
+		
+		if (myData.iSidTimer != 0 && ! myConfig.bAutoReloadDecorator && ! myConfig.bAutoReloadCompiz)
+		{
+			g_source_remove(myData.iSidTimer);
+			myData.iSidTimer = 0;
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
+		}
+		else if (myData.iSidTimer == 0 && (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz))
+		{
+			myData.iCompizIcon = -1;
+			if (! myConfig.forceConfig)  // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
+			{
+				myData.bCompizRestarted = TRUE;
+				myData.bDecoratorRestarted = TRUE;
+			}
+			cd_compiz_launch_measure ();
+		}
+		else
+		{
+			if (myData.iSidTimer != 0)
+				myData.iCompizIcon = -1;
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
+		}
+		
+		/**myData.bNeedRedraw = TRUE;
 		g_timeout_add (500, (GSourceFunc) cd_compiz_start_wm, (gpointer) NULL);
 		_cd_compiz_check_for_redraw();
-		cd_compiz_launch_measure();
+		cd_compiz_launch_measure();*/
 	}
-  else if (myDesklet != NULL) {
+	else if (myDesklet != NULL) {
 		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
 	}

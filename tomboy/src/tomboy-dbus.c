@@ -196,3 +196,29 @@ void free_all_notes (void)
 	myData.noteList = NULL;
 	myData.countNotes = 0;
 }
+
+gboolean cd_tomboy_check_deleted_notes (gpointer data)
+{
+	gchar **cNotes = NULL;
+	if(dbus_g_proxy_call (dbus_proxy_tomboy, "ListAllNotes", NULL,
+		G_TYPE_INVALID,
+		G_TYPE_STRV,&cNotes,
+		G_TYPE_INVALID))
+	{
+		int i = 0;
+		while (cNotes[i] != NULL)
+			i ++;
+		if (i < myData.countNotes)  // il y'a eu suppression.
+		{
+			cd_message ("tomboy : une note au moins a ete supprimee.");
+			free_all_notes ();
+			for (i = 0; cNotes[i] != NULL; i ++)
+			{
+				registerNote(cNotes[i]);
+			}
+			update_icon();
+		}
+		g_strfreev (cNotes);
+	}
+	return TRUE;
+}

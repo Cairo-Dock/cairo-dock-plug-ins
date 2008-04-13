@@ -191,26 +191,6 @@ static gboolean _cd_shortcuts_check_for_redraw (gpointer data)
 			//myData.pDeskletIconList = s_pIconList;
 			s_pIconList = NULL;
 			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-			/*cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-			if (myDesklet->pRenderer == NULL)
-			{
-				cd_shortcuts_load_tree (s_pIconList, pCairoContext);
-				myDesklet->renderer = cd_shortcuts_draw_in_desklet;
-				
-				GList* ic;
-				Icon *icon;
-				for (ic = s_pIconList; ic != NULL; ic = ic->next)
-				{
-					icon = ic->data;
-					
-					icon->fWidth = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
-					icon->fHeight = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
-					
-					cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, FALSE);
-					g_print (" + %.2fx%.2f\n", icon->fWidth, icon->fHeight);
-				}
-			}
-			cairo_destroy (pCairoContext);*/
 			
 			gtk_widget_queue_draw (myDesklet->pWidget);
 		}

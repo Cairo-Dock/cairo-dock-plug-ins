@@ -24,7 +24,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.dbus_enable = dbus_connect_to_bus ();
 	if (myData.dbus_enable)
 	{
-		detect_battery();
 		if(myData.battery_present)
 		{
 			get_on_battery();

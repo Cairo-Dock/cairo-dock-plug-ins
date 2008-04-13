@@ -155,7 +155,7 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 		s_iSidTimerRedraw = 0;
 		if (myIcon == NULL)
 		{
-			g_print ("annulation du chargement de la meteo\n");
+			cd_warning ("annulation du chargement de la meteo");
 			return FALSE;
 		}
 		

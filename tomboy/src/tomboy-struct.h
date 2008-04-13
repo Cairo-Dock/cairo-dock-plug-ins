@@ -13,6 +13,7 @@ typedef struct {
 	gchar *cIconDefault;
 	gchar *cIconClose;
 	gchar *cIconBroken;
+	gboolean bNoDeletedSignal;
 	} AppletConfig;
 
 typedef struct {
@@ -23,6 +24,7 @@ typedef struct {
 	gboolean opening;
 	GList *noteList;
 	int countNotes;
+	guint iSidCheckNotes;
 	} AppletData;
 
 #endif

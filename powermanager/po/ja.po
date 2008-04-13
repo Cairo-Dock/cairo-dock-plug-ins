@@ -270,6 +270,9 @@ msgstr ""
 #: ../src/powermanager-draw.c:132 ../src/powermanager-draw.c:136
 #: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:155
 #: ../src/powermanager-draw.c:128 ../src/powermanager-draw.c:147
+#: ../src/powermanager-draw.c:130 ../src/powermanager-draw.c:135
+#: ../src/powermanager-draw.c:154 ../src/powermanager-draw.c:159
+#: ../src/powermanager-draw.c:160
 msgid "Estimated time with Charge:"
 msgstr ""
 
@@ -310,6 +313,7 @@ msgstr ""
 #: ../src/powermanager-draw.c:103 ../src/powermanager-draw.c:104
 #: ../src/powermanager-draw.c:115 ../src/powermanager-draw.c:109
 #: ../src/powermanager-draw.c:120 ../src/powermanager-draw.c:116
+#: ../src/powermanager-draw.c:117
 msgid "None"
 msgstr ""
 
@@ -326,6 +330,7 @@ msgstr ""
 #: ../src/powermanager-draw.c:114 ../src/powermanager-draw.c:119
 #: ../src/powermanager-draw.c:115 ../src/powermanager-draw.c:127
 #: ../src/powermanager-draw.c:132 ../src/powermanager-draw.c:128
+#: ../src/powermanager-draw.c:130 ../src/powermanager-draw.c:131
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -334,6 +339,7 @@ msgstr ""
 #: ../src/powermanager-draw.c:118 ../src/powermanager-draw.c:123
 #: ../src/powermanager-draw.c:119 ../src/powermanager-draw.c:131
 #: ../src/powermanager-draw.c:136 ../src/powermanager-draw.c:132
+#: ../src/powermanager-draw.c:135
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -342,12 +348,14 @@ msgstr ""
 #: ../src/powermanager-draw.c:124 ../src/powermanager-draw.c:129
 #: ../src/powermanager-draw.c:125 ../src/powermanager-draw.c:137
 #: ../src/powermanager-draw.c:142 ../src/powermanager-draw.c:138
+#: ../src/powermanager-draw.c:144
 msgid "No Battery found."
 msgstr ""
 
 #: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:138
 #: ../src/powermanager-draw.c:134 ../src/powermanager-draw.c:146
 #: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:147
+#: ../src/powermanager-draw.c:154 ../src/powermanager-draw.c:155
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -421,13 +429,15 @@ msgstr ""
 
 #: ../src/powermanager-draw.c:138 ../src/powermanager-draw.c:134
 #: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:151
-#: ../src/powermanager-draw.c:147
+#: ../src/powermanager-draw.c:147 ../src/powermanager-draw.c:154
+#: ../src/powermanager-draw.c:155
 msgid "Please put your Laptop on charge."
 msgstr ""
 
 #: ../src/powermanager-draw.c:142 ../src/powermanager-draw.c:138
 #: ../src/powermanager-draw.c:150 ../src/powermanager-draw.c:155
-#: ../src/powermanager-draw.c:151
+#: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:159
+#: ../src/powermanager-draw.c:160
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"

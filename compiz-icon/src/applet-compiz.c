@@ -15,158 +15,165 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@hollow
 
 CD_APPLET_INCLUDE_MY_VARS
 
-#define COMPIZ_TMP_FILE "/tmp/compiz"
+#define CD_COMPIZ_TMP_FILE "/tmp/compiz"
+#define CD_COMPIZ_CHECK_TIME 2000
 
 static int s_iThreadIsRunning = 0;
 static int s_iSidTimerRedraw = 0;
 static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;
 
-/* System plutot que command_async sinon ca ne fonctionne pas.
-void _compiz_cmd(gchar *cCommand) {
-	cd_message("Compiz: Launching %s", cCommand);
-	GError *erreur = NULL;
-	g_spawn_command_line_async (cCommand, &erreur);
-	if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute '%s' : %s", cCommand, erreur->message);
-		g_error_free (erreur);
-	}
-}*/
 
-void _compiz_cmd(gchar *cmd) {
-  cd_message("Compiz: Launching %s", cmd);
-	system (cmd);
-}
-
-gboolean cd_compiz_start_wm(void) {
-	GString *sCommand = g_string_new ("");
-	//gchar *cmd = NULL;
-	cd_message("Compiz: Default WM: %d", myConfig.iWM);
-	if (myConfig.sDecoratorCMD != NULL && myConfig.iWM != 0) { //On switch avec la commande perso
-		g_string_printf (sCommand, "%s &", myConfig.sDecoratorCMD);
-		//cmd = myConfig.sDecoratorCMD;
-		//cmd = g_strdup_printf("%s &", cmd);
+void cd_compiz_start_system_wm (void)
+{
+	const gchar * cCommand = NULL;
+	if (myConfig.cUserWMCommand != NULL)
+	{
+		cCommand = myConfig.cUserWMCommand;
 	}
 	else {
-		switch (myConfig.iWM) {
-			case COMPIZ_FUSION: //Compiz
-				  g_string_assign (sCommand, "compiz.real --replace --ignore-desktop-hints ccp");
-				  //cmd = "compiz.real --replace --ignore-desktop-hints ccp";
-				if (myConfig.lBinding) {
-				  //cmd = g_strdup_printf("%s --loose-binding", cmd);
-				  g_string_append (sCommand, " --loose-binding");
-				}
-				if (myConfig.iRendering) {
-				  //cmd = g_strdup_printf("%s --indirect-rendering", cmd);
-				  g_string_append (sCommand, " --indirect-rendering");
-				}
-				const gchar *decorator = NULL;
-				if (myConfig.selfDecorator) {
-				  g_string_append (sCommand, " --sm-disable");
-				  if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
-				    decorator = "gtk-window-decorator";
-				  }
-				  else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
-				    decorator = "kde-window-decorator"; //A remplacer par le Decorateur de KDE
-				  }
-				  //cmd = g_strdup_printf("%s --sm-disable & %s", cmd, decorator);
-				}
-				else {
-				  //cmd = g_strdup_printf("%s && emerald --replace", cmd);
-				  decorator = "emerald";
-				}
-				if (decorator != NULL)
-				  g_string_append_printf (sCommand, " & %s --replace", decorator);
-				//cmd = g_strdup_printf("%s &", cmd);
-				g_string_append_c (sCommand, '&');
+		switch (g_iDesktopEnv)
+		{
+			case CAIRO_DOCK_GNOME :
+			case CAIRO_DOCK_XFCE :
+				cCommand = "metacity --replace &";
 			break;
-			case METACITY:
-			case XFCE: //Gnome & XFCE
-				//cmd = "metacity --replace &";
-				g_string_assign (sCommand, "metacity --replace &");
-			break;
-			case KWIN: //KDE
-				//cmd = "kwin --replace &";
-				g_string_assign (sCommand, "kwin --replace &");
-			break;
+			case CAIRO_DOCK_KDE :
+				cCommand = "kwin --replace &";
+			break ;
 			default :
-			return FALSE;
+				cd_warning ("couldn't guess system WM");
+			return ;
 		}
 	}
-	
+	myData.bCompizRestarted = TRUE;
 	cd_compiz_kill_compmgr(); //On tue tout les compositing managers
-	_compiz_cmd(sCommand->str);
-	cd_compiz_launch_measure();
+	cairo_dock_launch_command (cCommand);
+}
+
+void cd_compiz_start_compiz (void)
+{
+	GString *sCommand = g_string_new ("");
+	g_string_assign (sCommand, "compiz.real --replace --ignore-desktop-hints ccp");
+	//cmd = "compiz.real --replace --ignore-desktop-hints ccp";
+	if (myConfig.lBinding) {
+		//cmd = g_strdup_printf("%s --loose-binding", cmd);
+		g_string_append (sCommand, " --loose-binding");
+	}
+	if (myConfig.iRendering) {
+		//cmd = g_strdup_printf("%s --indirect-rendering", cmd);
+		g_string_append (sCommand, " --indirect-rendering");
+	}
+	
+	if (strcmp (myConfig.cWindowDecorator, "emerald") != 0)
+		g_string_append (sCommand, " --sm-disable");  // pas de '&' a la fin.
+	//cmd = g_strdup_printf("%s &", cmd);
+	cd_debug ("%s (%s)", __func__, sCommand->str);
+	
+	myData.bCompizRestarted = TRUE;
+	cd_compiz_kill_compmgr(); //On tue tout les compositing managers
+	cairo_dock_launch_command (sCommand->str);
 	
 	g_string_free (sCommand, TRUE);
-	return FALSE;
+	
+	cd_compiz_start_favorite_decorator ();  // ca ne marche pas si on ecrit quelque chose du genre "compiz && emerald".
 }
-void cd_compiz_switch_manager(void) {
-  if(myConfig.fSwitch) {
-    int i=0;
-    gchar *cmd;
-    if (myConfig.iWM == 0) { //On a compiz, on switch sur le systeme
-      if (g_iDesktopEnv == CAIRO_DOCK_GNOME) {
-        myConfig.iWM = METACITY;
-      }
-      else if (g_iDesktopEnv == CAIRO_DOCK_XFCE) {
-        myConfig.iWM = XFCE;
-      }
-      else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
-        myConfig.iWM = KWIN;
-      }
-      cd_message("Compiz: Swtiching to System WM.");
-    }
-    else { //On a pas comiz, on y revient
-      myConfig.iWM = COMPIZ_FUSION;
-      cd_message("Compiz: Switching to Compiz.");
-    }
-    cd_compiz_start_wm();
-    cd_compiz_launch_measure();
-  }
-}
-void cd_compiz_check_my_wm(void) {
-  if (myConfig.protectDecorator) {
-	  if ((myData.iCompizIcon == 0) && (myConfig.iWM != 0)) { //on a compiz alors qu'on en veut pas
-	    cd_compiz_start_wm(); //On tue le WM et on recharge
-	  }
-  	else if ((myData.iCompizIcon == 2) && (myConfig.iWM == 0)) { //on veut compiz mais on ne l'a pas, dangereux si la personne a un bug de CG
-	    cd_compiz_start_wm(); 
-	  }
+
+void cd_compiz_switch_manager(void)
+{
+	cd_compiz_get_data ();
+	
+	gboolean bAcquisitionOK = cd_compiz_read_data ();
+	if (bAcquisitionOK)
+	{
+		if (myData.bCompizIsRunning)
+			cd_compiz_start_system_wm ();
+		else
+			cd_compiz_start_compiz ();
 	}
 }
-void cd_compiz_switch_decorator(void) {
-  gchar *cmd = NULL;
-  if (myData.isEmerald) {
-    if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
-         cmd = "gtk-window-decorator --replace &";
-    }
-    else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
-     cmd = "kde-window-decorator --replace &"; //A remplacer par le Decorateur de KDE
-    }
-    cd_message("Compiz: Switching to system's Decorator.");
-  }
-  else {
-    cmd = "emerald --replace &";
-    cd_message("Compiz: Switching to Emerald.");
-  }
-  if (cmd != NULL) {
-    _compiz_cmd(cmd);
-    cd_compiz_launch_measure();
-  }
+
+
+void cd_compiz_start_favorite_decorator (void)
+{
+	g_print ("%s (%s)\n", __func__, myConfig.cWindowDecorator);
+	gchar *cCommand = g_strdup_printf ("%s --replace", myConfig.cWindowDecorator);
+	myData.bDecoratorRestarted = TRUE;
+	cairo_dock_launch_command (cCommand);
+	g_free (cCommand);
 }
+
+void cd_compiz_start_decorator (compizDecorator iDecorator)
+{
+	g_print ("%s (%d)\n", __func__, iDecorator);
+	g_return_if_fail (iDecorator >= 0 && iDecorator < COMPIZ_NB_DECORATORS && myConfig.cDecorators[iDecorator] != NULL);
+	gchar *cCommand = g_strdup_printf ("%s --replace", myConfig.cDecorators[iDecorator]);
+	myData.bDecoratorRestarted = TRUE;
+	cairo_dock_launch_command (cCommand);
+	g_free (cCommand);
+}
+
 void cd_compiz_kill_compmgr(void) {
 	gchar *cCommand = g_strdup_printf("bash %s/compiz-kill", MY_APPLET_SHARE_DATA_DIR);
 	system (cCommand);
 	g_free (cCommand);
 }
 
-gboolean cd_compiz_timer(void) {
-  cd_compiz_launch_measure();
-  return TRUE;
+
+
+
+static gboolean _cd_compiz_check_for_redraw (gpointer data)
+{
+	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
+	cd_message ("%s (%d)", __func__, iThreadIsRunning);
+	if (! iThreadIsRunning)
+	{
+		s_iSidTimerRedraw = 0;
+		if (myIcon == NULL)
+		{
+			cd_warning ("annulation du chargement de Compiz-Icon");
+			return FALSE;
+		}
+		
+		g_static_mutex_lock (&mutexData);
+		
+		cd_compiz_update_main_icon ();
+		
+		//g_print (" etat : %d - %d / action : %d - %d\n", myData.bCompizIsRunning, myData.bDecoratorIsRunning, myData.bCompizRestarted, myData.bDecoratorRestarted);
+		
+		if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz && ! myData.bCompizRestarted)
+		{
+			myData.bCompizRestarted = TRUE;  // c'est nous qui l'avons change.
+			cd_compiz_start_compiz ();  // relance aussi le decorateur.
+		}
+		else if (! myData.bDecoratorIsRunning && myConfig.bAutoReloadDecorator && ! myData.bDecoratorRestarted)
+		{
+			myData.bDecoratorRestarted = TRUE;  // c'est nous qui l'avons change.
+			cd_compiz_start_favorite_decorator ();
+		}
+		
+		if (myData.bCompizIsRunning)
+			myData.bCompizRestarted = FALSE;  // compiz tourne, on le relancera s'il plante.
+		if (myData.bDecoratorIsRunning)
+			myData.bDecoratorRestarted = FALSE;  // le decorateur tourne, on le relancera s'il plante.
+		
+		g_static_mutex_unlock (&mutexData);
+		
+		//\_______________________ On lance le timer si necessaire.
+		if (myData.iSidTimer == 0)
+			myData.iSidTimer = g_timeout_add (CD_COMPIZ_CHECK_TIME, (GSourceFunc) cd_compiz_timer, NULL);
+		return FALSE;
+	}
+	return TRUE;
+}
+
+
+gboolean cd_compiz_timer (gpointer data) {
+	cd_compiz_launch_measure();
+	return TRUE;
 }
 
 void cd_compiz_launch_measure(void) {
-	cd_message (" ");
+	cd_message ("");
 	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1)) {  //il etait egal a 0, on lui met 1 et on lance le thread.
 		cd_message (" ==> lancement du thread de calcul");
 		
@@ -187,7 +194,7 @@ gpointer cd_compiz_threaded_calculation (gpointer data) {
 	cd_compiz_get_data();
 	
 	g_static_mutex_lock (&mutexData);
-	myData.bAcquisitionOK = cd_compiz_isRunning();
+	myData.bAcquisitionOK = cd_compiz_read_data();
 	g_static_mutex_unlock (&mutexData);
 	
 	g_atomic_int_set (&s_iThreadIsRunning, 0);
@@ -196,16 +203,21 @@ gpointer cd_compiz_threaded_calculation (gpointer data) {
 }
 
 void cd_compiz_get_data(void) {
-	gchar *cCommand = g_strdup_printf("bash %s/compiz", MY_APPLET_SHARE_DATA_DIR);
+	gchar *cCommand = g_strdup_printf("bash %s/compiz %s", MY_APPLET_SHARE_DATA_DIR, myConfig.cWindowDecorator);
 	system (cCommand);
 	g_free (cCommand);
 }
 
-gboolean cd_compiz_isRunning(void) {
+static void _compiz_get_values_from_file (gchar *cContent) {
+	myData.bCompizIsRunning = (cContent[0] == '1');
+	myData.bDecoratorIsRunning = (cContent[0] != '\0' && cContent[1] == '1');
+}
+
+gboolean cd_compiz_read_data(void) {
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
-	g_file_get_contents(COMPIZ_TMP_FILE, &cContent, &length, &erreur);
+	g_file_get_contents(CD_COMPIZ_TMP_FILE, &cContent, &length, &erreur);
 	if (erreur != NULL)	{
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
@@ -217,44 +229,4 @@ gboolean cd_compiz_isRunning(void) {
 		g_free (cContent);
 		return TRUE;
 	}
-}
-
-static void _compiz_get_values_from_file (gchar *cContent) {
-	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
-	gchar *cOneInfopipe = NULL;
-	int i;
-	for (i = 0; cInfopipesList[i] != NULL; i ++) {
-		cOneInfopipe = cInfopipesList[i];
-		if (*cOneInfopipe == '\0')
-			continue;
-		if (i == 0) {
-		  if (strcmp(cOneInfopipe,"Compiz") == 0) {
-		    cd_message("Compiz: Running");
-			  myData.isCompiz = TRUE;
-			  if (myData.iCompizIcon != 0) {
-			    myData.iCompizIcon = 0;
-			    myData.bNeedRedraw = TRUE;
-			  }
-		  }
-		  else {
-		    cd_message("Compiz: Not running");
-		    myData.isCompiz = FALSE;
-		    if (myData.iCompizIcon != 2) {
-		      myData.bNeedRedraw = TRUE;
-		      myData.iCompizIcon = 2;
-		    }
-		  }
-		}
-	  if (i == 1) {
-	    if (strcmp(cOneInfopipe,"Emerald") == 0) {
-		    cd_message("Compiz: Emerald Running");
-			  myData.isEmerald = TRUE;
-		  }
-		  else {
-		    cd_message("Compiz: Emerald Not running");
-		    myData.isEmerald = FALSE;
-		  }
-		}
-	}
-	g_strfreev (cInfopipesList);
 }

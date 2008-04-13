@@ -18,7 +18,21 @@ CD_APPLET_ON_CLICK_BEGIN
 		showNote(pClickedIcon->acCommand);
 		///return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
-	else return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	else
+	{
+		if (! myData.opening)  // possible si on l'a quitte apres le demarrage de l'applet.
+		{
+			dbus_detect_tomboy();
+			if (! myData.opening)
+			{
+				dbus_detect_tomboy();
+				getAllNotes();
+				update_icon();
+			}
+		}
+		else
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
 CD_APPLET_ON_CLICK_END
 
 

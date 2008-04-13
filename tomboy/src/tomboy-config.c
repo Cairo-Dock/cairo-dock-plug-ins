@@ -8,9 +8,10 @@ CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.defaultTitle		= CD_CONFIG_GET_STRING ("Icon", "name");
-	myConfig.cIconDefault 		= CD_CONFIG_GET_STRING ("Configuration", "default icon");
-	myConfig.cIconClose			= CD_CONFIG_GET_STRING ("Configuration", "close icon");
-	myConfig.cIconBroken 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
+	myConfig.cIconDefault 		= CD_CONFIG_GET_STRING ("Icon", "default icon");
+	myConfig.cIconClose			= CD_CONFIG_GET_STRING ("Icon", "close icon");
+	myConfig.cIconBroken 		= CD_CONFIG_GET_STRING ("Icon", "broken icon");
+	myConfig.bNoDeletedSignal 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no deleted signal");
 CD_APPLET_GET_CONFIG_END
 
 

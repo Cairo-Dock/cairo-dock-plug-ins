@@ -1,4 +1,5 @@
 #!/bin/sh
+#COMPIZ=$(pgrep compiz) && kill $(COMPIZ)
+#XCOMPMGR=$(pgrep xcompmgr) && kill $(XCOMPMGR)
 kill $(pgrep compiz)
 kill $(pgrep xcompmgr)
-sleep 1

@@ -21,7 +21,12 @@ frame_app =
 default icon = 
 #S Name of an image for the 'close' icon :
 #{Let t empty to use the default icon.}
-play icon = 
+close icon = 
 #S Name of an image for the 'broken' icon :
 #{Let t empty to use the default icon.}
 broken icon = 
+
+[Configuration]
+#b Emulate the 'NoteDeleted' signal ?
+#{If your tomboy version is not recent enough, it may not have this signal. Only check this box if you notice some message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal.}
+no deleted signal = true

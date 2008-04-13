@@ -1,3 +1,4 @@
+
 #ifndef __APPLET_LOAD_ICONS__
 #define  __APPLET_LOAD_ICONS__
 
@@ -5,6 +6,10 @@
 #include <cairo-dock.h>
 
 void _compiz_draw (void);
-gboolean _cd_compiz_check_for_redraw (void);
+void cd_compiz_build_icons (void);
+
+
+void cd_compiz_update_main_icon (void);
+
 
 #endif

@@ -24,4 +24,7 @@ void showNote(gchar *note_id);
 
 void free_note (TomBoyNote *pNote);
 void free_all_notes (void);
+
+gboolean cd_tomboy_check_deleted_notes (gpointer data);
+
 #endif

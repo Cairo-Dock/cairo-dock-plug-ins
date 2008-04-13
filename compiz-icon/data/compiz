@@ -1,20 +1,5 @@
 #!/bin/sh
-pgrep compiz && COMPIZ=1 || COMPIZ=0
-pgrep emerald && EMERALD=1 || EMERALD=0
-rm -f /tmp/compiz
+pgrep compiz > /dev/null && COMPIZ=1 || COMPIZ=0
+pgrep $1 > /dev/null && DECORATOR=1 || DECORATOR=0
 
-test "$COMPIZ" == "0"
-if [ $? -eq 0 ]
-then
-  echo "Other" >> /tmp/compiz
-else
-  echo "Compiz" >> /tmp/compiz
-fi
-
-test "$EMERALD" == "0"
-if [ $? -eq 0 ]
-then
-  echo "Other" >> /tmp/compiz
-else
-  echo "Emerald" >> /tmp/compiz
-fi
+echo "$COMPIZ$DECORATOR" > /tmp/compiz

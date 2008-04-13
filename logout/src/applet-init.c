@@ -13,8 +13,7 @@ CD_APPLET_DEFINITION ("logout", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet)
 	{
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	if (myIcon->acFileName == NULL)
@@ -37,12 +36,14 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 	{
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	if (myIcon->acFileName == NULL)
+	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+		if (myIcon->acFileName == NULL)
+		{
+			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+		}
 	}
 CD_APPLET_RELOAD_END

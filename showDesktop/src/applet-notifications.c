@@ -23,7 +23,8 @@ CD_APPLET_ABOUT (D_("This is the showDesktop applet\n made by Romain Perol for C
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
 	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-	g_print ("bDesktopIsVisible : %d\n", bDesktopIsVisible);
+	cd_message ("bDesktopIsVisible : %d", bDesktopIsVisible);
+	
 	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
 CD_APPLET_ON_CLICK_END
 
