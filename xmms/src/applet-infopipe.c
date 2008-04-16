@@ -94,8 +94,7 @@ void cd_xmms_launch_measure (void) {
 			NULL,
 			FALSE,
 			&erreur);
-		if (erreur != NULL)
-		{
+		if (erreur != NULL) {
 			cd_warning ("Attention : %s", erreur->message);
 			g_error_free (erreur);
 		}

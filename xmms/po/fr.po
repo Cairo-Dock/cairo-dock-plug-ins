@@ -116,11 +116,6 @@ msgstr "Animer l'icon ?"
 msgid "Info-bubbles"
 msgstr "Info-bulles"
 
-#: ../data/messages:15 ../data/messages:41 ../data/messages:63
-#: ../data/messages:61 ../data/messages:59
-msgid "Put an info-bubble ?"
-msgstr "Afficher une info-bulle ?"
-
 #: ../data/messages:19 ../data/messages:45 ../data/messages:67
 #: ../data/messages:65 ../data/messages:63 ../data/messages:69
 msgid "Time length of info-bubbles :"
@@ -338,12 +333,12 @@ msgid ""
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
 "Cela empéchera l'icône du lecteur d'apparaitre dans la barre d'applications. "
-"L'icônede l'applet se comportera comme un lanceur, une application et un "
+"L'icône de l'applet se comportera comme un lanceur, une application et un "
 "applet."
 
 #: ../data/messages:47
 msgid "Steal the player's icon in taskbar ?"
-msgstr "Voler l'icône du lecteur dans la barre d'application ?"
+msgstr "Voler l'icône du lecteur dans la barre d'applications ?"
 
 #: ../data/messages:45
 msgid ""
@@ -357,4 +352,4 @@ msgstr ""
 
 #: ../data/messages:65
 msgid "Show an info-bubble ?"
-msgstr ""
+msgstr "Montrer une info-bulle ?"

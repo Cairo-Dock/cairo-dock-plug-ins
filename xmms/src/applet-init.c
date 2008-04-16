@@ -79,8 +79,7 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (CD_APPLET_MY_CONFIG_CHANGED && CD_APPLET_MY_CONTAINER_TYPE_CHANGED && myDesklet && ! myConfig.extendedDesklet)
-	{
+	if (CD_APPLET_MY_CONFIG_CHANGED && CD_APPLET_MY_CONTAINER_TYPE_CHANGED && myDesklet && ! myConfig.extendedDesklet) {
 		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
 		g_list_free (myDesklet->icons);
 		myDesklet->icons = NULL;
@@ -95,11 +94,9 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	
 	if (myDesklet) {
-		if (myConfig.extendedDesklet)
-		{
+		if (myConfig.extendedDesklet) {
 			g_print ("mode etendu\n");
-			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Controler", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, data);
+			cd_xmms_add_button_to_desklet(); //on dessine le desklet avec ses boutons
 		}
 		else
 			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);

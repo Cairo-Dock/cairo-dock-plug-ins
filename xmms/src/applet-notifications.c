@@ -155,9 +155,33 @@ void cd_xmms_jumpbox() {
 
 CD_APPLET_ABOUT (D_("This is the xmms applet\n made by ChAnGFu for Cairo-Dock"))
 
+static void _xmms_action_by_id (int iAction) {
+	switch (iAction) {
+		case 0:
+			cd_xmms_prev();
+		break;
+		case 1:
+			cd_xmms_pp();
+		break;
+		case 2:
+			cd_xmms_s();
+		break;
+		case 3:
+			cd_xmms_next();
+		break;
+		default :
+			cd_warning ("no action defined");
+		break;
+	}
+}
 
 CD_APPLET_ON_CLICK_BEGIN
-	cd_xmms_pp();
+	if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL && myConfig.extendedDesklet) {  // clic sur une des icones du desklet.
+	  _xmms_action_by_id ((int) pClickedIcon->fOrder/2);
+	}
+	else {
+	  cd_xmms_pp();
+	}
 CD_APPLET_ON_CLICK_END
 
 

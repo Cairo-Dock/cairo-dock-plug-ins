@@ -43,8 +43,7 @@ CD_APPLET_RESET_CONFIG_END
 
 CD_APPLET_RESET_DATA_BEGIN
 	int i;
-	for (i = 0; i < PLAYER_NB_STATUS; i ++)
-	{
+	for (i = 0; i < PLAYER_NB_STATUS; i ++) {
 		if (myData.pSurfaces[i] != NULL)
 			cairo_surface_destroy (myData.pSurfaces[i]);
 	}
