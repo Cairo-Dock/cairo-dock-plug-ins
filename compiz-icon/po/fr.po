@@ -184,6 +184,17 @@ msgstr ""
 "Sauf pour 'Changer de WM', vous devez activer le plug-in Dbus de compiz, "
 "ainsin que les plug-ins de l'action désirée"
 
+msgid "Steal the application's icon in taskbar ?"
+msgstr "Voler l'icône de l'application dans la barre d'applications ?"
+
+msgid ""
+"It will prevent the CSSM or Emerald icon to appear in the task bar. The applet's "
+"icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+"Cela empéchera l'icône de CSSM ou d'Emerald d'apparaitre dans la barre d'applications. "
+"L'icône de l'applet se comportera comme un lanceur, une application et un "
+"applet."
+
 #: ../data/messages:75 ../data/messages:61 ../data/messages:91
 #: ../data/messages:89
 msgid "Name of the view used for the sub-dock :"
@@ -203,6 +214,9 @@ msgstr "Options de Compiz"
 #: ../data/messages:69
 msgid "Use Loose Binding ?"
 msgstr "Mode Moins Contraignant (Loose Binding) ?"
+
+msgid "With strict binding textures are bound whenever they are enabled, with loose binding they are enabled when created. The Nvidia driver seems a bit slow when binding textures, that's why this option gives a heavy performance increase on Nvidia."
+msgstr "Avec le binding stricte les textures sont liées temps qu'elles sont activées, avec le loose binding elles ne sont liée qu'a la création. Le driver Nvidia semble être lent lors du binding des textures, c'est pourquoi cette option donne de bonne peformance avec les Nvidia."
 
 #: ../data/messages:67 ../data/messages:71 ../data/messages:75
 #: ../data/messages:73

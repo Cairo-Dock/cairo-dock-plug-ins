@@ -49,6 +49,7 @@ typedef struct {
 	gchar *cUserImage[COMPIZ_NB_ITEMS];
 	compizAction iActionOnMiddleClick;
 	const gchar *cDecorators[COMPIZ_NB_DECORATORS];
+	gboolean bStealTaskBarIcon;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

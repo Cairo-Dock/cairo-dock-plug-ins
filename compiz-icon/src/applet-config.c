@@ -57,6 +57,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserImage[COMPIZ_RELOAD] 		= CD_CONFIG_GET_STRING ("Configuration", "reload icon");
 	
 	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER ("Configuration", "middle click");
+	myConfig.bStealTaskBarIcon = CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
 CD_APPLET_GET_CONFIG_END
 
 

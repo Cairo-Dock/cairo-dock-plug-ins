@@ -63,11 +63,14 @@ auto reload decorator = true
 #{Load default Windows Manager with options at startup.}
 force = false
 
+#b Steal the application's icon in taskbar ?
+#{It will prevent the CSSM or Emerald icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
+inhibate appli = true
 
 #F[Compiz Options]
 frame_co = 
 #b Use Loose Binding ?
-#{Use thoses options only if you know them.}
+#{With strict binding textures are bound whenever they are enabled, with loose binding they are enabled when created. The Nvidia driver seems a bit slow when binding textures, that's why this option gives a heavy performance increase on Nvidia.}
 binding = false
 #b Use Indirect Rendering ?
 #{Use thoses options only if you know them.}

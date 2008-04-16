@@ -48,6 +48,11 @@ CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
+  myConfig.bStealTaskBarIcon = FALSE; //On émule le faite que ne veut pas d'inhibation
+	/*GList *pIconList = _list_icons (); //On déinhibe avec la nouvelle liste
+	g_list_free (pList); //On libère la mémoire*/
+	cd_compiz_build_icons();
+	
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
@@ -85,8 +90,7 @@ CD_APPLET_RELOAD_BEGIN
 		else {
 			if (cairo_dock_measure_is_active (myData.pMeasureTimer))
 				myData.iCompizIcon = -1;
-			else
-			{
+			else {
 				CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 			}
 		}

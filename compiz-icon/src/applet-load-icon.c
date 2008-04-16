@@ -19,6 +19,7 @@ CD_APPLET_INCLUDE_MY_VARS
 #define MY_NB_SUB_ICONS 3
 static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Reload WM")};
 static gchar *s_iconFile[MY_NB_SUB_ICONS] = {N_("default"), N_("broken"), N_("other")};
+static gchar *s_iconClass[MY_NB_SUB_ICONS] = {N_("ccsm"), N_("emerald-theme-manager"), NULL};
 
 static GList * _list_icons (void) {
 	GList *pIconList = NULL;
@@ -43,6 +44,14 @@ static GList * _list_icons (void) {
 	  pIcon->acCommand = g_strdup ("none");
 	  pIcon->cParentDockName = g_strdup (myIcon->acName);
 	  pIconList = g_list_append (pIconList, pIcon);
+	  if (s_iconClass[i] != NULL) {
+	    if (myConfig.bStealTaskBarIcon) {
+	      cairo_dock_inhibate_class (s_iconClass[i], pIcon);
+	    }
+	    else {
+	      cairo_dock_deinhibate_class (s_iconClass[i], pIcon);
+	    }
+	  }
 	}
 	
 	return pIconList;
