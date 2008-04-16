@@ -53,19 +53,16 @@ typedef struct {
 } AppletConfig;
 
 typedef struct {
-	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];
-	guint iSidTimer;
 	CDWifiQuality iQuality, iPreviousQuality;
 	gint prcnt, prev_prcnt;
 	gint flink, prev_flink;
 	gint mlink, prev_mlink;
-	gboolean bAcquisitionOK;
-	
 	gchar *cESSID;
-	
-	gint strengthTimer;
+	gboolean bAcquisitionOK;
+	CairoDockMeasure *pMeasureTimer;
 	CDWifiCheckFrequency iFrequency;
 	Gauge *pGauge;
+	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];  /// a virer.
 } AppletData;
 
 

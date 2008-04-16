@@ -17,6 +17,8 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-load-icon.h"
 #include "applet-compiz.h"
 
+#define CD_COMPIZ_CHECK_TIME 2000
+
 CD_APPLET_DEFINITION ("compiz-icon", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
@@ -24,12 +26,16 @@ CD_APPLET_INIT_BEGIN (erreur)
 	cd_compiz_build_icons ();
 	
 	if (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz) {
-		myData.iCompizIcon = -1;
+		myData.iCompizIcon = -1;  // force le dessin.
 		if (! myConfig.forceConfig) { // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
 			myData.bCompizRestarted = TRUE;
 			myData.bDecoratorRestarted = TRUE;
 		}
-		cd_compiz_launch_measure ();
+		myData.pMeasureTimer = cairo_dock_new_measure_timer (CD_COMPIZ_CHECK_TIME,
+			cd_compiz_acquisition,
+			cd_compiz_read_data,
+			cd_compiz_update_from_data);
+		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 	else {
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
@@ -45,10 +51,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	
-	if (myData.iSidTimer != 0) {
-		g_source_remove(myData.iSidTimer);
-	}
 CD_APPLET_STOP_END
 
 
@@ -62,29 +64,31 @@ CD_APPLET_RELOAD_BEGIN
 			myIcon->pSubDock = NULL;
 		}
 		if (myDesklet && myDesklet->icons != NULL) {
-			g_list_foreach (myDesklet->icons, cairo_dock_free_icon, NULL);
+			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
 			g_list_free (myDesklet->icons);
 			myDesklet->icons = NULL;
 		}
 		cd_compiz_build_icons ();
 		
-		if (myData.iSidTimer != 0 && ! myConfig.bAutoReloadDecorator && ! myConfig.bAutoReloadCompiz) {
-			g_source_remove(myData.iSidTimer);
-			myData.iSidTimer = 0;
+		if (cairo_dock_measure_is_active (myData.pMeasureTimer) && ! myConfig.bAutoReloadDecorator && ! myConfig.bAutoReloadCompiz) {
+			cairo_dock_stop_measure_timer (myData.pMeasureTimer);
 			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 		}
-		else if (myData.iSidTimer == 0 && (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz)) {
+		else if (! cairo_dock_measure_is_active (myData.pMeasureTimer) && (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz)) {
 			myData.iCompizIcon = -1;
 			if (! myConfig.forceConfig) { // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
 				myData.bCompizRestarted = TRUE;
 				myData.bDecoratorRestarted = TRUE;
 			}
-			cd_compiz_launch_measure ();
+			cairo_dock_launch_measure (myData.pMeasureTimer);
 		}
 		else {
-			if (myData.iSidTimer != 0)
+			if (cairo_dock_measure_is_active (myData.pMeasureTimer))
 				myData.iCompizIcon = -1;
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
+			else
+			{
+				CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
+			}
 		}
 		
 	}

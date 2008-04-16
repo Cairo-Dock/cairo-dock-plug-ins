@@ -53,23 +53,35 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
+	//\_______________ On recharge les surfaces.
 	load_all_surfaces();
 	
-	//\_______________ On redessine notre icone.
-	if (myData.dbus_enable)
+	//\_______________ On recharge les parametres qui ont pu changer.
+	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		getAllNotes();
-		update_icon();
-		
-		if (myConfig.bNoDeletedSignal && myData.iSidCheckNotes == 0)
-			myData.iSidCheckNotes = g_timeout_add ((int) (2000), (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
-		else if (! myConfig.bNoDeletedSignal && myData.iSidCheckNotes != 0)
+		if (myData.dbus_enable)
 		{
-			g_source_remove (myData.iSidCheckNotes);
-			myData.iSidCheckNotes = 0;
+			//\___________ On reconstruit le sous-dock (si l'icone de la note a change).
+			getAllNotes();
+			update_icon();
+			
+			//\___________ On lance ou on arrete le timer.
+			if (myConfig.bNoDeletedSignal && myData.iSidCheckNotes == 0)
+				myData.iSidCheckNotes = g_timeout_add ((int) (2000), (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
+			else if (! myConfig.bNoDeletedSignal && myData.iSidCheckNotes != 0)
+			{
+				g_source_remove (myData.iSidCheckNotes);
+				myData.iSidCheckNotes = 0;
+			}
 		}
 	}
-	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
+	
+	//\___________ On redessine l'icone principale.
+	if (myData.dbus_enable)
+	{
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceDefault)
+	}
+	else  // on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBroken)
 	}

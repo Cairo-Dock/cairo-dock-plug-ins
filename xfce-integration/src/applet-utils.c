@@ -13,23 +13,11 @@ Written by Christophe Chapuis (for any bug report, please mail me to chris.chapu
 
 void env_backend_logout (void)
 {
-	GError *erreur = NULL;
-	g_spawn_command_line_async ("xfce4-session-logout", &erreur);
-	if (erreur != NULL)
-	{
-		cd_message ("Attention : when trying to execute '%s' : %s\n", "xfce4-session-logout", erreur->message);
-		g_error_free (erreur);
-	}
+	cairo_dock_launch_command ("xfce4-session-logout");
 }
 
 void env_backend_setup_time (void)
 {
-	GError *erreur = NULL;
-	g_spawn_command_line_async ("gksu time-admin", &erreur);
-	if (erreur != NULL)
-	{
-		cd_message ("Attention : when trying to execute '%s' : %s\n", "gksu time-admin", erreur->message);
-		g_error_free (erreur);
-	}
+	cairo_dock_launch_command ("gksu time-admin");
 }
 

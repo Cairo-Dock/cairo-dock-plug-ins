@@ -101,41 +101,47 @@ msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
+#: ../src/applet-load-icon.c:20
 msgid "Configure Compiz"
 msgstr ""
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
+#: ../src/applet-load-icon.c:20
 msgid "Emerald Manager"
 msgstr ""
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
+#: ../src/applet-load-icon.c:20
 msgid "Reload WM"
 msgstr ""
 
 #: ../src/applet-load-icon.c:19 ../src/applet-load-icon.c:20
+#: ../src/applet-load-icon.c:21
 msgid "default"
 msgstr ""
 
 #: ../src/applet-load-icon.c:19 ../src/applet-load-icon.c:20
+#: ../src/applet-load-icon.c:21
 msgid "broken"
 msgstr ""
 
 #: ../src/applet-load-icon.c:19 ../src/applet-load-icon.c:20
+#: ../src/applet-load-icon.c:21
 msgid "other"
 msgstr ""
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:21 ../src/applet-notifications.c:22
 msgid ""
 "This is the compiz-icon applet\n"
 " made by ChAnGFu for Cairo-Dock"
 msgstr ""
 
 #: ../src/applet-notifications.c:63 ../src/applet-notifications.c:113
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:120 ../src/applet-notifications.c:119
 msgid "Switch Windows Decorator"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:33 ../data/messages:31
 msgid "Configuration"
 msgstr ""
 
@@ -190,11 +196,12 @@ msgid "Custom command for system's Window Manager :"
 msgstr ""
 
 #: ../data/messages:59 ../data/messages:63 ../data/messages:67
+#: ../data/messages:65
 msgid "Compiz Options"
 msgstr ""
 
 #: ../data/messages:61 ../data/messages:65 ../data/messages:69
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:67 ../data/messages:71
 msgid "Use thoses options only if you know them."
 msgstr ""
 
@@ -215,83 +222,91 @@ msgid "Use system's Decorator"
 msgstr ""
 
 #: ../data/messages:73 ../data/messages:59 ../data/messages:89
+#: ../data/messages:87
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
 #: ../data/messages:75 ../data/messages:61 ../data/messages:91
+#: ../data/messages:89
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
-#: ../data/messages:77 ../data/messages:93
+#: ../data/messages:77 ../data/messages:93 ../data/messages:91
 msgid "Images"
 msgstr ""
 
 #: ../data/messages:79 ../data/messages:83 ../data/messages:87
 #: ../data/messages:91 ../data/messages:95 ../data/messages:99
 #: ../data/messages:103 ../data/messages:107 ../data/messages:111
-#: ../data/messages:115
+#: ../data/messages:115 ../data/messages:93 ../data/messages:97
+#: ../data/messages:101 ../data/messages:105 ../data/messages:109
+#: ../data/messages:113
 msgid "Let t empty to use the default icon."
 msgstr ""
 
-#: ../data/messages:81 ../data/messages:97
+#: ../data/messages:81 ../data/messages:97 ../data/messages:95
 msgid "Name of an image for the 'default' icon :"
 msgstr ""
 
-#: ../data/messages:85 ../data/messages:101
+#: ../data/messages:85 ../data/messages:101 ../data/messages:99
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""
 
-#: ../data/messages:89 ../data/messages:105
+#: ../data/messages:89 ../data/messages:105 ../data/messages:103
 msgid "Name of an image for the 'other wm' icon :"
 msgstr ""
 
-#: ../data/messages:93 ../data/messages:109
+#: ../data/messages:93 ../data/messages:109 ../data/messages:107
 msgid "Name of an image for the 'setting' icon :"
 msgstr ""
 
-#: ../data/messages:97 ../data/messages:113
+#: ../data/messages:97 ../data/messages:113 ../data/messages:111
 msgid "Name of an image for the 'emerald' icon :"
 msgstr ""
 
-#: ../data/messages:101 ../data/messages:117
+#: ../data/messages:101 ../data/messages:117 ../data/messages:115
 msgid "Name of an image for the 'reload' icon :"
 msgstr ""
 
 #: ../src/applet-notifications.c:112 ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Switch Windows Manager"
 msgstr ""
 
 #: ../src/applet-notifications.c:114 ../src/applet-notifications.c:129
+#: ../src/applet-notifications.c:127
 msgid "Toggle Exposition Mode"
 msgstr ""
 
 #: ../src/applet-notifications.c:115 ../src/applet-notifications.c:130
+#: ../src/applet-notifications.c:128
 msgid "Toggle Widgets Layer"
 msgstr ""
 
 #: ../src/applet-notifications.c:116 ../src/applet-notifications.c:131
+#: ../src/applet-notifications.c:129
 msgid "Toggle Show Desktop"
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:33
 msgid "Actions"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:35
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:37
 msgid "Choose an action for the middle click on the icon :"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:39
 msgid "None"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:41
 msgid "Switch WM"
 msgstr ""
 
@@ -299,7 +314,7 @@ msgstr ""
 msgid "WidgetLayer"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:45
 msgid "Expose"
 msgstr ""
 
@@ -313,21 +328,21 @@ msgid ""
 "the default one."
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:51
 msgid "Custom command for system's Windows Manager :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:53
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:55
 msgid "Auto-reload Compiz ?"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:57
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
@@ -337,42 +352,60 @@ msgstr ""
 msgid "Auto-reload the decorator ?"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:63 ../data/messages:61
 msgid "Load default Windows Manager with options at startup."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:63
 msgid "Force settings at startup"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:69
 msgid "Use Loose Binding ?"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:73
 msgid "Use Indirect Rendering ?"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:77 ../data/messages:75
 msgid "By default it will be Emerald."
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:79 ../data/messages:77
 msgid "Choose your Windows Decorator :"
 msgstr ""
 
-#: ../data/messages:81
+#: ../data/messages:81 ../data/messages:79
 msgid "emerald"
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:83 ../data/messages:81
 msgid "gtk-window-decorator"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:83
 msgid "kde-window-decorator"
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:87 ../data/messages:85
 msgid "heliodor"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Widget Layer"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Show Desktop"
+msgstr ""
+
+#: ../data/messages:49
+msgid ""
+"This command will be used to launch the system WM; let it blank to use the "
+"default one."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Auto-reload the Decorator ?"
 msgstr ""

@@ -35,13 +35,10 @@ CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cShowImage);
-	myConfig.cShowImage = NULL;
 	g_free (myConfig.cHideImage);
-	myConfig.cHideImage = NULL;
 	if (myConfig.cShortcut)
 		cd_keybinder_unbind(myConfig.cShortcut, (CDBindkeyHandler) cd_show_desklet_on_keybinding_pull);
 	g_free (myConfig.cShortcut);
-	myConfig.cShortcut = NULL;
 CD_APPLET_RESET_CONFIG_END
 
 

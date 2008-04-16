@@ -18,7 +18,7 @@ CD_APPLET_ON_CLICK_BEGIN
 {
 	if (myConfig.cUserAction != NULL)
 	{
-		system (myConfig.cUserAction);
+		cairo_dock_launch_command (myConfig.cUserAction);
 	}
 	else
 	{

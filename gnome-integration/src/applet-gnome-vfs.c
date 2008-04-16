@@ -3,8 +3,8 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
-Inspiration was taken from the "xdg" project :-)
+Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+Some inspiration was taken from the "xdg" project.
 
 ******************************************************************************/
 #include <string.h>

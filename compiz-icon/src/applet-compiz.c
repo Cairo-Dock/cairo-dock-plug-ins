@@ -72,10 +72,10 @@ void cd_compiz_start_compiz (void) {
 }
 
 void cd_compiz_switch_manager(void) {
-	cd_compiz_get_data ();
+	cd_compiz_acquisition ();
 	
-	gboolean bAcquisitionOK = cd_compiz_read_data ();
-	if (bAcquisitionOK) {
+	cd_compiz_read_data ();
+	if (myData.bAcquisitionOK) {
 		if (myData.bCompizIsRunning)
 			cd_compiz_start_system_wm ();
 		else
@@ -107,94 +107,14 @@ void cd_compiz_kill_compmgr(void) {
 	g_free (cCommand);
 }
 
-static gboolean _cd_compiz_check_for_redraw (gpointer data) {
-	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
-	cd_message ("%s (%d)", __func__, iThreadIsRunning);
-	if (! iThreadIsRunning) {
-		s_iSidTimerRedraw = 0;
-		if (myIcon == NULL) {
-			cd_warning ("annulation du chargement de Compiz-Icon");
-			return FALSE;
-		}
-		
-		g_static_mutex_lock (&mutexData);
-		
-		cd_compiz_update_main_icon ();
-		
-		//g_print (" etat : %d - %d / action : %d - %d\n", myData.bCompizIsRunning, myData.bDecoratorIsRunning, myData.bCompizRestarted, myData.bDecoratorRestarted);
-		
-		if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz && ! myData.bCompizRestarted) {
-			myData.bCompizRestarted = TRUE;  // c'est nous qui l'avons change.
-			cd_compiz_start_compiz ();  // relance compiz.
-		}
-		else if (! myData.bDecoratorIsRunning && myConfig.bAutoReloadDecorator && ! myData.bDecoratorRestarted) {
-			myData.bDecoratorRestarted = TRUE;  // c'est nous qui l'avons change.
-			cd_compiz_start_favorite_decorator (); // relance aussi le decorateur.
-		}
-		
-		if (myData.bCompizIsRunning)
-			myData.bCompizRestarted = FALSE;  // compiz tourne, on le relancera s'il plante.
-		if (myData.bDecoratorIsRunning)
-			myData.bDecoratorRestarted = FALSE;  // le decorateur tourne, on le relancera s'il plante.
-		
-		g_static_mutex_unlock (&mutexData);
-		
-		//\_______________________ On lance le timer si necessaire.
-		if (myData.iSidTimer == 0)
-			myData.iSidTimer = g_timeout_add (CD_COMPIZ_CHECK_TIME, (GSourceFunc) cd_compiz_timer, NULL);
-		return FALSE;
-	}
-	return TRUE;
-}
 
-
-gboolean cd_compiz_timer (gpointer data) {
-	cd_compiz_launch_measure();
-	return TRUE;
-}
-
-void cd_compiz_launch_measure(void) {
-	cd_message ("");
-	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1)) {  //il etait egal a 0, on lui met 1 et on lance le thread.
-		cd_message (" ==> lancement du thread de calcul");
-		
-		if (s_iSidTimerRedraw == 0) {
-			s_iSidTimerRedraw = g_timeout_add (333, (GSourceFunc) _cd_compiz_check_for_redraw, (gpointer) NULL);
-		}
-		
-		GError *erreur = NULL;
-		GThread* pThread = g_thread_create ((GThreadFunc) cd_compiz_threaded_calculation, NULL, FALSE, &erreur);
-		if (erreur != NULL) {
-			cd_warning ("Attention : %s", erreur->message);
-			g_error_free (erreur);
-		}
-	}
-}
-
-gpointer cd_compiz_threaded_calculation (gpointer data) {
-	cd_compiz_get_data();
-	
-	g_static_mutex_lock (&mutexData);
-	myData.bAcquisitionOK = cd_compiz_read_data();
-	g_static_mutex_unlock (&mutexData);
-	
-	g_atomic_int_set (&s_iThreadIsRunning, 0);
-	cd_message ("*** fin du thread compiz");
-	return NULL;
-}
-
-void cd_compiz_get_data(void) {
+void cd_compiz_acquisition (void) {
 	gchar *cCommand = g_strdup_printf("bash %s/compiz %s", MY_APPLET_SHARE_DATA_DIR, myConfig.cWindowDecorator);
 	system (cCommand);
 	g_free (cCommand);
 }
 
-static void _compiz_get_values_from_file (gchar *cContent) {
-	myData.bCompizIsRunning = (cContent[0] == '1');
-	myData.bDecoratorIsRunning = (cContent[0] != '\0' && cContent[1] == '1');
-}
-
-gboolean cd_compiz_read_data(void) {
+void cd_compiz_read_data(void) {
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
@@ -203,11 +123,32 @@ gboolean cd_compiz_read_data(void) {
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
-		return FALSE;
+		myData.bAcquisitionOK = FALSE;
 	}
 	else {
-		_compiz_get_values_from_file (cContent);
+		myData.bCompizIsRunning = (cContent[0] == '1');
+		myData.bDecoratorIsRunning = (cContent[0] != '\0' && cContent[1] == '1');
 		g_free (cContent);
-		return TRUE;
+		myData.bAcquisitionOK = TRUE;
 	}
+}
+
+void cd_compiz_update_from_data (void)
+{
+	cd_compiz_update_main_icon ();
+	
+	//g_print (" etat : %d - %d / action : %d - %d\n", myData.bCompizIsRunning, myData.bDecoratorIsRunning, myData.bCompizRestarted, myData.bDecoratorRestarted);
+	if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz && ! myData.bCompizRestarted) {
+		myData.bCompizRestarted = TRUE;  // c'est nous qui l'avons change.
+		cd_compiz_start_compiz ();  // relance compiz.
+	}
+	else if (! myData.bDecoratorIsRunning && myConfig.bAutoReloadDecorator && ! myData.bDecoratorRestarted) {
+		myData.bDecoratorRestarted = TRUE;  // c'est nous qui l'avons change.
+		cd_compiz_start_favorite_decorator (); // relance aussi le decorateur.
+	}
+	
+	if (myData.bCompizIsRunning)
+		myData.bCompizRestarted = FALSE;  // Compiz tourne, on le relancera s'il plante.
+	if (myData.bDecoratorIsRunning)
+		myData.bDecoratorRestarted = FALSE;  // le decorateur tourne, on le relancera s'il plante.
 }

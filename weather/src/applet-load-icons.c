@@ -168,9 +168,6 @@ static gboolean _cd_weather_check_for_redraw (gpointer data)
 			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
 			g_list_free (myDesklet->icons);
 			myDesklet->icons = NULL;
-			//myData.iNbIcons = 0;
-			//myData.iMaxIconWidth = 0;
-			//myDesklet->icons = NULL;
 		}
 		if (myIcon->pSubDock != NULL)
 		{

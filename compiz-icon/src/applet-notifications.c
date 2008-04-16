@@ -93,7 +93,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL) {  // clic sur une des icones du desklet.
 		if (pClickedIcon == myIcon)
-			cd_compiz_launch_measure();
+			cairo_dock_launch_measure (myData.pMeasureTimer);
 		else
 			_compiz_action_by_id ((int) pClickedIcon->fOrder/2);
 	}

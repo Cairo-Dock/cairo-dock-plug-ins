@@ -14,9 +14,6 @@ frame1_ =
 #s Name of the icon as it will appear in its label in the dock :
 name = Compiz Icon
 
-##S Icon's name :
-#icon = default.svg
-
 [Desklet]
 #i[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
@@ -105,4 +102,3 @@ emerald icon =
 #S Name of an image for the 'reload' icon :
 #{Let t empty to use the default icon.}
 reload icon = 
-

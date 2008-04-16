@@ -38,11 +38,21 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (myData.bHide)
+	/**if (myData.bHide)
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cShowImage)
 	else
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHideImage)
-	
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHideImage)*/
 	if (CD_APPLET_MY_CONFIG_CHANGED)
+	{
+		if (myData.bHide)
+		{
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cShowImage)
+		}
+		else
+		{
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHideImage)
+		}
+		
 		cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) cd_show_desklet_on_keybinding_pull, (gpointer)NULL);
+	}
 CD_APPLET_RELOAD_END

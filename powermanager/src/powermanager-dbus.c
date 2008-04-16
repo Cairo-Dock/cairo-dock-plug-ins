@@ -172,6 +172,12 @@ gboolean update_stats(void)
 		myData.battery_time = get_stats("time");
 		update_icon();
 	}
+	/*present: yes
+	capacity state: ok
+	charging state: discharging
+	present rate: 15000 mW
+	remaining capacity: 47040 mWh
+	present voltage: 15000 mV*/
 	return TRUE;
 }
 

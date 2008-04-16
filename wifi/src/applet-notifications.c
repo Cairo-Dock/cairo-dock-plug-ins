@@ -19,12 +19,9 @@ CD_APPLET_ON_CLICK_END
 
 
 static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer *data) {
-	if (myData.iSidTimer != 0) {
-		g_source_remove (myData.iSidTimer);
-		myData.iSidTimer = 0;
-	}
+	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
 	myData.iFrequency = WIFI_FREQUENCY_NORMAL;
-	cd_wifi_launch_measure();
+	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Wifi", pSubMenu, CD_APPLET_MY_MENU)
@@ -36,6 +33,6 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	cd_wifi_launch_measure();
+	cairo_dock_launch_measure (myData.pMeasureTimer);
 	cairo_dock_remove_dialog_if_any (myIcon);
 CD_APPLET_ON_MIDDLE_CLICK_END

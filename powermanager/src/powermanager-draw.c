@@ -15,6 +15,7 @@ void iconWitness(int animationLenght)
 void update_icon(void)
 {
 	gboolean bNeedRedraw = FALSE;
+	cd_debug ("%s (time:%d->%d ; charge:%d->%d)\n", __func__, myData.previous_battery_time, myData.battery_time, myData.previous_battery_charge, myData.battery_charge);
 	if(myData.battery_present)
 	{
 		if (myData.previous_battery_time != myData.battery_time)

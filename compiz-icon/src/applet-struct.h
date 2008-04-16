@@ -2,6 +2,8 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
+#include <cairo-dock.h>
+
 typedef enum {
   COMPIZ_DEFAULT = 0,
   COMPIZ_BROKEN,
@@ -47,17 +49,15 @@ typedef struct {
 	gchar *cUserImage[COMPIZ_NB_ITEMS];
 	compizAction iActionOnMiddleClick;
 	const gchar *cDecorators[COMPIZ_NB_DECORATORS];
-	//cairo_surface_t *cSurface[3];
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 typedef struct {
-	gint iCompizIcon;
+	compizIcons iCompizIcon;
 	gboolean bDecoratorIsRunning;
 	gboolean bCompizIsRunning;
-	gboolean bNeedRedraw;
 	gboolean bAcquisitionOK;
-	gint iSidTimer;
+	CairoDockMeasure *pMeasureTimer;
 	gboolean bCompizRestarted;
 	gboolean bDecoratorRestarted;
 } AppletData;

@@ -44,6 +44,8 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
+	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	
 	int i;
 	for (i = 0; i < WIFI_NB_QUALITY; i ++) {
 		cairo_surface_destroy (myData.pSurfaces[i]);

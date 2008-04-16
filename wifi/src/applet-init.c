@@ -21,7 +21,14 @@ CD_APPLET_INIT_BEGIN (erreur)
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 	
-	cd_wifi_launch_measure();
+	myData.iPreviousQuality = -1;  // force le dessin.
+	myData.prev_prcnt = -1;
+	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
+		cd_wifi_acquisition,
+		cd_wifi_read_data,
+		cd_wifi_update_from_data);
+	cairo_dock_launch_measure (myData.pMeasureTimer);
+	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
@@ -37,10 +44,10 @@ CD_APPLET_STOP_BEGIN
 	//On libère la mémoire de la jauge
 	free_cd_Gauge(myData.pGauge);
 	
-	if (myData.iSidTimer != 0) {
+	/*if (myData.iSidTimer != 0) {
 		g_source_remove (myData.iSidTimer);
 		myData.iSidTimer = 0;
-	}
+	}*/
 CD_APPLET_STOP_END
 
 
@@ -65,10 +72,11 @@ CD_APPLET_RELOAD_BEGIN
 	
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		if (myData.iSidTimer != 0) { // la frequence a pu changer.
+		cairo_dock_stop_measure_timer (myData.pMeasureTimer);
+		/*if (myData.iSidTimer != 0) { // la frequence a pu changer.
 			g_source_remove (myData.iSidTimer);
 			myData.iSidTimer = 0;
-		}
+		}*/
 		
 		if (myConfig.bUseGauge)  // on ne veut plus des jauges.
 		{
@@ -77,7 +85,9 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		myData.iFrequency = WIFI_FREQUENCY_NORMAL;
-		cd_wifi_launch_measure ();  // asynchrone
+		myData.iPreviousQuality = -1;  // on force le redessin.
+		myData.prev_prcnt = -1;
+		cairo_dock_launch_measure (myData.pMeasureTimer);  // mesure immediate.
 	}
 	else {  // on redessine juste l'icone.
 		cd_wifi_draw_icon_with_effect (myData.iQuality);

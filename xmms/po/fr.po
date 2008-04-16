@@ -136,37 +136,37 @@ msgid "Animations"
 msgstr "Animations"
 
 #: ../data/messages:25 ../data/messages:51 ../data/messages:73
-#: ../data/messages:71 ../data/messages:69
+#: ../data/messages:71 ../data/messages:69 ../data/messages:75
 msgid "bounce"
 msgstr "Rebond"
 
 #: ../data/messages:27 ../data/messages:53 ../data/messages:75
-#: ../data/messages:73 ../data/messages:71
+#: ../data/messages:73 ../data/messages:71 ../data/messages:77
 msgid "rotate"
 msgstr "Rotation"
 
 #: ../data/messages:29 ../data/messages:55 ../data/messages:77
-#: ../data/messages:75 ../data/messages:73
+#: ../data/messages:75 ../data/messages:73 ../data/messages:79
 msgid "blink"
 msgstr "Clignotement"
 
 #: ../data/messages:31 ../data/messages:57 ../data/messages:79
-#: ../data/messages:77 ../data/messages:75
+#: ../data/messages:77 ../data/messages:75 ../data/messages:81
 msgid "pulse"
 msgstr "Pulsation"
 
 #: ../data/messages:33 ../data/messages:59 ../data/messages:81
-#: ../data/messages:79 ../data/messages:77
+#: ../data/messages:79 ../data/messages:77 ../data/messages:83
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
 #: ../data/messages:35 ../data/messages:61 ../data/messages:83
-#: ../data/messages:81 ../data/messages:79
+#: ../data/messages:81 ../data/messages:79 ../data/messages:85
 msgid "wobbly"
 msgstr "Élastique"
 
 #: ../data/messages:37 ../data/messages:63 ../data/messages:85
-#: ../data/messages:83 ../data/messages:81
+#: ../data/messages:83 ../data/messages:81 ../data/messages:87
 msgid "random"
 msgstr "Aléatoire"
 
@@ -337,9 +337,24 @@ msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
-"Cela empéchera l'icône du lecteur d'apparaitre dans la barre d'applications. L'icône"
-"de l'applet se comportera comme un lanceur, une application et un applet."
+"Cela empéchera l'icône du lecteur d'apparaitre dans la barre d'applications. "
+"L'icônede l'applet se comportera comme un lanceur, une application et un "
+"applet."
 
 #: ../data/messages:47
 msgid "Steal the player's icon in taskbar ?"
 msgstr "Voler l'icône du lecteur dans la barre d'application ?"
+
+#: ../data/messages:45
+msgid ""
+"It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+"icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Steal the rhythmbox's icon in taskbar ?"
+msgstr ""
+
+#: ../data/messages:65
+msgid "Show an info-bubble ?"
+msgstr ""
