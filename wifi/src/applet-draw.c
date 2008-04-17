@@ -51,6 +51,7 @@ void cd_wifi_draw_icon (void) {
 	if (myData.iQuality != myData.iPreviousQuality) {
 		myData.iPreviousQuality = myData.iQuality;
 		
+		cd_debug("Wifi - Value have changed, redraw. (Use Gauge: %d)", myConfig.bUseGauge);
 		if (myConfig.bUseGauge) {
 			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
 		}
