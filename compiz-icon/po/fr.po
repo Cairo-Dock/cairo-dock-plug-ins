@@ -188,13 +188,20 @@ msgstr ""
 msgid "Steal the application's icon in taskbar ?"
 msgstr "Voler l'icône de l'application dans la barre d'applications ?"
 
+#: ../data/messages:65
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
-"applet's icon will then behave as a launcher, an appli, and an applet."
+"corresponding subdock's icons will then behave as launcher and an appli."
 msgstr ""
 "Cela empéchera l'icône de CSSM ou d'Emerald d'apparaitre dans la barre "
-"d'applications. L'icône de l'applet se comportera comme un lanceur, une "
-"application et un applet."
+"d'applications. Les icônes du sous-dock se comporteront comme un lanceur et une "
+"application."
+
+msgid "Add Exposition & Widget Layer to sub-dock ?"
+msgstr "Ajouter l'Exposition et le Widget Layer au sous-dock?"
+
+msgid "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget Layer plug-ins."
+msgstr "Ajoute dans le sous-dock de l'applet 2 icônes pour les plug-ins Exposition et Widget Layer de Compiz."
 
 #: ../data/messages:75 ../data/messages:61 ../data/messages:91
 #: ../data/messages:89 ../data/messages:93
@@ -304,6 +311,12 @@ msgstr "Nom de l'image 'Emerald' :"
 msgid "Name of an image for the 'reload' icon :"
 msgstr "Nom de l'image 'Recharger' :"
 
+msgid "Name of an image for the 'exposition' icon :"
+msgstr "Nom de l'image 'Exposition' :"
+
+msgid "Name of an image for the 'widget layer' icon :"
+msgstr "Nom de l'image 'Widget Layer' :"
+
 #: ../data/messages:79 ../data/messages:83 ../data/messages:87
 #: ../data/messages:91 ../data/messages:95 ../data/messages:99
 #: ../data/messages:103 ../data/messages:107 ../data/messages:111
@@ -347,8 +360,8 @@ msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
 msgstr ""
-"Si Compiz se ferme de façon inattendue, Cairo-Dock va le redémarrerVous "
-"devrez alors quitter Compiz depuis le dock"
+"Si Compiz se ferme de façon inattendue, Cairo-Dock va le redémarrer. Vous "
+"devrez alors quitter Compiz depuis le dock."
 
 #: ../data/messages:57 ../data/messages:55
 msgid "Auto-reload Compiz ?"
@@ -390,16 +403,6 @@ msgstr ""
 msgid "heliodor"
 msgstr ""
 
-#: ../data/messages:61
-msgid "Load Compiz with options at startup."
-msgstr ""
-
 #: ../data/messages:63
 msgid "Force Compiz settings at startup ?"
-msgstr ""
-
-#: ../data/messages:65
-msgid ""
-"It will prevent the CSSM or Emerald icon to appear in the task bar. The "
-"corresponding subdock's icons will then behave as launcher and an appli."
-msgstr ""
+msgstr "Forcer les Options de Compiz au démarrage ?"

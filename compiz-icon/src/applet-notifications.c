@@ -22,23 +22,6 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT (D_("This is the compiz-icon applet\n made by ChAnGFu for Cairo-Dock"))
 
 
-static void _compiz_action_by_id (int k) {
-  switch (k) {
-    case 0:
-      cairo_dock_launch_command ("ccsm");
-    break;
-    case 1:
-      cairo_dock_launch_command ("emerald-theme-manager");
-    break;
-    case 2:
-      cd_compiz_switch_manager ();
-    break;
-    default:
-     //Rien a faires
-    break;
-  }
-}
-
 static void _compiz_dbus_action (const gchar *cCommand) {
 	if (! cairo_dock_dbus_detect_application ("org.freedesktop.compiz"))
 		cd_warning  ("Dbus plug-in must be activated in Compiz !");
@@ -62,6 +45,29 @@ static void _compiz_menu_activate_expo (void) {
 
 static void _compiz_menu_toggle_wlayer (void) {
 	_compiz_dbus_action ("widget/allscreens/toggle");
+}
+
+static void _compiz_action_by_id (int k) {
+  switch (k) {
+    case 0:
+      cairo_dock_launch_command ("ccsm");
+    break;
+    case 1:
+      cairo_dock_launch_command ("emerald-theme-manager");
+    break;
+    case 2:
+      cd_compiz_switch_manager ();
+    break;
+    case 3:
+      _compiz_menu_activate_expo ();
+    break;
+    case 4:
+      _compiz_menu_toggle_wlayer ();
+    break;
+    default:
+     //Rien a faires
+    break;
+  }
 }
 
 static void _action_on_click (compizAction iAction) {
@@ -132,8 +138,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		if (myConfig.cDecorators[DECORATOR_USER] != NULL) {
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cDecorators[DECORATOR_USER], cd_compiz_switch_decorator, pDecoratorSubMenu, GINT_TO_POINTER (DECORATOR_USER))
 		}
-	CD_APPLET_ADD_IN_MENU (D_("Toggle Exposition Mode"), _compiz_menu_activate_expo, pSubMenu)
-	CD_APPLET_ADD_IN_MENU (D_("Toggle Widgets Layer"), _compiz_menu_toggle_wlayer, pSubMenu)
+	if (!myConfig.bScriptSubDock) {
+	  CD_APPLET_ADD_IN_MENU (D_("Toggle Exposition Mode"), _compiz_menu_activate_expo, pSubMenu)
+	  CD_APPLET_ADD_IN_MENU (D_("Toggle Widgets Layer"), _compiz_menu_toggle_wlayer, pSubMenu)
+	}
 	CD_APPLET_ADD_IN_MENU (D_("Toggle Show Desktop"), _compiz_menu_show_desktop, pSubMenu)
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 	if (pClickedIcon != myIcon && (pClickedIcon == NULL || pClickedIcon->acCommand == NULL || strcmp (pClickedIcon->acCommand, "none") == 0 || ! CAIRO_DOCK_IS_APPLI (pClickedIcon)))

@@ -49,17 +49,19 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
 	
-	myConfig.cUserImage[COMPIZ_DEFAULT] 			= CD_CONFIG_GET_STRING ("Configuration", "default icon");
-	myConfig.cUserImage[COMPIZ_BROKEN] 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
-	myConfig.cUserImage[COMPIZ_OTHER] 		= CD_CONFIG_GET_STRING ("Configuration", "other icon");
+	myConfig.cUserImage[COMPIZ_DEFAULT] 		= CD_CONFIG_GET_STRING ("Configuration", "default icon");
+	myConfig.cUserImage[COMPIZ_BROKEN] 		  = CD_CONFIG_GET_STRING ("Configuration", "broken icon");
+	myConfig.cUserImage[COMPIZ_OTHER] 		  = CD_CONFIG_GET_STRING ("Configuration", "other icon");
 	myConfig.cUserImage[COMPIZ_SETTING] 		= CD_CONFIG_GET_STRING ("Configuration", "setting icon");
 	myConfig.cUserImage[COMPIZ_EMERALD] 		= CD_CONFIG_GET_STRING ("Configuration", "emerald icon");
-	myConfig.cUserImage[COMPIZ_RELOAD] 		= CD_CONFIG_GET_STRING ("Configuration", "reload icon");
+	myConfig.cUserImage[COMPIZ_RELOAD] 		  = CD_CONFIG_GET_STRING ("Configuration", "reload icon");
+	myConfig.cUserImage[COMPIZ_EXPOSITION] 	= CD_CONFIG_GET_STRING ("Configuration", "expo icon");
+	myConfig.cUserImage[COMPIZ_WLAYER] 		  = CD_CONFIG_GET_STRING ("Configuration", "wlayer icon");
 	
 	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER ("Configuration", "middle click");
 	myConfig.bStealTaskBarIcon = CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
+	myConfig.bScriptSubDock = CD_CONFIG_GET_BOOLEAN ("Configuration", "script");
 CD_APPLET_GET_CONFIG_END
-
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cRenderer);

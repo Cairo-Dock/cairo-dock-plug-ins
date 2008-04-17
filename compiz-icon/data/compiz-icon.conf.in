@@ -67,6 +67,10 @@ force = false
 #{It will prevent the CSSM or Emerald icon to appear in the task bar. The corresponding subdock's icons will then behave as launcher and an appli.}
 inhibate appli = true
 
+#b Add Exposition & Widget Layer to sub-dock ?
+#{Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget Layer plug-ins.}
+script = true
+
 #F[Compiz Options]
 frame_co = 
 #b Use Loose Binding ?
@@ -105,3 +109,9 @@ emerald icon =
 #S Name of an image for the 'reload' icon :
 #{Let t empty to use the default icon.}
 reload icon = 
+#S Name of an image for the 'exposition' icon :
+#{Let t empty to use the default icon.}
+expo icon = 
+#S Name of an image for the 'widget layer' icon :
+#{Let t empty to use the default icon.}
+wlayer icon = 

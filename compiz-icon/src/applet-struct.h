@@ -11,6 +11,8 @@ typedef enum {
   COMPIZ_SETTING,
   COMPIZ_EMERALD,
   COMPIZ_RELOAD,
+  COMPIZ_EXPOSITION,
+  COMPIZ_WLAYER,
   COMPIZ_NB_ITEMS,
 } compizIcons;
 
@@ -50,6 +52,7 @@ typedef struct {
 	compizAction iActionOnMiddleClick;
 	const gchar *cDecorators[COMPIZ_NB_DECORATORS];
 	gboolean bStealTaskBarIcon;
+	gboolean bScriptSubDock;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

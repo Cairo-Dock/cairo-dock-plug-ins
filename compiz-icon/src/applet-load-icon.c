@@ -17,9 +17,11 @@ Fabrice Rey <fabounet@users.berlios.de>
 CD_APPLET_INCLUDE_MY_VARS
 
 #define MY_NB_ICON_STATE 3
-#define MY_NB_SUB_ICONS 3
-static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Switch WM")};
-static gchar *s_iconClass[MY_NB_SUB_ICONS] = {"ccsm", "emerald-theme-manager", NULL};
+#define MY_NB_SUB_ICONS 5
+
+static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Switch WM"), N_("Exposition"), N_("Widge Layer")};
+
+static gchar *s_iconClass[MY_NB_SUB_ICONS] = {"ccsm", "emerald-theme-manager", NULL, NULL, NULL};
 
 static gchar *s_iconFile[MY_NB_ICON_STATE] = {"default.svg", "broken.svg", "other.svg"};
 
@@ -28,8 +30,11 @@ static GList * _list_icons (void) {
 	GList *pIconList = NULL;
 	
 	Icon *pIcon;
-	int i;
-	for (i = 0; i < MY_NB_SUB_ICONS; i ++) {
+	int i, j=3;
+	if (myConfig.bScriptSubDock)
+    j = 5;
+  
+	for (i = 0; i < j; i ++) {
 		pIcon = g_new0 (Icon, 1);
 		pIcon->acName = g_strdup (D_(s_iconName[i]));
 		if (myConfig.cUserImage[i+MY_NB_ICON_STATE] != NULL) {
@@ -94,9 +99,9 @@ void cd_compiz_build_icons (void) {
 	}
 	else {
 		myDesklet->icons = pIconList;
-  		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-  		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
-  		myDrawContext = cairo_create (myIcon->pIconBuffer);
-  		gtk_widget_queue_draw (myDesklet->pWidget);
+  	gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
+  	cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
+  	myDrawContext = cairo_create (myIcon->pIconBuffer);
+  	gtk_widget_queue_draw (myDesklet->pWidget);
 	}
 }
