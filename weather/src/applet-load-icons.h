@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-void cd_weather_launch_measure (void);
+void cd_weather_update_from_data (void);
 
 
 #endif

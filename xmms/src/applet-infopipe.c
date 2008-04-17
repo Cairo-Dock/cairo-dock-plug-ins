@@ -11,10 +11,6 @@
 CD_APPLET_INCLUDE_MY_VARS
 
 
-static int s_iThreadIsRunning = 0;
-static int s_iSidTimerRedraw = 0;
-static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;
-
 enum {
 	INFO_STATUS = 0,
 	INFO_TRACK_IN_PLAYLIST,
@@ -33,114 +29,52 @@ static int s_pLineNumber[MY_NB_PLAYERS][NB_INFO] = {
 	{0,1,2,3,4,5,6} ,
 };
 
-
-gboolean cd_xmms_timer (gpointer data) {
-	cd_xmms_launch_measure ();
-	return TRUE;
-}
-
-gpointer cd_xmms_threaded_calculation (gpointer data) {
-	GError *erreur = NULL;
-	
-	gchar *cInfopipeFilePath = cd_xmms_get_pipe ();
-	
-	if (cInfopipeFilePath == NULL || ! g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS)) {
-		myData.playingStatus = PLAYER_NONE;
-	}
-	else {
-		g_static_mutex_lock (&mutexData);
-		cd_xmms_read_pipe(cInfopipeFilePath);
-		g_static_mutex_unlock (&mutexData);
-	}
-	g_free (cInfopipeFilePath);
-	
-	g_atomic_int_set (&s_iThreadIsRunning, 0);
-	cd_message ("*** fin du thread xmms");
-	return NULL;
-}
-
-static gboolean _cd_xmms_check_for_redraw (gpointer data) {
-	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
-	cd_message ("%s (%d)", __func__, iThreadIsRunning);
-	if (! iThreadIsRunning) {
-		s_iSidTimerRedraw = 0;
-		if (myIcon == NULL) {
-			g_print ("annulation du chargement de la meteo\n");
-			return FALSE;
-		}
-		
-		//\_______________________ On recharge l'icone principale.
-		g_static_mutex_lock (&mutexData);
-		cd_xmms_draw_icon ();  // lance le redraw de l'icone.
-		g_static_mutex_unlock (&mutexData);
-		
-		//\_______________________ On lance le timer si necessaire.
-		if (myData.pipeTimer == 0)
-			myData.pipeTimer = g_timeout_add (1000, (GSourceFunc) cd_xmms_timer, NULL);
-		return FALSE;
-	}
-	return TRUE;
-}
-void cd_xmms_launch_measure (void) {
-	cd_message ("");
-	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1)) { // il etait egal a 0, on lui met 1 et on lance le thread.
-		cd_message (" ==> lancement du thread de calcul");
-		
-		if (s_iSidTimerRedraw == 0)
-			s_iSidTimerRedraw = g_timeout_add (250, (GSourceFunc) _cd_xmms_check_for_redraw, (gpointer) NULL);
-		
-		GError *erreur = NULL;
-		GThread* pThread = g_thread_create ((GThreadFunc) cd_xmms_threaded_calculation,
-			NULL,
-			FALSE,
-			&erreur);
-		if (erreur != NULL) {
-			cd_warning ("Attention : %s", erreur->message);
-			g_error_free (erreur);
-		}
-	}
-}
-
-
-//Fonction qui definie quel tuyau a emprunter pour récupérer les infos
-gchar *cd_xmms_get_pipe(void) {
-	gchar *cInfopipeFilePath = NULL;
+void cd_xmms_acquisition (void) {
 	gchar *cCommand = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
-			cInfopipeFilePath = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
 		break ;
 		case MY_AUDACIOUS :  //Il faut émuler le pipe d'audacious par AUDTOOL
-			cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
-			if (! g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS)) {
-				cCommand = g_strdup_printf ("bash %s/infoaudacious.sh", MY_APPLET_SHARE_DATA_DIR);
-				system (cCommand);
-			}
+			cCommand = g_strdup_printf ("bash %s/infoaudacious.sh", MY_APPLET_SHARE_DATA_DIR);
+			system (cCommand);
 		break ;
 		case MY_BANSHEE :  //Le pipe est trop lent et cause des freezes... // Il faut émuler le pipe de banshee par le script
-			cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
-			if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
-				cCommand = g_strdup_printf ("bash %s/infobanshee.sh", MY_APPLET_SHARE_DATA_DIR);
-				system (cCommand);
-			}
+			cCommand = g_strdup_printf ("bash %s/infobanshee.sh", MY_APPLET_SHARE_DATA_DIR);
+			system (cCommand);
 		break ;
 		case MY_EXAILE :  //Le pipe est trop lent, récupération des infos une fois sur deux avec un pique du cpu lors de l'éxécution du script // Il faut émuler le pipe d'audacious par Exaile -q
-			cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
-			if (g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS) == 0) {
-				cCommand = g_strdup_printf ("bash %s/infoexaile.sh", MY_APPLET_SHARE_DATA_DIR);
-				system (cCommand);
-			}
+			cCommand = g_strdup_printf ("bash %s/infoexaile.sh", MY_APPLET_SHARE_DATA_DIR);
+			system (cCommand);
 		break ;
 		default :
 		break ;
 	}
 	g_free (cCommand);
-	
-	return cInfopipeFilePath;
 }
 
 //Fonction de lecture du tuyau.
-void cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
+void cd_xmms_read_data (void) {
+	gchar *cInfopipeFilePath = NULL;
+	switch (myConfig.iPlayer) {
+		case MY_XMMS :
+			cInfopipeFilePath = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
+		break ;
+		case MY_AUDACIOUS :
+			cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
+		break ;
+		case MY_BANSHEE :
+			cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
+		break ;
+		case MY_EXAILE :
+		break ;
+		default :
+		break ;
+	}
+	if (cInfopipeFilePath == NULL || ! g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS)) {
+		myData.playingStatus = PLAYER_NONE;
+		return ;
+	}
+	
 	gchar *cContent = NULL;
 	gchar *cQuickInfo = NULL;
 	gsize length=0;
@@ -267,12 +201,14 @@ void cd_xmms_read_pipe(gchar *cInfopipeFilePath) {
 		}  // fin de parcours des lignes.
 		g_strfreev (cInfopipesList);
 	}
-	cd_remove_pipes ();
+	///cd_remove_pipes ();
+	g_remove (cInfopipeFilePath);
+	g_free (cInfopipeFilePath);
 }
 
 
 //Fonction qui supprime les tuyaux émulés pour eviter des pics CPU
-void cd_remove_pipes(void) {
+void cd_xmms_remove_pipes(void) {
 	gchar *cInfopipeFilePath = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_AUDACIOUS :
@@ -287,7 +223,9 @@ void cd_remove_pipes(void) {
 		default :  // xmms n'en a pas.
 		return ;
 	}
-	g_remove (cInfopipeFilePath);
-	g_free (cInfopipeFilePath);
-	return ;
+	if (cInfopipeFilePath != NULL)
+	{
+		g_remove (cInfopipeFilePath);
+		g_free (cInfopipeFilePath);
+	}
 }

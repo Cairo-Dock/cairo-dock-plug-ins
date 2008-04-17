@@ -10,6 +10,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <cairo-dock.h>
 #include <libxml/tree.h>
 #include <libxml/parser.h>
+#include <glib/gstdio.h>
 
 #include "applet-struct.h"
 #include "applet-read-data.h"
@@ -30,14 +31,13 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 	return cLocationFilePath;
 }
 
-void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastFilePath)
+void cd_weather_acquisition (void)
 {
 	gboolean bTest = FALSE;
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)
 	{
-		*cCurrentConditionsFilePath = g_strconcat (g_get_tmp_dir (), WEATHER_CURRENT_CONDITIONS_FILE, NULL);
-		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), *cCurrentConditionsFilePath);
+		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s%s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), g_get_tmp_dir (), WEATHER_CURRENT_CONDITIONS_FILE);
 		system (cCommand);
 		g_free (cCommand);
 		
@@ -45,19 +45,18 @@ void cd_weather_get_data (gchar **cCurrentConditionsFilePath, gchar **cForecastF
 	
 	if (myConfig.iNbDays > 0)
 	{
-		*cForecastFilePath = g_strconcat (g_get_tmp_dir (), WEATHER_FORECAST_FILE, NULL);
-		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), *cForecastFilePath);
+		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s%s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), g_get_tmp_dir (), WEATHER_FORECAST_FILE);
 		system (cCommand);
 		g_free (cCommand);
 	}
 	
 	if (bTest && g_file_test ("/opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml", G_FILE_TEST_EXISTS))
 	{
-		cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml %s", *cCurrentConditionsFilePath);
+		cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml %s%s", g_get_tmp_dir (), WEATHER_CURRENT_CONDITIONS_FILE);
 		system (cCommand);
 		g_free (cCommand);
 		
-		cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/FRXX0076-meteo.xml %s", *cForecastFilePath);
+		cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/FRXX0076-meteo.xml %s%s", g_get_tmp_dir (), WEATHER_FORECAST_FILE);
 		system (cCommand);
 		g_free (cCommand);
 	}
@@ -293,4 +292,43 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 		}
 	}
 	_cd_weather_close_xml_file (doc);
+}
+
+
+void cd_weather_read_data (void)
+{
+	GError *erreur = NULL;
+	if (myConfig.bCurrentConditions)
+	{
+		gchar *cCurrentConditionsFilePath = g_strconcat (g_get_tmp_dir (), WEATHER_CURRENT_CONDITIONS_FILE, NULL);
+		cd_weather_parse_data (cCurrentConditionsFilePath, TRUE, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("Attention : %s", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+			myData.bErrorRetrievingData = TRUE;
+		}
+		else
+			myData.bErrorRetrievingData = FALSE;
+		g_remove (cCurrentConditionsFilePath);
+		g_free (cCurrentConditionsFilePath);
+	}
+	
+	if (myConfig.iNbDays > 0)
+	{
+		gchar *cForecastFilePath = g_strconcat (g_get_tmp_dir (), WEATHER_FORECAST_FILE, NULL);
+		cd_weather_parse_data (cForecastFilePath, FALSE, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("Attention : %s", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+			myData.bErrorRetrievingData = TRUE;
+		}
+		else
+			myData.bErrorRetrievingData = FALSE;
+		g_remove (cForecastFilePath);
+		g_free (cForecastFilePath);
+	}
 }

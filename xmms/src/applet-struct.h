@@ -49,7 +49,7 @@ typedef struct {
 	gint iTrackNumber, iPreviousTrackNumber;
 	gint iCurrentTime, iPreviousCurrentTime;
 	gint iSongLength;
-	guint pipeTimer;
+	CairoDockMeasure *pMeasureTimer;
 } AppletData;
 
 #endif

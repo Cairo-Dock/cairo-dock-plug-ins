@@ -13,6 +13,8 @@ typedef struct {
 	gint iCheckInterval;
 	gint dCheckInterval;
 	gchar *cThemePath;
+	gchar *cInterface;
+	gint iStringLen;
 } AppletConfig;
 
 typedef struct {
@@ -22,7 +24,11 @@ typedef struct {
 	cairo_surface_t *pOk;	*/
 	guint iSidTimer;
 	gint checkTimer;
-	gint interfaceFound;	
+	gint interfaceFound;
+	GTimer *pClock;
+	gint iReceivedBytes, iTransmittedBytes;
+	gboolean bAcquisitionOK;
+	CairoDockMeasure *pMeasureTimer;
 	
 	Gauge *pGauge;
 } AppletData;

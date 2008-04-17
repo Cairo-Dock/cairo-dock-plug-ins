@@ -74,6 +74,7 @@ msgstr "コピー"
 #: ../src/terminal-widget.c:420 ../src/terminal-widget.c:507
 #: ../src/terminal-init.c:79 ../src/terminal-widget.c:569
 #: ../src/terminal-widget.c:611 ../src/terminal-widget.c:613
+#: ../src/terminal-widget.c:659
 msgid "Terminal"
 msgstr "端末"
 

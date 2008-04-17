@@ -8,11 +8,12 @@
 #include "applet-init.h"
 
 
+
 CD_APPLET_DEFINITION ("xmms", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 static gchar *s_cPlayerClass[MY_NB_PLAYERS] = {"xmms", "audacious", "banshee", "exaile"};
 
-static gchar *s_cControlIconName[4] = {"play.svg", "pause.svg", "stop.svg", "broken.svg"};  // en attendant...
+static gchar *s_cControlIconName[4] = {"0.svg", "1.svg", "2.svg", "3.svg"};
 #define _add_icon(i)\
 	pIcon = g_new0 (Icon, 1);\
 	pIcon->acName = NULL;\
@@ -30,6 +31,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet) {
 		if (myConfig.extendedDesklet)
 		{
+			Icon *pIcon;
 			int i;
 			for (i = 0; i < 4; i ++)
 			{
@@ -44,14 +46,18 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
-	cd_remove_pipes();
+	cd_xmms_remove_pipes();
 	
 	myData.playingStatus = PLAYER_NONE;
 	myData.previousPlayingStatus = -1;
 	myData.previousPlayingTitle = NULL;
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
-	cd_xmms_launch_measure ();
+	myData.pMeasureTimer = cairo_dock_new_measure_timer (1000,
+		cd_xmms_acquisition,
+		cd_xmms_read_data,
+		cd_xmms_draw_icon);
+	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	if (myConfig.bStealTaskBarIcon)
 	{
@@ -70,7 +76,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	cd_remove_pipes();
+	cd_xmms_remove_pipes();
 	
 	if (myIcon->cClass != NULL)
 		cairo_dock_deinhibate_class (s_cPlayerClass[myConfig.iPlayer], myIcon);
@@ -79,10 +85,23 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (CD_APPLET_MY_CONFIG_CHANGED && CD_APPLET_MY_CONTAINER_TYPE_CHANGED && myDesklet && ! myConfig.extendedDesklet) {
-		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
-		g_list_free (myDesklet->icons);
-		myDesklet->icons = NULL;
+	if (CD_APPLET_MY_CONFIG_CHANGED && myDesklet)
+	{
+		if ( ! myConfig.extendedDesklet && myDesklet->icons != NULL)
+		{
+			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+			g_list_free (myDesklet->icons);
+			myDesklet->icons = NULL;
+		}
+		else if (myConfig.extendedDesklet && myDesklet->icons == NULL)
+		{
+			Icon *pIcon;
+			int i;
+			for (i = 0; i < 4; i ++)
+			{
+				_add_icon(i);
+			}
+		}
 	}
 	
 	int i;
@@ -110,7 +129,7 @@ CD_APPLET_RELOAD_BEGIN
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		if (myIcon->cClass != NULL)  // on est en trian d'inhiber l'appli.
+		if (myIcon->cClass != NULL)  // on est en train d'inhiber l'appli.
 		{
 			if (! myConfig.bStealTaskBarIcon || strcmp (myIcon->cClass, s_cPlayerClass[myConfig.iPlayer]) != 0)  // on ne veut plus l'inhiber ou on veut inhiber une autre.
 			{

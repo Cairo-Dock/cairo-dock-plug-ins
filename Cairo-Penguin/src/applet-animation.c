@@ -108,9 +108,10 @@ gboolean penguin_move_in_icon (gpointer data)
 	cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
 	g_return_val_if_fail (pSurface != NULL, TRUE);
 	
-	int iXMin = - myIcon->fWidth / myDock->fRatio * myIcon->fScale / 2;
+	double fScale = (pAnimation->iNbFrames > 1 || pAnimation->iSpeed != 0 || pAnimation->iAcceleration != 0 ? myIcon->fScale : 1.);  // s'il est a l'arret on le met a la taille de l'icone au repos.
+	int iXMin = - myIcon->fWidth / myDock->fRatio * fScale / 2;
 	int iXMax = - iXMin;
-	int iHeight = myIcon->fHeight / myDock->fRatio * myIcon->fScale;
+	int iHeight = myIcon->fHeight / myDock->fRatio * fScale;
 	
 	penguin_calculate_new_position (pAnimation, iXMin, iXMax, iHeight);
 	
@@ -124,7 +125,7 @@ gboolean penguin_move_in_icon (gpointer data)
 	if (pSurface != NULL)
 	{
 		cairo_save (myDrawContext);
-		cairo_scale (myDrawContext, (1 + g_fAmplitude) / myIcon->fScale, (1 + g_fAmplitude) / myIcon->fScale);
+		cairo_scale (myDrawContext, (1 + g_fAmplitude) / fScale, (1 + g_fAmplitude) / fScale);
 		cairo_set_source_surface (
 			myDrawContext,
 			pSurface,

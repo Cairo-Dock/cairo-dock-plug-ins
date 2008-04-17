@@ -87,6 +87,8 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
+	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	
 	g_free (myData.cLon);
 	g_free (myData.cLat);
 	_reset_units (&myData.units);

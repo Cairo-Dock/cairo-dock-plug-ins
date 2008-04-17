@@ -20,41 +20,49 @@ msgstr ""
 
 #: ../src/applet-notifications.c:101 ../src/applet-notifications.c:137
 #: ../src/applet-notifications.c:166 ../src/applet-notifications.c:164
+#: ../src/applet-notifications.c:192
 msgid "Previous"
 msgstr "Précédant"
 
 #: ../src/applet-notifications.c:102 ../src/applet-notifications.c:138
 #: ../src/applet-notifications.c:167 ../src/applet-notifications.c:165
+#: ../src/applet-notifications.c:193
 msgid "Play/Pause"
 msgstr "Jouer/Pause"
 
 #: ../src/applet-notifications.c:103 ../src/applet-notifications.c:140
 #: ../src/applet-notifications.c:169 ../src/applet-notifications.c:167
+#: ../src/applet-notifications.c:195
 msgid "Stop"
 msgstr "Stop"
 
 #: ../src/applet-notifications.c:104 ../src/applet-notifications.c:142
 #: ../src/applet-notifications.c:171 ../src/applet-notifications.c:169
+#: ../src/applet-notifications.c:197
 msgid "Next"
 msgstr "Suivant"
 
 #: ../src/applet-notifications.c:108 ../src/applet-notifications.c:146
 #: ../src/applet-notifications.c:175 ../src/applet-notifications.c:173
+#: ../src/applet-notifications.c:201
 msgid "Toggle Shuffle"
 msgstr "Lecture Aléatoire"
 
 #: ../src/applet-notifications.c:109 ../src/applet-notifications.c:147
 #: ../src/applet-notifications.c:176 ../src/applet-notifications.c:174
+#: ../src/applet-notifications.c:202
 msgid "Toggle Repeat"
 msgstr "Répétition de la Liste"
 
 #: ../src/applet-notifications.c:105 ../src/applet-notifications.c:144
 #: ../src/applet-notifications.c:173 ../src/applet-notifications.c:171
+#: ../src/applet-notifications.c:199
 msgid "Show JumpBox"
 msgstr "Montrer la boite de Recherche"
 
 #: ../src/applet-notifications.c:107 ../src/applet-notifications.c:145
 #: ../src/applet-notifications.c:174 ../src/applet-notifications.c:172
+#: ../src/applet-notifications.c:200
 msgid "Options"
 msgstr ""
 
@@ -246,7 +254,7 @@ msgstr "Nom de l'image 'Pas de Signal': "
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:91
 #: ../src/applet-notifications.c:127 ../src/applet-notifications.c:156
-#: ../src/applet-notifications.c:154
+#: ../src/applet-notifications.c:154 ../src/applet-notifications.c:158
 msgid ""
 "This is the xmms applet\n"
 " made by ChAnGFu for Cairo-Dock"

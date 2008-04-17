@@ -11,6 +11,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 void cd_xmms_prev() {
 	GError *erreur = NULL;
+	g_free (myData.playingTitle);
 	myData.playingTitle = NULL; //Reseting the title to detect it for sure
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
@@ -79,6 +80,7 @@ void cd_xmms_s() {
 }
 void cd_xmms_next() {
 	GError *erreur = NULL;
+	g_free (myData.playingTitle);
 	myData.playingTitle = NULL; //Resetting the title to detect it for sure
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :

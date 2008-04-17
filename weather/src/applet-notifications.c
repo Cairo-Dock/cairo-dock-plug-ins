@@ -83,10 +83,9 @@ static void _cd_weather_location_choosed (int iAnswer, GtkWidget *pWidget, gpoin
 			G_TYPE_INVALID);
 		
 		//\____________________ On recharge l'applet.
-		g_source_remove (myData.iSidTimer);
-		myData.iSidTimer = 0;
+		cairo_dock_stop_measure_timer (myData.pMeasureTimer);
 		
-		cd_weather_launch_measure ();  // asynchrone
+		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 }
 static void _cd_weather_search_for_location (GtkMenuItem *menu_item, gpointer *data)
@@ -169,10 +168,9 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, gpointer *d
 }
 static void _cd_weather_reload (GtkMenuItem *menu_item, gpointer *data)
 {
-	g_source_remove (myData.iSidTimer);
-	myData.iSidTimer = 0;
+	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
 	
-	cd_weather_launch_measure ();  // asynchrone
+	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("weather", pSubMenu, CD_APPLET_MY_MENU)

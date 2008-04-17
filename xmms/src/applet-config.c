@@ -42,14 +42,13 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
+	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	
 	int i;
 	for (i = 0; i < PLAYER_NB_STATUS; i ++) {
 		if (myData.pSurfaces[i] != NULL)
 			cairo_surface_destroy (myData.pSurfaces[i]);
 	}
-	
-	if (myData.pipeTimer != 0)
-		g_source_remove(myData.pipeTimer);
 	
 	g_free (myData.playingTitle);
 CD_APPLET_RESET_DATA_END

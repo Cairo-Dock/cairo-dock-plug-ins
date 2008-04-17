@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <glib/gi18n.h>
+#include <glib.h>
 #include <glib/gprintf.h>
 
 #include "applet-struct.h"
@@ -230,32 +231,123 @@ void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 	int smallRate;
 	if(rate > 1000000000000000)
 	{
-		g_sprintf(debit, "999+ TB/s");
+		if (myDesklet)
+			g_sprintf(debit, "999+ TB/s");
+		else
+			g_sprintf(debit, "###");
  	}
  	else if (rate > 1000000000000)
  	{
  		smallRate = (int) (rate / 1000000000000);
- 		g_sprintf(debit, "%i %s/s", smallRate, D_("TB"));
+ 		if (myDesklet)
+			g_sprintf(debit, "%i %s/s", smallRate, D_("TB"));
+		else
+			g_sprintf(debit, "%iT", smallRate);
  	}
  	else if (rate > 1000000000)
  	{
- 		smallRate = (int) (rate / 1000000000); 
- 		g_sprintf(debit, "%i %s/s", smallRate, D_("TB"));
+ 		smallRate = (int) (rate / 1000000000);
+ 		if (myDesklet)
+			g_sprintf(debit, "%i %s/s", smallRate, D_("GB"));
+		else
+			g_sprintf(debit, "%iG", smallRate);
  	}
  	else if (rate > 1000000)
  	{
  		smallRate = (int) (rate / 1000000);
-  		g_sprintf(debit, "%i %s/s", smallRate, D_("MB"));		
+  		if (myDesklet)
+			g_sprintf(debit, "%i %s/s", smallRate, D_("MB"));
+		else
+			g_sprintf(debit, "%iM", smallRate);
  	}
  	else if (rate > 1000)
  	{
  		smallRate = (int) (rate / 1000);
-  		g_sprintf(debit, "%i %s/s", smallRate, D_("KB"));	
+  		if (myDesklet)
+			g_sprintf(debit, "%i %s/s", smallRate, D_("KB"));
+		else
+			g_sprintf(debit, "%iK", smallRate);
  	}
- 	else
+ 	else if (rate > 0)
  	{
  		smallRate = rate;
-		g_sprintf(debit, "%i %s/s", smallRate, D_("B"));
+		if (myDesklet)
+			g_sprintf(debit, "%i %s/s", smallRate, D_("B"));
+		else
+			g_sprintf(debit, "%io", smallRate);
  	}
+	else
+	{
+		if (myDesklet)
+			g_sprintf(debit, "0 %s/s", D_("B"));
+		else
+			g_sprintf(debit, "0");
+	}
 }
 
+
+void cd_netspeed_acquisition (void)
+{
+	gchar *cCommand = g_strdup_printf ("cat /proc/net/dev > %s", NETSPEED_TMP_FILE);
+	system (cCommand);
+	g_free (cCommand);
+}
+
+void cd_netspeed_read_data (void)
+{
+	g_timer_stop (myData.pClock);
+	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
+	g_timer_start (myData.pClock);
+	
+	gchar *cContent = NULL;
+	gsize length=0;
+	GError *erreur = NULL;
+	g_file_get_contents (NETSPEED_TMP_FILE, &cContent, &length, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning("Attention : %s", erreur->message);
+		g_error_free(erreur);
+		erreur = NULL;
+		myData.bAcquisitionOK = FALSE;
+	}
+	else
+	{
+		int iNumLine = 1;
+		gchar *tmp = cContent;
+		while (TRUE)
+		{
+			if (iNumLine > 3)  // les 2 premieres lignes sont les noms des champs, la 3eme est la loopback.
+			{
+				while (*tmp == ' ')  // on saute les espaces.
+					tmp ++;
+				
+				if (strncmp (tmp, myConfig.cInterface, myConfig.iStringLen) == 0 && *(tmp+myConfig.iStringLen) == ':')  // c'est l'interface qu'on veut.
+				{
+					tmp += myConfig.iStringLen+1;  // on saute le ':' avec.
+					
+					myData.iReceivedBytes = atoi (tmp);
+					
+					int i = 0;
+					for (i = 0; i < 8; i ++)  // on saute les 8 valeurs suivantes.
+					{
+						while (*tmp != ' ')  // saute le chiffre courant.
+							tmp ++;
+						while (*tmp == ' ')  // saute les espaces.
+							tmp ++;
+					}
+					myData.iTransmittedBytes = atoi (tmp);
+					
+					myData.bAcquisitionOK = TRUE;
+					break ;
+				}
+			}
+			tmp = strchr (tmp+1, '\n');
+			if (tmp == NULL)
+				break;
+			tmp ++;
+			iNumLine ++;
+		}
+		
+		g_free (cContent);
+	}
+}

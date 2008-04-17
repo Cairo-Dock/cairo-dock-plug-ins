@@ -117,7 +117,7 @@ void cd_wifi_read_data (void) {
 	gsize length=0;
 	GError *erreur = NULL;
 	g_file_get_contents(WIFI_TMP_FILE, &cContent, &length, &erreur);
-	if (erreur != NULL)	{
+	if (erreur != NULL) {
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;

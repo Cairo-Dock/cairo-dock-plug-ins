@@ -7,6 +7,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 ******************************************************************************/
 #include <stdlib.h>
+#include <cairo-dock.h>
 
 #include "applet-utils.h"
 
@@ -18,5 +19,5 @@ void env_backend_logout (void)
 
 void env_backend_setup_time (void)
 {
-	cairo_dock_launch_command ("gksu time-admin", &erreur);
+	cairo_dock_launch_command ("gksu time-admin");
 }

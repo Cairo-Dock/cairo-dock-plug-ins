@@ -40,14 +40,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
-	
-	//On libère la mémoire de la jauge
-	free_cd_Gauge(myData.pGauge);
-	
-	/*if (myData.iSidTimer != 0) {
-		g_source_remove (myData.iSidTimer);
-		myData.iSidTimer = 0;
-	}*/
 CD_APPLET_STOP_END
 
 
@@ -73,10 +65,6 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cairo_dock_stop_measure_timer (myData.pMeasureTimer);
-		/*if (myData.iSidTimer != 0) { // la frequence a pu changer.
-			g_source_remove (myData.iSidTimer);
-			myData.iSidTimer = 0;
-		}*/
 		
 		if (myConfig.bUseGauge)  // on ne veut plus des jauges.
 		{

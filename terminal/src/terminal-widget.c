@@ -412,6 +412,21 @@ static gboolean on_key_press_term (GtkWidget *pWidget,
 	}
 	return FALSE;
 }
+static gchar * _terminal_get_tab_name (int iNumPage)
+{
+	GtkWidget *vterm = gtk_notebook_get_nth_page (GTK_NOTEBOOK(myData.tab), iNumPage);
+	GtkWidget *pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), vterm);
+	GList *pTabWidgetList = gtk_container_get_children (GTK_CONTAINER (pTabLabelWidget));
+	GtkLabel *pLabel;
+	const gchar *cCurrentName;
+	if (pTabWidgetList != NULL && pTabWidgetList->data != NULL)
+	{
+		GtkLabel *pLabel = pTabWidgetList->data;
+		const gchar *cCurrentName = gtk_label_get_text (pLabel);
+		return _get_label_and_color (cCurrentName, NULL, NULL);
+	}
+	return NULL;
+}
 void terminal_new_tab(void)
 {
   GtkWidget *vterm = NULL;
@@ -446,10 +461,41 @@ void terminal_new_tab(void)
 
 	GtkWidget *pHBox = gtk_hbox_new (FALSE, 0);
 	
-	gchar *cLabel = g_strdup_printf (" # %d ", gtk_notebook_get_n_pages (GTK_NOTEBOOK(myData.tab)) +1);
+	//\_________________On choisit un nom qui ne soit pas deja present, de la forme " # n ".
+	int i, iNbPages = gtk_notebook_get_n_pages (GTK_NOTEBOOK(myData.tab));
+	GList *pTabNameList = NULL;
+	for (i = 0; i < iNbPages; i ++)
+	{
+		pTabNameList = g_list_prepend (pTabNameList, _terminal_get_tab_name (i));
+	}
+	int iChoosedNum = 1;
+	gchar *cLabel = g_strdup_printf (" # %d ", iChoosedNum);
+	gchar *cTabName;
+	GList *pElement = pTabNameList;
+	do
+	{
+		if (pElement == NULL)
+			break ;
+		cTabName = pElement->data;
+		if (cTabName != NULL && strcmp (cTabName, cLabel) == 0)
+		{
+			g_free (cLabel);
+			iChoosedNum ++;
+			cLabel = g_strdup_printf (" # %d ", iChoosedNum);
+			
+			g_free (cTabName);
+			pElement->data = NULL;
+			pElement = pTabNameList;
+		}
+		else
+			pElement = pElement->next;
+	} while (TRUE);
+	g_list_foreach (pTabNameList, (GFunc) g_free, NULL);
+	g_list_free (pTabNameList);
+	
 	GtkWidget *pLabel = gtk_label_new (cLabel);
-	gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
 	g_free (cLabel);
+	gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
 	gtk_box_pack_start (GTK_BOX (pHBox),
 		pLabel,
 		FALSE,

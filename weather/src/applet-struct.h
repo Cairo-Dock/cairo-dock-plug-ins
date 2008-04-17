@@ -3,6 +3,7 @@
 #define  __CD_APPLET_STRUCT__
 
 #include <glib.h>
+#include <cairo-dock.h>
 
 #define WEATHER_NB_DAYS_MAX 5
 
@@ -74,15 +75,8 @@ typedef struct {
 	gchar *cLat;
 	CurrentContitions currentConditions;
 	Day days[WEATHER_NB_DAYS_MAX];
-	gint iSidTimer;
-	//GList *pDeskletIconList;
-	gint iMaxIconWidth;
-	gint iNbIcons;
+	CairoDockMeasure *pMeasureTimer;
 	gboolean bErrorRetrievingData;
-	guint iSidRotation;
-	gint iRotationDirection;
-	gint iRotationCount;
-	gdouble fRotationAngle;
 	} AppletData;
 
 
