@@ -16,10 +16,13 @@ Fabrice Rey <fabounet@users.berlios.de>
  
 CD_APPLET_INCLUDE_MY_VARS
 
+#define MY_NB_ICON_STATE 3
 #define MY_NB_SUB_ICONS 3
-static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Reload WM")};
-static gchar *s_iconFile[MY_NB_SUB_ICONS] = {N_("default"), N_("broken"), N_("other")};
-static gchar *s_iconClass[MY_NB_SUB_ICONS] = {N_("ccsm"), N_("emerald-theme-manager"), NULL};
+static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Switch WM")};
+static gchar *s_iconClass[MY_NB_SUB_ICONS] = {"ccsm", "emerald-theme-manager", NULL};
+
+static gchar *s_iconFile[MY_NB_ICON_STATE] = {"default.svg", "broken.svg", "other.svg"};
+
 
 static GList * _list_icons (void) {
 	GList *pIconList = NULL;
@@ -28,58 +31,28 @@ static GList * _list_icons (void) {
 	int i;
 	for (i = 0; i < MY_NB_SUB_ICONS; i ++) {
 		pIcon = g_new0 (Icon, 1);
-	  pIcon->acName = g_strdup (D_(s_iconName[i]));
-	  if (myConfig.cUserImage[i+3] != NULL) {
-	    pIcon->acFileName = cairo_dock_generate_file_path (myConfig.cUserImage[i+3]);
-	  }
-	  else {
-	    pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
-	  }
-	  pIcon->fOrder = 2*i;
-	  pIcon->iType = 2*i;
-	  pIcon->fScale = 1.;
-	  pIcon->fAlpha = 1.;
-	  pIcon->fWidthFactor = 1.;
-	  pIcon->fHeightFactor = 1.;
-	  pIcon->acCommand = g_strdup ("none");
-	  pIcon->cParentDockName = g_strdup (myIcon->acName);
-	  pIconList = g_list_append (pIconList, pIcon);
-	  if (s_iconClass[i] != NULL) {
-	    if (myConfig.bStealTaskBarIcon) {
-	      cairo_dock_inhibate_class (s_iconClass[i], pIcon);
-	    }
-	    else {
-	      cairo_dock_deinhibate_class (s_iconClass[i], pIcon);
-	    }
-	  }
+		pIcon->acName = g_strdup (D_(s_iconName[i]));
+		if (myConfig.cUserImage[i+MY_NB_ICON_STATE] != NULL) {
+			pIcon->acFileName = cairo_dock_generate_file_path (myConfig.cUserImage[i+MY_NB_ICON_STATE]);
+		}
+		else {
+			pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
+		}
+		pIcon->fOrder = 2*i;
+		pIcon->iType = 2*i;
+		pIcon->fScale = 1.;
+		pIcon->fAlpha = 1.;
+		pIcon->fWidthFactor = 1.;
+		pIcon->fHeightFactor = 1.;
+		pIcon->acCommand = (s_iconClass[i] != NULL ? g_strdup (s_iconClass[i]) : g_strdup ("none"));
+		pIcon->cParentDockName = g_strdup (myIcon->acName);
+		pIconList = g_list_append (pIconList, pIcon);
+		if (myConfig.bStealTaskBarIcon && s_iconClass[i] != NULL) {
+			cairo_dock_inhibate_class (s_iconClass[i], pIcon);
+		}
 	}
 	
 	return pIconList;
-}
-
-void _compiz_draw (void) {
-	g_return_if_fail (myDrawContext != NULL);
-  cd_message ("  chargement de l'icone compiz");
-	
-	g_free (myIcon->acFileName);
-	if (!myData.bAcquisitionOK) {
-	  if (myConfig.cUserImage[COMPIZ_BROKEN] != NULL) {
-	    myIcon->acFileName = cairo_dock_generate_file_path (myConfig.cUserImage[COMPIZ_BROKEN]);
-	  }
-	  else {
-		  myIcon->acFileName = g_strdup_printf ("%s/broken.svg", MY_APPLET_SHARE_DATA_DIR);
-	  }
-	}
-	else {
-	  if (myConfig.cUserImage[myData.iCompizIcon] != NULL) {
-	    myIcon->acFileName = cairo_dock_generate_file_path (myConfig.cUserImage[myData.iCompizIcon]);
-	  }
-	  else {
-		  myIcon->acFileName = g_strdup_printf ("%s/%s.svg", MY_APPLET_SHARE_DATA_DIR, s_iconFile[myData.iCompizIcon]);
-		}
-	}
-	CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
-
 }
 
 void cd_compiz_update_main_icon (void) {

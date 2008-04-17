@@ -48,10 +48,6 @@ CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-  myConfig.bStealTaskBarIcon = FALSE; //On émule le faite que ne veut pas d'inhibation
-	/*GList *pIconList = _list_icons (); //On déinhibe avec la nouvelle liste
-	g_list_free (pList); //On libère la mémoire*/
-	cd_compiz_build_icons();
 	
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
@@ -63,7 +59,7 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		
-		//\________________ les icones ont pu changer.
+		//\________________ les icones ont pu changer, ainsi que l'inhibition.
 		if (myIcon->pSubDock != NULL) {
 			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 			myIcon->pSubDock = NULL;

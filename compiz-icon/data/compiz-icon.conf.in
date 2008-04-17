@@ -59,12 +59,12 @@ auto reload compiz = true
 #{If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then.}
 auto reload decorator = true
 
-#b Force settings at startup
-#{Load default Windows Manager with options at startup.}
+#b Force Compiz settings at startup ?
+#{Load Compiz with options at startup.}
 force = false
 
 #b Steal the application's icon in taskbar ?
-#{It will prevent the CSSM or Emerald icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
+#{It will prevent the CSSM or Emerald icon to appear in the task bar. The corresponding subdock's icons will then behave as launcher and an appli.}
 inhibate appli = true
 
 #F[Compiz Options]

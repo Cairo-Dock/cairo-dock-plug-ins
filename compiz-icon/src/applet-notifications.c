@@ -87,15 +87,21 @@ static void _action_on_click (compizAction iAction) {
 	}
 }
 CD_APPLET_ON_CLICK_BEGIN
-	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_DOCK_CONTAINER (myIcon->pSubDock)) {  // clic sur le sous-dock.
+	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_DOCK_CONTAINER (myIcon->pSubDock) && pClickedIcon != NULL) {  // clic sur ne icone du sous-dock.
 		cd_debug (" clic sur %s", pClickedIcon->acName);
+		if (pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		_compiz_action_by_id ((int) pClickedIcon->fOrder/2);
 	}
 	else if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL) {  // clic sur une des icones du desklet.
 		if (pClickedIcon == myIcon)
 			cairo_dock_launch_measure (myData.pMeasureTimer);
 		else
+		{
+			if (pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
+				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 			_compiz_action_by_id ((int) pClickedIcon->fOrder/2);
+		}
 	}
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -106,6 +112,8 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (pClickedIcon == myIcon) {
 		_action_on_click (myConfig.iActionOnMiddleClick);
 	}
+	else if (pClickedIcon != NULL && pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
@@ -128,6 +136,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_IN_MENU (D_("Toggle Widgets Layer"), _compiz_menu_toggle_wlayer, pSubMenu)
 	CD_APPLET_ADD_IN_MENU (D_("Toggle Show Desktop"), _compiz_menu_show_desktop, pSubMenu)
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
-	if (pClickedIcon != myIcon)
+	if (pClickedIcon != myIcon && (pClickedIcon == NULL || pClickedIcon->acCommand == NULL || strcmp (pClickedIcon->acCommand, "none") == 0 || ! CAIRO_DOCK_IS_APPLI (pClickedIcon)))
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;  // on ne veut pas des autres entrees habituelles du menu.
 CD_APPLET_ON_BUILD_MENU_END

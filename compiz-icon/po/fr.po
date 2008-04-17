@@ -110,12 +110,12 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
-#: ../src/applet-load-icon.c:20
+#: ../src/applet-load-icon.c:20 ../src/applet-load-icon.c:21
 msgid "Configure Compiz"
 msgstr "Configurer Compiz"
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
-#: ../src/applet-load-icon.c:20
+#: ../src/applet-load-icon.c:20 ../src/applet-load-icon.c:21
 msgid "Emerald Manager"
 msgstr "Gestionnaire Emerald"
 
@@ -156,7 +156,7 @@ msgstr ""
 msgid "None"
 msgstr "Aucune"
 
-#: ../data/messages:43 ../data/messages:41
+#: ../data/messages:43 ../data/messages:41 ../src/applet-load-icon.c:21
 msgid "Switch WM"
 msgstr "Changer de WM"
 
@@ -184,47 +184,58 @@ msgstr ""
 "Sauf pour 'Changer de WM', vous devez activer le plug-in Dbus de compiz, "
 "ainsin que les plug-ins de l'action désirée"
 
+#: ../data/messages:67
 msgid "Steal the application's icon in taskbar ?"
 msgstr "Voler l'icône de l'application dans la barre d'applications ?"
 
 msgid ""
-"It will prevent the CSSM or Emerald icon to appear in the task bar. The applet's "
-"icon will then behave as a launcher, an appli, and an applet."
+"It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+"applet's icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
-"Cela empéchera l'icône de CSSM ou d'Emerald d'apparaitre dans la barre d'applications. "
-"L'icône de l'applet se comportera comme un lanceur, une application et un "
-"applet."
+"Cela empéchera l'icône de CSSM ou d'Emerald d'apparaitre dans la barre "
+"d'applications. L'icône de l'applet se comportera comme un lanceur, une "
+"application et un applet."
 
 #: ../data/messages:75 ../data/messages:61 ../data/messages:91
-#: ../data/messages:89
+#: ../data/messages:89 ../data/messages:93
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
 #: ../data/messages:73 ../data/messages:59 ../data/messages:89
-#: ../data/messages:87
+#: ../data/messages:87 ../data/messages:91
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
 
 #: ../data/messages:59 ../data/messages:63 ../data/messages:67
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:69
 msgid "Compiz Options"
 msgstr "Options de Compiz"
 
 #: ../data/messages:63 ../data/messages:67l ../data/messages:71
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:73
 msgid "Use Loose Binding ?"
 msgstr "Mode Moins Contraignant (Loose Binding) ?"
 
-msgid "With strict binding textures are bound whenever they are enabled, with loose binding they are enabled when created. The Nvidia driver seems a bit slow when binding textures, that's why this option gives a heavy performance increase on Nvidia."
-msgstr "Avec le binding stricte les textures sont liées temps qu'elles sont activées, avec le loose binding elles ne sont liée qu'a la création. Le driver Nvidia semble être lent lors du binding des textures, c'est pourquoi cette option donne de bonne peformance avec les Nvidia."
+#: ../data/messages:71
+msgid ""
+"With strict binding textures are bound whenever they are enabled, with loose "
+"binding they are enabled when created. The Nvidia driver seems a bit slow "
+"when binding textures, that's why this option gives a heavy performance "
+"increase on Nvidia."
+msgstr ""
+"Avec le binding stricte les textures sont liées temps qu'elles sont "
+"activées, avec le loose binding elles ne sont liée qu'a la création. Le "
+"driver Nvidia semble être lent lors du binding des textures, c'est pourquoi "
+"cette option donne de bonne peformance avec les Nvidia."
 
 #: ../data/messages:67 ../data/messages:71 ../data/messages:75
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:77
 msgid "Use Indirect Rendering ?"
 msgstr "Mode de Rendu Indirect (Indirect Rendering) ?"
 
 #: ../data/messages:61 ../data/messages:65 ../data/messages:69
 #: ../data/messages:73 ../data/messages:67 ../data/messages:71
+#: ../data/messages:75
 msgid "Use thoses options only if you know them."
 msgstr "Utilisez ces options seulement si vous les connaissez."
 
@@ -264,26 +275,32 @@ msgid "XFCE"
 msgstr ""
 
 #: ../data/messages:81 ../data/messages:97 ../data/messages:95
+#: ../data/messages:99
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Défaut' :"
 
 #: ../data/messages:85 ../data/messages:101 ../data/messages:99
+#: ../data/messages:103
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Cassée' :"
 
 #: ../data/messages:89 ../data/messages:105 ../data/messages:103
+#: ../data/messages:107
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "Nom de l'image 'Autre wm' :"
 
 #: ../data/messages:93 ../data/messages:109 ../data/messages:107
+#: ../data/messages:111
 msgid "Name of an image for the 'setting' icon :"
 msgstr "Nom de l'image 'Configuration' :"
 
 #: ../data/messages:97 ../data/messages:113 ../data/messages:111
+#: ../data/messages:115
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "Nom de l'image 'Emerald' :"
 
 #: ../data/messages:101 ../data/messages:117 ../data/messages:115
+#: ../data/messages:119
 msgid "Name of an image for the 'reload' icon :"
 msgstr "Nom de l'image 'Recharger' :"
 
@@ -292,7 +309,7 @@ msgstr "Nom de l'image 'Recharger' :"
 #: ../data/messages:103 ../data/messages:107 ../data/messages:111
 #: ../data/messages:115 ../data/messages:93 ../data/messages:97
 #: ../data/messages:101 ../data/messages:105 ../data/messages:109
-#: ../data/messages:113
+#: ../data/messages:113 ../data/messages:117
 msgid "Let t empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icon par défault"
 
@@ -317,6 +334,7 @@ msgid "Toggle Show Desktop"
 msgstr "Monter le Bureau"
 
 #: ../data/messages:77 ../data/messages:93 ../data/messages:91
+#: ../data/messages:95
 msgid "Images"
 msgstr ""
 
@@ -348,26 +366,40 @@ msgstr ""
 "Si le décorateur se ferme de façon inattendue, Cairo-Dock va le "
 "redémarrerVous devrez alors quitter Compiz depuis le dock"
 
-#: ../data/messages:77 ../data/messages:75
+#: ../data/messages:77 ../data/messages:75 ../data/messages:79
 msgid "By default it will be Emerald."
 msgstr "Ce sera Emerald par Défaut."
 
-#: ../data/messages:79 ../data/messages:77
+#: ../data/messages:79 ../data/messages:77 ../data/messages:81
 msgid "Choose your Windows Decorator :"
 msgstr "Choississez votre Décorateur de Fenêtre :"
 
-#: ../data/messages:81 ../data/messages:79
+#: ../data/messages:81 ../data/messages:79 ../data/messages:83
 msgid "emerald"
 msgstr ""
 
-#: ../data/messages:83 ../data/messages:81
+#: ../data/messages:83 ../data/messages:81 ../data/messages:85
 msgid "gtk-window-decorator"
 msgstr ""
 
-#: ../data/messages:85 ../data/messages:83
+#: ../data/messages:85 ../data/messages:83 ../data/messages:87
 msgid "kde-window-decorator"
 msgstr ""
 
-#: ../data/messages:87 ../data/messages:85
+#: ../data/messages:87 ../data/messages:85 ../data/messages:89
 msgid "heliodor"
+msgstr ""
+
+#: ../data/messages:61
+msgid "Load Compiz with options at startup."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Force Compiz settings at startup ?"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+"corresponding subdock's icons will then behave as launcher and an appli."
 msgstr ""
