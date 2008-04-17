@@ -94,7 +94,9 @@ gboolean dbus_connect_to_bus (void)
 		dbus_g_proxy_add_signal(dbus_proxy_power, "OnBatteryChanged",
 			G_TYPE_BOOLEAN,
 			G_TYPE_INVALID);
-		
+			
+		dbus_g_proxy_connect_signal(dbus_proxy_power, "OnBatteryChanged",
+			G_CALLBACK(on_battery_changed), NULL, NULL);
 		
 		gchar *cBatteryName = power_battery_name();
 		if (cBatteryName == NULL)  // on n'a pas trouve de battterie nous-meme.
