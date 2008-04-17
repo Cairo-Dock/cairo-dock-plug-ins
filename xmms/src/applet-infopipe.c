@@ -201,9 +201,11 @@ void cd_xmms_read_data (void) {
 		}  // fin de parcours des lignes.
 		g_strfreev (cInfopipesList);
 	}
-	///cd_remove_pipes ();
-	g_remove (cInfopipeFilePath);
-	g_free (cInfopipeFilePath);
+	//cd_remove_pipes ();
+	if (myConfig.iPlayer != MY_XMMS) {
+	  g_remove (cInfopipeFilePath);
+	  g_free (cInfopipeFilePath);
+	}
 }
 
 
@@ -223,8 +225,7 @@ void cd_xmms_remove_pipes(void) {
 		default :  // xmms n'en a pas.
 		return ;
 	}
-	if (cInfopipeFilePath != NULL)
-	{
+	if (cInfopipeFilePath != NULL) {
 		g_remove (cInfopipeFilePath);
 		g_free (cInfopipeFilePath);
 	}
