@@ -12,220 +12,8 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-
-//#define NETSPEED_TMP_FILE "/tmp/netspeed"
 #define NETSPEED_DATA_PIPE "/proc/net/dev"
 
-/*static int s_iThreadIsRunning = 0;
-static int s_iSidTimerRedraw = 0;
-
-gboolean cd_netspeed_timer (gpointer data) {
-	cd_netspeed_launch_analyse();
-	return TRUE;
-}
-
-gpointer cd_netspeed_threaded_calculation (gpointer data) {
-	cd_netspeed_get_data();
-	
-	g_atomic_int_set (&s_iThreadIsRunning, 0);
-	cd_message ("*** fin du thread netspeed");
-	return NULL;
-}
-
-void cd_netspeed_get_data (void) {
-	gchar *cCommand = g_strdup_printf("bash %s/netspeed", MY_APPLET_SHARE_DATA_DIR);
-	system (cCommand);
-	g_free (cCommand);
-}
-
-static gboolean _cd_netspeed_check_for_redraw (gpointer data) {
-	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
-	cd_message ("%s (%d)", __func__, iThreadIsRunning);
-	if (! iThreadIsRunning) {
-		s_iSidTimerRedraw = 0;
-		if (myIcon == NULL) {
-			g_print ("annulation du chargement de netspeed (myIcon == NULL)\n");
-			return FALSE;
-		}
-		
-		gboolean bResultOK = cd_netspeed_getRate();
-		
-		//\_______________________ On lance le timer si necessaire.
-		if (myData.iSidTimer == 0) {
-			myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_netspeed_timer, NULL);
-		}
-		return FALSE;
-	}
-	return TRUE;
-}
-
-void cd_netspeed_launch_analyse (void) {
-	cd_message (" ");
-	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1)) {  //il etait egal a 0, on lui met 1 et on lance le thread.
-		cd_message (" ==> lancement du thread de calcul");
-		
-		GError *erreur = NULL;
-		GThread* pThread = g_thread_create ((GThreadFunc) cd_netspeed_threaded_calculation, NULL, FALSE, &erreur);
-		if (erreur != NULL) {
-			cd_warning ("Attention : %s", erreur->message);
-			g_error_free (erreur);
-		}
-				
-		if (s_iSidTimerRedraw == 0) {
-			s_iSidTimerRedraw = g_timeout_add (333, (GSourceFunc) _cd_netspeed_check_for_redraw, (gpointer) NULL);
-		}
-		
-	}
-}
-
-
-gboolean cd_netspeed_getRate(void) {
-  	gchar *cContent = NULL;
-	gsize length=0;
-	GError *tmp_erreur = NULL;
-	g_file_get_contents(NETSPEED_TMP_FILE, &cContent, &length, &tmp_erreur);
-	if (tmp_erreur != NULL) {
-		cd_message("Attention : %s\n", tmp_erreur->message);
-		g_error_free(tmp_erreur);
-		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-		//CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);
-
-		return FALSE;
-	}
-	else {
-		gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
-		g_free(cContent);
-		gchar *cOneInfopipe;
-		gchar **recup, *interface;
-		GList *pList = NULL;
-		double *pValue;
-    		static unsigned long long nUp = 0, nDown = 0;
-    		static unsigned long long time = 0;
-    		static unsigned long long maxUpRate = 0, maxDownRate = 0;
-    		unsigned long long newTime, newNUp, newNDown, upRate = 0, downRate = 0;
-    		int i;
-		newTime = 0;
-		newNUp = 0;
-		newNDown = 0;
-		for (i = 0; cInfopipesList[i] != NULL; i ++) {
-			cOneInfopipe = cInfopipesList[i];
-			if ((i == 0) && (strcmp(cOneInfopipe,"netspeed") == 0)) {
-				CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		    		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-		    		//CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);
-		    		cd_message("No interface found, timer stopped.\n");
-				myData.interfaceFound = 0;
-				g_strfreev (cInfopipesList);
-		    		return FALSE;
-		  	}
-			else {
-				myData.interfaceFound = 1; //Interface found
-				if(strcmp(cOneInfopipe,"time") == 0) {
-					//cd_debug("netspeed -> read END !\n");	
-					break;
-				}
-				if(strcmp(cOneInfopipe,"stop") == 0) {
-					cd_error("netspeed -> Error -> Wrong /tmp/netspeed file >< !\n");	
-					break;
-				}
-				recup = g_strsplit(cOneInfopipe,">", -1);
-				interface = recup[0];
-				// On ne compte pas wifi0 qui nous dit des trucs qu'on ne comprend pas...
-				if(strcmp(interface,"wifi0") != 0) {
-					newNDown += atoi(recup[1]);
-					newNUp += atoi(recup[2]);
-				}
-				//cd_debug("netspeed -> read : Interface %s\n", interface);
-				//CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pUnknown);
-			}
-		}
-		
-		if(time != 0)
-		{
-			
-			newTime = atoll(cInfopipesList[i+1]);
-			cd_debug("netspeed -> Time Diff -> %lld\n", (newTime - time));
-			// On calcule le débit en octet par secondes
-			if((newTime - time) != 0)
-			{
-				upRate = (unsigned long long) (((newNUp - nUp) * 1000000000) / (newTime - time));
-				downRate = (unsigned long long) (((newNDown - nDown) * 1000000000) / (newTime - time));
-				cd_debug("Up : %llu - Down : %llu", upRate, downRate);
-			}
-			if(upRate > maxUpRate)
-			{
-				maxUpRate = upRate;
-			}
-			if(downRate > maxDownRate)
-			{
-				maxDownRate = downRate;
-			}
-			gchar upRateFormatted[11];
-			gchar downRateFormatted[11];
-			cd_netspeed_formatRate(upRate, &upRateFormatted);
-			cd_netspeed_formatRate(downRate, &downRateFormatted);
-			if(inDebug == 1) 
-			{
-			cairo_dock_show_temporary_dialog(
-				"nOctets avant : ↑%llu ↓%llu \n maintenant : ↑%llu ↓%llu\n diff : ↑%llu ↓%llu \n \
-temps precedent : %llu \n temps courant : %llu \n Diff %llu \n maxUpRate : %llu \n maxDownRate : %llu",
-				myIcon, myContainer, myConfig.iCheckInterval,
-				nUp, nDown, newNUp, newNDown, newNUp - nUp, newNDown - nDown,
-				time, newTime, newTime - time, maxUpRate, maxDownRate);
-			}
-			else
-			{
-			cd_debug("nOctets avant : ↑%llu ↓%llu \n maintenant : ↑%llu ↓%llu\n diff : ↑%llu ↓%llu \n \
-temps precedent : %llu \n temps courant : %llu \n Diff %llu \n maxUpRate : %llu \n maxDownRate : %llu",
-				nUp, nDown, newNUp, newNDown, newNUp - nUp, newNDown - nDown,
-				time, newTime, newTime - time, maxUpRate, maxDownRate);
-			}
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("↑%s\n↓%s", upRateFormatted,downRateFormatted);
-			if((maxUpRate != 0) && (maxDownRate != 0))
-			{
-				pValue = g_new (double, 1);
-				*pValue = (double) upRate / maxUpRate;
-				pList = g_list_append (pList, pValue);
-				pValue = g_new (double, 1);
-				*pValue = (double) downRate / maxDownRate;
-				pList = g_list_append (pList, pValue);
-				//make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) sumRate / maxRate);
-				make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);	
-				
-			}
-			else
-			{
-				if(maxUpRate != 0) 
-				{
-					make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) upRate / maxUpRate);
-				}
-				else
-					if(maxDownRate != 0) 
-					{
-						make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) downRate / maxDownRate);
-					}
-					else
-						make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
-			}
-			time = newTime;
-			nUp = newNUp;
-			nDown = newNDown;
-		}
-		else
-		{
-			time = atoll(cInfopipesList[i+1]);
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("Loading");
-			nUp = newNUp;
-			nDown = newNDown;
-			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
-
-		}
-		CD_APPLET_REDRAW_MY_ICON
-		g_strfreev (cInfopipesList);
-	}  
-	return TRUE;
-}*/
 
 // Prend un debit en octet par seconde et le transforme en une chaine de la forme : xxx yB/s
 void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
@@ -345,8 +133,6 @@ void cd_netspeed_read_data (void)
 						myData.iDownloadSpeed = (iReceivedBytes - myData.iReceivedBytes) / fTimeElapsed;
 						myData.iUploadSpeed = (iTransmittedBytes - myData.iTransmittedBytes) / fTimeElapsed;
 					}
-					else
-						myData.bInitialized = TRUE;
 					
 					myData.iReceivedBytes = iReceivedBytes;
 					myData.iTransmittedBytes = iTransmittedBytes;
@@ -368,35 +154,64 @@ void cd_netspeed_update_from_data (void)
 {
 	if ( ! myData.bAcquisitionOK)
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+		if (myConfig.iInfoDisplay == NETSPEED_INFO_ON_LABEL)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
+		else if (myConfig.iInfoDisplay == NETSPEED_INFO_ON_ICON)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
 		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+		
+		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
 	else
 	{
+		cairo_dock_set_normal_frequency_state (myData.pMeasureTimer);
+		
 		if (! myData.bInitialized)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(myDock ? "..." : D_("Loading"));
+			if (myConfig.iInfoDisplay == NETSPEED_INFO_ON_ICON)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(myDock ? "..." : D_("Loading"));
 			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+			myData.bInitialized = TRUE;
 		}
 		else
 		{
-			gchar upRateFormatted[11];
-			gchar downRateFormatted[11];
-			cd_netspeed_formatRate(myData.iUploadSpeed, upRateFormatted);
-			cd_netspeed_formatRate(myData.iDownloadSpeed, downRateFormatted);
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("↑%s\n↓%s", upRateFormatted, downRateFormatted);
+			if (myConfig.iInfoDisplay != NETSPEED_NO_INFO)
+			{
+				gchar upRateFormatted[11];
+				gchar downRateFormatted[11];
+				cd_netspeed_formatRate(myData.iUploadSpeed, upRateFormatted);
+				cd_netspeed_formatRate(myData.iDownloadSpeed, downRateFormatted);
+				if (myConfig.iInfoDisplay == NETSPEED_INFO_ON_ICON)
+				{
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("↑%s\n↓%s", upRateFormatted, downRateFormatted)
+				}
+				else
+				{
+					gchar * cInfoTitle = g_strdup_printf ("↑%s\n↓%s", upRateFormatted, downRateFormatted);
+					CD_APPLET_SET_NAME_FOR_MY_ICON (cInfoTitle)
+					g_free (cInfoTitle);
+				}
+			}
+			
+			if(myData.iUploadSpeed > myData.iMaxUpRate) {
+				myData.iMaxUpRate = myData.iUploadSpeed;
+			}
+			if(myData.iDownloadSpeed > myData.iMaxDownRate) {
+				myData.iMaxDownRate = myData.iDownloadSpeed;
+			}
 			
 			if((myData.iMaxUpRate != 0) && (myData.iMaxDownRate != 0))
 			{
-				GList *pList = NULL;  /// vive les fuites memoire !...
+				GList *pList = NULL;  /// il faudrait passer un tableau plutot ...
 				double *pValue = g_new (double, 1);
 				*pValue = (double) myData.iUploadSpeed / myData.iMaxUpRate;
 				pList = g_list_append (pList, pValue);
 				pValue = g_new (double, 1);
 				*pValue = (double) myData.iDownloadSpeed / myData.iMaxDownRate;
 				pList = g_list_append (pList, pValue);
-				//make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) sumRate / maxRate);
-				make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);	
+				make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);
+				g_list_foreach (pList, g_free, NULL);
+				g_list_free (pList);
 			}
 			else
 			{

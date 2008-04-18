@@ -182,6 +182,7 @@ msgid "Delay between signal checks :"
 msgstr ""
 
 #: ../src/applet-notifications.c:38 ../src/applet-notifications.c:39
+#: ../src/applet-notifications.c:43
 msgid "Debug"
 msgstr ""
 
@@ -193,7 +194,7 @@ msgstr ""
 msgid "List of available themes for the analogic display :"
 msgstr ""
 
-#: ../src/applet-netspeed.c:377
+#: ../src/applet-netspeed.c:377 ../src/applet-netspeed.c:378
 msgid "Loading"
 msgstr ""
 
@@ -202,4 +203,21 @@ msgstr ""
 msgid ""
 "Total amount of data :\\  downloaded : %.2fKB\n"
 "  uploaded : %.2fKB"
+msgstr ""
+
+#: ../src/applet-notifications.c:19
+#, c-format
+msgid ""
+"Total amount of data :\n"
+"  downloaded : %.2fKB\n"
+"  uploaded : %.2fKB"
+msgstr ""
+
+#: ../src/applet-notifications.c:21
+#, c-format
+msgid "Interface '%s' seems to not exist or is not readable"
+msgstr ""
+
+#: ../src/applet-notifications.c:41
+msgid "Re-check interface"
 msgstr ""

@@ -23,13 +23,8 @@ CD_APPLET_ON_CLICK_END
 
 
 static void _netspeed_recheck_ (GtkMenuItem *menu_item, gpointer *data) {
-		if (myData.iSidTimer != 0) {
-		  g_source_remove (myData.iSidTimer);
-		  myData.iSidTimer = 0;
-	  }
-	  myConfig.iCheckInterval = myConfig.dCheckInterval;
-	  //cd_netspeed_launch_analyse();
-	  cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
+	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
 static void _netspeed_change_mode_debug_ () {
 	inDebug = 1 - inDebug;

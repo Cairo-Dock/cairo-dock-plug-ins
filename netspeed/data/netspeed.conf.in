@@ -48,9 +48,13 @@ interface =
 
 #F[Information]
 frame_info=
+
+#r[No;On icon;On label] Display speed values :
+info display = 1
+
 #R1[] List of available themes for the analogic display :/
 theme = turbo-night
 
-#i[5;5000] Delay between signal checks :
-#{in milliseconds.}
-delay = 1000
+#i[1;30] Delay between 2 measures :
+#{in seconds.}
+delay = 3
