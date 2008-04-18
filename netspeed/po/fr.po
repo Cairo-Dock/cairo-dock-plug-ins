@@ -63,7 +63,7 @@ msgstr ""
 " écrite par parAdOxxx_ZeRo pour Cairo-Dock"
 
 #: ../src/applet-notifications.c:35 ../src/applet-notifications.c:33
-#: ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:37
 msgid "Waiting"
 msgstr "Waiting"
 
@@ -143,25 +143,25 @@ msgstr "Laissez vide pour utiliser l'icône par défaut."
 #: ../src/applet-netspeed.c:193 ../src/applet-netspeed.c:210
 #: ../src/applet-netspeed.c:215 ../src/applet-netspeed.c:211
 #: ../src/applet-netspeed.c:216 ../src/applet-netspeed.c:238
-#: ../src/applet-netspeed.c:243
+#: ../src/applet-netspeed.c:243 ../src/applet-netspeed.c:244
 msgid "TB"
 msgstr "To"
 
-#: ../src/applet-netspeed.c:251
+#: ../src/applet-netspeed.c:251 ../src/applet-netspeed.c:252
 msgid "GB"
 msgstr "Go"
 
 #: ../src/applet-netspeed.c:195 ../src/applet-netspeed.c:193
 #: ../src/applet-netspeed.c:198 ../src/applet-netspeed.c:220
 #: ../src/applet-netspeed.c:221 ../src/applet-netspeed.c:248
-#: ../src/applet-netspeed.c:259
+#: ../src/applet-netspeed.c:259 ../src/applet-netspeed.c:260
 msgid "MB"
 msgstr "Mo"
 
 #: ../src/applet-netspeed.c:200 ../src/applet-netspeed.c:198
 #: ../src/applet-netspeed.c:203 ../src/applet-netspeed.c:225
 #: ../src/applet-netspeed.c:226 ../src/applet-netspeed.c:253
-#: ../src/applet-netspeed.c:267
+#: ../src/applet-netspeed.c:267 ../src/applet-netspeed.c:268
 msgid "KB"
 msgstr "Ko"
 
@@ -169,6 +169,7 @@ msgstr "Ko"
 #: ../src/applet-netspeed.c:208 ../src/applet-netspeed.c:230
 #: ../src/applet-netspeed.c:231 ../src/applet-netspeed.c:258
 #: ../src/applet-netspeed.c:275 ../src/applet-netspeed.c:282
+#: ../src/applet-netspeed.c:276 ../src/applet-netspeed.c:283
 msgid "B"
 msgstr "o"
 
@@ -180,7 +181,7 @@ msgstr ""
 msgid "Delay between signal checks :"
 msgstr ""
 
-#: ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:39
 msgid "Debug"
 msgstr ""
 
@@ -190,4 +191,15 @@ msgstr ""
 
 #: ../data/messages:37
 msgid "List of available themes for the analogic display :"
+msgstr ""
+
+#: ../src/applet-netspeed.c:377
+msgid "Loading"
+msgstr ""
+
+#: ../src/applet-notifications.c:18
+#, c-format
+msgid ""
+"Total amount of data :\\  downloaded : %.2fKB\n"
+"  uploaded : %.2fKB"
 msgstr ""

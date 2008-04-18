@@ -102,11 +102,13 @@ msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
 #: ../src/applet-load-icon.c:20 ../src/applet-load-icon.c:21
+#: ../src/applet-load-icon.c:22
 msgid "Configure Compiz"
 msgstr ""
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
 #: ../src/applet-load-icon.c:20 ../src/applet-load-icon.c:21
+#: ../src/applet-load-icon.c:22
 msgid "Emerald Manager"
 msgstr ""
 
@@ -138,6 +140,7 @@ msgstr ""
 
 #: ../src/applet-notifications.c:63 ../src/applet-notifications.c:113
 #: ../src/applet-notifications.c:120 ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:133
 msgid "Switch Windows Decorator"
 msgstr ""
 
@@ -196,13 +199,13 @@ msgid "Custom command for system's Window Manager :"
 msgstr ""
 
 #: ../data/messages:59 ../data/messages:63 ../data/messages:67
-#: ../data/messages:65 ../data/messages:69
+#: ../data/messages:65 ../data/messages:69 ../data/messages:73
 msgid "Compiz Options"
 msgstr ""
 
 #: ../data/messages:61 ../data/messages:65 ../data/messages:69
 #: ../data/messages:73 ../data/messages:67 ../data/messages:71
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:79
 msgid "Use thoses options only if you know them."
 msgstr ""
 
@@ -223,17 +226,17 @@ msgid "Use system's Decorator"
 msgstr ""
 
 #: ../data/messages:73 ../data/messages:59 ../data/messages:89
-#: ../data/messages:87 ../data/messages:91
+#: ../data/messages:87 ../data/messages:91 ../data/messages:95
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
 #: ../data/messages:75 ../data/messages:61 ../data/messages:91
-#: ../data/messages:89 ../data/messages:93
+#: ../data/messages:89 ../data/messages:93 ../data/messages:97
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
 #: ../data/messages:77 ../data/messages:93 ../data/messages:91
-#: ../data/messages:95
+#: ../data/messages:95 ../data/messages:99
 msgid "Images"
 msgstr ""
 
@@ -242,57 +245,58 @@ msgstr ""
 #: ../data/messages:103 ../data/messages:107 ../data/messages:111
 #: ../data/messages:115 ../data/messages:93 ../data/messages:97
 #: ../data/messages:101 ../data/messages:105 ../data/messages:109
-#: ../data/messages:113 ../data/messages:117
+#: ../data/messages:113 ../data/messages:117 ../data/messages:121
+#: ../data/messages:125 ../data/messages:129
 msgid "Let t empty to use the default icon."
 msgstr ""
 
 #: ../data/messages:81 ../data/messages:97 ../data/messages:95
-#: ../data/messages:99
+#: ../data/messages:99 ../data/messages:103
 msgid "Name of an image for the 'default' icon :"
 msgstr ""
 
 #: ../data/messages:85 ../data/messages:101 ../data/messages:99
-#: ../data/messages:103
+#: ../data/messages:103 ../data/messages:107
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""
 
 #: ../data/messages:89 ../data/messages:105 ../data/messages:103
-#: ../data/messages:107
+#: ../data/messages:107 ../data/messages:111
 msgid "Name of an image for the 'other wm' icon :"
 msgstr ""
 
 #: ../data/messages:93 ../data/messages:109 ../data/messages:107
-#: ../data/messages:111
+#: ../data/messages:111 ../data/messages:115
 msgid "Name of an image for the 'setting' icon :"
 msgstr ""
 
 #: ../data/messages:97 ../data/messages:113 ../data/messages:111
-#: ../data/messages:115
+#: ../data/messages:115 ../data/messages:119
 msgid "Name of an image for the 'emerald' icon :"
 msgstr ""
 
 #: ../data/messages:101 ../data/messages:117 ../data/messages:115
-#: ../data/messages:119
+#: ../data/messages:119 ../data/messages:123
 msgid "Name of an image for the 'reload' icon :"
 msgstr ""
 
 #: ../src/applet-notifications.c:112 ../src/applet-notifications.c:119
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:118 ../src/applet-notifications.c:132
 msgid "Switch Windows Manager"
 msgstr ""
 
 #: ../src/applet-notifications.c:114 ../src/applet-notifications.c:129
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:127 ../src/applet-notifications.c:142
 msgid "Toggle Exposition Mode"
 msgstr ""
 
 #: ../src/applet-notifications.c:115 ../src/applet-notifications.c:130
-#: ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:128 ../src/applet-notifications.c:143
 msgid "Toggle Widgets Layer"
 msgstr ""
 
 #: ../src/applet-notifications.c:116 ../src/applet-notifications.c:131
-#: ../src/applet-notifications.c:129
+#: ../src/applet-notifications.c:129 ../src/applet-notifications.c:145
 msgid "Toggle Show Desktop"
 msgstr ""
 
@@ -315,6 +319,7 @@ msgid "None"
 msgstr ""
 
 #: ../data/messages:43 ../data/messages:41 ../src/applet-load-icon.c:21
+#: ../src/applet-load-icon.c:22
 msgid "Switch WM"
 msgstr ""
 
@@ -369,34 +374,42 @@ msgid "Force settings at startup"
 msgstr ""
 
 #: ../data/messages:71 ../data/messages:69 ../data/messages:73
+#: ../data/messages:77
 msgid "Use Loose Binding ?"
 msgstr ""
 
 #: ../data/messages:75 ../data/messages:73 ../data/messages:77
+#: ../data/messages:81
 msgid "Use Indirect Rendering ?"
 msgstr ""
 
 #: ../data/messages:77 ../data/messages:75 ../data/messages:79
+#: ../data/messages:83
 msgid "By default it will be Emerald."
 msgstr ""
 
 #: ../data/messages:79 ../data/messages:77 ../data/messages:81
+#: ../data/messages:85
 msgid "Choose your Windows Decorator :"
 msgstr ""
 
 #: ../data/messages:81 ../data/messages:79 ../data/messages:83
+#: ../data/messages:87
 msgid "emerald"
 msgstr ""
 
 #: ../data/messages:83 ../data/messages:81 ../data/messages:85
+#: ../data/messages:89
 msgid "gtk-window-decorator"
 msgstr ""
 
 #: ../data/messages:85 ../data/messages:83 ../data/messages:87
+#: ../data/messages:91
 msgid "kde-window-decorator"
 msgstr ""
 
 #: ../data/messages:87 ../data/messages:85 ../data/messages:89
+#: ../data/messages:93
 msgid "heliodor"
 msgstr ""
 
@@ -436,10 +449,36 @@ msgstr ""
 msgid "Steal the application's icon in taskbar ?"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:75
 msgid ""
 "With strict binding textures are bound whenever they are enabled, with loose "
 "binding they are enabled when created. The Nvidia driver seems a bit slow "
 "when binding textures, that's why this option gives a heavy performance "
 "increase on Nvidia."
+msgstr ""
+
+#: ../src/applet-load-icon.c:22
+msgid "Exposition"
+msgstr ""
+
+#: ../src/applet-load-icon.c:22
+msgid "Widge Layer"
+msgstr ""
+
+#: ../data/messages:69
+msgid ""
+"Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+"Layer plug-ins."
+msgstr ""
+
+#: ../data/messages:71
+msgid "Add Exposition & Widget Layer to sub-dock ?"
+msgstr ""
+
+#: ../data/messages:127
+msgid "Name of an image for the 'exposition' icon :"
+msgstr ""
+
+#: ../data/messages:131
+msgid "Name of an image for the 'widget layer' icon :"
 msgstr ""

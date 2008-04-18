@@ -26,17 +26,22 @@ void cd_wifi_draw_icon (void) {
 	gboolean bNeedRedraw = FALSE;
 	switch (myConfig.quickInfoType) {
 		case WIFI_INFO_NONE :
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+			if (myIcon->cQuickInfo != NULL) {
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+				bNeedRedraw = TRUE;
+			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
 			if (myData.iQuality != myData.iPreviousQuality) {
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(D_(s_cLevelQualityName[myData.iQuality]));
+				bNeedRedraw = TRUE;
 			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_PERCENT :
 			if (myData.prev_prcnt != myData.prcnt) {
 				myData.prev_prcnt = myData.prcnt;
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", myData.prcnt);
+				bNeedRedraw = TRUE;
 			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_DB :
@@ -44,6 +49,7 @@ void cd_wifi_draw_icon (void) {
 				myData.prev_flink = myData.flink;
 				myData.prev_mlink = myData.mlink;
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d/%d", myData.flink, myData.mlink);
+				bNeedRedraw = TRUE;
 			}
 		break;
 	}
@@ -54,6 +60,7 @@ void cd_wifi_draw_icon (void) {
 		cd_debug("Wifi - Value have changed, redraw. (Use Gauge: %d)", myConfig.bUseGauge);
 		if (myConfig.bUseGauge) {
 			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
+			bNeedRedraw = TRUE;
 		}
 		else {
 			cd_wifi_draw_icon_with_effect (myData.iQuality);
@@ -63,7 +70,9 @@ void cd_wifi_draw_icon (void) {
 	if (myConfig.bESSID && myData.cESSID != NULL && strcmp (myData.cESSID, myIcon->acName)) {
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myData.cESSID);
 	}
-	CD_APPLET_REDRAW_MY_ICON
+	if (bNeedRedraw) {
+		CD_APPLET_REDRAW_MY_ICON
+	}
 }
 
 

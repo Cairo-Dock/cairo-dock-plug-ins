@@ -284,13 +284,13 @@ msgstr "Nom de l'image 'Aucun Signal' :"
 
 #: ../src/applet-draw.c:154 ../src/applet-draw.c:148 ../src/applet-draw.c:147
 #: ../src/applet-draw.c:150 ../src/applet-draw.c:121 ../src/applet-draw.c:117
-#: ../src/applet-draw.c:113
+#: ../src/applet-draw.c:113 ../src/applet-draw.c:123
 msgid "Wifi disabled."
 msgstr "Wifi désactivé."
 
 #: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
 #: ../src/applet-draw.c:153 ../src/applet-draw.c:124 ../src/applet-draw.c:120
-#: ../src/applet-draw.c:116
+#: ../src/applet-draw.c:116 ../src/applet-draw.c:126
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -300,7 +300,7 @@ msgstr ""
 
 #: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
 #: ../src/applet-draw.c:153 ../src/applet-draw.c:124 ../src/applet-draw.c:120
-#: ../src/applet-draw.c:116
+#: ../src/applet-draw.c:116 ../src/applet-draw.c:126
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 

@@ -13,9 +13,10 @@
 CD_APPLET_INCLUDE_MY_VARS
 
 
-#define NETSPEED_TMP_FILE "/tmp/netspeed"
+//#define NETSPEED_TMP_FILE "/tmp/netspeed"
+#define NETSPEED_DATA_PIPE "/proc/net/dev"
 
-static int s_iThreadIsRunning = 0;
+/*static int s_iThreadIsRunning = 0;
 static int s_iSidTimerRedraw = 0;
 
 gboolean cd_netspeed_timer (gpointer data) {
@@ -88,7 +89,7 @@ gboolean cd_netspeed_getRate(void) {
 		g_error_free(tmp_erreur);
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-		/*CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);*/
+		//CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);
 
 		return FALSE;
 	}
@@ -112,7 +113,7 @@ gboolean cd_netspeed_getRate(void) {
 			if ((i == 0) && (strcmp(cOneInfopipe,"netspeed") == 0)) {
 				CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 		    		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
-		    		/*CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);*/
+		    		//CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pBad);
 		    		cd_message("No interface found, timer stopped.\n");
 				myData.interfaceFound = 0;
 				g_strfreev (cInfopipesList);
@@ -136,7 +137,7 @@ gboolean cd_netspeed_getRate(void) {
 					newNUp += atoi(recup[2]);
 				}
 				//cd_debug("netspeed -> read : Interface %s\n", interface);
-				/*CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pUnknown);*/
+				//CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pUnknown);
 			}
 		}
 		
@@ -224,7 +225,7 @@ temps precedent : %llu \n temps courant : %llu \n Diff %llu \n maxUpRate : %llu 
 		g_strfreev (cInfopipesList);
 	}  
 	return TRUE;
-}
+}*/
 
 // Prend un debit en octet par seconde et le transforme en une chaine de la forme : xxx yB/s
 void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
@@ -286,23 +287,24 @@ void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 }
 
 
-void cd_netspeed_acquisition (void)
+/*void cd_netspeed_acquisition (void)
 {
 	gchar *cCommand = g_strdup_printf ("cat /proc/net/dev > %s", NETSPEED_TMP_FILE);
 	system (cCommand);
 	g_free (cCommand);
-}
+}*/
 
 void cd_netspeed_read_data (void)
 {
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
+	g_return_if_fail (fTimeElapsed != 0);
 	g_timer_start (myData.pClock);
 	
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
-	g_file_get_contents (NETSPEED_TMP_FILE, &cContent, &length, &erreur);
+	g_file_get_contents (NETSPEED_DATA_PIPE, &cContent, &length, &erreur);
 	if (erreur != NULL)
 	{
 		cd_warning("Attention : %s", erreur->message);
@@ -314,6 +316,7 @@ void cd_netspeed_read_data (void)
 	{
 		int iNumLine = 1;
 		gchar *tmp = cContent;
+		int iReceivedBytes, iTransmittedBytes;
 		while (TRUE)
 		{
 			if (iNumLine > 3)  // les 2 premieres lignes sont les noms des champs, la 3eme est la loopback.
@@ -325,7 +328,7 @@ void cd_netspeed_read_data (void)
 				{
 					tmp += myConfig.iStringLen+1;  // on saute le ':' avec.
 					
-					myData.iReceivedBytes = atoi (tmp);
+					iReceivedBytes = atoi (tmp);
 					
 					int i = 0;
 					for (i = 0; i < 8; i ++)  // on saute les 8 valeurs suivantes.
@@ -335,9 +338,18 @@ void cd_netspeed_read_data (void)
 						while (*tmp == ' ')  // saute les espaces.
 							tmp ++;
 					}
-					myData.iTransmittedBytes = atoi (tmp);
+					iTransmittedBytes = atoi (tmp);
 					
-					myData.bAcquisitionOK = TRUE;
+					if (myData.bInitialized)  // la 1ere iteration on ne peut pas calculer le debit.
+					{
+						myData.iDownloadSpeed = (iReceivedBytes - myData.iReceivedBytes) / fTimeElapsed;
+						myData.iUploadSpeed = (iTransmittedBytes - myData.iTransmittedBytes) / fTimeElapsed;
+					}
+					else
+						myData.bInitialized = TRUE;
+					
+					myData.iReceivedBytes = iReceivedBytes;
+					myData.iTransmittedBytes = iTransmittedBytes;
 					break ;
 				}
 			}
@@ -347,7 +359,59 @@ void cd_netspeed_read_data (void)
 			tmp ++;
 			iNumLine ++;
 		}
-		
+		myData.bAcquisitionOK = (tmp != NULL);
 		g_free (cContent);
 	}
+}
+
+void cd_netspeed_update_from_data (void)
+{
+	if ( ! myData.bAcquisitionOK)
+	{
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+	}
+	else
+	{
+		if (! myData.bInitialized)
+		{
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(myDock ? "..." : D_("Loading"));
+			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+		}
+		else
+		{
+			gchar upRateFormatted[11];
+			gchar downRateFormatted[11];
+			cd_netspeed_formatRate(myData.iUploadSpeed, upRateFormatted);
+			cd_netspeed_formatRate(myData.iDownloadSpeed, downRateFormatted);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("↑%s\n↓%s", upRateFormatted, downRateFormatted);
+			
+			if((myData.iMaxUpRate != 0) && (myData.iMaxDownRate != 0))
+			{
+				GList *pList = NULL;  /// vive les fuites memoire !...
+				double *pValue = g_new (double, 1);
+				*pValue = (double) myData.iUploadSpeed / myData.iMaxUpRate;
+				pList = g_list_append (pList, pValue);
+				pValue = g_new (double, 1);
+				*pValue = (double) myData.iDownloadSpeed / myData.iMaxDownRate;
+				pList = g_list_append (pList, pValue);
+				//make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) sumRate / maxRate);
+				make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);	
+			}
+			else
+			{
+				if(myData.iMaxUpRate != 0)
+				{
+					make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.iUploadSpeed / myData.iMaxUpRate);
+				}
+				else if(myData.iMaxDownRate != 0)
+				{
+					make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.iDownloadSpeed / myData.iMaxDownRate);
+				}
+				else
+					make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+			}
+		}
+	}
+	CD_APPLET_REDRAW_MY_ICON
 }

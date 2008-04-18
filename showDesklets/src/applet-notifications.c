@@ -23,7 +23,7 @@ static void _hide_unhide_desklets (void)
 	if (myData.bHide)
 	{
 		cairo_dock_set_desklets_visibility_to_default ();
-		cairo_dock_show_appli (myData.xLastActiveWindow);
+		cairo_dock_show_xwindow (myData.xLastActiveWindow);
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cShowImage)
 	}
 	else

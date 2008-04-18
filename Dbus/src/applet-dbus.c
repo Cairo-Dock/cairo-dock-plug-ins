@@ -75,7 +75,7 @@ gboolean cd_dbus_callback_show_desklet(dbusCallback *pDbusCallback, gboolean *wi
 	if (dbus_deskletVisible)
 	{
 		cairo_dock_set_desklets_visibility_to_default ();
-		cairo_dock_show_appli (dbus_xLastActiveWindow);
+		cairo_dock_show_xwindow (dbus_xLastActiveWindow);
 	}
 	else
 	{

@@ -57,14 +57,14 @@ CD_APPLET_RELOAD_BEGIN
 			myData.pSurfaces[i] = NULL;
 		}
 	}
-	if (myData.pGauge != NULL && !myConfig.bUseGauge) { // on ne veut plus des jauges.
+	if (myData.pGauge != NULL) { // reset jauges.
 		free_cd_Gauge(myData.pGauge);
 		myData.pGauge = NULL;
 	}
-	else { // on veut notre jauge!
+	if (myConfig.bUseGauge) { // on veut notre jauge!
 		double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 		myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-  }
+	}
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cairo_dock_stop_measure_timer (myData.pMeasureTimer);
@@ -75,7 +75,7 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_launch_measure (myData.pMeasureTimer);  // mesure immediate.
 	}
 	else {  // on redessine juste l'icone.
-	  if (!myConfig.bUseGauge)
+		if (!myConfig.bUseGauge)
 		  cd_wifi_draw_icon_with_effect (myData.iQuality);
 		else
 		  make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);

@@ -39,12 +39,18 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	inDebug = 0;
-							/*_load_surfaces();*/
+	/*_load_surfaces();*/
 	//Initialisation de la jauge
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
- 
-	cd_netspeed_launch_analyse();
+	
+	myData.pClock = g_timer_new ();
+	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
+		NULL,
+		cd_netspeed_read_data,
+		cd_netspeed_update_from_data);
+	cairo_dock_launch_measure (myData.pMeasureTimer);
+	//cd_netspeed_launch_analyse();
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
@@ -54,9 +60,6 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	
-	//Adieu la jauge...
-	free_cd_Gauge(myData.pGauge);
 	
 /*	cairo_surface_destroy (myData.pDefault);
 	cairo_surface_destroy (myData.pUnknown);
@@ -95,5 +98,5 @@ CD_APPLET_RELOAD_BEGIN
 		double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 		myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 		// on relance l'analyse
-		cd_netspeed_launch_analyse ();
+		cairo_dock_launch_measure (myData.pMeasureTimer);
 CD_APPLET_RELOAD_END

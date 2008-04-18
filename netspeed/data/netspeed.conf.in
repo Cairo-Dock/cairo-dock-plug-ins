@@ -42,6 +42,10 @@ keep above=false
 on widget layer=false
 
 [Configuration]
+#s interface :
+#{By default it will be 'eth0'.}
+interface = 
+
 #F[Information]
 frame_info=
 #R1[] List of available themes for the analogic display :/

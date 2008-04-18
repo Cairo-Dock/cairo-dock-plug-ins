@@ -23,10 +23,12 @@ typedef struct {
 	cairo_surface_t *pBad;	
 	cairo_surface_t *pOk;	*/
 	guint iSidTimer;
-	gint checkTimer;
 	gint interfaceFound;
 	GTimer *pClock;
+	gboolean bInitialized;
 	gint iReceivedBytes, iTransmittedBytes;
+	gint iDownloadSpeed, iUploadSpeed;
+	gint iMaxUpRate, iMaxDownRate;
 	gboolean bAcquisitionOK;
 	CairoDockMeasure *pMeasureTimer;
 	
