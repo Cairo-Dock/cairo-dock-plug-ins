@@ -20,7 +20,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_INCLUDE_MY_VARS
 
 
-
 #define CD_CLOCK_DATE_BUFFER_LENGTH 50
 static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
 static GPid s_iCommandPID = 0;
@@ -166,10 +165,20 @@ void cd_clock_draw_text (cairo_t *pSourceContext, int width, int height, double 
 {
 	GString *sFormat = g_string_new ("");
 	
-	if (myConfig.bShowSeconds)
-		g_string_printf (sFormat, "%T");
+	if (myConfig.b24Mode)
+	{
+		if (myConfig.bShowSeconds)
+			g_string_printf (sFormat, "%%T");
+		else
+			g_string_printf (sFormat, " %%R");
+	}
 	else
-		g_string_printf (sFormat, " %R");
+	{
+		if (myConfig.bShowSeconds)
+			g_string_printf (sFormat, "%%r%s", pTime->tm_hour > 12 ? "PM" : "AM");
+		else
+			g_string_printf (sFormat, "%%I:%%M%s", pTime->tm_hour > 12 ? "PM" : "AM");
+	}
 	
 	if (myConfig.iShowDate == CLOCK_DATE_ON_ICON)
 		g_string_append (sFormat, "\n%a %d %b");
