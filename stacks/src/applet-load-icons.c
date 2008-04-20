@@ -29,7 +29,7 @@ void cd_stacks_build_icons (void) {
 	
 	if (myDock) {
 		myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-		cairo_dock_set_renderer (myIcon->pSubDock, "Parabolic");
+		cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
 		cairo_dock_update_dock_size (myIcon->pSubDock);
 	}
 	else {
@@ -46,7 +46,7 @@ void cd_stacks_build_icons (void) {
 }
 
 
-//La fonction pose probleme, elle segfault lors des free.
+//La fonction pose problème, elle segfault lors des free.
 void cd_stacks_destroy_icons (void) {
 	if (myIcon->pSubDock != NULL) {
 		//cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);

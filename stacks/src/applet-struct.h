@@ -5,6 +5,7 @@
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
   gchar *cMonitoredDirectory;
+  gchar *cRenderer;
   gboolean bHiddenFiles;
 } AppletConfig;
 

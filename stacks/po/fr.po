@@ -100,5 +100,11 @@ msgstr "Ajouter les fichiers cachés"
 msgid "This option with large files lists can slow down the dock, use it properly."
 msgstr "Cette option avec une longue liste de fichiers peut ralentir le dock, à utiliser prudemment."
 
+msgid "Name of the view used for the sub-dock :"
+msgstr "Nom de la vue utilisée pour le sous-dock :"
+
+msgid "Let it empty to use default sub-dock view."
+msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
+
 #msgid ""
 #msgstr ""
