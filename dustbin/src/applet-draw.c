@@ -156,11 +156,11 @@ void cd_dustbin_draw_quick_info (gboolean bRedraw)
 	{
 		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%s", myData.iNbTrashes, (myDesklet != NULL ? D_(" trashes") : ""))
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%s", myData.iNbTrashes, (myDesklet != NULL ? D_(" trashe(s)") : ""))
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%s", myData.iNbFiles, (myDesklet != NULL ? D_(" files") : ""))
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%s", myData.iNbFiles, (myDesklet != NULL ? D_(" file(s)") : ""))
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 		{

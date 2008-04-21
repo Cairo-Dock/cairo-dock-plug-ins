@@ -26,7 +26,7 @@ static struct snd_mixer_selem_regopt mixer_options;
 static int
 mixer_event (snd_mixer_t *mixer, unsigned int mask, snd_mixer_elem_t *elem)
 {
-	cd_debug ("%s ()", __func__);
+	cd_debug ("");
 	return 0;
 }
 
@@ -39,12 +39,12 @@ void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
 	
 	if ((err = snd_ctl_open (&ctl_handle, cCardID, 0)) < 0)
 	{
-		myData.cErrorMessage = g_strdup_printf (_D("I couldn't open card '%s'"), cCardID);
+		myData.cErrorMessage = g_strdup_printf (D_("I couldn't open card '%s'"), cCardID);
 		return ;
 	}
 	if ((err = snd_ctl_card_info (ctl_handle, hw_info)) < 0)
 	{
-		myData.cErrorMessage = g_strdup_printf (_D("Card '%s' opened but I couldn't get any info"), cCardID);
+		myData.cErrorMessage = g_strdup_printf (D_("Card '%s' opened but I couldn't get any info"), cCardID);
 		return ;
 	}
 	snd_ctl_close (ctl_handle);
@@ -52,21 +52,21 @@ void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
 	// open mixer device
 	if ((err = snd_mixer_open (&myData.mixer_handle, 0)) < 0)
 	{
-		myData.cErrorMessage = g_strdup (_D("I couldn't open the mixer"));
+		myData.cErrorMessage = g_strdup (D_("I couldn't open the mixer"));
 		return ;
 	}
 	if (mixer_level == 0 && (err = snd_mixer_attach (myData.mixer_handle, cCardID)) < 0)
 	{
 		snd_mixer_free (myData.mixer_handle);
 		myData.mixer_handle = NULL;
-		myData.cErrorMessage = g_strdup (_D("I couldn't attach the mixer to the card"));
+		myData.cErrorMessage = g_strdup (D_("I couldn't attach the mixer to the card"));
 		return ;
 	}
 	if ((err = snd_mixer_selem_register (myData.mixer_handle, mixer_level > 0 ? &mixer_options : NULL, NULL)) < 0)
 	{
 		snd_mixer_free (myData.mixer_handle);
 		myData.mixer_handle = NULL;
-		myData.cErrorMessage = g_strdup (_D("I couldn't register options"));
+		myData.cErrorMessage = g_strdup (D_("I couldn't register options"));
 		return ;
 	}
 	///snd_mixer_set_callback (myData.mixer_handle, mixer_event);
@@ -74,7 +74,7 @@ void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
 	{
 		snd_mixer_free (myData.mixer_handle);
 		myData.mixer_handle = NULL;
-		myData.cErrorMessage = g_strdup (_D("I couldn't load the mixer"));
+		myData.cErrorMessage = g_strdup (D_("I couldn't load the mixer"));
 		return ;
 	}
 	
@@ -101,7 +101,7 @@ gchar *mixer_get_elements_list (void)
 	snd_mixer_elem_t *elem;
 	if (myData.mixer_handle == NULL)
 		return NULL;
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	
 	GString *sMixerElements = g_string_new ("");
 	for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
@@ -131,7 +131,7 @@ static snd_mixer_elem_t *_mixer_get_element_by_name (gchar *cName)
 		if (strcmp (cName, snd_mixer_selem_get_name (elem)) == 0)
 			return elem;
 	}
-	myData.cErrorMessage = g_strdup_printf (_D("I couldn't find any element '%s'"), cName);
+	myData.cErrorMessage = g_strdup_printf (D_("I couldn't find any element '%s'"), cName);
 	return NULL;
 }
 
@@ -263,7 +263,7 @@ void mixer_show_hide_dialog (void)
 			cMessage = myData.cErrorMessage;
 		else
 		{
-			cMessage = _D("Set up volume :");
+			cMessage = D_("Set up volume :");
 			pScale = mixer_build_widget (TRUE);
 		}
 		myData.pDialog = cairo_dock_build_dialog (cMessage,

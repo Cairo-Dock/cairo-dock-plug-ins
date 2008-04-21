@@ -23,14 +23,6 @@ typedef enum {
 } CDWifiQuality;
 
 typedef enum {
-	WIFI_FREQUENCY_NORMAL = 0,
-	WIFI_FREQUENCY_LOW,
-	WIFI_FREQUENCY_VERY_LOW,
-	WIFI_FREQUENCY_SLEEP,
-	WIFI_NB_FREQUENCIES
-} CDWifiCheckFrequency;
-
-typedef enum {
 	WIFI_EFFECT_NONE = 0,
 	WIFI_EFFECT_ZOOM,
 	WIFI_EFFECT_TRANSPARENCY,
@@ -60,7 +52,6 @@ typedef struct {
 	gchar *cESSID;
 	gboolean bAcquisitionOK;
 	CairoDockMeasure *pMeasureTimer;
-	CDWifiCheckFrequency iFrequency;
 	Gauge *pGauge;
 	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];  /// a virer.
 } AppletData;

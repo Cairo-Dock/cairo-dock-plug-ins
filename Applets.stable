@@ -1,7 +1,7 @@
 ###Core plug-ins :
 ###you *should* integrate them in a whole, as they extend the dock's functionnalities.
 rendering
-gnome-integration
+gnome-integration-old
 xfce-integration
 shortcuts
 ###Stable applets, considered as finished :
@@ -21,4 +21,8 @@ Cairo-Penguin
 powermanager
 wifi
 xmms
+###Last addition of 1.5.5 :
+compiz-icon
+Dbus
+showDesktop
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.

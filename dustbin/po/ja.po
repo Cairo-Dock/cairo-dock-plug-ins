@@ -119,11 +119,11 @@ msgid "calculating"
 msgstr "計算中"
 
 #: ../src/applet-draw.c:162 ../src/applet-draw.c:159
-msgid " trashes"
+msgid " trashe(s)"
 msgstr "ゴミ"
 
 #: ../src/applet-draw.c:166 ../src/applet-draw.c:163
-msgid " files"
+msgid " file(s)"
 msgstr "ファイル"
 
 #: ../src/applet-notifications.c:22 ../src/applet-notifications.c:20

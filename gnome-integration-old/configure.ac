@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-gnome-integration],[1.0.1],[Fabounet (fabounet@users.berlios.de)])
+AC_INIT([cd-gnome-integration-old],[1.0.1],[Fabounet (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -11,7 +11,7 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/gnome-integration]
+pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/gnome-integration-old]
 AC_SUBST(pkgdatadir)
 
 

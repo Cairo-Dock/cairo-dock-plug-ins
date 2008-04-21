@@ -1,10 +1,10 @@
  #dnl Process this file with automake to produce Makefile.in
 
 lib_LTLIBRARIES = \
-	libcd-gnome-integration.la
+	libcd-gnome-integration-old.la
 
 
-libcd_gnome_integration_la_SOURCES = \
+libcd_gnome_integration_old_la_SOURCES = \
 	applet-init.c\
 	applet-init.h\
 	applet-gnome-vfs.c\
@@ -14,20 +14,18 @@ libcd_gnome_integration_la_SOURCES = \
 
 
 dock_version = `pkg-config --modversion cairo-dock`
-gnome_vfs_version = `pkg-config --modversion gnome-vfs-2.0`
 
-libcd_gnome_integration_la_CFLAGS = \
+libcd_gnome_integration_old_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\"none""\"\
 	-DMY_APPLET_CONF_FILE=\""none"\"\
-	-DMY_APPLET_USER_DATA_DIR=\""gnome-integration"\"\
+	-DMY_APPLET_USER_DATA_DIR=\""gnome-integration-old"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-gnome-integration"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-gnome-integration-old"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
-	-DGNOME_VFS_VERSION=\""$(gnome_vfs_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
@@ -35,15 +33,15 @@ libcd_gnome_integration_la_CFLAGS = \
 #	-g -ggdb -W -Wall
 
 
-libcd_gnome_integration_la_LIBADD = \
+libcd_gnome_integration_old_la_LIBADD = \
 	$(PACKAGE_LIBS) -lm
 
 
-libcd_gnome_integration_la_LDFLAGS =\
+libcd_gnome_integration_old_la_LDFLAGS =\
 	-version-info 1:0:0
 
 
 moduledir = `pkg-config cairo-dock --variable=pluginsdir`
 module_DATA = \
-	.libs/libcd-gnome-integration.so
+	.libs/libcd-gnome-integration-old.so
 

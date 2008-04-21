@@ -557,7 +557,7 @@ sub Console_WriteError_InvalidOption
 
 sub GenerateHeaders
 {
-    my $EXTRACT = "/home/changfu/Documents/Cairo-Dock/plug-ins/stacks/intltool-extract";
+    my $EXTRACT = "/opt/cairo-dock/trunk/plug-ins/stacks/intltool-extract";
     chomp $EXTRACT;
 
     $EXTRACT = $ENV{"INTLTOOL_EXTRACT"} if $ENV{"INTLTOOL_EXTRACT"};

@@ -67,17 +67,19 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		cairo_dock_stop_measure_timer (myData.pMeasureTimer);
-		
-		myData.iFrequency = WIFI_FREQUENCY_NORMAL;
+		cairo_dock_stop_measure_timer (myData.pMeasureTimer);  // on stoppe avant car  on ne veut pas attendre la prochaine iteration.
+		cairo_dock_change_measure_frequency (myData.pMeasureTimer, myConfig.iCheckInterval);
 		myData.iPreviousQuality = -1;  // on force le redessin.
 		myData.prev_prcnt = -1;
 		cairo_dock_launch_measure (myData.pMeasureTimer);  // mesure immediate.
 	}
 	else {  // on redessine juste l'icone.
-		if (!myConfig.bUseGauge)
-		  cd_wifi_draw_icon_with_effect (myData.iQuality);
-		else
-		  make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
+		myData.iPreviousQuality = -1;  // force le redessin.
+		if (myData.bAcquisitionOK) {
+			cd_wifi_draw_icon ();
+		}
+		else {
+			cd_wifi_draw_no_wireless_extension ();
+		}
 	}
 CD_APPLET_RELOAD_END

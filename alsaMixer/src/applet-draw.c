@@ -30,6 +30,7 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		myData.bIsMute = mixer_is_mute ();
 		cd_debug (" iCurrentVolume <- %d bIsMute <- %d", myData.iCurrentVolume, myData.bIsMute);
 	}
+	gboolean bNeedRedraw = FALSE;
 	
 	switch (myConfig.iVolumeDisplay)
 	{
@@ -45,7 +46,8 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		break;
 		
 		case VOLUME_ON_ICON :
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW ("%d%%", myData.iCurrentVolume)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", myData.iCurrentVolume)
+			bNeedRedraw = TRUE;
 		break;
 		
 		default :
@@ -58,23 +60,30 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 	{
 		case VOLUME_NO_EFFECT :
 			CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+			bNeedRedraw = FALSE;
 		break;
 		
 		case VOLUME_EFFECT_ZOOM :
 			mixer_apply_zoom_effect (pSurface);
+			bNeedRedraw = FALSE;
 		break;
 		
 		case VOLUME_EFFECT_TRANSPARENCY :
 			mixer_apply_transparency_effect (pSurface);
+			bNeedRedraw = FALSE;
 		break;
 		
 		case VOLUME_EFFECT_BAR :
 			mixer_draw_bar (pSurface);
+			bNeedRedraw = FALSE;
 		break;
 		
 		default :
 		break;
 	}
+	
+	if (bNeedRedraw)
+		CD_APPLET_REDRAW_MY_ICON
 	
 	if (myDesklet && myData.pScale && mask != 0)
 	{
@@ -88,23 +97,17 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 void mixer_apply_zoom_effect (cairo_surface_t *pSurface)
 {
 	double fScale = .3 + .7 * myData.iCurrentVolume / 100.;
-	cairo_save (myDrawContext);
 	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
-	cairo_restore (myDrawContext);
 }
 
 void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
 {
 	cd_debug ("%s (%x)", __func__, pSurface);
 	double fAlpha = .3 + .7 * myData.iCurrentVolume / 100.;
-	cairo_save (myDrawContext);
 	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
-	cairo_restore (myDrawContext);
 }
 
 void mixer_draw_bar (cairo_surface_t *pSurface)
 {
-	cairo_save (myDrawContext);
 	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.iCurrentVolume * .01)
-	cairo_restore (myDrawContext);
 }

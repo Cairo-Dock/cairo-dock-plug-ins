@@ -36,8 +36,8 @@ libdir = ${exec_prefix}/lib
 DATADIRNAME = share
 itlocaledir = $(prefix)/$(DATADIRNAME)/locale
 subdir = po
-install_sh = /home/changfu/Documents/Cairo-Dock/plug-ins/stacks/install-sh
-# Automake >= 1.8 provides mkdir -p --.
+install_sh = $(SHELL) /opt/cairo-dock/trunk/plug-ins/stacks/install-sh
+# Automake >= 1.8 provides /bin/mkdir -p.
 # Until it can be supposed, use the safe fallback:
 mkdir_p = $(install_sh) -d
 

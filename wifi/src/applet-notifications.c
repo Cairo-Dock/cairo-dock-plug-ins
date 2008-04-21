@@ -20,7 +20,6 @@ CD_APPLET_ON_CLICK_END
 
 static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer *data) {
 	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
-	myData.iFrequency = WIFI_FREQUENCY_NORMAL;
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN

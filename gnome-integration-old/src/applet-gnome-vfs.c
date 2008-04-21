@@ -200,6 +200,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 			cairo_dock_remove_html_spaces (*cIconName);
 		}
 		g_free (cHostname);
+		g_free (cFilePath);
 	}
 	
 	if (*cIconName == NULL)
@@ -234,8 +235,6 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		cURI = "computer://";
 	else if (strcmp (cBaseURI, CAIRO_DOCK_FM_NETWORK) == 0)
 		cURI = "network://";
-	else if (strcmp (cBaseURI, CAIRO_DOCK_FM_VFS_ROOT_NETWORK) == 0)
-		cURI = "computer://";
 	else
 		cURI = cBaseURI;
 	
@@ -314,6 +313,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 						cairo_dock_remove_html_spaces (icon->acFileName);
 					}
 					g_free (cHostname);
+					g_free (cFilePath);
 				}
 				if (icon->acFileName == NULL)
 				{

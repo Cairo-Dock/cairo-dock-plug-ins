@@ -16,4 +16,7 @@ CD_APPLET_ON_BUILD_MENU_H
 
 void mixer_on_keybinding_pull (const char *keystring, gpointer user_data);
 
+gboolean cd_mixer_scroll (gpointer *data);
+
+
 #endif

@@ -125,12 +125,12 @@ msgid "calculating"
 msgstr "en cours"
 
 #: ../src/applet-draw.c:162 ../src/applet-draw.c:159
-msgid " trashes"
-msgstr "déchets"
+msgid " trashe(s)"
+msgstr "déchet(s)"
 
 #: ../src/applet-draw.c:166 ../src/applet-draw.c:163
-msgid " files"
-msgstr "fichiers"
+msgid " file(s)"
+msgstr "fichier(s)"
 
 #: ../src/applet-notifications.c:22 ../src/applet-notifications.c:20
 #: ../src/applet-notifications.c:19

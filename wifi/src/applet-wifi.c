@@ -10,12 +10,7 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-
 #define WIFI_TMP_FILE "/tmp/wifi"
-
-/*static int s_iThreadIsRunning = 0;
-static int s_iSidTimerRedraw = 0;
-static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;*/
 
 
 void cd_wifi_acquisition (void) {
@@ -143,128 +138,11 @@ void cd_wifi_update_from_data (void)
 {
 	if (myData.bAcquisitionOK) {
 		cd_wifi_draw_icon ();
-		if (myData.iFrequency != WIFI_FREQUENCY_NORMAL) {
-			myData.iFrequency = WIFI_FREQUENCY_NORMAL;
-			cairo_dock_change_measure_frequency (myData.pMeasureTimer, myConfig.iCheckInterval);
-		}
+		cairo_dock_set_normal_frequency_state (myData.pMeasureTimer);
 	}
 	else
 	{
 		cd_wifi_draw_no_wireless_extension ();
-		if (myData.iFrequency < WIFI_FREQUENCY_SLEEP && cairo_dock_measure_is_active (myData.pMeasureTimer)) {
-			myData.iFrequency ++;
-			int iNewCheckInterval;
-			switch (myData.iFrequency) {
-				case WIFI_FREQUENCY_LOW :
-					iNewCheckInterval = MAX (myConfig.iCheckInterval, 10000);  // 10s.
-				break ;
-				case WIFI_FREQUENCY_VERY_LOW :
-					iNewCheckInterval = MAX (myConfig.iCheckInterval, 30000);  // 30s.
-				break ;
-				case WIFI_FREQUENCY_SLEEP :
-					iNewCheckInterval = MAX (myConfig.iCheckInterval, 60000);  // 1mn.
-				break ;
-				default :  // ne doit pas arriver.
-					iNewCheckInterval = myConfig.iCheckInterval;
-				break ;
-			}
-			
-			cd_message ("No wifi device found, timer changed to frequency %d/%d.", myData.iFrequency, WIFI_NB_FREQUENCIES);
-			cairo_dock_change_measure_frequency (myData.pMeasureTimer, iNewCheckInterval);
-		}
+		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
 }
-
-
-
-
-/*gboolean cd_wifi_timer (gpointer data) {
-	cd_wifi_launch_measure();
-	return TRUE;
-}
-
-gpointer cd_wifi_threaded_calculation (gpointer data) {
-	cd_wifi_get_data();
-	
-	g_static_mutex_lock (&mutexData);
-	myData.bAcquisitionOK = cd_wifi_getStrength ();
-	g_static_mutex_unlock (&mutexData);
-	
-	g_atomic_int_set (&s_iThreadIsRunning, 0);
-	cd_message ("*** fin du thread wifi");
-	return NULL;
-}
-
-static gboolean _cd_wifi_check_for_redraw (gpointer data) {
-	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
-	cd_message ("%s (%d)", __func__, iThreadIsRunning);
-	if (! iThreadIsRunning) {
-		s_iSidTimerRedraw = 0;
-		if (myIcon == NULL) {
-			g_print ("annulation du chargement du wifi\n");
-			return FALSE;
-		}
-		
-		g_static_mutex_lock (&mutexData);
-		if (myData.bAcquisitionOK) {
-			cd_wifi_draw_icon ();
-			if (myData.iFrequency != WIFI_FREQUENCY_NORMAL && myData.iSidTimer != 0) {
-				myData.iFrequency = WIFI_FREQUENCY_NORMAL;
-				g_source_remove (myData.iSidTimer);
-				myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
-			}
-		}
-		else
-		{
-			cd_wifi_draw_no_wireless_extension ();
-			if (myData.iFrequency < WIFI_FREQUENCY_SLEEP && myData.iSidTimer != 0) {
-				g_source_remove (myData.iSidTimer);
-				
-				myData.iFrequency ++;
-				int iNewCheckInterval;
-				switch (myData.iFrequency) {
-					case WIFI_FREQUENCY_LOW :
-						iNewCheckInterval = MAX (myConfig.iCheckInterval, 10000);  // 10s.
-					break ;
-					case WIFI_FREQUENCY_VERY_LOW :
-						iNewCheckInterval = MAX (myConfig.iCheckInterval, 30000);  // 30s.
-					break ;
-					case WIFI_FREQUENCY_SLEEP :
-						iNewCheckInterval = MAX (myConfig.iCheckInterval, 60000);  // 1mn.
-					break ;
-					default :  // ne doit pas arriver.
-						iNewCheckInterval = myConfig.iCheckInterval;
-					break ;
-				}
-				
-				cd_message ("No wifi device found, timer changed to frequency %d/%d.", myData.iFrequency, WIFI_NB_FREQUENCIES);
-				myData.iSidTimer = g_timeout_add (iNewCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
-			}
-		}
-		g_static_mutex_unlock (&mutexData);
-		
-		//\_______________________ On lance le timer si necessaire.
-		if (myData.iSidTimer == 0) {
-			myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_wifi_timer, NULL);
-		}
-		return FALSE;
-	}
-	return TRUE;
-}
-void cd_wifi_launch_measure (void) {
-	cd_message (" ");
-	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1)) {  //il etait egal a 0, on lui met 1 et on lance le thread.
-		cd_message (" ==> lancement du thread de calcul");
-		
-		if (s_iSidTimerRedraw == 0) {
-			s_iSidTimerRedraw = g_timeout_add (333, (GSourceFunc) _cd_wifi_check_for_redraw, (gpointer) NULL);
-		}
-		
-		GError *erreur = NULL;
-		GThread* pThread = g_thread_create ((GThreadFunc) cd_wifi_threaded_calculation, NULL, FALSE, &erreur);
-		if (erreur != NULL) {
-			cd_warning ("Attention : %s", erreur->message);
-			g_error_free (erreur);
-		}
-	}
-}*/
