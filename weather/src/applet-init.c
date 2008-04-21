@@ -48,13 +48,15 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		cairo_dock_stop_measure_timer (myData.pMeasureTimer);
-		
-		reset_data ();
+		reset_data ();  // on bourrine.
 		if (myIcon->acName == NULL || *myIcon->acName == '\0')
 			myIcon->acName = g_strdup (WEATHER_DEFAULT_NAME);
 		
-		cairo_dock_launch_measure (myData.pMeasureTimer);  // mesure immediate.
+		myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
+			cd_weather_acquisition,
+			cd_weather_read_data,
+			cd_weather_update_from_data);
+		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 	else if (myDesklet != NULL)
 	{
