@@ -45,7 +45,7 @@ frame1 =
 #r[XMMS;Audacious;Banshee;Exaile] Player to control:
 current-player=0
 
-#b Steal the player's icon in taskbar ?
+#b Steal the player's icon from taskbar ?
 #{It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
 inhibate appli = true
 

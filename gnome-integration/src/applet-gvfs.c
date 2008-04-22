@@ -52,7 +52,7 @@ void stop_vfs_backend (void)
 
 
 
-static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID)
+/*static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID)
 {
 	cd_message ("%s (%s)", __func__, cBaseURI);
 	GError *erreur = NULL;
@@ -102,16 +102,13 @@ static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBase
 	
 	g_key_file_free (pKeyFile);
 	return TRUE;
-}
+}*/
 
 
 void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, CairoDockFMSortType iSortType)
 {
 	g_return_if_fail (cBaseURI != NULL);
 	cd_message ("%s (%s)", __func__, cBaseURI);
-	
-	GnomeVFSResult r;
-	GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
 	
 	gchar *cFullURI;
 	if (strncmp (cBaseURI, "x-nautilus-desktop://", 21) == 0)
@@ -140,53 +137,55 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		}
 	}
 	else
-		cFullURI = gnome_vfs_make_uri_from_input (cBaseURI);
+		cFullURI = g_strdup (cBaseURI);
 	cd_message (" -> cFullURI : %s", cFullURI);
 	
-	GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
-	
-	r = gnome_vfs_get_file_info (cFullURI, info, infoOpts);
-	if (r != GNOME_VFS_OK) 
+	GFile *pFile = g_file_new_for_uri (cFullURI);
+	GError *erreur = NULL;
+	gchar *cQuery = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_TYPE, ",",
+		G_FILE_ATTRIBUTE_STANDARD_SIZE, ",",
+		G_FILE_ATTRIBUTE_TIME_MODIFIED, ",",
+		G_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE, ",",
+		G_FILE_ATTRIBUTE_STANDARD_NAME, ",",
+		G_FILE_ATTRIBUTE_STANDARD_ICON, ",",
+		G_FILE_ATTRIBUTE_UNIX_RDEV, NULL);
+	GFileInfo *pFileInfo = g_file_query_info (pFile,
+		cQuery,
+		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+		NULL,
+		&erreur);
+	g_free (cQuery);
+	g_object_unref (pFile);
+	if (erreur != NULL)
 	{
-		cd_warning ("Attention : couldn't get file info for '%s'", cFullURI);
-		g_free (cFullURI);
-		gnome_vfs_file_info_unref (info);
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
 		return ;
 	}
+	
+	g_free (cFullURI);
+	*cURI = g_strdup (cBaseURI);
+	*cName = g_strdup (g_file_info_get_name (pFileInfo));
+	const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
+	GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 	
 	if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
-		*fOrder = info->mtime;
-	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
-		*fOrder = info->size;
-	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
-		*fOrder = info->type;
-	else
-		*fOrder = 0;
-	
-	GnomeVFSFileInfoFields valid = info->valid_fields;
-	
-	const gchar *cMimeType = gnome_vfs_file_info_get_mime_type (info);
-	cd_message ("  cMimeType : %s", cMimeType);
-	if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (cMimeType, "application/x-desktop") == 0)
 	{
-		gnome_vfs_file_info_unref (info);
-		file_manager_get_file_info_from_desktop_link (cFullURI, cName, cURI, cIconName, bIsDirectory, iVolumeID);
-		*fOrder = 0;
-		return ;
+		GTimeVal t;
+		g_file_info_get_modification_time (pFileInfo, &t);
+		*fOrder = t.tv_sec;
 	}
-	g_free (cFullURI);
-	
-	*cName = g_strdup (info->name);
-	
-	*cURI = g_strdup (cBaseURI);
-	
-	if (valid & GNOME_VFS_FILE_INFO_FIELDS_TYPE)
-		*bIsDirectory = (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY);
+	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
+		*fOrder = g_file_info_get_size (pFileInfo);
+	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
+		*fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
 	else
-		*bIsDirectory = FALSE;
+		*fOrder = 0;
+	
+	*bIsDirectory = (iFileType == G_FILE_TYPE_DIRECTORY);
 	
 	*cIconName = NULL;
-	if (strncmp (cMimeType, "image", 5) == 0)
+	if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 	{
 		gchar *cHostname = NULL;
 		GError *erreur = NULL;
@@ -205,22 +204,18 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	
 	if (*cIconName == NULL)
 	{
-		GnomeIconLookupResultFlags iconLookupResultFlags;
-		*cIconName = gnome_icon_lookup (gtk_icon_theme_get_default (),
-			NULL,
-			NULL /* const char *file_uri */,
-			NULL,
-			info,
-			info->mime_type,
-			GNOME_ICON_LOOKUP_FLAGS_NONE,  // GNOME_ICON_LOOKUP_FLAGS_ALLOW_SVG_AS_THEMSELVES
-			&iconLookupResultFlags);
+		GIcon *pSystemIcon = g_file_info_get_icon (pFileInfo);
+		g_print ("get file icon ...\n");
+		GFile* pIconFile = g_file_icon_get_file ((GFileIcon *)pSystemIcon);
+		g_print ("okn");
+		*cIconName = g_file_get_path (pIconFile);
+		g_print (" -> %s\n",*cIconName);
+		g_object_unref (pIconFile);
 	}
 	
 	*iVolumeID = 0;
-	
-	gnome_vfs_file_info_unref (info);
+	g_object_unref (pFileInfo);
 }
-
 
 
 GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, gchar **cFullURI)
@@ -239,7 +234,8 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	
 	GFile *pFile = g_file_new_for_uri (cURI);
 	GError *erreur = NULL;
-	gchar *cAttributes = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_SIZE, ",",
+	gchar *cAttributes = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_TYPE, ",",
+		G_FILE_ATTRIBUTE_STANDARD_SIZE, ",",
 		G_FILE_ATTRIBUTE_TIME_MODIFIED, ",",
 		G_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE, ",",
 		G_FILE_ATTRIBUTE_STANDARD_NAME, ",",
@@ -252,6 +248,13 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		NULL,
 		&erreur);
 	g_free (cAttributes);
+	g_object_unref (pFile);
+	if (erreur != NULL)
+	{
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
+		return NULL;
+	}
 	
 	GList *pIconList = NULL;
 	Icon *icon;
@@ -270,9 +273,10 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			if (pFileInfo == NULL)
 				break ;
 			
-			gboolean bIsHidden = g_file_info_set_is_hidden (pFileInfo);
+			gboolean bIsHidden = g_file_info_get_is_hidden (pFileInfo);
 			if (bListHiddenFiles || ! bIsHidden)
 			{
+				GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 				const gchar *cName = g_file_info_get_name (pFileInfo);
 				GIcon *pSystemIcon = g_file_info_get_icon (pFileInfo);
 				const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
@@ -305,15 +309,12 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				}
 				if (icon->acFileName == NULL)
 				{
-					pSystemIcon
-					icon->acFileName = gnome_icon_lookup (gtk_icon_theme_get_default (),
-						NULL,
-						NULL, // file_uri.
-						NULL,
-						info,
-						info->mime_type,
-						GNOME_ICON_LOOKUP_FLAGS_NONE,
-						&iconLookupResultFlags);
+					g_print ("get file icon ...\n");
+					GFile* pIconFile = g_file_icon_get_file ((GFileIcon *)pSystemIcon);
+					g_print ("okn");
+					icon->acFileName = g_file_get_path (pIconFile);
+					g_print (" -> %s\n", icon->acFileName);
+					g_object_unref (pIconFile);
 				}
 				
 				icon->iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_RDEV);
@@ -321,116 +322,17 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
 					icon->fOrder = g_file_info_get_size (pFileInfo);
 				else if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
-					icon->fOrder = g_file_info_get_modification_time (pFileInfo);
+				{
+					GTimeVal t;
+					g_file_info_get_modification_time (pFileInfo, &t);
+					icon->fOrder = t.tv_sec;
+				}
 				else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
-					icon->fOrder = (cMimeType != NULL ? g_str_hash (cMimeType) : 0);
+					icon->fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
 				pIconList = g_list_prepend (pIconList, icon);
 			}
 		}
 	} while (TRUE);  // 'g_file_enumerator_close' est appelee lors du dernier 'g_file_enumerator_next_file'.
-	
-	
-	
-	GnomeVFSFileInfo * info = gnome_vfs_file_info_new ();
-	GnomeVFSDirectoryHandle *handle = NULL;
-	GnomeVFSFileInfoOptions infoOpts = GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
-	GnomeVFSResult r = gnome_vfs_directory_open (&handle, *cFullURI, infoOpts);
-	if (r!=GNOME_VFS_OK) 
-	{
-		return NULL;
-	}
-	
-	GnomeVFSURI* dirUri = gnome_vfs_uri_new (*cFullURI);
-	cd_message ("  dirUri : %s", dirUri->text);
-	GnomeVFSURI* fileUri;
-	gchar *cFileURI;
-	GnomeIconLookupResultFlags iconLookupResultFlags;
-	Icon *icon;
-	while(1)
-	{
-		r = gnome_vfs_directory_read_next (handle, info);
-		if (r == GNOME_VFS_ERROR_EOF)
-			break;
-		if (r != GNOME_VFS_OK) 
-			continue ;
-		
-		if (strcmp (info->name, ".") != 0 && strcmp (info->name, "..") != 0 && (bListHiddenFiles || info->name[0] != '.'))
-		{
-			fileUri = gnome_vfs_uri_append_path (dirUri, info->name);
-			cFileURI = gnome_vfs_uri_to_string (fileUri, GNOME_VFS_URI_HIDE_NONE);
-			cd_message (" + cFileURI : %s", cFileURI);
-			
-			GnomeVFSFileInfoFields valid = info->valid_fields;
-			if (valid & GNOME_VFS_FILE_INFO_FIELDS_TYPE)
-			{
-				if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY)
-				{
-					
-				}
-				else if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK)
-				{
-					
-				}
-			}
-			
-			icon = g_new0 (Icon, 1);
-			icon->cBaseURI = cFileURI;
-			icon->iType = iNewIconsType;
-			if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (info->mime_type, "application/x-desktop") == 0)
-			{
-				gboolean bIsDirectory = FALSE;
-				file_manager_get_file_info_from_desktop_link (cFileURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
-				cd_message ("  bIsDirectory : %d; iVolumeID : %d; acFileName : %s", bIsDirectory, icon->iVolumeID, icon->acFileName);
-			}
-			else
-			{
-				icon->acCommand = g_strdup (cFileURI);
-				icon->acName = g_strdup (info->name);
-				icon->acFileName = NULL;
-				if (strncmp (info->mime_type, "image", 5) == 0)  // && strncmp (cFileURI, "file://", 7) == 0
-				{
-					gchar *cHostname = NULL;
-					GError *erreur = NULL;
-					gchar *cFilePath = g_filename_from_uri (cFileURI, &cHostname, &erreur);
-					if (erreur != NULL)
-					{
-						g_error_free (erreur);
-					}
-					else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
-					{
-						icon->acFileName = g_strdup (cFilePath);
-						cairo_dock_remove_html_spaces (icon->acFileName);
-					}
-					g_free (cHostname);
-				}
-				if (icon->acFileName == NULL)
-				{
-					icon->acFileName = gnome_icon_lookup (gtk_icon_theme_get_default (),
-						NULL,
-						NULL, // file_uri.
-						NULL,
-						info,
-						info->mime_type,
-						GNOME_ICON_LOOKUP_FLAGS_NONE,
-						&iconLookupResultFlags);
-				}
-			}
-			if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE && (valid & GNOME_VFS_FILE_INFO_FIELDS_SIZE))
-				icon->fOrder = info->size;
-			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE && (valid & GNOME_VFS_FILE_INFO_FIELDS_MTIME))
-				icon->fOrder = info->mtime;
-			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE && (valid & GNOME_VFS_FILE_INFO_FIELDS_TYPE))
-				icon->fOrder = info->type;
-			pIconList = g_list_prepend (pIconList, icon);
-			
-			gnome_vfs_uri_unref (fileUri);
-		}
-		gnome_vfs_file_info_clear (info);
-	}
-	gnome_vfs_uri_unref (dirUri);
-	
-	gnome_vfs_directory_close (handle);
-	gnome_vfs_file_info_unref (info);
 	
 	if (iSortType == CAIRO_DOCK_FM_SORT_BY_NAME)
 		pIconList = cairo_dock_sort_icons_by_name (pIconList);
@@ -457,42 +359,73 @@ void vfs_backend_launch_uri (const gchar *cURI)
 }
 
 
+static GVolume *_cd_find_volume_from_uri (gchar *cURI)
+{
+	GError *erreur = NULL;
+	gchar *ltmp_path = NULL;
+	
+	GVolume *pFoundVolume = NULL;
+	
+	/* premiere methode: on scanne les volumes. c'est peut-etre un volume non monte... */
+	GVolumeMonitor *pVolumeMonitor = g_volume_monitor_get ();
+	GList *pListVolumes = g_volume_monitor_get_volumes (pVolumeMonitor);
+	GVolume *pVolume;
+	GList *pElement;
+	for (pElement = pListVolumes; pElement != NULL; pElement = pElement->next)
+	{
+		pVolume = pElement->data;
+		
+		if (pFoundVolume == NULL)
+		{
+			gchar *cVolumePath = g_volume_get_identifier (pVolume, G_VOLUME_IDENTIFIER_KIND_NFS_MOUNT);
+			g_print ("  cVolumePath : %s (can eject : %d)\n", cVolumePath, g_volume_can_eject (pVolume));
+			
+			if(cVolumePath != NULL && strcmp (cVolumePath ,cURI) == 0)
+			{
+				cd_debug (" trouve !");
+				g_object_ref (pVolume);
+				pFoundVolume = pVolume;
+			}
+		}
+		
+		g_object_unref (pVolume);
+	}
+	g_list_free (pListVolumes);
+	
+	g_object_unref (pVolumeMonitor);
+	return pFoundVolume;
+}
+
 gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 {
 	cd_message ("%s (%s)", __func__, cURI);
-	GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
-	gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
-	cd_message (" cLocalPath : %s", cLocalPath);
-	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cLocalPath);
-	g_free (cLocalPath);
+	GVolume *pVolume = _cd_find_volume_from_uri (cURI);
 	if (pVolume == NULL)
 	{
-		cd_warning ("Attention : no volum associated to %s", cURI);
 		*bIsMounted = FALSE;
 		return NULL;
 	}
-	else
-	{
-		gchar *cMountPointID = gnome_vfs_volume_get_activation_uri (pVolume);
-		
-		*bIsMounted = gnome_vfs_volume_is_mounted (pVolume);
-		cd_message ("  bIsMounted <- %d", *bIsMounted);
-		
-		gnome_vfs_volume_unref (pVolume);
-		return cMountPointID;
-	}
+	GMount *pMount = g_volume_get_mount (pVolume);
+	*bIsMounted = (pMount != NULL);
+	g_object_unref (pMount);
+	g_object_unref (pVolume);
+	return NULL;
 }
 
-
-static void _vfs_backend_mount_callback (gboolean succeeded, char *error, char *detailed_error, gpointer *data)
+static void _vfs_backend_mount_callback (GVolume *pVolume, GAsyncResult *res, gpointer *data)
+//static void _vfs_backend_mount_callback (gboolean succeeded, char *error, char *detailed_error, gpointer *data)
 {
-	cd_message ("%s (%d)", __func__, succeeded);
-	if (! succeeded)
-		cd_warning ("Attention : failed to mount (%s ; %s)", error, detailed_error);
+	cd_message ("%s ()", __func__);
 	
 	CairoDockFMMountCallback pCallback = data[0];
 	
-	pCallback (GPOINTER_TO_INT (data[1]), succeeded, data[2], data[3], data[4]);
+	gboolean bSuccess;
+	if (data[1])
+		bSuccess = g_volume_mount_finish (pVolume, res, NULL);
+	else
+		bSuccess = g_volume_eject_finish (pVolume, res, NULL);
+	g_print ("(un)mount fini -> %d\n", bSuccess);
+	pCallback (GPOINTER_TO_INT (data[1]), bSuccess, data[2], data[3], data[4]);
 	g_free (data[2]);
 	g_free (data);
 }
@@ -502,14 +435,26 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 	g_return_if_fail (iVolumeID > 0);
 	cd_message ("%s (ID:%d)", __func__, iVolumeID);
 	
-	///gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
+	GVolume *pVolume = _cd_find_volume_from_uri (cURI);
+	if (pVolume == NULL)
+		return ;
+	
+	gpointer *data2 = g_new (gpointer, 5);
+	data2[0] = pCallback;
+	data2[1] = GINT_TO_POINTER (TRUE);
+	data2[2] = g_volume_get_name (pVolume);
+	data2[3] = icon;
+	data2[4] = pDock;
+	g_volume_mount (pVolume,
+		G_MOUNT_MOUNT_NONE,
+		NULL,
+		NULL,
+		(GAsyncReadyCallback) _vfs_backend_mount_callback,
+		data2);
+	g_object_unref (pVolume);
+	/*///gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
 	///g_print (" cLocalPath : %s\n", cLocalPath);
 	GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
-	/**GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cLocalPath);
-	g_free (cLocalPath);
-	g_return_val_if_fail (pVolume != NULL, NULL);
-	
-	GnomeVFSDrive *pDrive = gnome_vfs_volume_get_drive (pVolume);*/
 	GnomeVFSDrive *pDrive = gnome_vfs_volume_monitor_get_drive_by_id (pVolumeMonitor, iVolumeID);
 	g_return_if_fail (pDrive != NULL);
 	
@@ -522,7 +467,7 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 	gnome_vfs_drive_mount (pDrive, (GnomeVFSVolumeOpCallback)_vfs_backend_mount_callback, data2);
 	
 	///gnome_vfs_volume_unref (pVolume);
-	gnome_vfs_drive_unref (pDrive);
+	gnome_vfs_drive_unref (pDrive);*/
 }
 
 void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock)
@@ -530,7 +475,24 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
 	
-	GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
+	GVolume *pVolume = _cd_find_volume_from_uri (cURI);
+	if (pVolume == NULL)
+		return ;
+	
+	gpointer *data2 = g_new (gpointer, 5);
+	data2[0] = pCallback;
+	data2[1] = GINT_TO_POINTER (FALSE);
+	data2[2] = g_volume_get_name (pVolume);
+	data2[3] = icon;
+	data2[4] = pDock;
+	g_volume_eject (pVolume,
+		G_MOUNT_UNMOUNT_NONE,
+		NULL,
+		(GAsyncReadyCallback) _vfs_backend_mount_callback,
+		data2);
+	g_object_unref (pVolume);
+	
+	/*GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
 	gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
 	cd_message (" cLocalPath : %s", cLocalPath);
 	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cLocalPath);
@@ -545,16 +507,20 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 	data2[4] = pDock;
 	gnome_vfs_volume_unmount (pVolume, (GnomeVFSVolumeOpCallback)_vfs_backend_mount_callback, data2);
 	
-	gnome_vfs_volume_unref (pVolume);
+	gnome_vfs_volume_unref (pVolume);*/
 }
 
 
-
-static void _vfs_backend_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
+void _on_monitor_changed (GFileMonitor *monitor,
+	GFile *file,
+	GFile *other_file,
+	GFileMonitorEvent event_type,
+	gpointer  *data)
+/*static void _vfs_backend_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
 	const gchar *monitor_uri,
 	const gchar *info_uri,
 	GnomeVFSMonitorEventType event_type,
-	gpointer *data)
+	gpointer *data)*/
 {
 	CairoDockFMMonitorCallback pCallback = data[0];
 	gpointer user_data = data[1];
@@ -563,47 +529,58 @@ static void _vfs_backend_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
 	CairoDockFMEventType iEventType;
 	switch (event_type)
 	{
-		case GNOME_VFS_MONITOR_EVENT_CHANGED :
+		case G_FILE_MONITOR_EVENT_CHANGED :
 			iEventType = CAIRO_DOCK_FILE_MODIFIED;
 		break;
 		
-		case GNOME_VFS_MONITOR_EVENT_DELETED :
+		case G_FILE_MONITOR_EVENT_DELETED :
 			iEventType = CAIRO_DOCK_FILE_DELETED;
 		break;
 		
-		case GNOME_VFS_MONITOR_EVENT_CREATED :
+		case G_FILE_MONITOR_EVENT_CREATED :
 			iEventType = CAIRO_DOCK_FILE_CREATED;
 		break;
 		
 		default :
 		return ;
 	}
-	pCallback (iEventType, info_uri, user_data);
+	gchar *cURI = g_file_get_uri (file);
+	pCallback (iEventType, cURI, user_data);
+	g_free (cURI);
 }
 
 
 void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockFMMonitorCallback pCallback, gpointer user_data)
 {
-	GnomeVFSMonitorHandle *pHandle = NULL;
+	GError *erreur = NULL;
+	GFileMonitor *pMonitor;
+	GFile *pFile = g_file_new_for_uri (cURI);
+	if (bDirectory)
+		pMonitor = g_file_monitor_directory (pFile,
+			G_FILE_MONITOR_WATCH_MOUNTS,
+			NULL,
+			&erreur);
+	else
+		pMonitor =g_file_monitor_file (pFile,
+			G_FILE_MONITOR_WATCH_MOUNTS,
+			NULL,
+			&erreur);
+	g_object_unref (pFile);
+	if (erreur != NULL)
+	{
+		cd_warning ("Attention : couldn't get file info for '%s' [%s]", cURI, erreur->message);
+		g_error_free (erreur);
+		return ;
+	}
+	
 	gpointer *data = g_new0 (gpointer, 3);
 	data[0] = pCallback;
 	data[1] = user_data;
-	GnomeVFSResult r = gnome_vfs_monitor_add (&pHandle,
-		cURI,
-		(bDirectory ? GNOME_VFS_MONITOR_DIRECTORY : GNOME_VFS_MONITOR_FILE),
-		(GnomeVFSMonitorCallback) _vfs_backend_gnome_monitor_callback,
-		data);
-	if (r != GNOME_VFS_OK)
-	{
-		cd_warning ("Attention : couldn't add monitor function to %s\n  I will not be able to receive events about this file", cURI);
-		g_free (data);
-	}
-	else
-	{
-		cd_message (">>> moniteur ajoute sur %s (%x)", cURI, user_data);
-		data[2] = pHandle;
-		g_hash_table_insert (s_hMonitorHandleTable, g_strdup (cURI), data);
-	}
+	data[2] = pMonitor;
+	g_signal_connect (G_OBJECT (pMonitor), "changed", G_CALLBACK (_on_monitor_changed), data);
+	
+	g_hash_table_insert (s_hMonitorHandleTable, g_strdup (cURI), data);
+	cd_message (">>> moniteur ajoute sur %s (%x)", cURI, user_data);
 }
 
 void vfs_backend_remove_monitor (const gchar *cURI)
@@ -637,7 +614,7 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 {
 	GFile *pOldFile = g_file_new_for_uri (cOldURI);
 	GError *erreur = NULL;
-	GFile *pNewFile =g_file_set_display_name(GFile *file, cNewName, NULL, &erreur);
+	GFile *pNewFile = g_file_set_display_name (pOldFile, cNewName, NULL, &erreur);
 	if (erreur != NULL)
 	{
 		cd_warning ("Attention : %s", erreur->message);
@@ -645,6 +622,7 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 	}
 	gboolean bSuccess = (pNewFile != NULL);
 	g_object_unref (pNewFile);
+	g_object_unref (pOldFile);
 	return bSuccess;
 }
 

@@ -345,18 +345,8 @@ msgstr ""
 "applet."
 
 #: ../data/messages:47
-msgid "Steal the player's icon in taskbar ?"
-msgstr "Voler l'icône du lecteur dans la barre d'applications ?"
-
-#: ../data/messages:45
-msgid ""
-"It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
-"icon will then behave as a launcher, an appli, and an applet."
-msgstr ""
-
-#: ../data/messages:47
-msgid "Steal the rhythmbox's icon in taskbar ?"
-msgstr ""
+msgid "Steal the player's icon from taskbar ?"
+msgstr "Voler l'icône du lecteur de la barre des taches ?"
 
 #: ../data/messages:65
 msgid "Show an info-bubble ?"

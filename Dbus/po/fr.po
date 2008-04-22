@@ -20,16 +20,16 @@ msgstr ""
 
 #: ../data/messages:1
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
 #: ../data/messages:3
 msgid "Let extern applications pop-up dialogs in the dock ?"
-msgstr ""
+msgstr "Autoriser les pop-up de dialogues par des applications externes ?"
 
 #: ../data/messages:5
 msgid "Let extern applications reboot the dock ?"
-msgstr ""
+msgstr "Autoriser les applications externes à recharger le dock ?"
 
 #: ../data/messages:7
 msgid "Let extern applications show/hide the desklets ?"
-msgstr ""
+msgstr "Autoriser les applications externes à montrer/cacher les desklets ?"

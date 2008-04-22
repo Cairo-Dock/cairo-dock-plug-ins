@@ -115,8 +115,8 @@ gboolean cd_clock_update_with_time (Icon *icon)
 				
 				if (bShowAlarm)
 				{
-					cd_message ("Dring ! %s\n", pAlarm->cMessage);
-					cairo_dock_show_temporary_dialog (pAlarm->cMessage, myIcon, g_pMainDock, 60e3);
+					cd_message ("Dring ! %s", pAlarm->cMessage);
+					cairo_dock_show_temporary_dialog (pAlarm->cMessage, myIcon, myContainer, 60e3);
 					if (pAlarm->cCommand != NULL)
 					{
 						if (myData.iAlarmPID > 0)
@@ -136,18 +136,18 @@ gboolean cd_clock_update_with_time (Icon *icon)
 							&erreur);
 						if (erreur != NULL)
 						{
-							cd_message ("Attention : when trying to execute '%s' : %s\n", pAlarm->cCommand, erreur->message);
+							cd_warning ("Attention : when trying to execute '%s' : %s", pAlarm->cCommand, erreur->message);
 							g_error_free (erreur);
 							myData.iAlarmPID = 0;
 						}
 						g_strfreev (argv);
-						cd_message (" --> child_pid : %d\n", myData.iAlarmPID);
+						cd_message (" --> child_pid : %d", myData.iAlarmPID);
 					}
 				}
 				
 				if (bRemoveAlarm)
 				{
-					cd_message ("Cette alarme ne sera pas répétée\n");
+					cd_message ("Cette alarme ne sera pas répétée");
 					g_ptr_array_remove_index (myConfig.pAlarms, i);
 					cd_clock_free_alarm (pAlarm);
 					/// A FAIRE : effacer l'heure dans le fichier de conf pour cette alarme.
@@ -196,7 +196,7 @@ void cd_clock_draw_text (cairo_t *pSourceContext, int width, int height, double 
 	PangoFontDescription *pDesc = pango_font_description_new ();
 	
 	pango_font_description_set_absolute_size (pDesc, g_iLabelSize * PANGO_SCALE);
-	pango_font_description_set_family_static (pDesc, g_cLabelPolice);
+	pango_font_description_set_family_static (pDesc, myConfig.cFont);
 	pango_font_description_set_weight (pDesc, g_iLabelWeight);
 	pango_font_description_set_style (pDesc, g_iLabelStyle);
 	pango_layout_set_font_description (pLayout, pDesc);

@@ -185,7 +185,7 @@ msgstr "Rennomer l'onglet courant"
 #: ../src/terminal-widget.c:165 ../src/terminal-widget.c:131
 #: ../src/terminal-widget.c:133
 msgid "Set title for this tab :"
-msgstr "Définissez un titre pour cet onglet ;"
+msgstr "Définissez un titre pour cet onglet :"
 
 #: ../data/messages:43
 msgid ""
@@ -198,18 +198,18 @@ msgstr ""
 #: ../src/terminal-widget.c:251 ../src/terminal-widget.c:312
 #: ../src/terminal-widget.c:348 ../src/terminal-widget.c:350
 msgid "Rename this Tab"
-msgstr ""
+msgstr "Renommer cet onglet"
 
 #: ../src/terminal-widget.c:257 ../src/terminal-widget.c:318
 #: ../src/terminal-widget.c:360 ../src/terminal-widget.c:362
 msgid "Close this Tab"
-msgstr ""
+msgstr "Fermer cet onglet"
 
 #: ../src/terminal-widget.c:157 ../src/terminal-widget.c:185
 #: ../src/terminal-widget.c:187
 msgid "Select a color"
-msgstr ""
+msgstr "Sélectionner une couleur"
 
 #: ../src/terminal-widget.c:354 ../src/terminal-widget.c:356
 msgid "Change this Tab's color"
-msgstr ""
+msgstr "Changer la couleur de cet onglet"

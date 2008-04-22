@@ -428,12 +428,12 @@ msgstr "Forcer les Options de Compiz au démarrage ?"
 
 #: ../src/applet-load-icon.c:22
 msgid "Exposition"
-msgstr ""
+msgstr "Exposé"
 
 #: ../src/applet-load-icon.c:22
-msgid "Widge Layer"
-msgstr ""
+msgid "Widget Layer"
+msgstr "Couche des Widgets"
 
 #: ../data/messages:61
 msgid "Load Compiz with options at startup."
-msgstr ""
+msgstr "Charger Compiz avec les options au démarrage."

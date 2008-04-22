@@ -174,27 +174,27 @@ msgstr "Personnalisation"
 #: ../data/messages:81 ../data/messages:85 ../data/messages:89
 #: ../data/messages:93 ../data/messages:97
 msgid "Let t empty to use the default icon."
-msgstr ""
+msgstr "Laisser vide pour utiliser l'icône par défaut"
 
 #: ../data/messages:59 ../data/messages:79 ../data/messages:83
 msgid "Name of an image for the 'default' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'défaut' :"
 
 #: ../data/messages:63 ../data/messages:83 ../data/messages:87
 msgid "Name of an image for the 'play' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'jouer' :"
 
 #: ../data/messages:67 ../data/messages:87 ../data/messages:91
 msgid "Name of an image for the 'stop' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'stop' :"
 
 #: ../data/messages:71 ../data/messages:91 ../data/messages:95
 msgid "Name of an image for the 'pause' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'pause' :"
 
 #: ../data/messages:75 ../data/messages:95 ../data/messages:99
 msgid "Name of an image for the 'broken' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'cassé' :"
 
 #: ../data/messages:11
 msgid "Desklet"
@@ -267,14 +267,6 @@ msgstr ""
 "L'icône de l'applet se comportera alors comme un lanceur, une appli et une "
 "applet."
 
-#: ../data/messages:75
-msgid "It will prevent the rhythmbox's icon to appear in the task bar."
-msgstr ""
-
-#: ../data/messages:77
-msgid "Inhibate the rhythmbox's icon in taskbar ?"
-msgstr ""
-
 #: ../data/messages:41
 msgid "Behaviour"
-msgstr ""
+msgstr "Comportement"

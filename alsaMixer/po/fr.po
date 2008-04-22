@@ -177,16 +177,16 @@ msgstr "Commande à exécuter pour afficher un mixer de son avancé :"
 #: ../src/applet-mixer.c:44 ../src/applet-mixer.c:42
 #, c-format
 msgid "I couldn't open card '%s'"
-msgstr ""
+msgstr "Je n'ai pas pu ouvrir la carte '%s'"
 
 #: ../src/applet-mixer.c:49 ../src/applet-mixer.c:47
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
-msgstr ""
+msgstr "carte '%s' ouverte, maus je n'ai trouvé aucune info."
 
 #: ../src/applet-mixer.c:57 ../src/applet-mixer.c:55
 msgid "I couldn't open the mixer"
-msgstr ""
+msgstr "Je n'ai pas pu ouvrir le mixer de son."
 
 #: ../src/applet-mixer.c:64 ../src/applet-mixer.c:62
 msgid "I couldn't attach the mixer to the card"
@@ -206,7 +206,7 @@ msgstr "Alsa"
 
 #: ../data/messages:41
 msgid "Let empty to use the defaut command."
-msgstr ""
+msgstr "Laisser vide pour utiliser la commande par défaut."
 
 #: ../data/messages:43
 msgid "Open an advanced sound mixer with :"
@@ -244,12 +244,12 @@ msgstr ""
 
 #: ../data/messages:43
 msgid "Specific command to run to show an advanced sound mixer :"
-msgstr ""
+msgstr "Commande spécifique pour montrer un mixer de son avancé :"
 
 #: ../data/messages:47
 msgid "Variation for 1 mouse scroll, in % :"
-msgstr ""
+msgstr "Variation pour 1 coup de molette, en % :"
 
 #: ../data/messages:49
 msgid "Hide the scale when mouse leaves the desklet ?"
-msgstr ""
+msgstr "Cacher l'échelle quand la souris quitte le desklet ?"

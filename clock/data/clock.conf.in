@@ -67,6 +67,10 @@ old fashion style = true
 #{r, v, b, a}
 text color = 0.0; 0.0; 0.5; 1.
 
+#P Font used for the numeric display :
+#{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
+font = 
+
 #R1[] List of available themes for the analogic display :/
 theme = glassy
 

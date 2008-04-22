@@ -291,18 +291,12 @@ msgstr "Déc"
 msgid "Render desklet in 3D ?"
 msgstr "Dessiner le desklet en 3D ?"
 
-#: ../data/messages:33
-msgid ""
-"You can visit this URL to find it, for exemple : http://xoap.weather.com/"
-"search/search?where=Paris,France"
-msgstr ""
-
 #: ../src/applet-notifications.c:96 ../src/applet-notifications.c:94
 #: ../src/applet-notifications.c:93
 msgid ""
 "Enter your location\n"
 " (for exemple : Paris, France)"
-msgstr ""
+msgstr "Entrez votre location\n (par exemple : Paris, France)"
 
 #: ../src/applet-notifications.c:109 ../src/applet-notifications.c:123
 #: ../src/applet-notifications.c:122 ../src/applet-notifications.c:107
@@ -311,22 +305,22 @@ msgstr ""
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
-msgstr ""
+msgstr "Je n'ai pas pu récupérer les info\n la connexion est-elle établie ?"
 
 #: ../src/applet-notifications.c:156 ../src/applet-notifications.c:155
 #: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
 msgid "Choose your location :"
-msgstr ""
+msgstr "Choisissez votre location :"
 
 #: ../src/applet-notifications.c:182 ../src/applet-notifications.c:181
 #: ../src/applet-notifications.c:179 ../src/applet-notifications.c:177
 msgid "Search for your location"
-msgstr ""
+msgstr "Chercher votre location"
 
 #: ../src/applet-notifications.c:183 ../src/applet-notifications.c:182
 #: ../src/applet-notifications.c:180 ../src/applet-notifications.c:178
 msgid "Reload now"
-msgstr ""
+msgstr "Recharger maintenant"
 
 #: ../src/applet-notifications.c:208 ../src/applet-notifications.c:236
 #: ../src/applet-notifications.c:207 ../src/applet-notifications.c:235
@@ -335,14 +329,14 @@ msgstr ""
 msgid ""
 "No data were available\n"
 " is connection alive ?"
-msgstr ""
+msgstr "Aucune donnée disponible\n la connexion est-elle établie ?"
 
 #: ../data/messages:33 ../data/messages:35
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
-msgstr ""
+msgstr "Cliquez droit sur l'icone pour laisser Cairo-Dock vous aider à trouver le code de votre location."
 
 #: ../data/messages:49
 msgid "Info"
-msgstr ""
+msgstr "Info"

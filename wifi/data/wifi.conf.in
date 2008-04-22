@@ -57,7 +57,7 @@ frame_disp=
 #b Overwrite the default label with the connection point name ?
 essid=true
 
-#r[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to strength :
+#r[None;Zoom;Transparency;Draw Bar] Effect to apply on the icon according to strength :
 effect=0
 
 #b Use a jauge instead of icons?

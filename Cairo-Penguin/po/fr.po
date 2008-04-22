@@ -210,4 +210,4 @@ msgstr ""
 
 #: ../src/applet-notifications.c:35
 msgid "For Aiur !"
-msgstr "Pour Aiur !"
+msgstr "Pour Aïur !"

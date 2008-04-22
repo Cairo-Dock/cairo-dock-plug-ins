@@ -243,7 +243,7 @@ msgid "Set up power management"
 msgstr "Gestionnaire d'énergie"
 
 #: ../data/messages:47 ../data/messages:49 ../data/messages:43
-msgid "Effet to apply on the icon according to charge :"
+msgid "Effect to apply on the icon according to charge :"
 msgstr "Effet à appliquer à l'icône en fonction de la charge :"
 
 #: ../data/messages:31
@@ -367,16 +367,16 @@ msgstr "Aléatoire"
 
 #: ../data/messages:39
 msgid "Icon's filename when on battery :"
-msgstr ""
+msgstr "Nom d'une icône en mode batterie :"
 
 #: ../data/messages:41
 msgid "Icon's filename when on charge :"
-msgstr ""
+msgstr "Nom d'une icône en mode recharge :"
 
 #: ../data/messages:53
 msgid "Use a gauge instead of icons ?"
-msgstr ""
+msgstr "Utiliser une jauge au lieu d'icônes ?"
 
 #: ../data/messages:55
 msgid "List of available gauges :"
-msgstr ""
+msgstr "Liste des jauges disponibles :"

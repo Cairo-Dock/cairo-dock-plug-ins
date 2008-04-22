@@ -162,7 +162,7 @@ msgstr "Dessiner une barre"
 
 #: ../data/messages:51 ../data/messages:57 ../data/messages:53
 #: ../data/messages:55
-msgid "Effet to apply on the icon according to strength :"
+msgid "Effect to apply on the icon according to strength :"
 msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
 #: ../data/messages:51 ../data/messages:65
@@ -181,7 +181,7 @@ msgstr "Aucune icône quand aucun module wifi n'est trouver?"
 #: ../src/applet-notifications.c:26 ../src/applet-notifications.c:35
 #: ../src/applet-notifications.c:33 ../src/applet-notifications.c:32
 #: ../src/applet-notifications.c:34 ../src/applet-notifications.c:29
-#: ../src/applet-notifications.c:28
+#: ../src/applet-notifications.c:28 ../src/applet-notifications.c:42
 msgid "Check for Wireless Extension"
 msgstr "Verifier les Extensions Wifi"
 
@@ -307,7 +307,8 @@ msgstr "Puissance du Signal:"
 
 #: ../src/applet-wifi.c:175 ../src/applet-wifi.c:169 ../src/applet-wifi.c:182
 #: ../src/applet-wifi.c:162 ../src/applet-wifi.c:188 ../src/applet-wifi.c:184
-#: ../src/applet-wifi.c:86 ../src/applet-wifi.c:81
+#: ../src/applet-wifi.c:86 ../src/applet-wifi.c:81 ../src/applet-wifi.c:89
+#: ../src/applet-wifi.c:94
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -322,6 +323,7 @@ msgstr "Afficher l'ESSID ?"
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Ecraser l'étiquette par défaut avec le nom du point d'accès ?"
 
+#: ../src/applet-notifications.c:44
 msgid "Network Administration"
 msgstr "Administration du Réseau"
 

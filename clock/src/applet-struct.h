@@ -55,6 +55,7 @@ typedef struct {
 	gchar *cThemePath;
 	GPtrArray *pAlarms;
 	gchar *cSetupTimeCommand;
+	gchar *cFont;
 	} AppletConfig;
 
 typedef struct {

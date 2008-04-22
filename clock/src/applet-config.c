@@ -32,6 +32,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	double couleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "text color", myConfig.fTextColor, couleur);
 	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Module", "setup command");
+	myConfig.cFont = CD_CONFIG_GET_STRING ("Module", "font");
+	if (myConfig.cFont == NULL)
+		myConfig.cFont = g_strdup (g_cLabelPolice);
 	
 	//\_______________ On recupere les alarmes.
 	myConfig.pAlarms = g_ptr_array_new ();
@@ -84,12 +87,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	//\_______________ On liste les themes disponibles et on recupere celui choisi.
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "default");
-	cd_message (" -> %s\n", myConfig.cThemePath);
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cThemePath);
+	g_free (myConfig.cFont);
 	
 	CDClockAlarm *pAlarm;
 	int i;

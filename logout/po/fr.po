@@ -116,4 +116,4 @@ msgstr "Commande spécifique à exécuter pour se déloguer :"
 
 #: ../data/messages:11
 msgid "Let it empty to use the default icon."
-msgstr ""
+msgstr "Laisser vide pour utiliser l'icône par défaut."

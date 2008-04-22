@@ -132,7 +132,7 @@ msgstr ""
 msgid ""
 "It may recquire more CPU during the unfolding animation, except if you "
 "launch Cairo-Dock with Glitz."
-msgstr ""
+msgstr "Cela peut demander plus de puissance processeur durant l'animation de dépliage, sauf si vous lancez le dock avec Glitz."
 
 #: ../data/messages:47
 msgid "Draw labels while unfolding ?"

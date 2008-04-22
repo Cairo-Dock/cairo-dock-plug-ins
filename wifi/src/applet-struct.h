@@ -55,7 +55,7 @@ typedef struct {
 	gboolean bWirelessExt;
 	CairoDockMeasure *pMeasureTimer;
 	Gauge *pGauge;
-	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];  /// a virer.
+	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];
 } AppletData;
 
 

@@ -72,11 +72,11 @@ gboolean cd_mixer_scroll (gpointer *data)
 		int iVolume = mixer_get_mean_volume ();
 		if (iDirection == GDK_SCROLL_DOWN)
 		{
-			iVolume = MAX (iVolume - 5, 0);
+			iVolume = MAX (iVolume - myConfig.iScrollVariation, 0);
 		}
 		else if (iDirection == GDK_SCROLL_UP)
 		{
-			iVolume = MIN (iVolume + 5, 100);
+			iVolume = MIN (iVolume + myConfig.iScrollVariation, 100);
 		}
 		else
 			return CAIRO_DOCK_LET_PASS_NOTIFICATION;

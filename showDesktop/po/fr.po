@@ -105,8 +105,8 @@ msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:11
 msgid "Let it empty to use the default icon."
-msgstr ""
+msgstr "Laisser vide pour urtiliser l'icône par défaut."
 
 #: ../data/messages:35
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"

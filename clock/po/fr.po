@@ -290,4 +290,4 @@ msgstr "Commande à exécuter"
 #: ../src/applet-notifications.c:56 ../src/applet-notifications.c:62
 #: ../src/applet-notifications.c:60
 msgid "Calendar"
-msgstr ""
+msgstr "Calendrier"

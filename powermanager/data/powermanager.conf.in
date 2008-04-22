@@ -54,7 +54,7 @@ frame_info=
 battery icon = 
 #S Icon's filename when on charge :
 charge icon = 
-#r[nothing;zoom;transparency;draw bar] Effet to apply on the icon according to charge :
+#r[nothing;zoom;transparency;draw bar] Effect to apply on the icon according to charge :
 effect=0
 
 
