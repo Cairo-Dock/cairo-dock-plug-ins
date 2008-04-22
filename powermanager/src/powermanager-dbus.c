@@ -9,7 +9,6 @@
 #define MY_BATTERY_DIR "/proc/acpi/battery"
 #define MY_DEFAULT_BATTERY_NAME "BAT0"
 
-static DBusGConnection *dbus_connexion_system = NULL;
 static DBusGProxy *dbus_proxy_power = NULL;
 static DBusGProxy *dbus_proxy_stats = NULL;
 static DBusGProxy *dbus_proxy_battery = NULL;
@@ -75,17 +74,15 @@ gboolean dbus_connect_to_bus (void)
 {
 	cd_message ("");
 	
-	if (dbus_connexion_system == NULL)
-		dbus_connexion_system = dbus_g_bus_get(DBUS_BUS_SYSTEM, NULL);
-	if (cairo_dock_bdus_is_enabled () && dbus_connexion_system != NULL)
+	if (cairo_dock_bdus_is_enabled ())
 	{
-		dbus_proxy_power = cairo_dock_create_new_dbus_proxy (
+		dbus_proxy_power = cairo_dock_create_new_session_proxy (
 			"org.freedesktop.PowerManagement",
 			"/org/freedesktop/PowerManagement",
 			"org.freedesktop.PowerManagement"
 		);
 
-		dbus_proxy_stats = cairo_dock_create_new_dbus_proxy (
+		dbus_proxy_stats = cairo_dock_create_new_session_proxy (
 			"org.freedesktop.PowerManagement",
 			"/org/freedesktop/PowerManagement/Statistics",
 			"org.freedesktop.PowerManagement.Statistics"
@@ -99,7 +96,7 @@ gboolean dbus_connect_to_bus (void)
 			G_CALLBACK(on_battery_changed), NULL, NULL);
 		
 		gchar *cBatteryName = power_battery_name();
-		if (cBatteryName == NULL)  // on n'a pas trouve de battterie nous-meme.
+		if (cBatteryName == NULL)  // on n'a pas trouve de batterie nous-meme.
 		{
 			cBatteryName = MY_DEFAULT_BATTERY_NAME;  // utile ? si on a rien trouve, c'est surement qu'il n'y a pas de batterie non ?
 			cd_warning ("No battery were found, trying with default one : %s", cBatteryName);
@@ -110,8 +107,7 @@ gboolean dbus_connect_to_bus (void)
 			cd_message ("Battery Name : %s", cBatteryName);
 			gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", power_battery_name());
 			cd_debug ("  batteryPath : %s", batteryPath);
-			dbus_proxy_battery = dbus_g_proxy_new_for_name (
-				dbus_connexion_system,
+			dbus_proxy_battery = cairo_dock_create_new_system_proxy (
 				"org.freedesktop.Hal",
 				batteryPath,
 				"org.freedesktop.Hal.Device"
