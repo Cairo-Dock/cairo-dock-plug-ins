@@ -47,7 +47,7 @@ void update_icon(void)
 			
 			if(myData.on_battery)
 			{
-				//Alert when battery charge is under a configured value
+				//Alert when battery charge is under a configured value in %
 				if((myData.battery_charge <= myConfig.lowBatteryValue) && (! myData.alerted))
 				{
 					cd_powermanager_alert(1);

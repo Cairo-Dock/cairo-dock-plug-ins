@@ -15,6 +15,7 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT (D_("Applet by Necropotame (Adrien Pilleboue)"))
 
 CD_APPLET_ON_CLICK_BEGIN
+	cairo_dock_remove_dialog_if_any (myIcon);
 	cd_powermanager_bubble();
 CD_APPLET_ON_CLICK_END
 

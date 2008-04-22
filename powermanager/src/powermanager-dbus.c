@@ -170,8 +170,10 @@ gboolean update_stats(void)
 {
 	if(myData.battery_present)
 	{
+	  get_on_battery();
 		myData.battery_charge = get_stats("charge");
 		myData.battery_time = get_stats("time");
+		cd_debug ("PowerManager [On Battery]: %d", myData.on_battery); 
 		update_icon();
 	}
 	/*present: yes
