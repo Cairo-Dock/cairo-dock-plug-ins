@@ -33,7 +33,7 @@ static float pourcent(float x, float y) {
 static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *iMlink, int *iPercentage, CDWifiQuality *iQuality) {
 	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 	gchar *cOneInfopipe;
-	gchar *cESSID = NULL, *cQuality = NULL;
+	gchar *cESSID = NULL, *cQuality = NULL, *cConnName = NULL;
 	int flink=0, mlink=0, i=0,prcnt=0;
 	for (i = 0; cInfopipesList[i] != NULL; i ++) {
 		cOneInfopipe = cInfopipesList[i];
@@ -42,6 +42,7 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 		
 		if ((i == 0) && (strcmp(cOneInfopipe,"Wifi") == 0)) {
 			g_strfreev (cInfopipesList);
+			myData.bWirelessExt = FALSE; //On n'a pas de device wifi d'activé
 			return FALSE;
 		}
 		else if (cESSID == NULL) {
@@ -69,18 +70,30 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 					flink = atoi(cQuality);
 					mlink = atoi(str+1);
 					prcnt = pourcent (flink, mlink);
+					myData.bWirelessExt = TRUE; //On a un device wifi activé
 				}
 				break; //Les autres lignes ne nous importent peu.
 			}
 		}
+		if (cConnName == NULL && i == 0) {
+			cConnName = g_strdup (cOneInfopipe); // wlan0     IEEE 802.11g  ESSID:"WANADOO-21C8" 
+			gchar *str = strchr (cConnName, ' ');
+			if (str != NULL)
+				*str = '\0';
+		}
 	}
 	
-	cd_debug("Wifi - ESSID: %s - Signal Quality: %d/%d", cESSID, flink, mlink);
+	cd_debug("Wifi - Name: %s - ESSID: %s - Signal Quality: %d/%d", cConnName, cESSID, flink, mlink);
 	
 	if (cESSID == NULL)
 		cESSID = D_("Unknown");
 	g_free (myData.cESSID);
 	myData.cESSID = g_strdup (cESSID);
+	
+	if (cConnName == NULL)
+		cConnName = D_("Unknown");
+	g_free (myData.cConnName);
+	myData.cConnName = g_strdup (cConnName);
 	
 	*iFlink = flink;
 	*iMlink = mlink;
@@ -134,14 +147,12 @@ void cd_wifi_read_data (void) {
 }
 
 
-void cd_wifi_update_from_data (void)
-{
+void cd_wifi_update_from_data (void) {
 	if (myData.bAcquisitionOK) {
 		cd_wifi_draw_icon ();
 		cairo_dock_set_normal_frequency_state (myData.pMeasureTimer);
 	}
-	else
-	{
+	else {
 		cd_wifi_draw_no_wireless_extension ();
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}

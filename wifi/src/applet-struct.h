@@ -50,7 +50,9 @@ typedef struct {
 	gint flink, prev_flink;
 	gint mlink, prev_mlink;
 	gchar *cESSID;
+	gchar *cConnName;
 	gboolean bAcquisitionOK;
+	gboolean bWirelessExt;
 	CairoDockMeasure *pMeasureTimer;
 	Gauge *pGauge;
 	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];  /// a virer.

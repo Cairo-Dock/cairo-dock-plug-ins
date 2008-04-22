@@ -14,6 +14,7 @@ CD_APPLET_ABOUT (D_("This is the wifi applet\n made by ChAnGFu for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN
+	cairo_dock_remove_dialog_if_any (myIcon);
 	cd_wifi_bubble();
 CD_APPLET_ON_CLICK_END
 
@@ -22,16 +23,48 @@ static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer *
 	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
+static void eth_config(void) {  /// a mettre dans les plug-ins d'integration.
+	GError *erreur = NULL;
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
+		g_spawn_command_line_async ("gksu network-admin", &erreur);
+	}
+	else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
+		//Ajouter les lignes de KDE
+	}
+	if (erreur != NULL) {
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
+	}
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Wifi", pSubMenu, CD_APPLET_MY_MENU)
 		if (! myData.bAcquisitionOK) {
 			CD_APPLET_ADD_IN_MENU (D_("Check for Wireless Extension"), _wifi_recheck_wireless_extension, pSubMenu)
 		}
+		CD_APPLET_ADD_IN_MENU (D_("Network Administration"), eth_config, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 
+static void toggel_wlan(void) { //Trouver la commande pour activer/désactiver une connection
+	GError *erreur = NULL;
+	if (myData.bWirelessExt) {
+		gchar *cCommand = g_strdup_printf ("gksu command %s", myData.cConnName);
+		g_spawn_command_line_async (cCommand, &erreur);
+		g_free(cCommand);
+	}
+	else {
+		gchar *cCommand = g_strdup_printf ("gksu command %s", myData.cConnName);
+		g_spawn_command_line_async (cCommand, &erreur);
+		g_free(cCommand);
+	}
+	if (erreur != NULL) {
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
+	}
+}
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+	//On ajoutera la désactivation quand elle sera fonctionnelle...
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	cairo_dock_remove_dialog_if_any (myIcon);
 CD_APPLET_ON_MIDDLE_CLICK_END

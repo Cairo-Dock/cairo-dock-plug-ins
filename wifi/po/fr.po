@@ -322,6 +322,9 @@ msgstr "Afficher l'ESSID ?"
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Ecraser l'étiquette par défaut avec le nom du point d'accès ?"
 
+msgid "Network Administration"
+msgstr "Administration du Réseau"
+
 #: ../data/messages:69
 msgid "radium"
 msgstr ""
