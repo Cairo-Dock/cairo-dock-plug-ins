@@ -18,59 +18,53 @@ CD_APPLET_INCLUDE_MY_VARS
 // Prend un debit en octet par seconde et le transforme en une chaine de la forme : xxx yB/s
 void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 	int smallRate;
-	if(rate > 1000000000000000)
-	{
-		if (myDesklet)
-			g_sprintf(debit, "999+ TB/s");
-		else
-			g_sprintf(debit, "###");
- 	}
- 	else if (rate > 1000000000000)
- 	{
- 		smallRate = (int) (rate / 1000000000000);
- 		if (myDesklet)
-			g_sprintf(debit, "%i %s/s", smallRate, D_("TB"));
-		else
-			g_sprintf(debit, "%iT", smallRate);
- 	}
- 	else if (rate > 1000000000)
- 	{
- 		smallRate = (int) (rate / 1000000000);
- 		if (myDesklet)
-			g_sprintf(debit, "%i %s/s", smallRate, D_("GB"));
-		else
-			g_sprintf(debit, "%iG", smallRate);
- 	}
- 	else if (rate > 1000000)
- 	{
- 		smallRate = (int) (rate / 1000000);
-  		if (myDesklet)
-			g_sprintf(debit, "%i %s/s", smallRate, D_("MB"));
-		else
-			g_sprintf(debit, "%iM", smallRate);
- 	}
- 	else if (rate > 1000)
- 	{
- 		smallRate = (int) (rate / 1000);
-  		if (myDesklet)
-			g_sprintf(debit, "%i %s/s", smallRate, D_("KB"));
-		else
-			g_sprintf(debit, "%iK", smallRate);
- 	}
- 	else if (rate > 0)
- 	{
- 		smallRate = rate;
-		if (myDesklet)
-			g_sprintf(debit, "%i %s/s", smallRate, D_("B"));
-		else
-			g_sprintf(debit, "%io", smallRate);
- 	}
-	else
+	
+	if (rate == 0)
 	{
 		if (myDesklet)
 			g_sprintf(debit, "0 %s/s", D_("B"));
 		else
 			g_sprintf(debit, "0");
+	}
+	else if (rate < 1024)
+	{
+		smallRate = rate;
+		if (myDesklet)
+			g_sprintf(debit, "%i %s/s", smallRate, D_("B"));
+		else
+			g_sprintf(debit, "%io", smallRate);
+	}
+	else if (rate < (2>>20))
+	{
+		smallRate = rate >> 10;
+		if (myDesklet)
+			g_sprintf(debit, "%i %s/s", smallRate, D_("KB"));
+		else
+			g_sprintf(debit, "%iK", smallRate);
+	}
+	else if (rate < (2>>30))
+	{
+		smallRate = rate >> 20;
+		if (myDesklet)
+			g_sprintf(debit, "%i %s/s", smallRate, D_("MB"));
+		else
+			g_sprintf(debit, "%iM", smallRate);
+	}
+	else if (rate < ((unsigned long long)2>>40))
+	{
+		smallRate = rate >> 30;
+		if (myDesklet)
+			g_sprintf(debit, "%i %s/s", smallRate, D_("GB"));
+		else
+			g_sprintf(debit, "%iG", smallRate);
+	}
+	else  // c'est vraiment pour dire qu'on est exhaustif :-)
+	{
+		smallRate = rate >> 40;
+		if (myDesklet)
+			g_sprintf(debit, "%i %s/s", smallRate, D_("TB"));
+		else
+			g_sprintf(debit, "%iT", smallRate);
 	}
 }
 
@@ -202,7 +196,7 @@ void cd_netspeed_update_from_data (void)
 			
 			if((myData.iMaxUpRate != 0) && (myData.iMaxDownRate != 0))
 			{
-				GList *pList = NULL;  /// il faudrait passer un tableau plutot ...
+				GList *pList = NULL;  /// un tableau ca serait plus sympa ...
 				double *pValue = g_new (double, 1);
 				*pValue = (double) myData.iUploadSpeed / myData.iMaxUpRate;
 				pList = g_list_append (pList, pValue);
@@ -210,7 +204,7 @@ void cd_netspeed_update_from_data (void)
 				*pValue = (double) myData.iDownloadSpeed / myData.iMaxDownRate;
 				pList = g_list_append (pList, pValue);
 				make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);
-				g_list_foreach (pList, g_free, NULL);
+				g_list_foreach (pList, (GFunc) g_free, NULL);
 				g_list_free (pList);
 			}
 			else
@@ -228,5 +222,5 @@ void cd_netspeed_update_from_data (void)
 			}
 		}
 	}
-	CD_APPLET_REDRAW_MY_ICON
+	//CD_APPLET_REDRAW_MY_ICON
 }

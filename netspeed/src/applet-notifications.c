@@ -31,10 +31,41 @@ static void _netspeed_change_mode_debug_ () {
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-		CD_APPLET_ADD_SUB_MENU ("netspeed", pSubMenu, CD_APPLET_MY_MENU)
-		if (! myData.bAcquisitionOK) {
-	    		CD_APPLET_ADD_IN_MENU (D_("Re-check interface"), _netspeed_recheck_, pSubMenu)
-	  	}
-	  	CD_APPLET_ADD_IN_MENU (D_("Debug"), _netspeed_change_mode_debug_, pSubMenu)
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+	CD_APPLET_ADD_SUB_MENU ("netspeed", pSubMenu, CD_APPLET_MY_MENU)
+	if (! myData.bAcquisitionOK) {
+		CD_APPLET_ADD_IN_MENU (D_("Re-check interface"), _netspeed_recheck_, pSubMenu)
+	}
+	CD_APPLET_ADD_IN_MENU (D_("Debug"), _netspeed_change_mode_debug_, pSubMenu)
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
+
+
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+	
+	if (myData.dbus_proxy_nm == NULL)
+		myData.dbus_proxy_nm = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.NetworkManager",
+			"/org/freedesktop/NetworkManager",
+			"org.freedesktop.NetworkManager");
+	g_return_val_if_fail (myData.dbus_proxy_nm != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
+	guint state = 0;
+	dbus_g_proxy_call (myData.dbus_proxy_nm, "state", NULL, 
+		G_TYPE_INVALID,
+		G_TYPE_UINT, &state,
+		G_TYPE_INVALID);
+	g_print ("state : %d\n", state);
+	if (state == 3)  // actif
+	{
+		dbus_g_proxy_call_no_reply (myData.dbus_proxy_nm, "sleep",
+			G_TYPE_INVALID,
+			G_TYPE_INVALID);
+	}
+	else if (state == 1)  // inactif
+	{
+		dbus_g_proxy_call_no_reply (myData.dbus_proxy_nm, "wake",
+			G_TYPE_INVALID,
+			G_TYPE_INVALID);
+	}
+	
+CD_APPLET_ON_MIDDLE_CLICK_END

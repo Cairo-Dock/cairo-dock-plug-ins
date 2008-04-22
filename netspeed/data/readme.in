@@ -1,4 +1,6 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>parAdOxxx_ZeRo</b>
 <i>The <span color='#0000FF'>netspeed</span> applet show you the bit rate of your internet connection</i>
-<i>and make some stats on it.</i>
+<i>and make some stats on it.
+  Click on the icon to have the total amount of data transfered
+  Middle click to (de)activate the network (needs NetworManager)</i>

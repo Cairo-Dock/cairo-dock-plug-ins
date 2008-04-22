@@ -37,6 +37,9 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	
+	if (myData.dbus_proxy_nm != NULL)
+		g_object_unref (myData.dbus_proxy_nm);
+	
 	//Adieu la jauge...
 	free_cd_Gauge(myData.pGauge);
 	

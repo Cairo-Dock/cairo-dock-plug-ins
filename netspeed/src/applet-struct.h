@@ -30,6 +30,7 @@ typedef struct {
 	gboolean bAcquisitionOK;
 	CairoDockMeasure *pMeasureTimer;
 	Gauge *pGauge;
+	DBusGProxy *dbus_proxy_nm;
 } AppletData;
 
 
