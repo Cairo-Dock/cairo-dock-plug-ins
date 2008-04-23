@@ -164,7 +164,7 @@ msgstr "Aucune"
 msgid "Switch WM"
 msgstr "Changer de WM"
 
-#: ../data/messages:45 ../data/messages:43
+#: ../data/messages:45 ../data/messages:43 ../src/applet-load-icon.c:22
 msgid "Widget Layer"
 msgstr "Couche des Widgets"
 
@@ -429,10 +429,6 @@ msgstr "Forcer les Options de Compiz au démarrage ?"
 #: ../src/applet-load-icon.c:22
 msgid "Exposition"
 msgstr "Exposé"
-
-#: ../src/applet-load-icon.c:22
-msgid "Widget Layer"
-msgstr "Couche des Widgets"
 
 #: ../data/messages:61
 msgid "Load Compiz with options at startup."

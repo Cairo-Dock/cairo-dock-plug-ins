@@ -64,14 +64,13 @@ void cd_compiz_update_main_icon (void) {
 	gboolean bNeedsRedraw = FALSE;
 	if (myData.bAcquisitionOK) {
 		if (myData.bCompizIsRunning && myData.iCompizIcon != COMPIZ_DEFAULT) {
-			g_print ("COMPIZ_DEFAULT\n");
+			cd_debug ("COMPIZ_DEFAULT");
 			myData.iCompizIcon = COMPIZ_DEFAULT;
 			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 			bNeedsRedraw = TRUE;
-			g_print ("myIcon->acFileName <- %s\n", myIcon->acFileName);
 		}
 		else if (! myData.bCompizIsRunning && myData.iCompizIcon != COMPIZ_OTHER) {
-			g_print ("COMPIZ_OTHER\n");
+			cd_debug ("COMPIZ_OTHER");
 			myData.iCompizIcon = COMPIZ_OTHER;
 			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_OTHER], "other.svg");
 			bNeedsRedraw = TRUE;
@@ -79,9 +78,9 @@ void cd_compiz_update_main_icon (void) {
 	}
 	else {
 		if (myData.iCompizIcon != COMPIZ_BROKEN) {
-			g_print ("COMPIZ_BROKEN\n");
+			cd_debug ("COMPIZ_BROKEN");
 			myData.iCompizIcon = COMPIZ_BROKEN;
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_OTHER], "broken.svg");
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_BROKEN], "broken.svg");
 			bNeedsRedraw = TRUE;
 		}
 	}

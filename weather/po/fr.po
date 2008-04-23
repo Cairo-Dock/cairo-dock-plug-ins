@@ -296,7 +296,9 @@ msgstr "Dessiner le desklet en 3D ?"
 msgid ""
 "Enter your location\n"
 " (for exemple : Paris, France)"
-msgstr "Entrez votre location\n (par exemple : Paris, France)"
+msgstr ""
+"Entrez votre location\n"
+" (par exemple : Paris, France)"
 
 #: ../src/applet-notifications.c:109 ../src/applet-notifications.c:123
 #: ../src/applet-notifications.c:122 ../src/applet-notifications.c:107
@@ -305,7 +307,9 @@ msgstr "Entrez votre location\n (par exemple : Paris, France)"
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
-msgstr "Je n'ai pas pu récupérer les info\n la connexion est-elle établie ?"
+msgstr ""
+"Je n'ai pas pu récupérer les info\n"
+" la connexion est-elle établie ?"
 
 #: ../src/applet-notifications.c:156 ../src/applet-notifications.c:155
 #: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
@@ -329,13 +333,17 @@ msgstr "Recharger maintenant"
 msgid ""
 "No data were available\n"
 " is connection alive ?"
-msgstr "Aucune donnée disponible\n la connexion est-elle établie ?"
+msgstr ""
+"Aucune donnée disponible\n"
+" la connexion est-elle établie ?"
 
 #: ../data/messages:33 ../data/messages:35
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
-msgstr "Cliquez droit sur l'icone pour laisser Cairo-Dock vous aider à trouver le code de votre location."
+msgstr ""
+"Cliquez droit sur l'icone pour laisser Cairo-Dock vous aider à trouver le "
+"code de votre location."
 
 #: ../data/messages:49
 msgid "Info"

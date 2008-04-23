@@ -13,31 +13,11 @@ CD_APPLET_DEFINITION ("xmms", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 static gchar *s_cPlayerClass[MY_NB_PLAYERS] = {"xmms", "audacious", "banshee", "exaile"};
 
-static gchar *s_cControlIconName[4] = {"0.svg", "1.svg", "2.svg", "3.svg"};
-#define _add_icon(i)\
-	pIcon = g_new0 (Icon, 1);\
-	pIcon->acName = NULL;\
-	pIcon->acFileName = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cControlIconName[i]);\
-	pIcon->fOrder = i;\
-	pIcon->fScale = 1.;\
-	pIcon->fAlpha = 1.;\
-	pIcon->fWidthFactor = 1.;\
-	pIcon->fHeightFactor = 1.;\
-	pIcon->acCommand = g_strdup ("none");\
-	pIcon->cParentDockName = NULL;\
-	myDesklet->icons = g_list_append (myDesklet->icons, pIcon);
-
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet) {
 		if (myConfig.extendedDesklet)
 		{
-			Icon *pIcon;
-			int i;
-			for (i = 0; i < 4; i ++)
-			{
-				_add_icon(i);
-			}
-			g_print ("mode etendu\n");
+			cd_xmms_add_buttons_to_desklet ();
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
 			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Controler", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, data);
 		}
@@ -95,12 +75,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else if (myConfig.extendedDesklet && myDesklet->icons == NULL)
 		{
-			Icon *pIcon;
-			int i;
-			for (i = 0; i < 4; i ++)
-			{
-				_add_icon(i);
-			}
+			cd_xmms_add_buttons_to_desklet ();
 		}
 	}
 	
@@ -115,7 +90,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet) {
 		if (myConfig.extendedDesklet) {
 			g_print ("mode etendu\n");
-			cd_xmms_add_button_to_desklet(); //on dessine le desklet avec ses boutons
+			cd_xmms_add_buttons_to_desklet(); //on dessine le desklet avec ses boutons
 		}
 		else
 			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);

@@ -18,30 +18,24 @@ static GList * _list_icons (void) {
 	int i;
 	for (i = 0; i < 4; i ++) {
 		pIcon = g_new0 (Icon, 1);
-	  pIcon->acName = g_strdup (D_(s_iconName[i]));
-	  pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
-	  pIcon->fOrder = 2*i;
-	  pIcon->iType = 2*i;
-	  pIcon->fScale = 1.;
-	  pIcon->fAlpha = 1.;
-	  pIcon->fWidthFactor = 1.;
-	  pIcon->fHeightFactor = 1.;
-	  pIcon->acCommand = g_strdup ("none");
-	  pIcon->cParentDockName = g_strdup (myIcon->acName);
-	  pIconList = g_list_append (pIconList, pIcon);
+		pIcon->acName = NULL;
+		pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
+		pIcon->fOrder = i;
+		pIcon->fScale = 1.;
+		pIcon->fAlpha = 1.;
+		pIcon->fWidthFactor = 1.;
+		pIcon->fHeightFactor = 1.;
+		pIcon->acCommand = g_strdup ("none");
+		pIcon->cParentDockName = NULL;
+		pIconList = g_list_append (pIconList, pIcon);
 	}
 	
 	return pIconList;
 }
-
-void cd_xmms_add_button_to_desklet(void) {
+void cd_xmms_add_buttons_to_desklet(void) {
 	if (myDesklet && myConfig.extendedDesklet){
-	  GList *pIconList = _list_icons ();
+		GList *pIconList = _list_icons ();
 		myDesklet->icons = pIconList;
-  	gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-  	cairo_dock_set_desklet_renderer_by_name (myDesklet, "Controler", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, data);
-  	myDrawContext = cairo_create (myIcon->pIconBuffer);
-  	gtk_widget_queue_draw (myDesklet->pWidget);
 	}
 }
 
@@ -259,7 +253,7 @@ void cd_xmms_animate_icon(int animationLength) {
 
 void cd_xmms_set_surface (MyPlayerStatus iStatus) {
 	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
-	
+	g_print ("%s (%d)\n", __func__, iStatus);
 	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];
 	if (pSurface == NULL) {
 		if (myConfig.cUserImage[iStatus] != NULL) {

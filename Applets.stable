@@ -12,16 +12,15 @@ showDesklets
 Xgamma
 alsaMixer
 weather
-###Stable applets, but still upgraded from time to time :
 terminal
-rhythmbox
-systray
-###Last applets, stable as far as we know, may still be under development :
 Cairo-Penguin
+###Stable as far as we know, may still be under development :
+rhythmbox
+xmms
 powermanager
 wifi
-xmms
-###Last addition of 1.5.5 :
+systray
+###Last addition of v1.5.5 :
 compiz-icon
 Dbus
 showDesktop

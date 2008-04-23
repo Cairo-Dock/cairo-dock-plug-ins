@@ -413,7 +413,7 @@ msgstr ""
 msgid "heliodor"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:43 ../src/applet-load-icon.c:22
 msgid "Widget Layer"
 msgstr ""
 

@@ -104,6 +104,35 @@ void stop_vfs_backend (void)
 	return TRUE;
 }*/
 
+static gchar *_cd_get_icon_path (GIcon *pIcon)
+{
+	gchar *cIconPath= NULL;
+	if (G_IS_THEMED_ICON (pIcon))
+	{
+		const gchar * const *cFileNames = g_themed_icon_get_names (G_THEMED_ICON (pIcon));
+		//cIconName = g_strjoinv (":", (gchar **) cFileNames);
+		int i;
+		for (i = 0; cFileNames[i] != NULL && cIconPath == NULL; i ++)
+		{
+			g_print (" une icone possible est : %s\n", cFileNames[i]);
+			cIconPath = cairo_dock_search_icon_s_path (cFileNames[i]);
+			g_print ("  chemin trouve : %s\n", cIconPath);
+		}
+		/*GtkIconInfo *pGtkIconInfo = gtk_icon_theme_choose_icon (g_pIconTheme, (const char **) cFileNames, 64, GTK_ICON_LOOKUP_FORCE_SVG);
+		if (pGtkIconInfo != NULL)
+		{
+			cIconPath = gtk_icon_info_get_filename (pGtkIconInfo);
+			gtk_icon_info_free (pGtkIconInfo);
+		}*/
+	}
+	else if (G_IS_FILE_ICON (pIcon))
+	{
+		GFile *pFile = g_file_icon_get_file (G_FILE_ICON (pIcon));
+		gchar *cIconPath = g_file_get_basename (pFile);
+		g_print (" file_icon => %s\n", cIconPath);
+	}
+	return cIconPath;
+}
 
 void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, CairoDockFMSortType iSortType)
 {
@@ -145,7 +174,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	gchar *cQuery = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_TYPE, ",",
 		G_FILE_ATTRIBUTE_STANDARD_SIZE, ",",
 		G_FILE_ATTRIBUTE_TIME_MODIFIED, ",",
-		G_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE, ",",
+		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, ",",
 		G_FILE_ATTRIBUTE_STANDARD_NAME, ",",
 		G_FILE_ATTRIBUTE_STANDARD_ICON, ",",
 		G_FILE_ATTRIBUTE_UNIX_RDEV, NULL);
@@ -183,6 +212,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		*fOrder = 0;
 	
 	*bIsDirectory = (iFileType == G_FILE_TYPE_DIRECTORY);
+	g_print (" => '%s' (mime:%s ; bIsDirectory:%d)\n", *cName, cMimeType, *bIsDirectory);
 	
 	*cIconName = NULL;
 	if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
@@ -201,17 +231,15 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		}
 		g_free (cHostname);
 	}
-	
 	if (*cIconName == NULL)
 	{
 		GIcon *pSystemIcon = g_file_info_get_icon (pFileInfo);
-		g_print ("get file icon ...\n");
-		GFile* pIconFile = g_file_icon_get_file ((GFileIcon *)pSystemIcon);
-		g_print ("okn");
-		*cIconName = g_file_get_path (pIconFile);
-		g_print (" -> %s\n",*cIconName);
-		g_object_unref (pIconFile);
+		if (pSystemIcon != NULL)
+		{
+			*cIconName = _cd_get_icon_path (pSystemIcon);
+		}
 	}
+	g_print ("cIconName : %s\n", *cIconName);
 	
 	*iVolumeID = 0;
 	g_object_unref (pFileInfo);
@@ -237,7 +265,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	gchar *cAttributes = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_TYPE, ",",
 		G_FILE_ATTRIBUTE_STANDARD_SIZE, ",",
 		G_FILE_ATTRIBUTE_TIME_MODIFIED, ",",
-		G_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE, ",",
+		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, ",",
 		G_FILE_ATTRIBUTE_STANDARD_NAME, ",",
 		G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN, ",",
 		G_FILE_ATTRIBUTE_STANDARD_ICON, ",",
@@ -309,12 +337,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				}
 				if (icon->acFileName == NULL)
 				{
-					g_print ("get file icon ...\n");
-					GFile* pIconFile = g_file_icon_get_file ((GFileIcon *)pSystemIcon);
-					g_print ("okn");
-					icon->acFileName = g_file_get_path (pIconFile);
-					g_print (" -> %s\n", icon->acFileName);
-					g_object_unref (pIconFile);
+					icon->acFileName = _cd_get_icon_path (pSystemIcon);
 				}
 				
 				icon->iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_RDEV);
@@ -359,7 +382,7 @@ void vfs_backend_launch_uri (const gchar *cURI)
 }
 
 
-static GVolume *_cd_find_volume_from_uri (gchar *cURI)
+static GVolume *_cd_find_volume_from_uri (const gchar *cURI)
 {
 	GError *erreur = NULL;
 	gchar *ltmp_path = NULL;
@@ -561,14 +584,14 @@ void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockF
 			NULL,
 			&erreur);
 	else
-		pMonitor =g_file_monitor_file (pFile,
+		pMonitor = g_file_monitor_file (pFile,
 			G_FILE_MONITOR_WATCH_MOUNTS,
 			NULL,
 			&erreur);
 	g_object_unref (pFile);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : couldn't get file info for '%s' [%s]", cURI, erreur->message);
+		cd_warning ("Attention : couldn't add monitor on '%s' (%d) [%s]", cURI, bDirectory, erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
@@ -659,7 +682,7 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 {
 	GFile *pFile = g_file_new_for_uri (cURI);
 	GError *erreur = NULL;
-	gchar *cQuery = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_SIZE, ",", G_FILE_ATTRIBUTE_TIME_MODIFIED, ",", G_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE, ",", G_FILE_ATTRIBUTE_UNIX_UID, ",", G_FILE_ATTRIBUTE_UNIX_GID, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_READ, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE, NULL);
+	gchar *cQuery = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_SIZE, ",", G_FILE_ATTRIBUTE_TIME_MODIFIED, ",", G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, ",", G_FILE_ATTRIBUTE_UNIX_UID, ",", G_FILE_ATTRIBUTE_UNIX_GID, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_READ, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE, NULL);
 	GFileInfo *pFileInfo = g_file_query_info (pFile,
 		cQuery,
 		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
@@ -668,13 +691,13 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 	g_free (cQuery);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : couldn't get file info for '%s' [%s]", cURI, erreur->message);
+		cd_warning ("Attention : couldn't get file properties for '%s' [%s]", cURI, erreur->message);
 		g_error_free (erreur);
 	}
 	
 	*iSize = g_file_info_get_attribute_uint64 (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_SIZE);
 	*iLastModificationTime = (time_t) g_file_info_get_attribute_uint64 (pFileInfo, G_FILE_ATTRIBUTE_TIME_MODIFIED);
-	*cMimeType = g_file_info_get_attribute_as_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE);
+	*cMimeType = g_file_info_get_attribute_as_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
 	*iUID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_UID);
 	*iGID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_GID);
 	int r = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_ACCESS_CAN_READ);
@@ -689,15 +712,21 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 
 gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNecessary)
 {
-	GFile *pFile = g_file_new_for_uri ("trash:/");
+	gchar *cPath = NULL;
+	/*GFile *pFile = g_file_new_for_uri ("trash://");
 	gchar *cPath = g_file_get_path (pFile);
-	g_object_unref (pFile);
+	g_object_unref (pFile);*/
+	const gchar *xdgPath = g_getenv ("XDG_DATA_HOME");
+	if (xdgPath != NULL)
+		cPath = g_strdup_printf ("%s/Trash/files", xdgPath);
+	else
+		cPath = g_strdup_printf ("%s/.local/share/Trash/files", g_getenv ("HOME"));
 	return cPath;
 }
 
 gchar *vfs_backend_get_desktop_path (void)
 {
-	GFile *pFile = g_file_new_for_uri ("desktop:/");
+	GFile *pFile = g_file_new_for_uri ("desktop://");
 	gchar *cPath = g_file_get_path (pFile);
 	g_object_unref (pFile);
 	return cPath;

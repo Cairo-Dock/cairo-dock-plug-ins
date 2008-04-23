@@ -255,7 +255,9 @@ msgstr "Poids total"
 #: ../data/messages:57 ../data/messages:61
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
-msgstr "en Mo. Vous serez notifié si vous dépassez cette limite. Mettez 0 pour ne pas l'utiliser."
+msgstr ""
+"en Mo. Vous serez notifié si vous dépassez cette limite. Mettez 0 pour ne "
+"pas l'utiliser."
 
 #: ../data/messages:59
 msgid "Maximum total size of all dustbins :"
@@ -271,12 +273,16 @@ msgstr "Utilisation dégradée"
 
 #: ../data/messages:67
 msgid "in seconds, only used if you can't monitor directories."
-msgstr "en secondes, seulement utilisé si la surveillance de fichiers n'est pas disponible."
+msgstr ""
+"en secondes, seulement utilisé si la surveillance de fichiers n'est pas "
+"disponible."
 
 #: ../data/messages:71
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
-msgstr "N'utilisez cela que si vous notez que l'applet de peut pas afficher la poubelle au clic."
+msgstr ""
+"N'utilisez cela que si vous notez que l'applet de peut pas afficher la "
+"poubelle au clic."
 
 #: ../data/messages:73
 msgid "Alternative file browser used to show a trash :"

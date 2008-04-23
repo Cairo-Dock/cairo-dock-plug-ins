@@ -460,3 +460,7 @@ msgstr ""
 #: ../data/messages:55
 msgid "List of available gauges :"
 msgstr ""
+
+#: ../data/messages:43
+msgid "Effect to apply on the icon according to charge :"
+msgstr ""
