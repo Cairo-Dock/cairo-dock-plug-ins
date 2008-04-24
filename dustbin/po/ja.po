@@ -114,15 +114,15 @@ msgstr "%s を表示"
 msgid "Delete %s"
 msgstr "%s を削除"
 
-#: ../src/applet-draw.c:152 ../src/applet-draw.c:149
+#: ../src/applet-draw.c:152 ../src/applet-draw.c:149 ../src/applet-draw.c:146
 msgid "calculating"
 msgstr "計算中"
 
-#: ../src/applet-draw.c:162 ../src/applet-draw.c:159
+#: ../src/applet-draw.c:162 ../src/applet-draw.c:159 ../src/applet-draw.c:156
 msgid " trashe(s)"
 msgstr "ゴミ"
 
-#: ../src/applet-draw.c:166 ../src/applet-draw.c:163
+#: ../src/applet-draw.c:166 ../src/applet-draw.c:163 ../src/applet-draw.c:160
 msgid " file(s)"
 msgstr "ファイル"
 

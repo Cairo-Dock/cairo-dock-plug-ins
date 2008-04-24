@@ -115,9 +115,6 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 	if ((myData.iNbTrashes == -1) || (myData.iNbTrashes == 0 && iNewState != 0) || (myData.iNbTrashes != 0 && iNewState == 0))
 	{
 		myData.iNbTrashes = iNewState;
-		double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-		cairo_save (myDrawContext);
-		
 		if (iNewState == 0)
 		{
 			cd_message (" -> on a vide la corbeille");
@@ -130,9 +127,6 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 			g_return_val_if_fail (myData.pFullBinSurface != NULL, TRUE);
 			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface)
 		}
-		cairo_restore (myDrawContext);  // retour a l'etat initial.
-		
-		CD_APPLET_REDRAW_MY_ICON
 	}
 	
 	return TRUE;
@@ -142,7 +136,10 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 void cd_dustbin_draw_quick_info (gboolean bRedraw)
 {
 	if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NONE)
+	{
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
 		return ;
+	}
 	cd_message ("%s (%d)", __func__, myData.iNbTrashes);
 	if (cd_dustbin_is_calculating ())
 	{
@@ -164,22 +161,7 @@ void cd_dustbin_draw_quick_info (gboolean bRedraw)
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 		{
-			if (myData.iSize < 1024)
-			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%db", myData.iSize)
-			}
-			else if (myData.iSize < (1 << 20))
-			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dK", (int) (myData.iSize>>10))
-			}
-			else if (myData.iSize < (1 << 30))
-			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dM", (int) (myData.iSize>>20))
-			}
-			else
-			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%dG", (int) (myData.iSize>>30))
-			}
+			CD_APPLET_SET_SIZE_AS_QUICK_INFO (myData.iSize)
 		}
 	}
 	
@@ -201,12 +183,12 @@ void cd_dustbin_signal_full_dustbin (void)
 		pDustbin = pElement->data;
 		if (myConfig.iSizeLimit != 0 && pDustbin->iSize > myConfig.iSizeLimit)
 		{
-			cairo_dock_show_temporary_dialog_with_icon ("%s is full !", myIcon, myDock, CD_DUSTBIN_DIALOG_DURATION, NULL, pDustbin->cPath);
+			cairo_dock_show_temporary_dialog_with_icon ("%s is full !", myIcon, myContainer, CD_DUSTBIN_DIALOG_DURATION, NULL, pDustbin->cPath);
 			bOneDustbinFull = TRUE;
 		}
 	}
 	if (! bOneDustbinFull && myConfig.iGlobalSizeLimit != 0 && myData.iSize > myConfig.iGlobalSizeLimit)
 	{
-		cairo_dock_show_temporary_dialog_with_icon ("I'm full !", myIcon, myDock, CD_DUSTBIN_DIALOG_DURATION, NULL);
+		cairo_dock_show_temporary_dialog_with_icon ("I'm full !", myIcon, myContainer, CD_DUSTBIN_DIALOG_DURATION, NULL);
 	}
 }

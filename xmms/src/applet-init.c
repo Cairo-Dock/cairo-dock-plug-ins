@@ -8,7 +8,6 @@
 #include "applet-init.h"
 
 
-
 CD_APPLET_DEFINITION ("xmms", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 static gchar *s_cPlayerClass[MY_NB_PLAYERS] = {"xmms", "audacious", "banshee", "exaile"};
@@ -89,8 +88,8 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (myDesklet) {
 		if (myConfig.extendedDesklet) {
-			g_print ("mode etendu\n");
-			cd_xmms_add_buttons_to_desklet(); //on dessine le desklet avec ses boutons
+			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Controler", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, data);
 		}
 		else
 			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);

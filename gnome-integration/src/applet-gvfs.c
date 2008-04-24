@@ -166,7 +166,12 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		}
 	}
 	else
-		cFullURI = g_strdup (cBaseURI);
+	{
+		if (*cBaseURI == '/')
+			cFullURI = g_strconcat ("file://", cBaseURI, NULL);
+		else
+			cFullURI = g_strdup (cBaseURI);
+	}
 	cd_message (" -> cFullURI : %s", cFullURI);
 	
 	GFile *pFile = g_file_new_for_uri (cFullURI);
@@ -192,8 +197,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		return ;
 	}
 	
-	g_free (cFullURI);
-	*cURI = g_strdup (cBaseURI);
+	*cURI = cFullURI;
 	*cName = g_strdup (g_file_info_get_name (pFileInfo));
 	const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 	GFileType iFileType = g_file_info_get_file_type (pFileInfo);
@@ -241,7 +245,8 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	}
 	g_print ("cIconName : %s\n", *cIconName);
 	
-	*iVolumeID = 0;
+	*iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_RDEV);
+	g_print ("ID : %d\n", icon->iVolumeID);
 	g_object_unref (pFileInfo);
 }
 
@@ -251,14 +256,14 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
 	cd_message ("%s (%s)", __func__, cBaseURI);
 	
-	const gchar *cURI;
+	gchar *cURI;
 	if (strcmp (cBaseURI, CAIRO_DOCK_FM_VFS_ROOT) == 0)
-		cURI = "computer://";
+		cURI = g_strdup ("computer://");
 	else if (strcmp (cBaseURI, CAIRO_DOCK_FM_NETWORK) == 0)
-		cURI = "network://";
+		cURI = g_strdup ("network://");
 	else
-		cURI = cBaseURI;
-	*cFullURI = g_strdup (cURI);  /// a voir pour les URI bizarres.
+		cURI = (*cBaseURI == '/' ? g_strconcat ("file://", cBaseURI, NULL) : g_strdup (cBaseURI));
+	*cFullURI = cURI;
 	
 	GFile *pFile = g_file_new_for_uri (cURI);
 	GError *erreur = NULL;
@@ -341,6 +346,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				}
 				
 				icon->iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_RDEV);
+				g_print ("ID : %d\n", icon->iVolumeID);
 				
 				if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
 					icon->fOrder = g_file_info_get_size (pFileInfo);
@@ -369,11 +375,13 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 
 void vfs_backend_launch_uri (const gchar *cURI)
 {
-	
+	g_return_if_fail (cURI != NULL);
 	GError *erreur = NULL;
-	gboolean bSuccess = g_app_info_launch_default_for_uri (cURI,
+	gchar *cFullURI = (*cURI == '/' ? g_strconcat ("file://", cURI, NULL) : g_strdup (cURI));
+	gboolean bSuccess = g_app_info_launch_default_for_uri (cFullURI,
 		NULL,
 		&erreur);
+	g_free (cFullURI);
 	if (erreur != NULL)
 	{
 		cd_warning ("Attention : couldn't get file info for '%s' [%s]", cURI, erreur->message);
@@ -385,8 +393,6 @@ void vfs_backend_launch_uri (const gchar *cURI)
 static GVolume *_cd_find_volume_from_uri (const gchar *cURI)
 {
 	GError *erreur = NULL;
-	gchar *ltmp_path = NULL;
-	
 	GVolume *pFoundVolume = NULL;
 	
 	/* premiere methode: on scanne les volumes. c'est peut-etre un volume non monte... */
@@ -475,22 +481,6 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 		(GAsyncReadyCallback) _vfs_backend_mount_callback,
 		data2);
 	g_object_unref (pVolume);
-	/*///gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
-	///g_print (" cLocalPath : %s\n", cLocalPath);
-	GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
-	GnomeVFSDrive *pDrive = gnome_vfs_volume_monitor_get_drive_by_id (pVolumeMonitor, iVolumeID);
-	g_return_if_fail (pDrive != NULL);
-	
-	gpointer *data2 = g_new (gpointer, 5);
-	data2[0] = pCallback;
-	data2[1] = GINT_TO_POINTER (TRUE);
-	data2[2] = gnome_vfs_drive_get_display_name (pDrive);
-	data2[3] = icon;
-	data2[4] = pDock;
-	gnome_vfs_drive_mount (pDrive, (GnomeVFSVolumeOpCallback)_vfs_backend_mount_callback, data2);
-	
-	///gnome_vfs_volume_unref (pVolume);
-	gnome_vfs_drive_unref (pDrive);*/
 }
 
 void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock)
@@ -514,23 +504,6 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 		(GAsyncReadyCallback) _vfs_backend_mount_callback,
 		data2);
 	g_object_unref (pVolume);
-	
-	/*GnomeVFSVolumeMonitor *pVolumeMonitor = gnome_vfs_get_volume_monitor();  // c'est un singleton.
-	gchar *cLocalPath = gnome_vfs_get_local_path_from_uri (cURI);
-	cd_message (" cLocalPath : %s", cLocalPath);
-	GnomeVFSVolume *pVolume = gnome_vfs_volume_monitor_get_volume_for_path (pVolumeMonitor, cLocalPath);
-	g_free (cLocalPath);
-	g_return_if_fail (pVolume != NULL);
-	
-	gpointer *data2 = g_new (gpointer, 5);
-	data2[0] = pCallback;
-	data2[1] = GINT_TO_POINTER (FALSE);
-	data2[2] = gnome_vfs_volume_get_display_name (pVolume);
-	data2[3] = icon;
-	data2[4] = pDock;
-	gnome_vfs_volume_unmount (pVolume, (GnomeVFSVolumeOpCallback)_vfs_backend_mount_callback, data2);
-	
-	gnome_vfs_volume_unref (pVolume);*/
 }
 
 
@@ -539,11 +512,6 @@ void _on_monitor_changed (GFileMonitor *monitor,
 	GFile *other_file,
 	GFileMonitorEvent event_type,
 	gpointer  *data)
-/*static void _vfs_backend_gnome_monitor_callback (GnomeVFSMonitorHandle *handle,
-	const gchar *monitor_uri,
-	const gchar *info_uri,
-	GnomeVFSMonitorEventType event_type,
-	gpointer *data)*/
 {
 	CairoDockFMMonitorCallback pCallback = data[0];
 	gpointer user_data = data[1];
@@ -575,9 +543,10 @@ void _on_monitor_changed (GFileMonitor *monitor,
 
 void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockFMMonitorCallback pCallback, gpointer user_data)
 {
+	g_return_if_fail (cURI != NULL);
 	GError *erreur = NULL;
 	GFileMonitor *pMonitor;
-	GFile *pFile = g_file_new_for_uri (cURI);
+	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
 	if (bDirectory)
 		pMonitor = g_file_monitor_directory (pFile,
 			G_FILE_MONITOR_WATCH_MOUNTS,
@@ -619,7 +588,8 @@ void vfs_backend_remove_monitor (const gchar *cURI)
 
 gboolean vfs_backend_delete_file (const gchar *cURI)
 {
-	GFile *pFile = g_file_new_for_uri (cURI);
+	g_return_val_if_fail (cURI != NULL, FALSE);
+	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
 	
 	GError *erreur = NULL;
 	gboolean bSuccess = g_file_delete (pFile, NULL, &erreur);
@@ -635,7 +605,8 @@ gboolean vfs_backend_delete_file (const gchar *cURI)
 
 gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 {
-	GFile *pOldFile = g_file_new_for_uri (cOldURI);
+	g_return_val_if_fail (cOldURI != NULL, FALSE);
+	GFile *pOldFile = (*cOldURI == '/' ? g_file_new_for_path (cOldURI) : g_file_new_for_uri (cOldURI));
 	GError *erreur = NULL;
 	GFile *pNewFile = g_file_set_display_name (pOldFile, cNewName, NULL, &erreur);
 	if (erreur != NULL)
@@ -651,12 +622,13 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 
 gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 {
+	g_return_val_if_fail (cURI != NULL, FALSE);
 	cd_message (" %s -> %s", cURI, cDirectoryURI);
-	GFile *pFile = g_file_new_for_uri (cURI);
+	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
 	
 	gchar *cFileName = g_file_get_basename (pFile);
 	gchar *cNewFileURI = g_strconcat (cDirectoryURI, "/", cFileName, NULL);  // un peu moyen mais bon...
-	GFile *pDestinationFile = g_file_new_for_uri (cNewFileURI);
+	GFile *pDestinationFile = (*cNewFileURI == '/' ? g_file_new_for_path (cNewFileURI) : g_file_new_for_uri (cNewFileURI));
 	g_free (cNewFileURI);
 	g_free (cFileName);
 	
@@ -680,7 +652,8 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 
 void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask)
 {
-	GFile *pFile = g_file_new_for_uri (cURI);
+	g_return_if_fail (cURI != NULL);
+	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
 	GError *erreur = NULL;
 	gchar *cQuery = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_SIZE, ",", G_FILE_ATTRIBUTE_TIME_MODIFIED, ",", G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, ",", G_FILE_ATTRIBUTE_UNIX_UID, ",", G_FILE_ATTRIBUTE_UNIX_GID, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_READ, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE, NULL);
 	GFileInfo *pFileInfo = g_file_query_info (pFile,

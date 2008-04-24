@@ -133,6 +133,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 		{
 			cd_dustbin_add_message (NULL, NULL);
 		}
+		else
+		{
+			cd_dustbin_draw_quick_info (FALSE);
+		}
 	}
 	else  // methode par defaut.
 	{
@@ -236,6 +240,10 @@ CD_APPLET_RELOAD_BEGIN
 			if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 			{
 				cd_dustbin_add_message (NULL, NULL);
+			}
+			else
+			{
+				cd_dustbin_draw_quick_info (FALSE);
 			}
 		}
 		else  // methode par defaut.

@@ -57,6 +57,6 @@ list bookmarks = true
 #b Separate different shortcuts with separators ?
 use separator = true
 
-#R[] Name of the view used for the sub-dock :
+#n Name of the view used for the sub-dock :
 #{Let it empty to use default sub-dock view.}/
 renderer = 

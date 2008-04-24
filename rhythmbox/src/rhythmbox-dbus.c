@@ -15,72 +15,18 @@ static DBusGProxy *dbus_proxy_shell = NULL;
 CD_APPLET_INCLUDE_MY_VARS
 
 
-//*********************************************************************************
-// rhythmbox_dbus_pre_init() : Initialise la connexion d-bus
-//*********************************************************************************
-/*gboolean rhythmbox_dbus_get_dbus (void)
-{
-	cd_message ("Connexion au bus ... ");
-	dbus_connexion = dbus_g_bus_get(DBUS_BUS_SESSION, NULL);
-	
-	if(!dbus_connexion)
-	{
-		cd_message ("echouee");
-		return FALSE;
-	}
-	else
-	{
-		cd_message ("reussie");
-		
-		dbus_proxy_player = dbus_g_proxy_new_for_name (
-			dbus_connexion,
-			"org.gnome.Rhythmbox",
-			"/org/gnome/Rhythmbox/Player",
-			"org.gnome.Rhythmbox.Player"
-		);
-		
-		dbus_proxy_shell = dbus_g_proxy_new_for_name (
-			dbus_connexion,
-			"org.gnome.Rhythmbox",
-			"/org/gnome/Rhythmbox/Shell",
-			"org.gnome.Rhythmbox.Shell"
-		);
-		
-		dbus_proxy_dbus = dbus_g_proxy_new_for_name (
-			dbus_connexion,
-			"org.freedesktop.DBus",
-			"/",
-			"org.freedesktop.DBus"
-		);
-		
-		
-		dbus_g_proxy_add_signal(dbus_proxy_player, "playingChanged",
-			G_TYPE_BOOLEAN,
-			G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(dbus_proxy_player, "playingUriChanged",
-			G_TYPE_STRING,
-			G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(dbus_proxy_player, "elapsedChanged",
-			G_TYPE_UINT,
-			G_TYPE_INVALID);
-		
-		return TRUE;
-	}
-}*/
-
-
 gboolean rhythmbox_dbus_connect_to_bus (void)
 {
 	cd_message ("");
 	if (cairo_dock_bdus_is_enabled ())
 	{
-		dbus_proxy_player = cairo_dock_create_new_dbus_proxy (
+		dbus_proxy_player = cairo_dock_create_new_session_proxy (
 			"org.gnome.Rhythmbox",
 			"/org/gnome/Rhythmbox/Player",
 			"org.gnome.Rhythmbox.Player"
 		);
 		
-		dbus_proxy_shell = cairo_dock_create_new_dbus_proxy (
+		dbus_proxy_shell = cairo_dock_create_new_session_proxy (
 			"org.gnome.Rhythmbox",
 			"/org/gnome/Rhythmbox/Shell",
 			"org.gnome.Rhythmbox.Shell"
@@ -150,11 +96,11 @@ void dbus_detect_rhythmbox(void)
 void rhythmbox_getPlaying (void)
 {
 	cd_message ("");
-	
-	dbus_g_proxy_call (dbus_proxy_player, "getPlaying", NULL,
+	myData.playing = cairo_dock_dbus_get_boolean (dbus_proxy_player, "getPlaying");
+	/**dbus_g_proxy_call (dbus_proxy_player, "getPlaying", NULL,
 		G_TYPE_INVALID,
 		G_TYPE_BOOLEAN, &myData.playing,
-		G_TYPE_INVALID);
+		G_TYPE_INVALID);*/
 }
 
 
@@ -168,10 +114,11 @@ void rhythmbox_getPlayingUri(void)
 	g_free (myData.playing_uri);
 	myData.playing_uri = NULL;
 	
-	dbus_g_proxy_call (dbus_proxy_player, "getPlayingUri", NULL,
+	myData.playing_uri = cairo_dock_dbus_get_string (dbus_proxy_player, "getPlayingUri");
+	/**dbus_g_proxy_call (dbus_proxy_player, "getPlayingUri", NULL,
 		G_TYPE_INVALID,
 		G_TYPE_STRING, &myData.playing_uri ,
-		G_TYPE_INVALID);
+		G_TYPE_INVALID);*/
 }
 
 
@@ -217,6 +164,8 @@ void getSongInfos(void)
 		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_cover = g_strdup (g_value_get_string(value));
 		else myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
 		g_print ("  playing_cover <- %s", myData.playing_cover);
+		
+		g_hash_table_destroy (data_list);
 	}
 	else
 	{

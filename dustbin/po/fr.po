@@ -120,15 +120,15 @@ msgstr "Ouvrir %s"
 msgid "Delete %s"
 msgstr "Vider %s"
 
-#: ../src/applet-draw.c:152 ../src/applet-draw.c:149
+#: ../src/applet-draw.c:152 ../src/applet-draw.c:149 ../src/applet-draw.c:146
 msgid "calculating"
 msgstr "en cours"
 
-#: ../src/applet-draw.c:162 ../src/applet-draw.c:159
+#: ../src/applet-draw.c:162 ../src/applet-draw.c:159 ../src/applet-draw.c:156
 msgid " trashe(s)"
 msgstr "déchet(s)"
 
-#: ../src/applet-draw.c:166 ../src/applet-draw.c:163
+#: ../src/applet-draw.c:166 ../src/applet-draw.c:163 ../src/applet-draw.c:160
 msgid " file(s)"
 msgstr "fichier(s)"
 

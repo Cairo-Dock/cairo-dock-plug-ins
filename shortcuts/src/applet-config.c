@@ -22,7 +22,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bUseSeparator = CD_CONFIG_GET_BOOLEAN ("Module", "use separator");
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Module", "renderer");
-	cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Module", "renderer");
+	//cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Module", "renderer");
 CD_APPLET_GET_CONFIG_END
 
 

@@ -12,7 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "rendering-desklet-controler.h"
 
-#define CONTROLER_RATIO_ICON_DESKLET .8
+#define CONTROLER_RATIO_ICON_DESKLET .75
 
 
 CDControlerParameters *rendering_load_controler_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
@@ -128,7 +128,13 @@ void rendering_load_icons_for_controler (CairoDockDesklet *pDesklet, cairo_t *pS
 	}
 }
 
-
+// _________________
+//|   .--titre--.   |
+//|  /  icone    \  |
+//| /___reflet____\ |
+//|_|__controles__|_|
+//
+//
 
 void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet, gboolean bRenderOptimized)
 {

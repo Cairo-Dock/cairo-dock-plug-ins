@@ -178,8 +178,9 @@ static void _xmms_action_by_id (int iAction) {
 }
 
 CD_APPLET_ON_CLICK_BEGIN
-	if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL && myConfig.extendedDesklet) {  // clic sur une des icones du desklet.
-	  _xmms_action_by_id ((int) pClickedIcon->fOrder/2);
+	if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL && pClickedIcon != myIcon) {  // clic sur une des icones du desklet.
+		_xmms_action_by_id (pClickedIcon->iType);
+		//g_print ("%s (%d)\n", __func__, pClickedIcon->iType);
 	}
 	else {
 	  cd_xmms_pp();

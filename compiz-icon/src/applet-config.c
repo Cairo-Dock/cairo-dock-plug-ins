@@ -47,7 +47,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	else
 		myConfig.cDecorators[DECORATOR_USER] = NULL;
 	
-	cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
+	//cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
 	
 	myConfig.cUserImage[COMPIZ_DEFAULT] 		= CD_CONFIG_GET_STRING ("Configuration", "default icon");
 	myConfig.cUserImage[COMPIZ_BROKEN] 		  = CD_CONFIG_GET_STRING ("Configuration", "broken icon");

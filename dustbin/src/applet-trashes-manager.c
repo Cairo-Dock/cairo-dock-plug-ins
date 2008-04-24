@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock project,
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 **********************************************************************************/
 #include <stdlib.h>
@@ -176,7 +176,7 @@ static void _cd_dustbin_launch_measure (void)
 	{
 		cd_message (" ==> lancement du thread de calcul\n");
 		if (s_iSidTimerRedraw == 0)
-			s_iSidTimerRedraw = g_timeout_add (100, (GSourceFunc) _cd_dustbin_check_for_redraw, (gpointer) NULL);
+			s_iSidTimerRedraw = g_timeout_add (150, (GSourceFunc) _cd_dustbin_check_for_redraw, (gpointer) NULL);
 		
 		GError *erreur = NULL;
 		GThread* pThread = g_thread_create ((GThreadFunc) cd_dustbin_threaded_calculation,
@@ -387,7 +387,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		cQuestion = g_strdup_printf (_D("You're about to delete all files in all dustbins. Sure ?"));
 	else
 		return;
-	int answer = cairo_dock_ask_question_and_wait (cQuestion, myIcon, myDock);
+	int answer = cairo_dock_ask_question_and_wait (cQuestion, myIcon, myContainer);
 	g_free (cQuestion);
 	if (answer == GTK_RESPONSE_YES)
 	{
@@ -441,7 +441,7 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 			cd_warning ("Attention : when trying to execute '%s' : %s", sCommand->str, erreur->message);
 			g_error_free (erreur);
 			//gchar *cTipMessage = g_strdup_printf ("A problem occured\nIf '%s' is not your usual file browser, you can change it in the conf panel of this module", myConfig.cDefaultBrowser);
-			cairo_dock_show_temporary_dialog (_D("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myDock, 5000, myConfig.cDefaultBrowser);
+			cairo_dock_show_temporary_dialog (_D("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, myConfig.cDefaultBrowser);
 			//g_free (cTipMessage);
 		}
 		g_string_free (sCommand, TRUE);

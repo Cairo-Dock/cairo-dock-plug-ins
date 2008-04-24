@@ -21,6 +21,7 @@ static GList * _list_icons (void) {
 		pIcon->acName = NULL;
 		pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
 		pIcon->fOrder = i;
+		pIcon->iType = i;
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
@@ -216,32 +217,10 @@ void cd_xmms_draw_icon (void) {
 	CD_APPLET_REDRAW_MY_ICON
 }*/
 
-//Servira pour les boutons play pause stop next previous
-Icon *cd_xmms_create_icon_for_desklet (cairo_t *pSourceContext, int iWidth, int iHeight, gchar *cName, gchar *cIconFileName) {
-	Icon *icon = g_new0 (Icon, 1);
-
-	icon->acName = g_strdup (cName);
-	icon->acFileName = g_strdup (cIconFileName);  // NULL si cIconFileName = NULL.
-
-	icon->fScale = 1;
-	icon->fWidth =iWidth;
-	icon->fHeight =iHeight;
-	icon->fWidthFactor = 1.;
-	icon->fHeightFactor = 1.;
-	g_return_val_if_fail (cairo_status (pSourceContext) == CAIRO_STATUS_SUCCESS, icon);
-
-	if (iWidth >= 0 && iHeight >= 0) {
-	  cairo_dock_fill_one_icon_buffer (icon, pSourceContext, 1., CAIRO_DOCK_HORIZONTAL, FALSE);
-  }
-  
-	cairo_destroy (pSourceContext);
-	return icon;
-}
-
 
 //Fonction qui affiche la bulle au changement de musique
 void cd_xmms_new_song_playing(void) {
-	cairo_dock_show_temporary_dialog ("%s", myIcon, myContainer, myConfig.timeDialogs, myData.playingTitle);
+	cairo_dock_show_temporary_dialog (myData.playingTitle, myIcon, myContainer, myConfig.timeDialogs);
 }
 
 //Fonction qui anime l'icone au changement de musique
@@ -253,7 +232,7 @@ void cd_xmms_animate_icon(int animationLength) {
 
 void cd_xmms_set_surface (MyPlayerStatus iStatus) {
 	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
-	g_print ("%s (%d)\n", __func__, iStatus);
+	//g_print ("%s (%d)\n", __func__, iStatus);
 	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];
 	if (pSurface == NULL) {
 		if (myConfig.cUserImage[iStatus] != NULL) {

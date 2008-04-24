@@ -58,7 +58,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSuccess, const gchar *cName, Icon *icon, CairoDock *pDock)
 {
-	g_return_if_fail (myIcon != NULL && myDock != NULL && ! bMounting);
+	g_return_if_fail (myIcon != NULL && ! bMounting);
 	gchar *cMessage;
 	if (bSuccess)
 	{
@@ -69,7 +69,7 @@ static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSucc
 		cMessage = g_strdup_printf (_("failed to unmount %s"), cName);
 		
 	}
-	cairo_dock_show_temporary_dialog (cMessage, myIcon, myDock, 4000);
+	cairo_dock_show_temporary_dialog (cMessage, myIcon, myContainer, 4000);
 	g_free (cMessage);
 }
 CD_APPLET_ON_DROP_DATA_BEGIN
@@ -139,7 +139,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		g_string_append_printf (sInfo, "\n  %.2fM for %d files for in %s", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
 	}
 	
-	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myDock, 5000, myData.cDialogIconPath);
+	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 5000, myData.cDialogIconPath);
 	
 	g_string_free (sInfo, TRUE);
 CD_APPLET_ON_MIDDLE_CLICK_END

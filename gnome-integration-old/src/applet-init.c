@@ -14,7 +14,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 
 CD_APPLET_PRE_INIT_BEGIN("gnome integration old", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
-	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && glib_major_version == 2 && glib_minor_version < 16)
 	{
 		if (init_vfs_backend ())
 		{
