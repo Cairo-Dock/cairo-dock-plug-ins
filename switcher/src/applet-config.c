@@ -21,7 +21,7 @@ myConfig.iNbDesks = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nombre
 		myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Configuration", "default icon");
 		myConfig.cBrokenIcon = CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 		myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
-		cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
+		//cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
 
 CD_APPLET_GET_CONFIG_END
 

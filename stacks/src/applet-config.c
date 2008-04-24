@@ -19,7 +19,7 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
-	cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
+	//cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
 
   myConfig.cMonitoredDirectory = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "directory", "/");
 	myConfig.bHiddenFiles = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "hidden", FALSE);
