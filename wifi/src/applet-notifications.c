@@ -48,12 +48,12 @@ CD_APPLET_ON_BUILD_MENU_END
 static void toggel_wlan(void) { //Trouver la commande pour activer/désactiver une connection
 	GError *erreur = NULL;
 	if (myData.bWirelessExt) {
-		gchar *cCommand = g_strdup_printf ("gksu command %s", myData.cConnName);
+		gchar *cCommand = g_strdup_printf ("gksu ifconfig %s down", myData.cConnName);
 		g_spawn_command_line_async (cCommand, &erreur);
 		g_free(cCommand);
 	}
 	else {
-		gchar *cCommand = g_strdup_printf ("gksu command %s", myData.cConnName);
+		gchar *cCommand = g_strdup_printf ("gksu ifconfig %s up", myData.cConnName);
 		g_spawn_command_line_async (cCommand, &erreur);
 		g_free(cCommand);
 	}

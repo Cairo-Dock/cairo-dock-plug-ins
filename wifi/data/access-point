@@ -1,0 +1,3 @@
+#!/bin/bash
+rm -f /tmp/access-point
+iwlist $1 scan | grep "ESSID" >> /tmp/access-point

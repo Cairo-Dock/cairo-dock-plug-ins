@@ -12,4 +12,5 @@ module_DATA = \
 	link-4.svg\
 	link-5.svg\
 	icon.png\
+	access-point\
 	wifi
