@@ -62,6 +62,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	else
 	{
