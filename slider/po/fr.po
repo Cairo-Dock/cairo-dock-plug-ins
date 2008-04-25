@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
+#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"PO-Revision-Date: 2007-12-11\n"
+"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Icon"
+msgstr "Icône"
+
+msgid "Desired icon size for this applet"
+msgstr "Taille d'icône souhaitée pour cette applet"
+
+msgid "width :"
+msgstr "largeur :"
+
+msgid "height :"
+msgstr "hauteur :"
+
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+
+msgid "Module"
+msgstr "Module"
+
+msgid "Icon's name :"
+msgstr "Nom de l'icône :"
+
+#: src/applet-notifications.c:13
+msgid "This is the slider applet\n made by ChAnGFu for Cairo-Dock"
+msgstr "Ceci est l'applet slider\n écrite par ChAnGFu pour Cairo-Dock"
+
+#: ../data/messages:11
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:13
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+
+#: ../data/messages:15
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimension du desklet (largeur x hauteur) :"
+
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+
+#: ../data/messages:19
+msgid "Desklet's position (x ; y) :"
+msgstr "Position du desklet (x ; y) :"
+
+#: ../data/messages:21
+msgid "Is detached from the dock ?"
+msgstr "Est-il détaché du dock ?"
+
+#: ../data/messages:23
+msgid "Keep below other windows ?"
+msgstr "Garder en-dessous des autres fenêtres ?"
+
+#: ../data/messages:25
+msgid "Keep above other windows ?"
+msgstr "Garder au-dessus des autres fenêtres ?"
+
+#: ../data/messages:27
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-"
+"dock & type=utility)"
+
+#: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr "Garder sur la couche des widgets ?"
