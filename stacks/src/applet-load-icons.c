@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Rémy Robertson (for any bug report, please mail me to changfu@hollowproject.org)
+Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-dock.org)
 
 ******************************************************************************/
 #include <string.h>
@@ -25,7 +25,7 @@ void cd_stacks_build_icons (void) {
 	Icon *pDirIcon = NULL;
 	
 	//On liste le dossier a surveiller
-	pIconList = cairo_dock_fm_list_directory (myConfig.cMonitoredDirectory, CAIRO_DOCK_FM_SORT_BY_NAME, 1, myConfig.bHiddenFiles, &cFullURI);
+	pIconList = cairo_dock_fm_list_directory (myConfig.cMonitoredDirectory, CAIRO_DOCK_FM_SORT_BY_NAME, 9, myConfig.bHiddenFiles, &cFullURI);
 	
 	if (myDock) {
 		myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
@@ -40,21 +40,24 @@ void cd_stacks_build_icons (void) {
   	gtk_widget_queue_draw (myDesklet->pWidget);
 	}
 	
-	if (! cairo_dock_fm_add_monitor_full (cFullURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_stacks_update, NULL))
+	if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_stacks_update, NULL))
 			cd_warning ("Attention : can't monitor files");
 	
+	//g_list_foreach (pIconList, (GFunc) cairo_dock_free_icon, NULL);
+	//g_list_free (pIconList);
+	pIconList = NULL;
 }
 
 
 //La fonction pose problème, elle segfault lors des free.
 void cd_stacks_destroy_icons (void) {
 	if (myIcon->pSubDock != NULL) {
-		//cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 		myIcon->pSubDock = NULL;
 	}
 	if (myDesklet && myDesklet->icons != NULL) {
-		//g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
-		//g_list_free (myDesklet->icons);
+		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+		g_list_free (myDesklet->icons);
 		myDesklet->icons = NULL;
 	}
 }

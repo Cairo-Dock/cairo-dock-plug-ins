@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Rémy Robertson (for any bug report, please mail me to changfu@hollowproject.org)
+Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-dock.org)
 
 ******************************************************************************/
 
@@ -48,6 +48,7 @@ CD_APPLET_RELOAD_BEGIN
 	else if (myDesklet != NULL) {
 		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	else {
 		//kedal a faire
