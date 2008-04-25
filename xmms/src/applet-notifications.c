@@ -154,7 +154,35 @@ void cd_xmms_jumpbox() {
 		g_error_free (erreur);
 	}
 }
-
+void cd_xmms_enqueue(gchar *cFile) {
+	GError *erreur = NULL;
+	gchar *cCommand = NULL;
+	switch (myConfig.iPlayer) {
+		case MY_XMMS :
+			cCommand = g_strdup_printf ("xmms -e %s", cFile);
+		break;
+		case MY_AUDACIOUS :
+			cCommand = g_strdup_printf ("audacious -e %s", cFile);
+		break;
+		case MY_BANSHEE :
+			cCommand = g_strdup_printf ("banshee --enqueue %s", cFile);
+		break;
+		case MY_EXAILE :
+			//Vraiment limité ce player...
+		break;
+		default :
+		return ;
+	}
+	if (cCommand != NULL && cFile != NULL) {
+		cd_debug("XMMS: will use '%s'", cCommand);
+		g_spawn_command_line_async (cCommand, &erreur);
+		g_free(cCommand);
+	}
+	if (erreur != NULL) {
+		cd_warning ("Attention : when trying to execute 'next on %d' : %s", myConfig.iPlayer, erreur->message);
+		g_error_free (erreur);
+	}
+}
 CD_APPLET_ABOUT (D_("This is the xmms applet\n made by ChAnGFu for Cairo-Dock"))
 
 static void _xmms_action_by_id (int iAction) {
@@ -180,7 +208,6 @@ static void _xmms_action_by_id (int iAction) {
 CD_APPLET_ON_CLICK_BEGIN
 	if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL && pClickedIcon != myIcon) {  // clic sur une des icones du desklet.
 		_xmms_action_by_id (pClickedIcon->iType);
-		//g_print ("%s (%d)\n", __func__, pClickedIcon->iType);
 	}
 	else {
 	  cd_xmms_pp();
@@ -208,3 +235,19 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
   cd_xmms_next();
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+CD_APPLET_ON_DROP_DATA_BEGIN
+	cd_message (" XMMS: %s to enqueue", CD_APPLET_RECEIVED_DATA);
+	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
+	gboolean bIsDirectory;
+	int iVolumeID = 0;
+	double fOrder;
+	if (cairo_dock_fm_get_file_info (CD_APPLET_RECEIVED_DATA, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0)) {
+		//if (iVolumeID == 0) {
+			cd_xmms_enqueue (cURI);
+		//}
+	}
+	g_free (cName);
+	g_free (cURI);
+	g_free (cIconName);
+CD_APPLET_ON_DROP_DATA_END
