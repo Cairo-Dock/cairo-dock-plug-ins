@@ -42,9 +42,9 @@ typedef struct {
 	int playing_duration;
 	int playing_track;
 	gchar *playing_uri;
-	const gchar *playing_artist;
-	const gchar *playing_album;
-	const gchar *playing_title;
+	gchar *playing_artist;
+	gchar *playing_album;
+	gchar *playing_title;
 	gchar *playing_cover;
 	guint iSidCheckCover;
 	} AppletData;

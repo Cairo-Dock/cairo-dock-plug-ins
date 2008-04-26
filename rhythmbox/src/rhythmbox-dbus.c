@@ -135,18 +135,21 @@ void getSongInfos(void)
 		&data_list,
 		G_TYPE_INVALID))
 	{
+		g_free (myData.playing_artist);
 		value = (GValue *) g_hash_table_lookup(data_list, "artist");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_artist = g_value_get_string(value);
+		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_artist = g_strdup (g_value_get_string(value));
 		else myData.playing_artist = NULL;
 		cd_message ("  playing_artist <- %s", myData.playing_artist);
 		
+		g_free (myData.playing_album);
 		value = (GValue *) g_hash_table_lookup(data_list, "album");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_album = g_value_get_string(value);
+		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_album = g_strdup (g_value_get_string(value));
 		else myData.playing_album = NULL;
 		cd_message ("  playing_album <- %s", myData.playing_album);
 		
+		g_free (myData.playing_title);
 		value = (GValue *) g_hash_table_lookup(data_list, "title");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_title = g_value_get_string(value);
+		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_title = g_strdup (g_value_get_string(value));
 		else myData.playing_title = NULL;
 		cd_message ("  playing_title <- %s", myData.playing_title);
 		
@@ -161,6 +164,7 @@ void getSongInfos(void)
 		cd_message ("  playing_duration <- %ds", myData.playing_duration);
 		
 		value = (GValue *) g_hash_table_lookup(data_list, "rb:coverArt-uri");  // y'aura-t-il le 'rb:' dans RB 11.3 ?
+		g_free (myData.playing_cover);
 		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_cover = g_strdup (g_value_get_string(value));
 		else myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
 		g_print ("  playing_cover <- %s", myData.playing_cover);
@@ -198,10 +202,14 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 	{
 		myData.playing_uri = NULL;
 		myData.cover_exist = FALSE;
-		myData.playing_uri = NULL;
+		
+		g_free (myData.playing_artist);
 		myData.playing_artist = NULL;
+		g_free (myData.playing_album);
 		myData.playing_album = NULL;
+		g_free (myData.playing_title);
 		myData.playing_title = NULL;
+		g_free (myData.playing_cover);
 		myData.playing_cover = NULL;
 		myData.playing_duration = 0;
 		myData.playing_track = 0;

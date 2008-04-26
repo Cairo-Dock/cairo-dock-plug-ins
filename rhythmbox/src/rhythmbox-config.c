@@ -44,4 +44,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pCover);
 	
 	g_free (myData.playing_uri);
+	g_free (myData.playing_artist);
+	g_free (myData.playing_album);
+	g_free (myData.playing_title);
 CD_APPLET_RESET_DATA_END

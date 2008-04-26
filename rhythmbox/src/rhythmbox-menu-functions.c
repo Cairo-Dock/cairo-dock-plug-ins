@@ -114,16 +114,16 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 CD_APPLET_ON_DROP_DATA_BEGIN
-	cd_message ("  %s --> nouvelle pochette !", CD_APPLET_RECEIVED_DATA);
+	cd_message (" %s --> nouvelle pochette ou chanson !", CD_APPLET_RECEIVED_DATA);
 
-	if(myData.playing_artist != NULL && myData.playing_album != NULL)
+	gboolean isJpeg = g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpg") 
+		|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPG")
+		|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpeg")
+		|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPEG");
+	
+	if(isJpeg)
 	{
-		gboolean isJpeg = g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpg") 
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPG")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpeg")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPEG");
-		
-		if(isJpeg)
+		if(myData.playing_artist != NULL && myData.playing_album != NULL)
 		{
 			cd_debug("Le fichier est un JPEG");
 			GString *command = g_string_new ("");
@@ -151,9 +151,11 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			cd_debug("La commande est passée");
 			g_string_free (command, TRUE);
 		}
-		else
-		{
-			/// Ajouter la musique a la liste de lecture ! :-D
-		}
+	}
+	else
+	{
+		gchar *cCommand = g_strdup_printf ("rhythmbox-client --enqueue %s", CD_APPLET_RECEIVED_DATA);
+		g_spawn_command_line_async (cCommand, NULL);
+		g_free (cCommand);
 	}
 CD_APPLET_ON_DROP_DATA_END
