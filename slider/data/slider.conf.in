@@ -18,8 +18,6 @@ name = Slider
 icon = 
 
 
-#Uncomment the following group when you will want to make your applet detachable.
-
 [Desklet]
 
 #i[48;256] Desklet's dimension (width x height) :
@@ -46,4 +44,14 @@ keep above=false
 on widget layer=false
 
 [Configuration]
+#F[Time and Directory]
+frame_td=
+#s Directory of the images :
+directory= /
+#i[1;500] Sliding delay :
+#{in seconds.}
+slide time=30
+#b Scan is sub direcotries ?
+#{Not implemented yet}
+sub directories=false
 

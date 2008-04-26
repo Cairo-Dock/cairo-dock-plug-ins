@@ -7,14 +7,17 @@
 
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
-	double timeCheck;
+	double dSlideTime;
 	gchar *cDirectory;
+	gboolean bSubDirs;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 typedef struct {
 	GList *pList;
 	GList *pElement;
+	gboolean bPause;
+	int iTimerID;
 } AppletData;
 
 #endif

@@ -9,6 +9,6 @@
 void cd_slider_get_files_from_dir(void);
 gboolean cd_slider_draw_images(void);
 void _printList (GList *pList);
-void walker(const gchar *path);
+void _slider_free_list(GList *pList);
 
 #endif
