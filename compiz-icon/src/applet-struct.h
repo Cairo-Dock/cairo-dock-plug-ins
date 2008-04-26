@@ -64,6 +64,7 @@ typedef struct {
 	CairoDockMeasure *pMeasureTimer;
 	gboolean bCompizRestarted;
 	gboolean bDecoratorRestarted;
+	int iCompizMajor, iCompizMinor, iCompizMicro;
 } AppletData;
 
 

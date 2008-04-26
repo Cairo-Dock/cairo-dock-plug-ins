@@ -68,7 +68,7 @@ force = false
 inhibate appli = true
 
 #b Add Exposition & Widget Layer to sub-dock ?
-#{Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget Layer plug-ins.}
+#{Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget Layer plug-ins. Otherwise they will be available in the menu.}
 script = true
 
 #F[Compiz Options]
