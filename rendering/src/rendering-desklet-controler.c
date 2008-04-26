@@ -15,11 +15,39 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define CONTROLER_RATIO_ICON_DESKLET .75
 
 
-CDControlerParameters *rendering_load_controler_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
+static gboolean on_button_press_controler (GtkWidget *widget,
+	GdkEventButton *pButton,
+	CairoDockDesklet *pDesklet)
+{
+	if (pButton->button == 1)  // clic gauche.
+	{
+		CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
+		if (pControler == NULL)
+			return FALSE;
+		
+		if (pButton->type == GDK_BUTTON_PRESS)
+		{
+			pControler->pClickedIcon = cairo_dock_find_clicked_icon_in_desklet (pDesklet);
+			if (pControler->pClickedIcon != NULL)
+			{
+				gtk_widget_queue_draw (pDesklet->pWidget);
+			}
+		}
+		else if (pButton->type == GDK_BUTTON_RELEASE)
+		{
+			if (pControler->pClickedIcon != NULL)
+			{
+				pControler->pClickedIcon = NULL;
+				gtk_widget_queue_draw (pDesklet->pWidget);
+			}
+		}
+	}
+	return FALSE;
+}
+
+CDControlerParameters *rendering_configure_controler (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
 	g_print ("%s ()\n", __func__);
-	GList *pIconsList = pDesklet->icons;
-	
 	CDControlerParameters *pControler = g_new0 (CDControlerParameters, 1);
 	
 	if (pConfig != NULL)
@@ -28,49 +56,60 @@ CDControlerParameters *rendering_load_controler_data (CairoDockDesklet *pDesklet
 		pControler->bCircular = GPOINTER_TO_INT (pConfig[1]);
 	}
 	
-	
-	int iNbIcons = g_list_length (pIconsList);
+	int iNbIcons = g_list_length (pDesklet->icons);
 	pControler->fGapBetweenIcons = (pDesklet->iWidth - 2*g_iDockRadius) / (iNbIcons + 1);
 	
-	int iMaxIconWidth = 0, iMaxIconHeight = 0;
+	return pControler;
+}
+
+void rendering_load_controler_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+{
+	g_print ("%s ()\n", __func__);
+	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
+	if (pControler == NULL)
+		return ;
+	
+	int iMaxIconHeight = 0;
 	Icon *icon;
 	GList* ic;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		iMaxIconWidth = MAX (iMaxIconWidth, icon->fWidth);
 		iMaxIconHeight = MAX (iMaxIconHeight, icon->fHeight);
 	}
+	pControler->iControlPanelHeight = iMaxIconHeight;
 	
-	double fCentralSphereWidth, fCentralSphereHeight;
 	if (pControler->b3D)
 	{
-		fCentralSphereWidth = MAX (1, MIN (pDesklet->iWidth, pDesklet->iHeight) * CONTROLER_RATIO_ICON_DESKLET - g_fReflectSize);
-		fCentralSphereHeight = fCentralSphereWidth;
-		
-		pControler->iEllipseHeight = MIN (fCentralSphereHeight, pDesklet->iHeight - 2 * (g_iLabelSize + g_fReflectSize) - 1);
+		pControler->iEllipseHeight = MIN (pDesklet->pIcon->fHeight, pDesklet->iHeight - 2 * (g_iLabelSize + g_fReflectSize) - 1);
 		pControler->fInclinationOnHorizon = atan2 (pDesklet->iHeight, pDesklet->iWidth/4);
 		pControler->iFrameHeight = pControler->iEllipseHeight + 0*2 * g_iFrameMargin + g_fReflectSize;
 		pControler->fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pControler->iFrameHeight, pControler->fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
 	}
 	else
 	{
-		fCentralSphereWidth = MAX (1, (pDesklet->iWidth - g_iDockRadius - g_iLabelSize) * CONTROLER_RATIO_ICON_DESKLET);
-		fCentralSphereHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius) * CONTROLER_RATIO_ICON_DESKLET);
+		
 	}
 	
-	return pControler;
+	g_signal_connect (G_OBJECT (pDesklet->pWidget),
+		"button-press-event",
+		G_CALLBACK (on_button_press_controler),
+		pDesklet);
+	g_signal_connect (G_OBJECT (pDesklet->pWidget),
+		"button-release-event",
+		G_CALLBACK (on_button_press_controler),
+		pDesklet);
 }
 
 
 void rendering_free_controler_data (CairoDockDesklet *pDesklet)
 {
 	g_print ("%s ()\n", __func__);
-	
 	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
 	if (pControler == NULL)
 		return ;
 	
+	pControler->pClickedIcon = NULL;
 	g_free (pControler);
 	pDesklet->pRendererData = NULL;
 }
@@ -82,7 +121,7 @@ void rendering_load_icons_for_controler (CairoDockDesklet *pDesklet, cairo_t *pS
 	if (pControler == NULL)
 		return ;
 	
-	
+	//\_________________ On determine la taille de l'icone centrale.
 	double fCentralSphereWidth, fCentralSphereHeight;
 	if (pControler->b3D)
 	{
@@ -95,6 +134,7 @@ void rendering_load_icons_for_controler (CairoDockDesklet *pDesklet, cairo_t *pS
 		fCentralSphereHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius - g_iLabelSize) * CONTROLER_RATIO_ICON_DESKLET);
 	}
 	
+	//\_________________ On charge l'icone centrale.
 	Icon *pIcon = pDesklet->pIcon;
 	if (pIcon != NULL)
 	{
@@ -108,8 +148,10 @@ void rendering_load_icons_for_controler (CairoDockDesklet *pDesklet, cairo_t *pS
 		pIcon->fHeightFactor = 1.;
 		cairo_dock_fill_icon_buffers_for_desklet (pDesklet->pIcon, pSourceContext);
 	}
-	GList* ic;
 	
+	//\_________________ On charge les boutons.
+	double fX = g_iDockRadius + pControler->fGapBetweenIcons, fY = g_iLabelSize + pDesklet->pIcon->fHeight + g_fReflectSize;
+	GList* ic;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
@@ -124,6 +166,15 @@ void rendering_load_icons_for_controler (CairoDockDesklet *pDesklet, cairo_t *pS
 			pIcon->fHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius - g_iLabelSize) *(1 - CONTROLER_RATIO_ICON_DESKLET));
 		}
 		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
+		
+		pIcon->fDrawX = fX - pIcon->fWidth / 2;
+		pIcon->fDrawY = fY;
+		fX += pControler->fGapBetweenIcons;
+		
+		pIcon->fScale = 1.;
+		pIcon->fAlpha = 1.;
+		pIcon->fWidthFactor = 1.;
+		pIcon->fHeightFactor = 1.;
 		g_print (" + %dx%d\n", (int)pIcon->fWidth, (int) pIcon->fHeight);
 	}
 }
@@ -148,19 +199,9 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDockDeskl
 	int iFrameHeight = pControler->iFrameHeight;
 	double fExtraWidth = pControler->fExtraWidth;
 	
-	
-	int iNbIcons = 0, iControlPanelHeight = 0;
-	double fIconExtent = 0;
+	int iControlPanelHeight = pControler->iControlPanelHeight;
 	Icon *pIcon;
 	GList *ic;
-	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		fIconExtent += pIcon->fWidth;
-		iControlPanelHeight = MAX (iControlPanelHeight, pIcon->fHeight);
-		iNbIcons ++;
-	}
-	
 	
 	if (pControler->b3D)
 	{
@@ -173,6 +214,11 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDockDeskl
 			pIcon->fDrawY = fY;
 			
 			fX += pControler->fGapBetweenIcons;
+		}
+		if (pControler->pClickedIcon != NULL)
+		{
+			pControler->pClickedIcon->fDrawX += 3;
+			pControler->pClickedIcon->fDrawY += 3;
 		}
 		
 		//\____________________ On trace le cadre.
@@ -265,6 +311,7 @@ void rendering_register_controler_desklet_renderer (void)
 {
 	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_controler_in_desklet;
+	pRenderer->configure = rendering_configure_controler;
 	pRenderer->load_data = rendering_load_controler_data;
 	pRenderer->free_data = rendering_free_controler_data;
 	pRenderer->load_icons = rendering_load_icons_for_controler;

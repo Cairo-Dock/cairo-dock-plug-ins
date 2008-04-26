@@ -308,7 +308,7 @@ msgstr "Puissance du Signal:"
 #: ../src/applet-wifi.c:175 ../src/applet-wifi.c:169 ../src/applet-wifi.c:182
 #: ../src/applet-wifi.c:162 ../src/applet-wifi.c:188 ../src/applet-wifi.c:184
 #: ../src/applet-wifi.c:86 ../src/applet-wifi.c:81 ../src/applet-wifi.c:89
-#: ../src/applet-wifi.c:94
+#: ../src/applet-wifi.c:94 ../src/applet-wifi.c:93 ../src/applet-wifi.c:98
 msgid "Unknown"
 msgstr "Inconnu"
 

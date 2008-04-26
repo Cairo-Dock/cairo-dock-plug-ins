@@ -242,11 +242,12 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	gboolean bIsDirectory;
 	int iVolumeID = 0;
 	double fOrder;
-	if (cairo_dock_fm_get_file_info (CD_APPLET_RECEIVED_DATA, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0)) {
+	/**if (cairo_dock_fm_get_file_info (CD_APPLET_RECEIVED_DATA, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0)) {
 		//if (iVolumeID == 0) {
 			cd_xmms_enqueue (cURI);
 		//}
-	}
+	}*/
+	cd_xmms_enqueue (CD_APPLET_RECEIVED_DATA);
 	g_free (cName);
 	g_free (cURI);
 	g_free (cIconName);

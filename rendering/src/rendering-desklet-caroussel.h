@@ -24,7 +24,9 @@ typedef struct {
 	} CDCarousselParameters;
 
 
-CDCarousselParameters *rendering_load_caroussel_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
+CDCarousselParameters *rendering_configure_caroussel (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
+
+void rendering_load_caroussel_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext);
 
 void rendering_free_caroussel_data (CairoDockDesklet *pDesklet);
 

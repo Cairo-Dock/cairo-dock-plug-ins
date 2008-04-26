@@ -17,14 +17,13 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 static int s_iLeafPosition[2][3*3] = {{-30,40,1 , 60,105,0 , -45,115,1},{-60,65,0 , 55,115,1 , -30,115,0}};
 
 
-CDTreeParameters *rendering_load_tree_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
+CDTreeParameters *rendering_configure_tree (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
 	g_print ("%s ()\n", __func__);
 	GList *pIconsList = pDesklet->icons;
 	if (pIconsList == NULL)
 		return NULL;
 	
-	CDTreeParameters *pTree = g_new0 (CDTreeParameters, 1);
 	int iNbIcons = 0;
 	Icon *pIcon;
 	GList *ic;
@@ -34,17 +33,29 @@ CDTreeParameters *rendering_load_tree_data (CairoDockDesklet *pDesklet, cairo_t 
 		if (! CAIRO_DOCK_IS_SEPARATOR (pIcon))
 			iNbIcons ++;
 	}
-	pTree->iNbIconsInTree = iNbIcons;
-	
-	pTree->iNbBranches = (int) ceil (1.*iNbIcons/3.);
-	if (pTree->iNbBranches == 0)
+	if (iNbIcons == 0)
 		return NULL;
+	
+	CDTreeParameters *pTree = g_new0 (CDTreeParameters, 1);
+	pTree->iNbIconsInTree = iNbIcons;
+	pTree->iNbBranches = (int) ceil (1.*iNbIcons/3.);
 	
 	double h = pDesklet->iHeight, w = pDesklet->iWidth;
 	pTree->fTreeWidthFactor = (w > TREE_WIDTH ? 1 : w / TREE_WIDTH);
 	pTree->fTreeHeightFactor = h / (pTree->iNbBranches * TREE_HEIGHT);
 	
 	g_print (" -> %d icones, %d branches, proportions : %.2fx%.2f\n", pTree->iNbIconsInTree, pTree->iNbBranches, pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
+	
+	return pTree;
+}
+
+
+void rendering_load_tree_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+{
+	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
+	if (pTree == NULL)
+		return ;
+	
 	double fImageWidth = TREE_WIDTH * pTree->fTreeWidthFactor, fImageHeight = TREE_HEIGHT * pTree->fTreeHeightFactor;
 	gchar *cImageFilePath = g_strconcat (MY_APPLET_SHARE_DATA_DIR, "/branche1.svg", NULL);
 	pTree->pBrancheSurface[0] = cairo_dock_load_image (pSourceContext,
@@ -64,8 +75,6 @@ CDTreeParameters *rendering_load_tree_data (CairoDockDesklet *pDesklet, cairo_t 
 		1.,
 		FALSE);
 	g_free (cImageFilePath);
-	
-	return pTree;
 }
 
 
@@ -166,6 +175,7 @@ void rendering_register_tree_desklet_renderer (void)
 {
 	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_tree_in_desklet ;
+	pRenderer->configure = rendering_configure_tree;
 	pRenderer->load_data = rendering_load_tree_data;
 	pRenderer->free_data = rendering_free_tree_data;
 	pRenderer->load_icons = rendering_load_icons_for_tree;

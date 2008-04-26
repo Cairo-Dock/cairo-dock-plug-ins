@@ -52,19 +52,27 @@ void stop_vfs_backend (void)
 
 
 
-/*static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID)
+static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID)
 {
 	cd_message ("%s (%s)", __func__, cBaseURI);
 	GError *erreur = NULL;
 	
-	gchar *cFileData = NULL;
-	int iFileSize = 0;
-	if (gnome_vfs_read_entire_file (cBaseURI, &iFileSize, &cFileData) != GNOME_VFS_OK)
+	GFile *pFile = g_file_new_for_uri (cBaseURI);
+	gsize length = 0;
+	gchar *cFileData = NULL, *etag_out = NULL;
+	g_file_load_contents (pFile,
+		NULL,
+		&cFileData,
+		&length,
+		&etag_out,
+		&erreur);
+	if (erreur != NULL)
 	{
-		cd_warning ("Attention : couldn't read %s", cBaseURI);
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
 		return FALSE;
 	}
-	//g_print (" => %s\n", cFileData);
+	g_print ("cFileData : %s\n", cFileData);
 	
 	GKeyFile *pKeyFile = g_key_file_new ();
 	g_key_file_load_from_data (pKeyFile,
@@ -81,7 +89,7 @@ void stop_vfs_backend (void)
 	}
 
 	gchar *cType = g_key_file_get_value (pKeyFile, "Desktop Entry", "Type", NULL);
-	//g_print ("  cType : %s\n", cType);
+	g_print ("  cType : %s\n", cType);
 	if (strncmp (cType, "Link", 4) != 0 && strncmp (cType, "FSDevice", 8) != 0)
 	{
 		g_free(cType);
@@ -102,7 +110,7 @@ void stop_vfs_backend (void)
 	
 	g_key_file_free (pKeyFile);
 	return TRUE;
-}*/
+}
 
 static gchar *_cd_get_icon_path (GIcon *pIcon)
 {
@@ -118,12 +126,6 @@ static gchar *_cd_get_icon_path (GIcon *pIcon)
 			cIconPath = cairo_dock_search_icon_s_path (cFileNames[i]);
 			g_print ("  chemin trouve : %s\n", cIconPath);
 		}
-		/*GtkIconInfo *pGtkIconInfo = gtk_icon_theme_choose_icon (g_pIconTheme, (const char **) cFileNames, 64, GTK_ICON_LOOKUP_FORCE_SVG);
-		if (pGtkIconInfo != NULL)
-		{
-			cIconPath = gtk_icon_info_get_filename (pGtkIconInfo);
-			gtk_icon_info_free (pGtkIconInfo);
-		}*/
 	}
 	else if (G_IS_FILE_ICON (pIcon))
 	{
@@ -182,7 +184,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, ",",
 		G_FILE_ATTRIBUTE_STANDARD_NAME, ",",
 		G_FILE_ATTRIBUTE_STANDARD_ICON, ",",
-		G_FILE_ATTRIBUTE_UNIX_RDEV, NULL);
+		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE, NULL);
 	GFileInfo *pFileInfo = g_file_query_info (pFile,
 		cQuery,
 		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
@@ -218,6 +220,13 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	*bIsDirectory = (iFileType == G_FILE_TYPE_DIRECTORY);
 	g_print (" => '%s' (mime:%s ; bIsDirectory:%d)\n", *cName, cMimeType, *bIsDirectory);
 	
+	if (cMimeType == NULL)
+	{
+		file_manager_get_file_info_from_desktop_link (cFullURI, cName, cURI, cIconName, bIsDirectory, iVolumeID);
+		*fOrder = 0;
+		return ;
+	}
+	
 	*cIconName = NULL;
 	if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 	{
@@ -245,11 +254,139 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	}
 	g_print ("cIconName : %s\n", *cIconName);
 	
-	*iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_RDEV);
-	g_print ("ID : %d\n", icon->iVolumeID);
+	*iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE);
+	g_print ("ID : %d\n", *iVolumeID);
 	g_object_unref (pFileInfo);
 }
 
+static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
+{
+	Icon *pNewIcon = NULL;
+	GIcon *pIcon;
+	GFile *pRootDir;
+	
+	if (pVolume != NULL)
+		pMount = g_volume_get_mount (pVolume);
+	else if (pMount == NULL)
+		return NULL;
+	
+	if (pMount != NULL)  // ce volume est monte.
+	{
+		pNewIcon = g_new0 (Icon, 1);
+		pNewIcon->acName = g_mount_get_name (pMount);
+		
+		pRootDir = g_mount_get_root (pMount);
+		pNewIcon->acCommand = g_file_get_uri (pRootDir);
+		g_object_unref (pRootDir);
+		
+		pIcon = g_mount_get_icon (pMount);
+		pNewIcon->acFileName = _cd_get_icon_path (pIcon);
+		g_object_unref (pIcon);
+		
+		g_object_unref (pMount);
+	}
+	else  // ce volume est demonte, on le montre quand meme (l'automount peut etre off).
+	{
+		pNewIcon = g_new0 (Icon, 1);
+		pNewIcon->acName = g_volume_get_name (pVolume);
+		
+		pIcon = g_volume_get_icon (pVolume);
+		pNewIcon->acFileName = _cd_get_icon_path (pIcon);
+		g_object_unref (pIcon);
+		
+		pNewIcon->acCommand = g_strdup (pNewIcon->acName);
+	}
+	pNewIcon->iVolumeID = 1;
+	pNewIcon->cBaseURI = g_strdup (pNewIcon->acCommand);
+	return pNewIcon;
+}
+
+GList *vfs_backend_list_volumes (void)
+{
+	GVolumeMonitor *pVolumeMonitor = g_volume_monitor_get ();
+	GList *pIconsList = NULL;
+	Icon *pNewIcon;
+	
+	//\___________________ On chope les disques connectes (lecteur de CD/disquette/etc) et on liste leurs volumes.
+	GList *pDrivesList = g_volume_monitor_get_connected_drives (pVolumeMonitor);
+	GList *pAssociatedVolumes;
+	GList *dl, *av;
+	GDrive *pDrive;
+	GVolume *pVolume;
+	for (dl = pDrivesList; dl != NULL; dl = dl->next)
+	{
+		pDrive = dl->data;
+		
+		pAssociatedVolumes = g_drive_get_volumes (pDrive);
+		if (pAssociatedVolumes != NULL)
+		{
+			for (av = pAssociatedVolumes; av != NULL; av = av->next)
+			{
+				pVolume = av->data;
+				pNewIcon = _cd_get_icon_for_volume (pVolume, NULL);
+				if (pNewIcon != NULL)
+					pIconsList = g_list_prepend (pIconsList, pNewIcon);
+				g_object_unref (pVolume);
+			}
+			g_list_free (pAssociatedVolumes);
+		}
+		else  // le disque n'a aucun volume montable
+		{
+			/*if (g_drive_is_media_removable (pDrive) && ! g_drive_is_media_check_automatic (pDrive))
+			{
+				g_drive_get_icon (pDrive);
+				g_drive_get_name (pDrive);
+			}*/
+		}
+		g_object_unref (pDrive);
+	}
+	g_list_free (pDrivesList);
+
+	//\___________________ On chope les volumes qui ne sont pas associes a un disque.
+	GList *pVolumesList = g_volume_monitor_get_volumes (pVolumeMonitor);
+	GList *v;
+	for (v = pVolumesList; v != NULL; v = v->next)
+	{
+		pVolume = v->data;
+		pDrive = g_volume_get_drive (pVolume);
+		if (pDrive != NULL)  // on l'a deja liste dans la 1ere boucle.
+		{
+			g_object_unref (pDrive);
+		}
+		else
+		{
+			if (pNewIcon != NULL)
+				pNewIcon = _cd_get_icon_for_volume (pVolume, NULL);
+			pIconsList = g_list_prepend (pIconsList, pNewIcon);
+		}
+		g_object_unref (pVolume);
+	}
+	g_list_free (pVolumesList);
+
+	//\___________________ On chope les points de montage qui n'ont pas de volumes. (montage de mtab, ftp, etc)
+	GList *pMountsList = g_volume_monitor_get_mounts (pVolumeMonitor);
+	GMount *pMount;
+	GList *m;
+	for (m = pMountsList; m != NULL; m = m->next)
+	{
+		pMount = m->data;
+		pVolume = g_mount_get_volume (pMount);
+		if (pVolume != NULL)  // on l'a deja liste precedemment.
+		{
+			g_object_unref (pVolume);
+		}
+		else
+		{
+			if (pNewIcon != NULL)
+				pNewIcon = _cd_get_icon_for_volume (NULL, pMount);
+			pIconsList = g_list_prepend (pIconsList, pNewIcon);
+		}
+		g_object_unref (pMount);
+	}
+	g_list_free (pMountsList);
+	
+	return pIconsList;
+}
 
 GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, gchar **cFullURI)
 {
@@ -258,7 +395,11 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	
 	gchar *cURI;
 	if (strcmp (cBaseURI, CAIRO_DOCK_FM_VFS_ROOT) == 0)
+	{
 		cURI = g_strdup ("computer://");
+		*cFullURI = cURI;
+		return vfs_backend_list_volumes ();
+	}
 	else if (strcmp (cBaseURI, CAIRO_DOCK_FM_NETWORK) == 0)
 		cURI = g_strdup ("network://");
 	else
@@ -274,7 +415,8 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		G_FILE_ATTRIBUTE_STANDARD_NAME, ",",
 		G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN, ",",
 		G_FILE_ATTRIBUTE_STANDARD_ICON, ",",
-		G_FILE_ATTRIBUTE_UNIX_RDEV, NULL);
+		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI, ",",
+		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE, NULL);
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		cAttributes,
 		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
@@ -315,38 +457,55 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 				
 				gchar *cFileURI = g_strconcat (*cFullURI, "/", cName, NULL);
-				cd_message (" + cFileURI : %s (mime:%s", cFileURI, cMimeType);
+				cd_message (" + cFileURI : %s (mime:%s)", cFileURI, cMimeType);
 				icon = g_new0 (Icon, 1);
-				icon->cBaseURI = cFileURI;
 				icon->iType = iNewIconsType;
+				icon->cBaseURI = cFileURI;
 				
-				icon->acCommand = g_strdup (cFileURI);
-				icon->acName = g_strdup (cName);
-				icon->acFileName = NULL;
-				if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)  // && strncmp (cFileURI, "file://", 7) == 0
+				if (iFileType == G_FILE_TYPE_MOUNTABLE)
 				{
-					gchar *cHostname = NULL;
-					gchar *cFilePath = g_filename_from_uri (cFileURI, &cHostname, &erreur);
-					if (erreur != NULL)
+					cFileURI = g_strdup (g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI));
+					g_print ("c'est un point de montage correspondant a %s\n", cFileURI);
+					if (cFileURI == NULL)
 					{
-						g_error_free (erreur);
-						erreur = NULL;
+						g_free (icon);
+						continue;
 					}
-					else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
-					{
-						icon->acFileName = g_strdup (cFilePath);
-						cairo_dock_remove_html_spaces (icon->acFileName);
-					}
-					g_free (cHostname);
-					g_free (cFilePath);
+					/*gboolean bIsDirectory = FALSE;
+					file_manager_get_file_info_from_desktop_link (cFileURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
+					cd_message ("  bIsDirectory : %d; iVolumeID : %d; acFileName : %s", bIsDirectory, icon->iVolumeID, icon->acFileName);*/
+					icon->iVolumeID = 1;
 				}
-				if (icon->acFileName == NULL)
+				//else
 				{
-					icon->acFileName = _cd_get_icon_path (pSystemIcon);
+					icon->acCommand = g_strdup (cFileURI);
+					icon->acName = g_strdup (cName);
+					icon->acFileName = NULL;
+					if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)  // && strncmp (cFileURI, "file://", 7) == 0
+					{
+						gchar *cHostname = NULL;
+						gchar *cFilePath = g_filename_from_uri (cFileURI, &cHostname, &erreur);
+						if (erreur != NULL)
+						{
+							g_error_free (erreur);
+							erreur = NULL;
+						}
+						else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
+						{
+							icon->acFileName = g_strdup (cFilePath);
+							cairo_dock_remove_html_spaces (icon->acFileName);
+						}
+						g_free (cHostname);
+						g_free (cFilePath);
+					}
+					if (icon->acFileName == NULL)
+					{
+						icon->acFileName = _cd_get_icon_path (pSystemIcon);
+					}
 				}
-				
-				icon->iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_RDEV);
+				icon->iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE);
 				g_print ("ID : %d\n", icon->iVolumeID);
+				icon->iVolumeID = (iFileType == G_FILE_TYPE_MOUNTABLE);
 				
 				if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
 					icon->fOrder = g_file_info_get_size (pFileInfo);
@@ -378,6 +537,8 @@ void vfs_backend_launch_uri (const gchar *cURI)
 	g_return_if_fail (cURI != NULL);
 	GError *erreur = NULL;
 	gchar *cFullURI = (*cURI == '/' ? g_strconcat ("file://", cURI, NULL) : g_strdup (cURI));
+	
+	g_print ("%s (%s)\n", __func__, cFullURI);
 	gboolean bSuccess = g_app_info_launch_default_for_uri (cFullURI,
 		NULL,
 		&erreur);
@@ -406,7 +567,9 @@ static GVolume *_cd_find_volume_from_uri (const gchar *cURI)
 		
 		if (pFoundVolume == NULL)
 		{
-			gchar *cVolumePath = g_volume_get_identifier (pVolume, G_VOLUME_IDENTIFIER_KIND_NFS_MOUNT);
+			//gchar *cVolumePath = g_volume_get_identifier (pVolume, G_VOLUME_IDENTIFIER_KIND_UUID);
+			//gchar *cVolumePath = g_volume_get_name (pVolume);
+			gchar *cVolumePath = g_volume_get_uuid (pVolume);
 			g_print ("  cVolumePath : %s (can eject : %d)\n", cVolumePath, g_volume_can_eject (pVolume));
 			
 			if(cVolumePath != NULL && strcmp (cVolumePath ,cURI) == 0)

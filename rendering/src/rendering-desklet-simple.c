@@ -57,6 +57,7 @@ void rendering_register_simple_desklet_renderer (void)
 {
 	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_simple_in_desklet ;
+	pRenderer->configure = NULL;
 	pRenderer->load_data = NULL;
 	pRenderer->free_data = NULL;
 	pRenderer->load_icons = rendering_load_icons_for_simple;

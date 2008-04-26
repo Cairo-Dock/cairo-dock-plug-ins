@@ -66,21 +66,31 @@ static gboolean on_scroll_desklet (GtkWidget* pWidget,
 	}
 	return FALSE;
 }
-CDCarousselParameters *rendering_load_caroussel_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
+
+CDCarousselParameters *rendering_configure_caroussel (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
 	g_print ("%s ()\n", __func__);
 	GList *pIconsList = pDesklet->icons;
 	
 	CDCarousselParameters *pCaroussel = g_new0 (CDCarousselParameters, 1);
-	
 	if (pConfig != NULL)
 	{
 		pCaroussel->b3D = GPOINTER_TO_INT (pConfig[0]);
 		pCaroussel->bRotateIconsOnEllipse = GPOINTER_TO_INT (pConfig[1]);
 	}
 	
-	int iNbIcons = g_list_length (pIconsList);
+	int iNbIcons = g_list_length (pDesklet->icons);
 	pCaroussel->fDeltaTheta = (iNbIcons != 0 ? 2 * G_PI / iNbIcons : 0);
+	
+	return pCaroussel;
+}
+
+void rendering_load_caroussel_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+{
+	g_print ("%s ()\n", __func__);
+	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
+	if (pCaroussel == NULL)
+		return ;
 	
 	int iMaxIconWidth = 0;
 	Icon *icon;
@@ -126,8 +136,6 @@ CDCarousselParameters *rendering_load_caroussel_data (CairoDockDesklet *pDesklet
 			"scroll-event",
 			G_CALLBACK (on_scroll_desklet),
 			pDesklet);
-	
-	return pCaroussel;
 }
 
 
@@ -371,6 +379,7 @@ void rendering_register_caroussel_desklet_renderer (void)
 {
 	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_caroussel_in_desklet;
+	pRenderer->configure = rendering_configure_caroussel;
 	pRenderer->load_data = rendering_load_caroussel_data;
 	pRenderer->free_data = rendering_free_caroussel_data;
 	pRenderer->load_icons = rendering_load_icons_for_caroussel;

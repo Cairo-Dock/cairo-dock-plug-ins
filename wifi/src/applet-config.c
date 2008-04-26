@@ -51,6 +51,7 @@ CD_APPLET_RESET_DATA_BEGIN
 		cairo_surface_destroy (myData.pSurfaces[i]);
 	}
 	g_free (myData.cESSID);
+	g_free (myData.cConnName);
 	
 	free_cd_Gauge(myData.pGauge);
 CD_APPLET_RESET_DATA_END

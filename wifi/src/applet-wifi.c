@@ -16,10 +16,10 @@ CD_APPLET_INCLUDE_MY_VARS
 void cd_wifi_acquisition (void) {
 	gchar *cCommand = g_strdup_printf("bash %s/wifi", MY_APPLET_SHARE_DATA_DIR);
 	system (cCommand);
-	if (myData.cConnName != NULL) {
+	/**if (myData.cConnName != NULL) {
 		cCommand = g_strdup_printf("bash %s/access-point %s", MY_APPLET_SHARE_DATA_DIR, myData.cConnName);
 		system (cCommand);
-	}
+	}*/  /// je mets en commentaire pour la 1.5.5.2
 	g_free (cCommand);
 }
 

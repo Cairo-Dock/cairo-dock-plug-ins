@@ -10,15 +10,19 @@
 typedef struct {
 	gboolean b3D;
 	gboolean bCircular;
-	double fGapBetweenIcons;
+	gdouble fGapBetweenIcons;
 	gint iEllipseHeight;
 	gdouble fInclinationOnHorizon;
 	gint iFrameHeight;
 	gdouble fExtraWidth;
+	gint iControlPanelHeight;
+	Icon *pClickedIcon;
 	} CDControlerParameters;
 
 
-CDControlerParameters *rendering_load_controler (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
+CDControlerParameters *rendering_configure_controler (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
+
+void rendering_load_controler_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext);
 
 void rendering_free_controler_data (CairoDockDesklet *pDesklet);
 
