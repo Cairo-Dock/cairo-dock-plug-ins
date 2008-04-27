@@ -13,9 +13,6 @@ fcpusage1_ =
 #s Name of the icon as it will appear in its label in the dock :
 name = cpusage
 
-#S Icon's name :
-icon = default.svg
-
 
 [Desklet]
 #i[48;256] Desklet's dimension (width x height) :
@@ -46,6 +43,9 @@ on widget layer=false
 fcpusage_info=
 #R1[] List of available themes for the analogic display :/
 theme = turbo-night-fuel
+
+#r[No;On icon;On label] Display speed values :
+info display = 1
 
 #i[5;5000] Delay between signal checks :
 #{in milliseconds.}

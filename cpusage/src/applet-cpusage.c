@@ -12,12 +12,13 @@
 CD_APPLET_INCLUDE_MY_VARS
 
 
-#define CPUSAGE_TMP_FILE "/tmp/cpusage"
+#define CPUSAGE_DATA_PIPE "/proc/stat"
+#define USER_HZ 100.
 
 static int s_iThreadIsRunning = 0;
 static int s_iSidTimerRedraw = 0;
 
-gboolean cd_cpusage_timer (gpointer data) {
+/*gboolean cd_cpusage_timer (gpointer data) {
 	cd_cpusage_launch_analyse();
 	return TRUE;
 }
@@ -123,7 +124,7 @@ gboolean cd_cpusage_getUsage(void) {
 		{
 			cpu_usage = 0;
 		}
-		if(inDebug == 1) 
+		if(myData.inDebug)
 		{
 		cairo_dock_show_temporary_dialog(
 				"new_cpu_user %u, new_cpu_user_nice %u, \n new_cpu_system %u, new_cpu_idle %u, \n \
@@ -144,13 +145,7 @@ gboolean cd_cpusage_getUsage(void) {
 				cpu_user, cpu_user_nice, cpu_system, cpu_idle, cpu_usage,
 				cpu_usage_time, cpu_total_time);
 		}
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("cpu:%u%%", cpu_usage);
-/*		pValue = g_new (double, 1);
-		*pValue = (double) memPercent / 100;
-		pList = g_list_append (pList, pValue);
-		pValue = g_new (double, 1);
-		*pValue = (double) swapPercent / 100;
-		pList = g_list_append (pList, pValue);*/
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(myDock ? "%u%%" : "cpu:%u%%", cpu_usage);
 
 		cpu_user = new_cpu_user;
 		cpu_user_nice = new_cpu_user_nice;
@@ -164,4 +159,108 @@ gboolean cd_cpusage_getUsage(void) {
 	}  
 
 	return TRUE;
+}*/
+
+
+#define go_to_next_value(tmp) \
+	tmp ++; \
+	while (g_ascii_isdigit (*tmp)) \
+		tmp ++; \
+	while (*tmp == ' ') \
+		tmp ++; \
+	if (*tmp == '\0') { \
+		cd_warning ("problem when readgin pipe"); \
+		myData.bAcquisitionOK = FALSE; \
+		return ; \
+	}
+void cd_cpusage_read_data (void)
+{
+	static char cContent[512+1];
+	
+	g_timer_stop (myData.pClock);
+	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
+	g_return_if_fail (fTimeElapsed != 0);
+	g_timer_start (myData.pClock);
+	
+	FILE *fd = fopen (CPUSAGE_DATA_PIPE, "r");
+	gchar *tmp = fgets (cContent, 512, fd);
+	fclose (fd);
+	if (tmp == NULL)
+	{
+		cd_warning ("impossible to open %s", CPUSAGE_DATA_PIPE);
+		myData.bAcquisitionOK = FALSE;
+		return ;
+	}
+	else
+	{
+		guint new_cpu_user = 0, new_cpu_user_nice = 0, new_cpu_system = 0, new_cpu_idle = 0;
+		tmp += 3;  // on saute 'cpu'.
+		while (*tmp == ' ')  // on saute les espaces.
+			tmp ++;
+		new_cpu_user = atoi (tmp);
+		
+		go_to_next_value(tmp)
+		new_cpu_user_nice = atoi (tmp);
+		
+		go_to_next_value(tmp)
+		new_cpu_system = atoi (tmp);
+		
+		go_to_next_value(tmp)
+		new_cpu_idle = atoi (tmp);
+		
+		if (myData.bInitialized)  // la 1ere iteration on ne peut pas calculer la frequence.
+		{
+			myData.cpu_usage = 100. * (1. - (new_cpu_idle - myData.cpu_idle) / USER_HZ / fTimeElapsed);
+		}
+		myData.bAcquisitionOK = TRUE;
+		myData.cpu_user = new_cpu_user;
+		myData.cpu_user_nice = new_cpu_user_nice;
+		myData.cpu_system = new_cpu_system;
+		myData.cpu_idle = new_cpu_idle;
+	}
+}
+
+
+void cd_cpusage_update_from_data (void)
+{
+	if ( ! myData.bAcquisitionOK)
+	{
+		if (myConfig.iInfoDisplay == CPUSAGE_INFO_ON_LABEL)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
+		else if (myConfig.iInfoDisplay == CPUSAGE_INFO_ON_ICON)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+		
+		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
+	}
+	else
+	{
+		cairo_dock_set_normal_frequency_state (myData.pMeasureTimer);
+		
+		if (! myData.bInitialized)
+		{
+			if (myConfig.iInfoDisplay == CPUSAGE_INFO_ON_ICON)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(myDock ? "..." : D_("Loading"));
+			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+			myData.bInitialized = TRUE;
+		}
+		else
+		{
+			if (myConfig.iInfoDisplay != CPUSAGE_NO_INFO)
+			{
+				if (myConfig.iInfoDisplay == CPUSAGE_INFO_ON_ICON)
+				{
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ((myData.cpu_usage < 10 ? "%.1f%%" : "%.0f%%"), myData.cpu_usage)
+				}
+				else
+				{
+					gchar *cInfoTitle = g_strdup_printf ("CPU : %.1f%%", myData.cpu_usage);
+					CD_APPLET_SET_NAME_FOR_MY_ICON (cInfoTitle)
+					g_free (cInfoTitle);
+				}
+			}
+			
+			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.cpu_usage / 100);
+		}
+	}
 }
