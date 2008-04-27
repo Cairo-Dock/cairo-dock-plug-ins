@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Rémy Robertson (for any bug report, please mail me to changfu@hollowproject.org)
+Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-dock.org)
 Fabrice Rey <fabounet@users.berlios.de>
 
 ******************************************************************************/
@@ -22,8 +22,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_ABOUT (D_("This is the compiz-icon applet\n made by ChAnGFu for Cairo-Dock"))
 
-static void _compiz_get_version (void)
-{
+static void _compiz_get_version (void) {
 	if (myData.iCompizMajor != 0 || myData.iCompizMinor != 0 || myData.iCompizMicro != 0)
 		return ;
 	system ("compiz.real --version | awk '{print $2}' > /tmp/cd-compiz-version");
@@ -31,14 +30,12 @@ static void _compiz_get_version (void)
 	gsize length = 0;
 	gchar *cContent = NULL;
 	g_file_get_contents ("/tmp/cd-compiz-version", &cContent, &length, &erreur);
-	if (erreur != NULL)
-	{
+	if (erreur != NULL) {
 		cd_warning ("Attention : couldn't guess Compiz's version [%s]", erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
-	if (cContent != NULL)
-	{
+	if (cContent != NULL) {
 		cairo_dock_get_version_from_string (cContent, &myData.iCompizMajor, &myData.iCompizMinor, &myData.iCompizMicro);
 		g_free (cContent);
 	}

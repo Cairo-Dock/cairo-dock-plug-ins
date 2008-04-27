@@ -60,7 +60,7 @@ auto reload compiz = true
 auto reload decorator = true
 
 #b Force Compiz settings at startup ?
-#{Load Compiz with options at startup.}
+#{Load Compiz with options at applet's startup.}
 force = false
 
 #b Steal the application's icon in taskbar ?

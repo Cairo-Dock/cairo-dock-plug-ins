@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Rémy Robertson (for any bug report, please mail me to changfu@hollowproject.org)
+Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-dock.org)
 Fabrice Rey <fabounet@users.berlios.de>
 
 ******************************************************************************/
@@ -69,7 +69,6 @@ CD_APPLET_RELOAD_BEGIN
 			g_list_free (myDesklet->icons);
 			myDesklet->icons = NULL;
 		}
-		cd_compiz_build_icons ();
 		
 		if (cairo_dock_measure_is_active (myData.pMeasureTimer) && ! myConfig.bAutoReloadDecorator && ! myConfig.bAutoReloadCompiz) {
 			cairo_dock_stop_measure_timer (myData.pMeasureTimer);
@@ -90,6 +89,7 @@ CD_APPLET_RELOAD_BEGIN
 				CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 			}
 		}
+		cd_compiz_build_icons ();
 		
 	}
 	else if (myDesklet != NULL) {

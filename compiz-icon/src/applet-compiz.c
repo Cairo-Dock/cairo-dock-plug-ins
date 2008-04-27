@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Rémy Robertson (for any bug report, please mail me to changfu@hollowproject.org)
+Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-dock.org)
 Fabrice Rey <fabounet@users.berlios.de>
 
 ******************************************************************************/
@@ -27,7 +27,7 @@ static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;
 void cd_compiz_start_system_wm (void) {
 	const gchar * cCommand = NULL;
 	if (myConfig.cUserWMCommand != NULL) {
-		cCommand = myConfig.cUserWMCommand;
+		cCommand = g_strdup_printf ("%s &", myConfig.cUserWMCommand);
 	}
 	else {
 		switch (g_iDesktopEnv) {
@@ -45,7 +45,13 @@ void cd_compiz_start_system_wm (void) {
 	}
 	myData.bCompizRestarted = TRUE;
 	cd_compiz_kill_compmgr(); //On tue tout les compositing managers
-	cairo_dock_launch_command (cCommand);
+	if (myConfig.cUserWMCommand != NULL) {
+	  system(cCommand);
+	}
+	else {
+	  cairo_dock_launch_command (cCommand);
+	}
+	cd_message ("Compiz - Run: %s ", cCommand);
 }
 
 void cd_compiz_start_compiz (void) {
@@ -85,7 +91,7 @@ void cd_compiz_switch_manager(void) {
 
 
 void cd_compiz_start_favorite_decorator (void) {
-	g_print ("%s (%s)\n", __func__, myConfig.cWindowDecorator);
+	//g_print ("%s (%s)\n", __func__, myConfig.cWindowDecorator);
 	gchar *cCommand = g_strdup_printf ("%s --replace", myConfig.cWindowDecorator);
 	myData.bDecoratorRestarted = TRUE;
 	cairo_dock_launch_command (cCommand);
@@ -93,7 +99,7 @@ void cd_compiz_start_favorite_decorator (void) {
 }
 
 void cd_compiz_start_decorator (compizDecorator iDecorator) {
-	g_print ("%s (%d)\n", __func__, iDecorator);
+	//g_print ("%s (%d)\n", __func__, iDecorator);
 	g_return_if_fail (iDecorator >= 0 && iDecorator < COMPIZ_NB_DECORATORS && myConfig.cDecorators[iDecorator] != NULL);
 	gchar *cCommand = g_strdup_printf ("%s --replace", myConfig.cDecorators[iDecorator]);
 	myData.bDecoratorRestarted = TRUE;
@@ -133,10 +139,8 @@ void cd_compiz_read_data(void) {
 	}
 }
 
-void cd_compiz_update_from_data (void)
-{
+void cd_compiz_update_from_data (void) {
 	cd_compiz_update_main_icon ();
-	
 	//g_print (" etat : %d - %d / action : %d - %d\n", myData.bCompizIsRunning, myData.bDecoratorIsRunning, myData.bCompizRestarted, myData.bDecoratorRestarted);
 	if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz && ! myData.bCompizRestarted) {
 		myData.bCompizRestarted = TRUE;  // c'est nous qui l'avons change.

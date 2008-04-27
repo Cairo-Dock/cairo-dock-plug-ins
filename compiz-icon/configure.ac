@@ -1,8 +1,8 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ(2.59)
-AC_INIT([cd-compiz-icon],[0.1.3],[ChAnGFu (changfu@hollowproject.org)])
+
+AC_INIT([cd-compiz-icon],[0.1.2],[ChAnGFu (Robertson Rémy) (changfu@cairo-dock.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

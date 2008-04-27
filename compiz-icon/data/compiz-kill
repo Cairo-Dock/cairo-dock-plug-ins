@@ -1,5 +1,10 @@
 #!/bin/sh
-#COMPIZ=$(pgrep compiz) && kill $(COMPIZ)
-#XCOMPMGR=$(pgrep xcompmgr) && kill $(XCOMPMGR)
-kill $(pgrep compiz)
-kill $(pgrep xcompmgr)
+COMPIZ=$(pgrep compiz) || COMPIZ=0
+XCOMPMGR=$(pgrep xcompmgr) || XCOMPMGR=0
+
+if [ $COMPIZ -ne 0 ]; then
+  kill $COMPIZ
+fi
+if [ $XCOMPMGR -ne 0 ]; then
+  kill $XCOMPMGR
+fi
