@@ -192,6 +192,24 @@ void cd_xmms_enqueue(gchar *cFile) {
 		g_error_free (erreur);
 	}
 }
+
+gboolean cd_xmms_scroll (gpointer *data) {
+	Icon *pClickedIcon = data[0];
+	CairoDockContainer *pClickedContainer = data[1];
+	int iDirection = GPOINTER_TO_INT (data[2]);
+	if (pClickedIcon == myIcon) {
+		if (iDirection == GDK_SCROLL_DOWN) {
+			cd_xmms_next();
+		}
+		else if (iDirection == GDK_SCROLL_UP) {
+			cd_xmms_prev();
+		}
+
+		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
 CD_APPLET_ABOUT (D_("This is the xmms applet\n made by ChAnGFu for Cairo-Dock"))
 
 static void _xmms_action_by_id (int iAction) {

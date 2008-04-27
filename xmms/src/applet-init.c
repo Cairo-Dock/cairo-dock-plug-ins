@@ -23,8 +23,7 @@ static gchar *s_cPlayerClass[MY_NB_PLAYERS] = {"xmms", "audacious", "banshee", "
 
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet) {
-		if (myConfig.extendedDesklet)
-		{
+		if (myConfig.extendedDesklet) {
 			cd_xmms_add_buttons_to_desklet ();
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
 			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Controler", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, data);
@@ -47,11 +46,11 @@ CD_APPLET_INIT_BEGIN (erreur)
 		cd_xmms_draw_icon);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
-	if (myConfig.bStealTaskBarIcon)
-	{
+	if (myConfig.bStealTaskBarIcon) {
 		cairo_dock_inhibate_class (s_cPlayerClass[myConfig.iPlayer], myIcon);
 	}
 	
+	cairo_dock_register_notification (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) cd_xmms_scroll, CAIRO_DOCK_RUN_AFTER);
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
@@ -66,6 +65,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT
 	
+	cairo_dock_remove_notification_func (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) cd_xmms_scroll);
 	cd_xmms_remove_pipes();
 	
 	if (myIcon->cClass != NULL)
@@ -75,16 +75,13 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (CD_APPLET_MY_CONFIG_CHANGED && myDesklet)
-	{
-		if ( ! myConfig.extendedDesklet && myDesklet->icons != NULL)
-		{
+	if (CD_APPLET_MY_CONFIG_CHANGED && myDesklet) {
+		if ( ! myConfig.extendedDesklet && myDesklet->icons != NULL) {
 			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
 			g_list_free (myDesklet->icons);
 			myDesklet->icons = NULL;
 		}
-		else if (myConfig.extendedDesklet && myDesklet->icons == NULL)
-		{
+		else if (myConfig.extendedDesklet && myDesklet->icons == NULL) {
 			cd_xmms_add_buttons_to_desklet ();
 		}
 	}

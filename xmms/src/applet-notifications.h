@@ -13,6 +13,7 @@ void cd_xmms_shuffle();
 void cd_xmms_repeat();
 void cd_xmms_jumpbox();
 void cd_xmms_enqueue(gchar *cFile);
+gboolean cd_xmms_scroll (gpointer *data);
 
 CD_APPLET_ABOUT_H
 
