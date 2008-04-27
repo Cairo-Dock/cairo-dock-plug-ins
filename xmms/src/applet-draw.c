@@ -1,3 +1,12 @@
+/******************************************************************************
+
+This file is a part of the cairo-dock program, 
+released under the terms of the GNU General Public License.
+
+Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-dock.org)
+Fabrice Rey (fabounet@users.berlios.de)
+
+******************************************************************************/
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n.h>
@@ -114,7 +123,7 @@ void cd_xmms_draw_icon (void) {
 	}
 }
 
-//Fonction de dessin en mode desklet
+//Fonction de dessin en mode desklet, penser a faire un mode de rendu dans rendering
 /*void cd_xmms_draw_in_desklet (cairo_t *pCairoContext, gchar *cQuickInfo) {
   double h = myDesklet->iHeight, w = myDesklet->iWidth;
   Icon *pIcon;

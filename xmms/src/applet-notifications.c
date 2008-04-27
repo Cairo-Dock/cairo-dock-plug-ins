@@ -1,3 +1,12 @@
+/******************************************************************************
+
+This file is a part of the cairo-dock program, 
+released under the terms of the GNU General Public License.
+
+Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-dock.org)
+Fabrice Rey (fabounet@users.berlios.de)
+
+******************************************************************************/
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n.h>
@@ -217,17 +226,16 @@ CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("XMMS", pSubMenu, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU (D_("Previous"), cd_xmms_prev, pSubMenu)
-	CD_APPLET_ADD_IN_MENU (D_("Play/Pause"), cd_xmms_pp, pSubMenu)
+	CD_APPLET_ADD_IN_MENU (D_("Previous"), cd_xmms_prev, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (D_("Play/Pause"), cd_xmms_pp, CD_APPLET_MY_MENU)
 	if (myConfig.iPlayer != MY_BANSHEE) {
-		CD_APPLET_ADD_IN_MENU (D_("Stop"), cd_xmms_s, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Stop"), cd_xmms_s, CD_APPLET_MY_MENU)
 	}
-	CD_APPLET_ADD_IN_MENU (D_("Next"), cd_xmms_next, pSubMenu)
+	CD_APPLET_ADD_IN_MENU (D_("Next"), cd_xmms_next, CD_APPLET_MY_MENU)
 	if ((myConfig.iPlayer != MY_BANSHEE) && (myConfig.iPlayer != MY_EXAILE)) {
 		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), cd_xmms_jumpbox, pSubMenu)
-		CD_APPLET_ADD_SUB_MENU (D_("Options"), pOpsSubMenu, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), cd_xmms_shuffle, pOpsSubMenu)
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), cd_xmms_repeat, pOpsSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), cd_xmms_shuffle, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), cd_xmms_repeat, pSubMenu)
 	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
@@ -238,17 +246,5 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 CD_APPLET_ON_DROP_DATA_BEGIN
 	cd_message (" XMMS: %s to enqueue", CD_APPLET_RECEIVED_DATA);
-	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
-	gboolean bIsDirectory;
-	int iVolumeID = 0;
-	double fOrder;
-	/**if (cairo_dock_fm_get_file_info (CD_APPLET_RECEIVED_DATA, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0)) {
-		//if (iVolumeID == 0) {
-			cd_xmms_enqueue (cURI);
-		//}
-	}*/
 	cd_xmms_enqueue (CD_APPLET_RECEIVED_DATA);
-	g_free (cName);
-	g_free (cURI);
-	g_free (cIconName);
 CD_APPLET_ON_DROP_DATA_END
