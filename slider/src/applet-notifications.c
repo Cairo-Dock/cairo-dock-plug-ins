@@ -22,12 +22,13 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT (D_("This is the Slider applet\n made by ChAnGFu for Cairo-Dock"))
 
 void cd_slider_toogle_pause(void) {
+	cd_message("Toggeling pause: %d", myData.bPause);
   if (!myData.bPause) {
   	myData.bPause = TRUE;
   	g_source_remove(myData.iTimerID); //on coupe le timer en cours
   }
  	else {
- 		myData.bPause = TRUE;
+ 		myData.bPause = FALSE;
  		cd_slider_draw_images(); //on relance le diapo
  	}
 }

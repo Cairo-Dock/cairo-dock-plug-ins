@@ -57,6 +57,8 @@ void cd_slider_get_files_from_dir(void) {
   cd_slider_draw_images();
 }
 
+
+//A optimiser!
 gboolean cd_slider_draw_images(void) {
   gchar *pValue=NULL;
   if (myData.pElement == NULL || myData.bPause == TRUE)
@@ -66,9 +68,61 @@ gboolean cd_slider_draw_images(void) {
     pValue = myData.pElement->data;
   }
   
+  CD_APPLET_REDRAW_MY_ICON
   cd_message("Displaying: %s\n", pValue);
   pValue = g_strdup_printf ("%s/%s",myConfig.cDirectory , pValue);
-  CD_APPLET_SET_IMAGE_ON_MY_ICON (pValue);
+  
+  if (myDesklet && myConfig.bNoStrench) {
+  	cairo_t* pCairoContext;
+  	cairo_surface_t* pCairoSurface;
+  	
+  	//On créer un context différent pour charger l'image, On évite que la taille max soit celle du desklet.
+  	cairo_surface_t* surface;
+  	cairo_t* context;
+		surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 1400, 900); //1400x900 pour que l'image se charge dans sa totalité
+  	context = cairo_create (surface);
+  	
+  	CD_APPLET_SET_SURFACE_ON_MY_ICON(surface); //Surface pour vider le fond
+  	
+  	double fImgX, fImgY, fImgW, fImgH;
+  	surface = cairo_dock_create_surface_from_image(pValue, context, 1., NULL, NULL, &fImgW, &fImgH, TRUE);
+  	cd_message("Image width: %.02f height: %.02f", fImgW, fImgH);
+  	cairo_surface_destroy(surface);
+  	cairo_destroy (context);
+  	
+  	pCairoContext = cairo_create (myIcon->pIconBuffer);
+  	if (fImgW < fImgH) { //H dominant: Portrait, il faut calculer le ratio imgH/iconH et l'utiliser sur W
+  		if (myIcon->fHeight < fImgH) { //On réduit H a celle de l'icône et on scale
+  			fImgW = (double) (myIcon->fHeight / fImgH) * fImgW;
+  			fImgH = myIcon->fHeight;
+  		}
+  		pCairoSurface = cairo_dock_create_surface_from_image(pValue, pCairoContext, 1., fImgW, fImgH, &fImgW, &fImgH, TRUE);
+  	}
+  	else { //W dominant: Paysage, il faut calculer le ratio imgW/iconW et l'utiliser sur H
+  		if (myIcon->fWidth < fImgW) { //On réduit W a celle de l'icône et on scale
+  			fImgH = (double) (myIcon->fWidth/ fImgW) * fImgH;
+  			fImgW = myIcon->fWidth;
+  		}
+  		pCairoSurface = cairo_dock_create_surface_from_image(pValue, pCairoContext, 1., fImgW, fImgH, &fImgW, &fImgH, TRUE);
+  	}
+  	
+  	fImgX = (myIcon->fWidth - fImgW) / 2;
+  	fImgY = (myIcon->fHeight - fImgH) / 2;
+  	
+  	cairo_translate (pCairoContext, fImgX, fImgY);
+		
+  	cd_message("X Y: %.02f %.02f - Ratio W: %.02f - Ratio H: %.02f - W: %.02f - H: %.02f", fImgX, fImgY, myIcon->fWidth/ fImgW, myIcon->fHeight / fImgH, fImgW ,fImgH);
+		
+  	cairo_set_source_surface (pCairoContext, pCairoSurface, 0, 0);
+  	cairo_paint (pCairoContext);
+  	
+  	cairo_surface_destroy(pCairoSurface);
+  	cairo_destroy (pCairoContext); //Pas de fuite mémoire
+  }
+  else {
+    CD_APPLET_SET_IMAGE_ON_MY_ICON (pValue);
+  }
+
   g_free(pValue); //Pas de fuite mémoire.
     
   myData.pElement = myData.pElement->next;
@@ -77,7 +131,6 @@ gboolean cd_slider_draw_images(void) {
   }
   cd_message("Next Image: %s\n", myData.pElement->data);
   myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
-  CD_APPLET_REDRAW_MY_ICON
   return FALSE;
 }
 

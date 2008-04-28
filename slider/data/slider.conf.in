@@ -44,14 +44,20 @@ keep above=false
 on widget layer=false
 
 [Configuration]
-#F[Time and Directory]
+#F[Directory]
 frame_td=
 #s Directory of the images :
 directory= /
+#b Scan in sub direcotries ?
+#{Not implemented yet}
+sub directories=false
+
+#F[Options]
+frame_ops=
 #i[1;500] Sliding delay :
 #{in seconds.}
 slide time=30
-#b Scan is sub direcotries ?
-#{Not implemented yet}
-sub directories=false
+#b Don't strench the images ?
+#{Give better image rendering}
+no strench=true
 

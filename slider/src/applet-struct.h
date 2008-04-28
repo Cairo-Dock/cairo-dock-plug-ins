@@ -10,6 +10,7 @@ typedef struct {
 	double dSlideTime;
 	gchar *cDirectory;
 	gboolean bSubDirs;
+	gboolean bNoStrench;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
