@@ -15,7 +15,7 @@ typedef struct {
 	} AppletConfig;
 
 typedef struct {
-	CairoDockDialog *dialog;
+	CairoDialog *dialog;
 	GtkWidget *tab;
 	} AppletData;
 

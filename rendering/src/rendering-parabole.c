@@ -316,7 +316,7 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
 	
 	//\____________________ On cree le contexte du dessin.
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pDock);
+	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
 	
 	cairo_set_tolerance (pCairoContext, 0.5);  // avec moins que 0.5 on ne voit pas la difference.
@@ -351,7 +351,7 @@ void cd_rendering_render_parabole (CairoDock *pDock)
 		icon = ic->data;
 		
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, FALSE, pDock->iCurrentWidth);
+		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, FALSE, pDock->iCurrentWidth, pDock->bDirectionUp);
 		cairo_restore (pCairoContext);
 		
 		if (icon->pTextBuffer != NULL && (my_bDrawTextWhileUnfolding || pDock->fFoldingFactor == 0))
@@ -516,7 +516,7 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 	do
 	{
 		cd_debug ("  x_abs : %.2f / %.2f", x_abs, pDock->fFlatDockWidth);
-		cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, pDock->fFlatDockWidth, pDock->fFlatDockWidth, pDock->iCurrentHeight, 0*pDock->fAlign, pDock->fFoldingFactor);
+		cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, pDock->fFlatDockWidth, pDock->fFlatDockWidth, pDock->iCurrentHeight, 0*pDock->fAlign, pDock->fFoldingFactor, pDock->bDirectionUp);
 		fWaveOffset = - pFirstIcon->fX;
 		
 		fWaveExtrema = fWaveOffset + x_abs;
@@ -549,7 +549,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	//g_print ("> lambda = %.2f\n", lambda);
 	double fXOnCurve, fYOnCurve;
 	fXOnCurve = (pDock->fAlign == 0 ? pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale : pDock->iCurrentWidth - pDock->iMouseX - pDock->iMaxLabelWidth - .5*pDock->iMaxIconHeight * fMaxScale);
-	fYOnCurve = (g_bDirectionUp ? pDock->iCurrentHeight - pDock->iMouseY : pDock->iMouseY);
+	fYOnCurve = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iMouseY : pDock->iMouseY);
 	cd_debug (" mouse : %d;%d", pDock->iMouseX, pDock->iMouseY);
 	cd_rendering_project_cursor_on_curve (fXOnCurve, fYOnCurve, lambda, alpha, &fXOnCurve, &fYOnCurve);
 	cd_debug (" on curve : %.2f;%.2f", fXOnCurve, fYOnCurve);
@@ -576,7 +576,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	cd_debug (" => x_abs : %d (fMagnitude:%.2f ; fFoldingFactor:%.2f)", x_abs, fMagnitude, pDock->fFoldingFactor);
 	
 	//\_______________ On en deduit l'ensemble des parametres des icones.
-	pPointedIcon = cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, (int) pDock->fFlatDockWidth, (int) pDock->fFlatDockWidth, pDock->iCurrentHeight, 0*pDock->fAlign, pDock->fFoldingFactor);
+	pPointedIcon = cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, (int) pDock->fFlatDockWidth, (int) pDock->fFlatDockWidth, pDock->iCurrentHeight, 0*pDock->fAlign, pDock->fFoldingFactor, pDock->bDirectionUp);
 	cd_debug (" => pPointedIcon : %s; %.2f", pPointedIcon->acName, pPointedIcon->fX);
 	
 	
@@ -610,22 +610,22 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 			theta_ = G_PI/2 - atan (fCurve_(x_, lambda, alpha));
 		}
 		
-		icon->fDrawY = (g_bDirectionUp ? pDock->iCurrentHeight - (y_ + icon->fHeight * icon->fScale) * (1 - pDock->fFoldingFactor) : y_ * (1 - pDock->fFoldingFactor));
+		icon->fDrawY = (pDock->bDirectionUp ? pDock->iCurrentHeight - (y_ + icon->fHeight * icon->fScale) * (1 - pDock->fFoldingFactor) : y_ * (1 - pDock->fFoldingFactor));
 		if (pDock->fAlign == 1)
 		{
 			icon->fDrawX = pDock->iCurrentWidth - (x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale + icon->fWidth * icon->fScale/2);
 			if (bHorizontal)
-				icon->fOrientation = (g_bDirectionUp ? - theta_ : theta_);
+				icon->fOrientation = (pDock->bDirectionUp ? - theta_ : theta_);
 			else
-				icon->fOrientation = (g_bDirectionUp ? theta_ : - theta_);
+				icon->fOrientation = (pDock->bDirectionUp ? theta_ : - theta_);
 		}
 		else
 		{
 			icon->fDrawX = x_ + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - icon->fWidth * icon->fScale/2;
 			if (bHorizontal)
-				icon->fOrientation = (g_bDirectionUp ? theta_ : - theta_);
+				icon->fOrientation = (pDock->bDirectionUp ? theta_ : - theta_);
 			else
-				icon->fOrientation = (g_bDirectionUp ? - theta_ : theta_);
+				icon->fOrientation = (pDock->bDirectionUp ? - theta_ : theta_);
 		}
 		icon->fAlpha = 1;
 		icon->fWidthFactor = 1.;

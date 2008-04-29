@@ -22,6 +22,7 @@ msgstr ""
 #: ../src/applet-notifications.c:166 ../src/applet-notifications.c:164
 #: ../src/applet-notifications.c:192 ../src/applet-notifications.c:193
 #: ../src/applet-notifications.c:220 ../src/applet-notifications.c:247
+#: ../src/applet-notifications.c:231
 msgid "Previous"
 msgstr "Précédant"
 
@@ -29,6 +30,7 @@ msgstr "Précédant"
 #: ../src/applet-notifications.c:167 ../src/applet-notifications.c:165
 #: ../src/applet-notifications.c:193 ../src/applet-notifications.c:194
 #: ../src/applet-notifications.c:221 ../src/applet-notifications.c:248
+#: ../src/applet-notifications.c:232
 msgid "Play/Pause"
 msgstr "Jouer/Pause"
 
@@ -36,6 +38,7 @@ msgstr "Jouer/Pause"
 #: ../src/applet-notifications.c:169 ../src/applet-notifications.c:167
 #: ../src/applet-notifications.c:195 ../src/applet-notifications.c:196
 #: ../src/applet-notifications.c:223 ../src/applet-notifications.c:250
+#: ../src/applet-notifications.c:234
 msgid "Stop"
 msgstr "Stop"
 
@@ -43,6 +46,7 @@ msgstr "Stop"
 #: ../src/applet-notifications.c:171 ../src/applet-notifications.c:169
 #: ../src/applet-notifications.c:197 ../src/applet-notifications.c:198
 #: ../src/applet-notifications.c:225 ../src/applet-notifications.c:252
+#: ../src/applet-notifications.c:236
 msgid "Next"
 msgstr "Suivant"
 
@@ -50,6 +54,7 @@ msgstr "Suivant"
 #: ../src/applet-notifications.c:175 ../src/applet-notifications.c:173
 #: ../src/applet-notifications.c:201 ../src/applet-notifications.c:202
 #: ../src/applet-notifications.c:229 ../src/applet-notifications.c:255
+#: ../src/applet-notifications.c:239
 msgid "Toggle Shuffle"
 msgstr "Lecture Aléatoire"
 
@@ -57,6 +62,7 @@ msgstr "Lecture Aléatoire"
 #: ../src/applet-notifications.c:176 ../src/applet-notifications.c:174
 #: ../src/applet-notifications.c:202 ../src/applet-notifications.c:203
 #: ../src/applet-notifications.c:230 ../src/applet-notifications.c:256
+#: ../src/applet-notifications.c:240
 msgid "Toggle Repeat"
 msgstr "Répétition de la Liste"
 
@@ -64,6 +70,7 @@ msgstr "Répétition de la Liste"
 #: ../src/applet-notifications.c:173 ../src/applet-notifications.c:171
 #: ../src/applet-notifications.c:199 ../src/applet-notifications.c:200
 #: ../src/applet-notifications.c:227 ../src/applet-notifications.c:254
+#: ../src/applet-notifications.c:238
 msgid "Show JumpBox"
 msgstr "Montrer la boite de Recherche"
 
@@ -279,6 +286,7 @@ msgstr "Nom de l'image 'Pas de Signal': "
 #: ../src/applet-notifications.c:127 ../src/applet-notifications.c:156
 #: ../src/applet-notifications.c:154 ../src/applet-notifications.c:158
 #: ../src/applet-notifications.c:186 ../src/applet-notifications.c:213
+#: ../src/applet-notifications.c:197
 msgid ""
 "This is the xmms applet\n"
 " made by ChAnGFu for Cairo-Dock"

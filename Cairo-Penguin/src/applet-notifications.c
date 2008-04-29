@@ -41,7 +41,7 @@ CD_APPLET_ABOUT (D_("This is the Cairo-Penguin applet\n made by Fabrice Rey for 
 gboolean CD_APPLET_ON_CLICK (gpointer *data)
 {
 	Icon *pClickedIcon = data[0];
-	CairoDockContainer *pClickedContainer = data[1];
+	CairoContainer *pClickedContainer = data[1];
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
@@ -114,7 +114,7 @@ static void _wake_up (GtkMenuItem *menu_item, gpointer *data)
 gboolean CD_APPLET_ON_BUILD_MENU (gpointer *data)
 {
 	Icon *pClickedIcon = data[0];
-	CairoDockContainer *pClickedContainer = data[1];
+	CairoContainer *pClickedContainer = data[1];
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
@@ -146,7 +146,7 @@ CD_APPLET_ON_BUILD_MENU_END
 gboolean CD_APPLET_ON_MIDDLE_CLICK (gpointer *data)
 {
 	Icon *pClickedIcon = data[0];
-	CairoDockContainer *pClickedContainer = data[1];
+	CairoContainer *pClickedContainer = data[1];
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)

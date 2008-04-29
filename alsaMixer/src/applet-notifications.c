@@ -62,27 +62,18 @@ void mixer_on_keybinding_pull (const char *keystring, gpointer user_data)
 	mixer_show_hide_dialog ();
 }
 
-gboolean cd_mixer_scroll (gpointer *data)
-{
-	Icon *pClickedIcon = data[0];
-	CairoDockContainer *pClickedContainer = data[1];
-	int iDirection = GPOINTER_TO_INT (data[2]);
-	if (pClickedIcon == myIcon)
+CD_APPLET_ON_SCROLL_BEGIN
+	int iVolume = mixer_get_mean_volume ();
+	if (CD_APPLET_SCROLL_DOWN)
 	{
-		int iVolume = mixer_get_mean_volume ();
-		if (iDirection == GDK_SCROLL_DOWN)
-		{
-			iVolume = MAX (iVolume - myConfig.iScrollVariation, 0);
-		}
-		else if (iDirection == GDK_SCROLL_UP)
-		{
-			iVolume = MIN (iVolume + myConfig.iScrollVariation, 100);
-		}
-		else
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-		
-		mixer_set_volume (iVolume);
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		iVolume = MAX (iVolume - myConfig.iScrollVariation, 0);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
+	else if (CD_APPLET_SCROLL_UP)
+	{
+		iVolume = MIN (iVolume + myConfig.iScrollVariation, 100);
+	}
+	else
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	mixer_set_volume (iVolume);
+CD_APPLET_ON_SCROLL_END

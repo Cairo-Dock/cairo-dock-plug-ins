@@ -19,7 +19,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_INCLUDE_MY_VARS
 
 
-
 CD_APPLET_ABOUT (D_("This is the Xgamma applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
@@ -29,7 +28,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		double fGamma = xgamma_get_gamma (&myData.Xgamma);
 		if (fGamma > 0)
 		{
-			fGamma = cairo_dock_show_value_and_wait (D_("Set up gamma :"), myIcon, myDock, fGamma, GAMMA_MAX);
+			fGamma = cairo_dock_show_value_and_wait (D_("Set up gamma :"), myIcon, myContainer, fGamma, GAMMA_MAX);
 			if (fGamma > 0)
 			{
 				fGamma = MAX (fGamma, GAMMA_MIN);

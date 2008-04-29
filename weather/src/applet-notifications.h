@@ -15,8 +15,8 @@ CD_APPLET_ON_BUILD_MENU_H
 CD_APPLET_ON_MIDDLE_CLICK_H
 
 
-CairoDockDialog *cd_weather_show_forecast_dialog (Icon *pIcon);
+CairoDialog *cd_weather_show_forecast_dialog (Icon *pIcon);
 
-CairoDockDialog *cd_weather_show_current_conditions_dialog (void);
+CairoDialog *cd_weather_show_current_conditions_dialog (void);
 
 #endif

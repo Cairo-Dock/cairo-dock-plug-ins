@@ -21,7 +21,7 @@ typedef struct {
 
 typedef struct {
 	gboolean bVideoExtensionOK;
-	CairoDockDialog *pDialog;
+	CairoDialog *pDialog;
 	GtkWidget *pWidget;
 	GtkWidget *pGlobalScale;
 	GtkWidget *pRedScale;

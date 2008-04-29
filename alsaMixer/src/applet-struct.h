@@ -45,7 +45,7 @@ typedef struct {
 	gboolean bHasMuteSwitch;
 	long iVolumeMin, iVolumeMax;  // volumes min et max en unites de la carte son.
 	guint iSidCheckVolume;
-	CairoDockDialog *pDialog;
+	CairoDialog *pDialog;
 	cairo_surface_t *pSurface;
 	//cairo_surface_t *pBrokenSurface;
 	cairo_surface_t *pMuteSurface;

@@ -24,16 +24,16 @@ typedef struct {
 	} CDCarousselParameters;
 
 
-CDCarousselParameters *rendering_configure_caroussel (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
+CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
 
-void rendering_load_caroussel_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext);
+void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceContext);
 
-void rendering_free_caroussel_data (CairoDockDesklet *pDesklet);
+void rendering_free_caroussel_data (CairoDesklet *pDesklet);
 
-void rendering_load_icons_for_caroussel (CairoDockDesklet *pDesklet, cairo_t *pSourceContext);
+void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext);
 
 
-void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet, gboolean bRenderOptimized);
+void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized);
 
 void rendering_register_caroussel_desklet_renderer (void);
 

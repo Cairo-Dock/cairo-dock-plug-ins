@@ -20,16 +20,16 @@ typedef struct {
 	} CDControlerParameters;
 
 
-CDControlerParameters *rendering_configure_controler (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
+CDControlerParameters *rendering_configure_controler (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
 
-void rendering_load_controler_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext);
+void rendering_load_controler_data (CairoDesklet *pDesklet, cairo_t *pSourceContext);
 
-void rendering_free_controler_data (CairoDockDesklet *pDesklet);
+void rendering_free_controler_data (CairoDesklet *pDesklet);
 
-void rendering_load_icons_for_controler (CairoDockDesklet *pDesklet, cairo_t *pSourceContext);
+void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourceContext);
 
 
-void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet, gboolean bRenderOptimized);
+void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized);
 
 void rendering_register_controler_desklet_renderer (void);
 

@@ -64,7 +64,8 @@ gboolean cd_clock_update_with_time (Icon *icon)
 			(myDock->bHorizontalDock ? icon->fWidth : icon->fHeight) / fRatio * (1 + g_fAmplitude),
 			(myDock->bHorizontalDock ? icon->fHeight : icon->fWidth) / fRatio * (1 + g_fAmplitude),
 			myDock->bHorizontalDock,
-			1 + g_fAmplitude);
+			1 + g_fAmplitude,
+			myDock->bDirectionUp);
 	}
 	
 	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL && (epoch_tm.tm_mday != iLastCheckedDay || epoch_tm.tm_mon != iLastCheckedMonth || epoch_tm.tm_year != iLastCheckedYear))

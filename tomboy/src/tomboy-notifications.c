@@ -12,7 +12,7 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT (D_("Applet by Necropotame (Adrien Pilleboue)"))
 
 CD_APPLET_ON_CLICK_BEGIN
-	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_DOCK_CONTAINER (myIcon->pSubDock))
+	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))
 	{
 		cd_message("tomboy : %s",pClickedIcon->acCommand);
 		showNote(pClickedIcon->acCommand);
@@ -60,7 +60,7 @@ static void _cd_tomboy_reload_notes (GtkMenuItem *menu_item, Icon *pIcon)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_IN_MENU(D_("Add a note"), _cd_tomboy_add_note, CD_APPLET_MY_MENU)
 	CD_APPLET_ADD_IN_MENU(D_("Reload notes"), _cd_tomboy_reload_notes, CD_APPLET_MY_MENU)
-	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_DOCK_CONTAINER (myIcon->pSubDock))
+	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))
 	{
 		if (pClickedIcon != NULL)
 		{

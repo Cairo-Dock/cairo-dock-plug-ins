@@ -55,7 +55,7 @@ typedef struct {
 	gint *pRestAnimations;
 	guint iSidAnimation;
 	guint iSidRestartDelayed;
-	CairoDockDialog *pDialog;
+	CairoDialog *pDialog;
 	} AppletData;
 
 #endif

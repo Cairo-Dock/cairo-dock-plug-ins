@@ -11,74 +11,9 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-
 #define RAME_DATA_PIPE "/proc/meminfo"
-/*#define RAME_TMP_FILE "/tmp/rame"
 
-static int s_iThreadIsRunning = 0;
-static int s_iSidTimerRedraw = 0;
-
-gboolean cd_rame_timer (gpointer data) {
-	cd_rame_launch_analyse();
-	return TRUE;
-}
-
-gpointer cd_rame_threaded_calculation (gpointer data) {
-	cd_rame_get_data();
-	
-	g_atomic_int_set (&s_iThreadIsRunning, 0);
-	cd_message ("*** fin du thread rame");
-	return NULL;
-}
-
-void cd_rame_get_data (void) {
-	gchar *cCommand = g_strdup_printf("bash %s/rame", MY_APPLET_SHARE_DATA_DIR);
-	system (cCommand);
-	g_free (cCommand);
-}
-
-static gboolean _cd_rame_check_for_redraw (gpointer data) {
-	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
-	cd_message ("%s (%d)", __func__, iThreadIsRunning);
-	if (! iThreadIsRunning) {
-		s_iSidTimerRedraw = 0;
-		if (myIcon == NULL) {
-			g_print ("annulation du chargement de rame (myIcon == NULL)\n");
-			return FALSE;
-		}
-		
-		gboolean bResultOK = cd_rame_getRate();
-		
-		//\_______________________ On lance le timer si necessaire.
-		if (myData.iSidTimer == 0) {
-			myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_rame_timer, NULL);
-		}
-		return FALSE;
-	}
-	return TRUE;
-}
-
-void cd_rame_launch_analyse (void) {
-	cd_message (" ");
-	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1)) {  //il etait egal a 0, on lui met 1 et on lance le thread.
-		cd_message (" ==> lancement du thread de calcul");
-		
-		GError *erreur = NULL;
-		GThread* pThread = g_thread_create ((GThreadFunc) cd_rame_threaded_calculation, NULL, FALSE, &erreur);
-		if (erreur != NULL) {
-			cd_warning ("Attention : %s", erreur->message);
-			g_error_free (erreur);
-		}
-				
-		if (s_iSidTimerRedraw == 0) {
-			s_iSidTimerRedraw = g_timeout_add (333, (GSourceFunc) _cd_rame_check_for_redraw, (gpointer) NULL);
-		}
-		
-	}
-}
-
-
-gboolean cd_rame_getRate(void) {
+/*gboolean cd_rame_getRate(void) {
   	gchar *cContent = NULL;
 	gsize length=0;
 	GError *tmp_erreur = NULL;
@@ -264,7 +199,7 @@ void cd_rame_update_from_data (void)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
-		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+		make_cd_Gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
 		
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
@@ -301,7 +236,7 @@ void cd_rame_update_from_data (void)
 		}
 		
 		if (! myConfig.bShowSwap)
-			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge, fRamPercent / 100);
+			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, fRamPercent / 100);
 		else
 		{
 			GList *pList = NULL;  /// un tableau ca serait plus sympa ...
@@ -311,7 +246,7 @@ void cd_rame_update_from_data (void)
 			pValue = g_new (double, 1);
 			*pValue = (double) fSwapPercent / 100;
 			pList = g_list_append (pList, pValue);
-			make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);
+			make_cd_Gauge_multiValue (myDrawContext, myContainer, myIcon, myData.pGauge, pList);
 			g_list_foreach (pList, (GFunc) g_free, NULL);
 			g_list_free (pList);
 		}

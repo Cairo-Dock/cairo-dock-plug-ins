@@ -68,7 +68,7 @@ static void _load_flat_separator (gboolean bFlatSeparator, CairoDock *pDock)
 	}
 }
 
-void init (GKeyFile *pKeyFile, Icon *pIcon, CairoDockContainer *pContainer, gchar *cConfFilePath, GError **erreur)
+void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *cConfFilePath, GError **erreur)
 {
 	//g_print ("%s (%s)\n", __func__, MY_APPLET_DOCK_VERSION);
 	//\_______________ On lit le fichier de conf.
@@ -104,7 +104,7 @@ void stop (void)
 }
 
 
-gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoDockContainer *pNewContainer)
+gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoContainer *pNewContainer)
 {
 	if (pKeyFile != NULL)
 	{

@@ -122,16 +122,16 @@ static gchar *_cd_get_icon_path (GIcon *pIcon)
 		int i;
 		for (i = 0; cFileNames[i] != NULL && cIconPath == NULL; i ++)
 		{
-			g_print (" une icone possible est : %s\n", cFileNames[i]);
+			//g_print (" une icone possible est : %s\n", cFileNames[i]);
 			cIconPath = cairo_dock_search_icon_s_path (cFileNames[i]);
-			g_print ("  chemin trouve : %s\n", cIconPath);
+			//g_print ("  chemin trouve : %s\n", cIconPath);
 		}
 	}
 	else if (G_IS_FILE_ICON (pIcon))
 	{
 		GFile *pFile = g_file_icon_get_file (G_FILE_ICON (pIcon));
 		gchar *cIconPath = g_file_get_basename (pFile);
-		g_print (" file_icon => %s\n", cIconPath);
+		//g_print (" file_icon => %s\n", cIconPath);
 	}
 	return cIconPath;
 }
@@ -283,6 +283,7 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 		pNewIcon->acFileName = _cd_get_icon_path (pIcon);
 		g_object_unref (pIcon);
 		
+		pNewIcon->iVolumeID = pMount;
 		g_object_unref (pMount);
 	}
 	else  // ce volume est demonte, on le montre quand meme (l'automount peut etre off).
@@ -295,9 +296,11 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 		g_object_unref (pIcon);
 		
 		pNewIcon->acCommand = g_strdup (pNewIcon->acName);
+		pNewIcon->iVolumeID = pVolume;
 	}
-	pNewIcon->iVolumeID = 1;
+	//pNewIcon->iVolumeID = 1;
 	pNewIcon->cBaseURI = g_strdup (pNewIcon->acCommand);
+	g_print (" => %s\n", pNewIcon->acCommand);
 	return pNewIcon;
 }
 
@@ -316,12 +319,14 @@ GList *vfs_backend_list_volumes (void)
 	for (dl = pDrivesList; dl != NULL; dl = dl->next)
 	{
 		pDrive = dl->data;
+		g_print ("drive '%s'\n", g_drive_get_name  (pDrive));
 		
 		pAssociatedVolumes = g_drive_get_volumes (pDrive);
 		if (pAssociatedVolumes != NULL)
 		{
 			for (av = pAssociatedVolumes; av != NULL; av = av->next)
 			{
+				g_print (" + volume '%s'\n", g_volume_get_name  (pVolume));
 				pVolume = av->data;
 				pNewIcon = _cd_get_icon_for_volume (pVolume, NULL);
 				if (pNewIcon != NULL)
@@ -332,6 +337,7 @@ GList *vfs_backend_list_volumes (void)
 		}
 		else  // le disque n'a aucun volume montable
 		{
+			g_print ("  le disque n'a aucun volume montable\n");
 			/*if (g_drive_is_media_removable (pDrive) && ! g_drive_is_media_check_automatic (pDrive))
 			{
 				g_drive_get_icon (pDrive);
@@ -348,13 +354,16 @@ GList *vfs_backend_list_volumes (void)
 	for (v = pVolumesList; v != NULL; v = v->next)
 	{
 		pVolume = v->data;
+		g_print ("volume '%s'\n", g_volume_get_name  (pVolume));
 		pDrive = g_volume_get_drive (pVolume);
 		if (pDrive != NULL)  // on l'a deja liste dans la 1ere boucle.
 		{
+			g_print ("  drive '%s' est deja liste\n", g_drive_get_name (pDrive));
 			g_object_unref (pDrive);
 		}
 		else
 		{
+			g_print (" + volume '%s'\n", g_volume_get_name  (pVolume));
 			if (pNewIcon != NULL)
 				pNewIcon = _cd_get_icon_for_volume (pVolume, NULL);
 			pIconsList = g_list_prepend (pIconsList, pNewIcon);
@@ -370,13 +379,16 @@ GList *vfs_backend_list_volumes (void)
 	for (m = pMountsList; m != NULL; m = m->next)
 	{
 		pMount = m->data;
+		g_print ("mount '%s'\n", g_mount_get_name (pMount));
 		pVolume = g_mount_get_volume (pMount);
 		if (pVolume != NULL)  // on l'a deja liste precedemment.
 		{
+			g_print ("volume '%s' est deja liste\n", g_volume_get_name  (pVolume));
 			g_object_unref (pVolume);
 		}
 		else
 		{
+			g_print ("+ volume '%s'\n", g_volume_get_name  (pVolume));
 			if (pNewIcon != NULL)
 				pNewIcon = _cd_get_icon_for_volume (NULL, pMount);
 			pIconsList = g_list_prepend (pIconsList, pNewIcon);
@@ -388,6 +400,7 @@ GList *vfs_backend_list_volumes (void)
 	return pIconsList;
 }
 
+
 GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, gchar **cFullURI)
 {
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
@@ -397,8 +410,8 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	if (strcmp (cBaseURI, CAIRO_DOCK_FM_VFS_ROOT) == 0)
 	{
 		cURI = g_strdup ("computer://");
-		*cFullURI = cURI;
-		return vfs_backend_list_volumes ();
+		///*cFullURI = cURI;
+		///return vfs_backend_list_volumes ();
 	}
 	else if (strcmp (cBaseURI, CAIRO_DOCK_FM_NETWORK) == 0)
 		cURI = g_strdup ("network://");
@@ -627,9 +640,21 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 	g_return_if_fail (iVolumeID > 0);
 	cd_message ("%s (ID:%d)", __func__, iVolumeID);
 	
-	GVolume *pVolume = _cd_find_volume_from_uri (cURI);
-	if (pVolume == NULL)
+	GVolume *pVolume = NULL;
+	GMount *pMount = NULL;
+	if (G_IS_VOLUME (GINT_TO_POINTER (iVolumeID)))
+		pVolume = GINT_TO_POINTER (iVolumeID);
+	else if (G_IS_MOUNT (GINT_TO_POINTER (iVolumeID)))
+		pMount = GINT_TO_POINTER (iVolumeID);
+	else
+	{
+		g_print ("dommage\n");
 		return ;
+	}
+	
+	/*GVolume *pVolume = _cd_find_volume_from_uri (cURI);
+	if (pVolume == NULL)
+		return ;*/
 	
 	gpointer *data2 = g_new (gpointer, 5);
 	data2[0] = pCallback;
@@ -651,9 +676,20 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
 	
-	GVolume *pVolume = _cd_find_volume_from_uri (cURI);
-	if (pVolume == NULL)
+	GVolume *pVolume = NULL;
+	GMount *pMount = NULL;
+	if (G_IS_VOLUME (GINT_TO_POINTER (iVolumeID)))
+		pVolume = GINT_TO_POINTER (iVolumeID);
+	else if (G_IS_MOUNT (GINT_TO_POINTER (iVolumeID)))
+		pMount = GINT_TO_POINTER (iVolumeID);
+	else
+	{
+		g_print ("dommage\n");
 		return ;
+	}
+	/*GVolume *pVolume = _cd_find_volume_from_uri (cURI);
+	if (pVolume == NULL)
+		return ;*/
 	
 	gpointer *data2 = g_new (gpointer, 5);
 	data2[0] = pCallback;

@@ -105,7 +105,7 @@ void music_dialog(void)
 {
 	cairo_dock_show_temporary_dialog (D_("Artist : %s\nAlbum : %s\nTitle : %s"),
 		myIcon,
-		myDock,
+		myContainer,
 		myConfig.timeDialogs,
 		myData.playing_artist != NULL ? myData.playing_artist : D_("Unknown"),
 		myData.playing_album != NULL ? myData.playing_album : D_("Unknown"),

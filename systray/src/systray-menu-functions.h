@@ -39,7 +39,7 @@ void systray_on_keybinding_pull(const char *keystring, gpointer user_data);
 
 void systray_apply_settings();
 
-//void systray_draw_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet);
+//void systray_draw_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet);
 
 void systray_build_and_show (void);
 

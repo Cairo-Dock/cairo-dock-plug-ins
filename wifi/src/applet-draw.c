@@ -59,7 +59,7 @@ void cd_wifi_draw_icon (void) {
 		
 		cd_debug("Wifi - Value have changed, redraw. (Use Gauge: %d)", myConfig.bUseGauge);
 		if (myConfig.bUseGauge) {
-			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.prcnt / 100);
+			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.prcnt / 100);
 			bNeedRedraw = TRUE;
 		}
 		else {

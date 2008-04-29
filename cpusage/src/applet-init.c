@@ -18,7 +18,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	//Initialisation de la jauge
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
- 	make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,0);
+ 	make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 	
 	myData.pClock = g_timer_new ();
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,

@@ -16,8 +16,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	//Initialisation de la jauge
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-	make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,0);
+	fMaxScale = cairo_dock_get_max_scale (myContainer);
+	myData.pGauge = init_cd_Gauge (myDrawContext, myConfig.cThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
+	make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 	
 	myData.pClock = g_timer_new ();
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
@@ -50,7 +51,8 @@ CD_APPLET_RELOAD_BEGIN
 		myData.pGauge = NULL;
 	}
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+	fMaxScale = cairo_dock_get_max_scale (myContainer);
+	myData.pGauge = init_cd_Gauge (myDrawContext, myConfig.cThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_ICON)

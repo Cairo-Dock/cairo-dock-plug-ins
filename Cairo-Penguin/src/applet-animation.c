@@ -146,7 +146,8 @@ gboolean penguin_move_in_icon (gpointer data)
 			(myDock->bHorizontalDock ? myIcon->fWidth : myIcon->fHeight) * (1 + g_fAmplitude) / myDock->fRatio,
 			(myDock->bHorizontalDock ? myIcon->fHeight : myIcon->fWidth) * (1 + g_fAmplitude) / myDock->fRatio,
 			myDock->bHorizontalDock,
-			1 + g_fAmplitude);
+			1 + g_fAmplitude,
+			myDock->bDirectionUp);
 	}
 	
 	CD_APPLET_REDRAW_MY_ICON

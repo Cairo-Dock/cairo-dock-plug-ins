@@ -58,7 +58,7 @@ typedef struct {
 	RsvgHandle *pSvgHandles[CLOCK_ELEMENTS];
 	int iSidUpdateClock;
 	GPid iAlarmPID;
-	CairoDockDialog *pCalendarDialog;
+	CairoDialog *pCalendarDialog;
 	} AppletData;
 
 #endif

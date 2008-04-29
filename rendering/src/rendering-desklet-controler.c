@@ -17,7 +17,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 static gboolean on_button_press_controler (GtkWidget *widget,
 	GdkEventButton *pButton,
-	CairoDockDesklet *pDesklet)
+	CairoDesklet *pDesklet)
 {
 	if (pButton->button == 1)  // clic gauche.
 	{
@@ -45,7 +45,7 @@ static gboolean on_button_press_controler (GtkWidget *widget,
 	return FALSE;
 }
 
-CDControlerParameters *rendering_configure_controler (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
+CDControlerParameters *rendering_configure_controler (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
 	g_print ("%s ()\n", __func__);
 	CDControlerParameters *pControler = g_new0 (CDControlerParameters, 1);
@@ -62,7 +62,7 @@ CDControlerParameters *rendering_configure_controler (CairoDockDesklet *pDesklet
 	return pControler;
 }
 
-void rendering_load_controler_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_controler_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 {
 	g_print ("%s ()\n", __func__);
 	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
@@ -102,7 +102,7 @@ void rendering_load_controler_data (CairoDockDesklet *pDesklet, cairo_t *pSource
 }
 
 
-void rendering_free_controler_data (CairoDockDesklet *pDesklet)
+void rendering_free_controler_data (CairoDesklet *pDesklet)
 {
 	g_print ("%s ()\n", __func__);
 	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
@@ -115,7 +115,7 @@ void rendering_free_controler_data (CairoDockDesklet *pDesklet)
 }
 
 
-void rendering_load_icons_for_controler (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 {
 	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
 	if (pControler == NULL)
@@ -187,7 +187,7 @@ void rendering_load_icons_for_controler (CairoDockDesklet *pDesklet, cairo_t *pS
 //
 //
 
-void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet, gboolean bRenderOptimized)
+void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
 {
 	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
 	if (pControler == NULL)
@@ -309,7 +309,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDockDeskl
 
 void rendering_register_controler_desklet_renderer (void)
 {
-	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
+	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_controler_in_desklet;
 	pRenderer->configure = rendering_configure_controler;
 	pRenderer->load_data = rendering_load_controler_data;

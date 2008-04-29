@@ -129,7 +129,7 @@ CD_APPLET_REDRAW_MY_ICON
 			}
 
 		}
-		else if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_DOCK_CONTAINER (myIcon->pSubDock))  // on a clique sur une icone du sous-dock.
+		else if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))  // on a clique sur une icone du sous-dock.
 				{
 
 		cd_debug ("SWITCHER : clic sur %s", pClickedIcon->acName);

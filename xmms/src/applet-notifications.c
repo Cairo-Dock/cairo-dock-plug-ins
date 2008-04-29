@@ -163,7 +163,7 @@ void cd_xmms_jumpbox() {
 		g_error_free (erreur);
 	}
 }
-void cd_xmms_enqueue(gchar *cFile) {
+void cd_xmms_enqueue(const gchar *cFile) {
 	GError *erreur = NULL;
 	gchar *cCommand = NULL;
 	switch (myConfig.iPlayer) {
@@ -193,24 +193,9 @@ void cd_xmms_enqueue(gchar *cFile) {
 	}
 }
 
-gboolean cd_xmms_scroll (gpointer *data) {
-	Icon *pClickedIcon = data[0];
-	CairoDockContainer *pClickedContainer = data[1];
-	int iDirection = GPOINTER_TO_INT (data[2]);
-	if (pClickedIcon == myIcon) {
-		if (iDirection == GDK_SCROLL_DOWN) {
-			cd_xmms_next();
-		}
-		else if (iDirection == GDK_SCROLL_UP) {
-			cd_xmms_prev();
-		}
-
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
-	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
 
 CD_APPLET_ABOUT (D_("This is the xmms applet\n made by ChAnGFu for Cairo-Dock"))
+
 
 static void _xmms_action_by_id (int iAction) {
 	switch (iAction) {
@@ -231,7 +216,6 @@ static void _xmms_action_by_id (int iAction) {
 		break;
 	}
 }
-
 CD_APPLET_ON_CLICK_BEGIN
 	if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL && pClickedIcon != myIcon) {  // clic sur une des icones du desklet.
 		_xmms_action_by_id (pClickedIcon->iType);
@@ -258,11 +242,26 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 
+
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
   cd_xmms_next();
 CD_APPLET_ON_MIDDLE_CLICK_END
+
 
 CD_APPLET_ON_DROP_DATA_BEGIN
 	cd_message (" XMMS: %s to enqueue", CD_APPLET_RECEIVED_DATA);
 	cd_xmms_enqueue (CD_APPLET_RECEIVED_DATA);
 CD_APPLET_ON_DROP_DATA_END
+
+
+
+CD_APPLET_ON_SCROLL_BEGIN
+		if (CD_APPLET_SCROLL_DOWN) {
+			cd_xmms_next();
+		}
+		else if (CD_APPLET_SCROLL_UP) {
+			cd_xmms_prev();
+		}
+		else
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+CD_APPLET_ON_SCROLL_END

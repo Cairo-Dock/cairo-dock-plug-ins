@@ -23,7 +23,7 @@ CD_APPLET_ABOUT (_D("This is the weather applet\n made by Fabrice Rey for Cairo-
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_DOCK_CONTAINER (myIcon->pSubDock))  // on a clique sur une icone du sous-dock.
+	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))  // on a clique sur une icone du sous-dock.
 	{
 		cd_debug (" clic sur %s", pClickedIcon->acName);
 		cd_weather_show_forecast_dialog (pClickedIcon);
@@ -149,7 +149,7 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, gpointer *d
 				g_free (cImageFilePath);
 				cImageFilePath = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, "32");
 			}
-			CairoDockDialog *pDialog = cairo_dock_build_dialog (_("Choose your location :"),
+			CairoDialog *pDialog = cairo_dock_build_dialog (_("Choose your location :"),
 				myIcon,
 				myContainer,
 				cImageFilePath,
@@ -190,7 +190,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-CairoDockDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
+CairoDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
 {
 	if (myDock != NULL)
 		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_remove_dialog_if_any, NULL);
@@ -202,7 +202,7 @@ CairoDockDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
 	{
 		cairo_dock_show_temporary_dialog_with_icon (_("No data were available\n is connection alive ?"), 
 			(myDock ? pIcon : myIcon),
-			(myDock ? CAIRO_DOCK_CONTAINER (myIcon->pSubDock) : myContainer),
+			(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 			myConfig.cDialogDuration,
 			pIcon->acFileName);
 		return NULL;
@@ -214,7 +214,7 @@ CairoDockDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
 	Day *day = &myData.days[iNumDay];
 	DayPart *part = &day->part[iPart];
 	cairo_dock_show_temporary_dialog_with_icon ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%s (%s)\n %s : %s\n %s : %s  %s %s",
-		(myDock ? pIcon : myIcon), (myDock ? CAIRO_DOCK_CONTAINER (myIcon->pSubDock) : myContainer), myConfig.cDialogDuration, pIcon->acFileName,
+		(myDock ? pIcon : myIcon), (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer), myConfig.cDialogDuration, pIcon->acFileName,
 		day->cName, day->cDate, part->cWeatherDescription,
 		_D("Temperature"), _display (day->cTempMin), myData.units.cTemp, _display (day->cTempMax), myData.units.cTemp,
 		_D("Wind"), _display (part->cWindSpeed), myData.units.cSpeed, _display (part->cWindDirection),
@@ -222,7 +222,7 @@ CairoDockDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
 		_D("SunRise"), _display (day->cSunRise), _("SunSet"), _display (day->cSunSet));
 }
 
-CairoDockDialog *cd_weather_show_current_conditions_dialog (void)
+CairoDialog *cd_weather_show_current_conditions_dialog (void)
 {
 	cairo_dock_remove_dialog_if_any (myIcon);
 	

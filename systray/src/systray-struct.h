@@ -31,7 +31,7 @@
 
 typedef struct s_systray {
   TrayApplet *tray;
-  CairoDockDesklet *dialog;
+  CairoDesklet *dialog;
 
   gboolean always_on_top;
   gchar *shortcut;
@@ -45,7 +45,7 @@ typedef struct {
 
 
 typedef struct {
-  CairoDockDialog *dialog;
+  CairoDialog *dialog;
   TrayApplet *tray;
 } AppletData;
 

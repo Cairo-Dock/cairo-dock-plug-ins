@@ -13,7 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-desklet-simple.h"
 
 
-void rendering_load_icons_for_simple (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 {
 	g_return_if_fail (pDesklet != NULL && pSourceContext != NULL);
 	
@@ -28,7 +28,7 @@ void rendering_load_icons_for_simple (CairoDockDesklet *pDesklet, cairo_t *pSour
 }
 
 
-void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet, gboolean bRenderOptimized)
+void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
 {
 	Icon *pIcon = pDesklet->pIcon;
 	cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
@@ -55,7 +55,7 @@ void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDockDesklet 
 
 void rendering_register_simple_desklet_renderer (void)
 {
-	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
+	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_simple_in_desklet ;
 	pRenderer->configure = NULL;
 	pRenderer->load_data = NULL;

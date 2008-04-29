@@ -17,7 +17,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 static int s_iLeafPosition[2][3*3] = {{-30,40,1 , 60,105,0 , -45,115,1},{-60,65,0 , 55,115,1 , -30,115,0}};
 
 
-CDTreeParameters *rendering_configure_tree (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
+CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
 	g_print ("%s ()\n", __func__);
 	GList *pIconsList = pDesklet->icons;
@@ -50,7 +50,7 @@ CDTreeParameters *rendering_configure_tree (CairoDockDesklet *pDesklet, cairo_t 
 }
 
 
-void rendering_load_tree_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_tree_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 {
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	if (pTree == NULL)
@@ -78,7 +78,7 @@ void rendering_load_tree_data (CairoDockDesklet *pDesklet, cairo_t *pSourceConte
 }
 
 
-void rendering_free_tree_data (CairoDockDesklet *pDesklet)
+void rendering_free_tree_data (CairoDesklet *pDesklet)
 {
 	g_print ("%s ()\n", __func__);
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
@@ -93,7 +93,7 @@ void rendering_free_tree_data (CairoDockDesklet *pDesklet)
 }
 
 
-void rendering_load_icons_for_tree (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_icons_for_tree (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 {
 	g_return_if_fail (pDesklet != NULL && pSourceContext != NULL);
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
@@ -114,7 +114,7 @@ void rendering_load_icons_for_tree (CairoDockDesklet *pDesklet, cairo_t *pSource
 
 
 
-void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet, gboolean bRenderOptimized)
+void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
 {
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	g_print ("%s (%x)\n", __func__, pTree);
@@ -173,7 +173,7 @@ void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *p
 
 void rendering_register_tree_desklet_renderer (void)
 {
-	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
+	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_tree_in_desklet ;
 	pRenderer->configure = rendering_configure_tree;
 	pRenderer->load_data = rendering_load_tree_data;

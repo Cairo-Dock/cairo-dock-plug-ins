@@ -130,7 +130,7 @@ void terminal_rename_tab (GtkWidget *vterm)
 		gboolean bColorSet = FALSE;
 		gchar *cUsefulLabel = _get_label_and_color (cCurrentName, &color, &bColorSet);
 		
-		gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set title for this tab :"), NULL, (myDock ? CAIRO_DOCK_CONTAINER (myData.dialog) : CAIRO_DOCK_CONTAINER (myDesklet)), cUsefulLabel);
+		gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set title for this tab :"), NULL, (myDock ? CAIRO_CONTAINER (myData.dialog) : CAIRO_CONTAINER (myDesklet)), cUsefulLabel);
 		g_free (cUsefulLabel);
 		
 		if (cNewName != NULL)

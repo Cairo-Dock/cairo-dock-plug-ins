@@ -99,7 +99,7 @@ CD_APPLET_RELOAD_BEGIN
 				double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
 				myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 				
-				make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.battery_charge / 100);
+				make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.battery_charge / 100);
 			}
 			else  // on redessine juste l'icone actuelle.
 			{

@@ -244,7 +244,7 @@ void mixer_set_volume_with_no_callback (GtkWidget *pScale, int iVolume)
 
 static gboolean on_button_press_dialog (GtkWidget *widget,
 	GdkEventButton *pButton,
-	CairoDockDialog *pDialog)
+	CairoDialog *pDialog)
 {
 	cairo_dock_dialog_unreference (pDialog);
 	myData.pDialog = NULL;

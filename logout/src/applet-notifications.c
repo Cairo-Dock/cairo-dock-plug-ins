@@ -27,7 +27,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		{
 			if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 			{
-				int answer = cairo_dock_ask_question_and_wait ("Log out ?", myIcon, myDock);
+				int answer = cairo_dock_ask_question_and_wait ("Log out ?", myIcon, myContainer);
 				if (answer == GTK_RESPONSE_YES)
 				{
 					system ("dcop ksmserver default logout 0 0 0");  // kdmctl shutdown reboot forcenow  // kdeinit_shutdown

@@ -35,7 +35,7 @@ extern gboolean my_bRotateIconsOnEllipse;
 	CairoDock *pSubDock = pPointedIcon->pSubDock;
 	int iMouseX = pDock->iMouseX;
 	int iX = iMouseX + (-iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2) / 2;
-	//int iX = iMouseX + (iMouseX < pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2 ? (g_bDirectionUp ? 1 : 0) : (g_bDirectionUp ? 0 : -1)) * pPointedIcon->fWidth * pPointedIcon->fScale / 2;
+	//int iX = iMouseX + (iMouseX < pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2 ? (pDock->bDirectionUp ? 1 : 0) : (pDock->bDirectionUp ? 0 : -1)) * pPointedIcon->fWidth * pPointedIcon->fScale / 2;
 	if (pSubDock->bHorizontalDock == pDock->bHorizontalDock)
 	{
 		pSubDock->fAlign = 0.5;
@@ -44,9 +44,9 @@ extern gboolean my_bRotateIconsOnEllipse;
 	}
 	else
 	{
-		pSubDock->fAlign = (g_bDirectionUp ? 1 : 0);
-		pSubDock->iGapX = (pDock->iGapY + pDock->iMaxDockHeight) * (g_bDirectionUp ? -1 : 1);
-		if (g_bDirectionUp)
+		pSubDock->fAlign = (pDock->bDirectionUp ? 1 : 0);
+		pSubDock->iGapX = (pDock->iGapY + pDock->iMaxDockHeight) * (pDock->bDirectionUp ? -1 : 1);
+		if (pDock->bDirectionUp)
 			pSubDock->iGapY = g_iScreenWidth[pDock->bHorizontalDock] - (iX + pDock->iWindowPositionX) - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 1.
 		else
 			pSubDock->iGapY = iX + pDock->iWindowPositionX - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 0.
@@ -132,7 +132,7 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_save (pCairoContext);
 		
 		//g_print ("redessin a gauche de %s\n", icon->acName);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth);
+		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
 		
 		cairo_restore (pCairoContext);
 		
@@ -143,7 +143,7 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_save (pCairoContext);
 		
 		//g_print ("redessin a droite de %s\n", icon->acName);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth);
+		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
 		
 		cairo_restore (pCairoContext);
 		
@@ -160,7 +160,7 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 void cd_rendering_render_caroussel (CairoDock *pDock)
 {
 	//\____________________ On cree le contexte du dessin.
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_DOCK_CONTAINER (pDock));
+	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
 	
 	cairo_set_tolerance (pCairoContext, 0.5);  // avec moins que 0.5 on ne voit pas la difference.
@@ -181,7 +181,7 @@ void cd_rendering_render_caroussel (CairoDock *pDock)
 	int sens;
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 	fDockOffsetX = fExtraWidth / 2;
-	if (g_bDirectionUp)
+	if (pDock->bDirectionUp)
 	{
 		sens = 1;
 		fDockOffsetY = pDock->iMaxIconHeight - fMargin - .5 * fLineWidth;
@@ -196,7 +196,7 @@ void cd_rendering_render_caroussel (CairoDock *pDock)
 	cairo_dock_draw_frame (pCairoContext, g_iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->bHorizontalDock);
 	
 	//\____________________ On dessine les decorations dedans.
-	fDockOffsetY = (g_bDirectionUp ? pDock->iMaxIconHeight - fMargin : fLineWidth);
+	fDockOffsetY = (pDock->bDirectionUp ? pDock->iMaxIconHeight - fMargin : fLineWidth);
 	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY);
 	
 	//\____________________ On dessine le cadre.
@@ -247,7 +247,7 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		cd_rendering_calculate_construction_parameters_caroussel (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iMaxIconHeight, pDock->iMaxIconHeight, iEllipseHeight, g_bDirectionUp, fExtraWidth, fLinearWidth, fXFirstIcon);  // il manque un pDock->iMaxIconWidth en 2eme...
+		cd_rendering_calculate_construction_parameters_caroussel (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iMaxIconHeight, pDock->iMaxIconHeight, iEllipseHeight, pDock->bDirectionUp, fExtraWidth, fLinearWidth, fXFirstIcon);  // il manque un pDock->iMaxIconWidth en 2eme...
 		cairo_dock_manage_animations (icon, pDock);
 	}
 	

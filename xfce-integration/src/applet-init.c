@@ -42,12 +42,12 @@ CD_APPLET_PRE_INIT_BEGIN("xfce integration", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTO
 CD_APPLET_PRE_INIT_END
 
 
-void init (GKeyFile *pKeyFile, Icon *pIcon, CairoDockContainer *pContainer, gchar *cConfFilePath, GError **erreur)
+void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *cConfFilePath, GError **erreur)
 {
 	
 }
 
-gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoDockContainer *pNewContainer)
+gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoContainer *pNewContainer)
 {
 	return TRUE;
 }

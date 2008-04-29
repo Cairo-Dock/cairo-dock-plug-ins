@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-void switcher_draw_main_dock_icon_back (cairo_t *pIconContext, Icon *pIcon, CairoDockContainer *pContainer);
+void switcher_draw_main_dock_icon_back (cairo_t *pIconContext, Icon *pIcon, CairoContainer *pContainer);
 gboolean switcher_draw_main_dock_icon (gpointer data);
 gboolean _cd_switcher_check_for_redraw_cairo (gpointer data);
 

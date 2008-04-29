@@ -132,7 +132,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
-	cairo_dock_register_notification (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) cd_mixer_scroll, CAIRO_DOCK_RUN_AFTER);
+	CD_APPLET_REGISTER_FOR_SCROLL_EVENT
 	
 	cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) mixer_on_keybinding_pull, (gpointer)NULL);
 CD_APPLET_INIT_END
@@ -143,7 +143,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	cairo_dock_remove_notification_func (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) cd_mixer_scroll);
+	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT
 	
 	//\_________________ On stoppe le timer.
 	if (myData.iSidCheckVolume != 0)

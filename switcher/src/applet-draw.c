@@ -20,7 +20,7 @@ extern AppletConfig myConfig;
 extern AppletData myData;
 gboolean my_bRotateIconsOnEllipse = TRUE;
 
-void switcher_draw_main_dock_icon_back (cairo_t *pIconContext, Icon *pIcon, CairoDockContainer *pContainer)
+void switcher_draw_main_dock_icon_back (cairo_t *pIconContext, Icon *pIcon, CairoContainer *pContainer)
 {
 	cairo_save (pIconContext);
 	cairo_restore (pIconContext);

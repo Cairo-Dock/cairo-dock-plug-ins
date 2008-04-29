@@ -182,7 +182,7 @@ else
 					icon->fWidth = MAX (1, .2 * myDesklet->iWidth - g_iLabelSize);
 					icon->fHeight = MAX (1, .2 * myDesklet->iHeight - g_iLabelSize);
 				}
-				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, CAIRO_DOCK_HORIZONTAL, myConfig.bDesklet3D);
+				cairo_dock_fill_icon_buffers (icon, pCairoContext, 1, myContainer->bIsHorizontal, myConfig.bDesklet3D, myContainer->bDirectionUp);
 				myData.iMaxIconWidth = MAX (myData.iMaxIconWidth, icon->fWidth);
 				}
 

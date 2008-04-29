@@ -59,7 +59,7 @@ void cd_rendering_render_rainbow (CairoDock *pDock)
 	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
 	
 	//\____________________ On cree le contexte du dessin.
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pDock);
+	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
 	
 	cairo_set_tolerance (pCairoContext, 0.5);  // avec moins que 0.5 on ne voit pas la difference.
@@ -93,7 +93,7 @@ void cd_rendering_render_rainbow (CairoDock *pDock)
 		icon = ic->data;
 
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon (icon, pCairoContext, bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, ! g_bTextAlwaysHorizontal, pDock->iCurrentWidth);
+		cairo_dock_render_one_icon (icon, pCairoContext, bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, ! g_bTextAlwaysHorizontal, pDock->iCurrentWidth, pDock->bDirectionUp);
 		
 		if (g_bTextAlwaysHorizontal && icon->pTextBuffer != NULL && icon->fScale > 1.01 && (! g_bLabelForPointedIconOnly || icon->bPointed) && icon->iCount == 0)  // 1.01 car sin(pi) = 1+epsilon :-/
 		{
@@ -121,11 +121,11 @@ void cd_rendering_render_rainbow (CairoDock *pDock)
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
 					fOffsetX,
-					g_bDirectionUp ? -g_iLabelSize : icon->fHeight * icon->fScale - icon->fTextYOffset);
+					pDock->bDirectionUp ? -g_iLabelSize : icon->fHeight * icon->fScale - icon->fTextYOffset);
 			else
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
-					g_bDirectionUp ? -g_iLabelSize : icon->fHeight * icon->fScale - icon->fTextYOffset,
+					pDock->bDirectionUp ? -g_iLabelSize : icon->fHeight * icon->fScale - icon->fTextYOffset,
 					fOffsetX);
 			
 			double fMagnitude;
@@ -156,7 +156,7 @@ void cd_rendering_render_rainbow (CairoDock *pDock)
 
 static void cd_rendering_get_polar_coords (CairoDock *pDock, double *fRadius, double *fTheta)
 {
-	double x = pDock->iMouseX - pDock->iCurrentWidth / 2, y = (g_bDirectionUp ? pDock->iCurrentHeight - pDock->iMouseY : pDock->iMouseY);
+	double x = pDock->iMouseX - pDock->iCurrentWidth / 2, y = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iMouseY : pDock->iMouseY);
 	
 	*fRadius = sqrt (x * x + y * y);
 	*fTheta = atan2 (x, y);
@@ -378,10 +378,10 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 			cd_debug ("on passe a la ligne %d (%d icones, fThetaStart = %.2fdeg, fCurrentRadius = %.2f(%.2f), fDeltaTheta = %.2f, fCurrentScale = %.2f)\n", iNbRow, iNbIconsOnRow, fThetaStart/G_PI*180, fCurrentRadius, fNormalRadius, fDeltaTheta/G_PI*180, fCurrentScale);
 		}
 		
-		icon->fX = fCurrentRadius + (g_bDirectionUp ? pDock->iMaxIconHeight * fCurrentScale : 0);
+		icon->fX = fCurrentRadius + (pDock->bDirectionUp ? pDock->iMaxIconHeight * fCurrentScale : 0);
 		
 		fCurrentTheta = fThetaStart + iNbInsertedIcons * fDeltaTheta;
-		icon->fOrientation = (g_bDirectionUp ? fCurrentTheta : - fCurrentTheta);
+		icon->fOrientation = (pDock->bDirectionUp ? fCurrentTheta : - fCurrentTheta);
 		
 		if (pPointedIcon == NULL && fRadius < fCurrentRadius + (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fCurrentScale && fRadius > fCurrentRadius && fTheta > fCurrentTheta - fDeltaTheta/2 && fTheta < fCurrentTheta + fDeltaTheta/2)
 		{
@@ -393,7 +393,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 			icon->bPointed = FALSE;
 		
 		icon->fDrawY = icon->fX * cos (fCurrentTheta) + icon->fWidth/2 * fCurrentScale * sin (fCurrentTheta);
-		if (g_bDirectionUp)
+		if (pDock->bDirectionUp)
 			icon->fDrawY = pDock->iCurrentHeight - icon->fDrawY;
 		icon->fDrawX = icon->fX * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta) + pDock->iCurrentWidth / 2;
 		cd_debug (" %.2fdeg ; (%.2f;%.2f)\n", fCurrentTheta/G_PI*180, icon->fDrawX, icon->fDrawY);

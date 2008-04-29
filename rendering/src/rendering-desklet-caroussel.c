@@ -15,7 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define CAROUSSEL_RATIO_ICON_DESKLET .5
 
 
-static gboolean _caroussel_rotate (CairoDockDesklet *pDesklet)
+static gboolean _caroussel_rotate (CairoDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -38,7 +38,7 @@ static gboolean _caroussel_rotate (CairoDockDesklet *pDesklet)
 }
 static gboolean on_scroll_desklet (GtkWidget* pWidget,
 	GdkEventScroll* pScroll,
-	CairoDockDesklet *pDesklet)
+	CairoDesklet *pDesklet)
 {
 	if (pDesklet->icons != NULL && (pScroll->direction == GDK_SCROLL_DOWN || pScroll->direction == GDK_SCROLL_UP))
 	{
@@ -67,7 +67,7 @@ static gboolean on_scroll_desklet (GtkWidget* pWidget,
 	return FALSE;
 }
 
-CDCarousselParameters *rendering_configure_caroussel (CairoDockDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
+CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
 	g_print ("%s ()\n", __func__);
 	GList *pIconsList = pDesklet->icons;
@@ -85,7 +85,7 @@ CDCarousselParameters *rendering_configure_caroussel (CairoDockDesklet *pDesklet
 	return pCaroussel;
 }
 
-void rendering_load_caroussel_data (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 {
 	g_print ("%s ()\n", __func__);
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
@@ -139,7 +139,7 @@ void rendering_load_caroussel_data (CairoDockDesklet *pDesklet, cairo_t *pSource
 }
 
 
-void rendering_free_caroussel_data (CairoDockDesklet *pDesklet)
+void rendering_free_caroussel_data (CairoDesklet *pDesklet)
 {
 	g_print ("%s ()\n", __func__);
 	gulong iOnScrollCallbackID = g_signal_handler_find (pDesklet->pWidget,
@@ -161,7 +161,7 @@ void rendering_free_caroussel_data (CairoDockDesklet *pDesklet)
 }
 
 
-void rendering_load_icons_for_caroussel (CairoDockDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -209,7 +209,7 @@ void rendering_load_icons_for_caroussel (CairoDockDesklet *pDesklet, cairo_t *pS
 
 
 
-void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDockDesklet *pDesklet, gboolean bRenderOptimized)
+void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	g_print ("%s(%x)\n", __func__, pCaroussel);
@@ -377,7 +377,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDockDeskl
 
 void rendering_register_caroussel_desklet_renderer (void)
 {
-	CairoDockDeskletRenderer *pRenderer = g_new0 (CairoDockDeskletRenderer, 1);
+	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_caroussel_in_desklet;
 	pRenderer->configure = rendering_configure_caroussel;
 	pRenderer->load_data = rendering_load_caroussel_data;

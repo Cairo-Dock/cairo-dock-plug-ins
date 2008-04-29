@@ -11,7 +11,7 @@ typedef struct {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 typedef struct {
-        CairoDockDialog *dialog;
+        CairoDialog *dialog;
 	    GtkWidget *pGtkMozEmbed;
 	} AppletData;
 

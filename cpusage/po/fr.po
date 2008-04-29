@@ -158,7 +158,7 @@ msgstr ""
 msgid "List of available themes for the analogic display :"
 msgstr ""
 
-#: ../src/applet-cpusage.c:243
+#: ../src/applet-cpusage.c:243 ../src/applet-cpusage.c:183
 msgid "Loading"
 msgstr ""
 

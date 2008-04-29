@@ -169,7 +169,7 @@ void cd_cpusage_update_from_data (void)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
-		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+		make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 		
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
@@ -181,7 +181,7 @@ void cd_cpusage_update_from_data (void)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(myDock ? "..." : D_("Loading"));
-			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
+			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 			myData.bInitialized = TRUE;
 		}
 		else
@@ -200,7 +200,7 @@ void cd_cpusage_update_from_data (void)
 				}
 			}
 			
-			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) myData.cpu_usage / 100);
+			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.cpu_usage / 100);
 		}
 	}
 }
