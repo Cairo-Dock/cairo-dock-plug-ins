@@ -180,7 +180,7 @@ _mail_draw_main_icon (void)
             CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
         }
 
-        CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.iNbUnreadMails)
+        CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.iNbUnreadMails)
 	}
 	else
 	{
@@ -220,7 +220,7 @@ _mail_draw_main_icon (void)
             CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
         }
 
-        CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+        CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
 	}
 }
 

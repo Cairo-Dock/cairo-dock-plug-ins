@@ -34,23 +34,23 @@ msgstr "hauteur :"
 msgid "Default title :"
 msgstr "Titre par défaut :"
 
-#: ../data/messages:11 ../data/messages:31
+#: ../data/messages:11 ../data/messages:31 ../data/messages:33
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:13 ../data/messages:33
+#: ../data/messages:13 ../data/messages:33 ../data/messages:35
 msgid "Info-bubbles"
 msgstr "Info-bulles"
 
-#: ../data/messages:15 ../data/messages:35
+#: ../data/messages:15 ../data/messages:35 ../data/messages:37
 msgid "Activate info-bubbles ?"
 msgstr "Activer les info-bulles ?"
 
-#: ../data/messages:19 ../data/messages:39
+#: ../data/messages:19 ../data/messages:39 ../data/messages:41
 msgid "Time length of info-bubbles :"
 msgstr "Durée des info-bulles :"
 
-#: ../data/messages:17 ../data/messages:37
+#: ../data/messages:17 ../data/messages:37 ../data/messages:39
 msgid "in ms."
 msgstr "en ms."
 
@@ -58,47 +58,50 @@ msgstr "en ms."
 msgid "Animations"
 msgstr "Animations"
 
-#: ../data/messages:25 ../data/messages:45
+#: ../data/messages:25 ../data/messages:45 ../data/messages:47
 msgid "bounce"
 msgstr "rebond"
 
-#: ../data/messages:27 ../data/messages:47
+#: ../data/messages:27 ../data/messages:47 ../data/messages:49
 msgid "rotate"
 msgstr "rotation"
 
-#: ../data/messages:29 ../data/messages:49
+#: ../data/messages:29 ../data/messages:49 ../data/messages:51
 msgid "blink"
 msgstr "clignotement"
 
-#: ../data/messages:31 ../data/messages:51
+#: ../data/messages:31 ../data/messages:51 ../data/messages:53
 msgid "pulse"
 msgstr "pulsation"
 
-#: ../data/messages:33 ../data/messages:53
+#: ../data/messages:33 ../data/messages:53 ../data/messages:55
 msgid "upside-down"
 msgstr "sens dessus-dessous"
 
-#: ../data/messages:35 ../data/messages:55
+#: ../data/messages:35 ../data/messages:55 ../data/messages:57
 msgid "wobbly"
 msgstr "élastique"
 
-#: ../data/messages:37 ../data/messages:57
+#: ../data/messages:37 ../data/messages:57 ../data/messages:59
 msgid "random"
 msgstr "aléatoire"
 
-#: ../data/messages:23 ../data/messages:43
+#: ../data/messages:23 ../data/messages:43 ../data/messages:45
 msgid "Animation when music changes :"
 msgstr "Animation au changement de musique"
 
 #: ../data/messages:39 ../data/messages:59 ../data/messages:63
+#: ../data/messages:65
 msgid "Display"
 msgstr "Affichage"
 
 #: ../data/messages:41 ../data/messages:61 ../data/messages:65
+#: ../data/messages:67
 msgid "Display album's cover instead of icon ?"
 msgstr "Afficher l'album au lieu de l'icône ?"
 
 #: ../data/messages:43 ../data/messages:63 ../data/messages:67
+#: ../data/messages:69
 msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
@@ -154,53 +157,64 @@ msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:45 ../data/messages:65 ../data/messages:69
+#: ../data/messages:71
 msgid "nothing"
 msgstr "rien"
 
 #: ../data/messages:47 ../data/messages:67 ../data/messages:71
+#: ../data/messages:73
 msgid "time elapsed"
 msgstr "temps écoulé"
 
 #: ../data/messages:49 ../data/messages:69 ../data/messages:73
+#: ../data/messages:75
 msgid "time left"
 msgstr "temps restant"
 
 #: ../data/messages:55 ../data/messages:75 ../data/messages:79
+#: ../data/messages:81
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
 #: ../data/messages:57 ../data/messages:61 ../data/messages:65
 #: ../data/messages:69 ../data/messages:73 ../data/messages:77
 #: ../data/messages:81 ../data/messages:85 ../data/messages:89
-#: ../data/messages:93 ../data/messages:97
+#: ../data/messages:93 ../data/messages:97 ../data/messages:83
+#: ../data/messages:87 ../data/messages:91 ../data/messages:95
+#: ../data/messages:99
 msgid "Let t empty to use the default icon."
 msgstr "Laisser vide pour utiliser l'icône par défaut"
 
 #: ../data/messages:59 ../data/messages:79 ../data/messages:83
+#: ../data/messages:85
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom d'une image pour l'icône 'défaut' :"
 
 #: ../data/messages:63 ../data/messages:83 ../data/messages:87
+#: ../data/messages:89
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom d'une image pour l'icône 'jouer' :"
 
 #: ../data/messages:67 ../data/messages:87 ../data/messages:91
+#: ../data/messages:93
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom d'une image pour l'icône 'stop' :"
 
 #: ../data/messages:71 ../data/messages:91 ../data/messages:95
+#: ../data/messages:97
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom d'une image pour l'icône 'pause' :"
 
 #: ../data/messages:75 ../data/messages:95 ../data/messages:99
+#: ../data/messages:101
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom d'une image pour l'icône 'cassé' :"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -208,33 +222,33 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic_milieu ou ALT + clic_droit par exemple."
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -242,23 +256,23 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:71 ../data/messages:75
+#: ../data/messages:71 ../data/messages:75 ../data/messages:77
 msgid "time in %"
 msgstr "temps en %"
 
-#: ../data/messages:73 ../data/messages:77
+#: ../data/messages:73 ../data/messages:77 ../data/messages:79
 msgid "n° of track"
 msgstr "n° de piste"
 
-#: ../data/messages:75 ../data/messages:61
+#: ../data/messages:75 ../data/messages:61 ../data/messages:63
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "Voler l'icône de la barre des tâches ?"
 
-#: ../data/messages:77 ../data/messages:59
+#: ../data/messages:77 ../data/messages:59 ../data/messages:61
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -267,6 +281,10 @@ msgstr ""
 "L'icône de l'applet se comportera alors comme un lanceur, une appli et une "
 "applet."
 
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:43
 msgid "Behaviour"
 msgstr "Comportement"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr ""

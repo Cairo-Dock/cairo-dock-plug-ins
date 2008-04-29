@@ -67,7 +67,7 @@ gboolean cd_clock_update_with_time (Icon *icon)
 			1 + g_fAmplitude);
 	}
 	
-	if (myConfig.iShowDate == CLOCK_DATE_ON_LABEL && (epoch_tm.tm_mday != iLastCheckedDay || epoch_tm.tm_mon != iLastCheckedMonth || epoch_tm.tm_year != iLastCheckedYear))
+	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL && (epoch_tm.tm_mday != iLastCheckedDay || epoch_tm.tm_mon != iLastCheckedMonth || epoch_tm.tm_year != iLastCheckedYear))
 	{
 		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", &epoch_tm);
 		CD_APPLET_SET_NAME_FOR_MY_ICON (s_cDateBuffer)
@@ -180,7 +180,7 @@ void cd_clock_draw_text (cairo_t *pSourceContext, int width, int height, double 
 			g_string_printf (sFormat, "%%I:%%M%s", pTime->tm_hour > 12 ? "PM" : "AM");
 	}
 	
-	if (myConfig.iShowDate == CLOCK_DATE_ON_ICON)
+	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
 		g_string_append (sFormat, "\n%a %d %b");
 	
 	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
@@ -359,7 +359,7 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 	cairo_translate (pSourceContext, fHalfX, fHalfY);
 	cairo_rotate (pSourceContext, -G_PI/2.0f);
 	
-	if (myConfig.iShowDate == CLOCK_DATE_ON_ICON)
+	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
 	{
 		cairo_save (pSourceContext);
 		cairo_set_source_rgb (pSourceContext, 1.0f, 0.5f, 0.0f);

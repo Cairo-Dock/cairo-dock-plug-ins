@@ -34,7 +34,7 @@ msgstr "hauteur :"
 msgid "Default title :"
 msgstr "Titre par défaut :"
 
-#: ../data/messages:11 ../data/messages:25
+#: ../data/messages:11 ../data/messages:25 ../data/messages:27
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -166,17 +166,18 @@ msgstr "temps en %s"
 msgid "° of track"
 msgstr "° de piste"
 
-#: ../data/messages:55 ../data/messages:11
+#: ../data/messages:55 ../data/messages:11 ../data/messages:13
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
 #: ../data/messages:57 ../data/messages:61 ../data/messages:65
 #: ../data/messages:69 ../data/messages:73 ../data/messages:13
-#: ../data/messages:17 ../data/messages:21
+#: ../data/messages:17 ../data/messages:21 ../data/messages:15
+#: ../data/messages:19 ../data/messages:23
 msgid "Let t empty to use the default icon."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:15
+#: ../data/messages:59 ../data/messages:15 ../data/messages:17
 msgid "Name of an image for the 'default' icon :"
 msgstr ""
 
@@ -192,7 +193,7 @@ msgstr ""
 msgid "Name of an image for the 'pause' icon :"
 msgstr ""
 
-#: ../data/messages:75 ../data/messages:23
+#: ../data/messages:75 ../data/messages:23 ../data/messages:25
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""
 
@@ -201,7 +202,7 @@ msgstr ""
 msgid "Note name : "
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Name of an image for the 'close' icon :"
 msgstr ""
 
@@ -219,13 +220,17 @@ msgstr ""
 msgid "Reload notes"
 msgstr ""
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid ""
 "If your tomboy version is not recent enough, it may not have this signal. "
 "Only check this box if you notice some message like <<No marshaller for "
 "signature of signal 'NoteDeleted'>> in the terminal."
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid "Emulate the 'NoteDeleted' signal ?"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
 msgstr ""

@@ -54,43 +54,43 @@ msgstr ""
 "Ceci est l'applet mail\n"
 " écrite par Christophe Chapuis pour Cairo-Dock"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -98,7 +98,7 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
@@ -358,15 +358,15 @@ msgstr ""
 msgid "Mailboxes"
 msgstr ""
 
-#: ../data/messages:13 ../data/messages:31
+#: ../data/messages:13 ../data/messages:31 ../data/messages:33
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:15 ../data/messages:33
+#: ../data/messages:15 ../data/messages:33 ../data/messages:35
 msgid "Name of an image to overwrite the theme's no mail image :"
 msgstr ""
 
-#: ../data/messages:17 ../data/messages:35
+#: ../data/messages:17 ../data/messages:35 ../data/messages:37
 msgid "Name of an image to overwrite the theme's has mail image :"
 msgstr ""
 
@@ -389,7 +389,7 @@ msgstr ""
 msgid "No unread mail in your mailboxes"
 msgstr ""
 
-#: ../data/messages:19 ../data/messages:37
+#: ../data/messages:19 ../data/messages:37 ../data/messages:39
 msgid "Path to application to launch on left-click"
 msgstr ""
 
@@ -447,4 +447,8 @@ msgstr ""
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
 msgstr ""

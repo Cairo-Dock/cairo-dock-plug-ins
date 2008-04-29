@@ -6,7 +6,6 @@
 #include "applet-init.h"
 #include "applet-netspeed.h"
 
-extern int inDebug;
 
 CD_APPLET_DEFINITION ("netspeed", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
@@ -16,7 +15,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
-	inDebug = 0;
 	
 	//Initialisation de la jauge
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
@@ -58,18 +56,16 @@ CD_APPLET_RELOAD_BEGIN
 	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		if (myConfig.iInfoDisplay != NETSPEED_INFO_ON_ICON)
+		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_ICON)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
 		}
-		if (myConfig.iInfoDisplay != NETSPEED_INFO_ON_LABEL)
+		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_LABEL)
 		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		}
 		
-		cairo_dock_stop_measure_timer (myData.pMeasureTimer);  // on stoppe avant car  on ne veut pas attendre la prochaine iteration.
-		cairo_dock_change_measure_frequency (myData.pMeasureTimer, myConfig.iCheckInterval); // la frequence a pu changer.
-		cairo_dock_launch_measure (myData.pMeasureTimer);  // mesure immediate.
+		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
 		cd_netspeed_update_from_data ();

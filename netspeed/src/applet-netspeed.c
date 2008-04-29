@@ -69,13 +69,6 @@ void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 }
 
 
-/*void cd_netspeed_acquisition (void)
-{
-	gchar *cCommand = g_strdup_printf ("cat /proc/net/dev > %s", NETSPEED_TMP_FILE);
-	system (cCommand);
-	g_free (cCommand);
-}*/
-
 void cd_netspeed_read_data (void)
 {
 	g_timer_stop (myData.pClock);
@@ -148,10 +141,10 @@ void cd_netspeed_update_from_data (void)
 {
 	if ( ! myData.bAcquisitionOK)
 	{
-		if (myConfig.iInfoDisplay == NETSPEED_INFO_ON_LABEL)
+		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
-		else if (myConfig.iInfoDisplay == NETSPEED_INFO_ON_ICON)
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
 		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
 		
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
@@ -162,22 +155,22 @@ void cd_netspeed_update_from_data (void)
 		
 		if (! myData.bInitialized)
 		{
-			if (myConfig.iInfoDisplay == NETSPEED_INFO_ON_ICON)
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(myDock ? "..." : D_("Loading"));
+			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(myDock ? "..." : D_("Loading"));
 			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
 			myData.bInitialized = TRUE;
 		}
 		else
 		{
-			if (myConfig.iInfoDisplay != NETSPEED_NO_INFO)
+			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
 			{
 				gchar upRateFormatted[11];
 				gchar downRateFormatted[11];
 				cd_netspeed_formatRate(myData.iUploadSpeed, upRateFormatted);
 				cd_netspeed_formatRate(myData.iDownloadSpeed, downRateFormatted);
-				if (myConfig.iInfoDisplay == NETSPEED_INFO_ON_ICON)
+				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				{
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("↑%s\n↓%s", upRateFormatted, downRateFormatted)
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("↑%s\n↓%s", upRateFormatted, downRateFormatted)
 				}
 				else
 				{
@@ -222,5 +215,4 @@ void cd_netspeed_update_from_data (void)
 			}
 		}
 	}
-	//CD_APPLET_REDRAW_MY_ICON
 }

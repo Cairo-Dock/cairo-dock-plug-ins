@@ -38,16 +38,9 @@ typedef struct {
 	gchar *cCommand;
 	} CDClockAlarm;
 
-typedef enum
-{
-	CLOCK_NO_DATE = 0,
-	CLOCK_DATE_ON_ICON,
-	CLOCK_DATE_ON_LABEL
-} CDClockDatePosition;
-
 
 typedef struct {
-	CDClockDatePosition iShowDate;
+	CairoDockInfoDisplay iShowDate;
 	gboolean bShowSeconds;
 	gboolean bOldStyle;
 	gboolean b24Mode;

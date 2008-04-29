@@ -199,7 +199,7 @@ cd_message ("SWITCHER : timer à 0 ");
 if (myConfig.bDisplayNumDesk)
 			{
 
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.switcher.ScreenCurrentNums)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.switcher.ScreenCurrentNums)
 	cd_message ("SWITCHER : chargement de quick info %d ", myData.switcher.ScreenCurrentNums);
 
 			}
@@ -207,7 +207,7 @@ if (myConfig.bDisplayNumDesk)
 			{
 
 cd_message ("SWITCHER : chargement de quick info NULL");
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
 
 	
 			}

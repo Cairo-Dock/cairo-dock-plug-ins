@@ -17,6 +17,9 @@ name = switcher
 #S Icon's name :
 icon = workspaces.svg
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 [Desklet]
 
 can detach = false

@@ -54,78 +54,82 @@ msgstr "このブックマークを削除"
 msgid "Icon"
 msgstr "アイコン"
 
-#: ../data/messages:13 ../data/messages:33
+#: ../data/messages:13 ../data/messages:33 ../data/messages:35
 msgid "Module"
 msgstr "モジュール"
 
-#: ../data/messages:15 ../data/messages:35
+#: ../data/messages:15 ../data/messages:35 ../data/messages:37
 msgid "List drives and volumes ?"
 msgstr "ドライブとボリュームを一覧化？"
 
-#: ../data/messages:17 ../data/messages:37
+#: ../data/messages:17 ../data/messages:37 ../data/messages:39
 msgid "List network ?"
 msgstr "ネットワークを一覧化？"
 
-#: ../data/messages:19 ../data/messages:39
+#: ../data/messages:19 ../data/messages:39 ../data/messages:41
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "例えば Nautilus で使用される、GTK ブックマークです。"
 
-#: ../data/messages:21 ../data/messages:41
+#: ../data/messages:21 ../data/messages:41 ../data/messages:43
 msgid "List bookmarks ?"
 msgstr "ブックマークを一覧化？"
 
-#: ../data/messages:23 ../data/messages:43
+#: ../data/messages:23 ../data/messages:43 ../data/messages:45
 msgid "Separate different shortcuts with separators ?"
 msgstr "ショートカットを種類ごとに区切りで分割？"
 
-#: ../data/messages:25 ../data/messages:45
+#: ../data/messages:25 ../data/messages:45 ../data/messages:47
 msgid "Let it empty to use default sub-dock view."
 msgstr "デフォルトのサブ・ドックの外観を使用するには空欄のままに。"
 
-#: ../data/messages:27 ../data/messages:47
+#: ../data/messages:27 ../data/messages:47 ../data/messages:49
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid "Desklet"
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr ""
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr ""
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:31 ../data/messages:33
 msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
 msgstr ""

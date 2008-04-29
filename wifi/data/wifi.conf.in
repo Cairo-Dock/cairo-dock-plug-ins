@@ -16,6 +16,9 @@ name = Wifi
 #S Icon's name :
 icon = default.svg
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 
 [Desklet]
 #i[48;256] Desklet's dimension (width x height) :

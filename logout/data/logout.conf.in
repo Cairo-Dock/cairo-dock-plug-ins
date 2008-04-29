@@ -18,6 +18,9 @@ name = quitter
 #{Let it empty to use the default icon.}
 icon = gnome-session-halt
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 [Desklet]
 
 #i[48;256] Desklet's dimension (width x height) :

@@ -17,6 +17,9 @@ name = Slider
 #S Icon's name :
 icon = 
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 
 [Desklet]
 

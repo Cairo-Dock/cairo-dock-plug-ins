@@ -8,30 +8,21 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-extern gboolean inDebug;
 
 CD_APPLET_ABOUT (D_("This is the rame applet\n made by parAdOxxx_ZeRo for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	/* cairo_dock_show_temporary_dialog("BLAH !", myIcon, myContainer, 0);*/
+	/// montrer les 3 applis les plus gourmandes + tous les parametres qu'on recupere.
 CD_APPLET_ON_CLICK_END
 
 
 static void _rame_recheck_ (GtkMenuItem *menu_item, gpointer *data) {
-		if (myData.iSidTimer != 0) {
-		  g_source_remove (myData.iSidTimer);
-		  myData.iSidTimer = 0;
-	  }
-	  myConfig.iCheckInterval = myConfig.dCheckInterval;
-	  cd_rame_launch_analyse();
-}
-static void _rame_change_mode_debug_ () {
-	inDebug = 1 - inDebug;
+	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
+	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_SUB_MENU ("rame", pSubMenu, CD_APPLET_MY_MENU)
-	  	CD_APPLET_ADD_IN_MENU (D_("Debug"), _rame_change_mode_debug_, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END

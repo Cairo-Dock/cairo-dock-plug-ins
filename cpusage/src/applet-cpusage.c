@@ -18,67 +18,7 @@ CD_APPLET_INCLUDE_MY_VARS
 static int s_iThreadIsRunning = 0;
 static int s_iSidTimerRedraw = 0;
 
-/*gboolean cd_cpusage_timer (gpointer data) {
-	cd_cpusage_launch_analyse();
-	return TRUE;
-}
-
-gpointer cd_cpusage_threaded_calculation (gpointer data) {
-	cd_cpusage_get_data();
-	
-	g_atomic_int_set (&s_iThreadIsRunning, 0);
-	cd_message ("*** fin du thread cpusage");
-	return NULL;
-}
-
-void cd_cpusage_get_data (void) {
-	gchar *cCommand = g_strdup_printf("bash %s/cpusage", MY_APPLET_SHARE_DATA_DIR);
-	system (cCommand);
-	g_free (cCommand);
-}
-
-static gboolean _cd_cpusage_check_for_redraw (gpointer data) {
-	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
-	cd_message ("%s (%d)", __func__, iThreadIsRunning);
-	if (! iThreadIsRunning) {
-		s_iSidTimerRedraw = 0;
-		if (myIcon == NULL) {
-			g_print ("annulation du chargement de cpusage (myIcon == NULL)\n");
-			return FALSE;
-		}
-		
-		gboolean bResultOK = cd_cpusage_getUsage();
-		
-		//\_______________________ On lance le timer si necessaire.
-		if (myData.iSidTimer == 0) {
-			myData.iSidTimer = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) cd_cpusage_timer, NULL);
-		}
-		return FALSE;
-	}
-	return TRUE;
-}
-
-void cd_cpusage_launch_analyse (void) {
-	cd_message (" ");
-	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1)) {  //il etait egal a 0, on lui met 1 et on lance le thread.
-		cd_message (" ==> lancement du thread de calcul");
-		
-		GError *erreur = NULL;
-		GThread* pThread = g_thread_create ((GThreadFunc) cd_cpusage_threaded_calculation, NULL, FALSE, &erreur);
-		if (erreur != NULL) {
-			cd_warning ("Attention : %s", erreur->message);
-			g_error_free (erreur);
-		}
-				
-		if (s_iSidTimerRedraw == 0) {
-			s_iSidTimerRedraw = g_timeout_add (333, (GSourceFunc) _cd_cpusage_check_for_redraw, (gpointer) NULL);
-		}
-		
-	}
-}
-
-
-gboolean cd_cpusage_getUsage(void) {
+/*gboolean cd_cpusage_getUsage(void) {
  	gchar *cContent = NULL;
 	gsize length=0;
 	GError *tmp_erreur = NULL;
@@ -87,7 +27,7 @@ gboolean cd_cpusage_getUsage(void) {
 		cd_message("Attention : %s\n", tmp_erreur->message);
 		g_error_free(tmp_erreur);
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
 		return FALSE;
 	}
 	else {
@@ -145,7 +85,7 @@ gboolean cd_cpusage_getUsage(void) {
 				cpu_user, cpu_user_nice, cpu_system, cpu_idle, cpu_usage,
 				cpu_usage_time, cpu_total_time);
 		}
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(myDock ? "%u%%" : "cpu:%u%%", cpu_usage);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(myDock ? "%u%%" : "cpu:%u%%", cpu_usage);
 
 		cpu_user = new_cpu_user;
 		cpu_user_nice = new_cpu_user_nice;
@@ -183,7 +123,7 @@ void cd_cpusage_read_data (void)
 	g_timer_start (myData.pClock);
 	
 	FILE *fd = fopen (CPUSAGE_DATA_PIPE, "r");
-	gchar *tmp = fgets (cContent, 512, fd);
+	gchar *tmp = fgets (cContent, 512, fd);  // on ne prend que la 1ere ligne, moyenne (somme ?) de tous les processeurs.
 	fclose (fd);
 	if (tmp == NULL)
 	{
@@ -225,10 +165,10 @@ void cd_cpusage_update_from_data (void)
 {
 	if ( ! myData.bAcquisitionOK)
 	{
-		if (myConfig.iInfoDisplay == CPUSAGE_INFO_ON_LABEL)
+		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
-		else if (myConfig.iInfoDisplay == CPUSAGE_INFO_ON_ICON)
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("N/A");
+		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
 		make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
 		
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
@@ -239,18 +179,18 @@ void cd_cpusage_update_from_data (void)
 		
 		if (! myData.bInitialized)
 		{
-			if (myConfig.iInfoDisplay == CPUSAGE_INFO_ON_ICON)
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(myDock ? "..." : D_("Loading"));
+			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(myDock ? "..." : D_("Loading"));
 			make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,(double) 0);
 			myData.bInitialized = TRUE;
 		}
 		else
 		{
-			if (myConfig.iInfoDisplay != CPUSAGE_NO_INFO)
+			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
 			{
-				if (myConfig.iInfoDisplay == CPUSAGE_INFO_ON_ICON)
+				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				{
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ((myData.cpu_usage < 10 ? "%.1f%%" : "%.0f%%"), myData.cpu_usage)
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myData.cpu_usage < 10 ? "%.1f%%" : "%.0f%%"), myData.cpu_usage)
 				}
 				else
 				{

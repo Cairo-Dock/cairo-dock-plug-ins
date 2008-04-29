@@ -34,15 +34,15 @@ msgstr "hauteur :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-#: ../data/messages:33
+#: ../data/messages:33 ../data/messages:35
 msgid "Theme"
 msgstr "Thème"
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:37
 msgid "Choose one of the available themes :"
 msgstr "Choisissez un des thèmes disponibles :"
 
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:71
 msgid "Interval of time to check if dustbin is full/empty :"
 msgstr ""
 "Intervalle de temps pour la vérification de la poubelle (vide/pleine) :"
@@ -159,43 +159,43 @@ msgstr ""
 msgid "Icon"
 msgstr "Icône"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -203,87 +203,92 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:31
+#: ../data/messages:31 ../data/messages:33
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:39
 msgid "Name of an image to overwrite the theme's empty image :"
 msgstr "Nom d'une image pour écraser l'image vide du thème :"
 
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:41
 msgid "Name of an image to overwrite the theme's full image :"
 msgstr "Nom d'une image pour écraser l'image pleine du thème :"
 
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:43
 msgid "Config"
 msgstr "Config"
 
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:45
 msgid "They don't even need to be real trash directories."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:45 ../data/messages:47
 msgid ""
 "Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:49
 msgid "Display the following quick info :"
 msgstr "Afficher l'info-rapide suivante :"
 
-#: ../data/messages:49
+#: ../data/messages:49 ../data/messages:51
 msgid "None"
 msgstr "Aucune"
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:53
 msgid "Number of trashes"
 msgstr "Nombre de déchets"
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:55
 msgid "Total number of files"
 msgstr "Nombre total de fichiers"
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:57
 msgid "Total weight"
 msgstr "Poids total"
 
-#: ../data/messages:57 ../data/messages:61
+#: ../data/messages:57 ../data/messages:61 ../data/messages:59
+#: ../data/messages:63
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
 "en Mo. Vous serez notifié si vous dépassez cette limite. Mettez 0 pour ne "
 "pas l'utiliser."
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:61
 msgid "Maximum total size of all dustbins :"
 msgstr "Taille maximale totale des poubelles :"
 
-#: ../data/messages:63
+#: ../data/messages:63 ../data/messages:65
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Taille maximale autorisée pour chaque poubelle :"
 
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:67
 msgid "Desktop-less support"
 msgstr "Utilisation dégradée"
 
-#: ../data/messages:67
+#: ../data/messages:67 ../data/messages:69
 msgid "in seconds, only used if you can't monitor directories."
 msgstr ""
 "en secondes, seulement utilisé si la surveillance de fichiers n'est pas "
 "disponible."
 
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:73
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr ""
 "N'utilisez cela que si vous notez que l'applet de peut pas afficher la "
 "poubelle au clic."
 
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:75
 msgid "Alternative file browser used to show a trash :"
 msgstr "Ouvrir la poubelle avec :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr ""

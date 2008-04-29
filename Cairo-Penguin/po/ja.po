@@ -107,27 +107,27 @@ msgid ""
 " made by Fabrice Rey for Cairo-Dock"
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid "Choose one of the available themes :"
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "in seconds"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Delay between animation changes :"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Transparency of the penguin :"
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr ""
 
@@ -214,4 +214,8 @@ msgstr ""
 
 #: ../src/applet-notifications.c:35
 msgid "For Aiur !"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
 msgstr ""

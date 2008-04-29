@@ -103,7 +103,7 @@ msgstr ""
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:13 ../data/messages:15 ../data/messages:17
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -115,10 +115,14 @@ msgstr "Nom d'une image pour montrer les desklets :"
 msgid "Image name to hide desklets :"
 msgstr "Nom d'une image pour cacher les desklets :"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Show/hide desklets that are on the widget layer too ?"
 msgstr "Montrer/cacher aussi les deklets qui sont sur la WidgetLayer ?"
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Shortkey to show/hide the desklets :"
 msgstr "Raccourci clavier pour montrer/cacher les deklets:"
+
+#: ../data/messages:15
+msgid "Name of the dock it belongs to:"
+msgstr ""

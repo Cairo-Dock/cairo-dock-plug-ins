@@ -17,7 +17,7 @@ void cd_wifi_draw_no_wireless_extension (void) {
 	if (myData.iPreviousQuality != myData.iQuality) {
 		myData.iPreviousQuality = myData.iQuality;
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("N/A");
 		cd_wifi_draw_icon_with_effect (WIFI_QUALITY_NO_SIGNAL);
 	}
 }
@@ -27,20 +27,20 @@ void cd_wifi_draw_icon (void) {
 	switch (myConfig.quickInfoType) {
 		case WIFI_INFO_NONE :
 			if (myIcon->cQuickInfo != NULL) {
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
 				bNeedRedraw = TRUE;
 			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
 			if (myData.iQuality != myData.iPreviousQuality) {
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(D_(s_cLevelQualityName[myData.iQuality]));
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(D_(s_cLevelQualityName[myData.iQuality]));
 				bNeedRedraw = TRUE;
 			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_PERCENT :
 			if (myData.prev_prcnt != myData.prcnt) {
 				myData.prev_prcnt = myData.prcnt;
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", myData.prcnt);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.prcnt);
 				bNeedRedraw = TRUE;
 			}
 		break;
@@ -48,7 +48,7 @@ void cd_wifi_draw_icon (void) {
 			if (myData.prev_flink != myData.flink || myData.prev_mlink != myData.mlink) {
 				myData.prev_flink = myData.flink;
 				myData.prev_mlink = myData.mlink;
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d/%d", myData.flink, myData.mlink);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("%d/%d", myData.flink, myData.mlink);
 				bNeedRedraw = TRUE;
 			}
 		break;

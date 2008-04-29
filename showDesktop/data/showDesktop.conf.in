@@ -18,6 +18,9 @@ name = Show Desktop
 #{Let it empty to use the default icon.}
 icon = 
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 
 #Uncomment the following group when you will want to make your applet detachable.
 

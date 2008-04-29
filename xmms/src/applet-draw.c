@@ -52,12 +52,12 @@ void cd_xmms_add_buttons_to_desklet(void) {
 void cd_xmms_draw_icon (void) {
 	gboolean bNeedRedraw = FALSE;
 	if (myData.playingStatus == PLAYER_NONE) {
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
 	}
 	else {
 		switch (myConfig.quickInfoType) {
 			case MY_APPLET_NOTHING :
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
 			break ;
 			
 			case MY_APPLET_TIME_ELAPSED :
@@ -79,7 +79,7 @@ void cd_xmms_draw_icon (void) {
 			case MY_APPLET_TRACK :
 				if (myData.iTrackNumber != myData.iPreviousTrackNumber) {
 					myData.iPreviousTrackNumber = myData.iTrackNumber;
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON("%d", myData.iTrackNumber);
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("%d", myData.iTrackNumber);
 					bNeedRedraw = TRUE;
 				}
 			break ;
@@ -220,7 +220,7 @@ void cd_xmms_draw_icon (void) {
 	cairo_restore (pCairoContext);
 	
   if (strcmp(myData.lastQuickInfo,cQuickInfo) != 0) {
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(cQuickInfo);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(cQuickInfo);
 		myData.lastQuickInfo = cQuickInfo;
   }
 	CD_APPLET_REDRAW_MY_ICON

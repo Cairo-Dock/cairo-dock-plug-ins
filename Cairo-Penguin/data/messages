@@ -10,6 +10,8 @@ _("Name of the icon as it will appear in its label in the dock :")
 
 _("Icon's name :")
 
+_("Name of the dock it belongs to:")
+
 _("Configuration")
 
 _("Choose one of the available themes :")

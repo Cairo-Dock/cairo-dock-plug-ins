@@ -61,47 +61,47 @@ msgstr "Recharger"
 msgid "Icon"
 msgstr "Icône"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensions du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Is detached ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Keep below ?"
 msgstr "Garder en dessous des autres fenêtre ?"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Keep above ?"
 msgstr "Garder au dessus des autres fenêtre ?"
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des Widgets ?"
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:49 ../data/messages:37
+#: ../data/messages:49 ../data/messages:37 ../data/messages:39
 msgid "Default icon :"
 msgstr "Icône par Défaut :"
 
-#: ../data/messages:53 ../data/messages:41
+#: ../data/messages:53 ../data/messages:41 ../data/messages:43
 msgid "Broken icon :"
 msgstr "Icône de Défaillance :"
 
-#: ../data/messages:57 ../data/messages:45
+#: ../data/messages:57 ../data/messages:45 ../data/messages:47
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la Vue utilisée "
 
@@ -113,22 +113,27 @@ msgstr "Rendre en Desklet 3D ?"
 msgid "Number of Viewports"
 msgstr "Nombre de Bureaux :"
 
-#: ../data/messages:31
+#: ../data/messages:31 ../data/messages:33
 msgid "Show Light Icon ?"
 msgstr "Affiche l'icone principale simplifié ?"
 
-#: ../data/messages:33
+#: ../data/messages:33 ../data/messages:35
 msgid "Show Quickinfo on the Icon ?"
 msgstr "Afficher Une info Rapide sur l'icone ?"
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid "Number of Viewports "
 msgstr ""
 
-#: ../data/messages:35 ../data/messages:39
+#: ../data/messages:35 ../data/messages:39 ../data/messages:37
+#: ../data/messages:41
 msgid "Let empty to use the default one."
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:45
 msgid "Let it empty to use default sub-dock view."
+msgstr ""
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
 msgstr ""

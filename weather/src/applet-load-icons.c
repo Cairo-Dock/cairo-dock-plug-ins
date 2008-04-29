@@ -72,11 +72,11 @@ static void _weather_draw_current_conditions (void)
 		cd_message ("  chargement de l'icone meteo");
 		if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp)
 		}
 		else
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
 		}
 		
 		g_free (myIcon->acFileName);

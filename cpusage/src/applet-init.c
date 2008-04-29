@@ -52,11 +52,11 @@ CD_APPLET_RELOAD_BEGIN
 	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		if (myConfig.iInfoDisplay != CPUSAGE_INFO_ON_ICON)
+		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_ICON)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
 		}
-		if (myConfig.iInfoDisplay != CPUSAGE_INFO_ON_LABEL)
+		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_LABEL)
 		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		}

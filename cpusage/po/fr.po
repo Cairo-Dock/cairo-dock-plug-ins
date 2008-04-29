@@ -54,7 +54,7 @@ msgid "Information to display on the icon :"
 msgstr "Information a afficher sur l'icon :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:15
-#: ../src/applet-notifications.c:13
+#: ../src/applet-notifications.c:13 ../src/applet-notifications.c:12
 msgid ""
 "This is the cpusage applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
@@ -125,7 +125,7 @@ msgstr ""
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13 ../data/messages:33
+#: ../data/messages:13 ../data/messages:33 ../data/messages:49
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -138,7 +138,7 @@ msgstr "Personnalisation"
 msgid "Let t empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:51
 msgid "in seconds."
 msgstr ""
 
@@ -156,4 +156,44 @@ msgstr ""
 
 #: ../data/messages:37
 msgid "List of available themes for the analogic display :"
+msgstr ""
+
+#: ../src/applet-cpusage.c:243
+msgid "Loading"
+msgstr ""
+
+#: ../src/applet-notifications.c:21
+msgid "Acquisition of data failed"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:35
+msgid "Display"
+msgstr ""
+
+#: ../data/messages:39
+msgid "turbo-night-fuel"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Display CPU usage values :"
+msgstr ""
+
+#: ../data/messages:43
+msgid "No"
+msgstr ""
+
+#: ../data/messages:45
+msgid "On icon"
+msgstr ""
+
+#: ../data/messages:47
+msgid "On label"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Delay between refresh :"
 msgstr ""

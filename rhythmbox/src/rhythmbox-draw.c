@@ -43,7 +43,7 @@ void update_icon(gboolean make_witness)
 		//Affichage de l'info-rapide.
 		if(myConfig.quickInfoType == MY_APPLET_TRACK && myData.playing_track > 0)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d", myData.playing_track);  // inutile de redessiner notre icone, ce sera fait plus loin.
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.playing_track);  // inutile de redessiner notre icone, ce sera fait plus loin.
 		}
 		
 		//Affichage de la couverture de l'album.
@@ -92,7 +92,7 @@ void update_icon(gboolean make_witness)
 	else
 	{
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 		if (myData.opening)
 			rhythmbox_set_surface (PLAYER_STOPPED);  // je ne sais pas si en mode Stopped la chanson est NULL ou pas...
 		else

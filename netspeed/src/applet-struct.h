@@ -5,20 +5,13 @@
 #include <cairo-dock.h>
 
 
-typedef enum {
-	NETSPEED_NO_INFO = 0,
-	NETSPEED_INFO_ON_ICON,
-	NETSPEED_INFO_ON_LABEL,
-	NETSPEED_NB_INFO_DISPLAY
-} CDNetSpeedInfoDisplay;
-
 typedef struct {
 	gchar *defaultTitle;
 	gint iCheckInterval;
 	gchar *cThemePath;
 	gchar *cInterface;
 	gint iStringLen;
-	CDNetSpeedInfoDisplay iInfoDisplay;
+	CairoDockInfoDisplay iInfoDisplay;
 } AppletConfig;
 
 typedef struct {

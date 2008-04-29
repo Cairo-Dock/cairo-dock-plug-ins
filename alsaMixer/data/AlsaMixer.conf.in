@@ -14,6 +14,9 @@ frame1_ =
 #s Name of the icon as it will appear in its label in the dock :
 name = Sound
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 
 [Desklet]
 

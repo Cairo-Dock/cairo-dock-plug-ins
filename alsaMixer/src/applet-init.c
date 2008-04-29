@@ -188,7 +188,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.mixer_device_name= NULL;
 		
 		if (myConfig.iVolumeDisplay != VOLUME_ON_ICON)
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
 		
 		mixer_init (myConfig.card_id);
 		mixer_write_elements_list (CD_APPLET_MY_CONF_FILE, CD_APPLET_MY_KEY_FILE);

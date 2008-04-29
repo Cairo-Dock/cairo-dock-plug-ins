@@ -17,6 +17,9 @@ name = terminal
 #S Icon's name :
 icon = gnome-terminal
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 [Desklet]
 
 #i Desklet's position (x ; y) :

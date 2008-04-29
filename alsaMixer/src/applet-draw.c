@@ -46,7 +46,7 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		break;
 		
 		case VOLUME_ON_ICON :
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", myData.iCurrentVolume)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.iCurrentVolume)
 			bNeedRedraw = TRUE;
 		break;
 		

@@ -82,7 +82,7 @@ void update_icon(void)  /// je pense que ca meriterait d'etre traite comme les b
 	{
 		cd_message("tomboy : L'application est ouverte");
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceDefault)
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d",myData.countNotes)
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d",myData.countNotes)
 		
 		GList *pIconList = NULL;
 	

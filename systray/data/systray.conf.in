@@ -17,6 +17,9 @@ name = systray
 #S Icon's name :
 icon = gnome-panel-notification-area
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 [Desklet]
 
 #i Desklet's position (x ; y) :

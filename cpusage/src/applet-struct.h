@@ -4,18 +4,11 @@
 
 #include <cairo-dock.h>
 
-typedef enum {
-	CPUSAGE_NO_INFO = 0,
-	CPUSAGE_INFO_ON_ICON,
-	CPUSAGE_INFO_ON_LABEL,
-	CPUSAGE_NB_INFO_DISPLAY
-} CDCpusageInfoDisplay;
-
 typedef struct {
 	gchar *defaultTitle;
 	gint iCheckInterval;
 	
-	CDCpusageInfoDisplay iInfoDisplay;
+	CairoDockInfoDisplay iInfoDisplay;
 	gchar *cThemePath;
 	gboolean gaugeIcon; 
 } AppletConfig;

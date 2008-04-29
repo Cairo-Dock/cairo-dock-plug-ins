@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-rhythmbox],[1.1.3],[Adrien Pilleboue (adrien.pilleboue@gmail.com)])
+AC_INIT([cd-rhythmbox],[1.1.4],[Adrien Pilleboue (adrien.pilleboue@gmail.com)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

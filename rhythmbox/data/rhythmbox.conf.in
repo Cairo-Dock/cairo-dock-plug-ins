@@ -14,6 +14,9 @@ frame1_fin =
 #s Default title :
 name = Rythmbox
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 [Desklet]
 
 #i[48;256] Desklet's dimension (width x height) :

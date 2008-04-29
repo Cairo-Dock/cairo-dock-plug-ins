@@ -5,6 +5,7 @@ XMMS &amp; Audacious are fully supported,
  but Banshee and Exaile's monitoring is still experimental.
  For XMMS, you have to install the 'xmms-infopipe' plug-in.
 Play/Pause on left click, Next song on middle click.
+You can drag and drop songs to put them in the queue.
 Shit + mouse scroll:
  Up play the previous sound
  Down play the next sound

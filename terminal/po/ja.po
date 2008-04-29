@@ -30,14 +30,17 @@ msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
 #: ../data/messages:33 ../data/messages:31 ../data/messages:29
+#: ../data/messages:35
 msgid "GUI"
 msgstr "GUI"
 
 #: ../data/messages:37 ../data/messages:35 ../data/messages:33
+#: ../data/messages:39
 msgid "Terminal's transparency :"
 msgstr "端末の透明度 :"
 
 #: ../data/messages:35 ../data/messages:33 ../data/messages:31
+#: ../data/messages:37
 msgid "needs to restart the applet."
 msgstr "アプレットの再起動が必要です。"
 
@@ -45,15 +48,17 @@ msgid "Always on top ?"
 msgstr "常に最前面に表示？"
 
 #: ../data/messages:39 ../data/messages:37 ../data/messages:35
+#: ../data/messages:41
 msgid "Foreground color (r, v, b):"
 msgstr "前面の色（赤、緑、青） :"
 
 #: ../data/messages:41 ../data/messages:39 ../data/messages:37
+#: ../data/messages:43
 msgid "Background color (r, v, b):"
 msgstr "背景の色（赤、緑、青） :"
 
 #: ../data/messages:43 ../data/messages:41 ../data/messages:39
-#: ../data/messages:45
+#: ../data/messages:45 ../data/messages:47
 msgid "Size of the terminal (line x columns) :"
 msgstr "端末の大きさ（行×列） :"
 
@@ -121,11 +126,12 @@ msgstr "Cairo-Dock のラベル上に表示するアイコンの名前 :"
 msgid "Icon's name :"
 msgstr "アイコンの名前 :"
 
-#: ../data/messages:11 ../data/messages:13
+#: ../data/messages:11 ../data/messages:13 ../data/messages:15
 msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:13 ../data/messages:15 ../data/messages:19
+#: ../data/messages:21
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -134,6 +140,7 @@ msgstr ""
 "または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:15 ../data/messages:17 ../data/messages:21
+#: ../data/messages:23
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
@@ -148,18 +155,22 @@ msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
 #: ../data/messages:21 ../data/messages:23 ../data/messages:19
+#: ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23 ../data/messages:25 ../data/messages:21
+#: ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
 #: ../data/messages:25 ../data/messages:27 ../data/messages:23
+#: ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:27 ../data/messages:29 ../data/messages:25
+#: ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -168,11 +179,12 @@ msgstr ""
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29 ../data/messages:31 ../data/messages:27
+#: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:45 ../data/messages:43 ../data/messages:41
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:49
 msgid "Shortkey to show the terminal"
 msgstr "端末を表示するショートカットキー :"
 
@@ -186,7 +198,7 @@ msgstr ""
 msgid "Set title for this tab :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:45
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -213,4 +225,8 @@ msgstr ""
 
 #: ../src/terminal-widget.c:354 ../src/terminal-widget.c:356
 msgid "Change this Tab's color"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
 msgstr ""

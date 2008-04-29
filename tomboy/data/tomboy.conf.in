@@ -14,6 +14,9 @@ frame1_fin =
 #s Default title :
 name = TomBoy
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 #F[Personnalisation]
 frame_app =
 #S Name of an image for the 'default' icon :

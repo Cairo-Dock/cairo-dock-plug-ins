@@ -8,16 +8,14 @@
 CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_GET_CONFIG_BEGIN
-
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
-	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 1000);
-	//On charge le theme :
+	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "delay");
 	
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");
-	
+	//On charge le theme :
 	myConfig.cThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "turbo-night-fuel");
-	cd_message("gauge (cpusage) : Theme(%s)\n",myConfig.cThemePath);
+	cd_debug ("gauge (cpusage) : Theme(%s)",myConfig.cThemePath);
 CD_APPLET_GET_CONFIG_END
 
 

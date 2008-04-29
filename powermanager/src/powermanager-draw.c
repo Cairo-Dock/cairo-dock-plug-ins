@@ -26,11 +26,11 @@ void update_icon(void)
 			}
 			else if(myConfig.quickInfoType == POWER_MANAGER_CHARGE)
 			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("%d%%", myData.battery_charge)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.battery_charge)
 			}
 			else
 			{
-			  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+			  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
 			}
 			
 			bNeedRedraw = TRUE;

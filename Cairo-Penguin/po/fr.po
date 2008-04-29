@@ -103,27 +103,27 @@ msgstr ""
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid "Choose one of the available themes :"
 msgstr "Choisissez l'un des thèmes disponibles :"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "in seconds"
 msgstr "en secondes."
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Delay between animation changes :"
 msgstr "Délai entre les changements d'animation :"
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Transparency of the penguin :"
 msgstr "Transparence du pingouin :"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr "Laisser le pingouin se promener partout dans le dock ?"
 
@@ -211,3 +211,7 @@ msgstr ""
 #: ../src/applet-notifications.c:35
 msgid "For Aiur !"
 msgstr "Pour Aïur !"
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr ""

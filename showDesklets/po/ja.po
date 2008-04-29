@@ -107,7 +107,7 @@ msgid ""
 " made by Fabrice Rey for Cairo-Dock"
 msgstr ""
 
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:13 ../data/messages:15 ../data/messages:17
 msgid "Configuration"
 msgstr ""
 
@@ -119,10 +119,14 @@ msgstr ""
 msgid "Image name to hide desklets :"
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Show/hide desklets that are on the widget layer too ?"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Shortkey to show/hide the desklets :"
+msgstr ""
+
+#: ../data/messages:15
+msgid "Name of the dock it belongs to:"
 msgstr ""

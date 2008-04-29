@@ -25,7 +25,7 @@ static gchar *my_s_Frequencies[CD_CLOCK_NB_FREQUENCIES+1] = {"Never", "Day", "Su
 
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_______________ On recupere les parametres de fonctionnement.
-	myConfig.iShowDate 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "show date", CLOCK_DATE_ON_LABEL);
+	myConfig.iShowDate 		= CD_CONFIG_GET_INTEGER ("Module", "show date");
 	myConfig.bShowSeconds 		= CD_CONFIG_GET_BOOLEAN ("Module", "show seconds");
 	myConfig.b24Mode 		= CD_CONFIG_GET_BOOLEAN ("Module", "24h mode");
 	myConfig.bOldStyle 		= CD_CONFIG_GET_BOOLEAN ("Module", "old fashion style");

@@ -120,6 +120,7 @@ msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:11 ../data/messages:31 ../data/messages:33
+#: ../data/messages:35
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -128,58 +129,70 @@ msgid "You can search it on www.weather.com"
 msgstr "Vous pouvez le chercher sur www.weather.com"
 
 #: ../data/messages:15 ../data/messages:35 ../data/messages:37
+#: ../data/messages:39
 msgid "Code of your location :"
 msgstr "Code de votre location :"
 
 #: ../data/messages:17 ../data/messages:37 ../data/messages:39
+#: ../data/messages:41
 msgid "Use International System Units ?"
 msgstr "Utiliser les unités du Système International ?"
 
 #: ../data/messages:19 ../data/messages:49 ../data/messages:51
+#: ../data/messages:53
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr ""
 
 #: ../data/messages:21 ../data/messages:51 ../data/messages:53
+#: ../data/messages:55
 msgid "Number of days you want to forecast :"
 msgstr "Nombre de jours à prédire :"
 
 #: ../data/messages:23 ../data/messages:53 ../data/messages:55
+#: ../data/messages:57
 msgid "Display nights too ?"
 msgstr "Montrer les nuits aussi ?"
 
 #: ../data/messages:25 ../data/messages:55 ../data/messages:57
+#: ../data/messages:59
 msgid "Display temperature as quick info ?"
 msgstr "Montrer la température en info-rapide ?"
 
 #: ../data/messages:27 ../data/messages:39 ../data/messages:41
+#: ../data/messages:43
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "en seconde. Mettez 0 pour ne pas avoir de contrainte de durée."
 
 #: ../data/messages:29 ../data/messages:41 ../data/messages:43
+#: ../data/messages:45
 msgid "Duration of dialogs :"
 msgstr "Durée des dialogues :"
 
 #: ../data/messages:31 ../data/messages:43 ../data/messages:45
+#: ../data/messages:47
 msgid "in minutes."
 msgstr "en minutes"
 
 #: ../data/messages:33 ../data/messages:45 ../data/messages:47
+#: ../data/messages:49
 msgid "Interval of time between 2 checks :"
 msgstr "Intervalle de temps entre 2 vérifications :"
 
 #: ../data/messages:35 ../data/messages:59 ../data/messages:63
+#: ../data/messages:65
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
 
 #: ../data/messages:37 ../data/messages:61 ../data/messages:65
+#: ../data/messages:67
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -187,33 +200,33 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic_milieu ou ALT + clic_gauche par exemple."
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -221,15 +234,15 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:47 ../data/messages:59
+#: ../data/messages:47 ../data/messages:59 ../data/messages:61
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:57 ../data/messages:61
+#: ../data/messages:57 ../data/messages:61 ../data/messages:63
 msgid "Choose one of the available themes :"
 msgstr "Choississez l'un des thèmes disponibles :"
 
@@ -287,7 +300,7 @@ msgstr "Nov"
 msgid "Dec"
 msgstr "Déc"
 
-#: ../data/messages:63 ../data/messages:67
+#: ../data/messages:63 ../data/messages:67 ../data/messages:69
 msgid "Render desklet in 3D ?"
 msgstr "Dessiner le desklet en 3D ?"
 
@@ -337,7 +350,7 @@ msgstr ""
 "Aucune donnée disponible\n"
 " la connexion est-elle établie ?"
 
-#: ../data/messages:33 ../data/messages:35
+#: ../data/messages:33 ../data/messages:35 ../data/messages:37
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
@@ -345,6 +358,10 @@ msgstr ""
 "Cliquez droit sur l'icone pour laisser Cairo-Dock vous aider à trouver le "
 "code de votre location."
 
-#: ../data/messages:49
+#: ../data/messages:49 ../data/messages:51
 msgid "Info"
 msgstr "Info"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr ""

@@ -20,6 +20,9 @@ show image =
 #S Image name to hide desklets :
 hide image = 
 
+#E[] Name of the dock it belongs to:
+dock name = 
+
 
 [Configuration]
 

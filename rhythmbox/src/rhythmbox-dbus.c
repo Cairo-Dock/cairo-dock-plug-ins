@@ -189,7 +189,7 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 {
 	cd_message ("%s (%s)",__func__,uri);
 	
-	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);  // on redessine a la fin.
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);  // on redessine a la fin.
 	
 	g_free (myData.playing_uri);
 	if(uri != NULL && *uri != '\0')
@@ -260,7 +260,8 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 		}
 		else if(myConfig.quickInfoType == MY_APPLET_PERCENTAGE)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_AND_REDRAW ("%d%%", (int) (100.*elapsed/myData.playing_duration))
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", (int) (100.*elapsed/myData.playing_duration))
+			CD_APPLET_REDRAW_MY_ICON
 		}
 	}
 }

@@ -54,7 +54,7 @@ msgid "Information to display on the icon :"
 msgstr "Information a afficher sur l'icon :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:15
-#: ../src/applet-notifications.c:13
+#: ../src/applet-notifications.c:13 ../src/applet-notifications.c:12
 msgid ""
 "This is the rame applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
@@ -68,51 +68,51 @@ msgid "Waiting"
 msgstr "Waiting"
 
 #: ../data/messages:11 ../data/messages:19 ../data/messages:53
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13 ../data/messages:21 ../data/messages:55
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
 #: ../data/messages:15 ../data/messages:23 ../data/messages:57
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17 ../data/messages:25 ../data/messages:59
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
 #: ../data/messages:19 ../data/messages:27 ../data/messages:61
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
 #: ../data/messages:21 ../data/messages:29 ../data/messages:63
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:23 ../data/messages:31 ../data/messages:65
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
 #: ../data/messages:25 ../data/messages:33 ../data/messages:67
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27 ../data/messages:35 ../data/messages:69
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -121,11 +121,12 @@ msgstr ""
 "Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29 ../data/messages:37 ../data/messages:71
-#: ../data/messages:31
+#: ../data/messages:31 ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13 ../data/messages:33
+#: ../data/messages:13 ../data/messages:33 ../data/messages:35
+#: ../data/messages:53
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -162,7 +163,7 @@ msgstr "Ko"
 msgid "B"
 msgstr "o"
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:55
 msgid "in seconds."
 msgstr ""
 
@@ -178,6 +179,42 @@ msgstr ""
 msgid "in milliseconds."
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:39
 msgid "List of available themes for the analogic display :"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Display"
+msgstr ""
+
+#: ../data/messages:41
+msgid "turbo-night-fuel"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Display memory values :"
+msgstr ""
+
+#: ../data/messages:45
+msgid "No"
+msgstr ""
+
+#: ../data/messages:47
+msgid "On icon"
+msgstr ""
+
+#: ../data/messages:49
+msgid "On label"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Display SWAP too ?"
+msgstr ""
+
+#: ../data/messages:57
+msgid "Delay between refresh :"
 msgstr ""

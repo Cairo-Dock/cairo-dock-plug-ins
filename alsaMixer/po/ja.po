@@ -51,11 +51,11 @@ msgstr ""
 "これは CD_MY_NAME によって \n"
 "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:13
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -63,33 +63,33 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。"
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -97,7 +97,7 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
@@ -109,14 +109,17 @@ msgid ""
 msgstr ""
 
 #: ../data/messages:13 ../data/messages:15 ../data/messages:31
+#: ../data/messages:33
 msgid "Configuration"
 msgstr ""
 
 #: ../data/messages:15 ../data/messages:17 ../data/messages:35
+#: ../data/messages:37
 msgid "Let empty to use the default sound card."
 msgstr ""
 
 #: ../data/messages:17 ../data/messages:19 ../data/messages:37
+#: ../data/messages:39
 msgid "Sound card to control :"
 msgstr ""
 
@@ -125,22 +128,22 @@ msgid "Choose which mixer's element to control :"
 msgstr ""
 
 #: ../data/messages:21 ../data/messages:23 ../data/messages:49
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:55
 msgid "Display volume :"
 msgstr ""
 
 #: ../data/messages:23 ../data/messages:25 ../data/messages:51
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:57
 msgid "No"
 msgstr ""
 
 #: ../data/messages:25 ../data/messages:27 ../data/messages:53
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:59
 msgid "On label"
 msgstr ""
 
 #: ../data/messages:27 ../data/messages:29 ../data/messages:55
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:61
 msgid "On icon"
 msgstr ""
 
@@ -159,7 +162,7 @@ msgstr ""
 msgid "Let empty to use default one."
 msgstr ""
 
-#: ../data/messages:21 ../data/messages:39
+#: ../data/messages:21 ../data/messages:39 ../data/messages:41
 msgid "Choose which channel to control :"
 msgstr ""
 
@@ -168,18 +171,22 @@ msgid "Choose an effet to apply on the icon according to volume :"
 msgstr ""
 
 #: ../data/messages:33 ../data/messages:59 ../data/messages:63
+#: ../data/messages:65
 msgid "None"
 msgstr ""
 
 #: ../data/messages:35 ../data/messages:61 ../data/messages:65
+#: ../data/messages:67
 msgid "Zoom"
 msgstr ""
 
 #: ../data/messages:37 ../data/messages:63 ../data/messages:67
+#: ../data/messages:69
 msgid "Transparency"
 msgstr ""
 
 #: ../data/messages:39 ../data/messages:65 ../data/messages:69
+#: ../data/messages:71
 msgid "Draw Bar"
 msgstr ""
 
@@ -213,40 +220,41 @@ msgstr ""
 msgid "I couldn't load the mixer"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:33 ../data/messages:35
 msgid "Alsa"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:43
 msgid "Let empty to use the defaut command."
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:45
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:45 ../data/messages:47
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr ""
 
-#: ../data/messages:47 ../data/messages:51
+#: ../data/messages:47 ../data/messages:51 ../data/messages:53
 msgid "Display"
 msgstr ""
 
 #: ../data/messages:67 ../data/messages:71 ../data/messages:75
-#: ../data/messages:79
+#: ../data/messages:79 ../data/messages:73 ../data/messages:77
+#: ../data/messages:81
 msgid "Let empty to use the default one."
 msgstr ""
 
-#: ../data/messages:69 ../data/messages:73
+#: ../data/messages:69 ../data/messages:73 ../data/messages:75
 msgid "Default icon :"
 msgstr ""
 
-#: ../data/messages:73 ../data/messages:77
+#: ../data/messages:73 ../data/messages:77 ../data/messages:79
 msgid "Broken icon :"
 msgstr ""
 
-#: ../data/messages:77 ../data/messages:81
+#: ../data/messages:77 ../data/messages:81 ../data/messages:83
 msgid "Mute icon :"
 msgstr ""
 
@@ -255,14 +263,18 @@ msgstr ""
 msgid "I couldn't find any element '%s'"
 msgstr ""
 
-#: ../data/messages:57 ../data/messages:61
+#: ../data/messages:57 ../data/messages:61 ../data/messages:63
 msgid "Effet to apply on the icon according to volume :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:49
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:49 ../data/messages:51
 msgid "Hide the scale when mouse leaves the desklet ?"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
 msgstr ""

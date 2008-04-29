@@ -6,25 +6,20 @@
 
 typedef struct {
 	gchar *defaultTitle;
-/*	gchar *cDefault;
-	gchar *cUnknown;
-	gchar *cBad;
-	gchar *cOk;*/
 	gint iCheckInterval;
-	gint dCheckInterval;
-	
+	CairoDockInfoDisplay iInfoDisplay;
 	gchar *cThemePath;
-	gboolean gaugeIcon; 
+	gboolean gaugeIcon;
+	gboolean bShowSwap;
 } AppletConfig;
 
 typedef struct {
-/*	cairo_surface_t *pDefault;
-	cairo_surface_t *pUnknown;	
-	cairo_surface_t *pBad;	
-	cairo_surface_t *pOk;	*/
-	guint iSidTimer;
-	gint checkTimer;
-
+	GTimer *pClock;
+	guint ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
+	guint swapTotal, swapFree, swapUsed;
+	gboolean bAcquisitionOK;
+	CairoDockMeasure *pMeasureTimer;
+	gboolean bShowSwap;
 	Gauge *pGauge;
 } AppletData;
 

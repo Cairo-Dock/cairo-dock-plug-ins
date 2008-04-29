@@ -99,14 +99,14 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 			rhythmbox_set_surface (PLAYER_NONE);
 		}
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 		rhythmbox_set_surface (PLAYER_BROKEN);
 	}
 CD_APPLET_RELOAD_END

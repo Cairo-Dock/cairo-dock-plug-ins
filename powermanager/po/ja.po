@@ -169,7 +169,7 @@ msgstr "高さ :"
 msgid "Icon name :"
 msgstr "アイコンの名前 :"
 
-#: ../data/messages:11 ../data/messages:31
+#: ../data/messages:11 ../data/messages:31 ../data/messages:33
 msgid "Configuration"
 msgstr "設定"
 
@@ -178,75 +178,76 @@ msgid "Quick info"
 msgstr "簡便情報"
 
 #: ../data/messages:15 ../data/messages:35 ../data/messages:39
-#: ../data/messages:41 ../data/messages:57
+#: ../data/messages:41 ../data/messages:57 ../data/messages:59
 msgid "Information to be displayed on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
 #: ../data/messages:17 ../data/messages:37 ../data/messages:41
 #: ../data/messages:49 ../data/messages:43 ../data/messages:51
-#: ../data/messages:45 ../data/messages:59
+#: ../data/messages:45 ../data/messages:59 ../data/messages:47
+#: ../data/messages:61
 msgid "nothing"
 msgstr "なし"
 
 #: ../data/messages:19 ../data/messages:39 ../data/messages:43
-#: ../data/messages:45 ../data/messages:61
+#: ../data/messages:45 ../data/messages:61 ../data/messages:63
 msgid "charge"
 msgstr "充電量"
 
 #: ../data/messages:21 ../data/messages:41 ../data/messages:45
-#: ../data/messages:47 ../data/messages:63
+#: ../data/messages:47 ../data/messages:63 ../data/messages:65
 msgid "time"
 msgstr "時間"
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:13
 msgid "Desklet"
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr ""
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr ""
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:33 ../data/messages:35
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:37
 msgid "Interval of time between 2 checks :"
 msgstr ""
 
@@ -293,14 +294,17 @@ msgid "Effet to apply on the icon according to charge :"
 msgstr ""
 
 #: ../data/messages:51 ../data/messages:53 ../data/messages:47
+#: ../data/messages:49
 msgid "zoom"
 msgstr ""
 
 #: ../data/messages:53 ../data/messages:55 ../data/messages:49
+#: ../data/messages:51
 msgid "transparency"
 msgstr ""
 
 #: ../data/messages:55 ../data/messages:57 ../data/messages:51
+#: ../data/messages:53
 msgid "draw bar"
 msgstr ""
 
@@ -318,7 +322,7 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:39
 msgid "Display"
 msgstr ""
 
@@ -373,59 +377,59 @@ msgid ""
 " Your battery is now Charged"
 msgstr ""
 
-#: ../data/messages:57 ../data/messages:65
+#: ../data/messages:57 ../data/messages:65 ../data/messages:67
 msgid "Alert"
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:67
+#: ../data/messages:59 ../data/messages:67 ../data/messages:69
 msgid "Alert when battery charged ?"
 msgstr ""
 
-#: ../data/messages:61 ../data/messages:69
+#: ../data/messages:61 ../data/messages:69 ../data/messages:71
 msgid "Alert when low battery ?"
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:71
+#: ../data/messages:63 ../data/messages:71 ../data/messages:73
 msgid "in percent."
 msgstr ""
 
-#: ../data/messages:65 ../data/messages:73
+#: ../data/messages:65 ../data/messages:73 ../data/messages:75
 msgid "Battery level :"
 msgstr ""
 
-#: ../data/messages:67 ../data/messages:75
+#: ../data/messages:67 ../data/messages:75 ../data/messages:77
 msgid "Animate icon during the alert ?"
 msgstr ""
 
-#: ../data/messages:69 ../data/messages:77
+#: ../data/messages:69 ../data/messages:77 ../data/messages:79
 msgid "Animation during alert :"
 msgstr ""
 
-#: ../data/messages:71 ../data/messages:79
+#: ../data/messages:71 ../data/messages:79 ../data/messages:81
 msgid "bounce"
 msgstr ""
 
-#: ../data/messages:73 ../data/messages:81
+#: ../data/messages:73 ../data/messages:81 ../data/messages:83
 msgid "rotate"
 msgstr ""
 
-#: ../data/messages:75 ../data/messages:83
+#: ../data/messages:75 ../data/messages:83 ../data/messages:85
 msgid "blink"
 msgstr ""
 
-#: ../data/messages:77 ../data/messages:85
+#: ../data/messages:77 ../data/messages:85 ../data/messages:87
 msgid "pulse"
 msgstr ""
 
-#: ../data/messages:79 ../data/messages:87
+#: ../data/messages:79 ../data/messages:87 ../data/messages:89
 msgid "upside-down"
 msgstr ""
 
-#: ../data/messages:81 ../data/messages:89
+#: ../data/messages:81 ../data/messages:89 ../data/messages:91
 msgid "wobbly"
 msgstr ""
 
-#: ../data/messages:83 ../data/messages:91
+#: ../data/messages:83 ../data/messages:91 ../data/messages:93
 msgid "random"
 msgstr ""
 
@@ -445,22 +449,26 @@ msgid ""
 "Your battery is now Charged"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:41
 msgid "Icon's filename when on battery :"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:43
 msgid "Icon's filename when on charge :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:55
 msgid "Use a gauge instead of icons ?"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:57
 msgid "List of available gauges :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:45
 msgid "Effect to apply on the icon according to charge :"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
 msgstr ""
