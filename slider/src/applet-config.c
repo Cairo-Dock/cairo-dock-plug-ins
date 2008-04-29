@@ -21,6 +21,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.dSlideTime = 1000 * CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "slide time", 1);
 	myConfig.bSubDirs = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "sub directories", FALSE);
 	myConfig.bNoStrench = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "no strench", TRUE);
+	myConfig.pAnimation = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "change animation", 1);
 CD_APPLET_GET_CONFIG_END
 
 

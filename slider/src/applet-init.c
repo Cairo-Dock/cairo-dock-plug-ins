@@ -26,9 +26,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
+	//myConfig.pAnimation = SLIDER_DEFAULT;
+	//myConfig.pAnimation = SLIDER_FADE;
+	myData.iAnimTimerID = 0;
 	cd_slider_get_files_from_dir();
-	//cd_slider_draw_images();
-	//myConfig.cDirectory = "/media/sda7/Mes Documents/Mes Images/Avatar";
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
