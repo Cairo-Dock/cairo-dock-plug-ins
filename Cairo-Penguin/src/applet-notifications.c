@@ -66,23 +66,11 @@ CD_APPLET_ON_CLICK_END
 
 static void _start_xpenguins (GtkMenuItem *menu_item, gpointer *data)
 {
-	GError *erreur = NULL;
-	g_spawn_command_line_async ("xpenguins", &erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("%s", erreur->message);
-		g_error_free (erreur);
-	}
+	cairo_dock_launch_command ("xpenguins");
 }
 static void _stop_xpenguins (GtkMenuItem *menu_item, gpointer *data)
 {
-	GError *erreur = NULL;
-	g_spawn_command_line_async ("xpenguins-stop", &erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("%s", erreur->message);
-		g_error_free (erreur);
-	}
+	cairo_dock_launch_command ("xpenguins-stop");
 }
 static void _keep_quiet (GtkMenuItem *menu_item, gpointer *data)
 {
