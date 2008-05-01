@@ -44,6 +44,11 @@ void cd_slider_get_files_from_dir(void) {
          pFile = g_strdup(File);
          myData.pList = g_list_append (myData.pList, pFile);
         }
+        else if (strcmp(extension, ".PNG") == 0 || strcmp(extension, ".JPG") == 0 || strcmp(extension, ".SVG") == 0 || strcmp(extension, ".XPM") == 0) {
+         cd_message("Adding %s to list\n", File);
+         pFile = g_strdup(File);
+         myData.pList = g_list_append (myData.pList, pFile);
+        }
         else {
          	cd_message("%s not handeled, ignoring...\n", File);
         }
@@ -52,7 +57,7 @@ void cd_slider_get_files_from_dir(void) {
     closedir(d);
   }
   myData.pElement = myData.pList;
-  _printList(myData.pList);
+  //_printList(myData.pList);
   cd_slider_draw_images();
 }
 
@@ -119,6 +124,7 @@ gboolean cd_slider_draw_images(void) {
 
 		switch (myConfig.pAnimation) {
 			case SLIDER_DEFAULT: default:
+				cd_debug("Affichage par défaut");
 				//On efface le fond
 				cairo_set_source_rgba (myData.pCairoContext, 0., 0., 0., 0.);
 			  cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_SOURCE);
@@ -143,20 +149,29 @@ gboolean cd_slider_draw_images(void) {
   			CD_APPLET_REDRAW_MY_ICON
 			break;
 			case SLIDER_FADE:
+				cd_debug("Affichage par fade");
 				myData.fAnimAlpha = 1.;
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade, (gpointer) NULL);
 			break;
 			case SLIDER_FADE_IN_OUT:
+				cd_debug("Affichage par fade in out");
+				myData.iAnimCNT = 0;
+				myData.fAnimAlpha = 0.;
+				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) NULL);
 			break;
 			case SLIDER_SIDE_KICK:
-				myData.fAnimAlpha = -myData.pImgL.fImgX;
+				cd_debug("Affichage par side kick");
+				myData.fAnimAlpha = -myData.pImgL.fImgW;
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_side_kick, (gpointer) NULL);
 			break;
 			case SLIDER_DIAPORAMA:
+				cd_debug("Affichage par diaporama");
 			break;
 			case SLIDER_GROW_UP:
+				cd_debug("Affichage par grow up");
 			break;
 			case SLIDER_SHRINK_DOWN:
+				cd_debug("Affichage par shrink down");
 			break;
 		}
   
@@ -223,6 +238,47 @@ gboolean cd_slider_fade (void) {
 	return TRUE;
 }
 
+gboolean cd_slider_fade_in_out (void) {
+	
+	if (myData.fAnimAlpha <= 1 && myData.iAnimCNT == 0) { //On augmente l'alpha
+		myData.fAnimAlpha += .1;
+	}
+	
+	if (myData.fAnimAlpha >= 1 &&myData.iAnimCNT <= 100) {
+		myData.iAnimCNT += 1;
+	}
+	
+	if (myData.iAnimCNT >= 100) {
+		myData.fAnimAlpha = myData.fAnimAlpha - 0.1; //On diminue l'alpha
+ 	}
+	
+	//On efface le fond
+	cairo_set_source_rgba (myData.pCairoContext, 0., 0., 0., 0.);
+  cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_SOURCE);
+  cairo_paint (myData.pCairoContext);
+  cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_OVER);
+		
+	//On empeche la transparence
+	cairo_set_source_rgba (myData.pCairoContext, 1, 1, 1, myData.fAnimAlpha);
+	cairo_rectangle(myData.pCairoContext, myData.pImgL.fImgX, myData.pImgL.fImgY, myData.pImgL.fImgW, myData.pImgL.fImgH);
+	cairo_fill(myData.pCairoContext);
+	
+	//Image
+	cairo_set_source_surface (myData.pCairoContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
+	
+	cairo_paint_with_alpha (myData.pCairoContext, myData.fAnimAlpha);
+	CD_APPLET_REDRAW_MY_ICON
+	
+	if (myData.fAnimAlpha <= 0  && myData.iAnimCNT >= 1) { //On arrete l'animation
+		cairo_surface_destroy(myData.pCairoSurface);
+  	cairo_destroy (myData.pCairoContext); //Pas de fuite mémoire
+  	myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+		return FALSE;
+	}
+	
+	return TRUE;
+}
+
 gboolean cd_slider_side_kick (void) {
 	
 	//On efface le fond
@@ -240,9 +296,15 @@ gboolean cd_slider_side_kick (void) {
   cairo_paint (myData.pCairoContext);
   
 	CD_APPLET_REDRAW_MY_ICON
-				
-	myData.fAnimAlpha = myData.fAnimAlpha +5.;
-	if (myData.fAnimAlpha >= myData.pImgL.fImgW) {
+	
+	if (myData.fAnimAlpha >= (-myData.pImgL.fImgW / 2) && myData.fAnimAlpha <= (myIcon->fWidth / 2)) {
+		myData.fAnimAlpha = myData.fAnimAlpha +.5;
+	}
+	else {
+		myData.fAnimAlpha = myData.fAnimAlpha +5.;
+	}
+	
+	if (myData.fAnimAlpha >= myIcon->fWidth+5) {
 		cairo_surface_destroy(myData.pCairoSurface);
   	cairo_destroy (myData.pCairoContext); //Pas de fuite mémoire
   	myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);

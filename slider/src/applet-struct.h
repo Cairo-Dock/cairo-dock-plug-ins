@@ -41,6 +41,7 @@ typedef struct {
 	gboolean bPause;
 	int iTimerID;
 	double fAnimAlpha;
+	int iAnimCNT;
 	int iAnimTimerID;
 	myImgLips pImgL;
 	cairo_t* pCairoContext;
