@@ -31,6 +31,7 @@ typedef struct {
 	gboolean bSubDirs;
 	gboolean bNoStrench;
 	gboolean bEffect;
+	gboolean bRandom;
 	SliderAnimation pAnimation;
 } AppletConfig;
 
@@ -39,10 +40,12 @@ typedef struct {
 	GList *pList;
 	GList *pElement;
 	gboolean bPause;
-	int iTimerID;
 	double fAnimAlpha;
+	double fAnimCNT;
 	int iAnimCNT;
 	int iAnimTimerID;
+	int iTimerID;
+	int iImagesNumber;
 	myImgLips pImgL;
 	cairo_t* pCairoContext;
   cairo_surface_t* pCairoSurface;

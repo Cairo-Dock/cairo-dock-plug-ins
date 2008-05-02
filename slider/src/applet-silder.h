@@ -11,8 +11,12 @@ gboolean cd_slider_draw_images(void);
 gboolean cd_slider_fade (void);
 gboolean cd_slider_fade_in_out (void);
 gboolean cd_slider_side_kick (void);
+gboolean cd_slider_diaporama (void);
+gboolean cd_slider_grow_up (void);
+gboolean cd_slider_shrink_down (void);
 GList* cd_slider_get_previous_img(GList *pList, GList *pImg);
 void _printList (GList *pList);
+GList* _slider_random_image(void);
 void _slider_free_list(GList *pList);
 
 #endif

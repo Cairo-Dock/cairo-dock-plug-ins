@@ -65,4 +65,6 @@ slide time=30
 no strench=true
 #r[none;blank fade;fade in out;side kick;diaporama;grow up;shrink down] Effect while changing image :
 change animation=1
+#b Random Images ?
+random=true
 

@@ -22,6 +22,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bSubDirs = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "sub directories", FALSE);
 	myConfig.bNoStrench = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "no strench", TRUE);
 	myConfig.pAnimation = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "change animation", 1);
+	myConfig.bRandom = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "random", TRUE);
 CD_APPLET_GET_CONFIG_END
 
 
