@@ -91,7 +91,7 @@ void update_icon(void)  /// je pense que ca meriterait d'etre traite comme les b
 		TomBoyNote *pNote;
 		GList *pElement;
 		for (pElement = myData.noteList; pElement != NULL; pElement = pElement->next)
-		{	
+		{
 			pNote = pElement->data;
 			pIcon = g_new0 (Icon, 1);
 			pIcon->acName = g_strdup (pNote->title);
@@ -123,7 +123,7 @@ void update_icon(void)  /// je pense que ca meriterait d'etre traite comme les b
 			if (pIconList != NULL)
 			{
 				myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-				cairo_dock_set_renderer (myIcon->pSubDock, 0);
+				cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
 				cairo_dock_update_dock_size (myIcon->pSubDock);
 			}
 		}

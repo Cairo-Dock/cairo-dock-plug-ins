@@ -12,7 +12,8 @@
 CD_APPLET_DEFINITION ("TomBoy", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 CD_APPLET_INIT_BEGIN (erreur)
-	myConfig.defaultTitle = g_strdup (myIcon->acName);
+	if (myIcon->acName == NULL || *myIcon->acName == '\0')
+		myIcon->acName = g_strdup (TOMBOY_DEFAULT_NAME);
 	
 	load_all_surfaces();
 	

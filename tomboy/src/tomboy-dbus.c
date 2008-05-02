@@ -3,11 +3,8 @@
 
 #include "tomboy-struct.h"
 #include "tomboy-draw.h"
-#include "tomboy-struct.h"
 #include "tomboy-dbus.h"
 
-//static DBusGConnection *dbus_connexion;
-//static DBusGProxy *dbus_proxy_dbus;
 static DBusGProxy *dbus_proxy_tomboy = NULL;
 
 
@@ -35,7 +32,7 @@ gboolean dbus_connect_to_bus (void)
 		dbus_g_proxy_add_signal(dbus_proxy_tomboy, "NoteSaved",
 			G_TYPE_STRING,
 			G_TYPE_INVALID);
-	
+		
 		dbus_g_proxy_connect_signal(dbus_proxy_tomboy, "NoteDeleted",
 			G_CALLBACK(onDeleteNote), NULL, NULL);
 		dbus_g_proxy_connect_signal(dbus_proxy_tomboy, "NoteAdded",
@@ -71,23 +68,108 @@ void dbus_detect_tomboy(void)
 	myData.opening = cairo_dock_dbus_detect_application ("org.gnome.Tomboy");
 }
 
+
+static Icon *_cd_tomboy_find_note_from_name (const gchar *cNoteURI)
+{
+	Icon *pIcon = NULL;
+	GList *pList = (myDock ? (myIcon->pSubDock != NULL ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
+	GList *ic;
+	for (ic = pList; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (strcmp (cNoteURI, pIcon->acCommand) == 0)
+			return pIcon;
+	}
+	
+	return NULL;
+}
+
 void onDeleteNote(DBusGProxy *proxy,const gchar *note_uri, const gchar *note_title, gpointer data)
 {
-	cd_message ("");
-	reload_all_notes ();
+	cd_message ("%s (%s)", __func__, note_uri);
+	//reload_all_notes ();
+	Icon *pIcon = _cd_tomboy_find_note_from_name (note_uri);
+	g_return_if_fail (pIcon != NULL);
+	
+	if (myDock)
+	{
+		if (myIcon->pSubDock != NULL)
+		{
+			cairo_dock_detach_icon_from_dock (pIcon, myIcon->pSubDock, FALSE);
+			cairo_dock_update_dock_size (myIcon->pSubDock);
+		}
+	}
+	else
+	{
+		myDesklet->icons = g_list_remove (myDesklet->icons, pIcon);
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+	}
+	
+	cairo_dock_free_icon (pIcon);
+	myData.countNotes --;
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d",myData.countNotes)
 }
 
 void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 {
-	cd_message ("");
-	registerNote(note_uri);
-	update_icon();
+	cd_message ("%s (%s)", __func__, note_uri);
+	//registerNote(note_uri);
+	//update_icon();
+	
+	Icon *pIcon = g_new0 (Icon, 1);
+	pIcon->acName = getNoteTitle(note_uri);
+	pIcon->fScale = 1.;
+	pIcon->fAlpha = 1.;
+	pIcon->fWidth = 48;  /// inutile je pense ...
+	pIcon->fHeight = 48;
+	pIcon->fWidthFactor = 1.;
+	pIcon->fHeightFactor = 1.;
+	pIcon->acCommand = g_strdup (note_uri);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca devient un vrai lanceur.
+	pIcon->cParentDockName = g_strdup (myIcon->acName);
+	pIcon->acFileName = g_strdup_printf ("%s/note.svg",MY_APPLET_SHARE_DATA_DIR);
+	
+	GList *pList = (myDock ? (myIcon->pSubDock != NULL ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
+	Icon *pLastIcon = cairo_dock_get_last_icon (pList);
+	pIcon->fOrder = (pLastIcon != NULL ? pLastIcon->fOrder + 1 : 0);
+	
+	if (myDock)
+	{
+		if (myIcon->pSubDock == NULL)
+		{
+			myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (NULL, myIcon->acName);
+			cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
+		}
+		
+		cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
+		cairo_dock_insert_icon_in_dock (pIcon, myIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, FALSE);
+	}
+	else
+	{
+		myDesklet->icons = g_list_insert_sorted (myDesklet->icons,
+			pIcon,
+			(GCompareFunc) cairo_dock_compare_icons_order);
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+	}
+	
+	myData.countNotes ++;
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d",myData.countNotes)
 }
 
-void onChangeNoteList(DBusGProxy *proxy,const gchar *note_name, gpointer data)
+void onChangeNoteList(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 {
-	cd_message ("");
-	reload_all_notes ();
+	cd_message ("%s (%s)", __func__, note_uri);
+	Icon *pIcon = _cd_tomboy_find_note_from_name (note_uri);
+	g_return_if_fail (pIcon != NULL);
+	gchar *cTitle = getNoteTitle(note_uri);
+	if (cTitle == NULL || strcmp (cTitle, pIcon->acName) != 0)  // nouveau titre.
+	{
+		pIcon->acName = cTitle;
+		cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
+		cairo_dock_fill_one_text_buffer (pIcon, pCairoContext, g_iLabelSize, g_cLabelPolice, (g_bTextAlwaysHorizontal ? CAIRO_DOCK_HORIZONTAL : myContainer->bIsHorizontal), myContainer->bDirectionUp);
+		cairo_destroy (pCairoContext);
+	}
+	else
+		g_free (cTitle);
 }
 
 void reload_all_notes (void)

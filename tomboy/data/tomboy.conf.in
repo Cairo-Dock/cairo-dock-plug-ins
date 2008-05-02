@@ -33,3 +33,7 @@ broken icon =
 #b Emulate the 'NoteDeleted' signal ?
 #{If your tomboy version is not recent enough, it may not have this signal. Only check this box if you notice some message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal.}
 no deleted signal = true
+
+#R[] Name of the view used for the sub-dock :
+#{Let it empty to use default sub-dock view.}/
+renderer = 

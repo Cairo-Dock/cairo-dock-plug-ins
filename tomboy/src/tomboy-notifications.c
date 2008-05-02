@@ -11,6 +11,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_ABOUT (D_("Applet by Necropotame (Adrien Pilleboue)"))
 
+
 CD_APPLET_ON_CLICK_BEGIN
 	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))
 	{
@@ -71,6 +72,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU)
 CD_APPLET_ON_BUILD_MENU_END
+
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	_cd_tomboy_create_new_note (pClickedIcon);

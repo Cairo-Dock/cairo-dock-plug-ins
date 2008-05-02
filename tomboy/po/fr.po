@@ -199,6 +199,7 @@ msgstr ""
 
 #: ../src/tomboy-notifications.c:30 ../src/tomboy-notifications.c:28
 #: ../src/tomboy-notifications.c:27 ../src/tomboy-notifications.c:41
+#: ../src/tomboy-notifications.c:42
 msgid "Note name : "
 msgstr ""
 
@@ -207,16 +208,17 @@ msgid "Name of an image for the 'close' icon :"
 msgstr ""
 
 #: ../src/tomboy-notifications.c:43 ../src/tomboy-notifications.c:47
-#: ../src/tomboy-notifications.c:61
+#: ../src/tomboy-notifications.c:61 ../src/tomboy-notifications.c:62
 msgid "Add a note"
 msgstr ""
 
 #: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:53
-#: ../src/tomboy-notifications.c:67
+#: ../src/tomboy-notifications.c:67 ../src/tomboy-notifications.c:68
 msgid "Delete this note"
 msgstr ""
 
 #: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:62
+#: ../src/tomboy-notifications.c:63
 msgid "Reload notes"
 msgstr ""
 

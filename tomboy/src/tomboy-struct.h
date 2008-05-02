@@ -3,6 +3,8 @@
 
 #include <cairo-dock.h>
 	
+#define TOMBOY_DEFAULT_NAME "_tomboy_"
+
 typedef struct {
 	gchar *name;
 	gchar *title;
