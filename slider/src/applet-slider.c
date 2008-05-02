@@ -269,9 +269,10 @@ gboolean cd_slider_fade_in_out (void) {
 	}
 	if (myData.iAnimCNT >= 100) {
 		myData.fAnimAlpha = myData.fAnimAlpha - 0.1; //On diminue l'alpha
- 	}
-	
-	//On efface le fond
+ 	}	
+ 	
+ 	//On efface le fond
+ 	cairo_set_source_rgba (myData.pCairoContext, 1., 1., 1., 0.);
 	cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (myData.pCairoContext);
   cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_OVER);
@@ -283,8 +284,8 @@ gboolean cd_slider_fade_in_out (void) {
 	
 	//Image
 	cairo_set_source_surface (myData.pCairoContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
-	
 	cairo_paint_with_alpha (myData.pCairoContext, myData.fAnimAlpha);
+	
 	CD_APPLET_REDRAW_MY_ICON
 	
 	if (myData.fAnimAlpha <= 0  && myData.iAnimCNT >= 1) { //On arrete l'animation
