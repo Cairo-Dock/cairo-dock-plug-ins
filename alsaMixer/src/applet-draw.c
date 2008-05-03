@@ -85,7 +85,7 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON
 	
-	if (myDesklet && myData.pScale && mask != 0)
+	if (/**myDesklet && */myData.pScale/** && mask != 0*/)
 	{
 		mixer_set_volume_with_no_callback (myData.pScale, myData.iCurrentVolume);
 	}
