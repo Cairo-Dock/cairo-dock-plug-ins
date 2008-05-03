@@ -88,7 +88,10 @@ static void _compiz_action_by_id (int k) {
       cairo_dock_launch_command ("emerald-theme-manager");
     break;
     case 2:
-      cd_compiz_switch_manager ();
+    	if (myData.bCompizIsRunning)
+					cd_compiz_start_compiz ();
+			else
+				cd_compiz_start_system_wm ();
     break;
     case 3:
       _compiz_menu_activate_expo ();
@@ -134,8 +137,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	else if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL) {  // clic sur une des icones du desklet.
 		if (pClickedIcon == myIcon)
 			cairo_dock_launch_measure (myData.pMeasureTimer);
-		else
-		{
+		else {
 			if (pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
 				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 			_compiz_action_by_id ((int) pClickedIcon->fOrder/2);

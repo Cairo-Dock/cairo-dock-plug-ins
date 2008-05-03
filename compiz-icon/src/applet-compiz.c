@@ -52,6 +52,7 @@ void cd_compiz_start_system_wm (void) {
 	  cairo_dock_launch_command (cCommand);
 	}
 	cd_message ("Compiz - Run: %s ", cCommand);
+	g_free(cCommand);
 }
 
 void cd_compiz_start_compiz (void) {

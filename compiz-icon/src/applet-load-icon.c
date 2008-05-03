@@ -19,7 +19,7 @@ CD_APPLET_INCLUDE_MY_VARS
 #define MY_NB_ICON_STATE 3
 #define MY_NB_SUB_ICONS 5
 
-static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Switch WM"), N_("Exposition"), N_("Widget Layer")};
+static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Reload WM"), N_("Exposition"), N_("Widget Layer")};
 
 static gchar *s_iconClass[MY_NB_SUB_ICONS] = {"ccsm", "emerald-theme-manager", NULL, NULL, NULL};
 
