@@ -157,3 +157,45 @@ msgstr ""
 #: ../data/messages:53
 msgid "Don't strench the images ?"
 msgstr ""
+
+#: ../data/messages:55
+msgid "Effect while changing image :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "none"
+msgstr ""
+
+#: ../data/messages:59
+msgid "blank fade"
+msgstr ""
+
+#: ../data/messages:61
+msgid "fade in out"
+msgstr ""
+
+#: ../data/messages:63
+msgid "side kick"
+msgstr ""
+
+#: ../data/messages:65
+msgid "diaporama"
+msgstr ""
+
+#: ../data/messages:67
+msgid "grow up"
+msgstr ""
+
+#: ../data/messages:69
+msgid "shrink down"
+msgstr ""
+
+#: ../data/messages:71
+msgid ""
+"Set the transparency channel to 0 if you just don't want to have a "
+"background."
+msgstr ""
+
+#: ../data/messages:73
+msgid "Choose a background color :"
+msgstr ""

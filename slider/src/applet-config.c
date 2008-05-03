@@ -17,12 +17,13 @@ CD_APPLET_INCLUDE_MY_VARS
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.cDirectory = CD_CONFIG_GET_STRING("Configuration", "directory");
-	myConfig.dSlideTime = 1000 * CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "slide time", 1);
-	myConfig.bSubDirs = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "sub directories", FALSE);
-	myConfig.bNoStrench = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "no strench", TRUE);
-	myConfig.pAnimation = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "change animation", 1);
-	myConfig.bRandom = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "random", TRUE);
+	myConfig.cDirectory 	= CD_CONFIG_GET_STRING("Configuration", "directory");
+	myConfig.dSlideTime 	= 1000 * CD_CONFIG_GET_DOUBLE ("Configuration", "slide time");
+	myConfig.bSubDirs 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "sub directories");
+	myConfig.bNoStrench 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no strench");
+	myConfig.pAnimation 	= CD_CONFIG_GET_INTEGER ("Configuration", "change animation");
+	myConfig.bRandom 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
+	CD_CONFIG_GET_COLOR ("Configuration", "background color", myConfig.pBackgroundColor);
 CD_APPLET_GET_CONFIG_END
 
 

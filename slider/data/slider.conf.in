@@ -49,11 +49,13 @@ on widget layer=false
 [Configuration]
 #F[Directory]
 frame_td=
-#s Directory of the images :
+#D Directory of the images :
 directory= /
 #b Scan in sub direcotries ?
 #{Not implemented yet}
 sub directories=false
+#b Randomly browse files ?
+random = false
 
 #F[Options]
 frame_ops=
@@ -65,6 +67,6 @@ slide time=30
 no strench=true
 #r[none;blank fade;fade in out;side kick;diaporama;grow up;shrink down] Effect while changing image :
 change animation=1
-#b Random Images ?
-random=true
-
+#c4[0;1] Choose a background color :
+#{Set the transparency channel to 0 if you just don't want to have a background.}
+background color = 0.0; 0.0; 0.0; 0.0

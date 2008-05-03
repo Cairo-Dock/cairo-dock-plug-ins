@@ -33,6 +33,7 @@ typedef struct {
 	gboolean bEffect;
 	gboolean bRandom;
 	SliderAnimation pAnimation;
+	gdouble pBackgroundColor[4];
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

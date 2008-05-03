@@ -28,8 +28,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	//myConfig.pAnimation = SLIDER_DEFAULT;
 	//myConfig.pAnimation = SLIDER_FADE;
-	myData.iAnimTimerID = 0;
-	cd_slider_get_files_from_dir();
+	cd_slider_get_files_from_dir();  /// suggestion : le threader car ca prend du temps de parcourir le disque.
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
@@ -52,6 +51,7 @@ CD_APPLET_RELOAD_BEGIN
 	//On arrete tout!
 	myData.bPause = TRUE;
 	g_source_remove(myData.iTimerID);
+	myData.iTimerID = 0;
 	cd_slider_get_files_from_dir(); //on recharge les images
 	
 	if (myDesklet) {
