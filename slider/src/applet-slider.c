@@ -93,7 +93,7 @@ gboolean cd_slider_draw_images(void) {
 	cd_message("Displaying: %s\n", cImagePath);
 	
 		double fImgX, fImgY, fImgW=0, fImgH=0;
-		cairo_surface_t *pIconSurface = cairo_dock_create_surface_from_image (cImagePath,
+		myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath,
 			myDrawContext,
 			cairo_dock_get_max_scale (myContainer),
 			myIcon->fWidth,
