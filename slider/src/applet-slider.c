@@ -92,26 +92,35 @@ gboolean cd_slider_draw_images(void) {
 	double fImgX, fImgY, fImgW=0, fImgH=0;
 	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), NULL, NULL, &fImgW, &fImgH, myConfig.bNoStrench);  // keep ratio.
   
- 	if (fImgW < fImgH) { //H dominant: Portrait, il faut calculer le ratio imgH/iconH et l'utiliser sur W
- 		if (myIcon->fHeight < fImgH) { //On réduit H a celle de l'icône et on scale
- 			fImgW = (double) (myIcon->fHeight / fImgH) * fImgW;
- 			fImgH = myIcon->fHeight;
+  if (myConfig.bNoStrench) {
+ 		if (fImgW < fImgH) { //H dominant: Portrait, il faut calculer le ratio imgH/iconH et l'utiliser sur W
+ 			if (myIcon->fHeight < fImgH) { //On réduit H a celle de l'icône et on scale
+ 				fImgW = (double) (myIcon->fHeight / fImgH) * fImgW;
+ 				fImgH = myIcon->fHeight;
+ 			}
  		}
- 	}
- 	else { //W dominant: Paysage, il faut calculer le ratio imgW/iconW et l'utiliser sur H
- 		if (myIcon->fWidth < fImgW) { //On réduit W a celle de l'icône et on scale
- 			fImgH = (double) (myIcon->fWidth/ fImgW) * fImgH;
- 			fImgW = myIcon->fWidth;
+ 		else { //W dominant: Paysage, il faut calculer le ratio imgW/iconW et l'utiliser sur H
+ 			if (myIcon->fWidth < fImgW) { //On réduit W a celle de l'icône et on scale
+ 				fImgH = (double) (myIcon->fWidth/ fImgW) * fImgH;
+ 				fImgW = myIcon->fWidth;
+ 			}
  		}
- 	}
   
-  fImgX = (myIcon->fWidth - fImgW) / 2;
-  fImgY = (myIcon->fHeight - fImgH) / 2;
+  	fImgX = (myIcon->fWidth - fImgW) / 2;
+  	fImgY = (myIcon->fHeight - fImgH) / 2;
 
-  cd_message("X Y: %.02f %.02f - Ratio W: %.02f - Ratio H: %.02f - W: %.02f - H: %.02f", fImgX, fImgY, myIcon->fWidth/ fImgW, myIcon->fHeight / fImgH, fImgW ,fImgH);
+  	cd_message("X Y: %.02f %.02f - Ratio W: %.02f - Ratio H: %.02f - W: %.02f - H: %.02f", fImgX, fImgY, myIcon->fWidth/ fImgW, myIcon->fHeight / fImgH, fImgW ,fImgH);
 	
-	//Trouver une autre solution pour ne pas charger deux fois, cairo_scale n'a pas l'air de fonctionner.
-	cairo_surface_destroy(myData.pCairoSurface);
+		//Trouver une autre solution pour ne pas charger deux fois, cairo_scale n'a pas l'air de fonctionner.
+		cairo_surface_destroy(myData.pCairoSurface);
+	}
+	else {
+		fImgX = 0;
+  	fImgY = 0;
+  	fImgW =	myIcon->fWidth;
+  	fImgH =	myIcon->fHeight;
+  }
+  
 	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), fImgW, fImgH, &fImgW, &fImgH, myConfig.bNoStrench);  // keep ratio.
 	
 	myData.pImgL.fImgX = fImgX;
@@ -173,7 +182,7 @@ gboolean cd_slider_draw_images(void) {
 		case SLIDER_SIDE_KICK:
 			cd_debug("Displaying with side kick");
 			myData.fAnimCNT = -myData.pImgL.fImgW;
-			myData.iAnimTimerID = g_timeout_add (70, (GSourceFunc) cd_slider_side_kick, (gpointer) NULL);
+			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_side_kick, (gpointer) NULL);
 		break;
 		case SLIDER_DIAPORAMA:
 			cd_debug("Displaying with diaporama");
@@ -183,15 +192,14 @@ gboolean cd_slider_draw_images(void) {
 		break;
 		case SLIDER_GROW_UP:
 			cd_debug("Displaying with grow up");
-			myData.iAnimCNT = 0;
 			myData.fAnimAlpha = 0.;
-			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) NULL);
+			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_grow_up, (gpointer) NULL);
 		break;
 		case SLIDER_SHRINK_DOWN:
 			cd_debug("Displaying with shrink down");
 			myData.iAnimCNT = 0;
 			myData.fAnimAlpha = 0.;
-			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) NULL);
+			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_shrink_down, (gpointer) NULL);
 		break;
 	}
 
@@ -214,26 +222,26 @@ gboolean cd_slider_fade (void) {
 	myData.fAnimAlpha = myData.fAnimAlpha +.1;
 	
 	//On efface le fond
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (myDrawContext);
-  cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_SOURCE);
+	cairo_paint (myData.pCairoContext);
+  cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_OVER);
 	
 	//Image précédante
 	if (myData.pPrevCairoSurface != NULL) {
-		cairo_set_source_surface (myDrawContext, myData.pPrevCairoSurface, myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pImgL.fImgX, myData.pImgL.fImgY);
+		cairo_set_source_surface (myData.pCairoContext, myData.pPrevCairoSurface, myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pImgL.fImgX, myData.pImgL.fImgY);
 	}
 	
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
 	
-	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
-	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
+	cairo_set_source_surface (myData.pCairoContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
+	cairo_paint_with_alpha (myData.pCairoContext, myData.fAnimAlpha);
 	
 	CD_APPLET_REDRAW_MY_ICON
 				
 	if (myData.fAnimAlpha >= 1) {
 		//cairo_surface_destroy(myData.pCairoSurface);
-  	//cairo_destroy (myDrawContext); //Pas de fuite mémoire
+  	//cairo_destroy (myData.pCairoContext); //Pas de fuite mémoire
   	myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		return FALSE;
 	}
@@ -288,7 +296,7 @@ gboolean cd_slider_fade_in_out (void) {
  	}	
  	
  	//On efface le fond
- 	cairo_set_source_rgba (myDrawContext, 1., 1., 1., 0.);
+ 	cairo_set_source_rgba (myDrawContext, 1., 1., 1., myData.fAnimAlpha);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (myDrawContext);
   cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
@@ -329,7 +337,7 @@ gboolean cd_slider_side_kick (void) {
 	
 	//Effet d'arrivee rapide, passage lent, sortie rapide comme un coup de pied
 	if (myData.fAnimCNT >= (-myData.pImgL.fImgW / 2) && myData.fAnimCNT <= (myIcon->fWidth / 2)) {
-		myData.fAnimCNT = myData.fAnimCNT +.5;
+		myData.fAnimCNT = myData.fAnimCNT +1.;
 	}
 	else {
 		myData.fAnimCNT = myData.fAnimCNT +5.;
@@ -354,17 +362,21 @@ gboolean cd_slider_diaporama (void) {
   cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 		
 	//On empeche la transparence
-	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
+	_cd_slider_add_background_to_current_slide (myData.fAnimCNT, myData.pImgL.fImgY);
 	
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.fAnimCNT, myData.pImgL.fImgY);
 	cairo_paint(myDrawContext);
 	
 	//Image précédante
 	if (myData.pPrevCairoSurface != NULL) {
-		cairo_set_source_surface (myDrawContext, myData.pPrevCairoSurface, myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pImgL.fImgX, myData.pImgL.fImgY);
+		cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myConfig.pBackgroundColor[3]);
+		double fX = myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pPrevImgL.fImgX, fY = myData.pPrevImgL.fImgY;
+		cairo_rectangle (myDrawContext, fX, fY, myData.pPrevImgL.fImgW, myData.pPrevImgL.fImgH);
+		cairo_fill (myDrawContext);
+		
+		cairo_set_source_surface (myDrawContext, myData.pPrevCairoSurface, fX, fY);
+		cairo_paint(myDrawContext);
 	}
-	
-  cairo_paint (myDrawContext);
   
 	CD_APPLET_REDRAW_MY_ICON
 
@@ -379,7 +391,9 @@ gboolean cd_slider_diaporama (void) {
 }
 
 gboolean cd_slider_grow_up (void) {
-	myData.fAnimAlpha = myData.fAnimAlpha - 0.1;
+	myData.fAnimAlpha += 0.1;
+
+	cd_debug("Scale: %.02f", myData.fAnimAlpha);
 
 	//On efface le fond
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
@@ -387,12 +401,15 @@ gboolean cd_slider_grow_up (void) {
   cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 
 	//On empeche la transparence
-	_cd_slider_add_background_to_current_slide (myData.fAnimCNT, myData.pImgL.fImgY);
+	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
 	
-	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.fAnimCNT, myData.pImgL.fImgY);
-  cairo_paint (myDrawContext);
+	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
+	//cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
+  cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 
-	if (myData.fAnimAlpha <= 0) {
+	CD_APPLET_REDRAW_MY_ICON
+
+	if (myData.fAnimAlpha >= 1) {
 		cairo_surface_destroy(myData.pCairoSurface);
   	//cairo_destroy (myDrawContext); //Pas de fuite mémoire
   	myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
@@ -437,41 +454,53 @@ GList* cd_slider_get_previous_img(GList *pList, GList *pImg) {
 	return pPrevious;
 }
 
-cairo_surface_t* cd_slider_get_previous_img_surface(GList *pList, GList *pImg) {  /// garder l'image precedente en memoire plutot.
+cairo_surface_t* cd_slider_get_previous_img_surface(GList *pList, GList *pImg) {
 	GList *pElement = cd_slider_get_previous_img(pList, pImg);
 	
 	if (pElement == NULL)
 		return NULL;
 	
 	gchar *pValue = pElement->data;
-	
- 	cairo_surface_t* surface;
+	double fImgX, fImgY, fImgW, fImgH;
+	cairo_surface_t* surface;
  	cairo_t* context;
-	surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 1400, 900); //1400x900 pour que l'image se charge dans sa totalité
- 	context = cairo_create (surface);
- 	
- 	double fImgX, fImgY, fImgW, fImgH;
- 	surface = cairo_dock_create_surface_from_image(pValue, context, 1., NULL, NULL, &fImgW, &fImgH, TRUE);
- 	cd_debug("Image width: %.02f height: %.02f", fImgW, fImgH);
- 	cairo_surface_destroy(surface);
- 	cairo_destroy (context);
- 	
- 	context = cairo_create (myIcon->pIconBuffer);
- 	if (fImgW < fImgH) { //H dominant: Portrait, il faut calculer le ratio imgH/iconH et l'utiliser sur W
- 		if (myIcon->fHeight < fImgH) { //On réduit H a celle de l'icône et on scale
- 			fImgW = (double) (myIcon->fHeight / fImgH) * fImgW;
- 			fImgH = myIcon->fHeight;
+ 		
+	if (myConfig.bNoStrench) {
+		surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 1400, 900); //1400x900 pour que l'image se charge dans sa totalité
+ 		context = cairo_create (surface);
+ 		
+ 		surface = cairo_dock_create_surface_from_image(pValue, context, cairo_dock_get_max_scale (myContainer), NULL, NULL, &fImgW, &fImgH, TRUE);
+ 		cd_debug("Image width: %.02f height: %.02f", fImgW, fImgH);
+ 		cairo_surface_destroy(surface);
+ 		cairo_destroy (context);
+ 		
+ 		if (fImgW < fImgH) { //H dominant: Portrait, il faut calculer le ratio imgH/iconH et l'utiliser sur W
+ 			if (myIcon->fHeight < fImgH) { //On réduit H a celle de l'icône et on scale
+ 				fImgW = (double) (myIcon->fHeight / fImgH) * fImgW;
+ 				fImgH = myIcon->fHeight;
+ 			}
  		}
+ 		else { //W dominant: Paysage, il faut calculer le ratio imgW/iconW et l'utiliser sur H
+ 			if (myIcon->fWidth < fImgW) { //On réduit W a celle de l'icône et on scale
+ 				fImgH = (double) (myIcon->fWidth/ fImgW) * fImgH;
+ 				fImgW = myIcon->fWidth;
+ 			}
+	 	}
+ 	 	fImgX = (myIcon->fWidth - fImgW) / 2;
+ 		fImgY = (myIcon->fHeight - fImgH) / 2;
  	}
- 	else { //W dominant: Paysage, il faut calculer le ratio imgW/iconW et l'utiliser sur H
- 		if (myIcon->fWidth < fImgW) { //On réduit W a celle de l'icône et on scale
- 			fImgH = (double) (myIcon->fWidth/ fImgW) * fImgH;
- 			fImgW = myIcon->fWidth;
- 		}
- 	}
+ 	else {
+		fImgX = 0;
+  	fImgY = 0;
+  	fImgW =	myIcon->fWidth;
+  	fImgH =	myIcon->fHeight;
+  }
+  
+  context = cairo_create (myIcon->pIconBuffer);
+ 	surface = cairo_dock_create_surface_from_image(pValue, context, cairo_dock_get_max_scale (myContainer), fImgW, fImgH, &fImgW, &fImgH, TRUE);
  	
- 	surface = cairo_dock_create_surface_from_image(pValue, context, 1., fImgW, fImgH, &fImgW, &fImgH, TRUE);
- 	
+	myData.pPrevImgL.fImgX = fImgX;
+	myData.pPrevImgL.fImgY = fImgY;
 	myData.pPrevImgL.fImgW = fImgW;
 	myData.pPrevImgL.fImgH = fImgH;
 	
