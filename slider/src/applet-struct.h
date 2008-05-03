@@ -9,6 +9,7 @@
 typedef enum {
 	SLIDER_DEFAULT = 0,
 	SLIDER_FADE,
+	SLIDER_BLANK_FADE,
 	SLIDER_FADE_IN_OUT,
 	SLIDER_SIDE_KICK,
 	SLIDER_DIAPORAMA,
@@ -48,8 +49,10 @@ typedef struct {
 	int iTimerID;
 	int iImagesNumber;
 	myImgLips pImgL;
+	myImgLips pPrevImgL;
 	cairo_t* pCairoContext;
   cairo_surface_t* pCairoSurface;
+  cairo_surface_t* pPrevCairoSurface;
 } AppletData;
 
 

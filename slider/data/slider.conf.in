@@ -65,7 +65,7 @@ slide time=30
 #b Don't strench the images ?
 #{Give better image rendering}
 no strench=true
-#r[none;blank fade;fade in out;side kick;diaporama;grow up;shrink down] Effect while changing image :
+#r[none;fade;blank fade;fade in out;side kick;diaporama;grow up;shrink down] Effect while changing image :
 change animation=1
 #c4[0;1] Choose a background color :
 #{Set the transparency channel to 0 if you just don't want to have a background.}

@@ -26,9 +26,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
-	//myConfig.pAnimation = SLIDER_DEFAULT;
-	//myConfig.pAnimation = SLIDER_FADE;
 	cd_slider_get_files_from_dir();  /// suggestion : le threader car ca prend du temps de parcourir le disque.
+	
+	if (myConfig.pAnimation == SLIDER_DIAPORAMA)
+		myConfig.bRandom = FALSE;
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
@@ -40,8 +41,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	//Il faut couper le dernier affichage?
 	g_source_remove(myData.iTimerID);
+	g_source_remove(myData.iAnimTimerID);
 CD_APPLET_STOP_END
 
 
@@ -61,7 +62,8 @@ CD_APPLET_RELOAD_BEGIN
 	
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-
+		if (myConfig.pAnimation == SLIDER_DIAPORAMA)
+			myConfig.bRandom = FALSE;
 	}
 	else {
 		//Rien a faire ^^
