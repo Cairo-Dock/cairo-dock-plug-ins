@@ -214,26 +214,26 @@ gboolean cd_slider_fade (void) {
 	myData.fAnimAlpha = myData.fAnimAlpha +.1;
 	
 	//On efface le fond
-	cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (myData.pCairoContext);
-  cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
+	cairo_paint (myDrawContext);
+  cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	
 	//Image précédante
 	if (myData.pPrevCairoSurface != NULL) {
-		cairo_set_source_surface (myData.pCairoContext, myData.pPrevCairoSurface, myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pImgL.fImgX, myData.pImgL.fImgY);
+		cairo_set_source_surface (myDrawContext, myData.pPrevCairoSurface, myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pImgL.fImgX, myData.pImgL.fImgY);
 	}
 	
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
 	
-	cairo_set_source_surface (myData.pCairoContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
-	cairo_paint_with_alpha (myData.pCairoContext, myData.fAnimAlpha);
+	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
+	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
 	CD_APPLET_REDRAW_MY_ICON
 				
 	if (myData.fAnimAlpha >= 1) {
 		//cairo_surface_destroy(myData.pCairoSurface);
-  	//cairo_destroy (myData.pCairoContext); //Pas de fuite mémoire
+  	//cairo_destroy (myDrawContext); //Pas de fuite mémoire
   	myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		return FALSE;
 	}
@@ -349,28 +349,28 @@ gboolean cd_slider_diaporama (void) {
 	myData.fAnimCNT = myData.fAnimCNT +.5;
 
 	//On efface le fond
-	cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (myData.pCairoContext);
-  cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
+	cairo_paint (myDrawContext);
+  cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 		
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
 	
-	cairo_set_source_surface (myData.pCairoContext, myData.pCairoSurface, myData.fAnimCNT, myData.pImgL.fImgY);
-	cairo_paint(myData.pCairoContext);
+	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.fAnimCNT, myData.pImgL.fImgY);
+	cairo_paint(myDrawContext);
 	
 	//Image précédante
 	if (myData.pPrevCairoSurface != NULL) {
-		cairo_set_source_surface (myData.pCairoContext, myData.pPrevCairoSurface, myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pImgL.fImgX, myData.pImgL.fImgY);
+		cairo_set_source_surface (myDrawContext, myData.pPrevCairoSurface, myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pImgL.fImgX, myData.pImgL.fImgY);
 	}
 	
-  cairo_paint (myData.pCairoContext);
+  cairo_paint (myDrawContext);
   
 	CD_APPLET_REDRAW_MY_ICON
 
 	if (myData.fAnimCNT >= myData.pImgL.fImgX) {
 		cairo_surface_destroy(myData.pCairoSurface);
-  	cairo_destroy (myData.pCairoContext); //Pas de fuite mémoire
+  	//cairo_destroy (myDrawContext); //Pas de fuite mémoire
   	myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		return FALSE;
 	}
@@ -437,7 +437,7 @@ GList* cd_slider_get_previous_img(GList *pList, GList *pImg) {
 	return pPrevious;
 }
 
-cairo_surface_t* cd_slider_get_previous_img_surface(GList *pList, GList *pImg) {
+cairo_surface_t* cd_slider_get_previous_img_surface(GList *pList, GList *pImg) {  /// garder l'image precedente en memoire plutot.
 	GList *pElement = cd_slider_get_previous_img(pList, pImg);
 	
 	if (pElement == NULL)
