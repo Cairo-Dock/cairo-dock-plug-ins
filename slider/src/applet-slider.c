@@ -90,13 +90,30 @@ gboolean cd_slider_draw_images(void) {
 	cd_message("Displaying: %s\n", cImagePath);
 	
 	double fImgX, fImgY, fImgW=0, fImgH=0;
-	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), myIcon->fWidth, myIcon->fHeight, &fImgW, &fImgH, myConfig.bNoStrench);  // keep ratio.
-  	
+	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), NULL, NULL, &fImgW, &fImgH, myConfig.bNoStrench);  // keep ratio.
+  
+ 	if (fImgW < fImgH) { //H dominant: Portrait, il faut calculer le ratio imgH/iconH et l'utiliser sur W
+ 		if (myIcon->fHeight < fImgH) { //On réduit H a celle de l'icône et on scale
+ 			fImgW = (double) (myIcon->fHeight / fImgH) * fImgW;
+ 			fImgH = myIcon->fHeight;
+ 		}
+ 	}
+ 	else { //W dominant: Paysage, il faut calculer le ratio imgW/iconW et l'utiliser sur H
+ 		if (myIcon->fWidth < fImgW) { //On réduit W a celle de l'icône et on scale
+ 			fImgH = (double) (myIcon->fWidth/ fImgW) * fImgH;
+ 			fImgW = myIcon->fWidth;
+ 		}
+ 	}
+  
   fImgX = (myIcon->fWidth - fImgW) / 2;
   fImgY = (myIcon->fHeight - fImgH) / 2;
 
   cd_message("X Y: %.02f %.02f - Ratio W: %.02f - Ratio H: %.02f - W: %.02f - H: %.02f", fImgX, fImgY, myIcon->fWidth/ fImgW, myIcon->fHeight / fImgH, fImgW ,fImgH);
-		
+	
+	//Trouver une autre solution pour ne pas charger deux fois, cairo_scale n'a pas l'air de fonctionner.
+	cairo_surface_destroy(myData.pCairoSurface);
+	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), fImgW, fImgH, &fImgW, &fImgH, myConfig.bNoStrench);  // keep ratio.
+	
 	myData.pImgL.fImgX = fImgX;
 	myData.pImgL.fImgY = fImgY;
 	myData.pImgL.fImgW = fImgW;
@@ -113,7 +130,7 @@ gboolean cd_slider_draw_images(void) {
 
 	switch (myConfig.pAnimation) {
 		case SLIDER_DEFAULT: default:
-			cd_debug("Affichage par défaut");
+			cd_debug("Displaying with défaut");
 			//On efface le fond
 			cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 			cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
@@ -138,40 +155,40 @@ gboolean cd_slider_draw_images(void) {
  			CD_APPLET_REDRAW_MY_ICON
 		break;
 		case SLIDER_FADE:
-			cd_debug("Affichage par fade");
+			cd_debug("Displaying with fade");
 			myData.fAnimAlpha = 0.;
 			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade, (gpointer) NULL);
 		break;
 		case SLIDER_BLANK_FADE:
-			cd_debug("Affichage par blank fade");
+			cd_debug("Displaying with blank fade");
 			myData.fAnimAlpha = 1.;
 			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_blank_fade, (gpointer) NULL);
 		break;
 		case SLIDER_FADE_IN_OUT:
-			cd_debug("Affichage par fade in out");
+			cd_debug("Displaying with fade in out");
 			myData.iAnimCNT = 0;
 			myData.fAnimAlpha = 0.;
 			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) NULL);
 		break;
 		case SLIDER_SIDE_KICK:
-			cd_debug("Affichage par side kick");
+			cd_debug("Displaying with side kick");
 			myData.fAnimCNT = -myData.pImgL.fImgW;
 			myData.iAnimTimerID = g_timeout_add (70, (GSourceFunc) cd_slider_side_kick, (gpointer) NULL);
 		break;
 		case SLIDER_DIAPORAMA:
-			cd_debug("Affichage par diaporama");
+			cd_debug("Displaying with diaporama");
 			myData.fAnimCNT = -myData.pImgL.fImgW - 10;
 			myData.pPrevCairoSurface = cd_slider_get_previous_img_surface(myData.pList, myData.pElement);
 			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_diaporama, (gpointer) NULL);
 		break;
 		case SLIDER_GROW_UP:
-			cd_debug("Affichage par grow up");
+			cd_debug("Displaying with grow up");
 			myData.iAnimCNT = 0;
 			myData.fAnimAlpha = 0.;
 			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) NULL);
 		break;
 		case SLIDER_SHRINK_DOWN:
-			cd_debug("Affichage par shrink down");
+			cd_debug("Displaying with shrink down");
 			myData.iAnimCNT = 0;
 			myData.fAnimAlpha = 0.;
 			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) NULL);

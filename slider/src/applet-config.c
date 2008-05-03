@@ -19,10 +19,10 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDirectory 	= CD_CONFIG_GET_STRING("Configuration", "directory");
 	myConfig.dSlideTime 	= 1000 * CD_CONFIG_GET_DOUBLE ("Configuration", "slide time");
-	myConfig.bSubDirs 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "sub directories");
+	myConfig.bSubDirs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "sub directories");
 	myConfig.bNoStrench 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no strench");
 	myConfig.pAnimation 	= CD_CONFIG_GET_INTEGER ("Configuration", "change animation");
-	myConfig.bRandom 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
+	myConfig.bRandom 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
 	CD_CONFIG_GET_COLOR ("Configuration", "background color", myConfig.pBackgroundColor);
 CD_APPLET_GET_CONFIG_END
 
