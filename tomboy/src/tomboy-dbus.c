@@ -7,7 +7,6 @@
 
 static DBusGProxy *dbus_proxy_tomboy = NULL;
 
-
 CD_APPLET_INCLUDE_MY_VARS
 
 
@@ -69,26 +68,45 @@ void dbus_detect_tomboy(void)
 }
 
 
-static Icon *_cd_tomboy_find_note_from_name (const gchar *cNoteURI)
+
+static Icon *_cd_tomboy_create_icon_for_note (gchar *cNoteURI, gchar *cNoteTitle)
 {
-	Icon *pIcon = NULL;
-	GList *pList = (myDock ? (myIcon->pSubDock != NULL ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
-	GList *ic;
-	for (ic = pList; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		if (strcmp (cNoteURI, pIcon->acCommand) == 0)
-			return pIcon;
-	}
-	
-	return NULL;
+	Icon *pIcon = g_new0 (Icon, 1);
+	pIcon->acName = getNoteTitle (cNoteURI);
+	pIcon->fScale = 1.;
+	pIcon->fAlpha = 1.;
+	pIcon->fWidth = 48;  /// inutile je pense ...
+	pIcon->fHeight = 48;
+	pIcon->fWidthFactor = 1.;
+	pIcon->fHeightFactor = 1.;
+	pIcon->acCommand = g_strdup (cNoteURI);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca devient un vrai lanceur.
+	pIcon->cParentDockName = g_strdup (myIcon->acName);
+	pIcon->acFileName = g_strdup_printf ("%s/note.svg",MY_APPLET_SHARE_DATA_DIR);
+	return pIcon;
+}
+
+static Icon *_cd_tomboy_find_note_from_uri (const gchar *cNoteURI)
+{
+	g_return_val_if_fail (cNoteURI != NULL, NULL);
+	return g_hash_table_lookup (myData.hNoteTable, cNoteURI);
+}
+
+static void _cd_tomboy_register_note (Icon *pIcon)
+{
+	g_return_if_fail (pIcon != NULL && pIcon->acCommand != NULL);
+	g_hash_table_insert (myData.hNoteTable, pIcon->acCommand, pIcon);
+}
+
+static void _cd_tomboy_unregister_note (Icon *pIcon)
+{
+	g_return_if_fail (pIcon != NULL && pIcon->acCommand != NULL);
+	g_hash_table_remove (myData.hNoteTable, pIcon->acCommand);
 }
 
 void onDeleteNote(DBusGProxy *proxy,const gchar *note_uri, const gchar *note_title, gpointer data)
 {
 	cd_message ("%s (%s)", __func__, note_uri);
-	//reload_all_notes ();
-	Icon *pIcon = _cd_tomboy_find_note_from_name (note_uri);
+	Icon *pIcon = _cd_tomboy_find_note_from_uri (note_uri);
 	g_return_if_fail (pIcon != NULL);
 	
 	if (myDock)
@@ -105,29 +123,15 @@ void onDeleteNote(DBusGProxy *proxy,const gchar *note_uri, const gchar *note_tit
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
 	
-	cairo_dock_free_icon (pIcon);
-	myData.countNotes --;
-	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d",myData.countNotes)
+	_cd_tomboy_unregister_note (pIcon);
+	update_icon ();
 }
 
 void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 {
 	cd_message ("%s (%s)", __func__, note_uri);
-	//registerNote(note_uri);
-	//update_icon();
 	
-	Icon *pIcon = g_new0 (Icon, 1);
-	pIcon->acName = getNoteTitle(note_uri);
-	pIcon->fScale = 1.;
-	pIcon->fAlpha = 1.;
-	pIcon->fWidth = 48;  /// inutile je pense ...
-	pIcon->fHeight = 48;
-	pIcon->fWidthFactor = 1.;
-	pIcon->fHeightFactor = 1.;
-	pIcon->acCommand = g_strdup (note_uri);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca devient un vrai lanceur.
-	pIcon->cParentDockName = g_strdup (myIcon->acName);
-	pIcon->acFileName = g_strdup_printf ("%s/note.svg",MY_APPLET_SHARE_DATA_DIR);
-	
+	Icon *pIcon = _cd_tomboy_create_icon_for_note (note_uri, getNoteTitle(note_uri));
 	GList *pList = (myDock ? (myIcon->pSubDock != NULL ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
 	Icon *pLastIcon = cairo_dock_get_last_icon (pList);
 	pIcon->fOrder = (pLastIcon != NULL ? pLastIcon->fOrder + 1 : 0);
@@ -151,14 +155,14 @@ void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
 	
-	myData.countNotes ++;
-	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d",myData.countNotes)
+	_cd_tomboy_register_note (pIcon);
+	update_icon ();
 }
 
 void onChangeNoteList(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 {
 	cd_message ("%s (%s)", __func__, note_uri);
-	Icon *pIcon = _cd_tomboy_find_note_from_name (note_uri);
+	Icon *pIcon = _cd_tomboy_find_note_from_uri (note_uri);
 	g_return_if_fail (pIcon != NULL);
 	gchar *cTitle = getNoteTitle(note_uri);
 	if (cTitle == NULL || strcmp (cTitle, pIcon->acName) != 0)  // nouveau titre.
@@ -172,6 +176,81 @@ void onChangeNoteList(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 		g_free (cTitle);
 }
 
+static gboolean _cd_tomboy_remove_old_notes (gchar *cNoteURI, Icon *pIcon, double *fTime)
+{
+	if (pIcon->fLastCheckTime < *fTime)
+	{
+		cd_message ("cette note (%s) est trop vieille\n", cNoteURI);
+		if (myDock)
+		{
+			if (myIcon->pSubDock != NULL)
+			{
+				cairo_dock_detach_icon_from_dock (pIcon, myIcon->pSubDock, FALSE);
+			}
+		}
+		else
+		{
+			myDesklet->icons = g_list_remove (myDesklet->icons, pIcon);
+		}
+		
+		return TRUE;
+	}
+	return FALSE;
+}
+gboolean cd_tomboy_check_deleted_notes (gpointer data)
+{
+	gchar **cNotes = NULL;
+	if(dbus_g_proxy_call (dbus_proxy_tomboy, "ListAllNotes", NULL,
+		G_TYPE_INVALID,
+		G_TYPE_STRV,&cNotes,
+		G_TYPE_INVALID))
+	{
+		int i = 0;
+		while (cNotes[i] != NULL)
+			i ++;
+		if (i < g_hash_table_size (myData.hNoteTable))  // il y'a eu suppression.
+		{
+			cd_message ("tomboy : une note au moins a ete supprimee.");
+			
+			gchar *cNoteURI;
+			Icon *pIcon;
+			GTimeVal time_val;
+			g_get_current_time (&time_val);
+			double fTime = time_val.tv_sec + time_val.tv_usec * 1e-6;
+			for (i = 0; cNotes[i] != NULL; i ++)
+			{
+				cNoteURI = cNotes[i];
+				pIcon = _cd_tomboy_find_note_from_uri (cNoteURI);
+				if (pIcon != NULL)
+					pIcon->fLastCheckTime = fTime;
+			}
+			
+			int iNbRemovedIcons = g_hash_table_foreach_remove (myData.hNoteTable, (GHRFunc) _cd_tomboy_remove_old_notes, &fTime);
+			if (iNbRemovedIcons != 0)
+			{
+				cd_message ("%d notes enlevees\n", iNbRemovedIcons);
+				if (myDock)
+				{
+					if (myIcon->pSubDock != NULL)
+					{
+						cairo_dock_update_dock_size (myIcon->pSubDock);
+					}
+				}
+				else
+				{
+					cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+				}
+				update_icon ();
+			}
+		}
+		
+		g_strfreev (cNotes);
+	}
+	return TRUE;
+}
+
+
+
 void reload_all_notes (void)
 {
 	cd_message ("");
@@ -179,7 +258,7 @@ void reload_all_notes (void)
 	update_icon();
 }
 
-gchar *getNoteTitle(gchar *note_name)
+gchar *getNoteTitle (const gchar *note_name)
 {
 	cd_debug("tomboy : Chargement du titre : %s",note_name);
 	gchar *note_title = NULL;
@@ -192,21 +271,12 @@ gchar *getNoteTitle(gchar *note_name)
 	return note_title;
 }
 
-void registerNote(gchar *uri)
-{
-	myData.countNotes++;
-	TomBoyNote *pNote = g_new0 (TomBoyNote, 1);
-	pNote->name = g_strdup (uri);
-	cd_message("tomboy : Enregistrement de la note %s",pNote->name);
-	pNote->title = getNoteTitle(uri);
-	myData.noteList = g_list_prepend (myData.noteList, pNote);
-}
-
 void getAllNotes(void)
 {
 	cd_message("tomboy : getAllNotes");
 	
 	free_all_notes ();
+	GList *pList = NULL;
 	
 	gchar **note_list = NULL;
 	if(dbus_g_proxy_call (dbus_proxy_tomboy, "ListAllNotes", NULL,
@@ -215,14 +285,56 @@ void getAllNotes(void)
 		G_TYPE_INVALID))
 	{
 		cd_message ("tomboy : Liste des notes...");
+		gchar *cNoteURI;
 		int i;
 		for (i = 0; note_list[i] != NULL; i ++)
 		{
-			registerNote(note_list[i]);
+			cNoteURI = note_list[i];
+			Icon *pIcon = _cd_tomboy_create_icon_for_note (cNoteURI, getNoteTitle(cNoteURI));
+			pIcon->fOrder = i;
+			pList = g_list_append (pList, pIcon);
+			_cd_tomboy_register_note (pIcon);
 		}
 	}
 	g_strfreev (note_list);
+	
+	if (myDock)
+	{
+		if (myIcon->pSubDock == NULL)
+		{
+			myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pList, myIcon->acName);
+			cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
+		}
+		else
+		{
+			myIcon->pSubDock->icons = pList;
+			cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
+		}
+	}
+	else
+	{
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+	}
 }
+
+void free_all_notes (void)
+{
+	cd_message (""); 
+	g_hash_table_remove_all (myData.hNoteTable);
+	if (myDock)
+	{
+		if (myIcon->pSubDock != NULL)
+		{
+			myIcon->pSubDock->icons = NULL;
+		}
+	}
+	else
+	{
+		myDesklet->icons = NULL;
+	}
+}
+
+
 
 gchar *addNote(gchar *note_title)
 {
@@ -254,53 +366,4 @@ void showNote(gchar *note_name)
 		G_TYPE_STRING, note_name,
 		G_TYPE_INVALID,
 		G_TYPE_INVALID);
-}
-
-void free_note (TomBoyNote *pNote)
-{
-	if (pNote == NULL)
-		return ;
-	g_free (pNote->name);
-	g_free (pNote->title);
-	g_free (pNote);
-}
-
-void free_all_notes (void)
-{
-	TomBoyNote *pNote;
-	GList *pElement;
-	for (pElement = myData.noteList; pElement != NULL; pElement = pElement->next)
-	{
-		pNote = pElement->data;
-		free_note(pNote);
-	}
-	g_list_free (myData.noteList);
-	myData.noteList = NULL;
-	myData.countNotes = 0;
-}
-
-gboolean cd_tomboy_check_deleted_notes (gpointer data)
-{
-	gchar **cNotes = NULL;
-	if(dbus_g_proxy_call (dbus_proxy_tomboy, "ListAllNotes", NULL,
-		G_TYPE_INVALID,
-		G_TYPE_STRV,&cNotes,
-		G_TYPE_INVALID))
-	{
-		int i = 0;
-		while (cNotes[i] != NULL)
-			i ++;
-		if (i < myData.countNotes)  // il y'a eu suppression.
-		{
-			cd_message ("tomboy : une note au moins a ete supprimee.");
-			free_all_notes ();
-			for (i = 0; cNotes[i] != NULL; i ++)
-			{
-				registerNote(cNotes[i]);
-			}
-			update_icon();
-		}
-		g_strfreev (cNotes);
-	}
-	return TRUE;
 }

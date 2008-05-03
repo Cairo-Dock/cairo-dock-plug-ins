@@ -1,6 +1,7 @@
 #include <string.h>
 
 #include "tomboy-struct.h"
+#include "tomboy-dbus.h"
 #include "tomboy-config.h"
 
 CD_APPLET_INCLUDE_MY_VARS
@@ -30,4 +31,10 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pSurfaceDefault);
 	cairo_surface_destroy (myData.pSurfaceClose);
 	cairo_surface_destroy (myData.pSurfaceBroken);
+	
+	free_all_notes ();
+	g_hash_table_destroy (myData.hNoteTable);
+	
+	if (myIcon->pSubDock != NULL)
+		cairo_dock_destroy_dock (myIcon->pSubDock,myIcon->acName, NULL, NULL);
 CD_APPLET_RESET_DATA_END

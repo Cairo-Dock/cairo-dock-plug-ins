@@ -76,72 +76,13 @@ void load_all_surfaces(void)
 	g_string_free (sImagePath, TRUE);
 }
 
-void update_icon(void)  /// je pense que ca meriterait d'etre traite comme les bookmarks de 'shortcuts', dont l'ajout/suppression sont optimises. Ca ne presse pas ceci dit ^_^
+void update_icon(void)
 {
 	if(myData.opening)
 	{
 		cd_message("tomboy : L'application est ouverte");
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable))
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceDefault)
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d",myData.countNotes)
-		
-		GList *pIconList = NULL;
-	
-		Icon *pIcon;
-		int i;
-		TomBoyNote *pNote;
-		GList *pElement;
-		for (pElement = myData.noteList; pElement != NULL; pElement = pElement->next)
-		{
-			pNote = pElement->data;
-			pIcon = g_new0 (Icon, 1);
-			pIcon->acName = g_strdup (pNote->title);
-			cd_message("tomboy : Création de l'icône pour %s [%s]",pNote->name, pNote->title);
-			//pIcon->cBaseURI =  g_strdup (pNote->name);  /// je pense que le mettre la est pas tres heureux, il vaudrait mieux associer l'icone via une table de hachage avec 'name' comme cle, puisque celui-ci est unique. ...
-			pIcon->fOrder = i;
-			pIcon->fScale = 1.;
-			pIcon->fAlpha = 1.;
-			pIcon->fWidth = 48;  /// inutile je pense ...
-			pIcon->fHeight = 48;
-			pIcon->fWidthFactor = 1.;
-			pIcon->fHeightFactor = 1.;
-			pIcon->acCommand = g_strdup (pNote->name);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca devient un vrai lanceur.
-			pIcon->cParentDockName = g_strdup (myIcon->acName);
-			pIcon->acFileName = g_strdup_printf ("%s/note.svg",MY_APPLET_SHARE_DATA_DIR);
-			pIconList = g_list_append (pIconList, pIcon);
-		}
-		
-		//On supprime les icones du sous-dock
-		if (myIcon->pSubDock != NULL)
-		{
-			g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (myIcon->pSubDock->icons);
-			myIcon->pSubDock->icons = NULL;
-		}
-		
-		if (myIcon->pSubDock == NULL)
-		{
-			if (pIconList != NULL)
-			{
-				myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-				cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
-				cairo_dock_update_dock_size (myIcon->pSubDock);
-			}
-		}
-		else
-		{
-			//On remplace les icônes du sous-dock
-			if (pIconList == NULL)  //Il n'y a rien à afficher. On supprime le Sous-Dock.
-			{
-				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-				myIcon->pSubDock = NULL;
-			}
-			else
-			{
-				myIcon->pSubDock->icons = pIconList;
-				cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
-				cairo_dock_update_dock_size (myIcon->pSubDock);
-			}
-		}
 	}
 	else
 	{

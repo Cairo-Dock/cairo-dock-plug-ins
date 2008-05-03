@@ -233,7 +233,6 @@ void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSour
 					pAnimation->iFrameHeight);
 				cairo_t *pCairoContext = cairo_create (pAnimation->pSurfaces[i][j]);
 				
-				cairo_scale (pCairoContext,  (1 + 0),  (1 + 0));
 				cairo_set_source_surface (pCairoContext,
 					pBigSurface,
 					- j * pAnimation->iFrameWidth,

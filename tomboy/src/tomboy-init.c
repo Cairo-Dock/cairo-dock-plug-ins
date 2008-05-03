@@ -8,7 +8,6 @@
 #include "tomboy-init.h"
 
 
-
 CD_APPLET_DEFINITION ("TomBoy", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 CD_APPLET_INIT_BEGIN (erreur)
@@ -16,6 +15,11 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myIcon->acName = g_strdup (TOMBOY_DEFAULT_NAME);
 	
 	load_all_surfaces();
+	
+	myData.hNoteTable = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		NULL,  // l'URI est partage avec l'icone.
+		(GDestroyNotify) cairo_dock_free_icon);
 	
 	myData.dbus_enable = dbus_connect_to_bus ();
 	if (myData.dbus_enable)

@@ -13,27 +13,24 @@ CD_APPLET_ABOUT (D_("Applet by Necropotame (Adrien Pilleboue)"))
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))
+	if (pClickedIcon != NULL && pClickedIcon != myIcon)
 	{
 		cd_message("tomboy : %s",pClickedIcon->acCommand);
 		showNote(pClickedIcon->acCommand);
 		///return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
-	else
+	else if (pClickedIcon == myIcon && ! myData.opening)  // possible si on l'a quitte apres le demarrage de l'applet.
 	{
-		if (! myData.opening)  // possible si on l'a quitte apres le demarrage de l'applet.
+		dbus_detect_tomboy();
+		if (! myData.opening)
 		{
 			dbus_detect_tomboy();
-			if (! myData.opening)
-			{
-				dbus_detect_tomboy();
-				getAllNotes();
-				update_icon();
-			}
+			getAllNotes();
+			update_icon();
 		}
-		else
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
+	else
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_CLICK_END
 
 
@@ -41,10 +38,11 @@ static void _cd_tomboy_create_new_note (Icon *pIcon)
 {
 	gchar *note_title = cairo_dock_show_demand_and_wait (D_("Note name : "),
 		(pIcon != NULL ? pIcon : myIcon),
-		myContainer,
+		(pIcon != NULL && myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 		NULL);
 	gchar *note_name = addNote(note_title);
 	showNote(note_name);
+	g_free (note_name);
 }
 static void _cd_tomboy_add_note (GtkMenuItem *menu_item, Icon *pIcon)
 {
@@ -63,7 +61,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_IN_MENU(D_("Reload notes"), _cd_tomboy_reload_notes, CD_APPLET_MY_MENU)
 	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))
 	{
-		if (pClickedIcon != NULL)
+		if (pClickedIcon != NULL && pClickedIcon !=  myIcon)
 		{
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete this note"), _cd_tomboy_delete_note, CD_APPLET_MY_MENU, pClickedIcon) 
 		}
@@ -75,5 +73,12 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	_cd_tomboy_create_new_note (pClickedIcon);
+	if (pClickedIcon == myIcon && ! myData.opening)  // possible si on l'a quitte apres le demarrage de l'applet.
+	{
+		dbus_detect_tomboy();
+		getAllNotes();
+		update_icon();
+	}
+	else
+		_cd_tomboy_create_new_note (pClickedIcon);
 CD_APPLET_ON_MIDDLE_CLICK_END

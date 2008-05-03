@@ -3,19 +3,15 @@
 
 #include <cairo-dock.h>
 	
-#define TOMBOY_DEFAULT_NAME "_tomboy_"
+#define TOMBOY_DEFAULT_NAME "_TomBoy_"
 
-typedef struct {
-	gchar *name;
-	gchar *title;
-	} TomBoyNote;
-	
 typedef struct {
 	gchar *defaultTitle;
 	gchar *cIconDefault;
 	gchar *cIconClose;
 	gchar *cIconBroken;
 	gboolean bNoDeletedSignal;
+	gchar *cRenderer;
 	} AppletConfig;
 
 typedef struct {
@@ -24,9 +20,8 @@ typedef struct {
 	cairo_surface_t *pSurfaceBroken;
 	gboolean dbus_enable;
 	gboolean opening;
-	GList *noteList;
-	int countNotes;
 	guint iSidCheckNotes;
+	GHashTable *hNoteTable;
 	} AppletData;
 
 #endif

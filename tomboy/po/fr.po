@@ -199,7 +199,7 @@ msgstr ""
 
 #: ../src/tomboy-notifications.c:30 ../src/tomboy-notifications.c:28
 #: ../src/tomboy-notifications.c:27 ../src/tomboy-notifications.c:41
-#: ../src/tomboy-notifications.c:42
+#: ../src/tomboy-notifications.c:42 ../src/tomboy-notifications.c:39
 msgid "Note name : "
 msgstr ""
 
@@ -209,16 +209,19 @@ msgstr ""
 
 #: ../src/tomboy-notifications.c:43 ../src/tomboy-notifications.c:47
 #: ../src/tomboy-notifications.c:61 ../src/tomboy-notifications.c:62
+#: ../src/tomboy-notifications.c:63 ../src/tomboy-notifications.c:60
 msgid "Add a note"
 msgstr ""
 
 #: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:53
 #: ../src/tomboy-notifications.c:67 ../src/tomboy-notifications.c:68
+#: ../src/tomboy-notifications.c:69 ../src/tomboy-notifications.c:66
 msgid "Delete this note"
 msgstr ""
 
 #: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:62
-#: ../src/tomboy-notifications.c:63
+#: ../src/tomboy-notifications.c:63 ../src/tomboy-notifications.c:64
+#: ../src/tomboy-notifications.c:61
 msgid "Reload notes"
 msgstr ""
 
@@ -235,4 +238,20 @@ msgstr ""
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:29
+msgid ""
+"Depending on your tomboy's version, the note deletion may not be "
+"automatically notified to us. Only check this box if you notice some error "
+"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
+"terminal."
+msgstr ""
+
+#: ../data/messages:33
+msgid "Let it empty to use default sub-dock view."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Name of the view used for the sub-dock :"
 msgstr ""

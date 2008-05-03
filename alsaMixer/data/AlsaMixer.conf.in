@@ -60,6 +60,10 @@ mixer element = Front
 #{Let empty to use the defaut command.}
 show mixer = 
 
+
+#F[Control]
+frame_ctrl =
+
 #k Shortkey to show/hide the sound control dialog :
 shortkey = <Shift><Ctrl>F3
 

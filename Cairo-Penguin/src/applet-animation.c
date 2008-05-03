@@ -23,7 +23,7 @@ gboolean penguin_move_in_dock (gpointer data)
 {
 	static GdkRectangle area;
 	//cd_message ("");
-	if (g_bAutoHide && myDock->bAtBottom)
+	if (! cairo_dock_animation_will_be_visible (myDock))
 		return TRUE;
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
@@ -62,7 +62,7 @@ gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 	gpointer data)
 {
 	//g_print ("%s (%d,%d ; %d;%d)\n", __func__, myData.iCurrentDirection, myData.iCurrentFrame, myData.iCurrentPositionX, myData.iCurrentPositionY);
-	if (g_bAutoHide && myDock->bAtBottom)
+	if (! cairo_dock_animation_will_be_visible (myDock))
 		return FALSE;
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
@@ -75,7 +75,7 @@ gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
 	g_return_val_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS, FALSE);
 	
-	if (pExpose->area.x + pExpose->area.y != 0)  // x et y sont >= 0.
+	if (pExpose->area.x + pExpose->area.y != 0)  // x et/ou y sont > 0.
 	{
 		cairo_rectangle (pCairoContext,
 			pExpose->area.x,
@@ -100,7 +100,7 @@ gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 gboolean penguin_move_in_icon (gpointer data)
 {
 	//g_print ("%s (%d,%d) ; (%d,%d)\n", __func__, myData.iCurrentDirection, myData.iCurrentFrame, myData.iCurrentPositionX, myData.iCurrentPositionY);
-	if (g_bAutoHide && myDock->bAtBottom)
+	if (! cairo_dock_animation_will_be_visible (myDock))
 		return TRUE;
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();

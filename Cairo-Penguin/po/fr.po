@@ -175,28 +175,29 @@ msgid "I'm your father !"
 msgstr "Je suis ton père !"
 
 #: ../src/applet-notifications.c:130 ../src/applet-notifications.c:128
-#: ../src/applet-notifications.c:129
+#: ../src/applet-notifications.c:129 ../src/applet-notifications.c:118
 msgid "Keep quiet"
 msgstr "Reste tranquille !"
 
 #: ../src/applet-notifications.c:134 ../src/applet-notifications.c:132
-#: ../src/applet-notifications.c:133
+#: ../src/applet-notifications.c:133 ../src/applet-notifications.c:122
 msgid "Wake up"
 msgstr "Réveille-toi !"
 
 #: ../src/applet-notifications.c:137 ../src/applet-notifications.c:135
-#: ../src/applet-notifications.c:136
+#: ../src/applet-notifications.c:136 ../src/applet-notifications.c:125
 msgid "Start XPenguins"
 msgstr "Lancer XPenguins"
 
 #: ../src/applet-notifications.c:138 ../src/applet-notifications.c:136
-#: ../src/applet-notifications.c:137
+#: ../src/applet-notifications.c:137 ../src/applet-notifications.c:126
 msgid "Stop XPenguins"
 msgstr "Arrêter XPenguins"
 
 #: ../src/applet-notifications.c:167 ../src/applet-notifications.c:169
 #: ../src/applet-notifications.c:165 ../src/applet-notifications.c:166
-#: ../src/applet-notifications.c:168
+#: ../src/applet-notifications.c:168 ../src/applet-notifications.c:155
+#: ../src/applet-notifications.c:157
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
