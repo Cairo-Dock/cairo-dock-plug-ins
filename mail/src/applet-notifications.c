@@ -214,10 +214,8 @@ _mail_draw_main_icon (void)
 	    }
         else */
         {
-            g_free (myIcon->acFileName);
             //Chargement de l'image "il y a un des mails"
-            myIcon->acFileName = g_strdup(myConfig.cHasMailUserImage);
-            CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
+            CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHasMailUserImage)
         }
 
         CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
@@ -271,8 +269,7 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
                 if (pIconList != NULL)
                 {
                     cd_message ("  creation du sous-dock mail");
-                    myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-                    cairo_dock_update_dock_size (myIcon->pSubDock);
+                    CD_APPLET_CREATE_MY_SUBDOCK (pIconList, NULL)
                 }
             }
             else  // on a deja notre sous-dock, on remplace juste ses icones.
@@ -280,14 +277,11 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
                 cd_message ("  rechargement du sous-dock mail");
                 if (pIconList == NULL)  // inutile de le garder.
                 {
-                    cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-                    myIcon->pSubDock = NULL;
+                    CD_APPLET_DESTROY_MY_SUBDOCK
                 }
                 else
                 {
-                    myIcon->pSubDock->icons = pIconList;
-                    cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
-                    cairo_dock_update_dock_size (myIcon->pSubDock);
+                    CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList)
                 }
             }
 		}
@@ -295,8 +289,7 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
 		{
 			if (myIcon->pSubDock != NULL)
 			{
-				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-				myIcon->pSubDock = NULL;
+				CD_APPLET_DESTROY_MY_SUBDOCK
 			}
 			myDesklet->icons = pIconList;
 

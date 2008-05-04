@@ -50,7 +50,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	if (myIcon->pSubDock != NULL)
 	{
-		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);  // detruit les icones avec.
-		myIcon->pSubDock = NULL;  // normalement inutile.
+		CD_APPLET_DESTROY_MY_SUBDOCK
 	}
 CD_APPLET_RESET_DATA_END

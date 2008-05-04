@@ -90,9 +90,9 @@ gboolean cd_slider_draw_images(void) {
 	cd_message("Displaying: %s\n", cImagePath);
 	
 	double fImgX, fImgY, fImgW=0, fImgH=0;
-	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), NULL, NULL, &fImgW, &fImgH, myConfig.bNoStrench);  // keep ratio.
-  
-  if (myConfig.bNoStrench) {
+	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), 0., 0., &fImgW, &fImgH, myConfig.bNoStrench);  // keep ratio.
+	
+	if (myConfig.bNoStrench) {
  		if (fImgW < fImgH) { //H dominant: Portrait, il faut calculer le ratio imgH/iconH et l'utiliser sur W
  			if (myIcon->fHeight < fImgH) { //On réduit H a celle de l'icône et on scale
  				fImgW = (double) (myIcon->fHeight / fImgH) * fImgW;
@@ -135,7 +135,7 @@ gboolean cd_slider_draw_images(void) {
 		
 	cairo_save (myDrawContext);
 	//On efface le fond
-	cairo_set_source_rgba (myDrawContext, 1., 1., 1., 0.);
+	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 
 	switch (myConfig.pAnimation) {
 		case SLIDER_DEFAULT: default:
@@ -222,26 +222,27 @@ gboolean cd_slider_fade (void) {
 	myData.fAnimAlpha = myData.fAnimAlpha +.1;
 	
 	//On efface le fond
-	cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (myData.pCairoContext);
-  cairo_set_operator (myData.pCairoContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
+	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
+	cairo_paint (myDrawContext);
+	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	
 	//Image précédante
 	if (myData.pPrevCairoSurface != NULL) {
-		cairo_set_source_surface (myData.pCairoContext, myData.pPrevCairoSurface, myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pImgL.fImgX, myData.pImgL.fImgY);
+		cairo_set_source_surface (myDrawContext, myData.pPrevCairoSurface, myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pImgL.fImgX, myData.pImgL.fImgY);
 	}
 	
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
 	
-	cairo_set_source_surface (myData.pCairoContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
-	cairo_paint_with_alpha (myData.pCairoContext, myData.fAnimAlpha);
+	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
+	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
 	CD_APPLET_REDRAW_MY_ICON
 				
 	if (myData.fAnimAlpha >= 1) {
 		//cairo_surface_destroy(myData.pCairoSurface);
-  	//cairo_destroy (myData.pCairoContext); //Pas de fuite mémoire
+  	//cairo_destroy (myDrawContext); //Pas de fuite mémoire
   	myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		return FALSE;
 	}
@@ -254,8 +255,9 @@ gboolean cd_slider_blank_fade (void) {
 	
 	//On efface le fond
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
+	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 	cairo_paint (myDrawContext);
-  cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
@@ -299,7 +301,7 @@ gboolean cd_slider_fade_in_out (void) {
  	cairo_set_source_rgba (myDrawContext, 1., 1., 1., myData.fAnimAlpha);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (myDrawContext);
-  cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 		
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
@@ -324,8 +326,9 @@ gboolean cd_slider_side_kick (void) {
 	
 	//On efface le fond
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
+	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 	cairo_paint (myDrawContext);
-  cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 		
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.fAnimCNT, myData.pImgL.fImgY);
@@ -358,8 +361,9 @@ gboolean cd_slider_diaporama (void) {
 
 	//On efface le fond
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
+	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 	cairo_paint (myDrawContext);
-  cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 		
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.fAnimCNT, myData.pImgL.fImgY);
@@ -397,8 +401,9 @@ gboolean cd_slider_grow_up (void) {
 
 	//On efface le fond
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
+	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 	cairo_paint (myDrawContext);
-  cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
@@ -423,8 +428,9 @@ gboolean cd_slider_shrink_down (void) {
 
 	//On efface le fond
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
+	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 	cairo_paint (myDrawContext);
-  cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.fAnimCNT, myData.pImgL.fImgY);
@@ -469,7 +475,7 @@ cairo_surface_t* cd_slider_get_previous_img_surface(GList *pList, GList *pImg) {
 		surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 1400, 900); //1400x900 pour que l'image se charge dans sa totalité
  		context = cairo_create (surface);
  		
- 		surface = cairo_dock_create_surface_from_image(pValue, context, cairo_dock_get_max_scale (myContainer), NULL, NULL, &fImgW, &fImgH, TRUE);
+ 		surface = cairo_dock_create_surface_from_image(pValue, context, cairo_dock_get_max_scale (myContainer), 0., 0., &fImgW, &fImgH, TRUE);
  		cd_debug("Image width: %.02f height: %.02f", fImgW, fImgH);
  		cairo_surface_destroy(surface);
  		cairo_destroy (context);

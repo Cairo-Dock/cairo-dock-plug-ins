@@ -142,7 +142,7 @@ msgstr ""
 #: ../src/applet-notifications.c:63 ../src/applet-notifications.c:113
 #: ../src/applet-notifications.c:120 ../src/applet-notifications.c:119
 #: ../src/applet-notifications.c:133 ../src/applet-notifications.c:168
-#: ../src/applet-notifications.c:165
+#: ../src/applet-notifications.c:165 ../src/applet-notifications.c:167
 msgid "Switch Windows Decorator"
 msgstr ""
 
@@ -289,24 +289,28 @@ msgstr ""
 #: ../src/applet-notifications.c:112 ../src/applet-notifications.c:119
 #: ../src/applet-notifications.c:118 ../src/applet-notifications.c:132
 #: ../src/applet-notifications.c:167 ../src/applet-notifications.c:164
+#: ../src/applet-notifications.c:166
 msgid "Switch Windows Manager"
 msgstr ""
 
 #: ../src/applet-notifications.c:114 ../src/applet-notifications.c:129
 #: ../src/applet-notifications.c:127 ../src/applet-notifications.c:142
 #: ../src/applet-notifications.c:177 ../src/applet-notifications.c:174
+#: ../src/applet-notifications.c:176
 msgid "Toggle Exposition Mode"
 msgstr ""
 
 #: ../src/applet-notifications.c:115 ../src/applet-notifications.c:130
 #: ../src/applet-notifications.c:128 ../src/applet-notifications.c:143
 #: ../src/applet-notifications.c:178 ../src/applet-notifications.c:175
+#: ../src/applet-notifications.c:177
 msgid "Toggle Widgets Layer"
 msgstr ""
 
 #: ../src/applet-notifications.c:116 ../src/applet-notifications.c:131
 #: ../src/applet-notifications.c:129 ../src/applet-notifications.c:145
 #: ../src/applet-notifications.c:180 ../src/applet-notifications.c:177
+#: ../src/applet-notifications.c:179
 msgid "Toggle Show Desktop"
 msgstr ""
 

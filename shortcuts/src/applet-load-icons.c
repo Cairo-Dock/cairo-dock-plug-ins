@@ -158,9 +158,7 @@ static gboolean _cd_shortcuts_check_for_redraw (gpointer data)
 				if (s_pIconList != NULL)  // l'applet peut faire 'show desktop'.
 				{
 					cd_message ("  creation du sous-dock des raccourcis");
-					myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (s_pIconList, myIcon->acName);
-					cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
-					cairo_dock_update_dock_size (myIcon->pSubDock);
+					CD_APPLET_CREATE_MY_SUBDOCK (s_pIconList, myConfig.cRenderer)
 				}
 			}
 			else  // on a deja notre sous-dock, on remplace juste ses icones.
@@ -168,14 +166,11 @@ static gboolean _cd_shortcuts_check_for_redraw (gpointer data)
 				cd_message ("  rechargement du sous-dock des raccourcis");
 				if (s_pIconList == NULL)  // inutile de le garder.
 				{
-					cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-					myIcon->pSubDock = NULL;
+					CD_APPLET_DESTROY_MY_SUBDOCK
 				}
 				else
 				{
-					myIcon->pSubDock->icons = s_pIconList;
-					cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
-					cairo_dock_update_dock_size (myIcon->pSubDock);
+					CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (s_pIconList)
 				}
 			}
 		}

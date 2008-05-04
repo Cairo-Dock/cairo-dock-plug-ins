@@ -19,7 +19,7 @@ CD_APPLET_INCLUDE_MY_VARS
 #define MY_NB_ICON_STATE 3
 #define MY_NB_SUB_ICONS 5
 
-static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Reload WM"), N_("Exposition"), N_("Widget Layer")};
+static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Switch WM"), N_("Exposition"), N_("Widget Layer")};
 
 static gchar *s_iconClass[MY_NB_SUB_ICONS] = {"ccsm", "emerald-theme-manager", NULL, NULL, NULL};
 
@@ -90,17 +90,15 @@ void cd_compiz_update_main_icon (void) {
 
 
 void cd_compiz_build_icons (void) {
-	GList *pIconList = _list_icons ();
+	GList *pIconList = _list_icons ();  // ne nous appartiendra plus, donc ne pas desallouer.
 	if (myDock) {
-		myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-		cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
-		cairo_dock_update_dock_size (myIcon->pSubDock);
+		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
 	}
 	else {
 		myDesklet->icons = pIconList;
-  	gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-  	cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
-  	myDrawContext = cairo_create (myIcon->pIconBuffer);
-  	gtk_widget_queue_draw (myDesklet->pWidget);
+		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		///gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
 	}
 }

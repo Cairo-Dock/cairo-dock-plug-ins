@@ -98,7 +98,7 @@ static void _weather_draw_current_conditions (void)
 void cd_weather_update_from_data (void)
 {
 	//\_______________________ On cree la liste des icones de prevision.
-	GList *pIconList = _list_icons ();
+	GList *pIconList = _list_icons ();  // ne nous appartiendra plus, donc ne pas desallouer.
 	
 	//\_______________________ On efface l'ancienne liste.
 	if (myDesklet && myDesklet->icons != NULL)
@@ -122,9 +122,7 @@ void cd_weather_update_from_data (void)
 			if (pIconList != NULL)  // l'applet peut montrer les conditions courantes.
 			{
 				cd_message ("  creation du sous-dock meteo");
-				myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-				cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
-				cairo_dock_update_dock_size (myIcon->pSubDock);
+				CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
 			}
 		}
 		else  // on a deja notre sous-dock, on remplace juste ses icones.
@@ -132,14 +130,11 @@ void cd_weather_update_from_data (void)
 			cd_message ("  rechargement du sous-dock meteo");
 			if (pIconList == NULL)  // inutile de le garder.
 			{
-				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-				myIcon->pSubDock = NULL;
+				CD_APPLET_DESTROY_MY_SUBDOCK
 			}
 			else
 			{
-				myIcon->pSubDock->icons = pIconList;
-				cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
-				cairo_dock_update_dock_size (myIcon->pSubDock);
+				CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList)
 			}
 		}
 	}

@@ -140,8 +140,7 @@ void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 	{
 		if (myIcon->pSubDock == NULL)
 		{
-			myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (NULL, myIcon->acName);
-			cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
+			CD_APPLET_CREATE_MY_SUBDOCK (NULL, myConfig.cRenderer)
 		}
 		
 		cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));

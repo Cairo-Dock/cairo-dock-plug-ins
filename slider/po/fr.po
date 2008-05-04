@@ -109,11 +109,11 @@ msgid ""
 " made by ChAnGFu for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:48
+#: ../src/applet-notifications.c:48 ../src/applet-notifications.c:49
 msgid "Play"
 msgstr ""
 
-#: ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:51 ../src/applet-notifications.c:52
 msgid "Pause"
 msgstr ""
 
@@ -141,64 +141,72 @@ msgstr ""
 msgid "Scan in sub direcotries ?"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:45 ../data/messages:47
 msgid "Options"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:49
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:49 ../data/messages:51
 msgid "Sliding delay :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:53
 msgid "Give better image rendering"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:55
 msgid "Don't strench the images ?"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:57
 msgid "Effect while changing image :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:59
 msgid "none"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:63
 msgid "blank fade"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:61 ../data/messages:65
 msgid "fade in out"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:63 ../data/messages:67
 msgid "side kick"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:69
 msgid "diaporama"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:67 ../data/messages:71
 msgid "grow up"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:73
 msgid "shrink down"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:75
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:77
 msgid "Choose a background color :"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Randomly browse files ?"
+msgstr ""
+
+#: ../data/messages:61
+msgid "fade"
 msgstr ""

@@ -50,9 +50,8 @@ typedef struct {
 	int iImagesNumber;
 	myImgLips pImgL;
 	myImgLips pPrevImgL;
-	cairo_t* pCairoContext;
-  cairo_surface_t* pCairoSurface;
-  cairo_surface_t* pPrevCairoSurface;
+	cairo_surface_t* pCairoSurface;
+	cairo_surface_t* pPrevCairoSurface;
 } AppletData;
 
 

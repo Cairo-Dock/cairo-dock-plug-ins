@@ -20,7 +20,7 @@ void cd_stacks_build_icons (void) {
 
   cd_message("Stacks - Now Listing: %s",myConfig.cMonitoredDirectory);  
   
-	GList *pIconList = NULL;
+	GList *pIconList = NULL;  // ne nous appartiendra plus, donc ne pas desallouer.
 	gchar *cFullURI = NULL;	
 	Icon *pDirIcon = NULL;
 	
@@ -28,24 +28,18 @@ void cd_stacks_build_icons (void) {
 	pIconList = cairo_dock_fm_list_directory (myConfig.cMonitoredDirectory, CAIRO_DOCK_FM_SORT_BY_NAME, 9, myConfig.bHiddenFiles, &cFullURI);
 	
 	if (myDock) {
-		myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-		cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
-		cairo_dock_update_dock_size (myIcon->pSubDock);
+		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
 	}
 	else {
 		myDesklet->icons = pIconList;
-  	gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-  	cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
-  	myDrawContext = cairo_create (myIcon->pIconBuffer);
-  	gtk_widget_queue_draw (myDesklet->pWidget);
+		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
+		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		///gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
 	}
 	
 	if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_stacks_update, NULL))
-			cd_warning ("Attention : can't monitor files");
-	
-	//g_list_foreach (pIconList, (GFunc) cairo_dock_free_icon, NULL);
-	//g_list_free (pIconList);
-	pIconList = NULL;
+		cd_warning ("Attention : can't monitor files");
 }
 
 
