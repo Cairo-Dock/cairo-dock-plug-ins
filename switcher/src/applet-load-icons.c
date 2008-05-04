@@ -132,9 +132,7 @@ else
 					{
 					
 					cd_message ("SWITCHER : creation du sous-dock Switcher");
-					myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconList, myIcon->acName);
-					cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
-					cairo_dock_update_dock_size (myIcon->pSubDock);
+					CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
 					}
 				
 			}
@@ -143,14 +141,11 @@ else
 				cd_message ("SWITCHER : rechargement du sous-dock Switcher");
 				if (pIconList == NULL)  // inutile de le garder.
 				{
-					cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-					myIcon->pSubDock = NULL;
+					CD_APPLET_DESTROY_MY_SUBDOCK
 				}
 				else
 				{
-					myIcon->pSubDock->icons = pIconList;
-					cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
-					cairo_dock_update_dock_size (myIcon->pSubDock);
+					CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList)
 				}
 			
 			}

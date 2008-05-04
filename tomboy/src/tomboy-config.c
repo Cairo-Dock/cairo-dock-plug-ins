@@ -35,6 +35,5 @@ CD_APPLET_RESET_DATA_BEGIN
 	free_all_notes ();
 	g_hash_table_destroy (myData.hNoteTable);
 	
-	if (myIcon->pSubDock != NULL)
-		cairo_dock_destroy_dock (myIcon->pSubDock,myIcon->acName, NULL, NULL);
+	CD_APPLET_DESTROY_MY_SUBDOCK
 CD_APPLET_RESET_DATA_END

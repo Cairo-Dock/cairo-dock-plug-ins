@@ -301,13 +301,11 @@ void getAllNotes(void)
 	{
 		if (myIcon->pSubDock == NULL)
 		{
-			myIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pList, myIcon->acName);
-			cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);
+			CD_APPLET_CREATE_MY_SUBDOCK (pList, myConfig.cRenderer)
 		}
 		else
 		{
-			myIcon->pSubDock->icons = pList;
-			cairo_dock_load_buffers_in_one_dock (myIcon->pSubDock);
+			CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pList)
 		}
 	}
 	else
