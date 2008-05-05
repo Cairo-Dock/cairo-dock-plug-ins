@@ -409,7 +409,7 @@ gboolean cd_slider_grow_up (void) {
 	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
 	
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
-	//cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
+	cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
   cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 
 	CD_APPLET_REDRAW_MY_ICON
@@ -420,6 +420,7 @@ gboolean cd_slider_grow_up (void) {
   	myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		return FALSE;
 	}
+	
 	return TRUE;
 }
 
@@ -444,6 +445,7 @@ gboolean cd_slider_shrink_down (void) {
   	myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		return FALSE;
 	}
+	
 	return TRUE;
 }
 

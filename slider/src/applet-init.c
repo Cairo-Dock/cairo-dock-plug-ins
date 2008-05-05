@@ -49,26 +49,26 @@ CD_APPLET_STOP_END
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
 	
-	//On arrete tout!
+	//Stop all process!
 	myData.bPause = TRUE;
 	g_source_remove(myData.iTimerID);
 	myData.iTimerID = 0;
-	cd_slider_get_files_from_dir(); //on recharge les images
 	
 	if (myDesklet) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
 	
-	//\_______________ On recharge les donnees qui ont pu changer.
+	//\_______________ Reload all changed data.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		if (myConfig.pAnimation == SLIDER_DIAPORAMA)
+		if (myConfig.pAnimation == SLIDER_DIAPORAMA) //Images must scroll in the rigth order due to get_previous_img
 			myConfig.bRandom = FALSE;
 	}
 	else {
-		//Rien a faire ^^
+		//Nothing to do ^^
 	}
 	
+	cd_slider_get_files_from_dir(); //reload image list
 	myData.bPause = FALSE;
-	cd_slider_draw_images(); //on relance le diapo
+	cd_slider_draw_images(); //restart sliding
 CD_APPLET_RELOAD_END

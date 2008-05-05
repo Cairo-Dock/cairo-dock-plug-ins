@@ -111,15 +111,15 @@ msgstr ""
 
 #: ../src/applet-notifications.c:48 ../src/applet-notifications.c:49
 msgid "Play"
-msgstr ""
+msgstr "Jouer"
 
 #: ../src/applet-notifications.c:51 ../src/applet-notifications.c:52
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom au dock auquel il appartient"
 
 #: ../data/messages:35
 msgid "Configuration"
@@ -127,19 +127,19 @@ msgstr ""
 
 #: ../data/messages:37
 msgid "Directory"
-msgstr ""
+msgstr "Dossier"
 
 #: ../data/messages:39
 msgid "Directory of the images :"
-msgstr ""
+msgstr "Dossier des images"
 
 #: ../data/messages:41
 msgid "Not implemented yet"
-msgstr ""
+msgstr "Pas encore implémenté"
 
 #: ../data/messages:43
 msgid "Scan in sub direcotries ?"
-msgstr ""
+msgstr "Scanner les sous dossiers ?"
 
 #: ../data/messages:45 ../data/messages:47
 msgid "Options"
@@ -147,39 +147,39 @@ msgstr ""
 
 #: ../data/messages:47 ../data/messages:49
 msgid "in seconds."
-msgstr ""
+msgstr "en seconde"
 
 #: ../data/messages:49 ../data/messages:51
 msgid "Sliding delay :"
-msgstr ""
+msgstr "Délais de changement :"
 
 #: ../data/messages:51 ../data/messages:53
 msgid "Give better image rendering"
-msgstr ""
+msgstr "Donne un meilleur rendu de l'image"
 
 #: ../data/messages:53 ../data/messages:55
 msgid "Don't strench the images ?"
-msgstr ""
+msgstr "Ne pas étirer les images ?"
 
 #: ../data/messages:55 ../data/messages:57
 msgid "Effect while changing image :"
-msgstr ""
+msgstr "Effet"
 
 #: ../data/messages:57 ../data/messages:59
 msgid "none"
-msgstr ""
+msgstr "aucun"
 
 #: ../data/messages:59 ../data/messages:63
 msgid "blank fade"
-msgstr ""
+msgstr "flash"
 
 #: ../data/messages:61 ../data/messages:65
 msgid "fade in out"
-msgstr ""
+msgstr "fondu"
 
 #: ../data/messages:63 ../data/messages:67
 msgid "side kick"
-msgstr ""
+msgstr "coup de pied"
 
 #: ../data/messages:65 ../data/messages:69
 msgid "diaporama"
@@ -187,26 +187,28 @@ msgstr ""
 
 #: ../data/messages:67 ../data/messages:71
 msgid "grow up"
-msgstr ""
+msgstr "agrandissement"
 
 #: ../data/messages:69 ../data/messages:73
 msgid "shrink down"
-msgstr ""
+msgstr "rétrécissement "
+
+#: ../data/messages:61
+msgid "fade"
+msgstr "fondu"
 
 #: ../data/messages:71 ../data/messages:75
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
+"Mettez la valeur de la transparence a 0 pour ne pas avoir de"
+"fond."
 
 #: ../data/messages:73 ../data/messages:77
 msgid "Choose a background color :"
-msgstr ""
+msgstr "Choisir la couleur de fond :"
 
 #: ../data/messages:45
 msgid "Randomly browse files ?"
-msgstr ""
-
-#: ../data/messages:61
-msgid "fade"
-msgstr ""
+msgstr "Afficher les images aléatoirement ?"
