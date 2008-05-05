@@ -11,6 +11,8 @@ libcd_stacks_la_SOURCES = \
 	applet-config.h\
 	applet-load-icons.c\
 	applet-load-icons.h\
+	applet-stacks.c\
+	applet-stacks.h\
 	applet-notifications.c\
 	applet-notifications.h\
 	applet-struct.h

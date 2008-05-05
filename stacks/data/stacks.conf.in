@@ -51,6 +51,9 @@ on widget layer=false
 [Configuration]
 #F[Directory & Options]
 frame_dir = 
+#b Use Stacks Local directory
+#{Stacks will act as a the shortcut applet's but with files. To add a file, just drag and drop it on the Stacks icon}
+local = true
 #D Monitored Directory :
 directory = /
 #b List hidden files ?

@@ -23,6 +23,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 
   myConfig.cMonitoredDirectory = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "directory", "/");
 	myConfig.bHiddenFiles = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "hidden", FALSE);
+	myConfig.bLocalDir = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "local", TRUE);
 	
 CD_APPLET_GET_CONFIG_END
 

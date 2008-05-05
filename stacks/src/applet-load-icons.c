@@ -17,8 +17,11 @@ CD_APPLET_INCLUDE_MY_VARS
 void cd_stacks_build_icons (void) {
   if (myConfig.cMonitoredDirectory == NULL)
     return;
-
-  cd_message("Stacks - Now Listing: %s",myConfig.cMonitoredDirectory);  
+	
+	if (myConfig.bLocalDir) {
+		myConfig.cMonitoredDirectory = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
+	}
+  cd_message("Stacks - Now Listing: %s", myConfig.cMonitoredDirectory);  
   
 	GList *pIconList = NULL;  // ne nous appartiendra plus, donc ne pas desallouer.
 	gchar *cFullURI = NULL;	
@@ -64,6 +67,7 @@ void cd_stacks_debug_icon(Icon *pIcon) {
 
 //A retravailler
 void cd_stacks_update (void) {
+	cd_debug("%s", __func__);
 	cd_stacks_destroy_icons();
 	cd_stacks_build_icons();
 }

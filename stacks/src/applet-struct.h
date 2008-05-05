@@ -7,6 +7,7 @@ typedef struct {
   gchar *cMonitoredDirectory;
   gchar *cRenderer;
   gboolean bHiddenFiles;
+  gboolean bLocalDir;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
