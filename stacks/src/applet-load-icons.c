@@ -27,6 +27,8 @@ void cd_stacks_build_icons (void) {
 	//On liste le dossier a surveiller
 	pIconList = cairo_dock_fm_list_directory (myConfig.cMonitoredDirectory, CAIRO_DOCK_FM_SORT_BY_NAME, 9, myConfig.bHiddenFiles, &cFullURI);
 	
+	g_list_foreach (pIconList, (GFunc) cd_stacks_debug_icon, NULL);
+	
 	if (myDock) {
 		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
 	}
@@ -45,15 +47,19 @@ void cd_stacks_build_icons (void) {
 
 //La fonction pose problème, elle segfault lors des free.
 void cd_stacks_destroy_icons (void) {
-	if (myIcon->pSubDock != NULL) {
+	if (myDock && myIcon->pSubDock != NULL) {
 		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 		myIcon->pSubDock = NULL;
 	}
-	if (myDesklet && myDesklet->icons != NULL) {
+	else if (myDesklet && myDesklet->icons != NULL) {
 		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
 		g_list_free (myDesklet->icons);
 		myDesklet->icons = NULL;
 	}
+}
+
+void cd_stacks_debug_icon(Icon *pIcon) {
+	pIcon->cWorkingDirectory = NULL;
 }
 
 //A retravailler

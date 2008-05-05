@@ -51,7 +51,7 @@ on widget layer=false
 [Configuration]
 #F[Directory & Options]
 frame_dir = 
-#s Monitored Directory :
+#D Monitored Directory :
 directory = /
 #b List hidden files ?
 #{This option with large files lists can slow down the dock, use it properly.}
