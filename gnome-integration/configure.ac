@@ -15,7 +15,7 @@ pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/gnome-integration]
 AC_SUBST(pkgdatadir)
 
 
-PKG_CHECK_MODULES(PACKAGE, cairo-dock gio-2.0)
+PKG_CHECK_MODULES(PACKAGE, cairo-dock gio-2.0 glib-2.0)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile

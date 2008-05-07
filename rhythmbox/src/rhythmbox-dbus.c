@@ -6,8 +6,6 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-dbus.h"
 
-//static DBusGConnection *dbus_connexion;
-//static DBusGProxy *dbus_proxy_dbus;
 static DBusGProxy *dbus_proxy_player = NULL;
 static DBusGProxy *dbus_proxy_shell = NULL;
 
@@ -41,6 +39,9 @@ gboolean rhythmbox_dbus_connect_to_bus (void)
 		dbus_g_proxy_add_signal(dbus_proxy_player, "elapsedChanged",
 			G_TYPE_UINT,
 			G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(dbus_proxy_player, "rb:CovertArt-uri",
+			G_TYPE_STRING,
+			G_TYPE_INVALID);
 		
 		dbus_g_proxy_connect_signal(dbus_proxy_player, "playingChanged",
 			G_CALLBACK(onChangePlaying), NULL, NULL);
@@ -50,6 +51,9 @@ gboolean rhythmbox_dbus_connect_to_bus (void)
 		
 		dbus_g_proxy_connect_signal(dbus_proxy_player, "elapsedChanged",
 			G_CALLBACK(onElapsedChanged), NULL, NULL);
+		
+		dbus_g_proxy_connect_signal(dbus_proxy_player, "rb:CovertArt-uri",
+			G_CALLBACK(onCovertArtChanged), NULL, NULL);
 		
 		return TRUE;
 	}
@@ -72,6 +76,10 @@ void rhythmbox_dbus_disconnect_from_bus (void)
 		dbus_g_proxy_disconnect_signal(dbus_proxy_player, "elapsedChanged",
 			G_CALLBACK(onElapsedChanged), NULL);
 		cd_message ("elapsedChanged deconnecte\n");
+		
+		dbus_g_proxy_disconnect_signal(dbus_proxy_player, "rb:CovertArt-uri",
+			G_CALLBACK(onCovertArtChanged), NULL);
+		cd_message ("onCovertArtChanged deconnecte\n");
 		
 		g_object_unref (dbus_proxy_player);
 		dbus_proxy_player = NULL;
@@ -97,10 +105,6 @@ void rhythmbox_getPlaying (void)
 {
 	cd_message ("");
 	myData.playing = cairo_dock_dbus_get_boolean (dbus_proxy_player, "getPlaying");
-	/**dbus_g_proxy_call (dbus_proxy_player, "getPlaying", NULL,
-		G_TYPE_INVALID,
-		G_TYPE_BOOLEAN, &myData.playing,
-		G_TYPE_INVALID);*/
 }
 
 
@@ -115,10 +119,6 @@ void rhythmbox_getPlayingUri(void)
 	myData.playing_uri = NULL;
 	
 	myData.playing_uri = cairo_dock_dbus_get_string (dbus_proxy_player, "getPlayingUri");
-	/**dbus_g_proxy_call (dbus_proxy_player, "getPlayingUri", NULL,
-		G_TYPE_INVALID,
-		G_TYPE_STRING, &myData.playing_uri ,
-		G_TYPE_INVALID);*/
 }
 
 
@@ -163,10 +163,43 @@ void getSongInfos(void)
 		else myData.playing_duration = 0;
 		cd_message ("  playing_duration <- %ds", myData.playing_duration);
 		
-		value = (GValue *) g_hash_table_lookup(data_list, "rb:coverArt-uri");  // y'aura-t-il le 'rb:' dans RB 11.3 ?
+		value = (GValue *) g_hash_table_lookup(data_list, "rb:coverArt-uri");
 		g_free (myData.playing_cover);
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_cover = g_strdup (g_value_get_string(value));
-		else myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
+		if (value != NULL && G_VALUE_HOLDS_STRING(value))
+		{
+			GError *erreur = NULL;
+			const gchar *cString = g_value_get_string(value);
+			if (cString != NULL && strncmp (cString, "file://", 7) == 0)
+			{
+				myData.playing_cover = g_filename_from_uri (cString, NULL, &erreur);
+				if (erreur != NULL)
+				{
+					cd_warning ("Attention : %s", erreur->message);
+					g_error_free (erreur);
+				}
+			}
+			else
+			{
+				myData.playing_cover = g_strdup (cString);
+			}
+		}
+		else
+		{
+			gchar *cSongPath = g_filename_from_uri (myData.playing_uri, NULL, NULL);  // on teste d'abord dans le repertoire de la chanson.
+			if (cSongPath != NULL)
+			{
+				gchar *cSongDir = g_path_get_dirname (cSongPath);
+				g_free (cSongPath);
+				myData.playing_cover = g_strdup_printf ("%s/%s - %s.jpg", cSongDir, myData.playing_artist, myData.playing_album);
+				g_free (cSongDir);
+				g_print ("test de %s\n", myData.playing_cover);
+				if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
+				{
+					g_free (myData.playing_cover);
+					myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
+				}
+			}
+		}
 		g_print ("  playing_cover <- %s", myData.playing_cover);
 		
 		g_hash_table_destroy (data_list);
@@ -263,5 +296,22 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", (int) (100.*elapsed/myData.playing_duration))
 			CD_APPLET_REDRAW_MY_ICON
 		}
+	}
+}
+
+
+void onCovertArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)
+{
+	cd_message ("%s (%s)",__func__,cImageURI);
+	g_free (myData.playing_cover);
+	myData.playing_cover = g_strdup (cImageURI);
+	
+	CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+	CD_APPLET_REDRAW_MY_ICON
+	myData.cover_exist = TRUE;
+	if (myData.iSidCheckCover != 0)
+	{
+		g_source_remove (myData.iSidCheckCover);
+		myData.iSidCheckCover = 0;
 	}
 }

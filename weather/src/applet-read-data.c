@@ -33,11 +33,12 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 
 void cd_weather_acquisition (void)
 {
+	g_print ("%s (%s)\n", __func__, myConfig.cLocationCode);
 	gboolean bTest = FALSE;
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)
 	{
-		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s%s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), g_get_tmp_dir (), WEATHER_CURRENT_CONDITIONS_FILE);
+		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*%s\" -O %s%s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), g_get_tmp_dir (), WEATHER_CURRENT_CONDITIONS_FILE);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
 		system (cCommand);
 		g_free (cCommand);
 		
@@ -45,7 +46,7 @@ void cd_weather_acquisition (void)
 	
 	if (myConfig.iNbDays > 0)
 	{
-		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d&prod=xoap&par=1048871467&key=12daac2f3a67cb39%s\" -O %s%s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), g_get_tmp_dir (), WEATHER_FORECAST_FILE);
+		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d%s\" -O %s%s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), g_get_tmp_dir (), WEATHER_FORECAST_FILE);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
 		system (cCommand);
 		g_free (cCommand);
 	}

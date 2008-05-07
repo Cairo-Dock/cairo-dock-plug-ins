@@ -154,7 +154,6 @@ static void cd_rendering_one_3D_separator_horizontal (Icon *icon, cairo_t *pCair
 	fDockOffsetY += sens * (pDock->iDecorationsHeight - fHeight) / 2;
 	double fBigWidth = icon->fWidth - fDeltaX, fLittleWidth = icon->fWidth - fDeltaX - 2 * fEpsilon;
 	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
-	///cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
 	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->iCurrentWidth / 2)  // on est a droite.
 	{
 		fDockOffsetX = icon->fDrawX + fEpsilon + icon->fWidth * (icon->fScale - 1) / 2;
@@ -170,7 +169,6 @@ static void cd_rendering_one_3D_separator_horizontal (Icon *icon, cairo_t *pCair
 		if (! pDock->bDirectionUp)
 			cairo_scale (pCairoContext, 1, -1);
 		cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], - fEpsilon, 0);
-		///cairo_set_source_rgba (pCairoContext, 1, 1, 1, 0);
 	}
 	else  // a gauche.
 	{
@@ -187,10 +185,14 @@ static void cd_rendering_one_3D_separator_horizontal (Icon *icon, cairo_t *pCair
 		if (! pDock->bDirectionUp)
 			cairo_scale (pCairoContext, 1, -1);
 		cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], - fDeltaX - fEpsilon, 0);
-		///cairo_set_source_rgba (pCairoContext, 1, 1, 1, 0);
 	}
+	//cairo_set_operator (pCairoContext, CAIRO_OPERATOR_CLEAR);
+	//cairo_paint (pCairoContext);
+	//cairo_set_source_rgba (pCairoContext, 0, 0, 0, 0);
+	//cairo_fill_preserve (pCairoContext);
+	/*cairo_set_operator (pCairoContext, CAIRO_OPERATOR_DEST_OVER);
+	cairo_set_source_rgba (pCairoContext, 1, 1, 1, 1);*/
 	cairo_fill (pCairoContext);
-	///cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 }
 static void cd_rendering_one_3D_separator_vertical (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock)
 {
@@ -470,6 +472,11 @@ void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pAr
 				else
 				{
 					icon->fAlpha = .25;
+				}
+				
+				if (icon->iAnimationType == CAIRO_DOCK_AVOID_MOUSE)
+				{
+					icon->fAlpha = 0.4;
 				}
 				
 				if (CAIRO_DOCK_IS_SEPARATOR (icon) && my_pFlatSeparatorSurface[0] != NULL)
