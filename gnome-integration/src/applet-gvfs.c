@@ -51,7 +51,7 @@ void stop_vfs_backend (void)
 
 
 
-static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID)
+/*static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID)
 {
 	cd_message ("%s (%s)", __func__, cBaseURI);
 	GError *erreur = NULL;
@@ -109,7 +109,7 @@ static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBase
 	
 	g_key_file_free (pKeyFile);
 	return TRUE;
-}
+}*/
 
 static gchar *_cd_get_icon_path (GIcon *pIcon)
 {
@@ -135,48 +135,146 @@ static gchar *_cd_get_icon_path (GIcon *pIcon)
 	return cIconPath;
 }
 
+
+/*static GMount * _cd_find_mount_from_name_simple (const gchar *cVolumeName)
+{
+	GVolumeMonitor *pVolumeMonitor = g_volume_monitor_get ();
+	GList *pMountsList = g_volume_monitor_get_mounts (pVolumeMonitor);
+	GMount *pMount, *pFoundMount = NULL;
+	gchar *cName;
+	GList *m;
+	for (m = pMountsList; m != NULL; m = m->next)
+	{
+		pMount = m->data;
+		g_print ("mount '%s'\n", g_mount_get_name (pMount));
+		cName = g_mount_get_name (pMount);
+		if (cName != NULL && strcmp (cName, cVolumeName) == 0)
+			pFoundMount = pMount;
+		else
+			g_object_unref (pMount);
+	}
+	g_list_free (pMountsList);
+	
+}*/
+static void _cd_find_mount_from_name (const gchar *cVolumeName, GMount **pFoundMount, gchar **cURI, gchar **cIconName)
+{
+	GFile *pFile = g_file_new_for_uri ("computer://");
+	GError *erreur = NULL;
+	gchar *cAttributes = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_TYPE, ",",
+		G_FILE_ATTRIBUTE_STANDARD_NAME, ",",
+		G_FILE_ATTRIBUTE_STANDARD_ICON, ",",
+		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI, ",",
+		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE, NULL);
+	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
+		cAttributes,
+		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+		NULL,
+		&erreur);
+	g_free (cAttributes);
+	g_object_unref (pFile);
+	if (erreur != NULL)
+	{
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
+		return ;
+	}
+	
+	GList *pIconList = NULL;
+	Icon *icon;
+	GFileInfo *pFileInfo;
+	do
+	{
+		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("Attention : %s", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+		}
+		else
+		{
+			if (pFileInfo == NULL)
+				break ;
+			GFileType iFileType = g_file_info_get_file_type (pFileInfo);
+			if (iFileType == G_FILE_TYPE_MOUNTABLE)
+			{
+				const gchar *cName = g_file_info_get_name (pFileInfo);
+				g_print ("  test de %s...\n", cName);
+				gchar *cFileURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
+				GFile *file = g_file_new_for_uri (cFileURI);
+				GMount *pMount = g_file_find_enclosing_mount (file, NULL, NULL);
+				if (pMount != NULL)
+				{
+					gchar *cName = g_mount_get_name (pMount);
+					g_print ("    mount : %s\n", cName);
+					if (cName != NULL && strcmp (cName, cVolumeName) == 0)
+					{
+						g_print ("TROUVE\n");
+						*pFoundMount = pMount;
+						*cURI = g_strconcat ("computer://", cName, NULL);
+						GIcon *pSystemIcon = g_mount_get_icon (pMount);
+						*cIconName = _cd_get_icon_path (pSystemIcon);
+						break ;
+					}
+				}
+				g_object_unref (file);
+				g_free (cFileURI);
+			}
+		}
+	} while (TRUE);
+	g_object_unref (pFileEnum);
+}
 void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, CairoDockFMSortType iSortType)
 {
 	g_return_if_fail (cBaseURI != NULL);
+	GError *erreur = NULL;
 	cd_message ("%s (%s)", __func__, cBaseURI);
 	
 	gchar *cFullURI;
 	if (strncmp (cBaseURI, "x-nautilus-desktop://", 21) == 0)
 	{
-		gchar *cNautilusFile = g_strdup_printf ("computer://%s", cBaseURI+21);
+		gchar *cNautilusFile = g_strdup (cBaseURI+14);
+		memcpy (cNautilusFile, "file", 4);
 		if (g_str_has_suffix (cBaseURI, ".volume"))
 		{
 			cNautilusFile[strlen(cNautilusFile)-7] = '\0';
-			cFullURI = g_strdup_printf ("%s.drive", cNautilusFile);
-			g_free (cNautilusFile);
-			gchar **cSplit = g_strsplit (cFullURI, "%20", -1);
-			if (cSplit != NULL && cSplit[0] != NULL)
-			{
-				int i = 0;
-				g_free (cFullURI);
-				GString *sURI = g_string_new (cSplit[0]);
-				for (i = 1; cSplit[i] != NULL; i ++)
-				{
-					cd_message ("%d) %s\n", i, cSplit[i]);
-					g_string_append_printf (sURI, "%%2520%s", cSplit[i]);
-				}
-				cFullURI = sURI->str;
-				g_string_free (sURI, FALSE);
-			}
-			g_strfreev (cSplit);
 		}
+		cFullURI = g_filename_from_uri (cNautilusFile, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("Attention : %s", erreur->message);
+			g_error_free (erreur);
+			return ;
+		}
+		gchar *cVolumeName = cFullURI + 1;
+		g_print ("cVolumeName : %s\n", cVolumeName);
+		
+		GMount *pMount = NULL;
+		
+		_cd_find_mount_from_name (cVolumeName, &pMount, cURI, cIconName);
+		g_return_if_fail (pMount != NULL);
+		
+		*cName = g_strdup (cVolumeName);
+		*bIsDirectory = TRUE;
+		*iVolumeID = 1;
+		*fOrder = 0;
+		g_object_unref (pMount);
+		
+		g_free (cFullURI);
+		g_free (cNautilusFile);
+		return;
 	}
 	else
 	{
 		if (*cBaseURI == '/')
-			cFullURI = g_strconcat ("file://", cBaseURI, NULL);
+			cFullURI = g_filename_to_uri (cBaseURI, NULL, NULL);
 		else
 			cFullURI = g_strdup (cBaseURI);
 	}
 	cd_message (" -> cFullURI : %s", cFullURI);
 	
 	GFile *pFile = g_file_new_for_uri (cFullURI);
-	GError *erreur = NULL;
+	
 	gchar *cQuery = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_TYPE, ",",
 		G_FILE_ATTRIBUTE_STANDARD_SIZE, ",",
 		G_FILE_ATTRIBUTE_TIME_MODIFIED, ",",
@@ -219,11 +317,9 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	*bIsDirectory = (iFileType == G_FILE_TYPE_DIRECTORY);
 	g_print (" => '%s' (mime:%s ; bIsDirectory:%d)\n", *cName, cMimeType, *bIsDirectory);
 	
-	if (cMimeType == NULL)
+	if (iFileType == G_FILE_TYPE_MOUNTABLE)
 	{
-		file_manager_get_file_info_from_desktop_link (cFullURI, cName, cURI, cIconName, bIsDirectory, iVolumeID);
-		*fOrder = 0;
-		return ;
+		
 	}
 	
 	*cIconName = NULL;
@@ -408,12 +504,12 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	gchar *cURI;
 	if (strcmp (cBaseURI, CAIRO_DOCK_FM_VFS_ROOT) == 0)
 	{
-		cURI = g_strdup ("computer:/");
+		cURI = g_strdup ("computer://");
 		///*cFullURI = cURI;
 		///return vfs_backend_list_volumes ();
 	}
 	else if (strcmp (cBaseURI, CAIRO_DOCK_FM_NETWORK) == 0)
-		cURI = g_strdup ("network:/");
+		cURI = g_strdup ("network://");
 	else
 		cURI = (*cBaseURI == '/' ? g_strconcat ("file://", cBaseURI, NULL) : g_strdup (cBaseURI));
 	*cFullURI = cURI;
@@ -573,28 +669,10 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 
 
 
-void vfs_backend_launch_uri (const gchar *cURI)
-{
-	g_return_if_fail (cURI != NULL);
-	GError *erreur = NULL;
-	gchar *cFullURI = (*cURI == '/' ? g_strconcat ("file://", cURI, NULL) : g_strdup (cURI));
-	
-	g_print ("%s (%s)\n", __func__, cFullURI);
-	gboolean bSuccess = g_app_info_launch_default_for_uri (cFullURI,
-		NULL,
-		&erreur);
-	g_free (cFullURI);
-	if (erreur != NULL)
-	{
-		cd_warning ("Attention : couldn't get file info for '%s' [%s]", cURI, erreur->message);
-		g_error_free (erreur);
-	}
-}
-
 gchar *_cd_find_target_uri (gchar *cBaseURI)
 {
 	GError *erreur = NULL;
-	/*GFile *pFile = g_file_new_for_uri (cBaseURI);
+	GFile *pFile = g_file_new_for_uri (cBaseURI);
 	GFileInfo *pFileInfo = g_file_query_info (pFile,
 		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI,
 		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
@@ -607,8 +685,8 @@ gchar *_cd_find_target_uri (gchar *cBaseURI)
 		g_error_free (erreur);
 		return NULL;
 	}
-	const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);*/
-	GFile *pFile = g_file_new_for_uri ("computer:/");
+	const gchar *cTargetURI = g_strdup (g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI));
+	/*GFile *pFile = g_file_new_for_uri ("computer:/");
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","G_FILE_ATTRIBUTE_STANDARD_NAME,
 		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
@@ -646,12 +724,31 @@ gchar *_cd_find_target_uri (gchar *cBaseURI)
 			}
 		}
 	} while (TRUE);  // 'g_file_enumerator_close' est appelee lors du dernier 'g_file_enumerator_next_file'.
-	g_free (cBaseName);
+	g_free (cBaseName);*/
 	return cTargetURI;
+}
+void vfs_backend_launch_uri (const gchar *cURI)
+{
+	g_return_if_fail (cURI != NULL);
+	GError *erreur = NULL;
+	gchar *cFullURI = (*cURI == '/' ? g_strconcat ("file://", cURI, NULL) : g_strdup (cURI));
+	
+	g_print ("%s (%s)\n", __func__, cFullURI);
+	gchar *cTargetURI = _cd_find_target_uri (cFullURI);
+	gboolean bSuccess = g_app_info_launch_default_for_uri (cTargetURI != NULL ? cTargetURI : cFullURI,
+		NULL,
+		&erreur);
+	g_free (cFullURI);
+	if (erreur != NULL)
+	{
+		cd_warning ("Attention : couldn't get file info for '%s' [%s]", cURI, erreur->message);
+		g_error_free (erreur);
+	}
 }
 
 GMount *_cd_find_mount_from_uri (const gchar *cURI, gchar **cTargetURI)
 {
+	g_print ("%s (%s)\n", __func__, cURI);
 	gchar *_cTargetURI = _cd_find_target_uri (cURI);
 	
 	GMount *pMount = NULL;
@@ -692,8 +789,8 @@ static void _vfs_backend_mount_callback (gpointer pObject, GAsyncResult *res, gp
 	GError *erreur = NULL;
 	gboolean bSuccess;
 	if (GPOINTER_TO_INT (data[1]) == 1)
-		//bSuccess = (g_file_mount_mountable_finish (G_FILE (pObject), res, &erreur) != NULL);
-		bSuccess = (g_volume_mount_finish (G_VOLUME (pObject), res, &erreur));
+		bSuccess = (g_file_mount_mountable_finish (G_FILE (pObject), res, &erreur) != NULL);
+		//bSuccess = (g_volume_mount_finish (G_VOLUME (pObject), res, &erreur));
 	else if (GPOINTER_TO_INT (data[1]) == 0)
 		bSuccess = g_mount_unmount_finish (G_MOUNT (pObject), res, &erreur);
 	else
@@ -716,9 +813,7 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 	g_return_if_fail (iVolumeID > 0);
 	cd_message ("%s (%s)", __func__, cURI);
 	
-	//gchar *cTargetURI = _cd_find_target_uri (cURI);
-	
-	gchar *cTargetURI = NULL;
+	/*gchar *cTargetURI = NULL;
 	GMount *pMount = _cd_find_mount_from_uri (cURI, &cTargetURI);
 	g_print (" %x / %s\n", pMount, cTargetURI);
 	GVolume *pVolume = g_mount_get_volume (pMount);
@@ -733,11 +828,11 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 		NULL,
 		NULL,
 		(GAsyncReadyCallback) _vfs_backend_mount_callback,
-		data2);
+		data2);*/
 	
 	
-	
-	/*GFile *pFile = g_file_new_for_uri (cURI);
+	gchar *cTargetURI = _cd_find_target_uri (cURI);
+	GFile *pFile = g_file_new_for_uri (cURI);
 	
 	gpointer *data2 = g_new (gpointer, 5);
 	data2[0] = pCallback;
@@ -751,7 +846,7 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 		NULL,
 		(GAsyncReadyCallback) _vfs_backend_mount_callback,
 		data2);
-	g_free (cTargetURI);*/
+	g_free (cTargetURI);
 }
 
 void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock)
@@ -825,6 +920,18 @@ void _on_monitor_changed (GFileMonitor *monitor,
 		return ;
 	}
 	gchar *cURI = g_file_get_uri (file);
+	g_print ("***cURI:%s\n", cURI);
+	gchar *cPath = NULL;
+	if (strncmp (cURI, "computer://", 11) == 0)
+	{
+		memcpy (cURI+4, "file", 4);
+		cPath = g_filename_from_uri (cURI+4, NULL, NULL);
+		g_free (cURI);
+		g_print ("***cPath:%s\n", cPath);
+		cURI = g_strdup_printf ("computer://%s", cPath);
+		g_print ("***cURI:%s\n", cURI);
+	}
+	
 	pCallback (iEventType, cURI, user_data);
 	g_free (cURI);
 }
