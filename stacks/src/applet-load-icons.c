@@ -11,6 +11,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 
 #include "applet-struct.h"
 #include "applet-load-icons.h"
+#include "applet-stacks.h"
  
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -31,6 +32,9 @@ void cd_stacks_build_icons (void) {
 	pIconList = cairo_dock_fm_list_directory (myConfig.cMonitoredDirectory, CAIRO_DOCK_FM_SORT_BY_NAME, 9, myConfig.bHiddenFiles, &cFullURI);
 	
 	g_list_foreach (pIconList, (GFunc) cd_stacks_debug_icon, NULL);
+	
+	if (myConfig.bFilter)
+		pIconList = cd_stacks_mime_filter(pIconList);
 	
 	if (myDock) {
 		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)

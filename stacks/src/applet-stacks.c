@@ -21,7 +21,7 @@ void cd_stacks_check_local(void) {
 		cd_debug("Stacks local directory made");
 	}
 	else
-		cd_debug("Stacks local directory exists");
+		cd_debug("Stacks local directory exists, let's list it");
 	
 	g_free (cDirectory);
 }
@@ -38,8 +38,10 @@ void cd_stacks_mklink(const gchar *cFile) {
 	int *iVolumeID=NULL;
 	cairo_dock_fm_get_file_info(cBaseURI, &cFileName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_TYPE);
 	
-	if (cFileName == NULL)
+	if (cFileName == NULL) {
+		cd_warning ("Couldn't get filname with no path, halt.");
 		return;
+	}
 	
 	gchar *cHostname = NULL;
 	GError *erreur = NULL;
@@ -70,4 +72,36 @@ void cd_stacks_run_dir(void) {
 	gchar *cURI = g_strdup_printf("file://%s", myConfig.cMonitoredDirectory);
 	cd_debug("Stacks: will use '%s'", cURI);
 	cairo_dock_fm_launch_uri(cURI);
+}
+
+gboolean _isin(gchar **cString, gchar *cCompar) {
+	if (cString == NULL)
+		return FALSE; //Nothing to search in
+	
+	int i=0;
+	gchar *tmp=NULL;
+	while (cString[i] != NULL) {
+		tmp = g_strstr_len (cCompar, -1, cString[i]);
+		if (tmp != NULL)
+			return TRUE; //We found what we want
+		i++;
+	}
+	
+	return FALSE; //We didn't found anything
+}
+
+GList* cd_stacks_mime_filter(GList *pList) {
+	if (pList == NULL)
+		return NULL;
+	
+	GList *mList=NULL, *pElement=NULL;
+  for (pElement = pList; pElement != NULL; pElement = pElement->next) {
+  	Icon *pIcon = pElement->data;
+    if (_isin(myConfig.cMimeTypes, pIcon->acFileName) == FALSE) {
+    	cd_debug ("Adding %s (%s) to filtered list", pIcon->acName, pIcon->acFileName);
+    	mList = g_list_append(mList, pElement->data);
+    }
+  }
+  
+	return mList;
 }

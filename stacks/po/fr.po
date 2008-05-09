@@ -136,4 +136,26 @@ msgstr ""
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du dock auquel il appartient :"
+
+msgid "Clean local directory"
+msgstr "Vider le dossier local"
+
+msgid "Filter files with their mime types ?"
+msgstr "Filtrer les fichiers avec leur mime types ?"
+
+msgid "This options allow you to avoid some files to be displayed in the stacks considering their types (video, images, etc...)"
+msgstr "Cette option vous permet d'éviter que certains fichiers soit affihcer dans le stacks en prenant en compte leur types (video, images, etc...)"
+
+msgid "Here you can specify a list of mime types to avoid :"
+msgstr "Vous pouvez spécifié ici une liste de mime type a éviter:"
+
+msgid "Eg: image, text, video, audio, application..."
+msgstr "Ex: image, text, video, audio, application.."
+
+msgid "Use Stacks local directory ?"
+msgstr "Utiliser le dossier local de Stacks ?"
+
+msgid "Stacks will act as a the shortcut applet's but with files. To add a file, just drag and drop it on the Stacks icon"
+msgstr "Stacks va agir comme l'applet shorcut mais avec des fichiers. Pour ajouter un fichier, il faute juste faire un glisser-déposé de celui-ci sur l'icon de Stacks"
+

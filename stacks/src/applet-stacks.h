@@ -9,5 +9,6 @@ void cd_stacks_check_local(void);
 void cd_stacks_mklink(const gchar *cFile);
 void cd_stacks_clean_local(void);
 void cd_stacks_run_dir(void);
+GList* cd_stacks_mime_filter(GList *pList);
 
 #endif
