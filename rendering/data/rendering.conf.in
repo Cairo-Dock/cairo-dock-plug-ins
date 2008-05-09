@@ -67,3 +67,5 @@ nb icons min = 3
 #e[60;180] Cone's width :
 #{in degree. The smaller, the more the cone is narrow. 180° means the cone is widely opened.}
 cone = 130
+
+[Diapo]

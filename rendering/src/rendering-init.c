@@ -13,6 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "rendering-parabole.h"
 #include "rendering-3D-plane.h"
 #include "rendering-rainbow.h"
+#include "rendering-diapo.h"
 #include "rendering-desklet-tree.h"
 #include "rendering-desklet-caroussel.h"
 #include "rendering-desklet-simple.h"
@@ -84,6 +85,8 @@ void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *c
 	
 	cd_rendering_register_rainbow_renderer ();  // pas encore ...
 	
+	cd_rendering_register_diapo_renderer (); 
+
 	cairo_dock_set_all_views_to_default ();
 	
 	//\_______________ On charge le separateur plat.
@@ -97,7 +100,7 @@ void stop (void)
 	cairo_dock_remove_renderer (MY_APPLET_3D_PLANE_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_RAINBOW_VIEW_NAME);
-	
+	cairo_dock_remove_renderer (MY_APPLET_DIAPO_VIEW_NAME);
 	reset_data ();
 	
 	cairo_dock_reset_all_views ();  // inutile de faire cairo_dock_set_all_views_to_default () puisqu'on ne peut desactiver un module qu'en validant la config du dock.

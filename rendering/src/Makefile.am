@@ -23,6 +23,8 @@ libcd_rendering_la_SOURCES = \
 	rendering-3D-plane.h\
 	rendering-rainbow.c\
 	rendering-rainbow.h\
+	rendering-diapo.c\
+	rendering-diapo.h\
 	rendering-desklet-caroussel.c\
 	rendering-desklet-caroussel.h\
 	rendering-desklet-tree.c\

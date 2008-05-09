@@ -36,6 +36,7 @@ extern double my_fRainbowMagnitude;
 extern int my_iRainbowNbIconsMin;
 extern double my_fRainbowConeOffset;
 
+
 void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
 {
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
@@ -76,6 +77,9 @@ void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
 	my_iRainbowNbIconsMin = cairo_dock_get_integer_key_value (pKeyFile, "Rainbow", "nb icons min", &bFlushConfFileNeeded, 3, NULL, NULL);
 	
 	my_fRainbowConeOffset = G_PI * (1 - cairo_dock_get_double_key_value (pKeyFile, "Rainbow", "cone", &bFlushConfFileNeeded, 130, NULL, NULL) / 180) / 2;
+
+
+
 }
 
 
