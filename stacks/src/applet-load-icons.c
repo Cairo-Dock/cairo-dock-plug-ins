@@ -16,12 +16,13 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 CD_APPLET_INCLUDE_MY_VARS
 
 void cd_stacks_build_icons (void) {
-  if (myConfig.cMonitoredDirectory == NULL)
-    return;
-	
 	if (myConfig.bLocalDir) {
 		myConfig.cMonitoredDirectory = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
 	}
+	
+	if (myConfig.cMonitoredDirectory == NULL)
+    return;
+	
   cd_message("Stacks - Now Listing: %s", myConfig.cMonitoredDirectory);  
   
 	GList *pIconList = NULL;  // ne nous appartiendra plus, donc ne pas desallouer.
@@ -44,11 +45,13 @@ void cd_stacks_build_icons (void) {
 		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		///gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
+		gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
 	}
 	
 	if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_stacks_update, NULL))
 		cd_warning ("Attention : can't monitor files");
+		
+	CD_APPLET_REDRAW_MY_ICON
 }
 
 
