@@ -25,9 +25,9 @@ This rendering is (was) written by parAdOxxx_ZeRo, co mah blog : http://paradoxx
 
 #include "rendering-diapo.h"
 
-const gint iconGapX = 10;
-const gint iconGapY = 20;
-
+const gint iconGapX  = 5;
+const gint iconGapY  = 10;
+const gdouble fScaleMax = 2.;
 void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
 {
         guint nRowsX = 0;
@@ -135,13 +135,13 @@ void cd_rendering_render_diapo (CairoDock *pDock)
 			        	fRatio);*/
                 	cairo_set_source_surface (pCairoContext,
 				icon->pTextBuffer,                                        // TODO récupérer vrai valeurs
-				icon->fDrawX + (icon->fWidth)/2                   - 20,   // 20 = largeur texte / 2
-				icon->fDrawY +  icon->fHeight   + (iconGapY / 2)  - 5  ); // 5 = hauteur texte / 2
+				icon->fDrawX + (icon->fWidth * icon->fScale)/2                   - 20,   // 20 = largeur texte / 2
+				icon->fDrawY +  (icon->fHeight * icon->fScale)   + (iconGapY / 2)  - 5  ); // 5 = hauteur texte / 2
 			
 			if (icon->fAlpha == 1)
 			        cairo_paint (pCairoContext);
 		        else
-			        cairo_paint_with_alpha (pCairoContext, icon->fAlpha);
+			        cairo_paint_with_alpha (pCairoContext, 1. + (icon->fScale - fScaleMax)/(fScaleMax - 1));
 			
 			cairo_restore (pCairoContext);
                 }
@@ -241,9 +241,12 @@ void cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRows
         guint y = 0;
         gdouble iconeX = 0.;
         gdouble iconeY = 0.;
-        gint maxWidth [nRowsX];
-        gint maxHeight[nRowsY];
-
+        guint maxWidth [nRowsX];
+        guint maxHeight[nRowsY];
+        guint curDockWidth  = 0;
+        guint curDockHeight = 0;
+        guint offsetX = 0;
+        guint offsetY = 0;
         cairo_dock_rendering_diapo_calculate_max_icon_size(pDock->icons, &maxWidth, &maxHeight, nRowsX, nRowsY);
        
         //On crée une liste d'icone des icones à parcourir :
@@ -263,13 +266,14 @@ void cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRows
 
 //On passe au réferentiel de l'image :
 	        icon->fXMin = icon->fXMax = icon->fXAtRest = //Ca on s'en sert pas encore
-	        icon->fDrawX = iconeX + iconGapX;
-	        icon->fDrawY = iconeY + iconGapY;	    
+	        icon->fDrawX = iconeX + iconGapX + maxWidth [x] / 2  - (icon->fWidth  * icon->fScale) / 2 ;
+	        icon->fDrawY = iconeY + iconGapY + maxHeight[y] / 2  - (icon->fHeight * icon->fScale) / 2 ;	    
 //On prépare pour la suivante :
 	        i++;
 	        
                 if(!(i % nRowsX)) //  si on est à la fin d'une ligne on change
                 {
+                        curDockWidth = iconeX + maxWidth[x] + 2 * iconGapX;
                         iconeX  = 0.;
                         iconeY += maxHeight[y] + 2 * iconGapY;
                 }
@@ -287,17 +291,30 @@ void cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRows
 	        icon->fHeightFactor = 1.;               // zoom sur hauteur
 	        icon->fOrientation = 0.;                // rotation de l'icone	        
 //	        icon->bPointed = FALSE;
+
+
 //Transparence de l'icone :
  //               icon->fAlpha = 0.9; 
                 /*
                 //Pas de transparence pour les icones du milieu
                 if  ( ( (i % nRowsX) == 0 ) || ( (i % nRowsX) == (nRowsX-1) ) )  icon->fAlpha -= 0.333333; // On enleve un tier pour les bords verticaux
                 if  ( ( (i < nRowsX ) || ( (i >= ( nRowsX * ( nRowsY - 1 ) ) ) ) ) )  icon->fAlpha -= 0.333333; // On enleve un tier pour les bords horizontaux*/
+        }
+        curDockHeight = iconeY;
 
+//On calcule l'offset pour que ce soit centré :
+        offsetX = (pDock->iMaxDockWidth  - curDockWidth ) / 2;
+        offsetY = (pDock->iMaxDockHeight - curDockHeight) / 2;      
+        
+        for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	{
+//On recupere la structure d'infos
+		icon = ic->data;
+		icon->fDrawX += offsetX;
+		icon->fDrawY += offsetY;
 //On laisse le dock s'occuper des animations
 		cairo_dock_manage_animations (icon, pDock);
-        }
-
+	}
 }
 
 
@@ -340,7 +357,7 @@ Icon * cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, 
                 }
                 else
                 {
-                        icon->fScale = - (1./eloignementMax) * distanceE + 2.;
+                        icon->fScale = - (1./eloignementMax) * distanceE + fScaleMax;
                 }
 	}
 
