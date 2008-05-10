@@ -25,32 +25,33 @@ This rendering is (was) written by parAdOxxx_ZeRo, co mah blog : http://paradoxx
 
 #include "rendering-diapo.h"
 
+const gint iconGapX = 5;
+const gint iconGapY = 15;
+
 void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
 {
         guint nRowsX = 0;
         guint nRowsY = 0;
         guint nIcones = 0;
 // On cherche le premier élément :
-	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_diapo (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
+	//pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_diapo (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 
 	nIcones = cairo_dock_rendering_diapo_guess_grid(pDock->icons, &nRowsX, &nRowsY);
 	
 	cd_message("grepme > n : %d - x:%d - y:%d", nIcones, nRowsX, nRowsY);
-// Définition de la zone de déco - 0 pour l'instant
-	pDock->iDecorationsHeight = 0;                          //pDock->iMaxIconHeight + 2 * g_iFrameMargin;
-	pDock->iDecorationsWidth  = 0;                           //pDock->iMaxDockWidth;
-	
+
 // Rayon des coins + calcul de la place en plus (?))
 	//double fRadius = MIN (g_iDockRadius, (pDock->iDecorationsHeight + g_iDockLineWidth) / 2 - 1);
 	//double fExtraWidth = g_iDockLineWidth + 2 * (fRadius + g_iFrameMargin);
 	if(nIcones != 0)
 	{
 //On obtient les hauteur/largeur max
-	        pDock->iMaxDockWidth = nRowsX * ((Icon*)pDock->icons->data)->fWidth;
-	        pDock->iMaxDockHeight = nRowsY * ((Icon*)pDock->icons->data)->fHeight;
+	        pDock->iMaxDockWidth = nRowsX * (((Icon*)pDock->icons->data)->fWidth + iconGapX);
+	        pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + iconGapY);
 //Et les hauteur/largeur min
-	        pDock->iMinDockWidth = nRowsX * ((Icon*)pDock->icons->data)->fWidth;
-	        pDock->iMinDockHeight = nRowsY * ((Icon*)pDock->icons->data)->fHeight;
+	        pDock->iMinDockWidth = nRowsX * (((Icon*)pDock->icons->data)->fWidth + iconGapX);
+	        pDock->iMinDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + iconGapY);
+	        //pDock->fRatio = 0.5;
 	}
 	else
 	{
@@ -59,6 +60,10 @@ void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
 	        pDock->iMinDockWidth = 0;
 	        pDock->iMinDockHeight = 0;
 	}
+	// Définition de la zone de déco - 0 pour l'instant
+	pDock->iDecorationsHeight = 0;//pDock->iMaxDockHeight;                          //pDock->iMaxIconHeight + 2 * g_iFrameMargin;
+	pDock->iDecorationsWidth  = 0;//pDock->iMaxDockWidth;                           //pDock->iMaxDockWidth;
+	
 }
 
 void cairo_dock_set_subdock_position_linear (Icon *pPointedIcon, CairoDock *pDock)
@@ -186,29 +191,39 @@ Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock)
 	GList* ic;
 //Pour toutes les icones 
         gint i = 0;
-        double firstX = 0.;
-        double firstY = 0.;
+        double iconeX = 0.;
+        double iconeY = 0.;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 //On recupere la structure d'infos
 		icon = ic->data;
 //On affecte les parametres de dessin  :
-
-	        icon->fDrawX = firstX + icon->fWidth * (i % nRowsX);                // l'abscisse
-	        icon->fDrawY = firstY + icon->fHeight * (int) (i / nRowsX);                // l'ordonnée
-	        cd_message("grepme > x:%.2f- y:%.2f - i:%d", icon->fDrawX, icon->fDrawY, i);
+                
+	        iconeX = (icon->fWidth + iconGapX) * (i % nRowsX);                      // l'abscisse
+	        iconeY = (icon->fHeight + iconGapY) * (int) (i / nRowsX);               // l'ordonnée
+// On affecte tous les parametres ne sachant pas franchement à quoi ils correspondent :	       
+	        icon->fX = iconeX;
+	        icon->fY = iconeY;
+	        icon->fXMax = iconeX;
+	        icon->fXMin = iconeX;
+	        icon->fDrawXAtRest = iconeX;
+	        icon->fDrawYAtRest = iconeY;	    
+	        icon->fDrawX = iconeX;
+	        icon->fDrawY = iconeY;	        
+	        icon->fXAtRest = iconeX;
+	        icon->fPhase = 0.;
+	        icon->fScale = 1.;
 	        icon->fWidthFactor = 1.;                // zoom sur largeur
 	        icon->fHeightFactor = 1.;               // zoom sur hauteur
-	        icon->fOrientation = 0.;                // rotation de l'icone
+	        icon->fOrientation = 0.;                // rotation de l'icone	        
+	        
+	        cd_message("grepme > x:%.2f- y:%.2f - i:%d", icon->fDrawX, icon->fDrawY, i);
+	        
 //Transparence de l'icone :
-	        if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
-	        {
-		        icon->fAlpha = 1;
-	        }
-	        else
-	        {
-		        icon->fAlpha = .25;
-	        }
+                icon->fAlpha = 1.; //Pas de transparence pour les icones du milieu
+                if  ( ( (i % nRowsX) == 0 ) || ( (i % nRowsX) == (nRowsX-1) ) )  icon->fAlpha -= 0.333333; // On enleve un tier pour les bords verticaux
+                if  ( ( (i < nRowsX ) || ( (i >= ( nRowsX * ( nRowsY - 1 ) ) ) ) ) )  icon->fAlpha -= 0.333333; // On enleve un tier pour les bords horizontaux
+
 //On laisse le dock s'occuper des animations
 		cairo_dock_manage_animations (icon, pDock);
 	        i++;
