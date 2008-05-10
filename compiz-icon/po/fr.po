@@ -415,7 +415,7 @@ msgstr "Ce sera Emerald par Défaut."
 #: ../data/messages:79 ../data/messages:77 ../data/messages:81
 #: ../data/messages:85 ../data/messages:87
 msgid "Choose your Windows Decorator :"
-msgstr "Choississez votre Décorateur de Fenêtre :"
+msgstr "Choisissez votre Décorateur de Fenêtre :"
 
 #: ../data/messages:81 ../data/messages:79 ../data/messages:83
 #: ../data/messages:87 ../data/messages:89
@@ -451,8 +451,8 @@ msgstr "Charger Compiz avec les options au démarrage."
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du dock auquel il appartient :"
 
 #: ../data/messages:63
 msgid "Load Compiz with options at applet's startup."
-msgstr ""
+msgstr "Charge Compiz avec ses options au démarrage de l'applet."

@@ -386,4 +386,4 @@ msgstr "Montrer une info-bulle ?"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du dock auquel il appartient :"

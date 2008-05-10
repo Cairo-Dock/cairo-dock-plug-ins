@@ -17,7 +17,7 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-load-icon.h"
 #include "applet-compiz.h"
 
-#define CD_COMPIZ_CHECK_TIME 2000
+#define CD_COMPIZ_CHECK_TIME 5000
 
 CD_APPLET_DEFINITION ("compiz-icon", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 
@@ -26,11 +26,11 @@ CD_APPLET_INIT_BEGIN (erreur)
 	cd_compiz_build_icons ();
 	
 	if (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz) {
+		myData.bDecoratorRestarted = FALSE;
 		myData.iCompizIcon = -1;  // force le dessin.
-		if (! myConfig.forceConfig) { // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
+		if (! myConfig.forceConfig) // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
 			myData.bCompizRestarted = TRUE;
-			myData.bDecoratorRestarted = TRUE;
-		}
+		
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (CD_COMPIZ_CHECK_TIME,
 			cd_compiz_acquisition,
 			cd_compiz_read_data,
@@ -76,10 +76,10 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else if (! cairo_dock_measure_is_active (myData.pMeasureTimer) && (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz)) {
 			myData.iCompizIcon = -1;
-			if (! myConfig.forceConfig) { // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
+			myData.bDecoratorRestarted = FALSE;
+			if (! myConfig.forceConfig) // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
 				myData.bCompizRestarted = TRUE;
-				myData.bDecoratorRestarted = TRUE;
-			}
+			
 			cairo_dock_launch_measure (myData.pMeasureTimer);
 		}
 		else {

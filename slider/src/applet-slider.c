@@ -407,10 +407,11 @@ gboolean cd_slider_grow_up (void) {
 
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
-	
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
+	cairo_save(myDrawContext);
 	cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
   cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
+  cairo_restore(myDrawContext);
 
 	CD_APPLET_REDRAW_MY_ICON
 
@@ -517,12 +518,13 @@ cairo_surface_t* cd_slider_get_previous_img_surface(GList *pList, GList *pImg) {
 
 //Sert au débug, a retirer pour un vrai release
 void _printList(GList *pList) {
-  GList *pElement;
-  gchar *pValue;
+  GList *pElement=NULL;
+  gchar *pValue=NULL;
   for (pElement = pList; pElement != NULL; pElement = pElement->next) {
     pValue = pElement->data;
     cd_message("Listed: %s\n", pValue);
   }
+  g_free(pValue);
 }
 
 GList* _slider_random_image(void) {

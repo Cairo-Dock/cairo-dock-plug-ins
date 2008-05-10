@@ -57,7 +57,7 @@ ccmd =
 
 #b Auto-reload Compiz ?
 #{If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then.}
-auto reload compiz = true
+auto reload compiz = false
 #b Auto-reload the Decorator ?
 #{If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then.}
 auto reload decorator = true

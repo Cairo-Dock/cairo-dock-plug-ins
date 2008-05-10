@@ -17,7 +17,7 @@ Fabrice Rey <fabounet@users.berlios.de>
 CD_APPLET_INCLUDE_MY_VARS
 
 #define CD_COMPIZ_TMP_FILE "/tmp/compiz"
-#define CD_COMPIZ_CHECK_TIME 2000
+#define CD_COMPIZ_CHECK_TIME 5000
 
 static int s_iThreadIsRunning = 0;
 static int s_iSidTimerRedraw = 0;
@@ -92,7 +92,7 @@ void cd_compiz_switch_manager(void) {
 
 
 void cd_compiz_start_favorite_decorator (void) {
-	//g_print ("%s (%s)\n", __func__, myConfig.cWindowDecorator);
+	cd_debug ("%s (%s)", __func__, myConfig.cWindowDecorator);
 	gchar *cCommand = g_strdup_printf ("%s --replace", myConfig.cWindowDecorator);
 	myData.bDecoratorRestarted = TRUE;
 	cairo_dock_launch_command (cCommand);
@@ -100,7 +100,7 @@ void cd_compiz_start_favorite_decorator (void) {
 }
 
 void cd_compiz_start_decorator (compizDecorator iDecorator) {
-	//g_print ("%s (%d)\n", __func__, iDecorator);
+	cd_debug ("%s (%d)", __func__, iDecorator);
 	g_return_if_fail (iDecorator >= 0 && iDecorator < COMPIZ_NB_DECORATORS && myConfig.cDecorators[iDecorator] != NULL);
 	gchar *cCommand = g_strdup_printf ("%s --replace", myConfig.cDecorators[iDecorator]);
 	myData.bDecoratorRestarted = TRUE;
@@ -142,14 +142,18 @@ void cd_compiz_read_data(void) {
 
 void cd_compiz_update_from_data (void) {
 	cd_compiz_update_main_icon ();
-	//g_print (" etat : %d - %d / action : %d - %d\n", myData.bCompizIsRunning, myData.bDecoratorIsRunning, myData.bCompizRestarted, myData.bDecoratorRestarted);
-	if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz && ! myData.bCompizRestarted) {
-		myData.bCompizRestarted = TRUE;  // c'est nous qui l'avons change.
-		cd_compiz_start_compiz ();  // relance compiz.
+	cd_debug ("Compiz: %d - Decorator: %d", myData.bCompizIsRunning, myData.bDecoratorIsRunning);
+	if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz) {
+		if (! myData.bCompizRestarted) {
+			myData.bCompizRestarted = TRUE;  // c'est nous qui l'avons change.
+			cd_compiz_start_compiz ();  // relance compiz.
+		}
 	}
-	else if (! myData.bDecoratorIsRunning && myConfig.bAutoReloadDecorator && ! myData.bDecoratorRestarted) {
-		myData.bDecoratorRestarted = TRUE;  // c'est nous qui l'avons change.
-		cd_compiz_start_favorite_decorator (); // relance aussi le decorateur.
+	if (! myData.bDecoratorIsRunning && myConfig.bAutoReloadDecorator) {
+		if (! myData.bDecoratorRestarted) {
+			myData.bDecoratorRestarted = TRUE;  // c'est nous qui l'avons change.
+			cd_compiz_start_favorite_decorator (); // relance aussi le decorateur.
+		}
 	}
 	
 	if (myData.bCompizIsRunning)

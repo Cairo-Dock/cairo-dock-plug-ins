@@ -119,7 +119,7 @@ msgstr "Pause"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr "Nom au dock auquel il appartient"
+msgstr "Nom du dock auquel il appartient :"
 
 #: ../data/messages:35
 msgid "Configuration"

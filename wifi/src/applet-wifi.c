@@ -34,6 +34,7 @@ static float pourcent(float x, float y) {
   p = (x / y) *100;
   return p;
 }
+
 static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *iMlink, int *iPercentage, CDWifiQuality *iQuality) {
 	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 	gchar *cOneInfopipe;

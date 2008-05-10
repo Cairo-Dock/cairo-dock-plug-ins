@@ -334,4 +334,4 @@ msgstr ""
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du dock auquel il appartient :"
