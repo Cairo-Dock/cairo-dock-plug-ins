@@ -100,6 +100,16 @@ CD_APPLET_RELOAD_BEGIN
 				myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 				
 				make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.battery_charge / 100);
+				
+				//Emblem sur notre icône
+				gchar *cEmblem=NULL;
+				if(myData.on_battery)
+					cEmblem = g_strdup_printf("%s/emblem-battery.svg", MY_APPLET_SHARE_DATA_DIR);
+				else
+					cEmblem = g_strdup_printf("%s/emblem-charge.svg", MY_APPLET_SHARE_DATA_DIR);
+					
+				cairo_dock_draw_emblem_on_my_icon (myDrawContext, cEmblem, myIcon, myContainer, CAIRO_DOCK_EMBLEM_MIDDLE);
+				g_free(cEmblem);
 			}
 			else  // on redessine juste l'icone actuelle.
 			{

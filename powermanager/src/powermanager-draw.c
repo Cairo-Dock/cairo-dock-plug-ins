@@ -45,43 +45,6 @@ void update_icon(void)
 				myData.alerted = FALSE;  //On a changer de statut, donc on réinitialise les alertes
 			}
 			
-			if(myData.on_battery)
-			{
-				//Alert when battery charge is under a configured value in %
-				if((myData.battery_charge <= myConfig.lowBatteryValue) && (! myData.alerted))
-				{
-					cd_powermanager_alert(1);
-				}
-				/*if(myData.battery_charge >= 95)
-					{ cd_powermanager_set_surface ("battery_44.svg"); }
-				else if(myData.battery_charge >= 65)
-					{ cd_powermanager_set_surface ("battery_34.svg"); }
-				else if(myData.battery_charge >= 35)
-					{ cd_powermanager_set_surface ("battery_24.svg"); }
-				else if(myData.battery_charge >= 5)
-					{ cd_powermanager_set_surface ("battery_14.svg"); }
-				else
-					{ cd_powermanager_set_surface ("battery_04.svg"); }*/
-			}
-			else
-			{
-				//Alert when battery is charged
-				if((myData.battery_charge == 100) && (! myData.alerted))
-				{
-					cd_powermanager_alert(0);
-				}
-				/*if(myData.battery_charge >= 95)
-					{ cd_powermanager_set_surface ("charge_44.svg"); }
-				else if(myData.battery_charge >= 65)
-					{ cd_powermanager_set_surface ("charge_34.svg"); }
-				else if(myData.battery_charge >= 35)
-					{ cd_powermanager_set_surface ("charge_24.svg"); }
-				else if(myData.battery_charge >= 5)
-					{ cd_powermanager_set_surface ("charge_14.svg"); }
-				else
-					{ cd_powermanager_set_surface ("charge_04.svg"); }*/
-			}
-			
 			if (myConfig.bUseGauge)
 			{
 				make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.battery_charge / 100);
@@ -92,6 +55,27 @@ void update_icon(void)
 				cd_powermanager_draw_icon_with_effect (myData.on_battery);
 				bNeedRedraw = FALSE;
 			}
+			
+			gchar *cEmblem=NULL;
+			if(myData.on_battery)
+			{
+				//Alert when battery charge is under a configured value in %
+				if(myData.battery_charge <= myConfig.lowBatteryValue && ! myData.alerted)
+					cd_powermanager_alert(1);
+					
+				cEmblem = g_strdup_printf("%s/emblem-battery.svg", MY_APPLET_SHARE_DATA_DIR);
+			}
+			else
+			{
+				//Alert when battery is charged
+				if(myData.battery_charge == 100 && ! myData.alerted)
+					cd_powermanager_alert(0);
+				
+				cEmblem = g_strdup_printf("%s/emblem-charge.svg", MY_APPLET_SHARE_DATA_DIR);
+			}
+			cairo_dock_draw_emblem_on_my_icon (myDrawContext, cEmblem, myIcon, myContainer, CAIRO_DOCK_EMBLEM_MIDDLE);
+			g_free(cEmblem);
+			
 			myData.previously_on_battery = myData.on_battery;
 			myData.previous_battery_charge = myData.battery_charge;
 		}
