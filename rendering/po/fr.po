@@ -165,3 +165,19 @@ msgstr ""
 #: ../data/messages:63
 msgid "Cone's width :"
 msgstr "Ouverture du cône :"
+
+msgid "Slide"
+msgstr "Diapositive"
+
+msgid "Space between columns :"
+msgstr "Espacement entre les colonnes :"
+
+msgid "Max size of icons :"
+msgstr "Taille maximale des icones"
+
+msgid "Wave radius :"
+msgstr "Rayon de la vague :"
+
+msgid "Use a linear wave rather than a sinusoidal one ?"
+msgstr "Utiliser une vague linéaire plutôt que sinusoidale ?"
+

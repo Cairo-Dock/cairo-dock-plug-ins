@@ -44,6 +44,11 @@ double my_fRainbowMagnitude;
 int my_iRainbowNbIconsMin;
 double my_fRainbowConeOffset;
 
+gint     my_diapo_iconGapX;
+gint     my_diapo_iconGapY;
+gdouble  my_diapo_fScaleMax;
+gint     my_diapo_sinW;
+gboolean my_diapo_lineaire;
 
 CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 	rendering_register_tree_desklet_renderer ();

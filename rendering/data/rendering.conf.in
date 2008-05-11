@@ -68,4 +68,19 @@ nb icons min = 3
 #{in degree. The smaller, the more the cone is narrow. 180° means the cone is widely opened.}
 cone = 130
 
-[Diapo]
+[Slide]
+
+#i[0;40] Space between columns :
+iconGapX = 5
+
+#i[0;40] Space between rows :
+iconGapY = 10
+
+#e[0;5] Max size of icons :
+fScaleMax = 2
+
+#i[50;1000] Wave radius :
+sinW = 300
+
+#b Use a linear wave rather than a sinusoidal one ?
+lineaire = false

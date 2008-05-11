@@ -1,10 +1,10 @@
 
 #ifndef __RENDERING_DIAPO_VIEW__
-#define  __RENDERING_DIAPOL_VIEW__
+#define  __RENDERING_DIAPO_VIEW__
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_DIAPO_VIEW_NAME "Diapositive"
+#define MY_APPLET_DIAPO_VIEW_NAME "Slide"
 
 
 void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock);

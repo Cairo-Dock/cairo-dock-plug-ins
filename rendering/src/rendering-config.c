@@ -36,6 +36,12 @@ extern double my_fRainbowMagnitude;
 extern int my_iRainbowNbIconsMin;
 extern double my_fRainbowConeOffset;
 
+extern gint     my_diapo_iconGapX;
+extern gint     my_diapo_iconGapY;
+extern gdouble  my_diapo_fScaleMax;
+extern gint     my_diapo_sinW;
+extern gboolean my_diapo_lineaire;
+
 
 void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
 {
@@ -78,7 +84,16 @@ void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
 	
 	my_fRainbowConeOffset = G_PI * (1 - cairo_dock_get_double_key_value (pKeyFile, "Rainbow", "cone", &bFlushConfFileNeeded, 130, NULL, NULL) / 180) / 2;
 
-
+        
+        my_diapo_iconGapX  = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapX",  &bFlushConfFileNeeded,     5, NULL, NULL);
+        
+        my_diapo_iconGapY  = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapY",  &bFlushConfFileNeeded,    10, NULL, NULL);
+        
+        my_diapo_fScaleMax = cairo_dock_get_double_key_value  (pKeyFile, "Slide", "fScaleMax", &bFlushConfFileNeeded,    2., NULL, NULL);
+        
+        my_diapo_sinW      = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "sinW",      &bFlushConfFileNeeded,   300, NULL, NULL);
+        
+        my_diapo_lineaire  = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "lineaire",  &bFlushConfFileNeeded, FALSE, NULL, NULL);
 
 }
 
