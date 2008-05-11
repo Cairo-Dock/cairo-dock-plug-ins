@@ -166,6 +166,8 @@ gboolean cd_slider_draw_images(void) {
 		case SLIDER_FADE:
 			cd_debug("Displaying with fade");
 			myData.fAnimAlpha = 0.;
+			myData.fAnimCNT = 1.;
+			myData.pPrevCairoSurface = cd_slider_get_previous_img_surface(myData.pList, myData.pElement);
 			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade, (gpointer) NULL);
 		break;
 		case SLIDER_BLANK_FADE:
@@ -203,7 +205,7 @@ gboolean cd_slider_draw_images(void) {
 		break;
 	}
 
-	//cairo_restore (myDrawContext);
+
 	//cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
   myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
   
@@ -220,6 +222,7 @@ static void _cd_slider_add_background_to_current_slide (double fX, double fY) {
 
 gboolean cd_slider_fade (void) {
 	myData.fAnimAlpha = myData.fAnimAlpha +.1;
+	myData.fAnimCNT = myData.fAnimCNT -.1;
 	
 	//On efface le fond
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
@@ -230,7 +233,12 @@ gboolean cd_slider_fade (void) {
 	
 	//Image précédante
 	if (myData.pPrevCairoSurface != NULL) {
-		cairo_set_source_surface (myDrawContext, myData.pPrevCairoSurface, myData.fAnimCNT + myData.pImgL.fImgW + 10 + myData.pImgL.fImgX, myData.pImgL.fImgY);
+		cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myData.fAnimCNT);
+		cairo_rectangle (myDrawContext, myData.pPrevImgL.fImgX, myData.pPrevImgL.fImgY, myData.pPrevImgL.fImgW, myData.pPrevImgL.fImgH);
+		cairo_fill (myDrawContext);
+		
+		cairo_set_source_surface (myDrawContext, myData.pPrevCairoSurface, myData.pPrevImgL.fImgX, myData.pPrevImgL.fImgY);
+		cairo_paint_with_alpha (myDrawContext, myData.fAnimCNT);
 	}
 	
 	//On empeche la transparence
@@ -243,7 +251,7 @@ gboolean cd_slider_fade (void) {
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha >= 1) {
-		//cairo_surface_destroy(myData.pCairoSurface);
+		cairo_surface_destroy(myData.pCairoSurface);
   	//cairo_destroy (myDrawContext); //Pas de fuite mémoire
   	myData.iTimerID = g_timeout_add (myConfig.dSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		return FALSE;
