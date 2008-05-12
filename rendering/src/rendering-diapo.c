@@ -34,7 +34,7 @@ extern gboolean  my_diapo_wide_grid;
 extern gboolean  my_diapo_text_only_on_pointed;
 
 void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
-{	cd_message("grepme > A1");
+{
         guint nRowsX = 0;
         guint nRowsY = 0;
         guint nIcones = 0;
@@ -59,11 +59,10 @@ void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
 	
 //////////////////////////////////////////////////////////////////////////////////////// On affecte ca aussi au cas où
 	pDock->fFlatDockWidth = pDock->iMinDockWidth;
-	cd_message("grepme > B1");
 }
 
 void cairo_dock_set_subdock_position_linear (Icon *pPointedIcon, CairoDock *pDock)
-{	cd_message("grepme > A2");
+{
 
 	CairoDock *pSubDock = pPointedIcon->pSubDock;
 
@@ -86,12 +85,11 @@ void cairo_dock_set_subdock_position_linear (Icon *pPointedIcon, CairoDock *pDoc
 		else
 			pSubDock->iGapY = iX + pDock->iWindowPositionX - pSubDock->iMaxDockHeight / 2;
 	}
-		cd_message("grepme > B2");
 }
 
 
 void cd_rendering_render_diapo (CairoDock *pDock)
-{	cd_message("grepme > A3");
+{
 	//\____________________ On cree le contexte du dessin.
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
@@ -194,11 +192,10 @@ void cd_rendering_render_diapo (CairoDock *pDock)
 	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
 		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
 #endif
-	cd_message("grepme > B3");
 }
 
 Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock)
-{	cd_message("grepme > A4");
+{
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On recherche l'icone pointée completement à l'arrache
@@ -242,13 +239,13 @@ Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock)
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On revoie l'icone pointee et NULL sinon
-	cd_message("grepme > B4");
+
 	return pPointedIcon/*(iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL)*/;
 }
 
 
 void cd_rendering_register_diapo_renderer (void)
-{	cd_message("grepme > A5");
+{
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On definit le renderer :
@@ -264,11 +261,11 @@ void cd_rendering_register_diapo_renderer (void)
 	pRenderer->bUseReflect = FALSE;                                                                         // On dit non au reflections
 	
 	cairo_dock_register_renderer (MY_APPLET_DIAPO_VIEW_NAME, pRenderer);                                    //Puis on signale l'existence de notre rendu
-	cd_message("grepme > B5");
+
 }
 
 guint cairo_dock_rendering_diapo_guess_grid(GList *pIconList, guint *nRowX, guint *nRowY)
-{	cd_message("grepme > A6");
+{
 
 
 //////////////////////////////////////////////////////////////////////////////////////// Calcul du nombre de ligne / colonne :
@@ -283,12 +280,12 @@ guint cairo_dock_rendering_diapo_guess_grid(GList *pIconList, guint *nRowX, guin
 	        *nRowY = count  ? ceil(sqrt(count)) : 0;
 	        *nRowX = count  ? ceil(((double) count) / *nRowY) : 0;
         }
-       	cd_message("grepme > B6");
+
 	return count;
 }
 
 Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRowsX, guint nRowsY, gint Mx, gint My)
-{	cd_message("grepme > A7");
+{
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la position de base pour toutes les icones :
@@ -305,7 +302,6 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
         guint offsetY = 0;
         Icon *pointedIcon ;
         cairo_dock_rendering_diapo_calculate_max_icon_size(pDock->icons, (guint*) &maxWidth, (guint*)  &maxHeight, nRowsX, nRowsY);
-       
 //////////////////////////////////////////////////////////////////////////////////////// On crée une liste d'icone des icones à parcourir :
 	GList* ic;
 	Icon* icon;
@@ -341,7 +337,6 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
                    (Mx < icon->fX + maxWidth[x]  + 2 * my_diapo_iconGapX) &&
                    (My < icon->fY + maxHeight[y] + 2 * my_diapo_iconGapY))
                 {        
-                       	cd_message("grepme %d", i);
                         icon->bPointed = TRUE;    
                         *pointedIcon = *icon;
                         icon->fAlpha = 1.;                           
@@ -381,7 +376,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
 //////////////////////////////////////////////////////////////////////////////////////// On calcule l'offset pour que ce soit centré :
         offsetX = (pDock->iMaxDockWidth  - /*pDock->iCurrentWidth */curDockWidth ) / 2;
         offsetY = (pDock->iMaxDockHeight - /*pDock->iCurrentHeight*/curDockHeight) / 2;      
-        
+                cd_message("grep > %d", pDock->icons);
         for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 	
@@ -395,22 +390,31 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
 //////////////////////////////////////////////////////////////////////////////////////// On laisse le dock s'occuper des animations
 		cairo_dock_manage_animations (icon, pDock);
 	}
-	cd_message("grepme > B7");
 	return pointedIcon;
 }
 
 
 
 void cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, gint My, guint nRowsX)
-{	cd_message("grepme > A8");
+{
         guint i = 0;
         guint x = 0;
         guint y = 0;
         guint indexXforMouse = 0; 
         guint indexYforMouse = 0; 
+        if (pIconList == NULL) 
+        {
+                cd_debug("Rendering>Diapo -> pIconList == NULL Totaly uncool \n Returning badly...");
+                return;
+        }
+        if(( (Icon*) pIconList->data ) == NULL)
+        {
+                cd_debug("Rendering>Diapo -> (Icon*) pIconList->data == NULL Totaly uncool \n Returning badly...");
+                return;
+        }
         indexXforMouse = Mx / ( ( (Icon*) pIconList->data )->fWidth  + 2 * my_diapo_iconGapX );
         indexYforMouse = My / ( ( (Icon*) pIconList->data )->fHeight + 2 * my_diapo_iconGapY );
-        Icon *pointedIcon = g_list_nth_data (pIconList, cairo_dock_rendering_diapo_get_index_from_gridXY(nRowsX, indexXforMouse, indexYforMouse));
+        //Icon *pointedIcon = g_list_nth_data (pIconList, cairo_dock_rendering_diapo_get_index_from_gridXY(nRowsX, indexXforMouse, indexYforMouse));
               
         GList* ic;
 	Icon *icon;
@@ -451,7 +455,6 @@ void cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, gi
                 }
                 i++;
  	}
-	cd_message("grepme > B8");
       //  return pointedIcon;
 }
 	
