@@ -41,7 +41,16 @@ extern gint     my_diapo_iconGapY;
 extern gdouble  my_diapo_fScaleMax;
 extern gint     my_diapo_sinW;
 extern gboolean my_diapo_lineaire;
+extern gboolean  my_diapo_wide_grid;
+extern gboolean  my_diapo_text_only_on_pointed;
 
+extern gint     my_diapo_simple_iconGapX;
+extern gint     my_diapo_simple_iconGapY;
+extern gdouble  my_diapo_simple_fScaleMax;
+extern gint     my_diapo_simple_sinW;
+extern gboolean my_diapo_simple_lineaire;
+extern gboolean  my_diapo_simple_wide_grid;
+extern gboolean  my_diapo_simple_text_only_on_pointed;
 
 void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
 {
@@ -57,44 +66,40 @@ void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
 	
 	
 	my_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10, NULL, NULL);
-	
 	my_bRotateIconsOnEllipse = ! cairo_dock_get_boolean_key_value (pKeyFile, "Caroussel", "show face", &bFlushConfFileNeeded, FALSE, NULL, NULL);
-	
 	my_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5, NULL, NULL);
 	
 	
 	my_fParaboleCurvature = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "curvature", &bFlushConfFileNeeded, .5, NULL, NULL);
-	
 	my_fParaboleRatio = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "ratio", &bFlushConfFileNeeded, 5, NULL, NULL);
-	
 	my_fParaboleMagnitude = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "wave magnitude", &bFlushConfFileNeeded, .2, NULL, NULL);
-	
 	my_iParaboleTextGap = cairo_dock_get_integer_key_value (pKeyFile, "Parabolic", "text gap", &bFlushConfFileNeeded, 3, NULL, NULL);
-	
 	my_bDrawTextWhileUnfolding  = cairo_dock_get_boolean_key_value (pKeyFile, "Parabolic", "draw text", &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	
 	
 	my_iSpaceBetweenRows = cairo_dock_get_integer_key_value (pKeyFile, "Rainbow", "space between rows", &bFlushConfFileNeeded, 10, NULL, NULL);
-	
 	my_iSpaceBetweenIcons = cairo_dock_get_integer_key_value (pKeyFile, "Rainbow", "space between icons", &bFlushConfFileNeeded, 8, NULL, NULL);
-	
 	my_fRainbowMagnitude = cairo_dock_get_double_key_value (pKeyFile, "Rainbow", "wave magnitude", &bFlushConfFileNeeded, .3, NULL, NULL);
-	
 	my_iRainbowNbIconsMin = cairo_dock_get_integer_key_value (pKeyFile, "Rainbow", "nb icons min", &bFlushConfFileNeeded, 3, NULL, NULL);
-	
 	my_fRainbowConeOffset = G_PI * (1 - cairo_dock_get_double_key_value (pKeyFile, "Rainbow", "cone", &bFlushConfFileNeeded, 130, NULL, NULL) / 180) / 2;
 
         
-        my_diapo_iconGapX  = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapX",  &bFlushConfFileNeeded,     5, NULL, NULL);
-        
-        my_diapo_iconGapY  = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapY",  &bFlushConfFileNeeded,    10, NULL, NULL);
-        
-        my_diapo_fScaleMax = cairo_dock_get_double_key_value  (pKeyFile, "Slide", "fScaleMax", &bFlushConfFileNeeded,    2., NULL, NULL);
-        
-        my_diapo_sinW      = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "sinW",      &bFlushConfFileNeeded,   300, NULL, NULL);
-        
-        my_diapo_lineaire  = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "lineaire",  &bFlushConfFileNeeded, FALSE, NULL, NULL);
+        my_diapo_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapX",             &bFlushConfFileNeeded,     5, NULL, NULL);
+        my_diapo_iconGapY             = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapY",             &bFlushConfFileNeeded,    10, NULL, NULL);
+        my_diapo_fScaleMax            = cairo_dock_get_double_key_value  (pKeyFile, "Slide", "fScaleMax",            &bFlushConfFileNeeded,    2., NULL, NULL);
+        my_diapo_sinW                 = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "sinW",                 &bFlushConfFileNeeded,   300, NULL, NULL);
+        my_diapo_lineaire             = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "lineaire",             &bFlushConfFileNeeded, FALSE, NULL, NULL);
+        my_diapo_wide_grid            = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "wide_grid",            &bFlushConfFileNeeded, FALSE, NULL, NULL);        
+        my_diapo_text_only_on_pointed = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "text_only_on_pointed", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 
+
+        my_diapo_simple_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapX",             &bFlushConfFileNeeded,    20, NULL, NULL);
+        my_diapo_simple_iconGapY             = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapY",             &bFlushConfFileNeeded,    30, NULL, NULL);
+        my_diapo_simple_fScaleMax            = cairo_dock_get_double_key_value  (pKeyFile, "SimpleSlide", "simple_fScaleMax",            &bFlushConfFileNeeded,   2.5, NULL, NULL);
+        my_diapo_simple_sinW                 = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_sinW",                 &bFlushConfFileNeeded,   200, NULL, NULL);
+        my_diapo_simple_lineaire             = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_lineaire",             &bFlushConfFileNeeded, FALSE, NULL, NULL);
+        my_diapo_simple_wide_grid            = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_wide_grid",            &bFlushConfFileNeeded, FALSE, NULL, NULL);
+        my_diapo_simple_text_only_on_pointed = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_text_only_on_pointed", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 }
 
 

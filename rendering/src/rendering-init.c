@@ -14,6 +14,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "rendering-3D-plane.h"
 #include "rendering-rainbow.h"
 #include "rendering-diapo.h"
+#include "rendering-diapo-simple.h"
 #include "rendering-desklet-tree.h"
 #include "rendering-desklet-caroussel.h"
 #include "rendering-desklet-simple.h"
@@ -49,6 +50,17 @@ gint     my_diapo_iconGapY;
 gdouble  my_diapo_fScaleMax;
 gint     my_diapo_sinW;
 gboolean my_diapo_lineaire;
+gboolean  my_diapo_wide_grid;
+gboolean  my_diapo_text_only_on_pointed;
+
+gint     my_diapo_simple_iconGapX;
+gint     my_diapo_simple_iconGapY;
+gdouble  my_diapo_simple_fScaleMax;
+gint     my_diapo_simple_sinW;
+gboolean my_diapo_simple_lineaire;
+gboolean  my_diapo_simple_wide_grid;
+gboolean  my_diapo_simple_text_only_on_pointed;
+
 
 CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 	rendering_register_tree_desklet_renderer ();
@@ -92,6 +104,8 @@ void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *c
 	
 	cd_rendering_register_diapo_renderer (); 
 
+	cd_rendering_register_diapo_simple_renderer (); 
+	
 	cairo_dock_set_all_views_to_default ();
 	
 	//\_______________ On charge le separateur plat.
@@ -106,6 +120,7 @@ void stop (void)
 	cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_RAINBOW_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_DIAPO_VIEW_NAME);
+	cairo_dock_remove_renderer (MY_APPLET_DIAPO_SIMPLE_VIEW_NAME);
 	reset_data ();
 	
 	cairo_dock_reset_all_views ();  // inutile de faire cairo_dock_set_all_views_to_default () puisqu'on ne peut desactiver un module qu'en validant la config du dock.

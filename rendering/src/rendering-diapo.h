@@ -19,12 +19,12 @@ Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock);
 
 void cd_rendering_register_diapo_renderer (void);
 
-void cairo_dock_calculate_icons_position_for_diapo(CairoDock* pDock, guint nRowsX, guint nRowsY);
+Icon *  cairo_dock_calculate_icons_position_for_diapo(CairoDock* pDock, guint nRowsX, guint nRowsY, gint Mx, gint My);
 
 guint cairo_dock_rendering_diapo_guess_grid(GList *pIconList, guint *nRowX, guint *nRowY);
 
 
-Icon * cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, gint My, guint nRowsX); 
+void cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, gint My, guint nRowsX); 
 
 void cairo_dock_calculate_icons_positions_at_rest_diapo (GList *pIconList, gint* Wmin, gint* Hmin, guint nRowsX);
 

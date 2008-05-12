@@ -169,15 +169,23 @@ msgstr "Ouverture du cône :"
 msgid "Slide"
 msgstr "Diapositive"
 
+msgid "SimpleSlide"
+msgstr "Diapositive Simple"
+
 msgid "Space between columns :"
 msgstr "Espacement entre les colonnes :"
 
 msgid "Max size of icons :"
 msgstr "Taille maximale des icones"
 
-msgid "Wave radius :"
-msgstr "Rayon de la vague :"
+msgid "Sinusoidal wave radius :"
+msgstr "Rayon de la vague sinusoïdale :"
 
 msgid "Use a linear wave rather than a sinusoidal one ?"
-msgstr "Utiliser une vague linéaire plutôt que sinusoidale ?"
+msgstr "Utiliser une vague linéaire plutôt que sinusoïdale ?"
 
+msgid "Use a wide shape ?"
+msgstr "Utiliser une forme alongée ?"
+
+msgid "Display text only for pointed icon ?"
+msgstr "Afficher le texte seulement pour l'icône pointée ?"
