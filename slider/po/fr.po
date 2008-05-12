@@ -175,7 +175,7 @@ msgstr "flash"
 
 #: ../data/messages:61 ../data/messages:65
 msgid "fade in out"
-msgstr "fondu"
+msgstr "fondu progressif"
 
 #: ../data/messages:63 ../data/messages:67
 msgid "side kick"

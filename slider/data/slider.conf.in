@@ -69,4 +69,4 @@ no strench=true
 change animation=1
 #c4[0;1] Choose a background color :
 #{Set the transparency channel to 0 if you just don't want to have a background.}
-background color = 0.0; 0.0; 0.0; 0.0
+background color = 1.0; 1.0; 1.0; 1.0

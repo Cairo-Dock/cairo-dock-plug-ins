@@ -175,7 +175,7 @@ msgstr "Exposition"
 
 #: ../data/messages:49 ../data/messages:47
 msgid "Show Desktop"
-msgstr "Monter le Bureau"
+msgstr "Montrer le Bureau"
 
 #: ../data/messages:39 ../data/messages:37
 msgid "Choose an action for the middle click on the icon :"

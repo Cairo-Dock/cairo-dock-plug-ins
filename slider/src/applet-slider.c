@@ -242,7 +242,9 @@ gboolean cd_slider_fade (void) {
 	}
 	
 	//On empeche la transparence
-	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
+	cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myData.fAnimAlpha);
+	cairo_rectangle (myDrawContext, myData.pImgL.fImgX, myData.pImgL.fImgY, myData.pImgL.fImgW, myData.pImgL.fImgH);
+	cairo_fill (myDrawContext);
 	
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
@@ -310,14 +312,16 @@ gboolean cd_slider_fade_in_out (void) {
  	}	
  	
  	//On efface le fond
- 	cairo_set_source_rgba (myDrawContext, 1., 1., 1., myData.fAnimAlpha);
+ 	cairo_set_source_rgba (myDrawContext, 1., 1., 1., 0.);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (myDrawContext);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
 	
 	//On empeche la transparence
-	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
+	cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myData.fAnimAlpha);
+	cairo_rectangle (myDrawContext, myData.pImgL.fImgX, myData.pImgL.fImgY, myData.pImgL.fImgW, myData.pImgL.fImgH);
+	cairo_fill (myDrawContext);
 	
 	//Image
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
