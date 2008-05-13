@@ -37,7 +37,7 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 {	
         guint nRowsX = 0;
         guint nRowsY = 0;
-        guint nIcones = 0;      
+        guint nIcones = 0;
         
         
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la configuration de la grille :
@@ -66,7 +66,7 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 }
 
 void cd_rendering_render_diapo_simple (CairoDock *pDock)
-{	
+{
 	//\____________________ On cree le contexte du dessin.
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
@@ -94,7 +94,7 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 	//if (pFirstDrawnElement == NULL) return;
         if (pDock->icons == NULL) return;
 	
-	
+
 //////////////////////////////////////////////////////////////////////////////////////// On parcourt la liste les icones :
 	Icon *icon;
 	GList *ic;
@@ -116,7 +116,7 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 //////////////////////////////////////////////////////////////////////////////////////// On restore le contexte de cairo
 		cairo_restore (pCairoContext);
 		
-		
+
 //////////////////////////////////////////////////////////////////////////////////////// On affiche le texte !
                if(icon->pTextBuffer != NULL)
                 {
@@ -153,7 +153,8 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
         guint nRowsX = 0;
         guint nRowsY = 0;
         guint nIcones = 0;
-        
+     
+
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la configuration de la grille :
         nIcones = cairo_dock_rendering_diapo_simple_guess_grid(pDock->icons, &nRowsX, &nRowsY);      
 	
@@ -161,11 +162,11 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 
 //////////////////////////////////////////////////////////////////////////////////////// On calcule les tailles des icones en fonction de la souris
 	cairo_dock_calculate_wave_with_position_diapo_simple(pDock->icons, pDock->iMouseX, pDock->iMouseY, nRowsX);
-	
-	
+
+
 //////////////////////////////////////////////////////////////////////////////////////// On calcule les positions des icones	
 	Icon *pPointedIcon = cairo_dock_calculate_icons_position_for_diapo_simple(pDock, nRowsX, nRowsY, pDock->iMouseX, pDock->iMouseY);
-	
+
 
 //////////////////////////////////////////////////////////////////////////////////////// On revoie l'icone pointee et NULL sinon
 	return pPointedIcon;
@@ -218,8 +219,8 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
         guint i = 0;
         guint x = 0;
         guint y = 0;
-        Icon *pointedIcon ;
-       
+        
+       	GList *pointed_ic = NULL;
 //////////////////////////////////////////////////////////////////////////////////////// On crée une liste d'icone des icones à parcourir :
 	GList* ic;
 	Icon* icon;
@@ -237,7 +238,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 		
 		
 //////////////////////////////////////////////////////////////////////////////////////// On va PAS se servir des fX fY comme d'index de la grille ailleurs qu'ici CAR le fY est changé dans des fonctions de drawing qui devrait pas !
-	  	icon->fX = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x;
+	        icon->fX = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x;
 	        icon->fY = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y;
 
 
@@ -245,7 +246,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 	        icon->fXMin = icon->fXMax = icon->fXAtRest = //Ca on s'en sert pas encore
 	        icon->fDrawX = icon->fX + my_diapo_simple_iconGapX + icon->fWidth  * (1. - icon->fScale) / 2;
 	        icon->fDrawY = icon->fY + my_diapo_simple_iconGapY + icon->fHeight * (1. - icon->fScale) / 2;	    	        
-	       
+
 
 ////////////////////////////////////////////////////////////////////////////////////////On va check de la mouse là :
                 if((Mx > icon->fX) && 
@@ -254,7 +255,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
                    (My < icon->fY + icon->fHeight + 2 * my_diapo_simple_iconGapY))
                 {        
                         icon->bPointed = TRUE;    
-                        *pointedIcon = *icon;
+                        pointed_ic = ic;
                         icon->fAlpha = 1.;                           
 	        }
 	        else
@@ -262,7 +263,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 	                icon->bPointed = FALSE; 
 	                icon->fAlpha = 0.9;
 	        }
-	        
+
 
 //////////////////////////////////////////////////////////////////////////////////////// On prépare pour la suivante :
 	        i++;
@@ -271,12 +272,12 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 //////////////////////////////////////////////////////////////////////////////////////// On affecte tous les parametres qui n'ont pas été défini précédement
 	        icon->fPhase = 0.;
 	        icon->fOrientation = 0.;//2. * G_PI * pDock->fFoldingFactor;                // rotation de l'icone
-                icon->fWidthFactor = icon->fHeightFactor = 1. - pDock->fFoldingFactor;
+            icon->fWidthFactor = icon->fHeightFactor = 1. - pDock->fFoldingFactor;
 
 //////////////////////////////////////////////////////////////////////////////////////// On laisse le dock s'occuper des animations
 		cairo_dock_manage_animations (icon, pDock);
 	}
-	return pointedIcon;
+	return pointed_ic == NULL ? NULL : pointed_ic->data;
 }
 
 
