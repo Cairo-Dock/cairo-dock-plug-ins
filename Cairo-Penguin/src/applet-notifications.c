@@ -59,7 +59,7 @@ gboolean CD_APPLET_ON_CLICK (gpointer *data)
 			iNewAnimation = penguin_choose_go_up_animation ();
 		penguin_set_new_animation (iNewAnimation);
 		
-		if (myConfig.bFree)
+		///if (myConfig.bFree)
 			pClickedIcon->iCount = 0;
 CD_APPLET_ON_CLICK_END
 

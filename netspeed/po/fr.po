@@ -46,7 +46,7 @@ msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
 #: ../data/messages:15 ../data/messages:35 ../data/messages:39
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:45
 msgid "Information"
 msgstr "Information"
 
@@ -127,6 +127,7 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:13 ../data/messages:33 ../data/messages:35
+#: ../data/messages:39
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -181,6 +182,7 @@ msgid "B"
 msgstr "o"
 
 #: ../data/messages:37 ../data/messages:51 ../data/messages:53
+#: ../data/messages:57
 msgid "in seconds."
 msgstr ""
 
@@ -198,6 +200,7 @@ msgid "in milliseconds."
 msgstr ""
 
 #: ../data/messages:37 ../data/messages:49 ../data/messages:51
+#: ../data/messages:55
 msgid "List of available themes for the analogic display :"
 msgstr ""
 
@@ -232,34 +235,44 @@ msgstr ""
 msgid "Re-check interface"
 msgstr ""
 
-#: ../data/messages:35 ../data/messages:37
+#: ../data/messages:35 ../data/messages:37 ../data/messages:41
 msgid "By default it will be 'eth0'."
 msgstr ""
 
-#: ../data/messages:37 ../data/messages:39
+#: ../data/messages:37 ../data/messages:39 ../data/messages:43
 msgid "interface :"
 msgstr ""
 
-#: ../data/messages:41 ../data/messages:43
+#: ../data/messages:41 ../data/messages:43 ../data/messages:47
 msgid "Display speed values :"
 msgstr ""
 
-#: ../data/messages:43 ../data/messages:45
+#: ../data/messages:43 ../data/messages:45 ../data/messages:49
 msgid "No"
 msgstr ""
 
-#: ../data/messages:45 ../data/messages:47
+#: ../data/messages:45 ../data/messages:47 ../data/messages:51
 msgid "On icon"
 msgstr ""
 
-#: ../data/messages:47 ../data/messages:49
+#: ../data/messages:47 ../data/messages:49 ../data/messages:53
 msgid "On label"
 msgstr ""
 
-#: ../data/messages:53 ../data/messages:55
+#: ../data/messages:53 ../data/messages:55 ../data/messages:59
 msgid "Delay between 2 measures :"
 msgstr ""
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:37
+msgid "Lockposition ?"
 msgstr ""

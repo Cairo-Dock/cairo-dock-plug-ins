@@ -23,15 +23,15 @@ CD_APPLET_ABOUT (D_("This is the Slider applet\n made by ChAnGFu for Cairo-Dock"
 
 void cd_slider_toogle_pause(void) {
 	cd_message("Toggeling pause: %d", myData.bPause);
-  if (!myData.bPause) {
-  	myData.bPause = TRUE;
-  	g_source_remove(myData.iTimerID); //on coupe le timer en cours
-  	myData.iTimerID = 0;
-  }
- 	else {
- 		myData.bPause = FALSE;
- 		cd_slider_draw_images(); //on relance le diapo
- 	}
+	if (!myData.bPause) {
+		myData.bPause = TRUE;
+		g_source_remove(myData.iTimerID); //on coupe le timer en cours
+		myData.iTimerID = 0;
+	}
+	else {
+		myData.bPause = FALSE;
+		cd_slider_draw_images(); //on relance le diapo
+	}
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.

@@ -18,7 +18,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 
 
-CD_APPLET_ABOUT (_D("This is the shortcuts applet\n made by Fabounet for Cairo-Dock"))
+CD_APPLET_ABOUT (D_("This is the shortcuts applet\n made by Fabounet for Cairo-Dock"))
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
@@ -44,7 +44,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == 10)
 	{
 		cd_message (" menu sur %s(%s)", CD_APPLET_CLICKED_ICON->acName, CD_APPLET_CLICKED_ICON->cBaseURI);
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (_D("Remove this bookmark"), _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI)
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Remove this bookmark"), _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI)
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
 CD_APPLET_ON_BUILD_MENU_END

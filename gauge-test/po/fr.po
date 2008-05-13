@@ -101,14 +101,24 @@ msgstr ""
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:33 ../data/messages:35
+#: ../data/messages:33 ../data/messages:35 ../data/messages:39
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:35 ../data/messages:37
+#: ../data/messages:35 ../data/messages:37 ../data/messages:41
 msgid "Adresse du theme"
 msgstr ""
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:37
+msgid "Lockposition ?"
 msgstr ""

@@ -33,17 +33,17 @@ msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:33 ../data/messages:31 ../data/messages:29
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:39
 msgid "GUI"
 msgstr "IHM"
 
 #: ../data/messages:37 ../data/messages:35 ../data/messages:33
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:43
 msgid "Terminal's transparency :"
 msgstr "Transparence du terminal :"
 
 #: ../data/messages:35 ../data/messages:33 ../data/messages:31
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:41
 msgid "needs to restart the applet."
 msgstr "nécessite de recharger l'applet."
 
@@ -51,17 +51,17 @@ msgid "Always on top ?"
 msgstr "Toujours devant ?"
 
 #: ../data/messages:39 ../data/messages:37 ../data/messages:35
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:45
 msgid "Foreground color (r, v, b):"
 msgstr "Couleur d'avant-plan (r, v, b):"
 
 #: ../data/messages:41 ../data/messages:39 ../data/messages:37
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:47
 msgid "Background color (r, v, b):"
 msgstr "Couleur d'arrière-plan (r, v, b):"
 
 #: ../data/messages:43 ../data/messages:41 ../data/messages:39
-#: ../data/messages:45 ../data/messages:47
+#: ../data/messages:45 ../data/messages:47 ../data/messages:51
 msgid "Size of the terminal (line x columns) :"
 msgstr "Taille du terminal (ligne x colonnes) :"
 
@@ -185,7 +185,7 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:45 ../data/messages:43 ../data/messages:41
-#: ../data/messages:47 ../data/messages:49
+#: ../data/messages:47 ../data/messages:49 ../data/messages:53
 msgid "Shortkey to show the terminal"
 msgstr "Raccourci clavier pour montrer le terminal :"
 
@@ -199,7 +199,7 @@ msgstr "Rennomer l'onglet courant"
 msgid "Set title for this tab :"
 msgstr "Définissez un titre pour cet onglet :"
 
-#: ../data/messages:43 ../data/messages:45
+#: ../data/messages:43 ../data/messages:45 ../data/messages:49
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -228,4 +228,14 @@ msgstr "Changer la couleur de cet onglet"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:37
+msgid "Lockposition ?"
 msgstr ""

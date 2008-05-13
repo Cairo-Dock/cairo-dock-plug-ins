@@ -104,37 +104,41 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:13 ../data/messages:15 ../data/messages:31
-#: ../data/messages:33
+#: ../data/messages:33 ../data/messages:37
 msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:15 ../data/messages:17 ../data/messages:35
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:41
 msgid "Let empty to use the default sound card."
 msgstr "Laisser vide pou rutiliser la carte son par défaut."
 
 #: ../data/messages:17 ../data/messages:19 ../data/messages:37
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:43
 msgid "Sound card to control :"
 msgstr "Carte son à contrôler :"
 
 #: ../data/messages:21 ../data/messages:23 ../data/messages:49
 #: ../data/messages:53 ../data/messages:55 ../data/messages:57
+#: ../data/messages:61
 msgid "Display volume :"
 msgstr "Afficher le volume :"
 
 #: ../data/messages:23 ../data/messages:25 ../data/messages:51
 #: ../data/messages:55 ../data/messages:57 ../data/messages:59
+#: ../data/messages:63
 msgid "No"
 msgstr "Non"
 
 #: ../data/messages:25 ../data/messages:27 ../data/messages:53
 #: ../data/messages:57 ../data/messages:59 ../data/messages:61
+#: ../data/messages:65
 msgid "On label"
 msgstr "Sur l'étiquette"
 
 #: ../data/messages:27 ../data/messages:29 ../data/messages:55
 #: ../data/messages:59 ../data/messages:61 ../data/messages:63
+#: ../data/messages:67
 msgid "On icon"
 msgstr "Sur l'icône"
 
@@ -150,31 +154,32 @@ msgid "Adjsut channels"
 msgstr "Ajustez les canaux"
 
 #: ../data/messages:21 ../data/messages:39 ../data/messages:41
+#: ../data/messages:45
 msgid "Choose which channel to control :"
 msgstr "Choississez quel canal contrôler :"
 
 #: ../data/messages:31 ../data/messages:57 ../data/messages:61
-#: ../data/messages:63 ../data/messages:65
+#: ../data/messages:63 ../data/messages:65 ../data/messages:69
 msgid "Effet to apply on the icon according to volume :"
 msgstr "Effet à appliquer à l'icône en fonction du volume :"
 
 #: ../data/messages:33 ../data/messages:59 ../data/messages:63
-#: ../data/messages:65 ../data/messages:67
+#: ../data/messages:65 ../data/messages:67 ../data/messages:71
 msgid "None"
 msgstr "Aucun"
 
 #: ../data/messages:35 ../data/messages:61 ../data/messages:65
-#: ../data/messages:67 ../data/messages:69
+#: ../data/messages:67 ../data/messages:69 ../data/messages:73
 msgid "Zoom"
 msgstr "Zoom"
 
 #: ../data/messages:37 ../data/messages:63 ../data/messages:67
-#: ../data/messages:69 ../data/messages:71
+#: ../data/messages:69 ../data/messages:71 ../data/messages:75
 msgid "Transparency"
 msgstr "Transparence"
 
 #: ../data/messages:39 ../data/messages:65 ../data/messages:69
-#: ../data/messages:71 ../data/messages:73
+#: ../data/messages:71 ../data/messages:73 ../data/messages:77
 msgid "Draw Bar"
 msgstr "Dessiner une barre"
 
@@ -208,11 +213,11 @@ msgstr ""
 msgid "I couldn't load the mixer"
 msgstr ""
 
-#: ../data/messages:33 ../data/messages:35
+#: ../data/messages:33 ../data/messages:35 ../data/messages:39
 msgid "Alsa"
 msgstr "Alsa"
 
-#: ../data/messages:41 ../data/messages:43
+#: ../data/messages:41 ../data/messages:43 ../data/messages:47
 msgid "Let empty to use the defaut command."
 msgstr "Laisser vide pour utiliser la commande par défaut."
 
@@ -221,32 +226,33 @@ msgid "Open an advanced sound mixer with :"
 msgstr "Ouvrir un panneau de mixage avancé avec :"
 
 #: ../data/messages:45 ../data/messages:47 ../data/messages:49
+#: ../data/messages:53
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr "Raccourci clavier pour montrer/cacher le dialogue :"
 
 #: ../data/messages:47 ../data/messages:51 ../data/messages:53
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:59
 msgid "Display"
 msgstr "Affichage"
 
 #: ../data/messages:67 ../data/messages:71 ../data/messages:75
 #: ../data/messages:79 ../data/messages:73 ../data/messages:77
-#: ../data/messages:81 ../data/messages:83
+#: ../data/messages:81 ../data/messages:83 ../data/messages:87
 msgid "Let empty to use the default one."
 msgstr "Laisser vide pour utiliser celle par défaut."
 
 #: ../data/messages:69 ../data/messages:73 ../data/messages:75
-#: ../data/messages:77
+#: ../data/messages:77 ../data/messages:81
 msgid "Default icon :"
 msgstr "Icône 'défaut' :"
 
 #: ../data/messages:73 ../data/messages:77 ../data/messages:79
-#: ../data/messages:81
+#: ../data/messages:81 ../data/messages:85
 msgid "Broken icon :"
 msgstr "Icône 'cassé'"
 
 #: ../data/messages:77 ../data/messages:81 ../data/messages:83
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:89
 msgid "Mute icon :"
 msgstr "Icône 'muet' :"
 
@@ -255,15 +261,17 @@ msgstr "Icône 'muet' :"
 msgid "I couldn't find any element '%s'"
 msgstr ""
 
-#: ../data/messages:43 ../data/messages:45
+#: ../data/messages:43 ../data/messages:45 ../data/messages:49
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr "Commande spécifique pour montrer un mixer de son avancé :"
 
 #: ../data/messages:47 ../data/messages:49 ../data/messages:51
+#: ../data/messages:55
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "Variation pour 1 coup de molette, en % :"
 
 #: ../data/messages:49 ../data/messages:51 ../data/messages:53
+#: ../data/messages:57
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr "Cacher l'échelle quand la souris quitte le desklet ?"
 
@@ -271,6 +279,16 @@ msgstr "Cacher l'échelle quand la souris quitte le desklet ?"
 msgid "Name of the dock it belongs to:"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:51
 msgid "Control"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lockposition ?"
 msgstr ""

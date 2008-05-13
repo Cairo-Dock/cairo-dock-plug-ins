@@ -30,17 +30,17 @@ msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
 #: ../data/messages:33 ../data/messages:31 ../data/messages:29
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:39
 msgid "GUI"
 msgstr "GUI"
 
 #: ../data/messages:37 ../data/messages:35 ../data/messages:33
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:43
 msgid "Terminal's transparency :"
 msgstr "端末の透明度 :"
 
 #: ../data/messages:35 ../data/messages:33 ../data/messages:31
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:41
 msgid "needs to restart the applet."
 msgstr "アプレットの再起動が必要です。"
 
@@ -48,17 +48,17 @@ msgid "Always on top ?"
 msgstr "常に最前面に表示？"
 
 #: ../data/messages:39 ../data/messages:37 ../data/messages:35
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:45
 msgid "Foreground color (r, v, b):"
 msgstr "前面の色（赤、緑、青） :"
 
 #: ../data/messages:41 ../data/messages:39 ../data/messages:37
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:47
 msgid "Background color (r, v, b):"
 msgstr "背景の色（赤、緑、青） :"
 
 #: ../data/messages:43 ../data/messages:41 ../data/messages:39
-#: ../data/messages:45 ../data/messages:47
+#: ../data/messages:45 ../data/messages:47 ../data/messages:51
 msgid "Size of the terminal (line x columns) :"
 msgstr "端末の大きさ（行×列） :"
 
@@ -184,7 +184,7 @@ msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:45 ../data/messages:43 ../data/messages:41
-#: ../data/messages:47 ../data/messages:49
+#: ../data/messages:47 ../data/messages:49 ../data/messages:53
 msgid "Shortkey to show the terminal"
 msgstr "端末を表示するショートカットキー :"
 
@@ -198,7 +198,7 @@ msgstr ""
 msgid "Set title for this tab :"
 msgstr ""
 
-#: ../data/messages:43 ../data/messages:45
+#: ../data/messages:43 ../data/messages:45 ../data/messages:49
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -229,4 +229,14 @@ msgstr ""
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:37
+msgid "Lockposition ?"
 msgstr ""

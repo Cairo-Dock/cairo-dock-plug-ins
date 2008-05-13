@@ -117,7 +117,7 @@ msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:11 ../data/messages:31 ../data/messages:33
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:37 ../data/messages:39
 msgid "Configuration"
 msgstr "設定"
 
@@ -126,62 +126,62 @@ msgid "You can search it on www.weather.com"
 msgstr "www.weather.com にてコード検索可能"
 
 #: ../data/messages:15 ../data/messages:35 ../data/messages:37
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:43
 msgid "Code of your location :"
 msgstr "現在地のコード :"
 
 #: ../data/messages:17 ../data/messages:37 ../data/messages:39
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:45
 msgid "Use International System Units ?"
 msgstr "国際単位系を使用？"
 
 #: ../data/messages:19 ../data/messages:49 ../data/messages:51
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:57
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr "アイコン上にデフォルトの表示に代えて現在の天気を表示？"
 
 #: ../data/messages:21 ../data/messages:51 ../data/messages:53
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:59
 msgid "Number of days you want to forecast :"
 msgstr "予報日数 :"
 
 #: ../data/messages:23 ../data/messages:53 ../data/messages:55
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:61
 msgid "Display nights too ?"
 msgstr "夜の予報も表示？"
 
 #: ../data/messages:25 ../data/messages:55 ../data/messages:57
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:63
 msgid "Display temperature as quick info ?"
 msgstr "アイコン上に気温を表示？"
 
 #: ../data/messages:27 ../data/messages:39 ../data/messages:41
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:47
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "秒単位。ダイアログを表示させたままにするには 0 に設定。"
 
 #: ../data/messages:29 ../data/messages:41 ../data/messages:43
-#: ../data/messages:45
+#: ../data/messages:45 ../data/messages:49
 msgid "Duration of dialogs :"
 msgstr "ダイアログの継続時間 :"
 
 #: ../data/messages:31 ../data/messages:43 ../data/messages:45
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:51
 msgid "in minutes."
 msgstr "分単位。"
 
 #: ../data/messages:33 ../data/messages:45 ../data/messages:47
-#: ../data/messages:49
+#: ../data/messages:49 ../data/messages:53
 msgid "Interval of time between 2 checks :"
 msgstr "チェックの間隔時間 :"
 
 #: ../data/messages:35 ../data/messages:59 ../data/messages:63
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:69
 msgid "Let it empty to use default sub-dock view."
 msgstr "デフォルトのサブ・ドックの外観を使用するには空欄のままに。"
 
 #: ../data/messages:37 ../data/messages:61 ../data/messages:65
-#: ../data/messages:67
+#: ../data/messages:67 ../data/messages:71
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
@@ -236,10 +236,12 @@ msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:47 ../data/messages:59 ../data/messages:61
+#: ../data/messages:65
 msgid "Display"
 msgstr "表示"
 
 #: ../data/messages:57 ../data/messages:61 ../data/messages:63
+#: ../data/messages:67
 msgid "Choose one of the available themes :"
 msgstr "利用可能なテーマから1つ選択 :"
 
@@ -298,6 +300,7 @@ msgid "Dec"
 msgstr "12月"
 
 #: ../data/messages:63 ../data/messages:67 ../data/messages:69
+#: ../data/messages:73
 msgid "Render desklet in 3D ?"
 msgstr "デスクレットを 3D 描画？"
 
@@ -348,15 +351,26 @@ msgid ""
 msgstr ""
 
 #: ../data/messages:33 ../data/messages:35 ../data/messages:37
+#: ../data/messages:41
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
 msgstr ""
 
-#: ../data/messages:49 ../data/messages:51
+#: ../data/messages:49 ../data/messages:51 ../data/messages:55
 msgid "Info"
 msgstr ""
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lockposition ?"
 msgstr ""

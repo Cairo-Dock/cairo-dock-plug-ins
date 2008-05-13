@@ -119,7 +119,7 @@ void cd_cpusage_read_data (void)
 	
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
-	g_return_if_fail (fTimeElapsed != 0);
+	g_return_if_fail (fTimeElapsed > 0.1);  // en conf, c'est 1s minimum.
 	g_timer_start (myData.pClock);
 	
 	FILE *fd = fopen (CPUSAGE_DATA_PIPE, "r");
@@ -168,7 +168,7 @@ void cd_cpusage_update_from_data (void)
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 		make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 		
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
@@ -180,7 +180,7 @@ void cd_cpusage_update_from_data (void)
 		if (! myData.bInitialized)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(myDock ? "..." : D_("Loading"));
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
 			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 			myData.bInitialized = TRUE;
 		}
@@ -194,9 +194,8 @@ void cd_cpusage_update_from_data (void)
 				}
 				else
 				{
-					gchar *cInfoTitle = g_strdup_printf ("CPU : %.1f%%", myData.cpu_usage);
-					CD_APPLET_SET_NAME_FOR_MY_ICON (cInfoTitle)
-					g_free (cInfoTitle);
+					if (myDock)
+						CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("CPU : %.1f%%", myData.cpu_usage)
 				}
 			}
 			

@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 ******************************************************************************/
 #include <math.h>
@@ -13,6 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "rendering-config.h"
 
 extern double my_fInclinationOnHorizon;
+extern CDSpeparatorType my_iDrawSeparator3D;
 
 extern double my_fForegroundRatio;
 extern double my_iGapOnEllipse;
@@ -52,14 +53,14 @@ extern gboolean my_diapo_simple_lineaire;
 extern gboolean  my_diapo_simple_wide_grid;
 extern gboolean  my_diapo_simple_text_only_on_pointed;
 
-void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator)
+void read_conf_file (GKeyFile *pKeyFile)
 {
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
 	
 	double fInclinationAngle  = cairo_dock_get_double_key_value (pKeyFile, "Inclinated Plane", "inclination", &bFlushConfFileNeeded, 35, NULL, NULL);
 	my_fInclinationOnHorizon = tan (fInclinationAngle * G_PI / 180.);
 	
-	*bFlatSeparator = cairo_dock_get_boolean_key_value (pKeyFile, "Inclinated Plane", "flat separator", &bFlushConfFileNeeded, FALSE, NULL, NULL);
+	my_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Inclinated Plane", "draw separator", &bFlushConfFileNeeded, 0, NULL, NULL);
 	
 	double couleur[4] = {0.9,0.9,1.0,1.0};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Inclinated Plane", "separator color", &bFlushConfFileNeeded, my_fSeparatorColor, 4, couleur, NULL, NULL);

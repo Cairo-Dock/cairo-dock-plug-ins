@@ -27,13 +27,13 @@ typedef struct {
 
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
-	double dSlideTime;
+	gint iSlideTime;
 	gchar *cDirectory;
 	gboolean bSubDirs;
 	gboolean bNoStrench;
-	gboolean bEffect;
+	gboolean bFillIcon;
 	gboolean bRandom;
-	SliderAnimation pAnimation;
+	SliderAnimation iAnimation;
 	gdouble pBackgroundColor[4];
 } AppletConfig;
 

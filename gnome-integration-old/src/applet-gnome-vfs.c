@@ -612,7 +612,7 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 }
 
 
-gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNecessary)
+gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gchar **cFileInfoPath)
 {
 	cd_message ("%s (%s)", __func__, cNearURI);
 	
@@ -621,10 +621,12 @@ gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNece
 	GnomeVFSResult r = gnome_vfs_find_directory (near_uri,
 		GNOME_VFS_DIRECTORY_KIND_TRASH,
 		&result,
-		bCreateIfNecessary,
+		TRUE,  // le creer si n'existe pas.
 		TRUE,
 		7*8*8+5*8+5);
 	gnome_vfs_uri_unref (near_uri);
+	if (cFileInfoPath != NULL)
+		*cFileInfoPath = NULL;
 	if (r == GNOME_VFS_OK)
 	{
 		gchar *cTrashURI = g_strdup (result->text);

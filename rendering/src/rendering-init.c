@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.fr)
+Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 ******************************************************************************/
 #include "stdlib.h"
@@ -25,8 +25,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #define MY_APPLET_USER_DATA_DIR "rendering"
 
 double my_fInclinationOnHorizon;  // inclinaison de la ligne de fuite vers l'horizon.
+CDSpeparatorType my_iDrawSeparator3D;
 
-cairo_surface_t *my_pFlatSeparatorSurface[2];
+cairo_surface_t *my_pFlatSeparatorSurface[2] = {NULL, NULL};
 double my_fSeparatorColor[4];
 
 double my_fForegroundRatio;  // fraction des icones presentes en avant-plan (represente donc l'etirement en profondeur de l'ellipse).
@@ -70,11 +71,13 @@ CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 CD_APPLET_PRE_INIT_END
 
 
-static void _load_flat_separator (gboolean bFlatSeparator, CairoDock *pDock)
+static void _load_flat_separator (CairoContainer *pContainer)
 {
-	if (bFlatSeparator)
+	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
+	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
+	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 	{
-		cairo_t *pSourceContext = cairo_dock_create_context_from_window (pDock);
+		cairo_t *pSourceContext = cairo_dock_create_context_from_window (pContainer);
 		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (pSourceContext, 150, 150);
 		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], pSourceContext, 150, 150, -G_PI / 2);
 		cairo_destroy (pSourceContext);
@@ -90,8 +93,7 @@ void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *c
 {
 	//g_print ("%s (%s)\n", __func__, MY_APPLET_DOCK_VERSION);
 	//\_______________ On lit le fichier de conf.
-	gboolean bFlatSeparator;
-	read_conf_file (pKeyFile, &bFlatSeparator);
+	read_conf_file (pKeyFile);
 	
 	//\_______________ On enregistre les vues.
 	cd_rendering_register_caroussel_renderer ();
@@ -100,7 +102,7 @@ void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *c
 	
 	cd_rendering_register_parabole_renderer ();
 	
-	cd_rendering_register_rainbow_renderer ();  // pas encore ...
+	cd_rendering_register_rainbow_renderer ();
 	
 	cd_rendering_register_diapo_renderer (); 
 
@@ -109,7 +111,7 @@ void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *c
 	cairo_dock_set_all_views_to_default ();
 	
 	//\_______________ On charge le separateur plat.
-	_load_flat_separator (bFlatSeparator, g_pMainDock);
+	_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 }
 
 
@@ -133,12 +135,11 @@ gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoContainer *pNewC
 	{
 		reset_data ();
 		
-		gboolean bFlatSeparator;
-		read_conf_file (pKeyFile, &bFlatSeparator);
+		read_conf_file (pKeyFile);
 		
 		cairo_dock_set_all_views_to_default ();
 		
-		_load_flat_separator (bFlatSeparator, g_pMainDock);
+		_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 	}
 	return TRUE;
 }

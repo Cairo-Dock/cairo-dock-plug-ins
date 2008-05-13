@@ -45,6 +45,9 @@ keep above=false
 #b Keep on widget layer ?
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
+#b Lockposition ?
+#{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
+locked = false
 
 [Configuration]
 #F[Directory]
@@ -52,7 +55,7 @@ frame_td=
 #D Directory of the images :
 directory= /
 #b Scan in sub direcotries ?
-#{Not implemented yet}
+#{Not  yetimplemented.}
 sub directories=false
 #b Randomly browse files ?
 random = false
@@ -62,9 +65,12 @@ frame_ops=
 #i[1;500] Sliding delay :
 #{in seconds.}
 slide time=30
-#b Don't strench the images ?
-#{Give better image rendering}
+#b Keep widht/height ratio ?
+#{Gives a better image rendering.}
 no strench=true
+#b Force the image to fill the icon/desklet ?
+#{If the image is too small, it will be zoomed in.}
+fill icon = false
 #r[none;fade;blank fade;fade in out;side kick;diaporama;grow up;shrink down] Effect while changing image :
 change animation=1
 #c4[0;1] Choose a background color :

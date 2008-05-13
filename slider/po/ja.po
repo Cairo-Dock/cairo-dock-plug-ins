@@ -118,92 +118,102 @@ msgstr ""
 msgid "Name of the dock it belongs to:"
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:39
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:41
 msgid "Directory"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:43
 msgid "Directory of the images :"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:45
 msgid "Not implemented yet"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:47
 msgid "Scan in sub direcotries ?"
 msgstr ""
 
-#: ../data/messages:45 ../data/messages:47
+#: ../data/messages:45 ../data/messages:47 ../data/messages:51
 msgid "Options"
 msgstr ""
 
-#: ../data/messages:47 ../data/messages:49
+#: ../data/messages:47 ../data/messages:49 ../data/messages:53
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:49 ../data/messages:51
+#: ../data/messages:49 ../data/messages:51 ../data/messages:55
 msgid "Sliding delay :"
 msgstr ""
 
-#: ../data/messages:51 ../data/messages:53
+#: ../data/messages:51 ../data/messages:53 ../data/messages:57
 msgid "Give better image rendering"
 msgstr ""
 
-#: ../data/messages:53 ../data/messages:55
+#: ../data/messages:53 ../data/messages:55 ../data/messages:59
 msgid "Don't strench the images ?"
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:57
+#: ../data/messages:55 ../data/messages:57 ../data/messages:61
 msgid "Effect while changing image :"
 msgstr ""
 
-#: ../data/messages:57 ../data/messages:59
+#: ../data/messages:57 ../data/messages:59 ../data/messages:63
 msgid "none"
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:63
+#: ../data/messages:59 ../data/messages:63 ../data/messages:67
 msgid "blank fade"
 msgstr ""
 
-#: ../data/messages:61 ../data/messages:65
+#: ../data/messages:61 ../data/messages:65 ../data/messages:69
 msgid "fade in out"
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:67
+#: ../data/messages:63 ../data/messages:67 ../data/messages:71
 msgid "side kick"
 msgstr ""
 
-#: ../data/messages:65 ../data/messages:69
+#: ../data/messages:65 ../data/messages:69 ../data/messages:73
 msgid "diaporama"
 msgstr ""
 
-#: ../data/messages:67 ../data/messages:71
+#: ../data/messages:67 ../data/messages:71 ../data/messages:75
 msgid "grow up"
 msgstr ""
 
-#: ../data/messages:69 ../data/messages:73
+#: ../data/messages:69 ../data/messages:73 ../data/messages:77
 msgid "shrink down"
 msgstr ""
 
-#: ../data/messages:71 ../data/messages:75
+#: ../data/messages:71 ../data/messages:75 ../data/messages:79
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
 
-#: ../data/messages:73 ../data/messages:77
+#: ../data/messages:73 ../data/messages:77 ../data/messages:81
 msgid "Choose a background color :"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:45 ../data/messages:49
 msgid "Randomly browse files ?"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:61 ../data/messages:65
 msgid "fade"
+msgstr ""
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:37
+msgid "Lockposition ?"
 msgstr ""

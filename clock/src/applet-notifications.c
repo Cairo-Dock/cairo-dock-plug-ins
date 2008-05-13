@@ -44,7 +44,7 @@ void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data)
 }
 
 
-CD_APPLET_ABOUT (_D("This is the Cairo-Dock's clock applet\n made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\nThe analogic representation is a port of the well-known Cairo-Clock\n from MacSlow (http://macslow.thepimp.net)."))
+CD_APPLET_ABOUT (D_("This is the Cairo-Dock's clock applet\n made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\nThe analogic representation is a port of the well-known Cairo-Clock\n from MacSlow (http://macslow.thepimp.net)."))
 
 
 CD_APPLET_ON_CLICK_BEGIN
@@ -70,7 +70,7 @@ CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Clock", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU (_D("Set up time and date"), cd_clock_launch_time_admin, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Set up time and date"), cd_clock_launch_time_admin, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 

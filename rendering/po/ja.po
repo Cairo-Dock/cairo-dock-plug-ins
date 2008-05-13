@@ -161,3 +161,7 @@ msgstr ""
 #: ../data/messages:63
 msgid "Cone's width :"
 msgstr "円錐の幅 :"
+
+#: ../data/messages:65
+msgid "Diapo"
+msgstr ""

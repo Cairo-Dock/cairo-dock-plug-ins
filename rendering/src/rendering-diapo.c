@@ -464,6 +464,9 @@ void cairo_dock_rendering_diapo_calculate_max_icon_size(GList *pIconList, gint* 
 //////////////////////////////////////////////////////////////////////////////////////// Fonction calculant la taille maximale du dock en placant une fausse souris au milieu de la vue
 void cairo_dock_rendering_diapo_calculate_max_dock_size (GList *pIconList, gint Wmin, gint Hmin, gint* Wmax, gint* Hmax, guint nRowsX, guint nRowsY)
 {
+        *Hmax = *Wmax = 0;
+        if (pIconList == NULL)
+        	return ;
         gint maxWidth [nRowsX];
         gint maxHeight[nRowsY];
         guint i = 0;       
@@ -472,7 +475,7 @@ void cairo_dock_rendering_diapo_calculate_max_dock_size (GList *pIconList, gint 
         
         cairo_dock_rendering_diapo_calculate_max_icon_size(pIconList, (guint*)  &maxWidth, (guint*)  &maxHeight, nRowsX, nRowsY);
         
-        *Hmax = *Wmax = 0;
+        
         for(i = 0 ;  i < nRowsX ; i++) *Wmax += maxWidth [i] + 2 * my_diapo_iconGapX;
         for(i = 0 ;  i < nRowsY ; i++) *Hmax += maxHeight[i] + 2 * my_diapo_iconGapY;
 }

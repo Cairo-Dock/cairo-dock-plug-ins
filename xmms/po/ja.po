@@ -106,7 +106,7 @@ msgid ""
 " made by ChAnGFu for Cairo-Dock"
 msgstr ""
 
-#: ../data/messages:33 ../data/messages:35
+#: ../data/messages:33 ../data/messages:35 ../data/messages:37
 msgid "Configuration"
 msgstr ""
 
@@ -135,6 +135,193 @@ msgstr ""
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:11
 msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../src/applet-notifications.c:197
+msgid ""
+"This is the xmms applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+
+#: ../src/applet-notifications.c:231
+msgid "Previous"
+msgstr ""
+
+#: ../src/applet-notifications.c:232
+msgid "Play/Pause"
+msgstr ""
+
+#: ../src/applet-notifications.c:234
+msgid "Stop"
+msgstr ""
+
+#: ../src/applet-notifications.c:236
+msgid "Next"
+msgstr ""
+
+#: ../src/applet-notifications.c:238
+msgid "Show JumpBox"
+msgstr ""
+
+#: ../src/applet-notifications.c:239
+msgid "Toggle Shuffle"
+msgstr ""
+
+#: ../src/applet-notifications.c:240
+msgid "Toggle Repeat"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lockposition ?"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Audio Player"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Player to control:"
+msgstr ""
+
+#: ../data/messages:43
+msgid "XMMS"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Audacious"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Banshee"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Exaile"
+msgstr ""
+
+#: ../data/messages:51
+msgid ""
+"It will prevent the player's icon to appear in the task bar. The applet's "
+"icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+
+#: ../data/messages:53
+msgid "Steal the player's icon from taskbar ?"
+msgstr ""
+
+#: ../data/messages:55
+msgid "Display"
+msgstr ""
+
+#: ../data/messages:57
+msgid "Information to display on the icon :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "Nothing"
+msgstr ""
+
+#: ../data/messages:61
+msgid "Time Elapsed"
+msgstr ""
+
+#: ../data/messages:63
+msgid "Time Left"
+msgstr ""
+
+#: ../data/messages:65
+msgid "N° of track"
+msgstr ""
+
+#: ../data/messages:67
+msgid "Activate extended desklet mode ?"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Action on music change"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Show an info-bubble ?"
+msgstr ""
+
+#: ../data/messages:73
+msgid "in ms."
+msgstr ""
+
+#: ../data/messages:75
+msgid "Time length of info-bubbles :"
+msgstr ""
+
+#: ../data/messages:77
+msgid "Animate icon ?"
+msgstr ""
+
+#: ../data/messages:79
+msgid "Animation when music changes :"
+msgstr ""
+
+#: ../data/messages:81
+msgid "bounce"
+msgstr ""
+
+#: ../data/messages:83
+msgid "rotate"
+msgstr ""
+
+#: ../data/messages:85
+msgid "blink"
+msgstr ""
+
+#: ../data/messages:87
+msgid "pulse"
+msgstr ""
+
+#: ../data/messages:89
+msgid "upside-down"
+msgstr ""
+
+#: ../data/messages:91
+msgid "wobbly"
+msgstr ""
+
+#: ../data/messages:93
+msgid "random"
+msgstr ""
+
+#: ../data/messages:95
+msgid "Personnalisation"
+msgstr ""
+
+#: ../data/messages:97 ../data/messages:101 ../data/messages:105
+#: ../data/messages:109 ../data/messages:113
+msgid "Let t empty to use the default icon."
+msgstr ""
+
+#: ../data/messages:99
+msgid "Name of an image for the 'default' icon :"
+msgstr ""
+
+#: ../data/messages:103
+msgid "Name of an image for the 'play' icon :"
+msgstr ""
+
+#: ../data/messages:107
+msgid "Name of an image for the 'stop' icon :"
+msgstr ""
+
+#: ../data/messages:111
+msgid "Name of an image for the 'pause' icon :"
+msgstr ""
+
+#: ../data/messages:115
+msgid "Name of an image for the 'broken' icon :"
 msgstr ""

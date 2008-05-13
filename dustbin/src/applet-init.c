@@ -97,7 +97,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	//\_______________ On commence a surveiller les repertoires.
 	myData.iNbTrashes = 0;
 	gboolean bMonitoringOK = FALSE;
-	gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), TRUE);
+	gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), NULL);
 	if (cDustbinPath != NULL)
 		bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath, 0);  // cDustbinPath ne nous appartient plus.
 	

@@ -32,22 +32,27 @@ msgid "Default title :"
 msgstr "デフォルトのタイトル :"
 
 #: ../data/messages:11 ../data/messages:31 ../data/messages:33
+#: ../data/messages:37
 msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:13 ../data/messages:33 ../data/messages:35
+#: ../data/messages:39
 msgid "Info-bubbles"
 msgstr "情報吹き出し"
 
 #: ../data/messages:15 ../data/messages:35 ../data/messages:37
+#: ../data/messages:41
 msgid "Activate info-bubbles ?"
 msgstr "情報吹き出しを有効化？"
 
 #: ../data/messages:19 ../data/messages:39 ../data/messages:41
+#: ../data/messages:45
 msgid "Time length of info-bubbles :"
 msgstr "情報吹き出しの表示継続時間 :"
 
 #: ../data/messages:17 ../data/messages:37 ../data/messages:39
+#: ../data/messages:43
 msgid "in ms."
 msgstr "ミリ秒単位"
 
@@ -56,49 +61,57 @@ msgid "Animations"
 msgstr "アニメーション"
 
 #: ../data/messages:25 ../data/messages:45 ../data/messages:47
+#: ../data/messages:51
 msgid "bounce"
 msgstr "バウンド"
 
 #: ../data/messages:27 ../data/messages:47 ../data/messages:49
+#: ../data/messages:53
 msgid "rotate"
 msgstr "回転"
 
 #: ../data/messages:29 ../data/messages:49 ../data/messages:51
+#: ../data/messages:55
 msgid "blink"
 msgstr "点滅"
 
 #: ../data/messages:31 ../data/messages:51 ../data/messages:53
+#: ../data/messages:57
 msgid "pulse"
 msgstr "波動"
 
 #: ../data/messages:33 ../data/messages:53 ../data/messages:55
+#: ../data/messages:59
 msgid "upside-down"
 msgstr "上下逆さま"
 
 #: ../data/messages:35 ../data/messages:55 ../data/messages:57
+#: ../data/messages:61
 msgid "wobbly"
 msgstr "伸び縮み"
 
 #: ../data/messages:37 ../data/messages:57 ../data/messages:59
+#: ../data/messages:63
 msgid "random"
 msgstr "ランダム"
 
 #: ../data/messages:23 ../data/messages:43 ../data/messages:45
+#: ../data/messages:49
 msgid "Animation when music changes :"
 msgstr "音楽切り替わり時のアニメーション:"
 
 #: ../data/messages:39 ../data/messages:59 ../data/messages:63
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:69
 msgid "Display"
 msgstr "表示"
 
 #: ../data/messages:41 ../data/messages:61 ../data/messages:65
-#: ../data/messages:67
+#: ../data/messages:67 ../data/messages:71
 msgid "Display album's cover instead of icon ?"
 msgstr "アイコンの代わりにアルバムのカバーを表示？"
 
 #: ../data/messages:43 ../data/messages:63 ../data/messages:67
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:73
 msgid "Information to display on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
@@ -154,33 +167,33 @@ msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:45 ../data/messages:65 ../data/messages:69
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:75
 msgid "nothing"
 msgstr "なし"
 
 #: ../data/messages:47 ../data/messages:67 ../data/messages:71
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:77
 msgid "time elapsed"
 msgstr "経過時間"
 
 #: ../data/messages:49 ../data/messages:69 ../data/messages:73
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:79
 msgid "time left"
 msgstr "残り時間"
 
 #: ../data/messages:51 ../data/messages:71 ../data/messages:75
-#: ../data/messages:77
+#: ../data/messages:77 ../data/messages:81
 #, c-format
 msgid "time in %"
 msgstr "時間の割合"
 
 #: ../data/messages:53 ../data/messages:73 ../data/messages:77
-#: ../data/messages:79
+#: ../data/messages:79 ../data/messages:83
 msgid "n° of track"
 msgstr "トラック番号"
 
 #: ../data/messages:55 ../data/messages:75 ../data/messages:79
-#: ../data/messages:81
+#: ../data/messages:81 ../data/messages:85
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
@@ -189,32 +202,32 @@ msgstr "カスタマイズ"
 #: ../data/messages:81 ../data/messages:85 ../data/messages:89
 #: ../data/messages:93 ../data/messages:97 ../data/messages:83
 #: ../data/messages:87 ../data/messages:91 ../data/messages:95
-#: ../data/messages:99
+#: ../data/messages:99 ../data/messages:103
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #: ../data/messages:59 ../data/messages:79 ../data/messages:83
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:89
 msgid "Name of an image for the 'default' icon :"
 msgstr "'デフォルト' アイコンの画像の名前 :"
 
 #: ../data/messages:63 ../data/messages:83 ../data/messages:87
-#: ../data/messages:89
+#: ../data/messages:89 ../data/messages:93
 msgid "Name of an image for the 'play' icon :"
 msgstr "'再生' アイコンの画像の名前 :"
 
 #: ../data/messages:67 ../data/messages:87 ../data/messages:91
-#: ../data/messages:93
+#: ../data/messages:93 ../data/messages:97
 msgid "Name of an image for the 'stop' icon :"
 msgstr "'停止' アイコンの画像の名前 :"
 
 #: ../data/messages:71 ../data/messages:91 ../data/messages:95
-#: ../data/messages:97
+#: ../data/messages:97 ../data/messages:101
 msgid "Name of an image for the 'pause' icon :"
 msgstr "'一時停止' アイコンの画像の名前 :"
 
 #: ../data/messages:75 ../data/messages:95 ../data/messages:99
-#: ../data/messages:101
+#: ../data/messages:101 ../data/messages:105
 msgid "Name of an image for the 'broken' icon :"
 msgstr "'リンク切れ' アイコンの画像の名前 :"
 
@@ -276,20 +289,30 @@ msgstr ""
 msgid "Inhibate the rhythmbox's icon in taskbar ?"
 msgstr ""
 
-#: ../data/messages:41 ../data/messages:43
+#: ../data/messages:41 ../data/messages:43 ../data/messages:47
 msgid "Behaviour"
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:61
+#: ../data/messages:59 ../data/messages:61 ../data/messages:65
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
 
-#: ../data/messages:61 ../data/messages:63
+#: ../data/messages:61 ../data/messages:63 ../data/messages:67
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr ""
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lockposition ?"
 msgstr ""

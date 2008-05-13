@@ -22,7 +22,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 
 
-CD_APPLET_ABOUT (_D("This is the mail applet\n made by Christophe Chapuis for Cairo-Dock"))
+CD_APPLET_ABOUT (D_("This is the mail applet\n made by Christophe Chapuis for Cairo-Dock"))
 
 
 #define _add_icon(account_name, nbUnreadMails, i)\
@@ -57,7 +57,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			cd_warning ("Attention : when trying to execute '%s' : %s", myConfig.cMailApplication, erreur->message);
 			g_error_free (erreur);
 			//gchar *cTipMessage = g_strdup_printf ("A problem occured\nIf '%s' is not your usual file browser, you can change it in the conf panel of this module", myConfig.cDefaultBrowser);
-			cairo_dock_show_temporary_dialog (_D("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myDock, 5000, myConfig.cMailApplication);
+			cairo_dock_show_temporary_dialog (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myDock, 5000, myConfig.cMailApplication);
 			//g_free (cTipMessage);
 		}
     }

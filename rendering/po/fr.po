@@ -161,6 +161,8 @@ msgid ""
 "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
 "widely opened."
 msgstr ""
+"en degrés. Plus c'est petit, plus le cône sera étroit. 180° signifie que le "
+"cône est complètement ouvert."
 
 #: ../data/messages:63
 msgid "Cone's width :"
@@ -189,3 +191,7 @@ msgstr "Utiliser une forme alongée ?"
 
 msgid "Display text only for pointed icon ?"
 msgstr "Afficher le texte seulement pour l'icône pointée ?"
+
+#: ../data/messages:65
+msgid "Diapo"
+msgstr ""

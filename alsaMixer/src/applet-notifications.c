@@ -19,7 +19,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 
 
-CD_APPLET_ABOUT (_D("This is the AlsaMixer applet\n made by Fabounet (Fabrice Rey) for Cairo-Dock"))
+CD_APPLET_ABOUT (D_("This is the AlsaMixer applet\n made by Fabounet (Fabrice Rey) for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN

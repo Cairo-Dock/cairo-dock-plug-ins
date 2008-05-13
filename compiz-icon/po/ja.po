@@ -146,7 +146,7 @@ msgstr ""
 msgid "Switch Windows Decorator"
 msgstr ""
 
-#: ../data/messages:33 ../data/messages:31
+#: ../data/messages:33 ../data/messages:31 ../data/messages:37
 msgid "Configuration"
 msgstr ""
 
@@ -202,13 +202,14 @@ msgstr ""
 
 #: ../data/messages:59 ../data/messages:63 ../data/messages:67
 #: ../data/messages:65 ../data/messages:69 ../data/messages:73
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:79
 msgid "Compiz Options"
 msgstr ""
 
 #: ../data/messages:61 ../data/messages:65 ../data/messages:69
 #: ../data/messages:73 ../data/messages:67 ../data/messages:71
 #: ../data/messages:75 ../data/messages:79 ../data/messages:81
+#: ../data/messages:85
 msgid "Use thoses options only if you know them."
 msgstr ""
 
@@ -230,18 +231,19 @@ msgstr ""
 
 #: ../data/messages:73 ../data/messages:59 ../data/messages:89
 #: ../data/messages:87 ../data/messages:91 ../data/messages:95
-#: ../data/messages:97
+#: ../data/messages:97 ../data/messages:101
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
 #: ../data/messages:75 ../data/messages:61 ../data/messages:91
 #: ../data/messages:89 ../data/messages:93 ../data/messages:97
-#: ../data/messages:99
+#: ../data/messages:99 ../data/messages:103
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
 #: ../data/messages:77 ../data/messages:93 ../data/messages:91
 #: ../data/messages:95 ../data/messages:99 ../data/messages:101
+#: ../data/messages:105
 msgid "Images"
 msgstr ""
 
@@ -253,36 +255,43 @@ msgstr ""
 #: ../data/messages:113 ../data/messages:117 ../data/messages:121
 #: ../data/messages:125 ../data/messages:129 ../data/messages:119
 #: ../data/messages:123 ../data/messages:127 ../data/messages:131
+#: ../data/messages:135
 msgid "Let t empty to use the default icon."
 msgstr ""
 
 #: ../data/messages:81 ../data/messages:97 ../data/messages:95
 #: ../data/messages:99 ../data/messages:103 ../data/messages:105
+#: ../data/messages:109
 msgid "Name of an image for the 'default' icon :"
 msgstr ""
 
 #: ../data/messages:85 ../data/messages:101 ../data/messages:99
 #: ../data/messages:103 ../data/messages:107 ../data/messages:109
+#: ../data/messages:113
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""
 
 #: ../data/messages:89 ../data/messages:105 ../data/messages:103
 #: ../data/messages:107 ../data/messages:111 ../data/messages:113
+#: ../data/messages:117
 msgid "Name of an image for the 'other wm' icon :"
 msgstr ""
 
 #: ../data/messages:93 ../data/messages:109 ../data/messages:107
 #: ../data/messages:111 ../data/messages:115 ../data/messages:117
+#: ../data/messages:121
 msgid "Name of an image for the 'setting' icon :"
 msgstr ""
 
 #: ../data/messages:97 ../data/messages:113 ../data/messages:111
 #: ../data/messages:115 ../data/messages:119 ../data/messages:121
+#: ../data/messages:125
 msgid "Name of an image for the 'emerald' icon :"
 msgstr ""
 
 #: ../data/messages:101 ../data/messages:117 ../data/messages:115
 #: ../data/messages:119 ../data/messages:123 ../data/messages:125
+#: ../data/messages:129
 msgid "Name of an image for the 'reload' icon :"
 msgstr ""
 
@@ -314,26 +323,26 @@ msgstr ""
 msgid "Toggle Show Desktop"
 msgstr ""
 
-#: ../data/messages:35 ../data/messages:33
+#: ../data/messages:35 ../data/messages:33 ../data/messages:39
 msgid "Actions"
 msgstr ""
 
-#: ../data/messages:37 ../data/messages:35
+#: ../data/messages:37 ../data/messages:35 ../data/messages:41
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
 msgstr ""
 
-#: ../data/messages:39 ../data/messages:37
+#: ../data/messages:39 ../data/messages:37 ../data/messages:43
 msgid "Choose an action for the middle click on the icon :"
 msgstr ""
 
-#: ../data/messages:41 ../data/messages:39
+#: ../data/messages:41 ../data/messages:39 ../data/messages:45
 msgid "None"
 msgstr ""
 
 #: ../data/messages:43 ../data/messages:41 ../src/applet-load-icon.c:21
-#: ../src/applet-load-icon.c:22
+#: ../src/applet-load-icon.c:22 ../data/messages:47
 msgid "Switch WM"
 msgstr ""
 
@@ -341,7 +350,7 @@ msgstr ""
 msgid "WidgetLayer"
 msgstr ""
 
-#: ../data/messages:47 ../data/messages:45
+#: ../data/messages:47 ../data/messages:45 ../data/messages:51
 msgid "Expose"
 msgstr ""
 
@@ -355,21 +364,21 @@ msgid ""
 "the default one."
 msgstr ""
 
-#: ../data/messages:53 ../data/messages:51
+#: ../data/messages:53 ../data/messages:51 ../data/messages:57
 msgid "Custom command for system's Windows Manager :"
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:53
+#: ../data/messages:55 ../data/messages:53 ../data/messages:59
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
 msgstr ""
 
-#: ../data/messages:57 ../data/messages:55
+#: ../data/messages:57 ../data/messages:55 ../data/messages:61
 msgid "Auto-reload Compiz ?"
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:57
+#: ../data/messages:59 ../data/messages:57 ../data/messages:63
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
@@ -388,60 +397,61 @@ msgid "Force settings at startup"
 msgstr ""
 
 #: ../data/messages:71 ../data/messages:69 ../data/messages:73
-#: ../data/messages:77 ../data/messages:79
+#: ../data/messages:77 ../data/messages:79 ../data/messages:83
 msgid "Use Loose Binding ?"
 msgstr ""
 
 #: ../data/messages:75 ../data/messages:73 ../data/messages:77
-#: ../data/messages:81 ../data/messages:83
+#: ../data/messages:81 ../data/messages:83 ../data/messages:87
 msgid "Use Indirect Rendering ?"
 msgstr ""
 
 #: ../data/messages:77 ../data/messages:75 ../data/messages:79
-#: ../data/messages:83 ../data/messages:85
+#: ../data/messages:83 ../data/messages:85 ../data/messages:89
 msgid "By default it will be Emerald."
 msgstr ""
 
 #: ../data/messages:79 ../data/messages:77 ../data/messages:81
-#: ../data/messages:85 ../data/messages:87
+#: ../data/messages:85 ../data/messages:87 ../data/messages:91
 msgid "Choose your Windows Decorator :"
 msgstr ""
 
 #: ../data/messages:81 ../data/messages:79 ../data/messages:83
-#: ../data/messages:87 ../data/messages:89
+#: ../data/messages:87 ../data/messages:89 ../data/messages:93
 msgid "emerald"
 msgstr ""
 
 #: ../data/messages:83 ../data/messages:81 ../data/messages:85
-#: ../data/messages:89 ../data/messages:91
+#: ../data/messages:89 ../data/messages:91 ../data/messages:95
 msgid "gtk-window-decorator"
 msgstr ""
 
 #: ../data/messages:85 ../data/messages:83 ../data/messages:87
-#: ../data/messages:91 ../data/messages:93
+#: ../data/messages:91 ../data/messages:93 ../data/messages:97
 msgid "kde-window-decorator"
 msgstr ""
 
 #: ../data/messages:87 ../data/messages:85 ../data/messages:89
-#: ../data/messages:93 ../data/messages:95
+#: ../data/messages:93 ../data/messages:95 ../data/messages:99
 msgid "heliodor"
 msgstr ""
 
 #: ../data/messages:43 ../src/applet-load-icon.c:22 ../data/messages:45
+#: ../data/messages:49
 msgid "Widget Layer"
 msgstr ""
 
-#: ../data/messages:47 ../data/messages:49
+#: ../data/messages:47 ../data/messages:49 ../data/messages:53
 msgid "Show Desktop"
 msgstr ""
 
-#: ../data/messages:49 ../data/messages:51
+#: ../data/messages:49 ../data/messages:51 ../data/messages:55
 msgid ""
 "This command will be used to launch the system WM; let it blank to use the "
 "default one."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:61
+#: ../data/messages:59 ../data/messages:61 ../data/messages:65
 msgid "Auto-reload the Decorator ?"
 msgstr ""
 
@@ -449,21 +459,22 @@ msgstr ""
 msgid "Load Compiz with options at startup."
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:65
+#: ../data/messages:63 ../data/messages:65 ../data/messages:69
 msgid "Force Compiz settings at startup ?"
 msgstr ""
 
-#: ../data/messages:65 ../data/messages:67
+#: ../data/messages:65 ../data/messages:67 ../data/messages:71
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
 msgstr ""
 
-#: ../data/messages:67 ../data/messages:69
+#: ../data/messages:67 ../data/messages:69 ../data/messages:73
 msgid "Steal the application's icon in taskbar ?"
 msgstr ""
 
 #: ../data/messages:71 ../data/messages:75 ../data/messages:77
+#: ../data/messages:81
 msgid ""
 "With strict binding textures are bound whenever they are enabled, with loose "
 "binding they are enabled when created. The Nvidia driver seems a bit slow "
@@ -485,19 +496,19 @@ msgid ""
 "Layer plug-ins."
 msgstr ""
 
-#: ../data/messages:71 ../data/messages:73
+#: ../data/messages:71 ../data/messages:73 ../data/messages:77
 msgid "Add Exposition & Widget Layer to sub-dock ?"
 msgstr ""
 
-#: ../data/messages:127 ../data/messages:129
+#: ../data/messages:127 ../data/messages:129 ../data/messages:133
 msgid "Name of an image for the 'exposition' icon :"
 msgstr ""
 
-#: ../data/messages:131 ../data/messages:133
+#: ../data/messages:131 ../data/messages:133 ../data/messages:137
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr ""
 
-#: ../data/messages:69 ../data/messages:71
+#: ../data/messages:69 ../data/messages:71 ../data/messages:75
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins. Otherwise they will be available in the menu."
@@ -507,6 +518,16 @@ msgstr ""
 msgid "Name of the dock it belongs to:"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:63 ../data/messages:67
 msgid "Load Compiz with options at applet's startup."
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lockposition ?"
 msgstr ""

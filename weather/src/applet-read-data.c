@@ -239,14 +239,14 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 					i = atoi (index_str);
 					g_free (index_str);
 					cDayName = (gchar *) xmlGetProp (fils, (xmlChar *) "t");
-					myData.days[i].cName = g_strdup (_D(cDayName));
+					myData.days[i].cName = g_strdup (D_(cDayName));
 					g_free (cDayName);
 					cDate = (gchar *) xmlGetProp (fils, (xmlChar *) "dt");
 					str = strchr (cDate, ' ');
 					if (str != NULL)
 					{
 						*str = '\0';
-						myData.days[i].cDate = g_strconcat (_D(cDate), " ", str+1, NULL);
+						myData.days[i].cDate = g_strconcat (D_(cDate), " ", str+1, NULL);
 						g_free (cDate);
 					}
 					else

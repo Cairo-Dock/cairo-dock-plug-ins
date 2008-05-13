@@ -27,7 +27,7 @@ static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;
 void cd_compiz_start_system_wm (void) {
 	const gchar * cCommand = NULL;
 	if (myConfig.cUserWMCommand != NULL) {
-		cCommand = g_strdup_printf ("%s &", myConfig.cUserWMCommand);
+		cCommand = myConfig.cUserWMCommand;
 	}
 	else {
 		switch (g_iDesktopEnv) {
@@ -45,14 +45,8 @@ void cd_compiz_start_system_wm (void) {
 	}
 	myData.bCompizRestarted = TRUE;
 	cd_compiz_kill_compmgr(); //On tue tout les compositing managers
-	if (myConfig.cUserWMCommand != NULL) {
-	  system(cCommand);
-	}
-	else {
-	  cairo_dock_launch_command (cCommand);
-	}
+	cairo_dock_launch_command (cCommand);
 	cd_message ("Compiz - Run: %s ", cCommand);
-	g_free(cCommand);
 }
 
 void cd_compiz_start_compiz (void) {

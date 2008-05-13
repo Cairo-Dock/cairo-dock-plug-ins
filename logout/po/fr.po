@@ -113,14 +113,17 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:33 ../data/messages:35 ../data/messages:37
+#: ../data/messages:41
 msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:35 ../data/messages:37 ../data/messages:39
+#: ../data/messages:43
 msgid "Let empty to execute the default command."
 msgstr "Laissez vide pour exécuter la commande par défaut."
 
 #: ../data/messages:37 ../data/messages:39 ../data/messages:41
+#: ../data/messages:45
 msgid "User-defined command to execute to log-out :"
 msgstr "Commande spécifique à exécuter pour se déloguer :"
 
@@ -130,4 +133,14 @@ msgstr "Laisser vide pour utiliser l'icône par défaut."
 
 #: ../data/messages:15
 msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:37
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:39
+msgid "Lockposition ?"
 msgstr ""

@@ -16,7 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_INCLUDE_MY_VARS
 
 
-CD_APPLET_ABOUT (_D("This is the showDesklets applet\n made by Fabrice Rey for Cairo-Dock"))
+CD_APPLET_ABOUT (D_("This is the showDesklets applet\n made by Fabrice Rey for Cairo-Dock"))
 
 static void _hide_unhide_desklets (void)
 {

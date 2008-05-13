@@ -103,23 +103,26 @@ msgstr "Information"
 
 #: ../data/messages:15 ../data/messages:35 ../data/messages:39
 #: ../data/messages:41 ../data/messages:57 ../data/messages:59
+#: ../data/messages:63
 msgid "Information to be displayed on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
 #: ../data/messages:17 ../data/messages:37 ../data/messages:41
 #: ../data/messages:49 ../data/messages:43 ../data/messages:51
 #: ../data/messages:45 ../data/messages:59 ../data/messages:47
-#: ../data/messages:61
+#: ../data/messages:61 ../data/messages:65
 msgid "nothing"
 msgstr "Aucune"
 
 #: ../data/messages:19 ../data/messages:39 ../data/messages:43
 #: ../data/messages:45 ../data/messages:61 ../data/messages:63
+#: ../data/messages:67
 msgid "charge"
 msgstr "Charge"
 
 #: ../data/messages:21 ../data/messages:41 ../data/messages:45
 #: ../data/messages:47 ../data/messages:63 ../data/messages:65
+#: ../data/messages:69
 msgid "time"
 msgstr "Temps"
 
@@ -171,11 +174,11 @@ msgstr ""
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:33 ../data/messages:35
+#: ../data/messages:33 ../data/messages:35 ../data/messages:39
 msgid "in seconds."
 msgstr "en secondes."
 
-#: ../data/messages:35 ../data/messages:37
+#: ../data/messages:35 ../data/messages:37 ../data/messages:41
 msgid "Interval of time between 2 checks :"
 msgstr "Intervale entre 2 vérifications :"
 
@@ -199,7 +202,7 @@ msgstr "Dessiner une barre"
 #: ../src/powermanager-draw.c:119 ../src/powermanager-draw.c:115
 #: ../src/powermanager-draw.c:127 ../src/powermanager-draw.c:132
 #: ../src/powermanager-draw.c:128 ../src/powermanager-draw.c:130
-#: ../src/powermanager-draw.c:131
+#: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:116
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -224,6 +227,10 @@ msgstr ""
 #: ../src/powermanager-draw.c:154 ../src/powermanager-draw.c:159
 #: ../src/powermanager-draw.c:160 ../src/powermanager-draw.c:137
 #: ../src/powermanager-draw.c:156 ../src/powermanager-draw.c:161
+#: ../src/powermanager-draw.c:116 ../src/powermanager-draw.c:120
+#: ../src/powermanager-draw.c:121 ../src/powermanager-draw.c:139
+#: ../src/powermanager-draw.c:140 ../src/powermanager-draw.c:144
+#: ../src/powermanager-draw.c:145
 msgid "Estimated time with Charge:"
 msgstr "Autonomie estimé:"
 
@@ -232,7 +239,8 @@ msgstr "Autonomie estimé:"
 #: ../src/powermanager-draw.c:123 ../src/powermanager-draw.c:119
 #: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:136
 #: ../src/powermanager-draw.c:132 ../src/powermanager-draw.c:135
-#: ../src/powermanager-draw.c:137
+#: ../src/powermanager-draw.c:137 ../src/powermanager-draw.c:120
+#: ../src/powermanager-draw.c:121
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -251,7 +259,7 @@ msgstr "Gestionnaire d'énergie"
 msgid "Effect to apply on the icon according to charge :"
 msgstr "Effet à appliquer à l'icône en fonction de la charge :"
 
-#: ../data/messages:31 ../data/messages:33
+#: ../data/messages:31 ../data/messages:33 ../data/messages:37
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -270,38 +278,46 @@ msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 #: ../src/powermanager-draw.c:115 ../src/powermanager-draw.c:109
 #: ../src/powermanager-draw.c:120 ../src/powermanager-draw.c:116
 #: ../src/powermanager-draw.c:117 ../src/powermanager-draw.c:118
+#: ../src/powermanager-draw.c:102
 msgid "None"
 msgstr "Aucun"
 
-#: ../data/messages:37 ../data/messages:39
+#: ../data/messages:37 ../data/messages:39 ../data/messages:43
 msgid "Display"
 msgstr "Affichage"
 
 #: ../data/messages:57 ../data/messages:65 ../data/messages:67
+#: ../data/messages:71
 msgid "Alert"
 msgstr "Alerte"
 
 #: ../data/messages:59 ../data/messages:67 ../data/messages:69
+#: ../data/messages:73
 msgid "Alert when battery charged ?"
 msgstr "M'alerter quand la batterie est chargée ?"
 
 #: ../data/messages:61 ../data/messages:69 ../data/messages:71
+#: ../data/messages:75
 msgid "Alert when low battery ?"
 msgstr "M'alerter quand la charge est basse ?"
 
 #: ../data/messages:65 ../data/messages:73 ../data/messages:75
+#: ../data/messages:79
 msgid "Battery level :"
 msgstr "Niveau de batterie"
 
 #: ../data/messages:63 ../data/messages:71 ../data/messages:73
+#: ../data/messages:77
 msgid "in percent."
 msgstr "en pourcent"
 
 #: ../data/messages:67 ../data/messages:75 ../data/messages:77
+#: ../data/messages:81
 msgid "Animate icon during the alert ?"
 msgstr "Animer l'icône pendant l'alerte ?"
 
 #: ../data/messages:69 ../data/messages:77 ../data/messages:79
+#: ../data/messages:83
 msgid "Animation during alert :"
 msgstr "Animation pendant l'alerte :"
 
@@ -309,7 +325,8 @@ msgstr "Animation pendant l'alerte :"
 #: ../src/powermanager-draw.c:134 ../src/powermanager-draw.c:146
 #: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:147
 #: ../src/powermanager-draw.c:154 ../src/powermanager-draw.c:155
-#: ../src/powermanager-draw.c:156
+#: ../src/powermanager-draw.c:156 ../src/powermanager-draw.c:139
+#: ../src/powermanager-draw.c:140
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -321,6 +338,7 @@ msgstr ""
 #: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:151
 #: ../src/powermanager-draw.c:147 ../src/powermanager-draw.c:154
 #: ../src/powermanager-draw.c:155 ../src/powermanager-draw.c:156
+#: ../src/powermanager-draw.c:139 ../src/powermanager-draw.c:140
 msgid "Please put your Laptop on charge."
 msgstr "Veuillez mettre votre portable en charge."
 
@@ -328,6 +346,7 @@ msgstr "Veuillez mettre votre portable en charge."
 #: ../src/powermanager-draw.c:150 ../src/powermanager-draw.c:155
 #: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:159
 #: ../src/powermanager-draw.c:160 ../src/powermanager-draw.c:161
+#: ../src/powermanager-draw.c:144 ../src/powermanager-draw.c:145
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"
@@ -343,49 +362,66 @@ msgid "No Battery found."
 msgstr "Aucune Batterie trouvée."
 
 #: ../data/messages:71 ../data/messages:79 ../data/messages:81
+#: ../data/messages:85
 msgid "bounce"
 msgstr "Rebond"
 
 #: ../data/messages:73 ../data/messages:81 ../data/messages:83
+#: ../data/messages:87
 msgid "rotate"
 msgstr "Rotation"
 
 #: ../data/messages:75 ../data/messages:83 ../data/messages:85
+#: ../data/messages:89
 msgid "blink"
 msgstr "Clignotement"
 
 #: ../data/messages:77 ../data/messages:85 ../data/messages:87
+#: ../data/messages:91
 msgid "pulse"
 msgstr "Pulsation"
 
 #: ../data/messages:79 ../data/messages:87 ../data/messages:89
+#: ../data/messages:93
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
 #: ../data/messages:81 ../data/messages:89 ../data/messages:91
+#: ../data/messages:95
 msgid "wobbly"
 msgstr "Élastique"
 
 #: ../data/messages:83 ../data/messages:91 ../data/messages:93
+#: ../data/messages:97
 msgid "random"
 msgstr "Aléatoire"
 
-#: ../data/messages:39 ../data/messages:41
+#: ../data/messages:39 ../data/messages:41 ../data/messages:45
 msgid "Icon's filename when on battery :"
 msgstr "Nom d'une icône en mode batterie :"
 
-#: ../data/messages:41 ../data/messages:43
+#: ../data/messages:41 ../data/messages:43 ../data/messages:47
 msgid "Icon's filename when on charge :"
 msgstr "Nom d'une icône en mode recharge :"
 
-#: ../data/messages:53 ../data/messages:55
+#: ../data/messages:53 ../data/messages:55 ../data/messages:59
 msgid "Use a gauge instead of icons ?"
 msgstr "Utiliser une jauge au lieu d'icônes ?"
 
-#: ../data/messages:55 ../data/messages:57
+#: ../data/messages:55 ../data/messages:57 ../data/messages:61
 msgid "List of available gauges :"
 msgstr "Liste des jauges disponibles :"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lockposition ?"
 msgstr ""

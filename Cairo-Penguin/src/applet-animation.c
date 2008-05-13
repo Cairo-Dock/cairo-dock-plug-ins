@@ -275,7 +275,7 @@ void penguin_advance_to_next_frame (PenguinAnimation *pAnimation)
 
 int penguin_choose_movement_animation (void)
 {
-	cd_message ("");
+	cd_debug ("");
 	if (myData.iNbMovmentAnimations == 0)
 		return 0;
 	else
@@ -288,7 +288,7 @@ int penguin_choose_movement_animation (void)
 
 int penguin_choose_go_up_animation (void)
 {
-	cd_message ("");
+	cd_debug ("");
 	if (myData.iNbGoUpAnimations == 0)
 		return penguin_choose_movement_animation ();
 	else
@@ -301,7 +301,7 @@ int penguin_choose_go_up_animation (void)
 
 int penguin_choose_beginning_animation (void)
 {
-	cd_message ("");
+	cd_debug ("");
 	if (myData.iNbBeginningAnimations == 0)
 		return penguin_choose_movement_animation ();
 	else
@@ -314,7 +314,7 @@ int penguin_choose_beginning_animation (void)
 
 int penguin_choose_ending_animation (void)
 {
-	cd_message ("");
+	cd_debug ("");
 	if (myData.iNbEndingAnimations == 0)
 		return penguin_choose_go_up_animation ();
 	else
@@ -327,7 +327,7 @@ int penguin_choose_ending_animation (void)
 
 int penguin_choose_resting_animation (void)
 {
-	cd_message ("");
+	cd_debug ("");
 	if (myData.iNbRestAnimations == 0)
 		return penguin_choose_go_up_animation ();
 	else
@@ -340,7 +340,7 @@ int penguin_choose_resting_animation (void)
 
 int penguin_choose_next_animation (PenguinAnimation *pAnimation)
 {
-	cd_message ("");
+	cd_debug ("");
 	int iNewAnimation;
 	if (pAnimation == NULL || pAnimation->bEnding)  // le pingouin est en fin d'animation, on le relance.
 	{

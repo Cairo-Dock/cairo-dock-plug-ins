@@ -6,6 +6,12 @@
 
 #define MY_APPLET_3D_PLANE_VIEW_NAME "3D plane"
 
+typedef enum {
+	CD_NORMAL_SEPARATOR = 0,
+	CD_FLAT_SEPARATOR,
+	CD_PHYSICAL_SEPARATOR,
+	CD_NB_SEPARATORS
+	} CDSpeparatorType;
 
 void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock);
 

@@ -103,6 +103,7 @@ void update_icon(gboolean make_witness)
 
 void music_dialog(void)
 {
+	cairo_dock_remove_dialog_if_any (myIcon);
 	cairo_dock_show_temporary_dialog (D_("Artist : %s\nAlbum : %s\nTitle : %s"),
 		myIcon,
 		myContainer,

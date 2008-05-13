@@ -1195,7 +1195,7 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 }
 
 
-gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNecessary)
+gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gchar **cFileInfoPath)
 {
 	GError *erreur = NULL;
 	cd_message ("%s (%s)", __func__, cNearURI);
@@ -1208,20 +1208,22 @@ gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNece
 		return NULL;
 	}
 	thunar_vfs_path_unref(pThunarPath);
-
-    /*
-     * If we haven't returned NULL yet, it means that there exist a valid trash.
-     * We know that Thunar follows the XDG recommendations.
-     * So the trash is in ~/.local/share/Trash
-     */
-
-    gchar *trashPath = NULL;
-    char *home = getenv("HOME");
-    if( home )
-    {
-	    trashPath = g_strdup_printf("%s/%s", home,  ".local/share/Trash/files");
+	
+	/*
+	* If we haven't returned NULL yet, it means that there exist a valid trash.
+	* We know that Thunar follows the XDG recommendations.
+	* So the trash is in ~/.local/share/Trash
+	*/
+	
+	gchar *trashPath = NULL;
+	char *home = getenv("HOME");
+	if( home )
+	{
+		trashPath = g_strdup_printf("%s/%s", home,  ".local/share/Trash/files");
+		if (cFileInfoPath != NULL)
+			*cFileInfoPath = g_strdup_printf ("%s/.local/share/Trash/info", home);
 	}
-
+	
 	return trashPath;
 }
 

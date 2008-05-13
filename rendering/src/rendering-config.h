@@ -6,9 +6,10 @@
 #include <glib.h>
 
 
-void read_conf_file (GKeyFile *pKeyFile, gboolean *bFlatSeparator);
+void read_conf_file (GKeyFile *pKeyFile);
 
 
 void reset_data (void);
+
 
 #endif

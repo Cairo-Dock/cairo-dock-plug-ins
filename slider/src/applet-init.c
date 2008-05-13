@@ -28,9 +28,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	cd_slider_get_files_from_dir();  /// suggestion : le threader car ca prend du temps de parcourir le disque.
 	
-	if (myConfig.pAnimation == SLIDER_DIAPORAMA)
-		myConfig.bRandom = FALSE;
-	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
@@ -41,8 +38,10 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	g_source_remove(myData.iTimerID);
-	g_source_remove(myData.iAnimTimerID);
+	if (myData.iTimerID != 0)
+		g_source_remove(myData.iTimerID);
+	if (myData.iAnimTimerID != 0)
+		g_source_remove(myData.iAnimTimerID);
 CD_APPLET_STOP_END
 
 
@@ -51,8 +50,21 @@ CD_APPLET_RELOAD_BEGIN
 	
 	//Stop all process!
 	myData.bPause = TRUE;
-	g_source_remove(myData.iTimerID);
-	myData.iTimerID = 0;
+	if (myData.iTimerID != 0)
+	{
+		g_source_remove(myData.iTimerID);
+		myData.iTimerID = 0;
+	}
+	if (myData.iAnimTimerID != 0)
+	{
+		g_source_remove(myData.iAnimTimerID);
+		myData.iAnimTimerID = 0;
+	}
+	
+	cairo_surface_destroy (myData.pCairoSurface);
+	myData.pCairoSurface = NULL;
+	cairo_surface_destroy (myData.pPrevCairoSurface);
+	myData.pPrevCairoSurface = NULL;
 	
 	if (myDesklet) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
@@ -61,14 +73,13 @@ CD_APPLET_RELOAD_BEGIN
 	
 	//\_______________ Reload all changed data.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		if (myConfig.pAnimation == SLIDER_DIAPORAMA) //Images must scroll in the rigth order due to get_previous_img
-			myConfig.bRandom = FALSE;
+		/// recharger le repertoire.
+		cd_slider_get_files_from_dir(); //reload image list
 	}
 	else {
 		//Nothing to do ^^
 	}
 	
-	cd_slider_get_files_from_dir(); //reload image list
 	myData.bPause = FALSE;
 	cd_slider_draw_images(); //restart sliding
 CD_APPLET_RELOAD_END

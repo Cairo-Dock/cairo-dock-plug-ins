@@ -91,7 +91,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			cairo_dock_fm_unmount_full (cURI, iVolumeID, _cd_dustbin_action_after_unmount, myIcon, myContainer);
 		else
 		{
-			gchar * cDustbinPath = cairo_dock_fm_get_trash_path (CD_APPLET_RECEIVED_DATA, TRUE);
+			gchar * cDustbinPath = cairo_dock_fm_get_trash_path (CD_APPLET_RECEIVED_DATA, NULL);  // on laisse tomber les info pour l'instant ...
 			g_return_val_if_fail (cDustbinPath != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 			cairo_dock_fm_move_file (cURI, cDustbinPath);
 			if (! cd_dustbin_is_monitored (cDustbinPath))

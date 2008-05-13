@@ -11,7 +11,7 @@
 CD_APPLET_INCLUDE_MY_VARS
 
 
-CD_APPLET_ABOUT (_D("This is a very simple logout applet\n made by Fabrice Rey for Cairo-Dock"))
+CD_APPLET_ABOUT (D_("This is a very simple logout applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN

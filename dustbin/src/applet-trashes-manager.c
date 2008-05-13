@@ -382,9 +382,9 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 {
 	gchar *cQuestion;
 	if (cDirectory != NULL)
-		cQuestion = g_strdup_printf (_D("You're about to delete all files in %s. Sure ?"), cDirectory);
+		cQuestion = g_strdup_printf (D_("You're about to delete all files in %s. Sure ?"), cDirectory);
 	else if (myData.pDustbinsList != NULL)
-		cQuestion = g_strdup_printf (_D("You're about to delete all files in all dustbins. Sure ?"));
+		cQuestion = g_strdup_printf (D_("You're about to delete all files in all dustbins. Sure ?"));
 	else
 		return;
 	int answer = cairo_dock_ask_question_and_wait (cQuestion, myIcon, myContainer);
@@ -394,7 +394,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		GString *sCommand = g_string_new ("rm -rf ");
 		if (cDirectory != NULL)
 		{
-			g_string_append_printf (sCommand, "%s/*", cDirectory);
+			g_string_append_printf (sCommand, "\"%s\"/*", cDirectory);
 		}
 		else
 		{
@@ -403,11 +403,25 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 			for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 			{
 				pDustbin = pElement->data;
-				g_string_append_printf (sCommand, "%s/* ", pDustbin->cPath);
+				g_string_append_printf (sCommand, "\"%s\"/* ", pDustbin->cPath);
 			}
 		}
 		cd_message (">>> %s", sCommand->str);
 		system (sCommand->str);  // g_spawn_command_line_async() ne marche pas pour celle-la.
+		
+		gchar *cFileInfoPath= NULL;
+		gchar *cDefaultTrash = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), &cFileInfoPath);
+		if (cDefaultTrash != NULL && cFileInfoPath != NULL)  // il faut aussi effacer les infos.
+		{
+			if (cDirectory == NULL || strcmp (cDirectory, cDefaultTrash) == 0)
+			{
+				g_string_printf (sCommand, "rm -rf \"%s\"/../info/*info", cDefaultTrash);  // pas tres propre mais bon ...
+				cd_message (">>> %s", sCommand->str);
+				system (sCommand->str);
+			}
+			g_free (cDefaultTrash);
+		}
+		
 		g_string_free (sCommand, TRUE);
 	}
 }
@@ -441,7 +455,7 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 			cd_warning ("Attention : when trying to execute '%s' : %s", sCommand->str, erreur->message);
 			g_error_free (erreur);
 			//gchar *cTipMessage = g_strdup_printf ("A problem occured\nIf '%s' is not your usual file browser, you can change it in the conf panel of this module", myConfig.cDefaultBrowser);
-			cairo_dock_show_temporary_dialog (_D("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, myConfig.cDefaultBrowser);
+			cairo_dock_show_temporary_dialog (D_("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, myConfig.cDefaultBrowser);
 			//g_free (cTipMessage);
 		}
 		g_string_free (sCommand, TRUE);

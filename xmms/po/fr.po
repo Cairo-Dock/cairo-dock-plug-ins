@@ -110,30 +110,34 @@ msgstr "Nom de l'icône :"
 
 #: ../data/messages:17 ../data/messages:25 ../data/messages:27
 #: ../data/messages:47 ../data/messages:45 ../data/messages:51
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:57
 msgid "Information to display on the icon :"
 msgstr "Information a afficher sur l'icône :"
 
 #: ../data/messages:15 ../data/messages:23 ../data/messages:49
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:55
 msgid "Display"
 msgstr "Affichage"
 
 #: ../data/messages:15 ../data/messages:35 ../data/messages:33
+#: ../data/messages:39
 msgid "Audio Player"
 msgstr "Lecteur Audio"
 
 #: ../data/messages:17 ../data/messages:37 ../data/messages:35
+#: ../data/messages:41
 msgid "Player to control:"
 msgstr "Lecteur a controler:"
 
 #: ../data/messages:39 ../data/messages:61 ../data/messages:59
 #: ../data/messages:57 ../data/messages:63 ../data/messages:65
+#: ../data/messages:69
 msgid "Action on music change"
 msgstr "Action au changement de musique"
 
 #: ../data/messages:47 ../data/messages:69 ../data/messages:67
 #: ../data/messages:65 ../data/messages:71 ../data/messages:73
+#: ../data/messages:77
 msgid "Animate icon ?"
 msgstr "Animer l'icon ?"
 
@@ -143,13 +147,13 @@ msgstr "Info-bulles"
 
 #: ../data/messages:19 ../data/messages:45 ../data/messages:67
 #: ../data/messages:65 ../data/messages:63 ../data/messages:69
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:75
 msgid "Time length of info-bubbles :"
 msgstr "Durée des info-bulles :"
 
 #: ../data/messages:17 ../data/messages:43 ../data/messages:65
 #: ../data/messages:63 ../data/messages:61 ../data/messages:67
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:73
 msgid "in ms."
 msgstr "en ms."
 
@@ -159,65 +163,67 @@ msgstr "Animations"
 
 #: ../data/messages:25 ../data/messages:51 ../data/messages:73
 #: ../data/messages:71 ../data/messages:69 ../data/messages:75
-#: ../data/messages:77
+#: ../data/messages:77 ../data/messages:81
 msgid "bounce"
 msgstr "Rebond"
 
 #: ../data/messages:27 ../data/messages:53 ../data/messages:75
 #: ../data/messages:73 ../data/messages:71 ../data/messages:77
-#: ../data/messages:79
+#: ../data/messages:79 ../data/messages:83
 msgid "rotate"
 msgstr "Rotation"
 
 #: ../data/messages:29 ../data/messages:55 ../data/messages:77
 #: ../data/messages:75 ../data/messages:73 ../data/messages:79
-#: ../data/messages:81
+#: ../data/messages:81 ../data/messages:85
 msgid "blink"
 msgstr "Clignotement"
 
 #: ../data/messages:31 ../data/messages:57 ../data/messages:79
 #: ../data/messages:77 ../data/messages:75 ../data/messages:81
-#: ../data/messages:83
+#: ../data/messages:83 ../data/messages:87
 msgid "pulse"
 msgstr "Pulsation"
 
 #: ../data/messages:33 ../data/messages:59 ../data/messages:81
 #: ../data/messages:79 ../data/messages:77 ../data/messages:83
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:89
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
 #: ../data/messages:35 ../data/messages:61 ../data/messages:83
 #: ../data/messages:81 ../data/messages:79 ../data/messages:85
-#: ../data/messages:87
+#: ../data/messages:87 ../data/messages:91
 msgid "wobbly"
 msgstr "Élastique"
 
 #: ../data/messages:37 ../data/messages:63 ../data/messages:85
 #: ../data/messages:83 ../data/messages:81 ../data/messages:87
-#: ../data/messages:89
+#: ../data/messages:89 ../data/messages:93
 msgid "random"
 msgstr "Aléatoire"
 
 #: ../data/messages:23 ../data/messages:49 ../data/messages:71
 #: ../data/messages:69 ../data/messages:67 ../data/messages:73
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:79
 msgid "Animation when music changes :"
 msgstr "Animation au changement de musique"
 
 #: ../data/messages:45 ../data/messages:29 ../data/messages:49
 #: ../data/messages:47 ../data/messages:53 ../data/messages:55
+#: ../data/messages:59
 msgid "Nothing"
 msgstr "Rien"
 
 #: ../data/messages:47 ../data/messages:29 ../data/messages:31
 #: ../data/messages:51 ../data/messages:49 ../data/messages:55
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:61
 msgid "Time Elapsed"
 msgstr "Temps Écoulé"
 
 #: ../data/messages:49 ../data/messages:33 ../data/messages:53
 #: ../data/messages:51 ../data/messages:57 ../data/messages:59
+#: ../data/messages:63
 msgid "Time Left"
 msgstr "Temps Restant"
 
@@ -229,13 +235,13 @@ msgstr "Temps Total"
 
 #: ../data/messages:53 ../data/messages:33 ../data/messages:37
 #: ../data/messages:57 ../data/messages:55 ../data/messages:59
-#: ../data/messages:61
+#: ../data/messages:61 ../data/messages:65
 msgid "N° of track"
 msgstr "N° de piste"
 
 #: ../data/messages:55 ../data/messages:35 ../data/messages:65
 #: ../data/messages:87 ../data/messages:85 ../data/messages:83
-#: ../data/messages:89 ../data/messages:91
+#: ../data/messages:89 ../data/messages:91 ../data/messages:95
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
@@ -248,37 +254,37 @@ msgstr "Personnalisation"
 #: ../data/messages:101 ../data/messages:105 ../data/messages:87
 #: ../data/messages:91 ../data/messages:95 ../data/messages:99
 #: ../data/messages:103 ../data/messages:85 ../data/messages:107
-#: ../data/messages:109
+#: ../data/messages:109 ../data/messages:113
 msgid "Let t empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icon par défault"
 
 #: ../data/messages:59 ../data/messages:39 ../data/messages:69
 #: ../data/messages:91 ../data/messages:89 ../data/messages:87
-#: ../data/messages:93 ../data/messages:95
+#: ../data/messages:93 ../data/messages:95 ../data/messages:99
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
 #: ../data/messages:63 ../data/messages:43 ../data/messages:73
 #: ../data/messages:95 ../data/messages:93 ../data/messages:91
-#: ../data/messages:97 ../data/messages:99
+#: ../data/messages:97 ../data/messages:99 ../data/messages:103
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom de l'image 'Jouer' :"
 
 #: ../data/messages:67 ../data/messages:47 ../data/messages:77
 #: ../data/messages:99 ../data/messages:97 ../data/messages:95
-#: ../data/messages:101 ../data/messages:103
+#: ../data/messages:101 ../data/messages:103 ../data/messages:107
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom de l'image 'Stop' :"
 
 #: ../data/messages:71 ../data/messages:51 ../data/messages:81
 #: ../data/messages:103 ../data/messages:101 ../data/messages:99
-#: ../data/messages:105 ../data/messages:107
+#: ../data/messages:105 ../data/messages:107 ../data/messages:111
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom de l'image 'Pause' :"
 
 #: ../data/messages:75 ../data/messages:55 ../data/messages:85
 #: ../data/messages:107 ../data/messages:105 ../data/messages:103
-#: ../data/messages:109 ../data/messages:111
+#: ../data/messages:109 ../data/messages:111 ../data/messages:115
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Pas de Signal': "
 
@@ -343,31 +349,36 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:13 ../data/messages:33 ../data/messages:31
+#: ../data/messages:37
 msgid "Configuration"
 msgstr ""
 
 #: ../data/messages:19 ../data/messages:39 ../data/messages:37
+#: ../data/messages:43
 msgid "XMMS"
 msgstr ""
 
 #: ../data/messages:21 ../data/messages:41 ../data/messages:39
+#: ../data/messages:45
 msgid "Audacious"
 msgstr ""
 
 #: ../data/messages:23 ../data/messages:43 ../data/messages:41
+#: ../data/messages:47
 msgid "Banshee"
 msgstr ""
 
 #: ../data/messages:25 ../data/messages:45 ../data/messages:43
+#: ../data/messages:49
 msgid "Exaile"
 msgstr ""
 
 #: ../data/messages:59 ../data/messages:57 ../data/messages:55
-#: ../data/messages:61 ../data/messages:63
+#: ../data/messages:61 ../data/messages:63 ../data/messages:67
 msgid "Activate extended desklet mode ?"
 msgstr "Activer le mode desklet étendue ?"
 
-#: ../data/messages:45 ../data/messages:47
+#: ../data/messages:45 ../data/messages:47 ../data/messages:51
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -376,14 +387,24 @@ msgstr ""
 "L'icône de l'applet se comportera comme un lanceur, une application et un "
 "applet."
 
-#: ../data/messages:47 ../data/messages:49
+#: ../data/messages:47 ../data/messages:49 ../data/messages:53
 msgid "Steal the player's icon from taskbar ?"
 msgstr "Voler l'icône du lecteur de la barre des taches ?"
 
-#: ../data/messages:65 ../data/messages:67
+#: ../data/messages:65 ../data/messages:67 ../data/messages:71
 msgid "Show an info-bubble ?"
 msgstr "Montrer une info-bulle ?"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du dock auquel il appartient :"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lockposition ?"
+msgstr ""

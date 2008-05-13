@@ -39,7 +39,7 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI);
 
 void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask);
 
-gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNecessary);
+gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gchar **cFileInfoPath);
 
 gchar *vfs_backend_get_desktop_path (void);
 

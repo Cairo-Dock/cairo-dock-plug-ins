@@ -50,67 +50,6 @@ void stop_vfs_backend (void)
 }
 
 
-
-/*static gboolean file_manager_get_file_info_from_desktop_link (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID)
-{
-	cd_message ("%s (%s)", __func__, cBaseURI);
-	GError *erreur = NULL;
-	
-	GFile *pFile = g_file_new_for_uri (cBaseURI);
-	gsize length = 0;
-	gchar *cFileData = NULL, *etag_out = NULL;
-	g_file_load_contents (pFile,
-		NULL,
-		&cFileData,
-		&length,
-		&etag_out,
-		&erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("Attention : %s", erreur->message);
-		g_error_free (erreur);
-		return FALSE;
-	}
-	cd_message ("cFileData : %s\n", cFileData);
-	
-	GKeyFile *pKeyFile = g_key_file_new ();
-	g_key_file_load_from_data (pKeyFile,
-		cFileData,
-		-1,
-		G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS,
-		&erreur);
-	g_free (cFileData);
-	if (erreur != NULL)
-	{
-		cd_warning ("Attention : %s", erreur->message);
-		g_error_free (erreur);
-		return FALSE;
-	}
-
-	gchar *cType = g_key_file_get_value (pKeyFile, "Desktop Entry", "Type", NULL);
-	cd_message ("  cType : %s\n", cType);
-	if (strncmp (cType, "Link", 4) != 0 && strncmp (cType, "FSDevice", 8) != 0)
-	{
-		g_free(cType);
-		g_key_file_free (pKeyFile);
-		return FALSE;
-	}
-	g_free(cType);
-
-	*cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", NULL);
-	
-	*cURI = g_key_file_get_string (pKeyFile, "Desktop Entry", "URL", NULL);
-	
-	*cIconName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Icon", NULL);	
-	
-	*iVolumeID = g_key_file_get_integer (pKeyFile, "Desktop Entry", "X-Gnome-Drive", NULL);	
-	
-	*bIsDirectory = TRUE;
-	
-	g_key_file_free (pKeyFile);
-	return TRUE;
-}*/
-
 static gchar *_cd_get_icon_path (GIcon *pIcon)
 {
 	gchar *cIconPath= NULL;
@@ -199,10 +138,15 @@ static void _cd_find_mount_from_name (const gchar *cVolumeName, GMount **pFoundM
 			if (iFileType == G_FILE_TYPE_MOUNTABLE)
 			{
 				const gchar *cName = g_file_info_get_name (pFileInfo);
-				cd_message ("  test de %s...\n", cName);
-				gchar *cFileURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
-				GFile *file = g_file_new_for_uri (cFileURI);
-				GMount *pMount = g_file_find_enclosing_mount (file, NULL, NULL);
+				const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
+				cd_message ("  test de  %s...\n", cName);
+				GMount *pMount = NULL;
+				if (cTargetURI != NULL)
+				{
+					GFile *file = g_file_new_for_uri (cTargetURI);
+					pMount = g_file_find_enclosing_mount (file, NULL, NULL);
+					g_object_unref (file);
+				}
 				if (pMount != NULL)
 				{
 					gchar *cName = g_mount_get_name (pMount);
@@ -217,8 +161,6 @@ static void _cd_find_mount_from_name (const gchar *cVolumeName, GMount **pFoundM
 						break ;
 					}
 				}
-				g_object_unref (file);
-				g_free (cFileURI);
 			}
 		}
 	} while (TRUE);
@@ -1106,7 +1048,7 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 }
 
 
-gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNecessary)
+gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gchar **cFileInfoPath)
 {
 	gchar *cPath = NULL;
 	/*GFile *pFile = g_file_new_for_uri ("trash://");
@@ -1114,9 +1056,17 @@ gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gboolean bCreateIfNece
 	g_object_unref (pFile);*/
 	const gchar *xdgPath = g_getenv ("XDG_DATA_HOME");
 	if (xdgPath != NULL)
+	{
 		cPath = g_strdup_printf ("%s/Trash/files", xdgPath);
+		if (cFileInfoPath != NULL)
+			*cFileInfoPath = g_strdup_printf ("%s/Trash/info", xdgPath);
+	}
 	else
+	{
 		cPath = g_strdup_printf ("%s/.local/share/Trash/files", g_getenv ("HOME"));
+		if (cFileInfoPath != NULL)
+			*cFileInfoPath = g_strdup_printf ("%s/.local/share/Trash/info", g_getenv ("HOME"));
+	}
 	return cPath;
 }
 
