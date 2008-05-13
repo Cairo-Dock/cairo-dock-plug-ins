@@ -59,8 +59,8 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
         }
 
 //////////////////////////////////////////////////////////////////////////////////////// Définition de la zone de déco avec Valérie Damidot - 0 pour l'instant
-	pDock->iDecorationsHeight = 0;
-	pDock->iDecorationsWidth  = 0;
+	pDock->iDecorationsHeight = pDock->iMaxDockHeight;
+	pDock->iDecorationsWidth  = pDock->iMaxDockWidth;
 	
 	
 //////////////////////////////////////////////////////////////////////////////////////// On affecte ca aussi au cas où
@@ -88,10 +88,53 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 	//TODO
 	//\____________________ On dessine le cadre.
 	//TODO
-	//\____________________ On dessine la ficelle qui les joint.
+	
+		//\____________________ On trace le cadre.
+	/*double fChangeAxes = 0.5 * (pDock->iCurrentWidth - pDock->iMaxDockWidth);
+	*/double fLineWidth = g_iDockLineWidth;/*
+	double fMargin = g_iFrameMargin;*/
+	double fRadius = (pDock->iMaxDockHeight + fLineWidth - 2 * g_iDockRadius > 0 ? g_iDockRadius : (pDock->iMaxDockHeight + fLineWidth) / 2 - 1);
+	/*double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
+	
+	int sens;
+	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
+	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);  // fChangeAxes
+	if (pDock->bDirectionUp)
+	{
+		sens = 1;
+		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth;
+	}
+	else
+	{
+		sens = -1;
+		fDockOffsetY = pDock->iDecorationsHeight + fLineWidth;
+	}
+	*/
+	cairo_save (pCairoContext);
+	gboolean bRoundedBottomCorner_temp = g_bRoundedBottomCorner;
+	g_bRoundedBottomCorner = TRUE;
+
+	cairo_dock_draw_frame (pCairoContext, fRadius, 1, pDock->iMaxDockWidth-2*X_BORDER_SPACE, pDock->iMaxDockHeight-2*Y_BORDER_SPACE, X_BORDER_SPACE, Y_BORDER_SPACE, 1, 0, pDock->bHorizontalDock);  // fLineWidth
+
+	//\____________________ On dessine les decorations dedans.
+	//fDockOffsetY = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
+	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, Y_BORDER_SPACE);
+	
+	//\____________________ On dessine le cadre.
+	// (fLineWidth > 0)
+	//{
+	//	cairo_set_line_width (pCairoContext, fLineWidth);
+	//	cairo_set_source_rgba (pCairoContext, g_fLineColor[0], g_fLineColor[1], g_fLineColor[2], g_fLineColor[3]);
+	//	cairo_stroke (pCairoContext);/*
+	//}
+	g_bRoundedBottomCorner = bRoundedBottomCorner_temp;
+	cairo_restore (pCairoContext);
+	
+	//\____________________ On dessine la ficelle qui les joint.*/
 	//TODO Rendre joli !
 	if (g_iStringLineWidth > 0)
-		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, FALSE);
+		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, TRUE, TRUE);
 	//\____________________ On dessine les icones avec leurs etiquettes.
 	
 	
