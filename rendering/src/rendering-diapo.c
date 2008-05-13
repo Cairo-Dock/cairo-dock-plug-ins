@@ -47,9 +47,7 @@ void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
 //////////////////////////////////////////////////////////////////////////////////////// On cherche le premier élément :
 	cairo_dock_calculate_icons_positions_at_rest_diapo (pDock->icons, &(pDock->iMinDockWidth), &(pDock->iMinDockHeight), nRowsX);
 	cairo_dock_rendering_diapo_calculate_max_dock_size (pDock->icons, pDock->iMinDockWidth, pDock->iMinDockHeight, &(pDock->iMaxDockWidth), &(pDock->iMaxDockHeight), nRowsX, nRowsY);
-	/*cd_message("grepme > nico %d - x %d - y %d", nIcones, nRowsX, nRowsY);
-	cd_message("grepme > minw %d - minh %d", pDock->iMinDockWidth, pDock->iMinDockHeight);
-	cd_message("grepme > maxw %d - maxh %d", pDock->iMaxDockWidth, pDock->iMaxDockHeight);*/
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////// Définition de la zone de déco - 0 pour l'instant
@@ -83,7 +81,9 @@ void cd_rendering_render_diapo (CairoDock *pDock)
 	//\____________________ On dessine le cadre.
 	//TODO
 	//\____________________ On dessine la ficelle qui les joint.
-	//TODO
+	//TODO Rendre joli !
+	if (g_iStringLineWidth > 0)
+		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, FALSE);
 	//\____________________ On dessine les icones avec leurs etiquettes.
 	
 	
@@ -160,8 +160,6 @@ Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock)
 	//\_______________ On calcule la position du curseur.
 	posMouseAbsX = pDock->iMouseX; 
 	posMouseAbsY = pDock->iMouseY;
-        /*cd_message("grep --x-- %d %d %d %d",  pDock->iMouseX, pDock->iCurrentWidth ,  pDock->iMinDockWidth , pDock->iMaxDockWidth );
-        cd_message("grep --y-- %d %d %d %d",  pDock->iMouseY, pDock->iCurrentHeight,  pDock->iMinDockHeight, pDock->iMaxDockHeight);*/
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On calcule les tailles des icones en fonction de la souris
@@ -171,7 +169,24 @@ Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock)
 //////////////////////////////////////////////////////////////////////////////////////// On calcule les positions des icones
 	Icon *pPointedIcon = cairo_dock_calculate_icons_position_for_diapo(pDock, nRowsX, nRowsY, posMouseAbsX, posMouseAbsY);
 
-
+	CairoDockMousePositionType iMousePositionType;
+	if (! pDock->bInside)
+	{
+		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+	}
+	else if ((pDock->iMouseX < my_diapo_iconGapX) || (pDock->iMouseX > pDock->iMaxDockWidth - my_diapo_iconGapX) || (pDock->iMouseY < my_diapo_iconGapY) || (pDock->iMouseY > pDock->iMaxDockHeight - my_diapo_iconGapY))
+	{
+		iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
+	}
+	else
+	{
+		iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
+	}
+	
+	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
+	
+	cairo_dock_mark_avoiding_mouse_icons_linear (pDock);
+	
 //////////////////////////////////////////////////////////////////////////////////////// On revoie l'icone pointee et NULL sinon
 	return pPointedIcon;
 }
@@ -252,29 +267,13 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
 		
 //////////////////////////////////////////////////////////////////////////////////////// On va PAS se servir des fX fY comme d'index de la grille ailleurs qu'ici CAR le fY est changé dans des fonctions de drawing qui devrait pas !
 	        icon->fX = iconeX;
-	        icon->fY = iconeY;		
+	        icon->fY = iconeY;	
+
 
 //////////////////////////////////////////////////////////////////////////////////////// On passe au réferentiel de l'image :
 	        icon->fXMin = icon->fXMax = icon->fXAtRest = //Ca on s'en sert pas encore
 	        icon->fDrawX = iconeX + my_diapo_iconGapX + maxWidth [x] / 2  - (icon->fWidth  * icon->fScale) / 2 ;
 	        icon->fDrawY = iconeY + my_diapo_iconGapY + maxHeight[y] / 2  - (icon->fHeight * icon->fScale) / 2 ;	    
-
-
-////////////////////////////////////////////////////////////////////////////////////////On va check de la mouse là :
-                if((Mx > icon->fX) && 
-                   (My > icon->fY) &&
-                   (Mx < icon->fX + maxWidth[x]  + 2 * my_diapo_iconGapX) &&
-                   (My < icon->fY + maxHeight[y] + 2 * my_diapo_iconGapY))
-                {        
-                        icon->bPointed = TRUE;    
-                        pointed_ic = ic;
-                        icon->fAlpha = 1.;                           
-	        }
-	        else
-	        {
-	                icon->bPointed = FALSE; 
-	                icon->fAlpha = 0.9;
-	        }
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On prépare pour la suivante :
@@ -302,21 +301,34 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
         }
         curDockHeight = iconeY;
 
-
+        i=0;
 //////////////////////////////////////////////////////////////////////////////////////// On calcule l'offset pour que ce soit centré :
-        offsetX = (pDock->iMaxDockWidth  - /*pDock->iCurrentWidth */curDockWidth ) / 2;
-        offsetY = (pDock->iMaxDockHeight - /*pDock->iCurrentHeight*/curDockHeight) / 2;      
-                cd_message("grep > %d", pDock->icons);
+        offsetX = (pDock->iMaxDockWidth  - curDockWidth ) / 2;
+        offsetY = (pDock->iMaxDockHeight - curDockHeight) / 2;      
         for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 	
-	
+		cairo_dock_rendering_diapo_get_gridXY_from_index(nRowsX, i++, &x, &y);
 //////////////////////////////////////////////////////////////////////////////////////// On recupere la structure d'infos
 		icon = ic->data;
 		icon->fDrawX += offsetX;
 		icon->fDrawY += offsetY;
 
-		
+		////////////////////////////////////////////////////////////////////////////////////////On va check de la mouse là :
+                if((Mx > icon->fDrawX - my_diapo_iconGapX) && 
+                   (My > icon->fDrawY - my_diapo_iconGapY) &&
+                   (Mx < icon->fDrawX + maxWidth[x]  + my_diapo_iconGapX) &&
+                   (My < icon->fDrawY + maxHeight[y] +  my_diapo_iconGapY))
+                {        
+                        icon->bPointed = TRUE;    
+                        pointed_ic = ic;
+                        icon->fAlpha = 1.;                           
+	        }
+	        else
+	        {
+	                icon->bPointed = FALSE; 
+	                icon->fAlpha = 0.9;
+	        }
 //////////////////////////////////////////////////////////////////////////////////////// On laisse le dock s'occuper des animations
 		cairo_dock_manage_animations (icon, pDock);
 	}
@@ -330,8 +342,6 @@ void cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, gi
         guint i = 0;
         guint x = 0;
         guint y = 0;
-        guint indexXforMouse = 0; 
-        guint indexYforMouse = 0; 
         if (pIconList == NULL) 
         {
                 cd_debug("Rendering>Diapo -> pIconList == NULL Totaly uncool \n Returning badly...");
@@ -342,9 +352,7 @@ void cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, gi
                 cd_debug("Rendering>Diapo -> (Icon*) pIconList->data == NULL Totaly uncool \n Returning badly...");
                 return;
         }
-        indexXforMouse = Mx / ( ( (Icon*) pIconList->data )->fWidth  + 2 * my_diapo_iconGapX );
-        indexYforMouse = My / ( ( (Icon*) pIconList->data )->fHeight + 2 * my_diapo_iconGapY );
-              
+           
         GList* ic;
 	Icon *icon;
 	for (ic = pIconList; ic != NULL; ic = ic->next)
@@ -352,11 +360,10 @@ void cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, gi
 		icon = ic->data;
 		cairo_dock_rendering_diapo_get_gridXY_from_index(nRowsX, i, &x, &y);
                 guint x1 = Mx;
-                gdouble x2 = icon->fDrawXAtRest + (icon->fWidth) / 2;
+                gdouble x2 = icon->fDrawXAtRest + (icon->fWidth)  / 2 + (my_diapo_fScaleMax - 1) * 20; // formule empirique de chez empirique pour corriger le décalage incalculable... (si vous y arrivez envoyez moi un mail -> mapremierpartiedepseudo.ladeuxieme@gmail.com et je vous appellerais Dieu... merci ! Ateention ! Pas d'entourre les poules hein !)
                 guint y1 = My;
-                gdouble y2 = icon->fDrawYAtRest + (icon->fHeight) / 2;
+                gdouble y2 = icon->fDrawYAtRest + (icon->fHeight) / 2 + (my_diapo_fScaleMax - 1) * 20; // idem
                 gdouble distanceE = sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-              
                 if(my_diapo_lineaire)
                 {
                         gdouble eloignementMax = 3. * (icon->fWidth + icon->fHeight)  / 2; 
@@ -399,8 +406,7 @@ void cairo_dock_calculate_icons_positions_at_rest_diapo (GList *pIconList, gint*
 	{
 		icon = ic->data;
 	        icon->fDrawXAtRest = iconeX;
-	        icon->fDrawYAtRest = iconeY;
-	        
+	        icon->fDrawYAtRest = iconeY;    
                 if(!(i % nRowsX)) //  si on est à la fin d'une ligne on change
                 {
                         *Wmin = iconeX + icon->fWidth + 2 * my_diapo_iconGapX;

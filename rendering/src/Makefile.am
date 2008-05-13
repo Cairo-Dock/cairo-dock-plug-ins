@@ -65,7 +65,7 @@ libcd_rendering_la_LIBADD = \
 
 
 libcd_rendering_la_LDFLAGS =\
-	-version-info 1:0:0
+	-version-info 1:1:0
 
 
 moduledir = `pkg-config cairo-dock --variable=pluginsdir`

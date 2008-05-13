@@ -33,6 +33,9 @@ extern gboolean my_diapo_simple_lineaire;
 extern gboolean  my_diapo_simple_wide_grid;
 extern gboolean  my_diapo_simple_text_only_on_pointed;
 
+const  gint X_BORDER_SPACE = 40;
+const  gint Y_BORDER_SPACE = 40;
+
 void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 {	
         guint nRowsX = 0;
@@ -47,8 +50,8 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la taille de l'affichage
         if(nIcones != 0)
         {
-	   pDock->iMinDockWidth  = pDock->iMaxDockWidth  = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + 2 * my_diapo_simple_iconGapX);
-	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + 2 * my_diapo_simple_iconGapY) + my_diapo_simple_iconGapY;	
+	   pDock->iMinDockWidth  = pDock->iMaxDockWidth  = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + 2 * my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
+	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + 2 * my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 2;	
         }
         else
         {
@@ -86,7 +89,9 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 	//\____________________ On dessine le cadre.
 	//TODO
 	//\____________________ On dessine la ficelle qui les joint.
-	//TODO
+	//TODO Rendre joli !
+	if (g_iStringLineWidth > 0)
+		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, FALSE);
 	//\____________________ On dessine les icones avec leurs etiquettes.
 	
 	
@@ -148,6 +153,93 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 #endif
 }
 
+void cd_rendering_render_diapo_simple_optimized (CairoDock *pDock)
+{
+	//\____________________ On cree le contexte du dessin.
+	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
+	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
+	
+	
+//////////////////////////////////////////////////////////////////////////////////////// On définit les paramètres de dessin (par defaut pour l'instant)
+	cairo_set_tolerance (pCairoContext, 0.5); 
+	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
+	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
+	cairo_paint (pCairoContext);
+	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
+	
+	//\____________________ On trace le cadre.
+	//TODO
+	//\____________________ On dessine les decorations dedans.
+	//TODO
+	//\____________________ On dessine le cadre.
+	//TODO
+	//\____________________ On dessine la ficelle qui les joint.
+	//TODO Rendre joli !
+	if (g_iStringLineWidth > 0)
+		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, FALSE);
+	//\____________________ On dessine les icones avec leurs etiquettes.
+	
+	
+//////////////////////////////////////////////////////////////////////////////////////// Si y'en a pas on se barre (dock vide)
+	//if (pFirstDrawnElement == NULL) return;
+        if (pDock->icons == NULL) return;
+	
+
+//////////////////////////////////////////////////////////////////////////////////////// On parcourt la liste les icones :
+	Icon *icon;
+	GList *ic;
+	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	{
+	
+//////////////////////////////////////////////////////////////////////////////////////// On recupere la structure d'infos
+		icon = ic->data;
+
+                if(icon->fScale != 1.)
+                {
+//////////////////////////////////////////////////////////////////////////////////////// On sauvegarde le contexte de cairo
+        		cairo_save (pCairoContext);
+		
+
+//////////////////////////////////////////////////////////////////////////////////////// On affiche l'icone en cours avec les options :		
+        		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, pDock->fRatio, 0, pDock->bUseReflect, FALSE, pDock->iCurrentWidth, pDock->bDirectionUp);
+
+
+//////////////////////////////////////////////////////////////////////////////////////// On restore le contexte de cairo
+        		cairo_restore (pCairoContext);
+		
+
+//////////////////////////////////////////////////////////////////////////////////////// On affiche le texte !
+                       if(icon->pTextBuffer != NULL)
+                        {
+                        	cairo_save (pCairoContext);
+
+                        	cairo_set_source_surface (pCairoContext,
+				        icon->pTextBuffer,                                        
+				        icon->fDrawX + (icon->fWidth * icon->fScale)/2 -icon->fTextXOffset,
+				        icon->fDrawY +  (icon->fHeight * icon->fScale)   + (my_diapo_simple_iconGapY / 2)  - 6 ); // 6 ~= hauteur texte / 2
+			
+			        if (my_diapo_simple_text_only_on_pointed && icon->bPointed)
+			                cairo_paint (pCairoContext);
+		                else if (!my_diapo_simple_text_only_on_pointed)
+			                cairo_paint_with_alpha (pCairoContext, 1. + (icon->fScale - my_diapo_simple_fScaleMax)/(my_diapo_simple_fScaleMax - 1));
+			
+			        cairo_restore (pCairoContext);
+                        }
+                }
+	}
+	
+	
+//////////////////////////////////////////////////////////////////////////////////////// On regle son compte au contexte
+	cairo_destroy (pCairoContext);
+	
+	
+//////////////////////////////////////////////////////////////////////////////////////// Si on est --glitz alors on s'en sert pour bien que ca plante :
+#ifdef HAVE_GLITZ
+	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
+		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
+#endif
+}
+
 Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 {
         guint nRowsX = 0;
@@ -159,6 +251,7 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
         nIcones = cairo_dock_rendering_diapo_simple_guess_grid(pDock->icons, &nRowsX, &nRowsY);      
 	
 	
+//cd_message("grep x%d y%d", pDock->iMouseX, pDock->iMouseY);
 
 //////////////////////////////////////////////////////////////////////////////////////// On calcule les tailles des icones en fonction de la souris
 	cairo_dock_calculate_wave_with_position_diapo_simple(pDock->icons, pDock->iMouseX, pDock->iMouseY, nRowsX);
@@ -167,6 +260,24 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 //////////////////////////////////////////////////////////////////////////////////////// On calcule les positions des icones	
 	Icon *pPointedIcon = cairo_dock_calculate_icons_position_for_diapo_simple(pDock, nRowsX, nRowsY, pDock->iMouseX, pDock->iMouseY);
 
+
+	CairoDockMousePositionType iMousePositionType;
+	if (! pDock->bInside)
+	{
+		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+	}
+	else if ((pDock->iMouseX < (X_BORDER_SPACE/2)) || (pDock->iMouseX > pDock->iMaxDockWidth - (X_BORDER_SPACE/2)) || (pDock->iMouseY < (Y_BORDER_SPACE/2)) || (pDock->iMouseY > pDock->iMaxDockHeight - (Y_BORDER_SPACE/2)))
+	{
+		iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
+	}
+	else
+	{
+		iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
+	}
+	
+	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
+	
+	cairo_dock_mark_avoiding_mouse_icons_linear (pDock);
 
 //////////////////////////////////////////////////////////////////////////////////////// On revoie l'icone pointee et NULL sinon
 	return pPointedIcon;
@@ -184,7 +295,7 @@ void cd_rendering_register_diapo_simple_renderer (void)
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_diapo_simple;                        //La fonction qui défini les bornes     
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_diapo_simple;                                        //qui calcule les param des icones      
 	pRenderer->render = cd_rendering_render_diapo_simple;                                                          //qui initie le calcul du rendu         
-	pRenderer->render_optimized = NULL;                                                                     //pareil en mieux                       
+	pRenderer->render_optimized = cd_rendering_render_diapo_simple_optimized;                                      //pareil en mieux                       
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;                               // ?                                    
 	
 	pRenderer->bUseReflect = FALSE;                                                                         // On dit non au reflections
@@ -238,8 +349,8 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 		
 		
 //////////////////////////////////////////////////////////////////////////////////////// On va PAS se servir des fX fY comme d'index de la grille ailleurs qu'ici CAR le fY est changé dans des fonctions de drawing qui devrait pas !
-	        icon->fX = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x;
-	        icon->fY = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y;
+	        icon->fX = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + X_BORDER_SPACE;
+	        icon->fY = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE;;
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On passe au réferentiel de l'image :
@@ -295,9 +406,9 @@ void cairo_dock_calculate_wave_with_position_diapo_simple(GList *pIconList, gint
 		icon = ic->data;
 		cairo_dock_rendering_diapo_simple_get_gridXY_from_index(nRowsX, i, &x, &y);
                 guint x1 = Mx;
-                gdouble x2 = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + my_diapo_simple_iconGapX;
+                gdouble x2 = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + my_diapo_simple_iconGapX + X_BORDER_SPACE;
                 guint y1 = My;
-                gdouble y2 = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + my_diapo_simple_iconGapY;
+                gdouble y2 = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + my_diapo_simple_iconGapY + Y_BORDER_SPACE;
                 gdouble distanceE = sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
               
                 if(my_diapo_simple_lineaire)
