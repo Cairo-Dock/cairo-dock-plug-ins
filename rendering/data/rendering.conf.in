@@ -116,3 +116,36 @@ simple_wide_grid = false
 #b Display text only for pointed icon ?
 simple_text_only_on_pointed = false
 
+#b Draw a background ?
+simple_draw_background  = true
+
+#c+4[0;1] First gradient color (r,v,b,a) :
+simple_color_frame_start=0;0;0;1;
+
+#c+4[0;1] Second gradient color (r,v,b,a) :
+simple_color_frame_stop=0.3;0.3;0.3;0.6;
+
+#b Top to bottom gradient ?
+simple_fade2bottom = true
+
+#b Left to right gradient ?
+simple_fade2right = true
+
+#i[10;100] Arrow width :
+simple_arrowWidth = 40
+
+#i[0;100] Arrow Height :
+simple_arrowHeight = 40
+
+#e[-100;100] Arrow shift percent :
+simple_arrowShift = 30
+
+#i[0;30] Corner radius :
+simple_radius = 15
+
+#i[0;10] Border line width :
+simple_lineWidth = 5
+
+#c+4[0;1] Border line color (r,v,b,a) :
+simple_color_border_line = 1;1;1;0.5;
+

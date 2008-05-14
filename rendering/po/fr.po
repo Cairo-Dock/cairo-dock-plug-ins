@@ -192,6 +192,40 @@ msgstr "Utiliser une forme alongée ?"
 msgid "Display text only for pointed icon ?"
 msgstr "Afficher le texte seulement pour l'icône pointée ?"
 
+msgid "Draw a background ?"
+msgstr "Dessiner un fond ?"
+
+msgid "First gradient color (r,v,b,a) :"
+msgstr "Première couleur du dégradé (r,v,b,a) :"
+
+msgid "Second gradient color (r,v,b,a) :"
+msgstr "Seconde couleur du dégradé (r,v,b,a) :"
+
+msgid "Top to bottom gradient ?"
+msgstr "Dégradé de haut en bas?"
+
+msgid "Left to right gradient ?"
+msgstr "Dégradé de droite à gauche ?"
+
+msgid "Arrow width :"
+msgstr "Largeur de la flèche :"
+
+msgid "Arrow Height :"
+msgstr "Hauteur de la flèche :"
+
+msgid "Arrow shift percent :"
+msgstr "Décalage de la flèche au centre en pourcent :"
+
+msgid "Corner radius :"
+msgstr "Rayon des coins :"
+
+msgid "Border line width :"
+msgstr "Largeur de la ligne externe :"
+
+msgid "Border line color (r,v,b,a) :"
+msgstr "Couleur de la ligne externe (r,v,b,a) :"
+
 #: ../data/messages:65
 msgid "Diapo"
 msgstr ""
+

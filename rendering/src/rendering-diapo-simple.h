@@ -13,9 +13,6 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock);
 void cd_rendering_render_diapo_simple (CairoDock *pDock);
 
 
-void cd_rendering_render_diapo_simple_optimized (CairoDock *pDock);
-
-
 Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock);
 
 
@@ -36,6 +33,16 @@ void cairo_dock_rendering_diapo_simple_get_gridXY_from_index(guint nRowsX, guint
 
 guint cairo_dock_rendering_diapo_simple_get_index_from_gridXY(guint nRowsX, guint gridX, guint gridY);
 
+
+
+
+static void cairo_dock_draw_frame_horizontal_for_diapo (cairo_t *pCairoContext, CairoDock *pDock);
+
+static void cairo_dock_draw_frame_vertical_for_diapo (cairo_t *pCairoContext, CairoDock *pDock);
+
+void cairo_dock_draw_frame_for_diapo (cairo_t *pCairoContext, CairoDock *pDock);
+
+void cairo_dock_render_decorations_in_frame_for_diapo (cairo_t *pCairoContext, CairoDock *pDock);
 
 
 #endif

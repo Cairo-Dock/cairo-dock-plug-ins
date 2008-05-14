@@ -62,6 +62,18 @@ gboolean my_diapo_simple_lineaire;
 gboolean  my_diapo_simple_wide_grid;
 gboolean  my_diapo_simple_text_only_on_pointed;
 
+gdouble  my_diapo_simple_color_frame_start[4];
+gdouble  my_diapo_simple_color_frame_stop[4];
+gboolean my_diapo_simple_fade2bottom;
+gboolean my_diapo_simple_fade2right;
+guint    my_diapo_simple_arrowWidth;
+guint    my_diapo_simple_arrowHeight;
+gdouble  my_diapo_simple_arrowShift;
+guint    my_diapo_simple_lineWidth;
+guint    my_diapo_simple_radius;
+gdouble  my_diapo_simple_color_border_line[4];
+gboolean my_diapo_simple_draw_background;
+
 
 CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 	rendering_register_tree_desklet_renderer ();
