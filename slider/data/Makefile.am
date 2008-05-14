@@ -8,5 +8,6 @@ module_DATA = \
 	readme\
 	preview.png\
 	frame.svg\
+	reflect.svg\
 	icon.png
 

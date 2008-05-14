@@ -27,6 +27,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.pFrameAlpha	= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "frame alpha", 1.);
 	myConfig.pFrameOffset	= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "frame offset", 5.);
 	myConfig.cFrameImage 	= CD_CONFIG_GET_STRING ("Configuration", "frame");
+	
+	myConfig.pReflectAlpha	= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "reflect alpha", 1.);
+	myConfig.cReflectImage 	= CD_CONFIG_GET_STRING ("Configuration", "reflect");
 	CD_CONFIG_GET_COLOR ("Configuration", "background color", myConfig.pBackgroundColor);
 CD_APPLET_GET_CONFIG_END
 
@@ -47,5 +50,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	}
 	cairo_surface_destroy (myData.pCairoSurface);
 	cairo_surface_destroy (myData.pPrevCairoSurface);
+	cairo_surface_destroy (myData.pCairoFrameSurface);
+	cairo_surface_destroy (myData.pCairoReflectSurface);
 	
 CD_APPLET_RESET_DATA_END

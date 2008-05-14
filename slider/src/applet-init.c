@@ -19,7 +19,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 CD_APPLET_DEFINITION ("slider", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 void _cd_slider_load_frame (void) {
-	cd_message ("%s", __func__);
+	cd_debug ("%s", __func__);
 	
 	if (myData.pCairoFrameSurface != NULL) {
 		cd_warning ("Can't load frame surface, one already loaded");
@@ -34,7 +34,7 @@ void _cd_slider_load_frame (void) {
 	else {
 		cImagePath = g_strdup_printf ("%s/frame.svg", MY_APPLET_SHARE_DATA_DIR);
 	}
-	cd_message ("Background frame: %s", cImagePath);
+	cd_debug ("Background frame: %s", cImagePath);
 
 	double fIW, fIH;
 	myData.pCairoFrameSurface = cairo_dock_create_surface_from_image (cImagePath,
@@ -43,9 +43,28 @@ void _cd_slider_load_frame (void) {
 		myIcon->fWidth, myIcon->fHeight,
 		&fIW, &fIH,
 		FALSE);
+		
+	if (myData.pCairoReflectSurface != NULL) {
+		cd_warning ("Can't load reflect surface, one already loaded");
+		return;
+	}
+	
+	if (myConfig.cReflectImage != NULL) {
+		cImagePath = g_strdup (myConfig.cReflectImage);
+	}
+	else {
+		cImagePath = g_strdup_printf ("%s/reflect.svg", MY_APPLET_SHARE_DATA_DIR);
+	}
+	cd_debug ("Reflection frame: %s", cImagePath);
+
+	myData.pCairoReflectSurface = cairo_dock_create_surface_from_image (cImagePath,
+		myDrawContext,
+		cairo_dock_get_max_scale (myContainer),
+		myIcon->fWidth, myIcon->fHeight,
+		&fIW, &fIH,
+		TRUE);
 	
 	g_free(cImagePath);
-	cd_message ("End of %s", __func__);
 }
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
@@ -102,6 +121,8 @@ CD_APPLET_RELOAD_BEGIN
 	
 	cairo_surface_destroy (myData.pCairoFrameSurface);
 	myData.pCairoFrameSurface = NULL;
+	cairo_surface_destroy (myData.pCairoReflectSurface);
+	myData.pCairoReflectSurface = NULL;
 	_cd_slider_load_frame(); //load background frame image
 	
 	//\_______________ Reload all changed data.

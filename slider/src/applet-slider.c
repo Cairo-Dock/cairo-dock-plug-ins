@@ -205,6 +205,11 @@ static void _cd_slider_add_frame_to_current_slide (void) {
 	cairo_paint_with_alpha (myDrawContext, myConfig.pFrameAlpha);
 }
 
+static void _cd_slider_add_reflect_to_current_slide (void) {
+	cairo_set_source_surface (myDrawContext, myData.pCairoReflectSurface, 0., 0.);
+	cairo_paint_with_alpha (myDrawContext, myConfig.pReflectAlpha);
+}
+
 static void _cd_slider_add_background_to_current_slide (double fX, double fY) {
 	cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myConfig.pBackgroundColor[3]);
 	fMaxScale = cairo_dock_get_max_scale (myContainer);
@@ -246,6 +251,7 @@ gboolean cd_slider_fade (void) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
+	_cd_slider_add_reflect_to_current_slide();
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
@@ -282,6 +288,7 @@ gboolean cd_slider_blank_fade (void) {
 	cairo_rectangle(myDrawContext, 0., 0., myIcon->fWidth, myIcon->fHeight);
 	cairo_fill(myDrawContext);
 	
+	_cd_slider_add_reflect_to_current_slide();
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
@@ -325,6 +332,7 @@ gboolean cd_slider_fade_in_out (void) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
+	_cd_slider_add_reflect_to_current_slide();
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
@@ -354,6 +362,7 @@ gboolean cd_slider_side_kick (void) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.fAnimCNT, myData.pImgL.fImgY);
 	cairo_paint (myDrawContext);
 	
+	_cd_slider_add_reflect_to_current_slide();
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
@@ -403,6 +412,7 @@ gboolean cd_slider_diaporama (void) {
 		cairo_paint(myDrawContext);
 	}
   
+  _cd_slider_add_reflect_to_current_slide();
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
@@ -437,7 +447,7 @@ gboolean cd_slider_grow_up (void) {
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
-	
+	_cd_slider_add_reflect_to_current_slide();
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
@@ -473,7 +483,7 @@ gboolean cd_slider_shrink_down (void) {
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimCNT);
 	
-
+	_cd_slider_add_reflect_to_current_slide();
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	

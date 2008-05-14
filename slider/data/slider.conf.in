@@ -45,7 +45,7 @@ keep above=false
 #b Keep on widget layer ?
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
-#b Lockposition ?
+#b Lock position ?
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
 
@@ -77,7 +77,7 @@ change animation=1
 #{Set the transparency channel to 0 if you just don't want to have a background.}
 background color = 1.0; 1.0; 1.0; 1.0
 
-#F[Background]
+#F[Background & Reflection]
 frame_bg =
 #S Background image :
 frame =
@@ -86,3 +86,8 @@ frame offset = 5
 #e[0;1] Background tansparency :
 #{Set it to zero if you want to have a clean background}
 frame alpha = 1
+#S Reflection image :
+reflect =
+#e[0;1] Reflection tansparency :
+#{Set it to zero if you dont want reflection}
+reflect alpha = 1

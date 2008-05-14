@@ -218,8 +218,8 @@ msgid ""
 msgstr ""
 
 #: ../data/messages:37
-msgid "Lockposition ?"
-msgstr ""
+msgid "Lock position ?"
+msgstr "Vérouiller la position ?"
 
 msgid "Keep widht/height ratio ?"
 msgstr "Conserver le ratio entre la longueur et la largeur ?"
@@ -230,8 +230,8 @@ msgstr "Forcer les images à remplir l'icône/le desklet ?"
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Si l'image est trop petite, elle sera zoomée."
 
-msgid "Background"
-msgstr "Fond"
+msgid "Background & Reflection"
+msgstr "Fond et Réflection"
 
 msgid "Background image :"
 msgstr "Image de fond :"
@@ -244,3 +244,12 @@ msgstr "Transparence du fond :"
 
 msgid "Set it to zero if you want to have a clean background"
 msgstr "A définir a zéro si vous voulez avoir un fond transparent"
+
+msgid "Reflection image :"
+msgstr "Image du reflet :"
+
+msgid "Reflection tansparency :"
+msgstr "Transparence du reflet :"
+
+msgid "Set it to zero if you dont want reflection"
+msgstr "A définir a zéro si vous ne voulez pas avoir de reflet"
