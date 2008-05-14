@@ -29,12 +29,15 @@ typedef struct {
 typedef struct {
 	gint iSlideTime;
 	gchar *cDirectory;
+	gchar *cFrameImage;
 	gboolean bSubDirs;
 	gboolean bNoStrench;
 	gboolean bFillIcon;
 	gboolean bRandom;
 	SliderAnimation iAnimation;
 	gdouble pBackgroundColor[4];
+	gdouble pFrameAlpha;
+	gdouble pFrameOffset;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -52,6 +55,7 @@ typedef struct {
 	myImgLips pPrevImgL;
 	cairo_surface_t* pCairoSurface;
 	cairo_surface_t* pPrevCairoSurface;
+	cairo_surface_t* pCairoFrameSurface;
 } AppletData;
 
 

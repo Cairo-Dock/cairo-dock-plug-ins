@@ -25,6 +25,7 @@ double fMaxScale;
 static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *pRandomGenerator) {
 	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);
 }
+
 void cd_slider_get_files_from_dir(void) {
 	if (myConfig.cDirectory == NULL)
 		return;
@@ -95,18 +96,16 @@ gboolean cd_slider_draw_images(void) {
 	myData.pPrevCairoSurface = myData.pCairoSurface;
 	myData.pPrevImgL = myData.pImgL;
 	
-	double fImgX, fImgY, fImgW=0, fImgH=0;
+	double fImgX=myConfig.pFrameOffset, fImgY=myConfig.pFrameOffset, fImgW=0., fImgH=0., fW = myIcon->fWidth - (myConfig.pFrameOffset * 2.), fH = myIcon->fHeight - (myConfig.pFrameOffset * 2.);
 	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;
-	if (myConfig.bNoStrench)
-		iLoadingModifier |= CAIRO_DOCK_KEEP_RATIO;
+	
 	if (! myConfig.bFillIcon)
 		iLoadingModifier |= CAIRO_DOCK_DONT_ZOOM_IN;
-	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath,
-		myDrawContext,
-		cairo_dock_get_max_scale (myContainer),
-		myIcon->fWidth, myIcon->fHeight,
-		&fImgW, &fImgH,
-		iLoadingModifier);
+	if (myConfig.bNoStrench)
+		iLoadingModifier |= CAIRO_DOCK_KEEP_RATIO;
+	
+	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), fW, fH, &fImgW, &fImgH, iLoadingModifier);
+	
 	myData.pImgL.fImgX = fImgX;
 	myData.pImgL.fImgY = fImgY;
 	myData.pImgL.fImgW = fImgW;
@@ -119,7 +118,6 @@ gboolean cd_slider_draw_images(void) {
 		myData.iAnimTimerID = 0;
 	}
 	
-	//cairo_save (myDrawContext);
 	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 	
 	switch (myConfig.iAnimation) {
@@ -184,24 +182,27 @@ gboolean cd_slider_draw_images(void) {
 		break;
 	}
 	
-	/// Afficher le reflet...
+	/// Afficher le reflet... Pourquoi pas?
 	//cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
 	
 	//\______________________ On passe a l'image suivante.
 	myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
 	cd_debug ("Next Image: %s\n", myData.pElement->data);
 	
-	if (myConfig.iAnimation == SLIDER_DEFAULT)
-	{
+	if (myConfig.iAnimation == SLIDER_DEFAULT) {
 		if (myData.iTimerID == 0)
 			myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		return TRUE;  // on reboucle tout de suite (pas d'animation).
 	}
-	else
-	{
+	else {
 		myData.iTimerID = 0;
 		return FALSE;  // on quitte la boucle des images car on va effectuer une animation.
 	}
+}
+
+static void _cd_slider_add_frame_to_current_slide (void) {
+	cairo_set_source_surface (myDrawContext, myData.pCairoFrameSurface, 0., 0.);
+	cairo_paint_with_alpha (myDrawContext, myConfig.pFrameAlpha);
 }
 
 static void _cd_slider_add_background_to_current_slide (double fX, double fY) {
@@ -221,6 +222,8 @@ gboolean cd_slider_fade (void) {
 	cairo_paint (myDrawContext);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
+	
+	_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//Fond précédent.
 	if (myData.pPrevCairoSurface != NULL) {
@@ -265,6 +268,8 @@ gboolean cd_slider_blank_fade (void) {
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
 	
+	_cd_slider_add_frame_to_current_slide(); //Add background frame
+	
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
 	
@@ -294,7 +299,7 @@ gboolean cd_slider_fade_in_out (void) {
 	if (myData.fAnimAlpha <= 1 && myData.iAnimCNT == 0) { //On augmente l'alpha
 		myData.fAnimAlpha += .1;
 	}
-	if (myData.fAnimAlpha >= 1 &&myData.iAnimCNT <= 100) { //On attent 100/50 ms
+	if (myData.fAnimAlpha >= 1 &&myData.iAnimCNT <= 700) { //On attent 100/50 ms
 		myData.iAnimCNT += 10;
 		return TRUE;
 	}
@@ -308,6 +313,8 @@ gboolean cd_slider_fade_in_out (void) {
 	cairo_paint (myDrawContext);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
+	
+	_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On empeche la transparence
 	cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myData.fAnimAlpha * myConfig.pBackgroundColor[3]);
@@ -338,6 +345,8 @@ gboolean cd_slider_side_kick (void) {
 	cairo_paint (myDrawContext);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
+	
+	_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.fAnimCNT, myData.pImgL.fImgY);
@@ -374,6 +383,8 @@ gboolean cd_slider_diaporama (void) {
 	cairo_paint (myDrawContext);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
+	
+	_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On empeche la transparence
 	_cd_slider_add_background_to_current_slide (myData.fAnimCNT, myData.pImgL.fImgY);
@@ -414,6 +425,8 @@ gboolean cd_slider_grow_up (void) {
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
 	
+	_cd_slider_add_frame_to_current_slide(); //Add background frame
+	
 	//On met a l'échelle en recentrant.
 	cairo_translate (myDrawContext, (myIcon->fWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2 * fMaxScale, (myIcon->fHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2 * fMaxScale);
 	cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
@@ -447,6 +460,8 @@ gboolean cd_slider_shrink_down (void) {
 	cairo_paint (myDrawContext);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
+	
+	_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On met a l'échelle en recentrant.
 	cairo_translate (myDrawContext, (myIcon->fWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2 * fMaxScale, (myIcon->fHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2 * fMaxScale);

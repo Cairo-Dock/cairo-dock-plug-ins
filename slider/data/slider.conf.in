@@ -76,3 +76,13 @@ change animation=1
 #c4[0;1] Choose a background color :
 #{Set the transparency channel to 0 if you just don't want to have a background.}
 background color = 1.0; 1.0; 1.0; 1.0
+
+#F[Background]
+frame_bg =
+#S Background image :
+frame =
+#i[0;15] Image offset :
+frame offset = 5
+#e[0;1] Background tansparency :
+#{Set it to zero if you want to have a clean background}
+frame alpha = 1

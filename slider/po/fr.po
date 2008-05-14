@@ -220,3 +220,27 @@ msgstr ""
 #: ../data/messages:37
 msgid "Lockposition ?"
 msgstr ""
+
+msgid "Keep widht/height ratio ?"
+msgstr "Conserver le ratio entre la longueur et la largeur ?"
+
+msgid "Force the image to fill the icon/desklet ?"
+msgstr "Forcer les images à remplir l'icône/le desklet ?"
+
+msgid "If the image is too small, it will be zoomed in."
+msgstr "Si l'image est trop petite, elle sera zoomée."
+
+msgid "Background"
+msgstr "Fond"
+
+msgid "Background image :"
+msgstr "Image de fond :"
+
+msgid "Image offset :"
+msgstr "Décalage de l'image :"
+
+msgid "Background tansparency :"
+msgstr "Transparence du fond :"
+
+msgid "Set it to zero if you want to have a clean background"
+msgstr "A définir a zéro si vous voulez avoir un fond transparent"
