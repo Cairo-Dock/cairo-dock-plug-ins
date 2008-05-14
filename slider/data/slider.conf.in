@@ -55,7 +55,7 @@ frame_td=
 #D Directory of the images :
 directory= /
 #b Scan in sub direcotries ?
-#{Not  yetimplemented.}
+#{Not yet implemented.}
 sub directories=false
 #b Randomly browse files ?
 random = false
@@ -71,7 +71,9 @@ no strench=true
 #b Force the image to fill the icon/desklet ?
 #{If the image is too small, it will be zoomed in.}
 fill icon = false
-#r[none;fade;blank fade;fade in out;side kick;diaporama;grow up;shrink down] Effect while changing image :
+#r[play/pause;open image] Action when applet is clicked :
+click=0
+#r[none;fade;blank fade;fade in out;side kick;diaporama;grow up;shrink down;random] Effect while changing image :
 change animation=1
 #c4[0;1] Choose a background color :
 #{Set the transparency channel to 0 if you just don't want to have a background.}

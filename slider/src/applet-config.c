@@ -23,6 +23,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bNoStrench 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no strench");
 	myConfig.bFillIcon 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "fill icon");
 	myConfig.iAnimation 	= CD_CONFIG_GET_INTEGER ("Configuration", "change animation");
+	myConfig.iClickOption = CD_CONFIG_GET_INTEGER ("Configuration", "click");
 	myConfig.bRandom 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
 	myConfig.pFrameAlpha	= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "frame alpha", 1.);
 	myConfig.pFrameOffset	= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "frame offset", 5.);
@@ -48,6 +49,9 @@ CD_APPLET_RESET_DATA_BEGIN
 		g_list_foreach (myData.pList, (GFunc) g_free, NULL);
 		g_list_free (myData.pList);
 	}
+	
+	g_free(myData.cNowImage);
+	
 	cairo_surface_destroy (myData.pCairoSurface);
 	cairo_surface_destroy (myData.pPrevCairoSurface);
 	cairo_surface_destroy (myData.pCairoFrameSurface);

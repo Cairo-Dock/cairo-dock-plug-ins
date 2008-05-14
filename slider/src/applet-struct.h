@@ -15,8 +15,15 @@ typedef enum {
 	SLIDER_DIAPORAMA,
 	SLIDER_GROW_UP,
 	SLIDER_SHRINK_DOWN,
+	SLIDER_RANDOM,
 	SLIDER_NB_ANIMATION,
 } SliderAnimation;
+
+typedef enum {
+	SLIDER_PAUSE = 0,
+	SLIDER_OPEN_IMAGE,
+	SLIDER_NB_CLICK_OPTION,
+} SliderClickOption;
 
 typedef struct {
 	double fImgX;
@@ -35,11 +42,12 @@ typedef struct {
 	gboolean bNoStrench;
 	gboolean bFillIcon;
 	gboolean bRandom;
-	SliderAnimation iAnimation;
 	gdouble pBackgroundColor[4];
 	gdouble pFrameAlpha;
 	gdouble pFrameOffset;
 	gdouble pReflectAlpha;
+	SliderAnimation iAnimation;
+	SliderClickOption iClickOption;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -59,6 +67,8 @@ typedef struct {
 	cairo_surface_t* pPrevCairoSurface;
 	cairo_surface_t* pCairoFrameSurface;
 	cairo_surface_t* pCairoReflectSurface;
+	SliderAnimation iAnimation;
+	gchar *cNowImage;
 } AppletData;
 
 

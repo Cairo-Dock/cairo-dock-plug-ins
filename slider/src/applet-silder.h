@@ -16,4 +16,8 @@ gboolean cd_slider_diaporama (void);
 gboolean cd_slider_grow_up (void);
 gboolean cd_slider_shrink_down (void);
 
+static void _cd_slider_add_frame_to_current_slide (void);
+static void _cd_slider_add_reflect_to_current_slide (void);
+static void _cd_slider_add_background_to_current_slide (double fX, double fY);
+
 #endif

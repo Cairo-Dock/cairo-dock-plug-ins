@@ -134,7 +134,7 @@ msgid "Directory of the images :"
 msgstr "Dossier des images"
 
 #: ../data/messages:41 ../data/messages:45
-msgid "Not implemented yet"
+msgid "Not yet implemented"
 msgstr "Pas encore implémenté"
 
 #: ../data/messages:43 ../data/messages:47
@@ -163,7 +163,7 @@ msgstr "Ne pas étirer les images ?"
 
 #: ../data/messages:55 ../data/messages:57 ../data/messages:61
 msgid "Effect while changing image :"
-msgstr "Effet"
+msgstr "Effet au changement d'image :"
 
 #: ../data/messages:57 ../data/messages:59 ../data/messages:63
 msgid "none"
@@ -197,6 +197,9 @@ msgstr "rétrécissement "
 msgid "fade"
 msgstr "fondu"
 
+msgid "random"
+msgstr "aléatoire"
+
 #: ../data/messages:71 ../data/messages:75 ../data/messages:79
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
@@ -205,7 +208,7 @@ msgstr "Mettez la valeur de la transparence a 0 pour ne pas avoir defond."
 
 #: ../data/messages:73 ../data/messages:77 ../data/messages:81
 msgid "Choose a background color :"
-msgstr "Choisir la couleur de fond :"
+msgstr "Choisir la couleur du fond :"
 
 #: ../data/messages:45 ../data/messages:49
 msgid "Randomly browse files ?"
@@ -215,11 +218,13 @@ msgstr "Afficher les images aléatoirement ?"
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
+msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en"
+"le tirant avec le bouton gauche de la souris. Bien sur il pourra toujour"
+"être bouger avec ALT + clique_gauche"
 
 #: ../data/messages:37
 msgid "Lock position ?"
-msgstr "Vérouiller la position ?"
+msgstr "Verrouiller la position ?"
 
 msgid "Keep widht/height ratio ?"
 msgstr "Conserver le ratio entre la longueur et la largeur ?"
@@ -229,6 +234,15 @@ msgstr "Forcer les images à remplir l'icône/le desklet ?"
 
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Si l'image est trop petite, elle sera zoomée."
+
+msgid "Action when applet is clicked :"
+msgstr "Action au clique sur l'applet :"
+
+msgid "play/pause"
+msgstr "jouer/pause"
+
+msgid "open image"
+msgstr "ouvrir l'image"
 
 msgid "Background & Reflection"
 msgstr "Fond et Réflection"
