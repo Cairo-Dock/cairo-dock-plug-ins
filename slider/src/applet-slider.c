@@ -438,7 +438,8 @@ gboolean cd_slider_grow_up (void) {
 	_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On met a l'échelle en recentrant.
-	cairo_translate (myDrawContext, (myIcon->fWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2 * fMaxScale, (myIcon->fHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2 * fMaxScale);
+	cairo_translate (myDrawContext, myIcon->fWidth * fMaxScale / 2 * (1 - myData.fAnimAlpha) , myIcon->fHeight * fMaxScale / 2 * (1 - myData.fAnimAlpha));
+	//cairo_translate (myDrawContext, (myIcon->fWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2 * fMaxScale, (myIcon->fHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2 * fMaxScale);
 	cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
 	
 	//On empeche la transparence et on affiche l'image
@@ -474,7 +475,8 @@ gboolean cd_slider_shrink_down (void) {
 	_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On met a l'échelle en recentrant.
-	cairo_translate (myDrawContext, (myIcon->fWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2 * fMaxScale, (myIcon->fHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2 * fMaxScale);
+	cairo_translate (myDrawContext, myIcon->fWidth * fMaxScale / 2 * (1 - myData.fAnimAlpha) , myIcon->fHeight * fMaxScale / 2 * (1 - myData.fAnimAlpha));
+	//cairo_translate (myDrawContext, (myIcon->fWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2 * fMaxScale, (myIcon->fHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2 * fMaxScale);
 	cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
 	
 	//On empeche la transparence et on affiche l'image
