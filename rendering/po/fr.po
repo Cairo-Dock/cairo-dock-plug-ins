@@ -45,19 +45,19 @@ msgstr ""
 msgid "If so, you can specify its color:"
 msgstr "Si oui, précisez sa couleur:"
 
-#: ../data/messages:9
+#: ../data/messages:9 ../data/messages:15
 msgid "red, blue, green, alpha"
 msgstr "rougle, vert, bleu, alpha"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:19
 msgid "Caroussel"
 msgstr "Carroussel"
 
-#: ../data/messages:17
+#: ../data/messages:17 ../data/messages:23
 msgid "Percentage of the dock's width that appears on the foreground :"
 msgstr "Pourcentage de la largeur du dock qui apparaît à l'avant-plan :"
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:21
 msgid ""
 "0.5 means the dock is half-folded, so half the icons are on the foreground, "
 "and half are on the background."
@@ -65,11 +65,11 @@ msgstr ""
 "0.5 signifie que le dock est à moitié replié, donc la moitié des icônes sont "
 "à l'avant-plan, et la motié à l'arrière-pan."
 
-#: ../data/messages:21
+#: ../data/messages:21 ../data/messages:27
 msgid "Depth of the plane :"
 msgstr "Profondeur du plan :"
 
-#: ../data/messages:19
+#: ../data/messages:19 ../data/messages:25
 msgid ""
 "The greater, the deeper. It is in fact the gap between background icons' "
 "bottom and foreground icons' top (in pixels)."
@@ -78,31 +78,33 @@ msgstr ""
 "bas des icônes de l'arrière-plan, et le haut des icônes d'avant-plan (en "
 "pixels)."
 
-#: ../data/messages:25
+#: ../data/messages:25 ../data/messages:31
 msgid "Always show icons' face ?"
 msgstr "Toujours montrer les icônes de face ?"
 
-#: ../data/messages:23
+#: ../data/messages:23 ../data/messages:29
 msgid "otherwise they will turn."
 msgstr "sinon elles tourneront."
 
-#: ../data/messages:27
+#: ../data/messages:27 ../data/messages:33
 msgid "Parabolic"
 msgstr "Parabolique"
 
-#: ../data/messages:31
+#: ../data/messages:31 ../data/messages:37
 msgid "Curvature :"
 msgstr "Courbure :"
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:41
 msgid "Ratio height/width :"
 msgstr "Ratio hauteur/largeur :"
 
-#: ../data/messages:39 ../data/messages:57
+#: ../data/messages:39 ../data/messages:57 ../data/messages:45
+#: ../data/messages:63
 msgid "Magnitude of the wave :"
 msgstr "Magnitude de la vague :"
 
-#: ../data/messages:37 ../data/messages:55
+#: ../data/messages:37 ../data/messages:55 ../data/messages:43
+#: ../data/messages:61
 msgid ""
 "0 means the wave is totally flat, 1 means the wave is identical to other "
 "views."
@@ -110,25 +112,25 @@ msgstr ""
 "0 signifie que la vague est totalement plate, 1 que la vague est identique "
 "aux autres vues."
 
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:49
 msgid "Space between icons and their label :"
 msgstr "Espace entre les icônes et leur label :"
 
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:47
 msgid "in pixels."
 msgstr "en pixels."
 
-#: ../data/messages:29
+#: ../data/messages:29 ../data/messages:35
 msgid "it's the 'a' in y=k*x^a"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:33 ../data/messages:39
 msgid ""
 "not including the labels. The 'k' coef will be adjusted to preserve this "
 "ratio."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:45 ../data/messages:51
 msgid ""
 "It may recquire more CPU during the unfolding animation, except if you "
 "launch Cairo-Dock with Glitz."
@@ -136,27 +138,28 @@ msgstr ""
 "Cela peut demander plus de puissance processeur durant l'animation de "
 "dépliage, sauf si vous lancez le dock avec Glitz."
 
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:53
 msgid "Draw labels while unfolding ?"
 msgstr "Dessiner les étiquettes pendant le dépliage ?"
 
-#: ../data/messages:49
+#: ../data/messages:49 ../data/messages:55
 msgid "Rainbow"
 msgstr "Arc-en-ciel"
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:57 ../data/messages:75
+#: ../data/messages:91
 msgid "Space between rows :"
 msgstr "Espacement entre les lignes :"
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:59
 msgid "Space between icons :"
 msgstr "Espacement entre les icônes :"
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:65
 msgid "Number of icons on the first row :"
 msgstr "Nombre d'icônes dans la 1ère ligne :"
 
-#: ../data/messages:61
+#: ../data/messages:61 ../data/messages:67
 msgid ""
 "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
 "widely opened."
@@ -164,31 +167,39 @@ msgstr ""
 "en degrés. Plus c'est petit, plus le cône sera étroit. 180° signifie que le "
 "cône est complètement ouvert."
 
-#: ../data/messages:63
+#: ../data/messages:63 ../data/messages:69
 msgid "Cone's width :"
 msgstr "Ouverture du cône :"
 
+#: ../data/messages:71
 msgid "Slide"
 msgstr "Diapositive"
 
+#: ../data/messages:87
 msgid "SimpleSlide"
 msgstr "Diapositive Simple"
 
+#: ../data/messages:73 ../data/messages:89
 msgid "Space between columns :"
 msgstr "Espacement entre les colonnes :"
 
+#: ../data/messages:77 ../data/messages:93
 msgid "Max size of icons :"
 msgstr "Taille maximale des icones"
 
+#: ../data/messages:79 ../data/messages:95
 msgid "Sinusoidal wave radius :"
 msgstr "Rayon de la vague sinusoïdale :"
 
+#: ../data/messages:81 ../data/messages:97
 msgid "Use a linear wave rather than a sinusoidal one ?"
 msgstr "Utiliser une vague linéaire plutôt que sinusoïdale ?"
 
+#: ../data/messages:83 ../data/messages:99
 msgid "Use a wide shape ?"
 msgstr "Utiliser une forme alongée ?"
 
+#: ../data/messages:85 ../data/messages:101
 msgid "Display text only for pointed icon ?"
 msgstr "Afficher le texte seulement pour l'icône pointée ?"
 
@@ -227,5 +238,25 @@ msgstr "Couleur de la ligne externe (r,v,b,a) :"
 
 #: ../data/messages:65
 msgid "Diapo"
+msgstr ""
+
+#: ../data/messages:7
+msgid "Choose the way separators are drawn :"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Normal separator"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Flat separator"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Physical separator"
+msgstr ""
+
+#: ../data/messages:17
+msgid "For flat separators, you can specify their color:"
 msgstr ""
 

@@ -47,6 +47,7 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
     g_free( myConfig.cNoMailUserImage );
     g_free( myConfig.cHasMailUserImage );
+    g_free (myConfig.cMailApplication);
 CD_APPLET_RESET_CONFIG_END
 
 

@@ -97,8 +97,6 @@ void cd_compiz_build_icons (void) {
 	else {
 		myDesklet->icons = pIconList;
 		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		///gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
 	}
 }

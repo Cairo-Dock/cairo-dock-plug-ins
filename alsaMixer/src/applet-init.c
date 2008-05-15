@@ -77,7 +77,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myIcon->fDrawY = myDesklet->iHeight - myIcon->fHeight + 0*g_iDockRadius/2;
 		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on charge l'icone nous-memes.
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 		if (myConfig.bHideScaleOnLeave)
 		{

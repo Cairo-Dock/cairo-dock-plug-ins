@@ -91,7 +91,7 @@ msgid "You're about to delete all files all dustbins. Sure ?"
 msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
 
 #: src/applet-notifications.c:145 ../src/applet-trashes-manager.c:446
-#: ../src/applet-trashes-manager.c:444
+#: ../src/applet-trashes-manager.c:444 ../src/applet-trashes-manager.c:458
 #, c-format
 msgid ""
 "A problem occured\n"

@@ -28,7 +28,7 @@ void cd_switcher_get_current_desktop (int *ScreenCurrentSize,int *ScreenCurrentN
 int iCurrentViewPortX, iCurrentViewPortY;
 cairo_dock_get_current_viewport (&iCurrentViewPortX, &iCurrentViewPortY);
 
-cd_message ("test %s",&iCurrentViewPortX);
+cd_message ("test %d", iCurrentViewPortX);
 cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
 int desknum= cairo_dock_get_current_desktop();
 

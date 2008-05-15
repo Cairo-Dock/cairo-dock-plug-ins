@@ -26,7 +26,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 
 CD_APPLET_INCLUDE_MY_VARS
 
-double fMaxScale;
 
 static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *pRandomGenerator) {
 	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);
@@ -93,7 +92,6 @@ void cd_slider_get_files_from_dir(void) {
 	
 	cd_message("Opening %s...", myConfig.cDirectory);  /// le faire par recurrence
 	myData.pList=NULL;
-	myData.iImagesNumber=0;
 	d = opendir(myConfig.cDirectory);
 	if (d) {
 		while ((dir = readdir(d)) != NULL) {
@@ -109,7 +107,6 @@ void cd_slider_get_files_from_dir(void) {
 					cd_debug ("  Adding %s to list", cFileName);
 					pFilePath = g_strconcat (myConfig.cDirectory, "/", cFileName, NULL);
 					myData.pList = g_list_prepend (myData.pList, pFilePath);
-					myData.iImagesNumber++;
 				}
 				else {
 					cd_debug ("%s not handeled, ignoring...", cFileName);
@@ -122,7 +119,7 @@ void cd_slider_get_files_from_dir(void) {
 	//cd_slider_measure_directory (myConfig.cDirectory); //Nouveau scan
 	
 	if (myConfig.bRandom) {
-		cd_message ("Mixing images ...");
+		cd_debug ("Mixing images ...");
 		GRand *pRandomGenerator = g_rand_new ();
 		myData.pList = g_list_sort_with_data (myData.pList, (GCompareDataFunc) _cd_slider_random_compare, pRandomGenerator);
 		g_rand_free (pRandomGenerator);
@@ -132,12 +129,10 @@ void cd_slider_get_files_from_dir(void) {
 	}
 	
 	myData.pElement = myData.pList;
-	//_printList(myData.pList);
 	cd_slider_draw_images();
 }
 
 
-//A optimiser!
 gboolean cd_slider_draw_images(void) {
 	if (myData.bPause == TRUE)
 		return FALSE;
@@ -148,7 +143,7 @@ gboolean cd_slider_draw_images(void) {
 		return FALSE;
  	}
 	gchar *cImagePath = myData.pElement->data;
-	cd_message("Displaying: %s\n", cImagePath);
+	cd_debug ("Displaying: %s", cImagePath);
 	myData.cNowImage = g_strdup_printf("file://%s", cImagePath);
 	
 	//\___________________________ On sauvegarde la surface actuelle et on charge la nouvelle surface.
@@ -156,16 +151,30 @@ gboolean cd_slider_draw_images(void) {
 	myData.pPrevCairoSurface = myData.pCairoSurface;
 	myData.pPrevImgL = myData.pImgL;
 	
-	double fImgX=myConfig.pFrameOffset, fImgY=myConfig.pFrameOffset, fImgW=0., fImgH=0., fW = myIcon->fWidth - (myConfig.pFrameOffset * 2.), fH = myIcon->fHeight - (myConfig.pFrameOffset * 2.);
+
+	double fRatio = (myDock ? myDock->fRatio : 1.);
+	double fMaxScale = cairo_dock_get_max_scale (myContainer);
+	double fImgX, fImgY, fImgW=0, fImgH=0;
+	///double fImgX=myConfig.pFrameOffset, fImgY=myConfig.pFrameOffset, fImgW=0., fImgH=0., fW = myIcon->fWidth - (myConfig.pFrameOffset * 2.), fH = myIcon->fHeight - (myConfig.pFrameOffset * 2.);
 	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;
 	
 	if (! myConfig.bFillIcon)
 		iLoadingModifier |= CAIRO_DOCK_DONT_ZOOM_IN;
 	if (myConfig.bNoStrench)
 		iLoadingModifier |= CAIRO_DOCK_KEEP_RATIO;
+	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath,
+		myDrawContext,
+		1.,
+		myData.fSurfaceWidth, myData.fSurfaceHeight,
+		&fImgW, &fImgH,
+		iLoadingModifier);
+
+	///myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), fW, fH, &fImgW, &fImgH, iLoadingModifier);
 	
-	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), fW, fH, &fImgW, &fImgH, iLoadingModifier);
 	
+	fImgX = (myData.fSurfaceWidth - fImgW) / 2;
+	fImgY = (myData.fSurfaceHeight - fImgH) / 2;
+	fMaxScale = 1;
 	myData.pImgL.fImgX = fImgX;
 	myData.pImgL.fImgY = fImgY;
 	myData.pImgL.fImgW = fImgW;
@@ -279,8 +288,7 @@ static void _cd_slider_add_reflect_to_current_slide (void) {
 
 static void _cd_slider_add_background_to_current_slide (double fX, double fY) {
 	cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myConfig.pBackgroundColor[3]);
-	fMaxScale = cairo_dock_get_max_scale (myContainer);
-	cairo_rectangle (myDrawContext, fX, fY, myData.pImgL.fImgW * fMaxScale, myData.pImgL.fImgH * fMaxScale);
+	cairo_rectangle (myDrawContext, fX, fY, myData.pImgL.fImgW, myData.pImgL.fImgH);
 	cairo_fill (myDrawContext);
 }
 
@@ -352,7 +360,7 @@ gboolean cd_slider_blank_fade (void) {
 	
 	//Masque
 	cairo_set_source_rgba (myDrawContext, 1., 1., 1., myData.fAnimAlpha);
-	cairo_rectangle(myDrawContext, 0., 0., myIcon->fWidth, myIcon->fHeight);
+	cairo_rectangle(myDrawContext, 0., 0., myData.fSurfaceWidth, myData.fSurfaceHeight);
 	cairo_fill(myDrawContext);
 	
 	_cd_slider_add_reflect_to_current_slide(); //Add reflection
@@ -434,14 +442,14 @@ gboolean cd_slider_side_kick (void) {
 	cairo_restore(myDrawContext);
 	
 	//Effet d'arrivee rapide, passage lent, sortie rapide comme un coup de pied
-	if (myData.fAnimCNT >= (-myData.pImgL.fImgW / 2) && myData.fAnimCNT <= (myIcon->fWidth / 2)) {
+	if (myData.fAnimCNT >= (-myData.pImgL.fImgW / 2) && myData.fAnimCNT <= (myData.fSurfaceWidth / 2)) {
 		myData.fAnimCNT = myData.fAnimCNT +1.;
 	}
 	else {
 		myData.fAnimCNT = myData.fAnimCNT +5.;
 	}
 	
-	if (myData.fAnimCNT >= myIcon->fWidth+5) {
+	if (myData.fAnimCNT >= myData.fSurfaceWidth +5) {
 		myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		myData.iAnimTimerID = 0;
 		return FALSE;
@@ -451,7 +459,7 @@ gboolean cd_slider_side_kick (void) {
 }
 
 gboolean cd_slider_diaporama (void) {
-	myData.fAnimCNT = myData.fAnimCNT +.5;
+	myData.fAnimCNT = myData.fAnimCNT +1;
 
 	//On efface le fond
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
@@ -488,7 +496,7 @@ gboolean cd_slider_diaporama (void) {
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
-		
+	
 	return TRUE;
 }
 
@@ -505,13 +513,12 @@ gboolean cd_slider_grow_up (void) {
 	_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On met a l'échelle en recentrant.
-	cairo_translate (myDrawContext, myIcon->fWidth * fMaxScale / 2 * (1 - myData.fAnimAlpha) , myIcon->fHeight * fMaxScale / 2 * (1 - myData.fAnimAlpha));
-	//cairo_translate (myDrawContext, (myIcon->fWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2 * fMaxScale, (myIcon->fHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2 * fMaxScale);
+	cairo_translate (myDrawContext, (myData.fSurfaceWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2, (myData.fSurfaceHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2);
 	cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
 	
 	//On empeche la transparence et on affiche l'image
-	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
-	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
+	_cd_slider_add_background_to_current_slide (0., 0.);
+	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, 0., 0.);
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
@@ -542,13 +549,12 @@ gboolean cd_slider_shrink_down (void) {
 	_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On met a l'échelle en recentrant.
-	cairo_translate (myDrawContext, myIcon->fWidth * fMaxScale / 2 * (1 - myData.fAnimAlpha) , myIcon->fHeight * fMaxScale / 2 * (1 - myData.fAnimAlpha));
-	//cairo_translate (myDrawContext, (myIcon->fWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2 * fMaxScale, (myIcon->fHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2 * fMaxScale);
+	cairo_translate (myDrawContext, (myData.fSurfaceWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2, (myData.fSurfaceHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2);
 	cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
 	
 	//On empeche la transparence et on affiche l'image
-	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
-	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
+	_cd_slider_add_background_to_current_slide (0., 0.);
+	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, 0., 0.);
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimCNT);
 	

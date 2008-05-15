@@ -50,7 +50,7 @@ locked = false
 
 #i[1;120] Interval of time between 2 checks :
 #{in seconds.}
-check interval = 10
+check interval = 15
 
 
 #F[Display]

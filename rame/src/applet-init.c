@@ -10,8 +10,7 @@ CD_APPLET_DEFINITION ("rame", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet != NULL) {
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	//Initialisation de la jauge
@@ -42,8 +41,7 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (myDesklet != NULL) {
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	if (myData.pGauge != NULL) { // reset jauges.

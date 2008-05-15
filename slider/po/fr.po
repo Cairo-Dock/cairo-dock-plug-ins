@@ -162,38 +162,46 @@ msgid "Don't strench the images ?"
 msgstr "Ne pas étirer les images ?"
 
 #: ../data/messages:55 ../data/messages:57 ../data/messages:61
+#: ../data/messages:65
 msgid "Effect while changing image :"
 msgstr "Effet au changement d'image :"
 
 #: ../data/messages:57 ../data/messages:59 ../data/messages:63
+#: ../data/messages:67
 msgid "none"
 msgstr "aucun"
 
 #: ../data/messages:59 ../data/messages:63 ../data/messages:67
+#: ../data/messages:71
 msgid "blank fade"
 msgstr "flash"
 
 #: ../data/messages:61 ../data/messages:65 ../data/messages:69
+#: ../data/messages:73
 msgid "fade in out"
 msgstr "fondu progressif"
 
 #: ../data/messages:63 ../data/messages:67 ../data/messages:71
+#: ../data/messages:75
 msgid "side kick"
 msgstr "coup de pied"
 
 #: ../data/messages:65 ../data/messages:69 ../data/messages:73
+#: ../data/messages:77
 msgid "diaporama"
 msgstr ""
 
 #: ../data/messages:67 ../data/messages:71 ../data/messages:75
+#: ../data/messages:79
 msgid "grow up"
 msgstr "agrandissement"
 
 #: ../data/messages:69 ../data/messages:73 ../data/messages:77
+#: ../data/messages:81
 msgid "shrink down"
 msgstr "rétrécissement "
 
-#: ../data/messages:61 ../data/messages:65
+#: ../data/messages:61 ../data/messages:65 ../data/messages:69
 msgid "fade"
 msgstr "fondu"
 
@@ -201,12 +209,14 @@ msgid "random"
 msgstr "aléatoire"
 
 #: ../data/messages:71 ../data/messages:75 ../data/messages:79
+#: ../data/messages:83
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Mettez la valeur de la transparence a 0 pour ne pas avoir defond."
 
 #: ../data/messages:73 ../data/messages:77 ../data/messages:81
+#: ../data/messages:85
 msgid "Choose a background color :"
 msgstr "Choisir la couleur du fond :"
 
@@ -222,7 +232,6 @@ msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en"
 "le tirant avec le bouton gauche de la souris. Bien sur il pourra toujour"
 "être bouger avec ALT + clique_gauche"
 
-#: ../data/messages:37
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
@@ -267,3 +276,4 @@ msgstr "Transparence du reflet :"
 
 msgid "Set it to zero if you dont want reflection"
 msgstr "A définir a zéro si vous ne voulez pas avoir de reflet"
+

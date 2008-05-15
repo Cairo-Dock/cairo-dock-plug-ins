@@ -92,13 +92,14 @@ static void on_scale_value_changed (GtkRange *range, gpointer data)
 	}
 	xgamma_set_gamma (&myData.Xgamma);
 }
-static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, gchar *cLabel, int iChannelNumber, guint *iSignalID)
+static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, gchar *cLabel, int iChannelNumber, guint *iSignalID, double fChannelGamma)
 {
 	GtkWidget *pLabel = gtk_label_new (cLabel);
 	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget), pLabel, 0, 1, iChannelNumber, iChannelNumber+1);
 	
 	GtkWidget *pHScale = gtk_hscale_new_with_range (GAMMA_MIN, GAMMA_MAX, .02);
 	gtk_scale_set_digits (GTK_SCALE (pHScale), 2);
+	gtk_range_set_value (GTK_RANGE (pHScale), fChannelGamma);
 	gtk_widget_set (pHScale, "width-request", 150, NULL);
 	
 	*iSignalID = g_signal_connect (G_OBJECT (pHScale),
@@ -109,25 +110,21 @@ static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, gch
 	
 	return pHScale;
 }
-void xgamma_create_scales_widget (void)
+void xgamma_create_scales_widget (double fGamma, XF86VidModeGamma *pGamma)
 {
 	myData.pWidget = gtk_table_new (4, 2, FALSE);
 	
-	myData.pGlobalScale = _xgamma_add_channel_widget (myData.pWidget, "Gamma :", 0, &myData.iGloalScaleSignalID);
+	myData.pGlobalScale = _xgamma_add_channel_widget (myData.pWidget, "Gamma :", 0, &myData.iGloalScaleSignalID, fGamma);
 	
-	myData.pRedScale = _xgamma_add_channel_widget (myData.pWidget, "Red :", 1, &myData.iRedScaleSignalID);
+	myData.pRedScale = _xgamma_add_channel_widget (myData.pWidget, "Red :", 1, &myData.iRedScaleSignalID, pGamma->red);
 	
-	myData.pGreenScale = _xgamma_add_channel_widget (myData.pWidget, "Green :", 2, &myData.iGreenScaleSignalID);
+	myData.pGreenScale = _xgamma_add_channel_widget (myData.pWidget, "Green :", 2, &myData.iGreenScaleSignalID, pGamma->green);
 	
-	myData.pBlueScale = _xgamma_add_channel_widget (myData.pWidget, "Blue :", 3, &myData.iBlueScaleSignalID);
+	myData.pBlueScale = _xgamma_add_channel_widget (myData.pWidget, "Blue :", 3, &myData.iBlueScaleSignalID, pGamma->blue);
 	
 	gtk_widget_show_all (myData.pWidget);
 }
 
-/*void xgamma_draw_in_desklet (cairo_t *pCairoContext, gpointer data)
-{
-	
-}*/
 
 void xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data)
 {
@@ -142,12 +139,17 @@ void xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data)
 		xgamma_set_gamma (&myData.Xgamma);
 	}
 	cairo_dock_hide_dialog (myData.pDialog);  // apres cette fonction, ref --
+	cairo_dock_dialog_reference (myData.pDialog);
+	
 }
 
 void xgamma_build_and_show_widget (void)
 {
 	cd_message ("");
-	xgamma_create_scales_widget ();
+	double fGamma = xgamma_get_gamma (&myData.Xgamma);
+	g_return_if_fail (fGamma > 0);
+	
+	xgamma_create_scales_widget (fGamma, &myData.Xgamma);
 	
 	if (myDock)
 	{
@@ -165,7 +167,6 @@ void xgamma_build_and_show_widget (void)
 	else
 	{
 		cairo_dock_add_interactive_widget_to_desklet (myData.pWidget, myDesklet);
-		//myDesklet->renderer = xgamma_draw_in_desklet;
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
 }

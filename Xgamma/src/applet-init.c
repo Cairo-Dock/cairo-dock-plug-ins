@@ -27,7 +27,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 static gboolean s_bVideoExtensionChecked = FALSE;
 
 
-CD_APPLET_DEFINITION ("Xgamma", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("Xgamma", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
@@ -97,14 +97,13 @@ CD_APPLET_RELOAD_BEGIN
 				cairo_dock_dialog_unreference (myData.pDialog);
 				myData.pDialog = NULL;
 				cairo_dock_add_interactive_widget_to_desklet (myData.pWidget, myDesklet);
-				//myDesklet->renderer = xgamma_draw_in_desklet;
 				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 			}
 			else  // il faut passer du desklet au dialogue
 			{
 				myData.pDialog = cairo_dock_build_dialog (D_("Set up gamma :"),
 					myIcon,
-					myDock,
+					myContainer,
 					NULL,
 					myData.pWidget,
 					GTK_BUTTONS_OK_CANCEL,
@@ -116,7 +115,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 	}
 	
-	if (myIcon->acFileName == NULL)
+	if (myDock && myIcon->acFileName == NULL)
 	{
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
 	}

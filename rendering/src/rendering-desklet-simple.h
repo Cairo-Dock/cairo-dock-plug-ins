@@ -7,6 +7,17 @@
 #define MY_APPLET_SIMPLE_DESKLET_RENDERER_NAME "Simple"
 
 
+typedef struct {
+	cairo_surface_t *pForeGroundSurface;
+	gdouble fImageWidth;
+	gdouble fImageHeight;
+	} CDSimpleParameters;
+
+
+CDSimpleParameters *rendering_configure_simple (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
+
+void rendering_free_simple_data (CairoDesklet *pDesklet);
+
 void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceContext);
 
 

@@ -147,9 +147,8 @@ void cd_weather_update_from_data (void)
 		}
 		myDesklet->icons = pIconList;
 		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-		gtk_widget_queue_draw (myDesklet->pWidget);
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
+		gtk_widget_queue_draw (myDesklet->pWidget);  /// utile ?...
 	}
 	
 	//\_______________________ On recharge l'icone principale.

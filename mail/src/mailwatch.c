@@ -128,15 +128,15 @@ xfce_mailwatch_new()
 {
     XfceMailwatch *mailwatch;
 
-    if(!g_thread_supported())
+    // deja initialise par le dock.
+    /**if(!g_thread_supported())
         g_thread_init(NULL);
     if(!g_thread_supported()) {
-        /* _TOFE_
-        xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-        g_critical(_("xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."));
-        */
+        // _TOFE_
+        //xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+       // g_critical(_("xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."));
         return NULL;
-    }
+    }*/
 
     xfce_mailwatch_threads_init();
 
@@ -497,7 +497,7 @@ xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
     g_mutex_unlock(mailwatch->mailboxes_mx);
 
     if(do_signal)
-        g_idle_add(mailwatch_signal_new_messages_idled, mailwatch);
+        g_idle_add(mailwatch_signal_new_messages_idled, mailwatch);  /// bof les g_idle_add ...
 }
 
 void

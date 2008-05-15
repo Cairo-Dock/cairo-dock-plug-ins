@@ -97,7 +97,7 @@ msgstr ""
 "poubelles. Sur ?"
 
 #: src/applet-notifications.c:145 ../src/applet-trashes-manager.c:446
-#: ../src/applet-trashes-manager.c:444
+#: ../src/applet-trashes-manager.c:444 ../src/applet-trashes-manager.c:458
 #, c-format
 msgid ""
 "A problem occured\n"

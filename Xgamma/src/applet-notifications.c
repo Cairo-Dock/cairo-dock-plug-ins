@@ -57,28 +57,32 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		{
 			//\___________________ On construit notre widget si c'est la 1ere fois.
 			if (myData.pWidget == NULL)
-				xgamma_build_and_show_widget ();
-			
-			//\___________________ On lui met les valeurs a jour, sans appeler les callbacks.
-			g_signal_handler_block (myData.pGlobalScale, myData.iGloalScaleSignalID);
-			g_signal_handler_block (myData.pRedScale, myData.iRedScaleSignalID);
-			g_signal_handler_block (myData.pGreenScale, myData.iGreenScaleSignalID);
-			g_signal_handler_block (myData.pBlueScale, myData.iBlueScaleSignalID);
-			
-			gtk_range_set_value (GTK_RANGE (myData.pGlobalScale), fGamma);
-			gtk_range_set_value (GTK_RANGE (myData.pRedScale), myData.Xgamma.red);
-			gtk_range_set_value (GTK_RANGE (myData.pGreenScale), myData.Xgamma.green);
-			gtk_range_set_value (GTK_RANGE (myData.pBlueScale), myData.Xgamma.blue);
-			myData.XoldGamma = myData.Xgamma;
-			
-			g_signal_handler_unblock (myData.pGlobalScale, myData.iGloalScaleSignalID);
-			g_signal_handler_unblock (myData.pRedScale, myData.iRedScaleSignalID);
-			g_signal_handler_unblock (myData.pGreenScale, myData.iGreenScaleSignalID);
-			g_signal_handler_unblock (myData.pBlueScale, myData.iBlueScaleSignalID);
-			
-			if (myData.pDialog != NULL)
 			{
-				cairo_dock_unhide_dialog (myData.pDialog);
+				xgamma_build_and_show_widget ();
+			}
+			else
+			{
+				//\___________________ On lui met les valeurs a jour, sans appeler les callbacks.
+				g_signal_handler_block (myData.pGlobalScale, myData.iGloalScaleSignalID);
+				g_signal_handler_block (myData.pRedScale, myData.iRedScaleSignalID);
+				g_signal_handler_block (myData.pGreenScale, myData.iGreenScaleSignalID);
+				g_signal_handler_block (myData.pBlueScale, myData.iBlueScaleSignalID);
+				
+				gtk_range_set_value (GTK_RANGE (myData.pGlobalScale), fGamma);
+				gtk_range_set_value (GTK_RANGE (myData.pRedScale), myData.Xgamma.red);
+				gtk_range_set_value (GTK_RANGE (myData.pGreenScale), myData.Xgamma.green);
+				gtk_range_set_value (GTK_RANGE (myData.pBlueScale), myData.Xgamma.blue);
+				myData.XoldGamma = myData.Xgamma;
+				
+				g_signal_handler_unblock (myData.pGlobalScale, myData.iGloalScaleSignalID);
+				g_signal_handler_unblock (myData.pRedScale, myData.iRedScaleSignalID);
+				g_signal_handler_unblock (myData.pGreenScale, myData.iGreenScaleSignalID);
+				g_signal_handler_unblock (myData.pBlueScale, myData.iBlueScaleSignalID);
+				
+				if (myData.pDialog != NULL)
+				{
+					cairo_dock_unhide_dialog (myData.pDialog);
+				}
 			}
 		}
 	}

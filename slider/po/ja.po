@@ -159,44 +159,54 @@ msgid "Don't strench the images ?"
 msgstr ""
 
 #: ../data/messages:55 ../data/messages:57 ../data/messages:61
+#: ../data/messages:65
 msgid "Effect while changing image :"
 msgstr ""
 
 #: ../data/messages:57 ../data/messages:59 ../data/messages:63
+#: ../data/messages:67
 msgid "none"
 msgstr ""
 
 #: ../data/messages:59 ../data/messages:63 ../data/messages:67
+#: ../data/messages:71
 msgid "blank fade"
 msgstr ""
 
 #: ../data/messages:61 ../data/messages:65 ../data/messages:69
+#: ../data/messages:73
 msgid "fade in out"
 msgstr ""
 
 #: ../data/messages:63 ../data/messages:67 ../data/messages:71
+#: ../data/messages:75
 msgid "side kick"
 msgstr ""
 
 #: ../data/messages:65 ../data/messages:69 ../data/messages:73
+#: ../data/messages:77
 msgid "diaporama"
 msgstr ""
 
 #: ../data/messages:67 ../data/messages:71 ../data/messages:75
+#: ../data/messages:79
 msgid "grow up"
 msgstr ""
 
 #: ../data/messages:69 ../data/messages:73 ../data/messages:77
+#: ../data/messages:81
 msgid "shrink down"
 msgstr ""
 
 #: ../data/messages:71 ../data/messages:75 ../data/messages:79
+#: ../data/messages:83
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
 
 #: ../data/messages:73 ../data/messages:77 ../data/messages:81
+#: ../data/messages:85
 msgid "Choose a background color :"
 msgstr ""
 
@@ -204,7 +214,7 @@ msgstr ""
 msgid "Randomly browse files ?"
 msgstr ""
 
-#: ../data/messages:61 ../data/messages:65
+#: ../data/messages:61 ../data/messages:65 ../data/messages:69
 msgid "fade"
 msgstr ""
 
@@ -216,4 +226,24 @@ msgstr ""
 
 #: ../data/messages:37
 msgid "Lockposition ?"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Not  yetimplemented."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Gives a better image rendering."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Keep widht/height ratio ?"
+msgstr ""
+
+#: ../data/messages:61
+msgid "If the image is too small, it will be zoomed in."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Force the image to fill the icon/desklet ?"
 msgstr ""

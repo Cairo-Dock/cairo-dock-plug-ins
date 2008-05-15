@@ -19,7 +19,7 @@ static int s_iLeafPosition[2][3*3] = {{-30,40,1 , 60,105,0 , -45,115,1},{-60,65,
 
 CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	GList *pIconsList = pDesklet->icons;
 	if (pIconsList == NULL)
 		return NULL;
@@ -44,7 +44,7 @@ CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, cairo_t *pSo
 	pTree->fTreeWidthFactor = (w > TREE_WIDTH ? 1 : w / TREE_WIDTH);
 	pTree->fTreeHeightFactor = h / (pTree->iNbBranches * TREE_HEIGHT);
 	
-	g_print (" -> %d icones, %d branches, proportions : %.2fx%.2f\n", pTree->iNbIconsInTree, pTree->iNbBranches, pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
+	cd_message (" -> %d icones, %d branches, proportions : %.2fx%.2f", pTree->iNbIconsInTree, pTree->iNbBranches, pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
 	
 	return pTree;
 }
@@ -80,7 +80,7 @@ void rendering_load_tree_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 
 void rendering_free_tree_data (CairoDesklet *pDesklet)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	if (pTree == NULL)
 		return ;
@@ -117,7 +117,7 @@ void rendering_load_icons_for_tree (CairoDesklet *pDesklet, cairo_t *pSourceCont
 void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
 {
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
-	g_print ("%s (%x)\n", __func__, pTree);
+	cd_message ("");
 	if (pTree == NULL)
 		return ;
 	

@@ -26,11 +26,12 @@ CD_APPLET_INIT_BEGIN (erreur)
 		if (myConfig.extendedDesklet) {
 			cd_xmms_add_buttons_to_desklet ();
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Controler", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, data);
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
 		}
 		else
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		}
 	}
 	
 	cd_xmms_remove_pipes();
@@ -97,11 +98,12 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet) {
 		if (myConfig.extendedDesklet) {
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Controler", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, data);
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
 		}
 		else
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		}
 	}
 	
 	//\_______________ On relance avec la nouvelle config ou on redessine.

@@ -134,6 +134,8 @@ void cd_netspeed_read_data (void)
 		}
 		myData.bAcquisitionOK = (tmp != NULL);
 		g_free (cContent);
+		if (! myData.bInitialized)
+			myData.bInitialized = TRUE;
 	}
 }
 
@@ -158,7 +160,6 @@ void cd_netspeed_update_from_data (void)
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(myDock ? "..." : D_("Loading"));
 			make_cd_Gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
-			myData.bInitialized = TRUE;
 		}
 		else
 		{

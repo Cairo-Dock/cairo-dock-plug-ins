@@ -47,11 +47,12 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED )
 	{
+		/// prendre en compte les parametres qui ont pu changer...
 	}
 	else
 	{
 	}
 
-    xfce_mailwatch_force_update(myData.mailwatch);
+    xfce_mailwatch_force_update(myData.mailwatch);  /// utile ?
 
 CD_APPLET_RELOAD_END

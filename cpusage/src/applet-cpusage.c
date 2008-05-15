@@ -157,6 +157,9 @@ void cd_cpusage_read_data (void)
 		myData.cpu_user_nice = new_cpu_user_nice;
 		myData.cpu_system = new_cpu_system;
 		myData.cpu_idle = new_cpu_idle;
+		
+		if (! myData.bInitialized)
+			myData.bInitialized = TRUE;
 	}
 }
 
@@ -182,7 +185,6 @@ void cd_cpusage_update_from_data (void)
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
 			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
-			myData.bInitialized = TRUE;
 		}
 		else
 		{
