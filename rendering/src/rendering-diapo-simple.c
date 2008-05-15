@@ -100,11 +100,11 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 	        //\____________________ On trace le cadre.
 
 	        cairo_save (pCairoContext);
-	        cairo_dock_draw_frame_for_diapo (pCairoContext, pDock);
+	        cairo_dock_draw_frame_for_diapo_simple (pCairoContext, pDock);
 
 	        //\____________________ On dessine les decorations dedans.
 
-	        cairo_dock_render_decorations_in_frame_for_diapo (pCairoContext, pDock);
+	        cairo_dock_render_decorations_in_frame_for_diapo_simple (pCairoContext, pDock);
 	
 	        //\____________________ On dessine le cadre.
 	        if (my_diapo_simple_lineWidth > 0)
@@ -402,7 +402,7 @@ guint cairo_dock_rendering_diapo_simple_get_index_from_gridXY(guint nRowsX, guin
 //////////////////////////////////////////////////////////////////////////////////////// Methodes de dessin :
 
 
-static void cairo_dock_draw_frame_horizontal_for_diapo (cairo_t *pCairoContext, CairoDock *pDock)
+static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
         const gdouble arrow_dec = 2;
 	gdouble fFrameWidth  = pDock->iMaxDockWidth-2*X_BORDER_SPACE;
@@ -460,7 +460,7 @@ static void cairo_dock_draw_frame_horizontal_for_diapo (cairo_t *pCairoContext, 
 }
 
 
-static void cairo_dock_draw_frame_vertical_for_diapo (cairo_t *pCairoContext, CairoDock *pDock)
+static void cairo_dock_draw_frame_vertical_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
         const gdouble arrow_dec = 2;
 	gdouble fFrameWidth  = pDock->iMaxDockWidth-2*X_BORDER_SPACE;
@@ -507,17 +507,17 @@ static void cairo_dock_draw_frame_vertical_for_diapo (cairo_t *pCairoContext, Ca
 
 
 
-void cairo_dock_draw_frame_for_diapo (cairo_t *pCairoContext, CairoDock *pDock)
+void cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
         if (pDock->bHorizontalDock)
-                cairo_dock_draw_frame_horizontal_for_diapo (pCairoContext, pDock);
+                cairo_dock_draw_frame_horizontal_for_diapo_simple (pCairoContext, pDock);
         else
-                cairo_dock_draw_frame_vertical_for_diapo (pCairoContext, pDock);
+                cairo_dock_draw_frame_vertical_for_diapo_simple (pCairoContext, pDock);
 }
 
 
 
-void cairo_dock_render_decorations_in_frame_for_diapo (cairo_t *pCairoContext, CairoDock *pDock)
+void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
 
 ////////////////////////////////////////////////////////////////////////////////////////On se fait un beau pattern dégradé :

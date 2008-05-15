@@ -45,6 +45,18 @@ extern gboolean my_diapo_lineaire;
 extern gboolean  my_diapo_wide_grid;
 extern gboolean  my_diapo_text_only_on_pointed;
 
+extern gdouble  my_diapo_color_frame_start[4];
+extern gdouble  my_diapo_color_frame_stop[4];
+extern gboolean my_diapo_fade2bottom;
+extern gboolean my_diapo_fade2right;
+extern guint    my_diapo_arrowWidth;
+extern guint    my_diapo_arrowHeight;
+extern gdouble  my_diapo_arrowShift;
+extern guint    my_diapo_lineWidth;
+extern guint    my_diapo_radius;
+extern gdouble  my_diapo_color_border_line[4];
+extern gboolean my_diapo_draw_background;
+
 extern gint     my_diapo_simple_iconGapX;
 extern gint     my_diapo_simple_iconGapY;
 extern gdouble  my_diapo_simple_fScaleMax;
@@ -104,6 +116,23 @@ void read_conf_file (GKeyFile *pKeyFile)
         my_diapo_lineaire             = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "lineaire",             &bFlushConfFileNeeded, FALSE, NULL, NULL);
         my_diapo_wide_grid            = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "wide_grid",            &bFlushConfFileNeeded, FALSE, NULL, NULL);        
         my_diapo_text_only_on_pointed = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "text_only_on_pointed", &bFlushConfFileNeeded, FALSE, NULL, NULL);
+        
+gdouble color_frame_start[4] = {0.0, 0.0, 0.0, 1.0};
+cairo_dock_get_double_list_key_value (pKeyFile, "Slide", "color_frame_start", &bFlushConfFileNeeded, my_diapo_color_frame_start, 4, color_frame_start, NULL, NULL);
+gdouble color_frame_stop[4]  = {0.3, 0.3, 0.3, 0.6};
+cairo_dock_get_double_list_key_value (pKeyFile, "Slide", "color_frame_stop", &bFlushConfFileNeeded, my_diapo_color_frame_stop, 4, color_frame_stop, NULL, NULL);
+gdouble color_border_line[4] = {1., 1., 1., 0.5};
+cairo_dock_get_double_list_key_value (pKeyFile, "Slide", "color_border_line", &bFlushConfFileNeeded, my_diapo_color_border_line, 4, color_border_line, NULL, NULL);
+
+my_diapo_fade2bottom = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "fade2bottom", &bFlushConfFileNeeded, TRUE, NULL, NULL);
+my_diapo_fade2right  = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "fade2right",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
+my_diapo_arrowWidth  = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "arrowWidth",  &bFlushConfFileNeeded, 40,   NULL, NULL);
+my_diapo_arrowHeight = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "arrowHeight", &bFlushConfFileNeeded, 40,   NULL, NULL);
+my_diapo_arrowShift  = cairo_dock_get_double_key_value  (pKeyFile, "Slide", "arrowShift",  &bFlushConfFileNeeded, 30,   NULL, NULL) / 100;
+my_diapo_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "lineWidth",   &bFlushConfFileNeeded, 5,    NULL, NULL);
+my_diapo_radius      = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
+
+my_diapo_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 
 
 my_diapo_simple_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapX",             &bFlushConfFileNeeded,    20, NULL, NULL);
@@ -115,12 +144,12 @@ my_diapo_simple_wide_grid            = cairo_dock_get_boolean_key_value (pKeyFil
 my_diapo_simple_text_only_on_pointed = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_text_only_on_pointed", &bFlushConfFileNeeded, FALSE, NULL, NULL);
         
         
-gdouble color_frame_start[4] = {0.0, 0.0, 0.0, 1.0};
-cairo_dock_get_double_list_key_value (pKeyFile, "SimpleSlide", "simple_color_frame_start", &bFlushConfFileNeeded, my_diapo_simple_color_frame_start, 4, color_frame_start, NULL, NULL);
-gdouble color_frame_stop[4]  = {0.3, 0.3, 0.3, 0.6};
-cairo_dock_get_double_list_key_value (pKeyFile, "SimpleSlide", "simple_color_frame_stop", &bFlushConfFileNeeded, my_diapo_simple_color_frame_stop, 4, color_frame_stop, NULL, NULL);
-gdouble color_border_line[4] = {1., 1., 1., 0.5};
-cairo_dock_get_double_list_key_value (pKeyFile, "SimpleSlide", "simple_color_border_line", &bFlushConfFileNeeded, my_diapo_simple_color_border_line, 4, color_border_line, NULL, NULL);
+gdouble color_frame_start_[4] = {0.0, 0.0, 0.0, 1.0};
+cairo_dock_get_double_list_key_value (pKeyFile, "SimpleSlide", "simple_color_frame_start", &bFlushConfFileNeeded, my_diapo_simple_color_frame_start, 4, color_frame_start_, NULL, NULL);
+gdouble color_frame_stop_[4]  = {0.3, 0.3, 0.3, 0.6};
+cairo_dock_get_double_list_key_value (pKeyFile, "SimpleSlide", "simple_color_frame_stop", &bFlushConfFileNeeded, my_diapo_simple_color_frame_stop, 4, color_frame_stop_, NULL, NULL);
+gdouble color_border_line_[4] = {1., 1., 1., 0.5};
+cairo_dock_get_double_list_key_value (pKeyFile, "SimpleSlide", "simple_color_border_line", &bFlushConfFileNeeded, my_diapo_simple_color_border_line, 4, color_border_line_, NULL, NULL);
 
 my_diapo_simple_fade2bottom = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_fade2bottom", &bFlushConfFileNeeded, TRUE, NULL, NULL);
 my_diapo_simple_fade2right  = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_fade2right",  &bFlushConfFileNeeded, TRUE, NULL, NULL);

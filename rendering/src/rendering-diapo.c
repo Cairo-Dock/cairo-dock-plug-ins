@@ -33,6 +33,23 @@ extern gboolean my_diapo_lineaire;
 extern gboolean  my_diapo_wide_grid;
 extern gboolean  my_diapo_text_only_on_pointed;
 
+extern gdouble  my_diapo_color_frame_start[4];
+extern gdouble  my_diapo_color_frame_stop[4];
+extern gboolean my_diapo_fade2bottom;
+extern gboolean my_diapo_fade2right;
+extern guint    my_diapo_arrowWidth;
+extern guint    my_diapo_arrowHeight;
+extern gdouble  my_diapo_arrowShift;
+extern guint    my_diapo_lineWidth;
+extern guint    my_diapo_radius;
+extern gdouble  my_diapo_color_border_line[4];
+extern gboolean my_diapo_draw_background;
+
+
+const  gint X_CONST_BORDER_SPACE = 40;
+const  gint Y_CONST_BORDER_SPACE = 40;
+
+
 void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
 {
         guint nRowsX = 0;
@@ -44,12 +61,24 @@ void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
         nIcones = cairo_dock_rendering_diapo_guess_grid(pDock->icons, &nRowsX, &nRowsY);   
         
         
-//////////////////////////////////////////////////////////////////////////////////////// On cherche le premier élément :
-	cairo_dock_calculate_icons_positions_at_rest_diapo (pDock->icons, &(pDock->iMinDockWidth), &(pDock->iMinDockHeight), nRowsX);
-	cairo_dock_rendering_diapo_calculate_max_dock_size (pDock->icons, pDock->iMinDockWidth, pDock->iMinDockHeight, &(pDock->iMaxDockWidth), &(pDock->iMaxDockHeight), nRowsX, nRowsY);
+        //////////////////////////////////////////////////////////////////////////////////////// On définit les tailles :
+	if(nIcones != 0)
+        {
+                cairo_dock_calculate_icons_positions_at_rest_diapo (pDock->icons, &(pDock->iMinDockWidth), &(pDock->iMinDockHeight), nRowsX);
+	        pDock->iMinDockWidth  += X_CONST_BORDER_SPACE * 2;
+	        pDock->iMinDockHeight += Y_CONST_BORDER_SPACE * 3 + my_diapo_arrowHeight-60;	// 60 -> pour que la fleche aille plus bas
+	        cairo_dock_rendering_diapo_calculate_max_dock_size (pDock->icons, pDock->iMinDockWidth, pDock->iMinDockHeight, &(pDock->iMaxDockWidth), &(pDock->iMaxDockHeight), nRowsX, nRowsY);
+	        pDock->iMaxDockWidth  += X_CONST_BORDER_SPACE * 2;
+	        pDock->iMaxDockHeight += Y_CONST_BORDER_SPACE * 3 + my_diapo_arrowHeight-60;	// 60 -> pour que la fleche aille plus bas
+                pDock->iMinDockWidth  = pDock->iMaxDockWidth;
+	        pDock->iMinDockHeight = pDock->iMaxDockHeight;
+        }
+        else
+        {
+                pDock->iMaxDockWidth = pDock->iMaxDockHeight = pDock->iMinDockWidth = pDock->iMinDockHeight = 0;
+        }
 
-
-
+        
 //////////////////////////////////////////////////////////////////////////////////////// Définition de la zone de déco - 0 pour l'instant
 	pDock->iDecorationsHeight = 0;
 	pDock->iDecorationsWidth  = 0;
@@ -73,13 +102,31 @@ void cd_rendering_render_diapo (CairoDock *pDock)
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (pCairoContext);
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
+
+        if(my_diapo_draw_background)
+        {
+	        //\____________________ On trace le cadre.
+
+	        cairo_save (pCairoContext);
+	        cairo_dock_draw_frame_for_diapo (pCairoContext, pDock);
+
+	        //\____________________ On dessine les decorations dedans.
+
+	        cairo_dock_render_decorations_in_frame_for_diapo (pCairoContext, pDock);
 	
-	//\____________________ On trace le cadre.
-	//TODO
-	//\____________________ On dessine les decorations dedans.
-	//TODO
-	//\____________________ On dessine le cadre.
-	//TODO
+	        //\____________________ On dessine le cadre.
+	        if (my_diapo_lineWidth > 0)
+	        {
+		        cairo_set_line_width (pCairoContext,  my_diapo_lineWidth);
+	                cairo_set_source_rgba (pCairoContext, my_diapo_color_border_line[0],
+	                                                      my_diapo_color_border_line[1],
+                                                              my_diapo_color_border_line[2],
+	                                                      my_diapo_color_border_line[3] * (1. - pDock->fFoldingFactor));
+		        cairo_stroke (pCairoContext);
+	        }
+	        cairo_restore (pCairoContext);
+        }
+        
 	//\____________________ On dessine la ficelle qui les joint.
 	//TODO Rendre joli !
 	if (g_iStringLineWidth > 0)
@@ -305,6 +352,10 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
 //////////////////////////////////////////////////////////////////////////////////////// On calcule l'offset pour que ce soit centré :
         offsetX = (pDock->iMaxDockWidth  - curDockWidth ) / 2;
         offsetY = (pDock->iMaxDockHeight - curDockHeight) / 2;      
+        pDock->iCurrentWidth  = curDockWidth;
+        pDock->iCurrentHeight = curDockHeight;
+        pDock->iDecorationsWidth = offsetX;   // Alors désolé mais ca c'est de la grosse feinte : on utilise les tailles de decoration inutilisés
+        pDock->iDecorationsHeight = offsetY;  //  pour passer les offsets aux fonctions de dessin ... c'est sale mais ca marche !  
         for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 	
@@ -363,7 +414,9 @@ void cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, gi
                 gdouble x2 = icon->fDrawXAtRest + (icon->fWidth)  / 2 + (my_diapo_fScaleMax - 1) * 20; // formule empirique de chez empirique pour corriger le décalage incalculable... (si vous y arrivez envoyez moi un mail -> mapremierpartiedepseudo.ladeuxieme@gmail.com et je vous appellerais Dieu... merci ! Ateention ! Pas d'entourre les poules hein !)
                 guint y1 = My;
                 gdouble y2 = icon->fDrawYAtRest + (icon->fHeight) / 2 + (my_diapo_fScaleMax - 1) * 20; // idem
+
                 gdouble distanceE = sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+                if(distanceE  < 10) cd_message("grep Jackpot  %lf", distanceE);
                 if(my_diapo_lineaire)
                 {
                         gdouble eloignementMax = 3. * (icon->fWidth + icon->fHeight)  / 2; 
@@ -471,13 +524,15 @@ void cairo_dock_rendering_diapo_calculate_max_dock_size (GList *pIconList, gint 
         gint maxHeight[nRowsY];
         guint i = 0;       
         
-        cairo_dock_calculate_wave_with_position_diapo(pIconList, (Wmin / 2), (Hmin / 2), nRowsX); 
+        cairo_dock_calculate_wave_with_position_diapo(pIconList, (Wmin / 2) + X_CONST_BORDER_SPACE, (Hmin / 2) + Y_CONST_BORDER_SPACE, nRowsX); 
         
         cairo_dock_rendering_diapo_calculate_max_icon_size(pIconList, (guint*)  &maxWidth, (guint*)  &maxHeight, nRowsX, nRowsY);
         
         
         for(i = 0 ;  i < nRowsX ; i++) *Wmax += maxWidth [i] + 2 * my_diapo_iconGapX;
         for(i = 0 ;  i < nRowsY ; i++) *Hmax += maxHeight[i] + 2 * my_diapo_iconGapY;
+        *Wmax += + 2*X_CONST_BORDER_SPACE;
+        *Hmax += + 2*Y_CONST_BORDER_SPACE;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////// Fonctions utiles pour transformer l'index de la liste en couple (x,y) sur la grille
@@ -493,4 +548,151 @@ guint cairo_dock_rendering_diapo_get_index_from_gridXY(guint nRowsX, guint gridX
 {
         return gridX + gridY * nRowsX;
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////// Methodes de dessin :
+
+
+static void cairo_dock_draw_frame_horizontal_for_diapo (cairo_t *pCairoContext, CairoDock *pDock)
+{
+        const gdouble arrow_dec = 2;
+	gint fFrameWidth  = pDock->iCurrentWidth;
+	gint fFrameHeight = pDock->iCurrentHeight - my_diapo_arrowHeight + 60; //  60->pour que la fleche aille plus bas...
+	gdouble fDockOffsetX = pDock->iDecorationsWidth;
+	gdouble fDockOffsetY = pDock->iDecorationsHeight;
+
+        cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY);
+
+
+        //HautGauche -> HautDroit
+        cairo_rel_line_to (pCairoContext, fFrameWidth, 0);
+        //\_________________ Coin haut droit.
+        cairo_rel_curve_to (pCairoContext,
+                0, 0,
+                my_diapo_radius, 0,
+                my_diapo_radius, my_diapo_radius );
+
+
+        //HautDroit -> BasDroit
+        cairo_rel_line_to (pCairoContext, 0, fFrameHeight + my_diapo_lineWidth - my_diapo_radius *  2 );
+        //\_________________ Coin bas droit.
+         cairo_rel_curve_to (pCairoContext,
+                        0, 0,
+                        0 , my_diapo_radius,
+                        -my_diapo_radius , my_diapo_radius);
+
+
+        //BasDroit -> BasGauche
+        //cairo_rel_line_to (pCairoContext, - fFrameWidth , 0);
+        
+        //On fait la fleche
+        cairo_rel_line_to (pCairoContext, - (fFrameWidth/2 - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth), 0);                //     _
+        cairo_rel_line_to (pCairoContext, - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth + my_diapo_arrowShift * fFrameWidth / arrow_dec, my_diapo_arrowHeight);        //    /     
+        cairo_rel_line_to (pCairoContext, - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth - my_diapo_arrowShift * fFrameWidth / arrow_dec, -my_diapo_arrowHeight);       //  \. 
+        cairo_rel_line_to (pCairoContext, - (fFrameWidth/2 - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth) , 0);               // _      
+        
+        //\_________________ Coin bas gauche.
+        cairo_rel_curve_to (pCairoContext,
+                        0, 0,
+                        -my_diapo_radius, 0,
+                        -my_diapo_radius, -my_diapo_radius );
+                        
+                        
+        //BasGauche -> HautGauche
+        cairo_rel_line_to (pCairoContext, 0, - fFrameHeight - my_diapo_lineWidth + my_diapo_radius * 2);
+        //\_________________ Coin haut gauche.
+        cairo_rel_curve_to (pCairoContext,
+                0, 0,
+                0 , -my_diapo_radius ,
+                my_diapo_radius, -my_diapo_radius );
+
+}
+
+
+static void cairo_dock_draw_frame_vertical_for_diapo (cairo_t *pCairoContext, CairoDock *pDock)
+{
+        const gdouble arrow_dec = 2;
+	gint fFrameWidth  = pDock->iCurrentWidth;
+	gint fFrameHeight = pDock->iCurrentHeight - my_diapo_arrowHeight + 60; //  60->pour que la fleche aille plus bas...
+	gdouble fDockOffsetX = pDock->iDecorationsWidth;
+	gdouble fDockOffsetY = pDock->iDecorationsHeight;
+	
+
+        cairo_move_to (pCairoContext, fDockOffsetY, fDockOffsetX);
+
+        cairo_rel_line_to (pCairoContext, 0, fFrameWidth);
+        //\_________________ Coin haut droit.
+        cairo_rel_curve_to (pCairoContext,
+                0, 0,
+                0, my_diapo_radius,
+                my_diapo_radius, my_diapo_radius);
+        cairo_rel_line_to (pCairoContext, fFrameHeight + my_diapo_lineWidth - my_diapo_radius * 2, 0);
+        //\_________________ Coin bas droit.
+         cairo_rel_curve_to (pCairoContext,
+                        0, 0,
+                        my_diapo_radius, 0,
+                        my_diapo_radius, -my_diapo_radius);
+
+        //cairo_rel_line_to (pCairoContext, 0, - fFrameWidth);
+                //On fait la fleche
+        cairo_rel_line_to (pCairoContext, 0, - (fFrameWidth/2 - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth));                 //     _
+        cairo_rel_line_to (pCairoContext,  my_diapo_arrowHeight, - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth + my_diapo_arrowShift * fFrameWidth / arrow_dec);        //    /     
+        cairo_rel_line_to (pCairoContext, -my_diapo_arrowHeight, - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth - my_diapo_arrowShift * fFrameWidth / arrow_dec );       //  \. 
+        cairo_rel_line_to (pCairoContext, 0, - (fFrameWidth/2 - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth));                 // _      
+        
+        //\_________________ Coin bas gauche.
+         cairo_rel_curve_to (pCairoContext,
+                        0, 0,
+                        0, -my_diapo_radius,
+                        -my_diapo_radius, -my_diapo_radius);
+        cairo_rel_line_to (pCairoContext, - fFrameHeight - my_diapo_lineWidth + my_diapo_radius * 2, 0);
+        //\_________________ Coin haut gauche.
+        cairo_rel_curve_to (pCairoContext,
+                0, 0,
+                -my_diapo_radius, 0,
+                -my_diapo_radius, my_diapo_radius);
+}
+
+
+
+
+void cairo_dock_draw_frame_for_diapo (cairo_t *pCairoContext, CairoDock *pDock)
+{
+        if (pDock->bHorizontalDock)
+                cairo_dock_draw_frame_horizontal_for_diapo (pCairoContext, pDock);
+        else
+                cairo_dock_draw_frame_vertical_for_diapo (pCairoContext, pDock);
+}
+
+
+
+void cairo_dock_render_decorations_in_frame_for_diapo (cairo_t *pCairoContext, CairoDock *pDock)
+{
+
+////////////////////////////////////////////////////////////////////////////////////////On se fait un beau pattern dégradé :
+
+        cairo_pattern_t *mon_super_pattern;
+        cairo_save (pCairoContext);       
+        mon_super_pattern = cairo_pattern_create_linear (0.0, 0.0,
+                                                my_diapo_fade2right  ? pDock->iMaxDockWidth  : 0.0,      // Y'aurait surement des calculs complexes à faire mais 
+                                                my_diapo_fade2bottom ? pDock->iMaxDockHeight : 0.0);     //  a quelques pixels près pour un dégradé : OSEF !
+                                                
+        cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0, my_diapo_color_frame_start[0],                   
+                                                                 my_diapo_color_frame_start[1], 
+                                                                 my_diapo_color_frame_start[2], 
+                                                                 my_diapo_color_frame_start[3] * (1. - pDock->fFoldingFactor)); // On gère aussi l'anim de depliage parcequ'on est des dingues
+                                                
+        cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1, my_diapo_color_frame_stop[0] ,                  
+                                                                 my_diapo_color_frame_stop[1] , 
+                                                                 my_diapo_color_frame_stop[2] , 
+                                                                 my_diapo_color_frame_stop[3]  * (1. - pDock->fFoldingFactor)); 
+        cairo_set_source (pCairoContext, mon_super_pattern);
+        
+////////////////////////////////////////////////////////////////////////////////////////On remplit le contexte en le préservant -> pourquoi ?
+        cairo_fill_preserve (pCairoContext);  
+        cairo_pattern_destroy (mon_super_pattern);    
+        cairo_restore (pCairoContext);
+
+}
+
 

@@ -92,6 +92,39 @@ wide_grid = false
 #b Display text only for pointed icon ?
 text_only_on_pointed = false
 
+#b Draw a background ?
+draw_background  = true
+
+#c+4[0;1] First gradient color (r,v,b,a) :
+color_frame_start=0;0;0;1;
+
+#c+4[0;1] Second gradient color (r,v,b,a) :
+color_frame_stop=0.3;0.3;0.3;0.6;
+
+#b Top to bottom gradient ?
+fade2bottom = true
+
+#b Left to right gradient ?
+fade2right = true
+
+#i[10;100] Arrow width :
+arrowWidth = 40
+
+#i[0;100] Arrow Height :
+arrowHeight = 40
+
+#e[-100;100] Arrow shift percent :
+arrowShift = 30
+
+#i[0;30] Corner radius :
+radius = 15
+
+#i[0;10] Border line width :
+lineWidth = 5
+
+#c+4[0;1] Border line color (r,v,b,a) :
+color_border_line = 1;1;1;0.5;
+
 
 [SimpleSlide]
 

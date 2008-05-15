@@ -36,13 +36,13 @@ guint cairo_dock_rendering_diapo_simple_get_index_from_gridXY(guint nRowsX, guin
 
 
 
-static void cairo_dock_draw_frame_horizontal_for_diapo (cairo_t *pCairoContext, CairoDock *pDock);
+static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock);
 
-static void cairo_dock_draw_frame_vertical_for_diapo (cairo_t *pCairoContext, CairoDock *pDock);
+static void cairo_dock_draw_frame_vertical_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock);
 
-void cairo_dock_draw_frame_for_diapo (cairo_t *pCairoContext, CairoDock *pDock);
+void cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock);
 
-void cairo_dock_render_decorations_in_frame_for_diapo (cairo_t *pCairoContext, CairoDock *pDock);
+void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock);
 
 
 #endif

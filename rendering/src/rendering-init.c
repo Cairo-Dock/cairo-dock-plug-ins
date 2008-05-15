@@ -54,6 +54,18 @@ gboolean my_diapo_lineaire;
 gboolean  my_diapo_wide_grid;
 gboolean  my_diapo_text_only_on_pointed;
 
+gdouble  my_diapo_color_frame_start[4];
+gdouble  my_diapo_color_frame_stop[4];
+gboolean my_diapo_fade2bottom;
+gboolean my_diapo_fade2right;
+guint    my_diapo_arrowWidth;
+guint    my_diapo_arrowHeight;
+gdouble  my_diapo_arrowShift;
+guint    my_diapo_lineWidth;
+guint    my_diapo_radius;
+gdouble  my_diapo_color_border_line[4];
+gboolean my_diapo_draw_background;
+
 gint     my_diapo_simple_iconGapX;
 gint     my_diapo_simple_iconGapY;
 gdouble  my_diapo_simple_fScaleMax;
