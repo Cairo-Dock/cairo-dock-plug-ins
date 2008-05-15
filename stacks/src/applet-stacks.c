@@ -72,6 +72,7 @@ void cd_stacks_run_dir(void) {
 	gchar *cURI = g_strdup_printf("file://%s", myConfig.cMonitoredDirectory);
 	cd_debug("Stacks: will use '%s'", cURI);
 	cairo_dock_fm_launch_uri(cURI);
+	g_free (cURI);
 }
 
 gboolean _isin(gchar **cString, gchar *cCompar) {

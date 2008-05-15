@@ -462,7 +462,7 @@ msgstr "Charger Compiz avec les options au démarrage."
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr "Nom du dock auquel il appartient :"
+msgstr "Nom du conteneur auquel il appartient :"
 
 #: ../data/messages:63 ../data/messages:67
 msgid "Load Compiz with options at applet's startup."
@@ -472,8 +472,10 @@ msgstr "Charge Compiz avec ses options au démarrage de l'applet."
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
+msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en"
+"le tirant avec le bouton gauche de la souris. Bien sur il pourra toujour"
+"être bouger avec ALT + clique_gauche"
 
 #: ../data/messages:35
-msgid "Lockposition ?"
-msgstr ""
+msgid "Lock position ?"
+msgstr "Verrouiller la position ?"

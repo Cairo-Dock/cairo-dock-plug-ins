@@ -39,7 +39,7 @@ keep above=false
 #b Keep on widget layer ?
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
-#b Lockposition ?
+#b Lock position ?
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
 
@@ -83,17 +83,17 @@ change_animation=5
 #F[Personnalisation]
 frame_app =
 #S Name of an image for the 'default' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 default icon = 
 #S Name of an image for the 'play' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 play icon = 
 #S Name of an image for the 'stop' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 stop icon = 
 #S Name of an image for the 'pause' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 pause icon = 
 #S Name of an image for the 'broken' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 broken icon = 

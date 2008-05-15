@@ -89,9 +89,9 @@ static void _compiz_action_by_id (int k) {
     break;
     case 2:
     	if (myData.bCompizIsRunning)
-		cd_compiz_start_compiz ();
-	else
-		cd_compiz_start_system_wm ();
+				cd_compiz_start_compiz ();
+			else
+				cd_compiz_start_system_wm ();
     break;
     case 3:
       _compiz_menu_activate_expo ();

@@ -82,6 +82,7 @@ background color = 1.0; 1.0; 1.0; 1.0
 #F[Background & Reflection]
 frame_bg =
 #S Background image :
+#{Let it empty to use the default icon.}
 frame =
 #i[0;15] Image offset :
 frame offset = 5
@@ -89,6 +90,7 @@ frame offset = 5
 #{Set it to zero if you want to have a clean background}
 frame alpha = 1
 #S Reflection image :
+#{Let it empty to use the default icon.}
 reflect =
 #e[0;1] Reflection tansparency :
 #{Set it to zero if you dont want reflection}

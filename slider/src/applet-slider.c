@@ -154,8 +154,7 @@ gboolean cd_slider_draw_images(void) {
 
 	double fRatio = (myDock ? myDock->fRatio : 1.);
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	double fImgX, fImgY, fImgW=0, fImgH=0;
-	///double fImgX=myConfig.pFrameOffset, fImgY=myConfig.pFrameOffset, fImgW=0., fImgH=0., fW = myIcon->fWidth - (myConfig.pFrameOffset * 2.), fH = myIcon->fHeight - (myConfig.pFrameOffset * 2.);
+	double fImgX, fImgY, fImgW=0, fImgH=0, fW = myData.fSurfaceWidth - (myConfig.pFrameOffset * 2.), fH = myData.fSurfaceHeight - (myConfig.pFrameOffset * 2.);
 	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;
 	
 	if (! myConfig.bFillIcon)
@@ -165,11 +164,9 @@ gboolean cd_slider_draw_images(void) {
 	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath,
 		myDrawContext,
 		1.,
-		myData.fSurfaceWidth, myData.fSurfaceHeight,
+		fW, fH,
 		&fImgW, &fImgH,
 		iLoadingModifier);
-
-	///myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath, myDrawContext, cairo_dock_get_max_scale (myContainer), fW, fH, &fImgW, &fImgH, iLoadingModifier);
 	
 	
 	fImgX = (myData.fSurfaceWidth - fImgW) / 2;
@@ -521,10 +518,10 @@ gboolean cd_slider_grow_up (void) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, 0., 0.);
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
+	cairo_restore(myDrawContext);
 	
 	_cd_slider_add_reflect_to_current_slide(); //Add reflection
 	CD_APPLET_REDRAW_MY_ICON
-	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha >= .99) {
 		myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
@@ -557,10 +554,10 @@ gboolean cd_slider_shrink_down (void) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, 0., 0.);
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimCNT);
+	cairo_restore(myDrawContext);
 	
 	_cd_slider_add_reflect_to_current_slide(); //Add reflection
 	CD_APPLET_REDRAW_MY_ICON
-	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha <= .99) {
 		myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);

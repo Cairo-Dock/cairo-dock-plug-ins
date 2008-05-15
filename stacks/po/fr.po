@@ -137,7 +137,7 @@ msgstr ""
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr "Nom du dock auquel il appartient :"
+msgstr "Nom du conteneur auquel il appartient :"
 
 #: ../src/applet-notifications.c:37
 msgid "Clean local directory"
@@ -180,8 +180,10 @@ msgstr ""
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
+msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en"
+"le tirant avec le bouton gauche de la souris. Bien sur il pourra toujour"
+"être bouger avec ALT + clique_gauche"
 
 #: ../data/messages:37
-msgid "Lockposition ?"
-msgstr ""
+msgid "Lock position ?"
+msgstr "Verrouiller la position ?"

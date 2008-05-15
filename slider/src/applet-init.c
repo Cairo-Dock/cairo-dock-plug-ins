@@ -73,15 +73,12 @@ CD_APPLET_INIT_BEGIN (erreur)
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-<<<<<<< .mine
 	double fRatio = (myDock ? myDock->fRatio : 1.);
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	myData.fSurfaceWidth = myIcon->fWidth / fRatio * fMaxScale;
 	myData.fSurfaceHeight = myIcon->fHeight / fRatio * fMaxScale;
 	
-=======
 	_cd_slider_load_frame(); //load background frame image
->>>>>>> .r975
 	cd_slider_get_files_from_dir();  /// suggestion : le threader car ca prend du temps de parcourir le disque.
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -127,20 +124,17 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-<<<<<<< .mine
 	double fRatio = (myDock ? myDock->fRatio : 1.);  // meme si le container n'a pas change, car un desklet se redimensionne, et l'icone avec.
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	myData.fSurfaceWidth = myIcon->fWidth / fRatio * fMaxScale;
 	myData.fSurfaceHeight = myIcon->fHeight / fRatio * fMaxScale;
 	
-=======
 	cairo_surface_destroy (myData.pCairoFrameSurface);
 	myData.pCairoFrameSurface = NULL;
 	cairo_surface_destroy (myData.pCairoReflectSurface);
 	myData.pCairoReflectSurface = NULL;
 	_cd_slider_load_frame(); //load background frame image
 	
->>>>>>> .r975
 	//\_______________ Reload all changed data.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cd_slider_get_files_from_dir(); //reload image list
