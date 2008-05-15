@@ -6,13 +6,19 @@ released under the terms of the GNU General Public License.
 Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-dock.org)
 
 ******************************************************************************/
-
+#include <stdlib.h>
 #include <string.h>
-#include <cairo-dock.h>
-#include <dirent.h> 
+#include <dirent.h> //Utile ?
 #include <glib/gi18n.h>
-#include <glib/gstdio.h>
+#include <glib/gstdio.h> //Utile ?
 #include <time.h>
+/* On s'encombre pas d'header inutile.
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+*/
+
+#include "cairo-dock.h"
 
 #include "applet-struct.h"
 #include "applet-config.h"
@@ -26,9 +32,59 @@ static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *p
 	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);
 }
 
-void cd_slider_get_files_from_dir(void) {
-	if (myConfig.cDirectory == NULL)
+/* Bloque au niveau de lstat
+void cd_slider_measure_directory (gchar *cDirectory) {
+	cd_debug ("%s (%s)", __func__, cDirectory);
+
+	GError *erreur = NULL;
+	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
+	if (erreur != NULL) {
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
 		return;
+	}
+	
+	struct stat buf;
+	gchar *pFilePath;
+	const gchar *cFileName, *extension;
+	GString *sFilePath = g_string_new ("");
+	while ((cFileName = g_dir_read_name (dir)) != NULL) {
+		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
+	TODO if (lstat (sFilePath->str, &buf) != -1) {
+			if (S_ISDIR (buf.st_mode)) {
+				cd_debug ("%s is a directory, let's look", sFilePath->str);
+				cd_slider_measure_directory (sFilePath->str);
+			}
+			else {
+			  extension = strchr(cFileName,'.');
+				if (extension != NULL) {
+					if (g_ascii_strcasecmp(extension, ".png") == 0
+					|| g_ascii_strcasecmp(extension, ".jpg") == 0
+					|| g_ascii_strcasecmp(extension, ".svg") == 0
+					|| g_ascii_strcasecmp(extension, ".xpm") == 0) {
+						cd_debug ("Adding %s (%s) to list", cFileName, );
+						//pFilePath = g_strconcat (myConfig.cDirectory, "/", cFileName, NULL);
+						myData.pList = g_list_prepend (myData.pList, sFilePath->str);
+						myData.iImagesNumber++;
+					}
+					else {
+						cd_debug ("%s not handeled, ignoring...", cFileName);
+					}
+				}
+			}
+		}
+	}
+	
+	g_string_free (sFilePath, TRUE);
+	g_dir_close (dir);
+}*/
+
+void cd_slider_get_files_from_dir(void) {
+	if (myConfig.cDirectory == NULL) {
+	  //Et si on scannai le dossier image du home a la place?
+		cd_warning ("No directory to scan, halt.");
+		return;
+	}
 	
 	DIR *d;
 	struct dirent *dir;
@@ -62,6 +118,9 @@ void cd_slider_get_files_from_dir(void) {
 		}
 		closedir(d);
 	}
+	
+	//cd_slider_measure_directory (myConfig.cDirectory); //Nouveau scan
+	
 	if (myConfig.bRandom) {
 		cd_message ("Mixing images ...");
 		GRand *pRandomGenerator = g_rand_new ();
