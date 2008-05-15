@@ -48,6 +48,7 @@ extern gboolean my_diapo_simple_draw_background;
 
 const  gint X_BORDER_SPACE = 40;
 const  gint Y_BORDER_SPACE = 40;
+const  gint  MaxTextWidthSimple = 125; 
 
 void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 {	
@@ -152,24 +153,30 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 //////////////////////////////////////////////////////////////////////////////////////// On restore le contexte de cairo
 		cairo_restore (pCairoContext);
 		
-
+                gdouble zoom;
 //////////////////////////////////////////////////////////////////////////////////////// On affiche le texte !
                if(icon->pTextBuffer != NULL)
                 {
                 	cairo_save (pCairoContext);
+                	zoom = 1;
+                	if(2*icon->fTextXOffset > MaxTextWidthSimple)
+                	{
+                	        zoom  = MaxTextWidthSimple / (2*icon->fTextXOffset);
+	                        cairo_scale(pCairoContext, zoom, zoom);	
+	                }
                         if (pDock->bHorizontalDock)
                         {
                         	cairo_set_source_surface (pCairoContext,
 				        icon->pTextBuffer,                                        
-				        icon->fDrawX + (icon->fWidth * icon->fScale)/2 -icon->fTextXOffset,
-				        icon->fDrawY +  (icon->fHeight * icon->fScale)   + (my_diapo_simple_iconGapY / 2)  - 6 ); // 6 ~= hauteur texte / 2
+				        (icon->fDrawX + (icon->fWidth * icon->fScale)/2)/zoom - icon->fTextXOffset,
+				        (icon->fDrawY +  (icon->fHeight * icon->fScale)   + (my_diapo_simple_iconGapY / 2)  - 6 )/zoom); // 6 ~= hauteur texte / 2
 			}
 			else
 	                {
                         	cairo_set_source_surface (pCairoContext,
 				        icon->pTextBuffer,  
-				        icon->fDrawY + (icon->fWidth * icon->fScale)/2 -icon->fTextXOffset,
-				        icon->fDrawX +  (icon->fHeight * icon->fScale)   + (my_diapo_simple_iconGapY / 2)  - 6 ); // 6 ~= hauteur texte / 2
+				        (icon->fDrawY + (icon->fWidth * icon->fScale)/2)/zoom -icon->fTextXOffset,
+				        (icon->fDrawX +  (icon->fHeight * icon->fScale)   + (my_diapo_simple_iconGapY / 2)  - 6 )/zoom); // 6 ~= hauteur texte / 2
 
 			}
 
@@ -177,7 +184,7 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 			        cairo_paint (pCairoContext);
 		        else if (!my_diapo_simple_text_only_on_pointed)
 			        cairo_paint_with_alpha (pCairoContext, 1. + (icon->fScale - my_diapo_simple_fScaleMax)/(my_diapo_simple_fScaleMax - 1));
-			
+	
 			cairo_restore (pCairoContext);
                 }
 	}

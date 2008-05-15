@@ -48,7 +48,7 @@ extern gboolean my_diapo_draw_background;
 
 const  gint X_CONST_BORDER_SPACE = 40;
 const  gint Y_CONST_BORDER_SPACE = 40;
-
+const  gint  MaxTextWidth = 125; 
 
 void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
 {
@@ -160,24 +160,30 @@ void cd_rendering_render_diapo (CairoDock *pDock)
 //////////////////////////////////////////////////////////////////////////////////////// On restore le contexte de cairo
 		cairo_restore (pCairoContext);
 		
-
+                gdouble zoom;
 //////////////////////////////////////////////////////////////////////////////////////// On affiche le texte !
                if(icon->pTextBuffer != NULL)
                 {
                 	cairo_save (pCairoContext);
+                	zoom = 1;
+                	if(2*icon->fTextXOffset > MaxTextWidth)
+                	{
+                	        zoom  = MaxTextWidth / (2*icon->fTextXOffset);
+	                        cairo_scale(pCairoContext, zoom, zoom);	
+	                }
                         if (pDock->bHorizontalDock)
                         {
                         	cairo_set_source_surface (pCairoContext,
 				        icon->pTextBuffer,                                        
-				        icon->fDrawX + (icon->fWidth * icon->fScale)/2 -icon->fTextXOffset,
-				        icon->fDrawY +  (icon->fHeight * icon->fScale)   + (my_diapo_iconGapY / 2)  - 6 ); // 6 ~= hauteur texte / 2
+				        (icon->fDrawX + (icon->fWidth * icon->fScale)/2)/zoom - icon->fTextXOffset,
+				        (icon->fDrawY +  (icon->fHeight * icon->fScale)   + (my_diapo_iconGapY / 2)  - 6 )/zoom); // 6 ~= hauteur texte / 2
 			}
 			else
 	                {
                         	cairo_set_source_surface (pCairoContext,
 				        icon->pTextBuffer,  
-				        icon->fDrawY + (icon->fWidth * icon->fScale)/2 -icon->fTextXOffset,
-				        icon->fDrawX +  (icon->fHeight * icon->fScale)   + (my_diapo_iconGapY / 2)  - 6 ); // 6 ~= hauteur texte / 2
+				        (icon->fDrawY + (icon->fWidth * icon->fScale)/2)/zoom - icon->fTextXOffset,
+				        (icon->fDrawX +  (icon->fHeight * icon->fScale)   + (my_diapo_iconGapY / 2)  - 6)/zoom); // 6 ~= hauteur texte / 2
 
 			}
 			if (my_diapo_text_only_on_pointed && icon->bPointed)
