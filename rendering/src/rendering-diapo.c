@@ -165,11 +165,21 @@ void cd_rendering_render_diapo (CairoDock *pDock)
                if(icon->pTextBuffer != NULL)
                 {
                 	cairo_save (pCairoContext);
-                	cairo_set_source_surface (pCairoContext,
-				icon->pTextBuffer,                                        
-				icon->fDrawX + (icon->fWidth * icon->fScale)/2 -icon->fTextXOffset,
-				icon->fDrawY +  (icon->fHeight * icon->fScale)   + (my_diapo_iconGapY / 2)  - 6  ); // 6 ~= hauteur texte / 2
-			
+                        if (pDock->bHorizontalDock)
+                        {
+                        	cairo_set_source_surface (pCairoContext,
+				        icon->pTextBuffer,                                        
+				        icon->fDrawX + (icon->fWidth * icon->fScale)/2 -icon->fTextXOffset,
+				        icon->fDrawY +  (icon->fHeight * icon->fScale)   + (my_diapo_iconGapY / 2)  - 6 ); // 6 ~= hauteur texte / 2
+			}
+			else
+	                {
+                        	cairo_set_source_surface (pCairoContext,
+				        icon->pTextBuffer,  
+				        icon->fDrawY + (icon->fWidth * icon->fScale)/2 -icon->fTextXOffset,
+				        icon->fDrawX +  (icon->fHeight * icon->fScale)   + (my_diapo_iconGapY / 2)  - 6 ); // 6 ~= hauteur texte / 2
+
+			}
 			if (my_diapo_text_only_on_pointed && icon->bPointed)
 			        cairo_paint (pCairoContext);
 		        else if (!my_diapo_text_only_on_pointed)
@@ -416,7 +426,6 @@ void cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, gi
                 gdouble y2 = icon->fDrawYAtRest + (icon->fHeight) / 2 + (my_diapo_fScaleMax - 1) * 20; // idem
 
                 gdouble distanceE = sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-                if(distanceE  < 10) cd_message("grep Jackpot  %lf", distanceE);
                 if(my_diapo_lineaire)
                 {
                         gdouble eloignementMax = 3. * (icon->fWidth + icon->fHeight)  / 2; 
@@ -565,7 +574,18 @@ static void cairo_dock_draw_frame_horizontal_for_diapo (cairo_t *pCairoContext, 
 
 
         //HautGauche -> HautDroit
-        cairo_rel_line_to (pCairoContext, fFrameWidth, 0);
+        if(pDock->bDirectionUp)
+        {
+                cairo_rel_line_to (pCairoContext, fFrameWidth, 0);
+        }
+        else
+        {
+               //On fait la fleche
+                cairo_rel_line_to (pCairoContext,  (fFrameWidth/2 - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth), 0);                //     _
+                cairo_rel_line_to (pCairoContext, + my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth - my_diapo_arrowShift * fFrameWidth / arrow_dec,  -my_diapo_arrowHeight);       //  \. 
+                cairo_rel_line_to (pCairoContext, + my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth + my_diapo_arrowShift * fFrameWidth / arrow_dec, +my_diapo_arrowHeight);        //    /     
+                cairo_rel_line_to (pCairoContext, (fFrameWidth/2 - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth) , 0);               // _     
+        }
         //\_________________ Coin haut droit.
         cairo_rel_curve_to (pCairoContext,
                 0, 0,
@@ -583,14 +603,18 @@ static void cairo_dock_draw_frame_horizontal_for_diapo (cairo_t *pCairoContext, 
 
 
         //BasDroit -> BasGauche
-        //cairo_rel_line_to (pCairoContext, - fFrameWidth , 0);
-        
-        //On fait la fleche
-        cairo_rel_line_to (pCairoContext, - (fFrameWidth/2 - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth), 0);                //     _
-        cairo_rel_line_to (pCairoContext, - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth + my_diapo_arrowShift * fFrameWidth / arrow_dec, my_diapo_arrowHeight);        //    /     
-        cairo_rel_line_to (pCairoContext, - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth - my_diapo_arrowShift * fFrameWidth / arrow_dec, -my_diapo_arrowHeight);       //  \. 
-        cairo_rel_line_to (pCairoContext, - (fFrameWidth/2 - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth) , 0);               // _      
-        
+        if(!pDock->bDirectionUp)
+        {
+                cairo_rel_line_to (pCairoContext, - fFrameWidth , 0);
+        }
+        else
+        {
+                //On fait la fleche
+                cairo_rel_line_to (pCairoContext, - (fFrameWidth/2 - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth), 0);                //     _
+                cairo_rel_line_to (pCairoContext, - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth + my_diapo_arrowShift * fFrameWidth / arrow_dec, my_diapo_arrowHeight);        //    /     
+                cairo_rel_line_to (pCairoContext, - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth - my_diapo_arrowShift * fFrameWidth / arrow_dec, -my_diapo_arrowHeight);       //  \. 
+                cairo_rel_line_to (pCairoContext, - (fFrameWidth/2 - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth) , 0);               // _      
+        }
         //\_________________ Coin bas gauche.
         cairo_rel_curve_to (pCairoContext,
                         0, 0,
@@ -620,7 +644,17 @@ static void cairo_dock_draw_frame_vertical_for_diapo (cairo_t *pCairoContext, Ca
 
         cairo_move_to (pCairoContext, fDockOffsetY, fDockOffsetX);
 
-        cairo_rel_line_to (pCairoContext, 0, fFrameWidth);
+        if(pDock->bDirectionUp)
+        {
+                cairo_rel_line_to (pCairoContext, 0, fFrameWidth);
+        }
+        else
+        {
+                cairo_rel_line_to (pCairoContext,0,(fFrameWidth/2 - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth));                //     _
+                cairo_rel_line_to (pCairoContext, -my_diapo_arrowHeight, my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth - my_diapo_arrowShift * fFrameWidth / arrow_dec);       //  \. 
+                cairo_rel_line_to (pCairoContext, my_diapo_arrowHeight, + my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth + my_diapo_arrowShift * fFrameWidth / arrow_dec);        //    /     
+                cairo_rel_line_to (pCairoContext,0,(fFrameWidth/2 - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth));               // _     
+       }
         //\_________________ Coin haut droit.
         cairo_rel_curve_to (pCairoContext,
                 0, 0,
@@ -632,14 +666,20 @@ static void cairo_dock_draw_frame_vertical_for_diapo (cairo_t *pCairoContext, Ca
                         0, 0,
                         my_diapo_radius, 0,
                         my_diapo_radius, -my_diapo_radius);
-
-        //cairo_rel_line_to (pCairoContext, 0, - fFrameWidth);
+                        
+        if(!pDock->bDirectionUp)
+        {
+                cairo_rel_line_to (pCairoContext, 0, - fFrameWidth);
+        }
+        else
+        {
                 //On fait la fleche
-        cairo_rel_line_to (pCairoContext, 0, - (fFrameWidth/2 - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth));                 //     _
-        cairo_rel_line_to (pCairoContext,  my_diapo_arrowHeight, - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth + my_diapo_arrowShift * fFrameWidth / arrow_dec);        //    /     
-        cairo_rel_line_to (pCairoContext, -my_diapo_arrowHeight, - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth - my_diapo_arrowShift * fFrameWidth / arrow_dec );       //  \. 
-        cairo_rel_line_to (pCairoContext, 0, - (fFrameWidth/2 - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth));                 // _      
-        
+                cairo_rel_line_to (pCairoContext, 0, - (fFrameWidth/2 - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth));                 //     _
+                cairo_rel_line_to (pCairoContext,  my_diapo_arrowHeight, - my_diapo_arrowWidth/2 - my_diapo_arrowShift * fFrameWidth + my_diapo_arrowShift * fFrameWidth / arrow_dec);        //    /     
+                cairo_rel_line_to (pCairoContext, -my_diapo_arrowHeight, - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth - my_diapo_arrowShift * fFrameWidth / arrow_dec );       //  \. 
+                cairo_rel_line_to (pCairoContext, 0, - (fFrameWidth/2 - my_diapo_arrowWidth/2 + my_diapo_arrowShift * fFrameWidth));                 // _      
+        }
+
         //\_________________ Coin bas gauche.
          cairo_rel_curve_to (pCairoContext,
                         0, 0,
