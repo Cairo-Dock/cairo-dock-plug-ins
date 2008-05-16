@@ -104,53 +104,72 @@ gchar *get_hours_minutes(int iTimeInSeconds)
 	return cTimeString;
 }
 
+static void _cd_powermanager_dialog (GString *sInfo) {
+	cd_debug ("%s", __func__);
+	gchar *cIconPath = NULL;
+	
+	if (!myData.on_battery || !myData.battery_present)
+		cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, "sector.svg");
+	else
+		cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default-battery.svg");
+		
+	cd_debug ("%s (%s)", sInfo->str, cIconPath);
+	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 6000, cIconPath);
+	g_free(cIconPath);
+}
+
 void cd_powermanager_bubble(void)
 {
+	cd_debug ("%s", __func__);
+	GString *sInfo = g_string_new ("");
 	if(myData.battery_present)
 	{
 		gchar *hms = get_hours_minutes(myData.battery_time);
-		g_print ("debug : hms : %s\n", hms);
 		if(myData.on_battery)
 		{
-			g_print ("debug : %s %d%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
-			cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+			//g_print ("debug : %s %d%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+			g_string_printf (sInfo, "%s %d%%%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 		}
 		else
 		{
-			g_print ("debug : %s %d%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
-			cairo_dock_show_temporary_dialog ("%s %d%% \n %s %s", myIcon, myContainer, 6000, D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+			//g_print ("debug : %s %d%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+			g_string_printf (sInfo, "%s %d%%%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 		}
-		g_print ("free de hms ...");
 		g_free (hms);
-		g_print (" ok\n");
 	}
 	else
 	{
-		cairo_dock_show_temporary_dialog ("%s", myIcon, myContainer, 6000, D_("No Battery found."));
+		g_string_printf (sInfo, "%s", D_("No Battery found."));
 	}
+	
+	_cd_powermanager_dialog (sInfo);
+	g_string_free (sInfo, TRUE);
 }
 
 gboolean cd_powermanager_alert(int alert)
 {
+	cd_debug ("%s", __func__);
+	GString *sInfo = g_string_new ("");
 	gchar *hms = get_hours_minutes(myData.battery_time);
-	g_print ("debug : hms : %s\n", hms);
 	if ((alert == 1) && (myConfig.lowBatteryWitness))
 	{
-		g_print ("debug : %s (%d%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
-		cairo_dock_show_temporary_dialog ("%s (%d%%) \n %s %s \n %s", myIcon, myContainer, 6000, D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
+		//g_print ("debug : %s (%d%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
+		g_string_printf (sInfo, "%s (%d%%%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
+		_cd_powermanager_dialog (sInfo);
 	}
 	else if ((alert == 0) && (myConfig.highBatteryWitness))
 	{
-		g_print ("debug : %s (%d%%) \n %s %s ", D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
-		cairo_dock_show_temporary_dialog ("%s (%d%%) \n %s %s ", myIcon, myContainer, 6000, D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+		//g_print ("debug : %s (%d%%) \n %s %s ", D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+		g_string_printf (sInfo, "%s (%d%%%%) \n %s %s ", D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+		_cd_powermanager_dialog (sInfo);
 	}
 	if (myConfig.batteryWitness) 
 	{
 		CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, 3)
 	}
-	g_print ("free de hms ...");
+	
 	g_free (hms);
-	g_print (" ok\n");
+	g_string_free (sInfo, TRUE);
 	myData.alerted = TRUE;
 	return FALSE;
 }

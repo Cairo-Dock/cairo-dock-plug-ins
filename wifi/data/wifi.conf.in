@@ -1,5 +1,6 @@
 #!en;@VERSION@
 
+#[gtk-about]
 [Icon]
 #F[Desired icon size for this applet]
 frame1 = 
@@ -19,7 +20,9 @@ icon = default.svg
 #E[] Name of the dock it belongs to:
 dock name = 
 
+order=
 
+#[gtk-convert]
 [Desklet]
 #i[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
@@ -48,9 +51,9 @@ on widget layer=false
 locked = false
 
 
+#[gtk-preferences]
 [Configuration]
-
-#F[Information]
+#F[Information;gtk-info]
 frame_info=
 #r[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
 signal_type=2
@@ -58,7 +61,7 @@ signal_type=2
 #{in seconds.}
 delay = 10
 
-#F[Display]
+#F[Display;gtk-dnd-multiple]
 frame_disp=
 #b Overwrite the default label with the connection point name ?
 essid=true
@@ -71,24 +74,23 @@ use gauge = false
 #R1[radium] List of available themes for the analogic display :
 theme = radium
 
-#F[Images]
+#F[Images;gtk-dialog-info]
 frame_img =
-
 #S Name of an image for the 'no signal' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 icon_0 = 
 #S Name of an image for the 'very low' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 icon_1 = 
 #S Name of an image for the 'low' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 icon_2 = 
 #S Name of an image for the 'middle' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 icon_3 = 
 #S Name of an image for the 'good' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 icon_4 = 
 #S Name of an image for the 'exellent' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 icon_5 = 

@@ -1,5 +1,6 @@
 #!en;@VERSION@
 
+#[gtk-about]
 [Icon]
 #F[Desired icon size for this applet]
 frame1 = 
@@ -20,9 +21,9 @@ icon = gnome-fs-directory
 #E[] Name of the dock it belongs to:
 dock name = 
 
+order=
 
-#Uncomment the following group when you will want to make your applet detachable.
-
+#[gtk-convert]
 [Desklet]
 
 #i[48;256] Desklet's dimension (width x height) :
@@ -51,8 +52,9 @@ on widget layer=false
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
 
+#[gtk-preferences]
 [Configuration]
-#F[Directory & Options]
+#F[Directory & Options;gtk-file]
 frame_dir = 
 #b Use Stacks local directory ?
 #{Stacks will act as a the shortcut applet's but with files. To add a file, just drag and drop it on the Stacks icon}

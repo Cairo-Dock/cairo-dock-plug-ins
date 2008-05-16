@@ -283,7 +283,7 @@ msgstr "Images"
 #: ../data/messages:85 ../data/messages:79 ../data/messages:83
 #: ../data/messages:87 ../data/messages:91 ../data/messages:89
 #: ../data/messages:93 ../data/messages:95 ../data/messages:99
-msgid "Let t empty to use the default icon."
+msgid "Let it empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #: ../data/messages:21

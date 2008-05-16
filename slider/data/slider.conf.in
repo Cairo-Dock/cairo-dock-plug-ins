@@ -1,5 +1,6 @@
 #!en;@VERSION@
 
+#[gtk-about]
 [Icon]
 #F[Desired icon size for this applet]
 frame1 = 
@@ -17,9 +18,10 @@ name = Slider
 #E[] Name of the dock it belongs to:
 dock name = 
 
+order=
 
+#[gtk-convert]
 [Desklet]
-
 #i[48;512] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
@@ -46,8 +48,9 @@ on widget layer=false
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
 
+#[gtk-preferences]
 [Configuration]
-#F[Directory]
+#F[Directory;gtk-file]
 frame_td=
 #D Directory of the images :
 directory= /
@@ -57,7 +60,7 @@ sub directories=false
 #b Randomly browse files ?
 random = false
 
-#F[Behaviour]
+#F[Behaviour;gtk-execute]
 frame_ops=
 #i[1;500] Sliding delay :
 #{in seconds.}
@@ -67,7 +70,7 @@ click=0
 #r[none;fade;blank fade;fade in out;side kick;diaporama;grow up;shrink down;random] Effect while changing image :
 change animation=1
 
-#F[Display]
+#F[Display;gtk-dnd-multiple]
 frame_disp=
 #b Keep widht/height ratio ?
 #{Gives a better image rendering.}
@@ -79,7 +82,7 @@ fill icon = false
 #{Set the transparency channel to 0 if you just don't want to have a background.}
 background color = 1.0; 1.0; 1.0; 1.0
 
-#F[Background & Reflection]
+#F[Background & Reflection;gtk-orientation-portrait]
 frame_bg =
 #S Background image :
 #{It's an image that will be displayed below the slide, like a frame for exemple. Let it empty to use the default one.}

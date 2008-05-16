@@ -114,10 +114,19 @@ void cd_wifi_draw_icon_with_effect (CDWifiQuality iQuality) {
 }
 
 void cd_wifi_bubble(void) {
+	GString *sInfo = g_string_new ("");
+	gchar *cIconPath = NULL;
   if(myData.iQuality == WIFI_QUALITY_NO_SIGNAL) {
-	  cairo_dock_show_temporary_dialog ("%s", myIcon, myContainer, 6000, D_("Wifi disabled."));
+  	cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, "link-0.svg");
+  	g_string_printf (sInfo, "%s", D_("Wifi disabled."));
 	}
 	else {
-	  cairo_dock_show_temporary_dialog ("%s %s \n %s %d%%", myIcon, myContainer, 6000, D_("Wifi enabled. \n Connected on:"), myData.cESSID, D_("Signal Strength:"), myData.prcnt);
+		cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, "link-5.svg");
+		g_string_printf (sInfo, "%s %s \n %s %d%%%%", D_("Wifi enabled. \n Connected on:"), myData.cESSID, D_("Signal Strength:"), myData.prcnt);
 	}
+	
+	cd_debug ("%s (%s)", sInfo->str, cIconPath);
+	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 6000, cIconPath);
+	g_string_free (sInfo, TRUE);
+	g_free(cIconPath);
 }

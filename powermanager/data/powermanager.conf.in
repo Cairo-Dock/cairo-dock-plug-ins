@@ -1,5 +1,6 @@
 #!en;@VERSION@
 
+#[gtk-about]
 [Icon]
 
 #F[Icon size]
@@ -17,6 +18,9 @@ name = Battery
 #E[] Name of the dock it belongs to:
 dock name = 
 
+order=
+
+#[gtk-convert]
 [Desklet]
 
 #i[48;256] Desklet's dimension (width x height) :
@@ -41,11 +45,11 @@ keep above=false
 #b Keep on widget layer ?
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
-#b Lockposition ?
+#b Lock position ?
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
 
-
+#[gtk-preferences]
 [Configuration]
 
 #i[1;120] Interval of time between 2 checks :
@@ -53,7 +57,7 @@ locked = false
 check interval = 15
 
 
-#F[Display]
+#F[Display;gtk-dnd-multiple]
 frame_info=
 
 #S Icon's filename when on battery :
@@ -73,7 +77,7 @@ theme = battery
 quick-info_type=2
 
 
-#F[Alert]
+#F[Alert;gtk-dialog-info]
 frame_alert=
 
 #b Alert when battery charged ?

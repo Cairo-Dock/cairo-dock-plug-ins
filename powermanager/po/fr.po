@@ -414,14 +414,17 @@ msgstr "Liste des jauges disponibles :"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du conteneur auquel il appartient :"
 
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
+"avec ALT + clique_gauche"
 
 #: ../data/messages:35
-msgid "Lockposition ?"
-msgstr ""
+msgid "Lock position ?"
+msgstr "Verrouiller la position ?"
