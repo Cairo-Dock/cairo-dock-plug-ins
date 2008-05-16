@@ -8,6 +8,36 @@ CD_APPLET_INCLUDE_MY_VARS
 
 static gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 
+static GList * _list_icons (void)
+{
+	GList *pIconList = NULL;
+	Icon *pIcon;
+	int i;
+	for (i = 0; i < 4; i ++)
+	{
+		pIcon = g_new0 (Icon, 1);
+		pIcon->acName = NULL;
+		pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
+		pIcon->fOrder = i;
+		pIcon->iType = i;
+		pIcon->fScale = 1.;
+		pIcon->fAlpha = 1.;
+		pIcon->fWidthFactor = 1.;
+		pIcon->fHeightFactor = 1.;
+		pIcon->acCommand = g_strdup ("none");
+		pIcon->cParentDockName = NULL;
+		pIconList = g_list_append (pIconList, pIcon);
+	}
+	return pIconList;
+}
+void rhythmbox_add_buttons_to_desklet (void)
+{
+	if (myDesklet && myConfig.extendedDesklet)
+	{
+		GList *pIconList = _list_icons ();
+		myDesklet->icons = pIconList;
+	}
+}
 
 void rhythmbox_iconWitness(int animationLength)
 {

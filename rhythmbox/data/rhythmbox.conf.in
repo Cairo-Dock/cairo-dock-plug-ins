@@ -75,6 +75,9 @@ enable_cover=true
 #r[nothing;time elapsed;time left;time in %;n° of track] Information to display on the icon :
 quick-info_type=1
 
+#b Activate extended desklet mode ?
+extended_desklet=false
+
 
 #F[Personnalisation]
 frame_app =

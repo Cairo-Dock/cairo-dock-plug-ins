@@ -3,6 +3,8 @@
 
 #include <rhythmbox-struct.h>
 
+void rhythmbox_add_buttons_to_desklet (void);
+
 void rhythmbox_iconWitness(int animationLenght);
 
 void update_icon(gboolean make_witness);

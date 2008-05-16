@@ -124,7 +124,7 @@ msgid "Emerald Manager"
 msgstr "Gestionnaire Emerald"
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
-#: ../src/applet-load-icon.c:20
+#: ../src/applet-load-icon.c:20 ../src/applet-load-icon.c:22
 msgid "Reload WM"
 msgstr "Recharger WM"
 
@@ -472,9 +472,10 @@ msgstr "Charge Compiz avec ses options au démarrage de l'applet."
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en"
-"le tirant avec le bouton gauche de la souris. Bien sur il pourra toujour"
-"être bouger avec ALT + clique_gauche"
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement enle tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujourêtre bouger "
+"avec ALT + clique_gauche"
 
 #: ../data/messages:35
 msgid "Lock position ?"

@@ -87,3 +87,16 @@ msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportemen
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
+
+#: ../data/messages:35 ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
+"avec ALT + clique_gauche"
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Verrouiller la position ?"

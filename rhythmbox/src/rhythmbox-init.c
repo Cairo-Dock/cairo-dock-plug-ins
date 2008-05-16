@@ -14,7 +14,16 @@ CD_APPLET_DEFINITION ("Rhythmbox", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet)
 	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		if (myConfig.extendedDesklet)
+		{
+			rhythmbox_add_buttons_to_desklet ();
+			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
+		}
+		else
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		}
 	}
 	
 	myData.dbus_enable = rhythmbox_dbus_connect_to_bus ();
@@ -47,6 +56,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT
+	CD_APPLET_REGISTER_FOR_SCROLL_EVENT
 CD_APPLET_INIT_END
 
 
@@ -55,6 +65,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT
+	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT
 	
 	rhythmbox_dbus_disconnect_from_bus ();
 	
@@ -65,9 +76,31 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
+	if (CD_APPLET_MY_CONFIG_CHANGED && myDesklet)
+	{
+		if ( ! myConfig.extendedDesklet && myDesklet->icons != NULL)
+		{
+			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+			g_list_free (myDesklet->icons);
+			myDesklet->icons = NULL;
+		}
+		else if (myConfig.extendedDesklet && myDesklet->icons == NULL)
+		{
+			rhythmbox_add_buttons_to_desklet ();
+		}
+	}
+	
 	if (myDesklet)
 	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		if (myConfig.extendedDesklet)
+		{
+			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
+		}
+		else
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		}
 	}
 	
 	int i;

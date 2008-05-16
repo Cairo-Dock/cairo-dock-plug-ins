@@ -39,13 +39,13 @@ typedef struct {
 	gchar *cFrameImage;
 	gchar *cReflectImage;
 	gboolean bSubDirs;
-	gboolean bNoStrench;
+	gboolean bNoStretch;
 	gboolean bFillIcon;
 	gboolean bRandom;
 	gdouble pBackgroundColor[4];
-	gdouble pFrameAlpha;
-	gdouble pFrameOffset;
-	gdouble pReflectAlpha;
+	gdouble fFrameAlpha;
+	gint iFrameOffset;
+	gdouble fReflectAlpha;
 	SliderAnimation iAnimation;
 	SliderClickOption iClickOption;
 } AppletConfig;
@@ -65,10 +65,9 @@ typedef struct {
 	cairo_surface_t* pCairoSurface;
 	cairo_surface_t* pPrevCairoSurface;
 	gdouble fSurfaceWidth, fSurfaceHeight;
-	cairo_surface_t* pCairoFrameSurface;
-	cairo_surface_t* pCairoReflectSurface;
+	//cairo_surface_t* pCairoFrameSurface;
+	//cairo_surface_t* pCairoReflectSurface;
 	SliderAnimation iAnimation;
-	gchar *cNowImage;
 } AppletData;
 
 

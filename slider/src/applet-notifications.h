@@ -2,9 +2,7 @@
 #ifndef __APPLET_NOTIFICATIONS__
 #define  __APPLET_NOTIFICATIONS__
 
-
 #include <cairo-dock.h>
-
 
 CD_APPLET_ABOUT_H
 

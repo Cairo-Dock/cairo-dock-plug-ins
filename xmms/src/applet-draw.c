@@ -18,7 +18,6 @@ Fabrice Rey (fabounet@users.berlios.de)
 CD_APPLET_INCLUDE_MY_VARS
 
 static gchar *s_cIconName[PLAYER_NB_STATUS] = {"xmms.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
-static gchar *s_iconName[4] = {"Previous", "Play/Pause", "Stop", "Next"};
 
 static GList * _list_icons (void) {
 	GList *pIconList = NULL;

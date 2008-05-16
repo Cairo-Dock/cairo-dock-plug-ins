@@ -270,7 +270,7 @@ void draw_foreground (cairo_t* pDrawingContext, int iWidth, int iHeight)
 		(double) iHeight / (double) myData.DimensionData.height);
 	cairo_set_source_rgba (pDrawingContext, 1.0f, 1.0f, 1.0f, 0.0f);
 	cairo_set_operator (pDrawingContext, CAIRO_OPERATOR_OVER);
-	cairo_paint (pDrawingContext);
+	cairo_paint (pDrawingContext);  /// utile ???...
 	
 	/* draw stuff */
 	if (myData.pSvgHandles[CLOCK_FACE_SHADOW] != NULL)

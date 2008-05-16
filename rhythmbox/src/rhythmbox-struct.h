@@ -30,6 +30,7 @@ typedef struct {
 	gchar *defaultTitle;
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	gboolean bStealTaskBarIcon;
+	gboolean extendedDesklet;
 	} AppletConfig;
 
 typedef struct {

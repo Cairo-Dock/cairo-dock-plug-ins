@@ -119,6 +119,7 @@ msgstr "アイコン上に表示する情報 :"
 #: ../src/rhythmbox-draw.c:77 ../src/rhythmbox-draw.c:102
 #: ../src/rhythmbox-draw.c:103 ../src/rhythmbox-draw.c:101
 #: ../src/rhythmbox-draw.c:106 ../src/rhythmbox-draw.c:107
+#: ../src/rhythmbox-draw.c:137
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -135,6 +136,8 @@ msgstr ""
 #: ../src/rhythmbox-draw.c:109 ../src/rhythmbox-draw.c:105
 #: ../src/rhythmbox-draw.c:110 ../src/rhythmbox-draw.c:111
 #: ../src/rhythmbox-draw.c:112 ../src/rhythmbox-draw.c:113
+#: ../src/rhythmbox-draw.c:141 ../src/rhythmbox-draw.c:142
+#: ../src/rhythmbox-draw.c:143
 msgid "Unknown"
 msgstr "不明"
 
@@ -193,7 +196,7 @@ msgid "n° of track"
 msgstr "トラック番号"
 
 #: ../data/messages:55 ../data/messages:75 ../data/messages:79
-#: ../data/messages:81 ../data/messages:85
+#: ../data/messages:81 ../data/messages:85 ../data/messages:87
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
@@ -202,32 +205,33 @@ msgstr "カスタマイズ"
 #: ../data/messages:81 ../data/messages:85 ../data/messages:89
 #: ../data/messages:93 ../data/messages:97 ../data/messages:83
 #: ../data/messages:87 ../data/messages:91 ../data/messages:95
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:99 ../data/messages:103 ../data/messages:101
+#: ../data/messages:105
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #: ../data/messages:59 ../data/messages:79 ../data/messages:83
-#: ../data/messages:85 ../data/messages:89
+#: ../data/messages:85 ../data/messages:89 ../data/messages:91
 msgid "Name of an image for the 'default' icon :"
 msgstr "'デフォルト' アイコンの画像の名前 :"
 
 #: ../data/messages:63 ../data/messages:83 ../data/messages:87
-#: ../data/messages:89 ../data/messages:93
+#: ../data/messages:89 ../data/messages:93 ../data/messages:95
 msgid "Name of an image for the 'play' icon :"
 msgstr "'再生' アイコンの画像の名前 :"
 
 #: ../data/messages:67 ../data/messages:87 ../data/messages:91
-#: ../data/messages:93 ../data/messages:97
+#: ../data/messages:93 ../data/messages:97 ../data/messages:99
 msgid "Name of an image for the 'stop' icon :"
 msgstr "'停止' アイコンの画像の名前 :"
 
 #: ../data/messages:71 ../data/messages:91 ../data/messages:95
-#: ../data/messages:97 ../data/messages:101
+#: ../data/messages:97 ../data/messages:101 ../data/messages:103
 msgid "Name of an image for the 'pause' icon :"
 msgstr "'一時停止' アイコンの画像の名前 :"
 
 #: ../data/messages:75 ../data/messages:95 ../data/messages:99
-#: ../data/messages:101 ../data/messages:105
+#: ../data/messages:101 ../data/messages:105 ../data/messages:107
 msgid "Name of an image for the 'broken' icon :"
 msgstr "'リンク切れ' アイコンの画像の名前 :"
 
@@ -315,4 +319,8 @@ msgstr ""
 
 #: ../data/messages:35
 msgid "Lockposition ?"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Activate extended desklet mode ?"
 msgstr ""

@@ -113,7 +113,7 @@ msgid "Emerald Manager"
 msgstr ""
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
-#: ../src/applet-load-icon.c:20
+#: ../src/applet-load-icon.c:20 ../src/applet-load-icon.c:22
 msgid "Reload WM"
 msgstr ""
 
@@ -530,4 +530,8 @@ msgstr ""
 
 #: ../data/messages:35
 msgid "Lockposition ?"
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lock position ?"
 msgstr ""

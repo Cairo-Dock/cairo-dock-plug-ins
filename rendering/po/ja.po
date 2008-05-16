@@ -141,7 +141,7 @@ msgid "Rainbow"
 msgstr "レインボー"
 
 #: ../data/messages:51 ../data/messages:57 ../data/messages:75
-#: ../data/messages:91
+#: ../data/messages:91 ../data/messages:113
 msgid "Space between rows :"
 msgstr "列同士の隙間 :"
 
@@ -193,30 +193,74 @@ msgstr ""
 msgid "Slide"
 msgstr ""
 
-#: ../data/messages:73 ../data/messages:89
+#: ../data/messages:73 ../data/messages:89 ../data/messages:111
 msgid "Space between columns :"
 msgstr ""
 
-#: ../data/messages:77 ../data/messages:93
+#: ../data/messages:77 ../data/messages:93 ../data/messages:115
 msgid "Max size of icons :"
 msgstr ""
 
-#: ../data/messages:79 ../data/messages:95
+#: ../data/messages:79 ../data/messages:95 ../data/messages:117
 msgid "Sinusoidal wave radius :"
 msgstr ""
 
-#: ../data/messages:81 ../data/messages:97
+#: ../data/messages:81 ../data/messages:97 ../data/messages:119
 msgid "Use a linear wave rather than a sinusoidal one ?"
 msgstr ""
 
-#: ../data/messages:83 ../data/messages:99
+#: ../data/messages:83 ../data/messages:99 ../data/messages:121
 msgid "Use a wide shape ?"
 msgstr ""
 
-#: ../data/messages:85 ../data/messages:101
+#: ../data/messages:85 ../data/messages:101 ../data/messages:123
 msgid "Display text only for pointed icon ?"
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:87 ../data/messages:109
 msgid "SimpleSlide"
+msgstr ""
+
+#: ../data/messages:87 ../data/messages:125
+msgid "Draw a background ?"
+msgstr ""
+
+#: ../data/messages:89 ../data/messages:127
+msgid "First gradient color (r,v,b,a) :"
+msgstr ""
+
+#: ../data/messages:91 ../data/messages:129
+msgid "Second gradient color (r,v,b,a) :"
+msgstr ""
+
+#: ../data/messages:93 ../data/messages:131
+msgid "Top to bottom gradient ?"
+msgstr ""
+
+#: ../data/messages:95 ../data/messages:133
+msgid "Left to right gradient ?"
+msgstr ""
+
+#: ../data/messages:97 ../data/messages:135
+msgid "Arrow width :"
+msgstr ""
+
+#: ../data/messages:99 ../data/messages:137
+msgid "Arrow Height :"
+msgstr ""
+
+#: ../data/messages:101 ../data/messages:139
+msgid "Arrow shift percent :"
+msgstr ""
+
+#: ../data/messages:103 ../data/messages:141
+msgid "Corner radius :"
+msgstr ""
+
+#: ../data/messages:105 ../data/messages:143
+msgid "Border line width :"
+msgstr ""
+
+#: ../data/messages:107 ../data/messages:145
+msgid "Border line color (r,v,b,a) :"
 msgstr ""

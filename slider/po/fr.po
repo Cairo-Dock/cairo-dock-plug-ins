@@ -53,11 +53,11 @@ msgstr ""
 "Ceci est l'applet slider\n"
 " écrite par ChAnGFu pour Cairo-Dock"
 
-#: ../data/messages:11 ../data/messages:15
+#: ../data/messages:11 ../data/messages:15 ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13 ../data/messages:17
+#: ../data/messages:13 ../data/messages:17 ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -65,33 +65,33 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic_milieu ou ALT + clic_droit par exemple."
 
-#: ../data/messages:15 ../data/messages:19
+#: ../data/messages:15 ../data/messages:19 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17 ../data/messages:21
+#: ../data/messages:17 ../data/messages:21 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:19 ../data/messages:23
+#: ../data/messages:19 ../data/messages:23 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21 ../data/messages:25
+#: ../data/messages:21 ../data/messages:25 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23 ../data/messages:27
+#: ../data/messages:23 ../data/messages:27 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25 ../data/messages:29
+#: ../data/messages:25 ../data/messages:29 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27 ../data/messages:31
+#: ../data/messages:27 ../data/messages:31 ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -99,7 +99,7 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:33
+#: ../data/messages:29 ../data/messages:33 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
@@ -110,26 +110,28 @@ msgid ""
 msgstr ""
 
 #: ../src/applet-notifications.c:48 ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:67 ../src/applet-notifications.c:89
 msgid "Play"
 msgstr "Jouer"
 
 #: ../src/applet-notifications.c:51 ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:70 ../src/applet-notifications.c:89
 msgid "Pause"
 msgstr "Pause"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:11
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient :"
 
-#: ../data/messages:35 ../data/messages:39
+#: ../data/messages:35 ../data/messages:39 ../data/messages:37
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:37 ../data/messages:41
+#: ../data/messages:37 ../data/messages:41 ../data/messages:39
 msgid "Directory"
 msgstr "Dossier"
 
-#: ../data/messages:39 ../data/messages:43
+#: ../data/messages:39 ../data/messages:43 ../data/messages:41
 msgid "Directory of the images :"
 msgstr "Dossier des images"
 
@@ -137,7 +139,7 @@ msgstr "Dossier des images"
 msgid "Not yet implemented"
 msgstr "Pas encore implémenté"
 
-#: ../data/messages:43 ../data/messages:47
+#: ../data/messages:43 ../data/messages:47 ../data/messages:45
 msgid "Scan in sub direcotries ?"
 msgstr "Scanner les sous dossiers ?"
 
@@ -146,20 +148,14 @@ msgid "Options"
 msgstr ""
 
 #: ../data/messages:47 ../data/messages:49 ../data/messages:53
+#: ../data/messages:51
 msgid "in seconds."
 msgstr "en seconde"
 
 #: ../data/messages:49 ../data/messages:51 ../data/messages:55
+#: ../data/messages:53
 msgid "Sliding delay :"
 msgstr "Délais de changement :"
-
-#: ../data/messages:51 ../data/messages:53 ../data/messages:57
-msgid "Give better image rendering"
-msgstr "Donne un meilleur rendu de l'image"
-
-#: ../data/messages:53 ../data/messages:55 ../data/messages:59
-msgid "Don't strench the images ?"
-msgstr "Ne pas étirer les images ?"
 
 #: ../data/messages:55 ../data/messages:57 ../data/messages:61
 #: ../data/messages:65
@@ -189,7 +185,7 @@ msgstr "coup de pied"
 #: ../data/messages:65 ../data/messages:69 ../data/messages:73
 #: ../data/messages:77
 msgid "diaporama"
-msgstr ""
+msgstr "diaporama"
 
 #: ../data/messages:67 ../data/messages:71 ../data/messages:75
 #: ../data/messages:79
@@ -205,78 +201,125 @@ msgstr "rétrécissement "
 msgid "fade"
 msgstr "fondu"
 
+#: ../data/messages:79
 msgid "random"
 msgstr "aléatoire"
 
 #: ../data/messages:71 ../data/messages:75 ../data/messages:79
-#: ../data/messages:83
+#: ../data/messages:83 ../data/messages:91
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "Mettez la valeur de la transparence a 0 pour ne pas avoir defond."
+msgstr "Mettez la valeur de la transparence a 0 pour ne pas avoir de fond."
 
 #: ../data/messages:73 ../data/messages:77 ../data/messages:81
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:93
 msgid "Choose a background color :"
 msgstr "Choisir la couleur du fond :"
 
-#: ../data/messages:45 ../data/messages:49
+#: ../data/messages:45 ../data/messages:49 ../data/messages:47
 msgid "Randomly browse files ?"
 msgstr "Afficher les images aléatoirement ?"
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en"
-"le tirant avec le bouton gauche de la souris. Bien sur il pourra toujour"
-"être bouger avec ALT + clique_gauche"
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
+"avec ALT + clique_gauche"
 
+#: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
+#: ../data/messages:59 ../data/messages:85
 msgid "Keep widht/height ratio ?"
-msgstr "Conserver le ratio entre la longueur et la largeur ?"
+msgstr "Conserver le ratio entre la hauteur et la largeur ?"
 
+#: ../data/messages:63 ../data/messages:89
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Forcer les images à remplir l'icône/le desklet ?"
 
+#: ../data/messages:61 ../data/messages:87
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Si l'image est trop petite, elle sera zoomée."
 
+#: ../data/messages:55
 msgid "Action when applet is clicked :"
 msgstr "Action au clique sur l'applet :"
 
+#: ../data/messages:57
 msgid "play/pause"
 msgstr "jouer/pause"
 
+#: ../data/messages:59
 msgid "open image"
 msgstr "ouvrir l'image"
 
+#: ../data/messages:95
 msgid "Background & Reflection"
 msgstr "Fond et Réflection"
 
+#: ../data/messages:99
 msgid "Background image :"
 msgstr "Image de fond :"
 
-msgid "Image offset :"
-msgstr "Décalage de l'image :"
-
+#: ../data/messages:103
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
 msgid "Set it to zero if you want to have a clean background"
 msgstr "A définir a zéro si vous voulez avoir un fond transparent"
 
+#: ../data/messages:107
 msgid "Reflection image :"
 msgstr "Image du reflet :"
 
+#: ../data/messages:111
 msgid "Reflection tansparency :"
 msgstr "Transparence du reflet :"
 
 msgid "Set it to zero if you dont want reflection"
 msgstr "A définir a zéro si vous ne voulez pas avoir de reflet"
 
-msgid "Let it empty to use the default icon."
-msgstr "Laisser vide pour avoir l'icon par défault"
+#: ../src/applet-notifications.c:93
+msgid "Open current image"
+msgstr "Ouvrir l'image courante"
 
+#: ../data/messages:43
+msgid "Not yet implemented."
+msgstr ""
+
+#: ../data/messages:49
+msgid "Behaviour"
+msgstr "Comportement"
+
+#: ../data/messages:81
+msgid "Display"
+msgstr "Affichage"
+
+#: ../data/messages:83
+msgid "Gives a better image rendering."
+msgstr "Donne un meilleur rendu de l'image"
+
+#: ../data/messages:97
+msgid ""
+"It's an image that will be displayed below the slide, like a frame for "
+"exemple. Let it empty to use the default one."
+msgstr "C'est une image à afficher en dessous de la diapositive, comme un cadre par example. Laissez vide pour utiliser celle par défaut."
+
+#: ../data/messages:101
+msgid "Set it to zero if you don't want to use a background"
+msgstr "Mettez-la à 0 si vous ne voulez pas utiliser d'arrière-plan."
+
+#: ../data/messages:105
+msgid ""
+"It's an image that will be displayed above the slide, like a reflect for "
+"exemple. Let it empty to use the default one."
+msgstr "C'est une image à afficher par-dessus la diapositive, comme un reflet par example. Laissez vide pour utiliser celle par défaut."
+
+#: ../data/messages:109
+msgid "Set it to zero if you dont don't want to use a foreground"
+msgstr "Mettez-la à 0 si vous ne voulez pas utiliser d'avant-plan."

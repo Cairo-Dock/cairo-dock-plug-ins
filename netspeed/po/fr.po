@@ -206,7 +206,7 @@ msgstr ""
 
 #: ../src/applet-netspeed.c:377 ../src/applet-netspeed.c:378
 #: ../src/applet-netspeed.c:172 ../src/applet-netspeed.c:166
-#: ../src/applet-netspeed.c:159
+#: ../src/applet-netspeed.c:159 ../src/applet-netspeed.c:161
 msgid "Loading"
 msgstr ""
 

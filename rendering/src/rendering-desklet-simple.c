@@ -18,15 +18,30 @@ CDSimpleParameters *rendering_configure_simple (CairoDesklet *pDesklet, cairo_t 
 	cd_message ("");
 	CDSimpleParameters *pSimple = g_new0 (CDSimpleParameters, 1);
 	
-	if (pConfig != NULL)
+	if (pConfig != NULL)  // dessin d'un cadre et d'un reflet propose par ChanGFu.
 	{
-		gchar *cImageFilePath = pConfig[0];  // on la charge tout de suite, inutile d'attendre le 'load_data'.
-		pSimple->pForeGroundSurface = cairo_dock_create_surface_from_image (cImageFilePath,
-			pSourceContext,
-			cairo_dock_get_max_scale (pDesklet),
-			pDesklet->iWidth, pDesklet->iHeight,
-			&pSimple->fImageWidth, &pSimple->fImageHeight,
-			GPOINTER_TO_INT (pConfig[1]));
+		//\________________on charge les surfaces tout de suite, inutile d'attendre le 'load_data'.
+		gchar *cBackGroundPath = pConfig[0];
+		gchar *cForeGroundPath = pConfig[1];
+		CairoDockLoadImageModifier iLoadingModifier = GPOINTER_TO_INT (pConfig[2]);
+		pSimple->fBackGroundAlpha = * ((double *) pConfig[3]);
+		pSimple->fForeGroundAlpha = * ((double *) pConfig[4]);
+		pSimple->iSurfaceOffset = GPOINTER_TO_INT (pConfig[5]);
+		
+		if (cForeGroundPath != NULL && pSimple->fBackGroundAlpha > 0)
+			pSimple->pForeGroundSurface = cairo_dock_create_surface_from_image (cForeGroundPath,
+				pSourceContext,
+				cairo_dock_get_max_scale (pDesklet),
+				pDesklet->iWidth, pDesklet->iHeight,
+				&pSimple->fImageWidth, &pSimple->fImageHeight,
+				iLoadingModifier);
+		if (cBackGroundPath != NULL && pSimple->fForeGroundAlpha > 0)
+			pSimple->pBackGroundSurface = cairo_dock_create_surface_from_image (cBackGroundPath,
+				pSourceContext,
+				cairo_dock_get_max_scale (pDesklet),
+				pDesklet->iWidth, pDesklet->iHeight,
+				&pSimple->fImageWidth, &pSimple->fImageHeight,
+				iLoadingModifier);
 	}
 	
 	return pSimple;
@@ -41,6 +56,8 @@ void rendering_free_simple_data (CairoDesklet *pDesklet)
 	
 	if (pSimple->pForeGroundSurface != NULL)
 		cairo_surface_destroy (pSimple->pForeGroundSurface);
+	if (pSimple->pBackGroundSurface != NULL)
+		cairo_surface_destroy (pSimple->pBackGroundSurface);
 	
 	g_free (pSimple);
 	pDesklet->pRendererData = NULL;
@@ -49,13 +66,15 @@ void rendering_free_simple_data (CairoDesklet *pDesklet)
 void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 {
 	g_return_if_fail (pDesklet != NULL && pSourceContext != NULL);
+	CDSimpleParameters *pSimple = (CDSimpleParameters *) pDesklet->pRendererData;
 	
 	Icon *pIcon = pDesklet->pIcon;
 	g_return_if_fail (pIcon != NULL);
-	pIcon->fWidth = MAX (1, pDesklet->iWidth - g_iDockRadius);
-	pIcon->fHeight = MAX (1, pDesklet->iHeight - g_iDockRadius);
-	pIcon->fDrawX = g_iDockRadius/2;
-	pIcon->fDrawY = g_iDockRadius/2;
+	int iRadius = MAX ((pSimple != NULL ? 2*pSimple->iSurfaceOffset : 0), g_iDockRadius);
+	pIcon->fWidth = MAX (1, pDesklet->iWidth - iRadius);
+	pIcon->fHeight = MAX (1, pDesklet->iHeight - iRadius);
+	pIcon->fDrawX = iRadius/2;
+	pIcon->fDrawY = iRadius/2;
 	pIcon->fScale = 1;
 	cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 }
@@ -67,7 +86,20 @@ void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDe
 	Icon *pIcon = pDesklet->pIcon;
 	
 	if (pSimple != NULL)
+	{
+		if (pSimple->pBackGroundSurface != NULL)
+		{
+			cairo_set_source_surface (pCairoContext,
+				pSimple->pBackGroundSurface,
+				0.,
+				0.);
+			if (pSimple->fBackGroundAlpha == 1)
+				cairo_paint (pCairoContext);
+			else
+				cairo_paint_with_alpha (pCairoContext, pSimple->fBackGroundAlpha);
+		}
 		cairo_save (pCairoContext);
+	}
 	cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
 	
 	if (pIcon->pIconBuffer != NULL)
@@ -93,14 +125,16 @@ void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDe
 	if (pSimple != NULL)
 	{
 		cairo_restore (pCairoContext);
-		cairo_translate (pCairoContext, - pIcon->fDrawX, - pIcon->fDrawY);
 		if (pSimple->pForeGroundSurface != NULL)
 		{
 			cairo_set_source_surface (pCairoContext,
 				pSimple->pForeGroundSurface,
 				0.,
 				0.);
-			cairo_paint (pCairoContext);
+			if (pSimple->fForeGroundAlpha == 1)
+				cairo_paint (pCairoContext);
+			else
+				cairo_paint_with_alpha (pCairoContext, pSimple->fForeGroundAlpha);
 		}
 	}
 }

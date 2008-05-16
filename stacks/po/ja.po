@@ -184,3 +184,7 @@ msgstr ""
 #: ../data/messages:59
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr ""
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr ""

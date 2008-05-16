@@ -14,9 +14,6 @@ frame1_ =
 #s Name of the icon as it will appear in its label in the dock :
 name = Slider
 
-#S Icon's name :
-icon = 
-
 #E[] Name of the dock it belongs to:
 dock name = 
 
@@ -60,21 +57,24 @@ sub directories=false
 #b Randomly browse files ?
 random = false
 
-#F[Options]
+#F[Behaviour]
 frame_ops=
 #i[1;500] Sliding delay :
 #{in seconds.}
 slide time=30
-#b Keep widht/height ratio ?
-#{Gives a better image rendering.}
-no strench=true
-#b Force the image to fill the icon/desklet ?
-#{If the image is too small, it will be zoomed in.}
-fill icon = false
 #r[play/pause;open image] Action when applet is clicked :
 click=0
 #r[none;fade;blank fade;fade in out;side kick;diaporama;grow up;shrink down;random] Effect while changing image :
 change animation=1
+
+#F[Display]
+frame_disp=
+#b Keep widht/height ratio ?
+#{Gives a better image rendering.}
+no stretch=true
+#b Force the image to fill the icon/desklet ?
+#{If the image is too small, it will be zoomed in.}
+fill icon = false
 #c4[0;1] Choose a background color :
 #{Set the transparency channel to 0 if you just don't want to have a background.}
 background color = 1.0; 1.0; 1.0; 1.0
@@ -82,16 +82,17 @@ background color = 1.0; 1.0; 1.0; 1.0
 #F[Background & Reflection]
 frame_bg =
 #S Background image :
-#{Let it empty to use the default icon.}
+#{It's an image that will be displayed below the slide, like a frame for exemple. Let it empty to use the default one.}
 frame =
-#i[0;15] Image offset :
-frame offset = 5
 #e[0;1] Background tansparency :
-#{Set it to zero if you want to have a clean background}
+#{Set it to zero if you don't want to use a background}
 frame alpha = 1
+#i Background offset :
+#{It's typically the width of your frame in pixels.}
+frame offset = 5
 #S Reflection image :
-#{Let it empty to use the default icon.}
+#{It's an image that will be displayed above the slide, like a reflect for exemple. Let it empty to use the default one.}
 reflect =
 #e[0;1] Reflection tansparency :
-#{Set it to zero if you dont want reflection}
+#{Set it to zero if you dont don't want to use a foreground}
 reflect alpha = 1

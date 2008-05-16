@@ -16,7 +16,7 @@ CD_APPLET_INCLUDE_MY_VARS
 static void rhythmbox_previous (GtkMenuItem *menu_item, gpointer *data)
 {
 	cd_message ("");
-	g_spawn_command_line_async ("rhythmbox-client --previous", NULL);
+	cairo_dock_launch_command ("rhythmbox-client --previous");
 }
 
 //*********************************************************************************
@@ -25,7 +25,7 @@ static void rhythmbox_previous (GtkMenuItem *menu_item, gpointer *data)
 static void rhythmbox_next (GtkMenuItem *menu_item, gpointer *data)
 {
 	cd_message ("");
-	g_spawn_command_line_async ("rhythmbox-client --next", NULL);
+	cairo_dock_launch_command ("rhythmbox-client --next");
 }
 
 //*********************************************************************************
@@ -34,7 +34,7 @@ static void rhythmbox_next (GtkMenuItem *menu_item, gpointer *data)
 static void rhythmbox_pause (GtkMenuItem *menu_item, gpointer *data)
 {
 	cd_message ("");
-	g_spawn_command_line_async ("rhythmbox-client --pause", NULL);
+	cairo_dock_launch_command ("rhythmbox-client --pause");
 }
 
 //*********************************************************************************
@@ -43,7 +43,7 @@ static void rhythmbox_pause (GtkMenuItem *menu_item, gpointer *data)
 static void rhythmbox_play (GtkMenuItem *menu_item, gpointer *data)
 {
 	cd_message ("");
-	g_spawn_command_line_async ("rhythmbox-client --play", NULL);
+	cairo_dock_launch_command ("rhythmbox-client --play");
 }
 
 static void rhythmbox_music (GtkMenuItem *menu_item, gpointer *data)
@@ -113,6 +113,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
+
 CD_APPLET_ON_DROP_DATA_BEGIN
 	cd_message (" %s --> nouvelle pochette ou chanson !", CD_APPLET_RECEIVED_DATA);
 
@@ -159,3 +160,16 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		g_free (cCommand);
 	}
 CD_APPLET_ON_DROP_DATA_END
+
+
+
+CD_APPLET_ON_SCROLL_BEGIN
+		if (CD_APPLET_SCROLL_DOWN) {
+			rhythmbox_next (NULL, NULL);
+		}
+		else if (CD_APPLET_SCROLL_UP) {
+			rhythmbox_previous (NULL, NULL);
+		}
+		else
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+CD_APPLET_ON_SCROLL_END

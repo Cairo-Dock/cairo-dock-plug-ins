@@ -51,7 +51,7 @@ msgstr ""
 #: ../src/applet-xgamma.c:156 ../src/applet-init.c:107
 #: ../src/applet-init.c:105 ../src/applet-notifications.c:32
 #: ../src/applet-xgamma.c:154 ../src/applet-init.c:101
-#: ../src/applet-notifications.c:31
+#: ../src/applet-notifications.c:31 ../src/applet-init.c:104
 msgid "Set up gamma :"
 msgstr "Réglez le gamma :"
 

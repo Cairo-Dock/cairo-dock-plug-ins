@@ -17,20 +17,22 @@ CD_APPLET_INCLUDE_MY_VARS
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.cDirectory 	= CD_CONFIG_GET_STRING("Configuration", "directory");
-	myConfig.iSlideTime 	= 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "slide time");
+	myConfig.cDirectory 		= CD_CONFIG_GET_STRING("Configuration", "directory");
+	myConfig.iSlideTime 		= 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "slide time");
 	myConfig.bSubDirs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "sub directories");
-	myConfig.bNoStrench 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no strench");
-	myConfig.bFillIcon 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "fill icon");
-	myConfig.iAnimation 	= CD_CONFIG_GET_INTEGER ("Configuration", "change animation");
-	myConfig.iClickOption = CD_CONFIG_GET_INTEGER ("Configuration", "click");
-	myConfig.bRandom 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
-	myConfig.pFrameAlpha	= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "frame alpha", 1.);
-	myConfig.pFrameOffset	= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "frame offset", 5.);
-	myConfig.cFrameImage 	= CD_CONFIG_GET_STRING ("Configuration", "frame");
+	myConfig.bRandom 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
 	
-	myConfig.pReflectAlpha	= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "reflect alpha", 1.);
-	myConfig.cReflectImage 	= CD_CONFIG_GET_STRING ("Configuration", "reflect");
+	myConfig.bNoStretch 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "no stretch");
+	myConfig.bFillIcon 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "fill icon");
+	myConfig.iAnimation 		= CD_CONFIG_GET_INTEGER ("Configuration", "change animation");
+	myConfig.iClickOption 		= CD_CONFIG_GET_INTEGER ("Configuration", "click");
+	
+	myConfig.fFrameAlpha		= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "frame alpha", 1.);
+	myConfig.cFrameImage 	= CD_CONFIG_GET_FILE_PATH ("Configuration", "frame", "frame.svg");
+	myConfig.iFrameOffset		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "frame offset", 5);
+	myConfig.fReflectAlpha		= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "reflect alpha", 1.);
+	myConfig.cReflectImage 	= CD_CONFIG_GET_FILE_PATH ("Configuration", "reflect", "reflect.svg");
+	
 	CD_CONFIG_GET_COLOR ("Configuration", "background color", myConfig.pBackgroundColor);
 CD_APPLET_GET_CONFIG_END
 
@@ -50,11 +52,9 @@ CD_APPLET_RESET_DATA_BEGIN
 		g_list_free (myData.pList);
 	}
 	
-	g_free(myData.cNowImage);
-	
 	cairo_surface_destroy (myData.pCairoSurface);
 	cairo_surface_destroy (myData.pPrevCairoSurface);
-	cairo_surface_destroy (myData.pCairoFrameSurface);
-	cairo_surface_destroy (myData.pCairoReflectSurface);
+	//cairo_surface_destroy (myData.pCairoFrameSurface);
+	//cairo_surface_destroy (myData.pCairoReflectSurface);
 	
 CD_APPLET_RESET_DATA_END

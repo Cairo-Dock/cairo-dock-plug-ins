@@ -147,7 +147,7 @@ msgid "Rainbow"
 msgstr "Arc-en-ciel"
 
 #: ../data/messages:51 ../data/messages:57 ../data/messages:75
-#: ../data/messages:91
+#: ../data/messages:91 ../data/messages:113
 msgid "Space between rows :"
 msgstr "Espacement entre les lignes :"
 
@@ -175,64 +175,75 @@ msgstr "Ouverture du cône :"
 msgid "Slide"
 msgstr "Diapositive"
 
-#: ../data/messages:87
+#: ../data/messages:87 ../data/messages:109
 msgid "SimpleSlide"
 msgstr "Diapositive Simple"
 
-#: ../data/messages:73 ../data/messages:89
+#: ../data/messages:73 ../data/messages:89 ../data/messages:111
 msgid "Space between columns :"
 msgstr "Espacement entre les colonnes :"
 
-#: ../data/messages:77 ../data/messages:93
+#: ../data/messages:77 ../data/messages:93 ../data/messages:115
 msgid "Max size of icons :"
 msgstr "Taille maximale des icones"
 
-#: ../data/messages:79 ../data/messages:95
+#: ../data/messages:79 ../data/messages:95 ../data/messages:117
 msgid "Sinusoidal wave radius :"
 msgstr "Rayon de la vague sinusoïdale :"
 
-#: ../data/messages:81 ../data/messages:97
+#: ../data/messages:81 ../data/messages:97 ../data/messages:119
 msgid "Use a linear wave rather than a sinusoidal one ?"
 msgstr "Utiliser une vague linéaire plutôt que sinusoïdale ?"
 
-#: ../data/messages:83 ../data/messages:99
+#: ../data/messages:83 ../data/messages:99 ../data/messages:121
 msgid "Use a wide shape ?"
 msgstr "Utiliser une forme alongée ?"
 
-#: ../data/messages:85 ../data/messages:101
+#: ../data/messages:85 ../data/messages:101 ../data/messages:123
 msgid "Display text only for pointed icon ?"
 msgstr "Afficher le texte seulement pour l'icône pointée ?"
 
+#: ../data/messages:87 ../data/messages:125
 msgid "Draw a background ?"
 msgstr "Dessiner un fond ?"
 
+#: ../data/messages:89 ../data/messages:127
 msgid "First gradient color (r,v,b,a) :"
 msgstr "Première couleur du dégradé (r,v,b,a) :"
 
+#: ../data/messages:91 ../data/messages:129
 msgid "Second gradient color (r,v,b,a) :"
 msgstr "Seconde couleur du dégradé (r,v,b,a) :"
 
+#: ../data/messages:93 ../data/messages:131
 msgid "Top to bottom gradient ?"
 msgstr "Dégradé de haut en bas?"
 
+#: ../data/messages:95 ../data/messages:133
 msgid "Left to right gradient ?"
 msgstr "Dégradé de droite à gauche ?"
 
+#: ../data/messages:97 ../data/messages:135
 msgid "Arrow width :"
 msgstr "Largeur de la flèche :"
 
+#: ../data/messages:99 ../data/messages:137
 msgid "Arrow Height :"
 msgstr "Hauteur de la flèche :"
 
+#: ../data/messages:101 ../data/messages:139
 msgid "Arrow shift percent :"
 msgstr "Décalage de la flèche au centre en pourcent :"
 
+#: ../data/messages:103 ../data/messages:141
 msgid "Corner radius :"
 msgstr "Rayon des coins :"
 
+#: ../data/messages:105 ../data/messages:143
 msgid "Border line width :"
 msgstr "Largeur de la ligne externe :"
 
+#: ../data/messages:107 ../data/messages:145
 msgid "Border line color (r,v,b,a) :"
 msgstr "Couleur de la ligne externe (r,v,b,a) :"
 
@@ -259,4 +270,3 @@ msgstr ""
 #: ../data/messages:17
 msgid "For flat separators, you can specify their color:"
 msgstr ""
-
