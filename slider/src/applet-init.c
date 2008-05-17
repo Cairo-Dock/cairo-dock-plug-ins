@@ -88,11 +88,16 @@ CD_APPLET_INIT_BEGIN (erreur)
 	//_cd_slider_load_frame(); //load background frame image
 	//cd_slider_get_files_from_dir();  /// suggestion : le threader car ca prend du temps de parcourir le disque.
 	
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
+	myData.pMeasureDirectory = cairo_dock_new_measure_timer (0,
 		NULL,
 		cd_slider_read_directory,
-		cd_slider_launch_slides);
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+		cd_slider_launch_slides);  // 0 <=> one shot measure.
+	cairo_dock_launch_measure (myData.pMeasureDirectory);
+	
+	myData.pMeasureImage = cairo_dock_new_measure_timer (0,
+		NULL,
+		cd_slider_read_image,
+		cd_slider_update_slide);  // 0 <=> one shot measure.
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
@@ -161,7 +166,9 @@ CD_APPLET_RELOAD_BEGIN
 		cd_slider_free_images_list (myData.pList);
 		myData.pList = NULL;
 		//cd_slider_get_files_from_dir(); //reload image list
-		cairo_dock_launch_measure (myData.pMeasureTimer);
+		cairo_dock_stop_measure_timer (myData.pMeasureImage);
+		cairo_dock_stop_measure_timer (myData.pMeasureDirectory);
+		cairo_dock_launch_measure (myData.pMeasureDirectory);
 	}
 	else {
 		//Nothing to do ^^

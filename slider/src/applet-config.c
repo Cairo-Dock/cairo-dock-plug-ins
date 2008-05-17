@@ -33,6 +33,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fReflectAlpha		= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "reflect alpha", 1.);
 	myConfig.cReflectImage 	= CD_CONFIG_GET_FILE_PATH ("Configuration", "reflect", "reflect.svg");
 	
+	myConfig.bUseThread = CD_CONFIG_GET_BOOLEAN ("Configuration", "use thread");
 	CD_CONFIG_GET_COLOR ("Configuration", "background color", myConfig.pBackgroundColor);
 CD_APPLET_GET_CONFIG_END
 
@@ -47,7 +48,8 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped.
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	cairo_dock_free_measure_timer (myData.pMeasureDirectory);
+	cairo_dock_free_measure_timer (myData.pMeasureImage);
 	cd_slider_free_images_list (myData.pList);
 	
 	cairo_surface_destroy (myData.pCairoSurface);

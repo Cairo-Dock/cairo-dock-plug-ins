@@ -60,6 +60,9 @@ directory= /
 sub directories=false
 #b Randomly browse files ?
 random = false
+#b Use a thread to load heavy images ?
+#{It is currently in a testing phase.}
+use thread = false
 
 #F[Behaviour;gtk-execute]
 frame_ops=

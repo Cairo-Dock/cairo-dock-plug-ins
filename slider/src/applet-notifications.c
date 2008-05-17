@@ -25,8 +25,11 @@ static void _cd_slider_toogle_pause(void) {
 	cd_message("Toggeling pause: %d", myData.bPause);
 	if (!myData.bPause) {
 		myData.bPause = TRUE;
-		g_source_remove(myData.iTimerID); //on coupe le timer en cours
-		myData.iTimerID = 0;
+		if (myData.iTimerID != 0)
+		{
+			g_source_remove(myData.iTimerID); //on coupe le timer en cours
+			myData.iTimerID = 0;
+		}
 	}
 	else {
 		myData.bPause = FALSE;

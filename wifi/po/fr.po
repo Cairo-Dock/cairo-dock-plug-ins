@@ -306,7 +306,7 @@ msgstr "Wifi désactivé."
 #: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
 #: ../src/applet-draw.c:153 ../src/applet-draw.c:124 ../src/applet-draw.c:120
 #: ../src/applet-draw.c:116 ../src/applet-draw.c:126 ../src/applet-draw.c:122
-#: ../src/applet-draw.c:121
+#: ../src/applet-draw.c:121 ../src/applet-draw.c:125
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -317,7 +317,7 @@ msgstr ""
 #: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
 #: ../src/applet-draw.c:153 ../src/applet-draw.c:124 ../src/applet-draw.c:120
 #: ../src/applet-draw.c:116 ../src/applet-draw.c:126 ../src/applet-draw.c:122
-#: ../src/applet-draw.c:121
+#: ../src/applet-draw.c:121 ../src/applet-draw.c:125
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 
@@ -367,4 +367,9 @@ msgstr "Verrouiller la position ?"
 
 #: ../data/messages:37
 msgid "Lockposition ?"
+msgstr ""
+
+#: ../data/messages:79 ../data/messages:83 ../data/messages:87
+#: ../data/messages:91 ../data/messages:95 ../data/messages:99
+msgid "Let t empty to use the default icon."
 msgstr ""

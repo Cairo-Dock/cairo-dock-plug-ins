@@ -65,6 +65,7 @@ typedef struct {
 	gdouble fReflectAlpha;
 	SliderAnimation iAnimation;
 	SliderClickOption iClickOption;
+	gboolean bUseThread;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -85,7 +86,8 @@ typedef struct {
 	//cairo_surface_t* pCairoFrameSurface;
 	//cairo_surface_t* pCairoReflectSurface;
 	SliderAnimation iAnimation;
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockMeasure *pMeasureDirectory;
+	CairoDockMeasure *pMeasureImage;
 } AppletData;
 
 

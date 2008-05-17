@@ -230,7 +230,8 @@ msgstr ""
 #: ../src/powermanager-draw.c:116 ../src/powermanager-draw.c:120
 #: ../src/powermanager-draw.c:121 ../src/powermanager-draw.c:139
 #: ../src/powermanager-draw.c:140 ../src/powermanager-draw.c:144
-#: ../src/powermanager-draw.c:145
+#: ../src/powermanager-draw.c:145 ../src/powermanager-draw.c:157
+#: ../src/powermanager-draw.c:163
 msgid "Estimated time with Charge:"
 msgstr "Autonomie estimé:"
 
@@ -326,7 +327,7 @@ msgstr "Animation pendant l'alerte :"
 #: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:147
 #: ../src/powermanager-draw.c:154 ../src/powermanager-draw.c:155
 #: ../src/powermanager-draw.c:156 ../src/powermanager-draw.c:139
-#: ../src/powermanager-draw.c:140
+#: ../src/powermanager-draw.c:140 ../src/powermanager-draw.c:157
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -339,6 +340,7 @@ msgstr ""
 #: ../src/powermanager-draw.c:147 ../src/powermanager-draw.c:154
 #: ../src/powermanager-draw.c:155 ../src/powermanager-draw.c:156
 #: ../src/powermanager-draw.c:139 ../src/powermanager-draw.c:140
+#: ../src/powermanager-draw.c:157
 msgid "Please put your Laptop on charge."
 msgstr "Veuillez mettre votre portable en charge."
 
@@ -347,6 +349,7 @@ msgstr "Veuillez mettre votre portable en charge."
 #: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:159
 #: ../src/powermanager-draw.c:160 ../src/powermanager-draw.c:161
 #: ../src/powermanager-draw.c:144 ../src/powermanager-draw.c:145
+#: ../src/powermanager-draw.c:163
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"
@@ -428,3 +431,7 @@ msgstr ""
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
+
+#: ../data/messages:35
+msgid "Lockposition ?"
+msgstr ""
