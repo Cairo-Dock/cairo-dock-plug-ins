@@ -1,5 +1,6 @@
 #!en;@VERSION@
 
+#[gtk-about]
 [Icon]
 #F[Size of the icon you wish this applet has (in pixels)]
 frame1 =
@@ -20,6 +21,10 @@ icon = gnome-terminal
 #E[] Name of the dock it belongs to:
 dock name = 
 
+icon=
+order=
+
+#[gtk-convert]
 [Desklet]
 
 #i Desklet's position (x ; y) :
@@ -44,10 +49,13 @@ keep above=false
 #b Keep on widget layer ?
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
-#b Lockposition ?
+#b Lock position ?
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
 
+use size=
+
+#[gtk-preferences]
 [GUI]
 #e[0;1] Terminal's transparency :
 #{needs to restart the applet.}

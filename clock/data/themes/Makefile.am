@@ -15,4 +15,5 @@ SUBDIRS = \
 	simple-24\
 	tango\
 	zen\
-	I_Clock
+	I_Clock\
+	BlueSlim

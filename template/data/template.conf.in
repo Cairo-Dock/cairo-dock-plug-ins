@@ -1,5 +1,6 @@
 #!en;@VERSION@
 
+#[gtk-about]
 [Icon]
 #F[Desired icon size for this applet]
 frame1 = 
@@ -20,9 +21,12 @@ icon = CD_APPLET_ICON
 #E[] Name of the dock it belongs to:
 dock name = 
 
+icon=
+order=
 
 #Uncomment the following group when you will want to make your applet detachable.
 
+##[gtk-convert]
 #[Desklet]
 
 ##i[48;256] Desklet's dimension (width x height) :
@@ -47,9 +51,12 @@ dock name =
 ##b Keep on widget layer ?
 ##{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 #on widget layer=false
-##b Lockposition ?
+##b Lock position ?
 ##{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
-#locked = false
+#locked =false
 
+use size=
+
+#[gtk-preferences]
 [Configuration]
 

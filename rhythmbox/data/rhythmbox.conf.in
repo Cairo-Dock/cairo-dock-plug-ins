@@ -1,5 +1,6 @@
 #!en;@VERSION@
 
+#[gtk-about]
 [Icon]
 
 #F[Desired icon size for this applet]
@@ -17,6 +18,10 @@ name = Rythmbox
 #E[] Name of the dock it belongs to:
 dock name = 
 
+icon=
+order=
+
+#[gtk-convert]
 [Desklet]
 
 #i[48;256] Desklet's dimension (width x height) :
@@ -41,10 +46,11 @@ keep above=false
 #b Keep on widget layer ?
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
-#b Lockposition ?
+#b Lock position ?
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
 
+#[gtk-preferences]
 [Configuration]
 
 #F[Info-bubbles]
@@ -55,7 +61,7 @@ enable_dialogs=true
 #{in ms.}
 time_dialogs=3000
 
-#F[Behaviour]
+#F[Behaviour;gtk-execute]
 frame_anim=
 
 #r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
@@ -66,7 +72,7 @@ change_animation=5
 inhibate appli = true
 
 
-#F[Display]
+#F[Display;gtk-info]
 frame_disp=
 
 #b Display album's cover instead of icon ?
@@ -79,7 +85,7 @@ quick-info_type=1
 extended_desklet=false
 
 
-#F[Personnalisation]
+#F[Personnalisation;gtk-dialog-info]
 frame_app =
 
 #S Name of an image for the 'default' icon :

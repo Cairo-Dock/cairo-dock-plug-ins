@@ -1,5 +1,6 @@
 #!en;@VERSION@
 
+#[gtk-preferences]
 [Configuration]
 
 #b Let extern applications pop-up dialogs in the dock ?

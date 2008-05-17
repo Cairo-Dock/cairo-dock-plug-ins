@@ -16,6 +16,7 @@ name = Compiz Icon
 #E[] Name of the dock it belongs to:
 dock name = 
 
+icon=
 order=
 
 #[gtk-convert]
@@ -46,6 +47,8 @@ on widget layer=false
 #b Lock position ?
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
+
+use size=
 
 #[gtk-preferences]
 [Configuration]

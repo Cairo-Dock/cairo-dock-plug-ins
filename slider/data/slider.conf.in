@@ -19,6 +19,7 @@ name = Slider
 dock name = 
 
 order=
+icon=
 
 #[gtk-convert]
 [Desklet]
