@@ -64,12 +64,5 @@ libcd_rendering_la_LIBADD = \
 	$(PACKAGE_LIBS) -lm
 
 
-libcd_rendering_la_LDFLAGS =\
-	-version-info 1:3:0
-
-
-moduledir = `pkg-config cairo-dock --variable=pluginsdir`
-
-module_DATA = \
-	.libs/libcd-rendering.so
-
+libcd_rendering_la_LDFLAGS = \
+	-avoid-version

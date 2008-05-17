@@ -13,6 +13,8 @@ AC_PROG_LIBTOOL
 
 pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/xfce-integration]
 AC_SUBST(pkgdatadir)
+libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
+AC_SUBST(libdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock thunar-vfs-1)

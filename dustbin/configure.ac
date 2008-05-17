@@ -11,16 +11,18 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/dustbin]
-AC_SUBST(pkgdatadir)
-
-
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
 GETTEXT_PACKAGE=cd-dustbin
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
 AC_SUBST(GETTEXT_PACKAGE)
+
+
+pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/dustbin]
+AC_SUBST(pkgdatadir)
+libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
+AC_SUBST(libdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock gthread-2.0)

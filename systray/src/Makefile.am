@@ -42,11 +42,4 @@ libcd_systray_la_LIBADD = \
 
 
 libcd_systray_la_LDFLAGS =\
-	-version-info 1:0:0
-
-
-modulesystraydir = `pkg-config cairo-dock --variable=pluginsdir`
-
-modulesystray_DATA = \
-	.libs/libcd-systray.so
-
+	-avoid-version

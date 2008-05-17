@@ -21,6 +21,8 @@ AC_SUBST(GETTEXT_PACKAGE)
 
 pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/netspeed]
 AC_SUBST(pkgdatadir)
+libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
+AC_SUBST(libdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

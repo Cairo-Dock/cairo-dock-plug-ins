@@ -40,11 +40,4 @@ libcd_clock_la_LIBADD = \
 
 
 libcd_clock_la_LDFLAGS =\
-	-version-info 1:0:0
-
-
-moduledir = `pkg-config cairo-dock --variable=pluginsdir`
-
-module_DATA = \
-	.libs/libcd-clock.so
-
+	-avoid-version

@@ -38,10 +38,4 @@ libcd_gnome_integration_old_la_LIBADD = \
 
 
 libcd_gnome_integration_old_la_LDFLAGS =\
-	-version-info 1:0:0
-
-
-moduledir = `pkg-config cairo-dock --variable=pluginsdir`
-module_DATA = \
-	.libs/libcd-gnome-integration-old.so
-
+	-avoid-version

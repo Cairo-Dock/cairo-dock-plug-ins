@@ -324,3 +324,7 @@ msgstr ""
 #: ../data/messages:85
 msgid "Activate extended desklet mode ?"
 msgstr ""
+
+#: ../src/rhythmbox-draw.c:76
+msgid "Track"
+msgstr ""

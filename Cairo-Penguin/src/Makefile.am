@@ -43,11 +43,4 @@ libcd_Cairo_Penguin_la_LIBADD = \
 
 
 libcd_Cairo_Penguin_la_LDFLAGS =\
-	-version-info 1:0:0
-
-
-plugindir = `pkg-config cairo-dock --variable=pluginsdir`
-
-plugin_DATA = \
-	.libs/libcd-Cairo-Penguin.so
-
+	-avoid-version

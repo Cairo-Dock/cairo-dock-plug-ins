@@ -308,7 +308,9 @@ msgstr "Donne un meilleur rendu de l'image"
 msgid ""
 "It's an image that will be displayed below the slide, like a frame for "
 "exemple. Let it empty to use the default one."
-msgstr "C'est une image à afficher en dessous de la diapositive, comme un cadre par example. Laissez vide pour utiliser celle par défaut."
+msgstr ""
+"C'est une image à afficher en dessous de la diapositive, comme un cadre par "
+"example. Laissez vide pour utiliser celle par défaut."
 
 #: ../data/messages:101
 msgid "Set it to zero if you don't want to use a background"
@@ -318,8 +320,16 @@ msgstr "Mettez-la à 0 si vous ne voulez pas utiliser d'arrière-plan."
 msgid ""
 "It's an image that will be displayed above the slide, like a reflect for "
 "exemple. Let it empty to use the default one."
-msgstr "C'est une image à afficher par-dessus la diapositive, comme un reflet par example. Laissez vide pour utiliser celle par défaut."
+msgstr ""
+"C'est une image à afficher par-dessus la diapositive, comme un reflet par "
+"example. Laissez vide pour utiliser celle par défaut."
 
 #: ../data/messages:109
 msgid "Set it to zero if you dont don't want to use a foreground"
 msgstr "Mettez-la à 0 si vous ne voulez pas utiliser d'avant-plan."
+
+#: ../data/messages:97
+msgid ""
+"It's an image that will be displayed belox the slide, like a frame for "
+"exemple. Let it empty to use the default one."
+msgstr ""

@@ -16,13 +16,13 @@ typedef enum {
 	SLIDER_GROW_UP,
 	SLIDER_SHRINK_DOWN,
 	SLIDER_RANDOM,
-	SLIDER_NB_ANIMATION,
+	SLIDER_NB_ANIMATION
 } SliderAnimation;
 
 typedef enum {
 	SLIDER_PAUSE = 0,
 	SLIDER_OPEN_IMAGE,
-	SLIDER_NB_CLICK_OPTION,
+	SLIDER_NB_CLICK_OPTION
 } SliderClickOption;
 
 typedef struct {
@@ -31,6 +31,23 @@ typedef struct {
 	double fImgW;
 	double fImgH;
 } myImgLips;
+
+typedef enum {
+	SLIDER_UNKNOWN_FORMAT = 0,
+	SLIDER_PNG,
+	SLIDER_JPG,
+	SLIDER_SVG,
+	SLIDER_GIF,
+	SLIDER_XPM,
+	SLIDER_NB_IMAGE_FORMAT
+} SliderImageFormat;
+
+
+typedef struct {
+	gchar *cPath;
+	gint iSize;
+	SliderImageFormat iFormat;
+} SliderImage;
 
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
@@ -68,6 +85,7 @@ typedef struct {
 	//cairo_surface_t* pCairoFrameSurface;
 	//cairo_surface_t* pCairoReflectSurface;
 	SliderAnimation iAnimation;
+	CairoDockMeasure *pMeasureTimer;
 } AppletData;
 
 

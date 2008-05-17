@@ -41,11 +41,4 @@ libcd_netspeed_la_LIBADD = \
 
 
 libcd_netspeed_la_LDFLAGS =\
-	-version-info 1:0:0
-
-
-plugindir = `pkg-config cairo-dock --variable=pluginsdir`
-
-plugin_DATA = \
-	.libs/libcd-netspeed.so
-
+	-avoid-version

@@ -44,11 +44,4 @@ libcd_terminal_la_LIBADD = \
 
 
 libcd_terminal_la_LDFLAGS =\
-	-version-info 1:0:0
-
-
-moduleterminaldir = `pkg-config cairo-dock --variable=pluginsdir`
-
-moduleterminal_DATA = \
-	.libs/libcd-terminal.so
-
+	-avoid-version

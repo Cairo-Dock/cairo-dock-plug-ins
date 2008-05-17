@@ -403,10 +403,20 @@ msgstr "Nom du conteneur auquel il appartient :"
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en"
-"le tirant avec le bouton gauche de la souris. Bien sur il pourra toujour"
-"être bouger avec ALT + clique_gauche"
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement enle tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujourêtre bouger "
+"avec ALT + clique_gauche"
 
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
+
+#: ../data/messages:35
+msgid "Lockposition ?"
+msgstr ""
+
+#: ../data/messages:97 ../data/messages:101 ../data/messages:105
+#: ../data/messages:109 ../data/messages:113
+msgid "Let t empty to use the default icon."
+msgstr ""

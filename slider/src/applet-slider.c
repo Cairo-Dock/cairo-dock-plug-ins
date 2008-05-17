@@ -8,15 +8,10 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 ******************************************************************************/
 #include <stdlib.h>
 #include <string.h>
-#include <dirent.h> //Utile ?
-#include <glib/gi18n.h>
-#include <glib/gstdio.h> //Utile ?
-#include <time.h>
-/* On s'encombre pas d'header inutile.
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-*/
+#include <time.h>
 
 #include "cairo-dock.h"
 
@@ -31,8 +26,21 @@ static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *p
 	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);
 }
 
-/* Bloque au niveau de lstat
-void cd_slider_measure_directory (gchar *cDirectory) {
+void cd_slider_free_image (SliderImage *pImage)
+{
+	if (pImage == NULL)
+		return;
+	g_free (pImage->cPath);
+	g_free (pImage);
+}
+
+void cd_slider_free_images_list (GList *pList)
+{
+	g_list_foreach (pList, (GFunc) cd_slider_free_image, NULL);
+	g_list_free (pList);
+}
+
+static void cd_slider_measure_directory (gchar *cDirectory) {
 	cd_debug ("%s (%s)", __func__, cDirectory);
 
 	GError *erreur = NULL;
@@ -44,12 +52,13 @@ void cd_slider_measure_directory (gchar *cDirectory) {
 	}
 	
 	struct stat buf;
-	gchar *pFilePath;
+	SliderImage *pImage;
+	SliderImageFormat iFormat;
 	const gchar *cFileName, *extension;
 	GString *sFilePath = g_string_new ("");
 	while ((cFileName = g_dir_read_name (dir)) != NULL) {
 		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
-	TODO if (lstat (sFilePath->str, &buf) != -1) {
+		if (lstat (sFilePath->str, &buf) != -1) {
 			if (S_ISDIR (buf.st_mode)) {
 				cd_debug ("%s is a directory, let's look", sFilePath->str);
 				cd_slider_measure_directory (sFilePath->str);
@@ -57,14 +66,25 @@ void cd_slider_measure_directory (gchar *cDirectory) {
 			else {
 			  extension = strchr(cFileName,'.');
 				if (extension != NULL) {
-					if (g_ascii_strcasecmp(extension, ".png") == 0
-					|| g_ascii_strcasecmp(extension, ".jpg") == 0
-					|| g_ascii_strcasecmp(extension, ".svg") == 0
-					|| g_ascii_strcasecmp(extension, ".xpm") == 0) {
-						cd_debug ("Adding %s (%s) to list", cFileName, );
-						//pFilePath = g_strconcat (myConfig.cDirectory, "/", cFileName, NULL);
-						myData.pList = g_list_prepend (myData.pList, sFilePath->str);
-						myData.iImagesNumber++;
+					iFormat = SLIDER_UNKNOWN_FORMAT;
+					if (g_ascii_strcasecmp(extension, ".png") == 0)
+						iFormat = SLIDER_PNG;
+					else if (g_ascii_strcasecmp(extension, ".jpg") == 0)
+						iFormat = SLIDER_JPG;
+					else if (g_ascii_strcasecmp(extension, ".svg") == 0)
+						iFormat = SLIDER_SVG;
+					else if (g_ascii_strcasecmp(extension, ".gif") == 0)
+						iFormat = SLIDER_GIF;
+					else if (g_ascii_strcasecmp(extension, ".xpm") == 0)
+						iFormat = SLIDER_XPM;
+					if (iFormat != SLIDER_UNKNOWN_FORMAT)
+					{
+						cd_debug ("Adding %s to list", cFileName);
+						pImage = g_new (SliderImage, 1);
+						pImage->cPath = g_strdup (sFilePath->str);
+						pImage->iSize = buf.st_size;
+						pImage->iFormat = iFormat;
+						myData.pList = g_list_prepend (myData.pList, pImage);
 					}
 					else {
 						cd_debug ("%s not handeled, ignoring...", cFileName);
@@ -76,18 +96,18 @@ void cd_slider_measure_directory (gchar *cDirectory) {
 	
 	g_string_free (sFilePath, TRUE);
 	g_dir_close (dir);
-}*/
+}
 
 void cd_slider_get_files_from_dir(void) {
 	if (myConfig.cDirectory == NULL) {
-	  //Et si on scannai le dossier image du home a la place?
+	  ///Et si on scannai le dossier image du home a la place? => bonne idee ! :-)
 		cd_warning ("No directory to scan, halt.");
 		return;
 	}
 	
-	DIR *d;
+	/*DIR *d;
 	struct dirent *dir;
-	gchar *pFilePath;
+	gchar *cFilePath;
 	const gchar *cFileName, *extension;
 	
 	cd_message("Opening %s...", myConfig.cDirectory);  /// le faire par recurrence
@@ -105,8 +125,8 @@ void cd_slider_get_files_from_dir(void) {
 				|| g_ascii_strcasecmp(extension, ".svg") == 0
 				|| g_ascii_strcasecmp(extension, ".xpm") == 0) {
 					cd_debug ("  Adding %s to list", cFileName);
-					pFilePath = g_strconcat (myConfig.cDirectory, "/", cFileName, NULL);
-					myData.pList = g_list_prepend (myData.pList, pFilePath);
+					cFilePath = g_strconcat (myConfig.cDirectory, "/", cFileName, NULL);
+					myData.pList = g_list_prepend (myData.pList, cFilePath);
 				}
 				else {
 					cd_debug ("%s not handeled, ignoring...", cFileName);
@@ -114,9 +134,9 @@ void cd_slider_get_files_from_dir(void) {
 			}
 		}
 		closedir(d);
-	}
+	}*/
 	
-	//cd_slider_measure_directory (myConfig.cDirectory); //Nouveau scan
+	cd_slider_measure_directory (myConfig.cDirectory); //Nouveau scan
 	
 	if (myConfig.bRandom) {
 		cd_debug ("Mixing images ...");
@@ -128,9 +148,22 @@ void cd_slider_get_files_from_dir(void) {
 		myData.pList = g_list_reverse (myData.pList);
 	}
 	
+	/*myData.pElement = myData.pList;
+	cd_slider_draw_images();*/
+}
+
+
+void cd_slider_read_directory (void)
+{
+	cd_slider_get_files_from_dir ();
+}
+
+void cd_slider_launch_slides (void)
+{
 	myData.pElement = myData.pList;
 	cd_slider_draw_images();
 }
+
 
 
 gboolean cd_slider_draw_images(void) {
@@ -142,8 +175,9 @@ gboolean cd_slider_draw_images(void) {
 		cd_warning ("Slider stopped, list broken");
 		return FALSE;
  	}
-	gchar *cImagePath = myData.pElement->data;
-	cd_debug ("Displaying: %s", cImagePath);
+	SliderImage *pImage = myData.pElement->data;
+	gchar *cImagePath = pImage->cPath;
+	cd_debug ("Displaying: %s (size %dbytes)", cImagePath, pImage->iSize);
 	
 	//\___________________________ On sauvegarde la surface actuelle et on charge la nouvelle surface.
 	cairo_surface_destroy (myData.pPrevCairoSurface);
@@ -260,7 +294,6 @@ gboolean cd_slider_draw_images(void) {
 	
 	//\______________________ On passe a l'image suivante.
 	myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
-	cd_debug ("Next Image: %s\n", myData.pElement->data);
 	
 	if (myConfig.iAnimation == SLIDER_DEFAULT)
 		myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);

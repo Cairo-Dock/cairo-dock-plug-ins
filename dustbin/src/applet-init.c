@@ -208,7 +208,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		//\_______________ On commence a surveiller les repertoires.
 		myData.iNbTrashes = 0;
-		gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), TRUE);
+		gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), NULL);
 		gboolean bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath, 0);  // cDustbinPath ne nous appartient plus.
 		
 		if (myConfig.cAdditionnalDirectoriesList != NULL)

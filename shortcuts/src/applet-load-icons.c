@@ -125,7 +125,7 @@ static gboolean _cd_shortcuts_check_for_redraw (gpointer data)
 		if (myIcon == NULL)
 		{
 			g_print ("annulation du chargement des raccourcis\n");
-			g_list_foreach (s_pIconList, cairo_dock_free_icon, NULL);
+			g_list_foreach (s_pIconList, (GFunc) cairo_dock_free_icon, NULL);
 			g_list_free (s_pIconList);
 			s_pIconList = NULL;
 			return FALSE;

@@ -73,7 +73,7 @@ void update_icon(gboolean make_witness)
 		//Affichage de l'info-rapide.
 		if(myConfig.quickInfoType == MY_APPLET_TRACK && myData.playing_track > 0)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.playing_track);  // inutile de redessiner notre icone, ce sera fait plus loin.
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%d", (myDesklet && myDesklet->iWidth >= 64 ? D_("Track") : ""), myData.playing_track);  // inutile de redessiner notre icone, ce sera fait plus loin.
 		}
 		
 		//Affichage de la couverture de l'album.

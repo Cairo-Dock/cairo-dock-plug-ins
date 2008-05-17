@@ -16,7 +16,7 @@ name = quitter
 
 #S Icon's name :
 #{Let it empty to use the default icon.}
-icon = gnome-session-halt
+icon =
 
 #E[] Name of the dock it belongs to:
 dock name = 

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-shortcuts],[1.1.2],[Fabounet (fabounet@users.berlios.de)])
+AC_INIT([cd-shortcuts],[1.1.2],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -21,6 +21,8 @@ AC_SUBST(GETTEXT_PACKAGE)
 
 pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/shortcuts]
 AC_SUBST(pkgdatadir)
+libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
+AC_SUBST(libdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

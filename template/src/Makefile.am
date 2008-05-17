@@ -39,11 +39,4 @@ libcd_CD_LIB_NAME_la_LIBADD = \
 
 
 libcd_CD_LIB_NAME_la_LDFLAGS =\
-	-version-info 1:0:0
-
-
-plugindir = `pkg-config cairo-dock --variable=pluginsdir`
-
-plugin_DATA = \
-	.libs/libcd-CD_APPLET_NAME.so
-
+	-avoid-version

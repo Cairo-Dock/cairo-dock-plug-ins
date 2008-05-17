@@ -40,11 +40,4 @@ libcd_Dbus_la_LIBADD = \
 
 
 libcd_Dbus_la_LDFLAGS =\
-	-version-info 1:0:0
-
-
-plugindir = `pkg-config cairo-dock --variable=pluginsdir`
-
-plugin_DATA = \
-	.libs/libcd-Dbus.so
-
+	-avoid-version

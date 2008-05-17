@@ -12,8 +12,8 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
-#include "applet-init.h"
 #include "applet-silder.h"
+#include "applet-init.h"
 
 
 CD_APPLET_DEFINITION ("slider", 1, 5, 5, CAIRO_DOCK_CATEGORY_ACCESSORY)
@@ -86,7 +86,13 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.fSurfaceHeight = myIcon->fHeight / fRatio * fMaxScale;
 	
 	//_cd_slider_load_frame(); //load background frame image
-	cd_slider_get_files_from_dir();  /// suggestion : le threader car ca prend du temps de parcourir le disque.
+	//cd_slider_get_files_from_dir();  /// suggestion : le threader car ca prend du temps de parcourir le disque.
+	
+	myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
+		NULL,
+		cd_slider_read_directory,
+		cd_slider_launch_slides);
+	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
@@ -152,7 +158,10 @@ CD_APPLET_RELOAD_BEGIN
 	
 	//\_______________ Reload all changed data.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		cd_slider_get_files_from_dir(); //reload image list
+		cd_slider_free_images_list (myData.pList);
+		myData.pList = NULL;
+		//cd_slider_get_files_from_dir(); //reload image list
+		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 	else {
 		//Nothing to do ^^

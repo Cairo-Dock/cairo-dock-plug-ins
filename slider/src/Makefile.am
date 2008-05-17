@@ -31,8 +31,8 @@ libcd_slider_la_CFLAGS = \
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
-	-Werror-implicit-function-declaration\
 	-O3
+#	-Werror-implicit-function-declaration\
 #	-g -ggdb -W -Wall
 
 
@@ -41,11 +41,4 @@ libcd_slider_la_LIBADD = \
 
 
 libcd_slider_la_LDFLAGS =\
-	-version-info 1:0:0
-
-
-plugindir = `pkg-config cairo-dock --variable=pluginsdir`
-
-plugin_DATA = \
-	.libs/libcd-slider.so
-
+	-avoid-version

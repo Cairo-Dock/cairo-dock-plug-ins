@@ -41,11 +41,4 @@ libcd_powermanager_la_LIBADD = \
 
 
 libcd_powermanager_la_LDFLAGS =\
-	-version-info 1:0:0
-
-
-moduledir = `pkg-config cairo-dock --variable=pluginsdir`
-
-module_DATA = \
-	.libs/libcd-powermanager.so
-
+	-avoid-version
