@@ -172,8 +172,9 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else {
 		//Nothing to do ^^
+		cd_slider_draw_images(); //restart sliding
 	}
 	
 	myData.bPause = FALSE;
-	cd_slider_draw_images(); //restart sliding
+	//cd_slider_draw_images(); //restart sliding
 CD_APPLET_RELOAD_END
