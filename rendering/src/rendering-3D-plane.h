@@ -31,10 +31,5 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock);
 
 void cd_rendering_register_3D_plane_renderer (void);
 
-void cairo_dock_draw_curved_frame (cairo_t *pCairoContext, double fFrameWidth, double fFrameHeight, double fDockOffsetX, double fDockOffsetY, gboolean bHorizontal, int sens);
-
-void cairo_dock_draw_curved_frame_vertical (cairo_t *pCairoContext, double fFrameWidth, double fFrameHeight, double fDockOffsetX, double fDockOffsetY, int sens);
-
-void cairo_dock_draw_curved_frame_horizontal (cairo_t *pCairoContext, double fFrameWidth, double fFrameHeight, double fDockOffsetX, double fDockOffsetY, int sens);
 
 #endif

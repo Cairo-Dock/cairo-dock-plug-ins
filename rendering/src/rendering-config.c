@@ -23,9 +23,6 @@ extern double my_fParabolePower;
 extern double my_fParaboleFactor;
 extern double my_fSeparatorColor[4];
 
-extern gboolean my_3dplane_isCurved;
-extern gdouble my_3dplane_curvitude;
-
 extern double my_fParaboleCurvature;
 extern double my_fParaboleRatio;
 extern double my_fParaboleMagnitude;
@@ -80,6 +77,10 @@ extern guint    my_diapo_simple_radius;
 extern gdouble  my_diapo_simple_color_border_line[4];
 extern gboolean my_diapo_simple_draw_background;
 
+extern gdouble my_curve_curvitude;
+extern CDSpeparatorType my_curve_iDrawSeparator3D;
+extern double my_curve_fSeparatorColor[4];
+
 void read_conf_file (GKeyFile *pKeyFile)
 {
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
@@ -91,9 +92,7 @@ void read_conf_file (GKeyFile *pKeyFile)
 	
 	double couleur[4] = {0.9,0.9,1.0,1.0};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Inclinated Plane", "separator color", &bFlushConfFileNeeded, my_fSeparatorColor, 4, couleur, NULL, NULL);
-	my_3dplane_isCurved = cairo_dock_get_boolean_key_value (pKeyFile, "Inclinated Plane", "curve my plane", &bFlushConfFileNeeded, FALSE, NULL, NULL);
-        my_3dplane_curvitude = cairo_dock_get_double_key_value (pKeyFile, "Inclinated Plane", "curvitude", &bFlushConfFileNeeded, 50, NULL, NULL) / 100;
-	
+
 	my_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10, NULL, NULL);
 	my_bRotateIconsOnEllipse = ! cairo_dock_get_boolean_key_value (pKeyFile, "Caroussel", "show face", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	my_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5, NULL, NULL);
@@ -164,6 +163,16 @@ my_diapo_simple_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "Simpl
 my_diapo_simple_radius      = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
 
 my_diapo_simple_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
+
+
+
+        my_curve_curvitude = cairo_dock_get_double_key_value (pKeyFile, "Curve", "curvitude", &bFlushConfFileNeeded, 50, NULL, NULL) / 100;
+        
+        my_curve_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "draw curve separator", &bFlushConfFileNeeded, 0, NULL, NULL);
+	
+	double couleur_[4] = {0.9,0.9,1.0,1.0};
+	cairo_dock_get_double_list_key_value (pKeyFile, "Curve", "separator curve color", &bFlushConfFileNeeded, my_curve_fSeparatorColor, 4, couleur_, NULL, NULL);
+	
 }
 
 

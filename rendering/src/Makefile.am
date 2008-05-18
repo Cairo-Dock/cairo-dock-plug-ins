@@ -27,6 +27,8 @@ libcd_rendering_la_SOURCES = \
 	rendering-diapo.h\
 	rendering-diapo-simple.c\
 	rendering-diapo-simple.h\
+	rendering-curve.c\
+	rendering-curve.h\
 	rendering-desklet-caroussel.c\
 	rendering-desklet-caroussel.h\
 	rendering-desklet-tree.c\

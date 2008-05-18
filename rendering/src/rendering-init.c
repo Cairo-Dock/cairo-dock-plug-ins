@@ -15,6 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-rainbow.h"
 #include "rendering-diapo.h"
 #include "rendering-diapo-simple.h"
+#include "rendering-curve.h"
 #include "rendering-desklet-tree.h"
 #include "rendering-desklet-caroussel.h"
 #include "rendering-desklet-simple.h"
@@ -29,9 +30,6 @@ CDSpeparatorType my_iDrawSeparator3D;
 
 cairo_surface_t *my_pFlatSeparatorSurface[2] = {NULL, NULL};
 double my_fSeparatorColor[4];
-
-gboolean my_3dplane_isCurved;
-gdouble my_3dplane_curvitude;
 
 double my_fForegroundRatio;  // fraction des icones presentes en avant-plan (represente donc l'etirement en profondeur de l'ellipse).
 double my_iGapOnEllipse;  // regle la profondeur du caroussel.
@@ -89,6 +87,9 @@ guint    my_diapo_simple_radius;
 gdouble  my_diapo_simple_color_border_line[4];
 gboolean my_diapo_simple_draw_background;
 
+gdouble my_curve_curvitude;
+CDSpeparatorType my_curve_iDrawSeparator3D;
+double my_curve_fSeparatorColor[4];
 
 CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 	rendering_register_tree_desklet_renderer ();
@@ -135,6 +136,8 @@ void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *c
 
 	cd_rendering_register_diapo_simple_renderer (); 
 	
+	cd_rendering_register_curve_renderer (); 
+	
 	cairo_dock_set_all_views_to_default ();
 	
 	//\_______________ On charge le separateur plat.
@@ -150,6 +153,7 @@ void stop (void)
 	cairo_dock_remove_renderer (MY_APPLET_RAINBOW_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_DIAPO_VIEW_NAME);
 	cairo_dock_remove_renderer (MY_APPLET_DIAPO_SIMPLE_VIEW_NAME);
+	cairo_dock_remove_renderer (MY_APPLET_CURVE_VIEW_NAME);
 	reset_data ();
 	
 	cairo_dock_reset_all_views ();  // inutile de faire cairo_dock_set_all_views_to_default () puisqu'on ne peut desactiver un module qu'en validant la config du dock.
