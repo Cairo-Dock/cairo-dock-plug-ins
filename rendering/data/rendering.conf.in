@@ -93,6 +93,9 @@ wide_grid = false
 #b Display text only for pointed icon ?
 text_only_on_pointed = false
 
+#b Display text for all icons ?
+display_all_icons = false
+
 #b Draw a background ?
 draw_background  = true
 
@@ -126,7 +129,6 @@ lineWidth = 5
 #c+4[0;1] Border line color (r,v,b,a) :
 color_border_line = 1;1;1;0.5;
 
-
 [SimpleSlide]
 
 #i[10;100] Space between columns :
@@ -149,6 +151,9 @@ simple_wide_grid = false
 
 #b Display text only for pointed icon ?
 simple_text_only_on_pointed = false
+
+#b Display text for all icons ?
+simple_display_all_icons = false
 
 #b Draw a background ?
 simple_draw_background  = true

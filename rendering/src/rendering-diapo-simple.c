@@ -44,7 +44,7 @@ extern guint    my_diapo_simple_lineWidth;
 extern guint    my_diapo_simple_radius;
 extern gdouble  my_diapo_simple_color_border_line[4];
 extern gboolean my_diapo_simple_draw_background;
-
+extern gboolean my_diapo_simple_display_all_icons;
 
 const  gint X_BORDER_SPACE = 40;
 const  gint Y_BORDER_SPACE = 40;
@@ -180,7 +180,7 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 
 			}
 
-			if (my_diapo_simple_text_only_on_pointed && icon->bPointed)
+			if ((my_diapo_simple_text_only_on_pointed && icon->bPointed) || my_diapo_simple_display_all_icons)
 			        cairo_paint (pCairoContext);
 		        else if (!my_diapo_simple_text_only_on_pointed)
 			        cairo_paint_with_alpha (pCairoContext, 1. + (icon->fScale - my_diapo_simple_fScaleMax)/(my_diapo_simple_fScaleMax - 1));

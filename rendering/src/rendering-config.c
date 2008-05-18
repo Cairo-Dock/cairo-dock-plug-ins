@@ -56,6 +56,7 @@ extern guint    my_diapo_lineWidth;
 extern guint    my_diapo_radius;
 extern gdouble  my_diapo_color_border_line[4];
 extern gboolean my_diapo_draw_background;
+extern gboolean my_diapo_display_all_icons;
 
 extern gint     my_diapo_simple_iconGapX;
 extern gint     my_diapo_simple_iconGapY;
@@ -76,6 +77,7 @@ extern guint    my_diapo_simple_lineWidth;
 extern guint    my_diapo_simple_radius;
 extern gdouble  my_diapo_simple_color_border_line[4];
 extern gboolean my_diapo_simple_draw_background;
+extern gboolean my_diapo_simple_display_all_icons;
 
 extern gdouble my_curve_curvitude;
 extern CDSpeparatorType my_curve_iDrawSeparator3D;
@@ -134,9 +136,8 @@ my_diapo_arrowHeight = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "arr
 my_diapo_arrowShift  = cairo_dock_get_double_key_value  (pKeyFile, "Slide", "arrowShift",  &bFlushConfFileNeeded, 30,   NULL, NULL) / 100;
 my_diapo_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "lineWidth",   &bFlushConfFileNeeded, 5,    NULL, NULL);
 my_diapo_radius      = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
-
 my_diapo_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
-
+my_diapo_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);
 
 my_diapo_simple_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapX",             &bFlushConfFileNeeded,    20, NULL, NULL);
 my_diapo_simple_iconGapY             = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapY",             &bFlushConfFileNeeded,    30, NULL, NULL);
@@ -161,9 +162,8 @@ my_diapo_simple_arrowHeight = cairo_dock_get_integer_key_value (pKeyFile, "Simpl
 my_diapo_simple_arrowShift  = cairo_dock_get_double_key_value  (pKeyFile, "SimpleSlide", "simple_arrowShift",  &bFlushConfFileNeeded, 30,   NULL, NULL) / 100;
 my_diapo_simple_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_lineWidth",   &bFlushConfFileNeeded, 5,    NULL, NULL);
 my_diapo_simple_radius      = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
-
 my_diapo_simple_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
-
+my_diapo_simple_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);
 
 
         my_curve_curvitude = cairo_dock_get_double_key_value (pKeyFile, "Curve", "curvitude", &bFlushConfFileNeeded, 50, NULL, NULL) / 100;

@@ -74,6 +74,7 @@ gint     my_diapo_simple_sinW;
 gboolean my_diapo_simple_lineaire;
 gboolean  my_diapo_simple_wide_grid;
 gboolean  my_diapo_simple_text_only_on_pointed;
+gboolean my_diapo_simple_display_all_icons;
 
 gdouble  my_diapo_simple_color_frame_start[4];
 gdouble  my_diapo_simple_color_frame_stop[4];
@@ -86,6 +87,7 @@ guint    my_diapo_simple_lineWidth;
 guint    my_diapo_simple_radius;
 gdouble  my_diapo_simple_color_border_line[4];
 gboolean my_diapo_simple_draw_background;
+gboolean my_diapo_display_all_icons;
 
 gdouble my_curve_curvitude;
 CDSpeparatorType my_curve_iDrawSeparator3D;

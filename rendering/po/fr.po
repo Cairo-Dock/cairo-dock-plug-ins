@@ -273,3 +273,8 @@ msgstr ""
 
 msgid "Amplitude for the curve in percent :"
 msgstr "Pourcentage de courbure :"
+
+msgid "Display text for all icons ?"
+msgstr "Montrer le texte pour toutes les icones ?"
+
+
