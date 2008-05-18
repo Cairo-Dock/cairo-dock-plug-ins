@@ -171,6 +171,7 @@ void cd_slider_read_image (void) {
 	//\___________________________ On charge la nouvelle surface.
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
+	myData.cCurrentImagePath = cImagePath;
 	cd_debug ("Displaying: %s (size %dbytes)", cImagePath, pImage->iSize);
 	
 	double fImgX, fImgY, fImgW=0, fImgH=0;

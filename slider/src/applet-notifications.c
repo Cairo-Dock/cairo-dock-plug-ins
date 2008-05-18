@@ -38,8 +38,7 @@ static void _cd_slider_toogle_pause(void) {
 
 static void _cd_slider_open_current_slide (void) {
 	if (myData.pElement != NULL && myData.pElement->data != NULL) {
-		SliderImage *pImage = myData.pElement->data;
-		gchar *cImagePath = pImage->cPath;
+		gchar *cImagePath = myData.cCurrentImagePath;
 		GError *erreur = NULL;
 		gchar *cURI = g_filename_to_uri (cImagePath, NULL, &erreur);
 		cd_debug ("Now opening image URI:%s Filename:%s", cURI, cImagePath);
