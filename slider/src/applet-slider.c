@@ -26,16 +26,14 @@ static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *p
 	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);
 }
 
-void cd_slider_free_image (SliderImage *pImage)
-{
+void cd_slider_free_image (SliderImage *pImage) {
 	if (pImage == NULL)
 		return;
 	g_free (pImage->cPath);
 	g_free (pImage);
 }
 
-void cd_slider_free_images_list (GList *pList)
-{
+void cd_slider_free_images_list (GList *pList) {
 	g_list_foreach (pList, (GFunc) cd_slider_free_image, NULL);
 	g_list_free (pList);
 }
@@ -102,6 +100,7 @@ static void cd_slider_measure_directory (gchar *cDirectory, gboolean bRecursive)
 void cd_slider_get_files_from_dir(void) {
 	if (myConfig.cDirectory == NULL) {
 	  ///Et si on scannait le dossier image du home a la place? => bonne idee, mais comment trouver son nom ? il depend de la locale.
+	  ///Il devrai y avoir une var d'environement qui le permet, je vais chercher laquelle, ou sinon c'est dans la config de gnome.
 		cd_warning ("No directory to scan, halt.");
 		return;
 	}
@@ -153,21 +152,18 @@ void cd_slider_get_files_from_dir(void) {
 	cd_slider_draw_images();*/
 }
 
-void cd_slider_read_directory (void)
-{
+void cd_slider_read_directory (void) {
 	cd_slider_get_files_from_dir ();
 }
 
-void cd_slider_launch_slides (void)
-{
+void cd_slider_launch_slides (void) {
 	myData.pElement = myData.pList;
 	cd_slider_draw_images();
 }
 
 
 
-void cd_slider_read_image (void)
-{
+void cd_slider_read_image (void) {
 	//\___________________________ On sauvegarde la surface actuelle.
 	cairo_surface_destroy (myData.pPrevCairoSurface);
 	myData.pPrevCairoSurface = myData.pCairoSurface;
@@ -201,13 +197,13 @@ void cd_slider_read_image (void)
 	myData.pImgL.fImgH = fImgH;
 }
 
-void cd_slider_update_slide (void)
-{
+void cd_slider_update_slide (void) {
 	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 	
 	if (myConfig.iAnimation == SLIDER_RANDOM) {
 		srand(time(NULL));
 		myData.iAnimation = 1 + (rand() % (SLIDER_RANDOM-1)); //Skip the default animation (1+) /// pourquoi on saute celle par defaut ?
+		//Elle bloque le slide, et je n'arrive pas a trouver pourquoi :/ et puis ca coupe les effets de voir une image arriver "Blip" sans rien
 	}
 	else {
 		myData.iAnimation = myConfig.iAnimation ;

@@ -161,6 +161,8 @@ CD_APPLET_RELOAD_BEGIN
 	myData.pCairoReflectSurface = NULL;
 	_cd_slider_load_frame(); //load background frame image*/
 	
+	myData.bPause = FALSE; //On coupe la pause pour repartir de plus belle
+	
 	//\_______________ Reload all changed data.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cd_slider_free_images_list (myData.pList);
@@ -175,6 +177,5 @@ CD_APPLET_RELOAD_BEGIN
 		cd_slider_draw_images(); //restart sliding
 	}
 	
-	myData.bPause = FALSE;
 	//cd_slider_draw_images(); //restart sliding
 CD_APPLET_RELOAD_END
