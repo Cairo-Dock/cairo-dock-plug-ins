@@ -1,5 +1,6 @@
 #!en;@VERSION@
 
+#[gtk-about]
 [Icon]
 #F[Desired icon size for this applet]
 frame1 = 
@@ -19,7 +20,10 @@ icon = default.svg
 #E[] Name of the dock it belongs to:
 dock name = 
 
+order=
+icon=
 
+#[gtk-convert]
 [Desklet]
 #i[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
@@ -47,12 +51,15 @@ on widget layer=false
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
 
+use size=
+
+#[gtk-preferences]
 [Configuration]
 #s interface :
 #{By default it will be 'eth0'.}
 interface = 
 
-#F[Information]
+#F[Information;gtk-info]
 frame_info=
 
 #r[No;On icon;On label] Display speed values :

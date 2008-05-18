@@ -72,7 +72,7 @@ change_animation=5
 inhibate appli = true
 
 
-#F[Display;gtk-info]
+#F[Display;gtk-dialog-info]
 frame_disp=
 
 #b Display album's cover instead of icon ?
@@ -85,7 +85,7 @@ quick-info_type=1
 extended_desklet=false
 
 
-#F[Personnalisation;gtk-dialog-info]
+#F[Personnalisation;gtk-info]
 frame_app =
 
 #S Name of an image for the 'default' icon :
