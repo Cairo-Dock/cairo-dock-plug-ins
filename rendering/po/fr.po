@@ -270,3 +270,9 @@ msgstr ""
 #: ../data/messages:17
 msgid "For flat separators, you can specify their color:"
 msgstr ""
+
+msgid "Draw my plane as a curve ?"
+msgstr "Courber le plan ?"
+
+msgid "Amplitude for the curve in percent :"
+msgstr "Pourcentage de courbure :"

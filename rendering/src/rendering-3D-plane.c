@@ -28,6 +28,9 @@ extern CDSpeparatorType my_iDrawSeparator3D;
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern double my_fSeparatorColor[4];
 
+extern gboolean my_3dplane_isCurved;
+extern gdouble my_3dplane_curvitude;
+
 
 void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 {
@@ -480,8 +483,15 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 	}
 	
 	cairo_save (pCairoContext);
-	cairo_dock_draw_frame (pCairoContext, fRadius, 1, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
 	
+	if (my_3dplane_isCurved)
+	{
+	        cairo_dock_draw_curved_frame (pCairoContext, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, pDock->bHorizontalDock, sens);
+	}
+	else
+	{
+	        cairo_dock_draw_frame (pCairoContext, fRadius, 1, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
+	}
 	
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
@@ -716,3 +726,43 @@ void cd_rendering_register_3D_plane_renderer (void)
 	
 	cairo_dock_register_renderer (MY_APPLET_3D_PLANE_VIEW_NAME, pRenderer);
 }
+
+void cairo_dock_draw_curved_frame_horizontal (cairo_t *pCairoContext, double fFrameWidth, double fFrameHeight, double fDockOffsetX, double fDockOffsetY, int sens)
+{
+        guint curveOffsetX = 50;   // pour augmenter la largeur de la curve
+        guint curveOffsetY = 12;   // pour augmenter la heuteur de la curve
+        //gdouble curvitude = 0.5;    ecart des points de controle 1-> nul 0-> le dock en largeur
+        
+	cairo_move_to (pCairoContext, fDockOffsetX-curveOffsetX, fDockOffsetY + sens * fFrameHeight);
+	// on trace la courbe
+
+	cairo_rel_curve_to (pCairoContext,	
+	        (fFrameWidth/2 + curveOffsetX) *    my_3dplane_curvitude , -sens * (fFrameHeight+curveOffsetY), 
+	        (fFrameWidth/2 + curveOffsetX) * (2-my_3dplane_curvitude), -sens * (fFrameHeight+curveOffsetY),
+	        fFrameWidth+curveOffsetX*2, 0);
+        // on trace la ligne du bas
+	cairo_rel_line_to (pCairoContext, -fFrameWidth-curveOffsetX*2, 0);
+}
+void cairo_dock_draw_curved_frame_vertical (cairo_t *pCairoContext, double fFrameWidth, double fFrameHeight, double fDockOffsetX, double fDockOffsetY, int sens)
+{
+        guint curveOffsetX = 50;   // pour augmenter la largeur de la curve
+        guint curveOffsetY = 12;   // pour augmenter la heuteur de la curve
+        //gdouble curvitude = 0.5;   // ecart des points de controle 1-> nul 0-> le dock en largeur
+        
+	cairo_move_to (pCairoContext, fDockOffsetY + sens * fFrameHeight, fDockOffsetX-curveOffsetX);
+	// on trace la courbe
+	cairo_rel_curve_to (pCairoContext,	
+	         -sens * (fFrameHeight+curveOffsetY), (fFrameWidth/2 + curveOffsetX) *    my_3dplane_curvitude ,  
+	         -sens * (fFrameHeight+curveOffsetY), (fFrameWidth/2 + curveOffsetX) * (2-my_3dplane_curvitude), 
+	        0, fFrameWidth+curveOffsetX*2);
+        // on trace la ligne du bas
+	cairo_rel_line_to (pCairoContext, 0, -fFrameWidth-curveOffsetX*2);
+}
+void cairo_dock_draw_curved_frame (cairo_t *pCairoContext, double fFrameWidth, double fFrameHeight, double fDockOffsetX, double fDockOffsetY, gboolean bHorizontal, int sens)
+{
+	if (bHorizontal)
+		cairo_dock_draw_curved_frame_horizontal (pCairoContext, fFrameWidth, fFrameHeight, fDockOffsetX, fDockOffsetY, sens);
+	else
+		cairo_dock_draw_curved_frame_vertical   (pCairoContext, fFrameWidth, fFrameHeight, fDockOffsetX, fDockOffsetY, sens);
+}
+

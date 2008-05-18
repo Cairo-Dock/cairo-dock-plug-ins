@@ -30,6 +30,9 @@ CDSpeparatorType my_iDrawSeparator3D;
 cairo_surface_t *my_pFlatSeparatorSurface[2] = {NULL, NULL};
 double my_fSeparatorColor[4];
 
+gboolean my_3dplane_isCurved;
+gdouble my_3dplane_curvitude;
+
 double my_fForegroundRatio;  // fraction des icones presentes en avant-plan (represente donc l'etirement en profondeur de l'ellipse).
 double my_iGapOnEllipse;  // regle la profondeur du caroussel.
 gboolean my_bRotateIconsOnEllipse;  // tourner les icones de profil ou pas.

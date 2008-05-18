@@ -13,6 +13,14 @@ draw separator = 0
 #{red, blue, green, alpha}
 separator color = 0.9;0.9;1.0;0.8
 
+
+#b Draw my plane as a curve ?
+curve my plane = false
+
+#e[0;100] Amplitude for the curve in percent :
+curvitude = 50
+
+
 [Caroussel]
 
 #e[.35;.75] Percentage of the dock's width that appears on the foreground :

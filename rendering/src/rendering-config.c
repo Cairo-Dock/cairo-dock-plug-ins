@@ -23,6 +23,9 @@ extern double my_fParabolePower;
 extern double my_fParaboleFactor;
 extern double my_fSeparatorColor[4];
 
+extern gboolean my_3dplane_isCurved;
+extern gdouble my_3dplane_curvitude;
+
 extern double my_fParaboleCurvature;
 extern double my_fParaboleRatio;
 extern double my_fParaboleMagnitude;
@@ -88,7 +91,8 @@ void read_conf_file (GKeyFile *pKeyFile)
 	
 	double couleur[4] = {0.9,0.9,1.0,1.0};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Inclinated Plane", "separator color", &bFlushConfFileNeeded, my_fSeparatorColor, 4, couleur, NULL, NULL);
-	
+	my_3dplane_isCurved = cairo_dock_get_boolean_key_value (pKeyFile, "Inclinated Plane", "curve my plane", &bFlushConfFileNeeded, FALSE, NULL, NULL);
+        my_3dplane_curvitude = cairo_dock_get_double_key_value (pKeyFile, "Inclinated Plane", "curvitude", &bFlushConfFileNeeded, 50, NULL, NULL) / 100;
 	
 	my_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10, NULL, NULL);
 	my_bRotateIconsOnEllipse = ! cairo_dock_get_boolean_key_value (pKeyFile, "Caroussel", "show face", &bFlushConfFileNeeded, FALSE, NULL, NULL);
