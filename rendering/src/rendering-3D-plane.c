@@ -46,7 +46,27 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidth;
 	pDock->iMinDockHeight = g_iDockLineWidth + g_iFrameMargin + g_fReflectSize + pDock->iMaxIconHeight;
 }
-
+void cd_rendering_calculate_max_dock_size_3D_plane2 (CairoDock *pDock)
+{
+	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
+	
+	double h = 200;
+	double fInclinationOnHorizon = h  / (pDock->fFlatDockWidth / 2);
+	double hi = g_fReflectSize + g_iFrameMargin;
+	
+	pDock->iDecorationsHeight = hi + (pDock->iMaxIconHeight + g_iFrameMargin) / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
+	
+	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
+	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
+	///pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
+	
+	pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + g_fReflectSize) + g_iLabelSize + g_iDockLineWidth + g_iFrameMargin;
+	
+	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
+	
+	pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidth;
+	pDock->iMinDockHeight = g_iDockLineWidth + g_iFrameMargin + g_fReflectSize + pDock->iMaxIconHeight;
+}
 
 void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY)
 {
@@ -142,7 +162,12 @@ static void cd_rendering_draw_3D_separator_horizontal (Icon *icon, cairo_t *pCai
 		fDockOffsetY = pDock->iDecorationsHeight + g_iDockLineWidth;
 	}
 	
-	double fInclination = my_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
+	//double h = 200;
+	//double fInclinationOnHorizon = h  / (pDock->fFlatDockWidth / 2);
+	
+	double h = my_fInclinationOnHorizon * (pDock->fFlatDockWidth / 2);
+	double fInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / (pDock->iCurrentWidth / 2);
+	///double fInclination = my_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
 	//g_print ("fInclination : %f\n", fInclination);
 	double fEpsilon = .1 * icon->fWidth;
 	double fDeltaX = pDock->iDecorationsHeight * fInclination;
@@ -277,7 +302,9 @@ static void cd_rendering_draw_3D_separator_edge_horizontal (Icon *icon, cairo_t 
 		fDockOffsetY = - g_iDockLineWidth;
 	}
 	
-	double fInclination = my_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
+	double h = my_fInclinationOnHorizon * (pDock->fFlatDockWidth / 2);
+	double fInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / (pDock->iCurrentWidth / 2);
+	///double fInclination = my_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
 	//g_print ("fInclination : %f\n", fInclination);
 	double fEpsilon = .1 * icon->fWidth;
 	double fDeltaX = pDock->iDecorationsHeight * fInclination;
@@ -632,7 +659,7 @@ void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pAr
 					icon->fAlpha = 0.4;
 				}
 				
-				if (CAIRO_DOCK_IS_SEPARATOR (icon) && my_pFlatSeparatorSurface[0] != NULL)
+				if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->acFileName == NULL && (my_pFlatSeparatorSurface[0] != NULL || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR))
 					cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock);
 				else
 					cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
