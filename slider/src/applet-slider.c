@@ -76,8 +76,7 @@ static void cd_slider_measure_directory (gchar *cDirectory, gboolean bRecursive)
 						iFormat = SLIDER_GIF;
 					else if (g_ascii_strcasecmp(extension, ".xpm") == 0)
 						iFormat = SLIDER_XPM;
-					if (iFormat != SLIDER_UNKNOWN_FORMAT)
-					{
+					if (iFormat != SLIDER_UNKNOWN_FORMAT) {
 						cd_debug ("Adding %s to list", cFileName);
 						pImage = g_new (SliderImage, 1);
 						pImage->cPath = g_strdup (sFilePath->str);
@@ -317,12 +316,10 @@ gboolean cd_slider_draw_images(void) {
 		(pImage->iFormat == SLIDER_PNG && pImage->iSize > 100e3) ||
 		(pImage->iFormat == SLIDER_JPG && pImage->iSize > 70e3) ||
 		(pImage->iFormat == SLIDER_GIF && pImage->iSize > 100e3) ||
-		(pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3)))
-	{
+		(pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3))) {
 		cairo_dock_launch_measure (myData.pMeasureImage);
 	}
-	else
-	{
+	else {
 		cd_slider_read_image ();
 		cd_slider_update_slide ();
 	}

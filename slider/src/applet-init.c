@@ -69,13 +69,11 @@ CD_APPLET_DEFINITION ("slider", 1, 5, 5, CAIRO_DOCK_CATEGORY_ACCESSORY)
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet) {
-		if (myConfig.fFrameAlpha != 0 || myConfig.fReflectAlpha != 0)
-		{
+		if (myConfig.fFrameAlpha != 0 || myConfig.fReflectAlpha != 0) {
 			gpointer pConfig[6] = {myConfig.cFrameImage, myConfig.cReflectImage, GINT_TO_POINTER (CAIRO_DOCK_FILL_SPACE), &myConfig.fFrameAlpha, &myConfig.fReflectAlpha, GINT_TO_POINTER (myConfig.iFrameOffset)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
 		}
-		else
-		{
+		else {
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 	}
@@ -139,13 +137,11 @@ CD_APPLET_RELOAD_BEGIN
 	myData.pPrevCairoSurface = NULL;
 	
 	if (myDesklet) {
-		if (myConfig.fFrameAlpha != 0 || myConfig.fReflectAlpha != 0)
-		{
+		if (myConfig.fFrameAlpha != 0 || myConfig.fReflectAlpha != 0) {
 			gpointer pConfig[6] = {myConfig.cFrameImage, myConfig.cReflectImage, GINT_TO_POINTER (CAIRO_DOCK_FILL_SPACE), &myConfig.fFrameAlpha, &myConfig.fReflectAlpha, GINT_TO_POINTER (myConfig.iFrameOffset)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
 		}
-		else
-		{
+		else {
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 	}

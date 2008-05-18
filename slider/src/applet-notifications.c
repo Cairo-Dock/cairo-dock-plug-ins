@@ -25,8 +25,7 @@ static void _cd_slider_toogle_pause(void) {
 	cd_message("Toggeling pause: %d", myData.bPause);
 	if (!myData.bPause) {
 		myData.bPause = TRUE;
-		if (myData.iTimerID != 0)
-		{
+		if (myData.iTimerID != 0) {
 			g_source_remove(myData.iTimerID); //on coupe le timer en cours
 			myData.iTimerID = 0;
 		}
@@ -36,19 +35,21 @@ static void _cd_slider_toogle_pause(void) {
 		cd_slider_draw_images(); //on relance le diapo
 	}
 }
-static void _cd_slider_open_current_slide (void)
-{
+
+static void _cd_slider_open_current_slide (void) {
 	if (myData.pElement != NULL && myData.pElement->data != NULL) {
-		gchar *cImagePath = myData.pElement->data;
+		SliderImage *pImage = myData.pElement->data;
+		gchar *cImagePath = pImage->cPath;
 		GError *erreur = NULL;
 		gchar *cURI = g_filename_to_uri (cImagePath, NULL, &erreur);
-		if (erreur != NULL)
-		{
+		cd_debug ("Now opening image URI:%s Filename:%s", cURI, cImagePath);
+		if (erreur != NULL) {
 			cd_warning ("Attention : %s", erreur->message);
 			g_error_free (erreur);
 			return ;
 		}
 		cairo_dock_fm_launch_uri (cURI);  /// proposer un editeur d'image dans le panneau de conf.
+		g_free (cURI);
 	}
 }
 
@@ -67,8 +68,7 @@ CD_APPLET_ON_CLICK_END
 static void _cd_slider_run_dir(void) {
 	GError *erreur = NULL;
 	gchar *cURI = g_filename_to_uri (myConfig.cDirectory, NULL, &erreur);
-	if (erreur != NULL)
-	{
+	if (erreur != NULL) {
 		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 		return ;
@@ -87,12 +87,10 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Slider", pSubMenu, CD_APPLET_MY_MENU)
 	
-		if (myConfig.iClickOption != SLIDER_PAUSE)
-		{
+		if (myConfig.iClickOption != SLIDER_PAUSE) {
 			CD_APPLET_ADD_IN_MENU (myData.bPause ? D_("Play") : D_("Pause"), _cd_slider_toogle_pause, pSubMenu)
 		}
-		if (myConfig.iClickOption != SLIDER_OPEN_IMAGE)
-		{
+		if (myConfig.iClickOption != SLIDER_OPEN_IMAGE) {
 			CD_APPLET_ADD_IN_MENU (D_("Open current image"), _cd_slider_open_current_slide, pSubMenu)
 		}
 		/// ajouter _cd_slider_run_dir aussi ?
