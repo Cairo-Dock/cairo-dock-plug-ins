@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <dbus/dbus-glib.h>
 
 #include "rhythmbox-draw.h"
 #include "rhythmbox-config.h"

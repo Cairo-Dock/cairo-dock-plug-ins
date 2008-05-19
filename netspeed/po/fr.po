@@ -3,20 +3,19 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2007-12-11\n"
-"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-05-19 20:39+0100\n"
+"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
+"Language-Team: Cairo-Dock <po@cairo-dock.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: France\n"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -45,8 +44,11 @@ msgstr "Module"
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: ../data/messages:15 ../data/messages:35 ../data/messages:39
-#: ../data/messages:41 ../data/messages:45
+#: ../data/messages:15
+#: ../data/messages:35
+#: ../data/messages:39
+#: ../data/messages:41
+#: ../data/messages:45
 msgid "Information"
 msgstr "Information"
 
@@ -54,8 +56,10 @@ msgstr "Information"
 msgid "Information to display on the icon :"
 msgstr "Information a afficher sur l'icon :"
 
-#: src/applet-notifications.c:13 ../src/applet-notifications.c:15
-#: ../src/applet-notifications.c:13 ../src/applet-notifications.c:11
+#: src/applet-notifications.c:13
+#: ../src/applet-notifications.c:15
+#: ../src/applet-notifications.c:13
+#: ../src/applet-notifications.c:11
 msgid ""
 "This is the netspeed applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
@@ -63,152 +67,219 @@ msgstr ""
 "Ceci est l'applet netspeed\n"
 " écrite par parAdOxxx_ZeRo pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:33
-#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:37
+#: ../src/applet-notifications.c:35
+#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:37
 msgid "Waiting"
 msgstr "Waiting"
 
-#: ../data/messages:11 ../data/messages:19 ../data/messages:53
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:11
+#: ../data/messages:19
+#: ../data/messages:53
+#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13 ../data/messages:21 ../data/messages:55
-#: ../data/messages:15 ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
+#: ../data/messages:13
+#: ../data/messages:21
+#: ../data/messages:55
+#: ../data/messages:15
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:15 ../data/messages:23 ../data/messages:57
-#: ../data/messages:17 ../data/messages:19
+#: ../data/messages:15
+#: ../data/messages:23
+#: ../data/messages:57
+#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17 ../data/messages:25 ../data/messages:59
-#: ../data/messages:19 ../data/messages:21
+#: ../data/messages:17
+#: ../data/messages:25
+#: ../data/messages:59
+#: ../data/messages:19
+#: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:19 ../data/messages:27 ../data/messages:61
-#: ../data/messages:21 ../data/messages:23
+#: ../data/messages:19
+#: ../data/messages:27
+#: ../data/messages:61
+#: ../data/messages:21
+#: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21 ../data/messages:29 ../data/messages:63
-#: ../data/messages:23 ../data/messages:25
+#: ../data/messages:21
+#: ../data/messages:29
+#: ../data/messages:63
+#: ../data/messages:23
+#: ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23 ../data/messages:31 ../data/messages:65
-#: ../data/messages:25 ../data/messages:27
+#: ../data/messages:23
+#: ../data/messages:31
+#: ../data/messages:65
+#: ../data/messages:25
+#: ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25 ../data/messages:33 ../data/messages:67
-#: ../data/messages:27 ../data/messages:29
+#: ../data/messages:25
+#: ../data/messages:33
+#: ../data/messages:67
+#: ../data/messages:27
+#: ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27 ../data/messages:35 ../data/messages:69
-#: ../data/messages:29 ../data/messages:31
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+#: ../data/messages:27
+#: ../data/messages:35
+#: ../data/messages:69
+#: ../data/messages:29
+#: ../data/messages:31
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:37 ../data/messages:71
-#: ../data/messages:31 ../data/messages:33
+#: ../data/messages:29
+#: ../data/messages:37
+#: ../data/messages:71
+#: ../data/messages:31
+#: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13 ../data/messages:33 ../data/messages:35
+#: ../data/messages:13
+#: ../data/messages:33
+#: ../data/messages:35
 #: ../data/messages:39
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:27 ../data/messages:31
+#: ../data/messages:27
+#: ../data/messages:31
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:29 ../data/messages:33 ../data/messages:37
-#: ../data/messages:41 ../data/messages:45 ../data/messages:49
+#: ../data/messages:29
+#: ../data/messages:33
+#: ../data/messages:37
+#: ../data/messages:41
+#: ../data/messages:45
+#: ../data/messages:49
 msgid "Let t empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../src/applet-netspeed.c:185 ../src/applet-netspeed.c:190
-#: ../src/applet-netspeed.c:183 ../src/applet-netspeed.c:188
-#: ../src/applet-netspeed.c:193 ../src/applet-netspeed.c:210
-#: ../src/applet-netspeed.c:215 ../src/applet-netspeed.c:211
-#: ../src/applet-netspeed.c:216 ../src/applet-netspeed.c:238
-#: ../src/applet-netspeed.c:243 ../src/applet-netspeed.c:244
-#: ../src/applet-netspeed.c:32 ../src/applet-netspeed.c:65
+#: ../src/applet-netspeed.c:185
+#: ../src/applet-netspeed.c:190
+#: ../src/applet-netspeed.c:183
+#: ../src/applet-netspeed.c:188
+#: ../src/applet-netspeed.c:193
+#: ../src/applet-netspeed.c:210
+#: ../src/applet-netspeed.c:215
+#: ../src/applet-netspeed.c:211
+#: ../src/applet-netspeed.c:216
+#: ../src/applet-netspeed.c:238
+#: ../src/applet-netspeed.c:243
+#: ../src/applet-netspeed.c:244
+#: ../src/applet-netspeed.c:32
+#: ../src/applet-netspeed.c:65
 msgid "TB"
 msgstr "To"
 
-#: ../src/applet-netspeed.c:251 ../src/applet-netspeed.c:252
-#: ../src/applet-netspeed.c:40 ../src/applet-netspeed.c:57
+#: ../src/applet-netspeed.c:251
+#: ../src/applet-netspeed.c:252
+#: ../src/applet-netspeed.c:40
+#: ../src/applet-netspeed.c:57
 msgid "GB"
 msgstr "Go"
 
-#: ../src/applet-netspeed.c:195 ../src/applet-netspeed.c:193
-#: ../src/applet-netspeed.c:198 ../src/applet-netspeed.c:220
-#: ../src/applet-netspeed.c:221 ../src/applet-netspeed.c:248
-#: ../src/applet-netspeed.c:259 ../src/applet-netspeed.c:260
-#: ../src/applet-netspeed.c:48 ../src/applet-netspeed.c:49
+#: ../src/applet-netspeed.c:195
+#: ../src/applet-netspeed.c:193
+#: ../src/applet-netspeed.c:198
+#: ../src/applet-netspeed.c:220
+#: ../src/applet-netspeed.c:221
+#: ../src/applet-netspeed.c:248
+#: ../src/applet-netspeed.c:259
+#: ../src/applet-netspeed.c:260
+#: ../src/applet-netspeed.c:48
+#: ../src/applet-netspeed.c:49
 msgid "MB"
 msgstr "Mo"
 
-#: ../src/applet-netspeed.c:200 ../src/applet-netspeed.c:198
-#: ../src/applet-netspeed.c:203 ../src/applet-netspeed.c:225
-#: ../src/applet-netspeed.c:226 ../src/applet-netspeed.c:253
-#: ../src/applet-netspeed.c:267 ../src/applet-netspeed.c:268
-#: ../src/applet-netspeed.c:56 ../src/applet-netspeed.c:41
+#: ../src/applet-netspeed.c:200
+#: ../src/applet-netspeed.c:198
+#: ../src/applet-netspeed.c:203
+#: ../src/applet-netspeed.c:225
+#: ../src/applet-netspeed.c:226
+#: ../src/applet-netspeed.c:253
+#: ../src/applet-netspeed.c:267
+#: ../src/applet-netspeed.c:268
+#: ../src/applet-netspeed.c:56
+#: ../src/applet-netspeed.c:41
 msgid "KB"
 msgstr "Ko"
 
-#: ../src/applet-netspeed.c:205 ../src/applet-netspeed.c:203
-#: ../src/applet-netspeed.c:208 ../src/applet-netspeed.c:230
-#: ../src/applet-netspeed.c:231 ../src/applet-netspeed.c:258
-#: ../src/applet-netspeed.c:275 ../src/applet-netspeed.c:282
-#: ../src/applet-netspeed.c:276 ../src/applet-netspeed.c:283
-#: ../src/applet-netspeed.c:64 ../src/applet-netspeed.c:71
-#: ../src/applet-netspeed.c:25 ../src/applet-netspeed.c:33
+#: ../src/applet-netspeed.c:205
+#: ../src/applet-netspeed.c:203
+#: ../src/applet-netspeed.c:208
+#: ../src/applet-netspeed.c:230
+#: ../src/applet-netspeed.c:231
+#: ../src/applet-netspeed.c:258
+#: ../src/applet-netspeed.c:275
+#: ../src/applet-netspeed.c:282
+#: ../src/applet-netspeed.c:276
+#: ../src/applet-netspeed.c:283
+#: ../src/applet-netspeed.c:64
+#: ../src/applet-netspeed.c:71
+#: ../src/applet-netspeed.c:25
+#: ../src/applet-netspeed.c:33
 msgid "B"
 msgstr "o"
 
-#: ../data/messages:37 ../data/messages:51 ../data/messages:53
+#: ../data/messages:37
+#: ../data/messages:51
+#: ../data/messages:53
 #: ../data/messages:57
 msgid "in seconds."
-msgstr ""
+msgstr "en secondes."
 
-#: ../data/messages:39 ../data/messages:41
+#: ../data/messages:39
+#: ../data/messages:41
 msgid "Delay between signal checks :"
-msgstr ""
+msgstr "Intervalle entre chaque vérification du signal :"
 
-#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:39
+#: ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:39
 #: ../src/applet-notifications.c:43
 msgid "Debug"
-msgstr ""
+msgstr "Debug"
 
-#: ../data/messages:37 ../data/messages:39
+#: ../data/messages:37
+#: ../data/messages:39
 msgid "in milliseconds."
-msgstr ""
+msgstr "en millisecondes."
 
-#: ../data/messages:37 ../data/messages:49 ../data/messages:51
+#: ../data/messages:37
+#: ../data/messages:49
+#: ../data/messages:51
 #: ../data/messages:55
 msgid "List of available themes for the analogic display :"
-msgstr ""
+msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 
-#: ../src/applet-netspeed.c:377 ../src/applet-netspeed.c:378
-#: ../src/applet-netspeed.c:172 ../src/applet-netspeed.c:166
-#: ../src/applet-netspeed.c:159 ../src/applet-netspeed.c:161
+#: ../src/applet-netspeed.c:377
+#: ../src/applet-netspeed.c:378
+#: ../src/applet-netspeed.c:172
+#: ../src/applet-netspeed.c:166
+#: ../src/applet-netspeed.c:159
+#: ../src/applet-netspeed.c:161
 msgid "Loading"
-msgstr ""
+msgstr "Chargement"
 
 #: ../src/applet-notifications.c:18
 #, c-format
@@ -216,63 +287,84 @@ msgid ""
 "Total amount of data :\\  downloaded : %.2fKB\n"
 "  uploaded : %.2fKB"
 msgstr ""
+"Quantité total de données :\\ Down : %.2fKo\n"
+" Up : %.2fKo"
 
-#: ../src/applet-notifications.c:19 ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:17
 #, c-format
 msgid ""
 "Total amount of data :\n"
 "  downloaded : %.2fKB\n"
 "  uploaded : %.2fKB"
 msgstr ""
+"Quantité total de données :\n"
+"  Down : %.2fKo\n"
+" Up : %.2fKo"
 
-#: ../src/applet-notifications.c:21 ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:19
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
-msgstr ""
+msgstr "L'interface '%s' semble ne pas exister ou n'est pas lisible"
 
-#: ../src/applet-notifications.c:41 ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:41
+#: ../src/applet-notifications.c:36
 #: ../src/applet-notifications.c:30
 msgid "Re-check interface"
-msgstr ""
+msgstr "Revérifier l'interface"
 
-#: ../data/messages:35 ../data/messages:37 ../data/messages:41
+#: ../data/messages:35
+#: ../data/messages:37
+#: ../data/messages:41
 msgid "By default it will be 'eth0'."
-msgstr ""
+msgstr "Par défaut ça sera 'eth0'."
 
-#: ../data/messages:37 ../data/messages:39 ../data/messages:43
+#: ../data/messages:37
+#: ../data/messages:39
+#: ../data/messages:43
 msgid "interface :"
-msgstr ""
+msgstr "interface :"
 
-#: ../data/messages:41 ../data/messages:43 ../data/messages:47
+#: ../data/messages:41
+#: ../data/messages:43
+#: ../data/messages:47
 msgid "Display speed values :"
-msgstr ""
+msgstr "Afficher les valeurs de vitesse :"
 
-#: ../data/messages:43 ../data/messages:45 ../data/messages:49
+#: ../data/messages:43
+#: ../data/messages:45
+#: ../data/messages:49
 msgid "No"
-msgstr ""
+msgstr "Non"
 
-#: ../data/messages:45 ../data/messages:47 ../data/messages:51
+#: ../data/messages:45
+#: ../data/messages:47
+#: ../data/messages:51
 msgid "On icon"
-msgstr ""
+msgstr "Sur l'icône"
 
-#: ../data/messages:47 ../data/messages:49 ../data/messages:53
+#: ../data/messages:47
+#: ../data/messages:49
+#: ../data/messages:53
 msgid "On label"
-msgstr ""
+msgstr "Sur l'étiquette"
 
-#: ../data/messages:53 ../data/messages:55 ../data/messages:59
+#: ../data/messages:53
+#: ../data/messages:55
+#: ../data/messages:59
 msgid "Delay between 2 measures :"
-msgstr ""
+msgstr "Intervalle entre 2 mesures :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du conteneur auquel il appartient:"
 
 #: ../data/messages:35
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:37
 msgid "Lockposition ?"
-msgstr ""
+msgstr "Verrouiller la position ?"
+

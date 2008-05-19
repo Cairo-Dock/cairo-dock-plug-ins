@@ -3,20 +3,19 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2007-12-11\n"
-"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-05-19 21:00+0100\n"
+"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
+"Language-Team: Cairo-Dock <po@cairo-dock.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: France\n"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -45,8 +44,10 @@ msgstr "Module"
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: src/applet-notifications.c:13 ../src/applet-notifications.c:23
-#: ../src/applet-notifications.c:22 ../src/applet-notifications.c:20
+#: src/applet-notifications.c:13
+#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:20
 #: ../src/applet-notifications.c:19
 msgid ""
 "This is the showDesklets applet\n"
@@ -60,10 +61,8 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -71,9 +70,7 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -92,18 +89,16 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13 ../data/messages:15 ../data/messages:17
+#: ../data/messages:13
+#: ../data/messages:15
+#: ../data/messages:17
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -115,14 +110,17 @@ msgstr "Nom d'une image pour montrer les desklets :"
 msgid "Image name to hide desklets :"
 msgstr "Nom d'une image pour cacher les desklets :"
 
-#: ../data/messages:17 ../data/messages:19
+#: ../data/messages:17
+#: ../data/messages:19
 msgid "Show/hide desklets that are on the widget layer too ?"
 msgstr "Montrer/cacher aussi les deklets qui sont sur la WidgetLayer ?"
 
-#: ../data/messages:19 ../data/messages:21
+#: ../data/messages:19
+#: ../data/messages:21
 msgid "Shortkey to show/hide the desklets :"
 msgstr "Raccourci clavier pour montrer/cacher les deklets:"
 
 #: ../data/messages:15
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du conteneur auquel il appartient:"
+

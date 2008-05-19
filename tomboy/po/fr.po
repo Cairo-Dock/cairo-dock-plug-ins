@@ -3,17 +3,14 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2007-12-11\n"
-"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-05-19 21:21+0100\n"
+"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
+"Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,7 +31,9 @@ msgstr "hauteur :"
 msgid "Default title :"
 msgstr "Titre par défaut :"
 
-#: ../data/messages:11 ../data/messages:25 ../data/messages:27
+#: ../data/messages:11
+#: ../data/messages:25
+#: ../data/messages:27
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -102,8 +101,10 @@ msgstr "Afficher l'album au lieu de l'icône ?"
 msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
-#: src/rhythmbox-draw.c:101 src/rhythmbox-draw.c:102
-#: ../src/rhythmbox-draw.c:77 ../src/rhythmbox-draw.c:102
+#: src/rhythmbox-draw.c:101
+#: src/rhythmbox-draw.c:102
+#: ../src/rhythmbox-draw.c:77
+#: ../src/rhythmbox-draw.c:102
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -114,29 +115,37 @@ msgstr ""
 "Album : %s\n"
 "Titre : %s"
 
-#: ../src/rhythmbox-draw.c:81 ../src/rhythmbox-draw.c:82
-#: ../src/rhythmbox-draw.c:83 ../src/rhythmbox-draw.c:106
-#: ../src/rhythmbox-draw.c:107 ../src/rhythmbox-draw.c:108
+#: ../src/rhythmbox-draw.c:81
+#: ../src/rhythmbox-draw.c:82
+#: ../src/rhythmbox-draw.c:83
+#: ../src/rhythmbox-draw.c:106
+#: ../src/rhythmbox-draw.c:107
+#: ../src/rhythmbox-draw.c:108
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
-#: ../src/rhythmbox-menu-functions.c:61 ../src/tomboy-notifications.c:14
+#: src/rhythmbox-menu-functions.c:59
+#: src/rhythmbox-menu-functions.c:60
+#: ../src/rhythmbox-menu-functions.c:61
+#: ../src/tomboy-notifications.c:14
 #: ../src/tomboy-notifications.c:12
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
 
-#: src/rhythmbox-menu-functions.c:67 src/rhythmbox-menu-functions.c:68
+#: src/rhythmbox-menu-functions.c:67
+#: src/rhythmbox-menu-functions.c:68
 #: ../src/rhythmbox-menu-functions.c:71
 msgid "Previous"
 msgstr "Précédent"
 
-#: src/rhythmbox-menu-functions.c:69 src/rhythmbox-menu-functions.c:70
+#: src/rhythmbox-menu-functions.c:69
+#: src/rhythmbox-menu-functions.c:70
 #: ../src/rhythmbox-menu-functions.c:73
 msgid "Next"
 msgstr "Suivant"
 
-#: src/rhythmbox-menu-functions.c:71 src/rhythmbox-menu-functions.c:72
+#: src/rhythmbox-menu-functions.c:71
+#: src/rhythmbox-menu-functions.c:72
 #: ../src/rhythmbox-menu-functions.c:75
 msgid "Information"
 msgstr "Information"
@@ -160,98 +169,119 @@ msgstr "temps restant"
 #: ../data/messages:51
 #, c-format
 msgid "time in %n"
-msgstr "temps en %s"
+msgstr "temps en %n"
 
 #: ../data/messages:53
 msgid "° of track"
 msgstr "° de piste"
 
-#: ../data/messages:55 ../data/messages:11 ../data/messages:13
+#: ../data/messages:55
+#: ../data/messages:11
+#: ../data/messages:13
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:57 ../data/messages:61 ../data/messages:65
-#: ../data/messages:69 ../data/messages:73 ../data/messages:13
-#: ../data/messages:17 ../data/messages:21 ../data/messages:15
-#: ../data/messages:19 ../data/messages:23
+#: ../data/messages:57
+#: ../data/messages:61
+#: ../data/messages:65
+#: ../data/messages:69
+#: ../data/messages:73
+#: ../data/messages:13
+#: ../data/messages:17
+#: ../data/messages:21
+#: ../data/messages:15
+#: ../data/messages:19
+#: ../data/messages:23
 msgid "Let t empty to use the default icon."
-msgstr ""
+msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../data/messages:59 ../data/messages:15 ../data/messages:17
+#: ../data/messages:59
+#: ../data/messages:15
+#: ../data/messages:17
 msgid "Name of an image for the 'default' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'défaut' :"
 
 #: ../data/messages:63
 msgid "Name of an image for the 'play' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'play' :"
 
 #: ../data/messages:67
 msgid "Name of an image for the 'stop' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'stop' :"
 
 #: ../data/messages:71
 msgid "Name of an image for the 'pause' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'pause' :"
 
-#: ../data/messages:75 ../data/messages:23 ../data/messages:25
+#: ../data/messages:75
+#: ../data/messages:23
+#: ../data/messages:25
 msgid "Name of an image for the 'broken' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'cassé' :"
 
-#: ../src/tomboy-notifications.c:30 ../src/tomboy-notifications.c:28
-#: ../src/tomboy-notifications.c:27 ../src/tomboy-notifications.c:41
-#: ../src/tomboy-notifications.c:42 ../src/tomboy-notifications.c:39
+#: ../src/tomboy-notifications.c:30
+#: ../src/tomboy-notifications.c:28
+#: ../src/tomboy-notifications.c:27
+#: ../src/tomboy-notifications.c:41
+#: ../src/tomboy-notifications.c:42
+#: ../src/tomboy-notifications.c:39
 msgid "Note name : "
-msgstr ""
+msgstr "Nom de la note :"
 
-#: ../data/messages:19 ../data/messages:21
+#: ../data/messages:19
+#: ../data/messages:21
 msgid "Name of an image for the 'close' icon :"
-msgstr ""
+msgstr "Nom d'une image pour l'icône 'fermer' :"
 
-#: ../src/tomboy-notifications.c:43 ../src/tomboy-notifications.c:47
-#: ../src/tomboy-notifications.c:61 ../src/tomboy-notifications.c:62
-#: ../src/tomboy-notifications.c:63 ../src/tomboy-notifications.c:60
+#: ../src/tomboy-notifications.c:43
+#: ../src/tomboy-notifications.c:47
+#: ../src/tomboy-notifications.c:61
+#: ../src/tomboy-notifications.c:62
+#: ../src/tomboy-notifications.c:63
+#: ../src/tomboy-notifications.c:60
 msgid "Add a note"
-msgstr ""
+msgstr "Ajouter une note"
 
-#: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:53
-#: ../src/tomboy-notifications.c:67 ../src/tomboy-notifications.c:68
-#: ../src/tomboy-notifications.c:69 ../src/tomboy-notifications.c:66
+#: ../src/tomboy-notifications.c:48
+#: ../src/tomboy-notifications.c:53
+#: ../src/tomboy-notifications.c:67
+#: ../src/tomboy-notifications.c:68
+#: ../src/tomboy-notifications.c:69
+#: ../src/tomboy-notifications.c:66
 msgid "Delete this note"
-msgstr ""
+msgstr "Supprimer cette note"
 
-#: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:62
-#: ../src/tomboy-notifications.c:63 ../src/tomboy-notifications.c:64
+#: ../src/tomboy-notifications.c:48
+#: ../src/tomboy-notifications.c:62
+#: ../src/tomboy-notifications.c:63
+#: ../src/tomboy-notifications.c:64
 #: ../src/tomboy-notifications.c:61
 msgid "Reload notes"
-msgstr ""
+msgstr "Recharger les notes"
 
-#: ../data/messages:27 ../data/messages:29
-msgid ""
-"If your tomboy version is not recent enough, it may not have this signal. "
-"Only check this box if you notice some message like <<No marshaller for "
-"signature of signal 'NoteDeleted'>> in the terminal."
-msgstr ""
+#: ../data/messages:27
+#: ../data/messages:29
+msgid "If your tomboy version is not recent enough, it may not have this signal. Only check this box if you notice some message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal."
+msgstr "Si votre version de Tomboy n'est pas suffisamment récente, il peut ne pas y avoir ce signal. Cochez cette case si vous remarquez un message du style <<No marshaller for signature of signal 'NoteDeleted'>> dans le terminal en mode Debug."
 
-#: ../data/messages:29 ../data/messages:31
+#: ../data/messages:29
+#: ../data/messages:31
 msgid "Emulate the 'NoteDeleted' signal ?"
-msgstr ""
+msgstr "Emuler le signal 'NoteSupprimée' ?"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du conteneur auquel il appartient:"
 
 #: ../data/messages:29
-msgid ""
-"Depending on your tomboy's version, the note deletion may not be "
-"automatically notified to us. Only check this box if you notice some error "
-"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
-"terminal."
-msgstr ""
+msgid "Depending on your tomboy's version, the note deletion may not be automatically notified to us. Only check this box if you notice some error message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal."
+msgstr "Suivant votre version de Tomboy, la suppression de message peut ne pas nous être notifiée. Cochez cette case si vous remarquez un message du style <<No marshaller for signature of signal 'NoteDeleted'>> dans le terminal en mode Debug."
 
 #: ../data/messages:33
 msgid "Let it empty to use default sub-dock view."
-msgstr ""
+msgstr "Laissez vide pour utiliser la vue de sous-docks par défaut."
 
 #: ../data/messages:35
 msgid "Name of the view used for the sub-dock :"
-msgstr ""
+msgstr "Nom de la vue utilisée pour les sous-docks :"
+

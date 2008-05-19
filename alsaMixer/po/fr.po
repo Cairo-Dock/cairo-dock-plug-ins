@@ -3,18 +3,14 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
-#: ../data/messages:29
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2007-12-11\n"
-"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-05-19 19:58+0100\n"
+"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
+"Language-Team: Français <po@cairo-dock.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,12 +38,15 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:11 ../data/messages:13
+#: ../data/messages:11
+#: ../data/messages:13
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: src/applet-notifications.c:13 ../src/applet-notifications.c:23
-#: ../src/applet-notifications.c:24 ../src/applet-notifications.c:22
+#: src/applet-notifications.c:13
+#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:24
+#: ../src/applet-notifications.c:22
 msgid ""
 "This is the AlsaMixer applet\n"
 " made by Fabounet (Fabrice Rey) for Cairo-Dock"
@@ -55,169 +54,233 @@ msgstr ""
 "Ceci est l'applet AlsaMixer\n"
 " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
 
-#: ../data/messages:11 ../data/messages:13
+#: ../data/messages:11
+#: ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13 ../data/messages:15
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
+#: ../data/messages:13
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:15 ../data/messages:17
+#: ../data/messages:15
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17 ../data/messages:19
+#: ../data/messages:17
+#: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:19 ../data/messages:21
+#: ../data/messages:19
+#: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21 ../data/messages:23
+#: ../data/messages:21
+#: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23 ../data/messages:25
+#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25 ../data/messages:27
+#: ../data/messages:25
+#: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27 ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+#: ../data/messages:27
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:31
+#: ../data/messages:29
+#: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13 ../data/messages:15 ../data/messages:31
-#: ../data/messages:33 ../data/messages:37
+#: ../data/messages:13
+#: ../data/messages:15
+#: ../data/messages:31
+#: ../data/messages:33
+#: ../data/messages:37
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:15 ../data/messages:17 ../data/messages:35
-#: ../data/messages:37 ../data/messages:41
+#: ../data/messages:15
+#: ../data/messages:17
+#: ../data/messages:35
+#: ../data/messages:37
+#: ../data/messages:41
 msgid "Let empty to use the default sound card."
-msgstr "Laisser vide pou rutiliser la carte son par défaut."
+msgstr "Laisser vide pour utiliser la carte son par défaut."
 
-#: ../data/messages:17 ../data/messages:19 ../data/messages:37
-#: ../data/messages:39 ../data/messages:43
+#: ../data/messages:17
+#: ../data/messages:19
+#: ../data/messages:37
+#: ../data/messages:39
+#: ../data/messages:43
 msgid "Sound card to control :"
 msgstr "Carte son à contrôler :"
 
-#: ../data/messages:21 ../data/messages:23 ../data/messages:49
-#: ../data/messages:53 ../data/messages:55 ../data/messages:57
+#: ../data/messages:21
+#: ../data/messages:23
+#: ../data/messages:49
+#: ../data/messages:53
+#: ../data/messages:55
+#: ../data/messages:57
 #: ../data/messages:61
 msgid "Display volume :"
 msgstr "Afficher le volume :"
 
-#: ../data/messages:23 ../data/messages:25 ../data/messages:51
-#: ../data/messages:55 ../data/messages:57 ../data/messages:59
+#: ../data/messages:23
+#: ../data/messages:25
+#: ../data/messages:51
+#: ../data/messages:55
+#: ../data/messages:57
+#: ../data/messages:59
 #: ../data/messages:63
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:25 ../data/messages:27 ../data/messages:53
-#: ../data/messages:57 ../data/messages:59 ../data/messages:61
+#: ../data/messages:25
+#: ../data/messages:27
+#: ../data/messages:53
+#: ../data/messages:57
+#: ../data/messages:59
+#: ../data/messages:61
 #: ../data/messages:65
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:27 ../data/messages:29 ../data/messages:55
-#: ../data/messages:59 ../data/messages:61 ../data/messages:63
+#: ../data/messages:27
+#: ../data/messages:29
+#: ../data/messages:55
+#: ../data/messages:59
+#: ../data/messages:61
+#: ../data/messages:63
 #: ../data/messages:67
 msgid "On icon"
 msgstr "Sur l'icône"
 
-#: ../src/applet-mixer.c:217 ../src/applet-mixer.c:248
-#: ../src/applet-mixer.c:265 ../src/applet-mixer.c:269
-#: ../src/applet-mixer.c:268 ../src/applet-mixer.c:266
+#: ../src/applet-mixer.c:217
+#: ../src/applet-mixer.c:248
+#: ../src/applet-mixer.c:265
+#: ../src/applet-mixer.c:269
+#: ../src/applet-mixer.c:268
+#: ../src/applet-mixer.c:266
 msgid "Set up volume :"
 msgstr "Réglez le volume :"
 
-#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:45
-#: ../src/applet-notifications.c:52 ../src/applet-notifications.c:50
+#: ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:50
 msgid "Adjsut channels"
 msgstr "Ajustez les canaux"
 
-#: ../data/messages:21 ../data/messages:39 ../data/messages:41
+#: ../data/messages:21
+#: ../data/messages:39
+#: ../data/messages:41
 #: ../data/messages:45
 msgid "Choose which channel to control :"
 msgstr "Choississez quel canal contrôler :"
 
-#: ../data/messages:31 ../data/messages:57 ../data/messages:61
-#: ../data/messages:63 ../data/messages:65 ../data/messages:69
+#: ../data/messages:31
+#: ../data/messages:57
+#: ../data/messages:61
+#: ../data/messages:63
+#: ../data/messages:65
+#: ../data/messages:69
 msgid "Effet to apply on the icon according to volume :"
 msgstr "Effet à appliquer à l'icône en fonction du volume :"
 
-#: ../data/messages:33 ../data/messages:59 ../data/messages:63
-#: ../data/messages:65 ../data/messages:67 ../data/messages:71
+#: ../data/messages:33
+#: ../data/messages:59
+#: ../data/messages:63
+#: ../data/messages:65
+#: ../data/messages:67
+#: ../data/messages:71
 msgid "None"
 msgstr "Aucun"
 
-#: ../data/messages:35 ../data/messages:61 ../data/messages:65
-#: ../data/messages:67 ../data/messages:69 ../data/messages:73
+#: ../data/messages:35
+#: ../data/messages:61
+#: ../data/messages:65
+#: ../data/messages:67
+#: ../data/messages:69
+#: ../data/messages:73
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../data/messages:37 ../data/messages:63 ../data/messages:67
-#: ../data/messages:69 ../data/messages:71 ../data/messages:75
+#: ../data/messages:37
+#: ../data/messages:63
+#: ../data/messages:67
+#: ../data/messages:69
+#: ../data/messages:71
+#: ../data/messages:75
 msgid "Transparency"
 msgstr "Transparence"
 
-#: ../data/messages:39 ../data/messages:65 ../data/messages:69
-#: ../data/messages:71 ../data/messages:73 ../data/messages:77
+#: ../data/messages:39
+#: ../data/messages:65
+#: ../data/messages:69
+#: ../data/messages:71
+#: ../data/messages:73
+#: ../data/messages:77
 msgid "Draw Bar"
 msgstr "Dessiner une barre"
 
 #: ../data/messages:41
 msgid "Command to run to show an advanced sound mixer :"
-msgstr "Commande à exécuter pour afficher un mixer de son avancé :"
+msgstr "Commande à exécuter pour afficher un mixeur de son avancé :"
 
-#: ../src/applet-mixer.c:44 ../src/applet-mixer.c:42
+#: ../src/applet-mixer.c:44
+#: ../src/applet-mixer.c:42
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "Je n'ai pas pu ouvrir la carte '%s'"
 
-#: ../src/applet-mixer.c:49 ../src/applet-mixer.c:47
+#: ../src/applet-mixer.c:49
+#: ../src/applet-mixer.c:47
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "carte '%s' ouverte, maus je n'ai trouvé aucune info."
 
-#: ../src/applet-mixer.c:57 ../src/applet-mixer.c:55
+#: ../src/applet-mixer.c:57
+#: ../src/applet-mixer.c:55
 msgid "I couldn't open the mixer"
-msgstr "Je n'ai pas pu ouvrir le mixer de son."
+msgstr "Je n'ai pas pu ouvrir le mixeur de son."
 
-#: ../src/applet-mixer.c:64 ../src/applet-mixer.c:62
+#: ../src/applet-mixer.c:64
+#: ../src/applet-mixer.c:62
 msgid "I couldn't attach the mixer to the card"
-msgstr ""
+msgstr "Impossible d'attacher le mixeur de son à la carte"
 
-#: ../src/applet-mixer.c:71 ../src/applet-mixer.c:69
+#: ../src/applet-mixer.c:71
+#: ../src/applet-mixer.c:69
 msgid "I couldn't register options"
-msgstr ""
+msgstr "Impossible d'enregistrer les options"
 
-#: ../src/applet-mixer.c:79 ../src/applet-mixer.c:77
+#: ../src/applet-mixer.c:79
+#: ../src/applet-mixer.c:77
 msgid "I couldn't load the mixer"
-msgstr ""
+msgstr "Impossible de charger le mixeur de son"
 
-#: ../data/messages:33 ../data/messages:35 ../data/messages:39
+#: ../data/messages:33
+#: ../data/messages:35
+#: ../data/messages:39
 msgid "Alsa"
 msgstr "Alsa"
 
-#: ../data/messages:41 ../data/messages:43 ../data/messages:47
+#: ../data/messages:41
+#: ../data/messages:43
+#: ../data/messages:47
 msgid "Let empty to use the defaut command."
 msgstr "Laisser vide pour utiliser la commande par défaut."
 
@@ -225,70 +288,97 @@ msgstr "Laisser vide pour utiliser la commande par défaut."
 msgid "Open an advanced sound mixer with :"
 msgstr "Ouvrir un panneau de mixage avancé avec :"
 
-#: ../data/messages:45 ../data/messages:47 ../data/messages:49
+#: ../data/messages:45
+#: ../data/messages:47
+#: ../data/messages:49
 #: ../data/messages:53
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr "Raccourci clavier pour montrer/cacher le dialogue :"
 
-#: ../data/messages:47 ../data/messages:51 ../data/messages:53
-#: ../data/messages:55 ../data/messages:59
+#: ../data/messages:47
+#: ../data/messages:51
+#: ../data/messages:53
+#: ../data/messages:55
+#: ../data/messages:59
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:67 ../data/messages:71 ../data/messages:75
-#: ../data/messages:79 ../data/messages:73 ../data/messages:77
-#: ../data/messages:81 ../data/messages:83 ../data/messages:87
+#: ../data/messages:67
+#: ../data/messages:71
+#: ../data/messages:75
+#: ../data/messages:79
+#: ../data/messages:73
+#: ../data/messages:77
+#: ../data/messages:81
+#: ../data/messages:83
+#: ../data/messages:87
 msgid "Let empty to use the default one."
 msgstr "Laisser vide pour utiliser celle par défaut."
 
-#: ../data/messages:69 ../data/messages:73 ../data/messages:75
-#: ../data/messages:77 ../data/messages:81
+#: ../data/messages:69
+#: ../data/messages:73
+#: ../data/messages:75
+#: ../data/messages:77
+#: ../data/messages:81
 msgid "Default icon :"
 msgstr "Icône 'défaut' :"
 
-#: ../data/messages:73 ../data/messages:77 ../data/messages:79
-#: ../data/messages:81 ../data/messages:85
+#: ../data/messages:73
+#: ../data/messages:77
+#: ../data/messages:79
+#: ../data/messages:81
+#: ../data/messages:85
 msgid "Broken icon :"
 msgstr "Icône 'cassé'"
 
-#: ../data/messages:77 ../data/messages:81 ../data/messages:83
-#: ../data/messages:85 ../data/messages:89
+#: ../data/messages:77
+#: ../data/messages:81
+#: ../data/messages:83
+#: ../data/messages:85
+#: ../data/messages:89
 msgid "Mute icon :"
 msgstr "Icône 'muet' :"
 
-#: ../src/applet-mixer.c:134 ../src/applet-mixer.c:136
+#: ../src/applet-mixer.c:134
+#: ../src/applet-mixer.c:136
 #, c-format
 msgid "I couldn't find any element '%s'"
-msgstr ""
+msgstr "Impossible de trouver l'élément '%s'"
 
-#: ../data/messages:43 ../data/messages:45 ../data/messages:49
+#: ../data/messages:43
+#: ../data/messages:45
+#: ../data/messages:49
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr "Commande spécifique pour montrer un mixer de son avancé :"
 
-#: ../data/messages:47 ../data/messages:49 ../data/messages:51
+#: ../data/messages:47
+#: ../data/messages:49
+#: ../data/messages:51
 #: ../data/messages:55
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "Variation pour 1 coup de molette, en % :"
 
-#: ../data/messages:49 ../data/messages:51 ../data/messages:53
+#: ../data/messages:49
+#: ../data/messages:51
+#: ../data/messages:53
 #: ../data/messages:57
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr "Cacher l'échelle quand la souris quitte le desklet ?"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du conteneur auquel il appartient:"
 
-#: ../data/messages:47 ../data/messages:51
+#: ../data/messages:47
+#: ../data/messages:51
 msgid "Control"
-msgstr ""
+msgstr "Contrôle"
 
 #: ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:35
 msgid "Lockposition ?"
-msgstr ""
+msgstr "Verrouiller la position ?"
+
