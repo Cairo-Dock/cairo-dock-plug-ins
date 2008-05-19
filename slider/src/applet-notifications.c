@@ -81,6 +81,23 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	_cd_slider_run_dir();
 CD_APPLET_ON_MIDDLE_CLICK_END
 
+static void _cd_slider_previous_img(void) {
+	myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
+	cd_slider_draw_images();
+}
+
+CD_APPLET_ON_SCROLL_BEGIN
+	g_source_remove(myData.iTimerID); //on coupe le timer en cours
+	myData.iTimerID = 0;
+	if (CD_APPLET_SCROLL_DOWN) {
+		cd_slider_draw_images();
+	}
+	else if (CD_APPLET_SCROLL_UP) {
+		_cd_slider_previous_img();
+	}
+	else
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+CD_APPLET_ON_SCROLL_END
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN

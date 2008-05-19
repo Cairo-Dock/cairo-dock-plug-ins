@@ -31,7 +31,6 @@ void cd_stacks_mklink(const gchar *cFile) {
 	if (!myConfig.bLocalDir)
 		return;
 	
-	//(const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, CairoDockFMSortType iSortType)
 	gchar *cBaseURI = g_strdup (cFile), *cIconName = NULL, *cURI = NULL, *cFileName = NULL;
 	gboolean *bIsDirectory=NULL;
 	double *fOrder=NULL;
@@ -75,6 +74,7 @@ void cd_stacks_run_dir(void) {
 	g_free (cURI);
 }
 
+//ajouter dans applet facility?
 gboolean _isin(gchar **cString, gchar *cCompar) {
 	if (cString == NULL)
 		return FALSE; //Nothing to search in

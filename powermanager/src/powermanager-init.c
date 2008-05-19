@@ -115,6 +115,9 @@ CD_APPLET_RELOAD_BEGIN
 			{
 				cd_powermanager_draw_icon_with_effect (myData.on_battery);
 			}
+			
+			if (!myData.on_battery && myData.battery_charge > myConfig.lowBatteryValue && myData.battery_charge < 100)
+				myData.alerted = FALSE;
 		}
 		else
 		{

@@ -54,8 +54,6 @@ void cd_stacks_build_icons (void) {
 	CD_APPLET_REDRAW_MY_ICON
 }
 
-
-//La fonction pose problème, elle segfault lors des free.
 void cd_stacks_destroy_icons (void) {
 	if (myDock && myIcon->pSubDock != NULL) {
 		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
@@ -72,7 +70,6 @@ void cd_stacks_debug_icon(Icon *pIcon) {
 	pIcon->cWorkingDirectory = NULL;
 }
 
-//A retravailler
 void cd_stacks_update (void) {
 	cd_debug("%s", __func__);
 	cd_stacks_destroy_icons();
