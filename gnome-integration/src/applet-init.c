@@ -25,6 +25,8 @@ CD_APPLET_PRE_INIT_BEGIN("gnome integration", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKT
 			pVFSBackend->list_directory = vfs_backend_list_directory;
 			pVFSBackend->launch_uri = vfs_backend_launch_uri;
 			pVFSBackend->is_mounted = vfs_backend_is_mounted;
+			pVFSBackend->can_eject = vfs_backend_can_eject;
+			pVFSBackend->eject = vfs_backend_eject_drive;
 			pVFSBackend->mount = vfs_backend_mount;
 			pVFSBackend->unmount = vfs_backend_unmount;
 			pVFSBackend->add_monitor = vfs_backend_add_monitor;

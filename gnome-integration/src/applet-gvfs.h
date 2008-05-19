@@ -21,6 +21,10 @@ void vfs_backend_launch_uri (const gchar *cURI);
 
 gchar * vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted);
 
+gboolean vfs_backend_can_eject (const gchar *cURI);
+gboolean vfs_backend_eject_drive (const gchar *cURI);
+
+
 void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock);
 
 void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock);
