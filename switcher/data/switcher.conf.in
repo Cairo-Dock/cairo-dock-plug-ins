@@ -57,14 +57,23 @@ use size=
 #[gtk-preferences]
 [Configuration]
 
-#i Number of Viewports 
-nombre de bureau = 
 
 #b Show Light Icon ?
 Vue Simple = true
 
 #b Show Quickinfo on the Icon ?
 display numero desktop = true
+
+#c[0;1] Size of the Line :
+linesize = 0.8
+
+#c4[0;1] Color of the Lines :
+#{r, v, b, a}
+rgblinecolor = 0.0; 0.0; 0.5; 0.5
+
+#c4[0;1] Color of the Indicator :
+#{r, v, b, a}
+rgbindcolor = 0.0; 0.0; 0.5; 0.5
 
 #S Default icon :
 #{Let empty to use the default one.}

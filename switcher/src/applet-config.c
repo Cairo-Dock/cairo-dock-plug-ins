@@ -14,13 +14,20 @@ CD_APPLET_GET_CONFIG_BEGIN
 	//reset_config ();
 cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
-cd_message ("Viewport X : %d", myData.switcher.iNbViewportX);
-myConfig.iNbDesks = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nombre de bureau", myData.switcher.iNbViewportX);
+//cd_message ("Viewport X : %d", myData.switcher.iNbViewportX);
+//myConfig.iNbDesks = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nombre de bureau", myData.switcher.iNbViewportX);
 		myConfig.bCurrentView = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Vue Simple", TRUE);
 		myConfig.bDisplayNumDesk = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display numero desktop", TRUE);
+double linesize = 0.300;
+		myConfig.cLineSize = CD_CONFIG_GET_DOUBLE("Configuration", "linesize");
+	double linecouleur[4] = {0., 0., 0.5, 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgblinecolor",myConfig.RGBLineColors, linecouleur);
+	double indcouleur[4] = {0., 0., 0.5, 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbindcolor",myConfig.RGBIndColors, indcouleur);
 		myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Configuration", "default icon");
 		myConfig.cBrokenIcon = CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 		myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
+		//cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
 
 CD_APPLET_GET_CONFIG_END
 

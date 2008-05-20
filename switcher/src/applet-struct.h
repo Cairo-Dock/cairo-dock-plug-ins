@@ -8,21 +8,21 @@
 #define SWITCHER_DEFAULT_NAME "Switcher"
 
 typedef struct {
-	gint iNbDesks;
-	gint iNbCols;
-	gint iNbRows;
 	gboolean bCurrentView;
 	gboolean bShowSubDock;
 	gboolean bDisplayNumDesk;
 	gint iCheckInterval;
 	gchar *cDefaultIcon;
 	gchar *cBrokenIcon;
-	gchar *cMuteIcon;
 	gchar *cShortcut;
 	gboolean bUseSeparator;
 	gboolean bDesklet3D;
 	gchar *cThemePath;
 	gchar *cRenderer;
+	gchar *cRGBColor;
+	double RGBLineColors[4];
+	double RGBIndColors[4];
+	double cLineSize;
 	} AppletConfig;
 
 typedef enum {
@@ -64,7 +64,8 @@ typedef struct
 	double MaxHeightIcon;
 	double MaxNbLigne;
 	int NumDeskbyLigne;
-	int			i;
+	int	i;
+	double MyLineSize;
 }SwitcherApplet;
 
 
