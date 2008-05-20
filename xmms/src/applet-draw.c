@@ -102,7 +102,7 @@ void cd_xmms_draw_icon (void) {
 			  cd_xmms_animate_icon(1);
 		  }
 		  if (myConfig.enableDialogs) {
-		    cd_message("Bubble for: %s", myData.playingTitle);
+		    //cd_message("Bubble for: %s", myData.playingTitle);
 			  cd_xmms_new_song_playing();
 		  }
 		}
@@ -226,9 +226,29 @@ void cd_xmms_draw_icon (void) {
 }*/
 
 
+
 //Fonction qui affiche la bulle au changement de musique
+//Old function without icon
+void cd_xmms_new_song_playing_old(void) {
+	cairo_dock_show_temporary_dialog(myData.playingTitle, myIcon, myContainer, myConfig.timeDialogs);
+}
+
+//With Icon.
 void cd_xmms_new_song_playing(void) {
-	cairo_dock_show_temporary_dialog (myData.playingTitle, myIcon, myContainer, myConfig.timeDialogs);
+	cairo_dock_remove_dialog_if_any (myIcon); //On evite la superposition ?
+	if (!myConfig.bIconBubble) {
+		cd_xmms_new_song_playing_old();
+		return;
+	}
+	
+	gchar *cImagePath = NULL;
+	if (myConfig.cUserImage[PLAYER_NONE] != NULL)
+		cImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[PLAYER_NONE]);
+	else
+		cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[PLAYER_NONE]);
+	
+	cairo_dock_show_temporary_dialog_with_icon (myData.playingTitle, myIcon, myContainer, myConfig.timeDialogs, cImagePath);
+	g_free(cImagePath);
 }
 
 //Fonction qui anime l'icone au changement de musique

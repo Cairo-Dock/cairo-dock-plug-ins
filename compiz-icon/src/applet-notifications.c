@@ -129,7 +129,7 @@ static void _action_on_click (compizAction iAction) {
 }
 CD_APPLET_ON_CLICK_BEGIN
 	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock) && pClickedIcon != NULL) {  // clic sur ne icone du sous-dock.
-		cd_debug (" clic sur %s", pClickedIcon->acName);
+		//cd_debug (" clic sur %s", pClickedIcon->acName);
 		if (pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
 			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		_compiz_action_by_id ((int) pClickedIcon->fOrder/2);

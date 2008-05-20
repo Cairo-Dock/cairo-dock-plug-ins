@@ -546,16 +546,3 @@ msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement enle ti
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37
-msgid "Lockposition ?"
-msgstr "Verrouiller la position ?"
-
-#: ../data/messages:79
-#: ../data/messages:83
-#: ../data/messages:87
-#: ../data/messages:91
-#: ../data/messages:95
-#: ../data/messages:99
-msgid "Let t empty to use the default icon."
-msgstr "Laissez vide pour utilisez l'icône par défaut."
-

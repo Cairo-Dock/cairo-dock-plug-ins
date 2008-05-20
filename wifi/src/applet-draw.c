@@ -75,7 +75,6 @@ void cd_wifi_draw_icon (void) {
 	}
 }
 
-
 void cd_wifi_draw_icon_with_effect (CDWifiQuality iQuality) {
 	cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
 	if (pSurface == NULL)	{

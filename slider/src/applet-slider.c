@@ -84,9 +84,9 @@ static void cd_slider_measure_directory (gchar *cDirectory, gboolean bRecursive)
 						pImage->iFormat = iFormat;
 						myData.pList = g_list_prepend (myData.pList, pImage);
 					}
-					else {
+					/*else {
 						cd_debug ("%s not handeled, ignoring...", cFileName);
-					}
+					}*/
 				}
 			}
 		}
@@ -138,7 +138,7 @@ void cd_slider_get_files_from_dir(void) {
 	cd_slider_measure_directory (myConfig.cDirectory, myConfig.bSubDirs); //Nouveau scan
 	
 	if (myConfig.bRandom) {
-		cd_debug ("Mixing images ...");
+		//cd_debug ("Mixing images ...");
 		GRand *pRandomGenerator = g_rand_new ();
 		myData.pList = g_list_sort_with_data (myData.pList, (GCompareDataFunc) _cd_slider_random_compare, pRandomGenerator);
 		g_rand_free (pRandomGenerator);
@@ -172,7 +172,7 @@ void cd_slider_read_image (void) {
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
 	myData.cCurrentImagePath = cImagePath;
-	cd_debug ("Displaying: %s (size %dbytes)", cImagePath, pImage->iSize);
+	//cd_debug ("Displaying: %s (size %dbytes)", cImagePath, pImage->iSize);
 	
 	double fImgX, fImgY, fImgW=0, fImgH=0;
 	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;
@@ -211,7 +211,7 @@ void cd_slider_update_slide (void) {
 	
 	switch (myData.iAnimation) {
 		case SLIDER_DEFAULT: default:
-			cd_debug("Displaying with default");
+			//cd_debug("Displaying with default");
 			//\______________________ On efface le fond
 			cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 			cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
@@ -234,45 +234,45 @@ void cd_slider_update_slide (void) {
  			CD_APPLET_REDRAW_MY_ICON
 		break;
 		case SLIDER_FADE:
-			cd_debug("Displaying with fade");
+			//cd_debug("Displaying with fade");
 			myData.fAnimAlpha = 0.;
 			myData.fAnimCNT = 1.;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade, (gpointer) NULL);
 		break;
 		case SLIDER_BLANK_FADE:
-			cd_debug("Displaying with blank fade");
+			//cd_debug("Displaying with blank fade");
 			myData.fAnimAlpha = 1.;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_blank_fade, (gpointer) NULL);
 		break;
 		case SLIDER_FADE_IN_OUT:
-			cd_debug("Displaying with fade in out");
+			//cd_debug("Displaying with fade in out");
 			myData.iAnimCNT = 0;
 			myData.fAnimAlpha = 0.;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) NULL);
 		break;
 		case SLIDER_SIDE_KICK:
-			cd_debug("Displaying with side kick");
+			//cd_debug("Displaying with side kick");
 			myData.fAnimCNT = -myData.pImgL.fImgW;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_side_kick, (gpointer) NULL);
 		break;
 		case SLIDER_DIAPORAMA:
-			cd_debug("Displaying with diaporama");
+			//cd_debug("Displaying with diaporama");
 			myData.fAnimCNT = -myData.pImgL.fImgW - 10;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_diaporama, (gpointer) NULL);
 		break;
 		case SLIDER_GROW_UP:
-			cd_debug("Displaying with grow up");
+			//cd_debug("Displaying with grow up");
 			myData.fAnimAlpha = 0.;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_grow_up, (gpointer) NULL);
 		break;
 		case SLIDER_SHRINK_DOWN:
-			cd_debug("Displaying with shrink down");
+			//cd_debug("Displaying with shrink down");
 			myData.fAnimAlpha = 2.5;
 			myData.fAnimCNT = .3;
 			if (myData.iAnimTimerID == 0)

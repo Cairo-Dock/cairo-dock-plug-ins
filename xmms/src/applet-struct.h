@@ -40,6 +40,7 @@ typedef struct {
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	MyPlayerType iPlayer;
 	gboolean bStealTaskBarIcon;
+	gboolean bIconBubble;
 } AppletConfig;
 
 typedef struct {

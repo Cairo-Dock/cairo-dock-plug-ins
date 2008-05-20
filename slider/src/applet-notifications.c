@@ -22,7 +22,7 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT (D_("This is the Slider applet\n made by ChAnGFu for Cairo-Dock"))
 
 static void _cd_slider_toogle_pause(void) {
-	cd_message("Toggeling pause: %d", myData.bPause);
+	//cd_message("Toggeling pause: %d", myData.bPause);
 	if (!myData.bPause) {
 		myData.bPause = TRUE;
 		if (myData.iTimerID != 0) {
@@ -41,7 +41,7 @@ static void _cd_slider_open_current_slide (void) {
 		gchar *cImagePath = myData.cCurrentImagePath;
 		GError *erreur = NULL;
 		gchar *cURI = g_filename_to_uri (cImagePath, NULL, &erreur);
-		cd_debug ("Now opening image URI:%s Filename:%s", cURI, cImagePath);
+		//cd_debug ("Now opening image URI:%s Filename:%s", cURI, cImagePath);
 		if (erreur != NULL) {
 			cd_warning ("Attention : %s", erreur->message);
 			g_error_free (erreur);
@@ -72,7 +72,7 @@ static void _cd_slider_run_dir(void) {
 		g_error_free (erreur);
 		return ;
 	}
-	cd_debug("Slider: will show '%s'", cURI);
+	//cd_debug("Slider: will show '%s'", cURI);
 	cairo_dock_fm_launch_uri(cURI);
 	g_free (cURI);
 }

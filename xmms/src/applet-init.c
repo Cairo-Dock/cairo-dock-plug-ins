@@ -28,8 +28,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
 		}
-		else
-		{
+		else {
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 	}
@@ -100,8 +99,7 @@ CD_APPLET_RELOAD_BEGIN
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
 		}
-		else
-		{
+		else {
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 	}
@@ -113,15 +111,12 @@ CD_APPLET_RELOAD_BEGIN
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		if (myIcon->cClass != NULL)  // on est en train d'inhiber l'appli.
-		{
-			if (! myConfig.bStealTaskBarIcon || strcmp (myIcon->cClass, s_cPlayerClass[myConfig.iPlayer]) != 0)  // on ne veut plus l'inhiber ou on veut inhiber une autre.
-			{
+		if (myIcon->cClass != NULL) { // on est en train d'inhiber l'appli.
+			if (! myConfig.bStealTaskBarIcon || strcmp (myIcon->cClass, s_cPlayerClass[myConfig.iPlayer]) != 0) { // on ne veut plus l'inhiber ou on veut inhiber une autre.
 				cairo_dock_deinhibate_class (myIcon->cClass, myIcon);
 			}
 		}
-		if (myConfig.bStealTaskBarIcon && myIcon->cClass == NULL)  // on comence a inhiber l'appli si on ne le faisait pas, ou qu'on s'est arrete.
-		{
+		if (myConfig.bStealTaskBarIcon && myIcon->cClass == NULL) { // on comence a inhiber l'appli si on ne le faisait pas, ou qu'on s'est arrete.
 			cairo_dock_inhibate_class (s_cPlayerClass[myConfig.iPlayer], myIcon);
 		}
 		// inutile de relancer le timer, sa frequence ne change pas. Inutile aussi de faire 1 iteration ici, les modifs seront prises en compte a la prochaine iteration, dans au plus 1s.

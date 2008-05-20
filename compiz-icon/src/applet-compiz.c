@@ -60,7 +60,8 @@ void cd_compiz_start_compiz (void) {
 	}
 	
 	if (strcmp (myConfig.cWindowDecorator, "emerald") != 0)
-		g_string_append (sCommand, " --sm-disable");  // pas de '&' a la fin.
+		g_string_append (sCommand, " --sm-disable");
+	
 	cd_debug ("%s (%s)", __func__, sCommand->str);
 	
 	myData.bCompizRestarted = TRUE;
@@ -69,7 +70,7 @@ void cd_compiz_start_compiz (void) {
 	
 	g_string_free (sCommand, TRUE);
 	
-	cd_compiz_start_favorite_decorator ();  // ca ne marche pas si on ecrit quelque chose du genre "compiz && emerald".
+	cd_compiz_start_favorite_decorator ();
 }
 
 void cd_compiz_switch_manager(void) {
@@ -136,7 +137,7 @@ void cd_compiz_read_data(void) {
 
 void cd_compiz_update_from_data (void) {
 	cd_compiz_update_main_icon ();
-	cd_debug ("Compiz: %d - Decorator: %d", myData.bCompizIsRunning, myData.bDecoratorIsRunning);
+	//cd_debug ("Compiz: %d - Decorator: %d", myData.bCompizIsRunning, myData.bDecoratorIsRunning);
 	if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz) {
 		if (! myData.bCompizRestarted) {
 			myData.bCompizRestarted = TRUE;  // c'est nous qui l'avons change.

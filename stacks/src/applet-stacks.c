@@ -20,8 +20,6 @@ void cd_stacks_check_local(void) {
 		g_mkdir_with_parents (cDirectory, 7*8*8+7*8+5);
 		cd_debug("Stacks local directory made");
 	}
-	else
-		cd_debug("Stacks local directory exists, let's list it");
 	
 	g_free (cDirectory);
 }
@@ -48,9 +46,9 @@ void cd_stacks_mklink(const gchar *cFile) {
 	
 	erreur = NULL;
 	gchar *cCommand = g_strdup_printf("ln -s \"%s\" \"/home/%s/.cairo-dock/stacks/%s\"", cURI, g_getenv ("USER"), cFileName);
-	cd_debug("Stacks: linking %s in local dir", cFileName);
+	//cd_debug("Stacks: linking %s in local dir", cFileName);
 	if (cCommand != NULL && cFile != NULL) {
-		cd_debug("Stacks: will use '%s'", cCommand);
+		//cd_debug("Stacks: will use '%s'", cCommand);
 		g_spawn_command_line_async (cCommand, &erreur);
 		g_free(cCommand);
 	}
@@ -61,15 +59,16 @@ void cd_stacks_mklink(const gchar *cFile) {
 }
 
 void cd_stacks_clean_local(void) {
+	cd_debug("%s", __func__);
 	gchar *cCommand = g_strdup_printf("cd /home/%s/.cairo-dock/stacks/ && rm *", g_getenv ("USER"));
-	cd_debug("Stacks: will use '%s'", cCommand);
+	//cd_debug("Stacks: will use '%s'", cCommand);
 	system (cCommand);
 	g_free(cCommand);
 }
 
 void cd_stacks_run_dir(void) {
 	gchar *cURI = g_strdup_printf("file://%s", myConfig.cMonitoredDirectory);
-	cd_debug("Stacks: will use '%s'", cURI);
+	//cd_debug("Stacks: will use '%s'", cURI);
 	cairo_dock_fm_launch_uri(cURI);
 	g_free (cURI);
 }
@@ -99,7 +98,7 @@ GList* cd_stacks_mime_filter(GList *pList) {
   for (pElement = pList; pElement != NULL; pElement = pElement->next) {
   	Icon *pIcon = pElement->data;
     if (_isin(myConfig.cMimeTypes, pIcon->acFileName) == FALSE) {
-    	cd_debug ("Adding %s (%s) to filtered list", pIcon->acName, pIcon->acFileName);
+    	//cd_debug ("Adding %s (%s) to filtered list", pIcon->acName, pIcon->acFileName);
     	mList = g_list_append(mList, pElement->data);
     }
   }
