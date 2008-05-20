@@ -24,6 +24,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		NULL,
 		cd_rame_read_data,
 		cd_rame_update_from_data);
+	myData.bAcquisitionOK = TRUE;
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT

@@ -21,7 +21,6 @@ icon = gnome-main-menu
 #E[] Name of the dock it belongs to:
 dock name = 
 
-icon=
 order=
 
 #[gtk-convert]

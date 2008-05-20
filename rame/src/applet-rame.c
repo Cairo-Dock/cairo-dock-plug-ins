@@ -36,8 +36,8 @@ void cd_rame_read_data (void)
 {
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
-	g_return_if_fail (fTimeElapsed > 0.1);
 	g_timer_start (myData.pClock);
+	g_return_if_fail (fTimeElapsed > 0.1);
 	
 	gchar *cContent = NULL;
 	gsize length=0;
@@ -86,6 +86,8 @@ void cd_rame_read_data (void)
 		
 		g_free (cContent);
 		myData.bAcquisitionOK = TRUE;
+		if (! myData.bInitialized)
+			myData.bInitialized = TRUE;
 	}
 }
 
@@ -105,48 +107,57 @@ void cd_rame_update_from_data (void)
 	{
 		cairo_dock_set_normal_frequency_state (myData.pMeasureTimer);
 		
-		double fRamPercent = 100. * (myData.ramUsed - myData.ramCached) / myData.ramTotal;
-		double fSwapPercent = 100. * myData.swapUsed / myData.swapTotal;
-		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
+		if (! myData.bInitialized)
 		{
-			GString *sInfo = g_string_new ("");
-			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL || myDesklet)
-				g_string_printf (sInfo, "RAM:");
-			
-			g_string_append_printf (sInfo, (fRamPercent < 10 ? "%.1f%%" : "%.0f%%"), fRamPercent);
-			if (myConfig.bShowSwap)
-			{
-				g_string_append_c (sInfo, '\n');
-				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
-					g_string_append_printf (sInfo, "SWAP");
-				g_string_append_printf (sInfo, (fSwapPercent < 10 ? "%.1f%%" : "%.0f%%"), fSwapPercent);
-			}
-			
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (sInfo->str)
-			}
-			else
-			{
-				CD_APPLET_SET_NAME_FOR_MY_ICON (sInfo->str)
-			}
-			g_string_free (sInfo, TRUE);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
+			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 		}
-		
-		if (! myConfig.bShowSwap)
-			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, fRamPercent / 100);
 		else
 		{
-			GList *pList = NULL;  /// un tableau ca serait plus sympa ...
-			double *pValue = g_new (double, 1);
-			*pValue = (double) fRamPercent / 100;
-			pList = g_list_append (pList, pValue);
-			pValue = g_new (double, 1);
-			*pValue = (double) fSwapPercent / 100;
-			pList = g_list_append (pList, pValue);
-			make_cd_Gauge_multiValue (myDrawContext, myContainer, myIcon, myData.pGauge, pList);
-			g_list_foreach (pList, (GFunc) g_free, NULL);
-			g_list_free (pList);
+			double fRamPercent = 100. * (myData.ramUsed - myData.ramCached) / myData.ramTotal;
+			double fSwapPercent = 100. * myData.swapUsed / myData.swapTotal;
+			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
+			{
+				GString *sInfo = g_string_new ("");
+				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL || myDesklet)
+					g_string_printf (sInfo, "RAM:");
+				
+				g_string_append_printf (sInfo, (fRamPercent < 10 ? "%.1f%%" : "%.0f%%"), fRamPercent);
+				if (myConfig.bShowSwap)
+				{
+					g_string_append_c (sInfo, '\n');
+					if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
+						g_string_append_printf (sInfo, "SWAP");
+					g_string_append_printf (sInfo, (fSwapPercent < 10 ? "%.1f%%" : "%.0f%%"), fSwapPercent);
+				}
+				
+				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+				{
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (sInfo->str)
+				}
+				else
+				{
+					CD_APPLET_SET_NAME_FOR_MY_ICON (sInfo->str)
+				}
+				g_string_free (sInfo, TRUE);
+			}
+			
+			if (! myConfig.bShowSwap)
+				make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, fRamPercent / 100);
+			else
+			{
+				GList *pList = NULL;  /// un tableau ca serait plus sympa ...
+				double *pValue = g_new (double, 1);
+				*pValue = (double) fRamPercent / 100;
+				pList = g_list_append (pList, pValue);
+				pValue = g_new (double, 1);
+				*pValue = (double) fSwapPercent / 100;
+				pList = g_list_append (pList, pValue);
+				make_cd_Gauge_multiValue (myDrawContext, myContainer, myIcon, myData.pGauge, pList);
+				g_list_foreach (pList, (GFunc) g_free, NULL);
+				g_list_free (pList);
+			}
 		}
 	}
 }

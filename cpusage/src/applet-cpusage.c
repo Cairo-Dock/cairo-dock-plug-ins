@@ -119,8 +119,8 @@ void cd_cpusage_read_data (void)
 	
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
-	g_return_if_fail (fTimeElapsed > 0.1);  // en conf, c'est 1s minimum.
 	g_timer_start (myData.pClock);
+	g_return_if_fail (fTimeElapsed > 0.1);  // en conf, c'est 1s minimum.
 	
 	FILE *fd = fopen (CPUSAGE_DATA_PIPE, "r");
 	gchar *tmp = fgets (cContent, 512, fd);  // on ne prend que la 1ere ligne, moyenne (somme ?) de tous les processeurs.

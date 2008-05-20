@@ -19,7 +19,7 @@ CD_APPLET_INCLUDE_MY_VARS
 void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 	int smallRate;
 	
-	if (rate == 0)
+	if (rate <= 0)
 	{
 		if (myDesklet)
 			g_sprintf(debit, "0 %s/s", D_("B"));
@@ -36,7 +36,7 @@ void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 	}
 	else if (rate < (2>>20))
 	{
-		smallRate = rate >> 10;
+		smallRate = rate << 10;
 		if (myDesklet)
 			g_sprintf(debit, "%i %s/s", smallRate, D_("KB"));
 		else
@@ -44,7 +44,7 @@ void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 	}
 	else if (rate < (2>>30))
 	{
-		smallRate = rate >> 20;
+		smallRate = rate << 20;
 		if (myDesklet)
 			g_sprintf(debit, "%i %s/s", smallRate, D_("MB"));
 		else
@@ -52,7 +52,7 @@ void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 	}
 	else if (rate < ((unsigned long long)2>>40))
 	{
-		smallRate = rate >> 30;
+		smallRate = rate << 30;
 		if (myDesklet)
 			g_sprintf(debit, "%i %s/s", smallRate, D_("GB"));
 		else
@@ -60,7 +60,7 @@ void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 	}
 	else  // c'est vraiment pour dire qu'on est exhaustif :-)
 	{
-		smallRate = rate >> 40;
+		smallRate = rate << 40;
 		if (myDesklet)
 			g_sprintf(debit, "%i %s/s", smallRate, D_("TB"));
 		else
@@ -73,8 +73,8 @@ void cd_netspeed_read_data (void)
 {
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
-	g_return_if_fail (fTimeElapsed != 0);
 	g_timer_start (myData.pClock);
+	g_return_if_fail (fTimeElapsed > 0.1);
 	
 	gchar *cContent = NULL;
 	gsize length=0;

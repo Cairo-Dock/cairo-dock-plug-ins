@@ -423,8 +423,8 @@ msgid "If locked, the desklet can't be moved by simply dragging it with the left
 msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:35
-msgid "Lockposition ?"
-msgstr "Verrouiller la position ?"
+msgid "Lock position ?"
+msgstr "Vérrouiller la position ?"
 
 #: ../data/messages:85
 msgid "Activate extended desklet mode ?"

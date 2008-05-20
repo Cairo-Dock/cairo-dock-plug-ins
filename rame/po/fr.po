@@ -288,6 +288,9 @@ msgid "If locked, the desklet can't be moved by simply dragging it with the left
 msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:37
-msgid "Lockposition ?"
+msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
+#: ../src/applet-rame.c:113
+msgid "Loading"
+msgstr "Chargement"

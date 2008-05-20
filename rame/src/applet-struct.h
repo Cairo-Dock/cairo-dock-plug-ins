@@ -18,6 +18,7 @@ typedef struct {
 	guint ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
 	guint swapTotal, swapFree, swapUsed;
 	gboolean bAcquisitionOK;
+	gboolean bInitialized;
 	CairoDockMeasure *pMeasureTimer;
 	gboolean bShowSwap;
 	Gauge *pGauge;
