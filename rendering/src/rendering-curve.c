@@ -629,7 +629,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
         // on calcule donc k1, k2, k3 : 
         gdouble xa, xb, xc, ya, yb, yc, k1, k2, k3;
         if(pDock->icons  == NULL)
-                return;
+                return NULL;
         xa = ((Icon*) g_list_first (pDock->icons)->data)->fX ; // icone de gauche
         ya = 0;
         xc = ((Icon*) g_list_last (pDock->icons)->data)->fX;  // icone de droite

@@ -25,9 +25,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define MY_APPLET_CONF_FILE "rendering.conf"
 #define MY_APPLET_USER_DATA_DIR "rendering"
 
-double my_fInclinationOnHorizon;  // inclinaison de la ligne de fuite vers l'horizon.
+int iVanishingPointY;  // distance du point de fuite au plan (au niveau du point de contact du plan et des icones).
 CDSpeparatorType my_iDrawSeparator3D;
 
+double my_fInclinationOnHorizon;  // inclinaison de la ligne de fuite vers l'horizon.
 cairo_surface_t *my_pFlatSeparatorSurface[2] = {NULL, NULL};
 double my_fSeparatorColor[4];
 
@@ -108,8 +109,8 @@ static void _load_flat_separator (CairoContainer *pContainer)
 	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 	{
 		cairo_t *pSourceContext = cairo_dock_create_context_from_window (pContainer);
-		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (pSourceContext, 150, 150);
-		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], pSourceContext, 150, 150, -G_PI / 2);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (pSourceContext, 400, 150);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], pSourceContext, 400, 150, -G_PI / 2);
 		cairo_destroy (pSourceContext);
 	}
 	else

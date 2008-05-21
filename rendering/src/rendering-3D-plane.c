@@ -22,45 +22,36 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #endif
 
 #include "rendering-3D-plane.h"
+#include "rendering-3D-plane.h"
 
-extern double my_fInclinationOnHorizon;
+extern int iVanishingPointY;
 extern CDSpeparatorType my_iDrawSeparator3D;
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern double my_fSeparatorColor[4];
-
 
 void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
-	pDock->iDecorationsHeight = (pDock->iMaxIconHeight + g_fReflectSize + 2 * g_iFrameMargin) / sqrt (1 + my_fInclinationOnHorizon * my_fInclinationOnHorizon);
-	
-	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, my_fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
-	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
-	///pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
-	
 	pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + g_fReflectSize) + g_iLabelSize + g_iDockLineWidth + g_iFrameMargin;
 	
-	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
-	
-	pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidth;
-	pDock->iMinDockHeight = g_iDockLineWidth + g_iFrameMargin + g_fReflectSize + pDock->iMaxIconHeight;
-}
-void cd_rendering_calculate_max_dock_size_3D_plane2 (CairoDock *pDock)
-{
-	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
-	
-	double h = 200;
-	double fInclinationOnHorizon = h  / (pDock->fFlatDockWidth / 2);
 	double hi = g_fReflectSize + g_iFrameMargin;
 	
-	pDock->iDecorationsHeight = hi + (pDock->iMaxIconHeight + g_iFrameMargin) / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
-	
-	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
-	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
-	///pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
-	
-	pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + g_fReflectSize) + g_iLabelSize + g_iDockLineWidth + g_iFrameMargin;
+	double fInclinationOnHorizon = 0, fExtraWidth = 0;
+	int iMaxDockWidth = 0;
+	do
+	{
+		pDock->iMaxDockWidth = iMaxDockWidth;
+		iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
+		
+		fInclinationOnHorizon = (pDock->iMaxDockWidth / 2) / iVanishingPointY;
+		pDock->iDecorationsHeight = hi + (pDock->iMaxIconHeight + g_iFrameMargin) / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
+		
+		fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
+		//g_print ("iMaxDockWidth <- %d\n", iMaxDockWidth);
+	}
+	while (fabs (iMaxDockWidth - pDock->iMaxDockWidth) > 2);
+	pDock->iMaxDockWidth = iMaxDockWidth;
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	
@@ -146,282 +137,283 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceCon
 	return pNewSurface;
 }
 
-static void cd_rendering_draw_3D_separator_horizontal (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bIncludeEdges)
+static void cd_rendering_draw_3D_separator_horizontal (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bIncludeEdges, gboolean bBackGround)
 {
-	//g_print ("%s ()\n", __func__);
+	double hi = g_fReflectSize + g_iFrameMargin;
+	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	
+	double fHeight, fBigWidth, fLittleWidth;
+	if (bIncludeEdges)
+	{
+		fHeight = (bBackGround ? pDock->iDecorationsHeight - hi : hi) + g_iDockLineWidth;
+		fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
+		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
+	}
+	else
+	{
+		fHeight = pDock->iDecorationsHeight - g_iDockLineWidth;
+		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
+		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
+	}
+	double fDeltaXLeft = fHeight * fLeftInclination;
+	double fDeltaXRight = fHeight * fRightInclination;
+	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
+	
 	int sens;
 	double fDockOffsetX, fDockOffsetY;
 	if (pDock->bDirectionUp)
 	{
 		sens = 1;
-		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - g_iDockLineWidth;
+		if (bIncludeEdges)
+			fDockOffsetY = pDock->iCurrentHeight - fHeight - (bBackGround ? g_iDockLineWidth + hi : 0);
+		else
+			fDockOffsetY = pDock->iCurrentHeight - fHeight - g_iDockLineWidth;
 	}
 	else
 	{
 		sens = -1;
-		fDockOffsetY = pDock->iDecorationsHeight + g_iDockLineWidth;
+		if (bIncludeEdges)
+			fDockOffsetY = fHeight + (bBackGround ? g_iDockLineWidth + hi : 0);
+		else
+			fDockOffsetY = fHeight + g_iDockLineWidth;
 	}
+	if (bIncludeEdges)
+		fDockOffsetX = icon->fDrawX - (bBackGround ? fHeight * fLeftInclination : 0);
+	else
+		fDockOffsetX = icon->fDrawX - (fHeight - hi) * fLeftInclination;
 	
-	//double h = 200;
-	//double fInclinationOnHorizon = h  / (pDock->fFlatDockWidth / 2);
-	
-	double h = my_fInclinationOnHorizon * (pDock->fFlatDockWidth / 2);
-	double fInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / (pDock->iCurrentWidth / 2);
-	///double fInclination = my_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
-	//g_print ("fInclination : %f\n", fInclination);
-	double fEpsilon = .1 * icon->fWidth;
-	double fDeltaX = pDock->iDecorationsHeight * fInclination;
-	double fHeight = pDock->iDecorationsHeight + (bIncludeEdges ? 2 * g_iDockLineWidth : 0);
-	if (fDeltaX + 2 * fEpsilon > icon->fWidth)
+	if (pDock->bHorizontalDock)
 	{
-		fDeltaX = icon->fWidth - 2 * fEpsilon - 1;
-		fHeight = fDeltaX / fInclination;
-	}
-	fDockOffsetY += sens * (pDock->iDecorationsHeight - fHeight) / 2;
-	double fBigWidth = icon->fWidth - fDeltaX, fLittleWidth = icon->fWidth - fDeltaX - 2 * fEpsilon;
-	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
-	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->iCurrentWidth / 2)  // on est a droite.
-	{
-		fDockOffsetX = icon->fDrawX + fEpsilon + icon->fWidth * (icon->fScale - 1) / 2;
 		cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);  // coin haut gauche.
 		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
-		//g_print ("droite : fDockOffsetX : %.2f; fDeltaX:%.2f; fEpsilon:%.2f\n", fDockOffsetX, fDeltaX, fEpsilon);
-		
-		cairo_rel_line_to (pCairoContext, fLittleWidth/pDock->fRatio, 0);
-		cairo_rel_line_to (pCairoContext, (fDeltaX + fEpsilon)/pDock->fRatio, sens * fHeight/pDock->fRatio);
-		cairo_rel_line_to (pCairoContext, - fBigWidth/pDock->fRatio, 0);
-		cairo_rel_line_to (pCairoContext, (- fDeltaX + fEpsilon)/pDock->fRatio, - sens * fHeight/pDock->fRatio);
-		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
-		{
-			if (! pDock->bDirectionUp)
-				cairo_scale (pCairoContext, 1, -1);
-			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], - fEpsilon, 0);
-		}
-	}
-	else  // a gauche.
-	{
-		fDockOffsetX = icon->fDrawX + fDeltaX + fEpsilon + icon->fWidth * (icon->fScale - 1) / 2;
-		cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);  // coin haut gauche.
-		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
-		//g_print ("gauche : fDockOffsetX : %.2f; fDeltaX:%.2f; fEpsilon:%.2f\n", fDockOffsetX, fDeltaX, fEpsilon);
 		
 		cairo_rel_line_to (pCairoContext, fLittleWidth, 0);
-		cairo_rel_line_to (pCairoContext, - fDeltaX + fEpsilon, sens * fHeight);
+		cairo_rel_line_to (pCairoContext, fDeltaXRight, sens * fHeight);
 		cairo_rel_line_to (pCairoContext, - fBigWidth, 0);
-		cairo_rel_line_to (pCairoContext, fDeltaX + fEpsilon, - sens * fHeight);
+		cairo_rel_line_to (pCairoContext, - fDeltaXLeft, - sens * fHeight);
 		
 		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		{
 			if (! pDock->bDirectionUp)
 				cairo_scale (pCairoContext, 1, -1);
-			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], - fDeltaX - fEpsilon, 0);
+			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], MIN (0, (fHeight + hi) * fLeftInclination), 0);
 		}
-	}
-}
-static void cd_rendering_draw_3D_separator_vertical (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bIncludeEdges)
-{
-	int sens;
-	double fDockOffsetX, fDockOffsetY;
-	if (pDock->bDirectionUp)
-	{
-		sens = 1;
-		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - g_iDockLineWidth;
 	}
 	else
 	{
-		sens = -1;
-		fDockOffsetY = pDock->iDecorationsHeight + g_iDockLineWidth;
-	}
-	
-	double fInclination = my_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
-	//g_print ("fInclination : %f\n", fInclination);
-	double fEpsilon = .1 * icon->fWidth;
-	double fDeltaX = pDock->iDecorationsHeight * fInclination;
-	double fHeight = pDock->iDecorationsHeight;
-	if (fDeltaX + 2 * fEpsilon > icon->fWidth)
-	{
-		fDeltaX = icon->fWidth - 2 * fEpsilon - 1;
-		fHeight = fDeltaX / fInclination;
-	}
-	fDockOffsetY += sens * (pDock->iDecorationsHeight - fHeight) / 2;
-	double fBigWidth = icon->fWidth - fDeltaX, fLittleWidth = icon->fWidth - fDeltaX - 2 * fEpsilon;
-	
-	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->iCurrentWidth / 2)  // on est a droite.
-	{
-		fDockOffsetX = icon->fDrawX + fEpsilon + icon->fWidth * (icon->fScale - 1) / 2;
 		cairo_translate (pCairoContext, fDockOffsetY, fDockOffsetX);  // coin haut gauche.
 		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
-		//g_print ("droite : fDockOffsetX : %.2f; fDeltaX:%.2f; fEpsilon:%.2f\n", fDockOffsetX, fDeltaX, fEpsilon);
 		
-		cairo_rel_line_to (pCairoContext, 0, fLittleWidth/pDock->fRatio);
-		cairo_rel_line_to (pCairoContext, sens * fHeight/pDock->fRatio, (fDeltaX + fEpsilon)/pDock->fRatio);
-		cairo_rel_line_to (pCairoContext, 0, - fBigWidth/pDock->fRatio);
-		cairo_rel_line_to (pCairoContext,  - sens * fHeight/pDock->fRatio, (- fDeltaX + fEpsilon)/pDock->fRatio);
+		cairo_rel_line_to (pCairoContext, 0, fLittleWidth);
+		cairo_rel_line_to (pCairoContext, sens * fHeight, fDeltaXRight);
+		cairo_rel_line_to (pCairoContext, 0, - fBigWidth);
+		cairo_rel_line_to (pCairoContext, - sens * fHeight, - fDeltaXLeft);
 		
 		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		{
 			if (! pDock->bDirectionUp)
 				cairo_scale (pCairoContext, -1, 1);
-			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, - fEpsilon);
+			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, MIN (0, (fHeight + hi) * fLeftInclination));
+		}
+	}
+}
+static void cd_rendering_draw_3D_separator_vertical (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bIncludeEdges, gboolean bBackGround)
+{
+	double hi = g_fReflectSize + g_iFrameMargin;
+	double fLeftInclination = fabs (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	
+	double fHeight, fBigWidth, fLittleWidth;
+	if (bIncludeEdges)
+	{
+		fHeight = (bBackGround ? pDock->iDecorationsHeight - hi : hi) + g_iDockLineWidth;
+		fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
+		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
+	}
+	else
+	{
+		fHeight = pDock->iDecorationsHeight;
+		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
+		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
+	}
+	double fDeltaXLeft = fHeight * fLeftInclination;
+	double fDeltaXRight = fHeight * fRightInclination;
+	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
+	
+	int sens;
+	double fDockOffsetX, fDockOffsetY;
+	if (pDock->bDirectionUp)
+	{
+		sens = 1;
+		if (bIncludeEdges)
+			fDockOffsetY =  pDock->iCurrentHeight - fHeight - (bBackGround ? g_iDockLineWidth + hi : 0);
+		else
+			fDockOffsetY =  pDock->iCurrentHeight - fHeight - g_iDockLineWidth;
+	}
+	else
+	{
+		sens = -1;
+		if (bIncludeEdges)
+			fDockOffsetY = fHeight + (bBackGround ? g_iDockLineWidth + hi : 0);
+		else
+			fDockOffsetY = fHeight + g_iDockLineWidth;
+	}
+	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->iCurrentWidth / 2)  // on est a droite.
+	{
+		if (bIncludeEdges)
+			fDockOffsetX = icon->fDrawX - (bBackGround ? fHeight * fLeftInclination : 0);
+		else
+			fDockOffsetX = icon->fDrawX - (fHeight - hi) * fLeftInclination;
+		cairo_translate (pCairoContext, fDockOffsetY, fDockOffsetX);  // coin haut gauche.
+		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
+		//g_print ("droite : fDockOffsetX : %.2f; fDeltaX:%.2f; fEpsilon:%.2f\n", fDockOffsetX, fDeltaX, fEpsilon);
+		
+		cairo_rel_line_to (pCairoContext, 0, fLittleWidth);
+		cairo_rel_line_to (pCairoContext, sens * fHeight, fDeltaXRight);
+		cairo_rel_line_to (pCairoContext, 0, - fBigWidth);
+		cairo_rel_line_to (pCairoContext, - sens * fHeight, - fDeltaXLeft);
+		
+		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+		{
+			if (! pDock->bDirectionUp)
+				cairo_scale (pCairoContext, -1, 1);
+			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, 0);
 		}
 	}
 	else  // a gauche.
 	{
-		fDockOffsetX = icon->fDrawX + fDeltaX + fEpsilon + icon->fWidth * (icon->fScale - 1) / 2;
+		if (bIncludeEdges)
+			fDockOffsetX = icon->fDrawX + (bBackGround ? fHeight * fLeftInclination : 0);
+		else
+			fDockOffsetX = icon->fDrawX + (fHeight - hi) * fLeftInclination;
 		cairo_translate (pCairoContext, fDockOffsetY, fDockOffsetX);  // coin haut gauche.
 		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
 		//g_print ("gauche : fDockOffsetX : %.2f; fDeltaX:%.2f; fEpsilon:%.2f\n", fDockOffsetX, fDeltaX, fEpsilon);
 		
 		cairo_rel_line_to (pCairoContext, 0, fLittleWidth);
-		cairo_rel_line_to (pCairoContext, sens * fHeight, - fDeltaX + fEpsilon);
+		cairo_rel_line_to (pCairoContext, sens * fHeight, - fDeltaXRight + 0);
 		cairo_rel_line_to (pCairoContext, 0, - fBigWidth);
-		cairo_rel_line_to (pCairoContext, - sens * fHeight, fDeltaX + fEpsilon);
+		cairo_rel_line_to (pCairoContext, - sens * fHeight, fDeltaXLeft + 0);
 		
 		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		{
 			if (! pDock->bDirectionUp)
 				cairo_scale (pCairoContext, -1, 1);
-			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, - fDeltaX - fEpsilon);
+			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], - fHeight * fLeftInclination, 0);
 		}
 	}
 }
-static void cd_rendering_draw_3D_separator_edge_horizontal (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock)
+static void cd_rendering_draw_3D_separator_edge_horizontal (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bBackGround)
 {
-	//g_print ("%s ()\n", __func__);
+	double hi = g_fReflectSize + g_iFrameMargin;
+	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	
+	double fHeight, fBigWidth, fLittleWidth;
+	fHeight = (bBackGround ? pDock->iDecorationsHeight - hi - 0.5*g_iDockLineWidth : hi + 1.5*g_iDockLineWidth);
+	fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
+	fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
+	
+	double fDeltaXLeft = fHeight * fLeftInclination;
+	double fDeltaXRight = fHeight * fRightInclination;
+	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
+	
 	int sens;
-	double fDockOffsetY;
+	double fDockOffsetX, fDockOffsetY;
 	if (pDock->bDirectionUp)
 	{
 		sens = 1;
-		fDockOffsetY = g_iDockLineWidth;
+		fDockOffsetY =  (bBackGround ? 1.5*g_iDockLineWidth : 0);
 	}
 	else
 	{
 		sens = -1;
-		fDockOffsetY = - g_iDockLineWidth;
+		fDockOffsetY =  (bBackGround ? - 1.5*g_iDockLineWidth : 0);
+	}
+	fDockOffsetX = (bBackGround ? g_iDockLineWidth * fLeftInclination : - 0.5 * g_iDockLineWidth * fLeftInclination);
+	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
+	
+	if (pDock->bHorizontalDock)
+	{
+		cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);  // coin haut droit.
+		
+		cairo_move_to (pCairoContext, fLittleWidth, 0);
+		cairo_rel_line_to (pCairoContext, fDeltaXRight, sens * fHeight);
+		
+		cairo_move_to (pCairoContext, 0, 0);
+		cairo_rel_line_to (pCairoContext, fDeltaXLeft, sens * fHeight);
+	}
+	else
+	{
+		cairo_translate (pCairoContext, fDockOffsetY, fDockOffsetX);  // coin haut droit.
+		
+		cairo_move_to (pCairoContext, 0, fLittleWidth);
+		cairo_rel_line_to (pCairoContext, sens * fHeight, fDeltaXRight);
+		
+		cairo_move_to (pCairoContext, 0, 0);
+		cairo_rel_line_to (pCairoContext, sens * fHeight, fDeltaXLeft);
+	}
+}
+
+static void cd_rendering_draw_3D_separator_edge_vertical (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bBackGround)
+{
+	int sens;
+	double fDockOffsetY = 0;
+	if (pDock->bDirectionUp)
+	{
+		sens = 1;
+	}
+	else
+	{
+		sens = -1;
 	}
 	
-	double h = my_fInclinationOnHorizon * (pDock->fFlatDockWidth / 2);
-	double fInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / (pDock->iCurrentWidth / 2);
-	///double fInclination = my_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
-	//g_print ("fInclination : %f\n", fInclination);
-	double fEpsilon = .1 * icon->fWidth;
-	double fDeltaX = pDock->iDecorationsHeight * fInclination;
-	double fHeight = pDock->iDecorationsHeight + 2 * g_iDockLineWidth;
-	if (fDeltaX + 2 * fEpsilon > icon->fWidth)
-	{
-		fDeltaX = icon->fWidth - 2 * fEpsilon - 1;
-		fHeight = fDeltaX / fInclination;
-	}
-	double fBigWidth = icon->fWidth - fDeltaX, fLittleWidth = icon->fWidth - fDeltaX - 2 * fEpsilon;
+	double hi = g_fReflectSize + g_iFrameMargin;
+	double fLeftInclination = fabs (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	
+	double fFrameHeight = pDock->iDecorationsHeight + 2 * g_iDockLineWidth;
+	double fHeight = (bBackGround ? pDock->iDecorationsHeight - hi : hi) + g_iDockLineWidth;
+	
+	double fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
+	double fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
+	
+	double fDeltaXLeft = fHeight * fLeftInclination;
+	double fDeltaXRight = fHeight * fRightInclination;
+	double fDeltaX = MAX (fDeltaXLeft, fDeltaXRight);
+	
 	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
 	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->iCurrentWidth / 2)  // on est a droite.
 	{
-		cairo_translate (pCairoContext, 0, fDockOffsetY);  // coin haut droit.
-		
-		cairo_move_to (pCairoContext, fLittleWidth/pDock->fRatio, 0);
-		cairo_rel_line_to (pCairoContext, (fDeltaX + fEpsilon)/pDock->fRatio, sens * fHeight/pDock->fRatio);
-		
-		cairo_move_to (pCairoContext, 0, 0);
-		cairo_rel_line_to (pCairoContext, - (- fDeltaX + fEpsilon)/pDock->fRatio, sens * fHeight/pDock->fRatio);
-		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
-		{
-			if (! pDock->bDirectionUp)
-				cairo_scale (pCairoContext, 1, -1);
-			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], - fEpsilon, 0);
-		}
-	}
-	else  // a gauche.
-	{
-		cairo_translate (pCairoContext, 0, fDockOffsetY);  // coin haut droit.
-		
-		cairo_move_to (pCairoContext, fLittleWidth, 0);
-		cairo_rel_line_to (pCairoContext, - fDeltaX + fEpsilon, sens * fHeight);
-		
-		cairo_move_to (pCairoContext, 0, 0);
-		cairo_rel_line_to (pCairoContext, - (fDeltaX + fEpsilon), sens * fHeight);
-		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
-		{
-			if (! pDock->bDirectionUp)
-				cairo_scale (pCairoContext, 1, -1);
-			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], - fDeltaX - fEpsilon, 0);
-		}
-	}
-}
-
-static void cd_rendering_draw_3D_separator_edge_vertical (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock)
-{
-	int sens;
-	double fDockOffsetY;
-	if (pDock->bDirectionUp)
-	{
-		sens = 1;
-		fDockOffsetY = - 0*g_iDockLineWidth;
-	}
-	else
-	{
-		sens = -1;
-		fDockOffsetY = + 0*g_iDockLineWidth;
-	}
-	
-	double fInclination = my_fInclinationOnHorizon * fabs ((icon->fDrawX + icon->fWidth * icon->fScale / 2) / pDock->iCurrentWidth - .5) * 2;
-	//g_print ("fInclination : %f\n", fInclination);
-	double fEpsilon = .1 * icon->fWidth;
-	double fDeltaX = pDock->iDecorationsHeight * fInclination;
-	double fHeight = pDock->iDecorationsHeight + 2 * g_iDockLineWidth;
-	if (fDeltaX + 2 * fEpsilon > icon->fWidth)
-	{
-		fDeltaX = icon->fWidth - 2 * fEpsilon - 1;
-		fHeight = fDeltaX / fInclination;
-	}
-	double fBigWidth = icon->fWidth - fDeltaX, fLittleWidth = icon->fWidth - fDeltaX - 2 * fEpsilon;
-	
-	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->iCurrentWidth / 2)  // on est a droite.
-	{
-		cairo_translate (pCairoContext, fDockOffsetY, 0);
-		
-		cairo_move_to (pCairoContext, 0, fLittleWidth/pDock->fRatio);
-		cairo_rel_line_to (pCairoContext, sens * fHeight/pDock->fRatio, (fDeltaX + fEpsilon)/pDock->fRatio);
-		
-		cairo_move_to (pCairoContext, 0, 0);
-		cairo_rel_line_to (pCairoContext,  sens * fHeight/pDock->fRatio, - (- fDeltaX + fEpsilon)/pDock->fRatio);
-		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
-		{
-			if (! pDock->bDirectionUp)
-				cairo_scale (pCairoContext, -1, 1);
-			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, - fEpsilon);
-		}
-	}
-	else  // a gauche.
-	{
-		cairo_translate (pCairoContext, fDockOffsetY, 0);
+		cairo_translate (pCairoContext, fDockOffsetY, 0);  // coin haut droit.
 		
 		cairo_move_to (pCairoContext, 0, fLittleWidth);
-		cairo_rel_line_to (pCairoContext, sens * fHeight, - fDeltaX + fEpsilon);
+		cairo_rel_line_to (pCairoContext, sens * fHeight, fDeltaXRight);
 		
 		cairo_move_to (pCairoContext, 0, 0);
-		cairo_rel_line_to (pCairoContext, sens * fHeight, - (fDeltaX + fEpsilon));
+		cairo_rel_line_to (pCairoContext, sens * fHeight, fDeltaXLeft);
+	}
+	else  // a gauche.
+	{
+		cairo_translate (pCairoContext, fDockOffsetY, 0);  // coin haut droit.
 		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
-		{
-			if (! pDock->bDirectionUp)
-				cairo_scale (pCairoContext, -1, 1);
-			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, - fDeltaX - fEpsilon);
-		}
+		cairo_move_to (pCairoContext, 0, fLittleWidth);
+		cairo_rel_line_to (pCairoContext, sens * fHeight, - fDeltaXRight + 0);
+		
+		cairo_move_to (pCairoContext, 0, 0);
+		cairo_rel_line_to (pCairoContext, sens * fHeight, - fDeltaXLeft);
 	}
 }
 
-static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bHorizontal)
+static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bHorizontal, gboolean bBackGround)
 {
 	//g_print ("%s ()\n", __func__);
-	if (bHorizontal)
-		cd_rendering_draw_3D_separator_horizontal (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
+	/**if (bHorizontal)
+		cd_rendering_draw_3D_separator_horizontal (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR), bBackGround);
 	else
-		cd_rendering_draw_3D_separator_vertical (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
+		cd_rendering_draw_3D_separator_vertical (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR), bBackGround);*/
+	cd_rendering_draw_3D_separator_horizontal (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR), bBackGround);
 	
 	if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
 	{
@@ -429,10 +421,12 @@ static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 		cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 1.0);
 		cairo_fill (pCairoContext);
 		
-		if (bHorizontal)
-			cd_rendering_draw_3D_separator_edge_horizontal (icon, pCairoContext, pDock);
+		/**if (bHorizontal)
+			cd_rendering_draw_3D_separator_edge_horizontal (icon, pCairoContext, pDock, bBackGround);
 		else
-			cd_rendering_draw_3D_separator_edge_vertical (icon, pCairoContext, pDock);
+			cd_rendering_draw_3D_separator_edge_vertical (icon, pCairoContext, pDock, bBackGround);*/
+		cd_rendering_draw_3D_separator_edge_horizontal (icon, pCairoContext, pDock, bBackGround);
+		
 		cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 		cairo_set_line_width (pCairoContext, g_iDockLineWidth);
 		cairo_set_source_rgba (pCairoContext, g_fLineColor[0], g_fLineColor[1], g_fLineColor[2], g_fLineColor[3]);
@@ -458,7 +452,6 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 	
 	//\____________________ On trace le cadre.
-	double fChangeAxes = 0.5 * (pDock->iCurrentWidth - pDock->iMaxDockWidth);
 	double fLineWidth = g_iDockLineWidth;
 	double fMargin = g_iFrameMargin;
 	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * g_iDockRadius > 0 ? g_iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
@@ -467,24 +460,25 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 	int sens;
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);  // fChangeAxes
+	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
 	if (pDock->bDirectionUp)
 	{
 		sens = 1;
-		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth;
+		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - 0.5 * fLineWidth;
 	}
 	else
 	{
 		sens = -1;
-		fDockOffsetY = pDock->iDecorationsHeight + fLineWidth;
+		fDockOffsetY = pDock->iDecorationsHeight + 0.5 * fLineWidth;
 	}
 	
 	cairo_save (pCairoContext);
 	
-        cairo_dock_draw_frame (pCairoContext, fRadius, 1, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
+	double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
+        cairo_dock_draw_frame (pCairoContext, fRadius, 1, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
 	
 	//\____________________ On dessine les decorations dedans.
-	fDockOffsetY = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
+	fDockOffsetY = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - 0.5*fLineWidth : 0.5*fLineWidth);
 	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY);
 	
 	//\____________________ On dessine le cadre.
@@ -511,23 +505,69 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 		double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
 		Icon *icon;
 		GList *ic = pFirstDrawnElement;
-		do
+		
+		if (my_pFlatSeparatorSurface[0] != NULL || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
 		{
-			icon = ic->data;
+			cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
+			do
+			{
+				icon = ic->data;
+				
+				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+				{
+					cairo_save (pCairoContext);
+					cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
+					cairo_restore (pCairoContext);
+				}
+				
+				ic = cairo_dock_get_next_element (ic, pDock->icons);
+			} while (ic != pFirstDrawnElement);
 			
-			cairo_save (pCairoContext);
+			do
+			{
+				icon = ic->data;
+				
+				if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
+				{
+					cairo_save (pCairoContext);
+					cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+					cairo_restore (pCairoContext);
+				}
+				
+				ic = cairo_dock_get_next_element (ic, pDock->icons);
+			} while (ic != pFirstDrawnElement);
 			
-			if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->acFileName == NULL && (my_pFlatSeparatorSurface[0] != NULL || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR))
-				cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock);
-			else
+			if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+			{
+				do
+				{
+					icon = ic->data;
+					
+					if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+					{
+						cairo_save (pCairoContext);
+						cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
+						cairo_restore (pCairoContext);
+					}
+					
+					ic = cairo_dock_get_next_element (ic, pDock->icons);
+				} while (ic != pFirstDrawnElement);
+			}
+		}
+		else
+		{
+			do
+			{
+				icon = ic->data;
+				
+				cairo_save (pCairoContext);
 				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
-			
-			cairo_restore (pCairoContext);
-			
-			ic = cairo_dock_get_next_element (ic, pDock->icons);
-		} while (ic != pFirstDrawnElement);
+				cairo_restore (pCairoContext);
+				
+				ic = cairo_dock_get_next_element (ic, pDock->icons);
+			} while (ic != pFirstDrawnElement);
+		}
 	}
-	
 	
 	cairo_destroy (pCairoContext);
 #ifdef HAVE_GLITZ
@@ -536,7 +576,99 @@ void cd_rendering_render_3D_plane (CairoDock *pDock)
 #endif
 }
 
-
+static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double fXMin, double fXMax, gboolean bBackGround, gboolean bIncludeEdges)
+{
+	double hi = g_fReflectSize + g_iFrameMargin;
+	double fLeftInclination = fabs (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	
+	double fHeight, fBigWidth, fLittleWidth;
+	if (bIncludeEdges)
+	{
+		fHeight = (bBackGround ? pDock->iDecorationsHeight - hi : hi) + (bIncludeEdges ? g_iDockLineWidth : 0);
+		fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
+		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
+	}
+	else
+	{
+		fHeight = pDock->iDecorationsHeight;
+		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + fHeight);
+		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY - fHeight);
+	}
+	double fDeltaXLeft = fHeight * fLeftInclination;
+	double fDeltaXRight = fHeight * fRightInclination;
+	double fDeltaX = MAX (fDeltaXLeft, fDeltaXRight);
+	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
+	
+	int sens;
+	double fDockOffsetX, fDockOffsetY;
+	if (pDock->bDirectionUp)
+	{
+		sens = 1;
+		if (bIncludeEdges)
+			fDockOffsetY =  pDock->iCurrentHeight - fHeight - (bBackGround ? g_iDockLineWidth + hi : 0);
+		else
+			fDockOffsetY =  pDock->iCurrentHeight - fHeight;
+	}
+	else
+	{
+		sens = -1;
+		if (bIncludeEdges)
+			fDockOffsetY = fHeight + (bBackGround ? g_iDockLineWidth + hi : 0);
+		else
+			fDockOffsetY = fHeight;
+	}
+	
+	if (bIncludeEdges)
+			fDockOffsetX = icon->fDrawX - (bBackGround ? fHeight * fLeftInclination : 0);
+		else
+			fDockOffsetX = icon->fDrawX - (fHeight - hi) * fLeftInclination;
+	double fXLeft, fXRight;
+	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->iCurrentWidth / 2)  // on est a droite.
+	{
+		if (bIncludeEdges)
+		{
+			if (bBackGround)
+			{
+				fXLeft = icon->fDrawX - fHeight * fLeftInclination;
+				fXRight = icon->fDrawX + icon->fWidth * icon->fScale;
+			}
+			else
+			{
+				fXLeft = icon->fDrawX;
+				fXRight = icon->fDrawX + icon->fWidth * icon->fScale + fHeight * fRightInclination;
+			}
+		}
+		else
+		{
+			fXLeft = icon->fDrawX - (fHeight - hi) * fLeftInclination;
+			fXRight = icon->fDrawX + icon->fWidth * icon->fScale + hi * fRightInclination;
+		}
+	}
+	else  // a gauche.
+	{
+		if (bIncludeEdges)
+		{
+			if (bBackGround)
+			{
+				fXLeft = icon->fDrawX;
+				fXRight = icon->fDrawX + icon->fWidth * icon->fScale + fHeight * fRightInclination;
+			}
+			else
+			{
+				fXLeft = icon->fDrawX - fHeight * fLeftInclination;
+				fXRight = icon->fDrawX + icon->fWidth * icon->fScale;
+			}
+		}
+		else
+		{
+			fXLeft = icon->fDrawX - hi * fLeftInclination;
+			fXRight = icon->fDrawX + icon->fWidth * icon->fScale +(fHeight - hi) * fRightInclination;
+		}
+	}
+	
+	return (fXLeft <= fXMax && floor (fXRight) > fXMin);
+}
 
 void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pArea)
 {
@@ -589,14 +721,14 @@ void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pAr
 	
 	if (pDock->bHorizontalDock)
 	{
-		cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY - fLineWidth / 2);
-		cairo_rel_line_to (pCairoContext, pArea->width, 0);
 		cairo_set_line_width (pCairoContext, fLineWidth);
+		cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY + 0.5*fLineWidth);
+		cairo_rel_line_to (pCairoContext, pArea->width, 0);
 		cairo_set_source_rgba (pCairoContext, g_fLineColor[0], g_fLineColor[1], g_fLineColor[2], g_fLineColor[3]);
 		cairo_stroke (pCairoContext);
 		
 		cairo_new_path (pCairoContext);
-		cairo_move_to (pCairoContext, fDockOffsetX, (pDock->bDirectionUp ? iHeight - fLineWidth / 2 : pDock->iDecorationsHeight + 1.5 * fLineWidth));
+		cairo_move_to (pCairoContext, fDockOffsetX, (pDock->bDirectionUp ? iHeight - 0.5*fLineWidth : pDock->iDecorationsHeight + 1.5 * fLineWidth));
 		cairo_rel_line_to (pCairoContext, pArea->width, 0);
 		cairo_set_line_width (pCairoContext, fLineWidth);
 		cairo_set_source_rgba (pCairoContext, g_fLineColor[0], g_fLineColor[1], g_fLineColor[2], g_fLineColor[3]);
@@ -622,7 +754,6 @@ void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pAr
 	//\____________________ On dessine les icones impactees.
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 	
-	
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	if (pFirstDrawnElement != NULL)
 	{
@@ -631,43 +762,102 @@ void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pAr
 		double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
 		fRatio = pDock->fRatio;
 		double fXLeft, fXRight;
-		
 		Icon *icon;
 		GList *ic = pFirstDrawnElement;
-		do
+		
+		if (my_pFlatSeparatorSurface[0] != NULL || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
 		{
-			icon = ic->data;
-			
-			fXLeft = icon->fDrawX + icon->fScale + 1;
-			fXRight = icon->fDrawX + (icon->fWidth - 1) * icon->fScale * icon->fWidthFactor - 1;
-			
-			if (fXLeft <= fXMax && floor (fXRight) > fXMin)
+			cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
+			do
 			{
-				cairo_save (pCairoContext);
+				icon = ic->data;
 				
-				if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
+				if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->acFileName == NULL)
 				{
-					icon->fAlpha = 1;
-				}
-				else
-				{
-					icon->fAlpha = .25;
-				}
-				
-				if (icon->iAnimationType == CAIRO_DOCK_AVOID_MOUSE)
-				{
-					icon->fAlpha = 0.4;
+					if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, TRUE, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)))
+					{
+						cairo_save (pCairoContext);
+						cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
+						cairo_restore (pCairoContext);
+					}
 				}
 				
-				if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->acFileName == NULL && (my_pFlatSeparatorSurface[0] != NULL || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR))
-					cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock);
-				else
-					cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
-				cairo_restore (pCairoContext);
-			}
+				ic = cairo_dock_get_next_element (ic, pDock->icons);
+			} while (ic != pFirstDrawnElement);
 			
-			ic = cairo_dock_get_next_element (ic, pDock->icons);
-		} while (ic != pFirstDrawnElement);
+			do
+			{
+				icon = ic->data;
+				if (! CAIRO_DOCK_IS_SEPARATOR (icon) || icon->acFileName != NULL)
+				{
+					fXLeft = icon->fDrawX + icon->fScale + 1;
+					fXRight = icon->fDrawX + (icon->fWidth - 1) * icon->fScale * icon->fWidthFactor - 1;
+					
+					if (fXLeft <= fXMax && floor (fXRight) > fXMin)
+					{
+						if (icon->iAnimationType == CAIRO_DOCK_AVOID_MOUSE)
+							icon->fAlpha = 0.4;
+						else if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
+							icon->fAlpha = 1;
+						else
+							icon->fAlpha = .25;
+						
+						cairo_save (pCairoContext);
+						
+						cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+						
+						cairo_restore (pCairoContext);
+					}
+				}
+				ic = cairo_dock_get_next_element (ic, pDock->icons);
+			} while (ic != pFirstDrawnElement);
+			
+			if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+			{
+				do
+				{
+					icon = ic->data;
+					
+					if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->acFileName == NULL)
+					{
+						if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, FALSE, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)))
+						{
+							cairo_save (pCairoContext);
+							cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
+							cairo_restore (pCairoContext);
+						}
+					}
+					
+					ic = cairo_dock_get_next_element (ic, pDock->icons);
+				} while (ic != pFirstDrawnElement);
+			}
+		}
+		else
+		{
+			do
+			{
+				icon = ic->data;
+				fXLeft = icon->fDrawX + icon->fScale + 1;
+				fXRight = icon->fDrawX + (icon->fWidth - 1) * icon->fScale * icon->fWidthFactor - 1;
+				
+				if (fXLeft <= fXMax && floor (fXRight) > fXMin)
+				{
+					if (icon->iAnimationType == CAIRO_DOCK_AVOID_MOUSE)
+						icon->fAlpha = 0.4;
+					else if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
+						icon->fAlpha = 1;
+					else
+						icon->fAlpha = .25;
+					
+					cairo_save (pCairoContext);
+					
+					cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+					
+					cairo_restore (pCairoContext);
+				}
+				ic = cairo_dock_get_next_element (ic, pDock->icons);
+			} while (ic != pFirstDrawnElement);
+		}
 	}
 	
 	cairo_destroy (pCairoContext);
