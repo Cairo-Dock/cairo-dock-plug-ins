@@ -42,8 +42,7 @@ msgstr "Module"
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: src/applet-notifications.c:13
-#: ../src/applet-notifications.c:21
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:21
 #: ../src/applet-notifications.c:22
 msgid ""
 "This is the stacks applet\n"
@@ -52,105 +51,84 @@ msgstr ""
 "Ceci est l'applet stacks\n"
 " écrite par ChAnGFu pour Cairo-Dock"
 
-#: ../data/messages:11
-#: ../data/messages:13
-#: ../data/messages:15
+#: ../data/messages:11 ../data/messages:13 ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
-#: ../data/messages:15
-#: ../data/messages:17
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+#: ../data/messages:13 ../data/messages:15 ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
 
-#: ../data/messages:15
-#: ../data/messages:17
-#: ../data/messages:19
+#: ../data/messages:15 ../data/messages:17 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
-#: ../data/messages:19
-#: ../data/messages:21
+#: ../data/messages:17 ../data/messages:19 ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
-#: ../data/messages:19
-#: ../data/messages:21
-#: ../data/messages:23
+#: ../data/messages:19 ../data/messages:21 ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21
-#: ../data/messages:23
-#: ../data/messages:25
+#: ../data/messages:21 ../data/messages:23 ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23
-#: ../data/messages:25
-#: ../data/messages:27
+#: ../data/messages:23 ../data/messages:25 ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25
-#: ../data/messages:27
-#: ../data/messages:29
+#: ../data/messages:25 ../data/messages:27 ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27
-#: ../data/messages:29
-#: ../data/messages:31
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
+#: ../data/messages:27 ../data/messages:29 ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
-#: ../data/messages:31
-#: ../data/messages:33
+#: ../data/messages:29 ../data/messages:31 ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:35
-#: ../data/messages:37
-#: ../data/messages:41
+#: ../data/messages:35 ../data/messages:37 ../data/messages:41
 msgid "Directory & Options"
 msgstr "Dossier et Options"
 
-#: ../data/messages:37
-#: ../data/messages:39
-#: ../data/messages:47
+#: ../data/messages:37 ../data/messages:39 ../data/messages:47
 msgid "Monitored Directory :"
 msgstr "Dossier surveillé :"
 
-#: ../data/messages:41
-#: ../data/messages:43
-#: ../data/messages:51
+#: ../data/messages:41 ../data/messages:43 ../data/messages:51
 msgid "List hidden files ?"
 msgstr "Ajouter les fichiers cachés"
 
-#: ../data/messages:39
-#: ../data/messages:41
-#: ../data/messages:49
-msgid "This option with large files lists can slow down the dock, use it properly."
-msgstr "Cette option avec une longue liste de fichiers peut ralentir le dock, à utiliser prudemment."
+#: ../data/messages:39 ../data/messages:41 ../data/messages:49
+msgid ""
+"This option with large files lists can slow down the dock, use it properly."
+msgstr ""
+"Cette option avec une longue liste de fichiers peut ralentir le dock, à "
+"utiliser prudemment."
 
-#: ../data/messages:45
-#: ../data/messages:47
-#: ../data/messages:63
+#: ../data/messages:45 ../data/messages:47 ../data/messages:63
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
-#: ../data/messages:43
-#: ../data/messages:45
-#: ../data/messages:61
+#: ../data/messages:43 ../data/messages:45 ../data/messages:61
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
 
-#: ../data/messages:33
-#: ../data/messages:35
-#: ../data/messages:39
+#: ../data/messages:33 ../data/messages:35 ../data/messages:39
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -167,8 +145,12 @@ msgid "Filter files with their mime types ?"
 msgstr "Filtrer les fichiers avec leur mime types ?"
 
 #: ../data/messages:53
-msgid "This options allow you to avoid some files to be displayed in the stacks considering their types (video, images, etc...)"
-msgstr "Cette option vous permet d'éviter que certains fichiers soit affihcer dans le stacks en prenant en compte leur types (video, images, etc...)"
+msgid ""
+"This options allow you to avoid some files to be displayed in the stacks "
+"considering their types (video, images, etc...)"
+msgstr ""
+"Cette option vous permet d'éviter que certains fichiers soit affihcer dans "
+"le stacks en prenant en compte leur types (video, images, etc...)"
 
 #: ../data/messages:59
 msgid "Here you can specify a list of mime types to avoid :"
@@ -183,14 +165,23 @@ msgid "Use Stacks local directory ?"
 msgstr "Utiliser le dossier local de Stacks ?"
 
 #: ../data/messages:43
-msgid "Stacks will act as a the shortcut applet's but with files. To add a file, just drag and drop it on the Stacks icon"
-msgstr "Stacks va agir comme l'applet shorcut mais avec des fichiers. Pour ajouter un fichier, il faute juste faire un glisser-déposé de celui-ci sur l'icon de Stacks"
+msgid ""
+"Stacks will act as a the shortcut applet's but with files. To add a file, "
+"just drag and drop it on the Stacks icon"
+msgstr ""
+"Stacks va agir comme l'applet shorcut mais avec des fichiers. Pour ajouter "
+"un fichier, il faute juste faire un glisser-déposé de celui-ci sur l'icon de "
+"Stacks"
 
 #: ../data/messages:35
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement enle tirant avec le bouton gauche de la souris. Bien sur il pourra toujourêtre bouger avec ALT + clique_gauche"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement enle tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujourêtre bouger "
+"avec ALT + clique_gauche"
 
 #: ../data/messages:37
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
-

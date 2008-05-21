@@ -44,6 +44,6 @@ keep above=false
 #b Keep on widget layer ?
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
 on widget layer=false
-#b Lockposition ?
+#b Lock position ?
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false

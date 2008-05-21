@@ -42,10 +42,8 @@ msgstr "Module"
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: src/applet-notifications.c:13
-#: ../src/applet-notifications.c:23
-#: ../src/applet-notifications.c:38
-#: ../src/applet-notifications.c:36
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:36
 #: ../src/applet-notifications.c:37
 msgid ""
 "This is the Cairo-Penguin applet\n"
@@ -59,8 +57,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Selon votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Selon votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT "
+"+ clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -68,7 +70,9 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -87,132 +91,111 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13
-#: ../data/messages:15
+#: ../data/messages:13 ../data/messages:15
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:15
-#: ../data/messages:17
+#: ../data/messages:15 ../data/messages:17
 msgid "Choose one of the available themes :"
 msgstr "Choisissez l'un des thèmes disponibles :"
 
-#: ../data/messages:17
-#: ../data/messages:19
+#: ../data/messages:17 ../data/messages:19
 msgid "in seconds"
 msgstr "en secondes."
 
-#: ../data/messages:19
-#: ../data/messages:21
+#: ../data/messages:19 ../data/messages:21
 msgid "Delay between animation changes :"
 msgstr "Délai entre les changements d'animation :"
 
-#: ../data/messages:21
-#: ../data/messages:23
+#: ../data/messages:21 ../data/messages:23
 msgid "Transparency of the penguin :"
 msgstr "Transparence du pingouin :"
 
-#: ../data/messages:23
-#: ../data/messages:25
+#: ../data/messages:23 ../data/messages:25
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr "Laisser le pingouin se promener partout dans le dock ?"
 
-#: ../src/applet-notifications.c:25
-#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:25 ../src/applet-notifications.c:23
 msgid "Hey, I'm here !"
 msgstr "Hé, je suis là !"
 
-#: ../src/applet-notifications.c:26
-#: ../src/applet-notifications.c:24
+#: ../src/applet-notifications.c:26 ../src/applet-notifications.c:24
 msgid "Sorry but I'm busy right now."
 msgstr "Désolé mais je suis occupé là."
 
-#: ../src/applet-notifications.c:27
-#: ../src/applet-notifications.c:25
-msgid "I don't have time to play with you, I have to dig and mine all these icons."
-msgstr "Je n'ai pas le temps de jouer avec vous, je dois creuser et déblayer toutes ces icônes."
+#: ../src/applet-notifications.c:27 ../src/applet-notifications.c:25
+msgid ""
+"I don't have time to play with you, I have to dig and mine all these icons."
+msgstr ""
+"Je n'ai pas le temps de jouer avec vous, je dois creuser et déblayer toutes "
+"ces icônes."
 
-#: ../src/applet-notifications.c:28
-#: ../src/applet-notifications.c:26
+#: ../src/applet-notifications.c:28 ../src/applet-notifications.c:26
 msgid "Your dock is so messy ! Let me clean it."
 msgstr "Votre dock est un vrai bordel ! laissez-moi le ranger."
 
-#: ../src/applet-notifications.c:29
-#: ../src/applet-notifications.c:27
+#: ../src/applet-notifications.c:29 ../src/applet-notifications.c:27
 msgid "Admit my superiority on you as a penguin !"
 msgstr "Admettez ma supériorité sur vous en tant que pingouin !"
 
-#: ../src/applet-notifications.c:30
-#: ../src/applet-notifications.c:28
+#: ../src/applet-notifications.c:30 ../src/applet-notifications.c:28
 msgid "Wait, do you want to kill me ?!"
 msgstr "Attendez, vous voulez me tuer ?!"
 
-#: ../src/applet-notifications.c:31
-#: ../src/applet-notifications.c:29
+#: ../src/applet-notifications.c:31 ../src/applet-notifications.c:29
 msgid "Do you know how much painful it is to be clicked on ??"
 msgstr "Savez-vous combien il est douloureux de se faire cliquer dessus ??"
 
-#: ../src/applet-notifications.c:32
-#: ../src/applet-notifications.c:30
+#: ../src/applet-notifications.c:32 ../src/applet-notifications.c:30
 msgid "It's my dock now, mwahahaha !"
 msgstr "C'est mon dock à présent, mouwahahaha !"
 
-#: ../src/applet-notifications.c:33
-#: ../src/applet-notifications.c:31
+#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:31
 msgid "I want to be a pirate !"
 msgstr "Je veux devenir pirate !"
 
-#: ../src/applet-notifications.c:34
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:32
 msgid "You shall not pass !"
 msgstr "You shall not pass !"
 
-#: ../src/applet-notifications.c:35
-#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:33
 msgid "I'm your father !"
 msgstr "Je suis ton père !"
 
-#: ../src/applet-notifications.c:130
-#: ../src/applet-notifications.c:128
-#: ../src/applet-notifications.c:129
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:130 ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:129 ../src/applet-notifications.c:118
 msgid "Keep quiet"
 msgstr "Reste tranquille !"
 
-#: ../src/applet-notifications.c:134
-#: ../src/applet-notifications.c:132
-#: ../src/applet-notifications.c:133
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:134 ../src/applet-notifications.c:132
+#: ../src/applet-notifications.c:133 ../src/applet-notifications.c:122
 msgid "Wake up"
 msgstr "Réveille-toi !"
 
-#: ../src/applet-notifications.c:137
-#: ../src/applet-notifications.c:135
-#: ../src/applet-notifications.c:136
-#: ../src/applet-notifications.c:125
+#: ../src/applet-notifications.c:137 ../src/applet-notifications.c:135
+#: ../src/applet-notifications.c:136 ../src/applet-notifications.c:125
 msgid "Start XPenguins"
 msgstr "Lancer XPenguins"
 
-#: ../src/applet-notifications.c:138
-#: ../src/applet-notifications.c:136
-#: ../src/applet-notifications.c:137
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:138 ../src/applet-notifications.c:136
+#: ../src/applet-notifications.c:137 ../src/applet-notifications.c:126
 msgid "Stop XPenguins"
 msgstr "Arrêter XPenguins"
 
-#: ../src/applet-notifications.c:167
-#: ../src/applet-notifications.c:169
-#: ../src/applet-notifications.c:165
-#: ../src/applet-notifications.c:166
-#: ../src/applet-notifications.c:168
-#: ../src/applet-notifications.c:155
+#: ../src/applet-notifications.c:167 ../src/applet-notifications.c:169
+#: ../src/applet-notifications.c:165 ../src/applet-notifications.c:166
+#: ../src/applet-notifications.c:168 ../src/applet-notifications.c:155
 #: ../src/applet-notifications.c:157
 msgid "Zzzzz"
 msgstr "Zzzzz"
@@ -232,4 +215,3 @@ msgstr "Pour Aïur !"
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient :"
-

@@ -127,7 +127,7 @@ void cd_cpusage_read_data (void)
 	fclose (fd);
 	if (tmp == NULL)
 	{
-		cd_warning ("impossible to open %s", CPUSAGE_DATA_PIPE);
+		cd_warning ("can't open %s", CPUSAGE_DATA_PIPE);
 		myData.bAcquisitionOK = FALSE;
 		return ;
 	}

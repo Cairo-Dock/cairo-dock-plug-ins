@@ -63,7 +63,7 @@ static void cd_slider_measure_directory (gchar *cDirectory, gboolean bRecursive)
 					cd_slider_measure_directory (sFilePath->str, bRecursive);
 			}
 			else {
-			  extension = strchr(cFileName,'.');
+			  extension = strrchr(cFileName,'.');
 				if (extension != NULL) {
 					iFormat = SLIDER_UNKNOWN_FORMAT;  // le but du format serait de definir un seuil de taille pour chaque format a partir duquel l'image devrait etre chargee par un thread.
 					if (g_ascii_strcasecmp(extension, ".png") == 0)

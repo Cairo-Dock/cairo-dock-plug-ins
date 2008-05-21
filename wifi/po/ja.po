@@ -163,17 +163,17 @@ msgstr ""
 msgid "Excellent"
 msgstr ""
 
-#: ../src/applet-draw.c:118 ../src/applet-draw.c:121
+#: ../src/applet-draw.c:118 ../src/applet-draw.c:121 ../src/applet-draw.c:120
 msgid "Wifi disabled."
 msgstr ""
 
-#: ../src/applet-draw.c:121 ../src/applet-draw.c:125
+#: ../src/applet-draw.c:121 ../src/applet-draw.c:125 ../src/applet-draw.c:124
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
 msgstr ""
 
-#: ../src/applet-draw.c:121 ../src/applet-draw.c:125
+#: ../src/applet-draw.c:121 ../src/applet-draw.c:125 ../src/applet-draw.c:124
 msgid "Signal Strength:"
 msgstr ""
 

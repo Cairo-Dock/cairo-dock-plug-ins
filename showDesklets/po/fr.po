@@ -44,10 +44,8 @@ msgstr "Module"
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: src/applet-notifications.c:13
-#: ../src/applet-notifications.c:23
-#: ../src/applet-notifications.c:22
-#: ../src/applet-notifications.c:20
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:22 ../src/applet-notifications.c:20
 #: ../src/applet-notifications.c:19
 msgid ""
 "This is the showDesklets applet\n"
@@ -61,8 +59,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -70,7 +72,9 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -89,16 +93,18 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13
-#: ../data/messages:15
-#: ../data/messages:17
+#: ../data/messages:13 ../data/messages:15 ../data/messages:17
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -110,17 +116,14 @@ msgstr "Nom d'une image pour montrer les desklets :"
 msgid "Image name to hide desklets :"
 msgstr "Nom d'une image pour cacher les desklets :"
 
-#: ../data/messages:17
-#: ../data/messages:19
+#: ../data/messages:17 ../data/messages:19
 msgid "Show/hide desklets that are on the widget layer too ?"
 msgstr "Montrer/cacher aussi les deklets qui sont sur la WidgetLayer ?"
 
-#: ../data/messages:19
-#: ../data/messages:21
+#: ../data/messages:19 ../data/messages:21
 msgid "Shortkey to show/hide the desklets :"
 msgstr "Raccourci clavier pour montrer/cacher les deklets:"
 
 #: ../data/messages:15
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
-

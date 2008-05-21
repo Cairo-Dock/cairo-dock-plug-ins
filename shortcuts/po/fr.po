@@ -37,10 +37,8 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: src/applet-notifications.c:13
-#: ../src/applet-notifications.c:20
-#: ../src/applet-notifications.c:19
-#: ../src/applet-notifications.c:23
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:19 ../src/applet-notifications.c:23
 #: ../src/applet-notifications.c:21
 msgid ""
 "This is the shortcuts applet\n"
@@ -49,12 +47,9 @@ msgstr ""
 "Ceci est l'applet shortcuts\n"
 " écrite par Fabounet pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:42
-#: ../src/applet-notifications.c:41
-#: ../src/applet-notifications.c:70
-#: ../src/applet-notifications.c:80
-#: ../src/applet-notifications.c:49
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:42 ../src/applet-notifications.c:41
+#: ../src/applet-notifications.c:70 ../src/applet-notifications.c:80
+#: ../src/applet-notifications.c:49 ../src/applet-notifications.c:47
 msgid "Remove this bookmark"
 msgstr "Supprimer ce signet"
 
@@ -62,119 +57,93 @@ msgstr "Supprimer ce signet"
 msgid "Icon"
 msgstr "Icône"
 
-#: ../data/messages:13
-#: ../data/messages:33
-#: ../data/messages:35
+#: ../data/messages:13 ../data/messages:33 ../data/messages:35
 #: ../data/messages:39
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:15
-#: ../data/messages:35
-#: ../data/messages:37
+#: ../data/messages:15 ../data/messages:35 ../data/messages:37
 #: ../data/messages:41
 msgid "List drives and volumes ?"
 msgstr "Lister les disques et volumes ?"
 
-#: ../data/messages:17
-#: ../data/messages:37
-#: ../data/messages:39
+#: ../data/messages:17 ../data/messages:37 ../data/messages:39
 #: ../data/messages:43
 msgid "List network ?"
 msgstr "Lister les points réseau ?"
 
-#: ../data/messages:19
-#: ../data/messages:39
-#: ../data/messages:41
+#: ../data/messages:19 ../data/messages:39 ../data/messages:41
 #: ../data/messages:45
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "Signets GTK, utilisés par Nautilus par exemple."
 
-#: ../data/messages:21
-#: ../data/messages:41
-#: ../data/messages:43
+#: ../data/messages:21 ../data/messages:41 ../data/messages:43
 #: ../data/messages:47
 msgid "List bookmarks ?"
 msgstr "Lister les signets ?"
 
-#: ../data/messages:23
-#: ../data/messages:43
-#: ../data/messages:45
+#: ../data/messages:23 ../data/messages:43 ../data/messages:45
 #: ../data/messages:49
 msgid "Separate different shortcuts with separators ?"
 msgstr "Séparer les différents racourcis avec des séparateurs ?"
 
-#: ../data/messages:25
-#: ../data/messages:45
-#: ../data/messages:47
+#: ../data/messages:25 ../data/messages:45 ../data/messages:47
 #: ../data/messages:51
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
 
-#: ../data/messages:27
-#: ../data/messages:47
-#: ../data/messages:49
+#: ../data/messages:27 ../data/messages:47 ../data/messages:49
 #: ../data/messages:53
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
-#: ../data/messages:11
-#: ../data/messages:13
-#: ../data/messages:15
+#: ../data/messages:11 ../data/messages:13 ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
-#: ../data/messages:15
-#: ../data/messages:17
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+#: ../data/messages:13 ../data/messages:15 ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
 
-#: ../data/messages:15
-#: ../data/messages:17
-#: ../data/messages:19
+#: ../data/messages:15 ../data/messages:17 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
-#: ../data/messages:19
-#: ../data/messages:21
+#: ../data/messages:17 ../data/messages:19 ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
-#: ../data/messages:19
-#: ../data/messages:21
-#: ../data/messages:23
+#: ../data/messages:19 ../data/messages:21 ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21
-#: ../data/messages:23
-#: ../data/messages:25
+#: ../data/messages:21 ../data/messages:23 ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23
-#: ../data/messages:25
-#: ../data/messages:27
+#: ../data/messages:23 ../data/messages:25 ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25
-#: ../data/messages:27
-#: ../data/messages:29
+#: ../data/messages:25 ../data/messages:27 ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27
-#: ../data/messages:29
-#: ../data/messages:31
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
+#: ../data/messages:27 ../data/messages:29 ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
-#: ../data/messages:31
-#: ../data/messages:33
+#: ../data/messages:29 ../data/messages:31 ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
@@ -183,10 +152,14 @@ msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
 
 #: ../data/messages:35
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
+"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
+"contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:37
 msgid "Lockposition ?"
 msgstr "Verrouiller la position ?"
-

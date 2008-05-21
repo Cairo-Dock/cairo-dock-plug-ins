@@ -38,16 +38,12 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:29
-#: ../data/messages:49
-#: ../data/messages:51
+#: ../data/messages:29 ../data/messages:49 ../data/messages:51
 #: ../data/messages:55
 msgid "Delay between signal checks :"
 msgstr "Temps entre les vérifications :"
 
-#: ../data/messages:27
-#: ../data/messages:47
-#: ../data/messages:49
+#: ../data/messages:27 ../data/messages:47 ../data/messages:49
 #: ../data/messages:53
 msgid "in seconds."
 msgstr "en seconde."
@@ -56,9 +52,7 @@ msgstr "en seconde."
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: ../data/messages:15
-#: ../data/messages:35
-#: ../data/messages:37
+#: ../data/messages:15 ../data/messages:35 ../data/messages:37
 #: ../data/messages:41
 msgid "Information"
 msgstr "Information"
@@ -67,226 +61,139 @@ msgstr "Information"
 msgid "Put Signal strength on quickinfo ?"
 msgstr "Mettre la force du signal en quickinfo ?"
 
-#: ../data/messages:31
-#: ../data/messages:35
+#: ../data/messages:31 ../data/messages:35
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
-#: ../data/messages:35
-#: ../data/messages:39
-#: ../data/messages:61
-#: ../data/messages:71
-#: ../data/messages:77
-#: ../data/messages:73
-#: ../data/messages:79
-#: ../data/messages:81
-#: ../data/messages:85
+#: ../data/messages:35 ../data/messages:39 ../data/messages:61
+#: ../data/messages:71 ../data/messages:77 ../data/messages:73
+#: ../data/messages:79 ../data/messages:81 ../data/messages:85
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Nom de l'image 'Très Faible' :"
 
-#: ../data/messages:39
-#: ../data/messages:43
-#: ../data/messages:65
-#: ../data/messages:75
-#: ../data/messages:81
-#: ../data/messages:77
-#: ../data/messages:83
-#: ../data/messages:85
-#: ../data/messages:89
+#: ../data/messages:39 ../data/messages:43 ../data/messages:65
+#: ../data/messages:75 ../data/messages:81 ../data/messages:77
+#: ../data/messages:83 ../data/messages:85 ../data/messages:89
 msgid "Name of an image for the 'low' icon :"
 msgstr "Nom de l'image 'Faible' :"
 
-#: ../data/messages:43
-#: ../data/messages:47
-#: ../data/messages:69
-#: ../data/messages:79
-#: ../data/messages:85
-#: ../data/messages:81
-#: ../data/messages:87
-#: ../data/messages:89
-#: ../data/messages:93
+#: ../data/messages:43 ../data/messages:47 ../data/messages:69
+#: ../data/messages:79 ../data/messages:85 ../data/messages:81
+#: ../data/messages:87 ../data/messages:89 ../data/messages:93
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Nom de l'image 'Moyen' :"
 
-#: ../data/messages:47
-#: ../data/messages:51
-#: ../data/messages:73
-#: ../data/messages:83
-#: ../data/messages:89
-#: ../data/messages:85
-#: ../data/messages:91
-#: ../data/messages:93
-#: ../data/messages:97
+#: ../data/messages:47 ../data/messages:51 ../data/messages:73
+#: ../data/messages:83 ../data/messages:89 ../data/messages:85
+#: ../data/messages:91 ../data/messages:93 ../data/messages:97
 msgid "Name of an image for the 'good' icon :"
 msgstr "Nom de l'image 'Bon' :"
 
-#: ../data/messages:51
-#: ../data/messages:55
-#: ../data/messages:77
-#: ../data/messages:87
-#: ../data/messages:93
-#: ../data/messages:89
-#: ../data/messages:95
-#: ../data/messages:97
-#: ../data/messages:101
+#: ../data/messages:51 ../data/messages:55 ../data/messages:77
+#: ../data/messages:87 ../data/messages:93 ../data/messages:89
+#: ../data/messages:95 ../data/messages:97 ../data/messages:101
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
-#: ../data/messages:19
-#: ../data/messages:17
-#: ../data/messages:37
-#: ../data/messages:39
-#: ../data/messages:43
+#: ../data/messages:19 ../data/messages:17 ../data/messages:37
+#: ../data/messages:39 ../data/messages:43
 msgid "Information to display on the icon :"
 msgstr "Information a afficher sur l'icon :"
 
-#: ../data/messages:21
-#: ../data/messages:41
-#: ../data/messages:43
+#: ../data/messages:21 ../data/messages:41 ../data/messages:43
 #: ../data/messages:47
 msgid "Signal Strength"
 msgstr "Force du Signal"
 
-#: ../data/messages:23
-#: ../data/messages:43
-#: ../data/messages:45
+#: ../data/messages:23 ../data/messages:43 ../data/messages:45
 #: ../data/messages:49
 msgid "Signal Strength in percent"
 msgstr "Force du Signal en pourcent"
 
-#: ../data/messages:25
-#: ../data/messages:45
-#: ../data/messages:47
+#: ../data/messages:25 ../data/messages:45 ../data/messages:47
 #: ../data/messages:51
 msgid "Raw Signal Informations"
 msgstr "Infos Brutes du Signal"
 
-#: ../src/applet-wifi.c:95
-#: ../src/applet-wifi.c:99
-#: ../src/applet-wifi.c:18
-#: ../src/applet-draw.c:15
-#: ../src/applet-draw.c:13
+#: ../src/applet-wifi.c:95 ../src/applet-wifi.c:99 ../src/applet-wifi.c:18
+#: ../src/applet-draw.c:15 ../src/applet-draw.c:13
 msgid "Very Low"
 msgstr "Très Faible"
 
-#: ../src/applet-wifi.c:99
-#: ../src/applet-wifi.c:103
-#: ../src/applet-wifi.c:18
-#: ../src/applet-draw.c:15
-#: ../src/applet-draw.c:13
+#: ../src/applet-wifi.c:99 ../src/applet-wifi.c:103 ../src/applet-wifi.c:18
+#: ../src/applet-draw.c:15 ../src/applet-draw.c:13
 msgid "Low"
 msgstr "Faible"
 
-#: ../src/applet-wifi.c:103
-#: ../src/applet-wifi.c:107
-#: ../src/applet-wifi.c:18
-#: ../src/applet-draw.c:15
-#: ../src/applet-draw.c:13
+#: ../src/applet-wifi.c:103 ../src/applet-wifi.c:107 ../src/applet-wifi.c:18
+#: ../src/applet-draw.c:15 ../src/applet-draw.c:13
 msgid "Middle"
 msgstr "Moyen"
 
-#: ../src/applet-wifi.c:107
-#: ../src/applet-wifi.c:111
-#: ../src/applet-wifi.c:18
-#: ../src/applet-draw.c:15
-#: ../src/applet-draw.c:13
+#: ../src/applet-wifi.c:107 ../src/applet-wifi.c:111 ../src/applet-wifi.c:18
+#: ../src/applet-draw.c:15 ../src/applet-draw.c:13
 msgid "Good"
 msgstr "Bon"
 
-#: ../src/applet-wifi.c:18
-#: ../src/applet-draw.c:15
-#: ../src/applet-draw.c:13
+#: ../src/applet-wifi.c:18 ../src/applet-draw.c:15 ../src/applet-draw.c:13
 msgid "Excellent"
 msgstr "Excellent"
 
-#: ../src/applet-wifi.c:115
-#: ../src/applet-wifi.c:119
-#: ../data/messages:19
-#: ../src/applet-wifi.c:18
-#: ../src/applet-draw.c:15
-#: ../data/messages:39
-#: ../src/applet-draw.c:13
-#: ../data/messages:53
-#: ../data/messages:59
-#: ../data/messages:55
-#: ../data/messages:57
-#: ../data/messages:41
-#: ../data/messages:45
-#: ../data/messages:63
+#: ../src/applet-wifi.c:115 ../src/applet-wifi.c:119 ../data/messages:19
+#: ../src/applet-wifi.c:18 ../src/applet-draw.c:15 ../data/messages:39
+#: ../src/applet-draw.c:13 ../data/messages:53 ../data/messages:59
+#: ../data/messages:55 ../data/messages:57 ../data/messages:41
+#: ../data/messages:45 ../data/messages:63
 msgid "None"
 msgstr "Aucune"
 
 msgid "Lost"
 msgstr "Perdue"
 
-#: ../data/messages:55
-#: ../data/messages:61
-#: ../data/messages:57
-#: ../data/messages:59
-#: ../data/messages:65
+#: ../data/messages:55 ../data/messages:61 ../data/messages:57
+#: ../data/messages:59 ../data/messages:65
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../data/messages:57
-#: ../data/messages:63
-#: ../data/messages:59
-#: ../data/messages:61
-#: ../data/messages:67
+#: ../data/messages:57 ../data/messages:63 ../data/messages:59
+#: ../data/messages:61 ../data/messages:67
 msgid "Transparency"
 msgstr "Transparence"
 
-#: ../data/messages:59
-#: ../data/messages:65
-#: ../data/messages:61
-#: ../data/messages:63
-#: ../data/messages:69
+#: ../data/messages:59 ../data/messages:65 ../data/messages:61
+#: ../data/messages:63 ../data/messages:69
 msgid "Draw Bar"
 msgstr "Dessiner une barre"
 
-#: ../data/messages:51
-#: ../data/messages:57
-#: ../data/messages:53
-#: ../data/messages:55
-#: ../data/messages:61
+#: ../data/messages:51 ../data/messages:57 ../data/messages:53
+#: ../data/messages:55 ../data/messages:61
 msgid "Effect to apply on the icon according to strength :"
 msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
-#: ../data/messages:51
-#: ../data/messages:65
-#: ../data/messages:67
+#: ../data/messages:51 ../data/messages:65 ../data/messages:67
 #: ../data/messages:71
 msgid "Use a jauge instead of icons?"
 msgstr "Utiliser une jauge au lieu des icônes?"
 
-#: ../data/messages:53
-#: ../data/messages:67
-#: ../data/messages:69
+#: ../data/messages:53 ../data/messages:67 ../data/messages:69
 #: ../data/messages:73
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 
-#: ../data/messages:53
-#: ../data/messages:63
-#: ../data/messages:69
+#: ../data/messages:53 ../data/messages:63 ../data/messages:69
 #: ../data/messages:65
 msgid "No icon when no wireless devices/connections found?"
 msgstr "Aucune icône quand aucun module wifi n'est trouver?"
 
-#: ../src/applet-notifications.c:26
-#: ../src/applet-notifications.c:35
-#: ../src/applet-notifications.c:33
-#: ../src/applet-notifications.c:32
-#: ../src/applet-notifications.c:34
-#: ../src/applet-notifications.c:29
-#: ../src/applet-notifications.c:28
-#: ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:26 ../src/applet-notifications.c:35
+#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:29
+#: ../src/applet-notifications.c:28 ../src/applet-notifications.c:42
 msgid "Check for Wireless Extension"
 msgstr "Verifier les Extensions Wifi"
 
-#: src/applet-notifications.c:13
-#: ../src/applet-notifications.c:15
-#: ../src/applet-notifications.c:13
-#: ../src/applet-notifications.c:12
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:15
+#: ../src/applet-notifications.c:13 ../src/applet-notifications.c:12
 msgid ""
 "This is the wifi applet\n"
 " made by ChAnGFu for Cairo-Dock"
@@ -294,143 +201,87 @@ msgstr ""
 "Ceci est l'applet wifi\n"
 " écrite par ChAnGFu pour Cairo-Dock"
 
-#: ../data/messages:11
-#: ../data/messages:19
-#: ../data/messages:53
-#: ../data/messages:57
-#: ../data/messages:13
-#: ../data/messages:15
+#: ../data/messages:11 ../data/messages:19 ../data/messages:53
+#: ../data/messages:57 ../data/messages:13 ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
-#: ../data/messages:21
-#: ../data/messages:55
-#: ../data/messages:59
-#: ../data/messages:15
-#: ../data/messages:17
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
+#: ../data/messages:13 ../data/messages:21 ../data/messages:55
+#: ../data/messages:59 ../data/messages:15 ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:15
-#: ../data/messages:23
-#: ../data/messages:57
-#: ../data/messages:61
-#: ../data/messages:17
-#: ../data/messages:19
+#: ../data/messages:15 ../data/messages:23 ../data/messages:57
+#: ../data/messages:61 ../data/messages:17 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
-#: ../data/messages:25
-#: ../data/messages:59
-#: ../data/messages:63
-#: ../data/messages:19
-#: ../data/messages:21
+#: ../data/messages:17 ../data/messages:25 ../data/messages:59
+#: ../data/messages:63 ../data/messages:19 ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
-#: ../data/messages:19
-#: ../data/messages:27
-#: ../data/messages:61
-#: ../data/messages:65
-#: ../data/messages:21
-#: ../data/messages:23
+#: ../data/messages:19 ../data/messages:27 ../data/messages:61
+#: ../data/messages:65 ../data/messages:21 ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21
-#: ../data/messages:29
-#: ../data/messages:63
-#: ../data/messages:67
-#: ../data/messages:23
-#: ../data/messages:25
+#: ../data/messages:21 ../data/messages:29 ../data/messages:63
+#: ../data/messages:67 ../data/messages:23 ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23
-#: ../data/messages:31
-#: ../data/messages:65
-#: ../data/messages:69
-#: ../data/messages:25
-#: ../data/messages:27
+#: ../data/messages:23 ../data/messages:31 ../data/messages:65
+#: ../data/messages:69 ../data/messages:25 ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25
-#: ../data/messages:33
-#: ../data/messages:67
-#: ../data/messages:71
-#: ../data/messages:27
-#: ../data/messages:29
+#: ../data/messages:25 ../data/messages:33 ../data/messages:67
+#: ../data/messages:71 ../data/messages:27 ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27
-#: ../data/messages:35
-#: ../data/messages:69
-#: ../data/messages:73
-#: ../data/messages:29
-#: ../data/messages:31
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
+#: ../data/messages:27 ../data/messages:35 ../data/messages:69
+#: ../data/messages:73 ../data/messages:29 ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
-#: ../data/messages:37
-#: ../data/messages:71
-#: ../data/messages:75
-#: ../data/messages:31
-#: ../data/messages:33
+#: ../data/messages:29 ../data/messages:37 ../data/messages:71
+#: ../data/messages:75 ../data/messages:31 ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:13
-#: ../data/messages:33
-#: ../data/messages:35
+#: ../data/messages:13 ../data/messages:33 ../data/messages:35
 #: ../data/messages:39
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:27
-#: ../data/messages:31
-#: ../data/messages:51
-#: ../data/messages:61
-#: ../data/messages:67
-#: ../data/messages:63
-#: ../data/messages:65
-#: ../data/messages:71
-#: ../data/messages:73
+#: ../data/messages:27 ../data/messages:31 ../data/messages:51
+#: ../data/messages:61 ../data/messages:67 ../data/messages:63
+#: ../data/messages:65 ../data/messages:71 ../data/messages:73
 #: ../data/messages:77
 msgid "Images"
 msgstr "Images"
 
-#: ../data/messages:29
-#: ../data/messages:33
-#: ../data/messages:37
-#: ../data/messages:41
-#: ../data/messages:45
-#: ../data/messages:49
-#: ../data/messages:53
-#: ../data/messages:55
-#: ../data/messages:59
-#: ../data/messages:63
-#: ../data/messages:67
-#: ../data/messages:71
-#: ../data/messages:75
-#: ../data/messages:65
-#: ../data/messages:69
-#: ../data/messages:73
-#: ../data/messages:77
-#: ../data/messages:81
-#: ../data/messages:85
-#: ../data/messages:79
-#: ../data/messages:83
-#: ../data/messages:87
-#: ../data/messages:91
-#: ../data/messages:89
-#: ../data/messages:93
-#: ../data/messages:95
-#: ../data/messages:99
+#: ../data/messages:29 ../data/messages:33 ../data/messages:37
+#: ../data/messages:41 ../data/messages:45 ../data/messages:49
+#: ../data/messages:53 ../data/messages:55 ../data/messages:59
+#: ../data/messages:63 ../data/messages:67 ../data/messages:71
+#: ../data/messages:75 ../data/messages:65 ../data/messages:69
+#: ../data/messages:73 ../data/messages:77 ../data/messages:81
+#: ../data/messages:85 ../data/messages:79 ../data/messages:83
+#: ../data/messages:87 ../data/messages:91 ../data/messages:89
+#: ../data/messages:93 ../data/messages:95 ../data/messages:99
 msgid "Let it empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
@@ -438,40 +289,23 @@ msgstr "Laissez vide pour utiliser l'icône par défaut."
 msgid "Signal Strength level"
 msgstr "Niveau de force du signal"
 
-#: ../data/messages:57
-#: ../data/messages:67
-#: ../data/messages:73
-#: ../data/messages:69
-#: ../data/messages:75
-#: ../data/messages:77
+#: ../data/messages:57 ../data/messages:67 ../data/messages:73
+#: ../data/messages:69 ../data/messages:75 ../data/messages:77
 #: ../data/messages:81
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Nom de l'image 'Aucun Signal' :"
 
-#: ../src/applet-draw.c:154
-#: ../src/applet-draw.c:148
-#: ../src/applet-draw.c:147
-#: ../src/applet-draw.c:150
-#: ../src/applet-draw.c:121
-#: ../src/applet-draw.c:117
-#: ../src/applet-draw.c:113
-#: ../src/applet-draw.c:123
-#: ../src/applet-draw.c:119
-#: ../src/applet-draw.c:118
+#: ../src/applet-draw.c:154 ../src/applet-draw.c:148 ../src/applet-draw.c:147
+#: ../src/applet-draw.c:150 ../src/applet-draw.c:121 ../src/applet-draw.c:117
+#: ../src/applet-draw.c:113 ../src/applet-draw.c:123 ../src/applet-draw.c:119
+#: ../src/applet-draw.c:118 ../src/applet-draw.c:120
 msgid "Wifi disabled."
 msgstr "Wifi désactivé."
 
-#: ../src/applet-draw.c:157
-#: ../src/applet-draw.c:151
-#: ../src/applet-draw.c:150
-#: ../src/applet-draw.c:153
-#: ../src/applet-draw.c:124
-#: ../src/applet-draw.c:120
-#: ../src/applet-draw.c:116
-#: ../src/applet-draw.c:126
-#: ../src/applet-draw.c:122
-#: ../src/applet-draw.c:121
-#: ../src/applet-draw.c:125
+#: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
+#: ../src/applet-draw.c:153 ../src/applet-draw.c:124 ../src/applet-draw.c:120
+#: ../src/applet-draw.c:116 ../src/applet-draw.c:126 ../src/applet-draw.c:122
+#: ../src/applet-draw.c:121 ../src/applet-draw.c:125
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -479,48 +313,29 @@ msgstr ""
 "Wifi activé. \n"
 " Connecté sur:"
 
-#: ../src/applet-draw.c:157
-#: ../src/applet-draw.c:151
-#: ../src/applet-draw.c:150
-#: ../src/applet-draw.c:153
-#: ../src/applet-draw.c:124
-#: ../src/applet-draw.c:120
-#: ../src/applet-draw.c:116
-#: ../src/applet-draw.c:126
-#: ../src/applet-draw.c:122
-#: ../src/applet-draw.c:121
-#: ../src/applet-draw.c:125
+#: ../src/applet-draw.c:157 ../src/applet-draw.c:151 ../src/applet-draw.c:150
+#: ../src/applet-draw.c:153 ../src/applet-draw.c:124 ../src/applet-draw.c:120
+#: ../src/applet-draw.c:116 ../src/applet-draw.c:126 ../src/applet-draw.c:122
+#: ../src/applet-draw.c:121 ../src/applet-draw.c:125
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 
-#: ../src/applet-wifi.c:175
-#: ../src/applet-wifi.c:169
-#: ../src/applet-wifi.c:182
-#: ../src/applet-wifi.c:162
-#: ../src/applet-wifi.c:188
-#: ../src/applet-wifi.c:184
-#: ../src/applet-wifi.c:86
-#: ../src/applet-wifi.c:81
-#: ../src/applet-wifi.c:89
-#: ../src/applet-wifi.c:94
-#: ../src/applet-wifi.c:93
-#: ../src/applet-wifi.c:98
+#: ../src/applet-wifi.c:175 ../src/applet-wifi.c:169 ../src/applet-wifi.c:182
+#: ../src/applet-wifi.c:162 ../src/applet-wifi.c:188 ../src/applet-wifi.c:184
+#: ../src/applet-wifi.c:86 ../src/applet-wifi.c:81 ../src/applet-wifi.c:89
+#: ../src/applet-wifi.c:94 ../src/applet-wifi.c:93 ../src/applet-wifi.c:98
 #: ../src/applet-wifi.c:99
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../data/messages:51
-#: ../data/messages:53
-#: ../data/messages:57
+#: ../data/messages:51 ../data/messages:53 ../data/messages:57
 msgid "Display"
 msgstr "Affichage"
 
 msgid "Display the ESSID ?"
 msgstr "Afficher l'ESSID ?"
 
-#: ../data/messages:53
-#: ../data/messages:55
-#: ../data/messages:59
+#: ../data/messages:53 ../data/messages:55 ../data/messages:59
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Ecraser l'étiquette par défaut avec le nom du point d'accès ?"
 
@@ -528,9 +343,7 @@ msgstr "Ecraser l'étiquette par défaut avec le nom du point d'accès ?"
 msgid "Network Administration"
 msgstr "Administration du Réseau"
 
-#: ../data/messages:69
-#: ../data/messages:71
-#: ../data/messages:75
+#: ../data/messages:69 ../data/messages:71 ../data/messages:75
 msgid "radium"
 msgstr "radium"
 
@@ -539,10 +352,23 @@ msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient :"
 
 #: ../data/messages:35
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement enle tirant avec le bouton gauche de la souris. Bien sur il pourra toujourêtre bouger avec ALT + clique_gauche"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement enle tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujourêtre bouger "
+"avec ALT + clique_gauche"
 
 #: ../data/messages:37
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
+#: ../data/messages:37
+msgid "Lockposition ?"
+msgstr ""
+
+#: ../data/messages:79 ../data/messages:83 ../data/messages:87
+#: ../data/messages:91 ../data/messages:95 ../data/messages:99
+msgid "Let t empty to use the default icon."
+msgstr ""

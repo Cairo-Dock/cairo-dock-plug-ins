@@ -226,7 +226,7 @@ void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSour
 			pAnimation->pSurfaces[i] = g_new (cairo_surface_t *, pAnimation->iNbFrames);
 			for (j = 0; j < pAnimation->iNbFrames; j ++)
 			{
-				cd_debug ("    dir %d, frame %d)", i, j);
+				//cd_debug ("    dir %d, frame %d)", i, j);
 				pAnimation->pSurfaces[i][j] = cairo_surface_create_similar (cairo_get_target (pSourceContext),
 					CAIRO_CONTENT_COLOR_ALPHA,
 					pAnimation->iFrameWidth,

@@ -108,11 +108,13 @@ msgstr ""
 
 #: ../src/applet-notifications.c:48 ../src/applet-notifications.c:49
 #: ../src/applet-notifications.c:67 ../src/applet-notifications.c:89
+#: ../src/applet-notifications.c:90 ../src/applet-notifications.c:107
 msgid "Play"
 msgstr ""
 
 #: ../src/applet-notifications.c:51 ../src/applet-notifications.c:52
 #: ../src/applet-notifications.c:70 ../src/applet-notifications.c:89
+#: ../src/applet-notifications.c:90 ../src/applet-notifications.c:107
 msgid "Pause"
 msgstr ""
 
@@ -248,7 +250,7 @@ msgstr ""
 msgid "Force the image to fill the icon/desklet ?"
 msgstr ""
 
-#: ../src/applet-notifications.c:93
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:110
 msgid "Open current image"
 msgstr ""
 
