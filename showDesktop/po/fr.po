@@ -119,7 +119,10 @@ msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
+"Si verrouillé, le desklet ne pourra pas être déplacé simplement en le tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujours être déplacé "
+"avec ALT + clique_gauche"
 
 #: ../data/messages:39
-msgid "Lockposition ?"
-msgstr ""
+msgid "Lock position ?"
+msgstr "Verrouiller la position ?"
