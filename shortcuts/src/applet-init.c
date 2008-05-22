@@ -26,7 +26,12 @@ CD_APPLET_INIT_BEGIN (erreur)
 		myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);
 	
 	//\_______________ On charge les icones dans un sous-dock.
-	cd_shortcuts_launch_measure ();  // asynchrone
+	//cd_shortcuts_launch_measure ();  // asynchrone
+	myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
+		NULL,
+		cd_shortcuts_get_shortcuts_data,
+		cd_shortcuts_build_shortcuts_from_data);
+	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
@@ -52,7 +57,9 @@ CD_APPLET_RELOAD_BEGIN
 		if (myIcon->acName == NULL || *myIcon->acName == '\0')
 			myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);
 		
-		cd_shortcuts_launch_measure ();  // asynchrone
+		//cd_shortcuts_launch_measure ();  // asynchrone
+		cairo_dock_stop_measure_timer (myData.pMeasureTimer);
+		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 	else if (myDesklet)
 	{

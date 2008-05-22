@@ -40,7 +40,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.previousPlayingTitle = NULL;
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (1000,
+	myData.pMeasureTimer = cairo_dock_new_measure_timer (1,
 		cd_xmms_acquisition,
 		cd_xmms_read_data,
 		cd_xmms_draw_icon);

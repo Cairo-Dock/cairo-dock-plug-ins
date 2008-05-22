@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-03-01 10:33+0900\n"
+"PO-Revision-Date: 2008-05-19 21:00+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -326,7 +326,7 @@ msgstr "デフォルトのコマンドを使用するには空欄のままに。
 #: ../data/messages:67 ../data/messages:71 ../data/messages:73
 #: ../data/messages:77
 msgid "Specific command to run :"
-msgstr "実行する特定のコマンド :"
+msgstr "実行するコマンドの指定 :"
 
 #: ../data/messages:69 ../data/messages:73 ../data/messages:75
 #: ../data/messages:79
@@ -358,21 +358,26 @@ msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
 msgstr ""
+"例えば Monospace や Purisa など....。数字の類などなしにフォント名を入力してく"
+"ださい。"
 
 #: ../data/messages:63 ../data/messages:65 ../data/messages:69
 msgid "Font used for the numeric display :"
-msgstr ""
+msgstr "デジタル表示時に使用するフォント :"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:35
 msgid "Lockposition ?"
-msgstr ""
+msgstr "位置を固定？"

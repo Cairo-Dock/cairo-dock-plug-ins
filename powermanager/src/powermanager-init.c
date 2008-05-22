@@ -36,7 +36,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 			
 			myData.alerted = TRUE;
 			update_stats();
-			myData.checkLoop = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
+			myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 		}
 		else
 		{
@@ -86,7 +86,7 @@ CD_APPLET_RELOAD_BEGIN
 			g_source_remove (myData.checkLoop);
 			myData.checkLoop = 0;
 		}
-		myData.checkLoop = g_timeout_add (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
+		myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 	}
 	
 	//\_______________ On redessine notre icone.

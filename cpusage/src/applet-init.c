@@ -15,7 +15,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	}
 	
 	//Initialisation de la jauge
-	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
  	make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 	
@@ -47,7 +47,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	//On recharge la jauge
 	free_cd_Gauge(myData.pGauge);
-	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {

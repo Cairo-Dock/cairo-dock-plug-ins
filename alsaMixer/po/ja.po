@@ -3,13 +3,12 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: ../data/messages:29
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-02-25 15:50+0900\n"
+"PO-Revision-Date: 2008-05-19 20:57+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -107,201 +106,206 @@ msgid ""
 "This is the AlsaMixer applet\n"
 " made by Fabounet (Fabrice Rey) for Cairo-Dock"
 msgstr ""
+"これは Fabounet (Fabrice Rey) によって\n"
+"Cairo-Dock 用に製作された AlsaMixer アプレットです。"
 
 #: ../data/messages:13 ../data/messages:15 ../data/messages:31
 #: ../data/messages:33 ../data/messages:37
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../data/messages:15 ../data/messages:17 ../data/messages:35
 #: ../data/messages:37 ../data/messages:41
 msgid "Let empty to use the default sound card."
-msgstr ""
+msgstr "デフォルトのサウンドカードを使用するには空欄のままに。"
 
 #: ../data/messages:17 ../data/messages:19 ../data/messages:37
 #: ../data/messages:39 ../data/messages:43
 msgid "Sound card to control :"
-msgstr ""
+msgstr "制御するサウンドカード :"
 
 #: ../data/messages:19
 msgid "Choose which mixer's element to control :"
-msgstr ""
+msgstr "制御するミキサー要素の選択 :"
 
 #: ../data/messages:21 ../data/messages:23 ../data/messages:49
 #: ../data/messages:53 ../data/messages:55 ../data/messages:57
 #: ../data/messages:61
 msgid "Display volume :"
-msgstr ""
+msgstr "ボリューム表示 :"
 
 #: ../data/messages:23 ../data/messages:25 ../data/messages:51
 #: ../data/messages:55 ../data/messages:57 ../data/messages:59
 #: ../data/messages:63
 msgid "No"
-msgstr ""
+msgstr "なし"
 
 #: ../data/messages:25 ../data/messages:27 ../data/messages:53
 #: ../data/messages:57 ../data/messages:59 ../data/messages:61
 #: ../data/messages:65
 msgid "On label"
-msgstr ""
+msgstr "ラベル上"
 
 #: ../data/messages:27 ../data/messages:29 ../data/messages:55
 #: ../data/messages:59 ../data/messages:61 ../data/messages:63
 #: ../data/messages:67
 msgid "On icon"
-msgstr ""
+msgstr "アイコン上"
 
 #: ../src/applet-mixer.c:217 ../src/applet-mixer.c:248
 #: ../src/applet-mixer.c:265 ../src/applet-mixer.c:269
 #: ../src/applet-mixer.c:268 ../src/applet-mixer.c:266
 msgid "Set up volume :"
-msgstr ""
+msgstr "ボリューム設定 :"
 
 #: ../src/applet-notifications.c:38 ../src/applet-notifications.c:45
 #: ../src/applet-notifications.c:52 ../src/applet-notifications.c:50
 msgid "Adjsut channels"
-msgstr ""
+msgstr "チャンネル調整"
 
 #: ../data/messages:11
 msgid "Let empty to use default one."
-msgstr ""
+msgstr "デフォルトを使用するには空欄のままに。"
 
 #: ../data/messages:21 ../data/messages:39 ../data/messages:41
 #: ../data/messages:45
 msgid "Choose which channel to control :"
-msgstr ""
+msgstr "制御するチャンネルの選択 :"
 
 #: ../data/messages:31 ../data/messages:57
 msgid "Choose an effet to apply on the icon according to volume :"
-msgstr ""
+msgstr "音量に合わせてアイコンに適用にする効果の選択 :"
 
 #: ../data/messages:33 ../data/messages:59 ../data/messages:63
 #: ../data/messages:65 ../data/messages:67 ../data/messages:71
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 #: ../data/messages:35 ../data/messages:61 ../data/messages:65
 #: ../data/messages:67 ../data/messages:69 ../data/messages:73
 msgid "Zoom"
-msgstr ""
+msgstr "ズーム"
 
 #: ../data/messages:37 ../data/messages:63 ../data/messages:67
 #: ../data/messages:69 ../data/messages:71 ../data/messages:75
 msgid "Transparency"
-msgstr ""
+msgstr "透過"
 
 #: ../data/messages:39 ../data/messages:65 ../data/messages:69
 #: ../data/messages:71 ../data/messages:73 ../data/messages:77
 msgid "Draw Bar"
-msgstr ""
+msgstr "バーの描画"
 
 #: ../data/messages:41
 msgid "Command to run to show an advanced sound mixer :"
-msgstr ""
+msgstr "高機能サウンドミキサー表示のために実行するコマンド :"
 
 #: ../src/applet-mixer.c:44 ../src/applet-mixer.c:42
 #, c-format
 msgid "I couldn't open card '%s'"
-msgstr ""
+msgstr "カード '%s' が開けません"
 
 #: ../src/applet-mixer.c:49 ../src/applet-mixer.c:47
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
-msgstr ""
+msgstr "カード '%s' は開かれましたが、情報を取得できません"
 
 #: ../src/applet-mixer.c:57 ../src/applet-mixer.c:55
 msgid "I couldn't open the mixer"
-msgstr ""
+msgstr "ミキサーが開けません"
 
 #: ../src/applet-mixer.c:64 ../src/applet-mixer.c:62
 msgid "I couldn't attach the mixer to the card"
-msgstr ""
+msgstr "カードにミキサーを接続できません"
 
 #: ../src/applet-mixer.c:71 ../src/applet-mixer.c:69
 msgid "I couldn't register options"
-msgstr ""
+msgstr "オプションを登録できません"
 
 #: ../src/applet-mixer.c:79 ../src/applet-mixer.c:77
 msgid "I couldn't load the mixer"
-msgstr ""
+msgstr "ミキサーを読み込めません"
 
 #: ../data/messages:33 ../data/messages:35 ../data/messages:39
 msgid "Alsa"
-msgstr ""
+msgstr "Alsa"
 
 #: ../data/messages:41 ../data/messages:43 ../data/messages:47
 msgid "Let empty to use the defaut command."
-msgstr ""
+msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
 #: ../data/messages:43 ../data/messages:45 ../data/messages:49
 msgid "Specific command to run to show an advanced sound mixer :"
-msgstr ""
+msgstr "高機能サウンドミキサー表示のために実行する特別コマンド :"
 
 #: ../data/messages:45 ../data/messages:47 ../data/messages:49
 #: ../data/messages:53
 msgid "Shortkey to show/hide the sound control dialog :"
-msgstr ""
+msgstr "サウンド制御ダイアログの表示/隠すのショートカットキー :"
 
 #: ../data/messages:47 ../data/messages:51 ../data/messages:53
 #: ../data/messages:55 ../data/messages:59
 msgid "Display"
-msgstr ""
+msgstr "表示"
 
 #: ../data/messages:67 ../data/messages:71 ../data/messages:75
 #: ../data/messages:79 ../data/messages:73 ../data/messages:77
 #: ../data/messages:81 ../data/messages:83 ../data/messages:87
 msgid "Let empty to use the default one."
-msgstr ""
+msgstr "デフォルトを使用するには空欄のままに。"
 
 #: ../data/messages:69 ../data/messages:73 ../data/messages:75
 #: ../data/messages:77 ../data/messages:81
 msgid "Default icon :"
-msgstr ""
+msgstr "デフォルトのアイコン :"
 
 #: ../data/messages:73 ../data/messages:77 ../data/messages:79
 #: ../data/messages:81 ../data/messages:85
 msgid "Broken icon :"
-msgstr ""
+msgstr "制御不可時のアイコン :"
 
 #: ../data/messages:77 ../data/messages:81 ../data/messages:83
 #: ../data/messages:85 ../data/messages:89
 msgid "Mute icon :"
-msgstr ""
+msgstr "ミュート時のアイコン :"
 
 #: ../src/applet-mixer.c:134 ../src/applet-mixer.c:136
 #, c-format
 msgid "I couldn't find any element '%s'"
-msgstr ""
+msgstr "要素 '%s' が見つかりません"
 
 #: ../data/messages:57 ../data/messages:61 ../data/messages:63
 #: ../data/messages:65 ../data/messages:69
 msgid "Effet to apply on the icon according to volume :"
-msgstr ""
+msgstr "音量に合わせてアイコンに適用する効果 :"
 
 #: ../data/messages:47 ../data/messages:49 ../data/messages:51
 #: ../data/messages:55
 msgid "Variation for 1 mouse scroll, in % :"
-msgstr ""
+msgstr "1 マウススクロールによる変更量（％単位） :"
 
 #: ../data/messages:49 ../data/messages:51 ../data/messages:53
 #: ../data/messages:57
 msgid "Hide the scale when mouse leaves the desklet ?"
-msgstr ""
+msgstr "マウスがデスクレットから離れた際に目盛りを隠す？"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:47 ../data/messages:51
 msgid "Control"
-msgstr ""
+msgstr "制御"
 
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:35
 msgid "Lockposition ?"
-msgstr ""
+msgstr "位置を固定？"

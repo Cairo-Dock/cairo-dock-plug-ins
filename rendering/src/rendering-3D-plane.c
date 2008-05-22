@@ -38,20 +38,14 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	double hi = g_fReflectSize + g_iFrameMargin;
 	
 	double fInclinationOnHorizon = 0, fExtraWidth = 0;
-	int iMaxDockWidth = 0;
-	do
-	{
-		pDock->iMaxDockWidth = iMaxDockWidth;
-		iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
-		
-		fInclinationOnHorizon = (pDock->iMaxDockWidth / 2) / iVanishingPointY;
-		pDock->iDecorationsHeight = hi + (pDock->iMaxIconHeight + g_iFrameMargin) / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
-		
-		fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
-		//g_print ("iMaxDockWidth <- %d\n", iMaxDockWidth);
-	}
-	while (fabs (iMaxDockWidth - pDock->iMaxDockWidth) > 2);
-	pDock->iMaxDockWidth = iMaxDockWidth;
+	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
+	fInclinationOnHorizon = 0.5 * pDock->iMaxDockWidth / iVanishingPointY;
+	pDock->iDecorationsHeight = hi + (pDock->iMaxIconHeight + g_iFrameMargin) / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
+	fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
+	cd_debug ("iMaxDockWidth <- %d; fInclinationOnHorizon <- %.2f; fExtraWidth <- %.2f", pDock->iMaxDockWidth, fInclinationOnHorizon, fExtraWidth);
+	
+	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
+	cd_debug ("pDock->iMaxDockWidth <- %d", pDock->iMaxDockWidth);
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	

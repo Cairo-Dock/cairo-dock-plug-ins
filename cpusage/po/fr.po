@@ -159,12 +159,12 @@ msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 
 #: ../src/applet-cpusage.c:243 ../src/applet-cpusage.c:183
-#: ../src/applet-cpusage.c:186
+#: ../src/applet-cpusage.c:186 ../src/applet-cpusage.c:150
 msgid "Loading"
 msgstr "Chargement"
 
-#: ../src/applet-notifications.c:21
-msgid "Acquisition of data failed"
+#: ../src/applet-notifications.c:21 ../src/applet-notifications.c:23
+msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échoué"
 
 #: ../data/messages:11
@@ -209,5 +209,21 @@ msgstr ""
 "contre toujours le déplacer avec ALT + clic gauche"
 
 #: ../data/messages:35
-msgid "Lockposition ?"
+msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
+
+#: ../src/applet-notifications.c:20
+msgid "Model Name"
+msgstr ""
+
+#: ../src/applet-notifications.c:20
+msgid "Frequency"
+msgstr ""
+
+#: ../src/applet-notifications.c:20
+msgid "core(s)"
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lockposition ?"
+msgstr ""

@@ -144,7 +144,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		{
 			cd_message ("***methode par defaut");
 			cd_dustbin_check_trashes (myIcon);
-			myData.iSidCheckTrashes = g_timeout_add ((int) (1000 * myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
+			myData.iSidCheckTrashes = g_timeout_add_seconds ((int) (myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
 		}
 	}
 CD_APPLET_INIT_END
@@ -253,7 +253,7 @@ CD_APPLET_RELOAD_BEGIN
 				cd_message ("***methode par defaut");
 				myData.iNbTrashes = -1;
 				cd_dustbin_check_trashes (myIcon);
-				myData.iSidCheckTrashes = g_timeout_add ((int) (1000 * myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
+				myData.iSidCheckTrashes = g_timeout_add_seconds ((int) (myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
 			}
 		}
 	}

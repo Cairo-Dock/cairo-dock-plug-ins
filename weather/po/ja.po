@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-02-25 15:41+0900\n"
+"PO-Revision-Date: 2008-05-19 21:58+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -309,6 +309,8 @@ msgid ""
 "You can visit this URL to find it, for exemple : http://xoap.weather.com/"
 "search/search?where=Paris,France"
 msgstr ""
+"コードを見つけるには、例えばこの URL を訪れてみてください。: http://xoap."
+"weather.com/search/search?where=Tokyo,Japan"
 
 #: ../src/applet-notifications.c:96 ../src/applet-notifications.c:94
 #: ../src/applet-notifications.c:93
@@ -316,6 +318,8 @@ msgid ""
 "Enter your location\n"
 " (for exemple : Paris, France)"
 msgstr ""
+"現在地の入力\n"
+"（例 : Tokyo, Japan）"
 
 #: ../src/applet-notifications.c:109 ../src/applet-notifications.c:123
 #: ../src/applet-notifications.c:122 ../src/applet-notifications.c:107
@@ -325,21 +329,23 @@ msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
 msgstr ""
+"情報の取得が出来ませんでした。\n"
+"回線接続に問題はありませんか？"
 
 #: ../src/applet-notifications.c:156 ../src/applet-notifications.c:155
 #: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
 msgid "Choose your location :"
-msgstr ""
+msgstr "現在地の選択 :"
 
 #: ../src/applet-notifications.c:182 ../src/applet-notifications.c:181
 #: ../src/applet-notifications.c:179 ../src/applet-notifications.c:177
 msgid "Search for your location"
-msgstr ""
+msgstr "現在地の検索"
 
 #: ../src/applet-notifications.c:183 ../src/applet-notifications.c:182
 #: ../src/applet-notifications.c:180 ../src/applet-notifications.c:178
 msgid "Reload now"
-msgstr ""
+msgstr "直ちに再読み込み"
 
 #: ../src/applet-notifications.c:208 ../src/applet-notifications.c:236
 #: ../src/applet-notifications.c:207 ../src/applet-notifications.c:235
@@ -349,6 +355,8 @@ msgid ""
 "No data were available\n"
 " is connection alive ?"
 msgstr ""
+"データの取得が出来ませんでした。\n"
+"回線接続に問題はありませんか？"
 
 #: ../data/messages:33 ../data/messages:35 ../data/messages:37
 #: ../data/messages:41
@@ -356,21 +364,25 @@ msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
 msgstr ""
+"アイコンを右クリックすると、Cairo-Dock に現在地コードを見つけさせることができ"
+"ます。"
 
 #: ../data/messages:49 ../data/messages:51 ../data/messages:55
 msgid "Info"
-msgstr ""
+msgstr "情報"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:35
 msgid "Lockposition ?"
-msgstr ""
+msgstr "位置の固定？"

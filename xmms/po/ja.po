@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-02-25 15:50+0900\n"
+"PO-Revision-Date: 2008-05-19 22:00+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,191 +137,198 @@ msgstr ""
 
 #: ../data/messages:13 ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "帰属先ドックの名前 :"
 
 #: ../src/applet-notifications.c:197
 msgid ""
 "This is the xmms applet\n"
 " made by ChAnGFu for Cairo-Dock"
 msgstr ""
+"これは ChAnGFu によって製作された \n"
+"Cairo-Dock 用の xmms アプレットです。"
 
 #: ../src/applet-notifications.c:231
 msgid "Previous"
-msgstr ""
+msgstr "前へ"
 
 #: ../src/applet-notifications.c:232
 msgid "Play/Pause"
-msgstr ""
+msgstr "再生/一時停止"
 
 #: ../src/applet-notifications.c:234
 msgid "Stop"
-msgstr ""
+msgstr "停止"
 
 #: ../src/applet-notifications.c:236
 msgid "Next"
-msgstr ""
+msgstr "次へ"
 
 #: ../src/applet-notifications.c:238
 msgid "Show JumpBox"
-msgstr ""
+msgstr "ジャンプ先の指定"
 
 #: ../src/applet-notifications.c:239
 msgid "Toggle Shuffle"
-msgstr ""
+msgstr "シャッフルのオンオフ"
 
 #: ../src/applet-notifications.c:240
 msgid "Toggle Repeat"
-msgstr ""
+msgstr "リピートのオンオフ"
 
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:35
 msgid "Lockposition ?"
-msgstr ""
+msgstr "位置を固定？"
 
 #: ../data/messages:39
 msgid "Audio Player"
-msgstr ""
+msgstr "オーディオ・プレイヤー"
 
 #: ../data/messages:41
 msgid "Player to control:"
-msgstr ""
+msgstr "制御するプレイヤー :"
 
 #: ../data/messages:43
 msgid "XMMS"
-msgstr ""
+msgstr "XMMS"
 
 #: ../data/messages:45
 msgid "Audacious"
-msgstr ""
+msgstr "Audacious"
 
 #: ../data/messages:47
 msgid "Banshee"
-msgstr ""
+msgstr "Banshee"
 
 #: ../data/messages:49
 msgid "Exaile"
-msgstr ""
+msgstr "Exaile"
 
 #: ../data/messages:51
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
+"タスクバーにプレイヤーのアイコンが表示されないようにします。これにより、アプ"
+"レットのアイコンがランチャーやアプリケーション、アプレットとして動作するよう"
+"になります。"
 
 #: ../data/messages:53
 msgid "Steal the player's icon from taskbar ?"
-msgstr ""
+msgstr "タスクバーからプレイヤーのアイコンを奪取？"
 
 #: ../data/messages:55
 msgid "Display"
-msgstr ""
+msgstr "表示"
 
 #: ../data/messages:57
 msgid "Information to display on the icon :"
-msgstr ""
+msgstr "アイコン上に表示する情報 :"
 
 #: ../data/messages:59
 msgid "Nothing"
-msgstr ""
+msgstr "なし"
 
 #: ../data/messages:61
 msgid "Time Elapsed"
-msgstr ""
+msgstr "経過時間"
 
 #: ../data/messages:63
 msgid "Time Left"
-msgstr ""
+msgstr "残り時間"
 
 #: ../data/messages:65
 msgid "N° of track"
-msgstr ""
+msgstr "トラック番号"
 
 #: ../data/messages:67
 msgid "Activate extended desklet mode ?"
-msgstr ""
+msgstr "デスクレットの拡張モードを有効化？"
 
 #: ../data/messages:69
 msgid "Action on music change"
-msgstr ""
+msgstr "音楽切り替わり時のアクション"
 
 #: ../data/messages:71
 msgid "Show an info-bubble ?"
-msgstr ""
+msgstr "吹き出しを表示して情報通知？"
 
 #: ../data/messages:73
 msgid "in ms."
-msgstr ""
+msgstr "ミリ秒単位"
 
 #: ../data/messages:75
 msgid "Time length of info-bubbles :"
-msgstr ""
+msgstr "吹き出しの表示継続時間 :"
 
 #: ../data/messages:77
 msgid "Animate icon ?"
-msgstr ""
+msgstr "アイコンをアニメーション化？"
 
 #: ../data/messages:79
 msgid "Animation when music changes :"
-msgstr ""
+msgstr "音楽の切り替わりの際のアニメーション :"
 
 #: ../data/messages:81
 msgid "bounce"
-msgstr ""
+msgstr "バウンド"
 
 #: ../data/messages:83
 msgid "rotate"
-msgstr ""
+msgstr "回転"
 
 #: ../data/messages:85
 msgid "blink"
-msgstr ""
+msgstr "点滅"
 
 #: ../data/messages:87
 msgid "pulse"
-msgstr ""
+msgstr "波動"
 
 #: ../data/messages:89
 msgid "upside-down"
-msgstr ""
+msgstr "上下逆さま"
 
 #: ../data/messages:91
 msgid "wobbly"
-msgstr ""
+msgstr "伸び縮み"
 
 #: ../data/messages:93
 msgid "random"
-msgstr ""
+msgstr "ランダム"
 
 #: ../data/messages:95
 msgid "Personnalisation"
-msgstr ""
+msgstr "カスタマイズ"
 
 #: ../data/messages:97 ../data/messages:101 ../data/messages:105
 #: ../data/messages:109 ../data/messages:113
 msgid "Let t empty to use the default icon."
-msgstr ""
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #: ../data/messages:99
 msgid "Name of an image for the 'default' icon :"
-msgstr ""
+msgstr "「デフォルト」のアイコン画像の名前 :"
 
 #: ../data/messages:103
 msgid "Name of an image for the 'play' icon :"
-msgstr ""
+msgstr "「再生」のアイコン画像の名前 :"
 
 #: ../data/messages:107
 msgid "Name of an image for the 'stop' icon :"
-msgstr ""
+msgstr "「停止」のアイコン画像の名前 :"
 
 #: ../data/messages:111
 msgid "Name of an image for the 'pause' icon :"
-msgstr ""
+msgstr "「一時停止」のアイコン画像の名前 :"
 
 #: ../data/messages:115
 msgid "Name of an image for the 'broken' icon :"
-msgstr ""
+msgstr "「リンク切れ」のアイコン画像の名前 :"

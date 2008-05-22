@@ -2,6 +2,7 @@
 ###you *should* integrate them in a whole, as they extend the dock's functionnalities.
 rendering
 gnome-integration-old
+gnome-integration
 xfce-integration
 shortcuts
 ###Stable applets, considered as finished :

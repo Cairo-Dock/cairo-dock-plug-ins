@@ -34,7 +34,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	}
 	
 	if (myConfig.bNoDeletedSignal)
-		myData.iSidCheckNotes = g_timeout_add ((int) (2000), (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
+		myData.iSidCheckNotes = g_timeout_add_seconds (2, (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
 	
 	//Enregistrement des notifications
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -72,7 +72,7 @@ CD_APPLET_RELOAD_BEGIN
 			
 			//\___________ On lance ou on arrete le timer.
 			if (myConfig.bNoDeletedSignal && myData.iSidCheckNotes == 0)
-				myData.iSidCheckNotes = g_timeout_add ((int) (2000), (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
+				myData.iSidCheckNotes = g_timeout_add_seconds (2, (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
 			else if (! myConfig.bNoDeletedSignal && myData.iSidCheckNotes != 0)
 			{
 				g_source_remove (myData.iSidCheckNotes);

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-02-25 15:16+0900\n"
+"PO-Revision-Date: 2008-05-19 21:46+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr ""
 
 #: ../data/messages:7
 msgid "Use a flat separator instead of the defined separator icon ?"
-msgstr "定義されたセパレータアイコンの代わりに平坦なセパレータを使用？"
+msgstr "定義された区切りアイコンの代わりに平坦な区切りを使用？"
 
 #: ../data/messages:11
 msgid "If so, you can specify its color:"
@@ -143,7 +143,7 @@ msgstr "レインボー"
 #: ../data/messages:51 ../data/messages:57 ../data/messages:75
 #: ../data/messages:91 ../data/messages:113
 msgid "Space between rows :"
-msgstr "列同士の隙間 :"
+msgstr "列同士の間隔 :"
 
 #: ../data/messages:53 ../data/messages:59
 msgid "Space between icons :"
@@ -171,96 +171,96 @@ msgstr ""
 
 #: ../data/messages:7
 msgid "Choose the way separators are drawn :"
-msgstr ""
+msgstr "区切りの描画の仕方 :"
 
 #: ../data/messages:9
 msgid "Normal separator"
-msgstr ""
+msgstr "通常の区切り"
 
 #: ../data/messages:11
 msgid "Flat separator"
-msgstr ""
+msgstr "平坦な区切り"
 
 #: ../data/messages:13
 msgid "Physical separator"
-msgstr ""
+msgstr "物理的な区切り"
 
 #: ../data/messages:17
 msgid "For flat separators, you can specify their color:"
-msgstr ""
+msgstr "平坦な区切りに適用する色の指定 :"
 
 #: ../data/messages:71
 msgid "Slide"
-msgstr ""
+msgstr "スライド"
 
 #: ../data/messages:73 ../data/messages:89 ../data/messages:111
 msgid "Space between columns :"
-msgstr ""
+msgstr "縦の列同士の間隔 :"
 
 #: ../data/messages:77 ../data/messages:93 ../data/messages:115
 msgid "Max size of icons :"
-msgstr ""
+msgstr "アイコンの最大サイズ :"
 
 #: ../data/messages:79 ../data/messages:95 ../data/messages:117
 msgid "Sinusoidal wave radius :"
-msgstr ""
+msgstr "正弦波の半径 :"
 
 #: ../data/messages:81 ../data/messages:97 ../data/messages:119
 msgid "Use a linear wave rather than a sinusoidal one ?"
-msgstr ""
+msgstr "正弦波ではなく線形波を使用？"
 
 #: ../data/messages:83 ../data/messages:99 ../data/messages:121
 msgid "Use a wide shape ?"
-msgstr ""
+msgstr "横に長い型を使用？"
 
 #: ../data/messages:85 ../data/messages:101 ../data/messages:123
 msgid "Display text only for pointed icon ?"
-msgstr ""
+msgstr "ポイントが置かれたアイコンはテキストのみ表示？"
 
 #: ../data/messages:87 ../data/messages:109
 msgid "SimpleSlide"
-msgstr ""
+msgstr "簡素スライド"
 
 #: ../data/messages:87 ../data/messages:125
 msgid "Draw a background ?"
-msgstr ""
+msgstr "背景を描画？"
 
 #: ../data/messages:89 ../data/messages:127
 msgid "First gradient color (r,v,b,a) :"
-msgstr ""
+msgstr "グラデーションの開始色（赤、緑、青、透明）:"
 
 #: ../data/messages:91 ../data/messages:129
 msgid "Second gradient color (r,v,b,a) :"
-msgstr ""
+msgstr "グラデーションの終了色（赤、緑、青、透明）:"
 
 #: ../data/messages:93 ../data/messages:131
 msgid "Top to bottom gradient ?"
-msgstr ""
+msgstr "上から下にグラデーション？"
 
 #: ../data/messages:95 ../data/messages:133
 msgid "Left to right gradient ?"
-msgstr ""
+msgstr "左から右へグラデーション？"
 
 #: ../data/messages:97 ../data/messages:135
 msgid "Arrow width :"
-msgstr ""
+msgstr "矢印の幅 :"
 
 #: ../data/messages:99 ../data/messages:137
 msgid "Arrow Height :"
-msgstr ""
+msgstr "矢印の高さ :"
 
 #: ../data/messages:101 ../data/messages:139
 msgid "Arrow shift percent :"
-msgstr ""
+msgstr "矢印の位置をずらす割合 :"
 
 #: ../data/messages:103 ../data/messages:141
 msgid "Corner radius :"
-msgstr ""
+msgstr "角の丸み :"
 
 #: ../data/messages:105 ../data/messages:143
 msgid "Border line width :"
-msgstr ""
+msgstr "外枠の幅 :"
 
 #: ../data/messages:107 ../data/messages:145
 msgid "Border line color (r,v,b,a) :"
-msgstr ""
+msgstr "外枠の色（赤、緑、青、透明）"

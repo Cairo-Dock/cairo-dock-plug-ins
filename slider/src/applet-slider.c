@@ -287,7 +287,7 @@ void cd_slider_update_slide (void) {
 	myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
 	
 	if (myConfig.iAnimation == SLIDER_DEFAULT)
-		myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 	else
 		myData.iTimerID = 0;
 }
@@ -456,7 +456,7 @@ gboolean cd_slider_draw_images(void) {
 	myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
 	
 	if (myConfig.iAnimation == SLIDER_DEFAULT)
-		myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 	else
 		myData.iTimerID = 0;
 	
@@ -509,7 +509,7 @@ gboolean cd_slider_fade (void) {
 	
 	if (myData.fAnimAlpha >= .99) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -547,7 +547,7 @@ gboolean cd_slider_blank_fade (void) {
 	
 	if (myData.fAnimAlpha <= 0.01) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -592,7 +592,7 @@ gboolean cd_slider_fade_in_out (void) {
 	
 	if (myData.fAnimAlpha <= 0.01  && myData.iAnimCNT >= .99) { //On arrete l'animation
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -631,7 +631,7 @@ gboolean cd_slider_side_kick (void) {
 	
 	if (myData.fAnimCNT >= myData.fSurfaceWidth +5) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -674,7 +674,7 @@ gboolean cd_slider_diaporama (void) {
 	
 	if (myData.fAnimCNT >= myData.pImgL.fImgX) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -710,7 +710,7 @@ gboolean cd_slider_grow_up (void) {
 	
 	if (myData.fAnimAlpha >= .99) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -747,7 +747,7 @@ gboolean cd_slider_shrink_down (void) {
 	
 	if (myData.fAnimAlpha <= .99) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}

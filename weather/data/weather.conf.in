@@ -99,4 +99,4 @@ theme = basic
 renderer = 
 
 #b Render desklet in 3D ?
-3D desket = false
+3D desket = true

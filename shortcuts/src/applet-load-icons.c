@@ -17,10 +17,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
-
-static GList *s_pIconList = NULL;
+/*static GList *s_pIconList = NULL;
 static int s_iThreadIsRunning = 0;
-static int s_iSidTimerRedraw = 0;
+static int s_iSidTimerRedraw = 0;*/
 
 
 static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
@@ -33,7 +32,7 @@ static void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, con
 }
 
 
-static GList * _load_icons (GError **erreur)
+static GList * _load_icons (void)
 {
 	GList *pIconList = NULL;
 	gchar *cFullURI = NULL;
@@ -100,15 +99,88 @@ static GList * _load_icons (GError **erreur)
 	return pIconList;
 }
 
-gpointer cd_shortcuts_threaded_calculation (gpointer data)
+
+void cd_shortcuts_get_shortcuts_data (void)
 {
-	GError *erreur = NULL;
-	s_pIconList = _load_icons (&erreur);
-	if (erreur != NULL)
+	myData.pIconList = _load_icons ();
+}
+
+
+void cd_shortcuts_build_shortcuts_from_data (void)
+{
+	if (myIcon == NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
-		g_error_free (erreur);
+		g_print ("annulation du chargement des raccourcis\n");
+		g_list_foreach (myData.pIconList, (GFunc) cairo_dock_free_icon, NULL);
+		g_list_free (myData.pIconList);
+		myData.pIconList = NULL;
+		return ;
 	}
+	cd_message ("  chargement du sous-dock des raccourcis");
+	
+	//\_______________________ On efface l'ancienne liste.
+	//if (myData.pDeskletIconList != NULL)
+	if (myDesklet && myDesklet->icons != NULL)
+	{
+		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+		g_list_free (myDesklet->icons);
+		myDesklet->icons = NULL;
+	}
+	if (myIcon->pSubDock != NULL)
+	{
+		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
+		g_list_free (myIcon->pSubDock->icons);
+		myIcon->pSubDock->icons = NULL;
+	}
+	
+	//\_______________________ On charge la nouvelle liste.
+	if (myDock)  // en mode 'dock', on affiche les raccourcis dans un sous-dock.
+	{
+		if (myIcon->pSubDock == NULL)
+		{
+			if (myData.pIconList != NULL)  // l'applet peut faire 'show desktop'.
+			{
+				cd_message ("  creation du sous-dock des raccourcis");
+				CD_APPLET_CREATE_MY_SUBDOCK (myData.pIconList, myConfig.cRenderer)
+				myData.pIconList = NULL;
+			}
+		}
+		else  // on a deja notre sous-dock, on remplace juste ses icones.
+		{
+			cd_message ("  rechargement du sous-dock des raccourcis");
+			if (myData.pIconList == NULL)  // inutile de le garder.
+			{
+				CD_APPLET_DESTROY_MY_SUBDOCK
+			}
+			else
+			{
+				CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (myData.pIconList)
+			}
+		}
+	}
+	else
+	{
+		if (myIcon->pSubDock != NULL)
+		{
+			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+			myIcon->pSubDock = NULL;
+		}
+		
+		myDesklet->icons = myData.pIconList;
+		myData.pIconList = NULL;
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		
+		gtk_widget_queue_draw (myDesklet->pWidget);
+	}
+	
+	myData.pIconList = NULL;
+}
+
+
+
+/*gpointer cd_shortcuts_threaded_calculation (gpointer data)
+{
+	s_pIconList = _load_icons ();
 	
 	g_atomic_int_set (&s_iThreadIsRunning, 0);
 	cd_message ("*** fin du thread");
@@ -217,4 +289,4 @@ void cd_shortcuts_launch_measure (void)
 			g_error_free (erreur);
 		}
 	}
-}
+}*/

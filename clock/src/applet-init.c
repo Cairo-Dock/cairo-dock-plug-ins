@@ -91,7 +91,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	//\_______________ On lance le timer.
 	cd_clock_update_with_time (myIcon);
-	myData.iSidUpdateClock = g_timeout_add ((myConfig.bShowSeconds ? 1e3: 60e3), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
+	myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
 CD_APPLET_INIT_END
 
 
@@ -127,7 +127,7 @@ CD_APPLET_RELOAD_BEGIN
 
 		//\_______________ On relance le timer.
 		cd_clock_update_with_time (myIcon);
-		myData.iSidUpdateClock = g_timeout_add ((myConfig.bShowSeconds ? 1e3: 60e3), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
+		myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
 	}
 	else
 	{

@@ -17,7 +17,7 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-load-icon.h"
 #include "applet-compiz.h"
 
-#define CD_COMPIZ_CHECK_TIME 5000
+#define CD_COMPIZ_CHECK_TIME 4
 
 CD_APPLET_DEFINITION ("compiz-icon", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 

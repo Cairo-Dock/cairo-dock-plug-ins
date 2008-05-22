@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-02-25 15:50+0900\n"
+"PO-Revision-Date: 2008-05-19 21:58+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -102,28 +102,32 @@ msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../src/applet-init.c:71 ../src/applet-widget.c:41
 msgid "Terminal"
-msgstr ""
+msgstr "端末"
 
 #: ../src/applet-notifications.c:20
 msgid ""
 "This is the weblets applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
 msgstr ""
+"これは Chiristophe Chapuis によって製作された \n"
+"Cairo-Dock 用の weblets アプレットです。"
 
 #: ../data/messages:33 ../data/messages:35 ../data/messages:39
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:35
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:37
 msgid "Lockposition ?"
-msgstr ""
+msgstr "位置を固定？"

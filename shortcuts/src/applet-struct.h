@@ -3,7 +3,7 @@
 #define  __APPLET_STRUCT__
 
 #include <glib.h>
-#include <cairo.h>
+#include <cairo-dock.h>
 
 #define SHORTCUTS_DEFAULT_NAME "_shortcuts_"
 
@@ -17,11 +17,8 @@ typedef struct {
 
 
 typedef struct {
-	//GList *pDeskletIconList;
-	gint iNbIconsInTree;
-	gint iNbBranches;
-	gdouble fTreeWidthFactor, fTreeHeightFactor;
-	cairo_surface_t *pBrancheSurface[2];
+	GList *pIconList;
+	CairoDockMeasure *pMeasureTimer;
 	gchar *cDisksURI;
 	gchar *cNetworkURI;
 	gchar *cBookmarksURI;

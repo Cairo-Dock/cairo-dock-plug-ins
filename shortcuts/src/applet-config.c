@@ -22,7 +22,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bUseSeparator = CD_CONFIG_GET_BOOLEAN ("Module", "use separator");
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Module", "renderer");
-	//cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Module", "renderer");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -32,6 +31,8 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
+	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	
 	if (myData.cDisksURI != NULL)
 	{
 		cairo_dock_fm_remove_monitor_full (myData.cDisksURI, FALSE, NULL);

@@ -475,5 +475,5 @@ static gboolean _penguin_restart_delayed (gpointer data)
 void penguin_start_animating_with_delay (gboolean bInit)
 {
 	if (myData.iSidRestartDelayed == 0)
-		myData.iSidRestartDelayed = g_timeout_add (1000., (GSourceFunc) _penguin_restart_delayed, (gpointer) GINT_TO_POINTER (bInit));
+		myData.iSidRestartDelayed = g_timeout_add_seconds (1., (GSourceFunc) _penguin_restart_delayed, (gpointer) GINT_TO_POINTER (bInit));
 }

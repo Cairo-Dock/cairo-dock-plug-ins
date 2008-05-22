@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-02-25 15:50+0900\n"
+"PO-Revision-Date: 2008-05-19 21:06+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -104,33 +104,33 @@ msgstr "ウィジェット・レイヤ上に表示？"
 #: ../src/applet-load-icon.c:20 ../src/applet-load-icon.c:21
 #: ../src/applet-load-icon.c:22
 msgid "Configure Compiz"
-msgstr ""
+msgstr "Compiz の設定"
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
 #: ../src/applet-load-icon.c:20 ../src/applet-load-icon.c:21
 #: ../src/applet-load-icon.c:22
 msgid "Emerald Manager"
-msgstr ""
+msgstr "Emerald マネージャ"
 
 #: ../src/applet-load-icon.c:18 ../src/applet-load-icon.c:19
 #: ../src/applet-load-icon.c:20 ../src/applet-load-icon.c:22
 msgid "Reload WM"
-msgstr ""
+msgstr "WM の再読み込み"
 
 #: ../src/applet-load-icon.c:19 ../src/applet-load-icon.c:20
 #: ../src/applet-load-icon.c:21
 msgid "default"
-msgstr ""
+msgstr "デフォルト"
 
 #: ../src/applet-load-icon.c:19 ../src/applet-load-icon.c:20
 #: ../src/applet-load-icon.c:21
 msgid "broken"
-msgstr ""
+msgstr "リンク切れ"
 
 #: ../src/applet-load-icon.c:19 ../src/applet-load-icon.c:20
 #: ../src/applet-load-icon.c:21
 msgid "other"
-msgstr ""
+msgstr "その他"
 
 #: ../src/applet-notifications.c:21 ../src/applet-notifications.c:22
 #: ../src/applet-notifications.c:23
@@ -138,114 +138,117 @@ msgid ""
 "This is the compiz-icon applet\n"
 " made by ChAnGFu for Cairo-Dock"
 msgstr ""
+"これは ChAnGFu によって製作された \n"
+"Cairo-Dock 用の compiz-icon アプレットです。"
 
 #: ../src/applet-notifications.c:63 ../src/applet-notifications.c:113
 #: ../src/applet-notifications.c:120 ../src/applet-notifications.c:119
 #: ../src/applet-notifications.c:133 ../src/applet-notifications.c:168
 #: ../src/applet-notifications.c:165 ../src/applet-notifications.c:167
 msgid "Switch Windows Decorator"
-msgstr ""
+msgstr "ウィンドウ・デコレータの切り替え"
 
 #: ../data/messages:33 ../data/messages:31 ../data/messages:37
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../data/messages:35
 msgid "Windows Manager"
-msgstr ""
+msgstr "ウィンドウ・マネージャ"
 
 #: ../data/messages:37
 msgid "Select your Windows Manager :"
-msgstr ""
+msgstr "ウィンドウ・マネージャの選択 :"
 
 #: ../data/messages:39
 msgid "Compiz"
-msgstr ""
+msgstr "Compiz"
 
 #: ../data/messages:41
 msgid "Metacity"
-msgstr ""
+msgstr "Metacity"
 
 #: ../data/messages:43
 msgid "Kwin"
-msgstr ""
+msgstr "Kwin"
 
 #: ../data/messages:45
 msgid "XFCE"
-msgstr ""
+msgstr "XFCE"
 
 #: ../data/messages:47
 msgid ""
 "Allow you to switch beetwen Compiz & system's Windows Manager with middle "
 "click"
 msgstr ""
+"中クリックで Compiz と システムのウィンドウ・マネージャとの切り替えができます"
 
 #: ../data/messages:49
 msgid "Fast Switching"
-msgstr ""
+msgstr "簡易切り替え"
 
 #: ../data/messages:51
 msgid "Reload default Windows Manager when missing"
-msgstr ""
+msgstr "ない場合はデフォルトのウィンドウ・マネージャを再読み込みします"
 
 #: ../data/messages:53
 msgid "Protect my settings"
-msgstr ""
+msgstr "任意変更した設定の保護"
 
 #: ../data/messages:55
 msgid "The applet will use this commande instead of default one"
-msgstr ""
+msgstr "アプレットはデフォルトの代わりにこのコマンドを使用します。"
 
 #: ../data/messages:57
 msgid "Custom command for system's Window Manager :"
-msgstr ""
+msgstr "システムのウィンドウ・マネージャを起動する任意コマンド :"
 
 #: ../data/messages:59 ../data/messages:63 ../data/messages:67
 #: ../data/messages:65 ../data/messages:69 ../data/messages:73
 #: ../data/messages:75 ../data/messages:79
 msgid "Compiz Options"
-msgstr ""
+msgstr "Compiz のオプション"
 
 #: ../data/messages:61 ../data/messages:65 ../data/messages:69
 #: ../data/messages:73 ../data/messages:67 ../data/messages:71
 #: ../data/messages:75 ../data/messages:79 ../data/messages:81
 #: ../data/messages:85
 msgid "Use thoses options only if you know them."
-msgstr ""
+msgstr "このオプションについて理解されている場合のみ使用してください。"
 
 #: ../data/messages:63 ../data/messages:67
 msgid "Loose Binding"
-msgstr ""
+msgstr "Loose Binding"
 
 #: ../data/messages:67 ../data/messages:71
 msgid "Indirect Rendering"
-msgstr ""
+msgstr "Indirect Rendering"
 
 #: ../data/messages:69 ../data/messages:73
 msgid "Disable Emerald and use default system Decorator"
-msgstr ""
+msgstr "Emerald を無効にしてシステムのデフォルトのデコレータを使用"
 
 #: ../data/messages:71 ../data/messages:75
 msgid "Use system's Decorator"
-msgstr ""
+msgstr "システムのデコレータを使用"
 
 #: ../data/messages:73 ../data/messages:59 ../data/messages:89
 #: ../data/messages:87 ../data/messages:91 ../data/messages:95
 #: ../data/messages:97 ../data/messages:101
 msgid "Let it empty to use default sub-dock view."
-msgstr ""
+msgstr "デフォルトのサブ・ドッックの外観を使用するには空欄のままに。"
 
 #: ../data/messages:75 ../data/messages:61 ../data/messages:91
 #: ../data/messages:89 ../data/messages:93 ../data/messages:97
 #: ../data/messages:99 ../data/messages:103
 msgid "Name of the view used for the sub-dock :"
-msgstr ""
+msgstr "サブ・ドックに使用する外観の名前 :"
 
 #: ../data/messages:77 ../data/messages:93 ../data/messages:91
 #: ../data/messages:95 ../data/messages:99 ../data/messages:101
 #: ../data/messages:105
 msgid "Images"
-msgstr ""
+msgstr "画像"
 
 #: ../data/messages:79 ../data/messages:83 ../data/messages:87
 #: ../data/messages:91 ../data/messages:95 ../data/messages:99
@@ -257,221 +260,235 @@ msgstr ""
 #: ../data/messages:123 ../data/messages:127 ../data/messages:131
 #: ../data/messages:135
 msgid "Let t empty to use the default icon."
-msgstr ""
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #: ../data/messages:81 ../data/messages:97 ../data/messages:95
 #: ../data/messages:99 ../data/messages:103 ../data/messages:105
 #: ../data/messages:109
 msgid "Name of an image for the 'default' icon :"
-msgstr ""
+msgstr "「デフォルト」のアイコンの画像の名前 :"
 
 #: ../data/messages:85 ../data/messages:101 ../data/messages:99
 #: ../data/messages:103 ../data/messages:107 ../data/messages:109
 #: ../data/messages:113
 msgid "Name of an image for the 'broken' icon :"
-msgstr ""
+msgstr "「リンク切れ」のアイコン画像の名前 :"
 
 #: ../data/messages:89 ../data/messages:105 ../data/messages:103
 #: ../data/messages:107 ../data/messages:111 ../data/messages:113
 #: ../data/messages:117
 msgid "Name of an image for the 'other wm' icon :"
-msgstr ""
+msgstr "「その他の WM」のアイコン画像の名前 :"
 
 #: ../data/messages:93 ../data/messages:109 ../data/messages:107
 #: ../data/messages:111 ../data/messages:115 ../data/messages:117
 #: ../data/messages:121
 msgid "Name of an image for the 'setting' icon :"
-msgstr ""
+msgstr "「設定」のアイコン画像の名前 :"
 
 #: ../data/messages:97 ../data/messages:113 ../data/messages:111
 #: ../data/messages:115 ../data/messages:119 ../data/messages:121
 #: ../data/messages:125
 msgid "Name of an image for the 'emerald' icon :"
-msgstr ""
+msgstr "「Emerald」のアイコン画像の名前 :"
 
 #: ../data/messages:101 ../data/messages:117 ../data/messages:115
 #: ../data/messages:119 ../data/messages:123 ../data/messages:125
 #: ../data/messages:129
 msgid "Name of an image for the 'reload' icon :"
-msgstr ""
+msgstr "「再読み込み」のアイコン画像の名前 :"
 
 #: ../src/applet-notifications.c:112 ../src/applet-notifications.c:119
 #: ../src/applet-notifications.c:118 ../src/applet-notifications.c:132
 #: ../src/applet-notifications.c:167 ../src/applet-notifications.c:164
 #: ../src/applet-notifications.c:166
 msgid "Switch Windows Manager"
-msgstr ""
+msgstr "ウィンドウ・マネージャの切り替え"
 
 #: ../src/applet-notifications.c:114 ../src/applet-notifications.c:129
 #: ../src/applet-notifications.c:127 ../src/applet-notifications.c:142
 #: ../src/applet-notifications.c:177 ../src/applet-notifications.c:174
 #: ../src/applet-notifications.c:176
 msgid "Toggle Exposition Mode"
-msgstr ""
+msgstr "展開モードのオンオフ"
 
 #: ../src/applet-notifications.c:115 ../src/applet-notifications.c:130
 #: ../src/applet-notifications.c:128 ../src/applet-notifications.c:143
 #: ../src/applet-notifications.c:178 ../src/applet-notifications.c:175
 #: ../src/applet-notifications.c:177
 msgid "Toggle Widgets Layer"
-msgstr ""
+msgstr "ウィジェット・レイヤのオンオフ"
 
 #: ../src/applet-notifications.c:116 ../src/applet-notifications.c:131
 #: ../src/applet-notifications.c:129 ../src/applet-notifications.c:145
 #: ../src/applet-notifications.c:180 ../src/applet-notifications.c:177
 #: ../src/applet-notifications.c:179
 msgid "Toggle Show Desktop"
-msgstr ""
+msgstr "デスクトップの表示のオンオフ"
 
 #: ../data/messages:35 ../data/messages:33 ../data/messages:39
 msgid "Actions"
-msgstr ""
+msgstr "アクション"
 
 #: ../data/messages:37 ../data/messages:35 ../data/messages:41
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
 msgstr ""
+"別のWMへの切り替え以外を選択した場合、Compiz の各アクションに対応するプラグイ"
+"ンの他に、Dbus プラグインも有効にする必要があります。"
 
 #: ../data/messages:39 ../data/messages:37 ../data/messages:43
 msgid "Choose an action for the middle click on the icon :"
-msgstr ""
+msgstr "アイコン上での中クリック時のアクションの選択 :"
 
 #: ../data/messages:41 ../data/messages:39 ../data/messages:45
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 #: ../data/messages:43 ../data/messages:41 ../src/applet-load-icon.c:21
 #: ../src/applet-load-icon.c:22 ../data/messages:47
 msgid "Switch WM"
-msgstr ""
+msgstr "WM の切り替え"
 
 #: ../data/messages:45
 msgid "WidgetLayer"
-msgstr ""
+msgstr "ウィジェット・レイヤ"
 
 #: ../data/messages:47 ../data/messages:45 ../data/messages:51
 msgid "Expose"
-msgstr ""
+msgstr "展開"
 
 #: ../data/messages:49
 msgid "ShowDesktop"
-msgstr ""
+msgstr "デスクトップの表示"
 
 #: ../data/messages:51
 msgid ""
 "This command will be used to launch the the system WM; let it blank to use "
 "the default one."
 msgstr ""
+"システムの WM を起動するのに使用されるコマンド、デフォルトを使用するには空欄"
+"のままに"
 
 #: ../data/messages:53 ../data/messages:51 ../data/messages:57
 msgid "Custom command for system's Windows Manager :"
-msgstr ""
+msgstr "システムのウィンドウ・マネージャを呼び出す任意コマンド"
 
 #: ../data/messages:55 ../data/messages:53 ../data/messages:59
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
 msgstr ""
+"Compiz が予期せず終了した場合、Cairo-Dock が Compiz を再起動します。この場合 "
+"Compiz の終了はドックから行う必要があります。"
 
 #: ../data/messages:57 ../data/messages:55 ../data/messages:61
 msgid "Auto-reload Compiz ?"
-msgstr ""
+msgstr "Compiz を自動再読み込み？"
 
 #: ../data/messages:59 ../data/messages:57 ../data/messages:63
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
 msgstr ""
+"デコレータが予期せず終了した場合、Cairo-Dock がデコレータを再起動します。この"
+"場合 Compiz の終了はドックから行う必要があります。"
 
 #: ../data/messages:61
 msgid "Auto-reload the decorator ?"
-msgstr ""
+msgstr "デコレータを自動再読み込み？"
 
 #: ../data/messages:63 ../data/messages:61
 msgid "Load default Windows Manager with options at startup."
 msgstr ""
+"スタートアップ時にデフォルトのウィンドウ・マネージャをオプションとともに読み"
+"込み"
 
 #: ../data/messages:65 ../data/messages:63
 msgid "Force settings at startup"
-msgstr ""
+msgstr "スタートアップ時に設定を強制"
 
 #: ../data/messages:71 ../data/messages:69 ../data/messages:73
 #: ../data/messages:77 ../data/messages:79 ../data/messages:83
 msgid "Use Loose Binding ?"
-msgstr ""
+msgstr "Loose Binding を使用？"
 
 #: ../data/messages:75 ../data/messages:73 ../data/messages:77
 #: ../data/messages:81 ../data/messages:83 ../data/messages:87
 msgid "Use Indirect Rendering ?"
-msgstr ""
+msgstr "Indirect Rendering を使用？"
 
 #: ../data/messages:77 ../data/messages:75 ../data/messages:79
 #: ../data/messages:83 ../data/messages:85 ../data/messages:89
 msgid "By default it will be Emerald."
-msgstr ""
+msgstr "デフォルトでは Emerald になります"
 
 #: ../data/messages:79 ../data/messages:77 ../data/messages:81
 #: ../data/messages:85 ../data/messages:87 ../data/messages:91
 msgid "Choose your Windows Decorator :"
-msgstr ""
+msgstr "ウィンドウ・デコレータの選択"
 
 #: ../data/messages:81 ../data/messages:79 ../data/messages:83
 #: ../data/messages:87 ../data/messages:89 ../data/messages:93
 msgid "emerald"
-msgstr ""
+msgstr "emerald"
 
 #: ../data/messages:83 ../data/messages:81 ../data/messages:85
 #: ../data/messages:89 ../data/messages:91 ../data/messages:95
 msgid "gtk-window-decorator"
-msgstr ""
+msgstr "gtk-window-decorator"
 
 #: ../data/messages:85 ../data/messages:83 ../data/messages:87
 #: ../data/messages:91 ../data/messages:93 ../data/messages:97
 msgid "kde-window-decorator"
-msgstr ""
+msgstr "kde-window-decorator"
 
 #: ../data/messages:87 ../data/messages:85 ../data/messages:89
 #: ../data/messages:93 ../data/messages:95 ../data/messages:99
 msgid "heliodor"
-msgstr ""
+msgstr "heliodor"
 
 #: ../data/messages:43 ../src/applet-load-icon.c:22 ../data/messages:45
 #: ../data/messages:49
 msgid "Widget Layer"
-msgstr ""
+msgstr "ウィジェット・レイヤ"
 
 #: ../data/messages:47 ../data/messages:49 ../data/messages:53
 msgid "Show Desktop"
-msgstr ""
+msgstr "デスクトップの表示"
 
 #: ../data/messages:49 ../data/messages:51 ../data/messages:55
 msgid ""
 "This command will be used to launch the system WM; let it blank to use the "
 "default one."
 msgstr ""
+"このコマンドはシステムの WM を起動するのに使用されます。デフォルトを使用する"
+"には空欄のままに。"
 
 #: ../data/messages:59 ../data/messages:61 ../data/messages:65
 msgid "Auto-reload the Decorator ?"
-msgstr ""
+msgstr "デコレータを自動再読み込み？"
 
 #: ../data/messages:61
 msgid "Load Compiz with options at startup."
-msgstr ""
+msgstr "スタートアップ時に Compiz のオプションを適用して読み込み"
 
 #: ../data/messages:63 ../data/messages:65 ../data/messages:69
 msgid "Force Compiz settings at startup ?"
-msgstr ""
+msgstr "スタートアップ時に Compiz の設定を適用？"
 
 #: ../data/messages:65 ../data/messages:67 ../data/messages:71
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
 msgstr ""
+"CCSM や Emerald のアイコンがタスクバーに表示されるのを防ぎます。対応するサ"
+"ブ・ドックのアイコンがランチャーやアプリケーションとして動作します。"
 
 #: ../data/messages:67 ../data/messages:69 ../data/messages:73
 msgid "Steal the application's icon in taskbar ?"
-msgstr ""
+msgstr "タスクバーにあるアプリケーションのアイコンを奪取？"
 
 #: ../data/messages:71 ../data/messages:75 ../data/messages:77
 #: ../data/messages:81
@@ -481,57 +498,68 @@ msgid ""
 "when binding textures, that's why this option gives a heavy performance "
 "increase on Nvidia."
 msgstr ""
+"Strict binding では、テクスチャが有効のとき常にバインドされますが、Loose "
+"binding では、テクスチャ生成時のみ有効になります。Nvidia ドライバはテクスチャ"
+"のバインディング処理が若干遅いようなので、Nvidia カードではこのオプションに"
+"よってパフォーマンスが著しく向上します。"
 
 #: ../src/applet-load-icon.c:22
 msgid "Exposition"
-msgstr ""
+msgstr "展開"
 
 #: ../src/applet-load-icon.c:22
 msgid "Widge Layer"
-msgstr ""
+msgstr "ウィジェット・レイヤ"
 
 #: ../data/messages:69
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins."
 msgstr ""
+"Compiz のウィジェット・レイヤと展開のプラグインの2つのアイコンをアプレットの"
+"サブ・ドックに表示します"
 
 #: ../data/messages:71 ../data/messages:73 ../data/messages:77
 msgid "Add Exposition & Widget Layer to sub-dock ?"
-msgstr ""
+msgstr "展開とウィジェット・レイヤをサブ・ドックに追加？"
 
 #: ../data/messages:127 ../data/messages:129 ../data/messages:133
 msgid "Name of an image for the 'exposition' icon :"
-msgstr ""
+msgstr "「展開」のアイコン画像の名前 :"
 
 #: ../data/messages:131 ../data/messages:133 ../data/messages:137
 msgid "Name of an image for the 'widget layer' icon :"
-msgstr ""
+msgstr "「ウィジェット・レイヤ」のアイコン画像の名前 :"
 
 #: ../data/messages:69 ../data/messages:71 ../data/messages:75
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins. Otherwise they will be available in the menu."
 msgstr ""
+"Compiz のウィジェット・レイヤと展開のプラグインの2つのアイコンをアプレットの"
+"サブ・ドックに表示します。無効の場合でも、メニュー上から利用可能です。"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:63 ../data/messages:67
 msgid "Load Compiz with options at applet's startup."
-msgstr ""
+msgstr "アプレットのスタートアップ時に Compiz をオプションとともに読み込み"
 
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:35
 msgid "Lockposition ?"
-msgstr ""
+msgstr "位置を固定？"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr ""
+msgstr "位置を固定？"

@@ -11,7 +11,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
-	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "delay");
+	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER ("Configuration", "delay");
 	myConfig.bShowSwap =  CD_CONFIG_GET_BOOLEAN ("Configuration", "show swap");
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");
 	//On charge le theme :

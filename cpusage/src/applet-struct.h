@@ -14,12 +14,14 @@ typedef struct {
 } AppletConfig;
 
 typedef struct {
-	gint inDebug;
 	Gauge *pGauge;
 	
 	GTimer *pClock;
 	guint cpu_user, cpu_user_nice, cpu_system, cpu_idle;
 	gdouble cpu_usage;
+	gint iNbCPU;
+	gint iFrequency;
+	gchar *cModelName;
 	gboolean bInitialized;
 	CairoDockMeasure *pMeasureTimer;
 	gboolean bAcquisitionOK;

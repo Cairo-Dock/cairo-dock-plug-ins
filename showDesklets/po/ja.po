@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-02-25 15:50+0900\n"
+"PO-Revision-Date: 2008-05-19 15:41+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -106,27 +106,29 @@ msgid ""
 "This is the showDesklets applet\n"
 " made by Fabrice Rey for Cairo-Dock"
 msgstr ""
+"これは Fabrice Rey によって製作された \n"
+"Cairo-Dock 用の showDesklets アプレットです。"
 
 #: ../data/messages:13 ../data/messages:15 ../data/messages:17
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../data/messages:11
 msgid "Image name to show desklets :"
-msgstr ""
+msgstr "「デスクレットを表示」時の画像の名前 :"
 
 #: ../data/messages:13
 msgid "Image name to hide desklets :"
-msgstr ""
+msgstr "「デスクレットと隠す」時の画像の名前 :"
 
 #: ../data/messages:17 ../data/messages:19
 msgid "Show/hide desklets that are on the widget layer too ?"
-msgstr ""
+msgstr "ウィジェット・レイヤ上のデスクレットも表示/隠す？"
 
 #: ../data/messages:19 ../data/messages:21
 msgid "Shortkey to show/hide the desklets :"
-msgstr ""
+msgstr "デスクレットの表示/隠すのキーショートカット :"
 
 #: ../data/messages:15
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "帰属先ドックの名前 :"

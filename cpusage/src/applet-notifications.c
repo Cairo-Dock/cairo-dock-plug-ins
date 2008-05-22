@@ -15,10 +15,12 @@ CD_APPLET_ABOUT (D_("This is the cpusage applet\n made by parAdOxxx_ZeRo for Cai
 CD_APPLET_ON_CLICK_BEGIN
 	if (myData.bAcquisitionOK)
 	{
-		/// afficher : nbre de CPUs, utilisation de chacun, nbre de processus en cours, eventuellement les 3 plus gourmands (top).
+		/// afficher : utilisation de chaque coeur, nbre de processus en cours, eventuellement les 3 plus gourmands (top ou autre).
+		cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_show_temporary_dialog ("%s : %s\n%s : %d MHz (%d %s)", myIcon, myContainer, 10e3, D_("Model Name"), myData.cModelName, D_("Frequency"), myData.iFrequency, myData.iNbCPU, D_("core(s)"));
 	}
 	else
-		cairo_dock_show_temporary_dialog(D_("Acquisition of data failed"), myIcon, myContainer, 4e3);
+		cairo_dock_show_temporary_dialog(D_("Data acquisition has failed"), myIcon, myContainer, 4e3);
 CD_APPLET_ON_CLICK_END
 
 
@@ -26,12 +28,7 @@ static void _cpusage_recheck_ (GtkMenuItem *menu_item, gpointer *data) {
 	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
-static void _cpusage_change_mode_debug_ () {
-	myData.inDebug = ! myData.inDebug;
-}
-
 CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_SUB_MENU ("cpusage", pSubMenu, CD_APPLET_MY_MENU)
-	  	CD_APPLET_ADD_IN_MENU (D_("Debug"), _cpusage_change_mode_debug_, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END

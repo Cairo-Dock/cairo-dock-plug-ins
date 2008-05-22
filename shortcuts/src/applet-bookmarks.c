@@ -120,8 +120,8 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 						pNewIcon->fOrder = fCurrentOrder ++;
 						if (myDesklet)
 						{
-							pNewIcon->fWidth = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
-							pNewIcon->fHeight = 48 * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor);
+							pNewIcon->fWidth = 48/* * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor)*/;
+							pNewIcon->fHeight = 48/* * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor)*/;
 						}
 						
 						cairo_dock_load_one_icon_from_scratch (pNewIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
@@ -162,11 +162,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 			cairo_dock_update_dock_size (myIcon->pSubDock);
 		else
 		{
-			//myDesklet->icons = myData.pDeskletIconList;
-			//cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-			//cd_shortcuts_load_tree (myData.pDeskletIconList, pCairoContext);
-			//cairo_destroy (pCairoContext);
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 			gtk_widget_queue_draw (myDesklet->pWidget);
 		}
 	}

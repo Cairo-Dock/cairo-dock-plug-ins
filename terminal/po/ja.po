@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-02-25 15:48+0900\n"
+"PO-Revision-Date: 2008-05-19 21:55+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -89,7 +89,7 @@ msgstr "端末"
 #: ../src/terminal-widget.c:235 ../src/terminal-widget.c:296
 #: ../src/terminal-widget.c:332 ../src/terminal-widget.c:334
 msgid "Paste"
-msgstr "張り付け"
+msgstr "貼り付け"
 
 #: ../src/terminal-menu-functions.c:161 ../src/terminal-menu-functions.c:287
 #: ../src/terminal-menu-functions.c:158 ../src/terminal-menu-functions.c:283
@@ -190,53 +190,57 @@ msgstr "端末を表示するショートカットキー :"
 
 #: ../src/terminal-menu-functions.c:85 ../src/terminal-widget.c:219
 msgid "Rename Tab"
-msgstr ""
+msgstr "タブ名の変更"
 
 #: ../src/terminal-widget.c:82 ../src/terminal-widget.c:104
 #: ../src/terminal-widget.c:165 ../src/terminal-widget.c:131
 #: ../src/terminal-widget.c:133
 msgid "Set title for this tab :"
-msgstr ""
+msgstr "このタブのタイトルを設定 :"
 
 #: ../data/messages:43 ../data/messages:45 ../data/messages:49
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
 msgstr ""
+"ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレット"
+"のサイズ変更が可能です。"
 
 #: ../src/terminal-menu-functions.c:85
 msgid "Rename current Tab"
-msgstr ""
+msgstr "現在のタブの名前変更"
 
 #: ../src/terminal-widget.c:251 ../src/terminal-widget.c:312
 #: ../src/terminal-widget.c:348 ../src/terminal-widget.c:350
 msgid "Rename this Tab"
-msgstr ""
+msgstr "このタブの名前変更"
 
 #: ../src/terminal-widget.c:257 ../src/terminal-widget.c:318
 #: ../src/terminal-widget.c:360 ../src/terminal-widget.c:362
 msgid "Close this Tab"
-msgstr ""
+msgstr "このタブを閉じる"
 
 #: ../src/terminal-widget.c:157 ../src/terminal-widget.c:185
 #: ../src/terminal-widget.c:187
 msgid "Select a color"
-msgstr ""
+msgstr "色の選択"
 
 #: ../src/terminal-widget.c:354 ../src/terminal-widget.c:356
 msgid "Change this Tab's color"
-msgstr ""
+msgstr "このタブの色を変更"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:35
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:37
 msgid "Lockposition ?"
-msgstr ""
+msgstr "位置を固定？"
