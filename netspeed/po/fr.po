@@ -45,7 +45,7 @@ msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
 #: ../data/messages:15 ../data/messages:35 ../data/messages:39
-#: ../data/messages:41 ../data/messages:45
+#: ../data/messages:41 ../data/messages:45 ../data/messages:43
 msgid "Information"
 msgstr "Information"
 
@@ -128,7 +128,7 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:13 ../data/messages:33 ../data/messages:35
-#: ../data/messages:39
+#: ../data/messages:39 ../data/messages:37
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -183,7 +183,7 @@ msgid "B"
 msgstr "o"
 
 #: ../data/messages:37 ../data/messages:51 ../data/messages:53
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:55
 msgid "in seconds."
 msgstr "en secondes."
 
@@ -201,7 +201,7 @@ msgid "in milliseconds."
 msgstr "en millisecondes."
 
 #: ../data/messages:37 ../data/messages:49 ../data/messages:51
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:53
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 
@@ -242,38 +242,45 @@ msgid "Re-check interface"
 msgstr "Revérifier l'interface"
 
 #: ../data/messages:35 ../data/messages:37 ../data/messages:41
+#: ../data/messages:39
 msgid "By default it will be 'eth0'."
 msgstr "Par défaut ça sera 'eth0'."
 
 #: ../data/messages:37 ../data/messages:39 ../data/messages:43
+#: ../data/messages:41
 msgid "interface :"
 msgstr "interface :"
 
 #: ../data/messages:41 ../data/messages:43 ../data/messages:47
+#: ../data/messages:45
 msgid "Display speed values :"
 msgstr "Afficher les valeurs de vitesse :"
 
 #: ../data/messages:43 ../data/messages:45 ../data/messages:49
+#: ../data/messages:47
 msgid "No"
 msgstr "Non"
 
 #: ../data/messages:45 ../data/messages:47 ../data/messages:51
+#: ../data/messages:49
 msgid "On icon"
 msgstr "Sur l'icône"
 
 #: ../data/messages:47 ../data/messages:49 ../data/messages:53
+#: ../data/messages:51
 msgid "On label"
 msgstr "Sur l'étiquette"
 
 #: ../data/messages:53 ../data/messages:55 ../data/messages:59
+#: ../data/messages:57
 msgid "Delay between 2 measures :"
 msgstr "Intervalle entre 2 mesures :"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:11
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -285,3 +292,7 @@ msgstr ""
 #: ../data/messages:37
 msgid "Lockposition ?"
 msgstr "Verrouiller la position ?"
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr ""

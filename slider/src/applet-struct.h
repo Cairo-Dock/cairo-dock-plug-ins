@@ -88,7 +88,6 @@ typedef struct {
 	SliderAnimation iAnimation;
 	CairoDockMeasure *pMeasureDirectory;
 	CairoDockMeasure *pMeasureImage;
-	gchar *cCurrentImagePath;
 } AppletData;
 
 

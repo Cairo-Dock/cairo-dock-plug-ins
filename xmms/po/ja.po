@@ -260,51 +260,51 @@ msgstr "音楽切り替わり時のアクション"
 msgid "Show an info-bubble ?"
 msgstr "吹き出しを表示して情報通知？"
 
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:75
 msgid "in ms."
 msgstr "ミリ秒単位"
 
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:77
 msgid "Time length of info-bubbles :"
 msgstr "吹き出しの表示継続時間 :"
 
-#: ../data/messages:77
+#: ../data/messages:77 ../data/messages:79
 msgid "Animate icon ?"
 msgstr "アイコンをアニメーション化？"
 
-#: ../data/messages:79
+#: ../data/messages:79 ../data/messages:81
 msgid "Animation when music changes :"
 msgstr "音楽の切り替わりの際のアニメーション :"
 
-#: ../data/messages:81
+#: ../data/messages:81 ../data/messages:83
 msgid "bounce"
 msgstr "バウンド"
 
-#: ../data/messages:83
+#: ../data/messages:83 ../data/messages:85
 msgid "rotate"
 msgstr "回転"
 
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:87
 msgid "blink"
 msgstr "点滅"
 
-#: ../data/messages:87
+#: ../data/messages:87 ../data/messages:89
 msgid "pulse"
 msgstr "波動"
 
-#: ../data/messages:89
+#: ../data/messages:89 ../data/messages:91
 msgid "upside-down"
 msgstr "上下逆さま"
 
-#: ../data/messages:91
+#: ../data/messages:91 ../data/messages:93
 msgid "wobbly"
 msgstr "伸び縮み"
 
-#: ../data/messages:93
+#: ../data/messages:93 ../data/messages:95
 msgid "random"
 msgstr "ランダム"
 
-#: ../data/messages:95
+#: ../data/messages:95 ../data/messages:97
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
@@ -313,22 +313,35 @@ msgstr "カスタマイズ"
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:99
+#: ../data/messages:99 ../data/messages:101
 msgid "Name of an image for the 'default' icon :"
 msgstr "「デフォルト」のアイコン画像の名前 :"
 
-#: ../data/messages:103
+#: ../data/messages:103 ../data/messages:105
 msgid "Name of an image for the 'play' icon :"
 msgstr "「再生」のアイコン画像の名前 :"
 
-#: ../data/messages:107
+#: ../data/messages:107 ../data/messages:109
 msgid "Name of an image for the 'stop' icon :"
 msgstr "「停止」のアイコン画像の名前 :"
 
-#: ../data/messages:111
+#: ../data/messages:111 ../data/messages:113
 msgid "Name of an image for the 'pause' icon :"
 msgstr "「一時停止」のアイコン画像の名前 :"
 
-#: ../data/messages:115
+#: ../data/messages:115 ../data/messages:117
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr ""
+
+#: ../data/messages:73
+msgid "With a icon ?"
+msgstr ""
+
+#: ../data/messages:99 ../data/messages:103 ../data/messages:107
+#: ../data/messages:111 ../data/messages:115
+msgid "Let it empty to use the default icon."
+msgstr ""

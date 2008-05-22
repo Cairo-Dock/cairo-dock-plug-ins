@@ -33,7 +33,7 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 
 void cd_weather_acquisition (void)
 {
-	g_print ("%s (%s)\n", __func__, myConfig.cLocationCode);
+	cd_debug ("%s (%s)", __func__, myConfig.cLocationCode);
 	gboolean bTest = FALSE;
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)

@@ -334,3 +334,7 @@ msgstr "デスクレットの拡張モードを有効化？"
 #: ../src/rhythmbox-draw.c:76
 msgid "Track"
 msgstr "トラック"
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr ""

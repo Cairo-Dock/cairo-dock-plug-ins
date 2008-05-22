@@ -146,3 +146,7 @@ msgstr ""
 #: ../data/messages:39
 msgid "Lockposition ?"
 msgstr "位置を固定？"
+
+#: ../data/messages:39
+msgid "Lock position ?"
+msgstr ""

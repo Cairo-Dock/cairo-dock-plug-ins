@@ -160,10 +160,12 @@ msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 
 #: ../src/applet-cpusage.c:243 ../src/applet-cpusage.c:183
 #: ../src/applet-cpusage.c:186 ../src/applet-cpusage.c:150
+#: ../src/applet-cpusage.c:155 ../src/applet-cpusage.c:196
 msgid "Loading"
 msgstr "Chargement"
 
 #: ../src/applet-notifications.c:21 ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:28
 msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échoué"
 
@@ -212,18 +214,30 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:20 ../src/applet-notifications.c:23
 msgid "Model Name"
 msgstr ""
 
-#: ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:20 ../src/applet-notifications.c:23
 msgid "Frequency"
 msgstr ""
 
-#: ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:20 ../src/applet-notifications.c:23
 msgid "core(s)"
 msgstr ""
 
 #: ../data/messages:35
 msgid "Lockposition ?"
+msgstr ""
+
+#: ../src/applet-cpusage.c:39 ../src/applet-cpusage.c:44
+msgid "day(s)"
+msgstr ""
+
+#: ../src/applet-notifications.c:23
+msgid "Up time"
+msgstr ""
+
+#: ../src/applet-notifications.c:23
+msgid "Activity time"
 msgstr ""

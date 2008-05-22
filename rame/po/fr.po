@@ -128,6 +128,7 @@ msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:13 ../data/messages:33 ../data/messages:35
 #: ../data/messages:53 ../data/messages:39 ../data/messages:57
+#: ../data/messages:37 ../data/messages:55
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -165,6 +166,7 @@ msgid "B"
 msgstr "o"
 
 #: ../data/messages:37 ../data/messages:55 ../data/messages:59
+#: ../data/messages:57
 msgid "in seconds."
 msgstr "en secondes."
 
@@ -181,46 +183,47 @@ msgid "in milliseconds."
 msgstr "en millisecondes."
 
 #: ../data/messages:37 ../data/messages:39 ../data/messages:43
+#: ../data/messages:41
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:11
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
 
-#: ../data/messages:37 ../data/messages:41
+#: ../data/messages:37 ../data/messages:41 ../data/messages:39
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:41 ../data/messages:45
+#: ../data/messages:41 ../data/messages:45 ../data/messages:43
 msgid "turbo-night-fuel"
 msgstr "turbo-night-fuel"
 
-#: ../data/messages:43 ../data/messages:47
+#: ../data/messages:43 ../data/messages:47 ../data/messages:45
 msgid "Display memory values :"
 msgstr "Afficher les valeurs de la mémoire :"
 
-#: ../data/messages:45 ../data/messages:49
+#: ../data/messages:45 ../data/messages:49 ../data/messages:47
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:47 ../data/messages:51
+#: ../data/messages:47 ../data/messages:51 ../data/messages:49
 msgid "On icon"
 msgstr "Sur l'icône"
 
-#: ../data/messages:49 ../data/messages:53
+#: ../data/messages:49 ../data/messages:53 ../data/messages:51
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:51 ../data/messages:55
+#: ../data/messages:51 ../data/messages:55 ../data/messages:53
 msgid "Display SWAP too ?"
 msgstr "Afficher aussi la SWAP ?"
 
-#: ../data/messages:57 ../data/messages:61
+#: ../data/messages:57 ../data/messages:61 ../data/messages:59
 msgid "Delay between refresh :"
 msgstr "Intervalle entre chaque rafraîchissement :"
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -229,7 +232,7 @@ msgstr ""
 "simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
 "contre toujours le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 

@@ -501,3 +501,7 @@ msgstr ""
 #: ../data/messages:35
 msgid "Lockposition ?"
 msgstr "Verrouiller la position ?"
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr ""

@@ -10,10 +10,45 @@
 #include "cairo-dock.h"
 
 #define CPUSAGE_DATA_PIPE "/proc/stat"
+#define CPUSAGE_UPTIME_PIPE "/proc/uptime"
+#define CPUSAGE_LOADAVG_PIPE "/proc/loadavg"
 #define CPUSAGE_PROC_INFO_PIPE "/proc/cpuinfo"
 #define USER_HZ 100.
 
 CD_APPLET_INCLUDE_MY_VARS
+
+
+void cd_cpusage_get_uptime (gchar **cUpTime, gchar **cActivityTime)
+{
+	FILE *fd = fopen (CPUSAGE_UPTIME_PIPE, "r");
+	if (fd == NULL)
+	{
+		cd_warning ("can't open %s", CPUSAGE_UPTIME_PIPE);
+		return ;
+	}
+	
+	double fUpTime = 0, fIdleTime = 0;
+	fscanf (fd, "%lf %lf\n", &fUpTime, &fIdleTime);
+	fclose (fd);
+	
+	const int minute = 60;
+	const int hour = minute * 60;
+	const int day = hour * 24;
+	int iUpTime = (int) fUpTime, iActivityTime = (int) (fUpTime - fIdleTime);
+	*cUpTime = g_strdup_printf ("%ld %s, %ld:%02ld:%02ld",
+		iUpTime / day, D_("day(s)"),
+		(iUpTime % day) / hour,
+		(iUpTime % hour) / minute,
+		iUpTime % minute);
+	*cActivityTime = g_strdup_printf ("%ld %s, %ld:%02ld:%02ld",
+		iActivityTime / day, D_("day(s)"),
+		(iActivityTime % day) / hour,
+		(iActivityTime % hour) / minute,
+		iActivityTime % minute);
+}
+
+
+
 
 
 void cd_cpusage_get_cpu_info (void)
@@ -112,6 +147,17 @@ void cd_cpusage_read_data (void)
 		if (myData.bInitialized)  // la 1ere iteration on ne peut pas calculer la frequence.
 		{
 			myData.cpu_usage = 100. * (1. - (new_cpu_idle - myData.cpu_idle) / USER_HZ / myData.iNbCPU / fTimeElapsed);
+			cd_debug ("CPU(%d) user : %d -> %d / nice : %d -> %d / sys : %d -> %d / idle : %d -> %d",
+				myData.iNbCPU,
+				myData.cpu_user, new_cpu_user,
+				myData.cpu_user_nice, new_cpu_user_nice,
+				myData.cpu_system, new_cpu_system,
+				myData.cpu_idle, new_cpu_idle);
+			cd_debug ("=> CPU user : %.3f / nice : %.3f / sys : %.3f / idle : %.3f",
+				(new_cpu_user - myData.cpu_user) / USER_HZ / myData.iNbCPU / fTimeElapsed,
+				(new_cpu_user_nice - myData.cpu_user_nice) / USER_HZ / myData.iNbCPU / fTimeElapsed,
+				(new_cpu_system - myData.cpu_system) / USER_HZ / myData.iNbCPU / fTimeElapsed,
+				(new_cpu_idle - myData.cpu_idle) / USER_HZ / myData.iNbCPU / fTimeElapsed);
 		}
 		myData.bAcquisitionOK = TRUE;
 		myData.cpu_user = new_cpu_user;

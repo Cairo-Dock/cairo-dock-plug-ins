@@ -134,7 +134,7 @@ msgstr "Action au changement de musique"
 
 #: ../data/messages:47 ../data/messages:69 ../data/messages:67
 #: ../data/messages:65 ../data/messages:71 ../data/messages:73
-#: ../data/messages:77
+#: ../data/messages:77 ../data/messages:79
 msgid "Animate icon ?"
 msgstr "Animer l'icône ?"
 
@@ -144,13 +144,13 @@ msgstr "Info-bulles"
 
 #: ../data/messages:19 ../data/messages:45 ../data/messages:67
 #: ../data/messages:65 ../data/messages:63 ../data/messages:69
-#: ../data/messages:71 ../data/messages:75
+#: ../data/messages:71 ../data/messages:75 ../data/messages:77
 msgid "Time length of info-bubbles :"
 msgstr "Durée des info-bulles :"
 
 #: ../data/messages:17 ../data/messages:43 ../data/messages:65
 #: ../data/messages:63 ../data/messages:61 ../data/messages:67
-#: ../data/messages:69 ../data/messages:73
+#: ../data/messages:69 ../data/messages:73 ../data/messages:75
 msgid "in ms."
 msgstr "en ms."
 
@@ -160,49 +160,49 @@ msgstr "Animations"
 
 #: ../data/messages:25 ../data/messages:51 ../data/messages:73
 #: ../data/messages:71 ../data/messages:69 ../data/messages:75
-#: ../data/messages:77 ../data/messages:81
+#: ../data/messages:77 ../data/messages:81 ../data/messages:83
 msgid "bounce"
 msgstr "Rebond"
 
 #: ../data/messages:27 ../data/messages:53 ../data/messages:75
 #: ../data/messages:73 ../data/messages:71 ../data/messages:77
-#: ../data/messages:79 ../data/messages:83
+#: ../data/messages:79 ../data/messages:83 ../data/messages:85
 msgid "rotate"
 msgstr "Rotation"
 
 #: ../data/messages:29 ../data/messages:55 ../data/messages:77
 #: ../data/messages:75 ../data/messages:73 ../data/messages:79
-#: ../data/messages:81 ../data/messages:85
+#: ../data/messages:81 ../data/messages:85 ../data/messages:87
 msgid "blink"
 msgstr "Clignotement"
 
 #: ../data/messages:31 ../data/messages:57 ../data/messages:79
 #: ../data/messages:77 ../data/messages:75 ../data/messages:81
-#: ../data/messages:83 ../data/messages:87
+#: ../data/messages:83 ../data/messages:87 ../data/messages:89
 msgid "pulse"
 msgstr "Pulsation"
 
 #: ../data/messages:33 ../data/messages:59 ../data/messages:81
 #: ../data/messages:79 ../data/messages:77 ../data/messages:83
-#: ../data/messages:85 ../data/messages:89
+#: ../data/messages:85 ../data/messages:89 ../data/messages:91
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
 #: ../data/messages:35 ../data/messages:61 ../data/messages:83
 #: ../data/messages:81 ../data/messages:79 ../data/messages:85
-#: ../data/messages:87 ../data/messages:91
+#: ../data/messages:87 ../data/messages:91 ../data/messages:93
 msgid "wobbly"
 msgstr "Élastique"
 
 #: ../data/messages:37 ../data/messages:63 ../data/messages:85
 #: ../data/messages:83 ../data/messages:81 ../data/messages:87
-#: ../data/messages:89 ../data/messages:93
+#: ../data/messages:89 ../data/messages:93 ../data/messages:95
 msgid "random"
 msgstr "Aléatoire"
 
 #: ../data/messages:23 ../data/messages:49 ../data/messages:71
 #: ../data/messages:69 ../data/messages:67 ../data/messages:73
-#: ../data/messages:75 ../data/messages:79
+#: ../data/messages:75 ../data/messages:79 ../data/messages:81
 msgid "Animation when music changes :"
 msgstr "Animation au changement de musique"
 
@@ -239,6 +239,7 @@ msgstr "N° de piste"
 #: ../data/messages:55 ../data/messages:35 ../data/messages:65
 #: ../data/messages:87 ../data/messages:85 ../data/messages:83
 #: ../data/messages:89 ../data/messages:91 ../data/messages:95
+#: ../data/messages:97
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
@@ -251,37 +252,43 @@ msgstr "Personnalisation"
 #: ../data/messages:101 ../data/messages:105 ../data/messages:87
 #: ../data/messages:91 ../data/messages:95 ../data/messages:99
 #: ../data/messages:103 ../data/messages:85 ../data/messages:107
-#: ../data/messages:109 ../data/messages:113
+#: ../data/messages:109 ../data/messages:113 ../data/messages:111
+#: ../data/messages:115
 msgid "Let it empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
 #: ../data/messages:59 ../data/messages:39 ../data/messages:69
 #: ../data/messages:91 ../data/messages:89 ../data/messages:87
 #: ../data/messages:93 ../data/messages:95 ../data/messages:99
+#: ../data/messages:101
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
 #: ../data/messages:63 ../data/messages:43 ../data/messages:73
 #: ../data/messages:95 ../data/messages:93 ../data/messages:91
 #: ../data/messages:97 ../data/messages:99 ../data/messages:103
+#: ../data/messages:105
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom de l'image 'Jouer' :"
 
 #: ../data/messages:67 ../data/messages:47 ../data/messages:77
 #: ../data/messages:99 ../data/messages:97 ../data/messages:95
 #: ../data/messages:101 ../data/messages:103 ../data/messages:107
+#: ../data/messages:109
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom de l'image 'Stop' :"
 
 #: ../data/messages:71 ../data/messages:51 ../data/messages:81
 #: ../data/messages:103 ../data/messages:101 ../data/messages:99
 #: ../data/messages:105 ../data/messages:107 ../data/messages:111
+#: ../data/messages:113
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom de l'image 'Pause' :"
 
 #: ../data/messages:75 ../data/messages:55 ../data/messages:85
 #: ../data/messages:107 ../data/messages:105 ../data/messages:103
 #: ../data/messages:109 ../data/messages:111 ../data/messages:115
+#: ../data/messages:117
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Pas de Signal': "
 
@@ -411,7 +418,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:
+#: ../data/messages: ../data/messages:73
 msgid "With a icon ?"
 msgstr "Avec une icône ?"
 

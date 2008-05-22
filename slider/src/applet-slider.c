@@ -104,37 +104,6 @@ void cd_slider_get_files_from_dir(void) {
 		return;
 	}
 	
-	/*DIR *d;
-	struct dirent *dir;
-	gchar *cFilePath;
-	const gchar *cFileName, *extension;
-	
-	cd_message("Opening %s...", myConfig.cDirectory);  /// le faire par recurrence
-	myData.pList=NULL;
-	d = opendir(myConfig.cDirectory);
-	if (d) {
-		while ((dir = readdir(d)) != NULL) {
-			if (strcmp(dir->d_name, ".") == 0) continue;
-			if (strcmp(dir->d_name, "..") == 0) continue;
-			cFileName = dir->d_name;
-			extension = strchr(cFileName,'.');
-			if (extension != NULL) {
-				if (g_ascii_strcasecmp(extension, ".png") == 0
-				|| g_ascii_strcasecmp(extension, ".jpg") == 0
-				|| g_ascii_strcasecmp(extension, ".svg") == 0
-				|| g_ascii_strcasecmp(extension, ".xpm") == 0) {
-					cd_debug ("  Adding %s to list", cFileName);
-					cFilePath = g_strconcat (myConfig.cDirectory, "/", cFileName, NULL);
-					myData.pList = g_list_prepend (myData.pList, cFilePath);
-				}
-				else {
-					cd_debug ("%s not handeled, ignoring...", cFileName);
-				}
-			}
-		}
-		closedir(d);
-	}*/
-	
 	cd_slider_measure_directory (myConfig.cDirectory, myConfig.bSubDirs); //Nouveau scan
 	
 	if (myConfig.bRandom) {
@@ -146,9 +115,6 @@ void cd_slider_get_files_from_dir(void) {
 	else {
 		myData.pList = g_list_reverse (myData.pList);
 	}
-	
-	/*myData.pElement = myData.pList;
-	cd_slider_draw_images();*/
 }
 
 void cd_slider_read_directory (void) {
@@ -171,7 +137,7 @@ void cd_slider_read_image (void) {
 	//\___________________________ On charge la nouvelle surface.
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
-	myData.cCurrentImagePath = cImagePath;
+	//myData.cCurrentImagePath = cImagePath;
 	//cd_debug ("Displaying: %s (size %dbytes)", cImagePath, pImage->iSize);
 	
 	double fImgX, fImgY, fImgW=0, fImgH=0;
@@ -198,12 +164,17 @@ void cd_slider_read_image (void) {
 }
 
 void cd_slider_update_slide (void) {
+	
+	/*myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
+	myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+	return ;*/
+	
 	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 	
 	if (myConfig.iAnimation == SLIDER_RANDOM) {
 		srand(time(NULL));
 		myData.iAnimation = 1 + (rand() % (SLIDER_RANDOM-1)); //Skip the default animation (1+) /// pourquoi on saute celle par defaut ?
-		//Elle bloque le slide, et je n'arrive pas a trouver pourquoi :/ et puis ca coupe les effets de voir une image arriver "Blip" sans rien
+		//Elle bloque le slide, et je n'arrive pas a trouver pourquoi :/ et puis ca coupe les effets de voir une image arriver "Blip" sans rien => oki :-)
 	}
 	else {
 		myData.iAnimation = myConfig.iAnimation ;
@@ -280,14 +251,14 @@ void cd_slider_update_slide (void) {
 		break;
 	}
 	
-	/// Afficher le reflet... Pourquoi pas?
-	//cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
-	
 	//\______________________ On passe a l'image suivante.
 	myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
 	
 	if (myConfig.iAnimation == SLIDER_DEFAULT)
+	{
+		//cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
 		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+	}
 	else
 		myData.iTimerID = 0;
 }
@@ -310,7 +281,6 @@ gboolean cd_slider_draw_images(void) {
 		myData.iAnimTimerID = 0;
 	}
 	
-	
 	//\___________________________ On charge la nouvelle et on lance l'animation de transition.
 	if (myConfig.bUseThread && 
 		((pImage->iFormat == SLIDER_SVG && pImage->iSize > 10e3) ||
@@ -318,6 +288,7 @@ gboolean cd_slider_draw_images(void) {
 		(pImage->iFormat == SLIDER_JPG && pImage->iSize > 70e3) ||
 		(pImage->iFormat == SLIDER_GIF && pImage->iSize > 100e3) ||
 		(pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3))) {
+		cd_debug ("  on threade");
 		cairo_dock_launch_measure (myData.pMeasureImage);
 	}
 	else {
@@ -504,6 +475,7 @@ gboolean cd_slider_fade (void) {
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
 	//_cd_slider_add_reflect_to_current_slide(); //Add reflection
+	//cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	

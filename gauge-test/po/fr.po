@@ -123,3 +123,7 @@ msgstr ""
 #: ../data/messages:37
 msgid "Lockposition ?"
 msgstr ""
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr ""

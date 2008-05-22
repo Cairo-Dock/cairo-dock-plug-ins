@@ -17,7 +17,12 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		/// afficher : utilisation de chaque coeur, nbre de processus en cours, eventuellement les 3 plus gourmands (top ou autre).
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog ("%s : %s\n%s : %d MHz (%d %s)", myIcon, myContainer, 10e3, D_("Model Name"), myData.cModelName, D_("Frequency"), myData.iFrequency, myData.iNbCPU, D_("core(s)"));
+		
+		gchar *cUpTime = NULL, *cActivityTime = NULL;
+		cd_cpusage_get_uptime (&cUpTime, &cActivityTime);
+		cairo_dock_show_temporary_dialog ("%s : %s\n%s : %d MHz (%d %s)\n%s : %s / %s : %s", myIcon, myContainer, 10e3, D_("Model Name"), myData.cModelName, D_("Frequency"), myData.iFrequency, myData.iNbCPU, D_("core(s)"), D_("Up time"), cUpTime, D_("Activity time"), cActivityTime);
+		g_free (cUpTime);
+		g_free (cActivityTime);
 	}
 	else
 		cairo_dock_show_temporary_dialog(D_("Data acquisition has failed"), myIcon, myContainer, 4e3);

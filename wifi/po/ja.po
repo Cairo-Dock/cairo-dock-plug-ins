@@ -308,3 +308,12 @@ msgstr "「良好」のアイコン画像の名前 :"
 #: ../data/messages:101
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "「最高」のアイコン画像の名前 :"
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr ""
+
+#: ../data/messages:79 ../data/messages:83 ../data/messages:87
+#: ../data/messages:91 ../data/messages:95 ../data/messages:99
+msgid "Let it empty to use the default icon."
+msgstr ""
