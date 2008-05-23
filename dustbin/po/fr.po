@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-05-19 20:06+0100\n"
+"PO-Revision-Date: 2008-05-23 08:45+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Français <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,18 +31,23 @@ msgstr "hauteur :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-#: ../data/messages:33 ../data/messages:35 ../data/messages:39
+#: ../data/messages:33
+#: ../data/messages:35
+#: ../data/messages:39
 msgid "Theme"
 msgstr "Thème"
 
-#: ../data/messages:35 ../data/messages:37 ../data/messages:41
+#: ../data/messages:35
+#: ../data/messages:37
+#: ../data/messages:41
 msgid "Choose one of the available themes :"
 msgstr "Choisissez un des thèmes disponibles :"
 
-#: ../data/messages:69 ../data/messages:71 ../data/messages:75
+#: ../data/messages:69
+#: ../data/messages:71
+#: ../data/messages:75
 msgid "Interval of time to check if dustbin is full/empty :"
-msgstr ""
-"Intervalle de temps pour la vérification de la poubelle (vide/pleine) :"
+msgstr "Intervalle de temps pour la vérification de la poubelle (vide/pleine) :"
 
 msgid "in seconds"
 msgstr "en secondes"
@@ -61,27 +66,36 @@ msgstr ""
 "Ceci est l'applet poubelle de Cairo-Dock\n"
 " écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
 
-#: src/applet-notifications.c:42 ../src/applet-notifications.c:38
-#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:35
+#: src/applet-notifications.c:42
+#: ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:35
 msgid "Show Trash"
 msgstr "Ouvrir la poubelle"
 
-#: src/applet-notifications.c:54 ../src/applet-notifications.c:45
-#: ../src/applet-notifications.c:43 ../src/applet-notifications.c:42
+#: src/applet-notifications.c:54
+#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:43
+#: ../src/applet-notifications.c:42
 msgid "Show All"
 msgstr "Ouvrir toutes"
 
-#: src/applet-notifications.c:56 ../src/applet-notifications.c:47
-#: ../src/applet-notifications.c:45 ../src/applet-notifications.c:44
+#: src/applet-notifications.c:56
+#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:44
 msgid "Delete Trash"
 msgstr "Vider la poubelle"
 
-#: src/applet-notifications.c:69 ../src/applet-notifications.c:54
-#: ../src/applet-notifications.c:52 ../src/applet-notifications.c:51
+#: src/applet-notifications.c:69
+#: ../src/applet-notifications.c:54
+#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:51
 msgid "Delete All"
 msgstr "Vider toutes"
 
-#: src/applet-notifications.c:81 ../src/applet-trashes-manager.c:387
+#: src/applet-notifications.c:81
+#: ../src/applet-trashes-manager.c:387
 #: ../src/applet-trashes-manager.c:385
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
@@ -89,12 +103,12 @@ msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
 
 #: src/applet-notifications.c:83
 msgid "You're about to delete all files all dustbins. Sure ?"
-msgstr ""
-"Vous êtes sur le point de détruire tous les fichiers de toutes les "
-"poubelles. Sur ?"
+msgstr "Vous êtes sur le point de détruire tous les fichiers de toutes les poubelles. Sur ?"
 
-#: src/applet-notifications.c:145 ../src/applet-trashes-manager.c:446
-#: ../src/applet-trashes-manager.c:444 ../src/applet-trashes-manager.c:458
+#: src/applet-notifications.c:145
+#: ../src/applet-trashes-manager.c:446
+#: ../src/applet-trashes-manager.c:444
+#: ../src/applet-trashes-manager.c:458
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -105,31 +119,42 @@ msgstr ""
 "Si '%s' n'est pas votre navigateur de fichier usuel,\n"
 "vous pouvez le changer dans le panneau de conf de cette applet."
 
-#: src/applet-notifications.c:48 ../src/applet-notifications.c:42
-#: ../src/applet-notifications.c:40 ../src/applet-notifications.c:39
+#: src/applet-notifications.c:48
+#: ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:40
+#: ../src/applet-notifications.c:39
 #, c-format
 msgid "Show %s"
 msgstr "Ouvrir %s"
 
-#: src/applet-notifications.c:62 ../src/applet-notifications.c:51
-#: ../src/applet-notifications.c:49 ../src/applet-notifications.c:48
+#: src/applet-notifications.c:62
+#: ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:48
 #, c-format
 msgid "Delete %s"
 msgstr "Vider %s"
 
-#: ../src/applet-draw.c:152 ../src/applet-draw.c:149 ../src/applet-draw.c:146
+#: ../src/applet-draw.c:152
+#: ../src/applet-draw.c:149
+#: ../src/applet-draw.c:146
 msgid "calculating"
 msgstr "en cours"
 
-#: ../src/applet-draw.c:162 ../src/applet-draw.c:159 ../src/applet-draw.c:156
+#: ../src/applet-draw.c:162
+#: ../src/applet-draw.c:159
+#: ../src/applet-draw.c:156
 msgid " trashe(s)"
 msgstr "déchet(s)"
 
-#: ../src/applet-draw.c:166 ../src/applet-draw.c:163 ../src/applet-draw.c:160
+#: ../src/applet-draw.c:166
+#: ../src/applet-draw.c:163
+#: ../src/applet-draw.c:160
 msgid " file(s)"
 msgstr "fichier(s)"
 
-#: ../src/applet-notifications.c:22 ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:20
 #: ../src/applet-notifications.c:19
 msgid ""
 "This is the dustbin applet for Cairo-Dock\n"
@@ -138,19 +163,22 @@ msgstr ""
 "Ceci est l'applet Dustbin\n"
 " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:68 ../src/applet-notifications.c:66
+#: ../src/applet-notifications.c:68
+#: ../src/applet-notifications.c:66
 #: ../src/applet-notifications.c:65
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s est maintenant démonté"
 
-#: ../src/applet-notifications.c:72 ../src/applet-notifications.c:70
+#: ../src/applet-notifications.c:72
+#: ../src/applet-notifications.c:70
 #: ../src/applet-notifications.c:69
 #, c-format
 msgid "failed to unmount %s"
 msgstr "échec au démontage de %s"
 
-#: ../src/applet-trashes-manager.c:389 ../src/applet-trashes-manager.c:387
+#: ../src/applet-trashes-manager.c:389
+#: ../src/applet-trashes-manager.c:387
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Tous les fichiers seront supprimés. Etes-vous sûr ?"
 
@@ -158,137 +186,163 @@ msgstr "Tous les fichiers seront supprimés. Etes-vous sûr ?"
 msgid "Icon"
 msgstr "Icône"
 
-#: ../data/messages:11 ../data/messages:13
+#: ../data/messages:11
+#: ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13 ../data/messages:15
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic milieu ou ALT + clic gauche par exemple."
+#: ../data/messages:13
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:15 ../data/messages:17
+#: ../data/messages:15
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17 ../data/messages:19
+#: ../data/messages:17
+#: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:19 ../data/messages:21
+#: ../data/messages:19
+#: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21 ../data/messages:23
+#: ../data/messages:21
+#: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23 ../data/messages:25
+#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25 ../data/messages:27
+#: ../data/messages:25
+#: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27 ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+#: ../data/messages:27
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:31
+#: ../data/messages:29
+#: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:31 ../data/messages:33 ../data/messages:37
+#: ../data/messages:31
+#: ../data/messages:33
+#: ../data/messages:37
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:37 ../data/messages:39 ../data/messages:43
+#: ../data/messages:37
+#: ../data/messages:39
+#: ../data/messages:43
 msgid "Name of an image to overwrite the theme's empty image :"
 msgstr "Nom d'une image pour écraser l'image vide du thème :"
 
-#: ../data/messages:39 ../data/messages:41 ../data/messages:45
+#: ../data/messages:39
+#: ../data/messages:41
+#: ../data/messages:45
 msgid "Name of an image to overwrite the theme's full image :"
 msgstr "Nom d'une image pour écraser l'image pleine du thème :"
 
-#: ../data/messages:41 ../data/messages:43 ../data/messages:47
+#: ../data/messages:41
+#: ../data/messages:43
+#: ../data/messages:47
 msgid "Config"
 msgstr "Config"
 
-#: ../data/messages:43 ../data/messages:45 ../data/messages:49
+#: ../data/messages:43
+#: ../data/messages:45
+#: ../data/messages:49
 msgid "They don't even need to be real trash directories."
 msgstr "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle."
 
-#: ../data/messages:45 ../data/messages:47 ../data/messages:51
-msgid ""
-"Here you can specify a list of additionnal Trash directories to monitor :"
-msgstr ""
-"Vous pouvez spécifier içi une liste additionnelle de répertoire poubelle à "
-"monitorer :"
+#: ../data/messages:45
+#: ../data/messages:47
+#: ../data/messages:51
+msgid "Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr "Vous pouvez spécifier içi une liste additionnelle de répertoire poubelle à monitorer :"
 
-#: ../data/messages:47 ../data/messages:49 ../data/messages:53
+#: ../data/messages:47
+#: ../data/messages:49
+#: ../data/messages:53
 msgid "Display the following quick info :"
 msgstr "Afficher l'info-rapide suivante :"
 
-#: ../data/messages:49 ../data/messages:51 ../data/messages:55
+#: ../data/messages:49
+#: ../data/messages:51
+#: ../data/messages:55
 msgid "None"
 msgstr "Aucune"
 
-#: ../data/messages:51 ../data/messages:53 ../data/messages:57
+#: ../data/messages:51
+#: ../data/messages:53
+#: ../data/messages:57
 msgid "Number of trashes"
 msgstr "Nombre de déchets"
 
-#: ../data/messages:53 ../data/messages:55 ../data/messages:59
+#: ../data/messages:53
+#: ../data/messages:55
+#: ../data/messages:59
 msgid "Total number of files"
 msgstr "Nombre total de fichiers"
 
-#: ../data/messages:55 ../data/messages:57 ../data/messages:61
+#: ../data/messages:55
+#: ../data/messages:57
+#: ../data/messages:61
 msgid "Total weight"
 msgstr "Poids total"
 
-#: ../data/messages:57 ../data/messages:61 ../data/messages:59
-#: ../data/messages:63 ../data/messages:67
-msgid ""
-"in Mb. You will be notified when you go over this limit. Set 0 to not use it."
-msgstr ""
-"en Mo. Vous serez notifié si vous dépassez cette limite. Mettez 0 pour ne "
-"pas l'utiliser."
+#: ../data/messages:57
+#: ../data/messages:61
+#: ../data/messages:59
+#: ../data/messages:63
+#: ../data/messages:67
+msgid "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+msgstr "en Mo. Vous serez notifié si vous dépassez cette limite. Mettez 0 pour ne pas l'utiliser."
 
-#: ../data/messages:59 ../data/messages:61 ../data/messages:65
+#: ../data/messages:59
+#: ../data/messages:61
+#: ../data/messages:65
 msgid "Maximum total size of all dustbins :"
 msgstr "Taille maximale totale des poubelles :"
 
-#: ../data/messages:63 ../data/messages:65 ../data/messages:69
+#: ../data/messages:63
+#: ../data/messages:65
+#: ../data/messages:69
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Taille maximale autorisée pour chaque poubelle :"
 
-#: ../data/messages:65 ../data/messages:67 ../data/messages:71
+#: ../data/messages:65
+#: ../data/messages:67
+#: ../data/messages:71
 msgid "Desktop-less support"
 msgstr "Utilisation dégradée"
 
-#: ../data/messages:67 ../data/messages:69 ../data/messages:73
+#: ../data/messages:67
+#: ../data/messages:69
+#: ../data/messages:73
 msgid "in seconds, only used if you can't monitor directories."
-msgstr ""
-"en secondes, seulement utilisé si la surveillance de fichiers n'est pas "
-"disponible."
+msgstr "en secondes, seulement utilisé si la surveillance de fichiers n'est pas disponible."
 
-#: ../data/messages:71 ../data/messages:73 ../data/messages:77
-msgid ""
-"Only use this if you notice that the applet can't display the trash on click."
-msgstr ""
-"N'utilisez cela que si vous notez que l'applet de peut pas afficher la "
-"poubelle au clic."
+#: ../data/messages:71
+#: ../data/messages:73
+#: ../data/messages:77
+msgid "Only use this if you notice that the applet can't display the trash on click."
+msgstr "N'utilisez cela que si vous notez que l'applet de peut pas afficher la poubelle au clic."
 
-#: ../data/messages:73 ../data/messages:75 ../data/messages:79
+#: ../data/messages:73
+#: ../data/messages:75
+#: ../data/messages:79
 msgid "Alternative file browser used to show a trash :"
 msgstr "Ouvrir la poubelle avec :"
 
@@ -297,13 +351,8 @@ msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
 
 #: ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si la position est verrouillé, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillé, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche"
 
 #: ../data/messages:35
 msgid "Lockposition ?"
@@ -311,4 +360,5 @@ msgstr "Verrouiller la position ?"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr ""
+msgstr "Verrouiller la position ?"
+

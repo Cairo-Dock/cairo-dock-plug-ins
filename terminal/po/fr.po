@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-26 18:15+0100\n"
-"PO-Revision-Date: 2008-05-19 21:06+0100\n"
+"PO-Revision-Date: 2008-05-23 08:51+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,84 +29,138 @@ msgstr "hauteur :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-#: ../data/messages:33 ../data/messages:31 ../data/messages:29
-#: ../data/messages:35 ../data/messages:39 ../data/messages:37
+#: ../data/messages:33
+#: ../data/messages:31
+#: ../data/messages:29
+#: ../data/messages:35
+#: ../data/messages:39
+#: ../data/messages:37
 msgid "GUI"
 msgstr "IHM"
 
-#: ../data/messages:37 ../data/messages:35 ../data/messages:33
-#: ../data/messages:39 ../data/messages:43 ../data/messages:41
+#: ../data/messages:37
+#: ../data/messages:35
+#: ../data/messages:33
+#: ../data/messages:39
+#: ../data/messages:43
+#: ../data/messages:41
 msgid "Terminal's transparency :"
 msgstr "Transparence du terminal :"
 
-#: ../data/messages:35 ../data/messages:33 ../data/messages:31
-#: ../data/messages:37 ../data/messages:41 ../data/messages:39
+#: ../data/messages:35
+#: ../data/messages:33
+#: ../data/messages:31
+#: ../data/messages:37
+#: ../data/messages:41
+#: ../data/messages:39
 msgid "needs to restart the applet."
 msgstr "nécessite de recharger l'applet."
 
 msgid "Always on top ?"
 msgstr "Toujours devant ?"
 
-#: ../data/messages:39 ../data/messages:37 ../data/messages:35
-#: ../data/messages:41 ../data/messages:45 ../data/messages:43
+#: ../data/messages:39
+#: ../data/messages:37
+#: ../data/messages:35
+#: ../data/messages:41
+#: ../data/messages:45
+#: ../data/messages:43
 msgid "Foreground color (r, v, b):"
 msgstr "Couleur d'avant-plan (r, v, b):"
 
-#: ../data/messages:41 ../data/messages:39 ../data/messages:37
-#: ../data/messages:43 ../data/messages:47 ../data/messages:45
+#: ../data/messages:41
+#: ../data/messages:39
+#: ../data/messages:37
+#: ../data/messages:43
+#: ../data/messages:47
+#: ../data/messages:45
 msgid "Background color (r, v, b):"
 msgstr "Couleur d'arrière-plan (r, v, b):"
 
-#: ../data/messages:43 ../data/messages:41 ../data/messages:39
-#: ../data/messages:45 ../data/messages:47 ../data/messages:51
+#: ../data/messages:43
+#: ../data/messages:41
+#: ../data/messages:39
+#: ../data/messages:45
+#: ../data/messages:47
+#: ../data/messages:51
 #: ../data/messages:49
 msgid "Size of the terminal (line x columns) :"
 msgstr "Taille du terminal (ligne x colonnes) :"
 
-#: ../src/terminal-menu-functions.c:94 ../src/terminal-callbacks.c:68
-#: ../src/terminal-menu-functions.c:146 ../src/terminal-menu-functions.c:143
-#: ../src/terminal-menu-functions.c:142 ../src/terminal-menu-functions.c:152
-#: ../src/terminal-callbacks.c:66 ../src/terminal-menu-functions.c:150
-#: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:197
-#: ../src/terminal-widget.c:229 ../src/terminal-widget.c:290
-#: ../src/terminal-widget.c:326 ../src/terminal-widget.c:328
+#: ../src/terminal-menu-functions.c:94
+#: ../src/terminal-callbacks.c:68
+#: ../src/terminal-menu-functions.c:146
+#: ../src/terminal-menu-functions.c:143
+#: ../src/terminal-menu-functions.c:142
+#: ../src/terminal-menu-functions.c:152
+#: ../src/terminal-callbacks.c:66
+#: ../src/terminal-menu-functions.c:150
+#: ../src/terminal-callbacks.c:67
+#: ../src/terminal-widget.c:197
+#: ../src/terminal-widget.c:229
+#: ../src/terminal-widget.c:290
+#: ../src/terminal-widget.c:326
+#: ../src/terminal-widget.c:328
 msgid "Copy"
 msgstr "Copier"
 
-#: ../src/terminal-init.c:82 ../src/terminal-menu-functions.c:245
-#: ../src/terminal-menu-functions.c:243 ../src/terminal-menu-functions.c:244
-#: ../src/terminal-menu-functions.c:254 ../src/terminal-init.c:83
-#: ../src/terminal-init.c:81 ../src/terminal-menu-functions.c:255
-#: ../src/terminal-widget.c:420 ../src/terminal-widget.c:507
-#: ../src/terminal-init.c:79 ../src/terminal-widget.c:569
-#: ../src/terminal-widget.c:611 ../src/terminal-widget.c:613
+#: ../src/terminal-init.c:82
+#: ../src/terminal-menu-functions.c:245
+#: ../src/terminal-menu-functions.c:243
+#: ../src/terminal-menu-functions.c:244
+#: ../src/terminal-menu-functions.c:254
+#: ../src/terminal-init.c:83
+#: ../src/terminal-init.c:81
+#: ../src/terminal-menu-functions.c:255
+#: ../src/terminal-widget.c:420
+#: ../src/terminal-widget.c:507
+#: ../src/terminal-init.c:79
+#: ../src/terminal-widget.c:569
+#: ../src/terminal-widget.c:611
+#: ../src/terminal-widget.c:613
 #: ../src/terminal-widget.c:659
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../src/terminal-menu-functions.c:152 ../src/terminal-menu-functions.c:149
-#: ../src/terminal-menu-functions.c:148 ../src/terminal-menu-functions.c:158
-#: ../src/terminal-menu-functions.c:156 ../src/terminal-widget.c:203
-#: ../src/terminal-widget.c:235 ../src/terminal-widget.c:296
-#: ../src/terminal-widget.c:332 ../src/terminal-widget.c:334
+#: ../src/terminal-menu-functions.c:152
+#: ../src/terminal-menu-functions.c:149
+#: ../src/terminal-menu-functions.c:148
+#: ../src/terminal-menu-functions.c:158
+#: ../src/terminal-menu-functions.c:156
+#: ../src/terminal-widget.c:203
+#: ../src/terminal-widget.c:235
+#: ../src/terminal-widget.c:296
+#: ../src/terminal-widget.c:332
+#: ../src/terminal-widget.c:334
 msgid "Paste"
 msgstr "Coller"
 
-#: ../src/terminal-menu-functions.c:161 ../src/terminal-menu-functions.c:287
-#: ../src/terminal-menu-functions.c:158 ../src/terminal-menu-functions.c:283
-#: ../src/terminal-menu-functions.c:157 ../src/terminal-menu-functions.c:284
-#: ../src/terminal-menu-functions.c:167 ../src/terminal-menu-functions.c:294
-#: ../src/terminal-menu-functions.c:295 ../src/terminal-menu-functions.c:165
-#: ../src/terminal-menu-functions.c:296 ../src/terminal-menu-functions.c:84
-#: ../src/terminal-widget.c:213 ../src/terminal-widget.c:245
-#: ../src/terminal-widget.c:306 ../src/terminal-widget.c:342
+#: ../src/terminal-menu-functions.c:161
+#: ../src/terminal-menu-functions.c:287
+#: ../src/terminal-menu-functions.c:158
+#: ../src/terminal-menu-functions.c:283
+#: ../src/terminal-menu-functions.c:157
+#: ../src/terminal-menu-functions.c:284
+#: ../src/terminal-menu-functions.c:167
+#: ../src/terminal-menu-functions.c:294
+#: ../src/terminal-menu-functions.c:295
+#: ../src/terminal-menu-functions.c:165
+#: ../src/terminal-menu-functions.c:296
+#: ../src/terminal-menu-functions.c:84
+#: ../src/terminal-widget.c:213
+#: ../src/terminal-widget.c:245
+#: ../src/terminal-widget.c:306
+#: ../src/terminal-widget.c:342
 #: ../src/terminal-widget.c:344
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
-#: ../src/terminal-menu-functions.c:288 ../src/terminal-menu-functions.c:284
-#: ../src/terminal-menu-functions.c:285 ../src/terminal-menu-functions.c:295
-#: ../src/terminal-menu-functions.c:296 ../src/terminal-menu-functions.c:297
+#: ../src/terminal-menu-functions.c:288
+#: ../src/terminal-menu-functions.c:284
+#: ../src/terminal-menu-functions.c:285
+#: ../src/terminal-menu-functions.c:295
+#: ../src/terminal-menu-functions.c:296
+#: ../src/terminal-menu-functions.c:297
 #: ../src/terminal-menu-functions.c:86
 msgid "Close current Tab"
 msgstr "Fermer l'onglet courant"
@@ -127,119 +181,137 @@ msgstr "Nom de l'icône qui apparaîtra dans son étiquette dans le dock ;"
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: ../data/messages:11 ../data/messages:13 ../data/messages:15
+#: ../data/messages:11
+#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13 ../data/messages:15 ../data/messages:19
+#: ../data/messages:13
+#: ../data/messages:15
+#: ../data/messages:19
 #: ../data/messages:21
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:15 ../data/messages:17 ../data/messages:21
+#: ../data/messages:15
+#: ../data/messages:17
+#: ../data/messages:21
 #: ../data/messages:23
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17 ../data/messages:19 ../data/messages:15
+#: ../data/messages:17
+#: ../data/messages:19
+#: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:19 ../data/messages:21 ../data/messages:17
+#: ../data/messages:19
+#: ../data/messages:21
+#: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21 ../data/messages:23 ../data/messages:19
+#: ../data/messages:21
+#: ../data/messages:23
+#: ../data/messages:19
 #: ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23 ../data/messages:25 ../data/messages:21
+#: ../data/messages:23
+#: ../data/messages:25
+#: ../data/messages:21
 #: ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25 ../data/messages:27 ../data/messages:23
+#: ../data/messages:25
+#: ../data/messages:27
+#: ../data/messages:23
 #: ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27 ../data/messages:29 ../data/messages:25
+#: ../data/messages:27
+#: ../data/messages:29
+#: ../data/messages:25
 #: ../data/messages:31
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:31 ../data/messages:27
+#: ../data/messages:29
+#: ../data/messages:31
+#: ../data/messages:27
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:45 ../data/messages:43 ../data/messages:41
-#: ../data/messages:47 ../data/messages:49 ../data/messages:53
+#: ../data/messages:45
+#: ../data/messages:43
+#: ../data/messages:41
+#: ../data/messages:47
+#: ../data/messages:49
+#: ../data/messages:53
 #: ../data/messages:51
 msgid "Shortkey to show the terminal"
 msgstr "Raccourci clavier pour montrer le terminal :"
 
-#: ../src/terminal-menu-functions.c:85 ../src/terminal-widget.c:219
+#: ../src/terminal-menu-functions.c:85
+#: ../src/terminal-widget.c:219
 msgid "Rename current Tab"
 msgstr "Rennomer l'onglet courant"
 
-#: ../src/terminal-widget.c:82 ../src/terminal-widget.c:104
-#: ../src/terminal-widget.c:165 ../src/terminal-widget.c:131
+#: ../src/terminal-widget.c:82
+#: ../src/terminal-widget.c:104
+#: ../src/terminal-widget.c:165
+#: ../src/terminal-widget.c:131
 #: ../src/terminal-widget.c:133
 msgid "Set title for this tab :"
 msgstr "Définissez un titre pour cet onglet :"
 
-#: ../data/messages:43 ../data/messages:45 ../data/messages:49
+#: ../data/messages:43
+#: ../data/messages:45
+#: ../data/messages:49
 #: ../data/messages:47
-msgid ""
-"When the terminal is in a dialog. When it is in a desklet, you can just "
-"resize the desklet as usual."
-msgstr ""
-"Quand le terminal est dans un dialogue. Quand il est dans un desklet, vous "
-"pouvez le redimensionner comme d'habitude."
+msgid "When the terminal is in a dialog. When it is in a desklet, you can just resize the desklet as usual."
+msgstr "Quand le terminal est dans un dialogue. Quand il est dans un desklet, vous pouvez le redimensionner comme d'habitude."
 
-#: ../src/terminal-widget.c:251 ../src/terminal-widget.c:312
-#: ../src/terminal-widget.c:348 ../src/terminal-widget.c:350
+#: ../src/terminal-widget.c:251
+#: ../src/terminal-widget.c:312
+#: ../src/terminal-widget.c:348
+#: ../src/terminal-widget.c:350
 msgid "Rename this Tab"
 msgstr "Renommer cet onglet"
 
-#: ../src/terminal-widget.c:257 ../src/terminal-widget.c:318
-#: ../src/terminal-widget.c:360 ../src/terminal-widget.c:362
+#: ../src/terminal-widget.c:257
+#: ../src/terminal-widget.c:318
+#: ../src/terminal-widget.c:360
+#: ../src/terminal-widget.c:362
 msgid "Close this Tab"
 msgstr "Fermer cet onglet"
 
-#: ../src/terminal-widget.c:157 ../src/terminal-widget.c:185
+#: ../src/terminal-widget.c:157
+#: ../src/terminal-widget.c:185
 #: ../src/terminal-widget.c:187
 msgid "Select a color"
 msgstr "Sélectionner une couleur"
 
-#: ../src/terminal-widget.c:354 ../src/terminal-widget.c:356
+#: ../src/terminal-widget.c:354
+#: ../src/terminal-widget.c:356
 msgid "Change this Tab's color"
 msgstr "Changer la couleur de cet onglet"
 
-#: ../data/messages:13 ../data/messages:11
+#: ../data/messages:13
+#: ../data/messages:11
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
 
-#: ../data/messages:35 ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche."
+#: ../data/messages:35
+#: ../data/messages:33
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:37
 msgid "Lockposition ?"
@@ -247,4 +319,5 @@ msgstr "Verrouiller la position ?"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr ""
+msgstr "Verrouiller la position ?"
+
