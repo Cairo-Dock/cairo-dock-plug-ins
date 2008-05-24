@@ -16,6 +16,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	//On charge le theme :
 	myConfig.cThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "turbo-night-fuel");
 	cd_debug ("gauge (cpusage) : Theme(%s)",myConfig.cThemePath);
+	
+	myConfig.iNbDisplayedProcesses = CD_CONFIG_GET_INTEGER ("Configuration", "top");
+	myConfig.iProcessCheckInterval = CD_CONFIG_GET_INTEGER ("Configuration", "top delay");
 CD_APPLET_GET_CONFIG_END
 
 

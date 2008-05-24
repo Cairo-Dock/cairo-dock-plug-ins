@@ -10,8 +10,19 @@ typedef struct {
 	
 	CairoDockInfoDisplay iInfoDisplay;
 	gchar *cThemePath;
-	gboolean gaugeIcon; 
+	gboolean gaugeIcon;
+	
+	gint iNbDisplayedProcesses;
+	gint iProcessCheckInterval;
 } AppletConfig;
+
+typedef struct {
+	gint iPid;
+	gchar *cName;
+	gint iCpuTime;
+	gdouble fCpuPercent;
+	gdouble fLastCheckTime;
+	} CDProcess;
 
 typedef struct {
 	Gauge *pGauge;
@@ -25,6 +36,8 @@ typedef struct {
 	gboolean bInitialized;
 	CairoDockMeasure *pMeasureTimer;
 	gboolean bAcquisitionOK;
+	GHashTable *pProcessTable;
+	CDProcess **pTopList;
 } AppletData;
 
 

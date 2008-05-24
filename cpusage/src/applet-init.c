@@ -9,6 +9,12 @@
 
 CD_APPLET_DEFINITION ("cpusage", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
+void _unthreaded_measure (void)
+{
+	cd_cpusage_read_data ();
+	cd_cpusage_update_from_data ();
+}
+
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet != NULL) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
@@ -22,12 +28,13 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.pClock = g_timer_new ();
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
 		NULL,
-		cd_cpusage_read_data,
-		cd_cpusage_update_from_data);
+		NULL,  // cd_cpusage_read_data
+		_unthreaded_measure);  // cd_cpusage_update_from_data
 	myData.bAcquisitionOK = TRUE;
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_INIT_END
 
@@ -35,6 +42,7 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 CD_APPLET_STOP_END
 

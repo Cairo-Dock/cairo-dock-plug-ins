@@ -66,4 +66,15 @@ frame_conf=
 
 #i[1;30] Delay between refresh :
 #{in seconds.}
-delay = 1
+delay = 2
+
+#v
+sep =
+
+#i[1;20] Number of programs to display in the top list :
+#{When you left-click on the icon, you will get the list of the N most CPU-using programs.}
+top = 5
+
+#i[1;30] Delay between refresh :
+#{in seconds.}
+top delay = 2
