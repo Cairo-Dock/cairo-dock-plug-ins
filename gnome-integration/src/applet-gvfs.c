@@ -22,7 +22,7 @@ static void _vfs_backend_free_monitor_data (gpointer *data)
 	{
 		GFileMonitor *pHandle = data[2];
 		g_file_monitor_cancel (pHandle);  // le GFileMonitor est-il libere lors du g_file_monitor_cancel () ?
-		//g_free (data);
+		g_free (data);
 	}
 }
 
@@ -138,13 +138,13 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 					{
 						cd_message ("TROUVE");
 						*pFoundMount = pMount;
-						*cURI = g_strconcat ("computer:///", cName, NULL);
+						*cURI = g_strconcat ("computer:///", cFileName, NULL);
 						GIcon *pSystemIcon = g_mount_get_icon (pMount);
 						*cIconName = _cd_get_icon_path (pSystemIcon);
-						//g_free (cName);
+						g_free (cName);
 						break ;
 					}
-					//g_free (cName);
+					g_free (cName);
 				}
 			}
 		}
@@ -992,7 +992,7 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 }
 
 
-void _on_monitor_changed (GFileMonitor *monitor,
+static void _on_monitor_changed (GFileMonitor *monitor,
 	GFile *file,
 	GFile *other_file,
 	GFileMonitorEvent event_type,
@@ -1037,10 +1037,10 @@ void _on_monitor_changed (GFileMonitor *monitor,
 		}
 		memcpy (cURI+4, "file", 4);
 		cPath = g_filename_from_uri (cURI+4, NULL, NULL);
-		//g_free (cURI);
 		cd_debug(" (path:%s)", cPath);
+		g_free (cURI);
 		cURI = g_strdup_printf ("computer://%s", cPath);
-		cd_message ("son URI complete est : %s\n", cURI);
+		cd_message ("son URI complete est : %s", cURI);
 	}
 	
 	pCallback (iEventType, cURI, user_data);
@@ -1152,8 +1152,8 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);
 	}
-	//g_object_unref (pFile);
-	//g_object_unref (pDestinationFile);
+	g_object_unref (pFile);
+	g_object_unref (pDestinationFile);
 	return bSuccess;
 }
 
@@ -1195,7 +1195,7 @@ gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gchar **cFileInfoPath)
 	gchar *cPath = NULL;
 	/*GFile *pFile = g_file_new_for_uri ("trash://");
 	gchar *cPath = g_file_get_path (pFile);
-	//g_object_unref (pFile);*/
+	g_object_unref (pFile);*/
 	const gchar *xdgPath = g_getenv ("XDG_DATA_HOME");
 	if (xdgPath != NULL)
 	{
@@ -1216,6 +1216,6 @@ gchar *vfs_backend_get_desktop_path (void)
 {
 	GFile *pFile = g_file_new_for_uri ("desktop://");
 	gchar *cPath = g_file_get_path (pFile);
-	//g_object_unref (pFile);
+	g_object_unref (pFile);
 	return cPath;
 }
