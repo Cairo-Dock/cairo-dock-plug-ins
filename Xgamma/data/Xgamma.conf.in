@@ -1,5 +1,6 @@
 #!en;@VERSION@
 
+#[gtk-about]
 [Icon]
 #F[Desired icon size for this applet]
 frame1 = 
@@ -20,6 +21,9 @@ icon =
 #E[] Name of the dock it belongs to:
 dock name = 
 
+order=
+
+#[gtk-convert]
 [Desklet]
 
 #i[48;256] Desklet's dimension (width x height) :
@@ -47,3 +51,5 @@ on widget layer=false
 #b Lock position ?
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
+
+use size=
