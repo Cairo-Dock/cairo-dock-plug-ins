@@ -25,7 +25,7 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT (D_("This is the mail applet\n made by Christophe Chapuis for Cairo-Dock"))
 
 
-#define _add_icon(account_name, nbUnreadMails, i)\
+#define _add_icon(account_name, associated_command, nbUnreadMails, i)\
 	if (account_name != NULL)\
 	{\
 		pIcon = g_new0 (Icon, 1);\
@@ -38,7 +38,7 @@ CD_APPLET_ABOUT (D_("This is the mail applet\n made by Christophe Chapuis for Ca
 		pIcon->fAlpha = 1.;\
 		pIcon->fWidthFactor = 1.;\
 		pIcon->fHeightFactor = 1.;\
-		pIcon->acCommand = g_strdup ("none");\
+		pIcon->acCommand = g_strdup (associated_command);\
 		pIcon->cParentDockName = g_strdup (myIcon->acName);\
 		cd_debug (" + %s (%s)\n", pIcon->acName, pIcon->acFileName);\
 		pIconList = g_list_append (pIconList, pIcon);\
@@ -135,7 +135,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("mail", pSubMenu, CD_APPLET_MY_MENU)
 		CD_APPLET_ADD_IN_MENU (_("Add a new mail account"), _cd_mail_add_account, pSubMenu)
 
-        cd_mailwatch_get_mailboxes_infos( myData.mailwatch, &list_names, &list_data );
+        cd_mailwatch_get_mailboxes_infos( myData.mailwatch, &list_names, &list_data, NULL );
         if( list_names && list_data )
         {
             CD_APPLET_ADD_SUB_MENU (_("Remove a mail account"), pRemoveAccountSubMenu, pSubMenu)
@@ -179,8 +179,6 @@ _mail_draw_main_icon (void)
             myIcon->acFileName = g_strdup(myConfig.cNoMailUserImage);
             CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
         }
-
-        CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.iNbUnreadMails)
 	}
 	else
 	{
@@ -217,9 +215,9 @@ _mail_draw_main_icon (void)
             //Chargement de l'image "il y a un des mails"
             CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHasMailUserImage)
         }
-
-        CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
 	}
+
+  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.iNbUnreadMails)
 }
 
 void
@@ -242,7 +240,7 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
         {
             for(i = 0; mailbox_names[i]; i++)
             {
-                _add_icon (mailbox_names[i], new_message_counts[i], i);
+                _add_icon (mailbox_names[i], mailbox_names[i], new_message_counts[i], i);
             }
         }
 
