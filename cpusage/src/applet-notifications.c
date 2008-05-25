@@ -12,56 +12,139 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT (D_("This is the cpusage applet\n made by parAdOxxx_ZeRo for Cairo-Dock"))
 
 
-static gboolean _cd_cpusage_top_timer (GTimer *pClock)
+static void _cd_cpusage_get_top_list (void)
 {
-	g_timer_stop (pClock);
-	double fTimeElapsed = g_timer_elapsed (pClock, NULL);
-	g_timer_start (pClock);
+	g_timer_stop (myData.pTopClock);
+	double fTimeElapsed = g_timer_elapsed (myData.pTopClock, NULL);
+	g_timer_start (myData.pTopClock);
 	GTimeVal time_val;
 	g_get_current_time (&time_val);  // on pourrait aussi utiliser un compteur statique a la fonction ...
 	double fTime = time_val.tv_sec + time_val.tv_usec * 1e-6;
 	cd_cpusage_get_process_times (fTime, fTimeElapsed);
 	
+	cd_cpusage_clean_old_processes (fTime);
+}
+
+static void _cd_cpusage_update_top_list (void)
+{
+	/*if (myData.pTopDialog->iRefCount == 1)
+	{
+		cairo_dock_stop_measure_timer (myData.pTopMeasureTimer);
+		cairo_dock_dialog_unreference (myData.pTopDialog);
+		myData.pTopDialog = NULL;
+		g_timer_destroy (myData.pTopClock);
+		myData.pTopClock = NULL;
+		cairo_surface_destroy (myData.pTopSurface);
+		myData.pTopSurface = NULL;
+		return ;
+	}*/
 	CDProcess *pProcess;
 	int i;
-	
 	GString *sTopInfo = g_string_new ("");
-	g_string_printf (sTopInfo, "Top %d :", myConfig.iNbDisplayedProcesses);
 	for (i = 0; i < myConfig.iNbDisplayedProcesses; i ++)
 	{
 		pProcess = myData.pTopList[i];
 		if (pProcess == NULL)
 			break;
-		g_string_append_printf (sTopInfo, "\n  %s (%d) : %.1f%%", pProcess->cName, pProcess->iPid, 100 * pProcess->fCpuPercent);
+		g_string_append_printf (sTopInfo, "  %s (%d) : %.1f%%\n", pProcess->cName, pProcess->iPid, 100 * pProcess->fCpuPercent);
 	}
+	sTopInfo->str[sTopInfo->len-1] = '\0';
 	
-	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog(sTopInfo->str, myIcon, myContainer, 0);
+	int iTextWidth, iTextHeight;
+	double fTextXOffset, fTextYOffset;
+	cairo_surface_destroy (myData.pTopSurface);
+	myData.pTopSurface = cairo_dock_create_surface_from_text (sTopInfo->str,
+		myDrawContext,
+		g_iDialogMessageSize,
+		g_cDialogMessagePolice,
+		g_iDialogMessageWeight,
+		NULL,
+		1.,
+		&iTextWidth, &iTextHeight, &fTextXOffset, &fTextYOffset);
 	g_string_free (sTopInfo, TRUE);
 	
-	/*{
-		g_timer_destroy (pClock);
-		cd_cpusage_clean_all_processes ();
-		return FALSE;
-	}*/
-	cd_cpusage_clean_old_processes (fTime);
-	return TRUE;
+	GdkRectangle area;
+	area.x = 0;
+	area.y = myData.pTopDialog->iMessageHeight;
+	area.width = MAX (iTextWidth, myData.pTopDialog->iInteractiveWidth);
+	area.height = MAX (iTextHeight, myData.pTopDialog->iInteractiveHeight);
+	
+	gtk_widget_set_size_request (myData.pTopDialog->pInteractiveWidget, iTextWidth, iTextHeight);
+	
+	//g_print (" -> (%d;%d) (%dx%d)\n", area.x, area.y, area.width, area.height);
+#ifdef HAVE_GLITZ
+	if (myData.pTopDialog->pDrawFormat && myData.pTopDialog->pDrawFormat->doublebuffer)
+		gtk_widget_queue_draw (myData.pTopDialog->pWidget);
+	else
+#endif
+		gdk_window_invalidate_rect (myData.pTopDialog->pWidget->window, &area, FALSE);
 }
+
+static gboolean _cd_cpusage_draw_top_list_on_dialog (GtkWidget *pWidget,
+	GdkEventExpose *pExpose,
+	gpointer data)
+{
+	cairo_t *pCairoContext = gdk_cairo_create (pWidget->window);
+	g_return_val_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS, FALSE);
+	
+	cairo_set_source_surface (pCairoContext, myData.pTopSurface, 0, myData.pTopDialog->iMessageHeight);
+	cairo_paint (pCairoContext);
+	
+	cairo_destroy (pCairoContext);
+}
+
 CD_APPLET_ON_CLICK_BEGIN
 	if (myData.bAcquisitionOK)
 	{
-		if (cairo_dock_remove_dialog_if_any (myIcon))
+		if (myData.pTopDialog != NULL)
+		{
+			cairo_dock_stop_measure_timer (myData.pTopMeasureTimer);
+			cairo_dock_dialog_unreference (myData.pTopDialog);
+			//cairo_dock_dialog_unreference (myData.pTopDialog);
+			myData.pTopDialog = NULL;
+			g_timer_destroy (myData.pTopClock);
+			myData.pTopClock = NULL;
+			cairo_surface_destroy (myData.pTopSurface);
+			myData.pTopSurface = NULL;
 			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
-		
-		GTimeVal time_val;
+		}
+		/*GTimeVal time_val;
 		g_get_current_time (&time_val);  // on pourrait aussi utiliser un compteur statique a la fonction ...
-		cd_cpusage_get_process_times (time_val.tv_sec + time_val.tv_usec * 1e-6, 0.);
+		cd_cpusage_get_process_times (time_val.tv_sec + time_val.tv_usec * 1e-6, 0.);*/
 		
-		GTimer *pClock = g_timer_new ();
-		g_timeout_add_seconds (myConfig.iProcessCheckInterval, (GSourceFunc) _cd_cpusage_top_timer, pClock);
+		gchar *cTitle = g_strdup_printf ("  [ Top %d ] :", myConfig.iNbDisplayedProcesses);
+		gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "icon.png");
+		GtkWidget *pInteractiveWidget = gtk_vbox_new (FALSE, 0);
+		gtk_widget_set_size_request (pInteractiveWidget, g_iLabelSize * 15, g_iLabelSize * myConfig.iNbDisplayedProcesses);  // approximatif.
+		myData.pTopDialog = cairo_dock_show_dialog_full (cTitle,
+			myIcon,
+			myContainer,
+			0,  // 5000 * myConfig.iProcessCheckInterval
+			cIconPath,
+			GTK_BUTTONS_NONE,
+			pInteractiveWidget,
+			NULL,
+			NULL,
+			NULL);
+		//cairo_dock_dialog_reference (myData.pTopDialog);
+		g_free (cTitle);
+		g_free (cIconPath);
+		g_return_val_if_fail (myData.pTopDialog != NULL, CAIRO_DOCK_INTERCEPT_NOTIFICATION);
+		g_signal_connect_after (G_OBJECT (myData.pTopDialog->pWidget),
+			"expose-event",
+			G_CALLBACK (_cd_cpusage_draw_top_list_on_dialog),
+			myData.pTopDialog);
+		
+		myData.pTopClock = g_timer_new ();
+		if (myData.pTopMeasureTimer == NULL)
+			myData.pTopMeasureTimer = cairo_dock_new_measure_timer (myConfig.iProcessCheckInterval,
+				NULL,
+				_cd_cpusage_get_top_list,
+				_cd_cpusage_update_top_list);
+		cairo_dock_launch_measure (myData.pTopMeasureTimer);
 	}
 	else
-		cairo_dock_show_temporary_dialog(D_("Data acquisition has failed"), myIcon, myContainer, 4e3);
+		cairo_dock_show_temporary_dialog(D_("Data acquisition has failed"), myIcon, myContainer, 3e3);
 CD_APPLET_ON_CLICK_END
 
 
@@ -69,7 +152,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myData.bAcquisitionOK)
 	{
 		/// afficher : utilisation de chaque coeur, nbre de processus en cours.
-		if (cairo_dock_remove_dialog_if_any (myIcon))
+		if (myData.pTopDialog != NULL || cairo_dock_remove_dialog_if_any (myIcon))
 			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 		
 		gchar *cUpTime = NULL, *cActivityTime = NULL;

@@ -27,17 +27,22 @@ typedef struct {
 typedef struct {
 	Gauge *pGauge;
 	
-	GTimer *pClock;
-	guint cpu_user, cpu_user_nice, cpu_system, cpu_idle;
-	gdouble cpu_usage;
 	gint iNbCPU;
 	gint iFrequency;
 	gchar *cModelName;
 	gboolean bInitialized;
-	CairoDockMeasure *pMeasureTimer;
 	gboolean bAcquisitionOK;
+	CairoDockMeasure *pMeasureTimer;
+	GTimer *pClock;
+	guint cpu_user, cpu_user_nice, cpu_system, cpu_idle;
+	gdouble cpu_usage;
+	
 	GHashTable *pProcessTable;
 	CDProcess **pTopList;
+	CairoDialog *pTopDialog;
+	GTimer *pTopClock;
+	cairo_surface_t *pTopSurface;
+	CairoDockMeasure *pTopMeasureTimer;
 } AppletData;
 
 

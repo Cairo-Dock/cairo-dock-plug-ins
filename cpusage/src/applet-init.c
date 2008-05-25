@@ -69,6 +69,9 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
+		
+		if (myData.pTopMeasureTimer != NULL)
+			cairo_dock_change_measure_frequency (myData.pTopMeasureTimer, myConfig.iProcessCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
 		cd_cpusage_update_from_data ();

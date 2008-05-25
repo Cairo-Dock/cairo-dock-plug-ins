@@ -30,9 +30,14 @@ CD_APPLET_RESET_CONFIG_END
 
 CD_APPLET_RESET_DATA_BEGIN	
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	g_timer_destroy (myData.pClock);
 	
 	free_cd_Gauge(myData.pGauge);
 	
-	g_timer_destroy (myData.pClock);
+	cairo_dock_free_measure_timer (myData.pTopMeasureTimer);
+	g_timer_destroy (myData.pTopClock);
+	g_free (myData.pTopList);
+	g_hash_table_destroy (myData.pProcessTable);
+	cairo_surface_destroy (myData.pTopSurface);
 CD_APPLET_RESET_DATA_END
 
