@@ -60,15 +60,15 @@ use size=
 frame_info=
 #b Display Card name on the Label ?
 card=true
-#r[no;on quickinfo;on label; on icon] Display core temperature :
+#r[no;on quickinfo;on label;on icon] Display core temperature :
 temp type=1
 #i[1;60] Delay between temperature checks :
 #{in seconds.}
 delay = 10
 
-#i[30;60] Lower limit of core temp :
+#i[30;60] Lower limit of core temperature :
 llt = 50
-#i[60;120] Upper limit of core tem :
+#i[60;120] Upper limit of core temperature :
 ult = 110
 
 

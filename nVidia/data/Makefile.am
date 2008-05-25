@@ -8,5 +8,6 @@ module_DATA = \
 	readme\
 	nvidia\
 	preview.png\
+	broken.svg\
 	icon.svg
 

@@ -9,6 +9,7 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
+
 void cd_nvidia_draw_no_data (void) {
 	if (myData.pGPUData.iGPUTemp != myData.iPreviousGPUTemp) {
 		myData.iPreviousGPUTemp = myData.pGPUData.iGPUTemp;
@@ -24,6 +25,23 @@ void cd_nvidia_draw_icon (void) {
 	if (myConfig.bCardName)
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pGPUData.cGPUName);
 	
+	if (myData.pGPUData.iGPUTemp != myData.iPreviousGPUTemp) {
+		double fTempPercent;
+		if (myData.pGPUData.iGPUTemp <= myConfig.iLowerLimit) {
+			fTempPercent = 0;
+		}
+		else if (myData.pGPUData.iGPUTemp >= myConfig.iUpperLimit ) {
+			fTempPercent = 1;
+		}
+		else {
+			fTempPercent = (myConfig.iUpperLimit - myConfig.iLowerLimit) / (myData.pGPUData.iGPUTemp - myConfig.iLowerLimit);
+			fTempPercent = 1 - (fTempPercent / 10);
+		}
+		cd_debug("nVidia - Value have changed, redraw (%f)", fTempPercent);
+		make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) fTempPercent);
+		bNeedRedraw = TRUE;
+	}
+	
 	switch (myConfig.iDrawTemp) {
 		case MY_APPLET_TEMP_NONE :
 			if (myIcon->cQuickInfo != NULL) {
@@ -34,7 +52,7 @@ void cd_nvidia_draw_icon (void) {
 		case MY_APPLET_TEMP_ON_QUICKINFO :
 			if (myData.pGPUData.iGPUTemp != myData.iPreviousGPUTemp) {
 				gchar *cTemp = g_strdup_printf("%d°C", myData.pGPUData.iGPUTemp);
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(cTemp);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (cTemp);
 				g_free (cTemp);
 				bNeedRedraw = TRUE;
 			}
@@ -53,6 +71,8 @@ void cd_nvidia_draw_icon (void) {
 		case MY_APPLET_TEMP_ON_ICON :
 			if (myData.pGPUData.iGPUTemp != myData.iPreviousGPUTemp) {
 				//Dessin manuel, copier sur clock
+				gchar *cTemp = g_strdup_printf("%d°C", myData.pGPUData.iGPUTemp);
+				g_free (cTemp);
 				
 				if (myIcon->cQuickInfo != NULL)
 					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
@@ -61,29 +81,10 @@ void cd_nvidia_draw_icon (void) {
 		break;
 	}
 	
-	if (myData.pGPUData.iGPUTemp != myData.iPreviousGPUTemp) {
+	if (bNeedRedraw) {
 		myData.iPreviousGPUTemp = myData.pGPUData.iGPUTemp;
-		
-		
-		double fTempPercent;
-		if (myData.pGPUData.iGPUTemp <= myConfig.iLowerLimit) {
-			fTempPercent = 0;
-		}
-		else if (myData.pGPUData.iGPUTemp >= myConfig.iUpperLimit ) {
-			fTempPercent = 1;
-		}
-		else {
-			fTempPercent = (myConfig.iUpperLimit - myConfig.iLowerLimit) / (myData.pGPUData.iGPUTemp - myConfig.iLowerLimit);
-			fTempPercent = 1 - (fTempPercent / 10);
-		}
-		cd_debug("nVidia - Value have changed, redraw (%f)", fTempPercent);
-		make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) fTempPercent);
-		bNeedRedraw = TRUE;
-	}
-	
-	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON
-
+	}
 }
 
 void cd_nvidia_bubble(void) {
