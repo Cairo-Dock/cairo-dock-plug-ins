@@ -21,7 +21,6 @@ icon = CD_APPLET_ICON
 #E[] Name of the dock it belongs to:
 dock name = 
 
-icon=
 order=
 
 #Uncomment the following group when you will want to make your applet detachable.
