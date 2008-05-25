@@ -89,7 +89,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 					}
 				}
 				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pPrevBookmarkIconList, cOneBookmark);
-				if (pExistingIcon != NULL && (cUserName == NULL || strcmp (pExistingIcon->acName, cUserName) == 0))  // on la reinsere a sa place. Si le nom utilisateur a change, on se prend pas la tete, on la recree.
+				if (pExistingIcon != NULL && (cUserName == NULL || strcmp (pExistingIcon->acName, cUserName) == 0) && cURI != NULL)  // on la reinsere a sa place. Si le nom utilisateur a change, on se prend pas la tete, on la recree.
 				{
 					cd_message (" = 1 signet : %s", cOneBookmark);
 					pPrevBookmarkIconList = g_list_remove (pPrevBookmarkIconList, pExistingIcon);
@@ -102,6 +102,9 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 				}
 				else  // on la cree.
 				{
+					cName = NULL;
+					cRealURI = NULL;
+					cIconName = NULL;
 					if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType))
 					{
 						cd_message (" + 1 signet : %s", cOneBookmark);
@@ -113,6 +116,15 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 							g_free (cName);
 							cName = g_strdup (cUserName);
 						}
+						else if (cName == NULL)  // cas d'un bookmark situe sur un volume non monte.
+						{
+							gchar *cGuessedName = g_path_get_basename (cOneBookmark);
+							cairo_dock_remove_html_spaces (cGuessedName);
+							cName = g_strdup_printf ("%s\n[%s]", cGuessedName, D_("Unmounted"));
+							g_free (cGuessedName);
+						}
+						if (cRealURI == NULL)
+							cRealURI = g_strdup ("none");
 						pNewIcon->acName = cName;
 						pNewIcon->acCommand = cRealURI;
 						pNewIcon->acFileName = cIconName;
@@ -290,9 +302,12 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 					*str = '\0';
 				}
 			}
+			cName = NULL;
+			cRealURI = NULL;
+			cIconName = NULL;
 			if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType))
 			{
-				cd_message (" + 1 signet : %s\n", cOneBookmark);
+				cd_message (" + 1 signet : %s", cOneBookmark);
 				pNewIcon = g_new0 (Icon, 1);
 				pNewIcon->iType = 10;
 				pNewIcon->cBaseURI = cOneBookmark;
@@ -301,6 +316,15 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 					g_free (cName);
 					cName = g_strdup (cUserName);
 				}
+				else if (cName == NULL)  // cas d'un bookmark situe sur un volume non monte.
+				{
+					gchar *cGuessedName = g_path_get_basename (cOneBookmark);
+					cairo_dock_remove_html_spaces (cGuessedName);
+					cName = g_strdup_printf ("%s\n[%]", cGuessedName, D_("Unmounted"));
+					g_free (cGuessedName);
+				}
+				if (cRealURI == NULL)
+					cRealURI = g_strdup ("none");
 				pNewIcon->acName = cName;
 				pNewIcon->acCommand = cRealURI;
 				pNewIcon->acFileName = cIconName;

@@ -25,6 +25,52 @@ static int s_iSidTimerRedraw = 0;*/
 static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
 {
 	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 6);
+	
+	GList *ic;
+	Icon *icon;
+	gboolean bIsMounted;
+	gchar *cTargetURI = cairo_dock_fm_is_mounted (cURI, &bIsMounted);
+	if (cTargetURI == NULL)  // version bourrinne.
+	{
+		cd_shortcuts_on_change_bookmarks (CAIRO_DOCK_FILE_MODIFIED, NULL, NULL);
+	}
+	else  // version optimisee.
+	{
+		for (ic = (myDock ? myIcon->pSubDock->icons : myDesklet->icons); ic != NULL; ic = ic->next)
+		{
+			icon =ic->data;
+			if (icon->iType == 10)
+			{
+				if (strncmp (cTargetURI, icon->cBaseURI, strlen (cTargetURI)) == 0)
+				{
+					cd_message ("le signet %s est situe sur un point de montage ayant change (%s)", icon->cBaseURI, cTargetURI);
+					gchar *cName = NULL, *cRealURI = NULL, *cIconName = NULL, *cUserName = NULL;
+					int iVolumeID = 0;
+					gboolean bIsDirectory = FALSE;
+					double fOrder;
+					if (cairo_dock_fm_get_file_info (icon->cBaseURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType))
+					{
+						g_print (" -> %s (%d)\n", cIconName, bIsMounted);
+						g_free (icon->acName);
+						if (bIsMounted || cIconName == NULL)
+							icon->acName = cName;
+						else
+						{
+							icon->acName = g_strdup_printf ("%s\n[%s]", cName, D_("Unmounted"));
+							g_free (cName);
+						}
+						g_free (icon->acCommand);
+						icon->acCommand = cRealURI;
+						g_free (icon->acFileName);
+						icon->acFileName = cIconName;
+						icon->iVolumeID = iVolumeID;
+						cairo_dock_load_one_icon_from_scratch (icon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
+					}
+				}
+			}
+		}
+		g_free (cTargetURI);
+	}
 }
 static void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
 {
@@ -175,118 +221,3 @@ void cd_shortcuts_build_shortcuts_from_data (void)
 	
 	myData.pIconList = NULL;
 }
-
-
-
-/*gpointer cd_shortcuts_threaded_calculation (gpointer data)
-{
-	s_pIconList = _load_icons ();
-	
-	g_atomic_int_set (&s_iThreadIsRunning, 0);
-	cd_message ("*** fin du thread");
-	return NULL;
-}
-
-static gboolean _cd_shortcuts_check_for_redraw (gpointer data)
-{
-	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
-	cd_message ("%s (%d)", __func__, iThreadIsRunning);
-	if (! iThreadIsRunning)
-	{
-		s_iSidTimerRedraw = 0;
-		if (myIcon == NULL)
-		{
-			g_print ("annulation du chargement des raccourcis\n");
-			g_list_foreach (s_pIconList, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (s_pIconList);
-			s_pIconList = NULL;
-			return FALSE;
-		}
-		cd_message ("  chargement du sous-dock des raccourcis");
-		
-		//\_______________________ On efface l'ancienne liste.
-		//if (myData.pDeskletIconList != NULL)
-		if (myDesklet && myDesklet->icons != NULL)
-		{
-			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (myDesklet->icons);
-			myDesklet->icons = NULL;
-			myData.iNbIconsInTree = 0;
-			//if (myDesklet)
-			//	myDesklet->icons = NULL;
-		}
-		if (myIcon->pSubDock != NULL)
-		{
-			g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (myIcon->pSubDock->icons);
-			myIcon->pSubDock->icons = NULL;
-		}
-		
-		//\_______________________ On charge la nouvelle liste.
-		if (myDock)  // en mode 'dock', on affiche les raccourcis dans un sous-dock.
-		{
-			if (myIcon->pSubDock == NULL)
-			{
-				if (s_pIconList != NULL)  // l'applet peut faire 'show desktop'.
-				{
-					cd_message ("  creation du sous-dock des raccourcis");
-					CD_APPLET_CREATE_MY_SUBDOCK (s_pIconList, myConfig.cRenderer)
-				}
-			}
-			else  // on a deja notre sous-dock, on remplace juste ses icones.
-			{
-				cd_message ("  rechargement du sous-dock des raccourcis");
-				if (s_pIconList == NULL)  // inutile de le garder.
-				{
-					CD_APPLET_DESTROY_MY_SUBDOCK
-				}
-				else
-				{
-					CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (s_pIconList)
-				}
-			}
-		}
-		else
-		{
-			if (myIcon->pSubDock != NULL)
-			{
-				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-				myIcon->pSubDock = NULL;
-			}
-			
-			myDesklet->icons = s_pIconList;
-			//myData.pDeskletIconList = s_pIconList;
-			s_pIconList = NULL;
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-			
-			gtk_widget_queue_draw (myDesklet->pWidget);
-		}
-		
-		s_pIconList = NULL;
-		return FALSE;
-	}
-	return TRUE;
-}
-void cd_shortcuts_launch_measure (void)
-{
-	cd_message ("");
-	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1))  // il etait egal a 0, on lui met 1 et on lance le thread.
-	{
-		cd_message (" ==> lancement du thread de calcul");
-		s_pIconList = NULL;
-		
-		if (s_iSidTimerRedraw == 0)
-			s_iSidTimerRedraw = g_timeout_add (200, (GSourceFunc) _cd_shortcuts_check_for_redraw, (gpointer) NULL);
-		
-		GError *erreur = NULL;
-		GThread* pThread = g_thread_create ((GThreadFunc) cd_shortcuts_threaded_calculation,
-			NULL,
-			FALSE,
-			&erreur);
-		if (erreur != NULL)
-		{
-			cd_warning ("Attention : %s", erreur->message);
-			g_error_free (erreur);
-		}
-	}
-}*/

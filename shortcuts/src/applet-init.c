@@ -58,7 +58,10 @@ CD_APPLET_RELOAD_BEGIN
 			myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);
 		
 		//cd_shortcuts_launch_measure ();  // asynchrone
-		cairo_dock_stop_measure_timer (myData.pMeasureTimer);
+		myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
+			NULL,
+			cd_shortcuts_get_shortcuts_data,
+			cd_shortcuts_build_shortcuts_from_data);
 		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 	else if (myDesklet)
