@@ -63,13 +63,8 @@ static void _cd_cpusage_update_top_list (void)
 		&iTextWidth, &iTextHeight, &fTextXOffset, &fTextYOffset);
 	g_string_free (sTopInfo, TRUE);
 	
-	GdkRectangle area;
-	area.x = 0;
-	area.y = myData.pTopDialog->iMessageHeight;
-	area.width = MAX (iTextWidth, myData.pTopDialog->iInteractiveWidth);
-	area.height = MAX (iTextHeight, myData.pTopDialog->iInteractiveHeight);
-	
-	gtk_widget_set_size_request (myData.pTopDialog->pInteractiveWidget, iTextWidth, iTextHeight);
+	if (iTextWidth > myData.pTopDialog->iInteractiveWidth || iTextHeight > myData.pTopDialog->iInteractiveHeight)
+		gtk_widget_set_size_request (myData.pTopDialog->pInteractiveWidget, iTextWidth, iTextHeight);
 	
 	//g_print (" -> (%d;%d) (%dx%d)\n", area.x, area.y, area.width, area.height);
 #ifdef HAVE_GLITZ
@@ -77,7 +72,7 @@ static void _cd_cpusage_update_top_list (void)
 		gtk_widget_queue_draw (myData.pTopDialog->pWidget);
 	else
 #endif
-		gdk_window_invalidate_rect (myData.pTopDialog->pWidget->window, &area, FALSE);
+		gtk_widget_queue_draw (myData.pTopDialog->pInteractiveWidget);
 }
 
 static gboolean _cd_cpusage_draw_top_list_on_dialog (GtkWidget *pWidget,
@@ -87,7 +82,7 @@ static gboolean _cd_cpusage_draw_top_list_on_dialog (GtkWidget *pWidget,
 	cairo_t *pCairoContext = gdk_cairo_create (pWidget->window);
 	g_return_val_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS, FALSE);
 	
-	cairo_set_source_surface (pCairoContext, myData.pTopSurface, 0, myData.pTopDialog->iMessageHeight);
+	cairo_set_source_surface (pCairoContext, myData.pTopSurface, pExpose->area.x, pExpose->area.y);
 	cairo_paint (pCairoContext);
 	
 	cairo_destroy (pCairoContext);
@@ -106,11 +101,9 @@ CD_APPLET_ON_CLICK_BEGIN
 			myData.pTopClock = NULL;
 			cairo_surface_destroy (myData.pTopSurface);
 			myData.pTopSurface = NULL;
+			cd_cpusage_clean_all_processes ();
 			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 		}
-		/*GTimeVal time_val;
-		g_get_current_time (&time_val);  // on pourrait aussi utiliser un compteur statique a la fonction ...
-		cd_cpusage_get_process_times (time_val.tv_sec + time_val.tv_usec * 1e-6, 0.);*/
 		
 		gchar *cTitle = g_strdup_printf ("  [ Top %d ] :", myConfig.iNbDisplayedProcesses);
 		gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "icon.png");
@@ -130,7 +123,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		g_free (cTitle);
 		g_free (cIconPath);
 		g_return_val_if_fail (myData.pTopDialog != NULL, CAIRO_DOCK_INTERCEPT_NOTIFICATION);
-		g_signal_connect_after (G_OBJECT (myData.pTopDialog->pWidget),
+		g_signal_connect_after (G_OBJECT (pInteractiveWidget),
 			"expose-event",
 			G_CALLBACK (_cd_cpusage_draw_top_list_on_dialog),
 			myData.pTopDialog);

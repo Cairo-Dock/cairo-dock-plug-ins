@@ -28,7 +28,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 CD_APPLET_RESET_CONFIG_END
 
 
-CD_APPLET_RESET_DATA_BEGIN	
+CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	g_timer_destroy (myData.pClock);
 	

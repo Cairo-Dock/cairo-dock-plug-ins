@@ -73,8 +73,8 @@ sep =
 
 #i[1;20] Number of programs to display in the top list :
 #{When you left-click on the icon, you will get the list of the N most CPU-using programs.}
-top = 5
+top = 3
 
-#i[1;30] Delay between refresh :
+#i[1;30] Delay between refresh of the top list :
 #{in seconds.}
 top delay = 2

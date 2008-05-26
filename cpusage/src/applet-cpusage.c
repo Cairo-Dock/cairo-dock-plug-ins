@@ -235,6 +235,8 @@ void cd_cpusage_update_from_data (void)
 
 void cd_cpusage_free_process (CDProcess *pProcess)
 {
+	if (pProcess == NULL)
+		return ;
 	g_free (pProcess->cName);
 	g_free (pProcess);
 }
@@ -245,7 +247,7 @@ void cd_cpusage_get_process_times (double fTime, double fTimeElapsed)
 	static gchar cFilePathBuffer[20+1];  // /proc/12345/stat
 	static gchar cContent[512+1];
 	
-	g_print ("%s (%.2f)\n", __func__, fTimeElapsed);
+	cd_debug ("%s (%.2f)", __func__, fTimeElapsed);
 	GError *erreur = NULL;
 	GDir *dir = g_dir_open (CD_CPUSAGE_PROC_FS, 0, &erreur);
 	if (erreur != NULL)
@@ -308,9 +310,9 @@ void cd_cpusage_get_process_times (double fTime, double fTimeElapsed)
 				str ++;
 			pProcess->cName = g_strndup (tmp, str - tmp);
 		}
-		jump_to_next_value (tmp);  // on saute le pid.
 		jump_to_next_value (tmp);  // on saute le nom.
 		
+		jump_to_next_value (tmp);  // on saute l'etat.
 		jump_to_next_value (tmp);
 		jump_to_next_value (tmp);
 		jump_to_next_value (tmp);
@@ -359,7 +361,7 @@ void cd_cpusage_get_process_times (double fTime, double fTimeElapsed)
 }
 
 
-static gboolean _cd_sort_processes (int *iPid, CDProcess *pProcess, double *fTime)
+static gboolean _cd_clean_one_old_processes (int *iPid, CDProcess *pProcess, double *fTime)
 {
 	if (pProcess->fLastCheckTime < *fTime)
 		return TRUE;
@@ -367,7 +369,7 @@ static gboolean _cd_sort_processes (int *iPid, CDProcess *pProcess, double *fTim
 }
 void cd_cpusage_clean_old_processes (double fTime)
 {
-	g_hash_table_foreach_remove (myData.pProcessTable, (GHRFunc) _cd_sort_processes, &fTime);
+	g_hash_table_foreach_remove (myData.pProcessTable, (GHRFunc) _cd_clean_one_old_processes, &fTime);
 }
 
 
