@@ -78,7 +78,10 @@ void xfce_mailwatch_get_new_message_breakdown
                                         gchar ***mailbox_names,
                                         guint **new_message_counts);
 
-void cd_mailwatch_get_mailboxes_infos( XfceMailwatch *mailwatch, GList **list_names, GList **mailboxes_data  );
+void cd_mailwatch_get_mailboxes_infos( XfceMailwatch *mailwatch,
+                                       GList **list_names,
+                                       GList **mailboxes_data,
+                                       GList **mailboxes_cmd  );
 
 void cd_mailwatch_remove_account (XfceMailwatch *mailwatch, XfceMailwatchMailbox *mailbox);
 

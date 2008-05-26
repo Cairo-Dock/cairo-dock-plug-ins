@@ -53,6 +53,7 @@ typedef struct
 {
     XfceMailwatchMailbox *mailbox;
     gchar *mailbox_name;
+    gchar *associated_cmd;
     guint num_new_messages;
 } XfceMailwatchMailboxData;
 
@@ -252,6 +253,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
         mdata = g_new0(XfceMailwatchMailboxData, 1);
         mdata->mailbox = mailbox;
         mdata->mailbox_name = g_strdup(mailbox_name);
+        mdata->associated_cmd = CD_CONFIG_GET_STRING(mailbox_name, "command");
         mailwatch->mailboxes = g_list_append(mailwatch->mailboxes, mdata);
 
         cfg_entries = g_key_file_get_keys(pKeyFile, mailbox_name, &nb_cfg_entries, NULL);
@@ -368,7 +370,7 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
     return TRUE;
 }
 
-void cd_mailwatch_get_mailboxes_infos( XfceMailwatch *mailwatch, GList **list_names, GList **mailboxes_data  )
+void cd_mailwatch_get_mailboxes_infos( XfceMailwatch *mailwatch, GList **list_names, GList **mailboxes_data, GList **mailboxes_cmd  )
 {
     GList *l;
 
@@ -386,6 +388,10 @@ void cd_mailwatch_get_mailboxes_infos( XfceMailwatch *mailwatch, GList **list_na
         {
             *list_names = g_list_append( *list_names, mdata->mailbox_name );
             *mailboxes_data = g_list_append( *mailboxes_data, mdata->mailbox );
+            if( mailboxes_cmd )
+            {
+                *mailboxes_cmd = g_list_append( *list_names, mdata->associated_cmd );
+            }
         }
     }
 
