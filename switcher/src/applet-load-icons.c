@@ -43,9 +43,9 @@ cd_message ("  myData.switcher.iNbViewportX : %d",myData.switcher.iNbViewportX);
 	pIcon = g_new0 (Icon, 1);
 	if (myData.switcher.ScreenCurrentNums == i)
 		{
-	pIcon->acName = g_strdup_printf ("Courant %d",i);
-	pIcon->acFileName = g_strdup_printf ("%s/workspaces.svg", MY_APPLET_SHARE_DATA_DIR);
-	pIcon->cQuickInfo = g_strdup_printf ("%d",i);
+	pIcon->acName = g_strdup_printf ("Courant %d",i+1);
+	pIcon->acFileName = g_strdup_printf ("%s/.cairo-dock/current_theme/plug-ins/switcher/default.png", g_getenv ("HOME"));
+	pIcon->cQuickInfo = g_strdup_printf ("%d",i+1);
 	pIcon->fScale = 1.;
 	pIcon->fAlpha = 1.;
 	pIcon->fWidthFactor = 1.;
@@ -55,11 +55,11 @@ cd_message ("  myData.switcher.iNbViewportX : %d",myData.switcher.iNbViewportX);
 }
 else
 		{
-	pIcon->acName = g_strdup_printf ("Bureau %d",i);
-	pIcon->acFileName = g_strdup_printf ("%s/workspaces.svg", MY_APPLET_SHARE_DATA_DIR);
-	pIcon->cQuickInfo = g_strdup_printf ("%d",i);
+	pIcon->acName = g_strdup_printf ("Bureau %d",i+1);
+	pIcon->acFileName = g_strdup_printf ("%s/.cairo-dock/current_theme/plug-ins/switcher/default.png", g_getenv ("HOME"));
+	pIcon->cQuickInfo = g_strdup_printf ("%d",i+1);
 	pIcon->fScale = 1.;
-	pIcon->fAlpha = 0.3;
+	pIcon->fAlpha = 1.;
 	pIcon->fWidthFactor = 1.;
 	pIcon->fHeightFactor = 1.;
 	pIcon->acCommand = g_strdup ("none");
@@ -218,7 +218,7 @@ CD_APPLET_REDRAW_MY_ICON
 
 void cd_switcher_launch_measure (void)
 {
-
+//cd_switcher_grab_and_draw_icon();
 _cd_switcher_check_for_redraw (NULL);
 	
 }

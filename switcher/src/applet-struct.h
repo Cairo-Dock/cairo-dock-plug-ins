@@ -60,12 +60,15 @@ typedef struct
 	int iNbViewportY;
 	int iDesktopViewportX;
 	int iDesktopViewportY;
-	double MaxWidthIcon;
-	double MaxHeightIcon;
-	double MaxNbLigne;
+	int MaxWidthIcon;
+	int MaxHeightIcon;
+	int MaxNbLigne;
 	int NumDeskbyLigne;
 	int	i;
 	double MyLineSize;
+	GdkPixbuf    *icon;
+	GdkPixbuf *scale;
+GdkPixbuf *iconedock;
 }SwitcherApplet;
 
 
@@ -83,6 +86,7 @@ typedef struct {
 	int *g_iNbDesktops;
 	int iDesktopNumber;
 	cairo_surface_t *pSurface;
+	cairo_surface_t *pSurfaceNew;
 	cairo_surface_t *pBrokenSurface;
 	} AppletData;
 

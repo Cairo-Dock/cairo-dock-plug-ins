@@ -7,6 +7,7 @@
 #include "applet-struct.h"
 #include "applet-init.h"
 #include "applet-load-icons.h"
+#include "applet-read-data.h"
 #include "applet-draw.h"
 
 
@@ -17,8 +18,14 @@ AppletData myData;
 
 CD_APPLET_DEFINITION ("switcher", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 
+
 static void _load_surfaces (void)
 {
+
+cd_switcher_grab_and_draw_icon(myData.switcher.icon);
+//myData.LoadAfterCompiz = g_timeout_add (2000, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
+g_source_remove (myData.LoadAfterCompiz);
+	myData.LoadAfterCompiz = 0;
 	GString *sImagePath = g_string_new ("");
 	
 	if (myData.pSurface != NULL)
@@ -32,8 +39,10 @@ cd_message ("ok default");
 	}
 	else
 	{
+	//g_string_printf (sImagePath, "%s/.cairo-dock/current_theme/plug-ins/switcher/default.png", g_getenv ("HOME"));
 		g_string_printf (sImagePath, "%s/default.svg", MY_APPLET_SHARE_DATA_DIR);
 		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+
 cd_message ("ok default 2");
 	}
 	
@@ -88,33 +97,6 @@ _load_surfaces();
 
 //myData.LoadAfterCompiz = g_timeout_add (2000, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
 
-//GdkWindow * root;
-//	GdkPixbuf* img;
-
-//GdkScreen	*screen = gdk_screen_get_default();
-//root = gdk_screen_get_root_window( screen );
-//gint x = gdk_screen_get_width  (screen);
-//gint y = gdk_screen_get_height  (screen);
-
-//printf ("X%d \n",x);
-//printf ("Y%d \n",y);
-      //gdk_drawable_get_size (GDK_DRAWABLE (window), 1024, 768);
-      //gdk_window_get_origin (window, &x, &y);
-
-  //GdkPixbuf    *screenshot = gdk_pixbuf_get_from_drawable (NULL, root,
-     //                                    NULL,
-    //                                     0,0, 0, 0,
-     //                                    x, y);
-//img = create_image (screenshot);
-//GdkPixbuf    *screenshot2 = gdk_pixbuf_scale_simple      (screenshot,
-  //                                                       640,
-   //                                                      480,
-   //                                                     GDK_INTERP_BILINEAR);
-//gdk_pixbuf_save(screenshot2, "/tmp/essai.png", "png",  NULL);
-                //      "compression", "9",
-                     // NULL);
-// create a new pixbuf from the root window
-//gtk_widget_show_all (widget);
 	cd_switcher_launch_measure();
 CD_APPLET_INIT_END
 

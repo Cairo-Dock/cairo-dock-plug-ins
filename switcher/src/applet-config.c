@@ -12,7 +12,7 @@ extern AppletData myData;
 
 CD_APPLET_GET_CONFIG_BEGIN
 	//reset_config ();
-cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
+
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 //cd_message ("Viewport X : %d", myData.switcher.iNbViewportX);
 //myConfig.iNbDesks = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nombre de bureau", myData.switcher.iNbViewportX);
