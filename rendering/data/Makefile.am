@@ -11,8 +11,8 @@ datalogout_DATA = \
 	readme-3D-plane-view\
 	readme-rainbow-view\
 	readme-diapo-view\
-	readme-diapo-simple-view\	
-	readme-curve-view\	
+	readme-diapo-simple-view\
+	readme-curve-view\
 	preview-caroussel.png\
 	preview-parabolic.png\
 	preview-3D-plane.png\
@@ -21,5 +21,9 @@ datalogout_DATA = \
 	preview-diapo-simple.png\
 	preview-curve.png\
 	branche1.svg\
-	branche2.svg
+	branche2.svg\
+	scotch.svg\
+	scotch+frame.svg\
+	frame.svg\
+	reflect.svg
 

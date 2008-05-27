@@ -107,7 +107,7 @@ void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 		fCentralSphereWidth = MAX (1, MIN (pDesklet->iWidth, pDesklet->iHeight) * CAROUSSEL_RATIO_ICON_DESKLET);
 		fCentralSphereHeight = fCentralSphereWidth;
 		
-		pCaroussel->iEllipseHeight = MIN (fCentralSphereHeight, pDesklet->iHeight - 2 * (g_iLabelSize + g_fReflectSize) - 1);
+		pCaroussel->iEllipseHeight = MIN (fCentralSphereHeight, pDesklet->iHeight - 2 * (g_iconTextDescription.iSize + g_fReflectSize) - 1);
 		pCaroussel->fInclinationOnHorizon = atan2 (pDesklet->iHeight, pDesklet->iWidth/4);
 		pCaroussel->iFrameHeight = pCaroussel->iEllipseHeight + 0*2 * g_iFrameMargin + g_fReflectSize;
 		pCaroussel->fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pCaroussel->iFrameHeight, pCaroussel->fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
@@ -182,7 +182,7 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 		}
 		
 		pIcon->fDrawX = (pDesklet->iWidth - pIcon->fWidth) / 2;
-		pIcon->fDrawY = (pDesklet->iHeight - pIcon->fHeight) / 2 + (pCaroussel->b3D ? g_iLabelSize : 0);
+		pIcon->fDrawY = (pDesklet->iHeight - pIcon->fHeight) / 2 + (pCaroussel->b3D ? g_iconTextDescription.iSize : 0);
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
@@ -200,8 +200,8 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 		}
 		else
 		{
-			pIcon->fWidth = MAX (1, .2 * pDesklet->iWidth - g_iLabelSize);
-			pIcon->fHeight = MAX (1, .2 * pDesklet->iHeight - g_iLabelSize);
+			pIcon->fWidth = MAX (1, .2 * pDesklet->iWidth - g_iconTextDescription.iSize);
+			pIcon->fHeight = MAX (1, .2 * pDesklet->iHeight - g_iconTextDescription.iSize);
 		}
 		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 	}
@@ -244,7 +244,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 				pIcon->fAlpha = 1.;
 			}
 			pIcon->fDrawX = pDesklet->iWidth / 2 + a * cos (fTheta) - pIcon->fWidth/2 * 1;
-			pIcon->fDrawY = pDesklet->iHeight / 2 + b * sin (fTheta) - pIcon->fHeight * pIcon->fScale + g_iLabelSize;
+			pIcon->fDrawY = pDesklet->iHeight / 2 + b * sin (fTheta) - pIcon->fHeight * pIcon->fScale + g_iconTextDescription.iSize;
 			
 			fTheta += fDeltaTheta;
 			if (fTheta >= G_PI/2 + 2*G_PI)
@@ -259,7 +259,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 		int sens=1;
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 		fDockOffsetX = fExtraWidth / 2;
-		fDockOffsetY = (pDesklet->iHeight - iEllipseHeight) / 2 + g_iLabelSize;
+		fDockOffsetY = (pDesklet->iHeight - iEllipseHeight) / 2 + g_iconTextDescription.iSize;
 		
 		cairo_save (pCairoContext);
 		cairo_dock_draw_frame (pCairoContext, g_iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDesklet->bIsHorizontal);
@@ -293,7 +293,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 			{
 				cairo_save (pCairoContext);
 				
-				if (pIcon->fDrawY + pIcon->fHeight < pDesklet->iHeight / 2 + g_iLabelSize && pIcon->fDrawX + pIcon->fWidth/2 > pDesklet->iWidth / 2)  // arriere-plan droite.
+				if (pIcon->fDrawY + pIcon->fHeight < pDesklet->iHeight / 2 + g_iconTextDescription.iSize && pIcon->fDrawX + pIcon->fWidth/2 > pDesklet->iWidth / 2)  // arriere-plan droite.
 					cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->iWidth);
 				
 				cairo_restore (pCairoContext);
@@ -306,7 +306,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 			{
 				cairo_save (pCairoContext);
 				
-				if (pIcon->fDrawY + pIcon->fHeight < pDesklet->iHeight / 2 + g_iLabelSize && pIcon->fDrawX + pIcon->fWidth/2 <= pDesklet->iWidth / 2)  // arriere-plan gauche.
+				if (pIcon->fDrawY + pIcon->fHeight < pDesklet->iHeight / 2 + g_iconTextDescription.iSize && pIcon->fDrawX + pIcon->fWidth/2 <= pDesklet->iWidth / 2)  // arriere-plan gauche.
 					cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->iWidth);
 				
 				cairo_restore (pCairoContext);
@@ -314,7 +314,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 		}
 		
 		cairo_save (pCairoContext);
-		pDesklet->pIcon->fDrawY = pDesklet->iHeight/2 - pDesklet->pIcon->fHeight + g_iLabelSize;
+		pDesklet->pIcon->fDrawY = pDesklet->iHeight/2 - pDesklet->pIcon->fHeight + g_iconTextDescription.iSize;
 		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, pCairoContext, TRUE, FALSE, pDesklet->iWidth);
 		cairo_restore (pCairoContext);
 		
@@ -325,7 +325,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 			{
 				cairo_save (pCairoContext);
 				
-				if (pIcon->fDrawY + pIcon->fHeight >= pDesklet->iHeight / 2 + g_iLabelSize && pIcon->fDrawX + pIcon->fWidth/2 > pDesklet->iWidth / 2)  // avant-plan droite.
+				if (pIcon->fDrawY + pIcon->fHeight >= pDesklet->iHeight / 2 + g_iconTextDescription.iSize && pIcon->fDrawX + pIcon->fWidth/2 > pDesklet->iWidth / 2)  // avant-plan droite.
 					cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->iWidth);
 				
 				cairo_restore (pCairoContext);
@@ -339,7 +339,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 			{
 				cairo_save (pCairoContext);
 				
-				if (pIcon->fDrawY + pIcon->fHeight >= pDesklet->iHeight / 2 + g_iLabelSize && pIcon->fDrawX + pIcon->fWidth/2 <= pDesklet->iWidth / 2)  // avant-plan gauche.
+				if (pIcon->fDrawY + pIcon->fHeight >= pDesklet->iHeight / 2 + g_iconTextDescription.iSize && pIcon->fDrawX + pIcon->fWidth/2 <= pDesklet->iWidth / 2)  // avant-plan gauche.
 					cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->iWidth);
 				
 				cairo_restore (pCairoContext);
@@ -361,7 +361,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 				cairo_save (pCairoContext);
 				
 				pIcon->fDrawX = pDesklet->pIcon->fDrawX + pDesklet->pIcon->fWidth / 2 + (bFlip ? b : a) * cos (fTheta) - pIcon->fWidth/2;
-				pIcon->fDrawY = pDesklet->pIcon->fDrawY + pDesklet->pIcon->fHeight / 2 + (bFlip ? a : b) * sin (fTheta) - pIcon->fHeight/2 + g_iLabelSize;
+				pIcon->fDrawY = pDesklet->pIcon->fDrawY + pDesklet->pIcon->fHeight / 2 + (bFlip ? a : b) * sin (fTheta) - pIcon->fHeight/2 + g_iconTextDescription.iSize;
 				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, pDesklet->iWidth);
 				
 				cairo_restore (pCairoContext);

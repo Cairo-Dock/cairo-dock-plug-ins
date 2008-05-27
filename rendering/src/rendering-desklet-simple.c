@@ -26,22 +26,32 @@ CDSimpleParameters *rendering_configure_simple (CairoDesklet *pDesklet, cairo_t 
 		CairoDockLoadImageModifier iLoadingModifier = GPOINTER_TO_INT (pConfig[2]);
 		pSimple->fBackGroundAlpha = * ((double *) pConfig[3]);
 		pSimple->fForeGroundAlpha = * ((double *) pConfig[4]);
-		pSimple->iSurfaceOffset = GPOINTER_TO_INT (pConfig[5]);
+		pSimple->iLeftSurfaceOffset = GPOINTER_TO_INT (pConfig[5]);
+		pSimple->iTopSurfaceOffset = GPOINTER_TO_INT (pConfig[6]);
+		pSimple->iRightSurfaceOffset = GPOINTER_TO_INT (pConfig[7]);
+		pSimple->iBottomSurfaceOffset = GPOINTER_TO_INT (pConfig[8]);
 		
-		if (cForeGroundPath != NULL && pSimple->fBackGroundAlpha > 0)
-			pSimple->pForeGroundSurface = cairo_dock_create_surface_from_image (cForeGroundPath,
-				pSourceContext,
-				cairo_dock_get_max_scale (pDesklet),
-				pDesklet->iWidth, pDesklet->iHeight,
-				&pSimple->fImageWidth, &pSimple->fImageHeight,
-				iLoadingModifier);
-		if (cBackGroundPath != NULL && pSimple->fForeGroundAlpha > 0)
+		double fZoomX, fZoomY;
+		if (cBackGroundPath != NULL && pSimple->fBackGroundAlpha > 0)
 			pSimple->pBackGroundSurface = cairo_dock_create_surface_from_image (cBackGroundPath,
 				pSourceContext,
 				cairo_dock_get_max_scale (pDesklet),
 				pDesklet->iWidth, pDesklet->iHeight,
+				iLoadingModifier,
 				&pSimple->fImageWidth, &pSimple->fImageHeight,
-				iLoadingModifier);
+				&fZoomX, &fZoomY);
+		if (cForeGroundPath != NULL && pSimple->fForeGroundAlpha > 0)
+			pSimple->pForeGroundSurface = cairo_dock_create_surface_from_image (cForeGroundPath,
+				pSourceContext,
+				cairo_dock_get_max_scale (pDesklet),
+				pDesklet->iWidth, pDesklet->iHeight,
+				iLoadingModifier,
+				&pSimple->fImageWidth, &pSimple->fImageHeight,
+				&fZoomX, &fZoomY);
+		pSimple->iLeftSurfaceOffset = GPOINTER_TO_INT (pConfig[5]) * fZoomX;
+		pSimple->iTopSurfaceOffset = GPOINTER_TO_INT (pConfig[6]) * fZoomY;
+		pSimple->iRightSurfaceOffset = GPOINTER_TO_INT (pConfig[7]) * fZoomX;
+		pSimple->iBottomSurfaceOffset = GPOINTER_TO_INT (pConfig[8]) * fZoomY;
 	}
 	
 	return pSimple;
@@ -70,11 +80,20 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceCo
 	
 	Icon *pIcon = pDesklet->pIcon;
 	g_return_if_fail (pIcon != NULL);
-	int iRadius = MAX ((pSimple != NULL ? 2*pSimple->iSurfaceOffset : 0), g_iDockRadius);
-	pIcon->fWidth = MAX (1, pDesklet->iWidth - iRadius);
-	pIcon->fHeight = MAX (1, pDesklet->iHeight - iRadius);
-	pIcon->fDrawX = iRadius/2;
-	pIcon->fDrawY = iRadius/2;
+	if (pSimple != NULL)
+	{
+		pIcon->fWidth = pDesklet->iWidth - pSimple->iLeftSurfaceOffset - pSimple->iRightSurfaceOffset;
+		pIcon->fHeight = pDesklet->iHeight - pSimple->iTopSurfaceOffset - pSimple->iBottomSurfaceOffset;
+		pIcon->fDrawX = pSimple->iLeftSurfaceOffset;
+		pIcon->fDrawY = pSimple->iTopSurfaceOffset;
+	}
+	else
+	{
+		pIcon->fWidth = MAX (1, pDesklet->iWidth - g_iDockRadius);  // 2 * g_iDockRadius/2
+		pIcon->fHeight = MAX (1, pDesklet->iHeight - g_iDockRadius);
+		pIcon->fDrawX = .5 * g_iDockRadius;
+		pIcon->fDrawY = .5 * g_iDockRadius;
+	}
 	pIcon->fScale = 1;
 	cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 }
@@ -150,4 +169,52 @@ void rendering_register_simple_desklet_renderer (void)
 	pRenderer->load_icons = rendering_load_icons_for_simple;
 	
 	cairo_dock_register_desklet_renderer (MY_APPLET_SIMPLE_DESKLET_RENDERER_NAME, pRenderer);
+	
+	gpointer *pConfig = g_new0 (gpointer, 9);
+	pConfig[0] = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "frame.svg");
+	pConfig[1] = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "reflect.svg");
+	pConfig[2] = CAIRO_DOCK_FILL_SPACE;
+	double *fBackGroundAlpha = g_new (double, 1);
+	*fBackGroundAlpha = 1.;
+	pConfig[3] = fBackGroundAlpha;
+	double *fForeGroundAlpha = g_new (double, 1);
+	*fForeGroundAlpha = 1.;
+	pConfig[4] =  fForeGroundAlpha;
+	pConfig[5] =  GINT_TO_POINTER (5);  // /200
+	pConfig[6] =  GINT_TO_POINTER (5);  // /200
+	pConfig[7] =  GINT_TO_POINTER (5);
+	pConfig[8] =  GINT_TO_POINTER (5);
+	cairo_dock_predefine_desklet_renderer_config (pRenderer, "frame&reflects", pConfig);
+	
+	pConfig = g_new0 (gpointer, 9);
+	pConfig[0] = NULL;
+	pConfig[1] = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "scotch.svg");
+	pConfig[2] = CAIRO_DOCK_FILL_SPACE;
+	fBackGroundAlpha = g_new (double, 1);
+	*fBackGroundAlpha = 0.;
+	pConfig[3] = fBackGroundAlpha;
+	fForeGroundAlpha = g_new (double, 1);
+	*fForeGroundAlpha = 1.;
+	pConfig[4] =  fForeGroundAlpha;
+	pConfig[5] =  GINT_TO_POINTER (40);  // /550
+	pConfig[6] =  GINT_TO_POINTER (60);  // /500
+	pConfig[7] =  GINT_TO_POINTER (40);
+	pConfig[8] =  GINT_TO_POINTER (0);
+	cairo_dock_predefine_desklet_renderer_config (pRenderer, "scotch", pConfig);
+	
+	pConfig = g_new0 (gpointer, 9);
+	pConfig[0] = NULL;
+	pConfig[1] = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "scotch+frame.svg");
+	pConfig[2] = CAIRO_DOCK_FILL_SPACE;
+	fBackGroundAlpha = g_new (double, 1);
+	*fBackGroundAlpha = 0.;
+	pConfig[3] = fBackGroundAlpha;
+	fForeGroundAlpha = g_new (double, 1);
+	*fForeGroundAlpha = 1.;
+	pConfig[4] =  fForeGroundAlpha;
+	pConfig[5] =  GINT_TO_POINTER (92);  // /550
+	pConfig[6] =  GINT_TO_POINTER (76);  // /500
+	pConfig[7] =  GINT_TO_POINTER (92);
+	pConfig[8] =  GINT_TO_POINTER (50);
+	cairo_dock_predefine_desklet_renderer_config (pRenderer, "frame with scotch", pConfig);
 }

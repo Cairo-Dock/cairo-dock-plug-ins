@@ -10,7 +10,10 @@
 typedef struct {
 	gdouble fBackGroundAlpha;
 	gdouble fForeGroundAlpha;
-	gint iSurfaceOffset;
+	gint iLeftSurfaceOffset;
+	gint iTopSurfaceOffset;
+	gint iRightSurfaceOffset;
+	gint iBottomSurfaceOffset;
 	cairo_surface_t *pBackGroundSurface;
 	cairo_surface_t *pForeGroundSurface;
 	gdouble fImageWidth;
