@@ -61,6 +61,14 @@ theme = turbo-night-fuel
 #r[No;On icon;On label] Display CPU usage values :
 info display = 1
 
+#c+3[0;1] Start color of the top list :
+#{It's the first color of the gradation used to write the top list.}
+top color start = 1;0;0
+
+#c+3[0;1] Stop color of the top list :
+#{It's the second color of the gradation used to write the top list.}
+top color stop = 1;1;0
+
 #F[Configuration;gtk-preferences]
 frame_conf=
 

@@ -4,6 +4,10 @@
 #include <glib/gi18n.h>
 #include <glib/gprintf.h>
 
+#include <fcntl.h>
+#include <unistd.h>
+#include <unistd.h>
+
 #include "applet-struct.h"
 #include "applet-notifications.h"
 #include "applet-rame.h"
@@ -12,7 +16,7 @@
 CD_APPLET_INCLUDE_MY_VARS
 
 #define RAME_DATA_PIPE "/proc/meminfo"
-
+#define CD_RAME_PROC_FS "/proc"
 
 #define goto_next_line \
 	str = strchr (str, '\n'); \
@@ -34,11 +38,6 @@ CD_APPLET_INCLUDE_MY_VARS
 	iValue = atoi (str);
 void cd_rame_read_data (void)
 {
-	g_timer_stop (myData.pClock);
-	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
-	g_timer_start (myData.pClock);
-	g_return_if_fail (fTimeElapsed > 0.1);
-	
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
@@ -160,4 +159,154 @@ void cd_rame_update_from_data (void)
 			}
 		}
 	}
+}
+
+
+
+#define jump_to_next_value(tmp) \
+	while (*tmp != ' ' && *tmp != '\0') \
+		tmp ++; \
+	if (*tmp == '\0') { \
+		cd_warning ("problem when reading pipe"); \
+		break ; \
+	} \
+	while (*tmp == ' ') \
+		tmp ++; \
+
+void cd_rame_free_process (CDProcess *pProcess)
+{
+	if (pProcess == NULL)
+		return ;
+	g_free (pProcess->cName);
+	g_free (pProcess);
+}
+
+
+void cd_rame_get_process_memory (void)
+{
+	static gchar cFilePathBuffer[20+1];  // /proc/12345/stat
+	static gchar cContent[512+1];
+	
+	cd_debug ("");
+	GError *erreur = NULL;
+	GDir *dir = g_dir_open (CD_RAME_PROC_FS, 0, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
+		return ;
+	}
+	
+	if (myData.pTopList == NULL)
+	{
+		myData.pTopList = g_new0 (CDProcess *, myConfig.iNbDisplayedProcesses);
+		myData.iNbDisplayedProcesses = myConfig.iNbDisplayedProcesses;
+	}
+	if (myData.pPreviousTopList == NULL)
+		myData.pPreviousTopList = g_new0 (CDProcess *, myConfig.iNbDisplayedProcesses);
+	if (myData.iMemPageSize == 0)
+		myData.iMemPageSize = sysconf(_SC_PAGESIZE);
+	
+	int i;
+	for (i = 0; i < myConfig.iNbDisplayedProcesses; i ++)
+		cd_rame_free_process (myData.pPreviousTopList[i]);
+	memcpy (myData.pPreviousTopList, myData.pTopList, myConfig.iNbDisplayedProcesses * sizeof (CDProcess *));
+	memset (myData.pTopList, 0, myConfig.iNbDisplayedProcesses * sizeof (CDProcess *));
+	
+	const gchar *cPid;
+	gchar *tmp, *cName;
+	CDProcess *pProcess;
+	int iVmSize, iVmRSS, iTotalMemory;  // Quantité de mémoire totale utilisée / (Virtual Memory Resident Stack Size) Taille de la pile en mémoire.
+	int j;
+	while ((cPid = g_dir_read_name (dir)) != NULL)
+	{
+		if (! g_ascii_isdigit (*cPid))
+			continue;
+		
+		snprintf (cFilePathBuffer, 20, "/proc/%s/stat", cPid);
+		int pipe = open (cFilePathBuffer, O_RDONLY);
+		int iPid = atoi (cPid);
+		if (pipe <= 0)  // pas de pot le process s'est termine depuis qu'on a ouvert le repertoire.
+		{
+			continue ;
+		}
+		
+		if (read (pipe, cContent, sizeof (cContent)) <= 0)
+		{
+			cd_warning ("can't read %s", cFilePathBuffer);
+			close (pipe);
+			continue;
+		}
+		close (pipe);
+		
+		pProcess = g_new0 (CDProcess, 1);
+		pProcess->iPid = iPid;
+		
+		tmp = cContent;
+		jump_to_next_value (tmp);  // on saute le pid.
+			
+		cName = tmp + 1;  // on saute la '('.
+		gchar *str = cName;
+		while (*str != ')' && *str != '\0')
+			str ++;
+		
+		jump_to_next_value (tmp);  // on saute le nom.
+		jump_to_next_value (tmp);  // on saute l'etat.
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);  // on saute le temps user.
+		jump_to_next_value (tmp);  // on saute le temps system.
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);  // on saute le nice.
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		jump_to_next_value (tmp);
+		iVmSize = atoi (tmp);
+		jump_to_next_value (tmp);
+		iVmRSS = atoi (tmp);
+		
+		iTotalMemory = iVmRSS * myData.iMemPageSize;
+		if (iTotalMemory > 0)
+		{
+			i = myConfig.iNbDisplayedProcesses - 1;
+			while (i >= 0 && (myData.pTopList[i] == NULL || iTotalMemory > myData.pTopList[i]->iMemAmount))
+				i --;
+			if (i != myConfig.iNbDisplayedProcesses - 1)
+			{
+				i ++;
+				for (j = myConfig.iNbDisplayedProcesses - 2; j >= i; j --)
+					myData.pTopList[j+1] = myData.pTopList[j];
+				
+				pProcess = g_new0 (CDProcess, 1);
+				pProcess->iPid = iPid;
+				pProcess->cName = g_strndup (cName, str - cName);
+				pProcess->iMemAmount = iTotalMemory;
+				myData.pTopList[i] = pProcess;
+			}
+		}
+	}
+	
+	g_dir_close (dir);
+}
+
+void cd_rame_clean_all_processes (void)
+{
+	int i;
+	for (i = 0; i < myData.iNbDisplayedProcesses; i ++)
+	{
+		cd_rame_free_process (myData.pTopList[i]);
+		cd_rame_free_process (myData.pPreviousTopList[i]);
+	}
+	memset (myData.pTopList, 0, myData.iNbDisplayedProcesses * sizeof (CDProcess *));
+	memset (myData.pPreviousTopList, 0, myData.iNbDisplayedProcesses * sizeof (CDProcess *));
 }

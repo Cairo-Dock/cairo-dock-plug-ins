@@ -11,17 +11,32 @@ typedef struct {
 	gchar *cThemePath;
 	gboolean gaugeIcon;
 	gboolean bShowSwap;
+	gint iNbDisplayedProcesses;
+	gboolean bTopInPercent;
+	CairoDockLabelDescription *pTopTextDescription;
 } AppletConfig;
 
+
 typedef struct {
-	GTimer *pClock;
+	gint iPid;
+	gchar *cName;
+	gdouble iMemAmount;
+	} CDProcess;
+
+typedef struct {
+	CairoDockMeasure *pMeasureTimer;
 	guint ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
 	guint swapTotal, swapFree, swapUsed;
 	gboolean bAcquisitionOK;
 	gboolean bInitialized;
-	CairoDockMeasure *pMeasureTimer;
-	gboolean bShowSwap;
 	Gauge *pGauge;
+	glong iMemPageSize;
+	CDProcess **pTopList;
+	CDProcess **pPreviousTopList;
+	gint iNbDisplayedProcesses;
+	cairo_surface_t *pTopSurface;
+	CairoDialog *pTopDialog;
+	CairoDockMeasure *pTopMeasureTimer;
 } AppletData;
 
 

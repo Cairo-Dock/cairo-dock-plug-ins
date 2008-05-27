@@ -67,9 +67,24 @@ info display = 1
 #b Display SWAP too ?
 show swap = false
 
+#c+3[0;1] Start color of the top list :
+#{It's the first color of the gradation used to write the top list.}
+top color start = 0;1;0
+
+#c+3[0;1] Stop color of the top list :
+#{It's the second color of the gradation used to write the top list.}
+top color stop = 0;0;1
+
 #F[Configuration;gtk-preferences]
 frame_conf=
 
 #i[1;60] Delay between refresh :
 #{in seconds.}
 delay = 10
+
+#i[1;20] Number of programs to display in the top list :
+#{When you left-click on the icon, you will get the list of the N most memory-using programs.}
+top = 5
+
+#b Show top memory usage in % ?
+top in percent = false

@@ -76,6 +76,13 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_change_measure_frequency (myData.pTopMeasureTimer, myConfig.iProcessCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
+		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
+		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&g_dialogTextDescription);
+		memcpy (myConfig.pTopTextDescription->fColorStart, pOldLabelDescription->fColorStart, 3*sizeof (double));
+		memcpy (myConfig.pTopTextDescription->fColorStop, pOldLabelDescription->fColorStop, 3*sizeof (double));
+		myConfig.pTopTextDescription->bVerticalPattern = TRUE;
+		cairo_dock_free_label_description (pOldLabelDescription);
+		
 		cd_cpusage_update_from_data ();
 	}
 CD_APPLET_RELOAD_END

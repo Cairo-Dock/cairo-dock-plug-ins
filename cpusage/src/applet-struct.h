@@ -14,6 +14,7 @@ typedef struct {
 	
 	gint iNbDisplayedProcesses;
 	gint iProcessCheckInterval;
+	CairoDockLabelDescription *pTopTextDescription;
 } AppletConfig;
 
 typedef struct {

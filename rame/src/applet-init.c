@@ -19,7 +19,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.pGauge = init_cd_Gauge (myDrawContext, myConfig.cThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 	make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 	
-	myData.pClock = g_timer_new ();
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
 		NULL,
 		cd_rame_read_data,
@@ -64,8 +63,26 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
+		
+		if (cairo_dock_measure_is_active (myData.pTopMeasureTimer))
+		{
+			cd_rame_clean_all_processes ();
+			cairo_dock_stop_measure_timer (myData.pTopMeasureTimer);
+			g_free (myData.pTopList);
+			myData.pTopList = NULL;
+			g_free (myData.pPreviousTopList);
+			myData.pPreviousTopList = NULL;
+			cairo_dock_launch_measure (myData.pTopMeasureTimer);
+		}
 	}
 	else {  // on redessine juste l'icone.
+		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
+		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&g_dialogTextDescription);
+		memcpy (myConfig.pTopTextDescription->fColorStart, pOldLabelDescription->fColorStart, 3*sizeof (double));
+		memcpy (myConfig.pTopTextDescription->fColorStop, pOldLabelDescription->fColorStop, 3*sizeof (double));
+		myConfig.pTopTextDescription->bVerticalPattern = TRUE;
+		cairo_dock_free_label_description (pOldLabelDescription);
+		
 		cd_rame_update_from_data ();
 	}
 CD_APPLET_RELOAD_END

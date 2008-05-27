@@ -19,6 +19,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iNbDisplayedProcesses = CD_CONFIG_GET_INTEGER ("Configuration", "top");
 	myConfig.iProcessCheckInterval = CD_CONFIG_GET_INTEGER ("Configuration", "top delay");
+	
+	myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&g_dialogTextDescription);
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color start", myConfig.pTopTextDescription->fColorStart);
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color stop", myConfig.pTopTextDescription->fColorStop);
+	myConfig.pTopTextDescription->bVerticalPattern = TRUE;
 CD_APPLET_GET_CONFIG_END
 
 

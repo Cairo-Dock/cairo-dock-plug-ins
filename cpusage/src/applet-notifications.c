@@ -55,10 +55,7 @@ static void _cd_cpusage_update_top_list (void)
 	cairo_surface_destroy (myData.pTopSurface);
 	myData.pTopSurface = cairo_dock_create_surface_from_text (sTopInfo->str,
 		myDrawContext,
-		g_iDialogMessageSize,
-		g_cDialogMessagePolice,
-		g_iDialogMessageWeight,
-		NULL,
+		myConfig.pTopTextDescription,
 		1.,
 		&iTextWidth, &iTextHeight, &fTextXOffset, &fTextYOffset);
 	g_string_free (sTopInfo, TRUE);
@@ -106,9 +103,11 @@ CD_APPLET_ON_CLICK_BEGIN
 		}
 		
 		gchar *cTitle = g_strdup_printf ("  [ Top %d ] :", myConfig.iNbDisplayedProcesses);
-		gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "icon.png");
+		gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
 		GtkWidget *pInteractiveWidget = gtk_vbox_new (FALSE, 0);
-		gtk_widget_set_size_request (pInteractiveWidget, g_iLabelSize * 15, g_iLabelSize * myConfig.iNbDisplayedProcesses);  // approximatif.
+		gtk_widget_set_size_request (pInteractiveWidget,
+			myConfig.pTopTextDescription->iSize * 15,
+			myConfig.pTopTextDescription->iSize * myConfig.iNbDisplayedProcesses);  // approximatif au depart.
 		myData.pTopDialog = cairo_dock_show_dialog_full (cTitle,
 			myIcon,
 			myContainer,
