@@ -27,12 +27,18 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iAnimation 		= CD_CONFIG_GET_INTEGER ("Configuration", "change animation");
 	myConfig.iClickOption 		= CD_CONFIG_GET_INTEGER ("Configuration", "click");
 	
-	myConfig.fFrameAlpha		= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "frame alpha", 1.);
-	myConfig.cFrameImage 	= CD_CONFIG_GET_FILE_PATH ("Configuration", "frame", "frame.svg");
-	myConfig.iFrameOffset		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "frame offset", 5);
-	myConfig.fReflectAlpha		= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "reflect alpha", 1.);
-	myConfig.cReflectImage 	= CD_CONFIG_GET_FILE_PATH ("Configuration", "reflect", "reflect.svg");
-	
+	myConfig.iDecoration 		= CD_CONFIG_GET_INTEGER ("Configuration", "decoration");
+	if (myConfig.iDecoration == SLIDER_PERSONNAL)
+	{
+		myConfig.fFrameAlpha		= CD_CONFIG_GET_DOUBLE ("Configuration", "frame alpha");
+		myConfig.cFrameImage 	= CD_CONFIG_GET_FILE_PATH ("Configuration", "frame", NULL);
+		myConfig.fReflectAlpha		= CD_CONFIG_GET_DOUBLE ("Configuration", "reflect alpha");
+		myConfig.cReflectImage 	= CD_CONFIG_GET_FILE_PATH ("Configuration", "reflect", NULL);
+		myConfig.iLeftOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "left offset");
+		myConfig.iTopOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "top offset");
+		myConfig.iRightOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "right offset");
+		myConfig.iBottomOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "bottom offset");
+	}
 	myConfig.bUseThread = CD_CONFIG_GET_BOOLEAN ("Configuration", "use thread");
 	CD_CONFIG_GET_COLOR ("Configuration", "background color", myConfig.pBackgroundColor);
 CD_APPLET_GET_CONFIG_END
@@ -42,7 +48,7 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free(myConfig.cDirectory);
 	g_free(myConfig.cFrameImage);
-	
+	g_free(myConfig.cReflectImage);
 CD_APPLET_RESET_CONFIG_END
 
 
@@ -54,7 +60,4 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	cairo_surface_destroy (myData.pCairoSurface);
 	cairo_surface_destroy (myData.pPrevCairoSurface);
-	//cairo_surface_destroy (myData.pCairoFrameSurface);
-	//cairo_surface_destroy (myData.pCairoReflectSurface);
-	
 CD_APPLET_RESET_DATA_END

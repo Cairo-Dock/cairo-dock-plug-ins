@@ -84,6 +84,11 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 static void _cd_slider_previous_img(void) {
 	myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
+	myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
+	if (myData.iAnimTimerID != 0) {
+		g_source_remove(myData.iAnimTimerID);
+		myData.iAnimTimerID = 0;
+	}
 	cd_slider_draw_images();
 }
 

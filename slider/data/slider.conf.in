@@ -21,6 +21,7 @@ dock name =
 order=
 icon=
 
+
 #[gtk-convert]
 [Desklet]
 #i[48;512] Desklet's dimension (width x height) :
@@ -48,6 +49,7 @@ on widget layer=false
 #b Lock position ?
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
+
 
 #[gtk-preferences]
 [Configuration]
@@ -86,20 +88,31 @@ fill icon = false
 #{Set the transparency channel to 0 if you just don't want to have a background.}
 background color = 1.0; 1.0; 1.0; 1.0
 
-#F[Background & Reflection;gtk-orientation-portrait]
+#F[Decorations;gtk-orientation-portrait]
 frame_bg =
+#r[Personnal;frame with reflects;scotch;frame with scotch] Choose a background and foreground decoration :
+#{If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration.}
+decoration = 3
+
+#v
+sep_deco =
+
 #S Background image :
-#{It's an image that will be displayed below the slide, like a frame for exemple. Let it empty to use the default one.}
+#{It's an image that will be displayed below the slide, like a frame for exemple.}
 frame =
 #e[0;1] Background tansparency :
-#{Set it to zero if you don't want to use a background}
 frame alpha = 1
-#i Background offset :
-#{It's typically the width of your frame in pixels.}
-frame offset = 5
+#i Left offset :
+#{It's typically the width of the left side of your frame, in pixels.}
+left offset = 0
+#i Right offset :
+top offset = 0
+#i Right offset :
+right offset = 0
+#i Right offset :
+bottom offset = 0
 #S Reflection image :
-#{It's an image that will be displayed above the slide, like a reflect for exemple. Let it empty to use the default one.}
+#{It's an image that will be displayed above the slide, like a reflect for exemple.}
 reflect =
 #e[0;1] Reflection tansparency :
-#{Set it to zero if you dont don't want to use a foreground}
 reflect alpha = 1

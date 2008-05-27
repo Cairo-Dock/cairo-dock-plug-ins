@@ -18,73 +18,52 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 
 CD_APPLET_DEFINITION ("slider", 1, 5, 5, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
-/*static void _cd_slider_load_frame (void) {
-	cd_debug ("%s", __func__);
-	
-	if (myData.pCairoFrameSurface != NULL) {
-		cd_warning ("Can't load frame surface, one already loaded");
-		return;
-	}
-	
-	gchar *cImagePath;
-	if (myConfig.cFrameImage != NULL) {
-		cImagePath = cairo_dock_generate_file_path (myConfig.cFrameImage);
-	}
-	else {
-		cImagePath = g_strdup_printf ("%s/frame.svg", MY_APPLET_SHARE_DATA_DIR);
-	}
-	cd_debug ("Background frame: %s", cImagePath);
 
-	double fIW, fIH;
-	myData.pCairoFrameSurface = cairo_dock_create_surface_from_image (cImagePath,
-		myDrawContext,
-		cairo_dock_get_max_scale (myContainer),
-		myIcon->fWidth, myIcon->fHeight,
-		&fIW, &fIH,
-		FALSE);
-		
-	if (myData.pCairoReflectSurface != NULL) {
-		cd_warning ("Can't load reflect surface, one already loaded");
-		return;
+static void _slider_set_desklet_renderer (void)
+{
+	const gchar *cConfigName = NULL;
+	switch (myConfig.iDecoration)
+	{
+		case SLIDER_PERSONNAL :
+		break ;
+		case SLIDER_FRAME_REFLECTS :
+			cConfigName = "frame&reflects";
+		break ;
+		case SLIDER_SCOTCH :
+				cConfigName = "scotch";
+		break ;
+		case SLIDER_FRAME_SCOTCH :
+				cConfigName = "frame with scotch";
+		break ;
+		default :
+			return ;
 	}
-	
-	if (myConfig.cReflectImage != NULL) {
-		cImagePath = cairo_dock_generate_file_path (myConfig.cReflectImage);
+	if (cConfigName != NULL)
+	{
+		CairoDeskletRendererConfig *pConfig = cairo_dock_get_desklet_renderer_predefined_config ("Simple", cConfigName);
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
 	}
-	else {
-		cImagePath = g_strdup_printf ("%s/reflect.svg", MY_APPLET_SHARE_DATA_DIR);
+	else if (myConfig.cFrameImage != NULL || myConfig.cReflectImage != NULL)
+	{
+		gpointer pManualConfig[9] = {myConfig.cFrameImage, myConfig.cReflectImage, GINT_TO_POINTER (CAIRO_DOCK_FILL_SPACE), &myConfig.fFrameAlpha, &myConfig.fReflectAlpha, GINT_TO_POINTER (myConfig.iLeftOffset), GINT_TO_POINTER (myConfig.iTopOffset), GINT_TO_POINTER (myConfig.iRightOffset), GINT_TO_POINTER (myConfig.iBottomOffset)};
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pManualConfig);
 	}
-	cd_debug ("Reflection frame: %s", cImagePath);
-
-	myData.pCairoReflectSurface = cairo_dock_create_surface_from_image (cImagePath,
-		myDrawContext,
-		cairo_dock_get_max_scale (myContainer),
-		myIcon->fWidth, myIcon->fHeight,
-		&fIW, &fIH,
-		TRUE);
-	
-	g_free(cImagePath);
-}*/
+	else
+	{
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+	}
+}
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet) {
-		if (myConfig.fFrameAlpha != 0 || myConfig.fReflectAlpha != 0) {
-			gpointer pConfig[6] = {myConfig.cFrameImage, myConfig.cReflectImage, GINT_TO_POINTER (CAIRO_DOCK_FILL_SPACE), &myConfig.fFrameAlpha, &myConfig.fReflectAlpha, GINT_TO_POINTER (myConfig.iFrameOffset)};
-			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
-		}
-		else {
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		}
+		_slider_set_desklet_renderer ();
 	}
 	
 	double fRatio = (myDock ? myDock->fRatio : 1.);
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	myData.fSurfaceWidth = myIcon->fWidth / fRatio * fMaxScale;
 	myData.fSurfaceHeight = myIcon->fHeight / fRatio * fMaxScale;
-	
-	//_cd_slider_load_frame(); //load background frame image
-	//cd_slider_get_files_from_dir();  /// suggestion : le threader car ca prend du temps de parcourir le disque.
 	
 	myData.pMeasureDirectory = cairo_dock_new_measure_timer (0,
 		NULL,
@@ -139,13 +118,7 @@ CD_APPLET_RELOAD_BEGIN
 	myData.pPrevCairoSurface = NULL;
 	
 	if (myDesklet) {
-		if (myConfig.fFrameAlpha != 0 || myConfig.fReflectAlpha != 0) {
-			gpointer pConfig[6] = {myConfig.cFrameImage, myConfig.cReflectImage, GINT_TO_POINTER (CAIRO_DOCK_FILL_SPACE), &myConfig.fFrameAlpha, &myConfig.fReflectAlpha, GINT_TO_POINTER (myConfig.iFrameOffset)};
-			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
-		}
-		else {
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		}
+		_slider_set_desklet_renderer ();
 	}
 	
 	double fRatio = (myDock ? myDock->fRatio : 1.);  // meme si le container n'a pas change, car un desklet se redimensionne, et l'icone avec.
@@ -153,19 +126,12 @@ CD_APPLET_RELOAD_BEGIN
 	myData.fSurfaceWidth = myIcon->fWidth / fRatio * fMaxScale;
 	myData.fSurfaceHeight = myIcon->fHeight / fRatio * fMaxScale;
 	
-	/*cairo_surface_destroy (myData.pCairoFrameSurface);
-	myData.pCairoFrameSurface = NULL;
-	cairo_surface_destroy (myData.pCairoReflectSurface);
-	myData.pCairoReflectSurface = NULL;
-	_cd_slider_load_frame(); //load background frame image*/
-	
 	myData.bPause = FALSE; //On coupe la pause pour repartir de plus belle
 	
 	//\_______________ Reload all changed data.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cd_slider_free_images_list (myData.pList);
 		myData.pList = NULL;
-		//cd_slider_get_files_from_dir(); //reload image list
 		cairo_dock_stop_measure_timer (myData.pMeasureImage);
 		cairo_dock_stop_measure_timer (myData.pMeasureDirectory);
 		cairo_dock_launch_measure (myData.pMeasureDirectory);
@@ -174,6 +140,4 @@ CD_APPLET_RELOAD_BEGIN
 		//Nothing to do ^^
 		cd_slider_draw_images(); //restart sliding
 	}
-	
-	//cd_slider_draw_images(); //restart sliding
 CD_APPLET_RELOAD_END

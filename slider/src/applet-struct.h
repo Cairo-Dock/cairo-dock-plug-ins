@@ -42,6 +42,14 @@ typedef enum {
 	SLIDER_NB_IMAGE_FORMAT
 } SliderImageFormat;
 
+typedef enum {
+	SLIDER_PERSONNAL = 0,
+	SLIDER_FRAME_REFLECTS,
+	SLIDER_SCOTCH,
+	SLIDER_FRAME_SCOTCH,
+	SLIDER_NB_DECORATIONS
+} SliderDecoration;
+
 
 typedef struct {
 	gchar *cPath;
@@ -53,19 +61,21 @@ typedef struct {
 typedef struct {
 	gint iSlideTime;
 	gchar *cDirectory;
-	gchar *cFrameImage;
-	gchar *cReflectImage;
 	gboolean bSubDirs;
 	gboolean bNoStretch;
 	gboolean bFillIcon;
 	gboolean bRandom;
 	gdouble pBackgroundColor[4];
-	gdouble fFrameAlpha;
-	gint iFrameOffset;
-	gdouble fReflectAlpha;
 	SliderAnimation iAnimation;
 	SliderClickOption iClickOption;
 	gboolean bUseThread;
+	
+	SliderDecoration iDecoration;
+	int iLeftOffset, iTopOffset, iRightOffset, iBottomOffset;
+	gchar *cFrameImage;
+	gchar *cReflectImage;
+	gdouble fFrameAlpha;
+	gdouble fReflectAlpha;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -83,8 +93,6 @@ typedef struct {
 	cairo_surface_t* pCairoSurface;
 	cairo_surface_t* pPrevCairoSurface;
 	gdouble fSurfaceWidth, fSurfaceHeight;
-	//cairo_surface_t* pCairoFrameSurface;
-	//cairo_surface_t* pCairoReflectSurface;
 	SliderAnimation iAnimation;
 	CairoDockMeasure *pMeasureDirectory;
 	CairoDockMeasure *pMeasureImage;

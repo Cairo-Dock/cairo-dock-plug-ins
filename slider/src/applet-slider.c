@@ -151,8 +151,9 @@ void cd_slider_read_image (void) {
 		pCairoContext,  // myDrawContext
 		1.,
 		myData.fSurfaceWidth, myData.fSurfaceHeight,
+		iLoadingModifier,
 		&fImgW, &fImgH,
-		iLoadingModifier);
+		NULL, NULL);
 	cairo_destroy (pCairoContext);
 	
 	fImgX = (myData.fSurfaceWidth - fImgW) / 2;
@@ -273,6 +274,7 @@ gboolean cd_slider_draw_images(void) {
 		return FALSE;
 	}
 	SliderImage *pImage = myData.pElement->data;
+	g_print (" >> %s\n", pImage->cPath);
 	
 	//\___________________________ On arrete l'animation precedente si elle n'etait pas finie (ne devrait pas arriver).
 	if (myData.iAnimTimerID != 0) {
