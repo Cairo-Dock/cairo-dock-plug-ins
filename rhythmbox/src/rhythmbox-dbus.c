@@ -67,19 +67,19 @@ void rhythmbox_dbus_disconnect_from_bus (void)
 	{
 		dbus_g_proxy_disconnect_signal(dbus_proxy_player, "playingChanged",
 			G_CALLBACK(onChangePlaying), NULL);
-		cd_message ("playingChanged deconnecte\n");
+		cd_debug ("playingChanged deconnecte");
 		
 		dbus_g_proxy_disconnect_signal(dbus_proxy_player, "playingUriChanged",
 			G_CALLBACK(onChangeSong), NULL);
-		cd_message ("playingUriChanged deconnecte\n");
+		cd_debug ("playingUriChanged deconnecte");
 		
 		dbus_g_proxy_disconnect_signal(dbus_proxy_player, "elapsedChanged",
 			G_CALLBACK(onElapsedChanged), NULL);
-		cd_message ("elapsedChanged deconnecte\n");
+		cd_debug ("elapsedChanged deconnecte");
 		
 		dbus_g_proxy_disconnect_signal(dbus_proxy_player, "rb:CovertArt-uri",
 			G_CALLBACK(onCovertArtChanged), NULL);
-		cd_message ("onCovertArtChanged deconnecte\n");
+		cd_debug ("onCovertArtChanged deconnecte");
 		
 		g_object_unref (dbus_proxy_player);
 		dbus_proxy_player = NULL;
@@ -191,13 +191,18 @@ void getSongInfos(void)
 				gchar *cSongDir = g_path_get_dirname (cSongPath);
 				g_free (cSongPath);
 				myData.playing_cover = g_strdup_printf ("%s/%s - %s.jpg", cSongDir, myData.playing_artist, myData.playing_album);
-				g_free (cSongDir);
 				g_print ("test de %s\n", myData.playing_cover);
 				if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 				{
 					g_free (myData.playing_cover);
-					myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
+					myData.playing_cover = g_strdup_printf ("%s/cover.jpg", cSongDir);
+					g_print ("  test de %s\n", myData.playing_cover);
+					if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
+					{
+						myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
+					}
 				}
+				g_free (cSongDir);
 			}
 		}
 		g_print ("  playing_cover <- %s", myData.playing_cover);

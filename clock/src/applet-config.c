@@ -34,7 +34,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Module", "setup command");
 	myConfig.cFont = CD_CONFIG_GET_STRING ("Module", "font");
 	if (myConfig.cFont == NULL)
-		myConfig.cFont = g_strdup (g_cLabelPolice);
+		myConfig.cFont = g_strdup (g_iconTextDescription.cFont);
 	
 	//\_______________ On recupere les alarmes.
 	myConfig.pAlarms = g_ptr_array_new ();

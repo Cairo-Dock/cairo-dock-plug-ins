@@ -34,10 +34,8 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: src/applet-notifications.c:13
-#: ../src/applet-notifications.c:21
-#: ../src/applet-notifications.c:24
-#: ../src/applet-notifications.c:22
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:24 ../src/applet-notifications.c:22
 msgid ""
 "This is the weather applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -45,120 +43,72 @@ msgstr ""
 "Ceci est l'applet weather\n"
 " écrite par Fabrice Rey pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:63
-#: ../src/applet-notifications.c:77
-#: ../src/applet-notifications.c:85
-#: ../src/applet-notifications.c:99
-#: ../src/applet-notifications.c:92
-#: ../src/applet-notifications.c:106
-#: ../src/applet-notifications.c:96
-#: ../src/applet-notifications.c:110
-#: ../src/applet-notifications.c:224
-#: ../src/applet-notifications.c:248
-#: ../src/applet-notifications.c:223
-#: ../src/applet-notifications.c:247
-#: ../src/applet-notifications.c:221
-#: ../src/applet-notifications.c:245
-#: ../src/applet-notifications.c:219
-#: ../src/applet-notifications.c:243
+#: ../src/applet-notifications.c:63 ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:85 ../src/applet-notifications.c:99
+#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:106
+#: ../src/applet-notifications.c:96 ../src/applet-notifications.c:110
+#: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
+#: ../src/applet-notifications.c:223 ../src/applet-notifications.c:247
+#: ../src/applet-notifications.c:221 ../src/applet-notifications.c:245
+#: ../src/applet-notifications.c:219 ../src/applet-notifications.c:243
 msgid "Temperature"
 msgstr "Température"
 
-#: ../src/applet-notifications.c:64
-#: ../src/applet-notifications.c:78
-#: ../src/applet-notifications.c:86
-#: ../src/applet-notifications.c:100
-#: ../src/applet-notifications.c:93
-#: ../src/applet-notifications.c:107
-#: ../src/applet-notifications.c:97
-#: ../src/applet-notifications.c:111
-#: ../src/applet-notifications.c:225
-#: ../src/applet-notifications.c:249
-#: ../src/applet-notifications.c:224
-#: ../src/applet-notifications.c:248
-#: ../src/applet-notifications.c:222
-#: ../src/applet-notifications.c:246
-#: ../src/applet-notifications.c:220
-#: ../src/applet-notifications.c:244
+#: ../src/applet-notifications.c:64 ../src/applet-notifications.c:78
+#: ../src/applet-notifications.c:86 ../src/applet-notifications.c:100
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:97 ../src/applet-notifications.c:111
+#: ../src/applet-notifications.c:225 ../src/applet-notifications.c:249
+#: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
+#: ../src/applet-notifications.c:222 ../src/applet-notifications.c:246
+#: ../src/applet-notifications.c:220 ../src/applet-notifications.c:244
 msgid "Wind"
 msgstr "Vent"
 
-#: ../src/applet-notifications.c:65
-#: ../src/applet-notifications.c:79
-#: ../src/applet-notifications.c:87
-#: ../src/applet-notifications.c:101
-#: ../src/applet-notifications.c:94
-#: ../src/applet-notifications.c:108
-#: ../src/applet-notifications.c:98
-#: ../src/applet-notifications.c:112
-#: ../src/applet-notifications.c:226
-#: ../src/applet-notifications.c:250
-#: ../src/applet-notifications.c:225
-#: ../src/applet-notifications.c:249
-#: ../src/applet-notifications.c:223
-#: ../src/applet-notifications.c:247
-#: ../src/applet-notifications.c:221
-#: ../src/applet-notifications.c:245
+#: ../src/applet-notifications.c:65 ../src/applet-notifications.c:79
+#: ../src/applet-notifications.c:87 ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:98 ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:226 ../src/applet-notifications.c:250
+#: ../src/applet-notifications.c:225 ../src/applet-notifications.c:249
+#: ../src/applet-notifications.c:223 ../src/applet-notifications.c:247
+#: ../src/applet-notifications.c:221 ../src/applet-notifications.c:245
 msgid "Humidity"
 msgstr "Humidité"
 
-#: ../src/applet-notifications.c:66
-#: ../src/applet-notifications.c:80
-#: ../src/applet-notifications.c:88
-#: ../src/applet-notifications.c:102
-#: ../src/applet-notifications.c:95
-#: ../src/applet-notifications.c:109
-#: ../src/applet-notifications.c:99
-#: ../src/applet-notifications.c:113
-#: ../src/applet-notifications.c:227
-#: ../src/applet-notifications.c:251
-#: ../src/applet-notifications.c:226
-#: ../src/applet-notifications.c:250
-#: ../src/applet-notifications.c:224
-#: ../src/applet-notifications.c:248
-#: ../src/applet-notifications.c:222
-#: ../src/applet-notifications.c:246
+#: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
+#: ../src/applet-notifications.c:88 ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:99 ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:227 ../src/applet-notifications.c:251
+#: ../src/applet-notifications.c:226 ../src/applet-notifications.c:250
+#: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
+#: ../src/applet-notifications.c:222 ../src/applet-notifications.c:246
 msgid "SunRise"
 msgstr "Lever du soleil"
 
-#: ../src/applet-notifications.c:66
-#: ../src/applet-notifications.c:80
-#: ../src/applet-notifications.c:88
-#: ../src/applet-notifications.c:102
-#: ../src/applet-notifications.c:95
-#: ../src/applet-notifications.c:109
-#: ../src/applet-notifications.c:99
-#: ../src/applet-notifications.c:113
-#: ../src/applet-notifications.c:227
-#: ../src/applet-notifications.c:251
-#: ../src/applet-notifications.c:226
-#: ../src/applet-notifications.c:250
-#: ../src/applet-notifications.c:224
-#: ../src/applet-notifications.c:248
-#: ../src/applet-notifications.c:222
-#: ../src/applet-notifications.c:246
+#: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
+#: ../src/applet-notifications.c:88 ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:99 ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:227 ../src/applet-notifications.c:251
+#: ../src/applet-notifications.c:226 ../src/applet-notifications.c:250
+#: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
+#: ../src/applet-notifications.c:222 ../src/applet-notifications.c:246
 msgid "SunSet"
 msgstr "Coucher du soleil"
 
-#: ../src/applet-notifications.c:77
-#: ../src/applet-notifications.c:99
-#: ../src/applet-notifications.c:106
-#: ../src/applet-notifications.c:110
-#: ../src/applet-notifications.c:248
-#: ../src/applet-notifications.c:247
-#: ../src/applet-notifications.c:245
-#: ../src/applet-notifications.c:243
+#: ../src/applet-notifications.c:77 ../src/applet-notifications.c:99
+#: ../src/applet-notifications.c:106 ../src/applet-notifications.c:110
+#: ../src/applet-notifications.c:248 ../src/applet-notifications.c:247
+#: ../src/applet-notifications.c:245 ../src/applet-notifications.c:243
 msgid "feeled"
 msgstr "ressentie"
 
-#: ../src/applet-notifications.c:79
-#: ../src/applet-notifications.c:101
-#: ../src/applet-notifications.c:108
-#: ../src/applet-notifications.c:112
-#: ../src/applet-notifications.c:250
-#: ../src/applet-notifications.c:249
-#: ../src/applet-notifications.c:247
-#: ../src/applet-notifications.c:245
+#: ../src/applet-notifications.c:79 ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:108 ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:250 ../src/applet-notifications.c:249
+#: ../src/applet-notifications.c:247 ../src/applet-notifications.c:245
 msgid "Pressure"
 msgstr "Pression"
 
@@ -166,176 +116,132 @@ msgstr "Pression"
 msgid "Icon"
 msgstr "Icône"
 
-#: ../data/messages:11
-#: ../data/messages:31
-#: ../data/messages:33
-#: ../data/messages:35
-#: ../data/messages:37
-#: ../data/messages:39
+#: ../data/messages:11 ../data/messages:31 ../data/messages:33
+#: ../data/messages:35 ../data/messages:37 ../data/messages:39
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:13
-#: ../data/messages:33
+#: ../data/messages:13 ../data/messages:33
 msgid "You can search it on www.weather.com"
 msgstr "Vous pouvez le chercher sur www.weather.com"
 
-#: ../data/messages:15
-#: ../data/messages:35
-#: ../data/messages:37
-#: ../data/messages:39
-#: ../data/messages:43
+#: ../data/messages:15 ../data/messages:35 ../data/messages:37
+#: ../data/messages:39 ../data/messages:43
 msgid "Code of your location :"
 msgstr "Code de votre location :"
 
-#: ../data/messages:17
-#: ../data/messages:37
-#: ../data/messages:39
-#: ../data/messages:41
-#: ../data/messages:45
+#: ../data/messages:17 ../data/messages:37 ../data/messages:39
+#: ../data/messages:41 ../data/messages:45
 msgid "Use International System Units ?"
 msgstr "Utiliser les unités du Système International ?"
 
-#: ../data/messages:19
-#: ../data/messages:49
-#: ../data/messages:51
-#: ../data/messages:53
-#: ../data/messages:57
+#: ../data/messages:19 ../data/messages:49 ../data/messages:51
+#: ../data/messages:53 ../data/messages:57
 msgid "Display current conditions on the icon instead of the default one ?"
-msgstr "Afficher les conditions actuelles sur l'icône plutôt que celui par défaut ?"
+msgstr ""
+"Afficher les conditions actuelles sur l'icône plutôt que celui par défaut ?"
 
-#: ../data/messages:21
-#: ../data/messages:51
-#: ../data/messages:53
-#: ../data/messages:55
-#: ../data/messages:59
+#: ../data/messages:21 ../data/messages:51 ../data/messages:53
+#: ../data/messages:55 ../data/messages:59
 msgid "Number of days you want to forecast :"
 msgstr "Nombre de jours à prédire :"
 
-#: ../data/messages:23
-#: ../data/messages:53
-#: ../data/messages:55
-#: ../data/messages:57
-#: ../data/messages:61
+#: ../data/messages:23 ../data/messages:53 ../data/messages:55
+#: ../data/messages:57 ../data/messages:61
 msgid "Display nights too ?"
 msgstr "Montrer les nuits aussi ?"
 
-#: ../data/messages:25
-#: ../data/messages:55
-#: ../data/messages:57
-#: ../data/messages:59
-#: ../data/messages:63
+#: ../data/messages:25 ../data/messages:55 ../data/messages:57
+#: ../data/messages:59 ../data/messages:63
 msgid "Display temperature as quick info ?"
 msgstr "Montrer la température en info-rapide ?"
 
-#: ../data/messages:27
-#: ../data/messages:39
-#: ../data/messages:41
-#: ../data/messages:43
-#: ../data/messages:47
+#: ../data/messages:27 ../data/messages:39 ../data/messages:41
+#: ../data/messages:43 ../data/messages:47
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "en seconde. Mettez 0 pour ne pas avoir de contrainte de durée."
 
-#: ../data/messages:29
-#: ../data/messages:41
-#: ../data/messages:43
-#: ../data/messages:45
-#: ../data/messages:49
+#: ../data/messages:29 ../data/messages:41 ../data/messages:43
+#: ../data/messages:45 ../data/messages:49
 msgid "Duration of dialogs :"
 msgstr "Durée des dialogues :"
 
-#: ../data/messages:31
-#: ../data/messages:43
-#: ../data/messages:45
-#: ../data/messages:47
-#: ../data/messages:51
+#: ../data/messages:31 ../data/messages:43 ../data/messages:45
+#: ../data/messages:47 ../data/messages:51
 msgid "in minutes."
 msgstr "en minutes"
 
-#: ../data/messages:33
-#: ../data/messages:45
-#: ../data/messages:47
-#: ../data/messages:49
-#: ../data/messages:53
+#: ../data/messages:33 ../data/messages:45 ../data/messages:47
+#: ../data/messages:49 ../data/messages:53
 msgid "Interval of time between 2 checks :"
 msgstr "Intervalle de temps entre 2 vérifications :"
 
-#: ../data/messages:35
-#: ../data/messages:59
-#: ../data/messages:63
-#: ../data/messages:65
-#: ../data/messages:69
+#: ../data/messages:35 ../data/messages:59 ../data/messages:63
+#: ../data/messages:65 ../data/messages:69
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
 
-#: ../data/messages:37
-#: ../data/messages:61
-#: ../data/messages:65
-#: ../data/messages:67
-#: ../data/messages:71
+#: ../data/messages:37 ../data/messages:61 ../data/messages:65
+#: ../data/messages:67 ../data/messages:71
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
-#: ../data/messages:11
-#: ../data/messages:13
+#: ../data/messages:11 ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
-#: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_gauche par exemple."
+#: ../data/messages:13 ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_gauche par exemple."
 
-#: ../data/messages:15
-#: ../data/messages:17
+#: ../data/messages:15 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
-#: ../data/messages:19
+#: ../data/messages:17 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
-#: ../data/messages:19
-#: ../data/messages:21
+#: ../data/messages:19 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21
-#: ../data/messages:23
+#: ../data/messages:21 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23
-#: ../data/messages:25
+#: ../data/messages:23 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25
-#: ../data/messages:27
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27
-#: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
+#: ../data/messages:27 ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
-#: ../data/messages:31
+#: ../data/messages:29 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:47
-#: ../data/messages:59
-#: ../data/messages:61
+#: ../data/messages:47 ../data/messages:59 ../data/messages:61
 #: ../data/messages:65
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:57
-#: ../data/messages:61
-#: ../data/messages:63
+#: ../data/messages:57 ../data/messages:61 ../data/messages:63
 #: ../data/messages:67
 msgid "Choose one of the available themes :"
 msgstr "Choississez l'un des thèmes disponibles :"
@@ -394,15 +300,12 @@ msgstr "Nov"
 msgid "Dec"
 msgstr "Déc"
 
-#: ../data/messages:63
-#: ../data/messages:67
-#: ../data/messages:69
+#: ../data/messages:63 ../data/messages:67 ../data/messages:69
 #: ../data/messages:73
 msgid "Render desklet in 3D ?"
 msgstr "Dessiner le desklet en 3D ?"
 
-#: ../src/applet-notifications.c:96
-#: ../src/applet-notifications.c:94
+#: ../src/applet-notifications.c:96 ../src/applet-notifications.c:94
 #: ../src/applet-notifications.c:93
 msgid ""
 "Enter your location\n"
@@ -411,12 +314,9 @@ msgstr ""
 "Entrez votre location\n"
 " (par exemple : Paris, France)"
 
-#: ../src/applet-notifications.c:109
-#: ../src/applet-notifications.c:123
-#: ../src/applet-notifications.c:122
-#: ../src/applet-notifications.c:107
-#: ../src/applet-notifications.c:120
-#: ../src/applet-notifications.c:106
+#: ../src/applet-notifications.c:109 ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:122 ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:120 ../src/applet-notifications.c:106
 #: ../src/applet-notifications.c:119
 msgid ""
 "I couldn't get the info\n"
@@ -425,35 +325,25 @@ msgstr ""
 "Je n'ai pas pu récupérer les info\n"
 " la connexion est-elle établie ?"
 
-#: ../src/applet-notifications.c:156
-#: ../src/applet-notifications.c:155
-#: ../src/applet-notifications.c:153
-#: ../src/applet-notifications.c:152
+#: ../src/applet-notifications.c:156 ../src/applet-notifications.c:155
+#: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
 msgid "Choose your location :"
 msgstr "Choisissez votre location :"
 
-#: ../src/applet-notifications.c:182
-#: ../src/applet-notifications.c:181
-#: ../src/applet-notifications.c:179
-#: ../src/applet-notifications.c:177
+#: ../src/applet-notifications.c:182 ../src/applet-notifications.c:181
+#: ../src/applet-notifications.c:179 ../src/applet-notifications.c:177
 msgid "Search for your location"
 msgstr "Chercher votre location"
 
-#: ../src/applet-notifications.c:183
-#: ../src/applet-notifications.c:182
-#: ../src/applet-notifications.c:180
-#: ../src/applet-notifications.c:178
+#: ../src/applet-notifications.c:183 ../src/applet-notifications.c:182
+#: ../src/applet-notifications.c:180 ../src/applet-notifications.c:178
 msgid "Reload now"
 msgstr "Recharger maintenant"
 
-#: ../src/applet-notifications.c:208
-#: ../src/applet-notifications.c:236
-#: ../src/applet-notifications.c:207
-#: ../src/applet-notifications.c:235
-#: ../src/applet-notifications.c:205
-#: ../src/applet-notifications.c:233
-#: ../src/applet-notifications.c:203
-#: ../src/applet-notifications.c:231
+#: ../src/applet-notifications.c:208 ../src/applet-notifications.c:236
+#: ../src/applet-notifications.c:207 ../src/applet-notifications.c:235
+#: ../src/applet-notifications.c:205 ../src/applet-notifications.c:233
+#: ../src/applet-notifications.c:203 ../src/applet-notifications.c:231
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -461,16 +351,16 @@ msgstr ""
 "Aucune donnée disponible\n"
 " la connexion est-elle établie ?"
 
-#: ../data/messages:33
-#: ../data/messages:35
-#: ../data/messages:37
+#: ../data/messages:33 ../data/messages:35 ../data/messages:37
 #: ../data/messages:41
-msgid "Right click on the icon to let Cairo-Dock help you to find your location code."
-msgstr "Cliquez droit sur l'icone pour laisser Cairo-Dock vous aider à trouver le code de votre location."
+msgid ""
+"Right click on the icon to let Cairo-Dock help you to find your location "
+"code."
+msgstr ""
+"Cliquez droit sur l'icone pour laisser Cairo-Dock vous aider à trouver le "
+"code de votre location."
 
-#: ../data/messages:49
-#: ../data/messages:51
-#: ../data/messages:55
+#: ../data/messages:49 ../data/messages:51 ../data/messages:55
 msgid "Info"
 msgstr "Info"
 
@@ -479,8 +369,13 @@ msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
+"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
+"contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:35
 msgid "Lockposition ?"
@@ -489,4 +384,3 @@ msgstr "Verrouiller la position ?"
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
-

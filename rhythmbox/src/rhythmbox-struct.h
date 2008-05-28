@@ -21,6 +21,17 @@ typedef enum {
 	PLAYER_NB_STATUS
 } MyAppletPlayerStatus;
 
+typedef enum {
+	MY_APPLET_PERSONNAL = 0,
+	MY_APPLET_EXTENDED,
+	MY_APPLET_CD_BOX,
+	MY_APPLET_FRAME_REFLECTS,
+	MY_APPLET_SCOTCH,
+	MY_APPLET_FRAME_SCOTCH,
+	MY_APPLET_NB_DECORATIONS
+} MyAppletDecoration;
+
+
 typedef struct {
 	gboolean enableDialogs;
 	gboolean enableCover;
@@ -30,7 +41,14 @@ typedef struct {
 	gchar *defaultTitle;
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	gboolean bStealTaskBarIcon;
+	
 	gboolean extendedDesklet;
+	MyAppletDecoration iDecoration;
+	int iLeftOffset, iTopOffset, iRightOffset, iBottomOffset;
+	gchar *cFrameImage;
+	gchar *cReflectImage;
+	gdouble fFrameAlpha;
+	gdouble fReflectAlpha;
 	} AppletConfig;
 
 typedef struct {

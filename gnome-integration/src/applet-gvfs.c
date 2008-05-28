@@ -823,7 +823,7 @@ gchar *vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted)
 		else
 			*bIsMounted = FALSE;
 	}
-	return NULL;
+	return cTargetURI;
 }
 
 static gchar * _cd_find_drive_name_from_URI (const gchar *cURI)

@@ -167,3 +167,8 @@ msgstr "Verrouiller la position ?"
 #: ../data/messages:37
 msgid "Lock position ?"
 msgstr "Verrouiller la position"
+
+#: ../src/applet-bookmarks.c:123 ../src/applet-bookmarks.c:323
+#: ../src/applet-load-icons.c:59
+msgid "Unmounted"
+msgstr "Non monté"

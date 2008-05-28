@@ -12,6 +12,45 @@
 CD_APPLET_DEFINITION ("Rhythmbox", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
+
+static void _rhythmbox_set_desklet_renderer (void)
+{
+	const gchar *cConfigName = NULL;
+	switch (myConfig.iDecoration)
+	{
+		case MY_APPLET_PERSONNAL :
+		break ;
+		case MY_APPLET_CD_BOX:
+			cConfigName = "CD box";
+		break ;
+		case MY_APPLET_FRAME_REFLECTS :
+			cConfigName = "frame&reflects";
+		break ;
+		case MY_APPLET_SCOTCH :
+				cConfigName = "scotch";
+		break ;
+		case MY_APPLET_FRAME_SCOTCH :
+				cConfigName = "frame with scotch";
+		break ;
+		default :
+			return ;
+	}
+	if (cConfigName != NULL)
+	{
+		CairoDeskletRendererConfig *pConfig = cairo_dock_get_desklet_renderer_predefined_config ("Simple", cConfigName);
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
+	}
+	else if (myConfig.cFrameImage != NULL || myConfig.cReflectImage != NULL)
+	{
+		gpointer pManualConfig[9] = {myConfig.cFrameImage, myConfig.cReflectImage, GINT_TO_POINTER (CAIRO_DOCK_FILL_SPACE), &myConfig.fFrameAlpha, &myConfig.fReflectAlpha, GINT_TO_POINTER (myConfig.iLeftOffset), GINT_TO_POINTER (myConfig.iTopOffset), GINT_TO_POINTER (myConfig.iRightOffset), GINT_TO_POINTER (myConfig.iBottomOffset)};
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pManualConfig);
+	}
+	else
+	{
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+	}
+}
+
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet)
 	{
@@ -19,11 +58,11 @@ CD_APPLET_INIT_BEGIN (erreur)
 		{
 			rhythmbox_add_buttons_to_desklet ();
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Controler", data);
 		}
 		else
 		{
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			_rhythmbox_set_desklet_renderer ();
 		}
 	}
 	
@@ -96,11 +135,11 @@ CD_APPLET_RELOAD_BEGIN
 		if (myConfig.extendedDesklet)
 		{
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Controler", data);
 		}
 		else
 		{
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			_rhythmbox_set_desklet_renderer ();
 		}
 	}
 	

@@ -25,5 +25,7 @@ datalogout_DATA = \
 	scotch.svg\
 	scotch+frame.svg\
 	frame.svg\
-	reflect.svg
+	reflect.svg\
+	cd_box_cover.svg\
+	cd_box.svg
 

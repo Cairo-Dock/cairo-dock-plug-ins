@@ -1,5 +1,6 @@
 #include <string.h>
 #include <dbus/dbus-glib.h>
+#include <time.h>
 
 #include "tomboy-struct.h"
 #include "tomboy-draw.h"
@@ -69,7 +70,7 @@ void dbus_detect_tomboy(void)
 
 
 
-static Icon *_cd_tomboy_create_icon_for_note (gchar *cNoteURI, gchar *cNoteTitle)
+static Icon *_cd_tomboy_create_icon_for_note (const gchar *cNoteURI)
 {
 	Icon *pIcon = g_new0 (Icon, 1);
 	pIcon->acName = getNoteTitle (cNoteURI);
@@ -131,7 +132,7 @@ void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 {
 	cd_message ("%s (%s)", __func__, note_uri);
 	
-	Icon *pIcon = _cd_tomboy_create_icon_for_note (note_uri, getNoteTitle(note_uri));
+	Icon *pIcon = _cd_tomboy_create_icon_for_note (note_uri);
 	GList *pList = (myDock ? (myIcon->pSubDock != NULL ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
 	Icon *pLastIcon = cairo_dock_get_last_icon (pList);
 	pIcon->fOrder = (pLastIcon != NULL ? pLastIcon->fOrder + 1 : 0);
@@ -168,7 +169,7 @@ void onChangeNoteList(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 	{
 		pIcon->acName = cTitle;
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-		cairo_dock_fill_one_text_buffer (pIcon, pCairoContext, g_iLabelSize, g_cLabelPolice, (g_bTextAlwaysHorizontal ? CAIRO_DOCK_HORIZONTAL : myContainer->bIsHorizontal), myContainer->bDirectionUp);
+		cairo_dock_fill_one_text_buffer (pIcon, pCairoContext, &g_iconTextDescription, (g_bTextAlwaysHorizontal ? CAIRO_DOCK_HORIZONTAL : myContainer->bIsHorizontal), myContainer->bDirectionUp);
 		cairo_destroy (pCairoContext);
 	}
 	else
@@ -289,7 +290,7 @@ void getAllNotes(void)
 		for (i = 0; note_list[i] != NULL; i ++)
 		{
 			cNoteURI = note_list[i];
-			Icon *pIcon = _cd_tomboy_create_icon_for_note (cNoteURI, getNoteTitle(cNoteURI));
+			Icon *pIcon = _cd_tomboy_create_icon_for_note (cNoteURI);
 			pIcon->fOrder = i;
 			pList = g_list_append (pList, pIcon);
 			_cd_tomboy_register_note (pIcon);
@@ -363,4 +364,120 @@ void showNote(gchar *note_name)
 		G_TYPE_STRING, note_name,
 		G_TYPE_INVALID,
 		G_TYPE_INVALID);
+}
+
+
+
+gchar **getNoteTags (const gchar *note_name)
+{
+	gchar **cTags = NULL;
+	if (dbus_g_proxy_call (dbus_proxy_tomboy, "GetTagsForNote", NULL,
+		G_TYPE_STRING, note_name,
+		G_TYPE_INVALID,
+		G_TYPE_STRV, &cTags,
+		G_TYPE_INVALID))
+	{
+		int i = 0;
+		while (cTags[i] != NULL)
+			i ++;
+	}
+	
+	return cTags;
+}
+
+
+
+static gchar **_cd_tomboy_get_note_names_with_tag (gchar *cTag)
+{
+	gchar **cNoteNames = NULL;
+	dbus_g_proxy_call (dbus_proxy_tomboy, "GetAllNotesWithTag", NULL,
+		G_TYPE_STRING, cTag,
+		G_TYPE_INVALID,
+		G_TYPE_STRV, &cNoteNames,
+		G_TYPE_INVALID);
+	return cNoteNames;
+}
+GList *cd_tomboy_find_notes_with_tag (gchar *cTag)
+{
+	gchar **cNoteNames = _cd_tomboy_get_note_names_with_tag (cTag);
+	if (cNoteNames == NULL)
+		return NULL;
+	
+	GList *pList = (myDock ? myDock->icons : myDesklet->icons);
+	GList *pMatchList = NULL;
+	Icon *icon;
+	GList *ic;
+	int i;
+	for (ic = pList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		
+		while (cNoteNames[i] != NULL)
+		{
+			if (strcmp (icon->acCommand, cNoteNames[i]) == 0)
+			{
+				pMatchList = g_list_prepend (pMatchList, icon);
+				break ;
+			}
+		}
+	}
+	return pMatchList;
+}
+
+
+
+
+
+static gboolean _cd_tomboy_note_has_contents (gchar *cNoteName, gchar **cContents)
+{
+	gchar *cNoteContent = NULL;
+	
+	if (dbus_g_proxy_call (dbus_proxy_tomboy, "GetNoteContents", NULL,
+		G_TYPE_STRING, cNoteName,
+		G_TYPE_INVALID,
+		G_TYPE_STRING, &cNoteContent,
+		G_TYPE_INVALID))
+	{
+		int i = 0;
+		while (cContents[i] != NULL)
+		{
+			if (g_strstr_len (cNoteContent, strlen (cNoteContent), cContents[i]) != NULL)
+			{
+				g_free (cNoteContent);
+				return TRUE;
+			}
+		}
+	}
+	g_free (cNoteContent);
+	return FALSE;
+}
+GList *cd_tomboy_find_notes_with_contents (gchar **cContents)
+{
+	GList *pList = (myDock ? myDock->icons : myDesklet->icons);
+	GList *pMatchList = NULL;
+	Icon *icon;
+	GList *ic;
+	for (ic = pList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		if (_cd_tomboy_note_has_contents (icon->acCommand, cContents))
+		{
+			pMatchList = g_list_prepend (pMatchList, icon);
+		}
+	}
+	return pMatchList;
+}
+
+
+#define CD_TOMBOY_DATE_BUFFER_LENGTH 50
+GList *cd_tomboy_find_note_with_today (void)
+{
+	static char s_cDateBuffer[CD_TOMBOY_DATE_BUFFER_LENGTH+1];
+	static struct tm epoch_tm;
+	time_t epoch = (time_t) time (NULL);
+	localtime_r (&epoch, &epoch_tm);
+	strftime (s_cDateBuffer, CD_TOMBOY_DATE_BUFFER_LENGTH, "%d/%m/%y", &epoch_tm);
+	
+	gchar *cContents[2] = {s_cDateBuffer, NULL};
+	return cd_tomboy_find_notes_with_contents (cContents);
 }

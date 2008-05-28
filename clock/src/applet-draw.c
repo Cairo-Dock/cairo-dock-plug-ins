@@ -196,10 +196,10 @@ void cd_clock_draw_text (cairo_t *pSourceContext, int width, int height, double 
 	PangoLayout *pLayout = pango_cairo_create_layout (pSourceContext);
 	PangoFontDescription *pDesc = pango_font_description_new ();
 	
-	pango_font_description_set_absolute_size (pDesc, g_iLabelSize * PANGO_SCALE);
+	pango_font_description_set_absolute_size (pDesc, g_iconTextDescription.iSize * PANGO_SCALE);
 	pango_font_description_set_family_static (pDesc, myConfig.cFont);
-	pango_font_description_set_weight (pDesc, g_iLabelWeight);
-	pango_font_description_set_style (pDesc, g_iLabelStyle);
+	pango_font_description_set_weight (pDesc, g_iconTextDescription.iWeight);
+	pango_font_description_set_style (pDesc, g_iconTextDescription.iStyle);
 	pango_layout_set_font_description (pLayout, pDesc);
 	pango_font_description_free (pDesc);
 	

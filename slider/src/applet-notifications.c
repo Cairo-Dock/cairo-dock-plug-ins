@@ -38,7 +38,9 @@ static void _cd_slider_toogle_pause(void) {
 
 static void _cd_slider_open_current_slide (void) {
 	if (myData.pElement != NULL && myData.pElement->data != NULL) {
-		SliderImage *pImage = myData.pElement->data;
+		GList *pCurrentDisplayedElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
+		g_return_if_fail (pCurrentDisplayedElement != NULL);
+		SliderImage *pImage = pCurrentDisplayedElement->data;
 		gchar *cImagePath = pImage->cPath;
 		GError *erreur = NULL;
 		gchar *cURI = g_filename_to_uri (cImagePath, NULL, &erreur);
@@ -48,7 +50,7 @@ static void _cd_slider_open_current_slide (void) {
 			g_error_free (erreur);
 			return ;
 		}
-		cairo_dock_fm_launch_uri (cURI);  /// proposer un editeur d'image dans le panneau de conf.
+		cairo_dock_fm_launch_uri (cURI);  /// proposer un editeur d'image dans le panneau de conf ou une liste dans le menu...
 		g_free (cURI);
 	}
 }

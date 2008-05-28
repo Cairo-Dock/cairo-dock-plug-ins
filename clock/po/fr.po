@@ -31,66 +31,51 @@ msgstr "hauteur :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-#: ../data/messages:33
-#: ../data/messages:35
-#: ../data/messages:39
+#: ../data/messages:33 ../data/messages:35 ../data/messages:39
 msgid "Behaviour"
 msgstr "Comportement"
 
 msgid "Show the date ?"
 msgstr "Montrer la date ?"
 
-#: ../data/messages:45
-#: ../data/messages:47
-#: ../data/messages:51
+#: ../data/messages:45 ../data/messages:47 ../data/messages:51
 msgid "Show seconds ?"
 msgstr "Montrer les secondes ?"
 
-#: ../data/messages:43
-#: ../data/messages:45
-#: ../data/messages:49
+#: ../data/messages:43 ../data/messages:45 ../data/messages:49
 msgid "if not, then the applet will update time once a minute, saving CPU."
-msgstr "Si non, alors l'applet se rafraîchira une fois par minute, épargnant le CPU."
+msgstr ""
+"Si non, alors l'applet se rafraîchira une fois par minute, épargnant le CPU."
 
-#: ../data/messages:49
-#: ../data/messages:51
-#: ../data/messages:55
+#: ../data/messages:49 ../data/messages:51 ../data/messages:55
 msgid "Should the time be displayed as a 24h format ?"
 msgstr "Afficher l'heure au format 24h ?"
 
-#: ../data/messages:47
-#: ../data/messages:49
-#: ../data/messages:53
+#: ../data/messages:47 ../data/messages:49 ../data/messages:53
 msgid "for numeric format only."
 msgstr "pour l'affichage en mode numérique seulement."
 
-#: ../data/messages:51
-#: ../data/messages:53
-#: ../data/messages:57
+#: ../data/messages:51 ../data/messages:53 ../data/messages:57
 msgid "Style"
 msgstr "Style"
 
-#: ../data/messages:55
-#: ../data/messages:57
-#: ../data/messages:61
+#: ../data/messages:55 ../data/messages:57 ../data/messages:61
 msgid "Use the analogic view ?"
 msgstr "Utiliser la vue analogique ?"
 
-#: ../data/messages:53
-#: ../data/messages:55
-#: ../data/messages:59
-msgid "The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way."
-msgstr "La vue analogique est basée sur CairoClock; autrement il sera affiché en mode numérique."
+#: ../data/messages:53 ../data/messages:55 ../data/messages:59
+msgid ""
+"The analogic view is based on CairoClock; otherwise it will be displayed in "
+"a numeric way."
+msgstr ""
+"La vue analogique est basée sur CairoClock; autrement il sera affiché en "
+"mode numérique."
 
-#: ../data/messages:59
-#: ../data/messages:61
-#: ../data/messages:65
+#: ../data/messages:59 ../data/messages:61 ../data/messages:65
 msgid "Text color for the numeric display:"
 msgstr "Couleur du texte pour l'affiche numérique:"
 
-#: ../data/messages:61
-#: ../data/messages:65
-#: ../data/messages:67
+#: ../data/messages:61 ../data/messages:65 ../data/messages:67
 #: ../data/messages:71
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour la vue analogique :"
@@ -98,286 +83,142 @@ msgstr "Liste des thèmes disponibles pour la vue analogique :"
 msgid "ALARM"
 msgstr "ALARME"
 
-#: ../data/messages:71
-#: ../data/messages:75
-#: ../data/messages:77
+#: ../data/messages:71 ../data/messages:75 ../data/messages:77
 #: ../data/messages:81
 msgid "Alarm n°1"
 msgstr "Alarme n°1"
 
-#: ../data/messages:75
-#: ../data/messages:115
-#: ../data/messages:155
-#: ../data/messages:79
-#: ../data/messages:119
-#: ../data/messages:159
-#: ../data/messages:81
-#: ../data/messages:121
-#: ../data/messages:161
-#: ../data/messages:85
-#: ../data/messages:125
-#: ../data/messages:165
+#: ../data/messages:75 ../data/messages:115 ../data/messages:155
+#: ../data/messages:79 ../data/messages:119 ../data/messages:159
+#: ../data/messages:81 ../data/messages:121 ../data/messages:161
+#: ../data/messages:85 ../data/messages:125 ../data/messages:165
 msgid "Time you want to be notified :"
 msgstr "Heure de la notification :"
 
-#: ../data/messages:73
-#: ../data/messages:113
-#: ../data/messages:153
-#: ../data/messages:77
-#: ../data/messages:117
-#: ../data/messages:157
-#: ../data/messages:79
-#: ../data/messages:119
-#: ../data/messages:159
-#: ../data/messages:83
-#: ../data/messages:123
-#: ../data/messages:163
+#: ../data/messages:73 ../data/messages:113 ../data/messages:153
+#: ../data/messages:77 ../data/messages:117 ../data/messages:157
+#: ../data/messages:79 ../data/messages:119 ../data/messages:159
+#: ../data/messages:83 ../data/messages:123 ../data/messages:163
 msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
 msgstr "de la forme xx:xx. Par exemple, 20:35 pour 8:35pm"
 
-#: ../data/messages:79
-#: ../data/messages:119
-#: ../data/messages:159
-#: ../data/messages:83
-#: ../data/messages:123
-#: ../data/messages:163
-#: ../data/messages:85
-#: ../data/messages:125
-#: ../data/messages:165
-#: ../data/messages:89
-#: ../data/messages:129
-#: ../data/messages:169
+#: ../data/messages:79 ../data/messages:119 ../data/messages:159
+#: ../data/messages:83 ../data/messages:123 ../data/messages:163
+#: ../data/messages:85 ../data/messages:125 ../data/messages:165
+#: ../data/messages:89 ../data/messages:129 ../data/messages:169
 msgid "Never"
 msgstr "Jamais"
 
-#: ../data/messages:81
-#: ../data/messages:121
-#: ../data/messages:161
-#: ../data/messages:85
-#: ../data/messages:125
-#: ../data/messages:165
-#: ../data/messages:87
-#: ../data/messages:127
-#: ../data/messages:167
-#: ../data/messages:91
-#: ../data/messages:131
-#: ../data/messages:171
+#: ../data/messages:81 ../data/messages:121 ../data/messages:161
+#: ../data/messages:85 ../data/messages:125 ../data/messages:165
+#: ../data/messages:87 ../data/messages:127 ../data/messages:167
+#: ../data/messages:91 ../data/messages:131 ../data/messages:171
 msgid "Day"
 msgstr "Jours"
 
-#: ../data/messages:83
-#: ../data/messages:123
-#: ../data/messages:163
-#: ../data/messages:87
-#: ../data/messages:127
-#: ../data/messages:167
-#: ../data/messages:89
-#: ../data/messages:129
-#: ../data/messages:169
-#: ../data/messages:93
-#: ../data/messages:133
-#: ../data/messages:173
+#: ../data/messages:83 ../data/messages:123 ../data/messages:163
+#: ../data/messages:87 ../data/messages:127 ../data/messages:167
+#: ../data/messages:89 ../data/messages:129 ../data/messages:169
+#: ../data/messages:93 ../data/messages:133 ../data/messages:173
 msgid "Monday"
 msgstr "Lundi"
 
-#: ../data/messages:85
-#: ../data/messages:125
-#: ../data/messages:165
-#: ../data/messages:89
-#: ../data/messages:129
-#: ../data/messages:169
-#: ../data/messages:91
-#: ../data/messages:131
-#: ../data/messages:171
-#: ../data/messages:95
-#: ../data/messages:135
-#: ../data/messages:175
+#: ../data/messages:85 ../data/messages:125 ../data/messages:165
+#: ../data/messages:89 ../data/messages:129 ../data/messages:169
+#: ../data/messages:91 ../data/messages:131 ../data/messages:171
+#: ../data/messages:95 ../data/messages:135 ../data/messages:175
 msgid "Tuesday"
 msgstr "Mardi"
 
-#: ../data/messages:87
-#: ../data/messages:127
-#: ../data/messages:167
-#: ../data/messages:91
-#: ../data/messages:131
-#: ../data/messages:171
-#: ../data/messages:93
-#: ../data/messages:133
-#: ../data/messages:173
-#: ../data/messages:97
-#: ../data/messages:137
-#: ../data/messages:177
+#: ../data/messages:87 ../data/messages:127 ../data/messages:167
+#: ../data/messages:91 ../data/messages:131 ../data/messages:171
+#: ../data/messages:93 ../data/messages:133 ../data/messages:173
+#: ../data/messages:97 ../data/messages:137 ../data/messages:177
 msgid "Wednesday"
 msgstr "Mercredi"
 
-#: ../data/messages:89
-#: ../data/messages:129
-#: ../data/messages:169
-#: ../data/messages:93
-#: ../data/messages:133
-#: ../data/messages:173
-#: ../data/messages:95
-#: ../data/messages:135
-#: ../data/messages:175
-#: ../data/messages:99
-#: ../data/messages:139
-#: ../data/messages:179
+#: ../data/messages:89 ../data/messages:129 ../data/messages:169
+#: ../data/messages:93 ../data/messages:133 ../data/messages:173
+#: ../data/messages:95 ../data/messages:135 ../data/messages:175
+#: ../data/messages:99 ../data/messages:139 ../data/messages:179
 msgid "Thursday"
 msgstr "Jeudi"
 
-#: ../data/messages:91
-#: ../data/messages:131
-#: ../data/messages:171
-#: ../data/messages:95
-#: ../data/messages:135
-#: ../data/messages:175
-#: ../data/messages:97
-#: ../data/messages:137
-#: ../data/messages:177
-#: ../data/messages:101
-#: ../data/messages:141
-#: ../data/messages:181
+#: ../data/messages:91 ../data/messages:131 ../data/messages:171
+#: ../data/messages:95 ../data/messages:135 ../data/messages:175
+#: ../data/messages:97 ../data/messages:137 ../data/messages:177
+#: ../data/messages:101 ../data/messages:141 ../data/messages:181
 msgid "Friday"
 msgstr "Vendredi"
 
-#: ../data/messages:93
-#: ../data/messages:133
-#: ../data/messages:173
-#: ../data/messages:97
-#: ../data/messages:137
-#: ../data/messages:177
-#: ../data/messages:99
-#: ../data/messages:139
-#: ../data/messages:179
-#: ../data/messages:103
-#: ../data/messages:143
-#: ../data/messages:183
+#: ../data/messages:93 ../data/messages:133 ../data/messages:173
+#: ../data/messages:97 ../data/messages:137 ../data/messages:177
+#: ../data/messages:99 ../data/messages:139 ../data/messages:179
+#: ../data/messages:103 ../data/messages:143 ../data/messages:183
 msgid "Saturday"
 msgstr "Samedi"
 
-#: ../data/messages:95
-#: ../data/messages:135
-#: ../data/messages:175
-#: ../data/messages:99
-#: ../data/messages:139
-#: ../data/messages:179
-#: ../data/messages:101
-#: ../data/messages:141
-#: ../data/messages:181
-#: ../data/messages:105
-#: ../data/messages:145
-#: ../data/messages:185
+#: ../data/messages:95 ../data/messages:135 ../data/messages:175
+#: ../data/messages:99 ../data/messages:139 ../data/messages:179
+#: ../data/messages:101 ../data/messages:141 ../data/messages:181
+#: ../data/messages:105 ../data/messages:145 ../data/messages:185
 msgid "Sunday"
 msgstr "Dimanche"
 
-#: ../data/messages:97
-#: ../data/messages:137
-#: ../data/messages:177
-#: ../data/messages:101
-#: ../data/messages:141
-#: ../data/messages:181
-#: ../data/messages:103
-#: ../data/messages:143
-#: ../data/messages:183
-#: ../data/messages:107
-#: ../data/messages:147
-#: ../data/messages:187
+#: ../data/messages:97 ../data/messages:137 ../data/messages:177
+#: ../data/messages:101 ../data/messages:141 ../data/messages:181
+#: ../data/messages:103 ../data/messages:143 ../data/messages:183
+#: ../data/messages:107 ../data/messages:147 ../data/messages:187
 msgid "Week Day"
 msgstr "Jours de la semaine"
 
-#: ../data/messages:99
-#: ../data/messages:139
-#: ../data/messages:179
-#: ../data/messages:103
-#: ../data/messages:143
-#: ../data/messages:183
-#: ../data/messages:105
-#: ../data/messages:145
-#: ../data/messages:185
-#: ../data/messages:109
-#: ../data/messages:149
-#: ../data/messages:189
+#: ../data/messages:99 ../data/messages:139 ../data/messages:179
+#: ../data/messages:103 ../data/messages:143 ../data/messages:183
+#: ../data/messages:105 ../data/messages:145 ../data/messages:185
+#: ../data/messages:109 ../data/messages:149 ../data/messages:189
 msgid "Week End"
 msgstr "Week Ends"
 
-#: ../data/messages:101
-#: ../data/messages:141
-#: ../data/messages:181
-#: ../data/messages:105
-#: ../data/messages:145
-#: ../data/messages:185
-#: ../data/messages:107
-#: ../data/messages:147
-#: ../data/messages:187
-#: ../data/messages:111
-#: ../data/messages:151
-#: ../data/messages:191
+#: ../data/messages:101 ../data/messages:141 ../data/messages:181
+#: ../data/messages:105 ../data/messages:145 ../data/messages:185
+#: ../data/messages:107 ../data/messages:147 ../data/messages:187
+#: ../data/messages:111 ../data/messages:151 ../data/messages:191
 msgid "Month"
 msgstr "Mois"
 
-#: ../data/messages:77
-#: ../data/messages:117
-#: ../data/messages:157
-#: ../data/messages:81
-#: ../data/messages:121
-#: ../data/messages:161
-#: ../data/messages:83
-#: ../data/messages:123
-#: ../data/messages:163
-#: ../data/messages:87
-#: ../data/messages:127
-#: ../data/messages:167
+#: ../data/messages:77 ../data/messages:117 ../data/messages:157
+#: ../data/messages:81 ../data/messages:121 ../data/messages:161
+#: ../data/messages:83 ../data/messages:123 ../data/messages:163
+#: ../data/messages:87 ../data/messages:127 ../data/messages:167
 msgid "Repeat every"
 msgstr "Répeter tous les"
 
-#: ../data/messages:103
-#: ../data/messages:143
-#: ../data/messages:183
-#: ../data/messages:107
-#: ../data/messages:147
-#: ../data/messages:187
-#: ../data/messages:109
-#: ../data/messages:149
-#: ../data/messages:189
-#: ../data/messages:113
-#: ../data/messages:153
-#: ../data/messages:193
+#: ../data/messages:103 ../data/messages:143 ../data/messages:183
+#: ../data/messages:107 ../data/messages:147 ../data/messages:187
+#: ../data/messages:109 ../data/messages:149 ../data/messages:189
+#: ../data/messages:113 ../data/messages:153 ../data/messages:193
 msgid "If every month, which day of the month ? :"
 msgstr "Si chaque mois, quel jour du mois ? :"
 
-#: ../data/messages:105
-#: ../data/messages:145
-#: ../data/messages:185
-#: ../data/messages:109
-#: ../data/messages:149
-#: ../data/messages:189
-#: ../data/messages:111
-#: ../data/messages:151
-#: ../data/messages:191
-#: ../data/messages:115
-#: ../data/messages:155
-#: ../data/messages:195
+#: ../data/messages:105 ../data/messages:145 ../data/messages:185
+#: ../data/messages:109 ../data/messages:149 ../data/messages:189
+#: ../data/messages:111 ../data/messages:151 ../data/messages:191
+#: ../data/messages:115 ../data/messages:155 ../data/messages:195
 msgid "Message you want to use to be notified :"
 msgstr "Message utilisé pour être notifié :"
 
-#: ../data/messages:111
-#: ../data/messages:115
-#: ../data/messages:117
+#: ../data/messages:111 ../data/messages:115 ../data/messages:117
 #: ../data/messages:121
 msgid "Alarm n°2"
 msgstr "Alarme n°2"
 
-#: ../data/messages:151
-#: ../data/messages:155
-#: ../data/messages:157
+#: ../data/messages:151 ../data/messages:155 ../data/messages:157
 #: ../data/messages:161
 msgid "Alarm n°3"
 msgstr "Alarme n°3"
 
-#: src/applet-notifications.c:22
-#: ../src/applet-notifications.c:44
-#: ../src/applet-notifications.c:49
-#: ../src/applet-notifications.c:47
+#: src/applet-notifications.c:22 ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:49 ../src/applet-notifications.c:47
 msgid ""
 "This is the Cairo-Dock's clock applet\n"
 " made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\n"
@@ -389,12 +230,9 @@ msgstr ""
 "La représentation analogique est un port de la fameuse Cairo-Clock\n"
 " écrite par MacSlow (http://macslow.thepimp.net)."
 
-#: src/applet-notifications.c:40
-#: ../src/applet-notifications.c:61
-#: ../src/applet-notifications.c:56
-#: ../src/applet-notifications.c:68
-#: ../src/applet-notifications.c:75
-#: ../src/applet-notifications.c:73
+#: src/applet-notifications.c:40 ../src/applet-notifications.c:61
+#: ../src/applet-notifications.c:56 ../src/applet-notifications.c:68
+#: ../src/applet-notifications.c:75 ../src/applet-notifications.c:73
 msgid "Set up time and date"
 msgstr "Régler la date et l'heure"
 
@@ -402,167 +240,129 @@ msgstr "Régler la date et l'heure"
 msgid "Icon"
 msgstr "Icône"
 
-#: ../data/messages:11
-#: ../data/messages:13
+#: ../data/messages:11 ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
-#: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
+#: ../data/messages:13 ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:15
-#: ../data/messages:17
+#: ../data/messages:15 ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17
-#: ../data/messages:19
+#: ../data/messages:17 ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
-#: ../data/messages:19
-#: ../data/messages:21
+#: ../data/messages:19 ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21
-#: ../data/messages:23
+#: ../data/messages:21 ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23
-#: ../data/messages:25
+#: ../data/messages:23 ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25
-#: ../data/messages:27
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27
-#: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
+#: ../data/messages:27 ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
-#: ../data/messages:31
+#: ../data/messages:29 ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:31
-#: ../data/messages:33
-#: ../data/messages:37
+#: ../data/messages:31 ../data/messages:33 ../data/messages:37
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:35
-#: ../data/messages:37
-#: ../data/messages:41
+#: ../data/messages:35 ../data/messages:37 ../data/messages:41
 msgid "Show the date :"
 msgstr "Montrer la date :"
 
-#: ../data/messages:37
-#: ../data/messages:39
-#: ../data/messages:43
+#: ../data/messages:37 ../data/messages:39 ../data/messages:43
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:39
-#: ../data/messages:41
-#: ../data/messages:45
+#: ../data/messages:39 ../data/messages:41 ../data/messages:45
 msgid "On icon"
 msgstr "Sur l'icone"
 
-#: ../data/messages:41
-#: ../data/messages:43
-#: ../data/messages:47
+#: ../data/messages:41 ../data/messages:43 ../data/messages:47
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:57
-#: ../data/messages:59
-#: ../data/messages:63
+#: ../data/messages:57 ../data/messages:59 ../data/messages:63
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
-#: ../data/messages:63
-#: ../data/messages:67
-#: ../data/messages:69
+#: ../data/messages:63 ../data/messages:67 ../data/messages:69
 #: ../data/messages:73
 msgid "Setup time and date"
 msgstr "Régler la date et l'heure"
 
-#: ../data/messages:65
-#: ../data/messages:69
-#: ../data/messages:71
+#: ../data/messages:65 ../data/messages:69 ../data/messages:71
 #: ../data/messages:75
 msgid "Let empty to use default command."
 msgstr "Laissez vide pour utiliser la commande par défaut."
 
-#: ../data/messages:67
-#: ../data/messages:71
-#: ../data/messages:73
+#: ../data/messages:67 ../data/messages:71 ../data/messages:73
 #: ../data/messages:77
 msgid "Specific command to run :"
 msgstr "Commande spécifique à exécuter :"
 
-#: ../data/messages:69
-#: ../data/messages:73
-#: ../data/messages:75
+#: ../data/messages:69 ../data/messages:73 ../data/messages:75
 #: ../data/messages:79
 msgid "Alarm"
 msgstr "Alarme"
 
-#: ../data/messages:107
-#: ../data/messages:147
-#: ../data/messages:187
-#: ../data/messages:111
-#: ../data/messages:151
-#: ../data/messages:191
-#: ../data/messages:113
-#: ../data/messages:153
-#: ../data/messages:193
-#: ../data/messages:117
-#: ../data/messages:157
-#: ../data/messages:197
+#: ../data/messages:107 ../data/messages:147 ../data/messages:187
+#: ../data/messages:111 ../data/messages:151 ../data/messages:191
+#: ../data/messages:113 ../data/messages:153 ../data/messages:193
+#: ../data/messages:117 ../data/messages:157 ../data/messages:197
 msgid "For exemple, < play /path/to/file.ogg >."
 msgstr "Par exemple, < play /chemin/vers/le/fichier.ogg >."
 
-#: ../data/messages:109
-#: ../data/messages:149
-#: ../data/messages:189
-#: ../data/messages:113
-#: ../data/messages:153
-#: ../data/messages:193
-#: ../data/messages:115
-#: ../data/messages:155
-#: ../data/messages:195
-#: ../data/messages:119
-#: ../data/messages:159
-#: ../data/messages:199
+#: ../data/messages:109 ../data/messages:149 ../data/messages:189
+#: ../data/messages:113 ../data/messages:153 ../data/messages:193
+#: ../data/messages:115 ../data/messages:155 ../data/messages:195
+#: ../data/messages:119 ../data/messages:159 ../data/messages:199
 msgid "Command to execute :"
 msgstr "Commande à exécuter"
 
-#: ../src/applet-notifications.c:50
-#: ../src/applet-notifications.c:55
-#: ../src/applet-notifications.c:56
-#: ../src/applet-notifications.c:62
+#: ../src/applet-notifications.c:50 ../src/applet-notifications.c:55
+#: ../src/applet-notifications.c:56 ../src/applet-notifications.c:62
 #: ../src/applet-notifications.c:60
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: ../data/messages:61
-#: ../data/messages:63
-#: ../data/messages:67
-msgid "for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so."
-msgstr "par exemple Monospace, Purisa, ... Ecrivez simplement la nom de la police sans nombres"
+#: ../data/messages:61 ../data/messages:63 ../data/messages:67
+msgid ""
+"for exemple Monospace, Purisa, ... Just write the font name wihtout any "
+"number or so."
+msgstr ""
+"par exemple Monospace, Purisa, ... Ecrivez simplement la nom de la police "
+"sans nombres"
 
-#: ../data/messages:63
-#: ../data/messages:65
-#: ../data/messages:69
+#: ../data/messages:63 ../data/messages:65 ../data/messages:69
 msgid "Font used for the numeric display :"
 msgstr "Police utilisée pour l'affichage numérique :"
 
@@ -571,8 +371,13 @@ msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
+"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
+"contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:35
 msgid "Lockposition ?"
@@ -581,4 +386,3 @@ msgstr "Verrouiller la position ?"
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
-

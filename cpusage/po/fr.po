@@ -125,7 +125,7 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:13 ../data/messages:33 ../data/messages:49
-#: ../data/messages:37 ../data/messages:53
+#: ../data/messages:37 ../data/messages:53 ../data/messages:61
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -139,6 +139,7 @@ msgid "Let t empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #: ../data/messages:37 ../data/messages:51 ../data/messages:55
+#: ../data/messages:63 ../data/messages:71
 msgid "in seconds."
 msgstr "en secondes."
 
@@ -200,7 +201,7 @@ msgstr "Sur l'icône"
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:53 ../data/messages:57
+#: ../data/messages:53 ../data/messages:57 ../data/messages:65
 msgid "Delay between refresh :"
 msgstr "Délai entre les rafraîchissements"
 
@@ -250,3 +251,33 @@ msgstr "Temps d'activité système"
 #: ../src/applet-notifications.c:152
 msgid "Activity time"
 msgstr "Temps d'activité"
+
+#: ../data/messages:53
+msgid "It's the first color of the gradation used to write the top list."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Start color of the top list :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "It's the second color of the gradation used to write the top list."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Stop color of the top list :"
+msgstr ""
+
+#: ../data/messages:67
+msgid ""
+"When you left-click on the icon, you will get the list of the N most CPU-"
+"using programs."
+msgstr ""
+
+#: ../data/messages:69
+msgid "Number of programs to display in the top list :"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Delay between refresh of the top list :"
+msgstr ""

@@ -320,7 +320,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 				{
 					gchar *cGuessedName = g_path_get_basename (cOneBookmark);
 					cairo_dock_remove_html_spaces (cGuessedName);
-					cName = g_strdup_printf ("%s\n[%]", cGuessedName, D_("Unmounted"));
+					cName = g_strdup_printf ("%s\n[%s]", cGuessedName, D_("Unmounted"));
 					g_free (cGuessedName);
 				}
 				if (cRealURI == NULL)

@@ -15,18 +15,33 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.changeAnimation 	= CD_CONFIG_GET_ANIMATION_WITH_DEFAULT ("Configuration", "change_animation", CAIRO_DOCK_ROTATE);
 	myConfig.quickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
 	myConfig.bStealTaskBarIcon = CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
-	myConfig.extendedDesklet		= CD_CONFIG_GET_BOOLEAN ("Configuration", "extended_desklet");
 	
 	myConfig.cUserImage[PLAYER_NONE] 			= CD_CONFIG_GET_STRING ("Configuration", "default icon");
 	myConfig.cUserImage[PLAYER_PLAYING] 		= CD_CONFIG_GET_STRING ("Configuration", "play icon");
 	myConfig.cUserImage[PLAYER_PAUSED] 		= CD_CONFIG_GET_STRING ("Configuration", "pause icon");
 	myConfig.cUserImage[PLAYER_STOPPED] 		= CD_CONFIG_GET_STRING ("Configuration", "stop icon");
 	myConfig.cUserImage[PLAYER_BROKEN] 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
+	
+	myConfig.iDecoration 		= CD_CONFIG_GET_INTEGER ("Configuration", "deklet decoration");
+	myConfig.extendedDesklet = (myConfig.iDecoration == MY_APPLET_EXTENDED);
+	if (myConfig.iDecoration == MY_APPLET_PERSONNAL)
+	{
+		myConfig.fFrameAlpha		= CD_CONFIG_GET_DOUBLE ("Configuration", "frame alpha");
+		myConfig.cFrameImage 	= CD_CONFIG_GET_FILE_PATH ("Configuration", "frame", NULL);
+		myConfig.fReflectAlpha		= CD_CONFIG_GET_DOUBLE ("Configuration", "reflect alpha");
+		myConfig.cReflectImage 	= CD_CONFIG_GET_FILE_PATH ("Configuration", "reflect", NULL);
+		myConfig.iLeftOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "left offset");
+		myConfig.iTopOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "top offset");
+		myConfig.iRightOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "right offset");
+		myConfig.iBottomOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "bottom offset");
+	}
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
+	g_free(myConfig.cFrameImage);
+	g_free(myConfig.cReflectImage);
 	
 	int i;
 	for (i = 0; i < PLAYER_NB_STATUS; i ++)

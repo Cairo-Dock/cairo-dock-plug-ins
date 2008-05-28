@@ -33,9 +33,9 @@ libcd_tomboy_la_CFLAGS = \
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
-	-Werror-implicit-function-declaration\
 	-O3
 #	-g -ggdb -W -Wall
+#-Werror-implicit-function-declaration
 
 
 libcd_tomboy_la_LIBADD = \

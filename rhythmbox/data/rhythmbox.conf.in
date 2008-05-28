@@ -81,11 +81,35 @@ enable_cover=true
 #r[nothing;time elapsed;time left;time in %;n° of track] Information to display on the icon :
 quick-info_type=1
 
-#b Activate extended desklet mode ?
-extended_desklet=false
+#v
+sep_deco =
+
+#r[Personnal;Extended 3D mode;CD box;frame with reflects;scotch;frame with scotch] Choose a decoration for the desklet mode :
+#{If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration.}
+deklet decoration = 3
+
+#S Background image :
+#{It's an image that will be displayed below the cover, like a frame for exemple.}
+frame =
+#e[0;1] Background tansparency :
+frame alpha = 1
+#i Left offset :
+#{It's typically the width of the left side of your frame, in pixels.}
+left offset = 0
+#i Right offset :
+top offset = 0
+#i Right offset :
+right offset = 0
+#i Right offset :
+bottom offset = 0
+#S Reflection image :
+#{It's an image that will be displayed above the cover, like a reflect for exemple.}
+reflect =
+#e[0;1] Reflection tansparency :
+reflect alpha = 1
 
 
-#F[Personnalisation;gtk-info]
+#X[Personnalisation;gtk-info]
 frame_app =
 
 #S Name of an image for the 'default' icon :

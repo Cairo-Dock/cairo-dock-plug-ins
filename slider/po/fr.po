@@ -113,14 +113,14 @@ msgstr ""
 #: ../src/applet-notifications.c:48 ../src/applet-notifications.c:49
 #: ../src/applet-notifications.c:67 ../src/applet-notifications.c:89
 #: ../src/applet-notifications.c:90 ../src/applet-notifications.c:107
-#: ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:108 ../src/applet-notifications.c:113
 msgid "Play"
 msgstr "Jouer"
 
 #: ../src/applet-notifications.c:51 ../src/applet-notifications.c:52
 #: ../src/applet-notifications.c:70 ../src/applet-notifications.c:89
 #: ../src/applet-notifications.c:90 ../src/applet-notifications.c:107
-#: ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:108 ../src/applet-notifications.c:113
 msgid "Pause"
 msgstr "Pause"
 
@@ -267,22 +267,22 @@ msgstr "ouvrir l'image"
 msgid "Background & Reflection"
 msgstr "Fond et Réflection"
 
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:99 ../data/messages:103 ../data/messages:115
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:103 ../data/messages:107
+#: ../data/messages:103 ../data/messages:107 ../data/messages:117
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
 msgid "Set it to zero if you want to have a clean background"
 msgstr "A définir a zéro si vous voulez avoir un fond transparent"
 
-#: ../data/messages:107 ../data/messages:115
+#: ../data/messages:107 ../data/messages:115 ../data/messages:131
 msgid "Reflection image :"
 msgstr "Image du reflet :"
 
-#: ../data/messages:111 ../data/messages:119
+#: ../data/messages:111 ../data/messages:119 ../data/messages:133
 msgid "Reflection tansparency :"
 msgstr "Transparence du reflet :"
 
@@ -290,7 +290,7 @@ msgid "Set it to zero if you dont want reflection"
 msgstr "A définir a zéro si vous ne voulez pas avoir de reflet"
 
 #: ../src/applet-notifications.c:93 ../src/applet-notifications.c:110
-#: ../src/applet-notifications.c:111
+#: ../src/applet-notifications.c:111 ../src/applet-notifications.c:116
 msgid "Open current image"
 msgstr "Ouvrir l'image courante"
 
@@ -357,3 +357,57 @@ msgstr "C'est la largeur de votre cadre en pixels."
 #: ../data/messages:111
 msgid "Background offset :"
 msgstr "Décalage de l'arrière plan :"
+
+#: ../data/messages:99
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:101
+msgid ""
+"If you choose 'personnal', you can define your own decoration above, or let "
+"it blank to not use any decoration."
+msgstr ""
+
+#: ../data/messages:103
+msgid "Choose a background and foreground decoration :"
+msgstr ""
+
+#: ../data/messages:105
+msgid "Personnal"
+msgstr ""
+
+#: ../data/messages:107
+msgid "frame with reflects"
+msgstr ""
+
+#: ../data/messages:109
+msgid "scotch"
+msgstr ""
+
+#: ../data/messages:111
+msgid "frame with scotch"
+msgstr ""
+
+#: ../data/messages:113
+msgid ""
+"It's an image that will be displayed below the slide, like a frame for "
+"exemple."
+msgstr ""
+
+#: ../data/messages:119
+msgid "It's typically the width of the left side of your frame, in pixels."
+msgstr ""
+
+#: ../data/messages:121
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:123 ../data/messages:125 ../data/messages:127
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:129
+msgid ""
+"It's an image that will be displayed above the slide, like a reflect for "
+"exemple."
+msgstr ""

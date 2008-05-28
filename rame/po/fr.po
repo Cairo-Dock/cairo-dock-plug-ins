@@ -128,7 +128,7 @@ msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:13 ../data/messages:33 ../data/messages:35
 #: ../data/messages:53 ../data/messages:39 ../data/messages:57
-#: ../data/messages:37 ../data/messages:55
+#: ../data/messages:37 ../data/messages:55 ../data/messages:63
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -166,7 +166,7 @@ msgid "B"
 msgstr "o"
 
 #: ../data/messages:37 ../data/messages:55 ../data/messages:59
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:65
 msgid "in seconds."
 msgstr "en secondes."
 
@@ -220,6 +220,7 @@ msgid "Display SWAP too ?"
 msgstr "Afficher aussi la SWAP ?"
 
 #: ../data/messages:57 ../data/messages:61 ../data/messages:59
+#: ../data/messages:67
 msgid "Delay between refresh :"
 msgstr "Intervalle entre chaque rafraîchissement :"
 
@@ -250,4 +251,34 @@ msgstr ""
 
 #: ../src/applet-notifications.c:128
 msgid "Data acquisition has failed"
+msgstr ""
+
+#: ../data/messages:55
+msgid "It's the first color of the gradation used to write the top list."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Start color of the top list :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "It's the second color of the gradation used to write the top list."
+msgstr ""
+
+#: ../data/messages:61
+msgid "Stop color of the top list :"
+msgstr ""
+
+#: ../data/messages:69
+msgid ""
+"When you left-click on the icon, you will get the list of the N most memory-"
+"using programs."
+msgstr ""
+
+#: ../data/messages:71
+msgid "Number of programs to display in the top list :"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Show top memory usage in % ?"
 msgstr ""

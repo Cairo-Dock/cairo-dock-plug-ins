@@ -164,3 +164,8 @@ msgstr "位置を固定？"
 #: ../data/messages:37
 msgid "Lock position ?"
 msgstr ""
+
+#: ../src/applet-bookmarks.c:123 ../src/applet-bookmarks.c:323
+#: ../src/applet-load-icons.c:59
+msgid "Unmounted"
+msgstr ""

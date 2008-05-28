@@ -107,6 +107,7 @@ msgid ""
 msgstr ""
 
 #: ../data/messages:33 ../data/messages:35 ../data/messages:39
+#: ../data/messages:37
 msgid "Configuration"
 msgstr ""
 
@@ -135,11 +136,12 @@ msgstr ""
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:11
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
 
 #: ../src/applet-draw.c:13 ../data/messages:45 ../data/messages:63
+#: ../data/messages:43 ../data/messages:61
 msgid "None"
 msgstr "なし"
 
@@ -199,7 +201,7 @@ msgstr "ネットワーク管理"
 msgid "Unknown"
 msgstr "不明"
 
-#: ../data/messages:35
+#: ../data/messages:35 ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -212,71 +214,71 @@ msgstr ""
 msgid "Lockposition ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:41
+#: ../data/messages:41 ../data/messages:39
 msgid "Information"
 msgstr "情報"
 
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:41
 msgid "Information to display on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: ../data/messages:47
+#: ../data/messages:47 ../data/messages:45
 msgid "Signal Strength"
 msgstr "信号の強さ"
 
-#: ../data/messages:49
+#: ../data/messages:49 ../data/messages:47
 msgid "Signal Strength in percent"
 msgstr "信号の強さ（％単位）"
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:49
 msgid "Raw Signal Informations"
 msgstr "生信号の情報"
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:51
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:53
 msgid "Delay between signal checks :"
 msgstr "信号チェックの間隔時間 :"
 
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:55
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:57
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "デフォルトのラベルを接続ポイント名によって上書き？"
 
-#: ../data/messages:61
+#: ../data/messages:61 ../data/messages:59
 msgid "Effect to apply on the icon according to strength :"
 msgstr "電波の強さに合わせてアイコンに適用する効果 :"
 
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:63
 msgid "Zoom"
 msgstr "ズーム"
 
-#: ../data/messages:67
+#: ../data/messages:67 ../data/messages:65
 msgid "Transparency"
 msgstr "透過"
 
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:67
 msgid "Draw Bar"
 msgstr "バーの描画"
 
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:69
 msgid "Use a jauge instead of icons?"
 msgstr "アイコンの代わりに目盛りを使用？"
 
-#: ../data/messages:73
+#: ../data/messages:73 ../data/messages:71
 msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示に利用可能なテーマのリスト :"
 
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:73
 msgid "radium"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:77 ../data/messages:75
 msgid "Images"
 msgstr "画像"
 
@@ -285,35 +287,37 @@ msgstr "画像"
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:81
+#: ../data/messages:81 ../data/messages:79
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "「信号なし」のアイコン画像の名前 :"
 
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:83
 msgid "Name of an image for the 'very low' icon :"
 msgstr "「非常に弱い」のアイコン画像の名前 :"
 
-#: ../data/messages:89
+#: ../data/messages:89 ../data/messages:87
 msgid "Name of an image for the 'low' icon :"
 msgstr "「弱い」のアイコン画像の名前 :"
 
-#: ../data/messages:93
+#: ../data/messages:93 ../data/messages:91
 msgid "Name of an image for the 'middle' icon :"
 msgstr "「中程度」のアイコン画像の名前 :"
 
-#: ../data/messages:97
+#: ../data/messages:97 ../data/messages:95
 msgid "Name of an image for the 'good' icon :"
 msgstr "「良好」のアイコン画像の名前 :"
 
-#: ../data/messages:101
+#: ../data/messages:101 ../data/messages:99
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "「最高」のアイコン画像の名前 :"
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:35
 msgid "Lock position ?"
 msgstr ""
 
 #: ../data/messages:79 ../data/messages:83 ../data/messages:87
 #: ../data/messages:91 ../data/messages:95 ../data/messages:99
+#: ../data/messages:77 ../data/messages:81 ../data/messages:85
+#: ../data/messages:89 ../data/messages:93 ../data/messages:97
 msgid "Let it empty to use the default icon."
 msgstr ""

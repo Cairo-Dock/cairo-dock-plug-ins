@@ -111,12 +111,14 @@ msgstr ""
 #: ../src/applet-notifications.c:48 ../src/applet-notifications.c:49
 #: ../src/applet-notifications.c:67 ../src/applet-notifications.c:89
 #: ../src/applet-notifications.c:107 ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:113
 msgid "Play"
 msgstr "再生"
 
 #: ../src/applet-notifications.c:51 ../src/applet-notifications.c:52
 #: ../src/applet-notifications.c:70 ../src/applet-notifications.c:89
 #: ../src/applet-notifications.c:107 ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:113
 msgid "Pause"
 msgstr "停止"
 
@@ -257,7 +259,7 @@ msgid "Force the image to fill the icon/desklet ?"
 msgstr "画像がアイコン/デスクレットを埋めるように引き伸ばす？"
 
 #: ../src/applet-notifications.c:93 ../src/applet-notifications.c:110
-#: ../src/applet-notifications.c:111
+#: ../src/applet-notifications.c:111 ../src/applet-notifications.c:116
 msgid "Open current image"
 msgstr "現在の画像を開く"
 
@@ -301,7 +303,7 @@ msgstr ""
 "例えばフレームのように、スライドの背後に表示される画像です。デフォルトのもの"
 "を使用するには空欄のままにしてください。"
 
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:99 ../data/messages:103 ../data/messages:115
 msgid "Background image :"
 msgstr "背景画像 :"
 
@@ -309,7 +311,7 @@ msgstr "背景画像 :"
 msgid "Set it to zero if you don't want to use a background"
 msgstr "背景を使用したくない場合は 0 に設定してください。"
 
-#: ../data/messages:103 ../data/messages:107
+#: ../data/messages:103 ../data/messages:107 ../data/messages:117
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
@@ -321,7 +323,7 @@ msgstr ""
 "例えば反射のように、スライドの前面に表示される画像です。デフォルトのものを使"
 "用するには空欄のままにしてください。"
 
-#: ../data/messages:107 ../data/messages:115
+#: ../data/messages:107 ../data/messages:115 ../data/messages:131
 msgid "Reflection image :"
 msgstr "反射の画像 :"
 
@@ -329,7 +331,7 @@ msgstr "反射の画像 :"
 msgid "Set it to zero if you dont don't want to use a foreground"
 msgstr "前景を使用したくない場合は 0 に設定してください。"
 
-#: ../data/messages:111 ../data/messages:119
+#: ../data/messages:111 ../data/messages:119 ../data/messages:133
 msgid "Reflection tansparency :"
 msgstr "反射の透明度 :"
 
@@ -355,4 +357,58 @@ msgstr ""
 
 #: ../data/messages:111
 msgid "Background offset :"
+msgstr ""
+
+#: ../data/messages:99
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:101
+msgid ""
+"If you choose 'personnal', you can define your own decoration above, or let "
+"it blank to not use any decoration."
+msgstr ""
+
+#: ../data/messages:103
+msgid "Choose a background and foreground decoration :"
+msgstr ""
+
+#: ../data/messages:105
+msgid "Personnal"
+msgstr ""
+
+#: ../data/messages:107
+msgid "frame with reflects"
+msgstr ""
+
+#: ../data/messages:109
+msgid "scotch"
+msgstr ""
+
+#: ../data/messages:111
+msgid "frame with scotch"
+msgstr ""
+
+#: ../data/messages:113
+msgid ""
+"It's an image that will be displayed below the slide, like a frame for "
+"exemple."
+msgstr ""
+
+#: ../data/messages:119
+msgid "It's typically the width of the left side of your frame, in pixels."
+msgstr ""
+
+#: ../data/messages:121
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:123 ../data/messages:125 ../data/messages:127
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:129
+msgid ""
+"It's an image that will be displayed above the slide, like a reflect for "
+"exemple."
 msgstr ""

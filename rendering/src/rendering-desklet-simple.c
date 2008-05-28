@@ -217,4 +217,20 @@ void rendering_register_simple_desklet_renderer (void)
 	pConfig[7] =  GINT_TO_POINTER (92);
 	pConfig[8] =  GINT_TO_POINTER (50);
 	cairo_dock_predefine_desklet_renderer_config (pRenderer, "frame with scotch", pConfig);
+	
+	pConfig = g_new0 (gpointer, 9);
+	pConfig[0] = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "cd_box.svg");
+	pConfig[1] = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "cd_box_cover.svg");
+	pConfig[2] = CAIRO_DOCK_FILL_SPACE;
+	fBackGroundAlpha = g_new (double, 1);
+	*fBackGroundAlpha = 1.;
+	pConfig[3] = fBackGroundAlpha;
+	fForeGroundAlpha = g_new (double, 1);
+	*fForeGroundAlpha = 1.;
+	pConfig[4] =  fForeGroundAlpha;
+	pConfig[5] =  GINT_TO_POINTER (93);  // /750
+	pConfig[6] =  GINT_TO_POINTER (86);  // /750
+	pConfig[7] =  GINT_TO_POINTER (72);
+	pConfig[8] =  GINT_TO_POINTER (79);
+	cairo_dock_predefine_desklet_renderer_config (pRenderer, "CD box", pConfig);
 }

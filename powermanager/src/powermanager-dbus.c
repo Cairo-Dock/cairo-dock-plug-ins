@@ -202,6 +202,7 @@ int get_stats(gchar *dataType)
 		 G_TYPE_INVALID,
 		 g_type_ptrarray, &ptrarray,
 		 G_TYPE_INVALID);
+	g_return_val_if_fail (ptrarray != NULL, 0);
 	
 	for (i=0; i< ptrarray->len; i++)  /// il semble que seule la derniere valeur ait de l'interet ....
 	{
@@ -219,7 +220,7 @@ int get_stats(gchar *dataType)
 	}
 	g_ptr_array_free (ptrarray, TRUE);
 	
-	cd_debug ("PowerManager [%s]: %d", dataType, y); 
+	cd_debug ("PowerManager [%s]: %d", dataType, y);
 	return y;  /// a quoi servent x et col alors ??
 }
 
