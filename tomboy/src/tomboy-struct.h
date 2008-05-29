@@ -12,16 +12,17 @@ typedef struct {
 	gchar *cIconBroken;
 	gboolean bNoDeletedSignal;
 	gchar *cRenderer;
+	gboolean bDrawContent;
 	} AppletConfig;
 
 typedef struct {
 	cairo_surface_t *pSurfaceDefault;
-	cairo_surface_t *pSurfaceClose;
-	cairo_surface_t *pSurfaceBroken;
+	cairo_surface_t *pSurfaceNote;
 	gboolean dbus_enable;
 	gboolean opening;
 	guint iSidCheckNotes;
 	GHashTable *hNoteTable;
+	CairoDockMeasure *pMeasureTimer;
 	} AppletData;
 
 #endif

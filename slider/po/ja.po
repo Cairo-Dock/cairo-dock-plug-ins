@@ -111,14 +111,14 @@ msgstr ""
 #: ../src/applet-notifications.c:48 ../src/applet-notifications.c:49
 #: ../src/applet-notifications.c:67 ../src/applet-notifications.c:89
 #: ../src/applet-notifications.c:107 ../src/applet-notifications.c:108
-#: ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:113 ../src/applet-notifications.c:115
 msgid "Play"
 msgstr "再生"
 
 #: ../src/applet-notifications.c:51 ../src/applet-notifications.c:52
 #: ../src/applet-notifications.c:70 ../src/applet-notifications.c:89
 #: ../src/applet-notifications.c:107 ../src/applet-notifications.c:108
-#: ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:113 ../src/applet-notifications.c:115
 msgid "Pause"
 msgstr "停止"
 
@@ -260,6 +260,7 @@ msgstr "画像がアイコン/デスクレットを埋めるように引き伸�
 
 #: ../src/applet-notifications.c:93 ../src/applet-notifications.c:110
 #: ../src/applet-notifications.c:111 ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:118
 msgid "Open current image"
 msgstr "現在の画像を開く"
 
@@ -324,6 +325,7 @@ msgstr ""
 "用するには空欄のままにしてください。"
 
 #: ../data/messages:107 ../data/messages:115 ../data/messages:131
+#: ../data/messages:137
 msgid "Reflection image :"
 msgstr "反射の画像 :"
 
@@ -332,6 +334,7 @@ msgid "Set it to zero if you dont don't want to use a foreground"
 msgstr "前景を使用したくない場合は 0 に設定してください。"
 
 #: ../data/messages:111 ../data/messages:119 ../data/messages:133
+#: ../data/messages:139
 msgid "Reflection tansparency :"
 msgstr "反射の透明度 :"
 
@@ -395,7 +398,8 @@ msgid ""
 "exemple."
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:119 ../data/messages:123 ../data/messages:127
+#: ../data/messages:131
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr ""
 
@@ -404,11 +408,20 @@ msgid "Left offset :"
 msgstr ""
 
 #: ../data/messages:123 ../data/messages:125 ../data/messages:127
+#: ../data/messages:129
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:129 ../data/messages:135
 msgid ""
 "It's an image that will be displayed above the slide, like a reflect for "
 "exemple."
+msgstr ""
+
+#: ../data/messages:125
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:133
+msgid "Bottom offset :"
 msgstr ""

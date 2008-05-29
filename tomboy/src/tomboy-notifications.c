@@ -26,7 +26,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		{
 			dbus_detect_tomboy();
 			getAllNotes();
-			update_icon();
+			cd_tomboy_load_notes();
 		}
 	}
 	else
@@ -54,19 +54,117 @@ static void _cd_tomboy_delete_note (GtkMenuItem *menu_item, Icon *pIcon)
 }
 static void _cd_tomboy_reload_notes (GtkMenuItem *menu_item, Icon *pIcon)
 {
-	reload_all_notes ();
+	getAllNotes();
+	cd_tomboy_load_notes();
+}
+static void _cd_tomboy_search_for_content (GtkMenuItem *menu_item, Icon *pIcon)
+{
+	gchar *cContent = cairo_dock_show_demand_and_wait (D_("Search for :"),
+		(pIcon != NULL ? pIcon : myIcon),
+		(pIcon != NULL && myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
+		NULL);
+	if (cContent != NULL)
+	{
+		cd_tomboy_reset_icon_marks (FALSE);
+		gchar *cContents[2] = {cContent, NULL};
+		GList *pList = cd_tomboy_find_notes_with_contents (cContents);
+		g_free (cContent);
+		if (pList != NULL)
+		{
+			cd_tomboy_mark_icons (pList, TRUE);
+			g_list_free (pList);
+			if (myDock)
+				cairo_dock_show_dock_at_mouse (myIcon->pSubDock);
+		}
+	}
+}
+static void _cd_tomboy_search_for_tag (GtkMenuItem *menu_item, Icon *pIcon)
+{
+	gchar *cTag = cairo_dock_show_demand_and_wait (D_("Search for tag :"),
+		(pIcon != NULL ? pIcon : myIcon),
+		(pIcon != NULL && myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
+		NULL);
+	if (cTag != NULL)
+	{
+		cd_tomboy_reset_icon_marks (FALSE);
+		GList *pList = cd_tomboy_find_notes_with_tag (cTag);
+		g_free (cTag);
+		if (pList != NULL)
+		{
+			cd_tomboy_mark_icons (pList, TRUE);
+			g_list_free (pList);
+			if (myDock)
+				cairo_dock_show_dock_at_mouse (myIcon->pSubDock);
+		}
+	}
+}
+static void _cd_tomboy_search_for_today (GtkMenuItem *menu_item, Icon *pIcon)
+{
+	GList *pList = cd_tomboy_find_note_for_today ();
+	if (pList != NULL)
+	{
+		cd_tomboy_mark_icons (pList, TRUE);
+		g_list_free (pList);
+		if (myDock)
+			cairo_dock_show_dock_at_mouse (myIcon->pSubDock);
+	}
+}
+static void _cd_tomboy_search_for_this_week (GtkMenuItem *menu_item, Icon *pIcon)
+{
+	GList *pList = cd_tomboy_find_note_for_this_week ();
+	if (pList != NULL)
+	{
+		cd_tomboy_mark_icons (pList, TRUE);
+		g_list_free (pList);
+		if (myDock)
+			cairo_dock_show_dock_at_mouse (myIcon->pSubDock);
+	}
+}
+static void _cd_tomboy_search_for_next_week (GtkMenuItem *menu_item, Icon *pIcon)
+{
+	GList *pList = cd_tomboy_find_note_for_next_week ();
+	if (pList != NULL)
+	{
+		cd_tomboy_mark_icons (pList, TRUE);
+		g_list_free (pList);
+		if (myDock)
+			cairo_dock_show_dock_at_mouse (myIcon->pSubDock);
+	}
+}
+static void _cd_tomboy_reset_marks (GtkMenuItem *menu_item, Icon *pIcon)
+{
+	cd_tomboy_reset_icon_marks (TRUE);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_IN_MENU(D_("Add a note"), _cd_tomboy_add_note, CD_APPLET_MY_MENU)
 	CD_APPLET_ADD_IN_MENU(D_("Reload notes"), _cd_tomboy_reload_notes, CD_APPLET_MY_MENU)
-	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))
+	if (myDock && (myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock)) || (myIcon->pSubDock == NULL && pClickedContainer == myContainer))
 	{
+		CD_APPLET_ADD_IN_MENU(D_("Add a note"), _cd_tomboy_add_note, CD_APPLET_MY_MENU)
+		
 		if (pClickedIcon != NULL && pClickedIcon !=  myIcon)
 		{
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete this note"), _cd_tomboy_delete_note, CD_APPLET_MY_MENU, pClickedIcon) 
 		}
-		CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU)
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		
+		CD_APPLET_ADD_IN_MENU(D_("Search"), _cd_tomboy_search_for_content, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU(D_("Searh for tag"), _cd_tomboy_search_for_tag, CD_APPLET_MY_MENU)
+		
+		CD_APPLET_ADD_IN_MENU(D_("Search for today's note"), _cd_tomboy_search_for_today, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU(D_("Search for this week's note"), _cd_tomboy_search_for_this_week, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU(D_("Search for next week's note"), _cd_tomboy_search_for_next_week, CD_APPLET_MY_MENU)
+		
+		GList *pList = (myDock ? (myIcon->pSubDock ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
+		Icon *icon;
+		GList *ic;
+		for (ic = pList; ic != NULL; ic = ic->next)
+		{
+			icon = ic->data;
+			if (icon->bHasIndicator)
+			{
+				CD_APPLET_ADD_IN_MENU(D_("Reset marks"), _cd_tomboy_reset_marks, CD_APPLET_MY_MENU)
+				break ;
+			}
+		}
 	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU)
 CD_APPLET_ON_BUILD_MENU_END
@@ -77,7 +175,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	{
 		dbus_detect_tomboy();
 		getAllNotes();
-		update_icon();
+		cd_tomboy_load_notes();
 	}
 	else
 		_cd_tomboy_create_new_note (pClickedIcon);

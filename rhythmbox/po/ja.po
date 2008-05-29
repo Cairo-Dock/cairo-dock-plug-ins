@@ -197,6 +197,7 @@ msgstr "トラック番号"
 
 #: ../data/messages:55 ../data/messages:75 ../data/messages:79
 #: ../data/messages:81 ../data/messages:85 ../data/messages:87
+#: ../data/messages:123
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
@@ -206,32 +207,38 @@ msgstr "カスタマイズ"
 #: ../data/messages:93 ../data/messages:97 ../data/messages:83
 #: ../data/messages:87 ../data/messages:91 ../data/messages:95
 #: ../data/messages:99 ../data/messages:103 ../data/messages:101
-#: ../data/messages:105
+#: ../data/messages:105 ../data/messages:125 ../data/messages:129
+#: ../data/messages:133 ../data/messages:137 ../data/messages:141
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #: ../data/messages:59 ../data/messages:79 ../data/messages:83
 #: ../data/messages:85 ../data/messages:89 ../data/messages:91
+#: ../data/messages:127
 msgid "Name of an image for the 'default' icon :"
 msgstr "「デフォルト」のアイコン画像の名前 :"
 
 #: ../data/messages:63 ../data/messages:83 ../data/messages:87
 #: ../data/messages:89 ../data/messages:93 ../data/messages:95
+#: ../data/messages:131
 msgid "Name of an image for the 'play' icon :"
 msgstr "「再生」のアイコン画像の名前 :"
 
 #: ../data/messages:67 ../data/messages:87 ../data/messages:91
 #: ../data/messages:93 ../data/messages:97 ../data/messages:99
+#: ../data/messages:135
 msgid "Name of an image for the 'stop' icon :"
 msgstr "「停止」のアイコン画像の名前 :"
 
 #: ../data/messages:71 ../data/messages:91 ../data/messages:95
 #: ../data/messages:97 ../data/messages:101 ../data/messages:103
+#: ../data/messages:139
 msgid "Name of an image for the 'pause' icon :"
 msgstr "「一時停止」のアイコン画像の名前 :"
 
 #: ../data/messages:75 ../data/messages:95 ../data/messages:99
 #: ../data/messages:101 ../data/messages:105 ../data/messages:107
+#: ../data/messages:143
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
 
@@ -337,4 +344,82 @@ msgstr "トラック"
 
 #: ../data/messages:35
 msgid "Lock position ?"
+msgstr ""
+
+#: ../data/messages:85
+msgid ""
+"If you choose 'personnal', you can define your own decoration above, or let "
+"it blank to not use any decoration."
+msgstr ""
+
+#: ../data/messages:87
+msgid "Choose a background and foreground decoration :"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Personnal"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Extended 3D mode"
+msgstr ""
+
+#: ../data/messages:93
+msgid "CD box"
+msgstr ""
+
+#: ../data/messages:95
+msgid "frame with reflects"
+msgstr ""
+
+#: ../data/messages:97
+msgid "scotch"
+msgstr ""
+
+#: ../data/messages:99
+msgid "frame with scotch"
+msgstr ""
+
+#: ../data/messages:101
+msgid ""
+"It's an image that will be displayed below the cover, like a frame for "
+"exemple."
+msgstr ""
+
+#: ../data/messages:103
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:105
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:107
+msgid "It's typically the width of the left side of your frame, in pixels."
+msgstr ""
+
+#: ../data/messages:109
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:111 ../data/messages:113 ../data/messages:115
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:117
+msgid ""
+"It's an image that will be displayed above the cover, like a reflect for "
+"exemple."
+msgstr ""
+
+#: ../data/messages:119
+msgid "Reflection image :"
+msgstr ""
+
+#: ../data/messages:121
+msgid "Reflection tansparency :"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Choose a decoration for the desklet mode :"
 msgstr ""

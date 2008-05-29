@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #include <glib/gi18n.h>
 #include <glib/gprintf.h>
 
@@ -116,7 +117,9 @@ void cd_rame_update_from_data (void)
 		{
 			double fRamPercent = 100. * (myData.ramUsed - myData.ramCached) / myData.ramTotal;
 			double fSwapPercent = 100. * myData.swapUsed / myData.swapTotal;
-			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
+			gboolean bRamNeedsUpdate = (fabs (myData.fPrevRamPercent - fRamPercent) > .1);
+			gboolean bSwapNeedsUpdate = (myConfig.bShowSwap && fabs (myData.fPrevSwapPercent - fSwapPercent) > .1);
+			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE && (bRamNeedsUpdate || bSwapNeedsUpdate))
 			{
 				GString *sInfo = g_string_new ("");
 				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL || myDesklet)
@@ -143,20 +146,31 @@ void cd_rame_update_from_data (void)
 			}
 			
 			if (! myConfig.bShowSwap)
-				make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, fRamPercent / 100);
+			{
+				if (bRamNeedsUpdate)
+					make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, fRamPercent / 100);
+			}
 			else
 			{
-				GList *pList = NULL;  /// un tableau ca serait plus sympa ...
-				double *pValue = g_new (double, 1);
-				*pValue = (double) fRamPercent / 100;
-				pList = g_list_append (pList, pValue);
-				pValue = g_new (double, 1);
-				*pValue = (double) fSwapPercent / 100;
-				pList = g_list_append (pList, pValue);
-				make_cd_Gauge_multiValue (myDrawContext, myContainer, myIcon, myData.pGauge, pList);
-				g_list_foreach (pList, (GFunc) g_free, NULL);
-				g_list_free (pList);
+				if (bRamNeedsUpdate || bSwapNeedsUpdate)
+				{
+					GList *pList = NULL;  /// un tableau ca serait plus sympa ...
+					double *pValue = g_new (double, 1);
+					*pValue = (double) fRamPercent / 100;
+					pList = g_list_append (pList, pValue);
+					pValue = g_new (double, 1);
+					*pValue = (double) fSwapPercent / 100;
+					pList = g_list_append (pList, pValue);
+					make_cd_Gauge_multiValue (myDrawContext, myContainer, myIcon, myData.pGauge, pList);
+					g_list_foreach (pList, (GFunc) g_free, NULL);
+					g_list_free (pList);
+				}
 			}
+			
+			if (bRamNeedsUpdate)
+				myData.fPrevRamPercent = fRamPercent;
+			if (bSwapNeedsUpdate)
+				myData.fPrevSwapPercent = fSwapPercent;
 		}
 	}
 }

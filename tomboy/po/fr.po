@@ -207,18 +207,21 @@ msgstr "Nom d'une image pour l'icône 'fermer' :"
 #: ../src/tomboy-notifications.c:43 ../src/tomboy-notifications.c:47
 #: ../src/tomboy-notifications.c:61 ../src/tomboy-notifications.c:62
 #: ../src/tomboy-notifications.c:63 ../src/tomboy-notifications.c:60
+#: ../src/tomboy-notifications.c:99 ../src/tomboy-notifications.c:142
 msgid "Add a note"
 msgstr "Ajouter une note"
 
 #: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:53
 #: ../src/tomboy-notifications.c:67 ../src/tomboy-notifications.c:68
 #: ../src/tomboy-notifications.c:69 ../src/tomboy-notifications.c:66
+#: ../src/tomboy-notifications.c:105 ../src/tomboy-notifications.c:146
 msgid "Delete this note"
 msgstr "Supprimer cette note"
 
 #: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:62
 #: ../src/tomboy-notifications.c:63 ../src/tomboy-notifications.c:64
-#: ../src/tomboy-notifications.c:61
+#: ../src/tomboy-notifications.c:61 ../src/tomboy-notifications.c:100
+#: ../src/tomboy-notifications.c:139
 msgid "Reload notes"
 msgstr "Recharger les notes"
 
@@ -260,3 +263,39 @@ msgstr "Laissez vide pour utiliser la vue de sous-docks par défaut."
 #: ../data/messages:35
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour les sous-docks :"
+
+#: ../src/tomboy-notifications.c:61 ../src/tomboy-notifications.c:62
+msgid "Search for :"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:82 ../src/tomboy-notifications.c:83
+msgid "Search for tag :"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:110 ../src/tomboy-notifications.c:149
+msgid "Search"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:111 ../src/tomboy-notifications.c:150
+msgid "Searh for tag"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:152
+msgid "Search for today's note"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:153
+msgid "Search for this week's note"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:154
+msgid "Search for next week's note"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:164
+msgid "Reset marks"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Draw note's content on their icon ?"
+msgstr ""

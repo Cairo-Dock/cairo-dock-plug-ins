@@ -14,6 +14,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cIconBroken 		= CD_CONFIG_GET_STRING ("Icon", "broken icon");
 	myConfig.bNoDeletedSignal 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no deleted signal");
 	myConfig.cRenderer 		= CD_CONFIG_GET_STRING ("Configuration", "renderer");
+	myConfig.bDrawContent 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "draw content");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -28,9 +29,9 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
+	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	cairo_surface_destroy (myData.pSurfaceDefault);
-	cairo_surface_destroy (myData.pSurfaceClose);
-	cairo_surface_destroy (myData.pSurfaceBroken);
+	cairo_surface_destroy (myData.pSurfaceNote);
 	
 	free_all_notes ();
 	g_hash_table_destroy (myData.hNoteTable);

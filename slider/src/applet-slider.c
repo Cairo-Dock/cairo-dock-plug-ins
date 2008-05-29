@@ -56,7 +56,7 @@ static void cd_slider_measure_directory (gchar *cDirectory, gboolean bRecursive)
 	GString *sFilePath = g_string_new ("");
 	while ((cFileName = g_dir_read_name (dir)) != NULL) {
 		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
-		if (lstat (sFilePath->str, &buf) != -1) {
+		if (stat (sFilePath->str, &buf) != -1) {
 			if (S_ISDIR (buf.st_mode)) {
 				cd_debug ("%s is a directory, let's look", sFilePath->str);
 				if (bRecursive)

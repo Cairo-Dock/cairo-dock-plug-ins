@@ -214,7 +214,7 @@ void cd_shortcuts_build_shortcuts_from_data (void)
 		
 		myDesklet->icons = myData.pIconList;
 		myData.pIconList = NULL;
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on n'a pas besoin du context sur myIcon.
 		
 		gtk_widget_queue_draw (myDesklet->pWidget);
 	}

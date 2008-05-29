@@ -31,8 +31,8 @@ libcd_slider_la_CFLAGS = \
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
+	-Werror-implicit-function-declaration\
 	-O3
-#	-Werror-implicit-function-declaration\
 #	-g -ggdb -W -Wall
 
 

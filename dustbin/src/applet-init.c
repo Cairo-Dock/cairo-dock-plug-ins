@@ -142,7 +142,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	{
 		if (myConfig.cAdditionnalDirectoriesList != NULL)
 		{
-			cd_message ("***methode par defaut");
+			cd_message ("***mode degrade");
 			cd_dustbin_check_trashes (myIcon);
 			myData.iSidCheckTrashes = g_timeout_add_seconds ((int) (myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
 		}

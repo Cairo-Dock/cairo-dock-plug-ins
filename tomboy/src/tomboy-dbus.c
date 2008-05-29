@@ -10,6 +10,8 @@ static DBusGProxy *dbus_proxy_tomboy = NULL;
 
 CD_APPLET_INCLUDE_MY_VARS
 
+extern struct tm *localtime_r (time_t *timer, struct tm *tp);
+
 
 gboolean dbus_connect_to_bus (void)
 {
@@ -24,7 +26,7 @@ gboolean dbus_connect_to_bus (void)
 		
 		dbus_g_proxy_add_signal(dbus_proxy_tomboy, "NoteDeleted",  // aie, ce signal n'a pas l'air d'exister dans la version Gutsy de tomboy (No marshaller for signature of signal 'NoteDeleted') :-(
 			G_TYPE_STRING,
-			G_TYPE_STRING,
+			///G_TYPE_STRING,
 			G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(dbus_proxy_tomboy, "NoteAdded",
 			G_TYPE_STRING,
@@ -83,6 +85,8 @@ static Icon *_cd_tomboy_create_icon_for_note (const gchar *cNoteURI)
 	pIcon->acCommand = g_strdup (cNoteURI);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca devient un vrai lanceur.
 	pIcon->cParentDockName = g_strdup (myIcon->acName);
 	pIcon->acFileName = g_strdup_printf ("%s/note.svg",MY_APPLET_SHARE_DATA_DIR);
+	if (myConfig.bDrawContent)
+		pIcon->cClass = getNoteContent (cNoteURI);
 	return pIcon;
 }
 
@@ -104,7 +108,8 @@ static void _cd_tomboy_unregister_note (Icon *pIcon)
 	g_hash_table_remove (myData.hNoteTable, pIcon->acCommand);
 }
 
-void onDeleteNote(DBusGProxy *proxy,const gchar *note_uri, const gchar *note_title, gpointer data)
+
+void onDeleteNote(DBusGProxy *proxy, const gchar *note_uri, /**const gchar *note_title, */gpointer data)
 {
 	cd_message ("%s (%s)", __func__, note_uri);
 	Icon *pIcon = _cd_tomboy_find_note_from_uri (note_uri);
@@ -128,7 +133,7 @@ void onDeleteNote(DBusGProxy *proxy,const gchar *note_uri, const gchar *note_tit
 	update_icon ();
 }
 
-void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
+void onAddNote(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 {
 	cd_message ("%s (%s)", __func__, note_uri);
 	
@@ -157,9 +162,18 @@ void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 	
 	_cd_tomboy_register_note (pIcon);
 	update_icon ();
+	
+	if (pIcon->cClass != NULL)
+	{
+		cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+		cd_tomboy_draw_content_on_icon (pIconContext, pIcon, pIcon->cClass);
+		cairo_destroy (pIconContext);
+		g_free (pIcon->cClass);
+		pIcon->cClass = NULL;
+	}
 }
 
-void onChangeNoteList(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
+void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 {
 	cd_message ("%s (%s)", __func__, note_uri);
 	Icon *pIcon = _cd_tomboy_find_note_from_uri (note_uri);
@@ -174,13 +188,23 @@ void onChangeNoteList(DBusGProxy *proxy,const gchar *note_uri, gpointer data)
 	}
 	else
 		g_free (cTitle);
+	
+	gchar *cNoteContent = getNoteContent (note_uri);
+	if (cNoteContent != NULL)
+	{
+		cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+		cairo_dock_set_icon_surface (pIconContext, myData.pSurfaceNote);  // on efface l'ancien texte.
+		cd_tomboy_draw_content_on_icon (pIconContext, pIcon, cNoteContent);
+		cairo_destroy (pIconContext);
+		g_free (cNoteContent);
+	}
 }
 
 static gboolean _cd_tomboy_remove_old_notes (gchar *cNoteURI, Icon *pIcon, double *fTime)
 {
 	if (pIcon->fLastCheckTime < *fTime)
 	{
-		cd_message ("cette note (%s) est trop vieille\n", cNoteURI);
+		cd_message ("cette note (%s) est trop vieille", cNoteURI);
 		if (myDock)
 		{
 			if (myIcon->pSubDock != NULL)
@@ -228,7 +252,7 @@ gboolean cd_tomboy_check_deleted_notes (gpointer data)
 			int iNbRemovedIcons = g_hash_table_foreach_remove (myData.hNoteTable, (GHRFunc) _cd_tomboy_remove_old_notes, &fTime);
 			if (iNbRemovedIcons != 0)
 			{
-				cd_message ("%d notes enlevees\n", iNbRemovedIcons);
+				cd_message ("%d notes enlevees", iNbRemovedIcons);
 				if (myDock)
 				{
 					if (myIcon->pSubDock != NULL)
@@ -250,14 +274,6 @@ gboolean cd_tomboy_check_deleted_notes (gpointer data)
 }
 
 
-
-void reload_all_notes (void)
-{
-	cd_message ("");
-	getAllNotes();
-	update_icon();
-}
-
 gchar *getNoteTitle (const gchar *note_name)
 {
 	cd_debug("tomboy : Chargement du titre : %s",note_name);
@@ -270,13 +286,23 @@ gchar *getNoteTitle (const gchar *note_name)
 	
 	return note_title;
 }
+gchar *getNoteContent (const gchar *note_name)
+{
+	gchar *cNoteContent = NULL;
+	dbus_g_proxy_call (dbus_proxy_tomboy, "GetNoteContents", NULL,
+		G_TYPE_STRING, note_name,
+		G_TYPE_INVALID,
+		G_TYPE_STRING, &cNoteContent,
+		G_TYPE_INVALID);
+	return cNoteContent;
+}
 
 void getAllNotes(void)
 {
-	cd_message("tomboy : getAllNotes");
+	cd_message("");
 	
 	free_all_notes ();
-	GList *pList = NULL;
+	///GList *pList = NULL;
 	
 	gchar **note_list = NULL;
 	if(dbus_g_proxy_call (dbus_proxy_tomboy, "ListAllNotes", NULL,
@@ -291,13 +317,17 @@ void getAllNotes(void)
 		{
 			cNoteURI = note_list[i];
 			Icon *pIcon = _cd_tomboy_create_icon_for_note (cNoteURI);
-			pIcon->fOrder = i;
-			pList = g_list_append (pList, pIcon);
+			pIcon->fOrder = i;  /// recuperer la date ...
+			///pList = g_list_append (pList, pIcon);
 			_cd_tomboy_register_note (pIcon);
 		}
 	}
 	g_strfreev (note_list);
-	
+}
+
+void cd_tomboy_load_notes (void)
+{
+	GList *pList = g_hash_table_get_values (myData.hNoteTable);
 	if (myDock)
 	{
 		if (myIcon->pSubDock == NULL)
@@ -313,21 +343,43 @@ void getAllNotes(void)
 	{
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
+	update_icon ();
+	
+	Icon *icon;
+	GList *ic;
+	for (ic = pList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		if (icon->cClass != NULL)
+		{
+			cairo_t *pIconContext = cairo_create (icon->pIconBuffer);
+			cd_tomboy_draw_content_on_icon (pIconContext, icon, icon->cClass);
+			cairo_destroy (pIconContext);
+			g_free (icon->cClass);
+			icon->cClass = NULL;
+		}
+	}
+	
+	if (myConfig.bNoDeletedSignal && myData.iSidCheckNotes == 0)
+		myData.iSidCheckNotes = g_timeout_add_seconds (2, (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
 }
 
 void free_all_notes (void)
 {
-	cd_message (""); 
+	cd_message ("");
 	g_hash_table_remove_all (myData.hNoteTable);
 	if (myDock)
 	{
 		if (myIcon->pSubDock != NULL)
 		{
+			g_list_free (myIcon->pSubDock->icons);
 			myIcon->pSubDock->icons = NULL;
+			cairo_dock_set_renderer (myIcon->pSubDock, myConfig.cRenderer);  // pour le reload.
 		}
 	}
 	else
 	{
+		g_list_free (myDesklet->icons);
 		myDesklet->icons = NULL;
 	}
 }
@@ -371,17 +423,11 @@ void showNote(gchar *note_name)
 gchar **getNoteTags (const gchar *note_name)
 {
 	gchar **cTags = NULL;
-	if (dbus_g_proxy_call (dbus_proxy_tomboy, "GetTagsForNote", NULL,
+	dbus_g_proxy_call (dbus_proxy_tomboy, "GetTagsForNote", NULL,
 		G_TYPE_STRING, note_name,
 		G_TYPE_INVALID,
 		G_TYPE_STRV, &cTags,
-		G_TYPE_INVALID))
-	{
-		int i = 0;
-		while (cTags[i] != NULL)
-			i ++;
-	}
-	
+		G_TYPE_INVALID);
 	return cTags;
 }
 
@@ -403,35 +449,25 @@ GList *cd_tomboy_find_notes_with_tag (gchar *cTag)
 	if (cNoteNames == NULL)
 		return NULL;
 	
-	GList *pList = (myDock ? myDock->icons : myDesklet->icons);
+	GList *pList = (myDock ? (myIcon->pSubDock ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
 	GList *pMatchList = NULL;
-	Icon *icon;
-	GList *ic;
-	int i;
-	for (ic = pList; ic != NULL; ic = ic->next)
+	Icon *pIcon;
+	int i=0;
+	while (cNoteNames[i] != NULL)
 	{
-		icon = ic->data;
-		
-		while (cNoteNames[i] != NULL)
-		{
-			if (strcmp (icon->acCommand, cNoteNames[i]) == 0)
-			{
-				pMatchList = g_list_prepend (pMatchList, icon);
-				break ;
-			}
-		}
+		pIcon = _cd_tomboy_find_note_from_uri (cNoteNames[i]);
+		if (pIcon != NULL)
+			pMatchList = g_list_prepend (pMatchList, pMatchList);
+		i ++;
 	}
 	return pMatchList;
 }
 
 
 
-
-
 static gboolean _cd_tomboy_note_has_contents (gchar *cNoteName, gchar **cContents)
 {
 	gchar *cNoteContent = NULL;
-	
 	if (dbus_g_proxy_call (dbus_proxy_tomboy, "GetNoteContents", NULL,
 		G_TYPE_STRING, cNoteName,
 		G_TYPE_INVALID,
@@ -441,11 +477,13 @@ static gboolean _cd_tomboy_note_has_contents (gchar *cNoteName, gchar **cContent
 		int i = 0;
 		while (cContents[i] != NULL)
 		{
+			g_print (" %s : %s\n", cNoteName, cContents[i]);
 			if (g_strstr_len (cNoteContent, strlen (cNoteContent), cContents[i]) != NULL)
 			{
 				g_free (cNoteContent);
 				return TRUE;
 			}
+			i ++;
 		}
 	}
 	g_free (cNoteContent);
@@ -453,7 +491,8 @@ static gboolean _cd_tomboy_note_has_contents (gchar *cNoteName, gchar **cContent
 }
 GList *cd_tomboy_find_notes_with_contents (gchar **cContents)
 {
-	GList *pList = (myDock ? myDock->icons : myDesklet->icons);
+	g_return_val_if_fail (cContents != NULL, NULL);
+	GList *pList = (myDock ? (myIcon->pSubDock ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
 	GList *pMatchList = NULL;
 	Icon *icon;
 	GList *ic;
@@ -470,7 +509,7 @@ GList *cd_tomboy_find_notes_with_contents (gchar **cContents)
 
 
 #define CD_TOMBOY_DATE_BUFFER_LENGTH 50
-GList *cd_tomboy_find_note_with_today (void)
+GList *cd_tomboy_find_note_for_today (void)
 {
 	static char s_cDateBuffer[CD_TOMBOY_DATE_BUFFER_LENGTH+1];
 	static struct tm epoch_tm;
@@ -480,4 +519,48 @@ GList *cd_tomboy_find_note_with_today (void)
 	
 	gchar *cContents[2] = {s_cDateBuffer, NULL};
 	return cd_tomboy_find_notes_with_contents (cContents);
+}
+
+GList *cd_tomboy_find_note_for_this_week (void)
+{
+	static char s_cDateBuffer[CD_TOMBOY_DATE_BUFFER_LENGTH+1];
+	static struct tm epoch_tm;
+	time_t epoch = (time_t) time (NULL);
+	localtime_r (&epoch, &epoch_tm);
+	int i, iNbDays = 7 - epoch_tm.tm_wday;  // lundi <=> 0.
+	
+	gchar **cDays = g_new0 (gchar *, iNbDays + 1);
+	for (i = 0; i < iNbDays; i ++)
+	{
+		epoch = (time_t) time (NULL) + i * 86400;
+		localtime_r (&epoch, &epoch_tm);
+		strftime (s_cDateBuffer, CD_TOMBOY_DATE_BUFFER_LENGTH, "%d/%m/%y", &epoch_tm);
+		cDays[i] = g_strdup_printf (s_cDateBuffer);
+	}
+	
+	GList *pList = cd_tomboy_find_notes_with_contents (cDays);
+	g_free (cDays);
+	return pList;
+}
+
+GList *cd_tomboy_find_note_for_next_week (void)
+{
+	static char s_cDateBuffer[CD_TOMBOY_DATE_BUFFER_LENGTH+1];
+	static struct tm epoch_tm;
+	time_t epoch = (time_t) time (NULL);
+	localtime_r (&epoch, &epoch_tm);
+	int i, iDaysOffset = 7 - epoch_tm.tm_wday;
+	
+	gchar **cDays = g_new0 (gchar *, 8);
+	for (i = 0; i < 7; i ++)
+	{
+		epoch = (time_t) time (NULL) + (i+iDaysOffset) * 86400;
+		localtime_r (&epoch, &epoch_tm);
+		strftime (s_cDateBuffer, CD_TOMBOY_DATE_BUFFER_LENGTH, "%d/%m/%y", &epoch_tm);
+		cDays[i] = g_strdup_printf (s_cDateBuffer);
+	}
+	
+	GList *pList = cd_tomboy_find_notes_with_contents (cDays);
+	g_free (cDays);
+	return pList;
 }

@@ -34,5 +34,7 @@ AC_CONFIG_FILES([Makefile
 		data/readme
 		data/Cairo-Penguin.conf
 		data/themes/Makefile
-		data/themes/Classic/Makefile])
+		data/themes/Classic/Makefile
+		data/themes/Wanda/Makefile
+		])
 AC_OUTPUT

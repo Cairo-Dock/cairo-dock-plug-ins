@@ -27,6 +27,7 @@ typedef struct {
 	CairoDockMeasure *pMeasureTimer;
 	guint ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
 	guint swapTotal, swapFree, swapUsed;
+	gdouble fPrevRamPercent, fPrevSwapPercent;
 	gboolean bAcquisitionOK;
 	gboolean bInitialized;
 	Gauge *pGauge;

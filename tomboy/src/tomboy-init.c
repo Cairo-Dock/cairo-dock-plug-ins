@@ -25,12 +25,15 @@ CD_APPLET_INIT_BEGIN (erreur)
 	if (myData.dbus_enable)
 	{
 		dbus_detect_tomboy();
-		getAllNotes();
-		update_icon();
+		myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
+				NULL,
+				getAllNotes,
+				cd_tomboy_load_notes);
+		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBroken)
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconClose, "broken.svg");
 	}
 	
 	if (myConfig.bNoDeletedSignal)
@@ -66,18 +69,22 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (myData.dbus_enable)
 		{
-			//\___________ On reconstruit le sous-dock (si l'icone de la note a change).
-			getAllNotes();
-			update_icon();
-			
-			//\___________ On lance ou on arrete le timer.
-			if (myConfig.bNoDeletedSignal && myData.iSidCheckNotes == 0)
+			//\___________ On arrete le timer.
+			if (myData.iSidCheckNotes != 0)
+			{
+				g_source_remove (myData.iSidCheckNotes);
+				myData.iSidCheckNotes = 0;
+			}
+			/**if (myConfig.bNoDeletedSignal && myData.iSidCheckNotes == 0)
 				myData.iSidCheckNotes = g_timeout_add_seconds (2, (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
 			else if (! myConfig.bNoDeletedSignal && myData.iSidCheckNotes != 0)
 			{
 				g_source_remove (myData.iSidCheckNotes);
 				myData.iSidCheckNotes = 0;
-			}
+			}*/
+			
+			//\___________ On reconstruit le sous-dock (si l'icone de la note a change).
+			cairo_dock_launch_measure (myData.pMeasureTimer);
 		}
 	}
 	
@@ -88,6 +95,6 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else  // on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceBroken)
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconClose, "broken.svg");
 	}
 CD_APPLET_RELOAD_END

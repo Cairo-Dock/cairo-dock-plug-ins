@@ -1,2 +1,3 @@
 SUBDIRS = \
-	Classic
+	Classic \
+	Wanda

@@ -42,9 +42,7 @@ void cd_stacks_build_icons (void) {
 	}
 	else {
 		myDesklet->icons = pIconList;
-		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, pConfig);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on n'a pas besoin du context sur myIcon.
 		gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
 	}
 	
@@ -71,7 +69,7 @@ void cd_stacks_debug_icon(Icon *pIcon) {
 }
 
 void cd_stacks_update (void) {
-	cd_debug("%s", __func__);
-	cd_stacks_destroy_icons();
+	cd_debug("");
+	cd_stacks_destroy_icons();  /// comme c'est bourrin ! (cf les signets de shortcuts pour un truc plus optimise).
 	cd_stacks_build_icons();
 }

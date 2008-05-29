@@ -34,7 +34,7 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 void cd_weather_acquisition (void)
 {
 	cd_debug ("%s (%s)", __func__, myConfig.cLocationCode);
-	gboolean bTest = FALSE;
+	gboolean bTest = TRUE;
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)
 	{
@@ -145,7 +145,7 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 				if (xmlStrcmp (fils->name, (const xmlChar *) "ut") == 0)
 				{
 					gchar *degree = xmlNodeGetContent (fils);
-					if (degree == NULL || *degree != '°')
+					if (degree == NULL || strncmp (degree, "°", strlen ("°")) != 0)
 					{
 						myData.units.cTemp = g_strconcat ("°", degree, NULL);
 						g_free (degree);

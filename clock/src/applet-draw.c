@@ -358,7 +358,6 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 		(double) height / (double) myData.DimensionData.height * fMaxScale);
 		
 	cairo_translate (pSourceContext, fHalfX, fHalfY);
-	cairo_rotate (pSourceContext, -G_PI/2.0f);
 	
 	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
 	{
@@ -367,7 +366,6 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 		cairo_set_line_width (pSourceContext, 8.0f);
 		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a%d%b", pTime);
 		cairo_text_extents (pSourceContext, s_cDateBuffer, &textExtents);
-		cairo_rotate (pSourceContext, (G_PI/180.0f) * 90.0f);
 		cairo_move_to (pSourceContext,
 			-textExtents.width / 2.0f,
 			2.0f * textExtents.height);
@@ -376,6 +374,7 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 		cairo_restore (pSourceContext);
 	}
 	
+	cairo_rotate (pSourceContext, -G_PI/2.0f);
 	cairo_save (pSourceContext);
 	cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
 	cairo_rotate (pSourceContext, (G_PI/ 12.0f * g_iHours + (G_PI/ 720.0f) * g_iMinutes));
