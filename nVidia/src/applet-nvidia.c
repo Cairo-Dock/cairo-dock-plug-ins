@@ -21,7 +21,7 @@ void cd_nvidia_acquisition (void) {
 static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 	gchar *cOneInfopipe;
-	int flink=0, mlink=0, i=0,prcnt=0;
+	gint flink=0, mlink=0, i=0,prcnt=0;
 	for (i = 0; cInfopipesList[i] != NULL; i ++) {
 		cOneInfopipe = cInfopipesList[i];
 		if (*cOneInfopipe == '\0')

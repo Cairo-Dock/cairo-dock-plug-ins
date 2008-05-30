@@ -6,9 +6,9 @@
 
 typedef struct {
 	gchar *cGPUName;
-	int iVideoRam;
+	gint iVideoRam;
 	gchar *cDriverVersion;
-	int iGPUTemp;
+	gint iGPUTemp;
 } nVidiaData;
 
 typedef enum {
@@ -25,17 +25,20 @@ typedef struct {
 	gchar *cBrokenUserImage;
 	gchar *cGThemePath;
 	gchar *defaultTitle;
-	int iCheckInterval;
-	int iLowerLimit;
-	int iUpperLimit;
+	gint iCheckInterval;
+	gint iLowerLimit;
+	gint iUpperLimit;
+	gint iAlertLimit;
 	gboolean bCardName;
+	gboolean bAlert;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 typedef struct {
 	nVidiaData pGPUData;
 	gboolean bAcquisitionOK;
-	int iPreviousGPUTemp;
+	gboolean bAlerted;
+	gint iPreviousGPUTemp;
 	CairoDockMeasure *pMeasureTimer;
 	Gauge *pGauge;
 } AppletData;

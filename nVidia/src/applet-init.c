@@ -37,6 +37,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		cd_nvidia_update_from_data);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
+	myData.bAlerted = FALSE;
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
@@ -59,6 +60,8 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
+	
+	myData.bAlerted = FALSE;
 	
 	free_cd_Gauge(myData.pGauge);
 	myData.pGauge = NULL;

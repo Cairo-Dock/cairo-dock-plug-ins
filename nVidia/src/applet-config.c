@@ -21,8 +21,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iDrawTemp = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "temp type", 1);
 	myConfig.iLowerLimit = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "llt", 50);
 	myConfig.iUpperLimit = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "ult", 110);
+	myConfig.iAlertLimit = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "alt", 100);
 	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
 	myConfig.bCardName = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "card", TRUE);
+	myConfig.bAlert = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "alert", TRUE);
 	myConfig.cGThemePath = cairo_dock_get_gauge_key_value (CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
 	cd_message ("gauge : Theme '%s'",myConfig.cGThemePath);
 	myConfig.cBrokenUserImage = CD_CONFIG_GET_STRING ("Configuration", "broken");

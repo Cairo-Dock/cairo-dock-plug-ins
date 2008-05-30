@@ -148,6 +148,10 @@ msgstr "Temps entre les vérifications :"
 msgid "in seconds."
 msgstr "en seconde."
 
+#: ../data/messages:
+msgid "in celcius."
+msgstr "en celcius."
+
 #: ../data/messages:59
 msgid "Lower limit of core temperature :"
 msgstr "Limite inférieur de la température :"
@@ -186,14 +190,14 @@ msgstr "Température du Coeur:"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du conteneur auquel il appartient :"
 
 #: ../data/messages:39
 msgid "Configuration"
 msgstr ""
 
 #: ../data/messages:41
-msgid "Information"
+msgid "Informations"
 msgstr ""
 
 #: ../data/messages:63
@@ -203,3 +207,15 @@ msgstr ""
 #: ../data/messages:67
 msgid "radium"
 msgstr ""
+
+msgid "Alert when core temperature exceed ?"
+msgstr "Alerter quand la température du coeur est elevée ?"
+
+msgid "Alert limit of core temperature :"
+msgstr "Limite de la température du coeur avant alerte :"
+
+msgid "Alert!"
+msgstr "Alerte!"
+
+msgid "passed alert temperature level"
+msgstr "a dépassé le\n niveau d'alerte de la température"

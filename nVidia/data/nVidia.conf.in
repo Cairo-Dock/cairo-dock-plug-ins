@@ -56,21 +56,27 @@ use size=
 
 #[gtk-preferences]
 [Configuration]
-#F[Information;gtk-info]
+#F[Informations;gtk-info]
 frame_info=
 #b Display Card name on the Label ?
 card=true
-#r[no;on quickinfo;on label;on icon] Display core temperature :
+#r[no;on quickinfo;on label] Display core temperature :
 temp type=1
 #i[1;60] Delay between temperature checks :
 #{in seconds.}
 delay = 10
 
 #i[30;60] Lower limit of core temperature :
+#{in celcius.}
 llt = 50
 #i[60;120] Upper limit of core temperature :
+#{in celcius.}
 ult = 110
-
+#b Alert when core temperature is high ?
+alert=true
+#i[60;120] Alert limit of core temperature :
+#{in celcius.}
+alt = 110
 
 
 #F[Images;gtk-dialog-info]
