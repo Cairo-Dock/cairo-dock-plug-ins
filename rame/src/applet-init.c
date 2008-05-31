@@ -62,6 +62,7 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		}
 		
+		myData.fPrevRamPercent = 0;  // on force le redessin.
 		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
 		
 		if (cairo_dock_measure_is_active (myData.pTopMeasureTimer))
@@ -76,13 +77,14 @@ CD_APPLET_RELOAD_BEGIN
 		}
 	}
 	else {  // on redessine juste l'icone.
-		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
+		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;  // on recupere le nouveau style des etiquettes en cas de changement de la config du dock.
 		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&g_dialogTextDescription);
 		memcpy (myConfig.pTopTextDescription->fColorStart, pOldLabelDescription->fColorStart, 3*sizeof (double));
 		memcpy (myConfig.pTopTextDescription->fColorStop, pOldLabelDescription->fColorStop, 3*sizeof (double));
 		myConfig.pTopTextDescription->bVerticalPattern = TRUE;
 		cairo_dock_free_label_description (pOldLabelDescription);
 		
+		myData.fPrevRamPercent = 0;  // on force le redessin.
 		cd_rame_update_from_data ();
 	}
 CD_APPLET_RELOAD_END

@@ -42,39 +42,9 @@ static void _cd_rame_update_top_list (void)
 	}
 	sTopInfo->str[sTopInfo->len-1] = '\0';
 	
-	int iTextWidth, iTextHeight;
-	double fTextXOffset, fTextYOffset;
-	cairo_surface_destroy (myData.pTopSurface);
-	myData.pTopSurface = cairo_dock_create_surface_from_text (sTopInfo->str,
-		myDrawContext,
-		myConfig.pTopTextDescription,
-		1.,
-		&iTextWidth, &iTextHeight, &fTextXOffset, &fTextYOffset);
+	cairo_dock_render_dialog_with_new_data (myData.pTopDialog, (CairoDialogRendererConfigPtr) sTopInfo->str);
 	g_string_free (sTopInfo, TRUE);
-	
-	if (iTextWidth > myData.pTopDialog->iInteractiveWidth || iTextHeight > myData.pTopDialog->iInteractiveHeight)
-		gtk_widget_set_size_request (myData.pTopDialog->pInteractiveWidget, iTextWidth, iTextHeight);
-	
-	//g_print (" -> (%d;%d) (%dx%d)\n", area.x, area.y, area.width, area.height);
-#ifdef HAVE_GLITZ
-	if (myData.pTopDialog->pDrawFormat && myData.pTopDialog->pDrawFormat->doublebuffer)
-		gtk_widget_queue_draw (myData.pTopDialog->pWidget);
-	else
-#endif
-		gtk_widget_queue_draw (myData.pTopDialog->pInteractiveWidget);
-}
 
-static gboolean _cd_rame_draw_top_list_on_dialog (GtkWidget *pWidget,
-	GdkEventExpose *pExpose,
-	gpointer data)
-{
-	cairo_t *pCairoContext = gdk_cairo_create (pWidget->window);
-	g_return_val_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS, FALSE);
-	
-	cairo_set_source_surface (pCairoContext, myData.pTopSurface, pExpose->area.x, pExpose->area.y);
-	cairo_paint (pCairoContext);
-	
-	cairo_destroy (pCairoContext);
 }
 
 CD_APPLET_ON_CLICK_BEGIN
@@ -84,7 +54,6 @@ CD_APPLET_ON_CLICK_BEGIN
 		{
 			cairo_dock_stop_measure_timer (myData.pTopMeasureTimer);
 			cairo_dock_dialog_unreference (myData.pTopDialog);
-			//cairo_dock_dialog_unreference (myData.pTopDialog);
 			myData.pTopDialog = NULL;
 			cairo_surface_destroy (myData.pTopSurface);
 			myData.pTopSurface = NULL;
@@ -101,21 +70,19 @@ CD_APPLET_ON_CLICK_BEGIN
 		myData.pTopDialog = cairo_dock_show_dialog_full (cTitle,
 			myIcon,
 			myContainer,
-			0,  // 5000 * myConfig.iProcessCheckInterval
+			0,
 			cIconPath,
 			GTK_BUTTONS_NONE,
 			pInteractiveWidget,
 			NULL,
 			NULL,
 			NULL);
-		//cairo_dock_dialog_reference (myData.pTopDialog);
 		g_free (cTitle);
 		g_free (cIconPath);
 		g_return_val_if_fail (myData.pTopDialog != NULL, CAIRO_DOCK_INTERCEPT_NOTIFICATION);
-		g_signal_connect_after (G_OBJECT (pInteractiveWidget),
-			"expose-event",
-			G_CALLBACK (_cd_rame_draw_top_list_on_dialog),
-			myData.pTopDialog);
+		
+		gpointer pConfig[2] = {myConfig.pTopTextDescription, "Loading ..."};
+		cairo_dock_set_dialog_renderer_by_name (myData.pTopDialog, "Text", myDrawContext, (CairoDialogRendererDataPtr) pConfig);
 		
 		if (myData.pTopMeasureTimer == NULL)
 			myData.pTopMeasureTimer = cairo_dock_new_measure_timer (5,

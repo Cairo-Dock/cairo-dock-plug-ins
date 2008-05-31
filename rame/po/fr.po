@@ -249,7 +249,7 @@ msgstr "Verrouiller la position"
 msgid "Mb"
 msgstr ""
 
-#: ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:128 ../src/applet-notifications.c:140
 msgid "Data acquisition has failed"
 msgstr ""
 
