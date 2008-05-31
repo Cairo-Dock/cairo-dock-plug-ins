@@ -185,3 +185,6 @@ msgstr ""
 #: ../data/messages:37
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
+
+msgid "Reload Stacks"
+msgstr "Recharger Stacks"

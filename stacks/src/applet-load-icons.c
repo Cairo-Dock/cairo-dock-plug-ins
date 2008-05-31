@@ -68,8 +68,15 @@ void cd_stacks_debug_icon(Icon *pIcon) {
 	pIcon->cWorkingDirectory = NULL;
 }
 
+//A optimiser comme shortcuts
 void cd_stacks_update (void) {
 	cd_debug("");
 	cd_stacks_destroy_icons();  /// comme c'est bourrin ! (cf les signets de shortcuts pour un truc plus optimise).
+	cd_stacks_build_icons();
+}
+
+void cd_stacks_reload (void) {
+	cd_debug("");
+	cd_stacks_destroy_icons();
 	cd_stacks_build_icons();
 }
