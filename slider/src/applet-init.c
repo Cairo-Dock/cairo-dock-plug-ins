@@ -40,7 +40,7 @@ static void _slider_set_desklet_renderer (void)
 	}
 	if (cConfigName != NULL)
 	{
-		CairoDeskletRendererConfig *pConfig = cairo_dock_get_desklet_renderer_predefined_config ("Simple", cConfigName);
+		CairoDeskletRendererConfigPtr pConfig = cairo_dock_get_desklet_renderer_predefined_config ("Simple", cConfigName);
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
 	}
 	else if (myConfig.cFrameImage != NULL || myConfig.cReflectImage != NULL)

@@ -34,7 +34,7 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 void cd_weather_acquisition (void)
 {
 	cd_debug ("%s (%s)", __func__, myConfig.cLocationCode);
-	gboolean bTest = TRUE;
+	gboolean bTest = FALSE;
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)
 	{

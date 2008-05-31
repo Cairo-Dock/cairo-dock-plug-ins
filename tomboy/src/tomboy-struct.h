@@ -13,6 +13,7 @@ typedef struct {
 	gboolean bNoDeletedSignal;
 	gchar *cRenderer;
 	gboolean bDrawContent;
+	gchar *cDateFormat;
 	} AppletConfig;
 
 typedef struct {

@@ -515,7 +515,7 @@ GList *cd_tomboy_find_note_for_today (void)
 	static struct tm epoch_tm;
 	time_t epoch = (time_t) time (NULL);
 	localtime_r (&epoch, &epoch_tm);
-	strftime (s_cDateBuffer, CD_TOMBOY_DATE_BUFFER_LENGTH, "%d/%m/%y", &epoch_tm);
+	strftime (s_cDateBuffer, CD_TOMBOY_DATE_BUFFER_LENGTH, myConfig.cDateFormat, &epoch_tm);
 	
 	gchar *cContents[2] = {s_cDateBuffer, NULL};
 	return cd_tomboy_find_notes_with_contents (cContents);
@@ -534,7 +534,7 @@ GList *cd_tomboy_find_note_for_this_week (void)
 	{
 		epoch = (time_t) time (NULL) + i * 86400;
 		localtime_r (&epoch, &epoch_tm);
-		strftime (s_cDateBuffer, CD_TOMBOY_DATE_BUFFER_LENGTH, "%d/%m/%y", &epoch_tm);
+		strftime (s_cDateBuffer, CD_TOMBOY_DATE_BUFFER_LENGTH, myConfig.cDateFormat, &epoch_tm);
 		cDays[i] = g_strdup_printf (s_cDateBuffer);
 	}
 	
@@ -556,7 +556,7 @@ GList *cd_tomboy_find_note_for_next_week (void)
 	{
 		epoch = (time_t) time (NULL) + (i+iDaysOffset) * 86400;
 		localtime_r (&epoch, &epoch_tm);
-		strftime (s_cDateBuffer, CD_TOMBOY_DATE_BUFFER_LENGTH, "%d/%m/%y", &epoch_tm);
+		strftime (s_cDateBuffer, CD_TOMBOY_DATE_BUFFER_LENGTH, myConfig.cDateFormat, &epoch_tm);
 		cDays[i] = g_strdup_printf (s_cDateBuffer);
 	}
 	

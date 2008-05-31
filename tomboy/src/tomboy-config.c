@@ -14,7 +14,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cIconBroken 		= CD_CONFIG_GET_STRING ("Icon", "broken icon");
 	myConfig.bNoDeletedSignal 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no deleted signal");
 	myConfig.cRenderer 		= CD_CONFIG_GET_STRING ("Configuration", "renderer");
-	myConfig.bDrawContent 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "draw content");
+	myConfig.bDrawContent 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "draw content");
+	myConfig.cDateFormat 		= CD_CONFIG_GET_STRING ("Configuration", "date format");
+	if (myConfig.cDateFormat == NULL)
+		myConfig.cDateFormat = g_strdup ("%d/%m/%y");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -25,6 +28,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cIconClose);
 	g_free (myConfig.cIconBroken);
 	g_free (myConfig.cRenderer);
+	g_free (myConfig.cDateFormat);
 CD_APPLET_RESET_CONFIG_END
 
 

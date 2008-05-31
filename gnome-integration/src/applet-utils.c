@@ -19,5 +19,5 @@ void env_backend_logout (void)
 
 void env_backend_setup_time (void)
 {
-	cairo_dock_launch_command ("gksu time-admin");
+	cairo_dock_launch_command ("time-admin");  // utilise PolicyKit => pas de gksudo.
 }

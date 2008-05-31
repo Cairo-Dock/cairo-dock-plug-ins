@@ -15,7 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CDSimpleParameters *rendering_configure_simple (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
-	cd_message ("");
+	cd_debug ("");
 	CDSimpleParameters *pSimple = g_new0 (CDSimpleParameters, 1);
 	
 	if (pConfig != NULL)  // dessin d'un cadre et d'un reflet propose par ChanGFu.
@@ -59,7 +59,7 @@ CDSimpleParameters *rendering_configure_simple (CairoDesklet *pDesklet, cairo_t 
 
 void rendering_free_simple_data (CairoDesklet *pDesklet)
 {
-	cd_message ("");
+	cd_debug ("");
 	CDSimpleParameters *pSimple = (CDSimpleParameters *) pDesklet->pRendererData;
 	if (pSimple == NULL)
 		return ;
@@ -159,6 +159,27 @@ void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDe
 }
 
 
+static void _predefine_simple_config (CairoDeskletRenderer *pRenderer, const gchar *cConfigName, const gchar *cBackgroundImage, const gchar *cForegroundImage, int iLeftOffset, int iTopOffset, int iRightOffset, int iBottomOffset)
+{
+	gpointer *pConfig = g_new0 (gpointer, 9);
+	if (cBackgroundImage != NULL)
+		pConfig[0] = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, cBackgroundImage);
+	if (cForegroundImage != NULL)
+		pConfig[1] = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, cForegroundImage);
+	pConfig[2] = CAIRO_DOCK_FILL_SPACE;
+	double *fBackGroundAlpha = g_new (double, 1);
+	*fBackGroundAlpha = 1.;
+	pConfig[3] = fBackGroundAlpha;
+	double *fForeGroundAlpha = g_new (double, 1);
+	*fForeGroundAlpha = 1.;
+	pConfig[4] =  fForeGroundAlpha;
+	pConfig[5] =  GINT_TO_POINTER (iLeftOffset);  // /200
+	pConfig[6] =  GINT_TO_POINTER (iTopOffset);  // /200
+	pConfig[7] =  GINT_TO_POINTER (iRightOffset);
+	pConfig[8] =  GINT_TO_POINTER (iBottomOffset);
+	cairo_dock_predefine_desklet_renderer_config (pRenderer, cConfigName, pConfig);
+}
+
 void rendering_register_simple_desklet_renderer (void)
 {
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
@@ -170,7 +191,39 @@ void rendering_register_simple_desklet_renderer (void)
 	
 	cairo_dock_register_desklet_renderer (MY_APPLET_SIMPLE_DESKLET_RENDERER_NAME, pRenderer);
 	
-	gpointer *pConfig = g_new0 (gpointer, 9);
+	_predefine_simple_config (pRenderer, "frame&reflects",
+		"frame.svg",
+		"reflect.svg",
+		5,  // /200
+		5,  // /200
+		5,
+		5);
+	
+	_predefine_simple_config (pRenderer, "scotch",
+		NULL,
+		"scotch.svg",
+		40,  // /550
+		60,  // /500
+		40,
+		0);
+	
+	_predefine_simple_config (pRenderer, "frame with scotch",
+		NULL,
+		"scotch+frame.svg",
+		87,  // /550
+		76,  // /500
+		87,
+		50);
+	
+	_predefine_simple_config (pRenderer, "CD box",
+		"cd_box.svg",
+		"cd_box_cover.svg",
+		93,  // /750
+		86,  // /700
+		72,
+		79);
+	
+	/*gpointer *pConfig = g_new0 (gpointer, 9);
 	pConfig[0] = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "frame.svg");
 	pConfig[1] = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "reflect.svg");
 	pConfig[2] = CAIRO_DOCK_FILL_SPACE;
@@ -212,9 +265,9 @@ void rendering_register_simple_desklet_renderer (void)
 	fForeGroundAlpha = g_new (double, 1);
 	*fForeGroundAlpha = 1.;
 	pConfig[4] =  fForeGroundAlpha;
-	pConfig[5] =  GINT_TO_POINTER (92);  // /550
+	pConfig[5] =  GINT_TO_POINTER (87);  // /550
 	pConfig[6] =  GINT_TO_POINTER (76);  // /500
-	pConfig[7] =  GINT_TO_POINTER (92);
+	pConfig[7] =  GINT_TO_POINTER (87);
 	pConfig[8] =  GINT_TO_POINTER (50);
 	cairo_dock_predefine_desklet_renderer_config (pRenderer, "frame with scotch", pConfig);
 	
@@ -232,5 +285,5 @@ void rendering_register_simple_desklet_renderer (void)
 	pConfig[6] =  GINT_TO_POINTER (86);  // /750
 	pConfig[7] =  GINT_TO_POINTER (72);
 	pConfig[8] =  GINT_TO_POINTER (79);
-	cairo_dock_predefine_desklet_renderer_config (pRenderer, "CD box", pConfig);
+	cairo_dock_predefine_desklet_renderer_config (pRenderer, "CD box", pConfig);*/
 }
