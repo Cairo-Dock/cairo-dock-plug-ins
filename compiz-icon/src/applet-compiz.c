@@ -27,7 +27,7 @@ static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;
 void cd_compiz_start_system_wm (void) {
 	const gchar * cCommand = NULL;
 	if (myConfig.cUserWMCommand != NULL) {
-		cCommand = myConfig.cUserWMCommand;
+		cCommand = g_strdup_printf("%s &",myConfig.cUserWMCommand);
 	}
 	else {
 		switch (g_iDesktopEnv) {
@@ -45,13 +45,25 @@ void cd_compiz_start_system_wm (void) {
 	}
 	myData.bCompizRestarted = TRUE;
 	cd_compiz_kill_compmgr(); //On tue tout les compositing managers
-	cairo_dock_launch_command (cCommand);
+	
+	if (myConfig.cUserWMCommand != NULL)
+		system (cCommand); //Obligatoir pour metacity --replace && xcompmngr -f
+	else
+		cairo_dock_launch_command (cCommand); //Ne prend pas les commandes avec des &
+		
 	cd_message ("Compiz - Run: %s ", cCommand);
 }
 
 void cd_compiz_start_compiz (void) {
 	GString *sCommand = g_string_new ("");
-	g_string_assign (sCommand, "compiz.real --replace --ignore-desktop-hints ccp");
+	
+	gchar *cCompizBin = NULL; //On cherche
+	if (g_file_test ("/usr/bin/compiz.real", G_FILE_TEST_EXISTS))
+		cCompizBin = "compiz.real";
+	else
+		cCompizBin = "compiz";
+		
+	g_string_printf (sCommand, "%s --replace --ignore-desktop-hints ccp", cCompizBin);
 	if (myConfig.lBinding) {
 		g_string_append (sCommand, " --loose-binding");
 	}
