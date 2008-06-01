@@ -22,8 +22,7 @@ CD_APPLET_DEFINITION ("nVidia", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet != NULL) {
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	//Initialisation de la jauge
@@ -36,6 +35,12 @@ CD_APPLET_INIT_BEGIN (erreur)
 		cd_nvidia_read_data,
 		cd_nvidia_update_from_data);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
+	
+	myData.pConfigMeasureTimer = cairo_dock_new_measure_timer (0,
+		cd_nvidia_config_acquisition,
+		cd_nvidia_config_read_data,
+		cd_nvidia_config_update_from_data);
+	cairo_dock_launch_measure_delayed (myData.pConfigMeasureTimer, 2000);  // 2s apres.
 	
 	myData.bAlerted = FALSE;
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -57,8 +62,7 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (myDesklet != NULL) {
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	myData.bAlerted = FALSE;
@@ -69,6 +73,7 @@ CD_APPLET_RELOAD_BEGIN
 	myData.pGauge = init_cd_Gauge(myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		cairo_dock_stop_measure_timer (myData.pMeasureTimer);  // on stoppe avant car  on ne veut pas attendre la prochaine iteration.
 		cairo_dock_change_measure_frequency (myData.pMeasureTimer, myConfig.iCheckInterval);
 		myData.iPreviousGPUTemp = -1;  // on force le redessin.

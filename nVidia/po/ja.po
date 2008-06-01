@@ -100,19 +100,19 @@ msgstr ""
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../src/applet-draw.c:95
+#: ../src/applet-draw.c:95 ../src/applet-draw.c:106
 msgid "GPU Name:"
 msgstr ""
 
-#: ../src/applet-draw.c:95
+#: ../src/applet-draw.c:95 ../src/applet-draw.c:106
 msgid "Video Ram:"
 msgstr ""
 
-#: ../src/applet-draw.c:95
+#: ../src/applet-draw.c:95 ../src/applet-draw.c:106
 msgid "Driver Version:"
 msgstr ""
 
-#: ../src/applet-draw.c:95
+#: ../src/applet-draw.c:95 ../src/applet-draw.c:106 ../src/applet-draw.c:116
 msgid "Core Temparature:"
 msgstr ""
 
@@ -202,4 +202,12 @@ msgstr ""
 
 #: ../data/messages:71
 msgid "Name of an image for the 'broken' icon :"
+msgstr ""
+
+#: ../src/applet-draw.c:116
+msgid "Alert!"
+msgstr ""
+
+#: ../src/applet-draw.c:116
+msgid "passed alert temperature level"
 msgstr ""

@@ -35,7 +35,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 
-static void nvidia_setting(void) {  /// a mettre dans les plug-ins d'integration.
+static void nvidia_setting(void) {  /// a mettre dans les plug-ins d'integration.  // je ne pense pas que ca depende de l'environnement de bureau.
 	GError *erreur = NULL;
 	g_spawn_command_line_async ("gksu nvidia-settings", &erreur);
 	if (erreur != NULL) {

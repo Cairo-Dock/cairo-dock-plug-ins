@@ -40,6 +40,7 @@ typedef struct {
 	gboolean bAlerted;
 	gint iPreviousGPUTemp;
 	CairoDockMeasure *pMeasureTimer;
+	CairoDockMeasure *pConfigMeasureTimer;
 	Gauge *pGauge;
 } AppletData;
 
