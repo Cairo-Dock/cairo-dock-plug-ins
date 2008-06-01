@@ -91,6 +91,9 @@ binding = false
 #b Use Indirect Rendering ?
 #{Use thoses options only if you know them.}
 irendering = false
+#b Only Current Screen ?
+#{Usefull when having dual or more X separate screens.}
+ulocalscreen = false
 #E1[emerald;gtk-window-decorator;kde-window-decorator;heliodor] Choose your Windows Decorator :
 #{By default it will be Emerald.}
 system decorator = 

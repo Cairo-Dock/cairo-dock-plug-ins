@@ -22,6 +22,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	//myConfig.iWM = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "WM", COMPIZ_FUSION);
 	myConfig.lBinding = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "binding", FALSE);
 	myConfig.iRendering = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "irendering", FALSE);
+	myConfig.uLocalScreen = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "ulocalscreen", FALSE);
 	myConfig.forceConfig = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "force", FALSE);
 	//myConfig.protectDecorator = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "protect", TRUE);
 	myConfig.cUserWMCommand = CD_CONFIG_GET_STRING ("Configuration", "ccmd");

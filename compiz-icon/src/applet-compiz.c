@@ -70,6 +70,9 @@ void cd_compiz_start_compiz (void) {
 	if (myConfig.iRendering) {
 		g_string_append (sCommand, " --indirect-rendering");
 	}
+	if (myConfig.uLocalScreen) {
+	 g_string_append (sCommand, " --only-current-screen");
+	}
 	
 	if (strcmp (myConfig.cWindowDecorator, "emerald") != 0)
 		g_string_append (sCommand, " --sm-disable");

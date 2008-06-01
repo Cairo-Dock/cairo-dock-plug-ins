@@ -465,6 +465,12 @@ msgstr "Nom du conteneur auquel il appartient :"
 msgid "Load Compiz with options at applet's startup."
 msgstr "Charge Compiz avec ses options au démarrage de l'applet."
 
+msgid "Only Current Screen ?"
+msgstr "Seulement l'Écran Actuel"
+
+msgid "Usefull when having dual or more X separate screens."
+msgstr "Utile quand il y plusieurs écran X séparé (dualscreen)"
+
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "

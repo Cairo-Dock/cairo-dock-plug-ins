@@ -39,6 +39,7 @@ typedef enum {
 typedef struct {
 	gboolean lBinding;
 	gboolean iRendering;
+	gboolean uLocalScreen;
 	gboolean bSystemDecorator;
 	gboolean bAutoReloadCompiz;
 	gboolean bAutoReloadDecorator;
