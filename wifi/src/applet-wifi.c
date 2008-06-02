@@ -152,7 +152,7 @@ void cd_wifi_read_data (void) {
 }
 
 
-void cd_wifi_update_from_data (void) {
+gboolean cd_wifi_update_from_data (void) {
 	if (myData.bAcquisitionOK) {
 		cd_wifi_draw_icon ();
 		cairo_dock_set_normal_frequency_state (myData.pMeasureTimer);
@@ -161,4 +161,5 @@ void cd_wifi_update_from_data (void) {
 		cd_wifi_draw_no_wireless_extension ();
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
+	return TRUE;
 }

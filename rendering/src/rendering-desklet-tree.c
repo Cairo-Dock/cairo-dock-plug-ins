@@ -14,7 +14,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #define TREE_WIDTH 150
 #define TREE_HEIGHT 161
-static int s_iLeafPosition[2][3*3] = {{-30,40,1 , 60,105,0 , -45,115,1},{-60,65,0 , 55,115,1 , -30,115,0}};
+static int s_iLeafPosition[2][3*3] = {{-30,30,1 , 60,107,0 , -45,115,1},{-60,65,0 , 55,115,1 , -30,115,0}};
 
 
 CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)

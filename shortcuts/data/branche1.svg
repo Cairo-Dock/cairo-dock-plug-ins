@@ -49,7 +49,7 @@
        x2="101.67295"
        y2="1019.0138"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.9766401,0,0,0.940822,-24.77747,-826.34795)" />
+       gradientTransform="matrix(0.987618,0,0,0.6974629,-25.753968,-573.31089)" />
     <linearGradient
        id="linearGradient4408">
       <stop
@@ -85,15 +85,15 @@
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
      inkscape:cx="47.913854"
-     inkscape:cy="136.78786"
+     inkscape:cy="9.0567556"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      height="161px"
      width="150px"
      inkscape:window-width="910"
      inkscape:window-height="624"
-     inkscape:window-x="78"
-     inkscape:window-y="132" />
+     inkscape:window-x="126"
+     inkscape:window-y="395" />
   <metadata
      id="metadata5476">
     <rdf:RDF>
@@ -119,8 +119,8 @@
        d="M 91.907112,107.04723 C 126.77973,24.195861 137.39314,59.703586 137.39314,59.703586"
        id="path2166" />
     <path
-       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient4450);stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 74.032093,151.37005 C 46.408543,122.85891 50.354765,113.35511 50.354765,113.35511"
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient4450);stroke-width:1.73166561;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 74.16626,151.50422 C 46.232209,130.36795 50.222788,123.32247 50.222788,123.32247"
        id="path2172" />
     <path
        style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient4446);stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"

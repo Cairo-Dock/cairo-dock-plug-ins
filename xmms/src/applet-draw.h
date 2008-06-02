@@ -6,7 +6,7 @@
 
 #include <applet-struct.h>
 
-void cd_xmms_draw_icon (void);
+gboolean cd_xmms_draw_icon (void);
 
 void cd_xmms_draw_in_desklet (cairo_t *pCairoContext, gchar *cQuickInfo);
 Icon *cd_xmms_create_icon_for_desklet (cairo_t *pSourceContext, int iWidth, int iHeight, gchar *cName, gchar *cIconFileName);

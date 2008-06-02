@@ -179,7 +179,7 @@ void cd_cpusage_read_data (void)
 }
 
 
-void cd_cpusage_update_from_data (void)
+gboolean cd_cpusage_update_from_data (void)
 {
 	if ( ! myData.bAcquisitionOK)
 	{
@@ -188,13 +188,9 @@ void cd_cpusage_update_from_data (void)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 		make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
-		
-		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
 	else
 	{
-		cairo_dock_set_normal_frequency_state (myData.pMeasureTimer);
-		
 		if (! myData.bInitialized)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
@@ -219,6 +215,7 @@ void cd_cpusage_update_from_data (void)
 			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.cpu_usage / 100);
 		}
 	}
+	return myData.bAcquisitionOK;
 }
 
 

@@ -214,13 +214,13 @@ msgstr ""
 
 #: ../data/messages:75 ../data/messages:61 ../data/messages:91
 #: ../data/messages:89 ../data/messages:93 ../data/messages:97
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:99 ../data/messages:103 ../data/messages:107
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
 #: ../data/messages:73 ../data/messages:59 ../data/messages:89
 #: ../data/messages:87 ../data/messages:91 ../data/messages:95
-#: ../data/messages:97 ../data/messages:101
+#: ../data/messages:97 ../data/messages:101 ../data/messages:105
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
 
@@ -299,45 +299,47 @@ msgstr "XFCE"
 
 #: ../data/messages:81 ../data/messages:97 ../data/messages:95
 #: ../data/messages:99 ../data/messages:103 ../data/messages:105
-#: ../data/messages:109
+#: ../data/messages:109 ../data/messages:113
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Défaut' :"
 
 #: ../data/messages:85 ../data/messages:101 ../data/messages:99
 #: ../data/messages:103 ../data/messages:107 ../data/messages:109
-#: ../data/messages:113
+#: ../data/messages:113 ../data/messages:117
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Cassée' :"
 
 #: ../data/messages:89 ../data/messages:105 ../data/messages:103
 #: ../data/messages:107 ../data/messages:111 ../data/messages:113
-#: ../data/messages:117
+#: ../data/messages:117 ../data/messages:121
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "Nom de l'image 'Autre wm' :"
 
 #: ../data/messages:93 ../data/messages:109 ../data/messages:107
 #: ../data/messages:111 ../data/messages:115 ../data/messages:117
-#: ../data/messages:121
+#: ../data/messages:121 ../data/messages:125
 msgid "Name of an image for the 'setting' icon :"
 msgstr "Nom de l'image 'Configuration' :"
 
 #: ../data/messages:97 ../data/messages:113 ../data/messages:111
 #: ../data/messages:115 ../data/messages:119 ../data/messages:121
-#: ../data/messages:125
+#: ../data/messages:125 ../data/messages:129
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "Nom de l'image 'Emerald' :"
 
 #: ../data/messages:101 ../data/messages:117 ../data/messages:115
 #: ../data/messages:119 ../data/messages:123 ../data/messages:125
-#: ../data/messages:129
+#: ../data/messages:129 ../data/messages:133
 msgid "Name of an image for the 'reload' icon :"
 msgstr "Nom de l'image 'Recharger' :"
 
 #: ../data/messages:127 ../data/messages:129 ../data/messages:133
+#: ../data/messages:137
 msgid "Name of an image for the 'exposition' icon :"
 msgstr "Nom de l'image 'Exposition' :"
 
 #: ../data/messages:131 ../data/messages:133 ../data/messages:137
+#: ../data/messages:141
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Nom de l'image 'Widget Layer' :"
 
@@ -349,7 +351,7 @@ msgstr "Nom de l'image 'Widget Layer' :"
 #: ../data/messages:113 ../data/messages:117 ../data/messages:121
 #: ../data/messages:125 ../data/messages:129 ../data/messages:119
 #: ../data/messages:123 ../data/messages:127 ../data/messages:131
-#: ../data/messages:135
+#: ../data/messages:135 ../data/messages:139
 msgid "Let t empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icon par défault"
 
@@ -383,7 +385,7 @@ msgstr "Monter le Bureau"
 
 #: ../data/messages:77 ../data/messages:93 ../data/messages:91
 #: ../data/messages:95 ../data/messages:99 ../data/messages:101
-#: ../data/messages:105
+#: ../data/messages:105 ../data/messages:109
 msgid "Images"
 msgstr "Images"
 
@@ -417,31 +419,37 @@ msgstr ""
 
 #: ../data/messages:77 ../data/messages:75 ../data/messages:79
 #: ../data/messages:83 ../data/messages:85 ../data/messages:89
+#: ../data/messages:93
 msgid "By default it will be Emerald."
 msgstr "Ce sera Emerald par Défaut."
 
 #: ../data/messages:79 ../data/messages:77 ../data/messages:81
 #: ../data/messages:85 ../data/messages:87 ../data/messages:91
+#: ../data/messages:95
 msgid "Choose your Windows Decorator :"
 msgstr "Choisissez votre Décorateur de Fenêtre :"
 
 #: ../data/messages:81 ../data/messages:79 ../data/messages:83
 #: ../data/messages:87 ../data/messages:89 ../data/messages:93
+#: ../data/messages:97
 msgid "emerald"
 msgstr "emerald"
 
 #: ../data/messages:83 ../data/messages:81 ../data/messages:85
 #: ../data/messages:89 ../data/messages:91 ../data/messages:95
+#: ../data/messages:99
 msgid "gtk-window-decorator"
 msgstr "gtk-window-decorator"
 
 #: ../data/messages:85 ../data/messages:83 ../data/messages:87
 #: ../data/messages:91 ../data/messages:93 ../data/messages:97
+#: ../data/messages:101
 msgid "kde-window-decorator"
 msgstr "kde-window-decorator"
 
 #: ../data/messages:87 ../data/messages:85 ../data/messages:89
 #: ../data/messages:93 ../data/messages:95 ../data/messages:99
+#: ../data/messages:103
 msgid "heliodor"
 msgstr "heliodor"
 
@@ -465,9 +473,11 @@ msgstr "Nom du conteneur auquel il appartient :"
 msgid "Load Compiz with options at applet's startup."
 msgstr "Charge Compiz avec ses options au démarrage de l'applet."
 
+#: ../data/messages:91
 msgid "Only Current Screen ?"
 msgstr "Seulement l'Écran Actuel"
 
+#: ../data/messages:89
 msgid "Usefull when having dual or more X separate screens."
 msgstr "Utile quand il y plusieurs écran X séparé (dualscreen)"
 

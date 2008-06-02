@@ -162,7 +162,7 @@ msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 #: ../src/applet-cpusage.c:243 ../src/applet-cpusage.c:183
 #: ../src/applet-cpusage.c:186 ../src/applet-cpusage.c:150
 #: ../src/applet-cpusage.c:155 ../src/applet-cpusage.c:196
-#: ../src/applet-cpusage.c:201
+#: ../src/applet-cpusage.c:201 ../src/applet-cpusage.c:197
 msgid "Loading"
 msgstr "Chargement"
 
@@ -170,6 +170,8 @@ msgstr "Chargement"
 #: ../src/applet-notifications.c:28 ../src/applet-notifications.c:140
 #: ../src/applet-notifications.c:158 ../src/applet-notifications.c:139
 #: ../src/applet-notifications.c:157 ../src/applet-notifications.c:176
+#: ../src/applet-notifications.c:99 ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:109 ../src/applet-notifications.c:127
 msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échoué"
 
@@ -220,19 +222,22 @@ msgstr "Verrouiller la position ?"
 
 #: ../src/applet-notifications.c:20 ../src/applet-notifications.c:23
 #: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
-#: ../src/applet-notifications.c:171
+#: ../src/applet-notifications.c:171 ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:122
 msgid "Model Name"
 msgstr "Nom du modèle"
 
 #: ../src/applet-notifications.c:20 ../src/applet-notifications.c:23
 #: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
-#: ../src/applet-notifications.c:171
+#: ../src/applet-notifications.c:171 ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:122
 msgid "Frequency"
 msgstr "Fréquence"
 
 #: ../src/applet-notifications.c:20 ../src/applet-notifications.c:23
 #: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
-#: ../src/applet-notifications.c:171
+#: ../src/applet-notifications.c:171 ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:122
 msgid "core(s)"
 msgstr "coeur(s)"
 
@@ -247,11 +252,13 @@ msgstr "jour(s)"
 
 #: ../src/applet-notifications.c:23 ../src/applet-notifications.c:153
 #: ../src/applet-notifications.c:152 ../src/applet-notifications.c:171
+#: ../src/applet-notifications.c:112 ../src/applet-notifications.c:122
 msgid "Up time"
 msgstr "Temps d'activité système"
 
 #: ../src/applet-notifications.c:23 ../src/applet-notifications.c:153
 #: ../src/applet-notifications.c:152 ../src/applet-notifications.c:171
+#: ../src/applet-notifications.c:112 ../src/applet-notifications.c:122
 msgid "Activity time"
 msgstr "Temps d'activité"
 

@@ -155,14 +155,13 @@ void xgamma_build_and_show_widget (void)
 	{
 		myData.pDialog = cairo_dock_build_dialog (D_("Set up gamma :"),
 			myIcon,
-			myDock,
+			myContainer,
 			NULL,
 			myData.pWidget,
 			GTK_BUTTONS_OK_CANCEL,
 			(CairoDockActionOnAnswerFunc) xgamma_apply_values,
 			NULL,
 			NULL);
-		///cairo_dock_dialog_reference (myData.pDialog);  // on prend une reference; elle sera enleve lors du stop, par nous _et_ par le dock qui detruira notre icone.
 	}
 	else
 	{

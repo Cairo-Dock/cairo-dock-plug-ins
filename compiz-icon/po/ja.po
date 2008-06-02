@@ -234,19 +234,19 @@ msgstr "システムのデコレータを使用"
 
 #: ../data/messages:73 ../data/messages:59 ../data/messages:89
 #: ../data/messages:87 ../data/messages:91 ../data/messages:95
-#: ../data/messages:97 ../data/messages:101
+#: ../data/messages:97 ../data/messages:101 ../data/messages:105
 msgid "Let it empty to use default sub-dock view."
 msgstr "デフォルトのサブ・ドッックの外観を使用するには空欄のままに。"
 
 #: ../data/messages:75 ../data/messages:61 ../data/messages:91
 #: ../data/messages:89 ../data/messages:93 ../data/messages:97
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:99 ../data/messages:103 ../data/messages:107
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
 #: ../data/messages:77 ../data/messages:93 ../data/messages:91
 #: ../data/messages:95 ../data/messages:99 ../data/messages:101
-#: ../data/messages:105
+#: ../data/messages:105 ../data/messages:109
 msgid "Images"
 msgstr "画像"
 
@@ -258,43 +258,43 @@ msgstr "画像"
 #: ../data/messages:113 ../data/messages:117 ../data/messages:121
 #: ../data/messages:125 ../data/messages:129 ../data/messages:119
 #: ../data/messages:123 ../data/messages:127 ../data/messages:131
-#: ../data/messages:135
+#: ../data/messages:135 ../data/messages:139
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #: ../data/messages:81 ../data/messages:97 ../data/messages:95
 #: ../data/messages:99 ../data/messages:103 ../data/messages:105
-#: ../data/messages:109
+#: ../data/messages:109 ../data/messages:113
 msgid "Name of an image for the 'default' icon :"
 msgstr "「デフォルト」のアイコンの画像の名前 :"
 
 #: ../data/messages:85 ../data/messages:101 ../data/messages:99
 #: ../data/messages:103 ../data/messages:107 ../data/messages:109
-#: ../data/messages:113
+#: ../data/messages:113 ../data/messages:117
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
 
 #: ../data/messages:89 ../data/messages:105 ../data/messages:103
 #: ../data/messages:107 ../data/messages:111 ../data/messages:113
-#: ../data/messages:117
+#: ../data/messages:117 ../data/messages:121
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "「その他の WM」のアイコン画像の名前 :"
 
 #: ../data/messages:93 ../data/messages:109 ../data/messages:107
 #: ../data/messages:111 ../data/messages:115 ../data/messages:117
-#: ../data/messages:121
+#: ../data/messages:121 ../data/messages:125
 msgid "Name of an image for the 'setting' icon :"
 msgstr "「設定」のアイコン画像の名前 :"
 
 #: ../data/messages:97 ../data/messages:113 ../data/messages:111
 #: ../data/messages:115 ../data/messages:119 ../data/messages:121
-#: ../data/messages:125
+#: ../data/messages:125 ../data/messages:129
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "「Emerald」のアイコン画像の名前 :"
 
 #: ../data/messages:101 ../data/messages:117 ../data/messages:115
 #: ../data/messages:119 ../data/messages:123 ../data/messages:125
-#: ../data/messages:129
+#: ../data/messages:129 ../data/messages:133
 msgid "Name of an image for the 'reload' icon :"
 msgstr "「再読み込み」のアイコン画像の名前 :"
 
@@ -421,31 +421,37 @@ msgstr "Indirect Rendering を使用？"
 
 #: ../data/messages:77 ../data/messages:75 ../data/messages:79
 #: ../data/messages:83 ../data/messages:85 ../data/messages:89
+#: ../data/messages:93
 msgid "By default it will be Emerald."
 msgstr "デフォルトでは Emerald になります"
 
 #: ../data/messages:79 ../data/messages:77 ../data/messages:81
 #: ../data/messages:85 ../data/messages:87 ../data/messages:91
+#: ../data/messages:95
 msgid "Choose your Windows Decorator :"
 msgstr "ウィンドウ・デコレータの選択"
 
 #: ../data/messages:81 ../data/messages:79 ../data/messages:83
 #: ../data/messages:87 ../data/messages:89 ../data/messages:93
+#: ../data/messages:97
 msgid "emerald"
 msgstr "emerald"
 
 #: ../data/messages:83 ../data/messages:81 ../data/messages:85
 #: ../data/messages:89 ../data/messages:91 ../data/messages:95
+#: ../data/messages:99
 msgid "gtk-window-decorator"
 msgstr "gtk-window-decorator"
 
 #: ../data/messages:85 ../data/messages:83 ../data/messages:87
 #: ../data/messages:91 ../data/messages:93 ../data/messages:97
+#: ../data/messages:101
 msgid "kde-window-decorator"
 msgstr "kde-window-decorator"
 
 #: ../data/messages:87 ../data/messages:85 ../data/messages:89
 #: ../data/messages:93 ../data/messages:95 ../data/messages:99
+#: ../data/messages:103
 msgid "heliodor"
 msgstr "heliodor"
 
@@ -524,10 +530,12 @@ msgid "Add Exposition & Widget Layer to sub-dock ?"
 msgstr "展開とウィジェット・レイヤをサブ・ドックに追加？"
 
 #: ../data/messages:127 ../data/messages:129 ../data/messages:133
+#: ../data/messages:137
 msgid "Name of an image for the 'exposition' icon :"
 msgstr "「展開」のアイコン画像の名前 :"
 
 #: ../data/messages:131 ../data/messages:133 ../data/messages:137
+#: ../data/messages:141
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "「ウィジェット・レイヤ」のアイコン画像の名前 :"
 
@@ -563,3 +571,11 @@ msgstr "位置を固定？"
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr "位置を固定？"
+
+#: ../data/messages:89
+msgid "Usefull when having dual or more X separate screens."
+msgstr ""
+
+#: ../data/messages:91
+msgid "Only Current Screen ?"
+msgstr ""

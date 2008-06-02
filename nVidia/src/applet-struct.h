@@ -38,6 +38,7 @@ typedef struct {
 	nVidiaData pGPUData;
 	gboolean bAcquisitionOK;
 	gboolean bAlerted;
+	gboolean bSettingsTooOld;
 	gint iPreviousGPUTemp;
 	CairoDockMeasure *pMeasureTimer;
 	CairoDockMeasure *pConfigMeasureTimer;

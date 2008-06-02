@@ -161,6 +161,7 @@ msgstr "Go"
 #: ../src/applet-netspeed.c:221 ../src/applet-netspeed.c:248
 #: ../src/applet-netspeed.c:259 ../src/applet-netspeed.c:260
 #: ../src/applet-netspeed.c:48 ../src/applet-netspeed.c:49
+#: ../src/applet-notifications.c:19
 msgid "MB"
 msgstr "Mo"
 
@@ -211,15 +212,6 @@ msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 msgid "Loading"
 msgstr "Chargement"
 
-#: ../src/applet-notifications.c:18
-#, c-format
-msgid ""
-"Total amount of data :\\  downloaded : %.2fKB\n"
-"  uploaded : %.2fKB"
-msgstr ""
-"Quantité total de données :\\ Down : %.2fKo\n"
-" Up : %.2fKo"
-
 #: ../src/applet-notifications.c:19 ../src/applet-notifications.c:17
 #, c-format
 msgid ""
@@ -232,12 +224,13 @@ msgstr ""
 " Up : %.2fKo"
 
 #: ../src/applet-notifications.c:21 ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:22
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "L'interface '%s' semble ne pas exister ou n'est pas lisible"
 
 #: ../src/applet-notifications.c:41 ../src/applet-notifications.c:36
-#: ../src/applet-notifications.c:30
+#: ../src/applet-notifications.c:30 ../src/applet-notifications.c:33
 msgid "Re-check interface"
 msgstr "Revérifier l'interface"
 
@@ -296,3 +289,11 @@ msgstr "Verrouiller la position ?"
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position"
+
+#: ../src/applet-notifications.c:19
+#, c-format
+msgid ""
+"Total amount of data :\n"
+"  downloaded : %.2f%s\n"
+"  uploaded : %.2f%s"
+msgstr ""

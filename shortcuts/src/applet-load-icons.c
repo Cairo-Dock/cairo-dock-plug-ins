@@ -152,7 +152,7 @@ void cd_shortcuts_get_shortcuts_data (void)
 }
 
 
-void cd_shortcuts_build_shortcuts_from_data (void)
+gboolean cd_shortcuts_build_shortcuts_from_data (void)
 {
 	if (myIcon == NULL)
 	{
@@ -160,7 +160,7 @@ void cd_shortcuts_build_shortcuts_from_data (void)
 		g_list_foreach (myData.pIconList, (GFunc) cairo_dock_free_icon, NULL);
 		g_list_free (myData.pIconList);
 		myData.pIconList = NULL;
-		return ;
+		return FALSE;
 	}
 	cd_message ("  chargement du sous-dock des raccourcis");
 	
@@ -220,4 +220,5 @@ void cd_shortcuts_build_shortcuts_from_data (void)
 	}
 	
 	myData.pIconList = NULL;
+	return TRUE;
 }

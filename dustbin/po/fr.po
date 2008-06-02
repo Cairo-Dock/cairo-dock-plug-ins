@@ -82,7 +82,7 @@ msgid "Delete All"
 msgstr "Vider toutes"
 
 #: src/applet-notifications.c:81 ../src/applet-trashes-manager.c:387
-#: ../src/applet-trashes-manager.c:385
+#: ../src/applet-trashes-manager.c:385 ../src/applet-trashes-manager.c:386
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
@@ -95,6 +95,7 @@ msgstr ""
 
 #: src/applet-notifications.c:145 ../src/applet-trashes-manager.c:446
 #: ../src/applet-trashes-manager.c:444 ../src/applet-trashes-manager.c:458
+#: ../src/applet-trashes-manager.c:459
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -151,6 +152,7 @@ msgid "failed to unmount %s"
 msgstr "échec au démontage de %s"
 
 #: ../src/applet-trashes-manager.c:389 ../src/applet-trashes-manager.c:387
+#: ../src/applet-trashes-manager.c:388
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Tous les fichiers seront supprimés. Etes-vous sûr ?"
 

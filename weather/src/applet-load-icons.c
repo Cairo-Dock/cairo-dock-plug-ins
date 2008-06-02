@@ -95,7 +95,7 @@ static void _weather_draw_current_conditions (void)
 	}
 }
 
-void cd_weather_update_from_data (void)
+gboolean cd_weather_update_from_data (void)
 {
 	//\_______________________ On cree la liste des icones de prevision.
 	GList *pIconList = _list_icons ();  // ne nous appartiendra plus, donc ne pas desallouer.
@@ -158,4 +158,5 @@ void cd_weather_update_from_data (void)
 	else
 		CD_APPLET_REDRAW_MY_ICON
 	
+	return TRUE;
 }

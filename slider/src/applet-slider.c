@@ -121,9 +121,10 @@ void cd_slider_read_directory (void) {
 	cd_slider_get_files_from_dir ();
 }
 
-void cd_slider_launch_slides (void) {
+gboolean cd_slider_launch_slides (void) {
 	myData.pElement = myData.pList;
 	cd_slider_draw_images();
+	return TRUE;
 }
 
 
@@ -164,7 +165,7 @@ void cd_slider_read_image (void) {
 	myData.pImgL.fImgH = fImgH;
 }
 
-void cd_slider_update_slide (void) {
+gboolean cd_slider_update_slide (void) {
 	
 	/*myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
 	myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
@@ -262,6 +263,8 @@ void cd_slider_update_slide (void) {
 	}
 	else
 		myData.iTimerID = 0;
+	
+	return TRUE;
 }
 
 gboolean cd_slider_draw_images(void) {

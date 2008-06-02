@@ -35,7 +35,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 
-static void nvidia_setting(void) {  /// a mettre dans les plug-ins d'integration.
+static void nvidia_setting(void) {  /// a mettre dans les plug-ins d'integration.  // je ne pense pas que ca depende de l'environnement de bureau. Ils ont un truc specifiqe sous KDE ?
 	GError *erreur = NULL;
 	switch (g_iDesktopEnv) {
 		case CAIRO_DOCK_GNOME :
@@ -56,7 +56,7 @@ static void nvidia_setting(void) {  /// a mettre dans les plug-ins d'integration
 }
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	//On ajoutera la désactivation quand elle sera fonctionnelle...
+	///On ajoutera la désactivation quand elle sera fonctionnelle... // la desactivation de quoi ?
 	nvidia_setting();
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	cairo_dock_remove_dialog_if_any (myIcon);

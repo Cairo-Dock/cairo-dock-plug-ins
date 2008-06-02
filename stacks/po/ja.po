@@ -143,7 +143,7 @@ msgstr ""
 msgid "Clean Local Directory"
 msgstr ""
 
-#: ../src/applet-notifications.c:37
+#: ../src/applet-notifications.c:37 ../src/applet-notifications.c:38
 msgid "Clean local directory"
 msgstr ""
 
@@ -187,4 +187,8 @@ msgstr ""
 
 #: ../data/messages:37
 msgid "Lock position ?"
+msgstr ""
+
+#: ../src/applet-notifications.c:37
+msgid "Reload Stacks"
 msgstr ""

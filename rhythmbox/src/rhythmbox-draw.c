@@ -128,7 +128,6 @@ void update_icon(gboolean make_witness)
 		else
 			rhythmbox_set_surface (PLAYER_NONE);
 	}
-	CD_APPLET_REDRAW_MY_ICON
 }
 
 void music_dialog(void)
@@ -147,7 +146,6 @@ void music_dialog(void)
 void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 {
 	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
-	
 	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];
 	if (pSurface == NULL) {
 		if (myConfig.cUserImage[iStatus] != NULL) {

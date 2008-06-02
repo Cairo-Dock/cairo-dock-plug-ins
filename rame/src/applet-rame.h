@@ -8,7 +8,7 @@ void cd_rame_formatRate(unsigned long long rate, gchar* debit);
 
 
 void cd_rame_read_data (void);
-void cd_rame_update_from_data (void);
+gboolean cd_rame_update_from_data (void);
 
 
 void cd_rame_free_process (CDProcess *pProcess);

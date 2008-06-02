@@ -81,7 +81,7 @@ msgid "Delete All"
 msgstr "すべて削除"
 
 #: src/applet-notifications.c:81 ../src/applet-trashes-manager.c:387
-#: ../src/applet-trashes-manager.c:385
+#: ../src/applet-trashes-manager.c:385 ../src/applet-trashes-manager.c:386
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "%s の全ファイルを削除しようとしています。よろしいですか？"
@@ -92,6 +92,7 @@ msgstr "全ゴミ箱の全ファイルを削除しようとしています。よ
 
 #: src/applet-notifications.c:145 ../src/applet-trashes-manager.c:446
 #: ../src/applet-trashes-manager.c:444 ../src/applet-trashes-manager.c:458
+#: ../src/applet-trashes-manager.c:459
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -148,6 +149,7 @@ msgid "failed to unmount %s"
 msgstr "%s のアンマウントに失敗"
 
 #: ../src/applet-trashes-manager.c:389 ../src/applet-trashes-manager.c:387
+#: ../src/applet-trashes-manager.c:388
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
 

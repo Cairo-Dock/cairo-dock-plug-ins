@@ -17,7 +17,7 @@ gboolean cd_tomboy_check_deleted_notes (gpointer data);
 gchar *getNoteTitle (const gchar *note_name);
 gchar *getNoteContent (const gchar *note_name);
 void getAllNotes (void);
-void cd_tomboy_load_notes (void);
+gboolean cd_tomboy_load_notes (void);
 void free_all_notes (void);
 
 gchar *addNote(gchar *note_name);

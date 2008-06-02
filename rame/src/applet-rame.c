@@ -91,7 +91,7 @@ void cd_rame_read_data (void)
 	}
 }
 
-void cd_rame_update_from_data (void)
+gboolean cd_rame_update_from_data (void)
 {
 	if ( ! myData.bAcquisitionOK)
 	{
@@ -100,13 +100,9 @@ void cd_rame_update_from_data (void)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
 		make_cd_Gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
-		
-		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
 	else
 	{
-		cairo_dock_set_normal_frequency_state (myData.pMeasureTimer);
-		
 		if (! myData.bInitialized)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
@@ -173,6 +169,7 @@ void cd_rame_update_from_data (void)
 				myData.fPrevSwapPercent = fSwapPercent;
 		}
 	}
+	return myData.bAcquisitionOK;
 }
 
 

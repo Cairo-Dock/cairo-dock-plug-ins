@@ -71,7 +71,7 @@ void cd_nvidia_draw_icon (void) {
 }
 
 static void _nvidia_temporary_dialog (gchar *cInfo) {
-	gchar *cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, "icon.svg");
+	gchar *cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
 	//cd_debug ("%s (%s)", cInfo, cIconPath);
 	cairo_dock_show_temporary_dialog_with_icon (cInfo, myIcon, myContainer, 12000, cIconPath);
 	g_free(cIconPath);
@@ -83,8 +83,13 @@ void cd_nvidia_bubble(void) {
 		_nvidia_temporary_dialog (cInfo);
 		g_free (cInfo);
 	}
-	else {
-		_nvidia_temporary_dialog ("nVidia.\n Couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system ?");
+	else if (myData.bSettingsTooOld)
+	{
+		_nvidia_temporary_dialog ("your version of 'nvidia-settings' is too old\n You need at least the 1.0.0 version");
+	}
+	else
+	{
+		_nvidia_temporary_dialog ("couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system\n and configured to monitor GPU temperature ?");
 	}
 }
 

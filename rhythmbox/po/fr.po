@@ -121,7 +121,7 @@ msgstr "Information à afficher sur l'icône :"
 #: ../src/rhythmbox-draw.c:77 ../src/rhythmbox-draw.c:102
 #: ../src/rhythmbox-draw.c:103 ../src/rhythmbox-draw.c:101
 #: ../src/rhythmbox-draw.c:106 ../src/rhythmbox-draw.c:107
-#: ../src/rhythmbox-draw.c:137
+#: ../src/rhythmbox-draw.c:137 ../src/rhythmbox-draw.c:136
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -139,7 +139,7 @@ msgstr ""
 #: ../src/rhythmbox-draw.c:110 ../src/rhythmbox-draw.c:111
 #: ../src/rhythmbox-draw.c:112 ../src/rhythmbox-draw.c:113
 #: ../src/rhythmbox-draw.c:141 ../src/rhythmbox-draw.c:142
-#: ../src/rhythmbox-draw.c:143
+#: ../src/rhythmbox-draw.c:143 ../src/rhythmbox-draw.c:140
 msgid "Unknown"
 msgstr "Inconnu"
 

@@ -11,10 +11,10 @@ void cd_slider_free_images_list (GList *pList);
 void cd_slider_get_files_from_dir(void);
 
 void cd_slider_read_directory (void);
-void cd_slider_launch_slides (void);
+gboolean cd_slider_launch_slides (void);
 
 void cd_slider_read_image (void);
-void cd_slider_update_slide (void);
+gboolean cd_slider_update_slide (void);
 
 gboolean cd_slider_draw_images(void);
 

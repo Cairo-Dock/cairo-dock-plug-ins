@@ -238,6 +238,7 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../src/applet-rame.c:113 ../src/applet-rame.c:117 ../src/applet-rame.c:112
+#: ../src/applet-rame.c:109
 msgid "Loading"
 msgstr "Chargement"
 
@@ -250,6 +251,7 @@ msgid "Mb"
 msgstr ""
 
 #: ../src/applet-notifications.c:128 ../src/applet-notifications.c:140
+#: ../src/applet-notifications.c:95
 msgid "Data acquisition has failed"
 msgstr ""
 

@@ -56,7 +56,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 
 
-static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSuccess, const gchar *cName, Icon *icon, CairoDock *pDock)
+static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSuccess, const gchar *cName, Icon *icon, CairoContainer *pContainer)
 {
 	g_return_if_fail (myIcon != NULL && ! bMounting);
 	gchar *cMessage;

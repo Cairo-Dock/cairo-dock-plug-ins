@@ -13,8 +13,11 @@ CD_APPLET_ABOUT (D_("This is the netspeed applet\n made by parAdOxxx_ZeRo for Ca
 
 CD_APPLET_ON_CLICK_BEGIN
 	/* cairo_dock_show_temporary_dialog("BLAH !", myIcon, myContainer, 0);*/
+	cairo_dock_remove_dialog_if_any (myIcon);
 	if (myData.bAcquisitionOK)
-		cairo_dock_show_temporary_dialog(D_("Total amount of data :\n  downloaded : %.2fKB\n  uploaded : %.2fKB"), myIcon, myContainer, 10e3, myData.iReceivedBytes/1000., myData.iTransmittedBytes/1000.);
+	{
+		cairo_dock_show_temporary_dialog(D_("Total amount of data :\n  downloaded : %.2f%s\n  uploaded : %.2f%s"), myIcon, myContainer, 5e3, (double) myData.iReceivedBytes / (1024*1204), D_("MB"), (double) myData.iTransmittedBytes / (1024*1204), D_("MB"));
+	}
 	else
 		cairo_dock_show_temporary_dialog(D_("Interface '%s' seems to not exist or is not readable"), myIcon, myContainer, 5e3, myConfig.cInterface);
 CD_APPLET_ON_CLICK_END

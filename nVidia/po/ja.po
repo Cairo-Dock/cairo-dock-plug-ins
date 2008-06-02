@@ -100,19 +100,24 @@ msgstr ""
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:106
+#: ../src/applet-draw.c:95 ../src/applet-draw.c:106 ../src/applet-draw.c:84
+#: ../src/applet-draw.c:82
 msgid "GPU Name:"
 msgstr ""
 
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:106
+#: ../src/applet-draw.c:95 ../src/applet-draw.c:106 ../src/applet-draw.c:84
+#: ../src/applet-draw.c:82
 msgid "Video Ram:"
 msgstr ""
 
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:106
+#: ../src/applet-draw.c:95 ../src/applet-draw.c:106 ../src/applet-draw.c:84
+#: ../src/applet-draw.c:82
 msgid "Driver Version:"
 msgstr ""
 
 #: ../src/applet-draw.c:95 ../src/applet-draw.c:106 ../src/applet-draw.c:116
+#: ../src/applet-draw.c:84 ../src/applet-draw.c:98 ../src/applet-draw.c:102
+#: ../src/applet-draw.c:82 ../src/applet-draw.c:100
 msgid "Core Temparature:"
 msgstr ""
 
@@ -168,11 +173,11 @@ msgstr ""
 msgid "on icon"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:53
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:55
 msgid "Delay between temperature checks :"
 msgstr ""
 
@@ -180,34 +185,52 @@ msgstr ""
 msgid "Lower limit of core temperature :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:61 ../data/messages:63
 msgid "Upper limit of core temperature :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:63 ../data/messages:71
 msgid "Images"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:65 ../data/messages:73
 msgid "List of available themes for the analogic display :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:67 ../data/messages:75
 msgid "radium"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:69 ../data/messages:77
 msgid "Let it empty to use the default icon."
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:71 ../data/messages:79
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""
 
-#: ../src/applet-draw.c:116
+#: ../src/applet-draw.c:116 ../src/applet-draw.c:98 ../src/applet-draw.c:102
+#: ../src/applet-draw.c:100
 msgid "Alert!"
 msgstr ""
 
-#: ../src/applet-draw.c:116
+#: ../src/applet-draw.c:116 ../src/applet-draw.c:98 ../src/applet-draw.c:102
+#: ../src/applet-draw.c:100
 msgid "passed alert temperature level"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Informations"
+msgstr ""
+
+#: ../data/messages:57 ../data/messages:61 ../data/messages:67
+msgid "in celcius."
+msgstr ""
+
+#: ../data/messages:65
+msgid "Alert when core temperature is high ?"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Alert limit of core temperature :"
 msgstr ""

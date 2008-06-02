@@ -136,7 +136,7 @@ msgstr "Configuration"
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient :"
 
-#: ../src/applet-notifications.c:37
+#: ../src/applet-notifications.c:37 ../src/applet-notifications.c:38
 msgid "Clean local directory"
 msgstr "Vider le dossier local"
 
@@ -186,5 +186,6 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
+#: ../src/applet-notifications.c:37
 msgid "Reload Stacks"
 msgstr "Recharger Stacks"

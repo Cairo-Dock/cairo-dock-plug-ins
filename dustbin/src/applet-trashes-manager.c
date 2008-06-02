@@ -18,8 +18,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-trashes-manager.h"
 
-CD_APPLET_INCLUDE_MY_VARS
+extern int lstat (const char *path, struct stat *buf);
 
+CD_APPLET_INCLUDE_MY_VARS
 
 static GStaticRWLock s_mTasksMutex = G_STATIC_RW_LOCK_INIT;
 static GList *s_pTasksList = NULL;

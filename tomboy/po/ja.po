@@ -299,3 +299,14 @@ msgstr ""
 #: ../data/messages:37
 msgid "Draw note's content on their icon ?"
 msgstr ""
+
+#: ../data/messages:39
+msgid ""
+"Write the date format you usually use in your notes. The syntax is the one "
+"of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+"digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Date format to search for :"
+msgstr ""

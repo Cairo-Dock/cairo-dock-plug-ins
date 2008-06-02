@@ -302,7 +302,6 @@ void getAllNotes(void)
 	cd_message("");
 	
 	free_all_notes ();
-	///GList *pList = NULL;
 	
 	gchar **note_list = NULL;
 	if(dbus_g_proxy_call (dbus_proxy_tomboy, "ListAllNotes", NULL,
@@ -318,14 +317,13 @@ void getAllNotes(void)
 			cNoteURI = note_list[i];
 			Icon *pIcon = _cd_tomboy_create_icon_for_note (cNoteURI);
 			pIcon->fOrder = i;  /// recuperer la date ...
-			///pList = g_list_append (pList, pIcon);
 			_cd_tomboy_register_note (pIcon);
 		}
 	}
 	g_strfreev (note_list);
 }
 
-void cd_tomboy_load_notes (void)
+gboolean cd_tomboy_load_notes (void)
 {
 	GList *pList = g_hash_table_get_values (myData.hNoteTable);
 	if (myDock)
@@ -362,6 +360,7 @@ void cd_tomboy_load_notes (void)
 	
 	if (myConfig.bNoDeletedSignal && myData.iSidCheckNotes == 0)
 		myData.iSidCheckNotes = g_timeout_add_seconds (2, (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
+	return TRUE;
 }
 
 void free_all_notes (void)
@@ -527,7 +526,8 @@ GList *cd_tomboy_find_note_for_this_week (void)
 	static struct tm epoch_tm;
 	time_t epoch = (time_t) time (NULL);
 	localtime_r (&epoch, &epoch_tm);
-	int i, iNbDays = 7 - epoch_tm.tm_wday;  // lundi <=> 0.
+	g_print ("epoch_tm.tm_wday : %d\n", epoch_tm.tm_wday);
+	int i, iNbDays = (8 - epoch_tm.tm_wday) % 7;  // samedi <=> 6, dimanche <=> 0.
 	
 	gchar **cDays = g_new0 (gchar *, iNbDays + 1);
 	for (i = 0; i < iNbDays; i ++)
@@ -549,7 +549,7 @@ GList *cd_tomboy_find_note_for_next_week (void)
 	static struct tm epoch_tm;
 	time_t epoch = (time_t) time (NULL);
 	localtime_r (&epoch, &epoch_tm);
-	int i, iDaysOffset = 7 - epoch_tm.tm_wday;
+	int i, iDaysOffset = (8 - epoch_tm.tm_wday) % 7;
 	
 	gchar **cDays = g_new0 (gchar *, 8);
 	for (i = 0; i < 7; i ++)

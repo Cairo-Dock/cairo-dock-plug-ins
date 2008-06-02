@@ -39,6 +39,7 @@ typedef struct {
 	gdouble cpu_usage;
 	
 	GHashTable *pProcessTable;
+	gint iNbProcesses;
 	CDProcess **pTopList;
 	CairoDialog *pTopDialog;
 	GTimer *pTopClock;

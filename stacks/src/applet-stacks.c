@@ -30,9 +30,9 @@ void cd_stacks_mklink(const gchar *cFile) {
 		return;
 	
 	gchar *cBaseURI = g_strdup (cFile), *cIconName = NULL, *cURI = NULL, *cFileName = NULL;
-	gboolean *bIsDirectory=NULL;
-	double *fOrder=NULL;
-	int *iVolumeID=NULL;
+	gboolean bIsDirectory=FALSE;
+	double fOrder=0;
+	int iVolumeID=0;
 	cairo_dock_fm_get_file_info(cBaseURI, &cFileName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_TYPE);
 	
 	if (cFileName == NULL) {

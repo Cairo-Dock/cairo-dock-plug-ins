@@ -32,27 +32,27 @@ void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 		if (myDesklet)
 			g_sprintf(debit, "%i %s/s", smallRate, D_("B"));
 		else
-			g_sprintf(debit, "%io", smallRate);
+			g_sprintf(debit, "%iB", smallRate);
 	}
-	else if (rate < (2>>20))
+	else if (rate < (1<<20))
 	{
-		smallRate = rate << 10;
+		smallRate = rate >> 10;
 		if (myDesklet)
 			g_sprintf(debit, "%i %s/s", smallRate, D_("KB"));
 		else
 			g_sprintf(debit, "%iK", smallRate);
 	}
-	else if (rate < (2>>30))
+	else if (rate < (1<<30))
 	{
-		smallRate = rate << 20;
+		smallRate = rate >> 20;
 		if (myDesklet)
 			g_sprintf(debit, "%i %s/s", smallRate, D_("MB"));
 		else
 			g_sprintf(debit, "%iM", smallRate);
 	}
-	else if (rate < ((unsigned long long)2>>40))
+	else if (rate < ((unsigned long long)1<<40))
 	{
-		smallRate = rate << 30;
+		smallRate = rate >> 30;
 		if (myDesklet)
 			g_sprintf(debit, "%i %s/s", smallRate, D_("GB"));
 		else
@@ -60,7 +60,7 @@ void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 	}
 	else  // c'est vraiment pour dire qu'on est exhaustif :-)
 	{
-		smallRate = rate << 40;
+		smallRate = rate >> 40;
 		if (myDesklet)
 			g_sprintf(debit, "%i %s/s", smallRate, D_("TB"));
 		else
@@ -191,14 +191,11 @@ void cd_netspeed_update_from_data (void)
 			if((myData.iMaxUpRate != 0) && (myData.iMaxDownRate != 0))
 			{
 				GList *pList = NULL;  /// un tableau ca serait plus sympa ...
-				double *pValue = g_new (double, 1);
-				*pValue = (double) myData.iUploadSpeed / myData.iMaxUpRate;
-				pList = g_list_append (pList, pValue);
-				pValue = g_new (double, 1);
-				*pValue = (double) myData.iDownloadSpeed / myData.iMaxDownRate;
-				pList = g_list_append (pList, pValue);
+				double fUpValue = (double) myData.iUploadSpeed / myData.iMaxUpRate;
+				pList = g_list_append (pList, &fUpValue);
+				double fDownValue = (double) myData.iDownloadSpeed / myData.iMaxDownRate;
+				pList = g_list_append (pList, &fDownValue);
 				make_cd_Gauge_multiValue(myDrawContext,myContainer,myIcon,myData.pGauge,pList);
-				g_list_foreach (pList, (GFunc) g_free, NULL);
 				g_list_free (pList);
 			}
 			else

@@ -48,7 +48,7 @@ void cd_xmms_add_buttons_to_desklet(void) {
 	}
 }
 
-void cd_xmms_draw_icon (void) {
+gboolean cd_xmms_draw_icon (void) {
 	gboolean bNeedRedraw = FALSE;
 	if (myData.playingStatus == PLAYER_NONE) {
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
@@ -120,6 +120,8 @@ void cd_xmms_draw_icon (void) {
 	else if (bNeedRedraw) {
 		CD_APPLET_REDRAW_MY_ICON
 	}
+	
+	return TRUE;
 }
 
 //Fonction de dessin en mode desklet, penser a faire un mode de rendu dans rendering

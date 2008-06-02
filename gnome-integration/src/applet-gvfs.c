@@ -911,7 +911,7 @@ static void _vfs_backend_mount_callback (gpointer pObject, GAsyncResult *res, gp
 	//g_free (data);
 }
 
-void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock)
+void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoContainer *pContainer)
 {
 	g_return_if_fail (iVolumeID > 0);
 	cd_message ("%s (%s)", __func__, cURI);
@@ -940,7 +940,7 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 	data2[1] = GINT_TO_POINTER (1);
 	data2[2] = g_path_get_basename (cTargetURI);
 	data2[3] = icon;
-	data2[4] = pDock;
+	data2[4] = pContainer;
 	g_file_mount_mountable  (pFile,
 		G_MOUNT_MOUNT_NONE,
 		NULL,
@@ -950,7 +950,7 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 	g_free (cTargetURI);
 }
 
-void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoDock *pDock)
+void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoContainer *pContainer)
 {
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
@@ -976,7 +976,7 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 	data2[1] = GINT_TO_POINTER (bCanEject ? 2 : 0);
 	data2[2] = g_mount_get_name (pMount);
 	data2[3] = icon;
-	data2[4] = pDock;
+	data2[4] = pContainer;
 	if (bCanEject)
 		g_mount_eject (pMount,
 			G_MOUNT_UNMOUNT_NONE,

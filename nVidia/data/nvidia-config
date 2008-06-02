@@ -1,6 +1,7 @@
 #!/bin/bash
 
 rm -rf /tmp/nvidia-config
-nvidia-settings -q Gpus | cut -d '(' -f 2 -s > /tmp/nvidia-config
+nvidia-settings -v | grep version | head -n 1 > /tmp/nvidia-config
+nvidia-settings -q Gpus | cut -d '(' -f 2 -s >> /tmp/nvidia-config
 nvidia-settings -q VideoRam -t >> /tmp/nvidia-config
 nvidia-settings -q NvidiaDriverVersion -t >> /tmp/nvidia-config

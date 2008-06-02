@@ -25,7 +25,7 @@ static void _cd_cpusage_get_top_list (void)
 	cd_cpusage_clean_old_processes (fTime);
 }
 
-static void _cd_cpusage_update_top_list (void)
+static gboolean _cd_cpusage_update_top_list (void)
 {
 	CDProcess *pProcess;
 	int i;
@@ -40,12 +40,21 @@ static void _cd_cpusage_update_top_list (void)
 	if (i == 0)
 	{
 		g_string_free (sTopInfo, TRUE);
-		return ;
+		return FALSE;
 	}
 	sTopInfo->str[sTopInfo->len-1] = '\0';
 	
 	cairo_dock_render_dialog_with_new_data (myData.pTopDialog, (CairoDialogRendererDataPtr) sTopInfo->str);
 	g_string_free (sTopInfo, TRUE);
+	
+	if (myData.iNbProcesses != g_hash_table_size (myData.pProcessTable))
+	{
+		myData.iNbProcesses = g_hash_table_size (myData.pProcessTable);
+		gchar *cTitle = g_strdup_printf ("  [ Top %d / %d ] :", myConfig.iNbDisplayedProcesses, myData.iNbProcesses);
+		cairo_dock_set_dialog_message (myData.pTopDialog, cTitle);
+		g_free (cTitle);
+	}
+	return TRUE;
 }
 
 CD_APPLET_ON_CLICK_BEGIN
@@ -88,6 +97,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		cairo_dock_set_dialog_renderer_by_name (myData.pTopDialog, "Text", myDrawContext, (CairoDialogRendererConfigPtr) pConfig);
 		
 		myData.pTopClock = g_timer_new ();
+		myData.iNbProcesses = 0;
 		if (myData.pTopMeasureTimer == NULL)
 			myData.pTopMeasureTimer = cairo_dock_new_measure_timer (myConfig.iProcessCheckInterval,
 				NULL,

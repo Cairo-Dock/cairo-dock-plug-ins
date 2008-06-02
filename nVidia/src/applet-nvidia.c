@@ -22,7 +22,7 @@ void cd_nvidia_acquisition (void) {
 void cd_nvidia_read_data (void) {
 	const gchar *cGpuTemp = g_getenv ("CAIRO_DOCK_GPU_TEMP");
 	if (cGpuTemp == NULL) {
-		cd_warning("nVidia : couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system ?");
+		cd_warning("nVidia : couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system and its version > 1.0 ?");
 		myData.bAcquisitionOK = FALSE;
 	}
 	else {
@@ -38,7 +38,7 @@ void cd_nvidia_update_from_data (void) {
 	}
 	else {
 		cd_nvidia_draw_no_data ();
-		cd_warning ("Couldn't get infos from nvidia setting (may not be installed), halt.");
+		cd_warning ("Couldn't get infos from nvidia setting (may not be installed or too old), halt.");
 		cairo_dock_stop_measure_timer (myData.pMeasureTimer);  // pas la peine d'insister.
 	}
 }
@@ -53,6 +53,12 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 	gchar *cOneInfopipe;
 	gint flink=0, mlink=0, i=0,prcnt=0;
+	
+	g_free (myData.pGPUData.cGPUName);
+	myData.pGPUData.cGPUName = NULL;
+	g_free (myData.pGPUData.cDriverVersion);
+	myData.pGPUData.cDriverVersion = NULL;
+	
 	for (i = 0; cInfopipesList[i] != NULL; i ++) {
 		cOneInfopipe = cInfopipesList[i];
 		if (*cOneInfopipe == '\0')
@@ -63,19 +69,39 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 			return FALSE;
 		}
 		else {
-			if (i == 0) { //GPU Name
-				g_free (myData.pGPUData.cGPUName);
+			if (i == 0) {
+				gchar *str = g_strstr_len (cOneInfopipe, strlen (cOneInfopipe), "version");
+				g_print ("str : %s\n", str);
+				if (str != NULL)
+				{
+					str += 7;
+					while (*str == ' ')
+						str ++;
+					gchar *str2 = strchr (str, ' ');
+					if (str2 != NULL)
+						*str2 = '\0';
+					int iMajorVersion=0, iMinorVersion=0, iMicroVersion=0;
+					cairo_dock_get_version_from_string (str, &iMajorVersion, &iMinorVersion, &iMicroVersion);
+					g_print ("%d.%d.%d\n", iMajorVersion, iMinorVersion, iMicroVersion);
+					if (iMajorVersion == 0 || (iMajorVersion == 1 && iMinorVersion < 1))  /// A confirmer ...
+					{
+						myData.bSettingsTooOld == TRUE;
+						cd_warning ("Attention : your nvidia-settings's version is too old (%d.%d.%d)", iMajorVersion, iMinorVersion, iMicroVersion);
+						break ;
+					}
+				}
+			}
+			else if (i == 1) { //GPU Name
 				myData.pGPUData.cGPUName = g_strdup (cOneInfopipe);
 				gchar *str = strchr (myData.pGPUData.cGPUName, ')');
 				if (str != NULL)
 					*str = '\0';
 			}
-			else if (i == 1) { //Video Ram
+			else if (i == 2) { //Video Ram
 				myData.pGPUData.iVideoRam = atoi(cOneInfopipe);
 				myData.pGPUData.iVideoRam = myData.pGPUData.iVideoRam >> 10;  // passage en Mo.
 			}
-			else if (i == 2) { //Driver Version
-				g_free (myData.pGPUData.cDriverVersion);
+			else if (i == 3) { //Driver Version
 				myData.pGPUData.cDriverVersion = g_strdup (cOneInfopipe);
 			}
 		}

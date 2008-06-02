@@ -5,6 +5,7 @@ gnome-integration-old
 gnome-integration
 xfce-integration
 shortcuts
+Dbus
 ###Stable applets, considered as finished :
 clock
 logout
@@ -20,9 +21,13 @@ rhythmbox
 xmms
 powermanager
 wifi
-systray
-###Last addition of v1.5.5 :
 compiz-icon
-Dbus
 showDesktop
+systray
+###Last addition of v1.6.0 :
+cpusage
+rame
+netspeed
+nVidia
+tomboy
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.
