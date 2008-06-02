@@ -21,13 +21,11 @@ void cd_nvidia_acquisition (void) {
 
 void cd_nvidia_read_data (void) {
 	const gchar *cGpuTemp = g_getenv ("CAIRO_DOCK_GPU_TEMP");
-	if (cGpuTemp == NULL)
-	{
+	if (cGpuTemp == NULL) {
 		cd_warning("nVidia : couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system ?");
 		myData.bAcquisitionOK = FALSE;
 	}
-	else
-	{
+	else {
 		myData.bAcquisitionOK = TRUE;
 		myData.pGPUData.iGPUTemp = atoi(cGpuTemp);
 	}
@@ -44,8 +42,6 @@ void cd_nvidia_update_from_data (void) {
 		cairo_dock_stop_measure_timer (myData.pMeasureTimer);  // pas la peine d'insister.
 	}
 }
-
-
 
 void cd_nvidia_config_acquisition (void) {
 	gchar *cCommand = g_strdup_printf("bash %s/nvidia-config", MY_APPLET_SHARE_DATA_DIR);
@@ -108,8 +104,7 @@ void cd_nvidia_config_read_data (void) {
 }
 
 void cd_nvidia_config_update_from_data (void) {
-	if (myConfig.bCardName)
-	{
+	if (myConfig.bCardName) {
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pGPUData.cGPUName);
 	}
 }

@@ -34,7 +34,6 @@ void cd_nvidia_draw_icon (void) {
 
 	switch (myConfig.iDrawTemp) {
 		case MY_APPLET_TEMP_NONE :
-			
 		break;
 		case MY_APPLET_TEMP_ON_QUICKINFO :
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d°C", myData.pGPUData.iGPUTemp);
@@ -79,15 +78,13 @@ static void _nvidia_temporary_dialog (gchar *cInfo) {
 }
 
 void cd_nvidia_bubble(void) {
-	if (myData.bAcquisitionOK)
-	{
+	if (myData.bAcquisitionOK) {
 		gchar *cInfo = g_strdup_printf ("nVidia.\n %s %s\n %s %dMB \n %s %s\n %s %d°C", D_("GPU Name:"), myData.pGPUData.cGPUName, D_("Video Ram:"), myData.pGPUData.iVideoRam, D_("Driver Version:"), myData.pGPUData.cDriverVersion, D_("Core Temparature:"), myData.pGPUData.iGPUTemp);
 		_nvidia_temporary_dialog (cInfo);
 		g_free (cInfo);
 	}
-	else
-	{
-		_nvidia_temporary_dialog ("couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system ?");
+	else {
+		_nvidia_temporary_dialog ("nVidia.\n Couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system ?");
 	}
 }
 

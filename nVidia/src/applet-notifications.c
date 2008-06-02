@@ -35,9 +35,20 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 
-static void nvidia_setting(void) {  /// a mettre dans les plug-ins d'integration.  // je ne pense pas que ca depende de l'environnement de bureau.
+static void nvidia_setting(void) {  /// a mettre dans les plug-ins d'integration.
 	GError *erreur = NULL;
-	g_spawn_command_line_async ("gksu nvidia-settings", &erreur);
+	switch (g_iDesktopEnv) {
+		case CAIRO_DOCK_GNOME :
+		case CAIRO_DOCK_XFCE :
+			g_spawn_command_line_async ("env LC_NUMERIC=C gksu nvidia-settings", &erreur);
+		break;
+		case CAIRO_DOCK_KDE :
+			g_spawn_command_line_async ("env LC_NUMERIC=C kdesu nvidia-settings", &erreur);
+		break ;
+		default :
+			cd_warning ("couldn't guess system WM");
+		return ;
+	}
 	if (erreur != NULL) {
 		cd_warning ("Attention : %s", erreur->message);
 		g_error_free (erreur);

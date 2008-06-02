@@ -4,4 +4,7 @@
 #nvidia-settings -q GPUCoreTemp -t > /tmp/nvidia
 #echo "nVidia"
 
-export CAIRO_DOCK_GPU_TEMP=`nvidia-settings -q GPUCoreTemp -t`
+TEMPERATURE=$(nvidia-settings -q GPUCoreTemp -t)
+
+export CAIRO_DOCK_GPU_TEMP
+CAIRO_DOCK_GPU_TEMP=$TEMPERATURE
