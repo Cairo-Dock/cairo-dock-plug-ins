@@ -14,9 +14,8 @@ CD_APPLET_INCLUDE_MY_VARS
 
 
 void cd_nvidia_acquisition (void) {
-	GError *erreur = NULL;
 	gchar *cCommand = g_strdup_printf("bash %s/nvidia", MY_APPLET_SHARE_DATA_DIR);
-	g_spawn_command_line_async (cCommand, &erreur);
+	system (cCommand);
 	g_free (cCommand);
 }
 
