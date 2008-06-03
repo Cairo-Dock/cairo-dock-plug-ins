@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/Silver
+themedir = $(dustbindatadir)/themes/Silver
 
 theme_DATA =	    \
 	trashcan_full.svg\

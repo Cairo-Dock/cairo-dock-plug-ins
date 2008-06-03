@@ -15,13 +15,14 @@ IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
 GETTEXT_DUSTBIN=cd-dustbin
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_DUSTBIN", [Gettext package.])
+AC_DEFINE_UNQUOTED(GETTEXT_DUSTBIN,"$GETTEXT_DUSTBIN", [Gettext package.])
 AC_SUBST(GETTEXT_DUSTBIN)
 
+VERSION_DUSTBIN=${VERSION}
+AC_SUBST(VERSION_DUSTBIN)
 
-
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/dustbin]
-AC_SUBST(pkgdatadir)
+dustbindatadir=[`pkg-config cairo-dock --variable=pluginsdir`/dustbin]
+AC_SUBST(dustbindatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

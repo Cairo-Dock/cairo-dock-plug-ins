@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/OpenClipArt1
+themedir = $(dustbindatadir)/themes/OpenClipArt1
 
 theme_DATA =	    \
 	trashcan_full.svg\

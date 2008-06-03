@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/Metal
+themedir = $(dustbindatadir)/themes/Metal
 
 theme_DATA =	    \
 	trashcan_full.png\

@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/Gion
+themedir = $(dustbindatadir)/themes/Gion
 
 theme_DATA =	    \
 	trashcan_full.png\

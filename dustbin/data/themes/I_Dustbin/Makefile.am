@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/I_Dustbin
+themedir = $(dustbindatadir)/themes/I_Dustbin
 
 theme_DATA =	    \
 	trashcan_full.svg\

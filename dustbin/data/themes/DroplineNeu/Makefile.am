@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/DroplineNeu
+themedir = $(dustbindatadir)/themes/DroplineNeu
 
 theme_DATA =	    \
 	trashcan_full.svg\

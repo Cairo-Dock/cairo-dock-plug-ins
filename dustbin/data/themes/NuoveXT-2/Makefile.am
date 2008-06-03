@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/NuoveXT-2
+themedir = $(dustbindatadir)/themes/NuoveXT-2
 
 theme_DATA =	    \
 	trashcan_full.png\
