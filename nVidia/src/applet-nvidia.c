@@ -14,15 +14,16 @@ CD_APPLET_INCLUDE_MY_VARS
 
 
 void cd_nvidia_acquisition (void) {
+	GError *erreur = NULL;
 	gchar *cCommand = g_strdup_printf("bash %s/nvidia", MY_APPLET_SHARE_DATA_DIR);
-	system (cCommand);
+	g_spawn_command_line_async (cCommand, &erreur);
 	g_free (cCommand);
 }
 
 void cd_nvidia_read_data (void) {
 	const gchar *cGpuTemp = g_getenv ("CAIRO_DOCK_GPU_TEMP");
 	if (cGpuTemp == NULL) {
-		cd_warning("nVidia : couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system and its version > 1.0 ?");
+		cd_warning("nVidia : couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system and its version >= 1.0 ?");
 		myData.bAcquisitionOK = FALSE;
 	}
 	else {
@@ -72,8 +73,7 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 			if (i == 0) {
 				gchar *str = g_strstr_len (cOneInfopipe, strlen (cOneInfopipe), "version");
 				g_print ("str : %s\n", str);
-				if (str != NULL)
-				{
+				if (str != NULL) {
 					str += 7;
 					while (*str == ' ')
 						str ++;
@@ -83,8 +83,7 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 					int iMajorVersion=0, iMinorVersion=0, iMicroVersion=0;
 					cairo_dock_get_version_from_string (str, &iMajorVersion, &iMinorVersion, &iMicroVersion);
 					g_print ("%d.%d.%d\n", iMajorVersion, iMinorVersion, iMicroVersion);
-					if (iMajorVersion == 0 || (iMajorVersion == 1 && iMinorVersion < 1))  /// A confirmer ...
-					{
+					if (iMajorVersion == 0 || (iMajorVersion == 1 && iMinorVersion < 0)) { /// A confirmer ...
 						myData.bSettingsTooOld == TRUE;
 						cd_warning ("Attention : your nvidia-settings's version is too old (%d.%d.%d)", iMajorVersion, iMinorVersion, iMicroVersion);
 						break ;

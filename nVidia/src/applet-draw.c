@@ -83,12 +83,10 @@ void cd_nvidia_bubble(void) {
 		_nvidia_temporary_dialog (cInfo);
 		g_free (cInfo);
 	}
-	else if (myData.bSettingsTooOld)
-	{
+	else if (myData.bSettingsTooOld) {
 		_nvidia_temporary_dialog ("your version of 'nvidia-settings' is too old\n You need at least the 1.0.0 version");
 	}
-	else
-	{
+	else {
 		_nvidia_temporary_dialog ("couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system\n and configured to monitor GPU temperature ?");
 	}
 }
