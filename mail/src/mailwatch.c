@@ -39,6 +39,8 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
+#include "gnome-keyring.h"
+
 #include "mailwatch.h"
 #include "mailwatch-utils.h"
 #include "cairo-dock.h"
@@ -96,6 +98,14 @@ XfceMailwatchMailboxType *builtin_mailbox_types[] = {
     NULL
 };
 #define N_BUILTIN_MAILBOX_TYPES (sizeof(builtin_mailbox_types)/sizeof(builtin_mailbox_types[0]))
+
+static GnomeKeyringPasswordSchema xfce_mailbox_keyring_schema = {
+      GNOME_KEYRING_ITEM_GENERIC_SECRET,
+      { 
+           { "mailbox_name", GNOME_KEYRING_ATTRIBUTE_TYPE_STRING },
+           { NULL, 0 }
+      }
+  };
 
 static GMutex *big_happy_mailwatch_mx = NULL;
 static void xfce_mailwatch_threads_init();
@@ -227,6 +237,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
         gchar **cfg_entries;
         gsize nb_cfg_entries = 0;
         GList *config_params = NULL;
+        gchar *mailbox_password = NULL;
 
         g_snprintf(buf, 32, "mailbox %d name", i);
         mailbox_name = CD_CONFIG_GET_STRING("Configuration", buf);
@@ -261,7 +272,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
             continue;
 
         for(j = 0; cfg_entries[j] && j < nb_cfg_entries; j++) {
-            XfceMailwatchParam *param;
+            XfceMailwatchParam *param = NULL;
             const gchar *value;
 
             value = CD_CONFIG_GET_STRING(mailbox_name, cfg_entries[j]);
@@ -273,6 +284,24 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
             config_params = g_list_append(config_params, param);
         }
         g_free(cfg_entries);  /* yes, not using g_strfreev() is correct */
+
+        if( GNOME_KEYRING_RESULT_OK == gnome_keyring_find_password_sync(&xfce_mailbox_keyring_schema,
+                                                         &mailbox_password,
+                                                         "mailbox_name",
+                                                         mailbox_name,
+                                                         NULL) )
+       {
+            XfceMailwatchParam *param = NULL;
+            
+            param = g_new(XfceMailwatchParam, 1);
+            param->key = "password";
+            param->value = g_strdup(mailbox_password);
+
+            config_params = g_list_append(config_params, param);
+            
+            gnome_keyring_free_password(mailbox_password);
+            mailbox_password = NULL;
+       }
 
         mailbox->type->restore_param_list_func(mailbox, config_params);
         mailbox->type->set_activated_func(mailbox, TRUE);
@@ -346,7 +375,20 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
 
             if(param->key && strncmp( param->key, "type", 4 ) != 0 )
             {
-                g_key_file_set_value(pKeyFile, mdata->mailbox_name, param->key, param->value);
+                if( strcmp( param->key, "password" ) == 0 )
+                {
+                  /* store the password in the gnome keyring */
+                  gnome_keyring_store_password_sync(&xfce_mailbox_keyring_schema,
+                                                    GNOME_KEYRING_DEFAULT,
+                                                    "Cairo-dock Mail password",
+                                                    param->value,
+                                                    "mailbox_name",
+                                                    mdata->mailbox_name, NULL);
+                }
+                else
+                {
+                  g_key_file_set_value(pKeyFile, mdata->mailbox_name, param->key, param->value);
+                }
                 if( strcmp( param->key, "timeout" ) == 0 ||
                     strcmp( param->key, "port" ) == 0 ||
                     strcmp( param->key, "timeout" ) == 0 )
