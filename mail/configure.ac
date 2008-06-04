@@ -43,7 +43,7 @@ AC_TYPE_PID_T
 # Checks for library functions.
 AC_CHECK_FUNCS([sscanf])
 
-PKG_CHECK_MODULES(PACKAGE, cairo-dock gnutls)
+PKG_CHECK_MODULES(PACKAGE, cairo-dock gnutls gnome-keyring-1)
 
 # SSL is present ? let's say yes :)
 AC_DEFINE_UNQUOTED([HAVE_SSL_SUPPORT], [1], [Define if SSL support is enabled])
