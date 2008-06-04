@@ -89,10 +89,10 @@ void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
 }
 
 
-void cd_rendering_render_diapo (CairoDock *pDock)
+void cd_rendering_render_diapo (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//\____________________ On cree le contexte du dessin.
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
+	/*cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
 	
 	
@@ -101,7 +101,7 @@ void cd_rendering_render_diapo (CairoDock *pDock)
 	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (pCairoContext);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);*/
 
         if(my_diapo_draw_background)
         {
@@ -196,15 +196,15 @@ void cd_rendering_render_diapo (CairoDock *pDock)
 	}
 	
 	
-//////////////////////////////////////////////////////////////////////////////////////// On regle son compte au contexte
+/*//////////////////////////////////////////////////////////////////////////////////////// On regle son compte au contexte
 	cairo_destroy (pCairoContext);
 	
 	
-//////////////////////////////////////////////////////////////////////////////////////// Si on est --glitz alors on s'en sert pour bien que ca plante :
+//////////////////////////////////////////////////////////////////////////////////////// Si on est --glitz alors on s'en sert pour bien que ca plante :  ------> mauvaise langue :-D
 #ifdef HAVE_GLITZ
 	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
 		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
-#endif
+#endif*/
 }
 
 Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock)

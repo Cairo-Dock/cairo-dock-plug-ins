@@ -10,7 +10,7 @@
 void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock);
 
 
-void cd_rendering_render_diapo (CairoDock *pDock);
+void cd_rendering_render_diapo (cairo_t *pCairoContext, CairoDock *pDock);
 
 
 

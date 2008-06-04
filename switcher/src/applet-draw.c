@@ -49,7 +49,7 @@ cairo_set_font_size                 (pIconContext,
  //
 //myData.switcher.RedColor = myConfig.cColorBox;
 printf("myData.switcher.iNbViewportX : %d \n",myData.switcher.iNbViewportX);
-double fMaxScale = (myDock ? 1 + g_fAmplitude : 1); //coefficient Max icone Width
+double fMaxScale = cairo_dock_get_max_scale (myContainer); //coefficient Max icone Width
 myData.switcher.MaxNbLigne = pIcon->fHeight * fMaxScale / 2; //hauteur diviser par 2
 myData.switcher.NumDeskbyLigne = myData.switcher.iNbViewportX / 2; //Bureau diviser par 2 : obtenir nombre de bureau par ligne
 myData.switcher.MaxWidthIcon = pIcon->fWidth * fMaxScale / myData.switcher.NumDeskbyLigne; //largeur icone

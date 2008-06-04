@@ -42,7 +42,23 @@ void weblet_build_and_show(void)
 	}
 	else
 	{
-		cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
+		///cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
+		
+		/// Test unitaire :
+		GtkWidget *window;
+		GtkWidget *moz;
+	
+		window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	
+		gtk_window_set_default_size (GTK_WINDOW (window), 400, 300);
+		moz=gtk_moz_embed_new();
+		
+		gtk_container_add(GTK_CONTAINER(window),moz);
+		gtk_moz_embed_load_url(GTK_MOZ_EMBED(moz), "http://www.google.com");
+		g_print ("pouet1\n");
+		gtk_widget_show_all (window);  // ---> plante !
+		g_print ("pouet2\n");
+		
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
 }

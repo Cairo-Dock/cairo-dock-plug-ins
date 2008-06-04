@@ -26,6 +26,12 @@ AC_SUBST(dustbindatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
+dustbin_srcdir=.
+AC_SUBST(dustbin_srcdir)
+dustbin_top_srcdir=..
+AC_SUBST(dustbin_top_srcdir)
+dustbin_top_builddir=..
+AC_SUBST(dustbin_top_builddir)
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock gthread-2.0)
 

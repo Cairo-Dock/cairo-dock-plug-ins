@@ -71,7 +71,6 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 		else {
 			if (i == 0) {
 				gchar *str = g_strstr_len (cOneInfopipe, strlen (cOneInfopipe), "version");
-				g_print ("str : %s\n", str);
 				if (str != NULL) {
 					str += 7;
 					while (*str == ' ')
@@ -81,12 +80,11 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 						*str2 = '\0';
 					int iMajorVersion=0, iMinorVersion=0, iMicroVersion=0;
 					cairo_dock_get_version_from_string (str, &iMajorVersion, &iMinorVersion, &iMicroVersion);
-					g_print ("%d.%d.%d\n", iMajorVersion, iMinorVersion, iMicroVersion);
-					if (iMajorVersion == 0 || (iMajorVersion == 1 && iMinorVersion < 0)) { /// A confirmer ...
+					/*if (iMajorVersion == 0 || (iMajorVersion == 1 && iMinorVersion < 0)) { /// A confirmer ...
 						myData.bSettingsTooOld == TRUE;
 						cd_warning ("Attention : your nvidia-settings's version is too old (%d.%d.%d)", iMajorVersion, iMinorVersion, iMicroVersion);
 						break ;
-					}
+					}*/
 				}
 			}
 			else if (i == 1) { //GPU Name

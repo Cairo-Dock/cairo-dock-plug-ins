@@ -380,9 +380,5 @@ msgstr ""
 "contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:35
-msgid "Lockposition ?"
-msgstr "Verrouiller la position ?"
-
-#: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"

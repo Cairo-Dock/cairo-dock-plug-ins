@@ -272,7 +272,7 @@ msgstr "Diapo"
 
 #: ../data/messages:7 ../data/messages:159
 msgid "Choose the way separators are drawn :"
-msgstr "Choisissez la manière dont les séparateurs seront déssinés :"
+msgstr "Choisissez la manière dont les séparateurs seront dessinés :"
 
 #: ../data/messages:9 ../data/messages:161
 msgid "Normal separator"

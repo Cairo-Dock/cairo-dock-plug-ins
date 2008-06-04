@@ -21,4 +21,5 @@ theme_DATA =	    \
 	tumble.png\
 	waiter.png\
 	walker.png\
-	sitter.png
+	sitter.png\
+	xmas-walker.png

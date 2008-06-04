@@ -35,15 +35,14 @@ g_source_remove (myData.LoadAfterCompiz);
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cDefaultIcon);
 		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
-cd_message ("ok default");
+		cd_message ("ok default");
 	}
 	else
 	{
 	//g_string_printf (sImagePath, "%s/.cairo-dock/current_theme/plug-ins/switcher/default.png", g_getenv ("HOME"));
 		g_string_printf (sImagePath, "%s/default.svg", MY_APPLET_SHARE_DATA_DIR);
 		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-
-cd_message ("ok default 2");
+		cd_message ("ok default 2");
 	}
 	
 	if (myData.pBrokenSurface != NULL)
@@ -58,7 +57,7 @@ cd_message ("ok default 2");
 	{
 		g_string_printf (sImagePath, "%s/broken.svg", MY_APPLET_SHARE_DATA_DIR);
 		myData.pBrokenSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-cd_message ("ok broken");
+		cd_message ("ok broken");
 	}
 	
 	g_string_free (sImagePath, TRUE);
@@ -69,34 +68,32 @@ CD_APPLET_INIT_BEGIN (erreur)
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
-cairo_dock_register_notification (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) cd_switcher_launch_measure, CAIRO_DOCK_RUN_FIRST);
-
-cairo_dock_register_notification (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) cd_switcher_launch_measure, CAIRO_DOCK_RUN_AFTER);
-
-
-
- if (myDesklet != NULL)
+	cairo_dock_register_notification (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) cd_switcher_launch_measure, CAIRO_DOCK_RUN_AFTER);
+	cairo_dock_register_notification (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) cd_switcher_launch_measure, CAIRO_DOCK_RUN_AFTER);
+	
+	
+	if (myDesklet != NULL)
 	{
 		if (myConfig.bCurrentView)
 		{
-		cd_message ("test");
-cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-	myDrawContext = cairo_create (myIcon->pIconBuffer);
-CD_APPLET_REDRAW_MY_ICON
+			cd_message ("test");
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+			myDrawContext = cairo_create (myIcon->pIconBuffer);
+			CD_APPLET_REDRAW_MY_ICON
 		}
-else	{
-cd_message ("test2");
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
-CD_APPLET_REDRAW_MY_ICON
+		else
+		{
+			cd_message ("test2");
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+			myDrawContext = cairo_create (myIcon->pIconBuffer);
+			CD_APPLET_REDRAW_MY_ICON
+		}
 	}
-
-	}
-
-_load_surfaces();
-
-//myData.LoadAfterCompiz = g_timeout_add (2000, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
-
+	
+	_load_surfaces();
+	
+	//myData.LoadAfterCompiz = g_timeout_add (2000, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
+	
 	cd_switcher_launch_measure();
 CD_APPLET_INIT_END
 
@@ -106,38 +103,44 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
+	cairo_dock_remove_notification_func (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) cd_switcher_launch_measure);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) cd_switcher_launch_measure);
 	
-
-		g_source_remove (myData.LoadAfterCompiz);
-	myData.LoadAfterCompiz = 0;
-CD_APPLET_STOP_END
-
-CD_APPLET_RELOAD_BEGIN
-
+	if (myData.LoadAfterCompiz != 0)
+	{
 		g_source_remove (myData.LoadAfterCompiz);
 		myData.LoadAfterCompiz = 0;
-		
-		reset_data ();
-		if (myIcon->acName == NULL || *myIcon->acName == '\0')
-			myIcon->acName = g_strdup (SWITCHER_DEFAULT_NAME);
-		
-		
-	
- if (myDesklet != NULL)
-	{
-			if (myConfig.bCurrentView)
-		{
-		cd_message ("test");
-cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-	myDrawContext = cairo_create (myIcon->pIconBuffer);
-CD_APPLET_REDRAW_MY_ICON
-		}
-else	{
-cd_message ("test2");
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}
+CD_APPLET_STOP_END
 
+
+CD_APPLET_RELOAD_BEGIN
+	if (myData.LoadAfterCompiz != 0)
+	{
+		g_source_remove (myData.LoadAfterCompiz);
+		myData.LoadAfterCompiz = 0;
+	}
+	
+	reset_data ();  /// quelle violence !
+	if (myIcon->acName == NULL || *myIcon->acName == '\0')
+		myIcon->acName = g_strdup (SWITCHER_DEFAULT_NAME);
+	
+	
+	if (myDesklet != NULL)
+	{
+		if (myConfig.bCurrentView)
+		{
+			cd_message ("test");
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+			myDrawContext = cairo_create (myIcon->pIconBuffer);
+			CD_APPLET_REDRAW_MY_ICON
+		}
+		else
+		{
+			cd_message ("test2");
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+			myDrawContext = cairo_create (myIcon->pIconBuffer);
+		}
 	}
 
 _load_surfaces();

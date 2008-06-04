@@ -20,7 +20,7 @@ void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iC
 
 void cd_rendering_render_icons_parabole (cairo_t *pCairoContext, CairoDock *pDock, double fRatio);
 
-void cd_rendering_render_parabole (CairoDock *pDock);
+void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDock);
 
 Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock);
 

@@ -371,9 +371,9 @@ static void cd_rendering_draw_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 }
 
 
-void cd_rendering_render_curve (CairoDock *pDock)
+void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 {
-	//\____________________ On cree le contexte du dessin.
+	/*//\____________________ On cree le contexte du dessin.
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
 	
@@ -381,7 +381,7 @@ void cd_rendering_render_curve (CairoDock *pDock)
 	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (pCairoContext);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);*/
 	
 	//\____________________ On trace le cadre.
 	double fChangeAxes = 0.5 * (pDock->iCurrentWidth - pDock->iMaxDockWidth);
@@ -455,16 +455,16 @@ void cd_rendering_render_curve (CairoDock *pDock)
 	}
 	
 	
-	cairo_destroy (pCairoContext);
+	/*cairo_destroy (pCairoContext);
 #ifdef HAVE_GLITZ
 	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
 		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
-#endif
+#endif*/
 }
 
 
 
-void cd_rendering_render_optimized_curve (CairoDock *pDock, GdkRectangle *pArea)
+void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDock, GdkRectangle *pArea)
 {
 	//g_print ("%s ((%d;%d) x (%d;%d) / (%dx%d))\n", __func__, pArea->x, pArea->y, pArea->width, pArea->height, pDock->iCurrentWidth, pDock->iCurrentHeight);
 	double fLineWidth = g_iDockLineWidth;
@@ -472,7 +472,7 @@ void cd_rendering_render_optimized_curve (CairoDock *pDock, GdkRectangle *pArea)
 	int iWidth = pDock->iCurrentWidth;
 	int iHeight = pDock->iCurrentHeight;
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
+	/*cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
 	cairo_rectangle (pCairoContext,
 		pArea->x,
@@ -483,7 +483,7 @@ void cd_rendering_render_optimized_curve (CairoDock *pDock, GdkRectangle *pArea)
 	cairo_set_tolerance (pCairoContext, 0.5);
 	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (pCairoContext);
+	cairo_paint (pCairoContext);*/
 	
 	//\____________________ On dessine les decorations du fond sur la portion de fenetre.
 	cairo_save (pCairoContext);
@@ -546,7 +546,7 @@ void cd_rendering_render_optimized_curve (CairoDock *pDock, GdkRectangle *pArea)
 	cairo_restore (pCairoContext);
 	
 	//\____________________ On dessine les icones impactees.
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
+	///cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 	
 	
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
@@ -596,11 +596,11 @@ void cd_rendering_render_optimized_curve (CairoDock *pDock, GdkRectangle *pArea)
 		} while (ic != pFirstDrawnElement);
 	}
 	
-	cairo_destroy (pCairoContext);
+	/*cairo_destroy (pCairoContext);
 #ifdef HAVE_GLITZ
 	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
 		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
-#endif
+#endif*/
 }
 
 

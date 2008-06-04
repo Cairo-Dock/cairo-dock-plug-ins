@@ -12,10 +12,10 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock);
 void cd_rendering_calculate_construction_parameters_curve (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY, double yCurve);
 
 
-void cd_rendering_render_curve (CairoDock *pDock);
+void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock);
 
 
-void cd_rendering_render_optimized_curve (CairoDock *pDock, GdkRectangle *pArea);
+void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDock, GdkRectangle *pArea);
 
 
 Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock);

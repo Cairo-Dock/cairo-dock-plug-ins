@@ -10,7 +10,7 @@
 void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock);
 
 
-void cd_rendering_render_diapo_simple (CairoDock *pDock);
+void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock);
 
 
 Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock);

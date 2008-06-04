@@ -54,11 +54,11 @@ void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 }
 
 
-void cd_rendering_render_rainbow (CairoDock *pDock)
+void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
 	
-	//\____________________ On cree le contexte du dessin.
+	/*//\____________________ On cree le contexte du dessin.
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
 	
@@ -66,7 +66,7 @@ void cd_rendering_render_rainbow (CairoDock *pDock)
 	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (pCairoContext);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);*/
 	
 	//\____________________ On trace le cadre.
 	
@@ -146,11 +146,11 @@ void cd_rendering_render_rainbow (CairoDock *pDock)
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
 	
-	cairo_destroy (pCairoContext);
+	/*cairo_destroy (pCairoContext);
 #ifdef HAVE_GLITZ
 	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
 		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
-#endif
+#endif*/
 }
 
 

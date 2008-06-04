@@ -50,53 +50,44 @@ const  gint X_BORDER_SPACE = 40;
 const  gint Y_BORDER_SPACE = 40;
 const  gint  MaxTextWidthSimple = 125; 
 
+/// On considere qu'on a my_diapo_simple_iconGapX entre chaque icone horizontalement, et aussi entre les icones et les bords (pour aerer un peu plus le dessin). Idem verticalement. X_BORDER_SPACE est la pour empecher que les icones debordent de la fenetre au zoom (?).
+
 void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 {	
         guint nRowsX = 0;
         guint nRowsY = 0;
         guint nIcones = 0;
         
-        
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la configuration de la grille :
         nIcones = cairo_dock_rendering_diapo_simple_guess_grid(pDock->icons, &nRowsX, &nRowsY);   
-        
         
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la taille de l'affichage
         if(nIcones != 0)
         {
-	   pDock->iMinDockWidth  = pDock->iMaxDockWidth  = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + 2 * my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
-	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + 2 * my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 3 + my_diapo_simple_arrowHeight-30;	// 30 -> pour que la fleche aille plus bas
+	   ///pDock->iMinDockWidth  = pDock->iMaxDockWidth  = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + 2 * my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
+	   ///pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + 2 * my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 3 + my_diapo_simple_arrowHeight-30;	// 30 -> pour que la fleche aille plus bas
+	   pDock->iMinDockWidth = pDock->iMaxDockWidth = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + 1 * my_diapo_simple_iconGapX) + my_diapo_simple_iconGapX + X_BORDER_SPACE * 2;
+	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + 1 * my_diapo_simple_iconGapY) + my_diapo_simple_iconGapY + Y_BORDER_SPACE * 2 + my_diapo_simple_arrowHeight-30;	// 30 -> pour que la fleche aille plus bas
         }
         else
         {
-                pDock->iMaxDockWidth = pDock->iMaxDockHeight = pDock->iMinDockWidth = pDock->iMinDockHeight = 0;
+                ///pDock->iMaxDockWidth = pDock->iMaxDockHeight = pDock->iMinDockWidth = pDock->iMinDockHeight = 0;
+                pDock->iMaxDockWidth = pDock->iMinDockWidth = X_BORDER_SPACE * 2;
+                pDock->iMaxDockHeight = pDock->iMinDockHeight = Y_BORDER_SPACE * 2 + my_diapo_simple_arrowHeight-30;
         }
 
 //////////////////////////////////////////////////////////////////////////////////////// Définition de la zone de déco avec Valérie Damidot - 0 car on s'en fout un peu comme l'emission de cette grognasse... :D
 	pDock->iDecorationsHeight = 0;
 	pDock->iDecorationsWidth  = 0;
 	
-	
 //////////////////////////////////////////////////////////////////////////////////////// On affecte ca aussi au cas où
 	pDock->fFlatDockWidth = pDock->iMinDockWidth;
 
 }
 
-void cd_rendering_render_diapo_simple (CairoDock *pDock)
+void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
-	//\____________________ On cree le contexte du dessin.
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
-	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
-	
-	
-//////////////////////////////////////////////////////////////////////////////////////// On définit les paramètres de dessin (par defaut pour l'instant)
-	cairo_set_tolerance (pCairoContext, 0.5); 
-	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (pCairoContext);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
-	
-        if(my_diapo_simple_draw_background)
+	if(my_diapo_simple_draw_background)
         {
 	        //\____________________ On trace le cadre.
 
@@ -117,38 +108,33 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 	                                                      my_diapo_simple_color_border_line[3] * (1. - pDock->fFoldingFactor));
 		        cairo_stroke (pCairoContext);
 	        }
+	        else
+	        	cairo_new_path (pCairoContext);
 	        cairo_restore (pCairoContext);
         }	
 	//\____________________ On dessine la ficelle qui les joint.*/
 	//TODO Rendre joli !
 	if (g_iStringLineWidth > 0)
 		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, TRUE, TRUE);
-		
-		
-	//\____________________ On dessine les icones avec leurs etiquettes.
 	
+	//\____________________ On dessine les icones avec leurs etiquettes.
 	
 //////////////////////////////////////////////////////////////////////////////////////// Si y'en a pas on se barre (dock vide)
         if (pDock->icons == NULL) return;
 	
-
 //////////////////////////////////////////////////////////////////////////////////////// On parcourt la liste les icones :
 	Icon *icon;
 	GList *ic;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
-	
 //////////////////////////////////////////////////////////////////////////////////////// On recupere la structure d'infos
 		icon = ic->data;
-
 
 //////////////////////////////////////////////////////////////////////////////////////// On sauvegarde le contexte de cairo
 		cairo_save (pCairoContext);
 		
-
-//////////////////////////////////////////////////////////////////////////////////////// On affiche l'icone en cours avec les options :		
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, pDock->fRatio, 0, pDock->bUseReflect, FALSE, pDock->iCurrentWidth, pDock->bDirectionUp);
-
+//////////////////////////////////////////////////////////////////////////////////////// On affiche l'icone en cours avec les options :
+		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, pDock->fRatio, 1., pDock->bUseReflect, FALSE, pDock->iCurrentWidth, pDock->bDirectionUp);
 
 //////////////////////////////////////////////////////////////////////////////////////// On restore le contexte de cairo
 		cairo_restore (pCairoContext);
@@ -177,7 +163,6 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 				        icon->pTextBuffer,  
 				        (icon->fDrawY + (icon->fWidth * icon->fScale)/2)/zoom -icon->fTextXOffset,
 				        (icon->fDrawX +  (icon->fHeight * icon->fScale)   + (my_diapo_simple_iconGapY / 2)  - 6 )/zoom); // 6 ~= hauteur texte / 2
-
 			}
 
 			if ((my_diapo_simple_text_only_on_pointed && icon->bPointed) || my_diapo_simple_display_all_icons)
@@ -188,17 +173,6 @@ void cd_rendering_render_diapo_simple (CairoDock *pDock)
 			cairo_restore (pCairoContext);
                 }
 	}
-	
-	
-//////////////////////////////////////////////////////////////////////////////////////// On regle son compte au contexte mouhouhahAHAHAHAAAA
-	cairo_destroy (pCairoContext);
-	
-	
-//////////////////////////////////////////////////////////////////////////////////////// Si on est --glitz alors on s'en sert pour bien que ca plante :
-#ifdef HAVE_GLITZ
-	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
-		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
-#endif
 }
 
 Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
@@ -246,7 +220,6 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 void cd_rendering_register_diapo_simple_renderer (void)
 {
 
-
 //////////////////////////////////////////////////////////////////////////////////////// On definit le renderer :
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);                                           //Nouvelle structure	
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-diapo-simple-view", MY_APPLET_SHARE_DATA_DIR);        //On affecte le readme
@@ -284,7 +257,6 @@ guint cairo_dock_rendering_diapo_simple_guess_grid(GList *pIconList, guint *nRow
 Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, guint nRowsX, guint nRowsY, gint Mx, gint My)
 {
 
-
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la position de base pour toutes les icones :
         guint i = 0;
         guint x = 0;
@@ -298,50 +270,52 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 	
-	
 //////////////////////////////////////////////////////////////////////////////////////// On recupere la structure d'infos
 		icon = ic->data;
 		cairo_dock_rendering_diapo_simple_get_gridXY_from_index(nRowsX, i, &x, &y);
 		
+//////////////////////////////////////////////////////////////////////////////////////// On affecte les parametres de dessin  :
 		
-//////////////////////////////////////////////////////////////////////////////////////// On affecte les parametres de dessin  :                
-		
-		
-//////////////////////////////////////////////////////////////////////////////////////// On va PAS se servir des fX fY comme d'index de la grille ailleurs qu'ici CAR le fY est changé dans des fonctions de drawing qui devrait pas !
-	        icon->fX = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + X_BORDER_SPACE;
-	        icon->fY = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE;;
+//////////////////////////////////////////////////////////////////////////////////////// On va PAS se servir des fX fY comme d'index de la grille ailleurs qu'ici CAR le fY est changé dans des fonctions de drawing qui devrait pas !   ----> a confirmer mais ca ne devrait plus !
+	        ///icon->fX = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + X_BORDER_SPACE;
+	        ///icon->fY = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE;
+	        icon->fX = (icon->fWidth  + my_diapo_simple_iconGapX) * x + X_BORDER_SPACE +my_diapo_simple_iconGapX ;
+	        icon->fY = (icon->fHeight + my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE + my_diapo_simple_iconGapY;
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On passe au réferentiel de l'image :
 	        icon->fXMin = icon->fXMax = icon->fXAtRest = //Ca on s'en sert pas encore
-	        icon->fDrawX = icon->fX + my_diapo_simple_iconGapX + icon->fWidth  * (1. - icon->fScale) / 2;
-	        icon->fDrawY = icon->fY + my_diapo_simple_iconGapY + icon->fHeight * (1. - icon->fScale) / 2;	    	        
-
+	        ///icon->fDrawX = icon->fX + my_diapo_simple_iconGapX + icon->fWidth  * (1. - icon->fScale) / 2;
+	        ///icon->fDrawY = icon->fY + my_diapo_simple_iconGapY + icon->fHeight * (1. - icon->fScale) / 2;
+	        icon->fDrawX = icon->fX + icon->fWidth  * (1. - icon->fScale) / 2;
+	        icon->fDrawY = icon->fY + icon->fHeight * (1. - icon->fScale) / 2;
 
 ////////////////////////////////////////////////////////////////////////////////////////On va check de la mouse là :
-                if((Mx > icon->fX) && 
+                /**if((Mx > icon->fX) && 
                    (My > icon->fY) &&
                    (Mx < icon->fX + icon->fWidth  + 2 * my_diapo_simple_iconGapX) &&
-                   (My < icon->fY + icon->fHeight + 2 * my_diapo_simple_iconGapY))
-                {        
-                        icon->bPointed = TRUE;    
+                   (My < icon->fY + icon->fHeight + 2 * my_diapo_simple_iconGapY))*/
+                   if((Mx > icon->fX - .5*my_diapo_simple_iconGapX) && 
+                   (My > icon->fY - .5*my_diapo_simple_iconGapY) &&
+                   (Mx < icon->fX + icon->fWidth  + .5*my_diapo_simple_iconGapX) &&
+                   (My < icon->fY + icon->fHeight + .5*my_diapo_simple_iconGapY))
+                {
+                        icon->bPointed = TRUE;
                         pointed_ic = ic;
-                        icon->fAlpha = 1.;                           
+                        icon->fAlpha = 1.;
 	        }
 	        else
 	        {
 	                icon->bPointed = FALSE; 
-	                icon->fAlpha = 0.9;
+	                icon->fAlpha = 0.75;
 	        }
-
 
 //////////////////////////////////////////////////////////////////////////////////////// On prépare pour la suivante :
 	        i++;
 	               
-	                
 //////////////////////////////////////////////////////////////////////////////////////// On affecte tous les parametres qui n'ont pas été défini précédement
 	        icon->fPhase = 0.;
-	        icon->fOrientation = 0.;//2. * G_PI * pDock->fFoldingFactor;                // rotation de l'icone
+	        icon->fOrientation = 0.;//2. * G_PI * pDock->fFoldingFactor;                // rotation de l'icone  -----> idee sympa ! par contre il faut placer l'icone du coup.
             icon->fWidthFactor = icon->fHeightFactor = 1. - pDock->fFoldingFactor;
 
 //////////////////////////////////////////////////////////////////////////////////////// On laisse le dock s'occuper des animations
@@ -365,14 +339,16 @@ void cairo_dock_calculate_wave_with_position_diapo_simple(GList *pIconList, gint
 		icon = ic->data;
 		cairo_dock_rendering_diapo_simple_get_gridXY_from_index(nRowsX, i, &x, &y);
                 guint x1 = Mx;
-                gdouble x2 = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + my_diapo_simple_iconGapX + X_BORDER_SPACE;
+                ///gdouble x2 = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + my_diapo_simple_iconGapX + X_BORDER_SPACE;
+                gdouble x2 = (icon->fWidth + my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + X_BORDER_SPACE + my_diapo_simple_iconGapX;
                 guint y1 = My;
-                gdouble y2 = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + my_diapo_simple_iconGapY + Y_BORDER_SPACE;
+                ///gdouble y2 = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + my_diapo_simple_iconGapY + Y_BORDER_SPACE;
+                gdouble y2 = (icon->fHeight + my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + Y_BORDER_SPACE + my_diapo_simple_iconGapY;
                 gdouble distanceE = sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
               
                 if(my_diapo_simple_lineaire)
                 {
-                        gdouble eloignementMax = 3. * (icon->fWidth + icon->fHeight)  / 2; 
+                        gdouble eloignementMax = 3. * (icon->fWidth + icon->fHeight)  / 2;
                         if(distanceE > eloignementMax)
                         {
                                 icon->fScale = 1.;
@@ -423,7 +399,7 @@ static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoCo
 {
         const gdouble arrow_dec = 2;
 	gdouble fFrameWidth  = pDock->iMaxDockWidth-2*X_BORDER_SPACE;
-	gdouble fFrameHeight = pDock->iMaxDockHeight-2*Y_BORDER_SPACE - my_diapo_simple_arrowHeight + 30; //  30->pour que la fleche aille plus bas...
+	gdouble fFrameHeight = pDock->iMaxDockHeight-2*Y_BORDER_SPACE - my_diapo_simple_arrowHeight + 30; //  30->pour que la fleche aille plus bas...  -----> quel petit joueur, regarde les calculs de malade que je me suis tape pour la pointe des dialogues ! :-)
 	gdouble fDockOffsetX = X_BORDER_SPACE;
 	gdouble fDockOffsetY = Y_BORDER_SPACE;
 	
@@ -566,9 +542,7 @@ void cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *
 
 void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
-
 ////////////////////////////////////////////////////////////////////////////////////////On se fait un beau pattern dégradé :
-
         cairo_pattern_t *mon_super_pattern;
         cairo_save (pCairoContext);       
         mon_super_pattern = cairo_pattern_create_linear (0.0, 0.0,
@@ -578,7 +552,7 @@ void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoCon
         cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0, my_diapo_simple_color_frame_start[0],                   
                                                                  my_diapo_simple_color_frame_start[1], 
                                                                  my_diapo_simple_color_frame_start[2], 
-                                                                 my_diapo_simple_color_frame_start[3] * (1. - pDock->fFoldingFactor)); // On gère aussi l'anim de depliage parcequ'on est des dingues
+                                                                 my_diapo_simple_color_frame_start[3] * (1. - pDock->fFoldingFactor)); // On gère aussi l'anim de depliage parcequ'on est des dingues  ----> completement d'accord ! :-D
                                                 
         cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1, my_diapo_simple_color_frame_stop[0] ,                  
                                                                  my_diapo_simple_color_frame_stop[1] , 
@@ -586,12 +560,8 @@ void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoCon
                                                                  my_diapo_simple_color_frame_stop[3]  * (1. - pDock->fFoldingFactor)); 
         cairo_set_source (pCairoContext, mon_super_pattern);
         
-////////////////////////////////////////////////////////////////////////////////////////On remplit le contexte en le préservant -> pourquoi ?
+////////////////////////////////////////////////////////////////////////////////////////On remplit le contexte en le préservant -> pourquoi ?  ----> parce qu'on va tracer le contour plus tard ;-)
         cairo_fill_preserve (pCairoContext);  
         cairo_pattern_destroy (mon_super_pattern);    
         cairo_restore (pCairoContext);
-
 }
-
-
-

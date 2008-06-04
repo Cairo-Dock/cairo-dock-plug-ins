@@ -53,17 +53,9 @@ msgstr "Ici vous pouvez spécifier une liste des répertoires de poubelle ;"
 msgid "File browser used to show a trash :"
 msgstr "Navigateur de fichier pour visualiser la poubelle ;"
 
-#: src/applet-notifications.c:21
-msgid ""
-"This is the dustbin applet for Cairo-Dock\n"
-" made by Fabrice Rey (fabounet_03@yahoo.fr)"
-msgstr ""
-"Ceci est l'applet poubelle de Cairo-Dock\n"
-" écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
-
 #: src/applet-notifications.c:42 ../src/applet-notifications.c:38
 #: ../src/applet-notifications.c:36 ../src/applet-notifications.c:35
-msgid "Show Trash"
+msgid "Show Trash0"
 msgstr "Ouvrir la poubelle"
 
 #: src/applet-notifications.c:54 ../src/applet-notifications.c:45
@@ -73,7 +65,7 @@ msgstr "Ouvrir toutes"
 
 #: src/applet-notifications.c:56 ../src/applet-notifications.c:47
 #: ../src/applet-notifications.c:45 ../src/applet-notifications.c:44
-msgid "Delete Trash"
+msgid "Delete Trash0"
 msgstr "Vider la poubelle"
 
 #: src/applet-notifications.c:69 ../src/applet-notifications.c:54
@@ -308,9 +300,13 @@ msgstr ""
 "contre toujours le déplacer avec ALT + clic gauche"
 
 #: ../data/messages:35
-msgid "Lockposition ?"
-msgstr "Verrouiller la position ?"
-
-#: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
+
+#: ../src/applet-notifications.c:35
+msgid "Show Trash"
+msgstr ""
+
+#: ../src/applet-notifications.c:44
+msgid "Delete Trash"
+msgstr ""

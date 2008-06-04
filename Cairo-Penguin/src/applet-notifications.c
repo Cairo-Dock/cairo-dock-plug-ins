@@ -52,11 +52,11 @@ gboolean CD_APPLET_ON_CLICK (gpointer *data)
 		myData.iCurrentPositionY = (myConfig.bFree ? g_iDockLineWidth : 0);
 		PenguinAnimation *pAnimation = penguin_get_current_animation ();
 		int iNewAnimation;
-		int iRandom = g_random_int_range (0, 2);
-		if (iRandom == 0)  // 1 chance sur 2.
-			iNewAnimation = penguin_choose_next_animation (pAnimation);
-		else
+		int iRandom = g_random_int_range (0, 4);
+		if (iRandom == 0)  // 1 chance sur 4.
 			iNewAnimation = penguin_choose_go_up_animation ();
+		else
+			iNewAnimation = penguin_choose_next_animation (pAnimation);
 		penguin_set_new_animation (iNewAnimation);
 		
 		///if (myConfig.bFree)
@@ -163,6 +163,12 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK (gpointer *data)
 			{
 				int iNewAnimation = penguin_choose_ending_animation ();
 				penguin_set_new_animation (iNewAnimation);
+			}
+			else if (iRandom == 1 && ! myConfig.bFree)
+			{
+				cairo_dock_arm_animation (myIcon, CAIRO_DOCK_BOUNCE, 3);
+				cairo_dock_start_animation (myIcon, myContainer);
+				myData.pDialog = cairo_dock_show_temporary_dialog ("Olllééééé !", myIcon, myContainer, 2500);
 			}
 			else
 			{

@@ -157,17 +157,17 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 }
 
 
-void cd_rendering_render_caroussel (CairoDock *pDock)
+void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//\____________________ On cree le contexte du dessin.
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
+	/*cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
 	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
 	
 	cairo_set_tolerance (pCairoContext, 0.5);  // avec moins que 0.5 on ne voit pas la difference.
 	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (pCairoContext);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
+	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);*/
 	
 	//\____________________ On trace le cadre.
 	double fLineWidth = g_iDockLineWidth;
@@ -217,11 +217,11 @@ void cd_rendering_render_caroussel (CairoDock *pDock)
 	///double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
 	cd_rendering_render_icons_caroussel (pCairoContext, pDock, pDock->fRatio);
 	
-	cairo_destroy (pCairoContext);
+	/*cairo_destroy (pCairoContext);
 #ifdef HAVE_GLITZ
 	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
 		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
-#endif
+#endif*/
 }
 
 

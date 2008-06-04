@@ -24,10 +24,10 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceCon
 cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceContext, int iWidth, int iHeight);
 
 
-void cd_rendering_render_3D_plane (CairoDock *pDock);
+void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock);
 
 
-void cd_rendering_render_optimized_3D_plane (CairoDock *pDock, GdkRectangle *pArea);
+void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *pDock, GdkRectangle *pArea);
 
 
 Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock);

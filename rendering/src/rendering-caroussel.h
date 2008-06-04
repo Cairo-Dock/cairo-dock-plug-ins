@@ -17,7 +17,7 @@ void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int i
 
 void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDock, double fRatio);
 
-void cd_rendering_render_caroussel (CairoDock *pDock);
+void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock);
 
 Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock);
 
