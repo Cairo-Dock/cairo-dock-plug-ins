@@ -50,7 +50,7 @@ const  gint X_BORDER_SPACE = 40;
 const  gint Y_BORDER_SPACE = 40;
 const  gint  MaxTextWidthSimple = 125; 
 
-/// On considere qu'on a my_diapo_simple_iconGapX entre chaque icone horizontalement, et aussi entre les icones et les bords (pour aerer un peu plus le dessin). Idem verticalement. X_BORDER_SPACE est la pour empecher que les icones debordent de la fenetre au zoom (?).
+/// On considere qu'on a my_diapo_simple_iconGapX entre chaque icone horizontalement, et my_diapo_simple_iconGapX/2 entre les icones et les bords (pour aerer un peu plus le dessin). Idem verticalement. X_BORDER_SPACE est la pour empecher que les icones debordent de la fenetre au zoom (?).
 
 void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 {	
@@ -66,8 +66,8 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
         {
 	   ///pDock->iMinDockWidth  = pDock->iMaxDockWidth  = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + 2 * my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
 	   ///pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + 2 * my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 3 + my_diapo_simple_arrowHeight-30;	// 30 -> pour que la fleche aille plus bas
-	   pDock->iMinDockWidth = pDock->iMaxDockWidth = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + 1 * my_diapo_simple_iconGapX) + my_diapo_simple_iconGapX + X_BORDER_SPACE * 2;
-	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + 1 * my_diapo_simple_iconGapY) + my_diapo_simple_iconGapY + Y_BORDER_SPACE * 2 + my_diapo_simple_arrowHeight-30;	// 30 -> pour que la fleche aille plus bas
+	   pDock->iMinDockWidth = pDock->iMaxDockWidth = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
+	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 2 + my_diapo_simple_arrowHeight-30;	// 30 -> pour que la fleche aille plus bas
         }
         else
         {
@@ -279,8 +279,8 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 //////////////////////////////////////////////////////////////////////////////////////// On va PAS se servir des fX fY comme d'index de la grille ailleurs qu'ici CAR le fY est changé dans des fonctions de drawing qui devrait pas !   ----> a confirmer mais ca ne devrait plus !
 	        ///icon->fX = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + X_BORDER_SPACE;
 	        ///icon->fY = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE;
-	        icon->fX = (icon->fWidth  + my_diapo_simple_iconGapX) * x + X_BORDER_SPACE +my_diapo_simple_iconGapX ;
-	        icon->fY = (icon->fHeight + my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE + my_diapo_simple_iconGapY;
+	        icon->fX = (icon->fWidth  + my_diapo_simple_iconGapX) * x + X_BORDER_SPACE + .5*my_diapo_simple_iconGapX ;
+	        icon->fY = (icon->fHeight + my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE + .5*my_diapo_simple_iconGapY;
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On passe au réferentiel de l'image :
@@ -340,10 +340,10 @@ void cairo_dock_calculate_wave_with_position_diapo_simple(GList *pIconList, gint
 		cairo_dock_rendering_diapo_simple_get_gridXY_from_index(nRowsX, i, &x, &y);
                 guint x1 = Mx;
                 ///gdouble x2 = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + my_diapo_simple_iconGapX + X_BORDER_SPACE;
-                gdouble x2 = (icon->fWidth + my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + X_BORDER_SPACE + my_diapo_simple_iconGapX;
+                gdouble x2 = (icon->fWidth + my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + X_BORDER_SPACE + .5*my_diapo_simple_iconGapX;
                 guint y1 = My;
                 ///gdouble y2 = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + my_diapo_simple_iconGapY + Y_BORDER_SPACE;
-                gdouble y2 = (icon->fHeight + my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + Y_BORDER_SPACE + my_diapo_simple_iconGapY;
+                gdouble y2 = (icon->fHeight + my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + Y_BORDER_SPACE + .5*my_diapo_simple_iconGapY;
                 gdouble distanceE = sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
               
                 if(my_diapo_simple_lineaire)
