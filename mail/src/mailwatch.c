@@ -294,7 +294,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
             XfceMailwatchParam *param = NULL;
             
             param = g_new(XfceMailwatchParam, 1);
-            param->key = "password";
+            param->key = g_strdup("password");
             param->value = g_strdup(mailbox_password);
 
             config_params = g_list_append(config_params, param);
