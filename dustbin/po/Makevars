@@ -4,8 +4,8 @@
 DOMAIN = @GETTEXT_DUSTBIN@
 
 # These two variables depend on the location of this directory.
-#subdir = po
-#top_builddir = ..
+subdir = po
+top_builddir = ..
 
 # These options get passed to xgettext.
 XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --keyword=D_ --no-location

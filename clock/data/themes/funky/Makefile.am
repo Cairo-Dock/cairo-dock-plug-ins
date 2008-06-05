@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/funky
+themedir = $(clockdatadir)/themes/funky
 
 theme_DATA =	    \
 	readme\

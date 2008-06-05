@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/glassy
+themedir = $(clockdatadir)/themes/glassy
 
 theme_DATA =	    \
 	readme\

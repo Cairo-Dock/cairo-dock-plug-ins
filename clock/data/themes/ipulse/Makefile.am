@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/ipulse
+themedir = $(clockdatadir)/themes/ipulse
 
 theme_DATA =	    \
 	readme\

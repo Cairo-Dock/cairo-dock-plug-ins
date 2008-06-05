@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/quartz-24
+themedir = $(clockdatadir)/themes/quartz-24
 
 theme_DATA =	    \
 	readme\

@@ -7,4 +7,5 @@ SUBDIRS = \
 	Metal\
 	Human\
 	Silver\
+	Neon\
 	I_Dustbin

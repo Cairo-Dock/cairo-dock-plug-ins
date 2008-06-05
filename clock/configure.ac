@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-clock
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
+GETTEXT_CLOCK=cd-clock
+AC_DEFINE_UNQUOTED(GETTEXT_CLOCK,"$GETTEXT_CLOCK", [Gettext clock package.])
 AC_SUBST(GETTEXT_PACKAGE)
 
+AC_SUBST(VERSION_CLOCK, "$VERSION")
+AC_SUBST(PACKAGE_CLOCK, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/clock]
-AC_SUBST(pkgdatadir)
+clockdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/clock]
+AC_SUBST(clockdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

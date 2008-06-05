@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/BlueSlim
+themedir = $(clockdatadir)/themes/BlueSlim
 
 theme_DATA =	    \
 	readme\

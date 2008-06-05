@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/silvia-24
+themedir = $(clockdatadir)/themes/silvia-24
 
 theme_DATA =	    \
 	readme\

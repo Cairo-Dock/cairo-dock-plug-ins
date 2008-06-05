@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/fdo
+themedir = $(clockdatadir)/themes/fdo
 
 theme_DATA =	    \
 	readme\

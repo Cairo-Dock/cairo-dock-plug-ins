@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/zen
+themedir = $(clockdatadir)/themes/zen
 
 theme_DATA =	    \
 	readme\

@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/radium
+themedir = $(clockdatadir)/themes/radium
 
 theme_DATA =	    \
 	readme\

@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/antique
+themedir = $(clockdatadir)/themes/antique
 
 theme_DATA =	    \
 	readme\

@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/tango
+themedir = $(clockdatadir)/themes/tango
 
 theme_DATA =	    \
 	readme\

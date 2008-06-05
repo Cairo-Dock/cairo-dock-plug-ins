@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_CLOCK@ (v@VERSION_CLOCK@)</u></b>
 <u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
 <i>Display time and date in you dock with the <span color='#0000FF'>clock applet</span> !</i>
  2 view are available : numeric and analogic, based on <i>Cairo-Clock</i>.

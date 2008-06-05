@@ -18,20 +18,14 @@ GETTEXT_DUSTBIN=cd-dustbin
 AC_DEFINE_UNQUOTED(GETTEXT_DUSTBIN,"$GETTEXT_DUSTBIN", [Gettext package.])
 AC_SUBST(GETTEXT_DUSTBIN)
 
-VERSION_DUSTBIN=${VERSION}
-AC_SUBST(VERSION_DUSTBIN)
+AC_SUBST(VERSION_DUSTBIN, "$VERSION")
+AC_SUBST(PACKAGE_DUSTBIN, "$PACKAGE")
 
 dustbindatadir=[`pkg-config cairo-dock --variable=pluginsdir`/dustbin]
 AC_SUBST(dustbindatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
-dustbin_srcdir=.
-AC_SUBST(dustbin_srcdir)
-dustbin_top_srcdir=..
-AC_SUBST(dustbin_top_srcdir)
-dustbin_top_builddir=..
-AC_SUBST(dustbin_top_builddir)
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock gthread-2.0)
 
@@ -50,6 +44,7 @@ AC_CONFIG_FILES([Makefile
 		data/themes/Human/Makefile
 		data/themes/Metal/Makefile
 		data/themes/Silver/Makefile
+		data/themes/Neon/Makefile
 		data/themes/I_Dustbin/Makefile
 		])
 AC_OUTPUT

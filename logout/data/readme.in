@@ -1,3 +1,3 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_LOGOUT@ (v@VERSION_LOGOUT@)</u></b>
 <u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
 <i>A very simple applet that adds an icon to <span color='#0000FF'>log out</span> from your session</i>
