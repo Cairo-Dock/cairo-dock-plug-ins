@@ -11,23 +11,28 @@ extern AppletData myData;
 
 
 CD_APPLET_GET_CONFIG_BEGIN
-	//reset_config ();
+
 
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
-//cd_message ("Viewport X : %d", myData.switcher.iNbViewportX);
-//myConfig.iNbDesks = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nombre de bureau", myData.switcher.iNbViewportX);
+
 		myConfig.bCurrentView = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Vue Simple", TRUE);
+		myConfig.bMapWallpaper = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Map Wallpaper", TRUE);
 		myConfig.bDisplayNumDesk = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display numero desktop", TRUE);
+		myConfig.bInvertIndicator = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Invert Indicator", TRUE);
+double inlinesize = 0.300;
+		myConfig.cInLineSize = CD_CONFIG_GET_DOUBLE("Configuration", "inlinesize");
+	double inlinecouleur[4] = {0., 0., 0.5, 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbinlinecolor",myConfig.RGBInLineColors, inlinecouleur);
+	double indcouleur[4] = {0., 0., 0.5, 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbindcolor",myConfig.RGBIndColors, indcouleur);
 double linesize = 0.300;
 		myConfig.cLineSize = CD_CONFIG_GET_DOUBLE("Configuration", "linesize");
 	double linecouleur[4] = {0., 0., 0.5, 1.};
 		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgblinecolor",myConfig.RGBLineColors, linecouleur);
-	double indcouleur[4] = {0., 0., 0.5, 1.};
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbindcolor",myConfig.RGBIndColors, indcouleur);
 		myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Configuration", "default icon");
+		myConfig.cDefaultSDockIcon = CD_CONFIG_GET_STRING ("Configuration", "default subdock icon");
 		myConfig.cBrokenIcon = CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 		myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
-		//cairo_dock_update_conf_file_with_renderers (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE, "Configuration", "renderer");
 
 CD_APPLET_GET_CONFIG_END
 
@@ -40,12 +45,12 @@ CD_APPLET_RESET_CONFIG_END
 
 CD_APPLET_RESET_DATA_BEGIN
 
-
-if (myData.LoadAfterCompiz != 0)//\_______________________ On Tue le Timer.
+/* Fonction plus utile car j'ai enlevé le timer */
+/*if (myData.LoadAfterCompiz != 0)//\_______________________ On Tue le Timer.
 {
 cd_message ("timer = 0 ");
 		g_source_remove (myData.LoadAfterCompiz);
 	myData.LoadAfterCompiz = 0;
-}
+}*/
 
 CD_APPLET_RESET_DATA_END

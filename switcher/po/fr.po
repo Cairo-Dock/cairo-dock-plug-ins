@@ -43,10 +43,10 @@ msgstr "Nom de l'icône :"
 
 #: src/applet-notifications.c:13 ../src/applet-notifications.c:16
 msgid ""
-"This is the switcher applet\n"
+"This is the Desktop switcher applet\n"
 " made by Cchumi for Cairo-Dock"
 msgstr ""
-"Ceci est l'applet switcher\n"
+"Ceci est l'applet switcher de Bureau\n"
 " écrite par Cchumi pour Cairo-Dock"
 
 #: ../src/applet-notifications.c:66 ../src/applet-notifications.c:75
@@ -96,6 +96,11 @@ msgstr "Configuration"
 msgid "Default icon :"
 msgstr "Icône par Défaut :"
 
+#: ../data/messages:49 ../data/messages:37 ../data/messages:39
+#: ../data/messages:44
+msgid "Default Icon For Sub Dock View :"
+msgstr "Icône par Défaut pour la Vue Sous Dock :"
+
 #: ../data/messages:53 ../data/messages:41 ../data/messages:43
 #: ../data/messages:47
 msgid "Broken icon :"
@@ -111,8 +116,8 @@ msgid "Render desklet in 3D ?"
 msgstr "Rendre en Desklet 3D ?"
 
 #: ../data/messages:29
-msgid "Number of Viewports"
-msgstr "Nombre de Bureaux :"
+msgid "Invert Indicator of Current Desktop ?"
+msgstr "Inverser l'identification du bureau courant ?"
 
 #: ../data/messages:31 ../data/messages:33 ../data/messages:37
 msgid "Show Light Icon ?"
@@ -159,17 +164,29 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position"
 
 #: ../data/messages:37
-msgid "Size of the Line :"
-msgstr "Taille de la ligne :"
+msgid "Size of the Inside Icon Lines :"
+msgstr "Taille de la ligne Interieure :"
 
 #: ../data/messages:39 ../data/messages:43
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
-#: ../data/messages:41
-msgid "Color of the Lines :"
-msgstr "Couleur des lignes :"
-
 #: ../data/messages:45
 msgid "Color of the Indicator :"
 msgstr "Couleur de l'indicateur :"
+
+#: ../data/messages:41
+msgid "Color of the Inside Icon Lines :"
+msgstr "Couleur des Lignes Interieures :"
+
+#: ../data/messages:53
+msgid "Size of the Border Line :"
+msgstr "Taille de la ligne du Cadre :"
+
+#: ../data/messages:54
+msgid "Color of the Border Line :"
+msgstr "Couleur de Ligne Exterieure :"
+
+#: ../data/messages:52
+msgid "Map Wallpaper on icon ?"
+msgstr "Afficher le Fond D'écran sur l'icône ?"

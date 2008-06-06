@@ -15,14 +15,9 @@ extern AppletData myData;
 
 CD_APPLET_ABOUT (_D("This is the switcher applet\n made by Cchumi for Cairo-Dock"))
 
-static void _cd_switcher_reload (GtkMenuItem *menu_item, gpointer *data)
-{
-	g_source_remove (myData.LoadAfterCompiz);
-	myData.LoadAfterCompiz = 0;
-	
-	cd_switcher_launch_measure ();  // asynchrone
-}
 
+
+/* Fonction maitre de recuperation des coordonnées de clique pour la vue simplifiée.*/
 void _cd_switcher_cairo_main_icon (int iMouseX, int iMouseY)
 {
 		double fMaxScale = (myDock ? 1 + g_fAmplitude : 1);
@@ -107,7 +102,7 @@ if (myConfig.bCurrentView && myDesklet == NULL)
 		int iMouseX =  myDock->iMouseX;
 		int iMouseY =  myDock->iMouseY;
 		_cd_switcher_cairo_main_icon(iMouseX, iMouseY);
-		//CD_APPLET_REDRAW_MY_ICON
+	
 		}
 		else if (myDesklet != NULL) 
 		{
@@ -117,12 +112,15 @@ cd_message ("SWITCHER : Desklet :");
 int iMouseX = - (int) myDesklet->diff_x;
 		int iMouseY = - (int) myDesklet->diff_y;
 _cd_switcher_cairo_main_icon(iMouseX, iMouseY);
-//CD_APPLET_REDRAW_MY_ICON
+
 			}
 			else
 			{
-		cd_debug ("SWITCHER : clic sur %s", pClickedIcon->acName);
-myData.switcher.iDesktopViewportX = atoi (pClickedIcon->cQuickInfo);
+		cd_debug ("SWITCHER : clic sur %s", pClickedIcon->fOrder);
+
+myData.switcher.iDesktopViewportX = (int)pClickedIcon->fOrder;
+printf("myIcon->fOrder %f \n",pClickedIcon->fOrder);
+printf("myData.switcher.iDesktopViewportX %d \n",myData.switcher.iDesktopViewportX);
 
 cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
 CD_APPLET_REDRAW_MY_ICON
@@ -132,11 +130,13 @@ CD_APPLET_REDRAW_MY_ICON
 		else if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))  // on a clique sur une icone du sous-dock.
 				{
 
-		cd_debug ("SWITCHER : clic sur %s", pClickedIcon->acName);
-myData.switcher.iDesktopViewportX = atoi (pClickedIcon->cQuickInfo);
+		cd_debug ("SWITCHER : clic sur %s", pClickedIcon->fOrder);
 
+myData.switcher.iDesktopViewportX = (int)pClickedIcon->fOrder; /*on recupere son ordre et on switch*/
+printf("myIcon->fOrder %f \n",pClickedIcon->fOrder);
+printf("myData.switcher.iDesktopViewportX %d \n",myData.switcher.iDesktopViewportX);
 cairo_dock_set_current_viewport (myData.switcher.iDesktopViewportX, myData.switcher.iDesktopViewportY);
-//CD_APPLET_REDRAW_MY_ICON
+
 				}
 
 else
@@ -147,7 +147,7 @@ CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("switcher", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU (_("Reload now"), _cd_switcher_reload, pSubMenu)
+		//CD_APPLET_ADD_IN_MENU (_("Reload now"), _cd_switcher_reload, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 

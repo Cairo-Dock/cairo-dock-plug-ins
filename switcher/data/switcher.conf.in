@@ -61,23 +61,40 @@ use size=
 #b Show Light Icon ?
 Vue Simple = true
 
+#b Map Wallpaper on icon ?
+Map Wallpaper = true
+
 #b Show Quickinfo on the Icon ?
 display numero desktop = true
 
-#c[0;1] Size of the Line :
-linesize = 0.8
+#b Invert Indicator of Current Desktop ?
+Invert Indicator = true
 
-#c4[0;1] Color of the Lines :
+#c[0;8] Size of the Inside Icon Lines :
+inlinesize = 2.8
+
+#c4[0;1] Color of the Inside Icon Lines :
 #{r, v, b, a}
-rgblinecolor = 0.0; 0.0; 0.5; 0.5
+rgbinlinecolor = 0.0; 0.0; 0.5; 0.5
 
 #c4[0;1] Color of the Indicator :
 #{r, v, b, a}
 rgbindcolor = 0.0; 0.0; 0.5; 0.5
 
+#c[0;8] Size of the Border Line :
+linesize = 2.8
+
+#c4[0;1] Color of the Border Line :
+#{r, v, b, a}
+rgblinecolor = 0.0; 0.0; 0.5; 0.5
+
 #S Default icon :
 #{Let empty to use the default one.}
 default icon = 
+
+#S Default Icon For Sub Dock View :
+#{Let empty to use the default one.}
+default subdock icon = 
 
 #S Broken icon :
 #{Let empty to use the default one.}

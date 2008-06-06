@@ -1,3 +1,7 @@
 <b><u>@PACKAGE@ (v@VERSION@)</u></b>
 <u>Author</u> : <b>Cchumi</b>
-<i>The new and soon wonderful <span color='#0000FF'>switcher</span> applet</i>
+<i>The <span color='#0000FF'>switcher</span> applet allows you to Switch between virtual desktop provide by compiz.
+ The sub-dock gives you to acces to the different viewport. In the configuration you can switch between light switcher which give
+ you a simple representation of your desktop or a sub dock view.
+ You can define how the indicator is mark, if you want to map wallpaper on the icon, choice of different color and size.
+ Have Fun :-).</i>
