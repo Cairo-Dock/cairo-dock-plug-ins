@@ -1,7 +1,7 @@
 
 SUBDIRS = . themes
 
-moduledir = $(pkgdatadir)
+moduledir = $(cairo_penguindatadir)
 
 module_DATA = \
 	Cairo-Penguin.conf\

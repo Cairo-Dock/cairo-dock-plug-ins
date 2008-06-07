@@ -229,11 +229,11 @@ CD_APPLET_ON_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("XMMS", pSubMenu, CD_APPLET_MY_MENU)
 	CD_APPLET_ADD_IN_MENU (D_("Previous"), cd_xmms_prev, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU (D_("Play/Pause"), cd_xmms_pp, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), cd_xmms_pp, CD_APPLET_MY_MENU)
 	if (myConfig.iPlayer != MY_BANSHEE) {
 		CD_APPLET_ADD_IN_MENU (D_("Stop"), cd_xmms_s, CD_APPLET_MY_MENU)
 	}
-	CD_APPLET_ADD_IN_MENU (D_("Next"), cd_xmms_next, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), cd_xmms_next, CD_APPLET_MY_MENU)
 	if ((myConfig.iPlayer != MY_BANSHEE) && (myConfig.iPlayer != MY_EXAILE)) {
 		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), cd_xmms_jumpbox, pSubMenu)
 		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), cd_xmms_shuffle, pSubMenu)

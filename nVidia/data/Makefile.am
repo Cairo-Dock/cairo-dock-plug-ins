@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(nvidiadatadir)
 
 module_DATA = \
 	nVidia.conf\

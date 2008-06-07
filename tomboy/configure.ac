@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-tomboy
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_TOMBOY=cd-tomboy
+AC_DEFINE_UNQUOTED(GETTEXT_TOMBOY,"$GETTEXT_TOMBOY", [Gettext package.])
+AC_SUBST(GETTEXT_TOMBOY)
 
+AC_SUBST(VERSION_TOMBOY, "$VERSION")
+AC_SUBST(PACKAGE_TOMBOY, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/tomboy]
-AC_SUBST(pkgdatadir)
+tomboydatadir=[`pkg-config cairo-dock --variable=pluginsdir`/tomboy]
+AC_SUBST(tomboydatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

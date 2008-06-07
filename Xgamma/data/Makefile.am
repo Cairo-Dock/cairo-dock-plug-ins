@@ -1,7 +1,7 @@
 
 SUBDIRS = . 
 
-moduledir = $(pkgdatadir)
+moduledir = $(xgammadatadir)
 
 module_DATA = \
 	Xgamma.conf\

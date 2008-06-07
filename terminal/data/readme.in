@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_TERMINAL@ (v@VERSION_TERMINAL@)</u></b>
 <u>Author</u> : <b>Cedric GESTES ctaf42@gmail.com</b>
 <u>Enhancements</u> : <b>Fabounet (Fabrice Rey)</b>
 <i>Add a <span color='#0000FF'>terminal</span> to your dock !

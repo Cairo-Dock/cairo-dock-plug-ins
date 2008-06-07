@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-Dbus],[0.0.1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cd-Dbus],[0.1.0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-Dbus
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_DBUS=cd-Dbus
+AC_DEFINE_UNQUOTED(GETTEXT_DBUS,"$GETTEXT_DBUS", [Gettext package.])
+AC_SUBST(GETTEXT_DBUS)
 
+AC_SUBST(VERSION_DBUS, "$VERSION")
+AC_SUBST(PACKAGE_DBUS, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/Dbus]
-AC_SUBST(pkgdatadir)
+dbusdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/Dbus]
+AC_SUBST(dbusdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

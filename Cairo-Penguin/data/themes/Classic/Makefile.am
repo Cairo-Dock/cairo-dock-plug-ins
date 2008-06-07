@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/Classic
+themedir = $(cairo_penguindatadir)/themes/Classic
 
 theme_DATA =	    \
 	theme.conf\

@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_SWITCHER@ (v@VERSION_SWITCHER@)</u></b>
 <u>Author</u> : <b>Cchumi</b>
 <i>The <span color='#0000FF'>switcher</span> applet allows you to Switch between virtual desktop provide by compiz.
  The sub-dock gives you to acces to the different viewport. In the configuration you can switch between light switcher which give

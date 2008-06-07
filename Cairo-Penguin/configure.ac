@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-Cairo-Penguin
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_CAIRO_PENGUIN=cd-Cairo-Penguin
+AC_DEFINE_UNQUOTED(GETTEXT_CAIRO_PENGUIN,"$GETTEXT_CAIRO_PENGUIN", [Gettext package.])
+AC_SUBST(GETTEXT_CAIRO_PENGUIN)
 
+AC_SUBST(VERSION_CAIRO_PENGUIN, "$VERSION")
+AC_SUBST(PACKAGE_CAIRO_PENGUIN, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/Cairo-Penguin]
-AC_SUBST(pkgdatadir)
+cairo_penguindatadir=[`pkg-config cairo-dock --variable=pluginsdir`/Cairo-Penguin]
+AC_SUBST(cairo_penguindatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

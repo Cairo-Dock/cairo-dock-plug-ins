@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-nVidia],[0.0.3],[ChAnGFu (Robertson Rémy) (changfu@cairo-dock.org)])
+AC_INIT([cd-nVidia],[1.0.0-rc1],[ChAnGFu (Robertson Rémy) (changfu@cairo-dock.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-nVidia
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_NVIDIA=cd-nVidia
+AC_DEFINE_UNQUOTED(GETTEXT_NVIDIA,"$GETTEXT_NVIDIA", [Gettext package.])
+AC_SUBST(GETTEXT_NVIDIA)
 
+AC_SUBST(VERSION_NVIDIA, "$VERSION")
+AC_SUBST(PACKAGE_NVIDIA, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/nVidia]
-AC_SUBST(pkgdatadir)
+nvidiadatadir=[`pkg-config cairo-dock --variable=pluginsdir`/nVidia]
+AC_SUBST(nvidiadatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

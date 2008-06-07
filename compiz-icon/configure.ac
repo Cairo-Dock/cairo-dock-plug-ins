@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-compiz-icon
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_COMPIZ_ICON=cd-compiz-icon
+AC_DEFINE_UNQUOTED(GETTEXT_COMPIZ_ICON,"$GETTEXT_COMPIZ_ICON", [Gettext package.])
+AC_SUBST(GETTEXT_COMPIZ_ICON)
 
+AC_SUBST(VERSION_COMPIZ_ICON, "$VERSION")
+AC_SUBST(PACKAGE_COMPIZ_ICON, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/compiz-icon]
-AC_SUBST(pkgdatadir)
+compiz_icondatadir=[`pkg-config cairo-dock --variable=pluginsdir`/compiz-icon]
+AC_SUBST(compiz_icondatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

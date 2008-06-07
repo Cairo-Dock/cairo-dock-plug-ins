@@ -14,22 +14,22 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-terminal
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_TERMINAL=cd-terminal
+AC_DEFINE_UNQUOTED(GETTEXT_TERMINAL,"$GETTEXT_TERMINAL", [Gettext package.])
+AC_SUBST(GETTEXT_TERMINAL)
 
+AC_SUBST(VERSION_TERMINAL, "$VERSION")
+AC_SUBST(PACKAGE_TERMINAL, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/terminal]
-AC_SUBST(pkgdatadir)
+terminaldatadir=[`pkg-config cairo-dock --variable=pluginsdir`/terminal]
+AC_SUBST(terminaldatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
-PKG_CHECK_MODULES(LIBVTE, vte,, \
+PKG_CHECK_MODULES(TERMINAL_PACKAGE, vte,, \
 	AC_MSG_ERROR("*** vte not found! You need it to build $PACKAGE_NAME. ***"))
-AC_SUBST(LIBVTE_CFLAGS)
-AC_SUBST(LIBVTE_LIBS)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile

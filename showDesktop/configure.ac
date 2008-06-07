@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-showDesktop
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_SHOW_DESKTOP=cd-showDesktop
+AC_DEFINE_UNQUOTED(GETTEXT_SHOW_DESKTOP,"$GETTEXT_SHOW_DESKTOP", [Gettext package.])
+AC_SUBST(GETTEXT_SHOW_DESKTOP)
 
+AC_SUBST(VERSION_SHOW_DESKTOP, "$VERSION")
+AC_SUBST(PACKAGE_SHOW_DESKTOP, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/showDesktop]
-AC_SUBST(pkgdatadir)
+show_desktopdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/showDesktop]
+AC_SUBST(show_desktopdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

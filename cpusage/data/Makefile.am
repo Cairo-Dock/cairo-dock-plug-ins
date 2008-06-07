@@ -1,5 +1,5 @@
 
-moduledir = $(pkgdatadir)
+moduledir = $(cpusagedatadir)
 
 module_DATA = \
 	cpusage.conf\

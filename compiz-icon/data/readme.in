@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_COMPIZ_ICON@ (v@VERSION_COMPIZ_ICON@)</u></b>
 <u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
 <i>The <span color='#0000FF'>compiz-icon</span> applet allows you to manage compiz and other windows manager
  The sub-dock gives you to acces to CCSM, Emerald and some basic Compiz actions.

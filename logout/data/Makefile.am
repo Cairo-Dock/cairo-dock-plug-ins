@@ -1,7 +1,7 @@
 
 SUBDIRS = . 
 
-datalogoutdir = $(pkgdatadir)
+datalogoutdir = $(logoutdatadir)
 
 datalogout_DATA = \
 	logout.conf\

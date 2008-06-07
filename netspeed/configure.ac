@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-netspeed],[0.2.0],[parAdOxxx_ZeRo (changfu@hollowproject.org)])
+AC_INIT([cd-netspeed],[1.0.0],[parAdOxxx_ZeRo (changfu@hollowproject.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-netspeed
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_NETSPEED=cd-netspeed
+AC_DEFINE_UNQUOTED(GETTEXT_NETSPEED,"$GETTEXT_NETSPEED", [Gettext package.])
+AC_SUBST(GETTEXT_NETSPEED)
 
+AC_SUBST(VERSION_NETSPEED, "$VERSION")
+AC_SUBST(PACKAGE_NETSPEED, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/netspeed]
-AC_SUBST(pkgdatadir)
+netspeeddatadir=[`pkg-config cairo-dock --variable=pluginsdir`/netspeed]
+AC_SUBST(netspeeddatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

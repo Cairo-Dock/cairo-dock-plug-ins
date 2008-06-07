@@ -11,13 +11,17 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/xfce-integration]
-AC_SUBST(pkgdatadir)
+xfce_integrationdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/xfce-integration]
+AC_SUBST(xfce_integrationdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
+AC_SUBST(VERSION_XFCE_INTEGRATION, "$VERSION")
+AC_SUBST(PACKAGE_XFCE_INTEGRATION, "$PACKAGE")
+
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock thunar-vfs-1)
+PKG_CHECK_MODULES(XFCE_INTEGRATION,thunar-vfs-1)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile

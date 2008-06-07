@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-Xgamma
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_XGAMMA=cd-Xgamma
+AC_DEFINE_UNQUOTED(GETTEXT_XGAMMA,"$GETTEXT_XGAMMA", [Gettext package.])
+AC_SUBST(GETTEXT_XGAMMA)
 
+AC_SUBST(VERSION_XGAMMA, "$VERSION")
+AC_SUBST(PACKAGE_XGAMMA, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/Xgamma]
-AC_SUBST(pkgdatadir)
+xgammadatadir=[`pkg-config cairo-dock --variable=pluginsdir`/Xgamma]
+AC_SUBST(xgammadatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

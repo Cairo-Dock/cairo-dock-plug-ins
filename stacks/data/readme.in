@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_STACKS@ (v@VERSION_STACKS@)</u></b>
 <u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
 <i>The <span color='#0000FF'>stacks</span> applet allow you to monitor a directory</i>
 <i>and act like the Stacks applet of MacOS X, to add file into your stacks you</i>

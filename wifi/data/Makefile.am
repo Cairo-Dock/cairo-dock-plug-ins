@@ -1,5 +1,5 @@
 
-moduledir = $(pkgdatadir)
+moduledir = $(wifidatadir)
 
 module_DATA = \
 	wifi.conf\

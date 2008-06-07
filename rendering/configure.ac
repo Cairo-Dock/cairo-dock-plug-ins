@@ -14,18 +14,23 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-dustbin
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_RENDERING=cd-rendering
+AC_DEFINE_UNQUOTED(GETTEXT_RENDERING,"$GETTEXT_RENDERING", [Gettext rendering package.])
+AC_SUBST(GETTEXT_RENDERING)
+
+AC_SUBST(VERSION_RENDERING, "$VERSION")
+AC_SUBST(PACKAGE_RENDERING, "$PACKAGE")
+
+renderingdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rendering]
+AC_SUBST(renderingdatadir)
+libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
+AC_SUBST(libdir)
 
 
 pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rendering]
 AC_SUBST(pkgdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-
-
-AM_CONDITIONAL(COMPIL_WITH_GLITZ, test x$enable_glitz = xyes)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

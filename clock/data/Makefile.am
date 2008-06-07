@@ -1,7 +1,7 @@
 
 SUBDIRS = . themes
 
-dataclockdir = $(pkgdatadir)
+dataclockdir = $(clockdatadir)
 
 dataclock_DATA = \
 	clock.conf\

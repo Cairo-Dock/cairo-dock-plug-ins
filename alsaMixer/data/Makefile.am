@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(alsa_mixerdatadir)
 
 module_DATA = \
 	AlsaMixer.conf\

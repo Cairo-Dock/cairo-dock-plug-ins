@@ -22,25 +22,24 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_terminal_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	$(TERMINAL_PACKAGE_CFLAGS)\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(terminaldatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""terminal.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""terminal"\"\
-	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION_TERMINAL)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_TERMINAL)"\"\
         -DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
-	-O3 -W -Werror\
-	$(LIBVTE_CFLAGS)
+	-O3 -W -Werror
 #	-g -ggdb -W -Wall
 
 
 libcd_terminal_la_LIBADD = \
 	$(PACKAGE_LIBS) -lm \
-	$(LIBVTE_LIBS)
-
+	$(TERMINAL_PACKAGE_LIBS)
 
 
 libcd_terminal_la_LDFLAGS =\

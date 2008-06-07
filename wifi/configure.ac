@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-wifi
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_WIFI=cd-wifi
+AC_DEFINE_UNQUOTED(GETTEXT_WIFI,"$GETTEXT_WIFI", [Gettext package.])
+AC_SUBST(GETTEXT_WIFI)
 
+AC_SUBST(VERSION_WIFI, "$VERSION")
+AC_SUBST(PACKAGE_WIFI, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/wifi]
-AC_SUBST(pkgdatadir)
+wifidatadir=[`pkg-config cairo-dock --variable=pluginsdir`/wifi]
+AC_SUBST(wifidatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-stacks
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_STACKS=cd-stacks
+AC_DEFINE_UNQUOTED(GETTEXT_STACKS,"$GETTEXT_STACKS", [Gettext package.])
+AC_SUBST(GETTEXT_STACKS)
 
+AC_SUBST(VERSION_STACKS, "$VERSION")
+AC_SUBST(PACKAGE_STACKS, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/stacks]
-AC_SUBST(pkgdatadir)
+stacksdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/stacks]
+AC_SUBST(stacksdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

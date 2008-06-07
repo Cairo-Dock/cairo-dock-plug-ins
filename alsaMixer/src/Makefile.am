@@ -23,13 +23,14 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_AlsaMixer_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	$(ALSA_MIXER_PACKAGE_CFLAGS)\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(alsa_mixerdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""AlsaMixer.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""AlsaMixer"\"\
-	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION_ALSA_MIXER)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_ALSA_MIXER)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
@@ -39,7 +40,9 @@ libcd_AlsaMixer_la_CFLAGS = \
 
 
 libcd_AlsaMixer_la_LIBADD = \
-	$(PACKAGE_LIBS) -lm
+	$(PACKAGE_LIBS)\
+	$(ALSA_MIXER_PACKAGE_LIBS)\
+	 -lm
 
 
 libcd_AlsaMixer_la_LDFLAGS =\

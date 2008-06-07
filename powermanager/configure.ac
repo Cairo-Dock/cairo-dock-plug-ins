@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-powermanager
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_POWERMANAGER=cd-powermanager
+AC_DEFINE_UNQUOTED(GETTEXT_POWERMANAGER,"$GETTEXT_POWERMANAGER", [Gettext package.])
+AC_SUBST(GETTEXT_POWERMANAGER)
 
+AC_SUBST(VERSION_POWERMANAGER, "$VERSION")
+AC_SUBST(PACKAGE_POWERMANAGER, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/powermanager]
-AC_SUBST(pkgdatadir)
+powermanagerdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/powermanager]
+AC_SUBST(powermanagerdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

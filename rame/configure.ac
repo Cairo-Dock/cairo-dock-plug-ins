@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-rame
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_RAME=cd-rame
+AC_DEFINE_UNQUOTED(GETTEXT_RAME,"$GETTEXT_RAME", [Gettext package.])
+AC_SUBST(GETTEXT_RAME)
 
+AC_SUBST(VERSION_RAME, "$VERSION")
+AC_SUBST(PACKAGE_RAME, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rame]
-AC_SUBST(pkgdatadir)
+ramedatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rame]
+AC_SUBST(ramedatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

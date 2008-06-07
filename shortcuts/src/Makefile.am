@@ -21,13 +21,13 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_shortcuts_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(shortcutsdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""shortcuts.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""shortcuts"\"\
-	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION_SHORTCUTS)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_SHORTCUTS)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\

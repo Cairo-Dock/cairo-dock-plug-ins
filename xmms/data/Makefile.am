@@ -1,7 +1,7 @@
 
 SUBDIRS = . 
 
-moduledir = $(pkgdatadir)
+moduledir = $(xmmsdatadir)
 
 module_DATA = \
 	xmms.conf\

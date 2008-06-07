@@ -17,11 +17,11 @@
 # We have the following line for use by intltoolize:
 # INTLTOOL_MAKEFILE
 
-GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
-PACKAGE = @PACKAGE@
-VERSION = @VERSION@
+GETTEXT_PACKAGE=@GETTEXT_XMMS@
+PACKAGE=@PACKAGE_XMMS@
+VERSION=@VERSION_XMMS@
 
-SHELL = /bin/sh
+SHELL=/bin/sh
 
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@

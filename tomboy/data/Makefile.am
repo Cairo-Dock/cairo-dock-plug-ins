@@ -1,7 +1,7 @@
 
 SUBDIRS = . 
 
-datarhythmboxdir = $(pkgdatadir)
+datarhythmboxdir = $(tomboydatadir)
 
 datarhythmbox_DATA = \
 	default.svg\

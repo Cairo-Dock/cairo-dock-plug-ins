@@ -1,4 +1,4 @@
-#!en;@VERSION@
+#!en;@VERSION_CAIRO_PENGUIN@
 
 #[gtk-preferences]
 [Icon]

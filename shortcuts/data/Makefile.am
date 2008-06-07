@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(shortcutsdatadir)
 
 module_DATA = \
 	shortcuts.conf\

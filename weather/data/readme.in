@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_WEATHER@ (v@VERSION_WEATHER@)</u></b>
 <u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
 <i>This applet displays <span color='#0000FF'>weather</span> into you dock.</i>
  It can detach itself to be a totally eye-candy 3D deskelt.

@@ -17,13 +17,13 @@
 # We have the following line for use by intltoolize:
 # INTLTOOL_MAKEFILE
 
-GETTEXT_PACKAGE = @GETTEXT_DUSTBIN@
-PACKAGE = @PACKAGE_DUSTBIN@
-VERSION = @VERSION_DUSTBIN@
+GETTEXT_PACKAGE=@GETTEXT_DUSTBIN@
+PACKAGE=@PACKAGE_DUSTBIN@
+VERSION=@VERSION_DUSTBIN@
 
 SHELL = /bin/sh
 
-srcdir = @dsrcdir@
+srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 top_builddir = @top_builddir@
 VPATH = @srcdir@

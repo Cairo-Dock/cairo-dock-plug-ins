@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(stacksdatadir)
 
 module_DATA = \
 	stacks.conf\

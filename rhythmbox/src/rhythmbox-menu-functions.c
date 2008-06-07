@@ -28,22 +28,10 @@ static void rhythmbox_next (GtkMenuItem *menu_item, gpointer *data)
 	cairo_dock_launch_command ("rhythmbox-client --next");
 }
 
-//*********************************************************************************
-// rhythmbox_pause : Stop la lecture
-//*********************************************************************************
-static void rhythmbox_pause (GtkMenuItem *menu_item, gpointer *data)
+static void rhythmbox_play_pause (GtkMenuItem *menu_item, gpointer *data)
 {
 	cd_message ("");
-	cairo_dock_launch_command ("rhythmbox-client --pause");
-}
-
-//*********************************************************************************
-// rhythmbox_play : Joue la piste
-//*********************************************************************************
-static void rhythmbox_play (GtkMenuItem *menu_item, gpointer *data)
-{
-	cd_message ("");
-	cairo_dock_launch_command ("rhythmbox-client --play");
+	cairo_dock_launch_command ("rhythmbox-client --play-pause");
 }
 
 static void rhythmbox_music (GtkMenuItem *menu_item, gpointer *data)
@@ -66,7 +54,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		CD_APPLET_ADD_IN_MENU (D_("Previous"), rhythmbox_previous, CD_APPLET_MY_MENU)
 		
-		CD_APPLET_ADD_IN_MENU (D_("Next"), rhythmbox_next, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), rhythmbox_next, CD_APPLET_MY_MENU)
+		
+		CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), rhythmbox_play_pause, CD_APPLET_MY_MENU)
 		
 		CD_APPLET_ADD_IN_MENU (D_("Information"), rhythmbox_music, CD_APPLET_MY_MENU)
 	}

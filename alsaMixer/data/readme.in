@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_ALSA_MIXER@ (v@VERSION_ALSA_MIXER@)</u></b>
 <u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
 <i>This applet let you set up the <span color='#0000FF'>sound volume</span> from the dock.</i>
  Click on icon to show/hide volume control

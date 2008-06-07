@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(show_desktopdatadir)
 
 module_DATA = \
 	showDesktop.conf\

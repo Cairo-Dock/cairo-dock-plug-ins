@@ -3,12 +3,6 @@
 lib_LTLIBRARIES = \
 	libcd-rendering.la
 
-if COMPIL_WITH_GLITZ
-include_glitz = -DHAVE_GLITZ=TRUE
-glitz_cflags = $(GLITZ_CFLAGS)
-glitz_libs = $(GLITZ_LIBS)
-endif
-
 
 libcd_rendering_la_SOURCES = \
 	rendering-init.c\
@@ -47,10 +41,10 @@ libcd_rendering_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	$(glitz_cflags) \
 	$(include_glitz)\
-	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(renderingdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION_RENDERING)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_RENDERING)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""none"\"\
 	-DMY_APPLET_CONF_FILE=\""rendering.conf"\"\

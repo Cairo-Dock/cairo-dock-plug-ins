@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(compiz_icondatadir)
 
 module_DATA = \
 	compiz-icon.conf\

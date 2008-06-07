@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-rhythmbox],[1.2.0],[Adrien Pilleboue (adrien.pilleboue@gmail.com)])
+AC_INIT([cd-rhythmbox],[1.2.1],[Adrien Pilleboue (adrien.pilleboue@gmail.com)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-rhythmbox
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_RHYTHMBOX=cd-rhythmbox
+AC_DEFINE_UNQUOTED(GETTEXT_RHYTHMBOX,"$GETTEXT_RHYTHMBOX", [Gettext package.])
+AC_SUBST(GETTEXT_RHYTHMBOX)
 
+AC_SUBST(VERSION_RHYTHMBOX, "$VERSION")
+AC_SUBST(PACKAGE_RHYTHMBOX, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rhythmbox]
-AC_SUBST(pkgdatadir)
+rhythmboxdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rhythmbox]
+AC_SUBST(rhythmboxdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

@@ -19,13 +19,13 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_showDesktop_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(show_desktopdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""showDesktop.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""showDesktop"\"\
-	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION_SHOW_DESKTOP)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_SHOW_DESKTOP)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\

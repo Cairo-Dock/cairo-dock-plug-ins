@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_CAIRO_PENGUIN@ (v@VERSION_CAIRO_PENGUIN@)</u></b>
 <u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
 <i>Add a lively <span color='#0000FF'>Penguin</span> in your dock !</i>
  Left click to change animation,

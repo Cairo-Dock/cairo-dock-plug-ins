@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-slider
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_SLIDER=cd-slider
+AC_DEFINE_UNQUOTED(GETTEXT_SLIDER,"$GETTEXT_SLIDER", [Gettext package.])
+AC_SUBST(GETTEXT_SLIDER)
 
+AC_SUBST(VERSION_SLIDER, "$VERSION")
+AC_SUBST(PACKAGE_SLIDER, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/slider]
-AC_SUBST(pkgdatadir)
+sliderdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/slider]
+AC_SUBST(sliderdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_XMMS@ (v@VERSION_XMMS@)</u></b>
 <u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
 <i>An applet dedicated to <span color='#0000FF'>control XMMS, Audacious, Banshee &amp; Exaile</span>
 XMMS &amp; Audacious are fully supported,

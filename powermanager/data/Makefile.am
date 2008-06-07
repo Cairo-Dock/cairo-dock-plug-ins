@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-datapowermanagerdir = $(pkgdatadir)
+datapowermanagerdir = $(powermanagerdatadir)
 
 datapowermanager_DATA = \
 	sector.svg\

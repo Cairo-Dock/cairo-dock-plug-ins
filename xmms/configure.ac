@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-xmms
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_XMMS=cd-xmms
+AC_DEFINE_UNQUOTED(GETTEXT_XMMS,"$GETTEXT_XMMS", [Gettext package.])
+AC_SUBST(GETTEXT_XMMS)
 
+AC_SUBST(VERSION_XMMS, "$VERSION")
+AC_SUBST(PACKAGE_XMMS, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/xmms]
-AC_SUBST(pkgdatadir)
+xmmsdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/xmms]
+AC_SUBST(xmmsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-datasystraydir = $(pkgdatadir)
+datasystraydir = $(systraydatadir)
 
 datasystray_DATA = \
 	systray.conf\

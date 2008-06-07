@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/Wanda
+themedir = $(cairo_penguindatadir)/themes/Wanda
 
 theme_DATA = \
 	theme.conf \

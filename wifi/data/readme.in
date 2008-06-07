@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_WIFI@ (v@VERSION_WIFI@)</u></b>
 <u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
 <i>This applet shows you the signal strength</i>
 <i>of the first active <span color='#0000FF'>wifi</span> connection</i>

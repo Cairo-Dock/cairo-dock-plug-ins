@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(dbusdatadir)
 
 module_DATA = \
 	Dbus.conf\

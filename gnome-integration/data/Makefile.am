@@ -1,7 +1,7 @@
 
 SUBDIRS = . 
 
-datagnome_integrationdir = $(pkgdatadir)
+datagnome_integrationdir = $(gnome_integrationdatadir)
 
 datagnome_integration_DATA = \
 	readme\

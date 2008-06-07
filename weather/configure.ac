@@ -14,13 +14,15 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-weather
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_WEATHER=cd-weather
+AC_DEFINE_UNQUOTED(GETTEXT_WEATHER,"$GETTEXT_WEATHER", [Gettext package.])
+AC_SUBST(GETTEXT_WEATHER)
 
+AC_SUBST(VERSION_WEATHER, "$VERSION")
+AC_SUBST(PACKAGE_WEATHER, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/weather]
-AC_SUBST(pkgdatadir)
+weatherdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/weather]
+AC_SUBST(weatherdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

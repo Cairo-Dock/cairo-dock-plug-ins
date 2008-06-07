@@ -1,7 +1,7 @@
 
 SUBDIRS = . 
 
-moduledir = $(pkgdatadir)
+moduledir = $(switcherdatadir)
 
 module_DATA = \
 	switcher.conf\

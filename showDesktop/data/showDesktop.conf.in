@@ -1,4 +1,4 @@
-#!en;@VERSION@
+#!en;@VERSION_SHOW_DESKTOP@
 
 #[gtk-about]
 [Icon]

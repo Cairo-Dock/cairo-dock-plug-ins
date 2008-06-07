@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-dataterminaldir = $(pkgdatadir)
+dataterminaldir = $(terminaldatadir)
 
 dataterminal_DATA = \
 	terminal.conf\

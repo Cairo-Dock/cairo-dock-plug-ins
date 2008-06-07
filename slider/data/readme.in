@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_SLIDER@ (v@VERSION_SLIDER@)</u></b>
 <u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
 <i>The <span color='#0000FF'>slider</span> applet is a basic image slider</i>
 <i>You just have to select a directory and a display effect and you're done></i>

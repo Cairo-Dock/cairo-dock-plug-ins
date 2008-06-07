@@ -1,9 +1,9 @@
 
 SUBDIRS = . 
 
-datalogoutdir = $(pkgdatadir)
+datarenderingdir = $(renderingdatadir)
 
-datalogout_DATA = \
+datarendering_DATA = \
 	rendering.conf\
 	readme\
 	icon.svg\

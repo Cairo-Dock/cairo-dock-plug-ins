@@ -1,12 +1,12 @@
 
-moduledir = $(pkgdatadir)
+moduledir = $(netspeeddatadir)
 
 module_DATA = \
 	netspeed.conf\
 	readme\
-  default.png\
-  icon.png\
-  ok.png\
-  unknown.png\
-  bad.png\
-  netspeed
+	default.png\
+	icon.png\
+	ok.png\
+	unknown.png\
+	bad.png\
+	netspeed

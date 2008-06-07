@@ -1,4 +1,4 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
+<b><u>@PACKAGE_XFCE_INTEGRATION@ (v@VERSION_XFCE_INTEGRATION@)</u></b>
 <u>Author</u> : <b>Tofe</b>
 <i>This applet provides functions for a better integration into a <span color='#0000FF'>XFCE environnement</span>.
   It is auto-activated, so you don't need to activate it.</i>

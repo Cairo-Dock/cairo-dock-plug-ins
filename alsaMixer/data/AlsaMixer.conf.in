@@ -1,4 +1,4 @@
-#!en;@VERSION@
+#!en;@VERSION_ALSA_MIXER@
 
 #[gtk-about]
 [Icon]

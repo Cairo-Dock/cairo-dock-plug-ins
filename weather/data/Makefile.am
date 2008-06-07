@@ -1,7 +1,7 @@
 
 SUBDIRS = . themes
 
-moduledir = $(pkgdatadir)
+moduledir = $(weatherdatadir)
 
 module_DATA = \
 	weather.conf\

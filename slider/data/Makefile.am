@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(sliderdatadir)
 
 module_DATA = \
 	slider.conf\

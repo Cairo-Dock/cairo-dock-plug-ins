@@ -14,18 +14,22 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-AlsaMixer
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_ALSA_MIXER=cd-AlsaMixer
+AC_DEFINE_UNQUOTED(GETTEXT_ALSA_MIXER,"$GETTEXT_ALSA_MIXER", [Gettext package.])
+AC_SUBST(GETTEXT_ALSA_MIXER)
 
+AC_SUBST(VERSION_ALSA_MIXER, "$VERSION")
+AC_SUBST(PACKAGE_ALSA_MIXER, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/AlsaMixer]
-AC_SUBST(pkgdatadir)
+alsa_mixerdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/AlsaMixer]
+AC_SUBST(alsa_mixerdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
 
-PKG_CHECK_MODULES(PACKAGE, cairo-dock alsa)
+PKG_CHECK_MODULES(PACKAGE, cairo-dock)
+PKG_CHECK_MODULES(ALSA_MIXER_PACKAGE, alsa)
+
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
