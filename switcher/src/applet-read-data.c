@@ -16,33 +16,27 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-read-data.h"
 #include "applet-load-icons.h"
 
-
-
-extern AppletConfig myConfig;
-extern AppletData myData;
+CD_APPLET_INCLUDE_MY_VARS
 
 
 void cd_switcher_get_current_desktop (int *ScreenCurrentSize,int *ScreenCurrentNum)
 {
 	GError *erreur = NULL;
-int iCurrentViewPortX, iCurrentViewPortY;
-cairo_dock_get_current_viewport (&iCurrentViewPortX, &iCurrentViewPortY);
-
-//cd_message ("test %d", iCurrentViewPortX);
-cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
-int desknum= cairo_dock_get_current_desktop();
-
-int desktopnum = cairo_dock_get_nb_desktops();
-int ScreenWidthSize=g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
-int ScreenHeightSize=g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];
-int ScreenCurrentSizeX=iCurrentViewPortX;
-int test = ScreenCurrentSizeX/ScreenWidthSize;
-
-
-*ScreenCurrentNum=test;
-
-*ScreenCurrentSize=ScreenWidthSize;
-
+	int iCurrentViewPortX, iCurrentViewPortY;
+	cairo_dock_get_current_viewport (&iCurrentViewPortX, &iCurrentViewPortY);
+	
+	//cd_message ("test %d", iCurrentViewPortX);
+	cairo_dock_get_nb_viewports (&myData.switcher.iNbViewportX, &myData.switcher.iNbViewportY);
+	///int desknum= cairo_dock_get_current_desktop();
+	
+	///int desktopnum = cairo_dock_get_nb_desktops();
+	int ScreenWidthSize=g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
+	int ScreenHeightSize=g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];
+	int ScreenCurrentSizeX=iCurrentViewPortX;
+	int test = ScreenCurrentSizeX/ScreenWidthSize;
+	
+	
+	*ScreenCurrentNum=test;
+	
+	*ScreenCurrentSize=ScreenWidthSize;
 }
-
-

@@ -54,21 +54,29 @@ locked = false
 
 use size=
 
+
 #[gtk-preferences]
 [Configuration]
 
+#F[Configuration]
+frame_conf =
 
-#b Show Light Icon ?
+#b Use the compact mode ?
+#{All the desktops will be drawn on the main icon. Otherwise a subdock will contain all the desktops.}
 Vue Simple = true
 
-#b Map Wallpaper on icon ?
+#b Map the wallpaper on icon ?
 Map Wallpaper = true
 
-#b Show Quickinfo on the Icon ?
+#b Show desktop number on the icons ?
 display numero desktop = true
 
 #b Invert Indicator of Current Desktop ?
 Invert Indicator = true
+
+
+#F[Display options]
+frame_disp =
 
 #c[0;8] Size of the Inside Icon Lines :
 inlinesize = 2.8

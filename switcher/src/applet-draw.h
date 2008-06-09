@@ -7,8 +7,9 @@
 
 
 void switcher_draw_main_dock_icon_back (cairo_t *pIconContext, Icon *pIcon, CairoContainer *pContainer);
-gboolean switcher_draw_main_dock_icon (gpointer data);
-gboolean _cd_switcher_check_for_redraw_cairo (gpointer data);
+gboolean switcher_draw_main_dock_icon (void);
+
+void cd_switcher_draw_main_icon (void);
 
 
 #endif

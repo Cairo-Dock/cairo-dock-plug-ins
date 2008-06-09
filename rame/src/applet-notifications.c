@@ -29,7 +29,7 @@ static gboolean _cd_rame_update_top_list (void)
 	}
 	if (i == myConfig.iNbDisplayedProcesses)  // aucun changement.
 	{
-		return FALSE;
+		return TRUE;
 	}
 	
 	GString *sTopInfo = g_string_new ("");

@@ -8,7 +8,7 @@
 #define SWITCHER_DEFAULT_NAME "Switcher"
 
 typedef struct {
-	gboolean bCurrentView;
+	gboolean bCompactView;
 	gboolean bMapWallpaper;
 	gboolean bDisplayNumDesk;
 	gboolean bInvertIndicator;
@@ -32,8 +32,6 @@ typedef struct {
 
 typedef struct
 {
-  	int 	*ScreenCurrentSize;
-	int 	*ScreenCurrentNum;
 	int ScreenCurrentNums;
 	int ScreenCurrentSizes;
 	int iNbViewportX;
@@ -44,19 +42,12 @@ typedef struct
 	double MaxHeightIcon;
 	double MaxNbLigne;
 	double NumDeskbyLigne;
-	double	i;
-	double MyLineSize;
 }SwitcherApplet;
 
 
 typedef struct {
 	SwitcherApplet switcher;
-	GList *pDeskletIconList;
 	GList *pIconList;
-	gint iMaxIconWidth;
-	gint iNbIcons;
-	gboolean bErrorRetrievingData;
-	int *g_iNbDesktops;
 	cairo_surface_t *pSurface;
 	cairo_surface_t *pSurfaceSDock;
 	cairo_surface_t *pBrokenSurface;

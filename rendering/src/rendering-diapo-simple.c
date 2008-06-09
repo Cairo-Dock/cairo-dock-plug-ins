@@ -57,17 +57,16 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
         guint nRowsX = 0;
         guint nRowsY = 0;
         guint nIcones = 0;
-        
+
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la configuration de la grille :
-        nIcones = cairo_dock_rendering_diapo_simple_guess_grid(pDock->icons, &nRowsX, &nRowsY);   
-        
+        nIcones = cairo_dock_rendering_diapo_simple_guess_grid(pDock->icons, &nRowsX, &nRowsY);
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la taille de l'affichage
         if(nIcones != 0)
         {
 	   ///pDock->iMinDockWidth  = pDock->iMaxDockWidth  = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + 2 * my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
 	   ///pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + 2 * my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 3 + my_diapo_simple_arrowHeight-30;	// 30 -> pour que la fleche aille plus bas
 	   pDock->iMinDockWidth = pDock->iMaxDockWidth = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
-	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 2 + my_diapo_simple_arrowHeight-30;	// 30 -> pour que la fleche aille plus bas
+	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 2 + my_diapo_simple_arrowHeight-30 + g_iconTextDescription.iSize;  // 30 -> pour que la fleche aille plus bas
         }
         else
         {

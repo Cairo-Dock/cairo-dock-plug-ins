@@ -11,12 +11,7 @@
 //#include "applet-draw.h"
 
 
-
-AppletConfig myConfig;
-AppletData myData;
-extern cairo_surface_t *g_pDesktopBgSurface;
-
-CD_APPLET_DEFINITION ("switcher", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("switcher", 1, 5, 6, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 static void _load_surfaces (void)
@@ -24,7 +19,7 @@ static void _load_surfaces (void)
 
 	GString *sImagePath = g_string_new ("");
 	
-/*Surface par défaut pour la vue simplifié*/
+	/*Surface par défaut pour la vue simplifié*/
 
 	if (myData.pSurface != NULL)
 		cairo_surface_destroy (myData.pSurface);
@@ -45,7 +40,7 @@ static void _load_surfaces (void)
 		cd_message ("ok default 2");
 	}
 
-/*Surface par défaut pour la vue mode dock*/
+	/*Surface par défaut pour la vue mode dock*/
 
 	if (myData.pSurfaceSDock != NULL)
 		cairo_surface_destroy (myData.pSurfaceSDock);
@@ -66,7 +61,7 @@ static void _load_surfaces (void)
 		cd_message ("ok default 2");
 	}
 	
-/*Surface en cas de désagrément. Je n'en ai pas encore vu l'utilité*/
+	/*Surface en cas de désagrément. Je n'en ai pas encore vu l'utilité*/
 
 	if (myData.pBrokenSurface != NULL)
 		cairo_surface_destroy (myData.pBrokenSurface);
@@ -93,43 +88,27 @@ CD_APPLET_INIT_BEGIN (erreur)
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	cairo_dock_register_notification (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) cd_switcher_launch_measure, CAIRO_DOCK_RUN_AFTER);/*Notifier de la gémotrie de bureau changé*/
 	cairo_dock_register_notification (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) cd_switcher_launch_measure, CAIRO_DOCK_RUN_AFTER);/*Notifier d'un changement de bureau*/
-
-if (g_pDesktopBgSurface == NULL)
-{
-printf("Background null Load Function /n");
-cairo_dock_load_desktop_background_surface ();
-
-}	
 	
 	if (myDesklet != NULL)
 	{
-		if (myConfig.bCurrentView)
+		if (myConfig.bCompactView)
 		{
-			
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-			myDrawContext = cairo_create (myIcon->pIconBuffer);
-			CD_APPLET_REDRAW_MY_ICON
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple")
 		}
 		else
 		{
-			
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-			myDrawContext = cairo_create (myIcon->pIconBuffer);
-			CD_APPLET_REDRAW_MY_ICON
+			CD_APPLET_SET_DESKLET_RENDERER ("Caroussel")
 		}
 	}
-
 	
-
-
-_load_surfaces();
-cd_switcher_launch_measure();
-
-
-/*Ancienne fonction avec timer*/
-//myData.LoadAfterCompiz = g_timeout_add (2000, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
-
-
+	
+	_load_surfaces();
+	cd_switcher_launch_measure();
+	
+	
+	/*Ancienne fonction avec timer*/
+	//myData.LoadAfterCompiz = g_timeout_add (2000, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
+	/// Il n'y a plus besoin de se charger apres Compiz ?
 CD_APPLET_INIT_END
 
 
@@ -167,27 +146,20 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (myDesklet != NULL)
 	{
-		if (myConfig.bCurrentView)
+		if (myConfig.bCompactView)
 		{
-			cd_message ("test");
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-			myDrawContext = cairo_create (myIcon->pIconBuffer);
-			CD_APPLET_REDRAW_MY_ICON
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple")
 		}
 		else
 		{
-			
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-			myDrawContext = cairo_create (myIcon->pIconBuffer);
-			CD_APPLET_REDRAW_MY_ICON
+			CD_APPLET_SET_DESKLET_RENDERER ("Caroussel")
 			
 		}
 	}
-
-_load_surfaces();
-cd_switcher_launch_measure();
-
-/*Ancienne fonction avec timer*/
-//myData.LoadAfterCompiz = g_timeout_add (2000, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
-
+	
+	_load_surfaces();
+	cd_switcher_launch_measure();
+	
+	/*Ancienne fonction avec timer*/
+	//myData.LoadAfterCompiz = g_timeout_add (2000, (GSourceFunc) cd_switcher_launch_measure, (gpointer) NULL);
 CD_APPLET_RELOAD_END

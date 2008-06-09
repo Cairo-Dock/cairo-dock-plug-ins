@@ -40,7 +40,7 @@ static gboolean _cd_cpusage_update_top_list (void)
 	if (i == 0)
 	{
 		g_string_free (sTopInfo, TRUE);
-		return FALSE;
+		return TRUE;
 	}
 	sTopInfo->str[sTopInfo->len-1] = '\0';
 	
