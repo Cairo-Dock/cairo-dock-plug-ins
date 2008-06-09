@@ -25,6 +25,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
 	myConfig.bCardName = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "card", TRUE) && (myConfig.iDrawTemp != MY_APPLET_TEMP_ON_NAME);
 	myConfig.bAlert = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "alert", TRUE);
+	myConfig.bAlertSound = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "asound", TRUE);
+	myConfig.cSoundPath = CD_CONFIG_GET_STRING ("Configuration", "sound path");
 	myConfig.cGThemePath = cairo_dock_get_gauge_key_value (CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
 	cd_message ("gauge : Theme '%s'",myConfig.cGThemePath);
 	myConfig.cBrokenUserImage = CD_CONFIG_GET_STRING ("Configuration", "broken");
@@ -37,6 +39,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cGThemePath);
 	g_free (myConfig.cBrokenUserImage);
+	g_free (myConfig.cSoundPath);
 	
 CD_APPLET_RESET_CONFIG_END
 

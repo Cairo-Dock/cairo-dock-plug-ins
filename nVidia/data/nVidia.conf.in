@@ -77,6 +77,10 @@ alert=true
 #i[60;120] Alert limit of core temperature :
 #{in celcius.}
 alt = 110
+#b Play a sound during the alert ?
+asound=true
+#S Sound path :
+sound path = /usr/share/sounds/error.wav
 
 
 #F[Images;gtk-dialog-info]

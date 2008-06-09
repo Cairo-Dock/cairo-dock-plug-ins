@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#rm -rf /tmp/nvidia
-#nvidia-settings -q GPUCoreTemp -t > /tmp/nvidia
-#echo "nVidia"
-
-TEMPERATURE=$(nvidia-settings -q GPUCoreTemp -t)
-
-export CAIRO_DOCK_GPU_TEMP=$TEMPERATURE
+rm -rf /tmp/nvidia
+nvidia-settings -q GPUCoreTemp -t > /tmp/nvidia
+echo "nVidia" >> /tmp/nvidia

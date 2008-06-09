@@ -140,16 +140,15 @@ msgstr "sur l'icône"
 msgid "Display core temperature :"
 msgstr "Afficher la température du coeur :"
 
-#: ../data/messages:57 ../data/messages:55
+#: ../data/messages:57
 msgid "Delay between temperature checks :"
 msgstr "Temps entre les vérifications :"
 
-#: ../data/messages:55 ../data/messages:53
+#: ../data/messages:55
 msgid "in seconds."
 msgstr "en seconde."
 
-#: ../data/messages: ../data/messages:57 ../data/messages:61
-#: ../data/messages:67
+#: ../data/messages:
 msgid "in celcius."
 msgstr "en celcius."
 
@@ -157,40 +156,35 @@ msgstr "en celcius."
 msgid "Lower limit of core temperature :"
 msgstr "Limite inférieur de la température :"
 
-#: ../data/messages:61 ../data/messages:63
+#: ../data/messages:61
 msgid "Upper limit of core temperature :"
 msgstr "Limite supérieur de la température :"
 
-#: ../data/messages:65 ../data/messages:73
+#: ../data/messages:65
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 
-#: ../data/messages:71 ../data/messages:79
+#: ../data/messages:71
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'pas de donnée' :"
 
-#: ../data/messages:69 ../data/messages:77
+#: ../data/messages:69
 msgid "Let it empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:106 ../src/applet-draw.c:84
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:95
 msgid "GPU Name:"
 msgstr "Nom de la Carte:"
 
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:106 ../src/applet-draw.c:84
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:95
 msgid "Video Ram:"
 msgstr "Mémoire Vidéo:"
 
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:106 ../src/applet-draw.c:84
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:95
 msgid "Driver Version:"
 msgstr "Version du Driver:"
 
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:106 ../src/applet-draw.c:116
-#: ../src/applet-draw.c:84 ../src/applet-draw.c:98 ../src/applet-draw.c:102
-#: ../src/applet-draw.c:82 ../src/applet-draw.c:100
+#: ../src/applet-draw.c:95
 msgid "Core Temparature:"
 msgstr "Température du Coeur:"
 
@@ -206,37 +200,35 @@ msgstr ""
 msgid "Informations"
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:71
+#: ../data/messages:63
 msgid "Images"
 msgstr ""
 
-#: ../data/messages:67 ../data/messages:75
+#: ../data/messages:67
 msgid "radium"
 msgstr ""
 
-msgid "Alert when core temperature exceed ?"
+msgid "Alert when core temperature is high ?"
 msgstr "Alerter quand la température du coeur est elevée ?"
 
-#: ../data/messages:69
 msgid "Alert limit of core temperature :"
 msgstr "Limite de la température du coeur avant alerte :"
 
-#: ../src/applet-draw.c:116 ../src/applet-draw.c:98 ../src/applet-draw.c:102
-#: ../src/applet-draw.c:100
 msgid "Alert!"
 msgstr "Alerte!"
 
-#: ../src/applet-draw.c:116 ../src/applet-draw.c:98 ../src/applet-draw.c:102
-#: ../src/applet-draw.c:100
 msgid "passed alert temperature level"
-msgstr ""
-"a dépassé le\n"
-" niveau d'alerte de la température"
+msgstr "a dépassé le\n niveau d'alerte de température"
 
-#: ../data/messages:41
-msgid "Information"
-msgstr ""
+msgid "Play a sound during the alert ?"
+msgstr "Jouer un son pendant l'alerte ?"
 
-#: ../data/messages:65
-msgid "Alert when core temperature is high ?"
-msgstr ""
+msgid "Sound path :"
+msgstr "Fichier audio:"
+
+msgid "nVidia \nYour version of 'nvidia-settings' is too old\n You need at least the 1.0.0 version"
+msgstr "nVidia \nVotre version de 'nvidia-settings' est trop vieille\n Vous devez avoir au moin la 1.0.0"
+
+msgid "nVidia \nCouldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system\n and configured to monitor GPU temperature ?"
+msgstr "nVidia \nEchec de la récupération de la tempérutre\n Est-ce qu'nvidia-settings est installé\n et configuré pour récupérer la température du GPU?"
+

@@ -84,10 +84,10 @@ void cd_nvidia_bubble(void) {
 		g_free (cInfo);
 	}
 	else if (myData.bSettingsTooOld) {
-		_nvidia_temporary_dialog ("your version of 'nvidia-settings' is too old\n You need at least the 1.1.0 version");
+		_nvidia_temporary_dialog (D_("nVidia \nYour version of 'nvidia-settings' is too old\n You need at least the 1.0.0 version"));
 	}
 	else {
-		_nvidia_temporary_dialog ("couldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system\n and configured to monitor GPU temperature ?");
+		_nvidia_temporary_dialog (D_("nVidia \nCouldn't acquire GPU temperature\n is 'nvidia-settings' installed on your system\n and configured to monitor GPU temperature ?"));
 	}
 }
 
@@ -98,5 +98,9 @@ void cd_nvidia_alert(void) {
 	gchar *cInfo = g_strdup_printf ("nVidia %s\n %s %s\n %s %d°C", D_("Alert!"), myData.pGPUData.cGPUName, D_("passed alert temperature level"), D_("Core Temparature:"), myData.pGPUData.iGPUTemp);
 	_nvidia_temporary_dialog (cInfo);
 	g_free (cInfo);
+	
+	if (myConfig.bAlertSound)
+		cairo_dock_play_sound (myConfig.cSoundPath);
+	
 	myData.bAlerted = TRUE;
 }

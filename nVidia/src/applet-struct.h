@@ -25,12 +25,14 @@ typedef struct {
 	gchar *cBrokenUserImage;
 	gchar *cGThemePath;
 	gchar *defaultTitle;
+	gchar *cSoundPath;
 	gint iCheckInterval;
 	gint iLowerLimit;
 	gint iUpperLimit;
 	gint iAlertLimit;
 	gboolean bCardName;
 	gboolean bAlert;
+	gboolean bAlertSound;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
