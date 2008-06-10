@@ -59,16 +59,18 @@ frame_dir =
 #b Use Stacks local directory ?
 #{Stacks will act as a the shortcut applet's but with files. To add a file, just drag and drop it on the Stacks icon}
 local = true
-#D Monitored Directory :
+#D99 Monitored Directory :/
 directory = /
 #b List hidden files ?
 #{This option with large files lists can slow down the dock, use it properly.}
 hidden = false
+#b Separate different directories with separators ?
+use separator = true
 
 #b Filter files with their mime types ?
 #{This options allow you to avoid some files to be displayed in the stacks considering their types (video, images, etc...)}
 filter = false
-#D99 Here you can specify a list of mime types to avoid :
+#s99 Here you can specify a list of mime types to avoid :
 #{Eg: image, text, video, audio, application...}/
 mime = application
 

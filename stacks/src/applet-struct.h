@@ -5,11 +5,12 @@
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
 	gchar **cMimeTypes;
-  gchar *cMonitoredDirectory;
+  gchar **cMonitoredDirectory;
   gchar *cRenderer;
   gboolean bHiddenFiles;
   gboolean bLocalDir;
   gboolean bFilter;
+  gboolean bUseSeparator;
 } AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

@@ -67,9 +67,13 @@ void cd_stacks_clean_local(void) {
 }
 
 void cd_stacks_run_dir(void) {
-	gchar *cURI = g_strdup_printf("file://%s", myConfig.cMonitoredDirectory);
-	//cd_debug("Stacks: will use '%s'", cURI);
-	cairo_dock_fm_launch_uri(cURI);
+	gint i=0;
+	gchar *cURI=NULL;
+	while (myConfig.cMonitoredDirectory[i] != NULL) {
+		cURI = g_strdup_printf("file://%s", myConfig.cMonitoredDirectory[i]);
+		cairo_dock_fm_launch_uri(cURI);
+		i++;
+	}
 	g_free (cURI);
 }
 

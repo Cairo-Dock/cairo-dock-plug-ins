@@ -17,20 +17,34 @@ CD_APPLET_INCLUDE_MY_VARS
 
 void cd_stacks_build_icons (void) {
 	if (myConfig.bLocalDir) {
-		myConfig.cMonitoredDirectory = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
+		myConfig.cMonitoredDirectory[0] = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
 	}
 	
 	if (myConfig.cMonitoredDirectory == NULL)
     return;
 	
-  cd_message("Stacks - Now Listing: %s", myConfig.cMonitoredDirectory);  
-  
-	GList *pIconList = NULL;  // ne nous appartiendra plus, donc ne pas desallouer.
-	gchar *cFullURI = NULL;	
-	Icon *pDirIcon = NULL;
-	
-	//On liste le dossier a surveiller
-	pIconList = cairo_dock_fm_list_directory (myConfig.cMonitoredDirectory, CAIRO_DOCK_FM_SORT_BY_NAME, 9, myConfig.bHiddenFiles, &cFullURI);
+	gint i=0;
+	GList *pIconList = NULL; // ne nous appartiendra plus, donc ne pas desallouer.
+	while (myConfig.cMonitoredDirectory[i] != NULL) { 
+	  gchar *cFullURI = NULL;
+		GList *pIconDirList = NULL;
+		//On liste le dossier a surveiller
+		cd_message("Stacks(%d) - Now Listing: %s", i, myConfig.cMonitoredDirectory[i]); 
+		if (i > 0 && myConfig.bUseSeparator) {
+			Icon *pSeparatorIcon = g_new0 (Icon, 1);
+			pSeparatorIcon->iType = 7;
+			pIconList = g_list_append (pIconList, pSeparatorIcon);
+		}
+		pIconDirList = cairo_dock_fm_list_directory (myConfig.cMonitoredDirectory[i], CAIRO_DOCK_FM_SORT_BY_NAME, 9, myConfig.bHiddenFiles, &cFullURI);
+		pIconList = g_list_concat (pIconList, pIconDirList);
+		if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_stacks_update, NULL))
+			cd_warning ("Attention : can't monitor files (%s)", cFullURI);
+		
+		if (myConfig.bLocalDir && i == 0)
+			break; //Solution temporaire au bug
+			
+		i++;
+	}
 	
 	g_list_foreach (pIconList, (GFunc) cd_stacks_debug_icon, NULL);
 	
@@ -45,9 +59,6 @@ void cd_stacks_build_icons (void) {
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on n'a pas besoin du context sur myIcon.
 		gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
 	}
-	
-	if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_stacks_update, NULL))
-		cd_warning ("Attention : can't monitor files");
 		
 	CD_APPLET_REDRAW_MY_ICON
 }

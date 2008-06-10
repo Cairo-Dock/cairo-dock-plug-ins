@@ -189,3 +189,6 @@ msgstr "Verrouiller la position ?"
 #: ../src/applet-notifications.c:37
 msgid "Reload Stacks"
 msgstr "Recharger Stacks"
+
+msgid "Separate different directories with separators ?"
+msgstr "Séparer les différents dossiers avec des séparateurs ?"

@@ -24,10 +24,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	gsize length = 0;
 	myConfig.cMimeTypes = CD_CONFIG_GET_STRING_LIST ("Configuration", "mime", &length);
 
-  myConfig.cMonitoredDirectory = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "directory", "/");
+	gsize length2 = 0;
+  myConfig.cMonitoredDirectory = CD_CONFIG_GET_STRING_LIST ("Configuration", "directory", &length2);
+  
 	myConfig.bHiddenFiles = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "hidden", FALSE);
 	myConfig.bLocalDir = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "local", TRUE);
 	myConfig.bFilter = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "filter", FALSE);
+	myConfig.bUseSeparator = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "use separator", TRUE);
 	
 CD_APPLET_GET_CONFIG_END
 
@@ -36,7 +39,7 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_strfreev (myConfig.cMimeTypes);
 	g_free (myConfig.cRenderer);
-	g_free (myConfig.cMonitoredDirectory);
+	g_strfreev (myConfig.cMonitoredDirectory);
 	
 CD_APPLET_RESET_CONFIG_END
 
