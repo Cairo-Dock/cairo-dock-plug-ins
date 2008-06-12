@@ -152,7 +152,7 @@ void cd_compiz_read_data(void) {
 
 gboolean cd_compiz_update_from_data (void) {
 	cd_compiz_update_main_icon ();
-	//cd_debug ("Compiz: %d - Decorator: %d", myData.bCompizIsRunning, myData.bDecoratorIsRunning);
+	cd_debug ("Compiz: %d - Decorator: %d", myData.bCompizIsRunning, myData.bDecoratorIsRunning);
 	if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz) {
 		if (! myData.bCompizRestarted) {
 			myData.bCompizRestarted = TRUE;  // c'est nous qui l'avons change.

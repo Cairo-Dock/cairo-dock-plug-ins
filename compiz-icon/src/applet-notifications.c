@@ -162,6 +162,10 @@ static void cd_compiz_switch_decorator (GtkMenuItem *menu_item, gpointer *data) 
 	cd_compiz_start_decorator (iDecorator);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
+	if (CD_APPLET_CLICKED_ICON != NULL && strcmp(CD_APPLET_CLICKED_ICON->acName,D_("Emerald Manager")) == 0) {
+		CD_APPLET_ADD_IN_MENU (D_("Reload Emerald"), cd_compiz_start_favorite_decorator, CD_APPLET_MY_MENU);
+	}
+	
 	CD_APPLET_ADD_SUB_MENU ("Compiz Icon", pSubMenu, CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_IN_MENU (D_("Switch Windows Manager"), cd_compiz_switch_manager, pSubMenu);
 	CD_APPLET_ADD_SUB_MENU (D_("Switch Windows Decorator"), pDecoratorSubMenu, pSubMenu);

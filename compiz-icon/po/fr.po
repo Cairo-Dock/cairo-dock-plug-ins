@@ -125,6 +125,9 @@ msgstr "Gestionnaire Emerald"
 msgid "Reload WM"
 msgstr "Recharger WM"
 
+msgid "Reload Emerald"
+msgstr "Recharger Emerald"
+
 #: ../data/messages:35
 msgid "Windows Manager"
 msgstr "Gestionnaire de Fenêtres"
