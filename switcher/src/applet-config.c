@@ -15,20 +15,19 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bCompactView = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Vue Simple", TRUE);
 	myConfig.bMapWallpaper = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Map Wallpaper", TRUE);
 	myConfig.bDisplayNumDesk = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display numero desktop", TRUE);
-	myConfig.bInvertIndicator = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Invert Indicator", TRUE);
+	
 	double inlinesize = 0.300;
-	myConfig.cInLineSize = CD_CONFIG_GET_DOUBLE("Configuration", "inlinesize");
+	myConfig.iInLineSize = CD_CONFIG_GET_INTEGER("Configuration", "inlinesize");
 	double inlinecouleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbinlinecolor",myConfig.RGBInLineColors, inlinecouleur);
 	double indcouleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbindcolor",myConfig.RGBIndColors, indcouleur);
 	double linesize = 0.300;
-	myConfig.cLineSize = CD_CONFIG_GET_DOUBLE("Configuration", "linesize");
+	myConfig.iLineSize = CD_CONFIG_GET_INTEGER("Configuration", "linesize");
 	double linecouleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgblinecolor",myConfig.RGBLineColors, linecouleur);
-	myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Configuration", "default icon");
-	myConfig.cDefaultSDockIcon = CD_CONFIG_GET_STRING ("Configuration", "default subdock icon");
-	myConfig.cBrokenIcon = CD_CONFIG_GET_STRING ("Configuration", "broken icon");
+	
+	myConfig.cDefaultIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "default icon", "default.svg");
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 
 CD_APPLET_GET_CONFIG_END
@@ -37,18 +36,15 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
 	
 	g_free (myConfig.cRenderer);
-
+	g_free (myConfig.cDefaultIcon);
+	
 CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-
-/* Fonction plus utile car j'ai enlevé le timer */
-/*if (myData.LoadAfterCompiz != 0)//\_______________________ On Tue le Timer.
-{
-cd_message ("timer = 0 ");
-		g_source_remove (myData.LoadAfterCompiz);
-	myData.LoadAfterCompiz = 0;
-}*/
-
+	if (myIcon->pSubDock != NULL)
+	{
+		CD_APPLET_DESTROY_MY_SUBDOCK
+	}
+	cairo_surface_destroy (myData.pDefaultMapSurface);
 CD_APPLET_RESET_DATA_END

@@ -16,18 +16,15 @@ frame1_ =
 name = switcher
 
 #S Icon's name :
-icon = workspaces.svg
+icon =
 
 #E[] Name of the dock it belongs to:
-dock name = 
+dock name =
 
 order=
-icon=
 
 #[gtk-convert]
 [Desklet]
-
-can detach = false
 
 #i[48;256] Desklet's dimension (width x height) :
 width=92
@@ -71,42 +68,33 @@ Map Wallpaper = true
 #b Show desktop number on the icons ?
 display numero desktop = true
 
-#b Invert Indicator of Current Desktop ?
-Invert Indicator = true
-
 
 #F[Display options]
 frame_disp =
 
-#c[0;8] Size of the Inside Icon Lines :
-inlinesize = 2.8
+#i[0;8] Size of the inside lines :
+inlinesize = 3
 
-#c4[0;1] Color of the Inside Icon Lines :
+#c4[0;1] Color of the inside lines :
 #{r, v, b, a}
 rgbinlinecolor = 0.0; 0.0; 0.5; 0.5
 
-#c4[0;1] Color of the Indicator :
-#{r, v, b, a}
-rgbindcolor = 0.0; 0.0; 0.5; 0.5
+#i[0;8] Size of the extern line :
+linesize = 3
 
-#c[0;8] Size of the Border Line :
-linesize = 2.8
-
-#c4[0;1] Color of the Border Line :
+#c4[0;1] Color of the extern line :
 #{r, v, b, a}
 rgblinecolor = 0.0; 0.0; 0.5; 0.5
 
-#S Default icon :
+#c4[0;1] Color of the current desktop border line :
+#{r, v, b, a}
+rgbindcolor = 0.0; 0.0; 0.5; 0.5
+
+
+#S Icon to use if you don't map the wallpaper :
 #{Let empty to use the default one.}
 default icon = 
 
-#S Default Icon For Sub Dock View :
-#{Let empty to use the default one.}
-default subdock icon = 
-
-#S Broken icon :
-#{Let empty to use the default one.}
-broken icon = 
 
 #n Name of the view used for the sub-dock :
 #{Let it empty to use default sub-dock view.}/

@@ -11,45 +11,31 @@ typedef struct {
 	gboolean bCompactView;
 	gboolean bMapWallpaper;
 	gboolean bDisplayNumDesk;
-	gboolean bInvertIndicator;
-	gint iCheckInterval;
 	gchar *cDefaultIcon;
-	gchar *cDefaultSDockIcon;
-	gchar *cBrokenIcon;
-	gchar *cShortcut;
-	gboolean bUseSeparator;
 	gboolean bDesklet3D;
 	gchar *cThemePath;
 	gchar *cRenderer;
-	gchar *cRGBColor;
-	double RGBInLineColors[4];
-	double RGBLineColors[4];
-	double RGBIndColors[4];
-	double cInLineSize;
-	double cLineSize;
+	gdouble RGBInLineColors[4];
+	gdouble RGBLineColors[4];
+	gdouble RGBIndColors[4];
+	gint iInLineSize;
+	gint iLineSize;
 	} AppletConfig;
 
 
 typedef struct
 {
-	int ScreenCurrentNums;
-	int ScreenCurrentSizes;
-	int iNbViewportX;
-	int iNbViewportY;
-	int iDesktopViewportX;
-	int iDesktopViewportY;
-	double MaxWidthIcon;
-	double MaxHeightIcon;
-	double MaxNbLigne;
-	double NumDeskbyLigne;
+	gint iCurrentDesktop, iCurrentViewportX, iCurrentViewportY;
+	gint iNbViewportTotal;
+	gint iNbLines, iNbColumns;
+	gint iCurrentLine, iCurrentColumn;
+	double fOneViewportWidth;
+	double fOneViewportHeight;
 }SwitcherApplet;
 
 
 typedef struct {
 	SwitcherApplet switcher;
-	GList *pIconList;
-	cairo_surface_t *pSurface;
-	cairo_surface_t *pSurfaceSDock;
-	cairo_surface_t *pBrokenSurface;
+	cairo_surface_t *pDefaultMapSurface;
 } AppletData;
 #endif

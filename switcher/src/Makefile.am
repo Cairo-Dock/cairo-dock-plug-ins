@@ -13,10 +13,10 @@ libcd_switcher_la_SOURCES = \
 	applet-notifications.h\
 	applet-load-icons.c\
 	applet-load-icons.h\
-	applet-read-data.c\
-	applet-read-data.h\
 	applet-draw.c\
 	applet-draw.h\
+	applet-desktops.c\
+	applet-desktops.h\
 	applet-struct.h
 
 

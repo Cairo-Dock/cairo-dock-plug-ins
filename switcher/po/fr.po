@@ -92,7 +92,7 @@ msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:49 ../data/messages:37 ../data/messages:39
-#: ../data/messages:43
+#: ../data/messages:43 ../data/messages:65
 msgid "Default icon :"
 msgstr "Icône par Défaut :"
 
@@ -107,7 +107,7 @@ msgid "Broken icon :"
 msgstr "Icône de Défaillance :"
 
 #: ../data/messages:57 ../data/messages:45 ../data/messages:47
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:73
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la Vue utilisée "
 
@@ -133,12 +133,12 @@ msgstr "Nombre de Viewportss"
 
 #: ../data/messages:35 ../data/messages:39 ../data/messages:37
 #: ../data/messages:41 ../data/messages:45 ../data/messages:47
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:63 ../data/messages:67
 msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser l'image par défaut."
 
 #: ../data/messages:43 ../data/messages:45 ../data/messages:49
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:71
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut."
 
@@ -167,7 +167,8 @@ msgstr "Verrouiller la position"
 msgid "Size of the Inside Icon Lines :"
 msgstr "Taille de la ligne Interieure :"
 
-#: ../data/messages:39 ../data/messages:43
+#: ../data/messages:39 ../data/messages:43 ../data/messages:49
+#: ../data/messages:55 ../data/messages:59
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
@@ -190,3 +191,85 @@ msgstr "Couleur de Ligne Exterieure :"
 #: ../data/messages:52
 msgid "Map Wallpaper on icon ?"
 msgstr "Afficher le Fond D'écran sur l'icône ?"
+
+#: ../src/applet-load-icons.c:39 ../src/applet-load-icons.c:35
+#: ../src/applet-init.c:81 ../src/applet-load-icons.c:33
+msgid "Current"
+msgstr ""
+
+#: ../src/applet-load-icons.c:43 ../src/applet-load-icons.c:39
+#: ../src/applet-init.c:75 ../src/applet-load-icons.c:37
+msgid "Desktop"
+msgstr ""
+
+#: ../src/applet-notifications.c:16 ../src/applet-notifications.c:13
+msgid ""
+"This is the switcher applet\n"
+" made by Cchumi for Cairo-Dock"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Size of the Line :"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Color of the Lines :"
+msgstr ""
+
+#: ../src/applet-notifications.c:193
+msgid "Add a desktop"
+msgstr ""
+
+#: ../src/applet-notifications.c:194
+msgid "Remove last desktop"
+msgstr ""
+
+#: ../data/messages:35
+msgid ""
+"All the desktops will be drawn on the main icon. Otherwise a subdock will "
+"contain all the desktops."
+msgstr ""
+
+#: ../data/messages:37
+msgid "Use the compact mode ?"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Map the wallpaper on icon ?"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Show desktop number on the icons ?"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Invert indicator of current desktop ?"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Display options"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Size of the inside lines :"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Color of the inside lines :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Size of the extern line :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "Color of the extern line :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "Color of the current desktop border line :"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Default icon for sub dock view :"
+msgstr ""
