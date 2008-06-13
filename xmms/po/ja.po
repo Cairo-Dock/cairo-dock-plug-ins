@@ -345,3 +345,11 @@ msgstr ""
 #: ../data/messages:111 ../data/messages:115
 msgid "Let it empty to use the default icon."
 msgstr ""
+
+#: ../src/applet-notifications.c:232
+msgid "Play/Pause (left-click)"
+msgstr ""
+
+#: ../src/applet-notifications.c:236
+msgid "Next (middle-click)"
+msgstr ""

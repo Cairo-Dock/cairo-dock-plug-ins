@@ -430,3 +430,11 @@ msgstr "Verrouiller la position ?"
 #: ../data/messages:109 ../data/messages:113
 msgid "Let t empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
+
+#: ../src/applet-notifications.c:232
+msgid "Play/Pause (left-click)"
+msgstr ""
+
+#: ../src/applet-notifications.c:236
+msgid "Next (middle-click)"
+msgstr ""

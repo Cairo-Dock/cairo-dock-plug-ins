@@ -7,12 +7,12 @@
 
 void cd_nvidia_acquisition (void);
 void cd_nvidia_read_data (void);
-void cd_nvidia_update_from_data (void);
+gboolean cd_nvidia_update_from_data (void);
 
 
 void cd_nvidia_config_acquisition (void);
 void cd_nvidia_config_read_data (void);
-void cd_nvidia_config_update_from_data (void);
+gboolean cd_nvidia_config_update_from_data (void);
 
 
 #endif

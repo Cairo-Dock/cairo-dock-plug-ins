@@ -34,13 +34,13 @@ CD_APPLET_INIT_BEGIN (erreur)
 		cd_nvidia_acquisition,
 		cd_nvidia_read_data,
 		cd_nvidia_update_from_data);
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_measure_delayed (myData.pMeasureTimer, 1000);
 	
 	myData.pConfigMeasureTimer = cairo_dock_new_measure_timer (0,
 		cd_nvidia_config_acquisition,
 		cd_nvidia_config_read_data,
 		cd_nvidia_config_update_from_data);
-	cairo_dock_launch_measure_delayed (myData.pConfigMeasureTimer, 2000);  // 2s apres.
+	cairo_dock_launch_measure (myData.pConfigMeasureTimer);
 	
 	myData.bAlerted = FALSE;
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -84,9 +84,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (myData.bAcquisitionOK) 
 			cd_nvidia_draw_icon ();
-		
 		else
 			cd_nvidia_draw_no_data ();
-		
 	}
 CD_APPLET_RELOAD_END

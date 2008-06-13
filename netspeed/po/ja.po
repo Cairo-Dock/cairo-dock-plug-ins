@@ -42,11 +42,8 @@ msgstr "モジュール"
 msgid "Icon's name :"
 msgstr "アイコンの名前 :"
 
-#: ../data/messages:15
-#: ../data/messages:35
-#: ../data/messages:39
-#: ../data/messages:41
-#: ../data/messages:45
+#: ../data/messages:15 ../data/messages:35 ../data/messages:39
+#: ../data/messages:41 ../data/messages:45 ../data/messages:43
 msgid "Information"
 msgstr "情報"
 
@@ -54,10 +51,8 @@ msgstr "情報"
 msgid "Information to display on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: src/applet-notifications.c:13
-#: ../src/applet-notifications.c:15
-#: ../src/applet-notifications.c:13
-#: ../src/applet-notifications.c:11
+#: src/applet-notifications.c:13 ../src/applet-notifications.c:15
+#: ../src/applet-notifications.c:13 ../src/applet-notifications.c:11
 msgid ""
 "This is the netspeed applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
@@ -65,222 +60,157 @@ msgstr ""
 "これは parAdOxxx_ZeRo によって製作された \n"
 "Cairo-Dock 用の netspeed アプレットです。"
 
-#: ../src/applet-notifications.c:35
-#: ../src/applet-notifications.c:33
-#: ../src/applet-notifications.c:36
-#: ../src/applet-notifications.c:37
+#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:37
 msgid "Waiting"
 msgstr "待機中"
 
-#: ../data/messages:11
-#: ../data/messages:19
-#: ../data/messages:53
-#: ../data/messages:13
-#: ../data/messages:15
+#: ../data/messages:11 ../data/messages:19 ../data/messages:53
+#: ../data/messages:13 ../data/messages:15
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:13
-#: ../data/messages:21
-#: ../data/messages:55
-#: ../data/messages:15
-#: ../data/messages:17
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+#: ../data/messages:13 ../data/messages:21 ../data/messages:55
+#: ../data/messages:15 ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:15
-#: ../data/messages:23
-#: ../data/messages:57
-#: ../data/messages:17
-#: ../data/messages:19
+#: ../data/messages:15 ../data/messages:23 ../data/messages:57
+#: ../data/messages:17 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:17
-#: ../data/messages:25
-#: ../data/messages:59
-#: ../data/messages:19
-#: ../data/messages:21
+#: ../data/messages:17 ../data/messages:25 ../data/messages:59
+#: ../data/messages:19 ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
-#: ../data/messages:19
-#: ../data/messages:27
-#: ../data/messages:61
-#: ../data/messages:21
-#: ../data/messages:23
+#: ../data/messages:19 ../data/messages:27 ../data/messages:61
+#: ../data/messages:21 ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:21
-#: ../data/messages:29
-#: ../data/messages:63
-#: ../data/messages:23
-#: ../data/messages:25
+#: ../data/messages:21 ../data/messages:29 ../data/messages:63
+#: ../data/messages:23 ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:23
-#: ../data/messages:31
-#: ../data/messages:65
-#: ../data/messages:25
-#: ../data/messages:27
+#: ../data/messages:23 ../data/messages:31 ../data/messages:65
+#: ../data/messages:25 ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:25
-#: ../data/messages:33
-#: ../data/messages:67
-#: ../data/messages:27
-#: ../data/messages:29
+#: ../data/messages:25 ../data/messages:33 ../data/messages:67
+#: ../data/messages:27 ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:27
-#: ../data/messages:35
-#: ../data/messages:69
-#: ../data/messages:29
-#: ../data/messages:31
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+#: ../data/messages:27 ../data/messages:35 ../data/messages:69
+#: ../data/messages:29 ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
-#: ../data/messages:37
-#: ../data/messages:71
-#: ../data/messages:31
-#: ../data/messages:33
+#: ../data/messages:29 ../data/messages:37 ../data/messages:71
+#: ../data/messages:31 ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../data/messages:13
-#: ../data/messages:33
-#: ../data/messages:35
-#: ../data/messages:39
+#: ../data/messages:13 ../data/messages:33 ../data/messages:35
+#: ../data/messages:39 ../data/messages:37
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:27
-#: ../data/messages:31
+#: ../data/messages:27 ../data/messages:31
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:29
-#: ../data/messages:33
-#: ../data/messages:37
-#: ../data/messages:41
-#: ../data/messages:45
-#: ../data/messages:49
+#: ../data/messages:29 ../data/messages:33 ../data/messages:37
+#: ../data/messages:41 ../data/messages:45 ../data/messages:49
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../src/applet-netspeed.c:185
-#: ../src/applet-netspeed.c:190
-#: ../src/applet-netspeed.c:183
-#: ../src/applet-netspeed.c:188
-#: ../src/applet-netspeed.c:193
-#: ../src/applet-netspeed.c:210
-#: ../src/applet-netspeed.c:215
-#: ../src/applet-netspeed.c:211
-#: ../src/applet-netspeed.c:216
-#: ../src/applet-netspeed.c:238
-#: ../src/applet-netspeed.c:243
-#: ../src/applet-netspeed.c:244
-#: ../src/applet-netspeed.c:32
-#: ../src/applet-netspeed.c:65
+#: ../src/applet-netspeed.c:185 ../src/applet-netspeed.c:190
+#: ../src/applet-netspeed.c:183 ../src/applet-netspeed.c:188
+#: ../src/applet-netspeed.c:193 ../src/applet-netspeed.c:210
+#: ../src/applet-netspeed.c:215 ../src/applet-netspeed.c:211
+#: ../src/applet-netspeed.c:216 ../src/applet-netspeed.c:238
+#: ../src/applet-netspeed.c:243 ../src/applet-netspeed.c:244
+#: ../src/applet-netspeed.c:32 ../src/applet-netspeed.c:65
 msgid "TB"
 msgstr "TB"
 
-#: ../src/applet-netspeed.c:251
-#: ../src/applet-netspeed.c:252
-#: ../src/applet-netspeed.c:40
-#: ../src/applet-netspeed.c:57
+#: ../src/applet-netspeed.c:251 ../src/applet-netspeed.c:252
+#: ../src/applet-netspeed.c:40 ../src/applet-netspeed.c:57
 msgid "GB"
 msgstr "GB"
 
-#: ../src/applet-netspeed.c:195
-#: ../src/applet-netspeed.c:193
-#: ../src/applet-netspeed.c:198
-#: ../src/applet-netspeed.c:220
-#: ../src/applet-netspeed.c:221
-#: ../src/applet-netspeed.c:248
-#: ../src/applet-netspeed.c:259
-#: ../src/applet-netspeed.c:260
-#: ../src/applet-netspeed.c:48
-#: ../src/applet-netspeed.c:49
+#: ../src/applet-netspeed.c:195 ../src/applet-netspeed.c:193
+#: ../src/applet-netspeed.c:198 ../src/applet-netspeed.c:220
+#: ../src/applet-netspeed.c:221 ../src/applet-netspeed.c:248
+#: ../src/applet-netspeed.c:259 ../src/applet-netspeed.c:260
+#: ../src/applet-netspeed.c:48 ../src/applet-netspeed.c:49
+#: ../src/applet-notifications.c:19
 msgid "MB"
 msgstr "MB"
 
-#: ../src/applet-netspeed.c:200
-#: ../src/applet-netspeed.c:198
-#: ../src/applet-netspeed.c:203
-#: ../src/applet-netspeed.c:225
-#: ../src/applet-netspeed.c:226
-#: ../src/applet-netspeed.c:253
-#: ../src/applet-netspeed.c:267
-#: ../src/applet-netspeed.c:268
-#: ../src/applet-netspeed.c:56
-#: ../src/applet-netspeed.c:41
+#: ../src/applet-netspeed.c:200 ../src/applet-netspeed.c:198
+#: ../src/applet-netspeed.c:203 ../src/applet-netspeed.c:225
+#: ../src/applet-netspeed.c:226 ../src/applet-netspeed.c:253
+#: ../src/applet-netspeed.c:267 ../src/applet-netspeed.c:268
+#: ../src/applet-netspeed.c:56 ../src/applet-netspeed.c:41
 msgid "KB"
 msgstr "KB"
 
-#: ../src/applet-netspeed.c:205
-#: ../src/applet-netspeed.c:203
-#: ../src/applet-netspeed.c:208
-#: ../src/applet-netspeed.c:230
-#: ../src/applet-netspeed.c:231
-#: ../src/applet-netspeed.c:258
-#: ../src/applet-netspeed.c:275
-#: ../src/applet-netspeed.c:282
-#: ../src/applet-netspeed.c:276
-#: ../src/applet-netspeed.c:283
-#: ../src/applet-netspeed.c:64
-#: ../src/applet-netspeed.c:71
-#: ../src/applet-netspeed.c:25
-#: ../src/applet-netspeed.c:33
+#: ../src/applet-netspeed.c:205 ../src/applet-netspeed.c:203
+#: ../src/applet-netspeed.c:208 ../src/applet-netspeed.c:230
+#: ../src/applet-netspeed.c:231 ../src/applet-netspeed.c:258
+#: ../src/applet-netspeed.c:275 ../src/applet-netspeed.c:282
+#: ../src/applet-netspeed.c:276 ../src/applet-netspeed.c:283
+#: ../src/applet-netspeed.c:64 ../src/applet-netspeed.c:71
+#: ../src/applet-netspeed.c:25 ../src/applet-netspeed.c:33
 msgid "B"
 msgstr "B"
 
-#: ../data/messages:37
-#: ../data/messages:51
-#: ../data/messages:53
-#: ../data/messages:57
+#: ../data/messages:37 ../data/messages:51 ../data/messages:53
+#: ../data/messages:57 ../data/messages:55
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:39
-#: ../data/messages:41
+#: ../data/messages:39 ../data/messages:41
 msgid "Delay between signal checks :"
 msgstr "信号チェックの間隔時間 :"
 
-#: ../src/applet-notifications.c:38
-#: ../src/applet-notifications.c:39
+#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:39
 #: ../src/applet-notifications.c:43
 msgid "Debug"
 msgstr "デバグ"
 
-#: ../data/messages:37
-#: ../data/messages:39
+#: ../data/messages:37 ../data/messages:39
 msgid "in milliseconds."
 msgstr "ミリ秒単位"
 
-#: ../data/messages:37
-#: ../data/messages:49
-#: ../data/messages:51
-#: ../data/messages:55
+#: ../data/messages:37 ../data/messages:49 ../data/messages:51
+#: ../data/messages:55 ../data/messages:53
 msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示に利用可能なテーマのリスト :"
 
-#: ../src/applet-netspeed.c:377
-#: ../src/applet-netspeed.c:378
-#: ../src/applet-netspeed.c:172
-#: ../src/applet-netspeed.c:166
-#: ../src/applet-netspeed.c:159
-#: ../src/applet-netspeed.c:161
+#: ../src/applet-netspeed.c:377 ../src/applet-netspeed.c:378
+#: ../src/applet-netspeed.c:172 ../src/applet-netspeed.c:166
+#: ../src/applet-netspeed.c:159 ../src/applet-netspeed.c:161
 msgid "Loading"
 msgstr "読み込み中"
 
-#: ../src/applet-notifications.c:19
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:19 ../src/applet-notifications.c:17
 #, c-format
 msgid ""
 "Total amount of data :\n"
@@ -291,69 +221,77 @@ msgstr ""
 "  ダウンロード : %.2fKB\n"
 "  アップロード : %.2fKB"
 
-#: ../src/applet-notifications.c:21
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:21 ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:22
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "インターフェイス '%s' は存在しないか、読み込みできないようです。"
 
-#: ../src/applet-notifications.c:41
-#: ../src/applet-notifications.c:36
-#: ../src/applet-notifications.c:30
+#: ../src/applet-notifications.c:41 ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:30 ../src/applet-notifications.c:33
 msgid "Re-check interface"
 msgstr "インターフェイスの再チェック"
 
-#: ../data/messages:35
-#: ../data/messages:37
-#: ../data/messages:41
+#: ../data/messages:35 ../data/messages:37 ../data/messages:41
+#: ../data/messages:39
 msgid "By default it will be 'eth0'."
 msgstr "デフォルトでは 'eth0' になります。"
 
-#: ../data/messages:37
-#: ../data/messages:39
-#: ../data/messages:43
+#: ../data/messages:37 ../data/messages:39 ../data/messages:43
+#: ../data/messages:41
 msgid "interface :"
 msgstr "インターフェイス :"
 
-#: ../data/messages:41
-#: ../data/messages:43
-#: ../data/messages:47
+#: ../data/messages:41 ../data/messages:43 ../data/messages:47
+#: ../data/messages:45
 msgid "Display speed values :"
 msgstr "速度の表示 :"
 
-#: ../data/messages:43
-#: ../data/messages:45
-#: ../data/messages:49
+#: ../data/messages:43 ../data/messages:45 ../data/messages:49
+#: ../data/messages:47
 msgid "No"
 msgstr "なし"
 
-#: ../data/messages:45
-#: ../data/messages:47
-#: ../data/messages:51
+#: ../data/messages:45 ../data/messages:47 ../data/messages:51
+#: ../data/messages:49
 msgid "On icon"
 msgstr "アイコン上"
 
-#: ../data/messages:47
-#: ../data/messages:49
-#: ../data/messages:53
+#: ../data/messages:47 ../data/messages:49 ../data/messages:53
+#: ../data/messages:51
 msgid "On label"
 msgstr "ラベル上"
 
-#: ../data/messages:53
-#: ../data/messages:55
-#: ../data/messages:59
+#: ../data/messages:53 ../data/messages:55 ../data/messages:59
+#: ../data/messages:57
 msgid "Delay between 2 measures :"
 msgstr "計測の間隔時間 :"
 
-#: ../data/messages:13
+#: ../data/messages:13 ../data/messages:11
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
 
-#: ../data/messages:35
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
+#: ../data/messages:35 ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:37
 msgid "Lockposition ?"
 msgstr "位置を固定？"
 
+#: ../src/applet-notifications.c:19
+#, c-format
+msgid ""
+"Total amount of data :\n"
+"  downloaded : %.2f%s\n"
+"  uploaded : %.2f%s"
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr ""

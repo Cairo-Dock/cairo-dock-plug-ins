@@ -69,7 +69,6 @@ static gboolean on_scroll_desklet (GtkWidget* pWidget,
 
 CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
-	g_print ("%s ()\n", __func__);
 	GList *pIconsList = pDesklet->icons;
 	
 	CDCarousselParameters *pCaroussel = g_new0 (CDCarousselParameters, 1);
@@ -87,7 +86,6 @@ CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, ca
 
 void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 {
-	g_print ("%s ()\n", __func__);
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
 		return ;
@@ -141,7 +139,6 @@ void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 
 void rendering_free_caroussel_data (CairoDesklet *pDesklet)
 {
-	g_print ("%s ()\n", __func__);
 	gulong iOnScrollCallbackID = g_signal_handler_find (pDesklet->pWidget,
 		G_SIGNAL_MATCH_FUNC,
 		0,

@@ -73,20 +73,22 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	if (myData.pGauge != NULL)
-	{
-		free_cd_Gauge(myData.pGauge);
-		myData.pGauge = NULL;
-	}
-	
+	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		free_cd_Gauge(myData.pGauge);
+		myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+		
 		if(myData.checkLoop != 0)  // la frequence peut avoir change.
 		{
 			g_source_remove (myData.checkLoop);
 			myData.checkLoop = 0;
 		}
 		myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
+	}
+	else
+	{
+		cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 	}
 	
 	//\_______________ On redessine notre icone.

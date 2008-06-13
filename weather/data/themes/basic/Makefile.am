@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/basic
+themedir = $(weatherdatadir)/themes/basic
 
 theme_DATA =\
 		0.png 	\

@@ -146,12 +146,14 @@ msgstr "Inconnu"
 #: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
 #: ../src/rhythmbox-menu-functions.c:61 ../src/rhythmbox-menu-functions.c:59
 #: ../src/rhythmbox-menu-functions.c:73 ../src/rhythmbox-menu-functions.c:57
+#: ../src/rhythmbox-menu-functions.c:45
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
 
 #: src/rhythmbox-menu-functions.c:67 src/rhythmbox-menu-functions.c:68
 #: ../src/rhythmbox-menu-functions.c:71 ../src/rhythmbox-menu-functions.c:69
 #: ../src/rhythmbox-menu-functions.c:83 ../src/rhythmbox-menu-functions.c:67
+#: ../src/rhythmbox-menu-functions.c:55
 msgid "Previous"
 msgstr "Précédent"
 
@@ -164,6 +166,7 @@ msgstr "Suivant"
 #: src/rhythmbox-menu-functions.c:71 src/rhythmbox-menu-functions.c:72
 #: ../src/rhythmbox-menu-functions.c:75 ../src/rhythmbox-menu-functions.c:73
 #: ../src/rhythmbox-menu-functions.c:87 ../src/rhythmbox-menu-functions.c:71
+#: ../src/rhythmbox-menu-functions.c:61
 msgid "Information"
 msgstr "Information"
 
@@ -417,4 +420,12 @@ msgstr ""
 
 #: ../data/messages:87
 msgid "Choose a decoration for the desklet mode :"
+msgstr ""
+
+#: ../src/rhythmbox-menu-functions.c:57
+msgid "Next (middle-click)"
+msgstr ""
+
+#: ../src/rhythmbox-menu-functions.c:59
+msgid "Play/Pause (left-click)"
 msgstr ""

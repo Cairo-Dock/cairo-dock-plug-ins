@@ -20,9 +20,6 @@ void cd_nvidia_draw_no_data (void) {
 }
 
 void cd_nvidia_draw_icon (void) {
-	//if (myConfig.bCardName)
-	//	CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pGPUData.cGPUName);
-	
 	if (myData.pGPUData.iGPUTemp == myData.iPreviousGPUTemp)  // aucun changement.
 		return ;
 	

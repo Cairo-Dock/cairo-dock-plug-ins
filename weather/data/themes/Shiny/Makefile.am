@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/Shiny
+themedir = $(weatherdatadir)/themes/Shiny
 
 theme_DATA =\
 		0.png 	\

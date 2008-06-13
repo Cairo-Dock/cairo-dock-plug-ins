@@ -21,9 +21,11 @@ CD_APPLET_INIT_BEGIN (erreur)
 	}
 	
 	//Initialisation de la jauge
+	if (myDesklet)
+		g_print ("%s (%dx%d)\n", __func__, myDesklet->iWidth, myDesklet->iHeight);
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
- 	make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
+	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
+	make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 	
 	myData.pClock = g_timer_new ();
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
@@ -53,12 +55,11 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	//On recharge la jauge
-	free_cd_Gauge(myData.pGauge);
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
+		free_cd_Gauge(myData.pGauge);
+		myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+		
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_ICON)
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
@@ -76,6 +77,8 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_change_measure_frequency (myData.pTopMeasureTimer, myConfig.iProcessCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
+		cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
+		
 		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
 		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&g_dialogTextDescription);
 		memcpy (myConfig.pTopTextDescription->fColorStart, pOldLabelDescription->fColorStart, 3*sizeof (double));

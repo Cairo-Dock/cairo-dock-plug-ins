@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/I_Weather
+themedir = $(weatherdatadir)/themes/I_Weather
 
 theme_DATA =\
 		0.svg 	\

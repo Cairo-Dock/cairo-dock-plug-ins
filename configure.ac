@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[1.5.6],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[1.6.0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -201,7 +201,7 @@ AC_SUBST(nvidiadatadir, "${pkgdatadir}/nVidia")
 POWERMANAGER_PACKAGE=cd-powermanager
 AC_SUBST(GETTEXT_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
-AC_SUBST(VERSION_POWERMANAGER "1.2.6")
+AC_SUBST(VERSION_POWERMANAGER, "1.2.6")
 AC_SUBST(PACKAGE_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
 AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
@@ -228,7 +228,7 @@ AC_SUBST(renderingdatadir, "${pkgdatadir}/rendering")
 RHYTHMBOX_PACKAGE=cd-rhythmbox
 AC_SUBST(GETTEXT_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
 
-AC_SUBST(VERSION_RHYTHMBOX "1.2.0")
+AC_SUBST(VERSION_RHYTHMBOX, "1.2.0")
 AC_SUBST(PACKAGE_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
 
 AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
@@ -237,7 +237,7 @@ AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
 SHORTCUTS_PACKAGE=cd-shortcuts
 AC_SUBST(GETTEXT_SHORTCUTS, "$SHORTCUTS_PACKAGE")
 
-AC_SUBST(VERSION_SHORTCUTS "1.1.2")
+AC_SUBST(VERSION_SHORTCUTS, "1.1.2")
 AC_SUBST(PACKAGE_SHORTCUTS, "$SHORTCUTS_PACKAGE")
 
 AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")
@@ -246,7 +246,7 @@ AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")
 SHOW_DESKLETS_PACKAGE=cd-showDesklets
 AC_SUBST(GETTEXT_SHOW_DESKLETS, "$SHOW_DESKLETS_PACKAGE")
 
-AC_SUBST(VERSION_SHOW_DESKLETS "1.0.1")
+AC_SUBST(VERSION_SHOW_DESKLETS, "1.0.1")
 AC_SUBST(PACKAGE_SHOW_DESKLETS, "$SHOW_DESKLETS_PACKAGE")
 
 AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
@@ -255,7 +255,7 @@ AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
 SHOW_DESKTOP_PACKAGE=cd-showDesktop
 AC_SUBST(GETTEXT_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
-AC_SUBST(VERSION_SHOW_DESKTOP "1.0.1")
+AC_SUBST(VERSION_SHOW_DESKTOP, "1.0.1")
 AC_SUBST(PACKAGE_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
 AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
@@ -264,7 +264,7 @@ AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
 SYSTRAY_PACKAGE=cd-systray
 AC_SUBST(GETTEXT_SYSTRAY, "$SYSTRAY_PACKAGE")
 
-AC_SUBST(VERSION_SYSTRAY "0.1.3")
+AC_SUBST(VERSION_SYSTRAY, "0.1.3")
 AC_SUBST(PACKAGE_SYSTRAY, "$SYSTRAY_PACKAGE")
 
 AC_SUBST(systraydatadir, "${pkgdatadir}/systray")

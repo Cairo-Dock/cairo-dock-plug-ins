@@ -1,5 +1,5 @@
 
-moduledir = $(pkgdatadir)
+moduledir = $(ramedatadir)
 
 module_DATA = \
 	rame.conf\

@@ -16,7 +16,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 
 // Prend un debit en octet par seconde et le transforme en une chaine de la forme : xxx yB/s
-void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
+static void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
 	int smallRate;
 	
 	if (rate <= 0)
@@ -139,7 +139,7 @@ void cd_netspeed_read_data (void)
 	}
 }
 
-void cd_netspeed_update_from_data (void)
+gboolean cd_netspeed_update_from_data (void)
 {
 	if ( ! myData.bAcquisitionOK)
 	{
@@ -213,4 +213,5 @@ void cd_netspeed_update_from_data (void)
 			}
 		}
 	}
+	return TRUE;
 }

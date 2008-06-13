@@ -2,4 +2,3 @@
 
 rm -rf /tmp/nvidia
 nvidia-settings -q GPUCoreTemp -t > /tmp/nvidia
-echo "nVidia" >> /tmp/nvidia

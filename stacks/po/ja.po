@@ -128,10 +128,12 @@ msgid "List hidden files ?"
 msgstr ""
 
 #: ../data/messages:43 ../data/messages:45 ../data/messages:61
+#: ../data/messages:63
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
 #: ../data/messages:45 ../data/messages:47 ../data/messages:63
+#: ../data/messages:65
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
@@ -167,21 +169,21 @@ msgstr ""
 msgid "Use Stacks local directory ?"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:55
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:57
 msgid "Filter files with their mime types ?"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:59
 msgid "Eg: image, text, video, audio, application..."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:61
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr ""
 
@@ -191,4 +193,8 @@ msgstr ""
 
 #: ../src/applet-notifications.c:37
 msgid "Reload Stacks"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Separate different directories with separators ?"
 msgstr ""

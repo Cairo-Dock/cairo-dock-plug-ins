@@ -121,10 +121,12 @@ msgstr ""
 "utiliser prudemment."
 
 #: ../data/messages:45 ../data/messages:47 ../data/messages:63
+#: ../data/messages:65
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
 #: ../data/messages:43 ../data/messages:45 ../data/messages:61
+#: ../data/messages:63
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
 
@@ -140,11 +142,11 @@ msgstr "Nom du conteneur auquel il appartient :"
 msgid "Clean local directory"
 msgstr "Vider le dossier local"
 
-#: ../data/messages:55
+#: ../data/messages:55 ../data/messages:57
 msgid "Filter files with their mime types ?"
 msgstr "Filtrer les fichiers avec leur mime types ?"
 
-#: ../data/messages:53
+#: ../data/messages:53 ../data/messages:55
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
@@ -152,11 +154,11 @@ msgstr ""
 "Cette option vous permet d'éviter que certains fichiers soit affihcer dans "
 "le stacks en prenant en compte leur types (video, images, etc...)"
 
-#: ../data/messages:59
+#: ../data/messages:59 ../data/messages:61
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr "Vous pouvez spécifié ici une liste de mime type a éviter:"
 
-#: ../data/messages:57
+#: ../data/messages:57 ../data/messages:59
 msgid "Eg: image, text, video, audio, application..."
 msgstr "Ex: image, text, video, audio, application.."
 
@@ -190,5 +192,6 @@ msgstr "Verrouiller la position ?"
 msgid "Reload Stacks"
 msgstr "Recharger Stacks"
 
+#: ../data/messages:53
 msgid "Separate different directories with separators ?"
 msgstr "Séparer les différents dossiers avec des séparateurs ?"

@@ -49,7 +49,7 @@ libcd_rendering_la_CFLAGS = \
 	-DMY_APPLET_PREVIEW_FILE=\""none"\"\
 	-DMY_APPLET_CONF_FILE=\""rendering.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""rendering"\"\
-	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
+	-DMY_APPLET_ICON_FILE=\""icon.svg"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3

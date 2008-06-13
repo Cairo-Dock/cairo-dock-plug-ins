@@ -1,4 +1,4 @@
-themedir = $(pkgdatadir)/themes/crystal
+themedir = $(weatherdatadir)/themes/crystal
 
 theme_DATA =\
 		0.png 	\
