@@ -86,20 +86,20 @@ CD_APPLET_ON_CLICK_BEGIN
 	
 	int iNumLine, iNumColumn;
 	int iNumDesktop, iNumViewportX, iNumViewportY;
-	int iMouseX, iMouseY;
-	if (myDock)
-	{
-		iMouseX = myDock->iMouseX - myIcon->fDrawX;
-		iMouseY = myDock->iMouseY - myIcon->fDrawY;
-	}
-	else
-	{
-		iMouseX = - myDesklet->diff_x - myIcon->fDrawX;
-		iMouseY = - myDesklet->diff_y - myIcon->fDrawY;
-	}
 	
 	if (myConfig.bCompactView && pClickedIcon == myIcon)
 	{
+		int iMouseX, iMouseY;
+		if (myDock)
+		{
+			iMouseX = myDock->iMouseX - myIcon->fDrawX;
+			iMouseY = myDock->iMouseY - myIcon->fDrawY;
+		}
+		else
+		{
+			iMouseX = - myDesklet->diff_x - myIcon->fDrawX;
+			iMouseY = - myDesklet->diff_y - myIcon->fDrawY;
+		}
 		if (iMouseX < 0)
 			iMouseX = 0;
 		if (iMouseY < 0)
@@ -113,12 +113,14 @@ CD_APPLET_ON_CLICK_BEGIN
 		cd_switcher_compute_desktop_from_coordinates (iNumLine, iNumColumn, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 		myIcon->iCount = 0;
 	}
-	else if (pClickedIcon != NULL)
+	else if (pClickedIcon != NULL && pClickedIcon != myIcon)
 	{
 		int iIndex = pClickedIcon->fOrder;
 		cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 		pClickedIcon->iCount = 0;
 	}
+	else
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	if (iNumDesktop != myData.switcher.iCurrentDesktop)
 		cairo_dock_set_current_desktop (iNumDesktop);

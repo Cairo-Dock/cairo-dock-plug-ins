@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-switcher],[0.9.1],[Cchumi (cchumi@live.fr)])
+AC_INIT([cd-switcher],[0.9.2],[Cchumi (cchumi@live.fr)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

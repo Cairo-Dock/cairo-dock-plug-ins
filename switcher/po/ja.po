@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 00:16+0200\n"
 "PO-Revision-Date: 2008-05-19 21:54+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,7 +15,32 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "ICON"
+#: ../src/applet-init.c:52 ../src/applet-load-icons.c:38
+msgid "Desktop"
+msgstr ""
+
+#: ../src/applet-init.c:60 ../src/applet-load-icons.c:32
+msgid "Current"
+msgstr ""
+
+#: ../src/applet-notifications.c:13
+msgid ""
+"This is the switcher applet\n"
+" made by Cchumi for Cairo-Dock"
+msgstr ""
+"これは Cchumi によって製作された \n"
+"Cairo-Dock 用の switcher アプレットです。"
+
+#: ../src/applet-notifications.c:185
+msgid "Add a desktop"
+msgstr ""
+
+#: ../src/applet-notifications.c:186
+msgid "Remove last desktop"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:3
@@ -34,115 +59,43 @@ msgstr "高さ :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-msgid "MODULE"
-msgstr "モジュール"
-
 #: ../data/messages:11
 msgid "Icon's name :"
 msgstr "アイコンの名前 :"
 
-#: src/applet-notifications.c:13 ../src/applet-notifications.c:16
-#: ../src/applet-notifications.c:13
-msgid ""
-"This is the switcher applet\n"
-" made by Cchumi for Cairo-Dock"
-msgstr ""
-"これは Cchumi によって製作された \n"
-"Cairo-Dock 用の switcher アプレットです。"
-
-#: ../src/applet-notifications.c:66 ../src/applet-notifications.c:75
-#: ../src/applet-notifications.c:139 ../src/applet-notifications.c:150
-msgid "Reload now"
-msgstr "直ちに再読み込み"
-
-#: ../data/messages:1
-msgid "Icon"
-msgstr "アイコン"
-
-#: ../data/messages:13 ../data/messages:15
-msgid "Desklet"
-msgstr "デスクレット"
-
-#: ../data/messages:15 ../data/messages:17
-msgid "Desklet's dimension (width x height) :"
-msgstr "デスクレットの寸法（幅×高さ） :"
-
-#: ../data/messages:17 ../data/messages:19
-msgid "Desklet's position (x ; y) :"
-msgstr "デスクレットの位置（X ; Y） :"
-
-#: ../data/messages:19 ../data/messages:21
-msgid "Is detached ?"
-msgstr "ドックから分離？"
-
-#: ../data/messages:21 ../data/messages:23
-msgid "Keep below ?"
-msgstr "他ウィンドウより常に下に？"
-
-#: ../data/messages:23 ../data/messages:25
-msgid "Keep above ?"
-msgstr "他ウィンドウより常に上に？"
-
-#: ../data/messages:25 ../data/messages:27
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
-
-#: ../data/messages:27 ../data/messages:29 ../data/messages:33
-#: ../data/messages:31
-msgid "Configuration"
-msgstr "設定"
-
-#: ../data/messages:49 ../data/messages:37 ../data/messages:39
-#: ../data/messages:43 ../data/messages:65
-msgid "Default icon :"
-msgstr "デフォルトのアイコン :"
-
-#: ../data/messages:53 ../data/messages:41 ../data/messages:43
-#: ../data/messages:47
-msgid "Broken icon :"
-msgstr "リンク切れ時のアイコン :"
-
-#: ../data/messages:57 ../data/messages:45 ../data/messages:47
-#: ../data/messages:51 ../data/messages:73
-msgid "Name of the view used for the sub-dock :"
-msgstr "サブ・ドックに使用する外観の名前 :"
-
-#: ../data/messages:59
-msgid "Render desklet in 3D ?"
-msgstr "デスクレットを 3D 描画？"
-
-#: ../data/messages:29
-msgid "Number of Viewports"
-msgstr "ビューポートの数 :"
-
-#: ../data/messages:31 ../data/messages:33 ../data/messages:37
-msgid "Show Light Icon ?"
-msgstr "シンプルなメイン・アイコンを表示？"
-
-#: ../data/messages:33 ../data/messages:35 ../data/messages:39
-msgid "Show Quickinfo on the Icon ?"
-msgstr "アイコン上に情報を表示？"
-
-#: ../data/messages:29 ../data/messages:31 ../data/messages:35
-msgid "Number of Viewports "
-msgstr "ビューポートの数"
-
-#: ../data/messages:35 ../data/messages:39 ../data/messages:37
-#: ../data/messages:41 ../data/messages:45 ../data/messages:47
-#: ../data/messages:51 ../data/messages:63 ../data/messages:67
-msgid "Let empty to use the default one."
-msgstr "デフォルトを使用するに空欄のままに"
-
-#: ../data/messages:43 ../data/messages:45 ../data/messages:49
-#: ../data/messages:55 ../data/messages:71
-msgid "Let it empty to use default sub-dock view."
-msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
-
-#: ../data/messages:13 ../data/messages:11
+#: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
 
-#: ../data/messages:29 ../data/messages:27
+#: ../data/messages:15
+msgid "Desklet"
+msgstr "デスクレット"
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "デスクレットの寸法（幅×高さ） :"
+
+#: ../data/messages:19
+msgid "Desklet's position (x ; y) :"
+msgstr "デスクレットの位置（X ; Y） :"
+
+#: ../data/messages:21
+msgid "Is detached ?"
+msgstr "ドックから分離？"
+
+#: ../data/messages:23
+msgid "Keep below ?"
+msgstr "他ウィンドウより常に下に？"
+
+#: ../data/messages:25
+msgid "Keep above ?"
+msgstr "他ウィンドウより常に上に？"
+
+#: ../data/messages:27
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+#: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -151,94 +104,108 @@ msgstr ""
 "ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:31
-msgid "Lockposition ?"
-msgstr "位置を固定？"
-
-#: ../src/applet-load-icons.c:39 ../src/applet-load-icons.c:35
-#: ../src/applet-init.c:81 ../src/applet-load-icons.c:33
-msgid "Current"
-msgstr ""
-
-#: ../src/applet-load-icons.c:43 ../src/applet-load-icons.c:39
-#: ../src/applet-init.c:75 ../src/applet-load-icons.c:37
-msgid "Desktop"
-msgstr ""
-
-#: ../data/messages:29
 msgid "Lock position ?"
 msgstr ""
 
+#: ../data/messages:33 ../data/messages:35
+msgid "Configuration"
+msgstr "設定"
+
 #: ../data/messages:37
-msgid "Size of the Line :"
-msgstr ""
-
-#: ../data/messages:39 ../data/messages:43 ../data/messages:49
-#: ../data/messages:55 ../data/messages:59
-msgid "r, v, b, a"
-msgstr ""
-
-#: ../data/messages:41
-msgid "Color of the Lines :"
-msgstr ""
-
-#: ../data/messages:45
-msgid "Color of the Indicator :"
-msgstr ""
-
-#: ../src/applet-notifications.c:193
-msgid "Add a desktop"
-msgstr ""
-
-#: ../src/applet-notifications.c:194
-msgid "Remove last desktop"
-msgstr ""
-
-#: ../data/messages:35
 msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "Use the compact mode ?"
 msgstr ""
 
-#: ../data/messages:39
-msgid "Map the wallpaper on icon ?"
-msgstr ""
-
 #: ../data/messages:41
-msgid "Show desktop number on the icons ?"
+msgid "When drawing in compact mode, try to preserve the screen ratio ?"
 msgstr ""
 
 #: ../data/messages:43
-msgid "Invert indicator of current desktop ?"
+msgid "Map the wallpaper on icon ?"
 msgstr ""
 
 #: ../data/messages:45
-msgid "Display options"
+msgid "Show desktop number on the icons ?"
 msgstr ""
 
 #: ../data/messages:47
+msgid "Display options"
+msgstr ""
+
+#: ../data/messages:49
 msgid "Size of the inside lines :"
 msgstr ""
 
-#: ../data/messages:51
-msgid "Color of the inside lines :"
+#: ../data/messages:51 ../data/messages:57 ../data/messages:61
+msgid "r, v, b, a"
 msgstr ""
 
 #: ../data/messages:53
+msgid "Color of the inside lines :"
+msgstr ""
+
+#: ../data/messages:55
 msgid "Size of the extern line :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "Color of the extern line :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "Color of the current desktop border line :"
 msgstr ""
 
-#: ../data/messages:69
-msgid "Default icon for sub dock view :"
+#: ../data/messages:65
+msgid "Let empty to use the default one."
+msgstr "デフォルトを使用するに空欄のままに"
+
+#: ../data/messages:67
+msgid "Icon to use if you don't map the wallpaper :"
 msgstr ""
+
+#: ../data/messages:69
+msgid "Let it empty to use default sub-dock view."
+msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
+
+#: ../data/messages:71
+msgid "Name of the view used for the sub-dock :"
+msgstr "サブ・ドックに使用する外観の名前 :"
+
+#~ msgid "ICON"
+#~ msgstr "アイコン"
+
+#~ msgid "MODULE"
+#~ msgstr "モジュール"
+
+#~ msgid "Reload now"
+#~ msgstr "直ちに再読み込み"
+
+#~ msgid "Default icon :"
+#~ msgstr "デフォルトのアイコン :"
+
+#~ msgid "Broken icon :"
+#~ msgstr "リンク切れ時のアイコン :"
+
+#~ msgid "Render desklet in 3D ?"
+#~ msgstr "デスクレットを 3D 描画？"
+
+#~ msgid "Number of Viewports"
+#~ msgstr "ビューポートの数 :"
+
+#~ msgid "Show Light Icon ?"
+#~ msgstr "シンプルなメイン・アイコンを表示？"
+
+#~ msgid "Show Quickinfo on the Icon ?"
+#~ msgstr "アイコン上に情報を表示？"
+
+#~ msgid "Number of Viewports "
+#~ msgstr "ビューポートの数"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"

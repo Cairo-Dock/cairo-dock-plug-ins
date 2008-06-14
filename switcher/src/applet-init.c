@@ -12,7 +12,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("switcher", 1, 5, 6, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("switcher", 1, 6, 0, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 static gboolean on_change_desktop (gpointer *data)
@@ -22,61 +22,50 @@ static gboolean on_change_desktop (gpointer *data)
 	cd_switcher_get_current_desktop ();
 	int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
-	if (myDock)
+	CairoContainer *pContainer = (myDock ? myIcon->pSubDock : myContainer);
+	g_return_val_if_fail (pContainer != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
+	if (myConfig.bDisplayNumDesk)
 	{
-		if (myConfig.bDisplayNumDesk)
-		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1)
-		}
-		
-		if (myConfig.bCompactView)
-		{
-			cd_switcher_draw_main_icon_compact_mode ();
-			CD_APPLET_REDRAW_MY_ICON
-		}
-		else
-		{
-			if (myConfig.bDisplayNumDesk)
-				CD_APPLET_REDRAW_MY_ICON
-			
-			// On redessine les 2 icones du sous-dock impactees.
-			g_return_val_if_fail (myIcon->pSubDock != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
-			Icon *icon;
-			GList *ic;
-			for (ic = myIcon->pSubDock->icons; ic != NULL; ic = ic->next)
-			{
-				icon = ic->data;
-				if (icon->fOrder == iPreviousIndex)  // l'ancienne icone du bureau courant.
-				{
-					cairo_dock_set_icon_name_full (myDrawContext, icon, CAIRO_CONTAINER (myIcon->pSubDock), "%s %d", D_("Desktop"), iIndex+1);
-					icon->bHasIndicator = FALSE;
-					cairo_dock_redraw_my_icon (icon, CAIRO_CONTAINER (myIcon->pSubDock));
-				}
-				if (icon->fOrder == iIndex)  // c'est l'icone du bureau courant.
-				{
-					cairo_dock_set_icon_name_full (myDrawContext, icon, CAIRO_CONTAINER (myIcon->pSubDock), "%s %d", D_("Current"), iIndex+1);
-					icon->bHasIndicator = TRUE;
-					cairo_dock_redraw_my_icon (icon, CAIRO_CONTAINER (myIcon->pSubDock));
-				}
-			}
-		}
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1)
+	}
+	
+	if (myConfig.bCompactView)
+	{
+		cd_switcher_draw_main_icon_compact_mode ();
+		CD_APPLET_REDRAW_MY_ICON
 	}
 	else
 	{
-		if (myConfig.bDisplayNumDesk)
-		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1)
-		}
-		
-		if (myConfig.bCompactView)
-		{
-			cd_switcher_draw_main_icon_compact_mode ();
+		if (myDock && myConfig.bDisplayNumDesk)
 			CD_APPLET_REDRAW_MY_ICON
-		}
-		else
+		
+		// On redessine les 2 icones du sous-dock impactees.
+		GList *pIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
+		Icon *icon;
+		GList *ic;
+		for (ic = pIconList; ic != NULL; ic = ic->next)
 		{
-			/// idem ...
+			icon = ic->data;
+			if (icon->fOrder == iPreviousIndex)  // l'ancienne icone du bureau courant.
+			{
+				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Desktop"), iIndex+1);
+				icon->bHasIndicator = FALSE;
+				icon->fAlpha = 1.;
+				if (myDock)
+					cairo_dock_redraw_my_icon (icon, pContainer);
+			}
+			if (icon->fOrder == iIndex)  // c'est l'icone du bureau courant.
+			{
+				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Current"), iIndex+1);
+				icon->bHasIndicator = TRUE;
+				icon->fAlpha = .8;
+				if (myDock)
+					cairo_dock_redraw_my_icon (icon, pContainer);
+			}
 		}
+		if (myDesklet)
+			gtk_widget_queue_draw (myDesklet->pWidget);
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
@@ -158,6 +147,8 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		cd_switcher_compute_nb_lines_and_columns ();
+		
 		if (myConfig.bDisplayNumDesk)
 		{
 			int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
@@ -170,7 +161,7 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else
 	{
-		cd_switcher_load_default_map_surface ();
+		cd_switcher_paint_icons ();
 	}
 	
 	cd_switcher_draw_main_icon ();

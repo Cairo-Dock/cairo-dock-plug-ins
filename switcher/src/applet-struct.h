@@ -20,6 +20,7 @@ typedef struct {
 	gdouble RGBIndColors[4];
 	gint iInLineSize;
 	gint iLineSize;
+	gboolean bPreserveScreenRatio;
 	} AppletConfig;
 
 

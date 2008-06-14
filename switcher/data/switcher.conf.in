@@ -62,6 +62,9 @@ frame_conf =
 #{All the desktops will be drawn on the main icon. Otherwise a subdock will contain all the desktops.}
 Vue Simple = true
 
+#b When drawing in compact mode, try to preserve the screen ratio ?
+preserve ratio = true
+
 #b Map the wallpaper on icon ?
 Map Wallpaper = true
 

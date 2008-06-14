@@ -34,15 +34,18 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 {
 	double fZoomX, fZoomY;
 	int iNbLines, iNbDesktopByLine;
-	if (myDesklet)  // on va chercher a garder le ratio de l'ecran plutot que remplir toute l'icone.
+	
+	if (myConfig.bPreserveScreenRatio)  // on va chercher a minimiser la deformation de l'image de fond d'ecran.
 	{
-		double fZoom, fUsedSurface, fMaxUsedSurface=0;
-		for (iNbLines = 1; iNbLines < iNbViewports; iNbLines ++)
+		/*double fZoom, fUsedSurface, fMaxUsedSurface=0;
+		for (iNbLines = 1; iNbLines <= iNbViewports; iNbLines ++)
 		{
+			if (iNbViewports % iNbLines != 0)
+				continue;
 			iNbDesktopByLine = iNbViewports / iNbLines;
 			fZoomX = myIcon->fWidth / (iNbDesktopByLine * g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]);
 			fZoomY = myIcon->fHeight / (iNbLines * g_iScreenHeight[CAIRO_DOCK_HORIZONTAL]);
-			fZoom = MIN (fZoomX, fZoomY);  // on conserve le ratio.
+			fZoom = MIN (fZoomX, fZoomY);  // zoom qui conserve le ratio.
 			fUsedSurface = (fZoom * iNbDesktopByLine * g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]) * (fZoom * iNbLines * g_iScreenHeight[CAIRO_DOCK_HORIZONTAL]);
 			g_print ("%d lignes => fUsedSurface: %.2f pix^2\n", iNbLines, fUsedSurface);
 			
@@ -52,12 +55,8 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 				*iBestNbColumns = iNbDesktopByLine;
 				*iBestNbLines = iNbLines;
 			}
-		}
-	}
-	else  // on va chercher a remplir toute l'icone, car elle est trop petite pour se permettre de pas tout utiliser.
-	{
+		}*/
 		double fRatio, fMinRatio=9999;
-		
 		for (iNbLines = 1; iNbLines <= iNbViewports; iNbLines ++)
 		{
 			if (iNbViewports % iNbLines != 0)
@@ -74,6 +73,11 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 				*iBestNbLines = iNbLines;
 			}
 		}
+	}
+	else  // on va chercher a repartir au mieux les bureaux sur l'icone.
+	{
+		*iBestNbColumns = (int) ceil (sqrt (iNbViewports));
+		 *iBestNbLines= iNbViewports / (*iBestNbColumns);
 	}
 }
 void cd_switcher_compute_nb_lines_and_columns (void)
@@ -181,6 +185,7 @@ void cd_switcher_compute_viewports_from_index (int iIndex, int *iNumDesktop, int
 	int index2 = iIndex % (g_iNbViewportX * g_iNbViewportY);
 	*iNumViewportX = index2 / g_iNbViewportY;
 	*iNumViewportY = index2 % g_iNbViewportY;
+	g_print (" -> %d;%d;%d\n", *iNumDesktop, *iNumViewportX, *iNumViewportY);
 }
 
 

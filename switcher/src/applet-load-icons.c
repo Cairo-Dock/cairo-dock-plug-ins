@@ -37,13 +37,14 @@ static GList * _load_icons (void)
 			pIcon->acName = g_strdup_printf ("%s %d", D_("Desktop"), i+1);
 			pIcon->bHasIndicator = FALSE;
 		}
+		pIcon->fAlpha = 1.;
 		pIcon->cQuickInfo = g_strdup_printf ("%d",i+1);
 		pIcon->fOrder = i;
-		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
 		pIcon->acCommand = g_strdup ("none");
-		pIcon->cParentDockName = g_strdup (myIcon->acName);
+		pIcon->cParentDockName = myDock ? g_strdup (myIcon->acName) : NULL;
+		//pIcon->acFileName = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default.svg");
 		
 		pIconList = g_list_append (pIconList, pIcon);
 	}
@@ -87,7 +88,7 @@ void cd_switcher_load_icons (void)
 		{
 			if (myIcon->pSubDock == NULL)
 			{
-				if (pIconList != NULL) 
+				if (pIconList != NULL)
 				{
 					CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
 				}
@@ -121,39 +122,52 @@ void cd_switcher_load_icons (void)
 			CD_APPLET_SET_DESKLET_RENDERER ("Caroussel")
 		}
 		
-		//\_______________________ On applique la surface.
-		CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
-		
-		cairo_surface_t *pSurface = NULL;
-		double fZoomX, fZoomY;
-		if (myConfig.bMapWallpaper)
-		{
-			pSurface = cairo_dock_get_desktop_bg_surface ();
-			double fMaxScale = cairo_dock_get_max_scale (pContainer);
-			fZoomX = (double) myIcon->fWidth * fMaxScale / g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
-			fZoomY = (double) myIcon->fHeight * fMaxScale / g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];
-		}
-		if (pSurface == NULL)
-		{
-			cd_switcher_load_default_map_surface ();
-			pSurface = myData.pDefaultMapSurface;
-			fZoomX = 1.;
-			fZoomY = 1.;
-		}
-		
-		cairo_t *pIconContext;
-		GList* ic;
-		Icon *icon;
-		for (ic = pIconList; ic != NULL; ic = ic->next)
-		{
-			icon = ic->data;
-			pIconContext = cairo_create (icon->pIconBuffer);
-			cairo_scale (pIconContext,
-				fZoomX,
-				fZoomY);
-			cairo_dock_set_icon_surface_with_reflect (pIconContext, pSurface, icon, pContainer);
-			cairo_destroy (pIconContext);
-		}
+		//\_______________________ On peint les icones.
+		cd_switcher_paint_icons ();
+	}
+}
+
+void cd_switcher_paint_icons (void)
+{
+	if (myConfig.bCompactView)
+		return ;
+	
+	//\_______________________ On applique la surface.
+	CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
+	GList *pIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
+	
+	cairo_surface_t *pSurface = NULL;
+	double fZoomX, fZoomY;
+	Icon *pFirstIcon = pIconList->data;
+	
+	if (myConfig.bMapWallpaper)
+	{
+		pSurface = cairo_dock_get_desktop_bg_surface ();
+		double fMaxScale = cairo_dock_get_max_scale (pContainer);
+		fZoomX = (double) pFirstIcon->fWidth * fMaxScale / g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
+		fZoomY = (double) pFirstIcon->fHeight * fMaxScale / g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];
+	}
+	if (pSurface == NULL)
+	{
+		cd_switcher_load_default_map_surface ();
+		pSurface = myData.pDefaultMapSurface;
+		fZoomX = pFirstIcon->fWidth / myIcon->fWidth;
+		fZoomY = pFirstIcon->fHeight / myIcon->fHeight;
+	}
+	
+	cairo_t *pIconContext;
+	GList* ic;
+	Icon *icon;
+	for (ic = pIconList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		g_print (" (%.2fx%.2f)\n", icon->fDrawX, icon->fDrawY);
+		pIconContext = cairo_create (icon->pIconBuffer);
+		cairo_scale (pIconContext,
+			fZoomX,
+			fZoomY);
+		cairo_dock_set_icon_surface_with_reflect (pIconContext, pSurface, icon, pContainer);
+		cairo_destroy (pIconContext);
 	}
 }
 
@@ -163,5 +177,6 @@ void cd_switcher_load_default_map_surface (void)
 	g_return_if_fail (myDrawContext != NULL);
 	if (myData.pDefaultMapSurface != NULL)
 		cairo_surface_destroy (myData.pDefaultMapSurface);
+	g_print ("%s (%.2fx%.2f)\n", __func__, myIcon->fWidth, myIcon->fHeight);
 	myData.pDefaultMapSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cDefaultIcon);
 }
