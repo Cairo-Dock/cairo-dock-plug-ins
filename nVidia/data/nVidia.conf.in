@@ -79,7 +79,7 @@ alert=true
 alt = 110
 #b Play a sound during the alert ?
 asound=true
-#S Sound path :
+#u Sound path :
 sound path = /usr/share/sounds/error.wav
 
 
