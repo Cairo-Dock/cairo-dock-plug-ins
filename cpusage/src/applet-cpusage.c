@@ -187,7 +187,7 @@ gboolean cd_cpusage_update_from_data (void)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
-		make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
+		cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 	}
 	else
 	{
@@ -195,7 +195,7 @@ gboolean cd_cpusage_update_from_data (void)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
-			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
+			cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 		}
 		else
 		{
@@ -212,7 +212,7 @@ gboolean cd_cpusage_update_from_data (void)
 				}
 			}
 			
-			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.cpu_usage / 100);
+			cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.cpu_usage / 100);
 		}
 	}
 	return myData.bAcquisitionOK;

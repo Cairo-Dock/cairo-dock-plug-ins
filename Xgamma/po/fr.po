@@ -6,14 +6,31 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 06:10+0200\n"
 "PO-Revision-Date: 2008-05-23 08:53+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-init.c:104 ../src/applet-notifications.c:31
+#: ../src/applet-xgamma.c:156
+msgid "Set up gamma :"
+msgstr "Réglez le gamma :"
+
+#: ../src/applet-notifications.c:22
+msgid ""
+"This is the Xgamma applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"Ceci l'applet Xgamma\n"
+" écrite par Fabrice Rey pour Cairo-Dock"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
@@ -35,32 +52,15 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 msgid "Icon's name :"
 msgstr "Nom de l'icône :"
 
-#: src/applet-notifications.c:13 ../src/applet-notifications.c:25
-#: ../src/applet-notifications.c:23 ../src/applet-notifications.c:22
-msgid ""
-"This is the Xgamma applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"Ceci l'applet Xgamma\n"
-" écrite par Fabrice Rey pour Cairo-Dock"
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr "Nom du conteneur auquel il appartient:"
 
-#: ../src/applet-init.c:108 ../src/applet-notifications.c:34
-#: ../src/applet-xgamma.c:156 ../src/applet-init.c:107
-#: ../src/applet-init.c:105 ../src/applet-notifications.c:32
-#: ../src/applet-xgamma.c:154 ../src/applet-init.c:101
-#: ../src/applet-notifications.c:31 ../src/applet-init.c:104
-msgid "Set up gamma :"
-msgstr "Réglez le gamma :"
-
-#: ../data/messages:1
-msgid "Icon"
-msgstr "Icône"
-
-#: ../data/messages:11 ../data/messages:13 ../data/messages:15
+#: ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13 ../data/messages:15 ../data/messages:17
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -68,33 +68,33 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:15 ../data/messages:17 ../data/messages:19
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17 ../data/messages:19 ../data/messages:21
+#: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:19 ../data/messages:21 ../data/messages:23
+#: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21 ../data/messages:23 ../data/messages:25
+#: ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23 ../data/messages:25 ../data/messages:27
+#: ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25 ../data/messages:27 ../data/messages:29
+#: ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27 ../data/messages:29 ../data/messages:31
+#: ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -102,13 +102,9 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:31 ../data/messages:33
+#: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
-
-#: ../data/messages:13
-msgid "Name of the dock it belongs to:"
-msgstr "Nom du conteneur auquel il appartient:"
 
 #: ../data/messages:35
 msgid ""
@@ -120,9 +116,8 @@ msgstr ""
 "contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:37
-msgid "Lockposition ?"
-msgstr "Verrouiller la position ?"
-
-#: ../data/messages:37
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Verrouiller la position ?"

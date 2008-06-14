@@ -37,7 +37,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	g_timer_destroy (myData.pClock);
 	
-	free_cd_Gauge(myData.pGauge);
+	cairo_dock_free_gauge(myData.pGauge);
 	
 	cairo_dock_free_measure_timer (myData.pTopMeasureTimer);
 	g_timer_destroy (myData.pTopClock);

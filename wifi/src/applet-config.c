@@ -53,5 +53,5 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cESSID);
 	g_free (myData.cConnName);
 	
-	free_cd_Gauge(myData.pGauge);
+	cairo_dock_free_gauge(myData.pGauge);
 CD_APPLET_RESET_DATA_END

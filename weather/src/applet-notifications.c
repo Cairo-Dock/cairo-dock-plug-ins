@@ -18,7 +18,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_INCLUDE_MY_VARS
 
 
-
 CD_APPLET_ABOUT (D_("This is the weather applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
@@ -30,28 +29,6 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL)  // on a clique sur une icone du desklet.
 	{
-		/*int iMouseX = - (int) myDesklet->diff_x;
-		int iMouseY = - (int) myDesklet->diff_y;
-		cd_debug (" clic en (%d;%d)", iMouseX, iMouseY);
-		
-		if (myIcon->fDrawX < iMouseX && myIcon->fDrawX + myIcon->fWidth > iMouseX && myIcon->fDrawY < iMouseY && myIcon->fDrawY + myIcon->fHeight > iMouseY)
-		{
-			cd_weather_show_current_conditions_dialog ();
-		}
-		else
-		{
-			GList* ic;
-			Icon *icon;
-			for (ic = myData.pDeskletIconList; ic != NULL; ic = ic->next)
-			{
-				icon = ic->data;
-				if (icon->fDrawX < iMouseX && icon->fDrawX + icon->fWidth * icon->fScale > iMouseX && icon->fDrawY < iMouseY && icon->fDrawY + icon->fHeight * icon->fScale > iMouseY)
-				{
-					cd_weather_show_forecast_dialog (icon);
-					break ;
-				}
-			}
-		}*/
 		if (pClickedIcon == myIcon)
 			cd_weather_show_current_conditions_dialog ();
 		else
@@ -60,7 +37,6 @@ CD_APPLET_ON_CLICK_BEGIN
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_CLICK_END
-
 
 
 static void _cd_weather_location_choosed (int iAnswer, GtkWidget *pWidget, gpointer data)
@@ -160,7 +136,6 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, gpointer *d
 				NULL);
 			g_free (cImageFilePath);
 		}
-		
 		
 		g_remove (cFilePath);
 		g_free (cFilePath);

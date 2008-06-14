@@ -7,7 +7,12 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 Fabrice Rey <fabounet@users.berlios.de>
 
 ******************************************************************************/
+#define _BSD_SOURCE
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <glib/gstdio.h>
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
@@ -16,13 +21,7 @@ Fabrice Rey <fabounet@users.berlios.de>
 
 CD_APPLET_INCLUDE_MY_VARS
 
-#define CD_COMPIZ_TMP_FILE "/tmp/compiz"
-#define CD_COMPIZ_CHECK_TIME 5000
-
-static int s_iThreadIsRunning = 0;
-static int s_iSidTimerRedraw = 0;
-static GStaticMutex mutexData = G_STATIC_MUTEX_INIT;
-
+static char  *s_cTmpFile = NULL;
 
 void cd_compiz_start_system_wm (void) {
 	const gchar * cCommand = NULL;
@@ -126,18 +125,29 @@ void cd_compiz_kill_compmgr(void) {
 
 
 void cd_compiz_acquisition (void) {
-	gchar *cCommand = g_strdup_printf("bash %s/compiz %s", MY_APPLET_SHARE_DATA_DIR, myConfig.cWindowDecorator);
+	s_cTmpFile = g_strdup ("/tmp/compiz.XXXXXX");
+	int fds =mkstemp (s_cTmpFile);
+	if (fds == -1)
+	{
+		g_free (s_cTmpFile);
+		s_cTmpFile = NULL;
+		return;
+	}
+	gchar *cCommand = g_strdup_printf("bash %s/compiz %s %s", MY_APPLET_SHARE_DATA_DIR, myConfig.cWindowDecorator, s_cTmpFile);
 	system (cCommand);
 	g_free (cCommand);
+	close(fds);
 }
 
 void cd_compiz_read_data(void) {
+	if (s_cTmpFile == NULL)
+		return ;
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
-	g_file_get_contents(CD_COMPIZ_TMP_FILE, &cContent, &length, &erreur);
-	if (erreur != NULL)	{
-		cd_warning("Attention : %s", erreur->message);
+	g_file_get_contents(s_cTmpFile, &cContent, &length, &erreur);
+	if (erreur != NULL) {
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
 		myData.bAcquisitionOK = FALSE;
@@ -148,6 +158,9 @@ void cd_compiz_read_data(void) {
 		g_free (cContent);
 		myData.bAcquisitionOK = TRUE;
 	}
+	g_remove (s_cTmpFile);
+	g_free (s_cTmpFile);
+	s_cTmpFile = NULL;
 }
 
 gboolean cd_compiz_update_from_data (void) {

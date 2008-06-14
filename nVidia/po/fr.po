@@ -3,14 +3,12 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 06:16+0200\n"
 "PO-Revision-Date: 2007-12-11\n"
 "Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,222 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/messages:1
-msgid "Icon"
-msgstr "Icône"
-
-#: ../data/messages:3
-msgid "Desired icon size for this applet"
-msgstr "Taille d'icône souhaitée pour cette applet"
-
-#: ../data/messages:5
-msgid "width :"
-msgstr "largeur :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "hauteur :"
-
-#: ../data/messages:9
-msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
-
-msgid "Module"
-msgstr "Module"
-
-#: ../data/messages:11
-msgid "Icon's name :"
-msgstr "Nom de l'icône :"
-
-#: src/applet-notifications.c:13 ../src/applet-notifications.c:21
-msgid ""
-"This is the nVidia applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"Ceci est l'applet nVidia\n"
-" écrite par ChAnGFu pour Cairo-Dock"
-
-#: ../data/messages:11 ../data/messages:15
-msgid "Desklet"
-msgstr "Desklet"
-
-#: ../data/messages:13 ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic_milieu ou ALT + clic_droit par exemple."
-
-#: ../data/messages:15 ../data/messages:19
-msgid "Desklet's dimension (width x height) :"
-msgstr "Dimension du desklet (largeur x hauteur) :"
-
-#: ../data/messages:17 ../data/messages:21
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
-
-#: ../data/messages:19 ../data/messages:23
-msgid "Desklet's position (x ; y) :"
-msgstr "Position du desklet (x ; y) :"
-
-#: ../data/messages:21 ../data/messages:25
-msgid "Is detached from the dock ?"
-msgstr "Est-il détaché du dock ?"
-
-#: ../data/messages:23 ../data/messages:27
-msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
-
-#: ../data/messages:25 ../data/messages:29
-msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
-
-#: ../data/messages:27 ../data/messages:31
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
-
-#: ../data/messages:29 ../data/messages:33
-msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
-
-#: ../data/messages:35 ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
-"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
-"avec ALT + clique_gauche"
-
-#: ../data/messages:35 ../data/messages:37
-msgid "Lock position ?"
-msgstr "Verrouiller la position ?"
-
-#: ../data/messages:43
-msgid "Display Card name on the Label ?"
-msgstr "Afficher le nom de la Carte sur l'Étiquette ?"
-
-#: ../data/messages:47
-msgid "no"
-msgstr "non"
-
-#: ../data/messages:49
-msgid "on quickinfo"
-msgstr "info rapide"
-
-#: ../data/messages:51
-msgid "on label"
-msgstr "sur l'étiquette"
-
-#: ../data/messages:53
-msgid "on icon"
-msgstr "sur l'icône"
-
-#: ../data/messages:45
-msgid "Display core temperature :"
-msgstr "Afficher la température du coeur :"
-
-#: ../data/messages:57 ../data/messages:55
-msgid "Delay between temperature checks :"
-msgstr "Temps entre les vérifications :"
-
-#: ../data/messages:55 ../data/messages:53
-msgid "in seconds."
-msgstr "en seconde."
-
-#: ../data/messages: ../data/messages:57 ../data/messages:61
-#: ../data/messages:67
-msgid "in celcius."
-msgstr "en celcius."
-
-#: ../data/messages:59
-msgid "Lower limit of core temperature :"
-msgstr "Limite inférieur de la température :"
-
-#: ../data/messages:61 ../data/messages:63
-msgid "Upper limit of core temperature :"
-msgstr "Limite supérieur de la température :"
-
-#: ../data/messages:65 ../data/messages:73 ../data/messages:77
-msgid "List of available themes for the analogic display :"
-msgstr "Liste des thèmes disponible pour l'affichage analogique :"
-
-#: ../data/messages:71 ../data/messages:79 ../data/messages:83
-msgid "Name of an image for the 'broken' icon :"
-msgstr "Nom de l'image 'pas de donnée' :"
-
-#: ../data/messages:69 ../data/messages:77 ../data/messages:81
-msgid "Let it empty to use the default icon."
-msgstr "Laissez vide pour utiliser l'icône par défaut."
-
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:79
+#: ../src/applet-draw.c:79
 msgid "GPU Name:"
 msgstr "Nom de la Carte:"
 
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:79
+#: ../src/applet-draw.c:79
 msgid "Video Ram:"
 msgstr "Mémoire Vidéo:"
 
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:79
+#: ../src/applet-draw.c:79
 msgid "Driver Version:"
 msgstr "Version du Driver:"
 
-#: ../src/applet-draw.c:95 ../src/applet-draw.c:79
+#: ../src/applet-draw.c:79 ../src/applet-draw.c:95
 msgid "Core Temparature:"
 msgstr "Température du Coeur:"
-
-#: ../data/messages:13
-msgid "Name of the dock it belongs to:"
-msgstr "Nom du conteneur auquel il appartient :"
-
-#: ../data/messages:39
-msgid "Configuration"
-msgstr ""
-
-#: ../data/messages:41
-msgid "Informations"
-msgstr ""
-
-#: ../data/messages:63 ../data/messages:71 ../data/messages:75
-msgid "Images"
-msgstr ""
-
-#: ../data/messages:67 ../data/messages:75 ../data/messages:79
-msgid "radium"
-msgstr ""
-
-#: ../data/messages:65
-msgid "Alert when core temperature is high ?"
-msgstr "Alerter quand la température du coeur est elevée ?"
-
-#: ../data/messages:69
-msgid "Alert limit of core temperature :"
-msgstr "Limite de la température du coeur avant alerte :"
-
-#: ../src/applet-draw.c:95
-msgid "Alert!"
-msgstr "Alerte!"
-
-#: ../src/applet-draw.c:95
-msgid "passed alert temperature level"
-msgstr ""
-"a dépassé le\n"
-" niveau d'alerte de température"
-
-#: ../data/messages:71
-msgid "Play a sound during the alert ?"
-msgstr "Jouer un son pendant l'alerte ?"
-
-#: ../data/messages:73
-msgid "Sound path :"
-msgstr "Fichier audio:"
 
 #: ../src/applet-draw.c:84
 msgid ""
@@ -256,3 +53,202 @@ msgstr ""
 "Echec de la récupération de la tempérutre\n"
 " Est-ce qu'nvidia-settings est installé\n"
 " et configuré pour récupérer la température du GPU?"
+
+#: ../src/applet-draw.c:95
+msgid "Alert!"
+msgstr "Alerte!"
+
+#: ../src/applet-draw.c:95
+msgid "passed alert temperature level"
+msgstr ""
+"a dépassé le\n"
+" niveau d'alerte de température"
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the nVidia applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+"Ceci est l'applet nVidia\n"
+" écrite par ChAnGFu pour Cairo-Dock"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icône"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Taille d'icône souhaitée pour cette applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "largeur :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "hauteur :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+
+#: ../data/messages:11
+msgid "Icon's name :"
+msgstr "Nom de l'icône :"
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr "Nom du conteneur auquel il appartient :"
+
+#: ../data/messages:15
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
+
+#: ../data/messages:19
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimension du desklet (largeur x hauteur) :"
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
+msgstr "Position du desklet (x ; y) :"
+
+#: ../data/messages:25
+msgid "Is detached from the dock ?"
+msgstr "Est-il détaché du dock ?"
+
+#: ../data/messages:27
+msgid "Keep below other windows ?"
+msgstr "Garder en-dessous des autres fenêtres ?"
+
+#: ../data/messages:29
+msgid "Keep above other windows ?"
+msgstr "Garder au-dessus des autres fenêtres ?"
+
+#: ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:33
+msgid "Keep on widget layer ?"
+msgstr "Garder sur la couche des widgets ?"
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
+"avec ALT + clique_gauche"
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr "Verrouiller la position ?"
+
+#: ../data/messages:39
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Informations"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Display Card name on the Label ?"
+msgstr "Afficher le nom de la Carte sur l'Étiquette ?"
+
+#: ../data/messages:45
+msgid "Display core temperature :"
+msgstr "Afficher la température du coeur :"
+
+#: ../data/messages:47
+msgid "no"
+msgstr "non"
+
+#: ../data/messages:49
+msgid "on quickinfo"
+msgstr "info rapide"
+
+#: ../data/messages:51
+msgid "on label"
+msgstr "sur l'étiquette"
+
+#: ../data/messages:53
+msgid "in seconds."
+msgstr "en seconde."
+
+#: ../data/messages:55
+msgid "Delay between temperature checks :"
+msgstr "Temps entre les vérifications :"
+
+#: ../data/messages:57 ../data/messages:61 ../data/messages:67
+msgid "in celcius."
+msgstr "en celcius."
+
+#: ../data/messages:59
+msgid "Lower limit of core temperature :"
+msgstr "Limite inférieur de la température :"
+
+#: ../data/messages:63
+msgid "Upper limit of core temperature :"
+msgstr "Limite supérieur de la température :"
+
+#: ../data/messages:65
+msgid "Alert when core temperature is high ?"
+msgstr "Alerter quand la température du coeur est elevée ?"
+
+#: ../data/messages:69
+msgid "Alert limit of core temperature :"
+msgstr "Limite de la température du coeur avant alerte :"
+
+#: ../data/messages:71
+msgid "Play a sound during the alert ?"
+msgstr "Jouer un son pendant l'alerte ?"
+
+#: ../data/messages:73
+msgid "Sound path :"
+msgstr "Fichier audio:"
+
+#: ../data/messages:75
+msgid "Images"
+msgstr ""
+
+#: ../data/messages:77
+msgid "List of available themes for the analogic display :"
+msgstr "Liste des thèmes disponible pour l'affichage analogique :"
+
+#: ../data/messages:79
+msgid "radium"
+msgstr ""
+
+#: ../data/messages:81
+msgid "Let it empty to use the default icon."
+msgstr "Laissez vide pour utiliser l'icône par défaut."
+
+#: ../data/messages:83
+msgid "Name of an image for the 'broken' icon :"
+msgstr "Nom de l'image 'pas de donnée' :"
+
+#~ msgid "Module"
+#~ msgstr "Module"
+
+#~ msgid "on icon"
+#~ msgstr "sur l'icône"

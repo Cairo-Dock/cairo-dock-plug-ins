@@ -6,14 +6,34 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 00:15+0200\n"
 "PO-Revision-Date: 2008-05-19 21:50+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:22
+msgid ""
+"This is the Slider applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+"これは ChAnGFu によって製作された \n"
+"Cairo-Dock 用の Slider アプレットです。"
+
+#: ../src/applet-notifications.c:115
+msgid "Play"
+msgstr "再生"
+
+#: ../src/applet-notifications.c:115
+msgid "Pause"
+msgstr "停止"
+
+#: ../src/applet-notifications.c:118
+msgid "Open current image"
+msgstr "現在の画像を開く"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -35,26 +55,15 @@ msgstr "高さ :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-msgid "Module"
-msgstr "モジュール"
-
 #: ../data/messages:11
-msgid "Icon's name :"
-msgstr "アイコンの名前 :"
+msgid "Name of the dock it belongs to:"
+msgstr "帰属先ドックの名前 :"
 
-#: src/applet-notifications.c:13
-msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-
-#: ../data/messages:11 ../data/messages:15 ../data/messages:13
+#: ../data/messages:13
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:13 ../data/messages:17 ../data/messages:15
+#: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -62,33 +71,33 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:15 ../data/messages:19 ../data/messages:17
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:17 ../data/messages:21 ../data/messages:19
+#: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。"
 
-#: ../data/messages:19 ../data/messages:23 ../data/messages:21
+#: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:21 ../data/messages:25 ../data/messages:23
+#: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:23 ../data/messages:27 ../data/messages:25
+#: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:25 ../data/messages:29 ../data/messages:27
+#: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:27 ../data/messages:31 ../data/messages:29
+#: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -96,136 +105,11 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:33 ../data/messages:31
+#: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../src/applet-notifications.c:22
-msgid ""
-"This is the Slider applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"これは ChAnGFu によって製作された \n"
-"Cairo-Dock 用の Slider アプレットです。"
-
-#: ../src/applet-notifications.c:48 ../src/applet-notifications.c:49
-#: ../src/applet-notifications.c:67 ../src/applet-notifications.c:89
-#: ../src/applet-notifications.c:107 ../src/applet-notifications.c:108
-#: ../src/applet-notifications.c:113 ../src/applet-notifications.c:115
-msgid "Play"
-msgstr "再生"
-
-#: ../src/applet-notifications.c:51 ../src/applet-notifications.c:52
-#: ../src/applet-notifications.c:70 ../src/applet-notifications.c:89
-#: ../src/applet-notifications.c:107 ../src/applet-notifications.c:108
-#: ../src/applet-notifications.c:113 ../src/applet-notifications.c:115
-msgid "Pause"
-msgstr "停止"
-
-#: ../data/messages:13 ../data/messages:11
-msgid "Name of the dock it belongs to:"
-msgstr "帰属先ドックの名前 :"
-
-#: ../data/messages:35 ../data/messages:39 ../data/messages:37
-msgid "Configuration"
-msgstr "設定"
-
-#: ../data/messages:37 ../data/messages:41 ../data/messages:39
-msgid "Directory"
-msgstr "ディレクトリ"
-
-#: ../data/messages:39 ../data/messages:43 ../data/messages:41
-msgid "Directory of the images :"
-msgstr "画像のディレクトリ :"
-
-#: ../data/messages:41 ../data/messages:45
-msgid "Not implemented yet"
-msgstr "未だ実装していません"
-
-#: ../data/messages:43 ../data/messages:47 ../data/messages:45
-msgid "Scan in sub direcotries ?"
-msgstr "サブ・ディレクトリもスキャン？"
-
-#: ../data/messages:45 ../data/messages:47 ../data/messages:51
-msgid "Options"
-msgstr "オプション"
-
-#: ../data/messages:47 ../data/messages:49 ../data/messages:53
-#: ../data/messages:51 ../data/messages:55
-msgid "in seconds."
-msgstr "秒単位"
-
-#: ../data/messages:49 ../data/messages:51 ../data/messages:55
-#: ../data/messages:53 ../data/messages:57
-msgid "Sliding delay :"
-msgstr "スライドの遅延時間 :"
-
-#: ../data/messages:51 ../data/messages:53 ../data/messages:57
-msgid "Give better image rendering"
-msgstr "画像の描画をより良くします"
-
-#: ../data/messages:55 ../data/messages:57 ../data/messages:61
-#: ../data/messages:65
-msgid "Effect while changing image :"
-msgstr "画像切り替え中の効果"
-
-#: ../data/messages:57 ../data/messages:59 ../data/messages:63
-#: ../data/messages:67
-msgid "none"
-msgstr "なし"
-
-#: ../data/messages:59 ../data/messages:63 ../data/messages:67
-#: ../data/messages:71
-msgid "blank fade"
-msgstr ""
-
-#: ../data/messages:61 ../data/messages:65 ../data/messages:69
-#: ../data/messages:73
-msgid "fade in out"
-msgstr ""
-
-#: ../data/messages:63 ../data/messages:67 ../data/messages:71
-#: ../data/messages:75
-msgid "side kick"
-msgstr ""
-
-#: ../data/messages:65 ../data/messages:69 ../data/messages:73
-#: ../data/messages:77
-msgid "diaporama"
-msgstr ""
-
-#: ../data/messages:67 ../data/messages:71 ../data/messages:75
-#: ../data/messages:79
-msgid "grow up"
-msgstr ""
-
-#: ../data/messages:69 ../data/messages:73 ../data/messages:77
-#: ../data/messages:81
-msgid "shrink down"
-msgstr ""
-
-#: ../data/messages:71 ../data/messages:75 ../data/messages:79
-#: ../data/messages:83 ../data/messages:91 ../data/messages:95
-msgid ""
-"Set the transparency channel to 0 if you just don't want to have a "
-"background."
-msgstr ""
-"背景を持たせたくない場合は、透明度のチャンネルを 0 に設定してください。"
-
-#: ../data/messages:73 ../data/messages:77 ../data/messages:81
-#: ../data/messages:85 ../data/messages:93 ../data/messages:97
-msgid "Choose a background color :"
-msgstr "背景色の選択 :"
-
-#: ../data/messages:45 ../data/messages:49 ../data/messages:47
-msgid "Randomly browse files ?"
-msgstr "ファイルをランダムに閲覧？"
-
-#: ../data/messages:61 ../data/messages:65 ../data/messages:69
-msgid "fade"
-msgstr ""
-
-#: ../data/messages:35 ../data/messages:33
+#: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -234,117 +118,33 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:37 ../data/messages:35
+#: ../data/messages:35
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:45
-msgid "Not  yetimplemented."
-msgstr "未だ実装していません"
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "設定"
 
-#: ../data/messages:57 ../data/messages:83 ../data/messages:87
-msgid "Gives a better image rendering."
-msgstr "画像の描画をより良くします"
+#: ../data/messages:39
+msgid "Directory"
+msgstr "ディレクトリ"
 
-#: ../data/messages:59 ../data/messages:85 ../data/messages:89
-msgid "Keep widht/height ratio ?"
-msgstr "縦横比を保つ？"
-
-#: ../data/messages:61 ../data/messages:87 ../data/messages:91
-msgid "If the image is too small, it will be zoomed in."
-msgstr "画像が小さすぎる場合にズームインします。"
-
-#: ../data/messages:63 ../data/messages:89 ../data/messages:93
-msgid "Force the image to fill the icon/desklet ?"
-msgstr "画像がアイコン/デスクレットを埋めるように引き伸ばす？"
-
-#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:110
-#: ../src/applet-notifications.c:111 ../src/applet-notifications.c:116
-#: ../src/applet-notifications.c:118
-msgid "Open current image"
-msgstr "現在の画像を開く"
+#: ../data/messages:41
+msgid "Directory of the images :"
+msgstr "画像のディレクトリ :"
 
 #: ../data/messages:43
 msgid "Not yet implemented."
 msgstr "未だ実装していません"
 
-#: ../data/messages:49 ../data/messages:53
-msgid "Behaviour"
-msgstr "動作"
+#: ../data/messages:45
+msgid "Scan in sub direcotries ?"
+msgstr "サブ・ディレクトリもスキャン？"
 
-#: ../data/messages:55 ../data/messages:59
-msgid "Action when applet is clicked :"
-msgstr "アプレットをクリックしたときのアクション :"
-
-#: ../data/messages:57 ../data/messages:61
-msgid "play/pause"
-msgstr "再生/停止"
-
-#: ../data/messages:59 ../data/messages:63
-msgid "open image"
-msgstr "画像を開く"
-
-#: ../data/messages:79 ../data/messages:83
-msgid "random"
-msgstr "ランダム"
-
-#: ../data/messages:81 ../data/messages:85
-msgid "Display"
-msgstr "表示"
-
-#: ../data/messages:95 ../data/messages:99
-msgid "Background & Reflection"
-msgstr "背景と反射"
-
-#: ../data/messages:97 ../data/messages:101
-msgid ""
-"It's an image that will be displayed below the slide, like a frame for "
-"exemple. Let it empty to use the default one."
-msgstr ""
-"例えばフレームのように、スライドの背後に表示される画像です。デフォルトのもの"
-"を使用するには空欄のままにしてください。"
-
-#: ../data/messages:99 ../data/messages:103 ../data/messages:115
-msgid "Background image :"
-msgstr "背景画像 :"
-
-#: ../data/messages:101 ../data/messages:105
-msgid "Set it to zero if you don't want to use a background"
-msgstr "背景を使用したくない場合は 0 に設定してください。"
-
-#: ../data/messages:103 ../data/messages:107 ../data/messages:117
-msgid "Background tansparency :"
-msgstr "背景の透明度 :"
-
-#: ../data/messages:105 ../data/messages:113
-msgid ""
-"It's an image that will be displayed above the slide, like a reflect for "
-"exemple. Let it empty to use the default one."
-msgstr ""
-"例えば反射のように、スライドの前面に表示される画像です。デフォルトのものを使"
-"用するには空欄のままにしてください。"
-
-#: ../data/messages:107 ../data/messages:115 ../data/messages:131
-#: ../data/messages:137
-msgid "Reflection image :"
-msgstr "反射の画像 :"
-
-#: ../data/messages:109 ../data/messages:117
-msgid "Set it to zero if you dont don't want to use a foreground"
-msgstr "前景を使用したくない場合は 0 に設定してください。"
-
-#: ../data/messages:111 ../data/messages:119 ../data/messages:133
-#: ../data/messages:139
-msgid "Reflection tansparency :"
-msgstr "反射の透明度 :"
-
-#: ../data/messages:97
-msgid ""
-"It's an image that will be displayed belox the slide, like a frame for "
-"exemple. Let it empty to use the default one."
-msgstr ""
-"例えばフレームのように、スライドの背後に表示される画像です。デフォルトのもの"
-"を使用するには空欄のままにしてください。"
+#: ../data/messages:47
+msgid "Randomly browse files ?"
+msgstr "ファイルをランダムに閲覧？"
 
 #: ../data/messages:49
 msgid "It is currently in a testing phase."
@@ -354,13 +154,100 @@ msgstr ""
 msgid "Use a thread to load heavy images ?"
 msgstr ""
 
-#: ../data/messages:109
-msgid "It's typically the width of your frame in pixels."
+#: ../data/messages:53
+msgid "Behaviour"
+msgstr "動作"
+
+#: ../data/messages:55
+msgid "in seconds."
+msgstr "秒単位"
+
+#: ../data/messages:57
+msgid "Sliding delay :"
+msgstr "スライドの遅延時間 :"
+
+#: ../data/messages:59
+msgid "Action when applet is clicked :"
+msgstr "アプレットをクリックしたときのアクション :"
+
+#: ../data/messages:61
+msgid "play/pause"
+msgstr "再生/停止"
+
+#: ../data/messages:63
+msgid "open image"
+msgstr "画像を開く"
+
+#: ../data/messages:65
+msgid "Effect while changing image :"
+msgstr "画像切り替え中の効果"
+
+#: ../data/messages:67
+msgid "none"
+msgstr "なし"
+
+#: ../data/messages:69
+msgid "fade"
 msgstr ""
 
-#: ../data/messages:111
-msgid "Background offset :"
+#: ../data/messages:71
+msgid "blank fade"
 msgstr ""
+
+#: ../data/messages:73
+msgid "fade in out"
+msgstr ""
+
+#: ../data/messages:75
+msgid "side kick"
+msgstr ""
+
+#: ../data/messages:77
+msgid "diaporama"
+msgstr ""
+
+#: ../data/messages:79
+msgid "grow up"
+msgstr ""
+
+#: ../data/messages:81
+msgid "shrink down"
+msgstr ""
+
+#: ../data/messages:83
+msgid "random"
+msgstr "ランダム"
+
+#: ../data/messages:85
+msgid "Display"
+msgstr "表示"
+
+#: ../data/messages:87
+msgid "Gives a better image rendering."
+msgstr "画像の描画をより良くします"
+
+#: ../data/messages:89
+msgid "Keep widht/height ratio ?"
+msgstr "縦横比を保つ？"
+
+#: ../data/messages:91
+msgid "If the image is too small, it will be zoomed in."
+msgstr "画像が小さすぎる場合にズームインします。"
+
+#: ../data/messages:93
+msgid "Force the image to fill the icon/desklet ?"
+msgstr "画像がアイコン/デスクレットを埋めるように引き伸ばす？"
+
+#: ../data/messages:95
+msgid ""
+"Set the transparency channel to 0 if you just don't want to have a "
+"background."
+msgstr ""
+"背景を持たせたくない場合は、透明度のチャンネルを 0 に設定してください。"
+
+#: ../data/messages:97
+msgid "Choose a background color :"
+msgstr "背景色の選択 :"
 
 #: ../data/messages:99
 msgid "Decorations"
@@ -398,6 +285,14 @@ msgid ""
 "exemple."
 msgstr ""
 
+#: ../data/messages:115
+msgid "Background image :"
+msgstr "背景画像 :"
+
+#: ../data/messages:117
+msgid "Background tansparency :"
+msgstr "背景の透明度 :"
+
 #: ../data/messages:119 ../data/messages:123 ../data/messages:127
 #: ../data/messages:131
 msgid "It's typically the width of the left side of your frame, in pixels."
@@ -407,21 +302,83 @@ msgstr ""
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:123 ../data/messages:125 ../data/messages:127
-#: ../data/messages:129
-msgid "Right offset :"
-msgstr ""
-
-#: ../data/messages:129 ../data/messages:135
-msgid ""
-"It's an image that will be displayed above the slide, like a reflect for "
-"exemple."
-msgstr ""
-
 #: ../data/messages:125
 msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:129
+msgid "Right offset :"
 msgstr ""
 
 #: ../data/messages:133
 msgid "Bottom offset :"
 msgstr ""
+
+#: ../data/messages:135
+msgid ""
+"It's an image that will be displayed above the slide, like a reflect for "
+"exemple."
+msgstr ""
+
+#: ../data/messages:137
+msgid "Reflection image :"
+msgstr "反射の画像 :"
+
+#: ../data/messages:139
+msgid "Reflection tansparency :"
+msgstr "反射の透明度 :"
+
+#~ msgid "Module"
+#~ msgstr "モジュール"
+
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "未だ実装していません"
+
+#~ msgid "Options"
+#~ msgstr "オプション"
+
+#~ msgid "Give better image rendering"
+#~ msgstr "画像の描画をより良くします"
+
+#~ msgid "Not  yetimplemented."
+#~ msgstr "未だ実装していません"
+
+#~ msgid "Background & Reflection"
+#~ msgstr "背景と反射"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the slide, like a frame for "
+#~ "exemple. Let it empty to use the default one."
+#~ msgstr ""
+#~ "例えばフレームのように、スライドの背後に表示される画像です。デフォルトのも"
+#~ "のを使用するには空欄のままにしてください。"
+
+#~ msgid "Set it to zero if you don't want to use a background"
+#~ msgstr "背景を使用したくない場合は 0 に設定してください。"
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the slide, like a reflect for "
+#~ "exemple. Let it empty to use the default one."
+#~ msgstr ""
+#~ "例えば反射のように、スライドの前面に表示される画像です。デフォルトのものを"
+#~ "使用するには空欄のままにしてください。"
+
+#~ msgid "Set it to zero if you dont don't want to use a foreground"
+#~ msgstr "前景を使用したくない場合は 0 に設定してください。"
+
+#~ msgid ""
+#~ "It's an image that will be displayed belox the slide, like a frame for "
+#~ "exemple. Let it empty to use the default one."
+#~ msgstr ""
+#~ "例えばフレームのように、スライドの背後に表示される画像です。デフォルトのも"
+#~ "のを使用するには空欄のままにしてください。"

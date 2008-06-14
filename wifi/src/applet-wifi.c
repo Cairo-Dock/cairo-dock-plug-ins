@@ -1,7 +1,19 @@
+/******************************************************************************
+
+This file is a part of the cairo-dock program, 
+released under the terms of the GNU General Public License.
+
+Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-dock.org)
+Fabrice Rey <fabounet@users.berlios.de>
+
+******************************************************************************/
+#define _BSD_SOURCE
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <string.h>
 #include <glib/gi18n.h>
+#include <glib/gstdio.h>
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
@@ -10,17 +22,39 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-#define WIFI_TMP_FILE "/tmp/wifi"
+static char  *s_cTmpFile = NULL;
+static char  *s_cTmpFileAccessPoint = NULL;
 
 
 void cd_wifi_acquisition (void) {
-	gchar *cCommand = g_strdup_printf("bash %s/wifi", MY_APPLET_SHARE_DATA_DIR);
+	s_cTmpFile = g_strdup ("/tmp/wifi.XXXXXX");
+	int fds =mkstemp (s_cTmpFile);
+	if (fds == -1)
+	{
+		g_free (s_cTmpFile);
+		s_cTmpFile = NULL;
+		return;
+	}
+	gchar *cCommand = g_strdup_printf("bash %s/wifi %s", MY_APPLET_SHARE_DATA_DIR, s_cTmpFile);
 	system (cCommand);
-	/**if (myData.cConnName != NULL) {
-		cCommand = g_strdup_printf("bash %s/access-point %s", MY_APPLET_SHARE_DATA_DIR, myData.cConnName);
-		system (cCommand);
-	}*/  /// je mets en commentaire pour la 1.5.5.2
 	g_free (cCommand);
+	close(fds);
+	
+	/*if (myData.cConnName != NULL) {
+		s_cTmpFileAccessPoint = g_strdup ("/tmp/wifi-access.XXXXXX");
+		fds =mkstemp (s_cTmpFileAccessPoint);
+		if (fds == -1)
+		{
+			g_free (s_cTmpFileAccessPoint);
+			s_cTmpFileAccessPoint = NULL;
+			return;
+		}
+		cCommand = g_strdup_printf("bash %s/access-point %s %s", MY_APPLET_SHARE_DATA_DIR, myData.cConnName, s_cTmpFileAccessPoint);
+		system (cCommand);
+		g_free (cCommand);
+		close(fds);
+	}*/  /// Il faudrait en faire quelque chose ...
+	
 }
 
 static float pourcent(float x, float y) {
@@ -126,10 +160,12 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 	return TRUE;
 }
 void cd_wifi_read_data (void) {
+	if (s_cTmpFile == NULL)
+		return ;
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
-	g_file_get_contents(WIFI_TMP_FILE, &cContent, &length, &erreur);
+	g_file_get_contents(s_cTmpFile, &cContent, &length, &erreur);
 	if (erreur != NULL) {
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
@@ -149,6 +185,9 @@ void cd_wifi_read_data (void) {
 			myData.bAcquisitionOK = TRUE;
 		}
 	}
+	g_remove (s_cTmpFile);
+	g_free (s_cTmpFile);
+	s_cTmpFile = NULL;
 }
 
 

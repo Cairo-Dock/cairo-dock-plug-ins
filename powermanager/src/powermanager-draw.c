@@ -47,7 +47,7 @@ void update_icon(void)
 			
 			if (myConfig.bUseGauge)
 			{
-				make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.battery_charge / 100);
+				cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.battery_charge / 100);
 				bNeedRedraw = TRUE;
 			}
 			else

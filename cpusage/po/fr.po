@@ -6,14 +6,54 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 06:15+0200\n"
 "PO-Revision-Date: 2008-05-23 08:38+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Français <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-cpusage.c:43 ../src/applet-cpusage.c:48
+msgid "day(s)"
+msgstr "jour(s)"
+
+#: ../src/applet-cpusage.c:197
+msgid "Loading"
+msgstr "Chargement"
+
+#: ../src/applet-notifications.c:12
+msgid ""
+"This is the cpusage applet\n"
+" made by parAdOxxx_ZeRo for Cairo-Dock"
+msgstr ""
+"Ceci est l'applet cpusage\n"
+" écrite par parAdOxxx_ZeRo pour Cairo-Dock"
+
+#: ../src/applet-notifications.c:109 ../src/applet-notifications.c:127
+msgid "Data acquisition has failed"
+msgstr "L'acquisition des données a échoué"
+
+#: ../src/applet-notifications.c:122
+msgid "Model Name"
+msgstr "Nom du modèle"
+
+#: ../src/applet-notifications.c:122
+msgid "Frequency"
+msgstr "Fréquence"
+
+#: ../src/applet-notifications.c:122
+msgid "core(s)"
+msgstr "coeur(s)"
+
+#: ../src/applet-notifications.c:122
+msgid "Up time"
+msgstr "Temps d'activité système"
+
+#: ../src/applet-notifications.c:122
+msgid "Activity time"
+msgstr "Temps d'activité"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -35,41 +75,14 @@ msgstr "hauteur :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-msgid "Module"
-msgstr "Module"
-
 #: ../data/messages:11
-msgid "Icon's name :"
-msgstr "Nom de l'icône :"
+msgid "Name of the dock it belongs to:"
+msgstr "Nom du conteneur auquel il appartient:"
 
-#: ../data/messages:15 ../data/messages:35
-msgid "Information"
-msgstr "Information"
-
-#: ../data/messages:19
-msgid "Information to display on the icon :"
-msgstr "Information a afficher sur l'icon :"
-
-#: src/applet-notifications.c:13 ../src/applet-notifications.c:15
-#: ../src/applet-notifications.c:13 ../src/applet-notifications.c:12
-msgid ""
-"This is the cpusage applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-"Ceci est l'applet cpusage\n"
-" écrite par parAdOxxx_ZeRo pour Cairo-Dock"
-
-#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:33
-#: ../src/applet-notifications.c:36
-msgid "Waiting"
-msgstr "Waiting"
-
-#: ../data/messages:11 ../data/messages:19 ../data/messages:53
 #: ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13 ../data/messages:21 ../data/messages:55
 #: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
@@ -78,39 +91,32 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:15 ../data/messages:23 ../data/messages:57
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:17 ../data/messages:25 ../data/messages:59
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:19 ../data/messages:27 ../data/messages:61
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:21 ../data/messages:29 ../data/messages:63
 #: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:23 ../data/messages:31 ../data/messages:65
 #: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:25 ../data/messages:33 ../data/messages:67
 #: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:27 ../data/messages:35 ../data/messages:69
 #: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
@@ -119,93 +125,9 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:37 ../data/messages:71
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
-
-#: ../data/messages:13 ../data/messages:33 ../data/messages:49
-#: ../data/messages:37 ../data/messages:53 ../data/messages:61
-msgid "Configuration"
-msgstr "Configuration"
-
-#: ../data/messages:27 ../data/messages:31
-msgid "Personnalisation"
-msgstr "Personnalisation"
-
-#: ../data/messages:29 ../data/messages:33 ../data/messages:37
-#: ../data/messages:41 ../data/messages:45 ../data/messages:49
-msgid "Let t empty to use the default icon."
-msgstr "Laissez vide pour utiliser l'icône par défaut."
-
-#: ../data/messages:37 ../data/messages:51 ../data/messages:55
-#: ../data/messages:63 ../data/messages:71
-msgid "in seconds."
-msgstr "en secondes."
-
-#: ../data/messages:39 ../data/messages:41
-msgid "Delay between signal checks :"
-msgstr "Ecart entre 2 vérifications :"
-
-#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:35
-msgid "Debug"
-msgstr "Debug"
-
-#: ../data/messages:37 ../data/messages:39
-msgid "in milliseconds."
-msgstr "en millisecondes."
-
-#: ../data/messages:37 ../data/messages:41
-msgid "List of available themes for the analogic display :"
-msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
-
-#: ../src/applet-cpusage.c:243 ../src/applet-cpusage.c:183
-#: ../src/applet-cpusage.c:186 ../src/applet-cpusage.c:150
-#: ../src/applet-cpusage.c:155 ../src/applet-cpusage.c:196
-#: ../src/applet-cpusage.c:201 ../src/applet-cpusage.c:197
-msgid "Loading"
-msgstr "Chargement"
-
-#: ../src/applet-notifications.c:21 ../src/applet-notifications.c:23
-#: ../src/applet-notifications.c:28 ../src/applet-notifications.c:140
-#: ../src/applet-notifications.c:158 ../src/applet-notifications.c:139
-#: ../src/applet-notifications.c:157 ../src/applet-notifications.c:176
-#: ../src/applet-notifications.c:99 ../src/applet-notifications.c:117
-#: ../src/applet-notifications.c:109 ../src/applet-notifications.c:127
-msgid "Data acquisition has failed"
-msgstr "L'acquisition des données a échoué"
-
-#: ../data/messages:11
-msgid "Name of the dock it belongs to:"
-msgstr "Nom du conteneur auquel il appartient:"
-
-#: ../data/messages:35 ../data/messages:39
-msgid "Display"
-msgstr "Affichage"
-
-#: ../data/messages:39 ../data/messages:43
-msgid "turbo-night-fuel"
-msgstr "turbo-night-fuel"
-
-#: ../data/messages:41 ../data/messages:45
-msgid "Display CPU usage values :"
-msgstr "Afficher les valeurs d'utilisations du CPU :"
-
-#: ../data/messages:43 ../data/messages:47
-msgid "No"
-msgstr "Non"
-
-#: ../data/messages:45 ../data/messages:49
-msgid "On icon"
-msgstr "Sur l'icône"
-
-#: ../data/messages:47 ../data/messages:51
-msgid "On label"
-msgstr "Sur l'étiquette"
-
-#: ../data/messages:53 ../data/messages:57 ../data/messages:65
-msgid "Delay between refresh :"
-msgstr "Délai entre les rafraîchissements"
 
 #: ../data/messages:33
 msgid ""
@@ -220,47 +142,37 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../src/applet-notifications.c:20 ../src/applet-notifications.c:23
-#: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
-#: ../src/applet-notifications.c:171 ../src/applet-notifications.c:112
-#: ../src/applet-notifications.c:122
-msgid "Model Name"
-msgstr "Nom du modèle"
+#: ../data/messages:37 ../data/messages:61
+msgid "Configuration"
+msgstr "Configuration"
 
-#: ../src/applet-notifications.c:20 ../src/applet-notifications.c:23
-#: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
-#: ../src/applet-notifications.c:171 ../src/applet-notifications.c:112
-#: ../src/applet-notifications.c:122
-msgid "Frequency"
-msgstr "Fréquence"
+#: ../data/messages:39
+msgid "Display"
+msgstr "Affichage"
 
-#: ../src/applet-notifications.c:20 ../src/applet-notifications.c:23
-#: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
-#: ../src/applet-notifications.c:171 ../src/applet-notifications.c:112
-#: ../src/applet-notifications.c:122
-msgid "core(s)"
-msgstr "coeur(s)"
+#: ../data/messages:41
+msgid "List of available themes for the analogic display :"
+msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 
-#: ../data/messages:35
-msgid "Lockposition ?"
-msgstr "Verrouiller la position ?"
+#: ../data/messages:43
+msgid "turbo-night-fuel"
+msgstr "turbo-night-fuel"
 
-#: ../src/applet-cpusage.c:39 ../src/applet-cpusage.c:44
-#: ../src/applet-cpusage.c:43 ../src/applet-cpusage.c:48
-msgid "day(s)"
-msgstr "jour(s)"
+#: ../data/messages:45
+msgid "Display CPU usage values :"
+msgstr "Afficher les valeurs d'utilisations du CPU :"
 
-#: ../src/applet-notifications.c:23 ../src/applet-notifications.c:153
-#: ../src/applet-notifications.c:152 ../src/applet-notifications.c:171
-#: ../src/applet-notifications.c:112 ../src/applet-notifications.c:122
-msgid "Up time"
-msgstr "Temps d'activité système"
+#: ../data/messages:47
+msgid "No"
+msgstr "Non"
 
-#: ../src/applet-notifications.c:23 ../src/applet-notifications.c:153
-#: ../src/applet-notifications.c:152 ../src/applet-notifications.c:171
-#: ../src/applet-notifications.c:112 ../src/applet-notifications.c:122
-msgid "Activity time"
-msgstr "Temps d'activité"
+#: ../data/messages:49
+msgid "On icon"
+msgstr "Sur l'icône"
+
+#: ../data/messages:51
+msgid "On label"
+msgstr "Sur l'étiquette"
 
 #: ../data/messages:53
 msgid "It's the first color of the gradation used to write the top list."
@@ -278,6 +190,14 @@ msgstr ""
 msgid "Stop color of the top list :"
 msgstr ""
 
+#: ../data/messages:63 ../data/messages:71
+msgid "in seconds."
+msgstr "en secondes."
+
+#: ../data/messages:65
+msgid "Delay between refresh :"
+msgstr "Délai entre les rafraîchissements"
+
 #: ../data/messages:67
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU-"
@@ -291,3 +211,36 @@ msgstr ""
 #: ../data/messages:73
 msgid "Delay between refresh of the top list :"
 msgstr ""
+
+#~ msgid "Module"
+#~ msgstr "Module"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nom de l'icône :"
+
+#~ msgid "Information"
+#~ msgstr "Information"
+
+#~ msgid "Information to display on the icon :"
+#~ msgstr "Information a afficher sur l'icon :"
+
+#~ msgid "Waiting"
+#~ msgstr "Waiting"
+
+#~ msgid "Personnalisation"
+#~ msgstr "Personnalisation"
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "Laissez vide pour utiliser l'icône par défaut."
+
+#~ msgid "Delay between signal checks :"
+#~ msgstr "Ecart entre 2 vérifications :"
+
+#~ msgid "Debug"
+#~ msgstr "Debug"
+
+#~ msgid "in milliseconds."
+#~ msgstr "en millisecondes."
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Verrouiller la position ?"

@@ -1,7 +1,19 @@
+/******************************************************************************
+
+This file is a part of the cairo-dock program, 
+released under the terms of the GNU General Public License.
+
+Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-dock.org)
+Fabrice Rey <fabounet@users.berlios.de>
+
+******************************************************************************/
+#define _BSD_SOURCE
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include <glib/gi18n.h>
+#include <glib/gstdio.h>
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
@@ -10,23 +22,34 @@
 
 CD_APPLET_INCLUDE_MY_VARS
 
-#define CD_NVIDIA_CONFIG_TMP_FILE "/tmp/nvidia-config"
-#define CD_NVIDIA_TEMP_TMP_FILE "/tmp/nvidia"
+static char  *s_cTmpFileConfig = NULL;
+static char  *s_cTmpFile = NULL;
 
 
 //Récupération de la température
 void cd_nvidia_acquisition (void) {
-	gchar *cCommand = g_strdup_printf("bash %s/nvidia", MY_APPLET_SHARE_DATA_DIR);
+	s_cTmpFile = g_strdup ("/tmp/nvidia.XXXXXX");
+	int fds =mkstemp (s_cTmpFile);
+	if (fds == -1)
+	{
+		g_free (s_cTmpFile);
+		s_cTmpFile = NULL;
+		return;
+	}
+	gchar *cCommand = g_strdup_printf ("bash %s/nvidia %s", MY_APPLET_SHARE_DATA_DIR, s_cTmpFile);
 	system (cCommand);
 	g_free (cCommand);
+	close(fds);
 }
 
 void cd_nvidia_read_data (void) {
+	if (s_cTmpFile == NULL)
+		return ;
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
 	gint iGpuTemp;
-	g_file_get_contents(CD_NVIDIA_TEMP_TMP_FILE, &cContent, &length, &erreur);
+	g_file_get_contents(s_cTmpFile, &cContent, &length, &erreur);
 	if (erreur != NULL) {
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
@@ -44,6 +67,9 @@ void cd_nvidia_read_data (void) {
 			myData.pGPUData.iGPUTemp = iGpuTemp;
 		}
 	}
+	g_remove (s_cTmpFile);
+	g_free (s_cTmpFile);
+	s_cTmpFile = NULL;
 }
 
 gboolean cd_nvidia_update_from_data (void) {
@@ -63,7 +89,15 @@ gboolean cd_nvidia_update_from_data (void) {
 
 //Récupération de la config
 void cd_nvidia_config_acquisition (void) {
-	gchar *cCommand = g_strdup_printf("bash %s/nvidia-config", MY_APPLET_SHARE_DATA_DIR);
+	s_cTmpFileConfig = g_strdup ("/tmp/nvidia.XXXXXX");
+	int fds =mkstemp (s_cTmpFileConfig);
+	if (fds == -1)
+	{
+		g_free (s_cTmpFileConfig);
+		s_cTmpFileConfig = NULL;
+		return;
+	}
+	gchar *cCommand = g_strdup_printf ("bash %s/nvidia-config %s", MY_APPLET_SHARE_DATA_DIR, s_cTmpFileConfig);
 	system (cCommand);
 	g_free (cCommand);
 }
@@ -129,10 +163,12 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 }
 
 void cd_nvidia_config_read_data (void) {
+	if (s_cTmpFileConfig == NULL)
+		return ;
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
-	g_file_get_contents(CD_NVIDIA_CONFIG_TMP_FILE, &cContent, &length, &erreur);
+	g_file_get_contents(s_cTmpFileConfig, &cContent, &length, &erreur);
 	if (erreur != NULL) {
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
@@ -143,6 +179,9 @@ void cd_nvidia_config_read_data (void) {
 		gboolean bAcquisitionOK = _nvidia_get_values_from_file (cContent);
 		g_free (cContent);
 	}
+	g_remove (s_cTmpFileConfig);
+	g_free (s_cTmpFileConfig);
+	s_cTmpFileConfig = NULL;
 }
 
 gboolean cd_nvidia_config_update_from_data (void) {

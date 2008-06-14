@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 06:13+0200\n"
 "PO-Revision-Date: 2008-05-19 23:16+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,137 +15,76 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "ICON"
-msgstr "アイコン"
+#: ../src/powermanager-draw.c:102
+msgid "None"
+msgstr "なし"
 
-msgid "Desired icon size for this applet"
-msgstr "このアプレットのアイコンの大きさ"
-
-msgid "width :"
-msgstr "幅 :"
-
-msgid "height :"
-msgstr "高さ :"
-
-msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "ドックのラベル上に表示するアイコンの名前 :"
-
-msgid "MODULE"
-msgstr "モジュール"
-
-msgid "Theme"
-msgstr "テーマ"
-
-msgid "Choose one of the available themes :"
-msgstr "利用可能なテーマから1つ選択 :"
-
-msgid "Interval of time to check if dustbin is full/empty :"
-msgstr "Interval of time to check if dustbin is full/empty :"
-
-msgid "in seconds"
-msgstr "en secondes"
-
-msgid "Here you can specify a list of Trash directory :"
-msgstr "Ici vous pouvez spécifier une liste de répertoires poubelle ;"
-
-msgid "File browser used to show a trash :"
-msgstr "Navigateur de fichier pour visualiser la poubelle ;"
-
-#: src/applet-notifications.c:21
+#: ../src/powermanager-draw.c:131
 msgid ""
-"This is the dustbin applet for Cairo-Dock\n"
-" made by Fabrice Rey (fabounet_03@yahoo.fr)"
+"Laptop on Battery.\n"
+" Battery charged at:"
 msgstr ""
-"Ceci est l'applet poubelle de Cairo-Dock\n"
-" écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
+"ラップトップはバッテリー使用中。\n"
+"バッテリー充電完了:"
 
-#: src/applet-notifications.c:42
-msgid "Show Trash"
-msgstr "Ouvrir la poubelle"
+#: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:136
+#: ../src/powermanager-draw.c:157 ../src/powermanager-draw.c:163
+msgid "Estimated time with Charge:"
+msgstr "充電のおよその時間:"
 
-#: src/applet-notifications.c:54
-msgid "Show All"
-msgstr "Ouvrir toutes"
-
-#: src/applet-notifications.c:56
-msgid "Delete Trash"
-msgstr "Vider la poubelle"
-
-#: src/applet-notifications.c:69
-msgid "Delete All"
-msgstr "Vider toutes"
-
-#: src/applet-notifications.c:81
-#, c-format
-msgid "You're about to delete all files in %s. Sure ?"
-msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
-
-#: src/applet-notifications.c:83
-msgid "You're about to delete all files all dustbins. Sure ?"
-msgstr ""
-"Vous êtes sur le point de détruire tous les fichiers de toutes les "
-"poubelles. Sur ?"
-
-#: src/applet-notifications.c:145
-#, c-format
+#: ../src/powermanager-draw.c:136
 msgid ""
-"A problem occured\n"
-"If '%s' is not your usual file browser,\n"
-"you can change it in the conf panel of this module"
+"Laptop on Charge.\n"
+" Battery charged at:"
 msgstr ""
-"Un problème est survenu.\n"
-"Si '%s' n'est pas votre navigateur de fichier usuel,\n"
-"vous pouvez le changer dans le panneau de conf de cette applet."
+"ラップトップは電源使用中\n"
+"バッテリー充電完了:"
 
-#: src/applet-notifications.c:48
-#, c-format
-msgid "Show %s"
-msgstr "Ouvrir %s"
+#: ../src/powermanager-draw.c:142
+msgid "No Battery found."
+msgstr "バッテリーが見つかりません。"
 
-#: src/applet-notifications.c:62
-#, c-format
-msgid "Delete %s"
-msgstr "Vider %s"
+#: ../src/powermanager-draw.c:157
+msgid ""
+"PowerManager.\n"
+"Battery charge seems to be low"
+msgstr ""
+"PowerManager.\n"
+"バッテリーの充電が少ないようです。"
 
-#: ../src/powermanager-menu-functions.c:16
-#: ../src/powermanager-menu-functions.c:14
+#: ../src/powermanager-draw.c:157
+msgid "Please put your Laptop on charge."
+msgstr "ラップトップを充電してください。"
+
+#: ../src/powermanager-draw.c:163
+msgid ""
+"PowerManager.\n"
+"Your battery is now Charged"
+msgstr ""
+"PowerManager.\n"
+"バッテリーの充電が完了しました。"
+
 #: ../src/powermanager-menu-functions.c:15
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
-#: ../src/powermanager-menu-functions.c:25
-#: ../src/powermanager-menu-functions.c:23
-#: ../src/powermanager-menu-functions.c:30
-#: ../src/powermanager-menu-functions.c:43
+#: ../src/powermanager-menu-functions.c:46
+msgid "Set up power management"
+msgstr "電源管理の設定"
+
 #: ../src/powermanager-menu-functions.c:49
-#: ../src/powermanager-menu-functions.c:48
 msgid "Halt"
 msgstr "終了"
 
-#: ../src/powermanager-menu-functions.c:26
-#: ../src/powermanager-menu-functions.c:24
-#: ../src/powermanager-menu-functions.c:31
-#: ../src/powermanager-menu-functions.c:44
 #: ../src/powermanager-menu-functions.c:50
-#: ../src/powermanager-menu-functions.c:49
 msgid "Hibernate"
 msgstr "ハイバネート"
 
-#: ../src/powermanager-menu-functions.c:27
-#: ../src/powermanager-menu-functions.c:25
-#: ../src/powermanager-menu-functions.c:32
-#: ../src/powermanager-menu-functions.c:45
 #: ../src/powermanager-menu-functions.c:51
-#: ../src/powermanager-menu-functions.c:50
 msgid "Suspend"
 msgstr "サスペンド"
 
-#: ../src/powermanager-menu-functions.c:28
-#: ../src/powermanager-menu-functions.c:26
-#: ../src/powermanager-menu-functions.c:33
-#: ../src/powermanager-menu-functions.c:46
 #: ../src/powermanager-menu-functions.c:52
-#: ../src/powermanager-menu-functions.c:51
 msgid "Reboot"
 msgstr "再起動"
 
@@ -169,45 +108,15 @@ msgstr "高さ :"
 msgid "Icon name :"
 msgstr "アイコンの名前 :"
 
-#: ../data/messages:11 ../data/messages:31 ../data/messages:33
-#: ../data/messages:37
-msgid "Configuration"
-msgstr "設定"
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "帰属先ドックの名前 :"
 
-#: ../data/messages:13 ../data/messages:33 ../data/messages:37
-msgid "Quick info"
-msgstr "クイック情報"
-
-#: ../data/messages:15 ../data/messages:35 ../data/messages:39
-#: ../data/messages:41 ../data/messages:57 ../data/messages:59
-#: ../data/messages:63
-msgid "Information to be displayed on the icon :"
-msgstr "アイコン上に表示する情報 :"
-
-#: ../data/messages:17 ../data/messages:37 ../data/messages:41
-#: ../data/messages:49 ../data/messages:43 ../data/messages:51
-#: ../data/messages:45 ../data/messages:59 ../data/messages:47
-#: ../data/messages:61 ../data/messages:65
-msgid "nothing"
-msgstr "なし"
-
-#: ../data/messages:19 ../data/messages:39 ../data/messages:43
-#: ../data/messages:45 ../data/messages:61 ../data/messages:63
-#: ../data/messages:67
-msgid "charge"
-msgstr "充電量"
-
-#: ../data/messages:21 ../data/messages:41 ../data/messages:45
-#: ../data/messages:47 ../data/messages:63 ../data/messages:65
-#: ../data/messages:69
-msgid "time"
-msgstr "時間"
-
-#: ../data/messages:11 ../data/messages:13
+#: ../data/messages:13
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -215,33 +124,33 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:15 ../data/messages:17
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:17 ../data/messages:19
+#: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。"
 
-#: ../data/messages:19 ../data/messages:21
+#: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:21 ../data/messages:23
+#: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:23 ../data/messages:25
+#: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:25 ../data/messages:27
+#: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:27 ../data/messages:29
+#: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -249,280 +158,9 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:31
+#: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
-
-#: ../data/messages:33 ../data/messages:35 ../data/messages:39
-msgid "in seconds."
-msgstr "秒単位"
-
-#: ../data/messages:35 ../data/messages:37 ../data/messages:41
-msgid "Interval of time between 2 checks :"
-msgstr "チェックの間隔時間 :"
-
-#: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:68
-#: ../src/powermanager-draw.c:71 ../src/powermanager-draw.c:101
-msgid ""
-"Laptop on Battery \n"
-" Battery charged at:"
-msgstr ""
-"Laptop on Battery \n"
-" Battery charged at:"
-
-#: ../src/powermanager-draw.c:99 ../src/powermanager-draw.c:103
-#: ../src/powermanager-draw.c:68 ../src/powermanager-draw.c:72
-#: ../src/powermanager-draw.c:71 ../src/powermanager-draw.c:75
-#: ../src/powermanager-draw.c:101 ../src/powermanager-draw.c:105
-#: ../src/powermanager-draw.c:114 ../src/powermanager-draw.c:118
-#: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:134
-#: ../src/powermanager-draw.c:119 ../src/powermanager-draw.c:123
-#: ../src/powermanager-draw.c:138 ../src/powermanager-draw.c:142
-#: ../src/powermanager-draw.c:115 ../src/powermanager-draw.c:127
-#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:150
-#: ../src/powermanager-draw.c:132 ../src/powermanager-draw.c:136
-#: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:155
-#: ../src/powermanager-draw.c:128 ../src/powermanager-draw.c:147
-#: ../src/powermanager-draw.c:130 ../src/powermanager-draw.c:135
-#: ../src/powermanager-draw.c:154 ../src/powermanager-draw.c:159
-#: ../src/powermanager-draw.c:160 ../src/powermanager-draw.c:137
-#: ../src/powermanager-draw.c:156 ../src/powermanager-draw.c:161
-#: ../src/powermanager-draw.c:116 ../src/powermanager-draw.c:120
-#: ../src/powermanager-draw.c:121 ../src/powermanager-draw.c:139
-#: ../src/powermanager-draw.c:140 ../src/powermanager-draw.c:144
-#: ../src/powermanager-draw.c:145 ../src/powermanager-draw.c:157
-#: ../src/powermanager-draw.c:163
-msgid "Estimated time with Charge:"
-msgstr "充電のおよその時間:"
-
-#: ../src/powermanager-draw.c:103 ../src/powermanager-draw.c:72
-#: ../src/powermanager-draw.c:75 ../src/powermanager-draw.c:105
-msgid ""
-"Laptop on Charge \n"
-" Battery charged at:"
-msgstr ""
-"ラップトップは電源使用中 \n"
-"バッテリー充電完了:"
-
-#: ../data/messages:37
-msgid "Information"
-msgstr "情報"
-
-#: ../data/messages:47 ../data/messages:49 ../data/messages:43
-msgid "Effet to apply on the icon according to charge :"
-msgstr "充電量に応じてアイコンに適用する効果 :"
-
-#: ../data/messages:51 ../data/messages:53 ../data/messages:47
-#: ../data/messages:49
-msgid "zoom"
-msgstr "ズーム"
-
-#: ../data/messages:53 ../data/messages:55 ../data/messages:49
-#: ../data/messages:51
-msgid "transparency"
-msgstr "透過"
-
-#: ../data/messages:55 ../data/messages:57 ../data/messages:51
-#: ../data/messages:53
-msgid "draw bar"
-msgstr "バーの描画"
-
-#: ../data/messages:39
-msgid "List of available themes for the analogic display :"
-msgstr "アナログ表示に利用可能なテーマのリスト :"
-
-#: ../src/powermanager-draw.c:60 ../src/powermanager-draw.c:90
-#: ../src/powermanager-draw.c:101 ../src/powermanager-draw.c:96
-#: ../src/powermanager-draw.c:107 ../src/powermanager-draw.c:92
-#: ../src/powermanager-draw.c:103 ../src/powermanager-draw.c:104
-#: ../src/powermanager-draw.c:115 ../src/powermanager-draw.c:109
-#: ../src/powermanager-draw.c:120 ../src/powermanager-draw.c:116
-#: ../src/powermanager-draw.c:117 ../src/powermanager-draw.c:118
-#: ../src/powermanager-draw.c:102
-msgid "None"
-msgstr "なし"
-
-#: ../data/messages:37 ../data/messages:39 ../data/messages:43
-msgid "Display"
-msgstr "表示"
-
-#: ../src/powermanager-menu-functions.c:40
-#: ../src/powermanager-menu-functions.c:46
-#: ../src/powermanager-menu-functions.c:45
-msgid "Set up power management"
-msgstr "電源管理の設定"
-
-#: ../src/powermanager-draw.c:114 ../src/powermanager-draw.c:119
-#: ../src/powermanager-draw.c:115 ../src/powermanager-draw.c:127
-#: ../src/powermanager-draw.c:132 ../src/powermanager-draw.c:128
-#: ../src/powermanager-draw.c:130 ../src/powermanager-draw.c:131
-#: ../src/powermanager-draw.c:116
-msgid ""
-"Laptop on Battery.\n"
-" Battery charged at:"
-msgstr ""
-"ラップトップはバッテリー使用中。\n"
-"バッテリー充電完了:"
-
-#: ../src/powermanager-draw.c:118 ../src/powermanager-draw.c:123
-#: ../src/powermanager-draw.c:119 ../src/powermanager-draw.c:131
-#: ../src/powermanager-draw.c:136 ../src/powermanager-draw.c:132
-#: ../src/powermanager-draw.c:135 ../src/powermanager-draw.c:137
-#: ../src/powermanager-draw.c:120 ../src/powermanager-draw.c:121
-msgid ""
-"Laptop on Charge.\n"
-" Battery charged at:"
-msgstr ""
-"ラップトップは電源使用中\n"
-"バッテリー充電完了:"
-
-#: ../src/powermanager-draw.c:124 ../src/powermanager-draw.c:129
-#: ../src/powermanager-draw.c:125 ../src/powermanager-draw.c:137
-#: ../src/powermanager-draw.c:142 ../src/powermanager-draw.c:138
-#: ../src/powermanager-draw.c:144 ../src/powermanager-draw.c:145
-msgid "No Battery found."
-msgstr "バッテリーが見つかりません。"
-
-#: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:138
-#: ../src/powermanager-draw.c:134 ../src/powermanager-draw.c:146
-#: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:147
-#: ../src/powermanager-draw.c:154 ../src/powermanager-draw.c:155
-#: ../src/powermanager-draw.c:156 ../src/powermanager-draw.c:139
-#: ../src/powermanager-draw.c:140 ../src/powermanager-draw.c:157
-msgid ""
-"PowerManager.\n"
-"Battery charge seems to be low"
-msgstr ""
-"PowerManager.\n"
-"バッテリーの充電が少ないようです。"
-
-#: ../src/powermanager-draw.c:131
-msgid "Considering put your Laptop on charge."
-msgstr "ラップトップの充電を考慮してください。"
-
-#: ../src/powermanager-draw.c:134
-msgid ""
-"PowerManager.\n"
-" Your battery is now Charged"
-msgstr ""
-"PowerManager.\n"
-"バッテリーの充電が完了しました。"
-
-#: ../data/messages:57 ../data/messages:65 ../data/messages:67
-#: ../data/messages:71
-msgid "Alert"
-msgstr "通告"
-
-#: ../data/messages:59 ../data/messages:67 ../data/messages:69
-#: ../data/messages:73
-msgid "Alert when battery charged ?"
-msgstr "バッテリー充電完了時に通告？"
-
-#: ../data/messages:61 ../data/messages:69 ../data/messages:71
-#: ../data/messages:75
-msgid "Alert when low battery ?"
-msgstr "バッテリー低残量時に通告？"
-
-#: ../data/messages:63 ../data/messages:71 ../data/messages:73
-#: ../data/messages:77
-msgid "in percent."
-msgstr "パーセント単位"
-
-#: ../data/messages:65 ../data/messages:73 ../data/messages:75
-#: ../data/messages:79
-msgid "Battery level :"
-msgstr "バッテリーレベル"
-
-#: ../data/messages:67 ../data/messages:75 ../data/messages:77
-#: ../data/messages:81
-msgid "Animate icon during the alert ?"
-msgstr "通告中にアイコンをアニメーション化？"
-
-#: ../data/messages:69 ../data/messages:77 ../data/messages:79
-#: ../data/messages:83
-msgid "Animation during alert :"
-msgstr "通告中のアニメーション :"
-
-#: ../data/messages:71 ../data/messages:79 ../data/messages:81
-#: ../data/messages:85
-msgid "bounce"
-msgstr "バウンド"
-
-#: ../data/messages:73 ../data/messages:81 ../data/messages:83
-#: ../data/messages:87
-msgid "rotate"
-msgstr "回転"
-
-#: ../data/messages:75 ../data/messages:83 ../data/messages:85
-#: ../data/messages:89
-msgid "blink"
-msgstr "点滅"
-
-#: ../data/messages:77 ../data/messages:85 ../data/messages:87
-#: ../data/messages:91
-msgid "pulse"
-msgstr "波動"
-
-#: ../data/messages:79 ../data/messages:87 ../data/messages:89
-#: ../data/messages:93
-msgid "upside-down"
-msgstr "上下逆さま"
-
-#: ../data/messages:81 ../data/messages:89 ../data/messages:91
-#: ../data/messages:95
-msgid "wobbly"
-msgstr "伸び縮み"
-
-#: ../data/messages:83 ../data/messages:91 ../data/messages:93
-#: ../data/messages:97
-msgid "random"
-msgstr "ランダム"
-
-#: ../src/powermanager-draw.c:138 ../src/powermanager-draw.c:134
-#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:151
-#: ../src/powermanager-draw.c:147 ../src/powermanager-draw.c:154
-#: ../src/powermanager-draw.c:155 ../src/powermanager-draw.c:156
-#: ../src/powermanager-draw.c:139 ../src/powermanager-draw.c:140
-#: ../src/powermanager-draw.c:157
-msgid "Please put your Laptop on charge."
-msgstr "ラップトップを充電してください。"
-
-#: ../src/powermanager-draw.c:142 ../src/powermanager-draw.c:138
-#: ../src/powermanager-draw.c:150 ../src/powermanager-draw.c:155
-#: ../src/powermanager-draw.c:151 ../src/powermanager-draw.c:159
-#: ../src/powermanager-draw.c:160 ../src/powermanager-draw.c:161
-#: ../src/powermanager-draw.c:144 ../src/powermanager-draw.c:145
-#: ../src/powermanager-draw.c:163
-msgid ""
-"PowerManager.\n"
-"Your battery is now Charged"
-msgstr ""
-"PowerManager.\n"
-"バッテリーの充電が完了しました。"
-
-#: ../data/messages:39 ../data/messages:41 ../data/messages:45
-msgid "Icon's filename when on battery :"
-msgstr "バッテリー使用時のアイコンファイル名 :"
-
-#: ../data/messages:41 ../data/messages:43 ../data/messages:47
-msgid "Icon's filename when on charge :"
-msgstr "充電時のアイコンファイル名 :"
-
-#: ../data/messages:53 ../data/messages:55 ../data/messages:59
-msgid "Use a gauge instead of icons ?"
-msgstr "アイコンの代わりに目盛りを使用？"
-
-#: ../data/messages:55 ../data/messages:57 ../data/messages:61
-msgid "List of available gauges :"
-msgstr "利用可能な目盛りのリスト :"
-
-#: ../data/messages:43 ../data/messages:45 ../data/messages:49
-msgid "Effect to apply on the icon according to charge :"
-msgstr "充電量に応じてアイコンに適用する効果 :"
-
-#: ../data/messages:11
-msgid "Name of the dock it belongs to:"
-msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:33
 msgid ""
@@ -534,9 +172,242 @@ msgstr ""
 "す。"
 
 #: ../data/messages:35
-msgid "Lockposition ?"
-msgstr "位置を固定？"
-
-#: ../data/messages:35
 msgid "Lock position ?"
 msgstr ""
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "設定"
+
+#: ../data/messages:39
+msgid "in seconds."
+msgstr "秒単位"
+
+#: ../data/messages:41
+msgid "Interval of time between 2 checks :"
+msgstr "チェックの間隔時間 :"
+
+#: ../data/messages:43
+msgid "Display"
+msgstr "表示"
+
+#: ../data/messages:45
+msgid "Icon's filename when on battery :"
+msgstr "バッテリー使用時のアイコンファイル名 :"
+
+#: ../data/messages:47
+msgid "Icon's filename when on charge :"
+msgstr "充電時のアイコンファイル名 :"
+
+#: ../data/messages:49
+msgid "Effect to apply on the icon according to charge :"
+msgstr "充電量に応じてアイコンに適用する効果 :"
+
+#: ../data/messages:51 ../data/messages:65
+msgid "nothing"
+msgstr "なし"
+
+#: ../data/messages:53
+msgid "zoom"
+msgstr "ズーム"
+
+#: ../data/messages:55
+msgid "transparency"
+msgstr "透過"
+
+#: ../data/messages:57
+msgid "draw bar"
+msgstr "バーの描画"
+
+#: ../data/messages:59
+msgid "Use a gauge instead of icons ?"
+msgstr "アイコンの代わりに目盛りを使用？"
+
+#: ../data/messages:61
+msgid "List of available gauges :"
+msgstr "利用可能な目盛りのリスト :"
+
+#: ../data/messages:63
+msgid "Information to be displayed on the icon :"
+msgstr "アイコン上に表示する情報 :"
+
+#: ../data/messages:67
+msgid "charge"
+msgstr "充電量"
+
+#: ../data/messages:69
+msgid "time"
+msgstr "時間"
+
+#: ../data/messages:71
+msgid "Alert"
+msgstr "通告"
+
+#: ../data/messages:73
+msgid "Alert when battery charged ?"
+msgstr "バッテリー充電完了時に通告？"
+
+#: ../data/messages:75
+msgid "Alert when low battery ?"
+msgstr "バッテリー低残量時に通告？"
+
+#: ../data/messages:77
+msgid "in percent."
+msgstr "パーセント単位"
+
+#: ../data/messages:79
+msgid "Battery level :"
+msgstr "バッテリーレベル"
+
+#: ../data/messages:81
+msgid "Animate icon during the alert ?"
+msgstr "通告中にアイコンをアニメーション化？"
+
+#: ../data/messages:83
+msgid "Animation during alert :"
+msgstr "通告中のアニメーション :"
+
+#: ../data/messages:85
+msgid "bounce"
+msgstr "バウンド"
+
+#: ../data/messages:87
+msgid "rotate"
+msgstr "回転"
+
+#: ../data/messages:89
+msgid "blink"
+msgstr "点滅"
+
+#: ../data/messages:91
+msgid "pulse"
+msgstr "波動"
+
+#: ../data/messages:93
+msgid "upside-down"
+msgstr "上下逆さま"
+
+#: ../data/messages:95
+msgid "wobbly"
+msgstr "伸び縮み"
+
+#: ../data/messages:97
+msgid "random"
+msgstr "ランダム"
+
+#~ msgid "ICON"
+#~ msgstr "アイコン"
+
+#~ msgid "Desired icon size for this applet"
+#~ msgstr "このアプレットのアイコンの大きさ"
+
+#~ msgid "width :"
+#~ msgstr "幅 :"
+
+#~ msgid "height :"
+#~ msgstr "高さ :"
+
+#~ msgid "Name of the icon as it will appear in its label in the dock :"
+#~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
+
+#~ msgid "MODULE"
+#~ msgstr "モジュール"
+
+#~ msgid "Theme"
+#~ msgstr "テーマ"
+
+#~ msgid "Choose one of the available themes :"
+#~ msgstr "利用可能なテーマから1つ選択 :"
+
+#~ msgid "Interval of time to check if dustbin is full/empty :"
+#~ msgstr "Interval of time to check if dustbin is full/empty :"
+
+#~ msgid "in seconds"
+#~ msgstr "en secondes"
+
+#~ msgid "Here you can specify a list of Trash directory :"
+#~ msgstr "Ici vous pouvez spécifier une liste de répertoires poubelle ;"
+
+#~ msgid "File browser used to show a trash :"
+#~ msgstr "Navigateur de fichier pour visualiser la poubelle ;"
+
+#~ msgid ""
+#~ "This is the dustbin applet for Cairo-Dock\n"
+#~ " made by Fabrice Rey (fabounet_03@yahoo.fr)"
+#~ msgstr ""
+#~ "Ceci est l'applet poubelle de Cairo-Dock\n"
+#~ " écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
+
+#~ msgid "Show Trash"
+#~ msgstr "Ouvrir la poubelle"
+
+#~ msgid "Show All"
+#~ msgstr "Ouvrir toutes"
+
+#~ msgid "Delete Trash"
+#~ msgstr "Vider la poubelle"
+
+#~ msgid "Delete All"
+#~ msgstr "Vider toutes"
+
+#~ msgid "You're about to delete all files in %s. Sure ?"
+#~ msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
+
+#~ msgid "You're about to delete all files all dustbins. Sure ?"
+#~ msgstr ""
+#~ "Vous êtes sur le point de détruire tous les fichiers de toutes les "
+#~ "poubelles. Sur ?"
+
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Un problème est survenu.\n"
+#~ "Si '%s' n'est pas votre navigateur de fichier usuel,\n"
+#~ "vous pouvez le changer dans le panneau de conf de cette applet."
+
+#~ msgid "Show %s"
+#~ msgstr "Ouvrir %s"
+
+#~ msgid "Delete %s"
+#~ msgstr "Vider %s"
+
+#~ msgid "Quick info"
+#~ msgstr "クイック情報"
+
+#~ msgid ""
+#~ "Laptop on Battery \n"
+#~ " Battery charged at:"
+#~ msgstr ""
+#~ "Laptop on Battery \n"
+#~ " Battery charged at:"
+
+#~ msgid ""
+#~ "Laptop on Charge \n"
+#~ " Battery charged at:"
+#~ msgstr ""
+#~ "ラップトップは電源使用中 \n"
+#~ "バッテリー充電完了:"
+
+#~ msgid "Information"
+#~ msgstr "情報"
+
+#~ msgid "Effet to apply on the icon according to charge :"
+#~ msgstr "充電量に応じてアイコンに適用する効果 :"
+
+#~ msgid "List of available themes for the analogic display :"
+#~ msgstr "アナログ表示に利用可能なテーマのリスト :"
+
+#~ msgid "Considering put your Laptop on charge."
+#~ msgstr "ラップトップの充電を考慮してください。"
+
+#~ msgid ""
+#~ "PowerManager.\n"
+#~ " Your battery is now Charged"
+#~ msgstr ""
+#~ "PowerManager.\n"
+#~ "バッテリーの充電が完了しました。"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"

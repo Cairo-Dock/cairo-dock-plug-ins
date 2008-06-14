@@ -2,7 +2,8 @@
 # Exaile Emulated pipe
 # Pipe created by ChAnGFu
 
-FILE="/tmp/exaile-info_$USER.0"
+if [ ! -w $1 ] ; then exit 1 ; fi
+FILE=$1
 
 EXAILE=`ps aux | grep exaile | grep -v grep | grep -v info`
 if [ "x$EXAILE" = "x" ]; then

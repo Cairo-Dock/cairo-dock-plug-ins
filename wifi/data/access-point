@@ -1,3 +1,3 @@
 #!/bin/bash
-rm -f /tmp/access-point
-iwlist $1 scan | grep "ESSID" >> /tmp/access-point
+if [ ! -w $2 ] ; then exit 1 ; fi
+iwlist $1 scan | grep "ESSID" >> $2

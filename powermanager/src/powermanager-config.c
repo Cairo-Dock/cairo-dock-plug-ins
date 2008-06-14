@@ -49,6 +49,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pSurfaceBattery);
 	cairo_surface_destroy (myData.pSurfaceCharge);
 	
-	free_cd_Gauge(myData.pGauge);
+	cairo_dock_free_gauge(myData.pGauge);
 	
 CD_APPLET_RESET_DATA_END

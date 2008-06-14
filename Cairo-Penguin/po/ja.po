@@ -6,14 +6,101 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 06:11+0200\n"
 "PO-Revision-Date: 2008-05-18 10:30+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:23
+msgid "Hey, I'm here !"
+msgstr "ヘイ、おいらはここだよ！"
+
+#: ../src/applet-notifications.c:24
+msgid "Sorry but I'm busy right now."
+msgstr "申し訳ないが今ちょうど忙しいんで。"
+
+#: ../src/applet-notifications.c:25
+msgid ""
+"I don't have time to play with you, I have to dig and mine all these icons."
+msgstr ""
+"ここいらのアイコンを全部掘ったり埋めたりしなきゃいかんから、君に付き合ってる"
+"暇なんかないよ。"
+
+#: ../src/applet-notifications.c:26
+msgid "Your dock is so messy ! Let me clean it."
+msgstr "君のドックは散らかりすぎだろう！私に片付けさせなさい。"
+
+#: ../src/applet-notifications.c:27
+msgid "Admit my superiority on you as a penguin !"
+msgstr "君より私の方がペンギンとして優れていることを認めなさい！"
+
+#: ../src/applet-notifications.c:28
+msgid "Wait, do you want to kill me ?!"
+msgstr "待った、おいらを殺す気 ?!"
+
+#: ../src/applet-notifications.c:29
+msgid "Do you know how much painful it is to be clicked on ??"
+msgstr "クリックされるのがどれだけ痛いかわかってんの？？"
+
+#: ../src/applet-notifications.c:30
+msgid "It's my dock now, mwahahaha !"
+msgstr "ドックは今や私のものだ。わっはっはっは！"
+
+#: ../src/applet-notifications.c:31
+msgid "I want to be a pirate !"
+msgstr "おいら海賊になりたい！"
+
+#: ../src/applet-notifications.c:32
+msgid "You shall not pass !"
+msgstr "貴様だけは、決して通さぬ！"
+
+#: ../src/applet-notifications.c:33
+msgid "I'm your father !"
+msgstr "私がお前の父親なのだ！"
+
+#: ../src/applet-notifications.c:34
+msgid ""
+"- What will we do tonight Cortex ?\n"
+"- The same thing as every nights, Minus. Try to take over the Dock !"
+msgstr ""
+"- ねぇ、ブレイン。今夜は何するの？\n"
+"- いつもと同じさ、ピンキー。ドック征服を狙うのさ！"
+
+#: ../src/applet-notifications.c:35
+msgid "For Aiur !"
+msgstr "アイアーのために！"
+
+#: ../src/applet-notifications.c:38
+msgid ""
+"This is the Cairo-Penguin applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"これは Fabrice Rey によって製作された\n"
+"Cairo-Dock 用の Cairo-Penguin アプレットです。"
+
+#: ../src/applet-notifications.c:118
+msgid "Keep quiet"
+msgstr "大人しくさせる"
+
+#: ../src/applet-notifications.c:122
+msgid "Wake up"
+msgstr "起こす"
+
+#: ../src/applet-notifications.c:125
+msgid "Start XPenguins"
+msgstr "XPenguins 開始"
+
+#: ../src/applet-notifications.c:126
+msgid "Stop XPenguins"
+msgstr "XPenguins 停止"
+
+#: ../src/applet-notifications.c:155 ../src/applet-notifications.c:157
+msgid "Zzzzz"
+msgstr "Zzzzz"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -35,194 +122,88 @@ msgstr "高さ :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-msgid "Module"
-msgstr "モジュール"
-
 #: ../data/messages:11
 msgid "Icon's name :"
 msgstr "アイコンの名前 :"
 
-#: src/applet-notifications.c:13
-msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-
-#: ../data/messages:11
-msgid "Desklet"
-msgstr "デスクレット"
-
-#: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
-
-#: ../data/messages:15
-msgid "Desklet's dimension (width x height) :"
-msgstr "デスクレットの寸法（幅×高さ） :"
-
-#: ../data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
-
-#: ../data/messages:19
-msgid "Desklet's position (x ; y) :"
-msgstr "デスクレットの位置（X ; Y） :"
-
-#: ../data/messages:21
-msgid "Is detached from the dock ?"
-msgstr "ドックから分離？"
-
-#: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
-
-#: ../data/messages:27
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
-
-#: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
-
-#: ../src/applet-notifications.c:23 ../src/applet-notifications.c:38
-#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:37
-msgid ""
-"This is the Cairo-Penguin applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"これは Fabrice Rey によって製作された\n"
-"Cairo-Dock 用の Cairo-Penguin アプレットです。"
-
-#: ../data/messages:13 ../data/messages:15
-msgid "Configuration"
-msgstr "設定"
-
-#: ../data/messages:15 ../data/messages:17
-msgid "Choose one of the available themes :"
-msgstr "利用可能テーマから1つ選択 :"
-
-#: ../data/messages:17 ../data/messages:19
-msgid "in seconds"
-msgstr "秒単位"
-
-#: ../data/messages:19 ../data/messages:21
-msgid "Delay between animation changes :"
-msgstr "アニメーションの切り替わりの遅延時間 :"
-
-#: ../data/messages:21 ../data/messages:23
-msgid "Transparency of the penguin :"
-msgstr "ペンギンの透明度 :"
-
-#: ../data/messages:23 ../data/messages:25
-msgid "Let the penguin wander everywhere in the dock ?"
-msgstr "ペンギンにドックの至る所を徘徊させる？"
-
-#: ../src/applet-notifications.c:25 ../src/applet-notifications.c:23
-msgid "Hey, I'm here !"
-msgstr "ヘイ、おいらはここだよ！"
-
-#: ../src/applet-notifications.c:26 ../src/applet-notifications.c:24
-msgid "Sorry but I'm busy right now."
-msgstr "申し訳ないが今ちょうど忙しいんで。"
-
-#: ../src/applet-notifications.c:27 ../src/applet-notifications.c:25
-msgid ""
-"I don't have time to play with you, I have to dig and mine all these icons."
-msgstr ""
-"ここいらのアイコンを全部掘ったり埋めたりしなきゃいかんから、君に付き合ってる"
-"暇なんかないよ。"
-
-#: ../src/applet-notifications.c:28
-msgid "You're dock is so messy ! Let me clean it."
-msgstr "君のドックは散らかりすぎだろう！私に片付けさせなさい。"
-
-#: ../src/applet-notifications.c:29 ../src/applet-notifications.c:27
-msgid "Admit my superiority on you as a penguin !"
-msgstr "君より私の方がペンギンとして優れていることを認めなさい！"
-
-#: ../src/applet-notifications.c:30 ../src/applet-notifications.c:28
-msgid "Wait, do you want to kill me ?!"
-msgstr "待った、おいらを殺す気 ?!"
-
-#: ../src/applet-notifications.c:31 ../src/applet-notifications.c:29
-msgid "Do you know how much painful it is to be clicked on ??"
-msgstr "クリックされるのがどれだけ痛いかわかってんの？？"
-
-#: ../src/applet-notifications.c:32 ../src/applet-notifications.c:30
-msgid "It's my dock now, mwahahaha !"
-msgstr "ドックは今や私のものだ。わっはっはっは！"
-
-#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:31
-msgid "I want to be a pirate !"
-msgstr "おいら海賊になりたい！"
-
-#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:32
-msgid "You shall not pass !"
-msgstr "貴様だけは、決して通さぬ！"
-
-#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:33
-msgid "I'm your father !"
-msgstr "私がお前の父親なのだ！"
-
-#: ../src/applet-notifications.c:130 ../src/applet-notifications.c:128
-#: ../src/applet-notifications.c:129 ../src/applet-notifications.c:118
-msgid "Keep quiet"
-msgstr "大人しくさせる"
-
-#: ../src/applet-notifications.c:134 ../src/applet-notifications.c:132
-#: ../src/applet-notifications.c:133 ../src/applet-notifications.c:122
-msgid "Wake up"
-msgstr "起こす"
-
-#: ../src/applet-notifications.c:137 ../src/applet-notifications.c:135
-#: ../src/applet-notifications.c:136 ../src/applet-notifications.c:125
-msgid "Start XPenguins"
-msgstr "XPenguins 開始"
-
-#: ../src/applet-notifications.c:138 ../src/applet-notifications.c:136
-#: ../src/applet-notifications.c:137 ../src/applet-notifications.c:126
-msgid "Stop XPenguins"
-msgstr "XPenguins 停止"
-
-#: ../src/applet-notifications.c:167 ../src/applet-notifications.c:169
-#: ../src/applet-notifications.c:165 ../src/applet-notifications.c:166
-#: ../src/applet-notifications.c:168 ../src/applet-notifications.c:155
-#: ../src/applet-notifications.c:157
-msgid "Zzzzz"
-msgstr "Zzzzz"
-
-#: ../src/applet-notifications.c:26
-msgid "Your dock is so messy ! Let me clean it."
-msgstr "君のドックは散らかりすぎだろう！私に片付けさせなさい。"
-
-#: ../src/applet-notifications.c:34
-msgid ""
-"- What will we do tonight Cortex ?\n"
-"- The same thing as every nights, Minus. Try to take over the Dock !"
-msgstr ""
-"- ねぇ、ブレイン。今夜は何するの？\n"
-"- いつもと同じさ、ピンキー。ドック征服を狙うのさ！"
-
-#: ../src/applet-notifications.c:35
-msgid "For Aiur !"
-msgstr "アイアーのために！"
-
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
+
+#: ../data/messages:15
+msgid "Configuration"
+msgstr "設定"
+
+#: ../data/messages:17
+msgid "Choose one of the available themes :"
+msgstr "利用可能テーマから1つ選択 :"
+
+#: ../data/messages:19
+msgid "in seconds"
+msgstr "秒単位"
+
+#: ../data/messages:21
+msgid "Delay between animation changes :"
+msgstr "アニメーションの切り替わりの遅延時間 :"
+
+#: ../data/messages:23
+msgid "Transparency of the penguin :"
+msgstr "ペンギンの透明度 :"
+
+#: ../data/messages:25
+msgid "Let the penguin wander everywhere in the dock ?"
+msgstr "ペンギンにドックの至る所を徘徊させる？"
+
+#~ msgid "Module"
+#~ msgstr "モジュール"
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+#~ msgid "Desklet"
+#~ msgstr "デスクレット"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple."
+#~ msgstr ""
+#~ "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリッ"
+#~ "ク、または ALT + 左クリックでサイズ変更できます。"
+
+#~ msgid "Desklet's dimension (width x height) :"
+#~ msgstr "デスクレットの寸法（幅×高さ） :"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
+#~ "させることができます。"
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "デスクレットの位置（X ; Y） :"
+
+#~ msgid "Is detached from the dock ?"
+#~ msgstr "ドックから分離？"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(name=cairo-dock & type=utility)"
+#~ msgstr ""
+#~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
+#~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
+
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "ウィジェット・レイヤ上に表示？"
+
+#~ msgid "You're dock is so messy ! Let me clean it."
+#~ msgstr "君のドックは散らかりすぎだろう！私に片付けさせなさい。"

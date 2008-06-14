@@ -62,7 +62,7 @@ void cd_nvidia_draw_icon (void) {
 		//fTempPercent = 1 - (fTempPercent / 10);
 	}
 	cd_debug("nVidia - Value has changed, redraw (%f)", fTempPercent);
-	make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) fTempPercent);
+	cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) fTempPercent);
 	
 	myData.iPreviousGPUTemp = myData.pGPUData.iGPUTemp;
 }

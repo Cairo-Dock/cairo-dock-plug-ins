@@ -31,7 +31,7 @@ void _gaugeTest_double_valeur(void)
 	*pValue = cairo_dock_show_value_and_wait("Valeur de la jauge",myIcon,myDock,0,1);
 	pList = g_list_append (pList, pValue);
 	
-	make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);
+	cairo_dock_render_gauge_multi_value(myDrawContext,myDock,myIcon,myData.pGauge,pList);
 }
 
 void _gaugeTest_triple_valeur(void)
@@ -49,7 +49,7 @@ void _gaugeTest_triple_valeur(void)
 	*pValue = cairo_dock_show_value_and_wait("Valeur 3 de la jauge",myIcon,myDock,0,1);
 	pList = g_list_append (pList, pValue);
 	
-	make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);
+	cairo_dock_render_gauge_multi_value(myDrawContext,myDock,myIcon,myData.pGauge,pList);
 }
 
 void _gaugeTest_heure(void)
@@ -67,20 +67,20 @@ void _gaugeTest_heure(void)
 	*pValue = cairo_dock_show_value_and_wait("Secondes",myIcon,myDock,0,59) / 59;
 	pList = g_list_append (pList, pValue);
 	
-	make_cd_Gauge_multiValue(myDrawContext,myDock,myIcon,myData.pGauge,pList);
+	cairo_dock_render_gauge_multi_value(myDrawContext,myDock,myIcon,myData.pGauge,pList);
 }
 
 CD_APPLET_ON_CLICK_BEGIN
 	myData.gaugeValue = cairo_dock_show_value_and_wait("Valeur de la jauge",myIcon,myDock,myData.gaugeValue,1);
-	make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,myData.gaugeValue);
+	cairo_dock_render_gauge(myDrawContext,myDock,myIcon,myData.pGauge,myData.gaugeValue);
 CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	free_cd_Gauge(myData.pGauge);
+	cairo_dock_free_gauge(myData.pGauge);
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-	make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,0);
+	myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+	cairo_dock_render_gauge(myDrawContext,myDock,myIcon,myData.pGauge,0);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 

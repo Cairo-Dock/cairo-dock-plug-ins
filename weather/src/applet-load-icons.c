@@ -16,10 +16,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_INCLUDE_MY_VARS
 
 
-static int s_iThreadIsRunning = 0;
-static int s_iSidTimerRedraw = 0;
-
-
 #define _add_icon(i, j)\
 	if (myData.days[i].cName != NULL)\
 	{\

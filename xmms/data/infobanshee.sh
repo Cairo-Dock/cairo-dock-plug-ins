@@ -2,7 +2,8 @@
 # Banshee Emulated pipe
 # Pipe created by ChAnGFu
 
-FILE="/tmp/banshee-info_$USER.0"
+if [ ! -w $1 ] ; then exit 1 ; fi
+FILE=$1
 
 STATUS=$(banshee --query-status)
 STATUS=${STATUS#*:}

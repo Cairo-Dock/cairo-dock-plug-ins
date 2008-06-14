@@ -147,7 +147,7 @@ gboolean cd_netspeed_update_from_data (void)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
-		make_cd_Gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
+		cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
 		
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
@@ -159,7 +159,7 @@ gboolean cd_netspeed_update_from_data (void)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(myDock ? "..." : D_("Loading"));
-			make_cd_Gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
+			cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
 		}
 		else
 		{
@@ -195,21 +195,21 @@ gboolean cd_netspeed_update_from_data (void)
 				pList = g_list_append (pList, &fUpValue);
 				double fDownValue = (double) myData.iDownloadSpeed / myData.iMaxDownRate;
 				pList = g_list_append (pList, &fDownValue);
-				make_cd_Gauge_multiValue(myDrawContext,myContainer,myIcon,myData.pGauge,pList);
+				cairo_dock_render_gauge_multi_value(myDrawContext,myContainer,myIcon,myData.pGauge,pList);
 				g_list_free (pList);
 			}
 			else
 			{
 				if(myData.iMaxUpRate != 0)
 				{
-					make_cd_Gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) myData.iUploadSpeed / myData.iMaxUpRate);
+					cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) myData.iUploadSpeed / myData.iMaxUpRate);
 				}
 				else if(myData.iMaxDownRate != 0)
 				{
-					make_cd_Gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) myData.iDownloadSpeed / myData.iMaxDownRate);
+					cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) myData.iDownloadSpeed / myData.iMaxDownRate);
 				}
 				else
-					make_cd_Gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
+					cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
 			}
 		}
 	}

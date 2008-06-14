@@ -32,23 +32,31 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CdDustbin *pDustbin;
 	GList *pElement;
 	
-	CD_APPLET_ADD_SUB_MENU (D_("Show Trash"), pShowSubMenu, pModuleSubMenu)
-	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
+	if (g_list_length (myData.pDustbinsList) == 1)
 	{
-		pDustbin = pElement->data;
-		g_string_printf (sLabel, D_("Show %s"), pDustbin->cPath);
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_show_trash, pShowSubMenu, pDustbin->cPath)
+		CD_APPLET_ADD_IN_MENU (D_("Show Trash"), cd_dustbin_show_trash, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU (D_("Delete Trash"), cd_dustbin_delete_trash, CD_APPLET_MY_MENU)
 	}
-	CD_APPLET_ADD_IN_MENU (D_("Show All"), cd_dustbin_show_trash, pShowSubMenu)
+	else
+	{
+		CD_APPLET_ADD_SUB_MENU (D_("Show Trash"), pShowSubMenu, pModuleSubMenu)
+		for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
+		{
+			pDustbin = pElement->data;
+			g_string_printf (sLabel, D_("Show %s"), pDustbin->cPath);
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_show_trash, pShowSubMenu, pDustbin->cPath)
+		}
+		CD_APPLET_ADD_IN_MENU (D_("Show All"), cd_dustbin_show_trash, pShowSubMenu)
 	
-	CD_APPLET_ADD_SUB_MENU (D_("Delete Trash"), pDeleteSubMenu, pModuleSubMenu)
-	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
-	{
-		pDustbin = pElement->data;
-		g_string_printf (sLabel, D_("Delete %s"), pDustbin->cPath);
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_delete_trash, pDeleteSubMenu, pDustbin->cPath)
+		CD_APPLET_ADD_SUB_MENU (D_("Delete Trash"), pDeleteSubMenu, pModuleSubMenu)
+		for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
+		{
+			pDustbin = pElement->data;
+			g_string_printf (sLabel, D_("Delete %s"), pDustbin->cPath);
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_delete_trash, pDeleteSubMenu, pDustbin->cPath)
+		}
+		CD_APPLET_ADD_IN_MENU (D_("Delete All"), cd_dustbin_delete_trash, pDeleteSubMenu)
 	}
-	CD_APPLET_ADD_IN_MENU (D_("Delete All"), cd_dustbin_delete_trash, pDeleteSubMenu)
 	
 	g_string_free (sLabel, TRUE);
 	

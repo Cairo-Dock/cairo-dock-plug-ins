@@ -6,14 +6,38 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 06:08+0200\n"
 "PO-Revision-Date: 2008-05-19 21:00+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:47
+msgid ""
+"This is the Cairo-Dock's clock applet\n"
+" made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\n"
+"The analogic representation is a port of the well-known Cairo-Clock\n"
+" from MacSlow (http://macslow.thepimp.net)."
+msgstr ""
+"これは Fabrice Rey (fabounet_03@yahoo.fr) によって \n"
+"Cairo-Dock 用に製作された Cairo-Dock's clock アプレットです。\n"
+"アナログ表示は MacSlow (http://macslow.thepimp.net) による\n"
+"有名な Cairo-Clock からの移植です。"
+
+#: ../src/applet-notifications.c:60
+msgid "Calendar"
+msgstr "カレンダー"
+
+#: ../src/applet-notifications.c:73
+msgid "Set up time and date"
+msgstr "時刻と日付を設定"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
@@ -31,219 +55,15 @@ msgstr "高さ :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドック上のラベルに表示するアイコンの名前 :"
 
-#: ../data/messages:33 ../data/messages:35 ../data/messages:39
-msgid "Behaviour"
-msgstr "動作"
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "帰属先ドックの名前 :"
 
-msgid "Show the date ?"
-msgstr "日付を表示？"
-
-#: ../data/messages:45 ../data/messages:47 ../data/messages:51
-msgid "Show seconds ?"
-msgstr "秒を表示？"
-
-#: ../data/messages:43 ../data/messages:45 ../data/messages:49
-msgid "if not, then the applet will update time once a minute, saving CPU."
-msgstr "CPU の使用を抑えて、アプレットを 1 分置きに更新します。"
-
-#: ../data/messages:49 ../data/messages:51 ../data/messages:55
-msgid "Should the time be displayed as a 24h format ?"
-msgstr "時刻を24時間形式で表示？"
-
-#: ../data/messages:47 ../data/messages:49 ../data/messages:53
-msgid "for numeric format only."
-msgstr "デジタル表示のみに適用"
-
-#: ../data/messages:51 ../data/messages:53 ../data/messages:57
-msgid "Style"
-msgstr "スタイル"
-
-#: ../data/messages:55 ../data/messages:57 ../data/messages:61
-msgid "Use the analogic view ?"
-msgstr "アナログ表示を使用？"
-
-#: ../data/messages:53 ../data/messages:55 ../data/messages:59
-msgid ""
-"The analogic view is based on CairoClock; otherwise it will be displayed in "
-"a numeric way."
-msgstr ""
-"アナログ表示は CairoClock を元にしています。それ以外の場合、デジタル方式で表"
-"示されます。"
-
-#: ../data/messages:59 ../data/messages:61 ../data/messages:65
-msgid "Text color for the numeric display:"
-msgstr "デジタル表示時のテキスト色 :"
-
-#: ../data/messages:61 ../data/messages:65 ../data/messages:67
-#: ../data/messages:71
-msgid "List of available themes for the analogic display :"
-msgstr "アナログ表示用に利用可能なテーマのリスト :"
-
-msgid "ALARM"
-msgstr "アラーム"
-
-#: ../data/messages:71 ../data/messages:75 ../data/messages:77
-#: ../data/messages:81
-msgid "Alarm n°1"
-msgstr "第 1 アラーム"
-
-#: ../data/messages:75 ../data/messages:115 ../data/messages:155
-#: ../data/messages:79 ../data/messages:119 ../data/messages:159
-#: ../data/messages:81 ../data/messages:121 ../data/messages:161
-#: ../data/messages:85 ../data/messages:125 ../data/messages:165
-msgid "Time you want to be notified :"
-msgstr "通知させる時刻の設定 :"
-
-#: ../data/messages:73 ../data/messages:113 ../data/messages:153
-#: ../data/messages:77 ../data/messages:117 ../data/messages:157
-#: ../data/messages:79 ../data/messages:119 ../data/messages:159
-#: ../data/messages:83 ../data/messages:123 ../data/messages:163
-msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
-msgstr "xx:xx 形式で記入。例えば 8:35pm の場合は 20:35 です。"
-
-#: ../data/messages:79 ../data/messages:119 ../data/messages:159
-#: ../data/messages:83 ../data/messages:123 ../data/messages:163
-#: ../data/messages:85 ../data/messages:125 ../data/messages:165
-#: ../data/messages:89 ../data/messages:129 ../data/messages:169
-msgid "Never"
-msgstr "しない"
-
-#: ../data/messages:81 ../data/messages:121 ../data/messages:161
-#: ../data/messages:85 ../data/messages:125 ../data/messages:165
-#: ../data/messages:87 ../data/messages:127 ../data/messages:167
-#: ../data/messages:91 ../data/messages:131 ../data/messages:171
-msgid "Day"
-msgstr "日"
-
-#: ../data/messages:83 ../data/messages:123 ../data/messages:163
-#: ../data/messages:87 ../data/messages:127 ../data/messages:167
-#: ../data/messages:89 ../data/messages:129 ../data/messages:169
-#: ../data/messages:93 ../data/messages:133 ../data/messages:173
-msgid "Monday"
-msgstr "月曜日"
-
-#: ../data/messages:85 ../data/messages:125 ../data/messages:165
-#: ../data/messages:89 ../data/messages:129 ../data/messages:169
-#: ../data/messages:91 ../data/messages:131 ../data/messages:171
-#: ../data/messages:95 ../data/messages:135 ../data/messages:175
-msgid "Tuesday"
-msgstr "火曜日"
-
-#: ../data/messages:87 ../data/messages:127 ../data/messages:167
-#: ../data/messages:91 ../data/messages:131 ../data/messages:171
-#: ../data/messages:93 ../data/messages:133 ../data/messages:173
-#: ../data/messages:97 ../data/messages:137 ../data/messages:177
-msgid "Wednesday"
-msgstr "水曜日"
-
-#: ../data/messages:89 ../data/messages:129 ../data/messages:169
-#: ../data/messages:93 ../data/messages:133 ../data/messages:173
-#: ../data/messages:95 ../data/messages:135 ../data/messages:175
-#: ../data/messages:99 ../data/messages:139 ../data/messages:179
-msgid "Thursday"
-msgstr "木曜日"
-
-#: ../data/messages:91 ../data/messages:131 ../data/messages:171
-#: ../data/messages:95 ../data/messages:135 ../data/messages:175
-#: ../data/messages:97 ../data/messages:137 ../data/messages:177
-#: ../data/messages:101 ../data/messages:141 ../data/messages:181
-msgid "Friday"
-msgstr "金曜日"
-
-#: ../data/messages:93 ../data/messages:133 ../data/messages:173
-#: ../data/messages:97 ../data/messages:137 ../data/messages:177
-#: ../data/messages:99 ../data/messages:139 ../data/messages:179
-#: ../data/messages:103 ../data/messages:143 ../data/messages:183
-msgid "Saturday"
-msgstr "土曜日"
-
-#: ../data/messages:95 ../data/messages:135 ../data/messages:175
-#: ../data/messages:99 ../data/messages:139 ../data/messages:179
-#: ../data/messages:101 ../data/messages:141 ../data/messages:181
-#: ../data/messages:105 ../data/messages:145 ../data/messages:185
-msgid "Sunday"
-msgstr "日曜日"
-
-#: ../data/messages:97 ../data/messages:137 ../data/messages:177
-#: ../data/messages:101 ../data/messages:141 ../data/messages:181
-#: ../data/messages:103 ../data/messages:143 ../data/messages:183
-#: ../data/messages:107 ../data/messages:147 ../data/messages:187
-msgid "Week Day"
-msgstr "平日"
-
-#: ../data/messages:99 ../data/messages:139 ../data/messages:179
-#: ../data/messages:103 ../data/messages:143 ../data/messages:183
-#: ../data/messages:105 ../data/messages:145 ../data/messages:185
-#: ../data/messages:109 ../data/messages:149 ../data/messages:189
-msgid "Week End"
-msgstr "週末"
-
-#: ../data/messages:101 ../data/messages:141 ../data/messages:181
-#: ../data/messages:105 ../data/messages:145 ../data/messages:185
-#: ../data/messages:107 ../data/messages:147 ../data/messages:187
-#: ../data/messages:111 ../data/messages:151 ../data/messages:191
-msgid "Month"
-msgstr "月"
-
-#: ../data/messages:77 ../data/messages:117 ../data/messages:157
-#: ../data/messages:81 ../data/messages:121 ../data/messages:161
-#: ../data/messages:83 ../data/messages:123 ../data/messages:163
-#: ../data/messages:87 ../data/messages:127 ../data/messages:167
-msgid "Repeat every"
-msgstr "リピート :　毎"
-
-#: ../data/messages:103 ../data/messages:143 ../data/messages:183
-#: ../data/messages:107 ../data/messages:147 ../data/messages:187
-#: ../data/messages:109 ../data/messages:149 ../data/messages:189
-#: ../data/messages:113 ../data/messages:153 ../data/messages:193
-msgid "If every month, which day of the month ? :"
-msgstr "毎月に設定した場合、月のどの日？ :"
-
-#: ../data/messages:105 ../data/messages:145 ../data/messages:185
-#: ../data/messages:109 ../data/messages:149 ../data/messages:189
-#: ../data/messages:111 ../data/messages:151 ../data/messages:191
-#: ../data/messages:115 ../data/messages:155 ../data/messages:195
-msgid "Message you want to use to be notified :"
-msgstr "通知させたいメッセージ :"
-
-#: ../data/messages:111 ../data/messages:115 ../data/messages:117
-#: ../data/messages:121
-msgid "Alarm n°2"
-msgstr "第 2 アラーム"
-
-#: ../data/messages:151 ../data/messages:155 ../data/messages:157
-#: ../data/messages:161
-msgid "Alarm n°3"
-msgstr "第 3 アラーム"
-
-#: src/applet-notifications.c:22 ../src/applet-notifications.c:44
-#: ../src/applet-notifications.c:49 ../src/applet-notifications.c:47
-msgid ""
-"This is the Cairo-Dock's clock applet\n"
-" made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\n"
-"The analogic representation is a port of the well-known Cairo-Clock\n"
-" from MacSlow (http://macslow.thepimp.net)."
-msgstr ""
-"これは Fabrice Rey (fabounet_03@yahoo.fr) によって \n"
-"Cairo-Dock 用に製作された Cairo-Dock's clock アプレットです。\n"
-"アナログ表示は MacSlow (http://macslow.thepimp.net) による\n"
-"有名な Cairo-Clock からの移植です。"
-
-#: src/applet-notifications.c:40 ../src/applet-notifications.c:61
-#: ../src/applet-notifications.c:56 ../src/applet-notifications.c:68
-#: ../src/applet-notifications.c:75 ../src/applet-notifications.c:73
-msgid "Set up time and date"
-msgstr "時刻と日付を設定"
-
-#: ../data/messages:1
-msgid "Icon"
-msgstr "アイコン"
-
-#: ../data/messages:11 ../data/messages:13
+#: ../data/messages:13
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -251,33 +71,33 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:15 ../data/messages:17
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:17 ../data/messages:19
+#: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。"
 
-#: ../data/messages:19 ../data/messages:21
+#: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:21 ../data/messages:23
+#: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:23 ../data/messages:25
+#: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:25 ../data/messages:27
+#: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:27 ../data/messages:29
+#: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -285,89 +105,9 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:31
+#: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
-
-#: ../data/messages:31 ../data/messages:33 ../data/messages:37
-msgid "Module"
-msgstr "モジュール"
-
-#: ../data/messages:35 ../data/messages:37 ../data/messages:41
-msgid "Show the date :"
-msgstr "日付を表示 :"
-
-#: ../data/messages:37 ../data/messages:39 ../data/messages:43
-msgid "No"
-msgstr "なし"
-
-#: ../data/messages:39 ../data/messages:41 ../data/messages:45
-msgid "On icon"
-msgstr "アイコン上に"
-
-#: ../data/messages:41 ../data/messages:43 ../data/messages:47
-msgid "On label"
-msgstr "ラベル上に"
-
-#: ../data/messages:57 ../data/messages:59 ../data/messages:63
-msgid "r, v, b, a"
-msgstr "赤、緑、青、透明"
-
-#: ../data/messages:63 ../data/messages:67 ../data/messages:69
-#: ../data/messages:73
-msgid "Setup time and date"
-msgstr "時刻と日付の設定"
-
-#: ../data/messages:65 ../data/messages:69 ../data/messages:71
-#: ../data/messages:75
-msgid "Let empty to use default command."
-msgstr "デフォルトのコマンドを使用するには空欄のままに。"
-
-#: ../data/messages:67 ../data/messages:71 ../data/messages:73
-#: ../data/messages:77
-msgid "Specific command to run :"
-msgstr "実行するコマンドの指定 :"
-
-#: ../data/messages:69 ../data/messages:73 ../data/messages:75
-#: ../data/messages:79
-msgid "Alarm"
-msgstr "アラーム"
-
-#: ../data/messages:107 ../data/messages:147 ../data/messages:187
-#: ../data/messages:111 ../data/messages:151 ../data/messages:191
-#: ../data/messages:113 ../data/messages:153 ../data/messages:193
-#: ../data/messages:117 ../data/messages:157 ../data/messages:197
-msgid "For exemple, < play /path/to/file.ogg >."
-msgstr "例えば、< play /path/to/file.ogg >。"
-
-#: ../data/messages:109 ../data/messages:149 ../data/messages:189
-#: ../data/messages:113 ../data/messages:153 ../data/messages:193
-#: ../data/messages:115 ../data/messages:155 ../data/messages:195
-#: ../data/messages:119 ../data/messages:159 ../data/messages:199
-msgid "Command to execute :"
-msgstr "実行するコマンド :"
-
-#: ../src/applet-notifications.c:50 ../src/applet-notifications.c:55
-#: ../src/applet-notifications.c:56 ../src/applet-notifications.c:62
-#: ../src/applet-notifications.c:60
-msgid "Calendar"
-msgstr "カレンダー"
-
-#: ../data/messages:61 ../data/messages:63 ../data/messages:67
-msgid ""
-"for exemple Monospace, Purisa, ... Just write the font name wihtout any "
-"number or so."
-msgstr ""
-"例えば Monospace や Purisa など....。数字の類などなしにフォント名を入力してく"
-"ださい。"
-
-#: ../data/messages:63 ../data/messages:65 ../data/messages:69
-msgid "Font used for the numeric display :"
-msgstr "デジタル表示時に使用するフォント :"
-
-#: ../data/messages:11
-msgid "Name of the dock it belongs to:"
-msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:33
 msgid ""
@@ -379,9 +119,198 @@ msgstr ""
 "す。"
 
 #: ../data/messages:35
-msgid "Lockposition ?"
-msgstr "位置を固定？"
-
-#: ../data/messages:35
 msgid "Lock position ?"
 msgstr ""
+
+#: ../data/messages:37
+msgid "Module"
+msgstr "モジュール"
+
+#: ../data/messages:39
+msgid "Behaviour"
+msgstr "動作"
+
+#: ../data/messages:41
+msgid "Show the date :"
+msgstr "日付を表示 :"
+
+#: ../data/messages:43
+msgid "No"
+msgstr "なし"
+
+#: ../data/messages:45
+msgid "On icon"
+msgstr "アイコン上に"
+
+#: ../data/messages:47
+msgid "On label"
+msgstr "ラベル上に"
+
+#: ../data/messages:49
+msgid "if not, then the applet will update time once a minute, saving CPU."
+msgstr "CPU の使用を抑えて、アプレットを 1 分置きに更新します。"
+
+#: ../data/messages:51
+msgid "Show seconds ?"
+msgstr "秒を表示？"
+
+#: ../data/messages:53
+msgid "for numeric format only."
+msgstr "デジタル表示のみに適用"
+
+#: ../data/messages:55
+msgid "Should the time be displayed as a 24h format ?"
+msgstr "時刻を24時間形式で表示？"
+
+#: ../data/messages:57
+msgid "Style"
+msgstr "スタイル"
+
+#: ../data/messages:59
+msgid ""
+"The analogic view is based on CairoClock; otherwise it will be displayed in "
+"a numeric way."
+msgstr ""
+"アナログ表示は CairoClock を元にしています。それ以外の場合、デジタル方式で表"
+"示されます。"
+
+#: ../data/messages:61
+msgid "Use the analogic view ?"
+msgstr "アナログ表示を使用？"
+
+#: ../data/messages:63
+msgid "r, v, b, a"
+msgstr "赤、緑、青、透明"
+
+#: ../data/messages:65
+msgid "Text color for the numeric display:"
+msgstr "デジタル表示時のテキスト色 :"
+
+#: ../data/messages:67
+msgid ""
+"for exemple Monospace, Purisa, ... Just write the font name wihtout any "
+"number or so."
+msgstr ""
+"例えば Monospace や Purisa など....。数字の類などなしにフォント名を入力してく"
+"ださい。"
+
+#: ../data/messages:69
+msgid "Font used for the numeric display :"
+msgstr "デジタル表示時に使用するフォント :"
+
+#: ../data/messages:71
+msgid "List of available themes for the analogic display :"
+msgstr "アナログ表示用に利用可能なテーマのリスト :"
+
+#: ../data/messages:73
+msgid "Setup time and date"
+msgstr "時刻と日付の設定"
+
+#: ../data/messages:75
+msgid "Let empty to use default command."
+msgstr "デフォルトのコマンドを使用するには空欄のままに。"
+
+#: ../data/messages:77
+msgid "Specific command to run :"
+msgstr "実行するコマンドの指定 :"
+
+#: ../data/messages:79
+msgid "Alarm"
+msgstr "アラーム"
+
+#: ../data/messages:81
+msgid "Alarm n°1"
+msgstr "第 1 アラーム"
+
+#: ../data/messages:83 ../data/messages:123 ../data/messages:163
+msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
+msgstr "xx:xx 形式で記入。例えば 8:35pm の場合は 20:35 です。"
+
+#: ../data/messages:85 ../data/messages:125 ../data/messages:165
+msgid "Time you want to be notified :"
+msgstr "通知させる時刻の設定 :"
+
+#: ../data/messages:87 ../data/messages:127 ../data/messages:167
+msgid "Repeat every"
+msgstr "リピート :　毎"
+
+#: ../data/messages:89 ../data/messages:129 ../data/messages:169
+msgid "Never"
+msgstr "しない"
+
+#: ../data/messages:91 ../data/messages:131 ../data/messages:171
+msgid "Day"
+msgstr "日"
+
+#: ../data/messages:93 ../data/messages:133 ../data/messages:173
+msgid "Monday"
+msgstr "月曜日"
+
+#: ../data/messages:95 ../data/messages:135 ../data/messages:175
+msgid "Tuesday"
+msgstr "火曜日"
+
+#: ../data/messages:97 ../data/messages:137 ../data/messages:177
+msgid "Wednesday"
+msgstr "水曜日"
+
+#: ../data/messages:99 ../data/messages:139 ../data/messages:179
+msgid "Thursday"
+msgstr "木曜日"
+
+#: ../data/messages:101 ../data/messages:141 ../data/messages:181
+msgid "Friday"
+msgstr "金曜日"
+
+#: ../data/messages:103 ../data/messages:143 ../data/messages:183
+msgid "Saturday"
+msgstr "土曜日"
+
+#: ../data/messages:105 ../data/messages:145 ../data/messages:185
+msgid "Sunday"
+msgstr "日曜日"
+
+#: ../data/messages:107 ../data/messages:147 ../data/messages:187
+msgid "Week Day"
+msgstr "平日"
+
+#: ../data/messages:109 ../data/messages:149 ../data/messages:189
+msgid "Week End"
+msgstr "週末"
+
+#: ../data/messages:111 ../data/messages:151 ../data/messages:191
+msgid "Month"
+msgstr "月"
+
+#: ../data/messages:113 ../data/messages:153 ../data/messages:193
+msgid "If every month, which day of the month ? :"
+msgstr "毎月に設定した場合、月のどの日？ :"
+
+#: ../data/messages:115 ../data/messages:155 ../data/messages:195
+msgid "Message you want to use to be notified :"
+msgstr "通知させたいメッセージ :"
+
+#: ../data/messages:117 ../data/messages:157 ../data/messages:197
+msgid "For exemple, < play /path/to/file.ogg >."
+msgstr "例えば、< play /path/to/file.ogg >。"
+
+#: ../data/messages:119 ../data/messages:159 ../data/messages:199
+msgid "Command to execute :"
+msgstr "実行するコマンド :"
+
+#: ../data/messages:121
+msgid "Alarm n°2"
+msgstr "第 2 アラーム"
+
+#: ../data/messages:161
+msgid "Alarm n°3"
+msgstr "第 3 アラーム"
+
+#~ msgid "Show the date ?"
+#~ msgstr "日付を表示？"
+
+#~ msgid "ALARM"
+#~ msgstr "アラーム"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"

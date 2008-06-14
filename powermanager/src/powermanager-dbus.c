@@ -99,11 +99,8 @@ gboolean dbus_connect_to_bus (void)
 		if (cBatteryName == NULL)  // on n'a pas trouve de batterie nous-meme.
 		{
 			cBatteryName = MY_DEFAULT_BATTERY_NAME;  // utile ? si on a rien trouve, c'est surement qu'il n'y a pas de batterie non ?
-			cd_warning ("No battery were found, trying with default one : %s", cBatteryName);
-			detect_battery ();
-		}
-		else
-		{
+			cd_warning ("No battery were found, trying with default one : %s, with DBus", cBatteryName);
+			
 			cd_message ("Battery Name : %s", cBatteryName);
 			gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", power_battery_name());
 			cd_debug ("  batteryPath : %s", batteryPath);
@@ -116,6 +113,12 @@ gboolean dbus_connect_to_bus (void)
 			myData.battery_present = (dbus_proxy_battery != NULL);  // a priori toujours vrai.
 			g_free (batteryPath);
 			g_free (cBatteryName);
+			
+			detect_battery ();
+		}
+		else
+		{
+			myData.battery_present = TRUE;
 		}
 		
 		return TRUE;

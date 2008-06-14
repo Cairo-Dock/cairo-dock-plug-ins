@@ -99,7 +99,7 @@ gboolean cd_rame_update_from_data (void)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
-		make_cd_Gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
+		cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
 	}
 	else
 	{
@@ -107,7 +107,7 @@ gboolean cd_rame_update_from_data (void)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
-			make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
+			cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 		}
 		else
 		{
@@ -144,7 +144,7 @@ gboolean cd_rame_update_from_data (void)
 			if (! myConfig.bShowSwap)
 			{
 				if (bRamNeedsUpdate)
-					make_cd_Gauge (myDrawContext, myContainer, myIcon, myData.pGauge, fRamPercent / 100);
+					cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, fRamPercent / 100);
 			}
 			else
 			{
@@ -157,7 +157,7 @@ gboolean cd_rame_update_from_data (void)
 					pValue = g_new (double, 1);
 					*pValue = (double) fSwapPercent / 100;
 					pList = g_list_append (pList, pValue);
-					make_cd_Gauge_multiValue (myDrawContext, myContainer, myIcon, myData.pGauge, pList);
+					cairo_dock_render_gauge_multi_value (myDrawContext, myContainer, myIcon, myData.pGauge, pList);
 					g_list_foreach (pList, (GFunc) g_free, NULL);
 					g_list_free (pList);
 				}

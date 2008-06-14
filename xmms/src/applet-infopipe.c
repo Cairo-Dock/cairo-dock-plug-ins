@@ -7,8 +7,11 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 Fabrice Rey (fabounet@users.berlios.de)
 
 ******************************************************************************/
+#define _BSD_SOURCE
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <stdio.h>
 #include <glib/gi18n.h>
 #include <glib/gstdio.h>
 #include <cairo-dock.h>
@@ -18,6 +21,8 @@ Fabrice Rey (fabounet@users.berlios.de)
 #include "applet-draw.h"
 
 CD_APPLET_INCLUDE_MY_VARS
+
+static char  *s_cTmpFile = NULL;
 
 
 enum {
@@ -39,47 +44,44 @@ static int s_pLineNumber[MY_NB_PLAYERS][NB_INFO] = {
 };
 
 void cd_xmms_acquisition (void) {
+	int fds = -1;
+	if (myConfig.iPlayer != MY_XMMS) {
+		s_cTmpFile = g_strdup ("/tmp/xmms.XXXXXX");
+		fds =mkstemp (s_cTmpFile);
+		if (fds == -1)
+		{
+			g_free (s_cTmpFile);
+			s_cTmpFile = NULL;
+			return;
+		}
+	}
 	gchar *cCommand = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
 		break ;
 		case MY_AUDACIOUS :  //Il faut émuler le pipe d'audacious par AUDTOOL
-			cCommand = g_strdup_printf ("bash %s/infoaudacious.sh", MY_APPLET_SHARE_DATA_DIR);
+			cCommand = g_strdup_printf ("bash %s/infoaudacious.sh %s", MY_APPLET_SHARE_DATA_DIR, s_cTmpFile);
 			system (cCommand);
 		break ;
 		case MY_BANSHEE :  //Le pipe est trop lent et cause des freezes... // Il faut émuler le pipe de banshee par le script
-			cCommand = g_strdup_printf ("bash %s/infobanshee.sh", MY_APPLET_SHARE_DATA_DIR);
+			cCommand = g_strdup_printf ("bash %s/infobanshee.sh %s", MY_APPLET_SHARE_DATA_DIR, s_cTmpFile);
 			system (cCommand);
 		break ;
 		case MY_EXAILE :  //Le pipe est trop lent, récupération des infos une fois sur deux avec un pique du cpu lors de l'éxécution du script // Il faut émuler le pipe d'audacious par Exaile -q
-			cCommand = g_strdup_printf ("bash %s/infoexaile.sh", MY_APPLET_SHARE_DATA_DIR);
+			cCommand = g_strdup_printf ("bash %s/infoexaile.sh %s", MY_APPLET_SHARE_DATA_DIR, s_cTmpFile);
 			system (cCommand);
 		break ;
 		default :
 		break ;
 	}
 	g_free (cCommand);
+	if (fds != -1)
+		close(fds);
 }
 
 //Fonction de lecture du tuyau.
 void cd_xmms_read_data (void) {
-	gchar *cInfopipeFilePath = NULL;
-	switch (myConfig.iPlayer) {
-		case MY_XMMS :
-			cInfopipeFilePath = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
-		break ;
-		case MY_AUDACIOUS :
-			cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
-		break ;
-		case MY_BANSHEE :
-			cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
-		break ;
-		case MY_EXAILE :
-		break ;
-		default :
-		break ;
-	}
-	if (cInfopipeFilePath == NULL || ! g_file_test (cInfopipeFilePath, G_FILE_TEST_EXISTS)) {
+	if ((myConfig.iPlayer != MY_XMMS) && (s_cTmpFile == NULL || ! g_file_test (s_cTmpFile, G_FILE_TEST_EXISTS))) {
 		myData.playingStatus = PLAYER_NONE;
 		return ;
 	}
@@ -88,7 +90,7 @@ void cd_xmms_read_data (void) {
 	gchar *cQuickInfo = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
-	g_file_get_contents(cInfopipeFilePath, &cContent, &length, &erreur);
+	g_file_get_contents(s_cTmpFile, &cContent, &length, &erreur);
 	if (erreur != NULL) {
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
@@ -210,32 +212,11 @@ void cd_xmms_read_data (void) {
 		}  // fin de parcours des lignes.
 		g_strfreev (cInfopipesList);
 	}
-	//cd_remove_pipes ();
+	
 	if (myConfig.iPlayer != MY_XMMS) {
-	  g_remove (cInfopipeFilePath);
-	  g_free (cInfopipeFilePath);
+		g_remove (s_cTmpFile);
+		g_free (s_cTmpFile);
+		s_cTmpFile = NULL;
 	}
 }
 
-
-//Fonction qui supprime les tuyaux émulés pour eviter des pics CPU
-void cd_xmms_remove_pipes(void) {
-	gchar *cInfopipeFilePath = NULL;
-	switch (myConfig.iPlayer) {
-		case MY_AUDACIOUS :
-			cInfopipeFilePath = g_strdup_printf("/tmp/audacious-info_%s.0",g_getenv ("USER"));
-		break;
-		case MY_BANSHEE :
-			cInfopipeFilePath = g_strdup_printf("/tmp/banshee-info_%s.0",g_getenv ("USER"));
-		break;
-		case MY_EXAILE :
-			cInfopipeFilePath = g_strdup_printf("/tmp/exaile-info_%s.0",g_getenv ("USER"));
-		break;
-		default :  // xmms n'en a pas.
-		return ;
-	}
-	if (cInfopipeFilePath != NULL) {
-		g_remove (cInfopipeFilePath);
-		g_free (cInfopipeFilePath);
-	}
-}

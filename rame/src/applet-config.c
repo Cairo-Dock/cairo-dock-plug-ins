@@ -40,7 +40,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	
 	//Adieu la jauge...
-	free_cd_Gauge(myData.pGauge);
+	cairo_dock_free_gauge(myData.pGauge);
 	
 	cairo_dock_free_measure_timer (myData.pTopMeasureTimer);
 	cairo_dock_dialog_unreference (myData.pTopDialog);

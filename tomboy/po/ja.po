@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 06:16+0200\n"
 "PO-Revision-Date: 2008-05-19 21:57+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,268 +15,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/messages:3
-msgid "Desired icon size for this applet"
-msgstr "このアプレットのアイコンの大きさ"
-
-#: ../data/messages:5
-msgid "width :"
-msgstr "幅 :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "高さ :"
-
-#: ../data/messages:9
-msgid "Default title :"
-msgstr "デフォルトのタイトル :"
-
-#: ../data/messages:11 ../data/messages:25 ../data/messages:27
-msgid "Configuration"
-msgstr "設定"
-
-#: ../data/messages:13
-msgid "Info-bubbles"
-msgstr "情報を通知する吹き出し"
-
-#: ../data/messages:15
-msgid "Activate info-bubbles ?"
-msgstr "吹き出しによる情報表示を有効化？"
-
-#: ../data/messages:19
-msgid "Time length of info-bubbles :"
-msgstr "吹き出しの表示継続時間 :"
-
-#: ../data/messages:17
-msgid "in ms."
-msgstr "ミリ秒単位"
-
-#: ../data/messages:21
-msgid "Animations"
-msgstr "アニメーション"
-
-#: ../data/messages:25
-msgid "bounce"
-msgstr "バウンド"
-
-#: ../data/messages:27
-msgid "rotate"
-msgstr "回転"
-
-#: ../data/messages:29
-msgid "blink"
-msgstr "点滅"
-
-#: ../data/messages:31
-msgid "pulse"
-msgstr "波動"
-
-#: ../data/messages:33
-msgid "upside-down"
-msgstr "上下逆さま"
-
-#: ../data/messages:35
-msgid "wobbly"
-msgstr "伸び縮み"
-
-#: ../data/messages:37
-msgid "random"
-msgstr "ランダム"
-
-#: ../data/messages:23
-msgid "Animation when music changes :"
-msgstr "音楽切り替わり時のアニメーション:"
-
-#: ../data/messages:39
-msgid "Display"
-msgstr "表示"
-
-#: ../data/messages:41
-msgid "Display album's cover instead of icon ?"
-msgstr "アイコンの代わりにアルバムのカバーを表示？"
-
-#: ../data/messages:43
-msgid "Information to display on the icon :"
-msgstr "アイコン上に表示する情報 :"
-
-#: src/rhythmbox-draw.c:101 src/rhythmbox-draw.c:102
-#: ../src/rhythmbox-draw.c:77 ../src/rhythmbox-draw.c:102
-#, c-format
-msgid ""
-"Artist : %s\n"
-"Album : %s\n"
-"Title : %s"
-msgstr ""
-"アーティスト : %s\n"
-"アルバム : %s\n"
-"タイトル : %s"
-
-#: ../src/rhythmbox-draw.c:81 ../src/rhythmbox-draw.c:82
-#: ../src/rhythmbox-draw.c:83 ../src/rhythmbox-draw.c:106
-#: ../src/rhythmbox-draw.c:107 ../src/rhythmbox-draw.c:108
-msgid "Unknown"
-msgstr "不明"
-
-#: src/rhythmbox-menu-functions.c:59 src/rhythmbox-menu-functions.c:60
-#: ../src/rhythmbox-menu-functions.c:61 ../src/tomboy-notifications.c:14
 #: ../src/tomboy-notifications.c:12
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
-#: src/rhythmbox-menu-functions.c:67 src/rhythmbox-menu-functions.c:68
-#: ../src/rhythmbox-menu-functions.c:71
-msgid "Previous"
-msgstr "前へ"
-
-#: src/rhythmbox-menu-functions.c:69 src/rhythmbox-menu-functions.c:70
-#: ../src/rhythmbox-menu-functions.c:73
-msgid "Next"
-msgstr "次へ"
-
-#: src/rhythmbox-menu-functions.c:71 src/rhythmbox-menu-functions.c:72
-#: ../src/rhythmbox-menu-functions.c:75
-msgid "Information"
-msgstr "情報"
-
-#: ../data/messages:1
-msgid "Icon"
-msgstr "アイコン"
-
-#: ../data/messages:45
-msgid "nothing"
-msgstr "なし"
-
-#: ../data/messages:47
-msgid "time elapsed"
-msgstr "経過時間"
-
-#: ../data/messages:49
-msgid "time left"
-msgstr "残り時間"
-
-#: ../data/messages:51
-#, c-format
-msgid "time in %n"
-msgstr ""
-
-#: ../data/messages:53
-msgid "° of track"
-msgstr "トラック番号"
-
-#: ../data/messages:55 ../data/messages:11 ../data/messages:13
-msgid "Personnalisation"
-msgstr "カスタマイズ"
-
-#: ../data/messages:57 ../data/messages:61 ../data/messages:65
-#: ../data/messages:69 ../data/messages:73 ../data/messages:13
-#: ../data/messages:17 ../data/messages:21 ../data/messages:15
-#: ../data/messages:19 ../data/messages:23
-msgid "Let t empty to use the default icon."
-msgstr "デフォルトのアイコンを使用するには空欄のままに。"
-
-#: ../data/messages:59 ../data/messages:15 ../data/messages:17
-msgid "Name of an image for the 'default' icon :"
-msgstr "'デフォルト' アイコンの画像の名前 :"
-
-#: ../data/messages:63
-msgid "Name of an image for the 'play' icon :"
-msgstr "'再生' アイコンの画像の名前 :"
-
-#: ../data/messages:67
-msgid "Name of an image for the 'stop' icon :"
-msgstr "'停止' アイコンの画像の名前 :"
-
-#: ../data/messages:71
-msgid "Name of an image for the 'pause' icon :"
-msgstr "'一時停止' アイコンの画像の名前 :"
-
-#: ../data/messages:75 ../data/messages:23 ../data/messages:25
-msgid "Name of an image for the 'broken' icon :"
-msgstr "'リンク切れ' アイコンの画像の名前 :"
-
-#: ../src/tomboy-notifications.c:30 ../src/tomboy-notifications.c:28
-#: ../src/tomboy-notifications.c:27 ../src/tomboy-notifications.c:41
-#: ../src/tomboy-notifications.c:42 ../src/tomboy-notifications.c:39
+#: ../src/tomboy-notifications.c:39
 msgid "Note name : "
 msgstr "ノートの名前 :"
 
-#: ../data/messages:19 ../data/messages:21
-msgid "Name of an image for the 'close' icon :"
-msgstr "「閉じる」のアイコン画像の名前 :"
+#: ../src/tomboy-notifications.c:62
+msgid "Search for :"
+msgstr ""
 
-#: ../src/tomboy-notifications.c:43 ../src/tomboy-notifications.c:47
-#: ../src/tomboy-notifications.c:61 ../src/tomboy-notifications.c:62
-#: ../src/tomboy-notifications.c:63 ../src/tomboy-notifications.c:60
-#: ../src/tomboy-notifications.c:99 ../src/tomboy-notifications.c:142
-msgid "Add a note"
-msgstr "ノートを追加"
+#: ../src/tomboy-notifications.c:83
+msgid "Search for tag :"
+msgstr ""
 
-#: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:53
-#: ../src/tomboy-notifications.c:67 ../src/tomboy-notifications.c:68
-#: ../src/tomboy-notifications.c:69 ../src/tomboy-notifications.c:66
-#: ../src/tomboy-notifications.c:105 ../src/tomboy-notifications.c:146
-msgid "Delete this note"
-msgstr "このノートを削除"
-
-#: ../src/tomboy-notifications.c:48 ../src/tomboy-notifications.c:62
-#: ../src/tomboy-notifications.c:63 ../src/tomboy-notifications.c:64
-#: ../src/tomboy-notifications.c:61 ../src/tomboy-notifications.c:100
 #: ../src/tomboy-notifications.c:139
 msgid "Reload notes"
 msgstr "ノートを再読み込み"
 
-#: ../data/messages:27 ../data/messages:29
-msgid ""
-"If your tomboy version is not recent enough, it may not have this signal. "
-"Only check this box if you notice some message like <<No marshaller for "
-"signature of signal 'NoteDeleted'>> in the terminal."
-msgstr ""
-"Tomboy のバージョンが最近のものでない場合、この信号が存在しない可能性がありま"
-"す。端末上で <<No marshaller for signature of signal 'NoteDeleted'>> のような"
-"エラーメッセージに気づいた場合にのみこのオプションにチェックを入れてくださ"
-"い。"
+#: ../src/tomboy-notifications.c:142
+msgid "Add a note"
+msgstr "ノートを追加"
 
-#: ../data/messages:29 ../data/messages:31
-msgid "Emulate the 'NoteDeleted' signal ?"
-msgstr "'NoteDeleted' 信号をエミュレート？"
+#: ../src/tomboy-notifications.c:146
+msgid "Delete this note"
+msgstr "このノートを削除"
 
-#: ../data/messages:11
-msgid "Name of the dock it belongs to:"
-msgstr "帰属先ドックの名前 :"
-
-#: ../data/messages:29
-msgid ""
-"Depending on your tomboy's version, the note deletion may not be "
-"automatically notified to us. Only check this box if you notice some error "
-"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
-"terminal."
-msgstr ""
-"使用中の Tomboy のバージョンによっては、ノートの削除の自動的な通知が行われな"
-"い可能性があります。端末上で <<No marshaller for signature of signal "
-"'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみこのオプションに"
-"チェックを入れてください。"
-
-#: ../data/messages:33
-msgid "Let it empty to use default sub-dock view."
-msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
-
-#: ../data/messages:35
-msgid "Name of the view used for the sub-dock :"
-msgstr "サブ・ドックに使用する外観の名前 :"
-
-#: ../src/tomboy-notifications.c:61 ../src/tomboy-notifications.c:62
-msgid "Search for :"
-msgstr ""
-
-#: ../src/tomboy-notifications.c:82 ../src/tomboy-notifications.c:83
-msgid "Search for tag :"
-msgstr ""
-
-#: ../src/tomboy-notifications.c:110 ../src/tomboy-notifications.c:149
+#: ../src/tomboy-notifications.c:149
 msgid "Search"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:111 ../src/tomboy-notifications.c:150
+#: ../src/tomboy-notifications.c:150
 msgid "Searh for tag"
 msgstr ""
 
@@ -296,6 +67,78 @@ msgstr ""
 msgid "Reset marks"
 msgstr ""
 
+#: ../data/messages:1
+msgid "Icon"
+msgstr "アイコン"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "このアプレットのアイコンの大きさ"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "幅 :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高さ :"
+
+#: ../data/messages:9
+msgid "Default title :"
+msgstr "デフォルトのタイトル :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "帰属先ドックの名前 :"
+
+#: ../data/messages:13
+msgid "Personnalisation"
+msgstr "カスタマイズ"
+
+#: ../data/messages:15 ../data/messages:19 ../data/messages:23
+msgid "Let t empty to use the default icon."
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
+
+#: ../data/messages:17
+msgid "Name of an image for the 'default' icon :"
+msgstr "'デフォルト' アイコンの画像の名前 :"
+
+#: ../data/messages:21
+msgid "Name of an image for the 'close' icon :"
+msgstr "「閉じる」のアイコン画像の名前 :"
+
+#: ../data/messages:25
+msgid "Name of an image for the 'broken' icon :"
+msgstr "'リンク切れ' アイコンの画像の名前 :"
+
+#: ../data/messages:27
+msgid "Configuration"
+msgstr "設定"
+
+#: ../data/messages:29
+msgid ""
+"Depending on your tomboy's version, the note deletion may not be "
+"automatically notified to us. Only check this box if you notice some error "
+"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
+"terminal."
+msgstr ""
+"使用中の Tomboy のバージョンによっては、ノートの削除の自動的な通知が行われな"
+"い可能性があります。端末上で <<No marshaller for signature of signal "
+"'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみこのオプションに"
+"チェックを入れてください。"
+
+#: ../data/messages:31
+msgid "Emulate the 'NoteDeleted' signal ?"
+msgstr "'NoteDeleted' 信号をエミュレート？"
+
+#: ../data/messages:33
+msgid "Let it empty to use default sub-dock view."
+msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
+
+#: ../data/messages:35
+msgid "Name of the view used for the sub-dock :"
+msgstr "サブ・ドックに使用する外観の名前 :"
+
 #: ../data/messages:37
 msgid "Draw note's content on their icon ?"
 msgstr ""
@@ -310,3 +153,103 @@ msgstr ""
 #: ../data/messages:41
 msgid "Date format to search for :"
 msgstr ""
+
+#~ msgid "Info-bubbles"
+#~ msgstr "情報を通知する吹き出し"
+
+#~ msgid "Activate info-bubbles ?"
+#~ msgstr "吹き出しによる情報表示を有効化？"
+
+#~ msgid "Time length of info-bubbles :"
+#~ msgstr "吹き出しの表示継続時間 :"
+
+#~ msgid "in ms."
+#~ msgstr "ミリ秒単位"
+
+#~ msgid "Animations"
+#~ msgstr "アニメーション"
+
+#~ msgid "bounce"
+#~ msgstr "バウンド"
+
+#~ msgid "rotate"
+#~ msgstr "回転"
+
+#~ msgid "blink"
+#~ msgstr "点滅"
+
+#~ msgid "pulse"
+#~ msgstr "波動"
+
+#~ msgid "upside-down"
+#~ msgstr "上下逆さま"
+
+#~ msgid "wobbly"
+#~ msgstr "伸び縮み"
+
+#~ msgid "random"
+#~ msgstr "ランダム"
+
+#~ msgid "Animation when music changes :"
+#~ msgstr "音楽切り替わり時のアニメーション:"
+
+#~ msgid "Display"
+#~ msgstr "表示"
+
+#~ msgid "Display album's cover instead of icon ?"
+#~ msgstr "アイコンの代わりにアルバムのカバーを表示？"
+
+#~ msgid "Information to display on the icon :"
+#~ msgstr "アイコン上に表示する情報 :"
+
+#~ msgid ""
+#~ "Artist : %s\n"
+#~ "Album : %s\n"
+#~ "Title : %s"
+#~ msgstr ""
+#~ "アーティスト : %s\n"
+#~ "アルバム : %s\n"
+#~ "タイトル : %s"
+
+#~ msgid "Unknown"
+#~ msgstr "不明"
+
+#~ msgid "Previous"
+#~ msgstr "前へ"
+
+#~ msgid "Next"
+#~ msgstr "次へ"
+
+#~ msgid "Information"
+#~ msgstr "情報"
+
+#~ msgid "nothing"
+#~ msgstr "なし"
+
+#~ msgid "time elapsed"
+#~ msgstr "経過時間"
+
+#~ msgid "time left"
+#~ msgstr "残り時間"
+
+#~ msgid "° of track"
+#~ msgstr "トラック番号"
+
+#~ msgid "Name of an image for the 'play' icon :"
+#~ msgstr "'再生' アイコンの画像の名前 :"
+
+#~ msgid "Name of an image for the 'stop' icon :"
+#~ msgstr "'停止' アイコンの画像の名前 :"
+
+#~ msgid "Name of an image for the 'pause' icon :"
+#~ msgstr "'一時停止' アイコンの画像の名前 :"
+
+#~ msgid ""
+#~ "If your tomboy version is not recent enough, it may not have this signal. "
+#~ "Only check this box if you notice some message like <<No marshaller for "
+#~ "signature of signal 'NoteDeleted'>> in the terminal."
+#~ msgstr ""
+#~ "Tomboy のバージョンが最近のものでない場合、この信号が存在しない可能性があ"
+#~ "ります。端末上で <<No marshaller for signature of signal 'NoteDeleted'>> "
+#~ "のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れ"
+#~ "てください。"

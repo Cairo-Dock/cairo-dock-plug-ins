@@ -209,7 +209,7 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
-	g_print ("%s(%x)\n", __func__, pCaroussel);
+	//g_print ("%s(%x)\n", __func__, pCaroussel);
 	if (pCaroussel == NULL)
 		return ;
 	

@@ -30,8 +30,8 @@ CD_APPLET_INIT_BEGIN (erreur)
 	}
 	
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-	make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,0);
+	myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+	cairo_dock_render_gauge(myDrawContext,myDock,myIcon,myData.pGauge,0);
 CD_APPLET_INIT_END
 
 
@@ -41,7 +41,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	
-	free_cd_Gauge(myData.pGauge);
+	cairo_dock_free_gauge(myData.pGauge);
 CD_APPLET_STOP_END
 
 
@@ -62,8 +62,8 @@ CD_APPLET_RELOAD_BEGIN
 		
 	}
 	
-	free_cd_Gauge(myData.pGauge);
+	cairo_dock_free_gauge(myData.pGauge);
 	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-	myData.pGauge = init_cd_Gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-	make_cd_Gauge(myDrawContext,myDock,myIcon,myData.pGauge,0);
+	myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+	cairo_dock_render_gauge(myDrawContext,myDock,myIcon,myData.pGauge,0);
 CD_APPLET_RELOAD_END

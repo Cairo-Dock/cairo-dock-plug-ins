@@ -39,7 +39,7 @@ CD_APPLET_RESET_DATA_BEGIN
 		g_object_unref (myData.dbus_proxy_nm);
 	
 	//Adieu la jauge...
-	free_cd_Gauge(myData.pGauge);
+	cairo_dock_free_gauge(myData.pGauge);
 	
 	g_timer_destroy (myData.pClock);
 CD_APPLET_RESET_DATA_END

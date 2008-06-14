@@ -2,7 +2,8 @@
 # Audacious Emulated pipe
 # Pipe created by ChAnGFu
 
-FILE="/tmp/audacious-info_$USER.0"
+if [ ! -w $1 ] ; then exit 1 ; fi
+FILE=$1
 
 STATUS=$(audtool playback-status)
 TITLE=$(audtool current-song)

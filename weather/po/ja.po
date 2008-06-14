@@ -6,14 +6,90 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 06:11+0200\n"
 "PO-Revision-Date: 2008-05-19 21:58+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the weather applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"これは Fabrice Rey によって \n"
+"Cairo-Dock 用に製作された Weather アプレットです。"
+
+#: ../src/applet-notifications.c:69
+msgid ""
+"Enter your location\n"
+" (for exemple : Paris, France)"
+msgstr ""
+"現在地の入力\n"
+"（例 : Tokyo, Japan）"
+
+#: ../src/applet-notifications.c:82 ../src/applet-notifications.c:95
+msgid ""
+"I couldn't get the info\n"
+" Is connexion alive ?"
+msgstr ""
+"情報の取得が出来ませんでした。\n"
+"回線接続に問題はありませんか？"
+
+#: ../src/applet-notifications.c:128
+msgid "Choose your location :"
+msgstr "現在地の選択 :"
+
+#: ../src/applet-notifications.c:152
+msgid "Search for your location"
+msgstr "現在地の検索"
+
+#: ../src/applet-notifications.c:153
+msgid "Reload now"
+msgstr "直ちに再読み込み"
+
+#: ../src/applet-notifications.c:178 ../src/applet-notifications.c:206
+msgid ""
+"No data were available\n"
+" is connection alive ?"
+msgstr ""
+"データの取得が出来ませんでした。\n"
+"回線接続に問題はありませんか？"
+
+#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:218
+msgid "Temperature"
+msgstr "気温"
+
+#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
+msgid "Wind"
+msgstr "風"
+
+#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+msgid "Humidity"
+msgstr "湿度"
+
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+msgid "SunRise"
+msgstr "日の出"
+
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+msgid "SunSet"
+msgstr "日の入り"
+
+#: ../src/applet-notifications.c:218
+msgid "feeled"
+msgstr "体感温度"
+
+#: ../src/applet-notifications.c:220
+msgid "Pressure"
+msgstr "気圧"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
@@ -31,165 +107,15 @@ msgstr "高さ :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-msgid "Icon's name :"
-msgstr "アイコンの名前 :"
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "帰属先ドックの名前 :"
 
-#: src/applet-notifications.c:13 ../src/applet-notifications.c:21
-#: ../src/applet-notifications.c:24 ../src/applet-notifications.c:22
-msgid ""
-"This is the weather applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"これは Fabrice Rey によって \n"
-"Cairo-Dock 用に製作された Weather アプレットです。"
-
-#: ../src/applet-notifications.c:63 ../src/applet-notifications.c:77
-#: ../src/applet-notifications.c:85 ../src/applet-notifications.c:99
-#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:106
-#: ../src/applet-notifications.c:96 ../src/applet-notifications.c:110
-#: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
-#: ../src/applet-notifications.c:223 ../src/applet-notifications.c:247
-#: ../src/applet-notifications.c:221 ../src/applet-notifications.c:245
-#: ../src/applet-notifications.c:219 ../src/applet-notifications.c:243
-msgid "Temperature"
-msgstr "気温"
-
-#: ../src/applet-notifications.c:64 ../src/applet-notifications.c:78
-#: ../src/applet-notifications.c:86 ../src/applet-notifications.c:100
-#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:107
-#: ../src/applet-notifications.c:97 ../src/applet-notifications.c:111
-#: ../src/applet-notifications.c:225 ../src/applet-notifications.c:249
-#: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
-#: ../src/applet-notifications.c:222 ../src/applet-notifications.c:246
-#: ../src/applet-notifications.c:220 ../src/applet-notifications.c:244
-msgid "Wind"
-msgstr "風"
-
-#: ../src/applet-notifications.c:65 ../src/applet-notifications.c:79
-#: ../src/applet-notifications.c:87 ../src/applet-notifications.c:101
-#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:108
-#: ../src/applet-notifications.c:98 ../src/applet-notifications.c:112
-#: ../src/applet-notifications.c:226 ../src/applet-notifications.c:250
-#: ../src/applet-notifications.c:225 ../src/applet-notifications.c:249
-#: ../src/applet-notifications.c:223 ../src/applet-notifications.c:247
-#: ../src/applet-notifications.c:221 ../src/applet-notifications.c:245
-msgid "Humidity"
-msgstr "湿度"
-
-#: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
-#: ../src/applet-notifications.c:88 ../src/applet-notifications.c:102
-#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:109
-#: ../src/applet-notifications.c:99 ../src/applet-notifications.c:113
-#: ../src/applet-notifications.c:227 ../src/applet-notifications.c:251
-#: ../src/applet-notifications.c:226 ../src/applet-notifications.c:250
-#: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
-#: ../src/applet-notifications.c:222 ../src/applet-notifications.c:246
-msgid "SunRise"
-msgstr "日の出"
-
-#: ../src/applet-notifications.c:66 ../src/applet-notifications.c:80
-#: ../src/applet-notifications.c:88 ../src/applet-notifications.c:102
-#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:109
-#: ../src/applet-notifications.c:99 ../src/applet-notifications.c:113
-#: ../src/applet-notifications.c:227 ../src/applet-notifications.c:251
-#: ../src/applet-notifications.c:226 ../src/applet-notifications.c:250
-#: ../src/applet-notifications.c:224 ../src/applet-notifications.c:248
-#: ../src/applet-notifications.c:222 ../src/applet-notifications.c:246
-msgid "SunSet"
-msgstr "日の入り"
-
-#: ../src/applet-notifications.c:77 ../src/applet-notifications.c:99
-#: ../src/applet-notifications.c:106 ../src/applet-notifications.c:110
-#: ../src/applet-notifications.c:248 ../src/applet-notifications.c:247
-#: ../src/applet-notifications.c:245 ../src/applet-notifications.c:243
-msgid "feeled"
-msgstr "体感温度"
-
-#: ../src/applet-notifications.c:79 ../src/applet-notifications.c:101
-#: ../src/applet-notifications.c:108 ../src/applet-notifications.c:112
-#: ../src/applet-notifications.c:250 ../src/applet-notifications.c:249
-#: ../src/applet-notifications.c:247 ../src/applet-notifications.c:245
-msgid "Pressure"
-msgstr "気圧"
-
-#: ../data/messages:1
-msgid "Icon"
-msgstr "アイコン"
-
-#: ../data/messages:11 ../data/messages:31 ../data/messages:33
-#: ../data/messages:35 ../data/messages:37 ../data/messages:39
-msgid "Configuration"
-msgstr "設定"
-
-#: ../data/messages:13 ../data/messages:33
-msgid "You can search it on www.weather.com"
-msgstr "www.weather.com にてコード検索可能"
-
-#: ../data/messages:15 ../data/messages:35 ../data/messages:37
-#: ../data/messages:39 ../data/messages:43
-msgid "Code of your location :"
-msgstr "現在地のコード :"
-
-#: ../data/messages:17 ../data/messages:37 ../data/messages:39
-#: ../data/messages:41 ../data/messages:45
-msgid "Use International System Units ?"
-msgstr "国際単位系を使用？"
-
-#: ../data/messages:19 ../data/messages:49 ../data/messages:51
-#: ../data/messages:53 ../data/messages:57
-msgid "Display current conditions on the icon instead of the default one ?"
-msgstr "アイコン上にデフォルトの表示に代えて現在の天気を表示？"
-
-#: ../data/messages:21 ../data/messages:51 ../data/messages:53
-#: ../data/messages:55 ../data/messages:59
-msgid "Number of days you want to forecast :"
-msgstr "予報日数 :"
-
-#: ../data/messages:23 ../data/messages:53 ../data/messages:55
-#: ../data/messages:57 ../data/messages:61
-msgid "Display nights too ?"
-msgstr "夜の予報も表示？"
-
-#: ../data/messages:25 ../data/messages:55 ../data/messages:57
-#: ../data/messages:59 ../data/messages:63
-msgid "Display temperature as quick info ?"
-msgstr "アイコン上に気温を表示？"
-
-#: ../data/messages:27 ../data/messages:39 ../data/messages:41
-#: ../data/messages:43 ../data/messages:47
-msgid "in seconds. Set 0 to have never-ending dialogs."
-msgstr "秒単位。ダイアログを表示させたままにするには 0 に設定。"
-
-#: ../data/messages:29 ../data/messages:41 ../data/messages:43
-#: ../data/messages:45 ../data/messages:49
-msgid "Duration of dialogs :"
-msgstr "ダイアログの継続時間 :"
-
-#: ../data/messages:31 ../data/messages:43 ../data/messages:45
-#: ../data/messages:47 ../data/messages:51
-msgid "in minutes."
-msgstr "分単位。"
-
-#: ../data/messages:33 ../data/messages:45 ../data/messages:47
-#: ../data/messages:49 ../data/messages:53
-msgid "Interval of time between 2 checks :"
-msgstr "チェックの間隔時間 :"
-
-#: ../data/messages:35 ../data/messages:59 ../data/messages:63
-#: ../data/messages:65 ../data/messages:69
-msgid "Let it empty to use default sub-dock view."
-msgstr "デフォルトのサブ・ドックの外観を使用するには空欄のままに。"
-
-#: ../data/messages:37 ../data/messages:61 ../data/messages:65
-#: ../data/messages:67 ../data/messages:71
-msgid "Name of the view used for the sub-dock :"
-msgstr "サブ・ドックに使用する外観の名前 :"
-
-#: ../data/messages:11 ../data/messages:13
+#: ../data/messages:13
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -197,33 +123,33 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:15 ../data/messages:17
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:17 ../data/messages:19
+#: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。"
 
-#: ../data/messages:19 ../data/messages:21
+#: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:21 ../data/messages:23
+#: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:23 ../data/messages:25
+#: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:25 ../data/messages:27
+#: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:27 ../data/messages:29
+#: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -231,149 +157,9 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:31
+#: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
-
-#: ../data/messages:47 ../data/messages:59 ../data/messages:61
-#: ../data/messages:65
-msgid "Display"
-msgstr "表示"
-
-#: ../data/messages:57 ../data/messages:61 ../data/messages:63
-#: ../data/messages:67
-msgid "Choose one of the available themes :"
-msgstr "利用可能なテーマから1つ選択 :"
-
-msgid "Monday"
-msgstr "月曜日"
-
-msgid "Tuesday"
-msgstr "火曜日"
-
-msgid "Wednesday"
-msgstr "水曜日"
-
-msgid "Thursday"
-msgstr "木曜日"
-
-msgid "Friday"
-msgstr "金曜日"
-
-msgid "Saturday"
-msgstr "土曜日"
-
-msgid "Sunday"
-msgstr "日曜日"
-
-msgid "Jan"
-msgstr "1月"
-
-msgid "Feb"
-msgstr "2月"
-
-msgid "Mar"
-msgstr "3月"
-
-msgid "Apr"
-msgstr "4月"
-
-msgid "Jun"
-msgstr "6月"
-
-msgid "Jui"
-msgstr "7月"
-
-msgid "Aug"
-msgstr "8月"
-
-msgid "Sep"
-msgstr "9月"
-
-msgid "Oct"
-msgstr "10月"
-
-msgid "Nov"
-msgstr "11月"
-
-msgid "Dec"
-msgstr "12月"
-
-#: ../data/messages:63 ../data/messages:67 ../data/messages:69
-#: ../data/messages:73
-msgid "Render desklet in 3D ?"
-msgstr "デスクレットを 3D 描画？"
-
-#: ../data/messages:33
-msgid ""
-"You can visit this URL to find it, for exemple : http://xoap.weather.com/"
-"search/search?where=Paris,France"
-msgstr ""
-"コードを見つけるには、例えばこの URL を訪れてみてください。: http://xoap."
-"weather.com/search/search?where=Tokyo,Japan"
-
-#: ../src/applet-notifications.c:96 ../src/applet-notifications.c:94
-#: ../src/applet-notifications.c:93
-msgid ""
-"Enter your location\n"
-" (for exemple : Paris, France)"
-msgstr ""
-"現在地の入力\n"
-"（例 : Tokyo, Japan）"
-
-#: ../src/applet-notifications.c:109 ../src/applet-notifications.c:123
-#: ../src/applet-notifications.c:122 ../src/applet-notifications.c:107
-#: ../src/applet-notifications.c:120 ../src/applet-notifications.c:106
-#: ../src/applet-notifications.c:119
-msgid ""
-"I couldn't get the info\n"
-" Is connexion alive ?"
-msgstr ""
-"情報の取得が出来ませんでした。\n"
-"回線接続に問題はありませんか？"
-
-#: ../src/applet-notifications.c:156 ../src/applet-notifications.c:155
-#: ../src/applet-notifications.c:153 ../src/applet-notifications.c:152
-msgid "Choose your location :"
-msgstr "現在地の選択 :"
-
-#: ../src/applet-notifications.c:182 ../src/applet-notifications.c:181
-#: ../src/applet-notifications.c:179 ../src/applet-notifications.c:177
-msgid "Search for your location"
-msgstr "現在地の検索"
-
-#: ../src/applet-notifications.c:183 ../src/applet-notifications.c:182
-#: ../src/applet-notifications.c:180 ../src/applet-notifications.c:178
-msgid "Reload now"
-msgstr "直ちに再読み込み"
-
-#: ../src/applet-notifications.c:208 ../src/applet-notifications.c:236
-#: ../src/applet-notifications.c:207 ../src/applet-notifications.c:235
-#: ../src/applet-notifications.c:205 ../src/applet-notifications.c:233
-#: ../src/applet-notifications.c:203 ../src/applet-notifications.c:231
-msgid ""
-"No data were available\n"
-" is connection alive ?"
-msgstr ""
-"データの取得が出来ませんでした。\n"
-"回線接続に問題はありませんか？"
-
-#: ../data/messages:33 ../data/messages:35 ../data/messages:37
-#: ../data/messages:41
-msgid ""
-"Right click on the icon to let Cairo-Dock help you to find your location "
-"code."
-msgstr ""
-"アイコンを右クリックすると、Cairo-Dock に現在地コードを見つけさせることができ"
-"ます。"
-
-#: ../data/messages:49 ../data/messages:51 ../data/messages:55
-msgid "Info"
-msgstr "情報"
-
-#: ../data/messages:11
-msgid "Name of the dock it belongs to:"
-msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:33
 msgid ""
@@ -384,9 +170,151 @@ msgstr ""
 "ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:35
-msgid "Lockposition ?"
-msgstr "位置の固定？"
-
-#: ../data/messages:35
 msgid "Lock position ?"
 msgstr ""
+
+#: ../data/messages:37 ../data/messages:39
+msgid "Configuration"
+msgstr "設定"
+
+#: ../data/messages:41
+msgid ""
+"Right click on the icon to let Cairo-Dock help you to find your location "
+"code."
+msgstr ""
+"アイコンを右クリックすると、Cairo-Dock に現在地コードを見つけさせることができ"
+"ます。"
+
+#: ../data/messages:43
+msgid "Code of your location :"
+msgstr "現在地のコード :"
+
+#: ../data/messages:45
+msgid "Use International System Units ?"
+msgstr "国際単位系を使用？"
+
+#: ../data/messages:47
+msgid "in seconds. Set 0 to have never-ending dialogs."
+msgstr "秒単位。ダイアログを表示させたままにするには 0 に設定。"
+
+#: ../data/messages:49
+msgid "Duration of dialogs :"
+msgstr "ダイアログの継続時間 :"
+
+#: ../data/messages:51
+msgid "in minutes."
+msgstr "分単位。"
+
+#: ../data/messages:53
+msgid "Interval of time between 2 checks :"
+msgstr "チェックの間隔時間 :"
+
+#: ../data/messages:55
+msgid "Info"
+msgstr "情報"
+
+#: ../data/messages:57
+msgid "Display current conditions on the icon instead of the default one ?"
+msgstr "アイコン上にデフォルトの表示に代えて現在の天気を表示？"
+
+#: ../data/messages:59
+msgid "Number of days you want to forecast :"
+msgstr "予報日数 :"
+
+#: ../data/messages:61
+msgid "Display nights too ?"
+msgstr "夜の予報も表示？"
+
+#: ../data/messages:63
+msgid "Display temperature as quick info ?"
+msgstr "アイコン上に気温を表示？"
+
+#: ../data/messages:65
+msgid "Display"
+msgstr "表示"
+
+#: ../data/messages:67
+msgid "Choose one of the available themes :"
+msgstr "利用可能なテーマから1つ選択 :"
+
+#: ../data/messages:69
+msgid "Let it empty to use default sub-dock view."
+msgstr "デフォルトのサブ・ドックの外観を使用するには空欄のままに。"
+
+#: ../data/messages:71
+msgid "Name of the view used for the sub-dock :"
+msgstr "サブ・ドックに使用する外観の名前 :"
+
+#: ../data/messages:73
+msgid "Render desklet in 3D ?"
+msgstr "デスクレットを 3D 描画？"
+
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
+
+#~ msgid "You can search it on www.weather.com"
+#~ msgstr "www.weather.com にてコード検索可能"
+
+#~ msgid "Monday"
+#~ msgstr "月曜日"
+
+#~ msgid "Tuesday"
+#~ msgstr "火曜日"
+
+#~ msgid "Wednesday"
+#~ msgstr "水曜日"
+
+#~ msgid "Thursday"
+#~ msgstr "木曜日"
+
+#~ msgid "Friday"
+#~ msgstr "金曜日"
+
+#~ msgid "Saturday"
+#~ msgstr "土曜日"
+
+#~ msgid "Sunday"
+#~ msgstr "日曜日"
+
+#~ msgid "Jan"
+#~ msgstr "1月"
+
+#~ msgid "Feb"
+#~ msgstr "2月"
+
+#~ msgid "Mar"
+#~ msgstr "3月"
+
+#~ msgid "Apr"
+#~ msgstr "4月"
+
+#~ msgid "Jun"
+#~ msgstr "6月"
+
+#~ msgid "Jui"
+#~ msgstr "7月"
+
+#~ msgid "Aug"
+#~ msgstr "8月"
+
+#~ msgid "Sep"
+#~ msgstr "9月"
+
+#~ msgid "Oct"
+#~ msgstr "10月"
+
+#~ msgid "Nov"
+#~ msgstr "11月"
+
+#~ msgid "Dec"
+#~ msgstr "12月"
+
+#~ msgid ""
+#~ "You can visit this URL to find it, for exemple : http://xoap.weather.com/"
+#~ "search/search?where=Paris,France"
+#~ msgstr ""
+#~ "コードを見つけるには、例えばこの URL を訪れてみてください。: http://xoap."
+#~ "weather.com/search/search?where=Tokyo,Japan"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "位置の固定？"

@@ -6,14 +6,34 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 06:15+0200\n"
 "PO-Revision-Date: 2008-05-19 21:11+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:12
+msgid ""
+"This is the rame applet\n"
+" made by parAdOxxx_ZeRo for Cairo-Dock"
+msgstr ""
+"これは parAdOxxx_ZeRo によって \n"
+"Cairo-Dock 用に製作された rame アプレットです。"
+
+#: ../src/applet-notifications.c:41
+msgid "Mb"
+msgstr ""
+
+#: ../src/applet-notifications.c:95
+msgid "Data acquisition has failed"
+msgstr ""
+
+#: ../src/applet-rame.c:109
+msgid "Loading"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -35,42 +55,15 @@ msgstr "高さ :"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-msgid "Module"
-msgstr "モジュール"
-
 #: ../data/messages:11
-msgid "Icon's name :"
-msgstr "アイコンの名前 :"
+msgid "Name of the dock it belongs to:"
+msgstr "帰属先ドックの名前 :"
 
-#: ../data/messages:15 ../data/messages:35
-msgid "Information"
-msgstr "情報"
-
-#: ../data/messages:19
-msgid "Information to display on the icon :"
-msgstr "アイコン上に表示する情報 :"
-
-#: src/applet-notifications.c:13 ../src/applet-notifications.c:15
-#: ../src/applet-notifications.c:13 ../src/applet-notifications.c:12
-msgid ""
-"This is the rame applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-"これは parAdOxxx_ZeRo によって \n"
-"Cairo-Dock 用に製作された rame アプレットです。"
-
-#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:33
-#: ../src/applet-notifications.c:36
-msgid "Waiting"
-msgstr "待機中"
-
-#: ../data/messages:11 ../data/messages:19 ../data/messages:53
-#: ../data/messages:13 ../data/messages:15
+#: ../data/messages:13
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:13 ../data/messages:21 ../data/messages:55
-#: ../data/messages:15 ../data/messages:17
+#: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -78,40 +71,33 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:15 ../data/messages:23 ../data/messages:57
-#: ../data/messages:17 ../data/messages:19
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:17 ../data/messages:25 ../data/messages:59
-#: ../data/messages:19 ../data/messages:21
+#: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。"
 
-#: ../data/messages:19 ../data/messages:27 ../data/messages:61
-#: ../data/messages:21 ../data/messages:23
+#: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:21 ../data/messages:29 ../data/messages:63
-#: ../data/messages:23 ../data/messages:25
+#: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:23 ../data/messages:31 ../data/messages:65
-#: ../data/messages:25 ../data/messages:27
+#: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:25 ../data/messages:33 ../data/messages:67
-#: ../data/messages:27 ../data/messages:29
+#: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:27 ../data/messages:35 ../data/messages:69
-#: ../data/messages:29 ../data/messages:31
+#: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -119,109 +105,11 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29 ../data/messages:37 ../data/messages:71
-#: ../data/messages:31 ../data/messages:33
+#: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../data/messages:13 ../data/messages:33 ../data/messages:35
-#: ../data/messages:53 ../data/messages:39 ../data/messages:57
-#: ../data/messages:37 ../data/messages:63
-msgid "Configuration"
-msgstr "設定"
-
-#: ../data/messages:27 ../data/messages:31
-msgid "Personnalisation"
-msgstr "カスタマイズ"
-
-#: ../data/messages:29 ../data/messages:33 ../data/messages:37
-#: ../data/messages:41 ../data/messages:45 ../data/messages:49
-msgid "Let t empty to use the default icon."
-msgstr "デフォルトのアイコンを使用するには空欄のままに。"
-
-#: ../src/applet-rame.c:185 ../src/applet-rame.c:190 ../src/applet-rame.c:183
-#: ../src/applet-rame.c:188 ../src/applet-rame.c:193 ../src/applet-rame.c:210
-#: ../src/applet-rame.c:215 ../src/applet-rame.c:211 ../src/applet-rame.c:216
-msgid "TB"
-msgstr "TB"
-
-msgid "GB"
-msgstr "GB"
-
-#: ../src/applet-rame.c:195 ../src/applet-rame.c:193 ../src/applet-rame.c:198
-#: ../src/applet-rame.c:220 ../src/applet-rame.c:221
-msgid "MB"
-msgstr "MB"
-
-#: ../src/applet-rame.c:200 ../src/applet-rame.c:198 ../src/applet-rame.c:203
-#: ../src/applet-rame.c:225 ../src/applet-rame.c:226
-msgid "KB"
-msgstr "KB"
-
-#: ../src/applet-rame.c:205 ../src/applet-rame.c:203 ../src/applet-rame.c:208
-#: ../src/applet-rame.c:230 ../src/applet-rame.c:231
-msgid "B"
-msgstr "B"
-
-#: ../data/messages:37 ../data/messages:55 ../data/messages:59
-#: ../data/messages:65
-msgid "in seconds."
-msgstr "秒単位"
-
-#: ../data/messages:39 ../data/messages:41
-msgid "Delay between signal checks :"
-msgstr "信号チェックの間隔時間 :"
-
-#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:35
-msgid "Debug"
-msgstr "デバグ"
-
-#: ../data/messages:37 ../data/messages:39
-msgid "in milliseconds."
-msgstr "ミリ秒単位"
-
-#: ../data/messages:37 ../data/messages:39 ../data/messages:43
-#: ../data/messages:41
-msgid "List of available themes for the analogic display :"
-msgstr "アナログ表示に利用可能なテーマのリスト :"
-
-#: ../data/messages:13 ../data/messages:11
-msgid "Name of the dock it belongs to:"
-msgstr "帰属先ドックの名前 :"
-
-#: ../data/messages:37 ../data/messages:41 ../data/messages:39
-msgid "Display"
-msgstr "表示"
-
-#: ../data/messages:41 ../data/messages:45 ../data/messages:43
-msgid "turbo-night-fuel"
-msgstr "turbo-night-fuel"
-
-#: ../data/messages:43 ../data/messages:47 ../data/messages:45
-msgid "Display memory values :"
-msgstr "メモリー値の表示 :"
-
-#: ../data/messages:45 ../data/messages:49 ../data/messages:47
-msgid "No"
-msgstr "なし"
-
-#: ../data/messages:47 ../data/messages:51 ../data/messages:49
-msgid "On icon"
-msgstr "アイコン上"
-
-#: ../data/messages:49 ../data/messages:53 ../data/messages:51
-msgid "On label"
-msgstr "ラベル上"
-
-#: ../data/messages:51 ../data/messages:55 ../data/messages:53
-msgid "Display SWAP too ?"
-msgstr "スワップも表示？"
-
-#: ../data/messages:57 ../data/messages:61 ../data/messages:67
-msgid "Delay between refresh :"
-msgstr "更新の間隔時間 :"
-
-#: ../data/messages:35 ../data/messages:33
+#: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -230,25 +118,45 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:37
-msgid "Lockposition ?"
-msgstr "位置を固定？"
-
-#: ../src/applet-notifications.c:41
-msgid "Mb"
-msgstr ""
-
-#: ../src/applet-notifications.c:95
-msgid "Data acquisition has failed"
-msgstr ""
-
-#: ../src/applet-rame.c:109
-msgid "Loading"
-msgstr ""
-
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr ""
+
+#: ../data/messages:37 ../data/messages:63
+msgid "Configuration"
+msgstr "設定"
+
+#: ../data/messages:39
+msgid "Display"
+msgstr "表示"
+
+#: ../data/messages:41
+msgid "List of available themes for the analogic display :"
+msgstr "アナログ表示に利用可能なテーマのリスト :"
+
+#: ../data/messages:43
+msgid "turbo-night-fuel"
+msgstr "turbo-night-fuel"
+
+#: ../data/messages:45
+msgid "Display memory values :"
+msgstr "メモリー値の表示 :"
+
+#: ../data/messages:47
+msgid "No"
+msgstr "なし"
+
+#: ../data/messages:49
+msgid "On icon"
+msgstr "アイコン上"
+
+#: ../data/messages:51
+msgid "On label"
+msgstr "ラベル上"
+
+#: ../data/messages:53
+msgid "Display SWAP too ?"
+msgstr "スワップも表示？"
 
 #: ../data/messages:55
 msgid "It's the first color of the gradation used to write the top list."
@@ -266,6 +174,14 @@ msgstr ""
 msgid "Stop color of the top list :"
 msgstr ""
 
+#: ../data/messages:65
+msgid "in seconds."
+msgstr "秒単位"
+
+#: ../data/messages:67
+msgid "Delay between refresh :"
+msgstr "更新の間隔時間 :"
+
 #: ../data/messages:69
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
@@ -279,3 +195,51 @@ msgstr ""
 #: ../data/messages:73
 msgid "Show top memory usage in % ?"
 msgstr ""
+
+#~ msgid "Module"
+#~ msgstr "モジュール"
+
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
+
+#~ msgid "Information"
+#~ msgstr "情報"
+
+#~ msgid "Information to display on the icon :"
+#~ msgstr "アイコン上に表示する情報 :"
+
+#~ msgid "Waiting"
+#~ msgstr "待機中"
+
+#~ msgid "Personnalisation"
+#~ msgstr "カスタマイズ"
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "デフォルトのアイコンを使用するには空欄のままに。"
+
+#~ msgid "TB"
+#~ msgstr "TB"
+
+#~ msgid "GB"
+#~ msgstr "GB"
+
+#~ msgid "MB"
+#~ msgstr "MB"
+
+#~ msgid "KB"
+#~ msgstr "KB"
+
+#~ msgid "B"
+#~ msgstr "B"
+
+#~ msgid "Delay between signal checks :"
+#~ msgstr "信号チェックの間隔時間 :"
+
+#~ msgid "Debug"
+#~ msgstr "デバグ"
+
+#~ msgid "in milliseconds."
+#~ msgstr "ミリ秒単位"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"

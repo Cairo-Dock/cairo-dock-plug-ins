@@ -27,7 +27,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	//Initialisation de la jauge
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	myData.pGauge = init_cd_Gauge(myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
+	myData.pGauge = cairo_dock_load_gauge(myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 	
 	myData.iPreviousGPUTemp = -1;  // force le dessin.
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
@@ -67,10 +67,10 @@ CD_APPLET_RELOAD_BEGIN
 	
 	myData.bAlerted = FALSE;
 	
-	free_cd_Gauge(myData.pGauge);
+	cairo_dock_free_gauge(myData.pGauge);
 	myData.pGauge = NULL;
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	myData.pGauge = init_cd_Gauge(myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
+	myData.pGauge = cairo_dock_load_gauge(myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);

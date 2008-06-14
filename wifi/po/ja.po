@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-14 06:13+0200\n"
 "PO-Revision-Date: 2008-05-19 22:32+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,133 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/messages:1
-msgid "Icon"
-msgstr "アイコン"
-
-#: ../data/messages:3
-msgid "Desired icon size for this applet"
-msgstr "このアプレットのアイコンの大きさ"
-
-#: ../data/messages:5
-msgid "width :"
-msgstr "幅 :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "高さ :"
-
-#: ../data/messages:9
-msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "ドックのラベル上に表示するアイコンの名前 :"
-
-msgid "Module"
-msgstr "モジュール"
-
-#: ../data/messages:11
-msgid "Icon's name :"
-msgstr "アイコンの名前 :"
-
-#: src/applet-notifications.c:13
-msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-
-#: ../data/messages:11 ../data/messages:13 ../data/messages:15
-msgid "Desklet"
-msgstr "デスクレット"
-
-#: ../data/messages:13 ../data/messages:15 ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
-
-#: ../data/messages:15 ../data/messages:17 ../data/messages:19
-msgid "Desklet's dimension (width x height) :"
-msgstr "デスクレットの寸法（幅×高さ） :"
-
-#: ../data/messages:17 ../data/messages:19 ../data/messages:21
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
-
-#: ../data/messages:19 ../data/messages:21 ../data/messages:23
-msgid "Desklet's position (x ; y) :"
-msgstr "デスクレットの位置（X ; Y） :"
-
-#: ../data/messages:21 ../data/messages:23 ../data/messages:25
-msgid "Is detached from the dock ?"
-msgstr "ドックから分離？"
-
-#: ../data/messages:23 ../data/messages:25 ../data/messages:27
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
-
-#: ../data/messages:25 ../data/messages:27 ../data/messages:29
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
-
-#: ../data/messages:27 ../data/messages:29 ../data/messages:31
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
-
-#: ../data/messages:29 ../data/messages:31 ../data/messages:33
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
-
-#: ../src/applet-notifications.c:21
-msgid ""
-"This is the stacks applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-
-#: ../data/messages:33 ../data/messages:35 ../data/messages:39
-#: ../data/messages:37
-msgid "Configuration"
-msgstr ""
-
-#: ../data/messages:35 ../data/messages:37
-msgid "Directory & Options"
-msgstr ""
-
-#: ../data/messages:37 ../data/messages:39
-msgid "Monitored Directory :"
-msgstr ""
-
-#: ../data/messages:39 ../data/messages:41
-msgid ""
-"This option with large files lists can slow down the dock, use it properly."
-msgstr ""
-
-#: ../data/messages:41 ../data/messages:43
-msgid "List hidden files ?"
-msgstr ""
-
-#: ../data/messages:43 ../data/messages:45
-msgid "Let it empty to use default sub-dock view."
-msgstr ""
-
-#: ../data/messages:45 ../data/messages:47
-msgid "Name of the view used for the sub-dock :"
-msgstr ""
-
-#: ../data/messages:13 ../data/messages:11
-msgid "Name of the dock it belongs to:"
-msgstr "帰属先ドックの名前 :"
-
-#: ../src/applet-draw.c:13 ../data/messages:45 ../data/messages:63
-#: ../data/messages:43 ../data/messages:61
+#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:61
 msgid "None"
 msgstr "なし"
 
@@ -165,11 +39,11 @@ msgstr "良好"
 msgid "Excellent"
 msgstr "最高"
 
-#: ../src/applet-draw.c:118 ../src/applet-draw.c:121 ../src/applet-draw.c:120
+#: ../src/applet-draw.c:120
 msgid "Wifi disabled."
 msgstr "Wifi は無効です。"
 
-#: ../src/applet-draw.c:121 ../src/applet-draw.c:125 ../src/applet-draw.c:124
+#: ../src/applet-draw.c:124
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -177,7 +51,7 @@ msgstr ""
 "Wifi は有効です。\n"
 "接続先 :"
 
-#: ../src/applet-draw.c:121 ../src/applet-draw.c:125 ../src/applet-draw.c:124
+#: ../src/applet-draw.c:124
 msgid "Signal Strength:"
 msgstr "信号の強さ :"
 
@@ -197,11 +71,85 @@ msgstr "Wireless Extension のチェック"
 msgid "Network Administration"
 msgstr "ネットワーク管理"
 
-#: ../src/applet-wifi.c:94 ../src/applet-wifi.c:99
+#: ../src/applet-wifi.c:128 ../src/applet-wifi.c:133
 msgid "Unknown"
 msgstr "不明"
 
-#: ../data/messages:35 ../data/messages:33
+#: ../data/messages:1
+msgid "Icon"
+msgstr "アイコン"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "このアプレットのアイコンの大きさ"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "幅 :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高さ :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "ドックのラベル上に表示するアイコンの名前 :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "帰属先ドックの名前 :"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "デスクレット"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "デスクレットの寸法（幅×高さ） :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "デスクレットの位置（X ; Y） :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "ドックから分離？"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+#: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -210,114 +158,126 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:37
-msgid "Lockposition ?"
-msgstr "位置を固定？"
-
-#: ../data/messages:41 ../data/messages:39
-msgid "Information"
-msgstr "情報"
-
-#: ../data/messages:43 ../data/messages:41
-msgid "Information to display on the icon :"
-msgstr "アイコン上に表示する情報 :"
-
-#: ../data/messages:47 ../data/messages:45
-msgid "Signal Strength"
-msgstr "信号の強さ"
-
-#: ../data/messages:49 ../data/messages:47
-msgid "Signal Strength in percent"
-msgstr "信号の強さ（％単位）"
-
-#: ../data/messages:51 ../data/messages:49
-msgid "Raw Signal Informations"
-msgstr "生信号の情報"
-
-#: ../data/messages:53 ../data/messages:51
-msgid "in seconds."
-msgstr "秒単位"
-
-#: ../data/messages:55 ../data/messages:53
-msgid "Delay between signal checks :"
-msgstr "信号チェックの間隔時間 :"
-
-#: ../data/messages:57 ../data/messages:55
-msgid "Display"
-msgstr "表示"
-
-#: ../data/messages:59 ../data/messages:57
-msgid "Overwrite the default label with the connection point name ?"
-msgstr "デフォルトのラベルを接続ポイント名によって上書き？"
-
-#: ../data/messages:61 ../data/messages:59
-msgid "Effect to apply on the icon according to strength :"
-msgstr "電波の強さに合わせてアイコンに適用する効果 :"
-
-#: ../data/messages:65 ../data/messages:63
-msgid "Zoom"
-msgstr "ズーム"
-
-#: ../data/messages:67 ../data/messages:65
-msgid "Transparency"
-msgstr "透過"
-
-#: ../data/messages:69 ../data/messages:67
-msgid "Draw Bar"
-msgstr "バーの描画"
-
-#: ../data/messages:71 ../data/messages:69
-msgid "Use a jauge instead of icons?"
-msgstr "アイコンの代わりに目盛りを使用？"
-
-#: ../data/messages:73 ../data/messages:71
-msgid "List of available themes for the analogic display :"
-msgstr "アナログ表示に利用可能なテーマのリスト :"
-
-#: ../data/messages:75 ../data/messages:73
-msgid "radium"
-msgstr ""
-
-#: ../data/messages:77 ../data/messages:75
-msgid "Images"
-msgstr "画像"
-
-#: ../data/messages:79 ../data/messages:83 ../data/messages:87
-#: ../data/messages:91 ../data/messages:95 ../data/messages:99
-msgid "Let t empty to use the default icon."
-msgstr "デフォルトのアイコンを使用するには空欄のままに。"
-
-#: ../data/messages:81 ../data/messages:79
-msgid "Name of an image for the 'no signal' icon :"
-msgstr "「信号なし」のアイコン画像の名前 :"
-
-#: ../data/messages:85 ../data/messages:83
-msgid "Name of an image for the 'very low' icon :"
-msgstr "「非常に弱い」のアイコン画像の名前 :"
-
-#: ../data/messages:89 ../data/messages:87
-msgid "Name of an image for the 'low' icon :"
-msgstr "「弱い」のアイコン画像の名前 :"
-
-#: ../data/messages:93 ../data/messages:91
-msgid "Name of an image for the 'middle' icon :"
-msgstr "「中程度」のアイコン画像の名前 :"
-
-#: ../data/messages:97 ../data/messages:95
-msgid "Name of an image for the 'good' icon :"
-msgstr "「良好」のアイコン画像の名前 :"
-
-#: ../data/messages:101 ../data/messages:99
-msgid "Name of an image for the 'exellent' icon :"
-msgstr "「最高」のアイコン画像の名前 :"
-
-#: ../data/messages:37 ../data/messages:35
+#: ../data/messages:35
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:79 ../data/messages:83 ../data/messages:87
-#: ../data/messages:91 ../data/messages:95 ../data/messages:99
+#: ../data/messages:37
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Information"
+msgstr "情報"
+
+#: ../data/messages:41
+msgid "Information to display on the icon :"
+msgstr "アイコン上に表示する情報 :"
+
+#: ../data/messages:45
+msgid "Signal Strength"
+msgstr "信号の強さ"
+
+#: ../data/messages:47
+msgid "Signal Strength in percent"
+msgstr "信号の強さ（％単位）"
+
+#: ../data/messages:49
+msgid "Raw Signal Informations"
+msgstr "生信号の情報"
+
+#: ../data/messages:51
+msgid "in seconds."
+msgstr "秒単位"
+
+#: ../data/messages:53
+msgid "Delay between signal checks :"
+msgstr "信号チェックの間隔時間 :"
+
+#: ../data/messages:55
+msgid "Display"
+msgstr "表示"
+
+#: ../data/messages:57
+msgid "Overwrite the default label with the connection point name ?"
+msgstr "デフォルトのラベルを接続ポイント名によって上書き？"
+
+#: ../data/messages:59
+msgid "Effect to apply on the icon according to strength :"
+msgstr "電波の強さに合わせてアイコンに適用する効果 :"
+
+#: ../data/messages:63
+msgid "Zoom"
+msgstr "ズーム"
+
+#: ../data/messages:65
+msgid "Transparency"
+msgstr "透過"
+
+#: ../data/messages:67
+msgid "Draw Bar"
+msgstr "バーの描画"
+
+#: ../data/messages:69
+msgid "Use a jauge instead of icons?"
+msgstr "アイコンの代わりに目盛りを使用？"
+
+#: ../data/messages:71
+msgid "List of available themes for the analogic display :"
+msgstr "アナログ表示に利用可能なテーマのリスト :"
+
+#: ../data/messages:73
+msgid "radium"
+msgstr ""
+
+#: ../data/messages:75
+msgid "Images"
+msgstr "画像"
+
 #: ../data/messages:77 ../data/messages:81 ../data/messages:85
 #: ../data/messages:89 ../data/messages:93 ../data/messages:97
 msgid "Let it empty to use the default icon."
 msgstr ""
+
+#: ../data/messages:79
+msgid "Name of an image for the 'no signal' icon :"
+msgstr "「信号なし」のアイコン画像の名前 :"
+
+#: ../data/messages:83
+msgid "Name of an image for the 'very low' icon :"
+msgstr "「非常に弱い」のアイコン画像の名前 :"
+
+#: ../data/messages:87
+msgid "Name of an image for the 'low' icon :"
+msgstr "「弱い」のアイコン画像の名前 :"
+
+#: ../data/messages:91
+msgid "Name of an image for the 'middle' icon :"
+msgstr "「中程度」のアイコン画像の名前 :"
+
+#: ../data/messages:95
+msgid "Name of an image for the 'good' icon :"
+msgstr "「良好」のアイコン画像の名前 :"
+
+#: ../data/messages:99
+msgid "Name of an image for the 'exellent' icon :"
+msgstr "「最高」のアイコン画像の名前 :"
+
+#~ msgid "Module"
+#~ msgstr "モジュール"
+
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "デフォルトのアイコンを使用するには空欄のままに。"

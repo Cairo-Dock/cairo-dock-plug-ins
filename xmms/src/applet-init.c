@@ -33,8 +33,6 @@ CD_APPLET_INIT_BEGIN (erreur)
 		}
 	}
 	
-	cd_xmms_remove_pipes();
-	
 	myData.playingStatus = PLAYER_NONE;
 	myData.previousPlayingStatus = -1;
 	myData.previousPlayingTitle = NULL;
@@ -65,8 +63,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT
-	
-	cd_xmms_remove_pipes();
 	
 	if (myIcon->cClass != NULL)
 		cairo_dock_deinhibate_class (s_cPlayerClass[myConfig.iPlayer], myIcon);
