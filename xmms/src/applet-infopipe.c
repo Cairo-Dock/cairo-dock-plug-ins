@@ -85,7 +85,9 @@ void cd_xmms_read_data (void) {
 		myData.playingStatus = PLAYER_NONE;
 		return ;
 	}
-	
+	if (myConfig.iPlayer == MY_XMMS)
+		s_cTmpFile = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
+		
 	gchar *cContent = NULL;
 	gchar *cQuickInfo = NULL;
 	gsize length=0;
@@ -215,8 +217,8 @@ void cd_xmms_read_data (void) {
 	
 	if (myConfig.iPlayer != MY_XMMS) {
 		g_remove (s_cTmpFile);
-		g_free (s_cTmpFile);
-		s_cTmpFile = NULL;
 	}
+	g_free (s_cTmpFile);
+	s_cTmpFile = NULL;
 }
 
