@@ -76,8 +76,16 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 	}
 	else  // on va chercher a repartir au mieux les bureaux sur l'icone.
 	{
-		*iBestNbColumns = (int) ceil (sqrt (iNbViewports));
-		 *iBestNbLines= iNbViewports / (*iBestNbColumns);
+		if (myIcon->fWidth >= myIcon->fHeight)
+		{
+			*iBestNbColumns = (int) ceil (sqrt (iNbViewports));
+			*iBestNbLines = iNbViewports / (*iBestNbColumns);
+		}
+		else
+		{
+			*iBestNbLines = (int) ceil (sqrt (iNbViewports));
+			*iBestNbColumns = iNbViewports / (*iBestNbLines);
+		}
 	}
 }
 void cd_switcher_compute_nb_lines_and_columns (void)

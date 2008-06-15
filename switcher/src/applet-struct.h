@@ -21,6 +21,7 @@ typedef struct {
 	gint iInLineSize;
 	gint iLineSize;
 	gboolean bPreserveScreenRatio;
+	gboolean bFillCurrentDesktop;
 	} AppletConfig;
 
 

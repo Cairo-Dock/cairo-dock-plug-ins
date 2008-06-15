@@ -43,8 +43,8 @@ static GList * _load_icons (void)
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
 		pIcon->acCommand = g_strdup ("none");
-		pIcon->cParentDockName = myDock ? g_strdup (myIcon->acName) : NULL;
-		//pIcon->acFileName = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default.svg");
+		pIcon->cParentDockName = g_strdup (myIcon->acName);
+		pIcon->acFileName = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default.svg");
 		
 		pIconList = g_list_append (pIconList, pIcon);
 	}
@@ -119,7 +119,8 @@ void cd_switcher_load_icons (void)
 			}
 			myDesklet->icons = pIconList;
 			
-			CD_APPLET_SET_DESKLET_RENDERER ("Caroussel")
+			gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
 		}
 		
 		//\_______________________ On peint les icones.
@@ -161,7 +162,7 @@ void cd_switcher_paint_icons (void)
 	for (ic = pIconList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		g_print (" (%.2fx%.2f)\n", icon->fDrawX, icon->fDrawY);
+		g_print (" (%.2f; %.2f) %.2fx%.2f\n", icon->fDrawX, icon->fDrawY, icon->fWidth, icon->fHeight);
 		pIconContext = cairo_create (icon->pIconBuffer);
 		cairo_scale (pIconContext,
 			fZoomX,

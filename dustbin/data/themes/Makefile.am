@@ -8,4 +8,5 @@ SUBDIRS = \
 	Human\
 	Silver\
 	Neon\
-	I_Dustbin
+	I_Dustbin\
+	Clear

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-14 00:16+0200\n"
+"POT-Creation-Date: 2008-06-14 20:09+0200\n"
 "PO-Revision-Date: 2008-05-19 21:54+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:52 ../src/applet-load-icons.c:38
+#: ../src/applet-init.c:52 ../src/applet-load-icons.c:37
 msgid "Desktop"
 msgstr ""
 
@@ -31,11 +31,11 @@ msgstr ""
 "これは Cchumi によって製作された \n"
 "Cairo-Dock 用の switcher アプレットです。"
 
-#: ../src/applet-notifications.c:185
+#: ../src/applet-notifications.c:187
 msgid "Add a desktop"
 msgstr ""
 
-#: ../src/applet-notifications.c:186
+#: ../src/applet-notifications.c:188
 msgid "Remove last desktop"
 msgstr ""
 

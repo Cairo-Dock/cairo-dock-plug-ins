@@ -46,5 +46,6 @@ AC_CONFIG_FILES([Makefile
 		data/themes/Silver/Makefile
 		data/themes/Neon/Makefile
 		data/themes/I_Dustbin/Makefile
+		data/themes/Clear/Makefile
 		])
 AC_OUTPUT

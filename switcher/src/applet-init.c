@@ -22,8 +22,6 @@ static gboolean on_change_desktop (gpointer *data)
 	cd_switcher_get_current_desktop ();
 	int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
-	CairoContainer *pContainer = (myDock ? myIcon->pSubDock : myContainer);
-	g_return_val_if_fail (pContainer != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	if (myConfig.bDisplayNumDesk)
 	{
@@ -37,6 +35,9 @@ static gboolean on_change_desktop (gpointer *data)
 	}
 	else
 	{
+		CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
+		g_return_val_if_fail (pContainer != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		
 		if (myDock && myConfig.bDisplayNumDesk)
 			CD_APPLET_REDRAW_MY_ICON
 		
@@ -49,7 +50,7 @@ static gboolean on_change_desktop (gpointer *data)
 			icon = ic->data;
 			if (icon->fOrder == iPreviousIndex)  // l'ancienne icone du bureau courant.
 			{
-				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Desktop"), iIndex+1);
+				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Desktop"), iPreviousIndex+1);
 				icon->bHasIndicator = FALSE;
 				icon->fAlpha = 1.;
 				if (myDock)
@@ -76,18 +77,6 @@ static gboolean on_change_screen_geometry (gpointer *data)
 	cd_switcher_get_current_desktop ();
 	cd_switcher_load_icons ();
 	cd_switcher_draw_main_icon ();
-	
-	if (myDesklet != NULL)
-	{
-		if (myConfig.bCompactView)
-		{
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple")
-		}
-		else
-		{
-			CD_APPLET_SET_DESKLET_RENDERER ("Caroussel")
-		}
-	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -141,7 +130,8 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else
 		{
-			CD_APPLET_SET_DESKLET_RENDERER ("Caroussel")
+			gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
 		}
 	}
 	
