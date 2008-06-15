@@ -22,11 +22,21 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.highBatteryWitness = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "high battery", TRUE);
 	
+	myConfig.criticalBatteryWitness = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "critical battery", TRUE);
+	
 	myConfig.batteryWitness = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "battery witness", TRUE);
 	
 	myConfig.batteryWitnessAnimation = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "battery animation", 0);
 	
 	myConfig.lowBatteryValue = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "low value", 15);
+	
+	GString *sKeyName = g_string_new ("");
+	int i;
+	for (i = 0; i < POWER_MANAGER_NB_CHARGE_LEVEL; i ++) {
+		g_string_printf (sKeyName, "sound_%d", i);
+		myConfig.cSoundPath[i] = CD_CONFIG_GET_STRING ("Configuration", sKeyName->str);
+	}
+	g_string_free (sKeyName, TRUE);
 	
 	myConfig.bUseGauge = CD_CONFIG_GET_BOOLEAN ("Configuration", "use gauge");
 	myConfig.cThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "battery");
@@ -40,6 +50,11 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cThemePath);
 	g_free (myConfig.cUserBatteryIconName);
 	g_free (myConfig.cUserChargeIconName);
+	
+	int i;
+	for (i = 0; i < POWER_MANAGER_NB_CHARGE_LEVEL; i ++) {
+		g_free (myConfig.cSoundPath[i]);
+	}
 	
 CD_APPLET_RESET_CONFIG_END
 

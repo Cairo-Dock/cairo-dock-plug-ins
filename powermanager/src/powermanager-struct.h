@@ -18,6 +18,13 @@ typedef enum {
   POWER_MANAGER_EFFECT_BAR,
   } MyAppletEffect;
 
+typedef enum {
+  POWER_MANAGER_CHARGE_CRITICAL = 0,
+  POWER_MANAGER_CHARGE_LOW,
+  POWER_MANAGER_CHARGE_FULL,
+  POWER_MANAGER_NB_CHARGE_LEVEL,
+  } MyAppletCharge;
+
 typedef struct {
 	gchar *defaultTitle;
 	MyAppletQuickInfoType quickInfoType;
@@ -26,9 +33,11 @@ typedef struct {
 	gboolean batteryWitness;
 	gboolean highBatteryWitness;
 	gboolean lowBatteryWitness;
+	gboolean criticalBatteryWitness;
 	CairoDockAnimationType batteryWitnessAnimation;
 	gint lowBatteryValue;
 	gchar *cThemePath;
+	gchar *cSoundPath[POWER_MANAGER_NB_CHARGE_LEVEL];
 	
 	gboolean bUseGauge;
 	gchar *cUserBatteryIconName;
@@ -46,6 +55,7 @@ typedef struct {
 	gint battery_time, previous_battery_time;
 	gint battery_charge, previous_battery_charge;
 	gboolean alerted;
+	gboolean bCritical;
 	gint checkLoop;
 	Gauge *pGauge;
 	} AppletData;

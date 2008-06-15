@@ -249,9 +249,22 @@ msgstr "Alerte"
 msgid "Alert when battery charged ?"
 msgstr "M'alerter quand la batterie est chargée ?"
 
+msgid "Let it empty to have no sound"
+msgstr "Laissez vide pour ne pas avoir de son"
+
+msgid "Use a sound :"
+msgstr "Utiliser un son :"
+
 #: ../data/messages:75
 msgid "Alert when low battery ?"
 msgstr "M'alerter quand la charge est basse ?"
+
+#: ../data/messages:75
+msgid "Alert when battery charge is critical ?"
+msgstr "M'alerter quand la charge est critique ?"
+
+msgid "When battery level is under 4%"
+msgstr "Quand la charge est en dessou de 4%"
 
 #: ../data/messages:77
 msgid "in percent."

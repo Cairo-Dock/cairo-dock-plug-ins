@@ -85,11 +85,23 @@ frame_alert=
 
 #b Alert when battery charged ?
 high battery=true
+#u Use a sound :
+#{Let it empty to have no sound}
+sound_2 =
 #b Alert when low battery ?
 low battery=true
 #i[1;90] Battery level :
 #{in percent.}
-low value = 10
+low value = 15
+#u Use a sound :
+#{Let it empty to have no sound}
+sound_1 =
+#b Alert when battery charge is critical ?
+#{When battery level is under 4%}
+critical battery=true
+#u Use a sound :
+#{Let it empty to have no sound}
+sound_0 =
 
 #b Animate icon during the alert ?
 battery witness=true

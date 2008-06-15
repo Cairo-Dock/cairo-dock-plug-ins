@@ -72,6 +72,9 @@ void cd_stacks_run_dir(void) {
 	while (myConfig.cMonitoredDirectory[i] != NULL) {
 		cURI = g_strdup_printf("file://%s", myConfig.cMonitoredDirectory[i]);
 		cairo_dock_fm_launch_uri(cURI);
+		
+		if (myConfig.bLocalDir && i == 0)
+			break; //Solution temporaire
 		i++;
 	}
 	g_free (cURI);

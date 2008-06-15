@@ -35,6 +35,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 			}
 			
 			myData.alerted = TRUE;
+			myData.bCritical = TRUE;
 			update_stats();
 			myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 		}
@@ -118,9 +119,17 @@ CD_APPLET_RELOAD_BEGIN
 				cd_powermanager_draw_icon_with_effect (myData.on_battery);
 			}
 			
-			if (!myData.on_battery && myData.battery_charge > myConfig.lowBatteryValue && myData.battery_charge < 100)
-				myData.alerted = FALSE;
+			if (!myData.on_battery && myData.battery_charge < 100)
+				myData.alerted = FALSE; //We will alert when battery charge reach 100%
+			if (myData.on_battery)
+			{
+				if (myData.battery_charge > myConfig.lowBatteryValue)
+					myData.alerted = FALSE; //We will alert when battery charge is under myConfig.lowBatteryValue
 				
+				if (myData.battery_charge > 4)
+					myData.bCritical = FALSE; //We will alert when battery charge is critical (under 4%)
+			}
+			
 			myData.previous_battery_time = -1;
 			update_icon();
 		}
