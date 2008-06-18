@@ -47,11 +47,11 @@ msgstr "Précédent"
 
 #: ../src/rhythmbox-menu-functions.c:57
 msgid "Next (middle-click)"
-msgstr ""
+msgstr "Suivant (clique du milieu)"
 
 #: ../src/rhythmbox-menu-functions.c:59
 msgid "Play/Pause (left-click)"
-msgstr ""
+msgstr "Jouer/Pause (clique gauche)"
 
 #: ../src/rhythmbox-menu-functions.c:61
 msgid "Information"
@@ -249,27 +249,28 @@ msgstr "n° de piste"
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
-msgstr ""
+msgstr "Si vous choisissez 'personnel', vous pourrez définir votre propre décoration"
+"ou laissez vide pour ne pas en avoir."
 
 #: ../data/messages:87
 msgid "Choose a decoration for the desklet mode :"
-msgstr ""
+msgstr "Choisissez une décoration pour le mode desklet :"
 
 #: ../data/messages:89
 msgid "Personnal"
-msgstr ""
+msgstr "Personnel"
 
 #: ../data/messages:91
 msgid "Extended 3D mode"
-msgstr ""
+msgstr "Mode 3D Étendu"
 
 #: ../data/messages:93
 msgid "CD box"
-msgstr ""
+msgstr "Boite de CD"
 
 #: ../data/messages:95
 msgid "frame with reflects"
-msgstr ""
+msgstr "cadre avec reflets"
 
 #: ../data/messages:97
 msgid "scotch"
@@ -277,47 +278,47 @@ msgstr ""
 
 #: ../data/messages:99
 msgid "frame with scotch"
-msgstr ""
+msgstr "cadre avec scotch"
 
 #: ../data/messages:101
 msgid ""
 "It's an image that will be displayed below the cover, like a frame for "
 "exemple."
-msgstr ""
+msgstr "C'est une image qui sera affichée derrière la pochette, comme un cadre."
 
 #: ../data/messages:103
 msgid "Background image :"
-msgstr ""
+msgstr "Image de fond :"
 
 #: ../data/messages:105
 msgid "Background tansparency :"
-msgstr ""
+msgstr "Transparence du fond :"
 
 #: ../data/messages:107
 msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr ""
+msgstr "C'est la taille du coté gauche du cadre, en pixels."
 
 #: ../data/messages:109
 msgid "Left offset :"
-msgstr ""
+msgstr "Décalage a gauche :"
 
 #: ../data/messages:111 ../data/messages:113 ../data/messages:115
 msgid "Right offset :"
-msgstr ""
+msgstr "Décalage a droit :"
 
 #: ../data/messages:117
 msgid ""
 "It's an image that will be displayed above the cover, like a reflect for "
 "exemple."
-msgstr ""
+msgstr "C'est une image qui sera affichée devant la pochette, comme un reflet."
 
 #: ../data/messages:119
 msgid "Reflection image :"
-msgstr ""
+msgstr "Image du reflet :"
 
 #: ../data/messages:121
 msgid "Reflection tansparency :"
-msgstr ""
+msgstr "Transparence du reflet :"
 
 #: ../data/messages:123
 msgid "Personnalisation"

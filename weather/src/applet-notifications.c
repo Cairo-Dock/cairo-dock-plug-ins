@@ -149,8 +149,8 @@ static void _cd_weather_reload (GtkMenuItem *menu_item, gpointer *data)
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("weather", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU (_("Search for your location"), _cd_weather_search_for_location, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (_("Reload now"), _cd_weather_reload, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Search for your location"), _cd_weather_search_for_location, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Reload now"), _cd_weather_reload, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 

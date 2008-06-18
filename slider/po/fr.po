@@ -258,19 +258,20 @@ msgstr ""
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
-msgstr ""
+msgstr "Si vous choisissez 'personnel', vous pourrez définir votre propre décoration"
+"ou laissez vide pour ne pas en avoir."
 
 #: ../data/messages:103
 msgid "Choose a background and foreground decoration :"
-msgstr ""
+msgstr "Choisissez une décoration de fond et de 1er plan :"
 
 #: ../data/messages:105
 msgid "Personnal"
-msgstr ""
+msgstr "Personnel"
 
 #: ../data/messages:107
 msgid "frame with reflects"
-msgstr ""
+msgstr "cadre avec reflets"
 
 #: ../data/messages:109
 msgid "scotch"
@@ -278,13 +279,13 @@ msgstr ""
 
 #: ../data/messages:111
 msgid "frame with scotch"
-msgstr ""
+msgstr "cadre avec scotch"
 
 #: ../data/messages:113
 msgid ""
 "It's an image that will be displayed below the slide, like a frame for "
 "exemple."
-msgstr ""
+msgstr "C'est une image qui sera affichée derrière le diaporama, comme un cadre."
 
 #: ../data/messages:115
 msgid "Background image :"
@@ -297,29 +298,29 @@ msgstr "Transparence du fond :"
 #: ../data/messages:119 ../data/messages:123 ../data/messages:127
 #: ../data/messages:131
 msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr ""
+msgstr "C'est la taille du coté gauche du cadre, en pixels."
 
 #: ../data/messages:121
 msgid "Left offset :"
-msgstr ""
+msgstr "Décalage a gauche :"
 
 #: ../data/messages:125
 msgid "Top offset :"
-msgstr ""
+msgstr "Décalage en haut :"
 
 #: ../data/messages:129
 msgid "Right offset :"
-msgstr ""
+msgstr "Décalage a droit :"
 
 #: ../data/messages:133
 msgid "Bottom offset :"
-msgstr ""
+msgstr "Décalage du bas :"
 
 #: ../data/messages:135
 msgid ""
 "It's an image that will be displayed above the slide, like a reflect for "
 "exemple."
-msgstr ""
+msgstr "C'est une image qui sera affichée devant le diaporama, comme un reflet."
 
 #: ../data/messages:137
 msgid "Reflection image :"
