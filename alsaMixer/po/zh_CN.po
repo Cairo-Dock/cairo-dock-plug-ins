@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2008-06-18 09:50+0200\n"
-"PO-Revision-Date: 2008-05-23 08:57+0100\n"
-"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
-"Language-Team: Français <po@cairo-dock.org>\n"
+"PO-Revision-Date: 2008-06-07 08:57+0100\n"
+"Last-Translator: biAji<biaji.cn@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,140 +17,136 @@ msgstr ""
 #: ../src/applet-mixer.c:42
 #, c-format
 msgid "I couldn't open card '%s'"
-msgstr "Je n'ai pas pu ouvrir la carte '%s'"
+msgstr "无法打开声卡'%s'"
 
 #: ../src/applet-mixer.c:47
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
-msgstr "carte '%s' ouverte, maus je n'ai trouvé aucune info."
+msgstr "声卡'%s'已打开但无法获取信息。"
 
 #: ../src/applet-mixer.c:55
 msgid "I couldn't open the mixer"
-msgstr "Je n'ai pas pu ouvrir le mixeur de son."
+msgstr "无法打开混音器。"
 
 #: ../src/applet-mixer.c:62
 msgid "I couldn't attach the mixer to the card"
-msgstr "Impossible d'attacher le mixeur de son à la carte"
+msgstr "无法连接混音器至声卡"
 
 #: ../src/applet-mixer.c:69
 msgid "I couldn't register options"
-msgstr "Impossible d'enregistrer les options"
+msgstr "无法注册选项"
 
 #: ../src/applet-mixer.c:77
 msgid "I couldn't load the mixer"
-msgstr "Impossible de charger le mixeur de son"
+msgstr "无法载入混音器"
 
 #: ../src/applet-mixer.c:134
 #, c-format
 msgid "I couldn't find any element '%s'"
-msgstr "Impossible de trouver l'élément '%s'"
+msgstr "无法找到原件：'%s'"
 
 #: ../src/applet-mixer.c:266
 msgid "Set up volume :"
-msgstr "Réglez le volume :"
+msgstr "设置音量："
 
 #: ../src/applet-notifications.c:22
 msgid ""
 "This is the AlsaMixer applet\n"
 " made by Fabounet (Fabrice Rey) for Cairo-Dock"
 msgstr ""
-"Ceci est l'applet AlsaMixer\n"
-" écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
+"AlsaMixer小应用程序\n"
+"作者Fabounet (Fabrice Rey)"
 
 #: ../src/applet-notifications.c:50
 msgid "Adjsut channels"
-msgstr "Ajustez les canaux"
+msgstr "调整通道"
 
 #: ../data/messages:1
 msgid "Icon"
-msgstr "Icône"
+msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "Taille d'icône souhaitée pour cette applet"
+msgstr "用于小应用程序的期望图标大小"
 
 #: ../data/messages:5
 msgid "width :"
-msgstr "largeur :"
+msgstr "宽："
 
 #: ../data/messages:7
 msgid "height :"
-msgstr "hauteur :"
+msgstr "高："
 
 #: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+msgstr "显现于dock之上的图标标签名称："
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr "Nom du conteneur auquel il appartient:"
+msgstr "归属的dock名称："
 
 #: ../data/messages:13
 msgid "Desklet"
-msgstr "Desklet"
+msgstr "桌面小程序"
 
 #: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic milieu ou ALT + clic gauche par exemple."
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
+"器"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
-msgstr "Dimension du desklet (largeur x hauteur) :"
+msgstr "桌面小程序尺寸（宽x高）："
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
-msgstr "Position du desklet (x ; y) :"
+msgstr "桌面小应用程序位置(x ; y)："
 
 #: ../data/messages:23
 msgid "Is detached from the dock ?"
-msgstr "Est-il détaché du dock ?"
+msgstr "从dock移开？"
 
 #: ../data/messages:25
 msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
+msgstr "位于最下窗口？"
 
 #: ../data/messages:27
 msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
+msgstr "窗口置顶？"
 
 #: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
+"type=utility) "
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "保持于小应用程序层？"
 
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche."
+"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr "Verrouiller la position ?"
+msgstr "锁定位置？"
 
 #: ../data/messages:37
 msgid "Configuration"
-msgstr "Configuration"
+msgstr "配置"
 
 #: ../data/messages:39
 msgid "Alsa"
@@ -159,107 +154,107 @@ msgstr "Alsa"
 
 #: ../data/messages:41
 msgid "Let empty to use the default sound card."
-msgstr "Laisser vide pour utiliser la carte son par défaut."
+msgstr "留空则使用默认声卡。"
 
 #: ../data/messages:43
 msgid "Sound card to control :"
-msgstr "Carte son à contrôler :"
+msgstr "控制的声卡："
 
 #: ../data/messages:45
 msgid "Choose which channel to control :"
-msgstr "Choississez quel canal contrôler :"
+msgstr "选择控制的通道："
 
 #: ../data/messages:47
 msgid "Let empty to use the defaut command."
-msgstr "Laisser vide pour utiliser la commande par défaut."
+msgstr "留空则使用默认指令。"
 
 #: ../data/messages:49
 msgid "Specific command to run to show an advanced sound mixer :"
-msgstr "Commande spécifique pour montrer un mixer de son avancé :"
+msgstr "指定显示高级混音器的命令："
 
 #: ../data/messages:51
 msgid "Control"
-msgstr "Contrôle"
+msgstr "控制"
 
 #: ../data/messages:53
 msgid "Shortkey to show/hide the sound control dialog :"
-msgstr "Raccourci clavier pour montrer/cacher le dialogue :"
+msgstr "用于显示/隐藏音量控制对话框的快捷键："
 
 #: ../data/messages:55
 msgid "Variation for 1 mouse scroll, in % :"
-msgstr "Variation pour 1 coup de molette, en % :"
+msgstr "鼠标卷动一下的变化值，以百分比为单位："
 
 #: ../data/messages:57
 msgid "Hide the scale when mouse leaves the desklet ?"
-msgstr "Cacher l'échelle quand la souris quitte le desklet ?"
+msgstr "鼠标离开桌面提示时，隐藏刻度？"
 
 #: ../data/messages:59
 msgid "Display"
-msgstr "Affichage"
+msgstr "显示"
 
 #: ../data/messages:61
 msgid "Display volume :"
-msgstr "Afficher le volume :"
+msgstr "显示音量："
 
 #: ../data/messages:63
 msgid "No"
-msgstr "Non"
+msgstr "否"
 
 #: ../data/messages:65
 msgid "On label"
-msgstr "Sur l'étiquette"
+msgstr "于标签上"
 
 #: ../data/messages:67
 msgid "On icon"
-msgstr "Sur l'icône"
+msgstr "于图标上"
 
 #: ../data/messages:69
 msgid "Effet to apply on the icon according to volume :"
-msgstr "Effet à appliquer à l'icône en fonction du volume :"
+msgstr "根据音量置于图标的效果："
 
 #: ../data/messages:71
 msgid "None"
-msgstr "Aucun"
+msgstr "没有"
 
 #: ../data/messages:73
 msgid "Zoom"
-msgstr "Zoom"
+msgstr "缩放"
 
 #: ../data/messages:75
 msgid "Transparency"
-msgstr "Transparence"
+msgstr "透明度"
 
 #: ../data/messages:77
 msgid "Draw Bar"
-msgstr "Dessiner une barre"
+msgstr "绘制条"
 
 #: ../data/messages:79 ../data/messages:83 ../data/messages:87
 msgid "Let empty to use the default one."
-msgstr "Laisser vide pour utiliser celle par défaut."
+msgstr "留空使用默认的。"
 
 #: ../data/messages:81
 msgid "Default icon :"
-msgstr "Icône 'défaut' :"
+msgstr "默认图标："
 
 #: ../data/messages:85
 msgid "Broken icon :"
-msgstr "Icône 'cassé'"
+msgstr "毁坏的图标："
 
 #: ../data/messages:89
 msgid "Mute icon :"
-msgstr "Icône 'muet' :"
+msgstr "静音图标："
 
 #~ msgid "Module"
-#~ msgstr "Module"
+#~ msgstr "模块"
 
 #~ msgid "Icon's name :"
-#~ msgstr "Nom de l'icône :"
+#~ msgstr "图标名称："
 
 #~ msgid "Command to run to show an advanced sound mixer :"
-#~ msgstr "Commande à exécuter pour afficher un mixeur de son avancé :"
+#~ msgstr "用于显示高级声音混合器的命令:"
 
 #~ msgid "Open an advanced sound mixer with :"
-#~ msgstr "Ouvrir un panneau de mixage avancé avec :"
+#~ msgstr "用以下打开高级混音器："
 
 #~ msgid "Lockposition ?"
-#~ msgstr "Verrouiller la position ?"
+#~ msgstr "锁定位置？"

@@ -185,7 +185,6 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
 		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
-		g_print ("(%.2f; %.2f) %.2fx%.2f\n", pIcon->fDrawX, pIcon->fDrawY, pIcon->fWidth, pIcon->fHeight);
 	}
 	GList* ic;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
@@ -202,7 +201,6 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 			pIcon->fHeight = MAX (1, .2 * pDesklet->iHeight - g_iconTextDescription.iSize);
 		}
 		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
-		g_print ("  (%.2f; %.2f) %.2fx%.2f\n", pIcon->fDrawX, pIcon->fDrawY, pIcon->fWidth, pIcon->fHeight);
 	}
 }
 
@@ -362,7 +360,6 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 				pIcon->fDrawX = pDesklet->pIcon->fDrawX + pDesklet->pIcon->fWidth / 2 + (bFlip ? b : a) * cos (fTheta) - pIcon->fWidth/2;
 				pIcon->fDrawY = pDesklet->pIcon->fDrawY + pDesklet->pIcon->fHeight / 2 + (bFlip ? a : b) * sin (fTheta) - pIcon->fHeight/2 + g_iconTextDescription.iSize;
 				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, pDesklet->iWidth);
-				g_print ("%s : %.2f;%.2f\n", pIcon->acName, pIcon->fDrawX, pIcon->fDrawY);
 				
 				cairo_restore (pCairoContext);
 			}

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2008-06-14 22:19+0200\n"
-"PO-Revision-Date: 2008-05-19 21:47+0900\n"
+"PO-Revision-Date: 2008-06-18 23:10+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,8 @@ msgstr ""
 "アルバム : %s\n"
 "タイトル : %s"
 
-#: ../src/rhythmbox-draw.c:140 ../src/rhythmbox-draw.c:141
+#: ../src/rhythmbox-draw.c:140
+#: ../src/rhythmbox-draw.c:141
 #: ../src/rhythmbox-draw.c:142
 msgid "Unknown"
 msgstr "不明"
@@ -45,11 +46,11 @@ msgstr "前へ"
 
 #: ../src/rhythmbox-menu-functions.c:57
 msgid "Next (middle-click)"
-msgstr ""
+msgstr "次へ（中クリック）"
 
 #: ../src/rhythmbox-menu-functions.c:59
 msgid "Play/Pause (left-click)"
-msgstr ""
+msgstr "再生/一時停止（左クリック）"
 
 #: ../src/rhythmbox-menu-functions.c:61
 msgid "Information"
@@ -84,12 +85,8 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:15
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -97,9 +94,7 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -118,29 +113,20 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr ""
+msgstr "位置を固定？"
 
 #: ../data/messages:37
 msgid "Configuration"
@@ -199,13 +185,8 @@ msgid "random"
 msgstr "ランダム"
 
 #: ../data/messages:65
-msgid ""
-"It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
-"icon will then behave as a launcher, an appli, and an applet."
-msgstr ""
-"Rhytmbox のアイコンがタスクバーに表示されないようにします。これによって、アプ"
-"レットのアイコンがランチャーやアプリケーション、アプレットとして動作するよう"
-"になります。"
+msgid "It will prevent the rhythmbox's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
+msgstr "Rhytmbox のアイコンがタスクバーに表示されないようにします。これによって、アプレットのアイコンがランチャーやアプリケーション、アプレットとして動作するようになります。"
 
 #: ../data/messages:67
 msgid "Steal the rhythmbox's icon in taskbar ?"
@@ -244,85 +225,84 @@ msgid "n° of track"
 msgstr "トラック番号"
 
 #: ../data/messages:85
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
-msgstr ""
+msgid "If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration."
+msgstr "「カスタム」を選択した場合、任意の装飾を下で指定できます。装飾を一切使用しない場合は、空欄のままにしてください。"
 
 #: ../data/messages:87
 msgid "Choose a decoration for the desklet mode :"
-msgstr ""
+msgstr "デスクレット・モード用の装飾の選択 :"
 
 #: ../data/messages:89
 msgid "Personnal"
-msgstr ""
+msgstr "カスタム"
 
 #: ../data/messages:91
 msgid "Extended 3D mode"
-msgstr ""
+msgstr "拡張 3D モード"
 
 #: ../data/messages:93
 msgid "CD box"
-msgstr ""
+msgstr "CD ケース"
 
 #: ../data/messages:95
 msgid "frame with reflects"
-msgstr ""
+msgstr "フレーム（反射）"
 
 #: ../data/messages:97
 msgid "scotch"
-msgstr ""
+msgstr "セロテープ"
 
 #: ../data/messages:99
 msgid "frame with scotch"
-msgstr ""
+msgstr "フレーム（テープ）"
 
 #: ../data/messages:101
-msgid ""
-"It's an image that will be displayed below the cover, like a frame for "
-"exemple."
-msgstr ""
+msgid "It's an image that will be displayed below the cover, like a frame for exemple."
+msgstr "例えばフレームのように、カバーの背後に表示される画像です。"
 
 #: ../data/messages:103
 msgid "Background image :"
-msgstr ""
+msgstr "背景画像 :"
 
 #: ../data/messages:105
 msgid "Background tansparency :"
-msgstr ""
+msgstr "背景の透明度 :"
 
 #: ../data/messages:107
 msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr ""
+msgstr "フレームの左側の幅など（ピクセル単位）"
 
 #: ../data/messages:109
 msgid "Left offset :"
-msgstr ""
+msgstr "左側のオフセット :"
 
-#: ../data/messages:111 ../data/messages:113 ../data/messages:115
+#: ../data/messages:111
+#: ../data/messages:113
+#: ../data/messages:115
 msgid "Right offset :"
-msgstr ""
+msgstr "右側のオフセット :"
 
 #: ../data/messages:117
-msgid ""
-"It's an image that will be displayed above the cover, like a reflect for "
-"exemple."
-msgstr ""
+msgid "It's an image that will be displayed above the cover, like a reflect for exemple."
+msgstr "例えば反射のように、カバー上に表示される画像です。"
 
 #: ../data/messages:119
 msgid "Reflection image :"
-msgstr ""
+msgstr "反射の画像 :"
 
 #: ../data/messages:121
 msgid "Reflection tansparency :"
-msgstr ""
+msgstr "反射の透明度 :"
 
 #: ../data/messages:123
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:125 ../data/messages:129 ../data/messages:133
-#: ../data/messages:137 ../data/messages:141
+#: ../data/messages:125
+#: ../data/messages:129
+#: ../data/messages:133
+#: ../data/messages:137
+#: ../data/messages:141
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
@@ -348,18 +328,14 @@ msgstr "「リンク切れ」のアイコン画像の名前 :"
 
 #~ msgid "Animations"
 #~ msgstr "アニメーション"
-
 #~ msgid "Next"
 #~ msgstr "次へ"
-
 #~ msgid "It will prevent the rhythmbox's icon to appear in the task bar."
 #~ msgstr "タスクバーに Rhythmbox のアイコンが表示されないようにします。"
-
 #~ msgid "Inhibate the rhythmbox's icon in taskbar ?"
 #~ msgstr "タスクバーでの Rhythmbox アイコンの表示を禁止？"
-
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"
-
 #~ msgid "Activate extended desklet mode ?"
 #~ msgstr "デスクレットの拡張モードを有効化？"
+

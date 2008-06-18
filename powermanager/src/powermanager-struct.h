@@ -58,6 +58,7 @@ typedef struct {
 	gboolean bCritical;
 	gint checkLoop;
 	Gauge *pGauge;
+	gint iCapacity;
 	} AppletData;
 
 

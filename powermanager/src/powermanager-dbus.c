@@ -46,26 +46,31 @@ static  gchar* power_battery_name(void) {
 			g_error_free(erreur);
 			erreur = NULL;
 		}
-		else  // on cherche la ligne "present:                 yes"
+		else
 		{
-			cPresentLine = g_strstr_len (cContent, -1, "present");
-			cd_debug ("  -> %s", cPresentLine);
-			if (cPresentLine != NULL)
+			gchar *str = strchr (cContent, '\n');  // "present:                 yes"
+			if (str != NULL)
 			{
-				cPresentLine += 7;
-				gchar *str = strchr (cPresentLine, '\n');  // on garde que cette ligne.
-				if (str != NULL)
-					*str = '\0';
+				*str = '\0';
+				
 				if (g_strstr_len (cContent, -1, "yes") != NULL)  // on l'a trouvee !
 				{
 					cBatteryFound = g_strdup (cBatteryName);
-					break;
+					
+					str ++;
+					gchar *str2 = strchr (str, ':');
+					if (str2 != NULL)
+					{
+						str2 ++;
+						myData.iCapacity = atoi (str2);
+						g_print ("capacite de la batterie : %d mAh\n", myData.iCapacity);
+					}
 				}
 			}
 		}
 		g_free (cContent);
 	}
-	while (1);
+	while (cBatteryFound == NULL);
 	g_dir_close (dir);
 	return cBatteryFound;
 }
@@ -112,13 +117,13 @@ gboolean dbus_connect_to_bus (void)
 			cd_debug ("  acquisition de la batterie -> %x", dbus_proxy_battery);
 			myData.battery_present = (dbus_proxy_battery != NULL);  // a priori toujours vrai.
 			g_free (batteryPath);
-			g_free (cBatteryName);
 			
 			detect_battery ();
 		}
 		else
 		{
 			myData.battery_present = TRUE;
+			g_free (cBatteryName);
 		}
 		
 		return TRUE;

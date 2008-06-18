@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2008-06-14 22:23+0200\n"
-"PO-Revision-Date: 2008-05-19 20:46+0900\n"
+"PO-Revision-Date: 2008-06-18 21:45+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:43 ../src/applet-cpusage.c:48
+#: ../src/applet-cpusage.c:43
+#: ../src/applet-cpusage.c:48
 msgid "day(s)"
-msgstr ""
+msgstr "日"
 
 #: ../src/applet-cpusage.c:197
 msgid "Loading"
@@ -31,29 +32,30 @@ msgstr ""
 "これは parAdOxxx_ZeRo によって製作された \n"
 "Cairo-Dock 用の cpusage アプレットです。"
 
-#: ../src/applet-notifications.c:109 ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:127
 msgid "Data acquisition has failed"
-msgstr ""
+msgstr "データの取得に失敗"
 
 #: ../src/applet-notifications.c:122
 msgid "Model Name"
-msgstr ""
+msgstr "モデル名"
 
 #: ../src/applet-notifications.c:122
 msgid "Frequency"
-msgstr ""
+msgstr "周波数"
 
 #: ../src/applet-notifications.c:122
 msgid "core(s)"
-msgstr ""
+msgstr "コア"
 
 #: ../src/applet-notifications.c:122
 msgid "Up time"
-msgstr ""
+msgstr "稼働時間"
 
 #: ../src/applet-notifications.c:122
 msgid "Activity time"
-msgstr ""
+msgstr "動作時間"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -84,12 +86,8 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:15
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -97,9 +95,7 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -118,31 +114,23 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr ""
+msgstr "位置を固定？"
 
-#: ../data/messages:37 ../data/messages:61
+#: ../data/messages:37
+#: ../data/messages:61
 msgid "Configuration"
 msgstr "設定"
 
@@ -176,21 +164,22 @@ msgstr "ラベル上"
 
 #: ../data/messages:53
 msgid "It's the first color of the gradation used to write the top list."
-msgstr ""
+msgstr "トップリストの記載に使用するグラデーションの開始色"
 
 #: ../data/messages:55
 msgid "Start color of the top list :"
-msgstr ""
+msgstr "トップリストの開始色 :"
 
 #: ../data/messages:57
 msgid "It's the second color of the gradation used to write the top list."
-msgstr ""
+msgstr "トップリストの記載に使用するグラデーションの終了色"
 
 #: ../data/messages:59
 msgid "Stop color of the top list :"
-msgstr ""
+msgstr "トップリストの終了色 :"
 
-#: ../data/messages:63 ../data/messages:71
+#: ../data/messages:63
+#: ../data/messages:71
 msgid "in seconds."
 msgstr "秒単位"
 
@@ -199,51 +188,39 @@ msgid "Delay between refresh :"
 msgstr "更新の間隔時間 :"
 
 #: ../data/messages:67
-msgid ""
-"When you left-click on the icon, you will get the list of the N most CPU-"
-"using programs."
-msgstr ""
+msgid "When you left-click on the icon, you will get the list of the N most CPU-using programs."
+msgstr "アイコンを左クリックすると、CPU を最も使用している上位 N のプログラムのリストが得られます。"
 
 #: ../data/messages:69
 msgid "Number of programs to display in the top list :"
-msgstr ""
+msgstr "トップリストに表示するプログラム数 :"
 
 #: ../data/messages:73
 msgid "Delay between refresh of the top list :"
-msgstr ""
+msgstr "トップリストの更新間隔 :"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
-
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
-
 #~ msgid "Information"
 #~ msgstr "情報"
-
 #~ msgid "Information to display on the icon :"
 #~ msgstr "アイコン上に表示する情報 :"
-
 #~ msgid "Waiting"
 #~ msgstr "待機中"
-
 #~ msgid "Personnalisation"
 #~ msgstr "カスタマイズ"
-
 #~ msgid "Let t empty to use the default icon."
 #~ msgstr "デフォルトのアイコンを使用するには空欄のままに。"
-
 #~ msgid "Delay between signal checks :"
 #~ msgstr "信号チェックの間隔時間 :"
-
 #~ msgid "Debug"
 #~ msgstr "デバグ"
-
 #~ msgid "in milliseconds."
 #~ msgstr "ミリ秒"
-
 #~ msgid "Acquisition of data failed"
 #~ msgstr "データ取得に失敗"
-
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"
+

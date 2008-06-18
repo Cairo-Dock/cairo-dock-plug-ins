@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2008-06-14 22:24+0200\n"
-"PO-Revision-Date: 2008-02-25 15:50+0900\n"
+"PO-Revision-Date: 2008-06-18 22:28+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,19 +17,20 @@ msgstr ""
 
 #: ../src/applet-draw.c:79
 msgid "GPU Name:"
-msgstr ""
+msgstr "GPU名 :"
 
 #: ../src/applet-draw.c:79
 msgid "Video Ram:"
-msgstr ""
+msgstr "Video Ram:"
 
 #: ../src/applet-draw.c:79
 msgid "Driver Version:"
-msgstr ""
+msgstr "Driver Version:"
 
-#: ../src/applet-draw.c:79 ../src/applet-draw.c:95
+#: ../src/applet-draw.c:79
+#: ../src/applet-draw.c:95
 msgid "Core Temparature:"
-msgstr ""
+msgstr "コアの温度 :"
 
 #: ../src/applet-draw.c:84
 msgid ""
@@ -37,6 +38,9 @@ msgid ""
 "Your version of 'nvidia-settings' is too old\n"
 " You need at least the 1.0.0 version"
 msgstr ""
+"nVidia \n"
+"'nvidia-settings' のバージョンが古すぎます。\n"
+"少なくとも 1.0.0 バージョンが必要です。"
 
 #: ../src/applet-draw.c:87
 msgid ""
@@ -45,20 +49,26 @@ msgid ""
 " is 'nvidia-settings' installed on your system\n"
 " and configured to monitor GPU temperature ?"
 msgstr ""
+"nVidia \n"
+"GPU 温度が取得できませんでした。\n"
+"'nvidia-settings' がシステムにインストールされ、\n"
+"GPU の温度を監視するように設定されていますか？"
 
 #: ../src/applet-draw.c:95
 msgid "Alert!"
-msgstr ""
+msgstr "警告！"
 
 #: ../src/applet-draw.c:95
 msgid "passed alert temperature level"
-msgstr ""
+msgstr "警告温度レベル突破"
 
 #: ../src/applet-notifications.c:21
 msgid ""
 "This is the nVidia applet\n"
 " made by ChAnGFu for Cairo-Dock"
 msgstr ""
+"これは ChAnGFu によって製作された \n"
+"Cairo-Dock 用の nVidia アプレットです。"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -86,19 +96,15 @@ msgstr "アイコンの名前 :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:15
 msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -106,9 +112,7 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -127,117 +131,113 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:31
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:35
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
 
 #: ../data/messages:37
 msgid "Lock position ?"
-msgstr ""
+msgstr "位置を固定？"
 
 #: ../data/messages:39
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../data/messages:41
 msgid "Informations"
-msgstr ""
+msgstr "情報"
 
 #: ../data/messages:43
 msgid "Display Card name on the Label ?"
-msgstr ""
+msgstr "ラベル上にカード名を表示？"
 
 #: ../data/messages:45
 msgid "Display core temperature :"
-msgstr ""
+msgstr "コア温度の表示 :"
 
 #: ../data/messages:47
 msgid "no"
-msgstr ""
+msgstr "なし"
 
 #: ../data/messages:49
 msgid "on quickinfo"
-msgstr ""
+msgstr "クイック情報上"
 
 #: ../data/messages:51
 msgid "on label"
-msgstr ""
+msgstr "ラベル上"
 
 #: ../data/messages:53
 msgid "in seconds."
-msgstr ""
+msgstr "秒単位"
 
 #: ../data/messages:55
 msgid "Delay between temperature checks :"
-msgstr ""
+msgstr "温度チェックの間隔時間 :"
 
-#: ../data/messages:57 ../data/messages:61 ../data/messages:67
+#: ../data/messages:57
+#: ../data/messages:61
+#: ../data/messages:67
 msgid "in celcius."
-msgstr ""
+msgstr "摂氏"
 
 #: ../data/messages:59
 msgid "Lower limit of core temperature :"
-msgstr ""
+msgstr "コア温度の下限 :"
 
 #: ../data/messages:63
 msgid "Upper limit of core temperature :"
-msgstr ""
+msgstr "コア温度の上限 :"
 
 #: ../data/messages:65
 msgid "Alert when core temperature is high ?"
-msgstr ""
+msgstr "コア温度が高い時に警告？"
 
 #: ../data/messages:69
 msgid "Alert limit of core temperature :"
-msgstr ""
+msgstr "コア温度のリミット警告 :"
 
 #: ../data/messages:71
 msgid "Play a sound during the alert ?"
-msgstr ""
+msgstr "警告中に音を鳴らす？"
 
 #: ../data/messages:73
 msgid "Sound path :"
-msgstr ""
+msgstr "音ファイルのパス :"
 
 #: ../data/messages:75
 msgid "Images"
-msgstr ""
+msgstr "画像"
 
 #: ../data/messages:77
 msgid "List of available themes for the analogic display :"
-msgstr ""
+msgstr "アナログ表示に利用可能なテーマのリスト :"
 
 #: ../data/messages:79
 msgid "radium"
-msgstr ""
+msgstr "radium"
 
 #: ../data/messages:81
 msgid "Let it empty to use the default icon."
-msgstr ""
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #: ../data/messages:83
 msgid "Name of an image for the 'broken' icon :"
-msgstr ""
+msgstr "「リンク切れ」アイコンの画像の名前 :"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
-
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+

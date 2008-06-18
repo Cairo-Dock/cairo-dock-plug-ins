@@ -8,14 +8,15 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2008-06-14 22:24+0200\n"
-"PO-Revision-Date: 2008-05-19 21:11+0900\n"
+"PO-Revision-Date: 2008-06-18 22:30+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-netspeed.c:25 ../src/applet-netspeed.c:33
+#: ../src/applet-netspeed.c:25
+#: ../src/applet-netspeed.c:33
 msgid "B"
 msgstr "B"
 
@@ -23,7 +24,8 @@ msgstr "B"
 msgid "KB"
 msgstr "KB"
 
-#: ../src/applet-netspeed.c:49 ../src/applet-notifications.c:19
+#: ../src/applet-netspeed.c:49
+#: ../src/applet-notifications.c:19
 msgid "MB"
 msgstr "MB"
 
@@ -54,6 +56,9 @@ msgid ""
 "  downloaded : %.2f%s\n"
 "  uploaded : %.2f%s"
 msgstr ""
+"データの総量 :\n"
+"  ダウンロード : %.2f%s\n"
+"  アップロード : %.2f%s"
 
 #: ../src/applet-notifications.c:22
 #, c-format
@@ -93,12 +98,8 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:15
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -106,9 +107,7 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -127,29 +126,20 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr ""
+msgstr "位置を固定？"
 
 #: ../data/messages:37
 msgid "Configuration"
@@ -197,31 +187,22 @@ msgstr "計測の間隔時間 :"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
-
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
-
 #~ msgid "Information to display on the icon :"
 #~ msgstr "アイコン上に表示する情報 :"
-
 #~ msgid "Waiting"
 #~ msgstr "待機中"
-
 #~ msgid "Personnalisation"
 #~ msgstr "カスタマイズ"
-
 #~ msgid "Let t empty to use the default icon."
 #~ msgstr "デフォルトのアイコンを使用するには空欄のままに。"
-
 #~ msgid "Delay between signal checks :"
 #~ msgstr "信号チェックの間隔時間 :"
-
 #~ msgid "Debug"
 #~ msgstr "デバグ"
-
 #~ msgid "in milliseconds."
 #~ msgstr "ミリ秒単位"
-
 #~ msgid ""
 #~ "Total amount of data :\n"
 #~ "  downloaded : %.2fKB\n"
@@ -230,6 +211,6 @@ msgstr "計測の間隔時間 :"
 #~ "データの総量 :\n"
 #~ "  ダウンロード : %.2fKB\n"
 #~ "  アップロード : %.2fKB"
-
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"
+

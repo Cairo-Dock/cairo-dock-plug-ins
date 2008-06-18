@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2008-06-14 22:25+0200\n"
-"PO-Revision-Date: 2008-05-19 21:57+0900\n"
+"PO-Revision-Date: 2008-06-18 23:51+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,11 +25,11 @@ msgstr "ノートの名前 :"
 
 #: ../src/tomboy-notifications.c:62
 msgid "Search for :"
-msgstr ""
+msgstr "検索 :"
 
 #: ../src/tomboy-notifications.c:83
 msgid "Search for tag :"
-msgstr ""
+msgstr "タグ検索 :"
 
 #: ../src/tomboy-notifications.c:139
 msgid "Reload notes"
@@ -45,27 +45,27 @@ msgstr "このノートを削除"
 
 #: ../src/tomboy-notifications.c:149
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: ../src/tomboy-notifications.c:150
 msgid "Searh for tag"
-msgstr ""
+msgstr "タグ検索"
 
 #: ../src/tomboy-notifications.c:152
 msgid "Search for today's note"
-msgstr ""
+msgstr "今日のノートの検索"
 
 #: ../src/tomboy-notifications.c:153
 msgid "Search for this week's note"
-msgstr ""
+msgstr "今週のノートの検索"
 
 #: ../src/tomboy-notifications.c:154
 msgid "Search for next week's note"
-msgstr ""
+msgstr "次週のノートの検索"
 
 #: ../src/tomboy-notifications.c:164
 msgid "Reset marks"
-msgstr ""
+msgstr "マークのリセット"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -95,7 +95,9 @@ msgstr "帰属先ドックの名前 :"
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:15 ../data/messages:19 ../data/messages:23
+#: ../data/messages:15
+#: ../data/messages:19
+#: ../data/messages:23
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
@@ -116,16 +118,8 @@ msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:29
-msgid ""
-"Depending on your tomboy's version, the note deletion may not be "
-"automatically notified to us. Only check this box if you notice some error "
-"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
-"terminal."
-msgstr ""
-"使用中の Tomboy のバージョンによっては、ノートの削除の自動的な通知が行われな"
-"い可能性があります。端末上で <<No marshaller for signature of signal "
-"'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみこのオプションに"
-"チェックを入れてください。"
+msgid "Depending on your tomboy's version, the note deletion may not be automatically notified to us. Only check this box if you notice some error message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal."
+msgstr "使用中の Tomboy のバージョンによっては、ノートの削除の自動的な通知が行われない可能性があります。端末上で <<No marshaller for signature of signal 'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れてください。"
 
 #: ../data/messages:31
 msgid "Emulate the 'NoteDeleted' signal ?"
@@ -141,67 +135,48 @@ msgstr "サブ・ドックに使用する外観の名前 :"
 
 #: ../data/messages:37
 msgid "Draw note's content on their icon ?"
-msgstr ""
+msgstr "アイコン上にノートの内容を描画？"
 
 #: ../data/messages:39
-msgid ""
-"Write the date format you usually use in your notes. The syntax is the one "
-"of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
-"digits), etc. Let it blnk to use the default one (%d/%m/%y)."
-msgstr ""
+msgid "Write the date format you usually use in your notes. The syntax is the one of 'strftime' : %d for the day, %m for the month, %y for the year (2 digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+msgstr "ノートで普段使用している日付形式を記入してください。記述法は、年（下2桁）が %y、月が %m、日が %d 等の 'strftime' に則ります。デフォルト（%d/%m/%y）を使用するには、空欄のままにしてください。"
 
 #: ../data/messages:41
 msgid "Date format to search for :"
-msgstr ""
+msgstr "検索のための日付フォーマット :"
 
 #~ msgid "Info-bubbles"
 #~ msgstr "情報を通知する吹き出し"
-
 #~ msgid "Activate info-bubbles ?"
 #~ msgstr "吹き出しによる情報表示を有効化？"
-
 #~ msgid "Time length of info-bubbles :"
 #~ msgstr "吹き出しの表示継続時間 :"
-
 #~ msgid "in ms."
 #~ msgstr "ミリ秒単位"
-
 #~ msgid "Animations"
 #~ msgstr "アニメーション"
-
 #~ msgid "bounce"
 #~ msgstr "バウンド"
-
 #~ msgid "rotate"
 #~ msgstr "回転"
-
 #~ msgid "blink"
 #~ msgstr "点滅"
-
 #~ msgid "pulse"
 #~ msgstr "波動"
-
 #~ msgid "upside-down"
 #~ msgstr "上下逆さま"
-
 #~ msgid "wobbly"
 #~ msgstr "伸び縮み"
-
 #~ msgid "random"
 #~ msgstr "ランダム"
-
 #~ msgid "Animation when music changes :"
 #~ msgstr "音楽切り替わり時のアニメーション:"
-
 #~ msgid "Display"
 #~ msgstr "表示"
-
 #~ msgid "Display album's cover instead of icon ?"
 #~ msgstr "アイコンの代わりにアルバムのカバーを表示？"
-
 #~ msgid "Information to display on the icon :"
 #~ msgstr "アイコン上に表示する情報 :"
-
 #~ msgid ""
 #~ "Artist : %s\n"
 #~ "Album : %s\n"
@@ -210,40 +185,28 @@ msgstr ""
 #~ "アーティスト : %s\n"
 #~ "アルバム : %s\n"
 #~ "タイトル : %s"
-
 #~ msgid "Unknown"
 #~ msgstr "不明"
-
 #~ msgid "Previous"
 #~ msgstr "前へ"
-
 #~ msgid "Next"
 #~ msgstr "次へ"
-
 #~ msgid "Information"
 #~ msgstr "情報"
-
 #~ msgid "nothing"
 #~ msgstr "なし"
-
 #~ msgid "time elapsed"
 #~ msgstr "経過時間"
-
 #~ msgid "time left"
 #~ msgstr "残り時間"
-
 #~ msgid "° of track"
 #~ msgstr "トラック番号"
-
 #~ msgid "Name of an image for the 'play' icon :"
 #~ msgstr "'再生' アイコンの画像の名前 :"
-
 #~ msgid "Name of an image for the 'stop' icon :"
 #~ msgstr "'停止' アイコンの画像の名前 :"
-
 #~ msgid "Name of an image for the 'pause' icon :"
 #~ msgstr "'一時停止' アイコンの画像の名前 :"
-
 #~ msgid ""
 #~ "If your tomboy version is not recent enough, it may not have this signal. "
 #~ "Only check this box if you notice some message like <<No marshaller for "
@@ -253,3 +216,4 @@ msgstr ""
 #~ "ります。端末上で <<No marshaller for signature of signal 'NoteDeleted'>> "
 #~ "のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れ"
 #~ "てください。"
+

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2008-06-14 22:15+0200\n"
-"PO-Revision-Date: 2008-05-19 20:35+0900\n"
+"PO-Revision-Date: 2008-06-18 21:53+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -35,11 +35,13 @@ msgstr ""
 "これは Fabrice Rey (fabounet@users.berlios.de) により\n"
 "Cairo-Dock 用に製作された dustbin アプレットです。"
 
-#: ../src/applet-notifications.c:37 ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:37
+#: ../src/applet-notifications.c:42
 msgid "Show Trash"
 msgstr "中身を表示"
 
-#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:51
 msgid "Delete Trash"
 msgstr "中身を削除"
 
@@ -120,12 +122,8 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:15
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -133,9 +131,7 @@ msgstr "デスクレットの寸法（幅×高さ） "
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -154,29 +150,20 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr ""
+msgstr "位置を固定？"
 
 #: ../data/messages:37
 msgid "Module"
@@ -192,11 +179,11 @@ msgstr "利用可能なテーマから1つ選択 :"
 
 #: ../data/messages:43
 msgid "Name of an image to overwrite the theme's empty image :"
-msgstr "テーマのゴミ箱空っぽ時画像に置き換える画像の名前 :"
+msgstr "空状態を表すテーマ画像に置き換える画像の名前 :"
 
 #: ../data/messages:45
 msgid "Name of an image to overwrite the theme's full image :"
-msgstr "テーマのゴミ箱満杯時画像に置き換える画像の名前 :"
+msgstr "満杯状態を表すテーマ画像に置き換える画像の名前 :"
 
 #: ../data/messages:47
 msgid "Config"
@@ -207,13 +194,12 @@ msgid "They don't even need to be real trash directories."
 msgstr "システムの実際のゴミ箱用ディレクトリ（.Trash）でなくとも指定可能です。"
 
 #: ../data/messages:51
-msgid ""
-"Here you can specify a list of additionnal Trash directories to monitor :"
+msgid "Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr "監視対象に含める追加的なゴミ箱ディレクトリのリストの指定 :"
 
 #: ../data/messages:53
 msgid "Display the following quick info :"
-msgstr "以下の簡便情報を表示 :"
+msgstr "クイック情報の表示 :"
 
 #: ../data/messages:55
 msgid "None"
@@ -231,12 +217,10 @@ msgstr "ファイルの総数"
 msgid "Total weight"
 msgstr "総量"
 
-#: ../data/messages:63 ../data/messages:67
-msgid ""
-"in Mb. You will be notified when you go over this limit. Set 0 to not use it."
-msgstr ""
-"Mb 単位。この上限値を越えた際に通知を行います。0 に設定すると通知を使用しませ"
-"ん。"
+#: ../data/messages:63
+#: ../data/messages:67
+msgid "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+msgstr "Mb 単位。この上限値を越えた際に通知を行います。0 に設定すると通知を使用しません。"
 
 #: ../data/messages:65
 msgid "Maximum total size of all dustbins :"
@@ -259,10 +243,8 @@ msgid "Interval of time to check if dustbin is full/empty :"
 msgstr "ゴミ箱が満杯か空かをチェックする間隔時間 :"
 
 #: ../data/messages:77
-msgid ""
-"Only use this if you notice that the applet can't display the trash on click."
-msgstr ""
-"アプレットがクリックでゴミ箱の中身を表示できない場合にのみ使用してください。"
+msgid "Only use this if you notice that the applet can't display the trash on click."
+msgstr "アプレットがクリックでゴミ箱の中身を表示できない場合にのみ使用してください。"
 
 #: ../data/messages:79
 msgid "Alternative file browser used to show a trash :"
@@ -270,22 +252,18 @@ msgstr "ゴミ箱の表示に使用する代替ファイルブラウザ :"
 
 #~ msgid "in seconds"
 #~ msgstr "秒単位"
-
 #~ msgid "Here you can specify a list of Trash directory :"
 #~ msgstr "ここでゴミ箱ディレクトリのリストの指定可能 :"
-
 #~ msgid "File browser used to show a trash :"
 #~ msgstr "ゴミ箱の表示に使用するファイルブラウザ :"
-
 #~ msgid ""
 #~ "This is the dustbin applet for Cairo-Dock\n"
 #~ " made by Fabrice Rey (fabounet_03@yahoo.fr)"
 #~ msgstr ""
 #~ "これは Fabrice Rey (fabounet_03@yahoo.fr) により\n"
 #~ "Cairo-Dock 用に製作された dustbin アプレットです。"
-
 #~ msgid "You're about to delete all files all dustbins. Sure ?"
 #~ msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
-
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"
+

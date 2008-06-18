@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-14 20:09+0200\n"
+"POT-Creation-Date: 2008-06-18 10:10+0200\n"
 "PO-Revision-Date: 2008-05-23 08:50+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:52 ../src/applet-load-icons.c:37
+#: ../src/applet-init.c:53 ../src/applet-load-icons.c:37
 msgid "Desktop"
 msgstr ""
 
-#: ../src/applet-init.c:60 ../src/applet-load-icons.c:32
+#: ../src/applet-init.c:61 ../src/applet-load-icons.c:32
 msgid "Current"
 msgstr ""
 
@@ -29,11 +29,11 @@ msgid ""
 " made by Cchumi for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:187
+#: ../src/applet-notifications.c:82
 msgid "Add a desktop"
 msgstr ""
 
-#: ../src/applet-notifications.c:188
+#: ../src/applet-notifications.c:83
 msgid "Remove last desktop"
 msgstr ""
 
@@ -157,24 +157,38 @@ msgid "Color of the extern line :"
 msgstr ""
 
 #: ../data/messages:63
-msgid "Color of the current desktop border line :"
-msgstr ""
+#, fuzzy
+msgid "Color of the current desktop :"
+msgstr "Couleur de l'indicateur :"
 
 #: ../data/messages:65
-msgid "Let empty to use the default one."
-msgstr "Laissez vide pour utiliser l'image par défaut."
+msgid "Otherwise only its border will be filled."
+msgstr ""
 
 #: ../data/messages:67
-msgid "Icon to use if you don't map the wallpaper :"
+msgid "Fill the current desktop with this color ?"
 msgstr ""
 
 #: ../data/messages:69
+msgid "Let empty to use the default one."
+msgstr "Laissez vide pour utiliser l'image par défaut."
+
+#: ../data/messages:71
+msgid "Icon to use if you don't map the wallpaper :"
+msgstr ""
+
+#: ../data/messages:73
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut."
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la Vue utilisée "
+
+#: ../data/messages:77
+#, fuzzy
+msgid "In expanded mode, render the desklet in 3D ?"
+msgstr "Rendre en Desklet 3D ?"
 
 #~ msgid "ICON"
 #~ msgstr "ICONE"
@@ -201,9 +215,6 @@ msgstr "Nom de la Vue utilisée "
 #~ msgid "Broken icon :"
 #~ msgstr "Icône de Défaillance :"
 
-#~ msgid "Render desklet in 3D ?"
-#~ msgstr "Rendre en Desklet 3D ?"
-
 #~ msgid "Invert Indicator of Current Desktop ?"
 #~ msgstr "Inverser l'identification du bureau courant ?"
 
@@ -221,9 +232,6 @@ msgstr "Nom de la Vue utilisée "
 
 #~ msgid "Size of the Inside Icon Lines :"
 #~ msgstr "Taille de la ligne Interieure :"
-
-#~ msgid "Color of the Indicator :"
-#~ msgstr "Couleur de l'indicateur :"
 
 #~ msgid "Color of the Inside Icon Lines :"
 #~ msgstr "Couleur des Lignes Interieures :"

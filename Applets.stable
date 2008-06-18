@@ -16,13 +16,13 @@ alsaMixer
 weather
 terminal
 Cairo-Penguin
+showDesktop
 ###Stable as far as we know, may still be under development :
 rhythmbox
 xmms
 powermanager
 wifi
 compiz-icon
-showDesktop
 systray
 ###Last addition of v1.6.0 :
 cpusage

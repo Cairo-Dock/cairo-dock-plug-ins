@@ -418,6 +418,7 @@ AC_CONFIG_FILES([
 	dustbin/data/themes/Silver/Makefile
 	dustbin/data/themes/I_Dustbin/Makefile
 	dustbin/data/themes/Neon/Makefile
+	dustbin/data/themes/Clear/Makefile
 	
 	gnome-integration/Makefile
 	gnome-integration/src/Makefile

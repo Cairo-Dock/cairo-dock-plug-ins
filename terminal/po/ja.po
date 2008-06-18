@@ -8,22 +8,25 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2008-06-14 22:18+0200\n"
-"PO-Revision-Date: 2008-05-19 21:55+0900\n"
+"PO-Revision-Date: 2008-06-18 23:38+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:328
+#: ../src/terminal-callbacks.c:67
+#: ../src/terminal-widget.c:328
 msgid "Copy"
 msgstr "コピー"
 
-#: ../src/terminal-init.c:79 ../src/terminal-widget.c:659
+#: ../src/terminal-init.c:79
+#: ../src/terminal-widget.c:659
 msgid "Terminal"
 msgstr "端末"
 
-#: ../src/terminal-menu-functions.c:84 ../src/terminal-widget.c:344
+#: ../src/terminal-menu-functions.c:84
+#: ../src/terminal-widget.c:344
 msgid "New Tab"
 msgstr "新しいタブ"
 
@@ -89,21 +92,15 @@ msgstr "デスクレット"
 
 #: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
 #: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
 #: ../data/messages:19
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:21
 msgid "Desklet's dimension (width x height) :"
@@ -122,28 +119,20 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
-"ます。その場合でも ALT + 左クリックで移動させることはできます。"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなります。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr ""
+msgstr "位置を固定？"
 
 #: ../data/messages:37
 msgid "GUI"
@@ -166,12 +155,8 @@ msgid "Background color (r, v, b):"
 msgstr "背景の色（赤、緑、青） :"
 
 #: ../data/messages:47
-msgid ""
-"When the terminal is in a dialog. When it is in a desklet, you can just "
-"resize the desklet as usual."
-msgstr ""
-"ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレット"
-"のサイズ変更が可能です。"
+msgid "When the terminal is in a dialog. When it is in a desklet, you can just resize the desklet as usual."
+msgstr "ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレットのサイズ変更が可能です。"
 
 #: ../data/messages:49
 msgid "Size of the terminal (line x columns) :"
@@ -183,18 +168,14 @@ msgstr "端末を表示するショートカットキー :"
 
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "このアプレットのアイコンの大きさ"
-
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
-
 #~ msgid "Always on top ?"
 #~ msgstr "常に最前面に表示？"
-
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
-
 #~ msgid "Rename Tab"
 #~ msgstr "タブ名の変更"
-
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"
+

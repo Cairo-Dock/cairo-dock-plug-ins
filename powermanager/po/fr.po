@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-14 22:20+0200\n"
+"POT-Creation-Date: 2008-06-18 10:02+0200\n"
 "PO-Revision-Date: 2008-05-19 20:44+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <po@cairo-dock.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-Country: France\n"
 
-#: ../src/powermanager-draw.c:102
+#: ../src/powermanager-draw.c:121
 msgid "None"
 msgstr "Aucun"
 
-#: ../src/powermanager-draw.c:131
+#: ../src/powermanager-draw.c:149
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -29,12 +29,12 @@ msgstr ""
 "Portable sur Batterie.\n"
 " Batterie chargée à:"
 
-#: ../src/powermanager-draw.c:131 ../src/powermanager-draw.c:136
-#: ../src/powermanager-draw.c:157 ../src/powermanager-draw.c:163
+#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:153
+#: ../src/powermanager-draw.c:174 ../src/powermanager-draw.c:180
 msgid "Estimated time with Charge:"
 msgstr "Autonomie estimé:"
 
-#: ../src/powermanager-draw.c:136
+#: ../src/powermanager-draw.c:153
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -42,11 +42,11 @@ msgstr ""
 "Portable en Charge.\n"
 " Batterie chargée à:"
 
-#: ../src/powermanager-draw.c:142
+#: ../src/powermanager-draw.c:159
 msgid "No Battery found."
 msgstr "Aucune Batterie trouvée."
 
-#: ../src/powermanager-draw.c:157
+#: ../src/powermanager-draw.c:174
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -54,11 +54,11 @@ msgstr ""
 "PowerManager.\n"
 "Le niveau de la batterie semble être bas"
 
-#: ../src/powermanager-draw.c:157
+#: ../src/powermanager-draw.c:174
 msgid "Please put your Laptop on charge."
 msgstr "Veuillez mettre votre portable en charge."
 
-#: ../src/powermanager-draw.c:163
+#: ../src/powermanager-draw.c:180
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"
@@ -249,64 +249,67 @@ msgstr "Alerte"
 msgid "Alert when battery charged ?"
 msgstr "M'alerter quand la batterie est chargée ?"
 
+#: ../data/messages:75 ../data/messages:85 ../data/messages:93
 msgid "Let it empty to have no sound"
 msgstr "Laissez vide pour ne pas avoir de son"
 
+#: ../data/messages:77 ../data/messages:87 ../data/messages:95
 msgid "Use a sound :"
 msgstr "Utiliser un son :"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Alert when low battery ?"
 msgstr "M'alerter quand la charge est basse ?"
 
-#: ../data/messages:75
-msgid "Alert when battery charge is critical ?"
-msgstr "M'alerter quand la charge est critique ?"
-
-msgid "When battery level is under 4%"
-msgstr "Quand la charge est en dessou de 4%"
-
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "in percent."
 msgstr "en pourcent"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Battery level :"
 msgstr "Niveau de batterie"
 
-#: ../data/messages:81
+#: ../data/messages:89
+msgid "When battery level is under 4%"
+msgstr "Quand la charge est en dessou de 4%"
+
+#: ../data/messages:91
+msgid "Alert when battery charge is critical ?"
+msgstr "M'alerter quand la charge est critique ?"
+
+#: ../data/messages:97
 msgid "Animate icon during the alert ?"
 msgstr "Animer l'icône pendant l'alerte ?"
 
-#: ../data/messages:83
+#: ../data/messages:99
 msgid "Animation during alert :"
 msgstr "Animation pendant l'alerte :"
 
-#: ../data/messages:85
+#: ../data/messages:101
 msgid "bounce"
 msgstr "Rebond"
 
-#: ../data/messages:87
+#: ../data/messages:103
 msgid "rotate"
 msgstr "Rotation"
 
-#: ../data/messages:89
+#: ../data/messages:105
 msgid "blink"
 msgstr "Clignotement"
 
-#: ../data/messages:91
+#: ../data/messages:107
 msgid "pulse"
 msgstr "Pulsation"
 
-#: ../data/messages:93
+#: ../data/messages:109
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
-#: ../data/messages:95
+#: ../data/messages:111
 msgid "wobbly"
 msgstr "Élastique"
 
-#: ../data/messages:97
+#: ../data/messages:113
 msgid "random"
 msgstr "Aléatoire"
 
