@@ -57,7 +57,6 @@ void update_icon(void)
 				bNeedRedraw = FALSE;
 			}
 			
-			//gchar *cEmblem=NULL;
 			if(myData.on_battery)
 			{
 				//Alert when battery charge is under a configured value in %
@@ -75,9 +74,8 @@ void update_icon(void)
 					if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL] != NULL)
 						cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL]);
 				}
-				
-				cairo_dock_make_emblem (CAIRO_DOCK_EMBLEM_BLANK, CAIRO_DOCK_EMBLEM_MIDDLE);
-				//cEmblem = g_strdup_printf("%s/emblem-battery.svg", MY_APPLET_SHARE_DATA_DIR);
+				//Embleme sur notre icône
+				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_BLANK, CAIRO_DOCK_EMBLEM_MIDDLE);
 			}
 			else
 			{
@@ -85,13 +83,8 @@ void update_icon(void)
 				if(myData.battery_charge == 100 && ! myData.alerted)
 					cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL);
 					
-				cairo_dock_make_emblem (CAIRO_DOCK_EMBLEM_CHARGE, CAIRO_DOCK_EMBLEM_MIDDLE);
-				//cEmblem = g_strdup_printf("%s/emblem-charge.svg", MY_APPLET_SHARE_DATA_DIR);
+				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_CHARGE, CAIRO_DOCK_EMBLEM_MIDDLE);
 			}
-			
-			
-			//cairo_dock_draw_emblem_on_my_icon (myDrawContext, cEmblem, myIcon, myContainer, CAIRO_DOCK_EMBLEM_MIDDLE); obsolet
-			//g_free(cEmblem);
 			
 			myData.previously_on_battery = myData.on_battery;
 			myData.previous_battery_charge = myData.battery_charge;

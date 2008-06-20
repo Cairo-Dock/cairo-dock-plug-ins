@@ -9,7 +9,7 @@
 #include "powermanager-init.h"
 
 
-CD_APPLET_DEFINITION ("PowerManager", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("PowerManager", 1, 6, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 CD_APPLET_INIT_BEGIN (erreur)
@@ -104,19 +104,8 @@ CD_APPLET_RELOAD_BEGIN
 				
 				cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.battery_charge / 100);
 				
-				//Emblem sur notre icône
-				//gchar *cEmblem=NULL;
-				if (myData.on_battery)
-				{
-					cairo_dock_make_emblem (CAIRO_DOCK_EMBLEM_BLANK, CAIRO_DOCK_EMBLEM_MIDDLE);
-				}
-				else
-				{
-					cairo_dock_make_emblem (CAIRO_DOCK_EMBLEM_CHARGE, CAIRO_DOCK_EMBLEM_MIDDLE);
-				}
-				
-				//cairo_dock_draw_emblem_on_my_icon (myDrawContext, cEmblem, myIcon, myContainer, CAIRO_DOCK_EMBLEM_MIDDLE);
-				//g_free(cEmblem);
+				//Embleme sur notre icône
+				CD_APPLET_DRAW_EMBLEM ((myData.on_battery ? CAIRO_DOCK_EMBLEM_BLANK : CAIRO_DOCK_EMBLEM_CHARGE), CAIRO_DOCK_EMBLEM_MIDDLE);
 			}
 			else  // on redessine juste l'icone actuelle.
 			{

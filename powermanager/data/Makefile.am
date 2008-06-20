@@ -10,6 +10,4 @@ datapowermanager_DATA = \
 	readme\
 	powermanager.conf\
 	preview.png\
-	emblem-battery.svg\
-	emblem-charge.svg\
 	icon.png
