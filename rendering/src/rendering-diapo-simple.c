@@ -154,7 +154,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
                         	cairo_set_source_surface (pCairoContext,
 				        icon->pTextBuffer,                                        
 				        (icon->fDrawX + (icon->fWidth * icon->fScale)/2)/zoom - icon->fTextXOffset,
-				        (icon->fDrawY +  (icon->fHeight * icon->fScale)   + (my_diapo_simple_iconGapY / 2)  - 6 )/zoom); // 6 ~= hauteur texte / 2
+				        (icon->fDrawY +  (icon->fHeight * icon->fScale) + 0*(my_diapo_simple_iconGapY / 2)) / zoom - 6); // 6 ~= hauteur texte / 2
 			}
 			else
 	                {

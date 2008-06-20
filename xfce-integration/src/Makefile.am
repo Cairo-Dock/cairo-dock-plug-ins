@@ -14,7 +14,6 @@ libcd_xfce_integration_la_SOURCES = \
 
 
 dock_version = `pkg-config --modversion cairo-dock`
-thunar_vfs_version = `pkg-config --modversion thunar-vfs-1`
 
 libcd_xfce_integration_la_CFLAGS = \
 	-I$(top_srcdir)/src\
@@ -28,7 +27,6 @@ libcd_xfce_integration_la_CFLAGS = \
 	-DMY_APPLET_VERSION=\""$(VERSION_XFCE_INTEGRATION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-xfce-integration"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
-	-DTHUNAR_VFS_VERSION=\""$(thunar_vfs_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\

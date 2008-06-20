@@ -91,7 +91,8 @@ gdouble  my_diapo_simple_color_border_line[4];
 gboolean my_diapo_simple_draw_background;
 gboolean my_diapo_display_all_icons;
 
-gdouble my_curve_curvitude;
+gdouble my_fCurveCurvature;
+gint my_iCurveAmplitude;
 CDSpeparatorType my_curve_iDrawSeparator3D;
 double my_curve_fSeparatorColor[4];
 

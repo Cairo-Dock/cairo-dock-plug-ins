@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-14 22:21+0200\n"
+"POT-Creation-Date: 2008-06-19 02:21+0200\n"
 "PO-Revision-Date: 2008-06-18 21:14+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -19,8 +19,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Compiz の設定"
 
-#: ../src/applet-load-icon.c:22
-#: ../src/applet-notifications.c:165
+#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:165
 msgid "Emerald Manager"
 msgstr "Emerald マネージャ"
 
@@ -32,8 +31,7 @@ msgstr "WM の再読み込み"
 msgid "Exposition"
 msgstr "展開"
 
-#: ../src/applet-load-icon.c:22
-#: ../data/messages:49
+#: ../src/applet-load-icon.c:22 ../data/messages:49
 msgid "Widget Layer"
 msgstr "ウィジェット・レイヤ"
 
@@ -98,8 +96,12 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -107,7 +109,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -126,16 +130,25 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -150,8 +163,12 @@ msgid "Actions"
 msgstr "アクション"
 
 #: ../data/messages:41
-msgid "Except for switching to another WM, you must activate the Dbus plugin in Compiz, along with the plug-in corresponding to the desired action."
-msgstr "別のWMへの切り替え以外を選択した場合、Compiz の各アクションに対応するプラグインの他に、Dbus プラグインも有効にする必要があります。"
+msgid ""
+"Except for switching to another WM, you must activate the Dbus plugin in "
+"Compiz, along with the plug-in corresponding to the desired action."
+msgstr ""
+"別のWMへの切り替え以外を選択した場合、Compiz の各アクションに対応するプラグイ"
+"ンの他に、Dbus プラグインも有効にする必要があります。"
 
 #: ../data/messages:43
 msgid "Choose an action for the middle click on the icon :"
@@ -174,24 +191,36 @@ msgid "Show Desktop"
 msgstr "デスクトップの表示"
 
 #: ../data/messages:55
-msgid "This command will be used to launch the system WM; let it blank to use the default one."
-msgstr "このコマンドはシステムの WM を起動するのに使用されます。デフォルトを使用するには空欄のままに。"
+msgid ""
+"This command will be used to launch the system WM; let it blank to use the "
+"default one."
+msgstr ""
+"このコマンドはシステムの WM を起動するのに使用されます。デフォルトを使用する"
+"には空欄のままに。"
 
 #: ../data/messages:57
 msgid "Custom command for system's Windows Manager :"
 msgstr "システムのウィンドウ・マネージャを呼び出す任意コマンド"
 
 #: ../data/messages:59
-msgid "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then."
-msgstr "Compiz が予期せず終了した場合、Cairo-Dock が Compiz を再起動します。この場合 Compiz の終了はドックから行う必要があります。"
+msgid ""
+"If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
+"Compiz from the dock then."
+msgstr ""
+"Compiz が予期せず終了した場合、Cairo-Dock が Compiz を再起動します。この場合 "
+"Compiz の終了はドックから行う必要があります。"
 
 #: ../data/messages:61
 msgid "Auto-reload Compiz ?"
 msgstr "Compiz を自動再読み込み？"
 
 #: ../data/messages:63
-msgid "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then."
-msgstr "デコレータが予期せず終了した場合、Cairo-Dock がデコレータを再起動します。この場合 Compiz の終了はドックから行う必要があります。"
+msgid ""
+"If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+"quit Compiz from the dock then."
+msgstr ""
+"デコレータが予期せず終了した場合、Cairo-Dock がデコレータを再起動します。この"
+"場合 Compiz の終了はドックから行う必要があります。"
 
 #: ../data/messages:65
 msgid "Auto-reload the Decorator ?"
@@ -206,16 +235,24 @@ msgid "Force Compiz settings at startup ?"
 msgstr "スタートアップ時に Compiz の設定を適用？"
 
 #: ../data/messages:71
-msgid "It will prevent the CSSM or Emerald icon to appear in the task bar. The corresponding subdock's icons will then behave as launcher and an appli."
-msgstr "CCSM や Emerald のアイコンがタスクバーに表示されるのを防ぎます。対応するサブ・ドックのアイコンがランチャーやアプリケーションとして動作します。"
+msgid ""
+"It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+"corresponding subdock's icons will then behave as launcher and an appli."
+msgstr ""
+"CCSM や Emerald のアイコンがタスクバーに表示されるのを防ぎます。対応するサ"
+"ブ・ドックのアイコンがランチャーやアプリケーションとして動作します。"
 
 #: ../data/messages:73
 msgid "Steal the application's icon in taskbar ?"
 msgstr "タスクバーにあるアプリケーションのアイコンを奪取？"
 
 #: ../data/messages:75
-msgid "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget Layer plug-ins. Otherwise they will be available in the menu."
-msgstr "Compiz のウィジェット・レイヤと展開のプラグインの2つのアイコンをアプレットのサブ・ドックに表示します。無効の場合でも、メニュー上から利用可能です。"
+msgid ""
+"Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+"Layer plug-ins. Otherwise they will be available in the menu."
+msgstr ""
+"Compiz のウィジェット・レイヤと展開のプラグインの2つのアイコンをアプレットの"
+"サブ・ドックに表示します。無効の場合でも、メニュー上から利用可能です。"
 
 #: ../data/messages:77
 msgid "Add Exposition & Widget Layer to sub-dock ?"
@@ -226,8 +263,16 @@ msgid "Compiz Options"
 msgstr "Compiz のオプション"
 
 #: ../data/messages:81
-msgid "With strict binding textures are bound whenever they are enabled, with loose binding they are enabled when created. The Nvidia driver seems a bit slow when binding textures, that's why this option gives a heavy performance increase on Nvidia."
-msgstr "Strict binding では、テクスチャが有効のとき常にバインドされますが、Loose binding では、テクスチャ生成時のみ有効になります。Nvidia ドライバはテクスチャのバインディング処理が若干遅いようなので、Nvidia カードではこのオプションによってパフォーマンスが著しく向上します。"
+msgid ""
+"With strict binding textures are bound whenever they are enabled, with loose "
+"binding they are enabled when created. The Nvidia driver seems a bit slow "
+"when binding textures, that's why this option gives a heavy performance "
+"increase on Nvidia."
+msgstr ""
+"Strict binding では、テクスチャが有効のとき常にバインドされますが、Loose "
+"binding では、テクスチャ生成時のみ有効になります。Nvidia ドライバはテクスチャ"
+"のバインディング処理が若干遅いようなので、Nvidia カードではこのオプションに"
+"よってパフォーマンスが著しく向上します。"
 
 #: ../data/messages:83
 msgid "Use Loose Binding ?"
@@ -285,14 +330,9 @@ msgstr "サブ・ドックに使用する外観の名前 :"
 msgid "Images"
 msgstr "画像"
 
-#: ../data/messages:111
-#: ../data/messages:115
-#: ../data/messages:119
-#: ../data/messages:123
-#: ../data/messages:127
-#: ../data/messages:131
-#: ../data/messages:135
-#: ../data/messages:139
+#: ../data/messages:111 ../data/messages:115 ../data/messages:119
+#: ../data/messages:123 ../data/messages:127 ../data/messages:131
+#: ../data/messages:135 ../data/messages:139
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
@@ -330,84 +370,114 @@ msgstr "「ウィジェット・レイヤ」のアイコン画像の名前 :"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
+
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
+
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
 #~ msgid "default"
 #~ msgstr "デフォルト"
+
 #~ msgid "broken"
 #~ msgstr "リンク切れ"
+
 #~ msgid "other"
 #~ msgstr "その他"
+
 #~ msgid "Windows Manager"
 #~ msgstr "ウィンドウ・マネージャ"
+
 #~ msgid "Select your Windows Manager :"
 #~ msgstr "ウィンドウ・マネージャの選択 :"
+
 #~ msgid "Compiz"
 #~ msgstr "Compiz"
+
 #~ msgid "Metacity"
 #~ msgstr "Metacity"
+
 #~ msgid "Kwin"
 #~ msgstr "Kwin"
+
 #~ msgid "XFCE"
 #~ msgstr "XFCE"
+
 #~ msgid ""
 #~ "Allow you to switch beetwen Compiz & system's Windows Manager with middle "
 #~ "click"
 #~ msgstr ""
 #~ "中クリックで Compiz と システムのウィンドウ・マネージャとの切り替えができ"
 #~ "ます"
+
 #~ msgid "Fast Switching"
 #~ msgstr "簡易切り替え"
+
 #~ msgid "Reload default Windows Manager when missing"
 #~ msgstr "ない場合はデフォルトのウィンドウ・マネージャを再読み込みします"
+
 #~ msgid "Protect my settings"
 #~ msgstr "任意変更した設定の保護"
+
 #~ msgid "The applet will use this commande instead of default one"
 #~ msgstr "アプレットはデフォルトの代わりにこのコマンドを使用します。"
+
 #~ msgid "Custom command for system's Window Manager :"
 #~ msgstr "システムのウィンドウ・マネージャを起動する任意コマンド :"
+
 #~ msgid "Loose Binding"
 #~ msgstr "Loose Binding"
+
 #~ msgid "Indirect Rendering"
 #~ msgstr "Indirect Rendering"
+
 #~ msgid "Disable Emerald and use default system Decorator"
 #~ msgstr "Emerald を無効にしてシステムのデフォルトのデコレータを使用"
+
 #~ msgid "Use system's Decorator"
 #~ msgstr "システムのデコレータを使用"
+
 #~ msgid "WidgetLayer"
 #~ msgstr "ウィジェット・レイヤ"
+
 #~ msgid "ShowDesktop"
 #~ msgstr "デスクトップの表示"
+
 #~ msgid ""
 #~ "This command will be used to launch the the system WM; let it blank to "
 #~ "use the default one."
 #~ msgstr ""
 #~ "システムの WM を起動するのに使用されるコマンド、デフォルトを使用するには空"
 #~ "欄のままに"
+
 #~ msgid "Auto-reload the decorator ?"
 #~ msgstr "デコレータを自動再読み込み？"
+
 #~ msgid "Load default Windows Manager with options at startup."
 #~ msgstr ""
 #~ "スタートアップ時にデフォルトのウィンドウ・マネージャをオプションとともに読"
 #~ "み込み"
+
 #~ msgid "Force settings at startup"
 #~ msgstr "スタートアップ時に設定を強制"
+
 #~ msgid "Load Compiz with options at startup."
 #~ msgstr "スタートアップ時に Compiz のオプションを適用して読み込み"
+
 #~ msgid "Widge Layer"
 #~ msgstr "ウィジェット・レイヤ"
+
 #~ msgid ""
 #~ "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 #~ "Layer plug-ins."
 #~ msgstr ""
 #~ "Compiz のウィジェット・レイヤと展開のプラグインの2つのアイコンをアプレット"
 #~ "のサブ・ドックに表示します"
+
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"
-

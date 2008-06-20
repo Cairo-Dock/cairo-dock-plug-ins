@@ -31,26 +31,26 @@ extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern CDSpeparatorType my_curve_iDrawSeparator3D;
 extern double my_curve_fSeparatorColor[4];
 
-extern gdouble my_curve_curvitude;
+extern gdouble my_fCurveCurvature;
+extern gint my_iCurveAmplitude;
 
 const guint curveOffsetX = 75; 
 const guint curveOffsetY = 0;   
-const gint paraboleHeight = 20;
 
 void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
-	pDock->iDecorationsHeight = (pDock->iMaxIconHeight + g_fReflectSize + 2 * g_iFrameMargin)+  2 * curveOffsetY;
+	pDock->iDecorationsHeight = (pDock->iMaxIconHeight + g_fReflectSize + 2 * g_iFrameMargin)+  2 * curveOffsetY + my_iCurveAmplitude;
 	
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2 * curveOffsetX)) ;
 	
-	pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + g_fReflectSize) + g_iconTextDescription.iSize + g_iDockLineWidth + g_iFrameMargin +  2 * curveOffsetY + paraboleHeight;
+	pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + g_fReflectSize) + g_iconTextDescription.iSize + g_iDockLineWidth + g_iFrameMargin +  2 * curveOffsetY + my_iCurveAmplitude;
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth +  2 * curveOffsetX;
 	
 	pDock->iMinDockWidth = pDock->fFlatDockWidth +  2 * curveOffsetX;
-	pDock->iMinDockHeight = g_iDockLineWidth + g_iFrameMargin + g_fReflectSize + pDock->iMaxIconHeight +  2 * curveOffsetY + paraboleHeight;
+	pDock->iMinDockHeight = g_iDockLineWidth + g_iFrameMargin + g_fReflectSize + pDock->iMaxIconHeight +  2 * curveOffsetY + my_iCurveAmplitude;
 }
 
 void cd_rendering_calculate_construction_parameters_curve (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY, double yCurve)
@@ -635,7 +635,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
         xc = ((Icon*) g_list_last (pDock->icons)->data)->fX;  // icone de droite
         yc = 0;
         xb = (xc-xa)/2;
-        yb = -paraboleHeight;
+        yb = -my_iCurveAmplitude;
         
         k1 = ya/((xa-xb)*(xa-xc));
         k2 = yb/((xb-xa)*(xb-xc));
@@ -680,8 +680,8 @@ void cairo_dock_draw_curved_frame_horizontal (cairo_t *pCairoContext, double fFr
 	// on trace la courbe
 
 	cairo_rel_curve_to (pCairoContext,	
-	        (fFrameWidth/2 + curveOffsetX) *    my_curve_curvitude , -sens * (fFrameHeight+curveOffsetY), 
-	        (fFrameWidth/2 + curveOffsetX) * (2-my_curve_curvitude), -sens * (fFrameHeight+curveOffsetY),
+	        (fFrameWidth/2 + curveOffsetX) *    my_fCurveCurvature , -sens * (fFrameHeight+curveOffsetY), 
+	        (fFrameWidth/2 + curveOffsetX) * (2-my_fCurveCurvature), -sens * (fFrameHeight+curveOffsetY),
 	        fFrameWidth+curveOffsetX*2, 0);
         // on trace la ligne du bas
 	cairo_rel_line_to (pCairoContext, -fFrameWidth-curveOffsetX*2, 0);
@@ -693,8 +693,8 @@ void cairo_dock_draw_curved_frame_vertical (cairo_t *pCairoContext, double fFram
 	cairo_move_to (pCairoContext, fDockOffsetY + sens * fFrameHeight, fDockOffsetX-curveOffsetX);
 	// on trace la courbe
 	cairo_rel_curve_to (pCairoContext,	
-	         -sens * (fFrameHeight+curveOffsetY), (fFrameWidth/2 + curveOffsetX) *    my_curve_curvitude ,  
-	         -sens * (fFrameHeight+curveOffsetY), (fFrameWidth/2 + curveOffsetX) * (2-my_curve_curvitude), 
+	         -sens * (fFrameHeight+curveOffsetY), (fFrameWidth/2 + curveOffsetX) *    my_fCurveCurvature ,  
+	         -sens * (fFrameHeight+curveOffsetY), (fFrameWidth/2 + curveOffsetX) * (2-my_fCurveCurvature), 
 	        0, fFrameWidth+curveOffsetX*2);
         // on trace la ligne du bas
 	cairo_rel_line_to (pCairoContext, 0, -fFrameWidth-curveOffsetX*2);

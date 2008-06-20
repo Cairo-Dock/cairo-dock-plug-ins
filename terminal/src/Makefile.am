@@ -33,8 +33,9 @@ libcd_terminal_la_CFLAGS = \
         -DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
-	-O3 -W -Werror
-#	-g -ggdb -W -Wall
+	-Werror-implicit-function-declaration\
+	-O3
+#	-g -ggdb -W -Wall  -W -Werror
 
 
 libcd_terminal_la_LIBADD = \

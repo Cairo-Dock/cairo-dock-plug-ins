@@ -8,8 +8,11 @@ Fabrice Rey <fabounet@users.berlios.de>
 
 ******************************************************************************/
 
+#define _BSD_SOURCE
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include <glib/gi18n.h>
 #include <glib/gstdio.h>
 
@@ -25,11 +28,20 @@ CD_APPLET_ABOUT (D_("This is the compiz-icon applet\n made by ChAnGFu for Cairo-
 static void _compiz_get_version (void) {
 	if (myData.iCompizMajor != 0 || myData.iCompizMinor != 0 || myData.iCompizMicro != 0)
 		return ;
-	system ("compiz.real --version | awk '{print $2}' > /tmp/cd-compiz-version");
+	gchar *cTmpFile = g_strdup ("/tmp/compiz-version.XXXXXX");
+	int fds =mkstemp (cTmpFile);
+	if (fds == -1)
+	{
+		g_free (cTmpFile);
+		return;
+	}
+	gchar *cCommand = g_strdup_printf ("compiz.real --version | awk '{print $2}' > %s", cTmpFile);
+	system (cCommand);
+	g_free (cCommand);
 	GError *erreur = NULL;
 	gsize length = 0;
 	gchar *cContent = NULL;
-	g_file_get_contents ("/tmp/cd-compiz-version", &cContent, &length, &erreur);
+	g_file_get_contents (cTmpFile, &cContent, &length, &erreur);
 	if (erreur != NULL) {
 		cd_warning ("Attention : couldn't guess Compiz's version [%s]", erreur->message);
 		g_error_free (erreur);
@@ -40,7 +52,8 @@ static void _compiz_get_version (void) {
 		g_free (cContent);
 	}
 	cd_message ("Compiz : %d.%d.%d", myData.iCompizMajor, myData.iCompizMinor, myData.iCompizMicro);
-	g_remove ("/tmp/cd-compiz-version");
+	g_remove (cTmpFile);
+	g_free (cTmpFile);
 }
 
 static void _compiz_dbus_action (const gchar *cCommand) {

@@ -9,7 +9,7 @@ gnome_dir=gnome-integration
 endif
 
 if WITH_XFCE_SUPPORT
-xfce_dir=gnome-integration-old
+xfce_dir=xfce-integration
 endif
 
 if WITH_ALSA_MIXER
@@ -49,6 +49,4 @@ SUBDIRS = . po\
 	${xfce_dir}\
 	Xgamma\
 	xmms
-	
-	
 	

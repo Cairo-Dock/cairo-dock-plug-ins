@@ -139,7 +139,7 @@ color_border_line = 1;1;1;0.5;
 simple_iconGapX = 20
 
 #i[15;100] Space between rows :
-simple_iconGapY = 30
+simple_iconGapY = 50
 
 #e[0;5] Max size of icons :
 simple_fScaleMax = 2.5
@@ -195,8 +195,13 @@ simple_color_border_line = 1;1;1;0.5;
 
 [Curve]
 
-#e[0;100] Amplitude for the curve in percent :
+#e[0;100] Curvature of the curve in percent :
+#{The lower, the more the curve will seem flat.}
 curvitude = 50
+
+#i[0;50] Amplitude of the curve.
+#{in pixels.}
+amplitude = 20
 
 #r+[Normal separator;Flat separator;Physical separator] Choose the way separators are drawn :
 draw curve separator = 0

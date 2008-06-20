@@ -107,7 +107,7 @@ gboolean dbus_connect_to_bus (void)
 			cd_warning ("No battery were found, trying with default one : %s, with DBus", cBatteryName);
 			
 			cd_message ("Battery Name : %s", cBatteryName);
-			gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", power_battery_name());
+			gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", cBatteryName);
 			cd_debug ("  batteryPath : %s", batteryPath);
 			dbus_proxy_battery = cairo_dock_create_new_system_proxy (
 				"org.freedesktop.Hal",

@@ -33,9 +33,10 @@ libcd_systray_la_CFLAGS = \
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_SYSTRAY)"\"\
         -DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
-	-std=c99 -W -Werror\
+	-std=c99\
+	-Werror-implicit-function-declaration\
 	-O3
-#	-g -ggdb -W -Wall
+#	-g -ggdb -W -Wall -W -Werror
 
 libcd_systray_la_LIBADD = \
 	$(PACKAGE_LIBS) -lm

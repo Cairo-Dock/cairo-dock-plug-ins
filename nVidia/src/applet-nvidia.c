@@ -89,7 +89,7 @@ gboolean cd_nvidia_update_from_data (void) {
 
 //Récupération de la config
 void cd_nvidia_config_acquisition (void) {
-	s_cTmpFileConfig = g_strdup ("/tmp/nvidia.XXXXXX");
+	s_cTmpFileConfig = g_strdup ("/tmp/nvidia-config.XXXXXX");
 	int fds =mkstemp (s_cTmpFileConfig);
 	if (fds == -1)
 	{
@@ -100,6 +100,7 @@ void cd_nvidia_config_acquisition (void) {
 	gchar *cCommand = g_strdup_printf ("bash %s/nvidia-config %s", MY_APPLET_SHARE_DATA_DIR, s_cTmpFileConfig);
 	system (cCommand);
 	g_free (cCommand);
+	close(fds);
 }
 
 static gboolean _nvidia_get_values_from_file (gchar *cContent) {

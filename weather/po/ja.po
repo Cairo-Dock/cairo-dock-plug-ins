@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-14 22:17+0200\n"
+"POT-Creation-Date: 2008-06-19 02:18+0200\n"
 "PO-Revision-Date: 2008-06-18 23:52+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -31,8 +31,7 @@ msgstr ""
 "現在地の入力\n"
 "（例 : Tokyo, Japan）"
 
-#: ../src/applet-notifications.c:82
-#: ../src/applet-notifications.c:95
+#: ../src/applet-notifications.c:82 ../src/applet-notifications.c:95
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -52,8 +51,7 @@ msgstr "現在地の検索"
 msgid "Reload now"
 msgstr "直ちに再読み込み"
 
-#: ../src/applet-notifications.c:178
-#: ../src/applet-notifications.c:206
+#: ../src/applet-notifications.c:178 ../src/applet-notifications.c:206
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -61,28 +59,23 @@ msgstr ""
 "データの取得が出来ませんでした。\n"
 "回線接続に問題はありませんか？"
 
-#: ../src/applet-notifications.c:194
-#: ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:218
 msgid "Temperature"
 msgstr "気温"
 
-#: ../src/applet-notifications.c:195
-#: ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
 msgid "Wind"
 msgstr "風"
 
-#: ../src/applet-notifications.c:196
-#: ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
 msgid "Humidity"
 msgstr "湿度"
 
-#: ../src/applet-notifications.c:197
-#: ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
 msgid "SunRise"
 msgstr "日の出"
 
-#: ../src/applet-notifications.c:197
-#: ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
 msgid "SunSet"
 msgstr "日の入り"
 
@@ -123,8 +116,12 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -132,7 +129,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -151,29 +150,40 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなります。その場合でも ALT + 左クリックで移動させることはできます。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:37
-#: ../data/messages:39
+#: ../data/messages:37 ../data/messages:39
 msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:41
-msgid "Right click on the icon to let Cairo-Dock help you to find your location code."
-msgstr "アイコンを右クリックすると、Cairo-Dock に現在地コードを見つけさせることができます。"
+msgid ""
+"Right click on the icon to let Cairo-Dock help you to find your location "
+"code."
+msgstr ""
+"アイコンを右クリックすると、Cairo-Dock に現在地コードを見つけさせることができ"
+"ます。"
 
 #: ../data/messages:43
 msgid "Code of your location :"
@@ -241,50 +251,70 @@ msgstr "デスクレットを 3D 描画？"
 
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
+
 #~ msgid "You can search it on www.weather.com"
 #~ msgstr "www.weather.com にてコード検索可能"
+
 #~ msgid "Monday"
 #~ msgstr "月曜日"
+
 #~ msgid "Tuesday"
 #~ msgstr "火曜日"
+
 #~ msgid "Wednesday"
 #~ msgstr "水曜日"
+
 #~ msgid "Thursday"
 #~ msgstr "木曜日"
+
 #~ msgid "Friday"
 #~ msgstr "金曜日"
+
 #~ msgid "Saturday"
 #~ msgstr "土曜日"
+
 #~ msgid "Sunday"
 #~ msgstr "日曜日"
+
 #~ msgid "Jan"
 #~ msgstr "1月"
+
 #~ msgid "Feb"
 #~ msgstr "2月"
+
 #~ msgid "Mar"
 #~ msgstr "3月"
+
 #~ msgid "Apr"
 #~ msgstr "4月"
+
 #~ msgid "Jun"
 #~ msgstr "6月"
+
 #~ msgid "Jui"
 #~ msgstr "7月"
+
 #~ msgid "Aug"
 #~ msgstr "8月"
+
 #~ msgid "Sep"
 #~ msgstr "9月"
+
 #~ msgid "Oct"
 #~ msgstr "10月"
+
 #~ msgid "Nov"
 #~ msgstr "11月"
+
 #~ msgid "Dec"
 #~ msgstr "12月"
+
 #~ msgid ""
 #~ "You can visit this URL to find it, for exemple : http://xoap.weather.com/"
 #~ "search/search?where=Paris,France"
 #~ msgstr ""
 #~ "コードを見つけるには、例えばこの URL を訪れてみてください。: http://xoap."
 #~ "weather.com/search/search?where=Tokyo,Japan"
+
 #~ msgid "Lockposition ?"
 #~ msgstr "位置の固定？"
-

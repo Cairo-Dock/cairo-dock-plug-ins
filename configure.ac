@@ -58,27 +58,27 @@ AC_ARG_ENABLE(terminal,
 
 
 if test "$with_old_gnome_support" = "yes" ; then
-	PKG_CHECK_MODULES(OLD_GNOME_INTEGRATION,gnome-vfs-2.0 libgnomeui-2.0, ,[ old_gnome_detected=false; AC_MSG_WARN(Could not find gnome-vfs and/or gnomeui; Cairo-Dock won't be built with Gnome<2.22 support.) ])
+	PKG_CHECK_MODULES(OLD_GNOME_INTEGRATION,gnome-vfs-2.0 libgnomeui-2.0, ,[ with_old_gnome_support=false; AC_MSG_WARN(Could not find gnome-vfs and/or gnomeui; Cairo-Dock won't be built with Gnome<2.22 support.) ])
 	AC_SUBST(OLD_GNOME_INTEGRATION_CFLAGS)
 	AC_SUBST(OLD_GNOME_INTEGRATION_LIBS)
 fi
 if test "$with_gnome_support" = "yes" ; then
-	PKG_CHECK_MODULES(GNOME_INTEGRATION,gio-2.0, ,[ gnome_detected=false; AC_MSG_WARN(Could not find gio; Cairo-Dock won't be built with Gnome>=2.22 support.) ])
+	PKG_CHECK_MODULES(GNOME_INTEGRATION,gio-2.0, ,[ with_gnome_support=false; AC_MSG_WARN(Could not find gio; Cairo-Dock won't be built with Gnome>=2.22 support.) ])
 	AC_SUBST(GNOME_INTEGRATION_CFLAGS)
 	AC_SUBST(GNOME_INTEGRATION_LIBS)
 fi
 if test "$with_xfce_support" = "yes" ; then
-	PKG_CHECK_MODULES(XFCE_INTEGRATION,thunar-vfs-1, ,[ xfce_detected=false; AC_MSG_WARN(Could not find thunar-vfs; Cairo-Dock won't be built with XFCE support.) ])
+	PKG_CHECK_MODULES(XFCE_INTEGRATION,thunar-vfs-1, ,[ with_xfce_support=false; AC_MSG_WARN(Could not find thunar-vfs; Cairo-Dock won't be built with XFCE support.) ])
 	AC_SUBST(XFCE_INTEGRATION_CFLAGS)
 	AC_SUBST(XFCE_INTEGRATION_LIBS)
 fi
 if test "$with_alsa_mixer" = "yes" ; then
-	PKG_CHECK_MODULES(ALSA_MIXER_PACKAGE,alsa, ,[ alsa_detected=false; AC_MSG_WARN(Could not find alsa; Cairo-Dock won't be built with AlsaMixer applet.) ])
+	PKG_CHECK_MODULES(ALSA_MIXER_PACKAGE,alsa, ,[ with_alsa_mixer=false; AC_MSG_WARN(Could not find alsa; Cairo-Dock won't be built with AlsaMixer applet.) ])
 	AC_SUBST(ALSA_MIXER_PACKAGE_CFLAGS)
 	AC_SUBST(ALSA_MIXER_PACKAGE_LIBS)
 fi
 if test "$with_terminal" = "yes" ; then
-	PKG_CHECK_MODULES(TERMINAL_PACKAGE,vte, ,[ vte_detected=false; AC_MSG_WARN(Could not find vte; Cairo-Dock won't be built with TERMINAL applet.) ])
+	PKG_CHECK_MODULES(TERMINAL_PACKAGE,vte, ,[ with_terminal=false; AC_MSG_WARN(Could not find vte; Cairo-Dock won't be built with TERMINAL applet.) ])
 	AC_SUBST(TERMINAL_PACKAGE_CFLAGS)
 	AC_SUBST(TERMINAL_PACKAGE_LIBS)
 fi
@@ -210,7 +210,7 @@ AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
 RAME_PACKAGE=cd-rame
 AC_SUBST(GETTEXT_RAME, "$RAME_PACKAGE")
 
-AC_SUBST(VERSION_RAME "1.0.0-beta1")
+AC_SUBST(VERSION_RAME, "1.0.0-beta1")
 AC_SUBST(PACKAGE_RAME, "$RAME_PACKAGE")
 
 AC_SUBST(ramedatadir, "${pkgdatadir}/rame")
@@ -219,7 +219,7 @@ AC_SUBST(ramedatadir, "${pkgdatadir}/rame")
 RENDERING_PACKAGE=cd-rendering
 AC_SUBST(GETTEXT_RENDERING, "$RENDERING_PACKAGE")
 
-AC_SUBST(VERSION_RENDERING "1.4.10")
+AC_SUBST(VERSION_RENDERING, "1.4.10")
 AC_SUBST(PACKAGE_RENDERING, "$RENDERING_PACKAGE")
 
 AC_SUBST(renderingdatadir, "${pkgdatadir}/rendering")

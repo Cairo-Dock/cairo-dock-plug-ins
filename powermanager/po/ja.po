@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-14 22:20+0200\n"
+"POT-Creation-Date: 2008-06-19 02:21+0200\n"
 "PO-Revision-Date: 2008-06-18 22:31+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/powermanager-draw.c:102
+#: ../src/powermanager-draw.c:121
 msgid "None"
 msgstr "なし"
 
-#: ../src/powermanager-draw.c:131
+#: ../src/powermanager-draw.c:149
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -27,14 +27,12 @@ msgstr ""
 "ラップトップはバッテリー使用中。\n"
 "バッテリー充電完了:"
 
-#: ../src/powermanager-draw.c:131
-#: ../src/powermanager-draw.c:136
-#: ../src/powermanager-draw.c:157
-#: ../src/powermanager-draw.c:163
+#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:153
+#: ../src/powermanager-draw.c:174 ../src/powermanager-draw.c:180
 msgid "Estimated time with Charge:"
 msgstr "充電のおよその時間:"
 
-#: ../src/powermanager-draw.c:136
+#: ../src/powermanager-draw.c:153
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -42,11 +40,11 @@ msgstr ""
 "ラップトップは電源使用中\n"
 "バッテリー充電完了:"
 
-#: ../src/powermanager-draw.c:142
+#: ../src/powermanager-draw.c:159
 msgid "No Battery found."
 msgstr "バッテリーが見つかりません。"
 
-#: ../src/powermanager-draw.c:157
+#: ../src/powermanager-draw.c:174
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -54,11 +52,11 @@ msgstr ""
 "PowerManager.\n"
 "バッテリーの充電が少ないようです。"
 
-#: ../src/powermanager-draw.c:157
+#: ../src/powermanager-draw.c:174
 msgid "Please put your Laptop on charge."
 msgstr "ラップトップを充電してください。"
 
-#: ../src/powermanager-draw.c:163
+#: ../src/powermanager-draw.c:180
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"
@@ -119,8 +117,12 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -128,7 +130,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -147,16 +151,25 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -190,8 +203,7 @@ msgstr "充電時のアイコンファイル名 :"
 msgid "Effect to apply on the icon according to charge :"
 msgstr "充電量に応じてアイコンに適用する効果 :"
 
-#: ../data/messages:51
-#: ../data/messages:65
+#: ../data/messages:51 ../data/messages:65
 msgid "nothing"
 msgstr "なし"
 
@@ -235,98 +247,134 @@ msgstr "通告"
 msgid "Alert when battery charged ?"
 msgstr "バッテリー充電完了時に通告？"
 
-#: ../data/messages:75
+#: ../data/messages:75 ../data/messages:85 ../data/messages:93
+msgid "Let it empty to have no sound"
+msgstr ""
+
+#: ../data/messages:77 ../data/messages:87 ../data/messages:95
+msgid "Use a sound :"
+msgstr ""
+
+#: ../data/messages:79
 msgid "Alert when low battery ?"
 msgstr "バッテリー低残量時に通告？"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "in percent."
 msgstr "パーセント単位"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Battery level :"
 msgstr "バッテリーレベル"
 
-#: ../data/messages:81
+#: ../data/messages:89
+msgid "When battery level is under 4%"
+msgstr ""
+
+#: ../data/messages:91
+#, fuzzy
+msgid "Alert when battery charge is critical ?"
+msgstr "バッテリー充電完了時に通告？"
+
+#: ../data/messages:97
 msgid "Animate icon during the alert ?"
 msgstr "通告中にアイコンをアニメーション化？"
 
-#: ../data/messages:83
+#: ../data/messages:99
 msgid "Animation during alert :"
 msgstr "通告中のアニメーション :"
 
-#: ../data/messages:85
+#: ../data/messages:101
 msgid "bounce"
 msgstr "バウンド"
 
-#: ../data/messages:87
+#: ../data/messages:103
 msgid "rotate"
 msgstr "回転"
 
-#: ../data/messages:89
+#: ../data/messages:105
 msgid "blink"
 msgstr "点滅"
 
-#: ../data/messages:91
+#: ../data/messages:107
 msgid "pulse"
 msgstr "波動"
 
-#: ../data/messages:93
+#: ../data/messages:109
 msgid "upside-down"
 msgstr "上下逆さま"
 
-#: ../data/messages:95
+#: ../data/messages:111
 msgid "wobbly"
 msgstr "伸び縮み"
 
-#: ../data/messages:97
+#: ../data/messages:113
 msgid "random"
 msgstr "ランダム"
 
 #~ msgid "ICON"
 #~ msgstr "アイコン"
+
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "このアプレットのアイコンの大きさ"
+
 #~ msgid "width :"
 #~ msgstr "幅 :"
+
 #~ msgid "height :"
 #~ msgstr "高さ :"
+
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
+
 #~ msgid "MODULE"
 #~ msgstr "モジュール"
+
 #~ msgid "Theme"
 #~ msgstr "テーマ"
+
 #~ msgid "Choose one of the available themes :"
 #~ msgstr "利用可能なテーマから1つ選択 :"
+
 #~ msgid "Interval of time to check if dustbin is full/empty :"
 #~ msgstr "Interval of time to check if dustbin is full/empty :"
+
 #~ msgid "in seconds"
 #~ msgstr "en secondes"
+
 #~ msgid "Here you can specify a list of Trash directory :"
 #~ msgstr "Ici vous pouvez spécifier une liste de répertoires poubelle ;"
+
 #~ msgid "File browser used to show a trash :"
 #~ msgstr "Navigateur de fichier pour visualiser la poubelle ;"
+
 #~ msgid ""
 #~ "This is the dustbin applet for Cairo-Dock\n"
 #~ " made by Fabrice Rey (fabounet_03@yahoo.fr)"
 #~ msgstr ""
 #~ "Ceci est l'applet poubelle de Cairo-Dock\n"
 #~ " écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
+
 #~ msgid "Show Trash"
 #~ msgstr "Ouvrir la poubelle"
+
 #~ msgid "Show All"
 #~ msgstr "Ouvrir toutes"
+
 #~ msgid "Delete Trash"
 #~ msgstr "Vider la poubelle"
+
 #~ msgid "Delete All"
 #~ msgstr "Vider toutes"
+
 #~ msgid "You're about to delete all files in %s. Sure ?"
 #~ msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
+
 #~ msgid "You're about to delete all files all dustbins. Sure ?"
 #~ msgstr ""
 #~ "Vous êtes sur le point de détruire tous les fichiers de toutes les "
 #~ "poubelles. Sur ?"
+
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -335,38 +383,48 @@ msgstr "ランダム"
 #~ "Un problème est survenu.\n"
 #~ "Si '%s' n'est pas votre navigateur de fichier usuel,\n"
 #~ "vous pouvez le changer dans le panneau de conf de cette applet."
+
 #~ msgid "Show %s"
 #~ msgstr "Ouvrir %s"
+
 #~ msgid "Delete %s"
 #~ msgstr "Vider %s"
+
 #~ msgid "Quick info"
 #~ msgstr "クイック情報"
+
 #~ msgid ""
 #~ "Laptop on Battery \n"
 #~ " Battery charged at:"
 #~ msgstr ""
 #~ "Laptop on Battery \n"
 #~ " Battery charged at:"
+
 #~ msgid ""
 #~ "Laptop on Charge \n"
 #~ " Battery charged at:"
 #~ msgstr ""
 #~ "ラップトップは電源使用中 \n"
 #~ "バッテリー充電完了:"
+
 #~ msgid "Information"
 #~ msgstr "情報"
+
 #~ msgid "Effet to apply on the icon according to charge :"
 #~ msgstr "充電量に応じてアイコンに適用する効果 :"
+
 #~ msgid "List of available themes for the analogic display :"
 #~ msgstr "アナログ表示に利用可能なテーマのリスト :"
+
 #~ msgid "Considering put your Laptop on charge."
 #~ msgstr "ラップトップの充電を考慮してください。"
+
 #~ msgid ""
 #~ "PowerManager.\n"
 #~ " Your battery is now Charged"
 #~ msgstr ""
 #~ "PowerManager.\n"
 #~ "バッテリーの充電が完了しました。"
+
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"
-
