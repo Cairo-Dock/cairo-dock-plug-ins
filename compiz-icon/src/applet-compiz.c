@@ -127,8 +127,7 @@ void cd_compiz_kill_compmgr(void) {
 void cd_compiz_acquisition (void) {
 	s_cTmpFile = g_strdup ("/tmp/compiz.XXXXXX");
 	int fds =mkstemp (s_cTmpFile);
-	if (fds == -1)
-	{
+	if (fds == -1) {
 		g_free (s_cTmpFile);
 		s_cTmpFile = NULL;
 		return;

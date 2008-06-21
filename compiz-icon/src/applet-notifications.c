@@ -29,12 +29,12 @@ static void _compiz_get_version (void) {
 	if (myData.iCompizMajor != 0 || myData.iCompizMinor != 0 || myData.iCompizMicro != 0)
 		return ;
 	gchar *cTmpFile = g_strdup ("/tmp/compiz-version.XXXXXX");
-	int fds =mkstemp (cTmpFile);
-	if (fds == -1)
-	{
+	int fds = mkstemp (cTmpFile);
+	if (fds == -1) {
 		g_free (cTmpFile);
 		return;
 	}
+	close(fds);
 	gchar *cCommand = g_strdup_printf ("compiz.real --version | awk '{print $2}' > %s", cTmpFile);
 	system (cCommand);
 	g_free (cCommand);
