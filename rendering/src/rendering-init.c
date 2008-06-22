@@ -21,6 +21,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-desklet-simple.h"
 #include "rendering-desklet-controler.h"
 #include "rendering-dialog-text.h"
+#include "rendering-desklet-mediaplayer.h"
 #include "rendering-init.h"
 
 #define MY_APPLET_CONF_FILE "rendering.conf"
@@ -101,6 +102,7 @@ CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 	rendering_register_caroussel_desklet_renderer ();
 	rendering_register_simple_desklet_renderer ();
 	rendering_register_controler_desklet_renderer ();
+	rendering_register_mediaplayer_desklet_renderer (); //By ChAnGFu
 	
 	rendering_register_text_dialog_renderer ();
 CD_APPLET_PRE_INIT_END

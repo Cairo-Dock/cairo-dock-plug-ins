@@ -32,7 +32,9 @@ libcd_rendering_la_SOURCES = \
 	rendering-desklet-controler.h\
 	rendering-desklet-controler.c\
 	rendering-dialog-text.c\
-	rendering-dialog-text.h
+	rendering-dialog-text.h\
+	rendering-desklet-mediaplayer.h\
+	rendering-desklet-mediaplayer.c
 
 dock_version = `pkg-config --modversion cairo-dock`
 
