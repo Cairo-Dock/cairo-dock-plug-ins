@@ -29,6 +29,13 @@ typedef enum {
 	PLAYER_NB_STATUS
 } MyPlayerStatus;
 
+typedef enum {
+	MY_DESKLET_INFO = 0,
+	MY_DESKLET_CAROUSSEL,
+	MY_DESKLET_CONTROLER,
+	MY_DESKLET_NB_MODE
+} MyExtendedMode;
+
 typedef struct {
 	gchar *defaultTitle;
 	gboolean enableDialogs;
@@ -41,6 +48,7 @@ typedef struct {
 	MyPlayerType iPlayer;
 	gboolean bStealTaskBarIcon;
 	gboolean bIconBubble;
+	MyExtendedMode iExtendedMode;
 } AppletConfig;
 
 typedef struct {

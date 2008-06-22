@@ -208,6 +208,7 @@ void cd_xmms_read_data (void) {
 						g_free (myData.playingTitle);
 						myData.playingTitle = g_strdup (str);
 						cd_message("On a changé de son! (%s)", myData.playingTitle);
+						cd_xmms_change_desklet_data();
 					}
 				}
 			}

@@ -24,9 +24,17 @@ static gchar *s_cPlayerClass[MY_NB_PLAYERS] = {"xmms", "audacious", "banshee", "
 CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet) {
 		if (myConfig.extendedDesklet) {
-			cd_xmms_add_buttons_to_desklet ();
-			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
+			if (myConfig.iExtendedMode > 0) {
+				cd_xmms_add_buttons_to_desklet ();
+			}
+			if (myConfig.iExtendedMode == MY_DESKLET_INFO) {
+				gpointer data[2] = {"None", "None"};
+				CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
+			}
+			else {
+				gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
+				CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
+			}
 		}
 		else {
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
@@ -77,7 +85,7 @@ CD_APPLET_RELOAD_BEGIN
 			g_list_free (myDesklet->icons);
 			myDesklet->icons = NULL;
 		}
-		else if (myConfig.extendedDesklet && myDesklet->icons == NULL) {
+		else if (myConfig.extendedDesklet && myDesklet->icons == NULL && myConfig.iExtendedMode > 0) {
 			cd_xmms_add_buttons_to_desklet ();
 		}
 	}
@@ -92,8 +100,14 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (myDesklet) {
 		if (myConfig.extendedDesklet) {
-			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
+			if (myConfig.iExtendedMode == MY_DESKLET_INFO) {
+				gpointer data[2] = {"None", "None"};
+				CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
+			}
+			else {
+				gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
+				CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
+			}
 		}
 		else {
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");

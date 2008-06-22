@@ -21,23 +21,24 @@ CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.quickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
 	
-	myConfig.defaultTitle		= CD_CONFIG_GET_STRING ("Icon", "name");
-	myConfig.iPlayer 			= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "current-player", MY_XMMS);
+	myConfig.defaultTitle			= CD_CONFIG_GET_STRING ("Icon", "name");
+	myConfig.iPlayer 					= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "current-player", MY_XMMS);
+	myConfig.iExtendedMode		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "extended_mode", MY_DESKLET_INFO);
 	
 	myConfig.enableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");
 	myConfig.timeDialogs 			= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "time_dialogs", 3000);
-	myConfig.extendedDesklet		= CD_CONFIG_GET_BOOLEAN ("Configuration", "extended_desklet");
+	myConfig.extendedDesklet	= CD_CONFIG_GET_BOOLEAN ("Configuration", "extended_desklet");
 	
-	myConfig.enableAnim 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_anim");
+	myConfig.enableAnim 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_anim");
 	myConfig.changeAnimation 	= CD_CONFIG_GET_ANIMATION_WITH_DEFAULT ("Configuration", "change_animation", CAIRO_DOCK_ROTATE);
 	
-	myConfig.bStealTaskBarIcon = CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
-	myConfig.bIconBubble = CD_CONFIG_GET_BOOLEAN ("Configuration", "bubble icon");
+	myConfig.bStealTaskBarIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
+	myConfig.bIconBubble 				= CD_CONFIG_GET_BOOLEAN ("Configuration", "bubble icon");
 	
 	myConfig.cUserImage[PLAYER_NONE] 			= CD_CONFIG_GET_STRING ("Configuration", "default icon");
-	myConfig.cUserImage[PLAYER_PLAYING] 		= CD_CONFIG_GET_STRING ("Configuration", "play icon");
+	myConfig.cUserImage[PLAYER_PLAYING] 	= CD_CONFIG_GET_STRING ("Configuration", "play icon");
 	myConfig.cUserImage[PLAYER_PAUSED] 		= CD_CONFIG_GET_STRING ("Configuration", "pause icon");
-	myConfig.cUserImage[PLAYER_STOPPED] 		= CD_CONFIG_GET_STRING ("Configuration", "stop icon");
+	myConfig.cUserImage[PLAYER_STOPPED] 	= CD_CONFIG_GET_STRING ("Configuration", "stop icon");
 	myConfig.cUserImage[PLAYER_BROKEN] 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 CD_APPLET_GET_CONFIG_END
 
