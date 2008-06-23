@@ -181,7 +181,7 @@ void cd_xmms_change_desklet_data (void) {
 	
 	if (myData.playingTitle == NULL)
 		return;
-	if (!myDesklet && !myConfig.extendedDesklet && myConfig.iExtendedMode != MY_DESKLET_INFO)
+	if (myDesklet == NULL || !myConfig.extendedDesklet || myConfig.iExtendedMode != MY_DESKLET_INFO)
 		return;
 	
 	//On détermine l'artist (par default le 1er avant le tiret)
