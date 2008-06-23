@@ -34,6 +34,8 @@ CDMediaplayerParameters *rendering_configure_mediaplayer (CairoDesklet *pDesklet
 			&g_iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			&pMediaplayer->fTitleWidth, &pMediaplayer->fTitleHeight, &pMediaplayer->fTitleXOffset, &pMediaplayer->fTitleYOffset);
+		
+		pMediaplayer->bControlButton = GPOINTER_TO_INT (pConfig[2]);
 	}
 	return pMediaplayer;
 }
@@ -45,10 +47,7 @@ void rendering_free_mediaplayer_data (CairoDesklet *pDesklet)
 	if (pMediaplayer == NULL)
 		return;
 	
-	/*if (pMediaplayer->cArtist != NULL)
-		g_free (pMediaplayer->cArtist);
-	if (pMediaplayer->cTitle != NULL)	
-		g_free (pMediaplayer->cTitle);*/
+	//On ne free pa cArtist et cTitle, ces vars appartiennent à l'applet.
 	
 	if (pMediaplayer->pArtistSurface != NULL)	
 		cairo_surface_destroy (pMediaplayer->pArtistSurface);
@@ -68,7 +67,12 @@ void rendering_load_icons_for_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSou
 	g_return_if_fail (pIcon != NULL);
 	if (pMediaplayer != NULL)
 	{
-		pIcon->fWidth = MAX (1, pDesklet->iHeight- g_iDockRadius); 
+		if (pMediaplayer->bControlButton) //Certain voudrons uniquement l'info, d'autre l'info + les boutons de controle
+			pIcon->fWidth = (pDesklet->iHeight - g_iDockRadius) / 4 * 3; 
+		else
+			pIcon->fWidth = pDesklet->iHeight - g_iDockRadius; 
+		
+		pIcon->fWidth = MAX (1, pIcon->fWidth); 
 		pIcon->fHeight = pIcon->fWidth; //L'icône aura la même taille en W et en H pour afficher le texte sur le coté
 		//Du coup l'utilisateur pourra alonger le W pour que le texte soit visible
 	}
@@ -83,17 +87,45 @@ void rendering_load_icons_for_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSou
 	
 	g_print ("%s (%.2fx%.2f)\n", __func__, pIcon->fWidth, pIcon->fHeight);
 	cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
+	
+	GList* ic;
+	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		pIcon->fWidth = pDesklet->pIcon->fWidth / 5.;
+		pIcon->fHeight = pIcon->fWidth;
+		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
+	}
 }
 
 
 void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
 {
 	CDMediaplayerParameters *pMediaplayer = (CDMediaplayerParameters *) pDesklet->pRendererData;
-	Icon *pIcon = pDesklet->pIcon;
+	Icon *pIcon;
+	Icon *pMainIcon = pDesklet->pIcon;
+	GList *ic;
 	
+	if (pMediaplayer->bControlButton)
+	{
+		int iNbIcons = g_list_length (pDesklet->icons), i = 1, j = iNbIcons / 2;
+		double fBandWidth = (pDesklet->iHeight - g_iDockRadius) / 4, fIconBandOffset = fBandWidth / iNbIcons;
+		for (ic = pDesklet->icons; ic != NULL; ic = ic->next) {
+			pIcon = ic->data;
+			pIcon->fScale = 1.;
+			pIcon->fAlpha = 1.;
+			pIcon->fDrawX = i * (pMainIcon->fWidth / iNbIcons) - pIcon->fWidth;
+			if (i <= j)
+				pIcon->fDrawY = ((pDesklet->iHeight - g_iDockRadius) - fBandWidth) + (fIconBandOffset * (i - 1));
+			else
+				pIcon->fDrawY = ((pDesklet->iHeight - g_iDockRadius) - fBandWidth) + (fIconBandOffset * (iNbIcons - i));
+			i++;
+		}
+	}
+	
+	pIcon = pMainIcon;
 	cairo_save (pCairoContext);
 	cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
-	
 	if (pIcon->pIconBuffer != NULL) //On dessine l'icône
 	{
 		cairo_set_source_surface (pCairoContext,
@@ -114,9 +146,10 @@ void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet
 			0.);
 		cairo_paint (pCairoContext);
 	}
+	
+	cairo_restore (pCairoContext);
 	if (pMediaplayer != NULL) //On dessine nos informations
 	{
-		cairo_restore (pCairoContext);
 		if (pMediaplayer->pArtistSurface != NULL)
 		{
 			double fX = pIcon->fWidth + 5, fY = pIcon->fHeight / 3;
@@ -128,6 +161,19 @@ void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet
 			double fX = pIcon->fWidth + 5, fY = (pIcon->fHeight / 3) * 2;
 			cairo_set_source_surface (pCairoContext, pMediaplayer->pTitleSurface, fX, fY);
 			cairo_paint (pCairoContext);
+		}
+	}
+	
+	if (pMediaplayer->bControlButton) // On dessine nos icônes prev, play, stop, next.
+	{
+		for (ic = pDesklet->icons; ic != NULL; ic = ic->next) {
+			pIcon = ic->data;
+			if (pIcon->pIconBuffer != NULL)
+			{
+				cairo_save (pCairoContext);
+				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->iWidth);
+				cairo_restore (pCairoContext);
+			}
 		}
 	}
 }

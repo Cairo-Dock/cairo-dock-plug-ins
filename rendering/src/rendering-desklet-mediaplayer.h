@@ -12,6 +12,8 @@ typedef struct {
 	gchar *cTitle;
 	cairo_surface_t *pArtistSurface;
 	cairo_surface_t *pTitleSurface;
+	gboolean bControlButton;
+	
 	gdouble fDeskletWidth;
 	
 	gdouble fArtistWidth;
