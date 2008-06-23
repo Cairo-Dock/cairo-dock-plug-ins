@@ -67,8 +67,8 @@ quick-info_type=1
 
 #b Activate extended desklet mode ?
 extended_desklet=false
-#r[Info;Caroussel;Controler] Extended display mode:
-extended_mode=0
+#r[Info;Info and Controler;Caroussel;Controler] Extended display mode :
+extended_mode=1
 
 #F[Action on music change;gtk-preferences]
 frame_info=

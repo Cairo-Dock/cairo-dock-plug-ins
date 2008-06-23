@@ -292,6 +292,21 @@ msgstr "Nom de l'image 'Pause' :"
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Pas de Signal': "
 
+msgid "Extended display mode :"
+msgstr "Mode d'affichage étendu :"
+
+msgid "Info"
+msgstr ""
+
+msgid "Info and Controler"
+msgstr "Info et Controleur"
+
+msgid "Caroussel"
+msgstr ""
+
+msgid "Controler"
+msgstr "Controleur"
+
 #~ msgid "Play/Pause"
 #~ msgstr "Jouer/Pause"
 

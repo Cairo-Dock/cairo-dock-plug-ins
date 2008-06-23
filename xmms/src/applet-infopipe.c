@@ -47,9 +47,8 @@ void cd_xmms_acquisition (void) {
 	int fds = -1;
 	if (myConfig.iPlayer != MY_XMMS) {
 		s_cTmpFile = g_strdup ("/tmp/xmms.XXXXXX");
-		fds =mkstemp (s_cTmpFile);
-		if (fds == -1)
-		{
+		fds = mkstemp (s_cTmpFile);
+		if (fds == -1) {
 			g_free (s_cTmpFile);
 			s_cTmpFile = NULL;
 			return;

@@ -189,16 +189,20 @@ void cd_xmms_change_desklet_data (void) {
 	rawTitle = g_strsplit (myData.playingTitle, "-", -1);
 	if (rawTitle[0] != NULL)
 		artist = g_strdup_printf (" %s", rawTitle[0]);
-	if (rawTitle[1] != NULL)
-		title = g_strdup_printf (" %s", rawTitle[1]);
-	//Méthode a revoir...
+	if (rawTitle[1] != NULL) {
+		title = strchr (myData.playingTitle, '-');
+		title ++;
+		while (*title == ' ')
+			title ++;
+	}
 	
-	gpointer data[2] = {artist, title};
+	
+	gpointer data[3] = {artist, title, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 	CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 	cd_xmms_set_surface (myData.playingStatus);
 	gtk_widget_queue_draw (myDesklet->pWidget);
 	
 	g_free (artist);
-	g_free (title);
+	//g_free (title);
 	g_strfreev (rawTitle);
 }
