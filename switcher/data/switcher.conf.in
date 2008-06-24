@@ -93,9 +93,8 @@ rgblinecolor = 0.0; 0.0; 0.5; 0.5
 #{r, v, b, a}
 rgbindcolor = 0.0; 0.0; 0.5; 0.5
 
-#b Fill the current desktop with this color ?
-#{Otherwise only its border will be filled.}
-fill current = true
+#r[draw a frame;fill;fill others] How to draw the current desktop :
+fill current = 1
 
 
 #S Icon to use if you don't map the wallpaper :

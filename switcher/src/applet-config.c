@@ -30,7 +30,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDefaultIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "default icon", "default.svg");
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	myConfig.bDesklet3D = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
-	myConfig.bFillCurrentDesktop = CD_CONFIG_GET_BOOLEAN ("Configuration", "fill current");
+	myConfig.iDrawCurrentDesktopMode = CD_CONFIG_GET_INTEGER ("Configuration", "fill current");
 CD_APPLET_GET_CONFIG_END
 
 

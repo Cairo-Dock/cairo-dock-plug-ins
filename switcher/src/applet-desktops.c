@@ -23,6 +23,8 @@ void cd_switcher_get_current_desktop (void)
 	myData.switcher.iCurrentViewportX = iCurrentViewportX / g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
 	myData.switcher.iCurrentViewportY = iCurrentViewportY / g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];
 	
+	cd_debug ("%s () -> %d;%d;%d", __func__, myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	
 	myData.switcher.iNbViewportTotal = g_iNbDesktops * g_iNbViewportX * g_iNbViewportY;
 	
 	cd_switcher_compute_desktop_coordinates (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
@@ -65,7 +67,7 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 			fZoomX = myIcon->fWidth / (iNbDesktopByLine * g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]);
 			fZoomY = myIcon->fHeight / (iNbLines * g_iScreenHeight[CAIRO_DOCK_HORIZONTAL]);
 			fRatio = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // ratio ramene dans [1, inf].
-			g_print ("%d lignes => fRatio: %.2f\n", iNbLines, fRatio);
+			cd_debug ("%d lignes => fRatio: %.2f", iNbLines, fRatio);
 			if (fRatio < fMinRatio)
 			{
 				fMinRatio = fRatio;
@@ -119,6 +121,7 @@ void cd_switcher_compute_nb_lines_and_columns (void)
 
 void cd_switcher_compute_desktop_coordinates (int iNumDesktop, int iNumViewportX, int iNumViewportY, int *iNumLine, int *iNumColumn)
 {
+	cd_debug ("%s (%d;%d)", __func__, iNumViewportX, iNumViewportY);
 	if (g_iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
 	{
 		if (g_iNbViewportX * g_iNbViewportY > 1)  // plusieurs bureaux etendus (Compiz avec N cubes).

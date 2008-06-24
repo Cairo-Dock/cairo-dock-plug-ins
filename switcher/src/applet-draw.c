@@ -25,6 +25,7 @@ gboolean my_bRotateIconsOnEllipse = TRUE;
 
 void cd_switcher_draw_main_icon_compact_mode (void)
 {
+	cd_debug ("%s (%d;%d)", __func__, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 	// On efface l'icone.
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
 	cairo_set_source_rgba(myDrawContext, 0., 0., 0., 0.);
@@ -103,27 +104,44 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 				0.);
 			cairo_paint(myDrawContext);
 			
+			if (myConfig.iDrawCurrentDesktopMode == SWICTHER_FILL_INVERTED && (i != myData.switcher.iCurrentColumn || j != myData.switcher.iCurrentLine))
+			{
+				cairo_restore (myDrawContext);  // avant la translation et le zoom.
+				cairo_save (myDrawContext);
+				
+				cairo_set_source_rgba (myDrawContext, myConfig.RGBIndColors[0], myConfig.RGBIndColors[1], myConfig.RGBIndColors[2], myConfig.RGBIndColors[3]);
+				cairo_rectangle(myDrawContext,
+					xi - .5*myConfig.iLineSize,
+					yj - .5*myConfig.iLineSize,
+					myData.switcher.fOneViewportWidth + myConfig.iLineSize,
+					myData.switcher.fOneViewportHeight + myConfig.iLineSize);
+				cairo_fill (myDrawContext);
+			}
+			
 			cairo_restore (myDrawContext);
 		}
 	}
 	
 	// dessin de l'indicateur sur le bureau courant (on le fait maintenant car dans le cas ou la ligne interieure est plus petite que la ligne de l'indicateur, les surfaces suivantes recouvreraient en partie la ligne.
-	i = myData.switcher.iCurrentColumn;
-	j = myData.switcher.iCurrentLine;
-	xi = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize);
-	yj = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize);
-	
-	cairo_set_line_width (myDrawContext,myConfig.iLineSize);
-	cairo_set_source_rgba (myDrawContext,myConfig.RGBIndColors[0],myConfig.RGBIndColors[1],myConfig.RGBIndColors[2],myConfig.RGBIndColors[3]);
-	cairo_rectangle(myDrawContext,
-		xi - .5*myConfig.iLineSize,
-		yj - .5*myConfig.iLineSize,
-		myData.switcher.fOneViewportWidth + myConfig.iLineSize,
-		myData.switcher.fOneViewportHeight + myConfig.iLineSize);
-	if (myConfig.bFillCurrentDesktop)
-		cairo_fill (myDrawContext);
-	else
-		cairo_stroke(myDrawContext);
+	if (myConfig.iDrawCurrentDesktopMode != SWICTHER_FILL_INVERTED)
+	{
+		i = myData.switcher.iCurrentColumn;
+		j = myData.switcher.iCurrentLine;
+		xi = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize);
+		yj = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize);
+		
+		cairo_set_line_width (myDrawContext,myConfig.iLineSize);
+		cairo_set_source_rgba (myDrawContext,myConfig.RGBIndColors[0],myConfig.RGBIndColors[1],myConfig.RGBIndColors[2],myConfig.RGBIndColors[3]);
+		cairo_rectangle(myDrawContext,
+			xi - .5*myConfig.iLineSize,
+			yj - .5*myConfig.iLineSize,
+			myData.switcher.fOneViewportWidth + myConfig.iLineSize,
+			myData.switcher.fOneViewportHeight + myConfig.iLineSize);
+		if (myConfig.iDrawCurrentDesktopMode == SWICTHER_FILL)
+			cairo_fill (myDrawContext);
+		else
+			cairo_stroke(myDrawContext);
+	}
 	
 	cairo_restore (myDrawContext);
 }

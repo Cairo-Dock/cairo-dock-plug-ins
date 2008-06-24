@@ -7,6 +7,14 @@
 
 #define SWITCHER_DEFAULT_NAME "Switcher"
 
+
+typedef enum {
+	SWICTHER_DRAW_FRAME,
+	SWICTHER_FILL,
+	SWICTHER_FILL_INVERTED,
+	SWICTHER_NB_MODES,
+	} SwitcherDrawCurrentDesktopMode;
+
 typedef struct {
 	gboolean bCompactView;
 	gboolean bMapWallpaper;
@@ -21,9 +29,8 @@ typedef struct {
 	gint iInLineSize;
 	gint iLineSize;
 	gboolean bPreserveScreenRatio;
-	gboolean bFillCurrentDesktop;
+	SwitcherDrawCurrentDesktopMode iDrawCurrentDesktopMode;
 	} AppletConfig;
-
 
 typedef struct
 {

@@ -17,6 +17,7 @@ CD_APPLET_DEFINITION ("switcher", 1, 6, 0, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 static gboolean on_change_desktop (gpointer *data)
 {
+	g_print ("%s ()\n", __func__);
 	int iPreviousIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
 	cd_switcher_get_current_desktop ();
@@ -30,8 +31,7 @@ static gboolean on_change_desktop (gpointer *data)
 	
 	if (myConfig.bCompactView)
 	{
-		cd_switcher_draw_main_icon_compact_mode ();
-		CD_APPLET_REDRAW_MY_ICON
+		cd_switcher_draw_main_icon ();
 	}
 	else
 	{
