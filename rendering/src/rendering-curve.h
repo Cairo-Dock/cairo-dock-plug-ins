@@ -7,8 +7,6 @@
 
 void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock);
 
-void cd_rendering_calculate_construction_parameters_curve (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY, double yCurve);
-
 
 void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock);
 

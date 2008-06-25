@@ -135,10 +135,12 @@ CD_APPLET_RELOAD_BEGIN
 		}
 	}
 	
+	cd_switcher_compute_nb_lines_and_columns ();
+	
+	cd_switcher_compute_desktop_coordinates (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
+	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		cd_switcher_compute_nb_lines_and_columns ();
-		
 		if (myConfig.bDisplayNumDesk)
 		{
 			int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
