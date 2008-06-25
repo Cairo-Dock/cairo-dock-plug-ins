@@ -19,8 +19,8 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 
-	myConfig.cNoMailUserImage = CD_CONFIG_GET_STRING ("Configuration", "no mail image");
-	myConfig.cHasMailUserImage = CD_CONFIG_GET_STRING ("Configuration", "has mail image");
+	myConfig.cNoMailUserImage = cairo_dock_generate_file_path (CD_CONFIG_GET_STRING ("Configuration", "no mail image"));
+	myConfig.cHasMailUserImage = cairo_dock_generate_file_path (CD_CONFIG_GET_STRING ("Configuration", "has mail image"));
 
     myConfig.cMailApplication = CD_CONFIG_GET_STRING ("Configuration", "mail application");
 

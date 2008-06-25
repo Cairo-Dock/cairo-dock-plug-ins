@@ -98,6 +98,13 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED )
 	{
+		GError *tmp_erreur = NULL;
+		_load_theme (&tmp_erreur);
+		if (tmp_erreur != NULL)
+		{
+			cd_warning ("Attention : when trying to load theme : %s", tmp_erreur->message);
+			g_error_free (tmp_erreur);
+		}
 		/// prendre en compte les parametres qui ont pu changer...
 	}
 	else
