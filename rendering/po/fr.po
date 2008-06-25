@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-19 02:13+0200\n"
+"POT-Creation-Date: 2008-06-24 09:45+0200\n"
 "PO-Revision-Date: 2008-05-19 20:55+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <po@cairo-dock.org>\n"
@@ -29,27 +29,27 @@ msgstr ""
 msgid "Height of the vanishing point :"
 msgstr ""
 
-#: ../data/messages:7 ../data/messages:159
+#: ../data/messages:7 ../data/messages:165
 msgid "Choose the way separators are drawn :"
 msgstr "Choisissez la manière dont les séparateurs seront dessinés :"
 
-#: ../data/messages:9 ../data/messages:161
+#: ../data/messages:9 ../data/messages:167
 msgid "Normal separator"
 msgstr "Séparateur normaux"
 
-#: ../data/messages:11 ../data/messages:163
+#: ../data/messages:11 ../data/messages:169
 msgid "Flat separator"
 msgstr "Séparateur plat"
 
-#: ../data/messages:13 ../data/messages:165
+#: ../data/messages:13 ../data/messages:171
 msgid "Physical separator"
 msgstr "Séparateur physique"
 
-#: ../data/messages:15 ../data/messages:167
+#: ../data/messages:15 ../data/messages:173
 msgid "red, blue, green, alpha"
 msgstr "rougle, vert, bleu, alpha"
 
-#: ../data/messages:17 ../data/messages:169
+#: ../data/messages:17 ../data/messages:175
 msgid "For flat separators, you can specify their color:"
 msgstr "Pour les séparateurs plats, vous pouvez spécifier leur couleur: "
 
@@ -140,7 +140,7 @@ msgstr ""
 msgid "Magnitude of the wave :"
 msgstr "Magnitude de la vague :"
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:161
 msgid "in pixels."
 msgstr "en pixels."
 
@@ -273,7 +273,17 @@ msgid "Curve"
 msgstr ""
 
 #: ../data/messages:157
-msgid "Amplitude for the curve in percent :"
+msgid "The lower, the more the curve will seem flat."
+msgstr ""
+
+#: ../data/messages:159
+#, fuzzy
+msgid "Curvature of the curve in percent :"
+msgstr "Pourcentage de courbure :"
+
+#: ../data/messages:163
+#, fuzzy
+msgid "Amplitude of the curve."
 msgstr "Pourcentage de courbure :"
 
 #~ msgid "Use a flat separator instead of the defined separator icon ?"

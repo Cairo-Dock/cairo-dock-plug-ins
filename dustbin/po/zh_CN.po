@@ -7,78 +7,78 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-24 09:36+0200\n"
-"PO-Revision-Date: 2008-06-18 21:53+0900\n"
-"Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
-"Language-Team: Japanese <LL@li.org>\n"
+"POT-Creation-Date: 2008-06-24 10:31+0800\n"
+"PO-Revision-Date: 2008-06-24 10:31+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-draw.c:146
 msgid "calculating"
-msgstr "計算中"
+msgstr "计算"
 
 #: ../src/applet-draw.c:156
 msgid " trashe(s)"
-msgstr "ゴミ"
+msgstr "垃圾"
 
 #: ../src/applet-draw.c:160
 msgid " file(s)"
-msgstr "ファイル"
+msgstr "文件"
 
 #: ../src/applet-notifications.c:19
 msgid ""
 "This is the dustbin applet for Cairo-Dock\n"
 " made by Fabrice Rey (fabounet@users.berlios.de)"
 msgstr ""
-"これは Fabrice Rey (fabounet@users.berlios.de) により\n"
-"Cairo-Dock 用に製作された dustbin アプレットです。"
+"这是回收站小应用程序。\n"
+"由Fabrice Rey(fabounet@users.berlios.de)为Cairo-Dock制作"
 
 #: ../src/applet-notifications.c:37 ../src/applet-notifications.c:42
 msgid "Show Trash"
-msgstr "中身を表示"
+msgstr "翻翻垃圾"
 
 #: ../src/applet-notifications.c:38 ../src/applet-notifications.c:51
 msgid "Delete Trash"
-msgstr "中身を削除"
+msgstr "清空回收站"
 
 #: ../src/applet-notifications.c:46
 #, c-format
 msgid "Show %s"
-msgstr "%s を表示"
+msgstr "显示%s"
 
 #: ../src/applet-notifications.c:49
 msgid "Show All"
-msgstr "すべて表示"
+msgstr "显示所有"
 
 #: ../src/applet-notifications.c:55
 #, c-format
 msgid "Delete %s"
-msgstr "%s を削除"
+msgstr "删除%s"
 
 #: ../src/applet-notifications.c:58
 msgid "Delete All"
-msgstr "すべて削除"
+msgstr "删除所有"
 
 #: ../src/applet-notifications.c:73
 #, c-format
 msgid "%s is now unmounted"
-msgstr "%s は現在アンマウントされています"
+msgstr "%s已经卸载"
 
 #: ../src/applet-notifications.c:77
 #, c-format
 msgid "failed to unmount %s"
-msgstr "%s のアンマウントに失敗"
+msgstr "卸载%s失败"
 
 #: ../src/applet-trashes-manager.c:386
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
-msgstr "%s の全ファイルを削除しようとしています。よろしいですか？"
+msgstr "您将删除%s中的所有文件，确定么？"
 
 #: ../src/applet-trashes-manager.c:388
 msgid "You're about to delete all files in all dustbins. Sure ?"
-msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
+msgstr "您将删除所有回收站中的所有文件。确定么？"
 
 #: ../src/applet-trashes-manager.c:459
 #, c-format
@@ -87,205 +87,190 @@ msgid ""
 "If '%s' is not your usual file browser,\n"
 "you can change it in the conf panel of this module"
 msgstr ""
-"問題が発生しました。\n"
-"'%s' が標準のファイルブラウザでない場合は、\n"
-"このモジュールの設定パネルで変更することができます。"
+"搞出问题来了。\n"
+"如果'%s'不是您平时使用的浏览器，您可以在此模块的配置面板中进行改换。"
 
 #: ../data/messages:1
 msgid "Icon"
-msgstr "アイコン"
+msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "このアプレットのアイコンの大きさ"
+msgstr "此小应用程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "width :"
-msgstr "幅 :"
+msgstr "宽："
 
 #: ../data/messages:7
 msgid "height :"
-msgstr "高さ :"
+msgstr "高："
 
 #: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "ドックのラベル上に表示するアイコンの名前 :"
+msgstr "显现于dock之上的图标标签名称："
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr "帰属先ドックの名前 :"
+msgstr "归属于dock的名称："
 
 #: ../data/messages:13
 msgid "Desklet"
-msgstr "デスクレット"
+msgstr "桌面应用程序"
 
 #: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖"
+"于您的桌面管理器"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
-msgstr "デスクレットの寸法（幅×高さ） "
+msgstr "桌面小程序尺寸（宽x高）："
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
-msgstr "デスクレットの位置（X ; Y） :"
+msgstr "桌面小应用程序位置(x ; y)："
 
 #: ../data/messages:23
 msgid "Is detached from the dock ?"
-msgstr "ドックから分離？"
+msgstr "从dock移开？"
 
 #: ../data/messages:25
 msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
+msgstr "位于最下窗口？"
 
 #: ../data/messages:27
 msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
+msgstr "窗口置顶？"
 
 #: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"面向CompizFusion的“小应用程序层”，将Compiz的行为设置"
+"为：(name=cairo-dock & type=utility) "
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "保持于小应用程序层？"
 
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移"
+"动。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr "位置を固定？"
+msgstr "锁定位置？"
 
 #: ../data/messages:37
 msgid "Module"
-msgstr "モジュール"
+msgstr "模块"
 
 #: ../data/messages:39
 msgid "Theme"
-msgstr "テーマ"
+msgstr "主题"
 
 #: ../data/messages:41
 msgid "Choose one of the available themes :"
-msgstr "利用可能なテーマから1つ選択 :"
+msgstr "选择主题："
 
 #: ../data/messages:43
 msgid "Name of an image to overwrite the theme's empty image :"
-msgstr "空状態を表すテーマ画像に置き換える画像の名前 :"
+msgstr "用于覆盖主题空回收站的图片名称："
 
 #: ../data/messages:45
 msgid "Name of an image to overwrite the theme's full image :"
-msgstr "満杯状態を表すテーマ画像に置き換える画像の名前 :"
+msgstr "用于覆盖主题满回收站的图片名称："
 
 #: ../data/messages:47
 msgid "Config"
-msgstr "設定"
+msgstr "配置"
 
 #: ../data/messages:49
 msgid "They don't even need to be real trash directories."
-msgstr "システムの実際のゴミ箱用ディレクトリ（.Trash）でなくとも指定可能です。"
+msgstr "它们甚至不必真的是回收站目录。"
 
 #: ../data/messages:51
 msgid ""
 "Here you can specify a list of additionnal Trash directories to monitor :"
-msgstr "監視対象に含める追加的なゴミ箱ディレクトリのリストの指定 :"
+msgstr "您可以在此指定需要监视的额外的回收站目录："
 
 #: ../data/messages:53
 msgid "Display the following quick info :"
-msgstr "クイック情報の表示 :"
+msgstr "显示以下快捷信息："
 
 #: ../data/messages:55
 msgid "None"
-msgstr "なし"
+msgstr "无"
 
 #: ../data/messages:57
 msgid "Number of trashes"
-msgstr "ゴミの数"
+msgstr "垃圾数量"
 
 #: ../data/messages:59
 msgid "Total number of files"
-msgstr "ファイルの総数"
+msgstr "文件总数"
 
 #: ../data/messages:61
 msgid "Total weight"
-msgstr "総量"
+msgstr "总重"
 
 #: ../data/messages:63 ../data/messages:67
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
-msgstr ""
-"Mb 単位。この上限値を越えた際に通知を行います。0 に設定すると通知を使用しませ"
-"ん。"
+msgstr "以Mb为单位。当超过这个限额的时候，您会得到通知。设置为0则禁用此功能。"
 
 #: ../data/messages:65
 msgid "Maximum total size of all dustbins :"
-msgstr "全ゴミ箱の最大総量 :"
+msgstr "所有回收站最大容量："
 
 #: ../data/messages:69
 msgid "Maximum size authorized for each dustbin :"
-msgstr "各ゴミ箱に割り当てる最大量 :"
+msgstr "每个回收站的最大容量："
 
 #: ../data/messages:71
 msgid "Desktop-less support"
-msgstr "無デスクトップのサポート"
+msgstr "无桌面支持"
 
 #: ../data/messages:73
 msgid "in seconds, only used if you can't monitor directories."
-msgstr "秒単位。ディレクトリを監視できない場合にのみ使用されます。"
+msgstr "以秒为单位，仅用于无法监视目录的情况。"
 
 #: ../data/messages:75
 msgid "Interval of time to check if dustbin is full/empty :"
-msgstr "ゴミ箱が満杯か空かをチェックする間隔時間 :"
+msgstr "监视回收站满/空状态的时间间隔："
 
 #: ../data/messages:77
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
-msgstr ""
-"アプレットがクリックでゴミ箱の中身を表示できない場合にのみ使用してください。"
+msgstr "仅用于您发现在回收站上点击后，小应用程序无法显示垃圾的情况下。"
 
 #: ../data/messages:79
 msgid "Alternative file browser used to show a trash :"
-msgstr "ゴミ箱の表示に使用する代替ファイルブラウザ :"
+msgstr "用于显示垃圾的替代文件浏览器："
 
 #~ msgid "in seconds"
-#~ msgstr "秒単位"
+#~ msgstr "以秒为单位"
 
 #~ msgid "Here you can specify a list of Trash directory :"
-#~ msgstr "ここでゴミ箱ディレクトリのリストの指定可能 :"
+#~ msgstr "Ici vous pouvez spécifier une liste des répertoires de poubelle ;"
 
 #~ msgid "File browser used to show a trash :"
-#~ msgstr "ゴミ箱の表示に使用するファイルブラウザ :"
-
-#~ msgid ""
-#~ "This is the dustbin applet for Cairo-Dock\n"
-#~ " made by Fabrice Rey (fabounet_03@yahoo.fr)"
-#~ msgstr ""
-#~ "これは Fabrice Rey (fabounet_03@yahoo.fr) により\n"
-#~ "Cairo-Dock 用に製作された dustbin アプレットです。"
+#~ msgstr "Navigateur de fichier pour visualiser la poubelle ;"
 
 #~ msgid "You're about to delete all files all dustbins. Sure ?"
-#~ msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
-
-#~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
+#~ msgstr ""
+#~ "Vous êtes sur le point de détruire tous les fichiers de toutes les "
+#~ "poubelles. Sur ?"

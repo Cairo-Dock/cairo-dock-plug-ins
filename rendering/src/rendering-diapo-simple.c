@@ -17,11 +17,6 @@ This rendering is (was) written by parAdOxxx_ZeRo, co mah blog : http://paradoxx
 
 #include <cairo.h>
 
-#ifdef HAVE_GLITZ
-#include <gdk/gdkx.h>
-#include <glitz-glx.h>
-#include <cairo-glitz.h>
-#endif
 
 #include "rendering-diapo-simple.h"
 
@@ -216,9 +211,8 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 }
 
 
-void cd_rendering_register_diapo_simple_renderer (void)
+void cd_rendering_register_diapo_simple_renderer (const gchar *cRendererName)
 {
-
 //////////////////////////////////////////////////////////////////////////////////////// On definit le renderer :
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);                                           //Nouvelle structure	
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-diapo-simple-view", MY_APPLET_SHARE_DATA_DIR);        //On affecte le readme
@@ -231,13 +225,12 @@ void cd_rendering_register_diapo_simple_renderer (void)
 	
 	pRenderer->bUseReflect = FALSE;                                                                         // On dit non au reflections
 	
-	cairo_dock_register_renderer (MY_APPLET_DIAPO_SIMPLE_VIEW_NAME, pRenderer);                                    //Puis on signale l'existence de notre rendu
+	cairo_dock_register_renderer (cRendererName, pRenderer);                                    //Puis on signale l'existence de notre rendu
 }
 
 
 guint cairo_dock_rendering_diapo_simple_guess_grid(GList *pIconList, guint *nRowX, guint *nRowY)
-{	
-
+{
 //////////////////////////////////////////////////////////////////////////////////////// Calcul du nombre de ligne / colonne :
 	guint count = g_list_length(pIconList);
 	if(my_diapo_simple_wide_grid)
@@ -255,7 +248,6 @@ guint cairo_dock_rendering_diapo_simple_guess_grid(GList *pIconList, guint *nRow
 
 Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, guint nRowsX, guint nRowsY, gint Mx, gint My)
 {
-
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la position de base pour toutes les icones :
         guint i = 0;
         guint x = 0;

@@ -85,7 +85,7 @@ extern gint my_iCurveAmplitude;
 extern CDSpeparatorType my_curve_iDrawSeparator3D;
 extern gdouble my_curve_fSeparatorColor[4];
 
-void read_conf_file (GKeyFile *pKeyFile)
+void read_conf_file (GKeyFile *pKeyFile, gchar *cConfFilePath)
 {
 	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
 	
@@ -141,6 +141,7 @@ void read_conf_file (GKeyFile *pKeyFile)
 	my_diapo_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	
+	
 	my_diapo_simple_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapX",             &bFlushConfFileNeeded,    20, NULL, NULL);
 	my_diapo_simple_iconGapY             = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapY",             &bFlushConfFileNeeded,    30, NULL, NULL);
 	my_diapo_simple_fScaleMax            = cairo_dock_get_double_key_value  (pKeyFile, "SimpleSlide", "simple_fScaleMax",            &bFlushConfFileNeeded,   2.5, NULL, NULL);
@@ -166,21 +167,28 @@ void read_conf_file (GKeyFile *pKeyFile)
 	my_diapo_simple_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_simple_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	
-	my_fCurveCurvature = cairo_dock_get_double_key_value (pKeyFile, "Curve", "curvitude", &bFlushConfFileNeeded, 50, NULL, NULL) / 100;
-	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvitude", &bFlushConfFileNeeded, 20, NULL, NULL);
 	
+	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100;
+	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "amplitude", &bFlushConfFileNeeded, 20, NULL, NULL);
 	my_curve_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "draw curve separator", &bFlushConfFileNeeded, 0, NULL, NULL);
-	
 	double couleur_[4] = {0.9,0.9,1.0,1.0};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Curve", "separator curve color", &bFlushConfFileNeeded, my_curve_fSeparatorColor, 4, couleur_, NULL, NULL);
 	
+	
+	if (! bFlushConfFileNeeded)
+		bFlushConfFileNeeded = cairo_dock_conf_file_needs_update (pKeyFile, MY_APPLET_VERSION); \
+	if (bFlushConfFileNeeded) \
+		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, MY_APPLET_SHARE_DATA_DIR);\
 }
 
 
 void reset_data (void)
 {
-	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
-	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
-	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
-	my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
+	if (my_pFlatSeparatorSurface[0] != NULL)
+	{
+		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
+		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
+	}
 }

@@ -3,31 +3,31 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-24 09:35+0200\n"
-"PO-Revision-Date: 2008-05-18 14:02+0900\n"
-"Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
-"Language-Team: Japanese <LL@li.org>\n"
+"POT-Creation-Date: 2008-06-24 10:31+0800\n"
+"PO-Revision-Date: 2008-06-24 10:31+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../data/messages:1
 msgid "Configuration"
-msgstr "設定"
+msgstr "配置"
 
 #: ../data/messages:3
 msgid "Let extern applications pop-up dialogs in the dock ?"
-msgstr ""
-"外部アプリケーションがダイアログをドックにポップアップできるようにする？"
+msgstr "令外部应用程序的弹出对话框出现在dock上？"
 
 #: ../data/messages:5
 msgid "Let extern applications reboot the dock ?"
-msgstr "外部アプリケーションがドックを再起動できるようにする？"
+msgstr "允许外部应用程序重启dock？"
 
 #: ../data/messages:7
 msgid "Let extern applications show/hide the desklets ?"
-msgstr "外部アプリケーションがデスクレットの（非）表示をできるようにする？"
+msgstr "令外部应用程序显示/隐藏桌面小应用程序？"

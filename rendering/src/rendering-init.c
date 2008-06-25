@@ -24,8 +24,14 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-desklet-mediaplayer.h"
 #include "rendering-init.h"
 
-#define MY_APPLET_CONF_FILE "rendering.conf"
-#define MY_APPLET_USER_DATA_DIR "rendering"
+#define CD_RENDERING_CAROUSSEL_VIEW_NAME "Caroussel"
+#define CD_RENDERING_3D_PLANE_VIEW_NAME "3D plane"
+#define CD_RENDERING_PARABOLIC_VIEW_NAME "Parabolic"
+#define CD_RENDERING_RAINBOW_VIEW_NAME "Rainbow"
+#define CD_RENDERING_DIAPO_VIEW_NAME "Slide"
+#define CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME "SimpleSlide"
+#define CD_RENDERING_CURVE_VIEW_NAME "Curve"
+
 
 int iVanishingPointY;  // distance du point de fuite au plan (au niveau du point de contact du plan et des icones).
 CDSpeparatorType my_iDrawSeparator3D;
@@ -97,7 +103,8 @@ gint my_iCurveAmplitude;
 CDSpeparatorType my_curve_iDrawSeparator3D;
 double my_curve_fSeparatorColor[4];
 
-CD_APPLET_PRE_INIT_BEGIN("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
+
+CD_APPLET_PRE_INIT_BEGIN ("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 	rendering_register_tree_desklet_renderer ();
 	rendering_register_caroussel_desklet_renderer ();
 	rendering_register_simple_desklet_renderer ();
@@ -128,25 +135,24 @@ static void _load_flat_separator (CairoContainer *pContainer)
 
 void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *cConfFilePath, GError **erreur)
 {
-	//g_print ("%s (%s)\n", __func__, MY_APPLET_DOCK_VERSION);
+	//g_print ("%s (%s)\n", __func__, CD_RENDERING_DOCK_VERSION);
 	//\_______________ On lit le fichier de conf.
-	read_conf_file (pKeyFile);
+	read_conf_file (pKeyFile, cConfFilePath);
 	
 	//\_______________ On enregistre les vues.
-	cd_rendering_register_caroussel_renderer ();
+	cd_rendering_register_caroussel_renderer 		(CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	
-	cd_rendering_register_3D_plane_renderer ();
+	cd_rendering_register_3D_plane_renderer 		(CD_RENDERING_3D_PLANE_VIEW_NAME);
 	
-	cd_rendering_register_parabole_renderer ();
+	cd_rendering_register_parabole_renderer 		(CD_RENDERING_PARABOLIC_VIEW_NAME);
 	
-	cd_rendering_register_rainbow_renderer ();
+	cd_rendering_register_rainbow_renderer 		(CD_RENDERING_RAINBOW_VIEW_NAME);
 	
-	cd_rendering_register_diapo_renderer ();
+	cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);
 
-	cd_rendering_register_diapo_simple_renderer ();
+	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);
 	
-	///cd_rendering_register_curve_renderer ();
-	///cd_warning ("Enlever la vue Curve pour la 1.6.0");
+	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);
 	
 	cairo_dock_set_all_views_to_default ();
 	
@@ -157,13 +163,13 @@ void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *c
 
 void stop (void)
 {
-	cairo_dock_remove_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME);
-	cairo_dock_remove_renderer (MY_APPLET_3D_PLANE_VIEW_NAME);
-	cairo_dock_remove_renderer (MY_APPLET_PARABOLIC_VIEW_NAME);
-	cairo_dock_remove_renderer (MY_APPLET_RAINBOW_VIEW_NAME);
-	cairo_dock_remove_renderer (MY_APPLET_DIAPO_VIEW_NAME);
-	cairo_dock_remove_renderer (MY_APPLET_DIAPO_SIMPLE_VIEW_NAME);
-	///cairo_dock_remove_renderer (MY_APPLET_CURVE_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_RAINBOW_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_DIAPO_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_CURVE_VIEW_NAME);
 	reset_data ();
 	
 	cairo_dock_reset_all_views ();
@@ -176,11 +182,11 @@ gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoContainer *pNewC
 	{
 		reset_data ();
 		
-		read_conf_file (pKeyFile);
-		
-		cairo_dock_set_all_views_to_default ();
+		read_conf_file (pKeyFile, cConfFilePath);
 		
 		_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
+		
+		cairo_dock_set_all_views_to_default ();
 	}
 	return TRUE;
 }

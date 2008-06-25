@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-rendering],[1.5.0],[Fabrice Rey (fabounet@users.berlios.de) & paradoxxx_zero])
+AC_INIT([cd-rendering],[1.5.1],[Fabrice Rey (fabounet@users.berlios.de) & paradoxxx_zero])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

@@ -195,9 +195,9 @@ simple_color_border_line = 1;1;1;0.5;
 
 [Curve]
 
-#e[0;100] Curvature of the curve in percent :
+#I[0;100] Curvature of the curve in percent :
 #{The lower, the more the curve will seem flat.}
-curvitude = 50
+curvature = 50
 
 #i[0;50] Amplitude of the curve.
 #{in pixels.}

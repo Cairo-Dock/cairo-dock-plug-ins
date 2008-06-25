@@ -58,16 +58,6 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
 	
-	/*//\____________________ On cree le contexte du dessin.
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
-	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
-	
-	cairo_set_tolerance (pCairoContext, 0.5);  // avec moins que 0.5 on ne voit pas la difference.
-	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (pCairoContext);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);*/
-	
 	//\____________________ On trace le cadre.
 	
 	//\____________________ On dessine les decorations dedans.
@@ -145,12 +135,6 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
-	
-	/*cairo_destroy (pCairoContext);
-#ifdef HAVE_GLITZ
-	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
-		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
-#endif*/
 }
 
 
@@ -434,7 +418,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 }
 
 
-void cd_rendering_register_rainbow_renderer (void)
+void cd_rendering_register_rainbow_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-rainbow-view", MY_APPLET_SHARE_DATA_DIR);
@@ -445,5 +429,5 @@ void cd_rendering_register_rainbow_renderer (void)
 	pRenderer->render_optimized = NULL;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
 	
-	cairo_dock_register_renderer (MY_APPLET_RAINBOW_VIEW_NAME, pRenderer);
+	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

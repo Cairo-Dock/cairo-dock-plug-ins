@@ -6,7 +6,7 @@
 #include <glib.h>
 
 
-void read_conf_file (GKeyFile *pKeyFile);
+void read_conf_file (GKeyFile *pKeyFile, gchar *cConfFilePath);
 
 
 void reset_data (void);

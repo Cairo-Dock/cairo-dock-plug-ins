@@ -4,8 +4,6 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_3D_PLANE_VIEW_NAME "3D plane"
-
 
 typedef enum {
 	CD_NORMAL_SEPARATOR = 0,
@@ -33,7 +31,7 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock);
 
 
-void cd_rendering_register_3D_plane_renderer (void);
+void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName);
 
 
 #endif

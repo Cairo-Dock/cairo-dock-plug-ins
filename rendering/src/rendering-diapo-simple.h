@@ -4,8 +4,6 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_DIAPO_SIMPLE_VIEW_NAME "SimpleSlide"
-
 
 void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock);
 
@@ -16,7 +14,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock);
 
 
-void cd_rendering_register_diapo_simple_renderer (void);
+void cd_rendering_register_diapo_simple_renderer (const gchar *cRendererName);
 
 
 guint cairo_dock_rendering_diapo_simple_guess_grid(GList *pIconList, guint *nRowX, guint *nRowY);

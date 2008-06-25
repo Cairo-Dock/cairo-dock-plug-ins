@@ -91,18 +91,6 @@ void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock)
 
 void cd_rendering_render_diapo (cairo_t *pCairoContext, CairoDock *pDock)
 {
-	//\____________________ On cree le contexte du dessin.
-	/*cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
-	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
-	
-	
-//////////////////////////////////////////////////////////////////////////////////////// On définit les paramètres de dessin (par defaut pour l'instant)
-	cairo_set_tolerance (pCairoContext, 0.5); 
-	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (pCairoContext);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);*/
-
         if(my_diapo_draw_background)
         {
 	        //\____________________ On trace le cadre.
@@ -194,17 +182,6 @@ void cd_rendering_render_diapo (cairo_t *pCairoContext, CairoDock *pDock)
 			cairo_restore (pCairoContext);
                 }
 	}
-	
-	
-/*//////////////////////////////////////////////////////////////////////////////////////// On regle son compte au contexte
-	cairo_destroy (pCairoContext);
-	
-	
-//////////////////////////////////////////////////////////////////////////////////////// Si on est --glitz alors on s'en sert pour bien que ca plante :  ------> mauvaise langue :-D
-#ifdef HAVE_GLITZ
-	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
-		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
-#endif*/
 }
 
 Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock)
@@ -255,10 +232,8 @@ Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock)
 }
 
 
-void cd_rendering_register_diapo_renderer (void)
+void cd_rendering_register_diapo_renderer (const gchar *cRendererName)
 {
-
-
 //////////////////////////////////////////////////////////////////////////////////////// On definit le renderer :
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);                                           //Nouvelle structure	
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-diapo-view", MY_APPLET_SHARE_DATA_DIR);        //On affecte le readme
@@ -271,14 +246,12 @@ void cd_rendering_register_diapo_renderer (void)
 	
 	pRenderer->bUseReflect = FALSE;                                                                         // On dit non au reflections
 	
-	cairo_dock_register_renderer (MY_APPLET_DIAPO_VIEW_NAME, pRenderer);                                    //Puis on signale l'existence de notre rendu
+	cairo_dock_register_renderer (cRendererName, pRenderer);                                    //Puis on signale l'existence de notre rendu
 
 }
 
 guint cairo_dock_rendering_diapo_guess_grid(GList *pIconList, guint *nRowX, guint *nRowY)
 {
-
-
 //////////////////////////////////////////////////////////////////////////////////////// Calcul du nombre de ligne / colonne :
 	guint count = g_list_length(pIconList);
 	if(my_diapo_wide_grid)
@@ -296,8 +269,6 @@ guint cairo_dock_rendering_diapo_guess_grid(GList *pIconList, guint *nRowX, guin
 
 Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRowsX, guint nRowsY, gint Mx, gint My)
 {
-
-
 //////////////////////////////////////////////////////////////////////////////////////// On calcule la position de base pour toutes les icones :
         guint i = 0;
         guint x = 0;

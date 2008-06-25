@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-14 20:08+0200\n"
+"POT-Creation-Date: 2008-06-24 09:50+0200\n"
 "PO-Revision-Date: 2008-06-18 23:25+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -64,8 +64,12 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -73,7 +77,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -92,16 +98,25 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:31
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:35
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:37
 msgid "Lock position ?"
@@ -116,8 +131,12 @@ msgid "Directory & Options"
 msgstr "ディレクトリとオプション"
 
 #: ../data/messages:43
-msgid "Stacks will act as a the shortcut applet's but with files. To add a file, just drag and drop it on the Stacks icon"
-msgstr "Stacks は言わばファイル対象の shortcut アプレットのように働きます。Stacks アイコンにドラッグ＆ドロップするだけでファイルを追加できます。"
+msgid ""
+"Stacks will act as a the shortcut applet's but with files. To add a file, "
+"just drag and drop it on the Stacks icon"
+msgstr ""
+"Stacks は言わばファイル対象の shortcut アプレットのように働きます。Stacks ア"
+"イコンにドラッグ＆ドロップするだけでファイルを追加できます。"
 
 #: ../data/messages:45
 msgid "Use Stacks local directory ?"
@@ -128,8 +147,11 @@ msgid "Monitored Directory :"
 msgstr "モニタ対象のディレクトリ :"
 
 #: ../data/messages:49
-msgid "This option with large files lists can slow down the dock, use it properly."
-msgstr "ファイルリストが大きくなる場合にこのオプションを使用すると、ドックの動作が遅くなるので、適切に使用してください。"
+msgid ""
+"This option with large files lists can slow down the dock, use it properly."
+msgstr ""
+"ファイルリストが大きくなる場合にこのオプションを使用すると、ドックの動作が遅"
+"くなるので、適切に使用してください。"
 
 #: ../data/messages:51
 msgid "List hidden files ?"
@@ -140,8 +162,12 @@ msgid "Separate different directories with separators ?"
 msgstr "異なるディレクトリ同士を区切りで区分？"
 
 #: ../data/messages:55
-msgid "This options allow you to avoid some files to be displayed in the stacks considering their types (video, images, etc...)"
-msgstr "このオプションを使用すると、特定の種類（動画、画像、等々）のファイルを Stacks で表示しないようにすることができます。"
+msgid ""
+"This options allow you to avoid some files to be displayed in the stacks "
+"considering their types (video, images, etc...)"
+msgstr ""
+"このオプションを使用すると、特定の種類（動画、画像、等々）のファイルを "
+"Stacks で表示しないようにすることができます。"
 
 #: ../data/messages:57
 msgid "Filter files with their mime types ?"
@@ -165,10 +191,10 @@ msgstr "サブ・ドックに使用する外観の名前 :"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
+
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-

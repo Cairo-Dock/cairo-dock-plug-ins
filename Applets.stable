@@ -24,10 +24,12 @@ powermanager
 wifi
 compiz-icon
 systray
-###Last addition of v1.6.0 :
+###Last addition of v1.6.0, should work for most of people :
 cpusage
 rame
 netspeed
 nVidia
 tomboy
+###Last addition of v1.6.1 :
+switcher
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.

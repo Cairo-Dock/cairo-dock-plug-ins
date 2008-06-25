@@ -4,8 +4,6 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_DIAPO_VIEW_NAME "Slide"
-
 
 void cd_rendering_calculate_max_dock_size_diapo (CairoDock *pDock);
 
@@ -17,7 +15,7 @@ void cd_rendering_render_diapo (cairo_t *pCairoContext, CairoDock *pDock);
 Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock);
 
 
-void cd_rendering_register_diapo_renderer (void);
+void cd_rendering_register_diapo_renderer (const gchar *cRendererName);
 
 Icon *  cairo_dock_calculate_icons_position_for_diapo(CairoDock* pDock, guint nRowsX, guint nRowsY, gint Mx, gint My);
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-19 02:13+0200\n"
+"POT-Creation-Date: 2008-06-24 09:45+0200\n"
 "PO-Revision-Date: 2008-06-18 20:46+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -27,27 +27,27 @@ msgstr "小さい数値ほど、より低い視点から見た地面になりま
 msgid "Height of the vanishing point :"
 msgstr "消尽点の高さ :"
 
-#: ../data/messages:7 ../data/messages:159
+#: ../data/messages:7 ../data/messages:165
 msgid "Choose the way separators are drawn :"
 msgstr "区切りの描画の仕方 :"
 
-#: ../data/messages:9 ../data/messages:161
+#: ../data/messages:9 ../data/messages:167
 msgid "Normal separator"
 msgstr "通常の区切り"
 
-#: ../data/messages:11 ../data/messages:163
+#: ../data/messages:11 ../data/messages:169
 msgid "Flat separator"
 msgstr "平坦な区切り"
 
-#: ../data/messages:13 ../data/messages:165
+#: ../data/messages:13 ../data/messages:171
 msgid "Physical separator"
 msgstr "物理的な区切り"
 
-#: ../data/messages:15 ../data/messages:167
+#: ../data/messages:15 ../data/messages:173
 msgid "red, blue, green, alpha"
 msgstr "赤、青、緑、アルファ"
 
-#: ../data/messages:17 ../data/messages:169
+#: ../data/messages:17 ../data/messages:175
 msgid "For flat separators, you can specify their color:"
 msgstr "平坦な区切りに適用する色の指定 :"
 
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Magnitude of the wave :"
 msgstr "波形の振幅 :"
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:161
 msgid "in pixels."
 msgstr "ピクセル単位"
 
@@ -267,7 +267,18 @@ msgid "Curve"
 msgstr "Curve"
 
 #: ../data/messages:157
-msgid "Amplitude for the curve in percent :"
+#, fuzzy
+msgid "The lower, the more the curve will seem flat."
+msgstr "小さい数値ほど、より低い視点から見た地面になります。"
+
+#: ../data/messages:159
+#, fuzzy
+msgid "Curvature of the curve in percent :"
+msgstr "カーブの振幅の割合 :"
+
+#: ../data/messages:163
+#, fuzzy
+msgid "Amplitude of the curve."
 msgstr "カーブの振幅の割合 :"
 
 #~ msgid "Use a flat separator instead of the defined separator icon ?"

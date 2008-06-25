@@ -15,12 +15,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include <cairo.h>
 
-#ifdef HAVE_GLITZ
-#include <gdk/gdkx.h>
-#include <glitz-glx.h>
-#include <cairo-glitz.h>
-#endif
-
 #include <rendering-caroussel.h>
 
 extern double my_fInclinationOnHorizon;
@@ -159,16 +153,6 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 
 void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 {
-	//\____________________ On cree le contexte du dessin.
-	/*cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDock));
-	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
-	
-	cairo_set_tolerance (pCairoContext, 0.5);  // avec moins que 0.5 on ne voit pas la difference.
-	cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 0.0);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (pCairoContext);
-	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);*/
-	
 	//\____________________ On trace le cadre.
 	double fLineWidth = g_iDockLineWidth;
 	double fMargin = g_iFrameMargin;
@@ -216,12 +200,6 @@ void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	///double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
 	cd_rendering_render_icons_caroussel (pCairoContext, pDock, pDock->fRatio);
-	
-	/*cairo_destroy (pCairoContext);
-#ifdef HAVE_GLITZ
-	if (pDock->pDrawFormat && pDock->pDrawFormat->doublebuffer)
-		glitz_drawable_swap_buffers (pDock->pGlitzDrawable);
-#endif*/
 }
 
 
@@ -255,7 +233,7 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 }
 
 
-void cd_rendering_register_caroussel_renderer (void)
+void cd_rendering_register_caroussel_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-caroussel-view", MY_APPLET_SHARE_DATA_DIR);
@@ -267,5 +245,5 @@ void cd_rendering_register_caroussel_renderer (void)
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;  // cd_rendering_set_subdock_position_caroussel
 	pRenderer->bUseReflect = TRUE;
 	
-	cairo_dock_register_renderer (MY_APPLET_CAROUSSEL_VIEW_NAME, pRenderer);
+	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

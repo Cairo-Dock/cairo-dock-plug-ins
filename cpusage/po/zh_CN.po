@@ -7,216 +7,213 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-24 09:35+0200\n"
-"PO-Revision-Date: 2008-05-23 08:38+0100\n"
-"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
-"Language-Team: Français <LL@li.org>\n"
+"POT-Creation-Date: 2008-06-23 14:22+0800\n"
+"PO-Revision-Date: 2008-06-23 14:22+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-cpusage.c:43 ../src/applet-cpusage.c:48
 msgid "day(s)"
-msgstr "jour(s)"
+msgstr "日"
 
 #: ../src/applet-cpusage.c:197
 msgid "Loading"
-msgstr "Chargement"
+msgstr "载入"
 
 #: ../src/applet-notifications.c:12
 msgid ""
 "This is the cpusage applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
 msgstr ""
-"Ceci est l'applet cpusage\n"
-" écrite par parAdOxxx_ZeRo pour Cairo-Dock"
+"这是显示CPU占有率的小应用程序\n"
+"由parAdOxxx_ZeRo为Cairo-Dock制作。"
 
 #: ../src/applet-notifications.c:109 ../src/applet-notifications.c:127
 msgid "Data acquisition has failed"
-msgstr "L'acquisition des données a échoué"
+msgstr "数据采集失败"
 
 #: ../src/applet-notifications.c:122
 msgid "Model Name"
-msgstr "Nom du modèle"
+msgstr "模型名"
 
 #: ../src/applet-notifications.c:122
 msgid "Frequency"
-msgstr "Fréquence"
+msgstr "频率"
 
 #: ../src/applet-notifications.c:122
 msgid "core(s)"
-msgstr "coeur(s)"
+msgstr "核"
 
 #: ../src/applet-notifications.c:122
 msgid "Up time"
-msgstr "Temps d'activité système"
+msgstr "运行时间"
 
 #: ../src/applet-notifications.c:122
 msgid "Activity time"
-msgstr "Temps d'activité"
+msgstr "活动时间"
 
 #: ../data/messages:1
 msgid "Icon"
-msgstr "Icône"
+msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "Taille d'icône souhaitée pour cette applet"
+msgstr "此小应用程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "width :"
-msgstr "largeur :"
+msgstr "宽："
 
 #: ../data/messages:7
 msgid "height :"
-msgstr "hauteur :"
+msgstr "高："
 
 #: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+msgstr "显现于dock之上的图标标签名称："
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr "Nom du conteneur auquel il appartient:"
+msgstr "归属于dock的名称："
 
 #: ../data/messages:13
 msgid "Desklet"
-msgstr "Desklet"
+msgstr "桌面应用程序"
 
 #: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic milieu ou ALT + clic gauche par exemple."
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖"
+"于您的桌面管理器"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
-msgstr "Dimension du desklet (largeur x hauteur) :"
+msgstr "桌面小程序尺寸（宽x高）："
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
-msgstr "Position du desklet (x ; y) :"
+msgstr "桌面小应用程序位置(x ; y)："
 
 #: ../data/messages:23
 msgid "Is detached from the dock ?"
-msgstr "Est-il détaché du dock ?"
+msgstr "从dock移开？"
 
 #: ../data/messages:25
 msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
+msgstr "位于最下窗口？"
 
 #: ../data/messages:27
 msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
+msgstr "窗口置顶？"
 
 #: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"面向CompizFusion的“小应用程序层”，将Compiz的行为设置"
+"为：(name=cairo-dock & type=utility) "
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "保持于小应用程序层？"
 
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"Si la position est verrouillé, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche"
+"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移"
+"动。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr "Verrouiller la position ?"
+msgstr "锁定位置？"
 
 #: ../data/messages:37 ../data/messages:61
 msgid "Configuration"
-msgstr "Configuration"
+msgstr "配置"
 
 #: ../data/messages:39
 msgid "Display"
-msgstr "Affichage"
+msgstr "显示"
 
 #: ../data/messages:41
 msgid "List of available themes for the analogic display :"
-msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
+msgstr "模拟显示模式的主题列表："
 
 #: ../data/messages:43
 msgid "turbo-night-fuel"
-msgstr "turbo-night-fuel"
+msgstr "夜色油量表"
 
 #: ../data/messages:45
 msgid "Display CPU usage values :"
-msgstr "Afficher les valeurs d'utilisations du CPU :"
+msgstr "显示CPU占用值："
 
 #: ../data/messages:47
 msgid "No"
-msgstr "Non"
+msgstr "否"
 
 #: ../data/messages:49
 msgid "On icon"
-msgstr "Sur l'icône"
+msgstr "在图标上"
 
 #: ../data/messages:51
 msgid "On label"
-msgstr "Sur l'étiquette"
+msgstr "在标签上"
 
 #: ../data/messages:53
 msgid "It's the first color of the gradation used to write the top list."
-msgstr ""
+msgstr "用于显示CPU占有率列表的渐变色的第一种颜色。"
 
 #: ../data/messages:55
 msgid "Start color of the top list :"
-msgstr ""
+msgstr "top列表的起始颜色："
 
 #: ../data/messages:57
 msgid "It's the second color of the gradation used to write the top list."
-msgstr ""
+msgstr "用于显示CPU占有率列表的渐变色的第二种颜色。"
 
 #: ../data/messages:59
 msgid "Stop color of the top list :"
-msgstr ""
+msgstr "top列表的结束颜色："
 
 #: ../data/messages:63 ../data/messages:71
 msgid "in seconds."
-msgstr "en secondes."
+msgstr "以秒为单位。"
 
 #: ../data/messages:65
 msgid "Delay between refresh :"
-msgstr "Délai entre les rafraîchissements"
+msgstr "刷新间歇："
 
 #: ../data/messages:67
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU-"
 "using programs."
-msgstr ""
+msgstr "左击图标时,将显示您指定数目的CPU占有率最高的程序的列表"
 
 #: ../data/messages:69
 msgid "Number of programs to display in the top list :"
-msgstr ""
+msgstr "top列表上显示的程序数目："
 
 #: ../data/messages:73
 msgid "Delay between refresh of the top list :"
-msgstr ""
+msgstr "top列表刷新间歇："
 
 #~ msgid "Module"
-#~ msgstr "Module"
+#~ msgstr "模块"
 
 #~ msgid "Icon's name :"
-#~ msgstr "Nom de l'icône :"
+#~ msgstr ""
 
 #~ msgid "Information"
 #~ msgstr "Information"

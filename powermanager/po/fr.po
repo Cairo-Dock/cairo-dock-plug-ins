@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-19 02:21+0200\n"
+"POT-Creation-Date: 2008-06-24 09:43+0200\n"
 "PO-Revision-Date: 2008-05-19 20:44+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <po@cairo-dock.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-Country: France\n"
 
-#: ../src/powermanager-draw.c:121
+#: ../src/powermanager-draw.c:114
 msgid "None"
 msgstr "Aucun"
 
-#: ../src/powermanager-draw.c:149
+#: ../src/powermanager-draw.c:142
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -29,12 +29,12 @@ msgstr ""
 "Portable sur Batterie.\n"
 " Batterie chargée à:"
 
-#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:153
-#: ../src/powermanager-draw.c:174 ../src/powermanager-draw.c:180
+#: ../src/powermanager-draw.c:142 ../src/powermanager-draw.c:146
+#: ../src/powermanager-draw.c:167 ../src/powermanager-draw.c:173
 msgid "Estimated time with Charge:"
 msgstr "Autonomie estimé:"
 
-#: ../src/powermanager-draw.c:153
+#: ../src/powermanager-draw.c:146
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -42,11 +42,11 @@ msgstr ""
 "Portable en Charge.\n"
 " Batterie chargée à:"
 
-#: ../src/powermanager-draw.c:159
+#: ../src/powermanager-draw.c:152
 msgid "No Battery found."
 msgstr "Aucune Batterie trouvée."
 
-#: ../src/powermanager-draw.c:174
+#: ../src/powermanager-draw.c:167
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -54,11 +54,11 @@ msgstr ""
 "PowerManager.\n"
 "Le niveau de la batterie semble être bas"
 
-#: ../src/powermanager-draw.c:174
+#: ../src/powermanager-draw.c:167
 msgid "Please put your Laptop on charge."
 msgstr "Veuillez mettre votre portable en charge."
 
-#: ../src/powermanager-draw.c:180
+#: ../src/powermanager-draw.c:173
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"

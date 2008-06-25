@@ -4,8 +4,6 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_RAINBOW_VIEW_NAME "Rainbow"
-
 
 void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock);
 
@@ -20,7 +18,7 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock);
 Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock);
 
 
-void cd_rendering_register_rainbow_renderer (void);
+void cd_rendering_register_rainbow_renderer (const gchar *cRendererName);
 
 
 #endif
