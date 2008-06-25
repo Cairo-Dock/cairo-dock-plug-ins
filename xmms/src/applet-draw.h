@@ -19,5 +19,6 @@ void cd_xmms_new_song_playing(void);
 void cd_xmms_set_surface (MyPlayerStatus iStatus);
 
 void cd_xmms_change_desklet_data (void);
+void cd_xmms_player_none (void);
 
 #endif

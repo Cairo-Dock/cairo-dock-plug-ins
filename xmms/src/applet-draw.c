@@ -181,7 +181,7 @@ void cd_xmms_change_desklet_data (void) {
 	
 	if (myData.playingTitle == NULL)
 		return;
-	if (myDesklet == NULL || !myConfig.extendedDesklet || myConfig.iExtendedMode != MY_DESKLET_INFO)
+	if (myDesklet == NULL || !myConfig.extendedDesklet || (myConfig.iExtendedMode != MY_DESKLET_INFO && myConfig.iExtendedMode != MY_DESKLET_INFO_AND_CONTROLER))
 		return;
 	
 	//On détermine l'artist (par default le 1er avant le tiret)
@@ -196,7 +196,6 @@ void cd_xmms_change_desklet_data (void) {
 			title ++;
 	}
 	
-	
 	gpointer data[3] = {artist, title, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 	CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 	cd_xmms_set_surface (myData.playingStatus);
@@ -205,4 +204,13 @@ void cd_xmms_change_desklet_data (void) {
 	g_free (artist);
 	//g_free (title);
 	g_strfreev (rawTitle);
+}
+
+void cd_xmms_player_none (void) {
+	if (myDesklet && myConfig.extendedDesklet && (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER)) {
+		gpointer data[3] = {NULL, NULL, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
+		cd_xmms_set_surface (myData.playingStatus);
+		gtk_widget_queue_draw (myDesklet->pWidget);
+	}
 }

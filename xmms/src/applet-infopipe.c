@@ -24,7 +24,6 @@ CD_APPLET_INCLUDE_MY_VARS
 
 static char  *s_cTmpFile = NULL;
 
-
 enum {
 	INFO_STATUS = 0,
 	INFO_TRACK_IN_PLAYLIST,
@@ -82,7 +81,8 @@ void cd_xmms_acquisition (void) {
 void cd_xmms_read_data (void) {
 	if ((myConfig.iPlayer != MY_XMMS) && (s_cTmpFile == NULL || ! g_file_test (s_cTmpFile, G_FILE_TEST_EXISTS))) {
 		myData.playingStatus = PLAYER_NONE;
-		return ;
+		cd_xmms_player_none();
+		return;
 	}
 	if (myConfig.iPlayer == MY_XMMS)
 		s_cTmpFile = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
@@ -96,6 +96,7 @@ void cd_xmms_read_data (void) {
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
 		myData.playingStatus = PLAYER_NONE;
+		cd_xmms_player_none();
 	}
 	else {
 		gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
