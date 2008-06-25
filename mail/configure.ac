@@ -19,8 +19,8 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
 AC_SUBST(GETTEXT_PACKAGE)
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/mail]
-AC_SUBST(pkgdatadir)
+maildatadir=[`pkg-config cairo-dock --variable=pluginsdir`/mail]
+AC_SUBST(maildatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
@@ -56,5 +56,7 @@ AC_CONFIG_FILES([Makefile
 		po/Makefile.in
 		data/Makefile
 		data/readme
+		data/themes/Makefile
+		data/themes/Default/Makefile
 		data/mail.conf])
 AC_OUTPUT

@@ -24,6 +24,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 
     myConfig.cMailApplication = CD_CONFIG_GET_STRING ("Configuration", "mail application");
 
+  	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "Default");
+
+    if( myConfig.cThemePath == NULL )
+  		cd_warning ("Attention : couldn't find theme path, or this theme is not valid");
+
+    /*
     if( myConfig.cNoMailUserImage == NULL || strcmp(myConfig.cNoMailUserImage,"") == 0  )
     {
         g_free( myConfig.cNoMailUserImage );
@@ -34,6 +40,7 @@ CD_APPLET_GET_CONFIG_BEGIN
         g_free( myConfig.cHasMailUserImage );
         myConfig.cHasMailUserImage = g_strdup_printf ("%s/cd_mail_newmail.svg", MY_APPLET_SHARE_DATA_DIR);
     }
+    */
 
     if( !myData.mailwatch )
     {

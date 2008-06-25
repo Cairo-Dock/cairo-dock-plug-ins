@@ -14,10 +14,61 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-init.h"
 
+CD_APPLET_INCLUDE_MY_VARS
+
+
+static void _load_theme (GError **erreur)
+{
+	//\_______________ On charge le theme si necessaire, avec en priorite les images utilisateur.
+	if (myConfig.cThemePath != NULL && (myConfig.cNoMailUserImage == NULL || myConfig.cHasMailUserImage == NULL))
+	{
+		GError *tmp_erreur = NULL;
+		GDir *dir = g_dir_open (myConfig.cThemePath, 0, &tmp_erreur);
+		if (tmp_erreur != NULL)
+		{
+			g_propagate_error (erreur, tmp_erreur);
+			return ;
+		}
+		
+		const gchar *cElementName;
+		gchar *cElementPath;
+		while ((cElementName = g_dir_read_name (dir)) != NULL)
+		{
+			cElementPath = g_strdup_printf ("%s/%s", myConfig.cThemePath, cElementName);
+			cd_message ("  Mail theme item: %s\n", cElementPath);
+			if (strncmp (cElementName, "no_mail", 7) == 0 && myConfig.cNoMailUserImage == NULL)
+			{
+				myConfig.cNoMailUserImage = cElementPath;
+			}
+			else if (strncmp (cElementName, "has_mail", 8) == 0 && myConfig.cHasMailUserImage == NULL)
+			{
+				myConfig.cHasMailUserImage = cElementPath;
+			}
+			else
+			{
+				g_free (cElementPath);
+			}
+		}
+		g_dir_close (dir);
+	}
+	if (myConfig.cNoMailUserImage == NULL || myConfig.cHasMailUserImage == NULL)
+	{
+		cd_warning ("Attention : couldn't find images, this theme is not valid");
+	}
+}
 
 CD_APPLET_DEFINITION ("mail", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 CD_APPLET_INIT_BEGIN (erreur)
+	
+	GError *tmp_erreur = NULL;
+	_load_theme (&tmp_erreur);
+	if (tmp_erreur != NULL)
+	{
+		g_propagate_error (erreur, tmp_erreur);
+		return;
+	}
+
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT

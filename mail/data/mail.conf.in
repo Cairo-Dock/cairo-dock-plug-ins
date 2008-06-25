@@ -55,6 +55,9 @@ use size=
 #[gtk-preferences]
 [Configuration]
 
+#R1[] Choose one of the available themes :/
+theme = Default
+
 #S Name of an image to overwrite the theme's no mail image :
 no mail image = 
 

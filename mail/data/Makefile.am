@@ -1,7 +1,7 @@
 
-SUBDIRS = .
+SUBDIRS = . themes
 
-moduledir = $(pkgdatadir)
+moduledir = $(maildatadir)
 
 module_DATA = \
 	mail.conf\

@@ -11,6 +11,7 @@ typedef struct {
         gchar *cNoMailUserImage;
         gchar *cHasMailUserImage;
         gchar *cMailApplication;
+        gchar *cThemePath;
 	} AppletConfig;
 
 typedef struct {
