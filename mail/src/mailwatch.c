@@ -239,6 +239,14 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
         GList *config_params = NULL;
         gchar *mailbox_password = NULL;
 
+        // gnome-keyring related stuff
+        GnomeKeyringResult res;
+        GnomeKeyringAttributeList *attributes = NULL;
+        GnomeKeyringAttribute attribute;
+        GnomeKeyringFound *f = NULL;
+        GList* found = NULL;
+        guint32 item_id;
+
         g_snprintf(buf, 32, "mailbox %d name", i);
         mailbox_name = CD_CONFIG_GET_STRING("Configuration", buf);
         if(!mailbox_name)
@@ -285,12 +293,28 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
         }
         g_free(cfg_entries);  /* yes, not using g_strfreev() is correct */
 
-        if( GNOME_KEYRING_RESULT_OK == gnome_keyring_find_password_sync(&xfce_mailbox_keyring_schema,
-                                                         &mailbox_password,
-                                                         "mailbox_name",
-                                                         mailbox_name,
-                                                         NULL) )
-       {
+        attributes = gnome_keyring_attribute_list_new();
+        gnome_keyring_attribute_list_append_string( attributes, "mailbox_name", mdata->mailbox_name );
+
+        found = g_list_alloc();
+
+        res = gnome_keyring_find_items_sync(GNOME_KEYRING_ITEM_GENERIC_SECRET, attributes, &found);
+
+        gnome_keyring_attribute_list_free(attributes);
+
+        if (res == GNOME_KEYRING_RESULT_OK) {
+          mailbox_password = NULL;
+          if (g_list_length (found) > 0) {
+            f = (GnomeKeyringFound*)(found->data);
+            mailbox_password = f->secret;
+            f->secret = NULL;
+          }
+        }
+
+        gnome_keyring_found_list_free (found);
+
+        if( GNOME_KEYRING_RESULT_OK == res ) 
+        {
             XfceMailwatchParam *param = NULL;
             
             param = g_new(XfceMailwatchParam, 1);
@@ -301,7 +325,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
             
             gnome_keyring_free_password(mailbox_password);
             mailbox_password = NULL;
-       }
+        }
 
         mailbox->type->restore_param_list_func(mailbox, config_params);
         mailbox->type->set_activated_func(mailbox, TRUE);
@@ -378,12 +402,18 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
                 if( strcmp( param->key, "password" ) == 0 )
                 {
                   /* store the password in the gnome keyring */
-                  gnome_keyring_store_password_sync(&xfce_mailbox_keyring_schema,
-                                                    GNOME_KEYRING_DEFAULT,
-                                                    "Cairo-dock Mail password",
-                                                    param->value,
-                                                    "mailbox_name",
-                                                    mdata->mailbox_name, NULL);
+                  GnomeKeyringAttributeList *attributes = NULL;
+                  GnomeKeyringAttribute attribute;
+                  GnomeKeyringResult res;
+                  guint32 item_id;
+
+                  attributes = gnome_keyring_attribute_list_new();
+                  gnome_keyring_attribute_list_append_string( attributes, "mailbox_name", mdata->mailbox_name );
+
+                  res = gnome_keyring_item_create_sync (GNOME_KEYRING_DEFAULT, GNOME_KEYRING_ITEM_GENERIC_SECRET, "Cairo-dock Mail password", 
+                                                        attributes, param->value, TRUE, &item_id);
+
+                  gnome_keyring_attribute_list_free(attributes);
                 }
                 else
                 {
