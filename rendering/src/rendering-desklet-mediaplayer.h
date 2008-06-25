@@ -18,15 +18,20 @@ typedef struct {
 	
 	gdouble fArtistWidth;
 	gdouble fArtistHeight;
-	
-	gdouble fTitleWidth;
-	gdouble fTitleHeight;
-	
 	gdouble fArtistXOffset;
 	gdouble fArtistYOffset;
 	
+	gdouble fTitleWidth;
+	gdouble fTitleHeight;
 	gdouble fTitleXOffset;
 	gdouble fTitleYOffset;
+	
+	gint iNbIcons;
+	gint iIconsLimit;
+	gdouble fBandWidth;
+	gdouble fIconBandOffset;
+	
+	Icon *pClickedIcon;
 } CDMediaplayerParameters;
 
 
@@ -36,6 +41,7 @@ void rendering_free_mediaplayer_data (CairoDesklet *pDesklet);
 
 void rendering_load_icons_for_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSourceContext);
 
+void rendering_load_mediaplayer_data (CairoDesklet *pDesklet, cairo_t *pSourceContext);
 
 void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized);
 

@@ -14,6 +14,36 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 extern CairoDockLabelDescription g_iconTextDescription;
 
+static gboolean on_button_press_mediaplayer (GtkWidget *widget,
+	GdkEventButton *pButton,
+	CairoDesklet *pDesklet)
+{
+	if (pButton->button == 1)  // clic gauche.
+	{
+		CDMediaplayerParameters *pMediaplayer = (CDMediaplayerParameters *) pDesklet->pRendererData;
+		if (pMediaplayer == NULL)
+			return FALSE;
+		
+		if (pButton->type == GDK_BUTTON_PRESS)
+		{
+			pMediaplayer->pClickedIcon = cairo_dock_find_clicked_icon_in_desklet (pDesklet);
+			if (pMediaplayer->pClickedIcon != NULL)
+			{
+				gtk_widget_queue_draw (pDesklet->pWidget);
+			}
+		}
+		else if (pButton->type == GDK_BUTTON_RELEASE)
+		{
+			if (pMediaplayer->pClickedIcon != NULL)
+			{
+				pMediaplayer->pClickedIcon = NULL;
+				gtk_widget_queue_draw (pDesklet->pWidget);
+			}
+		}
+	}
+	return FALSE;
+}
+
 CDMediaplayerParameters *rendering_configure_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
 	cd_debug ("");
@@ -39,6 +69,30 @@ CDMediaplayerParameters *rendering_configure_mediaplayer (CairoDesklet *pDesklet
 	}
 	return pMediaplayer;
 }
+
+void rendering_load_mediaplayer_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
+{
+	CDMediaplayerParameters *pMediaplayer = (CDMediaplayerParameters *) pDesklet->pRendererData;
+	if (pMediaplayer == NULL)
+		return ;
+	
+	//On initialise la bande des boutons de controle
+	pMediaplayer->iNbIcons = g_list_length (pDesklet->icons);
+	pMediaplayer->iIconsLimit = pMediaplayer->iNbIcons / 2;
+	pMediaplayer->fBandWidth = (pDesklet->iHeight - g_iDockRadius) / 4;
+	pMediaplayer->fIconBandOffset = pMediaplayer->fBandWidth / pMediaplayer->iNbIcons;
+	
+	//On force la détection du clique sur les icônes
+	g_signal_connect (G_OBJECT (pDesklet->pWidget),
+		"button-press-event",
+		G_CALLBACK (on_button_press_mediaplayer),
+		pDesklet);
+	g_signal_connect (G_OBJECT (pDesklet->pWidget),
+		"button-release-event",
+		G_CALLBACK (on_button_press_mediaplayer),
+		pDesklet);
+}
+
 
 void rendering_free_mediaplayer_data (CairoDesklet *pDesklet)
 {
@@ -108,17 +162,16 @@ void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet
 	
 	if (pMediaplayer->bControlButton)
 	{
-		int iNbIcons = g_list_length (pDesklet->icons), i = 1, j = iNbIcons / 2;
-		double fBandWidth = (pDesklet->iHeight - g_iDockRadius) / 4, fIconBandOffset = fBandWidth / iNbIcons;
+		int i = 1;
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next) {
 			pIcon = ic->data;
 			pIcon->fScale = 1.;
 			pIcon->fAlpha = 1.;
-			pIcon->fDrawX = i * (pMainIcon->fWidth / iNbIcons) - pIcon->fWidth;
-			if (i <= j)
-				pIcon->fDrawY = ((pDesklet->iHeight - g_iDockRadius) - fBandWidth) + (fIconBandOffset * (i - 1));
+			pIcon->fDrawX = i * (pMainIcon->fWidth / pMediaplayer->iNbIcons) - pIcon->fWidth;
+			if (i <= pMediaplayer->iIconsLimit)
+				pIcon->fDrawY = ((pDesklet->iHeight - g_iDockRadius) - pMediaplayer->fBandWidth) + (pMediaplayer->fIconBandOffset * (i - 1));
 			else
-				pIcon->fDrawY = ((pDesklet->iHeight - g_iDockRadius) - fBandWidth) + (fIconBandOffset * (iNbIcons - i));
+				pIcon->fDrawY = ((pDesklet->iHeight - g_iDockRadius) - pMediaplayer->fBandWidth) + (pMediaplayer->fIconBandOffset * (pMediaplayer->iNbIcons - i));
 			i++;
 		}
 	}
@@ -183,7 +236,7 @@ void rendering_register_mediaplayer_desklet_renderer (void)
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_mediaplayer_in_desklet ;
 	pRenderer->configure = rendering_configure_mediaplayer;
-	pRenderer->load_data = NULL;
+	pRenderer->load_data = rendering_load_mediaplayer_data;
 	pRenderer->free_data = rendering_free_mediaplayer_data;
 	pRenderer->load_icons = rendering_load_icons_for_mediaplayer;
 	
