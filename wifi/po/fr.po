@@ -263,6 +263,12 @@ msgstr "Nom de l'image 'Bon' :"
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
+msgid "Alternative command line to launch Wireless Configuration :"
+msgstr "Ouvrir la configuration du Wifi avec :"
+
+msgid "Allow you to overwrite applet's default command line and launch you wireless configuration interface."
+msgstr "Cela permet d'utiliser une interface de configuration du wifi exotique."
+
 #~ msgid "Module"
 #~ msgstr "Module"
 

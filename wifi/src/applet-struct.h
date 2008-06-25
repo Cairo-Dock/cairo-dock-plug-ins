@@ -33,6 +33,7 @@ typedef struct {
 	gchar *defaultTitle;
 	gchar *cUserImage[WIFI_NB_QUALITY];
 	gchar *cGThemePath;
+	gchar *cUserCommand;
 	
 	CDWifiInfoType quickInfoType;
 	

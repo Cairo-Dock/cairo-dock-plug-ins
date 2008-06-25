@@ -19,6 +19,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.cUserImage[i] = CD_CONFIG_GET_STRING ("Configuration", sKeyName->str);
 	}
 	g_string_free (sKeyName, TRUE);
+	myConfig.cUserCommand = CD_CONFIG_GET_STRING ("Configuration", "command");
 	
 	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "signal_type", 1);
 	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
@@ -35,6 +36,7 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cGThemePath);
+	g_free (myConfig.cUserCommand);
 	
 	int i;
 	for (i = 0; i < WIFI_NB_QUALITY; i ++) {

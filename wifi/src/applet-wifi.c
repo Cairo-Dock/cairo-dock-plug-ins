@@ -159,6 +159,7 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 	g_strfreev (cInfopipesList);  // on le libere a la fin car cESSID pointait dessus.
 	return TRUE;
 }
+
 void cd_wifi_read_data (void) {
 	if (s_cTmpFile == NULL)
 		return ;

@@ -18,24 +18,33 @@ CD_APPLET_ON_CLICK_BEGIN
 	cd_wifi_bubble();
 CD_APPLET_ON_CLICK_END
 
-
 static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer *data) {
 	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
+
 static void eth_config(void) {  /// a mettre dans les plug-ins d'integration.
-	GError *erreur = NULL;
+	if (myConfig.cUserCommand != NULL) { //Commande utilisateur, pour hardy heron ^^
+		cairo_dock_launch_command (myConfig.cUserCommand);
+		return;
+	}
+
+	if (g_file_test ("/opt/wicd/daemon.py", G_FILE_TEST_EXISTS)) { //On détecte wicd
+		cairo_dock_launch_command ("/opt/wicd/./gui.py");
+		return;
+	}
+	
+	gchar *cCommand = NULL;
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
-		g_spawn_command_line_async ("gksu network-admin", &erreur);
+		cCommand = "gksu network-admin";
 	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_KDE) {
-		//Ajouter les lignes de KDE
+	else if (g_iDesktopEnv == CAIRO_DOCK_KDE) { //Ajouter les lignes de KDE
+		//cCommand = 
 	}
-	if (erreur != NULL) {
-		cd_warning ("Attention : %s", erreur->message);
-		g_error_free (erreur);
-	}
+	cairo_dock_launch_command (cCommand);
+	g_free (cCommand);
 }
+
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Wifi", pSubMenu, CD_APPLET_MY_MENU)
 		if (! myData.bAcquisitionOK) {

@@ -58,6 +58,9 @@ signal_type=2
 #i[1;60] Delay between signal checks :
 #{in seconds.}
 delay = 10
+#s Alternative command line to launch Wireless Configuration :
+#{Allow you to overwrite applet's default command line and launch you wireless configuration interface.}
+command = 
 
 #F[Display;gtk-dnd-multiple]
 frame_disp=
