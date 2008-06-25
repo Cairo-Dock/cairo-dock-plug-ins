@@ -45,6 +45,11 @@
 #include "mailwatch-utils.h"
 #include "cairo-dock.h"
 
+/* compatibilite ascendante avec libgnome-keyring <= 0.20 */
+#ifndef GNOME_KEYRING_DEFAULT
+#define GNOME_KEYRING_DEFAULT NULL
+#endif
+
 #define BORDER          8
 
 #if !GTK_CHECK_VERSION(2, 6, 0)
@@ -98,14 +103,6 @@ XfceMailwatchMailboxType *builtin_mailbox_types[] = {
     NULL
 };
 #define N_BUILTIN_MAILBOX_TYPES (sizeof(builtin_mailbox_types)/sizeof(builtin_mailbox_types[0]))
-
-static GnomeKeyringPasswordSchema xfce_mailbox_keyring_schema = {
-      GNOME_KEYRING_ITEM_GENERIC_SECRET,
-      { 
-           { "mailbox_name", GNOME_KEYRING_ATTRIBUTE_TYPE_STRING },
-           { NULL, 0 }
-      }
-  };
 
 static GMutex *big_happy_mailwatch_mx = NULL;
 static void xfce_mailwatch_threads_init();
