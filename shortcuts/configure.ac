@@ -22,8 +22,8 @@ AC_SUBST(VERSION_SHORTCUTS, "$VERSION")
 AC_SUBST(PACKAGE_SHORTCUTS, "$PACKAGE")
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/shortcuts]
-AC_SUBST(pkgdatadir)
+shortcutsdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/shortcuts]
+AC_SUBST(shortcutsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
