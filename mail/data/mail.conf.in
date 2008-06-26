@@ -58,11 +58,20 @@ use size=
 #R1[] Choose one of the available themes :/
 theme = Default
 
-#S Name of an image to overwrite the theme's no mail image :
+#F[Theme overriding] 
+frame2 =
+
+#S Name of the file for the "no mail" image :
 no mail image = 
 
-#S Name of an image to overwrite the theme's has mail image :
+#S Name of the file for the "has mail" image :
 has mail image = 
+
+#u Name of the file for the "new mail" sound :
+new mail sound = 
+
+#F
+frame2_fin =
 
 #S Path to application to launch on left-click
 mail application =

@@ -10,6 +10,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n.h>
+#include <time.h>
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
@@ -187,6 +188,16 @@ _mail_draw_main_icon (void)
         guint *new_message_counts = NULL;
         gint i;
 
+        /* don't play more often than every 4 seconds... */
+        time_t currentTime = time(NULL);
+        if(currentTime-myConfig.timeEndOfSound > 4 &&
+           myData.bNewMailFound == TRUE)
+        {
+          cairo_dock_play_sound(myConfig.cNewMailUserSound);
+          myConfig.timeEndOfSound = time(NULL);
+        }
+        myData.bNewMailFound = FALSE;
+
         g_string_append_printf(ttip_str, "You have %d new mail%s:",myData.iNbUnreadMails,myData.iNbUnreadMails>1?"s":"");
 
         xfce_mailwatch_get_new_message_breakdown(myData.mailwatch,
@@ -201,7 +212,7 @@ _mail_draw_main_icon (void)
         g_strfreev(mailbox_names);
         g_free(new_message_counts);
 
-	    cairo_dock_remove_dialog_if_any (myIcon);
+	      cairo_dock_remove_dialog_if_any (myIcon);
         cairo_dock_show_temporary_dialog (ttip_str->str, myIcon, myContainer, 5000);
 
         g_string_free(ttip_str, TRUE);
@@ -223,6 +234,10 @@ _mail_draw_main_icon (void)
 void
 mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpointer user_data)
 {
+    if(myData.bNewMailFound == FALSE &&
+       myData.iNbUnreadMails < GPOINTER_TO_UINT( arg ))
+       myData.bNewMailFound = TRUE;
+       
     myData.iNbUnreadMails = GPOINTER_TO_UINT( arg );
 
     cd_message( "mailwatch_new_messages_changed_cb: %d new messages !", myData.iNbUnreadMails );

@@ -44,6 +44,10 @@ static void _load_theme (GError **erreur)
 			{
 				myConfig.cHasMailUserImage = cElementPath;
 			}
+			else if (strncmp (cElementName, "new_mail_sound", 14) == 0 && myConfig.cNewMailUserSound == NULL)
+			{
+				myConfig.cNewMailUserSound = cElementPath;
+			}
 			else
 			{
 				g_free (cElementPath);
@@ -51,7 +55,7 @@ static void _load_theme (GError **erreur)
 		}
 		g_dir_close (dir);
 	}
-	if (myConfig.cNoMailUserImage == NULL || myConfig.cHasMailUserImage == NULL)
+	if (myConfig.cNoMailUserImage == NULL || myConfig.cHasMailUserImage == NULL || myConfig.cNewMailUserSound == NULL)
 	{
 		cd_warning ("Attention : couldn't find images, this theme is not valid");
 	}
