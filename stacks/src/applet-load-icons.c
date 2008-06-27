@@ -83,8 +83,26 @@ void cd_stacks_debug_icon(Icon *pIcon) {
 void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon) {
 	cd_debug("%s (%d %s)", __func__, iEventType, cURI);
 	
-	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 9);
-		
+	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED) {
+		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 9); //On la rajoute
+		if (myDock) {
+			Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (myIcon->pSubDock->icons, cURI);
+			if (pAddedIcon != NULL) {
+				cairo_dock_show_subdock (myIcon, FALSE, myDock);
+				cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BOUNCE, 2);
+			}
+		}
+	}
+	else { //Ne fonctionne pas car l'icône est supprimée avant que la fonction ne soit appelée, dommage!
+		if (myDock) {
+			Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (myIcon->pSubDock->icons, cURI);
+			if (pAddedIcon != NULL) {
+				cairo_dock_show_subdock (myIcon, FALSE, myDock);
+				cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BLINK, 2);
+			}
+		}
+		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 9); //On la rajoute
+	}
 	//cd_stacks_destroy_icons();  /// comme c'est bourrin ! (cf les signets de shortcuts pour un truc plus optimise).
 	//cd_stacks_build_icons();
 }
