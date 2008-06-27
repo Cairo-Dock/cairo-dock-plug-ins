@@ -103,10 +103,16 @@ void rendering_free_mediaplayer_data (CairoDesklet *pDesklet)
 	
 	//On ne free pa cArtist et cTitle, ces vars appartiennent à l'applet.
 	
-	if (pMediaplayer->pArtistSurface != NULL)	
+	if (pMediaplayer->pArtistSurface != NULL)
+	{
 		cairo_surface_destroy (pMediaplayer->pArtistSurface);
+		pMediaplayer->pArtistSurface = NULL;
+	}
 	if (pMediaplayer->pTitleSurface != NULL)
+	{
 		cairo_surface_destroy (pMediaplayer->pTitleSurface);
+		pMediaplayer->pTitleSurface = NULL;
+	}
 		
 	g_free (pMediaplayer);
 	pDesklet->pRendererData = NULL;
@@ -231,6 +237,47 @@ void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet
 	}
 }
 
+void rendering_update_text_for_mediaplayer (CairoDesklet *pDesklet, gpointer *pNewData)
+{
+	CDMediaplayerParameters *pMediaplayer = (CDMediaplayerParameters *) pDesklet->pRendererData;
+	if (pMediaplayer == NULL)
+		return;
+	
+	//On reset tout!
+	if (pMediaplayer->pArtistSurface != NULL)
+	{
+		cairo_surface_destroy (pMediaplayer->pArtistSurface);
+		pMediaplayer->pArtistSurface = NULL;
+	}
+	if (pMediaplayer->pTitleSurface != NULL)
+	{
+		cairo_surface_destroy (pMediaplayer->pTitleSurface);
+		pMediaplayer->pTitleSurface = NULL;
+	}
+	
+	//On réattribue les textes
+	pMediaplayer->cArtist = pNewData[0];
+	pMediaplayer->cTitle = pNewData[1];
+	
+	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDesklet));
+	if (pMediaplayer->cArtist != NULL)
+		pMediaplayer->pArtistSurface = cairo_dock_create_surface_from_text (pMediaplayer->cArtist,
+			pCairoContext,
+			&g_iconTextDescription,
+			cairo_dock_get_max_scale (pDesklet),
+			&pMediaplayer->fArtistWidth, &pMediaplayer->fArtistHeight, &pMediaplayer->fArtistXOffset, &pMediaplayer->fArtistYOffset);
+	if (pMediaplayer->cTitle != NULL)
+		pMediaplayer->pTitleSurface = cairo_dock_create_surface_from_text (pMediaplayer->cTitle,
+			pCairoContext,
+			&g_iconTextDescription,
+			cairo_dock_get_max_scale (pDesklet),
+			&pMediaplayer->fTitleWidth, &pMediaplayer->fTitleHeight, &pMediaplayer->fTitleXOffset, &pMediaplayer->fTitleYOffset);
+			
+	cairo_destroy (pCairoContext);
+	
+	cd_debug ("");
+}
+
 void rendering_register_mediaplayer_desklet_renderer (void)
 {
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
@@ -239,6 +286,7 @@ void rendering_register_mediaplayer_desklet_renderer (void)
 	pRenderer->load_data = rendering_load_mediaplayer_data;
 	pRenderer->free_data = rendering_free_mediaplayer_data;
 	pRenderer->load_icons = rendering_load_icons_for_mediaplayer;
+	pRenderer->update = rendering_update_text_for_mediaplayer;
 	
 	cairo_dock_register_desklet_renderer (MY_APPLET_MEDIAPLAYER_DESKLET_RENDERER_NAME, pRenderer);
 }

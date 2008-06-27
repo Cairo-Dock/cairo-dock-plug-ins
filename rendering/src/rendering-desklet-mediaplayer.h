@@ -47,5 +47,6 @@ void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet
 
 void rendering_register_mediaplayer_desklet_renderer (void);
 
+void rendering_update_text_for_mediaplayer(CairoDesklet *pDesklet, gpointer *pNewData);
 
 #endif
