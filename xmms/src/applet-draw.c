@@ -188,7 +188,7 @@ void cd_xmms_change_desklet_data (void) {
 	gchar **rawTitle=NULL, *artist=NULL, *title=NULL;
 	rawTitle = g_strsplit (myData.playingTitle, "-", -1);
 	if (rawTitle[0] != NULL)
-		artist = g_strdup_printf (" %s", rawTitle[0]);
+		artist = rawTitle[0];
 	if (rawTitle[1] != NULL) {
 		title = strchr (myData.playingTitle, '-');
 		title ++;
@@ -196,21 +196,26 @@ void cd_xmms_change_desklet_data (void) {
 			title ++;
 	}
 	
-	gpointer data[3] = {artist, title, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
+	gpointer data[2] = {artist, title};
+	cairo_dock_render_desklet_with_new_data (myDesklet, data);
+	
+	/*gpointer data[3] = {artist, title, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 	CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 	cd_xmms_set_surface (myData.playingStatus);
-	gtk_widget_queue_draw (myDesklet->pWidget);
+	gtk_widget_queue_draw (myDesklet->pWidget);*/
 	
-	g_free (artist);
-	//g_free (title);
 	g_strfreev (rawTitle);
 }
 
 void cd_xmms_player_none (void) {
+	cd_debug ("");
 	if (myDesklet && myConfig.extendedDesklet && (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER)) {
-		gpointer data[3] = {NULL, NULL, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
+		gpointer data[2] = {NULL, NULL};
+		cairo_dock_render_desklet_with_new_data (myDesklet, data);
+		
+		/*gpointer data[3] = {NULL, NULL, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 		cd_xmms_set_surface (myData.playingStatus);
-		gtk_widget_queue_draw (myDesklet->pWidget);
-	}
+		gtk_widget_queue_draw (myDesklet->pWidget);*/
+		}
 }
