@@ -51,15 +51,25 @@ void cd_xmms_add_buttons_to_desklet(void) {
 gboolean cd_xmms_draw_icon (void) {
 	gboolean bNeedRedraw = FALSE;
 	if (myData.playingStatus == PLAYER_NONE) {
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
+		myData.cQuickInfo = NULL;
+		if (myData.cQuickInfo != myData.cPreviousQuickInfo) {
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
+			myData.cPreviousQuickInfo = myData.cQuickInfo;
+		}
 	}
 	else {
 		switch (myConfig.quickInfoType) {
 			case MY_APPLET_NOTHING :
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
+				myData.cQuickInfo = NULL;
+				if (myData.cQuickInfo != myData.cPreviousQuickInfo) {
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
+					myData.cPreviousQuickInfo = myData.cQuickInfo;
+				}
 			break ;
 			
 			case MY_APPLET_TIME_ELAPSED :
+				myData.cQuickInfo = "elapsed";
+				myData.cPreviousQuickInfo = myData.cQuickInfo;
 				if (myData.iCurrentTime != myData.iPreviousCurrentTime) {
 					myData.iPreviousCurrentTime = myData.iCurrentTime;
 					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime)
@@ -68,6 +78,8 @@ gboolean cd_xmms_draw_icon (void) {
 			break ;
 			
 			case MY_APPLET_TIME_LEFT :
+				myData.cQuickInfo = "left";
+				myData.cPreviousQuickInfo = myData.cQuickInfo;
 				if (myData.iCurrentTime != myData.iPreviousCurrentTime) {
 					myData.iPreviousCurrentTime = myData.iCurrentTime;
 					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength)
@@ -76,6 +88,8 @@ gboolean cd_xmms_draw_icon (void) {
 			break ;
 			
 			case MY_APPLET_TRACK :
+				myData.cQuickInfo = "track";
+				myData.cPreviousQuickInfo = myData.cQuickInfo;
 				if (myData.iTrackNumber != myData.iPreviousTrackNumber) {
 					myData.iPreviousTrackNumber = myData.iTrackNumber;
 					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("%d", myData.iTrackNumber);

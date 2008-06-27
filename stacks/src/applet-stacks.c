@@ -29,23 +29,47 @@ void cd_stacks_mklink(const gchar *cFile) {
 	if (!myConfig.bLocalDir)
 		return;
 	
-	gchar *cBaseURI = g_strdup (cFile), *cIconName = NULL, *cURI = NULL, *cFileName = NULL;
+	GError *erreur = NULL;
+	gchar *extension = strrchr (cFile, '.'), *cFileName = NULL, *cCommand = NULL, *cURI = NULL, *cHostname = NULL;
+	
+	/*if (extension != NULL && g_ascii_strcasecmp(extension, ".desktop") == 0) {
+		cFileName = strrchr (cFile, '/');
+		if (cFileName == NULL)
+			cFileName = cFile;
+		
+		cURI = g_filename_from_uri (cFile, &cHostname, &erreur);
+		cCommand = g_strdup_printf("cp \"%s\" \"/home/%s/.cairo-dock/stacks/%s\"", cURI, g_getenv ("USER"), cFileName);
+		if (cCommand != NULL && cFile != NULL) {
+			//cd_debug("Stacks: will use '%s'", cCommand);
+			g_spawn_command_line_async (cCommand, &erreur);
+			g_free(cCommand);
+		}
+		if (erreur != NULL) {
+			cd_warning ("Attention : when trying to execute 'copy' : %s", erreur->message);
+			g_error_free (erreur);
+			CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_BROKEN, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
+			CD_APPLET_REDRAW_MY_ICON
+		}
+		return;
+	}*/
+	
+	gchar *cBaseURI = g_strdup (cFile), *cIconName = NULL;
 	gboolean bIsDirectory=FALSE;
 	double fOrder=0;
 	int iVolumeID=0;
-	cairo_dock_fm_get_file_info(cBaseURI, &cFileName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_TYPE);
+	cairo_dock_fm_get_file_info (cBaseURI, &cFileName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_TYPE);
 	
 	if (cFileName == NULL) {
 		cd_warning ("Couldn't get filname with no path, halt.");
+		CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_BROKEN, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
+		CD_APPLET_REDRAW_MY_ICON
 		return;
 	}
 	
-	gchar *cHostname = NULL;
-	GError *erreur = NULL;
 	cURI = g_filename_from_uri (cBaseURI, &cHostname, &erreur);
 	
 	erreur = NULL;
-	gchar *cCommand = g_strdup_printf("ln -s \"%s\" \"/home/%s/.cairo-dock/stacks/%s\"", cURI, g_getenv ("USER"), cFileName);
+	cCommand = g_strdup_printf("ln -s \"%s\" \"/home/%s/.cairo-dock/stacks/%s\"", cURI, g_getenv ("USER"), cFileName);
 	//cd_debug("Stacks: linking %s in local dir", cFileName);
 	if (cCommand != NULL && cFile != NULL) {
 		//cd_debug("Stacks: will use '%s'", cCommand);
@@ -55,6 +79,8 @@ void cd_stacks_mklink(const gchar *cFile) {
 	if (erreur != NULL) {
 		cd_warning ("Attention : when trying to execute 'link' : %s", erreur->message);
 		g_error_free (erreur);
+		CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_BROKEN, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
+		CD_APPLET_REDRAW_MY_ICON
 	}
 }
 

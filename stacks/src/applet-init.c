@@ -56,5 +56,5 @@ CD_APPLET_RELOAD_BEGIN
 		//kedal a faire
 	}
 	
-	cd_stacks_update();
+	cd_stacks_reload();
 CD_APPLET_RELOAD_END

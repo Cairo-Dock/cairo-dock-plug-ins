@@ -7,7 +7,7 @@
 
 void cd_stacks_build_icons (void);
 void cd_stacks_destroy_icons (void);
-void cd_stacks_update (void);
+void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon);
 void cd_stacks_reload (void);
 void cd_stacks_debug_icon(Icon *pIcon);
 

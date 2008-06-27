@@ -62,4 +62,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	}
 	
 	g_free (myData.playingTitle);
+	myData.playingTitle = NULL;
+	g_free (myData.cQuickInfo);
+	myData.cQuickInfo = NULL;
 CD_APPLET_RESET_DATA_END

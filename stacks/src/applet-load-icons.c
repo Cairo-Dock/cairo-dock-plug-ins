@@ -80,10 +80,13 @@ void cd_stacks_debug_icon(Icon *pIcon) {
 }
 
 //A optimiser comme shortcuts
-void cd_stacks_update (void) {
-	cd_debug("");
-	cd_stacks_destroy_icons();  /// comme c'est bourrin ! (cf les signets de shortcuts pour un truc plus optimise).
-	cd_stacks_build_icons();
+void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon) {
+	cd_debug("%s (%d %s)", __func__, iEventType, cURI);
+	
+	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 9);
+		
+	//cd_stacks_destroy_icons();  /// comme c'est bourrin ! (cf les signets de shortcuts pour un truc plus optimise).
+	//cd_stacks_build_icons();
 }
 
 void cd_stacks_reload (void) {

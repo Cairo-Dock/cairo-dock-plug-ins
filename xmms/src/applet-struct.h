@@ -55,6 +55,7 @@ typedef struct {
 typedef struct {
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
 	gchar *playingTitle, *previousPlayingTitle;
+	gchar *cQuickInfo, *cPreviousQuickInfo;
 	MyPlayerStatus playingStatus, previousPlayingStatus;
 	gint iTrackNumber, iPreviousTrackNumber;
 	gint iCurrentTime, iPreviousCurrentTime;
