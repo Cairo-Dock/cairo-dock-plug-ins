@@ -73,7 +73,8 @@ void cd_stacks_build_icons (void) {
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
 	}
-		
+	
+	myData.iNbAnimation = 0; //On reset le nombre d'animation
 	CD_APPLET_REDRAW_MY_ICON
 }
 
@@ -156,8 +157,13 @@ void _placeIcon (Icon *pIcon, double fOrder, int iType) {
 	pStacksIconList = g_list_insert_sorted (pStacksIconList, pIcon, (GCompareFunc) cairo_dock_compare_icons_order);
 	
 	if (myDock) {
-		cairo_dock_insert_icon_in_dock (pIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, FALSE);
-		cairo_dock_update_dock_size (myIcon->pSubDock);
+		if (g_list_length (pStacksIconList) == 1) { //Sinon on a pas l'icône qui saute joyeusement.
+			CD_APPLET_CREATE_MY_SUBDOCK (pStacksIconList, myConfig.cRenderer);
+		}
+		else {
+			cairo_dock_insert_icon_in_dock (pIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, FALSE);
+			cairo_dock_update_dock_size (myIcon->pSubDock);
+		}
 	}
 	else
 		gtk_widget_queue_draw (myDesklet->pWidget);
@@ -200,7 +206,10 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
 	Icon *pPreviousIcon = NULL, *pCurrentIcon = cairo_dock_get_last_icon_of_type (pStacksIconList, iType);
 	
-	if (pCurrentIcon == NULL) //Ne devrais pas arriver
+	if (pStacksIconList == NULL)
+		return;
+		
+	if (pCurrentIcon == NULL) //1er fichier d'un répertoire vide.
 		pCurrentIcon = cairo_dock_get_last_icon (pStacksIconList);
 	
 	if (cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) < 0 || cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) == 0) { //Notre icône doit se placer en dernier
@@ -211,6 +220,9 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 		while (1) {
 			pPreviousIcon = pCurrentIcon;
 			pCurrentIcon = cairo_dock_get_previous_icon (pStacksIconList, pCurrentIcon);
+			if (strcmp(pCurrentIcon->cBaseURI, pPreviousIcon->cBaseURI) == 0 && pCurrentIcon->fOrder == pPreviousIcon->fOrder)
+				break; //On va bouclé a l'infinie et ce n'est pas l'effet voulue
+				
 			if (pCurrentIcon == NULL) { //On a remonté toute la liste, Notre icône doit se placer en 1er
 				_placeIcon (pAddedIcon, pPreviousIcon->fOrder - 0.01, iType);
 				cd_debug ("Placed Before %s", pPreviousIcon->acName);
@@ -228,14 +240,26 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 gboolean _on_animation_complete (Icon *pAddedIcon) {
 	//On retire l'icône et on met a jour le sous-dock
 	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
-	pStacksIconList = g_list_remove (pStacksIconList, pAddedIcon);
+	if (myDock)
+		cairo_dock_detach_icon_from_dock (pAddedIcon, myIcon->pSubDock, TRUE);
+	else
+		pStacksIconList = g_list_remove (pStacksIconList, pAddedIcon);
+		
 	cairo_dock_free_icon (pAddedIcon);
+	if (g_list_length (pStacksIconList) < 1) 
+		cd_stacks_destroy_icons (); //plus d'icône a dessiner!
 	
 	if (myDock) 
 		cairo_dock_update_dock_size (myIcon->pSubDock);
 	else
 		gtk_widget_queue_draw (myDesklet->pWidget);
 	
+	return FALSE;
+}
+
+gboolean _reset_count_animation (void) {
+	myData.iNbAnimation = 0;
+	myData.iSidTimer = 0;
 	return FALSE;
 }
 
@@ -253,7 +277,14 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon 
 		_sort_my_new_icon (cURI, pAddedIcon);
 		if (myDock && pAddedIcon != NULL) {
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
-			cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BOUNCE, 2);
+			if (myData.iNbAnimation < 20) //Le dock n'est pas prévu pour gérer autant d'animation, au dela il freeze.
+				cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BOUNCE, 2);
+			if (myData.iSidTimer != 0) {
+				g_source_remove (myData.iSidTimer);
+				myData.iSidTimer = 0;
+			}
+			myData.iSidTimer = g_timeout_add (2000, (GSourceFunc) _reset_count_animation, NULL);
+			myData.iNbAnimation++;
 		}
 	}
 	else { //Ne fonctionne pas si on passe par le dock pour supprimer le fichier, car l'icône est détaché avant notre fonction. Dommage!
