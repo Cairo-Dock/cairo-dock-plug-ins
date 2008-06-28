@@ -1,21 +1,23 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of fr.po to français
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
-# Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+# Guillaume <gu_barthe@yahoo.fr>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.0\n"
+"Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-25 09:44+0200\n"
-"PO-Revision-Date: 2008-05-23 08:47+0100\n"
-"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
-"Language-Team: Cairo-Dock <po@cairo-dock.org>\n"
+"POT-Creation-Date: 2008-06-19 02:23+0200\n"
+"PO-Revision-Date: 2008-06-21 22:09+0200\n"
+"Last-Translator: Guillaume <gu_barthe@yahoo.fr>\n"
+"Language-Team: français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: French\n"
 "X-Poedit-Country: France\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../src/applet-notifications.c:12
 msgid ""
@@ -27,11 +29,11 @@ msgstr ""
 
 #: ../src/applet-notifications.c:41
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 #: ../src/applet-notifications.c:95
 msgid "Data acquisition has failed"
-msgstr ""
+msgstr "L'acquisition des données a échouée"
 
 #: ../src/applet-rame.c:109
 msgid "Loading"
@@ -162,19 +164,19 @@ msgstr "Afficher aussi la SWAP ?"
 
 #: ../data/messages:55
 msgid "It's the first color of the gradation used to write the top list."
-msgstr ""
+msgstr "Première couleur de la graduation utilisée pour écrire la top liste."
 
 #: ../data/messages:57
 msgid "Start color of the top list :"
-msgstr ""
+msgstr "Couleur du premier élément de la top liste : "
 
 #: ../data/messages:59
 msgid "It's the second color of the gradation used to write the top list."
-msgstr ""
+msgstr "Seconde couleur de la graduation utilisée pour écrire la top liste."
 
 #: ../data/messages:61
 msgid "Stop color of the top list :"
-msgstr ""
+msgstr "Couleur du dernier élément de la top liste :"
 
 #: ../data/messages:65
 msgid "in seconds."
@@ -188,60 +190,13 @@ msgstr "Intervalle entre chaque rafraîchissement :"
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
-msgstr ""
+msgstr "Le clic gauche sur l'icône affiche la liste des programmes les plus gourmands en mémoire."
 
 #: ../data/messages:71
 msgid "Number of programs to display in the top list :"
-msgstr ""
+msgstr "Nombre de programmes à afficher dans la top liste : "
 
 #: ../data/messages:73
 msgid "Show top memory usage in % ?"
-msgstr ""
+msgstr "Montrer l'usage mémoire en % ?"
 
-#~ msgid "Module"
-#~ msgstr "Module"
-
-#~ msgid "Icon's name :"
-#~ msgstr "Nom de l'icône :"
-
-#~ msgid "Information"
-#~ msgstr "Information"
-
-#~ msgid "Information to display on the icon :"
-#~ msgstr "Information a afficher sur l'icon :"
-
-#~ msgid "Waiting"
-#~ msgstr "Waiting"
-
-#~ msgid "Personnalisation"
-#~ msgstr "Personnalisation"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "Laissez vide pour utiliser l'icône par défaut."
-
-#~ msgid "TB"
-#~ msgstr "To"
-
-#~ msgid "GB"
-#~ msgstr "Go"
-
-#~ msgid "MB"
-#~ msgstr "Mo"
-
-#~ msgid "KB"
-#~ msgstr "Ko"
-
-#~ msgid "B"
-#~ msgstr "o"
-
-#~ msgid "Delay between signal checks :"
-#~ msgstr "Intervalle entre chaque vérification du signal :"
-
-#~ msgid "Debug"
-#~ msgstr "Debug"
-
-#~ msgid "in milliseconds."
-#~ msgstr "en millisecondes."
-
-#~ msgid "Lockposition ?"
-#~ msgstr "Verrouiller la position"

@@ -8,34 +8,38 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2008-06-25 09:51+0200\n"
-"PO-Revision-Date: 2008-05-23 08:50+0100\n"
+"PO-Revision-Date: 2008-06-28 12:55+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:53 ../src/applet-load-icons.c:37
+#: ../src/applet-init.c:53
+#: ../src/applet-load-icons.c:37
 msgid "Desktop"
-msgstr ""
+msgstr "Bureau"
 
-#: ../src/applet-init.c:61 ../src/applet-load-icons.c:32
+#: ../src/applet-init.c:61
+#: ../src/applet-load-icons.c:32
 msgid "Current"
-msgstr ""
+msgstr "Courant"
 
 #: ../src/applet-notifications.c:13
 msgid ""
 "This is the switcher applet\n"
 " made by Cchumi for Cairo-Dock"
 msgstr ""
+"Ceci est l'applet switcher\n"
+" écrit par Cchumi pour Cairo-Dock"
 
 #: ../src/applet-notifications.c:82
 msgid "Add a desktop"
-msgstr ""
+msgstr "Ajouter un bureau"
 
 #: ../src/applet-notifications.c:83
 msgid "Remove last desktop"
-msgstr ""
+msgstr "Retirer le dernier bureau"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -94,80 +98,75 @@ msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des Widgets ?"
 
 #: ../data/messages:29
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche."
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:31
 msgid "Lock position ?"
 msgstr "Verrouiller la position"
 
-#: ../data/messages:33 ../data/messages:35
+#: ../data/messages:33
+#: ../data/messages:35
 msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:37
-msgid ""
-"All the desktops will be drawn on the main icon. Otherwise a subdock will "
-"contain all the desktops."
-msgstr ""
+msgid "All the desktops will be drawn on the main icon. Otherwise a subdock will contain all the desktops."
+msgstr "Tous les bureaux seront dessinés sur l'icône principal. Sinon un sous-dock contiendra tous les bureaux."
 
 #: ../data/messages:39
 msgid "Use the compact mode ?"
-msgstr ""
+msgstr "Utiliser le mode compact ?"
 
 #: ../data/messages:41
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
-msgstr ""
+msgstr "Quand le mode compact est dessiné, essayer de préserver le ratio ?"
 
 #: ../data/messages:43
 msgid "Map the wallpaper on icon ?"
-msgstr ""
+msgstr "Dessiner le fond d'écran sur l'icône ?"
 
 #: ../data/messages:45
 msgid "Show desktop number on the icons ?"
-msgstr ""
+msgstr "Afficher le nombre de bureaux sur les icônes ?"
 
 #: ../data/messages:47
 msgid "Display options"
-msgstr ""
+msgstr "Options d'affichage"
 
 #: ../data/messages:49
 msgid "Size of the inside lines :"
-msgstr ""
+msgstr "Taille des lignes intérieures :"
 
-#: ../data/messages:51 ../data/messages:57 ../data/messages:61
+#: ../data/messages:51
+#: ../data/messages:57
+#: ../data/messages:61
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
 #: ../data/messages:53
 msgid "Color of the inside lines :"
-msgstr ""
+msgstr "Couleur des lignes intérieures :"
 
 #: ../data/messages:55
 msgid "Size of the extern line :"
-msgstr ""
+msgstr "Taille des lignes extérieures :"
 
 #: ../data/messages:59
 msgid "Color of the extern line :"
-msgstr ""
+msgstr "Couleur des lignes extérieures :"
 
 #: ../data/messages:63
-#, fuzzy
 msgid "Color of the current desktop :"
-msgstr "Couleur de l'indicateur :"
+msgstr "Couleur du bureau courant :"
 
 #: ../data/messages:65
 msgid "Otherwise only its border will be filled."
-msgstr ""
+msgstr "Sinon seulement ses bords seront remplis."
 
 #: ../data/messages:67
 msgid "Fill the current desktop with this color ?"
-msgstr ""
+msgstr "Remplir le bureau courant avec cette couleur ?"
 
 #: ../data/messages:69
 msgid "Let empty to use the default one."
@@ -175,7 +174,7 @@ msgstr "Laissez vide pour utiliser l'image par défaut."
 
 #: ../data/messages:71
 msgid "Icon to use if you don't map the wallpaper :"
-msgstr ""
+msgstr "Icône à utiliser si vous ne dessinez pas le fond d'écran :"
 
 #: ../data/messages:73
 msgid "Let it empty to use default sub-dock view."
@@ -186,61 +185,45 @@ msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la Vue utilisée "
 
 #: ../data/messages:77
-#, fuzzy
 msgid "In expanded mode, render the desklet in 3D ?"
-msgstr "Rendre en Desklet 3D ?"
+msgstr "En mode étendu, afficher le desklet en 3D ?"
 
 #~ msgid "ICON"
 #~ msgstr "ICONE"
-
 #~ msgid "MODULE"
 #~ msgstr "MODULE"
-
 #~ msgid ""
 #~ "This is the Desktop switcher applet\n"
 #~ " made by Cchumi for Cairo-Dock"
 #~ msgstr ""
 #~ "Ceci est l'applet switcher de Bureau\n"
 #~ " écrite par Cchumi pour Cairo-Dock"
-
 #~ msgid "Reload now"
 #~ msgstr "Recharger"
-
 #~ msgid "Default icon :"
 #~ msgstr "Icône par Défaut :"
-
 #~ msgid "Default Icon For Sub Dock View :"
 #~ msgstr "Icône par Défaut pour la Vue Sous Dock :"
-
 #~ msgid "Broken icon :"
 #~ msgstr "Icône de Défaillance :"
-
 #~ msgid "Invert Indicator of Current Desktop ?"
 #~ msgstr "Inverser l'identification du bureau courant ?"
-
 #~ msgid "Show Light Icon ?"
 #~ msgstr "Affiche l'icone principale simplifié ?"
-
 #~ msgid "Show Quickinfo on the Icon ?"
 #~ msgstr "Afficher Une info Rapide sur l'icone ?"
-
 #~ msgid "Number of Viewports "
 #~ msgstr "Nombre de Viewportss"
-
 #~ msgid "Lockposition ?"
 #~ msgstr "Verrouiller la position ?"
-
 #~ msgid "Size of the Inside Icon Lines :"
 #~ msgstr "Taille de la ligne Interieure :"
-
 #~ msgid "Color of the Inside Icon Lines :"
 #~ msgstr "Couleur des Lignes Interieures :"
-
 #~ msgid "Size of the Border Line :"
 #~ msgstr "Taille de la ligne du Cadre :"
-
 #~ msgid "Color of the Border Line :"
 #~ msgstr "Couleur de Ligne Exterieure :"
-
 #~ msgid "Map Wallpaper on icon ?"
 #~ msgstr "Afficher le Fond D'écran sur l'icône ?"
+

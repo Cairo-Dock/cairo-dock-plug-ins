@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2008-06-25 09:49+0200\n"
-"PO-Revision-Date: 2008-05-23 08:49+0100\n"
+"PO-Revision-Date: 2008-06-28 12:49+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <po@cairo-dock.org>\n"
 "MIME-Version: 1.0\n"
@@ -66,12 +66,8 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -79,9 +75,7 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -100,25 +94,16 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
-"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
-"avec ALT + clique_gauche"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé avec ALT + clique_gauche"
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -241,9 +226,7 @@ msgid "Force the image to fill the icon/desklet ?"
 msgstr "Forcer les images à remplir l'icône/le desklet ?"
 
 #: ../data/messages:95
-msgid ""
-"Set the transparency channel to 0 if you just don't want to have a "
-"background."
+msgid "Set the transparency channel to 0 if you just don't want to have a background."
 msgstr "Mettez la valeur de la transparence a 0 pour ne pas avoir de fond."
 
 #: ../data/messages:97
@@ -252,15 +235,11 @@ msgstr "Choisir la couleur du fond :"
 
 #: ../data/messages:99
 msgid "Decorations"
-msgstr ""
+msgstr "Décorations"
 
 #: ../data/messages:101
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
-msgstr ""
-"Si vous choisissez 'personnel', vous pourrez définir votre propre "
-"décorationou laissez vide pour ne pas en avoir."
+msgid "If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration."
+msgstr "Si vous choisissez 'personnel', vous pourrez définir votre propre décorationou laissez vide pour ne pas en avoir."
 
 #: ../data/messages:103
 msgid "Choose a background and foreground decoration :"
@@ -276,18 +255,15 @@ msgstr "cadre avec reflets"
 
 #: ../data/messages:109
 msgid "scotch"
-msgstr ""
+msgstr "scotch"
 
 #: ../data/messages:111
 msgid "frame with scotch"
 msgstr "cadre avec scotch"
 
 #: ../data/messages:113
-msgid ""
-"It's an image that will be displayed below the slide, like a frame for "
-"exemple."
-msgstr ""
-"C'est une image qui sera affichée derrière le diaporama, comme un cadre."
+msgid "It's an image that will be displayed below the slide, like a frame for exemple."
+msgstr "C'est une image qui sera affichée derrière le diaporama, comme un cadre."
 
 #: ../data/messages:115
 msgid "Background image :"
@@ -297,7 +273,9 @@ msgstr "Image de fond :"
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:119 ../data/messages:123 ../data/messages:127
+#: ../data/messages:119
+#: ../data/messages:123
+#: ../data/messages:127
 #: ../data/messages:131
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr "C'est la taille du coté gauche du cadre, en pixels."
@@ -319,11 +297,8 @@ msgid "Bottom offset :"
 msgstr "Décalage du bas :"
 
 #: ../data/messages:135
-msgid ""
-"It's an image that will be displayed above the slide, like a reflect for "
-"exemple."
-msgstr ""
-"C'est une image qui sera affichée devant le diaporama, comme un reflet."
+msgid "It's an image that will be displayed above the slide, like a reflect for exemple."
+msgstr "C'est une image qui sera affichée devant le diaporama, comme un reflet."
 
 #: ../data/messages:137
 msgid "Reflection image :"
@@ -335,61 +310,48 @@ msgstr "Transparence du reflet :"
 
 #~ msgid "Module"
 #~ msgstr "Module"
-
 #~ msgid "Icon's name :"
 #~ msgstr "Nom de l'icône :"
-
 #~ msgid ""
 #~ "This is the slider applet\n"
 #~ " made by ChAnGFu for Cairo-Dock"
 #~ msgstr ""
 #~ "Ceci est l'applet slider\n"
 #~ " écrite par ChAnGFu pour Cairo-Dock"
-
 #~ msgid "Not yet implemented"
 #~ msgstr "Pas encore implémenté"
-
 #~ msgid "Options"
 #~ msgstr "Options"
-
 #~ msgid "Background & Reflection"
 #~ msgstr "Fond et Réflection"
-
 #~ msgid "Set it to zero if you want to have a clean background"
 #~ msgstr "A définir a zéro si vous voulez avoir un fond transparent"
-
 #~ msgid "Set it to zero if you dont want reflection"
 #~ msgstr "A définir a zéro si vous ne voulez pas avoir de reflet"
-
 #~ msgid ""
 #~ "It's an image that will be displayed below the slide, like a frame for "
 #~ "exemple. Let it empty to use the default one."
 #~ msgstr ""
 #~ "C'est une image à afficher en dessous de la diapositive, comme un cadre "
 #~ "par example. Laissez vide pour utiliser celle par défaut."
-
 #~ msgid "Set it to zero if you don't want to use a background"
 #~ msgstr "Mettez-la à 0 si vous ne voulez pas utiliser d'arrière-plan."
-
 #~ msgid ""
 #~ "It's an image that will be displayed above the slide, like a reflect for "
 #~ "exemple. Let it empty to use the default one."
 #~ msgstr ""
 #~ "C'est une image à afficher par-dessus la diapositive, comme un reflet par "
 #~ "example. Laissez vide pour utiliser celle par défaut."
-
 #~ msgid "Set it to zero if you dont don't want to use a foreground"
 #~ msgstr "Mettez-la à 0 si vous ne voulez pas utiliser d'avant-plan."
-
 #~ msgid ""
 #~ "It's an image that will be displayed belox the slide, like a frame for "
 #~ "exemple. Let it empty to use the default one."
 #~ msgstr ""
 #~ "C'est une image qui sera affiché sous le diaporama, comme un cadre par "
 #~ "exemple. Laissez vide pour utiliser l'image par défaut."
-
 #~ msgid "It's typically the width of your frame in pixels."
 #~ msgstr "C'est la largeur de votre cadre en pixels."
-
 #~ msgid "Background offset :"
 #~ msgstr "Décalage de l'arrière plan :"
+
