@@ -15,7 +15,7 @@ typedef struct {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 typedef struct {
-	int nothingHere;
+	gint iIconOrder;
 } AppletData;
 
 

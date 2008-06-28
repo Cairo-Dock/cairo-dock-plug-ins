@@ -14,7 +14,34 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
  
 CD_APPLET_INCLUDE_MY_VARS
 
-void cd_stacks_check_local(void) {
+//ajouter dans applet facility?
+gboolean _isin (gchar **cString, gchar *cCompar) {
+	if (cString == NULL)
+		return FALSE; //Nothing to search in
+	
+	int i=0;
+	gchar *tmp=NULL;
+	while (cString[i] != NULL) {
+		tmp = g_strstr_len (cCompar, -1, cString[i]);
+		if (tmp != NULL)
+			return TRUE; //We found what we want
+		i++;
+	}
+	
+	return FALSE; //We didn't found anything
+}
+
+gboolean _useLocalDir (void) {
+	int i = 0;
+	while (myConfig.cMonitoredDirectory[i] != NULL) {
+		if (strcmp (myConfig.cMonitoredDirectory[i], "_LocalDirectory_") == 0)
+			return TRUE;
+		i++;
+	}
+	return FALSE;
+}
+
+void cd_stacks_check_local (void) {
 	gchar *cDirectory = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
 	if (! g_file_test (cDirectory, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE)) {
 		g_mkdir_with_parents (cDirectory, 7*8*8+7*8+5);
@@ -24,11 +51,12 @@ void cd_stacks_check_local(void) {
 	g_free (cDirectory);
 }
 
-void cd_stacks_mklink(const gchar *cFile) {
-	cd_debug("%s (%s)", __func__, cFile);
-	if (!myConfig.bLocalDir)
+void cd_stacks_mklink (const gchar *cFile) {
+	cd_debug ("%s (%s)", __func__,  cFile);
+	if (! myConfig.bLocalDir && ! _useLocalDir())
 		return;
 	
+	cd_debug ("");
 	GError *erreur = NULL;
 	gchar *extension = strrchr (cFile, '.'), *cFileName = NULL, *cCommand = NULL, *cURI = NULL, *cHostname = NULL;
 	
@@ -58,19 +86,21 @@ void cd_stacks_mklink(const gchar *cFile) {
 	double fOrder=0;
 	int iVolumeID=0;
 	cairo_dock_fm_get_file_info (cBaseURI, &cFileName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_TYPE);
+	cURI = g_filename_from_uri (cBaseURI, &cHostname, &erreur);
 	
 	if (cFileName == NULL) {
-		cd_warning ("Couldn't get filname with no path, halt.");
-		CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_BROKEN, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
-		CD_APPLET_REDRAW_MY_ICON
-		return;
+		cFileName = strrchr (cFile, '/');
+		if (cFileName == NULL) {
+			cd_warning ("Couldn't get filname with no path, halt.");
+			CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_BROKEN, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
+			CD_APPLET_REDRAW_MY_ICON
+			return;
+		}
 	}
-	
-	cURI = g_filename_from_uri (cBaseURI, &cHostname, &erreur);
 	
 	erreur = NULL;
 	cCommand = g_strdup_printf("ln -s \"%s\" \"/home/%s/.cairo-dock/stacks/%s\"", cURI, g_getenv ("USER"), cFileName);
-	//cd_debug("Stacks: linking %s in local dir", cFileName);
+	cd_debug("Stacks: linking %s in local dir", cFileName);
 	if (cCommand != NULL && cFile != NULL) {
 		//cd_debug("Stacks: will use '%s'", cCommand);
 		g_spawn_command_line_async (cCommand, &erreur);
@@ -84,7 +114,7 @@ void cd_stacks_mklink(const gchar *cFile) {
 	}
 }
 
-void cd_stacks_clean_local(void) {
+void cd_stacks_clean_local (void) {
 	cd_debug("%s", __func__);
 	gchar *cCommand = g_strdup_printf("cd /home/%s/.cairo-dock/stacks/ && rm *", g_getenv ("USER"));
 	//cd_debug("Stacks: will use '%s'", cCommand);
@@ -92,38 +122,28 @@ void cd_stacks_clean_local(void) {
 	g_free(cCommand);
 }
 
-void cd_stacks_run_dir(void) {
+void cd_stacks_run_dir (void) {
 	gint i=0;
-	gchar *cURI=NULL;
+	gchar *cURI=NULL, *cDirectory=NULL;
 	while (myConfig.cMonitoredDirectory[i] != NULL) {
-		cURI = g_strdup_printf("file://%s", myConfig.cMonitoredDirectory[i]);
+		cDirectory = g_strdup (myConfig.cMonitoredDirectory[i]);
+		if (strcmp (cDirectory, "_LocalDirectory_") == 0) {
+			g_free (cDirectory);
+			cDirectory = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
+		}
+		
+		cURI = g_strdup_printf("file://%s", cDirectory);
 		cairo_dock_fm_launch_uri(cURI);
 		
 		if (myConfig.bLocalDir && i == 0)
 			break; //Solution temporaire
 		i++;
 	}
+	g_free (cDirectory);
 	g_free (cURI);
 }
 
-//ajouter dans applet facility?
-gboolean _isin(gchar **cString, gchar *cCompar) {
-	if (cString == NULL)
-		return FALSE; //Nothing to search in
-	
-	int i=0;
-	gchar *tmp=NULL;
-	while (cString[i] != NULL) {
-		tmp = g_strstr_len (cCompar, -1, cString[i]);
-		if (tmp != NULL)
-			return TRUE; //We found what we want
-		i++;
-	}
-	
-	return FALSE; //We didn't found anything
-}
-
-GList* cd_stacks_mime_filter(GList *pList) {
+GList* cd_stacks_mime_filter (GList *pList) {
 	if (pList == NULL)
 		return NULL;
 	

@@ -140,18 +140,23 @@ msgstr ""
 "Stacks"
 
 #: ../data/messages:45
-msgid "Use Stacks local directory ?"
-msgstr "Utiliser le dossier local de Stacks ?"
+msgid "Use only Stacks local directory ?"
+msgstr "Utiliser seulement le dossier local de Stacks ?"
 
 #: ../data/messages:47
-msgid "Monitored Directory :"
-msgstr "Dossier surveillé :"
+msgid "Monitored Directories :"
+msgstr "Dossiers surveillés :"
+
+msgid "You can use '_LocalDirectory_' tag to have both stack local and all monitored directories."
+"Ensure 'Use only Stacks local directory' is unticked."
+msgstr "Vous pouvez utiliser le tag '_LocalDirectoru_' pour avoir a la fois le dossier local et tout"
+"Les dossiers surveillés. Il est necessaire de décoché 'Utiliser seulement le dossier local de Stacks'."
 
 #: ../data/messages:49
 msgid ""
 "This option with large files lists can slow down the dock, use it properly."
 msgstr ""
-"Cette option avec une longue liste de fichiers peut ralentir le dock, à "
+"Cette option avec de longues listes de fichiers peut ralentir le dock, à "
 "utiliser prudemment."
 
 #: ../data/messages:51

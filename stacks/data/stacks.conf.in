@@ -56,11 +56,12 @@ locked = false
 [Configuration]
 #F[Directory & Options;gtk-file]
 frame_dir = 
-#b Use Stacks local directory ?
+#b Use only Stacks local directory ?
 #{Stacks will act as a the shortcut applet's but with files. To add a file, just drag and drop it on the Stacks icon}
 local = true
-#D99 Monitored Directory :/
-directory = /
+#D99 Monitored Directories :
+#{You can use '_LocalDirectory_' tag to have both stack local and all monitored directories. Ensure 'Use only Stacks local directory' is unticked.}/
+directory = _LocalDirectory_;/
 #b List hidden files ?
 #{This option with large files lists can slow down the dock, use it properly.}
 hidden = false
