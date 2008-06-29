@@ -2,3 +2,5 @@
 <u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
 <i>The <span color='#0000FF'>nVidia</span> applet display info on you GPU</i>
   <i>like temperature, video ram, driver version, etc...</i>
+  <i>Ensure that you have nvidia-settings installed otherwise this plug-in wont work.</i>
+  <i>Enjoy!</i>
