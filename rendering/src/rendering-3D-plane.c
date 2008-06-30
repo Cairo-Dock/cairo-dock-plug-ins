@@ -15,7 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include <cairo.h>
 
-#include "rendering-3D-plane.h"
+#include <rendering-commons.h>
 #include "rendering-3D-plane.h"
 
 extern int iVanishingPointY;
@@ -45,6 +45,9 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	
 	pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidth;
 	pDock->iMinDockHeight = g_iDockLineWidth + g_iFrameMargin + g_fReflectSize + pDock->iMaxIconHeight;
+	
+	if (my_pFlatSeparatorSurface[0] == NULL && (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR))
+		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 }
 
 void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY)
@@ -65,65 +68,6 @@ void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iC
 	}
 }
 
-
-cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceContext, int iWidth, int iHeight)
-{
-	cairo_pattern_t *pStripesPattern = cairo_pattern_create_linear (0.0f,
-		iHeight,
-		0.,
-		0.);
-	g_return_val_if_fail (cairo_pattern_status (pStripesPattern) == CAIRO_STATUS_SUCCESS, NULL);
-	
-	cairo_pattern_set_extend (pStripesPattern, CAIRO_EXTEND_REPEAT);
-	
-	double fStep = 1.;
-	double y = 0, h0 = (fStep * (1 + sqrt (1 + 4. * iHeight / fStep)) / 2) - 1, hk = h0;
-	int k = 0;
-	for (k = 0; k < h0 / fStep; k ++)
-	{
-		//g_print ("step : %f ; y = %.2f\n", 1.*hk / iHeight, y);
-		cairo_pattern_add_color_stop_rgba (pStripesPattern,
-			y,
-			0.,
-			0.,
-			0.,
-			0.);
-		y += 1.*hk / iHeight;
-		cairo_pattern_add_color_stop_rgba (pStripesPattern,
-			y,
-			0.,
-			0.,
-			0.,
-			0.);
-		cairo_pattern_add_color_stop_rgba (pStripesPattern,
-			y,
-			my_fSeparatorColor[0],
-			my_fSeparatorColor[1],
-			my_fSeparatorColor[2],
-			my_fSeparatorColor[3]);
-		y += 1.*hk / iHeight;
-		cairo_pattern_add_color_stop_rgba (pStripesPattern,
-			y,
-			my_fSeparatorColor[0],
-			my_fSeparatorColor[1],
-			my_fSeparatorColor[2],
-			my_fSeparatorColor[3]);
-		hk -= fStep;
-	}
-	
-	cairo_surface_t *pNewSurface = cairo_surface_create_similar (cairo_get_target (pSourceContext),
-		CAIRO_CONTENT_COLOR_ALPHA,
-		iWidth,
-		iHeight);
-	cairo_t *pImageContext = cairo_create (pNewSurface);
-	cairo_set_source (pImageContext, pStripesPattern);
-	cairo_paint (pImageContext);
-	
-	cairo_pattern_destroy (pStripesPattern);
-	cairo_destroy (pImageContext);
-	
-	return pNewSurface;
-}
 
 static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bIncludeEdges, gboolean bBackGround)
 {
@@ -333,7 +277,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (g_iStringLineWidth > 0)
-		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, (my_pFlatSeparatorSurface != NULL));
+		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
@@ -346,7 +290,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
 	
-	if (my_pFlatSeparatorSurface[0] != NULL || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
 	{
 		cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
 		do
@@ -580,7 +524,7 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 		Icon *icon;
 		GList *ic = pFirstDrawnElement;
 		
-		if (my_pFlatSeparatorSurface[0] != NULL || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
 		{
 			cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
 			do

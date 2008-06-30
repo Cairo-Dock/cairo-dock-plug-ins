@@ -1,0 +1,337 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:21+0200\n"
+"PO-Revision-Date: 2008-06-25 13:42+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+#: ../src/powermanager-draw.c:121
+msgid "None"
+msgstr "Nessuno"
+
+#: ../src/powermanager-draw.c:149
+msgid ""
+"Laptop on Battery.\n"
+" Battery charged at:"
+msgstr ""
+"Portatile con Batteria.\n"
+" Batteria caricata al:"
+
+#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:153
+#: ../src/powermanager-draw.c:174 ../src/powermanager-draw.c:180
+msgid "Estimated time with Charge:"
+msgstr "Autonomia stimata:"
+
+#: ../src/powermanager-draw.c:153
+msgid ""
+"Laptop on Charge.\n"
+" Battery charged at:"
+msgstr ""
+"Portatile in Carica.\n"
+" Batteria caricata al:"
+
+#: ../src/powermanager-draw.c:159
+msgid "No Battery found."
+msgstr "Nessuna batteria trovata."
+
+#: ../src/powermanager-draw.c:174
+msgid ""
+"PowerManager.\n"
+"Battery charge seems to be low"
+msgstr ""
+"PowerManager.\n"
+"Il livello della batteria sembra essere basso"
+
+#: ../src/powermanager-draw.c:174
+msgid "Please put your Laptop on charge."
+msgstr "Meglio mettere il vostro Laptop in carica."
+
+#: ../src/powermanager-draw.c:180
+msgid ""
+"PowerManager.\n"
+"Your battery is now Charged"
+msgstr ""
+"PowerManager.\n"
+"La vostra batteria è ora Carica"
+
+#: ../src/powermanager-menu-functions.c:15
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Applet di Necropotame (Adrien Pilleboue)"
+
+#: ../src/powermanager-menu-functions.c:46
+msgid "Set up power management"
+msgstr "Gestione dell'alimentazione"
+
+#: ../src/powermanager-menu-functions.c:49
+msgid "Halt"
+msgstr "Spegnere"
+
+#: ../src/powermanager-menu-functions.c:50
+msgid "Hibernate"
+msgstr "Ibernare"
+
+#: ../src/powermanager-menu-functions.c:51
+msgid "Suspend"
+msgstr "Sospendere"
+
+#: ../src/powermanager-menu-functions.c:52
+msgid "Reboot"
+msgstr "Riavviare"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Icon size"
+msgstr "Dimensione dell'icona"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Icon name :"
+msgstr "Nome dell'icona :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:39
+msgid "in seconds."
+msgstr "in secondi."
+
+#: ../data/messages:41
+msgid "Interval of time between 2 checks :"
+msgstr "Intervallo tra le due verifiche :"
+
+#: ../data/messages:43
+msgid "Display"
+msgstr "Mostrare "
+
+#: ../data/messages:45
+msgid "Icon's filename when on battery :"
+msgstr "Nome dell'icona quando in modalità batteria :"
+
+#: ../data/messages:47
+msgid "Icon's filename when on charge :"
+msgstr "Nome dell'icona quando in modalità ricarica :"
+
+#: ../data/messages:49
+msgid "Effect to apply on the icon according to charge :"
+msgstr "Effetto da applicare all'icona quando in ricarica :"
+
+#: ../data/messages:51 ../data/messages:65
+msgid "nothing"
+msgstr "Nessuno"
+
+#: ../data/messages:53
+msgid "zoom"
+msgstr "Zoom"
+
+#: ../data/messages:55
+msgid "transparency"
+msgstr "Trasparenza"
+
+#: ../data/messages:57
+msgid "draw bar"
+msgstr "Disegna una barra"
+
+#: ../data/messages:59
+msgid "Use a gauge instead of icons ?"
+msgstr "Utilizzare una misura al posto dell'icona ?"
+
+#: ../data/messages:61
+msgid "List of available gauges :"
+msgstr "Lista delle misure possibili :"
+
+#: ../data/messages:63
+msgid "Information to be displayed on the icon :"
+msgstr "Informazioni da mostrare nell'icona :"
+
+#: ../data/messages:67
+msgid "charge"
+msgstr "Carica"
+
+#: ../data/messages:69
+msgid "time"
+msgstr "Tempo"
+
+#: ../data/messages:71
+msgid "Alert"
+msgstr "Attenzione"
+
+#: ../data/messages:73
+msgid "Alert when battery charged ?"
+msgstr "Allertare quando la batteria è carica?"
+
+#: ../data/messages:75 ../data/messages:85 ../data/messages:93
+msgid "Let it empty to have no sound"
+msgstr "Lasciare vuoto per non avere suoni"
+
+#: ../data/messages:77 ../data/messages:87 ../data/messages:95
+msgid "Use a sound :"
+msgstr "Utilizzare un suono :"
+
+#: ../data/messages:79
+msgid "Alert when low battery ?"
+msgstr "Allertare quando la batteria è scarica?"
+
+#: ../data/messages:81
+msgid "in percent."
+msgstr "in percentuale"
+
+#: ../data/messages:83
+msgid "Battery level :"
+msgstr "Livello della batteria"
+
+#: ../data/messages:89
+msgid "When battery level is under 4%"
+msgstr "Quando la carica è al di sotto del 4%"
+
+#: ../data/messages:91
+msgid "Alert when battery charge is critical ?"
+msgstr "Allertare quando la carica è critica?"
+
+#: ../data/messages:97
+msgid "Animate icon during the alert ?"
+msgstr "Animare l'icona durante l'allerta ?"
+
+#: ../data/messages:99
+msgid "Animation during alert :"
+msgstr "Animazione durante l'allerta :"
+
+#: ../data/messages:101
+msgid "bounce"
+msgstr "Rimbalzo"
+
+#: ../data/messages:103
+msgid "rotate"
+msgstr "Rotazione"
+
+#: ../data/messages:105
+msgid "blink"
+msgstr "Lampeggiamento"
+
+#: ../data/messages:107
+msgid "pulse"
+msgstr "Pulsazione"
+
+#: ../data/messages:109
+msgid "upside-down"
+msgstr "Capovolgimento"
+
+#: ../data/messages:111
+msgid "wobbly"
+msgstr "Molla"
+
+#: ../data/messages:113
+msgid "random"
+msgstr "Casuale"
+
+#~ msgid "Options"
+#~ msgstr "Opzioni"
+
+#~ msgid "Name of the icon as it will appear in its label in the dock :"
+#~ msgstr "Nome dell'icona per come apparirà nella sua etichetta :"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "Information to display on the icon :"
+#~ msgstr "Informazione da mostrare sull'icona :"
+
+#~ msgid "Information"
+#~ msgstr "Informazione"
+
+#~ msgid "Quick info"
+#~ msgstr "Info veloci"
+
+#~ msgid "List of available themes for the analogic display :"
+#~ msgstr "Lista dei temi disponibili per la vista analogica :"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Bloccare la posizione ?"

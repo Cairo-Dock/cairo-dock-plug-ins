@@ -1,0 +1,290 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:17+0200\n"
+"PO-Revision-Date: 2008-06-24 22:04+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-draw.c:146
+msgid "calculating"
+msgstr "in corso..."
+
+#: ../src/applet-draw.c:156
+msgid " trashe(s)"
+msgstr "cestino/i"
+
+#: ../src/applet-draw.c:160
+msgid " file(s)"
+msgstr "file(s)"
+
+#: ../src/applet-notifications.c:19
+msgid ""
+"This is the dustbin applet for Cairo-Dock\n"
+" made by Fabrice Rey (fabounet@users.berlios.de)"
+msgstr ""
+"Questa è l'applet Dustbin\n"
+" scritta da Fabounet (Fabrice Rey) per Cairo-Dock"
+
+#: ../src/applet-notifications.c:37 ../src/applet-notifications.c:42
+msgid "Show Trash"
+msgstr "Aprire il Cestino"
+
+#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:51
+msgid "Delete Trash"
+msgstr "Svuotare il Cestino"
+
+#: ../src/applet-notifications.c:46
+#, c-format
+msgid "Show %s"
+msgstr "Aprire %s"
+
+#: ../src/applet-notifications.c:49
+msgid "Show All"
+msgstr "Aprire Tutti"
+
+#: ../src/applet-notifications.c:55
+#, c-format
+msgid "Delete %s"
+msgstr "Svuotare %s"
+
+#: ../src/applet-notifications.c:58
+msgid "Delete All"
+msgstr "Svuotare Tutti"
+
+#: ../src/applet-notifications.c:73
+#, c-format
+msgid "%s is now unmounted"
+msgstr "%s è smontato adesso"
+
+#: ../src/applet-notifications.c:77
+#, c-format
+msgid "failed to unmount %s"
+msgstr "fallimento nello smontare %s"
+
+#: ../src/applet-trashes-manager.c:386
+#, c-format
+msgid "You're about to delete all files in %s. Sure ?"
+msgstr "State per cancellare tutti i files in %s. Sicuri ?"
+
+#: ../src/applet-trashes-manager.c:388
+msgid "You're about to delete all files in all dustbins. Sure ?"
+msgstr "Tutti i files saranno cancellati dai cestini. Sicuri ?"
+
+#: ../src/applet-trashes-manager.c:459
+#, c-format
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual file browser,\n"
+"you can change it in the conf panel of this module"
+msgstr ""
+"Un problema si è presentato.\n"
+"Se '%s non è il vostro navigatore di files predefinito,\n"
+"potete cambiarlo nel pannello di configurazione di questa applet."
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene :"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:37
+msgid "Module"
+msgstr "Modulo"
+
+#: ../data/messages:39
+msgid "Theme"
+msgstr "Tema"
+
+#: ../data/messages:41
+msgid "Choose one of the available themes :"
+msgstr "Scegliete uno dei temi disponibili :"
+
+#: ../data/messages:43
+msgid "Name of an image to overwrite the theme's empty image :"
+msgstr "Nome di un'immagine per cancellare l'immagine vuota del tema :"
+
+#: ../data/messages:45
+msgid "Name of an image to overwrite the theme's full image :"
+msgstr "Nome di un'immagine per cancellare l'immagine piena del tema :"
+
+
+#: ../data/messages:47
+msgid "Config"
+msgstr "Config"
+
+#: ../data/messages:49
+msgid "They don't even need to be real trash directories."
+msgstr "Non è necessario che questa sia la cartella del Cestino."
+
+#: ../data/messages:51
+msgid ""
+"Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr ""
+"Potete specificare qui una lista addizionale di cartelle Cestino da monitorare :"
+
+#: ../data/messages:53
+msgid "Display the following quick info :"
+msgstr "Mostrare le seguenti info veloci :"
+
+#: ../data/messages:55
+msgid "None"
+msgstr "Nessuna"
+
+#: ../data/messages:57
+msgid "Number of trashes"
+msgstr "Numero di cestini"
+
+#: ../data/messages:59
+msgid "Total number of files"
+msgstr "Numero totale di files"
+
+#: ../data/messages:61
+msgid "Total weight"
+msgstr "Peso totale"
+
+#: ../data/messages:63 ../data/messages:67
+msgid ""
+"in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+msgstr ""
+"in Mb. Verrete notificati se supererete questo limite. Mettere 0 per non "
+"usarlo."
+
+#: ../data/messages:65
+msgid "Maximum total size of all dustbins :"
+msgstr "Dimensione massima di tutti i cestini :"
+
+#: ../data/messages:69
+msgid "Maximum size authorized for each dustbin :"
+msgstr "Dimensione massima per ogni singolo cestino :"
+
+#: ../data/messages:71
+msgid "Desktop-less support"
+msgstr "Supporto senza Desktop"
+
+#: ../data/messages:73
+msgid "in seconds, only used if you can't monitor directories."
+msgstr ""
+"in secondi. Da utilizzare solo se non si può monitorare "
+"direttamente le cartelle."
+
+#: ../data/messages:75
+msgid "Interval of time to check if dustbin is full/empty :"
+msgstr ""
+"intervallo di tempo per verificare se il Cestino è pieno/vuoto :"
+
+#: ../data/messages:77
+msgid ""
+"Only use this if you notice that the applet can't display the trash on click."
+msgstr ""
+"Utilizzare solo se si constata che l'applet non mostra il Cestino al click."
+
+#: ../data/messages:79
+msgid "Alternative file browser used to show a trash :"
+msgstr "Aprire il cestino con :"
+
+#~ msgid "in seconds"
+#~ msgstr "in secondi"
+
+#~ msgid "Here you can specify a list of Trash directory :"
+#~ msgstr "Potete specificare qui una lista addizionale di cartelle Cestino "
+#~ "da monitorare ;"
+
+#~ msgid "File browser used to show a trash :"
+#~ msgstr "Aprire il cestino con ;"
+
+#~ msgid "You're about to delete all files all dustbins. Sure ?"
+#~ msgstr ""
+#~ "State per cancellare tutte le cartelle di tutti cestini. Sicuri ?"
+

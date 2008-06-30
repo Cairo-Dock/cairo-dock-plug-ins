@@ -22,6 +22,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-desklet-controler.h"
 #include "rendering-dialog-text.h"
 #include "rendering-desklet-mediaplayer.h"
+#include "rendering-commons.h"
 #include "rendering-init.h"
 
 #define CD_RENDERING_CAROUSSEL_VIEW_NAME "Caroussel"
@@ -101,7 +102,6 @@ gboolean my_diapo_display_all_icons;
 gdouble my_fCurveCurvature;
 gint my_iCurveAmplitude;
 CDSpeparatorType my_curve_iDrawSeparator3D;
-double my_curve_fSeparatorColor[4];
 
 
 CD_APPLET_PRE_INIT_BEGIN ("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
@@ -109,29 +109,11 @@ CD_APPLET_PRE_INIT_BEGIN ("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 	rendering_register_caroussel_desklet_renderer ();
 	rendering_register_simple_desklet_renderer ();
 	rendering_register_controler_desklet_renderer ();
-	rendering_register_mediaplayer_desklet_renderer (); //By ChAnGFu
+	rendering_register_mediaplayer_desklet_renderer ();  // By ChAnGFu
 	
 	rendering_register_text_dialog_renderer ();
 CD_APPLET_PRE_INIT_END
 
-
-static void _load_flat_separator (CairoContainer *pContainer)
-{
-	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
-	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
-	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
-	{
-		cairo_t *pSourceContext = cairo_dock_create_context_from_window (pContainer);
-		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (pSourceContext, 400, 150);
-		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], pSourceContext, 400, 150, -G_PI / 2);
-		cairo_destroy (pSourceContext);
-	}
-	else
-	{
-		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
-		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
-	}
-}
 
 void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *cConfFilePath, GError **erreur)
 {
@@ -148,16 +130,13 @@ void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *c
 	
 	cd_rendering_register_rainbow_renderer 		(CD_RENDERING_RAINBOW_VIEW_NAME);
 	
-	cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);
+	cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);  // By Paradoxxx_Zero
 
-	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);
+	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
 	
-	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);
+	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	
 	cairo_dock_set_all_views_to_default ();
-	
-	//\_______________ On charge le separateur plat.
-	_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 }
 
 
@@ -184,7 +163,10 @@ gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoContainer *pNewC
 		
 		read_conf_file (pKeyFile, cConfFilePath);
 		
-		_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
+		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
+		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
+		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
 		
 		cairo_dock_set_all_views_to_default ();
 	}

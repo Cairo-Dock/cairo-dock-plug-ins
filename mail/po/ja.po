@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-25 09:40+0200\n"
+"POT-Creation-Date: 2008-06-30 10:16+0200\n"
 "PO-Revision-Date: 2008-06-18 21:54+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:25
+#: ../src/applet-notifications.c:26
 msgid ""
 "This is the mail applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
@@ -23,7 +23,7 @@ msgstr ""
 "これは Christophe Chapuis によって製作された \n"
 "Cairo-Dock 用の mail アプレットです。"
 
-#: ../src/applet-notifications.c:60
+#: ../src/applet-notifications.c:61
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -34,19 +34,19 @@ msgstr ""
 "'%s' が普段使用している標準のメーラーでない場合は、\n"
 "このモジュールの設定パネルで変更可能です。"
 
-#: ../src/applet-notifications.c:136
+#: ../src/applet-notifications.c:137
 msgid "Add a new mail account"
 msgstr "新規アカウントの追加"
 
-#: ../src/applet-notifications.c:141
+#: ../src/applet-notifications.c:142
 msgid "Remove a mail account"
 msgstr "アカウントの削除"
 
-#: ../src/applet-notifications.c:147
+#: ../src/applet-notifications.c:148
 msgid "Modify a mail account"
 msgstr "アカウントの編集"
 
-#: ../src/applet-notifications.c:168
+#: ../src/applet-notifications.c:169
 msgid "No unread mail in your mailboxes"
 msgstr "Mailbox に未読メールはありません。"
 
@@ -348,32 +348,32 @@ msgstr ""
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "セキュア接続を要求しましたが、gnutls は初期化されませんでした。"
 
-#: ../src/mailwatch.c:696
+#: ../src/mailwatch.c:723
 msgid "This mailbox type does not require any configuration settings."
 msgstr "この mailbox タイプには設定変更の必要はありません。"
 
-#: ../src/mailwatch.c:722
+#: ../src/mailwatch.c:749
 msgid "Mailbox _Name:"
 msgstr "Mailbox の名前(_N):"
 
-#: ../src/mailwatch.c:788 ../src/mailwatch.c:986
+#: ../src/mailwatch.c:815 ../src/mailwatch.c:1013
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Mailbox の編集: %s"
 
-#: ../src/mailwatch.c:854
+#: ../src/mailwatch.c:881
 msgid "Select Mailbox Type"
 msgstr "Mailbox タイプの選択"
 
-#: ../src/mailwatch.c:863
+#: ../src/mailwatch.c:890
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Mailbox のタイプを選択してください。各タイプの説明が下に表示されます。"
 
-#: ../src/mailwatch.c:921
+#: ../src/mailwatch.c:948
 msgid "Add New Mailbox"
 msgstr "新規 Mailbox の追加"
 
-#: ../src/mailwatch.c:1108
+#: ../src/mailwatch.c:1135
 msgid "Mailboxes"
 msgstr "Mailboxes"
 

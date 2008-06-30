@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-25 09:56+0200\n"
+"POT-Creation-Date: 2008-06-30 10:32+0200\n"
 "PO-Revision-Date: 2008-06-18 23:54+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -63,11 +63,11 @@ msgstr ""
 "これは ChAnGFu によって製作された\n"
 "Cairo-Dock 用の wifi アプレットです。"
 
-#: ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:51
 msgid "Check for Wireless Extension"
 msgstr "Wireless Extension のチェック"
 
-#: ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:53
 msgid "Network Administration"
 msgstr "ネットワーク管理"
 

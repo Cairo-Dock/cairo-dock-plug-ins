@@ -1,0 +1,263 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:24+0200\n"
+"PO-Revision-Date: 2008-06-25 18:13+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/tomboy-notifications.c:12
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Applet scritta da Necropotame (Adrien Pilleboue)"
+
+#: ../src/tomboy-notifications.c:39
+msgid "Note name : "
+msgstr "Nome della nota :"
+
+#: ../src/tomboy-notifications.c:62
+msgid "Search for :"
+msgstr "Cercare per :"
+
+#: ../src/tomboy-notifications.c:83
+msgid "Search for tag :"
+msgstr "cercare per parole chiave :"
+
+#: ../src/tomboy-notifications.c:139
+msgid "Reload notes"
+msgstr "Ricaricare le note"
+
+#: ../src/tomboy-notifications.c:142
+msgid "Add a note"
+msgstr "Aggiungere una nota"
+
+#: ../src/tomboy-notifications.c:146
+msgid "Delete this note"
+msgstr "Cancellare questa nota"
+
+#: ../src/tomboy-notifications.c:149
+msgid "Search"
+msgstr "Cercare"
+
+#: ../src/tomboy-notifications.c:150
+msgid "Searh for tag"
+msgstr "Cercare per parole chiave"
+
+#: ../src/tomboy-notifications.c:152
+msgid "Search for today's note"
+msgstr "Cercare note odierne "
+
+#: ../src/tomboy-notifications.c:153
+msgid "Search for this week's note"
+msgstr "Cercare note della settimana"
+
+#: ../src/tomboy-notifications.c:154
+msgid "Search for next week's note"
+msgstr "cercare note della prossima settimana"
+
+#: ../src/tomboy-notifications.c:164
+msgid "Reset marks"
+msgstr "Azzerare i segni"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Default title :"
+msgstr "Titolo di default :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene:"
+
+#: ../data/messages:13
+msgid "Personnalisation"
+msgstr "Personalizzazione"
+
+#: ../data/messages:15 ../data/messages:19 ../data/messages:23
+msgid "Let t empty to use the default icon."
+msgstr "Lasciare vuoto per utilizzare l'icona di default."
+
+#: ../data/messages:17
+msgid "Name of an image for the 'default' icon :"
+msgstr "Immagine per l'icona 'default' :"
+
+#: ../data/messages:21
+msgid "Name of an image for the 'close' icon :"
+msgstr "Immagine per l'icona 'chiudere' :"
+
+#: ../data/messages:25
+msgid "Name of an image for the 'broken' icon :"
+msgstr "Immagine per l'icona 'non-funzionante' :"
+
+#: ../data/messages:27
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:29
+msgid ""
+"Depending on your tomboy's version, the note deletion may not be "
+"automatically notified to us. Only check this box if you notice some error "
+"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
+"terminal."
+msgstr ""
+"In base alla vostra versione di Tomboy la soppressione della nota potrebbe "
+"non essere notificata. Spuntate questa casella se ricevete notifiche con "
+"questo errore  <<No marshaller for signature of signal 'NoteDeleted'>> "
+"con modalità Debug nel terminale."
+
+#: ../data/messages:31
+msgid "Emulate the 'NoteDeleted' signal ?"
+msgstr "Emulare il segnale 'NoteSupprimée' ?"
+
+#: ../data/messages:33
+msgid "Let it empty to use default sub-dock view."
+msgstr "Lasciate vuoto per utilizzarre la vista di default per la sub-dock"
+
+#: ../data/messages:35
+msgid "Name of the view used for the sub-dock :"
+msgstr "Nome della vista utilizzata per la sub-dock :"
+
+#: ../data/messages:37
+msgid "Draw note's content on their icon ?"
+msgstr "Disegna il contenuto della nota nella loro icona ?"
+
+#: ../data/messages:39
+msgid ""
+"Write the date format you usually use in your notes. The syntax is the one "
+"of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+"digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+msgstr ""
+"Scrivete il formato della data che utilizzate abitualmente nelle vostre "
+"note. La sintassi è quella di 'strftime' : %d per il giorno, %m per il "
+"mese, %y per l'anno (due cifre), etc ... Lasciate bianco per utilizzare "
+"quella di default (%d/%m/%y)."
+
+#: ../data/messages:41
+msgid "Date format to search for :"
+msgstr "Formato data da ricercare :"
+
+#~ msgid "Info-bubbles"
+#~ msgstr "Info-bubbles"
+
+#~ msgid "Activate info-bubbles ?"
+#~ msgstr "Attivare le info-bubbles ?"
+
+#~ msgid "Time length of info-bubbles :"
+#~ msgstr "Durata delle info-bubbles :"
+
+#~ msgid "in ms."
+#~ msgstr "in ms."
+
+#~ msgid "Animations"
+#~ msgstr "Animazioni"
+
+#~ msgid "bounce"
+#~ msgstr "rimbalzo"
+
+#~ msgid "rotate"
+#~ msgstr "rotazione"
+
+#~ msgid "blink"
+#~ msgstr "lampeggiamento"
+
+#~ msgid "pulse"
+#~ msgstr "pulsazione"
+
+#~ msgid "upside-down"
+#~ msgstr "capovolgimento"
+
+#~ msgid "wobbly"
+#~ msgstr "molla"
+
+#~ msgid "random"
+#~ msgstr "casuale"
+
+#~ msgid "Animation when music changes :"
+#~ msgstr "Animazione al cambio di musica :"
+
+#~ msgid "Display"
+#~ msgstr "Mostrare"
+
+#~ msgid "Display album's cover instead of icon ?"
+#~ msgstr "Mostrare l'album al posto dell'icona ?"
+
+#~ msgid "Information to display on the icon :"
+#~ msgstr "Informazioni da mostrare sull'icona :"
+
+#~ msgid ""
+#~ "Artist : %s\n"
+#~ "Album : %s\n"
+#~ "Title : %s"
+#~ msgstr ""
+#~ "Artista : %s\n"
+#~ "Album : %s\n"
+#~ "Titolo : %s"
+
+#~ msgid "Unknown"
+#~ msgstr "Sconosciuto"
+
+#~ msgid "Previous"
+#~ msgstr "Precedente"
+
+#~ msgid "Next"
+#~ msgstr "Successivo"
+
+#~ msgid "Information"
+#~ msgstr "Informazione"
+
+#~ msgid "nothing"
+#~ msgstr "nessuna"
+
+#~ msgid "time elapsed"
+#~ msgstr "tempo trascorso"
+
+#~ msgid "time left"
+#~ msgstr "tempo restante"
+
+#~ msgid "time in %n"
+#~ msgstr "tempo in %n"
+
+#~ msgid "° of track"
+#~ msgstr "° di traccia"
+
+#~ msgid "Name of an image for the 'play' icon :"
+#~ msgstr "Immagine per l'icona 'play' :"
+
+#~ msgid "Name of an image for the 'stop' icon :"
+#~ msgstr "Immagine per l'icona 'stop' :"
+
+#~ msgid "Name of an image for the 'pause' icon :"
+#~ msgstr "Immagine per l'icona 'pausa' :"
+
+#~ msgid ""
+#~ "If your tomboy version is not recent enough, it may not have this signal. "
+#~ "Only check this box if you notice some message like <<No marshaller for "
+#~ "signature of signal 'NoteDeleted'>> in the terminal."
+#~ msgstr ""
+#~ "In base alla vostra versione di Tomboy la soppressione della nota potrebbe "
+#~ "non essere notificata. Spuntate questa casella se ricevete notifiche con "
+#~ "questo errore  <<No marshaller for signature of signal 'NoteDeleted'>> "
+#~ "con modalità Debug nel terminale."
+

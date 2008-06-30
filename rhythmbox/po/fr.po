@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-19 02:20+0200\n"
+"POT-Creation-Date: 2008-06-30 10:22+0200\n"
 "PO-Revision-Date: 2008-06-21 22:11+0200\n"
 "Last-Translator: Guillaume <gu_barthe@yahoo.fr>\n"
 "Language-Team: français <fr@li.org>\n"
@@ -287,7 +287,8 @@ msgstr "cadre avec scotch"
 msgid ""
 "It's an image that will be displayed below the cover, like a frame for "
 "exemple."
-msgstr "C'est une image qui sera affichée derrière la pochette, comme un cadre."
+msgstr ""
+"C'est une image qui sera affichée derrière la pochette, comme un cadre."
 
 #: ../data/messages:103
 msgid "Background image :"
@@ -351,4 +352,3 @@ msgstr "Nom d'une image pour l'icône 'pause' :"
 #: ../data/messages:143
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom d'une image pour l'icône 'cassé' :"
-

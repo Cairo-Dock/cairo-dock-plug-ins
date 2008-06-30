@@ -1,0 +1,315 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2008 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007-2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:18+0200\n"
+"PO-Revision-Date: 2008-06-25 18:52+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the weather applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"Questa è l'applet weather\n"
+" scritta da Fabrice Rey per Cairo-Dock"
+
+#: ../src/applet-notifications.c:69
+msgid ""
+"Enter your location\n"
+" (for exemple : Paris, France)"
+msgstr ""
+"Inserite la vostra località\n"
+" (per esempio : Rome, Italy)"
+
+#: ../src/applet-notifications.c:82 ../src/applet-notifications.c:95
+msgid ""
+"I couldn't get the info\n"
+" Is connexion alive ?"
+msgstr ""
+"Non ho potuto recuperare le info\n"
+" la connessione è attiva ?"
+
+#: ../src/applet-notifications.c:128
+msgid "Choose your location :"
+msgstr "Scegliete la vostra località :"
+
+#: ../src/applet-notifications.c:152
+msgid "Search for your location"
+msgstr "Ricerca della vostra località"
+
+#: ../src/applet-notifications.c:153
+msgid "Reload now"
+msgstr "Ricaricare adesso"
+
+#: ../src/applet-notifications.c:178 ../src/applet-notifications.c:206
+msgid ""
+"No data were available\n"
+" is connection alive ?"
+msgstr ""
+"Nessun dato disponible\n"
+" la connessione è attiva ?"
+
+#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:218
+msgid "Temperature"
+msgstr "Temperatura"
+
+#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
+msgid "Wind"
+msgstr "Vento"
+
+#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+msgid "Humidity"
+msgstr "Umidità"
+
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+msgid "SunRise"
+msgstr "Alba"
+
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+msgid "SunSet"
+msgstr "Tramonto"
+
+#: ../src/applet-notifications.c:218
+msgid "feeled"
+msgstr "risentito"
+
+#: ../src/applet-notifications.c:220
+msgid "Pressure"
+msgstr "Pressione"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:37 ../data/messages:39
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:41
+msgid ""
+"Right click on the icon to let Cairo-Dock help you to find your location "
+"code."
+msgstr ""
+"Un click destro sull'icona per fare sì che Cairo-Dock vi aiuti nella "
+"ricerca del codice della vostra località."
+
+#: ../data/messages:43
+msgid "Code of your location :"
+msgstr "Codice della vostra località :"
+
+#: ../data/messages:45
+msgid "Use International System Units ?"
+msgstr "Utilizzare le unità del Sistema Internazionale ?"
+
+#: ../data/messages:47
+msgid "in seconds. Set 0 to have never-ending dialogs."
+msgstr "in secondi. Mettete 0 per avere dialoghi ininterrotti."
+
+#: ../data/messages:49
+msgid "Duration of dialogs :"
+msgstr "Durata dei dialoghi :"
+
+#: ../data/messages:51
+msgid "in minutes."
+msgstr "in minuti"
+
+#: ../data/messages:53
+msgid "Interval of time between 2 checks :"
+msgstr "Intervallo di tempo tra le 2 verifiche :"
+
+#: ../data/messages:55
+msgid "Info"
+msgstr "Info"
+
+#: ../data/messages:57
+msgid "Display current conditions on the icon instead of the default one ?"
+msgstr ""
+"Mostrare le condizioni attuali nell'icona al posto che quelle di default ?"
+
+#: ../data/messages:59
+msgid "Number of days you want to forecast :"
+msgstr "Numero dei giorni da prevedere :"
+
+#: ../data/messages:61
+msgid "Display nights too ?"
+msgstr "Mostrare anche le notti ?"
+
+#: ../data/messages:63
+msgid "Display temperature as quick info ?"
+msgstr "Mostrare la temperatura come info veloce ?"
+
+#: ../data/messages:65
+msgid "Display"
+msgstr "Mostrare"
+
+#: ../data/messages:67
+msgid "Choose one of the available themes :"
+msgstr "Scegliete uno dei temi disponibili :"
+
+#: ../data/messages:69
+msgid "Let it empty to use default sub-dock view."
+msgstr "Lasciate vuoto per utilizzarre la vista di default per la sub-dock"
+
+#: ../data/messages:71
+msgid "Name of the view used for the sub-dock :"
+msgstr "Nome della vista utilizzata per la sub-dock :"
+
+#: ../data/messages:73
+msgid "Render desklet in 3D ?"
+msgstr "Disegnare la desklet in 3D ?"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nome dell'icona :"
+
+#~ msgid "You can search it on www.weather.com"
+#~ msgstr "Potete cercarlo su www.weather.com"
+
+msgid "Monday"
+msgstr "Lundedì"
+
+msgid "Tuesday"
+msgstr "Martedì"
+
+msgid "Wednesday"
+msgstr "Mercoledì"
+
+msgid "Thursday"
+msgstr "Giovedì"
+
+msgid "Friday"
+msgstr "Venerdì"
+
+msgid "Saturday"
+msgstr "Sabato"
+
+msgid "Sunday"
+msgstr "Domenica"
+
+msgid "Jan"
+msgstr "Gen"
+
+msgid "Feb"
+msgstr "Feb"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Apr"
+msgstr "Apr"
+
+msgid "Jun"
+msgstr "Giu"
+
+msgid "Jui"
+msgstr "Lug"
+
+msgid "Aug"
+msgstr "Ago"
+
+msgid "Sep"
+msgstr "Set"
+
+msgid "Oct"
+msgstr "Ott"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Dec"
+msgstr "Dic"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Bloccare la posizione ?"

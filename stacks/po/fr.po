@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-25 09:50+0200\n"
+"POT-Creation-Date: 2008-06-30 10:26+0200\n"
 "PO-Revision-Date: 2008-05-19 21:03+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
@@ -140,17 +140,14 @@ msgstr ""
 "Stacks"
 
 #: ../data/messages:45
-msgid "Use only Stacks local directory ?"
+#, fuzzy
+msgid "Use Stacks local directory ?"
 msgstr "Utiliser seulement le dossier local de Stacks ?"
 
 #: ../data/messages:47
-msgid "Monitored Directories :"
+#, fuzzy
+msgid "Monitored Directory :"
 msgstr "Dossiers surveillés :"
-
-msgid "You can use '_LocalDirectory_' tag to have both stack local and all monitored directories."
-"Ensure 'Use only Stacks local directory' is unticked."
-msgstr "Vous pouvez utiliser le tag '_LocalDirectoru_' pour avoir a la fois le dossier local et tout"
-"Les dossiers surveillés. Il est necessaire de décoché 'Utiliser seulement le dossier local de Stacks'."
 
 #: ../data/messages:49
 msgid ""
@@ -194,6 +191,15 @@ msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
 #: ../data/messages:65
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
+
+#~ msgid ""
+#~ "You can use '_LocalDirectory_' tag to have both stack local and all "
+#~ "monitored directories.Ensure 'Use only Stacks local directory' is "
+#~ "unticked."
+#~ msgstr ""
+#~ "Vous pouvez utiliser le tag '_LocalDirectoru_' pour avoir a la fois le "
+#~ "dossier local et toutLes dossiers surveillés. Il est necessaire de "
+#~ "décoché 'Utiliser seulement le dossier local de Stacks'."
 
 #~ msgid "Module"
 #~ msgstr "Module"

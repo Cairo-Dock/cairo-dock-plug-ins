@@ -1,0 +1,395 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-18 10:08+0200\n"
+"PO-Revision-Date: 2008-06-25 16:23+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+#: ../src/applet-notifications.c:22
+msgid ""
+"This is the Slider applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+"Questa è l'applet Slider\n"
+" scritta da ChAnGFu per Cairo-Dock"
+
+#: ../src/applet-notifications.c:115
+msgid "Play"
+msgstr "Play"
+
+#: ../src/applet-notifications.c:115
+msgid "Pause"
+msgstr "Pausa"
+
+#: ../src/applet-notifications.c:118
+msgid "Open current image"
+msgstr "Aprire l'immagine attuale"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene :"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:39
+msgid "Directory"
+msgstr "Cartella"
+
+#: ../data/messages:41
+msgid "Directory of the images :"
+msgstr "Cartella delle immagini"
+
+#: ../data/messages:43
+msgid "Not yet implemented."
+msgstr "Non ancora implementati."
+
+#: ../data/messages:45
+msgid "Scan in sub direcotries ?"
+msgstr "Cercare nelle sotto-cartelle ?"
+
+#: ../data/messages:47
+msgid "Randomly browse files ?"
+msgstr "Mostrare i files casualmente ?"
+
+#: ../data/messages:49
+msgid "It is currently in a testing phase."
+msgstr "Attualmente in fase di test."
+
+#: ../data/messages:51
+msgid "Use a thread to load heavy images ?"
+msgstr "Utilizzare un thread per caricare immagini pesanti ?"
+
+#: ../data/messages:53
+msgid "Behaviour"
+msgstr "Comportamento"
+
+#: ../data/messages:55
+msgid "in seconds."
+msgstr "in secondi"
+
+#: ../data/messages:57
+msgid "Sliding delay :"
+msgstr "Ritardo nel cambiamento :"
+
+#: ../data/messages:59
+msgid "Action when applet is clicked :"
+msgstr "Azioni al click sull'applet :"
+
+#: ../data/messages:61
+msgid "play/pause"
+msgstr "play/pause"
+
+#: ../data/messages:63
+msgid "open image"
+msgstr "apri l'immagine"
+
+#: ../data/messages:65
+msgid "Effect while changing image :"
+msgstr "Effetti al cambiamento d'immagine :"
+
+#: ../data/messages:67
+msgid "none"
+msgstr "nessuno"
+
+#: ../data/messages:69
+msgid "fade"
+msgstr "ombra"
+
+#: ../data/messages:71
+msgid "blank fade"
+msgstr "flash"
+
+#: ../data/messages:73
+msgid "fade in out"
+msgstr "ombra progressiva"
+
+#: ../data/messages:75
+msgid "side kick"
+msgstr "colpo di lato"
+
+#: ../data/messages:77
+msgid "diaporama"
+msgstr "diaporama"
+
+#: ../data/messages:79
+msgid "grow up"
+msgstr "ingrandire"
+
+#: ../data/messages:81
+msgid "shrink down"
+msgstr "diminuire "
+
+#: ../data/messages:83
+msgid "random"
+msgstr "casuale"
+
+#: ../data/messages:85
+msgid "Display"
+msgstr "Mostrare"
+
+#: ../data/messages:87
+msgid "Gives a better image rendering."
+msgstr "Migliora il rendering dell'immagine."
+
+#: ../data/messages:89
+msgid "Keep widht/height ratio ?"
+msgstr "Conservare il rapporto tra larghezza e altezza ?"
+
+#: ../data/messages:91
+msgid "If the image is too small, it will be zoomed in."
+msgstr "Se l'immagine è troppo piccola sarà ingrandita."
+
+#: ../data/messages:93
+msgid "Force the image to fill the icon/desklet ?"
+msgstr "Forzare l'immagine per riempire l'icona/deklet ?"
+
+#: ../data/messages:95
+msgid ""
+"Set the transparency channel to 0 if you just don't want to have a "
+"background."
+msgstr "Mettete il valore a 0 della trasparenza per non avere sfondo."
+
+#: ../data/messages:97
+msgid "Choose a background color :"
+msgstr "Scegliere il colore di sfondo :"
+
+#: ../data/messages:99
+msgid "Decorations"
+msgstr "Decorazioni"
+
+#: ../data/messages:101
+msgid ""
+"If you choose 'personnal', you can define your own decoration above, or let "
+"it blank to not use any decoration."
+msgstr ""
+"Se scegliete 'personalizzato', potrete definire la vostra propria "
+"decorazione; lasciate vuoto per non averne."
+
+#: ../data/messages:103
+msgid "Choose a background and foreground decoration :"
+msgstr "Scegleite una decorazione di sfondo e di primo piano :"
+
+#: ../data/messages:105
+msgid "Personnal"
+msgstr "Personalizzato"
+
+#: ../data/messages:107
+msgid "frame with reflects"
+msgstr "Cornice con riflessi"
+
+#: ../data/messages:109
+msgid "scotch"
+msgstr "Scotch"
+
+#: ../data/messages:111
+msgid "frame with scotch"
+msgstr "Cornice con scotch"
+
+#: ../data/messages:113
+msgid ""
+"It's an image that will be displayed below the slide, like a frame for "
+"exemple."
+msgstr ""
+"E' un'immagine che sarà mostrata sotto la slide, come una cornice, per "
+"esempio."
+
+#: ../data/messages:115
+msgid "Background image :"
+msgstr "Immagine di sfondo :"
+
+#: ../data/messages:117
+msgid "Background tansparency :"
+msgstr "Trasparenza dello sfondo :"
+
+#: ../data/messages:119 ../data/messages:123 ../data/messages:127
+#: ../data/messages:131
+msgid "It's typically the width of the left side of your frame, in pixels."
+msgstr "E' la larghezza del lato sinistro della vostra cornice, in pixels."
+
+#: ../data/messages:121
+msgid "Left offset :"
+msgstr "Spostare a sinistra :"
+
+#: ../data/messages:125
+msgid "Top offset :"
+msgstr "Spostare in alto :"
+
+#: ../data/messages:129
+msgid "Right offset :"
+msgstr "Spostare a destra :"
+
+#: ../data/messages:133
+msgid "Bottom offset :"
+msgstr "Spostare in basso :"
+
+#: ../data/messages:135
+msgid ""
+"It's an image that will be displayed above the slide, like a reflect for "
+"exemple."
+msgstr "E' un'immagine che sarà mostrata sopra la slide, come un "
+"riflesso, per esempio."
+
+#: ../data/messages:137
+msgid "Reflection image :"
+msgstr "Immagine del riflesso :"
+
+#: ../data/messages:139
+msgid "Reflection tansparency :"
+msgstr "Trasparenza del riflesso :"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nome dell'icona :"
+
+#~ msgid ""
+#~ "This is the slider applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet slider\n"
+#~ " scritta da ChAnGFu per Cairo-Dock"
+
+#~ msgid "Not yet implemented"
+#~ msgstr "Non ancora implementato"
+
+#~ msgid "Options"
+#~ msgstr "Optzioni"
+
+#~ msgid "Background & Reflection"
+#~ msgstr "Sfondo e Riflesso"
+
+#~ msgid "Set it to zero if you want to have a clean background"
+#~ msgstr "Impostare a zero se volete uno sfondo pulito"
+
+#~ msgid "Set it to zero if you dont want reflection"
+#~ msgstr "Impostare a zero se non volete un riflesso"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the slide, like a frame for "
+#~ "exemple. Let it empty to use the default one."
+#~ msgstr ""
+#~"E' un'immagine che sarà mostrata sotto la slide, come una cornice, per "
+#~"esempio. Lasciate il campo vuoto per usare quella di default."
+
+#~ msgid "Set it to zero if you don't want to use a background"
+#~ msgstr "Impostare a zero se non volete usare uno sfondo."
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the slide, like a reflect for "
+#~ "exemple. Let it empty to use the default one."
+#~ msgstr ""
+#~"E' un'immagine che sarà mostrata sopra la slide, come un riflesso, per "
+#~"esempio. Lasciate il campo vuoto per usare quella di default."
+
+#~ msgid "Set it to zero if you dont don't want to use a foreground"
+#~ msgstr "Impostare a zero se non volete usare un primo piano."
+
+#~ msgid ""
+#~ "It's an image that will be displayed belox the slide, like a frame for "
+#~ "exemple. Let it empty to use the default one."
+#~ msgstr ""
+#~"E' un'immagine che sarà mostrata sotto la slide, come una cornice, per "
+#~"esempio. Lasciate il campo vuoto per usare quella di default."
+
+#~ msgid "It's typically the width of your frame in pixels."
+#~ msgstr "E' la larghezza della vostra cornice in pixels."
+
+#~ msgid "Background offset :"
+#~ msgstr "Spostare lo sfondo :"

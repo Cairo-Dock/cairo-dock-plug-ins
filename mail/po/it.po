@@ -1,0 +1,497 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-18 09:59+0200\n"
+"PO-Revision-Date: 2008-06-24 23:23+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:25
+msgid ""
+"This is the mail applet\n"
+" made by Christophe Chapuis for Cairo-Dock"
+msgstr ""
+"Questa è la mail-applet\n"
+" scritta da Christophe Chapuis per Cairo-Dock"
+
+#: ../src/applet-notifications.c:60
+#, c-format
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual mail application,\n"
+"you can change it in the conf panel of this module"
+msgstr ""
+"Un problema si è presentato\n"
+"Se '%s non è la'applicazione mail predefinita,\n"
+"potete cambiarla nel pannello di configurazione di questa applet."
+
+#: ../src/applet-notifications.c:136
+msgid "Add a new mail account"
+msgstr "Aggiungere un nuovo account e-mail"
+
+#: ../src/applet-notifications.c:141
+msgid "Remove a mail account"
+msgstr "Cancellare un account e-mail"
+
+#: ../src/applet-notifications.c:147
+msgid "Modify a mail account"
+msgstr "Modificare un account e-mail"
+
+#: ../src/applet-notifications.c:168
+msgid "No unread mail in your mailboxes"
+msgstr "Non ci sono messaggi non letti nelle vostre mailboxes"
+
+#: ../src/mailwatch-mailbox-gmail.c:213 ../src/mailwatch-mailbox-imap.c:399
+#: ../src/mailwatch-mailbox-pop3.c:356
+msgid ""
+"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+"the panel may hang on close."
+msgstr ""
+"Impossibile configurare il socket in modo da non bloccare la connessione. "
+"Se il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
+"all'arresto."
+
+#: ../src/mailwatch-mailbox-gmail.c:252 ../src/mailwatch-mailbox-imap.c:438
+#: ../src/mailwatch-mailbox-pop3.c:395
+#, c-format
+msgid "Failed to connect to server: %s"
+msgstr "Impossibile connettersi al server: %s"
+
+#: ../src/mailwatch-mailbox-gmail.c:284 ../src/mailwatch-mailbox-imap.c:470
+#: ../src/mailwatch-mailbox-pop3.c:427
+msgid ""
+"Unable to return socket to blocking mode.  Data may not be retreived "
+"correctly."
+msgstr ""
+"Impossibile impostare il socket in modo da bloccare la connesione. I dati "
+"potrebbero non essere inseriti correttamente."
+
+#: ../src/mailwatch-mailbox-gmail.c:315 ../src/mailwatch-mailbox-imap.c:302
+#: ../src/mailwatch-mailbox-pop3.c:266
+#, c-format
+msgid "TLS handshake failed: %s"
+msgstr "La negoziazione TLS è fallita: %s "
+
+#: ../src/mailwatch-mailbox-gmail.c:363
+#, c-format
+msgid ""
+"Received HTTP response code %d.  The most likely reason for this is that "
+"your GMail username or password is incorrect."
+msgstr ""
+"Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è "
+"che username o password di GMail non siano corretti."
+
+#: ../src/mailwatch-mailbox-gmail.c:369
+#, c-format
+msgid ""
+"Received HTTP response code %d, which should be 200.  There may be a problem "
+"with GMail's servers, or they have incompatibly changed their authentication "
+"method or location of the new messages feed."
+msgstr ""
+"Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci un "
+"problema col server GMail, o un cambiamento nel modo di identificarsi o nel "
+"modo di reperire i nuovi messaggi."
+
+#: ../src/mailwatch-mailbox-gmail.c:615 ../src/mailwatch-mailbox-imap.c:1742
+#: ../src/mailwatch-mailbox-pop3.c:924
+msgid "_Username:"
+msgstr "_Username:"
+
+#: ../src/mailwatch-mailbox-gmail.c:634 ../src/mailwatch-mailbox-imap.c:1761
+#: ../src/mailwatch-mailbox-pop3.c:943
+msgid "_Password:"
+msgstr "_Password:"
+
+#: ../src/mailwatch-mailbox-gmail.c:654 ../src/mailwatch-mailbox-imap.c:1799
+#: ../src/mailwatch-mailbox-pop3.c:974
+msgid "Check for _new messages every"
+msgstr "Verifica per _nuovi messaggi ogni"
+
+#: ../src/mailwatch-mailbox-gmail.c:669 ../src/mailwatch-mailbox-imap.c:1813
+#: ../src/mailwatch-mailbox-maildir.c:462 ../src/mailwatch-mailbox-mbox.c:475
+#: ../src/mailwatch-mailbox-mh.c:643 ../src/mailwatch-mailbox-pop3.c:988
+msgid "minute(s)."
+msgstr "minuto/i."
+
+#: ../src/mailwatch-mailbox-gmail.c:750
+msgid "Remote GMail Mailbox"
+msgstr "Mailbox GMail remota"
+
+#: ../src/mailwatch-mailbox-gmail.c:751
+msgid ""
+"The GMail plugin can connect to Google's mail service and securely retrieve "
+"the number of new messages."
+msgstr ""
+"Il plugin GMail può connettersi al servizio mail di Google e recuperare il "
+"numero di nuovi messaggi in modo sicuro."
+
+#: ../src/mailwatch-mailbox-imap.c:254
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
+msgstr ""
+"Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login in "
+"modo testuale."
+
+#: ../src/mailwatch-mailbox-imap.c:335
+msgid "STARTTLS security was requested, but this server does not support it."
+msgstr "Sicurezza STARTTLS domandata, ma il server non la supporta."
+
+#: ../src/mailwatch-mailbox-imap.c:591
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgstr ""
+"Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. E' "
+"un bug !"
+
+#: ../src/mailwatch-mailbox-imap.c:1178
+msgid "Failed to get folder list"
+msgstr "Impossibile recuperare la lista delle cartelle"
+
+#: ../src/mailwatch-mailbox-imap.c:1304 ../src/mailwatch-mailbox-imap.c:1517
+msgid "Please wait..."
+msgstr "Attendere..."
+
+#: ../src/mailwatch-mailbox-imap.c:1407
+msgid "Set New Mail Folders"
+msgstr "Aggiungere una Nuova Cartella E-Mail"
+
+#: ../src/mailwatch-mailbox-imap.c:1418
+msgid "New Mail Folders"
+msgstr "Nuova Cartella E-Mail"
+
+#: ../src/mailwatch-mailbox-imap.c:1603
+msgid "Advanced IMAP Options"
+msgstr "Opzioni IMAP avanzate"
+
+#: ../src/mailwatch-mailbox-imap.c:1612 ../src/mailwatch-mailbox-pop3.c:816
+msgid "Connection"
+msgstr "Connessione"
+
+#: ../src/mailwatch-mailbox-imap.c:1621 ../src/mailwatch-mailbox-pop3.c:825
+msgid "Use unsecured connection"
+msgstr "Utilizzare una connessione non sicura"
+
+#: ../src/mailwatch-mailbox-imap.c:1622 ../src/mailwatch-mailbox-pop3.c:826
+msgid "Use SSL/TLS on alternate port"
+msgstr "Utilizzare SSL/TLS su una porta alternativa"
+
+#: ../src/mailwatch-mailbox-imap.c:1623
+msgid "Use SSL/TLS via STARTTLS"
+msgstr "Utilizzare SSL/TLS via STARTTLS"
+
+#: ../src/mailwatch-mailbox-imap.c:1639
+msgid "Use non-standard IMAP _port:"
+msgstr "Utilizzare un _port IMAP non standard:"
+
+#: ../src/mailwatch-mailbox-imap.c:1668
+msgid "Folders"
+msgstr "Cartelle"
+
+#: ../src/mailwatch-mailbox-imap.c:1676
+msgid "IMAP server _directory:"
+msgstr "_Cartella del server IMAP:"
+
+#: ../src/mailwatch-mailbox-imap.c:1709
+msgid "IMAP Server"
+msgstr "Server IMAP"
+
+#: ../src/mailwatch-mailbox-imap.c:1723 ../src/mailwatch-mailbox-pop3.c:905
+msgid "_Mail server:"
+msgstr "_Mail server:"
+
+#: ../src/mailwatch-mailbox-imap.c:1781 ../src/mailwatch-mailbox-pop3.c:963
+msgid "_Advanced..."
+msgstr "_Avanzate..."
+
+#: ../src/mailwatch-mailbox-imap.c:1788
+msgid "New mail _folders..."
+msgstr "Nuova _cartella E-Mail..."
+
+#: ../src/mailwatch-mailbox-imap.c:1958
+msgid "Remote IMAP Mailbox"
+msgstr "Mailbox IMAP remoto"
+
+#: ../src/mailwatch-mailbox-imap.c:1959
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"Il plug-in IMAP può connettersi a un server mail remoto che supporta "
+"il protocollo IMAP, volendo attraverso l'utilizzo di SSL per la propria"
+"sicurezza."
+
+#: ../src/mailwatch-mailbox-maildir.c:100 ../src/mailwatch-mailbox-mbox.c:99
+#: ../src/mailwatch-mailbox-mh.c:399 ../src/mailwatch-mailbox-mh.c:410
+#, c-format
+msgid "Failed to get status of file %s: %s"
+msgstr "Impossibile recuperare lo stato del file %s: %s"
+
+#: ../src/mailwatch-mailbox-maildir.c:109
+#, c-format
+msgid "%s is not a directory. Is %s really a valid maildir?"
+msgstr ""
+"%s non è una cartella. E' %s una valida cartella mail?"
+
+#: ../src/mailwatch-mailbox-maildir.c:347
+msgid "Select Maildir Folder"
+msgstr "Selezionare la cartella Maildir"
+
+#: ../src/mailwatch-mailbox-maildir.c:410
+msgid "Maildir _Path:"
+msgstr "_Percorso Maildir:"
+
+#: ../src/mailwatch-mailbox-maildir.c:446 ../src/mailwatch-mailbox-mbox.c:458
+#: ../src/mailwatch-mailbox-mh.c:628
+msgid "_Interval:"
+msgstr "_Intervallo:"
+
+#: ../src/mailwatch-mailbox-maildir.c:496
+msgid "Local Maildir Spool"
+msgstr ""
+
+#: ../src/mailwatch-mailbox-maildir.c:497
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
+msgstr ""
+
+#: ../src/mailwatch-mailbox-mbox.c:373
+msgid "Select mbox file"
+msgstr "Selezionare il file mbox"
+
+#: ../src/mailwatch-mailbox-mbox.c:422
+msgid "Mbox _Filename:"
+msgstr "_Nome del file mbox:"
+
+#: ../src/mailwatch-mailbox-mbox.c:500
+msgid "Local Mbox spool"
+msgstr ""
+
+#: ../src/mailwatch-mailbox-mbox.c:501
+msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
+msgstr ""
+
+#: ../src/mailwatch-mailbox-mh.c:248
+#, c-format
+msgid "Malformed line %s in %s ignored."
+msgstr "Omissione della linea %s in %s perché mal formulata."
+
+#: ../src/mailwatch-mailbox-mh.c:619
+msgid ""
+"The configuration of this plugin is read from\n"
+"the default mh maildir profile file ~/.mh_profile"
+msgstr ""
+"La configurazione di questo plug-in è letta dal\n"
+"profilo mh maildir di default ~/.mh_profile"
+
+#: ../src/mailwatch-mailbox-mh.c:669
+msgid "Local MH mail folder"
+msgstr "Cartella locale MH"
+
+#: ../src/mailwatch-mailbox-mh.c:670
+msgid "MH plugin watches local MH folders for new mail"
+msgstr "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di "
+"nuovi messaggi"
+
+#: ../src/mailwatch-mailbox-pop3.c:807
+msgid "Advanced POP3 Options"
+msgstr "Opzioni POP3 avanzate"
+
+#: ../src/mailwatch-mailbox-pop3.c:827
+msgid "Use SSL/TLS via STLS"
+msgstr "Utilizzare SSL/TLS via STLS"
+
+#: ../src/mailwatch-mailbox-pop3.c:843
+msgid "Use non-standard POP3 _port:"
+msgstr "Utilizzare un _port POP3 non standard:"
+
+#: ../src/mailwatch-mailbox-pop3.c:891
+msgid "POP3 Server"
+msgstr "Server POP3"
+
+#: ../src/mailwatch-mailbox-pop3.c:1100
+msgid "Remote POP3 Mailbox"
+msgstr "Mailbox POP3 remota"
+
+#: ../src/mailwatch-mailbox-pop3.c:1101
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"Il plug-in POP3 può connettersi a un server mail remoto che supporta "
+"il protocollo POP3, volendo attraverso l'utilizzo di SSL per la propria"
+"sicurezza."
+
+#: ../src/mailwatch-utils.c:245
+#, c-format
+msgid "XfceMailwatch: TLS handshake failed: %s"
+msgstr "XfceMailwatch: la negoziazione TLS è fallita: %s"
+
+#: ../src/mailwatch-utils.c:255
+msgid "Not compiled with SSL/TLS support"
+msgstr "Non compilato col supporto SSL/TLS"
+
+#: ../src/mailwatch-utils.c:257
+msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
+msgstr ""
+"XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il "
+"supporto SSL."
+
+#: ../src/mailwatch-utils.c:280 ../src/mailwatch-utils.c:333
+msgid "A secure connection was requested, but gnutls was not initialised"
+msgstr ""
+"Richiesta connessione sicura, ma gnutls non è stato avviato"
+
+#: ../src/mailwatch.c:696
+msgid "This mailbox type does not require any configuration settings."
+msgstr "I tipi di Mailbox non necessitano di configurazione."
+
+#: ../src/mailwatch.c:722
+msgid "Mailbox _Name:"
+msgstr "_Nome della Mailbox:"
+
+#: ../src/mailwatch.c:788 ../src/mailwatch.c:986
+#, c-format
+msgid "Edit Mailbox: %s"
+msgstr "Modifica la Mailbox: %s"
+
+#: ../src/mailwatch.c:854
+msgid "Select Mailbox Type"
+msgstr "Selezionare il tipo di Mailbox"
+
+#: ../src/mailwatch.c:863
+msgid "Select a mailbox type.  A description of the type will appear below."
+msgstr ""
+"Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di sotto."
+
+#: ../src/mailwatch.c:921
+msgid "Add New Mailbox"
+msgstr "Aggiungere una nuova Mailbox"
+
+#: ../src/mailwatch.c:1108
+msgid "Mailboxes"
+msgstr "Mailboxes"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:39
+msgid "Name of an image to overwrite the theme's no mail image :"
+msgstr "Nome di una immagine per cancellare l'immagine d'e-mail non "
+"ricevuta del tema :"
+
+#: ../data/messages:41
+msgid "Name of an image to overwrite the theme's has mail image :"
+msgstr "Nome di una immagine per cancellare l'immagine di nuova e-mail del "
+"tema :"
+
+#: ../data/messages:43
+msgid "Path to application to launch on left-click"
+msgstr "Percorso dell'applicazione da lanciare col click sinistro"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nome dell'icona :"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Bloccare la posizione ?"

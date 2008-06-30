@@ -17,7 +17,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 void cd_stacks_build_icons (void) {
 	if (myConfig.bLocalDir) {
-		myConfig.cMonitoredDirectory[0] = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
+		myConfig.cMonitoredDirectory[0] = g_strdup_printf("%s/stacks", g_cCairoDockDataDir);
 	}
 	
 	if (myConfig.cMonitoredDirectory == NULL)
@@ -33,7 +33,7 @@ void cd_stacks_build_icons (void) {
 		cd_message("Stacks(%d) - Now Listing: %s", i, cDirectory); 
 		if (strcmp (cDirectory, "_LocalDirectory_") == 0) {
 			g_free (cDirectory);
-			cDirectory = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
+			cDirectory = g_strdup_printf("%s/stacks", g_cCairoDockDataDir);
 		}
 		
 		if (! g_file_test (cDirectory, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE)) {
@@ -179,7 +179,7 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 		gchar *cDirectory = g_strdup(myConfig.cMonitoredDirectory[i]); 
 		if (strcmp (cDirectory, "_LocalDirectory_") == 0) {
 			g_free (cDirectory);
-			cDirectory = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
+			cDirectory = g_strdup_printf("%s/stacks", g_cCairoDockDataDir);
 		}
 		
 		if (! g_file_test (cDirectory, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE)) {
@@ -278,6 +278,7 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon 
 		if (myDock && pAddedIcon != NULL) {
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
 			if (myData.iNbAnimation < 20) //Le dock n'est pas prévu pour gérer autant d'animation, au dela il freeze.
+			/// ---> pardon ???
 				cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BOUNCE, 2);
 			if (myData.iSidTimer != 0) {
 				g_source_remove (myData.iSidTimer);
@@ -288,6 +289,7 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon 
 		}
 	}
 	else { //Ne fonctionne pas si on passe par le dock pour supprimer le fichier, car l'icône est détaché avant notre fonction. Dommage!
+	/// ---> OK j'ai modifier ce comportement, maintenant le fichier est simplement efface, et l'icone n'est enlevee que lorsque le file-monitor recoit l'evenement. Si ca peut t'aider ... ^_^
 		//cd_debug ("On a retirer un fichier");
 		Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
 		if (myDock && pAddedIcon != NULL) {

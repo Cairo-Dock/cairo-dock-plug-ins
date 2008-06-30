@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2008 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007-2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:15+0200\n"
+"PO-Revision-Date: 2008-06-25 16:01+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+#: ../src/applet-bookmarks.c:123 ../src/applet-bookmarks.c:323
+#: ../src/applet-load-icons.c:59
+msgid "Unmounted"
+msgstr "Smontato"
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the shortcuts applet\n"
+" made by Fabounet for Cairo-Dock"
+msgstr ""
+"Questa è l'applet shortcuts\n"
+" scritta da Fabounet per Cairo-Dock"
+
+#: ../src/applet-notifications.c:47
+msgid "Remove this bookmark"
+msgstr "Rimuovere questo segnalibro"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:11
+msgid "Icon's name :"
+msgstr "Nome dell'icona :"
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene :"
+
+#: ../data/messages:15
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:19
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:25
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:27
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:29
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:33
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:39
+msgid "Module"
+msgstr "Modulo"
+
+#: ../data/messages:41
+msgid "List drives and volumes ?"
+msgstr "Elencare periferiche e volumi ?"
+
+#: ../data/messages:43
+msgid "List network ?"
+msgstr "Elencare la rete ?"
+
+#: ../data/messages:45
+msgid "GTK bookmarks, that are used by Nautilus for exemple."
+msgstr "Segnalibri GTK, utilizzati per esempio da Nautilus."
+
+#: ../data/messages:47
+msgid "List bookmarks ?"
+msgstr "Elencare i segnalibri ?"
+
+#: ../data/messages:49
+msgid "Separate different shortcuts with separators ?"
+msgstr "Separare le differenti scorciatoie con separatori ?"
+
+#: ../data/messages:51
+msgid "Let it empty to use default sub-dock view."
+msgstr "Lasciate vuoto per utilizzare la vista di default della "
+"sub-dock."
+
+#: ../data/messages:53
+msgid "Name of the view used for the sub-dock :"
+msgstr "Nome della vista utilizzata per la sub-dock :"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Bloccare la posizione ?"

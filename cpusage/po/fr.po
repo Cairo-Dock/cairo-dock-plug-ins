@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-25 09:35+0200\n"
+"POT-Creation-Date: 2008-06-30 10:11+0200\n"
 "PO-Revision-Date: 2008-06-28 12:43+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Français <LL@li.org>\n"
@@ -15,8 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:43
-#: ../src/applet-cpusage.c:48
+#: ../src/applet-cpusage.c:43 ../src/applet-cpusage.c:48
 msgid "day(s)"
 msgstr "jour(s)"
 
@@ -32,8 +31,7 @@ msgstr ""
 "Ceci est l'applet cpusage\n"
 " écrite par parAdOxxx_ZeRo pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:109
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:109 ../src/applet-notifications.c:127
 msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échoué"
 
@@ -86,8 +84,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -95,7 +97,9 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -114,23 +118,31 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si la position est verrouillé, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si la position est verrouillé, le desklet ne peut plus être déplacé par un "
+"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
+"contre toujours le déplacer avec ALT + clic gauche"
 
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37
-#: ../data/messages:61
+#: ../data/messages:37 ../data/messages:61
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -178,8 +190,7 @@ msgstr "Seconde couleur pour le texte de la graduation de la top liste."
 msgid "Stop color of the top list :"
 msgstr "Couleur de fin de la top liste :"
 
-#: ../data/messages:63
-#: ../data/messages:71
+#: ../data/messages:63 ../data/messages:71
 msgid "in seconds."
 msgstr "en secondes."
 
@@ -188,8 +199,12 @@ msgid "Delay between refresh :"
 msgstr "Délai entre les rafraîchissements"
 
 #: ../data/messages:67
-msgid "When you left-click on the icon, you will get the list of the N most CPU-using programs."
-msgstr "Le clic droit sur l'icône vous donne la liste des programmes qui utilisent le plus de CPU."
+msgid ""
+"When you left-click on the icon, you will get the list of the N most CPU-"
+"using programs."
+msgstr ""
+"Le clic droit sur l'icône vous donne la liste des programmes qui utilisent "
+"le plus de CPU."
 
 #: ../data/messages:69
 msgid "Number of programs to display in the top list :"
@@ -201,24 +216,33 @@ msgstr "Délai entre les rafraîchissements de la top liste :"
 
 #~ msgid "Module"
 #~ msgstr "Module"
+
 #~ msgid "Icon's name :"
 #~ msgstr "Nom de l'icône :"
+
 #~ msgid "Information"
 #~ msgstr "Information"
+
 #~ msgid "Information to display on the icon :"
 #~ msgstr "Information a afficher sur l'icon :"
+
 #~ msgid "Waiting"
 #~ msgstr "Waiting"
+
 #~ msgid "Personnalisation"
 #~ msgstr "Personnalisation"
+
 #~ msgid "Let t empty to use the default icon."
 #~ msgstr "Laissez vide pour utiliser l'icône par défaut."
+
 #~ msgid "Delay between signal checks :"
 #~ msgstr "Ecart entre 2 vérifications :"
+
 #~ msgid "Debug"
 #~ msgstr "Debug"
+
 #~ msgid "in milliseconds."
 #~ msgstr "en millisecondes."
+
 #~ msgid "Lockposition ?"
 #~ msgstr "Verrouiller la position ?"
-

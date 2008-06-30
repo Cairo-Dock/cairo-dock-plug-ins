@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:17+0200\n"
+"PO-Revision-Date: 2008-06-25 16:13+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+#: ../src/applet-notifications.c:19
+msgid ""
+"This is the showDesklets applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"Questa è l'applet showDesklets\n"
+" scritta da Fabrice Rey per Cairo-Dock"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:11
+msgid "Image name to show desklets :"
+msgstr "Nome di un'immagine per mostrare le desklets :"
+
+#: ../data/messages:13
+msgid "Image name to hide desklets :"
+msgstr "Nome di un'immagine per nascondere le desklets :"
+
+#: ../data/messages:15
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene :"
+
+#: ../data/messages:17
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:19
+msgid "Show/hide desklets that are on the widget layer too ?"
+msgstr "Mostrare/nascondere anche le deklets che sono nella Sezione Widget ?"
+
+#: ../data/messages:21
+msgid "Shortkey to show/hide the desklets :"
+msgstr "Scorciatoia da tastiera per mostrare/nascondere le deklets :"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nom de l'icône :"
+
+#~ msgid "Desklet"
+#~ msgstr "Desklet"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple."
+#~ msgstr ""
+#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner "
+#~ "avec ALT + clic milieu ou ALT + clic gauche par exemple."
+
+#~ msgid "Desklet's dimension (width x height) :"
+#~ msgstr "Dimension du desklet (largeur x hauteur) :"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
+#~ "+ clic gauche."
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "Position du desklet (x ; y) :"
+
+#~ msgid "Is detached from the dock ?"
+#~ msgstr "Est-il détaché du dock ?"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Garder en-dessous des autres fenêtres ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Garder au-dessus des autres fenêtres ?"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(name=cairo-dock & type=utility)"
+#~ msgstr ""
+#~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
+#~ "de Compiz à : (name=cairo-dock & type=utility)"
+
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "Garder sur la couche des widgets ?"

@@ -36,6 +36,7 @@ Voila pour la petite explication :-)
 #include <cairo-glitz.h>
 #endif
 
+#include <rendering-commons.h>
 #include <rendering-parabole.h>
 
 extern double my_fParaboleCurvature;  // puissance de x (alpha).
@@ -54,7 +55,6 @@ static double *s_pReferenceParaboleT = NULL;
 #define fCurveInv(y, lambda, alpha) pow (y / lambda, 1. / alpha)
 #define fCurveInv_(y, lambda, alpha) (y != 0 ? alpha * y * pow (lambda / y, 1. / alpha) : (alpha > 1 ? 0 : alpha < 1 ? 1e6 : alpha * pow (lambda, 1. / alpha)))
 
-#define REFERENCE_PARABOLE_NB_POINTS 1000
 #define PARABOLE_DISTANCE_OUT2 4900
 #define PARABOLE_DISTANCE_EDGE2 2500
 
@@ -166,25 +166,25 @@ void cd_rendering_calculate_reference_parabole (double alpha)
 {
 	if (s_pReferenceParaboleS == NULL)
 	{
-		s_pReferenceParaboleS = g_new (double, REFERENCE_PARABOLE_NB_POINTS);
+		s_pReferenceParaboleS = g_new (double, RENDERING_INTERPOLATION_NB_PTS);
 		s_pReferenceParaboleS[0] = 0;
 	}
 	
 	if (s_pReferenceParaboleX == NULL)
 	{
-		s_pReferenceParaboleX = g_new (double, REFERENCE_PARABOLE_NB_POINTS);
+		s_pReferenceParaboleX = g_new (double, RENDERING_INTERPOLATION_NB_PTS);
 		s_pReferenceParaboleX[0] = 0;
 	}
 	
 	if (s_pReferenceParaboleY == NULL)
 	{
-		s_pReferenceParaboleY = g_new (double, REFERENCE_PARABOLE_NB_POINTS);
+		s_pReferenceParaboleY = g_new (double, RENDERING_INTERPOLATION_NB_PTS);
 		s_pReferenceParaboleY[0] = 0;
 	}
 	
 	if (s_pReferenceParaboleT == NULL)
 	{
-		s_pReferenceParaboleT = g_new (double, REFERENCE_PARABOLE_NB_POINTS);
+		s_pReferenceParaboleT = g_new (double, RENDERING_INTERPOLATION_NB_PTS);
 		s_pReferenceParaboleT[0] = 0;
 	}
 	
@@ -194,7 +194,7 @@ void cd_rendering_calculate_reference_parabole (double alpha)
 	double x = 0, y = 0, theta = 0;
 	double x_ = 0, y_ = 0, theta_ = G_PI/2 - atan (fCurve_(0, lambda, alpha));
 	int i;
-	for (i = 1; i < REFERENCE_PARABOLE_NB_POINTS; i ++)
+	for (i = 1; i < RENDERING_INTERPOLATION_NB_PTS; i ++)
 	{
 		s += ds;
 		cd_rendering_calculate_next_point (x, y, ds, lambda, alpha, &x_, &y_, &theta_);
@@ -212,24 +212,6 @@ void cd_rendering_calculate_reference_parabole (double alpha)
 	}
 }
 
-double cd_rendering_interpol (double x, double *fXValues, double *fYValues)
-{
-	double y;
-	int i, i_inf=0, i_sup=REFERENCE_PARABOLE_NB_POINTS-1;
-	do
-	{
-		i = (i_inf + i_sup) / 2;
-		if (fXValues[i] < x)
-			i_inf = i;
-		else
-			i_sup = i;
-	}
-	while (i_sup - i_inf > 1);
-	
-	double x_inf = fXValues[i_inf];
-	double x_sup = fXValues[i_sup];
-	return (x_sup != x_inf ? ((x - x_inf) * fYValues[i_sup] + (x_sup - x) * fYValues[i_inf]) / (x_sup - x_inf) : fYValues[i_inf]);
-}
 
 double cd_rendering_interpol_curvilign_abscisse (double x, double y, double lambda, double alpha)
 {

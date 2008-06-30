@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-25 09:40+0200\n"
+"POT-Creation-Date: 2008-06-30 10:16+0200\n"
 "PO-Revision-Date: 2008-05-23 08:46+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Français <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:25
+#: ../src/applet-notifications.c:26
 msgid ""
 "This is the mail applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
@@ -23,7 +23,7 @@ msgstr ""
 "Ceci est l'applet mail\n"
 " écrite par Christophe Chapuis pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:60
+#: ../src/applet-notifications.c:61
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -34,19 +34,19 @@ msgstr ""
 "Si '%s' n'est pas votre application mail par défaut,\n"
 "vous pouvez le modifier dans le panneau de configuration de ce module"
 
-#: ../src/applet-notifications.c:136
+#: ../src/applet-notifications.c:137
 msgid "Add a new mail account"
 msgstr "Ajouter un nouveau compte e-mail"
 
-#: ../src/applet-notifications.c:141
+#: ../src/applet-notifications.c:142
 msgid "Remove a mail account"
 msgstr "Supprimer un compte e-mail"
 
-#: ../src/applet-notifications.c:147
+#: ../src/applet-notifications.c:148
 msgid "Modify a mail account"
 msgstr "Modifier un compte e-mail"
 
-#: ../src/applet-notifications.c:168
+#: ../src/applet-notifications.c:169
 msgid "No unread mail in your mailboxes"
 msgstr "Pas de messages non lus dans votre boîte de réception"
 
@@ -351,34 +351,34 @@ msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr ""
 "Une connexion sécurisée a été demandé, mais gnutls n'a pas été initialisé"
 
-#: ../src/mailwatch.c:696
+#: ../src/mailwatch.c:723
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Le type de Mailbox ne nécessite pas de configuration."
 
-#: ../src/mailwatch.c:722
+#: ../src/mailwatch.c:749
 msgid "Mailbox _Name:"
 msgstr "_Nom de la Mailbox:"
 
-#: ../src/mailwatch.c:788 ../src/mailwatch.c:986
+#: ../src/mailwatch.c:815 ../src/mailwatch.c:1013
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Editer la Mailbox: %s"
 
-#: ../src/mailwatch.c:854
+#: ../src/mailwatch.c:881
 msgid "Select Mailbox Type"
 msgstr "Selectionnez le Type de Mailbox"
 
-#: ../src/mailwatch.c:863
+#: ../src/mailwatch.c:890
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 "Selectionnez un type de Mailbox. Un description du type apparaîtra en "
 "dessous."
 
-#: ../src/mailwatch.c:921
+#: ../src/mailwatch.c:948
 msgid "Add New Mailbox"
 msgstr "Ajouter une nouvelle Mailbox"
 
-#: ../src/mailwatch.c:1108
+#: ../src/mailwatch.c:1135
 msgid "Mailboxes"
 msgstr "Mailboxes"
 

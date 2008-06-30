@@ -1,0 +1,314 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:16+0200\n"
+"PO-Revision-Date: 2008-06-24 18:00+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:47
+msgid ""
+"This is the Cairo-Dock's clock applet\n"
+" made by Fabrice Rey (fabounet_03@yahoo.fr) for Cairo-Dock.\n"
+"The analogic representation is a port of the well-known Cairo-Clock\n"
+" from MacSlow (http://macslow.thepimp.net)."
+msgstr ""
+"Questo è l'orologio applet di Cairo-Dock\n"
+"scritto da Fabrice Rey (fabounet_03@yahoo.fr).\n"
+"La rappresentazione analogica è un port del famoso Cairo-Clock\n"
+" scritto da MacSlow (http://macslow.thepimp.net)."
+
+#: ../src/applet-notifications.c:60
+msgid "Calendar"
+msgstr "Calendario"
+
+#: ../src/applet-notifications.c:73
+msgid "Set up time and date"
+msgstr "Regolare data e ora"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:37
+msgid "Module"
+msgstr "Modulo"
+
+#: ../data/messages:39
+msgid "Behaviour"
+msgstr "Comportamento"
+
+#: ../data/messages:41
+msgid "Show the date :"
+msgstr "Mostrare la data :"
+
+#: ../data/messages:43
+msgid "No"
+msgstr "No"
+
+#: ../data/messages:45
+msgid "On icon"
+msgstr "Sull'icona"
+
+#: ../data/messages:47
+msgid "On label"
+msgstr "Sull'etichetta"
+
+#: ../data/messages:49
+msgid "if not, then the applet will update time once a minute, saving CPU."
+msgstr ""
+"Se falso, allora l'applet si aggiornerà una volta al minuto, risparmiando CPU."
+
+#: ../data/messages:51
+msgid "Show seconds ?"
+msgstr "Mostrare i secondi ?"
+
+#: ../data/messages:53
+msgid "for numeric format only."
+msgstr "soltanto per il formato numerico."
+
+#: ../data/messages:55
+msgid "Should the time be displayed as a 24h format ?"
+msgstr "Mostrare l'ora in formato 24h ?"
+
+#: ../data/messages:57
+msgid "Style"
+msgstr "Stile"
+
+#: ../data/messages:59
+msgid ""
+"The analogic view is based on CairoClock; otherwise it will be displayed in "
+"a numeric way."
+msgstr ""
+"La vista analogica è basata su CairoClock; altrimenti sarà mostrato in "
+"modo numerico."
+
+#: ../data/messages:61
+msgid "Use the analogic view ?"
+msgstr "Utilizzare la vista analogica ?"
+
+#: ../data/messages:63
+msgid "r, v, b, a"
+msgstr "r, v, b, a"
+
+#: ../data/messages:65
+msgid "Text color for the numeric display:"
+msgstr "Colore del testo per il display numerico:"
+
+#: ../data/messages:67
+msgid ""
+"for exemple Monospace, Purisa, ... Just write the font name wihtout any "
+"number or so."
+msgstr ""
+"per esempio Monospace, Purisa, ... Scrivete soltanto il nome della "
+"famiglia dei caratteri, senza numeri"
+
+#: ../data/messages:69
+msgid "Font used for the numeric display :"
+msgstr "Carattere usato per il display numerico :"
+
+#: ../data/messages:71
+msgid "List of available themes for the analogic display :"
+msgstr "Lista dei temi disponibili per la vista analogica :"
+
+#: ../data/messages:73
+msgid "Setup time and date"
+msgstr "Regolare la data e l'ora"
+
+#: ../data/messages:75
+msgid "Let empty to use default command."
+msgstr "Lasciare vuoto per usare i comandi di default."
+
+#: ../data/messages:77
+msgid "Specific command to run :"
+msgstr "Comando specifico da eseguire :"
+
+#: ../data/messages:79
+msgid "Alarm"
+msgstr "Allarme"
+
+#: ../data/messages:81
+msgid "Alarm n°1"
+msgstr "Allarme n°1"
+
+#: ../data/messages:83 ../data/messages:123 ../data/messages:163
+msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
+msgstr "nella forma xx:xx. Per esempio, 20:35 per 8:35pm"
+
+#: ../data/messages:85 ../data/messages:125 ../data/messages:165
+msgid "Time you want to be notified :"
+msgstr "Ora della notifica :"
+
+#: ../data/messages:87 ../data/messages:127 ../data/messages:167
+msgid "Repeat every"
+msgstr "Ripetere ogni"
+
+#: ../data/messages:89 ../data/messages:129 ../data/messages:169
+msgid "Never"
+msgstr "Mai"
+
+#: ../data/messages:91 ../data/messages:131 ../data/messages:171
+msgid "Day"
+msgstr "Giorni"
+
+#: ../data/messages:93 ../data/messages:133 ../data/messages:173
+msgid "Monday"
+msgstr "Lundedì"
+
+#: ../data/messages:95 ../data/messages:135 ../data/messages:175
+msgid "Tuesday"
+msgstr "Martedì"
+
+#: ../data/messages:97 ../data/messages:137 ../data/messages:177
+msgid "Wednesday"
+msgstr "Mercoledì"
+
+#: ../data/messages:99 ../data/messages:139 ../data/messages:179
+msgid "Thursday"
+msgstr "Giovedì"
+
+#: ../data/messages:101 ../data/messages:141 ../data/messages:181
+msgid "Friday"
+msgstr "Venerdì"
+
+#: ../data/messages:103 ../data/messages:143 ../data/messages:183
+msgid "Saturday"
+msgstr "Sabato"
+
+#: ../data/messages:105 ../data/messages:145 ../data/messages:185
+msgid "Sunday"
+msgstr "Domenica"
+
+#: ../data/messages:107 ../data/messages:147 ../data/messages:187
+msgid "Week Day"
+msgstr "Giorni della settimana"
+
+#: ../data/messages:109 ../data/messages:149 ../data/messages:189
+msgid "Week End"
+msgstr "Week End"
+
+#: ../data/messages:111 ../data/messages:151 ../data/messages:191
+msgid "Month"
+msgstr "Mesi"
+
+#: ../data/messages:113 ../data/messages:153 ../data/messages:193
+msgid "If every month, which day of the month ? :"
+msgstr "Se ogni mese, quale giorno del mese ? :"
+
+#: ../data/messages:115 ../data/messages:155 ../data/messages:195
+msgid "Message you want to use to be notified :"
+msgstr "Messaggio da utilizzare per la notifica :"
+
+#: ../data/messages:117 ../data/messages:157 ../data/messages:197
+msgid "For exemple, < play /path/to/file.ogg >."
+msgstr "Per esempio, < play /percorso/del/file.ogg >."
+
+#: ../data/messages:119 ../data/messages:159 ../data/messages:199
+msgid "Command to execute :"
+msgstr "Commando da eseguire :"
+
+#: ../data/messages:121
+msgid "Alarm n°2"
+msgstr "Allarme n°2"
+
+#: ../data/messages:161
+msgid "Alarm n°3"
+msgstr "Allarme n°3"
+
+#~ msgid "Show the date ?"
+#~ msgstr "Mostrare la data ?"
+
+#~ msgid "ALARM"
+#~ msgstr "ALLARME"

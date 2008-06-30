@@ -1,0 +1,294 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:21+0200\n"
+"PO-Revision-Date: 2008-06-25 19:12+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:61
+msgid "None"
+msgstr "Nessun Segnale"
+
+#: ../src/applet-draw.c:13
+msgid "Very Low"
+msgstr "Molto Basso"
+
+#: ../src/applet-draw.c:13
+msgid "Low"
+msgstr "Basso"
+
+#: ../src/applet-draw.c:13
+msgid "Middle"
+msgstr "Normale"
+
+#: ../src/applet-draw.c:13
+msgid "Good"
+msgstr "Buono"
+
+#: ../src/applet-draw.c:13
+msgid "Excellent"
+msgstr "Eccellente"
+
+#: ../src/applet-draw.c:120
+msgid "Wifi disabled."
+msgstr "Wifi disattivata."
+
+#: ../src/applet-draw.c:124
+msgid ""
+"Wifi enabled. \n"
+" Connected on:"
+msgstr ""
+"Wifi attiva. \n"
+" Connesso su:"
+
+#: ../src/applet-draw.c:124
+msgid "Signal Strength:"
+msgstr "Potenza del segnale:"
+
+#: ../src/applet-notifications.c:13
+msgid ""
+"This is the wifi applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+"Questa è l'applet wifi\n"
+" scritta da ChAnGFu per Cairo-Dock"
+
+#: ../src/applet-notifications.c:42
+msgid "Check for Wireless Extension"
+msgstr "Verifica dell'Estensione Wifi"
+
+#: ../src/applet-notifications.c:44
+msgid "Network Administration"
+msgstr "Amministrazione della Rete"
+
+#: ../src/applet-wifi.c:128 ../src/applet-wifi.c:133
+msgid "Unknown"
+msgstr "Sconosciuto"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:37 ../data/messages:63
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:39
+msgid "Information"
+msgstr "Informazione"
+
+#: ../data/messages:41
+msgid "Information to display on the icon :"
+msgstr "Informazioni da mostrare sull'icona :"
+
+#: ../data/messages:45
+msgid "Signal Strength"
+msgstr "Forza del Segnale"
+
+#: ../data/messages:47
+msgid "Signal Strength in percent"
+msgstr "Forza del Segnale in percentuale"
+
+#: ../data/messages:49
+msgid "Raw Signal Informations"
+msgstr "Info brute sul segnale"
+
+#: ../data/messages:51
+msgid "in seconds."
+msgstr "in secondi."
+
+#: ../data/messages:53
+msgid "Delay between signal checks :"
+msgstr "Ritardo tra le verifiche del segnale :"
+
+#: ../data/messages:55
+msgid "Display"
+msgstr "Mostrare"
+
+#: ../data/messages:57
+msgid "Overwrite the default label with the connection point name ?"
+msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
+
+#: ../data/messages:59
+msgid "Effect to apply on the icon according to strength :"
+msgstr "Effetti da attivare all'icona in base alla forza :"
+
+#: ../data/messages:63
+msgid "Zoom"
+msgstr "Zoom"
+
+#: ../data/messages:65
+msgid "Transparency"
+msgstr "Trasparenza"
+
+#: ../data/messages:67
+msgid "Draw Bar"
+msgstr "Disegnare una barra"
+
+#: ../data/messages:69
+msgid "Use a jauge instead of icons?"
+msgstr "Utilizzare una barra al posto delle icone?"
+
+#: ../data/messages:71
+msgid "List of available themes for the analogic display :"
+msgstr "Lista dei temi disponibili per la vista analogica :"
+
+#: ../data/messages:73
+msgid "radium"
+msgstr "radium"
+
+#: ../data/messages:75
+msgid "Images"
+msgstr "Immagini"
+
+#: ../data/messages:77 ../data/messages:81 ../data/messages:85
+#: ../data/messages:89 ../data/messages:93 ../data/messages:97
+msgid "Let it empty to use the default icon."
+msgstr "Lasciate vuoto per utilizzare l'icona di default."
+
+#: ../data/messages:79
+msgid "Name of an image for the 'no signal' icon :"
+msgstr "Immagine dell'icona 'Nessun Segnale' :"
+
+#: ../data/messages:83
+msgid "Name of an image for the 'very low' icon :"
+msgstr "Immagine dell'icona 'Molto Basso' :"
+
+#: ../data/messages:87
+msgid "Name of an image for the 'low' icon :"
+msgstr "Immagine dell'icona 'Basso' :"
+
+#: ../data/messages:91
+msgid "Name of an image for the 'middle' icon :"
+msgstr "Immagine dell'icona 'Normale' :"
+
+#: ../data/messages:95
+msgid "Name of an image for the 'good' icon :"
+msgstr "Immagine dell'icona 'Buono' :"
+
+#: ../data/messages:99
+msgid "Name of an image for the 'exellent' icon :"
+msgstr "Immagine dell'icona 'Eccellente' :"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nome dell'icona :"
+
+#~ msgid "Put Signal strength on quickinfo ?"
+#~ msgstr "Mettere la forza del segnale nelle info veloci ?"
+
+#~ msgid "Name of an image for the 'default' icon :"
+#~ msgstr "Immagine dell'icona 'Default' :"
+
+#~ msgid "Lost"
+#~ msgstr "Persa"
+
+#~ msgid "No icon when no wireless devices/connections found?"
+#~ msgstr "Nessun icona quando nessuna rete/device WiFi è trovata?"
+
+#~ msgid "Signal Strength level"
+#~ msgstr "Livello di Forza del Segnale"
+
+#~ msgid "Display the ESSID ?"
+#~ msgstr "Mostrare l'ESSID ?"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Bloccare la posizione ?"
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "Lasciate vuoto per utilizzare l'icona di default."

@@ -1,0 +1,412 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:21+0200\n"
+"PO-Revision-Date: 2008-06-24 19:23+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-load-icon.c:22
+msgid "Configure Compiz"
+msgstr "Configurare Compiz"
+
+#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:165
+msgid "Emerald Manager"
+msgstr "Gestione Emerald"
+
+#: ../src/applet-load-icon.c:22
+msgid "Reload WM"
+msgstr "Ricaricare WM"
+
+#: ../src/applet-load-icon.c:22
+msgid "Exposition"
+msgstr "Esposizione"
+
+#: ../src/applet-load-icon.c:22 ../data/messages:49
+msgid "Widget Layer"
+msgstr "Sezione dei Widgets"
+
+#: ../src/applet-notifications.c:23
+msgid ""
+"This is the compiz-icon applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+"Questa è l'applet compiz-icon\n"
+" scritta da ChAnGFu per Cairo-Dock"
+
+#: ../src/applet-notifications.c:166
+msgid "Reload Emerald"
+msgstr "Ricaricare Emerald"
+
+#: ../src/applet-notifications.c:170
+msgid "Switch Windows Manager"
+msgstr "Cambiare Gestore delle Finestre"
+
+#: ../src/applet-notifications.c:171
+msgid "Switch Windows Decorator"
+msgstr "Cambiare il Decoratore delle Finestre"
+
+#: ../src/applet-notifications.c:180
+msgid "Toggle Exposition Mode"
+msgstr "Attivare il Modo Esposizione"
+
+#: ../src/applet-notifications.c:181
+msgid "Toggle Widgets Layer"
+msgstr "Attivare la Sezione dei Widgets"
+
+#: ../src/applet-notifications.c:183
+msgid "Toggle Show Desktop"
+msgstr "Montare Mostra Desktop"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene :"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:39
+msgid "Actions"
+msgstr "Azioni"
+
+#: ../data/messages:41
+msgid ""
+"Except for switching to another WM, you must activate the Dbus plugin in "
+"Compiz, along with the plug-in corresponding to the desired action."
+msgstr ""
+"Tranne che per 'Cambia Gestore delle Finestre', si deve attivare il plug-in "
+"Dbus di compiz, oltre che i plug-ins delle azioni desiderate."
+
+#: ../data/messages:43
+msgid "Choose an action for the middle click on the icon :"
+msgstr "Scegliere un'azione per il click centrale sull'icona :"
+
+#: ../data/messages:45
+msgid "None"
+msgstr "Nessuna"
+
+#: ../data/messages:47
+msgid "Switch WM"
+msgstr "Cambia WM"
+
+#: ../data/messages:51
+msgid "Expose"
+msgstr "Esposizione"
+
+#: ../data/messages:53
+msgid "Show Desktop"
+msgstr "Mostra il Desktop"
+
+#: ../data/messages:55
+msgid ""
+"This command will be used to launch the system WM; let it blank to use the "
+"default one."
+msgstr ""
+"Quest comando si utilizza per lanciare il Gestore delle Finestre; lasciare "
+"vuoto per utilizzare quello di default."
+
+#: ../data/messages:57
+msgid "Custom command for system's Windows Manager :"
+msgstr "Comando personalizzato per il Gestore delle Finestre di sistema :"
+
+#: ../data/messages:59
+msgid ""
+"If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
+"Compiz from the dock then."
+msgstr ""
+"Se Compiz si arresta in modo inatteso, Cairo-Dock lo ri-lancerà. In questo "
+"caso dovrete arrestare Compiz dalla barra."
+
+#: ../data/messages:61
+msgid "Auto-reload Compiz ?"
+msgstr "Ricaricare automaticamente Compiz ?"
+
+#: ../data/messages:63
+msgid ""
+"If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+"quit Compiz from the dock then."
+msgstr ""
+"Se il decoratore si arresta in modo inatteso, Cairo-Dock lo ri-lancerà. In questo "
+"caso dovrete arrestare il decoratore dalla barra."
+
+#: ../data/messages:65
+msgid "Auto-reload the Decorator ?"
+msgstr "Ricaricare automaticamente il decoratore?"
+
+#: ../data/messages:67
+msgid "Load Compiz with options at applet's startup."
+msgstr "Carica Compiz e le sue opzioni all'avvio dell'applet."
+
+#: ../data/messages:69
+msgid "Force Compiz settings at startup ?"
+msgstr "Forzare le opzioni di Compiz all'avvio?"
+
+#: ../data/messages:71
+msgid ""
+"It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+"corresponding subdock's icons will then behave as launcher and an appli."
+msgstr ""
+"Questo impedirà all'icona di CCSM o di Emerald di apparire nella TaskBar. "
+" Le icone della sub-dock si comporteranno come un lanciatore e "
+"un'applicazione."
+
+#: ../data/messages:73
+msgid "Steal the application's icon in taskbar ?"
+msgstr "Rubare l'icona dell'applicazione dalla TaskBar ?"
+
+#: ../data/messages:75
+msgid ""
+"Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+"Layer plug-ins. Otherwise they will be available in the menu."
+msgstr ""
+"Mostra nella sub-dock dell'applet due icone per i plug-ins Esposizione e "
+"Sezione dei Widget. Altrimenti saranno accessibili dal menu."
+
+#: ../data/messages:77
+msgid "Add Exposition & Widget Layer to sub-dock ?"
+msgstr "Mostrare Esposizione e Sezione dei Widget nella sub-dock?"
+
+#: ../data/messages:79
+msgid "Compiz Options"
+msgstr "Opzioni di Compiz"
+
+#: ../data/messages:81
+msgid ""
+"With strict binding textures are bound whenever they are enabled, with loose "
+"binding they are enabled when created. The Nvidia driver seems a bit slow "
+"when binding textures, that's why this option gives a heavy performance "
+"increase on Nvidia."
+msgstr ""
+"Con 'Strict Binding' le textures sono limitate a quando sono attivate, con "
+"'Loose Binding' loro sono abilitate solo quando create. I driver Nvidia "
+"sembrano rallentare al momento del binding delle textures, e perciò questa "
+"opzione dà buoni risultati con schede Nvidia."
+
+#: ../data/messages:83
+msgid "Use Loose Binding ?"
+msgstr "Usare Loose Binding ?"
+
+#: ../data/messages:85
+msgid "Use thoses options only if you know them."
+msgstr "Utilizzate questa opzione solo se sapete ciò che fate."
+
+#: ../data/messages:87
+msgid "Use Indirect Rendering ?"
+msgstr "Usare rendering indiretto (Indirect Rendering) ?"
+
+#: ../data/messages:89
+msgid "Usefull when having dual or more X separate screens."
+msgstr "Utile quando ci sono due o più schermi X attivi (dualscreen)"
+
+#: ../data/messages:91
+msgid "Only Current Screen ?"
+msgstr "Soltanto lo schermo attuale"
+
+#: ../data/messages:93
+msgid "By default it will be Emerald."
+msgstr "Sarà Emerald di default."
+
+#: ../data/messages:95
+msgid "Choose your Windows Decorator :"
+msgstr "Scegliete il vostro Decoratore delle Finestre :"
+
+#: ../data/messages:97
+msgid "emerald"
+msgstr "emerald"
+
+#: ../data/messages:99
+msgid "gtk-window-decorator"
+msgstr "gtk-window-decorator"
+
+#: ../data/messages:101
+msgid "kde-window-decorator"
+msgstr "kde-window-decorator"
+
+#: ../data/messages:103
+msgid "heliodor"
+msgstr "heliodor"
+
+#: ../data/messages:105
+msgid "Let it empty to use default sub-dock view."
+msgstr "Lasciate vuoto per utilizzarre la vista di default per la sub-dock"
+
+#: ../data/messages:107
+msgid "Name of the view used for the sub-dock :"
+msgstr "Nome della vista utilizzata per la sub-dock :"
+
+#: ../data/messages:109
+msgid "Images"
+msgstr "Immagini"
+
+#: ../data/messages:111 ../data/messages:115 ../data/messages:119
+#: ../data/messages:123 ../data/messages:127 ../data/messages:131
+#: ../data/messages:135 ../data/messages:139
+msgid "Let t empty to use the default icon."
+msgstr "Lasciare vuoto per avere l'immagine di default"
+
+#: ../data/messages:113
+msgid "Name of an image for the 'default' icon :"
+msgstr "Nome dell'immagine dell'icona 'Di Default' :"
+
+#: ../data/messages:117
+msgid "Name of an image for the 'broken' icon :"
+msgstr "Nome dell'immagine dell'icona 'Non-funzionante' :"
+
+#: ../data/messages:121
+msgid "Name of an image for the 'other wm' icon :"
+msgstr "Nome dell'immagine dell'icona 'Altri wm' :"
+
+#: ../data/messages:125
+msgid "Name of an image for the 'setting' icon :"
+msgstr "Nome dell'immagine dell'icona 'Configurazione' :"
+
+#: ../data/messages:129
+msgid "Name of an image for the 'emerald' icon :"
+msgstr "Nome dell'immagine dell'icona 'Emerald' :"
+
+#: ../data/messages:133
+msgid "Name of an image for the 'reload' icon :"
+msgstr "Nome dell'immagine dell'icona 'Ricaricare' :"
+
+#: ../data/messages:137
+msgid "Name of an image for the 'exposition' icon :"
+msgstr "Nome dell'immagine dell'icona 'Esposizione' :"
+
+#: ../data/messages:141
+msgid "Name of an image for the 'widget layer' icon :"
+msgstr "Nome dell'immagine dell'icona 'Widget Layer' :"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nome dell'icona :"
+
+#~ msgid "Windows Manager"
+#~ msgstr "Gestore delle Finestre"
+
+#~ msgid "Select your Windows Manager :"
+#~ msgstr "Sceliete il vostro Gestore delle Finestre :"
+
+#~ msgid "Force settings at startup"
+#~ msgstr "Forzare la mia configurazione all'avvio"
+
+#~ msgid "Load default Windows Manager with options at startup."
+#~ msgstr "Caricare il Gestore delle Finestre di default all'avvio."
+
+#~ msgid "default"
+#~ msgstr "default"
+
+#~ msgid "broken"
+#~ msgstr "rotto"
+
+#~ msgid "other"
+#~ msgstr "altro"
+
+#~ msgid "Compiz"
+#~ msgstr "Compiz"
+
+#~ msgid "Metacity"
+#~ msgstr "Metacity"
+
+#~ msgid "Kwin"
+#~ msgstr "Kwin"
+
+#~ msgid "XFCE"
+#~ msgstr "XFCE"
+
+#~ msgid "Load Compiz with options at startup."
+#~ msgstr "Caricare Compiz con le opzioni all'avvio."

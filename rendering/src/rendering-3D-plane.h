@@ -5,13 +5,6 @@
 #include "cairo-dock.h"
 
 
-typedef enum {
-	CD_NORMAL_SEPARATOR = 0,
-	CD_FLAT_SEPARATOR,
-	CD_PHYSICAL_SEPARATOR,
-	CD_NB_SEPARATORS
-	} CDSpeparatorType;
-
 void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock);
 
 void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY);

@@ -9,7 +9,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <math.h>
 #include <cairo-dock.h>
 
-#include "rendering-3D-plane.h"
+#include "rendering-commons.h"
 #include "rendering-config.h"
 
 extern int iVanishingPointY;
@@ -83,7 +83,6 @@ extern gboolean my_diapo_simple_display_all_icons;
 extern gdouble my_fCurveCurvature;
 extern gint my_iCurveAmplitude;
 extern CDSpeparatorType my_curve_iDrawSeparator3D;
-extern gdouble my_curve_fSeparatorColor[4];
 
 void read_conf_file (GKeyFile *pKeyFile, gchar *cConfFilePath)
 {
@@ -171,8 +170,6 @@ void read_conf_file (GKeyFile *pKeyFile, gchar *cConfFilePath)
 	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100;
 	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "amplitude", &bFlushConfFileNeeded, 20, NULL, NULL);
 	my_curve_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "draw curve separator", &bFlushConfFileNeeded, 0, NULL, NULL);
-	double couleur_[4] = {0.9,0.9,1.0,1.0};
-	cairo_dock_get_double_list_key_value (pKeyFile, "Curve", "separator curve color", &bFlushConfFileNeeded, my_curve_fSeparatorColor, 4, couleur_, NULL, NULL);
 	
 	
 	if (! bFlushConfFileNeeded)

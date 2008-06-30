@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-25 09:56+0200\n"
+"POT-Creation-Date: 2008-06-30 10:32+0200\n"
 "PO-Revision-Date: 2008-05-23 08:53+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
@@ -63,11 +63,11 @@ msgstr ""
 "Ceci est l'applet wifi\n"
 " écrite par ChAnGFu pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:51
 msgid "Check for Wireless Extension"
 msgstr "Verifier les Extensions Wifi"
 
-#: ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:53
 msgid "Network Administration"
 msgstr "Administration du Réseau"
 
@@ -263,11 +263,14 @@ msgstr "Nom de l'image 'Bon' :"
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
-msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "Ouvrir la configuration du Wifi avec :"
+#~ msgid "Alternative command line to launch Wireless Configuration :"
+#~ msgstr "Ouvrir la configuration du Wifi avec :"
 
-msgid "Allow you to overwrite applet's default command line and launch you wireless configuration interface."
-msgstr "Cela permet d'utiliser une interface de configuration du wifi exotique."
+#~ msgid ""
+#~ "Allow you to overwrite applet's default command line and launch you "
+#~ "wireless configuration interface."
+#~ msgstr ""
+#~ "Cela permet d'utiliser une interface de configuration du wifi exotique."
 
 #~ msgid "Module"
 #~ msgstr "Module"

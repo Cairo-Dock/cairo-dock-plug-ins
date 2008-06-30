@@ -1,0 +1,33 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:15+0200\n"
+"PO-Revision-Date: 2008-06-24 20:00+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/messages:1
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:3
+msgid "Let extern applications pop-up dialogs in the dock ?"
+msgstr "Autorizzare dialoghi pop-up di applicazioni esterne nella barra?"
+
+#: ../data/messages:5
+msgid "Let extern applications reboot the dock ?"
+msgstr "Autorizzare le applicazioni esterne a ricaricare la barra ?"
+
+#: ../data/messages:7
+msgid "Let extern applications show/hide the desklets ?"
+msgstr "Autorizzare le applicazioni esterne a mostrare/nascondere le desklets ?"

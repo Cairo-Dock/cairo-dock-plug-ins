@@ -298,7 +298,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE, NULL);
 	GFileInfo *pFileInfo = g_file_query_info (pFile,
 		cQuery,
-		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
 		NULL,
 		&erreur);
 	g_free (cQuery);
@@ -591,7 +591,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE, NULL);
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		cAttributes,
-		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
 		NULL,
 		&erreur);
 	//g_free (cAttributes);
@@ -1165,7 +1165,7 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 	gchar *cQuery = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_SIZE, ",", G_FILE_ATTRIBUTE_TIME_MODIFIED, ",", G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, ",", G_FILE_ATTRIBUTE_UNIX_UID, ",", G_FILE_ATTRIBUTE_UNIX_GID, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_READ, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE, NULL);
 	GFileInfo *pFileInfo = g_file_query_info (pFile,
 		cQuery,
-		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
 		NULL,
 		&erreur);
 	g_free (cQuery);

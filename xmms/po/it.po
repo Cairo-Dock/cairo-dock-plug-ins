@@ -1,0 +1,338 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:20+0200\n"
+"PO-Revision-Date: 2008-06-25 19:36+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:197
+msgid ""
+"This is the xmms applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+"Questa è l'applet xmms\n"
+" scritta da ChAnGFu per Cairo-Dock"
+
+#: ../src/applet-notifications.c:231
+msgid "Previous"
+msgstr "Precedente"
+
+#: ../src/applet-notifications.c:232
+msgid "Play/Pause (left-click)"
+msgstr "Play/Pause (click sinistro)"
+
+#: ../src/applet-notifications.c:234
+msgid "Stop"
+msgstr "Stop"
+
+#: ../src/applet-notifications.c:236
+msgid "Next (middle-click)"
+msgstr "Seguente (click centrale)"
+
+#: ../src/applet-notifications.c:238
+msgid "Show JumpBox"
+msgstr "Mostrare il JumpBox"
+
+#: ../src/applet-notifications.c:239
+msgid "Toggle Shuffle"
+msgstr "Selezione casuale"
+
+#: ../src/applet-notifications.c:240
+msgid "Toggle Repeat"
+msgstr "Ripetizione"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:39
+msgid "Audio Player"
+msgstr "Lettore Audio"
+
+#: ../data/messages:41
+msgid "Player to control:"
+msgstr "Lettore da controllare:"
+
+#: ../data/messages:43
+msgid "XMMS"
+msgstr "XMMS"
+
+#: ../data/messages:45
+msgid "Audacious"
+msgstr "Audacious"
+
+#: ../data/messages:47
+msgid "Banshee"
+msgstr "Banshee"
+
+#: ../data/messages:49
+msgid "Exaile"
+msgstr "Exaile"
+
+#: ../data/messages:51
+msgid ""
+"It will prevent the player's icon to appear in the task bar. The applet's "
+"icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+"Questo impedirà all'icona del lettore di apparire nella TaskBar. "
+"L'icona dell'applet si comporterà così da lanciatore, da applicazione "
+"e da applet."
+
+#: ../data/messages:53
+msgid "Steal the player's icon from taskbar ?"
+msgstr "Rubare l'icona dalla taskbar ?"
+
+#: ../data/messages:55
+msgid "Display"
+msgstr "Mostrare"
+
+#: ../data/messages:57
+msgid "Information to display on the icon :"
+msgstr "Informazioni da mostrare sull'icona :"
+
+#: ../data/messages:59
+msgid "Nothing"
+msgstr "Niente"
+
+#: ../data/messages:61
+msgid "Time Elapsed"
+msgstr "Tempo Trascorso"
+
+#: ../data/messages:63
+msgid "Time Left"
+msgstr "Tempo Residuo"
+
+#: ../data/messages:65
+msgid "N° of track"
+msgstr "N° della traccia"
+
+#: ../data/messages:67
+msgid "Activate extended desklet mode ?"
+msgstr "Attivare il modo esteso della desklet ?"
+
+#: ../data/messages:69
+msgid "Action on music change"
+msgstr "Azione al cambiamento della musica :"
+
+#: ../data/messages:71
+msgid "Show an info-bubble ?"
+msgstr "Mostrare una info-bubble ?"
+
+#: ../data/messages:73
+msgid "With a icon ?"
+msgstr "Con un'icona ?"
+
+#: ../data/messages:75
+msgid "in ms."
+msgstr "in ms."
+
+#: ../data/messages:77
+msgid "Time length of info-bubbles :"
+msgstr "Durata dell'info-bubbles :"
+
+#: ../data/messages:79
+msgid "Animate icon ?"
+msgstr "Animare l'icona ?"
+
+#: ../data/messages:81
+msgid "Animation when music changes :"
+msgstr "Animazione al cambiamento della musica :"
+
+#: ../data/messages:83
+msgid "bounce"
+msgstr "Rimbalzo"
+
+#: ../data/messages:85
+msgid "rotate"
+msgstr "Rotazione"
+
+#: ../data/messages:87
+msgid "blink"
+msgstr "Lampeggiamento"
+
+#: ../data/messages:89
+msgid "pulse"
+msgstr "Pulsazione"
+
+#: ../data/messages:91
+msgid "upside-down"
+msgstr "Capovolgimento"
+
+#: ../data/messages:93
+msgid "wobbly"
+msgstr "Molla"
+
+#: ../data/messages:95
+msgid "random"
+msgstr "Casuale"
+
+#: ../data/messages:97
+msgid "Personnalisation"
+msgstr "Personalizzazione"
+
+#: ../data/messages:99 ../data/messages:103 ../data/messages:107
+#: ../data/messages:111 ../data/messages:115
+msgid "Let it empty to use the default icon."
+msgstr "Lasciare vuoto per avere l'icona di default."
+
+#: ../data/messages:101
+msgid "Name of an image for the 'default' icon :"
+msgstr "Immagine per l'icona 'Default' :"
+
+#: ../data/messages:105
+msgid "Name of an image for the 'play' icon :"
+msgstr "Immagine per l'icona 'Play' :"
+
+#: ../data/messages:109
+msgid "Name of an image for the 'stop' icon :"
+msgstr "Immagine per l'icona 'Stop' :"
+
+#: ../data/messages:113
+msgid "Name of an image for the 'pause' icon :"
+msgstr "Immagine per l'icona 'Pausa' :"
+
+#: ../data/messages:117
+msgid "Name of an image for the 'broken' icon :"
+msgstr "Immagine per l'icona 'Non-funzionante' :"
+
+msgid "Extended display mode :"
+msgstr "Modo 3D esteso"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Info and Controler"
+msgstr "Info e Controlli"
+
+msgid "Caroussel"
+msgstr "Carosello"
+
+msgid "Controler"
+msgstr "Controlli"
+
+#~ msgid "Play/Pause"
+#~ msgstr "Play/Pause"
+
+#~ msgid "Next"
+#~ msgstr "Seguente"
+
+#~ msgid "Options"
+#~ msgstr "Optzioni"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nome dell'icona :"
+
+#~ msgid "Info-bubbles"
+#~ msgstr "Info-bubbles"
+
+#~ msgid "Animations"
+#~ msgstr "Animazioni"
+
+#~ msgid "Total Time"
+#~ msgstr "Tempo Totale"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Bloccare la posizione ?"
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "Lasciate vuoto per utilizzare l'icona di default."

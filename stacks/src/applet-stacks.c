@@ -42,7 +42,7 @@ gboolean _useLocalDir (void) {
 }
 
 void cd_stacks_check_local (void) {
-	gchar *cDirectory = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
+	gchar *cDirectory = g_strdup_printf("%s/stacks", g_cCairoDockDataDir);
 	if (! g_file_test (cDirectory, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE)) {
 		g_mkdir_with_parents (cDirectory, 7*8*8+7*8+5);
 		cd_debug("Stacks local directory made");
@@ -99,7 +99,7 @@ void cd_stacks_mklink (const gchar *cFile) {
 	}
 	
 	erreur = NULL;
-	cCommand = g_strdup_printf("ln -s \"%s\" \"/home/%s/.cairo-dock/stacks/%s\"", cURI, g_getenv ("USER"), cFileName);
+	cCommand = g_strdup_printf("ln -s \"%s\" \"%s/stacks/%s\"", cURI, g_cCairoDockDataDir, cFileName);
 	cd_debug("Stacks: linking %s in local dir", cFileName);
 	if (cCommand != NULL && cFile != NULL) {
 		//cd_debug("Stacks: will use '%s'", cCommand);
@@ -116,7 +116,7 @@ void cd_stacks_mklink (const gchar *cFile) {
 
 void cd_stacks_clean_local (void) {
 	cd_debug("%s", __func__);
-	gchar *cCommand = g_strdup_printf("cd /home/%s/.cairo-dock/stacks/ && rm *", g_getenv ("USER"));
+	gchar *cCommand = g_strdup_printf("rm -f %s/stacks", g_cCairoDockDataDir);
 	//cd_debug("Stacks: will use '%s'", cCommand);
 	system (cCommand);
 	g_free(cCommand);
@@ -129,7 +129,7 @@ void cd_stacks_run_dir (void) {
 		cDirectory = g_strdup (myConfig.cMonitoredDirectory[i]);
 		if (strcmp (cDirectory, "_LocalDirectory_") == 0) {
 			g_free (cDirectory);
-			cDirectory = g_strdup_printf("/home/%s/.cairo-dock/stacks", g_getenv ("USER"));
+			cDirectory = g_strdup_printf("%s/stacks", g_cCairoDockDataDir);
 		}
 		
 		cURI = g_strdup_printf("file://%s", cDirectory);

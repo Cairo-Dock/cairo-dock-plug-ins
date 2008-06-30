@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-25 09:45+0200\n"
+"POT-Creation-Date: 2008-06-30 10:21+0200\n"
 "PO-Revision-Date: 2008-06-28 12:49+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <po@cairo-dock.org>\n"
@@ -29,33 +29,27 @@ msgstr "Plus la valeur est faible, plus le point de vue est bas sur le plan."
 msgid "Height of the vanishing point :"
 msgstr "Hauteur du point de fuite :"
 
-#: ../data/messages:7
-#: ../data/messages:165
+#: ../data/messages:7 ../data/messages:165
 msgid "Choose the way separators are drawn :"
 msgstr "Choisissez la manière dont les séparateurs seront dessinés :"
 
-#: ../data/messages:9
-#: ../data/messages:167
+#: ../data/messages:9 ../data/messages:167
 msgid "Normal separator"
 msgstr "Séparateur normaux"
 
-#: ../data/messages:11
-#: ../data/messages:169
+#: ../data/messages:11 ../data/messages:169
 msgid "Flat separator"
 msgstr "Séparateur plat"
 
-#: ../data/messages:13
-#: ../data/messages:171
+#: ../data/messages:13 ../data/messages:171
 msgid "Physical separator"
 msgstr "Séparateur physique"
 
-#: ../data/messages:15
-#: ../data/messages:173
+#: ../data/messages:15 ../data/messages:173
 msgid "red, blue, green, alpha"
 msgstr "rougle, vert, bleu, alpha"
 
-#: ../data/messages:17
-#: ../data/messages:175
+#: ../data/messages:17 ../data/messages:175
 msgid "For flat separators, you can specify their color:"
 msgstr "Pour les séparateurs plats, vous pouvez spécifier leur couleur: "
 
@@ -64,24 +58,39 @@ msgid "Caroussel"
 msgstr "Carroussel"
 
 #: ../data/messages:21
-msgid "In degrees, regarding the vertical position. It's a sort of inclination of the plane on the horizontal, giving the 3D feeling. So setting it to 0 means the plane is not inclined at all (vertical)."
-msgstr "En degrés, par rapport à la position verticale. C'est une sorte d'inclinaison du plan sur l'horizontal, donnant l'impression de 3D. Donc le mettre à 0 signifie que le plan n'est pas incliné du tout (horizontal)."
+msgid ""
+"In degrees, regarding the vertical position. It's a sort of inclination of "
+"the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+"the plane is not inclined at all (vertical)."
+msgstr ""
+"En degrés, par rapport à la position verticale. C'est une sorte "
+"d'inclinaison du plan sur l'horizontal, donnant l'impression de 3D. Donc le "
+"mettre à 0 signifie que le plan n'est pas incliné du tout (horizontal)."
 
 #: ../data/messages:23
 msgid "Inclination of the plane :"
 msgstr "Inclinaison du plan :"
 
 #: ../data/messages:25
-msgid "0.5 means the dock is half-folded, so half the icons are on the foreground, and half are on the background."
-msgstr "0.5 signifie que le dock est à moitié replié, donc la moitié des icônes sont à l'avant-plan, et la motié à l'arrière-pan."
+msgid ""
+"0.5 means the dock is half-folded, so half the icons are on the foreground, "
+"and half are on the background."
+msgstr ""
+"0.5 signifie que le dock est à moitié replié, donc la moitié des icônes sont "
+"à l'avant-plan, et la motié à l'arrière-pan."
 
 #: ../data/messages:27
 msgid "Percentage of the dock's width that appears on the foreground :"
 msgstr "Pourcentage de la largeur du dock qui apparaît à l'avant-plan :"
 
 #: ../data/messages:29
-msgid "The greater, the deeper. It is in fact the gap between background icons' bottom and foreground icons' top (in pixels)."
-msgstr "Plus c'est grand, plus le plan est profond. C'est en fait l'écart entre le bas des icônes de l'arrière-plan, et le haut des icônes d'avant-plan (en pixels)."
+msgid ""
+"The greater, the deeper. It is in fact the gap between background icons' "
+"bottom and foreground icons' top (in pixels)."
+msgstr ""
+"Plus c'est grand, plus le plan est profond. C'est en fait l'écart entre le "
+"bas des icônes de l'arrière-plan, et le haut des icônes d'avant-plan (en "
+"pixels)."
 
 #: ../data/messages:31
 msgid "Depth of the plane :"
@@ -108,25 +117,30 @@ msgid "Curvature :"
 msgstr "Courbure :"
 
 #: ../data/messages:43
-msgid "not including the labels. The 'k' coef will be adjusted to preserve this ratio."
-msgstr "n'inclue pas les étiquettes. Le coefficient 'k' sera ajusté pour préserver ce ratio."
+msgid ""
+"not including the labels. The 'k' coef will be adjusted to preserve this "
+"ratio."
+msgstr ""
+"n'inclue pas les étiquettes. Le coefficient 'k' sera ajusté pour préserver "
+"ce ratio."
 
 #: ../data/messages:45
 msgid "Ratio height/width :"
 msgstr "Ratio hauteur/largeur :"
 
-#: ../data/messages:47
-#: ../data/messages:65
-msgid "0 means the wave is totally flat, 1 means the wave is identical to other views."
-msgstr "0 signifie que la vague est totalement plate, 1 que la vague est identique aux autres vues."
+#: ../data/messages:47 ../data/messages:65
+msgid ""
+"0 means the wave is totally flat, 1 means the wave is identical to other "
+"views."
+msgstr ""
+"0 signifie que la vague est totalement plate, 1 que la vague est identique "
+"aux autres vues."
 
-#: ../data/messages:49
-#: ../data/messages:67
+#: ../data/messages:49 ../data/messages:67
 msgid "Magnitude of the wave :"
 msgstr "Magnitude de la vague :"
 
-#: ../data/messages:51
-#: ../data/messages:161
+#: ../data/messages:51 ../data/messages:161
 msgid "in pixels."
 msgstr "en pixels."
 
@@ -135,8 +149,12 @@ msgid "Space between icons and their label :"
 msgstr "Espace entre les icônes et leur label :"
 
 #: ../data/messages:55
-msgid "It may recquire more CPU during the unfolding animation, except if you launch Cairo-Dock with Glitz."
-msgstr "Cela peut demander plus de puissance processeur durant l'animation de dépliage, sauf si vous lancez le dock avec Glitz."
+msgid ""
+"It may recquire more CPU during the unfolding animation, except if you "
+"launch Cairo-Dock with Glitz."
+msgstr ""
+"Cela peut demander plus de puissance processeur durant l'animation de "
+"dépliage, sauf si vous lancez le dock avec Glitz."
 
 #: ../data/messages:57
 msgid "Draw labels while unfolding ?"
@@ -146,9 +164,7 @@ msgstr "Dessiner les étiquettes pendant le dépliage ?"
 msgid "Rainbow"
 msgstr "Arc-en-ciel"
 
-#: ../data/messages:61
-#: ../data/messages:79
-#: ../data/messages:119
+#: ../data/messages:61 ../data/messages:79 ../data/messages:119
 msgid "Space between rows :"
 msgstr "Espacement entre les lignes :"
 
@@ -161,8 +177,12 @@ msgid "Number of icons on the first row :"
 msgstr "Nombre d'icônes dans la 1ère ligne :"
 
 #: ../data/messages:71
-msgid "in degree. The smaller, the more the cone is narrow. 180° means the cone is widely opened."
-msgstr "en degrés. Plus c'est petit, plus le cône sera étroit. 180° signifie que le cône est complètement ouvert."
+msgid ""
+"in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+"widely opened."
+msgstr ""
+"en degrés. Plus c'est petit, plus le cône sera étroit. 180° signifie que le "
+"cône est complètement ouvert."
 
 #: ../data/messages:73
 msgid "Cone's width :"
@@ -172,93 +192,75 @@ msgstr "Ouverture du cône :"
 msgid "Slide"
 msgstr "Diapositive"
 
-#: ../data/messages:77
-#: ../data/messages:117
+#: ../data/messages:77 ../data/messages:117
 msgid "Space between columns :"
 msgstr "Espacement entre les colonnes :"
 
-#: ../data/messages:81
-#: ../data/messages:121
+#: ../data/messages:81 ../data/messages:121
 msgid "Max size of icons :"
 msgstr "Taille maximale des icones"
 
-#: ../data/messages:83
-#: ../data/messages:123
+#: ../data/messages:83 ../data/messages:123
 msgid "Sinusoidal wave radius :"
 msgstr "Rayon de la vague sinusoïdale :"
 
-#: ../data/messages:85
-#: ../data/messages:125
+#: ../data/messages:85 ../data/messages:125
 msgid "Use a linear wave rather than a sinusoidal one ?"
 msgstr "Utiliser une vague linéaire plutôt que sinusoïdale ?"
 
-#: ../data/messages:87
-#: ../data/messages:127
+#: ../data/messages:87 ../data/messages:127
 msgid "Use a wide shape ?"
 msgstr "Utiliser une forme alongée ?"
 
-#: ../data/messages:89
-#: ../data/messages:129
+#: ../data/messages:89 ../data/messages:129
 msgid "Display text only for pointed icon ?"
 msgstr "Afficher le texte seulement pour l'icône pointée ?"
 
-#: ../data/messages:91
-#: ../data/messages:131
+#: ../data/messages:91 ../data/messages:131
 msgid "Display text for all icons ?"
 msgstr "Montrer le texte pour toutes les icones ?"
 
-#: ../data/messages:93
-#: ../data/messages:133
+#: ../data/messages:93 ../data/messages:133
 msgid "Draw a background ?"
 msgstr "Dessiner un fond ?"
 
-#: ../data/messages:95
-#: ../data/messages:135
+#: ../data/messages:95 ../data/messages:135
 msgid "First gradient color (r,v,b,a) :"
 msgstr "Première couleur du dégradé (r,v,b,a) :"
 
-#: ../data/messages:97
-#: ../data/messages:137
+#: ../data/messages:97 ../data/messages:137
 msgid "Second gradient color (r,v,b,a) :"
 msgstr "Seconde couleur du dégradé (r,v,b,a) :"
 
-#: ../data/messages:99
-#: ../data/messages:139
+#: ../data/messages:99 ../data/messages:139
 msgid "Top to bottom gradient ?"
 msgstr "Dégradé de haut en bas?"
 
-#: ../data/messages:101
-#: ../data/messages:141
+#: ../data/messages:101 ../data/messages:141
 msgid "Left to right gradient ?"
 msgstr "Dégradé de droite à gauche ?"
 
-#: ../data/messages:103
-#: ../data/messages:143
+#: ../data/messages:103 ../data/messages:143
 msgid "Arrow width :"
 msgstr "Largeur de la flèche :"
 
-#: ../data/messages:105
-#: ../data/messages:145
+#: ../data/messages:105 ../data/messages:145
 msgid "Arrow Height :"
 msgstr "Hauteur de la flèche :"
 
-#: ../data/messages:107
-#: ../data/messages:147
+#: ../data/messages:107 ../data/messages:147
 msgid "Arrow shift percent :"
 msgstr "Décalage de la flèche au centre en pourcent :"
 
-#: ../data/messages:109
-#: ../data/messages:149
+#: ../data/messages:109 ../data/messages:149
 msgid "Corner radius :"
 msgstr "Rayon des coins :"
 
-#: ../data/messages:111
-#: ../data/messages:151
+#: ../data/messages:111 ../data/messages:151
 msgid "Border line width :"
 msgstr "Largeur de la ligne externe :"
 
-#: ../data/messages:113
-#: ../data/messages:153
+#: ../data/messages:113 ../data/messages:153
 msgid "Border line color (r,v,b,a) :"
 msgstr "Couleur de la ligne externe (r,v,b,a) :"
 
@@ -286,8 +288,9 @@ msgstr "Amplitude de la courbure :"
 #~ msgid "Use a flat separator instead of the defined separator icon ?"
 #~ msgstr ""
 #~ "Utiliser un séparateur plat au lieu de l'icône définie des séparateurs ?"
+
 #~ msgid "If so, you can specify its color:"
 #~ msgstr "Si oui, précisez sa couleur:"
+
 #~ msgid "Diapo"
 #~ msgstr "Diapo"
-

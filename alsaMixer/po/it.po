@@ -1,0 +1,266 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-06-19 02:18+0200\n"
+"PO-Revision-Date: 2008-06-24 17:12+0200\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-mixer.c:42
+#, c-format
+msgid "I couldn't open card '%s'"
+msgstr "Non posso aprire la scheda '%s'"
+
+#: ../src/applet-mixer.c:47
+#, c-format
+msgid "Card '%s' opened but I couldn't get any info"
+msgstr "Scheda '%s' aperta, ma non ho trovato info."
+
+#: ../src/applet-mixer.c:55
+msgid "I couldn't open the mixer"
+msgstr "Non posso aprire il mixer."
+
+#: ../src/applet-mixer.c:62
+msgid "I couldn't attach the mixer to the card"
+msgstr "Impossibile collegare il mixer alla scheda"
+
+#: ../src/applet-mixer.c:69
+msgid "I couldn't register options"
+msgstr "Impossibile registrare le opzioni"
+
+#: ../src/applet-mixer.c:77
+msgid "I couldn't load the mixer"
+msgstr "Impossibile caricare il mixer"
+
+#: ../src/applet-mixer.c:134
+#, c-format
+msgid "I couldn't find any element '%s'"
+msgstr "Impossibile trovare l'elemento '%s'"
+
+#: ../src/applet-mixer.c:266
+msgid "Set up volume :"
+msgstr "Regolare il volume :"
+
+#: ../src/applet-notifications.c:22
+msgid ""
+"This is the AlsaMixer applet\n"
+" made by Fabounet (Fabrice Rey) for Cairo-Dock"
+msgstr ""
+"Questa è l'applet AlsaMixer\n"
+" scritta da Fabounet (Fabrice Rey) per Cairo-Dock"
+
+#: ../src/applet-notifications.c:50
+msgid "Adjsut channels"
+msgstr "Aggiustare i canali"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona scelta per quest'applet"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "larghezza :"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "altezza :"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona per come apparirà nella sua etichetta :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio"
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
+"Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:39
+msgid "Alsa"
+msgstr "Alsa"
+
+#: ../data/messages:41
+msgid "Let empty to use the default sound card."
+msgstr "Lasciare vuoto per utilizzare la scheda sonora di default."
+
+#: ../data/messages:43
+msgid "Sound card to control :"
+msgstr "Scheda sonora da controllare :"
+
+#: ../data/messages:45
+msgid "Choose which channel to control :"
+msgstr "Scegliere quale canale controllare :"
+
+#: ../data/messages:47
+msgid "Let empty to use the defaut command."
+msgstr "Lasciare vuoto per utilizzare il comando di default."
+
+#: ../data/messages:49
+msgid "Specific command to run to show an advanced sound mixer :"
+msgstr "Commando specifico per montare un mixer sonoro avanzato :"
+
+#: ../data/messages:51
+msgid "Control"
+msgstr "Controllo"
+
+#: ../data/messages:53
+msgid "Shortkey to show/hide the sound control dialog :"
+msgstr "Scorciatoie da tastiera per nascondere/mostrare il dialogo "
+"del controllo sonoro :"
+
+#: ../data/messages:55
+msgid "Variation for 1 mouse scroll, in % :"
+msgstr "Variazione per uno scroll del mouse, in % :"
+
+#: ../data/messages:57
+msgid "Hide the scale when mouse leaves the desklet ?"
+msgstr "Nascondere la scala quando il mouse abbandona la desklet ?"
+
+#: ../data/messages:59
+msgid "Display"
+msgstr "Mostra"
+
+#: ../data/messages:61
+msgid "Display volume :"
+msgstr "Mostra il volume :"
+
+#: ../data/messages:63
+msgid "No"
+msgstr "No"
+
+#: ../data/messages:65
+msgid "On label"
+msgstr "Sull'etichetta"
+
+#: ../data/messages:67
+msgid "On icon"
+msgstr "Sull'icona"
+
+#: ../data/messages:69
+msgid "Effet to apply on the icon according to volume :"
+msgstr "Effetto da applicare all'icona in accordo al volume:"
+
+#: ../data/messages:71
+msgid "None"
+msgstr "Nessuno"
+
+#: ../data/messages:73
+msgid "Zoom"
+msgstr "Zoom"
+
+#: ../data/messages:75
+msgid "Transparency"
+msgstr "Transparenza"
+
+#: ../data/messages:77
+msgid "Draw Bar"
+msgstr "Disegnare una barra"
+
+#: ../data/messages:79 ../data/messages:83 ../data/messages:87
+msgid "Let empty to use the default one."
+msgstr "Lasciare vuoto per usare quello di defaut."
+
+#: ../data/messages:81
+msgid "Default icon :"
+msgstr "Icona di default :"
+
+#: ../data/messages:85
+msgid "Broken icon :"
+msgstr "Icona 'non-funzionante' :"
+
+#: ../data/messages:89
+msgid "Mute icon :"
+msgstr "Icona muta :"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nome dell'icona :"
+
+#~ msgid "Command to run to show an advanced sound mixer :"
+#~ msgstr "Commando per eseguire e mostrare un mixer sonoro avanzato :"
+
+#~ msgid "Open an advanced sound mixer with :"
+#~ msgstr "Aprire un mixer sonoro avanzato con:"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Bloccare la posizione ?"
