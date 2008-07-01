@@ -308,14 +308,6 @@ msgstr "Spostare a sinistra :"
 msgid "Right offset :"
 msgstr "Spostare a destra :"
 
-#: ../data/messages:117
-msgid ""
-"It's an image that will be displayed below the cover, like a frame for "
-"exemple."
-msgstr ""
-"Si tratta di un'immagine che sarà mostrata dietro la copertina, come "
-"una cornice."
-
 #: ../data/messages:119
 msgid "Reflection image :"
 msgstr "Immagine del riflesso :"
@@ -352,15 +344,3 @@ msgstr "Immagine per l'icona 'pausa' :"
 #: ../data/messages:143
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Immagine per l'icona 'non-funzionante' :"
-
-#~ msgid "Animations"
-#~ msgstr "Animazioni"
-
-#~ msgid "Next"
-#~ msgstr "Successiva"
-
-#~ msgid "Activate extended desklet mode ?"
-#~ msgstr "Attivare il modo esteso della desklet ?"
-
-#~ msgid "Lockposition ?"
-#~ msgstr "Bloccare la posizione ?"
