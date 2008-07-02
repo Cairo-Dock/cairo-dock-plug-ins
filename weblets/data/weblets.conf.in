@@ -57,3 +57,5 @@ use size=
 #[gtk-preferences]
 [Configuration]
 
+#S URI to load in weblet
+weblet URI=about:blank

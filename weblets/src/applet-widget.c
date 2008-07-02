@@ -42,8 +42,9 @@ void weblet_build_and_show(void)
 	}
 	else
 	{
-		///cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
-		
+#if 1
+		cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
+#else
 		/// Test unitaire :
 		GtkWidget *window;
 		GtkWidget *moz;
@@ -58,6 +59,7 @@ void weblet_build_and_show(void)
 		g_print ("pouet1\n");
 		gtk_widget_show_all (window);  // ---> plante !
 		g_print ("pouet2\n");
+#endif
 		
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}

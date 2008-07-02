@@ -25,7 +25,7 @@ libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
 
-PKG_CHECK_MODULES(PACKAGE, cairo-dock mozilla-gtkmozembed)
+PKG_CHECK_MODULES(PACKAGE, cairo-dock xulrunner-gtkmozembed)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile

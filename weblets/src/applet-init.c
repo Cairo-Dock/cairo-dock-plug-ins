@@ -28,8 +28,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet != NULL)  // on cree le weblet pour avoir qqch a afficher dans le desklet.
 	{
 		weblet_build_and_show ();
-/*		gtk_moz_embed_load_url(GTK_MOZ_EMBED(myData.pGtkMozEmbed), "file:///home/chris/pacman_googlet.html"); */
-		gtk_moz_embed_load_url(GTK_MOZ_EMBED(myData.pGtkMozEmbed), "http://www.google.com");
+		gtk_moz_embed_load_url(GTK_MOZ_EMBED(myData.pGtkMozEmbed), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com"); 
 	}
 
 CD_APPLET_INIT_END
@@ -71,6 +70,10 @@ CD_APPLET_RELOAD_BEGIN
 				myData.dialog = cairo_dock_build_dialog (D_("Terminal"), myIcon, myContainer, NULL, myData.pGtkMozEmbed, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 				cairo_dock_hide_dialog (myData.dialog);
 			}
+		}
+		if (myData.pGtkMozEmbed)
+		{
+			gtk_moz_embed_load_url(GTK_MOZ_EMBED(myData.pGtkMozEmbed), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
 		}
 	}
 CD_APPLET_RELOAD_END
