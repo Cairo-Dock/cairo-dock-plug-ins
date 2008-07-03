@@ -220,8 +220,6 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 		while (1) {
 			pPreviousIcon = pCurrentIcon;
 			pCurrentIcon = cairo_dock_get_previous_icon (pStacksIconList, pCurrentIcon);
-			if (strcmp(pCurrentIcon->cBaseURI, pPreviousIcon->cBaseURI) == 0 && pCurrentIcon->fOrder == pPreviousIcon->fOrder)
-				break; //On va bouclé a l'infinie et ce n'est pas l'effet voulue
 				
 			if (pCurrentIcon == NULL) { //On a remonté toute la liste, Notre icône doit se placer en 1er
 				_placeIcon (pAddedIcon, pPreviousIcon->fOrder - 0.01, iType);
@@ -233,6 +231,9 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 				cd_debug ("Placed After %s", pCurrentIcon->acName);
 				break;
 			}
+			
+			if (strcmp(pCurrentIcon->cBaseURI, pPreviousIcon->cBaseURI) == 0 && pCurrentIcon->fOrder == pPreviousIcon->fOrder)
+				break; //On va bouclé a l'infinie et ce n'est pas l'effet voulue
 		}
 	}
 }
@@ -271,14 +272,17 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon 
 	cd_get_path_from_uri (cURI);
 	
 	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED) {
-		//cd_debug ("On a ajouter un fichier");
+		cd_debug ("On a ajouter un fichier");
 		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 9); //On la rajoute
 		Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
 		_sort_my_new_icon (cURI, pAddedIcon);
 		if (myDock && pAddedIcon != NULL) {
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
-			if (myData.iNbAnimation < 20) //Le dock n'est pas prévu pour gérer autant d'animation, au dela il freeze.
+			if (myData.iNbAnimation < 20) //Le dock n'est pas prévu pour gérer autant d'animations, au dela il freeze.
 			/// ---> pardon ???
+			//Avec > 20 icônes les animations se figent et c'est pas très jolie d'ou la limite
+			//Avec 10 j'ai juste la monté et je doit bougé la sourie dans le sous dock pour que l'animation continue
+			//L'openGL reglèrera surment ca.
 				cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BOUNCE, 2);
 			if (myData.iSidTimer != 0) {
 				g_source_remove (myData.iSidTimer);
@@ -289,8 +293,9 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon 
 		}
 	}
 	else { //Ne fonctionne pas si on passe par le dock pour supprimer le fichier, car l'icône est détaché avant notre fonction. Dommage!
-	/// ---> OK j'ai modifier ce comportement, maintenant le fichier est simplement efface, et l'icone n'est enlevee que lorsque le file-monitor recoit l'evenement. Si ca peut t'aider ... ^_^
-		//cd_debug ("On a retirer un fichier");
+		/// ---> OK j'ai modifier ce comportement, maintenant le fichier est simplement efface, et l'icone n'est enlevee que lorsque le file-monitor recoit l'evenement. Si ca peut t'aider ... ^_^
+		//Super merci fab
+		cd_debug ("On a retirer un fichier");
 		Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
 		if (myDock && pAddedIcon != NULL) {
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
