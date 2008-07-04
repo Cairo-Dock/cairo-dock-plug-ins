@@ -22,6 +22,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowScrollbars = CD_CONFIG_GET_BOOLEAN ("Configuration", "show scrollbars");
 	myConfig.iPosScrollX = CD_CONFIG_GET_INTEGER ("Configuration", "scroll x");
 	myConfig.iPosScrollY = CD_CONFIG_GET_INTEGER ("Configuration", "scroll y");
+	myConfig.iReloadTimeout = CD_CONFIG_GET_INTEGER ("Configuration", "reload timeout");
 	
 CD_APPLET_GET_CONFIG_END
 

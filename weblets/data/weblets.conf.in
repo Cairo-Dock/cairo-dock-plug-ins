@@ -69,3 +69,7 @@ scroll x = 0
 #i Position of vertical scrollbar in pixel
 #{Vertical scroll of the browser in pixel}
 scroll y = 0
+
+#i Time between two page refreshes
+#{Time before reloading the weblet URI, in seconds. Zero means never reload.}
+reload timeout = 0

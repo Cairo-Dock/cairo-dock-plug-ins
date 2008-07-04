@@ -55,6 +55,17 @@ void weblet_build_and_show(void)
 	}
 }
 
+gboolean cd_weblets_refresh_page (void)
+{
+		// load the page
+		if(myData.pGtkMozEmbed)
+		{
+			gtk_moz_embed_load_url(GTK_MOZ_EMBED(myData.pGtkMozEmbed), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
+		}
+
+		return TRUE;
+}
+
 void load_started_cb(GtkMozEmbed *embed, void *data)
 {
 	// update scrollbars status

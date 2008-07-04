@@ -11,12 +11,14 @@ typedef struct {
 	   gboolean bShowScrollbars;
 	   gint iPosScrollX;
 	   gint iPosScrollY;
+	   guint iReloadTimeout;
 	} AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 typedef struct {
       CairoDialog *dialog;
 	    GtkWidget *pGtkMozEmbed;
+	    CairoDockMeasure *pRefreshTimer;
 	} AppletData;
 
 

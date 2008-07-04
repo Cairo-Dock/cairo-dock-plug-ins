@@ -28,7 +28,18 @@ CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet != NULL)  // on cree le weblet pour avoir qqch a afficher dans le desklet.
 	{
 		weblet_build_and_show ();
-		gtk_moz_embed_load_url(GTK_MOZ_EMBED(myData.pGtkMozEmbed), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com"); 
+
+		// mise en place du timer
+		myData.pRefreshTimer = cairo_dock_new_measure_timer (myConfig.iReloadTimeout,
+			NULL,
+			NULL,
+			cd_weblets_refresh_page);
+		cairo_dock_launch_measure (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
+		if( myConfig.iReloadTimeout == 0 )
+		{
+			// oublions le, il ne sert deja plus a rien...
+			myData.pRefreshTimer = NULL;
+		}
 	}
 
 CD_APPLET_INIT_END
@@ -71,10 +82,21 @@ CD_APPLET_RELOAD_BEGIN
 				cairo_dock_hide_dialog (myData.dialog);
 			}
 		}
-		// load the page
-		if(myData.pGtkMozEmbed)
+
+		// on remet en place un timer tout frais
+		if( myData.pRefreshTimer )
 		{
-			gtk_moz_embed_load_url(GTK_MOZ_EMBED(myData.pGtkMozEmbed), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
+			cairo_dock_free_measure_timer( myData.pRefreshTimer );
+			myData.pRefreshTimer = NULL;
+		}
+		myData.pRefreshTimer = cairo_dock_new_measure_timer (myConfig.iReloadTimeout,
+			NULL,
+			NULL,
+			cd_weblets_refresh_page);
+		cairo_dock_launch_measure (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
+		if( myConfig.iReloadTimeout == 0 )
+		{
+			myData.pRefreshTimer = NULL;
 		}
 	}
 CD_APPLET_RELOAD_END
