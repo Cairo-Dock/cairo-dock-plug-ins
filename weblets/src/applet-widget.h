@@ -26,5 +26,6 @@
 #include <cairo-dock.h>
 
 void weblet_build_and_show (void);
+void show_hide_scrollbars (void);
 
 #endif

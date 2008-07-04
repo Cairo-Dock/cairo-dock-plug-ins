@@ -19,6 +19,9 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_GET_CONFIG_BEGIN
 
 	myConfig.cURI_to_load = CD_CONFIG_GET_STRING ("Configuration", "weblet URI");
+	myConfig.bShowScrollbars = CD_CONFIG_GET_BOOLEAN ("Configuration", "show scrollbars");
+	myConfig.iPosScrollX = CD_CONFIG_GET_INTEGER ("Configuration", "scroll x");
+	myConfig.iPosScrollY = CD_CONFIG_GET_INTEGER ("Configuration", "scroll y");
 	
 CD_APPLET_GET_CONFIG_END
 
@@ -33,6 +36,5 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped.
 CD_APPLET_RESET_DATA_BEGIN
-	
 	
 CD_APPLET_RESET_DATA_END

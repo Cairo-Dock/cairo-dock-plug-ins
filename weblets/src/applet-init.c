@@ -71,7 +71,8 @@ CD_APPLET_RELOAD_BEGIN
 				cairo_dock_hide_dialog (myData.dialog);
 			}
 		}
-		if (myData.pGtkMozEmbed)
+		// load the page
+		if(myData.pGtkMozEmbed)
 		{
 			gtk_moz_embed_load_url(GTK_MOZ_EMBED(myData.pGtkMozEmbed), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
 		}

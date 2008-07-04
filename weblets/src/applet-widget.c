@@ -27,14 +27,21 @@
 #include "applet-widget.h"
 
 #include "gtkmozembed.h"
-
+#include "applet-widget-itf.h"
 
 CD_APPLET_INCLUDE_MY_VARS
+
+void load_started_cb(GtkMozEmbed *embed, void *data);
+void load_finished_cb(GtkMozEmbed *embed, void *data);
 
 void weblet_build_and_show(void)
 {
 	myData.pGtkMozEmbed = gtk_moz_embed_new();
 	gtk_widget_show(myData.pGtkMozEmbed);
+	gtk_signal_connect(GTK_OBJECT(myData.pGtkMozEmbed), "net_start",
+					 					 GTK_SIGNAL_FUNC(load_started_cb), NULL);
+	gtk_signal_connect(GTK_OBJECT(myData.pGtkMozEmbed), "net_stop",
+					 					 GTK_SIGNAL_FUNC(load_finished_cb), NULL);
 
 	if (myDock)
 	{
@@ -42,25 +49,26 @@ void weblet_build_and_show(void)
 	}
 	else
 	{
-#if 1
 		cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
-#else
-		/// Test unitaire :
-		GtkWidget *window;
-		GtkWidget *moz;
-	
-		window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	
-		gtk_window_set_default_size (GTK_WINDOW (window), 400, 300);
-		moz=gtk_moz_embed_new();
-		
-		gtk_container_add(GTK_CONTAINER(window),moz);
-		gtk_moz_embed_load_url(GTK_MOZ_EMBED(moz), "http://www.google.com");
-		g_print ("pouet1\n");
-		gtk_widget_show_all (window);  // ---> plante !
-		g_print ("pouet2\n");
-#endif
 		
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
+}
+
+void load_started_cb(GtkMozEmbed *embed, void *data)
+{
+	// update scrollbars status
+	show_hide_scrollbars();
+}
+
+void load_finished_cb(GtkMozEmbed *embed, void *data)
+{
+	// update scrollbars status
+	show_hide_scrollbars();
+}
+
+// hide/show the scrollbars
+void show_hide_scrollbars()
+{
+    set_gecko_scrollbars( myData.pGtkMozEmbed, myConfig.bShowScrollbars, myConfig.iPosScrollX , myConfig.iPosScrollY );
 }

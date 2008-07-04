@@ -59,3 +59,13 @@ use size=
 
 #S URI to load in weblet
 weblet URI=about:blank
+
+#b Show scrollbars ?
+show scrollbars = true
+
+#i Position of horizontal scrollbar
+#{Horizontal scroll of the browser in pixel}
+scroll x = 0
+#i Position of vertical scrollbar in pixel
+#{Vertical scroll of the browser in pixel}
+scroll y = 0

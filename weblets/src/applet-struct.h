@@ -8,11 +8,14 @@
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
 	   gchar *cURI_to_load;
+	   gboolean bShowScrollbars;
+	   gint iPosScrollX;
+	   gint iPosScrollY;
 	} AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 typedef struct {
-        CairoDialog *dialog;
+      CairoDialog *dialog;
 	    GtkWidget *pGtkMozEmbed;
 	} AppletData;
 

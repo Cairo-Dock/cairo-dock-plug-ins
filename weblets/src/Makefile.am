@@ -7,6 +7,8 @@ lib_LTLIBRARIES = \
 libcd_weblets_la_SOURCES = \
 	applet-init.c\
 	applet-init.h\
+	applet-widget-itf.cpp\
+	applet-widget-itf.h\
 	applet-widget.c\
 	applet-widget.h\
 	applet-config.c\
@@ -35,6 +37,20 @@ libcd_weblets_la_CFLAGS = \
 	-O3
 #	-g -ggdb -W -Wall
 
+libcd_weblets_la_CXXFLAGS = \
+	-I$(top_srcdir)/src\
+	$(PACKAGE_CFLAGS)\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	-DMY_APPLET_README_FILE=\""readme"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_CONF_FILE=\""weblets.conf"\"\
+	-DMY_APPLET_USER_DATA_DIR=\""weblets"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
+	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
+	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
+	-O3
+#	-g -ggdb -W -Wall
 
 libcd_weblets_la_LIBADD = \
 	$(PACKAGE_LIBS) -lm
