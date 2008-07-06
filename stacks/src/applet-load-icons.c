@@ -30,7 +30,7 @@ void cd_stacks_build_icons (void) {
 	  gchar *cFullURI = NULL, *cDirectory = g_strdup(myConfig.cMonitoredDirectory[i]);
 		GList *pIconDirList = NULL;
 		//On liste le dossier a surveiller
-		cd_message("Stacks(%d) - Now Listing: %s", i, cDirectory); 
+		//cd_message("Stacks (%d) - Now Listing: %s", i, cDirectory); 
 		if (strcmp (cDirectory, "_LocalDirectory_") == 0) {
 			g_free (cDirectory);
 			cDirectory = g_strdup_printf("%s/stacks", g_cCairoDockDataDir);
@@ -113,7 +113,7 @@ gchar* cd_get_path_from_uri (const gchar *cURI) {
 	if (str != NULL)
 		*str = '\0';
 	
-	cd_debug ("Path to file: %s", cPath);
+	//cd_debug ("Path to file: %s", cPath);
 	
 	return cPath;
 }
@@ -153,7 +153,7 @@ static int cairo_dock_compare_icons_name (Icon *icon1, Icon *icon2)
 }
 
 void _stacks_remove_one_icon (Icon *pAddedIcon) {
-	cd_debug ("Removing %s", pAddedIcon->acName);
+	//cd_debug ("Removing %s", pAddedIcon->acName);
 	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
 	if (myDock)
 		cairo_dock_detach_icon_from_dock (pAddedIcon, myIcon->pSubDock, FALSE);
@@ -276,13 +276,16 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 	}
 	
 	if (cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) < 0 || cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) == 0) { //Notre icône doit se placer en dernier
-		if (strcmp (pCurrentIcon->cBaseURI, pAddedIcon->cBaseURI) == 0) //1er icône d'un dossier vide, on rajoute un séparateur si necessaire
+		//cd_debug ("Notre icône doit se placer en dernier");
+		if (strcmp (pCurrentIcon->cBaseURI, pAddedIcon->cBaseURI) == 0 && iType > 2) //1er icône d'un dossier vide, on rajoute un séparateur si necessaire
 			_placeIconWithSeparator (pAddedIcon, pCurrentIcon->fOrder + 1, iType, myConfig.bUseSeparator);
 		else
 			_placeIcon (pAddedIcon, pCurrentIcon->fOrder + 1, iType);
 		cd_debug ("Placed After %s", pCurrentIcon->acName);
 	}
 	else { //On boucle pour chercher devant quelle icônes elle doit être
+		//cd_debug ("On boucle pour chercher devant quelle icônes elle doit être");
+		int iNBLoop = 0;
 		while (1) {
 			pPreviousIcon = pCurrentIcon;
 			pCurrentIcon = cairo_dock_get_previous_icon (pStacksIconList, pCurrentIcon);
@@ -298,8 +301,11 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 				break;
 			}
 			
-			if (strcmp(pCurrentIcon->cBaseURI, pPreviousIcon->cBaseURI) == 0 && pCurrentIcon->fOrder == pPreviousIcon->fOrder)
+			if (strcmp(pCurrentIcon->cBaseURI, pPreviousIcon->cBaseURI) == 0 && pCurrentIcon->fOrder == pPreviousIcon->fOrder) {
+				//En cas d'ajout en masse, l'icône est ajouter en 1er et va bloquer ici. Trouver une solution.
 				break; //On va bouclé a l'infinie et ce n'est pas l'effet voulue
+			}
+
 		}
 	}
 }
@@ -363,7 +369,7 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon 
 }
 
 void cd_stacks_reload (void) {
-	cd_debug("Reloading stacks");
+	cd_debug ("Reloading stacks");
 	cd_stacks_destroy_icons();
 	cd_stacks_build_icons();
 }

@@ -115,8 +115,8 @@ void cd_stacks_mklink (const gchar *cFile) {
 }
 
 void cd_stacks_clean_local (void) {
-	cd_debug("%s", __func__);
-	gchar *cCommand = g_strdup_printf("rm -f %s/stacks", g_cCairoDockDataDir);
+	cd_debug ("%s", __func__);
+	gchar *cCommand = g_strdup_printf("cd %s/stacks && rm -R *", g_cCairoDockDataDir);
 	//cd_debug("Stacks: will use '%s'", cCommand);
 	system (cCommand);
 	g_free(cCommand);
