@@ -23,7 +23,7 @@ void cd_stacks_build_icons (void) {
 	if (myConfig.cMonitoredDirectory == NULL)
     return;
 	
-	myData.iIconOrder = 0;
+	myData.iIconOrder = 1;
 	gint i=0, j=0;
 	GList *pIconList = NULL; // ne nous appartiendra plus, donc ne pas desallouer.
 	while (myConfig.cMonitoredDirectory[i] != NULL) { 
@@ -42,12 +42,14 @@ void cd_stacks_build_icons (void) {
 			continue;
 		}
 		
-		if (i > 0 && myConfig.bUseSeparator) {
+		pIconDirList = cairo_dock_fm_list_directory (cDirectory, CAIRO_DOCK_FM_SORT_BY_NAME, 2 + j, myConfig.bHiddenFiles, &cFullURI);
+		
+		if (i > 0 && myConfig.bUseSeparator && pIconDirList != NULL) {
 			Icon *pSeparatorIcon = g_new0 (Icon, 1);
 			pSeparatorIcon->iType = 1;
 			pIconList = g_list_append (pIconList, pSeparatorIcon);
 		}
-		pIconDirList = cairo_dock_fm_list_directory (cDirectory, CAIRO_DOCK_FM_SORT_BY_NAME, 2 + j, myConfig.bHiddenFiles, &cFullURI);
+		
 		pIconList = g_list_concat (pIconList, pIconDirList);
 		if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_stacks_update, NULL))
 			cd_warning ("Attention : can't monitor files (%s)", cFullURI);
@@ -79,6 +81,7 @@ void cd_stacks_build_icons (void) {
 }
 
 void cd_stacks_destroy_icons (void) {
+	cd_debug ("");
 	if (myDock && myIcon->pSubDock != NULL) {
 		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
 		myIcon->pSubDock = NULL;
@@ -91,7 +94,7 @@ void cd_stacks_destroy_icons (void) {
 }
 
 
-void cd_stacks_debug_icon(Icon *pIcon) {
+void cd_stacks_debug_icon (Icon *pIcon) {
 	pIcon->cWorkingDirectory = NULL;
 	pIcon->fOrder = myData.iIconOrder;
 	myData.iIconOrder++;
@@ -149,6 +152,45 @@ static int cairo_dock_compare_icons_name (Icon *icon1, Icon *icon2)
 	return iOrder;
 }
 
+void _stacks_remove_one_icon (Icon *pAddedIcon) {
+	cd_debug ("Removing %s", pAddedIcon->acName);
+	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
+	if (myDock)
+		cairo_dock_detach_icon_from_dock (pAddedIcon, myIcon->pSubDock, FALSE);
+	else
+		pStacksIconList = g_list_remove (pStacksIconList, pAddedIcon);
+		
+	cairo_dock_free_icon (pAddedIcon);
+	if (g_list_length (pStacksIconList) < 1) 
+		cd_stacks_destroy_icons (); //plus d'icône a dessiner!
+	
+	if (myDock) 
+		cairo_dock_update_dock_size (myIcon->pSubDock);
+	else
+		gtk_widget_queue_draw (myDesklet->pWidget);
+}
+
+void _removeUselessSeparator (void) {
+	cd_debug ("");
+	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
+	if (pStacksIconList == NULL)
+		return;
+		
+	GList *ic;
+	Icon *icon=NULL, *prevIcon=NULL;
+	for (ic = pStacksIconList; ic != NULL; ic = ic->next) {	
+		prevIcon = icon;
+		icon = ic->data;
+		if (prevIcon == NULL)
+			continue;
+			
+		if (prevIcon->iType == 1 && icon->iType == 1) //Deux séparateur cote a cote
+			_stacks_remove_one_icon (icon);
+	}
+	if (icon->iType == 1) //Dernière icône étant séparateur
+		_stacks_remove_one_icon (icon);
+}
+
 void _placeIcon (Icon *pIcon, double fOrder, int iType) {
 	pIcon->fOrder = fOrder;
 	pIcon->iType = iType;
@@ -157,13 +199,35 @@ void _placeIcon (Icon *pIcon, double fOrder, int iType) {
 	pStacksIconList = g_list_insert_sorted (pStacksIconList, pIcon, (GCompareFunc) cairo_dock_compare_icons_order);
 	
 	if (myDock) {
-		if (g_list_length (pStacksIconList) == 1) { //Sinon on a pas l'icône qui saute joyeusement.
+		if (g_list_length (pStacksIconList) == 1) //Sinon on a pas l'icône qui saute joyeusement.
 			CD_APPLET_CREATE_MY_SUBDOCK (pStacksIconList, myConfig.cRenderer);
-		}
-		else {
-			cairo_dock_insert_icon_in_dock (pIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, FALSE);
-			cairo_dock_update_dock_size (myIcon->pSubDock);
-		}
+			
+		cairo_dock_insert_icon_in_dock (pIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, FALSE);
+		cairo_dock_update_dock_size (myIcon->pSubDock);
+	}
+	else
+		gtk_widget_queue_draw (myDesklet->pWidget);
+}
+
+void _placeIconWithSeparator (Icon *pAddedIcon, double fOrder, int iType, gboolean bUseSeparator) {
+	pAddedIcon->fOrder = fOrder;
+	pAddedIcon->iType = iType;
+	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
+	if (bUseSeparator) {
+		Icon *pSeparatorIcon = g_new0 (Icon, 1);
+		pSeparatorIcon->iType = 1;
+		pStacksIconList = g_list_append (pStacksIconList, pSeparatorIcon);
+	}
+		
+	pStacksIconList = g_list_remove (pStacksIconList, pAddedIcon);
+	pStacksIconList = g_list_append (pStacksIconList, pAddedIcon);
+		
+	if (myDock) {
+		if (g_list_length (pStacksIconList) == 1)  //Sinon on a pas l'icône qui saute joyeusement.
+			CD_APPLET_CREATE_MY_SUBDOCK (pStacksIconList, myConfig.cRenderer);
+			
+		cairo_dock_insert_icon_in_dock (pAddedIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, FALSE);
+		cairo_dock_update_dock_size (myIcon->pSubDock);
 	}
 	else
 		gtk_widget_queue_draw (myDesklet->pWidget);
@@ -198,22 +262,24 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 		j++; i++;
 	}
 	
-	if (iType == 0) { //Pas de type d'icône, on la rajoute a la fin de la liste...
-		cd_warning ("Can't sort new file.");
-		return;
-	}
-	
 	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
-	Icon *pPreviousIcon = NULL, *pCurrentIcon = cairo_dock_get_last_icon_of_type (pStacksIconList, iType);
-	
 	if (pStacksIconList == NULL)
 		return;
-		
+	Icon *pPreviousIcon = NULL, *pCurrentIcon = cairo_dock_get_last_icon_of_type (pStacksIconList, iType);
 	if (pCurrentIcon == NULL) //1er fichier d'un répertoire vide.
 		pCurrentIcon = cairo_dock_get_last_icon (pStacksIconList);
 	
+	if (iType == 0) { //Pas de type d'icône, on la rajoute a la fin de la liste et on ajoute un séparateur s'il le faut.
+		iType = 2 + j;
+		_placeIconWithSeparator (pAddedIcon, pCurrentIcon->fOrder + 1, iType, (j > 0 ? myConfig.bUseSeparator : FALSE));
+		return;
+	}
+	
 	if (cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) < 0 || cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) == 0) { //Notre icône doit se placer en dernier
-		_placeIcon (pAddedIcon, pCurrentIcon->fOrder + 1, iType);
+		if (strcmp (pCurrentIcon->cBaseURI, pAddedIcon->cBaseURI) == 0) //1er icône d'un dossier vide, on rajoute un séparateur si necessaire
+			_placeIconWithSeparator (pAddedIcon, pCurrentIcon->fOrder + 1, iType, myConfig.bUseSeparator);
+		else
+			_placeIcon (pAddedIcon, pCurrentIcon->fOrder + 1, iType);
 		cd_debug ("Placed After %s", pCurrentIcon->acName);
 	}
 	else { //On boucle pour chercher devant quelle icônes elle doit être
@@ -240,21 +306,8 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 
 gboolean _on_animation_complete (Icon *pAddedIcon) {
 	//On retire l'icône et on met a jour le sous-dock
-	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
-	if (myDock)
-		cairo_dock_detach_icon_from_dock (pAddedIcon, myIcon->pSubDock, TRUE);
-	else
-		pStacksIconList = g_list_remove (pStacksIconList, pAddedIcon);
-		
-	cairo_dock_free_icon (pAddedIcon);
-	if (g_list_length (pStacksIconList) < 1) 
-		cd_stacks_destroy_icons (); //plus d'icône a dessiner!
-	
-	if (myDock) 
-		cairo_dock_update_dock_size (myIcon->pSubDock);
-	else
-		gtk_widget_queue_draw (myDesklet->pWidget);
-	
+	_stacks_remove_one_icon (pAddedIcon);
+	_removeUselessSeparator();
 	return FALSE;
 }
 
@@ -269,11 +322,10 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon 
 	cd_debug("%s (%d %s)", __func__, iEventType, cURI);
 	
 	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
-	cd_get_path_from_uri (cURI);
 	
 	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED) {
-		cd_debug ("On a ajouter un fichier");
 		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 9); //On la rajoute
+		cd_debug ((iEventType == CAIRO_DOCK_FILE_CREATED ? "On a ajouté un fichier" : "On a modifié un fichier"));
 		Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
 		_sort_my_new_icon (cURI, pAddedIcon);
 		if (myDock && pAddedIcon != NULL) {
@@ -292,10 +344,8 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon 
 			myData.iNbAnimation++;
 		}
 	}
-	else { //Ne fonctionne pas si on passe par le dock pour supprimer le fichier, car l'icône est détaché avant notre fonction. Dommage!
-		/// ---> OK j'ai modifier ce comportement, maintenant le fichier est simplement efface, et l'icone n'est enlevee que lorsque le file-monitor recoit l'evenement. Si ca peut t'aider ... ^_^
-		//Super merci fab
-		cd_debug ("On a retirer un fichier");
+	else { 
+		cd_debug ("On a retiré un fichier");
 		Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
 		if (myDock && pAddedIcon != NULL) {
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
@@ -307,13 +357,13 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon 
 			_on_animation_complete (pAddedIcon);
 	}
 	
-	myData.iIconOrder = 0; //On rétablie le fOrdre normal des icônes (de 1 en 1)
+	myData.iIconOrder = 1; //On rétablie le fOrdre normal des icônes (de 1 en 1)
 	g_list_foreach (pStacksIconList, (GFunc) cd_stacks_debug_icon, NULL);
 	
 }
 
 void cd_stacks_reload (void) {
-	cd_debug("");
+	cd_debug("Reloading stacks");
 	cd_stacks_destroy_icons();
 	cd_stacks_build_icons();
 }
