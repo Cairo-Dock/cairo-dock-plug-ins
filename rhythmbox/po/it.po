@@ -7,14 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-19 02:20+0200\n"
+"POT-Creation-Date: 2008-07-06 04:28+0200\n"
 "PO-Revision-Date: 2008-06-25 14:50+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
 
 #: ../src/rhythmbox-draw.c:76
 msgid "Track"
@@ -123,8 +122,8 @@ msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
-"Compiz a : (name=cairo-dock & type=utility)"
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+"di Compiz a : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -204,9 +203,8 @@ msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
-"Questo impedirà all'icona di Rhythmbox di apparire nella TaskBar. "
-"L'icona dell'applet si comporterà così da lanciatore, da applicazione "
-"e da applet."
+"Questo impedirà all'icona di Rhythmbox di apparire nella TaskBar. L'icona "
+"dell'applet si comporterà così da lanciatore, da applicazione e da applet."
 
 #: ../data/messages:67
 msgid "Steal the rhythmbox's icon in taskbar ?"
@@ -285,8 +283,8 @@ msgid ""
 "It's an image that will be displayed below the cover, like a frame for "
 "exemple."
 msgstr ""
-"Si tratta di un'immagine che sarà mostrata dietro la copertina, come "
-"una cornice."
+"Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
+"cornice."
 
 #: ../data/messages:103
 msgid "Background image :"
@@ -307,6 +305,15 @@ msgstr "Spostare a sinistra :"
 #: ../data/messages:111 ../data/messages:113 ../data/messages:115
 msgid "Right offset :"
 msgstr "Spostare a destra :"
+
+#: ../data/messages:117
+#, fuzzy
+msgid ""
+"It's an image that will be displayed above the cover, like a reflect for "
+"exemple."
+msgstr ""
+"Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
+"cornice."
 
 #: ../data/messages:119
 msgid "Reflection image :"

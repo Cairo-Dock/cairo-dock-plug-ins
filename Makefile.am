@@ -41,6 +41,7 @@ SUBDIRS = . po\
 	shortcuts\
 	showDesklets\
 	showDesktop\
+	switcher\
 	systray\
 	${terminal_dir}\
 	tomboy\

@@ -21,13 +21,13 @@ void cd_stacks_build_icons (void) {
 	}
 	
 	if (myConfig.cMonitoredDirectory == NULL)
-    return;
+		return;
 	
 	myData.iIconOrder = 1;
 	gint i=0, j=0;
 	GList *pIconList = NULL; // ne nous appartiendra plus, donc ne pas desallouer.
-	while (myConfig.cMonitoredDirectory[i] != NULL) { 
-	  gchar *cFullURI = NULL, *cDirectory = g_strdup(myConfig.cMonitoredDirectory[i]);
+	while (myConfig.cMonitoredDirectory[i] != NULL) {
+		gchar *cFullURI = NULL, *cDirectory = g_strdup(myConfig.cMonitoredDirectory[i]);
 		GList *pIconDirList = NULL;
 		//On liste le dossier a surveiller
 		//cd_message("Stacks (%d) - Now Listing: %s", i, cDirectory); 
@@ -52,7 +52,7 @@ void cd_stacks_build_icons (void) {
 		
 		pIconList = g_list_concat (pIconList, pIconDirList);
 		if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_stacks_update, NULL))
-			cd_warning ("Attention : can't monitor files (%s)", cFullURI);
+			cd_warning ("Attention : can't monitor file (%s)", cFullURI);
 			
 		if (myConfig.bLocalDir && i == 0)
 			break; //Solution temporaire au bug
@@ -118,40 +118,6 @@ gchar* cd_get_path_from_uri (const gchar *cURI) {
 	return cPath;
 }
 
-//Merci M. Fab pour ces 2 fonctions
-int cairo_dock_compare_icons_order (Icon *icon1, Icon *icon2)
-{
-	int iOrder1 = cairo_dock_get_group_order (icon1);
-	int iOrder2 = cairo_dock_get_group_order (icon2);
-	if (iOrder1 < iOrder2)
-		return -1;
-	else if (iOrder1 > iOrder2)
-		return 1;
-	else
-	{
-		if (icon1->fOrder < icon2->fOrder)
-			return -1;
-		else if (icon1->fOrder > icon2->fOrder)
-			return 1;
-		else
-			return 0;
-	}
-}
-
-static int cairo_dock_compare_icons_name (Icon *icon1, Icon *icon2)
-{
-	if (icon1->acName == NULL)
-		return -1;
-	if (icon2->acName == NULL)
-		return 1;
-	gchar *cURI_1 = g_ascii_strdown (icon1->acName, -1);
-	gchar *cURI_2 = g_ascii_strdown (icon2->acName, -1);
-	int iOrder = strcmp (cURI_1, cURI_2);
-	g_free (cURI_1);
-	g_free (cURI_2);
-	return iOrder;
-}
-
 void _stacks_remove_one_icon (Icon *pAddedIcon) {
 	//cd_debug ("Removing %s", pAddedIcon->acName);
 	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
@@ -164,7 +130,7 @@ void _stacks_remove_one_icon (Icon *pAddedIcon) {
 	if (g_list_length (pStacksIconList) < 1) 
 		cd_stacks_destroy_icons (); //plus d'icône a dessiner!
 	
-	if (myDock) 
+	if (myDock)
 		cairo_dock_update_dock_size (myIcon->pSubDock);
 	else
 		gtk_widget_queue_draw (myDesklet->pWidget);
@@ -178,7 +144,7 @@ void _removeUselessSeparator (void) {
 		
 	GList *ic;
 	Icon *icon=NULL, *prevIcon=NULL;
-	for (ic = pStacksIconList; ic != NULL; ic = ic->next) {	
+	for (ic = pStacksIconList; ic != NULL; ic = ic->next) {
 		prevIcon = icon;
 		icon = ic->data;
 		if (prevIcon == NULL)

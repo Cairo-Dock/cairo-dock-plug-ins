@@ -17,7 +17,7 @@ CD_APPLET_DEFINITION ("switcher", 1, 6, 0, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 static gboolean on_change_desktop (gpointer *data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	int iPreviousIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
 	cd_switcher_get_current_desktop ();
@@ -68,11 +68,12 @@ static gboolean on_change_desktop (gpointer *data)
 		if (myDesklet)
 			gtk_widget_queue_draw (myDesklet->pWidget);
 	}
+	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 static gboolean on_change_screen_geometry (gpointer *data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	cd_switcher_compute_nb_lines_and_columns ();
 	cd_switcher_get_current_desktop ();
 	cd_switcher_load_icons ();

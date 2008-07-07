@@ -7,14 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-19 02:13+0200\n"
+"POT-Creation-Date: 2008-07-06 04:11+0200\n"
 "PO-Revision-Date: 2008-06-25 14:24+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
 
 #: ../data/messages:1
 msgid "Inclinated Plane"
@@ -28,27 +27,27 @@ msgstr "Più è basso, più il punto di vista del piano si abbassa."
 msgid "Height of the vanishing point :"
 msgstr "Altezza del punto di fuga :"
 
-#: ../data/messages:7 ../data/messages:159
+#: ../data/messages:7 ../data/messages:165
 msgid "Choose the way separators are drawn :"
 msgstr "Scegliere il modo in cui i separatori sono disegnati :"
 
-#: ../data/messages:9 ../data/messages:161
+#: ../data/messages:9 ../data/messages:167
 msgid "Normal separator"
 msgstr "Separatori normali"
 
-#: ../data/messages:11 ../data/messages:163
+#: ../data/messages:11 ../data/messages:169
 msgid "Flat separator"
 msgstr "Separatori piatti"
 
-#: ../data/messages:13 ../data/messages:165
+#: ../data/messages:13 ../data/messages:171
 msgid "Physical separator"
 msgstr "Separatori fisici"
 
-#: ../data/messages:15 ../data/messages:167
+#: ../data/messages:15
 msgid "red, blue, green, alpha"
 msgstr "rosso, verde, blu, alpha"
 
-#: ../data/messages:17 ../data/messages:169
+#: ../data/messages:17
 msgid "For flat separators, you can specify their color:"
 msgstr "Per i separatori piatti, potete specificare il colore : "
 
@@ -64,8 +63,8 @@ msgid ""
 msgstr ""
 "In gradi, in rapporto alla posizione verticale. E' una specie di "
 "inclinazione del piano in orizzontale, dando l'impressione di "
-"tridimensionalità. Perciò metterlo a 0 significa che il piano "
-"sarà affatto inclinato (verticale)."
+"tridimensionalità. Perciò metterlo a 0 significa che il piano sarà affatto "
+"inclinato (verticale)."
 
 #: ../data/messages:23
 msgid "Inclination of the plane :"
@@ -76,8 +75,8 @@ msgid ""
 "0.5 means the dock is half-folded, so half the icons are on the foreground, "
 "and half are on the background."
 msgstr ""
-"0.5 significa che la barra è ripiegata a metà, perciò la metà delle icone "
-" sono in primo piano e l'altra metà sullo sfondo."
+"0.5 significa che la barra è ripiegata a metà, perciò la metà delle icone  "
+"sono in primo piano e l'altra metà sullo sfondo."
 
 #: ../data/messages:27
 msgid "Percentage of the dock's width that appears on the foreground :"
@@ -108,29 +107,24 @@ msgid "Parabolic"
 msgstr "Parabolica"
 
 #: ../data/messages:39
-msgid "it's the 'a' in y=k*x^a"
-msgstr "rappresenta 'a' in y=k*x^a"
+msgid "The higher it is, the sooner the parabole will be curved."
+msgstr ""
 
 #: ../data/messages:41
 msgid "Curvature :"
 msgstr "Curvatura :"
 
 #: ../data/messages:43
-msgid ""
-"not including the labels. The 'k' coef will be adjusted to preserve this "
-"ratio."
+msgid "The parabole will be conscricted to a rectangle of this proportion."
 msgstr ""
-"non include le etichette. Il coefficiente 'k' sarà aggiustato per mantenere "
-"questo rapporto."
 
 #: ../data/messages:45
 msgid "Ratio height/width :"
 msgstr "Rapporto altezza/larghezza :"
 
-#: ../data/messages:47 ../data/messages:65
-msgid ""
-"0 means the wave is totally flat, 1 means the wave is identical to other "
-"views."
+#: ../data/messages:47
+#, fuzzy
+msgid "0 means the wave is totally flat, 1 means the wave is maximal."
 msgstr ""
 "0 significa che l'onda è totalmente piatta, 1 che l'onda è identica alle "
 "altre viste."
@@ -139,7 +133,7 @@ msgstr ""
 msgid "Magnitude of the wave :"
 msgstr "Magnitudo dell'onda :"
 
-#: ../data/messages:51
+#: ../data/messages:51 ../data/messages:161
 msgid "in pixels."
 msgstr "in pixels."
 
@@ -170,6 +164,14 @@ msgstr "Spazio tra le file :"
 #: ../data/messages:63
 msgid "Space between icons :"
 msgstr "Spazio tra le icone :"
+
+#: ../data/messages:65
+msgid ""
+"0 means the wave is totally flat, 1 means the wave is identical to other "
+"views."
+msgstr ""
+"0 significa che l'onda è totalmente piatta, 1 che l'onda è identica alle "
+"altre viste."
 
 #: ../data/messages:69
 msgid "Number of icons on the first row :"
@@ -272,12 +274,32 @@ msgid "Curve"
 msgstr "Curva"
 
 #: ../data/messages:157
-msgid "Amplitude for the curve in percent :"
+#, fuzzy
+msgid "The lower, the more the curve will seem flat."
+msgstr "Più è basso, più il punto di vista del piano si abbassa."
+
+#: ../data/messages:159
+#, fuzzy
+msgid "Curvature of the curve in percent :"
 msgstr "Ampiezza della curva in percentuale :"
 
-#~ msgid "Use a flat separator instead of the defined separator icon ?"
+#: ../data/messages:163
+#, fuzzy
+msgid "Amplitude of the curve."
+msgstr "Ampiezza della curva in percentuale :"
+
+#~ msgid "it's the 'a' in y=k*x^a"
+#~ msgstr "rappresenta 'a' in y=k*x^a"
+
+#~ msgid ""
+#~ "not including the labels. The 'k' coef will be adjusted to preserve this "
+#~ "ratio."
 #~ msgstr ""
-#~ "Utilizzare un separatore piatto al posto dell'icona di default ?"
+#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per "
+#~ "mantenere questo rapporto."
+
+#~ msgid "Use a flat separator instead of the defined separator icon ?"
+#~ msgstr "Utilizzare un separatore piatto al posto dell'icona di default ?"
 
 #~ msgid "If so, you can specify its color:"
 #~ msgstr "Se sì, precisate il suo colore:"

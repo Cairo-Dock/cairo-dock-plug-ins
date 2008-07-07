@@ -31,9 +31,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bUseSeparator = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "use separator", TRUE);
 	
 	if (myConfig.cMonitoredDirectory == NULL && myConfig.bLocalDir) {
-  	g_key_file_set_string (pKeyFile, "Configuration", "directory", "_LocalDirectory_");
-  	myConfig.cMonitoredDirectory = CD_CONFIG_GET_STRING_LIST ("Configuration", "directory", &length);
-  }
+		g_key_file_set_string (pKeyFile, "Configuration", "directory", "_LocalDirectory_");
+		myConfig.cMonitoredDirectory = CD_CONFIG_GET_STRING_LIST ("Configuration", "directory", &length);
+	}
 CD_APPLET_GET_CONFIG_END
 
 

@@ -1,5 +1,5 @@
 
-SUBDIRS = . 
+SUBDIRS = .
 
 moduledir = $(switcherdatadir)
 

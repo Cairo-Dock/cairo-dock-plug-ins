@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-19 02:21+0200\n"
+"POT-Creation-Date: 2008-07-06 04:30+0200\n"
 "PO-Revision-Date: 2008-06-25 13:42+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -15,12 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-
-#: ../src/powermanager-draw.c:121
+#: ../src/powermanager-draw.c:114
 msgid "None"
 msgstr "Nessuno"
 
-#: ../src/powermanager-draw.c:149
+#: ../src/powermanager-draw.c:142
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -28,12 +27,12 @@ msgstr ""
 "Portatile con Batteria.\n"
 " Batteria caricata al:"
 
-#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:153
-#: ../src/powermanager-draw.c:174 ../src/powermanager-draw.c:180
+#: ../src/powermanager-draw.c:142 ../src/powermanager-draw.c:146
+#: ../src/powermanager-draw.c:167 ../src/powermanager-draw.c:173
 msgid "Estimated time with Charge:"
 msgstr "Autonomia stimata:"
 
-#: ../src/powermanager-draw.c:153
+#: ../src/powermanager-draw.c:146
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -41,11 +40,11 @@ msgstr ""
 "Portatile in Carica.\n"
 " Batteria caricata al:"
 
-#: ../src/powermanager-draw.c:159
+#: ../src/powermanager-draw.c:152
 msgid "No Battery found."
 msgstr "Nessuna batteria trovata."
 
-#: ../src/powermanager-draw.c:174
+#: ../src/powermanager-draw.c:167
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -53,11 +52,11 @@ msgstr ""
 "PowerManager.\n"
 "Il livello della batteria sembra essere basso"
 
-#: ../src/powermanager-draw.c:174
+#: ../src/powermanager-draw.c:167
 msgid "Please put your Laptop on charge."
 msgstr "Meglio mettere il vostro Laptop in carica."
 
-#: ../src/powermanager-draw.c:180
+#: ../src/powermanager-draw.c:173
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"
@@ -98,11 +97,13 @@ msgid "Icon size"
 msgstr "Dimensione dell'icona"
 
 #: ../data/messages:5
-msgid "width :"
+#, fuzzy
+msgid "Width :"
 msgstr "larghezza :"
 
 #: ../data/messages:7
-msgid "height :"
+#, fuzzy
+msgid "Height :"
 msgstr "altezza :"
 
 #: ../data/messages:9
@@ -156,8 +157,8 @@ msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
-"Compiz a : (name=cairo-dock & type=utility)"
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+"di Compiz a : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"

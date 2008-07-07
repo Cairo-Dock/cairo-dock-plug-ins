@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-19 02:21+0200\n"
+"POT-Creation-Date: 2008-07-06 04:31+0200\n"
 "PO-Revision-Date: 2008-06-25 19:12+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:61
+#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:65
 msgid "None"
 msgstr "Nessun Segnale"
 
@@ -63,11 +63,11 @@ msgstr ""
 "Questa è l'applet wifi\n"
 " scritta da ChAnGFu per Cairo-Dock"
 
-#: ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:51
 msgid "Check for Wireless Extension"
 msgstr "Verifica dell'Estensione Wifi"
 
-#: ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:53
 msgid "Network Administration"
 msgstr "Amministrazione della Rete"
 
@@ -142,8 +142,8 @@ msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
-"Compiz a : (name=cairo-dock & type=utility)"
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+"di Compiz a : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -162,7 +162,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:37 ../data/messages:63
+#: ../data/messages:37
 msgid "Configuration"
 msgstr "Configurazione"
 
@@ -195,71 +195,81 @@ msgid "Delay between signal checks :"
 msgstr "Ritardo tra le verifiche del segnale :"
 
 #: ../data/messages:55
+msgid ""
+"Allow you to overwrite applet's default command line and launch you wireless "
+"configuration interface."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Alternative command line to launch Wireless Configuration :"
+msgstr ""
+
+#: ../data/messages:59
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "Effect to apply on the icon according to strength :"
 msgstr "Effetti da attivare all'icona in base alla forza :"
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "Transparency"
 msgstr "Trasparenza"
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "Draw Bar"
 msgstr "Disegnare una barra"
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Use a jauge instead of icons?"
 msgstr "Utilizzare una barra al posto delle icone?"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "List of available themes for the analogic display :"
 msgstr "Lista dei temi disponibili per la vista analogica :"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "radium"
 msgstr "radium"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Images"
 msgstr "Immagini"
 
-#: ../data/messages:77 ../data/messages:81 ../data/messages:85
-#: ../data/messages:89 ../data/messages:93 ../data/messages:97
+#: ../data/messages:81 ../data/messages:85 ../data/messages:89
+#: ../data/messages:93 ../data/messages:97 ../data/messages:101
 msgid "Let it empty to use the default icon."
 msgstr "Lasciate vuoto per utilizzare l'icona di default."
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Immagine dell'icona 'Nessun Segnale' :"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Immagine dell'icona 'Molto Basso' :"
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Name of an image for the 'low' icon :"
 msgstr "Immagine dell'icona 'Basso' :"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Immagine dell'icona 'Normale' :"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Name of an image for the 'good' icon :"
 msgstr "Immagine dell'icona 'Buono' :"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Immagine dell'icona 'Eccellente' :"
 

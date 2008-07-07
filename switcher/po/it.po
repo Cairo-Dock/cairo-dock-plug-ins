@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-18 10:10+0200\n"
+"POT-Creation-Date: 2008-07-06 04:40+0200\n"
 "PO-Revision-Date: 2008-06-25 17:28+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -27,7 +27,8 @@ msgstr "Attuale"
 msgid ""
 "This is the switcher applet\n"
 " made by Cchumi for Cairo-Dock"
-msgstr "Questa è l'applet switcher\n"
+msgstr ""
+"Questa è l'applet switcher\n"
 " scritta da Cchumi per Cairo-Dock"
 
 #: ../src/applet-notifications.c:82
@@ -79,15 +80,18 @@ msgid "Desklet's position (x ; y) :"
 msgstr "Posizione della desklet (x ; y) :"
 
 #: ../data/messages:21
-msgid "Is detached from the dock ?"
+#, fuzzy
+msgid "Is detached ?"
 msgstr "E' staccata dalla barra ?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
+#, fuzzy
+msgid "Keep below ?"
 msgstr "Mantenere al di sotto delle altre finestre ?"
 
 #: ../data/messages:25
-msgid "Keep above other windows ?"
+#, fuzzy
+msgid "Keep above ?"
 msgstr "Mantenere al di sopra delle altre finestre ?"
 
 #: ../data/messages:27
@@ -116,8 +120,8 @@ msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
 msgstr ""
-"Tutti i desktop saranno disegnati nell'icona principale. Altrimenti una "
-"sub-dock conterrà tutti i desktop."
+"Tutti i desktop saranno disegnati nell'icona principale. Altrimenti una sub-"
+"dock conterrà tutti i desktop."
 
 #: ../data/messages:39
 msgid "Use the compact mode ?"
@@ -125,8 +129,9 @@ msgstr "Usare il modo compatto ?"
 
 #: ../data/messages:41
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
-msgstr "Se disegnata in modo compatto, cercare di mantenere il rapporto "
-"dello schermo ?"
+msgstr ""
+"Se disegnata in modo compatto, cercare di mantenere il rapporto dello "
+"schermo ?"
 
 #: ../data/messages:43
 msgid "Map the wallpaper on icon ?"
@@ -166,30 +171,45 @@ msgid "Color of the current desktop :"
 msgstr "Colore del desktop attuale :"
 
 #: ../data/messages:65
-msgid "Otherwise only its border will be filled."
-msgstr "Altrimenti solo i suoi bordi saranno riempiti."
+#, fuzzy
+msgid "How to draw the current desktop :"
+msgstr "Colore del desktop attuale :"
 
 #: ../data/messages:67
-msgid "Fill the current desktop with this color ?"
-msgstr "Riempire il desktop attuale con questo colore ?"
+msgid "draw a frame"
+msgstr ""
 
 #: ../data/messages:69
+msgid "fill"
+msgstr ""
+
+#: ../data/messages:71
+msgid "fill others"
+msgstr ""
+
+#: ../data/messages:73
 msgid "Let empty to use the default one."
 msgstr "Lasciare vuoto per utilizzare quella di default."
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Icon to use if you don't map the wallpaper :"
 msgstr "Iocna da usare se non tracciate il wallpaper"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciare vuoto per utilizzare la vista di default della sub-dock."
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
-#: ../data/messages:77
+#: ../data/messages:81
 #, fuzzy
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "Se in modo esteso, rendere la desklet in 3D ?"
+
+#~ msgid "Otherwise only its border will be filled."
+#~ msgstr "Altrimenti solo i suoi bordi saranno riempiti."
+
+#~ msgid "Fill the current desktop with this color ?"
+#~ msgstr "Riempire il desktop attuale con questo colore ?"

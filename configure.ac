@@ -260,6 +260,15 @@ AC_SUBST(PACKAGE_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
 AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
 
+############# SWITCHER #################
+SWITCHER_PACKAGE="cd-switcher"
+AC_SUBST(GETTEXT_SWITCHER, "$SWITCHER_PACKAGE")
+
+AC_SUBST(VERSION_SWITCHER, "1.0.1")
+AC_SUBST(PACKAGE_SWITCHER, "$SWITCHER_PACKAGE")
+
+AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")
+
 ############# SYSTRAY #################
 SYSTRAY_PACKAGE=cd-systray
 AC_SUBST(GETTEXT_SYSTRAY, "$SYSTRAY_PACKAGE")

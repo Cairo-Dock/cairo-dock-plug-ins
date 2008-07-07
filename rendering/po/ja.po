@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-30 10:21+0200\n"
+"POT-Creation-Date: 2008-07-06 04:11+0200\n"
 "PO-Revision-Date: 2008-06-18 20:46+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -43,11 +43,11 @@ msgstr "平坦な区切り"
 msgid "Physical separator"
 msgstr "物理的な区切り"
 
-#: ../data/messages:15 ../data/messages:173
+#: ../data/messages:15
 msgid "red, blue, green, alpha"
 msgstr "赤、青、緑、アルファ"
 
-#: ../data/messages:17 ../data/messages:175
+#: ../data/messages:17
 msgid "For flat separators, you can specify their color:"
 msgstr "平坦な区切りに適用する色の指定 :"
 
@@ -105,27 +105,24 @@ msgid "Parabolic"
 msgstr "Parabolic"
 
 #: ../data/messages:39
-msgid "it's the 'a' in y=k*x^a"
-msgstr "y=k*x^a 式の 'a' に該当します。"
+msgid "The higher it is, the sooner the parabole will be curved."
+msgstr ""
 
 #: ../data/messages:41
 msgid "Curvature :"
 msgstr "湾曲率 :"
 
 #: ../data/messages:43
-msgid ""
-"not including the labels. The 'k' coef will be adjusted to preserve this "
-"ratio."
-msgstr "ラベルは含みません。この割合を保つように係数 'k' が調節されます。 "
+msgid "The parabole will be conscricted to a rectangle of this proportion."
+msgstr ""
 
 #: ../data/messages:45
 msgid "Ratio height/width :"
 msgstr "高さ/幅 の割合 :"
 
-#: ../data/messages:47 ../data/messages:65
-msgid ""
-"0 means the wave is totally flat, 1 means the wave is identical to other "
-"views."
+#: ../data/messages:47
+#, fuzzy
+msgid "0 means the wave is totally flat, 1 means the wave is maximal."
 msgstr ""
 "0 に設定すると波のうねりは完全に平坦になります。1 に設定するとうねりの大きさ"
 "は他の外観と同一になります。"
@@ -165,6 +162,14 @@ msgstr "列同士の間隔 :"
 #: ../data/messages:63
 msgid "Space between icons :"
 msgstr "アイコン同士の間隔 :"
+
+#: ../data/messages:65
+msgid ""
+"0 means the wave is totally flat, 1 means the wave is identical to other "
+"views."
+msgstr ""
+"0 に設定すると波のうねりは完全に平坦になります。1 に設定するとうねりの大きさ"
+"は他の外観と同一になります。"
 
 #: ../data/messages:69
 msgid "Number of icons on the first row :"
@@ -280,6 +285,14 @@ msgstr "カーブの振幅の割合 :"
 #, fuzzy
 msgid "Amplitude of the curve."
 msgstr "カーブの振幅の割合 :"
+
+#~ msgid "it's the 'a' in y=k*x^a"
+#~ msgstr "y=k*x^a 式の 'a' に該当します。"
+
+#~ msgid ""
+#~ "not including the labels. The 'k' coef will be adjusted to preserve this "
+#~ "ratio."
+#~ msgstr "ラベルは含みません。この割合を保つように係数 'k' が調節されます。 "
 
 #~ msgid "Use a flat separator instead of the defined separator icon ?"
 #~ msgstr "定義された区切りアイコンの代わりに平坦な区切りを使用？"

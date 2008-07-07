@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-30 10:27+0200\n"
+"POT-Creation-Date: 2008-07-06 04:40+0200\n"
 "PO-Revision-Date: 2008-06-28 12:55+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
@@ -165,32 +165,47 @@ msgid "Color of the current desktop :"
 msgstr "Couleur du bureau courant :"
 
 #: ../data/messages:65
-msgid "Otherwise only its border will be filled."
-msgstr "Sinon seulement ses bords seront remplis."
+#, fuzzy
+msgid "How to draw the current desktop :"
+msgstr "Couleur du bureau courant :"
 
 #: ../data/messages:67
-msgid "Fill the current desktop with this color ?"
-msgstr "Remplir le bureau courant avec cette couleur ?"
+msgid "draw a frame"
+msgstr ""
 
 #: ../data/messages:69
+msgid "fill"
+msgstr ""
+
+#: ../data/messages:71
+msgid "fill others"
+msgstr ""
+
+#: ../data/messages:73
 msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser l'image par défaut."
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Icon to use if you don't map the wallpaper :"
 msgstr "Icône à utiliser si vous ne dessinez pas le fond d'écran :"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut."
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la Vue utilisée "
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "En mode étendu, afficher le desklet en 3D ?"
+
+#~ msgid "Otherwise only its border will be filled."
+#~ msgstr "Sinon seulement ses bords seront remplis."
+
+#~ msgid "Fill the current desktop with this color ?"
+#~ msgstr "Remplir le bureau courant avec cette couleur ?"
 
 #~ msgid "ICON"
 #~ msgstr "ICONE"

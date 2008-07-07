@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-30 10:21+0200\n"
+"POT-Creation-Date: 2008-07-06 04:11+0200\n"
 "PO-Revision-Date: 2008-06-28 12:49+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <po@cairo-dock.org>\n"
@@ -45,11 +45,11 @@ msgstr "Séparateur plat"
 msgid "Physical separator"
 msgstr "Séparateur physique"
 
-#: ../data/messages:15 ../data/messages:173
+#: ../data/messages:15
 msgid "red, blue, green, alpha"
 msgstr "rougle, vert, bleu, alpha"
 
-#: ../data/messages:17 ../data/messages:175
+#: ../data/messages:17
 msgid "For flat separators, you can specify their color:"
 msgstr "Pour les séparateurs plats, vous pouvez spécifier leur couleur: "
 
@@ -109,29 +109,24 @@ msgid "Parabolic"
 msgstr "Parabolique"
 
 #: ../data/messages:39
-msgid "it's the 'a' in y=k*x^a"
-msgstr "C'est le 'a' de y=k*x^a"
+msgid "The higher it is, the sooner the parabole will be curved."
+msgstr ""
 
 #: ../data/messages:41
 msgid "Curvature :"
 msgstr "Courbure :"
 
 #: ../data/messages:43
-msgid ""
-"not including the labels. The 'k' coef will be adjusted to preserve this "
-"ratio."
+msgid "The parabole will be conscricted to a rectangle of this proportion."
 msgstr ""
-"n'inclue pas les étiquettes. Le coefficient 'k' sera ajusté pour préserver "
-"ce ratio."
 
 #: ../data/messages:45
 msgid "Ratio height/width :"
 msgstr "Ratio hauteur/largeur :"
 
-#: ../data/messages:47 ../data/messages:65
-msgid ""
-"0 means the wave is totally flat, 1 means the wave is identical to other "
-"views."
+#: ../data/messages:47
+#, fuzzy
+msgid "0 means the wave is totally flat, 1 means the wave is maximal."
 msgstr ""
 "0 signifie que la vague est totalement plate, 1 que la vague est identique "
 "aux autres vues."
@@ -171,6 +166,14 @@ msgstr "Espacement entre les lignes :"
 #: ../data/messages:63
 msgid "Space between icons :"
 msgstr "Espacement entre les icônes :"
+
+#: ../data/messages:65
+msgid ""
+"0 means the wave is totally flat, 1 means the wave is identical to other "
+"views."
+msgstr ""
+"0 signifie que la vague est totalement plate, 1 que la vague est identique "
+"aux autres vues."
 
 #: ../data/messages:69
 msgid "Number of icons on the first row :"
@@ -284,6 +287,16 @@ msgstr "Pourcentage de courbure :"
 #: ../data/messages:163
 msgid "Amplitude of the curve."
 msgstr "Amplitude de la courbure :"
+
+#~ msgid "it's the 'a' in y=k*x^a"
+#~ msgstr "C'est le 'a' de y=k*x^a"
+
+#~ msgid ""
+#~ "not including the labels. The 'k' coef will be adjusted to preserve this "
+#~ "ratio."
+#~ msgstr ""
+#~ "n'inclue pas les étiquettes. Le coefficient 'k' sera ajusté pour "
+#~ "préserver ce ratio."
 
 #~ msgid "Use a flat separator instead of the defined separator icon ?"
 #~ msgstr ""

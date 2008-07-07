@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-30 10:32+0200\n"
+"POT-Creation-Date: 2008-07-06 04:31+0200\n"
 "PO-Revision-Date: 2008-06-18 23:54+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:61
+#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:65
 msgid "None"
 msgstr "なし"
 
@@ -195,71 +195,81 @@ msgid "Delay between signal checks :"
 msgstr "信号チェックの間隔時間 :"
 
 #: ../data/messages:55
+msgid ""
+"Allow you to overwrite applet's default command line and launch you wireless "
+"configuration interface."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Alternative command line to launch Wireless Configuration :"
+msgstr ""
+
+#: ../data/messages:59
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "デフォルトのラベルを接続ポイント名によって上書き？"
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "Effect to apply on the icon according to strength :"
 msgstr "電波の強さに合わせてアイコンに適用する効果 :"
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "Zoom"
 msgstr "ズーム"
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "Transparency"
 msgstr "透過"
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "Draw Bar"
 msgstr "バーの描画"
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Use a jauge instead of icons?"
 msgstr "アイコンの代わりに目盛りを使用？"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示に利用可能なテーマのリスト :"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "radium"
 msgstr "radium"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Images"
 msgstr "画像"
 
-#: ../data/messages:77 ../data/messages:81 ../data/messages:85
-#: ../data/messages:89 ../data/messages:93 ../data/messages:97
+#: ../data/messages:81 ../data/messages:85 ../data/messages:89
+#: ../data/messages:93 ../data/messages:97 ../data/messages:101
 msgid "Let it empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "「信号なし」のアイコン画像の名前 :"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Name of an image for the 'very low' icon :"
 msgstr "「非常に弱い」のアイコン画像の名前 :"
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Name of an image for the 'low' icon :"
 msgstr "「弱い」のアイコン画像の名前 :"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "Name of an image for the 'middle' icon :"
 msgstr "「中程度」のアイコン画像の名前 :"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Name of an image for the 'good' icon :"
 msgstr "「良好」のアイコン画像の名前 :"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "「最高」のアイコン画像の名前 :"
 

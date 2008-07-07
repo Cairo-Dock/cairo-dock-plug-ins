@@ -7,14 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-19 02:23+0200\n"
+"POT-Creation-Date: 2008-07-06 04:37+0200\n"
 "PO-Revision-Date: 2008-06-25 02:18+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
 
 #: ../src/applet-netspeed.c:25 ../src/applet-netspeed.c:33
 msgid "B"
@@ -135,8 +134,8 @@ msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
-"Compiz a : (name=cairo-dock & type=utility)"
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+"di Compiz a : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"

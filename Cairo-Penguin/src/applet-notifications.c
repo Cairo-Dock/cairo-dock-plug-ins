@@ -167,7 +167,7 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK (gpointer *data)
 			else if (iRandom == 1 && ! myConfig.bFree)
 			{
 				cairo_dock_arm_animation (myIcon, CAIRO_DOCK_BOUNCE, 3);
-				cairo_dock_start_animation (myIcon, myContainer);
+				cairo_dock_start_animation (myIcon, myDock);
 				myData.pDialog = cairo_dock_show_temporary_dialog ("Olllééééé !", myIcon, myContainer, 2500);
 			}
 			else

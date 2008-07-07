@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-30 10:35+0200\n"
+"POT-Creation-Date: 2008-07-06 04:29+0200\n"
 "PO-Revision-Date: 2008-05-23 08:53+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
@@ -208,98 +208,109 @@ msgid "Activate extended desklet mode ?"
 msgstr "Activer le mode desklet étendu ?"
 
 #: ../data/messages:69
+msgid "Extended display mode :"
+msgstr "Mode d'affichage étendu :"
+
+#: ../data/messages:71
+msgid "Info"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Info and Controler"
+msgstr "Info et Controleur"
+
+#: ../data/messages:75
+msgid "Caroussel"
+msgstr ""
+
+#: ../data/messages:77
+msgid "Controler"
+msgstr "Controleur"
+
+#: ../data/messages:79
 msgid "Action on music change"
 msgstr "Action au changement de musique"
 
-#: ../data/messages:71
+#: ../data/messages:81
 msgid "Show an info-bubble ?"
 msgstr "Montrer une info-bulle ?"
 
-#: ../data/messages:73
+#: ../data/messages:83
 msgid "With a icon ?"
 msgstr "Avec une icône ?"
 
-#: ../data/messages:75
+#: ../data/messages:85
 msgid "in ms."
 msgstr "en ms."
 
-#: ../data/messages:77
+#: ../data/messages:87
 msgid "Time length of info-bubbles :"
 msgstr "Durée des info-bulles :"
 
-#: ../data/messages:79
+#: ../data/messages:89
 msgid "Animate icon ?"
 msgstr "Animer l'icône ?"
 
-#: ../data/messages:81
+#: ../data/messages:91
 msgid "Animation when music changes :"
 msgstr "Animation au changement de musique"
 
-#: ../data/messages:83
+#: ../data/messages:93
 msgid "bounce"
 msgstr "Rebond"
 
-#: ../data/messages:85
+#: ../data/messages:95
 msgid "rotate"
 msgstr "Rotation"
 
-#: ../data/messages:87
+#: ../data/messages:97
 msgid "blink"
 msgstr "Clignotement"
 
-#: ../data/messages:89
+#: ../data/messages:99
 msgid "pulse"
 msgstr "Pulsation"
 
-#: ../data/messages:91
+#: ../data/messages:101
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
-#: ../data/messages:93
+#: ../data/messages:103
 msgid "wobbly"
 msgstr "Élastique"
 
-#: ../data/messages:95
+#: ../data/messages:105
 msgid "random"
 msgstr "Aléatoire"
 
-#: ../data/messages:97
+#: ../data/messages:107
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:99 ../data/messages:103 ../data/messages:107
-#: ../data/messages:111 ../data/messages:115
+#: ../data/messages:109 ../data/messages:113 ../data/messages:117
+#: ../data/messages:121 ../data/messages:125
 msgid "Let it empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
-#: ../data/messages:101
+#: ../data/messages:111
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
-#: ../data/messages:105
+#: ../data/messages:115
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom de l'image 'Jouer' :"
 
-#: ../data/messages:109
+#: ../data/messages:119
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom de l'image 'Stop' :"
 
-#: ../data/messages:113
+#: ../data/messages:123
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom de l'image 'Pause' :"
 
-#: ../data/messages:117
+#: ../data/messages:127
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Pas de Signal': "
-
-#~ msgid "Extended display mode :"
-#~ msgstr "Mode d'affichage étendu :"
-
-#~ msgid "Info and Controler"
-#~ msgstr "Info et Controleur"
-
-#~ msgid "Controler"
-#~ msgstr "Controleur"
 
 #~ msgid "Play/Pause"
 #~ msgstr "Jouer/Pause"

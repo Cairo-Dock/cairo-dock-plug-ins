@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-19 02:21+0200\n"
+"POT-Creation-Date: 2008-07-06 04:32+0200\n"
 "PO-Revision-Date: 2008-06-24 19:23+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Configurare Compiz"
 
-#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:165
+#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:178
 msgid "Emerald Manager"
 msgstr "Gestione Emerald"
 
@@ -35,7 +35,7 @@ msgstr "Esposizione"
 msgid "Widget Layer"
 msgstr "Sezione dei Widgets"
 
-#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:26
 msgid ""
 "This is the compiz-icon applet\n"
 " made by ChAnGFu for Cairo-Dock"
@@ -43,27 +43,27 @@ msgstr ""
 "Questa è l'applet compiz-icon\n"
 " scritta da ChAnGFu per Cairo-Dock"
 
-#: ../src/applet-notifications.c:166
+#: ../src/applet-notifications.c:179
 msgid "Reload Emerald"
 msgstr "Ricaricare Emerald"
 
-#: ../src/applet-notifications.c:170
+#: ../src/applet-notifications.c:183
 msgid "Switch Windows Manager"
 msgstr "Cambiare Gestore delle Finestre"
 
-#: ../src/applet-notifications.c:171
+#: ../src/applet-notifications.c:184
 msgid "Switch Windows Decorator"
 msgstr "Cambiare il Decoratore delle Finestre"
 
-#: ../src/applet-notifications.c:180
+#: ../src/applet-notifications.c:193
 msgid "Toggle Exposition Mode"
 msgstr "Attivare il Modo Esposizione"
 
-#: ../src/applet-notifications.c:181
+#: ../src/applet-notifications.c:194
 msgid "Toggle Widgets Layer"
 msgstr "Attivare la Sezione dei Widgets"
 
-#: ../src/applet-notifications.c:183
+#: ../src/applet-notifications.c:196
 msgid "Toggle Show Desktop"
 msgstr "Montare Mostra Desktop"
 
@@ -134,8 +134,8 @@ msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
-"Compiz a : (name=cairo-dock & type=utility)"
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+"di Compiz a : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -219,8 +219,8 @@ msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
 msgstr ""
-"Se il decoratore si arresta in modo inatteso, Cairo-Dock lo ri-lancerà. In questo "
-"caso dovrete arrestare il decoratore dalla barra."
+"Se il decoratore si arresta in modo inatteso, Cairo-Dock lo ri-lancerà. In "
+"questo caso dovrete arrestare il decoratore dalla barra."
 
 #: ../data/messages:65
 msgid "Auto-reload the Decorator ?"
@@ -239,8 +239,8 @@ msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
 msgstr ""
-"Questo impedirà all'icona di CCSM o di Emerald di apparire nella TaskBar. "
-" Le icone della sub-dock si comporteranno come un lanciatore e "
+"Questo impedirà all'icona di CCSM o di Emerald di apparire nella TaskBar.  "
+"Le icone della sub-dock si comporteranno come un lanciatore e "
 "un'applicazione."
 
 #: ../data/messages:73
