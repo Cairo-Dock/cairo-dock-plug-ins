@@ -102,19 +102,26 @@ void cd_stacks_debug_icon (Icon *pIcon) {
 
 //A mettre en quelque part, on en aura surment besoin.
 gchar* cd_get_path_from_uri (const gchar *cURI) {
+	if (cURI == NULL)
+		return NULL;
+	
 	GError *erreur = NULL;
-	gchar *cHostName = NULL, *cPath = g_filename_from_uri (cURI, &cHostName, &erreur);
-	if (erreur != NULL) {
-		cd_warning ("Attention : %s", erreur->message);
-		g_error_free (erreur);
+	gchar *cHostName = NULL, *cPath = g_strstr_len (cURI, -1, "://");
+	if (cPath != NULL) {
+		cPath = g_filename_from_uri (cURI, &cHostName, &erreur);
+		if (erreur != NULL) {
+			cd_warning ("Attention : %s", erreur->message);
+			g_error_free (erreur);
+		}
 	}
+	else
+		cPath = cURI;
 	
 	gchar *str = strrchr (cPath, '/');
 	if (str != NULL)
 		*str = '\0';
 	
 	//cd_debug ("Path to file: %s", cPath);
-	
 	return cPath;
 }
 
@@ -157,24 +164,6 @@ void _removeUselessSeparator (void) {
 		_stacks_remove_one_icon (icon);
 }
 
-void _placeIcon (Icon *pIcon, double fOrder, int iType) {
-	pIcon->fOrder = fOrder;
-	pIcon->iType = iType;
-	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
-	pStacksIconList = g_list_remove (pStacksIconList, pIcon);
-	pStacksIconList = g_list_insert_sorted (pStacksIconList, pIcon, (GCompareFunc) cairo_dock_compare_icons_order);
-	
-	if (myDock) {
-		if (g_list_length (pStacksIconList) == 1) //Sinon on a pas l'icône qui saute joyeusement.
-			CD_APPLET_CREATE_MY_SUBDOCK (pStacksIconList, myConfig.cRenderer);
-			
-		cairo_dock_insert_icon_in_dock (pIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, FALSE);
-		cairo_dock_update_dock_size (myIcon->pSubDock);
-	}
-	else
-		gtk_widget_queue_draw (myDesklet->pWidget);
-}
-
 void _placeIconWithSeparator (Icon *pAddedIcon, double fOrder, int iType, gboolean bUseSeparator) {
 	pAddedIcon->fOrder = fOrder;
 	pAddedIcon->iType = iType;
@@ -186,7 +175,7 @@ void _placeIconWithSeparator (Icon *pAddedIcon, double fOrder, int iType, gboole
 	}
 		
 	pStacksIconList = g_list_remove (pStacksIconList, pAddedIcon);
-	pStacksIconList = g_list_append (pStacksIconList, pAddedIcon);
+	pStacksIconList = g_list_insert_sorted (pStacksIconList, pAddedIcon, (GCompareFunc) cairo_dock_compare_icons_order);
 		
 	if (myDock) {
 		if (g_list_length (pStacksIconList) == 1)  //Sinon on a pas l'icône qui saute joyeusement.
@@ -203,6 +192,7 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 	if (cURI == NULL || pAddedIcon == NULL)
 		return;
 	
+	cd_debug ("");
 	gchar *cPath = cd_get_path_from_uri (cURI); //On récupère le path vers le fichier fraichement ajouter
 	gint iType=0,i=0,j=0;
 	while (myConfig.cMonitoredDirectory[i] != NULL) { //On compare le path avec tous les dossiers de myConfig.cMonitoredDirectory
@@ -232,7 +222,7 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 	if (pStacksIconList == NULL)
 		return;
 	Icon *pPreviousIcon = NULL, *pCurrentIcon = cairo_dock_get_last_icon_of_type (pStacksIconList, iType);
-	if (pCurrentIcon == NULL) //1er fichier d'un répertoire vide.
+	if (pCurrentIcon == NULL) //1er fichier dont son répertoire est vide.
 		pCurrentIcon = cairo_dock_get_last_icon (pStacksIconList);
 	
 	if (iType == 0) { //Pas de type d'icône, on la rajoute a la fin de la liste et on ajoute un séparateur s'il le faut.
@@ -241,15 +231,15 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 		return;
 	}
 	
-	if (cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) < 0 || cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) == 0) { //Notre icône doit se placer en dernier
+	if (cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) < 0 || cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) == 0) {
 		//cd_debug ("Notre icône doit se placer en dernier");
 		if (strcmp (pCurrentIcon->cBaseURI, pAddedIcon->cBaseURI) == 0 && iType > 2) //1er icône d'un dossier vide, on rajoute un séparateur si necessaire
-			_placeIconWithSeparator (pAddedIcon, pCurrentIcon->fOrder + 1, iType, myConfig.bUseSeparator);
+			_placeIconWithSeparator (pAddedIcon, pCurrentIcon->fOrder + 0.01, iType, myConfig.bUseSeparator);
 		else
-			_placeIcon (pAddedIcon, pCurrentIcon->fOrder + 1, iType);
+			_placeIconWithSeparator (pAddedIcon, pCurrentIcon->fOrder + 0.01, iType, FALSE);
 		cd_debug ("Placed After %s", pCurrentIcon->acName);
 	}
-	else { //On boucle pour chercher devant quelle icônes elle doit être
+	else {
 		//cd_debug ("On boucle pour chercher devant quelle icônes elle doit être");
 		int iNBLoop = 0;
 		while (1) {
@@ -257,18 +247,18 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 			pCurrentIcon = cairo_dock_get_previous_icon (pStacksIconList, pCurrentIcon);
 				
 			if (pCurrentIcon == NULL) { //On a remonté toute la liste, Notre icône doit se placer en 1er
-				_placeIcon (pAddedIcon, pPreviousIcon->fOrder - 0.01, iType);
+				_placeIconWithSeparator (pAddedIcon, pPreviousIcon->fOrder - 0.01, iType, FALSE);
 				cd_debug ("Placed Before %s", pPreviousIcon->acName);
 				break;
 			}
 			else if (cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) < 0) { //Notre icône après la courante
-				_placeIcon (pAddedIcon, pCurrentIcon->fOrder + 0.01, iType);
+				_placeIconWithSeparator (pAddedIcon, pCurrentIcon->fOrder + 0.01, iType, FALSE);
 				cd_debug ("Placed After %s", pCurrentIcon->acName);
 				break;
 			}
 			
 			if (strcmp(pCurrentIcon->cBaseURI, pPreviousIcon->cBaseURI) == 0 && pCurrentIcon->fOrder == pPreviousIcon->fOrder) {
-				//En cas d'ajout en masse, l'icône est ajouter en 1er et va bloquer ici. Trouver une solution.
+				//En cas d'ajout en masse, l'icône est ajouter en 1er et va bloquer ici. TODO Trouver une solution.
 				break; //On va bouclé a l'infinie et ce n'est pas l'effet voulue
 			}
 
@@ -290,23 +280,25 @@ gboolean _reset_count_animation (void) {
 }
 
 //A optimiser comme shortcuts - C'est fait M. Fab ^^
-void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon) {
-	cd_debug("%s (%d %s)", __func__, iEventType, cURI);
+void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cRawURI, Icon *pIcon) {
+	gchar *cURI = g_strdup (cRawURI);
+	cairo_dock_remove_html_spaces (cURI);
+	cd_debug("%s (%d on %s)", __func__, iEventType, cURI);
 	
 	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
 	
-	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED) {
-		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 9); //On la rajoute
-		cd_debug ((iEventType == CAIRO_DOCK_FILE_CREATED ? "On a ajouté un fichier" : "On a modifié un fichier"));
+	if (iEventType == CAIRO_DOCK_FILE_CREATED) {
+		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 35); //On la rajoute, personne n'aura 33 dossiers listés dans son stacks
+		cd_debug ("On a ajouté un fichier");
 		Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
 		_sort_my_new_icon (cURI, pAddedIcon);
 		if (myDock && pAddedIcon != NULL) {
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
-			if (myData.iNbAnimation < 20) //Le dock n'est pas prévu pour gérer autant d'animations, au dela il freeze.
-			/// ---> pardon ???
-			//Avec > 20 icônes les animations se figent et c'est pas très jolie d'ou la limite
-			//Avec 10 j'ai juste la monté et je doit bougé la sourie dans le sous dock pour que l'animation continue
-			//L'openGL reglèrera surment ca.
+			if (myData.iNbAnimation < 20) /*Le dock n'est pas prévu pour gérer autant d'animations, au dela il freeze.
+			/ ---> pardon ???
+			Avec > 20 icônes les animations se figent et c'est pas très jolie d'ou la limite
+			Avec 10 j'ai juste la monté et je doit bougé la souris dans le sous dock pour que l'animation continue
+			L'openGL reglèrera surment ca.*/
 				cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BOUNCE, 2);
 			if (myData.iSidTimer != 0) {
 				g_source_remove (myData.iSidTimer);
@@ -316,17 +308,24 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon 
 			myData.iNbAnimation++;
 		}
 	}
+	else if (iEventType == CAIRO_DOCK_FILE_MODIFIED) { //L'icône a déja été rajouter au dock
+		cd_debug ("On a modifié un fichier");
+		Icon *pModifiedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
+		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, (pModifiedIcon != NULL ? pModifiedIcon->iType : 35)); /*Le dock se chargera tout seul de mettre a jour l'icône
+		TODO fixer le bug qui fait planter le dock quand on télécharge un fichier avec FF dans un dossier surveillé.*/
+		
+	}
 	else { 
-		cd_debug ("On a retiré un fichier");
-		Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
-		if (myDock && pAddedIcon != NULL) {
+		cd_debug ("On a retiré un fichier"); //TODO On a un petit problème avec les espaces ici.
+		Icon *pDeletedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
+		if (myDock && pDeletedIcon != NULL) {
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
-			cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BLINK, 2);
-			//Il faut attendre que l'animation se termine pour virer l'icône du sous-dock
-			g_timeout_add (1500, (GSourceFunc) _on_animation_complete, (gpointer) pAddedIcon);
+			cairo_dock_animate_icon (pDeletedIcon, myIcon->pSubDock, CAIRO_DOCK_BLINK, 2);
+			//Il faut attendre que l'animation se termine pour virer l'icône du sous-dock - 1.5sec est-ce suffisant?
+			g_timeout_add (1500, (GSourceFunc) _on_animation_complete, (gpointer) pDeletedIcon);
 		}
 		if (myDesklet)
-			_on_animation_complete (pAddedIcon);
+			_on_animation_complete (pDeletedIcon);
 	}
 	
 	myData.iIconOrder = 1; //On rétablie le fOrdre normal des icônes (de 1 en 1)
