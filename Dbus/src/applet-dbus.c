@@ -79,7 +79,7 @@ gboolean cd_dbus_callback_show_desklet(dbusCallback *pDbusCallback, gboolean *wi
 	}
 	else
 	{
-		dbus_xLastActiveWindow = cairo_dock_get_active_window ();
+		dbus_xLastActiveWindow = cairo_dock_get_current_active_window ();
 		cairo_dock_set_all_desklets_visible (widgetLayer != NULL ? *widgetLayer : FALSE);
 	}
 	dbus_deskletVisible = !dbus_deskletVisible;
