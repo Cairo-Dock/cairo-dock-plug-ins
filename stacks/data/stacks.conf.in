@@ -66,7 +66,7 @@ directory = _LocalDirectory_;/
 #{This option with large files lists can slow down the dock, use it properly.}
 hidden = false
 #b Separate different directories with separators ?
-use separator = true
+use separator = false
 
 #b Filter files with their mime types ?
 #{This options allow you to avoid some files to be displayed in the stacks considering their types (video, images, etc...)}

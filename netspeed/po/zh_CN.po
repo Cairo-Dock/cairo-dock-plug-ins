@@ -7,53 +7,63 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-23 14:22+0800\n"
-"PO-Revision-Date: 2008-06-23 14:22+0800\n"
+"POT-Creation-Date: 2008-07-08 13:22+0800\n"
+"PO-Revision-Date: 2008-07-08 13:47+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
-"Language-Team: Simplified Chinese <biaji.cn@gmail.com>>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:43 ../src/applet-cpusage.c:48
-msgid "day(s)"
-msgstr "日"
+#: ../src/applet-netspeed.c:25 ../src/applet-netspeed.c:33
+msgid "B"
+msgstr "B"
 
-#: ../src/applet-cpusage.c:197
+#: ../src/applet-netspeed.c:41
+msgid "KB"
+msgstr "KB"
+
+#: ../src/applet-netspeed.c:49 ../src/applet-notifications.c:19
+msgid "MB"
+msgstr "MB"
+
+#: ../src/applet-netspeed.c:57
+msgid "GB"
+msgstr "GB"
+
+#: ../src/applet-netspeed.c:65
+msgid "TB"
+msgstr "TB"
+
+#: ../src/applet-netspeed.c:161
 msgid "Loading"
 msgstr "载入"
 
-#: ../src/applet-notifications.c:12
+#: ../src/applet-notifications.c:11
 msgid ""
-"This is the cpusage applet\n"
+"This is the netspeed applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
+msgstr "这是由parAdOxxx_ZeRo为Cairo-Dock编写的netspeed小应用程序"
+
+#: ../src/applet-notifications.c:19
+#, c-format
+msgid ""
+"Total amount of data :\n"
+"  downloaded : %.2f%s\n"
+"  uploaded : %.2f%s"
 msgstr ""
-"这是显示CPU占有率的小应用程序\n"
-"由parAdOxxx_ZeRo为Cairo-Dock制作。"
+"数据总量：\n"
+"  下载：%.2f%s\n"
+"  上传：%.2f%s"
 
-#: ../src/applet-notifications.c:109 ../src/applet-notifications.c:127
-msgid "Data acquisition has failed"
-msgstr "数据采集失败"
+#: ../src/applet-notifications.c:22
+#, c-format
+msgid "Interface '%s' seems to not exist or is not readable"
+msgstr "网卡'%s'不存在或不可用"
 
-#: ../src/applet-notifications.c:122
-msgid "Model Name"
-msgstr "模型名"
-
-#: ../src/applet-notifications.c:122
-msgid "Frequency"
-msgstr "频率"
-
-#: ../src/applet-notifications.c:122
-msgid "core(s)"
-msgstr "核"
-
-#: ../src/applet-notifications.c:122
-msgid "Up time"
-msgstr "运行时间"
-
-#: ../src/applet-notifications.c:122
-msgid "Activity time"
-msgstr "活动时间"
+#: ../src/applet-notifications.c:33
+msgid "Re-check interface"
+msgstr "重新检查网卡"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -87,9 +97,7 @@ msgstr "桌面应用程序"
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖"
-"于您的桌面管理器"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理器"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -119,9 +127,7 @@ msgstr "窗口置顶？"
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr ""
-"面向CompizFusion的“小应用程序层”，将Compiz的行为设置"
-"为：(name=cairo-dock & type=utility) "
+msgstr "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -131,33 +137,31 @@ msgstr "保持于小应用程序层？"
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移"
-"动。"
+msgstr "锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr "锁定位置？"
 
-#: ../data/messages:37 ../data/messages:61
+#: ../data/messages:37
 msgid "Configuration"
 msgstr "配置"
 
 #: ../data/messages:39
-msgid "Display"
-msgstr "显示"
+msgid "By default it will be 'eth0'."
+msgstr "默认为“eth0”。"
 
 #: ../data/messages:41
-msgid "List of available themes for the analogic display :"
-msgstr "模拟显示模式的主题列表："
+msgid "interface :"
+msgstr "网卡："
 
 #: ../data/messages:43
-msgid "turbo-night-fuel"
-msgstr "夜色油量表"
+msgid "Information"
+msgstr "信息"
 
 #: ../data/messages:45
-msgid "Display CPU usage values :"
-msgstr "显示CPU占用值："
+msgid "Display speed values :"
+msgstr "显示速度值："
 
 #: ../data/messages:47
 msgid "No"
@@ -172,57 +176,28 @@ msgid "On label"
 msgstr "在标签上"
 
 #: ../data/messages:53
-msgid "It's the first color of the gradation used to write the top list."
-msgstr "用于显示CPU占有率列表的渐变色的第一种颜色。"
+msgid "List of available themes for the analogic display :"
+msgstr "模拟显示所用的主题列表"
 
 #: ../data/messages:55
-msgid "Start color of the top list :"
-msgstr "top列表的起始颜色："
+msgid "in seconds."
+msgstr "以秒为单位"
 
 #: ../data/messages:57
-msgid "It's the second color of the gradation used to write the top list."
-msgstr "用于显示CPU占有率列表的渐变色的第二种颜色。"
-
-#: ../data/messages:59
-msgid "Stop color of the top list :"
-msgstr "top列表的结束颜色："
-
-#: ../data/messages:63 ../data/messages:71
-msgid "in seconds."
-msgstr "以秒为单位。"
-
-#: ../data/messages:65
-msgid "Delay between refresh :"
-msgstr "刷新间歇："
-
-#: ../data/messages:67
-msgid ""
-"When you left-click on the icon, you will get the list of the N most CPU-"
-"using programs."
-msgstr "左击图标时,将显示您指定数目的CPU占有率最高的程序的列表"
-
-#: ../data/messages:69
-msgid "Number of programs to display in the top list :"
-msgstr "top列表上显示的程序数目："
-
-#: ../data/messages:73
-msgid "Delay between refresh of the top list :"
-msgstr "top列表刷新间歇："
+msgid "Delay between 2 measures :"
+msgstr "两次取值间歇："
 
 #~ msgid "Module"
-#~ msgstr "模块"
+#~ msgstr "Modulo"
 
 #~ msgid "Icon's name :"
-#~ msgstr ""
-
-#~ msgid "Information"
-#~ msgstr "Information"
+#~ msgstr "Nome dell'icona :"
 
 #~ msgid "Information to display on the icon :"
-#~ msgstr "Information a afficher sur l'icon :"
+#~ msgstr "Informazione da mostrare sull'icona :"
 
 #~ msgid "Waiting"
-#~ msgstr "Waiting"
+#~ msgstr "Attendere..."
 
 #~ msgid "Personnalisation"
 #~ msgstr "Personnalisation"
@@ -231,13 +206,22 @@ msgstr "top列表刷新间歇："
 #~ msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #~ msgid "Delay between signal checks :"
-#~ msgstr "Ecart entre 2 vérifications :"
+#~ msgstr "Intervalle entre chaque vérification du signal :"
 
 #~ msgid "Debug"
 #~ msgstr "Debug"
 
 #~ msgid "in milliseconds."
 #~ msgstr "en millisecondes."
+
+#~ msgid ""
+#~ "Total amount of data :\n"
+#~ "  downloaded : %.2fKB\n"
+#~ "  uploaded : %.2fKB"
+#~ msgstr ""
+#~ "Quantité total de données :\n"
+#~ "  Down : %.2fKo\n"
+#~ " Up : %.2fKo"
 
 #~ msgid "Lockposition ?"
 #~ msgstr "Verrouiller la position ?"

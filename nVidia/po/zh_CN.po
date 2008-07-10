@@ -1,0 +1,240 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-07-02 11:16+0800\\\n"
+"PO-Revision-Date: 2008-07-03 12:44+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-draw.c:79
+msgid "GPU Name:"
+msgstr "GPU名称："
+
+#: ../src/applet-draw.c:79
+msgid "Video Ram:"
+msgstr "显存："
+
+#: ../src/applet-draw.c:79
+msgid "Driver Version:"
+msgstr "驱动版本："
+
+#: ../src/applet-draw.c:79 ../src/applet-draw.c:95
+msgid "Core Temparature:"
+msgstr "核心温度："
+
+#: ../src/applet-draw.c:84
+msgid ""
+"nVidia \n"
+"Your version of 'nvidia-settings' is too old\n"
+" You need at least the 1.0.0 version"
+msgstr ""
+"nVidia\n"
+"您的'nvidia-settings'版本过低\n"
+"您需要至少1.0.0的版本"
+
+#: ../src/applet-draw.c:87
+msgid ""
+"nVidia \n"
+"Couldn't acquire GPU temperature\n"
+" is 'nvidia-settings' installed on your system\n"
+" and configured to monitor GPU temperature ?"
+msgstr ""
+"nVidia \n"
+"无法获取GPU温度\n"
+"您确定'nvidia-settings'已经安装并开启了监视GPU温度的选项了么？"
+
+#: ../src/applet-draw.c:95
+msgid "Alert!"
+msgstr "警告！"
+
+#: ../src/applet-draw.c:95
+msgid "passed alert temperature level"
+msgstr "报警温度等级"
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the nVidia applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr "这是由ChAnGFu为Cairo-Dock制作的nVidia小应用程序"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "图标"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "此小应用程序期望的图标大小"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "宽："
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高："
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "显现于dock之上的图标标签名称："
+
+#: ../data/messages:11
+msgid "Icon's name :"
+msgstr "图标名称："
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr "归属于dock的名称："
+
+#: ../data/messages:15
+msgid "Desklet"
+msgstr "桌面应用程序"
+
+#: ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理器"
+
+#: ../data/messages:19
+msgid "Desklet's dimension (width x height) :"
+msgstr "桌面小程序尺寸（宽x高）："
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
+msgstr "桌面小应用程序位置(x ; y)："
+
+#: ../data/messages:25
+msgid "Is detached from the dock ?"
+msgstr "从dock移开？"
+
+#: ../data/messages:27
+msgid "Keep below other windows ?"
+msgstr "位于最下窗口？"
+
+#: ../data/messages:29
+msgid "Keep above other windows ?"
+msgstr "窗口置顶？"
+
+#: ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
+
+#: ../data/messages:33
+msgid "Keep on widget layer ?"
+msgstr "保持于小应用程序层？"
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr "锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr "锁定位置？"
+
+#: ../data/messages:39
+msgid "Configuration"
+msgstr "配置"
+
+#: ../data/messages:41
+msgid "Informations"
+msgstr "信息"
+
+#: ../data/messages:43
+msgid "Display Card name on the Label ?"
+msgstr "标签上显示显卡名称"
+
+#: ../data/messages:45
+msgid "Display core temperature :"
+msgstr "显示核心温度："
+
+#: ../data/messages:47
+msgid "no"
+msgstr "否"
+
+#: ../data/messages:49
+msgid "on quickinfo"
+msgstr "在快速信息上"
+
+#: ../data/messages:51
+msgid "on label"
+msgstr "在标签上"
+
+#: ../data/messages:53
+msgid "in seconds."
+msgstr "以秒为单位。"
+
+#: ../data/messages:55
+msgid "Delay between temperature checks :"
+msgstr "温度检查延迟间隔："
+
+#: ../data/messages:57 ../data/messages:61 ../data/messages:67
+msgid "in celcius."
+msgstr "以摄氏度为单位"
+
+#: ../data/messages:59
+msgid "Lower limit of core temperature :"
+msgstr "核心温度下限："
+
+#: ../data/messages:63
+msgid "Upper limit of core temperature :"
+msgstr "核心温度上限："
+
+#: ../data/messages:65
+msgid "Alert when core temperature is high ?"
+msgstr "当核心温度过高时报警？"
+
+#: ../data/messages:69
+msgid "Alert limit of core temperature :"
+msgstr "核心温度报警门限："
+
+#: ../data/messages:71
+msgid "Play a sound during the alert ?"
+msgstr "报警时播放声音？"
+
+#: ../data/messages:73
+msgid "Sound path :"
+msgstr "声音路径："
+
+#: ../data/messages:75
+msgid "Images"
+msgstr "图像"
+
+#: ../data/messages:77
+msgid "List of available themes for the analogic display :"
+msgstr "模拟显示能够使用的主题列表："
+
+#: ../data/messages:79
+msgid "radium"
+msgstr "辐射"
+
+#: ../data/messages:81
+msgid "Let it empty to use the default icon."
+msgstr "留空以使用默认图标。"
+
+#: ../data/messages:83
+msgid "Name of an image for the 'broken' icon :"
+msgstr "“破损”图标的图形文件名称："
+
+#~ msgid "Module"
+#~ msgstr "Module"
+
+#~ msgid "on icon"
+#~ msgstr "sur l'icône"

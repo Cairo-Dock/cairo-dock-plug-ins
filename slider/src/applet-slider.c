@@ -722,7 +722,7 @@ gboolean cd_slider_shrink_down (void) {
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
-	if (myData.fAnimAlpha <= .99) {
+	if (myData.fAnimAlpha <= 1.01) {
 		if (myData.iTimerID == 0)
 			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
 		myData.iAnimTimerID = 0;

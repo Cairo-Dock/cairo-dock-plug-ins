@@ -1,0 +1,295 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-07-08 13:22+0800\n"
+"PO-Revision-Date: 2008-07-08 15:12+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/messages:1
+msgid "Inclinated Plane"
+msgstr "斜板"
+
+#: ../data/messages:3
+msgid "The lower, the more the point of view is low on the plane."
+msgstr "越低，则视点相对于板平面越低。"
+
+#: ../data/messages:5
+msgid "Height of the vanishing point :"
+msgstr "消失点高度："
+
+#: ../data/messages:7 ../data/messages:165
+msgid "Choose the way separators are drawn :"
+msgstr "选择间隔的绘制方式："
+
+#: ../data/messages:9 ../data/messages:167
+msgid "Normal separator"
+msgstr "普通间隔"
+
+#: ../data/messages:11 ../data/messages:169
+msgid "Flat separator"
+msgstr "平间隔"
+
+#: ../data/messages:13 ../data/messages:171
+msgid "Physical separator"
+msgstr "物理间隔"
+
+#: ../data/messages:15
+msgid "red, blue, green, alpha"
+msgstr "红，蓝，绿，alpha"
+
+#: ../data/messages:17
+msgid "For flat separators, you can specify their color:"
+msgstr "您可以指定平间隔的颜色："
+
+#: ../data/messages:19
+msgid "Caroussel"
+msgstr "链子"
+
+#: ../data/messages:21
+msgid ""
+"In degrees, regarding the vertical position. It's a sort of inclination of "
+"the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+"the plane is not inclined at all (vertical)."
+msgstr "相对于垂直位置，以角度为单位。这是一种水平方向的斜度，以造成3D效果。所以如果设为0则意味着板面无倾斜（垂直）"
+
+#: ../data/messages:23
+msgid "Inclination of the plane :"
+msgstr "平板斜度"
+
+#: ../data/messages:25
+msgid ""
+"0.5 means the dock is half-folded, so half the icons are on the foreground, "
+"and half are on the background."
+msgstr "0.5意味着半折叠，于是图标的一半位于前景，一半位于背景"
+
+#: ../data/messages:27
+msgid "Percentage of the dock's width that appears on the foreground :"
+msgstr "显示于前景的dock的宽度的百分比："
+
+#: ../data/messages:29
+msgid ""
+"The greater, the deeper. It is in fact the gap between background icons' "
+"bottom and foreground icons' top (in pixels)."
+msgstr "取值越大越深。这其实是背景图标的底部和前景图标的顶部之间的间隔（以点为单位）"
+
+#: ../data/messages:31
+msgid "Depth of the plane :"
+msgstr "板深度："
+
+#: ../data/messages:33
+#, fuzzy
+msgid "otherwise they will turn."
+msgstr "否则它们会翻转。"
+
+#: ../data/messages:35
+#, fuzzy
+msgid "Always show icons' face ?"
+msgstr "总是显示图标？"
+
+#: ../data/messages:37
+msgid "Parabolic"
+msgstr "抛物线"
+
+#: ../data/messages:39
+msgid "The higher it is, the sooner the parabole will be curved."
+msgstr "取值越高，抛物线越陡"
+
+#: ../data/messages:41
+msgid "Curvature :"
+msgstr "弧度："
+
+#: ../data/messages:43
+#, fuzzy
+msgid "The parabole will be conscricted to a rectangle of this proportion."
+msgstr "抛物线将受限于此比例"
+
+#: ../data/messages:45
+msgid "Ratio height/width :"
+msgstr "高宽比："
+
+#: ../data/messages:47
+msgid "0 means the wave is totally flat, 1 means the wave is maximal."
+msgstr "0意味着无波，1意味着大波。"
+
+#: ../data/messages:49 ../data/messages:67
+msgid "Magnitude of the wave :"
+msgstr "波幅："
+
+#: ../data/messages:51 ../data/messages:161
+msgid "in pixels."
+msgstr "以点为单位。"
+
+#: ../data/messages:53
+msgid "Space between icons and their label :"
+msgstr "图标及其标签之间的空隙："
+
+#: ../data/messages:55
+msgid ""
+"It may recquire more CPU during the unfolding animation, except if you "
+"launch Cairo-Dock with Glitz."
+msgstr "这将在展开动画时消耗更多的CPU，除非您是用Glitz加载Cairo-Dock的。"
+
+#: ../data/messages:57
+msgid "Draw labels while unfolding ?"
+msgstr "展开时绘制标签"
+
+#: ../data/messages:59
+msgid "Rainbow"
+msgstr "彩虹"
+
+#: ../data/messages:61 ../data/messages:79 ../data/messages:119
+msgid "Space between rows :"
+msgstr "行间隔："
+
+#: ../data/messages:63
+msgid "Space between icons :"
+msgstr "图标间隔："
+
+#: ../data/messages:65
+#, fuzzy
+msgid ""
+"0 means the wave is totally flat, 1 means the wave is identical to other "
+"views."
+msgstr "0意味着平波，1意味着与其它视图一样"
+
+#: ../data/messages:69
+msgid "Number of icons on the first row :"
+msgstr "第一行的图标数："
+
+#: ../data/messages:71
+msgid ""
+"in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+"widely opened."
+msgstr "以角度为单位，取值越小则锥体越窄。180°意味着圆锥是完全开放的。"
+
+#: ../data/messages:73
+msgid "Cone's width :"
+msgstr "锥形宽度："
+
+#: ../data/messages:75
+msgid "Slide"
+msgstr "滑动"
+
+#: ../data/messages:77 ../data/messages:117
+msgid "Space between columns :"
+msgstr "列间隙："
+
+#: ../data/messages:81 ../data/messages:121
+msgid "Max size of icons :"
+msgstr "图标最大尺寸："
+
+#: ../data/messages:83 ../data/messages:123
+msgid "Sinusoidal wave radius :"
+msgstr "正弦曲线半径："
+
+#: ../data/messages:85 ../data/messages:125
+#, fuzzy
+msgid "Use a linear wave rather than a sinusoidal one ?"
+msgstr "使用线性波替代正弦曲线？"
+
+#: ../data/messages:87 ../data/messages:127
+#, fuzzy
+msgid "Use a wide shape ?"
+msgstr "使用宽的形状？"
+
+#: ../data/messages:89 ../data/messages:129
+msgid "Display text only for pointed icon ?"
+msgstr "仅为指向的图标显示文本？"
+
+#: ../data/messages:91 ../data/messages:131
+msgid "Display text for all icons ?"
+msgstr "为所有图标显示文本？"
+
+#: ../data/messages:93 ../data/messages:133
+msgid "Draw a background ?"
+msgstr "绘制背景？"
+
+#: ../data/messages:95 ../data/messages:135
+msgid "First gradient color (r,v,b,a) :"
+msgstr "第一种渐变颜色（红，绿，蓝，透明）："
+
+#: ../data/messages:97 ../data/messages:137
+msgid "Second gradient color (r,v,b,a) :"
+msgstr "第二种渐变颜色（红，绿，蓝，透明）："
+
+#: ../data/messages:99 ../data/messages:139
+msgid "Top to bottom gradient ?"
+msgstr "由上至下渐变？"
+
+#: ../data/messages:101 ../data/messages:141
+msgid "Left to right gradient ?"
+msgstr "由左至右渐变？"
+
+#: ../data/messages:103 ../data/messages:143
+msgid "Arrow width :"
+msgstr "箭头宽度："
+
+#: ../data/messages:105 ../data/messages:145
+msgid "Arrow Height :"
+msgstr "箭头高度："
+
+#: ../data/messages:107 ../data/messages:147
+msgid "Arrow shift percent :"
+msgstr "箭头变换百分比"
+
+#: ../data/messages:109 ../data/messages:149
+msgid "Corner radius :"
+msgstr "角弧度："
+
+#: ../data/messages:111 ../data/messages:151
+msgid "Border line width :"
+msgstr "边线宽度："
+
+#: ../data/messages:113 ../data/messages:153
+msgid "Border line color (r,v,b,a) :"
+msgstr "边线颜色（红，绿，蓝，透明）："
+
+#: ../data/messages:115
+msgid "SimpleSlide"
+msgstr "简单滑动"
+
+#: ../data/messages:155
+msgid "Curve"
+msgstr "曲线"
+
+#: ../data/messages:157
+msgid "The lower, the more the curve will seem flat."
+msgstr "取值越低，曲线越平。"
+
+#: ../data/messages:159
+#, fuzzy
+msgid "Curvature of the curve in percent :"
+msgstr "曲线弧度，以百分比表示："
+
+#: ../data/messages:163
+msgid "Amplitude of the curve."
+msgstr "曲线波幅。"
+
+#~ msgid "it's the 'a' in y=k*x^a"
+#~ msgstr "rappresenta 'a' in y=k*x^a"
+
+#~ msgid ""
+#~ "not including the labels. The 'k' coef will be adjusted to preserve this "
+#~ "ratio."
+#~ msgstr ""
+#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per "
+#~ "mantenere questo rapporto."
+
+#~ msgid "Use a flat separator instead of the defined separator icon ?"
+#~ msgstr "Utilizzare un separatore piatto al posto dell'icona di default ?"
+
+#~ msgid "If so, you can specify its color:"
+#~ msgstr "Se sì, precisate il suo colore:"
+
+#~ msgid "Diapo"
+#~ msgstr "Diapo"

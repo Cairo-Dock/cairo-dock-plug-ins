@@ -1,0 +1,453 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-07-02 10:16+0800\\\n"
+"PO-Revision-Date: 2008-07-03 12:31+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:26
+msgid ""
+"This is the mail applet\n"
+" made by Christophe Chapuis for Cairo-Dock"
+msgstr "这是Christophe Chapuis为Cairo-Dock开发的邮件小应用程序"
+
+#: ../src/applet-notifications.c:61
+#, c-format
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual mail application,\n"
+"you can change it in the conf panel of this module"
+msgstr ""
+"遇到问题\n"
+"如果'%s'不是您日常使用的邮件程序，您可以在此模块的配置面板中进行更改"
+
+#: ../src/applet-notifications.c:137
+msgid "Add a new mail account"
+msgstr "添加一个新邮件用户"
+
+#: ../src/applet-notifications.c:142
+msgid "Remove a mail account"
+msgstr "移除邮件用户"
+
+#: ../src/applet-notifications.c:148
+msgid "Modify a mail account"
+msgstr "编辑邮件用户"
+
+#: ../src/applet-notifications.c:169
+msgid "No unread mail in your mailboxes"
+msgstr "您的邮箱中没有未读邮件"
+
+#: ../src/mailwatch-mailbox-gmail.c:213 ../src/mailwatch-mailbox-imap.c:399
+#: ../src/mailwatch-mailbox-pop3.c:356
+msgid ""
+"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+"the panel may hang on close."
+msgstr "不能将socket设置为非阻塞模式。 如果一个连接尝试挂起， 面板会在关闭时失去反应"
+
+#: ../src/mailwatch-mailbox-gmail.c:252 ../src/mailwatch-mailbox-imap.c:438
+#: ../src/mailwatch-mailbox-pop3.c:395
+#, c-format
+msgid "Failed to connect to server: %s"
+msgstr "无法连接到服务器：%s"
+
+#: ../src/mailwatch-mailbox-gmail.c:284 ../src/mailwatch-mailbox-imap.c:470
+#: ../src/mailwatch-mailbox-pop3.c:427
+msgid ""
+"Unable to return socket to blocking mode.  Data may not be retreived "
+"correctly."
+msgstr "无法将socket置于阻塞模式，取回的数据可能会失真。"
+
+#: ../src/mailwatch-mailbox-gmail.c:315 ../src/mailwatch-mailbox-imap.c:302
+#: ../src/mailwatch-mailbox-pop3.c:266
+#, c-format
+msgid "TLS handshake failed: %s"
+msgstr "TLS握手失败：%s "
+
+#: ../src/mailwatch-mailbox-gmail.c:363
+#, c-format
+msgid ""
+"Received HTTP response code %d.  The most likely reason for this is that "
+"your GMail username or password is incorrect."
+msgstr "收到HTTP响应码：%d。 最可能的原因是您的Gmail用户名或密码错误。"
+
+#: ../src/mailwatch-mailbox-gmail.c:369
+#, c-format
+msgid ""
+"Received HTTP response code %d, which should be 200.  There may be a problem "
+"with GMail's servers, or they have incompatibly changed their authentication "
+"method or location of the new messages feed."
+msgstr "收到HTTP响应码%d，它本应是200。这可能是GMail服务器的错误，或是它们将验证方式或新邮件推送位置做了不兼容的变更。"
+
+#: ../src/mailwatch-mailbox-gmail.c:615 ../src/mailwatch-mailbox-imap.c:1742
+#: ../src/mailwatch-mailbox-pop3.c:924
+msgid "_Username:"
+msgstr "_用户名："
+
+#: ../src/mailwatch-mailbox-gmail.c:634 ../src/mailwatch-mailbox-imap.c:1761
+#: ../src/mailwatch-mailbox-pop3.c:943
+msgid "_Password:"
+msgstr "_密码："
+
+#: ../src/mailwatch-mailbox-gmail.c:654 ../src/mailwatch-mailbox-imap.c:1799
+#: ../src/mailwatch-mailbox-pop3.c:974
+msgid "Check for _new messages every"
+msgstr "检查新邮件间隔每"
+
+#: ../src/mailwatch-mailbox-gmail.c:669 ../src/mailwatch-mailbox-imap.c:1813
+#: ../src/mailwatch-mailbox-maildir.c:462 ../src/mailwatch-mailbox-mbox.c:475
+#: ../src/mailwatch-mailbox-mh.c:643 ../src/mailwatch-mailbox-pop3.c:988
+msgid "minute(s)."
+msgstr "分钟。"
+
+#: ../src/mailwatch-mailbox-gmail.c:750
+msgid "Remote GMail Mailbox"
+msgstr "移除Gmail邮箱"
+
+#: ../src/mailwatch-mailbox-gmail.c:751
+msgid ""
+"The GMail plugin can connect to Google's mail service and securely retrieve "
+"the number of new messages."
+msgstr "GMail插件可以连接至Google的邮件服务，并安全的取回您的新邮件数目。"
+
+#: ../src/mailwatch-mailbox-imap.c:254
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
+msgstr "安全IMAP方式不存在，而且IMAP服务器不支持纯文本登录。"
+
+#: ../src/mailwatch-mailbox-imap.c:335
+msgid "STARTTLS security was requested, but this server does not support it."
+msgstr "需要STARTTLS安全，但此服务器不予支持。"
+
+#: ../src/mailwatch-mailbox-imap.c:591
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgstr "缓冲区太小以致无法接收所有的IMAP响应。这是一个bug！"
+
+#: ../src/mailwatch-mailbox-imap.c:1178
+msgid "Failed to get folder list"
+msgstr "获取邮件夹失败"
+
+#: ../src/mailwatch-mailbox-imap.c:1304 ../src/mailwatch-mailbox-imap.c:1517
+msgid "Please wait..."
+msgstr "请稍候……"
+
+#: ../src/mailwatch-mailbox-imap.c:1407
+msgid "Set New Mail Folders"
+msgstr "设置新邮件夹"
+
+#: ../src/mailwatch-mailbox-imap.c:1418
+msgid "New Mail Folders"
+msgstr "新邮件夹"
+
+#: ../src/mailwatch-mailbox-imap.c:1603
+msgid "Advanced IMAP Options"
+msgstr "高级IMAP选项"
+
+#: ../src/mailwatch-mailbox-imap.c:1612 ../src/mailwatch-mailbox-pop3.c:816
+msgid "Connection"
+msgstr "连接"
+
+#: ../src/mailwatch-mailbox-imap.c:1621 ../src/mailwatch-mailbox-pop3.c:825
+msgid "Use unsecured connection"
+msgstr "使用不安全连接"
+
+#: ../src/mailwatch-mailbox-imap.c:1622 ../src/mailwatch-mailbox-pop3.c:826
+msgid "Use SSL/TLS on alternate port"
+msgstr "使用替代端口上的SSL/TLS"
+
+#: ../src/mailwatch-mailbox-imap.c:1623
+msgid "Use SSL/TLS via STARTTLS"
+msgstr "通过STARTTLS使用SSL/TLS"
+
+#: ../src/mailwatch-mailbox-imap.c:1639
+msgid "Use non-standard IMAP _port:"
+msgstr "使用非标准IMAP端口："
+
+#: ../src/mailwatch-mailbox-imap.c:1668
+msgid "Folders"
+msgstr "邮件夹"
+
+#: ../src/mailwatch-mailbox-imap.c:1676
+msgid "IMAP server _directory:"
+msgstr "IMAP服务器目录："
+
+#: ../src/mailwatch-mailbox-imap.c:1709
+msgid "IMAP Server"
+msgstr "IMAP服务器"
+
+#: ../src/mailwatch-mailbox-imap.c:1723 ../src/mailwatch-mailbox-pop3.c:905
+msgid "_Mail server:"
+msgstr "_邮件服务器："
+
+#: ../src/mailwatch-mailbox-imap.c:1781 ../src/mailwatch-mailbox-pop3.c:963
+msgid "_Advanced..."
+msgstr "_高级……"
+
+#: ../src/mailwatch-mailbox-imap.c:1788
+msgid "New mail _folders..."
+msgstr "新邮件_邮件夹……"
+
+#: ../src/mailwatch-mailbox-imap.c:1958
+msgid "Remote IMAP Mailbox"
+msgstr "远程IMAP邮箱"
+
+#: ../src/mailwatch-mailbox-imap.c:1959
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
+msgstr "IMAP插件可以连接至支持IMAP协议的远程邮件服务器，更支持SSL链接以保护数据"
+
+#: ../src/mailwatch-mailbox-maildir.c:100 ../src/mailwatch-mailbox-mbox.c:99
+#: ../src/mailwatch-mailbox-mh.c:399 ../src/mailwatch-mailbox-mh.c:410
+#, c-format
+msgid "Failed to get status of file %s: %s"
+msgstr "获取文件 %s: %s 状态失败"
+
+#: ../src/mailwatch-mailbox-maildir.c:109
+#, c-format
+msgid "%s is not a directory. Is %s really a valid maildir?"
+msgstr "%s 不是一个目录。%s真的是一个合法的邮件目录么？"
+
+#: ../src/mailwatch-mailbox-maildir.c:347
+msgid "Select Maildir Folder"
+msgstr "选择邮件目录"
+
+#: ../src/mailwatch-mailbox-maildir.c:410
+msgid "Maildir _Path:"
+msgstr "邮件目录_路径："
+
+#: ../src/mailwatch-mailbox-maildir.c:446 ../src/mailwatch-mailbox-mbox.c:458
+#: ../src/mailwatch-mailbox-mh.c:628
+msgid "_Interval:"
+msgstr "_间隔："
+
+#: ../src/mailwatch-mailbox-maildir.c:496
+msgid "Local Maildir Spool"
+msgstr "本地邮件目录缓冲池"
+
+#: ../src/mailwatch-mailbox-maildir.c:497
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
+msgstr "邮件目录插件用于监视一个本地邮件目录格式的邮件缓冲池，以获取新邮件"
+
+#: ../src/mailwatch-mailbox-mbox.c:373
+msgid "Select mbox file"
+msgstr "选择mbox文件"
+
+#: ../src/mailwatch-mailbox-mbox.c:422
+msgid "Mbox _Filename:"
+msgstr "Mbox_文件名："
+
+#: ../src/mailwatch-mailbox-mbox.c:500
+msgid "Local Mbox spool"
+msgstr "本地Mbox缓冲池"
+
+#: ../src/mailwatch-mailbox-mbox.c:501
+msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
+msgstr "Mbox插件监视一个本地mbox形态的邮件缓冲池以发现新邮件"
+
+#: ../src/mailwatch-mailbox-mh.c:248
+#, c-format
+msgid "Malformed line %s in %s ignored."
+msgstr "不规范行%s位于%s被忽略。"
+
+#: ../src/mailwatch-mailbox-mh.c:619
+msgid ""
+"The configuration of this plugin is read from\n"
+"the default mh maildir profile file ~/.mh_profile"
+msgstr "此插件的配置由默认mh邮件目录下存档文件~/.mh_profile中读取"
+
+#: ../src/mailwatch-mailbox-mh.c:669
+msgid "Local MH mail folder"
+msgstr "本地MH邮件目录"
+
+#: ../src/mailwatch-mailbox-mh.c:670
+msgid "MH plugin watches local MH folders for new mail"
+msgstr "MH插件监视本地MH目录以获取新邮件"
+
+#: ../src/mailwatch-mailbox-pop3.c:807
+msgid "Advanced POP3 Options"
+msgstr "高级POP3选项"
+
+#: ../src/mailwatch-mailbox-pop3.c:827
+msgid "Use SSL/TLS via STLS"
+msgstr "通过STLS使用SSL/TLS"
+
+#: ../src/mailwatch-mailbox-pop3.c:843
+msgid "Use non-standard POP3 _port:"
+msgstr "使用非标准POP3_端口："
+
+#: ../src/mailwatch-mailbox-pop3.c:891
+msgid "POP3 Server"
+msgstr "POP3服务器"
+
+#: ../src/mailwatch-mailbox-pop3.c:1100
+msgid "Remote POP3 Mailbox"
+msgstr "远程POP3邮箱"
+
+#: ../src/mailwatch-mailbox-pop3.c:1101
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
+msgstr "POP3插件可以连接至支持POP3协议的远程邮件服务器，并支持SSL链接保护"
+
+#: ../src/mailwatch-utils.c:245
+#, c-format
+msgid "XfceMailwatch: TLS handshake failed: %s"
+msgstr "XfceMailwatch：TLS握手失败：%s"
+
+#: ../src/mailwatch-utils.c:255
+msgid "Not compiled with SSL/TLS support"
+msgstr "编译时未加入SSL/TLS支持"
+
+#: ../src/mailwatch-utils.c:257
+msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
+msgstr "XfceMailwatch：TLS握手失败：编译时未加入SSL/TLS支持"
+
+#: ../src/mailwatch-utils.c:280 ../src/mailwatch-utils.c:333
+msgid "A secure connection was requested, but gnutls was not initialised"
+msgstr "需要安全链接，但gnutls未初始化"
+
+#: ../src/mailwatch.c:723
+msgid "This mailbox type does not require any configuration settings."
+msgstr "此邮箱类型不必进行配置"
+
+#: ../src/mailwatch.c:749
+msgid "Mailbox _Name:"
+msgstr "邮箱_名称："
+
+#: ../src/mailwatch.c:815 ../src/mailwatch.c:1013
+#, c-format
+msgid "Edit Mailbox: %s"
+msgstr "编辑邮箱：%s"
+
+#: ../src/mailwatch.c:881
+msgid "Select Mailbox Type"
+msgstr "选择邮箱类型"
+
+#: ../src/mailwatch.c:890
+msgid "Select a mailbox type.  A description of the type will appear below."
+msgstr "选择邮箱类型。类型的描述如下。"
+
+#: ../src/mailwatch.c:948
+msgid "Add New Mailbox"
+msgstr "添加新邮箱"
+
+#: ../src/mailwatch.c:1135
+msgid "Mailboxes"
+msgstr "邮箱"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "图标"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "此小应用程序期望的图标大小"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "宽："
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高："
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "显现于dock之上的图标标签名称："
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "归属于dock的名称："
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "桌面应用程序"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理器"
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "桌面小程序尺寸（宽x高）："
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "桌面小应用程序位置(x ; y)："
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "从dock移开？"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "位于最下窗口？"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "窗口置顶？"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "保持于小应用程序层？"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr "锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "锁定位置？"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "配置"
+
+#: ../data/messages:39
+msgid "Name of an image to overwrite the theme's no mail image :"
+msgstr "用于覆盖主题无新邮件的图像的图像名称："
+
+#: ../data/messages:41
+msgid "Name of an image to overwrite the theme's has mail image :"
+msgstr "用于覆盖主题有新邮件的图像的图像名称："
+
+#: ../data/messages:43
+msgid "Path to application to launch on left-click"
+msgstr "左键点击时启动的应用程序路径"
+
+#~ msgid "Module"
+#~ msgstr "Module"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nom de l'icône :"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Verrouiller la position ?"

@@ -1,0 +1,183 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-07-09 13:22+0800\n"
+"PO-Revision-Date: 2008-07-10 13:54+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:22
+msgid ""
+"This is the stacks applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr "这是ChAnGFu为Cairo-Dock编写的stacks小应用程序。"
+
+#: ../src/applet-notifications.c:37
+msgid "Reload Stacks"
+msgstr "重载Stacks"
+
+#: ../src/applet-notifications.c:38
+msgid "Clean local directory"
+msgstr "清除本地目录"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "图标"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "此小应用程序期望的图标大小"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "宽："
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高："
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "显现于dock之上的图标标签名称："
+
+#: ../data/messages:11
+msgid "Icon's name :"
+msgstr "图标名称："
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr "归属于dock的名称："
+
+#: ../data/messages:15
+msgid "Desklet"
+msgstr "桌面应用程序"
+
+#: ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理器"
+
+#: ../data/messages:19
+msgid "Desklet's dimension (width x height) :"
+msgstr "桌面小程序尺寸（宽x高）："
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
+msgstr "桌面小应用程序位置(x ; y)："
+
+#: ../data/messages:25
+msgid "Is detached from the dock ?"
+msgstr "从dock移开？"
+
+#: ../data/messages:27
+msgid "Keep below other windows ?"
+msgstr "位于最下窗口？"
+
+#: ../data/messages:29
+msgid "Keep above other windows ?"
+msgstr "窗口置顶？"
+
+#: ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
+
+#: ../data/messages:33
+msgid "Keep on widget layer ?"
+msgstr "保持于小应用程序层？"
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr "锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr "锁定位置？"
+
+#: ../data/messages:39
+msgid "Configuration"
+msgstr "配置"
+
+#: ../data/messages:41
+msgid "Directory & Options"
+msgstr "目录及选项"
+
+#: ../data/messages:43
+msgid ""
+"Stacks will act as a the shortcut applet's but with files. To add a file, "
+"just drag and drop it on the Stacks icon"
+msgstr "Stacks将表现成跟快捷方式小应用程序一样。如果想添加一个文件，您只需将它拖曳到Stacks的图标上"
+
+#: ../data/messages:45
+msgid "Use Stacks local directory ?"
+msgstr "使用Stacks本地目录："
+
+#: ../data/messages:47
+msgid "Monitored Directory :"
+msgstr "监测目录："
+
+#: ../data/messages:49
+msgid ""
+"This option with large files lists can slow down the dock, use it properly."
+msgstr "此选项在大量文件列表的情况下将降低dock的速度，请慎重使用"
+
+#: ../data/messages:51
+msgid "List hidden files ?"
+msgstr "列出隐藏文件？"
+
+#: ../data/messages:53
+msgid "Separate different directories with separators ?"
+msgstr "使用分隔条分隔不同的目录"
+
+#: ../data/messages:55
+msgid ""
+"This options allow you to avoid some files to be displayed in the stacks "
+"considering their types (video, images, etc...)"
+msgstr "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在dock上显示"
+
+#: ../data/messages:57
+msgid "Filter files with their mime types ?"
+msgstr "根据MIME类型过滤文件"
+
+#: ../data/messages:59
+msgid "Eg: image, text, video, audio, application..."
+msgstr "诸如：图片、文本、影像、音频、应用程序……"
+
+#: ../data/messages:61
+msgid "Here you can specify a list of mime types to avoid :"
+msgstr "在此指定不显示的文件MIME类型列表"
+
+#: ../data/messages:63
+msgid "Let it empty to use default sub-dock view."
+msgstr "留空则使用默认子dock视图"
+
+#: ../data/messages:65
+msgid "Name of the view used for the sub-dock :"
+msgstr "子dock使用的视图名称"
+
+#~ msgid "Module"
+#~ msgstr "モジュール"
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"

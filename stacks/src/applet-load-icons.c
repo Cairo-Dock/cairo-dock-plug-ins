@@ -299,6 +299,7 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cRawURI, Ic
 			Avec > 20 icônes les animations se figent et c'est pas très jolie d'ou la limite
 			Avec 10 j'ai juste la monté et je doit bougé la souris dans le sous dock pour que l'animation continue
 			L'openGL reglèrera surment ca.*/
+			/// oki je vois, effectivement sans acceleration materielle animer 20 icones ca devient limite.
 				cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BOUNCE, 2);
 			if (myData.iSidTimer != 0) {
 				g_source_remove (myData.iSidTimer);

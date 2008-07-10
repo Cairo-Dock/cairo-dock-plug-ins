@@ -1,0 +1,120 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-07-09 10:53+0800\n"
+"PO-Revision-Date: 2008-07-09 15:55+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:19
+msgid ""
+"This is the showDesklets applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr "这是由Fabrice Rey为Cairo-Dock制作的showDesklets小应用程序"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "图标"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "此小应用程序期望的图标大小"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "宽："
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高："
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "显现于dock之上的图标标签名称："
+
+#: ../data/messages:11
+msgid "Image name to show desklets :"
+msgstr "显示桌面小应用的图片名称："
+
+#: ../data/messages:13
+msgid "Image name to hide desklets :"
+msgstr "隐藏桌面小应用的图片名称："
+
+#: ../data/messages:15
+msgid "Name of the dock it belongs to:"
+msgstr "归属于dock的名称："
+
+#: ../data/messages:17
+msgid "Configuration"
+msgstr "设置"
+
+#: ../data/messages:19
+msgid "Show/hide desklets that are on the widget layer too ?"
+msgstr "同时显示/隐藏在桌面工具层的桌面小应用"
+
+#: ../data/messages:21
+msgid "Shortkey to show/hide the desklets :"
+msgstr "用于显示/隐藏桌面小应用的快捷键"
+
+#~ msgid "Module"
+#~ msgstr "モジュール"
+
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+#~ msgid "Desklet"
+#~ msgstr "デスクレット"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple."
+#~ msgstr ""
+#~ "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリッ"
+#~ "ク、または ALT + 左クリックでサイズ変更できます。"
+
+#~ msgid "Desklet's dimension (width x height) :"
+#~ msgstr "デスクレットの寸法（幅×高さ） :"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
+#~ "させることができます。"
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "デスクレットの位置（X ; Y） :"
+
+#~ msgid "Is detached from the dock ?"
+#~ msgstr "ドックから分離？"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(name=cairo-dock & type=utility)"
+#~ msgstr ""
+#~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
+#~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
+
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "ウィジェット・レイヤ上に表示？"

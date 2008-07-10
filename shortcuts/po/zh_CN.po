@@ -1,25 +1,34 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2007 Cairo-Dock project
+# Copyright (C) 2007-2008 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
-# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007-2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-24 12:00+0800\n"
-"PO-Revision-Date: 2008-06-24 12:00+0800\n"
+"POT-Creation-Date: 2008-07-09 10:22+0800\n"
+"PO-Revision-Date: 2008-07-09 10:51+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-bookmarks.c:123 ../src/applet-bookmarks.c:323
+#: ../src/applet-load-icons.c:59
+msgid "Unmounted"
+msgstr "卸载"
+
+#: ../src/applet-notifications.c:21
 msgid ""
-"This is a very simple logout applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr "由Fabrice Rey为Cairo-Dock制作的一个非常简单的注销小应用程序"
+"This is the shortcuts applet\n"
+" made by Fabounet for Cairo-Dock"
+msgstr "这是Fabounet为Cairo-Dock制作的Shortcuts小应用程序"
+
+#: ../src/applet-notifications.c:47
+msgid "Remove this bookmark"
+msgstr "移除此书签"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -42,91 +51,98 @@ msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "显现于dock之上的图标标签名称："
 
 #: ../data/messages:11
-msgid "Let it empty to use the default icon."
-msgstr "保持为空以使用默认图标。"
-
-#: ../data/messages:13
 msgid "Icon's name :"
 msgstr "图标名称："
 
-#: ../data/messages:15
+#: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "归属于dock的名称："
 
-#: ../data/messages:17
+#: ../data/messages:15
 msgid "Desklet"
 msgstr "桌面应用程序"
 
-#: ../data/messages:19
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖"
-"于您的桌面管理器"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理器"
 
-#: ../data/messages:21
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "桌面小程序尺寸（宽x高）："
 
-#: ../data/messages:23
+#: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
 
-#: ../data/messages:25
+#: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "桌面小应用程序位置(x ; y)："
 
-#: ../data/messages:27
+#: ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "从dock移开？"
 
-#: ../data/messages:29
+#: ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "位于最下窗口？"
 
-#: ../data/messages:31
+#: ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "窗口置顶？"
 
-#: ../data/messages:33
+#: ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr ""
-"面向CompizFusion的“小应用程序层”，将Compiz的行为设置"
-"为：(name=cairo-dock & type=utility) "
+msgstr "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
 
-#: ../data/messages:35
+#: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "保持于小应用程序层？"
 
-#: ../data/messages:37
+#: ../data/messages:35
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移"
-"动。"
+msgstr "锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
 
-#: ../data/messages:39
+#: ../data/messages:37
 msgid "Lock position ?"
 msgstr "锁定位置？"
 
+#: ../data/messages:39
+msgid "Module"
+msgstr "模块"
+
 #: ../data/messages:41
-msgid "Configuration"
-msgstr "配置"
+msgid "List drives and volumes ?"
+msgstr "列出驱动器与卷标？"
 
 #: ../data/messages:43
-msgid "Let empty to execute the default command."
-msgstr "留空以执行默认的命令。"
+msgid "List network ?"
+msgstr "列出网络？"
 
 #: ../data/messages:45
-msgid "User-defined command to execute to log-out :"
-msgstr "用户指定执行的注销命令："
+msgid "GTK bookmarks, that are used by Nautilus for exemple."
+msgstr "诸如用于Nautilus的GTK书签"
 
-#~ msgid "Module"
-#~ msgstr "Module"
+#: ../data/messages:47
+msgid "List bookmarks ?"
+msgstr "列出书签？"
+
+#: ../data/messages:49
+msgid "Separate different shortcuts with separators ?"
+msgstr "用间隔器隔开不同的快捷方式？"
+
+#: ../data/messages:51
+msgid "Let it empty to use default sub-dock view."
+msgstr "保持为空则使用默认的子dock视图"
+
+#: ../data/messages:53
+msgid "Name of the view used for the sub-dock :"
+msgstr "用于子dock的视图名称："
 
 #~ msgid "Lockposition ?"
-#~ msgstr "Verrouiller la position ?"
+#~ msgstr "锁定位置"
