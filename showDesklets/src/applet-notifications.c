@@ -28,7 +28,7 @@ static void _hide_unhide_desklets (void)
 	}
 	else
 	{
-		myData.xLastActiveWindow = cairo_dock_get_active_window ();
+		myData.xLastActiveWindow = cairo_dock_get_current_active_window ();
 		cairo_dock_set_all_desklets_visible (myConfig.bShowWidgetLayerDesklet);
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHideImage)
 	}
