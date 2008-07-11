@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[1.6.0],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[1.6.1],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -509,6 +509,13 @@ AC_CONFIG_FILES([
 	showDesktop/data/readme
 	showDesktop/data/showDesktop.conf
 	
+	switcher/Makefile
+	switcher/src/Makefile
+	switcher/po/Makefile.in
+	switcher/data/Makefile
+	switcher/data/readme
+	switcher/data/switcher.conf
+	
 	systray/Makefile
 	systray/src/Makefile
 	systray/po/Makefile.in
@@ -590,6 +597,7 @@ AC_OUTPUT([po/Makefile
 	shortcuts/po/Makefile
 	showDesklets/po/Makefile
 	showDesktop/po/Makefile
+	switcher/po/Makefile
 	systray/po/Makefile
 	terminal/po/Makefile
 	tomboy/po/Makefile

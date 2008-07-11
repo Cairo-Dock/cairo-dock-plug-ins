@@ -69,7 +69,7 @@ msgstr "%s已经卸载"
 #: ../src/applet-notifications.c:77
 #, c-format
 msgid "failed to unmount %s"
-msgstr "卸载%s失败”
+msgstr "卸载%s失败"
 
 #: ../src/applet-trashes-manager.c:386
 #, c-format
@@ -260,17 +260,3 @@ msgstr "仅用于您发现在回收站上点击后，小应用程序无法显示
 #: ../data/messages:79
 msgid "Alternative file browser used to show a trash :"
 msgstr "用于显示垃圾的替代文件浏览器："
-
-#~ msgid "in seconds"
-#~ msgstr "以秒为单位"
-
-#~ msgid "Here you can specify a list of Trash directory :"
-#~ msgstr "Ici vous pouvez spécifier une liste des répertoires de poubelle ;"
-
-#~ msgid "File browser used to show a trash :"
-#~ msgstr "Navigateur de fichier pour visualiser la poubelle ;"
-
-#~ msgid "You're about to delete all files all dustbins. Sure ?"
-#~ msgstr ""
-#~ "Vous êtes sur le point de détruire tous les fichiers de toutes les "
-#~ "poubelles. Sur ?"

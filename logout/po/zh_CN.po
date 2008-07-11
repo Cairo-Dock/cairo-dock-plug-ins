@@ -71,7 +71,7 @@ msgstr "桌面小程序尺寸（宽x高）："
 
 #: ../data/messages:23
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器"
 
 #: ../data/messages:25
 msgid "Desklet's position (x ; y) :"
