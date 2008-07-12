@@ -78,6 +78,7 @@ quick-info_type=1
 extended_mode=2
 
 #X[Simple Desklet]
+frame_simple=
 #r[Personnal;Extended 3D mode;CD box;frame with reflects;scotch;frame with scotch] Choose a decoration for the desklet mode :
 #{If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration.}
 desklet decoration = 3
@@ -120,7 +121,7 @@ change_animation=5
 
 
 #X[Personnalisation;gtk-dialog-info]
-frame_app =
+frame_perso =
 #S Name of an image for the 'default' icon :
 #{Let it empty to use the default icon.}
 default icon = 
