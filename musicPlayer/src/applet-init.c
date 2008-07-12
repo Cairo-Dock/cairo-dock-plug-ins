@@ -28,6 +28,7 @@ CD_APPLET_PRE_INIT_END*/
 
 
 static void _musciplayer_set_simple_renderer (void) {
+	cd_debug ("");
 	const gchar *cConfigName = NULL;
 	switch (myConfig.iDecoration) {
 		case MY_APPLET_PERSONNAL :
@@ -68,7 +69,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet) {
 		cd_musicplayer_add_buttons_to_desklet ();
 		if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
-			gpointer data[3] = {NULL, NULL, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
+			gpointer data[3] = {" ", " ", (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 		}
 		else if (myConfig.iExtendedMode == MY_DESKLET_CAROUSSEL || myConfig.iExtendedMode == MY_DESKLET_CONTROLER) {
@@ -139,7 +140,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (myDesklet) {
 		if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
-			gpointer data[3] = {NULL, NULL, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
+			gpointer data[3] = {" ", " ", (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 		}
 		else if (myConfig.iExtendedMode == MY_DESKLET_CAROUSSEL || myConfig.iExtendedMode == MY_DESKLET_CONTROLER) {
