@@ -1,0 +1,12 @@
+<b><u>@PACKAGE_MUSICPLAYER@ (v@VERSION_MUSICPLAYER@)</u></b>
+<u>Author</u> : <b>ChAnGFu (Rémy Robertson) - Maverique</b>
+<i>An applet dedicated to <span color='#0000FF'>control Audio Player</span>
+XMMS is fully supported,
+ For XMMS, you have to install the 'xmms-infopipe' plug-in.
+Play/Pause on left click, Next song on middle click.
+You can drag and drop songs to put them in the queue.
+Shit + mouse scroll:
+ Up play the previous sound
+ Down play the next sound
+See configuration for other options.
+Have fun!</i>

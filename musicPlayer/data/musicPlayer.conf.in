@@ -1,0 +1,138 @@
+#!en;@VERSION_MUSICPLAYER@
+
+#[gtk-about]
+[Icon]
+#F[Desired icon size for this applet]
+frame1 = 
+#i width :
+width = 32
+#i height :
+height = 32
+
+#F
+frame1_ = 
+
+#s Name of the icon as it will appear in its label in the dock :
+name = Music Player
+
+#E[] Name of the dock it belongs to:
+dock name = 
+
+order=
+
+icon = 
+
+#[gtk-convert]
+[Desklet]
+
+#i[48;256] Desklet's dimension (width x height) :
+#{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
+width=92
+#i[48;256] ...
+height=92
+
+#i Desklet's position (x ; y) :
+#{Depending on your WindowManager, you can move it with ALT + left_click}
+x position=0
+#i ...
+y position=0
+
+#b Is detached from the dock ?
+initially detached=false
+
+#b Keep below other windows ?
+keep below=false
+#b Keep above other windows ?
+keep above=false
+#b Keep on widget layer ?
+#{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
+on widget layer=false
+#b Lock position ?
+#{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
+locked =false
+
+use size=
+
+#[gtk-preferences]
+[Configuration]
+#F[Audio Player]
+frame1 =
+#E[XMMS] Player to control:
+current-player=XMMS
+
+#b Steal the player's icon from taskbar ?
+#{It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
+inhibate appli = true
+
+
+#F[Display;gtk-dnd-multiple]
+frame_disp=
+
+#b Display the cover ?
+enable_cover=true
+
+#r[Nothing;Time Elapsed;Time Left;N° of track] Information to display on the icon :
+quick-info_type=1
+
+#r[Simple;Info;Info and Controler;Caroussel;Controler] Desklet display mode :
+extended_mode=2
+
+#X[Simple Desklet]
+#r[Personnal;Extended 3D mode;CD box;frame with reflects;scotch;frame with scotch] Choose a decoration for the desklet mode :
+#{If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration.}
+desklet decoration = 3
+
+#S Background image :
+#{It's an image that will be displayed below the cover, like a frame for exemple.}
+frame =
+#e[0;1] Background tansparency :
+frame alpha = 1
+#i Left offset :
+#{It's typically the width of the left side of your frame, in pixels.}
+left offset = 0
+#i Right offset :
+top offset = 0
+#i Right offset :
+right offset = 0
+#i Right offset :
+bottom offset = 0
+#S Reflection image :
+#{It's an image that will be displayed above the cover, like a reflect for exemple.}
+reflect =
+#e[0;1] Reflection tansparency :
+reflect alpha = 1
+
+#F[Action on music change;gtk-preferences]
+frame_info=
+#b Show an info-bubble ?
+enable_dialogs=true
+#b With a icon ?
+bubble icon=false
+#i Time length of info-bubbles :
+#{in ms.}
+time_dialogs=3000
+frame_anim=
+
+#b Animate icon ?
+enable_anim=true
+#r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
+change_animation=5
+
+
+#X[Personnalisation;gtk-dialog-info]
+frame_app =
+#S Name of an image for the 'default' icon :
+#{Let it empty to use the default icon.}
+default icon = 
+#S Name of an image for the 'play' icon :
+#{Let it empty to use the default icon.}
+play icon = 
+#S Name of an image for the 'stop' icon :
+#{Let it empty to use the default icon.}
+stop icon = 
+#S Name of an image for the 'pause' icon :
+#{Let it empty to use the default icon.}
+pause icon = 
+#S Name of an image for the 'broken' icon :
+#{Let it empty to use the default icon.}
+broken icon = 
