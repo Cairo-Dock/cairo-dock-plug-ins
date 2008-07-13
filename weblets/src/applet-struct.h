@@ -12,6 +12,7 @@ typedef struct {
 	   gint iPosScrollX;
 	   gint iPosScrollY;
 	   guint iReloadTimeout;
+	   gchar **cListURI;
 	} AppletConfig;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

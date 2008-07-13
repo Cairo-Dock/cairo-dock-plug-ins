@@ -73,3 +73,7 @@ scroll y = 0
 #i Time between two page refreshes
 #{Time before reloading the weblet URI, in seconds. Zero means never reload.}
 reload timeout = 0
+
+#s99 Predefined bookmarks to show in applet's menu :
+#{Any URI accepted by firefox should work.}/
+uri list = www.cairo-dock.org;www.google.com;m.google.com/mail;about:plugins
