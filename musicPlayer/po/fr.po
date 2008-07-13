@@ -3,14 +3,12 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: http://forum.cairo-dock.org\n"
-"POT-Creation-Date: 2007-12-26 18:15+0100\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-07-13 00:47+0200\n"
 "PO-Revision-Date: 2007-12-11\n"
 "Last-Translator: ROBERTSON Rémy <changfu@cairo-dock.org>\n"
 "Language-Team: FRENCH <info@cairo-dock.org>\n"
@@ -18,31 +16,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:231
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the musicPlayer applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+
+#: ../src/applet-notifications.c:78
 msgid "Previous"
 msgstr "Précédant"
 
-#: ../src/applet-notifications.c:232
+#: ../src/applet-notifications.c:79
 msgid "Play/Pause (left-click)"
 msgstr "Jouer/Pause (clique gauche)"
 
-#: ../src/applet-notifications.c:234
+#: ../src/applet-notifications.c:82
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/applet-notifications.c:236
+#: ../src/applet-notifications.c:84
 msgid "Next (middle-click)"
 msgstr "Suivant (clique du milieu)"
 
-#: ../src/applet-notifications.c:238
+#: ../src/applet-notifications.c:87
 msgid "Show JumpBox"
 msgstr "Montrer la boite de Recherche"
 
-#: ../src/applet-notifications.c:239
+#: ../src/applet-notifications.c:90
 msgid "Toggle Shuffle"
 msgstr "Lecture Aléatoire"
 
-#: ../src/applet-notifications.c:240
+#: ../src/applet-notifications.c:93
 msgid "Toggle Repeat"
 msgstr "Répétition de la Liste"
 
@@ -148,7 +152,11 @@ msgstr "Lecteur Audio"
 msgid "Player to control:"
 msgstr "Lecteur à contrôler:"
 
-#: ../data/messages:51
+#: ../data/messages:43
+msgid "XMMS"
+msgstr ""
+
+#: ../data/messages:45
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -157,141 +165,224 @@ msgstr ""
 "L'icône de l'applet se comportera comme un lanceur, une application et un "
 "applet."
 
-#: ../data/messages:53
+#: ../data/messages:47
 msgid "Steal the player's icon from taskbar ?"
 msgstr "Voler l'icône du lecteur de la barre des taches ?"
 
-#: ../data/messages:55
+#: ../data/messages:49
 msgid "Display"
 msgstr "Affichage"
 
+#: ../data/messages:51
 msgid "Display the cover ?"
 msgstr "Afficher la couverture ?"
 
-#: ../data/messages:57
+#: ../data/messages:53
 msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
-#: ../data/messages:59
+#: ../data/messages:55
 msgid "Nothing"
 msgstr "Rien"
 
-#: ../data/messages:61
+#: ../data/messages:57
 msgid "Time Elapsed"
 msgstr "Temps Écoulé"
 
-#: ../data/messages:63
+#: ../data/messages:59
 msgid "Time Left"
 msgstr "Temps Restant"
 
-#: ../data/messages:65
+#: ../data/messages:61
 msgid "N° of track"
 msgstr "N° de piste"
 
-#: ../data/messages:69
+#: ../data/messages:63
 msgid "Desklet display mode :"
 msgstr "Mode d'affichage Desklet :"
 
+#: ../data/messages:65
 msgid "Simple"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:67
 msgid "Info"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:69
 msgid "Info and Controler"
 msgstr "Info et Controleur"
 
-#: ../data/messages:75
+#: ../data/messages:71
 msgid "Caroussel"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:73
 msgid "Controler"
 msgstr "Controleur"
 
+#: ../data/messages:75
+#, fuzzy
+msgid "Simple Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:77
+msgid ""
+"If you choose 'personnal', you can define your own decoration above, or let "
+"it blank to not use any decoration."
+msgstr ""
+
 #: ../data/messages:79
-msgid "Actions on music change"
-msgstr "Actions au changement de musique"
+msgid "Choose a decoration for the desklet mode :"
+msgstr ""
 
 #: ../data/messages:81
+#, fuzzy
+msgid "Personnal"
+msgstr "Personnalisation"
+
+#: ../data/messages:83
+msgid "Extended 3D mode"
+msgstr ""
+
+#: ../data/messages:85
+msgid "CD box"
+msgstr ""
+
+#: ../data/messages:87
+msgid "frame with reflects"
+msgstr ""
+
+#: ../data/messages:89
+msgid "scotch"
+msgstr ""
+
+#: ../data/messages:91
+msgid "frame with scotch"
+msgstr ""
+
+#: ../data/messages:93
+msgid ""
+"It's an image that will be displayed below the cover, like a frame for "
+"exemple."
+msgstr ""
+
+#: ../data/messages:95
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:97
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:99
+msgid "It's typically the width of the left side of your frame, in pixels."
+msgstr ""
+
+#: ../data/messages:101
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:103 ../data/messages:105 ../data/messages:107
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:109
+msgid ""
+"It's an image that will be displayed above the cover, like a reflect for "
+"exemple."
+msgstr ""
+
+#: ../data/messages:111
+msgid "Reflection image :"
+msgstr ""
+
+#: ../data/messages:113
+msgid "Reflection tansparency :"
+msgstr ""
+
+#: ../data/messages:115
+#, fuzzy
+msgid "Action on music change"
+msgstr "Actions au changement de musique"
+
+#: ../data/messages:117
 msgid "Show an info-bubble ?"
 msgstr "Montrer une info-bulle ?"
 
-#: ../data/messages:83
+#: ../data/messages:119
 msgid "With a icon ?"
 msgstr "Avec une icône ?"
 
-#: ../data/messages:85
+#: ../data/messages:121
 msgid "in ms."
 msgstr "en ms."
 
-#: ../data/messages:87
+#: ../data/messages:123
 msgid "Time length of info-bubbles :"
 msgstr "Durée des info-bulles :"
 
-#: ../data/messages:89
+#: ../data/messages:125
 msgid "Animate icon ?"
 msgstr "Animer l'icône ?"
 
-#: ../data/messages:91
+#: ../data/messages:127
 msgid "Animation when music changes :"
 msgstr "Animation au changement de musique :"
 
-#: ../data/messages:93
+#: ../data/messages:129
 msgid "bounce"
 msgstr "Rebond"
 
-#: ../data/messages:95
+#: ../data/messages:131
 msgid "rotate"
 msgstr "Rotation"
 
-#: ../data/messages:97
+#: ../data/messages:133
 msgid "blink"
 msgstr "Clignotement"
 
-#: ../data/messages:99
+#: ../data/messages:135
 msgid "pulse"
 msgstr "Pulsation"
 
-#: ../data/messages:101
+#: ../data/messages:137
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
-#: ../data/messages:103
+#: ../data/messages:139
 msgid "wobbly"
 msgstr "Élastique"
 
-#: ../data/messages:105
+#: ../data/messages:141
 msgid "random"
 msgstr "Aléatoire"
 
-#: ../data/messages:107
+#: ../data/messages:143
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:109 ../data/messages:113 ../data/messages:117
-#: ../data/messages:121 ../data/messages:125
+#: ../data/messages:145 ../data/messages:149 ../data/messages:153
+#: ../data/messages:157 ../data/messages:161
 msgid "Let it empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
-#: ../data/messages:111
+#: ../data/messages:147
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
-#: ../data/messages:115
+#: ../data/messages:151
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom de l'image 'Jouer' :"
 
-#: ../data/messages:119
+#: ../data/messages:155
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom de l'image 'Stop' :"
 
-#: ../data/messages:123
+#: ../data/messages:159
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom de l'image 'Pause' :"
 
-#: ../data/messages:127
+#: ../data/messages:163
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Pas de Signal': "

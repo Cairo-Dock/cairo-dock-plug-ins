@@ -1,9 +1,9 @@
 
 SUBDIRS = .
 
-datapowermanagerdir = $(powermanagerdatadir)
+moduledir = $(powermanagerdatadir)
 
-datapowermanager_DATA = \
+module_DATA = \
 	sector.svg\
 	default-battery.svg\
 	default-charge.svg\
@@ -11,3 +11,5 @@ datapowermanager_DATA = \
 	powermanager.conf\
 	preview.png\
 	icon.png
+
+EXTRA_DIST = $(module_DATA)

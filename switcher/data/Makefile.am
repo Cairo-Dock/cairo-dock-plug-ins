@@ -11,3 +11,4 @@ module_DATA = \
 	workspaces.svg\
 	preview.png
 
+EXTRA_DIST = $(module_DATA)

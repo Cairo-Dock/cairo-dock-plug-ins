@@ -50,4 +50,8 @@ SUBDIRS = . po\
 	${xfce_dir}\
 	Xgamma\
 	xmms
-	
+
+EXTRA_DIST = \
+	intltool-extract.in\
+	intltool-merge.in\
+	intltool-update.in

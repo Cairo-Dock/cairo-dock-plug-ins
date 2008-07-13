@@ -1,10 +1,12 @@
 
 SUBDIRS = . themes
 
-datadustbindir = $(dustbindatadir)
+moduledir = $(dustbindatadir)
 
-datadustbin_DATA = \
+module_DATA = \
 	dustbin.conf\
 	readme\
 	preview.png\
 	icon.png
+
+EXTRA_DIST = $(module_DATA)

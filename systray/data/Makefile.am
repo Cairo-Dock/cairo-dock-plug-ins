@@ -1,10 +1,12 @@
 
 SUBDIRS = .
 
-datasystraydir = $(systraydatadir)
+moduledir = $(systraydatadir)
 
-datasystray_DATA = \
+module_DATA = \
 	systray.conf\
 	readme\
 	preview.png\
 	icon.png
+
+EXTRA_DIST = $(module_DATA)

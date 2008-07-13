@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-18 10:09+0200\n"
+"POT-Creation-Date: 2008-07-13 00:47+0200\n"
 "PO-Revision-Date: 2008-06-25 16:48+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -102,8 +102,8 @@ msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
-"Compiz a : (name=cairo-dock & type=utility)"
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+"di Compiz a : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
@@ -117,7 +117,6 @@ msgstr ""
 "Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
-
 
 #: ../data/messages:37
 msgid "Lock position ?"
@@ -136,33 +135,41 @@ msgid ""
 "Stacks will act as a the shortcut applet's but with files. To add a file, "
 "just drag and drop it on the Stacks icon"
 msgstr ""
-"Stacks agisce come l'applet shortcut ma con i files. Per aggiungere un "
-"file basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
+"Stacks agisce come l'applet shortcut ma con i files. Per aggiungere un file "
+"basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
 
 #: ../data/messages:45
-msgid "Use Stacks local directory ?"
+#, fuzzy
+msgid "Use only Stacks local directory ?"
 msgstr "Utilizare la cartella locale Stacks ?"
 
 #: ../data/messages:47
-msgid "Monitored Directory :"
-msgstr "Cartelle sorvegliate :"
+msgid ""
+"You can use '_LocalDirectory_' tag to have both stack local and all "
+"monitored directories. Ensure 'Use only Stacks local directory' is unticked."
+msgstr ""
 
 #: ../data/messages:49
+#, fuzzy
+msgid "Monitored Directories :"
+msgstr "Cartelle sorvegliate :"
+
+#: ../data/messages:51
 msgid ""
 "This option with large files lists can slow down the dock, use it properly."
 msgstr ""
-"Questa opzione con una lunga lista di files può rallentare la barra, "
-"perciò utilizzarla con prudenza."
+"Questa opzione con una lunga lista di files può rallentare la barra, perciò "
+"utilizzarla con prudenza."
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "List hidden files ?"
 msgstr "Elencare i files nascosti"
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "Separate different directories with separators ?"
 msgstr "Separare le differenti cartelle con separatori ?"
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
@@ -170,23 +177,23 @@ msgstr ""
 "Questa opzione vi permette di evitare che certi files siano elencati nella "
 "stacks tenendo conto del loro tipo (video, immagini, etc...)"
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "Filter files with their mime types ?"
 msgstr "Filtrare i files in base al tipo ?"
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Eg: image, text, video, audio, application..."
 msgstr "Ex: immagine, testo, video, audio, applicazione..."
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr "Specificate qui una lista di tipi di file da evitare :"
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciate vuoto per utilizzare la vista di default della sub-dock"
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 

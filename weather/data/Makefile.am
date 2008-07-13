@@ -10,3 +10,4 @@ module_DATA = \
 	broken.png\
 	icon.png
 
+EXTRA_DIST = $(module_DATA)

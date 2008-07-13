@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-30 10:26+0200\n"
+"POT-Creation-Date: 2008-07-13 00:47+0200\n"
 "PO-Revision-Date: 2008-06-18 23:25+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -139,29 +139,37 @@ msgstr ""
 "イコンにドラッグ＆ドロップするだけでファイルを追加できます。"
 
 #: ../data/messages:45
-msgid "Use Stacks local directory ?"
+#, fuzzy
+msgid "Use only Stacks local directory ?"
 msgstr "Stacks をローカルのディレクトリに使用？"
 
 #: ../data/messages:47
-msgid "Monitored Directory :"
-msgstr "モニタ対象のディレクトリ :"
+msgid ""
+"You can use '_LocalDirectory_' tag to have both stack local and all "
+"monitored directories. Ensure 'Use only Stacks local directory' is unticked."
+msgstr ""
 
 #: ../data/messages:49
+#, fuzzy
+msgid "Monitored Directories :"
+msgstr "モニタ対象のディレクトリ :"
+
+#: ../data/messages:51
 msgid ""
 "This option with large files lists can slow down the dock, use it properly."
 msgstr ""
 "ファイルリストが大きくなる場合にこのオプションを使用すると、ドックの動作が遅"
 "くなるので、適切に使用してください。"
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "List hidden files ?"
 msgstr "隠しファイルも一覧化？"
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "Separate different directories with separators ?"
 msgstr "異なるディレクトリ同士を区切りで区分？"
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
@@ -169,23 +177,23 @@ msgstr ""
 "このオプションを使用すると、特定の種類（動画、画像、等々）のファイルを "
 "Stacks で表示しないようにすることができます。"
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "Filter files with their mime types ?"
 msgstr "MIME タイプによってファイルをフィルタ？"
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Eg: image, text, video, audio, application..."
 msgstr "例 : image, text, video, audio, application..."
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr "表示除外対象にする MIME タイプのリストの指定 :"
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Let it empty to use default sub-dock view."
 msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 

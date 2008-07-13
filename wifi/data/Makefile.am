@@ -14,3 +14,5 @@ module_DATA = \
 	icon.png\
 	access-point\
 	wifi
+
+EXTRA_DIST = $(module_DATA)

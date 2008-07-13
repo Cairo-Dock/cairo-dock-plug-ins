@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-02 10:16+0800\\\n"
+"POT-Creation-Date: 2008-07-13 00:47+0200\n"
 "PO-Revision-Date: 2008-07-03 12:31+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -52,7 +52,8 @@ msgstr "您的邮箱中没有未读邮件"
 msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
-msgstr "不能将socket设置为非阻塞模式。 如果一个连接尝试挂起， 面板会在关闭时失去反应"
+msgstr ""
+"不能将socket设置为非阻塞模式。 如果一个连接尝试挂起， 面板会在关闭时失去反应"
 
 #: ../src/mailwatch-mailbox-gmail.c:252 ../src/mailwatch-mailbox-imap.c:438
 #: ../src/mailwatch-mailbox-pop3.c:395
@@ -86,7 +87,9 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem "
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
-msgstr "收到HTTP响应码%d，它本应是200。这可能是GMail服务器的错误，或是它们将验证方式或新邮件推送位置做了不兼容的变更。"
+msgstr ""
+"收到HTTP响应码%d，它本应是200。这可能是GMail服务器的错误，或是它们将验证方式"
+"或新邮件推送位置做了不兼容的变更。"
 
 #: ../src/mailwatch-mailbox-gmail.c:615 ../src/mailwatch-mailbox-imap.c:1742
 #: ../src/mailwatch-mailbox-pop3.c:924
@@ -206,7 +209,8 @@ msgstr "远程IMAP邮箱"
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr "IMAP插件可以连接至支持IMAP协议的远程邮件服务器，更支持SSL链接以保护数据"
+msgstr ""
+"IMAP插件可以连接至支持IMAP协议的远程邮件服务器，更支持SSL链接以保护数据"
 
 #: ../src/mailwatch-mailbox-maildir.c:100 ../src/mailwatch-mailbox-mbox.c:99
 #: ../src/mailwatch-mailbox-mh.c:399 ../src/mailwatch-mailbox-mh.c:410
@@ -381,7 +385,9 @@ msgstr "桌面应用程序"
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理器"
+msgstr ""
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
+"器"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -411,7 +417,9 @@ msgstr "窗口置顶？"
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
+msgstr ""
+"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
+"type=utility) "
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -421,7 +429,8 @@ msgstr "保持于小应用程序层？"
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr "锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+msgstr ""
+"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -432,14 +441,28 @@ msgid "Configuration"
 msgstr "配置"
 
 #: ../data/messages:39
-msgid "Name of an image to overwrite the theme's no mail image :"
-msgstr "用于覆盖主题无新邮件的图像的图像名称："
+msgid "Choose one of the available themes :"
+msgstr ""
 
 #: ../data/messages:41
-msgid "Name of an image to overwrite the theme's has mail image :"
-msgstr "用于覆盖主题有新邮件的图像的图像名称："
+msgid "Theme overriding"
+msgstr ""
 
 #: ../data/messages:43
+#, fuzzy
+msgid "Name of the file for the \"no mail\" image :"
+msgstr "用于覆盖主题无新邮件的图像的图像名称："
+
+#: ../data/messages:45
+#, fuzzy
+msgid "Name of the file for the \"has mail\" image :"
+msgstr "用于覆盖主题有新邮件的图像的图像名称："
+
+#: ../data/messages:47
+msgid "Name of the file for the \"new mail\" sound :"
+msgstr ""
+
+#: ../data/messages:49
 msgid "Path to application to launch on left-click"
 msgstr "左键点击时启动的应用程序路径"
 

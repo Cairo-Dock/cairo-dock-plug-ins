@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-18 09:59+0200\n"
+"POT-Creation-Date: 2008-07-13 00:47+0200\n"
 "PO-Revision-Date: 2008-06-24 23:23+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:25
+#: ../src/applet-notifications.c:26
 msgid ""
 "This is the mail applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
@@ -23,7 +23,7 @@ msgstr ""
 "Questa è la mail-applet\n"
 " scritta da Christophe Chapuis per Cairo-Dock"
 
-#: ../src/applet-notifications.c:60
+#: ../src/applet-notifications.c:61
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -34,19 +34,19 @@ msgstr ""
 "Se '%s non è la'applicazione mail predefinita,\n"
 "potete cambiarla nel pannello di configurazione di questa applet."
 
-#: ../src/applet-notifications.c:136
+#: ../src/applet-notifications.c:137
 msgid "Add a new mail account"
 msgstr "Aggiungere un nuovo account e-mail"
 
-#: ../src/applet-notifications.c:141
+#: ../src/applet-notifications.c:142
 msgid "Remove a mail account"
 msgstr "Cancellare un account e-mail"
 
-#: ../src/applet-notifications.c:147
+#: ../src/applet-notifications.c:148
 msgid "Modify a mail account"
 msgstr "Modificare un account e-mail"
 
-#: ../src/applet-notifications.c:168
+#: ../src/applet-notifications.c:169
 msgid "No unread mail in your mailboxes"
 msgstr "Non ci sono messaggi non letti nelle vostre mailboxes"
 
@@ -56,8 +56,8 @@ msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
 msgstr ""
-"Impossibile configurare il socket in modo da non bloccare la connessione. "
-"Se il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
+"Impossibile configurare il socket in modo da non bloccare la connessione. Se "
+"il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
 "all'arresto."
 
 #: ../src/mailwatch-mailbox-gmail.c:252 ../src/mailwatch-mailbox-imap.c:438
@@ -87,8 +87,8 @@ msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
 msgstr ""
-"Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è "
-"che username o password di GMail non siano corretti."
+"Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è che "
+"username o password di GMail non siano corretti."
 
 #: ../src/mailwatch-mailbox-gmail.c:369
 #, c-format
@@ -226,9 +226,9 @@ msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"Il plug-in IMAP può connettersi a un server mail remoto che supporta "
-"il protocollo IMAP, volendo attraverso l'utilizzo di SSL per la propria"
-"sicurezza."
+"Il plug-in IMAP può connettersi a un server mail remoto che supporta il "
+"protocollo IMAP, volendo attraverso l'utilizzo di SSL per la "
+"propriasicurezza."
 
 #: ../src/mailwatch-mailbox-maildir.c:100 ../src/mailwatch-mailbox-mbox.c:99
 #: ../src/mailwatch-mailbox-mh.c:399 ../src/mailwatch-mailbox-mh.c:410
@@ -239,8 +239,7 @@ msgstr "Impossibile recuperare lo stato del file %s: %s"
 #: ../src/mailwatch-mailbox-maildir.c:109
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr ""
-"%s non è una cartella. E' %s una valida cartella mail?"
+msgstr "%s non è una cartella. E' %s una valida cartella mail?"
 
 #: ../src/mailwatch-mailbox-maildir.c:347
 msgid "Select Maildir Folder"
@@ -300,8 +299,8 @@ msgstr "Cartella locale MH"
 
 #: ../src/mailwatch-mailbox-mh.c:670
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di "
-"nuovi messaggi"
+msgstr ""
+"Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi messaggi"
 
 #: ../src/mailwatch-mailbox-pop3.c:807
 msgid "Advanced POP3 Options"
@@ -328,9 +327,9 @@ msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"Il plug-in POP3 può connettersi a un server mail remoto che supporta "
-"il protocollo POP3, volendo attraverso l'utilizzo di SSL per la propria"
-"sicurezza."
+"Il plug-in POP3 può connettersi a un server mail remoto che supporta il "
+"protocollo POP3, volendo attraverso l'utilizzo di SSL per la "
+"propriasicurezza."
 
 #: ../src/mailwatch-utils.c:245
 #, c-format
@@ -344,41 +343,40 @@ msgstr "Non compilato col supporto SSL/TLS"
 #: ../src/mailwatch-utils.c:257
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr ""
-"XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il "
-"supporto SSL."
+"XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il supporto "
+"SSL."
 
 #: ../src/mailwatch-utils.c:280 ../src/mailwatch-utils.c:333
 msgid "A secure connection was requested, but gnutls was not initialised"
-msgstr ""
-"Richiesta connessione sicura, ma gnutls non è stato avviato"
+msgstr "Richiesta connessione sicura, ma gnutls non è stato avviato"
 
-#: ../src/mailwatch.c:696
+#: ../src/mailwatch.c:723
 msgid "This mailbox type does not require any configuration settings."
 msgstr "I tipi di Mailbox non necessitano di configurazione."
 
-#: ../src/mailwatch.c:722
+#: ../src/mailwatch.c:749
 msgid "Mailbox _Name:"
 msgstr "_Nome della Mailbox:"
 
-#: ../src/mailwatch.c:788 ../src/mailwatch.c:986
+#: ../src/mailwatch.c:815 ../src/mailwatch.c:1013
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Modifica la Mailbox: %s"
 
-#: ../src/mailwatch.c:854
+#: ../src/mailwatch.c:881
 msgid "Select Mailbox Type"
 msgstr "Selezionare il tipo di Mailbox"
 
-#: ../src/mailwatch.c:863
+#: ../src/mailwatch.c:890
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di sotto."
 
-#: ../src/mailwatch.c:921
+#: ../src/mailwatch.c:948
 msgid "Add New Mailbox"
 msgstr "Aggiungere una nuova Mailbox"
 
-#: ../src/mailwatch.c:1108
+#: ../src/mailwatch.c:1135
 msgid "Mailboxes"
 msgstr "Mailboxes"
 
@@ -449,8 +447,8 @@ msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
-"Compiz a : (name=cairo-dock & type=utility)"
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+"di Compiz a : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -474,16 +472,31 @@ msgid "Configuration"
 msgstr "Configurazione"
 
 #: ../data/messages:39
-msgid "Name of an image to overwrite the theme's no mail image :"
-msgstr "Nome di una immagine per cancellare l'immagine d'e-mail non "
-"ricevuta del tema :"
+msgid "Choose one of the available themes :"
+msgstr ""
 
 #: ../data/messages:41
-msgid "Name of an image to overwrite the theme's has mail image :"
-msgstr "Nome di una immagine per cancellare l'immagine di nuova e-mail del "
-"tema :"
+msgid "Theme overriding"
+msgstr ""
 
 #: ../data/messages:43
+#, fuzzy
+msgid "Name of the file for the \"no mail\" image :"
+msgstr ""
+"Nome di una immagine per cancellare l'immagine d'e-mail non ricevuta del "
+"tema :"
+
+#: ../data/messages:45
+#, fuzzy
+msgid "Name of the file for the \"has mail\" image :"
+msgstr ""
+"Nome di una immagine per cancellare l'immagine di nuova e-mail del tema :"
+
+#: ../data/messages:47
+msgid "Name of the file for the \"new mail\" sound :"
+msgstr ""
+
+#: ../data/messages:49
 msgid "Path to application to launch on left-click"
 msgstr "Percorso dell'applicazione da lanciare col click sinistro"
 

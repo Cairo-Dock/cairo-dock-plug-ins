@@ -12,3 +12,4 @@ module_DATA = \
 	preview.png\
 	icon.png
 
+EXTRA_DIST = $(module_DATA)

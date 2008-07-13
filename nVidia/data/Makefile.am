@@ -12,3 +12,4 @@ module_DATA = \
 	broken.svg\
 	icon.svg
 
+EXTRA_DIST = $(module_DATA)

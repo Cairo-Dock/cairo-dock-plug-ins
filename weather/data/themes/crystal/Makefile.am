@@ -51,3 +51,5 @@ theme_DATA =\
 		47.png	\
 		na.png\
 		preview
+
+EXTRA_DIST = $(theme_DATA)

@@ -1,9 +1,9 @@
 
 SUBDIRS = . 
 
-datarenderingdir = $(renderingdatadir)
+moduledir = $(renderingdatadir)
 
-datarendering_DATA = \
+module_DATA = \
 	rendering.conf\
 	readme\
 	icon.svg\
@@ -30,3 +30,4 @@ datarendering_DATA = \
 	cd_box_cover.svg\
 	cd_box.svg
 
+EXTRA_DIST = $(module_DATA)

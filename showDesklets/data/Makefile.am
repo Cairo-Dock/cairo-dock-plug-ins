@@ -9,4 +9,5 @@ module_DATA = \
 	preview.png\
 	show-desklets.svg\
 	hide-desklets.svg
+EXTRA_DIST = $(module_DATA)
 

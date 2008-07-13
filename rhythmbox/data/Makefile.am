@@ -1,9 +1,9 @@
 
 SUBDIRS = . 
 
-datarhythmboxdir = $(rhythmboxdatadir)
+moduledir = $(rhythmboxdatadir)
 
-datarhythmbox_DATA = \
+module_DATA = \
 	default.svg\
 	broken.svg\
 	play.svg\
@@ -17,3 +17,5 @@ datarhythmbox_DATA = \
 	1.svg\
 	2.svg\
 	3.svg
+
+EXTRA_DIST = $(module_DATA)

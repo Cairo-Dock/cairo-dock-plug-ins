@@ -23,3 +23,5 @@ theme_DATA =	    \
 	walker.png\
 	sitter.png\
 	xmas-walker.png
+
+EXTRA_DIST = $(theme_DATA)

@@ -52,3 +52,5 @@ theme_DATA =\
 		na.png\
 		preview\
 		readme
+
+EXTRA_DIST = $(theme_DATA)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-30 10:32+0200\n"
+"POT-Creation-Date: 2008-07-13 00:47+0200\n"
 "PO-Revision-Date: 2008-06-18 23:53+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:71 ../src/applet-widget.c:41
+#: ../src/applet-init.c:81 ../src/applet-widget.c:48
 msgid "Terminal"
 msgstr "端末"
 
@@ -120,6 +120,39 @@ msgstr "位置を固定？"
 #: ../data/messages:39
 msgid "Configuration"
 msgstr "設定"
+
+#: ../data/messages:41
+msgid "URI to load in weblet"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Show scrollbars ?"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Horizontal scroll of the browser in pixel"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Position of horizontal scrollbar"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Vertical scroll of the browser in pixel"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Position of vertical scrollbar in pixel"
+msgstr ""
+
+#: ../data/messages:53
+msgid ""
+"Time before reloading the weblet URI, in seconds. Zero means never reload."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Time between two page refreshes"
+msgstr ""
 
 #~ msgid "Module"
 #~ msgstr "モジュール"

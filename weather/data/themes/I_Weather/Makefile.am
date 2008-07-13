@@ -51,3 +51,5 @@ theme_DATA =\
 		47.svg	\
 		na.svg\
 		readme
+
+EXTRA_DIST = $(theme_DATA)

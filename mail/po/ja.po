@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-30 10:16+0200\n"
+"POT-Creation-Date: 2008-07-13 00:47+0200\n"
 "PO-Revision-Date: 2008-06-18 21:54+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -469,14 +469,28 @@ msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:39
-msgid "Name of an image to overwrite the theme's no mail image :"
-msgstr "テーマの「メールなし」画像を上書きする画像の名前 :"
+msgid "Choose one of the available themes :"
+msgstr ""
 
 #: ../data/messages:41
-msgid "Name of an image to overwrite the theme's has mail image :"
-msgstr "テーマの「メールあり」画像を上書きする画像の名前 :"
+msgid "Theme overriding"
+msgstr ""
 
 #: ../data/messages:43
+#, fuzzy
+msgid "Name of the file for the \"no mail\" image :"
+msgstr "テーマの「メールなし」画像を上書きする画像の名前 :"
+
+#: ../data/messages:45
+#, fuzzy
+msgid "Name of the file for the \"has mail\" image :"
+msgstr "テーマの「メールあり」画像を上書きする画像の名前 :"
+
+#: ../data/messages:47
+msgid "Name of the file for the \"new mail\" sound :"
+msgstr ""
+
+#: ../data/messages:49
 msgid "Path to application to launch on left-click"
 msgstr "左クリックで起動させるアプリケーションのパス"
 

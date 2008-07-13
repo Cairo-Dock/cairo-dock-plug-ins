@@ -12,7 +12,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-bookmarks.h"
-#include "applet-draw.h"
 #include "applet-load-icons.h"
 
 CD_APPLET_INCLUDE_MY_VARS

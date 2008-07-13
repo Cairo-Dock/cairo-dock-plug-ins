@@ -26,7 +26,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 		if (myConfig.extendedDesklet) {
 			cd_xmms_add_buttons_to_desklet ();
 			if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
-				gpointer data[3] = {"None", "None", (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
+				gpointer data[3] = {"None", "None", GINT_TO_POINTER (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 				CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 			}
 			else {
@@ -99,7 +99,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet) {
 		if (myConfig.extendedDesklet) {
 			if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
-				gpointer data[3] = {"None", "None", (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
+				gpointer data[3] = {"None", "None", GINT_TO_POINTER (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 				CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 			}
 			else {

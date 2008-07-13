@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-09 13:22+0800\n"
+"POT-Creation-Date: 2008-07-13 00:47+0200\n"
 "PO-Revision-Date: 2008-07-10 13:54+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -65,7 +65,9 @@ msgstr "桌面应用程序"
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理器"
+msgstr ""
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
+"器"
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -95,7 +97,9 @@ msgstr "窗口置顶？"
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
+msgstr ""
+"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
+"type=utility) "
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
@@ -105,7 +109,8 @@ msgstr "保持于小应用程序层？"
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr "锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+msgstr ""
+"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
 
 #: ../data/messages:37
 msgid "Lock position ?"
@@ -123,52 +128,62 @@ msgstr "目录及选项"
 msgid ""
 "Stacks will act as a the shortcut applet's but with files. To add a file, "
 "just drag and drop it on the Stacks icon"
-msgstr "Stacks将表现成跟快捷方式小应用程序一样。如果想添加一个文件，您只需将它拖曳到Stacks的图标上"
+msgstr ""
+"Stacks将表现成跟快捷方式小应用程序一样。如果想添加一个文件，您只需将它拖曳到"
+"Stacks的图标上"
 
 #: ../data/messages:45
-msgid "Use Stacks local directory ?"
+#, fuzzy
+msgid "Use only Stacks local directory ?"
 msgstr "使用Stacks本地目录："
 
 #: ../data/messages:47
-msgid "Monitored Directory :"
-msgstr "监测目录："
+msgid ""
+"You can use '_LocalDirectory_' tag to have both stack local and all "
+"monitored directories. Ensure 'Use only Stacks local directory' is unticked."
+msgstr ""
 
 #: ../data/messages:49
+#, fuzzy
+msgid "Monitored Directories :"
+msgstr "监测目录："
+
+#: ../data/messages:51
 msgid ""
 "This option with large files lists can slow down the dock, use it properly."
 msgstr "此选项在大量文件列表的情况下将降低dock的速度，请慎重使用"
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "List hidden files ?"
 msgstr "列出隐藏文件？"
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "Separate different directories with separators ?"
 msgstr "使用分隔条分隔不同的目录"
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
 msgstr "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在dock上显示"
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "Filter files with their mime types ?"
 msgstr "根据MIME类型过滤文件"
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Eg: image, text, video, audio, application..."
 msgstr "诸如：图片、文本、影像、音频、应用程序……"
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr "在此指定不显示的文件MIME类型列表"
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Let it empty to use default sub-dock view."
 msgstr "留空则使用默认子dock视图"
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid "Name of the view used for the sub-dock :"
 msgstr "子dock使用的视图名称"
 

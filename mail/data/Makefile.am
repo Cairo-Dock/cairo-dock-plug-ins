@@ -11,3 +11,4 @@ module_DATA = \
 	cd_mail_icon.png \
 	preview.png
 
+EXTRA_DIST = $(module_DATA)

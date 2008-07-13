@@ -14,3 +14,4 @@ module_DATA = \
 	play.svg\
 	stop.svg
 
+EXTRA_DIST = $(module_DATA)

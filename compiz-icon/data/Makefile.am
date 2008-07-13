@@ -19,3 +19,4 @@ module_DATA = \
 	4.svg\
 	icon.png
 
+EXTRA_DIST = $(module_DATA)

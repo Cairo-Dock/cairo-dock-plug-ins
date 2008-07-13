@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-06-30 10:16+0200\n"
+"POT-Creation-Date: 2008-07-13 00:47+0200\n"
 "PO-Revision-Date: 2008-05-23 08:46+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Français <LL@li.org>\n"
@@ -474,14 +474,28 @@ msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:39
-msgid "Name of an image to overwrite the theme's no mail image :"
-msgstr "Nom d'une image pour écraser l'image pas d'e-mail du thème :"
+msgid "Choose one of the available themes :"
+msgstr ""
 
 #: ../data/messages:41
-msgid "Name of an image to overwrite the theme's has mail image :"
-msgstr "Nom d'une image pour écraser l'image nouveaux e-mails du thème :"
+msgid "Theme overriding"
+msgstr ""
 
 #: ../data/messages:43
+#, fuzzy
+msgid "Name of the file for the \"no mail\" image :"
+msgstr "Nom d'une image pour écraser l'image pas d'e-mail du thème :"
+
+#: ../data/messages:45
+#, fuzzy
+msgid "Name of the file for the \"has mail\" image :"
+msgstr "Nom d'une image pour écraser l'image nouveaux e-mails du thème :"
+
+#: ../data/messages:47
+msgid "Name of the file for the \"new mail\" sound :"
+msgstr ""
+
+#: ../data/messages:49
 msgid "Path to application to launch on left-click"
 msgstr "Chemin de l'application à exécuter au clic gauche"
 

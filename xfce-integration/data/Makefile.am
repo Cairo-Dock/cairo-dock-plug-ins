@@ -1,9 +1,10 @@
 
 SUBDIRS = . 
 
-dataxfce_integrationdir = $(xfce_integrationdatadir)
+moduledir = $(xfce_integrationdatadir)
 
-dataxfce_integration_DATA = \
+module_DATA = \
 	readme\
 	icon.png
 
+EXTRA_DIST = $(module_DATA)

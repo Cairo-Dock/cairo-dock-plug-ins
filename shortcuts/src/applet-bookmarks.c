@@ -12,7 +12,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-load-icons.h"
-#include "applet-draw.h"
 #include "applet-bookmarks.h"
 
 

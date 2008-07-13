@@ -10,3 +10,5 @@ module_DATA = \
 	unknown.png\
 	bad.png\
 	netspeed
+
+EXTRA_DIST = $(module_DATA)

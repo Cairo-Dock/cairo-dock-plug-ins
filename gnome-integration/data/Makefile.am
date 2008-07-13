@@ -1,9 +1,10 @@
 
 SUBDIRS = . 
 
-datagnome_integrationdir = $(gnome_integrationdatadir)
+moduledir = $(gnome_integrationdatadir)
 
-datagnome_integration_DATA = \
+module_DATA = \
 	readme\
 	icon.png
 
+EXTRA_DIST = $(module_DATA)

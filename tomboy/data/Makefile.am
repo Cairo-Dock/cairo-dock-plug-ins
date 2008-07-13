@@ -1,9 +1,9 @@
 
 SUBDIRS = . 
 
-datarhythmboxdir = $(tomboydatadir)
+moduledir = $(tomboydatadir)
 
-datarhythmbox_DATA = \
+module_DATA = \
 	default.svg\
 	close.svg\
 	broken.svg\
@@ -12,3 +12,5 @@ datarhythmbox_DATA = \
 	readme\
 	icon.png\
 	preview.png
+
+EXTRA_DIST = $(module_DATA)

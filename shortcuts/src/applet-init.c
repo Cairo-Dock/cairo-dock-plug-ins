@@ -13,7 +13,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-bookmarks.h"
 #include "applet-load-icons.h"
-#include "applet-draw.h"
 #include "applet-struct.h"
 #include "applet-init.h"
 

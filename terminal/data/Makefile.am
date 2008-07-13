@@ -1,9 +1,11 @@
 
 SUBDIRS = .
 
-dataterminaldir = $(terminaldatadir)
+moduledir = $(terminaldatadir)
 
-dataterminal_DATA = \
+module_DATA = \
 	terminal.conf\
 	readme\
 	icon.png
+
+EXTRA_DIST = $(module_DATA)

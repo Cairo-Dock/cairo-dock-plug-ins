@@ -1,11 +1,12 @@
 
 SUBDIRS = . 
 
-datalogoutdir = $(logoutdatadir)
+moduledir = $(logoutdatadir)
 
-datalogout_DATA = \
+module_DATA = \
 	logout.conf\
 	readme\
 	preview.png\
 	icon.svg
 
+EXTRA_DIST = $(module_DATA)
