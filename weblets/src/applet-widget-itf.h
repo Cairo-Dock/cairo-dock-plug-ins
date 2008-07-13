@@ -28,6 +28,7 @@
 extern "C" {
 #endif
 gboolean set_gecko_scrollbars( GtkWidget *moz, gboolean bShowScrollbars, gint scrollX, gint scrollY );
+void register_menu_cb( GtkWidget *pGtkMozEmbed );
 #ifdef __cplusplus
 }
 #endif

@@ -34,7 +34,11 @@
 #include <nsIWebBrowserChrome.h>
 #include <nsIDOMWindow.h>
 #include <nsIDOMBarProp.h>
+#include <nsIDOMMouseEvent.h>
 #include <docshell/nsIScrollable.h>
+
+extern "C" void send_mouse_click_to_cd( GdkEventButton* pButtonEvent );
+extern "C" gint dom_mouse_click_cb(GtkMozEmbed *embed, nsIDOMMouseEvent *event, GtkWidget *pGtkMozEmbed);
 
 // hide/show the scrollbars
 extern "C" gboolean set_gecko_scrollbars( GtkWidget *moz, gboolean bShowScrollbars, gint scrollX, gint scrollY )
@@ -57,3 +61,44 @@ extern "C" gboolean set_gecko_scrollbars( GtkWidget *moz, gboolean bShowScrollba
 
 	return TRUE;
 }
+
+extern "C" void register_menu_cb( GtkWidget *pGtkMozEmbed )
+{
+	if( pGtkMozEmbed )
+	{
+		gtk_signal_connect(GTK_OBJECT(pGtkMozEmbed), "dom_mouse_click",
+											 GTK_SIGNAL_FUNC(dom_mouse_click_cb), NULL);
+	}
+}
+
+extern "C" gint dom_mouse_click_cb(GtkMozEmbed *embed, nsIDOMMouseEvent *event, GtkWidget *pGtkMozEmbed)
+{
+	PRUint16 button = 0;
+	if( event )
+	{
+		event->GetButton(&button);
+		if( button == 2 ) // right click
+		{
+			PRInt32 clientX = 0;
+			PRInt32 clientY = 0;
+			event->GetClientX(&clientX);
+			event->GetClientY(&clientY);
+
+			GdkEvent* pEvent = gdk_event_new(GDK_BUTTON_PRESS);
+			GdkEventButton* pButtonEvent = (GdkEventButton*)pEvent;
+			if( pButtonEvent )
+			{
+				pButtonEvent->window = NULL;
+				pButtonEvent->type = GDK_BUTTON_PRESS;
+				pButtonEvent->button = 3;
+				pButtonEvent->x = clientX;
+				pButtonEvent->y = clientY;
+
+				send_mouse_click_to_cd( pButtonEvent );
+				gdk_event_free( pEvent ); pEvent = NULL; pButtonEvent = NULL;
+			}
+		}
+	}
+	return NS_OK;
+}
+

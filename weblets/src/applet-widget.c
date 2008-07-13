@@ -42,6 +42,8 @@ void weblet_build_and_show(void)
 					 					 GTK_SIGNAL_FUNC(load_started_cb), NULL);
 	gtk_signal_connect(GTK_OBJECT(myData.pGtkMozEmbed), "net_stop",
 					 					 GTK_SIGNAL_FUNC(load_finished_cb), NULL);
+	// register for right-click on the moz-embed widget
+	register_menu_cb( myData.pGtkMozEmbed );
 
 	if (myDock)
 	{
@@ -82,4 +84,28 @@ void load_finished_cb(GtkMozEmbed *embed, void *data)
 void show_hide_scrollbars()
 {
     set_gecko_scrollbars( myData.pGtkMozEmbed, myConfig.bShowScrollbars, myConfig.iPosScrollX , myConfig.iPosScrollY );
+}
+
+void send_mouse_click_to_cd( GdkEventButton* pButtonEvent )
+{
+	if( myDock )
+	{
+		on_button_press2(myData.pGtkMozEmbed, pButtonEvent, myDock );
+	}
+	else if( myDesklet )
+	{
+		Icon *pClickedIcon = cairo_dock_find_clicked_icon_in_desklet (myDesklet);
+		GtkWidget *menu = cairo_dock_build_menu (pClickedIcon, CAIRO_CONTAINER (myDesklet));  // genere un CAIRO_DOCK_BUILD_MENU.
+		gtk_widget_show_all (menu);
+		gtk_menu_popup (GTK_MENU (menu),
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			1,
+			gtk_get_current_event_time ());
+		myDesklet->bInside = FALSE;
+		myDesklet->iGradationCount = 0;  // on force le fond a redevenir transparent.
+		gtk_widget_queue_draw (myDesklet->pWidget);
+	}
 }
