@@ -36,13 +36,13 @@ static char  *s_cTmpFile = NULL;
 static int s_pLineNumber[NB_INFO] = {2,4,5,6,7,8,12};
 
 //Les Fonctions
-void cd_xmms_free_data (void) {
+void cd_xmms_free_data (void) { //Permet de libéré la mémoire prise par notre controleur
 	cd_debug ("");
 	g_free (s_cTmpFile);
 	s_cTmpFile = NULL;
 }
 
-void cd_xmms_control (MyPlayerControl pControl, gchar *cFile) {
+void cd_xmms_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'effectuer les actions de bases sur le lecteur
 	GError *erreur = NULL;
 	
 	if (pControl != PLAYER_JUMPBOX && pControl != PLAYER_SHUFFLE && pControl != PLAYER_REPEAT && pControl != PLAYER_ENQUEUE) {
@@ -90,15 +90,20 @@ void cd_xmms_control (MyPlayerControl pControl, gchar *cFile) {
 	}
 }
 
+/*Permet de renseigner l'applet des fonctions supportées par le lecteur
+Un bon exemple est Banshee ou Exaile qui n'ont pas de jumpbox ni de commande stop
+Ici on répond TRUE car xmms supporte toutes les options, pour banshee il faudra faire quelque if*/
 gboolean cd_xmms_ask_control (MyPlayerControl pControl) {
 	return TRUE;
 }
 
-void cd_xmms_acquisition (void) { //Rien a faire le pipe est déja prêt pour nous
+/*Rien a faire le pipe est déja prêt pour nous*/
+void cd_xmms_acquisition (void) {
 	system ("echo xmms >> /dev/null");
 }
 
-void cd_xmms_read_data (void) {//Fonction de lecture du tuyau.
+//Fonction de lecture du tuyau.
+void cd_xmms_read_data (void) {
 	s_cTmpFile = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
 		
 	gchar *cContent = NULL;
@@ -238,10 +243,11 @@ void cd_musicplayer_register_xmms_handeler (void) { //On enregistre notre lecteu
 	pXMMS->acquisition = cd_xmms_acquisition;
 	pXMMS->read_data = cd_xmms_read_data;
 	pXMMS->free_data = cd_xmms_free_data;
-	pXMMS->configure = NULL;
+	pXMMS->configure = NULL; //Cette fonction permettera de préparé le controleur
+	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pXMMS->control = cd_xmms_control;
 	pXMMS->ask_control = cd_xmms_ask_control;
-	pXMMS->appclass = g_strdup("xmms");
+	pXMMS->appclass = g_strdup("xmms"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pXMMS->name = g_strdup("XMMS");
 	cd_musicplayer_register_my_handeler (pXMMS, "XMMS");
 }

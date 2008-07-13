@@ -28,7 +28,7 @@ MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName) {
 	return NULL;
 }
 
-void cd_musicplayer_arm_handeler (void) {
+void cd_musicplayer_arm_handeler (void) { //Prépare l'handeler et le lance
 	cd_debug ("Arming %s (with class %s)", myData.pCurrentHandeler->name, myData.pCurrentHandeler->appclass);
 	myData.pCurrentHandeler->configure;
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (1,
@@ -38,13 +38,13 @@ void cd_musicplayer_arm_handeler (void) {
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
 
-void cd_musicplayer_disarm_handeler (void) {
+void cd_musicplayer_disarm_handeler (void) { //Arrete l'handeler en nettoyant la mémoire
 	cd_debug ("Disarming %s", myData.pCurrentHandeler->name);
 	myData.pCurrentHandeler->free_data;
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 }
 
-void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const gchar *cName) {
+void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const gchar *cName) { //Ajout un Handeler a la GList
 	MusicPlayerHandeler *handeler = cd_musicplayer_get_handeler_by_name (cName);
 	if (handeler == NULL) //Inutile de rajouter un player déjà présent
 		myData.pHandelers = g_list_append (myData.pHandelers, pHandeler);
@@ -52,7 +52,7 @@ void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const 
 		cd_warning ("Handeler %s already listed", cName);
 }
 
-void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler) {
+void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler) { //Libère la mémoire de l'handeler
 	myData.pHandelers = g_list_remove (myData.pHandelers, pHandeler);
 	pHandeler->free_data;
 	
