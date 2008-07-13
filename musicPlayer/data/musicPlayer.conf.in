@@ -13,6 +13,7 @@ height = 32
 frame1_ = 
 
 #s Name of the icon as it will appear in its label in the dock :
+#{You can put the tag '__Player__' to display the name of the player you control}
 name = Music Player
 
 #E[] Name of the dock it belongs to:
