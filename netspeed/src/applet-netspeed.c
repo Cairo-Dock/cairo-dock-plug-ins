@@ -80,6 +80,7 @@ void cd_netspeed_read_data (void)
 	gsize length=0;
 	GError *erreur = NULL;
 	g_file_get_contents (NETSPEED_DATA_PIPE, &cContent, &length, &erreur);
+	g_print ("netsped : %s\n", cContent);
 	if (erreur != NULL)
 	{
 		cd_warning("Attention : %s", erreur->message);
@@ -91,7 +92,7 @@ void cd_netspeed_read_data (void)
 	{
 		int iNumLine = 1;
 		gchar *tmp = cContent;
-		int iReceivedBytes, iTransmittedBytes;
+		long long int iReceivedBytes, iTransmittedBytes;
 		while (TRUE)
 		{
 			if (iNumLine > 3)  // les 2 premieres lignes sont les noms des champs, la 3eme est la loopback.
@@ -102,8 +103,7 @@ void cd_netspeed_read_data (void)
 				if (strncmp (tmp, myConfig.cInterface, myConfig.iStringLen) == 0 && *(tmp+myConfig.iStringLen) == ':')  // c'est l'interface qu'on veut.
 				{
 					tmp += myConfig.iStringLen+1;  // on saute le ':' avec.
-					
-					iReceivedBytes = atoi (tmp);
+					iReceivedBytes = atoll (tmp);
 					
 					int i = 0;
 					for (i = 0; i < 8; i ++)  // on saute les 8 valeurs suivantes.
@@ -113,7 +113,7 @@ void cd_netspeed_read_data (void)
 						while (*tmp == ' ')  // saute les espaces.
 							tmp ++;
 					}
-					iTransmittedBytes = atoi (tmp);
+					iTransmittedBytes = atoll (tmp);
 					
 					if (myData.bInitialized)  // la 1ere iteration on ne peut pas calculer le debit.
 					{

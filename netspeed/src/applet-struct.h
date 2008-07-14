@@ -17,7 +17,7 @@ typedef struct {
 typedef struct {
 	GTimer *pClock;
 	gboolean bInitialized;
-	gint iReceivedBytes, iTransmittedBytes;
+	long long int iReceivedBytes, iTransmittedBytes;
 	gint iDownloadSpeed, iUploadSpeed;
 	gint iMaxUpRate, iMaxDownRate;
 	gboolean bAcquisitionOK;
