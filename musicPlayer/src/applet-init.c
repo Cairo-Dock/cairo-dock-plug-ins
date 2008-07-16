@@ -15,8 +15,10 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-init.h"
 #include "applet-draw.h"
 #include "applet-musicplayer.h"
+#include "applet-dbus.h" //Test
 
 #include "applet-xmms.h" //Support XMMS
+#include "applet-exaile.h" //Support Exaile
 
 CD_APPLET_DEFINITION ("musicPlayer", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
@@ -65,7 +67,19 @@ static void _musciplayer_set_simple_renderer (void) {
 CD_APPLET_INIT_BEGIN (erreur)
 	/*Add here all player's registering functions
 	Dont forget to add the registered Name in ../data/musicPlayer.conf.in*/
-	cd_musicplayer_register_xmms_handeler ();
+	
+	cd_debug("MP : Valeur de config : %s",myConfig.cMusicPlayer);
+	
+	if (! strcmp(myConfig.cMusicPlayer,"XMMS")){
+		cd_musicplayer_register_xmms_handeler ();
+	}
+	else if (! strcmp(myConfig.cMusicPlayer,"Exaile")){
+		cd_musicplayer_register_exaile_handeler();
+		cd_debug("MP : On a choisi Exaile");
+	}
+	else cd_debug ("MP : Aucun lecteur n'a ete choisi");
+	
+	cd_debug("MP : On quitte le choix des lecteurs");
 	
 	if (myDesklet) {
 		cd_musicplayer_add_buttons_to_desklet ();
@@ -89,6 +103,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.iPreviousCurrentTime = -1;
 	
 	myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name (myConfig.cMusicPlayer);
+	printf("MP : Valeur de pCurrentHandeler : %s", myData.pCurrentHandeler ->name);
 	/*myConfig.cMusicPlayer = "XMMS";
 	myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name ("XMMS");*/
 	cd_musicplayer_arm_handeler (); //On prépare notre handeler

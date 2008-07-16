@@ -125,14 +125,21 @@ typedef struct {
 	MusicPlayerHandeler *pCurrentHandeler;
 	
 	//Informations essentielles
+	MusicPlayerDBus DBus_commands;
 	gchar *cRawTitle, *cPreviousRawTitle;
 	gchar *cTitle;
 	gchar *cArtist;
 	gchar *cAlbum;
+	gchar *cCoverPath;
 	MyPlayerStatus pPlayingStatus, pPreviousPlayingStatus;
 	gint iTrackNumber, iPreviousTrackNumber;
 	gint iCurrentTime, iPreviousCurrentTime;
 	gint iSongLength;
+
+	// A moi
+	gboolean dbus_enable;
+	gboolean opening;
+	gchar *full_data;
 	
 	//Données de dessin
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];

@@ -11,10 +11,14 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-config.h\
 	applet-notifications.c\
 	applet-notifications.h\
+	applet-dbus.c\
+	applet-dbus.h\
 	applet-draw.c\
 	applet-draw.h\
 	applet-musicplayer.c\
 	applet-musicplayer.h\
+	applet-exaile.c\
+	applet-exaile.h\
 	applet-xmms.c\
 	applet-xmms.h\
 	applet-struct.h
