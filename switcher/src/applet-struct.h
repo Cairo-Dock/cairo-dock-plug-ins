@@ -18,6 +18,7 @@ typedef enum {
 typedef struct {
 	gboolean bCompactView;
 	gboolean bMapWallpaper;
+	gboolean bDrawWindows;
 	gboolean bDisplayNumDesk;
 	gchar *cDefaultIcon;
 	gboolean bDesklet3D;
@@ -25,9 +26,11 @@ typedef struct {
 	gchar *cRenderer;
 	gdouble RGBInLineColors[4];
 	gdouble RGBLineColors[4];
+	gdouble RGBWLineColors[4];
 	gdouble RGBIndColors[4];
 	gint iInLineSize;
 	gint iLineSize;
+	gint iWLineSize;
 	gboolean bPreserveScreenRatio;
 	SwitcherDrawCurrentDesktopMode iDrawCurrentDesktopMode;
 	} AppletConfig;

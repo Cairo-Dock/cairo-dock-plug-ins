@@ -13,7 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-desktops.h"
 #include "applet-load-icons.h"
-
+#include "applet-draw.h"
 CD_APPLET_INCLUDE_MY_VARS
 
 
@@ -143,10 +143,12 @@ void cd_switcher_paint_icons (void)
 	
 	if (myConfig.bMapWallpaper)
 	{
+		cd_switcher_draw_main_icon();
 		pSurface = cairo_dock_get_desktop_bg_surface ();
 		double fMaxScale = cairo_dock_get_max_scale (pContainer);
 		fZoomX = (double) pFirstIcon->fWidth * fMaxScale / g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
 		fZoomY = (double) pFirstIcon->fHeight * fMaxScale / g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];
+
 	}
 	if (pSurface == NULL)
 	{
@@ -167,9 +169,11 @@ void cd_switcher_paint_icons (void)
 		cairo_scale (pIconContext,
 			fZoomX,
 			fZoomY);
+
 		cairo_dock_set_icon_surface_with_reflect (pIconContext, pSurface, icon, pContainer);
 		cairo_destroy (pIconContext);
 	}
+
 }
 
 

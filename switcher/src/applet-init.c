@@ -87,6 +87,8 @@ CD_APPLET_INIT_BEGIN (erreur)
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 	cairo_dock_register_notification (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) on_change_screen_geometry, CAIRO_DOCK_RUN_AFTER);/*Notifier de la gémotrie de bureau changé*/
 	cairo_dock_register_notification (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) on_change_desktop, CAIRO_DOCK_RUN_AFTER);/*Notifier d'un changement de bureau*/
+	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_CONFIGURED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, CAIRO_DOCK_RUN_AFTER);	
+	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, CAIRO_DOCK_RUN_AFTER);	
 	
 	//\___________________ On calcule la geometrie de l'icone en mode compact.
 	cd_switcher_compute_nb_lines_and_columns ();
@@ -116,6 +118,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
 	cairo_dock_remove_notification_func (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) on_change_screen_geometry);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) on_change_desktop);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_CONFIGURED, (CairoDockNotificationFunc) on_change_screen_geometry);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) on_change_screen_geometry);
 CD_APPLET_STOP_END
 
 
