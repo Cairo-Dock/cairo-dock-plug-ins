@@ -27,80 +27,80 @@ CD_APPLET_INCLUDE_MY_VARS
 //Les Fonctions
 void cd_exaile_free_data (void) //Permet de libéré la mémoire prise par notre controleur
 {
-	cd_debug("MP : coucou ca passe pour free data");
+	musicplayer_dbus_disconnect_from_bus();
 }
 
+/* Controle du lecteur */
 void cd_exaile_control (MyPlayerControl pControl, char* nothing) //Permet d'effectuer les actions de bases sur le lecteur
 { 
-	GError *erreur = NULL;
-	
-	if (pControl != PLAYER_JUMPBOX && pControl != PLAYER_SHUFFLE && pControl != PLAYER_REPEAT && pControl != PLAYER_ENQUEUE) 
-	{
-		g_free (myData.cRawTitle);
-		myData.cRawTitle = NULL; //Reset the title to detect it for sure ;)
-	}
 	gchar *cCommand = NULL;
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
 			cCommand = myData.DBus_commands.previous;
 		break;
+		
 		case PLAYER_PLAY_PAUSE :
 			cCommand = myData.DBus_commands.play;
 		break;
-		case PLAYER_STOP :
-			
-		break;
+
 		case PLAYER_NEXT :
 			cCommand = myData.DBus_commands.next;
 		break;
 		
-		case PLAYER_ENQUEUE :
+		/*case PLAYER_ENQUEUE :
 			// A faire
-		break;
+		break;*/
+		
+		default :
+			return;
 	}
 	
-	cd_debug ("Handeler Exaile : will use '%s'", cCommand);
+	cd_debug ("MP : Handeler Exaile : will use '%s'", cCommand);
 	cd_musicplayer_dbus_command(cCommand);
 }
 
-/*Permet de renseigner l'applet des fonctions supportées par le lecteur
-Un bon exemple est Banshee ou Exaile qui n'ont pas de jumpbox ni de commande stop
-Ici on répond TRUE car xmms supporte toutes les options, pour banshee il faudra faire quelque if*/
+/* Permet de renseigner l'applet des fonctions supportées par le lecteur */
 gboolean cd_exaile_ask_control (MyPlayerControl pControl) 
 {
-	return TRUE;
+	switch (pControl) {
+		case PLAYER_PREVIOUS :
+			return TRUE;
+		break;
+		
+		case PLAYER_PLAY_PAUSE :
+			return TRUE;		
+		break;
+
+		case PLAYER_NEXT :
+			return TRUE;
+		break;
+		
+		default :
+			return FALSE;
+	}
+	
 }
 
-
+/* Fonction de connexion au bus de Exaile */
 void cd_exaile_acquisition (void) 
 {
 	cd_musicplayer_check_dbus_connection();	
 }
 
-//Fonction de lecture des infos.
+
+/* Fonction de lecture des infos */
 void cd_exaile_read_data (void) 
 {
 	if (myData.dbus_enable)
 	{
 		if (myData.opening)
 		{
-			cd_message("MP : Bus ouvert et lecteur accessible pour Exaile");
 			cd_musicplayer_getStatus_string(); // On récupère l'état de la lecture (play/pause/stop)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
 			{
-				if (cd_musicplayer_check_for_changes()) //On vérifie si les données ont changé
-				{
-					cd_musicplayer_getSongInfos(); // On récupère toutes les infos de la piste en cours
-					//cd_musicplayer_change_desklet_data();
-				}
-				else 
-				{
-					cd_musicplayer_getSongInfos(); // On récupère toutes les infos de la piste en cours	
-				}
-			}
-			else // La lecture est stoppé, on met l'icone appropriée
-			{
-				myData.pPlayingStatus = PLAYER_STOPPED; 
+				cd_musicplayer_getSongInfos(); // On récupère toutes les infos de la piste en cours
+				cd_musicplayer_exaile_getTime();
+				cd_musicplayer_getCoverPath();
 			}	
 		}
 		else
@@ -111,6 +111,7 @@ void cd_exaile_read_data (void)
 	}
 	else
 	{
+		cd_debug("MP : Impossible d'accéder au bus");
 		myData.pPlayingStatus = PLAYER_BROKEN;
 	}
 	
@@ -118,9 +119,39 @@ void cd_exaile_read_data (void)
 
 void cd_exaile_dbus (void)
 {
-	cd_debug("MP : Chargement des fonctions DBus effectué");
 	cd_musicplayer_load_dbus_commands();
+	cd_debug("MP : Chargement des fonctions DBus effectué");
 }
+
+void cd_musicplayer_exaile_getTime (void)
+{
+	guchar* uValue;
+	gchar* temps; 
+	gchar* length;
+	gint minutes, secondes;
+	
+	/* On récupère le pourcentage de la position actuelle */
+	uValue=cd_musicplayer_getCurPos();
+		
+	/* Récupération du temps écoulé */
+	length = cd_musicplayer_getlength();
+	temps = strtok( length, ":" );
+	minutes = atoi(temps);
+	temps = strtok( NULL, "\0" );
+	secondes = atoi(temps);
+	myData.iSongLength = secondes + 60 * minutes;
+	cd_debug("MP : Temps total de la chanson : %i", myData.iSongLength);
+	
+	/* Calcul de la position actuelle */
+	myData.iPreviousCurrentTime = myData.iCurrentTime;
+	myData.iCurrentTime=(myData.iSongLength*(int)uValue)/100;
+	
+	/* Décalage dû à l'utilisation du pourcentage par exaile : marchotte mais sans plus */
+	if (myData.iPreviousCurrentTime == myData.iCurrentTime) myData.iCurrentTime = myData.iCurrentTime +1;
+	cd_debug("MP : Position actuelle : %i", myData.iCurrentTime);
+}
+
+
 
 void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lecteur
 	MusicPlayerHandeler *pExaile = g_new0 (MusicPlayerHandeler, 1);
@@ -134,8 +165,4 @@ void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lect
 	pExaile->appclass = g_strdup("exaile.py"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pExaile->name = g_strdup("Exaile");
 	cd_musicplayer_register_my_handeler(pExaile,"Exaile");
-	/* Ca passe avec ces valeurs
-	pExaile->name = g_strdup("Exaile");
-	cd_musicplayer_register_my_handeler(pExaile,"Exaile.py");
-	*/
 }

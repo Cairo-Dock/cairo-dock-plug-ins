@@ -106,7 +106,6 @@ gboolean cd_musicplayer_draw_icon (void) {
 	//if (myData.cPreviousRawTitle != myData.cRawTitle) {
 	if ((myData.cPreviousRawTitle != NULL) && (myData.cRawTitle != NULL)){
 		if (strcmp(myData.cPreviousRawTitle,myData.cRawTitle)){
-			cd_debug("MP : titres différents");
 			myData.cPreviousRawTitle = myData.cRawTitle;
 			if (myData.cRawTitle == NULL || strcmp (myData.cRawTitle, "(null)") == 0) {
 				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle)
@@ -123,7 +122,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 	}
 	
 	if (myData.pPlayingStatus != myData.pPreviousPlayingStatus) {  // changement de statut.
-		cd_message ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.pPlayingStatus);
+		cd_debug("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.pPlayingStatus);
 		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
 		cd_musicplayer_set_surface (myData.pPlayingStatus);
 		if (myData.pPlayingStatus == 0) {

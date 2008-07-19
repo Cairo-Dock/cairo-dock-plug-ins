@@ -24,11 +24,11 @@ msgstr ""
 
 #: ../src/applet-notifications.c:78
 msgid "Previous"
-msgstr "Précédant"
+msgstr "Précédent"
 
 #: ../src/applet-notifications.c:79
 msgid "Play/Pause (left-click)"
-msgstr "Jouer/Pause (clique gauche)"
+msgstr "Jouer/Pause (clic gauche)"
 
 #: ../src/applet-notifications.c:82
 msgid "Stop"
@@ -36,7 +36,7 @@ msgstr "Stop"
 
 #: ../src/applet-notifications.c:84
 msgid "Next (middle-click)"
-msgstr "Suivant (clique du milieu)"
+msgstr "Suivant (clic du milieu)"
 
 #: ../src/applet-notifications.c:87
 msgid "Show JumpBox"
@@ -134,7 +134,7 @@ msgid ""
 msgstr ""
 "Si verrouillé, le desklet ne pourra pas être déplacé simplement en le tirant "
 "avec le bouton gauche de la souris. Bien sur il pourra toujours être déplacé "
-"avec ALT + clique_gauche"
+"avec ALT + clic_gauche"
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -161,7 +161,7 @@ msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
-"Cela empéchera l'icône du lecteur d'apparaitre dans la barre d'applications. "
+"Cela empèchera l'icône du lecteur d'apparaitre dans la barre d'applications. "
 "L'icône de l'applet se comportera comme un lanceur, une application et un "
 "applet."
 

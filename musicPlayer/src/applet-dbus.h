@@ -14,19 +14,19 @@ gboolean musicplayer_dbus_connect_to_bus_Shell (void);
 void musicplayer_dbus_disconnect_from_bus (void);
 void musicplayer_dbus_disconnect_from_bus_Shell (void);
 void cd_musicplayer_dbus_detection(void);
-
 void cd_musicplayer_dbus_command(const char*);
 gchar* musicplayer_dbus_getValue (const char *);
+void cd_musicplayer_load_dbus_commands (void);
+void cd_musicplayer_check_dbus_connection (void);
 
 void cd_musicplayer_getStatus_boolean(void);
 void cd_musicplayer_getStatus_string(void);
 void cd_musicplayer_getStatus_integer (void);
-
 void cd_musicplayer_getSongInfos(void);
-
 void cd_musicplayer_getCoverPath (void);
-gboolean cd_musicplayer_check_for_changes (void);
-void cd_musicplayer_load_dbus_commands (void);
+guchar* cd_musicplayer_getCurPos (void);
+gchar* cd_musicplayer_getlength (void);
 
-void cd_musicplayer_check_dbus_connection (void);
+
+
 #endif

@@ -77,25 +77,8 @@ void cd_musicplayer_check_dbus_connection (void)
 	if (myData.dbus_enable) // Si le bus est accessible
 	{
 		cd_musicplayer_dbus_detection(); //On vérifie si le lecteur est ouvert
-		if (myData.opening) // Si il est ouvert, on se connecte au bus
-		{
-			cd_debug("MP : le lecteur est ouvert");
-		}
-		else // Si le lecteur n'est pas ouvert
-		{
-			//cd_musicplayer_set_surface (PLAYER_NONE);
-			cd_debug("MP : le lecteur n'est pas ouvert");
-			//return TRUE;
-		}
 	}
-	
-	else // Si le bus n'est pas accessible
-	{
-		//cd_musicplayer_set_surface (PLAYER_BROKEN);
-		//return TRUE;
-	}
-	
-	//return TRUE;
+	// Les autres cas sont gérés dans chaque lecteur
 }
 
 //*********************************************************************************
@@ -127,6 +110,7 @@ void cd_musicplayer_getStatus_string (void)
 {
 		gchar *status;
 		status = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_status);
+		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
 		if (! g_ascii_strcasecmp(status, "playing"))
 		{
 			myData.pPlayingStatus = PLAYER_PLAYING;
@@ -148,33 +132,7 @@ void cd_musicplayer_getStatus_string (void)
 		g_free(status);
 	}
 
-/*
-void musicplayer_getStatus_integer (void)
-{
-	GError *error = 0;
-	int status;
 
-	myData.playing=FALSE;
-	myData.paused=FALSE;
-	myData.stopped=FALSE;
-	
-	dbus_g_proxy_call (dbus_proxy_player, myData.DBus_commands.get_status, &error,
-			G_TYPE_INVALID,
-			G_TYPE_INT, &status,
-			G_TYPE_INVALID); // A rajouter dans cairo-dock-dbus.c --> cairo_dock_dbus_get_integer()
-	
-	myData.status=status;
-	
-	if (status == 0) myData.paused=TRUE;
-	else if (status == 1) myData.playing=TRUE;
-	else 
-	{
-		myData.status=-1;
-		myData.stopped=TRUE;
-	}		
-	//myData.status_uinteger = cairo_dock_dbus_get_uinteger (dbus_proxy_player, "GetPlayingStatus");
-}
-*/
 
 
 //*********************************************************************************
@@ -183,44 +141,39 @@ void musicplayer_getStatus_integer (void)
 
 void cd_musicplayer_getSongInfos(void)
 {
-	/*GError *erreur = NULL;
-	guchar* bValue = NULL;
-	dbus_g_proxy_call (dbus_proxy_player, "current_position", &erreur,
-		G_TYPE_INVALID,
-		G_TYPE_UCHAR, &bValue,
-		G_TYPE_INVALID);
-	if (erreur != NULL)
-	{
-		cd_warning ("musicplayer : Attention : %s", erreur->message);
-		g_error_free (erreur);
-	}
-	//return bValue;*/
 	
-	//cd_message ("musicplayer : On récupère les infos de la musique jouée");
-	
-	g_free (myData.cTitle);
-	myData.cTitle = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_title);
+	if (myData.cRawTitle != NULL) myData.cPreviousRawTitle = myData.cRawTitle; 
 	myData.cRawTitle = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_title);
 	
-	g_free (myData.cAlbum);
 	myData.cAlbum = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_album);
 
-	g_free (myData.cArtist);
 	myData.cArtist = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_artist);
 
-	//g_free (myData.total_length);
-	//myData.total_length = cairo_dock_dbus_get_string (dbus_proxy_player, "get_length");
-	
-	//g_free (myData.percentage);
-	//myData.percentage = cairo_dock_dbus_get_uinteger (dbus_proxy_player, "current_position");
-		
-	cd_message("MP : %s - %s - %s", myData.cTitle, myData.cArtist, myData.cAlbum);
-	//cd_message("musicplayer : %i", (int)bValue);
+	cd_message("MP : %s - %s - %s", myData.cRawTitle, myData.cArtist, myData.cAlbum);
 
 }
 
+guchar* cd_musicplayer_getCurPos (void) // Fonction temporaire (à rajouter dans cairo-dock-dbus.c)
+{
+	GError *erreur = NULL;
+	guchar* uValue = NULL;
+	
+	dbus_g_proxy_call (dbus_proxy_player, "current_position", &erreur,
+		G_TYPE_INVALID,
+		G_TYPE_UCHAR, &uValue,
+		G_TYPE_INVALID);
+	
+	return uValue;
+	
+}
 
-
+gchar* cd_musicplayer_getlength (void)
+{
+	gchar* length;
+	length=cairo_dock_dbus_get_string (dbus_proxy_player, "get_length");
+	return length;
+	
+}
 
 //*********************************************************************************
 // musicplayer_getCoverPath() : Retourne l'adresse de la pochette
@@ -237,56 +190,9 @@ void cd_musicplayer_getCoverPath (void)
 	cd_message("MP : Couverture -> %s", myData.cCoverPath);
 }
 
-//*********************************************************************************
-// musicplayer_check_for_changes() : Vérifie s'il y a eu des changements de données
-//*********************************************************************************
-
-gboolean cd_musicplayer_check_for_changes (void)
-{
-	gchar *title, *album, *artist, *cover_path;
-	gboolean has_changed;
-	
-
-	title = cd_musicplayer_dbus_getValue(myData.DBus_commands.get_title);
-	artist = cd_musicplayer_dbus_getValue(myData.DBus_commands.get_artist);
-	album = cd_musicplayer_dbus_getValue(myData.DBus_commands.get_album);
-	cover_path = cd_musicplayer_dbus_getValue(myData.DBus_commands.get_cover_path);
-	
-	if (! g_ascii_strcasecmp(myData.cTitle, title)) //Si les chaines sont identiques
-	{
-		if (! g_ascii_strcasecmp(myData.cArtist, artist))
-		{
-			if (! g_ascii_strcasecmp(myData.cAlbum, album))
-			{
-				if (! g_ascii_strcasecmp(myData.cCoverPath, cover_path))
-					{
-						myData.cPreviousRawTitle=myData.cRawTitle;
-						has_changed=FALSE; // Tout est identique
-					}
-			}
-		}
-	}
-	else
-	{	
-		cd_message("MP : La chanson a change");
-		myData.cPreviousRawTitle=myData.cRawTitle;
-		has_changed=TRUE;
-	}
-	
-	g_free(title);
-	g_free(artist);
-	g_free(album);
-	g_free(cover_path);
-	return has_changed;
-}
-
-
-
-
 
 void cd_musicplayer_load_dbus_commands (void)
 {
-	cd_debug("MP : valeur dans dbus : %s", myConfig.cMusicPlayer);
 	if (! strcmp(myConfig.cMusicPlayer,"Exaile"))
 	{
 		cd_debug("MP : On charge les commande pour Exaile");
@@ -304,10 +210,11 @@ void cd_musicplayer_load_dbus_commands (void)
 		myData.DBus_commands.get_cover_path = "get_cover_path";
 		myData.DBus_commands.get_status = "status";
 		myData.DBus_commands.toggle = "toggle_visibility";
-		return TRUE;
+		return;
 	}
 		
-	/*case MY_BANSHEE :
+	if (! strcmp(myConfig.cMusicPlayer,"Banshee"))
+	{
 		myData.DBus_commands.service = "org.gnome.Banshee";
 		myData.DBus_commands.path = "/org/gnome/Banshee/Player";
 		myData.DBus_commands.interface = "org.gnome.Banshee.Core";
@@ -322,16 +229,18 @@ void cd_musicplayer_load_dbus_commands (void)
 		myData.DBus_commands.get_cover_path = "GetPlayingCoverUri";
 		myData.DBus_commands.get_status = "GetPlayingStatus";
 		myData.DBus_commands.toggle = "PresentWindow";
-		break;
+		return;
+	}
 		
-	case MY_QUOD_LIBET :
+	if (! strcmp(myConfig.cMusicPlayer,"QuodLibet"))
+	{
 		myData.DBus_commands.service = "net.sacredchao.QuodLibet";
 		myData.DBus_commands.path = "/net/sacredchao/QuodLibet";
 		myData.DBus_commands.interface = "net.sacredchao.QuodLibet";
 		myData.DBus_commands.play = "Play";
 		myData.DBus_commands.pause = "Pause";
 		//myData.DBus_commands.stop = "stop";
-		/*myData.DBus_commands.next = "Next";
+		myData.DBus_commands.next = "Next";
 		myData.DBus_commands.previous = "Previous";
 		myData.DBus_commands.get_title = "GetPlayingTitle";
 		myData.DBus_commands.get_artist = "GetPlayingArtist";
@@ -339,9 +248,11 @@ void cd_musicplayer_load_dbus_commands (void)
 		myData.DBus_commands.get_cover_path = "GetPlayingCoverUri";
 		myData.DBus_commands.get_status = "GetPlayingStatus";
 		myData.DBus_commands.toggle = "PresentWindow";
-		break;
-		
-	case MY_LISTEN :
+		return;
+	}
+	
+	if (! strcmp(myConfig.cMusicPlayer,"Listen"))
+	{
 		myData.DBus_commands.service = "org.gnome.Listen";
 		myData.DBus_commands.path = "/org/gnome/listen";
 		myData.DBus_commands.interface = "org.gnome.Listen";
@@ -352,9 +263,11 @@ void cd_musicplayer_load_dbus_commands (void)
 		myData.DBus_commands.previous = "previous";
 		myData.DBus_commands.get_full_data = "current_playing";
 		myData.DBus_commands.toggle = "hello";
-		break;
-		
-	case MY_RHYTHMBOX :
+		return;
+	}	
+	
+	if (! strcmp(myConfig.cMusicPlayer,"RhythmBox"))
+	{
 		myData.DBus_commands.service = "org.gnome.Rhythmbox";
 		myData.DBus_commands.path = "/org/gnome/Rhythmbox/Player";
 		myData.DBus_commands.interface = "org.gnome.Rhythmbox.Player";
@@ -367,9 +280,6 @@ void cd_musicplayer_load_dbus_commands (void)
 		myData.DBus_commands.previous = "previous";
 		myData.DBus_commands.get_full_data = "current_playing";
 		myData.DBus_commands.toggle = "hello";
-		break;
-		*/
-	
-	return FALSE;
-	
+		return;
+	 }
 }

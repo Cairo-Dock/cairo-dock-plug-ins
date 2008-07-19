@@ -18,7 +18,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 CD_APPLET_INCLUDE_MY_VARS
 
 
-CD_APPLET_ABOUT (D_("This is the musicPlayer applet\n made by ChAnGFu for Cairo-Dock"))
+CD_APPLET_ABOUT (D_("This is the musicPlayer applet\n made by ChAnGFu & Mav for Cairo-Dock"))
 
 void cd_musicplayer_prev (void) {
 	myData.pCurrentHandeler->control (PLAYER_PREVIOUS, NULL);
