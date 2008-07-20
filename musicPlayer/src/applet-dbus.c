@@ -96,7 +96,7 @@ void cd_musicplayer_dbus_command(const char *command)
 
 gchar* cd_musicplayer_dbus_getValue (const char *method)
 {
-	gchar *value;
+	gchar *value=NULL;
 	value = cairo_dock_dbus_get_string (dbus_proxy_player, method);
 	return value;
 	
@@ -108,7 +108,7 @@ gchar* cd_musicplayer_dbus_getValue (const char *method)
 //*********************************************************************************
 void cd_musicplayer_getStatus_string (void)
 {
-		gchar *status;
+		gchar *status=NULL;
 		status = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_status);
 		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
 		if (! g_ascii_strcasecmp(status, "playing"))
@@ -141,8 +141,8 @@ void cd_musicplayer_getStatus_string (void)
 
 void cd_musicplayer_getSongInfos(void)
 {
-	
-	if (myData.cRawTitle != NULL) myData.cPreviousRawTitle = myData.cRawTitle; 
+	if (myData.cRawTitle != NULL) 
+		myData.cPreviousRawTitle = myData.cRawTitle; 
 	myData.cRawTitle = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_title);
 	
 	myData.cAlbum = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_album);
@@ -169,7 +169,7 @@ guchar* cd_musicplayer_getCurPos (void) // Fonction temporaire (à rajouter dans
 
 gchar* cd_musicplayer_getlength (void)
 {
-	gchar* length;
+	gchar* length=NULL;
 	length=cairo_dock_dbus_get_string (dbus_proxy_player, "get_length");
 	return length;
 	
@@ -181,7 +181,11 @@ gchar* cd_musicplayer_getlength (void)
 
 void cd_musicplayer_getCoverPath (void)
 {
-	g_free (myData.cCoverPath);
+	if (myData.cCoverPath != NULL) {
+		g_free (myData.cCoverPath);
+		myData.cCoverPath = NULL;
+	}
+	
 	myData.cCoverPath = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_cover_path);
 	if (myData.cCoverPath != NULL)
 	{

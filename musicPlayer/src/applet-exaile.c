@@ -5,6 +5,7 @@ released under the terms of the GNU General Public License.
 
 Written by Yann SLADEK (for any bug report, please mail me to mav@cairo-dock.org)
 Fabrice Rey (fabounet@users.berlios.de)
+Rémy Robertson (changfu@cairo-dock.org)
 
 ******************************************************************************/
 #include <stdlib.h>
@@ -79,6 +80,7 @@ gboolean cd_exaile_ask_control (MyPlayerControl pControl)
 			return FALSE;
 	}
 	
+	return FALSE;
 }
 
 /* Fonction de connexion au bus de Exaile */
@@ -147,7 +149,9 @@ void cd_musicplayer_exaile_getTime (void)
 	myData.iCurrentTime=(myData.iSongLength*(int)uValue)/100;
 	
 	/* Décalage dû à l'utilisation du pourcentage par exaile : marchotte mais sans plus */
-	if (myData.iPreviousCurrentTime == myData.iCurrentTime) myData.iCurrentTime = myData.iCurrentTime +1;
+	if (myData.iPreviousCurrentTime == myData.iCurrentTime)
+		myData.iCurrentTime = myData.iCurrentTime +1;
+		
 	cd_debug("MP : Position actuelle : %i", myData.iCurrentTime);
 }
 
