@@ -19,7 +19,7 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
 AC_SUBST(GETTEXT_PACKAGE)
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/CD_APPLET_NAME]
+pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/CD_APPLET_NAME]
 AC_SUBST(pkgdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

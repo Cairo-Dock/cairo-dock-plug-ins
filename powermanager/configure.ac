@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_POWERMANAGER)
 AC_SUBST(VERSION_POWERMANAGER, "$VERSION")
 AC_SUBST(PACKAGE_POWERMANAGER, "$PACKAGE")
 
-powermanagerdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/powermanager]
+powermanagerdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/powermanager]
 AC_SUBST(powermanagerdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

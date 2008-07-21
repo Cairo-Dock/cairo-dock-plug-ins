@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_COMPIZ_ICON)
 AC_SUBST(VERSION_COMPIZ_ICON, "$VERSION")
 AC_SUBST(PACKAGE_COMPIZ_ICON, "$PACKAGE")
 
-compiz_icondatadir=[`pkg-config cairo-dock --variable=pluginsdir`/compiz-icon]
+compiz_icondatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/compiz-icon]
 AC_SUBST(compiz_icondatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

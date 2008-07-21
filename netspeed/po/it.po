@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-13 00:47+0200\n"
+"POT-Creation-Date: 2008-07-17 02:12+0200\n"
 "PO-Revision-Date: 2008-06-25 02:18+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgstr "GB"
 msgid "TB"
 msgstr "TB"
 
-#: ../src/applet-netspeed.c:161
+#: ../src/applet-netspeed.c:160
 msgid "Loading"
 msgstr "Caricamento"
 

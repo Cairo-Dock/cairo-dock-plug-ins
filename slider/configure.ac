@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_SLIDER)
 AC_SUBST(VERSION_SLIDER, "$VERSION")
 AC_SUBST(PACKAGE_SLIDER, "$PACKAGE")
 
-sliderdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/slider]
+sliderdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/slider]
 AC_SUBST(sliderdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

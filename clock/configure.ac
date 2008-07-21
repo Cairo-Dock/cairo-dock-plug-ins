@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_CLOCK)
 AC_SUBST(VERSION_CLOCK, "$VERSION")
 AC_SUBST(PACKAGE_CLOCK, "$PACKAGE")
 
-clockdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/clock]
+clockdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/clock]
 AC_SUBST(clockdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

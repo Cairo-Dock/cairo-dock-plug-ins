@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_RENDERING)
 AC_SUBST(VERSION_RENDERING, "$VERSION")
 AC_SUBST(PACKAGE_RENDERING, "$PACKAGE")
 
-renderingdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rendering]
+renderingdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/rendering]
 AC_SUBST(renderingdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

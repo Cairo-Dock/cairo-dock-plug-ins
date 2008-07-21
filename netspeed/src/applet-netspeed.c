@@ -80,7 +80,6 @@ void cd_netspeed_read_data (void)
 	gsize length=0;
 	GError *erreur = NULL;
 	g_file_get_contents (NETSPEED_DATA_PIPE, &cContent, &length, &erreur);
-	g_print ("netsped : %s\n", cContent);
 	if (erreur != NULL)
 	{
 		cd_warning("Attention : %s", erreur->message);

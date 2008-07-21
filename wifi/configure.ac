@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_WIFI)
 AC_SUBST(VERSION_WIFI, "$VERSION")
 AC_SUBST(PACKAGE_WIFI, "$PACKAGE")
 
-wifidatadir=[`pkg-config cairo-dock --variable=pluginsdir`/wifi]
+wifidatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/wifi]
 AC_SUBST(wifidatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

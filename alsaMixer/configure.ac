@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_ALSA_MIXER)
 AC_SUBST(VERSION_ALSA_MIXER, "$VERSION")
 AC_SUBST(PACKAGE_ALSA_MIXER, "$PACKAGE")
 
-alsa_mixerdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/AlsaMixer]
+alsa_mixerdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/AlsaMixer]
 AC_SUBST(alsa_mixerdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-13 00:47+0200\n"
+"POT-Creation-Date: 2008-07-17 02:12+0200\n"
 "PO-Revision-Date: 2007-12-11\n"
 "Last-Translator: ROBERTSON Rémy <changfu@cairo-dock.org>\n"
 "Language-Team: FRENCH <info@cairo-dock.org>\n"
@@ -69,9 +69,6 @@ msgstr "hauteur :"
 #: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
-
-msgid "You can put the tag '__Player__' to display the name of the player you control"
-msgstr "Vous pouvez mettre le tag '__Player__' pour afficher le nom du lecteur que vous controler"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
@@ -386,3 +383,10 @@ msgstr "Nom de l'image 'Pause' :"
 #: ../data/messages:163
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Pas de Signal': "
+
+#~ msgid ""
+#~ "You can put the tag '__Player__' to display the name of the player you "
+#~ "control"
+#~ msgstr ""
+#~ "Vous pouvez mettre le tag '__Player__' pour afficher le nom du lecteur "
+#~ "que vous controler"

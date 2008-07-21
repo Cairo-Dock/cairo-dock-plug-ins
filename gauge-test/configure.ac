@@ -19,7 +19,7 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
 AC_SUBST(GETTEXT_PACKAGE)
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/gauge-test]
+pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/gauge-test]
 AC_SUBST(pkgdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

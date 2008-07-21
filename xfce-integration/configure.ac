@@ -11,7 +11,7 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-xfce_integrationdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/xfce-integration]
+xfce_integrationdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/xfce-integration]
 AC_SUBST(xfce_integrationdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

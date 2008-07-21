@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_NVIDIA)
 AC_SUBST(VERSION_NVIDIA, "$VERSION")
 AC_SUBST(PACKAGE_NVIDIA, "$PACKAGE")
 
-nvidiadatadir=[`pkg-config cairo-dock --variable=pluginsdir`/nVidia]
+nvidiadatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/nVidia]
 AC_SUBST(nvidiadatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

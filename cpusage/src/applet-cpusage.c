@@ -80,7 +80,7 @@ void cd_cpusage_get_cpu_info (void)
 				str = strchr (cContent, ':');
 				if (str != NULL)
 				{
-					myData.iFrequency = atoi (str + 2);  // on saute l'espace apres le ':'.
+					myData.iFrequency = atoll (str + 2);  // on saute l'espace apres le ':'.
 				}
 			}
 			else if (myData.iNbCPU == 0 && strncmp (cContent, "cpu cores", 9) == 0)
@@ -88,7 +88,7 @@ void cd_cpusage_get_cpu_info (void)
 				str = strchr (cContent, ':');
 				if (str != NULL)
 				{
-					myData.iNbCPU = atoi (str + 2);  // on saute l'espace apres le ':'.
+					myData.iNbCPU = atoll (str + 2);  // on saute l'espace apres le ':'.
 				}
 			}
 		}
@@ -135,20 +135,20 @@ void cd_cpusage_read_data (void)
 		return ;
 	}
 	
-	guint new_cpu_user = 0, new_cpu_user_nice = 0, new_cpu_system = 0, new_cpu_idle = 0;
+	long long int new_cpu_user = 0, new_cpu_user_nice = 0, new_cpu_system = 0, new_cpu_idle = 0;
 	tmp += 3;  // on saute 'cpu'.
 	while (*tmp == ' ')  // on saute les espaces.
 		tmp ++;
-	new_cpu_user = atoi (tmp);
+	new_cpu_user = atoll (tmp);
 	
 	go_to_next_value(tmp)
-	new_cpu_user_nice = atoi (tmp);
+	new_cpu_user_nice = atoll (tmp);
 	
 	go_to_next_value(tmp)
-	new_cpu_system = atoi (tmp);
+	new_cpu_system = atoll (tmp);
 	
 	go_to_next_value(tmp)
-	new_cpu_idle = atoi (tmp);
+	new_cpu_idle = atoll (tmp);
 	
 	if (myData.bInitialized)  // la 1ere iteration on ne peut pas calculer la frequence.
 	{
@@ -320,18 +320,9 @@ void cd_cpusage_get_process_times (double fTime, double fTimeElapsed)
 		jump_to_next_value (tmp);
 		jump_to_next_value (tmp);
 		jump_to_next_value (tmp);
-		iNewCpuTime = atoi (tmp);  // user.
+		iNewCpuTime = atoll (tmp);  // user.
 		jump_to_next_value (tmp);
-		iNewCpuTime += atoi (tmp);  // system.
-		/*jump_to_next_value (tmp);
-		jump_to_next_value (tmp);
-		jump_to_next_value (tmp);
-		jump_to_next_value (tmp);  // on saute le nice.
-		jump_to_next_value (tmp);
-		jump_to_next_value (tmp);
-		jump_to_next_value (tmp);
-		new_vsize = atoi (tmp);
-		new_rss = atoi (tmp);*/
+		iNewCpuTime += atoll (tmp);  // system.
 		
 		//g_print ("%s : %d -> %d\n", pProcess->cName, pProcess->iCpuTime, iNewCpuTime);
 		if (pProcess->iCpuTime != 0 && fTimeElapsed != 0)

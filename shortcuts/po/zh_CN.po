@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-13 00:47+0200\n"
+"POT-Creation-Date: 2008-07-17 02:12+0200\n"
 "PO-Revision-Date: 2008-07-09 10:51+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-bookmarks.c:123 ../src/applet-bookmarks.c:323
-#: ../src/applet-load-icons.c:59
+#: ../src/applet-bookmarks.c:122 ../src/applet-bookmarks.c:321
+#: ../src/applet-load-icons.c:58
 msgid "Unmounted"
 msgstr "卸载"
 

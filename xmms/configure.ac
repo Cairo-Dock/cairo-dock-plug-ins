@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_XMMS)
 AC_SUBST(VERSION_XMMS, "$VERSION")
 AC_SUBST(PACKAGE_XMMS, "$PACKAGE")
 
-xmmsdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/xmms]
+xmmsdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/xmms]
 AC_SUBST(xmmsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_WEATHER)
 AC_SUBST(VERSION_WEATHER, "$VERSION")
 AC_SUBST(PACKAGE_WEATHER, "$PACKAGE")
 
-weatherdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/weather]
+weatherdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/weather]
 AC_SUBST(weatherdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

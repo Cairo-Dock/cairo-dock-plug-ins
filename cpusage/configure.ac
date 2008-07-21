@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_CPUSAGE)
 AC_SUBST(VERSION_CPUSAGE, "$VERSION")
 AC_SUBST(PACKAGE_CPUSAGE, "$PACKAGE")
 
-cpusagedatadir=[`pkg-config cairo-dock --variable=pluginsdir`/cpusage]
+cpusagedatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/cpusage]
 AC_SUBST(cpusagedatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

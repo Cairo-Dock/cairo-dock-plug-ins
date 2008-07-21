@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_TERMINAL)
 AC_SUBST(VERSION_TERMINAL, "$VERSION")
 AC_SUBST(PACKAGE_TERMINAL, "$PACKAGE")
 
-terminaldatadir=[`pkg-config cairo-dock --variable=pluginsdir`/terminal]
+terminaldatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/terminal]
 AC_SUBST(terminaldatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

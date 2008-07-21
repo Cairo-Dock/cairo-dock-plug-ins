@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_RAME)
 AC_SUBST(VERSION_RAME, "$VERSION")
 AC_SUBST(PACKAGE_RAME, "$PACKAGE")
 
-ramedatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rame]
+ramedatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/rame]
 AC_SUBST(ramedatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

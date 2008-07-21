@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_DBUS)
 AC_SUBST(VERSION_DBUS, "$VERSION")
 AC_SUBST(PACKAGE_DBUS, "$PACKAGE")
 
-dbusdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/Dbus]
+dbusdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Dbus]
 AC_SUBST(dbusdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

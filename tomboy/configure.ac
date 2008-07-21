@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_TOMBOY)
 AC_SUBST(VERSION_TOMBOY, "$VERSION")
 AC_SUBST(PACKAGE_TOMBOY, "$PACKAGE")
 
-tomboydatadir=[`pkg-config cairo-dock --variable=pluginsdir`/tomboy]
+tomboydatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/tomboy]
 AC_SUBST(tomboydatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

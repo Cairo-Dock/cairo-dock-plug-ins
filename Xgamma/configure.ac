@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_XGAMMA)
 AC_SUBST(VERSION_XGAMMA, "$VERSION")
 AC_SUBST(PACKAGE_XGAMMA, "$PACKAGE")
 
-xgammadatadir=[`pkg-config cairo-dock --variable=pluginsdir`/Xgamma]
+xgammadatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Xgamma]
 AC_SUBST(xgammadatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_MUSICPLAYER)
 AC_SUBST(VERSION_MUSICPLAYER, "$VERSION")
 AC_SUBST(PACKAGE_MUSICPLAYER, "$PACKAGE")
 
-musicplayerdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/musicPlayer]
+musicplayerdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/musicPlayer]
 AC_SUBST(musicplayerdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_NETSPEED)
 AC_SUBST(VERSION_NETSPEED, "$VERSION")
 AC_SUBST(PACKAGE_NETSPEED, "$PACKAGE")
 
-netspeeddatadir=[`pkg-config cairo-dock --variable=pluginsdir`/netspeed]
+netspeeddatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/netspeed]
 AC_SUBST(netspeeddatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

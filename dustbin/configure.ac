@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_DUSTBIN)
 AC_SUBST(VERSION_DUSTBIN, "$VERSION")
 AC_SUBST(PACKAGE_DUSTBIN, "$PACKAGE")
 
-dustbindatadir=[`pkg-config cairo-dock --variable=pluginsdir`/dustbin]
+dustbindatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/dustbin]
 AC_SUBST(dustbindatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

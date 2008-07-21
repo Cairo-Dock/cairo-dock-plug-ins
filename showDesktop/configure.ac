@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_SHOW_DESKTOP)
 AC_SUBST(VERSION_SHOW_DESKTOP, "$VERSION")
 AC_SUBST(PACKAGE_SHOW_DESKTOP, "$PACKAGE")
 
-show_desktopdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/showDesktop]
+show_desktopdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/showDesktop]
 AC_SUBST(show_desktopdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

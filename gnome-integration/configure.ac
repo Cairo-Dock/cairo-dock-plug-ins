@@ -11,7 +11,7 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-gnome_integrationdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/gnome-integration]
+gnome_integrationdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/gnome-integration]
 AC_SUBST(gnome_integrationdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

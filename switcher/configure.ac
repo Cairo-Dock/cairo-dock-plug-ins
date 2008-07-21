@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_SWITCHER)
 AC_SUBST(VERSION_SWITCHER, "$VERSION")
 AC_SUBST(PACKAGE_SWITCHER, "$PACKAGE")
 
-switcherdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/switcher]
+switcherdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/switcher]
 AC_SUBST(switcherdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

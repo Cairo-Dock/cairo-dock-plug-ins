@@ -35,7 +35,7 @@ typedef struct {
 	gboolean bAcquisitionOK;
 	CairoDockMeasure *pMeasureTimer;
 	GTimer *pClock;
-	guint cpu_user, cpu_user_nice, cpu_system, cpu_idle;
+	long long int cpu_user, cpu_user_nice, cpu_system, cpu_idle;
 	gdouble cpu_usage;
 	
 	GHashTable *pProcessTable;

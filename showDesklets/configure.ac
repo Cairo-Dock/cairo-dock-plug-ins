@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_SHOW_DESKLETS)
 AC_SUBST(VERSION_SHOW_DESKLETS, "$VERSION")
 AC_SUBST(PACKAGE_SHOW_DESKLETS, "$PACKAGE")
 
-show_deskletsdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/showDesklets]
+show_deskletsdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/showDesklets]
 AC_SUBST(show_deskletsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

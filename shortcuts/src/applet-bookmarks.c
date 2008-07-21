@@ -131,8 +131,8 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 						pNewIcon->fOrder = fCurrentOrder ++;
 						if (myDesklet)
 						{
-							pNewIcon->fWidth = 48/* * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor)*/;
-							pNewIcon->fHeight = 48/* * MIN (myData.fTreeWidthFactor, myData.fTreeHeightFactor)*/;
+							pNewIcon->fWidth = 48;
+							pNewIcon->fHeight = 48;
 						}
 						
 						cairo_dock_load_one_icon_from_scratch (pNewIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
@@ -141,7 +141,6 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 						else
 						{
 							myDesklet->icons = g_list_append (myDesklet->icons, pNewIcon);
-							//myDesklet->icons = myData.pDeskletIconList;
 						}
 					}
 					else

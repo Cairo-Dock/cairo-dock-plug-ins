@@ -96,11 +96,11 @@ frame alpha = 1
 #i Left offset :
 #{It's typically the width of the left side of your frame, in pixels.}
 left offset = 0
-#i Right offset :
+#i Top offset :
 top offset = 0
 #i Right offset :
 right offset = 0
-#i Right offset :
+#i Bottom offset :
 bottom offset = 0
 #S Reflection image :
 #{It's an image that will be displayed above the cover, like a reflect for exemple.}

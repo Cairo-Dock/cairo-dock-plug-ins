@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_RHYTHMBOX)
 AC_SUBST(VERSION_RHYTHMBOX, "$VERSION")
 AC_SUBST(PACKAGE_RHYTHMBOX, "$PACKAGE")
 
-rhythmboxdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rhythmbox]
+rhythmboxdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/rhythmbox]
 AC_SUBST(rhythmboxdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

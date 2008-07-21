@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_CAIRO_PENGUIN)
 AC_SUBST(VERSION_CAIRO_PENGUIN, "$VERSION")
 AC_SUBST(PACKAGE_CAIRO_PENGUIN, "$PACKAGE")
 
-cairo_penguindatadir=[`pkg-config cairo-dock --variable=pluginsdir`/Cairo-Penguin]
+cairo_penguindatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Cairo-Penguin]
 AC_SUBST(cairo_penguindatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)

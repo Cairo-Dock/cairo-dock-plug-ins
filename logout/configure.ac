@@ -22,7 +22,7 @@ AC_SUBST(VERSION_LOGOUT, "$VERSION")
 AC_SUBST(PACKAGE_LOGOUT, "$PACKAGE")
 
 
-logoutdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/logout]
+logoutdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/logout]
 AC_SUBST(logoutdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
