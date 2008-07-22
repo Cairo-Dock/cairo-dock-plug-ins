@@ -48,6 +48,21 @@ void cd_musicplayer_add_buttons_to_desklet(void) {
 	}
 }
 
+void _set_new_title (void) {
+	myData.cPreviousRawTitle = myData.cRawTitle;
+	if (myData.cRawTitle == NULL || strcmp (myData.cRawTitle, "(null)") == 0) {
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle)
+	}
+	else {
+		cd_message("MP : Changing title to: %s", myData.cRawTitle);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cRawTitle)
+		if (myConfig.bEnableAnim)
+			cd_musicplayer_animate_icon (1);
+		if (myConfig.bEnableDialogs)
+			cd_musicplayer_new_song_playing();
+	}
+}
+
 gboolean cd_musicplayer_draw_icon (void) {
 	gboolean bNeedRedraw = FALSE;
 	if (myData.pPlayingStatus == PLAYER_NONE) {
@@ -102,81 +117,17 @@ gboolean cd_musicplayer_draw_icon (void) {
 		}
 	}
 	
-	//Ca plante la détection du titre d'xmms, arrange toi pour g_strdup le titre renvoyé par dbus dans myData.cRawTitle
-	//Quand tu execute une commande (play pause stop) myData.cRawTitle = NULL pour forcer la détection
-	//Regarde dans applet-xmms.c
 	
-	/* Ancienne partie --> Mav */
-	/*cd_debug("MP : Previous: %s Now: %s", myData.cPreviousRawTitle, myData.cRawTitle);
-	if (myData.cPreviousRawTitle != myData.cRawTitle) {
-	//if (myData.cPreviousRawTitle != NULL || myData.cRawTitle != NULL) {
-		if (strcmp(myData.cPreviousRawTitle, myData.cRawTitle) != 0) {
-			myData.cPreviousRawTitle = myData.cRawTitle;
-			if (myData.cRawTitle == NULL || strcmp (myData.cRawTitle, "(null)") == 0) {
-				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle)
-			}
-			else {
-			  cd_message("MP : Changing title to: %s", myData.cRawTitle);
-				CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cRawTitle)
-				if (myConfig.bEnableAnim)
-				  cd_musicplayer_animate_icon (1);
-			  if (myConfig.bEnableDialogs)
-				  cd_musicplayer_new_song_playing();
-			}
-		}
-	}*/
-	
-	
-	/* Ancienne partie --> ChangFu */
-	/*if (myData.cPreviousRawTitle != myData.cRawTitle) {
-                myData.cPreviousRawTitle = myData.cRawTitle;
-                if (myData.cRawTitle == NULL || strcmp (myData.cRawTitle, "(null)") == 0) {
-                        CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle)
-                }
-                else {
-                        cd_message("MP : Changing title to: %s", myData.cRawTitle);
-                        CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cRawTitle)
-                        if (myConfig.bEnableAnim)
-                                cd_musicplayer_animate_icon (1);
-                        if (myConfig.bEnableDialogs)
-                                cd_musicplayer_new_song_playing();
-                }
-        }*/
-
-
-	//cd_debug("MP : Previous: %s Now: %s", myData.cPreviousRawTitle, myData.cRawTitle);
-	
-	if ((myData.cPreviousRawTitle != NULL) && (myData.cRawTitle != NULL)) // Si les titres sont définis...
-	{
-		if (strcmp(myData.cPreviousRawTitle,myData.cRawTitle)) // ... et qu'ils sont différents
-		{
-			myData.cPreviousRawTitle = myData.cRawTitle;
-			if (myData.cRawTitle == NULL || strcmp (myData.cRawTitle, "(null)") == 0) 
-			{
-					CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle)
-			}
-			else 
-			{
-				cd_message("MP : Changing title to: %s", myData.cRawTitle);
-				CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cRawTitle)
-				if (myConfig.bEnableAnim)
-				cd_musicplayer_animate_icon (1);
-				if (myConfig.bEnableDialogs)
-				cd_musicplayer_new_song_playing();
-			}
-		}
+	if (myData.cPreviousRawTitle != NULL && myData.cRawTitle != NULL) { // Si les titres sont définis...
+		if (strcmp(myData.cPreviousRawTitle, myData.cRawTitle)) // ... et qu'ils sont différents
+			_set_new_title ();
 	}
-	//else if ((myData.cRawTitle != NULL) || (! strcmp (myData.cRawTitle, "(null)"))) 
-	else if (myData.cRawTitle != NULL) // Si seulement le titre courant est défini
-	{
-		cd_message("MP : Setting title to: %s", myData.cRawTitle);
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cRawTitle)
-		if (myConfig.bEnableAnim)
-		cd_musicplayer_animate_icon (1);
-		if (myConfig.bEnableDialogs)
-		cd_musicplayer_new_song_playing();	
+	else if (myData.cRawTitle != NULL) { // Si seulement le titre courant est défini
+		_set_new_title ();
 	}
-
+	else {
+		//Kedal a faire
+	}
 
 
 	

@@ -1,5 +1,3 @@
-
-
 #ifndef __APPLET_EXAILE__
 #define  __APPLET_EXAILE__
 

@@ -114,19 +114,19 @@ void cd_musicplayer_getStatus_string (void)
 		if (! g_ascii_strcasecmp(status, "playing"))
 		{
 			myData.pPlayingStatus = PLAYER_PLAYING;
-			cd_message ("MP : En cours de lecture");	
+			//cd_message ("MP : En cours de lecture");	
 		}
 		
 		else if (! g_ascii_strcasecmp(status, "paused"))
 		{
 			myData.pPlayingStatus = PLAYER_PAUSED;
-			cd_message ("MP : Pause");	
+			//cd_message ("MP : Pause");	
 		}
 		
 		else if (! g_ascii_strcasecmp(status, "stopped"))
 		{
 			myData.pPlayingStatus = PLAYER_STOPPED;
-			cd_message ("MP : Stop");	
+			//cd_message ("MP : Stop");	
 		}
 		
 		g_free(status);
@@ -143,14 +143,15 @@ void cd_musicplayer_getSongInfos(void)
 {
 	if (myData.cRawTitle != NULL) 
 		myData.cPreviousRawTitle = myData.cRawTitle; 
-	myData.cRawTitle = g_strdup(cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_title));
 	
 	myData.cAlbum = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_album);
 
 	myData.cArtist = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_artist);
 
+	//Artist & Title = RawTitle
+	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_title));
+	
 	cd_message("MP : %s - %s - %s", myData.cRawTitle, myData.cArtist, myData.cAlbum);
-
 }
 
 guchar* cd_musicplayer_getCurPos (void) // Fonction temporaire (à rajouter dans cairo-dock-dbus.c)
@@ -164,15 +165,13 @@ guchar* cd_musicplayer_getCurPos (void) // Fonction temporaire (à rajouter dans
 		G_TYPE_INVALID);
 	
 	return uValue;
-	
 }
 
 gchar* cd_musicplayer_getlength (void)
 {
 	gchar* length=NULL;
-	length=cairo_dock_dbus_get_string (dbus_proxy_player, "get_length");
+	length = cairo_dock_dbus_get_string (dbus_proxy_player, "get_length");
 	return length;
-	
 }
 
 //*********************************************************************************
@@ -194,7 +193,7 @@ void cd_musicplayer_getCoverPath (void)
 	cd_message("MP : Couverture -> %s", myData.cCoverPath);
 }
 
-
+//A virer
 void cd_musicplayer_load_dbus_commands (void)
 {
 	if (! strcmp(myConfig.cMusicPlayer,"Banshee"))
