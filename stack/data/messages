@@ -1,0 +1,68 @@
+_("Icon")
+
+_("Desired icon size for this applet")
+
+_("width :")
+
+_("height :")
+
+_("Name of the icon as it will appear in its label in the dock :")
+
+_("Icon's name :")
+
+_("Name of the dock it belongs to:")
+
+_("Desklet")
+
+_("Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.")
+
+_("Desklet's dimension (width x height) :")
+
+_("Depending on your WindowManager, you can move it with ALT + left_click")
+
+_("Desklet's position (x ; y) :")
+
+_("Is detached from the dock ?")
+
+_("Keep below other windows ?")
+
+_("Keep above other windows ?")
+
+_("for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)")
+
+_("Keep on widget layer ?")
+
+_("If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.")
+
+_("Lock position ?")
+
+_("Configuration")
+
+_("Directory & Options")
+
+_("Stacks will act as a the shortcut applet's but with files. To add a file, just drag and drop it on the Stacks icon")
+
+_("Use only Stacks local directory ?")
+
+_("You can use '_LocalDirectory_' tag to have both stack local and all monitored directories. Ensure 'Use only Stacks local directory' is unticked.")
+
+_("Monitored Directories :")
+
+_("This option with large files lists can slow down the dock, use it properly.")
+
+_("List hidden files ?")
+
+_("Separate different directories with separators ?")
+
+_("This options allow you to avoid some files to be displayed in the stacks considering their types (video, images, etc...)")
+
+_("Filter files with their mime types ?")
+
+_("Eg: image, text, video, audio, application...")
+
+_("Here you can specify a list of mime types to avoid :")
+
+_("Let it empty to use default sub-dock view.")
+
+_("Name of the view used for the sub-dock :")
+
