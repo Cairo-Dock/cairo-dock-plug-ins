@@ -35,6 +35,11 @@ void cd_exaile_free_data (void) //Permet de libéré la mémoire prise par notre
 void cd_exaile_control (MyPlayerControl pControl, char* nothing) //Permet d'effectuer les actions de bases sur le lecteur
 { 
 	gchar *cCommand = NULL;
+	
+	/* Conseil de ChangFu pour redetecter le titre à coup sûr */
+	g_free (myData.cRawTitle);
+	myData.cRawTitle = NULL;
+		
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
 			cCommand = myData.DBus_commands.previous;
@@ -79,8 +84,6 @@ gboolean cd_exaile_ask_control (MyPlayerControl pControl)
 		default :
 			return FALSE;
 	}
-	
-	return FALSE;
 }
 
 /* Fonction de connexion au bus de Exaile */
@@ -119,9 +122,24 @@ void cd_exaile_read_data (void)
 	
 }
 
-void cd_exaile_dbus (void)
+void cd_exaile_load_dbus_commands (void)
 {
-	cd_musicplayer_load_dbus_commands();
+	cd_debug("MP : On charge les commande pour Exaile");
+	myData.DBus_commands.service = "org.exaile.DBusInterface";
+	myData.DBus_commands.path = "/DBusInterfaceObject";
+	myData.DBus_commands.interface = "org.exaile.DBusInterface";
+	myData.DBus_commands.play = "play_pause";
+	myData.DBus_commands.pause = "play_pause";
+	myData.DBus_commands.stop = "stop";
+	myData.DBus_commands.next = "next_track";
+	myData.DBus_commands.previous = "prev_track";
+	myData.DBus_commands.get_title = "get_title";
+	myData.DBus_commands.get_artist = "get_artist";
+	myData.DBus_commands.get_album = "get_album";
+	myData.DBus_commands.get_cover_path = "get_cover_path";
+	myData.DBus_commands.get_status = "status";
+	myData.DBus_commands.toggle = "toggle_visibility";
+	return;
 	cd_debug("MP : Chargement des fonctions DBus effectué");
 }
 
@@ -162,7 +180,7 @@ void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lect
 	pExaile->acquisition = cd_exaile_acquisition;
 	pExaile->read_data = cd_exaile_read_data;
 	pExaile->free_data = cd_exaile_free_data;
-	pExaile->configure = cd_exaile_dbus; //Cette fonction permettera de préparé le controleur
+	pExaile->configure = cd_exaile_load_dbus_commands; //Cette fonction permettera de préparé le controleur
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pExaile->control = cd_exaile_control;
 	pExaile->ask_control = cd_exaile_ask_control;

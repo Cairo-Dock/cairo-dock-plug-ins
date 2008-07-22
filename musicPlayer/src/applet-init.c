@@ -19,6 +19,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 
 #include "applet-xmms.h" //Support XMMS
 #include "applet-exaile.h" //Support Exaile
+#include "applet-songbird.h" //Support Songbird
 
 CD_APPLET_DEFINITION ("musicPlayer", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
@@ -72,7 +73,12 @@ CD_APPLET_INIT_BEGIN (erreur)
 		cd_musicplayer_register_xmms_handeler ();
 	}
 	else if (! strcmp(myConfig.cMusicPlayer,"Exaile")){
+		cd_exaile_load_dbus_commands();
 		cd_musicplayer_register_exaile_handeler();
+	}
+	else if (! strcmp(myConfig.cMusicPlayer,"Songbird")){
+		cd_songbird_load_dbus_commands();
+		cd_musicplayer_register_songbird_handeler();
 	}
 	
 	if (myDesklet) {
@@ -97,6 +103,12 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.iPreviousCurrentTime = -1;
 	
 	myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name (myConfig.cMusicPlayer);
+	cd_debug("MP : Valeur de name : %s", myData.pCurrentHandeler->name);
+	cd_debug("MP : Valeur de appclass : %s", myData.pCurrentHandeler->appclass);
+	if (myData.pCurrentHandeler == NULL) { 
+ 		cd_warning ("MP : Handeler pointer is null, halt."); 
+ 		return; 
+	}
 	/*myConfig.cMusicPlayer = "XMMS";
 	myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name ("XMMS");*/
 	cd_musicplayer_arm_handeler (); //On prépare notre handeler
@@ -171,10 +183,8 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cd_musicplayer_disarm_handeler (); //On libère tout ce qu'occupe notre ancien handeler.
 		myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name (myConfig.cMusicPlayer);
-		/*myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name ("XMMS");
-		myConfig.cMusicPlayer = "XMMS";*/
-		
-		if (myIcon->cClass != NULL && (! myConfig.bStealTaskBarIcon || strcmp (myIcon->cClass, myData.pCurrentHandeler->appclass) != 0)) { // on ne veut plus l'inhiber ou on veut inhiber une autre.
+	
+		if (myIcon->cClass != NULL && ((! myConfig.bStealTaskBarIcon) || (! strcmp (myIcon->cClass, myData.pCurrentHandeler->appclass)))) { // on ne veut plus l'inhiber ou on veut inhiber une autre.
 			cairo_dock_deinhibate_class (myData.pCurrentHandeler->appclass, myIcon);
 		}
 		if (myConfig.bStealTaskBarIcon && myIcon->cClass == NULL) { // on comence a inhiber l'appli si on ne le faisait pas, ou qu'on s'est arrete.

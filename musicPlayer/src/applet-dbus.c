@@ -143,7 +143,7 @@ void cd_musicplayer_getSongInfos(void)
 {
 	if (myData.cRawTitle != NULL) 
 		myData.cPreviousRawTitle = myData.cRawTitle; 
-	myData.cRawTitle = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_title);
+	myData.cRawTitle = g_strdup(cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_title));
 	
 	myData.cAlbum = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_album);
 
@@ -197,26 +197,6 @@ void cd_musicplayer_getCoverPath (void)
 
 void cd_musicplayer_load_dbus_commands (void)
 {
-	if (! strcmp(myConfig.cMusicPlayer,"Exaile"))
-	{
-		cd_debug("MP : On charge les commande pour Exaile");
-		myData.DBus_commands.service = "org.exaile.DBusInterface";
-		myData.DBus_commands.path = "/DBusInterfaceObject";
-		myData.DBus_commands.interface = "org.exaile.DBusInterface";
-		myData.DBus_commands.play = "play_pause";
-		myData.DBus_commands.pause = "play_pause";
-		myData.DBus_commands.stop = "stop";
-		myData.DBus_commands.next = "next_track";
-		myData.DBus_commands.previous = "prev_track";
-		myData.DBus_commands.get_title = "get_title";
-		myData.DBus_commands.get_artist = "get_artist";
-		myData.DBus_commands.get_album = "get_album";
-		myData.DBus_commands.get_cover_path = "get_cover_path";
-		myData.DBus_commands.get_status = "status";
-		myData.DBus_commands.toggle = "toggle_visibility";
-		return;
-	}
-		
 	if (! strcmp(myConfig.cMusicPlayer,"Banshee"))
 	{
 		myData.DBus_commands.service = "org.gnome.Banshee";

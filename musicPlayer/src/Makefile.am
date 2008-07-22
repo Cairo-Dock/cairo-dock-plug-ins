@@ -19,6 +19,8 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-musicplayer.h\
 	applet-exaile.c\
 	applet-exaile.h\
+	applet-songbird.c\
+	applet-songbird.h\
 	applet-xmms.c\
 	applet-xmms.h\
 	applet-struct.h

@@ -41,8 +41,8 @@ struct _MusicPlayerHandeler {
 	MusicPlayerConfigureFunc		configure;
 	MusicPlayerControlerFunc		control;
 	MusicPlayerAskControlerFunc	ask_control;
-	gchar												*appclass;
-	gchar 											*name; //Servira a repérer le lecteur dans la GList.
+	gchar *appclass;
+	gchar *name; //Servira a repérer le lecteur dans la GList.
 };
 
 //A remplir lors du configure pour les players utilisant DBus.
