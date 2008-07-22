@@ -1,0 +1,295 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2008 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007-2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"PO-Revision-Date: 2008-07-16 13:41+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the weather applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr "这是由Fabrice Rey为Cairo-Dock制作的Weather小应用程序。"
+
+#: ../src/applet-notifications.c:69
+msgid ""
+"Enter your location\n"
+" (for exemple : Paris, France)"
+msgstr ""
+"输入您的位置\n"
+"（比如：Beijing, China）"
+
+#: ../src/applet-notifications.c:82 ../src/applet-notifications.c:95
+msgid ""
+"I couldn't get the info\n"
+" Is connexion alive ?"
+msgstr ""
+"无法获取信息，\n"
+"请检查互联网连接？"
+
+#: ../src/applet-notifications.c:128
+msgid "Choose your location :"
+msgstr "选择您的位置"
+
+#: ../src/applet-notifications.c:152
+msgid "Search for your location"
+msgstr "查询您的位置"
+
+#: ../src/applet-notifications.c:153
+msgid "Reload now"
+msgstr "重新载入"
+
+#: ../src/applet-notifications.c:178 ../src/applet-notifications.c:206
+msgid ""
+"No data were available\n"
+" is connection alive ?"
+msgstr "无数据。请检查互联网连接"
+
+#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:218
+msgid "Temperature"
+msgstr "气温"
+
+#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
+msgid "Wind"
+msgstr "风"
+
+#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+msgid "Humidity"
+msgstr "湿度"
+
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+msgid "SunRise"
+msgstr "日出"
+
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+msgid "SunSet"
+msgstr "日落"
+
+#: ../src/applet-notifications.c:218
+msgid "feeled"
+msgstr "体感温度"
+
+#: ../src/applet-notifications.c:220
+msgid "Pressure"
+msgstr "气压"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "图标"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "此小应用程序期望的图标大小"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "宽："
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高："
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "显现于dock之上的图标标签名称："
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "归属于dock的名称："
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "桌面应用程序"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
+"器"
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "桌面小程序尺寸（宽x高）："
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "桌面小应用程序位置(x ; y)："
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "从dock移开？"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "位于最下窗口？"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "窗口置顶？"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
+"type=utility) "
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "保持于小应用程序层？"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "锁定位置？"
+
+#: ../data/messages:37 ../data/messages:39
+msgid "Configuration"
+msgstr "配置"
+
+#: ../data/messages:41
+msgid ""
+"Right click on the icon to let Cairo-Dock help you to find your location "
+"code."
+msgstr "右击图标使Cario-Dock帮助您寻找您的位置代码。"
+
+#: ../data/messages:43
+msgid "Code of your location :"
+msgstr "您的位置代码："
+
+#: ../data/messages:45
+msgid "Use International System Units ?"
+msgstr "使用国际单位？"
+
+#: ../data/messages:47
+msgid "in seconds. Set 0 to have never-ending dialogs."
+msgstr "以秒为单位。设为0则对话框不自动消失。"
+
+#: ../data/messages:49
+msgid "Duration of dialogs :"
+msgstr "对话框持续时间："
+
+#: ../data/messages:51
+msgid "in minutes."
+msgstr "以分为单位。"
+
+#: ../data/messages:53
+msgid "Interval of time between 2 checks :"
+msgstr "两次检查间的间隔时间："
+
+#: ../data/messages:55
+msgid "Info"
+msgstr "信息"
+
+#: ../data/messages:57
+msgid "Display current conditions on the icon instead of the default one ?"
+msgstr "以当前情况图标取代默认图标？"
+
+#: ../data/messages:59
+msgid "Number of days you want to forecast :"
+msgstr "预报天数："
+
+#: ../data/messages:61
+msgid "Display nights too ?"
+msgstr "显示夜晚情况？"
+
+#: ../data/messages:63
+msgid "Display temperature as quick info ?"
+msgstr "以快速信息显示温度？"
+
+#: ../data/messages:65
+msgid "Display"
+msgstr "显示"
+
+#: ../data/messages:67
+msgid "Choose one of the available themes :"
+msgstr "选择主题："
+
+#: ../data/messages:69
+msgid "Let it empty to use default sub-dock view."
+msgstr "留空以使用默认的子dock视图"
+
+#: ../data/messages:71
+msgid "Name of the view used for the sub-dock :"
+msgstr "子dock使用的视图名称："
+
+#: ../data/messages:73
+msgid "Render desklet in 3D ?"
+msgstr "以3D渲染桌面小应用？"
+
+#~ msgid "Monday"
+#~ msgstr "月曜日"
+
+#~ msgid "Tuesday"
+#~ msgstr "火曜日"
+
+#~ msgid "Wednesday"
+#~ msgstr "水曜日"
+
+#~ msgid "Thursday"
+#~ msgstr "木曜日"
+
+#~ msgid "Friday"
+#~ msgstr "金曜日"
+
+#~ msgid "Saturday"
+#~ msgstr "土曜日"
+
+#~ msgid "Sunday"
+#~ msgstr "日曜日"
+
+#~ msgid "Jan"
+#~ msgstr "1月"
+
+#~ msgid "Feb"
+#~ msgstr "2月"
+
+#~ msgid "Mar"
+#~ msgstr "3月"
+
+#~ msgid "Apr"
+#~ msgstr "4月"
+
+#~ msgid "Jun"
+#~ msgstr "6月"
+
+#~ msgid "Jui"
+#~ msgstr "7月"
+
+#~ msgid "Aug"
+#~ msgstr "8月"
+
+#~ msgid "Sep"
+#~ msgstr "9月"
+
+#~ msgid "Oct"
+#~ msgstr "10月"
+
+#~ msgid "Nov"
+#~ msgstr "11月"
+
+#~ msgid "Dec"
+#~ msgstr "12月"

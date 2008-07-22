@@ -1,0 +1,331 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"PO-Revision-Date: 2008-07-16 16:08+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:197
+msgid ""
+"This is the xmms applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr "这是ChAnGFu为Cairo-Dock制作的xmms小应用程序。"
+
+#: ../src/applet-notifications.c:231
+msgid "Previous"
+msgstr "上一首"
+
+#: ../src/applet-notifications.c:232
+msgid "Play/Pause (left-click)"
+msgstr "播放/暂停（左键点击）"
+
+#: ../src/applet-notifications.c:234
+msgid "Stop"
+msgstr "停止"
+
+#: ../src/applet-notifications.c:236
+msgid "Next (middle-click)"
+msgstr "下一首（中键点击）"
+
+#: ../src/applet-notifications.c:238
+msgid "Show JumpBox"
+msgstr "显示JumpBox"
+
+#: ../src/applet-notifications.c:239
+msgid "Toggle Shuffle"
+msgstr "乱序"
+
+#: ../src/applet-notifications.c:240
+msgid "Toggle Repeat"
+msgstr "重复"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "图标"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "此小应用程序期望的图标大小"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "宽："
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高："
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "显示于dock上的标签上的此图标的名称："
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "归属于dock的名称："
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "桌面应用程序"
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
+"器"
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "桌面小应用程序大小（宽x高）："
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "桌面小应用程序位置(x ; y)："
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "从dock移开？"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "位于最下窗口？"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "窗口置顶？"
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
+"type=utility) "
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "保持于小应用程序层？"
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "锁定位置？"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "配置"
+
+#: ../data/messages:39
+msgid "Audio Player"
+msgstr "播放器"
+
+#: ../data/messages:41
+msgid "Player to control:"
+msgstr "控制的播放器："
+
+#: ../data/messages:43
+msgid "XMMS"
+msgstr "XMMS"
+
+#: ../data/messages:45
+msgid "Audacious"
+msgstr "Audacious"
+
+#: ../data/messages:47
+msgid "Banshee"
+msgstr "Banshee"
+
+#: ../data/messages:49
+msgid "Exaile"
+msgstr "Exaile"
+
+#: ../data/messages:51
+msgid ""
+"It will prevent the player's icon to appear in the task bar. The applet's "
+"icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+"这将阻止播放器的图标显示在任务栏上。此小应用程序的图标将形如启动器、应用程序"
+"或小应用程序"
+
+#: ../data/messages:53
+msgid "Steal the player's icon from taskbar ?"
+msgstr "由任务栏窃取播放器图标？"
+
+#: ../data/messages:55
+msgid "Display"
+msgstr "显示"
+
+#: ../data/messages:57
+msgid "Information to display on the icon :"
+msgstr "图标上显示的信息："
+
+#: ../data/messages:59
+msgid "Nothing"
+msgstr "无"
+
+#: ../data/messages:61
+msgid "Time Elapsed"
+msgstr "已播放时间"
+
+#: ../data/messages:63
+msgid "Time Left"
+msgstr "剩余时间"
+
+#: ../data/messages:65
+msgid "N° of track"
+msgstr "第N°首"
+
+#: ../data/messages:67
+msgid "Activate extended desklet mode ?"
+msgstr "启用扩展桌面小应用模式？"
+
+#: ../data/messages:69
+msgid "Extended display mode :"
+msgstr "扩展显示模式："
+
+#: ../data/messages:71
+msgid "Info"
+msgstr "信息"
+
+#: ../data/messages:73
+msgid "Info and Controler"
+msgstr "信息及控制器"
+
+#: ../data/messages:75
+msgid "Caroussel"
+msgstr "链子"
+
+#: ../data/messages:77
+msgid "Controler"
+msgstr "控制器"
+
+#: ../data/messages:79
+msgid "Action on music change"
+msgstr "歌曲更换时的动作"
+
+#: ../data/messages:81
+msgid "Show an info-bubble ?"
+msgstr "显示信息泡泡？"
+
+#: ../data/messages:83
+msgid "With a icon ?"
+msgstr "使用图标？"
+
+#: ../data/messages:85
+msgid "in ms."
+msgstr "以毫秒为单位"
+
+#: ../data/messages:87
+msgid "Time length of info-bubbles :"
+msgstr "信息泡泡的时间长度："
+
+#: ../data/messages:89
+msgid "Animate icon ?"
+msgstr "动画图标？"
+
+#: ../data/messages:91
+msgid "Animation when music changes :"
+msgstr "音乐切换时的动画："
+
+#: ../data/messages:93
+msgid "bounce"
+msgstr "弹跳"
+
+#: ../data/messages:95
+msgid "rotate"
+msgstr "旋转"
+
+#: ../data/messages:97
+msgid "blink"
+msgstr "闪烁"
+
+#: ../data/messages:99
+msgid "pulse"
+msgstr "脉冲"
+
+#: ../data/messages:101
+msgid "upside-down"
+msgstr "倒立"
+
+#: ../data/messages:103
+msgid "wobbly"
+msgstr "抖动"
+
+#: ../data/messages:105
+msgid "random"
+msgstr "随机"
+
+#: ../data/messages:107
+msgid "Personnalisation"
+msgstr "个性化"
+
+#: ../data/messages:109 ../data/messages:113 ../data/messages:117
+#: ../data/messages:121 ../data/messages:125
+msgid "Let it empty to use the default icon."
+msgstr "留空以使用默认图标。"
+
+#: ../data/messages:111
+msgid "Name of an image for the 'default' icon :"
+msgstr "做为默认图标的图片文件名："
+
+#: ../data/messages:115
+msgid "Name of an image for the 'play' icon :"
+msgstr "做为播放图标的图片文件名："
+
+#: ../data/messages:119
+msgid "Name of an image for the 'stop' icon :"
+msgstr "做为停止图标的图片文件名："
+
+#: ../data/messages:123
+msgid "Name of an image for the 'pause' icon :"
+msgstr "做为暂停图标的图片文件名："
+
+#: ../data/messages:127
+msgid "Name of an image for the 'broken' icon :"
+msgstr "做为损毁图标的图片文件名："
+
+#~ msgid "Module"
+#~ msgstr "モジュール"
+
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+#~ msgid "Play/Pause"
+#~ msgstr "再生/一時停止"
+
+#~ msgid "Next"
+#~ msgstr "次へ"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "デフォルトのアイコンを使用するには空欄のままに。"

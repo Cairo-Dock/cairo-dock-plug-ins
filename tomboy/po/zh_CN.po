@@ -1,0 +1,256 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"PO-Revision-Date: 2008-07-16 13:28+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/tomboy-notifications.c:12
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Necropotame (Adrien Pilleboue)制作的小应用程序"
+
+#: ../src/tomboy-notifications.c:39
+msgid "Note name : "
+msgstr "便签名称："
+
+#: ../src/tomboy-notifications.c:62
+msgid "Search for :"
+msgstr "搜索："
+
+#: ../src/tomboy-notifications.c:83
+msgid "Search for tag :"
+msgstr "搜索标签："
+
+#: ../src/tomboy-notifications.c:139
+msgid "Reload notes"
+msgstr "相关便签："
+
+#: ../src/tomboy-notifications.c:142
+msgid "Add a note"
+msgstr "添加便签"
+
+#: ../src/tomboy-notifications.c:146
+msgid "Delete this note"
+msgstr "删除此便签"
+
+#: ../src/tomboy-notifications.c:149
+msgid "Search"
+msgstr "搜索"
+
+#: ../src/tomboy-notifications.c:150
+msgid "Searh for tag"
+msgstr "搜索标签"
+
+#: ../src/tomboy-notifications.c:152
+msgid "Search for today's note"
+msgstr "搜索今日便签"
+
+#: ../src/tomboy-notifications.c:153
+msgid "Search for this week's note"
+msgstr "搜索本周便签"
+
+#: ../src/tomboy-notifications.c:154
+msgid "Search for next week's note"
+msgstr "搜索下周便签"
+
+#: ../src/tomboy-notifications.c:164
+msgid "Reset marks"
+msgstr "重置标记"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "图标"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "此小应用程序期望的图标大小"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "宽："
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高："
+
+#: ../data/messages:9
+msgid "Default title :"
+msgstr "默认标题："
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "归属于dock的名称："
+
+#: ../data/messages:13
+msgid "Personnalisation"
+msgstr "个性化"
+
+#: ../data/messages:15 ../data/messages:19 ../data/messages:23
+msgid "Let t empty to use the default icon."
+msgstr "留空以使用默认图标。"
+
+#: ../data/messages:17
+msgid "Name of an image for the 'default' icon :"
+msgstr "用于默认图标的图片名"
+
+#: ../data/messages:21
+msgid "Name of an image for the 'close' icon :"
+msgstr "用于关闭图标的图片名"
+
+#: ../data/messages:25
+msgid "Name of an image for the 'broken' icon :"
+msgstr "用于损毁图标的图片名"
+
+#: ../data/messages:27
+msgid "Configuration"
+msgstr "设置"
+
+#: ../data/messages:29
+msgid ""
+"Depending on your tomboy's version, the note deletion may not be "
+"automatically notified to us. Only check this box if you notice some error "
+"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
+"terminal."
+msgstr ""
+"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现"
+"类似<<No marshaller for signature of signal 'NoteDeleted'>>的错误的时候，启用"
+"此项目"
+
+#: ../data/messages:31
+msgid "Emulate the 'NoteDeleted' signal ?"
+msgstr "模拟“删除便签”信号？"
+
+#: ../data/messages:33
+msgid "Let it empty to use default sub-dock view."
+msgstr "留空以使用默认子dock视图"
+
+#: ../data/messages:35
+msgid "Name of the view used for the sub-dock :"
+msgstr "用于子dock的视图名称："
+
+#: ../data/messages:37
+msgid "Draw note's content on their icon ?"
+msgstr "在图标上绘制便签内容？"
+
+#: ../data/messages:39
+msgid ""
+"Write the date format you usually use in your notes. The syntax is the one "
+"of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+"digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+msgstr ""
+"写下您便签平时使用的日期格式。语法为'strftime'的一种： %d表示日，%m表示月, %y"
+"表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
+
+#: ../data/messages:41
+msgid "Date format to search for :"
+msgstr "搜索使用的日期格式："
+
+#~ msgid "Info-bubbles"
+#~ msgstr "情報を通知する吹き出し"
+
+#~ msgid "Activate info-bubbles ?"
+#~ msgstr "吹き出しによる情報表示を有効化？"
+
+#~ msgid "Time length of info-bubbles :"
+#~ msgstr "吹き出しの表示継続時間 :"
+
+#~ msgid "in ms."
+#~ msgstr "ミリ秒単位"
+
+#~ msgid "Animations"
+#~ msgstr "アニメーション"
+
+#~ msgid "bounce"
+#~ msgstr "バウンド"
+
+#~ msgid "rotate"
+#~ msgstr "回転"
+
+#~ msgid "blink"
+#~ msgstr "点滅"
+
+#~ msgid "pulse"
+#~ msgstr "波動"
+
+#~ msgid "upside-down"
+#~ msgstr "上下逆さま"
+
+#~ msgid "wobbly"
+#~ msgstr "伸び縮み"
+
+#~ msgid "random"
+#~ msgstr "ランダム"
+
+#~ msgid "Animation when music changes :"
+#~ msgstr "音楽切り替わり時のアニメーション:"
+
+#~ msgid "Display"
+#~ msgstr "表示"
+
+#~ msgid "Display album's cover instead of icon ?"
+#~ msgstr "アイコンの代わりにアルバムのカバーを表示？"
+
+#~ msgid "Information to display on the icon :"
+#~ msgstr "アイコン上に表示する情報 :"
+
+#~ msgid ""
+#~ "Artist : %s\n"
+#~ "Album : %s\n"
+#~ "Title : %s"
+#~ msgstr ""
+#~ "アーティスト : %s\n"
+#~ "アルバム : %s\n"
+#~ "タイトル : %s"
+
+#~ msgid "Unknown"
+#~ msgstr "不明"
+
+#~ msgid "Previous"
+#~ msgstr "前へ"
+
+#~ msgid "Next"
+#~ msgstr "次へ"
+
+#~ msgid "Information"
+#~ msgstr "情報"
+
+#~ msgid "nothing"
+#~ msgstr "なし"
+
+#~ msgid "time elapsed"
+#~ msgstr "経過時間"
+
+#~ msgid "time left"
+#~ msgstr "残り時間"
+
+#~ msgid "° of track"
+#~ msgstr "トラック番号"
+
+#~ msgid "Name of an image for the 'play' icon :"
+#~ msgstr "'再生' アイコンの画像の名前 :"
+
+#~ msgid "Name of an image for the 'stop' icon :"
+#~ msgstr "'停止' アイコンの画像の名前 :"
+
+#~ msgid "Name of an image for the 'pause' icon :"
+#~ msgstr "'一時停止' アイコンの画像の名前 :"
+
+#~ msgid ""
+#~ "If your tomboy version is not recent enough, it may not have this signal. "
+#~ "Only check this box if you notice some message like <<No marshaller for "
+#~ "signature of signal 'NoteDeleted'>> in the terminal."
+#~ msgstr ""
+#~ "Tomboy のバージョンが最近のものでない場合、この信号が存在しない可能性があ"
+#~ "ります。端末上で <<No marshaller for signature of signal 'NoteDeleted'>> "
+#~ "のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れ"
+#~ "てください。"

@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"PO-Revision-Date: 2008-07-16 13:47+0800\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-init.c:81 ../src/applet-widget.c:50
+msgid "Terminal"
+msgstr "终端"
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the weblets applet\n"
+" made by Christophe Chapuis for Cairo-Dock"
+msgstr "这是Chiristophe Chapuis为Cairo-Dock制作的weblets小应用程序。"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "图标"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "此小应用程序期望的图标大小"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "宽："
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "高："
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "显现于dock之上的图标标签名称："
+
+#: ../data/messages:11
+msgid "Icon's name :"
+msgstr "图标名称："
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr "归属于dock的名称："
+
+#: ../data/messages:15
+msgid "Desklet"
+msgstr "桌面应用程序"
+
+#: ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
+"器"
+
+#: ../data/messages:19
+msgid "Desklet's dimension (width x height) :"
+msgstr "桌面小程序尺寸（宽x高）："
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
+msgstr "桌面小应用程序位置(x ; y)："
+
+#: ../data/messages:25
+msgid "Is detached from the dock ?"
+msgstr "从dock移开？"
+
+#: ../data/messages:27
+msgid "Keep below other windows ?"
+msgstr "位于最下窗口？"
+
+#: ../data/messages:29
+msgid "Keep above other windows ?"
+msgstr "窗口置顶？"
+
+#: ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
+"type=utility) "
+
+#: ../data/messages:33
+msgid "Keep on widget layer ?"
+msgstr "保持于小应用程序层？"
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr "锁定位置？"
+
+#: ../data/messages:39
+msgid "Configuration"
+msgstr "配置"
+
+#: ../data/messages:41
+msgid "URI to load in weblet"
+msgstr "weblet载入的URI"
+
+#: ../data/messages:43
+msgid "Show scrollbars ?"
+msgstr "显示卷轴"
+
+#: ../data/messages:45
+msgid "Horizontal scroll of the browser in pixel"
+msgstr "以点为单位的浏览器水平卷轴位置"
+
+#: ../data/messages:47
+msgid "Position of horizontal scrollbar"
+msgstr "水平卷轴位置"
+
+#: ../data/messages:49
+msgid "Vertical scroll of the browser in pixel"
+msgstr "以点为单位的浏览器垂直卷轴位置"
+
+#: ../data/messages:51
+msgid "Position of vertical scrollbar in pixel"
+msgstr "垂直卷轴位置"
+
+#: ../data/messages:53
+msgid ""
+"Time before reloading the weblet URI, in seconds. Zero means never reload."
+msgstr "重载URI的时间间隔，以秒为单位。为0则不重载"
+
+#: ../data/messages:55
+msgid "Time between two page refreshes"
+msgstr "页面刷新时间"
+
+#~ msgid "Module"
+#~ msgstr "モジュール"
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
