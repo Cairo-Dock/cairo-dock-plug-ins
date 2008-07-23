@@ -114,24 +114,37 @@ void cd_musicplayer_getStatus_string (void)
 		if (! g_ascii_strcasecmp(status, "playing"))
 		{
 			myData.pPlayingStatus = PLAYER_PLAYING;
-			//cd_message ("MP : En cours de lecture");	
 		}
-		
 		else if (! g_ascii_strcasecmp(status, "paused"))
 		{
 			myData.pPlayingStatus = PLAYER_PAUSED;
-			//cd_message ("MP : Pause");	
 		}
-		
 		else if (! g_ascii_strcasecmp(status, "stopped"))
 		{
 			myData.pPlayingStatus = PLAYER_STOPPED;
-			//cd_message ("MP : Stop");	
 		}
 		
 		g_free(status);
 	}
 
+
+void cd_musicplayer_getStatus_integer (void)
+{
+	GError *error = 0;
+	int status;
+
+	dbus_g_proxy_call (dbus_proxy_player, myData.DBus_commands.get_status, &error,
+			G_TYPE_INVALID,
+			G_TYPE_INT, &status,
+			G_TYPE_INVALID); // A rajouter dans cairo-dock-dbus.c --> cairo_dock_dbus_get_integer()
+	
+	if (status == 0) myData.pPlayingStatus = PLAYER_PAUSED;
+	else if (status == 1) myData.pPlayingStatus = PLAYER_PLAYING;
+	else myData.pPlayingStatus = PLAYER_STOPPED;
+	
+	//cd_message("MP : Status (integer) --> %i", myData.pPlayingStatus);
+	g_free(error);
+}
 
 
 
@@ -154,24 +167,33 @@ void cd_musicplayer_getSongInfos(void)
 	cd_message("MP : %s - %s - %s", myData.cRawTitle, myData.cArtist, myData.cAlbum);
 }
 
-guchar* cd_musicplayer_getCurPos (void) // Fonction temporaire (à rajouter dans cairo-dock-dbus.c)
+
+int cd_musicplayer_getCurPos_integer (void) 
 {
-	GError *erreur = NULL;
-	guchar* uValue = NULL;
-	
-	dbus_g_proxy_call (dbus_proxy_player, "current_position", &erreur,
-		G_TYPE_INVALID,
-		G_TYPE_UCHAR, &uValue,
-		G_TYPE_INVALID);
-	
-	return uValue;
+	int CurPos = NULL;
+	CurPos = cairo_dock_dbus_get_integer (dbus_proxy_player, myData.DBus_commands.current_position);
+	return CurPos;
 }
 
-gchar* cd_musicplayer_getlength (void)
+guchar* cd_musicplayer_getCurPos_string (void) 
 {
-	gchar* length=NULL;
-	length = cairo_dock_dbus_get_string (dbus_proxy_player, "get_length");
-	return length;
+	guchar* CurPos = NULL;
+	CurPos = cairo_dock_dbus_get_uchar (dbus_proxy_player, myData.DBus_commands.current_position);
+	return CurPos;
+}
+
+int cd_musicplayer_getLength_integer (void)
+{
+	int duration=0;
+	duration = cairo_dock_dbus_get_integer (dbus_proxy_player, myData.DBus_commands.duration);	
+	return duration;
+}
+
+gchar* cd_musicplayer_getLength_string (void)
+{
+	gchar* duration=NULL;
+	duration = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.duration);
+	return duration;
 }
 
 //*********************************************************************************
@@ -193,76 +215,3 @@ void cd_musicplayer_getCoverPath (void)
 	cd_message("MP : Couverture -> %s", myData.cCoverPath);
 }
 
-//A virer
-void cd_musicplayer_load_dbus_commands (void)
-{
-	if (! strcmp(myConfig.cMusicPlayer,"Banshee"))
-	{
-		myData.DBus_commands.service = "org.gnome.Banshee";
-		myData.DBus_commands.path = "/org/gnome/Banshee/Player";
-		myData.DBus_commands.interface = "org.gnome.Banshee.Core";
-		myData.DBus_commands.play = "Play";
-		myData.DBus_commands.pause = "Pause";
-		//myData.DBus_commands.stop = "stop";
-		myData.DBus_commands.next = "Next";
-		myData.DBus_commands.previous = "Previous";
-		myData.DBus_commands.get_title = "GetPlayingTitle";
-		myData.DBus_commands.get_artist = "GetPlayingArtist";
-		myData.DBus_commands.get_album = "GetPlayingAlbum";
-		myData.DBus_commands.get_cover_path = "GetPlayingCoverUri";
-		myData.DBus_commands.get_status = "GetPlayingStatus";
-		myData.DBus_commands.toggle = "PresentWindow";
-		return;
-	}
-		
-	if (! strcmp(myConfig.cMusicPlayer,"QuodLibet"))
-	{
-		myData.DBus_commands.service = "net.sacredchao.QuodLibet";
-		myData.DBus_commands.path = "/net/sacredchao/QuodLibet";
-		myData.DBus_commands.interface = "net.sacredchao.QuodLibet";
-		myData.DBus_commands.play = "Play";
-		myData.DBus_commands.pause = "Pause";
-		//myData.DBus_commands.stop = "stop";
-		myData.DBus_commands.next = "Next";
-		myData.DBus_commands.previous = "Previous";
-		myData.DBus_commands.get_title = "GetPlayingTitle";
-		myData.DBus_commands.get_artist = "GetPlayingArtist";
-		myData.DBus_commands.get_album = "GetPlayingAlbum";
-		myData.DBus_commands.get_cover_path = "GetPlayingCoverUri";
-		myData.DBus_commands.get_status = "GetPlayingStatus";
-		myData.DBus_commands.toggle = "PresentWindow";
-		return;
-	}
-	
-	if (! strcmp(myConfig.cMusicPlayer,"Listen"))
-	{
-		myData.DBus_commands.service = "org.gnome.Listen";
-		myData.DBus_commands.path = "/org/gnome/listen";
-		myData.DBus_commands.interface = "org.gnome.Listen";
-		myData.DBus_commands.play = "play_pause";
-		myData.DBus_commands.pause = "play_pause";
-		//myData.DBus_commands.stop = "stop";
-		myData.DBus_commands.next = "next";
-		myData.DBus_commands.previous = "previous";
-		myData.DBus_commands.get_full_data = "current_playing";
-		myData.DBus_commands.toggle = "hello";
-		return;
-	}	
-	
-	if (! strcmp(myConfig.cMusicPlayer,"RhythmBox"))
-	{
-		myData.DBus_commands.service = "org.gnome.Rhythmbox";
-		myData.DBus_commands.path = "/org/gnome/Rhythmbox/Player";
-		myData.DBus_commands.interface = "org.gnome.Rhythmbox.Player";
-		myData.DBus_commands.path2 = "/org/gnome/Rhythmbox/Shell";
-		myData.DBus_commands.interface2 = "org.gnome.Rhythmbox.Shell";
-		myData.DBus_commands.play = "play_pause";
-		myData.DBus_commands.pause = "play_pause";
-		//myData.DBus_commands.stop = "stop";
-		myData.DBus_commands.next = "next";
-		myData.DBus_commands.previous = "previous";
-		myData.DBus_commands.get_full_data = "current_playing";
-		myData.DBus_commands.toggle = "hello";
-		return;
-	 }
-}

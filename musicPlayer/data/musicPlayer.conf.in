@@ -58,7 +58,7 @@ use size=
 [Configuration]
 #F[Audio Player]
 frame1 =
-#E[XMMS;Exaile;Songbird] Player to control:
+#E[XMMS;Exaile;Songbird;Banshee] Player to control:
 current-player=XMMS
 
 #b Steal the player's icon from taskbar ?

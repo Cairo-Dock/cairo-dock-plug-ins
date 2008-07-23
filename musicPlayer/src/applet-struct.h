@@ -34,6 +34,28 @@ typedef void (*MusicPlayerConfigureFunc) (void);
 typedef void (*MusicPlayerControlerFunc) (MyPlayerControl pControl, gchar *cFile);
 typedef gboolean (*MusicPlayerAskControlerFunc) (MyPlayerControl pControl);
 
+//A remplir lors du configure pour les players utilisant DBus.
+typedef struct {
+	gchar *service;
+	gchar *path;
+	gchar *interface;
+	gchar *path2;
+	gchar *interface2;
+	gchar *play;
+	gchar *pause;
+	gchar *play_pause;
+	gchar *stop;
+	gchar *next;
+	gchar *previous;
+	gchar *get_status;
+	gchar *get_title;
+	gchar *get_artist;
+	gchar *get_album;
+	gchar *get_cover_path;
+	gchar *duration;
+	gchar *current_position;
+} MusicPlayerDBus;
+
 struct _MusicPlayerHandeler {
 	MusicPlayerAcquireDataFunc 	acquisition;
 	MusicPlayerReadDataFunc 		read_data;
@@ -45,26 +67,7 @@ struct _MusicPlayerHandeler {
 	gchar *name; //Servira a repérer le lecteur dans la GList.
 };
 
-//A remplir lors du configure pour les players utilisant DBus.
-typedef struct {
-	gchar *service;
-	gchar *path;
-	gchar *interface;
-	gchar *path2;
-	gchar *interface2;
-	gchar *play;
-	gchar *pause;
-	gchar *stop;
-	gchar *next;
-	gchar *previous;
-	gchar *get_status;
-	gchar *get_title;
-	gchar *get_artist;
-	gchar *get_album;
-	gchar *get_cover_path;
-	gchar *get_full_data;
-	gchar *toggle;
-} MusicPlayerDBus;
+
 
 //Structures essentielles de l'applet
 typedef enum {

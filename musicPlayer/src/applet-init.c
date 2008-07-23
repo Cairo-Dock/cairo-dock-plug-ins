@@ -20,6 +20,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-xmms.h" //Support XMMS
 #include "applet-exaile.h" //Support Exaile
 #include "applet-songbird.h" //Support Songbird
+#include "applet-banshee.h" //Support Banshee
 
 CD_APPLET_DEFINITION ("musicPlayer", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
@@ -76,6 +77,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 
 	//cd_songbird_load_dbus_commands();
 	cd_musicplayer_register_songbird_handeler();
+	//else if (! strcmp(myConfig.cMusicPlayer,"Banshee")){
+		//cd_banshee_load_dbus_commands();
+		cd_musicplayer_register_banshee_handeler();
+	
 	
 	if (myDesklet) {
 		cd_musicplayer_add_buttons_to_desklet ();

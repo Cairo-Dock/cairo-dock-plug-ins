@@ -146,7 +146,8 @@ void cd_exaile_load_dbus_commands (void)
 	myData.DBus_commands.get_album = "get_album";
 	myData.DBus_commands.get_cover_path = "get_cover_path";
 	myData.DBus_commands.get_status = "status";
-	myData.DBus_commands.toggle = "toggle_visibility";
+	myData.DBus_commands.duration = "get_length";
+	myData.DBus_commands.current_position = "current_position";
 }
 
 void cd_musicplayer_exaile_getTime (void)
@@ -157,11 +158,8 @@ void cd_musicplayer_exaile_getTime (void)
 	gchar* length=NULL;
 	gint minutes, secondes;
 	
-	/* On récupère le pourcentage de la position actuelle */
-	uValue = cd_musicplayer_getCurPos();
-	
 	/* Récupération du temps total! */
-	length = cd_musicplayer_getlength();
+	length = cd_musicplayer_getLength_string();
 	if (length != NULL) { //Sinon ca plante!
 		cd_debug ("Length : %s", length);
 		temps = strtok (length, ":");
@@ -174,7 +172,9 @@ void cd_musicplayer_exaile_getTime (void)
 	else {
 		myData.iSongLength = 0;
 	}
-	//cd_debug("MP : Temps total de la chanson : %i", myData.iSongLength);
+	
+	/* On récupère le pourcentage de la position actuelle */
+	uValue = cd_musicplayer_getCurPos_string();
 	
 	/* Calcul de la position actuelle */
 	myData.iPreviousCurrentTime = myData.iCurrentTime;
