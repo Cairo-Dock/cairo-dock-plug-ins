@@ -120,10 +120,10 @@ GList* cd_stacks_mime_filter (GList *pIconsList) {
 }
 
 void cd_stacks_remove_monitors (void) {
-	cd_debug ("");
+	cd_debug ("Removing all old monitors");
 	gint i=0, j=0;
 	while (myData.cMonitoredDirectory[i] != NULL) {
-		gchar *cDirectory = g_strdup(myConfig.cMonitoredDirectory[i]);
+		gchar *cDirectory = g_strdup(myData.cMonitoredDirectory[i]);
 		if (cDirectory == NULL)
 			break;
 		
