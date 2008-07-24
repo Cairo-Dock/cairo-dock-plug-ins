@@ -66,68 +66,11 @@ void cd_stacks_mklink (const gchar *cURI) {
 		return;
 	}
 	
-	gchar *cCommand = g_strdup_printf("ln -s \"%s\" \"%s/stacks\"", cURI, g_cCairoDockDataDir);
+	gchar *cCommand = g_strdup_printf("ln -s \"%s\" \"%s/stacks\"", cFilePath, g_cCairoDockDataDir);
 	cd_debug("Stacks: will use '%s'", cCommand);
 	int r = system (cCommand);  // c'est une commande quasi-immediate donc pas vraiment besoin de le lancer en asynchrone.
 	g_print ("retour : %d\n", r);  // quel est le retour en cas d'erreur ?
 	g_free (cCommand);
-	
-	
-	//GError *erreur = NULL;
-	//gchar *extension = strrchr (cFile, '.'), *cFileName = NULL, *cCommand = NULL, *cURI = NULL, *cHostname = NULL;
-	
-	/*if (extension != NULL && g_ascii_strcasecmp(extension, ".desktop") == 0) {
-		cFileName = strrchr (cFile, '/');
-		if (cFileName == NULL)
-			cFileName = cFile;
-		
-		cURI = g_filename_from_uri (cFile, &cHostname, &erreur);
-		cCommand = g_strdup_printf("cp \"%s\" \"/home/%s/.cairo-dock/stacks/%s\"", cURI, g_getenv ("USER"), cFileName);
-		if (cCommand != NULL && cFile != NULL) {
-			//cd_debug("Stacks: will use '%s'", cCommand);
-			g_spawn_command_line_async (cCommand, &erreur);
-			g_free(cCommand);
-		}
-		if (erreur != NULL) {
-			cd_warning ("Attention : when trying to execute 'copy' : %s", erreur->message);
-			g_error_free (erreur);
-			CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_BROKEN, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
-			CD_APPLET_REDRAW_MY_ICON
-		}
-		return;
-	}*/
-	
-	/*gchar *cBaseURI = g_strdup (cFile), *cIconName = NULL;
-	gboolean bIsDirectory=FALSE;
-	double fOrder=0;
-	int iVolumeID=0;
-	cairo_dock_fm_get_file_info (cBaseURI, &cFileName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_TYPE);
-	cURI = g_filename_from_uri (cBaseURI, &cHostname, &erreur);
-	
-	if (cFileName == NULL) {
-		cFileName = strrchr (cFile, '/');
-		if (cFileName == NULL) {
-			cd_warning ("Couldn't get filname with no path, halt.");
-			CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_BROKEN, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
-			CD_APPLET_REDRAW_MY_ICON
-			return;
-		}
-	}
-	
-	erreur = NULL;
-	cCommand = g_strdup_printf("ln -s \"%s\" \"%s/stacks/%s\"", cURI, g_cCairoDockDataDir, cFileName);
-	cd_debug("Stacks: linking %s in local dir", cFileName);
-	if (cCommand != NULL && cFile != NULL) {
-		//cd_debug("Stacks: will use '%s'", cCommand);
-		g_spawn_command_line_async (cCommand, &erreur);
-		g_free(cCommand);
-	}
-	if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute 'link' : %s", erreur->message);
-		g_error_free (erreur);
-		CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_BROKEN, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
-		CD_APPLET_REDRAW_MY_ICON
-	}*/
 }
 
 void cd_stacks_clean_local (void) {
@@ -174,4 +117,22 @@ GList* cd_stacks_mime_filter (GList *pIconsList) {
 	}
 	
 	return pFilteredList;
+}
+
+void cd_stacks_remove_monitors (void) {
+	cd_debug ("");
+	gint i=0, j=0;
+	while (myData.cMonitoredDirectory[i] != NULL) {
+		gchar *cDirectory = g_strdup(myConfig.cMonitoredDirectory[i]);
+		if (cDirectory == NULL)
+			break;
+		
+		if (strcmp (cDirectory, "_LocalDirectory_") == 0) {
+			g_free (cDirectory);
+			cDirectory = g_strdup_printf("%s/stacks", g_cCairoDockDataDir);
+		}
+		cairo_dock_fm_remove_monitor_full (cDirectory, TRUE, NULL);
+		g_free (cDirectory);
+		i++;
+	}
 }

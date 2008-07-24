@@ -17,7 +17,6 @@ CD_APPLET_INCLUDE_MY_VARS
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 
 	gsize length = 0;
@@ -33,6 +32,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		g_key_file_set_string (pKeyFile, "Configuration", "directory", "_LocalDirectory_");
 		myConfig.cMonitoredDirectory = CD_CONFIG_GET_STRING_LIST ("Configuration", "directory", &length);
 	}
+	myData.pKeyFile = pKeyFile;
 CD_APPLET_GET_CONFIG_END
 
 
@@ -50,5 +50,5 @@ CD_APPLET_RESET_DATA_BEGIN
 	if (myIcon->pSubDock != NULL) {
 		CD_APPLET_DESTROY_MY_SUBDOCK
 	}
-	
+	g_strfreev (myData.cMonitoredDirectory);
 CD_APPLET_RESET_DATA_END

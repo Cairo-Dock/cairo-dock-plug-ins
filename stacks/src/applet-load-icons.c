@@ -36,6 +36,8 @@ void cd_stacks_build_icons (void) {
 			cDirectory = g_strdup_printf("%s/stacks", g_cCairoDockDataDir);
 		}
 		
+		//myData.cMonitoredDirectory[i] = g_strdup (cDirectory);
+		
 		if (! g_file_test (cDirectory, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE)) {
 			cd_warning ("Attention : no such directory (%s)", cDirectory);
 			i++;
@@ -75,6 +77,9 @@ void cd_stacks_build_icons (void) {
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
 	}
+	
+	gsize length = 0;
+	myData.cMonitoredDirectory = cairo_dock_get_string_list_key_value (myData.pKeyFile, "Configuration", "directory", TRUE, &length, NULL, NULL, NULL); //On recharge la liste
 	
 	myData.iNbAnimation = 0; //On reset le nombre d'animation
 	CD_APPLET_REDRAW_MY_ICON
@@ -291,6 +296,12 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cRawURI, Ic
 		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 35); //On la rajoute, personne n'aura 33 dossiers listés dans son stacks
 		cd_debug ("On a ajouté un fichier");
 		Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
+		if (!myConfig.bHiddenFiles && pAddedIcon != NULL) { //On ne veut pas des fichiers cachés!
+			if (*pAddedIcon->acName == '.') {
+				_stacks_remove_one_icon (pAddedIcon);
+				return;
+			}
+		}
 		_sort_my_new_icon (cURI, pAddedIcon);
 		if (myDock && pAddedIcon != NULL) {
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
@@ -312,9 +323,15 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cRawURI, Ic
 	else if (iEventType == CAIRO_DOCK_FILE_MODIFIED) { //L'icône a déja été rajouter au dock
 		cd_debug ("On a modifié un fichier");
 		Icon *pModifiedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
-		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, (pModifiedIcon != NULL ? pModifiedIcon->iType : 35)); /*Le dock se chargera tout seul de mettre a jour l'icône
+		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, (pModifiedIcon != NULL ? pModifiedIcon->iType : 35)); 
+		/*Le dock se chargera tout seul de mettre a jour l'icône
 		TODO fixer le bug qui fait planter le dock quand on télécharge un fichier avec FF dans un dossier surveillé.*/
-		
+		if (!myConfig.bHiddenFiles && pModifiedIcon != NULL) { //On ne veut pas des fichiers cachés!
+			if (*pModifiedIcon->acName == '.') {
+				_stacks_remove_one_icon (pModifiedIcon);
+				return;
+			}
+		}
 	}
 	else { 
 		cd_debug ("On a retiré un fichier"); //TODO On a un petit problème avec les espaces ici.

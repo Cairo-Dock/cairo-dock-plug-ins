@@ -46,6 +46,7 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
+		cd_stacks_remove_monitors(); //ET oui sinon on se retrouve avec des fichiers qui ne nous concerne plus!
 		cd_stacks_check_local();
 	}
 	else if (myDesklet != NULL) {

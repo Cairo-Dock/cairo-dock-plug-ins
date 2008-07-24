@@ -2,6 +2,8 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
+#include "cairo-dock.h"
+
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
 	gchar **cMimeTypes;
@@ -18,6 +20,8 @@ typedef struct {
 	gint iIconOrder;
 	gint iSidTimer;
 	gint iNbAnimation;
+	gchar **cMonitoredDirectory;
+	GKeyFile *pKeyFile;
 } AppletData;
 
 
