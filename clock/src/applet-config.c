@@ -36,6 +36,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	if (myConfig.cFont == NULL)
 		myConfig.cFont = g_strdup (g_iconTextDescription.cFont);
 	
+	myConfig.cLocation = CD_CONFIG_GET_STRING ("Module", "location");
+	
 	//\_______________ On recupere les alarmes.
 	myConfig.pAlarms = g_ptr_array_new ();
 	CDClockAlarm *pAlarm;
@@ -93,6 +95,7 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cThemePath);
 	g_free (myConfig.cFont);
+	g_free (myConfig.cLocation);
 	
 	CDClockAlarm *pAlarm;
 	int i;
@@ -128,4 +131,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	{
 		cairo_surface_destroy (myData.pBackgroundSurface);
 	}
+	
+	g_free (myData.cSystemLocation);
 CD_APPLET_RESET_DATA_END

@@ -76,6 +76,7 @@ static void _reset_current_one_day (Day *pDay)
 		g_free (pDay->part[j].cWindSpeed);
 		g_free (pDay->part[j].cWindDirection);
 		g_free (pDay->part[j].cHumidity);
+		g_free (pDay->part[j].cPrecipitationProba);
 	}
 }
 

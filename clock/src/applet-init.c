@@ -84,6 +84,8 @@ CD_APPLET_INIT_BEGIN (erreur)
 	_load_theme ();
 	_load_back_and_fore_ground ();
 	
+	myData.cSystemLocation = g_strdup (g_getenv ("TZ"));
+	
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT

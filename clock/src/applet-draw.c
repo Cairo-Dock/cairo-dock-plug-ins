@@ -44,9 +44,16 @@ gboolean cd_clock_update_with_time (Icon *icon)
 	bBusy = TRUE;
 	
 	time_t epoch = (time_t) time (NULL);
+	g_setenv ("TZ", myConfig.cLocation, TRUE);
+	tzset ();
+	g_print ("%s\n", myConfig.cLocation);
 	localtime_r (&epoch, &epoch_tm);
+	if (myData.cSystemLocation != NULL)
+		g_setenv ("TZ", myData.cSystemLocation, TRUE);
+	else
+		g_unsetenv ("TZ");
 	
-	double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	double fRatio = (myDock ? myDock->fRatio : 1);
 	if (myConfig.bOldStyle)
 		cd_clock_draw_old_fashionned_clock (myDrawContext, (int) icon->fWidth / fRatio, (int) icon->fHeight / fRatio, fMaxScale, &epoch_tm);

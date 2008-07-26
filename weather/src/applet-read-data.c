@@ -313,6 +313,8 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 								}
 								else if (xmlStrcmp (arrpetitfils->name, (const xmlChar *) "hmid") == 0)
 									myData.days[i].part[j].cHumidity = xmlNodeGetContent (arrpetitfils);
+								else if (xmlStrcmp (arrpetitfils->name, (const xmlChar *) "ppcp") == 0)
+									myData.days[i].part[j].cPrecipitationProba = xmlNodeGetContent (arrpetitfils);
 							}
 						}
 					}

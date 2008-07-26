@@ -49,6 +49,7 @@ typedef struct {
 	GPtrArray *pAlarms;
 	gchar *cSetupTimeCommand;
 	gchar *cFont;
+	gchar *cLocation;
 	} AppletConfig;
 
 typedef struct {
@@ -59,6 +60,7 @@ typedef struct {
 	int iSidUpdateClock;
 	GPid iAlarmPID;
 	CairoDialog *pCalendarDialog;
+	gchar *cSystemLocation;
 	} AppletData;
 
 #endif

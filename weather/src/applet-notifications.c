@@ -188,10 +188,11 @@ CairoDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
 	
 	Day *day = &myData.days[iNumDay];
 	DayPart *part = &day->part[iPart];
-	cairo_dock_show_temporary_dialog_with_icon ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%s (%s)\n %s : %s\n %s : %s  %s %s",
+	cairo_dock_show_temporary_dialog_with_icon ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%%\n %s : %s%s (%s)\n %s : %s\n %s : %s  %s %s",
 		(myDock ? pIcon : myIcon), (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer), myConfig.cDialogDuration, pIcon->acFileName,
 		day->cName, day->cDate, part->cWeatherDescription,
 		D_("Temperature"), _display (day->cTempMin), myData.units.cTemp, _display (day->cTempMax), myData.units.cTemp,
+		D_("Precipitation Probability"), _display (part->cPrecipitationProba),
 		D_("Wind"), _display (part->cWindSpeed), myData.units.cSpeed, _display (part->cWindDirection),
 		D_("Humidity"), _display (part->cHumidity),  // unite ?...
 		D_("SunRise"), _display (day->cSunRise), _("SunSet"), _display (day->cSunSet));

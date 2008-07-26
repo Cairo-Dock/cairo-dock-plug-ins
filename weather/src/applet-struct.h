@@ -56,6 +56,7 @@ typedef struct {
 	gchar *cWindSpeed;
 	gchar *cWindDirection;
 	gchar *cHumidity;
+	gchar *cPrecipitationProba;
 	} DayPart;
 
 typedef struct {

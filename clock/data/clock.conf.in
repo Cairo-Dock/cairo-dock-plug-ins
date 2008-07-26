@@ -68,6 +68,9 @@ show seconds = true
 #{for numeric format only.}
 24h mode = true
 
+#s Location, In the form of :Continent/City :
+#{For exemple :Europe/Paris, :Japan, etc. See /usr/share/zoneinfo for a complete list of locations. Let empty to get the local time.}
+location =
 
 #F[Style;gtk-dnd-multiple]
 frame2 =
