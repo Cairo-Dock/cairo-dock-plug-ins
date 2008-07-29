@@ -26,10 +26,12 @@
 #include "applet-struct.h"
 #include "applet-widget.h"
 
+CD_APPLET_INCLUDE_MY_VARS
+
+#if !HAVE_WEBKIT
+
 #include "gtkmozembed.h"
 #include "applet-widget-itf.h"
-
-CD_APPLET_INCLUDE_MY_VARS
 
 void load_started_cb(GtkMozEmbed *embed, void *data);
 void load_finished_cb(GtkMozEmbed *embed, void *data);
@@ -109,3 +111,77 @@ void send_mouse_click_to_cd( GdkEventButton* pButtonEvent )
 		gtk_widget_queue_draw (myDesklet->pWidget);
 	}
 }
+
+#else
+
+///////// WEBKIT VERSION /////////
+
+#include <gtk/gtk.h>
+#include <webkit/webkit.h>
+
+/* Will be called when loading of the page is finished*/
+void load_finished_cb(WebKitWebView *pWebKitView, void *data)
+{
+	// update scrollbars status
+	show_hide_scrollbars();
+}
+
+/* Build the embedded widget */
+void weblet_build_and_show(void)
+{
+	myData.pGtkMozEmbed = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed), myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER, myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER);
+
+	myData.pWebKitView = WEBKIT_WEB_VIEW (webkit_web_view_new ());
+	gtk_container_add (GTK_CONTAINER (myData.pGtkMozEmbed), GTK_WIDGET (myData.pWebKitView));
+
+	gtk_signal_connect(GTK_OBJECT(myData.pWebKitView), "load_finished",
+					 					 GTK_SIGNAL_FUNC(load_finished_cb), NULL);
+					 					 
+	if (myDock)
+	{
+		myData.dialog = cairo_dock_build_dialog (D_("Terminal"), myIcon, myContainer, NULL, myData.pGtkMozEmbed, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+	}
+	else
+	{
+		cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
+		
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+	}
+
+	gtk_widget_show_all (myData.pGtkMozEmbed);
+}
+
+
+// hide/show the scrollbars
+void show_hide_scrollbars()
+{
+	// First, set the position
+	GtkAdjustment *pGtkAdjustmentH = gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed));
+	gtk_adjustment_set_value(pGtkAdjustmentH, myConfig.iPosScrollX);
+	GtkAdjustment *pGtkAdjustmentV = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed));
+	gtk_adjustment_set_value(pGtkAdjustmentV, myConfig.iPosScrollY);
+
+/*
+ * useful ?
+ */
+//	gtk_scrolled_window_set_hadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed),pGtkAdjustmentH);
+
+	// Then, hide or show the scrollbars
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed), myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER, myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER);
+}
+
+gboolean cd_weblets_refresh_page (void)
+{
+		// load the page
+		if(myData.pGtkMozEmbed)
+		{
+			webkit_web_view_open(myData.pWebKitView, myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
+		}
+		/* available since rev. 30985, from fev. 2008 */
+		//webkit_web_view_set_transparent(myData.pWebKitView, TRUE/*myConfig.bIsTransparent*/);
+
+		return TRUE;
+}
+
+#endif

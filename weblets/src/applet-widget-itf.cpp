@@ -36,6 +36,9 @@
 #include <nsIDOMBarProp.h>
 #include <nsIDOMMouseEvent.h>
 #include <docshell/nsIScrollable.h>
+#include <nsISupports.h>
+#include <nsIServiceManager.h>
+
 
 extern "C" void send_mouse_click_to_cd( GdkEventButton* pButtonEvent );
 extern "C" gint dom_mouse_click_cb(GtkMozEmbed *embed, nsIDOMMouseEvent *event, GtkWidget *pGtkMozEmbed);
@@ -66,6 +69,25 @@ extern "C" void register_menu_cb( GtkWidget *pGtkMozEmbed )
 {
 	if( pGtkMozEmbed )
 	{
+		// initialize HTTPS/SSL, if not yet done.
+		nsCOMPtr<nsIServiceManager> spiServManager;
+		if( !NS_FAILED(NS_GetServiceManager(getter_AddRefs(spiServManager))) )
+		{
+			g_print( "retrieved service manager of XULRunner ! Getting PSM..." );
+			nsCOMPtr<nsISupports> psm;
+			spiServManager->GetServiceByContractID("@mozilla.org/psm;1",
+																						 NS_GET_IID(nsISupports),
+																						 getter_AddRefs(psm));
+			if(psm)
+			{
+				g_print( "PSM contract retrieved !\n" );
+			}
+			else
+			{
+				g_print( "PSM contract failed.\n" );
+			}
+		}	    
+		
 		gtk_signal_connect(GTK_OBJECT(pGtkMozEmbed), "dom_mouse_click",
 											 GTK_SIGNAL_FUNC(dom_mouse_click_cb), NULL);
 	}

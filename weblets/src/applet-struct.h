@@ -2,8 +2,15 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "gtk/gtk.h"
 #include "cairo-dock.h"
+#if HAVE_WEBKIT
+#include <webkit/webkit.h>
+#endif
 
 //\___________ structure containing the applet's configuration parameters.
 typedef struct {
@@ -19,6 +26,9 @@ typedef struct {
 typedef struct {
       CairoDialog *dialog;
 	    GtkWidget *pGtkMozEmbed;
+#if HAVE_WEBKIT
+	    WebKitWebView *pWebKitView;
+#endif
 	    CairoDockMeasure *pRefreshTimer;
 	} AppletData;
 
