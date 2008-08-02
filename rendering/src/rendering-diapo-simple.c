@@ -148,25 +148,29 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 			{
 				cairo_save (pCairoContext);
 				
+				/*cairo_translate (pCairoContext, icon->fDrawX, icon->fDrawY + icon->fHeight * icon->fScale);
 				cairo_rectangle (pCairoContext,
-					icon->fDrawX - my_diapo_simple_iconGapX/2,
-					icon->fDrawY + icon->fHeight * icon->fScale,
+					- my_diapo_simple_iconGapX/2,
+					0.,
 					icon->fWidth * icon->fScale + my_diapo_simple_iconGapX,
 					icon->iTextHeight);
-				cairo_clip (pCairoContext);
-				
-				cairo_set_source_surface (pCairoContext,
-					icon->pTextBuffer,
-					MAX (icon->fDrawX - my_diapo_simple_iconGapX/2, icon->fDrawX + icon->fWidth * icon->fScale/2 - icon->iTextWidth/2),
-					icon->fDrawY + icon->fHeight * icon->fScale);
-				
+				cairo_clip (pCairoContext);*/
 				if (icon->iTextWidth > icon->fWidth * icon->fScale + my_diapo_simple_iconGapX)
 				{
+					cairo_translate (pCairoContext,
+						icon->fDrawX - my_diapo_simple_iconGapX/2,
+						icon->fDrawY + icon->fHeight * icon->fScale);
+					
+					cairo_set_source_surface (pCairoContext,
+						icon->pTextBuffer,
+						0.,
+						0.);
+					
 					cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (0.,
 						0.,
 						icon->fWidth * icon->fScale + my_diapo_simple_iconGapX,
 						0.);
-					cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
+					cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_PAD);
 					cairo_pattern_add_color_stop_rgba (pGradationPattern,
 						0.,
 						0.,
@@ -184,12 +188,21 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 						0.,
 						0.,
 						0.,
-						0.);
+						MIN (0.2, fAlpha/2));
 					cairo_mask (pCairoContext, pGradationPattern);
+					//cairo_paint_with_alpha (pCairoContext, fAlpha);
 					cairo_pattern_destroy (pGradationPattern);
 				}
 				else
 				{
+					cairo_translate (pCairoContext,
+						icon->fDrawX + (icon->fWidth * icon->fScale - icon->iTextWidth) / 2,
+						icon->fDrawY + icon->fHeight * icon->fScale);
+					
+					cairo_set_source_surface (pCairoContext,
+						icon->pTextBuffer,
+						0.,
+						0.);
 					if (fAlpha == 1)
 						cairo_paint (pCairoContext);
 					else
