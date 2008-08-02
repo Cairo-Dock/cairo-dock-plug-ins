@@ -21,7 +21,8 @@ icon =
 #E[] Name of the dock it belongs to:
 dock name = 
 
-order =
+order = 
+
 
 #[gtk-preferences]
 [Configuration]

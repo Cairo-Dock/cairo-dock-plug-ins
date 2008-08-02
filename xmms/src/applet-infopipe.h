@@ -5,9 +5,9 @@
 
 #include <cairo-dock.h>
 
-void cd_xmms_acquisition (void);
+void cd_xmms_acquisition (CairoDockModuleInstance *myApplet);
 
-void cd_xmms_read_data (void);
+void cd_xmms_read_data (CairoDockModuleInstance *myApplet);
 
 
 #endif

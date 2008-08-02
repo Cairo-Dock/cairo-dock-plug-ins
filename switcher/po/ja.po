@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:59+0200\n"
 "PO-Revision-Date: 2008-06-18 23:37+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:53 ../src/applet-load-icons.c:37
+#: ../src/applet-init.c:52 ../src/applet-load-icons.c:35
 msgid "Desktop"
 msgstr "デスクトップ"
 
-#: ../src/applet-init.c:61 ../src/applet-load-icons.c:32
+#: ../src/applet-init.c:60 ../src/applet-load-icons.c:30
 msgid "Current"
 msgstr "現在"
 
@@ -136,68 +136,84 @@ msgid "Show desktop number on the icons ?"
 msgstr "アイコン上にデスクトップ番号を表示？"
 
 #: ../data/messages:47
+#, fuzzy
+msgid "Draw the windows on icon ?"
+msgstr "アイコン上に壁紙を配置？"
+
+#: ../data/messages:49
 msgid "Display options"
 msgstr "表示オプション"
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "Size of the inside lines :"
 msgstr "内側の線のサイズ :"
 
-#: ../data/messages:51 ../data/messages:57 ../data/messages:61
+#: ../data/messages:53 ../data/messages:59 ../data/messages:65
+#: ../data/messages:69
 msgid "r, v, b, a"
 msgstr "赤、緑、青、アルファ"
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "Color of the inside lines :"
 msgstr "内側の線の色 :"
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Size of the extern line :"
 msgstr "外側の線のサイズ :"
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Color of the extern line :"
 msgstr "外側の線の色 :"
 
 #: ../data/messages:63
 #, fuzzy
+msgid "Size of the Windows line :"
+msgstr "内側の線のサイズ :"
+
+#: ../data/messages:67
+#, fuzzy
+msgid "Color of the Windows line :"
+msgstr "内側の線の色 :"
+
+#: ../data/messages:71
+#, fuzzy
 msgid "Color of the current desktop :"
 msgstr "現在のデスクトップの境界線の色 :"
 
-#: ../data/messages:65
+#: ../data/messages:73
 #, fuzzy
 msgid "How to draw the current desktop :"
 msgstr "現在のデスクトップの境界線の色 :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "draw a frame"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "fill"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "fill others"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Let empty to use the default one."
 msgstr "デフォルトを使用するに空欄のままに"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Icon to use if you don't map the wallpaper :"
 msgstr "壁紙を配置しない場合に使用するアイコン :"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Let it empty to use default sub-dock view."
 msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
-#: ../data/messages:81
+#: ../data/messages:89
 #, fuzzy
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "デスクレットを 3D 描画？"

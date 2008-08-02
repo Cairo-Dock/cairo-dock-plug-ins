@@ -9,8 +9,6 @@ Fabrice Rey (fabounet@users.berlios.de)
 ******************************************************************************/
 #include <stdlib.h>
 #include <string.h>
-#include <glib/gi18n.h>
-#include <cairo-dock.h>
 
 #include "applet-struct.h"
 #include "applet-draw.h"
@@ -41,14 +39,14 @@ static GList * _list_icons (void) {
 	
 	return pIconList;
 }
-void cd_xmms_add_buttons_to_desklet(void) {
+void cd_xmms_add_buttons_to_desklet(CairoDockModuleInstance *myApplet) {
 	if (myDesklet && myConfig.extendedDesklet){
 		GList *pIconList = _list_icons ();
 		myDesklet->icons = pIconList;
 	}
 }
 
-gboolean cd_xmms_draw_icon (void) {
+gboolean cd_xmms_draw_icon (CairoDockModuleInstance *myApplet) {
 	gboolean bNeedRedraw = FALSE;
 	if (myData.playingStatus == PLAYER_NONE) {
 		myData.cQuickInfo = NULL;
@@ -113,10 +111,10 @@ gboolean cd_xmms_draw_icon (void) {
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.playingTitle)
 			if (myConfig.enableAnim) {
 		    cd_message("Animating for: %s", myData.playingTitle);
-			  cd_xmms_animate_icon(1);
+			  cd_xmms_animate_icon(myApplet, 1);
 		  }
 		  if (myConfig.enableDialogs) {
-			  cd_xmms_new_song_playing();
+			  cd_xmms_new_song_playing(myApplet);
 		  }
 		}
 	}
@@ -124,7 +122,7 @@ gboolean cd_xmms_draw_icon (void) {
 	if (myData.playingStatus != myData.previousPlayingStatus) {  // changement de statut.
 		cd_message ("PlayingStatus : %d -> %d\n", myData.previousPlayingStatus, myData.playingStatus);
 		myData.previousPlayingStatus = myData.playingStatus;
-		cd_xmms_set_surface (myData.playingStatus);
+		cd_xmms_set_surface (myApplet, myData.playingStatus);
 		if (myData.playingStatus == 0) {
 		  myData.playingTitle = NULL; //Rien ne joue
 		  CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle)
@@ -139,15 +137,15 @@ gboolean cd_xmms_draw_icon (void) {
 
 //Fonction qui affiche la bulle au changement de musique
 //Old function without icon
-void cd_xmms_new_song_playing_old(void) {
+static void cd_xmms_new_song_playing_old(CairoDockModuleInstance *myApplet) {
 	cairo_dock_show_temporary_dialog(myData.playingTitle, myIcon, myContainer, myConfig.timeDialogs);
 }
 
 //With Icon.
-void cd_xmms_new_song_playing(void) {
+void cd_xmms_new_song_playing(CairoDockModuleInstance *myApplet) {
 	cairo_dock_remove_dialog_if_any (myIcon); //On evite la superposition ?
 	if (!myConfig.bIconBubble) {
-		cd_xmms_new_song_playing_old();
+		cd_xmms_new_song_playing_old(myApplet);
 		return;
 	}
 	
@@ -162,13 +160,13 @@ void cd_xmms_new_song_playing(void) {
 }
 
 //Fonction qui anime l'icone au changement de musique
-void cd_xmms_animate_icon(int animationLength) {
+void cd_xmms_animate_icon(CairoDockModuleInstance *myApplet, int animationLength) {
 	if (myDock) {
 		CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength)
 	}
 }
 
-void cd_xmms_set_surface (MyPlayerStatus iStatus) {
+void cd_xmms_set_surface (CairoDockModuleInstance *myApplet, MyPlayerStatus iStatus) {
 	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
 	//g_print ("%s (%d)\n", __func__, iStatus);
 	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];
@@ -190,7 +188,7 @@ void cd_xmms_set_surface (MyPlayerStatus iStatus) {
 	}
 }
 
-void cd_xmms_change_desklet_data (void) {
+void cd_xmms_change_desklet_data (CairoDockModuleInstance *myApplet) {
 	cd_debug ("");
 	
 	if (myData.playingTitle == NULL)
@@ -211,7 +209,7 @@ void cd_xmms_change_desklet_data (void) {
 	}
 	
 	gpointer data[2] = {artist, title};
-	cairo_dock_render_desklet_with_new_data (myDesklet, data);
+	cairo_dock_render_desklet_with_new_data (myDesklet, (CairoDeskletRendererDataPtr) data);
 	
 	/*gpointer data[3] = {artist, title, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 	CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
@@ -221,11 +219,11 @@ void cd_xmms_change_desklet_data (void) {
 	g_strfreev (rawTitle);
 }
 
-void cd_xmms_player_none (void) {
+void cd_xmms_player_none (CairoDockModuleInstance *myApplet) {
 	cd_debug ("");
 	if (myDesklet && myConfig.extendedDesklet && (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER)) {
 		gpointer data[2] = {NULL, NULL};
-		cairo_dock_render_desklet_with_new_data (myDesklet, data);
+		cairo_dock_render_desklet_with_new_data (myDesklet, (CairoDeskletRendererDataPtr) data);
 		
 		/*gpointer data[3] = {NULL, NULL, (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);

@@ -15,6 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-init.h"
 
+
 static char s_cFileNames[CLOCK_ELEMENTS][30] = {
 	"clock-drop-shadow.svg",
 	"clock-face.svg",
@@ -30,12 +31,12 @@ static char s_cFileNames[CLOCK_ELEMENTS][30] = {
 	"clock-frame.svg" };
 
 
-CD_APPLET_DEFINITION ("clock", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("clock", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
-static void _load_theme (void)
+static void _load_theme (CairoDockModuleInstance *myApplet)
 {
-	cd_message ("%s (%s)\n", __func__, myConfig.cThemePath);
+	cd_message ("%s (%s)", __func__, myConfig.cThemePath);
 	//\_______________ On charge le theme choisi (on n'a pas besoin de connaitre les dimmensions de l'icone).
 	if (myConfig.cThemePath != NULL)
 	{
@@ -57,34 +58,44 @@ static void _load_theme (void)
 		myData.DimensionData.height = 48;
 	}
 }
-static void _load_back_and_fore_ground (void)
+static void _load_back_and_fore_ground (CairoDockModuleInstance *myApplet)
 {
-	cd_debug ("\n");
+	cd_debug ("");
 	double fMaxScale = (myDock != NULL ? (1 + g_fAmplitude) / myDock->fRatio : 1);
 
 	//\_______________ On construit les surfaces d'arriere-plan et d'avant-plan une bonne fois pour toutes.
-	myData.pBackgroundSurface = update_surface (NULL,
+	myData.pBackgroundSurface = update_surface (myApplet,
+		NULL,
 		myDrawContext,
 		myIcon->fWidth * fMaxScale,
 		myIcon->fHeight * fMaxScale,
 		KIND_BACKGROUND);
-	myData.pForegroundSurface = update_surface (NULL,
+	myData.pForegroundSurface = update_surface (myApplet,
+		NULL,
 		myDrawContext,
 		myIcon->fWidth * fMaxScale,
 		myIcon->fHeight * fMaxScale,
 		KIND_FOREGROUND);
 }
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	//\_______________ On charge nos surfaces.
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
-	_load_theme ();
-	_load_back_and_fore_ground ();
+	
+	if (myConfig.cLocation != NULL)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1)
+	
+	_load_theme (myApplet);
+	_load_back_and_fore_ground (myApplet);
 	
 	myData.cSystemLocation = g_strdup (g_getenv ("TZ"));
+	myData.iLastCheckedMinute = -1;
+	myData.iLastCheckedDay = -1;
+	myData.iLastCheckedMonth = -1;
+	myData.iLastCheckedYear = -1;
 	
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -92,8 +103,8 @@ CD_APPLET_INIT_BEGIN (erreur)
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	
 	//\_______________ On lance le timer.
-	cd_clock_update_with_time (myIcon);
-	myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
+	cd_clock_update_with_time (myApplet);
+	myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
 CD_APPLET_INIT_END
 
 
@@ -106,6 +117,8 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On stoppe le timer.
 	g_source_remove (myData.iSidUpdateClock);
 	myData.iSidUpdateClock = 0;
+
+	cd_clock_free_timezone_list ();
 CD_APPLET_STOP_END
 
 
@@ -123,21 +136,24 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iSidUpdateClock = 0;
 
 		//\_______________ On charge notre theme.
-		_load_theme ();
+		_load_theme (myApplet);
 		//\_______________ On charge les surfaces d'avant et arriere-plan.
-		_load_back_and_fore_ground ();
-
+		_load_back_and_fore_ground (myApplet);
+		
+		if (myConfig.cLocation != NULL)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1)
+		
 		//\_______________ On relance le timer.
-		cd_clock_update_with_time (myIcon);
-		myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myIcon);
+		cd_clock_update_with_time (myApplet);
+		myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
 	}
 	else
 	{
 		//\_______________ On charge les surfaces d'avant et arriere-plan, les rsvg_handle ne dependent pas de g_fAmplitude.
 		cairo_surface_destroy (myData.pForegroundSurface);
 		cairo_surface_destroy (myData.pBackgroundSurface);
-		_load_back_and_fore_ground ();
+		_load_back_and_fore_ground (myApplet);
 
-		cd_clock_update_with_time (myIcon);
+		cd_clock_update_with_time (myApplet);
 	}
 CD_APPLET_RELOAD_END

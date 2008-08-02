@@ -9,7 +9,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include <stdlib.h>
 #include <string.h>
-#include <glib/gi18n.h>
 
 #include "applet-struct.h"
 #include "applet-load-icons.h"
@@ -17,8 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_INCLUDE_MY_VARS
 
 
-
-static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAnimationName, PenguinAnimation *pAnimation)
+static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAnimationName, PenguinAnimation *pAnimation, PenguinAnimation *pDefaultAnimation)
 {
 	if (! g_key_file_has_group (pKeyFile, cAnimationName))
 		return NULL;
@@ -35,7 +33,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 	pAnimation->iNbDirections = g_key_file_get_integer (pKeyFile, cAnimationName, "nb directions", &erreur);
 	if (erreur != NULL)
 	{
-		pAnimation->iNbDirections = myData.defaultAnimation.iNbDirections;
+		pAnimation->iNbDirections = pDefaultAnimation->iNbDirections;
 		g_error_free (erreur);
 		erreur = NULL;
 	}
@@ -43,7 +41,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 	pAnimation->iNbFrames = g_key_file_get_integer (pKeyFile, cAnimationName, "nb frames", &erreur);
 	if (erreur != NULL)
 	{
-		pAnimation->iNbFrames = myData.defaultAnimation.iNbFrames;
+		pAnimation->iNbFrames = pDefaultAnimation->iNbFrames;
 		g_error_free (erreur);
 		erreur = NULL;
 	}
@@ -51,7 +49,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 	pAnimation->iSpeed = g_key_file_get_integer (pKeyFile, cAnimationName, "speed", &erreur);
 	if (erreur != NULL)
 	{
-		pAnimation->iSpeed = myData.defaultAnimation.iSpeed;
+		pAnimation->iSpeed = pDefaultAnimation->iSpeed;
 		g_error_free (erreur);
 		erreur = NULL;
 	}
@@ -59,7 +57,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 	pAnimation->iAcceleration = g_key_file_get_integer (pKeyFile, cAnimationName, "acceleration", &erreur);
 	if (erreur != NULL)
 	{
-		pAnimation->iAcceleration = myData.defaultAnimation.iAcceleration;
+		pAnimation->iAcceleration = pDefaultAnimation->iAcceleration;
 		g_error_free (erreur);
 		erreur = NULL;
 	}
@@ -67,7 +65,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 	pAnimation->iTerminalVelocity = g_key_file_get_integer (pKeyFile, cAnimationName, "terminal velocity", &erreur);
 	if (erreur != NULL)
 	{
-		pAnimation->iTerminalVelocity = myData.defaultAnimation.iTerminalVelocity;
+		pAnimation->iTerminalVelocity = pDefaultAnimation->iTerminalVelocity;
 		g_error_free (erreur);
 		erreur = NULL;
 	}
@@ -75,7 +73,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 	pAnimation->bEnding = g_key_file_get_boolean (pKeyFile, cAnimationName, "ending", &erreur);
 	if (erreur != NULL)
 	{
-		pAnimation->bEnding = myData.defaultAnimation.bEnding;
+		pAnimation->bEnding = pDefaultAnimation->bEnding;
 		g_error_free (erreur);
 		erreur = NULL;
 	}
@@ -83,7 +81,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 	pAnimation->iDirection = g_key_file_get_integer (pKeyFile, cAnimationName, "direction", &erreur);
 	if (erreur != NULL)
 	{
-		pAnimation->iDirection = myData.defaultAnimation.iDirection;
+		pAnimation->iDirection = pDefaultAnimation->iDirection;
 		g_error_free (erreur);
 		erreur = NULL;
 	}
@@ -92,7 +90,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 }
 
 
-void penguin_load_theme (gchar *cThemePath)
+void penguin_load_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath)
 {
 	g_return_if_fail (cThemePath != NULL);
 	cd_debug ("%s (%s)", __func__, cThemePath);
@@ -104,7 +102,7 @@ void penguin_load_theme (gchar *cThemePath)
 	g_key_file_load_from_file (pKeyFile, cConfFilePath, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("Cairo-Penguin : %s", erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
@@ -112,17 +110,18 @@ void penguin_load_theme (gchar *cThemePath)
 	myData.fFrameDelay = (double) g_key_file_get_integer (pKeyFile, "Theme", "delay", &erreur) * 1e-3;
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("Cairo-Penguin : %s", erreur->message);
 		myData.fFrameDelay = .1;
 		g_error_free (erreur);
 		erreur = NULL;
 	}
 	
-	_penguin_get_animation_properties (pKeyFile, "Default", &myData.defaultAnimation);
+	_penguin_get_animation_properties (pKeyFile, "Default", &myData.defaultAnimation, &myData.defaultAnimation);
 	
 	gsize length = 0;
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
 	
+	g_print ("myData.pAnimations:%x\n", myData.pAnimations);
 	g_free (myData.pAnimations);
 	myData.iNbAnimations = 0;
 	myData.pAnimations = g_new0 (PenguinAnimation, length - 1);
@@ -158,7 +157,7 @@ void penguin_load_theme (gchar *cThemePath)
 			cd_debug ("%d)", iNumAnimation);
 			pAnimation = &myData.pAnimations[iNumAnimation];
 			
-			cFileName = _penguin_get_animation_properties (pKeyFile, cGroupName, pAnimation);
+			cFileName = _penguin_get_animation_properties (pKeyFile, cGroupName, pAnimation, &myData.defaultAnimation);
 			if (cFileName != NULL)
 			{
 				pAnimation->cFilePath = g_strconcat (cThemePath, "/", cFileName, NULL);
@@ -200,7 +199,7 @@ void penguin_load_theme (gchar *cThemePath)
 }
 
 
-void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSourceContext)
+void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSourceContext, double fAlpha)
 {
 	cd_debug ("%s (%s)", __func__, pAnimation->cFilePath);
 	if (pAnimation->cFilePath == NULL)
@@ -213,7 +212,7 @@ void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSour
 		&fImageWidth,
 		&fImageHeight,
 		0.,
-		myConfig.fAlpha,
+		fAlpha,
 		FALSE);
 	pAnimation->iFrameWidth = (int) fImageWidth / pAnimation->iNbFrames, pAnimation->iFrameHeight = (int) fImageHeight / pAnimation->iNbDirections;
 	if (pBigSurface != NULL)

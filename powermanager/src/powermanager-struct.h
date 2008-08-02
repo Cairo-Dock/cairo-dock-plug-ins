@@ -25,7 +25,7 @@ typedef enum {
   POWER_MANAGER_NB_CHARGE_LEVEL,
   } MyAppletCharge;
 
-typedef struct {
+struct _AppletConfig {
 	gchar *defaultTitle;
 	MyAppletQuickInfoType quickInfoType;
 	gint iCheckInterval;
@@ -43,10 +43,10 @@ typedef struct {
 	gchar *cUserBatteryIconName;
 	gchar *cUserChargeIconName;
 	MyAppletEffect iEffect;
-  } AppletConfig;
+  } ;
 
 
-typedef struct {
+struct _AppletData {
 	cairo_surface_t *pSurfaceBattery;
 	cairo_surface_t *pSurfaceCharge;
 	gboolean dbus_enable;
@@ -59,7 +59,7 @@ typedef struct {
 	gint checkLoop;
 	Gauge *pGauge;
 	gint iCapacity;
-	} AppletData;
+	} ;
 
 
 #endif

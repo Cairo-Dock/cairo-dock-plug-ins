@@ -8,8 +8,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 **********************************************************************************/
 #include <stdlib.h>
 #include <string.h>
-#include <glib/gi18n.h>
 
+#include "applet-struct.h"
 #include "applet-trashes-manager.h"
 #include "applet-notifications.h"
 

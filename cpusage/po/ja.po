@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:53+0200\n"
 "PO-Revision-Date: 2008-06-18 21:45+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -31,27 +31,27 @@ msgstr ""
 "これは parAdOxxx_ZeRo によって製作された \n"
 "Cairo-Dock 用の cpusage アプレットです。"
 
-#: ../src/applet-notifications.c:109 ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:110 ../src/applet-notifications.c:128
 msgid "Data acquisition has failed"
 msgstr "データの取得に失敗"
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:123
 msgid "Model Name"
 msgstr "モデル名"
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:123
 msgid "Frequency"
 msgstr "周波数"
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:123
 msgid "core(s)"
 msgstr "コア"
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:123
 msgid "Up time"
 msgstr "稼働時間"
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:123
 msgid "Activity time"
 msgstr "動作時間"
 

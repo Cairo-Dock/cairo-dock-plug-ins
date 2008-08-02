@@ -8,7 +8,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 ******************************************************************************/
 
 #include <string.h>
-#include <cairo-dock.h>
 
 #include "applet-struct.h"
 #include "applet-config.h"

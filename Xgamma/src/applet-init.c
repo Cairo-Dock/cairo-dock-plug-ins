@@ -27,10 +27,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 static gboolean s_bVideoExtensionChecked = FALSE;
 
 
-CD_APPLET_DEFINITION ("Xgamma", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("Xgamma", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
@@ -42,21 +42,21 @@ CD_APPLET_INIT_BEGIN (erreur)
 		const Display *dpy = cairo_dock_get_Xdisplay ();
 		if (dpy == NULL)
 		{
-			g_set_error (erreur, 1, 1, "%s () : unable to get X display", __func__);
+			cd_warning ("Xgamma : unable to get X display");
 			return ;
 		}
 		
 		int MajorVersion, MinorVersion;
 		if (!XF86VidModeQueryVersion(dpy, &MajorVersion, &MinorVersion))
 		{
-			g_set_error (erreur, 1, 1, "%s () : unable to query video extension version", __func__);
+			cd_warning ("Xgamma : unable to query video extension version");
 			return ;
 		}
 		
 		int EventBase, ErrorBase;
 		if (!XF86VidModeQueryExtension(dpy, &EventBase, &ErrorBase))
 		{
-			g_set_error (erreur, 1, 1, "%s () : unable to query video extension information", __func__);
+			cd_warning ("Xgamma : unable to query video extension information");
 			return ;
 		}
 		

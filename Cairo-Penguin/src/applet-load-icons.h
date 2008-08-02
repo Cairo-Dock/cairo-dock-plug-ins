@@ -5,10 +5,10 @@
 #include <cairo-dock.h>
 
 
-void penguin_load_theme (gchar *cThemePath);
+void penguin_load_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath);
 
 
-void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSourceContext);
+void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSourceContext, double fAlpha);
 
 
 #endif

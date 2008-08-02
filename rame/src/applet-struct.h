@@ -4,7 +4,7 @@
 
 #include <cairo-dock.h>
 
-typedef struct {
+struct _AppletConfig {
 	gchar *defaultTitle;
 	gint iCheckInterval;
 	CairoDockInfoDisplay iInfoDisplay;
@@ -14,7 +14,7 @@ typedef struct {
 	gint iNbDisplayedProcesses;
 	gboolean bTopInPercent;
 	CairoDockLabelDescription *pTopTextDescription;
-} AppletConfig;
+} ;
 
 
 typedef struct {
@@ -23,7 +23,7 @@ typedef struct {
 	gdouble iMemAmount;
 	} CDProcess;
 
-typedef struct {
+struct _AppletData {
 	CairoDockMeasure *pMeasureTimer;
 	guint ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
 	guint swapTotal, swapFree, swapUsed;
@@ -38,7 +38,7 @@ typedef struct {
 	cairo_surface_t *pTopSurface;
 	CairoDialog *pTopDialog;
 	CairoDockMeasure *pTopMeasureTimer;
-} AppletData;
+} ;
 
 
 #endif

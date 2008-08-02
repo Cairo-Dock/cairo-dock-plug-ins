@@ -28,7 +28,6 @@
 #include "systray-struct.h"
 
 CD_APPLET_INCLUDE_MY_VARS
-extern t_systray systray;
 
 static const guint icon_size_w = 24;
 static const guint icon_size_h = 24;

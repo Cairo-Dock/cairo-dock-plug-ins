@@ -9,7 +9,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include <stdlib.h>
 #include <string.h>
-#include <glib/gi18n.h>
 
 #include "applet-struct.h"
 #include "applet-animation.h"
@@ -38,7 +37,7 @@ static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 CD_APPLET_ABOUT (D_("This is the Cairo-Penguin applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
-gboolean CD_APPLET_ON_CLICK (gpointer *data)
+gboolean CD_APPLET_ON_CLICK (gpointer *data, CairoDockModuleInstance *myApplet)
 {
 	Icon *pClickedIcon = data[0];
 	CairoContainer *pClickedContainer = data[1];
@@ -54,13 +53,12 @@ gboolean CD_APPLET_ON_CLICK (gpointer *data)
 		int iNewAnimation;
 		int iRandom = g_random_int_range (0, 4);
 		if (iRandom == 0)  // 1 chance sur 4.
-			iNewAnimation = penguin_choose_go_up_animation ();
+			iNewAnimation = penguin_choose_go_up_animation (myApplet);
 		else
-			iNewAnimation = penguin_choose_next_animation (pAnimation);
-		penguin_set_new_animation (iNewAnimation);
+			iNewAnimation = penguin_choose_next_animation (myApplet, pAnimation);
+		penguin_set_new_animation (myApplet, iNewAnimation);
 		
-		///if (myConfig.bFree)
-			pClickedIcon->iCount = 0;
+		pClickedIcon->iCount = 0;
 CD_APPLET_ON_CLICK_END
 
 
@@ -72,7 +70,7 @@ static void _stop_xpenguins (GtkMenuItem *menu_item, gpointer *data)
 {
 	cairo_dock_launch_command ("xpenguins-stop");
 }
-static void _keep_quiet (GtkMenuItem *menu_item, gpointer *data)
+static void _keep_quiet (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (myData.iSidAnimation != 0);
 	g_source_remove (myData.iSidAnimation);
@@ -83,23 +81,23 @@ static void _keep_quiet (GtkMenuItem *menu_item, gpointer *data)
 		myData.iSidRestartDelayed = 0;
 	}
 	
-	int iNewAnimation = penguin_choose_resting_animation ();
-	penguin_set_new_animation (iNewAnimation);
+	int iNewAnimation = penguin_choose_resting_animation (myApplet);
+	penguin_set_new_animation (myApplet, iNewAnimation);
 	myData.iCurrentPositionY = (myConfig.bFree ? g_iDockLineWidth : 0);
 	if (myConfig.bFree)
 	{
-		penguin_move_in_dock (NULL);
+		penguin_move_in_dock (myApplet);
 	}
 	else
 	{
-		penguin_move_in_icon (NULL);
+		penguin_move_in_icon (myApplet);
 	}
 }
-static void _wake_up (GtkMenuItem *menu_item, gpointer *data)
+static void _wake_up (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	penguin_start_animating ();
+	penguin_start_animating (myApplet);
 }
-gboolean CD_APPLET_ON_BUILD_MENU (gpointer *data)
+gboolean CD_APPLET_ON_BUILD_MENU (gpointer *data, CairoDockModuleInstance *myApplet)
 {
 	Icon *pClickedIcon = data[0];
 	CairoContainer *pClickedContainer = data[1];
@@ -111,27 +109,30 @@ gboolean CD_APPLET_ON_BUILD_MENU (gpointer *data)
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->iMouseX >  (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->iMouseX < (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
 		GtkWidget *pAppletMenu = data[2];
-		GtkWidget *pMenuItem, image;
+		GtkWidget *pMenuItem, *image;
 		
+		pMenuItem = gtk_separator_menu_item_new ();
+		gtk_menu_shell_append(GTK_MENU_SHELL (CD_APPLET_MY_MENU), pMenuItem);
+		
+		CD_APPLET_ADD_SUB_MENU (_("Hey, you there !"), pModuleSubMenu, CD_APPLET_MY_MENU)
 		if (myData.iSidAnimation != 0)
 		{
-			CD_APPLET_ADD_IN_MENU(D_("Keep quiet"), _keep_quiet, CD_APPLET_MY_MENU)
+			CD_APPLET_ADD_IN_MENU(D_("Keep quiet"), _keep_quiet, pModuleSubMenu)
 		}
 		else
 		{
-			CD_APPLET_ADD_IN_MENU(D_("Wake up"), _wake_up, CD_APPLET_MY_MENU)
+			CD_APPLET_ADD_IN_MENU(D_("Wake up"), _wake_up, pModuleSubMenu)
 		}
 		
-		CD_APPLET_ADD_IN_MENU(D_("Start XPenguins"), _start_xpenguins, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU(D_("Stop XPenguins"), _stop_xpenguins, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU(D_("Start XPenguins"), _start_xpenguins, pModuleSubMenu)
+		CD_APPLET_ADD_IN_MENU(D_("Stop XPenguins"), _stop_xpenguins, pModuleSubMenu)
+		CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu)
 		
-		pMenuItem = gtk_separator_menu_item_new ();
-		gtk_menu_shell_append(GTK_MENU_SHELL (pAppletMenu), pMenuItem);
+		data[0] = myIcon;  // astuce pour beneficier du menu cree par le dock :-)
 CD_APPLET_ON_BUILD_MENU_END
 
 
-gboolean CD_APPLET_ON_MIDDLE_CLICK (gpointer *data)
+gboolean CD_APPLET_ON_MIDDLE_CLICK (gpointer *data, CairoDockModuleInstance *myApplet)
 {
 	Icon *pClickedIcon = data[0];
 	CairoContainer *pClickedContainer = data[1];
@@ -161,8 +162,8 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK (gpointer *data)
 			int iRandom = g_random_int_range (0, 5);  // [a;b[
 			if (iRandom == 0)  // 1 chance sur 5.
 			{
-				int iNewAnimation = penguin_choose_ending_animation ();
-				penguin_set_new_animation (iNewAnimation);
+				int iNewAnimation = penguin_choose_ending_animation (myApplet);
+				penguin_set_new_animation (myApplet, iNewAnimation);
 			}
 			else if (iRandom == 1 && ! myConfig.bFree)
 			{

@@ -61,15 +61,16 @@ static void _load_theme (GError **erreur)
 	}
 }
 
-CD_APPLET_DEFINITION ("mail", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("mail", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	
-	GError *tmp_erreur = NULL;
-	_load_theme (&tmp_erreur);
-	if (tmp_erreur != NULL)
+	GError *erreur = NULL;
+	_load_theme (&erreur);
+	if (erreur != NULL)
 	{
-		g_propagate_error (erreur, tmp_erreur);
+		cd_warning ("mail : %s", erreur->message);
+		g_error_free (erreur);
 		return;
 	}
 
@@ -102,12 +103,12 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED )
 	{
-		GError *tmp_erreur = NULL;
-		_load_theme (&tmp_erreur);
-		if (tmp_erreur != NULL)
+		GError *erreur = NULL;
+		_load_theme (&erreur);
+		if (erreur != NULL)
 		{
-			cd_warning ("Attention : when trying to load theme : %s", tmp_erreur->message);
-			g_error_free (tmp_erreur);
+			cd_warning ("mail : when trying to load theme : %s", erreur->message);
+			g_error_free (erreur);
 		}
 		/// prendre en compte les parametres qui ont pu changer...
 	}

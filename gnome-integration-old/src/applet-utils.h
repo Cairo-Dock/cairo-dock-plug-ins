@@ -1,6 +1,6 @@
 
-#ifndef __APPLET_GNOME_ENV__
-#define  __APPLET_GNOME_ENV__
+#ifndef __APPLET_GNOME_OLD_ENV__
+#define  __APPLET_GNOME_OLD_ENV__
 
 
 #include <cairo-dock.h>

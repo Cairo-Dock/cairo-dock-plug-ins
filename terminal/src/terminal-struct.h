@@ -4,7 +4,7 @@
 
 #include <cairo-dock.h>
 
-typedef struct {
+struct _AppletConfig {
 	guint16  transparency;
 	GdkColor backcolor;
 	GdkColor forecolor;
@@ -12,12 +12,12 @@ typedef struct {
 	gint iNbRows;
 	gint iNbColumns;
 	int iPositionX, iPositionY;
-	} AppletConfig;
+	} ;
 
-typedef struct {
+struct _AppletData {
 	CairoDialog *dialog;
 	GtkWidget *tab;
-	} AppletData;
+	} ;
 
 
 #endif

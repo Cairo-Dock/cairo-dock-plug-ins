@@ -9,13 +9,13 @@
 CD_APPLET_H
 
 
-typedef struct {
+struct _AppletConfig {
 	gint no_config_yet;
-} AppletConfig;
+} ;
 
-typedef struct {
+struct _AppletData {
 	gint no_data_yet;
-} AppletData;
+} ;
 
 
 #endif

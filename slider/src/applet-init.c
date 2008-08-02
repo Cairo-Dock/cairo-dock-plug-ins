@@ -16,10 +16,10 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("slider", 1, 5, 5, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("slider", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
-static void _slider_set_desklet_renderer (void)
+static void _slider_set_desklet_renderer (CairoDockModuleInstance *myApplet)
 {
 	const gchar *cConfigName = NULL;
 	switch (myConfig.iDecoration)
@@ -30,10 +30,10 @@ static void _slider_set_desklet_renderer (void)
 			cConfigName = "frame&reflects";
 		break ;
 		case SLIDER_SCOTCH :
-				cConfigName = "scotch";
+			cConfigName = "scotch";
 		break ;
 		case SLIDER_FRAME_SCOTCH :
-				cConfigName = "frame with scotch";
+			cConfigName = "frame with scotch";
 		break ;
 		default :
 			return ;
@@ -55,9 +55,9 @@ static void _slider_set_desklet_renderer (void)
 }
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myDesklet) {
-		_slider_set_desklet_renderer ();
+		_slider_set_desklet_renderer (myApplet);
 	}
 	
 	double fRatio = (myDock ? myDock->fRatio : 1.);
@@ -67,14 +67,16 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	myData.pMeasureDirectory = cairo_dock_new_measure_timer (0,
 		NULL,
-		cd_slider_read_directory,
-		cd_slider_launch_slides);  // 0 <=> one shot measure.
+		(CairoDockReadTimerFunc) cd_slider_read_directory,
+		(CairoDockUpdateTimerFunc) cd_slider_launch_slides,
+		myApplet);  // 0 <=> one shot measure.
 	cairo_dock_launch_measure (myData.pMeasureDirectory);
 	
 	myData.pMeasureImage = cairo_dock_new_measure_timer (0,
 		NULL,
-		cd_slider_read_image,
-		cd_slider_update_slide);  // 0 <=> one shot measure.
+		(CairoDockReadTimerFunc) cd_slider_read_image,
+		(CairoDockUpdateTimerFunc) cd_slider_update_slide,
+		myApplet);  // 0 <=> one shot measure.
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
@@ -99,7 +101,6 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	
 	//Stop all process!
 	myData.bPause = TRUE;
 	if (myData.iTimerID != 0) {
@@ -118,7 +119,7 @@ CD_APPLET_RELOAD_BEGIN
 	myData.pPrevCairoSurface = NULL;
 	
 	if (myDesklet) {
-		_slider_set_desklet_renderer ();
+		_slider_set_desklet_renderer (myApplet);
 	}
 	
 	double fRatio = (myDock ? myDock->fRatio : 1.);  // meme si le container n'a pas change, car un desklet se redimensionne, et l'icone avec.
@@ -138,6 +139,6 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else {
 		//Nothing to do ^^
-		cd_slider_draw_images(); //restart sliding
+		cd_slider_draw_images(myApplet); //restart sliding
 	}
 CD_APPLET_RELOAD_END

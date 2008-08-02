@@ -9,8 +9,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <string.h>
 #include <stdlib.h>
 
-#include <cairo-dock.h>
-
 #include "applet-struct.h"
 #include "applet-draw.h"
 #include "applet-config.h"
@@ -20,7 +18,6 @@ CD_APPLET_INCLUDE_MY_VARS
 
 #define CD_CLOCK_MAX_NB_AlarmS 3
 #define CD_CLOCK_NB_FREQUENCIES 12
-static gchar *my_s_Frequencies[CD_CLOCK_NB_FREQUENCIES+1] = {"Never", "Day", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Week Day", "Week End", "Month", NULL};
 
 
 CD_APPLET_GET_CONFIG_BEGIN
@@ -96,7 +93,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cThemePath);
 	g_free (myConfig.cFont);
 	g_free (myConfig.cLocation);
-	
+
 	CDClockAlarm *pAlarm;
 	int i;
 	if (myConfig.pAlarms != NULL)

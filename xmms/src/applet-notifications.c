@@ -18,7 +18,7 @@ Fabrice Rey (fabounet@users.berlios.de)
 CD_APPLET_INCLUDE_MY_VARS
 
 
-void cd_xmms_prev() {
+void cd_xmms_prev(CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	g_free (myData.playingTitle);
 	myData.playingTitle = NULL; //Reseting the title to detect it for sure
@@ -44,7 +44,7 @@ void cd_xmms_prev() {
 	}
 }
 
-void cd_xmms_pp() {
+void cd_xmms_pp(CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
@@ -67,7 +67,7 @@ void cd_xmms_pp() {
 		g_error_free (erreur);
 	}
 }
-void cd_xmms_s() {
+void cd_xmms_s(CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
@@ -87,7 +87,7 @@ void cd_xmms_s() {
 		g_error_free (erreur);
 	}
 }
-void cd_xmms_next() {
+void cd_xmms_next(CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	g_free (myData.playingTitle);
 	myData.playingTitle = NULL; //Resetting the title to detect it for sure
@@ -112,7 +112,7 @@ void cd_xmms_next() {
 		g_error_free (erreur);
 	}
 }
-void cd_xmms_shuffle() {
+void cd_xmms_shuffle(CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
@@ -129,7 +129,7 @@ void cd_xmms_shuffle() {
 		g_error_free (erreur);
 	}
 }
-void cd_xmms_repeat() {
+void cd_xmms_repeat(CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
@@ -146,7 +146,7 @@ void cd_xmms_repeat() {
 		g_error_free (erreur);
 	}
 }
-void cd_xmms_jumpbox() {
+void cd_xmms_jumpbox(CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
@@ -163,7 +163,7 @@ void cd_xmms_jumpbox() {
 		g_error_free (erreur);
 	}
 }
-void cd_xmms_enqueue(const gchar *cFile) {
+void cd_xmms_enqueue(CairoDockModuleInstance *myApplet, const gchar *cFile) {
 	GError *erreur = NULL;
 	gchar *cCommand = NULL;
 	switch (myConfig.iPlayer) {
@@ -197,19 +197,19 @@ void cd_xmms_enqueue(const gchar *cFile) {
 CD_APPLET_ABOUT (D_("This is the xmms applet\n made by ChAnGFu for Cairo-Dock"))
 
 
-static void _xmms_action_by_id (int iAction) {
+static void _xmms_action_by_id (CairoDockModuleInstance *myApplet, int iAction) {
 	switch (iAction) {
 		case 0:
-			cd_xmms_prev();
+			cd_xmms_prev(myApplet);
 		break;
 		case 1:
-			cd_xmms_pp();
+			cd_xmms_pp(myApplet);
 		break;
 		case 2:
-			cd_xmms_s();
+			cd_xmms_s(myApplet);
 		break;
 		case 3:
-			cd_xmms_next();
+			cd_xmms_next(myApplet);
 		break;
 		default :
 			cd_warning ("no action defined");
@@ -218,10 +218,10 @@ static void _xmms_action_by_id (int iAction) {
 }
 CD_APPLET_ON_CLICK_BEGIN
 	if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL && pClickedIcon != myIcon) {  // clic sur une des icones du desklet.
-		_xmms_action_by_id (pClickedIcon->iType);
+		_xmms_action_by_id (myApplet, pClickedIcon->iType);
 	}
 	else {
-	  cd_xmms_pp();
+	  cd_xmms_pp(myApplet);
 	}
 CD_APPLET_ON_CLICK_END
 
@@ -244,23 +244,23 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-  cd_xmms_next();
+  cd_xmms_next(myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 CD_APPLET_ON_DROP_DATA_BEGIN
 	cd_message (" XMMS: %s to enqueue", CD_APPLET_RECEIVED_DATA);
-	cd_xmms_enqueue (CD_APPLET_RECEIVED_DATA);
+	cd_xmms_enqueue (myApplet, CD_APPLET_RECEIVED_DATA);
 CD_APPLET_ON_DROP_DATA_END
 
 
 
 CD_APPLET_ON_SCROLL_BEGIN
 		if (CD_APPLET_SCROLL_DOWN) {
-			cd_xmms_next();
+			cd_xmms_next(myApplet);
 		}
 		else if (CD_APPLET_SCROLL_UP) {
-			cd_xmms_prev();
+			cd_xmms_prev(myApplet);
 		}
 		else
 			return CAIRO_DOCK_LET_PASS_NOTIFICATION;

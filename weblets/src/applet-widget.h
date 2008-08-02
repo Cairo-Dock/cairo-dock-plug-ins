@@ -25,8 +25,8 @@
 
 #include <cairo-dock.h>
 
-gboolean cd_weblets_refresh_page (void);
-void weblet_build_and_show (void);
-void show_hide_scrollbars (void);
+gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet);
+void weblet_build_and_show (CairoDockModuleInstance *myApplet);
+void show_hide_scrollbars (CairoDockModuleInstance *myApplet);
 
 #endif

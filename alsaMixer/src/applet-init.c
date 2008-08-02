@@ -9,7 +9,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("AlsaMixer", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("AlsaMixer", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
 static void _load_surfaces (void)
@@ -68,7 +68,7 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 	}
 }
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL)
 	{
 		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->iWidth, myDesklet->iHeight) - 0*g_iDockRadius - 15);

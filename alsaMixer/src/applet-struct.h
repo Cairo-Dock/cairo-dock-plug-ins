@@ -21,7 +21,7 @@ typedef enum {
 	VOLUME_NB_EFFECTS
 	} VolumeTypeEffect;
 
-typedef struct {
+struct _AppletConfig {
 	gchar *card_id;
 	gchar *cMixerElementName;
 	gchar *cShowAdvancedMixerCommand;
@@ -33,9 +33,9 @@ typedef struct {
 	gchar *cShortcut;
 	gint iScrollVariation;
 	gboolean bHideScaleOnLeave;
-	} AppletConfig;
+	} ;
 
-typedef struct {
+struct _AppletData {
 	snd_mixer_t *mixer_handle;
 	gchar *mixer_card_name;
 	gchar *mixer_device_name;
@@ -52,7 +52,7 @@ typedef struct {
 	int iCurrentVolume;  // volume courant en %.
 	gboolean bIsMute;
 	GtkWidget *pScale;
-	} AppletData;
+	} ;
 
 
 #endif

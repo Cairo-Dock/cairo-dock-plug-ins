@@ -29,7 +29,7 @@ typedef enum {
 	WIFI_EFFECT_BAR,
 } CDWifiEffect;
 
-typedef struct {
+struct _AppletConfig {
 	gchar *defaultTitle;
 	gchar *cUserImage[WIFI_NB_QUALITY];
 	gchar *cGThemePath;
@@ -43,9 +43,9 @@ typedef struct {
 	gint iCheckInterval;
 	
 	gboolean bESSID;
-} AppletConfig;
+} ;
 
-typedef struct {
+struct _AppletData {
 	CDWifiQuality iQuality, iPreviousQuality;
 	gint prcnt, prev_prcnt;
 	gint flink, prev_flink;
@@ -57,7 +57,7 @@ typedef struct {
 	CairoDockMeasure *pMeasureTimer;
 	Gauge *pGauge;
 	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];
-} AppletData;
+} ;
 
 
 #endif

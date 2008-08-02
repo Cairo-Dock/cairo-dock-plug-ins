@@ -145,7 +145,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	// distinguer les mounts points du reste
 	ThunarVfsVolume *pThunarVolume = thunar_find_volume_from_path (pThunarPath);
 	if (pThunarVolume != NULL)
-		cd_message (" correspond a un volume\n");
+		cd_message (" correspond a un volume");
 	
 	ThunarVfsInfo *pThunarVfsInfo = thunar_vfs_info_new_for_path(pThunarPath, &erreur);
 	thunar_vfs_path_unref(pThunarPath);

@@ -9,6 +9,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <math.h>
 #include <cairo-dock.h>
 
+#include "rendering-struct.h"
 #include "rendering-commons.h"
 #include "rendering-config.h"
 
@@ -84,10 +85,8 @@ extern gdouble my_fCurveCurvature;
 extern gint my_iCurveAmplitude;
 extern CDSpeparatorType my_curve_iDrawSeparator3D;
 
-void read_conf_file (GKeyFile *pKeyFile, gchar *cConfFilePath)
-{
-	gboolean bFlushConfFileNeeded = FALSE;  // si un champ n'existe pas, on le rajoute au fichier de conf.
-	
+
+CD_APPLET_GET_CONFIG_BEGIN
 	iVanishingPointY = cairo_dock_get_integer_key_value (pKeyFile, "Inclinated Plane", "vanishing point y", &bFlushConfFileNeeded, 0, NULL, NULL);
 	my_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Inclinated Plane", "draw separator", &bFlushConfFileNeeded, 0, NULL, NULL);
 	double couleur[4] = {0.9,0.9,1.0,1.0};
@@ -170,17 +169,15 @@ void read_conf_file (GKeyFile *pKeyFile, gchar *cConfFilePath)
 	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100;
 	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "amplitude", &bFlushConfFileNeeded, 20, NULL, NULL);
 	my_curve_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "draw curve separator", &bFlushConfFileNeeded, 0, NULL, NULL);
-	
-	
-	if (! bFlushConfFileNeeded)
-		bFlushConfFileNeeded = cairo_dock_conf_file_needs_update (pKeyFile, MY_APPLET_VERSION); \
-	if (bFlushConfFileNeeded) \
-		cairo_dock_flush_conf_file (pKeyFile, cConfFilePath, MY_APPLET_SHARE_DATA_DIR);\
-}
+CD_APPLET_GET_CONFIG_END
 
 
-void reset_data (void)
-{
+CD_APPLET_RESET_CONFIG_BEGIN
+	
+CD_APPLET_RESET_CONFIG_END
+
+
+CD_APPLET_RESET_DATA_BEGIN
 	if (my_pFlatSeparatorSurface[0] != NULL)
 	{
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
@@ -188,4 +185,4 @@ void reset_data (void)
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
 		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
 	}
-}
+CD_APPLET_RESET_DATA_END

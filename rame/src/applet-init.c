@@ -6,9 +6,9 @@
 #include "applet-init.h"
 #include "applet-rame.h"
 
-CD_APPLET_DEFINITION ("ram-meter", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("ram-meter", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
@@ -21,8 +21,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
 		NULL,
-		cd_rame_read_data,
-		cd_rame_update_from_data);
+		(CairoDockReadTimerFunc) cd_rame_read_data,
+		(CairoDockUpdateTimerFunc) cd_rame_update_from_data,
+		myApplet);
 	myData.bAcquisitionOK = TRUE;
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
@@ -84,6 +85,6 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_free_label_description (pOldLabelDescription);
 		
 		myData.fPrevRamPercent = 0;  // on force le redessin.
-		cd_rame_update_from_data ();
+		cd_rame_update_from_data (myApplet);
 	}
 CD_APPLET_RELOAD_END

@@ -19,10 +19,10 @@ Fabrice Rey <fabounet@users.berlios.de>
 
 #define CD_COMPIZ_CHECK_TIME 4
 
-CD_APPLET_DEFINITION ("compiz-icon", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("compiz-icon", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	cd_compiz_build_icons ();
 	
 	if (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz) {
@@ -32,9 +32,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 			myData.bCompizRestarted = TRUE;
 		
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (CD_COMPIZ_CHECK_TIME,
-			cd_compiz_acquisition,
-			cd_compiz_read_data,
-			cd_compiz_update_from_data);
+			(CairoDockAquisitionTimerFunc) cd_compiz_acquisition,
+			(CairoDockReadTimerFunc) cd_compiz_read_data,
+			(CairoDockUpdateTimerFunc) cd_compiz_update_from_data,
+			myApplet);
 		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 	else {

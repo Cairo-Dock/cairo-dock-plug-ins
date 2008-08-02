@@ -9,7 +9,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include <stdlib.h>
 #include <string.h>
-#include <glib/gi18n.h>
 
 #include "applet-struct.h"
 #include "applet-load-icons.h"
@@ -19,7 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_INCLUDE_MY_VARS
 
 
-gboolean penguin_move_in_dock (gpointer data)
+gboolean penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 {
 	static GdkRectangle area;
 	//cd_message ("");
@@ -34,7 +33,7 @@ gboolean penguin_move_in_dock (gpointer data)
 	int iXMax = iXMin + myDock->fFlatDockWidth;
 	int iHeight = myDock->iCurrentHeight;
 	
-	penguin_calculate_new_position (pAnimation, iXMin, iXMax, iHeight);
+	penguin_calculate_new_position (myApplet, pAnimation, iXMin, iXMax, iHeight);
 	
 	area.x = (myDock->iCurrentWidth - myDock->fFlatDockWidth) * .5 + MIN (iPreviousPositionX, myData.iCurrentPositionX);
 	area.y = myDock->iCurrentHeight - MAX (iPreviousPositionY, myData.iCurrentPositionY) - pAnimation->iFrameHeight;
@@ -52,14 +51,14 @@ gboolean penguin_move_in_dock (gpointer data)
 		gdk_window_invalidate_rect (myContainer->pWidget->window, &area, FALSE);
 	}
 	
-	penguin_advance_to_next_frame (pAnimation);
+	penguin_advance_to_next_frame (myApplet, pAnimation);
 	
 	return TRUE;
 }
 
 gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 	GdkEventExpose *pExpose,
-	gpointer data)
+	CairoDockModuleInstance *myApplet)
 {
 	//g_print ("%s (%d,%d ; %d;%d)\n", __func__, myData.iCurrentDirection, myData.iCurrentFrame, myData.iCurrentPositionX, myData.iCurrentPositionY);
 	if (! cairo_dock_animation_will_be_visible (myDock))
@@ -97,7 +96,7 @@ gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 	return FALSE;
 }
 
-gboolean penguin_move_in_icon (gpointer data)
+gboolean penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 {
 	//g_print ("%s (%d,%d) ; (%d,%d)\n", __func__, myData.iCurrentDirection, myData.iCurrentFrame, myData.iCurrentPositionX, myData.iCurrentPositionY);
 	if (! cairo_dock_animation_will_be_visible (myDock))
@@ -113,7 +112,7 @@ gboolean penguin_move_in_icon (gpointer data)
 	int iXMax = - iXMin;
 	int iHeight = myIcon->fHeight / myDock->fRatio * fScale;
 	
-	penguin_calculate_new_position (pAnimation, iXMin, iXMax, iHeight);
+	penguin_calculate_new_position (myApplet, pAnimation, iXMin, iXMax, iHeight);
 	
 	//\________________ On efface l'ancienne image.
 	cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
@@ -152,13 +151,13 @@ gboolean penguin_move_in_icon (gpointer data)
 	
 	CD_APPLET_REDRAW_MY_ICON
 	
-	penguin_advance_to_next_frame (pAnimation);
+	penguin_advance_to_next_frame (myApplet, pAnimation);
 	return TRUE;
 }
 
 
 
-void penguin_calculate_new_position (PenguinAnimation *pAnimation, int iXMin, int iXMax, int iHeight)
+void penguin_calculate_new_position (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation, int iXMin, int iXMax, int iHeight)
 {
 	//\________________ On calule la nouvelle vitesse.
 	if (pAnimation->iAcceleration != 0 && myData.iCurrentSpeed != pAnimation->iTerminalVelocity)
@@ -200,14 +199,14 @@ void penguin_calculate_new_position (PenguinAnimation *pAnimation, int iXMin, in
 				}
 				else
 				{
-					int iNewAnimation = penguin_choose_go_up_animation ();
-					penguin_set_new_animation (iNewAnimation);
+					int iNewAnimation = penguin_choose_go_up_animation (myApplet);
+					penguin_set_new_animation (myApplet, iNewAnimation);
 				}
 			}
 			else  // on remonte.
 			{
-				int iNewAnimation = penguin_choose_go_up_animation ();
-				penguin_set_new_animation (iNewAnimation);
+				int iNewAnimation = penguin_choose_go_up_animation (myApplet);
+				penguin_set_new_animation (myApplet, iNewAnimation);
 			}
 		}
 	}
@@ -224,7 +223,7 @@ void penguin_calculate_new_position (PenguinAnimation *pAnimation, int iXMin, in
 
 
 
-void penguin_advance_to_next_frame (PenguinAnimation *pAnimation)
+void penguin_advance_to_next_frame (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation)
 {
 	myData.iCurrentFrame ++;
 	if (myData.iCurrentFrame >= pAnimation->iNbFrames)
@@ -260,12 +259,12 @@ void penguin_advance_to_next_frame (PenguinAnimation *pAnimation)
 					myData.iCurrentFrame = pAnimation->iNbFrames - 1;
 				}
 				
-				penguin_start_animating_with_delay (FALSE);
+				penguin_start_animating_with_delay (myApplet);
 			}
 			else
 			{
-				int iNewAnimation = penguin_choose_next_animation (pAnimation);
-				penguin_set_new_animation (iNewAnimation);
+				int iNewAnimation = penguin_choose_next_animation (myApplet, pAnimation);
+				penguin_set_new_animation (myApplet, iNewAnimation);
 			}
 		}
 	}
@@ -273,7 +272,7 @@ void penguin_advance_to_next_frame (PenguinAnimation *pAnimation)
 
 
 
-int penguin_choose_movement_animation (void)
+int penguin_choose_movement_animation (CairoDockModuleInstance *myApplet)
 {
 	cd_debug ("");
 	if (myData.iNbMovmentAnimations == 0)
@@ -286,11 +285,11 @@ int penguin_choose_movement_animation (void)
 	}
 }
 
-int penguin_choose_go_up_animation (void)
+int penguin_choose_go_up_animation (CairoDockModuleInstance *myApplet)
 {
 	cd_debug ("");
 	if (myData.iNbGoUpAnimations == 0)
-		return penguin_choose_movement_animation ();
+		return penguin_choose_movement_animation (myApplet);
 	else
 	{
 		int iRandom = g_random_int_range (0, myData.iNbGoUpAnimations);  // [a;b[
@@ -299,11 +298,11 @@ int penguin_choose_go_up_animation (void)
 	}
 }
 
-int penguin_choose_beginning_animation (void)
+int penguin_choose_beginning_animation (CairoDockModuleInstance *myApplet)
 {
 	cd_debug ("");
 	if (myData.iNbBeginningAnimations == 0)
-		return penguin_choose_movement_animation ();
+		return penguin_choose_movement_animation (myApplet);
 	else
 	{
 		int iRandom = g_random_int_range (0, myData.iNbBeginningAnimations);  // [a;b[
@@ -312,11 +311,11 @@ int penguin_choose_beginning_animation (void)
 	}
 }
 
-int penguin_choose_ending_animation (void)
+int penguin_choose_ending_animation (CairoDockModuleInstance *myApplet)
 {
 	cd_debug ("");
 	if (myData.iNbEndingAnimations == 0)
-		return penguin_choose_go_up_animation ();
+		return penguin_choose_go_up_animation (myApplet);
 	else
 	{
 		int iRandom = g_random_int_range (0, myData.iNbEndingAnimations);  // [a;b[
@@ -325,11 +324,11 @@ int penguin_choose_ending_animation (void)
 	}
 }
 
-int penguin_choose_resting_animation (void)
+int penguin_choose_resting_animation (CairoDockModuleInstance *myApplet)
 {
 	cd_debug ("");
 	if (myData.iNbRestAnimations == 0)
-		return penguin_choose_go_up_animation ();
+		return penguin_choose_go_up_animation (myApplet);
 	else
 	{
 		int iRandom = g_random_int_range (0, myData.iNbRestAnimations);  // [a;b[
@@ -338,39 +337,39 @@ int penguin_choose_resting_animation (void)
 	}
 }
 
-int penguin_choose_next_animation (PenguinAnimation *pAnimation)
+int penguin_choose_next_animation (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation)
 {
 	cd_debug ("");
 	int iNewAnimation;
 	if (pAnimation == NULL || pAnimation->bEnding)  // le pingouin est en fin d'animation, on le relance.
 	{
-		iNewAnimation = penguin_choose_beginning_animation ();
+		iNewAnimation = penguin_choose_beginning_animation (myApplet);
 	}
 	else if (pAnimation->iDirection == PENGUIN_HORIZONTAL)  // le pingouin se deplace.
 	{
 		if (myConfig.bFree)
-			iNewAnimation = penguin_choose_movement_animation ();
+			iNewAnimation = penguin_choose_movement_animation (myApplet);
 		else  // dans l'icone on ne repart pas en haut sur les bords.
 		{
 			int iRandom = g_random_int_range (0, 3);
 			if (iRandom == 0)
-				iNewAnimation = penguin_choose_go_up_animation ();
+				iNewAnimation = penguin_choose_go_up_animation (myApplet);
 			else
-				iNewAnimation = penguin_choose_movement_animation ();
+				iNewAnimation = penguin_choose_movement_animation (myApplet);
 		}
 	}
 	else  // le pingouin monte ou descend.
 	{
 		if (pAnimation->iDirection == PENGUIN_UP)  // il monte, on le refait descendre.
-			iNewAnimation = penguin_choose_beginning_animation ();
+			iNewAnimation = penguin_choose_beginning_animation (myApplet);
 		else  // il descend, on le fait se deplacer.
-			iNewAnimation = penguin_choose_movement_animation ();
+			iNewAnimation = penguin_choose_movement_animation (myApplet);
 	}
 	return iNewAnimation;
 }
 
 
-void penguin_set_new_animation (int iNewAnimation)
+void penguin_set_new_animation (CairoDockModuleInstance *myApplet, int iNewAnimation)
 {
 	cd_message ("%s (%d)", __func__, iNewAnimation);
 	PenguinAnimation *pPreviousAnimation = penguin_get_current_animation ();
@@ -388,7 +387,7 @@ void penguin_set_new_animation (int iNewAnimation)
 	
 	if (pAnimation->pSurfaces == NULL)
 	{
-		penguin_load_animation_buffer (pAnimation, myDrawContext);
+		penguin_load_animation_buffer (pAnimation, myDrawContext, myConfig.fAlpha);
 	}
 	
 	if (pAnimation->iDirection == PENGUIN_HORIZONTAL)
@@ -415,19 +414,19 @@ void penguin_set_new_animation (int iNewAnimation)
 }
 
 
-void penguin_start_animating (void)
+void penguin_start_animating (CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (myData.iSidAnimation == 0);
-	int iNewAnimation = penguin_choose_beginning_animation ();
-	penguin_set_new_animation (iNewAnimation);
+	int iNewAnimation = penguin_choose_beginning_animation (myApplet);
+	penguin_set_new_animation (myApplet, iNewAnimation);
 	
 	gulong iOnExposeCallbackID = g_signal_handler_find (G_OBJECT (myContainer->pWidget),
-		G_SIGNAL_MATCH_FUNC,
+		G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA,
 		0,
 		0,
 		NULL,
 		penguin_draw_on_dock,
-		NULL);
+		myApplet);
 	
 	if (myConfig.bFree)
 	{
@@ -435,29 +434,30 @@ void penguin_start_animating (void)
 			g_signal_connect_after (G_OBJECT (myContainer->pWidget),
 				"expose-event",
 				G_CALLBACK (penguin_draw_on_dock),
-				myContainer);
-		myData.iSidAnimation = g_timeout_add (1000 * myData.fFrameDelay, (GSourceFunc) penguin_move_in_dock, (gpointer) NULL);
+				(gpointer) myApplet);
+		myData.iSidAnimation = g_timeout_add (1000 * myData.fFrameDelay, (GSourceFunc) penguin_move_in_dock, (gpointer) myApplet);
 	}
 	else
 	{
 		if (iOnExposeCallbackID > 0)
 			g_signal_handler_disconnect (G_OBJECT (myContainer->pWidget), iOnExposeCallbackID);
-		myData.iSidAnimation = g_timeout_add (1000 * myData.fFrameDelay, (GSourceFunc) penguin_move_in_icon, (gpointer) NULL);
+		myData.iSidAnimation = g_timeout_add (1000 * myData.fFrameDelay, (GSourceFunc) penguin_move_in_icon, (gpointer) myApplet);
 	}
 }
 
-static gboolean _penguin_restart_delayed (gpointer data)
+static gboolean _penguin_restart_delayed (CairoDockModuleInstance *myApplet)
 {
 	myData.iSidRestartDelayed = 0;
-	penguin_start_animating ();
+	penguin_start_animating (myApplet);
 	
-	gboolean bInit = GPOINTER_TO_INT (data);
-	if (bInit)
+	if (! myData.bHasBeenStarted)
 	{
+		myData.bHasBeenStarted = TRUE;
 		cd_message ("le pingouin demarre pour la 1ere fois");
-		cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK, CAIRO_DOCK_RUN_FIRST);
-		cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU, CAIRO_DOCK_RUN_FIRST);
-		cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK, CAIRO_DOCK_RUN_FIRST);
+		
+		CD_APPLET_REGISTER_FOR_CLICK_EVENT
+		CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
+		CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
 		
 		if (myConfig.bFree)  // attention : c'est un hack moyen; il faudrait pouvoir indiquer a cairo-dock de ne pas inserer notre icone...
 		{
@@ -472,8 +472,8 @@ static gboolean _penguin_restart_delayed (gpointer data)
 	
 	return FALSE;
 }
-void penguin_start_animating_with_delay (gboolean bInit)
+void penguin_start_animating_with_delay (CairoDockModuleInstance *myApplet)
 {
 	if (myData.iSidRestartDelayed == 0)
-		myData.iSidRestartDelayed = g_timeout_add_seconds (1., (GSourceFunc) _penguin_restart_delayed, (gpointer) GINT_TO_POINTER (bInit));
+		myData.iSidRestartDelayed = g_timeout_add_seconds (1, (GSourceFunc) _penguin_restart_delayed, (gpointer) myApplet);
 }

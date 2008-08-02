@@ -6,7 +6,7 @@ released under the terms of the GNU General Public License.
 Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 ******************************************************************************/
-#include "stdlib.h"
+#include <stdlib.h>
 
 #include "applet-struct.h"
 #include "applet-config.h"
@@ -15,17 +15,15 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-read-data.h"
 #include "applet-init.h"
 
-CD_APPLET_DEFINITION ("weather", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("weather", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
-CD_APPLET_INIT_BEGIN (erreur)
-	if (myIcon->acName == NULL || *myIcon->acName == '\0')
-		myIcon->acName = g_strdup (WEATHER_DEFAULT_NAME);
-	
+CD_APPLET_INIT_BEGIN
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-		cd_weather_acquisition,
-		cd_weather_read_data,
-		cd_weather_update_from_data);
+		(CairoDockAquisitionTimerFunc) cd_weather_acquisition,
+		(CairoDockReadTimerFunc) cd_weather_read_data,
+		(CairoDockUpdateTimerFunc) cd_weather_update_from_data,
+		myApplet);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
@@ -48,15 +46,17 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		reset_data ();  // on bourrine.
+		reset_data (myApplet);  // on bourrine.
 		if (myIcon->acName == NULL || *myIcon->acName == '\0')
 			myIcon->acName = g_strdup (WEATHER_DEFAULT_NAME);
 		
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-			cd_weather_acquisition,
-			cd_weather_read_data,
-			cd_weather_update_from_data);
+			(CairoDockAquisitionTimerFunc) cd_weather_acquisition,
+			(CairoDockReadTimerFunc) cd_weather_read_data,
+			(CairoDockUpdateTimerFunc) cd_weather_update_from_data,
+			myApplet);
 		cairo_dock_launch_measure (myData.pMeasureTimer);
+		g_print ("myDrawContext:%x\n", myDrawContext);
 	}
 	else if (myDesklet != NULL)
 	{

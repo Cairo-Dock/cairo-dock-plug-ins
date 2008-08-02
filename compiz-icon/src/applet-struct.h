@@ -4,6 +4,7 @@
 
 #include <cairo-dock.h>
 
+
 typedef enum {
   COMPIZ_DEFAULT = 0,
   COMPIZ_BROKEN,
@@ -36,7 +37,7 @@ typedef enum {
 
 
 //\___________ structure containing the applet's configuration parameters.
-typedef struct {
+struct _AppletConfig {
 	gboolean lBinding;
 	gboolean iRendering;
 	gboolean uLocalScreen;
@@ -54,10 +55,10 @@ typedef struct {
 	const gchar *cDecorators[COMPIZ_NB_DECORATORS];
 	gboolean bStealTaskBarIcon;
 	gboolean bScriptSubDock;
-} AppletConfig;
+} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
-typedef struct {
+struct _AppletData {
 	compizIcons iCompizIcon;
 	gboolean bDecoratorIsRunning;
 	gboolean bCompizIsRunning;
@@ -66,7 +67,7 @@ typedef struct {
 	gboolean bCompizRestarted;
 	gboolean bDecoratorRestarted;
 	int iCompizMajor, iCompizMinor, iCompizMicro;
-} AppletData;
+} ;
 
 
 #endif

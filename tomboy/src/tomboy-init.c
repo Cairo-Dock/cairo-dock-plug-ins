@@ -10,7 +10,7 @@
 
 CD_APPLET_DEFINITION ("TomBoy", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myIcon->acName == NULL || *myIcon->acName == '\0')
 		myIcon->acName = g_strdup (TOMBOY_DEFAULT_NAME);
 	
@@ -27,8 +27,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 		dbus_detect_tomboy();
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
 				NULL,
-				getAllNotes,
-				cd_tomboy_load_notes);
+				(CairoDockReadTimerFunc) getAllNotes,
+				(CairoDockUpdateTimerFunc) cd_tomboy_load_notes,
+				myApplet);
 		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.

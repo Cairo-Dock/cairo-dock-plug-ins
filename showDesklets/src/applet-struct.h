@@ -2,19 +2,19 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
-#include <glib.h>
 #include <X11/Xlib.h>
+#include <cairo-dock.h>
 
-typedef struct {
+struct _AppletConfig {
 	gboolean bShowWidgetLayerDesklet;
 	gchar *cShowImage;
 	gchar *cHideImage;
 	gchar *cShortcut;
-	} AppletConfig;
+	} ;
 
-typedef struct {
+struct _AppletData {
 	gboolean bHide;
 	Window xLastActiveWindow;
-	} AppletData;
+	} ;
 
 #endif

@@ -2,18 +2,19 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
-#include <glib.h>
+#define CD_APPLET_MULTI_INSTANCE 1
+
 #include <cairo-dock.h>
 
 #define WEATHER_NB_DAYS_MAX 5
 
 #define WEATHER_RATIO_ICON_DESKLET .5
 
-#define WEATHER_DEFAULT_NAME "_weather_"
+#define WEATHER_DEFAULT_NAME "weather"
 
 #define _display(cValue) (cValue == NULL || *cValue == 'N' ? "?" : cValue)
 
-typedef struct {
+struct _AppletConfig {
 	gchar *cLocationCode;
 	gboolean bISUnits;
 	gboolean bCurrentConditions;
@@ -25,7 +26,7 @@ typedef struct {
 	gint iCheckInterval;
 	gchar *cThemePath;
 	gboolean bDesklet3D;
-	} AppletConfig;
+	} ;
 
 typedef struct {
 	gchar *cTemp;
@@ -69,7 +70,7 @@ typedef struct {
 	DayPart part[2];
 	} Day;
 
-typedef struct {
+struct _AppletData {
 	Unit units;
 	gchar *cLocation;
 	gchar *cLon;
@@ -78,7 +79,9 @@ typedef struct {
 	Day days[WEATHER_NB_DAYS_MAX];
 	CairoDockMeasure *pMeasureTimer;
 	gboolean bErrorRetrievingData;
-	} AppletData;
+	gchar *cCCDataFilePath;
+	gchar *cForecastDataFilePath;
+	} ;
 
 
 #endif

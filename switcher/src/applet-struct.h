@@ -3,7 +3,6 @@
 #define  __CD_APPLET_STRUCT__
 
 #include <cairo-dock.h>
-#include <glib.h>
 
 #define SWITCHER_DEFAULT_NAME "Switcher"
 
@@ -15,7 +14,7 @@ typedef enum {
 	SWICTHER_NB_MODES,
 	} SwitcherDrawCurrentDesktopMode;
 
-typedef struct {
+struct _AppletConfig {
 	gboolean bCompactView;
 	gboolean bMapWallpaper;
 	gboolean bDrawWindows;
@@ -33,7 +32,7 @@ typedef struct {
 	gint iWLineSize;
 	gboolean bPreserveScreenRatio;
 	SwitcherDrawCurrentDesktopMode iDrawCurrentDesktopMode;
-	} AppletConfig;
+	} ;
 
 typedef struct
 {
@@ -43,11 +42,11 @@ typedef struct
 	gint iCurrentLine, iCurrentColumn;
 	double fOneViewportWidth;
 	double fOneViewportHeight;
-}SwitcherApplet;
+} SwitcherApplet;
 
 
-typedef struct {
+struct _AppletData {
 	SwitcherApplet switcher;
 	cairo_surface_t *pDefaultMapSurface;
-} AppletData;
+} ;
 #endif

@@ -2,10 +2,11 @@
 #define  __TOMBOY_STRUCT__
 
 #include <cairo-dock.h>
+#include <cairo-dock-applet-single-instance.h>
 	
 #define TOMBOY_DEFAULT_NAME "_TomBoy_"
 
-typedef struct {
+struct _AppletConfig {
 	gchar *defaultTitle;
 	gchar *cIconDefault;
 	gchar *cIconClose;
@@ -14,9 +15,9 @@ typedef struct {
 	gchar *cRenderer;
 	gboolean bDrawContent;
 	gchar *cDateFormat;
-	} AppletConfig;
+	} ;
 
-typedef struct {
+struct _AppletData {
 	cairo_surface_t *pSurfaceDefault;
 	cairo_surface_t *pSurfaceNote;
 	gboolean dbus_enable;
@@ -24,6 +25,6 @@ typedef struct {
 	guint iSidCheckNotes;
 	GHashTable *hNoteTable;
 	CairoDockMeasure *pMeasureTimer;
-	} AppletData;
+	} ;
 
 #endif

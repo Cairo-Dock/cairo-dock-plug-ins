@@ -7,15 +7,16 @@
 #include "applet-cpusage.h"
 
 
-CD_APPLET_DEFINITION ("cpusage", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("cpusage", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
-void _unthreaded_measure (void)
+static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 {
-	cd_cpusage_read_data ();
-	cd_cpusage_update_from_data ();
+	cd_cpusage_read_data (myApplet);
+	cd_cpusage_update_from_data (myApplet);
+	return TRUE;
 }
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
@@ -31,7 +32,8 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
 		NULL,
 		NULL,  // cd_cpusage_read_data
-		_unthreaded_measure);  // cd_cpusage_update_from_data
+		(CairoDockUpdateTimerFunc) _unthreaded_measure,  // cd_cpusage_update_from_data
+		myApplet);
 	myData.bAcquisitionOK = TRUE;
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
@@ -86,6 +88,6 @@ CD_APPLET_RELOAD_BEGIN
 		myConfig.pTopTextDescription->bVerticalPattern = TRUE;
 		cairo_dock_free_label_description (pOldLabelDescription);
 		
-		cd_cpusage_update_from_data ();
+		cd_cpusage_update_from_data (myApplet);
 	}
 CD_APPLET_RELOAD_END

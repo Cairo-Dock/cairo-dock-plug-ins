@@ -7,10 +7,10 @@
 #include "applet-netspeed.h"
 
 
-CD_APPLET_DEFINITION ("netspeed", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("netspeed", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
@@ -22,8 +22,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.pClock = g_timer_new ();
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
 		NULL,
-		cd_netspeed_read_data,
-		cd_netspeed_update_from_data);
+		(CairoDockReadTimerFunc) cd_netspeed_read_data,
+		(CairoDockUpdateTimerFunc) cd_netspeed_update_from_data,
+		myApplet);
 	myData.bAcquisitionOK = TRUE;
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
@@ -65,6 +66,6 @@ CD_APPLET_RELOAD_BEGIN
 	else {  // on redessine juste l'icone.
 		cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 		
-		cd_netspeed_update_from_data ();
+		cd_netspeed_update_from_data (myApplet);
 	}
 CD_APPLET_RELOAD_END

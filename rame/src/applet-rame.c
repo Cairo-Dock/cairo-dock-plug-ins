@@ -37,7 +37,7 @@ CD_APPLET_INCLUDE_MY_VARS
 	while (*str == ' ') \
 		str ++; \
 	iValue = atoi (str);
-void cd_rame_read_data (void)
+void cd_rame_read_data (CairoDockModuleInstance *myApplet)
 {
 	gchar *cContent = NULL;
 	gsize length=0;
@@ -91,7 +91,7 @@ void cd_rame_read_data (void)
 	}
 }
 
-gboolean cd_rame_update_from_data (void)
+gboolean cd_rame_update_from_data (CairoDockModuleInstance *myApplet)
 {
 	if ( ! myData.bAcquisitionOK)
 	{

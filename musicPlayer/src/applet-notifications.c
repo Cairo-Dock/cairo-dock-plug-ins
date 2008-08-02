@@ -9,7 +9,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 
 #include <stdlib.h>
 #include <string.h>
-#include <glib/gi18n.h>
 
 #include "applet-struct.h"
 #include "applet-notifications.h"

@@ -35,7 +35,8 @@ void cd_musicplayer_arm_handeler (void) { //Prépare l'handeler et le lance
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (1,
 		myData.pCurrentHandeler->acquisition,
 		myData.pCurrentHandeler->read_data,
-		cd_musicplayer_draw_icon);
+		cd_musicplayer_draw_icon,
+		NULL);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	//myData.pCurrentHandeler->free_data; // On arrive pas à passer dedans non plus
 }

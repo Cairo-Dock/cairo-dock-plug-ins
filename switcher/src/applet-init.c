@@ -1,21 +1,20 @@
 
 #include "stdlib.h"
 #include "string.h"
-#include <cairo-dock.h>
 
+#include "applet-struct.h"
 #include "applet-config.h"
 #include "applet-notifications.h"
-#include "applet-struct.h"
 #include "applet-load-icons.h"
 #include "applet-desktops.h"
 #include "applet-draw.h"
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("switcher", 1, 6, 0, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("switcher", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
-static gboolean on_change_desktop (gpointer *data)
+static gboolean on_change_desktop (gpointer *data, CairoDockModuleInstance *myApplet)
 {
 	cd_message ("");
 	int iPreviousIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
@@ -71,7 +70,7 @@ static gboolean on_change_desktop (gpointer *data)
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
-static gboolean on_change_screen_geometry (gpointer *data)
+static gboolean on_change_screen_geometry (gpointer *data, CairoDockModuleInstance *myApplet)
 {
 	cd_message ("");
 	cd_switcher_compute_nb_lines_and_columns ();
@@ -81,14 +80,14 @@ static gboolean on_change_screen_geometry (gpointer *data)
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
-	cairo_dock_register_notification (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) on_change_screen_geometry, CAIRO_DOCK_RUN_AFTER);/*Notifier de la gémotrie de bureau changé*/
-	cairo_dock_register_notification (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) on_change_desktop, CAIRO_DOCK_RUN_AFTER);/*Notifier d'un changement de bureau*/
-	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_CONFIGURED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, CAIRO_DOCK_RUN_AFTER);	
-	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, CAIRO_DOCK_RUN_AFTER);	
+	cairo_dock_register_notification (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) on_change_screen_geometry, CAIRO_DOCK_RUN_AFTER, myApplet);/*Notifier de la geometrie de bureau changée*/
+	cairo_dock_register_notification (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) on_change_desktop, CAIRO_DOCK_RUN_AFTER, myApplet);/*Notifier d'un changement de bureau*/
+	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_CONFIGURED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, CAIRO_DOCK_RUN_AFTER, myApplet);	
+	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, CAIRO_DOCK_RUN_AFTER, myApplet);	
 	
 	//\___________________ On calcule la geometrie de l'icone en mode compact.
 	cd_switcher_compute_nb_lines_and_columns ();
@@ -116,10 +115,10 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
-	cairo_dock_remove_notification_func (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) on_change_screen_geometry);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) on_change_desktop);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_CONFIGURED, (CairoDockNotificationFunc) on_change_screen_geometry);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) on_change_screen_geometry);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) on_change_screen_geometry, myApplet);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) on_change_desktop, myApplet);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_CONFIGURED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, myApplet);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, myApplet);
 CD_APPLET_STOP_END
 
 

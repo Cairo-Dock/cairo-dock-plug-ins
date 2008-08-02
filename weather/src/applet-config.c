@@ -8,7 +8,6 @@ Fabrice Rey (fabounet@users.berlios.de)
 
 ******************************************************************************/
 #include <string.h>
-#include <cairo-dock.h>
 
 #include "applet-struct.h"
 #include "applet-config.h"
@@ -90,6 +89,8 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	
+	g_free (myData.cCCDataFilePath);
+	g_free (myData.cForecastDataFilePath);
 	g_free (myData.cLon);
 	g_free (myData.cLat);
 	_reset_units (&myData.units);

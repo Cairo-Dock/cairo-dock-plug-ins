@@ -3,13 +3,10 @@
 #define  __RENDERING_CONFIG__
 
 
-#include <glib.h>
+#include <cairo-dock.h>
 
 
-void read_conf_file (GKeyFile *pKeyFile, gchar *cConfFilePath);
-
-
-void reset_data (void);
+CD_APPLET_CONFIG_H
 
 
 #endif

@@ -25,21 +25,21 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))  // on a clique sur une icone du sous-dock.
 	{
 		cd_debug (" clic sur %s", pClickedIcon->acName);
-		cd_weather_show_forecast_dialog (pClickedIcon);
+		cd_weather_show_forecast_dialog (myApplet, pClickedIcon);
 	}
 	else if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL)  // on a clique sur une icone du desklet.
 	{
 		if (pClickedIcon == myIcon)
-			cd_weather_show_current_conditions_dialog ();
+			cd_weather_show_current_conditions_dialog (myApplet);
 		else
-			cd_weather_show_forecast_dialog (pClickedIcon);
+			cd_weather_show_forecast_dialog (myApplet, pClickedIcon);
 	}
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_CLICK_END
 
 
-static void _cd_weather_location_choosed (int iAnswer, GtkWidget *pWidget, gpointer data)
+static void _cd_weather_location_choosed (int iAnswer, GtkWidget *pWidget, CairoDockModuleInstance *myApplet)
 {
 	if (iAnswer == GTK_RESPONSE_OK)
 	{
@@ -54,7 +54,7 @@ static void _cd_weather_location_choosed (int iAnswer, GtkWidget *pWidget, gpoin
 		g_free (cChoosedText);
 		
 		//\____________________ On l'ecrit dans le fichier de conf.
-		cairo_dock_update_conf_file (myIcon->pModule->cConfFilePath,
+		cairo_dock_update_conf_file (myApplet->cConfFilePath,
 			G_TYPE_STRING, "Configuration", "location code", myConfig.cLocationCode,
 			G_TYPE_INVALID);
 		
@@ -64,7 +64,7 @@ static void _cd_weather_location_choosed (int iAnswer, GtkWidget *pWidget, gpoin
 		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 }
-static void _cd_weather_search_for_location (GtkMenuItem *menu_item, gpointer *data)
+static void _cd_weather_search_for_location (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	gchar *cLocation = cairo_dock_show_demand_and_wait (_("Enter your location\n (for exemple : Paris, France)"),
 		myIcon,
@@ -132,7 +132,7 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, gpointer *d
 				pCombo,
 				GTK_BUTTONS_OK_CANCEL,
 				(CairoDockActionOnAnswerFunc) _cd_weather_location_choosed,
-				NULL,
+				myApplet,
 				NULL);
 			g_free (cImageFilePath);
 		}
@@ -141,7 +141,7 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, gpointer *d
 		g_free (cFilePath);
 	}
 }
-static void _cd_weather_reload (GtkMenuItem *menu_item, gpointer *data)
+static void _cd_weather_reload (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
 	
@@ -158,14 +158,14 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (pClickedIcon == myIcon)
 	{
-		cd_weather_show_current_conditions_dialog ();
+		cd_weather_show_current_conditions_dialog (myApplet);
 	}
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-CairoDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
+CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet, Icon *pIcon)
 {
 	if (myDock != NULL)
 		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_remove_dialog_if_any, NULL);
@@ -198,7 +198,7 @@ CairoDialog *cd_weather_show_forecast_dialog (Icon *pIcon)
 		D_("SunRise"), _display (day->cSunRise), _("SunSet"), _display (day->cSunSet));
 }
 
-CairoDialog *cd_weather_show_current_conditions_dialog (void)
+CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_remove_dialog_if_any (myIcon);
 	

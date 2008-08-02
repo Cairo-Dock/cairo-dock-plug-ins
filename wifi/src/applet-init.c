@@ -8,10 +8,10 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("wifi", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("wifi", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL) {
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
@@ -26,7 +26,8 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
 		cd_wifi_acquisition,
 		cd_wifi_read_data,
-		cd_wifi_update_from_data);
+		cd_wifi_update_from_data,
+		myApplet);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT

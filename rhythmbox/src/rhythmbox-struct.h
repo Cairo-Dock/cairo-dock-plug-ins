@@ -32,7 +32,7 @@ typedef enum {
 } MyAppletDecoration;
 
 
-typedef struct {
+struct _AppletConfig {
 	gboolean enableDialogs;
 	gboolean enableCover;
 	gdouble timeDialogs;
@@ -49,9 +49,9 @@ typedef struct {
 	gchar *cReflectImage;
 	gdouble fFrameAlpha;
 	gdouble fReflectAlpha;
-	} AppletConfig;
+	} ;
 
-typedef struct {
+struct _AppletData {
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
 	cairo_surface_t *pCover;
 	gboolean dbus_enable;
@@ -66,7 +66,7 @@ typedef struct {
 	gchar *playing_title;
 	gchar *playing_cover;
 	guint iSidCheckCover;
-	} AppletData;
+	} ;
 
 
 #endif

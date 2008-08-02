@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:50+0200\n"
 "PO-Revision-Date: 2008-06-25 18:52+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -51,7 +51,7 @@ msgstr "Ricerca della vostra località"
 msgid "Reload now"
 msgstr "Ricaricare adesso"
 
-#: ../src/applet-notifications.c:178 ../src/applet-notifications.c:206
+#: ../src/applet-notifications.c:178 ../src/applet-notifications.c:207
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -59,31 +59,35 @@ msgstr ""
 "Nessun dato disponible\n"
 " la connessione è attiva ?"
 
-#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:219
 msgid "Temperature"
 msgstr "Temperatura"
 
-#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:195
+msgid "Precipitation Probability"
+msgstr ""
+
+#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
 msgid "Wind"
 msgstr "Vento"
 
-#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
 msgid "Humidity"
 msgstr "Umidità"
 
-#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:198 ../src/applet-notifications.c:222
 msgid "SunRise"
 msgstr "Alba"
 
-#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:198 ../src/applet-notifications.c:222
 msgid "SunSet"
 msgstr "Tramonto"
 
-#: ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:219
 msgid "feeled"
 msgstr "risentito"
 
-#: ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:221
 msgid "Pressure"
 msgstr "Pressione"
 
@@ -104,18 +108,23 @@ msgid "height :"
 msgstr "altezza :"
 
 #: ../data/messages:9
+#, fuzzy
+msgid "Let it empty to use the name of the city."
+msgstr "Lasciate vuoto per utilizzarre la vista di default per la sub-dock"
+
+#: ../data/messages:11
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "Nome del contenitore al quale appartiene:"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -123,33 +132,33 @@ msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "centrale o ALT + click sinistro come esempio."
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "Posizione della desklet (x ; y) :"
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
-#: ../data/messages:25
+#: ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "Mantenere al di sotto delle altre finestre ?"
 
-#: ../data/messages:27
+#: ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "Mantenere al di sopra delle altre finestre ?"
 
-#: ../data/messages:29
+#: ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -157,11 +166,11 @@ msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Mantenere nella sezione dei widget ?"
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -170,15 +179,15 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:37 ../data/messages:39
+#: ../data/messages:39 ../data/messages:41
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
@@ -186,68 +195,68 @@ msgstr ""
 "Un click destro sull'icona per fare sì che Cairo-Dock vi aiuti nella ricerca "
 "del codice della vostra località."
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid "Code of your location :"
 msgstr "Codice della vostra località :"
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid "Use International System Units ?"
 msgstr "Utilizzare le unità del Sistema Internazionale ?"
 
-#: ../data/messages:47
+#: ../data/messages:49
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "in secondi. Mettete 0 per avere dialoghi ininterrotti."
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "Duration of dialogs :"
 msgstr "Durata dei dialoghi :"
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "in minutes."
 msgstr "in minuti"
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "Interval of time between 2 checks :"
 msgstr "Intervallo di tempo tra le 2 verifiche :"
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Info"
 msgstr "Info"
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr ""
 "Mostrare le condizioni attuali nell'icona al posto che quelle di default ?"
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Number of days you want to forecast :"
 msgstr "Numero dei giorni da prevedere :"
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "Display nights too ?"
 msgstr "Mostrare anche le notti ?"
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Display temperature as quick info ?"
 msgstr "Mostrare la temperatura come info veloce ?"
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid "Choose one of the available themes :"
 msgstr "Scegliete uno dei temi disponibili :"
 
-#: ../data/messages:69
+#: ../data/messages:71
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciate vuoto per utilizzarre la vista di default per la sub-dock"
 
-#: ../data/messages:71
+#: ../data/messages:73
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
-#: ../data/messages:73
+#: ../data/messages:75
 msgid "Render desklet in 3D ?"
 msgstr "Disegnare la desklet in 3D ?"
 

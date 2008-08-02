@@ -3,8 +3,8 @@
 
 #include <cairo-dock.h>
 
-void cd_netspeed_read_data (void);
+void cd_netspeed_read_data (CairoDockModuleInstance *myApplet);
 
-gboolean cd_netspeed_update_from_data (void);
+gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet);
 
 #endif

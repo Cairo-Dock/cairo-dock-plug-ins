@@ -2,8 +2,11 @@
 #ifndef __CD_CLOCK_STRUCT__
 #define  __CD_CLOCK_STRUCT__
 
-#include <glib.h>
+#define CD_APPLET_MULTI_INSTANCE 1
+
 #include <cairo-dock.h>
+#include <time.h>
+
 
 typedef enum _LayerElement
 {
@@ -39,7 +42,7 @@ typedef struct {
 	} CDClockAlarm;
 
 
-typedef struct {
+struct _AppletConfig {
 	CairoDockInfoDisplay iShowDate;
 	gboolean bShowSeconds;
 	gboolean bOldStyle;
@@ -50,9 +53,9 @@ typedef struct {
 	gchar *cSetupTimeCommand;
 	gchar *cFont;
 	gchar *cLocation;
-	} AppletConfig;
+	} ;
 
-typedef struct {
+struct _AppletData {
 	cairo_surface_t *pBackgroundSurface;
 	cairo_surface_t *pForegroundSurface;
 	RsvgDimensionData DimensionData;
@@ -61,7 +64,8 @@ typedef struct {
 	GPid iAlarmPID;
 	CairoDialog *pCalendarDialog;
 	gchar *cSystemLocation;
-	} AppletData;
+	gint iLastCheckedMinute, iLastCheckedDay, iLastCheckedMonth, iLastCheckedYear;
+	} ;
 
 #endif
 

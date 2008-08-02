@@ -9,7 +9,6 @@ Fabrice Rey (fabounet@users.berlios.de)
 ******************************************************************************/
 #include <stdlib.h>
 #include <string.h>
-#include <cairo-dock.h>
 
 #include "applet-struct.h"
 #include "applet-config.h"

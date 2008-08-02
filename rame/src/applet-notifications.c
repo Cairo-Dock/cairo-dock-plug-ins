@@ -12,12 +12,12 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT (D_("This is the rame applet\n made by parAdOxxx_ZeRo for Cairo-Dock"))
 
 
-static void _cd_rame_get_top_list (void)
+static void _cd_rame_get_top_list (CairoDockModuleInstance *myApplet)
 {
 	cd_rame_get_process_memory ();
 }
 
-static gboolean _cd_rame_update_top_list (void)
+static gboolean _cd_rame_update_top_list (CairoDockModuleInstance *myApplet)
 {
 	CDProcess *pProcess;
 	int i;
@@ -87,8 +87,9 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (myData.pTopMeasureTimer == NULL)
 			myData.pTopMeasureTimer = cairo_dock_new_measure_timer (5,
 				NULL,
-				_cd_rame_get_top_list,
-				_cd_rame_update_top_list);
+				(CairoDockReadTimerFunc) _cd_rame_get_top_list,
+				(CairoDockUpdateTimerFunc) _cd_rame_update_top_list,
+				myApplet);
 		cairo_dock_launch_measure (myData.pTopMeasureTimer);
 	}
 	else

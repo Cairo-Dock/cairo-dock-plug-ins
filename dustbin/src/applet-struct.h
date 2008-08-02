@@ -2,6 +2,8 @@
 #ifndef __CD_DUSTBIN_STRUCT__
 #define  __CD_DUSTBIN_STRUCT__
 
+#include <cairo-dock.h>
+
 typedef enum {
 	CD_DUSTBIN_INFO_NONE,
 	CD_DUSTBIN_INFO_NB_TRASHES,
@@ -23,7 +25,7 @@ typedef struct {
 	} CdDustbinMessage;
 
 
-typedef struct {
+struct _AppletConfig {
 	gchar **cAdditionnalDirectoriesList;
 	gchar *cThemePath;
 	gchar *cEmptyUserImage;
@@ -34,9 +36,9 @@ typedef struct {
 	
 	double fCheckInterval;
 	gchar *cDefaultBrowser;
-	} AppletConfig;
+	} ;
 
-typedef struct {
+struct _AppletData {
 	GList *pDustbinsList;
 	gchar *cDialogIconPath;
 	cairo_surface_t *pEmptyBinSurface;
@@ -48,7 +50,7 @@ typedef struct {
 	
 	int iState;
 	int iSidCheckTrashes;
-	} AppletData;
+	} ;
 
 #define CD_DUSTBIN_DIALOG_DURATION 4000
 

@@ -20,7 +20,7 @@ typedef enum {
 } nVidiaTemp;
 
 //\___________ structure containing the applet's configuration parameters.
-typedef struct {
+struct _AppletConfig {
 	nVidiaTemp iDrawTemp;
 	gchar *cBrokenUserImage;
 	gchar *cGThemePath;
@@ -33,10 +33,10 @@ typedef struct {
 	gboolean bCardName;
 	gboolean bAlert;
 	gboolean bAlertSound;
-} AppletConfig;
+} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
-typedef struct {
+struct _AppletData {
 	nVidiaData pGPUData;
 	gboolean bAcquisitionOK;
 	gboolean bAlerted;
@@ -45,7 +45,7 @@ typedef struct {
 	CairoDockMeasure *pMeasureTimer;
 	CairoDockMeasure *pConfigMeasureTimer;
 	Gauge *pGauge;
-} AppletData;
+} ;
 
 
 #endif

@@ -13,13 +13,16 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN("gnome integration", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_PRE_INIT_BEGIN("gnome integration", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && (glib_major_version > 2 || glib_minor_version >= 16))
 	{
 		if (init_vfs_backend ())
 		{
+			pInterface->initModule = init;
+			pInterface->stopModule = stop;
+			pInterface->reloadModule = reload;
+
 			CairoDockVFSBackend *pVFSBackend = g_new0 (CairoDockVFSBackend, 1);
-			
 			pVFSBackend->get_file_info = vfs_backend_get_file_info;
 			pVFSBackend->get_file_properties = vfs_backend_get_file_properties;
 			pVFSBackend->list_directory = vfs_backend_list_directory;
@@ -44,16 +47,16 @@ CD_APPLET_PRE_INIT_BEGIN("gnome integration", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKT
 CD_APPLET_PRE_INIT_END
 
 
-void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *cConfFilePath, GError **erreur)
-{
+CD_APPLET_INIT_BEGIN
 	
-}
+CD_APPLET_INIT_END
 
-gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoContainer *pNewContainer)
-{
-	return TRUE;
-}
 
-void stop (void)
-{
-}
+CD_APPLET_STOP_BEGIN
+	
+CD_APPLET_STOP_END
+
+
+CD_APPLET_RELOAD_BEGIN
+	
+CD_APPLET_RELOAD_END

@@ -9,10 +9,10 @@
 #include "powermanager-init.h"
 
 
-CD_APPLET_DEFINITION ("PowerManager", 1, 6, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("PowerManager", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	
 	if (myDesklet)
 	{

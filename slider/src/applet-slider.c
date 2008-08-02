@@ -38,15 +38,15 @@ void cd_slider_free_images_list (GList *pList) {
 	g_list_free (pList);
 }
 
-static void cd_slider_measure_directory (gchar *cDirectory, gboolean bRecursive) {
+static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboolean bRecursive) {
 	cd_debug ("%s (%s)", __func__, cDirectory);
 
 	GError *erreur = NULL;
 	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
 	if (erreur != NULL) {
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("Slider : %s", erreur->message);
 		g_error_free (erreur);
-		return;
+		return pList;
 	}
 	
 	struct stat buf;
@@ -60,7 +60,7 @@ static void cd_slider_measure_directory (gchar *cDirectory, gboolean bRecursive)
 			if (S_ISDIR (buf.st_mode)) {
 				cd_debug ("%s is a directory, let's look", sFilePath->str);
 				if (bRecursive)
-					cd_slider_measure_directory (sFilePath->str, bRecursive);
+					pList = cd_slider_measure_directory (pList, sFilePath->str, bRecursive);
 			}
 			else {
 			  extension = strrchr(cFileName,'.');
@@ -82,11 +82,8 @@ static void cd_slider_measure_directory (gchar *cDirectory, gboolean bRecursive)
 						pImage->cPath = g_strdup (sFilePath->str);
 						pImage->iSize = buf.st_size;
 						pImage->iFormat = iFormat;
-						myData.pList = g_list_prepend (myData.pList, pImage);
+						pList = g_list_prepend (pList, pImage);
 					}
-					/*else {
-						cd_debug ("%s not handeled, ignoring...", cFileName);
-					}*/
 				}
 			}
 		}
@@ -94,17 +91,18 @@ static void cd_slider_measure_directory (gchar *cDirectory, gboolean bRecursive)
 	
 	g_string_free (sFilePath, TRUE);
 	g_dir_close (dir);
+	return pList;
 }
 
-void cd_slider_get_files_from_dir(void) {
+void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet) {
 	if (myConfig.cDirectory == NULL) {
 	  ///Et si on scannait le dossier image du home a la place? => bonne idee, mais comment trouver son nom ? il depend de la locale.
 	  ///Il devrai y avoir une var d'environement qui le permet, je vais chercher laquelle, ou sinon c'est dans la config de gnome.
-		cd_warning ("No directory to scan, halt.");
+		cd_warning ("Slider : No directory to scan, halt.");
 		return;
 	}
 	
-	cd_slider_measure_directory (myConfig.cDirectory, myConfig.bSubDirs); //Nouveau scan
+	myData.pList = cd_slider_measure_directory (NULL, myConfig.cDirectory, myConfig.bSubDirs); //Nouveau scan
 	
 	if (myConfig.bRandom) {
 		//cd_debug ("Mixing images ...");
@@ -117,19 +115,19 @@ void cd_slider_get_files_from_dir(void) {
 	}
 }
 
-void cd_slider_read_directory (void) {
-	cd_slider_get_files_from_dir ();
+void cd_slider_read_directory (CairoDockModuleInstance *myApplet) {
+	cd_slider_get_files_from_dir (myApplet);
 }
 
-gboolean cd_slider_launch_slides (void) {
+gboolean cd_slider_launch_slides (CairoDockModuleInstance *myApplet) {
 	myData.pElement = myData.pList;
-	cd_slider_draw_images();
+	cd_slider_draw_images(myApplet);
 	return TRUE;
 }
 
 
 
-void cd_slider_read_image (void) {
+void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	//\___________________________ On sauvegarde la surface actuelle.
 	cairo_surface_destroy (myData.pPrevCairoSurface);
 	myData.pPrevCairoSurface = myData.pCairoSurface;
@@ -138,7 +136,6 @@ void cd_slider_read_image (void) {
 	//\___________________________ On charge la nouvelle surface.
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
-	//myData.cCurrentImagePath = cImagePath;
 	//cd_debug ("Displaying: %s (size %dbytes)", cImagePath, pImage->iSize);
 	
 	double fImgX, fImgY, fImgW=0, fImgH=0;
@@ -165,11 +162,7 @@ void cd_slider_read_image (void) {
 	myData.pImgL.fImgH = fImgH;
 }
 
-gboolean cd_slider_update_slide (void) {
-	
-	/*myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
-	myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
-	return ;*/
+gboolean cd_slider_update_slide (CairoDockModuleInstance *myApplet) {
 	
 	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 	
@@ -193,7 +186,6 @@ gboolean cd_slider_update_slide (void) {
 			
 			//\______________________ On empeche la transparence
 			cairo_save (myDrawContext);
-			////_cd_slider_add_frame_to_current_slide(); //Add background frame
 			cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myConfig.pBackgroundColor[3]);
 			cairo_rectangle(myDrawContext, myData.pImgL.fImgX, myData.pImgL.fImgY, myData.pImgL.fImgW, myData.pImgL.fImgH);
 			cairo_fill(myDrawContext);
@@ -203,7 +195,6 @@ gboolean cd_slider_update_slide (void) {
 			cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 			cairo_paint (myDrawContext);
 			
-			////_cd_slider_add_reflect_to_current_slide(); //Add reflection
  			CD_APPLET_REDRAW_MY_ICON
 		break;
 		case SLIDER_FADE:
@@ -211,45 +202,45 @@ gboolean cd_slider_update_slide (void) {
 			myData.fAnimAlpha = 0.;
 			myData.fAnimCNT = 1.;
 			if (myData.iAnimTimerID == 0)
-				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade, (gpointer) NULL);
+				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade, (gpointer) myApplet);
 		break;
 		case SLIDER_BLANK_FADE:
 			//cd_debug("Displaying with blank fade");
 			myData.fAnimAlpha = 1.;
 			if (myData.iAnimTimerID == 0)
-				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_blank_fade, (gpointer) NULL);
+				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_blank_fade, (gpointer) myApplet);
 		break;
 		case SLIDER_FADE_IN_OUT:
 			//cd_debug("Displaying with fade in out");
 			myData.iAnimCNT = 0;
 			myData.fAnimAlpha = 0.;
 			if (myData.iAnimTimerID == 0)
-				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) NULL);
+				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) myApplet);
 		break;
 		case SLIDER_SIDE_KICK:
 			//cd_debug("Displaying with side kick");
 			myData.fAnimCNT = -myData.pImgL.fImgW;
 			if (myData.iAnimTimerID == 0)
-				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_side_kick, (gpointer) NULL);
+				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_side_kick, (gpointer) myApplet);
 		break;
 		case SLIDER_DIAPORAMA:
 			//cd_debug("Displaying with diaporama");
 			myData.fAnimCNT = -myData.pImgL.fImgW - 10;
 			if (myData.iAnimTimerID == 0)
-				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_diaporama, (gpointer) NULL);
+				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_diaporama, (gpointer) myApplet);
 		break;
 		case SLIDER_GROW_UP:
 			//cd_debug("Displaying with grow up");
 			myData.fAnimAlpha = 0.;
 			if (myData.iAnimTimerID == 0)
-				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_grow_up, (gpointer) NULL);
+				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_grow_up, (gpointer) myApplet);
 		break;
 		case SLIDER_SHRINK_DOWN:
 			//cd_debug("Displaying with shrink down");
 			myData.fAnimAlpha = 2.5;
 			myData.fAnimCNT = .3;
 			if (myData.iAnimTimerID == 0)
-				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_shrink_down, (gpointer) NULL);
+				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_shrink_down, (gpointer) myApplet);
 		break;
 	}
 	
@@ -258,8 +249,7 @@ gboolean cd_slider_update_slide (void) {
 	
 	if (myConfig.iAnimation == SLIDER_DEFAULT)
 	{
-		//cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
-		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) myApplet);
 	}
 	else
 		myData.iTimerID = 0;
@@ -267,7 +257,7 @@ gboolean cd_slider_update_slide (void) {
 	return TRUE;
 }
 
-gboolean cd_slider_draw_images(void) {
+gboolean cd_slider_draw_images(CairoDockModuleInstance *myApplet) {
 	if (myData.bPause == TRUE)
 		return FALSE;
 	
@@ -277,7 +267,7 @@ gboolean cd_slider_draw_images(void) {
 		return FALSE;
 	}
 	SliderImage *pImage = myData.pElement->data;
-	g_print (" >> %s\n", pImage->cPath);
+	cd_message (" >> %s", pImage->cPath);
 	
 	//\___________________________ On arrete l'animation precedente si elle n'etait pas finie (ne devrait pas arriver).
 	if (myData.iAnimTimerID != 0) {
@@ -297,155 +287,21 @@ gboolean cd_slider_draw_images(void) {
 		cairo_dock_launch_measure (myData.pMeasureImage);
 	}
 	else {
-		cd_slider_read_image ();
-		cd_slider_update_slide ();
+		cd_slider_read_image (myApplet);
+		cd_slider_update_slide (myApplet);
 	}
 	
 	return FALSE;  // on quitte la boucle des images car on va effectuer une animation.
 }
 
-/*gboolean cd_slider_draw_images(void) {
-	if (myData.bPause == TRUE)
-		return FALSE;
-	
-	//\___________________________ On recupere la nouvelle image a afficher.
-	if (myData.pElement == NULL || myData.pElement->data == NULL) {
-		cd_warning ("Slider stopped, list broken");
-		return FALSE;
- 	}
-	SliderImage *pImage = myData.pElement->data;
-	gchar *cImagePath = pImage->cPath;
-	cd_debug ("Displaying: %s (size %dbytes)", cImagePath, pImage->iSize);
-	
-	//\___________________________ On sauvegarde la surface actuelle et on charge la nouvelle surface.
-	cairo_surface_destroy (myData.pPrevCairoSurface);
-	myData.pPrevCairoSurface = myData.pCairoSurface;
-	myData.pPrevImgL = myData.pImgL;
-	
 
-	double fRatio = (myDock ? myDock->fRatio : 1.);
-	double fImgX, fImgY, fImgW=0, fImgH=0;
-	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;
-	if (! myConfig.bFillIcon)
-		iLoadingModifier |= CAIRO_DOCK_DONT_ZOOM_IN;
-	if (myConfig.bNoStretch)
-		iLoadingModifier |= CAIRO_DOCK_KEEP_RATIO;
-	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath,
-		myDrawContext,
-		1.,
-		myData.fSurfaceWidth, myData.fSurfaceHeight,
-		&fImgW, &fImgH,
-		iLoadingModifier);
-	
-	fImgX = (myData.fSurfaceWidth - fImgW) / 2;
-	fImgY = (myData.fSurfaceHeight - fImgH) / 2;
-	myData.pImgL.fImgX = fImgX;
-	myData.pImgL.fImgY = fImgY;
-	myData.pImgL.fImgW = fImgW;
-	myData.pImgL.fImgH = fImgH;
-	
-	//\___________________________ On arrete l'animation precedente si elle n'etait pas finie (ne devrait pas arriver).
-	if (myData.iAnimTimerID != 0) {
-		cd_warning ("slider : previous animation didn't finish before the new one begins.");
-		g_source_remove(myData.iAnimTimerID);
-		myData.iAnimTimerID = 0;
-	}
-	
-	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
-	
-	if (myConfig.iAnimation == SLIDER_RANDOM) {
-		srand(time(NULL));
-		myData.iAnimation = 1 + (rand() % (SLIDER_RANDOM-1)); //Skip the default animation (1+) /// pourquoi on saute celle par defaut ?
-	}
-	else {
-		myData.iAnimation = myConfig.iAnimation ;
-	}
-	
-	switch (myData.iAnimation) {
-		case SLIDER_DEFAULT: default:
-			cd_debug("Displaying with default");
-			//\______________________ On efface le fond
-			cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
-			cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
-			cairo_paint (myDrawContext);
-			cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
-			
-			//\______________________ On empeche la transparence
-			cairo_save (myDrawContext);
-			////_cd_slider_add_frame_to_current_slide(); //Add background frame
-			cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myConfig.pBackgroundColor[3]);
-			cairo_rectangle(myDrawContext, myData.pImgL.fImgX, myData.pImgL.fImgY, myData.pImgL.fImgW, myData.pImgL.fImgH);
-			cairo_fill(myDrawContext);
-			cairo_restore (myDrawContext);
-			
-			//\______________________ On dessine la nouvelle surface.
-			cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
-			cairo_paint (myDrawContext);
-			
-			////_cd_slider_add_reflect_to_current_slide(); //Add reflection
- 			CD_APPLET_REDRAW_MY_ICON
-		break;
-		case SLIDER_FADE:
-			cd_debug("Displaying with fade");
-			myData.fAnimAlpha = 0.;
-			myData.fAnimCNT = 1.;
-			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade, (gpointer) NULL);
-		break;
-		case SLIDER_BLANK_FADE:
-			cd_debug("Displaying with blank fade");
-			myData.fAnimAlpha = 1.;
-			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_blank_fade, (gpointer) NULL);
-		break;
-		case SLIDER_FADE_IN_OUT:
-			cd_debug("Displaying with fade in out");
-			myData.iAnimCNT = 0;
-			myData.fAnimAlpha = 0.;
-			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) NULL);
-		break;
-		case SLIDER_SIDE_KICK:
-			cd_debug("Displaying with side kick");
-			myData.fAnimCNT = -myData.pImgL.fImgW;
-			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_side_kick, (gpointer) NULL);
-		break;
-		case SLIDER_DIAPORAMA:
-			cd_debug("Displaying with diaporama");
-			myData.fAnimCNT = -myData.pImgL.fImgW - 10;
-			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_diaporama, (gpointer) NULL);
-		break;
-		case SLIDER_GROW_UP:
-			cd_debug("Displaying with grow up");
-			myData.fAnimAlpha = 0.;
-			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_grow_up, (gpointer) NULL);
-		break;
-		case SLIDER_SHRINK_DOWN:
-			cd_debug("Displaying with shrink down");
-			myData.fAnimAlpha = 2.5;
-			myData.fAnimCNT = .3;
-			myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_shrink_down, (gpointer) NULL);
-		break;
-	}
-	
-	/// Afficher le reflet... Pourquoi pas?
-	//cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
-	
-	//\______________________ On passe a l'image suivante.
-	myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
-	
-	if (myConfig.iAnimation == SLIDER_DEFAULT)
-		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
-	else
-		myData.iTimerID = 0;
-	
-	return FALSE;  // on quitte la boucle des images car on va effectuer une animation.
-}*/
-
-static void _cd_slider_add_background_to_current_slide (double fX, double fY) {
+static void _cd_slider_add_background_to_current_slide (CairoDockModuleInstance *myApplet, double fX, double fY) {
 	cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myConfig.pBackgroundColor[3]);
 	cairo_rectangle (myDrawContext, fX, fY, myData.pImgL.fImgW, myData.pImgL.fImgH);
 	cairo_fill (myDrawContext);
 }
 
-gboolean cd_slider_fade (void) {
+gboolean cd_slider_fade (CairoDockModuleInstance *myApplet) {
 	myData.fAnimAlpha = myData.fAnimAlpha +.1;
 	myData.fAnimCNT = myData.fAnimCNT -.1;
 	
@@ -456,7 +312,6 @@ gboolean cd_slider_fade (void) {
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
 	
-	//_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//Fond précédent.
 	if (myData.pPrevCairoSurface != NULL) {
@@ -479,14 +334,13 @@ gboolean cd_slider_fade (void) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
-	//_cd_slider_add_reflect_to_current_slide(); //Add reflection
-	//cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
+	
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha >= .99) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) myApplet);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -494,7 +348,7 @@ gboolean cd_slider_fade (void) {
 	return TRUE;
 }
 
-gboolean cd_slider_blank_fade (void) {
+gboolean cd_slider_blank_fade (CairoDockModuleInstance *myApplet) {
 	myData.fAnimAlpha = myData.fAnimAlpha -.1;
 	
 	//On efface le fond
@@ -504,10 +358,9 @@ gboolean cd_slider_blank_fade (void) {
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
 	
-	//_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On empeche la transparence
-	_cd_slider_add_background_to_current_slide (myData.pImgL.fImgX, myData.pImgL.fImgY);
+	_cd_slider_add_background_to_current_slide (myApplet, myData.pImgL.fImgX, myData.pImgL.fImgY);
 	
 	//Image
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
@@ -518,13 +371,12 @@ gboolean cd_slider_blank_fade (void) {
 	cairo_rectangle(myDrawContext, 0., 0., myData.fSurfaceWidth, myData.fSurfaceHeight);
 	cairo_fill(myDrawContext);
 	
-	//_cd_slider_add_reflect_to_current_slide(); //Add reflection
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha <= 0.01) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) myApplet);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -532,7 +384,7 @@ gboolean cd_slider_blank_fade (void) {
 	return TRUE;
 }
 
-gboolean cd_slider_fade_in_out (void) {
+gboolean cd_slider_fade_in_out (CairoDockModuleInstance *myApplet) {
 	
 	if (myData.fAnimAlpha <= 1 && myData.iAnimCNT == 0) { //On augmente l'alpha
 		myData.fAnimAlpha += .1;
@@ -552,7 +404,6 @@ gboolean cd_slider_fade_in_out (void) {
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
 	
-	//_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On empeche la transparence
 	cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myData.fAnimAlpha * myConfig.pBackgroundColor[3]);
@@ -563,13 +414,12 @@ gboolean cd_slider_fade_in_out (void) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
-	//_cd_slider_add_reflect_to_current_slide(); //Add reflection
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha <= 0.01  && myData.iAnimCNT >= .99) { //On arrete l'animation
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) myApplet);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -577,7 +427,7 @@ gboolean cd_slider_fade_in_out (void) {
 	return TRUE;
 }
 
-gboolean cd_slider_side_kick (void) {
+gboolean cd_slider_side_kick (CairoDockModuleInstance *myApplet) {
 	
 	//On efface le fond
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
@@ -586,15 +436,13 @@ gboolean cd_slider_side_kick (void) {
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
 	
-	//_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On empeche la transparence
-	_cd_slider_add_background_to_current_slide (myData.fAnimCNT, myData.pImgL.fImgY);
+	_cd_slider_add_background_to_current_slide (myApplet, myData.fAnimCNT, myData.pImgL.fImgY);
 	
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.fAnimCNT, myData.pImgL.fImgY);
 	cairo_paint (myDrawContext);
 	
-	//_cd_slider_add_reflect_to_current_slide(); //Add reflection
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
@@ -608,7 +456,7 @@ gboolean cd_slider_side_kick (void) {
 	
 	if (myData.fAnimCNT >= myData.fSurfaceWidth +5) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) myApplet);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -616,7 +464,7 @@ gboolean cd_slider_side_kick (void) {
 	return TRUE;
 }
 
-gboolean cd_slider_diaporama (void) {
+gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 	myData.fAnimCNT = myData.fAnimCNT +1;
 
 	//On efface le fond
@@ -626,10 +474,9 @@ gboolean cd_slider_diaporama (void) {
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
 	
-	//_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On empeche la transparence
-	_cd_slider_add_background_to_current_slide (myData.fAnimCNT, myData.pImgL.fImgY);
+	_cd_slider_add_background_to_current_slide (myApplet, myData.fAnimCNT, myData.pImgL.fImgY);
 	
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.fAnimCNT, myData.pImgL.fImgY);
 	cairo_paint(myDrawContext);
@@ -645,13 +492,12 @@ gboolean cd_slider_diaporama (void) {
 		cairo_paint(myDrawContext);
 	}
   
-  //_cd_slider_add_reflect_to_current_slide(); //Add reflection
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimCNT >= myData.pImgL.fImgX) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) myApplet);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -659,7 +505,7 @@ gboolean cd_slider_diaporama (void) {
 	return TRUE;
 }
 
-gboolean cd_slider_grow_up (void) {
+gboolean cd_slider_grow_up (CairoDockModuleInstance *myApplet) {
 	myData.fAnimAlpha += 0.1;
 
 	//On efface le fond
@@ -669,25 +515,23 @@ gboolean cd_slider_grow_up (void) {
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
 	
-	//_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On met a l'échelle en recentrant.
 	cairo_translate (myDrawContext, (myData.fSurfaceWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2, (myData.fSurfaceHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2);
 	cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
 	
 	//On empeche la transparence et on affiche l'image
-	_cd_slider_add_background_to_current_slide (0., 0.);
+	_cd_slider_add_background_to_current_slide (myApplet, 0., 0.);
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, 0., 0.);
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
-	//_cd_slider_add_reflect_to_current_slide(); //Add reflection
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha >= .99) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) myApplet);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}
@@ -695,7 +539,7 @@ gboolean cd_slider_grow_up (void) {
 	return TRUE;
 }
 
-gboolean cd_slider_shrink_down (void) {
+gboolean cd_slider_shrink_down (CairoDockModuleInstance *myApplet) {
 	myData.fAnimAlpha = myData.fAnimAlpha - 0.1;
 	myData.fAnimCNT += 0.1;
 	
@@ -706,25 +550,23 @@ gboolean cd_slider_shrink_down (void) {
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	cairo_save(myDrawContext);
 	
-	//_cd_slider_add_frame_to_current_slide(); //Add background frame
 	
 	//On met a l'échelle en recentrant.
 	cairo_translate (myDrawContext, (myData.fSurfaceWidth - myData.pImgL.fImgW * myData.fAnimAlpha) / 2, (myData.fSurfaceHeight - myData.pImgL.fImgH * myData.fAnimAlpha) / 2);
 	cairo_scale(myDrawContext, myData.fAnimAlpha, myData.fAnimAlpha);
 	
 	//On empeche la transparence et on affiche l'image
-	_cd_slider_add_background_to_current_slide (0., 0.);
+	_cd_slider_add_background_to_current_slide (myApplet, 0., 0.);
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, 0., 0.);
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimCNT);
 	
-	//_cd_slider_add_reflect_to_current_slide(); //Add reflection
 	CD_APPLET_REDRAW_MY_ICON
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha <= 1.01) {
 		if (myData.iTimerID == 0)
-			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) NULL);
+			myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) myApplet);
 		myData.iAnimTimerID = 0;
 		return FALSE;
 	}

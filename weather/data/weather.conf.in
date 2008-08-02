@@ -13,7 +13,8 @@ height = 32
 frame1_ = 
 
 #s Name of the icon as it will appear in its label in the dock :
-name = Meteo
+#{Let it empty to use the name of the city.}
+name = 
 
 #E[] Name of the dock it belongs to:
 dock name = 

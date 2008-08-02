@@ -5,14 +5,14 @@
 
 #include <cairo-dock.h>
 
-void cd_xmms_prev();
-void cd_xmms_pp();
-void cd_xmms_s();
-void cd_xmms_next();
-void cd_xmms_shuffle();
-void cd_xmms_repeat();
-void cd_xmms_jumpbox();
-void cd_xmms_enqueue(const gchar *cFile);
+void cd_xmms_prev(CairoDockModuleInstance *myApplet);
+void cd_xmms_pp(CairoDockModuleInstance *myApplet);
+void cd_xmms_s(CairoDockModuleInstance *myApplet);
+void cd_xmms_next(CairoDockModuleInstance *myApplet);
+void cd_xmms_shuffle(CairoDockModuleInstance *myApplet);
+void cd_xmms_repeat(CairoDockModuleInstance *myApplet);
+void cd_xmms_jumpbox(CairoDockModuleInstance *myApplet);
+void cd_xmms_enqueue(CairoDockModuleInstance *myApplet, const gchar *cFile);
 
 CD_APPLET_ABOUT_H
 

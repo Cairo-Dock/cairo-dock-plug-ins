@@ -109,7 +109,7 @@ void cd_cpusage_get_cpu_info (void)
 		myData.bAcquisitionOK = FALSE; \
 		return ; \
 	}
-void cd_cpusage_read_data (void)
+void cd_cpusage_read_data (CairoDockModuleInstance *myApplet)
 {
 	static char cContent[512+1];
 	
@@ -179,7 +179,7 @@ void cd_cpusage_read_data (void)
 }
 
 
-gboolean cd_cpusage_update_from_data (void)
+gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 {
 	if ( ! myData.bAcquisitionOK)
 	{

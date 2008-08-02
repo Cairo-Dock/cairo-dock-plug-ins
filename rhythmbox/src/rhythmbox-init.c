@@ -9,8 +9,7 @@
 #include "rhythmbox-init.h"
 
 
-CD_APPLET_DEFINITION ("Rhythmbox", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
-
+CD_APPLET_DEFINITION ("Rhythmbox", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
 static void _rhythmbox_set_desklet_renderer (void)
@@ -51,7 +50,7 @@ static void _rhythmbox_set_desklet_renderer (void)
 	}
 }
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
 		if (myConfig.extendedDesklet)

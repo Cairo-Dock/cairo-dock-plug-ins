@@ -104,7 +104,8 @@ gint my_iCurveAmplitude;
 CDSpeparatorType my_curve_iDrawSeparator3D;
 
 
-CD_APPLET_PRE_INIT_BEGIN ("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_PRE_INIT_BEGIN ("rendering", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	rendering_register_tree_desklet_renderer ();
 	rendering_register_caroussel_desklet_renderer ();
 	rendering_register_simple_desklet_renderer ();
@@ -115,12 +116,8 @@ CD_APPLET_PRE_INIT_BEGIN ("rendering", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 CD_APPLET_PRE_INIT_END
 
 
-void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *cConfFilePath, GError **erreur)
-{
-	//g_print ("%s (%s)\n", __func__, CD_RENDERING_DOCK_VERSION);
-	//\_______________ On lit le fichier de conf.
-	read_conf_file (pKeyFile, cConfFilePath);
-	
+
+CD_APPLET_INIT_BEGIN
 	//\_______________ On enregistre les vues.
 	cd_rendering_register_caroussel_renderer 		(CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	
@@ -137,11 +134,10 @@ void init (GKeyFile *pKeyFile, Icon *pIcon, CairoContainer *pContainer, gchar *c
 	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	
 	cairo_dock_set_all_views_to_default ();
-}
+CD_APPLET_INIT_END
 
 
-void stop (void)
-{
+CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);
@@ -149,19 +145,15 @@ void stop (void)
 	cairo_dock_remove_renderer (CD_RENDERING_DIAPO_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_CURVE_VIEW_NAME);
-	reset_data ();
 	
 	cairo_dock_reset_all_views ();
-}
+CD_APPLET_STOP_END
 
 
-gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoContainer *pNewContainer)
-{
-	if (pKeyFile != NULL)
+CD_APPLET_RELOAD_BEGIN
+	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		reset_data ();
-		
-		read_conf_file (pKeyFile, cConfFilePath);
+		reset_data (myApplet);
 		
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
@@ -170,5 +162,4 @@ gboolean reload (GKeyFile *pKeyFile, gchar *cConfFilePath, CairoContainer *pNewC
 		
 		cairo_dock_set_all_views_to_default ();
 	}
-	return TRUE;
-}
+CD_APPLET_RELOAD_END

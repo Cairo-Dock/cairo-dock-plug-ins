@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:48+0200\n"
 "PO-Revision-Date: 2008-07-03 15:07+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -25,7 +25,7 @@ msgstr "这是由parAdOxxx_ZeRo为Cairo-Dock制作的rame小应用程序"
 msgid "Mb"
 msgstr "兆"
 
-#: ../src/applet-notifications.c:95
+#: ../src/applet-notifications.c:96
 msgid "Data acquisition has failed"
 msgstr "数据获取失败"
 

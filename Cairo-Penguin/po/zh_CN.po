@@ -7,59 +7,59 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:48+0200\n"
 "PO-Revision-Date: 2008-05-19 19:56+0100\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:22
 msgid "Hey, I'm here !"
 msgstr "嘿，我在这儿！"
 
-#: ../src/applet-notifications.c:24
+#: ../src/applet-notifications.c:23
 msgid "Sorry but I'm busy right now."
 msgstr "对不起，我现在有点忙。"
 
-#: ../src/applet-notifications.c:25
+#: ../src/applet-notifications.c:24
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr "我没功夫跟你玩，我忙着把这些图标挖出来呢。"
 
-#: ../src/applet-notifications.c:26
+#: ../src/applet-notifications.c:25
 msgid "Your dock is so messy ! Let me clean it."
 msgstr "你的dock乱套了！我来帮你打扫一下吧。"
 
-#: ../src/applet-notifications.c:27
+#: ../src/applet-notifications.c:26
 msgid "Admit my superiority on you as a penguin !"
 msgstr "承认我这个企鹅比你优秀吧！"
 
-#: ../src/applet-notifications.c:28
+#: ../src/applet-notifications.c:27
 msgid "Wait, do you want to kill me ?!"
 msgstr "不要啊~~你要杀死我么？！"
 
-#: ../src/applet-notifications.c:29
+#: ../src/applet-notifications.c:28
 msgid "Do you know how much painful it is to be clicked on ??"
 msgstr "你知道这么被点来点去多疼么？！！"
 
-#: ../src/applet-notifications.c:30
+#: ../src/applet-notifications.c:29
 msgid "It's my dock now, mwahahaha !"
 msgstr "现在这是我的dock啦，哇咔咔咔咔！"
 
-#: ../src/applet-notifications.c:31
+#: ../src/applet-notifications.c:30
 msgid "I want to be a pirate !"
 msgstr "我要成为一名伟大的海贼！"
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:31
 msgid "You shall not pass !"
 msgstr "禁止通过！"
 
-#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:32
 msgid "I'm your father !"
 msgstr "我是你父亲！"
 
-#: ../src/applet-notifications.c:34
+#: ../src/applet-notifications.c:33
 msgid ""
 "- What will we do tonight Cortex ?\n"
 "- The same thing as every nights, Minus. Try to take over the Dock !"
@@ -67,11 +67,11 @@ msgstr ""
 "- Cortex， 我们晚做些什么？\n"
 "- 跟每天晚上一样啊，Minus。占据这个Dock！"
 
-#: ../src/applet-notifications.c:35
+#: ../src/applet-notifications.c:34
 msgid "For Aiur !"
 msgstr "为了Aiur！"
 
-#: ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:37
 msgid ""
 "This is the Cairo-Penguin applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -79,23 +79,28 @@ msgstr ""
 "这是Cairo企鹅小应用程序\n"
 " Fabrice Rey为Cairo-Dock所作"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
+#, fuzzy
+msgid "Hey, you there !"
+msgstr "嘿，我在这儿！"
+
+#: ../src/applet-notifications.c:120
 msgid "Keep quiet"
 msgstr "肃静！"
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:124
 msgid "Wake up"
 msgstr "醒醒！"
 
-#: ../src/applet-notifications.c:125
+#: ../src/applet-notifications.c:127
 msgid "Start XPenguins"
 msgstr "启动XPenguins"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:128
 msgid "Stop XPenguins"
 msgstr "停止XPenguins"
 
-#: ../src/applet-notifications.c:155 ../src/applet-notifications.c:157
+#: ../src/applet-notifications.c:156 ../src/applet-notifications.c:158
 msgid "Zzzzz"
 msgstr "Zzzzz"
 

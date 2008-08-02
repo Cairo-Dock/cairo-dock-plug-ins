@@ -12,7 +12,7 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT (D_("This is the cpusage applet\n made by parAdOxxx_ZeRo for Cairo-Dock"))
 
 
-static void _cd_cpusage_get_top_list (void)
+static void _cd_cpusage_get_top_list (CairoDockModuleInstance *myApplet)
 {
 	g_timer_stop (myData.pTopClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pTopClock, NULL);
@@ -25,7 +25,7 @@ static void _cd_cpusage_get_top_list (void)
 	cd_cpusage_clean_old_processes (fTime);
 }
 
-static gboolean _cd_cpusage_update_top_list (void)
+static gboolean _cd_cpusage_update_top_list (CairoDockModuleInstance *myApplet)
 {
 	CDProcess *pProcess;
 	int i;
@@ -101,8 +101,9 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (myData.pTopMeasureTimer == NULL)
 			myData.pTopMeasureTimer = cairo_dock_new_measure_timer (myConfig.iProcessCheckInterval,
 				NULL,
-				_cd_cpusage_get_top_list,
-				_cd_cpusage_update_top_list);
+				(CairoDockReadTimerFunc) _cd_cpusage_get_top_list,
+				(CairoDockUpdateTimerFunc) _cd_cpusage_update_top_list,
+				myApplet);
 		cairo_dock_launch_measure (myData.pTopMeasureTimer);
 	}
 	else

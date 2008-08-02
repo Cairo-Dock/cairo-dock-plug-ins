@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:51+0200\n"
 "PO-Revision-Date: 2008-06-18 23:10+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -301,9 +301,19 @@ msgstr "フレームの左側の幅など（ピクセル単位）"
 msgid "Left offset :"
 msgstr "左側のオフセット :"
 
-#: ../data/messages:111 ../data/messages:113 ../data/messages:115
+#: ../data/messages:111
+#, fuzzy
+msgid "Top offset :"
+msgstr "左側のオフセット :"
+
+#: ../data/messages:113
 msgid "Right offset :"
 msgstr "右側のオフセット :"
+
+#: ../data/messages:115
+#, fuzzy
+msgid "Bottom offset :"
+msgstr "左側のオフセット :"
 
 #: ../data/messages:117
 msgid ""

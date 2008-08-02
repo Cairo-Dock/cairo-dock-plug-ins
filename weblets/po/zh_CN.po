@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:47+0200\n"
 "PO-Revision-Date: 2008-07-16 13:47+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:81 ../src/applet-widget.c:50
+#: ../src/applet-init.c:80 ../src/applet-widget.c:52
+#: ../src/applet-widget.c:143
 msgid "Terminal"
 msgstr "终端"
 
@@ -148,6 +149,14 @@ msgstr "重载URI的时间间隔，以秒为单位。为0则不重载"
 #: ../data/messages:55
 msgid "Time between two page refreshes"
 msgstr "页面刷新时间"
+
+#: ../data/messages:57
+msgid "Any URI accepted by firefox should work."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Predefined bookmarks to show in applet's menu :"
+msgstr ""
 
 #~ msgid "Module"
 #~ msgstr "モジュール"

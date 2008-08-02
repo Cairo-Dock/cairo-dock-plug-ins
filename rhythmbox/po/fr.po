@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:51+0200\n"
 "PO-Revision-Date: 2008-06-21 22:11+0200\n"
 "Last-Translator: Guillaume <gu_barthe@yahoo.fr>\n"
 "Language-Team: français <fr@li.org>\n"
@@ -306,9 +306,19 @@ msgstr "C'est la taille du coté gauche du cadre, en pixels."
 msgid "Left offset :"
 msgstr "Décalage a gauche :"
 
-#: ../data/messages:111 ../data/messages:113 ../data/messages:115
+#: ../data/messages:111
+#, fuzzy
+msgid "Top offset :"
+msgstr "Décalage a gauche :"
+
+#: ../data/messages:113
 msgid "Right offset :"
 msgstr "Décalage a droit :"
+
+#: ../data/messages:115
+#, fuzzy
+msgid "Bottom offset :"
+msgstr "Décalage a gauche :"
 
 #: ../data/messages:117
 msgid ""

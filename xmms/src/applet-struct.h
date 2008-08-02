@@ -2,7 +2,9 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
+#define CD_APPLET_MULTI_INSTANCE
 #include <cairo-dock.h>
+
 
 typedef enum {
 	MY_APPLET_NOTHING = 0,
@@ -36,8 +38,8 @@ typedef enum {
 	MY_DESKLET_CONTROLER,
 	MY_DESKLET_NB_MODE
 } MyExtendedMode;
-
-typedef struct {
+ 
+struct _AppletConfig{
 	gchar *defaultTitle;
 	gboolean enableDialogs;
 	gboolean extendedDesklet;
@@ -50,9 +52,9 @@ typedef struct {
 	gboolean bStealTaskBarIcon;
 	gboolean bIconBubble;
 	MyExtendedMode iExtendedMode;
-} AppletConfig;
+} ;
 
-typedef struct {
+struct _AppletData {
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
 	gchar *playingTitle, *previousPlayingTitle;
 	gchar *cQuickInfo, *cPreviousQuickInfo;
@@ -61,6 +63,6 @@ typedef struct {
 	gint iCurrentTime, iPreviousCurrentTime;
 	gint iSongLength;
 	CairoDockMeasure *pMeasureTimer;
-} AppletData;
+} ;
 
 #endif

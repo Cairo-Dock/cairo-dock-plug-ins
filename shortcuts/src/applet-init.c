@@ -17,10 +17,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("shortcuts", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("shortcuts", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myIcon->acName == NULL || *myIcon->acName == '\0')
 		myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);
 	
@@ -28,8 +28,9 @@ CD_APPLET_INIT_BEGIN (erreur)
 	//cd_shortcuts_launch_measure ();  // asynchrone
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
 		NULL,
-		cd_shortcuts_get_shortcuts_data,
-		cd_shortcuts_build_shortcuts_from_data);
+		(CairoDockReadTimerFunc) cd_shortcuts_get_shortcuts_data,
+		(CairoDockUpdateTimerFunc) cd_shortcuts_build_shortcuts_from_data,
+		myApplet);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
@@ -51,7 +52,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On charge les icones dans un sous-dock.
-		reset_data ();
+		reset_data (myApplet);
 		
 		if (myIcon->acName == NULL || *myIcon->acName == '\0')
 			myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);
@@ -59,8 +60,9 @@ CD_APPLET_RELOAD_BEGIN
 		//cd_shortcuts_launch_measure ();  // asynchrone
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
 			NULL,
-			cd_shortcuts_get_shortcuts_data,
-			cd_shortcuts_build_shortcuts_from_data);
+			(CairoDockReadTimerFunc) cd_shortcuts_get_shortcuts_data,
+	                (CairoDockUpdateTimerFunc) cd_shortcuts_build_shortcuts_from_data,
+	                myApplet);
 		cairo_dock_launch_measure (myData.pMeasureTimer);
 	}
 	else if (myDesklet)

@@ -15,23 +15,24 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-widget.h"
 #include "applet-init.h"
 
-CD_APPLET_DEFINITION ("weblets", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("weblets", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 
 	if (myDesklet != NULL)  // on cree le weblet pour avoir qqch a afficher dans le desklet.
 	{
-		weblet_build_and_show ();
+		weblet_build_and_show (myApplet);
 
 		// mise en place du timer
 		myData.pRefreshTimer = cairo_dock_new_measure_timer (myConfig.iReloadTimeout,
 			NULL,
 			NULL,
-			cd_weblets_refresh_page);
+			cd_weblets_refresh_page,
+			myApplet);
 		cairo_dock_launch_measure (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
 		if( myConfig.iReloadTimeout == 0 )
 		{
@@ -61,7 +62,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (! myData.pGtkMozEmbed)
 		{
 			if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
-				weblet_build_and_show ();
+				weblet_build_and_show (myApplet);
 		}
 		else if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
 		{
@@ -90,7 +91,8 @@ CD_APPLET_RELOAD_BEGIN
 		myData.pRefreshTimer = cairo_dock_new_measure_timer (myConfig.iReloadTimeout,
 			NULL,
 			NULL,
-			cd_weblets_refresh_page);
+			cd_weblets_refresh_page,
+			myApplet);
 		cairo_dock_launch_measure (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
 		if( myConfig.iReloadTimeout == 0 )
 		{

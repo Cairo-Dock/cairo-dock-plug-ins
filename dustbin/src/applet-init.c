@@ -17,7 +17,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("dustbin", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("dustbin", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 static void _load_theme (GError **erreur)
@@ -73,18 +73,19 @@ static void _load_theme (GError **erreur)
 	}
 }
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	//\_______________ On charge le theme choisi.
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	GError *tmp_erreur = NULL;
-	_load_theme (&tmp_erreur);
-	if (tmp_erreur != NULL)
+	GError *erreur = NULL;
+	_load_theme (&erreur);
+	if (erreur != NULL)
 	{
-		g_propagate_error (erreur, tmp_erreur);
+		g_print ("dustbin : %s", erreur->message);
+		g_error_free (erreur);
 		return;
 	}
 	
@@ -189,9 +190,9 @@ CD_APPLET_RELOAD_BEGIN
 	_load_theme (&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("dustbin : %s", erreur->message);
 		g_error_free (erreur);
-		return FALSE;
+		return TRUE;
 	}
 	
 	//\_______________ On recharge les donnees qui ont pu changer.

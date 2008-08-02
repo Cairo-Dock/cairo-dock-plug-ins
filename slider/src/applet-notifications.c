@@ -21,7 +21,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_ABOUT (D_("This is the Slider applet\n made by ChAnGFu for Cairo-Dock"))
 
-static void _cd_slider_toogle_pause(void) {
+static void _cd_slider_toogle_pause(CairoDockModuleInstance *myApplet) {
 	//cd_message("Toggeling pause: %d", myData.bPause);
 	if (!myData.bPause) {
 		myData.bPause = TRUE;
@@ -32,11 +32,11 @@ static void _cd_slider_toogle_pause(void) {
 	}
 	else {
 		myData.bPause = FALSE;
-		cd_slider_draw_images(); //on relance le diapo
+		cd_slider_draw_images(myApplet); //on relance le diapo
 	}
 }
 
-static void _cd_slider_open_current_slide (void) {
+static void _cd_slider_open_current_slide (CairoDockModuleInstance *myApplet) {
 	if (myData.pElement != NULL && myData.pElement->data != NULL) {
 		GList *pCurrentDisplayedElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
 		g_return_if_fail (pCurrentDisplayedElement != NULL);
@@ -59,15 +59,15 @@ static void _cd_slider_open_current_slide (void) {
 CD_APPLET_ON_CLICK_BEGIN
 	switch (myConfig.iClickOption) {
 		case SLIDER_PAUSE: default:
-			_cd_slider_toogle_pause();
+			_cd_slider_toogle_pause(myApplet);
 		break;
 		case SLIDER_OPEN_IMAGE:
-			_cd_slider_open_current_slide();
+			_cd_slider_open_current_slide(myApplet);
 		break;
 	}
 CD_APPLET_ON_CLICK_END
 
-static void _cd_slider_run_dir(void) {
+static void _cd_slider_run_dir(CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	gchar *cURI = g_filename_to_uri (myConfig.cDirectory, NULL, &erreur);
 	if (erreur != NULL) {
@@ -81,27 +81,28 @@ static void _cd_slider_run_dir(void) {
 }
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	_cd_slider_run_dir();
+	_cd_slider_run_dir(myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
-static void _cd_slider_previous_img(void) {
+static void _cd_slider_previous_img(CairoDockModuleInstance *myApplet) {
 	myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
 	myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
 	if (myData.iAnimTimerID != 0) {
 		g_source_remove(myData.iAnimTimerID);
 		myData.iAnimTimerID = 0;
 	}
-	cd_slider_draw_images();
+	cd_slider_draw_images(myApplet);
 }
 
 CD_APPLET_ON_SCROLL_BEGIN
-	g_source_remove(myData.iTimerID); //on coupe le timer en cours
+	if (myData.iTimerID != 0)
+		g_source_remove(myData.iTimerID); //on coupe le timer en cours
 	myData.iTimerID = 0;
 	if (CD_APPLET_SCROLL_DOWN) {
-		cd_slider_draw_images();
+		cd_slider_draw_images(myApplet);
 	}
 	else if (CD_APPLET_SCROLL_UP) {
-		_cd_slider_previous_img();
+		_cd_slider_previous_img(myApplet);
 	}
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;

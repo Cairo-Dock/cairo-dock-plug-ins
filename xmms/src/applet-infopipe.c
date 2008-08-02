@@ -12,9 +12,7 @@ Fabrice Rey (fabounet@users.berlios.de)
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <glib/gi18n.h>
 #include <glib/gstdio.h>
-#include <cairo-dock.h>
 
 #include "applet-struct.h"
 #include "applet-infopipe.h"
@@ -42,7 +40,7 @@ static int s_pLineNumber[MY_NB_PLAYERS][NB_INFO] = {
 	{0,1,2,3,4,5,6} ,
 };
 
-void cd_xmms_acquisition (void) {
+void cd_xmms_acquisition (CairoDockModuleInstance *myApplet) {
 	int fds = -1;
 	if (myConfig.iPlayer != MY_XMMS) {
 		s_cTmpFile = g_strdup ("/tmp/xmms.XXXXXX");
@@ -78,10 +76,10 @@ void cd_xmms_acquisition (void) {
 }
 
 //Fonction de lecture du tuyau.
-void cd_xmms_read_data (void) {
+void cd_xmms_read_data (CairoDockModuleInstance *myApplet) {
 	if ((myConfig.iPlayer != MY_XMMS) && (s_cTmpFile == NULL || ! g_file_test (s_cTmpFile, G_FILE_TEST_EXISTS))) {
 		myData.playingStatus = PLAYER_NONE;
-		cd_xmms_player_none();
+		cd_xmms_player_none(myApplet);
 		return;
 	}
 	if (myConfig.iPlayer == MY_XMMS)
@@ -96,7 +94,7 @@ void cd_xmms_read_data (void) {
 		cd_warning("Attention : %s", erreur->message);
 		g_error_free(erreur);
 		myData.playingStatus = PLAYER_NONE;
-		cd_xmms_player_none();
+		cd_xmms_player_none(myApplet);
 	}
 	else {
 		gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
@@ -208,7 +206,7 @@ void cd_xmms_read_data (void) {
 						g_free (myData.playingTitle);
 						myData.playingTitle = g_strdup (str);
 						cd_message("On a changé de son! (%s)", myData.playingTitle);
-						cd_xmms_change_desklet_data();
+						cd_xmms_change_desklet_data(myApplet);
 					}
 				}
 			}

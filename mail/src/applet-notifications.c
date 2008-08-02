@@ -78,12 +78,12 @@ static void _cd_mail_add_account (GtkMenuItem *menu_item, gpointer *data)
 
     GKeyFile *pKeyFile = g_key_file_new();
 
-    if( g_key_file_load_from_file(pKeyFile,myIcon->pModule->cConfFilePath,
+    if( g_key_file_load_from_file(pKeyFile,myIcon->pModuleInstance->cConfFilePath,
 					     G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
 					     NULL))
     {
         xfce_mailwatch_save_config(myData.mailwatch, pKeyFile);
-        cairo_dock_write_keys_to_file (pKeyFile, myIcon->pModule->cConfFilePath);
+        cairo_dock_write_keys_to_file (pKeyFile, myIcon->pModuleInstance->cConfFilePath);
     }
     g_key_file_free(pKeyFile);
 }
@@ -94,13 +94,13 @@ static void _cd_mail_remove_account (GtkMenuItem *menu_item, gpointer *data)
 
     GKeyFile *pKeyFile = g_key_file_new();
 
-    if( g_key_file_load_from_file(pKeyFile,myIcon->pModule->cConfFilePath,
+    if( g_key_file_load_from_file(pKeyFile,myIcon->pModuleInstance->cConfFilePath,
 					     G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
 					     NULL))
     {
         cd_mailwatch_remove_account (myData.mailwatch, mailbox);
         xfce_mailwatch_save_config(myData.mailwatch, pKeyFile);
-        cairo_dock_write_keys_to_file (pKeyFile, myIcon->pModule->cConfFilePath);
+        cairo_dock_write_keys_to_file (pKeyFile, myIcon->pModuleInstance->cConfFilePath);
     }
     g_key_file_free(pKeyFile);
 
@@ -113,14 +113,14 @@ static void _cd_mail_modify_account(GtkMenuItem *menu_item, gpointer *data)
 
     GKeyFile *pKeyFile = g_key_file_new();
 
-    if( g_key_file_load_from_file(pKeyFile,myIcon->pModule->cConfFilePath,
+    if( g_key_file_load_from_file(pKeyFile,myIcon->pModuleInstance->cConfFilePath,
 					     G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
 					     NULL))
     {
         if( config_do_edit_window_2(NULL, myData.mailwatch, mailbox) )
         {
             xfce_mailwatch_save_config(myData.mailwatch, pKeyFile);
-            cairo_dock_write_keys_to_file (pKeyFile, myIcon->pModule->cConfFilePath);
+            cairo_dock_write_keys_to_file (pKeyFile, myIcon->pModuleInstance->cConfFilePath);
         }
     }
     g_key_file_free(pKeyFile);

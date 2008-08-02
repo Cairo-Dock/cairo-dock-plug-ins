@@ -16,11 +16,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-draw.h"
 #include "applet-nvidia.h"
 
-CD_APPLET_DEFINITION ("nVidia", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("nVidia", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
@@ -31,15 +31,17 @@ CD_APPLET_INIT_BEGIN (erreur)
 	
 	myData.iPreviousGPUTemp = -1;  // force le dessin.
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-		cd_nvidia_acquisition,
-		cd_nvidia_read_data,
-		cd_nvidia_update_from_data);
+		(CairoDockAquisitionTimerFunc) cd_nvidia_acquisition,
+		(CairoDockReadTimerFunc) cd_nvidia_read_data,
+		(CairoDockUpdateTimerFunc) cd_nvidia_update_from_data,
+		myApplet);
 	cairo_dock_launch_measure_delayed (myData.pMeasureTimer, 1000);
 	
 	myData.pConfigMeasureTimer = cairo_dock_new_measure_timer (0,
-		cd_nvidia_config_acquisition,
-		cd_nvidia_config_read_data,
-		cd_nvidia_config_update_from_data);
+		(CairoDockAquisitionTimerFunc) cd_nvidia_config_acquisition,
+		(CairoDockReadTimerFunc) cd_nvidia_config_read_data,
+		(CairoDockUpdateTimerFunc) cd_nvidia_config_update_from_data,
+		myApplet);
 	cairo_dock_launch_measure (myData.pConfigMeasureTimer);
 	
 	myData.bAlerted = FALSE;

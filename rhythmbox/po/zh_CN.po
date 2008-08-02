@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:51+0200\n"
 "PO-Revision-Date: 2008-07-08 16:05+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -296,9 +296,19 @@ msgstr "这是您镜框的左边宽度，以点为单位。"
 msgid "Left offset :"
 msgstr "左偏移："
 
-#: ../data/messages:111 ../data/messages:113 ../data/messages:115
+#: ../data/messages:111
+#, fuzzy
+msgid "Top offset :"
+msgstr "左偏移："
+
+#: ../data/messages:113
 msgid "Right offset :"
 msgstr "右偏移："
+
+#: ../data/messages:115
+#, fuzzy
+msgid "Bottom offset :"
+msgstr "左偏移："
 
 #: ../data/messages:117
 #, fuzzy

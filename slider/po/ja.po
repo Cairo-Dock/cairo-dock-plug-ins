@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:47+0200\n"
 "PO-Revision-Date: 2008-05-19 21:50+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -23,15 +23,15 @@ msgstr ""
 "これは ChAnGFu によって製作された \n"
 "Cairo-Dock 用の Slider アプレットです。"
 
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:116
 msgid "Play"
 msgstr "再生"
 
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:116
 msgid "Pause"
 msgstr "停止"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:119
 msgid "Open current image"
 msgstr "現在の画像を開く"
 

@@ -10,16 +10,14 @@
 #define GAMMA_MIN 0.1
 #define GAMMA_MAX 5.0
 
-#include <glib.h>
-#include <gtk/gtk.h>
-
+#include <cairo-dock.h>
 #include <X11/extensions/xf86vmode.h>
 
-typedef struct {
+struct _AppletConfig {
 	gint no_parameter_yet;
-	} AppletConfig;
+	} ;
 
-typedef struct {
+struct _AppletData {
 	gboolean bVideoExtensionOK;
 	CairoDialog *pDialog;
 	GtkWidget *pWidget;
@@ -33,7 +31,7 @@ typedef struct {
 	guint iBlueScaleSignalID;
 	XF86VidModeGamma Xgamma;
 	XF86VidModeGamma XoldGamma;
-	} AppletData;
+	} ;
 
 
 #endif

@@ -135,7 +135,70 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 		
                 gdouble zoom;
 //////////////////////////////////////////////////////////////////////////////////////// On affiche le texte !
-               if(icon->pTextBuffer != NULL)
+		if(icon->pTextBuffer != NULL)
+		{
+			double fAlpha;
+			if ((my_diapo_simple_text_only_on_pointed && icon->bPointed) || my_diapo_simple_display_all_icons)
+				fAlpha = 1.;
+			else if (!my_diapo_simple_text_only_on_pointed)
+				fAlpha = 1. + (icon->fScale - my_diapo_simple_fScaleMax)/(my_diapo_simple_fScaleMax - 1);
+			else
+				fAlpha = 0.;
+			if (fAlpha > 0)
+			{
+				cairo_save (pCairoContext);
+				
+				cairo_rectangle (pCairoContext,
+					icon->fDrawX - my_diapo_simple_iconGapX/2,
+					icon->fDrawY + icon->fHeight * icon->fScale,
+					icon->fWidth * icon->fScale + my_diapo_simple_iconGapX,
+					icon->iTextHeight);
+				cairo_clip (pCairoContext);
+				
+				cairo_set_source_surface (pCairoContext,
+					icon->pTextBuffer,
+					MAX (icon->fDrawX - my_diapo_simple_iconGapX/2, icon->fDrawX + icon->fWidth * icon->fScale/2 - icon->iTextWidth/2),
+					icon->fDrawY + icon->fHeight * icon->fScale);
+				
+				if (icon->iTextWidth > icon->fWidth * icon->fScale + my_diapo_simple_iconGapX)
+				{
+					cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (0.,
+						0.,
+						icon->fWidth * icon->fScale + my_diapo_simple_iconGapX,
+						0.);
+					cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
+					cairo_pattern_add_color_stop_rgba (pGradationPattern,
+						0.,
+						0.,
+						0.,
+						0.,
+						fAlpha);
+					cairo_pattern_add_color_stop_rgba (pGradationPattern,
+						0.7,
+						0.,
+						0.,
+						0.,
+						fAlpha);
+					cairo_pattern_add_color_stop_rgba (pGradationPattern,
+						1.,
+						0.,
+						0.,
+						0.,
+						0.);
+					cairo_mask (pCairoContext, pGradationPattern);
+					cairo_pattern_destroy (pGradationPattern);
+				}
+				else
+				{
+					if (fAlpha == 1)
+						cairo_paint (pCairoContext);
+					else
+						cairo_paint_with_alpha (pCairoContext, fAlpha);
+				}
+				cairo_restore (pCairoContext);
+			}
+		}
+               if(FALSE && icon->pTextBuffer != NULL)
                 {
                 	cairo_save (pCairoContext);
                 	zoom = 1;
@@ -147,7 +210,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
                         if (pDock->bHorizontalDock)
                         {
                         	cairo_set_source_surface (pCairoContext,
-				        icon->pTextBuffer,                                        
+				        icon->pTextBuffer,
 				        (icon->fDrawX + (icon->fWidth * icon->fScale)/2)/zoom - icon->fTextXOffset,
 				        (icon->fDrawY +  (icon->fHeight * icon->fScale) + 0*(my_diapo_simple_iconGapY / 2)) / zoom - 6); // 6 ~= hauteur texte / 2
 			}

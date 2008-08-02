@@ -9,12 +9,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <time.h>
 #include <signal.h>
 
-#include <librsvg/rsvg.h>
-#include <librsvg/rsvg-cairo.h>
-#include "cairo-dock.h"
+//#include <librsvg/rsvg.h>
+//#include <librsvg/rsvg-cairo.h>
 
-#include "applet-config.h"
 #include "applet-struct.h"
+#include "applet-config.h"
 #include "applet-draw.h"
 
 CD_APPLET_INCLUDE_MY_VARS
@@ -22,7 +21,6 @@ CD_APPLET_INCLUDE_MY_VARS
 
 #define CD_CLOCK_DATE_BUFFER_LENGTH 50
 static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
-static GPid s_iCommandPID = 0;
 
 
 void cd_clock_free_alarm (CDClockAlarm *pAlarm)
@@ -32,17 +30,14 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 }
 
 
-gboolean cd_clock_update_with_time (Icon *icon)
+gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 {
 	static gboolean bBusy = FALSE;
-	static int iLastCheckedMinute = -1;
-	static int iLastCheckedDay = -1, iLastCheckedMonth = -1, iLastCheckedYear = -1;
-	static struct tm epoch_tm;
-	
 	if (bBusy)
 		return TRUE;
 	bBusy = TRUE;
 	
+	struct tm epoch_tm;
 	time_t epoch = (time_t) time (NULL);
 	if (myConfig.cLocation != NULL)
 	{
@@ -58,14 +53,15 @@ gboolean cd_clock_update_with_time (Icon *icon)
 			g_unsetenv ("TZ");
 	}
 	
+	Icon *icon = myIcon;
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	double fRatio = (myDock ? myDock->fRatio : 1);
 	if (myConfig.bOldStyle)
-		cd_clock_draw_old_fashionned_clock (myDrawContext, (int) icon->fWidth / fRatio, (int) icon->fHeight / fRatio, fMaxScale, &epoch_tm);
+		cd_clock_draw_old_fashionned_clock (myApplet, (int) icon->fWidth / fRatio, (int) icon->fHeight / fRatio, fMaxScale, &epoch_tm);
 	else
-		cd_clock_draw_text (myDrawContext, (int) icon->fWidth / fRatio, (int) icon->fHeight / fRatio, fMaxScale, &epoch_tm);
+		cd_clock_draw_text (myApplet, (int) icon->fWidth / fRatio, (int) icon->fHeight / fRatio, fMaxScale, &epoch_tm);
 	
-	if (myDock != NULL && myDock->bUseReflect)
+	if (myDock && myDock->bUseReflect)
 	{
 		cairo_surface_t *pReflet = icon->pReflectionBuffer;
 		icon->pReflectionBuffer = NULL;
@@ -80,21 +76,21 @@ gboolean cd_clock_update_with_time (Icon *icon)
 			myDock->bDirectionUp);
 	}
 	
-	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL && (epoch_tm.tm_mday != iLastCheckedDay || epoch_tm.tm_mon != iLastCheckedMonth || epoch_tm.tm_year != iLastCheckedYear))
+	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL && myConfig.cLocation == NULL && (epoch_tm.tm_mday != myData.iLastCheckedDay || epoch_tm.tm_mon != myData.iLastCheckedMonth || epoch_tm.tm_year != myData.iLastCheckedYear))
 	{
 		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", &epoch_tm);
 		CD_APPLET_SET_NAME_FOR_MY_ICON (s_cDateBuffer)
 		
-		iLastCheckedDay = epoch_tm.tm_mday;
-		iLastCheckedMonth = epoch_tm.tm_mon;
-		iLastCheckedYear = epoch_tm.tm_year;
+		myData.iLastCheckedDay = epoch_tm.tm_mday;
+		myData.iLastCheckedMonth = epoch_tm.tm_mon;
+		myData.iLastCheckedYear = epoch_tm.tm_year;
 	}
 	
 	CD_APPLET_REDRAW_MY_ICON
 	
-	if (!myConfig.bShowSeconds || epoch_tm.tm_min != iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement à exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.
+	if (!myConfig.bShowSeconds || epoch_tm.tm_min != myData.iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement à exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.
 	{
-		iLastCheckedMinute = epoch_tm.tm_min;
+		myData.iLastCheckedMinute = epoch_tm.tm_min;
 		CDClockAlarm *pAlarm;
 		int i;
 		for (i = 0; i < myConfig.pAlarms->len; i ++)
@@ -174,8 +170,9 @@ gboolean cd_clock_update_with_time (Icon *icon)
 }
 
 
-void cd_clock_draw_text (cairo_t *pSourceContext, int width, int height, double fMaxScale, struct tm *pTime)
+void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int width, int height, double fMaxScale, struct tm *pTime)
 {
+	cairo_t *pSourceContext = myDrawContext;
 	GString *sFormat = g_string_new ("");
 	
 	if (myConfig.b24Mode)
@@ -218,7 +215,6 @@ void cd_clock_draw_text (cairo_t *pSourceContext, int width, int height, double 
 	pango_layout_set_text (pLayout, s_cDateBuffer, -1);
 	//g_print ("%s\n", s_cDateBuffer);
 	
-	
 	PangoRectangle ink, log;
 	pango_layout_get_pixel_extents (pLayout, &ink, &log);
 	
@@ -253,18 +249,15 @@ void cd_clock_draw_text (cairo_t *pSourceContext, int width, int height, double 
 
 
 
-void draw_background (cairo_t* pDrawingContext, int iWidth, int iHeight)
+void draw_background (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext, int iWidth, int iHeight)
 {
 	//g_print ("%s (%.2f, %.2f)\n", __func__, (double) iWidth / (double) myConfig.DimensionData.width, (double) iHeight / (double) myConfig.DimensionData.height);
-	/* clear context */
 	cairo_scale (pDrawingContext,
 		(double) iWidth / (double) myData.DimensionData.width,
 		(double) iHeight / (double) myData.DimensionData.height);
 	cairo_set_source_rgba (pDrawingContext, 1.0f, 1.0f, 1.0f, 0.0f);
-	cairo_set_operator (pDrawingContext, CAIRO_OPERATOR_OVER);
 	cairo_paint (pDrawingContext);
 	
-	/* draw stuff */
 	if (myData.pSvgHandles[CLOCK_DROP_SHADOW] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_DROP_SHADOW], pDrawingContext);
 	if (myData.pSvgHandles[CLOCK_FACE] != NULL)
@@ -273,18 +266,15 @@ void draw_background (cairo_t* pDrawingContext, int iWidth, int iHeight)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_MARKS], pDrawingContext);
 }
 
-void draw_foreground (cairo_t* pDrawingContext, int iWidth, int iHeight)
+void draw_foreground (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext, int iWidth, int iHeight)
 {
 	//g_print ("%s (%.2f, %.2f)\n", __func__, (double) iWidth / (double) myConfig.DimensionData.width, (double) iHeight / (double) myConfig.DimensionData.height);
-	/* clear context */
 	cairo_scale (pDrawingContext,
 		(double) iWidth / (double) myData.DimensionData.width,
 		(double) iHeight / (double) myData.DimensionData.height);
 	cairo_set_source_rgba (pDrawingContext, 1.0f, 1.0f, 1.0f, 0.0f);
-	cairo_set_operator (pDrawingContext, CAIRO_OPERATOR_OVER);
-	cairo_paint (pDrawingContext);  /// utile ???...
+	cairo_paint (pDrawingContext);
 	
-	/* draw stuff */
 	if (myData.pSvgHandles[CLOCK_FACE_SHADOW] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_FACE_SHADOW], pDrawingContext);
 	if (myData.pSvgHandles[CLOCK_GLASS] != NULL)
@@ -293,7 +283,8 @@ void draw_foreground (cairo_t* pDrawingContext, int iWidth, int iHeight)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_FRAME], pDrawingContext);
 }
 
-cairo_surface_t* update_surface (cairo_surface_t* pOldSurface,
+cairo_surface_t* update_surface (CairoDockModuleInstance *myApplet,
+	cairo_surface_t* pOldSurface,
 	cairo_t* pSourceContext,
 	int iWidth,
 	int iHeight,
@@ -313,15 +304,16 @@ cairo_surface_t* update_surface (cairo_surface_t* pOldSurface,
 	
 	pDrawingContext = cairo_create (pNewSurface);
 	g_return_val_if_fail (cairo_status (pDrawingContext) == CAIRO_STATUS_SUCCESS, NULL);
+	cairo_set_operator (pDrawingContext, CAIRO_OPERATOR_OVER);
 	
 	switch (kind)
 	{
 		case KIND_BACKGROUND :
-			draw_background (pDrawingContext, iWidth, iHeight);
+			draw_background (myApplet, pDrawingContext, iWidth, iHeight);
 		break;
 		
 		case KIND_FOREGROUND :
-			draw_foreground (pDrawingContext, iWidth, iHeight);
+			draw_foreground (myApplet, pDrawingContext, iWidth, iHeight);
 		break;
 	}
 	
@@ -331,9 +323,10 @@ cairo_surface_t* update_surface (cairo_surface_t* pOldSurface,
 }
 
 
-void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int height, double fMaxScale, struct tm *pTime)
+void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int width, int height, double fMaxScale, struct tm *pTime)
 {
 	//g_print ("%s (%dx%d)\n", __func__, width, height);
+	cairo_t *pSourceContext = myDrawContext;
 	double fHalfX;
 	double fHalfY;
 	double fShadowOffsetX = -0.75f;
@@ -353,16 +346,8 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 	cairo_paint (pSourceContext);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
 	
-	double fRatio = (myDock ? myDock->fRatio : 1);
-	if (fRatio != 1)
-	{
-		cairo_save (pSourceContext);
-		//cairo_scale (pSourceContext, fRatio, fRatio);
-	}
 	cairo_set_source_surface (pSourceContext, myData.pBackgroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
-	//if (fRatio != 1)
-	//	cairo_restore (pSourceContext);
 	
 	cairo_save (pSourceContext);
 	cairo_scale (pSourceContext,
@@ -439,13 +424,6 @@ void cd_clock_draw_old_fashionned_clock (cairo_t *pSourceContext, int width, int
 	
 	cairo_restore (pSourceContext);
 	
-	if (fRatio != 1)
-	{
-		//cairo_save (pSourceContext);
-		//cairo_scale (pSourceContext,fRatio, fRatio);
-	}
 	cairo_set_source_surface (pSourceContext, myData.pForegroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
-	if (fRatio != 1)
-		cairo_restore (pSourceContext);
 }

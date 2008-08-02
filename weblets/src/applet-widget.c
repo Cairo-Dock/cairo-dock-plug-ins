@@ -33,10 +33,10 @@ CD_APPLET_INCLUDE_MY_VARS
 #include "gtkmozembed.h"
 #include "applet-widget-itf.h"
 
-void load_started_cb(GtkMozEmbed *embed, void *data);
-void load_finished_cb(GtkMozEmbed *embed, void *data);
+void load_started_cb(GtkMozEmbed *embed, CairoDockModuleInstance *myApplet);
+void load_finished_cb(GtkMozEmbed *embed, CairoDockModuleInstance *myApplet);
 
-void weblet_build_and_show(void)
+void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 {
 	myData.pGtkMozEmbed = gtk_moz_embed_new();
 	gtk_widget_show(myData.pGtkMozEmbed);
@@ -59,7 +59,7 @@ void weblet_build_and_show(void)
 	}
 }
 
-gboolean cd_weblets_refresh_page (void)
+gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet)
 {
 		// load the page
 		if(myData.pGtkMozEmbed)
@@ -70,25 +70,25 @@ gboolean cd_weblets_refresh_page (void)
 		return TRUE;
 }
 
-void load_started_cb(GtkMozEmbed *embed, void *data)
+void load_started_cb(GtkMozEmbed *embed, CairoDockModuleInstance *myApplet)
 {
 	// update scrollbars status
-	show_hide_scrollbars();
+	show_hide_scrollbars(myApplet);
 }
 
-void load_finished_cb(GtkMozEmbed *embed, void *data)
+void load_finished_cb(GtkMozEmbed *embed, CairoDockModuleInstance *myApplet)
 {
 	// update scrollbars status
-	show_hide_scrollbars();
+	show_hide_scrollbars(myApplet);
 }
 
 // hide/show the scrollbars
-void show_hide_scrollbars()
+void show_hide_scrollbars(CairoDockModuleInstance *myApplet)
 {
     set_gecko_scrollbars( myData.pGtkMozEmbed, myConfig.bShowScrollbars, myConfig.iPosScrollX , myConfig.iPosScrollY );
 }
 
-void send_mouse_click_to_cd( GdkEventButton* pButtonEvent )
+void send_mouse_click_to_cd( CairoDockModuleInstance *myApplet, GdkEventButton* pButtonEvent )
 {
 	if( myDock )
 	{
@@ -120,14 +120,14 @@ void send_mouse_click_to_cd( GdkEventButton* pButtonEvent )
 #include <webkit/webkit.h>
 
 /* Will be called when loading of the page is finished*/
-void load_finished_cb(WebKitWebView *pWebKitView, void *data)
+void load_finished_cb(WebKitWebView *pWebKitView, CairoDockModuleInstance *myApplet)
 {
 	// update scrollbars status
-	show_hide_scrollbars();
+	show_hide_scrollbars(myApplet);
 }
 
 /* Build the embedded widget */
-void weblet_build_and_show(void)
+void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 {
 	myData.pGtkMozEmbed = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed), myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER, myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER);
@@ -154,7 +154,7 @@ void weblet_build_and_show(void)
 
 
 // hide/show the scrollbars
-void show_hide_scrollbars()
+void show_hide_scrollbars(CairoDockModuleInstance *myApplet)
 {
 	// First, set the position
 	GtkAdjustment *pGtkAdjustmentH = gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed));
@@ -171,7 +171,7 @@ void show_hide_scrollbars()
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed), myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER, myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER);
 }
 
-gboolean cd_weblets_refresh_page (void)
+gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet)
 {
 		// load the page
 		if(myData.pGtkMozEmbed)

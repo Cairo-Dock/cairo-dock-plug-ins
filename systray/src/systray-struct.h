@@ -39,15 +39,15 @@ typedef struct s_systray {
 } t_systray;
 
 
-typedef struct {
+struct _AppletConfig {
   gchar *shortcut;
-} AppletConfig;
+} ;
 
 
-typedef struct {
+struct _AppletData {
   CairoDialog *dialog;
   TrayApplet *tray;
-} AppletData;
+} ;
 
 
 #endif 	    /* !SYSTRAY_STRUCT_H_ */

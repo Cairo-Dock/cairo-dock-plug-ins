@@ -4,7 +4,7 @@
 
 #include <cairo-dock.h>
 
-typedef struct {
+struct _AppletConfig {
 	gchar *defaultTitle;
 	gint iCheckInterval;
 	
@@ -15,7 +15,7 @@ typedef struct {
 	gint iNbDisplayedProcesses;
 	gint iProcessCheckInterval;
 	CairoDockLabelDescription *pTopTextDescription;
-} AppletConfig;
+} ;
 
 typedef struct {
 	gint iPid;
@@ -25,7 +25,7 @@ typedef struct {
 	gdouble fLastCheckTime;
 	} CDProcess;
 
-typedef struct {
+struct _AppletData {
 	Gauge *pGauge;
 	
 	gint iNbCPU;
@@ -45,7 +45,7 @@ typedef struct {
 	GTimer *pTopClock;
 	cairo_surface_t *pTopSurface;
 	CairoDockMeasure *pTopMeasureTimer;
-} AppletData;
+} ;
 
 
 #endif

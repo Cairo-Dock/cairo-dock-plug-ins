@@ -12,7 +12,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <stdio.h>
 #include <unistd.h>
 
-#include <cairo-dock.h>
 #include <libxml/tree.h>
 #include <libxml/parser.h>
 #include <glib/gstdio.h>
@@ -20,8 +19,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-read-data.h"
 
-static char  *s_cTmpFile = NULL;
-static char  *s_cTmpFileForecast = NULL;
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -29,7 +26,7 @@ CD_APPLET_INCLUDE_MY_VARS
 gchar *cd_weather_get_location_data (gchar *cLocation)
 {
 	gchar *cLocationFilePath = g_strdup ("/tmp/weather-location.XXXXXX");
-	int fds =mkstemp (cLocationFilePath);
+	int fds = mkstemp (cLocationFilePath);
 	if (fds == -1)
 	{
 		g_free (cLocationFilePath);
@@ -42,21 +39,24 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 	return cLocationFilePath;
 }
 
-void cd_weather_acquisition (void)
+void cd_weather_acquisition (CairoDockModuleInstance *myApplet)
 {
 	gboolean bTest = FALSE;
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)
 	{
-		s_cTmpFile = g_strdup ("/tmp/weather-cc.XXXXXX");
-		int fds =mkstemp (s_cTmpFile);
+		g_free (myData.cCCDataFilePath);
+		myData.cCCDataFilePath = g_strdup ("/tmp/weather-cc.XXXXXX");
+		int fds = mkstemp (myData.cCCDataFilePath);
+		g_print ("myData.cCCDataFilePath:%s\n", myData.cCCDataFilePath);
 		if (fds == -1)
 		{
-			g_free (s_cTmpFile);
-			s_cTmpFile = NULL;
+			g_free (myData.cCCDataFilePath);
+			myData.cCCDataFilePath = NULL;
 			return;
 		}
-		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), s_cTmpFile);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
+		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), myData.cCCDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
+		g_print ("%s\n", cCommand);
 		system (cCommand);
 		g_free (cCommand);
 		close(fds);
@@ -65,27 +65,29 @@ void cd_weather_acquisition (void)
 	
 	if (myConfig.iNbDays > 0)
 	{
-		s_cTmpFileForecast = g_strdup ("/tmp/weather-forecast.XXXXXX");
-		int fds =mkstemp (s_cTmpFileForecast);
+		g_free (myData.cForecastDataFilePath);
+		myData.cForecastDataFilePath = g_strdup ("/tmp/weather-forecast.XXXXXX");
+		int fds = mkstemp (myData.cForecastDataFilePath);
 		if (fds == -1)
 		{
-			g_free (s_cTmpFileForecast);
-			s_cTmpFileForecast = NULL;
+			g_free (myData.cForecastDataFilePath);
+			myData.cForecastDataFilePath = NULL;
 			return;
 		}
-		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), s_cTmpFileForecast);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
+		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), myData.cForecastDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
+		g_print ("%s\n", cCommand);
 		system (cCommand);
 		g_free (cCommand);
 		close(fds);
 	}
 	
-	if (bTest && g_file_test ("/opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml", G_FILE_TEST_EXISTS))
+	if (bTest/* && g_file_test ("~/plug-ins/weather/data/frxx0076.xml", G_FILE_TEST_EXISTS)*/)
 	{
-		cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/frxx0076.xml %s", s_cTmpFile);
+		cCommand = g_strdup_printf ("cp ~/plug-ins/weather/data/frxx0076.xml %s", myData.cCCDataFilePath);
 		system (cCommand);
 		g_free (cCommand);
 		
-		cCommand = g_strdup_printf ("cp /opt/cairo-dock/trunk/plug-ins/weather/data/FRXX0076-meteo.xml %s", s_cTmpFileForecast);
+		cCommand = g_strdup_printf ("cp ~/plug-ins/weather/data/FRXX0076-meteo.xml %s", myData.cForecastDataFilePath);
 		system (cCommand);
 		g_free (cCommand);
 	}
@@ -120,7 +122,7 @@ static void _cd_weather_close_xml_file (xmlDocPtr doc)
 
 GList *cd_weather_parse_location_data (gchar *cDataFilePath, GError **erreur)
 {
-	cd_message ("");
+	cd_message ("%s (%s)", __func__, cDataFilePath);
 	
 	GError *tmp_erreur = NULL;
 	xmlNodePtr noeud;
@@ -145,9 +147,9 @@ GList *cd_weather_parse_location_data (gchar *cDataFilePath, GError **erreur)
 	_cd_weather_close_xml_file (doc);
 	return cLocationsList;
 }
-void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError **erreur)
+void cd_weather_parse_data (CairoDockModuleInstance *myApplet, gchar *cDataFilePath, gboolean bParseHeader, GError **erreur)
 {
-	cd_message ("");
+	cd_message ("%s (%s)", __func__, cDataFilePath);
 	
 	GError *tmp_erreur = NULL;
 	xmlNodePtr noeud;
@@ -326,14 +328,14 @@ void cd_weather_parse_data (gchar *cDataFilePath, gboolean bParseHeader, GError 
 }
 
 
-void cd_weather_read_data (void)
+void cd_weather_read_data (CairoDockModuleInstance *myApplet)
 {
 	GError *erreur = NULL;
 	if (myConfig.bCurrentConditions)
 	{
-		if (s_cTmpFile == NULL)
+		if (myData.cCCDataFilePath == NULL)
 			return ;
-		cd_weather_parse_data (s_cTmpFile, TRUE, &erreur);
+		cd_weather_parse_data (myApplet, myData.cCCDataFilePath, TRUE, &erreur);
 		if (erreur != NULL)
 		{
 			cd_warning ("Attention : %s", erreur->message);
@@ -343,16 +345,16 @@ void cd_weather_read_data (void)
 		}
 		else
 			myData.bErrorRetrievingData = FALSE;
-		g_remove (s_cTmpFile);
-		g_free (s_cTmpFile);
-		s_cTmpFile = NULL;
+		g_remove (myData.cCCDataFilePath);
+		g_free (myData.cCCDataFilePath);
+		myData.cCCDataFilePath = NULL;
 	}
 	
 	if (myConfig.iNbDays > 0)
 	{
-		if (s_cTmpFileForecast == NULL)
+		if (myData.cForecastDataFilePath == NULL)
 			return ;
-		cd_weather_parse_data (s_cTmpFileForecast, FALSE, &erreur);
+		cd_weather_parse_data (myApplet, myData.cForecastDataFilePath, FALSE, &erreur);
 		if (erreur != NULL)
 		{
 			cd_warning ("Attention : %s", erreur->message);
@@ -362,8 +364,8 @@ void cd_weather_read_data (void)
 		}
 		else
 			myData.bErrorRetrievingData = FALSE;
-		g_remove (s_cTmpFileForecast);
-		g_free (s_cTmpFileForecast);
-		s_cTmpFileForecast = NULL;
+		g_remove (myData.cForecastDataFilePath);
+		g_free (myData.cForecastDataFilePath);
+		myData.cForecastDataFilePath = NULL;
 	}
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:51+0200\n"
 "PO-Revision-Date: 2008-06-25 14:50+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -302,9 +302,19 @@ msgstr "E' la larghezza del lato sinistro della vostra cornice, in pixels."
 msgid "Left offset :"
 msgstr "Spostare a sinistra :"
 
-#: ../data/messages:111 ../data/messages:113 ../data/messages:115
+#: ../data/messages:111
+#, fuzzy
+msgid "Top offset :"
+msgstr "Spostare a sinistra :"
+
+#: ../data/messages:113
 msgid "Right offset :"
 msgstr "Spostare a destra :"
+
+#: ../data/messages:115
+#, fuzzy
+msgid "Bottom offset :"
+msgstr "Spostare a sinistra :"
 
 #: ../data/messages:117
 #, fuzzy

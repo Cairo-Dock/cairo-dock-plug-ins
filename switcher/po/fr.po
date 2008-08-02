@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:59+0200\n"
 "PO-Revision-Date: 2008-06-28 12:55+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:53 ../src/applet-load-icons.c:37
+#: ../src/applet-init.c:52 ../src/applet-load-icons.c:35
 msgid "Desktop"
 msgstr "Bureau"
 
-#: ../src/applet-init.c:61 ../src/applet-load-icons.c:32
+#: ../src/applet-init.c:60 ../src/applet-load-icons.c:30
 msgid "Current"
 msgstr "Courant"
 
@@ -137,67 +137,83 @@ msgid "Show desktop number on the icons ?"
 msgstr "Afficher le nombre de bureaux sur les icônes ?"
 
 #: ../data/messages:47
+#, fuzzy
+msgid "Draw the windows on icon ?"
+msgstr "Dessiner le fond d'écran sur l'icône ?"
+
+#: ../data/messages:49
 msgid "Display options"
 msgstr "Options d'affichage"
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "Size of the inside lines :"
 msgstr "Taille des lignes intérieures :"
 
-#: ../data/messages:51 ../data/messages:57 ../data/messages:61
+#: ../data/messages:53 ../data/messages:59 ../data/messages:65
+#: ../data/messages:69
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "Color of the inside lines :"
 msgstr "Couleur des lignes intérieures :"
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Size of the extern line :"
 msgstr "Taille des lignes extérieures :"
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Color of the extern line :"
 msgstr "Couleur des lignes extérieures :"
 
 #: ../data/messages:63
+#, fuzzy
+msgid "Size of the Windows line :"
+msgstr "Taille des lignes intérieures :"
+
+#: ../data/messages:67
+#, fuzzy
+msgid "Color of the Windows line :"
+msgstr "Couleur des lignes intérieures :"
+
+#: ../data/messages:71
 msgid "Color of the current desktop :"
 msgstr "Couleur du bureau courant :"
 
-#: ../data/messages:65
+#: ../data/messages:73
 #, fuzzy
 msgid "How to draw the current desktop :"
 msgstr "Couleur du bureau courant :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "draw a frame"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "fill"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "fill others"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser l'image par défaut."
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Icon to use if you don't map the wallpaper :"
 msgstr "Icône à utiliser si vous ne dessinez pas le fond d'écran :"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut."
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la Vue utilisée "
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "En mode étendu, afficher le desklet en 3D ?"
 

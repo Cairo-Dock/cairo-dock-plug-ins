@@ -9,22 +9,22 @@ Fabrice Rey (fabounet@users.berlios.de)
 ******************************************************************************/
 #include "stdlib.h"
 
+#include "applet-struct.h"
 #include "applet-config.h"
 #include "applet-notifications.h"
-#include "applet-struct.h"
 #include "applet-draw.h"
 #include "applet-infopipe.h"
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("xmms", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("xmms", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 static gchar *s_cPlayerClass[MY_NB_PLAYERS] = {"xmms", "audacious", "banshee", "exaile"};
 
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	if (myDesklet) {
 		if (myConfig.extendedDesklet) {
-			cd_xmms_add_buttons_to_desklet ();
+			cd_xmms_add_buttons_to_desklet (myApplet);
 			if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
 				gpointer data[3] = {"None", "None", GINT_TO_POINTER (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 				CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
@@ -45,9 +45,10 @@ CD_APPLET_INIT_BEGIN (erreur)
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (1,
-		cd_xmms_acquisition,
-		cd_xmms_read_data,
-		cd_xmms_draw_icon);
+		(CairoDockAquisitionTimerFunc) cd_xmms_acquisition,
+		(CairoDockReadTimerFunc) cd_xmms_read_data,
+		(CairoDockUpdateTimerFunc) cd_xmms_draw_icon,
+		myApplet);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	if (myConfig.bStealTaskBarIcon) {
@@ -84,7 +85,7 @@ CD_APPLET_RELOAD_BEGIN
 			myDesklet->icons = NULL;
 		}
 		else if (myConfig.extendedDesklet && myDesklet->icons == NULL) {
-			cd_xmms_add_buttons_to_desklet ();
+			cd_xmms_add_buttons_to_desklet (myApplet);
 		}
 	}
 	
@@ -130,6 +131,6 @@ CD_APPLET_RELOAD_BEGIN
 		// inutile de relancer le timer, sa frequence ne change pas. Inutile aussi de faire 1 iteration ici, les modifs seront prises en compte a la prochaine iteration, dans au plus 1s.
 	}
 	else {  // on redessine juste l'icone.
-		cd_xmms_draw_icon ();
+		cd_xmms_draw_icon (myApplet);
 	}
 CD_APPLET_RELOAD_END

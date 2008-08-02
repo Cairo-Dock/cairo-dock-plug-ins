@@ -11,6 +11,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
+#include "applet-notifications.h"
 #include "applet-config.h"
 
 CD_APPLET_INCLUDE_MY_VARS
@@ -45,5 +46,5 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped.
 CD_APPLET_RESET_DATA_BEGIN
-	
+	cd_weblet_free_uri_list ();
 CD_APPLET_RESET_DATA_END

@@ -7,7 +7,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 
 ******************************************************************************/
 
-#include "stdlib.h"
+#include <stdlib.h>
 
 #include "applet-config.h"
 #include "applet-notifications.h"
@@ -22,13 +22,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-songbird.h" //Support Songbird
 #include "applet-banshee.h" //Support Banshee
 
-CD_APPLET_DEFINITION ("musicPlayer", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
-
-/*Servira peut-être
-CD_APPLET_PRE_INIT_BEGIN ("musicPlayer", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
-	
-	
-CD_APPLET_PRE_INIT_END*/
+CD_APPLET_DEFINITION ("musicPlayer", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
 static void _musciplayer_set_simple_renderer (void) {
@@ -66,7 +60,7 @@ static void _musciplayer_set_simple_renderer (void) {
 }
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	/*Add here all player's registering functions
 	Dont forget to add the registered Name in ../data/musicPlayer.conf.in*/
 	
@@ -85,7 +79,7 @@ CD_APPLET_INIT_BEGIN (erreur)
 	if (myDesklet) {
 		cd_musicplayer_add_buttons_to_desklet ();
 		if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
-			gpointer data[3] = {" ", " ", (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
+			gpointer data[3] = {" ", " ", GINT_TO_POINTER (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 		}
 		else if (myConfig.iExtendedMode == MY_DESKLET_CAROUSSEL || myConfig.iExtendedMode == MY_DESKLET_CONTROLER) {
@@ -160,7 +154,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (myDesklet) {
 		if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
-			gpointer data[3] = {" ", " ", (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
+			gpointer data[3] = {" ", " ", GINT_TO_POINTER (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 		}
 		else if (myConfig.iExtendedMode == MY_DESKLET_CAROUSSEL || myConfig.iExtendedMode == MY_DESKLET_CONTROLER) {

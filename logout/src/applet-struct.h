@@ -2,14 +2,14 @@
 #ifndef __LOGOUT_STRUCT__
 #define  __LOGOUT_STRUCT__
 
+#include <cairo-dock.h>
 
-typedef struct {
+struct _AppletConfig {
 	gchar *cUserAction;
-	} AppletConfig;
+	} ;
 
-typedef struct {
+struct _AppletData {
 	gint no_data;
-	} AppletData;
-
+	} ;
 
 #endif

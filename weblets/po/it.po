@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:47+0200\n"
 "PO-Revision-Date: 2008-06-25 19:08+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:81 ../src/applet-widget.c:50
+#: ../src/applet-init.c:80 ../src/applet-widget.c:52
+#: ../src/applet-widget.c:143
 msgid "Terminal"
 msgstr "Terminale"
 
@@ -154,6 +155,14 @@ msgstr ""
 
 #: ../data/messages:55
 msgid "Time between two page refreshes"
+msgstr ""
+
+#: ../data/messages:57
+msgid "Any URI accepted by firefox should work."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Predefined bookmarks to show in applet's menu :"
 msgstr ""
 
 #~ msgid "Module"

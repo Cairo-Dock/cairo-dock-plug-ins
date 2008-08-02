@@ -7,7 +7,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 ************************************************************************************/
 #include <string.h>
-#include <cairo-dock.h>
 
 #include "applet-struct.h"
 #include "applet-read-data.h"
@@ -40,7 +39,7 @@ CD_APPLET_INCLUDE_MY_VARS
 		pIconList = g_list_append (pIconList, pIcon);\
 	}
 
-static GList * _list_icons (void)
+static GList * _list_icons (CairoDockModuleInstance *myApplet)
 {
 	GList *pIconList = NULL;
 	
@@ -60,12 +59,12 @@ static GList * _list_icons (void)
 }
 
 
-static void _weather_draw_current_conditions (void)
+static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (myDrawContext != NULL);
 	if (myConfig.bCurrentConditions)
 	{
-		cd_message ("  chargement de l'icone meteo");
+		cd_message ("  chargement de l'icone meteo (%x)", myApplet);
 		if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL)
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp)
@@ -91,10 +90,18 @@ static void _weather_draw_current_conditions (void)
 	}
 }
 
-gboolean cd_weather_update_from_data (void)
+gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 {
+	//\_______________________ On etablit le nom de l'icone.
+	if (myIcon->acName == NULL)
+	{
+		myIcon->acName = cairo_dock_get_unique_dock_name (myData.cLocation != NULL ? myData.cLocation : WEATHER_DEFAULT_NAME);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myIcon->acName)
+		//cairo_dock_fill_one_text_buffer (myIcon, myDrawContext, &g_iconTextDescription, myContainer->bIsHorizontal, myContainer->bDirectionUp);
+	}
+	
 	//\_______________________ On cree la liste des icones de prevision.
-	GList *pIconList = _list_icons ();  // ne nous appartiendra plus, donc ne pas desallouer.
+	GList *pIconList = _list_icons (myApplet);  // ne nous appartiendra plus, donc ne pas desallouer.
 	
 	//\_______________________ On efface l'ancienne liste.
 	if (myDesklet && myDesklet->icons != NULL)
@@ -119,6 +126,7 @@ gboolean cd_weather_update_from_data (void)
 			{
 				cd_message ("  creation du sous-dock meteo");
 				CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
+				g_print ("weather : applet : %x, icon : %x, subdock <- %x\n", myApplet, myIcon, myIcon->pSubDock);
 			}
 		}
 		else  // on a deja notre sous-dock, on remplace juste ses icones.
@@ -131,6 +139,7 @@ gboolean cd_weather_update_from_data (void)
 			else
 			{
 				CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList)
+				g_print ("weather : applet : %x, icon : %x, subdock = %x\n", myApplet, myIcon, myIcon->pSubDock);
 			}
 		}
 	}
@@ -138,17 +147,17 @@ gboolean cd_weather_update_from_data (void)
 	{
 		if (myIcon->pSubDock != NULL)
 		{
-			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-			myIcon->pSubDock = NULL;
+			CD_APPLET_DESTROY_MY_SUBDOCK
 		}
 		myDesklet->icons = pIconList;
 		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
+		g_print ("myIcon->pIconBuffer:%x\n", myIcon->pIconBuffer);
 		gtk_widget_queue_draw (myDesklet->pWidget);  /// utile ?...
 	}
 	
 	//\_______________________ On recharge l'icone principale.
-	_weather_draw_current_conditions ();  // ne lance pas le redraw.
+	_weather_draw_current_conditions (myApplet);  // ne lance pas le redraw.
 	if (myDesklet)
 		gtk_widget_queue_draw (myDesklet->pWidget);
 	else

@@ -5,16 +5,16 @@
 #include <cairo-dock.h>
 
 
-typedef struct {
+struct _AppletConfig {
 	gchar *defaultTitle;
 	gint iCheckInterval;
 	gchar *cThemePath;
 	gchar *cInterface;
 	gint iStringLen;
 	CairoDockInfoDisplay iInfoDisplay;
-} AppletConfig;
+} ;
 
-typedef struct {
+struct _AppletData {
 	GTimer *pClock;
 	gboolean bInitialized;
 	long long int iReceivedBytes, iTransmittedBytes;
@@ -24,7 +24,7 @@ typedef struct {
 	CairoDockMeasure *pMeasureTimer;
 	Gauge *pGauge;
 	DBusGProxy *dbus_proxy_nm;
-} AppletData;
+} ;
 
 
 #endif

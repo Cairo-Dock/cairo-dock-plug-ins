@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:48+0200\n"
 "PO-Revision-Date: 2008-05-18 10:30+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,54 +15,54 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:22
 msgid "Hey, I'm here !"
 msgstr "ヘイ、おいらはここだよ！"
 
-#: ../src/applet-notifications.c:24
+#: ../src/applet-notifications.c:23
 msgid "Sorry but I'm busy right now."
 msgstr "申し訳ないが今ちょうど忙しいんで。"
 
-#: ../src/applet-notifications.c:25
+#: ../src/applet-notifications.c:24
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
 "ここいらのアイコンを全部掘ったり埋めたりしなきゃいかんから、君に付き合ってる"
 "暇なんかないよ。"
 
-#: ../src/applet-notifications.c:26
+#: ../src/applet-notifications.c:25
 msgid "Your dock is so messy ! Let me clean it."
 msgstr "君のドックは散らかりすぎだろう！私に片付けさせなさい。"
 
-#: ../src/applet-notifications.c:27
+#: ../src/applet-notifications.c:26
 msgid "Admit my superiority on you as a penguin !"
 msgstr "君より私の方がペンギンとして優れていることを認めなさい！"
 
-#: ../src/applet-notifications.c:28
+#: ../src/applet-notifications.c:27
 msgid "Wait, do you want to kill me ?!"
 msgstr "待った、おいらを殺す気 ?!"
 
-#: ../src/applet-notifications.c:29
+#: ../src/applet-notifications.c:28
 msgid "Do you know how much painful it is to be clicked on ??"
 msgstr "クリックされるのがどれだけ痛いかわかってんの？？"
 
-#: ../src/applet-notifications.c:30
+#: ../src/applet-notifications.c:29
 msgid "It's my dock now, mwahahaha !"
 msgstr "ドックは今や私のものだ。わっはっはっは！"
 
-#: ../src/applet-notifications.c:31
+#: ../src/applet-notifications.c:30
 msgid "I want to be a pirate !"
 msgstr "おいら海賊になりたい！"
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:31
 msgid "You shall not pass !"
 msgstr "貴様だけは、決して通さぬ！"
 
-#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:32
 msgid "I'm your father !"
 msgstr "私がお前の父親なのだ！"
 
-#: ../src/applet-notifications.c:34
+#: ../src/applet-notifications.c:33
 msgid ""
 "- What will we do tonight Cortex ?\n"
 "- The same thing as every nights, Minus. Try to take over the Dock !"
@@ -70,11 +70,11 @@ msgstr ""
 "- ねぇ、ブレイン。今夜は何するの？\n"
 "- いつもと同じさ、ピンキー。ドック征服を狙うのさ！"
 
-#: ../src/applet-notifications.c:35
+#: ../src/applet-notifications.c:34
 msgid "For Aiur !"
 msgstr "アイアーのために！"
 
-#: ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:37
 msgid ""
 "This is the Cairo-Penguin applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -82,23 +82,28 @@ msgstr ""
 "これは Fabrice Rey によって製作された\n"
 "Cairo-Dock 用の Cairo-Penguin アプレットです。"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
+#, fuzzy
+msgid "Hey, you there !"
+msgstr "ヘイ、おいらはここだよ！"
+
+#: ../src/applet-notifications.c:120
 msgid "Keep quiet"
 msgstr "大人しくさせる"
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:124
 msgid "Wake up"
 msgstr "起こす"
 
-#: ../src/applet-notifications.c:125
+#: ../src/applet-notifications.c:127
 msgid "Start XPenguins"
 msgstr "XPenguins 開始"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:128
 msgid "Stop XPenguins"
 msgstr "XPenguins 停止"
 
-#: ../src/applet-notifications.c:155 ../src/applet-notifications.c:157
+#: ../src/applet-notifications.c:156 ../src/applet-notifications.c:158
 msgid "Zzzzz"
 msgstr "Zzzzz"
 

@@ -98,7 +98,7 @@ typedef enum {
 	MY_APPLET_NB_DECORATIONS
 } MyAppletDecoration;
 
-typedef struct {
+struct _AppletConfig {
 	gboolean bEnableDialogs;
 	gdouble fTimeDialogs;
 	gboolean bEnableCover;
@@ -119,9 +119,9 @@ typedef struct {
 	gchar *cReflectImage;
 	gdouble fFrameAlpha;
 	gdouble fReflectAlpha;
-} AppletConfig;
+} ;
 
-typedef struct {
+struct _AppletData {
 	//Pointeurs du Canevas
 	CairoDockMeasure *pMeasureTimer;
 	GList *pHandelers;
@@ -149,7 +149,7 @@ typedef struct {
 	gchar *cQuickInfo, *cPreviousQuickInfo;
 	
 	guint iSidCheckCover;
-} AppletData;
+} ;
 
 
 #endif

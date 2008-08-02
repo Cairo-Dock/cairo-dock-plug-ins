@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:47+0200\n"
 "PO-Revision-Date: 2008-07-10 09:26+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -21,15 +21,15 @@ msgid ""
 " made by ChAnGFu for Cairo-Dock"
 msgstr "这是ChAnGFu为Cairo-Dock制作的幻灯片小应用程序"
 
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:116
 msgid "Play"
 msgstr "播放"
 
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:116
 msgid "Pause"
 msgstr "暂停"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:119
 msgid "Open current image"
 msgstr "打开当前图片"
 

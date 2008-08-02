@@ -2,6 +2,7 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
+#define CD_APPLET_MULTI_INSTANCE 1
 #include <cairo-dock.h>
 
 typedef enum {
@@ -24,15 +25,15 @@ typedef struct {
 	int iFrameWidth, iFrameHeight;
 	} PenguinAnimation;
 
-typedef struct {
+struct _AppletConfig {
 	gchar *cThemePath;
 	gint iDelayBetweenChanges;
 	gdouble fAlpha;
 	gboolean bFree;
-	} AppletConfig;
+	} ;
 
 
-typedef struct {
+struct _AppletData {
 	gint iCurrentAnimation;
 	gint iCurrentPositionX, iCurrentPositionY;
 	gint iCurrentSpeed;
@@ -56,6 +57,7 @@ typedef struct {
 	guint iSidAnimation;
 	guint iSidRestartDelayed;
 	CairoDialog *pDialog;
-	} AppletData;
+	gboolean bHasBeenStarted;
+	} ;
 
 #endif

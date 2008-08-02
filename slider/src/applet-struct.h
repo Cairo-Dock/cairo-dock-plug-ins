@@ -2,9 +2,10 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
-#include <glib/gi18n.h>
-#include <glib/gstdio.h>
+#define CD_APPLET_MULTI_INSTANCE
+#include <cairo-dock.h>
 
+#include <glib/gstdio.h>
 
 typedef enum {
 	SLIDER_DEFAULT = 0,
@@ -58,7 +59,7 @@ typedef struct {
 } SliderImage;
 
 //\___________ structure containing the applet's configuration parameters.
-typedef struct {
+struct _AppletConfig {
 	gint iSlideTime;
 	gchar *cDirectory;
 	gboolean bSubDirs;
@@ -76,10 +77,10 @@ typedef struct {
 	gchar *cReflectImage;
 	gdouble fFrameAlpha;
 	gdouble fReflectAlpha;
-} AppletConfig;
+} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
-typedef struct {
+struct _AppletData {
 	GList *pList;
 	GList *pElement;
 	gboolean bPause;
@@ -96,7 +97,7 @@ typedef struct {
 	SliderAnimation iAnimation;
 	CairoDockMeasure *pMeasureDirectory;
 	CairoDockMeasure *pMeasureImage;
-} AppletData;
+} ;
 
 
 #endif

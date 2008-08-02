@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-07-17 02:12+0200\n"
+"POT-Creation-Date: 2008-08-02 03:47+0200\n"
 "PO-Revision-Date: 2008-06-25 16:23+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -23,15 +23,15 @@ msgstr ""
 "Questa è l'applet Slider\n"
 " scritta da ChAnGFu per Cairo-Dock"
 
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:116
 msgid "Play"
 msgstr "Play"
 
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:116
 msgid "Pause"
 msgstr "Pausa"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:119
 msgid "Open current image"
 msgstr "Aprire l'immagine attuale"
 

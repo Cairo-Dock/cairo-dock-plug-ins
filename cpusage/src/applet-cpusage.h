@@ -8,8 +8,8 @@ void cd_cpusage_get_uptime (gchar **cUpTime, gchar **cActivityTime);
 
 void cd_cpusage_get_cpu_info (void);
 
-void cd_cpusage_read_data (void);
-gboolean cd_cpusage_update_from_data (void);
+void cd_cpusage_read_data (CairoDockModuleInstance *myApplet);
+gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet);
 
 
 void cd_cpusage_free_process (CDProcess *pProcess);

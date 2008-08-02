@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-void cd_clock_launch_time_admin (GtkMenuItem *menu_item, gpointer *data);
+void cd_clock_free_timezone_list (void);
 
 CD_APPLET_ABOUT_H
 
