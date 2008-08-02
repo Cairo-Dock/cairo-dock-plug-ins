@@ -40,8 +40,8 @@
 #include <nsIServiceManager.h>
 
 
-extern "C" void send_mouse_click_to_cd( GdkEventButton* pButtonEvent );
-extern "C" gint dom_mouse_click_cb(GtkMozEmbed *embed, nsIDOMMouseEvent *event, GtkWidget *pGtkMozEmbed);
+extern "C" void send_mouse_click_to_cd( CairoDockModuleInstance *myApplet, GdkEventButton* pButtonEvent );
+extern "C" gint dom_mouse_click_cb(GtkMozEmbed *embed, nsIDOMMouseEvent *event, CairoDockModuleInstance *myApplet);
 
 // hide/show the scrollbars
 extern "C" gboolean set_gecko_scrollbars( GtkWidget *moz, gboolean bShowScrollbars, gint scrollX, gint scrollY )
@@ -65,7 +65,7 @@ extern "C" gboolean set_gecko_scrollbars( GtkWidget *moz, gboolean bShowScrollba
 	return TRUE;
 }
 
-extern "C" void register_menu_cb( GtkWidget *pGtkMozEmbed )
+extern "C" void register_menu_cb( CairoDockModuleInstance *myApplet, GtkWidget *pGtkMozEmbed )
 {
 	if( pGtkMozEmbed )
 	{
@@ -89,11 +89,11 @@ extern "C" void register_menu_cb( GtkWidget *pGtkMozEmbed )
 		}	    
 		
 		gtk_signal_connect(GTK_OBJECT(pGtkMozEmbed), "dom_mouse_click",
-											 GTK_SIGNAL_FUNC(dom_mouse_click_cb), NULL);
+											 GTK_SIGNAL_FUNC(dom_mouse_click_cb), myApplet);
 	}
 }
 
-extern "C" gint dom_mouse_click_cb(GtkMozEmbed *embed, nsIDOMMouseEvent *event, GtkWidget *pGtkMozEmbed)
+extern "C" gint dom_mouse_click_cb(GtkMozEmbed *embed, nsIDOMMouseEvent *event, CairoDockModuleInstance *myApplet)
 {
 	PRUint16 button = 0;
 	if( event )
@@ -116,7 +116,7 @@ extern "C" gint dom_mouse_click_cb(GtkMozEmbed *embed, nsIDOMMouseEvent *event, 
 				pButtonEvent->x = clientX;
 				pButtonEvent->y = clientY;
 
-				send_mouse_click_to_cd( pButtonEvent );
+				send_mouse_click_to_cd( myApplet, pButtonEvent );
 				gdk_event_free( pEvent ); pEvent = NULL; pButtonEvent = NULL;
 			}
 		}

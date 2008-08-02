@@ -33,7 +33,7 @@ CD_APPLET_PRE_INIT_BEGIN("xfce integration", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTO
 			pVFSBackend->unmount = vfs_backend_unmount;
 			pVFSBackend->add_monitor = vfs_backend_add_monitor;
 			pVFSBackend->remove_monitor = vfs_backend_remove_monitor;
-			pVFSBackend->delete = vfs_backend_delete_file;
+			pVFSBackend->delete_file = vfs_backend_delete_file;
 			pVFSBackend->rename = vfs_backend_rename_file;
 			pVFSBackend->move = vfs_backend_move_file;
 			pVFSBackend->get_trash_path = vfs_backend_get_trash_path;
@@ -49,6 +49,11 @@ CD_APPLET_PRE_INIT_END
 CD_APPLET_INIT_BEGIN
 	
 CD_APPLET_INIT_END
+
+
+CD_APPLET_STOP_BEGIN
+	
+CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN

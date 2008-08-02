@@ -48,7 +48,6 @@ void cd_weather_acquisition (CairoDockModuleInstance *myApplet)
 		g_free (myData.cCCDataFilePath);
 		myData.cCCDataFilePath = g_strdup ("/tmp/weather-cc.XXXXXX");
 		int fds = mkstemp (myData.cCCDataFilePath);
-		g_print ("myData.cCCDataFilePath:%s\n", myData.cCCDataFilePath);
 		if (fds == -1)
 		{
 			g_free (myData.cCCDataFilePath);
@@ -56,7 +55,7 @@ void cd_weather_acquisition (CairoDockModuleInstance *myApplet)
 			return;
 		}
 		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?cc=*%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), myData.cCCDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
-		g_print ("%s\n", cCommand);
+		cd_debug ("weather : %s", cCommand);
 		system (cCommand);
 		g_free (cCommand);
 		close(fds);
@@ -75,7 +74,7 @@ void cd_weather_acquisition (CairoDockModuleInstance *myApplet)
 			return;
 		}
 		cCommand = g_strdup_printf ("wget \"http://xoap.weather.com/weather/local/%s?dayf=%d%s\" -O %s -o /dev/null -t 5 -w 5", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), myData.cForecastDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
-		g_print ("%s\n", cCommand);
+		cd_debug ("weather : %s", cCommand);
 		system (cCommand);
 		g_free (cCommand);
 		close(fds);
@@ -338,7 +337,7 @@ void cd_weather_read_data (CairoDockModuleInstance *myApplet)
 		cd_weather_parse_data (myApplet, myData.cCCDataFilePath, TRUE, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("Attention : %s", erreur->message);
+			cd_warning ("weather : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 			myData.bErrorRetrievingData = TRUE;
@@ -357,7 +356,7 @@ void cd_weather_read_data (CairoDockModuleInstance *myApplet)
 		cd_weather_parse_data (myApplet, myData.cForecastDataFilePath, FALSE, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("Attention : %s", erreur->message);
+			cd_warning ("weather : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 			myData.bErrorRetrievingData = TRUE;

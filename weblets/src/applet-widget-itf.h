@@ -22,13 +22,13 @@
 #ifndef __CD_WEBLETS_WIDGET_ITF__
 #define  __CD_WEBLETS_WIDGET_ITF__
 
-#include "gtk/gtk.h"
+#include <cairo-dock.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 gboolean set_gecko_scrollbars( GtkWidget *moz, gboolean bShowScrollbars, gint scrollX, gint scrollY );
-void register_menu_cb( GtkWidget *pGtkMozEmbed );
+void register_menu_cb( CairoDockModuleInstance *myApplet, GtkWidget *pGtkMozEmbed );
 #ifdef __cplusplus
 }
 #endif

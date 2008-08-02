@@ -41,15 +41,15 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 	myData.pGtkMozEmbed = gtk_moz_embed_new();
 	gtk_widget_show(myData.pGtkMozEmbed);
 	gtk_signal_connect(GTK_OBJECT(myData.pGtkMozEmbed), "net_start",
-					 					 GTK_SIGNAL_FUNC(load_started_cb), NULL);
+					 					 GTK_SIGNAL_FUNC(load_started_cb), myApplet);
 	gtk_signal_connect(GTK_OBJECT(myData.pGtkMozEmbed), "net_stop",
-					 					 GTK_SIGNAL_FUNC(load_finished_cb), NULL);
+					 					 GTK_SIGNAL_FUNC(load_finished_cb), myApplet);
 	// register for right-click on the moz-embed widget
-	register_menu_cb( myData.pGtkMozEmbed );
+	register_menu_cb( myApplet, myData.pGtkMozEmbed );
 
 	if (myDock)
 	{
-		myData.dialog = cairo_dock_build_dialog (D_("Terminal"), myIcon, myContainer, NULL, myData.pGtkMozEmbed, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		myData.dialog = cairo_dock_build_dialog (D_("Weblet"), myIcon, myContainer, NULL, myData.pGtkMozEmbed, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 	}
 	else
 	{
@@ -136,11 +136,11 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 	gtk_container_add (GTK_CONTAINER (myData.pGtkMozEmbed), GTK_WIDGET (myData.pWebKitView));
 
 	gtk_signal_connect(GTK_OBJECT(myData.pWebKitView), "load_finished",
-					 					 GTK_SIGNAL_FUNC(load_finished_cb), NULL);
+					 					 GTK_SIGNAL_FUNC(load_finished_cb), myApplet);
 					 					 
 	if (myDock)
 	{
-		myData.dialog = cairo_dock_build_dialog (D_("Terminal"), myIcon, myContainer, NULL, myData.pGtkMozEmbed, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		myData.dialog = cairo_dock_build_dialog (D_("Weblet"), myIcon, myContainer, NULL, myData.pGtkMozEmbed, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 	}
 	else
 	{

@@ -148,13 +148,6 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 			{
 				cairo_save (pCairoContext);
 				
-				/*cairo_translate (pCairoContext, icon->fDrawX, icon->fDrawY + icon->fHeight * icon->fScale);
-				cairo_rectangle (pCairoContext,
-					- my_diapo_simple_iconGapX/2,
-					0.,
-					icon->fWidth * icon->fScale + my_diapo_simple_iconGapX,
-					icon->iTextHeight);
-				cairo_clip (pCairoContext);*/
 				if (icon->iTextWidth > icon->fWidth * icon->fScale + my_diapo_simple_iconGapX)
 				{
 					cairo_translate (pCairoContext,
@@ -190,7 +183,6 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 						0.,
 						MIN (0.2, fAlpha/2));
 					cairo_mask (pCairoContext, pGradationPattern);
-					//cairo_paint_with_alpha (pCairoContext, fAlpha);
 					cairo_pattern_destroy (pGradationPattern);
 				}
 				else
