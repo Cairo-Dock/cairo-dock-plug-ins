@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-02 03:47+0200\n"
+"POT-Creation-Date: 2008-08-03 19:05+0200\n"
 "PO-Revision-Date: 2008-07-16 13:47+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -15,16 +15,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:80 ../src/applet-widget.c:52
-#: ../src/applet-widget.c:143
+#: ../src/applet-init.c:80
 msgid "Terminal"
 msgstr "终端"
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:31
 msgid ""
 "This is the weblets applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
 msgstr "这是Chiristophe Chapuis为Cairo-Dock制作的weblets小应用程序。"
+
+#: ../src/applet-widget.c:52 ../src/applet-widget.c:143
+#, fuzzy
+msgid "Weblet"
+msgstr "桌面应用程序"
 
 #: ../data/messages:1
 msgid "Icon"

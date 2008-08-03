@@ -96,8 +96,16 @@ static void _cd_slider_previous_img(CairoDockModuleInstance *myApplet) {
 
 CD_APPLET_ON_SCROLL_BEGIN
 	if (myData.iTimerID != 0)
+	{
 		g_source_remove(myData.iTimerID); //on coupe le timer en cours
-	myData.iTimerID = 0;
+		myData.iTimerID = 0;
+	}
+	if (myData.iAnimTimerID != 0)
+	{
+		g_source_remove(myData.iAnimTimerID);
+		myData.iAnimTimerID = 0;
+	}
+	
 	if (CD_APPLET_SCROLL_DOWN) {
 		cd_slider_draw_images(myApplet);
 	}

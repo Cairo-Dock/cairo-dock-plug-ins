@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-02 03:54+0200\n"
+"POT-Creation-Date: 2008-08-03 19:00+0200\n"
 "PO-Revision-Date: 2008-05-23 08:35+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: France <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr "Régler la date et l'heure"
 
 #: ../src/applet-notifications.c:191
 msgid "Choose a location"
-msgstr ""
+msgstr "Choisisez une localité"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -180,7 +180,7 @@ msgstr ""
 
 #: ../data/messages:61
 msgid "Timezone :"
-msgstr ""
+msgstr "Fuseau horaire :"
 
 #: ../data/messages:63
 msgid "Style"
@@ -325,9 +325,3 @@ msgstr "Alarme n°2"
 #: ../data/messages:167
 msgid "Alarm n°3"
 msgstr "Alarme n°3"
-
-#~ msgid "Show the date ?"
-#~ msgstr "Montrer la date ?"
-
-#~ msgid "ALARM"
-#~ msgstr "ALARME"

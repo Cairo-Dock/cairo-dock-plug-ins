@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-02 03:47+0200\n"
+"POT-Creation-Date: 2008-08-03 19:05+0200\n"
 "PO-Revision-Date: 2008-05-23 08:58+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
@@ -15,18 +15,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:80 ../src/applet-widget.c:52
-#: ../src/applet-widget.c:143
+#: ../src/applet-init.c:80
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:31
 msgid ""
 "This is the weblets applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
 msgstr ""
 "Ceci est l'applet weblets\n"
 " écrite par Christophe Chapuis pour Cairo-Dock"
+
+#: ../src/applet-widget.c:52 ../src/applet-widget.c:143
+#, fuzzy
+msgid "Weblet"
+msgstr "Desklet"
 
 #: ../data/messages:1
 msgid "Icon"

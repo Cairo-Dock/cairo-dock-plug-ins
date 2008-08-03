@@ -2,8 +2,6 @@
 #ifndef __CD_CLOCK_STRUCT__
 #define  __CD_CLOCK_STRUCT__
 
-#define CD_APPLET_MULTI_INSTANCE 1
-
 #include <cairo-dock.h>
 #include <time.h>
 
