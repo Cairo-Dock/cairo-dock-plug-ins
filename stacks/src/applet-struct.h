@@ -5,7 +5,7 @@
 #include "cairo-dock.h"
 
 //\___________ structure containing the applet's configuration parameters.
-typedef struct {
+struct _AppletConfig {
 	gchar **cMimeTypes;
   gchar **cMonitoredDirectory;
   gchar *cRenderer;
@@ -13,16 +13,16 @@ typedef struct {
   gboolean bLocalDir;
   gboolean bFilter;
   gboolean bUseSeparator;
-} AppletConfig;
+};
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
-typedef struct {
+struct _AppletData {
 	gint iIconOrder;
 	gint iSidTimer;
 	gint iNbAnimation;
 	gchar **cMonitoredDirectory;
 	GKeyFile *pKeyFile;
-} AppletData;
+};
 
 
 #endif

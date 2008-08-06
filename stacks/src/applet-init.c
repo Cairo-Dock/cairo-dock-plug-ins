@@ -17,11 +17,11 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-stacks.h"
 
 
-CD_APPLET_DEFINITION ("stacks", 1, 5, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("stacks", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
-CD_APPLET_INIT_BEGIN (erreur)
+CD_APPLET_INIT_BEGIN
 	cd_stacks_check_local();
 	cd_stacks_build_icons();
 	

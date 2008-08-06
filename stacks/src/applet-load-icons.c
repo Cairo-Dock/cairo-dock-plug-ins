@@ -36,8 +36,6 @@ void cd_stacks_build_icons (void) {
 			cDirectory = g_strdup_printf("%s/stacks", g_cCairoDockDataDir);
 		}
 		
-		//myData.cMonitoredDirectory[i] = g_strdup (cDirectory);
-		
 		if (! g_file_test (cDirectory, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE)) {
 			cd_warning ("Attention : no such directory (%s)", cDirectory);
 			i++;
@@ -323,7 +321,11 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cRawURI, Ic
 	else if (iEventType == CAIRO_DOCK_FILE_MODIFIED) { //L'icône a déja été rajouter au dock
 		cd_debug ("On a modifié un fichier");
 		Icon *pModifiedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
-		cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, (pModifiedIcon != NULL ? pModifiedIcon->iType : 35)); 
+		
+		if (pModifiedIcon != NULL) {
+			pModifiedIcon->cWorkingDirectory = NULL;
+			cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, (pModifiedIcon != NULL ? pModifiedIcon->iType : 35)); 
+		}
 		/*Le dock se chargera tout seul de mettre a jour l'icône
 		TODO fixer le bug qui fait planter le dock quand on télécharge un fichier avec FF dans un dossier surveillé.*/
 		if (!myConfig.bHiddenFiles && pModifiedIcon != NULL) { //On ne veut pas des fichiers cachés!
@@ -337,6 +339,7 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cRawURI, Ic
 		cd_debug ("On a retiré un fichier"); //TODO On a un petit problème avec les espaces ici.
 		Icon *pDeletedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
 		if (myDock && pDeletedIcon != NULL) {
+			pDeletedIcon->cWorkingDirectory = NULL;
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
 			cairo_dock_animate_icon (pDeletedIcon, myIcon->pSubDock, CAIRO_DOCK_BLINK, 2);
 			//Il faut attendre que l'animation se termine pour virer l'icône du sous-dock - 1.5sec est-ce suffisant?
