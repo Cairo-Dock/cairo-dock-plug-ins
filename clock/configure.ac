@@ -54,5 +54,6 @@ AC_CONFIG_FILES([Makefile
 		data/themes/tango/Makefile
 		data/themes/I_Clock/Makefile
 		data/themes/BlueSlim/Makefile
+		data/themes/AmoraSlim/Makefile
 		data/themes/zen/Makefile])
 AC_OUTPUT
