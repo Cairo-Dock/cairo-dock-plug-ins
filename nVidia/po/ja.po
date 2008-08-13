@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 18:59+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-06-18 22:28+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:79
+#: ../src/applet-draw.c:82
 msgid "GPU Name:"
 msgstr "GPU名 :"
 
-#: ../src/applet-draw.c:79
+#: ../src/applet-draw.c:82
 msgid "Video Ram:"
 msgstr "Video Ram:"
 
-#: ../src/applet-draw.c:79
+#: ../src/applet-draw.c:82
 msgid "Driver Version:"
 msgstr "Driver Version:"
 
-#: ../src/applet-draw.c:79 ../src/applet-draw.c:95
+#: ../src/applet-draw.c:82 ../src/applet-draw.c:98
 msgid "Core Temparature:"
 msgstr "コアの温度 :"
 
-#: ../src/applet-draw.c:84
+#: ../src/applet-draw.c:87
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
@@ -41,7 +41,7 @@ msgstr ""
 "'nvidia-settings' のバージョンが古すぎます。\n"
 "少なくとも 1.0.0 バージョンが必要です。"
 
-#: ../src/applet-draw.c:87
+#: ../src/applet-draw.c:90
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -53,11 +53,11 @@ msgstr ""
 "'nvidia-settings' がシステムにインストールされ、\n"
 "GPU の温度を監視するように設定されていますか？"
 
-#: ../src/applet-draw.c:95
+#: ../src/applet-draw.c:98
 msgid "Alert!"
 msgstr "警告！"
 
-#: ../src/applet-draw.c:95
+#: ../src/applet-draw.c:98
 msgid "passed alert temperature level"
 msgstr "警告温度レベル突破"
 

@@ -177,11 +177,12 @@ void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 	}
 	
 	cairo_save (pCairoContext);
-	cairo_dock_draw_frame (pCairoContext, g_iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->bHorizontalDock);
+	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, g_iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->bHorizontalDock);
 	
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (pDock->bDirectionUp ? pDock->iMaxIconHeight - fMargin : fLineWidth);
-	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY);
+	
+	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY, fDockOffsetX-fDeltaXTrapeze, fDockWidth+2*fDeltaXTrapeze);
 	
 	//\____________________ On dessine le cadre.
 	if (fLineWidth > 0)
@@ -190,6 +191,8 @@ void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 		cairo_set_source_rgba (pCairoContext, g_fLineColor[0], g_fLineColor[1], g_fLineColor[2], g_fLineColor[3]);
 		cairo_stroke (pCairoContext);
 	}
+	else
+		cairo_new_path (pCairoContext);
 	cairo_restore (pCairoContext);
 	
 	

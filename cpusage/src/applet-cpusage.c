@@ -1,3 +1,4 @@
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -53,48 +54,62 @@ void cd_cpusage_get_uptime (gchar **cUpTime, gchar **cActivityTime)
 
 void cd_cpusage_get_cpu_info (void)
 {
-	static char cContent[512+1];
-	
-	FILE *fd = fopen (CPUSAGE_PROC_INFO_PIPE, "r");
-	
-	if (fd == NULL)
+	gchar *cContent = NULL;
+	gsize length=0;
+	g_file_get_contents (CPUSAGE_PROC_INFO_PIPE, &cContent, &length, NULL);
+	if (cContent == NULL)
 	{
-		cd_warning ("can't open %s, assuming their is only 1 core", CPUSAGE_PROC_INFO_PIPE);
+		cd_warning ("cpusage : can't open %s, assuming their is only 1 CPU with 1 core", CPUSAGE_PROC_INFO_PIPE);
 		myData.iNbCPU = 1;
 	}
 	else
 	{
+		gchar *line = cContent;
 		gchar *str;
-		while (fgets (cContent, 512, fd) != NULL)
+		do
 		{
-			if (myData.cModelName == NULL && strncmp (cContent, "model name", 10) == 0)
+			str = NULL;
+			if (myData.cModelName == NULL && strncmp (line, "model name", 10) == 0)
 			{
-				str = strchr (cContent, ':');
+				str = strchr (line+10, ':');
 				if (str != NULL)
 				{
 					myData.cModelName = g_strdup (str + 2);  // on saute l'espace apres le ':'.
 				}
 			}
-			else if (myData.iFrequency == 0 && strncmp (cContent, "cpu MHz", 7) == 0)
+			else if (myData.iFrequency == 0 && strncmp (line, "cpu MHz", 7) == 0)
 			{
-				str = strchr (cContent, ':');
+				str = strchr (line+7, ':');
 				if (str != NULL)
 				{
-					myData.iFrequency = atoll (str + 2);  // on saute l'espace apres le ':'.
+					myData.iFrequency = atoi (str + 2);  // on saute l'espace apres le ':'.
 				}
 			}
-			else if (myData.iNbCPU == 0 && strncmp (cContent, "cpu cores", 9) == 0)
+			else if (strncmp (line, "processor", 9) == 0)
 			{
-				str = strchr (cContent, ':');
+				myData.iNbCPU ++;  // on a trouve un processeur, on rajoute +1 au cas ou l'info 'cpu cores' ne serait pas presente.
+			}
+			else if (strncmp (line, "cpu cores", 9) == 0)  /// myData.iNbCPU == 0 && 
+			{
+				str = strchr (line+9, ':');
 				if (str != NULL)
 				{
-					myData.iNbCPU = atoll (str + 2);  // on saute l'espace apres le ':'.
+					myData.iNbCPU += atoi (str + 2) - 1;  // on saute l'espace apres le ':'.  // -1 car la ligne 'processor' y est toujours et a donc deja ete comptee.
 				}
 			}
+			
+			if (str != NULL)
+				line = str;  // optimisation : on se place au milieu de la ligne.
+			
+			str = strchr (line, '\n');
+			if (str == NULL)
+				break ;  // on cherche tous les processeurs.
+			line = str + 1;
 		}
+		while (TRUE);
 	}
 	myData.iNbCPU = MAX (myData.iNbCPU, 1);
-	fclose (fd);
+	g_free (cContent);
 }
 
 
@@ -105,7 +120,7 @@ void cd_cpusage_get_cpu_info (void)
 	while (*tmp == ' ') \
 		tmp ++; \
 	if (*tmp == '\0') { \
-		cd_warning ("problem when reading pipe"); \
+		cd_warning ("cpusage : problem when reading pipe"); \
 		myData.bAcquisitionOK = FALSE; \
 		return ; \
 	}
@@ -121,7 +136,7 @@ void cd_cpusage_read_data (CairoDockModuleInstance *myApplet)
 	FILE *fd = fopen (CPUSAGE_DATA_PIPE, "r");
 	if (fd == NULL)
 	{
-		cd_warning ("can't open %s", CPUSAGE_DATA_PIPE);
+		cd_warning ("cpusage : can't open %s", CPUSAGE_DATA_PIPE);
 		myData.bAcquisitionOK = FALSE;
 		return ;
 	}
@@ -130,7 +145,7 @@ void cd_cpusage_read_data (CairoDockModuleInstance *myApplet)
 	fclose (fd);
 	if (tmp == NULL)
 	{
-		cd_warning ("can't read %s", CPUSAGE_DATA_PIPE);
+		cd_warning ("cpusage : can't read %s", CPUSAGE_DATA_PIPE);
 		myData.bAcquisitionOK = FALSE;
 		return ;
 	}
@@ -203,7 +218,10 @@ gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 			{
 				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				{
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myData.cpu_usage < 10 ? "%.1f%%" : "%.0f%%"), myData.cpu_usage)
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myDesklet ?
+							(myData.cpu_usage < 10 ? "CPU:%.1f%%" : "CPU:%.0f%%") :
+							(myData.cpu_usage < 10 ? "%.1f%%" : "%.0f%%")),
+						myData.cpu_usage)
 				}
 				else
 				{
@@ -224,7 +242,7 @@ gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 	while (*tmp != ' ' && *tmp != '\0') \
 		tmp ++; \
 	if (*tmp == '\0') { \
-		cd_warning ("problem when reading pipe"); \
+		cd_warning ("cpusage : problem when reading pipe"); \
 		break ; \
 	} \
 	while (*tmp == ' ') \
@@ -241,7 +259,7 @@ void cd_cpusage_free_process (CDProcess *pProcess)
 
 void cd_cpusage_get_process_times (double fTime, double fTimeElapsed)
 {
-	static gchar cFilePathBuffer[20+1];  // /proc/12345/stat
+	static gchar cFilePathBuffer[20+1];  // /proc/12345/stat + 4octets de marge.
 	static gchar cContent[512+1];
 	
 	cd_debug ("%s (%.2f)", __func__, fTimeElapsed);
@@ -249,7 +267,7 @@ void cd_cpusage_get_process_times (double fTime, double fTimeElapsed)
 	GDir *dir = g_dir_open (CD_CPUSAGE_PROC_FS, 0, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("cpusage : %s", erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
@@ -282,7 +300,7 @@ void cd_cpusage_get_process_times (double fTime, double fTimeElapsed)
 		
 		if (read (pipe, cContent, sizeof (cContent)) <= 0)
 		{
-			cd_warning ("can't read %s", cFilePathBuffer);
+			cd_warning ("cpusage : can't read %s", cFilePathBuffer);
 			close (pipe);
 			continue;
 		}

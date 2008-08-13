@@ -163,7 +163,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 						0.,
 						icon->fWidth * icon->fScale + my_diapo_simple_iconGapX,
 						0.);
-					cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_PAD);
+					cairo_pattern_set_extend (pGradationPattern, icon->bPointed ? CAIRO_EXTEND_PAD : CAIRO_EXTEND_NONE);
 					cairo_pattern_add_color_stop_rgba (pGradationPattern,
 						0.,
 						0.,
@@ -171,7 +171,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 						0.,
 						fAlpha);
 					cairo_pattern_add_color_stop_rgba (pGradationPattern,
-						0.7,
+						0.75,
 						0.,
 						0.,
 						0.,

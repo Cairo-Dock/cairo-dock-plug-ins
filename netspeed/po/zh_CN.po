@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 18:59+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-07-08 13:47+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -46,22 +46,23 @@ msgid ""
 msgstr "这是由parAdOxxx_ZeRo为Cairo-Dock编写的netspeed小应用程序"
 
 #: ../src/applet-notifications.c:19
-#, c-format
-msgid ""
-"Total amount of data :\n"
-"  downloaded : %.2f%s\n"
-"  uploaded : %.2f%s"
+msgid "Total amount of data"
 msgstr ""
-"数据总量：\n"
-"  下载：%.2f%s\n"
-"  上传：%.2f%s"
 
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:19
+msgid "downloaded"
+msgstr ""
+
+#: ../src/applet-notifications.c:19
+msgid "uploaded"
+msgstr ""
+
+#: ../src/applet-notifications.c:23
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "网卡'%s'不存在或不可用"
 
-#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:34
 msgid "Re-check interface"
 msgstr "重新检查网卡"
 
@@ -106,7 +107,10 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "桌面小程序尺寸（宽x高）："
 
 #: ../data/messages:19
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+#, fuzzy
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
 msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
 
 #: ../data/messages:21
@@ -191,6 +195,15 @@ msgstr "以秒为单位"
 #: ../data/messages:57
 msgid "Delay between 2 measures :"
 msgstr "两次取值间歇："
+
+#~ msgid ""
+#~ "Total amount of data :\n"
+#~ "  downloaded : %.2f%s\n"
+#~ "  uploaded : %.2f%s"
+#~ msgstr ""
+#~ "数据总量：\n"
+#~ "  下载：%.2f%s\n"
+#~ "  上传：%.2f%s"
 
 #~ msgid "Module"
 #~ msgstr "Modulo"

@@ -20,14 +20,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");
 
 	//On charge le theme :
-	myConfig.cThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "turbo-night");
-	cd_message("gauge (netspeed) : Theme(%s)",myConfig.cThemePath);
+	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "turbo-night");
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
-	g_free (myConfig.cThemePath);
 	g_free (myConfig.cInterface);
 CD_APPLET_RESET_CONFIG_END
 

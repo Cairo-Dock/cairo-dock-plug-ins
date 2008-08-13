@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 19:04+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-06-25 16:23+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -23,15 +23,15 @@ msgstr ""
 "Questa è l'applet Slider\n"
 " scritta da ChAnGFu per Cairo-Dock"
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:124
 msgid "Play"
 msgstr "Play"
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:124
 msgid "Pause"
 msgstr "Pausa"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:127
 msgid "Open current image"
 msgstr "Aprire l'immagine attuale"
 
@@ -135,124 +135,112 @@ msgid "Directory of the images :"
 msgstr "Cartella delle immagini"
 
 #: ../data/messages:43
-msgid "Not yet implemented."
-msgstr "Non ancora implementati."
-
-#: ../data/messages:45
 msgid "Scan in sub direcotries ?"
 msgstr "Cercare nelle sotto-cartelle ?"
 
-#: ../data/messages:47
+#: ../data/messages:45
 msgid "Randomly browse files ?"
 msgstr "Mostrare i files casualmente ?"
 
-#: ../data/messages:49
-msgid "It is currently in a testing phase."
-msgstr "Attualmente in fase di test."
-
-#: ../data/messages:51
-msgid "Use a thread to load heavy images ?"
-msgstr "Utilizzare un thread per caricare immagini pesanti ?"
-
-#: ../data/messages:53
+#: ../data/messages:47
 msgid "Behaviour"
 msgstr "Comportamento"
 
-#: ../data/messages:55
+#: ../data/messages:49
 msgid "in seconds."
 msgstr "in secondi"
 
-#: ../data/messages:57
+#: ../data/messages:51
 msgid "Sliding delay :"
 msgstr "Ritardo nel cambiamento :"
 
-#: ../data/messages:59
+#: ../data/messages:53
 msgid "Action when applet is clicked :"
 msgstr "Azioni al click sull'applet :"
 
-#: ../data/messages:61
+#: ../data/messages:55
 msgid "play/pause"
 msgstr "play/pause"
 
-#: ../data/messages:63
+#: ../data/messages:57
 msgid "open image"
 msgstr "apri l'immagine"
 
-#: ../data/messages:65
+#: ../data/messages:59
 msgid "Effect while changing image :"
 msgstr "Effetti al cambiamento d'immagine :"
 
-#: ../data/messages:67
+#: ../data/messages:61
 msgid "none"
 msgstr "nessuno"
 
-#: ../data/messages:69
+#: ../data/messages:63
 msgid "fade"
 msgstr "ombra"
 
-#: ../data/messages:71
+#: ../data/messages:65
 msgid "blank fade"
 msgstr "flash"
 
-#: ../data/messages:73
+#: ../data/messages:67
 msgid "fade in out"
 msgstr "ombra progressiva"
 
-#: ../data/messages:75
+#: ../data/messages:69
 msgid "side kick"
 msgstr "colpo di lato"
 
-#: ../data/messages:77
+#: ../data/messages:71
 msgid "diaporama"
 msgstr "diaporama"
 
-#: ../data/messages:79
+#: ../data/messages:73
 msgid "grow up"
 msgstr "ingrandire"
 
-#: ../data/messages:81
+#: ../data/messages:75
 msgid "shrink down"
 msgstr "diminuire "
 
-#: ../data/messages:83
+#: ../data/messages:77
 msgid "random"
 msgstr "casuale"
 
-#: ../data/messages:85
+#: ../data/messages:79
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:87
+#: ../data/messages:81
 msgid "Gives a better image rendering."
 msgstr "Migliora il rendering dell'immagine."
 
-#: ../data/messages:89
+#: ../data/messages:83
 msgid "Keep widht/height ratio ?"
 msgstr "Conservare il rapporto tra larghezza e altezza ?"
 
-#: ../data/messages:91
+#: ../data/messages:85
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Se l'immagine è troppo piccola sarà ingrandita."
 
-#: ../data/messages:93
+#: ../data/messages:87
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Forzare l'immagine per riempire l'icona/deklet ?"
 
-#: ../data/messages:95
+#: ../data/messages:89
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Mettete il valore a 0 della trasparenza per non avere sfondo."
 
-#: ../data/messages:97
+#: ../data/messages:91
 msgid "Choose a background color :"
 msgstr "Scegliere il colore di sfondo :"
 
-#: ../data/messages:99
+#: ../data/messages:93
 msgid "Decorations"
 msgstr "Decorazioni"
 
-#: ../data/messages:101
+#: ../data/messages:95
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
@@ -260,27 +248,27 @@ msgstr ""
 "Se scegliete 'personalizzato', potrete definire la vostra propria "
 "decorazione; lasciate vuoto per non averne."
 
-#: ../data/messages:103
+#: ../data/messages:97
 msgid "Choose a background and foreground decoration :"
 msgstr "Scegleite una decorazione di sfondo e di primo piano :"
 
-#: ../data/messages:105
+#: ../data/messages:99
 msgid "Personnal"
 msgstr "Personalizzato"
 
-#: ../data/messages:107
+#: ../data/messages:101
 msgid "frame with reflects"
 msgstr "Cornice con riflessi"
 
-#: ../data/messages:109
+#: ../data/messages:103
 msgid "scotch"
 msgstr "Scotch"
 
-#: ../data/messages:111
+#: ../data/messages:105
 msgid "frame with scotch"
 msgstr "Cornice con scotch"
 
-#: ../data/messages:113
+#: ../data/messages:107
 msgid ""
 "It's an image that will be displayed below the slide, like a frame for "
 "exemple."
@@ -288,36 +276,36 @@ msgstr ""
 "E' un'immagine che sarà mostrata sotto la slide, come una cornice, per "
 "esempio."
 
-#: ../data/messages:115
+#: ../data/messages:109
 msgid "Background image :"
 msgstr "Immagine di sfondo :"
 
-#: ../data/messages:117
+#: ../data/messages:111
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:119 ../data/messages:123 ../data/messages:127
-#: ../data/messages:131
+#: ../data/messages:113 ../data/messages:117 ../data/messages:121
+#: ../data/messages:125
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr "E' la larghezza del lato sinistro della vostra cornice, in pixels."
 
-#: ../data/messages:121
+#: ../data/messages:115
 msgid "Left offset :"
 msgstr "Spostare a sinistra :"
 
-#: ../data/messages:125
+#: ../data/messages:119
 msgid "Top offset :"
 msgstr "Spostare in alto :"
 
-#: ../data/messages:129
+#: ../data/messages:123
 msgid "Right offset :"
 msgstr "Spostare a destra :"
 
-#: ../data/messages:133
+#: ../data/messages:127
 msgid "Bottom offset :"
 msgstr "Spostare in basso :"
 
-#: ../data/messages:135
+#: ../data/messages:129
 msgid ""
 "It's an image that will be displayed above the slide, like a reflect for "
 "exemple."
@@ -325,13 +313,22 @@ msgstr ""
 "E' un'immagine che sarà mostrata sopra la slide, come un riflesso, per "
 "esempio."
 
-#: ../data/messages:137
+#: ../data/messages:131
 msgid "Reflection image :"
 msgstr "Immagine del riflesso :"
 
-#: ../data/messages:139
+#: ../data/messages:133
 msgid "Reflection tansparency :"
 msgstr "Trasparenza del riflesso :"
+
+#~ msgid "Not yet implemented."
+#~ msgstr "Non ancora implementati."
+
+#~ msgid "It is currently in a testing phase."
+#~ msgstr "Attualmente in fase di test."
+
+#~ msgid "Use a thread to load heavy images ?"
+#~ msgstr "Utilizzare un thread per caricare immagini pesanti ?"
 
 #~ msgid "Module"
 #~ msgstr "Modulo"

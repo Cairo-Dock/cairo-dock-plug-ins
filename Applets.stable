@@ -17,19 +17,20 @@ weather
 terminal
 Cairo-Penguin
 showDesktop
-###Stable as far as we know, may still be under development :
 rhythmbox
 xmms
-powermanager
-wifi
 compiz-icon
-systray
-###Last addition of v1.6.0, should work for most of people :
 cpusage
 rame
 netspeed
-nVidia
+###Stable as far as we know :
+wifi
 tomboy
-###Last addition of v1.6.1 :
+systray
+nVidia
+###Stable but still under development :
+powermanager
 switcher
+###Last addition of v1.6.2 :
+slider
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.

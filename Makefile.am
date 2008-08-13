@@ -20,12 +20,35 @@ if WITH_TERMINAL
 terminal_dir=terminal
 endif
 
+if WITH_POWERMANAGER
+powermanager_dir=powermanager
+endif
+
+if WITH_WIFI
+wifi_dir=wifi
+endif
+
+if WITH_TOMBOY
+tomboy_dir=tomboy
+endif
+
+if WITH_RHYTHMBOX
+rhythmbox_dir=rhythmbox
+endif
+
+if WITH_NVIDIA
+nvidia_dir=nVidia
+endif
+
+if WITH_COMPIZ_ICON
+compiz_icon_dir=compiz-icon
+endif
 
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
 	Cairo-Penguin\
 	clock\
-	compiz-icon\
+	${compiz_icon_dir}\
 	cpusage\
 	Dbus\
 	dustbin\
@@ -33,20 +56,20 @@ SUBDIRS = . po\
 	${gnome_old_dir}\
 	logout\
 	netspeed\
-	nVidia\
-	powermanager\
+	${nvidia_dir}\
+	${powermanager_dir}\
 	rame\
 	rendering\
-	rhythmbox\
+	${rhythmbox_dir}\
 	shortcuts\
 	showDesklets\
 	showDesktop\
 	switcher\
 	systray\
 	${terminal_dir}\
-	tomboy\
+	${tomboy_dir}\
 	weather\
-	wifi\
+	${wifi_dir}\
 	${xfce_dir}\
 	Xgamma\
 	xmms

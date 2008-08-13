@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 19:04+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-05-19 21:50+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -23,15 +23,15 @@ msgstr ""
 "これは ChAnGFu によって製作された \n"
 "Cairo-Dock 用の Slider アプレットです。"
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:124
 msgid "Play"
 msgstr "再生"
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:124
 msgid "Pause"
 msgstr "停止"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:127
 msgid "Open current image"
 msgstr "現在の画像を開く"
 
@@ -135,198 +135,189 @@ msgid "Directory of the images :"
 msgstr "画像のディレクトリ :"
 
 #: ../data/messages:43
-msgid "Not yet implemented."
-msgstr "未だ実装していません"
-
-#: ../data/messages:45
 msgid "Scan in sub direcotries ?"
 msgstr "サブ・ディレクトリもスキャン？"
 
-#: ../data/messages:47
+#: ../data/messages:45
 msgid "Randomly browse files ?"
 msgstr "ファイルをランダムに閲覧？"
 
-#: ../data/messages:49
-msgid "It is currently in a testing phase."
-msgstr ""
-
-#: ../data/messages:51
-msgid "Use a thread to load heavy images ?"
-msgstr ""
-
-#: ../data/messages:53
+#: ../data/messages:47
 msgid "Behaviour"
 msgstr "動作"
 
-#: ../data/messages:55
+#: ../data/messages:49
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:57
+#: ../data/messages:51
 msgid "Sliding delay :"
 msgstr "スライドの遅延時間 :"
 
-#: ../data/messages:59
+#: ../data/messages:53
 msgid "Action when applet is clicked :"
 msgstr "アプレットをクリックしたときのアクション :"
 
-#: ../data/messages:61
+#: ../data/messages:55
 msgid "play/pause"
 msgstr "再生/停止"
 
-#: ../data/messages:63
+#: ../data/messages:57
 msgid "open image"
 msgstr "画像を開く"
 
-#: ../data/messages:65
+#: ../data/messages:59
 msgid "Effect while changing image :"
 msgstr "画像切り替え中の効果"
 
-#: ../data/messages:67
+#: ../data/messages:61
 msgid "none"
 msgstr "なし"
 
-#: ../data/messages:69
+#: ../data/messages:63
 msgid "fade"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:65
 msgid "blank fade"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:67
 msgid "fade in out"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:69
 msgid "side kick"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:71
 msgid "diaporama"
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:73
 msgid "grow up"
 msgstr ""
 
-#: ../data/messages:81
+#: ../data/messages:75
 msgid "shrink down"
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:77
 msgid "random"
 msgstr "ランダム"
 
-#: ../data/messages:85
+#: ../data/messages:79
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:87
+#: ../data/messages:81
 msgid "Gives a better image rendering."
 msgstr "画像の描画をより良くします"
 
-#: ../data/messages:89
+#: ../data/messages:83
 msgid "Keep widht/height ratio ?"
 msgstr "縦横比を保つ？"
 
-#: ../data/messages:91
+#: ../data/messages:85
 msgid "If the image is too small, it will be zoomed in."
 msgstr "画像が小さすぎる場合にズームインします。"
 
-#: ../data/messages:93
+#: ../data/messages:87
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "画像がアイコン/デスクレットを埋めるように引き伸ばす？"
 
-#: ../data/messages:95
+#: ../data/messages:89
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
 "背景を持たせたくない場合は、透明度のチャンネルを 0 に設定してください。"
 
-#: ../data/messages:97
+#: ../data/messages:91
 msgid "Choose a background color :"
 msgstr "背景色の選択 :"
 
-#: ../data/messages:99
+#: ../data/messages:93
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:95
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:97
 msgid "Choose a background and foreground decoration :"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:99
 msgid "Personnal"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:101
 msgid "frame with reflects"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:103
 msgid "scotch"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:105
 msgid "frame with scotch"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:107
 msgid ""
 "It's an image that will be displayed below the slide, like a frame for "
 "exemple."
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:109
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:117
+#: ../data/messages:111
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:119 ../data/messages:123 ../data/messages:127
-#: ../data/messages:131
+#: ../data/messages:113 ../data/messages:117 ../data/messages:121
+#: ../data/messages:125
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:115
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:119
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:123
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:127
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:129
 msgid ""
 "It's an image that will be displayed above the slide, like a reflect for "
 "exemple."
 msgstr ""
 
-#: ../data/messages:137
+#: ../data/messages:131
 msgid "Reflection image :"
 msgstr "反射の画像 :"
 
-#: ../data/messages:139
+#: ../data/messages:133
 msgid "Reflection tansparency :"
 msgstr "反射の透明度 :"
+
+#~ msgid "Not yet implemented."
+#~ msgstr "未だ実装していません"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"

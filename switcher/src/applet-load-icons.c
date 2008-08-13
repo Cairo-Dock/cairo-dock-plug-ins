@@ -42,7 +42,7 @@ static GList * _load_icons (void)
 		pIcon->fHeightFactor = 1.;
 		pIcon->acCommand = g_strdup ("none");
 		pIcon->cParentDockName = g_strdup (myIcon->acName);
-		pIcon->acFileName = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default.svg");
+		pIcon->acFileName = (myConfig.cDefaultIcon != NULL ? myConfig.cDefaultIcon : g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default.svg"));
 		
 		pIconList = g_list_append (pIconList, pIcon);
 	}
@@ -66,7 +66,7 @@ void cd_switcher_load_icons (void)
 		}
 		cd_switcher_load_default_map_surface ();
 		
-		cd_message ("SWITCHER : chargement de l'icone Switcher sans sous dock");
+		cd_message ("SWITCHER : chargement de l'icone Switcher sans sous-dock");
 	}
 	else
 	{

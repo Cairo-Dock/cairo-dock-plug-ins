@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 19:00+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,7 +83,10 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "桌面小应用程序位置(x ; y)："
 
 #: ../data/messages:21
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+#, fuzzy
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
 msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
 
 #: ../data/messages:23

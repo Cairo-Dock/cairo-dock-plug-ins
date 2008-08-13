@@ -23,7 +23,7 @@ typedef enum {
 struct _AppletConfig {
 	nVidiaTemp iDrawTemp;
 	gchar *cBrokenUserImage;
-	gchar *cGThemePath;
+	const gchar *cGThemePath;
 	gchar *defaultTitle;
 	gchar *cSoundPath;
 	gint iCheckInterval;

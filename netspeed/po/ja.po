@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 18:59+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-06-18 22:30+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -48,22 +48,23 @@ msgstr ""
 "Cairo-Dock 用の netspeed アプレットです。"
 
 #: ../src/applet-notifications.c:19
-#, c-format
-msgid ""
-"Total amount of data :\n"
-"  downloaded : %.2f%s\n"
-"  uploaded : %.2f%s"
+msgid "Total amount of data"
 msgstr ""
-"データの総量 :\n"
-"  ダウンロード : %.2f%s\n"
-"  アップロード : %.2f%s"
 
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:19
+msgid "downloaded"
+msgstr ""
+
+#: ../src/applet-notifications.c:19
+msgid "uploaded"
+msgstr ""
+
+#: ../src/applet-notifications.c:23
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "インターフェイス '%s' は存在しないか、読み込みできないようです。"
 
-#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:34
 msgid "Re-check interface"
 msgstr "インターフェイスの再チェック"
 
@@ -108,7 +109,10 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:19
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+#, fuzzy
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
 msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。"
@@ -197,6 +201,15 @@ msgstr "秒単位"
 #: ../data/messages:57
 msgid "Delay between 2 measures :"
 msgstr "計測の間隔時間 :"
+
+#~ msgid ""
+#~ "Total amount of data :\n"
+#~ "  downloaded : %.2f%s\n"
+#~ "  uploaded : %.2f%s"
+#~ msgstr ""
+#~ "データの総量 :\n"
+#~ "  ダウンロード : %.2f%s\n"
+#~ "  アップロード : %.2f%s"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"

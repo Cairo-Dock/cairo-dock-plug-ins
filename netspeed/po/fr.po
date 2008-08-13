@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 18:59+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-06-21 20:08+0200\n"
 "Last-Translator: Guillaume <gu_barthe@yahoo.fr>\n"
 "Language-Team: français <fr@li.org>\n"
@@ -52,22 +52,23 @@ msgstr ""
 " écrite par parAdOxxx_ZeRo pour Cairo-Dock"
 
 #: ../src/applet-notifications.c:19
-#, c-format
-msgid ""
-"Total amount of data :\n"
-"  downloaded : %.2f%s\n"
-"  uploaded : %.2f%s"
+msgid "Total amount of data"
 msgstr ""
-"Données totales :\n"
-"  téléchargées : %.2f%s\n"
-"  envoyées : %2f%s"
 
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:19
+msgid "downloaded"
+msgstr ""
+
+#: ../src/applet-notifications.c:19
+msgid "uploaded"
+msgstr ""
+
+#: ../src/applet-notifications.c:23
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "L'interface '%s' semble ne pas exister ou n'est pas lisible"
 
-#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:34
 msgid "Re-check interface"
 msgstr "Revérifier l'interface"
 
@@ -112,7 +113,10 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:19
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+#, fuzzy
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
@@ -201,3 +205,12 @@ msgstr "en secondes."
 #: ../data/messages:57
 msgid "Delay between 2 measures :"
 msgstr "Intervalle entre 2 mesures :"
+
+#~ msgid ""
+#~ "Total amount of data :\n"
+#~ "  downloaded : %.2f%s\n"
+#~ "  uploaded : %.2f%s"
+#~ msgstr ""
+#~ "Données totales :\n"
+#~ "  téléchargées : %.2f%s\n"
+#~ "  envoyées : %2f%s"

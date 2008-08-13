@@ -16,8 +16,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowSwap =  CD_CONFIG_GET_BOOLEAN ("Configuration", "show swap");
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");
 	//On charge le theme :
-	myConfig.cThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "turbo-night-dual");
-	cd_message("gauge (rame) : Theme(%s)\n",myConfig.cThemePath);
+	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "turbo-night-dual");
+	cd_message("gauge (rame) : Theme(%s)\n",myConfig.cGThemePath);
 	
 	myConfig.iNbDisplayedProcesses = CD_CONFIG_GET_INTEGER ("Configuration", "top");
 	myConfig.bTopInPercent = CD_CONFIG_GET_BOOLEAN ("Configuration", "top in percent");
@@ -31,7 +31,6 @@ CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
-	g_free (myConfig.cThemePath);
 	cairo_dock_free_label_description (myConfig.pTopTextDescription);
 CD_APPLET_RESET_CONFIG_END
 

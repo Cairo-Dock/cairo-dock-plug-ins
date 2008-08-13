@@ -9,7 +9,7 @@ struct _AppletConfig {
 	gint iCheckInterval;
 	
 	CairoDockInfoDisplay iInfoDisplay;
-	gchar *cThemePath;
+	const gchar *cGThemePath;
 	gboolean gaugeIcon;
 	
 	gint iNbDisplayedProcesses;

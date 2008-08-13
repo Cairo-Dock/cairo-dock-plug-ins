@@ -4,9 +4,9 @@
 [Icon]
 #F[Desired icon size for this applet]
 frame1 =
-#i width :
+#i+ width :
 width = 32
-#i height :
+#i+ height :
 height = 32
 
 #F
@@ -24,10 +24,10 @@ icon=
 #[gtk-convert]
 [Desklet]
 
-#i[48;256] Desklet's dimension (width x height) :
+#i+[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
-#i[48;256] ...
+#i+[48;256] ...
 height=92
 
 #i Desklet's position (x ; y) :
@@ -55,16 +55,16 @@ use size=
 #[gtk-preferences]
 [Configuration]
 
-#R1[] Choose one of the available themes :/
+#R+1[] Choose one of the available themes :/
 theme = Default
 
 #F[Theme overriding] 
 frame2 =
 
-#S Name of the file for the "no mail" image :
+#S+ Name of the file for the "no mail" image :
 no mail image = 
 
-#S Name of the file for the "has mail" image :
+#S+ Name of the file for the "has mail" image :
 has mail image = 
 
 #u Name of the file for the "new mail" sound :

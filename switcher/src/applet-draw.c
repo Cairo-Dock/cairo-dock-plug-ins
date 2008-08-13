@@ -283,17 +283,17 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 		cairo_paint(myDrawContext);
 		cairo_restore (myDrawContext);
 	}
-	else
+	else if (myIcon->acFileName == NULL)
 	{
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
 	}
 
-	if (pSurface == NULL)
+	/*if (pSurface == NULL)
 	{
 		pSurface = myData.pDefaultMapSurface;
 		//fZoomX = (double) myData.switcher.fOneViewportWidth / (myIcon->fWidth * fMaxScale);
 		//fZoomY = (double) myData.switcher.fOneViewportHeight / (myIcon->fHeight * fMaxScale);
-	}
+	}*/
 		
 	if (myConfig.bDrawWindows)
 	{

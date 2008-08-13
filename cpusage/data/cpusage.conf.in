@@ -4,9 +4,9 @@
 [Icon]
 #F[Desired icon size for this applet]
 fcpusage1 = 
-#i width :
+#i+ width :
 width = 32
-#i height :
+#i+ height :
 height = 32
 #F
 fcpusage1_ = 
@@ -22,10 +22,10 @@ icon=
 
 #[gtk-convert]
 [Desklet]
-#i[48;256] Desklet's dimension (width x height) :
+#i+[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=256
-#i[48;256] ...
+#i+[48;256] ...
 height=256
 
 #i Desklet's position (x ; y) :
@@ -55,7 +55,7 @@ use size=
 #F[Display;gtk-dialog-info]
 frame_disp=
 
-#R[turbo-night-fuel] List of available themes for the analogic display :/
+#R+[turbo-night-fuel] List of available themes for the analogic display :/
 theme = turbo-night-fuel
 
 #r[No;On icon;On label] Display CPU usage values :

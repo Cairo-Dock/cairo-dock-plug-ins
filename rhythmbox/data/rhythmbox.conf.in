@@ -5,9 +5,9 @@
 
 #F[Desired icon size for this applet]
 frame1 = 
-#i width :
+#i+ width :
 width = 48
-#i height :
+#i+ height :
 height = 48
 #F
 frame1_fin = 
@@ -24,10 +24,10 @@ order=
 #[gtk-convert]
 [Desklet]
 
-#i[48;512] Desklet's dimension (width x height) :
+#i+[48;512] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
-#i[48;512] ...
+#i+[48;512] ...
 height=92
 
 #i Desklet's position (x ; y) :
@@ -64,7 +64,7 @@ time_dialogs=3000
 #F[Behaviour;gtk-execute]
 frame_anim=
 
-#r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
+#r+[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
 change_animation=5
 
 #b Steal the rhythmbox's icon in taskbar ?
@@ -84,46 +84,46 @@ quick-info_type=1
 #v
 sep_deco =
 
-#r[Personnal;Extended 3D mode;CD box;frame with reflects;scotch;frame with scotch] Choose a decoration for the desklet mode :
+#r+[Personnal;Extended 3D mode;CD box;frame with reflects;scotch;frame with scotch] Choose a decoration for the desklet mode :
 #{If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration.}
 deklet decoration = 3
 
-#S Background image :
+#S+ Background image :
 #{It's an image that will be displayed below the cover, like a frame for exemple.}
 frame =
-#e[0;1] Background tansparency :
+#e+[0;1] Background tansparency :
 frame alpha = 1
-#i Left offset :
+#i+ Left offset :
 #{It's typically the width of the left side of your frame, in pixels.}
 left offset = 0
-#i Top offset :
+#i+ Top offset :
 top offset = 0
-#i Right offset :
+#i+ Right offset :
 right offset = 0
-#i Bottom offset :
+#i+ Bottom offset :
 bottom offset = 0
-#S Reflection image :
+#S+ Reflection image :
 #{It's an image that will be displayed above the cover, like a reflect for exemple.}
 reflect =
-#e[0;1] Reflection tansparency :
+#e+[0;1] Reflection tansparency :
 reflect alpha = 1
 
 
 #X[Personnalisation;gtk-info]
 frame_app =
 
-#S Name of an image for the 'default' icon :
+#S+ Name of an image for the 'default' icon :
 #{Let t empty to use the default icon.}
 default icon = 
-#S Name of an image for the 'play' icon :
+#S+ Name of an image for the 'play' icon :
 #{Let t empty to use the default icon.}
 play icon = 
-#S Name of an image for the 'stop' icon :
+#S+ Name of an image for the 'stop' icon :
 #{Let t empty to use the default icon.}
 stop icon = 
-#S Name of an image for the 'pause' icon :
+#S+ Name of an image for the 'pause' icon :
 #{Let t empty to use the default icon.}
 pause icon = 
-#S Name of an image for the 'broken' icon :
+#S+ Name of an image for the 'broken' icon :
 #{Let t empty to use the default icon.}
 broken icon = 

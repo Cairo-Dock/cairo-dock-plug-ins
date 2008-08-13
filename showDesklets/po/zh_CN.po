@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 18:59+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-07-09 15:55+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -41,27 +41,31 @@ msgstr "高："
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "显现于dock之上的图标标签名称："
 
-#: ../data/messages:11
+#: ../data/messages:11 ../data/messages:15
+msgid "Let empty to use the default one."
+msgstr ""
+
+#: ../data/messages:13
 msgid "Image name to show desklets :"
 msgstr "显示桌面小应用的图片名称："
 
-#: ../data/messages:13
+#: ../data/messages:17
 msgid "Image name to hide desklets :"
 msgstr "隐藏桌面小应用的图片名称："
 
-#: ../data/messages:15
+#: ../data/messages:19
 msgid "Name of the dock it belongs to:"
 msgstr "归属于dock的名称："
 
-#: ../data/messages:17
+#: ../data/messages:21
 msgid "Configuration"
 msgstr "设置"
 
-#: ../data/messages:19
+#: ../data/messages:23
 msgid "Show/hide desklets that are on the widget layer too ?"
 msgstr "同时显示/隐藏在桌面工具层的桌面小应用"
 
-#: ../data/messages:21
+#: ../data/messages:25
 msgid "Shortkey to show/hide the desklets :"
 msgstr "用于显示/隐藏桌面小应用的快捷键"
 

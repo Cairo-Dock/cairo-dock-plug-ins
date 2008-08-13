@@ -4,9 +4,9 @@
 [Icon]
 #F[Desired icon size for this applet]
 frame1 = 
-#i width :
+#i+ width :
 width = 32
-#i height :
+#i+ height :
 height = 32
 
 #F
@@ -24,14 +24,14 @@ icon=
 #[gtk-convert]
 [Desklet]
 
-#i[48;256] Desklet's dimension (width x height) :
+#i+[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
-#i[48;256] ...
+#i+[48;256] ...
 height=92
 
 #i Desklet's position (x ; y) :
-#{Depending on your WindowManager, you can move it with ALT + left_click}
+#{Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen}
 x position=0
 #i ...
 y position=0
@@ -89,17 +89,17 @@ frame_disp =
 #r[No;On label;On icon] Display volume :
 display volume = 0
 
-#r[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to volume :
+#r+[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to volume :
 effect = 0
 
-#S Default icon :
+#S+ Default icon :
 #{Let empty to use the default one.}
 default icon = 
 
-#S Broken icon :
+#S+ Broken icon :
 #{Let empty to use the default one.}
 broken icon = 
 
-#S Mute icon :
+#S+ Mute icon :
 #{Let empty to use the default one.}
 mute icon = 

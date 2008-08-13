@@ -4,9 +4,9 @@
 [Icon]
 #F[Desired icon size for this applet]
 frame1 = 
-#i width :
+#i+ width :
 width = 32
-#i height :
+#i+ height :
 height = 32
 
 #F
@@ -22,10 +22,10 @@ order=
 #[gtk-convert]
 [Desklet]
 
-#i[48;256] Desklet's dimension (width x height) :
+#i+[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
-#i[48;256] ...
+#i+[48;256] ...
 height=92
 
 #i Desklet's position (x ; y) :
@@ -100,33 +100,33 @@ system decorator =
 
 #F
 frame_sub=
-#n Name of the view used for the sub-dock :
+#n+ Name of the view used for the sub-dock :
 #{Let it empty to use default sub-dock view.}/
 renderer = 
 
 #F[Images;gtk-dialog-info]
 frame_img = 
-#S Name of an image for the 'default' icon :
+#S+ Name of an image for the 'default' icon :
 #{Let t empty to use the default icon.}
 default icon = 
-#S Name of an image for the 'broken' icon :
+#S+ Name of an image for the 'broken' icon :
 #{Let t empty to use the default icon.}
 broken icon = 
-#S Name of an image for the 'other wm' icon :
+#S+ Name of an image for the 'other wm' icon :
 #{Let t empty to use the default icon.}
 other icon = 
-#S Name of an image for the 'setting' icon :
+#S+ Name of an image for the 'setting' icon :
 #{Let t empty to use the default icon.}
 setting icon = 
-#S Name of an image for the 'emerald' icon :
+#S+ Name of an image for the 'emerald' icon :
 #{Let t empty to use the default icon.}
 emerald icon = 
-#S Name of an image for the 'reload' icon :
+#S+ Name of an image for the 'reload' icon :
 #{Let t empty to use the default icon.}
 reload icon = 
-#S Name of an image for the 'exposition' icon :
+#S+ Name of an image for the 'exposition' icon :
 #{Let t empty to use the default icon.}
 expo icon = 
-#S Name of an image for the 'widget layer' icon :
+#S+ Name of an image for the 'widget layer' icon :
 #{Let t empty to use the default icon.}
 wlayer icon = 

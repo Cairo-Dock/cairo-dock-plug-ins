@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 18:59+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-06-25 02:18+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -48,22 +48,23 @@ msgstr ""
 " scritta da parAdOxxx_ZeRo per Cairo-Dock"
 
 #: ../src/applet-notifications.c:19
-#, c-format
-msgid ""
-"Total amount of data :\n"
-"  downloaded : %.2f%s\n"
-"  uploaded : %.2f%s"
+msgid "Total amount of data"
 msgstr ""
-"Ammontare totale dei dati :\n"
-"  ricevuti : %.2f%s\n"
-"  inviati : %.2f%s"
 
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:19
+msgid "downloaded"
+msgstr ""
+
+#: ../src/applet-notifications.c:19
+msgid "uploaded"
+msgstr ""
+
+#: ../src/applet-notifications.c:23
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "L'interfaccia '%s' sembra non esistere o non è leggibile"
 
-#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:34
 msgid "Re-check interface"
 msgstr "Ri-verifica dell'interfaccia"
 
@@ -108,7 +109,10 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
 #: ../data/messages:19
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+#, fuzzy
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
@@ -197,6 +201,15 @@ msgstr "in secondi."
 #: ../data/messages:57
 msgid "Delay between 2 measures :"
 msgstr "Intervallo tra le due misure :"
+
+#~ msgid ""
+#~ "Total amount of data :\n"
+#~ "  downloaded : %.2f%s\n"
+#~ "  uploaded : %.2f%s"
+#~ msgstr ""
+#~ "Ammontare totale dei dati :\n"
+#~ "  ricevuti : %.2f%s\n"
+#~ "  inviati : %.2f%s"
 
 #~ msgid "Module"
 #~ msgstr "Modulo"

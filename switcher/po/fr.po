@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 19:00+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-06-28 12:55+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
@@ -202,7 +202,8 @@ msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser l'image par défaut."
 
 #: ../data/messages:83
-msgid "Icon to use if you don't map the wallpaper :"
+#, fuzzy
+msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr "Icône à utiliser si vous ne dessinez pas le fond d'écran :"
 
 #: ../data/messages:85

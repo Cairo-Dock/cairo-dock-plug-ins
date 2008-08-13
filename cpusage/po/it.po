@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 19:00+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-06-24 19:45+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:43 ../src/applet-cpusage.c:48
+#: ../src/applet-cpusage.c:44 ../src/applet-cpusage.c:49
 msgid "day(s)"
 msgstr "giorno/i"
 
-#: ../src/applet-cpusage.c:197
+#: ../src/applet-cpusage.c:212
 msgid "Loading"
 msgstr "Caricamento"
 

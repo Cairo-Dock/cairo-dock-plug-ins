@@ -33,7 +33,10 @@ void cd_nvidia_draw_icon (void) {
 		case MY_APPLET_TEMP_NONE :
 		break;
 		case MY_APPLET_TEMP_ON_QUICKINFO :
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d°C", myData.pGPUData.iGPUTemp);
+			if (myDock)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d°C", myData.pGPUData.iGPUTemp)
+			else
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("nVidia:%d°C", myData.pGPUData.iGPUTemp)
 		break;
 		case MY_APPLET_TEMP_ON_NAME :
 			CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %d°C", myData.pGPUData.cGPUName, myData.pGPUData.iGPUTemp);
@@ -45,7 +48,7 @@ void cd_nvidia_draw_icon (void) {
 				g_free (cTemp);
 				
 				if (myIcon->cQuickInfo != NULL)
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON(NULL);
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			}
 		break;
 	}

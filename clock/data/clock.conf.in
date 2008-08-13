@@ -4,9 +4,9 @@
 [Icon]
 #F[Desired icon size for this applet]
 frame1 = 
-#i width :
+#i+ width :
 width = 48
-#i height :
+#i+ height :
 height = 48
 
 #F
@@ -25,14 +25,14 @@ icon=
 #[gtk-convert]
 [Desklet]
 
-#i[48;256] Desklet's dimension (width x height) :
+#i+[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
-#i[48;256] ...
+#i+[48;256] ...
 height=92
 
 #i Desklet's position (x ; y) :
-#{Depending on your WindowManager, you can move it with ALT + left_click}
+#{Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen}
 x position=0
 #i ...
 y position=0
@@ -76,19 +76,19 @@ location =
 #F[Style;gtk-dnd-multiple]
 frame2 =
 
-#b Use the analogic view ?
+#b+ Use the analogic view ?
 #{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
 old fashion style = true
 
-#c4[0;1] Text color for the numeric display:
+#c+4[0;1] Text color for the numeric display:
 #{r, v, b, a}
 text color = 0.0; 0.0; 0.5; 1.
 
-#P Font used for the numeric display :
+#P+ Font used for the numeric display :
 #{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
 font = 
 
-#R1[] List of available themes for the analogic display :/
+#R+1[] List of available themes for the analogic display :/
 theme = glassy
 
 #F[Setup time and date;gtk-file]

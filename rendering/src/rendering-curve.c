@@ -443,7 +443,7 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 	
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
-	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY);
+	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY, fDockOffsetX, fDockWidth + 2 * curveOffsetX);
 	
 	//\____________________ On dessine le cadre.
 	if (fLineWidth > 0)
@@ -716,7 +716,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 	}
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
-	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY);
+	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY, fDockOffsetX, fDockWidth + 2 * curveOffsetX);
 	
 	//\____________________ On dessine le cadre.
 	cairo_new_path (pCairoContext);

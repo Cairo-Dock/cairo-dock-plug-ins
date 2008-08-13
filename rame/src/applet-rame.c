@@ -119,14 +119,14 @@ gboolean cd_rame_update_from_data (CairoDockModuleInstance *myApplet)
 			{
 				GString *sInfo = g_string_new ("");
 				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL || myDesklet)
-					g_string_printf (sInfo, "RAM:");
+					g_string_assign (sInfo, "RAM : ");
 				
 				g_string_append_printf (sInfo, (fRamPercent < 10 ? "%.1f%%" : "%.0f%%"), fRamPercent);
 				if (myConfig.bShowSwap)
 				{
 					g_string_append_c (sInfo, '\n');
 					if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
-						g_string_append_printf (sInfo, "SWAP");
+						g_string_append_printf (sInfo, "SWAP: ");
 					g_string_append_printf (sInfo, (fSwapPercent < 10 ? "%.1f%%" : "%.0f%%"), fSwapPercent);
 				}
 				

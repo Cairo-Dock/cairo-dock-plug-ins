@@ -254,11 +254,11 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 	cairo_save (pCairoContext);
 	
 	double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
-        cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
+        double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
 	
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
-	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY);
+	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY, fDockOffsetX-fDeltaXTrapeze, fDockWidth+2*fDeltaXTrapeze);
 	
 	//\____________________ On dessine le cadre.
 	if (fLineWidth > 0)
@@ -476,7 +476,22 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 	else
 		cairo_rectangle (pCairoContext, fDockOffsetX, fDockOffsetY, pDock->iDecorationsHeight, pArea->height);
 	
-	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, pDock->bHorizontalDock ? fDockOffsetY : fDockOffsetX);
+	double fDeltaXTrapeze=0, fOffsetX, fDockWidth;
+	if (g_pBackgroundSurfaceFull[pDock->bHorizontalDock] != NULL)
+	{
+		fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
+		double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
+		double fRadius = g_iDockRadius;
+		if (2*fRadius > pDock->iDecorationsHeight + fLineWidth)
+			fRadius = (pDock->iDecorationsHeight + fLineWidth) / 2 - 1;
+		double fDeltaXForLoop = fInclinationOnHorizon * (pDock->iDecorationsHeight + fLineWidth - (g_bRoundedBottomCorner ? 2 : 1) * fRadius);
+		
+		double cosa = 1. / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
+		fDeltaXTrapeze = fDeltaXForLoop + fRadius * cosa;
+		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		fOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
+	}
+	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, pDock->bHorizontalDock ? fDockOffsetY : fDockOffsetX, fOffsetX-fDeltaXTrapeze, fDockWidth+2*fDeltaXTrapeze);
 	
 	
 	//\____________________ On dessine la partie du cadre qui va bien.

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[1.6.1.2],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[1.6.2-RC1],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -55,6 +55,30 @@ AC_ARG_ENABLE(terminal,
 	[  --enable-terminal : Enable Terminal applet (default=yes) ],
 	[ with_terminal=${enableval} ],
 	[ with_terminal=yes ])
+AC_ARG_ENABLE(powermanager,
+	[  --enable-powermanager : Enable PowerManager applet (default=yes) ],
+	[ with_powermanager=${enableval} ],
+	[ with_powermanager=yes ])
+AC_ARG_ENABLE(wifi,
+	[  --enable-wifi : Enable Wifi applet (default=yes) ],
+	[ with_wifi=${enableval} ],
+	[ with_wifi=yes ])
+AC_ARG_ENABLE(tomboy,
+	[  --enable-tomboy : Enable Tomboy applet (default=yes) ],
+	[ with_tomboy=${enableval} ],
+	[ with_tomboy=yes ])
+AC_ARG_ENABLE(rhythmbox,
+	[  --enable-rhythmbox : Enable Rhythmbox applet (default=yes) ],
+	[ with_rhythmbox=${enableval} ],
+	[ with_rhythmbox=yes ])
+AC_ARG_ENABLE(nvidia,
+	[  --enable-nvidia: Enable nVidia applet (default=yes) ],
+	[ with_nvidia=${enableval} ],
+	[ with_nvidia=yes ])
+AC_ARG_ENABLE(compiz-icon,
+	[  --enable-compiz-icon: Enable Compiz-Icon applet (default=yes) ],
+	[ $with_compiz_icon=${enableval} ],
+	[ $with_compiz_icon=yes ])
 
 
 if test "$with_old_gnome_support" = "yes" ; then
@@ -88,7 +112,12 @@ AM_CONDITIONAL( [WITH_GNOME_SUPPORT], [test "$with_gnome_support" = "yes"] )
 AM_CONDITIONAL( [WITH_XFCE_SUPPORT], [test "$with_xfce_support" = "yes"] )
 AM_CONDITIONAL( [WITH_ALSA_MIXER], [test "$with_alsa_mixer" = "yes"] )
 AM_CONDITIONAL( [WITH_TERMINAL], [test "$with_terminal" = "yes"] )
-
+AM_CONDITIONAL( [WITH_POWERMANAGER], [test "$with_powermanager" = "yes"] )
+AM_CONDITIONAL( [WITH_WIFI], [test "$with_wifi" = "yes"] )
+AM_CONDITIONAL( [WITH_TOMBOY], [test "$with_tomboy" = "yes"] )
+AM_CONDITIONAL( [WITH_RHYTHMBOX], [test "$with_rhythmbox" = "yes"] )
+AM_CONDITIONAL( [WITH_NVIDIA], [test "$with_nvidia" = "yes"] )
+AM_CONDITIONAL( [WITH_COMPIZ_ICON], [test "$with_compiz_icon" = "yes"] )
 
 
 ############# ALSA_MIXER #################
@@ -104,7 +133,7 @@ AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
 CLOCK_PACKAGE="cd-clock"
 AC_SUBST(GETTEXT_CLOCK, "$CLOCK_PACKAGE")
 
-AC_SUBST(VERSION_CLOCK, "1.3.4")
+AC_SUBST(VERSION_CLOCK, "1.3.5")
 AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
 
 AC_SUBST(clockdatadir, "${pkgdatadir}/clock")
@@ -131,7 +160,7 @@ AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
 CPUSAGE_PACKAGE="cd-cpusage"
 AC_SUBST(GETTEXT_CPUSAGE, "$CPUSAGE_PACKAGE")
 
-AC_SUBST(VERSION_CPUSAGE, "1.0.0-rc1")
+AC_SUBST(VERSION_CPUSAGE, "1.0.0")
 AC_SUBST(PACKAGE_CPUSAGE, "$CPUSAGE_PACKAGE")
 
 AC_SUBST(cpusagedatadir, "${pkgdatadir}/cpusage")
@@ -140,7 +169,7 @@ AC_SUBST(cpusagedatadir, "${pkgdatadir}/cpusage")
 DBUS_PACKAGE="cd-Dbus"
 AC_SUBST(GETTEXT_DBUS, "$DBUS_PACKAGE")
 
-AC_SUBST(VERSION_DBUS, "0.1.0")
+AC_SUBST(VERSION_DBUS, "0.2.0")
 AC_SUBST(PACKAGE_DBUS, "$DBUS_PACKAGE")
 
 AC_SUBST(dbusdatadir, "${pkgdatadir}/Dbus")
@@ -192,7 +221,7 @@ AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
 NVIDIA_PACKAGE=cd-nVidia
 AC_SUBST(GETTEXT_NVIDIA, "$NVIDIA_PACKAGE")
 
-AC_SUBST(VERSION_NVIDIA, "1.0.0-rc1")
+AC_SUBST(VERSION_NVIDIA, "1.0.0")
 AC_SUBST(PACKAGE_NVIDIA, "$NVIDIA_PACKAGE")
 
 AC_SUBST(nvidiadatadir, "${pkgdatadir}/nVidia")
@@ -201,7 +230,7 @@ AC_SUBST(nvidiadatadir, "${pkgdatadir}/nVidia")
 POWERMANAGER_PACKAGE=cd-powermanager
 AC_SUBST(GETTEXT_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
-AC_SUBST(VERSION_POWERMANAGER, "1.2.6")
+AC_SUBST(VERSION_POWERMANAGER, "1.2.7")
 AC_SUBST(PACKAGE_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
 AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
@@ -210,7 +239,7 @@ AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
 RAME_PACKAGE=cd-rame
 AC_SUBST(GETTEXT_RAME, "$RAME_PACKAGE")
 
-AC_SUBST(VERSION_RAME, "1.0.0-beta1")
+AC_SUBST(VERSION_RAME, "1.0.0")
 AC_SUBST(PACKAGE_RAME, "$RAME_PACKAGE")
 
 AC_SUBST(ramedatadir, "${pkgdatadir}/rame")
@@ -219,7 +248,7 @@ AC_SUBST(ramedatadir, "${pkgdatadir}/rame")
 RENDERING_PACKAGE=cd-rendering
 AC_SUBST(GETTEXT_RENDERING, "$RENDERING_PACKAGE")
 
-AC_SUBST(VERSION_RENDERING, "1.4.10")
+AC_SUBST(VERSION_RENDERING, "1.5.1")
 AC_SUBST(PACKAGE_RENDERING, "$RENDERING_PACKAGE")
 
 AC_SUBST(renderingdatadir, "${pkgdatadir}/rendering")
@@ -228,7 +257,7 @@ AC_SUBST(renderingdatadir, "${pkgdatadir}/rendering")
 RHYTHMBOX_PACKAGE=cd-rhythmbox
 AC_SUBST(GETTEXT_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
 
-AC_SUBST(VERSION_RHYTHMBOX, "1.2.0")
+AC_SUBST(VERSION_RHYTHMBOX, "1.2.1")
 AC_SUBST(PACKAGE_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
 
 AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
@@ -260,11 +289,20 @@ AC_SUBST(PACKAGE_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
 AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
 
+############# SLIDER #################
+SLIDER_PACKAGE="cd-slider"
+AC_SUBST(GETTEXT_SLIDER, "$SLIDER_PACKAGE")
+
+AC_SUBST(VERSION_SLIDER, "1.0.0")
+AC_SUBST(PACKAGE_SLIDER, "$SLIDER_PACKAGE")
+
+AC_SUBST(sliderdatadir, "${pkgdatadir}/slider")
+
 ############# SWITCHER #################
 SWITCHER_PACKAGE="cd-switcher"
 AC_SUBST(GETTEXT_SWITCHER, "$SWITCHER_PACKAGE")
 
-AC_SUBST(VERSION_SWITCHER, "1.0.1")
+AC_SUBST(VERSION_SWITCHER, "1.0.2")
 AC_SUBST(PACKAGE_SWITCHER, "$SWITCHER_PACKAGE")
 
 AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")
@@ -291,7 +329,7 @@ AC_SUBST(terminaldatadir, "${pkgdatadir}/terminal")
 TOMBOY_PACKAGE="cd-tomboy"
 AC_SUBST(GETTEXT_TOMBOY, "$TOMBOY_PACKAGE")
 
-AC_SUBST(VERSION_TOMBOY, "1.0.0-rc1")
+AC_SUBST(VERSION_TOMBOY, "1.0.0")
 AC_SUBST(PACKAGE_TOMBOY, "$TOMBOY_PACKAGE")
 
 AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")
@@ -300,7 +338,7 @@ AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")
 WEATHER_PACKAGE="cd-weather"
 AC_SUBST(GETTEXT_WEATHER, "$WEATHER_PACKAGE")
 
-AC_SUBST(VERSION_WEATHER, "1.1.4")
+AC_SUBST(VERSION_WEATHER, "1.1.5")
 AC_SUBST(PACKAGE_WEATHER, "$WEATHER_PACKAGE")
 
 AC_SUBST(weatherdatadir, "${pkgdatadir}/weather")
@@ -309,7 +347,7 @@ AC_SUBST(weatherdatadir, "${pkgdatadir}/weather")
 WIFI_PACKAGE="cd-wifi"
 AC_SUBST(GETTEXT_WIFI, "$WIFI_PACKAGE")
 
-AC_SUBST(VERSION_WIFI, "1.0.3")
+AC_SUBST(VERSION_WIFI, "1.0.4")
 AC_SUBST(PACKAGE_WIFI, "$WIFI_PACKAGE")
 
 AC_SUBST(wifidatadir, "${pkgdatadir}/wifi")
@@ -335,7 +373,7 @@ AC_SUBST(xgammadatadir, "${pkgdatadir}/Xgamma")
 XMMS_PACKAGE="cd-xmms"
 AC_SUBST(GETTEXT_XMMS, "$XMMS_PACKAGE")
 
-AC_SUBST(VERSION_XMMS, "1.0.4")
+AC_SUBST(VERSION_XMMS, "0.2.2")
 AC_SUBST(PACKAGE_XMMS, "$XMMS_PACKAGE")
 
 AC_SUBST(xmmsdatadir, "${pkgdatadir}/xmms")
@@ -509,6 +547,13 @@ AC_CONFIG_FILES([
 	showDesktop/data/readme
 	showDesktop/data/showDesktop.conf
 	
+	slider/Makefile
+	slider/src/Makefile
+	slider/po/Makefile.in
+	slider/data/Makefile
+	slider/data/readme
+	slider/data/slider.conf
+	
 	switcher/Makefile
 	switcher/src/Makefile
 	switcher/po/Makefile.in
@@ -597,6 +642,7 @@ AC_OUTPUT([po/Makefile
 	shortcuts/po/Makefile
 	showDesklets/po/Makefile
 	showDesktop/po/Makefile
+	slider/po/Makefile
 	switcher/po/Makefile
 	systray/po/Makefile
 	terminal/po/Makefile
@@ -606,3 +652,15 @@ AC_OUTPUT([po/Makefile
 	Xgamma/po/Makefile
 	xmms/po/Makefile
 	])
+
+echo "Cairo-Dock-plugins will be compiled with the following options :"
+echo " * Compil gnome-integration plug-in : "${$with_gnome_support}
+echo " * Compil gnome-integration-old plug-in : "${$with_old_gnome_support}
+echo " * Compil xfce-integration plug-in : "${$with_xfce_support}
+echo " * Compil AlsaMixer applet : "${$with_alsa_mixer}
+echo " * Compil Terminal applet : "${$with_terminal}
+echo " * Compil PowerManager applet : "${$with_powermanager}
+echo " * Compil Wifi applet : "${with_wifi}
+echo " * Compil Tomboy applet : "${with_tomboy}
+echo " * Compil Rhythmbox applet : "${with_rhythmbox}
+echo " * Compil nVidia applet : "${with_nvidia}
