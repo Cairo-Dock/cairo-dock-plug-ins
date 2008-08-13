@@ -90,7 +90,6 @@ void update_icon(void)
 			myData.previous_battery_charge = myData.battery_charge;
 		}
 	}
-	
 	else
 	{
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
@@ -99,7 +98,6 @@ void update_icon(void)
 	
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON
-	//Il faut recharger l'icône car elle ne se met pas a jour a tout les coups
 }
 
 gchar *get_hours_minutes (int iTimeInSeconds)

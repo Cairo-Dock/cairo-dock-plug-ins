@@ -39,15 +39,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	g_string_free (sKeyName, TRUE);
 	
 	myConfig.bUseGauge = CD_CONFIG_GET_BOOLEAN ("Configuration", "use gauge");
-	myConfig.cThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "battery");
-	cd_message("gauge : Theme(%s)\n",myConfig.cThemePath);
+	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "battery");
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	
 	g_free (myConfig.defaultTitle);
-	g_free (myConfig.cThemePath);
 	g_free (myConfig.cUserBatteryIconName);
 	g_free (myConfig.cUserChargeIconName);
 	
@@ -65,5 +63,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pSurfaceCharge);
 	
 	cairo_dock_free_gauge(myData.pGauge);
+	
+	g_free (myData.cBatteryStateFilePath);
 	
 CD_APPLET_RESET_DATA_END

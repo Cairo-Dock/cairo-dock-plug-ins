@@ -5,9 +5,9 @@
 
 #F[Icon size]
 frame1 = 
-#i Width :
+#i+ Width :
 width = 48
-#i Height :
+#i+ Height :
 height = 48
 #F
 frame1_fin = 
@@ -24,10 +24,10 @@ order=
 #[gtk-convert]
 [Desklet]
 
-#i[48;256] Desklet's dimension (width x height) :
+#i+[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
-#i[48;256] ...
+#i+[48;256] ...
 height=92
 
 #i Desklet's position (x ; y) :
@@ -63,20 +63,20 @@ check interval = 15
 #F[Display;gtk-dnd-multiple]
 frame_info=
 
-#S Icon's filename when on battery :
+#S+ Icon's filename when on battery :
 battery icon = 
-#S Icon's filename when on charge :
+#S+ Icon's filename when on charge :
 charge icon = 
-#r[nothing;zoom;transparency;draw bar] Effect to apply on the icon according to charge :
+#r+[nothing;zoom;transparency;draw bar] Effect to apply on the icon according to charge :
 effect=0
 
 
-#b Use a gauge instead of icons ?
+#b+ Use a gauge instead of icons ?
 use gauge = false
-#R1[] List of available gauges :/
+#R+1[] List of available gauges :/
 theme = battery
 
-#r[nothing;charge;time] Information to be displayed on the icon :
+#r+[nothing;charge;time] Information to be displayed on the icon :
 quick-info_type=2
 
 
@@ -105,5 +105,5 @@ sound_0 =
 
 #b Animate icon during the alert ?
 battery witness=true
-#r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation during alert :
+#r+[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation during alert :
 battery animation=5

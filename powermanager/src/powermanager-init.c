@@ -26,12 +26,12 @@ CD_APPLET_INIT_BEGIN
 	{
 		if(myData.battery_present)
 		{
-			get_on_battery();
+			///get_on_battery();
 			
 			if (myConfig.bUseGauge)
 			{
 				double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-				myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+				myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 			}
 			
 			myData.alerted = TRUE;
@@ -78,7 +78,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		cairo_dock_free_gauge(myData.pGauge);
-		myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+		myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 		
 		if(myData.checkLoop != 0)  // la frequence peut avoir change.
 		{
@@ -99,8 +99,8 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			if (myConfig.bUseGauge)  // On recharge la jauge.
 			{
-				double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-				myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+				///double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+				///myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 				
 				cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.battery_charge / 100);
 				

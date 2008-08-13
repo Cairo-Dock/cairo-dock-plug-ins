@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 19:00+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-06-18 22:31+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/powermanager-draw.c:114
+#: ../src/powermanager-draw.c:112
 msgid "None"
 msgstr "なし"
 
-#: ../src/powermanager-draw.c:142
+#: ../src/powermanager-draw.c:140
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -27,12 +27,12 @@ msgstr ""
 "ラップトップはバッテリー使用中。\n"
 "バッテリー充電完了:"
 
-#: ../src/powermanager-draw.c:142 ../src/powermanager-draw.c:146
-#: ../src/powermanager-draw.c:167 ../src/powermanager-draw.c:173
+#: ../src/powermanager-draw.c:140 ../src/powermanager-draw.c:144
+#: ../src/powermanager-draw.c:165 ../src/powermanager-draw.c:171
 msgid "Estimated time with Charge:"
 msgstr "充電のおよその時間:"
 
-#: ../src/powermanager-draw.c:146
+#: ../src/powermanager-draw.c:144
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -40,11 +40,11 @@ msgstr ""
 "ラップトップは電源使用中\n"
 "バッテリー充電完了:"
 
-#: ../src/powermanager-draw.c:152
+#: ../src/powermanager-draw.c:150
 msgid "No Battery found."
 msgstr "バッテリーが見つかりません。"
 
-#: ../src/powermanager-draw.c:167
+#: ../src/powermanager-draw.c:165
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -52,11 +52,11 @@ msgstr ""
 "PowerManager.\n"
 "バッテリーの充電が少ないようです。"
 
-#: ../src/powermanager-draw.c:167
+#: ../src/powermanager-draw.c:165
 msgid "Please put your Laptop on charge."
 msgstr "ラップトップを充電してください。"
 
-#: ../src/powermanager-draw.c:173
+#: ../src/powermanager-draw.c:171
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"

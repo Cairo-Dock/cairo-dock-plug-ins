@@ -12,18 +12,18 @@ typedef enum {
   } MyAppletQuickInfoType;
 
 typedef enum {
-  POWER_MANAGER_EFFECT_NONE = 0,
-  POWER_MANAGER_EFFECT_ZOOM,
-  POWER_MANAGER_EFFECT_TRANSPARENCY,
-  POWER_MANAGER_EFFECT_BAR,
-  } MyAppletEffect;
+	POWER_MANAGER_EFFECT_NONE = 0,
+	POWER_MANAGER_EFFECT_ZOOM,
+	POWER_MANAGER_EFFECT_TRANSPARENCY,
+	POWER_MANAGER_EFFECT_BAR,
+	} MyAppletEffect;
 
 typedef enum {
-  POWER_MANAGER_CHARGE_CRITICAL = 0,
-  POWER_MANAGER_CHARGE_LOW,
-  POWER_MANAGER_CHARGE_FULL,
-  POWER_MANAGER_NB_CHARGE_LEVEL,
-  } MyAppletCharge;
+	POWER_MANAGER_CHARGE_CRITICAL = 0,
+	POWER_MANAGER_CHARGE_LOW,
+	POWER_MANAGER_CHARGE_FULL,
+	POWER_MANAGER_NB_CHARGE_LEVEL,
+	} MyAppletCharge;
 
 struct _AppletConfig {
 	gchar *defaultTitle;
@@ -36,7 +36,7 @@ struct _AppletConfig {
 	gboolean criticalBatteryWitness;
 	CairoDockAnimationType batteryWitnessAnimation;
 	gint lowBatteryValue;
-	gchar *cThemePath;
+	const gchar *cGThemePath;
 	gchar *cSoundPath[POWER_MANAGER_NB_CHARGE_LEVEL];
 	
 	gboolean bUseGauge;
@@ -59,6 +59,7 @@ struct _AppletData {
 	gint checkLoop;
 	Gauge *pGauge;
 	gint iCapacity;
+	gchar *cBatteryStateFilePath;
 	} ;
 
 
