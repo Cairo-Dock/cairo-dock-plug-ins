@@ -425,6 +425,7 @@ AC_CONFIG_FILES([
 	clock/data/themes/tango/Makefile
 	clock/data/themes/I_Clock/Makefile
 	clock/data/themes/BlueSlim/Makefile
+	clock/data/themes/AmoraSlim/Makefile 
 	clock/data/themes/zen/Makefile
 	
 	compiz-icon/Makefile
