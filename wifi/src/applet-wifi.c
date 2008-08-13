@@ -29,8 +29,7 @@ static char  *s_cTmpFileAccessPoint = NULL;
 void cd_wifi_acquisition (void) {
 	s_cTmpFile = g_strdup ("/tmp/wifi.XXXXXX");
 	int fds =mkstemp (s_cTmpFile);
-	if (fds == -1)
-	{
+	if (fds == -1) {
 		g_free (s_cTmpFile);
 		s_cTmpFile = NULL;
 		return;
@@ -58,13 +57,15 @@ void cd_wifi_acquisition (void) {
 }
 
 static float pourcent(float x, float y) {
-  float p=0;
+  float p = 0;
   if (x > y) {
     x = y;
   }
+  
   else if (x < 0) {
    x = 0;
   }
+  
   p = (x / y) *100;
   return p;
 }
@@ -166,9 +167,9 @@ void cd_wifi_read_data (void) {
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
-	g_file_get_contents(s_cTmpFile, &cContent, &length, &erreur);
+	g_file_get_contents (s_cTmpFile, &cContent, &length, &erreur);
 	if (erreur != NULL) {
-		cd_warning("Attention : %s", erreur->message);
+		cd_warning ("Attention : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
 		myData.bAcquisitionOK = FALSE;
@@ -177,7 +178,7 @@ void cd_wifi_read_data (void) {
 		gboolean bAcquisitionOK = _wifi_get_values_from_file (cContent, &myData.flink, &myData.mlink, &myData.prcnt, &myData.iQuality);
 		g_free (cContent);
 		
-		if (! bAcquisitionOK || myData.prcnt < 0) {
+		if (! bAcquisitionOK || myData.prcnt <= 0) {
 			myData.bAcquisitionOK = FALSE;
 			myData.iQuality = WIFI_QUALITY_NO_SIGNAL;
 			myData.prcnt = 0;

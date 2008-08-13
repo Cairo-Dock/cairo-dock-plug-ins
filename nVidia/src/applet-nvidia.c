@@ -104,7 +104,7 @@ void cd_nvidia_config_acquisition (void) {
 }
 
 static gboolean _nvidia_get_values_from_file (gchar *cContent) {
-	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
+	gchar **cInfopipesList = g_strsplit (cContent, "\n", -1);
 	gchar *cOneInfopipe;
 	gint i=0;
 	
@@ -118,7 +118,7 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 		if (*cOneInfopipe == '\0')
 			continue;
 		
-		if ((i == 0) && (strcmp(cOneInfopipe,"nvidia") == 0)) {
+		if ((i == 0) && (strcmp (cOneInfopipe,"nvidia") == 0)) {
 			g_strfreev (cInfopipesList);
 			return FALSE;
 		}
@@ -148,7 +148,7 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 					*str = '\0';
 			}
 			else if (i == 2) { //Video Ram
-				myData.pGPUData.iVideoRam = atoi(cOneInfopipe);
+				myData.pGPUData.iVideoRam = atoi (cOneInfopipe);
 				myData.pGPUData.iVideoRam = myData.pGPUData.iVideoRam >> 10;  // passage en Mo.
 			}
 			else if (i == 3) { //Driver Version
@@ -157,7 +157,7 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 		}
 	}
 	
-	cd_debug("nVidia %s %dMB %sV %d°C", myData.pGPUData.cGPUName, myData.pGPUData.iVideoRam, myData.pGPUData.cDriverVersion, myData.pGPUData.iGPUTemp);
+	cd_debug ("nVidia %s %dMB %sV %d°C", myData.pGPUData.cGPUName, myData.pGPUData.iVideoRam, myData.pGPUData.cDriverVersion, myData.pGPUData.iGPUTemp);
 	
 	g_strfreev (cInfopipesList);
 	return TRUE;

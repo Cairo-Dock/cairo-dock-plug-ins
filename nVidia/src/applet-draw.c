@@ -31,25 +31,27 @@ void cd_nvidia_draw_icon (void) {
 
 	switch (myConfig.iDrawTemp) {
 		case MY_APPLET_TEMP_NONE :
+			if (myIcon->cQuickInfo != NULL)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		break;
 		case MY_APPLET_TEMP_ON_QUICKINFO :
-			if (myDock)
+			//if (myDock)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d°C", myData.pGPUData.iGPUTemp)
-			else
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("nVidia:%d°C", myData.pGPUData.iGPUTemp)
+			//else
+				//CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("nVidia:%d°C", myData.pGPUData.iGPUTemp)
 		break;
 		case MY_APPLET_TEMP_ON_NAME :
 			CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %d°C", myData.pGPUData.cGPUName, myData.pGPUData.iGPUTemp);
 		break;
-		case MY_APPLET_TEMP_ON_ICON : //Abandonne pour le moment
-			if (myData.pGPUData.iGPUTemp != myData.iPreviousGPUTemp) {  /// c'est quoi que tu veux dessiner ?
-				//Dessin manuel, copier sur clock
-				gchar *cTemp = g_strdup_printf("%d°C", myData.pGPUData.iGPUTemp);
-				g_free (cTemp);
-				
-				if (myIcon->cQuickInfo != NULL)
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-			}
+		case MY_APPLET_TEMP_ON_ICON : /*Abandonné pour le moment
+			/// c'est quoi que tu veux dessiner ?
+			//TODO Dessin manuel, copier sur clock le dessin de la Date avec libpango
+			
+			gchar *cTemp = g_strdup_printf ("%d°C", myData.pGPUData.iGPUTemp);
+			g_free (cTemp);
+			
+			if (myIcon->cQuickInfo != NULL)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);*/
 		break;
 	}
 	
@@ -72,12 +74,11 @@ void cd_nvidia_draw_icon (void) {
 
 static void _nvidia_temporary_dialog (gchar *cInfo) {
 	gchar *cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
-	//cd_debug ("%s (%s)", cInfo, cIconPath);
 	cairo_dock_show_temporary_dialog_with_icon (cInfo, myIcon, myContainer, 12000, cIconPath);
 	g_free(cIconPath);
 }
 
-void cd_nvidia_bubble(void) {
+void cd_nvidia_bubble (void) {
 	if (myData.bAcquisitionOK) {
 		gchar *cInfo = g_strdup_printf ("nVidia.\n %s %s\n %s %dMB \n %s %s\n %s %d°C", D_("GPU Name:"), myData.pGPUData.cGPUName, D_("Video Ram:"), myData.pGPUData.iVideoRam, D_("Driver Version:"), myData.pGPUData.cDriverVersion, D_("Core Temparature:"), myData.pGPUData.iGPUTemp);
 		_nvidia_temporary_dialog (cInfo);
@@ -91,7 +92,7 @@ void cd_nvidia_bubble(void) {
 	}
 }
 
-void cd_nvidia_alert(void) {
+void cd_nvidia_alert (void) {
 	if (myData.bAlerted || ! myConfig.bAlert)
 		return;
 	

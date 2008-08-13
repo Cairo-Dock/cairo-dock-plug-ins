@@ -36,13 +36,18 @@ static void eth_config(void) {  /// a mettre dans les plug-ins d'integration.
 	
 	gchar *cCommand = NULL;
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
-		cCommand = "gksu network-admin";
+		int iMajor, iMinor, iMicro;
+		cairo_dock_get_gnome_version (&iMajor, &iMinor, &iMicro);
+		if (iMajor == 2 && iMinor < 22)
+			cCommand = "gksu network-admin";
+		else
+			cCommand = "network-admin";
 	}
 	else if (g_iDesktopEnv == CAIRO_DOCK_KDE) { //Ajouter les lignes de KDE
 		//cCommand = 
 	}
+	
 	cairo_dock_launch_command (cCommand);
-	g_free (cCommand);
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
