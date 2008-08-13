@@ -64,7 +64,15 @@ static gboolean cd_powermanager_find_battery (void) {
 					{
 						str2 ++;
 						myData.iCapacity = atoi (str2);
-						g_print ("capacite de la batterie : %d mWsh\n", myData.iCapacity);
+						g_print ("Design capacity : %d mWsh\n", myData.iCapacity);
+					}
+					
+					gchar *str3 = strchr (str2, ':');
+					if (str3 != NULL)
+					{
+						str3 ++;
+						myData.iCapacity = atoi (str3);
+						g_print ("Last full capacity : %d mWsh\n", myData.iCapacity);
 					}
 				}
 				else
@@ -300,13 +308,26 @@ gboolean update_stats(void)
 		jump_to_value
 		int iPresentVoltage = atoi (cCurVal);  // 15000 mV
 		
-		if (iPresentRate != 0)
-			myData.battery_time = 3600. * iRemainingCapacity / iPresentRate;
-		else
-			myData.battery_time = 0;
+		if (myData.on_battery) {
+			if (iPresentRate != 0) {
+				myData.battery_time = 3600. * iRemainingCapacity / iPresentRate;
+				if (myData.battery_time == (iRemainingCapacity / 3600.))
+					myData.battery_time = 0.;
+			}
+			else
+				myData.battery_time = 0.;
+		}
+		else {
+			//Trouver comment faire le décompte avant charge complete
+			myData.battery_time = 0.;
+		}
 		
 		myData.battery_charge = 100. * iRemainingCapacity / myData.iCapacity;
-		
+		if (myData.battery_charge > 100)
+			myData.battery_charge = 100;
+			
+		if (myData.battery_charge < 0)
+			myData.battery_charge = 0.;
 		g_print ("PowerManager : On Battery:%d ; iRemainingCapacity:%dmWh ; iPresentRate:%dmW ; iPresentVoltage:%dmV\n", myData.on_battery, iRemainingCapacity, iPresentRate, iPresentVoltage); 
 		g_free (cContent);
 		

@@ -22,7 +22,12 @@ void update_icon(void)
 		{
 			if(myConfig.quickInfoType == POWER_MANAGER_TIME)
 			{
-				CD_APPLET_SET_HOURS_MINUTES_AS_QUICK_INFO (myData.battery_time)
+				if (myData.battery_time != 0) {
+					CD_APPLET_SET_HOURS_MINUTES_AS_QUICK_INFO (myData.battery_time)
+				}
+				else {
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("-:--")
+				}
 			}
 			else if(myConfig.quickInfoType == POWER_MANAGER_CHARGE)
 			{
