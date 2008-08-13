@@ -27,8 +27,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bAlert = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "alert", TRUE);
 	myConfig.bAlertSound = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "asound", TRUE);
 	myConfig.cSoundPath = CD_CONFIG_GET_STRING ("Configuration", "sound path");
-	myConfig.cGThemePath = cairo_dock_get_gauge_key_value (CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
-	cd_message ("gauge : Theme '%s'",myConfig.cGThemePath);
+	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "filligran alpha");
+	if (myConfig.fAlpha != 0)
+	{
+		myConfig.cFilligranImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "filligran image", MY_APPLET_ICON_FILE);
+	}
 	myConfig.cBrokenUserImage = CD_CONFIG_GET_STRING ("Configuration", "broken");
 	
 CD_APPLET_GET_CONFIG_END
@@ -39,15 +43,19 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cBrokenUserImage);
 	g_free (myConfig.cSoundPath);
+	g_free (myConfig.cFilligranImagePath);
 	
 CD_APPLET_RESET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
+	cairo_dock_free_measure_timer (myData.pConfigMeasureTimer);
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	g_print ("nvidia : timer detruit\n");
 	cairo_dock_free_gauge (myData.pGauge);
 	g_free (myData.pGPUData.cGPUName);
 	g_free (myData.pGPUData.cDriverVersion);
+	g_print ("nvidia : fin du reset_data\n");
 	
 CD_APPLET_RESET_DATA_END

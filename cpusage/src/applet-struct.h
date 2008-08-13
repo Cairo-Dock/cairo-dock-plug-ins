@@ -10,7 +10,8 @@ struct _AppletConfig {
 	
 	CairoDockInfoDisplay iInfoDisplay;
 	const gchar *cGThemePath;
-	gboolean gaugeIcon;
+	gchar *cFilligranImagePath;
+	gdouble fAlpha;
 	
 	gint iNbDisplayedProcesses;
 	gint iProcessCheckInterval;

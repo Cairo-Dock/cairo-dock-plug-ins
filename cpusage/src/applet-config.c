@@ -13,8 +13,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER ("Configuration", "delay");
 	
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");
-	//On charge le theme :
-	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "turbo-night-fuel");
+	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "filligran alpha");
+	if (myConfig.fAlpha != 0)
+	{
+		myConfig.cFilligranImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "filligran image", MY_APPLET_ICON_FILE);
+	}
 	
 	myConfig.iNbDisplayedProcesses = CD_CONFIG_GET_INTEGER ("Configuration", "top");
 	myConfig.iProcessCheckInterval = CD_CONFIG_GET_INTEGER ("Configuration", "top delay");
@@ -28,6 +32,8 @@ CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
+	cairo_dock_free_label_description (myConfig.pTopTextDescription);
+	g_free (myConfig.cFilligranImagePath);
 CD_APPLET_RESET_CONFIG_END
 
 
@@ -35,12 +41,14 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	g_timer_destroy (myData.pClock);
 	
-	cairo_dock_free_gauge(myData.pGauge);
+	cairo_dock_free_gauge (myData.pGauge);
 	
 	cairo_dock_free_measure_timer (myData.pTopMeasureTimer);
-	g_timer_destroy (myData.pTopClock);
+	if (myData.pTopClock != NULL)
+		g_timer_destroy (myData.pTopClock);
 	g_free (myData.pTopList);
-	g_hash_table_destroy (myData.pProcessTable);
+	if (myData.pProcessTable != NULL)
+		g_hash_table_destroy (myData.pProcessTable);
 	cairo_surface_destroy (myData.pTopSurface);
 CD_APPLET_RESET_DATA_END
 

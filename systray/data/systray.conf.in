@@ -27,7 +27,7 @@ order=
 #[gtk-convert]
 [Desklet]
 
-#i Desklet's position (x ; y) :
+#i[-2048;2048] Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click}
 x position=0
 #i ...

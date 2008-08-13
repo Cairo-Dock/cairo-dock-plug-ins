@@ -74,7 +74,13 @@ void cd_cpusage_get_cpu_info (void)
 				str = strchr (line+10, ':');
 				if (str != NULL)
 				{
-					myData.cModelName = g_strdup (str + 2);  // on saute l'espace apres le ':'.
+					gchar *str2 = strchr (str+2, '\n');
+					if (str2 != NULL)
+					{
+						*str2 = '\0';
+						myData.cModelName = g_strdup (str + 2);  // on saute l'espace apres le ':'.
+						*str2 = '\n';
+					}
 				}
 			}
 			else if (myData.iFrequency == 0 && strncmp (line, "cpu MHz", 7) == 0)
@@ -109,6 +115,7 @@ void cd_cpusage_get_cpu_info (void)
 		while (TRUE);
 	}
 	myData.iNbCPU = MAX (myData.iNbCPU, 1);
+	cd_debug ("cpusage : %d CPU/core(s) found", myData.iNbCPU);
 	g_free (cContent);
 }
 

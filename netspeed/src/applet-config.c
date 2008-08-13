@@ -19,14 +19,19 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");
 
-	//On charge le theme :
-	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "turbo-night");
+	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "filligran alpha");
+	if (myConfig.fAlpha != 0)
+	{
+		myConfig.cFilligranImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "filligran image", MY_APPLET_ICON_FILE);
+	}
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cInterface);
+	g_free (myConfig.cFilligranImagePath);
 CD_APPLET_RESET_CONFIG_END
 
 

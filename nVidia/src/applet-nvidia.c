@@ -107,6 +107,7 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 	gchar **cInfopipesList = g_strsplit (cContent, "\n", -1);
 	gchar *cOneInfopipe;
 	gint i=0;
+	g_print ("%s ()\n", __func__);
 	
 	g_free (myData.pGPUData.cGPUName);
 	myData.pGPUData.cGPUName = NULL;
@@ -164,6 +165,7 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 }
 
 void cd_nvidia_config_read_data (void) {
+	g_print ("%s ()\n", __func__);
 	if (s_cTmpFileConfig == NULL)
 		return ;
 	gchar *cContent = NULL;
@@ -186,6 +188,7 @@ void cd_nvidia_config_read_data (void) {
 }
 
 gboolean cd_nvidia_config_update_from_data (void) {
+	g_print ("%s ()\n", __func__);
 	if (myConfig.bCardName) {
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pGPUData.cGPUName);
 	}

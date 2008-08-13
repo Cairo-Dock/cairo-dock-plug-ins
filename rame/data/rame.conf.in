@@ -30,7 +30,7 @@ width=256
 #i+[48;256] ...
 height=256
 
-#i Desklet's position (x ; y) :
+#i[-2048;2048] Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click}
 x position=0
 #i ...
@@ -57,8 +57,16 @@ use size=
 #F[Display;gtk-dialog-info]
 frame_disp=
 
-#R+1[turbo-night-fuel] List of available themes for the analogic display :/
+#R+[turbo-night-fuel] List of available themes for the analogic display :/
 theme = turbo-night-fuel
+
+#S+ Image to display as a filligran on the gauge :
+#{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any filligran.}
+filligran image =
+
+#e+[0;1] Transparency of the filligran :
+#{Set it up to 0 if you don't want to have a filligran.}
+filligran alpha = .6
 
 #r[No;On icon;On label] Display memory values :
 info display = 1

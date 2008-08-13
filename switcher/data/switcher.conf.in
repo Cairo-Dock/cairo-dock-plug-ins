@@ -31,7 +31,7 @@ width=250
 #i+[48;500] ...
 height=100
 
-#i Desklet's position (x ; y) :
+#i[-2048;2048] Desklet's position (x ; y) :
 x position=10
 #i ...
 y position=10

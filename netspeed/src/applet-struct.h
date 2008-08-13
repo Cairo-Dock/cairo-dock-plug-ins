@@ -9,6 +9,8 @@ struct _AppletConfig {
 	gchar *defaultTitle;
 	gint iCheckInterval;
 	const gchar *cGThemePath;
+	gchar *cFilligranImagePath;
+	gdouble fAlpha;
 	gchar *cInterface;
 	gint iStringLen;
 	CairoDockInfoDisplay iInfoDisplay;

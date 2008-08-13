@@ -31,7 +31,7 @@ width=92
 #i+[48;256] ...
 height=92
 
-#i Desklet's position (x ; y) :
+#i[-2048;2048] Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen}
 x position=0
 #i ...

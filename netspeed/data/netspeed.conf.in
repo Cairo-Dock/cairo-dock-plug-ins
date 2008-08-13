@@ -31,7 +31,7 @@ width=256
 #i+[48;256] ...
 height=256
 
-#i Desklet's position (x ; y) :
+#i[-2048;2048] Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen}
 x position=0
 #i ...
@@ -65,8 +65,16 @@ frame_info=
 #r[No;On icon;On label] Display speed values :
 info display = 1
 
-#R+1[] List of available themes for the analogic display :/
+#R+[] List of available themes for the analogic display :/
 theme = turbo-night
+
+#S+ Image to display as a filligran on the gauge :
+#{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any filligran.}
+filligran image = .6
+
+#e+[0;1] Transparency of the filligran :
+#{Set it up to 0 if you don't want to have a filligran.}
+filligran alpha =
 
 #i[1;30] Delay between 2 measures :
 #{in seconds.}
