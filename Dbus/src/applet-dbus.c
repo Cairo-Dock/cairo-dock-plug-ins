@@ -101,3 +101,14 @@ gboolean cd_dbus_callback_reboot(dbusCallback *pDbusCallback, GError **error)
 	cairo_dock_read_conf_file (g_cConfFile, g_pMainDock);
 	return TRUE;
 }
+
+gboolean cd_dbus_callback_reload_module (dbusCallback *pDbusCallback, gchar *cModuleName, GError **error)
+{
+	if (! myConfig.bEnableReloadModule)
+		return FALSE;
+	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
+	g_return_val_if_fail (pModule != NULL, FALSE);
+	
+	cairo_dock_reload_module (pModule, TRUE);  // TRUE <=> reload module conf file.
+	return TRUE;
+}

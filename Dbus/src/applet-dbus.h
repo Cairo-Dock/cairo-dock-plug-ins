@@ -27,5 +27,6 @@ gboolean cd_dbus_callback_show_desklet(dbusCallback *pDbusCallback, gboolean *wi
 
 gboolean cd_dbus_callback_reboot(dbusCallback *pDbusCallback, GError **error);
 
+gboolean cd_dbus_callback_reload_module (dbusCallback *pDbusCallback, gchar *cModuleName, GError **error);
 
 #endif

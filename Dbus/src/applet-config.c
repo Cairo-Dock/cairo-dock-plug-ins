@@ -20,6 +20,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bEnablePopUp 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable pop-up");
 	myConfig.bEnableReboot 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reboot");
 	myConfig.bEnableDesklets 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable desklets");
+	myConfig.bEnableReloadModule 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reload module");
 CD_APPLET_GET_CONFIG_END
 
 

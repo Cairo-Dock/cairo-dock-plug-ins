@@ -9,6 +9,7 @@ struct _AppletConfig {
 	gboolean bEnablePopUp;
 	gboolean bEnableReboot;
 	gboolean bEnableDesklets;
+	gboolean bEnableReloadModule;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

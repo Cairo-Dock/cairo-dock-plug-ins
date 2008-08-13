@@ -11,3 +11,6 @@ enable reboot = true
 
 #b Let extern applications show/hide the desklets ?
 enable desklets = true
+
+#b Let extern applications reload the applets ?
+enable reload module = true

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 19:00+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-06-24 20:00+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -30,5 +30,11 @@ msgstr "Autorizzare le applicazioni esterne a ricaricare la barra ?"
 
 #: ../data/messages:7
 msgid "Let extern applications show/hide the desklets ?"
+msgstr ""
+"Autorizzare le applicazioni esterne a mostrare/nascondere le desklets ?"
+
+#: ../data/messages:9
+#, fuzzy
+msgid "Let extern applications reload the applets ?"
 msgstr ""
 "Autorizzare le applicazioni esterne a mostrare/nascondere le desklets ?"

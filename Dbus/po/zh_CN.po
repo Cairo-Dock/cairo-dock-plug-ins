@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-03 19:00+0200\n"
+"POT-Creation-Date: 2008-08-13 01:33+0200\n"
 "PO-Revision-Date: 2008-06-24 10:31+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,4 +30,9 @@ msgstr "允许外部应用程序重启dock？"
 
 #: ../data/messages:7
 msgid "Let extern applications show/hide the desklets ?"
+msgstr "令外部应用程序显示/隐藏桌面小应用程序？"
+
+#: ../data/messages:9
+#, fuzzy
+msgid "Let extern applications reload the applets ?"
 msgstr "令外部应用程序显示/隐藏桌面小应用程序？"

@@ -1,0 +1,19 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node name="/org/cairodock/CairoDock">
+	<interface name="org.cairodock.CairoDock">
+		<method name="Reboot">
+		</method>
+		<method name="Hello">
+		</method>
+		<method name="ShowDesklet">
+			<arg name="widgetLayer" type="b" direction="in"/>
+		</method>
+		<method name="ShowDialog">
+			<arg name="message" type="s" direction="in"/>
+		</method>
+		<method name="ReloadModule">
+			<arg name="cModuleName" type="s" direction="in"/>
+		</method>
+	</interface>
+</node>
