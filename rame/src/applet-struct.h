@@ -11,7 +11,7 @@ struct _AppletConfig {
 	gboolean bShowSwap;
 	
 	const gchar *cGThemePath;
-	gchar *cFilligranImagePath;
+	gchar *cWatermarkImagePath;
 	gdouble fAlpha;
 	
 	gint iNbDisplayedProcesses;

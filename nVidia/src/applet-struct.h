@@ -24,7 +24,7 @@ struct _AppletConfig {
 	nVidiaTemp iDrawTemp;
 	gchar *cBrokenUserImage;
 	const gchar *cGThemePath;
-	gchar *cFilligranImagePath;
+	gchar *cWatermarkImagePath;
 	gdouble fAlpha;
 	gchar *defaultTitle;
 	gchar *cSoundPath;

@@ -17,7 +17,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "filligran alpha");
 	if (myConfig.fAlpha != 0)
 	{
-		myConfig.cFilligranImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "filligran image", MY_APPLET_ICON_FILE);
+		myConfig.cWatermarkImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "watermark image", MY_APPLET_ICON_FILE);
 	}
 	
 	myConfig.iNbDisplayedProcesses = CD_CONFIG_GET_INTEGER ("Configuration", "top");
@@ -33,7 +33,7 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	cairo_dock_free_label_description (myConfig.pTopTextDescription);
-	g_free (myConfig.cFilligranImagePath);
+	g_free (myConfig.cWatermarkImagePath);
 CD_APPLET_RESET_CONFIG_END
 
 

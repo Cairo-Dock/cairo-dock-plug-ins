@@ -85,16 +85,16 @@ sound path = /usr/share/sounds/error.wav
 
 #F[Images;gtk-dialog-info]
 frame_img =
-#R+[radium] List of available themes for the analogic display :
+#R+[] List of available themes for the analogic display :
 theme = radium
 
-#S+ Image to display as a filligran on the gauge :
-#{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any filligran.}
-filligran image =
+#S+ Image to display as a watermark on the gauge :
+#{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark.}
+watermark image =
 
-#e+[0;1] Transparency of the filligran :
-#{Set it up to 0 if you don't want to have a filligran.}
-filligran alpha = .6
+#e+[0;1] Transparency of the watermark :
+#{Set it up to 0 if you don't want to have a watermark.}
+watermark alpha = .6
 
 #S+ Name of an image for the 'broken' icon :
 #{Let it empty to use the default icon.}

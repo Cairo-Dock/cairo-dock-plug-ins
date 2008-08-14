@@ -17,8 +17,8 @@ CD_APPLET_INIT_BEGIN
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	fMaxScale = cairo_dock_get_max_scale (myContainer);
 	myData.pGauge = cairo_dock_load_gauge (myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
-	if (myConfig.cFilligranImagePath != NULL)
-		cairo_dock_add_filligran_on_gauge (myDrawContext, myData.pGauge, myConfig.cFilligranImagePath, myConfig.fAlpha);
+	if (myConfig.cWatermarkImagePath != NULL)
+		cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 	
 	cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
 	
@@ -54,8 +54,8 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cairo_dock_free_gauge(myData.pGauge);
 		myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-		if (myConfig.cFilligranImagePath != NULL)
-			cairo_dock_add_filligran_on_gauge (myDrawContext, myData.pGauge, myConfig.cFilligranImagePath, myConfig.fAlpha);
+		if (myConfig.cWatermarkImagePath != NULL)
+			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 		
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_ICON)
 		{
@@ -82,8 +82,8 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else {  // on redessine juste l'icone.
 		cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-		if (myConfig.cFilligranImagePath != NULL)
-			cairo_dock_add_filligran_on_gauge (myDrawContext, myData.pGauge, myConfig.cFilligranImagePath, myConfig.fAlpha);
+		if (myConfig.cWatermarkImagePath != NULL)
+			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 		
 		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;  // on recupere le nouveau style des etiquettes en cas de changement de la config du dock.
 		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&g_dialogTextDescription);

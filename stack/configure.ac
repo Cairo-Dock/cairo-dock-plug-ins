@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-stack],[0.2.0],[ChAnGFu (Robertson Rémy) (changfu@cairo-dock.org)])
+AC_INIT([cd-stack],[0.2.1],[ChAnGFu (Robertson Rémy) (changfu@cairo-dock.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

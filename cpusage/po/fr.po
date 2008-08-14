@@ -214,35 +214,3 @@ msgstr "Nombre de programmes à afficher dans la top liste :"
 msgid "Delay between refresh of the top list :"
 msgstr "Délai entre les rafraîchissements de la top liste :"
 
-#~ msgid "Module"
-#~ msgstr "Module"
-
-#~ msgid "Icon's name :"
-#~ msgstr "Nom de l'icône :"
-
-#~ msgid "Information"
-#~ msgstr "Information"
-
-#~ msgid "Information to display on the icon :"
-#~ msgstr "Information a afficher sur l'icon :"
-
-#~ msgid "Waiting"
-#~ msgstr "Waiting"
-
-#~ msgid "Personnalisation"
-#~ msgstr "Personnalisation"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "Laissez vide pour utiliser l'icône par défaut."
-
-#~ msgid "Delay between signal checks :"
-#~ msgstr "Ecart entre 2 vérifications :"
-
-#~ msgid "Debug"
-#~ msgstr "Debug"
-
-#~ msgid "in milliseconds."
-#~ msgstr "en millisecondes."
-
-#~ msgid "Lockposition ?"
-#~ msgstr "Verrouiller la position ?"

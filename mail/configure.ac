@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-mail],[0.0.2],[Christophe Chapuis (chris.chapuis@gmail.com)])
+AC_INIT([cd-mail],[0.0.3],[Christophe Chapuis (chris.chapuis@gmail.com)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

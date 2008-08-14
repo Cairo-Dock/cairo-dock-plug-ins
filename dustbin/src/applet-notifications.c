@@ -20,7 +20,6 @@ CD_APPLET_ABOUT (D_("This is the dustbin applet for Cairo-Dock\n made by Fabrice
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	cd_message ("_Note_ : You can manage many Trash directories with this applet.\n Right click on its icon to see which Trash directories are already being monitored.");
 	cd_dustbin_show_trash (NULL, "trash:/");
 CD_APPLET_ON_CLICK_END
 
@@ -34,8 +33,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	if (g_list_length (myData.pDustbinsList) == 1)
 	{
-		CD_APPLET_ADD_IN_MENU (D_("Show Trash"), cd_dustbin_show_trash, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU (D_("Delete Trash"), cd_dustbin_delete_trash, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Show Trash"), cd_dustbin_show_trash, CD_APPLET_MY_MENU, NULL)
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete Trash"), cd_dustbin_delete_trash, CD_APPLET_MY_MENU, NULL)
 	}
 	else
 	{
@@ -46,7 +45,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			g_string_printf (sLabel, D_("Show %s"), pDustbin->cPath);
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_show_trash, pShowSubMenu, pDustbin->cPath)
 		}
-		CD_APPLET_ADD_IN_MENU (D_("Show All"), cd_dustbin_show_trash, pShowSubMenu)
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Show All"), cd_dustbin_show_trash, pShowSubMenu, NULL)
 	
 		CD_APPLET_ADD_SUB_MENU (D_("Delete Trash"), pDeleteSubMenu, pModuleSubMenu)
 		for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
@@ -55,7 +54,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			g_string_printf (sLabel, D_("Delete %s"), pDustbin->cPath);
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_delete_trash, pDeleteSubMenu, pDustbin->cPath)
 		}
-		CD_APPLET_ADD_IN_MENU (D_("Delete All"), cd_dustbin_delete_trash, pDeleteSubMenu)
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete All"), cd_dustbin_delete_trash, pDeleteSubMenu, NULL)
 	}
 	
 	g_string_free (sLabel, TRUE);

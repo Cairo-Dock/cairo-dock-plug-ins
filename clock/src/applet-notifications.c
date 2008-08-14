@@ -6,6 +6,7 @@ released under the terms of the GNU General Public License.
 Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 **********************************************************************************/
+#define __USE_POSIX
 #include <stdlib.h>
 
 #include "applet-struct.h"

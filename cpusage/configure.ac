@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-cpusage],[1.1.0],[parAdOxxx_ZeRo (changfu@hollowproject.org)])
+AC_INIT([cd-cpusage],[1.1.1],[parAdOxxx_ZeRo (changfu@hollowproject.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

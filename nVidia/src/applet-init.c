@@ -29,8 +29,8 @@ CD_APPLET_INIT_BEGIN
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	myData.pGauge = cairo_dock_load_gauge(myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 	
-	if (myConfig.cFilligranImagePath != NULL)
-		cairo_dock_add_filligran_on_gauge (myDrawContext, myData.pGauge, myConfig.cFilligranImagePath, myConfig.fAlpha);
+	if (myConfig.cWatermarkImagePath != NULL)
+		cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 	
 	myData.iPreviousGPUTemp = -1;  // force le dessin.
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
@@ -77,8 +77,8 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cairo_dock_free_gauge(myData.pGauge);
 		myData.pGauge = cairo_dock_load_gauge(myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
-		if (myConfig.cFilligranImagePath != NULL)
-		cairo_dock_add_filligran_on_gauge (myDrawContext, myData.pGauge, myConfig.cFilligranImagePath, myConfig.fAlpha);
+		if (myConfig.cWatermarkImagePath != NULL)
+		cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 		
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		cairo_dock_stop_measure_timer (myData.pMeasureTimer);  // on stoppe avant car  on ne veut pas attendre la prochaine iteration.
@@ -88,8 +88,8 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else {
 		cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-		if (myConfig.cFilligranImagePath != NULL)
-			cairo_dock_add_filligran_on_gauge (myDrawContext, myData.pGauge, myConfig.cFilligranImagePath, myConfig.fAlpha);
+		if (myConfig.cWatermarkImagePath != NULL)
+			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 		
 		myData.iPreviousGPUTemp = -1;  // force le redessin.
 		

@@ -448,16 +448,14 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		}
 		else
 			return ;
-		//g_print (">>> %s\n", sCommand->str);
+		cd_message ("dustbin : %s\n", sCommand->str);
 		GError *erreur = NULL;
 		g_spawn_command_line_async (sCommand->str, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("Attention : when trying to execute '%s' : %s", sCommand->str, erreur->message);
+			cd_warning ("Dustbin : when trying to execute '%s' : %s", sCommand->str, erreur->message);
 			g_error_free (erreur);
-			//gchar *cTipMessage = g_strdup_printf ("A problem occured\nIf '%s' is not your usual file browser, you can change it in the conf panel of this module", myConfig.cDefaultBrowser);
 			cairo_dock_show_temporary_dialog (D_("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, myConfig.cDefaultBrowser);
-			//g_free (cTipMessage);
 		}
 		g_string_free (sCommand, TRUE);
 	}

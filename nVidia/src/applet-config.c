@@ -28,10 +28,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bAlertSound = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "asound", TRUE);
 	myConfig.cSoundPath = CD_CONFIG_GET_STRING ("Configuration", "sound path");
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
-	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "filligran alpha");
+	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "watermark alpha");
 	if (myConfig.fAlpha != 0)
 	{
-		myConfig.cFilligranImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "filligran image", MY_APPLET_ICON_FILE);
+		myConfig.cWatermarkImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "watermark image", MY_APPLET_ICON_FILE);
 	}
 	myConfig.cBrokenUserImage = CD_CONFIG_GET_STRING ("Configuration", "broken");
 	
@@ -43,7 +43,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cBrokenUserImage);
 	g_free (myConfig.cSoundPath);
-	g_free (myConfig.cFilligranImagePath);
+	g_free (myConfig.cWatermarkImagePath);
 	
 CD_APPLET_RESET_CONFIG_END
 

@@ -10,7 +10,7 @@ struct _AppletConfig {
 	
 	CairoDockInfoDisplay iInfoDisplay;
 	const gchar *cGThemePath;
-	gchar *cFilligranImagePath;
+	gchar *cWatermarkImagePath;
 	gdouble fAlpha;
 	
 	gint iNbDisplayedProcesses;

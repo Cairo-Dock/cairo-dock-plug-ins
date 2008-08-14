@@ -68,13 +68,13 @@ info display = 1
 #R+[] List of available themes for the analogic display :/
 theme = turbo-night
 
-#S+ Image to display as a filligran on the gauge :
-#{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any filligran.}
-filligran image = .6
+#S+ Image to display as a watermark on the gauge :
+#{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark.}
+watermark image = .6
 
-#e+[0;1] Transparency of the filligran :
-#{Set it up to 0 if you don't want to have a filligran.}
-filligran alpha =
+#e+[0;1] Transparency of the watermark :
+#{Set it up to 0 if you don't want to have a watermark.}
+watermark alpha =
 
 #i[1;30] Delay between 2 measures :
 #{in seconds.}
