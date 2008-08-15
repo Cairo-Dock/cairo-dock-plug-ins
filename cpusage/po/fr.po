@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-13 01:33+0200\n"
+"POT-Creation-Date: 2008-08-14 23:34+0200\n"
 "PO-Revision-Date: 2008-06-28 12:43+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Français <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "day(s)"
 msgstr "jour(s)"
 
-#: ../src/applet-cpusage.c:212
+#: ../src/applet-cpusage.c:219
 msgid "Loading"
 msgstr "Chargement"
 
@@ -142,7 +142,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37 ../data/messages:61
+#: ../data/messages:37 ../data/messages:67
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -155,50 +155,64 @@ msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 
 #: ../data/messages:43
-msgid "turbo-night-fuel"
-msgstr "turbo-night-fuel"
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
 
 #: ../data/messages:45
+msgid "Image to display as a watermark on the gauge :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr ""
+
+#: ../data/messages:49
+msgid "Transparency of the watermark :"
+msgstr ""
+
+#: ../data/messages:51
 msgid "Display CPU usage values :"
 msgstr "Afficher les valeurs d'utilisations du CPU :"
 
-#: ../data/messages:47
+#: ../data/messages:53
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:49
+#: ../data/messages:55
 msgid "On icon"
 msgstr "Sur l'icône"
 
-#: ../data/messages:51
+#: ../data/messages:57
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:53
+#: ../data/messages:59
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "Première couleur pour le texte de la graduation de la top liste."
 
-#: ../data/messages:55
+#: ../data/messages:61
 msgid "Start color of the top list :"
 msgstr "Couleur de début de la top liste :"
 
-#: ../data/messages:57
+#: ../data/messages:63
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "Seconde couleur pour le texte de la graduation de la top liste."
 
-#: ../data/messages:59
+#: ../data/messages:65
 msgid "Stop color of the top list :"
 msgstr "Couleur de fin de la top liste :"
 
-#: ../data/messages:63 ../data/messages:71
+#: ../data/messages:69 ../data/messages:77
 msgid "in seconds."
 msgstr "en secondes."
 
-#: ../data/messages:65
+#: ../data/messages:71
 msgid "Delay between refresh :"
 msgstr "Délai entre les rafraîchissements"
 
-#: ../data/messages:67
+#: ../data/messages:73
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU-"
 "using programs."
@@ -206,11 +220,13 @@ msgstr ""
 "Le clic droit sur l'icône vous donne la liste des programmes qui utilisent "
 "le plus de CPU."
 
-#: ../data/messages:69
+#: ../data/messages:75
 msgid "Number of programs to display in the top list :"
 msgstr "Nombre de programmes à afficher dans la top liste :"
 
-#: ../data/messages:73
+#: ../data/messages:79
 msgid "Delay between refresh of the top list :"
 msgstr "Délai entre les rafraîchissements de la top liste :"
 
+#~ msgid "turbo-night-fuel"
+#~ msgstr "turbo-night-fuel"

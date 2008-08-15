@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-13 01:33+0200\n"
+"POT-Creation-Date: 2008-08-14 23:34+0200\n"
 "PO-Revision-Date: 2008-06-25 19:12+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -63,15 +63,15 @@ msgstr ""
 "Questa è l'applet wifi\n"
 " scritta da ChAnGFu per Cairo-Dock"
 
-#: ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:56
 msgid "Check for Wireless Extension"
 msgstr "Verifica dell'Estensione Wifi"
 
-#: ../src/applet-notifications.c:53
+#: ../src/applet-notifications.c:58
 msgid "Network Administration"
 msgstr "Amministrazione della Rete"
 
-#: ../src/applet-wifi.c:128 ../src/applet-wifi.c:133
+#: ../src/applet-wifi.c:129 ../src/applet-wifi.c:134
 msgid "Unknown"
 msgstr "Sconosciuto"
 

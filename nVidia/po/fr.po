@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-13 01:33+0200\n"
+"POT-Creation-Date: 2008-08-14 23:34+0200\n"
 "PO-Revision-Date: 2007-12-11\n"
 "Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,23 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:83
 msgid "GPU Name:"
 msgstr "Nom de la Carte:"
 
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:83
 msgid "Video Ram:"
 msgstr "Mémoire Vidéo:"
 
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:83
 msgid "Driver Version:"
 msgstr "Version du Driver:"
 
-#: ../src/applet-draw.c:82 ../src/applet-draw.c:98
+#: ../src/applet-draw.c:83 ../src/applet-draw.c:99
 msgid "Core Temparature:"
 msgstr "Température du Coeur:"
 
-#: ../src/applet-draw.c:87
+#: ../src/applet-draw.c:88
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
@@ -42,7 +42,7 @@ msgstr ""
 "Votre version de 'nvidia-settings' est trop vieille\n"
 " Vous devez avoir au moin la 1.0.0"
 
-#: ../src/applet-draw.c:90
+#: ../src/applet-draw.c:91
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -54,11 +54,11 @@ msgstr ""
 " Est-ce qu'nvidia-settings est installé\n"
 " et configuré pour récupérer la température du GPU?"
 
-#: ../src/applet-draw.c:98
+#: ../src/applet-draw.c:99
 msgid "Alert!"
 msgstr "Alerte!"
 
-#: ../src/applet-draw.c:98
+#: ../src/applet-draw.c:99
 msgid "passed alert temperature level"
 msgstr ""
 "a dépassé le\n"
@@ -240,10 +240,28 @@ msgid "radium"
 msgstr ""
 
 #: ../data/messages:81
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+
+#: ../data/messages:83
+msgid "Image to display as a watermark on the gauge :"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr ""
+
+#: ../data/messages:87
+msgid "Transparency of the watermark :"
+msgstr ""
+
+#: ../data/messages:89
 msgid "Let it empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'pas de donnée' :"
 

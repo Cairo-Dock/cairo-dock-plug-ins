@@ -4,9 +4,9 @@
 [Icon]
 #F[Desired icon size for this applet]
 frame1 = 
-#i width :
+#i+ width :
 width = 32
-#i height :
+#i+ height :
 height = 32
 
 #F
@@ -25,10 +25,10 @@ order=
 #[gtk-convert]
 [Desklet]
 
-#i[48;1024] Desklet's dimension (width x height) :
+#i+[48;1024] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=350
-#i[48;1024] ...
+#i+[48;1024] ...
 height=250
 
 #i[-2048;2048] Desklet's position (x ; y) :
@@ -77,7 +77,7 @@ check interval = 15
 #F[Info;gtk-info]
 frame_info =
 
-#b Display current conditions on the icon instead of the default one ?
+#b+ Display current conditions on the icon instead of the default one ?
 display cc = true
 
 #i[0;5] Number of days you want to forecast :
@@ -92,12 +92,12 @@ display temperature = false
 #F[Display;gtk-dialog-info]
 frame_disp =
 
-#R1[] Choose one of the available themes :/
+#R+[] Choose one of the available themes :/
 theme = basic
 
-#n Name of the view used for the sub-dock :
+#n+ Name of the view used for the sub-dock :
 #{Let it empty to use default sub-dock view.}/
 renderer = 
 
-#b Render desklet in 3D ?
+#b+ Render desklet in 3D ?
 3D desket = true

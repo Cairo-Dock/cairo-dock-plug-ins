@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-13 01:33+0200\n"
+"POT-Creation-Date: 2008-08-14 23:34+0200\n"
 "PO-Revision-Date: 2008-06-23 14:22+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "day(s)"
 msgstr "日"
 
-#: ../src/applet-cpusage.c:212
+#: ../src/applet-cpusage.c:219
 msgid "Loading"
 msgstr "载入"
 
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "锁定位置？"
 
-#: ../data/messages:37 ../data/messages:61
+#: ../data/messages:37 ../data/messages:67
 msgid "Configuration"
 msgstr "配置"
 
@@ -151,62 +151,79 @@ msgid "List of available themes for the analogic display :"
 msgstr "模拟显示模式的主题列表："
 
 #: ../data/messages:43
-msgid "turbo-night-fuel"
-msgstr "夜色油量表"
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
 
 #: ../data/messages:45
+msgid "Image to display as a watermark on the gauge :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr ""
+
+#: ../data/messages:49
+msgid "Transparency of the watermark :"
+msgstr ""
+
+#: ../data/messages:51
 msgid "Display CPU usage values :"
 msgstr "显示CPU占用值："
 
-#: ../data/messages:47
+#: ../data/messages:53
 msgid "No"
 msgstr "否"
 
-#: ../data/messages:49
+#: ../data/messages:55
 msgid "On icon"
 msgstr "在图标上"
 
-#: ../data/messages:51
+#: ../data/messages:57
 msgid "On label"
 msgstr "在标签上"
 
-#: ../data/messages:53
+#: ../data/messages:59
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "用于显示CPU占有率列表的渐变色的第一种颜色。"
 
-#: ../data/messages:55
+#: ../data/messages:61
 msgid "Start color of the top list :"
 msgstr "top列表的起始颜色："
 
-#: ../data/messages:57
+#: ../data/messages:63
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "用于显示CPU占有率列表的渐变色的第二种颜色。"
 
-#: ../data/messages:59
+#: ../data/messages:65
 msgid "Stop color of the top list :"
 msgstr "top列表的结束颜色："
 
-#: ../data/messages:63 ../data/messages:71
+#: ../data/messages:69 ../data/messages:77
 msgid "in seconds."
 msgstr "以秒为单位。"
 
-#: ../data/messages:65
+#: ../data/messages:71
 msgid "Delay between refresh :"
 msgstr "刷新间歇："
 
-#: ../data/messages:67
+#: ../data/messages:73
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU-"
 "using programs."
 msgstr "左击图标时,将显示您指定数目的CPU占有率最高的程序的列表"
 
-#: ../data/messages:69
+#: ../data/messages:75
 msgid "Number of programs to display in the top list :"
 msgstr "top列表上显示的程序数目："
 
-#: ../data/messages:73
+#: ../data/messages:79
 msgid "Delay between refresh of the top list :"
 msgstr "top列表刷新间歇："
+
+#~ msgid "turbo-night-fuel"
+#~ msgstr "夜色油量表"
 
 #~ msgid "Module"
 #~ msgstr "模块"

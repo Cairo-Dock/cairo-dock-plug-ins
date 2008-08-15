@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-13 01:33+0200\n"
+"POT-Creation-Date: 2008-08-14 23:34+0200\n"
 "PO-Revision-Date: 2008-06-18 21:53+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -35,38 +35,38 @@ msgstr ""
 "これは Fabrice Rey (fabounet@users.berlios.de) により\n"
 "Cairo-Dock 用に製作された dustbin アプレットです。"
 
-#: ../src/applet-notifications.c:37 ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:41
 msgid "Show Trash"
 msgstr "中身を表示"
 
-#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:37 ../src/applet-notifications.c:50
 msgid "Delete Trash"
 msgstr "中身を削除"
 
-#: ../src/applet-notifications.c:46
+#: ../src/applet-notifications.c:45
 #, c-format
 msgid "Show %s"
 msgstr "%s を表示"
 
-#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:48
 msgid "Show All"
 msgstr "すべて表示"
 
-#: ../src/applet-notifications.c:55
+#: ../src/applet-notifications.c:54
 #, c-format
 msgid "Delete %s"
 msgstr "%s を削除"
 
-#: ../src/applet-notifications.c:58
+#: ../src/applet-notifications.c:57
 msgid "Delete All"
 msgstr "すべて削除"
 
-#: ../src/applet-notifications.c:73
+#: ../src/applet-notifications.c:72
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s は現在アンマウントされています"
 
-#: ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:76
 #, c-format
 msgid "failed to unmount %s"
 msgstr "%s のアンマウントに失敗"
@@ -80,7 +80,7 @@ msgstr "%s の全ファイルを削除しようとしています。よろしい
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
 
-#: ../src/applet-trashes-manager.c:459
+#: ../src/applet-trashes-manager.c:458
 #, c-format
 msgid ""
 "A problem occured\n"

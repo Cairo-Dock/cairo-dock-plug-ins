@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-13 01:33+0200\n"
+"POT-Creation-Date: 2008-08-14 23:34+0200\n"
 "PO-Revision-Date: 2008-07-16 15:51+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -61,15 +61,15 @@ msgid ""
 " made by ChAnGFu for Cairo-Dock"
 msgstr "这是ChAnGFu为Cairo-Dock制作的wifi小应用程序"
 
-#: ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:56
 msgid "Check for Wireless Extension"
 msgstr "检查无线扩展"
 
-#: ../src/applet-notifications.c:53
+#: ../src/applet-notifications.c:58
 msgid "Network Administration"
 msgstr "网络管理"
 
-#: ../src/applet-wifi.c:128 ../src/applet-wifi.c:133
+#: ../src/applet-wifi.c:129 ../src/applet-wifi.c:134
 msgid "Unknown"
 msgstr "未知"
 

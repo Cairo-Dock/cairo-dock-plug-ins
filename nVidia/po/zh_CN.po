@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-13 01:33+0200\n"
+"POT-Creation-Date: 2008-08-14 23:34+0200\n"
 "PO-Revision-Date: 2008-07-03 12:44+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -16,23 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:83
 msgid "GPU Name:"
 msgstr "GPU名称："
 
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:83
 msgid "Video Ram:"
 msgstr "显存："
 
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:83
 msgid "Driver Version:"
 msgstr "驱动版本："
 
-#: ../src/applet-draw.c:82 ../src/applet-draw.c:98
+#: ../src/applet-draw.c:83 ../src/applet-draw.c:99
 msgid "Core Temparature:"
 msgstr "核心温度："
 
-#: ../src/applet-draw.c:87
+#: ../src/applet-draw.c:88
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
@@ -42,7 +42,7 @@ msgstr ""
 "您的'nvidia-settings'版本过低\n"
 "您需要至少1.0.0的版本"
 
-#: ../src/applet-draw.c:90
+#: ../src/applet-draw.c:91
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -53,11 +53,11 @@ msgstr ""
 "无法获取GPU温度\n"
 "您确定'nvidia-settings'已经安装并开启了监视GPU温度的选项了么？"
 
-#: ../src/applet-draw.c:98
+#: ../src/applet-draw.c:99
 msgid "Alert!"
 msgstr "警告！"
 
-#: ../src/applet-draw.c:98
+#: ../src/applet-draw.c:99
 msgid "passed alert temperature level"
 msgstr "报警温度等级"
 
@@ -231,10 +231,28 @@ msgid "radium"
 msgstr "辐射"
 
 #: ../data/messages:81
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+
+#: ../data/messages:83
+msgid "Image to display as a watermark on the gauge :"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr ""
+
+#: ../data/messages:87
+msgid "Transparency of the watermark :"
+msgstr ""
+
+#: ../data/messages:89
 msgid "Let it empty to use the default icon."
 msgstr "留空以使用默认图标。"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Name of an image for the 'broken' icon :"
 msgstr "“破损”图标的图形文件名称："
 

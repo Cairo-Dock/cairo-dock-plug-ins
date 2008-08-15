@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-13 01:33+0200\n"
+"POT-Creation-Date: 2008-08-14 23:34+0200\n"
 "PO-Revision-Date: 2008-06-18 22:28+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:83
 msgid "GPU Name:"
 msgstr "GPU名 :"
 
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:83
 msgid "Video Ram:"
 msgstr "Video Ram:"
 
-#: ../src/applet-draw.c:82
+#: ../src/applet-draw.c:83
 msgid "Driver Version:"
 msgstr "Driver Version:"
 
-#: ../src/applet-draw.c:82 ../src/applet-draw.c:98
+#: ../src/applet-draw.c:83 ../src/applet-draw.c:99
 msgid "Core Temparature:"
 msgstr "コアの温度 :"
 
-#: ../src/applet-draw.c:87
+#: ../src/applet-draw.c:88
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
@@ -41,7 +41,7 @@ msgstr ""
 "'nvidia-settings' のバージョンが古すぎます。\n"
 "少なくとも 1.0.0 バージョンが必要です。"
 
-#: ../src/applet-draw.c:90
+#: ../src/applet-draw.c:91
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -53,11 +53,11 @@ msgstr ""
 "'nvidia-settings' がシステムにインストールされ、\n"
 "GPU の温度を監視するように設定されていますか？"
 
-#: ../src/applet-draw.c:98
+#: ../src/applet-draw.c:99
 msgid "Alert!"
 msgstr "警告！"
 
-#: ../src/applet-draw.c:98
+#: ../src/applet-draw.c:99
 msgid "passed alert temperature level"
 msgstr "警告温度レベル突破"
 
@@ -237,10 +237,28 @@ msgid "radium"
 msgstr "radium"
 
 #: ../data/messages:81
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+
+#: ../data/messages:83
+msgid "Image to display as a watermark on the gauge :"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr ""
+
+#: ../data/messages:87
+msgid "Transparency of the watermark :"
+msgstr ""
+
+#: ../data/messages:89
 msgid "Let it empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」アイコンの画像の名前 :"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-13 01:33+0200\n"
+"POT-Creation-Date: 2008-08-14 23:33+0200\n"
 "PO-Revision-Date: 2008-07-03 15:07+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "锁定位置？"
 
-#: ../data/messages:37 ../data/messages:63
+#: ../data/messages:37 ../data/messages:71
 msgid "Configuration"
 msgstr "配置"
 
@@ -133,60 +133,78 @@ msgid "turbo-night-fuel"
 msgstr "油量表夜光版"
 
 #: ../data/messages:45
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any filligran."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Image to display as a filligran on the gauge :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Set it up to 0 if you don't want to have a filligran."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Transparency of the filligran :"
+msgstr ""
+
+#: ../data/messages:53
 msgid "Display memory values :"
 msgstr "显示内存数："
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "No"
 msgstr "否"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "On icon"
 msgstr "在图标上"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "On label"
 msgstr "在标签上"
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Display SWAP too ?"
 msgstr "同时显示交换空间？"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "用于显示top列表的渐变色的第一种颜色。"
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Start color of the top list :"
 msgstr "top列表的起始颜色："
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "用于显示top列表的渐变色的第二种颜色。"
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Stop color of the top list :"
 msgstr "top列表的结束颜色："
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "in seconds."
 msgstr "以秒为单位。"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "Delay between refresh :"
 msgstr "刷新间歇："
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
 msgstr "左击图标时,将显示您指定数目的内存占有率最高的程序的列表"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Number of programs to display in the top list :"
 msgstr "top列表上显示的程序数目："
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Show top memory usage in % ?"
 msgstr "以百分比显示内存使用率？"
 

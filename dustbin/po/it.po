@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-13 01:33+0200\n"
+"POT-Creation-Date: 2008-08-14 23:34+0200\n"
 "PO-Revision-Date: 2008-06-24 22:04+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -35,38 +35,38 @@ msgstr ""
 "Questa è l'applet Dustbin\n"
 " scritta da Fabounet (Fabrice Rey) per Cairo-Dock"
 
-#: ../src/applet-notifications.c:37 ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:41
 msgid "Show Trash"
 msgstr "Aprire il Cestino"
 
-#: ../src/applet-notifications.c:38 ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:37 ../src/applet-notifications.c:50
 msgid "Delete Trash"
 msgstr "Svuotare il Cestino"
 
-#: ../src/applet-notifications.c:46
+#: ../src/applet-notifications.c:45
 #, c-format
 msgid "Show %s"
 msgstr "Aprire %s"
 
-#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:48
 msgid "Show All"
 msgstr "Aprire Tutti"
 
-#: ../src/applet-notifications.c:55
+#: ../src/applet-notifications.c:54
 #, c-format
 msgid "Delete %s"
 msgstr "Svuotare %s"
 
-#: ../src/applet-notifications.c:58
+#: ../src/applet-notifications.c:57
 msgid "Delete All"
 msgstr "Svuotare Tutti"
 
-#: ../src/applet-notifications.c:73
+#: ../src/applet-notifications.c:72
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s è smontato adesso"
 
-#: ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:76
 #, c-format
 msgid "failed to unmount %s"
 msgstr "fallimento nello smontare %s"
@@ -80,7 +80,7 @@ msgstr "State per cancellare tutti i files in %s. Sicuri ?"
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Tutti i files saranno cancellati dai cestini. Sicuri ?"
 
-#: ../src/applet-trashes-manager.c:459
+#: ../src/applet-trashes-manager.c:458
 #, c-format
 msgid ""
 "A problem occured\n"
