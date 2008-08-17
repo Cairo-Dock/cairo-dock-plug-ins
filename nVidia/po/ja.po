@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-14 23:34+0200\n"
+"POT-Creation-Date: 2008-08-18 02:41+0200\n"
 "PO-Revision-Date: 2008-06-18 22:28+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -233,34 +233,33 @@ msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示に利用可能なテーマのリスト :"
 
 #: ../data/messages:79
-msgid "radium"
-msgstr "radium"
-
-#: ../data/messages:81
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:81
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:83
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:85
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:87
 msgid "Let it empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:91
+#: ../data/messages:89
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」アイコンの画像の名前 :"
+
+#~ msgid "radium"
+#~ msgstr "radium"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"

@@ -33,7 +33,7 @@ height=92
 #i[-2048;2048] Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen}
 x position=0
-#i ...
+#i[-2048;2048] ...
 y position=0
 
 #b Is detached from the dock ?

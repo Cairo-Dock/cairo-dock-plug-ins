@@ -69,10 +69,13 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
-		cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+		if (myData.pGauge != NULL)
+			cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
+		else
+			cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+		
 		if (myConfig.cWatermarkImagePath != NULL)
 			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		
 		cd_netspeed_update_from_data (myApplet);
 	}
 CD_APPLET_RELOAD_END

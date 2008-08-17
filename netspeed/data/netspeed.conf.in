@@ -34,7 +34,7 @@ height=256
 #i[-2048;2048] Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen}
 x position=0
-#i ...
+#i[-2048;2048] ...
 y position=0
 
 #b Is detached from the dock ?
@@ -70,11 +70,11 @@ theme = turbo-night
 
 #S+ Image to display as a watermark on the gauge :
 #{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark.}
-watermark image = .6
+watermark image = 
 
 #e+[0;1] Transparency of the watermark :
 #{Set it up to 0 if you don't want to have a watermark.}
-watermark alpha =
+watermark alpha = .6
 
 #i[1;30] Delay between 2 measures :
 #{in seconds.}

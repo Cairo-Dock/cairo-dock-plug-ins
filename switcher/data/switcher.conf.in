@@ -33,7 +33,7 @@ height=100
 
 #i[-2048;2048] Desklet's position (x ; y) :
 x position=10
-#i ...
+#i[-2048;2048] ...
 y position=10
 
 #b Is detached ?

@@ -133,7 +133,7 @@ AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
 CLOCK_PACKAGE="cd-clock"
 AC_SUBST(GETTEXT_CLOCK, "$CLOCK_PACKAGE")
 
-AC_SUBST(VERSION_CLOCK, "1.3.6")
+AC_SUBST(VERSION_CLOCK, "1.3.7")
 AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
 
 AC_SUBST(clockdatadir, "${pkgdatadir}/clock")
@@ -655,12 +655,12 @@ AC_OUTPUT([po/Makefile
 	])
 
 echo "Cairo-Dock-plugins will be compiled with the following options :"
-echo " * Compil gnome-integration plug-in : "${$with_gnome_support}
-echo " * Compil gnome-integration-old plug-in : "${$with_old_gnome_support}
-echo " * Compil xfce-integration plug-in : "${$with_xfce_support}
-echo " * Compil AlsaMixer applet : "${$with_alsa_mixer}
-echo " * Compil Terminal applet : "${$with_terminal}
-echo " * Compil PowerManager applet : "${$with_powermanager}
+echo " * Compil gnome-integration plug-in : "${with_gnome_support}
+echo " * Compil gnome-integration-old plug-in : "${with_old_gnome_support}
+echo " * Compil xfce-integration plug-in : "${with_xfce_support}
+echo " * Compil AlsaMixer applet : "${with_alsa_mixer}
+echo " * Compil Terminal applet : "${with_terminal}
+echo " * Compil PowerManager applet : "${with_powermanager}
 echo " * Compil Wifi applet : "${with_wifi}
 echo " * Compil Tomboy applet : "${with_tomboy}
 echo " * Compil Rhythmbox applet : "${with_rhythmbox}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-14 23:33+0200\n"
+"POT-Creation-Date: 2008-08-18 02:41+0200\n"
 "PO-Revision-Date: 2008-07-08 13:47+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -23,7 +23,7 @@ msgstr "B"
 msgid "KB"
 msgstr "KB"
 
-#: ../src/applet-netspeed.c:49 ../src/applet-notifications.c:19
+#: ../src/applet-netspeed.c:49 ../src/applet-notifications.c:18
 msgid "MB"
 msgstr "MB"
 
@@ -45,24 +45,24 @@ msgid ""
 " made by parAdOxxx_ZeRo for Cairo-Dock"
 msgstr "这是由parAdOxxx_ZeRo为Cairo-Dock编写的netspeed小应用程序"
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:18
 msgid "Total amount of data"
 msgstr ""
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:18
 msgid "downloaded"
 msgstr ""
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:18
 msgid "uploaded"
 msgstr ""
 
-#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:21
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "网卡'%s'不存在或不可用"
 
-#: ../src/applet-notifications.c:34
+#: ../src/applet-notifications.c:32
 msgid "Re-check interface"
 msgstr "重新检查网卡"
 
@@ -191,19 +191,19 @@ msgstr "模拟显示所用的主题列表"
 #: ../data/messages:55
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any filligran."
+"don't want to have any watermark."
 msgstr ""
 
 #: ../data/messages:57
-msgid "Image to display as a filligran on the gauge :"
+msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
 #: ../data/messages:59
-msgid "Set it up to 0 if you don't want to have a filligran."
+msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
 #: ../data/messages:61
-msgid "Transparency of the filligran :"
+msgid "Transparency of the watermark :"
 msgstr ""
 
 #: ../data/messages:63

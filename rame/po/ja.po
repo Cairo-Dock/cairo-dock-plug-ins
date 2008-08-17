@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-14 23:33+0200\n"
+"POT-Creation-Date: 2008-08-18 02:41+0200\n"
 "PO-Revision-Date: 2008-06-18 22:38+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -122,7 +122,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:37 ../data/messages:71
+#: ../data/messages:37 ../data/messages:69
 msgid "Configuration"
 msgstr "設定"
 
@@ -135,72 +135,68 @@ msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示に利用可能なテーマのリスト :"
 
 #: ../data/messages:43
-msgid "turbo-night-fuel"
-msgstr "turbo-night-fuel"
-
-#: ../data/messages:45
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any filligran."
+"don't want to have any watermark."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
 #: ../data/messages:47
-msgid "Image to display as a filligran on the gauge :"
+msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
 #: ../data/messages:49
-msgid "Set it up to 0 if you don't want to have a filligran."
+msgid "Transparency of the watermark :"
 msgstr ""
 
 #: ../data/messages:51
-msgid "Transparency of the filligran :"
-msgstr ""
-
-#: ../data/messages:53
 msgid "Display memory values :"
 msgstr "メモリー値の表示 :"
 
-#: ../data/messages:55
+#: ../data/messages:53
 msgid "No"
 msgstr "なし"
 
-#: ../data/messages:57
+#: ../data/messages:55
 msgid "On icon"
 msgstr "アイコン上"
 
-#: ../data/messages:59
+#: ../data/messages:57
 msgid "On label"
 msgstr "ラベル上"
 
-#: ../data/messages:61
+#: ../data/messages:59
 msgid "Display SWAP too ?"
 msgstr "スワップも表示？"
 
-#: ../data/messages:63
+#: ../data/messages:61
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "トップリストの記載に使用するグラデーションの開始色"
 
-#: ../data/messages:65
+#: ../data/messages:63
 msgid "Start color of the top list :"
 msgstr "トップリストの開始色 :"
 
-#: ../data/messages:67
+#: ../data/messages:65
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "トップリストの記載に使用するグラデーションの終了色"
 
-#: ../data/messages:69
+#: ../data/messages:67
 msgid "Stop color of the top list :"
 msgstr "トップリストの終了色 :"
 
-#: ../data/messages:73
+#: ../data/messages:71
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:75
+#: ../data/messages:73
 msgid "Delay between refresh :"
 msgstr "更新の間隔時間 :"
 
-#: ../data/messages:77
+#: ../data/messages:75
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
@@ -208,13 +204,16 @@ msgstr ""
 "アイコンを左クリックすると、メモリを最も使用している上位 N までのプログラムの"
 "リストが得られます。"
 
-#: ../data/messages:79
+#: ../data/messages:77
 msgid "Number of programs to display in the top list :"
 msgstr "トップリストに表示するプログラム数 :"
 
-#: ../data/messages:81
+#: ../data/messages:79
 msgid "Show top memory usage in % ?"
 msgstr "メモリ使用のトップを％で表示？"
+
+#~ msgid "turbo-night-fuel"
+#~ msgstr "turbo-night-fuel"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"

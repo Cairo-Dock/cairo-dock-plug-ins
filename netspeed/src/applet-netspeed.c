@@ -16,7 +16,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 
 // Prend un debit en octet par seconde et le transforme en une chaine de la forme : xxx yB/s
-static void cd_netspeed_formatRate(unsigned long long rate, gchar* debit) {
+static void cd_netspeed_formatRate(CairoDockModuleInstance *myApplet, unsigned long long rate, gchar* debit) {
 	int smallRate;
 	
 	if (rate <= 0)
@@ -82,7 +82,7 @@ void cd_netspeed_read_data (CairoDockModuleInstance *myApplet)
 	g_file_get_contents (NETSPEED_DATA_PIPE, &cContent, &length, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning("Attention : %s", erreur->message);
+		cd_warning("NetSpeed : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
 		myData.bAcquisitionOK = FALSE;
@@ -166,8 +166,8 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 			{
 				gchar upRateFormatted[11];
 				gchar downRateFormatted[11];
-				cd_netspeed_formatRate(myData.iUploadSpeed, upRateFormatted);
-				cd_netspeed_formatRate(myData.iDownloadSpeed, downRateFormatted);
+				cd_netspeed_formatRate (myApplet, myData.iUploadSpeed, upRateFormatted);
+				cd_netspeed_formatRate (myApplet, myData.iDownloadSpeed, downRateFormatted);
 				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				{
 					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("↑%s\n↓%s", upRateFormatted, downRateFormatted)

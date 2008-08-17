@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-14 23:34+0200\n"
+"POT-Creation-Date: 2008-08-18 02:41+0200\n"
 "PO-Revision-Date: 2008-07-03 12:44+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -227,34 +227,33 @@ msgid "List of available themes for the analogic display :"
 msgstr "模拟显示能够使用的主题列表："
 
 #: ../data/messages:79
-msgid "radium"
-msgstr "辐射"
-
-#: ../data/messages:81
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:81
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:83
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:85
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:87
 msgid "Let it empty to use the default icon."
 msgstr "留空以使用默认图标。"
 
-#: ../data/messages:91
+#: ../data/messages:89
 msgid "Name of an image for the 'broken' icon :"
 msgstr "“破损”图标的图形文件名称："
+
+#~ msgid "radium"
+#~ msgstr "辐射"
 
 #~ msgid "Module"
 #~ msgstr "Module"

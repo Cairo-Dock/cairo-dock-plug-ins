@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-14 23:33+0200\n"
+"POT-Creation-Date: 2008-08-18 02:41+0200\n"
 "PO-Revision-Date: 2008-06-21 20:08+0200\n"
 "Last-Translator: Guillaume <gu_barthe@yahoo.fr>\n"
 "Language-Team: français <fr@li.org>\n"
@@ -27,7 +27,7 @@ msgstr "o"
 msgid "KB"
 msgstr "Ko"
 
-#: ../src/applet-netspeed.c:49 ../src/applet-notifications.c:19
+#: ../src/applet-netspeed.c:49 ../src/applet-notifications.c:18
 msgid "MB"
 msgstr "Mo"
 
@@ -51,24 +51,24 @@ msgstr ""
 "Ceci est l'applet netspeed\n"
 " écrite par parAdOxxx_ZeRo pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:18
 msgid "Total amount of data"
 msgstr ""
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:18
 msgid "downloaded"
 msgstr ""
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:18
 msgid "uploaded"
 msgstr ""
 
-#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:21
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "L'interface '%s' semble ne pas exister ou n'est pas lisible"
 
-#: ../src/applet-notifications.c:34
+#: ../src/applet-notifications.c:32
 msgid "Re-check interface"
 msgstr "Revérifier l'interface"
 
@@ -201,19 +201,19 @@ msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 #: ../data/messages:55
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any filligran."
+"don't want to have any watermark."
 msgstr ""
 
 #: ../data/messages:57
-msgid "Image to display as a filligran on the gauge :"
+msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
 #: ../data/messages:59
-msgid "Set it up to 0 if you don't want to have a filligran."
+msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
 #: ../data/messages:61
-msgid "Transparency of the filligran :"
+msgid "Transparency of the watermark :"
 msgstr ""
 
 #: ../data/messages:63

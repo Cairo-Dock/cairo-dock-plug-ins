@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-14 23:33+0200\n"
+"POT-Creation-Date: 2008-08-18 02:41+0200\n"
 "PO-Revision-Date: 2008-06-21 22:09+0200\n"
 "Last-Translator: Guillaume <gu_barthe@yahoo.fr>\n"
 "Language-Team: français <fr@li.org>\n"
@@ -126,7 +126,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37 ../data/messages:71
+#: ../data/messages:37 ../data/messages:69
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -139,72 +139,68 @@ msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 
 #: ../data/messages:43
-msgid "turbo-night-fuel"
-msgstr "turbo-night-fuel"
-
-#: ../data/messages:45
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any filligran."
+"don't want to have any watermark."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
 #: ../data/messages:47
-msgid "Image to display as a filligran on the gauge :"
+msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
 #: ../data/messages:49
-msgid "Set it up to 0 if you don't want to have a filligran."
+msgid "Transparency of the watermark :"
 msgstr ""
 
 #: ../data/messages:51
-msgid "Transparency of the filligran :"
-msgstr ""
-
-#: ../data/messages:53
 msgid "Display memory values :"
 msgstr "Afficher les valeurs de la mémoire :"
 
-#: ../data/messages:55
+#: ../data/messages:53
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:57
+#: ../data/messages:55
 msgid "On icon"
 msgstr "Sur l'icône"
 
-#: ../data/messages:59
+#: ../data/messages:57
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:61
+#: ../data/messages:59
 msgid "Display SWAP too ?"
 msgstr "Afficher aussi la SWAP ?"
 
-#: ../data/messages:63
+#: ../data/messages:61
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "Première couleur de la graduation utilisée pour écrire la top liste."
 
-#: ../data/messages:65
+#: ../data/messages:63
 msgid "Start color of the top list :"
 msgstr "Couleur du premier élément de la top liste : "
 
-#: ../data/messages:67
+#: ../data/messages:65
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "Seconde couleur de la graduation utilisée pour écrire la top liste."
 
-#: ../data/messages:69
+#: ../data/messages:67
 msgid "Stop color of the top list :"
 msgstr "Couleur du dernier élément de la top liste :"
 
-#: ../data/messages:73
+#: ../data/messages:71
 msgid "in seconds."
 msgstr "en secondes."
 
-#: ../data/messages:75
+#: ../data/messages:73
 msgid "Delay between refresh :"
 msgstr "Intervalle entre chaque rafraîchissement :"
 
-#: ../data/messages:77
+#: ../data/messages:75
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
@@ -212,10 +208,13 @@ msgstr ""
 "Le clic gauche sur l'icône affiche la liste des programmes les plus "
 "gourmands en mémoire."
 
-#: ../data/messages:79
+#: ../data/messages:77
 msgid "Number of programs to display in the top list :"
 msgstr "Nombre de programmes à afficher dans la top liste : "
 
-#: ../data/messages:81
+#: ../data/messages:79
 msgid "Show top memory usage in % ?"
 msgstr "Montrer l'usage mémoire en % ?"
+
+#~ msgid "turbo-night-fuel"
+#~ msgstr "turbo-night-fuel"

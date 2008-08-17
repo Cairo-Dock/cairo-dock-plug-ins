@@ -56,6 +56,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	Icon *icon = myIcon;
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	double fRatio = (myDock ? myDock->fRatio : 1);
+	g_print ("clock : draw (%d)\n", cairo_status (myDrawContext) == CAIRO_STATUS_SUCCESS);
 	if (myConfig.bOldStyle)
 		cd_clock_draw_old_fashionned_clock (myApplet, (int) icon->fWidth / fRatio, (int) icon->fHeight / fRatio, fMaxScale, &epoch_tm);
 	else

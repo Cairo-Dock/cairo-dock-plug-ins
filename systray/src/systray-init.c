@@ -34,11 +34,15 @@ CD_APPLET_DEFINITION ("systray", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 CD_APPLET_INIT_BEGIN
 {
-  CD_APPLET_REGISTER_FOR_CLICK_EVENT;
-  CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
-  CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-  if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
 		systray_build_and_show ();
+	if (myIcon->acFileName == NULL)
+	{
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+	}
 }
 CD_APPLET_INIT_END
 
