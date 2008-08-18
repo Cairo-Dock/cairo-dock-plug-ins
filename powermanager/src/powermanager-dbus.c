@@ -309,7 +309,15 @@ gboolean update_stats(void)
 		jump_to_value
 		int iPresentVoltage = atoi (cCurVal);  // 15000 mV
 		
-		if (myData.on_battery) { //Decompte avant décharge complete
+		myData.battery_charge = 100. * iRemainingCapacity / myData.iCapacity;
+		if (myData.battery_charge > 100)
+			myData.battery_charge = 100;
+			
+		if (myData.battery_charge < 0)
+			myData.battery_charge = 0.;
+		
+		//Utile de connaitre l'autonomie estimée quand la batterie est chargée
+		if (myData.on_battery || myData.battery_charge == 100) { //Decompte avant décharge complete
 			if (iPresentRate > 1) {
 				myData.battery_time = 3600. * iRemainingCapacity / iPresentRate;
 				if (myData.battery_time == (iRemainingCapacity / 3600.))
@@ -329,13 +337,6 @@ gboolean update_stats(void)
 				myData.battery_time = 0.;
 		}
 		
-		myData.battery_charge = 100. * iRemainingCapacity / myData.iCapacity;
-		if (myData.battery_charge > 100)
-			myData.battery_charge = 100;
-			
-		if (myData.battery_charge < 0)
-			myData.battery_charge = 0.;
-			
 		g_print ("PowerManager : On Battery:%d ; iCapacity:%dmWh ; iRemainingCapacity:%dmWh ; iPresentRate:%dmW ; iPresentVoltage:%dmV\n", myData.on_battery, myData.iCapacity, iRemainingCapacity, iPresentRate, iPresentVoltage); 
 		g_free (cContent);
 		

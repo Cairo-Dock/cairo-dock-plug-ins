@@ -21,6 +21,9 @@ msgstr ""
 msgid "None"
 msgstr "Aucun"
 
+msgid "Unknown"
+msgstr "Inconnu"
+
 #: ../src/powermanager-draw.c:145
 msgid ""
 "Laptop on Battery.\n"
@@ -32,7 +35,7 @@ msgstr ""
 #: ../src/powermanager-draw.c:145 ../src/powermanager-draw.c:149
 #: ../src/powermanager-draw.c:170 ../src/powermanager-draw.c:176
 msgid "Estimated time with Charge:"
-msgstr "Autonomie estimé:"
+msgstr "Temp de batterie estimé:"
 
 msgid "Estimated Charge time:"
 msgstr "Temps de charge estimé:"
