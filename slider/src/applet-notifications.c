@@ -21,7 +21,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_ABOUT (D_("This is the Slider applet\n made by ChAnGFu for Cairo-Dock"))
 
-static void _cd_slider_toogle_pause(CairoDockModuleInstance *myApplet) {
+static void _cd_slider_toogle_pause (CairoDockModuleInstance *myApplet) {
 	//cd_message("Toggeling pause: %d", myData.bPause);
 	if (!myData.bPause) {
 		myData.bPause = TRUE;
@@ -44,14 +44,15 @@ static void _cd_slider_open_current_slide (CairoDockModuleInstance *myApplet) {
 		gchar *cImagePath = pImage->cPath;
 		GError *erreur = NULL;
 		gchar *cURI = g_filename_to_uri (cImagePath, NULL, &erreur);
-		//cd_debug ("Now opening image URI:%s Filename:%s", cURI, cImagePath);
+		cd_debug ("Now opening image URI:%s Filename:%s", cURI, cImagePath);
 		if (erreur != NULL) {
 			cd_warning ("Attention : %s", erreur->message);
 			g_error_free (erreur);
 			return ;
 		}
 		cairo_dock_fm_launch_uri (cURI);  /// proposer un editeur d'image dans le panneau de conf ou une liste dans le menu...
-		g_free (cURI);
+		//g_free (cURI); Il faut le neutraliser sinon l'image ne se lance pas
+		//On aura surment des problèmes de mémoire avec ca, a regarder de plus près
 	}
 }
 
