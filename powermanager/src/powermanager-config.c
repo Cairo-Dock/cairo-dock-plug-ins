@@ -39,7 +39,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	g_string_free (sKeyName, TRUE);
 	
 	myConfig.bUseGauge = CD_CONFIG_GET_BOOLEAN ("Configuration", "use gauge");
-	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "battery");
+	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
 CD_APPLET_GET_CONFIG_END
 
 

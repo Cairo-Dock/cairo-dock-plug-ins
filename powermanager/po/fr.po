@@ -34,6 +34,9 @@ msgstr ""
 msgid "Estimated time with Charge:"
 msgstr "Autonomie estimé:"
 
+msgid "Estimated Charge time:"
+msgstr "Temps de charge estimé:"
+
 #: ../src/powermanager-draw.c:149
 msgid ""
 "Laptop on Charge.\n"

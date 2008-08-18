@@ -146,7 +146,7 @@ void cd_powermanager_bubble (void)
 		}
 		else
 		{
-			g_string_printf (sInfo, "%s %d%%%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+			g_string_printf (sInfo, "%s %d%%%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated Charge time:"), hms);
 		}
 		g_free (hms);
 	}
@@ -163,8 +163,13 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 {
 	cd_debug ("%s", __func__);
 	GString *sInfo = g_string_new ("");
-	gchar *hms = get_hours_minutes(myData.battery_time);
 	
+	gchar *hms = NULL;
+	if (myData.battery_time > 0.)
+		hms = get_hours_minutes (myData.battery_time);
+	else
+		hms = g_strdup_printf ("%s", "-:--");
+		
 	if ((alert == POWER_MANAGER_CHARGE_LOW && myConfig.lowBatteryWitness) || (alert == POWER_MANAGER_CHARGE_CRITICAL && myConfig.criticalBatteryWitness))
 	{
 		g_string_printf (sInfo, "%s (%d%%%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));

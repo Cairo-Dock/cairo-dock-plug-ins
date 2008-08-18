@@ -275,6 +275,7 @@ gboolean update_stats(void)
 		go_to_next_line  // "present: yes"
 		
 		go_to_next_line  // capacity state: ok
+		//Ajouter un warning si ce n'est pas le cas.
 		
 		jump_to_value
 		myData.on_battery = (*cCurVal == 'd');  // discharging
@@ -308,8 +309,8 @@ gboolean update_stats(void)
 		jump_to_value
 		int iPresentVoltage = atoi (cCurVal);  // 15000 mV
 		
-		if (myData.on_battery) {
-			if (iPresentRate != 0) {
+		if (myData.on_battery) { //Decompte avant décharge complete
+			if (iPresentRate > 1) {
 				myData.battery_time = 3600. * iRemainingCapacity / iPresentRate;
 				if (myData.battery_time == (iRemainingCapacity / 3600.))
 					myData.battery_time = 0.;
@@ -318,8 +319,14 @@ gboolean update_stats(void)
 				myData.battery_time = 0.;
 		}
 		else {
-			//Trouver comment faire le décompte avant charge complete
-			myData.battery_time = 0.;
+			if (iPresentRate > 1) { //Decompte avant charge complete
+				int iDeltaCapacity = myData.iCapacity - iRemainingCapacity;
+				myData.battery_time = 3600. * iDeltaCapacity / iPresentRate;
+				if (myData.battery_time == (iDeltaCapacity / 3600.))
+					myData.battery_time = 0.;
+			}
+			else
+				myData.battery_time = 0.;
 		}
 		
 		myData.battery_charge = 100. * iRemainingCapacity / myData.iCapacity;
@@ -328,7 +335,8 @@ gboolean update_stats(void)
 			
 		if (myData.battery_charge < 0)
 			myData.battery_charge = 0.;
-		g_print ("PowerManager : On Battery:%d ; iRemainingCapacity:%dmWh ; iPresentRate:%dmW ; iPresentVoltage:%dmV\n", myData.on_battery, iRemainingCapacity, iPresentRate, iPresentVoltage); 
+			
+		g_print ("PowerManager : On Battery:%d ; iCapacity:%dmWh ; iRemainingCapacity:%dmWh ; iPresentRate:%dmW ; iPresentVoltage:%dmV\n", myData.on_battery, myData.iCapacity, iRemainingCapacity, iPresentRate, iPresentVoltage); 
 		g_free (cContent);
 		
 		update_icon();

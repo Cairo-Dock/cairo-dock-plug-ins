@@ -39,9 +39,8 @@ CD_APPLET_INIT_BEGIN
 			myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 		}
 		else
-		{
 			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg")
-		}
+
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("broken.svg")
