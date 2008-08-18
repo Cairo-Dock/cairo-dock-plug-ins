@@ -78,7 +78,7 @@ AC_ARG_ENABLE(nvidia,
 AC_ARG_ENABLE(compiz-icon,
 	[  --enable-compiz-icon: Enable Compiz-Icon applet (default=yes) ],
 	[ $with_compiz_icon=${enableval} ],
-	[ $with_compiz_icon=yes ])
+	[ with_compiz_icon=yes ])
 
 
 if test "$with_old_gnome_support" = "yes" ; then

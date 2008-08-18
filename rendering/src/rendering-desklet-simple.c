@@ -95,7 +95,7 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceCo
 		pIcon->fDrawY = .5 * g_iDockRadius;
 	}
 	pIcon->fScale = 1;
-	g_print ("%s (%.2fx%.2f)\n", __func__, pIcon->fWidth, pIcon->fHeight);
+	cd_debug ("%s (%.2fx%.2f)", __func__, pIcon->fWidth, pIcon->fHeight);
 	cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 }
 

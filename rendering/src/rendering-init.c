@@ -106,6 +106,7 @@ CDSpeparatorType my_curve_iDrawSeparator3D;
 
 CD_APPLET_PRE_INIT_BEGIN ("rendering", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	g_print ("**********************\n PRE-INIT DE RENDERING\n******************\n");
 	rendering_register_tree_desklet_renderer ();
 	rendering_register_caroussel_desklet_renderer ();
 	rendering_register_simple_desklet_renderer ();
@@ -119,6 +120,7 @@ CD_APPLET_PRE_INIT_END
 
 CD_APPLET_INIT_BEGIN
 	//\_______________ On enregistre les vues.
+	g_print ("**********************\n INIT DE RENDERING\n******************\n");
 	cd_rendering_register_caroussel_renderer 		(CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	
 	cd_rendering_register_3D_plane_renderer 		(CD_RENDERING_3D_PLANE_VIEW_NAME);
