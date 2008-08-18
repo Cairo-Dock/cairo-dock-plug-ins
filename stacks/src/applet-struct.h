@@ -22,6 +22,7 @@ struct _AppletData {
 	gint iNbAnimation;
 	gchar **cMonitoredDirectory;
 	GKeyFile *pKeyFile;
+	gchar *cConfFilePath;
 };
 
 

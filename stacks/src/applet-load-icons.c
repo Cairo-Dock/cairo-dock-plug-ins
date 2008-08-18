@@ -77,7 +77,17 @@ void cd_stacks_build_icons (void) {
 	}
 	
 	gsize length = 0;
+	GError *erreur = NULL;
+	myData.pKeyFile = g_key_file_new (); //On ouvre le fichier de conf
+	g_key_file_load_from_file (myData.pKeyFile, myData.cConfFilePath, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
+	if (erreur != NULL) {
+		cd_warning ("Attention : %s", erreur->message);
+		g_error_free (erreur);
+		erreur = NULL;
+		return;
+	}
 	myData.cMonitoredDirectory = cairo_dock_get_string_list_key_value (myData.pKeyFile, "Configuration", "directory", TRUE, &length, NULL, NULL, NULL); //On recharge la liste
+	g_key_file_free (myData.pKeyFile); //On ferme le fichier de conf
 	
 	myData.iNbAnimation = 0; //On reset le nombre d'animation
 	CD_APPLET_REDRAW_MY_ICON

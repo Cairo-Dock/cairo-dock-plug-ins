@@ -32,7 +32,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 		g_key_file_set_string (pKeyFile, "Configuration", "directory", "_LocalDirectory_");
 		myConfig.cMonitoredDirectory = CD_CONFIG_GET_STRING_LIST ("Configuration", "directory", &length);
 	}
-	myData.pKeyFile = pKeyFile;
+	
+	myData.cConfFilePath = myApplet->cConfFilePath;
 CD_APPLET_GET_CONFIG_END
 
 
