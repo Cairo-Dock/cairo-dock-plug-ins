@@ -6,8 +6,9 @@ released under the terms of the GNU General Public License.
 Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 **********************************************************************************/
-#define __USE_POSIX
 #include <stdlib.h>
+#define __USE_POSIX
+#include <signal.h>
 
 #include "applet-struct.h"
 #include "applet-draw.h"

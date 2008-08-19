@@ -6,11 +6,10 @@ released under the terms of the GNU General Public License.
 Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 **********************************************************************************/
+#include <stdlib.h>
+#define __USE_POSIX
 #include <time.h>
 #include <signal.h>
-
-//#include <librsvg/rsvg.h>
-//#include <librsvg/rsvg-cairo.h>
 
 #include "applet-struct.h"
 #include "applet-config.h"

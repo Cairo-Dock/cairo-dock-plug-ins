@@ -12,7 +12,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
-#include "applet-silder.h"
+#include "applet-slider.h"
 #include "applet-init.h"
 
 

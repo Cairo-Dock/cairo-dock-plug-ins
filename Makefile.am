@@ -64,6 +64,8 @@ SUBDIRS = . po\
 	shortcuts\
 	showDesklets\
 	showDesktop\
+	slider\
+	stack\
 	switcher\
 	systray\
 	${terminal_dir}\

@@ -11,7 +11,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
-#include "applet-silder.h"
+#include "applet-slider.h"
 #include "applet-config.h"
 
 CD_APPLET_INCLUDE_MY_VARS

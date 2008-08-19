@@ -298,6 +298,15 @@ AC_SUBST(PACKAGE_SLIDER, "$SLIDER_PACKAGE")
 
 AC_SUBST(sliderdatadir, "${pkgdatadir}/slider")
 
+############# STACK #################
+SWITCHER_PACKAGE="cd-stack"
+AC_SUBST(GETTEXT_SWITCHER, "$STACK_PACKAGE")
+
+AC_SUBST(VERSION_STACK, "1.0.3")
+AC_SUBST(PACKAGE_STACK, "$STACK_PACKAGE")
+
+AC_SUBST(stackdatadir, "${pkgdatadir}/stack")
+
 ############# SWITCHER #################
 SWITCHER_PACKAGE="cd-switcher"
 AC_SUBST(GETTEXT_SWITCHER, "$SWITCHER_PACKAGE")
@@ -555,6 +564,13 @@ AC_CONFIG_FILES([
 	slider/data/readme
 	slider/data/slider.conf
 	
+	stack/Makefile
+	stack/src/Makefile
+	stack/po/Makefile.in
+	stack/data/Makefile
+	stack/data/readme
+	stack/data/stack.conf
+
 	switcher/Makefile
 	switcher/src/Makefile
 	switcher/po/Makefile.in
@@ -644,6 +660,7 @@ AC_OUTPUT([po/Makefile
 	showDesklets/po/Makefile
 	showDesktop/po/Makefile
 	slider/po/Makefile
+	stack/po/Makefile
 	switcher/po/Makefile
 	systray/po/Makefile
 	terminal/po/Makefile

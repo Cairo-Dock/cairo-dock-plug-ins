@@ -33,4 +33,5 @@ powermanager
 switcher
 ###Last addition of v1.6.2 :
 slider
+stack
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.

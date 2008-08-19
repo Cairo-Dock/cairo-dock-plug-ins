@@ -36,7 +36,8 @@ libcd_rendering_la_SOURCES = \
 	rendering-desklet-mediaplayer.c\
 	rendering-desklet-mediaplayer.h\
 	rendering-commons.c\
-	rendering-commons.h
+	rendering-commons.h\
+	rendering-struct.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 

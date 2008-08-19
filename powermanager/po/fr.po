@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-19 02:28+0200\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
 "PO-Revision-Date: 2008-05-19 20:44+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <po@cairo-dock.org>\n"
@@ -21,10 +21,11 @@ msgstr ""
 msgid "None"
 msgstr "Aucun"
 
+#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:175
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../src/powermanager-draw.c:145
+#: ../src/powermanager-draw.c:149
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -32,15 +33,12 @@ msgstr ""
 "Portable sur Batterie.\n"
 " Batterie chargée à:"
 
-#: ../src/powermanager-draw.c:145 ../src/powermanager-draw.c:149
-#: ../src/powermanager-draw.c:170 ../src/powermanager-draw.c:176
+#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:185
 msgid "Estimated time with Charge:"
 msgstr "Temp de batterie estimé:"
 
-msgid "Estimated Charge time:"
-msgstr "Temps de charge estimé:"
-
-#: ../src/powermanager-draw.c:149
+#: ../src/powermanager-draw.c:153
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -48,11 +46,15 @@ msgstr ""
 "Portable en Charge.\n"
 " Batterie chargée à:"
 
-#: ../src/powermanager-draw.c:155
+#: ../src/powermanager-draw.c:153
+msgid "Estimated Charge time:"
+msgstr "Temps de charge estimé:"
+
+#: ../src/powermanager-draw.c:159
 msgid "No Battery found."
 msgstr "Aucune Batterie trouvée."
 
-#: ../src/powermanager-draw.c:170
+#: ../src/powermanager-draw.c:179
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -60,11 +62,11 @@ msgstr ""
 "PowerManager.\n"
 "Le niveau de la batterie semble être bas"
 
-#: ../src/powermanager-draw.c:170
+#: ../src/powermanager-draw.c:179
 msgid "Please put your Laptop on charge."
 msgstr "Veuillez mettre votre portable en charge."
 
-#: ../src/powermanager-draw.c:176
+#: ../src/powermanager-draw.c:185
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"

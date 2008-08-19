@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-19 02:28+0200\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
 "PO-Revision-Date: 2008-06-25 16:23+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -34,6 +34,10 @@ msgstr "Pausa"
 #: ../src/applet-notifications.c:127
 msgid "Open current image"
 msgstr "Aprire l'immagine attuale"
+
+#: ../src/applet-notifications.c:129
+msgid "Browse images folder"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-19 02:28+0200\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
 "PO-Revision-Date: 2008-06-25 13:42+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -19,7 +19,11 @@ msgstr ""
 msgid "None"
 msgstr "Nessuno"
 
-#: ../src/powermanager-draw.c:145
+#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:175
+msgid "Unknown"
+msgstr ""
+
+#: ../src/powermanager-draw.c:149
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -27,12 +31,12 @@ msgstr ""
 "Portatile con Batteria.\n"
 " Batteria caricata al:"
 
-#: ../src/powermanager-draw.c:145 ../src/powermanager-draw.c:149
-#: ../src/powermanager-draw.c:170 ../src/powermanager-draw.c:176
+#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:185
 msgid "Estimated time with Charge:"
 msgstr "Autonomia stimata:"
 
-#: ../src/powermanager-draw.c:149
+#: ../src/powermanager-draw.c:153
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -40,11 +44,16 @@ msgstr ""
 "Portatile in Carica.\n"
 " Batteria caricata al:"
 
-#: ../src/powermanager-draw.c:155
+#: ../src/powermanager-draw.c:153
+#, fuzzy
+msgid "Estimated Charge time:"
+msgstr "Autonomia stimata:"
+
+#: ../src/powermanager-draw.c:159
 msgid "No Battery found."
 msgstr "Nessuna batteria trovata."
 
-#: ../src/powermanager-draw.c:170
+#: ../src/powermanager-draw.c:179
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -52,11 +61,11 @@ msgstr ""
 "PowerManager.\n"
 "Il livello della batteria sembra essere basso"
 
-#: ../src/powermanager-draw.c:170
+#: ../src/powermanager-draw.c:179
 msgid "Please put your Laptop on charge."
 msgstr "Meglio mettere il vostro Laptop in carica."
 
-#: ../src/powermanager-draw.c:176
+#: ../src/powermanager-draw.c:185
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"

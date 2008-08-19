@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-19 02:28+0200\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
 "PO-Revision-Date: 2008-06-24 18:00+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:165
+#: ../src/applet-notifications.c:166
 #, fuzzy
 msgid ""
 "This is the Cairo-Dock's clock applet\n"
@@ -28,15 +28,15 @@ msgstr ""
 "La rappresentazione analogica è un port del famoso Cairo-Clock\n"
 " scritto da MacSlow (http://macslow.thepimp.net)."
 
-#: ../src/applet-notifications.c:178
+#: ../src/applet-notifications.c:179
 msgid "Calendar"
 msgstr "Calendario"
 
-#: ../src/applet-notifications.c:191
+#: ../src/applet-notifications.c:192
 msgid "Set up time and date"
 msgstr "Regolare data e ora"
 
-#: ../src/applet-notifications.c:192
+#: ../src/applet-notifications.c:193
 msgid "Choose a location"
 msgstr ""
 

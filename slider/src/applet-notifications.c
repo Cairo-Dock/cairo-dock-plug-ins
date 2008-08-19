@@ -15,13 +15,13 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
-#include "applet-silder.h"
+#include "applet-slider.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_ABOUT (D_("This is the Slider applet\n made by ChAnGFu for Cairo-Dock"))
 
-static void _cd_slider_toogle_pause (CairoDockModuleInstance *myApplet) {
+static void _cd_slider_toogle_pause(GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
 	//cd_message("Toggeling pause: %d", myData.bPause);
 	if (!myData.bPause) {
 		myData.bPause = TRUE;
@@ -36,7 +36,7 @@ static void _cd_slider_toogle_pause (CairoDockModuleInstance *myApplet) {
 	}
 }
 
-static void _cd_slider_open_current_slide (CairoDockModuleInstance *myApplet) {
+static void _cd_slider_open_current_slide (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
 	if (myData.pElement != NULL && myData.pElement->data != NULL) {
 		GList *pCurrentDisplayedElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
 		g_return_if_fail (pCurrentDisplayedElement != NULL);
@@ -44,15 +44,14 @@ static void _cd_slider_open_current_slide (CairoDockModuleInstance *myApplet) {
 		gchar *cImagePath = pImage->cPath;
 		GError *erreur = NULL;
 		gchar *cURI = g_filename_to_uri (cImagePath, NULL, &erreur);
-		cd_debug ("Now opening image URI:%s Filename:%s", cURI, cImagePath);
+		//cd_debug ("Now opening image URI:%s Filename:%s", cURI, cImagePath);
 		if (erreur != NULL) {
-			cd_warning ("Attention : %s", erreur->message);
+			cd_warning ("Slider : %s", erreur->message);
 			g_error_free (erreur);
 			return ;
 		}
 		cairo_dock_fm_launch_uri (cURI);  /// proposer un editeur d'image dans le panneau de conf ou une liste dans le menu...
-		//g_free (cURI); Il faut le neutraliser sinon l'image ne se lance pas
-		//On aura surment des problèmes de mémoire avec ca, a regarder de plus près
+		g_free (cURI);
 	}
 }
 
@@ -60,19 +59,19 @@ static void _cd_slider_open_current_slide (CairoDockModuleInstance *myApplet) {
 CD_APPLET_ON_CLICK_BEGIN
 	switch (myConfig.iClickOption) {
 		case SLIDER_PAUSE: default:
-			_cd_slider_toogle_pause(myApplet);
+			_cd_slider_toogle_pause(NULL, myApplet);
 		break;
 		case SLIDER_OPEN_IMAGE:
-			_cd_slider_open_current_slide(myApplet);
+			_cd_slider_open_current_slide(NULL, myApplet);
 		break;
 	}
 CD_APPLET_ON_CLICK_END
 
-static void _cd_slider_run_dir(CairoDockModuleInstance *myApplet) {
+static void _cd_slider_run_dir(GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	gchar *cURI = g_filename_to_uri (myConfig.cDirectory, NULL, &erreur);
 	if (erreur != NULL) {
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("Slider : %s", erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
@@ -82,7 +81,7 @@ static void _cd_slider_run_dir(CairoDockModuleInstance *myApplet) {
 }
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	_cd_slider_run_dir(myApplet);
+	_cd_slider_run_dir(NULL, myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 static void _cd_slider_previous_img(CairoDockModuleInstance *myApplet) {
@@ -127,7 +126,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		if (myConfig.iClickOption != SLIDER_OPEN_IMAGE) {
 			CD_APPLET_ADD_IN_MENU (D_("Open current image"), _cd_slider_open_current_slide, pSubMenu)
 		}
-		/// ajouter _cd_slider_run_dir aussi ?
+		CD_APPLET_ADD_IN_MENU (D_("Browse images folder"), _cd_slider_run_dir, pSubMenu)
 		
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
