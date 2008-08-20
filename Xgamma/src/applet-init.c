@@ -46,12 +46,14 @@ CD_APPLET_INIT_BEGIN
 			return ;
 		}
 		
+		#ifdef XF86VidModeQueryVersion
 		int MajorVersion, MinorVersion;
 		if (!XF86VidModeQueryVersion(dpy, &MajorVersion, &MinorVersion))
 		{
 			cd_warning ("Xgamma : unable to query video extension version");
 			return ;
 		}
+		#endif
 		
 		int EventBase, ErrorBase;
 		if (!XF86VidModeQueryExtension(dpy, &EventBase, &ErrorBase))
