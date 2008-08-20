@@ -79,7 +79,7 @@ static GList *_parse_dir (const gchar *cDirPath, const gchar *cCurrentLocation, 
 	gpointer *data;
 	while ((cFileName = g_dir_read_name (dir)) != NULL)
 	{
-		if (g_str_has_suffix (cFileName, ".tab"))
+		if (g_str_has_suffix (cFileName, ".tab") || strcmp (cFileName, "posix") == 0 || strcmp (cFileName, "right") == 0)
 			continue ;
 		
 		pMenuItem = gtk_menu_item_new_with_label (cFileName);

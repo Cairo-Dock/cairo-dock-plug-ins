@@ -373,7 +373,7 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 	cairo_rotate (pSourceContext, -G_PI/2.0f);
 	cairo_save (pSourceContext);
 	cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
-	cairo_rotate (pSourceContext, (G_PI/ 12.0f * g_iHours + (G_PI/ 720.0f) * g_iMinutes));
+	cairo_rotate (pSourceContext, (G_PI/ 12.0f * g_iHours + (G_PI/ 360.0f) * g_iMinutes));
 
 	rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_HOUR_HAND_SHADOW], pSourceContext);
 	
