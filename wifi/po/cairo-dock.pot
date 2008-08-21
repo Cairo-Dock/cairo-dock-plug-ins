@@ -1,0 +1,262 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:65
+msgid "None"
+msgstr ""
+
+#: ../src/applet-draw.c:13
+msgid "Very Low"
+msgstr ""
+
+#: ../src/applet-draw.c:13
+msgid "Low"
+msgstr ""
+
+#: ../src/applet-draw.c:13
+msgid "Middle"
+msgstr ""
+
+#: ../src/applet-draw.c:13
+msgid "Good"
+msgstr ""
+
+#: ../src/applet-draw.c:13
+msgid "Excellent"
+msgstr ""
+
+#: ../src/applet-draw.c:120
+msgid "Wifi disabled."
+msgstr ""
+
+#: ../src/applet-draw.c:124
+msgid ""
+"Wifi enabled. \n"
+" Connected on:"
+msgstr ""
+
+#: ../src/applet-draw.c:124
+msgid "Signal Strength:"
+msgstr ""
+
+#: ../src/applet-notifications.c:13
+msgid ""
+"This is the wifi applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+
+#: ../src/applet-notifications.c:56
+msgid "Check for Wireless Extension"
+msgstr ""
+
+#: ../src/applet-notifications.c:58
+msgid "Network Administration"
+msgstr ""
+
+#: ../src/applet-wifi.c:129 ../src/applet-wifi.c:134
+msgid "Unknown"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr ""
+
+#: ../data/messages:5
+msgid "width :"
+msgstr ""
+
+#: ../data/messages:7
+msgid "height :"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Information"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Information to display on the icon :"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Signal Strength"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Signal Strength in percent"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Raw Signal Informations"
+msgstr ""
+
+#: ../data/messages:51
+msgid "in seconds."
+msgstr ""
+
+#: ../data/messages:53
+msgid "Delay between signal checks :"
+msgstr ""
+
+#: ../data/messages:55
+msgid ""
+"Allow you to overwrite applet's default command line and launch you wireless "
+"configuration interface."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Alternative command line to launch Wireless Configuration :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "Display"
+msgstr ""
+
+#: ../data/messages:61
+msgid "Overwrite the default label with the connection point name ?"
+msgstr ""
+
+#: ../data/messages:63
+msgid "Effect to apply on the icon according to strength :"
+msgstr ""
+
+#: ../data/messages:67
+msgid "Zoom"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Transparency"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Draw Bar"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Use a jauge instead of icons?"
+msgstr ""
+
+#: ../data/messages:75
+msgid "List of available themes for the analogic display :"
+msgstr ""
+
+#: ../data/messages:77
+msgid "radium"
+msgstr ""
+
+#: ../data/messages:79
+msgid "Images"
+msgstr ""
+
+#: ../data/messages:81 ../data/messages:85 ../data/messages:89
+#: ../data/messages:93 ../data/messages:97 ../data/messages:101
+msgid "Let it empty to use the default icon."
+msgstr ""
+
+#: ../data/messages:83
+msgid "Name of an image for the 'no signal' icon :"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Name of an image for the 'very low' icon :"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Name of an image for the 'low' icon :"
+msgstr ""
+
+#: ../data/messages:95
+msgid "Name of an image for the 'middle' icon :"
+msgstr ""
+
+#: ../data/messages:99
+msgid "Name of an image for the 'good' icon :"
+msgstr ""
+
+#: ../data/messages:103
+msgid "Name of an image for the 'exellent' icon :"
+msgstr ""

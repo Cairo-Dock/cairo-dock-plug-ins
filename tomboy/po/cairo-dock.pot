@@ -1,0 +1,152 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/tomboy-notifications.c:12
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:39
+msgid "Note name : "
+msgstr ""
+
+#: ../src/tomboy-notifications.c:62
+msgid "Search for :"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:83
+msgid "Search for tag :"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:139
+msgid "Reload notes"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:142
+msgid "Add a note"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:146
+msgid "Delete this note"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:149
+msgid "Search"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:150
+msgid "Searh for tag"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:152
+msgid "Search for today's note"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:153
+msgid "Search for this week's note"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:154
+msgid "Search for next week's note"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:164
+msgid "Reset marks"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr ""
+
+#: ../data/messages:5
+msgid "width :"
+msgstr ""
+
+#: ../data/messages:7
+msgid "height :"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Default title :"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Personnalisation"
+msgstr ""
+
+#: ../data/messages:15 ../data/messages:19 ../data/messages:23
+msgid "Let t empty to use the default icon."
+msgstr ""
+
+#: ../data/messages:17
+msgid "Name of an image for the 'default' icon :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Name of an image for the 'close' icon :"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Name of an image for the 'broken' icon :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:29
+msgid ""
+"Depending on your tomboy's version, the note deletion may not be "
+"automatically notified to us. Only check this box if you notice some error "
+"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
+"terminal."
+msgstr ""
+
+#: ../data/messages:31
+msgid "Emulate the 'NoteDeleted' signal ?"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Let it empty to use default sub-dock view."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Name of the view used for the sub-dock :"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Draw note's content on their icon ?"
+msgstr ""
+
+#: ../data/messages:39
+msgid ""
+"Write the date format you usually use in your notes. The syntax is the one "
+"of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+"digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Date format to search for :"
+msgstr ""

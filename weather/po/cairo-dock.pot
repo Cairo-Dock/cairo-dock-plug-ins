@@ -1,0 +1,241 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the weather applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+
+#: ../src/applet-notifications.c:69
+msgid ""
+"Enter your location\n"
+" (for exemple : Paris, France)"
+msgstr ""
+
+#: ../src/applet-notifications.c:82 ../src/applet-notifications.c:95
+msgid ""
+"I couldn't get the info\n"
+" Is connexion alive ?"
+msgstr ""
+
+#: ../src/applet-notifications.c:128
+msgid "Choose your location :"
+msgstr ""
+
+#: ../src/applet-notifications.c:152
+msgid "Search for your location"
+msgstr ""
+
+#: ../src/applet-notifications.c:153
+msgid "Reload now"
+msgstr ""
+
+#: ../src/applet-notifications.c:178 ../src/applet-notifications.c:207
+msgid ""
+"No data were available\n"
+" is connection alive ?"
+msgstr ""
+
+#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:219
+msgid "Temperature"
+msgstr ""
+
+#: ../src/applet-notifications.c:195
+msgid "Precipitation Probability"
+msgstr ""
+
+#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+msgid "Wind"
+msgstr ""
+
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+msgid "Humidity"
+msgstr ""
+
+#: ../src/applet-notifications.c:198 ../src/applet-notifications.c:222
+msgid "SunRise"
+msgstr ""
+
+#: ../src/applet-notifications.c:198 ../src/applet-notifications.c:222
+msgid "SunSet"
+msgstr ""
+
+#: ../src/applet-notifications.c:219
+msgid "feeled"
+msgstr ""
+
+#: ../src/applet-notifications.c:221
+msgid "Pressure"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr ""
+
+#: ../data/messages:5
+msgid "width :"
+msgstr ""
+
+#: ../data/messages:7
+msgid "height :"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Let it empty to use the name of the city."
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:15
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:19
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr ""
+
+#: ../data/messages:39 ../data/messages:41
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:43
+msgid ""
+"Right click on the icon to let Cairo-Dock help you to find your location "
+"code."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Code of your location :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Use International System Units ?"
+msgstr ""
+
+#: ../data/messages:49
+msgid "in seconds. Set 0 to have never-ending dialogs."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Duration of dialogs :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in minutes."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Interval of time between 2 checks :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "Info"
+msgstr ""
+
+#: ../data/messages:59
+msgid "Display current conditions on the icon instead of the default one ?"
+msgstr ""
+
+#: ../data/messages:61
+msgid "Number of days you want to forecast :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "Display nights too ?"
+msgstr ""
+
+#: ../data/messages:65
+msgid "Display temperature as quick info ?"
+msgstr ""
+
+#: ../data/messages:67
+msgid "Display"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Choose one of the available themes :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Let it empty to use default sub-dock view."
+msgstr ""
+
+#: ../data/messages:73
+msgid "Name of the view used for the sub-dock :"
+msgstr ""
+
+#: ../data/messages:75
+msgid "Render desklet in 3D ?"
+msgstr ""

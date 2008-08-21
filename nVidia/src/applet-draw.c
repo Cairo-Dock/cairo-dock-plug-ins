@@ -74,7 +74,7 @@ void cd_nvidia_draw_icon (void) {
 
 static void _nvidia_temporary_dialog (gchar *cInfo) {
 	gchar *cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
-	cairo_dock_show_temporary_dialog_with_icon (cInfo, myIcon, myContainer, 12000, cIconPath);
+	cairo_dock_show_temporary_dialog_with_icon (cInfo, myIcon, myContainer, 8000, cIconPath);
 	g_free(cIconPath);
 }
 

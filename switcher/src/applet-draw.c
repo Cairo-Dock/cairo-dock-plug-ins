@@ -299,8 +299,8 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 	{
 		double XWgeo= (myIcon->fWidth* fMaxScale/myData.switcher.fOneViewportWidth)* fMaxScale;
 		double YWgeo = (myIcon->fHeight* fMaxScale/myData.switcher.fOneViewportHeight)* fMaxScale;
-		printf("XWgeo : %f \n",XWgeo);
-		printf("YWgeo : %f \n",YWgeo);
+		cd_debug ("XWgeo : %f",XWgeo);
+		cd_debug ("YWgeo : %f",YWgeo);
 		fZoomX = myIcon->fWidth * fMaxScale;
 		fZoomY = myIcon->fHeight * fMaxScale;
 		cairo_save(myDrawContext);
@@ -312,7 +312,7 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 /*Fonction de base pour toutes les autres*/
 void cd_switcher_draw_main_icon (void)
 {
-	g_print ("%s (%d)\n", __func__, myConfig.bCompactView);
+	cd_message ("%s (%d)", __func__, myConfig.bCompactView);
 	if (myConfig.bCompactView)
 	{
 		cd_switcher_draw_main_icon_compact_mode ();

@@ -1,0 +1,154 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:22
+msgid "Hey, I'm here !"
+msgstr ""
+
+#: ../src/applet-notifications.c:23
+msgid "Sorry but I'm busy right now."
+msgstr ""
+
+#: ../src/applet-notifications.c:24
+msgid ""
+"I don't have time to play with you, I have to dig and mine all these icons."
+msgstr ""
+
+#: ../src/applet-notifications.c:25
+msgid "Your dock is so messy ! Let me clean it."
+msgstr ""
+
+#: ../src/applet-notifications.c:26
+msgid "Admit my superiority on you as a penguin !"
+msgstr ""
+
+#: ../src/applet-notifications.c:27
+msgid "Wait, do you want to kill me ?!"
+msgstr ""
+
+#: ../src/applet-notifications.c:28
+msgid "Do you know how much painful it is to be clicked on ??"
+msgstr ""
+
+#: ../src/applet-notifications.c:29
+msgid "It's my dock now, mwahahaha !"
+msgstr ""
+
+#: ../src/applet-notifications.c:30
+msgid "I want to be a pirate !"
+msgstr ""
+
+#: ../src/applet-notifications.c:31
+msgid "You shall not pass !"
+msgstr ""
+
+#: ../src/applet-notifications.c:32
+msgid "I'm your father !"
+msgstr ""
+
+#: ../src/applet-notifications.c:33
+msgid ""
+"- What will we do tonight Cortex ?\n"
+"- The same thing as every nights, Minus. Try to take over the Dock !"
+msgstr ""
+
+#: ../src/applet-notifications.c:34
+msgid "For Aiur !"
+msgstr ""
+
+#: ../src/applet-notifications.c:37
+msgid ""
+"This is the Cairo-Penguin applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+
+#: ../src/applet-notifications.c:117
+msgid "Hey, you there !"
+msgstr ""
+
+#: ../src/applet-notifications.c:120
+msgid "Keep quiet"
+msgstr ""
+
+#: ../src/applet-notifications.c:124
+msgid "Wake up"
+msgstr ""
+
+#: ../src/applet-notifications.c:127
+msgid "Start XPenguins"
+msgstr ""
+
+#: ../src/applet-notifications.c:128
+msgid "Stop XPenguins"
+msgstr ""
+
+#: ../src/applet-notifications.c:156 ../src/applet-notifications.c:158
+msgid "Zzzzz"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr ""
+
+#: ../data/messages:5
+msgid "width :"
+msgstr ""
+
+#: ../data/messages:7
+msgid "height :"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Icon's name :"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:15
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:17
+msgid "Choose one of the available themes :"
+msgstr ""
+
+#: ../data/messages:19
+msgid "in seconds"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Delay between animation changes :"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Transparency of the penguin :"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Let the penguin wander everywhere in the dock ?"
+msgstr ""

@@ -1,0 +1,310 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:22
+msgid ""
+"This is the Slider applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+
+#: ../src/applet-notifications.c:124
+msgid "Play"
+msgstr ""
+
+#: ../src/applet-notifications.c:124
+msgid "Pause"
+msgstr ""
+
+#: ../src/applet-notifications.c:127
+msgid "Open current image"
+msgstr ""
+
+#: ../src/applet-notifications.c:129
+msgid "Browse images folder"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr ""
+
+#: ../data/messages:5
+msgid "width :"
+msgstr ""
+
+#: ../data/messages:7
+msgid "height :"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Directory"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Directory of the images :"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Scan in sub direcotries ?"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Randomly browse files ?"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Behaviour"
+msgstr ""
+
+#: ../data/messages:49
+msgid "in seconds."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Sliding delay :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Action when applet is clicked :"
+msgstr ""
+
+#: ../data/messages:55
+msgid "play/pause"
+msgstr ""
+
+#: ../data/messages:57
+msgid "open image"
+msgstr ""
+
+#: ../data/messages:59
+msgid "Effect while changing image :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "none"
+msgstr ""
+
+#: ../data/messages:63
+msgid "fade"
+msgstr ""
+
+#: ../data/messages:65
+msgid "blank fade"
+msgstr ""
+
+#: ../data/messages:67
+msgid "fade in out"
+msgstr ""
+
+#: ../data/messages:69
+msgid "side kick"
+msgstr ""
+
+#: ../data/messages:71
+msgid "diaporama"
+msgstr ""
+
+#: ../data/messages:73
+msgid "grow up"
+msgstr ""
+
+#: ../data/messages:75
+msgid "shrink down"
+msgstr ""
+
+#: ../data/messages:77
+msgid "random"
+msgstr ""
+
+#: ../data/messages:79
+msgid "Display"
+msgstr ""
+
+#: ../data/messages:81
+msgid "Gives a better image rendering."
+msgstr ""
+
+#: ../data/messages:83
+msgid "Keep widht/height ratio ?"
+msgstr ""
+
+#: ../data/messages:85
+msgid "If the image is too small, it will be zoomed in."
+msgstr ""
+
+#: ../data/messages:87
+msgid "Force the image to fill the icon/desklet ?"
+msgstr ""
+
+#: ../data/messages:89
+msgid ""
+"Set the transparency channel to 0 if you just don't want to have a "
+"background."
+msgstr ""
+
+#: ../data/messages:91
+msgid "Choose a background color :"
+msgstr ""
+
+#: ../data/messages:93
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:95
+msgid ""
+"If you choose 'personnal', you can define your own decoration above, or let "
+"it blank to not use any decoration."
+msgstr ""
+
+#: ../data/messages:97
+msgid "Choose a background and foreground decoration :"
+msgstr ""
+
+#: ../data/messages:99
+msgid "Personnal"
+msgstr ""
+
+#: ../data/messages:101
+msgid "frame with reflects"
+msgstr ""
+
+#: ../data/messages:103
+msgid "scotch"
+msgstr ""
+
+#: ../data/messages:105
+msgid "frame with scotch"
+msgstr ""
+
+#: ../data/messages:107
+msgid ""
+"It's an image that will be displayed below the slide, like a frame for "
+"exemple."
+msgstr ""
+
+#: ../data/messages:109
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:111
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:113 ../data/messages:117 ../data/messages:121
+#: ../data/messages:125
+msgid "It's typically the width of the left side of your frame, in pixels."
+msgstr ""
+
+#: ../data/messages:115
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:119
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:123
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:127
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:129
+msgid ""
+"It's an image that will be displayed above the slide, like a reflect for "
+"exemple."
+msgstr ""
+
+#: ../data/messages:131
+msgid "Reflection image :"
+msgstr ""
+
+#: ../data/messages:133
+msgid "Reflection tansparency :"
+msgstr ""

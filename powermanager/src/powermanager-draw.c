@@ -26,7 +26,7 @@ void update_icon(void)
 					CD_APPLET_SET_HOURS_MINUTES_AS_QUICK_INFO (myData.battery_time)
 				}
 				else {
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("-:--")
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("-:--")
 				}
 			}
 			else if(myConfig.quickInfoType == POWER_MANAGER_CHARGE)
@@ -35,7 +35,7 @@ void update_icon(void)
 			}
 			else
 			{
-			  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
+			  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
 			}
 			
 			bNeedRedraw = TRUE;

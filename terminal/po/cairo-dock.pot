@@ -1,0 +1,173 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:328
+msgid "Copy"
+msgstr ""
+
+#: ../src/terminal-init.c:83 ../src/terminal-widget.c:659
+msgid "Terminal"
+msgstr ""
+
+#: ../src/terminal-menu-functions.c:84 ../src/terminal-widget.c:344
+msgid "New Tab"
+msgstr ""
+
+#: ../src/terminal-menu-functions.c:85
+msgid "Rename current Tab"
+msgstr ""
+
+#: ../src/terminal-menu-functions.c:86
+msgid "Close current Tab"
+msgstr ""
+
+#: ../src/terminal-widget.c:133
+msgid "Set title for this tab :"
+msgstr ""
+
+#: ../src/terminal-widget.c:187
+msgid "Select a color"
+msgstr ""
+
+#: ../src/terminal-widget.c:334
+msgid "Paste"
+msgstr ""
+
+#: ../src/terminal-widget.c:350
+msgid "Rename this Tab"
+msgstr ""
+
+#: ../src/terminal-widget.c:356
+msgid "Change this Tab's color"
+msgstr ""
+
+#: ../src/terminal-widget.c:362
+msgid "Close this Tab"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Size of the icon you wish this applet has (in pixels)"
+msgstr ""
+
+#: ../data/messages:5
+msgid "width :"
+msgstr ""
+
+#: ../data/messages:7
+msgid "height :"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in cairo-dock :"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:17
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:19
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:21
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr ""
+
+#: ../data/messages:37
+msgid "GUI"
+msgstr ""
+
+#: ../data/messages:39
+msgid "needs to restart the applet."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Terminal's transparency :"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Foreground color (r, v, b):"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Background color (r, v, b):"
+msgstr ""
+
+#: ../data/messages:47
+msgid ""
+"When the terminal is in a dialog. When it is in a desklet, you can just "
+"resize the desklet as usual."
+msgstr ""
+
+#: ../data/messages:49
+msgid "Size of the terminal (line x columns) :"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Shortkey to show the terminal"
+msgstr ""

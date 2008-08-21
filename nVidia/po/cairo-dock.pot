@@ -1,0 +1,242 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-draw.c:83
+msgid "GPU Name:"
+msgstr ""
+
+#: ../src/applet-draw.c:83
+msgid "Video Ram:"
+msgstr ""
+
+#: ../src/applet-draw.c:83
+msgid "Driver Version:"
+msgstr ""
+
+#: ../src/applet-draw.c:83 ../src/applet-draw.c:99
+msgid "Core Temparature:"
+msgstr ""
+
+#: ../src/applet-draw.c:88
+msgid ""
+"nVidia \n"
+"Your version of 'nvidia-settings' is too old\n"
+" You need at least the 1.0.0 version"
+msgstr ""
+
+#: ../src/applet-draw.c:91
+msgid ""
+"nVidia \n"
+"Couldn't acquire GPU temperature\n"
+" is 'nvidia-settings' installed on your system\n"
+" and configured to monitor GPU temperature ?"
+msgstr ""
+
+#: ../src/applet-draw.c:99
+msgid "Alert!"
+msgstr ""
+
+#: ../src/applet-draw.c:99
+msgid "passed alert temperature level"
+msgstr ""
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the nVidia applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr ""
+
+#: ../data/messages:5
+msgid "width :"
+msgstr ""
+
+#: ../data/messages:7
+msgid "height :"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Icon's name :"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:15
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:17
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:19
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:31
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:35
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Informations"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Display Card name on the Label ?"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Display core temperature :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "no"
+msgstr ""
+
+#: ../data/messages:49
+msgid "on quickinfo"
+msgstr ""
+
+#: ../data/messages:51
+msgid "on label"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in seconds."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Delay between temperature checks :"
+msgstr ""
+
+#: ../data/messages:57 ../data/messages:61 ../data/messages:67
+msgid "in celcius."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Lower limit of core temperature :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "Upper limit of core temperature :"
+msgstr ""
+
+#: ../data/messages:65
+msgid "Alert when core temperature is high ?"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Alert limit of core temperature :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Play a sound during the alert ?"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Sound path :"
+msgstr ""
+
+#: ../data/messages:75
+msgid "Images"
+msgstr ""
+
+#: ../data/messages:77
+msgid "List of available themes for the analogic display :"
+msgstr ""
+
+#: ../data/messages:79
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+
+#: ../data/messages:81
+msgid "Image to display as a watermark on the gauge :"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr ""
+
+#: ../data/messages:85
+msgid "Transparency of the watermark :"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Let it empty to use the default icon."
+msgstr ""
+
+#: ../data/messages:89
+msgid "Name of an image for the 'broken' icon :"
+msgstr ""

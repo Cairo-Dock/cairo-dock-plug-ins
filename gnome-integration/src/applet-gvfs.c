@@ -95,7 +95,7 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 	//g_object_unref (pFile);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("gnome_integration : %s", erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
@@ -108,7 +108,7 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("Attention : %s", erreur->message);
+			cd_warning ("gnome_integration : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 		}
@@ -256,7 +256,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		cFullURI = g_filename_from_uri (cNautilusFile, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("Attention : %s", erreur->message);
+			cd_warning ("gnome_integration : %s", erreur->message);
 			g_error_free (erreur);
 			return ;
 		}
@@ -305,7 +305,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	//g_object_unref (pFile);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("gnome_integration : %s", erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
@@ -598,7 +598,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	//g_object_unref (pFile);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("gnome_integration : %s", erreur->message);
 		g_error_free (erreur);
 		return NULL;
 	}
@@ -611,7 +611,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("Attention : %s", erreur->message);
+			cd_warning ("gnome_integration : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 		}
@@ -783,7 +783,7 @@ void vfs_backend_launch_uri (const gchar *cURI)
 	g_free (cTargetURI);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : couldn't launch '%s' [%s]", cURI, erreur->message);
+		cd_warning ("gnome_integration : couldn't launch '%s' [%s]", cURI, erreur->message);
 		g_error_free (erreur);
 	}
 }

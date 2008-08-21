@@ -1,0 +1,304 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/powermanager-draw.c:117
+msgid "None"
+msgstr ""
+
+#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:175
+msgid "Unknown"
+msgstr ""
+
+#: ../src/powermanager-draw.c:149
+msgid ""
+"Laptop on Battery.\n"
+" Battery charged at:"
+msgstr ""
+
+#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:185
+msgid "Estimated time with Charge:"
+msgstr ""
+
+#: ../src/powermanager-draw.c:153
+msgid ""
+"Laptop on Charge.\n"
+" Battery charged at:"
+msgstr ""
+
+#: ../src/powermanager-draw.c:153
+msgid "Estimated Charge time:"
+msgstr ""
+
+#: ../src/powermanager-draw.c:159
+msgid "No Battery found."
+msgstr ""
+
+#: ../src/powermanager-draw.c:179
+msgid ""
+"PowerManager.\n"
+"Battery charge seems to be low"
+msgstr ""
+
+#: ../src/powermanager-draw.c:179
+msgid "Please put your Laptop on charge."
+msgstr ""
+
+#: ../src/powermanager-draw.c:185
+msgid ""
+"PowerManager.\n"
+"Your battery is now Charged"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:15
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:46
+msgid "Set up power management"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:49
+msgid "Halt"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:50
+msgid "Hibernate"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:51
+msgid "Suspend"
+msgstr ""
+
+#: ../src/powermanager-menu-functions.c:52
+msgid "Reboot"
+msgstr ""
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Icon size"
+msgstr ""
+
+#: ../data/messages:5
+msgid "Width :"
+msgstr ""
+
+#: ../data/messages:7
+msgid "Height :"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Icon name :"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:15
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr ""
+
+#: ../data/messages:29
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:39
+msgid "in seconds."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Interval of time between 2 checks :"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Display"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Icon's filename when on battery :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Icon's filename when on charge :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Effect to apply on the icon according to charge :"
+msgstr ""
+
+#: ../data/messages:51 ../data/messages:65
+msgid "nothing"
+msgstr ""
+
+#: ../data/messages:53
+msgid "zoom"
+msgstr ""
+
+#: ../data/messages:55
+msgid "transparency"
+msgstr ""
+
+#: ../data/messages:57
+msgid "draw bar"
+msgstr ""
+
+#: ../data/messages:59
+msgid "Use a gauge instead of icons ?"
+msgstr ""
+
+#: ../data/messages:61
+msgid "List of available gauges :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "Information to be displayed on the icon :"
+msgstr ""
+
+#: ../data/messages:67
+msgid "charge"
+msgstr ""
+
+#: ../data/messages:69
+msgid "time"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Alert"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Alert when battery charged ?"
+msgstr ""
+
+#: ../data/messages:75 ../data/messages:85 ../data/messages:93
+msgid "Let it empty to have no sound"
+msgstr ""
+
+#: ../data/messages:77 ../data/messages:87 ../data/messages:95
+msgid "Use a sound :"
+msgstr ""
+
+#: ../data/messages:79
+msgid "Alert when low battery ?"
+msgstr ""
+
+#: ../data/messages:81
+msgid "in percent."
+msgstr ""
+
+#: ../data/messages:83
+msgid "Battery level :"
+msgstr ""
+
+#: ../data/messages:89
+msgid "When battery level is under 4%"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Alert when battery charge is critical ?"
+msgstr ""
+
+#: ../data/messages:97
+msgid "Animate icon during the alert ?"
+msgstr ""
+
+#: ../data/messages:99
+msgid "Animation during alert :"
+msgstr ""
+
+#: ../data/messages:101
+msgid "bounce"
+msgstr ""
+
+#: ../data/messages:103
+msgid "rotate"
+msgstr ""
+
+#: ../data/messages:105
+msgid "blink"
+msgstr ""
+
+#: ../data/messages:107
+msgid "pulse"
+msgstr ""
+
+#: ../data/messages:109
+msgid "upside-down"
+msgstr ""
+
+#: ../data/messages:111
+msgid "wobbly"
+msgstr ""
+
+#: ../data/messages:113
+msgid "random"
+msgstr ""

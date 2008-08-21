@@ -1,0 +1,37 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/messages:1
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Let extern applications pop-up dialogs in the dock ?"
+msgstr ""
+
+#: ../data/messages:5
+msgid "Let extern applications reboot the dock ?"
+msgstr ""
+
+#: ../data/messages:7
+msgid "Let extern applications show/hide the desklets ?"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Let extern applications reload the applets ?"
+msgstr ""
