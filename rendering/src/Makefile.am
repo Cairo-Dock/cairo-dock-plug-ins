@@ -68,4 +68,4 @@ libcd_rendering_la_LIBADD = \
 
 
 libcd_rendering_la_LDFLAGS = \
-	-avoid-version
+	-avoid-version -module

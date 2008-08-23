@@ -39,4 +39,4 @@ libcd_showDesktop_la_LIBADD = \
 
 
 libcd_showDesktop_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

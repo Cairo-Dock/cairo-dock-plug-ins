@@ -42,4 +42,4 @@ libcd_netspeed_la_LIBADD = \
 
 
 libcd_netspeed_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

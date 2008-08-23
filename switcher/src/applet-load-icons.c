@@ -162,7 +162,7 @@ void cd_switcher_paint_icons (void)
 	for (ic = pIconList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		g_print (" (%.2f; %.2f) %.2fx%.2f\n", icon->fDrawX, icon->fDrawY, icon->fWidth, icon->fHeight);
+		//g_print (" (%.2f; %.2f) %.2fx%.2f\n", icon->fDrawX, icon->fDrawY, icon->fWidth, icon->fHeight);
 		pIconContext = cairo_create (icon->pIconBuffer);
 		cairo_scale (pIconContext,
 			fZoomX,
@@ -180,6 +180,6 @@ void cd_switcher_load_default_map_surface (void)
 	g_return_if_fail (myDrawContext != NULL);
 	if (myData.pDefaultMapSurface != NULL)
 		cairo_surface_destroy (myData.pDefaultMapSurface);
-	g_print ("%s (%.2fx%.2f)\n", __func__, myIcon->fWidth, myIcon->fHeight);
+	cd_debug ("%s (%.2fx%.2f)", __func__, myIcon->fWidth, myIcon->fHeight);
 	myData.pDefaultMapSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cDefaultIcon);
 }

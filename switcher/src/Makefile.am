@@ -45,4 +45,4 @@ libcd_switcher_la_LIBADD = \
 
 
 libcd_switcher_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

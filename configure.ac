@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[1.6.2-RC1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[1.6.2-RC2],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -79,6 +79,10 @@ AC_ARG_ENABLE(compiz-icon,
 	[  --enable-compiz-icon: Enable Compiz-Icon applet (default=yes) ],
 	[ $with_compiz_icon=${enableval} ],
 	[ with_compiz_icon=yes ])
+AC_ARG_ENABLE(xgamma,
+	[  --enable-xgamma : Enable Xgamma applet (default=yes) ],
+	[ with_xgamma=${enableval} ],
+	[ with_xgamma=yes ])
 
 
 if test "$with_old_gnome_support" = "yes" ; then
@@ -102,9 +106,14 @@ if test "$with_alsa_mixer" = "yes" ; then
 	AC_SUBST(ALSA_MIXER_PACKAGE_LIBS)
 fi
 if test "$with_terminal" = "yes" ; then
-	PKG_CHECK_MODULES(TERMINAL_PACKAGE,vte, ,[ with_terminal=false; AC_MSG_WARN(Could not find vte; Cairo-Dock won't be built with TERMINAL applet.) ])
+	PKG_CHECK_MODULES(TERMINAL_PACKAGE,vte, ,[ with_terminal=false; AC_MSG_WARN(Could not find vte; Cairo-Dock won't be built with Terminal applet.) ])
 	AC_SUBST(TERMINAL_PACKAGE_CFLAGS)
 	AC_SUBST(TERMINAL_PACKAGE_LIBS)
+fi
+if test "$with_xgamma" = "yes" ; then
+	PKG_CHECK_MODULES(XGAMMA_PACKAGE,x11 xxf86vm, ,[ with_xgamma=false; AC_MSG_WARN(Could not find xxf86vm; Cairo-Dock won't be built with Xgamma applet.) ])
+	AC_SUBST(XGAMMA_PACKAGE_CFLAGS)
+	AC_SUBST(XGAMMA_PACKAGE_LIBS)
 fi
 
 AM_CONDITIONAL( [WITH_OLD_GNOME_SUPPORT], [test "$with_old_gnome_support" = "yes"] )
@@ -118,6 +127,7 @@ AM_CONDITIONAL( [WITH_TOMBOY], [test "$with_tomboy" = "yes"] )
 AM_CONDITIONAL( [WITH_RHYTHMBOX], [test "$with_rhythmbox" = "yes"] )
 AM_CONDITIONAL( [WITH_NVIDIA], [test "$with_nvidia" = "yes"] )
 AM_CONDITIONAL( [WITH_COMPIZ_ICON], [test "$with_compiz_icon" = "yes"] )
+AM_CONDITIONAL( [WITH_XGAMMA], [test "$with_xgamma" = "yes"] )
 
 
 ############# ALSA_MIXER #################
@@ -682,3 +692,4 @@ echo " * Compil Wifi applet : "${with_wifi}
 echo " * Compil Tomboy applet : "${with_tomboy}
 echo " * Compil Rhythmbox applet : "${with_rhythmbox}
 echo " * Compil nVidia applet : "${with_nvidia}
+echo " * Compil Xgamma applet : "${with_xgamma}

@@ -43,4 +43,4 @@ libcd_weather_la_LIBADD = \
 
 
 libcd_weather_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

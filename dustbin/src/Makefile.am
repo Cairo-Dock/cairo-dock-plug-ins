@@ -42,4 +42,4 @@ libcd_dustbin_la_LIBADD = \
 
 
 libcd_dustbin_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

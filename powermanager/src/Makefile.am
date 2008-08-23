@@ -41,4 +41,4 @@ libcd_powermanager_la_LIBADD = \
 
 
 libcd_powermanager_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

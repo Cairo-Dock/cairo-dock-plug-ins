@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"POT-Creation-Date: 2008-08-23 03:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,7 +164,7 @@ msgid "no"
 msgstr ""
 
 #: ../data/messages:49
-msgid "on quickinfo"
+msgid "on icon"
 msgstr ""
 
 #: ../data/messages:51
@@ -179,12 +179,20 @@ msgstr ""
 msgid "Delay between temperature checks :"
 msgstr ""
 
-#: ../data/messages:57 ../data/messages:61 ../data/messages:67
-msgid "in celcius."
+#: ../data/messages:57
+msgid ""
+"in celcius. The temperature will be displayed between this value and the "
+"upper limit."
 msgstr ""
 
 #: ../data/messages:59
 msgid "Lower limit of core temperature :"
+msgstr ""
+
+#: ../data/messages:61
+msgid ""
+"in celcius. The temperature will be displayed between the lower limit and "
+"this value."
 msgstr ""
 
 #: ../data/messages:63
@@ -193,6 +201,10 @@ msgstr ""
 
 #: ../data/messages:65
 msgid "Alert when core temperature is high ?"
+msgstr ""
+
+#: ../data/messages:67
+msgid "in celcius."
 msgstr ""
 
 #: ../data/messages:69

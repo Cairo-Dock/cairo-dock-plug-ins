@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"POT-Creation-Date: 2008-08-23 03:45+0200\n"
 "PO-Revision-Date: 2008-05-23 08:53+0100\n"
 "Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:104 ../src/applet-notifications.c:31
-#: ../src/applet-xgamma.c:156
+#: ../src/applet-init.c:108 ../src/applet-notifications.c:31
+#: ../src/applet-xgamma.c:158
 msgid "Set up gamma :"
 msgstr "Réglez le gamma :"
 

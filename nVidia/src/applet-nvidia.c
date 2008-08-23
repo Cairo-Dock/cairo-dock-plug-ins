@@ -51,7 +51,7 @@ void cd_nvidia_read_data (void) {
 	gint iGpuTemp;
 	g_file_get_contents(s_cTmpFile, &cContent, &length, &erreur);
 	if (erreur != NULL) {
-		cd_warning("Attention : %s", erreur->message);
+		cd_warning("nVidia : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
 		myData.bAcquisitionOK = FALSE;
@@ -107,7 +107,7 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 	gchar **cInfopipesList = g_strsplit (cContent, "\n", -1);
 	gchar *cOneInfopipe;
 	gint i=0;
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	g_free (myData.pGPUData.cGPUName);
 	myData.pGPUData.cGPUName = NULL;
@@ -165,7 +165,7 @@ static gboolean _nvidia_get_values_from_file (gchar *cContent) {
 }
 
 void cd_nvidia_config_read_data (void) {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	if (s_cTmpFileConfig == NULL)
 		return ;
 	gchar *cContent = NULL;
@@ -173,7 +173,7 @@ void cd_nvidia_config_read_data (void) {
 	GError *erreur = NULL;
 	g_file_get_contents(s_cTmpFileConfig, &cContent, &length, &erreur);
 	if (erreur != NULL) {
-		cd_warning("Attention : %s", erreur->message);
+		cd_warning("nVidia : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
 		myData.bAcquisitionOK = FALSE;
@@ -188,7 +188,7 @@ void cd_nvidia_config_read_data (void) {
 }
 
 gboolean cd_nvidia_config_update_from_data (void) {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	if (myConfig.bCardName) {
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pGPUData.cGPUName);
 	}

@@ -55,12 +55,14 @@ CD_APPLET_INIT_BEGIN
 		}
 		#endif
 		
+		#ifdef XF86VidModeQueryExtension
 		int EventBase, ErrorBase;
 		if (!XF86VidModeQueryExtension(dpy, &EventBase, &ErrorBase))
 		{
 			cd_warning ("Xgamma : unable to query video extension information");
 			return ;
 		}
+		#endif
 		
 		myData.bVideoExtensionOK = TRUE;
 	}

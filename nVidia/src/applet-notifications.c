@@ -50,7 +50,7 @@ static void nvidia_setting(void) {  /// a mettre dans les plug-ins d'integration
 		return ;
 	}
 	if (erreur != NULL) {
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("nVidia : %s", erreur->message);
 		g_error_free (erreur);
 	}
 }

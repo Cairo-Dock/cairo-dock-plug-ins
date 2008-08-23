@@ -43,4 +43,4 @@ libcd_systray_la_LIBADD = \
 
 
 libcd_systray_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

@@ -43,4 +43,4 @@ libcd_stacks_la_LIBADD = \
 
 
 libcd_stacks_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

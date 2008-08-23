@@ -46,4 +46,4 @@ libcd_AlsaMixer_la_LIBADD = \
 
 
 libcd_AlsaMixer_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

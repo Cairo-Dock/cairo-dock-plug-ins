@@ -43,4 +43,4 @@ libcd_tomboy_la_LIBADD = \
 
 
 libcd_tomboy_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

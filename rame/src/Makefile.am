@@ -41,4 +41,4 @@ libcd_rame_la_LIBADD = \
 
 
 libcd_rame_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

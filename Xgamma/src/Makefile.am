@@ -21,6 +21,7 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_Xgamma_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
+	$(XGAMMA_PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(xgammadatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
@@ -37,8 +38,9 @@ libcd_Xgamma_la_CFLAGS = \
 
 
 libcd_Xgamma_la_LIBADD = \
-	$(PACKAGE_LIBS) -lm
+	$(PACKAGE_LIBS) -lm \
+	$(XGAMMA_PACKAGE_LIBS)
 
 
 libcd_Xgamma_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

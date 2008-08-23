@@ -40,4 +40,4 @@ libcd_Dbus_la_LIBADD = \
 
 
 libcd_Dbus_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

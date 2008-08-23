@@ -14,17 +14,18 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
-
+void toto (void);
 
 double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 {
 	g_return_val_if_fail (pGamma != NULL, 1);
 	const Display *dpy = cairo_dock_get_Xdisplay ();
 	
+	g_return_val_if_fail (XF86VidModeGetGamma != NULL, 1.);
 	if (!XF86VidModeGetGamma (dpy, DefaultScreen (dpy), pGamma))
 	{
-		cd_warning ("Attention : unable to query gamma correction");
-		return 0;
+		cd_warning ("Xgamma : unable to query gamma correction");
+		return 1.;
 	}
 	return (pGamma->red + pGamma->blue + pGamma->green) / 3;
 }
@@ -35,9 +36,10 @@ void xgamma_set_gamma (XF86VidModeGamma *pGamma)
 	g_return_if_fail (pGamma != NULL);
 	const Display *dpy = cairo_dock_get_Xdisplay ();
 	
+	g_return_if_fail (XF86VidModeSetGamma != NULL);
 	if (!XF86VidModeSetGamma(dpy, DefaultScreen (dpy), pGamma))
 	{
-		cd_warning ("Attention : unable to set gamma correction");
+		cd_warning ("Xgamma : unable to set gamma correction");
 	}
 }
 

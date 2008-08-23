@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"POT-Creation-Date: 2008-08-23 03:45+0200\n"
 "PO-Revision-Date: 2008-07-03 12:44+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -175,8 +175,8 @@ msgid "no"
 msgstr "否"
 
 #: ../data/messages:49
-msgid "on quickinfo"
-msgstr "在快速信息上"
+msgid "on icon"
+msgstr "sur l'icône"
 
 #: ../data/messages:51
 msgid "on label"
@@ -190,13 +190,21 @@ msgstr "以秒为单位。"
 msgid "Delay between temperature checks :"
 msgstr "温度检查延迟间隔："
 
-#: ../data/messages:57 ../data/messages:61 ../data/messages:67
-msgid "in celcius."
-msgstr "以摄氏度为单位"
+#: ../data/messages:57
+msgid ""
+"in celcius. The temperature will be displayed between this value and the "
+"upper limit."
+msgstr ""
 
 #: ../data/messages:59
 msgid "Lower limit of core temperature :"
 msgstr "核心温度下限："
+
+#: ../data/messages:61
+msgid ""
+"in celcius. The temperature will be displayed between the lower limit and "
+"this value."
+msgstr ""
 
 #: ../data/messages:63
 msgid "Upper limit of core temperature :"
@@ -205,6 +213,10 @@ msgstr "核心温度上限："
 #: ../data/messages:65
 msgid "Alert when core temperature is high ?"
 msgstr "当核心温度过高时报警？"
+
+#: ../data/messages:67
+msgid "in celcius."
+msgstr "以摄氏度为单位"
 
 #: ../data/messages:69
 msgid "Alert limit of core temperature :"
@@ -252,11 +264,11 @@ msgstr "留空以使用默认图标。"
 msgid "Name of an image for the 'broken' icon :"
 msgstr "“破损”图标的图形文件名称："
 
+#~ msgid "on quickinfo"
+#~ msgstr "在快速信息上"
+
 #~ msgid "radium"
 #~ msgstr "辐射"
 
 #~ msgid "Module"
 #~ msgstr "Module"
-
-#~ msgid "on icon"
-#~ msgstr "sur l'icône"

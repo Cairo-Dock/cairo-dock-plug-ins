@@ -44,6 +44,10 @@ if WITH_COMPIZ_ICON
 compiz_icon_dir=compiz-icon
 endif
 
+if WITH_XGAMMA
+xgamma_dir=Xgamma
+endif
+
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
 	Cairo-Penguin\
@@ -73,7 +77,7 @@ SUBDIRS = . po\
 	weather\
 	${wifi_dir}\
 	${xfce_dir}\
-	Xgamma\
+	${xgamma_dir}\
 	xmms
 
 EXTRA_DIST = \

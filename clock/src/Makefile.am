@@ -42,4 +42,4 @@ libcd_clock_la_LIBADD = \
 
 
 libcd_clock_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

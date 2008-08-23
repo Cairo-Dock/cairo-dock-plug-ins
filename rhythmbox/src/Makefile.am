@@ -43,4 +43,4 @@ libcd_rhythmbox_la_LIBADD = \
 
 
 libcd_rhythmbox_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

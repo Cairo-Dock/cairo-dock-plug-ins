@@ -41,4 +41,4 @@ libcd_gnome_integration_old_la_LIBADD = \
 
 
 libcd_gnome_integration_old_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

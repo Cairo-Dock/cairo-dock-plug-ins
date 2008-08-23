@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"POT-Creation-Date: 2008-08-23 03:45+0200\n"
 "PO-Revision-Date: 2008-06-25 02:44+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -183,8 +183,8 @@ msgid "no"
 msgstr "no"
 
 #: ../data/messages:49
-msgid "on quickinfo"
-msgstr "info rapide"
+msgid "on icon"
+msgstr "sull'icona"
 
 #: ../data/messages:51
 msgid "on label"
@@ -199,13 +199,21 @@ msgstr "en seconde."
 msgid "Delay between temperature checks :"
 msgstr "Ritardo tra le verifiche :"
 
-#: ../data/messages:57 ../data/messages:61 ../data/messages:67
-msgid "in celcius."
-msgstr "in celcius."
+#: ../data/messages:57
+msgid ""
+"in celcius. The temperature will be displayed between this value and the "
+"upper limit."
+msgstr ""
 
 #: ../data/messages:59
 msgid "Lower limit of core temperature :"
 msgstr "Limite inferiore della temperatura :"
+
+#: ../data/messages:61
+msgid ""
+"in celcius. The temperature will be displayed between the lower limit and "
+"this value."
+msgstr ""
 
 #: ../data/messages:63
 msgid "Upper limit of core temperature :"
@@ -214,6 +222,10 @@ msgstr "Limite superiore della temperatura :"
 #: ../data/messages:65
 msgid "Alert when core temperature is high ?"
 msgstr "Allertare quando la temperatura del core è alta ?"
+
+#: ../data/messages:67
+msgid "in celcius."
+msgstr "in celcius."
 
 #: ../data/messages:69
 msgid "Alert limit of core temperature :"
@@ -261,8 +273,8 @@ msgstr "Lasciate vuoto per utilizare l'icona di default."
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nome dell'immagine dell'icona 'Rotta' :"
 
+#~ msgid "on quickinfo"
+#~ msgstr "info rapide"
+
 #~ msgid "Module"
 #~ msgstr "Modulo"
-
-#~ msgid "on icon"
-#~ msgstr "sull'icona"

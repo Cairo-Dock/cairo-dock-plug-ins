@@ -43,4 +43,4 @@ libcd_xmms_la_LIBADD = \
 
 
 libcd_xmms_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

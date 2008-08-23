@@ -21,13 +21,13 @@ AC_SUBST(GETTEXT_XGAMMA)
 AC_SUBST(VERSION_XGAMMA, "$VERSION")
 AC_SUBST(PACKAGE_XGAMMA, "$PACKAGE")
 
+PKG_CHECK_MODULES(PACKAGE, cairo-dock)
+PKG_CHECK_MODULES(XGAMMA_PACKAGE, x11 xxf86vm)
+
 xgammadatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Xgamma]
 AC_SUBST(xgammadatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-
-
-PKG_CHECK_MODULES(PACKAGE, cairo-dock x11 xxf86vm)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile

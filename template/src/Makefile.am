@@ -39,4 +39,4 @@ libcd_CD_LIB_NAME_la_LIBADD = \
 
 
 libcd_CD_LIB_NAME_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

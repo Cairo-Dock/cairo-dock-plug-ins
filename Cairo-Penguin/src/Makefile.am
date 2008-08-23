@@ -44,4 +44,4 @@ libcd_Cairo_Penguin_la_LIBADD = \
 
 
 libcd_Cairo_Penguin_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

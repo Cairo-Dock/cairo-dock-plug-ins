@@ -42,4 +42,4 @@ libcd_shortcuts_la_LIBADD = \
 
 
 libcd_shortcuts_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

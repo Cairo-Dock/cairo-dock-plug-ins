@@ -43,4 +43,4 @@ libcd_nVidia_la_LIBADD = \
 
 
 libcd_nVidia_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module

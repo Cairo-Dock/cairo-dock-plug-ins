@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-19 21:19+0200\n"
+"POT-Creation-Date: 2008-08-23 03:45+0200\n"
 "PO-Revision-Date: 2008-06-18 22:28+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -181,7 +181,8 @@ msgid "no"
 msgstr "なし"
 
 #: ../data/messages:49
-msgid "on quickinfo"
+#, fuzzy
+msgid "on icon"
 msgstr "クイック情報上"
 
 #: ../data/messages:51
@@ -196,13 +197,21 @@ msgstr "秒単位"
 msgid "Delay between temperature checks :"
 msgstr "温度チェックの間隔時間 :"
 
-#: ../data/messages:57 ../data/messages:61 ../data/messages:67
-msgid "in celcius."
-msgstr "摂氏"
+#: ../data/messages:57
+msgid ""
+"in celcius. The temperature will be displayed between this value and the "
+"upper limit."
+msgstr ""
 
 #: ../data/messages:59
 msgid "Lower limit of core temperature :"
 msgstr "コア温度の下限 :"
+
+#: ../data/messages:61
+msgid ""
+"in celcius. The temperature will be displayed between the lower limit and "
+"this value."
+msgstr ""
 
 #: ../data/messages:63
 msgid "Upper limit of core temperature :"
@@ -211,6 +220,10 @@ msgstr "コア温度の上限 :"
 #: ../data/messages:65
 msgid "Alert when core temperature is high ?"
 msgstr "コア温度が高い時に警告？"
+
+#: ../data/messages:67
+msgid "in celcius."
+msgstr "摂氏"
 
 #: ../data/messages:69
 msgid "Alert limit of core temperature :"

@@ -57,4 +57,4 @@ libcd_weblets_la_LIBADD = \
 
 
 libcd_weblets_la_LDFLAGS =\
-	-avoid-version
+	-avoid-version -module
