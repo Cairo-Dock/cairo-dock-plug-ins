@@ -47,8 +47,11 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		cd_weather_reset_all_datas (myApplet);  // on bourrine.
-		if (myIcon->acName == NULL || *myIcon->acName == '\0')
-			myIcon->acName = g_strdup (WEATHER_DEFAULT_NAME);
+		if (myIcon->acName == NULL)
+		{
+			myIcon->acName = cairo_dock_get_unique_dock_name (myData.cLocation != NULL ? myData.cLocation : WEATHER_DEFAULT_NAME);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myIcon->acName)
+		}
 		
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
 			(CairoDockAquisitionTimerFunc) cd_weather_acquisition,

@@ -7,7 +7,7 @@
 
 void cd_xmms_prev(CairoDockModuleInstance *myApplet);
 void cd_xmms_pp(CairoDockModuleInstance *myApplet);
-void cd_xmms_s(CairoDockModuleInstance *myApplet);
+void cd_xmms_stop(CairoDockModuleInstance *myApplet);
 void cd_xmms_next(CairoDockModuleInstance *myApplet);
 void cd_xmms_shuffle(CairoDockModuleInstance *myApplet);
 void cd_xmms_repeat(CairoDockModuleInstance *myApplet);

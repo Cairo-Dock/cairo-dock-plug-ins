@@ -64,7 +64,7 @@ void cd_compiz_update_main_icon (void) {
 	gboolean bNeedsRedraw = FALSE;
 	if (myData.bAcquisitionOK) {
 		if (myData.bCompizIsRunning && myData.iCompizIcon != COMPIZ_DEFAULT) {
-			//cd_debug ("COMPIZ_DEFAULT");
+// 			//cd_debug ("COMPIZ_DEFAULT");
 			myData.iCompizIcon = COMPIZ_DEFAULT;
 			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 			bNeedsRedraw = TRUE;
@@ -90,6 +90,12 @@ void cd_compiz_update_main_icon (void) {
 
 
 void cd_compiz_build_icons (void) {
+	gboolean bLoadLabel = FALSE;
+	if (myIcon->acName == NULL)
+	{
+		myIcon->acName = cairo_dock_get_unique_dock_name (COMPIZ_DEFAULT_NAME);
+		bLoadLabel = (myDock != NULL);
+	}
 	GList *pIconList = _list_icons ();  // ne nous appartiendra plus, donc ne pas desallouer.
 	if (myDock) {
 		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
@@ -98,5 +104,9 @@ void cd_compiz_build_icons (void) {
 		myDesklet->icons = pIconList;
 		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
+	}
+	if (bLoadLabel)  // en mode desklet, on n'a le contexte que maintenant.
+	{
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myIcon->acName)
 	}
 }

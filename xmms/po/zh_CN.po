@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-23 03:45+0200\n"
+"POT-Creation-Date: 2008-08-25 02:39+0200\n"
 "PO-Revision-Date: 2008-07-16 16:08+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
@@ -21,31 +21,31 @@ msgid ""
 " made by ChAnGFu for Cairo-Dock"
 msgstr "这是ChAnGFu为Cairo-Dock制作的xmms小应用程序。"
 
-#: ../src/applet-notifications.c:231
+#: ../src/applet-notifications.c:260
 msgid "Previous"
 msgstr "上一首"
 
-#: ../src/applet-notifications.c:232
+#: ../src/applet-notifications.c:261
 msgid "Play/Pause (left-click)"
 msgstr "播放/暂停（左键点击）"
 
-#: ../src/applet-notifications.c:234
+#: ../src/applet-notifications.c:263
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/applet-notifications.c:236
+#: ../src/applet-notifications.c:265
 msgid "Next (middle-click)"
 msgstr "下一首（中键点击）"
 
-#: ../src/applet-notifications.c:238
+#: ../src/applet-notifications.c:267
 msgid "Show JumpBox"
 msgstr "显示JumpBox"
 
-#: ../src/applet-notifications.c:239
+#: ../src/applet-notifications.c:268
 msgid "Toggle Shuffle"
 msgstr "乱序"
 
-#: ../src/applet-notifications.c:240
+#: ../src/applet-notifications.c:269
 msgid "Toggle Repeat"
 msgstr "重复"
 

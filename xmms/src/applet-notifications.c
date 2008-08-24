@@ -67,7 +67,7 @@ void cd_xmms_pp(CairoDockModuleInstance *myApplet) {
 		g_error_free (erreur);
 	}
 }
-void cd_xmms_s(CairoDockModuleInstance *myApplet) {
+void cd_xmms_stop(CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	switch (myConfig.iPlayer) {
 		case MY_XMMS :
@@ -206,7 +206,7 @@ static void _xmms_action_by_id (CairoDockModuleInstance *myApplet, int iAction) 
 			cd_xmms_pp(myApplet);
 		break;
 		case 2:
-			cd_xmms_s(myApplet);
+			cd_xmms_stop(myApplet);
 		break;
 		case 3:
 			cd_xmms_next(myApplet);
@@ -226,25 +226,54 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
+static void _on_play_pause (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	cd_xmms_pp (myApplet);
+}
+static void _on_prev (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	cd_xmms_prev (myApplet);
+}
+static void _on_next (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	cd_xmms_next (myApplet);
+}
+static void _on_stop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	cd_xmms_stop (myApplet);
+}
+static void _on_jumpbox (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	cd_xmms_jumpbox (myApplet);
+}
+static void _on_shuffle (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	cd_xmms_shuffle (myApplet);
+}
+static void _on_repeat (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	cd_xmms_repeat (myApplet);
+}
+
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("XMMS", pSubMenu, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU (D_("Previous"), cd_xmms_prev, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), cd_xmms_pp, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (D_("Previous"), _on_prev, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), _on_play_pause, CD_APPLET_MY_MENU)
 	if (myConfig.iPlayer != MY_BANSHEE) {
-		CD_APPLET_ADD_IN_MENU (D_("Stop"), cd_xmms_s, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU (D_("Stop"), _on_stop, CD_APPLET_MY_MENU)
 	}
-	CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), cd_xmms_next, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), _on_next, CD_APPLET_MY_MENU)
 	if ((myConfig.iPlayer != MY_BANSHEE) && (myConfig.iPlayer != MY_EXAILE)) {
-		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), cd_xmms_jumpbox, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), cd_xmms_shuffle, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), cd_xmms_repeat, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), _on_jumpbox, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), _on_shuffle, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), _on_repeat, pSubMenu)
 	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-  cd_xmms_next(myApplet);
+	cd_xmms_next(myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 

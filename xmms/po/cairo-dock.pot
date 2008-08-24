@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-23 03:45+0200\n"
+"POT-Creation-Date: 2008-08-25 02:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,31 +22,31 @@ msgid ""
 " made by ChAnGFu for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:231
+#: ../src/applet-notifications.c:260
 msgid "Previous"
 msgstr ""
 
-#: ../src/applet-notifications.c:232
+#: ../src/applet-notifications.c:261
 msgid "Play/Pause (left-click)"
 msgstr ""
 
-#: ../src/applet-notifications.c:234
+#: ../src/applet-notifications.c:263
 msgid "Stop"
 msgstr ""
 
-#: ../src/applet-notifications.c:236
+#: ../src/applet-notifications.c:265
 msgid "Next (middle-click)"
 msgstr ""
 
-#: ../src/applet-notifications.c:238
+#: ../src/applet-notifications.c:267
 msgid "Show JumpBox"
 msgstr ""
 
-#: ../src/applet-notifications.c:239
+#: ../src/applet-notifications.c:268
 msgid "Toggle Shuffle"
 msgstr ""
 
-#: ../src/applet-notifications.c:240
+#: ../src/applet-notifications.c:269
 msgid "Toggle Repeat"
 msgstr ""
 

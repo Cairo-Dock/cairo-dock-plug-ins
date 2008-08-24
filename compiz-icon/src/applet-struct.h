@@ -4,6 +4,7 @@
 
 #include <cairo-dock.h>
 
+#define COMPIZ_DEFAULT_NAME "_Compiz_"
 
 typedef enum {
   COMPIZ_DEFAULT = 0,
