@@ -87,7 +87,7 @@ CD_APPLET_RELOAD_BEGIN
 		/// Si le dock a change, enlever le redessin sur pOldContainer et le remettre sur le nouveau ...
 		
 		//\_______________ On recharge tout de zero (changement de theme).
-		reset_data (myApplet);
+		reset_data (myApplet);  // applet multi-instance => ok.
 		
 		penguin_load_theme (myApplet, myConfig.cThemePath);
 		

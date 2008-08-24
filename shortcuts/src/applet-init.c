@@ -52,7 +52,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On charge les icones dans un sous-dock.
-		reset_data (myApplet);
+		cd_shortcuts_reset_all_datas (myApplet);
 		
 		if (myIcon->acName == NULL || *myIcon->acName == '\0')
 			myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);

@@ -153,7 +153,7 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		reset_data (myApplet);
+		reset_data (myApplet);  // on ne se sert pas des myData et autres donc ca va.
 		
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);

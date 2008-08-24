@@ -46,7 +46,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		reset_data (myApplet);  // on bourrine.
+		cd_weather_reset_all_datas (myApplet);  // on bourrine.
 		if (myIcon->acName == NULL || *myIcon->acName == '\0')
 			myIcon->acName = g_strdup (WEATHER_DEFAULT_NAME);
 		
@@ -56,9 +56,8 @@ CD_APPLET_RELOAD_BEGIN
 			(CairoDockUpdateTimerFunc) cd_weather_update_from_data,
 			myApplet);
 		cairo_dock_launch_measure (myData.pMeasureTimer);
-		g_print ("myDrawContext:%x\n", myDrawContext);
 	}
-	else if (myDesklet != NULL)
+	else if (myDesklet)
 	{
 		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);

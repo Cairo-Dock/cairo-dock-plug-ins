@@ -30,7 +30,8 @@ CD_APPLET_RESET_CONFIG_BEGIN
 CD_APPLET_RESET_CONFIG_END
 
 
-CD_APPLET_RESET_DATA_BEGIN
+void cd_shortcuts_reset_all_datas (CairoDockModuleInstance *myApplet)
+{
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	
 	if (myData.cDisksURI != NULL)
@@ -53,4 +54,9 @@ CD_APPLET_RESET_DATA_BEGIN
 	{
 		CD_APPLET_DESTROY_MY_SUBDOCK
 	}
+	memset (myDataPtr, 0, sizeof (AppletData));
+}
+
+CD_APPLET_RESET_DATA_BEGIN
+	cd_shortcuts_reset_all_datas (myApplet);
 CD_APPLET_RESET_DATA_END

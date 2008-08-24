@@ -8,6 +8,7 @@
 
 CD_APPLET_CONFIG_H
 
+void cd_shortcuts_reset_all_datas (CairoDockModuleInstance *myApplet);
 
 #endif
 

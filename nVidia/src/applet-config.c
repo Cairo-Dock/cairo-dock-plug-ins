@@ -52,10 +52,8 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_measure_timer (myData.pConfigMeasureTimer);
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
-	g_print ("nvidia : timer detruit\n");
 	cairo_dock_free_gauge (myData.pGauge);
 	g_free (myData.pGPUData.cGPUName);
 	g_free (myData.pGPUData.cDriverVersion);
-	g_print ("nvidia : fin du reset_data\n");
 	
 CD_APPLET_RESET_DATA_END
