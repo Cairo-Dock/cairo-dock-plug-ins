@@ -177,7 +177,7 @@ void cd_switcher_draw_windows_on_each_viewports(double Xposition, double Ypositi
 			continue ;
 
 		
-		printf("icon->acName : %s \n",icon->acName);
+		//printf("icon->acName : %s \n",icon->acName);
 
 		cairo_set_source_rgba(myDrawContext,myConfig.RGBWLineColors[0],myConfig.RGBWLineColors[1],myConfig.RGBWLineColors[2],myConfig.RGBWLineColors[3]);
 
@@ -204,7 +204,7 @@ void cd_switcher_draw_windows_on_each_viewports(double Xposition, double Ypositi
 		x1=x0+rect_width;
 		y1=y0+rect_height;
 		
-		printf("x0 : %f \n",x0);
+		/*printf("x0 : %f \n",x0);
 		printf("y0 : %f \n",y0);
 		printf("rect_width : %f \n",rect_width);
 		printf("rect_height : %f \n",rect_height);
@@ -216,7 +216,7 @@ void cd_switcher_draw_windows_on_each_viewports(double Xposition, double Ypositi
 		printf("Xgeo : %f \n",Xgeo);
 		printf("Ygeo : %f \n",Ygeo);	
 		printf("XWgeo : %f \n",XWgeo);
-		printf("YWgeo : %f \n",YWgeo);	
+		printf("YWgeo : %f \n",YWgeo);*/
 
 		// # Dessin du contour des fenetres.
 		

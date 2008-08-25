@@ -59,7 +59,7 @@ static gboolean on_change_desktop (gpointer *data, CairoDockModuleInstance *myAp
 			{
 				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Current"), iIndex+1);
 				icon->bHasIndicator = TRUE;
-				icon->fAlpha = .8;
+				icon->fAlpha = .7;
 				if (myDock)
 					cairo_dock_redraw_my_icon (icon, pContainer);
 			}
@@ -75,6 +75,7 @@ static gboolean on_change_screen_geometry (gpointer *data, CairoDockModuleInstan
 	cd_message ("");
 	cd_switcher_compute_nb_lines_and_columns ();
 	cd_switcher_get_current_desktop ();
+	cd_switcher_load_icons ();
 	cd_switcher_load_icons ();
 	cd_switcher_draw_main_icon ();
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;

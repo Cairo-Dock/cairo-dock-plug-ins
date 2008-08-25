@@ -29,20 +29,21 @@ static GList * _load_icons (void)
 		{
 			pIcon->acName = g_strdup_printf ("%s (%d)", D_("Current"), i+1);
 			pIcon->bHasIndicator = TRUE;
+			pIcon->fAlpha = .7;
 		}
 		else
 		{
 			pIcon->acName = g_strdup_printf ("%s %d", D_("Desktop"), i+1);
 			pIcon->bHasIndicator = FALSE;
+			pIcon->fAlpha = 1.;
 		}
-		pIcon->fAlpha = 1.;
 		pIcon->cQuickInfo = g_strdup_printf ("%d",i+1);
 		pIcon->fOrder = i;
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
 		pIcon->acCommand = g_strdup ("none");
 		pIcon->cParentDockName = g_strdup (myIcon->acName);
-		pIcon->acFileName = (myConfig.cDefaultIcon != NULL ? myConfig.cDefaultIcon : g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default.svg"));
+		pIcon->acFileName = (myConfig.bMapWallpaper ? NULL : (myConfig.cDefaultIcon != NULL ? g_strdup (myConfig.cDefaultIcon) : g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default.svg")));
 		
 		pIconList = g_list_append (pIconList, pIcon);
 	}

@@ -475,5 +475,5 @@ static gboolean _penguin_restart_delayed (CairoDockModuleInstance *myApplet)
 void penguin_start_animating_with_delay (CairoDockModuleInstance *myApplet)
 {
 	if (myData.iSidRestartDelayed == 0)
-		myData.iSidRestartDelayed = g_timeout_add_seconds (1, (GSourceFunc) _penguin_restart_delayed, (gpointer) myApplet);
+		myData.iSidRestartDelayed = g_timeout_add_seconds (2, (GSourceFunc) _penguin_restart_delayed, (gpointer) myApplet);
 }

@@ -235,13 +235,13 @@ static void term_apply_settings_on_vterm(GtkWidget *vterm)
   
 	if (myDock)
 	{
-		g_print ("set_size (%d , %d)\n", myConfig.iNbColumns, myConfig.iNbRows);
+		//g_print ("set_size (%d , %d)\n", myConfig.iNbColumns, myConfig.iNbRows);
 		gtk_widget_set (vterm, "width-request", 0, NULL);
 		gtk_widget_set (vterm, "height-request", 0, NULL);
 		vte_terminal_set_size(VTE_TERMINAL(vterm), myConfig.iNbColumns, myConfig.iNbRows);
 		GtkRequisition requisition = {0, 0};
 		gtk_widget_size_request (vterm, &requisition);
-		g_print (" -> %dx%d\n", requisition.width, requisition.height);
+		//g_print (" -> %dx%d\n", requisition.width, requisition.height);
 		if (myData.dialog)
 			gtk_window_resize (GTK_WINDOW (myData.dialog->pWidget), requisition.width, requisition.height);
 	}
@@ -564,7 +564,7 @@ static GtkWidget * _terminal_find_clicked_tab_child (int x, int y)  // x,y relat
 	pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), pPageChild);
 	gtk_widget_get_child_requisition (pTabLabelWidget, &requisition);
 	iMaxTabHeight = requisition.height;
-	g_print ("iMaxTabHeight : %d\n", iMaxTabHeight);
+	//g_print ("iMaxTabHeight : %d\n", iMaxTabHeight);
 	
 	int i, iNbPages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (myData.tab));
 	gint src_x, src_y, dest_x, dest_y;
@@ -578,7 +578,7 @@ static GtkWidget * _terminal_find_clicked_tab_child (int x, int y)  // x,y relat
 			x, y,
 			&dest_x,
 			&dest_y);
-		g_print ("%d) (%d;%d) (%dx%d)\n", i, dest_x, dest_y, requisition.width, requisition.height);
+		//g_print ("%d) (%d;%d) (%dx%d)\n", i, dest_x, dest_y, requisition.width, requisition.height);
 		if (dest_x >= 0 && dest_y >= 0 && dest_x <= requisition.width && dest_y <= iMaxTabHeight)
 		{
 			vterm = pPageChild;
@@ -591,8 +591,7 @@ static gboolean on_button_press_tab (GtkWidget* pWidget,
 	GdkEventButton* pButton,
 	GtkWidget *vterm)
 {
-	g_print ("%s (%d;%d)\n", __func__, (int)pButton->x, (int)pButton->y);
-	
+	//g_print ("%s (%d;%d)\n", __func__, (int)pButton->x, (int)pButton->y);
 	if (pButton->type == GDK_2BUTTON_PRESS)
 	{
 		if (vterm == NULL)

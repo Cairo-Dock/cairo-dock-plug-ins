@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-25 02:39+0200\n"
+"POT-Creation-Date: 2008-08-26 02:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#: ../src/terminal-init.c:83 ../src/terminal-widget.c:659
+#: ../src/terminal-init.c:82 ../src/terminal-widget.c:658
 msgid "Terminal"
 msgstr ""
 

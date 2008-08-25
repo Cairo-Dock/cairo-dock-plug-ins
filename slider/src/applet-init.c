@@ -65,18 +65,18 @@ CD_APPLET_INIT_BEGIN
 	myData.fSurfaceWidth = myIcon->fWidth / fRatio * fMaxScale;
 	myData.fSurfaceHeight = myIcon->fHeight / fRatio * fMaxScale;
 	
-	myData.pMeasureDirectory = cairo_dock_new_measure_timer (0,
-		NULL,
-		(CairoDockReadTimerFunc) cd_slider_read_directory,
-		(CairoDockUpdateTimerFunc) cd_slider_launch_slides,
-		myApplet);  // 0 <=> one shot measure.
-	cairo_dock_launch_measure (myData.pMeasureDirectory);
-	
 	myData.pMeasureImage = cairo_dock_new_measure_timer (0,
 		NULL,
 		(CairoDockReadTimerFunc) cd_slider_read_image,
 		(CairoDockUpdateTimerFunc) cd_slider_update_slide,
 		myApplet);  // 0 <=> one shot measure.
+	
+	myData.pMeasureDirectory = cairo_dock_new_measure_timer (0,
+		NULL,
+		(CairoDockReadTimerFunc) cd_slider_read_directory,
+		(CairoDockUpdateTimerFunc) cd_slider_launch_slides,
+		myApplet);  // 0 <=> one shot measure.
+	cairo_dock_launch_measure_delayed (myData.pMeasureDirectory, 1500.);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT

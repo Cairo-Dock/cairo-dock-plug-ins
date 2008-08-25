@@ -39,7 +39,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
 		systray_build_and_show ();
-	if (myIcon->acFileName == NULL)
+	if (myDock && myIcon->acFileName == NULL)  // en mode desklet, on n'a pas besoin de l'icone.
 	{
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
 	}
@@ -86,6 +86,11 @@ CD_APPLET_RELOAD_BEGIN
 		if (myData.tray)
 		{
 			systray_apply_settings();
+		}
+		
+		if (myDock && myIcon->acFileName == NULL)  // en mode desklet, on n'a pas besoin de l'icone.
+		{
+			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
 		}
 	}
 }
