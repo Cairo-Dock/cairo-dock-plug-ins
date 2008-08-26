@@ -330,7 +330,7 @@ AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")
 SYSTRAY_PACKAGE=cd-systray
 AC_SUBST(GETTEXT_SYSTRAY, "$SYSTRAY_PACKAGE")
 
-AC_SUBST(VERSION_SYSTRAY, "0.1.4")
+AC_SUBST(VERSION_SYSTRAY, "0.1.5")
 AC_SUBST(PACKAGE_SYSTRAY, "$SYSTRAY_PACKAGE")
 
 AC_SUBST(systraydatadir, "${pkgdatadir}/systray")
