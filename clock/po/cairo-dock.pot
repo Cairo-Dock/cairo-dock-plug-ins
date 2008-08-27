@@ -1,21 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Cairo-Dock project
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-26 02:34+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-
 #: ../src/applet-notifications.c:166
 msgid ""
 "This is the Cairo-Dock's clock applet\n"
@@ -223,7 +205,7 @@ msgid "Alarm"
 msgstr ""
 
 #: ../data/messages:87
-msgid "Alarm n°1"
+msgid "Alarm n1"
 msgstr ""
 
 #: ../data/messages:89 ../data/messages:129 ../data/messages:169
@@ -303,9 +285,9 @@ msgid "Command to execute :"
 msgstr ""
 
 #: ../data/messages:127
-msgid "Alarm n°2"
+msgid "Alarm n2"
 msgstr ""
 
 #: ../data/messages:167
-msgid "Alarm n°3"
+msgid "Alarm n3"
 msgstr ""

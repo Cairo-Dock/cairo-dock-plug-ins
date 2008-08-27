@@ -93,10 +93,9 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 {
 	//\_______________________ On etablit le nom de l'icone.
-	if (myIcon->acName == NULL)
+	if (myIcon->acName == NULL && myDock)
 	{
-		myIcon->acName = cairo_dock_get_unique_dock_name (myData.cLocation != NULL ? myData.cLocation : WEATHER_DEFAULT_NAME);
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myIcon->acName)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cLocation != NULL ? myData.cLocation : WEATHER_DEFAULT_NAME)
 	}
 	
 	//\_______________________ On cree la liste des icones de prevision.

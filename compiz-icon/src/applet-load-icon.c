@@ -90,11 +90,9 @@ void cd_compiz_update_main_icon (void) {
 
 
 void cd_compiz_build_icons (void) {
-	gboolean bLoadLabel = FALSE;
-	if (myIcon->acName == NULL)
+	if (myIcon->acName == NULL && myDock)
 	{
-		myIcon->acName = cairo_dock_get_unique_dock_name (COMPIZ_DEFAULT_NAME);
-		bLoadLabel = (myDock != NULL);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (COMPIZ_DEFAULT_NAME)
 	}
 	GList *pIconList = _list_icons ();  // ne nous appartiendra plus, donc ne pas desallouer.
 	if (myDock) {
@@ -104,9 +102,5 @@ void cd_compiz_build_icons (void) {
 		myDesklet->icons = pIconList;
 		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
-	}
-	if (bLoadLabel)  // en mode desklet, on n'a le contexte que maintenant.
-	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myIcon->acName)
 	}
 }

@@ -16,10 +16,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
-/*static GList *s_pIconList = NULL;
-static int s_iThreadIsRunning = 0;
-static int s_iSidTimerRedraw = 0;*/
-
 
 static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
 {

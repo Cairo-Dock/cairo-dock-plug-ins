@@ -73,7 +73,12 @@ CD_APPLET_INIT_BEGIN
 		g_error_free (erreur);
 		return;
 	}
-
+	
+	if (myIcon->acName == NULL && myDock)
+	{
+		CD_APPLET_SET_NAME_FOR_MY_ICON (MAIL_DEFAULT_NAME)
+	}
+	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
@@ -109,6 +114,12 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			cd_warning ("mail : when trying to load theme : %s", erreur->message);
 			g_error_free (erreur);
+			erreur = NULL;
+		}
+		
+		if (myIcon->acName == NULL && myDock)
+		{
+			CD_APPLET_SET_NAME_FOR_MY_ICON (MAIL_DEFAULT_NAME)
 		}
 		/// prendre en compte les parametres qui ont pu changer...
 	}

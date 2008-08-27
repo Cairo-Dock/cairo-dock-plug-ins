@@ -21,8 +21,10 @@ CD_APPLET_DEFINITION ("shortcuts", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 CD_APPLET_INIT_BEGIN
-	if (myIcon->acName == NULL || *myIcon->acName == '\0')
-		myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);
+	if (myIcon->acName == NULL && myDock)
+	{
+		CD_APPLET_SET_NAME_FOR_MY_ICON (SHORTCUTS_DEFAULT_NAME)
+	}
 	
 	//\_______________ On charge les icones dans un sous-dock.
 	//cd_shortcuts_launch_measure ();  // asynchrone
@@ -54,8 +56,10 @@ CD_APPLET_RELOAD_BEGIN
 		//\_______________ On charge les icones dans un sous-dock.
 		cd_shortcuts_reset_all_datas (myApplet);
 		
-		if (myIcon->acName == NULL || *myIcon->acName == '\0')
-			myIcon->acName = g_strdup (SHORTCUTS_DEFAULT_NAME);
+		if (myIcon->acName == NULL && myDock)
+		{
+			CD_APPLET_SET_NAME_FOR_MY_ICON (SHORTCUTS_DEFAULT_NAME)
+		}
 		
 		//cd_shortcuts_launch_measure ();  // asynchrone
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (0,

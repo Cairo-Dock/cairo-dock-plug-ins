@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-26 02:34+0200\n"
+"POT-Creation-Date: 2008-08-28 02:11+0200\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,8 +168,9 @@ msgid "Number of icons on the first row :"
 msgstr "第一行的图标数："
 
 #: ../data/messages:71
+#, fuzzy
 msgid ""
-"in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+"in degree. The smaller, the more the cone is narrow. 180 means the cone is "
 "widely opened."
 msgstr "以角度为单位，取值越小则锥体越窄。180°意味着圆锥是完全开放的。"
 

@@ -7,6 +7,8 @@
 #include "mailwatch.h"
 #include <cairo-dock.h>
 
+#define MAIL_DEFAULT_NAME "_Mail_"
+
 struct _AppletConfig {
         gchar *cNoMailUserImage;
         gchar *cHasMailUserImage;

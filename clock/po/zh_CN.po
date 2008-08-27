@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-26 02:34+0200\n"
+"POT-Creation-Date: 2008-08-28 02:11+0200\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,7 +231,8 @@ msgid "Alarm"
 msgstr "闹钟"
 
 #: ../data/messages:87
-msgid "Alarm n°1"
+#, fuzzy
+msgid "Alarm n1"
 msgstr "闹钟n°1"
 
 #: ../data/messages:89 ../data/messages:129 ../data/messages:169
@@ -311,11 +312,13 @@ msgid "Command to execute :"
 msgstr "执行的命令："
 
 #: ../data/messages:127
-msgid "Alarm n°2"
+#, fuzzy
+msgid "Alarm n2"
 msgstr "闹钟n°2"
 
 #: ../data/messages:167
-msgid "Alarm n°3"
+#, fuzzy
+msgid "Alarm n3"
 msgstr "闹钟n°3"
 
 #~ msgid "Show the date ?"
