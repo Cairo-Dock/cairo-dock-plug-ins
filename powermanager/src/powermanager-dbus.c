@@ -284,6 +284,24 @@ gboolean update_stats(void)
 		
 		jump_to_value
 		int iPresentRate = atoi (cCurVal);  // 15000 mW OU 1400 mA
+		
+		if (myConfig.bUseApprox) { //Se rapprocher un peu de powermanager.
+			if (myData.on_battery) {
+				g_print ("Before approx Average:%d Rate:%d\n", myData.iAveragePresentState, iPresentRate);
+				if (myData.iMaxPresentState < iPresentRate)
+					myData.iMaxPresentState = iPresentRate; //On peut se baser sur la consomation maximum d'énergie de l'ordinateur pour le calcul
+			
+				if (myData.iAveragePresentState != 0) //Ou sur la moyenne des consomations d'énergie.
+					myData.iAveragePresentState = (myData.iAveragePresentState + iPresentRate) / 2;
+				else
+					myData.iAveragePresentState = iPresentRate;
+				g_print ("After approx Max:%d Average:%d\n", myData.iMaxPresentState, myData.iAveragePresentState);
+			}
+			
+			iPresentRate = myData.iAveragePresentState; //Il faudra tester pour savoir quelle valeur s'avère être la plus fiable
+			//iPresentRate = myData.iMaxPresentState;
+		}
+		
 		/*cCurVal ++;
 		while (*cCurVal != ' ')
 			cCurVal ++;

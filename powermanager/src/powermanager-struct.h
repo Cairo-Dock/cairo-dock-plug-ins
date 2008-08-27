@@ -34,6 +34,7 @@ struct _AppletConfig {
 	gboolean highBatteryWitness;
 	gboolean lowBatteryWitness;
 	gboolean criticalBatteryWitness;
+	gboolean bUseApprox;
 	CairoDockAnimationType batteryWitnessAnimation;
 	gint lowBatteryValue;
 	const gchar *cGThemePath;
@@ -60,6 +61,8 @@ struct _AppletData {
 	Gauge *pGauge;
 	gint iCapacity;
 	gchar *cBatteryStateFilePath;
+	gint iMaxPresentState;
+	gint iAveragePresentState;
 	} ;
 
 
