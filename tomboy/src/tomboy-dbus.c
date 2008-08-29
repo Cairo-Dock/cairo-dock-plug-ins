@@ -223,6 +223,7 @@ static gboolean _cd_tomboy_remove_old_notes (gchar *cNoteURI, Icon *pIcon, doubl
 }
 gboolean cd_tomboy_check_deleted_notes (gpointer data)
 {
+	cd_message ("");
 	gchar **cNotes = NULL;
 	if(dbus_g_proxy_call (dbus_proxy_tomboy, "ListAllNotes", NULL,
 		G_TYPE_INVALID,
@@ -270,6 +271,8 @@ gboolean cd_tomboy_check_deleted_notes (gpointer data)
 		
 		g_strfreev (cNotes);
 	}
+	else
+		g_print ("tomboy is not running\n");
 	return TRUE;
 }
 

@@ -11,8 +11,10 @@
 CD_APPLET_DEFINITION ("TomBoy", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 CD_APPLET_INIT_BEGIN
-	if (myIcon->acName == NULL || *myIcon->acName == '\0')
-		myIcon->acName = g_strdup (TOMBOY_DEFAULT_NAME);
+	if (myIcon->acName == NULL && myDock)
+	{
+		CD_APPLET_SET_NAME_FOR_MY_ICON (TOMBOY_DEFAULT_NAME)
+	}
 	
 	load_all_surfaces();
 	
@@ -68,6 +70,10 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les parametres qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myIcon->acName == NULL && myDock)
+		{
+			CD_APPLET_SET_NAME_FOR_MY_ICON (TOMBOY_DEFAULT_NAME)
+		}
 		if (myData.dbus_enable)
 		{
 			//\___________ On arrete le timer.

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-28 02:11+0200\n"
+"POT-Creation-Date: 2008-08-29 02:33+0200\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -240,7 +240,7 @@ msgstr "アラーム"
 
 #: ../data/messages:87
 #, fuzzy
-msgid "Alarm n1"
+msgid "Alarm n°1"
 msgstr "第 1 アラーム"
 
 #: ../data/messages:89 ../data/messages:129 ../data/messages:169
@@ -321,12 +321,12 @@ msgstr "実行するコマンド :"
 
 #: ../data/messages:127
 #, fuzzy
-msgid "Alarm n2"
+msgid "Alarm n°2"
 msgstr "第 2 アラーム"
 
 #: ../data/messages:167
 #, fuzzy
-msgid "Alarm n3"
+msgid "Alarm n°3"
 msgstr "第 3 アラーム"
 
 #~ msgid "Show the date ?"

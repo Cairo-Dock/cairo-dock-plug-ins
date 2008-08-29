@@ -15,7 +15,7 @@ frame1_ =
 
 #s Name of the icon as it will appear in its label in the dock :
 #{Let empty to use a default name}
-name = 
+name = _Stack_
 
 #S+ Icon's name :
 #{Let it empty to use the default icon.}

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[1.6.2],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[1.6.2.1],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -309,10 +309,10 @@ AC_SUBST(PACKAGE_SLIDER, "$SLIDER_PACKAGE")
 AC_SUBST(sliderdatadir, "${pkgdatadir}/slider")
 
 ############# STACK #################
-SWITCHER_PACKAGE="cd-stack"
-AC_SUBST(GETTEXT_SWITCHER, "$STACK_PACKAGE")
+STACK_PACKAGE="cd-stack"
+AC_SUBST(GETTEXT_STACK, "$STACK_PACKAGE")
 
-AC_SUBST(VERSION_STACK, "1.0.3")
+AC_SUBST(VERSION_STACK, "0.2.1")
 AC_SUBST(PACKAGE_STACK, "$STACK_PACKAGE")
 
 AC_SUBST(stackdatadir, "${pkgdatadir}/stack")

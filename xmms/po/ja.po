@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-28 02:11+0200\n"
+"POT-Creation-Date: 2008-08-29 02:33+0200\n"
 "PO-Revision-Date: 2008-06-18 23:57+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -200,7 +200,7 @@ msgstr "残り時間"
 
 #: ../data/messages:65
 #, fuzzy
-msgid "N of track"
+msgid "N° of track"
 msgstr "トラック番号"
 
 #: ../data/messages:67
