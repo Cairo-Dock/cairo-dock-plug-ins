@@ -1,4 +1,4 @@
-<b><u>@PACKAGE_STACKS@ (v@VERSION_STACKS@)</u></b>
+<b><u>@PACKAGE_STACK@ (v@VERSION_STACK@)</u></b>
 <u>Author</u> : <b>ChAnGFu (Rémy Robertson) &amp; Fabounet (Fabrice Rey)</b>
 <i>This applet allows you to build a <span color='#0000FF'>stack of items</span>,
 just like the Stack applet of MacOS X.
