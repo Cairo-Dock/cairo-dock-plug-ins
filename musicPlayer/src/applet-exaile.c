@@ -26,6 +26,50 @@ CD_APPLET_INCLUDE_MY_VARS
 
 
 //Les Fonctions
+
+
+void _exaile_getTime (void)
+{
+	cd_debug ("");
+	guchar* uValue=NULL;
+	gchar* temps=NULL; 
+	gchar* length=NULL;
+	gint minutes, secondes;
+	
+	/* Récupération du temps total! */
+	length = cd_musicplayer_getLength_string();
+	if (length != NULL) { //Sinon ca plante!
+		cd_debug ("Length : %s", length);
+		temps = strtok (length, ":");
+		minutes = atoi(temps);
+		temps = strtok (NULL, "\0");
+		secondes = atoi(temps);
+		myData.iSongLength = secondes + 60 * minutes;
+	} //Plante quand le player est stopper, d'ailleurs l'applet ne m'affiche aucun changement de status
+	//Revois cette partie du code, pour le reste ca fonctionne maintenant.
+	else {
+		myData.iSongLength = 0;
+	}
+	
+	/* On récupère le pourcentage de la position actuelle */
+	uValue = cd_musicplayer_getCurPos_string();
+	
+	/* Calcul de la position actuelle */
+	myData.iPreviousCurrentTime = myData.iCurrentTime;
+	if (uValue != NULL) //Sinon ca plante bien évidement...
+		myData.iCurrentTime = (myData.iSongLength * (int) uValue) / 100;
+	else 
+		myData.iCurrentTime = 0;
+	
+	/* Décalage dû à l'utilisation du pourcentage par exaile : marchotte mais sans plus */
+	if (myData.iPreviousCurrentTime == myData.iCurrentTime && myData.pPlayingStatus == PLAYER_PLAYING)
+		myData.iCurrentTime = myData.iCurrentTime +1;
+		
+	//cd_debug("MP : Position actuelle : %i", myData.iCurrentTime);
+}
+
+
+
 void cd_exaile_free_data (void) //Permet de libéré la mémoire prise par notre controleur
 {
 	musicplayer_dbus_disconnect_from_bus();
@@ -104,28 +148,29 @@ void cd_exaile_acquisition (void)
 /* Fonction de lecture des infos */
 void cd_exaile_read_data (void) 
 {
-	if (myData.dbus_enable)
+	if (myData.opening)
 	{
-		if (myData.opening)
+		if (myData.dbus_enable)
 		{
 			cd_musicplayer_getStatus_string(); // On récupère l'état de la lecture (play/pause/stop)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_musicplayer_getSongInfos(); // On récupère toutes les infos de la piste en cours
-				cd_musicplayer_exaile_getTime();
+				_exaile_getTime();
 				cd_musicplayer_getCoverPath();
 			}	
 		}
 		else
 		{
-			//cd_debug("MP : lecteur non ouvert");
-			myData.pPlayingStatus = PLAYER_NONE;	
+			//cd_debug("MP : Impossible d'accéder au bus");
+			myData.pPlayingStatus = PLAYER_BROKEN;
 		}
 	}
 	else
 	{
-		//cd_debug("MP : Impossible d'accéder au bus");
-		myData.pPlayingStatus = PLAYER_BROKEN;
+		//cd_debug("MP : lecteur non ouvert");
+		myData.pPlayingStatus = PLAYER_NONE;
+
 	}
 	
 }
@@ -150,45 +195,7 @@ void cd_exaile_load_dbus_commands (void)
 	myData.DBus_commands.current_position = "current_position";
 }
 
-void cd_musicplayer_exaile_getTime (void)
-{
-	cd_debug ("");
-	guchar* uValue=NULL;
-	gchar* temps=NULL; 
-	gchar* length=NULL;
-	gint minutes, secondes;
-	
-	/* Récupération du temps total! */
-	length = cd_musicplayer_getLength_string();
-	if (length != NULL) { //Sinon ca plante!
-		cd_debug ("Length : %s", length);
-		temps = strtok (length, ":");
-		minutes = atoi(temps);
-		temps = strtok (NULL, "\0");
-		secondes = atoi(temps);
-		myData.iSongLength = secondes + 60 * minutes;
-	} //Plante quand le player est stopper, d'ailleurs l'applet ne m'affiche aucun changement de status
-	//Revois cette partie du code, pour le reste ca fonctionne maintenant.
-	else {
-		myData.iSongLength = 0;
-	}
-	
-	/* On récupère le pourcentage de la position actuelle */
-	uValue = cd_musicplayer_getCurPos_string();
-	
-	/* Calcul de la position actuelle */
-	myData.iPreviousCurrentTime = myData.iCurrentTime;
-	if (uValue != NULL) //Sinon ca plante bien évidement...
-		myData.iCurrentTime = (myData.iSongLength * (int) uValue) / 100;
-	else 
-		myData.iCurrentTime = 0;
-	
-	/* Décalage dû à l'utilisation du pourcentage par exaile : marchotte mais sans plus */
-	if (myData.iPreviousCurrentTime == myData.iCurrentTime && myData.pPlayingStatus == PLAYER_PLAYING)
-		myData.iCurrentTime = myData.iCurrentTime +1;
-		
-	//cd_debug("MP : Position actuelle : %i", myData.iCurrentTime);
-}
+
 
 
 void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lecteur

@@ -19,7 +19,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 gboolean cd_musicplayer_dbus_connect_to_bus (void)
 {
-	if (cairo_dock_bdus_is_enabled ())
+	if (cairo_dock_bdus_is_enabled () && myData.opening)
 	{
 		dbus_proxy_player = cairo_dock_create_new_session_proxy (
 			myData.DBus_commands.service,
@@ -65,19 +65,20 @@ void musicplayer_dbus_disconnect_from_bus_Shell (void)
 
 void cd_musicplayer_dbus_detection(void)
 {
-	//cd_debug("MP : Valeur de service : %s",myData.DBus_commands.service);
 	myData.opening = cairo_dock_dbus_detect_application (myData.DBus_commands.service);
 }
 
 
 void cd_musicplayer_check_dbus_connection (void)
 {
-	cd_debug("MP : on initialise DBus");
-	myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus ();
-	if (myData.dbus_enable) // Si le bus est accessible
+	//cd_debug("MP : Vérification de la connexion DBus");
+	cd_musicplayer_dbus_detection();
+	if (myData.opening) //On vérifie si notre lecteur est ouvert
 	{
-		cd_musicplayer_dbus_detection(); //On vérifie si le lecteur est ouvert
+		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // Alors on se connecte au bus
 	}
+	//else cd_debug("MP : Lecteur non ouvert");
+
 	// Les autres cas sont gérés dans chaque lecteur
 }
 

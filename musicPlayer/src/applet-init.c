@@ -65,15 +65,9 @@ CD_APPLET_INIT_BEGIN
 	Dont forget to add the registered Name in ../data/musicPlayer.conf.in*/
 	
 	cd_musicplayer_register_xmms_handeler ();
-
-	//cd_exaile_load_dbus_commands();
 	cd_musicplayer_register_exaile_handeler();
-
-	//cd_songbird_load_dbus_commands();
 	cd_musicplayer_register_songbird_handeler();
-	//else if (! strcmp(myConfig.cMusicPlayer,"Banshee")){
-		//cd_banshee_load_dbus_commands();
-		cd_musicplayer_register_banshee_handeler();
+	cd_musicplayer_register_banshee_handeler();
 	
 	
 	if (myDesklet) {

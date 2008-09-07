@@ -1,12 +1,15 @@
 <b><u>@PACKAGE_MUSICPLAYER@ (v@VERSION_MUSICPLAYER@)</u></b>
-<u>Author</u> : <b>ChAnGFu (Rémy Robertson) - Mav'</b>
+<u>Author</u> : <b>ChAnGFu (Rémy Robertson) - Mav' (Yann SLADEK)</b>
 <i>An applet dedicated to <span color='#0000FF'>control Audio Player</span>
-XMMS is fully supported,
+XMMS, Exaile, SongBird and Banshee are fully supported,
  For XMMS, you have to install the 'xmms-infopipe' plug-in.
+ For SongBird, you have to install the dbus add-on.
+
 Play/Pause on left click, Next song on middle click.
-You can drag and drop songs to put them in the queue.
+You can drag and drop songs to put them in the queue (depends on Player).
 Shit + mouse scroll:
- Up play the previous sound
- Down play the next sound
+ 	Up play the previous sound
+ 	Down play the next sound
+ 	
 See configuration for other options.
 Have fun!</i>

@@ -18,6 +18,8 @@ msgid ""
 "This is the musicPlayer applet\n"
 " made by ChAnGFu & Mav for Cairo-Dock"
 msgstr ""
+"Ceci est l'applet musicPlayer\n"
+" fait par ChAnGFu & Mav for Cairo-Dock"
 
 #: ../src/applet-notifications.c:77
 msgid "Previous"
@@ -249,7 +251,7 @@ msgstr ""
 
 #: ../data/messages:87
 msgid "Choose a decoration for the desklet mode :"
-msgstr ""
+msgstr "Choisissez une décoration pour le mode desklet"
 
 #: ../data/messages:89
 #, fuzzy
@@ -258,7 +260,7 @@ msgstr "Personnalisation"
 
 #: ../data/messages:91
 msgid "Extended 3D mode"
-msgstr ""
+msgstr "Mode 3D étendu"
 
 #: ../data/messages:93
 msgid "CD box"
@@ -266,7 +268,7 @@ msgstr ""
 
 #: ../data/messages:95
 msgid "frame with reflects"
-msgstr ""
+msgstr "Images avec reflets"
 
 #: ../data/messages:97
 msgid "scotch"
@@ -274,7 +276,7 @@ msgstr ""
 
 #: ../data/messages:99
 msgid "frame with scotch"
-msgstr ""
+msgstr "Images avec bouts de scotch"
 
 #: ../data/messages:101
 msgid ""
@@ -284,37 +286,38 @@ msgstr ""
 
 #: ../data/messages:103
 msgid "Background image :"
-msgstr ""
+msgstr "Image de fond :"
 
 #: ../data/messages:105
 msgid "Background tansparency :"
-msgstr ""
+msgstr "Transparence de l'image de fond"
 
 #: ../data/messages:107
 msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr ""
+msgstr "C'est la largeur du coté gauche de votre image, en pixels"
 
 #: ../data/messages:109
 msgid "Left offset :"
-msgstr ""
+msgstr "Offset à gauche :"
 
 #: ../data/messages:111 ../data/messages:113 ../data/messages:115
 msgid "Right offset :"
-msgstr ""
+msgstr "Offset à droite :"
 
 #: ../data/messages:117
 msgid ""
 "It's an image that will be displayed above the cover, like a reflect for "
 "exemple."
 msgstr ""
+"C'est une image qui sera affichée par-dessus la pochette, comme un reflet par exemple."
 
 #: ../data/messages:119
 msgid "Reflection image :"
-msgstr ""
+msgstr "Image de reflexion :"
 
 #: ../data/messages:121
 msgid "Reflection tansparency :"
-msgstr ""
+msgstr "Transparence de la reflexion"
 
 #: ../data/messages:123
 #, fuzzy

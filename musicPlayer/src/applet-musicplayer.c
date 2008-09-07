@@ -31,7 +31,6 @@ MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName) {
 void cd_musicplayer_arm_handeler (void) { //Prépare l'handeler et le lance
 	cd_debug ("MP : Arming %s (with class %s)", myData.pCurrentHandeler->name, myData.pCurrentHandeler->appclass);
 	myData.pCurrentHandeler->configure();
-	//cd_musicplayer_load_dbus_commands(); // A virer une fois pb avec configure reglé
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (1,
 		myData.pCurrentHandeler->acquisition,
 		myData.pCurrentHandeler->read_data,
