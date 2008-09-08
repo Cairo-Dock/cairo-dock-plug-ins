@@ -93,6 +93,7 @@ void cd_cpusage_get_cpu_info (void)
 			}
 			else if (strncmp (line, "processor", 9) == 0)
 			{
+				cd_debug ("  found 1 proc")
 				myData.iNbCPU ++;  // on a trouve un processeur, on rajoute +1 au cas ou l'info 'cpu cores' ne serait pas presente.
 			}
 			else if (strncmp (line, "cpu cores", 9) == 0)  /// myData.iNbCPU == 0 && 
@@ -100,6 +101,7 @@ void cd_cpusage_get_cpu_info (void)
 				str = strchr (line+9, ':');
 				if (str != NULL)
 				{
+					cd_debug ("  found %d cores", atoi (str + 2));
 					myData.iNbCPU += atoi (str + 2) - 1;  // on saute l'espace apres le ':'.  // -1 car la ligne 'processor' y est toujours et a donc deja ete comptee.
 				}
 			}
