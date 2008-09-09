@@ -1,0 +1,268 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2008 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007-2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-09-03 02:15+0200\n"
+"PO-Revision-Date: 2008-09-06 14:21+0100\n"
+"Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
+"Language-Team: Cairo-Dock <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the weather applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"weather applet\n"
+" skapad av Fabrice Rey för Cairo-Dock"
+
+#: ../src/applet-notifications.c:69
+msgid ""
+"Enter your location\n"
+" (for exemple : Paris, France)"
+msgstr "Ange geografiska plats (t ex Stockholm, Sweden)"
+
+#: ../src/applet-notifications.c:82
+#: ../src/applet-notifications.c:95
+msgid ""
+"I couldn't get the info\n"
+" Is connexion alive ?"
+msgstr ""
+"Kunde inte hämta information\n"
+"Är du ansluten till Internet?"
+
+#: ../src/applet-notifications.c:128
+msgid "Choose your location :"
+msgstr "Välj geografisk plats:"
+
+#: ../src/applet-notifications.c:152
+msgid "Search for your location"
+msgstr "Sök efter geografisk plats:"
+
+#: ../src/applet-notifications.c:153
+msgid "Reload now"
+msgstr "Uppdatera nu"
+
+#: ../src/applet-notifications.c:178
+#: ../src/applet-notifications.c:207
+msgid ""
+"No data were available\n"
+" is connection alive ?"
+msgstr ""
+"Inga data hittades\n"
+"Är du ansluten till Internet?"
+
+#: ../src/applet-notifications.c:194
+#: ../src/applet-notifications.c:219
+msgid "Temperature"
+msgstr "Temperatur"
+
+#: ../src/applet-notifications.c:195
+msgid "Precipitation Probability"
+msgstr "Risk för nederbörd"
+
+#: ../src/applet-notifications.c:196
+#: ../src/applet-notifications.c:220
+msgid "Wind"
+msgstr "Vind"
+
+#: ../src/applet-notifications.c:197
+#: ../src/applet-notifications.c:221
+msgid "Humidity"
+msgstr "Fuktighet"
+
+#: ../src/applet-notifications.c:198
+#: ../src/applet-notifications.c:222
+msgid "SunRise"
+msgstr "Soluppgång"
+
+#: ../src/applet-notifications.c:198
+#: ../src/applet-notifications.c:222
+msgid "SunSet"
+msgstr "Solnedgång"
+
+#: ../src/applet-notifications.c:219
+msgid "feeled"
+msgstr "upplevd"
+
+#: ../src/applet-notifications.c:221
+msgid "Pressure"
+msgstr "Tryck"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Önskad storlek för ikonen"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "bredd:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "höjd:"
+
+#: ../data/messages:9
+msgid "Let it empty to use the name of the city."
+msgstr "Lämna tomt för att använda namnet på staden."
+
+#: ../data/messages:11
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Ikonens etikett:"
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr "Docka som appleten tillhör:"
+
+#: ../data/messages:15
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+
+#: ../data/messages:19
+msgid "Desklet's dimension (width x height) :"
+msgstr "Storlek på Desklet (bredd x höjd):"
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
+msgstr "Deskletens position (x, y):"
+
+#: ../data/messages:25
+msgid "Is detached from the dock ?"
+msgstr "Koppla loss från dockan?"
+
+#: ../data/messages:27
+msgid "Keep below other windows ?"
+msgstr "Placera under andra fönster?"
+
+#: ../data/messages:29
+msgid "Keep above other windows ?"
+msgstr "Placera ovanför andra fönster?"
+
+#: ../data/messages:31
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+
+#: ../data/messages:33
+msgid "Keep on widget layer ?"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:35
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+
+#: ../data/messages:37
+msgid "Lock position ?"
+msgstr "Lås position?"
+
+#: ../data/messages:39
+#: ../data/messages:41
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: ../data/messages:43
+msgid "Right click on the icon to let Cairo-Dock help you to find your location code."
+msgstr "Högerklicka ikonen om du vill att Cairo-Dock ska hjälpa dig att hitta kod för platsen."
+
+#: ../data/messages:45
+msgid "Code of your location :"
+msgstr "Kod för din geografiska plats:"
+
+#: ../data/messages:47
+msgid "Use International System Units ?"
+msgstr "Använd internationella enheter?"
+
+#: ../data/messages:49
+msgid "in seconds. Set 0 to have never-ending dialogs."
+msgstr "i sekunder. Ange 0 om du vill stänga dialoger manuellt."
+
+#: ../data/messages:51
+msgid "Duration of dialogs :"
+msgstr "Visningstid för fönster:"
+
+#: ../data/messages:53
+msgid "in minutes."
+msgstr "i minuter."
+
+#: ../data/messages:55
+msgid "Interval of time between 2 checks :"
+msgstr "Tid mellan uppdateringar:"
+
+#: ../data/messages:57
+msgid "Info"
+msgstr "Info"
+
+#: ../data/messages:59
+msgid "Display current conditions on the icon instead of the default one ?"
+msgstr "Visa aktuellt väder på ikonen istället för standardbilden?"
+
+#: ../data/messages:61
+msgid "Number of days you want to forecast :"
+msgstr "Antal dagar med väderprognoser:"
+
+#: ../data/messages:63
+msgid "Display nights too ?"
+msgstr "Visa även nattväder?"
+
+#: ../data/messages:65
+msgid "Display temperature as quick info ?"
+msgstr "Visa temperaturen som snabbinformation?"
+
+#: ../data/messages:67
+msgid "Display"
+msgstr "Utseende"
+
+#: ../data/messages:69
+msgid "Choose one of the available themes :"
+msgstr "Välj ett tema:"
+
+#: ../data/messages:71
+msgid "Let it empty to use default sub-dock view."
+msgstr "Lämna tomt för att använda standard sub-docka."
+
+#: ../data/messages:73
+msgid "Name of the view used for the sub-dock :"
+msgstr "Namn på vy för sub-dockan:"
+
+#: ../data/messages:75
+msgid "Render desklet in 3D ?"
+msgstr "Använd 3D för Desklet?"
+
+msgid "Monday"
+msgstr "Måndag"
+
+msgid "Tuesday"
+msgstr "Tisdag"
+
+msgid "Wednesday"
+msgstr "Onsdag"
+
+msgid "Thursday"
+msgstr "Torsdag"
+
+msgid "Friday"
+msgstr "Fredag"
+
+msgid "Saturday"
+msgstr "Lördag"
+
+msgid "Sunday"
+msgstr "Söndag"
+

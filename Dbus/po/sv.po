@@ -1,0 +1,39 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-09-03 02:15+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2008-09-06 14:44+0100\n"
+"Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
+"Language-Team: \n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: ../data/messages:1
+msgid "Configuration"
+msgstr "Inställningar"
+
+#: ../data/messages:3
+msgid "Let extern applications pop-up dialogs in the dock ?"
+msgstr "Tillåt externa program att visa dialoger i dockan?"
+
+#: ../data/messages:5
+msgid "Let extern applications reboot the dock ?"
+msgstr "Tillåt externa program att starta om dockan?"
+
+#: ../data/messages:7
+msgid "Let extern applications show/hide the desklets ?"
+msgstr "Tillåt externa program att visa/dölja desklets?"
+
+#: ../data/messages:9
+msgid "Let extern applications reload the applets ?"
+msgstr "Tillåt externa program att starta om applets?"
+

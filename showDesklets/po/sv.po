@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-09-03 02:15+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2008-09-06 14:23+0100\n"
+"Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
+"Language-Team: \n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: ../src/applet-notifications.c:19
+msgid ""
+"This is the showDesklets applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"showDesklets applet\n"
+" skapad av Fabrice Rey för Cairo-Dock"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Önskad storlek för ikonen"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "bredd:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "höjd:"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Ikonens etikett:"
+
+#: ../data/messages:11
+#: ../data/messages:15
+msgid "Let empty to use the default one."
+msgstr "Lämna tomt för använda standaralternativet."
+
+#: ../data/messages:13
+msgid "Image name to show desklets :"
+msgstr "Bild för att visa desklet:"
+
+#: ../data/messages:17
+msgid "Image name to hide desklets :"
+msgstr "Bild för att dölja desklet:"
+
+#: ../data/messages:19
+msgid "Name of the dock it belongs to:"
+msgstr "Docka som appleten tillhör:"
+
+#: ../data/messages:21
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: ../data/messages:23
+msgid "Show/hide desklets that are on the widget layer too ?"
+msgstr "Visa/dölj desklets på widgetlagret också?"
+
+#: ../data/messages:25
+msgid "Shortkey to show/hide the desklets :"
+msgstr "Tangentkombination för att visa/dölja desklet:"
+

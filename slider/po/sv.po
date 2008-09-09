@@ -1,0 +1,302 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-09-03 02:15+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2008-09-06 14:34+0100\n"
+"Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
+"Language-Team: \n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: ../src/applet-notifications.c:22
+msgid ""
+"This is the Slider applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+"Slider applet\n"
+" skapad av ChAnGFu för Cairo-Dock"
+
+#: ../src/applet-notifications.c:124
+msgid "Play"
+msgstr "Spela"
+
+#: ../src/applet-notifications.c:124
+msgid "Pause"
+msgstr "Pausa"
+
+#: ../src/applet-notifications.c:127
+msgid "Open current image"
+msgstr "Öppna aktuell bild"
+
+#: ../src/applet-notifications.c:129
+msgid "Browse images folder"
+msgstr "Bläddra i bildkatalog"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Önskad storlek för ikonen"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "bredd:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "höjd:"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Ikonens etikett:"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Docka som appleten tillhör:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Storlek på Desklet (bredd x höjd):"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "Beroende på din fönsterhanterare, kan du flytta fönstret med ALT+vänsterklick"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Deskletens position (x, y):"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "Koppla loss från dockan?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Placera under andra fönster?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Placera ovanför andra fönster?"
+
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:33
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Lås position?"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: ../data/messages:39
+msgid "Directory"
+msgstr "Katalog"
+
+#: ../data/messages:41
+msgid "Directory of the images :"
+msgstr "Bildkatalog:"
+
+#: ../data/messages:43
+msgid "Scan in sub direcotries ?"
+msgstr "Sök i underkataloger?"
+
+#: ../data/messages:45
+msgid "Randomly browse files ?"
+msgstr "Sök efter filer slumpmässigt?"
+
+#: ../data/messages:47
+msgid "Behaviour"
+msgstr "Beteende"
+
+#: ../data/messages:49
+msgid "in seconds."
+msgstr "i sekunder."
+
+#: ../data/messages:51
+msgid "Sliding delay :"
+msgstr "Paus mellan bilder:"
+
+#: ../data/messages:53
+msgid "Action when applet is clicked :"
+msgstr "Aktivitet när appleten klickas:"
+
+#: ../data/messages:55
+msgid "play/pause"
+msgstr "spela/pausa"
+
+#: ../data/messages:57
+msgid "open image"
+msgstr "öppna bild"
+
+#: ../data/messages:59
+msgid "Effect while changing image :"
+msgstr "Effekt när bilden byts:"
+
+#: ../data/messages:61
+msgid "none"
+msgstr "ingen"
+
+#: ../data/messages:63
+msgid "fade"
+msgstr "tona"
+
+#: ../data/messages:65
+msgid "blank fade"
+msgstr "tona till blank"
+
+#: ../data/messages:67
+msgid "fade in out"
+msgstr "tona in ut"
+
+#: ../data/messages:69
+msgid "side kick"
+msgstr "sidokick"
+
+#: ../data/messages:71
+msgid "diaporama"
+msgstr "diaporama"
+
+#: ../data/messages:73
+msgid "grow up"
+msgstr "väx uppåt"
+
+#: ../data/messages:75
+msgid "shrink down"
+msgstr "krymp neråt"
+
+#: ../data/messages:77
+msgid "random"
+msgstr "slumpmässigt"
+
+#: ../data/messages:79
+msgid "Display"
+msgstr "Utseende"
+
+#: ../data/messages:81
+msgid "Gives a better image rendering."
+msgstr "Ger bättre bildrendering."
+
+#: ../data/messages:83
+msgid "Keep widht/height ratio ?"
+msgstr "Behåll ursprungligt bildförhållande?"
+
+#: ../data/messages:85
+msgid "If the image is too small, it will be zoomed in."
+msgstr "Om bilden är för liten, förstoras den automatiskt."
+
+#: ../data/messages:87
+msgid "Force the image to fill the icon/desklet ?"
+msgstr "Repetera bilden för att fylla hela dockan?"
+
+#: ../data/messages:89
+msgid "Set the transparency channel to 0 if you just don't want to have a background."
+msgstr "Sätt alfakanalen till 0 om du inte vill visa någon bakgrund."
+
+#: ../data/messages:91
+msgid "Choose a background color :"
+msgstr "Välj bakgrundsfärg:"
+
+#: ../data/messages:93
+msgid "Decorations"
+msgstr "Fönsterdekorationer"
+
+#: ../data/messages:95
+msgid "If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration."
+msgstr "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för att inte visa några dekorationer."
+
+#: ../data/messages:97
+msgid "Choose a background and foreground decoration :"
+msgstr "Välj förgrund- och bakgrundsdekorationer:"
+
+#: ../data/messages:99
+msgid "Personnal"
+msgstr "Personlig"
+
+#: ../data/messages:101
+msgid "frame with reflects"
+msgstr "ram med reflektion"
+
+#: ../data/messages:103
+msgid "scotch"
+msgstr "tejp"
+
+#: ../data/messages:105
+msgid "frame with scotch"
+msgstr "tejpad ram"
+
+#: ../data/messages:107
+msgid "It's an image that will be displayed below the slide, like a frame for exemple."
+msgstr "Bild som visas under bildspelet, t ex som en ram."
+
+#: ../data/messages:109
+msgid "Background image :"
+msgstr "Bakgrundsbild:"
+
+#: ../data/messages:111
+msgid "Background tansparency :"
+msgstr "Genomskinlighet:"
+
+#: ../data/messages:113
+#: ../data/messages:117
+#: ../data/messages:121
+#: ../data/messages:125
+msgid "It's typically the width of the left side of your frame, in pixels."
+msgstr "Oftast bredden på den vänstra sidan av ramen, i pixlar."
+
+#: ../data/messages:115
+msgid "Left offset :"
+msgstr "Avstånd från vänsterkant:"
+
+#: ../data/messages:119
+msgid "Top offset :"
+msgstr "Avstånd från ovankant:"
+
+#: ../data/messages:123
+msgid "Right offset :"
+msgstr "Avstånd från högerkant:"
+
+#: ../data/messages:127
+msgid "Bottom offset :"
+msgstr "Avstånd från nederkant:"
+
+#: ../data/messages:129
+msgid "It's an image that will be displayed above the slide, like a reflect for exemple."
+msgstr "Bild som visas ovanför bildspelet, t ex en reflex."
+
+#: ../data/messages:131
+msgid "Reflection image :"
+msgstr "Bild för reflektion:"
+
+#: ../data/messages:133
+msgid "Reflection tansparency :"
+msgstr "Genomskinlighet för reflektion:"
+

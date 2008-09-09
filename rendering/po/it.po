@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,7 +105,7 @@ msgstr "Parabolica"
 
 #: ../data/messages:39
 msgid "The higher it is, the sooner the parabole will be curved."
-msgstr ""
+msgstr "Più è alto, più presto la parabola sarà curvata."
 
 #: ../data/messages:41
 msgid "Curvature :"
@@ -114,7 +113,7 @@ msgstr "Curvatura :"
 
 #: ../data/messages:43
 msgid "The parabole will be conscricted to a rectangle of this proportion."
-msgstr ""
+msgstr "La parabola sarà tracciata in un rettangolo di queste proporzioni."
 
 #: ../data/messages:45
 msgid "Ratio height/width :"
@@ -250,7 +249,7 @@ msgstr "Altezza del puntatore :"
 
 #: ../data/messages:107 ../data/messages:147
 msgid "Arrow shift percent :"
-msgstr ""
+msgstr "Percentuale del turno del puntatore :"
 
 #: ../data/messages:109 ../data/messages:149
 msgid "Corner radius :"
@@ -304,4 +303,4 @@ msgstr "Ampiezza della curva in percentuale :"
 #~ msgstr "Se sì, precisate il suo colore:"
 
 #~ msgid "Diapo"
-#~ msgstr "Diapo"
+#~ msgstr "Diapositiva"

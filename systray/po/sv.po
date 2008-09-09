@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-09-03 02:15+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2008-09-06 14:33+0100\n"
+"Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
+"Language-Team: \n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../data/messages:3
+msgid "Size of the icon you wish this applet has (in pixels)"
+msgstr "Storlek på ikonen (i pixlar):"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "bredd:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "höjd:"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in cairo-dock :"
+msgstr "Ikonens etikett:"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Docka som appleten tillhör:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
+
+#: ../data/messages:17
+msgid "Desklet's position (x ; y) :"
+msgstr "Deskletens position (x, y):"
+
+#: ../data/messages:19
+msgid "Is detached from the dock ?"
+msgstr "Koppla loss från dockan?"
+
+#: ../data/messages:21
+msgid "Keep below other windows ?"
+msgstr "Placera under andra fönster?"
+
+#: ../data/messages:23
+msgid "Keep above other windows ?"
+msgstr "Placera ovanför andra fönster?"
+
+#: ../data/messages:25
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+
+#: ../data/messages:27
+msgid "Keep on widget layer ?"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:29
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+
+#: ../data/messages:31
+msgid "Lock position ?"
+msgstr "Lås position?"
+
+#: ../data/messages:33
+msgid "GUI"
+msgstr "Gränssnitt"
+
+#: ../data/messages:35
+msgid "Shortkey to toggle the systray"
+msgstr "Tangentkombination för att visa/dölja aktivitetsfältet"
+

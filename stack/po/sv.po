@@ -1,0 +1,219 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-09-03 02:15+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2008-09-08 01:07+0100\n"
+"Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
+"Language-Team: \n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: ../src/applet-notifications.c:21
+msgid ""
+"This is the Stack applet\n"
+" made by ChAnGFu & Fabounet for Cairo-Dock"
+msgstr ""
+"Stack applet\n"
+" skapad av ChAnGFu & Fabounet för Cairo-Dock"
+
+#: ../src/applet-notifications.c:63
+msgid "Set new name for this item :"
+msgstr "Nytt namn:"
+
+#: ../src/applet-notifications.c:101
+msgid "Paste (drag'n'drop)"
+msgstr "Klistra in (dra-och-släpp)"
+
+#: ../src/applet-notifications.c:104
+msgid "Copy (middle click)"
+msgstr "Kopiera (mellanklick)"
+
+#: ../src/applet-notifications.c:105
+msgid "Cut"
+msgstr "Klipp ut"
+
+#: ../src/applet-notifications.c:106
+msgid "Rename this item"
+msgstr "Byt namn"
+
+#: ../src/applet-notifications.c:107
+msgid "Remove this item"
+msgstr "Ta bort"
+
+#: ../src/applet-notifications.c:109
+msgid "Clear the stack"
+msgstr "Töm stacken"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Önskad storlek för ikonen"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "bredd:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "höjd:"
+
+#: ../data/messages:9
+msgid "Let empty to use a default name"
+msgstr "Lämna tomt för att använda standardnamnet"
+
+#: ../data/messages:11
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Ikonens etikett:"
+
+#: ../data/messages:13
+msgid "Let it empty to use the default icon."
+msgstr "Lämna tomt för att använda standardikonen."
+
+#: ../data/messages:15
+msgid "Icon's name :"
+msgstr "Ikonens namn:"
+
+#: ../data/messages:17
+msgid "Name of the dock it belongs to:"
+msgstr "Docka som appleten tillhör:"
+
+#: ../data/messages:19
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+
+#: ../data/messages:23
+msgid "Desklet's dimension (width x height) :"
+msgstr "Storlek på Desklet (bredd x höjd):"
+
+#: ../data/messages:25
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "beronde på din fönsterhanterare, kan du flytta fönstret med ALT+vänsterklick"
+
+#: ../data/messages:27
+msgid "Desklet's position (x ; y) :"
+msgstr "Deskletens position (x, y):"
+
+#: ../data/messages:29
+msgid "Is detached from the dock ?"
+msgstr "Koppla loss från dockan?"
+
+#: ../data/messages:31
+msgid "Keep below other windows ?"
+msgstr "Placera under andra fönster?"
+
+#: ../data/messages:33
+msgid "Keep above other windows ?"
+msgstr "Placera ovanför andra fönster?"
+
+#: ../data/messages:35
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+
+#: ../data/messages:37
+msgid "Keep on widget layer ?"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:39
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+
+#: ../data/messages:41
+msgid "Lock position ?"
+msgstr "Lås position?"
+
+#: ../data/messages:43
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: ../data/messages:45
+msgid "Display"
+msgstr "Display"
+
+#: ../data/messages:47
+msgid "Let it empty to use default sub-dock view."
+msgstr "Lämna tomt för att använda sub-dockans standardutseende."
+
+#: ../data/messages:49
+msgid "Name of the view used for the sub-dock :"
+msgstr "Namn på vy för sub-dockan:"
+
+#: ../data/messages:51
+msgid "They are items created by dropping a text into the Stack."
+msgstr "Objekt som skapas när text släpps i stacken."
+
+#: ../data/messages:53
+msgid "Image for the 'text' items :"
+msgstr "Bild för textobjekt:"
+
+#: ../data/messages:55
+msgid "They are items created by dropping an URL into the Stack."
+msgstr "Objekt som skapas när URL:er släpps i stacken."
+
+#: ../data/messages:57
+msgid "Image for the 'URL' items :"
+msgstr "Bild för URL-objekt:"
+
+#: ../data/messages:59
+msgid "Options"
+msgstr "Alternativ"
+
+#: ../data/messages:61
+msgid "This options allow you to avoid some files to be displayed in the stacks considering their types (video, images, etc...)"
+msgstr "Gör att du kan utesluta vissa filtyper från att visas i stacken (video, bilder, etc...)"
+
+#: ../data/messages:63
+msgid "Filter files with their mime types ?"
+msgstr "Filtrera filer efter MIME typ?"
+
+#: ../data/messages:65
+msgid "Eg: image, text, video, audio, application, ..."
+msgstr "T ex bilder, video, ljud, program..."
+
+#: ../data/messages:67
+msgid "Here you can specify a list of mime types to avoid :"
+msgstr "MIME typer som skall undvikas:"
+
+#: ../data/messages:69
+msgid "Sort items by :"
+msgstr "Sortera efter:"
+
+#: ../data/messages:71
+msgid "Name"
+msgstr "Namn"
+
+#: ../data/messages:73
+msgid "Date"
+msgstr "Datum"
+
+#: ../data/messages:75
+msgid "Type"
+msgstr "Typ"
+
+#: ../data/messages:77
+msgid "Manual order"
+msgstr "Manuell sortering"
+
+#: ../data/messages:79
+msgid "It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl+v clipboard"
+msgstr "Urval som görs med musen istället för det vanliga Ctrl+C/Ctrl+V"
+
+#: ../data/messages:81
+msgid "When copy/paste/cut, use the selection clipboard ?"
+msgstr "Använd urklippshanteraren för markeringar vid kopiera/klipp ut/klistra in?"
+

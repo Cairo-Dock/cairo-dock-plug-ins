@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,7 +15,7 @@ msgstr ""
 msgid "day(s)"
 msgstr "jour(s)"
 
-#: ../src/applet-cpusage.c:219
+#: ../src/applet-cpusage.c:221
 msgid "Loading"
 msgstr "Chargement"
 

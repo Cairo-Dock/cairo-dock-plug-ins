@@ -1,0 +1,315 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-09-03 02:15+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2008-09-06 15:06+0100\n"
+"Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
+"Language-Team: \n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: ../src/powermanager-draw.c:117
+msgid "None"
+msgstr "Ingen"
+
+#: ../src/powermanager-draw.c:146
+#: ../src/powermanager-draw.c:175
+msgid "Unknown"
+msgstr "Okänt"
+
+#: ../src/powermanager-draw.c:149
+msgid ""
+"Laptop on Battery.\n"
+" Battery charged at:"
+msgstr ""
+"Dator kör på batteri.\n"
+" Batteriladdning:"
+
+#: ../src/powermanager-draw.c:149
+#: ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:185
+msgid "Estimated time with Charge:"
+msgstr "Beräknad laddningstid:"
+
+#: ../src/powermanager-draw.c:153
+msgid ""
+"Laptop on Charge.\n"
+" Battery charged at:"
+msgstr ""
+"Batteriet laddas.\n"
+" Batteriladdning:"
+
+#: ../src/powermanager-draw.c:153
+msgid "Estimated Charge time:"
+msgstr "Uppskattad laddningstid:"
+
+#: ../src/powermanager-draw.c:159
+msgid "No Battery found."
+msgstr "Hittade inget batteri."
+
+#: ../src/powermanager-draw.c:179
+msgid ""
+"PowerManager.\n"
+"Battery charge seems to be low"
+msgstr ""
+"Energihanterare.\n"
+"Batterinivån verkar vara låg"
+
+#: ../src/powermanager-draw.c:179
+msgid "Please put your Laptop on charge."
+msgstr "Var vänlig ladda ditt batteri."
+
+#: ../src/powermanager-draw.c:185
+msgid ""
+"PowerManager.\n"
+"Your battery is now Charged"
+msgstr ""
+"Energihanterare.\n"
+"Batteriet är nu uppladdat"
+
+#: ../src/powermanager-menu-functions.c:15
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Applet av Necropotame (Adrien Pilleboue)"
+
+#: ../src/powermanager-menu-functions.c:46
+msgid "Set up power management"
+msgstr "Konfigurera energialternativ"
+
+#: ../src/powermanager-menu-functions.c:49
+msgid "Halt"
+msgstr "Stanna"
+
+#: ../src/powermanager-menu-functions.c:50
+msgid "Hibernate"
+msgstr "Viloläge"
+
+#: ../src/powermanager-menu-functions.c:51
+msgid "Suspend"
+msgstr "Vänteläge"
+
+#: ../src/powermanager-menu-functions.c:52
+msgid "Reboot"
+msgstr "Starta om"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../data/messages:3
+msgid "Icon size"
+msgstr "Ikonstorlek"
+
+#: ../data/messages:5
+msgid "Width :"
+msgstr "Bredd:"
+
+#: ../data/messages:7
+msgid "Height :"
+msgstr "Höjd:"
+
+#: ../data/messages:9
+msgid "Icon name :"
+msgstr "Ikonetikett:"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Docka som appleten tillhör:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Storlek på Desklet (bredd x höjd):"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Deskletens position (x, y):"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "Koppla loss från dockan?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Placera under andra fönster?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Placera ovanför andra fönster?"
+
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:33
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Lås position?"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: ../data/messages:39
+msgid "in seconds."
+msgstr "i sekunder."
+
+#: ../data/messages:41
+msgid "Interval of time between 2 checks :"
+msgstr "Tid mellan uppdateringar:"
+
+#: ../data/messages:43
+msgid "Display"
+msgstr "Utseende"
+
+#: ../data/messages:45
+msgid "Icon's filename when on battery :"
+msgstr "Ikon när datorn körs på batteri:"
+
+#: ../data/messages:47
+msgid "Icon's filename when on charge :"
+msgstr "Ikon när batteriet laddasi"
+
+#: ../data/messages:49
+msgid "Effect to apply on the icon according to charge :"
+msgstr "Effekt för laddningsnivå:"
+
+#: ../data/messages:51
+#: ../data/messages:65
+msgid "nothing"
+msgstr "inget"
+
+#: ../data/messages:53
+msgid "zoom"
+msgstr "zooma"
+
+#: ../data/messages:55
+msgid "transparency"
+msgstr "genomskinlighet"
+
+#: ../data/messages:57
+msgid "draw bar"
+msgstr "visa stapel"
+
+#: ../data/messages:59
+msgid "Use a gauge instead of icons ?"
+msgstr "Använd visare istället för ikon?"
+
+#: ../data/messages:61
+msgid "List of available gauges :"
+msgstr "Visare:"
+
+#: ../data/messages:63
+msgid "Information to be displayed on the icon :"
+msgstr "Information på ikonen:"
+
+#: ../data/messages:67
+msgid "charge"
+msgstr "ladda"
+
+#: ../data/messages:69
+msgid "time"
+msgstr "tid"
+
+#: ../data/messages:71
+msgid "Alert"
+msgstr "Meddelande"
+
+#: ../data/messages:73
+msgid "Alert when battery charged ?"
+msgstr "Meddela när batteriet är laddat?"
+
+#: ../data/messages:75
+#: ../data/messages:85
+#: ../data/messages:93
+msgid "Let it empty to have no sound"
+msgstr "Lämna tomt om du inte vill spela upp ett ljud"
+
+#: ../data/messages:77
+#: ../data/messages:87
+#: ../data/messages:95
+msgid "Use a sound :"
+msgstr "Använd ljud:"
+
+#: ../data/messages:79
+msgid "Alert when low battery ?"
+msgstr "Meddela vid låg batterinivå?"
+
+#: ../data/messages:81
+msgid "in percent."
+msgstr "i procent."
+
+#: ../data/messages:83
+msgid "Battery level :"
+msgstr "Batterinivå:"
+
+#: ../data/messages:89
+msgid "When battery level is under 4%"
+msgstr "När laddningsnivån är under 4%"
+
+#: ../data/messages:91
+msgid "Alert when battery charge is critical ?"
+msgstr "Meddela när batterinivån är kritisk?"
+
+#: ../data/messages:97
+msgid "Animate icon during the alert ?"
+msgstr "Animera ikonen vid meddelande?"
+
+#: ../data/messages:99
+msgid "Animation during alert :"
+msgstr "Animering:"
+
+#: ../data/messages:101
+msgid "bounce"
+msgstr "studsa"
+
+#: ../data/messages:103
+msgid "rotate"
+msgstr "rotera"
+
+#: ../data/messages:105
+msgid "blink"
+msgstr "blinka"
+
+#: ../data/messages:107
+msgid "pulse"
+msgstr "pulsera"
+
+#: ../data/messages:109
+msgid "upside-down"
+msgstr "upp och ner"
+
+#: ../data/messages:111
+msgid "wobbly"
+msgstr "vingla"
+
+#: ../data/messages:113
+msgid "random"
+msgstr "slumpmässig"
+

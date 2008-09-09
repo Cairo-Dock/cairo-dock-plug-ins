@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -471,11 +470,11 @@ msgstr "Configurazione"
 
 #: ../data/messages:39
 msgid "Choose one of the available themes :"
-msgstr ""
+msgstr "SCegliere uno dei temi disponibili :"
 
 #: ../data/messages:41
 msgid "Theme overriding"
-msgstr ""
+msgstr "Sovrascrittura del tema"
 
 #: ../data/messages:43
 #, fuzzy
@@ -492,7 +491,7 @@ msgstr ""
 
 #: ../data/messages:47
 msgid "Name of the file for the \"new mail\" sound :"
-msgstr ""
+msgstr "Percorso del file per il suono \"nuova mail\" :"
 
 #: ../data/messages:49
 msgid "Path to application to launch on left-click"

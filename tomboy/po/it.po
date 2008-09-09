@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
 "PO-Revision-Date: 2008-06-25 18:13+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -129,7 +128,7 @@ msgstr ""
 
 #: ../data/messages:31
 msgid "Emulate the 'NoteDeleted' signal ?"
-msgstr "Emulare il segnale 'NoteSupprimée' ?"
+msgstr "Emulare il segnale 'NotaSoppressa' ?"
 
 #: ../data/messages:33
 msgid "Let it empty to use default sub-dock view."

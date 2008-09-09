@@ -8,7 +8,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,7 +173,7 @@ msgstr "Mostrare il nome della Scheda nell'etichetta ?"
 
 #: ../data/messages:45
 msgid "Display core temperature :"
-msgstr "Mostrare la température del core :"
+msgstr "Mostrare la temperatura del core :"
 
 #: ../data/messages:47
 msgid "no"
@@ -186,12 +185,12 @@ msgstr "sull'icona"
 
 #: ../data/messages:51
 msgid "on label"
-msgstr "sull'étiquette"
+msgstr "sull'etichetta"
 
 #: ../data/messages:53
 #, fuzzy
 msgid "in seconds."
-msgstr "en seconde."
+msgstr "in secondi."
 
 #: ../data/messages:55
 msgid "Delay between temperature checks :"
@@ -202,6 +201,8 @@ msgid ""
 "in celcius. The temperature will be displayed between this value and the "
 "upper limit."
 msgstr ""
+"in celsius. La temperatura sarà mostrata tra questo valore e il valore "
+"massimo."
 
 #: ../data/messages:59
 msgid "Lower limit of core temperature :"
@@ -212,6 +213,8 @@ msgid ""
 "in celcius. The temperature will be displayed between the lower limit and "
 "this value."
 msgstr ""
+"in celsius. La temperatura sarà mostrata tra il valore minimo e questo "
+"valore."
 
 #: ../data/messages:63
 msgid "Upper limit of core temperature :"
@@ -250,18 +253,20 @@ msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
+"Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
+"se si vuole alcuna filigrana."
 
 #: ../data/messages:81
 msgid "Image to display as a watermark on the gauge :"
-msgstr ""
+msgstr "Immagine da mostrare come filigrana nell'indicatore :"
 
 #: ../data/messages:83
 msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
+msgstr "Settare a 0 se si vuole alcuna filigrana."
 
 #: ../data/messages:85
 msgid "Transparency of the watermark :"
-msgstr ""
+msgstr "Trasparenza della filigrana :"
 
 #: ../data/messages:87
 msgid "Let it empty to use the default icon."
@@ -269,7 +274,7 @@ msgstr "Lasciate vuoto per utilizare l'icona di default."
 
 #: ../data/messages:89
 msgid "Name of an image for the 'broken' icon :"
-msgstr "Nome dell'immagine dell'icona 'Rotta' :"
+msgstr "Nome dell'immagine dell'icona 'Non-funzionante' :"
 
 #~ msgid "on quickinfo"
 #~ msgstr "info rapide"

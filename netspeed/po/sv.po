@@ -1,0 +1,207 @@
+# translation of fr.po to français
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+#
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+# Guillaume <gu_barthe@yahoo.fr>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: fr\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-09-03 02:15+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2008-09-06 14:37+0100\n"
+"Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
+"Language-Team: \n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: ../src/applet-netspeed.c:25
+#: ../src/applet-netspeed.c:33
+msgid "B"
+msgstr "B"
+
+#: ../src/applet-netspeed.c:41
+msgid "KB"
+msgstr "KB"
+
+#: ../src/applet-netspeed.c:49
+#: ../src/applet-notifications.c:18
+msgid "MB"
+msgstr "MB"
+
+#: ../src/applet-netspeed.c:57
+msgid "GB"
+msgstr "GB"
+
+#: ../src/applet-netspeed.c:65
+msgid "TB"
+msgstr "TB"
+
+#: ../src/applet-netspeed.c:160
+msgid "Loading"
+msgstr "Laddar"
+
+#: ../src/applet-notifications.c:11
+msgid ""
+"This is the netspeed applet\n"
+" made by parAdOxxx_ZeRo for Cairo-Dock"
+msgstr ""
+"netspeed applet\n"
+" skapad av parAdOxxx_ZeRo för Cairo-Dock"
+
+#: ../src/applet-notifications.c:18
+msgid "Total amount of data"
+msgstr "Total mängd data"
+
+#: ../src/applet-notifications.c:18
+msgid "downloaded"
+msgstr "hämtatHämtat:"
+
+#: ../src/applet-notifications.c:18
+msgid "uploaded"
+msgstr "skickatSkickat:"
+
+#: ../src/applet-notifications.c:21
+#, c-format
+msgid "Interface '%s' seems to not exist or is not readable"
+msgstr "Gränssnittet '%s' finns inte eller kan inte läsas"
+
+#: ../src/applet-notifications.c:32
+msgid "Re-check interface"
+msgstr "Kontrollera gränssnitt igen"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Önskad storlek för ikonen"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "bredd:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "höjd:"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Ikonens etikett:"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Docka som appleten tillhör:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Storlek på Desklet (bredd x höjd):"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen"
+msgstr "Beroende på din fönsterhanterare, kan du flytta fönstret med ALT+vänsterklick. Negativa värden beräknas från nedre/högra skärmkanten"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Deskletens position (x, y):"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "Koppla loss från dockan?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Placera under andra fönster?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Placera ovanför andra fönster?"
+
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:33
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Lås position?"
+
+#: ../data/messages:37
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: ../data/messages:39
+msgid "By default it will be 'eth0'."
+msgstr "Standard är 'eth0'."
+
+#: ../data/messages:41
+msgid "interface :"
+msgstr "gränssnitt:"
+
+#: ../data/messages:43
+msgid "Information"
+msgstr "Information"
+
+#: ../data/messages:45
+msgid "Display speed values :"
+msgstr "Visa hastighetsvärden:"
+
+#: ../data/messages:47
+msgid "No"
+msgstr "Nej"
+
+#: ../data/messages:49
+msgid "On icon"
+msgstr "På ikonen"
+
+#: ../data/messages:51
+msgid "On label"
+msgstr "På etikett"
+
+#: ../data/messages:53
+msgid "List of available themes for the analogic display :"
+msgstr "Teman för analogic:"
+
+#: ../data/messages:55
+msgid "Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark."
+msgstr "Lämna tomt för att att använda standardbilden. Sätt genomskinlighet till 0 om du inte vill visa vattenstämpeln."
+
+#: ../data/messages:57
+msgid "Image to display as a watermark on the gauge :"
+msgstr "Bild för vattenstämpel på visaren:"
+
+#: ../data/messages:59
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr "Ange 0 för att dölja vattenstämpel."
+
+#: ../data/messages:61
+msgid "Transparency of the watermark :"
+msgstr "Genomskinlighet för vattenstämpel:"
+
+#: ../data/messages:63
+msgid "in seconds."
+msgstr "i sekunder."
+
+#: ../data/messages:65
+msgid "Delay between 2 measures :"
+msgstr "Tid mellan mätningar:"
+

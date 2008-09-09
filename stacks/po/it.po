@@ -125,7 +125,7 @@ msgstr "Configurazione"
 
 #: ../data/messages:41
 msgid "Directory & Options"
-msgstr "Cartella e Optioni"
+msgstr "Cartella e Opzioni"
 
 #: ../data/messages:43
 msgid ""
@@ -138,13 +138,16 @@ msgstr ""
 #: ../data/messages:45
 #, fuzzy
 msgid "Use only Stacks local directory ?"
-msgstr "Utilizare la cartella locale Stacks ?"
+msgstr "Utilizzare la cartella locale Stacks ?"
 
 #: ../data/messages:47
 msgid ""
 "You can use '_LocalDirectory_' tag to have both stack local and all "
 "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 msgstr ""
+"Si può utilizzare il segno '_CartellaLocale_' per avere sia lo stack locale, "
+"sia tutte le cartelle monitorate. Bisogna assicurarsi di non avere l'opzione "
+"'Utilizzare la cartella locale Stacks' attiva."
 
 #: ../data/messages:49
 #, fuzzy

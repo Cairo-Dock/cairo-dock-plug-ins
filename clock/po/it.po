@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +35,7 @@ msgstr "Regolare data e ora"
 
 #: ../src/applet-notifications.c:193
 msgid "Choose a location"
-msgstr ""
+msgstr "Scegli una località"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -56,7 +55,7 @@ msgstr "altezza :"
 
 #: ../data/messages:9
 msgid "Let it empty to use the location's name if available."
-msgstr ""
+msgstr "Lasciare vuoto per usare il nome della località, se disponibile"
 
 #: ../data/messages:11
 msgid "Name of the icon as it will appear in its label in the dock :"
@@ -179,10 +178,13 @@ msgid ""
 "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
 "your location from a list. Let empty to get the local time."
 msgstr ""
+"Per esempio : Europe/Rome, :Japan, etc. Click destro sull'icona per "
+"scegliere la propria località dalla lista. Lasciare vuoto per utilizzare "
+"l'ora locale."
 
 #: ../data/messages:61
 msgid "Timezone :"
-msgstr ""
+msgstr "Fuso orario :"
 
 #: ../data/messages:63
 msgid "Style"

@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,15 +190,15 @@ msgstr "Colore del desktop attuale :"
 
 #: ../data/messages:75
 msgid "draw a frame"
-msgstr ""
+msgstr "disegna una cornice"
 
 #: ../data/messages:77
 msgid "fill"
-msgstr ""
+msgstr "riempire"
 
 #: ../data/messages:79
 msgid "fill others"
-msgstr ""
+msgstr "riempire gli altri"
 
 #: ../data/messages:81
 msgid "Let empty to use the default one."
@@ -208,7 +207,7 @@ msgstr "Lasciare vuoto per utilizzare quella di default."
 #: ../data/messages:83
 #, fuzzy
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
-msgstr "Iocna da usare se non tracciate il wallpaper"
+msgstr "Icona da usare se non si traccia il wallpaper"
 
 #: ../data/messages:85
 msgid "Let it empty to use default sub-dock view."

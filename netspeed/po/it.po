@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,15 +46,15 @@ msgstr ""
 
 #: ../src/applet-notifications.c:18
 msgid "Total amount of data"
-msgstr ""
+msgstr "Totale dei dati"
 
 #: ../src/applet-notifications.c:18
 msgid "downloaded"
-msgstr ""
+msgstr "ricevuti"
 
 #: ../src/applet-notifications.c:18
 msgid "uploaded"
-msgstr ""
+msgstr "inviati"
 
 #: ../src/applet-notifications.c:21
 #, c-format
@@ -197,18 +196,20 @@ msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
+"Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
+"se si vuole alcuna filigrana."
 
 #: ../data/messages:57
 msgid "Image to display as a watermark on the gauge :"
-msgstr ""
+msgstr "Immagine da mostrare come filigrana nell'indicatore :"
 
 #: ../data/messages:59
 msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
+msgstr "Settare a 0 se si vuole alcuna filigrana."
 
 #: ../data/messages:61
 msgid "Transparency of the watermark :"
-msgstr ""
+msgstr "Trasparenza della filigrana :"
 
 #: ../data/messages:63
 msgid "in seconds."
@@ -240,28 +241,28 @@ msgstr "Intervallo tra le due misure :"
 #~ msgstr "Attendere..."
 
 #~ msgid "Personnalisation"
-#~ msgstr "Personnalisation"
+#~ msgstr "Personalizzazione"
 
 #~ msgid "Let t empty to use the default icon."
-#~ msgstr "Laissez vide pour utiliser l'icône par défaut."
+#~ msgstr "Lasciare vuoto per usare l'icona di default."
 
 #~ msgid "Delay between signal checks :"
-#~ msgstr "Intervalle entre chaque vérification du signal :"
+#~ msgstr "Intervallo tra le verifice del segnale :"
 
 #~ msgid "Debug"
 #~ msgstr "Debug"
 
 #~ msgid "in milliseconds."
-#~ msgstr "en millisecondes."
+#~ msgstr "in millisecondi."
 
 #~ msgid ""
 #~ "Total amount of data :\n"
 #~ "  downloaded : %.2fKB\n"
 #~ "  uploaded : %.2fKB"
 #~ msgstr ""
-#~ "Quantité total de données :\n"
-#~ "  Down : %.2fKo\n"
-#~ " Up : %.2fKo"
+#~ "Ammontare totale dei dati :\n"
+#~ "  ricevuti : %.2fKo\n"
+#~ " inviati : %.2fKo"
 
 #~ msgid "Lockposition ?"
-#~ msgstr "Verrouiller la position ?"
+#~ msgstr "Bloccare la posizione ?"

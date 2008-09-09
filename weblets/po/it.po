@@ -7,8 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
-"PO-Revision-Date: 2008-06-25 19:08+0200\n"
+"PO-Revision-Date: 2008-09-02 22:08+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +29,7 @@ msgstr ""
 #: ../src/applet-widget.c:52 ../src/applet-widget.c:143
 #, fuzzy
 msgid "Weblet"
-msgstr "Desklet"
+msgstr "Weblet"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -130,44 +129,46 @@ msgstr "Configurazione"
 
 #: ../data/messages:41
 msgid "URI to load in weblet"
-msgstr ""
+msgstr "Indirizzo URI da caricare"
 
 #: ../data/messages:43
 msgid "Show scrollbars ?"
-msgstr ""
+msgstr "Mostrare le barre di scroll ?"
 
 #: ../data/messages:45
 msgid "Horizontal scroll of the browser in pixel"
-msgstr ""
+msgstr "Scroll orizzontale del browser in pixels"
 
 #: ../data/messages:47
 msgid "Position of horizontal scrollbar"
-msgstr ""
+msgstr "Posizione dello scroll orizzontale"
 
 #: ../data/messages:49
 msgid "Vertical scroll of the browser in pixel"
-msgstr ""
+msgstr "Scroll verticale del browser in pixels"
 
 #: ../data/messages:51
 msgid "Position of vertical scrollbar in pixel"
-msgstr ""
+msgstr "Posizione dello scroll verticale"
 
 #: ../data/messages:53
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
+"Tempo prima di ricaricare l'URI nella weblet, in secondi. Zero per non farlo "
+"ricaricare."
 
 #: ../data/messages:55
 msgid "Time between two page refreshes"
-msgstr ""
+msgstr "Tempo prima di rinnovare le due pagine"
 
 #: ../data/messages:57
 msgid "Any URI accepted by firefox should work."
-msgstr ""
+msgstr "Qualsiasi URI accettato da firefox dovrebbe funzionare."
 
 #: ../data/messages:59
 msgid "Predefined bookmarks to show in applet's menu :"
-msgstr ""
+msgstr "Segnalibri predefinito da mostrare nel menu dell'applet :"
 
 #~ msgid "Module"
 #~ msgstr "Modulo"

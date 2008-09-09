@@ -8,13 +8,85 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
+"POT-Creation-Date: 2008-09-09 01:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-load-icons.c:17
+msgid "Monday"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Tuesday"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Wednesday"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Thursday"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Friday"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Saturday"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Sunday"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Jan"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Feb"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Mar"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Apr"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Jun"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Jui"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Aug"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Sep"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Oct"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Nov"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Dec"
+msgstr ""
 
 #: ../src/applet-notifications.c:21
 msgid ""

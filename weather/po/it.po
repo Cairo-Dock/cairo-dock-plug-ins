@@ -7,13 +7,84 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-08-30 01:47+0200\n"
 "PO-Revision-Date: 2008-06-25 18:52+0200\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-load-icons.c:17
+msgid "Monday"
+msgstr "Lundedì"
+
+#: ../src/applet-load-icons.c:17
+msgid "Tuesday"
+msgstr "Martedì"
+
+#: ../src/applet-load-icons.c:17
+msgid "Wednesday"
+msgstr "Mercoledì"
+
+#: ../src/applet-load-icons.c:17
+msgid "Thursday"
+msgstr "Giovedì"
+
+#: ../src/applet-load-icons.c:17
+msgid "Friday"
+msgstr "Venerdì"
+
+#: ../src/applet-load-icons.c:17
+msgid "Saturday"
+msgstr "Sabato"
+
+#: ../src/applet-load-icons.c:17
+msgid "Sunday"
+msgstr "Domenica"
+
+#: ../src/applet-load-icons.c:17
+msgid "Jan"
+msgstr "Gen"
+
+#: ../src/applet-load-icons.c:17
+msgid "Feb"
+msgstr "Feb"
+
+#: ../src/applet-load-icons.c:17
+msgid "Mar"
+msgstr "Mar"
+
+#: ../src/applet-load-icons.c:17
+msgid "Apr"
+msgstr "Apr"
+
+#: ../src/applet-load-icons.c:17
+msgid "Jun"
+msgstr "Giu"
+
+#: ../src/applet-load-icons.c:17
+msgid "Jui"
+msgstr "Lug"
+
+#: ../src/applet-load-icons.c:17
+msgid "Aug"
+msgstr "Ago"
+
+#: ../src/applet-load-icons.c:17
+msgid "Sep"
+msgstr "Set"
+
+#: ../src/applet-load-icons.c:17
+msgid "Oct"
+msgstr "Ott"
+
+#: ../src/applet-load-icons.c:17
+msgid "Nov"
+msgstr "Nov"
+
+#: ../src/applet-load-icons.c:17
+msgid "Dec"
+msgstr "Dic"
 
 #: ../src/applet-notifications.c:21
 msgid ""
@@ -65,7 +136,7 @@ msgstr "Temperatura"
 
 #: ../src/applet-notifications.c:195
 msgid "Precipitation Probability"
-msgstr ""
+msgstr "Probabilità di precipitazione"
 
 #: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
 msgid "Wind"
@@ -259,57 +330,3 @@ msgstr "Nome della vista utilizzata per la sub-dock :"
 #: ../data/messages:75
 msgid "Render desklet in 3D ?"
 msgstr "Disegnare la desklet in 3D ?"
-
-#~ msgid "Monday"
-#~ msgstr "Lundedì"
-
-#~ msgid "Tuesday"
-#~ msgstr "Martedì"
-
-#~ msgid "Wednesday"
-#~ msgstr "Mercoledì"
-
-#~ msgid "Thursday"
-#~ msgstr "Giovedì"
-
-#~ msgid "Friday"
-#~ msgstr "Venerdì"
-
-#~ msgid "Saturday"
-#~ msgstr "Sabato"
-
-#~ msgid "Sunday"
-#~ msgstr "Domenica"
-
-#~ msgid "Jan"
-#~ msgstr "Gen"
-
-#~ msgid "Feb"
-#~ msgstr "Feb"
-
-#~ msgid "Mar"
-#~ msgstr "Mar"
-
-#~ msgid "Apr"
-#~ msgstr "Apr"
-
-#~ msgid "Jun"
-#~ msgstr "Giu"
-
-#~ msgid "Jui"
-#~ msgstr "Lug"
-
-#~ msgid "Aug"
-#~ msgstr "Ago"
-
-#~ msgid "Sep"
-#~ msgstr "Set"
-
-#~ msgid "Oct"
-#~ msgstr "Ott"
-
-#~ msgid "Nov"
-#~ msgstr "Nov"
-
-#~ msgid "Dec"
-#~ msgstr "Dic"

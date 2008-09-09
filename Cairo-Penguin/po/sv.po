@@ -1,0 +1,160 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-09-03 02:15+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2008-09-06 14:34+0100\n"
+"Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
+"Language-Team: \n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: ../src/applet-notifications.c:22
+msgid "Hey, I'm here !"
+msgstr "Hallå, här är jag!"
+
+#: ../src/applet-notifications.c:23
+msgid "Sorry but I'm busy right now."
+msgstr "Tyvärr, jag är upptagen nu."
+
+#: ../src/applet-notifications.c:24
+msgid "I don't have time to play with you, I have to dig and mine all these icons."
+msgstr "Jag har inte tid att leka med dig. Jag måste gräva och utvinna alla dessa ikoner."
+
+#: ../src/applet-notifications.c:25
+msgid "Your dock is so messy ! Let me clean it."
+msgstr "Din docka är en röra! Låt mig städa upp åt dig."
+
+#: ../src/applet-notifications.c:26
+msgid "Admit my superiority on you as a penguin !"
+msgstr "Erkänn att jag är överlägsen dig!"
+
+#: ../src/applet-notifications.c:27
+msgid "Wait, do you want to kill me ?!"
+msgstr "Vänta lite, försöker du döda mig?!"
+
+#: ../src/applet-notifications.c:28
+msgid "Do you know how much painful it is to be clicked on ??"
+msgstr "Har du en aning om hur ont det gör när du klickar på mig?"
+
+#: ../src/applet-notifications.c:29
+msgid "It's my dock now, mwahahaha !"
+msgstr "Det är min docka nu, mwahahaha!"
+
+#: ../src/applet-notifications.c:30
+msgid "I want to be a pirate !"
+msgstr "Jag vill bli pirat!"
+
+#: ../src/applet-notifications.c:31
+msgid "You shall not pass !"
+msgstr "Du får inte passera!"
+
+#: ../src/applet-notifications.c:32
+msgid "I'm your father !"
+msgstr "Jag är din fader!"
+
+#: ../src/applet-notifications.c:33
+msgid ""
+"- What will we do tonight Cortex ?\n"
+"- The same thing as every nights, Minus. Try to take over the Dock !"
+msgstr ""
+"- Vad ska vi göra ikväll Cortex?\n"
+"- Samma om varje kväll, Minus. Försöka ta över dockan!"
+
+#: ../src/applet-notifications.c:34
+msgid "For Aiur !"
+msgstr "För Auir!"
+
+#: ../src/applet-notifications.c:37
+msgid ""
+"This is the Cairo-Penguin applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"Cairo-Penguin applet\n"
+" skapad av Fabrice Rey för Cairo-Dock"
+
+#: ../src/applet-notifications.c:117
+msgid "Hey, you there !"
+msgstr "Hallå, du där!"
+
+#: ../src/applet-notifications.c:120
+msgid "Keep quiet"
+msgstr "Tyst"
+
+#: ../src/applet-notifications.c:124
+msgid "Wake up"
+msgstr "Vakna"
+
+#: ../src/applet-notifications.c:127
+msgid "Start XPenguins"
+msgstr "Starta XPenguins"
+
+#: ../src/applet-notifications.c:128
+msgid "Stop XPenguins"
+msgstr "Stoppa XPenguins"
+
+#: ../src/applet-notifications.c:156
+#: ../src/applet-notifications.c:158
+msgid "Zzzzz"
+msgstr "Zzzzz"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Önskad storlek för ikonen"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "bredd:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "höjd:"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Ikonens etikett:"
+
+#: ../data/messages:11
+msgid "Icon's name :"
+msgstr "Ikonens namn:"
+
+#: ../data/messages:13
+msgid "Name of the dock it belongs to:"
+msgstr "Docka som appleten tillhör:"
+
+#: ../data/messages:15
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: ../data/messages:17
+msgid "Choose one of the available themes :"
+msgstr "Välj ett tema:"
+
+#: ../data/messages:19
+msgid "in seconds"
+msgstr "i sekunder"
+
+#: ../data/messages:21
+msgid "Delay between animation changes :"
+msgstr "Tid mellan animeringsändringar:"
+
+#: ../data/messages:23
+msgid "Transparency of the penguin :"
+msgstr "Pingvinens genomskinlighet:"
+
+#: ../data/messages:25
+msgid "Let the penguin wander everywhere in the dock ?"
+msgstr "Tillåt pingvinen att vandra överallt?"
+

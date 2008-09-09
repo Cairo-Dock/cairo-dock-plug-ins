@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-09-03 02:15+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2008-09-05 23:58+0100\n"
+"Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
+"Language-Team: \n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: ../src/terminal-callbacks.c:67
+#: ../src/terminal-widget.c:328
+msgid "Copy"
+msgstr "Kopiera"
+
+#: ../src/terminal-init.c:82
+#: ../src/terminal-widget.c:658
+msgid "Terminal"
+msgstr "Terminal"
+
+#: ../src/terminal-menu-functions.c:84
+#: ../src/terminal-widget.c:344
+msgid "New Tab"
+msgstr "Ny flik"
+
+#: ../src/terminal-menu-functions.c:85
+msgid "Rename current Tab"
+msgstr "Byt namn på flik"
+
+#: ../src/terminal-menu-functions.c:86
+msgid "Close current Tab"
+msgstr "Stäng flik"
+
+#: ../src/terminal-widget.c:133
+msgid "Set title for this tab :"
+msgstr "Titel för flik:"
+
+#: ../src/terminal-widget.c:187
+msgid "Select a color"
+msgstr "Välj färg"
+
+#: ../src/terminal-widget.c:334
+msgid "Paste"
+msgstr "Klistra in"
+
+#: ../src/terminal-widget.c:350
+msgid "Rename this Tab"
+msgstr "Byt namn"
+
+#: ../src/terminal-widget.c:356
+msgid "Change this Tab's color"
+msgstr "Byt färg"
+
+#: ../src/terminal-widget.c:362
+msgid "Close this Tab"
+msgstr "Stäng denna flik"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../data/messages:3
+msgid "Size of the icon you wish this applet has (in pixels)"
+msgstr "Storlek på ikonen (i pixlar):"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "bredd:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "höjd:"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in cairo-dock :"
+msgstr "Ikonens etikett:"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Docka som appleten tillhör:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
+
+#: ../data/messages:17
+msgid "Desklet's position (x ; y) :"
+msgstr "Deskletens position (x, y):"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+
+#: ../data/messages:21
+msgid "Desklet's dimension (width x height) :"
+msgstr "Storlek på Desklet (bredd x höjd):"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "Koppla loss från dockan?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Placera under andra fönster?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Placera ovanför andra fönster?"
+
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:33
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Lås position?"
+
+#: ../data/messages:37
+msgid "GUI"
+msgstr "Gränssnitt"
+
+#: ../data/messages:39
+msgid "needs to restart the applet."
+msgstr "behöver starta om appleten."
+
+#: ../data/messages:41
+msgid "Terminal's transparency :"
+msgstr "Genomskinlighet för terminalfönstret:"
+
+#: ../data/messages:43
+msgid "Foreground color (r, v, b):"
+msgstr "Förgrundsfärg (r,g.b):"
+
+#: ../data/messages:45
+msgid "Background color (r, v, b):"
+msgstr "Bakgrundsfärg (r,g.b):"
+
+#: ../data/messages:47
+msgid "When the terminal is in a dialog. When it is in a desklet, you can just resize the desklet as usual."
+msgstr "När terminalen visas i ett fönster. När den är i en desklet, kan du ändra storlek som vanligt."
+
+#: ../data/messages:49
+msgid "Size of the terminal (line x columns) :"
+msgstr "Storlek på terminal (rader x kolumner):"
+
+#: ../data/messages:51
+msgid "Shortkey to show the terminal"
+msgstr "Tangentkombination for att visa terminalen"
+
