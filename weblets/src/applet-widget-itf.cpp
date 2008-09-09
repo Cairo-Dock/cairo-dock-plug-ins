@@ -23,6 +23,12 @@
 ** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
+#if HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#ifndef HAVE_WEBKIT
+
 #include "gtk/gtk.h"
 
 #include "gtkmozembed.h"
@@ -123,4 +129,5 @@ extern "C" gint dom_mouse_click_cb(GtkMozEmbed *embed, nsIDOMMouseEvent *event, 
 	}
 	return NS_OK;
 }
+#endif
 
