@@ -93,7 +93,7 @@ void cd_cpusage_get_cpu_info (void)
 			}
 			else if (strncmp (line, "processor", 9) == 0)
 			{
-				cd_debug ("  found 1 proc")
+				cd_debug ("  found 1 proc");
 				myData.iNbCPU ++;  // on a trouve un processeur, on rajoute +1 au cas ou l'info 'cpu cores' ne serait pas presente.
 			}
 			else if (strncmp (line, "cpu cores", 9) == 0)  /// myData.iNbCPU == 0 && 
