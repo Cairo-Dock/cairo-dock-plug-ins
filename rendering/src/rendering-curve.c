@@ -919,9 +919,16 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 	xb = (xc-xa)/2;
 	yb = -my_iCurveAmplitude;
 	
-	k1 = ya/((xa-xb)*(xa-xc));
-	k2 = yb/((xb-xa)*(xb-xc));
-	k3 = yc/((xc-xa)*(xc-xb));
+	if (xa != xb && xa != xc && xb != xc)
+	{
+		k1 = ya/((xa-xb)*(xa-xc));
+		k2 = yb/((xb-xa)*(xb-xc));
+		k3 = yc/((xc-xa)*(xc-xb));
+	}
+	else
+	{
+		k1 = k2 = k3 = 0;
+	}
 	
 	
 	Icon* icon;
@@ -934,6 +941,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 		
 		icon->fDrawX = icon->fX;
 		icon->fDrawY = icon->fY + sens * y;
+		g_print ("y : %.2f -> fDrawY = %.2f\n", y, icon->fDrawY);
 		icon->fWidthFactor = 1.;
 		icon->fHeightFactor = 1.;
 		icon->fDeltaYReflection = 0.;
@@ -942,6 +950,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 			icon->fAlpha = 1;
 		else
 			icon->fAlpha = .25;
+		g_print ("fDrawX:%.2f / %d (%.2f)\n", icon->fDrawX, pDock->iCurrentWidth, icon->fAlpha);
 		
 		cairo_dock_manage_animations (icon, pDock);
 	}
