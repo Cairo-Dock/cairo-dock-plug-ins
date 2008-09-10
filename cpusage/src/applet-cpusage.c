@@ -211,7 +211,14 @@ gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
-		cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
+		if (myData.pGauge)
+		{
+			CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
+		}
+		else
+		{
+			CD_APPLET_RENDER_GRAPH (myData.pGraph);
+		}
 	}
 	else
 	{
@@ -219,7 +226,14 @@ gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
-			cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
+			if (myData.pGauge)
+			{
+				CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
+			}
+			else
+			{
+				CD_APPLET_RENDER_GRAPH (myData.pGraph);
+			}
 		}
 		else
 		{
@@ -239,7 +253,14 @@ gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 				}
 			}
 			
-			cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.cpu_usage / 100);
+			if (myData.pGauge)
+			{
+				CD_APPLET_RENDER_GAUGE (myData.pGauge, (double) myData.cpu_usage / 100);
+			}
+			else
+			{
+				CD_APPLET_RENDER_GRAPH_NEW_VALUE (myData.pGraph, (double) myData.cpu_usage / 100);
+			}
 		}
 	}
 	return myData.bAcquisitionOK;

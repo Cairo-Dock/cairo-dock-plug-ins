@@ -14,6 +14,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+	
+	myConfig.bUseGraphic = CD_CONFIG_GET_BOOLEAN ("Configuration", "use graphic");
+	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
+	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
+	
 	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "watermark alpha");
 	if (myConfig.fAlpha != 0)
 	{

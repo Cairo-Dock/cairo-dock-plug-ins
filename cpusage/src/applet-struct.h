@@ -13,6 +13,12 @@ struct _AppletConfig {
 	gchar *cWatermarkImagePath;
 	gdouble fAlpha;
 	
+	gboolean bUseGraphic;
+	CairoDockTypeGraph iGraphType;
+	gdouble fLowColor[3];
+	gdouble fHigholor[3];
+	gdouble fBgColor[4];
+	
 	gint iNbDisplayedProcesses;
 	gint iProcessCheckInterval;
 	CairoDockLabelDescription *pTopTextDescription;
@@ -28,6 +34,7 @@ typedef struct {
 
 struct _AppletData {
 	Gauge *pGauge;
+	CairoDockGraph *pGraph;
 	
 	gint iNbCPU;
 	gint iFrequency;

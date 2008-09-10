@@ -154,19 +154,19 @@ msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
-msgstr ""
+msgstr "Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si vous ne voulez pas de filigrane."
 
 #: ../data/messages:45
-msgid "Image to display as a watermark on the gauge :"
-msgstr ""
+msgid "Image to display as a watermark :"
+msgstr "Image à afficher en filigrane :"
 
 #: ../data/messages:47
 msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
+msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
 
 #: ../data/messages:49
 msgid "Transparency of the watermark :"
-msgstr ""
+msgstr "Transparence du filigrane"
 
 #: ../data/messages:51
 msgid "Display CPU usage values :"
