@@ -32,6 +32,7 @@ enum {
 	INFO_NOW_TITLE,
 	NB_INFO
 } AppletInfoEnum;
+
 static char  *s_cTmpFile = NULL;
 static int s_pLineNumber[NB_INFO] = {2,4,5,6,7,8,12};
 
@@ -50,6 +51,7 @@ void cd_xmms_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'effec
 		myData.cRawTitle = NULL; //Reset the title to detect it for sure ;)
 	}
 	gchar *cCommand = NULL;
+	
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
 			cCommand = "xmms -r";

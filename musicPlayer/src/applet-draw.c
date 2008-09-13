@@ -59,7 +59,7 @@ void _set_new_title (void) {
 		if (myConfig.bEnableAnim)
 			cd_musicplayer_animate_icon (1);
 		if (myConfig.bEnableDialogs)
-			cd_musicplayer_new_song_playing();
+			cd_musicplayer_new_song_playing ();
 	}
 }
 
@@ -121,7 +121,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 	
 	/* Vérifie si le titre a changé */
 	if (myData.cPreviousRawTitle != NULL && myData.cRawTitle != NULL) { // Si les titres sont définis...
-		if (strcmp(myData.cPreviousRawTitle, myData.cRawTitle)) // ... et qu'ils sont différents
+		if (strcmp (myData.cPreviousRawTitle, myData.cRawTitle)) // ... et qu'ils sont différents
 			_set_new_title ();
 	}
 	else if (myData.cRawTitle != NULL) { // Si seulement le titre courant est défini
@@ -132,36 +132,41 @@ gboolean cd_musicplayer_draw_icon (void) {
 	}
 
 	/* Affichage de la pochette */	
-	if (myConfig.bEnableCover && myData.cCoverPath != NULL && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
-	{
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCoverPath);	
+	if (myConfig.bEnableCover) {
+		if (myData.cCoverPath != NULL && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS)) {
+			if (myData.cPreviousCoverPath != myData.cCoverPath) { //On évite de dessiner pour rien
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCoverPath);
+				myData.cPreviousCoverPath = myData.cCoverPath;
+			}
+		}
+		else
+			cd_musicplayer_set_surface (0); //On affiche l'image par défaut
+		
+		switch (myData.pPlayingStatus) {
+			case PLAYER_PLAYING :
+				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_PLAY, CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
+				break;
+				
+			case PLAYER_PAUSED :
+				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_PAUSE, CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
+				break;
+				
+			case PLAYER_STOPPED :
+				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_STOP, CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
+				break;
+			
+			default :
+				break;	
+		}
 	}
 	
 	/* Affichage de l'icone ou de la pochette et de son emblème */
 	if (myData.pPlayingStatus != myData.pPreviousPlayingStatus) {  // changement de statut.
-		cd_debug("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.pPlayingStatus);
+		cd_debug ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.pPlayingStatus);
 		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
-		if (myConfig.bEnableCover)
-		{
-			switch (myData.pPlayingStatus)
-			{
-				case PLAYER_PLAYING :
-					CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_PLAY,CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
-					break;
-					
-				case PLAYER_PAUSED :
-					CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_PAUSE,CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
-					break;
-					
-				case PLAYER_STOPPED :
-					CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_STOP,CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
-					break;
-				
-				default :
-					break;	
-			}
-		}
-		else cd_musicplayer_set_surface (myData.pPlayingStatus);
+		
+		if (!myConfig.bEnableCover)
+			cd_musicplayer_set_surface (myData.pPlayingStatus);
 		
 		if (myData.pPlayingStatus == 0) {
 		  myData.cRawTitle = NULL; //Rien ne joue
@@ -169,21 +174,20 @@ gboolean cd_musicplayer_draw_icon (void) {
 		}
 	}
 	
-	if (bNeedRedraw) {
+	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON
-	}
 	
 	return TRUE;
 }
 
 //Fonction qui affiche la bulle au changement de musique
 //Old function without icon
-void cd_musicplayer_new_song_playing_old(void) {
+void cd_musicplayer_new_song_playing_old (void) {
 	cairo_dock_show_temporary_dialog (myData.cRawTitle, myIcon, myContainer, myConfig.fTimeDialogs);
 }
 
 //With Icon.
-void cd_musicplayer_new_song_playing(void) {
+void cd_musicplayer_new_song_playing (void) {
 	cairo_dock_remove_dialog_if_any (myIcon); //On evite la superposition
 	if (!myConfig.bIconBubble) {
 		cd_musicplayer_new_song_playing_old ();

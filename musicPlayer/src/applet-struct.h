@@ -15,6 +15,7 @@ typedef enum {
 	PLAYER_BROKEN,
 	PLAYER_NB_STATUS
 } MyPlayerStatus;
+
 typedef enum {
 	PLAYER_PREVIOUS = 0,
 	PLAYER_PLAY_PAUSE,
@@ -119,7 +120,7 @@ struct _AppletConfig {
 	gchar *cReflectImage;
 	gdouble fFrameAlpha;
 	gdouble fReflectAlpha;
-} ;
+};
 
 struct _AppletData {
 	//Pointeurs du Canevas
@@ -132,7 +133,7 @@ struct _AppletData {
 	gchar *cTitle;
 	gchar *cArtist;
 	gchar *cAlbum;
-	gchar *cCoverPath;
+	gchar *cCoverPath, *cPreviousCoverPath;
 	MyPlayerStatus pPlayingStatus, pPreviousPlayingStatus;
 	gint iTrackNumber, iPreviousTrackNumber;
 	gint iCurrentTime, iPreviousCurrentTime;
@@ -149,7 +150,7 @@ struct _AppletData {
 	gchar *cQuickInfo, *cPreviousQuickInfo;
 	
 	guint iSidCheckCover;
-} ;
+};
 
 
 #endif

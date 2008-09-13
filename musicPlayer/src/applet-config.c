@@ -95,7 +95,10 @@ CD_APPLET_RESET_DATA_BEGIN
 	myData.cArtist = NULL;
 	g_free (myData.cAlbum);
 	myData.cAlbum = NULL;
+	g_free (myData.cCoverPath);
+	myData.cCoverPath = NULL;
 	
+	myData.cPreviousCoverPath = NULL;
 	myData.cPreviousRawTitle = NULL;
 	myData.cQuickInfo = NULL;
 	

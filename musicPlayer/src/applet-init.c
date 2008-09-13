@@ -88,6 +88,7 @@ CD_APPLET_INIT_BEGIN
 	myData.pPlayingStatus = PLAYER_NONE;
 	myData.pPreviousPlayingStatus = -1;
 	myData.cPreviousRawTitle = NULL;
+	myData.cPreviousCoverPath = NULL;
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
 	
@@ -164,6 +165,7 @@ CD_APPLET_RELOAD_BEGIN
 	myData.pPlayingStatus = PLAYER_NONE;
 	myData.pPreviousPlayingStatus = -1;
 	myData.cPreviousRawTitle = NULL;
+	myData.cPreviousCoverPath = NULL;
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
 	
