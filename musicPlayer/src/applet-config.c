@@ -21,9 +21,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.pQuickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
 	
 	myConfig.cDefaultTitle			= CD_CONFIG_GET_STRING ("Icon", "name");
-	if (strcmp (myConfig.cDefaultTitle, "__Player__") == 0)
+	if (strcmp (myConfig.cDefaultTitle, "__Player__") == 0) {
+		g_free (myConfig.cDefaultTitle);
+		cd_debug ("MP: default title as name of controlled player");
 		myConfig.cDefaultTitle		=	CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "current-player", "XMMS");
-		
+	}
+	
 	myConfig.cMusicPlayer 			= CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "current-player", "XMMS");
 	myConfig.iExtendedMode			= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "extended_mode", MY_DESKLET_SIMPLE);
 	

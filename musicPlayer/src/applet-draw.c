@@ -131,6 +131,20 @@ gboolean cd_musicplayer_draw_icon (void) {
 		//Kedal a faire
 	}
 
+	/* Affichage de l'icone ou de la pochette et de son emblème */
+	if (myData.pPlayingStatus != myData.pPreviousPlayingStatus) {  // changement de statut.
+		cd_debug ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.pPlayingStatus);
+		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
+		
+		if (!myConfig.bEnableCover)
+			cd_musicplayer_set_surface (myData.pPlayingStatus);
+		
+		if (myData.pPlayingStatus == 0) {
+		  myData.cRawTitle = NULL; //Rien ne joue
+		  CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle)
+		}
+	}
+
 	/* Affichage de la pochette */	
 	if (myConfig.bEnableCover) {
 		if (myData.cCoverPath != NULL && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS)) {
@@ -157,20 +171,6 @@ gboolean cd_musicplayer_draw_icon (void) {
 			
 			default :
 				break;	
-		}
-	}
-	
-	/* Affichage de l'icone ou de la pochette et de son emblème */
-	if (myData.pPlayingStatus != myData.pPreviousPlayingStatus) {  // changement de statut.
-		cd_debug ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.pPlayingStatus);
-		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
-		
-		if (!myConfig.bEnableCover)
-			cd_musicplayer_set_surface (myData.pPlayingStatus);
-		
-		if (myData.pPlayingStatus == 0) {
-		  myData.cRawTitle = NULL; //Rien ne joue
-		  CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle)
 		}
 	}
 	
