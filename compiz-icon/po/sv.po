@@ -2,18 +2,17 @@
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2008-09-06 14:33+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
@@ -21,8 +20,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Konfigurera Compiz"
 
-#: ../src/applet-load-icon.c:22
-#: ../src/applet-notifications.c:178
+#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:178
 msgid "Emerald Manager"
 msgstr "Emerald Manager"
 
@@ -34,8 +32,7 @@ msgstr "Starta om fönsterhanteraren"
 msgid "Exposition"
 msgstr "Exposition"
 
-#: ../src/applet-load-icon.c:22
-#: ../data/messages:49
+#: ../src/applet-load-icon.c:22 ../data/messages:49
 msgid "Widget Layer"
 msgstr "Widgetlager"
 
@@ -100,8 +97,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
+"eller ALT+vänsterklick"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -109,7 +110,8 @@ msgstr "Storlek på Desklet (bredd x höjd):"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
+msgstr ""
+"Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -128,16 +130,24 @@ msgid "Keep above other windows ?"
 msgstr "Placera ovanför andra fönster?"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
+"type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
+"använda ALT+vänsterklick."
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -152,8 +162,12 @@ msgid "Actions"
 msgstr "Aktiviteter"
 
 #: ../data/messages:41
-msgid "Except for switching to another WM, you must activate the Dbus plugin in Compiz, along with the plug-in corresponding to the desired action."
-msgstr "För att kunna byta till en annan fönsterhanterare, måste du aktivera Dbus i Compiz och dessutom den applet som ska användas."
+msgid ""
+"Except for switching to another WM, you must activate the Dbus plugin in "
+"Compiz, along with the plug-in corresponding to the desired action."
+msgstr ""
+"För att kunna byta till en annan fönsterhanterare, måste du aktivera Dbus i "
+"Compiz och dessutom den applet som ska användas."
 
 #: ../data/messages:43
 msgid "Choose an action for the middle click on the icon :"
@@ -176,24 +190,36 @@ msgid "Show Desktop"
 msgstr "Visa skrivbord"
 
 #: ../data/messages:55
-msgid "This command will be used to launch the system WM; let it blank to use the default one."
-msgstr "Kommando som start systemets fönsterhanterare. Lämna tomt för att använda standardkommandot."
+msgid ""
+"This command will be used to launch the system WM; let it blank to use the "
+"default one."
+msgstr ""
+"Kommando som start systemets fönsterhanterare. Lämna tomt för att använda "
+"standardkommandot."
 
 #: ../data/messages:57
 msgid "Custom command for system's Windows Manager :"
 msgstr "Anpassat kommando för att starta fönsterhanteraren:"
 
 #: ../data/messages:59
-msgid "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then."
-msgstr "Om Compiz stängs ner, startas den om av Cairo-Dock. Om det händer, måste du avsluta Compiz från dockan."
+msgid ""
+"If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
+"Compiz from the dock then."
+msgstr ""
+"Om Compiz stängs ner, startas den om av Cairo-Dock. Om det händer, måste du "
+"avsluta Compiz från dockan."
 
 #: ../data/messages:61
 msgid "Auto-reload Compiz ?"
 msgstr "Starta om Compiz automatiskt?"
 
 #: ../data/messages:63
-msgid "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then."
-msgstr "Om fönsterdekoratören stängs ner, startas den om av Cairo-Dock. Om det händer, måste du avsluta Compiz från dockan."
+msgid ""
+"If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+"quit Compiz from the dock then."
+msgstr ""
+"Om fönsterdekoratören stängs ner, startas den om av Cairo-Dock. Om det "
+"händer, måste du avsluta Compiz från dockan."
 
 #: ../data/messages:65
 msgid "Auto-reload the Decorator ?"
@@ -208,16 +234,24 @@ msgid "Force Compiz settings at startup ?"
 msgstr "Tvinga Compizinställningar vid start?"
 
 #: ../data/messages:71
-msgid "It will prevent the CSSM or Emerald icon to appear in the task bar. The corresponding subdock's icons will then behave as launcher and an appli."
-msgstr "Gör att CSSM och Emerald ikonen inte visas i aktivitetsfältet. Sub-dockans ikoner används då för att starta."
+msgid ""
+"It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+"corresponding subdock's icons will then behave as launcher and an appli."
+msgstr ""
+"Gör att CSSM och Emerald ikonen inte visas i aktivitetsfältet. Sub-dockans "
+"ikoner används då för att starta."
 
 #: ../data/messages:73
 msgid "Steal the application's icon in taskbar ?"
 msgstr "Stjäl programmets ikon från aktivitetsfältet?"
 
 #: ../data/messages:75
-msgid "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget Layer plug-ins. Otherwise they will be available in the menu."
-msgstr "Visa ikoner för Compiz Exposition och Widgetlager i sub-dockan. Annars visas de i menyn."
+msgid ""
+"Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+"Layer plug-ins. Otherwise they will be available in the menu."
+msgstr ""
+"Visa ikoner för Compiz Exposition och Widgetlager i sub-dockan. Annars visas "
+"de i menyn."
 
 #: ../data/messages:77
 msgid "Add Exposition & Widget Layer to sub-dock ?"
@@ -228,8 +262,15 @@ msgid "Compiz Options"
 msgstr "Inställningar för Compiz"
 
 #: ../data/messages:81
-msgid "With strict binding textures are bound whenever they are enabled, with loose binding they are enabled when created. The Nvidia driver seems a bit slow when binding textures, that's why this option gives a heavy performance increase on Nvidia."
-msgstr "Med strikt bindning, binds texturer när de aktivers, med lös bindning binds de när de skapas. nVidias drivare är lite långsam när den binder texturer så denna inställning kan snabba upp hastigheten ganska mycket för nVidia."
+msgid ""
+"With strict binding textures are bound whenever they are enabled, with loose "
+"binding they are enabled when created. The Nvidia driver seems a bit slow "
+"when binding textures, that's why this option gives a heavy performance "
+"increase on Nvidia."
+msgstr ""
+"Med strikt bindning, binds texturer när de aktivers, med lös bindning binds "
+"de när de skapas. nVidias drivare är lite långsam när den binder texturer så "
+"denna inställning kan snabba upp hastigheten ganska mycket för nVidia."
 
 #: ../data/messages:83
 msgid "Use Loose Binding ?"
@@ -287,14 +328,9 @@ msgstr "Namn på vy för sub-dockan:"
 msgid "Images"
 msgstr "Bilder"
 
-#: ../data/messages:111
-#: ../data/messages:115
-#: ../data/messages:119
-#: ../data/messages:123
-#: ../data/messages:127
-#: ../data/messages:131
-#: ../data/messages:135
-#: ../data/messages:139
+#: ../data/messages:111 ../data/messages:115 ../data/messages:119
+#: ../data/messages:123 ../data/messages:127 ../data/messages:131
+#: ../data/messages:135 ../data/messages:139
 msgid "Let t empty to use the default icon."
 msgstr "Lämna tomt för använda standaralternativet."
 
@@ -329,4 +365,3 @@ msgstr "Bild för exposition:"
 #: ../data/messages:141
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Bild för widget layer:"
-

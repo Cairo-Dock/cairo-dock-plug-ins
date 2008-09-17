@@ -58,7 +58,7 @@ frame_disp=
 #b Display a graphic rather than a gauge ?
 use graphic = false
 
-#r[Line;Plain;Bar] Type of graphic :
+#r[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
 #c+3[0;1] High values color :

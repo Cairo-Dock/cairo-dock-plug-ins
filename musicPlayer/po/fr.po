@@ -308,7 +308,8 @@ msgid ""
 "It's an image that will be displayed above the cover, like a reflect for "
 "exemple."
 msgstr ""
-"C'est une image qui sera affichée par-dessus la pochette, comme un reflet par exemple."
+"C'est une image qui sera affichée par-dessus la pochette, comme un reflet "
+"par exemple."
 
 #: ../data/messages:119
 msgid "Reflection image :"

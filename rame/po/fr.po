@@ -28,7 +28,7 @@ msgstr "Mb"
 msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échouée"
 
-#: ../src/applet-rame.c:109
+#: ../src/applet-rame.c:116
 msgid "Loading"
 msgstr "Chargement"
 
@@ -119,7 +119,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37 ../data/messages:69
+#: ../data/messages:37 ../data/messages:109
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -128,72 +128,116 @@ msgid "Display"
 msgstr "Affichage"
 
 #: ../data/messages:41
-msgid "List of available themes for the analogic display :"
-msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
+msgid "Display a graphic rather than a gauge ?"
+msgstr ""
 
 #: ../data/messages:43
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:55 ../data/messages:63
+#, fuzzy
+msgid "It's the color of the graphic for high CPU values."
+msgstr "Première couleur de la graduation utilisée pour écrire la top liste."
+
+#: ../data/messages:57
+msgid "High values color for RAM :"
+msgstr ""
+
+#: ../data/messages:59 ../data/messages:67
+#, fuzzy
+msgid "It's the color of the graphic for low CPU values."
+msgstr "Première couleur de la graduation utilisée pour écrire la top liste."
+
+#: ../data/messages:61
+msgid "Low values color for RAM :"
+msgstr ""
+
+#: ../data/messages:65
+msgid "High values color for SWAP :"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Low values color for SWAP :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Draw both values on the same graph ?"
+msgstr ""
+
+#: ../data/messages:73
+#, fuzzy
+msgid "Background color of the graphic :"
+msgstr "Couleur du premier élément de la top liste : "
+
+#: ../data/messages:75
+#, fuzzy
+msgid "List of available themes for the gauge :"
+msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
+
+#: ../data/messages:77
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "Display memory values :"
 msgstr "Afficher les valeurs de la mémoire :"
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid "On icon"
 msgstr "Sur l'icône"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid "Display SWAP too ?"
 msgstr "Afficher aussi la SWAP ?"
 
-#: ../data/messages:61
-msgid "It's the first color of the gradation used to write the top list."
-msgstr "Première couleur de la graduation utilisée pour écrire la top liste."
+#: ../data/messages:95
+msgid "Top List"
+msgstr ""
 
-#: ../data/messages:63
-msgid "Start color of the top list :"
-msgstr "Couleur du premier élément de la top liste : "
-
-#: ../data/messages:65
-msgid "It's the second color of the gradation used to write the top list."
-msgstr "Seconde couleur de la graduation utilisée pour écrire la top liste."
-
-#: ../data/messages:67
-msgid "Stop color of the top list :"
-msgstr "Couleur du dernier élément de la top liste :"
-
-#: ../data/messages:71
-msgid "in seconds."
-msgstr "en secondes."
-
-#: ../data/messages:73
-msgid "Delay between refresh :"
-msgstr "Intervalle entre chaque rafraîchissement :"
-
-#: ../data/messages:75
+#: ../data/messages:97
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
@@ -201,11 +245,35 @@ msgstr ""
 "Le clic gauche sur l'icône affiche la liste des programmes les plus "
 "gourmands en mémoire."
 
-#: ../data/messages:77
+#: ../data/messages:99
 msgid "Number of programs to display in the top list :"
 msgstr "Nombre de programmes à afficher dans la top liste : "
 
-#: ../data/messages:79
+#: ../data/messages:101
+msgid "It's the first color of the gradation used to write the top list."
+msgstr "Première couleur de la graduation utilisée pour écrire la top liste."
+
+#: ../data/messages:103
+msgid "Start color of the top list :"
+msgstr "Couleur du premier élément de la top liste : "
+
+#: ../data/messages:105
+msgid "It's the second color of the gradation used to write the top list."
+msgstr "Seconde couleur de la graduation utilisée pour écrire la top liste."
+
+#: ../data/messages:107
+msgid "Stop color of the top list :"
+msgstr "Couleur du dernier élément de la top liste :"
+
+#: ../data/messages:111
+msgid "in seconds."
+msgstr "en secondes."
+
+#: ../data/messages:113
+msgid "Delay between refresh :"
+msgstr "Intervalle entre chaque rafraîchissement :"
+
+#: ../data/messages:115
 msgid "Show top memory usage in % ?"
 msgstr "Montrer l'usage mémoire en % ?"
 

@@ -170,7 +170,7 @@ AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
 CPUSAGE_PACKAGE="cd-cpusage"
 AC_SUBST(GETTEXT_CPUSAGE, "$CPUSAGE_PACKAGE")
 
-AC_SUBST(VERSION_CPUSAGE, "1.1.1")
+AC_SUBST(VERSION_CPUSAGE, "1.2.0")
 AC_SUBST(PACKAGE_CPUSAGE, "$CPUSAGE_PACKAGE")
 
 AC_SUBST(cpusagedatadir, "${pkgdatadir}/cpusage")

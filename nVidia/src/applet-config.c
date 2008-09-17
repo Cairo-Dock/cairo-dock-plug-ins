@@ -27,12 +27,20 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bAlert = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "alert", TRUE);
 	myConfig.bAlertSound = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "asound", TRUE);
 	myConfig.cSoundPath = CD_CONFIG_GET_STRING ("Configuration", "sound path");
+	
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
 	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "watermark alpha");
 	if (myConfig.fAlpha != 0)
 	{
 		myConfig.cWatermarkImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "watermark image", MY_APPLET_ICON_FILE);
 	}
+	
+	myConfig.bUseGraphic = CD_CONFIG_GET_BOOLEAN ("Configuration", "use graphic");
+	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
+	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
+	
 	myConfig.cBrokenUserImage = CD_CONFIG_GET_STRING ("Configuration", "broken");
 	
 CD_APPLET_GET_CONFIG_END

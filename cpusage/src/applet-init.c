@@ -7,7 +7,7 @@
 #include "applet-cpusage.h"
 
 
-CD_APPLET_DEFINITION ("cpusage", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("cpusage", 1, 6, 3, CAIRO_DOCK_CATEGORY_ACCESSORY);
 
 static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 {
@@ -21,14 +21,14 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	//Initialisation de la jauge
+	//Initialisation du rendu jauge/graphique.
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	if (myConfig.bUseGraphic)
 	{
 		myData.pGraph = cairo_dock_create_graph (myDrawContext,
 			20, myConfig.iGraphType,
 			myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
-			myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor);
+			myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, NULL, NULL);
 		if (myConfig.cWatermarkImagePath != NULL)
 			cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 		CD_APPLET_RENDER_GRAPH (myData.pGraph);
@@ -82,7 +82,7 @@ CD_APPLET_RELOAD_BEGIN
 			myData.pGraph = cairo_dock_create_graph (myDrawContext,
 				20, myConfig.iGraphType,
 				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
-				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor);
+				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, NULL, NULL);
 			if (myConfig.cWatermarkImagePath != NULL)
 				cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 		}
@@ -121,7 +121,7 @@ CD_APPLET_RELOAD_BEGIN
 			myData.pGraph = cairo_dock_create_graph (myDrawContext,
 				20, myConfig.iGraphType,
 				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
-				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor);
+				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, NULL, NULL);
 		else
 			myData.pGauge = cairo_dock_load_gauge(myDrawContext,
 				myConfig.cGThemePath,

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-09 01:39+0200\n"
+"POT-Creation-Date: 2008-09-18 02:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "day(s)"
 msgstr ""
 
-#: ../src/applet-cpusage.c:221
+#: ../src/applet-cpusage.c:228
 msgid "Loading"
 msgstr ""
 
@@ -132,7 +132,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:37 ../data/messages:67
+#: ../data/messages:37 ../data/messages:97
 msgid "Configuration"
 msgstr ""
 
@@ -141,77 +141,129 @@ msgid "Display"
 msgstr ""
 
 #: ../data/messages:41
-msgid "List of available themes for the analogic display :"
+msgid "Display a graphic rather than a gauge ?"
 msgstr ""
 
 #: ../data/messages:43
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:55
+msgid "It's the color of the graphic for high CPU values."
+msgstr ""
+
+#: ../data/messages:57
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "It's the color of the graphic for low CPU values."
+msgstr ""
+
+#: ../data/messages:61
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "Background color of the graphic :"
+msgstr ""
+
+#: ../data/messages:65
+msgid "List of available themes for the gauge :"
+msgstr ""
+
+#: ../data/messages:67
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:45
-msgid "Image to display as a watermark on the gauge :"
-msgstr ""
-
-#: ../data/messages:47
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
-
-#: ../data/messages:49
-msgid "Transparency of the watermark :"
-msgstr ""
-
-#: ../data/messages:51
-msgid "Display CPU usage values :"
-msgstr ""
-
-#: ../data/messages:53
-msgid "No"
-msgstr ""
-
-#: ../data/messages:55
-msgid "On icon"
-msgstr ""
-
-#: ../data/messages:57
-msgid "On label"
-msgstr ""
-
-#: ../data/messages:59
-msgid "It's the first color of the gradation used to write the top list."
-msgstr ""
-
-#: ../data/messages:61
-msgid "Start color of the top list :"
-msgstr ""
-
-#: ../data/messages:63
-msgid "It's the second color of the gradation used to write the top list."
-msgstr ""
-
-#: ../data/messages:65
-msgid "Stop color of the top list :"
-msgstr ""
-
-#: ../data/messages:69 ../data/messages:77
-msgid "in seconds."
+#: ../data/messages:69
+msgid "Image to display as a watermark :"
 msgstr ""
 
 #: ../data/messages:71
-msgid "Delay between refresh :"
+msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
 #: ../data/messages:73
+msgid "Transparency of the watermark :"
+msgstr ""
+
+#: ../data/messages:75
+msgid "Display CPU usage values :"
+msgstr ""
+
+#: ../data/messages:77
+msgid "No"
+msgstr ""
+
+#: ../data/messages:79
+msgid "On icon"
+msgstr ""
+
+#: ../data/messages:81
+msgid "On label"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Top List"
+msgstr ""
+
+#: ../data/messages:85
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU-"
 "using programs."
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:87
 msgid "Number of programs to display in the top list :"
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:89
+msgid "It's the first color of the gradation used to write the top list."
+msgstr ""
+
+#: ../data/messages:91
+msgid "Start color of the top list :"
+msgstr ""
+
+#: ../data/messages:93
+msgid "It's the second color of the gradation used to write the top list."
+msgstr ""
+
+#: ../data/messages:95
+msgid "Stop color of the top list :"
+msgstr ""
+
+#: ../data/messages:99 ../data/messages:103
+msgid "in seconds."
+msgstr ""
+
+#: ../data/messages:101
+msgid "Delay between refresh :"
+msgstr ""
+
+#: ../data/messages:105
 msgid "Delay between refresh of the top list :"
 msgstr ""

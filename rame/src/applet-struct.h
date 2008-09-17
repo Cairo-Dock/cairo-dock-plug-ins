@@ -14,6 +14,15 @@ struct _AppletConfig {
 	gchar *cWatermarkImagePath;
 	gdouble fAlpha;
 	
+	gboolean bUseGraphic;
+	CairoDockTypeGraph iGraphType;
+	gboolean bMixGraph;
+	gdouble fLowColor[3];  // RAM
+	gdouble fHigholor[3];
+	gdouble fBgColor[4];
+	gdouble fLowColor2[3];  // SWAP
+	gdouble fHigholor2[3];
+	
 	gint iNbDisplayedProcesses;
 	gboolean bTopInPercent;
 	CairoDockLabelDescription *pTopTextDescription;
@@ -34,6 +43,7 @@ struct _AppletData {
 	gboolean bAcquisitionOK;
 	gboolean bInitialized;
 	Gauge *pGauge;
+	CairoDockGraph *pGraph;
 	glong iMemPageSize;
 	CDProcess **pTopList;
 	CDProcess **pPreviousTopList;

@@ -2,18 +2,17 @@
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2008-09-08 00:53+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
@@ -29,23 +28,19 @@ msgstr "Ju lägre värde, desto mer horisontellt är planet."
 msgid "Height of the vanishing point :"
 msgstr "Höjd på flyktpunkten:"
 
-#: ../data/messages:7
-#: ../data/messages:165
+#: ../data/messages:7 ../data/messages:165
 msgid "Choose the way separators are drawn :"
 msgstr "Välj hur avgränsare visas:"
 
-#: ../data/messages:9
-#: ../data/messages:167
+#: ../data/messages:9 ../data/messages:167
 msgid "Normal separator"
 msgstr "Normal"
 
-#: ../data/messages:11
-#: ../data/messages:169
+#: ../data/messages:11 ../data/messages:169
 msgid "Flat separator"
 msgstr "Platt"
 
-#: ../data/messages:13
-#: ../data/messages:171
+#: ../data/messages:13 ../data/messages:171
 msgid "Physical separator"
 msgstr "Fysisk"
 
@@ -62,24 +57,37 @@ msgid "Caroussel"
 msgstr "Karusell"
 
 #: ../data/messages:21
-msgid "In degrees, regarding the vertical position. It's a sort of inclination of the plane on the horizontal, giving the 3D feeling. So setting it to 0 means the plane is not inclined at all (vertical)."
-msgstr "I grader relativt vertikalpositionen. Ett sorts horisontellt sluttande plan som ger 3D känsla. Värdet 0 anger att planet är helt vertikalt."
+msgid ""
+"In degrees, regarding the vertical position. It's a sort of inclination of "
+"the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+"the plane is not inclined at all (vertical)."
+msgstr ""
+"I grader relativt vertikalpositionen. Ett sorts horisontellt sluttande plan "
+"som ger 3D känsla. Värdet 0 anger att planet är helt vertikalt."
 
 #: ../data/messages:23
 msgid "Inclination of the plane :"
 msgstr "Planets vinkel:"
 
 #: ../data/messages:25
-msgid "0.5 means the dock is half-folded, so half the icons are on the foreground, and half are on the background."
-msgstr "0.5 betyder att dockan är halvt utfälld, dvs hälften av ikoner är i förgrunden, den andra hälften i bakgrunden."
+msgid ""
+"0.5 means the dock is half-folded, so half the icons are on the foreground, "
+"and half are on the background."
+msgstr ""
+"0.5 betyder att dockan är halvt utfälld, dvs hälften av ikoner är i "
+"förgrunden, den andra hälften i bakgrunden."
 
 #: ../data/messages:27
 msgid "Percentage of the dock's width that appears on the foreground :"
 msgstr "Procent av dockans bredd som visas i förgrunden:"
 
 #: ../data/messages:29
-msgid "The greater, the deeper. It is in fact the gap between background icons' bottom and foreground icons' top (in pixels)."
-msgstr "Ju större, desto djupare. Egentligen avståndet mellan bakgrundsikonens underkant och förgrundsikonens ovankant (i pixlar)."
+msgid ""
+"The greater, the deeper. It is in fact the gap between background icons' "
+"bottom and foreground icons' top (in pixels)."
+msgstr ""
+"Ju större, desto djupare. Egentligen avståndet mellan bakgrundsikonens "
+"underkant och förgrundsikonens ovankant (i pixlar)."
 
 #: ../data/messages:31
 msgid "Depth of the plane :"
@@ -117,13 +125,11 @@ msgstr "Förhållande höjd/bredd:"
 msgid "0 means the wave is totally flat, 1 means the wave is maximal."
 msgstr "0 betyder att vågen är helt platt, 1 betyder vågens maxvärde."
 
-#: ../data/messages:49
-#: ../data/messages:67
+#: ../data/messages:49 ../data/messages:67
 msgid "Magnitude of the wave :"
 msgstr "Vågens styrka:"
 
-#: ../data/messages:51
-#: ../data/messages:161
+#: ../data/messages:51 ../data/messages:161
 msgid "in pixels."
 msgstr "i pixlar."
 
@@ -132,8 +138,11 @@ msgid "Space between icons and their label :"
 msgstr "Avstånd mellan ikon och etikett:"
 
 #: ../data/messages:55
-msgid "It may recquire more CPU during the unfolding animation, except if you launch Cairo-Dock with Glitz."
-msgstr "Kan kräva mer datorkraft under animeringen, förutom om du använder Glitz."
+msgid ""
+"It may recquire more CPU during the unfolding animation, except if you "
+"launch Cairo-Dock with Glitz."
+msgstr ""
+"Kan kräva mer datorkraft under animeringen, förutom om du använder Glitz."
 
 #: ../data/messages:57
 msgid "Draw labels while unfolding ?"
@@ -143,9 +152,7 @@ msgstr "Visa etiketter under animering?"
 msgid "Rainbow"
 msgstr "Regnbåge"
 
-#: ../data/messages:61
-#: ../data/messages:79
-#: ../data/messages:119
+#: ../data/messages:61 ../data/messages:79 ../data/messages:119
 msgid "Space between rows :"
 msgstr "Avstånd mellan rader:"
 
@@ -154,16 +161,24 @@ msgid "Space between icons :"
 msgstr "Avstånd mellan ikoner:"
 
 #: ../data/messages:65
-msgid "0 means the wave is totally flat, 1 means the wave is identical to other views."
-msgstr "0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra vyer."
+msgid ""
+"0 means the wave is totally flat, 1 means the wave is identical to other "
+"views."
+msgstr ""
+"0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra "
+"vyer."
 
 #: ../data/messages:69
 msgid "Number of icons on the first row :"
 msgstr "Antal ikoner på första raden:"
 
 #: ../data/messages:71
-msgid "in degree. The smaller, the more the cone is narrow. 180° means the cone is widely opened."
-msgstr "i grader. Ju lägre värde, desto smalare kon. 180° betyder att konen är vidöppen."
+msgid ""
+"in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+"widely opened."
+msgstr ""
+"i grader. Ju lägre värde, desto smalare kon. 180° betyder att konen är "
+"vidöppen."
 
 #: ../data/messages:73
 msgid "Cone's width :"
@@ -173,93 +188,75 @@ msgstr "Konens bredd:"
 msgid "Slide"
 msgstr "Rutnät"
 
-#: ../data/messages:77
-#: ../data/messages:117
+#: ../data/messages:77 ../data/messages:117
 msgid "Space between columns :"
 msgstr "Avstånd mellan kolumner:"
 
-#: ../data/messages:81
-#: ../data/messages:121
+#: ../data/messages:81 ../data/messages:121
 msgid "Max size of icons :"
 msgstr "Ikonens maxstorlek:"
 
-#: ../data/messages:83
-#: ../data/messages:123
+#: ../data/messages:83 ../data/messages:123
 msgid "Sinusoidal wave radius :"
 msgstr "Sinusvågens radie:"
 
-#: ../data/messages:85
-#: ../data/messages:125
+#: ../data/messages:85 ../data/messages:125
 msgid "Use a linear wave rather than a sinusoidal one ?"
 msgstr "Använd linjär våg istället för sinusformad?"
 
-#: ../data/messages:87
-#: ../data/messages:127
+#: ../data/messages:87 ../data/messages:127
 msgid "Use a wide shape ?"
 msgstr "Använd bred form?"
 
-#: ../data/messages:89
-#: ../data/messages:129
+#: ../data/messages:89 ../data/messages:129
 msgid "Display text only for pointed icon ?"
 msgstr "Visa text endast på aktiv ikon?"
 
-#: ../data/messages:91
-#: ../data/messages:131
+#: ../data/messages:91 ../data/messages:131
 msgid "Display text for all icons ?"
 msgstr "Visa text för alla ikoner?"
 
-#: ../data/messages:93
-#: ../data/messages:133
+#: ../data/messages:93 ../data/messages:133
 msgid "Draw a background ?"
 msgstr "Rita bakgrund?"
 
-#: ../data/messages:95
-#: ../data/messages:135
+#: ../data/messages:95 ../data/messages:135
 msgid "First gradient color (r,v,b,a) :"
 msgstr "Startfärg (r,g,b,a):"
 
-#: ../data/messages:97
-#: ../data/messages:137
+#: ../data/messages:97 ../data/messages:137
 msgid "Second gradient color (r,v,b,a) :"
 msgstr "Slutfärg (r,g,b,a):"
 
-#: ../data/messages:99
-#: ../data/messages:139
+#: ../data/messages:99 ../data/messages:139
 msgid "Top to bottom gradient ?"
 msgstr "Uppifrån och ner?"
 
-#: ../data/messages:101
-#: ../data/messages:141
+#: ../data/messages:101 ../data/messages:141
 msgid "Left to right gradient ?"
 msgstr "Vänster till höger?"
 
-#: ../data/messages:103
-#: ../data/messages:143
+#: ../data/messages:103 ../data/messages:143
 msgid "Arrow width :"
 msgstr "Pilens bredd:"
 
-#: ../data/messages:105
-#: ../data/messages:145
+#: ../data/messages:105 ../data/messages:145
 msgid "Arrow Height :"
 msgstr "Pilens höjd:"
 
-#: ../data/messages:107
-#: ../data/messages:147
+#: ../data/messages:107 ../data/messages:147
 msgid "Arrow shift percent :"
 msgstr "Pilens förskjutning i procent:"
 
-#: ../data/messages:109
-#: ../data/messages:149
+#: ../data/messages:109 ../data/messages:149
 msgid "Corner radius :"
 msgstr "Hörnradie:"
 
-#: ../data/messages:111
-#: ../data/messages:151
+#: ../data/messages:111 ../data/messages:151
 msgid "Border line width :"
 msgstr "Linjebredd för ram:"
 
-#: ../data/messages:113
-#: ../data/messages:153
+#: ../data/messages:113 ../data/messages:153
 msgid "Border line color (r,v,b,a) :"
 msgstr "Linjefärg (r.g.b.a):"
 
@@ -282,4 +279,3 @@ msgstr "Kurvans böjning i procent:"
 #: ../data/messages:163
 msgid "Amplitude of the curve."
 msgstr "Kurvans amplitud."
-

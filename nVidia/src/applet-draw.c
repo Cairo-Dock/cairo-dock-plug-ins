@@ -21,7 +21,24 @@ void cd_nvidia_draw_no_data (void) {
 
 void cd_nvidia_draw_icon (void) {
 	if (myData.pGPUData.iGPUTemp == myData.iPreviousGPUTemp)  // aucun changement.
-		return ;
+	{
+		if (myData.pGauge)
+			return ;
+		else
+		{
+			double fTempPercent;
+			if (myData.pGPUData.iGPUTemp <= myConfig.iLowerLimit) {
+				fTempPercent = 0;
+			}
+			else if (myData.pGPUData.iGPUTemp >= myConfig.iUpperLimit ) {
+				fTempPercent = 1;
+			}
+			else {
+				fTempPercent = 1. * (myData.pGPUData.iGPUTemp - myConfig.iLowerLimit) / (myConfig.iUpperLimit - myConfig.iLowerLimit);
+			}
+			CD_APPLET_RENDER_GRAPH_NEW_VALUE (myData.pGraph, fTempPercent);
+		}
+	}
 	
 	if (myData.bAlerted == TRUE && myData.pGPUData.iGPUTemp < myConfig.iAlertLimit)
 		myData.bAlerted = FALSE; //On réinitialise l'alert quand la température descend en dessou de la limite.
@@ -64,10 +81,17 @@ void cd_nvidia_draw_icon (void) {
 	}
 	else {
 		fTempPercent = 1. * (myData.pGPUData.iGPUTemp - myConfig.iLowerLimit) / (myConfig.iUpperLimit - myConfig.iLowerLimit);
-		//fTempPercent = 1 - (fTempPercent / 10);
 	}
 	cd_debug("nVidia - Value has changed, redraw (%f)", fTempPercent);
-	cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) fTempPercent);
+	
+	if (myData.pGauge)
+	{
+		CD_APPLET_RENDER_GAUGE (myData.pGauge, fTempPercent);
+	}
+	else
+	{
+		CD_APPLET_RENDER_GRAPH_NEW_VALUE (myData.pGraph, fTempPercent);
+	}
 	
 	myData.iPreviousGPUTemp = myData.pGPUData.iGPUTemp;
 }

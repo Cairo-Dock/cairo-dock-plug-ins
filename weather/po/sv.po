@@ -2,18 +2,89 @@
 # Copyright (C) 2007-2008 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007-2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
 "PO-Revision-Date: 2008-09-06 14:21+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-load-icons.c:17
+msgid "Monday"
+msgstr "Måndag"
+
+#: ../src/applet-load-icons.c:17
+msgid "Tuesday"
+msgstr "Tisdag"
+
+#: ../src/applet-load-icons.c:17
+msgid "Wednesday"
+msgstr "Onsdag"
+
+#: ../src/applet-load-icons.c:17
+msgid "Thursday"
+msgstr "Torsdag"
+
+#: ../src/applet-load-icons.c:17
+msgid "Friday"
+msgstr "Fredag"
+
+#: ../src/applet-load-icons.c:17
+msgid "Saturday"
+msgstr "Lördag"
+
+#: ../src/applet-load-icons.c:17
+msgid "Sunday"
+msgstr "Söndag"
+
+#: ../src/applet-load-icons.c:17
+msgid "Jan"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Feb"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Mar"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Apr"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Jun"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Jui"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Aug"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Sep"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Oct"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Nov"
+msgstr ""
+
+#: ../src/applet-load-icons.c:17
+msgid "Dec"
+msgstr ""
 
 #: ../src/applet-notifications.c:21
 msgid ""
@@ -29,8 +100,7 @@ msgid ""
 " (for exemple : Paris, France)"
 msgstr "Ange geografiska plats (t ex Stockholm, Sweden)"
 
-#: ../src/applet-notifications.c:82
-#: ../src/applet-notifications.c:95
+#: ../src/applet-notifications.c:82 ../src/applet-notifications.c:95
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -50,8 +120,7 @@ msgstr "Sök efter geografisk plats:"
 msgid "Reload now"
 msgstr "Uppdatera nu"
 
-#: ../src/applet-notifications.c:178
-#: ../src/applet-notifications.c:207
+#: ../src/applet-notifications.c:178 ../src/applet-notifications.c:207
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -59,8 +128,7 @@ msgstr ""
 "Inga data hittades\n"
 "Är du ansluten till Internet?"
 
-#: ../src/applet-notifications.c:194
-#: ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:219
 msgid "Temperature"
 msgstr "Temperatur"
 
@@ -68,23 +136,19 @@ msgstr "Temperatur"
 msgid "Precipitation Probability"
 msgstr "Risk för nederbörd"
 
-#: ../src/applet-notifications.c:196
-#: ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
 msgid "Wind"
 msgstr "Vind"
 
-#: ../src/applet-notifications.c:197
-#: ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
 msgid "Humidity"
 msgstr "Fuktighet"
 
-#: ../src/applet-notifications.c:198
-#: ../src/applet-notifications.c:222
+#: ../src/applet-notifications.c:198 ../src/applet-notifications.c:222
 msgid "SunRise"
 msgstr "Soluppgång"
 
-#: ../src/applet-notifications.c:198
-#: ../src/applet-notifications.c:222
+#: ../src/applet-notifications.c:198 ../src/applet-notifications.c:222
 msgid "SunSet"
 msgstr "Solnedgång"
 
@@ -129,8 +193,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
+"eller ALT+vänsterklick"
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -138,7 +206,8 @@ msgstr "Storlek på Desklet (bredd x höjd):"
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
+msgstr ""
+"Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -157,29 +226,40 @@ msgid "Keep above other windows ?"
 msgstr "Placera ovanför andra fönster?"
 
 #: ../data/messages:31
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
+"type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
 #: ../data/messages:35
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
+"använda ALT+vänsterklick."
 
 #: ../data/messages:37
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:39
-#: ../data/messages:41
+#: ../data/messages:39 ../data/messages:41
 msgid "Configuration"
 msgstr "Konfiguration"
 
 #: ../data/messages:43
-msgid "Right click on the icon to let Cairo-Dock help you to find your location code."
-msgstr "Högerklicka ikonen om du vill att Cairo-Dock ska hjälpa dig att hitta kod för platsen."
+msgid ""
+"Right click on the icon to let Cairo-Dock help you to find your location "
+"code."
+msgstr ""
+"Högerklicka ikonen om du vill att Cairo-Dock ska hjälpa dig att hitta kod "
+"för platsen."
 
 #: ../data/messages:45
 msgid "Code of your location :"
@@ -244,25 +324,3 @@ msgstr "Namn på vy för sub-dockan:"
 #: ../data/messages:75
 msgid "Render desklet in 3D ?"
 msgstr "Använd 3D för Desklet?"
-
-msgid "Monday"
-msgstr "Måndag"
-
-msgid "Tuesday"
-msgstr "Tisdag"
-
-msgid "Wednesday"
-msgstr "Onsdag"
-
-msgid "Thursday"
-msgstr "Torsdag"
-
-msgid "Friday"
-msgstr "Fredag"
-
-msgid "Saturday"
-msgstr "Lördag"
-
-msgid "Sunday"
-msgstr "Söndag"
-

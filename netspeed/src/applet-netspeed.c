@@ -146,7 +146,14 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
-		cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
+		if (myData.pGauge)
+		{
+			CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
+		}
+		else
+		{
+			CD_APPLET_RENDER_GRAPH (myData.pGraph);
+		}
 		
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
@@ -158,7 +165,14 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(myDock ? "..." : D_("Loading"));
-			cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
+			if (myData.pGauge)
+			{
+				CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
+			}
+			else
+			{
+				CD_APPLET_RENDER_GRAPH (myData.pGraph);
+			}
 		}
 		else
 		{
@@ -187,21 +201,39 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 				myData.iMaxDownRate = myData.iDownloadSpeed;
 			}
 			
-			if((myData.iMaxUpRate != 0) && (myData.iMaxDownRate != 0))
-			{
-				GList *pList = NULL;  /// un tableau ca serait plus sympa ...
-				double fUpValue = (double) myData.iUploadSpeed / myData.iMaxUpRate;
-				pList = g_list_append (pList, &fUpValue);
-				double fDownValue = (double) myData.iDownloadSpeed / myData.iMaxDownRate;
-				pList = g_list_append (pList, &fDownValue);
-				cairo_dock_render_gauge_multi_value(myDrawContext,myContainer,myIcon,myData.pGauge,pList);
-				g_list_free (pList);
-			}
+			//if((myData.iMaxUpRate != 0) && (myData.iMaxDownRate != 0))
+			//{
+				double fUpValue, fDownValue;
+				if (myData.iMaxUpRate != 0)
+					fUpValue = (double) myData.iUploadSpeed / myData.iMaxUpRate;
+				else
+					fUpValue = 0.;
+				if (myData.iMaxDownRate != 0)
+					fDownValue = (double) myData.iDownloadSpeed / myData.iMaxDownRate;
+				else
+					fDownValue = 0.;
+				
+				if (myData.pGauge)
+				{
+					GList *pList = NULL;  /// un tableau ca serait plus sympa ...
+					double fUpValue = (double) myData.iUploadSpeed / myData.iMaxUpRate;
+					pList = g_list_append (pList, &fUpValue);
+					double fDownValue = (double) myData.iDownloadSpeed / myData.iMaxDownRate;
+					pList = g_list_append (pList, &fDownValue);
+					CD_APPLET_RENDER_GAUGE_MULTI_VALUE (myData.pGauge, pList);
+					g_list_free (pList);
+				}
+				else
+				{
+					CD_APPLET_RENDER_GRAPH_NEW_VALUES (myData.pGraph, fDownValue, fUpValue);
+				}
+/*			}
 			else
 			{
 				if(myData.iMaxUpRate != 0)
 				{
-					cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) myData.iUploadSpeed / myData.iMaxUpRate);
+					if (myData.pGauge)
+						cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) myData.iUploadSpeed / myData.iMaxUpRate);
 				}
 				else if(myData.iMaxDownRate != 0)
 				{
@@ -209,7 +241,7 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 				}
 				else
 					cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
-			}
+			}*/
 		}
 	}
 	return TRUE;

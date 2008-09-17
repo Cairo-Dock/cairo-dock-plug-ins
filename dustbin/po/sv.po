@@ -2,18 +2,17 @@
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2008-09-06 15:23+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
@@ -37,13 +36,11 @@ msgstr ""
 "dustbin applet för Cairo-Dock\n"
 " skapad av Fabrice Rey (fabounet@users.berlios.de)"
 
-#: ../src/applet-notifications.c:36
-#: ../src/applet-notifications.c:41
+#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:41
 msgid "Show Trash"
 msgstr "Visa Papperskorg"
 
-#: ../src/applet-notifications.c:37
-#: ../src/applet-notifications.c:50
+#: ../src/applet-notifications.c:37 ../src/applet-notifications.c:50
 msgid "Delete Trash"
 msgstr "Töm Papperskorg"
 
@@ -124,16 +121,24 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
+"eller ALT+vänsterklick"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Storlek på Desklet (bredd x höjd):"
 
 #: ../data/messages:19
-msgid "Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen"
-msgstr "Beroende på din fönsterhanterare, kan du flytta fönstret med ALT+vänsterklick. Negativa värden beräknas från nedre/högra skärmkanten"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
+msgstr ""
+"Beroende på din fönsterhanterare, kan du flytta fönstret med ALT"
+"+vänsterklick. Negativa värden beräknas från nedre/högra skärmkanten"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -152,16 +157,24 @@ msgid "Keep above other windows ?"
 msgstr "Placera ovanför andra fönster?"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
+"type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
+"använda ALT+vänsterklick."
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -196,7 +209,8 @@ msgid "They don't even need to be real trash directories."
 msgstr "Behöver inte vara riktiga papperskorgsmappar."
 
 #: ../data/messages:51
-msgid "Here you can specify a list of additionnal Trash directories to monitor :"
+msgid ""
+"Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr "Ange andra mappar som ska övervakas:"
 
 #: ../data/messages:53
@@ -219,10 +233,12 @@ msgstr "Totalt antal filer"
 msgid "Total weight"
 msgstr "Total storlek"
 
-#: ../data/messages:63
-#: ../data/messages:67
-msgid "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
-msgstr "i Mb. Du får ett meddelande om du överskrider gränsen. Ange 0 för att inaktivera."
+#: ../data/messages:63 ../data/messages:67
+msgid ""
+"in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+msgstr ""
+"i Mb. Du får ett meddelande om du överskrider gränsen. Ange 0 för att "
+"inaktivera."
 
 #: ../data/messages:65
 msgid "Maximum total size of all dustbins :"
@@ -245,10 +261,10 @@ msgid "Interval of time to check if dustbin is full/empty :"
 msgstr "Tid mellan uppdateringar:"
 
 #: ../data/messages:77
-msgid "Only use this if you notice that the applet can't display the trash on click."
+msgid ""
+"Only use this if you notice that the applet can't display the trash on click."
 msgstr "Använd bara om papperskorgen inte visas när ikonen klickas."
 
 #: ../data/messages:79
 msgid "Alternative file browser used to show a trash :"
 msgstr "Alternativ filhanterare för att visa papperskorgens innehåll:"
-

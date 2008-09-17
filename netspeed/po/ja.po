@@ -32,7 +32,7 @@ msgstr "GB"
 msgid "TB"
 msgstr "TB"
 
-#: ../src/applet-netspeed.c:160
+#: ../src/applet-netspeed.c:167
 msgid "Loading"
 msgstr "読み込み中"
 
@@ -155,67 +155,127 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:37
+#: ../data/messages:37 ../data/messages:91
 msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:39
-msgid "By default it will be 'eth0'."
-msgstr "デフォルトでは 'eth0' になります。"
+msgid "Display a graphic rather than a gauge ?"
+msgstr ""
 
 #: ../data/messages:41
-msgid "interface :"
-msgstr "インターフェイス :"
+msgid "Type of graphic :"
+msgstr ""
 
 #: ../data/messages:43
-msgid "Information"
-msgstr "情報"
+msgid "Line"
+msgstr ""
 
 #: ../data/messages:45
-msgid "Display speed values :"
-msgstr "速度の表示 :"
+msgid "Plain"
+msgstr ""
 
 #: ../data/messages:47
-msgid "No"
-msgstr "なし"
+msgid "Bar"
+msgstr ""
 
 #: ../data/messages:49
-msgid "On icon"
-msgstr "アイコン上"
+msgid "Circle"
+msgstr ""
 
 #: ../data/messages:51
-msgid "On label"
-msgstr "ラベル上"
+msgid "Plain Circle"
+msgstr ""
 
-#: ../data/messages:53
-msgid "List of available themes for the analogic display :"
-msgstr "アナログ表示に利用可能なテーマのリスト :"
+#: ../data/messages:53 ../data/messages:61
+msgid "It's the color of the graphic for high CPU values."
+msgstr ""
 
 #: ../data/messages:55
+msgid "High values color for the download speed :"
+msgstr ""
+
+#: ../data/messages:57 ../data/messages:65
+msgid "It's the color of the graphic for low CPU values."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Low values color for the download speed :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "High values color for the upload speed :"
+msgstr ""
+
+#: ../data/messages:67
+msgid "Low values color for the upload speed :"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Draw both values on the same graph ?"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Background color of the graphic :"
+msgstr ""
+
+#: ../data/messages:73
+#, fuzzy
+msgid "List of available themes for the gauge :"
+msgstr "アナログ表示に利用可能なテーマのリスト :"
+
+#: ../data/messages:75
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:77
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:79
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:81
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:83
+msgid "Display speed values :"
+msgstr "速度の表示 :"
+
+#: ../data/messages:85
+msgid "No"
+msgstr "なし"
+
+#: ../data/messages:87
+msgid "On icon"
+msgstr "アイコン上"
+
+#: ../data/messages:89
+msgid "On label"
+msgstr "ラベル上"
+
+#: ../data/messages:93
+msgid "By default it will be 'eth0'."
+msgstr "デフォルトでは 'eth0' になります。"
+
+#: ../data/messages:95
+msgid "interface :"
+msgstr "インターフェイス :"
+
+#: ../data/messages:97
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:65
+#: ../data/messages:99
 msgid "Delay between 2 measures :"
 msgstr "計測の間隔時間 :"
+
+#~ msgid "Information"
+#~ msgstr "情報"
 
 #~ msgid ""
 #~ "Total amount of data :\n"

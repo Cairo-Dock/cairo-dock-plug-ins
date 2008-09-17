@@ -2,18 +2,17 @@
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2008-09-06 14:34+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
@@ -70,8 +69,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
+"eller ALT+vänsterklick"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -79,7 +82,8 @@ msgstr "Storlek på Desklet (bredd x höjd):"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Beroende på din fönsterhanterare, kan du flytta fönstret med ALT+vänsterklick"
+msgstr ""
+"Beroende på din fönsterhanterare, kan du flytta fönstret med ALT+vänsterklick"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -98,16 +102,24 @@ msgid "Keep above other windows ?"
 msgstr "Placera ovanför andra fönster?"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
+"type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
+"använda ALT+vänsterklick."
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -218,7 +230,9 @@ msgid "Force the image to fill the icon/desklet ?"
 msgstr "Repetera bilden för att fylla hela dockan?"
 
 #: ../data/messages:89
-msgid "Set the transparency channel to 0 if you just don't want to have a background."
+msgid ""
+"Set the transparency channel to 0 if you just don't want to have a "
+"background."
 msgstr "Sätt alfakanalen till 0 om du inte vill visa någon bakgrund."
 
 #: ../data/messages:91
@@ -230,8 +244,12 @@ msgid "Decorations"
 msgstr "Fönsterdekorationer"
 
 #: ../data/messages:95
-msgid "If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration."
-msgstr "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för att inte visa några dekorationer."
+msgid ""
+"If you choose 'personnal', you can define your own decoration above, or let "
+"it blank to not use any decoration."
+msgstr ""
+"Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
+"att inte visa några dekorationer."
 
 #: ../data/messages:97
 msgid "Choose a background and foreground decoration :"
@@ -254,7 +272,9 @@ msgid "frame with scotch"
 msgstr "tejpad ram"
 
 #: ../data/messages:107
-msgid "It's an image that will be displayed below the slide, like a frame for exemple."
+msgid ""
+"It's an image that will be displayed below the slide, like a frame for "
+"exemple."
 msgstr "Bild som visas under bildspelet, t ex som en ram."
 
 #: ../data/messages:109
@@ -265,9 +285,7 @@ msgstr "Bakgrundsbild:"
 msgid "Background tansparency :"
 msgstr "Genomskinlighet:"
 
-#: ../data/messages:113
-#: ../data/messages:117
-#: ../data/messages:121
+#: ../data/messages:113 ../data/messages:117 ../data/messages:121
 #: ../data/messages:125
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr "Oftast bredden på den vänstra sidan av ramen, i pixlar."
@@ -289,7 +307,9 @@ msgid "Bottom offset :"
 msgstr "Avstånd från nederkant:"
 
 #: ../data/messages:129
-msgid "It's an image that will be displayed above the slide, like a reflect for exemple."
+msgid ""
+"It's an image that will be displayed above the slide, like a reflect for "
+"exemple."
 msgstr "Bild som visas ovanför bildspelet, t ex en reflex."
 
 #: ../data/messages:131
@@ -299,4 +319,3 @@ msgstr "Bild för reflektion:"
 #: ../data/messages:133
 msgid "Reflection tansparency :"
 msgstr "Genomskinlighet för reflektion:"
-

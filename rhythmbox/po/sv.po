@@ -1,20 +1,19 @@
 # translation of fr.po to français
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
-#
+# 
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 # Guillaume <gu_barthe@yahoo.fr>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2008-09-06 14:34+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
@@ -33,8 +32,7 @@ msgstr ""
 "Album : %s\n"
 "Titel : %s"
 
-#: ../src/rhythmbox-draw.c:140
-#: ../src/rhythmbox-draw.c:141
+#: ../src/rhythmbox-draw.c:140 ../src/rhythmbox-draw.c:141
 #: ../src/rhythmbox-draw.c:142
 msgid "Unknown"
 msgstr "Okänt"
@@ -88,8 +86,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
+"eller ALT+vänsterklick"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -97,7 +99,8 @@ msgstr "Storlek på Desklet (bredd x höjd):"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
+msgstr ""
+"Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -116,16 +119,24 @@ msgid "Keep above other windows ?"
 msgstr "Placera ovanför andra fönster?"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
+"type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
+"använda ALT+vänsterklick."
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -188,8 +199,12 @@ msgid "random"
 msgstr "slumpmässig"
 
 #: ../data/messages:65
-msgid "It will prevent the rhythmbox's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
-msgstr "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att bete sig som programmet."
+msgid ""
+"It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+"icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+"Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
+"bete sig som programmet."
 
 #: ../data/messages:67
 msgid "Steal the rhythmbox's icon in taskbar ?"
@@ -228,8 +243,12 @@ msgid "n° of track"
 msgstr "spårnummer"
 
 #: ../data/messages:85
-msgid "If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration."
-msgstr "Om du anger \"personlig\" kan du själv definiera utseendet. Lämna tomt för att inte använda dekorationer."
+msgid ""
+"If you choose 'personnal', you can define your own decoration above, or let "
+"it blank to not use any decoration."
+msgstr ""
+"Om du anger \"personlig\" kan du själv definiera utseendet. Lämna tomt för "
+"att inte använda dekorationer."
 
 #: ../data/messages:87
 msgid "Choose a decoration for the desklet mode :"
@@ -260,7 +279,9 @@ msgid "frame with scotch"
 msgstr "tejpad ram"
 
 #: ../data/messages:101
-msgid "It's an image that will be displayed below the cover, like a frame for exemple."
+msgid ""
+"It's an image that will be displayed below the cover, like a frame for "
+"exemple."
 msgstr "Bild som visas under fodralet, t ex en ram."
 
 #: ../data/messages:103
@@ -292,7 +313,9 @@ msgid "Bottom offset :"
 msgstr "Avstånd från nederkant:"
 
 #: ../data/messages:117
-msgid "It's an image that will be displayed above the cover, like a reflect for exemple."
+msgid ""
+"It's an image that will be displayed above the cover, like a reflect for "
+"exemple."
 msgstr "Bild som visas ovanför fodralet, t ex en reflex."
 
 #: ../data/messages:119
@@ -307,11 +330,8 @@ msgstr "Genomskinlighet för reflexion:"
 msgid "Personnalisation"
 msgstr "Inställningar"
 
-#: ../data/messages:125
-#: ../data/messages:129
-#: ../data/messages:133
-#: ../data/messages:137
-#: ../data/messages:141
+#: ../data/messages:125 ../data/messages:129 ../data/messages:133
+#: ../data/messages:137 ../data/messages:141
 msgid "Let t empty to use the default icon."
 msgstr "Lämna tomt för använda standaralternativet."
 
@@ -334,4 +354,3 @@ msgstr "Bild för pausa:"
 #: ../data/messages:143
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Bild för bruten:"
-

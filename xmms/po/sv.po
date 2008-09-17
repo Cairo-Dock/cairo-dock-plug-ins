@@ -2,12 +2,11 @@
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
 "PO-Revision-Date: 2008-09-06 14:43+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
@@ -82,8 +81,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
+"eller ALT+vänsterklick"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -91,7 +94,8 @@ msgstr "Storlek på Desklet (bredd x höjd):"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
+msgstr ""
+"Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -110,16 +114,24 @@ msgid "Keep above other windows ?"
 msgstr "Placera ovanför andra fönster?"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
+"type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
+"använda ALT+vänsterklick."
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -154,8 +166,12 @@ msgid "Exaile"
 msgstr "Exaile"
 
 #: ../data/messages:51
-msgid "It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
-msgstr "Gör att spelarens ikon inte visas i aktivitetsfältet. Appletens ikon används istället för att styra programmet."
+msgid ""
+"It will prevent the player's icon to appear in the task bar. The applet's "
+"icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+"Gör att spelarens ikon inte visas i aktivitetsfältet. Appletens ikon används "
+"istället för att styra programmet."
 
 #: ../data/messages:53
 msgid "Steal the player's icon from taskbar ?"
@@ -269,11 +285,8 @@ msgstr "slumpmässig"
 msgid "Personnalisation"
 msgstr "Inställningar"
 
-#: ../data/messages:109
-#: ../data/messages:113
-#: ../data/messages:117
-#: ../data/messages:121
-#: ../data/messages:125
+#: ../data/messages:109 ../data/messages:113 ../data/messages:117
+#: ../data/messages:121 ../data/messages:125
 msgid "Let it empty to use the default icon."
 msgstr "Lämna tomt för att använda standardkortet."
 
@@ -296,4 +309,3 @@ msgstr "Bild för pausa:"
 #: ../data/messages:127
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Bild för bruten:"
-

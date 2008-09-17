@@ -57,8 +57,39 @@ use size=
 #F[Display;gtk-dialog-info]
 frame_disp=
 
-#R+[] List of available themes for the analogic display :/
+#b Display a graphic rather than a gauge ?
+use graphic = false
+
+#r[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
+graphic type = 0
+
+#c+3[0;1] High values color for RAM :
+#{It's the color of the graphic for high CPU values.}
+high color = 0;0;1
+
+#c+3[0;1] Low values color for RAM :
+#{It's the color of the graphic for low CPU values.}
+low color = 0;1;0
+
+#c+3[0;1] High values color for SWAP :
+#{It's the color of the graphic for high CPU values.}
+high color2 = 1;0;0
+
+#c+3[0;1] Low values color for SWAP :
+#{It's the color of the graphic for low CPU values.}
+low color2 = 1;1;0
+
+#b Draw both values on the same graph ?
+mix graph = false
+
+#c+4[0;1] Background color of the graphic :
+bg color = .5;.5;1.;.4
+
+#R+[] List of available themes for the gauge :/
 theme = turbo-night-fuel
+
+#v
+sep1=
 
 #S+ Image to display as a watermark on the gauge :
 #{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark.}
@@ -68,11 +99,22 @@ watermark image =
 #{Set it up to 0 if you don't want to have a watermark.}
 watermark alpha = .6
 
+#v
+sep2=
+
 #r[No;On icon;On label] Display memory values :
 info display = 1
 
 #b Display SWAP too ?
 show swap = false
+
+
+#F[Top List;gtk-sort-ascending]
+frame_top=
+
+#i[1;20] Number of programs to display in the top list :
+#{When you left-click on the icon, you will get the list of the N most memory-using programs.}
+top = 5
 
 #c+3[0;1] Start color of the top list :
 #{It's the first color of the gradation used to write the top list.}
@@ -82,16 +124,13 @@ top color start = 0;1;0
 #{It's the second color of the gradation used to write the top list.}
 top color stop = 0;0;1
 
+
 #F[Configuration;gtk-preferences]
 frame_conf=
 
 #i[1;60] Delay between refresh :
 #{in seconds.}
 delay = 10
-
-#i[1;20] Number of programs to display in the top list :
-#{When you left-click on the icon, you will get the list of the N most memory-using programs.}
-top = 5
 
 #b Show top memory usage in % ?
 top in percent = false

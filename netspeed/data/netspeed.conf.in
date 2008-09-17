@@ -55,26 +55,62 @@ use size=
 
 #[gtk-preferences]
 [Configuration]
-#s interface :
-#{By default it will be 'eth0'.}
-interface = 
 
-#F[Information;gtk-info]
-frame_info=
+#b Display a graphic rather than a gauge ?
+use graphic = false
 
-#r[No;On icon;On label] Display speed values :
-info display = 1
+#r[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
+graphic type = 0
 
-#R+[] List of available themes for the analogic display :/
-theme = turbo-night
+#c+3[0;1] High values color for the download speed :
+#{It's the color of the graphic for high CPU values.}
+high color = 0;0;1
+
+#c+3[0;1] Low values color for the download speed :
+#{It's the color of the graphic for low CPU values.}
+low color = 0;1;0
+
+#c+3[0;1] High values color for the upload speed :
+#{It's the color of the graphic for high CPU values.}
+high color2 = 1;0;0
+
+#c+3[0;1] Low values color for the upload speed :
+#{It's the color of the graphic for low CPU values.}
+low color2 = 1;1;0
+
+#b Draw both values on the same graph ?
+mix graph = false
+
+#c+4[0;1] Background color of the graphic :
+bg color = .5;.5;1.;.4
+
+#R+[] List of available themes for the gauge :/
+theme = turbo-night-fuel
+
+#v
+sep1=
 
 #S+ Image to display as a watermark on the gauge :
 #{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark.}
-watermark image = 
+watermark image =
 
 #e+[0;1] Transparency of the watermark :
 #{Set it up to 0 if you don't want to have a watermark.}
 watermark alpha = .6
+
+#v
+sep2=
+
+#r[No;On icon;On label] Display speed values :
+info display = 1
+
+
+#F[Configuration;gtk-preferences]
+frame_conf=
+
+#s interface :
+#{By default it will be 'eth0'.}
+interface = 
 
 #i[1;30] Delay between 2 measures :
 #{in seconds.}

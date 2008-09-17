@@ -15,7 +15,7 @@ msgstr ""
 msgid "day(s)"
 msgstr "jour(s)"
 
-#: ../src/applet-cpusage.c:221
+#: ../src/applet-cpusage.c:228
 msgid "Loading"
 msgstr "Chargement"
 
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37 ../data/messages:67
+#: ../data/messages:37 ../data/messages:97
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -147,68 +147,102 @@ msgid "Display"
 msgstr "Affichage"
 
 #: ../data/messages:41
-msgid "List of available themes for the analogic display :"
-msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
+msgid "Display a graphic rather than a gauge ?"
+msgstr ""
 
 #: ../data/messages:43
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
-msgstr "Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si vous ne voulez pas de filigrane."
+msgid "Type of graphic :"
+msgstr ""
 
 #: ../data/messages:45
-msgid "Image to display as a watermark :"
-msgstr "Image à afficher en filigrane :"
+msgid "Line"
+msgstr ""
 
 #: ../data/messages:47
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
+msgid "Plain"
+msgstr ""
 
 #: ../data/messages:49
-msgid "Transparency of the watermark :"
-msgstr "Transparence du filigrane"
+msgid "Bar"
+msgstr ""
 
 #: ../data/messages:51
-msgid "Display CPU usage values :"
-msgstr "Afficher les valeurs d'utilisations du CPU :"
+msgid "Circle"
+msgstr ""
 
 #: ../data/messages:53
-msgid "No"
-msgstr "Non"
+msgid "Plain Circle"
+msgstr ""
 
 #: ../data/messages:55
-msgid "On icon"
-msgstr "Sur l'icône"
+#, fuzzy
+msgid "It's the color of the graphic for high CPU values."
+msgstr "Première couleur pour le texte de la graduation de la top liste."
 
 #: ../data/messages:57
-msgid "On label"
-msgstr "Sur l'étiquette"
+msgid "High values color :"
+msgstr ""
 
 #: ../data/messages:59
-msgid "It's the first color of the gradation used to write the top list."
+#, fuzzy
+msgid "It's the color of the graphic for low CPU values."
 msgstr "Première couleur pour le texte de la graduation de la top liste."
 
 #: ../data/messages:61
-msgid "Start color of the top list :"
-msgstr "Couleur de début de la top liste :"
+msgid "Low values color :"
+msgstr ""
 
 #: ../data/messages:63
-msgid "It's the second color of the gradation used to write the top list."
-msgstr "Seconde couleur pour le texte de la graduation de la top liste."
+#, fuzzy
+msgid "Background color of the graphic :"
+msgstr "Couleur de début de la top liste :"
 
 #: ../data/messages:65
-msgid "Stop color of the top list :"
-msgstr "Couleur de fin de la top liste :"
+#, fuzzy
+msgid "List of available themes for the gauge :"
+msgstr "Liste des thèmes disponibles pour l'affichage analogique :"
 
-#: ../data/messages:69 ../data/messages:77
-msgid "in seconds."
-msgstr "en secondes."
+#: ../data/messages:67
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+"Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si "
+"vous ne voulez pas de filigrane."
+
+#: ../data/messages:69
+msgid "Image to display as a watermark :"
+msgstr "Image à afficher en filigrane :"
 
 #: ../data/messages:71
-msgid "Delay between refresh :"
-msgstr "Délai entre les rafraîchissements"
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
 
 #: ../data/messages:73
+msgid "Transparency of the watermark :"
+msgstr "Transparence du filigrane"
+
+#: ../data/messages:75
+msgid "Display CPU usage values :"
+msgstr "Afficher les valeurs d'utilisations du CPU :"
+
+#: ../data/messages:77
+msgid "No"
+msgstr "Non"
+
+#: ../data/messages:79
+msgid "On icon"
+msgstr "Sur l'icône"
+
+#: ../data/messages:81
+msgid "On label"
+msgstr "Sur l'étiquette"
+
+#: ../data/messages:83
+msgid "Top List"
+msgstr ""
+
+#: ../data/messages:85
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU-"
 "using programs."
@@ -216,11 +250,35 @@ msgstr ""
 "Le clic droit sur l'icône vous donne la liste des programmes qui utilisent "
 "le plus de CPU."
 
-#: ../data/messages:75
+#: ../data/messages:87
 msgid "Number of programs to display in the top list :"
 msgstr "Nombre de programmes à afficher dans la top liste :"
 
-#: ../data/messages:79
+#: ../data/messages:89
+msgid "It's the first color of the gradation used to write the top list."
+msgstr "Première couleur pour le texte de la graduation de la top liste."
+
+#: ../data/messages:91
+msgid "Start color of the top list :"
+msgstr "Couleur de début de la top liste :"
+
+#: ../data/messages:93
+msgid "It's the second color of the gradation used to write the top list."
+msgstr "Seconde couleur pour le texte de la graduation de la top liste."
+
+#: ../data/messages:95
+msgid "Stop color of the top list :"
+msgstr "Couleur de fin de la top liste :"
+
+#: ../data/messages:99 ../data/messages:103
+msgid "in seconds."
+msgstr "en secondes."
+
+#: ../data/messages:101
+msgid "Delay between refresh :"
+msgstr "Délai entre les rafraîchissements"
+
+#: ../data/messages:105
 msgid "Delay between refresh of the top list :"
 msgstr "Délai entre les rafraîchissements de la top liste :"
 

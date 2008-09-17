@@ -2,18 +2,17 @@
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2008-09-06 14:23+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
@@ -45,8 +44,7 @@ msgstr "höjd:"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Ikonens etikett:"
 
-#: ../data/messages:11
-#: ../data/messages:15
+#: ../data/messages:11 ../data/messages:15
 msgid "Let empty to use the default one."
 msgstr "Lämna tomt för använda standaralternativet."
 
@@ -73,4 +71,3 @@ msgstr "Visa/dölj desklets på widgetlagret också?"
 #: ../data/messages:25
 msgid "Shortkey to show/hide the desklets :"
 msgstr "Tangentkombination för att visa/dölja desklet:"
-

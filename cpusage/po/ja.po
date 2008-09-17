@@ -16,7 +16,7 @@ msgstr ""
 msgid "day(s)"
 msgstr "日"
 
-#: ../src/applet-cpusage.c:221
+#: ../src/applet-cpusage.c:228
 msgid "Loading"
 msgstr "読み込み中"
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:37 ../data/messages:67
+#: ../data/messages:37 ../data/messages:97
 msgid "Configuration"
 msgstr "設定"
 
@@ -148,68 +148,100 @@ msgid "Display"
 msgstr "表示"
 
 #: ../data/messages:41
-msgid "List of available themes for the analogic display :"
-msgstr "アナログ表示に利用可能なテーマのリスト :"
+msgid "Display a graphic rather than a gauge ?"
+msgstr ""
 
 #: ../data/messages:43
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:55
+#, fuzzy
+msgid "It's the color of the graphic for high CPU values."
+msgstr "トップリストの記載に使用するグラデーションの開始色"
+
+#: ../data/messages:57
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:59
+#, fuzzy
+msgid "It's the color of the graphic for low CPU values."
+msgstr "トップリストの記載に使用するグラデーションの開始色"
+
+#: ../data/messages:61
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:63
+#, fuzzy
+msgid "Background color of the graphic :"
+msgstr "トップリストの開始色 :"
+
+#: ../data/messages:65
+#, fuzzy
+msgid "List of available themes for the gauge :"
+msgstr "アナログ表示に利用可能なテーマのリスト :"
+
+#: ../data/messages:67
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:45
-msgid "Image to display as a watermark on the gauge :"
+#: ../data/messages:69
+msgid "Image to display as a watermark :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:71
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:73
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:75
 msgid "Display CPU usage values :"
 msgstr "CPU 使用率の表示 :"
 
-#: ../data/messages:53
+#: ../data/messages:77
 msgid "No"
 msgstr "なし"
 
-#: ../data/messages:55
+#: ../data/messages:79
 msgid "On icon"
 msgstr "アイコン上"
 
-#: ../data/messages:57
+#: ../data/messages:81
 msgid "On label"
 msgstr "ラベル上"
 
-#: ../data/messages:59
-msgid "It's the first color of the gradation used to write the top list."
-msgstr "トップリストの記載に使用するグラデーションの開始色"
+#: ../data/messages:83
+msgid "Top List"
+msgstr ""
 
-#: ../data/messages:61
-msgid "Start color of the top list :"
-msgstr "トップリストの開始色 :"
-
-#: ../data/messages:63
-msgid "It's the second color of the gradation used to write the top list."
-msgstr "トップリストの記載に使用するグラデーションの終了色"
-
-#: ../data/messages:65
-msgid "Stop color of the top list :"
-msgstr "トップリストの終了色 :"
-
-#: ../data/messages:69 ../data/messages:77
-msgid "in seconds."
-msgstr "秒単位"
-
-#: ../data/messages:71
-msgid "Delay between refresh :"
-msgstr "更新の間隔時間 :"
-
-#: ../data/messages:73
+#: ../data/messages:85
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU-"
 "using programs."
@@ -217,11 +249,35 @@ msgstr ""
 "アイコンを左クリックすると、CPU を最も使用している上位 N のプログラムのリスト"
 "が得られます。"
 
-#: ../data/messages:75
+#: ../data/messages:87
 msgid "Number of programs to display in the top list :"
 msgstr "トップリストに表示するプログラム数 :"
 
-#: ../data/messages:79
+#: ../data/messages:89
+msgid "It's the first color of the gradation used to write the top list."
+msgstr "トップリストの記載に使用するグラデーションの開始色"
+
+#: ../data/messages:91
+msgid "Start color of the top list :"
+msgstr "トップリストの開始色 :"
+
+#: ../data/messages:93
+msgid "It's the second color of the gradation used to write the top list."
+msgstr "トップリストの記載に使用するグラデーションの終了色"
+
+#: ../data/messages:95
+msgid "Stop color of the top list :"
+msgstr "トップリストの終了色 :"
+
+#: ../data/messages:99 ../data/messages:103
+msgid "in seconds."
+msgstr "秒単位"
+
+#: ../data/messages:101
+msgid "Delay between refresh :"
+msgstr "更新の間隔時間 :"
+
+#: ../data/messages:105
 msgid "Delay between refresh of the top list :"
 msgstr "トップリストの更新間隔 :"
 

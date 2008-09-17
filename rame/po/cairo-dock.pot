@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-09 01:39+0200\n"
+"POT-Creation-Date: 2008-09-18 02:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "Data acquisition has failed"
 msgstr ""
 
-#: ../src/applet-rame.c:109
+#: ../src/applet-rame.c:116
 msgid "Loading"
 msgstr ""
 
@@ -112,7 +112,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:37 ../data/messages:69
+#: ../data/messages:37 ../data/messages:109
 msgid "Configuration"
 msgstr ""
 
@@ -121,81 +121,145 @@ msgid "Display"
 msgstr ""
 
 #: ../data/messages:41
-msgid "List of available themes for the analogic display :"
+msgid "Display a graphic rather than a gauge ?"
 msgstr ""
 
 #: ../data/messages:43
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:55 ../data/messages:63
+msgid "It's the color of the graphic for high CPU values."
+msgstr ""
+
+#: ../data/messages:57
+msgid "High values color for RAM :"
+msgstr ""
+
+#: ../data/messages:59 ../data/messages:67
+msgid "It's the color of the graphic for low CPU values."
+msgstr ""
+
+#: ../data/messages:61
+msgid "Low values color for RAM :"
+msgstr ""
+
+#: ../data/messages:65
+msgid "High values color for SWAP :"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Low values color for SWAP :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Draw both values on the same graph ?"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Background color of the graphic :"
+msgstr ""
+
+#: ../data/messages:75
+msgid "List of available themes for the gauge :"
+msgstr ""
+
+#: ../data/messages:77
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "Display memory values :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "No"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid "On icon"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "On label"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid "Display SWAP too ?"
 msgstr ""
 
-#: ../data/messages:61
-msgid "It's the first color of the gradation used to write the top list."
+#: ../data/messages:95
+msgid "Top List"
 msgstr ""
 
-#: ../data/messages:63
-msgid "Start color of the top list :"
-msgstr ""
-
-#: ../data/messages:65
-msgid "It's the second color of the gradation used to write the top list."
-msgstr ""
-
-#: ../data/messages:67
-msgid "Stop color of the top list :"
-msgstr ""
-
-#: ../data/messages:71
-msgid "in seconds."
-msgstr ""
-
-#: ../data/messages:73
-msgid "Delay between refresh :"
-msgstr ""
-
-#: ../data/messages:75
+#: ../data/messages:97
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:99
 msgid "Number of programs to display in the top list :"
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:101
+msgid "It's the first color of the gradation used to write the top list."
+msgstr ""
+
+#: ../data/messages:103
+msgid "Start color of the top list :"
+msgstr ""
+
+#: ../data/messages:105
+msgid "It's the second color of the gradation used to write the top list."
+msgstr ""
+
+#: ../data/messages:107
+msgid "Stop color of the top list :"
+msgstr ""
+
+#: ../data/messages:111
+msgid "in seconds."
+msgstr ""
+
+#: ../data/messages:113
+msgid "Delay between refresh :"
+msgstr ""
+
+#: ../data/messages:115
 msgid "Show top memory usage in % ?"
 msgstr ""

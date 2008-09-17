@@ -16,7 +16,7 @@ msgstr ""
 msgid "day(s)"
 msgstr "giorno/i"
 
-#: ../src/applet-cpusage.c:221
+#: ../src/applet-cpusage.c:228
 msgid "Loading"
 msgstr "Caricamento"
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:37 ../data/messages:67
+#: ../data/messages:37 ../data/messages:97
 msgid "Configuration"
 msgstr "Configurazione"
 
@@ -148,10 +148,62 @@ msgid "Display"
 msgstr "Mostrare"
 
 #: ../data/messages:41
-msgid "List of available themes for the analogic display :"
-msgstr "Lista dei temi disponibili per la vista analogica :"
+msgid "Display a graphic rather than a gauge ?"
+msgstr ""
 
 #: ../data/messages:43
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:55
+#, fuzzy
+msgid "It's the color of the graphic for high CPU values."
+msgstr "E' il primo colore della gradazione usata per scrivere la 'top list'"
+
+#: ../data/messages:57
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:59
+#, fuzzy
+msgid "It's the color of the graphic for low CPU values."
+msgstr "E' il primo colore della gradazione usata per scrivere la 'top list'"
+
+#: ../data/messages:61
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:63
+#, fuzzy
+msgid "Background color of the graphic :"
+msgstr "Primo colore della 'top list' :"
+
+#: ../data/messages:65
+#, fuzzy
+msgid "List of available themes for the gauge :"
+msgstr "Lista dei temi disponibili per la vista analogica :"
+
+#: ../data/messages:67
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -159,59 +211,40 @@ msgstr ""
 "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
 "se si vuole alcuna filigrana."
 
-#: ../data/messages:45
-msgid "Image to display as a watermark on the gauge :"
+#: ../data/messages:69
+#, fuzzy
+msgid "Image to display as a watermark :"
 msgstr "Immagine da mostrare come filigrana nell'indicatore :"
 
-#: ../data/messages:47
+#: ../data/messages:71
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "Settare a 0 se si vuole alcuna filigrana."
 
-#: ../data/messages:49
+#: ../data/messages:73
 msgid "Transparency of the watermark :"
 msgstr "Trasparenza della filigrana :"
 
-#: ../data/messages:51
+#: ../data/messages:75
 msgid "Display CPU usage values :"
 msgstr "Mostrare i valori di utilizzo della CPU :"
 
-#: ../data/messages:53
+#: ../data/messages:77
 msgid "No"
 msgstr "No"
 
-#: ../data/messages:55
+#: ../data/messages:79
 msgid "On icon"
 msgstr "Sull'icona"
 
-#: ../data/messages:57
+#: ../data/messages:81
 msgid "On label"
 msgstr "Sull'etichetta"
 
-#: ../data/messages:59
-msgid "It's the first color of the gradation used to write the top list."
-msgstr "E' il primo colore della gradazione usata per scrivere la 'top list'"
+#: ../data/messages:83
+msgid "Top List"
+msgstr ""
 
-#: ../data/messages:61
-msgid "Start color of the top list :"
-msgstr "Primo colore della 'top list' :"
-
-#: ../data/messages:63
-msgid "It's the second color of the gradation used to write the top list."
-msgstr "E' il secondo colore della gradazione usata per scrivere la 'top list'"
-
-#: ../data/messages:65
-msgid "Stop color of the top list :"
-msgstr "Ultimo colore della 'top list' :"
-
-#: ../data/messages:69 ../data/messages:77
-msgid "in seconds."
-msgstr "in secondi."
-
-#: ../data/messages:71
-msgid "Delay between refresh :"
-msgstr "Ritardo tra gli aggiornamenti"
-
-#: ../data/messages:73
+#: ../data/messages:85
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU-"
 "using programs."
@@ -219,11 +252,35 @@ msgstr ""
 "Quando si clicca col tasto sinistro sull'icona, verrà mostrata la lista dei "
 "N programmi che usano maggior CPU."
 
-#: ../data/messages:75
+#: ../data/messages:87
 msgid "Number of programs to display in the top list :"
 msgstr "Numero dei programmi mostrati nella 'top list'"
 
-#: ../data/messages:79
+#: ../data/messages:89
+msgid "It's the first color of the gradation used to write the top list."
+msgstr "E' il primo colore della gradazione usata per scrivere la 'top list'"
+
+#: ../data/messages:91
+msgid "Start color of the top list :"
+msgstr "Primo colore della 'top list' :"
+
+#: ../data/messages:93
+msgid "It's the second color of the gradation used to write the top list."
+msgstr "E' il secondo colore della gradazione usata per scrivere la 'top list'"
+
+#: ../data/messages:95
+msgid "Stop color of the top list :"
+msgstr "Ultimo colore della 'top list' :"
+
+#: ../data/messages:99 ../data/messages:103
+msgid "in seconds."
+msgstr "in secondi."
+
+#: ../data/messages:101
+msgid "Delay between refresh :"
+msgstr "Ritardo tra gli aggiornamenti"
+
+#: ../data/messages:105
 msgid "Delay between refresh of the top list :"
 msgstr "Ritardo tra gli aggiornamenti della 'top list'"
 

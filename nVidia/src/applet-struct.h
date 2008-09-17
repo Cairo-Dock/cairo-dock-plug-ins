@@ -26,6 +26,14 @@ struct _AppletConfig {
 	const gchar *cGThemePath;
 	gchar *cWatermarkImagePath;
 	gdouble fAlpha;
+	
+	gboolean bUseGraphic;
+	CairoDockTypeGraph iGraphType;
+	gboolean bMixGraph;
+	gdouble fLowColor[3];
+	gdouble fHigholor[3];
+	gdouble fBgColor[4];
+	
 	gchar *defaultTitle;
 	gchar *cSoundPath;
 	gint iCheckInterval;
@@ -47,6 +55,7 @@ struct _AppletData {
 	CairoDockMeasure *pMeasureTimer;
 	CairoDockMeasure *pConfigMeasureTimer;
 	Gauge *pGauge;
+	CairoDockGraph *pGraph;
 } ;
 
 

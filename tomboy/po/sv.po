@@ -2,12 +2,11 @@
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
 "PO-Revision-Date: 2008-09-05 23:50+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
@@ -97,9 +96,7 @@ msgstr "Docka som appleten tillhör:"
 msgid "Personnalisation"
 msgstr "Inställningar"
 
-#: ../data/messages:15
-#: ../data/messages:19
-#: ../data/messages:23
+#: ../data/messages:15 ../data/messages:19 ../data/messages:23
 msgid "Let t empty to use the default icon."
 msgstr "Lämna tomt för att använda standardikonen."
 
@@ -120,8 +117,16 @@ msgid "Configuration"
 msgstr "Konfiguration"
 
 #: ../data/messages:29
-msgid "Depending on your tomboy's version, the note deletion may not be automatically notified to us. Only check this box if you notice some error message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal."
-msgstr "beroende på vilken version av Tomboy du har, kanske inte borttagning av anteckningar alltid upptäcks. Markera bara rutan om du ser meddelanden som <<No marshaller for signature of signal 'NoteDeleted'>> i ett terminalfönster."
+msgid ""
+"Depending on your tomboy's version, the note deletion may not be "
+"automatically notified to us. Only check this box if you notice some error "
+"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
+"terminal."
+msgstr ""
+"beroende på vilken version av Tomboy du har, kanske inte borttagning av "
+"anteckningar alltid upptäcks. Markera bara rutan om du ser meddelanden som "
+"<<No marshaller for signature of signal 'NoteDeleted'>> i ett "
+"terminalfönster."
 
 #: ../data/messages:31
 msgid "Emulate the 'NoteDeleted' signal ?"
@@ -140,10 +145,15 @@ msgid "Draw note's content on their icon ?"
 msgstr "Visa noteringens innehåll på ikonen?"
 
 #: ../data/messages:39
-msgid "Write the date format you usually use in your notes. The syntax is the one of 'strftime' : %d for the day, %m for the month, %y for the year (2 digits), etc. Let it blnk to use the default one (%d/%m/%y)."
-msgstr "Ange datumformat som du oftast använder. Syntax är samma som för 'strftime': %d för dag, %m för månad, %y för år (2 siffror) etc. Lämna tomt för att använda standardformatet (%d/%m/%y)."
+msgid ""
+"Write the date format you usually use in your notes. The syntax is the one "
+"of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+"digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+msgstr ""
+"Ange datumformat som du oftast använder. Syntax är samma som för 'strftime': "
+"%d för dag, %m för månad, %y för år (2 siffror) etc. Lämna tomt för att "
+"använda standardformatet (%d/%m/%y)."
 
 #: ../data/messages:41
 msgid "Date format to search for :"
 msgstr "Datumformat att söka efter:"
-

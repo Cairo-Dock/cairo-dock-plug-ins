@@ -99,7 +99,14 @@ gboolean cd_rame_update_from_data (CairoDockModuleInstance *myApplet)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
-		cairo_dock_render_gauge(myDrawContext,myContainer,myIcon,myData.pGauge,(double) 0);
+		if (myData.pGauge)
+		{
+			CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
+		}
+		else
+		{
+			CD_APPLET_RENDER_GRAPH (myData.pGraph);
+		}
 	}
 	else
 	{
@@ -107,7 +114,14 @@ gboolean cd_rame_update_from_data (CairoDockModuleInstance *myApplet)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
-			cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, 0.);
+			if (myData.pGauge)
+			{
+				CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
+			}
+			else
+			{
+				CD_APPLET_RENDER_GRAPH (myData.pGraph);
+			}
 		}
 		else
 		{
@@ -143,12 +157,18 @@ gboolean cd_rame_update_from_data (CairoDockModuleInstance *myApplet)
 			
 			if (! myConfig.bShowSwap)
 			{
-				if (bRamNeedsUpdate)
-					cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, fRamPercent / 100);
+				if (myData.pGauge && bRamNeedsUpdate)
+				{
+					CD_APPLET_RENDER_GAUGE (myData.pGauge, fRamPercent / 100);
+				}
+				else if (myData.pGraph)
+				{
+					CD_APPLET_RENDER_GRAPH_NEW_VALUE (myData.pGraph, fRamPercent / 100);
+				}
 			}
 			else
 			{
-				if (bRamNeedsUpdate || bSwapNeedsUpdate)
+				if (myData.pGauge && (bRamNeedsUpdate || bSwapNeedsUpdate))
 				{
 					GList *pList = NULL;  /// un tableau ca serait plus sympa ...
 					double *pValue = g_new (double, 1);
@@ -157,9 +177,13 @@ gboolean cd_rame_update_from_data (CairoDockModuleInstance *myApplet)
 					pValue = g_new (double, 1);
 					*pValue = (double) fSwapPercent / 100;
 					pList = g_list_append (pList, pValue);
-					cairo_dock_render_gauge_multi_value (myDrawContext, myContainer, myIcon, myData.pGauge, pList);
+					CD_APPLET_RENDER_GAUGE_MULTI_VALUE (myData.pGauge, pList);
 					g_list_foreach (pList, (GFunc) g_free, NULL);
 					g_list_free (pList);
+				}
+				else if (myData.pGraph)
+				{
+					CD_APPLET_RENDER_GRAPH_NEW_VALUES (myData.pGraph, fRamPercent / 100, fSwapPercent / 100);
 				}
 			}
 			

@@ -13,23 +13,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:83
+#: ../src/applet-draw.c:107
 msgid "GPU Name:"
 msgstr "GPU名称："
 
-#: ../src/applet-draw.c:83
+#: ../src/applet-draw.c:107
 msgid "Video Ram:"
 msgstr "显存："
 
-#: ../src/applet-draw.c:83
+#: ../src/applet-draw.c:107
 msgid "Driver Version:"
 msgstr "驱动版本："
 
-#: ../src/applet-draw.c:83 ../src/applet-draw.c:99
+#: ../src/applet-draw.c:107 ../src/applet-draw.c:123
 msgid "Core Temparature:"
 msgstr "核心温度："
 
-#: ../src/applet-draw.c:88
+#: ../src/applet-draw.c:112
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
@@ -39,7 +39,7 @@ msgstr ""
 "您的'nvidia-settings'版本过低\n"
 "您需要至少1.0.0的版本"
 
-#: ../src/applet-draw.c:91
+#: ../src/applet-draw.c:115
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -50,11 +50,11 @@ msgstr ""
 "无法获取GPU温度\n"
 "您确定'nvidia-settings'已经安装并开启了监视GPU温度的选项了么？"
 
-#: ../src/applet-draw.c:99
+#: ../src/applet-draw.c:123
 msgid "Alert!"
 msgstr "警告！"
 
-#: ../src/applet-draw.c:99
+#: ../src/applet-draw.c:123
 msgid "passed alert temperature level"
 msgstr "报警温度等级"
 

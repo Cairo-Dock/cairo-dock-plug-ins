@@ -2,18 +2,17 @@
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2008-09-06 15:06+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
@@ -21,8 +20,7 @@ msgstr ""
 msgid "None"
 msgstr "Ingen"
 
-#: ../src/powermanager-draw.c:146
-#: ../src/powermanager-draw.c:175
+#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:175
 msgid "Unknown"
 msgstr "Okänt"
 
@@ -34,8 +32,7 @@ msgstr ""
 "Dator kör på batteri.\n"
 " Batteriladdning:"
 
-#: ../src/powermanager-draw.c:149
-#: ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:179
 #: ../src/powermanager-draw.c:185
 msgid "Estimated time with Charge:"
 msgstr "Beräknad laddningstid:"
@@ -129,8 +126,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
+"eller ALT+vänsterklick"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -138,7 +139,8 @@ msgstr "Storlek på Desklet (bredd x höjd):"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
+msgstr ""
+"Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -157,16 +159,24 @@ msgid "Keep above other windows ?"
 msgstr "Placera ovanför andra fönster?"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
+"type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
+"använda ALT+vänsterklick."
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -200,8 +210,7 @@ msgstr "Ikon när batteriet laddasi"
 msgid "Effect to apply on the icon according to charge :"
 msgstr "Effekt för laddningsnivå:"
 
-#: ../data/messages:51
-#: ../data/messages:65
+#: ../data/messages:51 ../data/messages:65
 msgid "nothing"
 msgstr "inget"
 
@@ -245,15 +254,11 @@ msgstr "Meddelande"
 msgid "Alert when battery charged ?"
 msgstr "Meddela när batteriet är laddat?"
 
-#: ../data/messages:75
-#: ../data/messages:85
-#: ../data/messages:93
+#: ../data/messages:75 ../data/messages:85 ../data/messages:93
 msgid "Let it empty to have no sound"
 msgstr "Lämna tomt om du inte vill spela upp ett ljud"
 
-#: ../data/messages:77
-#: ../data/messages:87
-#: ../data/messages:95
+#: ../data/messages:77 ../data/messages:87 ../data/messages:95
 msgid "Use a sound :"
 msgstr "Använd ljud:"
 
@@ -312,4 +317,3 @@ msgstr "vingla"
 #: ../data/messages:113
 msgid "random"
 msgstr "slumpmässig"
-

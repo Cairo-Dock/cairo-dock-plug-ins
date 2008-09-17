@@ -11,6 +11,16 @@ struct _AppletConfig {
 	const gchar *cGThemePath;
 	gchar *cWatermarkImagePath;
 	gdouble fAlpha;
+	
+	gboolean bUseGraphic;
+	CairoDockTypeGraph iGraphType;
+	gboolean bMixGraph;
+	gdouble fLowColor[3];  // Down
+	gdouble fHigholor[3];
+	gdouble fBgColor[4];
+	gdouble fLowColor2[3];  // Up
+	gdouble fHigholor2[3];
+	
 	gchar *cInterface;
 	gint iStringLen;
 	CairoDockInfoDisplay iInfoDisplay;
@@ -25,6 +35,7 @@ struct _AppletData {
 	gboolean bAcquisitionOK;
 	CairoDockMeasure *pMeasureTimer;
 	Gauge *pGauge;
+	CairoDockGraph *pGraph;
 	DBusGProxy *dbus_proxy_nm;
 } ;
 

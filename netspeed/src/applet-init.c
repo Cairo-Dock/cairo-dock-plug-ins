@@ -17,10 +17,23 @@ CD_APPLET_INIT_BEGIN
 	
 	//Initialisation de la jauge
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-	if (myConfig.cWatermarkImagePath != NULL)
-		cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-	
+	if (myConfig.bUseGraphic)
+	{
+		myData.pGraph = cairo_dock_create_graph (myDrawContext,
+			20, myConfig.iGraphType | CAIRO_DOCK_DOUBLE_GRAPH | (myConfig.bMixGraph ? CAIRO_DOCK_MIX_DOUBLE_GRAPH : 0),
+			myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
+			myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, myConfig.fLowColor2, myConfig.fHigholor2);
+		if (myConfig.cWatermarkImagePath != NULL)
+			cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
+		CD_APPLET_RENDER_GRAPH (myData.pGraph);
+	}
+	else
+	{
+		myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
+		if (myConfig.cWatermarkImagePath != NULL)
+			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
+		CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
+	}	
 	//Initialisation du timer de mesure.
 	myData.pClock = g_timer_new ();
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
@@ -54,9 +67,27 @@ CD_APPLET_RELOAD_BEGIN
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cairo_dock_free_gauge(myData.pGauge);
-		myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-		if (myConfig.cWatermarkImagePath != NULL)
-			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
+		cairo_dock_free_graph (myData.pGraph);
+		if (myConfig.bUseGraphic)
+		{
+			myData.pGauge = NULL;
+			myData.pGraph = cairo_dock_create_graph (myDrawContext,
+				20, myConfig.iGraphType,
+				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
+				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, myConfig.fLowColor2, myConfig.fHigholor2);
+			if (myConfig.cWatermarkImagePath != NULL)
+				cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
+		}
+		else
+		{
+			myData.pGraph = NULL;
+			myData.pGauge = cairo_dock_load_gauge(myDrawContext,
+				myConfig.cGThemePath,
+				myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+			if (myConfig.cWatermarkImagePath != NULL)
+				cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
+		}
+		
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_ICON)
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
@@ -71,11 +102,25 @@ CD_APPLET_RELOAD_BEGIN
 	else {  // on redessine juste l'icone.
 		if (myData.pGauge != NULL)
 			cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
+		else if (myData.pGraph != NULL)
+			cairo_dock_reload_graph (myDrawContext, myData.pGraph, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
+		else if (myConfig.bUseGraphic)
+			myData.pGraph = cairo_dock_create_graph (myDrawContext,
+				20, myConfig.iGraphType,
+				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
+				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, myConfig.fLowColor2, myConfig.fHigholor2);
 		else
-			cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-		
+			myData.pGauge = cairo_dock_load_gauge(myDrawContext,
+				myConfig.cGThemePath,
+				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 		if (myConfig.cWatermarkImagePath != NULL)
-			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
+		{
+			if (myData.pGauge != NULL)
+				cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
+			else
+				cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
+		}
+		
 		cd_netspeed_update_from_data (myApplet);
 	}
 CD_APPLET_RELOAD_END

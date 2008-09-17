@@ -2,12 +2,11 @@
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-03 02:15+0200\n"
 "PO-Revision-Date: 2008-09-05 23:36+0100\n"
 "Last-Translator: Peter Thörnqvist <peter.tornqvist@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
@@ -17,9 +16,7 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-draw.c:13
-#: ../data/messages:43
-#: ../data/messages:65
+#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:65
 msgid "None"
 msgstr "Ingen"
 
@@ -75,8 +72,7 @@ msgstr "Sök efter trådlösa nätverk"
 msgid "Network Administration"
 msgstr "Nätverksadministration"
 
-#: ../src/applet-wifi.c:129
-#: ../src/applet-wifi.c:134
+#: ../src/applet-wifi.c:129 ../src/applet-wifi.c:134
 msgid "Unknown"
 msgstr "Okänt"
 
@@ -109,8 +105,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick eller ALT+vänsterklick"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
+"eller ALT+vänsterklick"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -118,7 +118,8 @@ msgstr "Storlek på Desklet (bredd x höjd):"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
+msgstr ""
+"Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -137,16 +138,24 @@ msgid "Keep above other windows ?"
 msgstr "Placera ovanför andra fönster?"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
+"type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid använda ALT+vänsterklick."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
+"använda ALT+vänsterklick."
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -185,7 +194,9 @@ msgid "Delay between signal checks :"
 msgstr "Tid mellan uppdateringar:"
 
 #: ../data/messages:55
-msgid "Allow you to overwrite applet's default command line and launch you wireless configuration interface."
+msgid ""
+"Allow you to overwrite applet's default command line and launch you wireless "
+"configuration interface."
 msgstr ""
 
 #: ../data/messages:57
@@ -232,12 +243,8 @@ msgstr "radium"
 msgid "Images"
 msgstr "Bilder"
 
-#: ../data/messages:81
-#: ../data/messages:85
-#: ../data/messages:89
-#: ../data/messages:93
-#: ../data/messages:97
-#: ../data/messages:101
+#: ../data/messages:81 ../data/messages:85 ../data/messages:89
+#: ../data/messages:93 ../data/messages:97 ../data/messages:101
 msgid "Let it empty to use the default icon."
 msgstr "Lämna tomt för att använda standardikonen."
 
@@ -264,4 +271,3 @@ msgstr ""
 #: ../data/messages:103
 msgid "Name of an image for the 'exellent' icon :"
 msgstr ""
-
