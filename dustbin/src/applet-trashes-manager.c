@@ -395,7 +395,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		GString *sCommand = g_string_new ("rm -rf ");
 		if (cDirectory != NULL)
 		{
-			g_string_append_printf (sCommand, "\"%s\"/*", cDirectory);
+			g_string_append_printf (sCommand, "\"%s\"/* \"%s\"/.*", cDirectory, cDirectory);
 		}
 		else
 		{
@@ -404,7 +404,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 			for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 			{
 				pDustbin = pElement->data;
-				g_string_append_printf (sCommand, "\"%s\"/* ", pDustbin->cPath);
+				g_string_append_printf (sCommand, "\"%s\"/* \"%s\"/.* ", pDustbin->cPath, pDustbin->cPath);
 			}
 		}
 		cd_message (">>> %s", sCommand->str);
@@ -416,13 +416,14 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		{
 			if (cDirectory == NULL || strcmp (cDirectory, cDefaultTrash) == 0)
 			{
-				g_string_printf (sCommand, "rm -rf \"%s\"/../info/*info", cDefaultTrash);  // pas tres propre mais bon ...
+				g_string_printf (sCommand, "rm -rf \"%s\"/*info \"%s\"/.*info", cFileInfoPath, cFileInfoPath);
 				cd_message (">>> %s", sCommand->str);
 				system (sCommand->str);
 			}
 			g_free (cDefaultTrash);
 		}
-		
+		g_free (cDefaultTrash);
+		g_free (cFileInfoPath);
 		g_string_free (sCommand, TRUE);
 	}
 }
@@ -448,7 +449,7 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		}
 		else
 			return ;
-		cd_message ("dustbin : %s\n", sCommand->str);
+		cd_message ("dustbin : %s", sCommand->str);
 		GError *erreur = NULL;
 		g_spawn_command_line_async (sCommand->str, &erreur);
 		if (erreur != NULL)
