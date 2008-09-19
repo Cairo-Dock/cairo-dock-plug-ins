@@ -148,54 +148,54 @@ msgstr "Affichage"
 
 #: ../data/messages:41
 msgid "Display a graphic rather than a gauge ?"
-msgstr ""
+msgstr "Afficher un graphique plutôt qu'une jauge ?"
 
 #: ../data/messages:43
 msgid "Type of graphic :"
-msgstr ""
+msgstr "Type de graphique :"
 
 #: ../data/messages:45
 msgid "Line"
-msgstr ""
+msgstr "Ligne"
 
 #: ../data/messages:47
 msgid "Plain"
-msgstr ""
+msgstr "Plein"
 
 #: ../data/messages:49
 msgid "Bar"
-msgstr ""
+msgstr "Barre"
 
 #: ../data/messages:51
 msgid "Circle"
-msgstr ""
+msgstr "Cercle"
 
 #: ../data/messages:53
 msgid "Plain Circle"
-msgstr ""
+msgstr "Cercle Plain"
 
 #: ../data/messages:55
 #, fuzzy
 msgid "It's the color of the graphic for high CPU values."
-msgstr "Première couleur pour le texte de la graduation de la top liste."
+msgstr "C'est la couleur du graphique pour les hautes valeurs de CPU."
 
 #: ../data/messages:57
 msgid "High values color :"
-msgstr ""
+msgstr "Couleur des hautes valeurs :"
 
 #: ../data/messages:59
 #, fuzzy
 msgid "It's the color of the graphic for low CPU values."
-msgstr "Première couleur pour le texte de la graduation de la top liste."
+msgstr "C'est la couleur du graphique pour les basse valeurs de CPU."
 
 #: ../data/messages:61
 msgid "Low values color :"
-msgstr ""
+msgstr "Couleur des faibles valeurs :"
 
 #: ../data/messages:63
 #, fuzzy
 msgid "Background color of the graphic :"
-msgstr "Couleur de début de la top liste :"
+msgstr "Couleur de fond du graphique :"
 
 #: ../data/messages:65
 #, fuzzy

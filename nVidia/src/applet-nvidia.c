@@ -30,8 +30,7 @@ static char  *s_cTmpFile = NULL;
 void cd_nvidia_acquisition (void) {
 	s_cTmpFile = g_strdup ("/tmp/nvidia.XXXXXX");
 	int fds =mkstemp (s_cTmpFile);
-	if (fds == -1)
-	{
+	if (fds == -1) {
 		g_free (s_cTmpFile);
 		s_cTmpFile = NULL;
 		return;
@@ -91,8 +90,7 @@ gboolean cd_nvidia_update_from_data (void) {
 void cd_nvidia_config_acquisition (void) {
 	s_cTmpFileConfig = g_strdup ("/tmp/nvidia-config.XXXXXX");
 	int fds =mkstemp (s_cTmpFileConfig);
-	if (fds == -1)
-	{
+	if (fds == -1) {
 		g_free (s_cTmpFileConfig);
 		s_cTmpFileConfig = NULL;
 		return;

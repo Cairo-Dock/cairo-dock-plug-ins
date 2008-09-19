@@ -200,6 +200,8 @@ msgid ""
 "in celcius. The temperature will be displayed between this value and the "
 "upper limit."
 msgstr ""
+"en celcius. La température sera affichée entre cette valeur et la limite "
+"supérieur."
 
 #: ../data/messages:59
 msgid "Lower limit of core temperature :"
@@ -210,6 +212,8 @@ msgid ""
 "in celcius. The temperature will be displayed between the lower limit and "
 "this value."
 msgstr ""
+"en celcius. La température sera affichée entre la limite inférieur et "
+"cette valeur."
 
 #: ../data/messages:63
 msgid "Upper limit of core temperature :"
@@ -239,6 +243,54 @@ msgstr "Fichier audio:"
 msgid "Images"
 msgstr ""
 
+#: ../data/messages:41
+msgid "Display a graphic rather than a gauge ?"
+msgstr "Afficher un graphique plutôt qu'une jauge ?"
+
+#: ../data/messages:43
+msgid "Type of graphic :"
+msgstr "Type de graphique :"
+
+#: ../data/messages:45
+msgid "Line"
+msgstr "Ligne"
+
+#: ../data/messages:47
+msgid "Plain"
+msgstr "Plein"
+
+#: ../data/messages:49
+msgid "Bar"
+msgstr "Barre"
+
+#: ../data/messages:51
+msgid "Circle"
+msgstr "Cercle"
+
+#: ../data/messages:53
+msgid "Plain Circle"
+msgstr "Cercle Plain"
+
+#: ../data/messages:55
+msgid "It's the color of the graphic for high Temperature values."
+msgstr "C'est la couleur du graphique pour les hautes valeurs de Température."
+
+#: ../data/messages:57
+msgid "High values color :"
+msgstr "Couleur des hautes valeurs :"
+
+#: ../data/messages:59
+msgid "It's the color of the graphic for low Temperature values."
+msgstr "C'est la couleur du graphique pour les basse valeurs de Température."
+
+#: ../data/messages:61
+msgid "Low values color :"
+msgstr "Couleur des faibles valeurs :"
+
+#: ../data/messages:63
+msgid "Background color of the graphic :"
+msgstr "Couleur de fond du graphique :"
+
 #: ../data/messages:77
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponible pour l'affichage analogique :"
@@ -248,18 +300,20 @@ msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
+"Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si "
+"vous ne voulez pas de filigrane."
 
 #: ../data/messages:81
 msgid "Image to display as a watermark on the gauge :"
-msgstr ""
+msgstr "Image à afficher en filigrane sur le jauge :"
 
 #: ../data/messages:83
 msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
+msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
 
 #: ../data/messages:85
 msgid "Transparency of the watermark :"
-msgstr ""
+msgstr "Transparence du filigrane :"
 
 #: ../data/messages:87
 msgid "Let it empty to use the default icon."

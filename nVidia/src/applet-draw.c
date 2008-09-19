@@ -20,12 +20,10 @@ void cd_nvidia_draw_no_data (void) {
 }
 
 void cd_nvidia_draw_icon (void) {
-	if (myData.pGPUData.iGPUTemp == myData.iPreviousGPUTemp)  // aucun changement.
-	{
+	if (myData.pGPUData.iGPUTemp == myData.iPreviousGPUTemp) { // aucun changement.
 		if (myData.pGauge)
 			return ;
-		else
-		{
+		else {
 			double fTempPercent;
 			if (myData.pGPUData.iGPUTemp <= myConfig.iLowerLimit) {
 				fTempPercent = 0;
@@ -84,12 +82,10 @@ void cd_nvidia_draw_icon (void) {
 	}
 	cd_debug("nVidia - Value has changed, redraw (%f)", fTempPercent);
 	
-	if (myData.pGauge)
-	{
+	if (myData.pGauge) {
 		CD_APPLET_RENDER_GAUGE (myData.pGauge, fTempPercent);
 	}
-	else
-	{
+	else {
 		CD_APPLET_RENDER_GRAPH_NEW_VALUE (myData.pGraph, fTempPercent);
 	}
 	
