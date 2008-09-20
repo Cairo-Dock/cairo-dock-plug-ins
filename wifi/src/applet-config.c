@@ -25,11 +25,16 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
 	
 	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
+	myConfig.iDisplay = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
 	
-	myConfig.bUseGauge = CD_CONFIG_GET_BOOLEAN ("Configuration", "use gauge");
 	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
-	cd_message("gauge : Theme '%s'",myConfig.cGThemePath);
+	//cd_message ("gauge : Theme '%s'",myConfig.cGThemePath);
 	myConfig.bESSID	= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "essid", TRUE);
+	
+	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
+	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
 CD_APPLET_GET_CONFIG_END
 
 

@@ -16,7 +16,7 @@ static gchar *s_cLevelQualityName[WIFI_NB_QUALITY] = {N_("None"), N_("Very Low")
 void cd_wifi_draw_no_wireless_extension (void) {
 	if (myData.iPreviousQuality != myData.iQuality) {
 		myData.iPreviousQuality = myData.iQuality;
-		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("N/A");
 		cd_wifi_draw_icon_with_effect (WIFI_QUALITY_NO_SIGNAL);
 	}
@@ -27,13 +27,13 @@ void cd_wifi_draw_icon (void) {
 	switch (myConfig.quickInfoType) {
 		case WIFI_INFO_NONE :
 			if (myIcon->cQuickInfo != NULL) {
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 				bNeedRedraw = TRUE;
 			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
 			if (myData.iQuality != myData.iPreviousQuality) {
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(D_(s_cLevelQualityName[myData.iQuality]));
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (D_(s_cLevelQualityName[myData.iQuality]));
 				bNeedRedraw = TRUE;
 			}
 		break;
@@ -48,7 +48,7 @@ void cd_wifi_draw_icon (void) {
 			if (myData.prev_flink != myData.flink || myData.prev_mlink != myData.mlink) {
 				myData.prev_flink = myData.flink;
 				myData.prev_mlink = myData.mlink;
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("%d/%d", myData.flink, myData.mlink);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d/%d", myData.flink, myData.mlink);
 				bNeedRedraw = TRUE;
 			}
 		break;
@@ -57,22 +57,29 @@ void cd_wifi_draw_icon (void) {
 	if (myData.iQuality != myData.iPreviousQuality) {
 		myData.iPreviousQuality = myData.iQuality;
 		
-		cd_debug("Wifi - Value have changed, redraw. (Use Gauge: %d)", myConfig.bUseGauge);
-		if (myConfig.bUseGauge) {
-			cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.prcnt / 100);
+		//cd_debug ("Wifi - Value have changed, redraw. (Use Gauge: %d)", myConfig.bUseGauge);
+		if (myConfig.iDisplay == WIFI_GAUGE) {
+			//cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.prcnt / 100);
+			CD_APPLET_RENDER_GAUGE (myData.pGauge, (double) myData.prcnt / 100);
 			bNeedRedraw = TRUE;
+		}
+		else if (myConfig.iDisplay == WIFI_GRAPHIC) {
+			CD_APPLET_RENDER_GRAPH_NEW_VALUE (myData.pGraph, (double) myData.prcnt / 100);
 		}
 		else {
 			cd_wifi_draw_icon_with_effect (myData.iQuality);
 		}
 	}
+	else {
+		if (myConfig.iDisplay == WIFI_GRAPHIC)
+			CD_APPLET_RENDER_GRAPH_NEW_VALUE (myData.pGraph, (double) myData.prcnt / 100); //On veut toujours avoir une valeur
+	}
 	
-	if (myConfig.bESSID && myData.cESSID != NULL && strcmp (myData.cESSID, myIcon->acName)) {
+	if (myConfig.bESSID && myData.cESSID != NULL && strcmp (myData.cESSID, myIcon->acName))
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myData.cESSID);
-	}
-	if (bNeedRedraw) {
+	
+	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON
-	}
 }
 
 void cd_wifi_draw_icon_with_effect (CDWifiQuality iQuality) {
@@ -92,35 +99,35 @@ void cd_wifi_draw_icon_with_effect (CDWifiQuality iQuality) {
 	}
 	
 	switch (myConfig.iEffect) {
-			double fAlpha, fScale;
-		  case WIFI_EFFECT_NONE:
-		  	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
-		  break;
-		  case WIFI_EFFECT_ZOOM:
-		  	 fScale = .2 + .8 * myData.prcnt / 100.;
-		  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
-		  break;
-		  case WIFI_EFFECT_TRANSPARENCY: 
-		  	fAlpha = .2 + .8 * myData.prcnt / 100.;
-		  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
-		  break;
-		  case WIFI_EFFECT_BAR:
-		  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.prcnt * .01)
-		  break;
-		  default :
-		  break;
+		double fAlpha, fScale;
+	  case WIFI_EFFECT_NONE:
+	  	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+	  break;
+	  case WIFI_EFFECT_ZOOM:
+	  	 fScale = .2 + .8 * myData.prcnt / 100.;
+	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
+	  break;
+	  case WIFI_EFFECT_TRANSPARENCY: 
+	  	fAlpha = .2 + .8 * myData.prcnt / 100.;
+	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
+	  break;
+	  case WIFI_EFFECT_BAR:
+	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.prcnt * .01)
+	  break;
+	  default :
+	  break;
 	}
 }
 
-void cd_wifi_bubble(void) {
+void cd_wifi_bubble (void) {
 	GString *sInfo = g_string_new ("");
 	gchar *cIconPath = NULL;
-  if(myData.iQuality == WIFI_QUALITY_NO_SIGNAL) {
-  	cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, "link-0.svg");
+  if (myData.iQuality == WIFI_QUALITY_NO_SIGNAL) {
+  	cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "link-0.svg");
   	g_string_printf (sInfo, "%s", D_("Wifi disabled."));
 	}
 	else {
-		cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, "link-5.svg");
+		cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "link-5.svg");
 		g_string_printf (sInfo, "%s %s \n %s %d%%%%", D_("Wifi enabled. \n Connected on:"), myData.cESSID, D_("Signal Strength:"), myData.prcnt);
 	}
 	

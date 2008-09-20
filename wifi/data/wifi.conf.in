@@ -65,14 +65,29 @@ command =
 #F[Display;gtk-dnd-multiple]
 frame_disp=
 #b Overwrite the default label with the connection point name ?
-essid=true
+essid = true
+
+#r[Images;Gauges;Graphic] Display type :
+display type = 0
 
 #r[None;Zoom;Transparency;Draw Bar] Effect to apply on the icon according to strength :
 effect=0
 
-#b Use a jauge instead of icons?
-use gauge = false
-#R1[radium] List of available themes for the analogic display :
+#r[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
+graphic type = 0
+
+#c+3[0;1] High values color :
+#{It's the color of the graphic for high Strength values.}
+high color = 1;0;0
+
+#c+3[0;1] Low values color :
+#{It's the color of the graphic for low Strength values.}
+low color = 1;1;0
+
+#c+4[0;1] Background color of the graphic :
+bg color = .5;.5;1.;.4
+
+#R1[radium] List of available themes for the analogic display :/
 theme = radium
 
 #F[Images;gtk-dialog-info]

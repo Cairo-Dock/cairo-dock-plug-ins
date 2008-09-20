@@ -29,21 +29,34 @@ typedef enum {
 	WIFI_EFFECT_BAR,
 } CDWifiEffect;
 
+typedef enum {
+	WIFI_ICON = 0,
+	WIFI_GAUGE,
+	WIFI_GRAPHIC,
+	WIFI_NB_DISPLAY,
+} CDWifiDisplay;
+
 struct _AppletConfig {
 	gchar *defaultTitle;
 	gchar *cUserImage[WIFI_NB_QUALITY];
 	gchar *cGThemePath;
 	gchar *cUserCommand;
+	gchar *cWatermarkImagePath;
+	gdouble fAlpha;
 	
 	CDWifiInfoType quickInfoType;
-	
-	gboolean bUseGauge;
 	CDWifiEffect iEffect;
+	CDWifiDisplay iDisplay;
 	
 	gint iCheckInterval;
 	
+	CairoDockTypeGraph iGraphType;
+	gdouble fLowColor[3];
+	gdouble fHigholor[3];
+	gdouble fBgColor[4];
+	
 	gboolean bESSID;
-} ;
+};
 
 struct _AppletData {
 	CDWifiQuality iQuality, iPreviousQuality;
@@ -56,8 +69,9 @@ struct _AppletData {
 	gboolean bWirelessExt;
 	CairoDockMeasure *pMeasureTimer;
 	Gauge *pGauge;
+	CairoDockGraph *pGraph;
 	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];
-} ;
+};
 
 
 #endif
