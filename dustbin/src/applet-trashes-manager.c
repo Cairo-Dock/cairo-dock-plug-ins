@@ -11,6 +11,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <glib/gstdio.h>
 
 #include "cairo-dock.h"
 
@@ -377,7 +378,28 @@ void cd_dustbin_measure_all_dustbins (int *iNbFiles, int *iSize)
 	}
 }
 
-
+static void _cd_dustbin_empty_dir (const gchar *cDirectory)
+{
+	GError *erreur = NULL;
+	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("Dustbin : %s", erreur->message);
+		g_error_free (erreur);
+		return ;
+	}
+	
+	const gchar *cFileName;
+	GString *sFilePath = g_string_new ("");
+	while ((cFileName = g_dir_read_name (dir)) != NULL)
+	{
+		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
+		g_remove (sFilePath->str);
+	}
+	
+	g_string_free (sFilePath, TRUE);
+	g_dir_close (dir);
+}
 
 void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 {
@@ -392,10 +414,11 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 	g_free (cQuestion);
 	if (answer == GTK_RESPONSE_YES)
 	{
-		GString *sCommand = g_string_new ("rm -rf ");
+		///GString *sCommand = g_string_new ("rm -rf ");
 		if (cDirectory != NULL)
 		{
-			g_string_append_printf (sCommand, "\"%s\"/* \"%s\"/.*", cDirectory, cDirectory);
+			///g_string_append_printf (sCommand, "\"%s\"/* \"%s\"/.*", cDirectory, cDirectory);
+			_cd_dustbin_empty_dir (cDirectory);
 		}
 		else
 		{
@@ -404,11 +427,12 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 			for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 			{
 				pDustbin = pElement->data;
-				g_string_append_printf (sCommand, "\"%s\"/* \"%s\"/.* ", pDustbin->cPath, pDustbin->cPath);
+				///g_string_append_printf (sCommand, "\"%s\"/* \"%s\"/.* ", pDustbin->cPath, pDustbin->cPath);
+				_cd_dustbin_empty_dir (pDustbin->cPath);
 			}
 		}
-		cd_message (">>> %s", sCommand->str);
-		system (sCommand->str);  // g_spawn_command_line_async() ne marche pas pour celle-la.
+		///cd_message (">>> %s", sCommand->str);
+		///system (sCommand->str);  // g_spawn_command_line_async() ne marche pas pour celle-la.
 		
 		gchar *cFileInfoPath= NULL;
 		gchar *cDefaultTrash = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), &cFileInfoPath);
@@ -416,15 +440,15 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		{
 			if (cDirectory == NULL || strcmp (cDirectory, cDefaultTrash) == 0)
 			{
-				g_string_printf (sCommand, "rm -rf \"%s\"/*info \"%s\"/.*info", cFileInfoPath, cFileInfoPath);
-				cd_message (">>> %s", sCommand->str);
-				system (sCommand->str);
+				///g_string_printf (sCommand, "rm -rf \"%s\"/*info \"%s\"/.*info", cFileInfoPath, cFileInfoPath);
+				_cd_dustbin_empty_dir (cFileInfoPath);
+				///cd_message (">>> %s", sCommand->str);
+				///system (sCommand->str);
 			}
-			g_free (cDefaultTrash);
 		}
 		g_free (cDefaultTrash);
 		g_free (cFileInfoPath);
-		g_string_free (sCommand, TRUE);
+		///g_string_free (sCommand, TRUE);
 	}
 }
 
