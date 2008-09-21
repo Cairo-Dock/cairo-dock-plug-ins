@@ -164,7 +164,7 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 		if (! myData.bInitialized)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(myDock ? "..." : D_("Loading"));
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
 			if (myData.pGauge)
 			{
 				CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
@@ -188,9 +188,7 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 				}
 				else
 				{
-					gchar * cInfoTitle = g_strdup_printf ("↑%s\n↓%s", upRateFormatted, downRateFormatted);
-					CD_APPLET_SET_NAME_FOR_MY_ICON (cInfoTitle)
-					g_free (cInfoTitle);
+					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("↑%s\n↓%s", upRateFormatted, downRateFormatted)
 				}
 			}
 			
@@ -216,9 +214,7 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 				if (myData.pGauge)
 				{
 					GList *pList = NULL;  /// un tableau ca serait plus sympa ...
-					double fUpValue = (double) myData.iUploadSpeed / myData.iMaxUpRate;
 					pList = g_list_append (pList, &fUpValue);
-					double fDownValue = (double) myData.iDownloadSpeed / myData.iMaxDownRate;
 					pList = g_list_append (pList, &fDownValue);
 					CD_APPLET_RENDER_GAUGE_MULTI_VALUE (myData.pGauge, pList);
 					g_list_free (pList);

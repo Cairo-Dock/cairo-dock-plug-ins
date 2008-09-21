@@ -69,7 +69,7 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			myData.pGauge = NULL;
 			myData.pGraph = cairo_dock_create_graph (myDrawContext,
-				20, myConfig.iGraphType,
+				20, myConfig.iGraphType | CAIRO_DOCK_DOUBLE_GRAPH | (myConfig.bMixGraph ? CAIRO_DOCK_MIX_DOUBLE_GRAPH : 0),
 				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
 				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, myConfig.fLowColor2, myConfig.fHigholor2);
 			if (myConfig.cWatermarkImagePath != NULL)
@@ -115,7 +115,7 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_reload_graph (myDrawContext, myData.pGraph, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 		else if (myConfig.bUseGraphic)
 			myData.pGraph = cairo_dock_create_graph (myDrawContext,
-				20, myConfig.iGraphType,
+				20, myConfig.iGraphType | CAIRO_DOCK_DOUBLE_GRAPH | (myConfig.bMixGraph ? CAIRO_DOCK_MIX_DOUBLE_GRAPH : 0),
 				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
 				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, myConfig.fLowColor2, myConfig.fHigholor2);
 		else

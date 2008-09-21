@@ -33,7 +33,7 @@ CD_APPLET_INIT_BEGIN
 		if (myConfig.cWatermarkImagePath != NULL)
 			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 		CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
-	}	
+	}
 	//Initialisation du timer de mesure.
 	myData.pClock = g_timer_new ();
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
@@ -72,7 +72,7 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			myData.pGauge = NULL;
 			myData.pGraph = cairo_dock_create_graph (myDrawContext,
-				20, myConfig.iGraphType,
+				20, myConfig.iGraphType | CAIRO_DOCK_DOUBLE_GRAPH | (myConfig.bMixGraph ? CAIRO_DOCK_MIX_DOUBLE_GRAPH : 0),
 				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
 				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, myConfig.fLowColor2, myConfig.fHigholor2);
 			if (myConfig.cWatermarkImagePath != NULL)
@@ -106,7 +106,7 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_reload_graph (myDrawContext, myData.pGraph, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 		else if (myConfig.bUseGraphic)
 			myData.pGraph = cairo_dock_create_graph (myDrawContext,
-				20, myConfig.iGraphType,
+				20, myConfig.iGraphType | CAIRO_DOCK_DOUBLE_GRAPH | (myConfig.bMixGraph ? CAIRO_DOCK_MIX_DOUBLE_GRAPH : 0),
 				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
 				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, myConfig.fLowColor2, myConfig.fHigholor2);
 		else
