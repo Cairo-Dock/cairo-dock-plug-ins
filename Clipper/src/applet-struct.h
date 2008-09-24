@@ -19,7 +19,7 @@ typedef struct _CDClipperCommand {
 	} CDClipperCommand;
 
 typedef struct _CDClipperAction {
-	gchar *cExpression;
+	gchar *cDescription;
 	GRegex *pRegex;
 	GList *pCommands;
 	} CDClipperAction;
@@ -31,16 +31,23 @@ struct _AppletConfig {
 	gboolean bPasteInClipboard;
 	gboolean bPasteInPrimary;
 	gboolean bEnableActions;
+	gboolean bMenuOnMouse;
+	gboolean bReplayAction;
+	gint iActionMenuDuration;
+	gchar *cShortCut;
+	gchar **pPersistentItems;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	gint iNbItemsMax;
 	gint iNbItems;
 	GList *pItems;
 	guint iSidClipboardOwnerChange;
 	guint iSidPrimaryOwnerChange;
 	GList *pActions;
+	gboolean bActionsLoaded;
+	gboolean bActionBlocked;
+	GtkWidget *pActionMenu;
 	} ;
 
 #endif

@@ -12,6 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <glib/gi18n.h>
 
 #include "applet-struct.h"
+#include "applet-clipboard.h"
 #include "applet-notifications.h"
 
 CD_APPLET_INCLUDE_MY_VARS
@@ -20,36 +21,8 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_ABOUT (D_("This is the Clipper applet\n made by Fabrice Rey (Fabounet) for Cairo-Dock"))
 
 
-static void _cd_clipper_activate_item (GtkMenuItem *pMenuItem, gchar *cText)
-{
-	g_print ("%s (%s)\n", __func__, cText);
-	
-	GtkClipboard *pClipBoard;
-	if (myConfig.bPasteInClipboard)
-	{
-		pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-		gtk_clipboard_set_text (pClipBoard, cText, -1);
-	}
-	if (myConfig.bPasteInPrimary)
-	{
-		pClipBoard = gtk_clipboard_get (GDK_SELECTION_PRIMARY);
-		gtk_clipboard_set_text (pClipBoard, cText, -1);
-	}
-	
-	if (myConfig.bEnableActions)
-	{
-		
-	}
-}
-static void _cd_clipper_build_menu (gchar *cText, GtkWidget *pMenu)
-{
-	GtkWidget *pMenuItem;
-	CD_APPLET_ADD_IN_MENU_WITH_DATA (cText, _cd_clipper_activate_item, pMenu, cText);
-}
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
-	
-	
 	if (myData.pItems == NULL)
 	{
 		gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
@@ -58,33 +31,50 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else
 	{
-		GtkWidget *pMenu = gtk_menu_new ();
-		GtkWidget *pMenuItem;
-		
-		if (myDock)
-		{
-			myDock->bMenuVisible = TRUE;
-			g_signal_connect (G_OBJECT (pMenu),
-				"deactivate",
-				G_CALLBACK (cairo_dock_delete_menu),
-				myDock);
-		}
-		
-		g_list_foreach (myData.pItems, (GFunc)_cd_clipper_build_menu, pMenu);
-		gtk_widget_show_all (pMenu);
-		gtk_menu_popup (GTK_MENU (pMenu),
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			1,
-			gtk_get_current_event_time ());
+		GtkWidget *pMenu = cd_clipper_build_items_menu ();
+		cd_clipper_show_menu (pMenu, 1);
 	}
 CD_APPLET_ON_CLICK_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
+static void _cd_clipper_clear_history (GtkMenuItem *menu_item, gpointer *data)
+{
+	GtkClipboard *pClipBoard;
+	if ((myConfig.iItemType & CD_CLIPPER_CLIPBOARD) && myConfig.iNbItems != 0)
+	{
+		pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+		gtk_clipboard_clear (pClipBoard);
+	}
+	
+	if ((myConfig.iItemType & CD_CLIPPER_PRIMARY) && myConfig.iNbItems != 0)
+	{
+		pClipBoard = gtk_clipboard_get (GDK_SELECTION_PRIMARY);
+		gtk_clipboard_clear (pClipBoard);
+	}
+	
+	g_list_foreach (myData.pItems, (GFunc) g_free, NULL);
+        g_list_free (myData.pItems);
+        myData.pItems = NULL;
+        myData.iNbItems = 0;
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Clipper", pSubMenu, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Clear clipboard History", "gtk-clear", _cd_clipper_clear_history, pSubMenu)
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
 CD_APPLET_ON_BUILD_MENU_END
+
+
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+	if (myConfig.pPersistentItems == NULL)
+	{
+		gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
+		cairo_dock_show_temporary_dialog_with_icon (D_("No persistent items.\nYou can add some by editing the config of this applet."), myIcon, myContainer, 6000, cIconPath);
+		g_free (cIconPath);
+	}
+	else
+	{
+		GtkWidget *pMenu = cd_clipper_build_persistent_items_menu ();
+		cd_clipper_show_menu (pMenu, 1);
+	}
+CD_APPLET_ON_MIDDLE_CLICK_END

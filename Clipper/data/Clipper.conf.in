@@ -15,7 +15,7 @@ frame1_ =
 #s Name of the icon as it will appear in its label in the dock :
 name = Clipper
 
-#S Icon's name :
+#S+ Icon's name :
 icon = 
 
 #E[] Name of the dock it belongs to:
@@ -62,17 +62,41 @@ use size=
 #{Clipboard items are those you get with CTRL+c. Selection items are those you get by selecting some text with the mouse.}
 item type = 3
 
-#i[0;50] Number of items :
+#I[0;50] Number of items :
 nb items = 10
 
-#b Paste in Clipboard ?
-#{When you click on an item, it will be accessible with CTRL+v}
+#b Paste into Clipboard ?
+#{When you click on an item, its content will become accessible with CTRL+v}
 paste clipboard = true
 
-#b Paste in Selection ?
-#{When you click on an item, it will be accessible with the middle-click}
+#b Paste into Selection ?
+#{When you click on an item, its content will become accessible with the middle-click}
 paste selection = true
+
+#k Shortkey to pop-up the items menu :
+shortkey = <Shift><Ctrl>F1
+
+#b Pop-up menus at mouse position ?
+menu on mouse = true
+
+
+#F[Actions;gtk-execute]
+frame_act =
 
 #b Enable actions ?
 #{If some actions are associated with an item, they will be proposed to you when the item is created.}
 enable actions = true
+
+#b Replay actions ?
+#{Display the actions when selecting an item in the history.}
+replay action = false
+
+#I[1;12] Duration of the action menu :
+#{in seconds.}
+action duration = 4
+
+#F[Persistent items;gtk-dnd-multiple]
+frame_per =
+
+#s99 A list of persistent items that can be accessed with middle-click :/
+persistent = 

@@ -2,3 +2,6 @@
 <u>Author</u> : <b>Fabrice Rey (Fabounet)</b>
 <i>This applet keeps a trace of the <span color='#0000FF'>clipboard and mouse selection</span>,
  so that you can recall them quickly. It's a clone of the well-know Klipper.</i>
+ It supports clipboard and mouse selection,
+  predefined actions,
+  and persistent items through middle-click.
