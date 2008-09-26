@@ -11,6 +11,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-draw.h"
+#include "applet-digital.h" //Digital html like renderer
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-init.h"
@@ -91,6 +92,8 @@ CD_APPLET_INIT_BEGIN
 	_load_theme (myApplet);
 	_load_back_and_fore_ground (myApplet);
 	
+	cd_clock_configure_digital (myApplet);
+	
 	myData.cSystemLocation = g_strdup (g_getenv ("TZ"));
 	myData.iLastCheckedMinute = -1;
 	myData.iLastCheckedDay = -1;
@@ -128,6 +131,8 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
+	
+	cd_clock_configure_digital (myApplet);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{

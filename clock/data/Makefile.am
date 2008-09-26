@@ -1,5 +1,5 @@
 
-SUBDIRS = . themes
+SUBDIRS = . themes digital
 
 moduledir = $(clockdatadir)
 

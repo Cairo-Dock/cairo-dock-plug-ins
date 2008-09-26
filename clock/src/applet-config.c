@@ -35,6 +35,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cLocation = CD_CONFIG_GET_STRING ("Module", "location");
 	
+	myConfig.cDigital = CD_CONFIG_GET_STRING ("Module", "digital");
+	
 	//\_______________ On recupere les alarmes.
 	myConfig.pAlarms = g_ptr_array_new ();
 	CDClockAlarm *pAlarm;
@@ -93,6 +95,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cThemePath);
 	g_free (myConfig.cFont);
 	g_free (myConfig.cLocation);
+	g_free (myConfig.cDigital);
 
 	CDClockAlarm *pAlarm;
 	int i;
@@ -127,6 +130,14 @@ CD_APPLET_RESET_DATA_BEGIN
 	if (myData.pBackgroundSurface != NULL)
 	{
 		cairo_surface_destroy (myData.pBackgroundSurface);
+	}
+	
+	for (i = 0; i < 4; i ++) {
+		if (myData.pDigitalClock.pFrame[i].pFrameSurface != NULL)
+			cairo_surface_destroy (myData.pDigitalClock.pFrame[i].pFrameSurface);
+		
+		if (myData.pDigitalClock.pText[i].pTextSurface != NULL)
+			cairo_surface_destroy (myData.pDigitalClock.pText[i].pTextSurface);
 	}
 	
 	g_free (myData.cSystemLocation);

@@ -13,6 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-config.h"
+#include "applet-digital.h" //Digital html like renderer
 #include "applet-draw.h"
 
 CD_APPLET_INCLUDE_MY_VARS
@@ -168,8 +169,12 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	return TRUE;
 }
 
+void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int width, int height, double fMaxScale, struct tm *pTime) {
+	cd_clock_draw_frames (myApplet);
+	cd_clock_put_text_on_frames (myApplet, width, height, fMaxScale, pTime);
+}
 
-void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int width, int height, double fMaxScale, struct tm *pTime)
+/*void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int width, int height, double fMaxScale, struct tm *pTime)
 {
 	cairo_t *pSourceContext = myDrawContext;
 	GString *sFormat = g_string_new ("");
@@ -244,7 +249,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int width, int heigh
 	
 	cairo_surface_destroy (pNewSurface);
 	g_object_unref (pLayout);
-}
+}*/
 
 
 

@@ -5,6 +5,35 @@
 #include <cairo-dock.h>
 #include <time.h>
 
+//Frame de fond pour chaque partie de l'heure
+typedef struct {
+	int iWidth;
+	int iHeight;
+	int iXOffset;
+	int iYOffset;
+	cairo_surface_t *pFrameSurface;
+} ClockDigitalFrame;
+
+//Texte de l'heure.
+typedef struct {
+	int iXOffset;
+	int iYOffset;
+	cairo_surface_t *pTextSurface;
+} ClockDigitalText;
+
+//Mode digital de l'horloge, contient tout ce dont on a besoin
+//Surfaces et paramètres X/Y/W/H
+typedef struct {
+ ClockDigitalFrame pFrame[4];
+ ClockDigitalText pText[4];
+ gboolean bSecondCapable;
+ int iFrameSpacing;
+ int i12modeWidth;
+ int i12modeHeight;
+ int i12modeXOffset;
+ int i12modeYOffset;
+ int i12modeFrame;
+} ClockDigital;
 
 typedef enum _LayerElement
 {
@@ -51,6 +80,7 @@ struct _AppletConfig {
 	gchar *cSetupTimeCommand;
 	gchar *cFont;
 	gchar *cLocation;
+	gchar *cDigital;
 	} ;
 
 struct _AppletData {
@@ -63,6 +93,8 @@ struct _AppletData {
 	CairoDialog *pCalendarDialog;
 	gchar *cSystemLocation;
 	gint iLastCheckedMinute, iLastCheckedDay, iLastCheckedMonth, iLastCheckedYear;
+	
+	ClockDigital pDigitalClock;
 	} ;
 
 #endif

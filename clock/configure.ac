@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-clock],[1.3.7],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cd-clock],[1.3.8],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -35,6 +35,8 @@ AC_CONFIG_FILES([Makefile
 		data/Makefile
 		data/readme
 		data/clock.conf
+		data/digital/Makefile
+		data/digital/default/Makefile
 		data/themes/Makefile
 		data/themes/antique/Makefile
 		data/themes/default/Makefile

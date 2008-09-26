@@ -76,9 +76,8 @@ location =
 #F[Style;gtk-dnd-multiple]
 frame2 =
 
-#b+ Use the analogic view ?
-#{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
-old fashion style = true
+#r+[default] List of available themes for the numeric display :/
+digital = default
 
 #c+4[0;1] Text color for the numeric display:
 #{r, v, b, a}
@@ -87,6 +86,10 @@ text color = 0.0; 0.0; 0.5; 1.
 #P+ Font used for the numeric display :
 #{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
 font = 
+
+#b+ Use the analogic view ?
+#{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
+old fashion style = true
 
 #R+1[] List of available themes for the analogic display :/
 theme = glassy
