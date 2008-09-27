@@ -111,8 +111,7 @@ gboolean CD_APPLET_ON_BUILD_MENU (gpointer *data, CairoDockModuleInstance *myApp
 		GtkWidget *pAppletMenu = data[2];
 		GtkWidget *pMenuItem, *image;
 		
-		pMenuItem = gtk_separator_menu_item_new ();
-		gtk_menu_shell_append(GTK_MENU_SHELL (CD_APPLET_MY_MENU), pMenuItem);
+		CD_APPLET_ADD_SEPARATOR (CD_APPLET_MY_MENU)
 		
 		CD_APPLET_ADD_SUB_MENU (_("Hey, you there !"), pModuleSubMenu, CD_APPLET_MY_MENU)
 		if (myData.iSidAnimation != 0)

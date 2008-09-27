@@ -84,7 +84,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_IN_MENU(D_("New Tab"), on_new_tab, pSubMenu);
 	CD_APPLET_ADD_IN_MENU(D_("Rename current Tab"), on_rename_tab, pSubMenu);
 	CD_APPLET_ADD_IN_MENU(D_("Close current Tab"), on_close_tab, pSubMenu);
-	CD_APPLET_ADD_SEPARATOR();
+	CD_APPLET_ADD_SEPARATOR(pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }
 CD_APPLET_ON_BUILD_MENU_END
