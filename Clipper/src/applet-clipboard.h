@@ -14,6 +14,8 @@ void cd_clipper_selection_owner_changed (GtkClipboard *pClipBoard, GdkEvent *eve
 
 GList *cd_clipper_load_actions (const gchar *cConfFilePath);
 
+void cd_clipper_free_item (CDClipperItem *pItem);
+
 void cd_clipper_free_command (CDClipperCommand *pCommand);
 
 void cd_clipper_free_action (CDClipperAction *pAction);

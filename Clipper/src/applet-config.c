@@ -39,6 +39,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bPasteInPrimary = CD_CONFIG_GET_BOOLEAN ("Configuration", "paste selection");
 	myConfig.bEnableActions = CD_CONFIG_GET_BOOLEAN ("Configuration", "enable actions");
 	myConfig.bMenuOnMouse = CD_CONFIG_GET_BOOLEAN ("Configuration", "menu on mouse");
+	myConfig.bSeparateSelections = CD_CONFIG_GET_BOOLEAN ("Configuration", "separate");
+	if (myConfig.bSeparateSelections && myConfig.iItemType == CD_CLIPPER_BOTH)
+		myConfig.iNbItems /= 2;
 	myConfig.bReplayAction = CD_CONFIG_GET_BOOLEAN ("Configuration", "replay action");
 	myConfig.iActionMenuDuration = CD_CONFIG_GET_INTEGER ("Configuration", "action duration");
 	
@@ -53,7 +56,8 @@ CD_APPLET_GET_CONFIG_END
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
 	if (myConfig.cShortCut)
-	{	cd_keybinder_unbind(myConfig.cShortCut, (CDBindkeyHandler)_cd_clipper_on_keybinding_pull);
+	{
+		cd_keybinder_unbind(myConfig.cShortCut, (CDBindkeyHandler)_cd_clipper_on_keybinding_pull);
 		g_free (myConfig.cShortCut);
 	}
 	g_strfreev (myConfig.pPersistentItems);
@@ -62,7 +66,7 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
-	g_list_foreach (myData.pItems, (GFunc) g_free, NULL);
+	g_list_foreach (myData.pItems, (GFunc) cd_clipper_free_item, NULL);
 	g_list_free (myData.pItems);
 	
 	g_list_foreach (myData.pActions, (GFunc)cd_clipper_free_action, NULL);

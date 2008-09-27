@@ -56,7 +56,9 @@ static void _cd_clipper_clear_history (GtkMenuItem *menu_item, gpointer *data)
 	g_list_foreach (myData.pItems, (GFunc) g_free, NULL);
         g_list_free (myData.pItems);
         myData.pItems = NULL;
-        myData.iNbItems = 0;
+        int i;
+        for (i=0; i<4; i++)
+	        myData.iNbItems[i] = 0;
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("Clipper", pSubMenu, CD_APPLET_MY_MENU)

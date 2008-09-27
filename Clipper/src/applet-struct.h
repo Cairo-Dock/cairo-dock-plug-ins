@@ -12,6 +12,12 @@ typedef enum {
 	CD_CLIPPER_BOTH
 	} CDClipperItemType;
 
+typedef struct _CDClipperItem {
+	CDClipperItemType iType;
+	gchar *cText;
+	gchar *cDisplayedText;
+	} CDClipperItem;
+
 typedef struct _CDClipperCommand {
 	gchar *cDescription;
 	gchar *cFormat;
@@ -32,6 +38,7 @@ struct _AppletConfig {
 	gboolean bPasteInPrimary;
 	gboolean bEnableActions;
 	gboolean bMenuOnMouse;
+	gboolean bSeparateSelections;
 	gboolean bReplayAction;
 	gint iActionMenuDuration;
 	gchar *cShortCut;
@@ -40,7 +47,7 @@ struct _AppletConfig {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	gint iNbItems;
+	gint iNbItems[4];
 	GList *pItems;
 	guint iSidClipboardOwnerChange;
 	guint iSidPrimaryOwnerChange;
