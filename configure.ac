@@ -425,6 +425,8 @@ AC_CONFIG_FILES([
 	clock/data/Makefile
 	clock/data/readme
 	clock/data/clock.conf
+	clock/data/digital/Makefile
+	clock/data/digital/default/Makefile
 	clock/data/themes/Makefile
 	clock/data/themes/antique/Makefile
 	clock/data/themes/default/Makefile
