@@ -46,7 +46,7 @@ struct _AppletConfig {
 	MyAppletEffect iEffect;
   } ;
 
-
+#define PM_NB_VALUES 10
 struct _AppletData {
 	cairo_surface_t *pSurfaceBattery;
 	cairo_surface_t *pSurfaceCharge;
@@ -63,6 +63,8 @@ struct _AppletData {
 	gchar *cBatteryStateFilePath;
 	gint iMaxPresentState;
 	gint iAveragePresentState;
+	gdouble fRateHistory[PM_NB_VALUES];
+	gint iCurrentIndex;
 	} ;
 
 

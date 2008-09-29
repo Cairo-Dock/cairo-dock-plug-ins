@@ -28,7 +28,7 @@ CD_APPLET_INIT_BEGIN
 			
 			if (myConfig.bUseGauge)
 			{
-				double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
+				double fMaxScale = cairo_dock_get_max_scale (myContainer);
 				myData.pGauge = cairo_dock_load_gauge (myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 			}
 			

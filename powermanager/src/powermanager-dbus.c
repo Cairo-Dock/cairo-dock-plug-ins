@@ -1,3 +1,4 @@
+#include <math.h>
 #include <string.h>
 #include <dirent.h>
 #include <dbus/dbus-glib.h>
@@ -117,9 +118,9 @@ gboolean dbus_connect_to_bus (void)
 		if (! bBatteryFound)  // on n'a pas trouve de batterie nous-meme.
 		{
 			gchar *cBatteryName = MY_DEFAULT_BATTERY_NAME;  // utile ? si on a rien trouve, c'est surement qu'il n'y a pas de batterie non ?
-			cd_warning ("No battery were found, trying with default one : %s, with DBus", cBatteryName);
+			/**cd_warning ("No battery were found, trying with default one : %s, with DBus", cBatteryName);
 			
-			/**cd_message ("Battery Name : %s", cBatteryName);
+			cd_message ("Battery Name : %s", cBatteryName);
 			gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", cBatteryName);
 			cd_debug ("  batteryPath : %s", batteryPath);
 			dbus_proxy_battery = cairo_dock_create_new_system_proxy (
@@ -237,6 +238,7 @@ gboolean update_stats(void)
 	if (myData.cBatteryStateFilePath == NULL)
 		return TRUE;
 	
+	int k;
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
@@ -270,6 +272,9 @@ gboolean update_stats(void)
 				myData.previous_battery_time = 0;
 				myData.previous_battery_charge = 0;
 			}
+			for (k = 0; k < PM_NB_VALUES; k ++)
+				myData.fRateHistory[k] = 0;
+			myData.iCurrentIndex = 0;
 		}
 		
 		go_to_next_line  // "present: yes"
@@ -278,7 +283,14 @@ gboolean update_stats(void)
 		//Ajouter un warning si ce n'est pas le cas.
 		
 		jump_to_value
+		gboolean bOnBatteryOld = myData.on_battery;
 		myData.on_battery = (*cCurVal == 'd');  // discharging
+		if (bOnBatteryOld != myData.on_battery)
+		{
+			for (k = 0; k < PM_NB_VALUES; k ++)
+				myData.fRateHistory[k] = 0;
+			myData.iCurrentIndex = 0;
+		}
 		
 		go_to_next_line  // charging state: discharging
 		
@@ -299,6 +311,7 @@ gboolean update_stats(void)
 			}
 			
 			iPresentRate = myData.iAveragePresentState; //Il faudra tester pour savoir quelle valeur s'avère être la plus fiable
+			
 			//iPresentRate = myData.iMaxPresentState;
 		}
 		
@@ -330,26 +343,44 @@ gboolean update_stats(void)
 		myData.battery_charge = 100. * iRemainingCapacity / myData.iCapacity;
 		if (myData.battery_charge > 100)
 			myData.battery_charge = 100;
-			
 		if (myData.battery_charge < 0)
 			myData.battery_charge = 0.;
+		
+		if (iPresentRate == 0)
+		{
+			iPresentRate = (myData.previous_battery_charge - myData.battery_charge) * 1000. / myConfig.iCheckInterval;
+			cd_debug ("estimated rate : %.2f -> %.2f => %d", myData.previous_battery_charge, myData.battery_charge, iPresentRate);
+			myData.fRateHistory[myData.iCurrentIndex] = iPresentRate;
+			myData.iCurrentIndex ++;
+			if (myData.iCurrentIndex == PM_NB_VALUES)
+				myData.iCurrentIndex = 0;
+			double fMeanRate = 0.;
+			int nb_values=0;
+			for (k = 0; k < PM_NB_VALUES; k ++)
+			{
+				if (myData.fRateHistory[k] != 0)
+				{
+					fMeanRate += myData.fRateHistory[k];
+					nb_values ++;
+				}
+			}
+			cd_debug ("mean calculated on %d value(s) : ", nb_values, fabs (fMeanRate) / nb_values);
+			if (nb_values != 0)
+				iPresentRate = fabs (fMeanRate) / nb_values;
+		}
+		
 		
 		//Utile de connaitre l'autonomie estimée quand la batterie est chargée
 		if (myData.on_battery || myData.battery_charge == 100) { //Decompte avant décharge complete
 			if (iPresentRate > 1) {
 				myData.battery_time = 3600. * iRemainingCapacity / iPresentRate;
-				if (myData.battery_time == (iRemainingCapacity / 3600.))
-					myData.battery_time = 0.;
 			}
 			else
 				myData.battery_time = 0.;
 		}
 		else {
 			if (iPresentRate > 1) { //Decompte avant charge complete
-				int iDeltaCapacity = myData.iCapacity - iRemainingCapacity;
-				myData.battery_time = 3600. * iDeltaCapacity / iPresentRate;
-				if (myData.battery_time == (iDeltaCapacity / 3600.))
-					myData.battery_time = 0.;
+				myData.battery_time = 3600. * (myData.iCapacity - iRemainingCapacity) / iPresentRate;
 			}
 			else
 				myData.battery_time = 0.;
