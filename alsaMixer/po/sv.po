@@ -43,12 +43,12 @@ msgstr "Kunde inte registrera alternativ"
 msgid "I couldn't load the mixer"
 msgstr "Kunde inte ladda mixern"
 
-#: ../src/applet-mixer.c:134
+#: ../src/applet-mixer.c:135
 #, c-format
 msgid "I couldn't find any element '%s'"
 msgstr "Kunde inte hitta något element '%s'"
 
-#: ../src/applet-mixer.c:266
+#: ../src/applet-mixer.c:275
 msgid "Set up volume :"
 msgstr "Volymkontroll:"
 
@@ -173,81 +173,93 @@ msgid "Choose which channel to control :"
 msgstr "Välj kanal att kontrollera:"
 
 #: ../data/messages:47
+msgid ""
+"On some cards, a channel only controls 1 side (right or left). You will then "
+"need to specify a second channel here, to control both sides. Most of the "
+"time, you should just let it empty."
+msgstr ""
+
+#: ../data/messages:49
+#, fuzzy
+msgid "Optionnally, choose a second channel to control :"
+msgstr "Välj kanal att kontrollera:"
+
+#: ../data/messages:51
 msgid "Let empty to use the defaut command."
 msgstr "Lämna tomt för att använda standardkommando."
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr "Kommando som ska köras för att visa avancerad ljudmixer:"
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "Control"
 msgstr "Kontroll"
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr "Tangentkombination för att visa/dölja konfigurationsdialog"
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "Variation för 1 hjulsbläddring, i %:"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr "Dölj skalan när musen lämnar deskleten?"
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "Display"
 msgstr "Utseende"
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "Display volume :"
 msgstr "Visa volym:"
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "No"
 msgstr "Nej"
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "On label"
 msgstr "På etikett"
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "On icon"
 msgstr "På ikonen"
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Effet to apply on the icon according to volume :"
 msgstr "Volymeffekt på ikonen:"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "None"
 msgstr "Ingen"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Zoom"
 msgstr "Zooma"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Transparency"
 msgstr "Genomskinlighet"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Draw Bar"
 msgstr "Visa stapel"
 
-#: ../data/messages:79 ../data/messages:83 ../data/messages:87
+#: ../data/messages:83 ../data/messages:87 ../data/messages:91
 msgid "Let empty to use the default one."
 msgstr "Lämna tomt för använda standaralternativet."
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Default icon :"
 msgstr "Standard ikon:"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Broken icon :"
 msgstr "Bruten ikon:"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "Mute icon :"
 msgstr "Tysta ikon:"

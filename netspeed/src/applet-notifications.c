@@ -27,11 +27,11 @@ static void _netspeed_recheck (GtkMenuItem *menu_item, CairoDockModuleInstance *
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("netspeed", pSubMenu, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_SUB_MENU ("netspeed", pSubMenu, CD_APPLET_MY_MENU);
 	if (! myData.bAcquisitionOK) {
-		CD_APPLET_ADD_IN_MENU (D_("Re-check interface"), _netspeed_recheck, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Re-check interface"), _netspeed_recheck, pSubMenu);
 	}
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

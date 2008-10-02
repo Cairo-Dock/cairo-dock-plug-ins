@@ -78,10 +78,10 @@ static void _cd_switcher_remove_last_desktop (GtkMenuItem *menu_item, Icon *pIco
 	cd_switcher_remove_last_desktop ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("switcher", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU (_("Add a desktop"), _cd_switcher_add_desktop, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (_("Remove last desktop"), _cd_switcher_remove_last_desktop, pSubMenu)
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+	CD_APPLET_ADD_SUB_MENU ("switcher", pSubMenu, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU (_("Add a desktop"), _cd_switcher_add_desktop, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (_("Remove last desktop"), _cd_switcher_remove_last_desktop, pSubMenu);
+		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

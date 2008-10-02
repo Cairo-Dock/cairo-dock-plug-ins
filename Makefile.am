@@ -48,14 +48,21 @@ if WITH_XGAMMA
 xgamma_dir=Xgamma
 endif
 
+if WITH_GMENU
+gmenu_dir=GMenu
+endif
+
+
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
 	Cairo-Penguin\
+	Clipper\
 	clock\
 	${compiz_icon_dir}\
 	cpusage\
 	Dbus\
 	dustbin\
+	${gmenu_dir}\
 	${gnome_dir}\
 	${gnome_old_dir}\
 	logout\
@@ -84,5 +91,5 @@ EXTRA_DIST = \
 	intltool-extract.in\
 	intltool-merge.in\
 	intltool-update.in\
-	LICENSE	
+	LICENSE
 

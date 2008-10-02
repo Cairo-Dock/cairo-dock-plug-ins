@@ -195,7 +195,7 @@ gboolean cd_slider_update_slide (CairoDockModuleInstance *myApplet) {
 			cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 			cairo_paint (myDrawContext);
 			
- 			CD_APPLET_REDRAW_MY_ICON
+ 			CD_APPLET_REDRAW_MY_ICON;
 		break;
 		case SLIDER_FADE:
 			//cd_debug("Displaying with fade");
@@ -335,7 +335,7 @@ gboolean cd_slider_fade (CairoDockModuleInstance *myApplet) {
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
 	
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha >= .99) {
@@ -371,7 +371,7 @@ gboolean cd_slider_blank_fade (CairoDockModuleInstance *myApplet) {
 	cairo_rectangle(myDrawContext, 0., 0., myData.fSurfaceWidth, myData.fSurfaceHeight);
 	cairo_fill(myDrawContext);
 	
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha <= 0.01) {
@@ -414,7 +414,7 @@ gboolean cd_slider_fade_in_out (CairoDockModuleInstance *myApplet) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha <= 0.01  && myData.iAnimCNT >= .99) { //On arrete l'animation
@@ -443,7 +443,7 @@ gboolean cd_slider_side_kick (CairoDockModuleInstance *myApplet) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.fAnimCNT, myData.pImgL.fImgY);
 	cairo_paint (myDrawContext);
 	
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
 	//Effet d'arrivee rapide, passage lent, sortie rapide comme un coup de pied
@@ -492,7 +492,7 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 		cairo_paint(myDrawContext);
 	}
   
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimCNT >= myData.pImgL.fImgX) {
@@ -526,7 +526,7 @@ gboolean cd_slider_grow_up (CairoDockModuleInstance *myApplet) {
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha >= .99) {
@@ -561,7 +561,7 @@ gboolean cd_slider_shrink_down (CairoDockModuleInstance *myApplet) {
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimCNT);
 	
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
 	if (myData.fAnimAlpha <= 1.01) {

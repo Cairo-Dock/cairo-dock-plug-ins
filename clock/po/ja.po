@@ -186,16 +186,13 @@ msgid "Style"
 msgstr "スタイル"
 
 #: ../data/messages:65
-msgid ""
-"The analogic view is based on CairoClock; otherwise it will be displayed in "
-"a numeric way."
-msgstr ""
-"アナログ表示は CairoClock を元にしています。それ以外の場合、デジタル方式で表"
-"示されます。"
+#, fuzzy
+msgid "List of available themes for the numeric display :"
+msgstr "アナログ表示用に利用可能なテーマのリスト :"
 
 #: ../data/messages:67
-msgid "Use the analogic view ?"
-msgstr "アナログ表示を使用？"
+msgid "default"
+msgstr ""
 
 #: ../data/messages:69
 msgid "r, v, b, a"
@@ -218,112 +215,124 @@ msgid "Font used for the numeric display :"
 msgstr "デジタル表示時に使用するフォント :"
 
 #: ../data/messages:77
+msgid ""
+"The analogic view is based on CairoClock; otherwise it will be displayed in "
+"a numeric way."
+msgstr ""
+"アナログ表示は CairoClock を元にしています。それ以外の場合、デジタル方式で表"
+"示されます。"
+
+#: ../data/messages:79
+msgid "Use the analogic view ?"
+msgstr "アナログ表示を使用？"
+
+#: ../data/messages:81
 msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示用に利用可能なテーマのリスト :"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Setup time and date"
 msgstr "時刻と日付の設定"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Let empty to use default command."
 msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Specific command to run :"
 msgstr "実行するコマンドの指定 :"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Alarm"
 msgstr "アラーム"
 
-#: ../data/messages:87
+#: ../data/messages:91
 #, fuzzy
 msgid "Alarm n°1"
 msgstr "第 1 アラーム"
 
-#: ../data/messages:89 ../data/messages:129 ../data/messages:169
+#: ../data/messages:93 ../data/messages:133 ../data/messages:173
 msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
 msgstr "xx:xx 形式で記入。例えば 8:35pm の場合は 20:35 です。"
 
-#: ../data/messages:91 ../data/messages:131 ../data/messages:171
+#: ../data/messages:95 ../data/messages:135 ../data/messages:175
 msgid "Time you want to be notified :"
 msgstr "通知させる時刻の設定 :"
 
-#: ../data/messages:93 ../data/messages:133 ../data/messages:173
+#: ../data/messages:97 ../data/messages:137 ../data/messages:177
 msgid "Repeat every"
 msgstr "リピート :　毎"
 
-#: ../data/messages:95 ../data/messages:135 ../data/messages:175
+#: ../data/messages:99 ../data/messages:139 ../data/messages:179
 msgid "Never"
 msgstr "しない"
 
-#: ../data/messages:97 ../data/messages:137 ../data/messages:177
+#: ../data/messages:101 ../data/messages:141 ../data/messages:181
 msgid "Day"
 msgstr "日"
 
-#: ../data/messages:99 ../data/messages:139 ../data/messages:179
+#: ../data/messages:103 ../data/messages:143 ../data/messages:183
 msgid "Monday"
 msgstr "月曜日"
 
-#: ../data/messages:101 ../data/messages:141 ../data/messages:181
+#: ../data/messages:105 ../data/messages:145 ../data/messages:185
 msgid "Tuesday"
 msgstr "火曜日"
 
-#: ../data/messages:103 ../data/messages:143 ../data/messages:183
+#: ../data/messages:107 ../data/messages:147 ../data/messages:187
 msgid "Wednesday"
 msgstr "水曜日"
 
-#: ../data/messages:105 ../data/messages:145 ../data/messages:185
+#: ../data/messages:109 ../data/messages:149 ../data/messages:189
 msgid "Thursday"
 msgstr "木曜日"
 
-#: ../data/messages:107 ../data/messages:147 ../data/messages:187
+#: ../data/messages:111 ../data/messages:151 ../data/messages:191
 msgid "Friday"
 msgstr "金曜日"
 
-#: ../data/messages:109 ../data/messages:149 ../data/messages:189
+#: ../data/messages:113 ../data/messages:153 ../data/messages:193
 msgid "Saturday"
 msgstr "土曜日"
 
-#: ../data/messages:111 ../data/messages:151 ../data/messages:191
+#: ../data/messages:115 ../data/messages:155 ../data/messages:195
 msgid "Sunday"
 msgstr "日曜日"
 
-#: ../data/messages:113 ../data/messages:153 ../data/messages:193
+#: ../data/messages:117 ../data/messages:157 ../data/messages:197
 msgid "Week Day"
 msgstr "平日"
 
-#: ../data/messages:115 ../data/messages:155 ../data/messages:195
+#: ../data/messages:119 ../data/messages:159 ../data/messages:199
 msgid "Week End"
 msgstr "週末"
 
-#: ../data/messages:117 ../data/messages:157 ../data/messages:197
+#: ../data/messages:121 ../data/messages:161 ../data/messages:201
 msgid "Month"
 msgstr "月"
 
-#: ../data/messages:119 ../data/messages:159 ../data/messages:199
+#: ../data/messages:123 ../data/messages:163 ../data/messages:203
 msgid "If every month, which day of the month ? :"
 msgstr "毎月に設定した場合、月のどの日？ :"
 
-#: ../data/messages:121 ../data/messages:161 ../data/messages:201
+#: ../data/messages:125 ../data/messages:165 ../data/messages:205
 msgid "Message you want to use to be notified :"
 msgstr "通知させたいメッセージ :"
 
-#: ../data/messages:123 ../data/messages:163 ../data/messages:203
+#: ../data/messages:127 ../data/messages:167 ../data/messages:207
 msgid "For exemple, < play /path/to/file.ogg >."
 msgstr "例えば、< play /path/to/file.ogg >。"
 
-#: ../data/messages:125 ../data/messages:165 ../data/messages:205
+#: ../data/messages:129 ../data/messages:169 ../data/messages:209
 msgid "Command to execute :"
 msgstr "実行するコマンド :"
 
-#: ../data/messages:127
+#: ../data/messages:131
 #, fuzzy
 msgid "Alarm n°2"
 msgstr "第 2 アラーム"
 
-#: ../data/messages:167
+#: ../data/messages:171
 #, fuzzy
 msgid "Alarm n°3"
 msgstr "第 3 アラーム"

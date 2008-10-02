@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-09-18 02:34+0200\n"
+"POT-Creation-Date: 2008-10-03 02:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,12 +42,12 @@ msgstr ""
 msgid "I couldn't load the mixer"
 msgstr ""
 
-#: ../src/applet-mixer.c:134
+#: ../src/applet-mixer.c:135
 #, c-format
 msgid "I couldn't find any element '%s'"
 msgstr ""
 
-#: ../src/applet-mixer.c:266
+#: ../src/applet-mixer.c:275
 msgid "Set up volume :"
 msgstr ""
 
@@ -162,81 +162,92 @@ msgid "Choose which channel to control :"
 msgstr ""
 
 #: ../data/messages:47
-msgid "Let empty to use the defaut command."
+msgid ""
+"On some cards, a channel only controls 1 side (right or left). You will then "
+"need to specify a second channel here, to control both sides. Most of the "
+"time, you should just let it empty."
 msgstr ""
 
 #: ../data/messages:49
-msgid "Specific command to run to show an advanced sound mixer :"
+msgid "Optionnally, choose a second channel to control :"
 msgstr ""
 
 #: ../data/messages:51
-msgid "Control"
+msgid "Let empty to use the defaut command."
 msgstr ""
 
 #: ../data/messages:53
-msgid "Shortkey to show/hide the sound control dialog :"
+msgid "Specific command to run to show an advanced sound mixer :"
 msgstr ""
 
 #: ../data/messages:55
-msgid "Variation for 1 mouse scroll, in % :"
+msgid "Control"
 msgstr ""
 
 #: ../data/messages:57
-msgid "Hide the scale when mouse leaves the desklet ?"
+msgid "Shortkey to show/hide the sound control dialog :"
 msgstr ""
 
 #: ../data/messages:59
-msgid "Display"
+msgid "Variation for 1 mouse scroll, in % :"
 msgstr ""
 
 #: ../data/messages:61
-msgid "Display volume :"
+msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr ""
 
 #: ../data/messages:63
-msgid "No"
+msgid "Display"
 msgstr ""
 
 #: ../data/messages:65
-msgid "On label"
+msgid "Display volume :"
 msgstr ""
 
 #: ../data/messages:67
-msgid "On icon"
+msgid "No"
 msgstr ""
 
 #: ../data/messages:69
-msgid "Effet to apply on the icon according to volume :"
+msgid "On label"
 msgstr ""
 
 #: ../data/messages:71
-msgid "None"
+msgid "On icon"
 msgstr ""
 
 #: ../data/messages:73
-msgid "Zoom"
+msgid "Effet to apply on the icon according to volume :"
 msgstr ""
 
 #: ../data/messages:75
-msgid "Transparency"
+msgid "None"
 msgstr ""
 
 #: ../data/messages:77
-msgid "Draw Bar"
+msgid "Zoom"
 msgstr ""
 
-#: ../data/messages:79 ../data/messages:83 ../data/messages:87
-msgid "Let empty to use the default one."
+#: ../data/messages:79
+msgid "Transparency"
 msgstr ""
 
 #: ../data/messages:81
-msgid "Default icon :"
+msgid "Draw Bar"
+msgstr ""
+
+#: ../data/messages:83 ../data/messages:87 ../data/messages:91
+msgid "Let empty to use the default one."
 msgstr ""
 
 #: ../data/messages:85
-msgid "Broken icon :"
+msgid "Default icon :"
 msgstr ""
 
 #: ../data/messages:89
+msgid "Broken icon :"
+msgstr ""
+
+#: ../data/messages:93
 msgid "Mute icon :"
 msgstr ""

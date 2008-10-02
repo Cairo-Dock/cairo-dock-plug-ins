@@ -73,16 +73,10 @@ void systray_build_and_show (void)
 	else
 	{
 		cairo_dock_add_interactive_widget_to_desklet (myData.tray->widget, myDesklet);
-		//myDesklet->renderer = systray_draw_in_desklet;
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		gtk_window_set_resizable(GTK_WINDOW(myDesklet->pWidget), FALSE);
 //		gtk_window_resize(GTK_WINDOW(myDesklet->pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
 	}
-}
-
-void systray_draw_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet)
-{
-
 }
 
 
@@ -110,8 +104,8 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
-  CD_APPLET_ADD_SUB_MENU("Systray", pSubMenu, pAppletMenu);
-  CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	CD_APPLET_ADD_SUB_MENU("Systray", pSubMenu, pAppletMenu);
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }
 CD_APPLET_ON_BUILD_MENU_END
 

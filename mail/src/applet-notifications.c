@@ -133,29 +133,29 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
     GList *list_names = NULL, *list_data = NULL, *l = NULL, *l2 = NULL;
     guint i;
 
-	CD_APPLET_ADD_SUB_MENU ("mail", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU (_("Add a new mail account"), _cd_mail_add_account, pSubMenu)
+	CD_APPLET_ADD_SUB_MENU ("mail", pSubMenu, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU (_("Add a new mail account"), _cd_mail_add_account, pSubMenu);
 
         cd_mailwatch_get_mailboxes_infos( myData.mailwatch, &list_names, &list_data, NULL );
         if( list_names && list_data )
         {
-            CD_APPLET_ADD_SUB_MENU (_("Remove a mail account"), pRemoveAccountSubMenu, pSubMenu)
+            CD_APPLET_ADD_SUB_MENU (_("Remove a mail account"), pRemoveAccountSubMenu, pSubMenu);
 
             /* add a "remove account" item for each mailbox */
             for(l = list_names, l2 = list_data; l && l2; l = l->next, l2 = l2->next) {
-                CD_APPLET_ADD_IN_MENU_WITH_DATA (l->data, _cd_mail_remove_account, pRemoveAccountSubMenu, l2->data)
+                CD_APPLET_ADD_IN_MENU_WITH_DATA (l->data, _cd_mail_remove_account, pRemoveAccountSubMenu, l2->data);
             }
-            CD_APPLET_ADD_SUB_MENU (_("Modify a mail account"), pModifyAccountSubMenu, pSubMenu)
+            CD_APPLET_ADD_SUB_MENU (_("Modify a mail account"), pModifyAccountSubMenu, pSubMenu);
 
             /* add a "modify account" item for each mailbox */
             for(l = list_names, l2 = list_data; l && l2; l = l->next, l2 = l2->next) {
-                CD_APPLET_ADD_IN_MENU_WITH_DATA (l->data, _cd_mail_modify_account, pModifyAccountSubMenu, l2->data)
+                CD_APPLET_ADD_IN_MENU_WITH_DATA (l->data, _cd_mail_modify_account, pModifyAccountSubMenu, l2->data);
             }
             g_list_free( list_names );
             g_list_free( list_data );
         }
 
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 void
@@ -224,7 +224,7 @@ _mail_draw_main_icon (void)
         else */
         {
             //Chargement de l'image "il y a un des mails"
-            CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHasMailUserImage)
+            CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHasMailUserImage);
         }
 	}
 
@@ -281,7 +281,7 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
           if (pIconList != NULL)
           {
               cd_message ("  creation du sous-dock mail");
-              CD_APPLET_CREATE_MY_SUBDOCK (pIconList, NULL)
+              CD_APPLET_CREATE_MY_SUBDOCK (pIconList, NULL);
           }
       }
       else  // on a deja notre sous-dock, on remplace juste ses icones.
@@ -289,11 +289,11 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
           cd_message ("  rechargement du sous-dock mail");
           if (pIconList == NULL)  // inutile de le garder.
           {
-              CD_APPLET_DESTROY_MY_SUBDOCK
+              CD_APPLET_DESTROY_MY_SUBDOCK;
           }
           else
           {
-              CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList)
+              CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList);
           }
       }
 		}
@@ -301,7 +301,7 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
 		{
 			if (myIcon->pSubDock != NULL)
 			{
-				CD_APPLET_DESTROY_MY_SUBDOCK
+				CD_APPLET_DESTROY_MY_SUBDOCK;
 			}
 			myDesklet->icons = pIconList;
 
@@ -323,6 +323,6 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpoint
     if (myDesklet)
         gtk_widget_queue_draw (myDesklet->pWidget);
     else
-        CD_APPLET_REDRAW_MY_ICON
+        CD_APPLET_REDRAW_MY_ICON;
 }
 

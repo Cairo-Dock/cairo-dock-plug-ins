@@ -79,14 +79,14 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL && myConfig.cLocation == NULL && (epoch_tm.tm_mday != myData.iLastCheckedDay || epoch_tm.tm_mon != myData.iLastCheckedMonth || epoch_tm.tm_year != myData.iLastCheckedYear))
 	{
 		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", &epoch_tm);
-		CD_APPLET_SET_NAME_FOR_MY_ICON (s_cDateBuffer)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (s_cDateBuffer);
 		
 		myData.iLastCheckedDay = epoch_tm.tm_mday;
 		myData.iLastCheckedMonth = epoch_tm.tm_mon;
 		myData.iLastCheckedYear = epoch_tm.tm_year;
 	}
 	
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	
 	if (!myConfig.bShowSeconds || epoch_tm.tm_min != myData.iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement à exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.
 	{

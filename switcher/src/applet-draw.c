@@ -285,7 +285,7 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 	}
 	else if (myIcon->acFileName == NULL)
 	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
 	}
 
 	/*if (pSurface == NULL)
@@ -323,5 +323,5 @@ void cd_switcher_draw_main_icon (void)
 	}
 	
 	cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 }

@@ -17,7 +17,7 @@ void cd_wifi_draw_no_wireless_extension (void) {
 	if (myData.iPreviousQuality != myData.iQuality) {
 		myData.iPreviousQuality = myData.iQuality;
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("N/A");
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 		cd_wifi_draw_icon_with_effect (WIFI_QUALITY_NO_SIGNAL);
 	}
 }
@@ -79,7 +79,7 @@ void cd_wifi_draw_icon (void) {
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myData.cESSID);
 	
 	if (bNeedRedraw)
-		CD_APPLET_REDRAW_MY_ICON
+		CD_APPLET_REDRAW_MY_ICON;
 }
 
 void cd_wifi_draw_icon_with_effect (CDWifiQuality iQuality) {
@@ -105,14 +105,14 @@ void cd_wifi_draw_icon_with_effect (CDWifiQuality iQuality) {
 	  break;
 	  case WIFI_EFFECT_ZOOM:
 	  	 fScale = .2 + .8 * myData.prcnt / 100.;
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
+	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale);
 	  break;
 	  case WIFI_EFFECT_TRANSPARENCY: 
 	  	fAlpha = .2 + .8 * myData.prcnt / 100.;
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
+	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha);
 	  break;
 	  case WIFI_EFFECT_BAR:
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.prcnt * .01)
+	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.prcnt * .01);
 	  break;
 	  default :
 	  break;

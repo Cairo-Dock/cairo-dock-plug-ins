@@ -68,16 +68,16 @@ msgstr "%s は現在アンマウントされています"
 msgid "failed to unmount %s"
 msgstr "%s のアンマウントに失敗"
 
-#: ../src/applet-trashes-manager.c:386
+#: ../src/applet-trashes-manager.c:412
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "%s の全ファイルを削除しようとしています。よろしいですか？"
 
-#: ../src/applet-trashes-manager.c:388
+#: ../src/applet-trashes-manager.c:414
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
 
-#: ../src/applet-trashes-manager.c:458
+#: ../src/applet-trashes-manager.c:487
 #, c-format
 msgid ""
 "A problem occured\n"

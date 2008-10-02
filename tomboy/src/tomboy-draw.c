@@ -37,8 +37,8 @@ void update_icon(void)
 {
 	if(myData.opening)
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable))
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceDefault)
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable));
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceDefault);
 	}
 	else
 	{

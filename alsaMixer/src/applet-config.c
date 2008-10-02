@@ -17,6 +17,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.card_id = g_strdup ("default");
 	
 	myConfig.cMixerElementName = CD_CONFIG_GET_STRING ("Configuration", "mixer element");
+	myConfig.cMixerElementName2 = CD_CONFIG_GET_STRING ("Configuration", "mixer element 2");
 	
 	myConfig.cShowAdvancedMixerCommand = CD_CONFIG_GET_STRING ("Configuration", "show mixer");
 	
@@ -39,6 +40,8 @@ CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.card_id);
+	g_free (myConfig.cMixerElementName);
+	g_free (myConfig.cMixerElementName2);
 	g_free (myConfig.cShowAdvancedMixerCommand);
 	if (myConfig.cShortcut)
 		cd_keybinder_unbind(myConfig.cShortcut, (CDBindkeyHandler) mixer_on_keybinding_pull);
@@ -70,6 +73,9 @@ void mixer_write_elements_list (gchar *cConfFilePath, GKeyFile *pKeyFile)
 	gchar *cElements = mixer_get_elements_list ();
 	
 	cairo_dock_update_conf_file_with_list (pKeyFile, cConfFilePath, cElements, "Configuration", "mixer element", NULL);
+	gchar *cElements2 = g_strconcat (";", cElements, NULL);
+	cairo_dock_update_conf_file_with_list (pKeyFile, cConfFilePath, cElements2, "Configuration", "mixer element 2", NULL);
 	
 	g_free (cElements);
+	g_free (cElements2);
 }

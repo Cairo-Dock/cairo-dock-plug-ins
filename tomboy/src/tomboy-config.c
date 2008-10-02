@@ -40,5 +40,5 @@ CD_APPLET_RESET_DATA_BEGIN
 	free_all_notes ();
 	g_hash_table_destroy (myData.hNoteTable);
 	
-	CD_APPLET_DESTROY_MY_SUBDOCK
+	CD_APPLET_DESTROY_MY_SUBDOCK;
 CD_APPLET_RESET_DATA_END

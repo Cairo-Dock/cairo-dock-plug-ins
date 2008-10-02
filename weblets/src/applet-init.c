@@ -20,8 +20,8 @@ CD_APPLET_DEFINITION ("weblets", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 
 	if (myDesklet != NULL)  // on cree le weblet pour avoir qqch a afficher dans le desklet.
 	{
@@ -46,8 +46,8 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 
 
 

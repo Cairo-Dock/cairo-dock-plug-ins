@@ -72,16 +72,16 @@ msgstr "%s har nu avmonterats"
 msgid "failed to unmount %s"
 msgstr "kunde inte avmontera %s"
 
-#: ../src/applet-trashes-manager.c:386
+#: ../src/applet-trashes-manager.c:412
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "Alla filer i %s kommer att raderas. Är du säker?"
 
-#: ../src/applet-trashes-manager.c:388
+#: ../src/applet-trashes-manager.c:414
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Alla papperskorgar kommer att tömmas. Är du säker?"
 
-#: ../src/applet-trashes-manager.c:458
+#: ../src/applet-trashes-manager.c:487
 #, c-format
 msgid ""
 "A problem occured\n"

@@ -52,7 +52,7 @@ void cd_shortcuts_reset_all_datas (CairoDockModuleInstance *myApplet)
 	
 	if (myIcon->pSubDock != NULL)
 	{
-		CD_APPLET_DESTROY_MY_SUBDOCK
+		CD_APPLET_DESTROY_MY_SUBDOCK;
 	}
 	memset (myDataPtr, 0, sizeof (AppletData));
 }

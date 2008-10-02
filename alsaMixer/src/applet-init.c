@@ -52,7 +52,7 @@ static gboolean _cd_mixer_on_enter (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
 	gpointer data)
 {
-	if (myDesklet)
+	if (myDesklet && myDesklet->iHeight > 64)
 	{
 		gtk_widget_show (myData.pScale);
 	}
@@ -61,7 +61,7 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
 	gpointer data)
 {
-	if (myDesklet)
+	if (myDesklet && myDesklet->iHeight > 64)
 	{
 		if (! myDesklet->bInside)
 			gtk_widget_hide (myData.pScale);
@@ -71,10 +71,11 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL)
 	{
-		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->iWidth, myDesklet->iHeight) - 0*g_iDockRadius - 15);
+		int iScaleWidth = (myDesklet->iHeight > 64 ? 15 : 0);
+		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->iWidth, myDesklet->iHeight) - iScaleWidth);
 		myIcon->fHeight = myIcon->fWidth;
 		myIcon->fDrawX = 0*g_iDockRadius/2;
-		myIcon->fDrawY = myDesklet->iHeight - myIcon->fHeight + 0*g_iDockRadius/2;
+		myIcon->fDrawY = myDesklet->iHeight - myIcon->fHeight;
 		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on charge l'icone nous-memes.
@@ -101,7 +102,7 @@ CD_APPLET_INIT_BEGIN
 	
 	if (myData.pControledElement == NULL)
 	{
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg")
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg");
 	}
 	else
 	{
@@ -129,10 +130,10 @@ CD_APPLET_INIT_BEGIN
 		myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
 	}
 	
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
-	CD_APPLET_REGISTER_FOR_SCROLL_EVENT
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	
 	cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) mixer_on_keybinding_pull, (gpointer)NULL);
 CD_APPLET_INIT_END
@@ -140,10 +141,10 @@ CD_APPLET_INIT_END
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
-	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	
 	//\_________________ On stoppe le timer.
 	if (myData.iSidCheckVolume != 0)
@@ -157,7 +158,8 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (myDesklet != NULL)
 	{
-		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->iWidth, myDesklet->iHeight) - 0*g_iDockRadius - 15);
+		int iScaleWidth = (myDesklet->iHeight > 64 ? 15 : 0);
+		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->iWidth, myDesklet->iHeight) - iScaleWidth);
 		myIcon->fHeight = myIcon->fWidth;
 		myIcon->fDrawX = 0*g_iDockRadius/2;
 		myIcon->fDrawY = myDesklet->iHeight - myIcon->fHeight + 0*g_iDockRadius/2;
@@ -188,7 +190,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.mixer_device_name= NULL;
 		
 		if (myConfig.iVolumeDisplay != VOLUME_ON_ICON)
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 		
 		mixer_init (myConfig.card_id);
 		mixer_write_elements_list (CD_APPLET_MY_CONF_FILE, CD_APPLET_MY_KEY_FILE);
@@ -196,7 +198,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (myData.pControledElement == NULL)
 		{
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg")
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg");
 		}
 		else
 		{
@@ -262,5 +264,8 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			mixer_element_update_with_event (myData.pControledElement, 0);
 		}
+		
+		if (myDesklet->iHeight <= 64)
+			gtk_widget_hide (myData.pScale);
 	}
 CD_APPLET_RELOAD_END

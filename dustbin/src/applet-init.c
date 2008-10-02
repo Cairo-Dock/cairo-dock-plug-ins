@@ -26,13 +26,13 @@ static void _load_theme (GError **erreur)
 	if (myConfig.cEmptyUserImage != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cEmptyUserImage);
-		myData.pEmptyBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath)
+		myData.pEmptyBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	if (myConfig.cFullUserImage != NULL)
 	{
 		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cFullUserImage);
-		myData.pFullBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath)
+		myData.pFullBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 		g_free (cUserImagePath);
 	}
 	
@@ -56,12 +56,12 @@ static void _load_theme (GError **erreur)
 			if (strncmp (cElementName, "trashcan_full", 13) == 0 && myConfig.cFullUserImage == NULL)
 			{
 				myData.cDialogIconPath = cElementPath;
-				myData.pFullBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cElementPath)
+				myData.pFullBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cElementPath);
 			}
 			else
 			{
 				if (strncmp (cElementName, "trashcan_empty", 14) == 0 && myData.pEmptyBinSurface == NULL)
-					myData.pEmptyBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cElementPath)
+					myData.pEmptyBinSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cElementPath);
 				g_free (cElementPath);
 			}
 		}
@@ -90,10 +90,10 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	//\_______________ On enregistre nos notifications.
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
-	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT
-	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
 	//\_______________ On commence a surveiller les repertoires.
 	myData.iNbTrashes = 0;
@@ -120,11 +120,11 @@ CD_APPLET_INIT_BEGIN
 	
 	if (myData.iNbTrashes <= 0)
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface)
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface);
 	}
 	else
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface)
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface);
 	}
 	
 	//\_______________ On lance la surveillancce de nos poubelles.
@@ -153,10 +153,10 @@ CD_APPLET_INIT_END
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
-	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT
-	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
 	//\_______________ On stoppe la surveillance.
 	cd_dustbin_remove_all_dustbins ();
@@ -229,11 +229,11 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (myData.iNbTrashes <= 0)
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface)
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface);
 		}
 		else
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface)
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface);
 		}
 		
 		if (bMonitoringOK)
@@ -267,11 +267,11 @@ CD_APPLET_RELOAD_BEGIN
 			cd_dustbin_draw_quick_info (FALSE);
 			if (myData.iNbTrashes == 0)
 			{
-				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface)
+				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface);
 			}
 			else
 			{
-				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface)
+				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface);
 			}
 		}
 	}

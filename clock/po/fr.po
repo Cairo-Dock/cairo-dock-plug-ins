@@ -186,16 +186,13 @@ msgid "Style"
 msgstr "Style"
 
 #: ../data/messages:65
-msgid ""
-"The analogic view is based on CairoClock; otherwise it will be displayed in "
-"a numeric way."
-msgstr ""
-"La vue analogique est basée sur CairoClock; autrement il sera affiché en "
-"mode numérique."
+#, fuzzy
+msgid "List of available themes for the numeric display :"
+msgstr "Liste des thèmes disponibles pour la vue analogique :"
 
 #: ../data/messages:67
-msgid "Use the analogic view ?"
-msgstr "Utiliser la vue analogique ?"
+msgid "default"
+msgstr ""
 
 #: ../data/messages:69
 msgid "r, v, b, a"
@@ -218,112 +215,124 @@ msgid "Font used for the numeric display :"
 msgstr "Police utilisée pour l'affichage numérique :"
 
 #: ../data/messages:77
+msgid ""
+"The analogic view is based on CairoClock; otherwise it will be displayed in "
+"a numeric way."
+msgstr ""
+"La vue analogique est basée sur CairoClock; autrement il sera affiché en "
+"mode numérique."
+
+#: ../data/messages:79
+msgid "Use the analogic view ?"
+msgstr "Utiliser la vue analogique ?"
+
+#: ../data/messages:81
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour la vue analogique :"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Setup time and date"
 msgstr "Régler la date et l'heure"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Let empty to use default command."
 msgstr "Laissez vide pour utiliser la commande par défaut."
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Specific command to run :"
 msgstr "Commande spécifique à exécuter :"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Alarm"
 msgstr "Alarme"
 
-#: ../data/messages:87
+#: ../data/messages:91
 #, fuzzy
 msgid "Alarm n°1"
 msgstr "Alarme n°1"
 
-#: ../data/messages:89 ../data/messages:129 ../data/messages:169
+#: ../data/messages:93 ../data/messages:133 ../data/messages:173
 msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
 msgstr "de la forme xx:xx. Par exemple, 20:35 pour 8:35pm"
 
-#: ../data/messages:91 ../data/messages:131 ../data/messages:171
+#: ../data/messages:95 ../data/messages:135 ../data/messages:175
 msgid "Time you want to be notified :"
 msgstr "Heure de la notification :"
 
-#: ../data/messages:93 ../data/messages:133 ../data/messages:173
+#: ../data/messages:97 ../data/messages:137 ../data/messages:177
 msgid "Repeat every"
 msgstr "Répeter tous les"
 
-#: ../data/messages:95 ../data/messages:135 ../data/messages:175
+#: ../data/messages:99 ../data/messages:139 ../data/messages:179
 msgid "Never"
 msgstr "Jamais"
 
-#: ../data/messages:97 ../data/messages:137 ../data/messages:177
+#: ../data/messages:101 ../data/messages:141 ../data/messages:181
 msgid "Day"
 msgstr "Jours"
 
-#: ../data/messages:99 ../data/messages:139 ../data/messages:179
+#: ../data/messages:103 ../data/messages:143 ../data/messages:183
 msgid "Monday"
 msgstr "Lundi"
 
-#: ../data/messages:101 ../data/messages:141 ../data/messages:181
+#: ../data/messages:105 ../data/messages:145 ../data/messages:185
 msgid "Tuesday"
 msgstr "Mardi"
 
-#: ../data/messages:103 ../data/messages:143 ../data/messages:183
+#: ../data/messages:107 ../data/messages:147 ../data/messages:187
 msgid "Wednesday"
 msgstr "Mercredi"
 
-#: ../data/messages:105 ../data/messages:145 ../data/messages:185
+#: ../data/messages:109 ../data/messages:149 ../data/messages:189
 msgid "Thursday"
 msgstr "Jeudi"
 
-#: ../data/messages:107 ../data/messages:147 ../data/messages:187
+#: ../data/messages:111 ../data/messages:151 ../data/messages:191
 msgid "Friday"
 msgstr "Vendredi"
 
-#: ../data/messages:109 ../data/messages:149 ../data/messages:189
+#: ../data/messages:113 ../data/messages:153 ../data/messages:193
 msgid "Saturday"
 msgstr "Samedi"
 
-#: ../data/messages:111 ../data/messages:151 ../data/messages:191
+#: ../data/messages:115 ../data/messages:155 ../data/messages:195
 msgid "Sunday"
 msgstr "Dimanche"
 
-#: ../data/messages:113 ../data/messages:153 ../data/messages:193
+#: ../data/messages:117 ../data/messages:157 ../data/messages:197
 msgid "Week Day"
 msgstr "Jours de la semaine"
 
-#: ../data/messages:115 ../data/messages:155 ../data/messages:195
+#: ../data/messages:119 ../data/messages:159 ../data/messages:199
 msgid "Week End"
 msgstr "Week Ends"
 
-#: ../data/messages:117 ../data/messages:157 ../data/messages:197
+#: ../data/messages:121 ../data/messages:161 ../data/messages:201
 msgid "Month"
 msgstr "Mois"
 
-#: ../data/messages:119 ../data/messages:159 ../data/messages:199
+#: ../data/messages:123 ../data/messages:163 ../data/messages:203
 msgid "If every month, which day of the month ? :"
 msgstr "Si chaque mois, quel jour du mois ? :"
 
-#: ../data/messages:121 ../data/messages:161 ../data/messages:201
+#: ../data/messages:125 ../data/messages:165 ../data/messages:205
 msgid "Message you want to use to be notified :"
 msgstr "Message utilisé pour être notifié :"
 
-#: ../data/messages:123 ../data/messages:163 ../data/messages:203
+#: ../data/messages:127 ../data/messages:167 ../data/messages:207
 msgid "For exemple, < play /path/to/file.ogg >."
 msgstr "Par exemple, < play /chemin/vers/le/fichier.ogg >."
 
-#: ../data/messages:125 ../data/messages:165 ../data/messages:205
+#: ../data/messages:129 ../data/messages:169 ../data/messages:209
 msgid "Command to execute :"
 msgstr "Commande à exécuter"
 
-#: ../data/messages:127
+#: ../data/messages:131
 #, fuzzy
 msgid "Alarm n°2"
 msgstr "Alarme n°2"
 
-#: ../data/messages:167
+#: ../data/messages:171
 #, fuzzy
 msgid "Alarm n°3"
 msgstr "Alarme n°3"

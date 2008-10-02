@@ -13,23 +13,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:107
+#: ../src/applet-draw.c:103
 msgid "GPU Name:"
 msgstr "GPU名称："
 
-#: ../src/applet-draw.c:107
+#: ../src/applet-draw.c:103
 msgid "Video Ram:"
 msgstr "显存："
 
-#: ../src/applet-draw.c:107
+#: ../src/applet-draw.c:103
 msgid "Driver Version:"
 msgstr "驱动版本："
 
-#: ../src/applet-draw.c:107 ../src/applet-draw.c:123
+#: ../src/applet-draw.c:103 ../src/applet-draw.c:119
 msgid "Core Temparature:"
 msgstr "核心温度："
 
-#: ../src/applet-draw.c:112
+#: ../src/applet-draw.c:108
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
@@ -39,7 +39,7 @@ msgstr ""
 "您的'nvidia-settings'版本过低\n"
 "您需要至少1.0.0的版本"
 
-#: ../src/applet-draw.c:115
+#: ../src/applet-draw.c:111
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -50,11 +50,11 @@ msgstr ""
 "无法获取GPU温度\n"
 "您确定'nvidia-settings'已经安装并开启了监视GPU温度的选项了么？"
 
-#: ../src/applet-draw.c:123
+#: ../src/applet-draw.c:119
 msgid "Alert!"
 msgstr "警告！"
 
-#: ../src/applet-draw.c:123
+#: ../src/applet-draw.c:119
 msgid "passed alert temperature level"
 msgstr "报警温度等级"
 
@@ -232,32 +232,80 @@ msgid "Images"
 msgstr "图像"
 
 #: ../data/messages:77
+msgid "Display a graphic rather than a gauge ?"
+msgstr ""
+
+#: ../data/messages:79
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:81
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:91
+msgid "It's the color of the graphic for high Temperature values."
+msgstr ""
+
+#: ../data/messages:93
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:95
+msgid "It's the color of the graphic for low Temperature values."
+msgstr ""
+
+#: ../data/messages:97
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:99
+msgid "Background color of the graphic :"
+msgstr ""
+
+#: ../data/messages:101
 msgid "List of available themes for the analogic display :"
 msgstr "模拟显示能够使用的主题列表："
 
-#: ../data/messages:79
+#: ../data/messages:103
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:81
+#: ../data/messages:105
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:107
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:109
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:111
 msgid "Let it empty to use the default icon."
 msgstr "留空以使用默认图标。"
 
-#: ../data/messages:89
+#: ../data/messages:113
 msgid "Name of an image for the 'broken' icon :"
 msgstr "“破损”图标的图形文件名称："
 

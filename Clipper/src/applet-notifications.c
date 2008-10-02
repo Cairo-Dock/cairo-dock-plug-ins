@@ -61,9 +61,9 @@ static void _cd_clipper_clear_history (GtkMenuItem *menu_item, gpointer *data)
 	        myData.iNbItems[i] = 0;
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("Clipper", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Clear clipboard History", "gtk-clear", _cd_clipper_clear_history, pSubMenu)
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+	CD_APPLET_ADD_SUB_MENU ("Clipper", pSubMenu, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Clear clipboard History", "gtk-clear", _cd_clipper_clear_history, pSubMenu);
+		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

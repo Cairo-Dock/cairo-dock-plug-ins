@@ -68,11 +68,11 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 		cd_message ("  chargement de l'icone meteo (%x)", myApplet);
 		if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp);
 		}
 		else
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		}
 		
 		g_free (myIcon->acFileName);
@@ -87,7 +87,7 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 				myIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.currentConditions.cIconNumber);
 			}
 		}
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName);
 	}
 }
 
@@ -96,7 +96,7 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	//\_______________________ On etablit le nom de l'icone.
 	if (myIcon->acName == NULL && myDock)
 	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cLocation != NULL ? myData.cLocation : WEATHER_DEFAULT_NAME)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cLocation != NULL ? myData.cLocation : WEATHER_DEFAULT_NAME);
 	}
 	
 	//\_______________________ On cree la liste des icones de prevision.
@@ -124,7 +124,7 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 			if (pIconList != NULL)  // l'applet peut montrer les conditions courantes.
 			{
 				cd_message ("  creation du sous-dock meteo");
-				CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
+				CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer);
 				g_print ("weather : applet : %x, icon : %x, subdock <- %x\n", myApplet, myIcon, myIcon->pSubDock);
 			}
 		}
@@ -133,11 +133,11 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 			cd_message ("  rechargement du sous-dock meteo");
 			if (pIconList == NULL)  // inutile de le garder.
 			{
-				CD_APPLET_DESTROY_MY_SUBDOCK
+				CD_APPLET_DESTROY_MY_SUBDOCK;
 			}
 			else
 			{
-				CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList)
+				CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList);
 				g_print ("weather : applet : %x, icon : %x, subdock = %x\n", myApplet, myIcon, myIcon->pSubDock);
 			}
 		}
@@ -146,7 +146,7 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	{
 		if (myIcon->pSubDock != NULL)
 		{
-			CD_APPLET_DESTROY_MY_SUBDOCK
+			CD_APPLET_DESTROY_MY_SUBDOCK;
 		}
 		myDesklet->icons = pIconList;
 		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
@@ -160,7 +160,7 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	if (myDesklet)
 		gtk_widget_queue_draw (myDesklet->pWidget);
 	else
-		CD_APPLET_REDRAW_MY_ICON
+		CD_APPLET_REDRAW_MY_ICON;
 	
 	return TRUE;
 }

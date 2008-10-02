@@ -38,12 +38,12 @@ msgstr "オプションを登録できません"
 msgid "I couldn't load the mixer"
 msgstr "ミキサーを読み込めません"
 
-#: ../src/applet-mixer.c:134
+#: ../src/applet-mixer.c:135
 #, c-format
 msgid "I couldn't find any element '%s'"
 msgstr "要素 '%s' が見つかりません"
 
-#: ../src/applet-mixer.c:266
+#: ../src/applet-mixer.c:275
 msgid "Set up volume :"
 msgstr "ボリューム設定 :"
 
@@ -170,82 +170,94 @@ msgid "Choose which channel to control :"
 msgstr "制御するチャンネルの選択 :"
 
 #: ../data/messages:47
+msgid ""
+"On some cards, a channel only controls 1 side (right or left). You will then "
+"need to specify a second channel here, to control both sides. Most of the "
+"time, you should just let it empty."
+msgstr ""
+
+#: ../data/messages:49
+#, fuzzy
+msgid "Optionnally, choose a second channel to control :"
+msgstr "制御するチャンネルの選択 :"
+
+#: ../data/messages:51
 msgid "Let empty to use the defaut command."
 msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr "高機能サウンドミキサー表示のために実行する特別コマンド :"
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "Control"
 msgstr "制御"
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr "サウンド制御ダイアログの表示/隠すのショートカットキー :"
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "1 マウススクロールによる変更量（％単位） :"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr "マウスがデスクレットから離れた際に目盛りを隠す？"
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "Display volume :"
 msgstr "ボリューム表示 :"
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "No"
 msgstr "なし"
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "On label"
 msgstr "ラベル上"
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "On icon"
 msgstr "アイコン上"
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Effet to apply on the icon according to volume :"
 msgstr "音量に合わせてアイコンに適用する効果 :"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "None"
 msgstr "なし"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Zoom"
 msgstr "ズーム"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Transparency"
 msgstr "透過"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Draw Bar"
 msgstr "バーの描画"
 
-#: ../data/messages:79 ../data/messages:83 ../data/messages:87
+#: ../data/messages:83 ../data/messages:87 ../data/messages:91
 msgid "Let empty to use the default one."
 msgstr "デフォルトを使用するには空欄のままに。"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Default icon :"
 msgstr "デフォルトのアイコン :"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Broken icon :"
 msgstr "制御不可時のアイコン :"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "Mute icon :"
 msgstr "ミュート時のアイコン :"
 

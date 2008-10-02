@@ -40,13 +40,13 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		case VOLUME_ON_LABEL :
 		{
 			gchar *cLabel = g_strdup_printf ("%s : %d%%", myData.mixer_card_name, myData.iCurrentVolume);
-			CD_APPLET_SET_NAME_FOR_MY_ICON (cLabel)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (cLabel);
 			g_free (cLabel);
 		}
 		break;
 		
 		case VOLUME_ON_ICON :
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.iCurrentVolume)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.iCurrentVolume);
 			bNeedRedraw = TRUE;
 		break;
 		
@@ -83,7 +83,7 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 	}
 	
 	if (bNeedRedraw)
-		CD_APPLET_REDRAW_MY_ICON
+		CD_APPLET_REDRAW_MY_ICON;
 	
 	if (/**myDesklet && */myData.pScale/** && mask != 0*/)
 	{
@@ -97,17 +97,17 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 void mixer_apply_zoom_effect (cairo_surface_t *pSurface)
 {
 	double fScale = .3 + .7 * myData.iCurrentVolume / 100.;
-	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
+	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale);
 }
 
 void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
 {
 	cd_debug ("%s (%x)", __func__, pSurface);
 	double fAlpha = .3 + .7 * myData.iCurrentVolume / 100.;
-	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
+	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha);
 }
 
 void mixer_draw_bar (cairo_surface_t *pSurface)
 {
-	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.iCurrentVolume * .01)
+	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.iCurrentVolume * .01);
 }

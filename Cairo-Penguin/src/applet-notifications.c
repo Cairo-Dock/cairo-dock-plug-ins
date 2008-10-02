@@ -111,21 +111,21 @@ gboolean CD_APPLET_ON_BUILD_MENU (gpointer *data, CairoDockModuleInstance *myApp
 		GtkWidget *pAppletMenu = data[2];
 		GtkWidget *pMenuItem, *image;
 		
-		CD_APPLET_ADD_SEPARATOR (CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_SEPARATOR (CD_APPLET_MY_MENU);
 		
-		CD_APPLET_ADD_SUB_MENU (_("Hey, you there !"), pModuleSubMenu, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_SUB_MENU (_("Hey, you there !"), pModuleSubMenu, CD_APPLET_MY_MENU);
 		if (myData.iSidAnimation != 0)
 		{
-			CD_APPLET_ADD_IN_MENU(D_("Keep quiet"), _keep_quiet, pModuleSubMenu)
+			CD_APPLET_ADD_IN_MENU(D_("Keep quiet"), _keep_quiet, pModuleSubMenu);
 		}
 		else
 		{
-			CD_APPLET_ADD_IN_MENU(D_("Wake up"), _wake_up, pModuleSubMenu)
+			CD_APPLET_ADD_IN_MENU(D_("Wake up"), _wake_up, pModuleSubMenu);
 		}
 		
-		CD_APPLET_ADD_IN_MENU(D_("Start XPenguins"), _start_xpenguins, pModuleSubMenu)
-		CD_APPLET_ADD_IN_MENU(D_("Stop XPenguins"), _stop_xpenguins, pModuleSubMenu)
-		CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu)
+		CD_APPLET_ADD_IN_MENU(D_("Start XPenguins"), _start_xpenguins, pModuleSubMenu);
+		CD_APPLET_ADD_IN_MENU(D_("Stop XPenguins"), _stop_xpenguins, pModuleSubMenu);
+		CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu);
 		
 		data[0] = myIcon;  // astuce pour beneficier du menu cree par le dock :-)
 CD_APPLET_ON_BUILD_MENU_END

@@ -57,7 +57,7 @@ void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cUR
 				pDustbin->iNbFiles = 0;
 				pDustbin->iSize = 0;
 				cd_dustbin_draw_quick_info (FALSE);  // on redessine juste en-dessous.
-				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface)
+				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface);
 			}
 			else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
 			{
@@ -77,7 +77,7 @@ void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cUR
 			if (g_atomic_int_exchange_and_add (&myData.iNbTrashes, 1) == 0)  // il etait nul avant l'incrementation.
 			{
 				cd_message ("la poubelle se remplit");
-				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface)
+				CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface);
 			}
 			if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
 			{
@@ -119,13 +119,13 @@ gboolean cd_dustbin_check_trashes (Icon *icon)
 		{
 			cd_message (" -> on a vide la corbeille");
 			g_return_val_if_fail (myData.pEmptyBinSurface != NULL, TRUE);
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface)
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface);
 		}
 		else
 		{
 			cd_message (" -> on a rempli la corbeille");
 			g_return_val_if_fail (myData.pFullBinSurface != NULL, TRUE);
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface)
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface);
 		}
 	}
 	
@@ -137,37 +137,37 @@ void cd_dustbin_draw_quick_info (gboolean bRedraw)
 {
 	if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NONE)
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 		return ;
 	}
 	cd_message ("%s (%d)", __func__, myData.iNbTrashes);
 	if (cd_dustbin_is_calculating ())
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s...", (myDesklet != NULL ? D_("calculating") : ""))
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s...", (myDesklet != NULL ? D_("calculating") : ""));
 	}
 	else if (myData.iNbTrashes == 0)
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL)
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 	}
 	else
 	{
 		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%s", myData.iNbTrashes, (myDesklet != NULL ? D_(" trashe(s)") : ""))
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%s", myData.iNbTrashes, (myDesklet != NULL ? D_(" trashe(s)") : ""));
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%s", myData.iNbFiles, (myDesklet != NULL ? D_(" file(s)") : ""))
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%s", myData.iNbFiles, (myDesklet != NULL ? D_(" file(s)") : ""));
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 		{
-			CD_APPLET_SET_SIZE_AS_QUICK_INFO (myData.iSize)
+			CD_APPLET_SET_SIZE_AS_QUICK_INFO (myData.iSize);
 		}
 	}
 	
 	if (bRedraw)
 	{
-		CD_APPLET_REDRAW_MY_ICON
+		CD_APPLET_REDRAW_MY_ICON;
 	}
 }
 

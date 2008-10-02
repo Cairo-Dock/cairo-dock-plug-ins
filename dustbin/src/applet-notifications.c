@@ -25,7 +25,7 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("Dustbin", pModuleSubMenu, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_SUB_MENU ("Dustbin", pModuleSubMenu, CD_APPLET_MY_MENU);
 	
 	GString *sLabel = g_string_new ("");
 	CdDustbin *pDustbin;
@@ -33,33 +33,33 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	if (g_list_length (myData.pDustbinsList) == 1)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Show Trash"), cd_dustbin_show_trash, CD_APPLET_MY_MENU, NULL)
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete Trash"), cd_dustbin_delete_trash, CD_APPLET_MY_MENU, NULL)
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Show Trash"), cd_dustbin_show_trash, CD_APPLET_MY_MENU, NULL);
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete Trash"), cd_dustbin_delete_trash, CD_APPLET_MY_MENU, NULL);
 	}
 	else
 	{
-		CD_APPLET_ADD_SUB_MENU (D_("Show Trash"), pShowSubMenu, pModuleSubMenu)
+		CD_APPLET_ADD_SUB_MENU (D_("Show Trash"), pShowSubMenu, pModuleSubMenu);
 		for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 		{
 			pDustbin = pElement->data;
 			g_string_printf (sLabel, D_("Show %s"), pDustbin->cPath);
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_show_trash, pShowSubMenu, pDustbin->cPath)
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_show_trash, pShowSubMenu, pDustbin->cPath);
 		}
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Show All"), cd_dustbin_show_trash, pShowSubMenu, NULL)
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Show All"), cd_dustbin_show_trash, pShowSubMenu, NULL);
 	
-		CD_APPLET_ADD_SUB_MENU (D_("Delete Trash"), pDeleteSubMenu, pModuleSubMenu)
+		CD_APPLET_ADD_SUB_MENU (D_("Delete Trash"), pDeleteSubMenu, pModuleSubMenu);
 		for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 		{
 			pDustbin = pElement->data;
 			g_string_printf (sLabel, D_("Delete %s"), pDustbin->cPath);
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_delete_trash, pDeleteSubMenu, pDustbin->cPath)
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (sLabel->str, cd_dustbin_delete_trash, pDeleteSubMenu, pDustbin->cPath);
 		}
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete All"), cd_dustbin_delete_trash, pDeleteSubMenu, NULL)
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete All"), cd_dustbin_delete_trash, pDeleteSubMenu, NULL);
 	}
 	
 	g_string_free (sLabel, TRUE);
 	
-	CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu)
+	CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

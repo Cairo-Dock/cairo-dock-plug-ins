@@ -13,23 +13,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:107
+#: ../src/applet-draw.c:103
 msgid "GPU Name:"
 msgstr "Nome della Scheda:"
 
-#: ../src/applet-draw.c:107
+#: ../src/applet-draw.c:103
 msgid "Video Ram:"
 msgstr "Ram Video:"
 
-#: ../src/applet-draw.c:107
+#: ../src/applet-draw.c:103
 msgid "Driver Version:"
 msgstr "Versione del Driver:"
 
-#: ../src/applet-draw.c:107 ../src/applet-draw.c:123
+#: ../src/applet-draw.c:103 ../src/applet-draw.c:119
 msgid "Core Temparature:"
 msgstr "Temperatura del Core:"
 
-#: ../src/applet-draw.c:112
+#: ../src/applet-draw.c:108
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
@@ -39,7 +39,7 @@ msgstr ""
 "La vostra versione di 'nvidia-settings' è troppo vecchia\n"
 " Dovete avere almeno la 1.0.0"
 
-#: ../src/applet-draw.c:115
+#: ../src/applet-draw.c:111
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -51,11 +51,11 @@ msgstr ""
 " Il pacchetto nvidia-settings è installato\n"
 " e configurato per recuperare la temperatura della GPU?"
 
-#: ../src/applet-draw.c:123
+#: ../src/applet-draw.c:119
 msgid "Alert!"
 msgstr "Attenzione!"
 
-#: ../src/applet-draw.c:123
+#: ../src/applet-draw.c:119
 msgid "passed alert temperature level"
 msgstr "sorpassato il livello di allerta della temperatura"
 
@@ -245,10 +245,58 @@ msgid "Images"
 msgstr "Immagini"
 
 #: ../data/messages:77
+msgid "Display a graphic rather than a gauge ?"
+msgstr ""
+
+#: ../data/messages:79
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:81
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:91
+msgid "It's the color of the graphic for high Temperature values."
+msgstr ""
+
+#: ../data/messages:93
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:95
+msgid "It's the color of the graphic for low Temperature values."
+msgstr ""
+
+#: ../data/messages:97
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:99
+msgid "Background color of the graphic :"
+msgstr ""
+
+#: ../data/messages:101
 msgid "List of available themes for the analogic display :"
 msgstr "Lista dei temi disponibili per la vista analogica :"
 
-#: ../data/messages:79
+#: ../data/messages:103
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -256,23 +304,23 @@ msgstr ""
 "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
 "se si vuole alcuna filigrana."
 
-#: ../data/messages:81
+#: ../data/messages:105
 msgid "Image to display as a watermark on the gauge :"
 msgstr "Immagine da mostrare come filigrana nell'indicatore :"
 
-#: ../data/messages:83
+#: ../data/messages:107
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "Settare a 0 se si vuole alcuna filigrana."
 
-#: ../data/messages:85
+#: ../data/messages:109
 msgid "Transparency of the watermark :"
 msgstr "Trasparenza della filigrana :"
 
-#: ../data/messages:87
+#: ../data/messages:111
 msgid "Let it empty to use the default icon."
 msgstr "Lasciate vuoto per utilizare l'icona di default."
 
-#: ../data/messages:89
+#: ../data/messages:113
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nome dell'immagine dell'icona 'Non-funzionante' :"
 

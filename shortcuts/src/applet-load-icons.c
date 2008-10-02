@@ -182,7 +182,7 @@ gboolean cd_shortcuts_build_shortcuts_from_data (void)
 			if (myData.pIconList != NULL)  // l'applet peut faire 'show desktop'.
 			{
 				cd_message ("  creation du sous-dock des raccourcis");
-				CD_APPLET_CREATE_MY_SUBDOCK (myData.pIconList, myConfig.cRenderer)
+				CD_APPLET_CREATE_MY_SUBDOCK (myData.pIconList, myConfig.cRenderer);
 				myData.pIconList = NULL;
 			}
 		}
@@ -191,11 +191,11 @@ gboolean cd_shortcuts_build_shortcuts_from_data (void)
 			cd_message ("  rechargement du sous-dock des raccourcis");
 			if (myData.pIconList == NULL)  // inutile de le garder.
 			{
-				CD_APPLET_DESTROY_MY_SUBDOCK
+				CD_APPLET_DESTROY_MY_SUBDOCK;
 			}
 			else
 			{
-				CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (myData.pIconList)
+				CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (myData.pIconList);
 			}
 		}
 	}

@@ -28,7 +28,7 @@ CD_APPLET_INIT_BEGIN
 	
 	if (myIcon->acFileName == NULL)
 	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
 	}
 	
 	GtkClipboard *pClipBoard;
@@ -46,17 +46,17 @@ CD_APPLET_INIT_BEGIN
 	
 	//_on_text_received (NULL, "http://test.fr", NULL);
 	//_on_text_received (NULL, "http://truc.fr", NULL);
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
-	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
 	GtkClipboard *pClipBoard;
 	if (myData.iSidClipboardOwnerChange != 0)
@@ -84,7 +84,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (myIcon->acFileName == NULL)
 		{
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
 		}
 		
 		g_list_foreach (myData.pActions, (GFunc) cd_clipper_free_action, NULL);

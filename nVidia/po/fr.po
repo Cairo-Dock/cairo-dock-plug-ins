@@ -12,23 +12,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:107
+#: ../src/applet-draw.c:103
 msgid "GPU Name:"
 msgstr "Nom de la Carte:"
 
-#: ../src/applet-draw.c:107
+#: ../src/applet-draw.c:103
 msgid "Video Ram:"
 msgstr "Mémoire Vidéo:"
 
-#: ../src/applet-draw.c:107
+#: ../src/applet-draw.c:103
 msgid "Driver Version:"
 msgstr "Version du Driver:"
 
-#: ../src/applet-draw.c:107 ../src/applet-draw.c:123
+#: ../src/applet-draw.c:103 ../src/applet-draw.c:119
 msgid "Core Temparature:"
 msgstr "Température du Coeur:"
 
-#: ../src/applet-draw.c:112
+#: ../src/applet-draw.c:108
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
@@ -38,7 +38,7 @@ msgstr ""
 "Votre version de 'nvidia-settings' est trop vieille\n"
 " Vous devez avoir au moin la 1.0.0"
 
-#: ../src/applet-draw.c:115
+#: ../src/applet-draw.c:111
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -50,11 +50,11 @@ msgstr ""
 " Est-ce qu'nvidia-settings est installé\n"
 " et configuré pour récupérer la température du GPU?"
 
-#: ../src/applet-draw.c:123
+#: ../src/applet-draw.c:119
 msgid "Alert!"
 msgstr "Alerte!"
 
-#: ../src/applet-draw.c:123
+#: ../src/applet-draw.c:119
 msgid "passed alert temperature level"
 msgstr ""
 "a dépassé le\n"
@@ -212,8 +212,8 @@ msgid ""
 "in celcius. The temperature will be displayed between the lower limit and "
 "this value."
 msgstr ""
-"en celcius. La température sera affichée entre la limite inférieur et "
-"cette valeur."
+"en celcius. La température sera affichée entre la limite inférieur et cette "
+"valeur."
 
 #: ../data/messages:63
 msgid "Upper limit of core temperature :"
@@ -243,59 +243,59 @@ msgstr "Fichier audio:"
 msgid "Images"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:77
 msgid "Display a graphic rather than a gauge ?"
 msgstr "Afficher un graphique plutôt qu'une jauge ?"
 
-#: ../data/messages:43
+#: ../data/messages:79
 msgid "Type of graphic :"
 msgstr "Type de graphique :"
 
-#: ../data/messages:45
+#: ../data/messages:81
 msgid "Line"
 msgstr "Ligne"
 
-#: ../data/messages:47
+#: ../data/messages:83
 msgid "Plain"
 msgstr "Plein"
 
-#: ../data/messages:49
+#: ../data/messages:85
 msgid "Bar"
 msgstr "Barre"
 
-#: ../data/messages:51
+#: ../data/messages:87
 msgid "Circle"
 msgstr "Cercle"
 
-#: ../data/messages:53
+#: ../data/messages:89
 msgid "Plain Circle"
 msgstr "Cercle Plain"
 
-#: ../data/messages:55
+#: ../data/messages:91
 msgid "It's the color of the graphic for high Temperature values."
 msgstr "C'est la couleur du graphique pour les hautes valeurs de Température."
 
-#: ../data/messages:57
+#: ../data/messages:93
 msgid "High values color :"
 msgstr "Couleur des hautes valeurs :"
 
-#: ../data/messages:59
+#: ../data/messages:95
 msgid "It's the color of the graphic for low Temperature values."
 msgstr "C'est la couleur du graphique pour les basse valeurs de Température."
 
-#: ../data/messages:61
+#: ../data/messages:97
 msgid "Low values color :"
 msgstr "Couleur des faibles valeurs :"
 
-#: ../data/messages:63
+#: ../data/messages:99
 msgid "Background color of the graphic :"
 msgstr "Couleur de fond du graphique :"
 
-#: ../data/messages:77
+#: ../data/messages:101
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 
-#: ../data/messages:79
+#: ../data/messages:103
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -303,23 +303,23 @@ msgstr ""
 "Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si "
 "vous ne voulez pas de filigrane."
 
-#: ../data/messages:81
+#: ../data/messages:105
 msgid "Image to display as a watermark on the gauge :"
 msgstr "Image à afficher en filigrane sur le jauge :"
 
-#: ../data/messages:83
+#: ../data/messages:107
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
 
-#: ../data/messages:85
+#: ../data/messages:109
 msgid "Transparency of the watermark :"
 msgstr "Transparence du filigrane :"
 
-#: ../data/messages:87
+#: ../data/messages:111
 msgid "Let it empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../data/messages:89
+#: ../data/messages:113
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'pas de donnée' :"
 

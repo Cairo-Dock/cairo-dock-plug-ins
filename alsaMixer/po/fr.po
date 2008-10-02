@@ -37,12 +37,12 @@ msgstr "Impossible d'enregistrer les options"
 msgid "I couldn't load the mixer"
 msgstr "Impossible de charger le mixeur de son"
 
-#: ../src/applet-mixer.c:134
+#: ../src/applet-mixer.c:135
 #, c-format
 msgid "I couldn't find any element '%s'"
 msgstr "Impossible de trouver l'élément '%s'"
 
-#: ../src/applet-mixer.c:266
+#: ../src/applet-mixer.c:275
 msgid "Set up volume :"
 msgstr "Réglez le volume :"
 
@@ -169,82 +169,94 @@ msgid "Choose which channel to control :"
 msgstr "Choississez quel canal contrôler :"
 
 #: ../data/messages:47
+msgid ""
+"On some cards, a channel only controls 1 side (right or left). You will then "
+"need to specify a second channel here, to control both sides. Most of the "
+"time, you should just let it empty."
+msgstr ""
+
+#: ../data/messages:49
+#, fuzzy
+msgid "Optionnally, choose a second channel to control :"
+msgstr "Choississez quel canal contrôler :"
+
+#: ../data/messages:51
 msgid "Let empty to use the defaut command."
 msgstr "Laisser vide pour utiliser la commande par défaut."
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr "Commande spécifique pour montrer un mixer de son avancé :"
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "Control"
 msgstr "Contrôle"
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr "Raccourci clavier pour montrer/cacher le dialogue :"
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "Variation pour 1 coup de molette, en % :"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr "Cacher l'échelle quand la souris quitte le desklet ?"
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "Display volume :"
 msgstr "Afficher le volume :"
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "On icon"
 msgstr "Sur l'icône"
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Effet to apply on the icon according to volume :"
 msgstr "Effet à appliquer à l'icône en fonction du volume :"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "None"
 msgstr "Aucun"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Transparency"
 msgstr "Transparence"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Draw Bar"
 msgstr "Dessiner une barre"
 
-#: ../data/messages:79 ../data/messages:83 ../data/messages:87
+#: ../data/messages:83 ../data/messages:87 ../data/messages:91
 msgid "Let empty to use the default one."
 msgstr "Laisser vide pour utiliser celle par défaut."
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Default icon :"
 msgstr "Icône 'défaut' :"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Broken icon :"
 msgstr "Icône 'cassé'"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "Mute icon :"
 msgstr "Icône 'muet' :"
 

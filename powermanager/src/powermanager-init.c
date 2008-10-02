@@ -42,20 +42,20 @@ CD_APPLET_INIT_BEGIN
 			myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 		}
 		else
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg")
+			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
 
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("broken.svg")
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("broken.svg");
 	
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
 	dbus_disconnect_from_bus ();
 	
@@ -123,10 +123,10 @@ CD_APPLET_RELOAD_BEGIN
 			update_icon();
 		}
 		else
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg")
+			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
 
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("broken.svg")
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("broken.svg");
 	
 CD_APPLET_RELOAD_END

@@ -24,15 +24,15 @@ static void _hide_unhide_desklets (void)
 	{
 		cairo_dock_set_desklets_visibility_to_default ();
 		cairo_dock_show_xwindow (myData.xLastActiveWindow);
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cShowImage)
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cShowImage);
 	}
 	else
 	{
 		myData.xLastActiveWindow = cairo_dock_get_current_active_window ();
 		cairo_dock_set_all_desklets_visible (myConfig.bShowWidgetLayerDesklet);
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHideImage)
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHideImage);
 	}
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	myData.bHide = ! myData.bHide;
 }
 
@@ -42,8 +42,8 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("showDesklets", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+	CD_APPLET_ADD_SUB_MENU ("showDesklets", pSubMenu, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

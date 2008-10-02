@@ -85,18 +85,18 @@ void cd_compiz_update_main_icon (void) {
 		}
 	}
 	if (bNeedsRedraw)
-		CD_APPLET_REDRAW_MY_ICON
+		CD_APPLET_REDRAW_MY_ICON;
 }
 
 
 void cd_compiz_build_icons (void) {
 	if (myIcon->acName == NULL && myDock)
 	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (COMPIZ_DEFAULT_NAME)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (COMPIZ_DEFAULT_NAME);
 	}
 	GList *pIconList = _list_icons ();  // ne nous appartiendra plus, donc ne pas desallouer.
 	if (myDock) {
-		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
+		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer);
 	}
 	else {
 		myDesklet->icons = pIconList;

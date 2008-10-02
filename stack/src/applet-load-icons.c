@@ -18,7 +18,7 @@ CD_APPLET_INCLUDE_MY_VARS
 void cd_stack_destroy_icons (CairoDockModuleInstance *myApplet) {
 	cd_debug ("");
 	if (myDock && myIcon->pSubDock != NULL) {
-		CD_APPLET_DESTROY_MY_SUBDOCK
+		CD_APPLET_DESTROY_MY_SUBDOCK;
 	}
 	else if (myDesklet && myDesklet->icons != NULL) {
 		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
@@ -207,17 +207,17 @@ void cd_stack_build_icons (CairoDockModuleInstance *myApplet)
 	cd_stack_destroy_icons (myApplet);
 	if (myIcon->acName == NULL && myDock)
 	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (CD_STACK_DEFAULT_NAME)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (CD_STACK_DEFAULT_NAME);
 	}
 	
 	GList *pIconList = cd_stack_build_icons_list (myApplet, myConfig.cStackDir);
 	
 	if (myDock) {
-		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
+		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer);
 	}
 	else {
 		myDesklet->icons = pIconList;
-		CD_APPLET_SET_DESKLET_RENDERER ("Tree")
+		CD_APPLET_SET_DESKLET_RENDERER ("Tree");
 		///gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
 	}
 }

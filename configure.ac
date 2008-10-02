@@ -83,6 +83,10 @@ AC_ARG_ENABLE(xgamma,
 	[  --enable-xgamma : Enable Xgamma applet (default=yes) ],
 	[ with_xgamma=${enableval} ],
 	[ with_xgamma=yes ])
+AC_ARG_ENABLE(gmenu,
+	[  --enable-gmenu : Enable GMenu applet (default=yes) ],
+	[ with_gmenu=${enableval} ],
+	[ with_gmenu=yes ])
 
 
 if test "$with_old_gnome_support" = "yes" ; then
@@ -115,6 +119,11 @@ if test "$with_xgamma" = "yes" ; then
 	AC_SUBST(XGAMMA_PACKAGE_CFLAGS)
 	AC_SUBST(XGAMMA_PACKAGE_LIBS)
 fi
+if test "$with_gmenu" = "yes" ; then
+	PKG_CHECK_MODULES(GMENU_PACKAGE,libgnome-menu gio-2.0, ,[ with_gmenu=false; AC_MSG_WARN(Could not find libgnome-menu or gio-2.0; Cairo-Dock won't be built with GMenu applet.) ])
+	AC_SUBST(GMENU_PACKAGE_CFLAGS)
+	AC_SUBST(GMENU_PACKAGE_LIBS)
+fi
 
 AM_CONDITIONAL( [WITH_OLD_GNOME_SUPPORT], [test "$with_old_gnome_support" = "yes"] )
 AM_CONDITIONAL( [WITH_GNOME_SUPPORT], [test "$with_gnome_support" = "yes"] )
@@ -128,6 +137,7 @@ AM_CONDITIONAL( [WITH_RHYTHMBOX], [test "$with_rhythmbox" = "yes"] )
 AM_CONDITIONAL( [WITH_NVIDIA], [test "$with_nvidia" = "yes"] )
 AM_CONDITIONAL( [WITH_COMPIZ_ICON], [test "$with_compiz_icon" = "yes"] )
 AM_CONDITIONAL( [WITH_XGAMMA], [test "$with_xgamma" = "yes"] )
+AM_CONDITIONAL( [WITH_GMENU], [test "$with_gmenu" = "yes"] )
 
 
 ############# ALSA_MIXER #################
@@ -139,14 +149,14 @@ AC_SUBST(PACKAGE_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
 
 AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
 
-############# CLOCK #################
-CLOCK_PACKAGE="cd-clock"
-AC_SUBST(GETTEXT_CLOCK, "$CLOCK_PACKAGE")
+############# CLIPPER #################
+CLIPPER_PACKAGE="cd-Clipper"
+AC_SUBST(GETTEXT_CLIPPER, "$CLIPPER_PACKAGE")
 
-AC_SUBST(VERSION_CLOCK, "1.3.7")
-AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
+AC_SUBST(VERSION_CLIPPER, "1.0.3")
+AC_SUBST(PACKAGE_CLIPPER, "$CLIPPER_PACKAGE")
 
-AC_SUBST(clockdatadir, "${pkgdatadir}/clock")
+AC_SUBST(Clipperdatadir, "${pkgdatadir}/Clipper")
 
 ############# CAIRO_PENGUIN #################
 CAIRO_PENGUIN_PACKAGE="cd-Cairo-Penguin"
@@ -156,6 +166,15 @@ AC_SUBST(VERSION_CAIRO_PENGUIN, "1.0.0")
 AC_SUBST(PACKAGE_CAIRO_PENGUIN, "$CAIRO_PENGUIN_PACKAGE")
 
 AC_SUBST(cairo_penguindatadir, "${pkgdatadir}/Cairo-Penguin")
+
+############# CLOCK #################
+CLOCK_PACKAGE="cd-clock"
+AC_SUBST(GETTEXT_CLOCK, "$CLOCK_PACKAGE")
+
+AC_SUBST(VERSION_CLOCK, "1.3.7")
+AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
+
+AC_SUBST(clockdatadir, "${pkgdatadir}/clock")
 
 ############# COMPIZ_ICON #################
 COMPIZ_ICON_PACKAGE="cd-compiz-icon"
@@ -192,6 +211,15 @@ AC_SUBST(VERSION_DUSTBIN, "2.1.3")
 AC_SUBST(PACKAGE_DUSTBIN, "$DUSTBIN_PACKAGE")
 
 AC_SUBST(dustbindatadir, "${pkgdatadir}/dustbin")
+
+############# GMENU #################
+GMENU_PACKAGE=cd-GMenu
+AC_SUBST(GETTEXT_GMENU, "$GMENU_PACKAGE")
+
+AC_SUBST(VERSION_GMENU, "1.0.0")
+AC_SUBST(PACKAGE_GMENU, "$GMENU_PACKAGE")
+
+AC_SUBST(gmenudatadir, "${pkgdatadir}/GMenu")
 
 ############# GNOME-INTEGRATION #################
 GNOME_INTEGRATION_PACKAGE=cd-gnome-integration
@@ -419,6 +447,13 @@ AC_CONFIG_FILES([
 	Cairo-Penguin/data/themes/Classic/Makefile
 	Cairo-Penguin/data/themes/Wanda/Makefile
 	
+	Clipper/Makefile
+	Clipper/src/Makefile
+	Clipper/po/Makefile.in
+	Clipper/data/Makefile
+	Clipper/data/readme
+	Clipper/data/Clipper.conf
+	
 	clock/Makefile
 	clock/src/Makefile
 	clock/po/Makefile.in
@@ -488,6 +523,13 @@ AC_CONFIG_FILES([
 	dustbin/data/themes/I_Dustbin/Makefile
 	dustbin/data/themes/Neon/Makefile
 	dustbin/data/themes/Clear/Makefile
+	
+	GMenu/Makefile
+	GMenu/src/Makefile
+	GMenu/po/Makefile.in
+	GMenu/data/Makefile
+	GMenu/data/readme
+	GMenu/data/GMenu.conf
 	
 	gnome-integration/Makefile
 	gnome-integration/src/Makefile
@@ -656,11 +698,13 @@ AC_CONFIG_FILES([
 AC_OUTPUT([po/Makefile
 	alsaMixer/po/Makefile
 	Cairo-Penguin/po/Makefile
+	Clipper/po/Makefile
 	clock/po/Makefile
 	compiz-icon/po/Makefile
 	cpusage/po/Makefile
 	Dbus/po/Makefile
 	dustbin/po/Makefile
+	GMenu/po/Makefile
 	logout/po/Makefile
 	netspeed/po/Makefile
 	nVidia/po/Makefile
@@ -695,3 +739,4 @@ echo " * Compil Tomboy applet : "${with_tomboy}
 echo " * Compil Rhythmbox applet : "${with_rhythmbox}
 echo " * Compil nVidia applet : "${with_nvidia}
 echo " * Compil Xgamma applet : "${with_xgamma}
+echo " * Compil GMenu applet : "${with_gmenu}

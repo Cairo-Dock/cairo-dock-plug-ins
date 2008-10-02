@@ -52,15 +52,15 @@ CD_APPLET_ABOUT (D_("Applet by Necropotame (Adrien Pilleboue)"))
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (myData.dbus_enable)
 	{
-		CD_APPLET_ADD_IN_MENU (D_("Previous"), rhythmbox_previous, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU (D_("Previous"), rhythmbox_previous, CD_APPLET_MY_MENU);
 		
-		CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), rhythmbox_next, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), rhythmbox_next, CD_APPLET_MY_MENU);
 		
-		CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), rhythmbox_play_pause, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), rhythmbox_play_pause, CD_APPLET_MY_MENU);
 		
-		CD_APPLET_ADD_IN_MENU (D_("Information"), rhythmbox_music, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU (D_("Information"), rhythmbox_music, CD_APPLET_MY_MENU);
 	}
-	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 

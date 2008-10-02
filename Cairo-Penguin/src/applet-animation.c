@@ -149,7 +149,7 @@ gboolean penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 			myDock->bDirectionUp);
 	}
 	
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	
 	penguin_advance_to_next_frame (myApplet, pAnimation);
 	return TRUE;
@@ -252,7 +252,7 @@ void penguin_advance_to_next_frame (CairoDockModuleInstance *myApplet, PenguinAn
 						cairo_surface_destroy (myIcon->pReflectionBuffer);
 						myIcon->pReflectionBuffer = NULL;
 					}
-					CD_APPLET_REDRAW_MY_ICON
+					CD_APPLET_REDRAW_MY_ICON;
 				}
 				else  // on reste sur la derniere image de l'animation de fin.
 				{
@@ -455,9 +455,9 @@ static gboolean _penguin_restart_delayed (CairoDockModuleInstance *myApplet)
 		myData.bHasBeenStarted = TRUE;
 		cd_message ("le pingouin demarre pour la 1ere fois");
 		
-		CD_APPLET_REGISTER_FOR_CLICK_EVENT
-		CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
-		CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
+		CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+		CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+		CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 		
 		if (myConfig.bFree)  // attention : c'est un hack moyen; il faudrait pouvoir indiquer a cairo-dock de ne pas inserer notre icone...
 		{

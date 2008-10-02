@@ -77,28 +77,28 @@ msgstr ""
 "这是Cairo企鹅小应用程序\n"
 " Fabrice Rey为Cairo-Dock所作"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:116
 #, fuzzy
 msgid "Hey, you there !"
 msgstr "嘿，我在这儿！"
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:119
 msgid "Keep quiet"
 msgstr "肃静！"
 
-#: ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:123
 msgid "Wake up"
 msgstr "醒醒！"
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:126
 msgid "Start XPenguins"
 msgstr "启动XPenguins"
 
-#: ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:127
 msgid "Stop XPenguins"
 msgstr "停止XPenguins"
 
-#: ../src/applet-notifications.c:156 ../src/applet-notifications.c:158
+#: ../src/applet-notifications.c:155 ../src/applet-notifications.c:157
 msgid "Zzzzz"
 msgstr "Zzzzz"
 

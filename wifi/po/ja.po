@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:65
+#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:73
 msgid "None"
 msgstr "なし"
 
@@ -38,11 +38,11 @@ msgstr "良好"
 msgid "Excellent"
 msgstr "最高"
 
-#: ../src/applet-draw.c:120
+#: ../src/applet-draw.c:127
 msgid "Wifi disabled."
 msgstr "Wifi は無効です。"
 
-#: ../src/applet-draw.c:124
+#: ../src/applet-draw.c:131
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -50,7 +50,7 @@ msgstr ""
 "Wifi は有効です。\n"
 "接続先 :"
 
-#: ../src/applet-draw.c:124
+#: ../src/applet-draw.c:131
 msgid "Signal Strength:"
 msgstr "信号の強さ :"
 
@@ -212,65 +212,122 @@ msgid "Overwrite the default label with the connection point name ?"
 msgstr "デフォルトのラベルを接続ポイント名によって上書き？"
 
 #: ../data/messages:63
-msgid "Effect to apply on the icon according to strength :"
-msgstr "電波の強さに合わせてアイコンに適用する効果 :"
+#, fuzzy
+msgid "Display type :"
+msgstr "表示"
 
-#: ../data/messages:67
-msgid "Zoom"
-msgstr "ズーム"
-
-#: ../data/messages:69
-msgid "Transparency"
-msgstr "透過"
-
-#: ../data/messages:71
-msgid "Draw Bar"
-msgstr "バーの描画"
-
-#: ../data/messages:73
-msgid "Use a jauge instead of icons?"
-msgstr "アイコンの代わりに目盛りを使用？"
-
-#: ../data/messages:75
-msgid "List of available themes for the analogic display :"
-msgstr "アナログ表示に利用可能なテーマのリスト :"
-
-#: ../data/messages:77
-msgid "radium"
-msgstr "radium"
-
-#: ../data/messages:79
+#: ../data/messages:65 ../data/messages:107
 msgid "Images"
 msgstr "画像"
 
-#: ../data/messages:81 ../data/messages:85 ../data/messages:89
-#: ../data/messages:93 ../data/messages:97 ../data/messages:101
+#: ../data/messages:67
+#, fuzzy
+msgid "Gauges"
+msgstr "画像"
+
+#: ../data/messages:69
+msgid "Graphic"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Effect to apply on the icon according to strength :"
+msgstr "電波の強さに合わせてアイコンに適用する効果 :"
+
+#: ../data/messages:75
+msgid "Zoom"
+msgstr "ズーム"
+
+#: ../data/messages:77
+msgid "Transparency"
+msgstr "透過"
+
+#: ../data/messages:79
+msgid "Draw Bar"
+msgstr "バーの描画"
+
+#: ../data/messages:81
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:93
+msgid "It's the color of the graphic for high Strength values."
+msgstr ""
+
+#: ../data/messages:95
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:97
+msgid "It's the color of the graphic for low Strength values."
+msgstr ""
+
+#: ../data/messages:99
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:101
+msgid "Background color of the graphic :"
+msgstr ""
+
+#: ../data/messages:103
+msgid "List of available themes for the analogic display :"
+msgstr "アナログ表示に利用可能なテーマのリスト :"
+
+#: ../data/messages:105
+msgid "radium"
+msgstr "radium"
+
+#: ../data/messages:109 ../data/messages:113 ../data/messages:117
+#: ../data/messages:121 ../data/messages:125 ../data/messages:129
 msgid "Let it empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:83
+#: ../data/messages:111
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "「信号なし」のアイコン画像の名前 :"
 
-#: ../data/messages:87
+#: ../data/messages:115
 msgid "Name of an image for the 'very low' icon :"
 msgstr "「非常に弱い」のアイコン画像の名前 :"
 
-#: ../data/messages:91
+#: ../data/messages:119
 msgid "Name of an image for the 'low' icon :"
 msgstr "「弱い」のアイコン画像の名前 :"
 
-#: ../data/messages:95
+#: ../data/messages:123
 msgid "Name of an image for the 'middle' icon :"
 msgstr "「中程度」のアイコン画像の名前 :"
 
-#: ../data/messages:99
+#: ../data/messages:127
 msgid "Name of an image for the 'good' icon :"
 msgstr "「良好」のアイコン画像の名前 :"
 
-#: ../data/messages:103
+#: ../data/messages:131
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "「最高」のアイコン画像の名前 :"
+
+#~ msgid "Use a jauge instead of icons?"
+#~ msgstr "アイコンの代わりに目盛りを使用？"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"

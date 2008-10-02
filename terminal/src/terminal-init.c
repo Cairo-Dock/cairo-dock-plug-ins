@@ -41,7 +41,7 @@ CD_APPLET_INIT_BEGIN
 		terminal_build_and_show_tab ();
 	if (myDock && myIcon->acFileName == NULL)  // en mode desklet, on n'a pas besoin de l'icone.
 	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
 	}
 }
 CD_APPLET_INIT_END
@@ -91,7 +91,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (myDock && myIcon->acFileName == NULL)  // en mode desklet, on n'a pas besoin de l'icone.
 		{
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE)
+			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
 		}
 	}
 }

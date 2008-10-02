@@ -48,7 +48,7 @@ static void _cd_clock_select_location (GtkMenuItem *pMenuItem, gpointer *data)
 	myConfig.cLocation = cLocationPath;
 	data[1] = NULL;  // astuce.
 	
-	CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1)
+	CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1);
 	
 	cd_clock_update_with_time (myApplet);
 	
@@ -188,10 +188,10 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("Clock", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU (D_("Set up time and date"), _cd_clock_launch_time_admin, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (D_("Choose a location"), _cd_clock_search_for_location, pSubMenu)
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+	CD_APPLET_ADD_SUB_MENU ("Clock", pSubMenu, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU (D_("Set up time and date"), _cd_clock_launch_time_admin, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Choose a location"), _cd_clock_search_for_location, pSubMenu);
+		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

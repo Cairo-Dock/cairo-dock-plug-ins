@@ -9,7 +9,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 void iconWitness(int animationLenght)
 {
-	CD_APPLET_ANIMATE_MY_ICON (1, animationLenght)
+	CD_APPLET_ANIMATE_MY_ICON (1, animationLenght);
 }
 
 void update_icon(void)
@@ -23,19 +23,19 @@ void update_icon(void)
 			if(myConfig.quickInfoType == POWER_MANAGER_TIME)
 			{
 				if (myData.battery_time != 0) {
-					CD_APPLET_SET_HOURS_MINUTES_AS_QUICK_INFO (myData.battery_time)
+					CD_APPLET_SET_HOURS_MINUTES_AS_QUICK_INFO (myData.battery_time);
 				}
 				else {
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("-:--")
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("-:--");
 				}
 			}
 			else if(myConfig.quickInfoType == POWER_MANAGER_CHARGE)
 			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.battery_charge)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.battery_charge);
 			}
 			else
 			{
-			  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+			  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			}
 			
 			bNeedRedraw = TRUE;
@@ -102,7 +102,7 @@ void update_icon(void)
 	}
 	
 	if (bNeedRedraw)
-		CD_APPLET_REDRAW_MY_ICON
+		CD_APPLET_REDRAW_MY_ICON;
 }
 
 gchar *get_hours_minutes (int iTimeInSeconds)
@@ -189,7 +189,7 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 	}
 	if (myConfig.batteryWitness) 
 	{
-		CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, 3)
+		CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, 3);
 	}
 	
 	g_free (hms);
@@ -234,18 +234,18 @@ void cd_powermanager_draw_icon_with_effect (gboolean bOnBattery)
 		case POWER_MANAGER_EFFECT_ZOOM :
 			cairo_save (myDrawContext);
 			double fScale = .3 + .7 * myData.battery_charge / 100.;
-			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale)
+			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale);
 			cairo_restore (myDrawContext);
 		break;
 		case POWER_MANAGER_EFFECT_TRANSPARENCY :
 			cairo_save (myDrawContext);
 			double fAlpha = .3 + .7 * myData.battery_charge / 100.;
-			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha)
+			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha);
 			cairo_restore (myDrawContext);
 		break;
 		case POWER_MANAGER_EFFECT_BAR :
 			cairo_save (myDrawContext);
-			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.battery_charge * .01)
+			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.battery_charge * .01);
 			cairo_restore (myDrawContext);
 		break;
 		default :

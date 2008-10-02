@@ -208,7 +208,7 @@ gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 	if ( ! myData.bAcquisitionOK)
 	{
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 		if (myData.pGauge)
@@ -244,12 +244,12 @@ gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myDesklet ?
 							(myData.cpu_usage < 10 ? "CPU:%.1f%%" : "CPU:%.0f%%") :
 							(myData.cpu_usage < 10 ? "%.1f%%" : "%.0f%%")),
-						myData.cpu_usage)
+						myData.cpu_usage);
 				}
 				else
 				{
 					if (myDock)
-						CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("CPU : %.1f%%", myData.cpu_usage)
+						CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("CPU : %.1f%%", myData.cpu_usage);
 				}
 			}
 			

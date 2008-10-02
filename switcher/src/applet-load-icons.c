@@ -59,11 +59,11 @@ void cd_switcher_load_icons (void)
 	{
 		if (myIcon->pSubDock != NULL)
 		{
-			CD_APPLET_DESTROY_MY_SUBDOCK
+			CD_APPLET_DESTROY_MY_SUBDOCK;
 		}
 		if (myDesklet)
 		{
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple")
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 		cd_switcher_load_default_map_surface ();
 		
@@ -89,19 +89,19 @@ void cd_switcher_load_icons (void)
 			{
 				if (pIconList != NULL)
 				{
-					CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
+					CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer);
 				}
 			}
 			else  // on a deja notre sous-dock, on remplace juste ses icones.
 			{
 				if (pIconList == NULL)  // inutile de le garder.
 				{
-					CD_APPLET_DESTROY_MY_SUBDOCK
+					CD_APPLET_DESTROY_MY_SUBDOCK;
 					return ;
 				}
 				else
 				{
-					CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList)
+					CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList);
 				}
 			}
 		}
@@ -109,7 +109,7 @@ void cd_switcher_load_icons (void)
 		{
 			if (myIcon->pSubDock != NULL)
 			{
-				CD_APPLET_DESTROY_MY_SUBDOCK
+				CD_APPLET_DESTROY_MY_SUBDOCK;
 			}
 			if (myDesklet->icons != NULL)  // si on recharge la liste a cause d'un changement de configuration du bureau.
 			{

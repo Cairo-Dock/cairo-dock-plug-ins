@@ -97,17 +97,17 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	static gpointer data[2] = {NULL, NULL};
 	data[0] = myApplet;
 	data[1] = pClickedIcon;
-	CD_APPLET_ADD_SUB_MENU ("Stack", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste (drag'n'drop)"), GTK_STOCK_PASTE, _cd_stack_paste_content, pSubMenu)
+	CD_APPLET_ADD_SUB_MENU ("Stack", pSubMenu, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste (drag'n'drop)"), GTK_STOCK_PASTE, _cd_stack_paste_content, pSubMenu);
 		if (pClickedIcon != NULL && pClickedIcon != myIcon)
 		{
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy (middle click)"), GTK_STOCK_COPY, _cd_stack_copy_content, pSubMenu, data)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Cut"), GTK_STOCK_CUT, _cd_stack_cut_item, pSubMenu, data)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this item"), GTK_STOCK_SAVE_AS, _cd_stack_rename_item, pSubMenu, data)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this item"), GTK_STOCK_REMOVE, _cd_stack_remove_item, pSubMenu, data)
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy (middle click)"), GTK_STOCK_COPY, _cd_stack_copy_content, pSubMenu, data);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Cut"), GTK_STOCK_CUT, _cd_stack_cut_item, pSubMenu, data);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this item"), GTK_STOCK_SAVE_AS, _cd_stack_rename_item, pSubMenu, data);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this item"), GTK_STOCK_REMOVE, _cd_stack_remove_item, pSubMenu, data);
 		}
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear the stack"), GTK_STOCK_CLEAR, _cd_stack_clear_stack, pSubMenu)
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear the stack"), GTK_STOCK_CLEAR, _cd_stack_clear_stack, pSubMenu);
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	if (pClickedIcon != NULL && pClickedIcon != myIcon)
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 CD_APPLET_ON_BUILD_MENU_END

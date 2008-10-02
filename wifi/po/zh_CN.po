@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:65
+#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:73
 msgid "None"
 msgstr "无"
 
@@ -38,11 +38,11 @@ msgstr "良好"
 msgid "Excellent"
 msgstr "很好"
 
-#: ../src/applet-draw.c:120
+#: ../src/applet-draw.c:127
 msgid "Wifi disabled."
 msgstr "Wifi已禁用。"
 
-#: ../src/applet-draw.c:124
+#: ../src/applet-draw.c:131
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -50,7 +50,7 @@ msgstr ""
 "Wifi已启用。\n"
 "接入："
 
-#: ../src/applet-draw.c:124
+#: ../src/applet-draw.c:131
 msgid "Signal Strength:"
 msgstr "信号强度："
 
@@ -206,65 +206,122 @@ msgid "Overwrite the default label with the connection point name ?"
 msgstr "以接入点名称替代默认标签"
 
 #: ../data/messages:63
-msgid "Effect to apply on the icon according to strength :"
-msgstr "依据信号强度加于图标的效果："
+#, fuzzy
+msgid "Display type :"
+msgstr "显示"
 
-#: ../data/messages:67
-msgid "Zoom"
-msgstr "缩放"
-
-#: ../data/messages:69
-msgid "Transparency"
-msgstr "透明度"
-
-#: ../data/messages:71
-msgid "Draw Bar"
-msgstr "绘制状态条"
-
-#: ../data/messages:73
-msgid "Use a jauge instead of icons?"
-msgstr "以标尺替代图标？"
-
-#: ../data/messages:75
-msgid "List of available themes for the analogic display :"
-msgstr "用于模拟显示的现有主题列表："
-
-#: ../data/messages:77
-msgid "radium"
-msgstr "radium"
-
-#: ../data/messages:79
+#: ../data/messages:65 ../data/messages:107
 msgid "Images"
 msgstr "图像"
 
-#: ../data/messages:81 ../data/messages:85 ../data/messages:89
-#: ../data/messages:93 ../data/messages:97 ../data/messages:101
+#: ../data/messages:67
+#, fuzzy
+msgid "Gauges"
+msgstr "图像"
+
+#: ../data/messages:69
+msgid "Graphic"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Effect to apply on the icon according to strength :"
+msgstr "依据信号强度加于图标的效果："
+
+#: ../data/messages:75
+msgid "Zoom"
+msgstr "缩放"
+
+#: ../data/messages:77
+msgid "Transparency"
+msgstr "透明度"
+
+#: ../data/messages:79
+msgid "Draw Bar"
+msgstr "绘制状态条"
+
+#: ../data/messages:81
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:93
+msgid "It's the color of the graphic for high Strength values."
+msgstr ""
+
+#: ../data/messages:95
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:97
+msgid "It's the color of the graphic for low Strength values."
+msgstr ""
+
+#: ../data/messages:99
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:101
+msgid "Background color of the graphic :"
+msgstr ""
+
+#: ../data/messages:103
+msgid "List of available themes for the analogic display :"
+msgstr "用于模拟显示的现有主题列表："
+
+#: ../data/messages:105
+msgid "radium"
+msgstr "radium"
+
+#: ../data/messages:109 ../data/messages:113 ../data/messages:117
+#: ../data/messages:121 ../data/messages:125 ../data/messages:129
 msgid "Let it empty to use the default icon."
 msgstr "留空以使用默认图标。"
 
-#: ../data/messages:83
+#: ../data/messages:111
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "用于“无信号”图标的图片名称："
 
-#: ../data/messages:87
+#: ../data/messages:115
 msgid "Name of an image for the 'very low' icon :"
 msgstr "用于“信号很弱”图标的图片名称："
 
-#: ../data/messages:91
+#: ../data/messages:119
 msgid "Name of an image for the 'low' icon :"
 msgstr "用于“信号弱”图标的图片名称："
 
-#: ../data/messages:95
+#: ../data/messages:123
 msgid "Name of an image for the 'middle' icon :"
 msgstr "用于“信号中等”图标的图片名称："
 
-#: ../data/messages:99
+#: ../data/messages:127
 msgid "Name of an image for the 'good' icon :"
 msgstr "用于“信号良好”图标的图片名称："
 
-#: ../data/messages:103
+#: ../data/messages:131
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "用于“信号很好”图标的图片名称："
+
+#~ msgid "Use a jauge instead of icons?"
+#~ msgstr "以标尺替代图标？"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"

@@ -51,12 +51,12 @@ static void eth_config(void) {  /// a mettre dans les plug-ins d'integration.
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("Wifi", pSubMenu, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_SUB_MENU ("Wifi", pSubMenu, CD_APPLET_MY_MENU);
 		if (! myData.bAcquisitionOK) {
-			CD_APPLET_ADD_IN_MENU (D_("Check for Wireless Extension"), _wifi_recheck_wireless_extension, pSubMenu)
+			CD_APPLET_ADD_IN_MENU (D_("Check for Wireless Extension"), _wifi_recheck_wireless_extension, pSubMenu);
 		}
-		CD_APPLET_ADD_IN_MENU (D_("Network Administration"), eth_config, pSubMenu)
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Network Administration"), eth_config, pSubMenu);
+		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 static void toggel_wlan(void) { //Trouver la commande pour activer/désactiver une connection

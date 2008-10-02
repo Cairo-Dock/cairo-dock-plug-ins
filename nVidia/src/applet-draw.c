@@ -14,7 +14,7 @@ void cd_nvidia_draw_no_data (void) {
 	if (myData.pGPUData.iGPUTemp != myData.iPreviousGPUTemp) {
 		myData.iPreviousGPUTemp = myData.pGPUData.iGPUTemp;
 		CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("N/A");
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenUserImage, "broken.svg");
 	}
 }
@@ -51,7 +51,7 @@ void cd_nvidia_draw_icon (void) {
 		break;
 		case MY_APPLET_TEMP_ON_QUICKINFO :
 			//if (myDock)
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d°C", myData.pGPUData.iGPUTemp)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d°C", myData.pGPUData.iGPUTemp);
 			//else
 				//CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("nVidia:%d°C", myData.pGPUData.iGPUTemp)
 		break;

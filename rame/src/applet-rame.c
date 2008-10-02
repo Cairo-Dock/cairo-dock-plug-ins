@@ -96,9 +96,9 @@ gboolean cd_rame_update_from_data (CairoDockModuleInstance *myApplet)
 	if ( ! myData.bAcquisitionOK)
 	{
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF("N/A");
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 		if (myData.pGauge)
 		{
 			CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
@@ -146,11 +146,11 @@ gboolean cd_rame_update_from_data (CairoDockModuleInstance *myApplet)
 				
 				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				{
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (sInfo->str)
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (sInfo->str);
 				}
 				else
 				{
-					CD_APPLET_SET_NAME_FOR_MY_ICON (sInfo->str)
+					CD_APPLET_SET_NAME_FOR_MY_ICON (sInfo->str);
 				}
 				g_string_free (sInfo, TRUE);
 			}

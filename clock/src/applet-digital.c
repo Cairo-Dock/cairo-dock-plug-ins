@@ -37,7 +37,7 @@ void cd_clock_configure_digital (CairoDockModuleInstance *myApplet) {
 		return;
 	}
 	
-	myData.pDigitalClock.bSecondCapable = cairo_dock_get_boolean_key_value (pKeyFile, "configuration", "seconds", FALSE, "false", NULL, NULL);
+	myData.pDigitalClock.bSecondCapable = cairo_dock_get_boolean_key_value (pKeyFile, "configuration", "seconds", FALSE, FALSE, NULL, NULL);
 	myData.pDigitalClock.iFrameSpacing = cairo_dock_get_integer_key_value (pKeyFile, "configuration", "framespacing", FALSE, 2, NULL, NULL);
 	
 	myData.pDigitalClock.i12modeWidth = cairo_dock_get_integer_key_value (pKeyFile, "configuration", "12width", FALSE, 6, NULL, NULL);
@@ -121,7 +121,7 @@ void cd_clock_draw_frames (CairoDockModuleInstance *myApplet) {
 		cairo_paint (myDrawContext);
 	}
 	
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 }
 
 void cd_clock_put_text_on_frames (CairoDockModuleInstance *myApplet, int width, int height, double fMaxScale, struct tm *pTime) {
@@ -138,7 +138,7 @@ void cd_clock_put_text_on_frames (CairoDockModuleInstance *myApplet, int width, 
 	}
 	else {
 		if (myData.pDigitalClock.bSecondCapable)
-			g_string_printf (sFormat, "%%r%s");
+			g_string_printf (sFormat, "%%r%%s");
 		else
 			g_string_printf (sFormat, "%%I:%%M");
 	}
@@ -150,38 +150,40 @@ void cd_clock_put_text_on_frames (CairoDockModuleInstance *myApplet, int width, 
 	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
 	g_string_free (sFormat, TRUE);
 	
+	/// Attention : soit on passe un char a cd_clock_fill_text_surface(), soit un char *, il faut choisir.
+	/// Ne pas modifier le pointeur d'une chaine ! utiliser un pointeur secondaire qu'on balade dessus, sinon au free ca fait mal ;-)
 	gchar *cTime = g_strdup (s_cDateBuffer), *cT1 = NULL;
 	if (myData.pDigitalClock.bSecondCapable) { //On coupe aux ':' donc on arrive a 12|45|32
 		cT1 = g_strdup (cTime);
-		gchar *str = strchr (cT1, ":"); //On récupère [12]:45:32
+		gchar *str = strchr (cT1, ':'); //On récupère [12]:45:32
 		if (str != NULL)
 			*str = '\0';
 		cd_clock_fill_text_surface (myApplet, cT1, 0);
 		
 		cT1 = g_strdup (cTime);
-		str = strrchr (cT1, ":"); //On récupère [12:45]:32
+		str = strrchr (cT1, ':'); //On récupère [12:45]:32
 		if (str != NULL)
 			*str = '\0';
-		str = strchr (cT1, ":"); //On récupère 12:[45]:32
+		str = strchr (cT1, ':'); //On récupère 12:[45]:32
 		str++;
 		cd_clock_fill_text_surface (myApplet, str, 1);
 		
 		cT1 = g_strdup (cTime);
-		str = strrchr (cT1, ":"); //On récupère 12:45:[32]
+		str = strrchr (cT1, ':'); //On récupère 12:45:[32]
 		str++;
 		cd_clock_fill_text_surface (myApplet, str, 2);
 	}
 	else { //On coupe au ':' puis on sépare les chiffres donc on arrive a 1|2 | 4|5
 		cT1 = g_strdup (cTime);
-		gchar *str = strchr (cT1, ":"); //On récupère [12]:45
+		gchar *str = strchr (cT1, ':'); //On récupère [12]:45
 		if (str != NULL)
 			*str = '\0';
 		cd_clock_fill_text_surface (myApplet, *cT1, 0);
-		cT1++;
+		cT1++; /// GLUPS !
 		cd_clock_fill_text_surface (myApplet, *cT1, 1);
 		
 		cT1 = g_strdup (cTime);
-		str = strrchr (cT1, ":"); //On récupère 12:[45]
+		str = strrchr (cT1, ':'); //On récupère 12:[45]
 		str++;
 		cd_clock_fill_text_surface (myApplet, *str, 2);
 		str++;

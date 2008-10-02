@@ -51,7 +51,7 @@ gboolean cd_xmms_draw_icon (CairoDockModuleInstance *myApplet) {
 	if (myData.playingStatus == PLAYER_NONE) {
 		myData.cQuickInfo = NULL;
 		if (myData.cQuickInfo != myData.cPreviousQuickInfo) {
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			myData.cPreviousQuickInfo = myData.cQuickInfo;
 		}
 	}
@@ -60,7 +60,7 @@ gboolean cd_xmms_draw_icon (CairoDockModuleInstance *myApplet) {
 			case MY_APPLET_NOTHING :
 				myData.cQuickInfo = NULL;
 				if (myData.cQuickInfo != myData.cPreviousQuickInfo) {
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF(NULL);
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 					myData.cPreviousQuickInfo = myData.cQuickInfo;
 				}
 			break ;
@@ -70,7 +70,7 @@ gboolean cd_xmms_draw_icon (CairoDockModuleInstance *myApplet) {
 				myData.cPreviousQuickInfo = myData.cQuickInfo;
 				if (myData.iCurrentTime != myData.iPreviousCurrentTime) {
 					myData.iPreviousCurrentTime = myData.iCurrentTime;
-					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime)
+					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime);
 					bNeedRedraw = TRUE;
 				}
 			break ;
@@ -80,7 +80,7 @@ gboolean cd_xmms_draw_icon (CairoDockModuleInstance *myApplet) {
 				myData.cPreviousQuickInfo = myData.cQuickInfo;
 				if (myData.iCurrentTime != myData.iPreviousCurrentTime) {
 					myData.iPreviousCurrentTime = myData.iCurrentTime;
-					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength)
+					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength);
 					bNeedRedraw = TRUE;
 				}
 			break ;
@@ -104,11 +104,11 @@ gboolean cd_xmms_draw_icon (CairoDockModuleInstance *myApplet) {
 	if (myData.previousPlayingTitle != myData.playingTitle) {
 	  myData.previousPlayingTitle = myData.playingTitle;
 		if (myData.playingTitle == NULL || strcmp (myData.playingTitle, "(null)") == 0) {
-			CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle)
+			CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 		}
 		else {
 		  cd_message("Changing title to: %s", myData.playingTitle);
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.playingTitle)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.playingTitle);
 			if (myConfig.enableAnim) {
 		    cd_message("Animating for: %s", myData.playingTitle);
 			  cd_xmms_animate_icon(myApplet, 1);
@@ -125,11 +125,11 @@ gboolean cd_xmms_draw_icon (CairoDockModuleInstance *myApplet) {
 		cd_xmms_set_surface (myApplet, myData.playingStatus);
 		if (myData.playingStatus == 0) {
 		  myData.playingTitle = NULL; //Rien ne joue
-		  CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle)
+		  CD_APPLET_SET_NAME_FOR_MY_ICON(myConfig.defaultTitle);
 		}
 	}
 	else if (bNeedRedraw) {
-		CD_APPLET_REDRAW_MY_ICON
+		CD_APPLET_REDRAW_MY_ICON;
 	}
 	
 	return TRUE;
@@ -162,7 +162,7 @@ void cd_xmms_new_song_playing(CairoDockModuleInstance *myApplet) {
 //Fonction qui anime l'icone au changement de musique
 void cd_xmms_animate_icon(CairoDockModuleInstance *myApplet, int animationLength) {
 	if (myDock) {
-		CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength)
+		CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength);
 	}
 }
 

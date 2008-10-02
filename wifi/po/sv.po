@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:65
+#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:73
 msgid "None"
 msgstr "Ingen"
 
@@ -40,11 +40,11 @@ msgstr "Bra"
 msgid "Excellent"
 msgstr "Mycket bra"
 
-#: ../src/applet-draw.c:120
+#: ../src/applet-draw.c:127
 msgid "Wifi disabled."
 msgstr "Wifi inaktiverat."
 
-#: ../src/applet-draw.c:124
+#: ../src/applet-draw.c:131
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -52,7 +52,7 @@ msgstr ""
 "Wifi aktiverat.\n"
 "Ansluten till:"
 
-#: ../src/applet-draw.c:124
+#: ../src/applet-draw.c:131
 msgid "Signal Strength:"
 msgstr "Signalstyrka:"
 
@@ -212,62 +212,119 @@ msgid "Overwrite the default label with the connection point name ?"
 msgstr "Visa anslutningsnamnet på etiketten?"
 
 #: ../data/messages:63
-msgid "Effect to apply on the icon according to strength :"
-msgstr ""
+#, fuzzy
+msgid "Display type :"
+msgstr "Utseende"
 
-#: ../data/messages:67
-msgid "Zoom"
-msgstr "Zoom"
-
-#: ../data/messages:69
-msgid "Transparency"
-msgstr "Transparens"
-
-#: ../data/messages:71
-msgid "Draw Bar"
-msgstr "Visa stapel"
-
-#: ../data/messages:73
-msgid "Use a jauge instead of icons?"
-msgstr "Använd visare istället för ikon?"
-
-#: ../data/messages:75
-msgid "List of available themes for the analogic display :"
-msgstr "Teman för analogic:"
-
-#: ../data/messages:77
-msgid "radium"
-msgstr "radium"
-
-#: ../data/messages:79
+#: ../data/messages:65 ../data/messages:107
 msgid "Images"
 msgstr "Bilder"
 
-#: ../data/messages:81 ../data/messages:85 ../data/messages:89
-#: ../data/messages:93 ../data/messages:97 ../data/messages:101
-msgid "Let it empty to use the default icon."
-msgstr "Lämna tomt för att använda standardikonen."
+#: ../data/messages:67
+#, fuzzy
+msgid "Gauges"
+msgstr "Bilder"
+
+#: ../data/messages:69
+msgid "Graphic"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Effect to apply on the icon according to strength :"
+msgstr ""
+
+#: ../data/messages:75
+msgid "Zoom"
+msgstr "Zoom"
+
+#: ../data/messages:77
+msgid "Transparency"
+msgstr "Transparens"
+
+#: ../data/messages:79
+msgid "Draw Bar"
+msgstr "Visa stapel"
+
+#: ../data/messages:81
+msgid "Type of graphic :"
+msgstr ""
 
 #: ../data/messages:83
-msgid "Name of an image for the 'no signal' icon :"
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Plain"
 msgstr ""
 
 #: ../data/messages:87
-msgid "Name of an image for the 'very low' icon :"
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Circle"
 msgstr ""
 
 #: ../data/messages:91
-msgid "Name of an image for the 'low' icon :"
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:93
+msgid "It's the color of the graphic for high Strength values."
 msgstr ""
 
 #: ../data/messages:95
-msgid "Name of an image for the 'middle' icon :"
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:97
+msgid "It's the color of the graphic for low Strength values."
 msgstr ""
 
 #: ../data/messages:99
-msgid "Name of an image for the 'good' icon :"
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:101
+msgid "Background color of the graphic :"
 msgstr ""
 
 #: ../data/messages:103
+msgid "List of available themes for the analogic display :"
+msgstr "Teman för analogic:"
+
+#: ../data/messages:105
+msgid "radium"
+msgstr "radium"
+
+#: ../data/messages:109 ../data/messages:113 ../data/messages:117
+#: ../data/messages:121 ../data/messages:125 ../data/messages:129
+msgid "Let it empty to use the default icon."
+msgstr "Lämna tomt för att använda standardikonen."
+
+#: ../data/messages:111
+msgid "Name of an image for the 'no signal' icon :"
+msgstr ""
+
+#: ../data/messages:115
+msgid "Name of an image for the 'very low' icon :"
+msgstr ""
+
+#: ../data/messages:119
+msgid "Name of an image for the 'low' icon :"
+msgstr ""
+
+#: ../data/messages:123
+msgid "Name of an image for the 'middle' icon :"
+msgstr ""
+
+#: ../data/messages:127
+msgid "Name of an image for the 'good' icon :"
+msgstr ""
+
+#: ../data/messages:131
 msgid "Name of an image for the 'exellent' icon :"
 msgstr ""
+
+#~ msgid "Use a jauge instead of icons?"
+#~ msgstr "Använd visare istället för ikon?"

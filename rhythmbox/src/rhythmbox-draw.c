@@ -41,15 +41,15 @@ void rhythmbox_add_buttons_to_desklet (void)
 
 void rhythmbox_iconWitness(int animationLength)
 {
-	CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength)
+	CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength);
 }
 
 gboolean _rhythmbox_check_cover_is_present (gpointer data)
 {
 	if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 	{
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover)
-		CD_APPLET_REDRAW_MY_ICON
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+		CD_APPLET_REDRAW_MY_ICON;
 		myData.cover_exist = TRUE;
 		myData.iSidCheckCover = 0;
 		return FALSE;
@@ -82,7 +82,7 @@ void update_icon(gboolean make_witness)
 		if (myConfig.enableCover && myData.playing_cover != NULL && g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 		{
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
-			CD_APPLET_REDRAW_MY_ICON
+			CD_APPLET_REDRAW_MY_ICON;
 			myData.cover_exist = TRUE;
 			if (myData.iSidCheckCover != 0)
 			{

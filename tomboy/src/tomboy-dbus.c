@@ -146,7 +146,7 @@ void onAddNote(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 	{
 		if (myIcon->pSubDock == NULL)
 		{
-			CD_APPLET_CREATE_MY_SUBDOCK (NULL, myConfig.cRenderer)
+			CD_APPLET_CREATE_MY_SUBDOCK (NULL, myConfig.cRenderer);
 		}
 		
 		cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
@@ -333,11 +333,11 @@ gboolean cd_tomboy_load_notes (void)
 	{
 		if (myIcon->pSubDock == NULL)
 		{
-			CD_APPLET_CREATE_MY_SUBDOCK (pList, myConfig.cRenderer)
+			CD_APPLET_CREATE_MY_SUBDOCK (pList, myConfig.cRenderer);
 		}
 		else
 		{
-			CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pList)
+			CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pList);
 		}
 	}
 	else

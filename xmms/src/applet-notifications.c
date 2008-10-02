@@ -256,19 +256,19 @@ static void _on_repeat (GtkMenuItem *menu_item, CairoDockModuleInstance *myApple
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("XMMS", pSubMenu, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU (D_("Previous"), _on_prev, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), _on_play_pause, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_SUB_MENU ("XMMS", pSubMenu, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU (D_("Previous"), _on_prev, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), _on_play_pause, CD_APPLET_MY_MENU);
 	if (myConfig.iPlayer != MY_BANSHEE) {
-		CD_APPLET_ADD_IN_MENU (D_("Stop"), _on_stop, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU (D_("Stop"), _on_stop, CD_APPLET_MY_MENU);
 	}
-	CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), _on_next, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), _on_next, CD_APPLET_MY_MENU);
 	if ((myConfig.iPlayer != MY_BANSHEE) && (myConfig.iPlayer != MY_EXAILE)) {
-		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), _on_jumpbox, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), _on_shuffle, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), _on_repeat, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), _on_jumpbox, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), _on_shuffle, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), _on_repeat, pSubMenu);
 	}
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

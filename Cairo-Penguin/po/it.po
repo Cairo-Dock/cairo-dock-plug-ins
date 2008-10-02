@@ -79,28 +79,28 @@ msgstr ""
 "Questa è l'applet Cairo-Penguin\n"
 " scritta par Fabrice Rey per Cairo-Dock"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:116
 #, fuzzy
 msgid "Hey, you there !"
 msgstr "Hey, sono qui !"
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:119
 msgid "Keep quiet"
 msgstr "Stai calmo !"
 
-#: ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:123
 msgid "Wake up"
 msgstr "Sveglia !"
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:126
 msgid "Start XPenguins"
 msgstr "Lancia XPenguins"
 
-#: ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:127
 msgid "Stop XPenguins"
 msgstr "Arresta XPenguins"
 
-#: ../src/applet-notifications.c:156 ../src/applet-notifications.c:158
+#: ../src/applet-notifications.c:155 ../src/applet-notifications.c:157
 msgid "Zzzzz"
 msgstr "Zzzzz"
 

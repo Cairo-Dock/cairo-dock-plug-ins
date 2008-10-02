@@ -87,7 +87,7 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	if (myConfig.cLocation != NULL)
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1);
 	
 	_load_theme (myApplet);
 	_load_back_and_fore_ground (myApplet);
@@ -101,9 +101,9 @@ CD_APPLET_INIT_BEGIN
 	myData.iLastCheckedYear = -1;
 	
 	//\_______________ On enregistre nos notifications.
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	
 	//\_______________ On lance le timer.
 	cd_clock_update_with_time (myApplet);
@@ -113,9 +113,9 @@ CD_APPLET_INIT_END
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
-	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 
 	//\_______________ On stoppe le timer.
 	g_source_remove (myData.iSidUpdateClock);
@@ -146,7 +146,7 @@ CD_APPLET_RELOAD_BEGIN
 		_load_back_and_fore_ground (myApplet);
 		
 		if (myConfig.cLocation != NULL)
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1);
 		
 		//\_______________ On relance le timer.
 		cd_clock_update_with_time (myApplet);

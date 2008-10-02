@@ -24,6 +24,7 @@ typedef enum {
 struct _AppletConfig {
 	gchar *card_id;
 	gchar *cMixerElementName;
+	gchar *cMixerElementName2;
 	gchar *cShowAdvancedMixerCommand;
 	VolumeTypeDisplay iVolumeDisplay;
 	VolumeTypeEffect iVolumeEffect;
@@ -41,6 +42,7 @@ struct _AppletData {
 	gchar *mixer_device_name;
 	gchar *cErrorMessage;
 	snd_mixer_elem_t *pControledElement;
+	snd_mixer_elem_t *pControledElement2;  // des fois un element ne controle qu'une sortie (droite ou gauche).
 	snd_mixer_selem_id_t *pControledID;
 	gboolean bHasMuteSwitch;
 	long iVolumeMin, iVolumeMax;  // volumes min et max en unites de la carte son.

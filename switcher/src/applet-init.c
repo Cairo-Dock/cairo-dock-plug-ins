@@ -25,7 +25,7 @@ static gboolean on_change_desktop (gpointer *data, CairoDockModuleInstance *myAp
 	
 	if (myConfig.bDisplayNumDesk)
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1)
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
 	}
 	
 	if (myConfig.bCompactView)
@@ -38,7 +38,7 @@ static gboolean on_change_desktop (gpointer *data, CairoDockModuleInstance *myAp
 		g_return_val_if_fail (pContainer != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		
 		if (myDock && myConfig.bDisplayNumDesk)
-			CD_APPLET_REDRAW_MY_ICON
+			CD_APPLET_REDRAW_MY_ICON;
 		
 		// On redessine les 2 icones du sous-dock impactees.
 		GList *pIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
@@ -82,13 +82,13 @@ static gboolean on_change_screen_geometry (gpointer *data, CairoDockModuleInstan
 }
 
 CD_APPLET_INIT_BEGIN
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT
-	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT
-	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	cairo_dock_register_notification (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) on_change_screen_geometry, CAIRO_DOCK_RUN_AFTER, myApplet);/*Notifier de la geometrie de bureau changée*/
 	cairo_dock_register_notification (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) on_change_desktop, CAIRO_DOCK_RUN_AFTER, myApplet);/*Notifier d'un changement de bureau*/
 	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_CONFIGURED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, CAIRO_DOCK_RUN_AFTER, myApplet);	
-	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, CAIRO_DOCK_RUN_AFTER, myApplet);	
+	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
 	
 	//\___________________ On calcule la geometrie de l'icone en mode compact.
 	cd_switcher_compute_nb_lines_and_columns ();
@@ -106,16 +106,16 @@ CD_APPLET_INIT_BEGIN
 	if (myConfig.bDisplayNumDesk)
 	{
 		int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1)
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
 	}
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
-	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT
-	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT
-	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	cairo_dock_remove_notification_func (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED, (CairoDockNotificationFunc) on_change_screen_geometry, myApplet);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_DESKTOP_CHANGED, (CairoDockNotificationFunc) on_change_desktop, myApplet);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_CONFIGURED, (CairoDockNotificationFunc) cd_switcher_draw_main_icon, myApplet);
@@ -131,7 +131,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (myConfig.bCompactView)
 		{
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple")
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 		else
 		{
@@ -149,10 +149,10 @@ CD_APPLET_RELOAD_BEGIN
 		if (myConfig.bDisplayNumDesk)
 		{
 			int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
 		}
 		else
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL)
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			
 		cd_switcher_load_icons ();
 	}

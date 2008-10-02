@@ -38,13 +38,13 @@ static void _cd_shortcuts_remove_bookmark (GtkMenuItem *menu_item, gchar *cURI)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if ((myDock && CD_APPLET_CLICKED_ICON == myIcon) || myDesklet)
 	{
-		CD_APPLET_ADD_SUB_MENU ("shortcuts", pSubMenu, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+		CD_APPLET_ADD_SUB_MENU ("shortcuts", pSubMenu, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	}
 	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == 10)
 	{
 		cd_message (" menu sur %s(%s)", CD_APPLET_CLICKED_ICON->acName, CD_APPLET_CLICKED_ICON->cBaseURI);
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Remove this bookmark"), _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI)
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Remove this bookmark"), _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI);
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
 CD_APPLET_ON_BUILD_MENU_END

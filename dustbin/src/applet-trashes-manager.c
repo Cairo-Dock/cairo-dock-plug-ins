@@ -380,7 +380,7 @@ void cd_dustbin_measure_all_dustbins (int *iNbFiles, int *iSize)
 
 static void _cd_dustbin_empty_dir (const gchar *cDirectory)
 {
-	GError *erreur = NULL;
+	/*GError *erreur = NULL;
 	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
 	if (erreur != NULL)
 	{
@@ -398,7 +398,11 @@ static void _cd_dustbin_empty_dir (const gchar *cDirectory)
 	}
 	
 	g_string_free (sFilePath, TRUE);
-	g_dir_close (dir);
+	g_dir_close (dir);*/
+	gchar *cCommand = g_strdup_printf ("find %s -maxdepth 1 -mindepth 1 -exec rm -rf {} \\;", cDirectory);
+	cd_message (cCommand);
+	system (cCommand);
+	g_free (cCommand);
 }
 
 void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)

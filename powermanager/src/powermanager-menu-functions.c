@@ -42,14 +42,14 @@ void power_config(void) {  /// a mettre dans les plug-ins d'integration.
 //*********************************************************************************
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	//on rajoute un sous menu, sinon ce n'est pas esthétique
-	CD_APPLET_ADD_SUB_MENU ("PowerManager", pSubMenu, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU (D_("Set up power management"), power_config, pSubMenu)
+	CD_APPLET_ADD_SUB_MENU ("PowerManager", pSubMenu, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU (D_("Set up power management"), power_config, pSubMenu);
 	if (myData.dbus_enable)
 	{
-		CD_APPLET_ADD_IN_MENU (D_("Halt"), power_halt, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (D_("Hibernate"), power_hibernate, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (D_("Suspend"), power_suspend, pSubMenu)
-		CD_APPLET_ADD_IN_MENU (D_("Reboot"), power_reboot, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Halt"), power_halt, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Hibernate"), power_hibernate, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Suspend"), power_suspend, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Reboot"), power_reboot, pSubMenu);
 	}
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

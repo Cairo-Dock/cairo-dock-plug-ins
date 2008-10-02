@@ -288,18 +288,18 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 		//g_print ("%s () : %ds\n", __func__, elapsed);
 		if(myConfig.quickInfoType == MY_APPLET_TIME_ELAPSED)
 		{
-			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (elapsed)
-			CD_APPLET_REDRAW_MY_ICON
+			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (elapsed);
+			CD_APPLET_REDRAW_MY_ICON;
 		}
 		else if(myConfig.quickInfoType == MY_APPLET_TIME_LEFT)  // avec un '-' devant.
 		{
-			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (elapsed - myData.playing_duration)
-			CD_APPLET_REDRAW_MY_ICON
+			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (elapsed - myData.playing_duration);
+			CD_APPLET_REDRAW_MY_ICON;
 		}
 		else if(myConfig.quickInfoType == MY_APPLET_PERCENTAGE)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", (int) (100.*elapsed/myData.playing_duration))
-			CD_APPLET_REDRAW_MY_ICON
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", (int) (100.*elapsed/myData.playing_duration));
+			CD_APPLET_REDRAW_MY_ICON;
 		}
 	}
 }
@@ -312,7 +312,7 @@ void onCovertArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointe
 	myData.playing_cover = g_strdup (cImageURI);
 	
 	CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 	myData.cover_exist = TRUE;
 	if (myData.iSidCheckCover != 0)
 	{

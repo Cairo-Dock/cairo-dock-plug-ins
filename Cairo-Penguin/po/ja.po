@@ -79,28 +79,28 @@ msgstr ""
 "これは Fabrice Rey によって製作された\n"
 "Cairo-Dock 用の Cairo-Penguin アプレットです。"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:116
 #, fuzzy
 msgid "Hey, you there !"
 msgstr "ヘイ、おいらはここだよ！"
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:119
 msgid "Keep quiet"
 msgstr "大人しくさせる"
 
-#: ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:123
 msgid "Wake up"
 msgstr "起こす"
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:126
 msgid "Start XPenguins"
 msgstr "XPenguins 開始"
 
-#: ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:127
 msgid "Stop XPenguins"
 msgstr "XPenguins 停止"
 
-#: ../src/applet-notifications.c:156 ../src/applet-notifications.c:158
+#: ../src/applet-notifications.c:155 ../src/applet-notifications.c:157
 msgid "Zzzzz"
 msgstr "Zzzzz"
 

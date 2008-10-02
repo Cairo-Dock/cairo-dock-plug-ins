@@ -179,7 +179,7 @@ void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gch
 		{
 			GList *pStacksIconList = NULL;
 			pStacksIconList = g_list_prepend (pStacksIconList, pIcon);
-			CD_APPLET_CREATE_MY_SUBDOCK (pStacksIconList, myConfig.cRenderer)
+			CD_APPLET_CREATE_MY_SUBDOCK (pStacksIconList, myConfig.cRenderer);
 		}
 		else
 		{

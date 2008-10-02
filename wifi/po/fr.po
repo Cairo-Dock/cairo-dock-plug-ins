@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:65
+#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:73
 msgid "None"
 msgstr "Aucune"
 
@@ -38,11 +38,11 @@ msgstr "Bon"
 msgid "Excellent"
 msgstr "Excellent"
 
-#: ../src/applet-draw.c:120
+#: ../src/applet-draw.c:127
 msgid "Wifi disabled."
 msgstr "Wifi désactivé."
 
-#: ../src/applet-draw.c:124
+#: ../src/applet-draw.c:131
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -50,7 +50,7 @@ msgstr ""
 "Wifi activé. \n"
 " Connecté sur:"
 
-#: ../src/applet-draw.c:124
+#: ../src/applet-draw.c:131
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 
@@ -212,115 +212,118 @@ msgstr "Affichage"
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Ecraser l'étiquette par défaut avec le nom du point d'accès ?"
 
+#: ../data/messages:63
 msgid "Display type :"
 msgstr "Type d'affichage :"
 
+#: ../data/messages:65 ../data/messages:107
 msgid "Images"
 msgstr ""
 
+#: ../data/messages:67
 msgid "Gauges"
 msgstr "Jauges"
 
+#: ../data/messages:69
 msgid "Graphic"
 msgstr "Graphique"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "Effect to apply on the icon according to strength :"
 msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Transparency"
 msgstr "Transparence"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Draw Bar"
 msgstr "Dessiner une barre"
 
-#: ../data/messages:43
+#: ../data/messages:81
 msgid "Type of graphic :"
 msgstr "Type de graphique :"
 
-#: ../data/messages:45
+#: ../data/messages:83
 msgid "Line"
 msgstr "Ligne"
 
-#: ../data/messages:47
+#: ../data/messages:85
 msgid "Plain"
 msgstr "Plein"
 
-#: ../data/messages:49
+#: ../data/messages:87
 msgid "Bar"
 msgstr "Barre"
 
-#: ../data/messages:51
+#: ../data/messages:89
 msgid "Circle"
 msgstr "Cercle"
 
-#: ../data/messages:53
+#: ../data/messages:91
 msgid "Plain Circle"
 msgstr "Cercle Plain"
 
-#: ../data/messages:55
+#: ../data/messages:93
 msgid "It's the color of the graphic for high Strength values."
 msgstr "C'est la couleur du graphique pour les hautes valeurs de Puissance."
 
-#: ../data/messages:57
+#: ../data/messages:95
 msgid "High values color :"
 msgstr "Couleur des hautes valeurs :"
 
-#: ../data/messages:59
+#: ../data/messages:97
 msgid "It's the color of the graphic for low Strength values."
 msgstr "C'est la couleur du graphique pour les faibles valeurs de Puissance."
 
-#: ../data/messages:61
+#: ../data/messages:99
 msgid "Low values color :"
 msgstr "Couleur des faibles valeurs :"
 
-#: ../data/messages:63
+#: ../data/messages:101
 msgid "Background color of the graphic :"
 msgstr "Couleur de fond du graphique :"
 
-#: ../data/messages:73
-msgid "Use a jauge instead of icons?"
-msgstr "Utiliser une jauge au lieu des icônes?"
-
-#: ../data/messages:75
+#: ../data/messages:103
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 
-#: ../data/messages:77
+#: ../data/messages:105
 msgid "radium"
 msgstr "radium"
 
-#: ../data/messages:81 ../data/messages:85 ../data/messages:89
-#: ../data/messages:93 ../data/messages:97 ../data/messages:101
+#: ../data/messages:109 ../data/messages:113 ../data/messages:117
+#: ../data/messages:121 ../data/messages:125 ../data/messages:129
 msgid "Let it empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../data/messages:83
+#: ../data/messages:111
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Nom de l'image 'Aucun Signal' :"
 
-#: ../data/messages:87
+#: ../data/messages:115
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Nom de l'image 'Très Faible' :"
 
-#: ../data/messages:91
+#: ../data/messages:119
 msgid "Name of an image for the 'low' icon :"
 msgstr "Nom de l'image 'Faible' :"
 
-#: ../data/messages:95
+#: ../data/messages:123
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Nom de l'image 'Moyen' :"
 
-#: ../data/messages:99
+#: ../data/messages:127
 msgid "Name of an image for the 'good' icon :"
 msgstr "Nom de l'image 'Bon' :"
 
-#: ../data/messages:103
+#: ../data/messages:131
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
+
+#~ msgid "Use a jauge instead of icons?"
+#~ msgstr "Utiliser une jauge au lieu des icônes?"

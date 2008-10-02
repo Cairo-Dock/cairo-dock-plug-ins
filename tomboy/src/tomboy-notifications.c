@@ -136,22 +136,22 @@ static void _cd_tomboy_reset_marks (GtkMenuItem *menu_item, Icon *pIcon)
 	cd_tomboy_reset_icon_marks (TRUE);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_IN_MENU(D_("Reload notes"), _cd_tomboy_reload_notes, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU(D_("Reload notes"), _cd_tomboy_reload_notes, CD_APPLET_MY_MENU);
 	if (myDock && (myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock)) || (myIcon->pSubDock == NULL && pClickedContainer == myContainer))
 	{
-		CD_APPLET_ADD_IN_MENU(D_("Add a note"), _cd_tomboy_add_note, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU(D_("Add a note"), _cd_tomboy_add_note, CD_APPLET_MY_MENU);
 		
 		if (pClickedIcon != NULL && pClickedIcon !=  myIcon)
 		{
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete this note"), _cd_tomboy_delete_note, CD_APPLET_MY_MENU, pClickedIcon) 
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete this note"), _cd_tomboy_delete_note, CD_APPLET_MY_MENU, pClickedIcon);
 		}
 		
-		CD_APPLET_ADD_IN_MENU(D_("Search"), _cd_tomboy_search_for_content, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU(D_("Searh for tag"), _cd_tomboy_search_for_tag, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU(D_("Search"), _cd_tomboy_search_for_content, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU(D_("Searh for tag"), _cd_tomboy_search_for_tag, CD_APPLET_MY_MENU);
 		
-		CD_APPLET_ADD_IN_MENU(D_("Search for today's note"), _cd_tomboy_search_for_today, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU(D_("Search for this week's note"), _cd_tomboy_search_for_this_week, CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_IN_MENU(D_("Search for next week's note"), _cd_tomboy_search_for_next_week, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU(D_("Search for today's note"), _cd_tomboy_search_for_today, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU(D_("Search for this week's note"), _cd_tomboy_search_for_this_week, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU(D_("Search for next week's note"), _cd_tomboy_search_for_next_week, CD_APPLET_MY_MENU);
 		
 		GList *pList = (myDock ? (myIcon->pSubDock ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
 		Icon *icon;
@@ -161,12 +161,12 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			icon = ic->data;
 			if (icon->bHasIndicator)
 			{
-				CD_APPLET_ADD_IN_MENU(D_("Reset marks"), _cd_tomboy_reset_marks, CD_APPLET_MY_MENU)
+				CD_APPLET_ADD_IN_MENU(D_("Reset marks"), _cd_tomboy_reset_marks, CD_APPLET_MY_MENU);
 				break ;
 			}
 		}
 	}
-	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 
