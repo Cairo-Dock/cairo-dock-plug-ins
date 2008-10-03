@@ -68,7 +68,7 @@ void cd_stacks_build_icons (void) {
 		pIconList = cd_stacks_mime_filter(pIconList);
 	
 	if (myDock) {
-		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer)
+		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer);
 	}
 	else {
 		myDesklet->icons = pIconList;
@@ -90,7 +90,7 @@ void cd_stacks_build_icons (void) {
 	g_key_file_free (myData.pKeyFile); //On ferme le fichier de conf
 	
 	myData.iNbAnimation = 0; //On reset le nombre d'animation
-	CD_APPLET_REDRAW_MY_ICON
+	CD_APPLET_REDRAW_MY_ICON;
 }
 
 void cd_stacks_destroy_icons (void) {

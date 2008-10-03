@@ -62,7 +62,7 @@ void cd_stacks_mklink (const gchar *cURI) {
 		cd_warning ("URI (%s) seems not valid [%s], halt.", cURI, erreur->message);
 		g_error_free (erreur);
 		CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_BROKEN, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
-		CD_APPLET_REDRAW_MY_ICON
+		CD_APPLET_REDRAW_MY_ICON;
 		return;
 	}
 	
