@@ -51,11 +51,11 @@ void cd_musicplayer_add_buttons_to_desklet(void) {
 void _set_new_title (void) {
 	myData.cPreviousRawTitle = myData.cRawTitle;
 	if (myData.cRawTitle == NULL || strcmp (myData.cRawTitle, "(null)") == 0) {
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
 	}
 	else {
 		cd_message("MP : Changing title to: %s", myData.cRawTitle);
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cRawTitle)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cRawTitle);
 		if (myConfig.bEnableAnim)
 			cd_musicplayer_animate_icon (1);
 		if (myConfig.bEnableDialogs)
@@ -89,7 +89,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 				myData.cPreviousQuickInfo = myData.cQuickInfo;
 				if (myData.iCurrentTime != myData.iPreviousCurrentTime) {
 					myData.iPreviousCurrentTime = myData.iCurrentTime;
-					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime)
+					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime);
 					bNeedRedraw = TRUE;
 				}
 			break ;
@@ -99,7 +99,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 				myData.cPreviousQuickInfo = myData.cQuickInfo;
 				if (myData.iCurrentTime != myData.iPreviousCurrentTime) {
 					myData.iPreviousCurrentTime = myData.iCurrentTime;
-					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength)
+					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength);
 					bNeedRedraw = TRUE;
 				}
 			break ;
@@ -139,9 +139,9 @@ gboolean cd_musicplayer_draw_icon (void) {
 		if (!myConfig.bEnableCover)
 			cd_musicplayer_set_surface (myData.pPlayingStatus);
 		
-		if (myData.pPlayingStatus == 0) {
+		if (myData.pPlayingStatus == PLAYER_NONE || myData.pPlayingStatus == PLAYER_BROKEN) {
 		  myData.cRawTitle = NULL; //Rien ne joue
-		  CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle)
+		  CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
 		}
 	}
 
@@ -175,7 +175,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 	}
 	
 	if (bNeedRedraw)
-		CD_APPLET_REDRAW_MY_ICON
+		CD_APPLET_REDRAW_MY_ICON;
 	
 	return TRUE;
 }
@@ -207,7 +207,7 @@ void cd_musicplayer_new_song_playing (void) {
 //Fonction qui anime l'icone au changement de musique
 void cd_musicplayer_animate_icon (int animationLength) {
 	if (myDock) {
-		CD_APPLET_ANIMATE_MY_ICON (myConfig.pChangeAnimation, animationLength)
+		CD_APPLET_ANIMATE_MY_ICON (myConfig.pChangeAnimation, animationLength);
 	}
 }
 

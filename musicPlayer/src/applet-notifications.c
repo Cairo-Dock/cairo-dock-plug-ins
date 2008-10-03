@@ -73,25 +73,25 @@ CD_APPLET_ON_CLICK_END
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU (myConfig.cMusicPlayer, pSubMenu, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU (D_("Previous"), cd_musicplayer_prev, CD_APPLET_MY_MENU)
-	CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), cd_musicplayer_pp, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_SUB_MENU (myConfig.cMusicPlayer, pSubMenu, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU (D_("Previous"), cd_musicplayer_prev, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), cd_musicplayer_pp, CD_APPLET_MY_MENU);
 	
 	if (myData.pCurrentHandeler->ask_control (PLAYER_STOP))
-		CD_APPLET_ADD_IN_MENU (D_("Stop"), cd_musicplayer_s, CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_IN_MENU (D_("Stop"), cd_musicplayer_s, CD_APPLET_MY_MENU);
 		
-	CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), cd_musicplayer_next, CD_APPLET_MY_MENU)
+	CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), cd_musicplayer_next, CD_APPLET_MY_MENU);
 	
 	if (myData.pCurrentHandeler->ask_control (PLAYER_JUMPBOX))
-		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), cd_musicplayer_jumpbox, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), cd_musicplayer_jumpbox, pSubMenu);
 		
 	if (myData.pCurrentHandeler->ask_control (PLAYER_SHUFFLE))	
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), cd_musicplayer_shuffle, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), cd_musicplayer_shuffle, pSubMenu);
 		
 	if (myData.pCurrentHandeler->ask_control (PLAYER_REPEAT))	
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), cd_musicplayer_repeat, pSubMenu)
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), cd_musicplayer_repeat, pSubMenu);
 		
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu)
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 
