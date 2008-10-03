@@ -15,10 +15,15 @@ static gchar *s_cLevelQualityName[WIFI_NB_QUALITY] = {N_("None"), N_("Very Low")
 
 void cd_wifi_draw_no_wireless_extension (void) {
 	if (myData.iPreviousQuality != myData.iQuality) {
+		if (myDesklet != NULL)
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		
 		myData.iPreviousQuality = myData.iQuality;
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 		cd_wifi_draw_icon_with_effect (WIFI_QUALITY_NO_SIGNAL);
+		
+		CD_APPLET_REDRAW_MY_ICON;
 	}
 }
 
@@ -59,7 +64,6 @@ void cd_wifi_draw_icon (void) {
 		
 		//cd_debug ("Wifi - Value have changed, redraw. (Use Gauge: %d)", myConfig.bUseGauge);
 		if (myConfig.iDisplay == WIFI_GAUGE) {
-			//cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.prcnt / 100);
 			CD_APPLET_RENDER_GAUGE (myData.pGauge, (double) myData.prcnt / 100);
 			bNeedRedraw = TRUE;
 		}
@@ -76,7 +80,7 @@ void cd_wifi_draw_icon (void) {
 	}
 	
 	if (myConfig.bESSID && myData.cESSID != NULL && strcmp (myData.cESSID, myIcon->acName))
-		CD_APPLET_SET_NAME_FOR_MY_ICON(myData.cESSID);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cESSID);
 	
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON;
@@ -134,5 +138,5 @@ void cd_wifi_bubble (void) {
 	cd_debug ("%s (%s)", sInfo->str, cIconPath);
 	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 6000, cIconPath);
 	g_string_free (sInfo, TRUE);
-	g_free(cIconPath);
+	g_free (cIconPath);
 }

@@ -64,12 +64,12 @@ static void toggel_wlan(void) { //Trouver la commande pour activer/désactiver u
 	if (myData.bWirelessExt) {
 		gchar *cCommand = g_strdup_printf ("gksu ifconfig %s down", myData.cConnName);
 		g_spawn_command_line_async (cCommand, &erreur);
-		g_free(cCommand);
+		g_free (cCommand);
 	}
 	else {
 		gchar *cCommand = g_strdup_printf ("gksu ifconfig %s up", myData.cConnName);
 		g_spawn_command_line_async (cCommand, &erreur);
-		g_free(cCommand);
+		g_free (cCommand);
 	}
 	if (erreur != NULL) {
 		cd_warning ("Attention : %s", erreur->message);

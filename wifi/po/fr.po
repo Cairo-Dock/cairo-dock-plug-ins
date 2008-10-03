@@ -296,8 +296,28 @@ msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 msgid "radium"
 msgstr "radium"
 
-#: ../data/messages:109 ../data/messages:113 ../data/messages:117
-#: ../data/messages:121 ../data/messages:125 ../data/messages:129
+#: ../data/messages:79
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+"Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si "
+"vous ne voulez pas de filigrane."
+
+#: ../data/messages:81
+msgid "Image to display as a watermark on the gauge :"
+msgstr "Image à afficher en filigrane sur le jauge :"
+
+#: ../data/messages:83
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
+
+#: ../data/messages:85
+msgid "Transparency of the watermark :"
+msgstr "Transparence du filigrane :"
+
+#: ../data/messages:81 ../data/messages:85 ../data/messages:89
+#: ../data/messages:93 ../data/messages:97 ../data/messages:101
 msgid "Let it empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 

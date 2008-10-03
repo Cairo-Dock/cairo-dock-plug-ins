@@ -25,10 +25,9 @@ CD_APPLET_INCLUDE_MY_VARS
 static char  *s_cTmpFile = NULL;
 static char  *s_cTmpFileAccessPoint = NULL;
 
-
 void cd_wifi_acquisition (void) {
 	s_cTmpFile = g_strdup ("/tmp/wifi.XXXXXX");
-	int fds =mkstemp (s_cTmpFile);
+	int fds = mkstemp (s_cTmpFile);
 	if (fds == -1) {
 		g_free (s_cTmpFile);
 		s_cTmpFile = NULL;
@@ -37,7 +36,7 @@ void cd_wifi_acquisition (void) {
 	gchar *cCommand = g_strdup_printf("bash %s/wifi %s", MY_APPLET_SHARE_DATA_DIR, s_cTmpFile);
 	system (cCommand);
 	g_free (cCommand);
-	close(fds);
+	close (fds);
 	
 	/*if (myData.cConnName != NULL) {
 		s_cTmpFileAccessPoint = g_strdup ("/tmp/wifi-access.XXXXXX");
@@ -74,7 +73,7 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
 	gchar *cOneInfopipe;
 	gchar *cESSID = NULL, *cQuality = NULL, *cConnName = NULL;
-	int flink=0, mlink=0, i=0,prcnt=0;
+	int flink=0, mlink=0, i=0, prcnt=0;
 	for (i = 0; cInfopipesList[i] != NULL; i ++) {
 		cOneInfopipe = cInfopipesList[i];
 		if (*cOneInfopipe == '\0')
@@ -123,7 +122,7 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 		}
 	}
 	
-	cd_debug("Wifi - Name: %s - ESSID: %s - Signal Quality: %d/%d", cConnName, cESSID, flink, mlink);
+	cd_debug ("Wifi - Name: %s - ESSID: %s - Signal Quality: %d/%d", cConnName, cESSID, flink, mlink);
 	
 	if (cESSID == NULL)
 		cESSID = D_("Unknown");
@@ -164,13 +163,15 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 void cd_wifi_read_data (void) {
 	if (s_cTmpFile == NULL)
 		return ;
+		
 	gchar *cContent = NULL;
-	gsize length=0;
+	gsize length = 0;
 	GError *erreur = NULL;
+	
 	g_file_get_contents (s_cTmpFile, &cContent, &length, &erreur);
 	if (erreur != NULL) {
 		cd_warning ("Attention : %s", erreur->message);
-		g_error_free(erreur);
+		g_error_free (erreur);
 		erreur = NULL;
 		myData.bAcquisitionOK = FALSE;
 	}
@@ -187,6 +188,7 @@ void cd_wifi_read_data (void) {
 			myData.bAcquisitionOK = TRUE;
 		}
 	}
+	
 	g_remove (s_cTmpFile);
 	g_free (s_cTmpFile);
 	s_cTmpFile = NULL;
@@ -202,5 +204,6 @@ gboolean cd_wifi_update_from_data (void) {
 		cd_wifi_draw_no_wireless_extension ();
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
+	
 	return TRUE;
 }

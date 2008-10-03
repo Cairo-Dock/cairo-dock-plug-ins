@@ -27,8 +27,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
 	myConfig.iDisplay = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
 	
-	myConfig.cGThemePath = cairo_dock_get_gauge_key_value(CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
-	//cd_message ("gauge : Theme '%s'",myConfig.cGThemePath);
+	myConfig.cGThemePath = cairo_dock_get_gauge_key_value (CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
+	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "watermark alpha");
+	if (myConfig.fAlpha != 0)
+		myConfig.cWatermarkImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "watermark image", MY_APPLET_ICON_FILE);
 	myConfig.bESSID	= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "essid", TRUE);
 	
 	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
@@ -44,9 +46,9 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUserCommand);
 	
 	int i;
-	for (i = 0; i < WIFI_NB_QUALITY; i ++) {
+	for (i = 0; i < WIFI_NB_QUALITY; i ++)
 		g_free (myConfig.cUserImage[i]);
-	}
+	
 CD_APPLET_RESET_CONFIG_END
 
 
@@ -54,11 +56,11 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	
 	int i;
-	for (i = 0; i < WIFI_NB_QUALITY; i ++) {
+	for (i = 0; i < WIFI_NB_QUALITY; i ++)
 		cairo_surface_destroy (myData.pSurfaces[i]);
-	}
+	
 	g_free (myData.cESSID);
 	g_free (myData.cConnName);
 	
-	cairo_dock_free_gauge(myData.pGauge);
+	cairo_dock_free_gauge (myData.pGauge);
 CD_APPLET_RESET_DATA_END
