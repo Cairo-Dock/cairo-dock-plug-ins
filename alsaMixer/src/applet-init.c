@@ -265,7 +265,7 @@ CD_APPLET_RELOAD_BEGIN
 			mixer_element_update_with_event (myData.pControledElement, 0);
 		}
 		
-		if (myDesklet->iHeight <= 64)
+		if (myDesklet && myDesklet->iHeight <= 64)
 			gtk_widget_hide (myData.pScale);
 	}
 CD_APPLET_RELOAD_END

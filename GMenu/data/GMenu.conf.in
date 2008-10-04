@@ -16,7 +16,8 @@ frame1_ =
 name = Applications
 
 #S Icon's name :
-icon = CD_APPLET_ICON
+#{Let empty to use the default one.}
+icon = 
 
 #E[] Name of the dock it belongs to:
 dock name = 
