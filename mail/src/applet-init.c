@@ -16,6 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
+CD_APPLET_DEFINITION ("mail", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 static void _load_theme (GError **erreur)
 {
@@ -60,8 +61,6 @@ static void _load_theme (GError **erreur)
 		cd_warning ("Attention : couldn't find images, this theme is not valid");
 	}
 }
-
-CD_APPLET_DEFINITION ("mail", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 CD_APPLET_INIT_BEGIN
 	

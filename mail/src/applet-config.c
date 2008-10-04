@@ -55,7 +55,7 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	if (myIcon->pSubDock != NULL)
 	{
-		CD_APPLET_DESTROY_MY_SUBDOCK
+		CD_APPLET_DESTROY_MY_SUBDOCK;
 	}
   myData.iNbUnreadMails = 0;
   myData.bNewMailFound = FALSE;

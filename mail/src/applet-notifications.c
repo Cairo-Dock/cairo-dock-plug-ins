@@ -178,7 +178,7 @@ _mail_draw_main_icon (void)
 
             //Chargement de l'image "pas de mail"
             myIcon->acFileName = g_strdup(myConfig.cNoMailUserImage);
-            CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName)
+            CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName);
         }
 	}
 	else
@@ -228,7 +228,7 @@ _mail_draw_main_icon (void)
         }
 	}
 
-  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.iNbUnreadMails)
+  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.iNbUnreadMails);
 }
 
 void
