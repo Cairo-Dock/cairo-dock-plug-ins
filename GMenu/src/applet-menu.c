@@ -9,7 +9,6 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 
 #include <string.h>
 #include <cairo-dock.h>
-#include <gio/gio.h>
 
 #include "applet-struct.h"
 #include "applet-menu-callbacks.h"

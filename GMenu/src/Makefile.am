@@ -4,6 +4,10 @@ lib_LTLIBRARIES = \
 	libcd-GMenu.la
 
 
+if WITH_GIO
+have_gio=-DHAVE_GIO="1"
+endif
+
 libcd_GMenu_la_SOURCES = \
 	applet-init.c\
 	applet-init.h\
@@ -26,6 +30,8 @@ libcd_GMenu_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	$(GMENU_PACKAGE_CFLAGS)\
+	$(GMENU_GIO_CFLAGS) \
+	$(have_gio)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(gmenudatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\

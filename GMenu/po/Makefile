@@ -17,15 +17,15 @@
 # We have the following line for use by intltoolize:
 # INTLTOOL_MAKEFILE
 
-GETTEXT_PACKAGE=cairo-dock-plugins
-PACKAGE=cairo-dock-plugins
-VERSION=1.6.2.3
+GETTEXT_PACKAGE=@GETTEXT_PACKAGE@
+PACKAGE=cd-gmenu
+VERSION=1.0.0
 
 SHELL = /bin/sh
 
 srcdir = .
-top_srcdir = ../..
-top_builddir = ../..
+top_srcdir = ..
+top_builddir = ..
 
 
 prefix = /usr
@@ -66,6 +66,7 @@ DISTFILES =  Makefile.in.in POTFILES.in $(POFILES)
 EXTRA_DISTFILES = cairo-dock.pot Makevars LINGUAS
 
 POTFILES = \
+	../src/*.c
 # This comment gets stripped out
 
 CATALOGS=$(shell LINGUAS="$(USE_LINGUAS)"; for lang in $$LINGUAS; do printf "$$lang.gmo "; done)

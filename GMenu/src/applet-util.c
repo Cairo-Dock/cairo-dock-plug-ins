@@ -9,13 +9,12 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include <string.h>
 #include <cairo-dock.h>
-#include <gio/gio.h>
 
 #include "applet-struct.h"
 #include "applet-util.h"
 
 
-
+#ifdef HAVE_GIO
 char * panel_util_get_icon_name_from_g_icon (GIcon *gicon)
 {
 	const char * const *names;
@@ -74,7 +73,7 @@ GdkPixbuf * panel_util_get_pixbuf_from_g_loadable_icon (GIcon *gicon,
 
 	return pixbuf;
 }
-
+#endif
 
 static void _launch_from_file (const gchar *cDesktopFilePath)
 {
@@ -298,6 +297,7 @@ char * panel_find_icon (GtkIconTheme  *icon_theme,
 	return retval;
 }
 
+#ifdef HAVE_GIO
 /* TODO: kill this when we can depend on GTK+ 2.14 */
 GdkPixbuf * panel_util_gdk_pixbuf_load_from_stream (GInputStream  *stream)
 {
@@ -347,4 +347,4 @@ GdkPixbuf * panel_util_gdk_pixbuf_load_from_stream (GInputStream  *stream)
 
 	return pixbuf;
 }
-
+#endif

@@ -334,7 +334,9 @@ load_icons_handler_again:
 		icon_to_add->icon_size = icon->icon_size;
 
 		icons_to_add = g_list_prepend (icons_to_add, icon_to_add);
-	} else if (icon->gicon) {
+	}
+	#ifdef HAVE_GIO
+	else if (icon->gicon) {
 		IconToAdd *icon_to_add;
 		char      *icon_name;
 		GdkPixbuf *pb;
@@ -382,7 +384,9 @@ load_icons_handler_again:
 		icon_to_add->icon_size = icon->icon_size;
 
 		icons_to_add = g_list_prepend (icons_to_add, icon_to_add);
-	} else {
+	}
+	#endif
+	else {
 		IconToAdd *icon_to_add;
 		GdkPixbuf *pb;
 		int        icon_height = PANEL_DEFAULT_MENU_ICON_SIZE;

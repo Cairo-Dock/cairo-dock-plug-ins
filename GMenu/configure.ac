@@ -24,6 +24,27 @@ AC_SUBST(PACKAGE_GMENU, "$PACKAGE")
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 PKG_CHECK_MODULES(GMENU_PACKAGE, libgnome-menu gio-2.0)
 
+AC_ARG_ENABLE(gio,
+	[  --enable-gio  :  Use gio],
+	[case "${enableval}" in
+		yes) usegio=true ;;
+		no)  usegio=false ;;
+		*) echo "bad value ${enableval} for --enable-gio" ;;
+	esac],[usegio=false])
+
+if test "$usegio" = "true" ; then
+	PKG_CHECK_MODULES(GMENU_GIO, gio-2.0, [gio_detected=true], [ gio_detected=false; AC_MSG_WARN(Could not find gio; GMenu won't be built with. Depending on libgnome-menu, it may not be a problem.) ])
+	AC_SUBST(GMENU_GIO_CFLAGS)
+	AC_SUBST(GMENU_GIO_LIBS)
+	
+	if test ! "$gio_detected" = "false" ; then
+		AC_DEFINE(HAVE_GIO,"1",[Defined if we can use gio.])
+	fi
+fi
+
+AM_CONDITIONAL( [WITH_GIO], [test "$gio_detected" = "true"] )
+
+
 gmenudatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/GMenu]
 AC_SUBST(gmenudatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]

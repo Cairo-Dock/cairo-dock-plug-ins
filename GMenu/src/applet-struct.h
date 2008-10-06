@@ -3,7 +3,11 @@
 #define  __CD_APPLET_STRUCT__
 
 #include <cairo-dock.h>
+#ifdef HAVE_GIO
 #include <gio/gio.h>
+#else
+#define GIcon gpointer
+#endif
 
 typedef struct {
 	GtkWidget    *pixmap;
