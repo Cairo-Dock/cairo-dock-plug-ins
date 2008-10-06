@@ -470,16 +470,19 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 		fDockOffsetY = pArea->y;
 	}
 	
-	cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY);
+	//cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY);
 	if (pDock->bHorizontalDock)
 		cairo_rectangle (pCairoContext, fDockOffsetX, fDockOffsetY, pArea->width, pDock->iDecorationsHeight);
 	else
 		cairo_rectangle (pCairoContext, fDockOffsetX, fDockOffsetY, pDock->iDecorationsHeight, pArea->height);
 	
-	double fDeltaXTrapeze=0, fOffsetX, fDockWidth;
-	if (g_pBackgroundSurfaceFull[pDock->bHorizontalDock] != NULL)
+	double fRadius = MIN (g_iDockRadius, (pDock->iDecorationsHeight + g_iDockLineWidth) / 2 - 1);
+	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+	double fDeltaXTrapeze=0.;
+	double fOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
+	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
+	if (g_pBackgroundSurface[pDock->bHorizontalDock] != NULL)
 	{
-		fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
 		double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
 		double fRadius = g_iDockRadius;
 		if (2*fRadius > pDock->iDecorationsHeight + fLineWidth)
