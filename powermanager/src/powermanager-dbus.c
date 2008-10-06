@@ -348,7 +348,7 @@ gboolean update_stats(void)
 		
 		if (iPresentRate == 0)
 		{
-			iPresentRate = (myData.previous_battery_charge - myData.battery_charge) * 1000. / myConfig.iCheckInterval;
+			iPresentRate = (myData.previous_battery_charge - myData.battery_charge) * 36. * myData.iCapacity / myConfig.iCheckInterval;
 			cd_debug ("estimated rate : %.2f -> %.2f => %d", myData.previous_battery_charge, myData.battery_charge, iPresentRate);
 			myData.fRateHistory[myData.iCurrentIndex] = iPresentRate;
 			myData.iCurrentIndex ++;
@@ -364,7 +364,7 @@ gboolean update_stats(void)
 					nb_values ++;
 				}
 			}
-			cd_debug ("mean calculated on %d value(s) : ", nb_values, fabs (fMeanRate) / nb_values);
+			cd_debug ("mean calculated on %d value(s) : %.2f", nb_values, fabs (fMeanRate) / nb_values);
 			if (nb_values != 0)
 				iPresentRate = fabs (fMeanRate) / nb_values;
 		}
@@ -372,21 +372,21 @@ gboolean update_stats(void)
 		
 		//Utile de connaitre l'autonomie estimée quand la batterie est chargée
 		if (myData.on_battery || myData.battery_charge == 100) { //Decompte avant décharge complete
-			if (iPresentRate > 1) {
+			if (iPresentRate > 0) {
 				myData.battery_time = 3600. * iRemainingCapacity / iPresentRate;
 			}
 			else
 				myData.battery_time = 0.;
 		}
 		else {
-			if (iPresentRate > 1) { //Decompte avant charge complete
+			if (iPresentRate > 0) { //Decompte avant charge complete
 				myData.battery_time = 3600. * (myData.iCapacity - iRemainingCapacity) / iPresentRate;
 			}
 			else
 				myData.battery_time = 0.;
 		}
 		
-		g_print ("PowerManager : On Battery:%d ; iCapacity:%dmWh ; iRemainingCapacity:%dmWh ; iPresentRate:%dmW ; iPresentVoltage:%dmV\n", myData.on_battery, myData.iCapacity, iRemainingCapacity, iPresentRate, iPresentVoltage); 
+		cd_debug ("PowerManager : On Battery:%d ; iCapacity:%dmWh ; iRemainingCapacity:%dmWh ; iPresentRate:%dmW ; iPresentVoltage:%dmV", myData.on_battery, myData.iCapacity, iRemainingCapacity, iPresentRate, iPresentVoltage); 
 		g_free (cContent);
 		
 		update_icon();
