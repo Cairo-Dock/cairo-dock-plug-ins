@@ -557,7 +557,7 @@ sub Console_WriteError_InvalidOption
 
 sub GenerateHeaders
 {
-    my $EXTRACT = "/home/fab/CD/trunk/plug-ins/GMenu/intltool-extract";
+    my $EXTRACT = "/home/changfu/Documents/Cairo-Dock/plug-ins/GMenu/intltool-extract";
     chomp $EXTRACT;
 
     $EXTRACT = $ENV{"INTLTOOL_EXTRACT"} if $ENV{"INTLTOOL_EXTRACT"};
