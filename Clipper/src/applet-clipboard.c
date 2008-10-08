@@ -95,7 +95,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 		myData.pItems = g_list_delete_link (myData.pItems, pElement);
 		myData.iNbItems[pItem->iType] --;
 		
-		if (pItem->iType != iType && myData.iNbItems[iType] == myConfig.iNbItems)
+		if (pItem->iType != iType && myData.iNbItems[iType] == myConfig.iNbItems[iType])
 		{
 			cd_debug ("Clipper : %s remplace le dernier de l'autre selection", text);
 			pElement = _cd_clipper_get_last_item (iType);
@@ -110,8 +110,8 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 	else
 	{
 		bExistingItem = FALSE;
-		g_print ("%d items / %d\n", myData.iNbItems[iType], myConfig.iNbItems);
-		if (myData.iNbItems[iType] == myConfig.iNbItems)
+		g_print ("%d items / %d\n", myData.iNbItems[iType], myConfig.iNbItems[iType]);
+		if (myData.iNbItems[iType] == myConfig.iNbItems[iType])
 		{
 			cd_debug ("Clipper : %s remplace le dernier", text);
 			pElement = _cd_clipper_get_last_item (iType);
@@ -203,6 +203,7 @@ GList *cd_clipper_load_actions (const gchar *cConfFilePath)
 		return NULL;
 	}
 	
+	gboolean bEnabled;
 	GList *pActionsList = NULL;
 	gchar *cGroupName, *cExpression;
 	GString *sActionGroupName = g_string_new ("");
@@ -245,6 +246,20 @@ GList *cd_clipper_load_actions (const gchar *cConfFilePath)
 			g_string_printf (sCommandGroupName, "%s/Command_%d", sActionGroupName->str, j);
 			if (! g_key_file_has_group (pKeyFile, sCommandGroupName->str))
 				break ;
+			
+			bEnabled = g_key_file_get_boolean (pKeyFile,
+				sCommandGroupName->str,
+				"Enabled",
+				&erreur);
+			if (erreur != NULL)
+			{
+				cd_debug ("pas de cle Enabled, on suppose que cette comande est active");
+				g_error_free (erreur);
+				erreur = NULL;
+				bEnabled = TRUE;
+			}
+			if (! bEnabled)
+				continue;
 			
 			pCommand = g_new0 (CDClipperCommand, 1);
 			pCommand->cFormat = g_key_file_get_string (pKeyFile,

@@ -32,13 +32,13 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	GtkClipboard *pClipBoard;
-	if ((myConfig.iItemType & CD_CLIPPER_CLIPBOARD) && myConfig.iNbItems != 0)
+	if (myConfig.iItemType & CD_CLIPPER_CLIPBOARD)
 	{
 		pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 		myData.iSidClipboardOwnerChange = g_signal_connect (G_OBJECT (pClipBoard), "owner-change", G_CALLBACK(cd_clipper_selection_owner_changed), NULL);
 	}
 	
-	if ((myConfig.iItemType & CD_CLIPPER_PRIMARY) && myConfig.iNbItems != 0)
+	if (myConfig.iItemType & CD_CLIPPER_PRIMARY)
 	{
 		pClipBoard = gtk_clipboard_get (GDK_SELECTION_PRIMARY);
 		myData.iSidPrimaryOwnerChange = g_signal_connect (G_OBJECT (pClipBoard), "owner-change", G_CALLBACK(cd_clipper_selection_owner_changed), NULL);
@@ -77,6 +77,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		gtk_widget_queue_draw (myDesklet->pWidget);
 	}
 	
 	//\_______________ On recharge les donnees qui ont pu changer.

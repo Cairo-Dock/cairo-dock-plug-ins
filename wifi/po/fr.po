@@ -38,11 +38,11 @@ msgstr "Bon"
 msgid "Excellent"
 msgstr "Excellent"
 
-#: ../src/applet-draw.c:127
+#: ../src/applet-draw.c:131
 msgid "Wifi disabled."
 msgstr "Wifi désactivé."
 
-#: ../src/applet-draw.c:131
+#: ../src/applet-draw.c:135
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -50,7 +50,7 @@ msgstr ""
 "Wifi activé. \n"
 " Connecté sur:"
 
-#: ../src/applet-draw.c:131
+#: ../src/applet-draw.c:135
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 
@@ -70,7 +70,7 @@ msgstr "Verifier les Extensions Wifi"
 msgid "Network Administration"
 msgstr "Administration du Réseau"
 
-#: ../src/applet-wifi.c:129 ../src/applet-wifi.c:134
+#: ../src/applet-wifi.c:128 ../src/applet-wifi.c:133
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -216,7 +216,7 @@ msgstr "Ecraser l'étiquette par défaut avec le nom du point d'accès ?"
 msgid "Display type :"
 msgstr "Type d'affichage :"
 
-#: ../data/messages:65 ../data/messages:107
+#: ../data/messages:65 ../data/messages:115
 msgid "Images"
 msgstr ""
 
@@ -296,7 +296,7 @@ msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 msgid "radium"
 msgstr "radium"
 
-#: ../data/messages:79
+#: ../data/messages:107
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -304,44 +304,44 @@ msgstr ""
 "Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si "
 "vous ne voulez pas de filigrane."
 
-#: ../data/messages:81
+#: ../data/messages:109
 msgid "Image to display as a watermark on the gauge :"
 msgstr "Image à afficher en filigrane sur le jauge :"
 
-#: ../data/messages:83
+#: ../data/messages:111
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
 
-#: ../data/messages:85
+#: ../data/messages:113
 msgid "Transparency of the watermark :"
 msgstr "Transparence du filigrane :"
 
-#: ../data/messages:81 ../data/messages:85 ../data/messages:89
-#: ../data/messages:93 ../data/messages:97 ../data/messages:101
+#: ../data/messages:117 ../data/messages:121 ../data/messages:125
+#: ../data/messages:129 ../data/messages:133 ../data/messages:137
 msgid "Let it empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Nom de l'image 'Aucun Signal' :"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Nom de l'image 'Très Faible' :"
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "Name of an image for the 'low' icon :"
 msgstr "Nom de l'image 'Faible' :"
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Nom de l'image 'Moyen' :"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Name of an image for the 'good' icon :"
 msgstr "Nom de l'image 'Bon' :"
 
-#: ../data/messages:131
+#: ../data/messages:139
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 

@@ -15,5 +15,8 @@
 		<method name="ReloadModule">
 			<arg name="cModuleName" type="s" direction="in"/>
 		</method>
+		<method name="ShowDock">
+			<arg name="show" type="b" direction="in"/>
+		</method>
 	</interface>
 </node>

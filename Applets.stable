@@ -4,9 +4,9 @@ rendering
 gnome-integration-old
 gnome-integration
 xfce-integration
-shortcuts
 Dbus
 ###Stable applets, considered as finished :
+shortcuts
 clock
 logout
 dustbin
@@ -23,17 +23,16 @@ compiz-icon
 cpusage
 rame
 netspeed
+slider
 ###Stable as far as we know :
 wifi
 tomboy
 systray
 nVidia
+stack
 ###Stable but still under development :
 powermanager
 switcher
-###Last addition of v1.6.2 :
-slider
-stack
 ###Last addition of v1.6.3 :
 Clipper
 GMenu

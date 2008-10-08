@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-10-03 02:21+0200\n"
+"POT-Creation-Date: 2008-10-09 02:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,17 +40,17 @@ msgstr ""
 msgid "Excellent"
 msgstr ""
 
-#: ../src/applet-draw.c:127
+#: ../src/applet-draw.c:131
 msgid "Wifi disabled."
 msgstr ""
 
-#: ../src/applet-draw.c:131
+#: ../src/applet-draw.c:135
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
 msgstr ""
 
-#: ../src/applet-draw.c:131
+#: ../src/applet-draw.c:135
 msgid "Signal Strength:"
 msgstr ""
 
@@ -68,7 +68,7 @@ msgstr ""
 msgid "Network Administration"
 msgstr ""
 
-#: ../src/applet-wifi.c:129 ../src/applet-wifi.c:134
+#: ../src/applet-wifi.c:128 ../src/applet-wifi.c:133
 msgid "Unknown"
 msgstr ""
 
@@ -204,7 +204,7 @@ msgstr ""
 msgid "Display type :"
 msgstr ""
 
-#: ../data/messages:65 ../data/messages:107
+#: ../data/messages:65 ../data/messages:115
 msgid "Images"
 msgstr ""
 
@@ -284,31 +284,49 @@ msgstr ""
 msgid "radium"
 msgstr ""
 
-#: ../data/messages:109 ../data/messages:113 ../data/messages:117
-#: ../data/messages:121 ../data/messages:125 ../data/messages:129
-msgid "Let it empty to use the default icon."
+#: ../data/messages:107
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+
+#: ../data/messages:109
+msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
 #: ../data/messages:111
-msgid "Name of an image for the 'no signal' icon :"
+msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:115
-msgid "Name of an image for the 'very low' icon :"
+#: ../data/messages:113
+msgid "Transparency of the watermark :"
+msgstr ""
+
+#: ../data/messages:117 ../data/messages:121 ../data/messages:125
+#: ../data/messages:129 ../data/messages:133 ../data/messages:137
+msgid "Let it empty to use the default icon."
 msgstr ""
 
 #: ../data/messages:119
-msgid "Name of an image for the 'low' icon :"
+msgid "Name of an image for the 'no signal' icon :"
 msgstr ""
 
 #: ../data/messages:123
-msgid "Name of an image for the 'middle' icon :"
+msgid "Name of an image for the 'very low' icon :"
 msgstr ""
 
 #: ../data/messages:127
-msgid "Name of an image for the 'good' icon :"
+msgid "Name of an image for the 'low' icon :"
 msgstr ""
 
 #: ../data/messages:131
+msgid "Name of an image for the 'middle' icon :"
+msgstr ""
+
+#: ../data/messages:135
+msgid "Name of an image for the 'good' icon :"
+msgstr ""
+
+#: ../data/messages:139
 msgid "Name of an image for the 'exellent' icon :"
 msgstr ""

@@ -41,13 +41,13 @@ CD_APPLET_ON_CLICK_END
 static void _cd_clipper_clear_history (GtkMenuItem *menu_item, gpointer *data)
 {
 	GtkClipboard *pClipBoard;
-	if ((myConfig.iItemType & CD_CLIPPER_CLIPBOARD) && myConfig.iNbItems != 0)
+	if (myConfig.iItemType & CD_CLIPPER_CLIPBOARD)
 	{
 		pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 		gtk_clipboard_clear (pClipBoard);
 	}
 	
-	if ((myConfig.iItemType & CD_CLIPPER_PRIMARY) && myConfig.iNbItems != 0)
+	if (myConfig.iItemType & CD_CLIPPER_PRIMARY)
 	{
 		pClipBoard = gtk_clipboard_get (GDK_SELECTION_PRIMARY);
 		gtk_clipboard_clear (pClipBoard);

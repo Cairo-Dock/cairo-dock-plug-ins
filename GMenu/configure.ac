@@ -22,7 +22,7 @@ AC_SUBST(VERSION_GMENU, "$VERSION")
 AC_SUBST(PACKAGE_GMENU, "$PACKAGE")
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
-PKG_CHECK_MODULES(GMENU_PACKAGE, libgnome-menu gio-2.0)
+PKG_CHECK_MODULES(GMENU_PACKAGE, libgnome-menu)
 
 AC_ARG_ENABLE(gio,
 	[  --enable-gio  :  Use gio],
@@ -42,7 +42,7 @@ if test "$usegio" = "true" ; then
 	fi
 fi
 
-AM_CONDITIONAL( [WITH_GIO], [test "$gio_detected" = "true"] )
+AM_CONDITIONAL( [WITH_GIO_IN_GMENU], [test "$gio_detected" = "true"] )
 
 
 gmenudatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/GMenu]

@@ -33,7 +33,7 @@ typedef struct _CDClipperAction {
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	CDClipperItemType iItemType;
-	gint iNbItems;
+	gint iNbItems[4];
 	gboolean bPasteInClipboard;
 	gboolean bPasteInPrimary;
 	gboolean bEnableActions;

@@ -21,6 +21,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bEnableReboot 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reboot");
 	myConfig.bEnableDesklets 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable desklets");
 	myConfig.bEnableReloadModule 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reload module");
+	myConfig.bEnableShowDock 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable show dock");
 CD_APPLET_GET_CONFIG_END
 
 

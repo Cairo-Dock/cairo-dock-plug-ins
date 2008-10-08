@@ -62,8 +62,15 @@ use size=
 #{Clipboard items are those you get with CTRL+c. Selection items are those you get by selecting some text with the mouse.}
 item type = 3
 
-#I[0;50] Number of items :
+#I[1;50] Number of items :
 nb items = 10
+
+#b Separate clipboard and selection ?
+#{It is especially usefull if you often select text with mouse and don't want to lose your clipboard items because of a great number of selection items.}
+separate = false
+
+#I[1;50] If so, number of selection items :
+nb items2 = 10
 
 #b Paste into Clipboard ?
 #{When you click on an item, its content will become accessible with CTRL+v}
@@ -72,10 +79,6 @@ paste clipboard = true
 #b Paste into Selection ?
 #{When you click on an item, its content will become accessible with the middle-click}
 paste selection = true
-
-#b Separate clipboard and selection ?
-#{It is especially usefull if you often select text with mouse and don't want to lose your clipboard items because of a great number of selection items.}
-separate = false
 
 #k Shortkey to pop-up the items menu :
 shortkey = <Shift><Ctrl>F1

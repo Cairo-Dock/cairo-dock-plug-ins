@@ -78,32 +78,35 @@ GdkPixbuf * panel_util_get_pixbuf_from_g_loadable_icon (GIcon *gicon,
 static void _launch_from_file (const gchar *cDesktopFilePath)
 {
 	GError *erreur = NULL;
-        GKeyFile* keyfile = g_key_file_new();
-        g_key_file_load_from_file (keyfile, cDesktopFilePath, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
-        if (erreur != NULL)
-        {
-                cd_warning ("Attention : while trying to load %s : %s", cDesktopFilePath, erreur->message);
-                g_error_free (erreur);
-                return ;
-        }
+	GKeyFile* keyfile = g_key_file_new();
+	g_key_file_load_from_file (keyfile, cDesktopFilePath, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("while trying to read %s : %s", cDesktopFilePath, erreur->message);
+		g_error_free (erreur);
+		return ;
+	}
 	gchar *cCommand = g_key_file_get_string (keyfile, "Desktop Entry", "Exec", &erreur);
-        if (erreur != NULL)
-        {
-                cd_warning ("Attention : while trying to load %s : %s", cDesktopFilePath, erreur->message);
-                g_error_free (erreur);
-                erreur = NULL;
-        }
+	if (erreur != NULL)
+	{
+		cd_warning ("while trying to read %s : %s", cDesktopFilePath, erreur->message);
+		g_error_free (erreur);
+		erreur = NULL;
+	}
 	gchar *cWorkingDirectory = NULL;
 	if (cCommand != NULL)
-        {
-                g_free (cWorkingDirectory);
-                cWorkingDirectory = g_key_file_get_string (keyfile, "Desktop Entry", "Path", NULL);
-                if (cWorkingDirectory != NULL && *cWorkingDirectory == '\0')
-                {
-                        g_free (cWorkingDirectory);
-                        cWorkingDirectory = NULL;
-                }
-        }
+	{
+		gchar *str = strchr (cCommand, '%');
+		if (str != NULL)
+			*str = '\0';
+		g_free (cWorkingDirectory);
+		cWorkingDirectory = g_key_file_get_string (keyfile, "Desktop Entry", "Path", NULL);
+		if (cWorkingDirectory != NULL && *cWorkingDirectory == '\0')
+		{
+			g_free (cWorkingDirectory);
+			cWorkingDirectory = NULL;
+	}
+	}
 	cairo_dock_launch_command_full (cCommand, cWorkingDirectory);
 	g_free (cCommand);
 	g_free (cWorkingDirectory);

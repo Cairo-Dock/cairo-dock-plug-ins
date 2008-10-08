@@ -40,11 +40,11 @@ msgstr "Bra"
 msgid "Excellent"
 msgstr "Mycket bra"
 
-#: ../src/applet-draw.c:127
+#: ../src/applet-draw.c:131
 msgid "Wifi disabled."
 msgstr "Wifi inaktiverat."
 
-#: ../src/applet-draw.c:131
+#: ../src/applet-draw.c:135
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -52,7 +52,7 @@ msgstr ""
 "Wifi aktiverat.\n"
 "Ansluten till:"
 
-#: ../src/applet-draw.c:131
+#: ../src/applet-draw.c:135
 msgid "Signal Strength:"
 msgstr "Signalstyrka:"
 
@@ -72,7 +72,7 @@ msgstr "Sök efter trådlösa nätverk"
 msgid "Network Administration"
 msgstr "Nätverksadministration"
 
-#: ../src/applet-wifi.c:129 ../src/applet-wifi.c:134
+#: ../src/applet-wifi.c:128 ../src/applet-wifi.c:133
 msgid "Unknown"
 msgstr "Okänt"
 
@@ -216,7 +216,7 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 msgid "Display type :"
 msgstr "Utseende"
 
-#: ../data/messages:65 ../data/messages:107
+#: ../data/messages:65 ../data/messages:115
 msgid "Images"
 msgstr "Bilder"
 
@@ -297,32 +297,50 @@ msgstr "Teman för analogic:"
 msgid "radium"
 msgstr "radium"
 
-#: ../data/messages:109 ../data/messages:113 ../data/messages:117
-#: ../data/messages:121 ../data/messages:125 ../data/messages:129
+#: ../data/messages:107
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+
+#: ../data/messages:109
+msgid "Image to display as a watermark on the gauge :"
+msgstr ""
+
+#: ../data/messages:111
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr ""
+
+#: ../data/messages:113
+msgid "Transparency of the watermark :"
+msgstr ""
+
+#: ../data/messages:117 ../data/messages:121 ../data/messages:125
+#: ../data/messages:129 ../data/messages:133 ../data/messages:137
 msgid "Let it empty to use the default icon."
 msgstr "Lämna tomt för att använda standardikonen."
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Name of an image for the 'no signal' icon :"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Name of an image for the 'very low' icon :"
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "Name of an image for the 'low' icon :"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid "Name of an image for the 'middle' icon :"
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Name of an image for the 'good' icon :"
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:139
 msgid "Name of an image for the 'exellent' icon :"
 msgstr ""
 

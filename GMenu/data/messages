@@ -8,6 +8,8 @@ _("height :")
 
 _("Name of the icon as it will appear in its label in the dock :")
 
+_("Let empty to use the default one.")
+
 _("Icon's name :")
 
 _("Name of the dock it belongs to:")

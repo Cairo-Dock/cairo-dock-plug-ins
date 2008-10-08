@@ -29,4 +29,6 @@ gboolean cd_dbus_callback_reboot(dbusCallback *pDbusCallback, GError **error);
 
 gboolean cd_dbus_callback_reload_module (dbusCallback *pDbusCallback, gchar *cModuleName, GError **error);
 
+gboolean cd_dbus_callback_show_dock (dbusCallback *pDbusCallback, gboolean bShow, GError **error);
+
 #endif

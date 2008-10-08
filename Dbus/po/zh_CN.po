@@ -33,3 +33,8 @@ msgstr "令外部应用程序显示/隐藏桌面小应用程序？"
 #, fuzzy
 msgid "Let extern applications reload the applets ?"
 msgstr "令外部应用程序显示/隐藏桌面小应用程序？"
+
+#: ../data/messages:11
+#, fuzzy
+msgid "Let extern applications show/hide the docks ?"
+msgstr "令外部应用程序显示/隐藏桌面小应用程序？"

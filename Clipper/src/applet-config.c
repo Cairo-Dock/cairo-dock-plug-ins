@@ -33,15 +33,25 @@ static void _cd_clipper_on_keybinding_pull (const char *keystring, gpointer user
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.iNbItems = CD_CONFIG_GET_INTEGER ("Configuration", "nb items");
 	myConfig.iItemType = CD_CONFIG_GET_INTEGER ("Configuration", "item type");
+	myConfig.bSeparateSelections = CD_CONFIG_GET_BOOLEAN ("Configuration", "separate");
+	myConfig.iNbItems[CD_CLIPPER_CLIPBOARD] = CD_CONFIG_GET_INTEGER ("Configuration", "nb items");
+	if (myConfig.bSeparateSelections)
+	{
+		if (myConfig.iItemType & CD_CLIPPER_PRIMARY)
+			myConfig.iNbItems[CD_CLIPPER_PRIMARY] = CD_CONFIG_GET_INTEGER ("Configuration", "nb items2");
+	}
+	else
+	{
+		myConfig.iNbItems[CD_CLIPPER_BOTH] = myConfig.iNbItems[CD_CLIPPER_CLIPBOARD];
+		myConfig.iNbItems[CD_CLIPPER_PRIMARY] = myConfig.iNbItems[CD_CLIPPER_CLIPBOARD];
+	}
 	myConfig.bPasteInClipboard = CD_CONFIG_GET_BOOLEAN ("Configuration", "paste clipboard");
 	myConfig.bPasteInPrimary = CD_CONFIG_GET_BOOLEAN ("Configuration", "paste selection");
 	myConfig.bEnableActions = CD_CONFIG_GET_BOOLEAN ("Configuration", "enable actions");
 	myConfig.bMenuOnMouse = CD_CONFIG_GET_BOOLEAN ("Configuration", "menu on mouse");
-	myConfig.bSeparateSelections = CD_CONFIG_GET_BOOLEAN ("Configuration", "separate");
-	if (myConfig.bSeparateSelections && myConfig.iItemType == CD_CLIPPER_BOTH)
-		myConfig.iNbItems /= 2;
+	
+	
 	myConfig.bReplayAction = CD_CONFIG_GET_BOOLEAN ("Configuration", "replay action");
 	myConfig.iActionMenuDuration = CD_CONFIG_GET_INTEGER ("Configuration", "action duration");
 	

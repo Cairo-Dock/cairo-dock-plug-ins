@@ -112,3 +112,15 @@ gboolean cd_dbus_callback_reload_module (dbusCallback *pDbusCallback, gchar *cMo
 	cairo_dock_reload_module (pModule, TRUE);  // TRUE <=> reload module conf file.
 	return TRUE;
 }
+
+gboolean cd_dbus_callback_show_dock (dbusCallback *pDbusCallback, gboolean bShow, GError **error)
+{
+	if (! myConfig.bEnableShowDock)
+		return FALSE;
+	
+	if (bShow)
+		cairo_dock_stop_quick_hide ();
+	else
+		cairo_dock_quick_hide_all_docks ();
+	return TRUE;
+}

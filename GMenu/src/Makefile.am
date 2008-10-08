@@ -4,7 +4,7 @@ lib_LTLIBRARIES = \
 	libcd-GMenu.la
 
 
-if WITH_GIO
+if WITH_GIO_IN_GMENU
 have_gio=-DHAVE_GIO="1"
 endif
 
@@ -49,6 +49,7 @@ libcd_GMenu_la_CFLAGS = \
 
 libcd_GMenu_la_LIBADD = \
 	$(PACKAGE_LIBS) -lm\
+	$(GMENU_GIO_LIBS)\
 	$(GMENU_PACKAGE_LIBS)
 
 

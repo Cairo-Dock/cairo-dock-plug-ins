@@ -76,7 +76,7 @@ AC_ARG_ENABLE(nvidia,
 	[ with_nvidia=${enableval} ],
 	[ with_nvidia=yes ])
 AC_ARG_ENABLE(compiz-icon,
-	[  --enable-compiz-icon: Enable Compiz-Icon applet (default=yes) ],
+	[  --enable-compiz-icon : Enable Compiz-Icon applet (default=yes) ],
 	[ $with_compiz_icon=${enableval} ],
 	[ with_compiz_icon=yes ])
 AC_ARG_ENABLE(xgamma,
@@ -87,7 +87,10 @@ AC_ARG_ENABLE(gmenu,
 	[  --enable-gmenu : Enable GMenu applet (default=yes) ],
 	[ with_gmenu=${enableval} ],
 	[ with_gmenu=yes ])
-
+AC_ARG_ENABLE(gio,
+        [  --enable-gio-in-gmenu : Use gio in GMenu (default=no) ],
+        [ with_gio_in_gmenu=${enableval} ],
+        [ with_gio_in_gmenu=no])
 
 if test "$with_old_gnome_support" = "yes" ; then
 	PKG_CHECK_MODULES(OLD_GNOME_INTEGRATION,gnome-vfs-2.0 libgnomeui-2.0, ,[ with_old_gnome_support=false; AC_MSG_WARN(Could not find gnome-vfs and/or gnomeui; Cairo-Dock won't be built with Gnome<2.22 support.) ])
@@ -120,9 +123,14 @@ if test "$with_xgamma" = "yes" ; then
 	AC_SUBST(XGAMMA_PACKAGE_LIBS)
 fi
 if test "$with_gmenu" = "yes" ; then
-	PKG_CHECK_MODULES(GMENU_PACKAGE,libgnome-menu gio-2.0, ,[ with_gmenu=false; AC_MSG_WARN(Could not find libgnome-menu or gio-2.0; Cairo-Dock won't be built with GMenu applet.) ])
+	PKG_CHECK_MODULES(GMENU_PACKAGE,libgnome-menu, ,[ with_gmenu=false; AC_MSG_WARN(Could not find libgnome-menu; Cairo-Dock won't be built with GMenu applet.) ])
 	AC_SUBST(GMENU_PACKAGE_CFLAGS)
 	AC_SUBST(GMENU_PACKAGE_LIBS)
+fi
+if test "$with_gio_in_gmenu" = "yes" ; then
+	PKG_CHECK_MODULES(GMENU_GIO, gio-2.0, ,[ with_gio_in_gmenu=false; AC_MSG_WARN(Could not find gio-2.0; the GMenu applet won't be built with. Depending on libgnome-menu, it may not be a problem.) ])
+	AC_SUBST(GMENU_GIO_CFLAGS)
+	AC_SUBST(GMENU_GIO_LIBS)
 fi
 
 AM_CONDITIONAL( [WITH_OLD_GNOME_SUPPORT], [test "$with_old_gnome_support" = "yes"] )
@@ -138,6 +146,7 @@ AM_CONDITIONAL( [WITH_NVIDIA], [test "$with_nvidia" = "yes"] )
 AM_CONDITIONAL( [WITH_COMPIZ_ICON], [test "$with_compiz_icon" = "yes"] )
 AM_CONDITIONAL( [WITH_XGAMMA], [test "$with_xgamma" = "yes"] )
 AM_CONDITIONAL( [WITH_GMENU], [test "$with_gmenu" = "yes"] )
+AM_CONDITIONAL( [WITH_GIO_IN_GMENU], [test "$with_gio_in_gmenu" = "yes"] )
 
 
 ############# ALSA_MIXER #################
@@ -740,3 +749,4 @@ echo " * Compil Rhythmbox applet : "${with_rhythmbox}
 echo " * Compil nVidia applet : "${with_nvidia}
 echo " * Compil Xgamma applet : "${with_xgamma}
 echo " * Compil GMenu applet : "${with_gmenu}
+echo " * Enable gio in GMenu applet : "${with_gio_in_gmenu}

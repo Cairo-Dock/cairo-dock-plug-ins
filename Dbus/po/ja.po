@@ -33,3 +33,8 @@ msgstr "外部アプリケーションがデスクレットの（非）表示を
 #, fuzzy
 msgid "Let extern applications reload the applets ?"
 msgstr "外部アプリケーションがデスクレットの（非）表示をできるようにする？"
+
+#: ../data/messages:11
+#, fuzzy
+msgid "Let extern applications show/hide the docks ?"
+msgstr "外部アプリケーションがデスクレットの（非）表示をできるようにする？"

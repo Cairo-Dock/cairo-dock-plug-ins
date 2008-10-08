@@ -38,11 +38,11 @@ msgstr "Buono"
 msgid "Excellent"
 msgstr "Eccellente"
 
-#: ../src/applet-draw.c:127
+#: ../src/applet-draw.c:131
 msgid "Wifi disabled."
 msgstr "Wifi disattivata."
 
-#: ../src/applet-draw.c:131
+#: ../src/applet-draw.c:135
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -50,7 +50,7 @@ msgstr ""
 "Wifi attiva. \n"
 " Connesso su:"
 
-#: ../src/applet-draw.c:131
+#: ../src/applet-draw.c:135
 msgid "Signal Strength:"
 msgstr "Potenza del segnale:"
 
@@ -70,7 +70,7 @@ msgstr "Verifica dell'Estensione Wifi"
 msgid "Network Administration"
 msgstr "Amministrazione della Rete"
 
-#: ../src/applet-wifi.c:129 ../src/applet-wifi.c:134
+#: ../src/applet-wifi.c:128 ../src/applet-wifi.c:133
 msgid "Unknown"
 msgstr "Sconosciuto"
 
@@ -218,7 +218,7 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 msgid "Display type :"
 msgstr "Mostrare"
 
-#: ../data/messages:65 ../data/messages:107
+#: ../data/messages:65 ../data/messages:115
 msgid "Images"
 msgstr "Immagini"
 
@@ -299,32 +299,50 @@ msgstr "Lista dei temi disponibili per la vista analogica :"
 msgid "radium"
 msgstr "radium"
 
-#: ../data/messages:109 ../data/messages:113 ../data/messages:117
-#: ../data/messages:121 ../data/messages:125 ../data/messages:129
+#: ../data/messages:107
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+
+#: ../data/messages:109
+msgid "Image to display as a watermark on the gauge :"
+msgstr ""
+
+#: ../data/messages:111
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr ""
+
+#: ../data/messages:113
+msgid "Transparency of the watermark :"
+msgstr ""
+
+#: ../data/messages:117 ../data/messages:121 ../data/messages:125
+#: ../data/messages:129 ../data/messages:133 ../data/messages:137
 msgid "Let it empty to use the default icon."
 msgstr "Lasciate vuoto per utilizzare l'icona di default."
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Immagine dell'icona 'Nessun Segnale' :"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Immagine dell'icona 'Molto Basso' :"
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "Name of an image for the 'low' icon :"
 msgstr "Immagine dell'icona 'Basso' :"
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Immagine dell'icona 'Normale' :"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Name of an image for the 'good' icon :"
 msgstr "Immagine dell'icona 'Buono' :"
 
-#: ../data/messages:131
+#: ../data/messages:139
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Immagine dell'icona 'Eccellente' :"
 
