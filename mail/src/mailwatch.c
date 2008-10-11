@@ -41,20 +41,122 @@
 
 #include "gnome-keyring.h"
 
-#include "mailwatch.h"
-#include "mailwatch-utils.h"
-#include "cairo-dock.h"
-
 /* compatibilite ascendante avec libgnome-keyring <= 0.20 */
 #ifndef GNOME_KEYRING_DEFAULT
 #define GNOME_KEYRING_DEFAULT NULL
 #endif
+
+/* libC crypt usage in case we are not on a gnome desktop */
+#include "crypt.h"
+
+#include "mailwatch.h"
+#include "mailwatch-utils.h"
+#include "cairo-dock.h"
 
 #define BORDER          8
 
 #if !GTK_CHECK_VERSION(2, 6, 0)
 #define GTK_STOCK_EDIT GTK_STOCK_PROPERTIES
 #endif
+
+static char DES_crypt_key[64] =
+{
+    1,0,0,1,1,1,0,0, 1,0,1,1,1,0,1,1, 1,1,0,1,0,1,0,1, 1,1,0,0,0,0,0,1,
+    0,0,0,1,0,1,1,0, 1,1,1,0,1,1,1,0, 1,1,1,0,0,1,0,0, 1,0,1,0,1,0,1,1
+}; 
+
+void encrypt_string_DES( char *input, char **output )
+{
+  char *last_char_in_input = input + strlen(input);
+  char *current_output = NULL;
+  if( output )
+  {
+    *output = g_malloc( strlen(input)*3+1 );
+    current_output = *output;
+  }
+
+//  g_print( "Password (before encrypt): %s\n", input );
+
+  for( ; input < last_char_in_input; input += 8, current_output += 16+8 )
+  {
+    char txt[64];
+    unsigned int i = 0, j = 0;
+    unsigned char current_letter = 0;
+    
+    memset( txt, 0, 64 );
+    
+    // process the eight first characters of "input"
+    for( i = 0; i < strlen(input) && i < 8 ; i++ )
+      for ( j = 0; j < 8; j++ )
+        txt[i*8+j] = input[i] >> j & 1;
+    
+    setkey( DES_crypt_key );
+    encrypt( txt, 0 );  // encrypt
+
+    for ( i = 0; i < 8; i++ )
+    {
+      current_letter = 0;
+      for ( j = 0; j < 8; j++ )
+      {
+        current_letter |= txt[i*8+j] << j;
+      }
+      snprintf( current_output + i*3, 4, "%02X-", (unsigned char)current_letter );
+    }
+  }
+
+  *(current_output-1) = 0;
+
+//  g_print( "Password (after encrypt): %s\n", *output );
+}
+
+void decrypt_string_DES( char *input, char **output )
+{
+  char *last_char_in_input = input + strlen(input);
+  char *current_output = NULL;
+  if( output )
+  {
+    *output = g_malloc( (strlen(input)+1)/3 );
+    current_output = *output;
+  }
+
+//  g_print( "Password (before decrypt): %s\n", input );
+
+  for( ; input < last_char_in_input; input += 16+8, current_output += 8 )
+  {
+    unsigned int block[8];
+    char txt[64];
+    int i = 0, j = 0;
+    unsigned char current_letter = 0;
+    
+    memset( txt, 0, 64 );
+
+    input[16+8-1] = 0; // cut the string
+
+    sscanf( input, "%X-%X-%X-%X-%X-%X-%X-%X",
+    &block[0], &block[1], &block[2], &block[3], &block[4], &block[5], &block[6], &block[7] );
+
+    // process the eight first characters of "input"
+    for( i = 0; i < 8 ; i++ )
+      for ( j = 0; j < 8; j++ )
+        txt[i*8+j] = block[i] >> j & 1;
+    
+    setkey( DES_crypt_key );
+    encrypt( txt, 1 );  // decrypt
+
+    for ( i = 0; i < 8; i++ )
+    {
+      current_output[i] = 0;
+      for ( j = 0; j < 8; j++ )
+      {
+        current_output[i] |= txt[i*8+j] << j;
+      }
+    }
+  }
+
+  *current_output = 0;
+
+//  g_print( "Password (after decrypt): %s\n", *output );
+}
 
 typedef struct
 {
@@ -236,14 +338,6 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
         GList *config_params = NULL;
         gchar *mailbox_password = NULL;
 
-        // gnome-keyring related stuff
-        GnomeKeyringResult res;
-        GnomeKeyringAttributeList *attributes = NULL;
-        GnomeKeyringAttribute attribute;
-        GnomeKeyringFound *f = NULL;
-        GList* found = NULL;
-        guint32 item_id;
-
         g_snprintf(buf, 32, "mailbox %d name", i);
         mailbox_name = CD_CONFIG_GET_STRING("Configuration", buf);
         if(!mailbox_name)
@@ -280,48 +374,72 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
             XfceMailwatchParam *param = NULL;
             const gchar *value;
 
+            if(g_iDesktopEnv == CAIRO_DOCK_GNOME && g_strcasecmp( param->key, cfg_entries[j] ) == 0)
+            {
+              continue;
+            }
+
             value = CD_CONFIG_GET_STRING(mailbox_name, cfg_entries[j]);
 
             param = g_new(XfceMailwatchParam, 1);
             param->key = cfg_entries[j];
-            param->value = g_strdup(value);
+
+            /* if we are not using gnome keyring, then use the glibc two-way DES encryption ! */
+            if( g_strcasecmp( param->key, "password" ) == 0 )
+            {
+              decrypt_string_DES( value, &(param->value) );
+            }
+            else
+            {
+              param->value = g_strdup(value);
+            }
 
             config_params = g_list_append(config_params, param);
         }
         g_free(cfg_entries);  /* yes, not using g_strfreev() is correct */
-
-        attributes = gnome_keyring_attribute_list_new();
-        gnome_keyring_attribute_list_append_string( attributes, "mailbox_name", mdata->mailbox_name );
-
-        found = g_list_alloc();
-
-        res = gnome_keyring_find_items_sync(GNOME_KEYRING_ITEM_GENERIC_SECRET, attributes, &found);
-
-        gnome_keyring_attribute_list_free(attributes);
-
-        if (res == GNOME_KEYRING_RESULT_OK) {
-          mailbox_password = NULL;
-          if (g_list_length (found) > 0) {
-            f = (GnomeKeyringFound*)(found->data);
-            mailbox_password = f->secret;
-            f->secret = NULL;
-          }
-        }
-
-        gnome_keyring_found_list_free (found);
-
-        if( GNOME_KEYRING_RESULT_OK == res ) 
+        
+        if(g_iDesktopEnv == CAIRO_DOCK_GNOME)
         {
-            XfceMailwatchParam *param = NULL;
-            
-            param = g_new(XfceMailwatchParam, 1);
-            param->key = g_strdup("password");
-            param->value = g_strdup(mailbox_password);
+          // gnome-keyring related stuff
+          GnomeKeyringResult res;
+          GnomeKeyringAttributeList *attributes = NULL;
+          GnomeKeyringAttribute attribute;
+          GnomeKeyringFound *f = NULL;
+          GList* found = NULL;
+          
+          attributes = gnome_keyring_attribute_list_new();
+          gnome_keyring_attribute_list_append_string( attributes, "mailbox_name", mdata->mailbox_name );
 
-            config_params = g_list_append(config_params, param);
-            
-            gnome_keyring_free_password(mailbox_password);
+          found = g_list_alloc();
+
+          res = gnome_keyring_find_items_sync(GNOME_KEYRING_ITEM_GENERIC_SECRET, attributes, &found);
+
+          gnome_keyring_attribute_list_free(attributes);
+
+          if (res == GNOME_KEYRING_RESULT_OK) {
             mailbox_password = NULL;
+            if (g_list_length (found) > 0) {
+              f = (GnomeKeyringFound*)(found->data);
+              mailbox_password = f->secret;
+              f->secret = NULL;
+            }
+          }
+
+          gnome_keyring_found_list_free (found);
+
+          if( GNOME_KEYRING_RESULT_OK == res ) 
+          {
+              XfceMailwatchParam *param = NULL;
+              
+              param = g_new(XfceMailwatchParam, 1);
+              param->key = g_strdup("password");
+              param->value = g_strdup(mailbox_password);
+
+              config_params = g_list_append(config_params, param);
+              
+              gnome_keyring_free_password(mailbox_password);
+              mailbox_password = NULL;
+          }
         }
 
         mailbox->type->restore_param_list_func(mailbox, config_params);
@@ -398,19 +516,29 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
             {
                 if( strcmp( param->key, "password" ) == 0 )
                 {
-                  /* store the password in the gnome keyring */
-                  GnomeKeyringAttributeList *attributes = NULL;
-                  GnomeKeyringAttribute attribute;
-                  GnomeKeyringResult res;
-                  guint32 item_id;
+                  if(g_iDesktopEnv != CAIRO_DOCK_GNOME)
+                  {
+                    char *txt = NULL;
+                    encrypt_string_DES( param->value, &txt );
+                    g_key_file_set_value(pKeyFile, mdata->mailbox_name, param->key, txt);
+                    g_free( txt );
+                  }
+                  else
+                  {
+                    /* store the password in the gnome keyring */
+                    GnomeKeyringAttributeList *attributes = NULL;
+                    GnomeKeyringAttribute attribute;
+                    GnomeKeyringResult res;
+                    guint32 item_id;
 
-                  attributes = gnome_keyring_attribute_list_new();
-                  gnome_keyring_attribute_list_append_string( attributes, "mailbox_name", mdata->mailbox_name );
+                    attributes = gnome_keyring_attribute_list_new();
+                    gnome_keyring_attribute_list_append_string( attributes, "mailbox_name", mdata->mailbox_name );
 
-                  res = gnome_keyring_item_create_sync (GNOME_KEYRING_DEFAULT, GNOME_KEYRING_ITEM_GENERIC_SECRET, "Cairo-dock Mail password", 
-                                                        attributes, param->value, TRUE, &item_id);
+                    res = gnome_keyring_item_create_sync (GNOME_KEYRING_DEFAULT, GNOME_KEYRING_ITEM_GENERIC_SECRET, "Cairo-dock Mail password", 
+                                                          attributes, param->value, TRUE, &item_id);
 
-                  gnome_keyring_attribute_list_free(attributes);
+                    gnome_keyring_attribute_list_free(attributes);
+                  }
                 }
                 else
                 {

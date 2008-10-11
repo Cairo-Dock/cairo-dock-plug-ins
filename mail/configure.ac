@@ -43,6 +43,9 @@ AC_TYPE_PID_T
 # Checks for library functions.
 AC_CHECK_FUNCS([sscanf])
 
+# Checks for crypt library
+AC_CHECK_LIB(crypt, encrypt)
+
 PKG_CHECK_MODULES(PACKAGE, cairo-dock gnutls gnome-keyring-1)
 
 # SSL is present ? let's say yes :)
