@@ -2,6 +2,7 @@
 
 This file is a part of the cairo-dock clock applet, 
 released under the terms of the GNU General Public License.
+The analogic display comes from Cairo-Clock.
 
 Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
@@ -375,59 +376,48 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 		cairo_restore (pSourceContext);
 	}
 	
-	cairo_rotate (pSourceContext, -G_PI/2.0f);
+	///cairo_rotate (pSourceContext, -G_PI/2.0f);
 	cairo_save (pSourceContext);
 	cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
-	cairo_rotate (pSourceContext, (G_PI/ 12.0f * g_iHours + (G_PI/ 360.0f) * g_iMinutes));
-
+	cairo_rotate (pSourceContext, (g_iHours % 12) * G_PI/6 + g_iMinutes * G_PI/360.0f - G_PI/2.0f);
 	rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_HOUR_HAND_SHADOW], pSourceContext);
-	
 	cairo_restore (pSourceContext);
 	
 	cairo_save (pSourceContext);
 	cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
-	cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iMinutes);
-	
+	cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iMinutes - G_PI/2.0f);
 	rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_MINUTE_HAND_SHADOW], pSourceContext);
-	
 	cairo_restore (pSourceContext);
 	
 	if (myConfig.bShowSeconds)
 	{
 		cairo_save (pSourceContext);
 		cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
-		cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iSeconds);
-		
+		cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iSeconds - G_PI/2.0f);
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_SECOND_HAND_SHADOW], pSourceContext);
-		
 		cairo_restore (pSourceContext);
 	}
 	
 	cairo_save (pSourceContext);
-	cairo_rotate (pSourceContext, (g_iHours % 12) * G_PI/6 + g_iMinutes * G_PI/360.0f);
-	
+	cairo_rotate (pSourceContext, (g_iHours % 12) * G_PI/6 + g_iMinutes * G_PI/360.0f - G_PI/2.0f);
 	rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_HOUR_HAND], pSourceContext);
-	
 	cairo_restore (pSourceContext);
 	
 	cairo_save (pSourceContext);
-	cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iMinutes);
-	
+	cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iMinutes - G_PI/2.0f);
 	rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_MINUTE_HAND], pSourceContext);
-	
 	cairo_restore (pSourceContext);
 	
 	if (myConfig.bShowSeconds)
 	{
 		cairo_save (pSourceContext);
-		cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iSeconds);
+		cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iSeconds - G_PI/2.0f);
 		
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_SECOND_HAND], pSourceContext);
 		cairo_restore (pSourceContext);
 	}
 	
+	cairo_restore (pSourceContext);
 	cairo_set_source_surface (pSourceContext, myData.pForegroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
-	
-	cairo_restore (pSourceContext);
 }
