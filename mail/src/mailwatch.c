@@ -374,7 +374,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch, GKeyFile *pKeyFile)
             XfceMailwatchParam *param = NULL;
             const gchar *value;
 
-            if(g_iDesktopEnv == CAIRO_DOCK_GNOME && g_strcasecmp( param->key, cfg_entries[j] ) == 0)
+            if(g_iDesktopEnv == CAIRO_DOCK_GNOME && g_strcasecmp( "password", cfg_entries[j] ) == 0)
             {
               continue;
             }
