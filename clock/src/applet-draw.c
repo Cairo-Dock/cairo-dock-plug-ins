@@ -349,11 +349,11 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_SOURCE);
 	cairo_paint (pSourceContext);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
+	cairo_save (pSourceContext);
 	
 	cairo_set_source_surface (pSourceContext, myData.pBackgroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
 	
-	cairo_save (pSourceContext);
 	cairo_scale (pSourceContext,
 		(double) width / (double) myData.DimensionData.width * fMaxScale,
 		(double) height / (double) myData.DimensionData.height * fMaxScale);
@@ -426,8 +426,8 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 		cairo_restore (pSourceContext);
 	}
 	
-	cairo_restore (pSourceContext);
-	
 	cairo_set_source_surface (pSourceContext, myData.pForegroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
+	
+	cairo_restore (pSourceContext);
 }
