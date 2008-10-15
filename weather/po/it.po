@@ -254,11 +254,83 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:39 ../data/messages:41
+#: ../data/messages:39
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:43
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:45
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:51
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:53
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:55
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:61
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:65
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:67
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:69
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:73 ../data/messages:75
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:43
+#: ../data/messages:77
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
@@ -266,67 +338,67 @@ msgstr ""
 "Un click destro sull'icona per fare sì che Cairo-Dock vi aiuti nella ricerca "
 "del codice della vostra località."
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Code of your location :"
 msgstr "Codice della vostra località :"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Use International System Units ?"
 msgstr "Utilizzare le unità del Sistema Internazionale ?"
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "in secondi. Mettete 0 per avere dialoghi ininterrotti."
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "Duration of dialogs :"
 msgstr "Durata dei dialoghi :"
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "in minutes."
 msgstr "in minuti"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid "Interval of time between 2 checks :"
 msgstr "Intervallo di tempo tra le 2 verifiche :"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Info"
 msgstr "Info"
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr ""
 "Mostrare le condizioni attuali nell'icona al posto che quelle di default ?"
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid "Number of days you want to forecast :"
 msgstr "Numero dei giorni da prevedere :"
 
-#: ../data/messages:63
+#: ../data/messages:97
 msgid "Display nights too ?"
 msgstr "Mostrare anche le notti ?"
 
-#: ../data/messages:65
+#: ../data/messages:99
 msgid "Display temperature as quick info ?"
 msgstr "Mostrare la temperatura come info veloce ?"
 
-#: ../data/messages:67
+#: ../data/messages:101
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:69
+#: ../data/messages:103
 msgid "Choose one of the available themes :"
 msgstr "Scegliete uno dei temi disponibili :"
 
-#: ../data/messages:71
+#: ../data/messages:105
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciate vuoto per utilizzarre la vista di default per la sub-dock"
 
-#: ../data/messages:73
+#: ../data/messages:107
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
-#: ../data/messages:75
+#: ../data/messages:109
 msgid "Render desklet in 3D ?"
 msgstr "Disegnare la desklet in 3D ?"

@@ -143,62 +143,143 @@ msgid "Lock position ?"
 msgstr "Lås position?"
 
 #: ../data/messages:37
+#, fuzzy
+msgid "Decorations"
+msgstr "Information"
+
+#: ../data/messages:39
+#, fuzzy
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+"Om du anger \"personlig\" kan du själv definiera utseendet. Lämna tomt för "
+"att inte använda dekorationer."
+
+#: ../data/messages:41
+#, fuzzy
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Välj dekoration för deskletläge:"
+
+#: ../data/messages:43
+#, fuzzy
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr "Bild som visas under fodralet, t ex en ram."
+
+#: ../data/messages:45 ../data/messages:137
+msgid "Background image :"
+msgstr "Bakgrundsbild:"
+
+#: ../data/messages:47 ../data/messages:139
+msgid "Background tansparency :"
+msgstr "Genomskinlighet:"
+
+#: ../data/messages:49
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:51 ../data/messages:143
+msgid "Left offset :"
+msgstr "Avstånd från vänsterkant:"
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:55 ../data/messages:145
+msgid "Top offset :"
+msgstr "Avstånd från ovankant:"
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:59 ../data/messages:147
+msgid "Right offset :"
+msgstr "Avstånd från högerkant:"
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:63 ../data/messages:149
+msgid "Bottom offset :"
+msgstr "Avstånd från nederkant:"
+
+#: ../data/messages:65
+#, fuzzy
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr "Bild som visas ovanför fodralet, t ex en reflex."
+
+#: ../data/messages:67
+#, fuzzy
+msgid "Foreground image :"
+msgstr "Bakgrundsbild:"
+
+#: ../data/messages:69
+#, fuzzy
+msgid "Foreground tansparency :"
+msgstr "Genomskinlighet:"
+
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:39
+#: ../data/messages:73
 msgid "Info-bubbles"
 msgstr "Infobubblor"
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid "Activate info-bubbles ?"
 msgstr "Aktivera infobubblor?"
 
-#: ../data/messages:43
+#: ../data/messages:77
 msgid "in ms."
 msgstr "i ms."
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Time length of info-bubbles :"
 msgstr "Tid som infobubblor visas:"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Behaviour"
 msgstr "Beteende"
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Animation when music changes :"
 msgstr "Animering när musiken ändras:"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "bounce"
 msgstr "studsa"
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "rotate"
 msgstr "rotera"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid "blink"
 msgstr "blinka"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "pulse"
 msgstr "pulsera"
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid "upside-down"
 msgstr "upp och ner"
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid "wobbly"
 msgstr "vingla"
 
-#: ../data/messages:63
+#: ../data/messages:97
 msgid "random"
 msgstr "slumpmässig"
 
-#: ../data/messages:65
+#: ../data/messages:99
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -206,43 +287,43 @@ msgstr ""
 "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
 "bete sig som programmet."
 
-#: ../data/messages:67
+#: ../data/messages:101
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "Stjäl programmets ikon från aktivitetsfältet?"
 
-#: ../data/messages:69
+#: ../data/messages:103
 msgid "Display"
 msgstr "Visning"
 
-#: ../data/messages:71
+#: ../data/messages:105
 msgid "Display album's cover instead of icon ?"
 msgstr "Visa skivfodral istället för ikonen?"
 
-#: ../data/messages:73
+#: ../data/messages:107
 msgid "Information to display on the icon :"
 msgstr "Information att visa på ikonen:"
 
-#: ../data/messages:75
+#: ../data/messages:109
 msgid "nothing"
 msgstr "inget"
 
-#: ../data/messages:77
+#: ../data/messages:111
 msgid "time elapsed"
 msgstr "tid som gått"
 
-#: ../data/messages:79
+#: ../data/messages:113
 msgid "time left"
 msgstr "tid kvar"
 
-#: ../data/messages:81
+#: ../data/messages:115
 msgid "time in %"
 msgstr "tid i %"
 
-#: ../data/messages:83
+#: ../data/messages:117
 msgid "n° of track"
 msgstr "spårnummer"
 
-#: ../data/messages:85
+#: ../data/messages:119
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
@@ -250,107 +331,83 @@ msgstr ""
 "Om du anger \"personlig\" kan du själv definiera utseendet. Lämna tomt för "
 "att inte använda dekorationer."
 
-#: ../data/messages:87
+#: ../data/messages:121
 msgid "Choose a decoration for the desklet mode :"
 msgstr "Välj dekoration för deskletläge:"
 
-#: ../data/messages:89
+#: ../data/messages:123
 msgid "Personnal"
 msgstr "Personlig"
 
-#: ../data/messages:91
+#: ../data/messages:125
 msgid "Extended 3D mode"
 msgstr "Utökat 3D läge"
 
-#: ../data/messages:93
+#: ../data/messages:127
 msgid "CD box"
 msgstr "CD fodral"
 
-#: ../data/messages:95
+#: ../data/messages:129
 msgid "frame with reflects"
 msgstr "ram med reflexion"
 
-#: ../data/messages:97
+#: ../data/messages:131
 msgid "scotch"
 msgstr "tejp"
 
-#: ../data/messages:99
+#: ../data/messages:133
 msgid "frame with scotch"
 msgstr "tejpad ram"
 
-#: ../data/messages:101
+#: ../data/messages:135
 msgid ""
 "It's an image that will be displayed below the cover, like a frame for "
 "exemple."
 msgstr "Bild som visas under fodralet, t ex en ram."
 
-#: ../data/messages:103
-msgid "Background image :"
-msgstr "Bakgrundsbild:"
-
-#: ../data/messages:105
-msgid "Background tansparency :"
-msgstr "Genomskinlighet:"
-
-#: ../data/messages:107
+#: ../data/messages:141
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr "Typiskt bredden på vänstra sidan av ramen, i pixlar."
 
-#: ../data/messages:109
-msgid "Left offset :"
-msgstr "Avstånd från vänsterkant:"
-
-#: ../data/messages:111
-msgid "Top offset :"
-msgstr "Avstånd från ovankant:"
-
-#: ../data/messages:113
-msgid "Right offset :"
-msgstr "Avstånd från högerkant:"
-
-#: ../data/messages:115
-msgid "Bottom offset :"
-msgstr "Avstånd från nederkant:"
-
-#: ../data/messages:117
+#: ../data/messages:151
 msgid ""
 "It's an image that will be displayed above the cover, like a reflect for "
 "exemple."
 msgstr "Bild som visas ovanför fodralet, t ex en reflex."
 
-#: ../data/messages:119
+#: ../data/messages:153
 msgid "Reflection image :"
 msgstr "Bild för reflex:"
 
-#: ../data/messages:121
+#: ../data/messages:155
 msgid "Reflection tansparency :"
 msgstr "Genomskinlighet för reflexion:"
 
-#: ../data/messages:123
+#: ../data/messages:157
 msgid "Personnalisation"
 msgstr "Inställningar"
 
-#: ../data/messages:125 ../data/messages:129 ../data/messages:133
-#: ../data/messages:137 ../data/messages:141
+#: ../data/messages:159 ../data/messages:163 ../data/messages:167
+#: ../data/messages:171 ../data/messages:175
 msgid "Let t empty to use the default icon."
 msgstr "Lämna tomt för använda standaralternativet."
 
-#: ../data/messages:127
+#: ../data/messages:161
 msgid "Name of an image for the 'default' icon :"
 msgstr "Bild för standard:"
 
-#: ../data/messages:131
+#: ../data/messages:165
 msgid "Name of an image for the 'play' icon :"
 msgstr "Bild för spela upp:"
 
-#: ../data/messages:135
+#: ../data/messages:169
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Bild för stop:"
 
-#: ../data/messages:139
+#: ../data/messages:173
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Bild för pausa:"
 
-#: ../data/messages:143
+#: ../data/messages:177
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Bild för bruten:"

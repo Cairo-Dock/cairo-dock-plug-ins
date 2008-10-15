@@ -51,6 +51,39 @@ locked = false
 
 use size=
 
+#F[Decorations;gtk-orientation-portrait]
+frame_deco=
+
+#o+ Choose a decoration theme for this desklet :
+#{Choose the 'personnal' one to define your own decorations below.}
+decorations = default
+
+#v
+sep_deco =
+
+#S+ Background image :
+#{It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any.}
+bg desklet =
+#e+[0;1] Background tansparency :
+bg alpha = 1
+#i+[0;256] Left offset :
+#{in pixels. Use this to adjust the left position of the drawings.}
+left offset = 0
+#i+[0;256] Top offset :
+#{in pixels. Use this to adjust the top position of the drawings.}
+top offset = 0
+#i+[0;256] Right offset :
+#{in pixels. Use this to adjust the right position of the drawings.}
+right offset = 0
+#i+[0;256] Bottom offset :
+#{in pixels. Use this to adjust the bottom position of the drawings.}
+bottom offset = 0
+#S+ Foreground image :
+#{It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any.}
+fg desklet =
+#e+[0;1] Foreground tansparency :
+fg alpha = 1
+
 
 #[gtk-preferences]
 [Configuration]

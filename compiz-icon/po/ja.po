@@ -28,7 +28,7 @@ msgstr "WM の再読み込み"
 msgid "Exposition"
 msgstr "展開"
 
-#: ../src/applet-load-icon.c:22 ../data/messages:49
+#: ../src/applet-load-icon.c:22 ../data/messages:83
 msgid "Widget Layer"
 msgstr "ウィジェット・レイヤ"
 
@@ -152,14 +152,87 @@ msgid "Lock position ?"
 msgstr "位置を固定？"
 
 #: ../data/messages:37
+#, fuzzy
+msgid "Decorations"
+msgstr "アクション"
+
+#: ../data/messages:39
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:43
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:67
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:39
+#: ../data/messages:73
 msgid "Actions"
 msgstr "アクション"
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
@@ -167,27 +240,27 @@ msgstr ""
 "別のWMへの切り替え以外を選択した場合、Compiz の各アクションに対応するプラグイ"
 "ンの他に、Dbus プラグインも有効にする必要があります。"
 
-#: ../data/messages:43
+#: ../data/messages:77
 msgid "Choose an action for the middle click on the icon :"
 msgstr "アイコン上での中クリック時のアクションの選択 :"
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "None"
 msgstr "なし"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Switch WM"
 msgstr "WM の切り替え"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "Expose"
 msgstr "展開"
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "Show Desktop"
 msgstr "デスクトップの表示"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid ""
 "This command will be used to launch the system WM; let it blank to use the "
 "default one."
@@ -195,11 +268,11 @@ msgstr ""
 "このコマンドはシステムの WM を起動するのに使用されます。デフォルトを使用する"
 "には空欄のままに。"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Custom command for system's Windows Manager :"
 msgstr "システムのウィンドウ・マネージャを呼び出す任意コマンド"
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
@@ -207,11 +280,11 @@ msgstr ""
 "Compiz が予期せず終了した場合、Cairo-Dock が Compiz を再起動します。この場合 "
 "Compiz の終了はドックから行う必要があります。"
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid "Auto-reload Compiz ?"
 msgstr "Compiz を自動再読み込み？"
 
-#: ../data/messages:63
+#: ../data/messages:97
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
@@ -219,19 +292,19 @@ msgstr ""
 "デコレータが予期せず終了した場合、Cairo-Dock がデコレータを再起動します。この"
 "場合 Compiz の終了はドックから行う必要があります。"
 
-#: ../data/messages:65
+#: ../data/messages:99
 msgid "Auto-reload the Decorator ?"
 msgstr "デコレータを自動再読み込み？"
 
-#: ../data/messages:67
+#: ../data/messages:101
 msgid "Load Compiz with options at applet's startup."
 msgstr "アプレットのスタートアップ時に Compiz をオプションとともに読み込み"
 
-#: ../data/messages:69
+#: ../data/messages:103
 msgid "Force Compiz settings at startup ?"
 msgstr "スタートアップ時に Compiz の設定を適用？"
 
-#: ../data/messages:71
+#: ../data/messages:105
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
@@ -239,11 +312,11 @@ msgstr ""
 "CCSM や Emerald のアイコンがタスクバーに表示されるのを防ぎます。対応するサ"
 "ブ・ドックのアイコンがランチャーやアプリケーションとして動作します。"
 
-#: ../data/messages:73
+#: ../data/messages:107
 msgid "Steal the application's icon in taskbar ?"
 msgstr "タスクバーにあるアプリケーションのアイコンを奪取？"
 
-#: ../data/messages:75
+#: ../data/messages:109
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins. Otherwise they will be available in the menu."
@@ -251,15 +324,15 @@ msgstr ""
 "Compiz のウィジェット・レイヤと展開のプラグインの2つのアイコンをアプレットの"
 "サブ・ドックに表示します。無効の場合でも、メニュー上から利用可能です。"
 
-#: ../data/messages:77
+#: ../data/messages:111
 msgid "Add Exposition & Widget Layer to sub-dock ?"
 msgstr "展開とウィジェット・レイヤをサブ・ドックに追加？"
 
-#: ../data/messages:79
+#: ../data/messages:113
 msgid "Compiz Options"
 msgstr "Compiz のオプション"
 
-#: ../data/messages:81
+#: ../data/messages:115
 msgid ""
 "With strict binding textures are bound whenever they are enabled, with loose "
 "binding they are enabled when created. The Nvidia driver seems a bit slow "
@@ -271,97 +344,97 @@ msgstr ""
 "のバインディング処理が若干遅いようなので、Nvidia カードではこのオプションに"
 "よってパフォーマンスが著しく向上します。"
 
-#: ../data/messages:83
+#: ../data/messages:117
 msgid "Use Loose Binding ?"
 msgstr "Loose Binding を使用？"
 
-#: ../data/messages:85
+#: ../data/messages:119
 msgid "Use thoses options only if you know them."
 msgstr "このオプションについて理解されている場合のみ使用してください。"
 
-#: ../data/messages:87
+#: ../data/messages:121
 msgid "Use Indirect Rendering ?"
 msgstr "Indirect Rendering を使用？"
 
-#: ../data/messages:89
+#: ../data/messages:123
 msgid "Usefull when having dual or more X separate screens."
 msgstr "デュアル以上のスクリーンを使用している時に有用です。"
 
-#: ../data/messages:91
+#: ../data/messages:125
 msgid "Only Current Screen ?"
 msgstr "現在のスクリーンのみ？"
 
-#: ../data/messages:93
+#: ../data/messages:127
 msgid "By default it will be Emerald."
 msgstr "デフォルトでは Emerald になります"
 
-#: ../data/messages:95
+#: ../data/messages:129
 msgid "Choose your Windows Decorator :"
 msgstr "ウィンドウ・デコレータの選択"
 
-#: ../data/messages:97
+#: ../data/messages:131
 msgid "emerald"
 msgstr "emerald"
 
-#: ../data/messages:99
+#: ../data/messages:133
 msgid "gtk-window-decorator"
 msgstr "gtk-window-decorator"
 
-#: ../data/messages:101
+#: ../data/messages:135
 msgid "kde-window-decorator"
 msgstr "kde-window-decorator"
 
-#: ../data/messages:103
+#: ../data/messages:137
 msgid "heliodor"
 msgstr "heliodor"
 
-#: ../data/messages:105
+#: ../data/messages:139
 msgid "Let it empty to use default sub-dock view."
 msgstr "デフォルトのサブ・ドッックの外観を使用するには空欄のままに。"
 
-#: ../data/messages:107
+#: ../data/messages:141
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
-#: ../data/messages:109
+#: ../data/messages:143
 msgid "Images"
 msgstr "画像"
 
-#: ../data/messages:111 ../data/messages:115 ../data/messages:119
-#: ../data/messages:123 ../data/messages:127 ../data/messages:131
-#: ../data/messages:135 ../data/messages:139
+#: ../data/messages:145 ../data/messages:149 ../data/messages:153
+#: ../data/messages:157 ../data/messages:161 ../data/messages:165
+#: ../data/messages:169 ../data/messages:173
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:113
+#: ../data/messages:147
 msgid "Name of an image for the 'default' icon :"
 msgstr "「デフォルト」のアイコンの画像の名前 :"
 
-#: ../data/messages:117
+#: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
 
-#: ../data/messages:121
+#: ../data/messages:155
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "「その他の WM」のアイコン画像の名前 :"
 
-#: ../data/messages:125
+#: ../data/messages:159
 msgid "Name of an image for the 'setting' icon :"
 msgstr "「設定」のアイコン画像の名前 :"
 
-#: ../data/messages:129
+#: ../data/messages:163
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "「Emerald」のアイコン画像の名前 :"
 
-#: ../data/messages:133
+#: ../data/messages:167
 msgid "Name of an image for the 'reload' icon :"
 msgstr "「再読み込み」のアイコン画像の名前 :"
 
-#: ../data/messages:137
+#: ../data/messages:171
 msgid "Name of an image for the 'exposition' icon :"
 msgstr "「展開」のアイコン画像の名前 :"
 
-#: ../data/messages:141
+#: ../data/messages:175
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "「ウィジェット・レイヤ」のアイコン画像の名前 :"
 

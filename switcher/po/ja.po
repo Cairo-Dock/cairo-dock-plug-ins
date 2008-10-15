@@ -104,11 +104,83 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:33 ../data/messages:35
+#: ../data/messages:33
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:35
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:37
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:39
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:45
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:65
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:67 ../data/messages:69
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:37
+#: ../data/messages:71
 msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
@@ -116,102 +188,102 @@ msgstr ""
 "全てのデスクトップがメイン・アイコン上に描画されます。これが無効の場合は、サ"
 "ブ・ドックに含まれるようになります。"
 
-#: ../data/messages:39
+#: ../data/messages:73
 msgid "Use the compact mode ?"
 msgstr "コンパクト・モードを使用？"
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
 msgstr "コンパクト・モードでの描画の際に画面縦横比の保持を試行？"
 
-#: ../data/messages:43
+#: ../data/messages:77
 msgid "Map the wallpaper on icon ?"
 msgstr "アイコン上に壁紙を配置？"
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Show desktop number on the icons ?"
 msgstr "アイコン上にデスクトップ番号を表示？"
 
-#: ../data/messages:47
+#: ../data/messages:81
 #, fuzzy
 msgid "Draw the windows on icon ?"
 msgstr "アイコン上に壁紙を配置？"
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Display options"
 msgstr "表示オプション"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "Size of the inside lines :"
 msgstr "内側の線のサイズ :"
 
-#: ../data/messages:53 ../data/messages:59 ../data/messages:65
-#: ../data/messages:69
+#: ../data/messages:87 ../data/messages:93 ../data/messages:99
+#: ../data/messages:103
 msgid "r, v, b, a"
 msgstr "赤、緑、青、アルファ"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid "Color of the inside lines :"
 msgstr "内側の線の色 :"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Size of the extern line :"
 msgstr "外側の線のサイズ :"
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid "Color of the extern line :"
 msgstr "外側の線の色 :"
 
-#: ../data/messages:63
+#: ../data/messages:97
 #, fuzzy
 msgid "Size of the Windows line :"
 msgstr "内側の線のサイズ :"
 
-#: ../data/messages:67
+#: ../data/messages:101
 #, fuzzy
 msgid "Color of the Windows line :"
 msgstr "内側の線の色 :"
 
-#: ../data/messages:71
+#: ../data/messages:105
 #, fuzzy
 msgid "Color of the current desktop :"
 msgstr "現在のデスクトップの境界線の色 :"
 
-#: ../data/messages:73
+#: ../data/messages:107
 #, fuzzy
 msgid "How to draw the current desktop :"
 msgstr "現在のデスクトップの境界線の色 :"
 
-#: ../data/messages:75
+#: ../data/messages:109
 msgid "draw a frame"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:111
 msgid "fill"
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:113
 msgid "fill others"
 msgstr ""
 
-#: ../data/messages:81
+#: ../data/messages:115
 msgid "Let empty to use the default one."
 msgstr "デフォルトを使用するに空欄のままに"
 
-#: ../data/messages:83
+#: ../data/messages:117
 #, fuzzy
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr "壁紙を配置しない場合に使用するアイコン :"
 
-#: ../data/messages:85
+#: ../data/messages:119
 msgid "Let it empty to use default sub-dock view."
 msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
 
-#: ../data/messages:87
+#: ../data/messages:121
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
-#: ../data/messages:89
+#: ../data/messages:123
 #, fuzzy
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "デスクレットを 3D 描画？"

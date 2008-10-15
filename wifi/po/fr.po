@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:73
+#: ../src/applet-draw.c:13 ../data/messages:77 ../data/messages:107
 msgid "None"
 msgstr "Aucune"
 
@@ -162,141 +162,216 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:37
+#, fuzzy
+msgid "Decorations"
+msgstr "Information"
+
+#: ../data/messages:39
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:43
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:47
+#, fuzzy
+msgid "Background tansparency :"
+msgstr "Transparence"
+
+#: ../data/messages:49
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:67
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:69
+#, fuzzy
+msgid "Foreground tansparency :"
+msgstr "Transparence"
+
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:39
+#: ../data/messages:73
 msgid "Information"
 msgstr "Information"
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid "Information to display on the icon :"
 msgstr "Information a afficher sur l'icon :"
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Signal Strength"
 msgstr "Force du Signal"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Signal Strength in percent"
 msgstr "Force du Signal en pourcent"
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Raw Signal Informations"
 msgstr "Infos Brutes du Signal"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "in seconds."
 msgstr "en seconde."
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "Delay between signal checks :"
 msgstr "Temps entre les vérifications :"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
 msgstr ""
 "Cela permet d'utiliser une interface de configuration du wifi exotique."
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Ouvrir la configuration du Wifi avec :"
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Ecraser l'étiquette par défaut avec le nom du point d'accès ?"
 
-#: ../data/messages:63
+#: ../data/messages:97
 msgid "Display type :"
 msgstr "Type d'affichage :"
 
-#: ../data/messages:65 ../data/messages:115
+#: ../data/messages:99 ../data/messages:149
 msgid "Images"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:101
 msgid "Gauges"
 msgstr "Jauges"
 
-#: ../data/messages:69
+#: ../data/messages:103
 msgid "Graphic"
 msgstr "Graphique"
 
-#: ../data/messages:71
+#: ../data/messages:105
 msgid "Effect to apply on the icon according to strength :"
 msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
-#: ../data/messages:75
+#: ../data/messages:109
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../data/messages:77
+#: ../data/messages:111
 msgid "Transparency"
 msgstr "Transparence"
 
-#: ../data/messages:79
+#: ../data/messages:113
 msgid "Draw Bar"
 msgstr "Dessiner une barre"
 
-#: ../data/messages:81
+#: ../data/messages:115
 msgid "Type of graphic :"
 msgstr "Type de graphique :"
 
-#: ../data/messages:83
+#: ../data/messages:117
 msgid "Line"
 msgstr "Ligne"
 
-#: ../data/messages:85
+#: ../data/messages:119
 msgid "Plain"
 msgstr "Plein"
 
-#: ../data/messages:87
+#: ../data/messages:121
 msgid "Bar"
 msgstr "Barre"
 
-#: ../data/messages:89
+#: ../data/messages:123
 msgid "Circle"
 msgstr "Cercle"
 
-#: ../data/messages:91
+#: ../data/messages:125
 msgid "Plain Circle"
 msgstr "Cercle Plain"
 
-#: ../data/messages:93
+#: ../data/messages:127
 msgid "It's the color of the graphic for high Strength values."
 msgstr "C'est la couleur du graphique pour les hautes valeurs de Puissance."
 
-#: ../data/messages:95
+#: ../data/messages:129
 msgid "High values color :"
 msgstr "Couleur des hautes valeurs :"
 
-#: ../data/messages:97
+#: ../data/messages:131
 msgid "It's the color of the graphic for low Strength values."
 msgstr "C'est la couleur du graphique pour les faibles valeurs de Puissance."
 
-#: ../data/messages:99
+#: ../data/messages:133
 msgid "Low values color :"
 msgstr "Couleur des faibles valeurs :"
 
-#: ../data/messages:101
+#: ../data/messages:135
 msgid "Background color of the graphic :"
 msgstr "Couleur de fond du graphique :"
 
-#: ../data/messages:103
+#: ../data/messages:137
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 
-#: ../data/messages:105
+#: ../data/messages:139
 msgid "radium"
 msgstr "radium"
 
-#: ../data/messages:107
+#: ../data/messages:141
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -304,44 +379,44 @@ msgstr ""
 "Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si "
 "vous ne voulez pas de filigrane."
 
-#: ../data/messages:109
+#: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
 msgstr "Image à afficher en filigrane sur le jauge :"
 
-#: ../data/messages:111
+#: ../data/messages:145
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
 
-#: ../data/messages:113
+#: ../data/messages:147
 msgid "Transparency of the watermark :"
 msgstr "Transparence du filigrane :"
 
-#: ../data/messages:117 ../data/messages:121 ../data/messages:125
-#: ../data/messages:129 ../data/messages:133 ../data/messages:137
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
 msgid "Let it empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../data/messages:119
+#: ../data/messages:153
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Nom de l'image 'Aucun Signal' :"
 
-#: ../data/messages:123
+#: ../data/messages:157
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Nom de l'image 'Très Faible' :"
 
-#: ../data/messages:127
+#: ../data/messages:161
 msgid "Name of an image for the 'low' icon :"
 msgstr "Nom de l'image 'Faible' :"
 
-#: ../data/messages:131
+#: ../data/messages:165
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Nom de l'image 'Moyen' :"
 
-#: ../data/messages:135
+#: ../data/messages:169
 msgid "Name of an image for the 'good' icon :"
 msgstr "Nom de l'image 'Bon' :"
 
-#: ../data/messages:139
+#: ../data/messages:173
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 

@@ -111,10 +111,86 @@ msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom d'une image pour l'icône 'cassé' :"
 
 #: ../data/messages:27
+msgid ""
+"tk-convert]\n"
+"[Desklet]\n"
+"use size=\n"
+"F[Decorations;gtk-orientation-portrait]"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:31
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:33
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:39
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:43
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:49
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:51
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:53
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:55
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:61
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:29
+#: ../data/messages:63
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -126,30 +202,30 @@ msgstr ""
 "marshaller for signature of signal 'NoteDeleted'>> dans le terminal en mode "
 "Debug."
 
-#: ../data/messages:31
+#: ../data/messages:65
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "Emuler le signal 'NoteSupprimée' ?"
 
-#: ../data/messages:33
+#: ../data/messages:67
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue de sous-docks par défaut."
 
-#: ../data/messages:35
+#: ../data/messages:69
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour les sous-docks :"
 
-#: ../data/messages:37
+#: ../data/messages:71
 msgid "Draw note's content on their icon ?"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:73
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid "Date format to search for :"
 msgstr ""
 

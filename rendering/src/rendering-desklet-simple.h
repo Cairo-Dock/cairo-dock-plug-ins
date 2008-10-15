@@ -33,4 +33,6 @@ void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDe
 void rendering_register_simple_desklet_renderer (void);
 
 
+void cd_rendering_register_desklet_decorations (void);
+
 #endif

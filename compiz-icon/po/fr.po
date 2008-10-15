@@ -27,7 +27,7 @@ msgstr "Recharger WM"
 msgid "Exposition"
 msgstr "Exposé"
 
-#: ../src/applet-load-icon.c:22 ../data/messages:49
+#: ../src/applet-load-icon.c:22 ../data/messages:83
 msgid "Widget Layer"
 msgstr "Couche des Widgets"
 
@@ -151,14 +151,87 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:37
+#, fuzzy
+msgid "Decorations"
+msgstr "Actions"
+
+#: ../data/messages:39
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:43
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:67
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:39
+#: ../data/messages:73
 msgid "Actions"
 msgstr "Actions"
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
@@ -166,27 +239,27 @@ msgstr ""
 "Sauf pour 'Changer de WM', vous devez activer le plug-in Dbus de compiz, "
 "ainsin que les plug-ins de l'action désirée"
 
-#: ../data/messages:43
+#: ../data/messages:77
 msgid "Choose an action for the middle click on the icon :"
 msgstr "Action pour le clique du milieu sur l'icône :"
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "None"
 msgstr "Aucune"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Switch WM"
 msgstr "Changer de Gestionnaire de fenêtres"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "Expose"
 msgstr "Exposition"
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "Show Desktop"
 msgstr "Montrer le Bureau"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid ""
 "This command will be used to launch the system WM; let it blank to use the "
 "default one."
@@ -194,11 +267,11 @@ msgstr ""
 "Cette commande va etre utiliser pour lancer le Gestionnaire de fenêtres; "
 "Laissez vide pour utiliser celui par défaut"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Custom command for system's Windows Manager :"
 msgstr "Commande personnalisée pour le Gestionnaire de Fenêtres système :"
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
@@ -206,11 +279,11 @@ msgstr ""
 "Si Compiz se ferme de façon inattendue, Cairo-Dock va le redémarrer. Vous "
 "devrez alors quitter Compiz depuis le dock."
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid "Auto-reload Compiz ?"
 msgstr "Recharger automatiquement Compiz ?"
 
-#: ../data/messages:63
+#: ../data/messages:97
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
@@ -218,19 +291,19 @@ msgstr ""
 "Si le décorateur se ferme de façon inattendue, Cairo-Dock va le "
 "redémarrerVous devrez alors quitter Compiz depuis le dock"
 
-#: ../data/messages:65
+#: ../data/messages:99
 msgid "Auto-reload the Decorator ?"
 msgstr "Recharger automatiquement le Décorateur?"
 
-#: ../data/messages:67
+#: ../data/messages:101
 msgid "Load Compiz with options at applet's startup."
 msgstr "Charge Compiz avec ses options au démarrage de l'applet."
 
-#: ../data/messages:69
+#: ../data/messages:103
 msgid "Force Compiz settings at startup ?"
 msgstr "Forcer les Options de Compiz au démarrage ?"
 
-#: ../data/messages:71
+#: ../data/messages:105
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
@@ -239,11 +312,11 @@ msgstr ""
 "d'applications. Les icônes du sous-dock se comporteront comme un lanceur et "
 "une application."
 
-#: ../data/messages:73
+#: ../data/messages:107
 msgid "Steal the application's icon in taskbar ?"
 msgstr "Voler l'icône de l'application dans la barre d'applications ?"
 
-#: ../data/messages:75
+#: ../data/messages:109
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins. Otherwise they will be available in the menu."
@@ -251,15 +324,15 @@ msgstr ""
 "Ajoute dans le sous-dock de l'applet 2 icônes pour les plug-ins Exposition "
 "et Widget Layer de Compiz. Sinon elles seront accessibles via le menu."
 
-#: ../data/messages:77
+#: ../data/messages:111
 msgid "Add Exposition & Widget Layer to sub-dock ?"
 msgstr "Ajouter l'Exposition et le Widget Layer au sous-dock?"
 
-#: ../data/messages:79
+#: ../data/messages:113
 msgid "Compiz Options"
 msgstr "Options de Compiz"
 
-#: ../data/messages:81
+#: ../data/messages:115
 msgid ""
 "With strict binding textures are bound whenever they are enabled, with loose "
 "binding they are enabled when created. The Nvidia driver seems a bit slow "
@@ -271,97 +344,97 @@ msgstr ""
 "semble être lent lors du binding des textures, c'est pourquoi cette option "
 "donne de bonne peformances avec les Nvidia."
 
-#: ../data/messages:83
+#: ../data/messages:117
 msgid "Use Loose Binding ?"
 msgstr "Mode Moins Contraignant (Loose Binding) ?"
 
-#: ../data/messages:85
+#: ../data/messages:119
 msgid "Use thoses options only if you know them."
 msgstr "Utilisez ces options seulement si vous les connaissez."
 
-#: ../data/messages:87
+#: ../data/messages:121
 msgid "Use Indirect Rendering ?"
 msgstr "Mode de Rendu Indirect (Indirect Rendering) ?"
 
-#: ../data/messages:89
+#: ../data/messages:123
 msgid "Usefull when having dual or more X separate screens."
 msgstr "Utile quand il y plusieurs écran X séparé (dualscreen)"
 
-#: ../data/messages:91
+#: ../data/messages:125
 msgid "Only Current Screen ?"
 msgstr "Seulement l'Écran Actuel"
 
-#: ../data/messages:93
+#: ../data/messages:127
 msgid "By default it will be Emerald."
 msgstr "Ce sera Emerald par Défaut."
 
-#: ../data/messages:95
+#: ../data/messages:129
 msgid "Choose your Windows Decorator :"
 msgstr "Choisissez votre Décorateur de Fenêtre :"
 
-#: ../data/messages:97
+#: ../data/messages:131
 msgid "emerald"
 msgstr "emerald"
 
-#: ../data/messages:99
+#: ../data/messages:133
 msgid "gtk-window-decorator"
 msgstr "gtk-window-decorator"
 
-#: ../data/messages:101
+#: ../data/messages:135
 msgid "kde-window-decorator"
 msgstr "kde-window-decorator"
 
-#: ../data/messages:103
+#: ../data/messages:137
 msgid "heliodor"
 msgstr "heliodor"
 
-#: ../data/messages:105
+#: ../data/messages:139
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
 
-#: ../data/messages:107
+#: ../data/messages:141
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
-#: ../data/messages:109
+#: ../data/messages:143
 msgid "Images"
 msgstr "Images"
 
-#: ../data/messages:111 ../data/messages:115 ../data/messages:119
-#: ../data/messages:123 ../data/messages:127 ../data/messages:131
-#: ../data/messages:135 ../data/messages:139
+#: ../data/messages:145 ../data/messages:149 ../data/messages:153
+#: ../data/messages:157 ../data/messages:161 ../data/messages:165
+#: ../data/messages:169 ../data/messages:173
 msgid "Let t empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icon par défault"
 
-#: ../data/messages:113
+#: ../data/messages:147
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Défaut' :"
 
-#: ../data/messages:117
+#: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Cassée' :"
 
-#: ../data/messages:121
+#: ../data/messages:155
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "Nom de l'image 'Autre wm' :"
 
-#: ../data/messages:125
+#: ../data/messages:159
 msgid "Name of an image for the 'setting' icon :"
 msgstr "Nom de l'image 'Configuration' :"
 
-#: ../data/messages:129
+#: ../data/messages:163
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "Nom de l'image 'Emerald' :"
 
-#: ../data/messages:133
+#: ../data/messages:167
 msgid "Name of an image for the 'reload' icon :"
 msgstr "Nom de l'image 'Recharger' :"
 
-#: ../data/messages:137
+#: ../data/messages:171
 msgid "Name of an image for the 'exposition' icon :"
 msgstr "Nom de l'image 'Exposition' :"
 
-#: ../data/messages:141
+#: ../data/messages:175
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Nom de l'image 'Widget Layer' :"
 

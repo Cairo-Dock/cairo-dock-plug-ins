@@ -153,7 +153,7 @@ AM_CONDITIONAL( [WITH_GIO_IN_GMENU], [test "$with_gio_in_gmenu" = "yes"] )
 ALSA_MIXER_PACKAGE="cd-AlsaMixer"
 AC_SUBST(GETTEXT_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
 
-AC_SUBST(VERSION_ALSA_MIXER, "1.0.3")
+AC_SUBST(VERSION_ALSA_MIXER, "1.0.4")
 AC_SUBST(PACKAGE_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
 
 AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
@@ -162,7 +162,7 @@ AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
 CLIPPER_PACKAGE="cd-Clipper"
 AC_SUBST(GETTEXT_CLIPPER, "$CLIPPER_PACKAGE")
 
-AC_SUBST(VERSION_CLIPPER, "1.0.3")
+AC_SUBST(VERSION_CLIPPER, "1.0.1")
 AC_SUBST(PACKAGE_CLIPPER, "$CLIPPER_PACKAGE")
 
 AC_SUBST(Clipperdatadir, "${pkgdatadir}/Clipper")
@@ -180,7 +180,7 @@ AC_SUBST(cairo_penguindatadir, "${pkgdatadir}/Cairo-Penguin")
 CLOCK_PACKAGE="cd-clock"
 AC_SUBST(GETTEXT_CLOCK, "$CLOCK_PACKAGE")
 
-AC_SUBST(VERSION_CLOCK, "1.3.7")
+AC_SUBST(VERSION_CLOCK, "1.3.8")
 AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
 
 AC_SUBST(clockdatadir, "${pkgdatadir}/clock")
@@ -189,7 +189,7 @@ AC_SUBST(clockdatadir, "${pkgdatadir}/clock")
 COMPIZ_ICON_PACKAGE="cd-compiz-icon"
 AC_SUBST(GETTEXT_COMPIZ_ICON, "$COMPIZ_ICON_PACKAGE")
 
-AC_SUBST(VERSION_COMPIZ_ICON, "1.0.1")
+AC_SUBST(VERSION_COMPIZ_ICON, "1.0.2")
 AC_SUBST(PACKAGE_COMPIZ_ICON, "$COMPIZ_ICON_PACKAGE")
 
 AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
@@ -198,7 +198,7 @@ AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
 CPUSAGE_PACKAGE="cd-cpusage"
 AC_SUBST(GETTEXT_CPUSAGE, "$CPUSAGE_PACKAGE")
 
-AC_SUBST(VERSION_CPUSAGE, "1.2.0")
+AC_SUBST(VERSION_CPUSAGE, "1.2.1")
 AC_SUBST(PACKAGE_CPUSAGE, "$CPUSAGE_PACKAGE")
 
 AC_SUBST(cpusagedatadir, "${pkgdatadir}/cpusage")
@@ -207,7 +207,7 @@ AC_SUBST(cpusagedatadir, "${pkgdatadir}/cpusage")
 DBUS_PACKAGE="cd-Dbus"
 AC_SUBST(GETTEXT_DBUS, "$DBUS_PACKAGE")
 
-AC_SUBST(VERSION_DBUS, "0.2.0")
+AC_SUBST(VERSION_DBUS, "0.3.0")
 AC_SUBST(PACKAGE_DBUS, "$DBUS_PACKAGE")
 
 AC_SUBST(dbusdatadir, "${pkgdatadir}/Dbus")
@@ -216,7 +216,7 @@ AC_SUBST(dbusdatadir, "${pkgdatadir}/Dbus")
 DUSTBIN_PACKAGE=cd-dustbin
 AC_SUBST(GETTEXT_DUSTBIN, "$DUSTBIN_PACKAGE")
 
-AC_SUBST(VERSION_DUSTBIN, "2.1.3")
+AC_SUBST(VERSION_DUSTBIN, "2.1.4")
 AC_SUBST(PACKAGE_DUSTBIN, "$DUSTBIN_PACKAGE")
 
 AC_SUBST(dustbindatadir, "${pkgdatadir}/dustbin")
@@ -225,7 +225,7 @@ AC_SUBST(dustbindatadir, "${pkgdatadir}/dustbin")
 GMENU_PACKAGE=cd-GMenu
 AC_SUBST(GETTEXT_GMENU, "$GMENU_PACKAGE")
 
-AC_SUBST(VERSION_GMENU, "1.0.0")
+AC_SUBST(VERSION_GMENU, "1.0.1")
 AC_SUBST(PACKAGE_GMENU, "$GMENU_PACKAGE")
 
 AC_SUBST(gmenudatadir, "${pkgdatadir}/GMenu")
@@ -250,7 +250,7 @@ AC_SUBST(gnome_integration_olddatadir, "${pkgdatadir}/gnome-integration-old")
 LOGOUT_PACKAGE=cd-logout
 AC_SUBST(GETTEXT_LOGOUT, "$LOGOUT_PACKAGE")
 
-AC_SUBST(VERSION_LOGOUT, "1.2.3")
+AC_SUBST(VERSION_LOGOUT, "1.2.4")
 AC_SUBST(PACKAGE_LOGOUT, "$LOGOUT_PACKAGE")
 
 AC_SUBST(logoutdatadir, "${pkgdatadir}/logout")
@@ -259,7 +259,7 @@ AC_SUBST(logoutdatadir, "${pkgdatadir}/logout")
 NETSPEED_PACKAGE=cd-netspeed
 AC_SUBST(GETTEXT_NETSPEED, "$NETSPEED_PACKAGE")
 
-AC_SUBST(VERSION_NETSPEED, "1.0.2")
+AC_SUBST(VERSION_NETSPEED, "1.0.3")
 AC_SUBST(PACKAGE_NETSPEED, "$NETSPEED_PACKAGE")
 
 AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
@@ -268,7 +268,7 @@ AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
 NVIDIA_PACKAGE=cd-nVidia
 AC_SUBST(GETTEXT_NVIDIA, "$NVIDIA_PACKAGE")
 
-AC_SUBST(VERSION_NVIDIA, "1.0.2")
+AC_SUBST(VERSION_NVIDIA, "1.0.3")
 AC_SUBST(PACKAGE_NVIDIA, "$NVIDIA_PACKAGE")
 
 AC_SUBST(nvidiadatadir, "${pkgdatadir}/nVidia")
@@ -277,7 +277,7 @@ AC_SUBST(nvidiadatadir, "${pkgdatadir}/nVidia")
 POWERMANAGER_PACKAGE=cd-powermanager
 AC_SUBST(GETTEXT_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
-AC_SUBST(VERSION_POWERMANAGER, "1.2.8")
+AC_SUBST(VERSION_POWERMANAGER, "1.2.11")
 AC_SUBST(PACKAGE_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
 AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
@@ -286,7 +286,7 @@ AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
 RAME_PACKAGE=cd-rame
 AC_SUBST(GETTEXT_RAME, "$RAME_PACKAGE")
 
-AC_SUBST(VERSION_RAME, "1.0.2")
+AC_SUBST(VERSION_RAME, "1.0.3")
 AC_SUBST(PACKAGE_RAME, "$RAME_PACKAGE")
 
 AC_SUBST(ramedatadir, "${pkgdatadir}/rame")
@@ -304,7 +304,7 @@ AC_SUBST(renderingdatadir, "${pkgdatadir}/rendering")
 RHYTHMBOX_PACKAGE=cd-rhythmbox
 AC_SUBST(GETTEXT_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
 
-AC_SUBST(VERSION_RHYTHMBOX, "1.2.2")
+AC_SUBST(VERSION_RHYTHMBOX, "1.2.3")
 AC_SUBST(PACKAGE_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
 
 AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
@@ -313,7 +313,7 @@ AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
 SHORTCUTS_PACKAGE=cd-shortcuts
 AC_SUBST(GETTEXT_SHORTCUTS, "$SHORTCUTS_PACKAGE")
 
-AC_SUBST(VERSION_SHORTCUTS, "1.1.3")
+AC_SUBST(VERSION_SHORTCUTS, "1.1.4")
 AC_SUBST(PACKAGE_SHORTCUTS, "$SHORTCUTS_PACKAGE")
 
 AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")
@@ -322,7 +322,7 @@ AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")
 SHOW_DESKLETS_PACKAGE=cd-showDesklets
 AC_SUBST(GETTEXT_SHOW_DESKLETS, "$SHOW_DESKLETS_PACKAGE")
 
-AC_SUBST(VERSION_SHOW_DESKLETS, "1.0.1")
+AC_SUBST(VERSION_SHOW_DESKLETS, "1.0.2")
 AC_SUBST(PACKAGE_SHOW_DESKLETS, "$SHOW_DESKLETS_PACKAGE")
 
 AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
@@ -331,7 +331,7 @@ AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
 SHOW_DESKTOP_PACKAGE=cd-showDesktop
 AC_SUBST(GETTEXT_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
-AC_SUBST(VERSION_SHOW_DESKTOP, "1.0.2")
+AC_SUBST(VERSION_SHOW_DESKTOP, "1.0.3")
 AC_SUBST(PACKAGE_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
 AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
@@ -340,7 +340,7 @@ AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
 SLIDER_PACKAGE="cd-slider"
 AC_SUBST(GETTEXT_SLIDER, "$SLIDER_PACKAGE")
 
-AC_SUBST(VERSION_SLIDER, "1.0.1")
+AC_SUBST(VERSION_SLIDER, "1.0.2")
 AC_SUBST(PACKAGE_SLIDER, "$SLIDER_PACKAGE")
 
 AC_SUBST(sliderdatadir, "${pkgdatadir}/slider")
@@ -349,7 +349,7 @@ AC_SUBST(sliderdatadir, "${pkgdatadir}/slider")
 STACK_PACKAGE="cd-stack"
 AC_SUBST(GETTEXT_STACK, "$STACK_PACKAGE")
 
-AC_SUBST(VERSION_STACK, "0.2.1")
+AC_SUBST(VERSION_STACK, "0.2.2")
 AC_SUBST(PACKAGE_STACK, "$STACK_PACKAGE")
 
 AC_SUBST(stackdatadir, "${pkgdatadir}/stack")
@@ -358,7 +358,7 @@ AC_SUBST(stackdatadir, "${pkgdatadir}/stack")
 SWITCHER_PACKAGE="cd-switcher"
 AC_SUBST(GETTEXT_SWITCHER, "$SWITCHER_PACKAGE")
 
-AC_SUBST(VERSION_SWITCHER, "1.0.3")
+AC_SUBST(VERSION_SWITCHER, "1.0.4")
 AC_SUBST(PACKAGE_SWITCHER, "$SWITCHER_PACKAGE")
 
 AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")
@@ -376,7 +376,7 @@ AC_SUBST(systraydatadir, "${pkgdatadir}/systray")
 TERMINAL_PACKAGE="cd-terminal"
 AC_SUBST(GETTEXT_TERMINAL, "$TERMINAL_PACKAGE")
 
-AC_SUBST(VERSION_TERMINAL, "1.0.2")
+AC_SUBST(VERSION_TERMINAL, "1.0.3")
 AC_SUBST(PACKAGE_TERMINAL, "$TERMINAL_PACKAGE")
 
 AC_SUBST(terminaldatadir, "${pkgdatadir}/terminal")
@@ -394,7 +394,7 @@ AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")
 WEATHER_PACKAGE="cd-weather"
 AC_SUBST(GETTEXT_WEATHER, "$WEATHER_PACKAGE")
 
-AC_SUBST(VERSION_WEATHER, "1.1.6")
+AC_SUBST(VERSION_WEATHER, "1.1.7")
 AC_SUBST(PACKAGE_WEATHER, "$WEATHER_PACKAGE")
 
 AC_SUBST(weatherdatadir, "${pkgdatadir}/weather")
@@ -403,7 +403,7 @@ AC_SUBST(weatherdatadir, "${pkgdatadir}/weather")
 WIFI_PACKAGE="cd-wifi"
 AC_SUBST(GETTEXT_WIFI, "$WIFI_PACKAGE")
 
-AC_SUBST(VERSION_WIFI, "1.0.5")
+AC_SUBST(VERSION_WIFI, "1.0.6")
 AC_SUBST(PACKAGE_WIFI, "$WIFI_PACKAGE")
 
 AC_SUBST(wifidatadir, "${pkgdatadir}/wifi")
@@ -420,7 +420,7 @@ AC_SUBST(xfce_integrationdatadir, "${pkgdatadir}/xfce-integration")
 XGAMMA_PACKAGE="cd-Xgamma"
 AC_SUBST(GETTEXT_XGAMMA, "$XGAMMA_PACKAGE")
 
-AC_SUBST(VERSION_XGAMMA, "1.0.5")
+AC_SUBST(VERSION_XGAMMA, "1.0.6")
 AC_SUBST(PACKAGE_XGAMMA, "$XGAMMA_PACKAGE")
 
 AC_SUBST(xgammadatadir, "${pkgdatadir}/Xgamma")
@@ -429,7 +429,7 @@ AC_SUBST(xgammadatadir, "${pkgdatadir}/Xgamma")
 XMMS_PACKAGE="cd-xmms"
 AC_SUBST(GETTEXT_XMMS, "$XMMS_PACKAGE")
 
-AC_SUBST(VERSION_XMMS, "0.2.3")
+AC_SUBST(VERSION_XMMS, "0.2.4")
 AC_SUBST(PACKAGE_XMMS, "$XMMS_PACKAGE")
 
 AC_SUBST(xmmsdatadir, "${pkgdatadir}/xmms")

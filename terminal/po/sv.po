@@ -146,26 +146,100 @@ msgid "Lock position ?"
 msgstr "Lås position?"
 
 #: ../data/messages:37
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:43
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:47
+#, fuzzy
+msgid "Background tansparency :"
+msgstr "Genomskinlighet för terminalfönstret:"
+
+#: ../data/messages:49
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:67
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:69
+#, fuzzy
+msgid "Foreground tansparency :"
+msgstr "Genomskinlighet för terminalfönstret:"
+
+#: ../data/messages:71
 msgid "GUI"
 msgstr "Gränssnitt"
 
-#: ../data/messages:39
+#: ../data/messages:73
 msgid "needs to restart the applet."
 msgstr "behöver starta om appleten."
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid "Terminal's transparency :"
 msgstr "Genomskinlighet för terminalfönstret:"
 
-#: ../data/messages:43
+#: ../data/messages:77
 msgid "Foreground color (r, v, b):"
 msgstr "Förgrundsfärg (r,g.b):"
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Background color (r, v, b):"
 msgstr "Bakgrundsfärg (r,g.b):"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -173,10 +247,10 @@ msgstr ""
 "När terminalen visas i ett fönster. När den är i en desklet, kan du ändra "
 "storlek som vanligt."
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Size of the terminal (line x columns) :"
 msgstr "Storlek på terminal (rader x kolumner):"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "Shortkey to show the terminal"
 msgstr "Tangentkombination for att visa terminalen"

@@ -38,6 +38,40 @@ _("If locked, the desklet can't be moved by simply dragging it with the left mou
 
 _("Lock position ?")
 
+_("Decorations")
+
+_("Choose the 'personnal' one to define your own decorations below.")
+
+_("Choose a decoration theme for this desklet :")
+
+_("It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any.")
+
+_("Background image :")
+
+_("Background tansparency :")
+
+_("in pixels. Use this to adjust the left position of the drawings.")
+
+_("Left offset :")
+
+_("in pixels. Use this to adjust the top position of the drawings.")
+
+_("Top offset :")
+
+_("in pixels. Use this to adjust the right position of the drawings.")
+
+_("Right offset :")
+
+_("in pixels. Use this to adjust the bottom position of the drawings.")
+
+_("Bottom offset :")
+
+_("It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any.")
+
+_("Foreground image :")
+
+_("Foreground tansparency :")
+
 _("Configuration")
 
 _("Display icons in the menu ?")

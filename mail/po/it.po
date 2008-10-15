@@ -465,35 +465,107 @@ msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:37
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:43
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:67
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:39
+#: ../data/messages:73
 msgid "Choose one of the available themes :"
 msgstr "SCegliere uno dei temi disponibili :"
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid "Theme overriding"
 msgstr "Sovrascrittura del tema"
 
-#: ../data/messages:43
+#: ../data/messages:77
 #, fuzzy
 msgid "Name of the file for the \"no mail\" image :"
 msgstr ""
 "Nome di una immagine per cancellare l'immagine d'e-mail non ricevuta del "
 "tema :"
 
-#: ../data/messages:45
+#: ../data/messages:79
 #, fuzzy
 msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 "Nome di una immagine per cancellare l'immagine di nuova e-mail del tema :"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Name of the file for the \"new mail\" sound :"
 msgstr "Percorso del file per il suono \"nuova mail\" :"
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Path to application to launch on left-click"
 msgstr "Percorso dell'applicazione da lanciare col click sinistro"
 

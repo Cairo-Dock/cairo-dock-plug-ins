@@ -119,83 +119,156 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:37 ../data/messages:109
-msgid "Configuration"
-msgstr "Configurazione"
+#: ../data/messages:37
+#, fuzzy
+msgid "Decorations"
+msgstr "Informazione"
 
 #: ../data/messages:39
-msgid "Display"
-msgstr "Mostrare"
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
 
 #: ../data/messages:41
-msgid "Display a graphic rather than a gauge ?"
+msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
 #: ../data/messages:43
-msgid "Type of graphic :"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
 msgstr ""
 
 #: ../data/messages:45
-msgid "Line"
+msgid "Background image :"
 msgstr ""
 
 #: ../data/messages:47
-msgid "Plain"
+msgid "Background tansparency :"
 msgstr ""
 
 #: ../data/messages:49
-msgid "Bar"
+msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
 #: ../data/messages:51
-msgid "Circle"
+msgid "Left offset :"
 msgstr ""
 
 #: ../data/messages:53
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:67
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:71 ../data/messages:143
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:73
+msgid "Display"
+msgstr "Mostrare"
+
+#: ../data/messages:75
+msgid "Display a graphic rather than a gauge ?"
+msgstr ""
+
+#: ../data/messages:77
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:79
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:81
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:87
 msgid "Plain Circle"
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:63
+#: ../data/messages:89 ../data/messages:97
 #, fuzzy
 msgid "It's the color of the graphic for high CPU values."
 msgstr "E' il primo colore della gradazione usata per scrivere la 'top list'"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "High values color for RAM :"
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:67
+#: ../data/messages:93 ../data/messages:101
 #, fuzzy
 msgid "It's the color of the graphic for low CPU values."
 msgstr "E' il primo colore della gradazione usata per scrivere la 'top list'"
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid "Low values color for RAM :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:99
 msgid "High values color for SWAP :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:103
 msgid "Low values color for SWAP :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:105
 msgid "Draw both values on the same graph ?"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:107
 #, fuzzy
 msgid "Background color of the graphic :"
 msgstr "Primo colore della 'top list' :"
 
-#: ../data/messages:75
+#: ../data/messages:109
 #, fuzzy
 msgid "List of available themes for the gauge :"
 msgstr "Lista dei temi disponibili per la vista analogica :"
 
-#: ../data/messages:77
+#: ../data/messages:111
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -203,43 +276,43 @@ msgstr ""
 "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
 "se si vuole alcuna filigrana."
 
-#: ../data/messages:79
+#: ../data/messages:113
 msgid "Image to display as a watermark on the gauge :"
 msgstr "Immagine da mostrare come filigrana nell'indicatore :"
 
-#: ../data/messages:81
+#: ../data/messages:115
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "Settare a 0 se si vuole alcuna filigrana."
 
-#: ../data/messages:83
+#: ../data/messages:117
 msgid "Transparency of the watermark :"
 msgstr "Trasparenza della filigrana :"
 
-#: ../data/messages:85
+#: ../data/messages:119
 msgid "Display memory values :"
 msgstr "Mostrare i valori della memoria:"
 
-#: ../data/messages:87
+#: ../data/messages:121
 msgid "No"
 msgstr "No"
 
-#: ../data/messages:89
+#: ../data/messages:123
 msgid "On icon"
 msgstr "Sull'icona"
 
-#: ../data/messages:91
+#: ../data/messages:125
 msgid "On label"
 msgstr "Sull'etichetta"
 
-#: ../data/messages:93
+#: ../data/messages:127
 msgid "Display SWAP too ?"
 msgstr "Mostrare anche la SWAP ?"
 
-#: ../data/messages:95
+#: ../data/messages:129
 msgid "Top List"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:131
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
@@ -247,35 +320,35 @@ msgstr ""
 "Quando si clicca col tasto sinistro sull'icona, verrà mostrata la lista dei "
 "N programmi che usano maggior memoria."
 
-#: ../data/messages:99
+#: ../data/messages:133
 msgid "Number of programs to display in the top list :"
 msgstr "Numero dei programmi mostrati nella 'top list'"
 
-#: ../data/messages:101
+#: ../data/messages:135
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "E' il primo colore della gradazione usata per scrivere la 'top list'"
 
-#: ../data/messages:103
+#: ../data/messages:137
 msgid "Start color of the top list :"
 msgstr "Primo colore della 'top list' :"
 
-#: ../data/messages:105
+#: ../data/messages:139
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "E' il secondo colore della gradazione usata per scrivere la 'top list'"
 
-#: ../data/messages:107
+#: ../data/messages:141
 msgid "Stop color of the top list :"
 msgstr "Ultimo colore della 'top list' :"
 
-#: ../data/messages:111
+#: ../data/messages:145
 msgid "in seconds."
 msgstr "in secondi."
 
-#: ../data/messages:113
+#: ../data/messages:147
 msgid "Delay between refresh :"
 msgstr "Ritardo tra gli aggiornamenti  :"
 
-#: ../data/messages:115
+#: ../data/messages:149
 msgid "Show top memory usage in % ?"
 msgstr "Mostrare il massimo della memoria usata in % ?"
 
@@ -287,9 +360,6 @@ msgstr "Mostrare il massimo della memoria usata in % ?"
 
 #~ msgid "Icon's name :"
 #~ msgstr "Nome dell'icona :"
-
-#~ msgid "Information"
-#~ msgstr "Informazione"
 
 #~ msgid "Information to display on the icon :"
 #~ msgstr "Informazione da mostrare sull'icona :"

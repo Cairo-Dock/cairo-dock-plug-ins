@@ -153,113 +153,187 @@ msgid "Lock position ?"
 msgstr "Lås position?"
 
 #: ../data/messages:37
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:43
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:47
+#, fuzzy
+msgid "Background tansparency :"
+msgstr "Genomskinlighet"
+
+#: ../data/messages:49
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:67
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:69
+#, fuzzy
+msgid "Foreground tansparency :"
+msgstr "Genomskinlighet"
+
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "Inställningar"
 
-#: ../data/messages:39
+#: ../data/messages:73
 msgid "Alsa"
 msgstr "Alsa"
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid "Let empty to use the default sound card."
 msgstr "Lämna tomt för att använda standardkortet."
 
-#: ../data/messages:43
+#: ../data/messages:77
 msgid "Sound card to control :"
 msgstr "Ljudkort som ska kontrolleras:"
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Choose which channel to control :"
 msgstr "Välj kanal att kontrollera:"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just let it empty."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:83
 #, fuzzy
 msgid "Optionnally, choose a second channel to control :"
 msgstr "Välj kanal att kontrollera:"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "Let empty to use the defaut command."
 msgstr "Lämna tomt för att använda standardkommando."
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr "Kommando som ska köras för att visa avancerad ljudmixer:"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid "Control"
 msgstr "Kontroll"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr "Tangentkombination för att visa/dölja konfigurationsdialog"
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "Variation för 1 hjulsbläddring, i %:"
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr "Dölj skalan när musen lämnar deskleten?"
 
-#: ../data/messages:63
+#: ../data/messages:97
 msgid "Display"
 msgstr "Utseende"
 
-#: ../data/messages:65
+#: ../data/messages:99
 msgid "Display volume :"
 msgstr "Visa volym:"
 
-#: ../data/messages:67
+#: ../data/messages:101
 msgid "No"
 msgstr "Nej"
 
-#: ../data/messages:69
+#: ../data/messages:103
 msgid "On label"
 msgstr "På etikett"
 
-#: ../data/messages:71
+#: ../data/messages:105
 msgid "On icon"
 msgstr "På ikonen"
 
-#: ../data/messages:73
+#: ../data/messages:107
 msgid "Effet to apply on the icon according to volume :"
 msgstr "Volymeffekt på ikonen:"
 
-#: ../data/messages:75
+#: ../data/messages:109
 msgid "None"
 msgstr "Ingen"
 
-#: ../data/messages:77
+#: ../data/messages:111
 msgid "Zoom"
 msgstr "Zooma"
 
-#: ../data/messages:79
+#: ../data/messages:113
 msgid "Transparency"
 msgstr "Genomskinlighet"
 
-#: ../data/messages:81
+#: ../data/messages:115
 msgid "Draw Bar"
 msgstr "Visa stapel"
 
-#: ../data/messages:83 ../data/messages:87 ../data/messages:91
+#: ../data/messages:117 ../data/messages:121 ../data/messages:125
 msgid "Let empty to use the default one."
 msgstr "Lämna tomt för använda standaralternativet."
 
-#: ../data/messages:85
+#: ../data/messages:119
 msgid "Default icon :"
 msgstr "Standard ikon:"
 
-#: ../data/messages:89
+#: ../data/messages:123
 msgid "Broken icon :"
 msgstr "Bruten ikon:"
 
-#: ../data/messages:93
+#: ../data/messages:127
 msgid "Mute icon :"
 msgstr "Tysta ikon:"

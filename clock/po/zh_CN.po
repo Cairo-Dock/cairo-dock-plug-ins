@@ -128,203 +128,275 @@ msgid "Lock position ?"
 msgstr "锁定位置？"
 
 #: ../data/messages:39
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:43
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:45
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:51
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:53
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:55
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:61
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:65
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:67
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:69
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:73
 msgid "Module"
 msgstr "模块"
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid "Behaviour"
 msgstr "行为"
 
-#: ../data/messages:43
+#: ../data/messages:77
 msgid "Show the date :"
 msgstr "显示日期："
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "No"
 msgstr "否"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "On icon"
 msgstr "于图标上"
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "On label"
 msgstr "于标签上"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "if not, then the applet will update time once a minute, saving CPU."
 msgstr "如果为否，则小应用程序将一分钟更新时间一次，以节省CPU。"
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "Show seconds ?"
 msgstr "显示秒针？"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid "for numeric format only."
 msgstr "数字时钟专用。"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Should the time be displayed as a 24h format ?"
 msgstr "以24小时制式显示时间么？"
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid ""
 "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
 "your location from a list. Let empty to get the local time."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid "Timezone :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:97
 msgid "Style"
 msgstr "风格"
 
-#: ../data/messages:65
+#: ../data/messages:99
 #, fuzzy
 msgid "List of available themes for the numeric display :"
 msgstr "指针时钟存在的主题列表："
 
-#: ../data/messages:67
+#: ../data/messages:101
 msgid "default"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:103
 msgid "r, v, b, a"
 msgstr "红, 绿, 蓝, 阿尔法"
 
-#: ../data/messages:71
+#: ../data/messages:105
 msgid "Text color for the numeric display:"
 msgstr "数字时钟使用的文字颜色："
 
-#: ../data/messages:73
+#: ../data/messages:107
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
 msgstr "比如：Monospace，Purisa，……只写下字体名，不用加数字之类。"
 
-#: ../data/messages:75
+#: ../data/messages:109
 msgid "Font used for the numeric display :"
 msgstr "用于数字显示的字体："
 
-#: ../data/messages:77
+#: ../data/messages:111
 msgid ""
 "The analogic view is based on CairoClock; otherwise it will be displayed in "
 "a numeric way."
 msgstr "指针时钟基于CairoClock；否则将以数字时钟显示。"
 
-#: ../data/messages:79
+#: ../data/messages:113
 msgid "Use the analogic view ?"
 msgstr "使用指针时钟？"
 
-#: ../data/messages:81
+#: ../data/messages:115
 msgid "List of available themes for the analogic display :"
 msgstr "指针时钟存在的主题列表："
 
-#: ../data/messages:83
+#: ../data/messages:117
 msgid "Setup time and date"
 msgstr "设置时间和日期"
 
-#: ../data/messages:85
+#: ../data/messages:119
 msgid "Let empty to use default command."
 msgstr "保持为空以使用默认的命令。"
 
-#: ../data/messages:87
+#: ../data/messages:121
 msgid "Specific command to run :"
 msgstr "指定运行的命令："
 
-#: ../data/messages:89
+#: ../data/messages:123
 msgid "Alarm"
 msgstr "闹钟"
 
-#: ../data/messages:91
+#: ../data/messages:125
 #, fuzzy
 msgid "Alarm n°1"
 msgstr "闹钟n°1"
 
-#: ../data/messages:93 ../data/messages:133 ../data/messages:173
+#: ../data/messages:127 ../data/messages:167 ../data/messages:207
 msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
 msgstr "使用xx:xx的格式。比如：20:35用于8:35pm"
 
-#: ../data/messages:95 ../data/messages:135 ../data/messages:175
+#: ../data/messages:129 ../data/messages:169 ../data/messages:209
 msgid "Time you want to be notified :"
 msgstr "您想被提醒的时间："
 
-#: ../data/messages:97 ../data/messages:137 ../data/messages:177
+#: ../data/messages:131 ../data/messages:171 ../data/messages:211
 msgid "Repeat every"
 msgstr "重复每"
 
-#: ../data/messages:99 ../data/messages:139 ../data/messages:179
+#: ../data/messages:133 ../data/messages:173 ../data/messages:213
 msgid "Never"
 msgstr "永远不"
 
-#: ../data/messages:101 ../data/messages:141 ../data/messages:181
+#: ../data/messages:135 ../data/messages:175 ../data/messages:215
 msgid "Day"
 msgstr "天"
 
-#: ../data/messages:103 ../data/messages:143 ../data/messages:183
+#: ../data/messages:137 ../data/messages:177 ../data/messages:217
 msgid "Monday"
 msgstr "星期一"
 
-#: ../data/messages:105 ../data/messages:145 ../data/messages:185
+#: ../data/messages:139 ../data/messages:179 ../data/messages:219
 msgid "Tuesday"
 msgstr "星期二"
 
-#: ../data/messages:107 ../data/messages:147 ../data/messages:187
+#: ../data/messages:141 ../data/messages:181 ../data/messages:221
 msgid "Wednesday"
 msgstr "星期三"
 
-#: ../data/messages:109 ../data/messages:149 ../data/messages:189
+#: ../data/messages:143 ../data/messages:183 ../data/messages:223
 msgid "Thursday"
 msgstr "星期四"
 
-#: ../data/messages:111 ../data/messages:151 ../data/messages:191
+#: ../data/messages:145 ../data/messages:185 ../data/messages:225
 msgid "Friday"
 msgstr "星期五"
 
-#: ../data/messages:113 ../data/messages:153 ../data/messages:193
+#: ../data/messages:147 ../data/messages:187 ../data/messages:227
 msgid "Saturday"
 msgstr "星期六"
 
-#: ../data/messages:115 ../data/messages:155 ../data/messages:195
+#: ../data/messages:149 ../data/messages:189 ../data/messages:229
 msgid "Sunday"
 msgstr "星期日"
 
-#: ../data/messages:117 ../data/messages:157 ../data/messages:197
+#: ../data/messages:151 ../data/messages:191 ../data/messages:231
 msgid "Week Day"
 msgstr "星期"
 
-#: ../data/messages:119 ../data/messages:159 ../data/messages:199
+#: ../data/messages:153 ../data/messages:193 ../data/messages:233
 msgid "Week End"
 msgstr "周末"
 
-#: ../data/messages:121 ../data/messages:161 ../data/messages:201
+#: ../data/messages:155 ../data/messages:195 ../data/messages:235
 msgid "Month"
 msgstr "月"
 
-#: ../data/messages:123 ../data/messages:163 ../data/messages:203
+#: ../data/messages:157 ../data/messages:197 ../data/messages:237
 msgid "If every month, which day of the month ? :"
 msgstr "如果每月进行，选择哪天？："
 
-#: ../data/messages:125 ../data/messages:165 ../data/messages:205
+#: ../data/messages:159 ../data/messages:199 ../data/messages:239
 msgid "Message you want to use to be notified :"
 msgstr "您想被提醒的内容："
 
-#: ../data/messages:127 ../data/messages:167 ../data/messages:207
+#: ../data/messages:161 ../data/messages:201 ../data/messages:241
 msgid "For exemple, < play /path/to/file.ogg >."
 msgstr "比如说：< play /chemin/vers/le/fichier.ogg >。"
 
-#: ../data/messages:129 ../data/messages:169 ../data/messages:209
+#: ../data/messages:163 ../data/messages:203 ../data/messages:243
 msgid "Command to execute :"
 msgstr "执行的命令："
 
-#: ../data/messages:131
+#: ../data/messages:165
 #, fuzzy
 msgid "Alarm n°2"
 msgstr "闹钟n°2"
 
-#: ../data/messages:171
+#: ../data/messages:205
 #, fuzzy
 msgid "Alarm n°3"
 msgstr "闹钟n°3"

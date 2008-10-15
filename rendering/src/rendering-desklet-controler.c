@@ -235,22 +235,14 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 		cairo_dock_draw_frame (pCairoContext, g_iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDesklet->bIsHorizontal);
 		
 		//\____________________ On dessine les decorations dedans.
-		cairo_save (pCairoContext);
-		double fColor[4];
-		int i;
-		for (i = 0; i < 4; i ++)
-		{
-			fColor[i] = (g_fDeskletColorInside[i] * pDesklet->iGradationCount + g_fDeskletColor[i] * (CD_NB_ITER_FOR_GRADUATION - pDesklet->iGradationCount)) / CD_NB_ITER_FOR_GRADUATION;
-		}
-		cairo_set_source_rgba (pCairoContext, fColor[0], fColor[1], fColor[2], .75);
+		cairo_set_source_rgba (pCairoContext, .8, .8, .8, .75);
 		cairo_fill_preserve (pCairoContext);
-		cairo_restore (pCairoContext);
 		
 		//\____________________ On dessine le cadre.
 		if (fLineWidth > 0)
 		{
 			cairo_set_line_width (pCairoContext, fLineWidth);
-			cairo_set_source_rgba (pCairoContext, fColor[0], fColor[1], fColor[2], 1.);
+			cairo_set_source_rgba (pCairoContext, .9, .9, .9, 1.);
 			cairo_stroke (pCairoContext);
 		}
 		cairo_restore (pCairoContext);

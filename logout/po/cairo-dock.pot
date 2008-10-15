@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-10-09 02:14+0200\n"
+"POT-Creation-Date: 2008-10-16 01:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,13 +109,85 @@ msgid "Lock position ?"
 msgstr ""
 
 #: ../data/messages:41
-msgid "Configuration"
+msgid "Decorations"
 msgstr ""
 
 #: ../data/messages:43
-msgid "Let empty to execute the default command."
+msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
 #: ../data/messages:45
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:47
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:49
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:65
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:67
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:69
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:71
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:75
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:77
+msgid "Let empty to execute the default command."
+msgstr ""
+
+#: ../data/messages:79
 msgid "User-defined command to execute to log-out :"
 msgstr ""

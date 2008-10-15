@@ -117,47 +117,119 @@ msgid "Lock position ?"
 msgstr "锁定位置？"
 
 #: ../data/messages:39
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:43
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:45
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:51
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:53
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:55
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:61
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:65
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:67
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:69
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:73
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid "URI to load in weblet"
 msgstr "weblet载入的URI"
 
-#: ../data/messages:43
+#: ../data/messages:77
 msgid "Show scrollbars ?"
 msgstr "显示卷轴"
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Horizontal scroll of the browser in pixel"
 msgstr "以点为单位的浏览器水平卷轴位置"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Position of horizontal scrollbar"
 msgstr "水平卷轴位置"
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Vertical scroll of the browser in pixel"
 msgstr "以点为单位的浏览器垂直卷轴位置"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "Position of vertical scrollbar in pixel"
 msgstr "垂直卷轴位置"
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr "重载URI的时间间隔，以秒为单位。为0则不重载"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid "Time between two page refreshes"
 msgstr "页面刷新时间"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Any URI accepted by firefox should work."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr ""
 

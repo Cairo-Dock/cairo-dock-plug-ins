@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-10-09 02:14+0200\n"
+"POT-Creation-Date: 2008-10-16 00:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,195 +116,239 @@ msgstr ""
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:37
-msgid "Configuration"
+#: ../data/messages:37 ../data/messages:127
+msgid "Decorations"
 msgstr ""
 
 #: ../data/messages:39
-msgid "Directory"
+msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
 #: ../data/messages:41
-msgid "Directory of the images :"
+msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
 #: ../data/messages:43
-msgid "Scan in sub direcotries ?"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:45
-msgid "Randomly browse files ?"
+#: ../data/messages:45 ../data/messages:143
+msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:47
-msgid "Behaviour"
+#: ../data/messages:47 ../data/messages:145
+msgid "Background tansparency :"
 msgstr ""
 
 #: ../data/messages:49
-msgid "in seconds."
+msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51
-msgid "Sliding delay :"
+#: ../data/messages:51 ../data/messages:149
+msgid "Left offset :"
 msgstr ""
 
 #: ../data/messages:53
-msgid "Action when applet is clicked :"
+msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
-msgid "play/pause"
+#: ../data/messages:55 ../data/messages:153
+msgid "Top offset :"
 msgstr ""
 
 #: ../data/messages:57
-msgid "open image"
+msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
-msgid "Effect while changing image :"
+#: ../data/messages:59 ../data/messages:157
+msgid "Right offset :"
 msgstr ""
 
 #: ../data/messages:61
-msgid "none"
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
-msgid "fade"
+#: ../data/messages:63 ../data/messages:161
+msgid "Bottom offset :"
 msgstr ""
 
 #: ../data/messages:65
-msgid "blank fade"
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
 msgstr ""
 
 #: ../data/messages:67
-msgid "fade in out"
+msgid "Foreground image :"
 msgstr ""
 
 #: ../data/messages:69
-msgid "side kick"
+msgid "Foreground tansparency :"
 msgstr ""
 
 #: ../data/messages:71
-msgid "diaporama"
+msgid "Configuration"
 msgstr ""
 
 #: ../data/messages:73
-msgid "grow up"
+msgid "Directory"
 msgstr ""
 
 #: ../data/messages:75
-msgid "shrink down"
+msgid "Directory of the images :"
 msgstr ""
 
 #: ../data/messages:77
-msgid "random"
+msgid "Scan in sub direcotries ?"
 msgstr ""
 
 #: ../data/messages:79
-msgid "Display"
+msgid "Randomly browse files ?"
 msgstr ""
 
 #: ../data/messages:81
-msgid "Gives a better image rendering."
+msgid "Behaviour"
 msgstr ""
 
 #: ../data/messages:83
-msgid "Keep widht/height ratio ?"
+msgid "in seconds."
 msgstr ""
 
 #: ../data/messages:85
-msgid "If the image is too small, it will be zoomed in."
+msgid "Sliding delay :"
 msgstr ""
 
 #: ../data/messages:87
-msgid "Force the image to fill the icon/desklet ?"
+msgid "Action when applet is clicked :"
 msgstr ""
 
 #: ../data/messages:89
+msgid "play/pause"
+msgstr ""
+
+#: ../data/messages:91
+msgid "open image"
+msgstr ""
+
+#: ../data/messages:93
+msgid "Effect while changing image :"
+msgstr ""
+
+#: ../data/messages:95
+msgid "none"
+msgstr ""
+
+#: ../data/messages:97
+msgid "fade"
+msgstr ""
+
+#: ../data/messages:99
+msgid "blank fade"
+msgstr ""
+
+#: ../data/messages:101
+msgid "fade in out"
+msgstr ""
+
+#: ../data/messages:103
+msgid "side kick"
+msgstr ""
+
+#: ../data/messages:105
+msgid "diaporama"
+msgstr ""
+
+#: ../data/messages:107
+msgid "grow up"
+msgstr ""
+
+#: ../data/messages:109
+msgid "shrink down"
+msgstr ""
+
+#: ../data/messages:111
+msgid "random"
+msgstr ""
+
+#: ../data/messages:113
+msgid "Display"
+msgstr ""
+
+#: ../data/messages:115
+msgid "Gives a better image rendering."
+msgstr ""
+
+#: ../data/messages:117
+msgid "Keep widht/height ratio ?"
+msgstr ""
+
+#: ../data/messages:119
+msgid "If the image is too small, it will be zoomed in."
+msgstr ""
+
+#: ../data/messages:121
+msgid "Force the image to fill the icon/desklet ?"
+msgstr ""
+
+#: ../data/messages:123
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:125
 msgid "Choose a background color :"
 msgstr ""
 
-#: ../data/messages:93
-msgid "Decorations"
-msgstr ""
-
-#: ../data/messages:95
+#: ../data/messages:129
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:131
 msgid "Choose a background and foreground decoration :"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:133
 msgid "Personnal"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:135
 msgid "frame with reflects"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:137
 msgid "scotch"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:139
 msgid "frame with scotch"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:141
 msgid ""
 "It's an image that will be displayed below the slide, like a frame for "
 "exemple."
 msgstr ""
 
-#: ../data/messages:109
-msgid "Background image :"
-msgstr ""
-
-#: ../data/messages:111
-msgid "Background tansparency :"
-msgstr ""
-
-#: ../data/messages:113 ../data/messages:117 ../data/messages:121
-#: ../data/messages:125
+#: ../data/messages:147 ../data/messages:151 ../data/messages:155
+#: ../data/messages:159
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr ""
 
-#: ../data/messages:115
-msgid "Left offset :"
-msgstr ""
-
-#: ../data/messages:119
-msgid "Top offset :"
-msgstr ""
-
-#: ../data/messages:123
-msgid "Right offset :"
-msgstr ""
-
-#: ../data/messages:127
-msgid "Bottom offset :"
-msgstr ""
-
-#: ../data/messages:129
+#: ../data/messages:163
 msgid ""
 "It's an image that will be displayed above the slide, like a reflect for "
 "exemple."
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:165
 msgid "Reflection image :"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:167
 msgid "Reflection tansparency :"
 msgstr ""

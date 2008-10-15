@@ -9,7 +9,7 @@ export LibName=`echo $AppletName | tr -- - _`
 read -p "Enter your name : " MyName
 read -p "Enter an e-mail adress to contact you for bugs or congratulations : " MyMail
 read -p "Enter the default label of your applet (Just type enter to leave it empty for the moment) :" AppletLabel
-read -p "Enter the default icon of your applet (Just type enter if you'll draw it dynamically, for exemple like the 'clock' or the 'dustbin' applet) :" AppletIcon
+read -p "Will your applet draw its icon dynamically (like the clock or dustbin applets for exemple) [y/N] ?" AppletIcon
 
 
 echo "creation de l'arborescence de l'applet $AppletName ..."
@@ -18,53 +18,45 @@ find $AppletName -name ".svn" -execdir rm -rf .svn \; > /dev/null
 
 
 cd $AppletName
-sed "s/CD_APPLET_NAME/$AppletName/g" configure.ac > tmp
-sed "s/CD_MY_NAME/$MyName/g" tmp > configure.ac
-sed "s/CD_MY_MAIL/$MyMail/g" configure.ac > tmp
-mv tmp configure.ac
+sed -i "s/CD_APPLET_NAME/$AppletName/g" configure.ac
+sed -i "s/CD_MY_NAME/$MyName/g" configure.ac
+sed -i "s/CD_MY_MAIL/$MyMail/g" configure.ac
 
 
 cd data
 if test "x$AppletLabel" = "x"; then
-	sed "s/CD_APPLET_LABEL/$AppletName/g" template.conf.in > tmp
+	sed -i "s/CD_APPLET_LABEL/$AppletName/g" template.conf.in
 else
-	sed "s/CD_APPLET_LABEL/$AppletLabel/g" template.conf.in > tmp
+	sed -i "s/CD_APPLET_LABEL/$AppletLabel/g" template.conf.in
 fi
-if test "$AppletIcon" = "x"; then
-	sed "/CD_APPLET_ICON/d" tmp > template.conf.in
-else
-	sed "s/CD_APPLET_ICON/$AppletIcon/g" tmp > template.conf.in
+if test "x$AppletIcon" = "xy" -o "x$AppletIcon" = "xY"; then
+	sed -i "/Icon's name/{N;N;d}" template.conf.in
 fi
 mv template.conf.in "$AppletName.conf.in"
 
-sed "s/CD_APPLET_NAME/$AppletName/g" readme.in > tmp
-sed "s/CD_MY_NAME/$MyName/g" tmp > readme.in
+sed -i "s/CD_APPLET_NAME/$AppletName/g" readme.in
+sed -i "s/CD_MY_NAME/$MyName/g" readme.in
 
-sed "s/CD_APPLET_NAME/$AppletName/g" Makefile.am > tmp
-mv tmp Makefile.am
-rm -f tmp
+sed -i "s/CD_APPLET_NAME/$AppletName/g" Makefile.am
 
 
 cd ../src
-sed "s/CD_APPLET_NAME/$AppletName/g" Makefile.am > tmp
-sed "s/CD_LIB_NAME/$LibName/g" tmp > Makefile.am
+sed -i "s/CD_APPLET_NAME/$AppletName/g" Makefile.am
+sed -i "s/CD_LIB_NAME/$LibName/g" Makefile.am
 
-sed "s/CD_APPLET_NAME/$AppletName/g" applet-init.c > tmp
-mv tmp applet-init.c
+sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-init.c
 
-sed "s/CD_APPLET_NAME/$AppletName/g" applet-notifications.c > tmp
-sed "s/CD_MY_NAME/$MyName/g" tmp > applet-notifications.c
-rm -f tmp
+sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-notifications.c
+sed -i "s/CD_MY_NAME/$MyName/g" applet-notifications.c
 
 
 cd ../po
-sed "s/CD_APPLET_NAME/$AppletName/g" fr.po > tmp
-sed "s/CD_MY_NAME/$MyName/g" tmp > fr.po
-rm -f tmp
+sed -i "s/CD_APPLET_NAME/$AppletName/g" fr.po
+sed -i "s/CD_MY_NAME/$MyName/g" fr.po
 
 
 cd ..
 
-autoreconf -isvf && ./configure --prefix=/usr --enable-glitz && make
+autoreconf -isvf && ./configure --prefix=/usr && make
 
 echo "now it's your turn ! type sudo make install to install it."

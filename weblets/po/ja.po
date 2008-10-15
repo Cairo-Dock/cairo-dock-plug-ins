@@ -122,47 +122,119 @@ msgid "Lock position ?"
 msgstr "位置を固定？"
 
 #: ../data/messages:39
-msgid "Configuration"
-msgstr "設定"
+msgid "Decorations"
+msgstr ""
 
 #: ../data/messages:41
-msgid "URI to load in weblet"
+msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
 #: ../data/messages:43
-msgid "Show scrollbars ?"
+msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
 #: ../data/messages:45
-msgid "Horizontal scroll of the browser in pixel"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
 msgstr ""
 
 #: ../data/messages:47
-msgid "Position of horizontal scrollbar"
+msgid "Background image :"
 msgstr ""
 
 #: ../data/messages:49
-msgid "Vertical scroll of the browser in pixel"
+msgid "Background tansparency :"
 msgstr ""
 
 #: ../data/messages:51
-msgid "Position of vertical scrollbar in pixel"
+msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
 #: ../data/messages:53
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:55
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:61
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:65
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:67
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:69
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:73
+msgid "Configuration"
+msgstr "設定"
+
+#: ../data/messages:75
+msgid "URI to load in weblet"
+msgstr ""
+
+#: ../data/messages:77
+msgid "Show scrollbars ?"
+msgstr ""
+
+#: ../data/messages:79
+msgid "Horizontal scroll of the browser in pixel"
+msgstr ""
+
+#: ../data/messages:81
+msgid "Position of horizontal scrollbar"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Vertical scroll of the browser in pixel"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Position of vertical scrollbar in pixel"
+msgstr ""
+
+#: ../data/messages:87
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid "Time between two page refreshes"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Any URI accepted by firefox should work."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr ""
 

@@ -434,32 +434,104 @@ msgid "Lock position ?"
 msgstr "锁定位置？"
 
 #: ../data/messages:37
-msgid "Configuration"
-msgstr "配置"
+msgid "Decorations"
+msgstr ""
 
 #: ../data/messages:39
-msgid "Choose one of the available themes :"
+msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
 #: ../data/messages:41
-msgid "Theme overriding"
+msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
 #: ../data/messages:43
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:49
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:67
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:69
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Configuration"
+msgstr "配置"
+
+#: ../data/messages:73
+msgid "Choose one of the available themes :"
+msgstr ""
+
+#: ../data/messages:75
+msgid "Theme overriding"
+msgstr ""
+
+#: ../data/messages:77
 #, fuzzy
 msgid "Name of the file for the \"no mail\" image :"
 msgstr "用于覆盖主题无新邮件的图像的图像名称："
 
-#: ../data/messages:45
+#: ../data/messages:79
 #, fuzzy
 msgid "Name of the file for the \"has mail\" image :"
 msgstr "用于覆盖主题有新邮件的图像的图像名称："
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Name of the file for the \"new mail\" sound :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Path to application to launch on left-click"
 msgstr "左键点击时启动的应用程序路径"
 

@@ -133,6 +133,8 @@ CD_APPLET_INIT_BEGIN
 	
 	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	
+	cd_rendering_register_desklet_decorations ();
+	
 	cairo_dock_set_all_views_to_default ();
 CD_APPLET_INIT_END
 

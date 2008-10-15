@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:13 ../data/messages:43 ../data/messages:73
+#: ../src/applet-draw.c:13 ../data/messages:77 ../data/messages:107
 msgid "None"
 msgstr "无"
 
@@ -156,185 +156,260 @@ msgid "Lock position ?"
 msgstr "锁定位置？"
 
 #: ../data/messages:37
+#, fuzzy
+msgid "Decorations"
+msgstr "信息"
+
+#: ../data/messages:39
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:43
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:47
+#, fuzzy
+msgid "Background tansparency :"
+msgstr "透明度"
+
+#: ../data/messages:49
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:63
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:67
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:69
+#, fuzzy
+msgid "Foreground tansparency :"
+msgstr "透明度"
+
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:39
+#: ../data/messages:73
 msgid "Information"
 msgstr "信息"
 
-#: ../data/messages:41
+#: ../data/messages:75
 msgid "Information to display on the icon :"
 msgstr "显示于图标上的信息："
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Signal Strength"
 msgstr "信号强度"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Signal Strength in percent"
 msgstr "以百分比为单位的信号强度"
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Raw Signal Informations"
 msgstr "原始信号信息"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "in seconds."
 msgstr "以秒为单位"
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "Delay between signal checks :"
 msgstr "信号检查间隔"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
 msgstr "允许您启动自己的无线配置界面以替代默认命令行"
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "载入无线配置界面替代命令"
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid "Display"
 msgstr "显示"
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "以接入点名称替代默认标签"
 
-#: ../data/messages:63
+#: ../data/messages:97
 #, fuzzy
 msgid "Display type :"
 msgstr "显示"
 
-#: ../data/messages:65 ../data/messages:115
+#: ../data/messages:99 ../data/messages:149
 msgid "Images"
 msgstr "图像"
 
-#: ../data/messages:67
+#: ../data/messages:101
 #, fuzzy
 msgid "Gauges"
 msgstr "图像"
 
-#: ../data/messages:69
+#: ../data/messages:103
 msgid "Graphic"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:105
 msgid "Effect to apply on the icon according to strength :"
 msgstr "依据信号强度加于图标的效果："
 
-#: ../data/messages:75
+#: ../data/messages:109
 msgid "Zoom"
 msgstr "缩放"
 
-#: ../data/messages:77
+#: ../data/messages:111
 msgid "Transparency"
 msgstr "透明度"
 
-#: ../data/messages:79
+#: ../data/messages:113
 msgid "Draw Bar"
 msgstr "绘制状态条"
 
-#: ../data/messages:81
+#: ../data/messages:115
 msgid "Type of graphic :"
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:117
 msgid "Line"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:119
 msgid "Plain"
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:121
 msgid "Bar"
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:123
 msgid "Circle"
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:125
 msgid "Plain Circle"
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:127
 msgid "It's the color of the graphic for high Strength values."
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:129
 msgid "High values color :"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:131
 msgid "It's the color of the graphic for low Strength values."
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:133
 msgid "Low values color :"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:135
 msgid "Background color of the graphic :"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:137
 msgid "List of available themes for the analogic display :"
 msgstr "用于模拟显示的现有主题列表："
 
-#: ../data/messages:105
+#: ../data/messages:139
 msgid "radium"
 msgstr "radium"
 
-#: ../data/messages:107
+#: ../data/messages:141
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:145
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:147
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:117 ../data/messages:121 ../data/messages:125
-#: ../data/messages:129 ../data/messages:133 ../data/messages:137
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
 msgid "Let it empty to use the default icon."
 msgstr "留空以使用默认图标。"
 
-#: ../data/messages:119
+#: ../data/messages:153
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "用于“无信号”图标的图片名称："
 
-#: ../data/messages:123
+#: ../data/messages:157
 msgid "Name of an image for the 'very low' icon :"
 msgstr "用于“信号很弱”图标的图片名称："
 
-#: ../data/messages:127
+#: ../data/messages:161
 msgid "Name of an image for the 'low' icon :"
 msgstr "用于“信号弱”图标的图片名称："
 
-#: ../data/messages:131
+#: ../data/messages:165
 msgid "Name of an image for the 'middle' icon :"
 msgstr "用于“信号中等”图标的图片名称："
 
-#: ../data/messages:135
+#: ../data/messages:169
 msgid "Name of an image for the 'good' icon :"
 msgstr "用于“信号良好”图标的图片名称："
 
-#: ../data/messages:139
+#: ../data/messages:173
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "用于“信号很好”图标的图片名称："
 

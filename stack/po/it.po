@@ -151,42 +151,115 @@ msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:43
+#, fuzzy
+msgid "Decorations"
+msgstr "Cartella e Optioni"
+
+#: ../data/messages:45
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:49
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:51
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:53
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:55
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:59
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:61
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:65
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:67
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:69
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:71
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:73
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:75
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:77
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:45
+#: ../data/messages:79
 msgid "Display"
 msgstr "Mostra"
 
-#: ../data/messages:47
+#: ../data/messages:81
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciate vuoto per utilizzare la vista di default della sub-dock"
 
-#: ../data/messages:49
+#: ../data/messages:83
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
-#: ../data/messages:51
+#: ../data/messages:85
 msgid "They are items created by dropping a text into the Stack."
 msgstr "Sono oggetti creati dal trascinamento di un testo nella Stack."
 
-#: ../data/messages:53
+#: ../data/messages:87
 msgid "Image for the 'text' items :"
 msgstr "Immagine degli oggetti 'testo' :"
 
-#: ../data/messages:55
+#: ../data/messages:89
 msgid "They are items created by dropping an URL into the Stack."
 msgstr "Sono oggetti creati dal trascinamento di un URL nella Stack."
 
-#: ../data/messages:57
+#: ../data/messages:91
 msgid "Image for the 'URL' items :"
 msgstr "Immagine degli oggetti 'URL' :"
 
-#: ../data/messages:59
+#: ../data/messages:93
 msgid "Options"
 msgstr "Opzioni"
 
-#: ../data/messages:61
+#: ../data/messages:95
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
@@ -194,40 +267,40 @@ msgstr ""
 "Questa opzione vi permette di evitare che certi files siano elencati nella "
 "stacks tenendo conto del loro tipo (video, immagini, etc...)"
 
-#: ../data/messages:63
+#: ../data/messages:97
 msgid "Filter files with their mime types ?"
 msgstr "Filtrare i files in base al tipo ?"
 
-#: ../data/messages:65
+#: ../data/messages:99
 #, fuzzy
 msgid "Eg: image, text, video, audio, application, ..."
 msgstr "Ex: immagine, testo, video, audio, applicazione..."
 
-#: ../data/messages:67
+#: ../data/messages:101
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr "Specificate qui una lista di tipi di file da evitare :"
 
-#: ../data/messages:69
+#: ../data/messages:103
 msgid "Sort items by :"
 msgstr "Ordinare gli oggetti per :"
 
-#: ../data/messages:71
+#: ../data/messages:105
 msgid "Name"
 msgstr "Nome"
 
-#: ../data/messages:73
+#: ../data/messages:107
 msgid "Date"
 msgstr "Data"
 
-#: ../data/messages:75
+#: ../data/messages:109
 msgid "Type"
 msgstr "Tipo"
 
-#: ../data/messages:77
+#: ../data/messages:111
 msgid "Manual order"
 msgstr "Ordine manuale"
 
-#: ../data/messages:79
+#: ../data/messages:113
 msgid ""
 "It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
 "+v clipboard"
@@ -235,7 +308,7 @@ msgstr ""
 "Questa è la selezione fatta dal mouse, in opposizione all'usuale ctrl+c/ctrl"
 "+vdella tastiera"
 
-#: ../data/messages:81
+#: ../data/messages:115
 msgid "When copy/paste/cut, use the selection clipboard ?"
 msgstr ""
 "Quando si copia/incolla/taglia, utilizzare la selezione della tastiera ?"
@@ -245,9 +318,6 @@ msgstr ""
 
 #~ msgid "Clean local directory"
 #~ msgstr "Svuotare la cartella locale"
-
-#~ msgid "Directory & Options"
-#~ msgstr "Cartella e Optioni"
 
 #~ msgid ""
 #~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
