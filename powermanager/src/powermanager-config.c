@@ -40,6 +40,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.bUseGauge = CD_CONFIG_GET_BOOLEAN ("Configuration", "use gauge");
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+	
+	myConfig.bUseApprox = CD_CONFIG_GET_BOOLEAN ("Configuration", "use approx");
 CD_APPLET_GET_CONFIG_END
 
 

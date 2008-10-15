@@ -32,7 +32,6 @@ CD_APPLET_INIT_BEGIN
 				myData.pGauge = cairo_dock_load_gauge (myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 			}
 			
-			myConfig.bUseApprox = TRUE; //Pour tester l'approx
 			myData.previous_battery_time = -1;
 			myData.iAveragePresentState = 0;
 			myData.iMaxPresentState = 0;
@@ -84,8 +83,6 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 		
-		//J'hésite a remettre a zero l'average et le max present state, tu en pense quoi?
-		myConfig.bUseApprox = TRUE; //Pour tester l'approx
 	}
 	else
 		cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);

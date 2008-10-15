@@ -315,6 +315,10 @@ msgstr "Élastique"
 msgid "random"
 msgstr "Aléatoire"
 
+
+msgid "Use average system ?"
+msgstr "Utiliser le temps moyen ?"
+
 #~ msgid "Options"
 #~ msgstr "Options"
 

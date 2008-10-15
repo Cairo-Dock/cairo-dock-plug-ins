@@ -58,7 +58,8 @@ use size=
 #i[1;120] Interval of time between 2 checks :
 #{in seconds.}
 check interval = 15
-
+#b+ Use average system ?
+use approx = false
 
 #F[Display;gtk-dnd-multiple]
 frame_info=
