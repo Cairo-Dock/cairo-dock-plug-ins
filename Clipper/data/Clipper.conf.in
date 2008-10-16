@@ -53,6 +53,10 @@ on widget layer=false
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked =false
 
+#I[-180;180] Rotation :
+#{in degrees.1}
+rotation = 0
+
 use size=
 
 #F[Decorations;gtk-orientation-portrait]
