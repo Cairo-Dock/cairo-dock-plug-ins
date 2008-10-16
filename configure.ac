@@ -492,6 +492,7 @@ AC_CONFIG_FILES([
 	clock/data/themes/BlueSlim/Makefile
 	clock/data/themes/AmoraSlim/Makefile 
 	clock/data/themes/zen/Makefile
+	clock/data/themes/elegance/Makefile
 	
 	compiz-icon/Makefile
 	compiz-icon/src/Makefile

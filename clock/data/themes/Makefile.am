@@ -17,4 +17,5 @@ SUBDIRS = \
 	zen\
 	I_Clock\
 	BlueSlim\
-	AmoraSlim
+	AmoraSlim\
+	elegance
