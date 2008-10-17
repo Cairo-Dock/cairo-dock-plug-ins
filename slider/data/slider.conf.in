@@ -125,34 +125,3 @@ fill icon = false
 #{Set the transparency channel to 0 if you just don't want to have a background.}
 background color = 1.0; 1.0; 1.0; 1.0
 
-#F[Decorations;gtk-orientation-portrait]
-frame_bg =
-#r+[Personnal;frame with reflects;scotch;frame with scotch] Choose a background and foreground decoration :
-#{If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration.}
-decoration = 3
-
-#v
-sep_deco =
-
-#S+ Background image :
-#{It's an image that will be displayed below the slide, like a frame for exemple.}
-frame =
-#e+[0;1] Background tansparency :
-frame alpha = 1
-#i+[0;256] Left offset :
-#{It's typically the width of the left side of your frame, in pixels.}
-left offset = 0
-#i+[0;256] Top offset :
-#{It's typically the width of the left side of your frame, in pixels.}
-top offset = 0
-#i+[0;256] Right offset :
-#{It's typically the width of the left side of your frame, in pixels.}
-right offset = 0
-#i+[0;256] Bottom offset :
-#{It's typically the width of the left side of your frame, in pixels.}
-bottom offset = 0
-#S+ Reflection image :
-#{It's an image that will be displayed above the slide, like a reflect for exemple.}
-reflect =
-#e+[0;1] Reflection tansparency :
-reflect alpha = 1

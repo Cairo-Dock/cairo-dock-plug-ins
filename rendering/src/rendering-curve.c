@@ -56,28 +56,28 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	pDock->iDecorationsHeight = g_iFrameMargin + my_iCurveAmplitude + .5 * pDock->iMaxIconHeight;  // de bas en haut.
 	
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 0.));  // etendue max des icones, sans le cadre.
-	g_print ("iMaxDockWidth : %d\n", pDock->iMaxDockWidth);
+	//g_print ("iMaxDockWidth : %d\n", pDock->iMaxDockWidth);
 	
 	double h = 4./3 * (pDock->iDecorationsHeight + g_iDockLineWidth);  // hauteur de controle de la courbe de Bezier, de telle facon qu'elle atteigne 'iDecorationsHeight'.
 	double hi = .5 * pDock->iMaxIconHeight + g_iFrameMargin - 1;  // hauteur de la courbe a la 1ere icone.
 	double ti = .5 * (1. - sqrt (MAX (1. - 4./3 * hi / h, 0.01)));
 	double xi = xCurve (my_fCurveCurvature, ti);
 	double fDeltaX = pDock->iMaxDockWidth * xi / (1 - 2 * xi);  // abscisse de la 1ere icone pour satisfaire a la contrainte y=hi.
-	g_print ("ti = %.2f => xi = %.2f => fDeltaX = %.2f\n", ti, xi, fDeltaX);
+	//g_print ("ti = %.2f => xi = %.2f => fDeltaX = %.2f\n", ti, xi, fDeltaX);
 	
 	pDock->iMaxDockWidth += 2*fDeltaX;
 	double tan_theta = (my_fCurveCurvature != 1 ? h / ((1 - my_fCurveCurvature) * pDock->iMaxDockWidth / 2) : 1e6);  // la tangente a une courbe de Bezier en son origine est la droite reliant les deux premiers points de controle.
 	double fDeltaTip = .5 * g_iDockLineWidth * sqrt (1 + tan_theta * tan_theta) / tan_theta;  // prolongement de la pointe.
 	pDock->iMaxDockWidth += 2 * fDeltaTip;
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2*(fDeltaX+fDeltaTip)));
-	g_print ("fDeltaTip : %.2f\n", fDeltaTip);
+	//g_print ("fDeltaTip : %.2f\n", fDeltaTip);
 	
 	pDock->iMaxDockHeight = g_iDockLineWidth + g_iFrameMargin + my_iCurveAmplitude + (1 + g_fAmplitude) * pDock->iMaxIconHeight + g_iconTextDescription.iSize;  // de bas en haut.
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth - 4 * fDeltaTip;
 	
 	pDock->iMinDockWidth = pDock->fFlatDockWidth / (1 - 2 * xi) + 2 * fDeltaTip;
-	g_print ("pDock->fFlatDockWidth = %.2f => pDock->iMinDockWidth = %d\n", pDock->fFlatDockWidth, pDock->iMinDockWidth);
+	//g_print ("pDock->fFlatDockWidth = %.2f => pDock->iMinDockWidth = %d\n", pDock->fFlatDockWidth, pDock->iMinDockWidth);
 	
 	pDock->iMinDockHeight = g_iDockLineWidth + g_iFrameMargin + my_iCurveAmplitude + pDock->iMaxIconHeight;  // de bas en haut.
 	
@@ -766,7 +766,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 	double v = (-b_ - sqrt (b_*b_ - 4 * a_ * c_)) / (2 * a_);
 	double lambda = - (a + u) / (a + v);
 	double t = v + (u - v) / (1 + pow (lambda, 1./3));
-	g_print ("x : %.2f => t : %.2f\n", x, t);*/
+	//g_print ("x : %.2f => t : %.2f\n", x, t);*/
 	
 	//\____________________ On dessine les icones impactees.
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
@@ -941,7 +941,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 		
 		icon->fDrawX = icon->fX;
 		icon->fDrawY = icon->fY + sens * y;
-		g_print ("y : %.2f -> fDrawY = %.2f\n", y, icon->fDrawY);
+		//g_print ("y : %.2f -> fDrawY = %.2f\n", y, icon->fDrawY);
 		icon->fWidthFactor = 1.;
 		icon->fHeightFactor = 1.;
 		icon->fDeltaYReflection = 0.;
@@ -950,7 +950,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 			icon->fAlpha = 1;
 		else
 			icon->fAlpha = .25;
-		g_print ("fDrawX:%.2f / %d (%.2f)\n", icon->fDrawX, pDock->iCurrentWidth, icon->fAlpha);
+		//g_print ("fDrawX:%.2f / %d (%.2f)\n", icon->fDrawX, pDock->iCurrentWidth, icon->fAlpha);
 		
 		cairo_dock_manage_animations (icon, pDock);
 	}

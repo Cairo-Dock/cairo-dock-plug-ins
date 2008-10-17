@@ -41,14 +41,7 @@ struct _AppletConfig {
 	gchar *defaultTitle;
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	gboolean bStealTaskBarIcon;
-	
 	gboolean extendedDesklet;
-	MyAppletDecoration iDecoration;
-	int iLeftOffset, iTopOffset, iRightOffset, iBottomOffset;
-	gchar *cFrameImage;
-	gchar *cReflectImage;
-	gdouble fFrameAlpha;
-	gdouble fReflectAlpha;
 	} ;
 
 struct _AppletData {

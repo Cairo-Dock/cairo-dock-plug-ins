@@ -277,7 +277,7 @@ void cd_rendering_register_desklet_decorations (void)
 		79);  // 750x700
 	_register_desklet_decorations ("dark",
 		"dark-bg.png",
-		"",
+		NULL,
 		0,
 		0,
 		0,

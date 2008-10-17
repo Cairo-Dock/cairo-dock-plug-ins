@@ -18,8 +18,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 
 CD_APPLET_DEFINITION ("slider", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
-
-static void _slider_set_desklet_renderer (CairoDockModuleInstance *myApplet)
+/*static void _slider_set_desklet_renderer (CairoDockModuleInstance *myApplet)
 {
 	const gchar *cConfigName = NULL;
 	switch (myConfig.iDecoration)
@@ -52,12 +51,13 @@ static void _slider_set_desklet_renderer (CairoDockModuleInstance *myApplet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
-}
+}*/
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	if (myDesklet) {
-		_slider_set_desklet_renderer (myApplet);
+		//_slider_set_desklet_renderer (myApplet);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	double fRatio = (myDock ? myDock->fRatio : 1.);
@@ -119,7 +119,8 @@ CD_APPLET_RELOAD_BEGIN
 	myData.pPrevCairoSurface = NULL;
 	
 	if (myDesklet) {
-		_slider_set_desklet_renderer (myApplet);
+		//_slider_set_desklet_renderer (myApplet);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	double fRatio = (myDock ? myDock->fRatio : 1.);  // meme si le container n'a pas change, car un desklet se redimensionne, et l'icone avec.

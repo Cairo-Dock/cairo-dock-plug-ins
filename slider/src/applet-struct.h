@@ -69,13 +69,6 @@ struct _AppletConfig {
 	SliderAnimation iAnimation;
 	SliderClickOption iClickOption;
 	gboolean bUseThread;
-	
-	SliderDecoration iDecoration;
-	int iLeftOffset, iTopOffset, iRightOffset, iBottomOffset;
-	gchar *cFrameImage;
-	gchar *cReflectImage;
-	gdouble fFrameAlpha;
-	gdouble fReflectAlpha;
 } ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

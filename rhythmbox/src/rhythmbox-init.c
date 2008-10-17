@@ -12,7 +12,7 @@
 CD_APPLET_DEFINITION ("Rhythmbox", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
-static void _rhythmbox_set_desklet_renderer (void)
+/*static void _rhythmbox_set_desklet_renderer (void)
 {
 	const gchar *cConfigName = NULL;
 	switch (myConfig.iDecoration)
@@ -48,7 +48,7 @@ static void _rhythmbox_set_desklet_renderer (void)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
-}
+}*/
 
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
@@ -61,7 +61,8 @@ CD_APPLET_INIT_BEGIN
 		}
 		else
 		{
-			_rhythmbox_set_desklet_renderer ();
+			//_rhythmbox_set_desklet_renderer ();
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 	}
 	
@@ -138,7 +139,8 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else
 		{
-			_rhythmbox_set_desklet_renderer ();
+			//_rhythmbox_set_desklet_renderer ();
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 	}
 	
