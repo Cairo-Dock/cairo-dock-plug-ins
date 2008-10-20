@@ -122,204 +122,201 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37 ../data/messages:127
+#: ../data/messages:39
+msgid "in degrees."
+msgstr "en degrés."
+
+#: ../data/messages:41
+msgid "Rotation :"
+msgstr "Rotation :"
+
+#: ../data/messages:43
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:39
-#, fuzzy
+#: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"Si vous choisissez 'personnel', vous pourrez définir votre propre "
-"décorationou laissez vide pour ne pas en avoir."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
 
-#: ../data/messages:41
+#: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:43
-#, fuzzy
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
-"C'est une image à afficher en dessous de la diapositive, comme un cadre par "
-"example. Laissez vide pour utiliser celle par défaut."
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:45 ../data/messages:143
+#: ../data/messages:51
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:47 ../data/messages:145
+#: ../data/messages:53
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:49
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:51 ../data/messages:149
+#: ../data/messages:57
 msgid "Left offset :"
-msgstr "Décalage a gauche :"
+msgstr "Décalage à gauche :"
 
-#: ../data/messages:53
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:55 ../data/messages:153
+#: ../data/messages:61
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:57
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
-
-#: ../data/messages:59 ../data/messages:157
-msgid "Right offset :"
-msgstr "Décalage a droit :"
-
-#: ../data/messages:61
-msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
-
-#: ../data/messages:63 ../data/messages:161
-msgid "Bottom offset :"
-msgstr "Décalage du bas :"
+msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../data/messages:65
-#, fuzzy
+msgid "Right offset :"
+msgstr "Décalage à droite :"
+
+#: ../data/messages:67
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
+
+#: ../data/messages:69
+msgid "Bottom offset :"
+msgstr "Décalage en bas :"
+
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
-"C'est une image à afficher par-dessus la diapositive, comme un reflet par "
-"example. Laissez vide pour utiliser celle par défaut."
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:67
-#, fuzzy
+#: ../data/messages:73
 msgid "Foreground image :"
-msgstr "Image de fond :"
+msgstr "Image d'avant-plan :"
 
-#: ../data/messages:69
-#, fuzzy
+#: ../data/messages:75
 msgid "Foreground tansparency :"
-msgstr "Transparence du fond :"
+msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Directory"
 msgstr "Dossier"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Directory of the images :"
 msgstr "Dossier des images"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Scan in sub direcotries ?"
 msgstr "Scanner les sous dossiers ?"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Randomly browse files ?"
 msgstr "Afficher les images aléatoirement ?"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Behaviour"
 msgstr "Comportement"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "in seconds."
 msgstr "en seconde"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Sliding delay :"
 msgstr "Délais de changement :"
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Action when applet is clicked :"
 msgstr "Action au clique sur l'applet :"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "play/pause"
 msgstr "jouer/pause"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "open image"
 msgstr "ouvrir l'image"
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "Effect while changing image :"
 msgstr "Effet au changement d'image :"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "none"
 msgstr "aucun"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "fade"
 msgstr "fondu"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "blank fade"
 msgstr "flash"
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "fade in out"
 msgstr "fondu progressif"
 
-#: ../data/messages:103
+#: ../data/messages:107
 msgid "side kick"
 msgstr "coup de pied"
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "diaporama"
 msgstr "diaporama"
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid "grow up"
 msgstr "agrandissement"
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "shrink down"
 msgstr "rétrécissement "
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "random"
 msgstr "aléatoire"
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "Gives a better image rendering."
 msgstr "Donne un meilleur rendu de l'image"
 
-#: ../data/messages:117
+#: ../data/messages:121
 msgid "Keep widht/height ratio ?"
 msgstr "Conserver le ratio entre la hauteur et la largeur ?"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Si l'image est trop petite, elle sera zoomée."
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Forcer les images à remplir l'icône/le desklet ?"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Mettez la valeur de la transparence a 0 pour ne pas avoir de fond."
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Choose a background color :"
 msgstr "Choisir la couleur du fond :"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
@@ -327,50 +324,50 @@ msgstr ""
 "Si vous choisissez 'personnel', vous pourrez définir votre propre "
 "décorationou laissez vide pour ne pas en avoir."
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "Choose a background and foreground decoration :"
 msgstr "Choisissez une décoration de fond et de 1er plan :"
 
-#: ../data/messages:133
+#: ../data/messages:137
 msgid "Personnal"
 msgstr "Personnel"
 
-#: ../data/messages:135
+#: ../data/messages:139
 msgid "frame with reflects"
 msgstr "cadre avec reflets"
 
-#: ../data/messages:137
+#: ../data/messages:141
 msgid "scotch"
 msgstr "scotch"
 
-#: ../data/messages:139
+#: ../data/messages:143
 msgid "frame with scotch"
 msgstr "cadre avec scotch"
 
-#: ../data/messages:141
+#: ../data/messages:145
 msgid ""
 "It's an image that will be displayed below the slide, like a frame for "
 "exemple."
 msgstr ""
 "C'est une image qui sera affichée derrière le diaporama, comme un cadre."
 
-#: ../data/messages:147 ../data/messages:151 ../data/messages:155
-#: ../data/messages:159
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr "C'est la taille du coté gauche du cadre, en pixels."
 
-#: ../data/messages:163
+#: ../data/messages:167
 msgid ""
 "It's an image that will be displayed above the slide, like a reflect for "
 "exemple."
 msgstr ""
 "C'est une image qui sera affichée devant le diaporama, comme un reflet."
 
-#: ../data/messages:165
+#: ../data/messages:169
 msgid "Reflection image :"
 msgstr "Image du reflet :"
 
-#: ../data/messages:167
+#: ../data/messages:171
 msgid "Reflection tansparency :"
 msgstr "Transparence du reflet :"
 

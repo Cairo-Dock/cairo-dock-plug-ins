@@ -104,83 +104,91 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position"
 
-#: ../data/messages:33
-msgid "Decorations"
-msgstr ""
-
-#: ../data/messages:35
-msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-
-#: ../data/messages:37
-msgid "Choose a decoration theme for this desklet :"
-msgstr ""
-
 #: ../data/messages:39
+msgid "in degrees."
+msgstr "en degrés."
+
+#: ../data/messages:41
+msgid "Rotation :"
+msgstr "Rotation :"
+
+#: ../data/messages:43
+msgid "Decorations"
+msgstr "Décorations"
+
+#: ../data/messages:45
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+
+#: ../data/messages:47
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Choisissez un thème de décorations pour ce desklet :"
+
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
-
-#: ../data/messages:41
-msgid "Background image :"
-msgstr ""
-
-#: ../data/messages:43
-msgid "Background tansparency :"
-msgstr ""
-
-#: ../data/messages:45
-msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
-
-#: ../data/messages:47
-msgid "Left offset :"
-msgstr ""
-
-#: ../data/messages:49
-msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en uiliser aucune."
 
 #: ../data/messages:51
-msgid "Top offset :"
-msgstr ""
+msgid "Background image :"
+msgstr "Image de fond :"
 
 #: ../data/messages:53
-msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgid "Background tansparency :"
+msgstr "Transparence du fond :"
 
 #: ../data/messages:55
-msgid "Right offset :"
-msgstr ""
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../data/messages:57
-msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgid "Left offset :"
+msgstr "Décalage à gauche :"
 
 #: ../data/messages:59
-msgid "Bottom offset :"
-msgstr ""
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
 #: ../data/messages:61
+msgid "Top offset :"
+msgstr "Décalage en haut :"
+
+#: ../data/messages:63
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+
+#: ../data/messages:65
+msgid "Right offset :"
+msgstr "Décalage à droite :"
+
+#: ../data/messages:67
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
+
+#: ../data/messages:69
+msgid "Bottom offset :"
+msgstr "Décalage en bas :"
+
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:63
+#: ../data/messages:73
 msgid "Foreground image :"
-msgstr ""
+msgstr "Image d'avant-plan :"
 
-#: ../data/messages:65
+#: ../data/messages:75
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:67 ../data/messages:69
+#: ../data/messages:71 ../data/messages:73
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
@@ -188,161 +196,95 @@ msgstr ""
 "Tous les bureaux seront dessinés sur l'icône principal. Sinon un sous-dock "
 "contiendra tous les bureaux."
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Use the compact mode ?"
 msgstr "Utiliser le mode compact ?"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
 msgstr "Quand le mode compact est dessiné, essayer de préserver le ratio ?"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Map the wallpaper on icon ?"
 msgstr "Dessiner le fond d'écran sur l'icône ?"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Show desktop number on the icons ?"
 msgstr "Afficher le nombre de bureaux sur les icônes ?"
 
-#: ../data/messages:81
-#, fuzzy
+#: ../data/messages:85
 msgid "Draw the windows on icon ?"
-msgstr "Dessiner le fond d'écran sur l'icône ?"
+msgstr "Dessiner les fenêtres sur l'icône ?"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Display options"
 msgstr "Options d'affichage"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Size of the inside lines :"
 msgstr "Taille des lignes intérieures :"
 
-#: ../data/messages:87 ../data/messages:93 ../data/messages:99
-#: ../data/messages:103
+#: ../data/messages:91 ../data/messages:97 ../data/messages:103
+#: ../data/messages:107
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "Color of the inside lines :"
 msgstr "Couleur des lignes intérieures :"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "Size of the extern line :"
 msgstr "Taille des lignes extérieures :"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Color of the extern line :"
 msgstr "Couleur des lignes extérieures :"
 
-#: ../data/messages:97
-#, fuzzy
-msgid "Size of the Windows line :"
-msgstr "Taille des lignes intérieures :"
-
 #: ../data/messages:101
-#, fuzzy
-msgid "Color of the Windows line :"
-msgstr "Couleur des lignes intérieures :"
+msgid "Size of the Windows line :"
+msgstr "Taille des lignes des fenêtres :"
 
 #: ../data/messages:105
+msgid "Color of the Windows line :"
+msgstr "Couleur des lignes des fenêtres :"
+
+#: ../data/messages:109
 msgid "Color of the current desktop :"
 msgstr "Couleur du bureau courant :"
 
-#: ../data/messages:107
-#, fuzzy
-msgid "How to draw the current desktop :"
-msgstr "Couleur du bureau courant :"
-
-#: ../data/messages:109
-msgid "draw a frame"
-msgstr ""
-
 #: ../data/messages:111
-msgid "fill"
-msgstr ""
+msgid "How to draw the current desktop :"
+msgstr "Pour dessiner le bureau courant :"
 
 #: ../data/messages:113
-msgid "fill others"
-msgstr ""
+msgid "draw a frame"
+msgstr "dessiner un cadre"
 
 #: ../data/messages:115
+msgid "fill"
+msgstr "remplir"
+
+#: ../data/messages:117
+msgid "fill others"
+msgstr "remplir les autres"
+
+#: ../data/messages:119
 msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser l'image par défaut."
 
-#: ../data/messages:117
-#, fuzzy
+#: ../data/messages:121
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
-msgstr "Icône à utiliser si vous ne dessinez pas le fond d'écran :"
+msgstr "Icône à utiliser en mode étendu si vous ne dessinez pas le fond d'écran :"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut."
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la Vue utilisée "
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "En mode étendu, afficher le desklet en 3D ?"
-
-#~ msgid "Otherwise only its border will be filled."
-#~ msgstr "Sinon seulement ses bords seront remplis."
-
-#~ msgid "Fill the current desktop with this color ?"
-#~ msgstr "Remplir le bureau courant avec cette couleur ?"
-
-#~ msgid "ICON"
-#~ msgstr "ICONE"
-
-#~ msgid "MODULE"
-#~ msgstr "MODULE"
-
-#~ msgid ""
-#~ "This is the Desktop switcher applet\n"
-#~ " made by Cchumi for Cairo-Dock"
-#~ msgstr ""
-#~ "Ceci est l'applet switcher de Bureau\n"
-#~ " écrite par Cchumi pour Cairo-Dock"
-
-#~ msgid "Reload now"
-#~ msgstr "Recharger"
-
-#~ msgid "Default icon :"
-#~ msgstr "Icône par Défaut :"
-
-#~ msgid "Default Icon For Sub Dock View :"
-#~ msgstr "Icône par Défaut pour la Vue Sous Dock :"
-
-#~ msgid "Broken icon :"
-#~ msgstr "Icône de Défaillance :"
-
-#~ msgid "Invert Indicator of Current Desktop ?"
-#~ msgstr "Inverser l'identification du bureau courant ?"
-
-#~ msgid "Show Light Icon ?"
-#~ msgstr "Affiche l'icone principale simplifié ?"
-
-#~ msgid "Show Quickinfo on the Icon ?"
-#~ msgstr "Afficher Une info Rapide sur l'icone ?"
-
-#~ msgid "Number of Viewports "
-#~ msgstr "Nombre de Viewportss"
-
-#~ msgid "Lockposition ?"
-#~ msgstr "Verrouiller la position ?"
-
-#~ msgid "Size of the Inside Icon Lines :"
-#~ msgstr "Taille de la ligne Interieure :"
-
-#~ msgid "Color of the Inside Icon Lines :"
-#~ msgstr "Couleur des Lignes Interieures :"
-
-#~ msgid "Size of the Border Line :"
-#~ msgstr "Taille de la ligne du Cadre :"
-
-#~ msgid "Color of the Border Line :"
-#~ msgstr "Couleur de Ligne Exterieure :"
-
-#~ msgid "Map Wallpaper on icon ?"
-#~ msgstr "Afficher le Fond D'écran sur l'icône ?"

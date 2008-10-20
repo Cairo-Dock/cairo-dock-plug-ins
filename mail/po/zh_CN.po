@@ -321,32 +321,32 @@ msgstr "XfceMailwatch：TLS握手失败：编译时未加入SSL/TLS支持"
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "需要安全链接，但gnutls未初始化"
 
-#: ../src/mailwatch.c:723
+#: ../src/mailwatch.c:851
 msgid "This mailbox type does not require any configuration settings."
 msgstr "此邮箱类型不必进行配置"
 
-#: ../src/mailwatch.c:749
+#: ../src/mailwatch.c:877
 msgid "Mailbox _Name:"
 msgstr "邮箱_名称："
 
-#: ../src/mailwatch.c:815 ../src/mailwatch.c:1013
+#: ../src/mailwatch.c:943 ../src/mailwatch.c:1141
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "编辑邮箱：%s"
 
-#: ../src/mailwatch.c:881
+#: ../src/mailwatch.c:1009
 msgid "Select Mailbox Type"
 msgstr "选择邮箱类型"
 
-#: ../src/mailwatch.c:890
+#: ../src/mailwatch.c:1018
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "选择邮箱类型。类型的描述如下。"
 
-#: ../src/mailwatch.c:948
+#: ../src/mailwatch.c:1076
 msgid "Add New Mailbox"
 msgstr "添加新邮箱"
 
-#: ../src/mailwatch.c:1135
+#: ../src/mailwatch.c:1263
 msgid "Mailboxes"
 msgstr "邮箱"
 

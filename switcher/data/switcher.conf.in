@@ -50,7 +50,7 @@ on widget layer=false
 locked = false
 
 #I[-180;180] Rotation :
-#{in degrees.1}
+#{in degrees.}
 rotation = 0
 
 use size=

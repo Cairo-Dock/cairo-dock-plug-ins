@@ -197,6 +197,3 @@ msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
 #: ../data/messages:67
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
-
-#~ msgid "Module"
-#~ msgstr "Module"

@@ -160,116 +160,124 @@ msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:39
+msgid "in degrees.1"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Rotation :"
+msgstr ""
+
+#: ../data/messages:43
 #, fuzzy
 msgid "Decorations"
 msgstr "Informazioni"
 
-#: ../data/messages:41
+#: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:51
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Informations"
 msgstr "Informazioni"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Display Card name on the Label ?"
 msgstr "Mostrare il nome della Scheda nell'etichetta ?"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Display core temperature :"
 msgstr "Mostrare la temperatura del core :"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "no"
 msgstr "no"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "on icon"
 msgstr "sull'icona"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "on label"
 msgstr "sull'etichetta"
 
-#: ../data/messages:87
+#: ../data/messages:91
 #, fuzzy
 msgid "in seconds."
 msgstr "in secondi."
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "Delay between temperature checks :"
 msgstr "Ritardo tra le verifiche :"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid ""
 "in celcius. The temperature will be displayed between this value and the "
 "upper limit."
@@ -277,11 +285,11 @@ msgstr ""
 "in celsius. La temperatura sarà mostrata tra questo valore e il valore "
 "massimo."
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "Lower limit of core temperature :"
 msgstr "Limite inferiore della temperatura :"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid ""
 "in celcius. The temperature will be displayed between the lower limit and "
 "this value."
@@ -289,87 +297,87 @@ msgstr ""
 "in celsius. La temperatura sarà mostrata tra il valore minimo e questo "
 "valore."
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "Upper limit of core temperature :"
 msgstr "Limite superiore della temperatura :"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "Alert when core temperature is high ?"
 msgstr "Allertare quando la temperatura del core è alta ?"
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "in celcius."
 msgstr "in celcius."
 
-#: ../data/messages:103
+#: ../data/messages:107
 msgid "Alert limit of core temperature :"
 msgstr "Limite della temperatura del core prima di allertare :"
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Play a sound during the alert ?"
 msgstr "Utilizzare un effetto sonoro nell'allerta ?"
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid "Sound path :"
 msgstr "Cartella Suoni :"
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "Images"
 msgstr "Immagini"
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "Display a graphic rather than a gauge ?"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Type of graphic :"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "Line"
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:121
 msgid "Plain"
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid "Bar"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Circle"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "Plain Circle"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "It's the color of the graphic for high Temperature values."
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:131
 msgid "High values color :"
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid "It's the color of the graphic for low Temperature values."
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "Low values color :"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:137
 msgid "Background color of the graphic :"
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:139
 msgid "List of available themes for the analogic display :"
 msgstr "Lista dei temi disponibili per la vista analogica :"
 
-#: ../data/messages:137
+#: ../data/messages:141
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -377,23 +385,23 @@ msgstr ""
 "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
 "se si vuole alcuna filigrana."
 
-#: ../data/messages:139
+#: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
 msgstr "Immagine da mostrare come filigrana nell'indicatore :"
 
-#: ../data/messages:141
+#: ../data/messages:145
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "Settare a 0 se si vuole alcuna filigrana."
 
-#: ../data/messages:143
+#: ../data/messages:147
 msgid "Transparency of the watermark :"
 msgstr "Trasparenza della filigrana :"
 
-#: ../data/messages:145
+#: ../data/messages:149
 msgid "Let it empty to use the default icon."
 msgstr "Lasciate vuoto per utilizare l'icona di default."
 
-#: ../data/messages:147
+#: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nome dell'immagine dell'icona 'Non-funzionante' :"
 

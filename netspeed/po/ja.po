@@ -156,194 +156,202 @@ msgid "Lock position ?"
 msgstr "位置を固定？"
 
 #: ../data/messages:37
+msgid "in degrees.1"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Rotation :"
+msgstr ""
+
+#: ../data/messages:41
 #, fuzzy
 msgid "Decorations"
 msgstr "情報"
 
-#: ../data/messages:39
+#: ../data/messages:43
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:47
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:49
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:71 ../data/messages:125
+#: ../data/messages:75 ../data/messages:129
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Display a graphic rather than a gauge ?"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Type of graphic :"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Line"
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Plain"
 msgstr ""
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Bar"
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Circle"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Plain Circle"
 msgstr ""
 
-#: ../data/messages:87 ../data/messages:95
+#: ../data/messages:91 ../data/messages:99
 msgid "It's the color of the graphic for high CPU values."
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "High values color for the download speed :"
 msgstr ""
 
-#: ../data/messages:91 ../data/messages:99
+#: ../data/messages:95 ../data/messages:103
 msgid "It's the color of the graphic for low CPU values."
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "Low values color for the download speed :"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "High values color for the upload speed :"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "Low values color for the upload speed :"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:107
 msgid "Draw both values on the same graph ?"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Background color of the graphic :"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:111
 #, fuzzy
 msgid "List of available themes for the gauge :"
 msgstr "アナログ表示に利用可能なテーマのリスト :"
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:121
 msgid "Display speed values :"
 msgstr "速度の表示 :"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid "No"
 msgstr "なし"
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "On icon"
 msgstr "アイコン上"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "On label"
 msgstr "ラベル上"
 
-#: ../data/messages:127
+#: ../data/messages:131
 msgid "By default it will be 'eth0'."
 msgstr "デフォルトでは 'eth0' になります。"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid "interface :"
 msgstr "インターフェイス :"
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:133
+#: ../data/messages:137
 msgid "Delay between 2 measures :"
 msgstr "計測の間隔時間 :"
 

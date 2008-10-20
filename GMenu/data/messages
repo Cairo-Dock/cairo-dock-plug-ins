@@ -38,6 +38,10 @@ _("If locked, the desklet can't be moved by simply dragging it with the left mou
 
 _("Lock position ?")
 
+_("in degrees.1")
+
+_("Rotation :")
+
 _("Decorations")
 
 _("Choose the 'personnal' one to define your own decorations below.")

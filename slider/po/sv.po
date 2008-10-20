@@ -125,200 +125,208 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:37 ../data/messages:127
+#: ../data/messages:37
+msgid "in degrees.1"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Rotation :"
+msgstr ""
+
+#: ../data/messages:41 ../data/messages:131
 msgid "Decorations"
 msgstr "Fönsterdekorationer"
 
-#: ../data/messages:39
+#: ../data/messages:43
 #, fuzzy
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
 "att inte visa några dekorationer."
 
-#: ../data/messages:41
+#: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:47
 #, fuzzy
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr "Bild som visas under bildspelet, t ex som en ram."
 
-#: ../data/messages:45 ../data/messages:143
+#: ../data/messages:49 ../data/messages:147
 msgid "Background image :"
 msgstr "Bakgrundsbild:"
 
-#: ../data/messages:47 ../data/messages:145
+#: ../data/messages:51 ../data/messages:149
 msgid "Background tansparency :"
 msgstr "Genomskinlighet:"
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51 ../data/messages:149
+#: ../data/messages:55 ../data/messages:153
 msgid "Left offset :"
 msgstr "Avstånd från vänsterkant:"
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:153
+#: ../data/messages:59 ../data/messages:157
 msgid "Top offset :"
 msgstr "Avstånd från ovankant:"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:157
+#: ../data/messages:63 ../data/messages:161
 msgid "Right offset :"
 msgstr "Avstånd från högerkant:"
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:161
+#: ../data/messages:67 ../data/messages:165
 msgid "Bottom offset :"
 msgstr "Avstånd från nederkant:"
 
-#: ../data/messages:65
+#: ../data/messages:69
 #, fuzzy
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr "Bild som visas ovanför bildspelet, t ex en reflex."
 
-#: ../data/messages:67
+#: ../data/messages:71
 #, fuzzy
 msgid "Foreground image :"
 msgstr "Bakgrundsbild:"
 
-#: ../data/messages:69
+#: ../data/messages:73
 #, fuzzy
 msgid "Foreground tansparency :"
 msgstr "Genomskinlighet:"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Directory"
 msgstr "Katalog"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Directory of the images :"
 msgstr "Bildkatalog:"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Scan in sub direcotries ?"
 msgstr "Sök i underkataloger?"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Randomly browse files ?"
 msgstr "Sök efter filer slumpmässigt?"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Behaviour"
 msgstr "Beteende"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "in seconds."
 msgstr "i sekunder."
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Sliding delay :"
 msgstr "Paus mellan bilder:"
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Action when applet is clicked :"
 msgstr "Aktivitet när appleten klickas:"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "play/pause"
 msgstr "spela/pausa"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "open image"
 msgstr "öppna bild"
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "Effect while changing image :"
 msgstr "Effekt när bilden byts:"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "none"
 msgstr "ingen"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "fade"
 msgstr "tona"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "blank fade"
 msgstr "tona till blank"
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "fade in out"
 msgstr "tona in ut"
 
-#: ../data/messages:103
+#: ../data/messages:107
 msgid "side kick"
 msgstr "sidokick"
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "diaporama"
 msgstr "diaporama"
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid "grow up"
 msgstr "väx uppåt"
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "shrink down"
 msgstr "krymp neråt"
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "random"
 msgstr "slumpmässigt"
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Display"
 msgstr "Utseende"
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "Gives a better image rendering."
 msgstr "Ger bättre bildrendering."
 
-#: ../data/messages:117
+#: ../data/messages:121
 msgid "Keep widht/height ratio ?"
 msgstr "Behåll ursprungligt bildförhållande?"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Om bilden är för liten, förstoras den automatiskt."
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Repetera bilden för att fylla hela dockan?"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Sätt alfakanalen till 0 om du inte vill visa någon bakgrund."
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Choose a background color :"
 msgstr "Välj bakgrundsfärg:"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
@@ -326,47 +334,47 @@ msgstr ""
 "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
 "att inte visa några dekorationer."
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "Choose a background and foreground decoration :"
 msgstr "Välj förgrund- och bakgrundsdekorationer:"
 
-#: ../data/messages:133
+#: ../data/messages:137
 msgid "Personnal"
 msgstr "Personlig"
 
-#: ../data/messages:135
+#: ../data/messages:139
 msgid "frame with reflects"
 msgstr "ram med reflektion"
 
-#: ../data/messages:137
+#: ../data/messages:141
 msgid "scotch"
 msgstr "tejp"
 
-#: ../data/messages:139
+#: ../data/messages:143
 msgid "frame with scotch"
 msgstr "tejpad ram"
 
-#: ../data/messages:141
+#: ../data/messages:145
 msgid ""
 "It's an image that will be displayed below the slide, like a frame for "
 "exemple."
 msgstr "Bild som visas under bildspelet, t ex som en ram."
 
-#: ../data/messages:147 ../data/messages:151 ../data/messages:155
-#: ../data/messages:159
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr "Oftast bredden på den vänstra sidan av ramen, i pixlar."
 
-#: ../data/messages:163
+#: ../data/messages:167
 msgid ""
 "It's an image that will be displayed above the slide, like a reflect for "
 "exemple."
 msgstr "Bild som visas ovanför bildspelet, t ex en reflex."
 
-#: ../data/messages:165
+#: ../data/messages:169
 msgid "Reflection image :"
 msgstr "Bild för reflektion:"
 
-#: ../data/messages:167
+#: ../data/messages:171
 msgid "Reflection tansparency :"
 msgstr "Genomskinlighet för reflektion:"

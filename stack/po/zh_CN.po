@@ -145,160 +145,168 @@ msgid "Lock position ?"
 msgstr "锁定位置？"
 
 #: ../data/messages:43
+msgid "in degrees.1"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Rotation :"
+msgstr ""
+
+#: ../data/messages:47
 #, fuzzy
 msgid "Decorations"
 msgstr "目录及选项"
 
-#: ../data/messages:45
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Display"
 msgstr ""
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Let it empty to use default sub-dock view."
 msgstr "留空则使用默认子dock视图"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Name of the view used for the sub-dock :"
 msgstr "子dock使用的视图名称"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "They are items created by dropping a text into the Stack."
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Image for the 'text' items :"
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "They are items created by dropping an URL into the Stack."
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "Image for the 'URL' items :"
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "Options"
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
 msgstr "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在dock上显示"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "Filter files with their mime types ?"
 msgstr "根据MIME类型过滤文件"
 
-#: ../data/messages:99
+#: ../data/messages:103
 #, fuzzy
 msgid "Eg: image, text, video, audio, application, ..."
 msgstr "诸如：图片、文本、影像、音频、应用程序……"
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr "在此指定不显示的文件MIME类型列表"
 
-#: ../data/messages:103
+#: ../data/messages:107
 msgid "Sort items by :"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Name"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid "Date"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "Type"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "Manual order"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid ""
 "It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
 "+v clipboard"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "When copy/paste/cut, use the selection clipboard ?"
 msgstr ""
 

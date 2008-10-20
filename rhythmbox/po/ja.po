@@ -140,145 +140,153 @@ msgid "Lock position ?"
 msgstr "位置を固定？"
 
 #: ../data/messages:37
+msgid "in degrees.1"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Rotation :"
+msgstr ""
+
+#: ../data/messages:41
 #, fuzzy
 msgid "Decorations"
 msgstr "情報"
 
-#: ../data/messages:39
+#: ../data/messages:43
 #, fuzzy
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "「カスタム」を選択した場合、任意の装飾を下で指定できます。装飾を一切使用しな"
 "い場合は、空欄のままにしてください。"
 
-#: ../data/messages:41
+#: ../data/messages:45
 #, fuzzy
 msgid "Choose a decoration theme for this desklet :"
 msgstr "デスクレット・モード用の装飾の選択 :"
 
-#: ../data/messages:43
+#: ../data/messages:47
 #, fuzzy
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr "例えばフレームのように、カバーの背後に表示される画像です。"
 
-#: ../data/messages:45 ../data/messages:137
+#: ../data/messages:49 ../data/messages:141
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:47 ../data/messages:139
+#: ../data/messages:51 ../data/messages:143
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51 ../data/messages:143
+#: ../data/messages:55 ../data/messages:147
 msgid "Left offset :"
 msgstr "左側のオフセット :"
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:145
+#: ../data/messages:59 ../data/messages:149
 #, fuzzy
 msgid "Top offset :"
 msgstr "左側のオフセット :"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:147
+#: ../data/messages:63 ../data/messages:151
 msgid "Right offset :"
 msgstr "右側のオフセット :"
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:149
+#: ../data/messages:67 ../data/messages:153
 #, fuzzy
 msgid "Bottom offset :"
 msgstr "左側のオフセット :"
 
-#: ../data/messages:65
+#: ../data/messages:69
 #, fuzzy
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr "例えば反射のように、カバー上に表示される画像です。"
 
-#: ../data/messages:67
+#: ../data/messages:71
 #, fuzzy
 msgid "Foreground image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:69
+#: ../data/messages:73
 #, fuzzy
 msgid "Foreground tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Info-bubbles"
 msgstr "吹き出しによる情報通知"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Activate info-bubbles ?"
 msgstr "吹き出しによる情報通知を有効化？"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "in ms."
 msgstr "ミリ秒単位"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Time length of info-bubbles :"
 msgstr "吹き出し表示の継続時間 :"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Behaviour"
 msgstr "動作"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Animation when music changes :"
 msgstr "音楽切り替わり時のアニメーション:"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "bounce"
 msgstr "バウンド"
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "rotate"
 msgstr "回転"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "blink"
 msgstr "点滅"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "pulse"
 msgstr "波動"
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "upside-down"
 msgstr "上下逆さま"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "wobbly"
 msgstr "伸び縮み"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "random"
 msgstr "ランダム"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -287,44 +295,44 @@ msgstr ""
 "レットのアイコンがランチャーやアプリケーション、アプレットとして動作するよう"
 "になります。"
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "タスクバーの Rhythmbox のアイコンを奪取？"
 
-#: ../data/messages:103
+#: ../data/messages:107
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Display album's cover instead of icon ?"
 msgstr "アイコンの代わりにアルバムのカバーを表示？"
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid "Information to display on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "nothing"
 msgstr "なし"
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "time elapsed"
 msgstr "経過時間"
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "time left"
 msgstr "残り時間"
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "time in %"
 msgstr "時間の割合"
 
-#: ../data/messages:117
+#: ../data/messages:121
 #, fuzzy
 msgid "n° of track"
 msgstr "トラック番号"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
@@ -332,84 +340,84 @@ msgstr ""
 "「カスタム」を選択した場合、任意の装飾を下で指定できます。装飾を一切使用しな"
 "い場合は、空欄のままにしてください。"
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Choose a decoration for the desklet mode :"
 msgstr "デスクレット・モード用の装飾の選択 :"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "Personnal"
 msgstr "カスタム"
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Extended 3D mode"
 msgstr "拡張 3D モード"
 
-#: ../data/messages:127
+#: ../data/messages:131
 msgid "CD box"
 msgstr "CD ケース"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid "frame with reflects"
 msgstr "フレーム（反射）"
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "scotch"
 msgstr "セロテープ"
 
-#: ../data/messages:133
+#: ../data/messages:137
 msgid "frame with scotch"
 msgstr "フレーム（テープ）"
 
-#: ../data/messages:135
+#: ../data/messages:139
 msgid ""
 "It's an image that will be displayed below the cover, like a frame for "
 "exemple."
 msgstr "例えばフレームのように、カバーの背後に表示される画像です。"
 
-#: ../data/messages:141
+#: ../data/messages:145
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr "フレームの左側の幅など（ピクセル単位）"
 
-#: ../data/messages:151
+#: ../data/messages:155
 msgid ""
 "It's an image that will be displayed above the cover, like a reflect for "
 "exemple."
 msgstr "例えば反射のように、カバー上に表示される画像です。"
 
-#: ../data/messages:153
+#: ../data/messages:157
 msgid "Reflection image :"
 msgstr "反射の画像 :"
 
-#: ../data/messages:155
+#: ../data/messages:159
 msgid "Reflection tansparency :"
 msgstr "反射の透明度 :"
 
-#: ../data/messages:157
+#: ../data/messages:161
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:159 ../data/messages:163 ../data/messages:167
-#: ../data/messages:171 ../data/messages:175
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
+#: ../data/messages:175 ../data/messages:179
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:161
+#: ../data/messages:165
 msgid "Name of an image for the 'default' icon :"
 msgstr "「デフォルト」のアイコン画像の名前 :"
 
-#: ../data/messages:165
+#: ../data/messages:169
 msgid "Name of an image for the 'play' icon :"
 msgstr "「再生」のアイコン画像の名前 :"
 
-#: ../data/messages:169
+#: ../data/messages:173
 msgid "Name of an image for the 'stop' icon :"
 msgstr "「停止」のアイコン画像の名前 :"
 
-#: ../data/messages:173
+#: ../data/messages:177
 msgid "Name of an image for the 'pause' icon :"
 msgstr "「一時停止」のアイコン画像の名前 :"
 
-#: ../data/messages:177
+#: ../data/messages:181
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
 

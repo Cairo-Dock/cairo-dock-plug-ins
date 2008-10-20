@@ -137,107 +137,115 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37
-msgid "Decorations"
-msgstr ""
-
 #: ../data/messages:39
-msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgid "in degrees."
+msgstr "en degrés."
 
 #: ../data/messages:41
-msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgid "Rotation :"
+msgstr "Rotation :"
 
 #: ../data/messages:43
+msgid "Decorations"
+msgstr "Décorations"
+
+#: ../data/messages:45
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+
+#: ../data/messages:47
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Choisissez un thème de décorations pour ce desklet :"
+
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
-
-#: ../data/messages:45
-msgid "Background image :"
-msgstr ""
-
-#: ../data/messages:47
-msgid "Background tansparency :"
-msgstr ""
-
-#: ../data/messages:49
-msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en uiliser aucune."
 
 #: ../data/messages:51
-msgid "Left offset :"
-msgstr ""
+msgid "Background image :"
+msgstr "Image de fond :"
 
 #: ../data/messages:53
-msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgid "Background tansparency :"
+msgstr "Transparence du fond :"
 
 #: ../data/messages:55
-msgid "Top offset :"
-msgstr ""
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../data/messages:57
-msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgid "Left offset :"
+msgstr "Décalage à gauche :"
 
 #: ../data/messages:59
-msgid "Right offset :"
-msgstr ""
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
 #: ../data/messages:61
-msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgid "Top offset :"
+msgstr "Décalage en haut :"
 
 #: ../data/messages:63
-msgid "Bottom offset :"
-msgstr ""
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../data/messages:65
+msgid "Right offset :"
+msgstr "Décalage à droite :"
+
+#: ../data/messages:67
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
+
+#: ../data/messages:69
+msgid "Bottom offset :"
+msgstr "Décalage en bas :"
+
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:67
+#: ../data/messages:73
 msgid "Foreground image :"
-msgstr ""
+msgstr "Image d'avant-plan :"
 
-#: ../data/messages:69
+#: ../data/messages:75
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Audio Player"
 msgstr "Lecteur Audio"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Player to control:"
 msgstr "Lecteur à contrôler:"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "XMMS"
 msgstr "XMMS"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Audacious"
 msgstr "Audacious"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Banshee"
 msgstr "Banshee"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Exaile"
 msgstr "Exaile"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -246,170 +254,139 @@ msgstr ""
 "L'icône de l'applet se comportera comme un lanceur, une application et un "
 "applet."
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Steal the player's icon from taskbar ?"
 msgstr "Voler l'icône du lecteur de la barre des taches ?"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "Nothing"
 msgstr "Rien"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Time Elapsed"
 msgstr "Temps Écoulé"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "Time Left"
 msgstr "Temps Restant"
 
-#: ../data/messages:99
-#, fuzzy
+#: ../data/messages:103
 msgid "N° of track"
 msgstr "N° de piste"
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "Activate extended desklet mode ?"
 msgstr "Activer le mode desklet étendu ?"
 
-#: ../data/messages:103
+#: ../data/messages:107
 msgid "Extended display mode :"
 msgstr "Mode d'affichage étendu :"
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Info"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid "Info and Controler"
 msgstr "Info et Controleur"
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "Caroussel"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "Controler"
 msgstr "Controleur"
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Action on music change"
 msgstr "Action au changement de musique"
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "Show an info-bubble ?"
 msgstr "Montrer une info-bulle ?"
 
-#: ../data/messages:117
+#: ../data/messages:121
 msgid "With a icon ?"
 msgstr "Avec une icône ?"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid "in ms."
 msgstr "en ms."
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Time length of info-bubbles :"
 msgstr "Durée des info-bulles :"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "Animate icon ?"
 msgstr "Animer l'icône ?"
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Animation when music changes :"
 msgstr "Animation au changement de musique"
 
-#: ../data/messages:127
+#: ../data/messages:131
 msgid "bounce"
 msgstr "Rebond"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid "rotate"
 msgstr "Rotation"
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "blink"
 msgstr "Clignotement"
 
-#: ../data/messages:133
+#: ../data/messages:137
 msgid "pulse"
 msgstr "Pulsation"
 
-#: ../data/messages:135
+#: ../data/messages:139
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
-#: ../data/messages:137
+#: ../data/messages:141
 msgid "wobbly"
 msgstr "Élastique"
 
-#: ../data/messages:139
+#: ../data/messages:143
 msgid "random"
 msgstr "Aléatoire"
 
-#: ../data/messages:141
+#: ../data/messages:145
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:143 ../data/messages:147 ../data/messages:151
-#: ../data/messages:155 ../data/messages:159
+#: ../data/messages:147 ../data/messages:151 ../data/messages:155
+#: ../data/messages:159 ../data/messages:163
 msgid "Let it empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
-#: ../data/messages:145
+#: ../data/messages:149
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
-#: ../data/messages:149
+#: ../data/messages:153
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom de l'image 'Jouer' :"
 
-#: ../data/messages:153
+#: ../data/messages:157
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom de l'image 'Stop' :"
 
-#: ../data/messages:157
+#: ../data/messages:161
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom de l'image 'Pause' :"
 
-#: ../data/messages:161
+#: ../data/messages:165
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Pas de Signal': "
-
-#~ msgid "Play/Pause"
-#~ msgstr "Jouer/Pause"
-
-#~ msgid "Next"
-#~ msgstr "Suivant"
-
-#~ msgid "Options"
-#~ msgstr "Options"
-
-#~ msgid "Module"
-#~ msgstr "Module"
-
-#~ msgid "Icon's name :"
-#~ msgstr "Nom de l'icône :"
-
-#~ msgid "Info-bubbles"
-#~ msgstr "Info-bulles"
-
-#~ msgid "Animations"
-#~ msgstr "Animations"
-
-#~ msgid "Total Time"
-#~ msgstr "Temps Total"
-
-#~ msgid "Lockposition ?"
-#~ msgstr "Verrouiller la position ?"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "Laissez vide pour utiliser l'icône par défaut."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-10-16 01:04+0200\n"
+"POT-Creation-Date: 2008-10-17 02:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -319,32 +319,32 @@ msgstr ""
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr ""
 
-#: ../src/mailwatch.c:723
+#: ../src/mailwatch.c:851
 msgid "This mailbox type does not require any configuration settings."
 msgstr ""
 
-#: ../src/mailwatch.c:749
+#: ../src/mailwatch.c:877
 msgid "Mailbox _Name:"
 msgstr ""
 
-#: ../src/mailwatch.c:815 ../src/mailwatch.c:1013
+#: ../src/mailwatch.c:943 ../src/mailwatch.c:1141
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr ""
 
-#: ../src/mailwatch.c:881
+#: ../src/mailwatch.c:1009
 msgid "Select Mailbox Type"
 msgstr ""
 
-#: ../src/mailwatch.c:890
+#: ../src/mailwatch.c:1018
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 
-#: ../src/mailwatch.c:948
+#: ../src/mailwatch.c:1076
 msgid "Add New Mailbox"
 msgstr ""
 
-#: ../src/mailwatch.c:1135
+#: ../src/mailwatch.c:1263
 msgid "Mailboxes"
 msgstr ""
 

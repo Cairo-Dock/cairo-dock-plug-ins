@@ -111,86 +111,10 @@ msgid "Name of an image for the 'broken' icon :"
 msgstr "用于损毁图标的图片名"
 
 #: ../data/messages:27
-msgid ""
-"tk-convert]\n"
-"[Desklet]\n"
-"use size=\n"
-"F[Decorations;gtk-orientation-portrait]"
-msgstr ""
-
-#: ../data/messages:29
-msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-
-#: ../data/messages:31
-msgid "Choose a decoration theme for this desklet :"
-msgstr ""
-
-#: ../data/messages:33
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-
-#: ../data/messages:35
-msgid "Background image :"
-msgstr ""
-
-#: ../data/messages:37
-msgid "Background tansparency :"
-msgstr ""
-
-#: ../data/messages:39
-msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
-
-#: ../data/messages:41
-msgid "Left offset :"
-msgstr ""
-
-#: ../data/messages:43
-msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
-
-#: ../data/messages:45
-msgid "Top offset :"
-msgstr ""
-
-#: ../data/messages:47
-msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
-
-#: ../data/messages:49
-msgid "Right offset :"
-msgstr ""
-
-#: ../data/messages:51
-msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
-
-#: ../data/messages:53
-msgid "Bottom offset :"
-msgstr ""
-
-#: ../data/messages:55
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-
-#: ../data/messages:57
-msgid "Foreground image :"
-msgstr ""
-
-#: ../data/messages:59
-msgid "Foreground tansparency :"
-msgstr ""
-
-#: ../data/messages:61
 msgid "Configuration"
 msgstr "设置"
 
-#: ../data/messages:63
+#: ../data/messages:29
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -201,23 +125,23 @@ msgstr ""
 "类似<<No marshaller for signature of signal 'NoteDeleted'>>的错误的时候，启用"
 "此项目"
 
-#: ../data/messages:65
+#: ../data/messages:31
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "模拟“删除便签”信号？"
 
-#: ../data/messages:67
+#: ../data/messages:33
 msgid "Let it empty to use default sub-dock view."
 msgstr "留空以使用默认子dock视图"
 
-#: ../data/messages:69
+#: ../data/messages:35
 msgid "Name of the view used for the sub-dock :"
 msgstr "用于子dock的视图名称："
 
-#: ../data/messages:71
+#: ../data/messages:37
 msgid "Draw note's content on their icon ?"
 msgstr "在图标上绘制便签内容？"
 
-#: ../data/messages:73
+#: ../data/messages:39
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
@@ -226,7 +150,7 @@ msgstr ""
 "写下您便签平时使用的日期格式。语法为'strftime'的一种： %d表示日，%m表示月, %y"
 "表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
 
-#: ../data/messages:75
+#: ../data/messages:41
 msgid "Date format to search for :"
 msgstr "搜索使用的日期格式："
 

@@ -109,82 +109,90 @@ msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:33
-msgid "Decorations"
+msgid "in degrees.1"
 msgstr ""
 
 #: ../data/messages:35
-msgid "Choose the 'personnal' one to define your own decorations below."
+msgid "Rotation :"
 msgstr ""
 
 #: ../data/messages:37
-msgid "Choose a decoration theme for this desklet :"
+msgid "Decorations"
 msgstr ""
 
 #: ../data/messages:39
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:45
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:47
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:51
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:67 ../data/messages:69
+#: ../data/messages:71 ../data/messages:73
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
@@ -192,104 +200,104 @@ msgstr ""
 "Tutti i desktop saranno disegnati nell'icona principale. Altrimenti una sub-"
 "dock conterrà tutti i desktop."
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Use the compact mode ?"
 msgstr "Usare il modo compatto ?"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
 msgstr ""
 "Se disegnata in modo compatto, cercare di mantenere il rapporto dello "
 "schermo ?"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Map the wallpaper on icon ?"
 msgstr "Tracciare il wallpaper nell'icona ?"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Show desktop number on the icons ?"
 msgstr "Mostrare il numero del dektop nell'icona ?"
 
-#: ../data/messages:81
+#: ../data/messages:85
 #, fuzzy
 msgid "Draw the windows on icon ?"
 msgstr "Tracciare il wallpaper nell'icona ?"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Display options"
 msgstr "Opzioni di display"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Size of the inside lines :"
 msgstr "Dimensione delle linee interne :"
 
-#: ../data/messages:87 ../data/messages:93 ../data/messages:99
-#: ../data/messages:103
+#: ../data/messages:91 ../data/messages:97 ../data/messages:103
+#: ../data/messages:107
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "Color of the inside lines :"
 msgstr "Colore delle linee interne :"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "Size of the extern line :"
 msgstr "Dimensione delle linee esterne :"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Color of the extern line :"
 msgstr "Colore delle linee esterne :"
 
-#: ../data/messages:97
+#: ../data/messages:101
 #, fuzzy
 msgid "Size of the Windows line :"
 msgstr "Dimensione delle linee interne :"
 
-#: ../data/messages:101
+#: ../data/messages:105
 #, fuzzy
 msgid "Color of the Windows line :"
 msgstr "Colore delle linee interne :"
 
-#: ../data/messages:105
+#: ../data/messages:109
 #, fuzzy
 msgid "Color of the current desktop :"
 msgstr "Colore del desktop attuale :"
 
-#: ../data/messages:107
+#: ../data/messages:111
 #, fuzzy
 msgid "How to draw the current desktop :"
 msgstr "Colore del desktop attuale :"
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "draw a frame"
 msgstr "disegna una cornice"
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "fill"
 msgstr "riempire"
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "fill others"
 msgstr "riempire gli altri"
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "Let empty to use the default one."
 msgstr "Lasciare vuoto per utilizzare quella di default."
 
-#: ../data/messages:117
+#: ../data/messages:121
 #, fuzzy
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr "Icona da usare se non si traccia il wallpaper"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciare vuoto per utilizzare la vista di default della sub-dock."
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
-#: ../data/messages:123
+#: ../data/messages:127
 #, fuzzy
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "Se in modo esteso, rendere la desklet in 3D ?"

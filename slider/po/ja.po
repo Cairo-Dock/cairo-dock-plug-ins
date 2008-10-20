@@ -123,19 +123,27 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:37 ../data/messages:127
-msgid "Decorations"
+#: ../data/messages:37
+msgid "in degrees.1"
 msgstr ""
 
 #: ../data/messages:39
-msgid "Choose the 'personnal' one to define your own decorations below."
+msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:41
-msgid "Choose a decoration theme for this desklet :"
+#: ../data/messages:41 ../data/messages:131
+msgid "Decorations"
 msgstr ""
 
 #: ../data/messages:43
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:47
 #, fuzzy
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
@@ -144,47 +152,47 @@ msgstr ""
 "例えばフレームのように、スライドの背後に表示される画像です。デフォルトのもの"
 "を使用するには空欄のままにしてください。"
 
-#: ../data/messages:45 ../data/messages:143
+#: ../data/messages:49 ../data/messages:147
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:47 ../data/messages:145
+#: ../data/messages:51 ../data/messages:149
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51 ../data/messages:149
+#: ../data/messages:55 ../data/messages:153
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:153
+#: ../data/messages:59 ../data/messages:157
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:157
+#: ../data/messages:63 ../data/messages:161
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:161
+#: ../data/messages:67 ../data/messages:165
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:69
 #, fuzzy
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
@@ -193,179 +201,179 @@ msgstr ""
 "例えば反射のように、スライドの前面に表示される画像です。デフォルトのものを使"
 "用するには空欄のままにしてください。"
 
-#: ../data/messages:67
+#: ../data/messages:71
 #, fuzzy
 msgid "Foreground image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:69
+#: ../data/messages:73
 #, fuzzy
 msgid "Foreground tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Directory"
 msgstr "ディレクトリ"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Directory of the images :"
 msgstr "画像のディレクトリ :"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Scan in sub direcotries ?"
 msgstr "サブ・ディレクトリもスキャン？"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Randomly browse files ?"
 msgstr "ファイルをランダムに閲覧？"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Behaviour"
 msgstr "動作"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Sliding delay :"
 msgstr "スライドの遅延時間 :"
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Action when applet is clicked :"
 msgstr "アプレットをクリックしたときのアクション :"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "play/pause"
 msgstr "再生/停止"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "open image"
 msgstr "画像を開く"
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "Effect while changing image :"
 msgstr "画像切り替え中の効果"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "none"
 msgstr "なし"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "fade"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "blank fade"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "fade in out"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:107
 msgid "side kick"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "diaporama"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid "grow up"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "shrink down"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "random"
 msgstr "ランダム"
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "Gives a better image rendering."
 msgstr "画像の描画をより良くします"
 
-#: ../data/messages:117
+#: ../data/messages:121
 msgid "Keep widht/height ratio ?"
 msgstr "縦横比を保つ？"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid "If the image is too small, it will be zoomed in."
 msgstr "画像が小さすぎる場合にズームインします。"
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "画像がアイコン/デスクレットを埋めるように引き伸ばす？"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
 "背景を持たせたくない場合は、透明度のチャンネルを 0 に設定してください。"
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Choose a background color :"
 msgstr "背景色の選択 :"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "Choose a background and foreground decoration :"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:137
 msgid "Personnal"
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:139
 msgid "frame with reflects"
 msgstr ""
 
-#: ../data/messages:137
+#: ../data/messages:141
 msgid "scotch"
 msgstr ""
 
-#: ../data/messages:139
+#: ../data/messages:143
 msgid "frame with scotch"
 msgstr ""
 
-#: ../data/messages:141
+#: ../data/messages:145
 msgid ""
 "It's an image that will be displayed below the slide, like a frame for "
 "exemple."
 msgstr ""
 
-#: ../data/messages:147 ../data/messages:151 ../data/messages:155
-#: ../data/messages:159
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr ""
 
-#: ../data/messages:163
+#: ../data/messages:167
 msgid ""
 "It's an image that will be displayed above the slide, like a reflect for "
 "exemple."
 msgstr ""
 
-#: ../data/messages:165
+#: ../data/messages:169
 msgid "Reflection image :"
 msgstr "反射の画像 :"
 
-#: ../data/messages:167
+#: ../data/messages:171
 msgid "Reflection tansparency :"
 msgstr "反射の透明度 :"
 

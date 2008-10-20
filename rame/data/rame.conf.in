@@ -51,7 +51,7 @@ on widget layer=false
 locked = false
 
 #I[-180;180] Rotation :
-#{in degrees.1}
+#{in degrees.}
 rotation = 0
 
 use size=
@@ -101,19 +101,19 @@ use graphic = false
 graphic type = 0
 
 #c+3[0;1] High values color for RAM :
-#{It's the color of the graphic for high CPU values.}
+#{It's the color of the graphic for high RAM values.}
 high color = 0;0;1
 
 #c+3[0;1] Low values color for RAM :
-#{It's the color of the graphic for low CPU values.}
+#{It's the color of the graphic for low RAM values.}
 low color = 0;1;0
 
 #c+3[0;1] High values color for SWAP :
-#{It's the color of the graphic for high CPU values.}
+#{It's the color of the graphic for high RAM values.}
 high color2 = 1;0;0
 
 #c+3[0;1] Low values color for SWAP :
-#{It's the color of the graphic for low CPU values.}
+#{It's the color of the graphic for low RAM values.}
 low color2 = 1;1;0
 
 #b Draw both values on the same graph ?

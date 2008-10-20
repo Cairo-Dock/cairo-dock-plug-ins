@@ -119,11 +119,9 @@ msgid "Ratio height/width :"
 msgstr "Ratio hauteur/largeur :"
 
 #: ../data/messages:47
-#, fuzzy
 msgid "0 means the wave is totally flat, 1 means the wave is maximal."
 msgstr ""
-"0 signifie que la vague est totalement plate, 1 que la vague est identique "
-"aux autres vues."
+"0 signifie que la vague est totalement plate, 1 que la vague est maximale."
 
 #: ../data/messages:49 ../data/messages:67
 msgid "Magnitude of the wave :"
@@ -174,7 +172,6 @@ msgid "Number of icons on the first row :"
 msgstr "Nombre d'icônes dans la 1ère ligne :"
 
 #: ../data/messages:71
-#, fuzzy
 msgid ""
 "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
 "widely opened."
@@ -275,30 +272,9 @@ msgid "The lower, the more the curve will seem flat."
 msgstr "Plus la valeur est faible, plus la courbure semblera flasque."
 
 #: ../data/messages:159
-#, fuzzy
 msgid "Curvature of the curve in percent :"
 msgstr "Pourcentage de courbure :"
 
 #: ../data/messages:163
 msgid "Amplitude of the curve."
 msgstr "Amplitude de la courbure :"
-
-#~ msgid "it's the 'a' in y=k*x^a"
-#~ msgstr "C'est le 'a' de y=k*x^a"
-
-#~ msgid ""
-#~ "not including the labels. The 'k' coef will be adjusted to preserve this "
-#~ "ratio."
-#~ msgstr ""
-#~ "n'inclue pas les étiquettes. Le coefficient 'k' sera ajusté pour "
-#~ "préserver ce ratio."
-
-#~ msgid "Use a flat separator instead of the defined separator icon ?"
-#~ msgstr ""
-#~ "Utiliser un séparateur plat au lieu de l'icône définie des séparateurs ?"
-
-#~ msgid "If so, you can specify its color:"
-#~ msgstr "Si oui, précisez sa couleur:"
-
-#~ msgid "Diapo"
-#~ msgstr "Diapo"

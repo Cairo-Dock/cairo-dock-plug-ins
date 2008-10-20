@@ -140,23 +140,31 @@ msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:37
+msgid "in degrees.1"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Rotation :"
+msgstr ""
+
+#: ../data/messages:41
 #, fuzzy
 msgid "Decorations"
 msgstr "Informazione"
 
-#: ../data/messages:39
+#: ../data/messages:43
 #, fuzzy
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Se scegliete 'personalizzato', potrete definire la vostra propria "
 "decorazione; lasciate vuoto per non averne."
 
-#: ../data/messages:41
+#: ../data/messages:45
 #, fuzzy
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Scegliete una decorazione per la desklet :"
 
-#: ../data/messages:43
+#: ../data/messages:47
 #, fuzzy
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
@@ -165,49 +173,49 @@ msgstr ""
 "Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
 "cornice."
 
-#: ../data/messages:45 ../data/messages:137
+#: ../data/messages:49 ../data/messages:141
 msgid "Background image :"
 msgstr "Immagine di sfondo :"
 
-#: ../data/messages:47 ../data/messages:139
+#: ../data/messages:51 ../data/messages:143
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51 ../data/messages:143
+#: ../data/messages:55 ../data/messages:147
 msgid "Left offset :"
 msgstr "Spostare a sinistra :"
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:145
+#: ../data/messages:59 ../data/messages:149
 #, fuzzy
 msgid "Top offset :"
 msgstr "Spostare a sinistra :"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:147
+#: ../data/messages:63 ../data/messages:151
 msgid "Right offset :"
 msgstr "Spostare a destra :"
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:149
+#: ../data/messages:67 ../data/messages:153
 #, fuzzy
 msgid "Bottom offset :"
 msgstr "Spostare a sinistra :"
 
-#: ../data/messages:65
+#: ../data/messages:69
 #, fuzzy
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
@@ -216,73 +224,73 @@ msgstr ""
 "Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
 "cornice."
 
-#: ../data/messages:67
+#: ../data/messages:71
 #, fuzzy
 msgid "Foreground image :"
 msgstr "Immagine di sfondo :"
 
-#: ../data/messages:69
+#: ../data/messages:73
 #, fuzzy
 msgid "Foreground tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Info-bubbles"
 msgstr "Info-bubbles"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Activate info-bubbles ?"
 msgstr "Attivare le info-bubbles ?"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "in ms."
 msgstr "in ms."
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Time length of info-bubbles :"
 msgstr "Durata delle info-bubbles :"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Behaviour"
 msgstr "Comportamento"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Animation when music changes :"
 msgstr "Animazione al cambiamento di musica"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "bounce"
 msgstr "Rimbalzo"
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "rotate"
 msgstr "Rotazione"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "blink"
 msgstr "Lampeggiamento"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "pulse"
 msgstr "Pulsazione"
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "upside-down"
 msgstr "Capovolgimento"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "wobbly"
 msgstr "Molla"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "random"
 msgstr "Casuale"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -290,44 +298,44 @@ msgstr ""
 "Questo impedirà all'icona di Rhythmbox di apparire nella TaskBar. L'icona "
 "dell'applet si comporterà così da lanciatore, da applicazione e da applet."
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "Rubare l'icona dalla taskbar ?"
 
-#: ../data/messages:103
+#: ../data/messages:107
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Display album's cover instead of icon ?"
 msgstr "Mostrare la copertina dell'album al posto dell'icona ?"
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid "Information to display on the icon :"
 msgstr "Info da mostrare sull'icona :"
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "nothing"
 msgstr "Niente"
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "time elapsed"
 msgstr "Tempo Trascorso"
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "time left"
 msgstr "Tempo Residuo"
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "time in %"
 msgstr "Tempo in %"
 
-#: ../data/messages:117
+#: ../data/messages:121
 #, fuzzy
 msgid "n° of track"
 msgstr "N° della traccia"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid ""
 "If you choose 'personnal', you can define your own decoration above, or let "
 "it blank to not use any decoration."
@@ -335,35 +343,35 @@ msgstr ""
 "Se scegliete 'personalizzato', potrete definire la vostra propria "
 "decorazione; lasciate vuoto per non averne."
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Choose a decoration for the desklet mode :"
 msgstr "Scegliete una decorazione per la desklet :"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "Personnal"
 msgstr "Personalizzato"
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Extended 3D mode"
 msgstr "Modo 3D esteso"
 
-#: ../data/messages:127
+#: ../data/messages:131
 msgid "CD box"
 msgstr "Box CD"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid "frame with reflects"
 msgstr "Cornice con riflessi"
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "scotch"
 msgstr "Scotch"
 
-#: ../data/messages:133
+#: ../data/messages:137
 msgid "frame with scotch"
 msgstr "Cornice con scotch"
 
-#: ../data/messages:135
+#: ../data/messages:139
 msgid ""
 "It's an image that will be displayed below the cover, like a frame for "
 "exemple."
@@ -371,11 +379,11 @@ msgstr ""
 "Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
 "cornice."
 
-#: ../data/messages:141
+#: ../data/messages:145
 msgid "It's typically the width of the left side of your frame, in pixels."
 msgstr "E' la larghezza del lato sinistro della vostra cornice, in pixels."
 
-#: ../data/messages:151
+#: ../data/messages:155
 #, fuzzy
 msgid ""
 "It's an image that will be displayed above the cover, like a reflect for "
@@ -384,39 +392,39 @@ msgstr ""
 "Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
 "cornice."
 
-#: ../data/messages:153
+#: ../data/messages:157
 msgid "Reflection image :"
 msgstr "Immagine del riflesso :"
 
-#: ../data/messages:155
+#: ../data/messages:159
 msgid "Reflection tansparency :"
 msgstr "Trasparenza del riflesso :"
 
-#: ../data/messages:157
+#: ../data/messages:161
 msgid "Personnalisation"
 msgstr "Personalizzazione"
 
-#: ../data/messages:159 ../data/messages:163 ../data/messages:167
-#: ../data/messages:171 ../data/messages:175
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
+#: ../data/messages:175 ../data/messages:179
 msgid "Let t empty to use the default icon."
 msgstr "Lasciare vuoto per utilizzare l'icona di default."
 
-#: ../data/messages:161
+#: ../data/messages:165
 msgid "Name of an image for the 'default' icon :"
 msgstr "Immagine per l'icona 'default' :"
 
-#: ../data/messages:165
+#: ../data/messages:169
 msgid "Name of an image for the 'play' icon :"
 msgstr "Immagine per l'icona 'play' :"
 
-#: ../data/messages:169
+#: ../data/messages:173
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Immagine per l'icona 'stop' :"
 
-#: ../data/messages:173
+#: ../data/messages:177
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Immagine per l'icona 'pausa' :"
 
-#: ../data/messages:177
+#: ../data/messages:181
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Immagine per l'icona 'non-funzionante' :"

@@ -142,101 +142,107 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37
-msgid "Decorations"
-msgstr ""
-
 #: ../data/messages:39
-msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgid "in degrees."
+msgstr "en degrés."
 
 #: ../data/messages:41
-msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgid "Rotation :"
+msgstr "Rotation :"
 
 #: ../data/messages:43
+msgid "Decorations"
+msgstr "Décorations"
+
+#: ../data/messages:45
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+
+#: ../data/messages:47
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Choisissez un thème de décorations pour ce desklet :"
+
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
-
-#: ../data/messages:45
-msgid "Background image :"
-msgstr ""
-
-#: ../data/messages:47
-#, fuzzy
-msgid "Background tansparency :"
-msgstr "Transparence du terminal :"
-
-#: ../data/messages:49
-msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en uiliser aucune."
 
 #: ../data/messages:51
-msgid "Left offset :"
-msgstr ""
+msgid "Background image :"
+msgstr "Image de fond :"
 
 #: ../data/messages:53
-msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgid "Background tansparency :"
+msgstr "Transparence du fond :"
 
 #: ../data/messages:55
-msgid "Top offset :"
-msgstr ""
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../data/messages:57
-msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgid "Left offset :"
+msgstr "Décalage à gauche :"
 
 #: ../data/messages:59
-msgid "Right offset :"
-msgstr ""
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
 #: ../data/messages:61
-msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgid "Top offset :"
+msgstr "Décalage en haut :"
 
 #: ../data/messages:63
-msgid "Bottom offset :"
-msgstr ""
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../data/messages:65
+msgid "Right offset :"
+msgstr "Décalage à droite :"
+
+#: ../data/messages:67
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
+
+#: ../data/messages:69
+msgid "Bottom offset :"
+msgstr "Décalage en bas :"
+
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:67
+#: ../data/messages:73
 msgid "Foreground image :"
-msgstr ""
+msgstr "Image d'avant-plan :"
 
-#: ../data/messages:69
-#, fuzzy
+#: ../data/messages:75
 msgid "Foreground tansparency :"
-msgstr "Transparence du terminal :"
+msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "GUI"
 msgstr "IHM"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "needs to restart the applet."
 msgstr "nécessite de recharger l'applet."
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Terminal's transparency :"
 msgstr "Transparence du terminal :"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Foreground color (r, v, b):"
 msgstr "Couleur d'avant-plan (r, v, b):"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Background color (r, v, b):"
 msgstr "Couleur d'arrière-plan (r, v, b):"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -244,11 +250,11 @@ msgstr ""
 "Quand le terminal est dans un dialogue. Quand il est dans un desklet, vous "
 "pouvez le redimensionner comme d'habitude."
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Size of the terminal (line x columns) :"
 msgstr "Taille du terminal (ligne x colonnes) :"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Shortkey to show the terminal"
 msgstr "Raccourci clavier pour montrer le terminal :"
 

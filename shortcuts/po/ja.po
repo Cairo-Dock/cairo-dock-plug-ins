@@ -121,106 +121,114 @@ msgid "Lock position ?"
 msgstr "位置を固定？"
 
 #: ../data/messages:39
-msgid "Decorations"
+msgid "in degrees.1"
 msgstr ""
 
 #: ../data/messages:41
-msgid "Choose the 'personnal' one to define your own decorations below."
+msgid "Rotation :"
 msgstr ""
 
 #: ../data/messages:43
-msgid "Choose a decoration theme for this desklet :"
+msgid "Decorations"
 msgstr ""
 
 #: ../data/messages:45
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:51
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Module"
 msgstr "モジュール"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "List drives and volumes ?"
 msgstr "ドライブとボリュームを一覧化？"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "List network ?"
 msgstr "ネットワークを一覧化？"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "例えば Nautilus で使用される、GTK ブックマークです。"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "List bookmarks ?"
 msgstr "ブックマークを一覧化？"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Separate different shortcuts with separators ?"
 msgstr "ショートカットを種類ごとに区切りで分割？"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Let it empty to use default sub-dock view."
 msgstr "デフォルトのサブ・ドックの外観を使用するには空欄のままに。"
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 

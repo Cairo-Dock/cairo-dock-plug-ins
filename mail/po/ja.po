@@ -345,32 +345,32 @@ msgstr ""
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "セキュア接続を要求しましたが、gnutls は初期化されませんでした。"
 
-#: ../src/mailwatch.c:723
+#: ../src/mailwatch.c:851
 msgid "This mailbox type does not require any configuration settings."
 msgstr "この mailbox タイプには設定変更の必要はありません。"
 
-#: ../src/mailwatch.c:749
+#: ../src/mailwatch.c:877
 msgid "Mailbox _Name:"
 msgstr "Mailbox の名前(_N):"
 
-#: ../src/mailwatch.c:815 ../src/mailwatch.c:1013
+#: ../src/mailwatch.c:943 ../src/mailwatch.c:1141
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Mailbox の編集: %s"
 
-#: ../src/mailwatch.c:881
+#: ../src/mailwatch.c:1009
 msgid "Select Mailbox Type"
 msgstr "Mailbox タイプの選択"
 
-#: ../src/mailwatch.c:890
+#: ../src/mailwatch.c:1018
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Mailbox のタイプを選択してください。各タイプの説明が下に表示されます。"
 
-#: ../src/mailwatch.c:948
+#: ../src/mailwatch.c:1076
 msgid "Add New Mailbox"
 msgstr "新規 Mailbox の追加"
 
-#: ../src/mailwatch.c:1135
+#: ../src/mailwatch.c:1263
 msgid "Mailboxes"
 msgstr "Mailboxes"
 

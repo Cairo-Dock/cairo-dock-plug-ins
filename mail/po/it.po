@@ -347,33 +347,33 @@ msgstr ""
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "Richiesta connessione sicura, ma gnutls non è stato avviato"
 
-#: ../src/mailwatch.c:723
+#: ../src/mailwatch.c:851
 msgid "This mailbox type does not require any configuration settings."
 msgstr "I tipi di Mailbox non necessitano di configurazione."
 
-#: ../src/mailwatch.c:749
+#: ../src/mailwatch.c:877
 msgid "Mailbox _Name:"
 msgstr "_Nome della Mailbox:"
 
-#: ../src/mailwatch.c:815 ../src/mailwatch.c:1013
+#: ../src/mailwatch.c:943 ../src/mailwatch.c:1141
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Modifica la Mailbox: %s"
 
-#: ../src/mailwatch.c:881
+#: ../src/mailwatch.c:1009
 msgid "Select Mailbox Type"
 msgstr "Selezionare il tipo di Mailbox"
 
-#: ../src/mailwatch.c:890
+#: ../src/mailwatch.c:1018
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di sotto."
 
-#: ../src/mailwatch.c:948
+#: ../src/mailwatch.c:1076
 msgid "Add New Mailbox"
 msgstr "Aggiungere una nuova Mailbox"
 
-#: ../src/mailwatch.c:1135
+#: ../src/mailwatch.c:1263
 msgid "Mailboxes"
 msgstr "Mailboxes"
 

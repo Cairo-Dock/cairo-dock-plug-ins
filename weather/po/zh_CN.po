@@ -247,147 +247,155 @@ msgid "Lock position ?"
 msgstr "锁定位置？"
 
 #: ../data/messages:39
-msgid "Decorations"
+msgid "in degrees.1"
 msgstr ""
 
 #: ../data/messages:41
-msgid "Choose the 'personnal' one to define your own decorations below."
+msgid "Rotation :"
 msgstr ""
 
 #: ../data/messages:43
-msgid "Choose a decoration theme for this desklet :"
+msgid "Decorations"
 msgstr ""
 
 #: ../data/messages:45
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:47
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:51
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:73 ../data/messages:75
+#: ../data/messages:77 ../data/messages:79
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
 msgstr "右击图标使Cario-Dock帮助您寻找您的位置代码。"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Code of your location :"
 msgstr "您的位置代码："
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Use International System Units ?"
 msgstr "使用国际单位？"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "以秒为单位。设为0则对话框不自动消失。"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Duration of dialogs :"
 msgstr "对话框持续时间："
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "in minutes."
 msgstr "以分为单位。"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "Interval of time between 2 checks :"
 msgstr "两次检查间的间隔时间："
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid "Info"
 msgstr "信息"
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr "以当前情况图标取代默认图标？"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Number of days you want to forecast :"
 msgstr "预报天数："
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "Display nights too ?"
 msgstr "显示夜晚情况？"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "Display temperature as quick info ?"
 msgstr "以快速信息显示温度？"
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "Display"
 msgstr "显示"
 
-#: ../data/messages:103
+#: ../data/messages:107
 msgid "Choose one of the available themes :"
 msgstr "选择主题："
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Let it empty to use default sub-dock view."
 msgstr "留空以使用默认的子dock视图"
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid "Name of the view used for the sub-dock :"
 msgstr "子dock使用的视图名称："
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "Render desklet in 3D ?"
 msgstr "以3D渲染桌面小应用？"

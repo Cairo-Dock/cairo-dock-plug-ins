@@ -48,6 +48,14 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	
 	if (my_pFlatSeparatorSurface[0] == NULL && (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR))
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
+	pDock->iMinLeftMargin = fExtraWidth/2;
+	pDock->iMinRightMargin = fExtraWidth/2;
+	Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
+	if (pFirstIcon != NULL)
+		pDock->iMaxRightMargin = fExtraWidth/2 + pFirstIcon->fWidth;
+	Icon *pLastIcon = cairo_dock_get_last_icon (pDock->icons);
+	if (pLastIcon != NULL)
+		pDock->iMaxRightMargin = fExtraWidth/2 + pLastIcon->fWidth;
 }
 
 void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY)
