@@ -39,6 +39,7 @@ struct _AppletConfig {
 	gint lowBatteryValue;
 	const gchar *cGThemePath;
 	gchar *cSoundPath[POWER_MANAGER_NB_CHARGE_LEVEL];
+	gboolean bUseDBusFallback;
 	
 	gboolean bUseGauge;
 	gchar *cUserBatteryIconName;
@@ -65,6 +66,7 @@ struct _AppletData {
 	gint iAveragePresentState;
 	gdouble fRateHistory[PM_NB_VALUES];
 	gint iCurrentIndex;
+	gboolean bUseDBus;
 	} ;
 
 

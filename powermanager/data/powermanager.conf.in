@@ -98,6 +98,8 @@ check interval = 15
 #b+ Use average system ?
 use approx = false
 
+use dbus = true
+
 #F[Display;gtk-dnd-multiple]
 frame_info=
 

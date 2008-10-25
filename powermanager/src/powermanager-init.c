@@ -32,6 +32,7 @@ CD_APPLET_INIT_BEGIN
 				myData.pGauge = cairo_dock_load_gauge (myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 			}
 			
+			myData.previous_battery_charge = -1;
 			myData.previous_battery_time = -1;
 			myData.iAveragePresentState = 0;
 			myData.iMaxPresentState = 0;
@@ -116,6 +117,7 @@ CD_APPLET_RELOAD_BEGIN
 					myData.bCritical = FALSE; //We will alert when battery charge is critical (under 4%)
 			}
 			
+			myData.previous_battery_charge = -1;
 			myData.previous_battery_time = -1;
 			update_icon();
 		}

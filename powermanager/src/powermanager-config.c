@@ -29,6 +29,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.batteryWitnessAnimation = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "battery animation", 0);
 	
 	myConfig.lowBatteryValue = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "low value", 15);
+	myConfig.bUseDBusFallback = CD_CONFIG_GET_BOOLEAN ("Configuration", "use dbus");
 	
 	GString *sKeyName = g_string_new ("");
 	int i;

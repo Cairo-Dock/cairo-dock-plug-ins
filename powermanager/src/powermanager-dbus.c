@@ -11,8 +11,8 @@
 #define MY_DEFAULT_BATTERY_NAME "BAT0"
 
 static DBusGProxy *dbus_proxy_power = NULL;
-///static DBusGProxy *dbus_proxy_stats = NULL;
-///static DBusGProxy *dbus_proxy_battery = NULL;
+static DBusGProxy *dbus_proxy_stats = NULL;
+static DBusGProxy *dbus_proxy_battery = NULL;
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -104,8 +104,7 @@ gboolean dbus_connect_to_bus (void)
 		/**dbus_proxy_stats = cairo_dock_create_new_session_proxy (
 			"org.freedesktop.PowerManagement",
 			"/org/freedesktop/PowerManagement/Statistics",
-			"org.freedesktop.PowerManagement.Statistics"
-		);*/
+			"org.freedesktop.PowerManagement.Statistics");*/
 		
 		dbus_g_proxy_add_signal(dbus_proxy_power, "OnBatteryChanged",
 			G_TYPE_BOOLEAN,
@@ -118,9 +117,9 @@ gboolean dbus_connect_to_bus (void)
 		if (! bBatteryFound)  // on n'a pas trouve de batterie nous-meme.
 		{
 			gchar *cBatteryName = MY_DEFAULT_BATTERY_NAME;  // utile ? si on a rien trouve, c'est surement qu'il n'y a pas de batterie non ?
-			/**cd_warning ("No battery were found, trying with default one : %s, with DBus", cBatteryName);
+			cd_warning ("No battery were found");
 			
-			cd_message ("Battery Name : %s", cBatteryName);
+			/**cd_message ("Battery Name : %s", cBatteryName);
 			gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", cBatteryName);
 			cd_debug ("  batteryPath : %s", batteryPath);
 			dbus_proxy_battery = cairo_dock_create_new_system_proxy (
@@ -160,12 +159,12 @@ void dbus_disconnect_from_bus (void)
 	{
 		g_object_unref (dbus_proxy_battery);
 		dbus_proxy_battery = NULL;
-	}
+	}*/
 	if (dbus_proxy_stats != NULL)
 	{
 		g_object_unref (dbus_proxy_stats);
 		dbus_proxy_stats = NULL;
-	}*/
+	}
 }
 
 
@@ -225,14 +224,6 @@ void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
 
 gboolean update_stats(void)
 {
-	/**if(myData.battery_present)
-	{
-		get_on_battery();
-		myData.battery_charge = get_stats("charge");
-		myData.battery_time = get_stats("time");
-		cd_debug ("PowerManager [On Battery]: %d", myData.on_battery); 
-		update_icon();
-	}*/
 	if (myData.cBatteryStateFilePath == NULL)
 		cd_powermanager_find_battery ();
 	if (myData.cBatteryStateFilePath == NULL)
@@ -295,11 +286,11 @@ gboolean update_stats(void)
 		go_to_next_line  // charging state: discharging
 		
 		jump_to_value
-		int iPresentRate = atoi (cCurVal);  // 15000 mW OU 1400 mA
+		double iPresentRate = atoi (cCurVal);  // 15000 mW OU 1400 mA
 		
 		if (myConfig.bUseApprox) { //Se rapprocher un peu de powermanager.
 			if (myData.on_battery) {
-				g_print ("Before approx Average:%d Rate:%d\n", myData.iAveragePresentState, iPresentRate);
+				g_print ("Before approx Average:%d Rate:%.2f\n", myData.iAveragePresentState, iPresentRate);
 				if (myData.iMaxPresentState < iPresentRate)
 					myData.iMaxPresentState = iPresentRate; //On peut se baser sur la consomation maximum d'énergie de l'ordinateur pour le calcul
 			
@@ -311,7 +302,6 @@ gboolean update_stats(void)
 			}
 			
 			iPresentRate = myData.iAveragePresentState; //Il faudra tester pour savoir quelle valeur s'avère être la plus fiable
-			
 			//iPresentRate = myData.iMaxPresentState;
 		}
 		
@@ -346,10 +336,15 @@ gboolean update_stats(void)
 		if (myData.battery_charge < 0)
 			myData.battery_charge = 0.;
 		
-		if (iPresentRate == 0)
+		if (iPresentRate == 0 && myConfig.bUseDBusFallback)
+		{
+			cd_debug ("on se rabat sur DBus");
+			myData.battery_time = get_stats("time");
+		}
+		else if (iPresentRate == 0 && myData.previous_battery_charge > 0)
 		{
 			iPresentRate = (myData.previous_battery_charge - myData.battery_charge) * 36. * myData.iCapacity / myConfig.iCheckInterval;
-			cd_debug ("estimated rate : %.2f -> %.2f => %d", myData.previous_battery_charge, myData.battery_charge, iPresentRate);
+			cd_debug ("estimated rate : %.2f -> %.2f => %.2f", myData.previous_battery_charge, myData.battery_charge, iPresentRate);
 			myData.fRateHistory[myData.iCurrentIndex] = iPresentRate;
 			myData.iCurrentIndex ++;
 			if (myData.iCurrentIndex == PM_NB_VALUES)
@@ -400,8 +395,16 @@ gboolean update_stats(void)
 	return TRUE;
 }
 
-/**int get_stats(gchar *dataType)
+int get_stats(gchar *dataType)
 {
+	if (dbus_proxy_stats == NULL)
+		dbus_proxy_stats = cairo_dock_create_new_session_proxy (
+			"org.freedesktop.PowerManagement",
+			"/org/freedesktop/PowerManagement/Statistics",
+			"org.freedesktop.PowerManagement.Statistics"
+		);
+	g_return_val_if_fail (dbus_proxy_stats != NULL, 0);
+	
 	GValueArray *gva;
 	GValue *gv;
 	GPtrArray *ptrarray = NULL;
@@ -441,7 +444,7 @@ gboolean update_stats(void)
 	
 	cd_debug ("PowerManager [%s]: %d", dataType, y);
 	return y;  /// a quoi servent x et col alors ??
-}*/
+}
 
 /**void detect_battery(void)
 {

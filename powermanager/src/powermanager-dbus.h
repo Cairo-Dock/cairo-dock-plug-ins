@@ -11,7 +11,7 @@ void dbus_disconnect_from_bus (void);
 void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data);
 gboolean update_stats(void);
 ///void detect_battery(void);
-///int get_stats(gchar *dataType);
+int get_stats(gchar *dataType);
 
 void power_halt(void);
 void power_hibernate(void);
