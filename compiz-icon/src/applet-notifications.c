@@ -92,10 +92,21 @@ static void _compiz_menu_toggle_wlayer (void) {
 		_compiz_dbus_action ("widget/allscreens/toggle");
 }
 
-static void _compiz_action_by_id (int k) {
+static void _compiz_action_by_id (int k, Icon *pIcon) {
   switch (k) {
     case 0:
-      cairo_dock_launch_command ("ccsm");
+      cd_debug ("test de ccsm ...");
+      system ("which ccsm > /tmp/ccsm-test-tmp");
+      gchar *cContents = NULL;
+      g_file_get_contents ("/tmp/ccsm-test-tmp", &cContents, NULL, NULL);
+      if (cContents == NULL || *cContents != '/')
+      {
+        cairo_dock_show_temporary_dialog_with_icon (_("To configure Compiz, you need to install CCSM\n through your package manager (Synaptic, YasT, etc)"), pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 10000, "same icon");
+        pIcon->iCount = 0;
+      }
+      else
+        cairo_dock_launch_command ("ccsm");
+      g_free (cContents);
     break;
     case 1:
       cairo_dock_launch_command ("emerald-theme-manager");
@@ -113,7 +124,8 @@ static void _compiz_action_by_id (int k) {
       _compiz_menu_toggle_wlayer ();
     break;
     default:
-     //Rien a faires
+     //Rien a faire
+     pIcon->iCount = 0;
     break;
   }
 }
@@ -143,9 +155,9 @@ static void _action_on_click (compizAction iAction) {
 CD_APPLET_ON_CLICK_BEGIN
 	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock) && pClickedIcon != NULL) {  // clic sur ne icone du sous-dock.
 		//cd_debug (" clic sur %s", pClickedIcon->acName);
-		if (pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-		_compiz_action_by_id ((int) pClickedIcon->fOrder/2);
+		///if (pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
+		///	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		_compiz_action_by_id ((int) pClickedIcon->fOrder/2, pClickedIcon);
 	}
 	else if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL) {  // clic sur une des icones du desklet.
 		if (pClickedIcon == myIcon)
@@ -153,7 +165,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		else {
 			if (pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
 				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-			_compiz_action_by_id ((int) pClickedIcon->fOrder/2);
+			_compiz_action_by_id ((int) pClickedIcon->fOrder/2, pClickedIcon);
 		}
 	}
 	else

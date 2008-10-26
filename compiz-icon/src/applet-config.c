@@ -61,6 +61,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER ("Configuration", "middle click");
 	myConfig.bStealTaskBarIcon = CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
 	myConfig.bScriptSubDock = CD_CONFIG_GET_BOOLEAN ("Configuration", "script");
+	myConfig.bEmeraldIcon = CD_CONFIG_GET_BOOLEAN ("Configuration", "emerald");
 CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN

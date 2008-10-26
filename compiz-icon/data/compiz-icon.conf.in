@@ -120,6 +120,11 @@ inhibate appli = true
 #{Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget Layer plug-ins. Otherwise they will be available in the menu.}
 script = true
 
+#b Add Emerald's Configuration to sub-dock ?
+#{Display in the applet's sub-dock an icon for the Emerald's configuration panel.}
+emerald = true
+
+
 #F[Compiz Options;gtk-info]
 frame_co = 
 #b Use Loose Binding ?

@@ -56,6 +56,7 @@ struct _AppletConfig {
 	const gchar *cDecorators[COMPIZ_NB_DECORATORS];
 	gboolean bStealTaskBarIcon;
 	gboolean bScriptSubDock;
+	gboolean bEmeraldIcon;
 } ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

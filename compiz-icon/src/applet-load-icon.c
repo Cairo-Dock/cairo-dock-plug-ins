@@ -32,9 +32,11 @@ static GList * _list_icons (void) {
 	Icon *pIcon;
 	int i, j=3;
 	if (myConfig.bScriptSubDock)
-    j = 5;
+		j = 5;
   
 	for (i = 0; i < j; i ++) {
+		if (i == 1 && ! myConfig.bEmeraldIcon)
+			continue;
 		pIcon = g_new0 (Icon, 1);
 		pIcon->acName = g_strdup (D_(s_iconName[i]));
 		if (myConfig.cUserImage[i+MY_NB_ICON_STATE] != NULL) {
