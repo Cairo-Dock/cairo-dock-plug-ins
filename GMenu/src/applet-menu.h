@@ -34,7 +34,7 @@ void image_menu_destroy (GtkWidget *image, gpointer data);
 GtkWidget * create_empty_menu (void);
 
 GtkWidget * create_applications_menu (const char *menu_file,
-			  const char *menu_path);
+			  const char *menu_path, GtkWidget *parent_menu);
 
 GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet);
 

@@ -21,6 +21,8 @@ gboolean submenu_to_display_in_idle (gpointer data);
 
 void submenu_to_display (GtkWidget *menu);
 
+void panel_desktop_menu_item_append_menu (GtkWidget *menu,
+				     gpointer   data);
 void main_menu_append (GtkWidget *main_menu,
 		  gpointer   data);
 

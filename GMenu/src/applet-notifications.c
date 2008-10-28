@@ -23,14 +23,12 @@ CD_APPLET_ABOUT (D_("This is the GMenu applet\n made by Fabounet (Fabrice Rey) f
 CD_APPLET_ON_CLICK_BEGIN
 	if (myData.pMenu != NULL)
 		gtk_menu_popup (GTK_MENU (myData.pMenu),
-                       NULL,
-                        NULL,
-                        NULL,
-                        NULL,
-                        1,
-                        gtk_get_current_event_time ());
-
-	
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			1,
+			gtk_get_current_event_time ());
 CD_APPLET_ON_CLICK_END
 
 

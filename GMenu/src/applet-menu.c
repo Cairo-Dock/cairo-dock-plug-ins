@@ -613,14 +613,15 @@ GtkWidget * create_empty_menu (void)
 }
 
 GtkWidget * create_applications_menu (const char *menu_file,
-			  const char *menu_path)
+			  const char *menu_path, GtkWidget *parent_menu)
 {
 	GMenuTree *tree;
 	GtkWidget *menu;
 	guint      idle_id;
 
-	menu = create_empty_menu ();
-
+	menu = (parent_menu ? parent_menu : create_empty_menu ());
+	
+	g_print ("%s (%s)\n", __func__, menu_file);
 	tree = gmenu_tree_lookup (menu_file, GMENU_TREE_FLAGS_NONE);
 
 	g_object_set_data_full (G_OBJECT (menu),
@@ -667,7 +668,7 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 {
 	GtkWidget *main_menu;
 
-	main_menu = create_applications_menu ("applications.menu", NULL);
+	main_menu = create_applications_menu ("applications.menu", NULL, NULL);
 	///g_object_set_data (G_OBJECT (main_menu), "menu_panel", panel);
 	myData.pMenu = main_menu;
 	/* FIXME need to update the panel on parent_set */
@@ -678,6 +679,19 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 	g_object_set_data (G_OBJECT (main_menu),
 			   "panel-menu-append-callback-data",
 			   myApplet);
+	
+	
+// 	GtkWidget *desktop_menu;
+// 
+// 	desktop_menu = create_applications_menu ("settings.menu", NULL, main_menu);
+// 	myData.pMenu2 = desktop_menu;
+// 	
+// 	g_object_set_data (G_OBJECT (desktop_menu),
+// 			   "panel-menu-append-callback",
+// 			   panel_desktop_menu_item_append_menu);  //panel_desktop_menu_item_append_menu
+// 	g_object_set_data (G_OBJECT (desktop_menu),
+// 			   "panel-menu-append-callback-data",
+// 			   myApplet);
 	
 	myData.bIconsLoaded = myConfig.bHasIcons;
 	

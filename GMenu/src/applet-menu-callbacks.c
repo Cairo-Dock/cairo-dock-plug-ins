@@ -119,7 +119,7 @@ void submenu_to_display (GtkWidget *menu)
 					directory,
 					(GDestroyNotify) gmenu_tree_item_unref);
 	}
-
+	//g_print ("%s ()\n", __func__);
 	if (directory)
 		populate_menu_from_directory (menu, directory);
 
@@ -131,10 +131,40 @@ void submenu_to_display (GtkWidget *menu)
 		append_callback (menu, append_data);
 }
 
+
+void panel_desktop_menu_item_append_menu (GtkWidget *menu,
+				     gpointer   data)
+{
+	//g_print ("%s ()\n", __func__);	
+	CairoDockModuleInstance *myApplet;
+	gboolean              add_separator;
+	GList                *children;
+	GList                *last;
+
+	myApplet = (CairoDockModuleInstance *) data;
+
+	add_separator = FALSE;
+	children = gtk_container_get_children (GTK_CONTAINER (menu));
+	last = g_list_last (children);
+
+	///if (last != NULL)
+	///	add_separator = !GTK_IS_SEPARATOR (GTK_WIDGET (last->data));
+
+	g_list_free (children);
+
+	if (add_separator)
+		add_menu_separator (menu);
+
+	//panel_menu_items_append_from_desktop (menu, "yelp.desktop", NULL);
+	//panel_menu_items_append_from_desktop (menu, "gnome-about.desktop", NULL);
+
+	//if (parent->priv->append_lock_logout)
+	//	panel_menu_items_append_lock_logout (menu);
+}
 void main_menu_append (GtkWidget *main_menu,
 		  gpointer   data)
 {
-	g_print ("%s ()\n", __func__);	
+	//g_print ("%s ()\n", __func__);	
 	CairoDockModuleInstance *myApplet;
 	GtkWidget   *item;
 	gboolean     add_separator;
@@ -147,13 +177,28 @@ void main_menu_append (GtkWidget *main_menu,
 	children = gtk_container_get_children (GTK_CONTAINER (main_menu));
 	last = g_list_last (children);
 	if (last != NULL) {
-		add_separator = !GTK_IS_SEPARATOR (GTK_WIDGET (last->data));
+		///add_separator = !GTK_IS_SEPARATOR (GTK_WIDGET (last->data));
 	}
 	g_list_free (children);
 
 	if (add_separator)
 		add_menu_separator (main_menu);
+	
+	
+	GtkWidget *desktop_menu;
 
+	desktop_menu = create_applications_menu ("settings.menu", NULL, main_menu);
+	g_object_set_data_full (G_OBJECT (desktop_menu),
+			"panel-menu-tree-directory",
+			NULL, NULL);
+	
+	g_object_set_data (G_OBJECT (desktop_menu),
+			   "panel-menu-append-callback",
+			   panel_desktop_menu_item_append_menu);  //panel_desktop_menu_item_append_menu
+	g_object_set_data (G_OBJECT (desktop_menu),
+			   "panel-menu-append-callback-data",
+			   myApplet);
+	
 	/*item = panel_place_menu_item_new (TRUE);
 	panel_place_menu_item_set_panel (item, panel);
 	gtk_menu_shell_append (GTK_MENU_SHELL (main_menu), item);
