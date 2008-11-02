@@ -120,7 +120,8 @@ void send_mouse_click_to_cd( CairoDockModuleInstance *myApplet, GdkEventButton* 
 #include <webkit/webkit.h>
 
 /* Will be called when loading of the page is finished*/
-void load_finished_cb(WebKitWebView *pWebKitView, CairoDockModuleInstance *myApplet)
+void load_finished_cb(WebKitWebView *pWebKitView, WebKitWebFrame* widget
+, CairoDockModuleInstance *myApplet)
 {
 	// update scrollbars status
 	show_hide_scrollbars(myApplet);
@@ -131,12 +132,6 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 {
 	myData.pGtkMozEmbed = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed), myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER, myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER);
-
-	myData.pWebKitView = WEBKIT_WEB_VIEW (webkit_web_view_new ());
-	gtk_container_add (GTK_CONTAINER (myData.pGtkMozEmbed), GTK_WIDGET (myData.pWebKitView));
-
-	gtk_signal_connect(GTK_OBJECT(myData.pWebKitView), "load_finished",
-					 					 GTK_SIGNAL_FUNC(load_finished_cb), myApplet);
 					 					 
 	if (myDock)
 	{
@@ -148,6 +143,12 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 		
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
+
+	myData.pWebKitView = WEBKIT_WEB_VIEW (webkit_web_view_new ());
+	gtk_container_add (GTK_CONTAINER (myData.pGtkMozEmbed), GTK_WIDGET (myData.pWebKitView));
+
+	gtk_signal_connect(GTK_OBJECT(myData.pWebKitView), "load_finished",
+					 					 GTK_SIGNAL_FUNC(load_finished_cb), myApplet);
 
 	gtk_widget_show_all (myData.pGtkMozEmbed);
 }
@@ -173,10 +174,13 @@ void show_hide_scrollbars(CairoDockModuleInstance *myApplet)
 
 gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet)
 {
+		cd_message( "weblets: refreshing page.\n" );
+	
 		// load the page
 		if(myData.pGtkMozEmbed)
 		{
-			webkit_web_view_open(myData.pWebKitView, myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
+			cd_message( " >> weblets: refresh !\n" );
+			webkit_web_view_open(WEBKIT_WEB_VIEW(myData.pWebKitView), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
 		}
 		/* available since rev. 30985, from fev. 2008 */
 		//webkit_web_view_set_transparent(myData.pWebKitView, TRUE/*myConfig.bIsTransparent*/);

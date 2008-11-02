@@ -42,6 +42,8 @@ static void _cd_weblets_open_URI (GtkMenuItem *menu_item, gpointer *data)
 	CairoDockModuleInstance *myApplet = data[0];
 	gint index_URI = GPOINTER_TO_UINT(data[1]);
 
+  cd_message( "weblets: opening predefined URI %d (%s).\n", index_URI, myConfig.cListURI[index_URI] );
+
 	g_free (myConfig.cURI_to_load);
 #if 0
   // note de Christope: juste une idee de code, qui en soit ne marche pas car pKeyFile n'existe pas ici.

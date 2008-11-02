@@ -25,7 +25,10 @@ CD_APPLET_INIT_BEGIN
 
 	if (myDesklet != NULL)  // on cree le weblet pour avoir qqch a afficher dans le desklet.
 	{
-		weblet_build_and_show (myApplet);
+		if( myData.pGtkMozEmbed == NULL )
+		{
+			weblet_build_and_show (myApplet);
+		}
 
 		// mise en place du timer
 		myData.pRefreshTimer = cairo_dock_new_measure_timer (myConfig.iReloadTimeout,
@@ -59,7 +62,7 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (! myData.pGtkMozEmbed)
+		if (myData.pGtkMozEmbed == NULL)
 		{
 			if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
 				weblet_build_and_show (myApplet);

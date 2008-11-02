@@ -47,4 +47,5 @@ CD_APPLET_RESET_CONFIG_END
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped.
 CD_APPLET_RESET_DATA_BEGIN
 	cd_weblet_free_uri_list ();
+	myData.pGtkMozEmbed = NULL;
 CD_APPLET_RESET_DATA_END
