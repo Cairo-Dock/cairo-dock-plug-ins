@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-10-17 02:26+0200\n"
+"POT-Creation-Date: 2008-11-04 02:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,7 +113,7 @@ msgid "Lock position ?"
 msgstr ""
 
 #: ../data/messages:37
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:39
@@ -229,7 +229,7 @@ msgid "Plain Circle"
 msgstr ""
 
 #: ../data/messages:93 ../data/messages:101
-msgid "It's the color of the graphic for high CPU values."
+msgid "It's the color of the graphic for high RAM values."
 msgstr ""
 
 #: ../data/messages:95
@@ -237,7 +237,7 @@ msgid "High values color for RAM :"
 msgstr ""
 
 #: ../data/messages:97 ../data/messages:105
-msgid "It's the color of the graphic for low CPU values."
+msgid "It's the color of the graphic for low RAM values."
 msgstr ""
 
 #: ../data/messages:99

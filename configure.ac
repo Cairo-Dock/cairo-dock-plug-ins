@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[1.6.2.3],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[1.6.3],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -189,7 +189,7 @@ AC_SUBST(clockdatadir, "${pkgdatadir}/clock")
 COMPIZ_ICON_PACKAGE="cd-compiz-icon"
 AC_SUBST(GETTEXT_COMPIZ_ICON, "$COMPIZ_ICON_PACKAGE")
 
-AC_SUBST(VERSION_COMPIZ_ICON, "1.0.2")
+AC_SUBST(VERSION_COMPIZ_ICON, "1.1.0")
 AC_SUBST(PACKAGE_COMPIZ_ICON, "$COMPIZ_ICON_PACKAGE")
 
 AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")

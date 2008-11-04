@@ -140,7 +140,7 @@ msgid "Lock position ?"
 msgstr "锁定位置？"
 
 #: ../data/messages:37
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:39

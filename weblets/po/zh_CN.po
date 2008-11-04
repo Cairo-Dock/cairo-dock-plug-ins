@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:80
+#: ../src/applet-init.c:83
 msgid "Terminal"
 msgstr "终端"
 
@@ -24,7 +24,7 @@ msgid ""
 " made by Christophe Chapuis for Cairo-Dock"
 msgstr "这是Chiristophe Chapuis为Cairo-Dock制作的weblets小应用程序。"
 
-#: ../src/applet-widget.c:52 ../src/applet-widget.c:143
+#: ../src/applet-widget.c:52 ../src/applet-widget.c:138
 #, fuzzy
 msgid "Weblet"
 msgstr "桌面应用程序"

@@ -183,7 +183,7 @@ msgstr "位置を固定？"
 
 #: ../data/messages:37
 #, fuzzy
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr "パーセント単位"
 
 #: ../data/messages:39

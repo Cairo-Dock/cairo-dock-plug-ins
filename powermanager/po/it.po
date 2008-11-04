@@ -185,7 +185,7 @@ msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:37
 #, fuzzy
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr "in percentuale"
 
 #: ../data/messages:39

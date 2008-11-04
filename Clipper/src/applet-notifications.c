@@ -70,9 +70,9 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myConfig.pPersistentItems == NULL)
 	{
-		gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
-		cairo_dock_show_temporary_dialog_with_icon (D_("No persistent items.\nYou can add some by editing the config of this applet."), myIcon, myContainer, 6000, cIconPath);
-		g_free (cIconPath);
+		//gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
+		cairo_dock_show_temporary_dialog_with_icon (D_("No persistent items.\nYou can add some by drag and dropping some text on the icon."), myIcon, myContainer, 6000, "same icon");
+		//g_free (cIconPath);
 	}
 	else
 	{
@@ -80,3 +80,32 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		cd_clipper_show_menu (pMenu, 1);
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+CD_APPLET_ON_DROP_DATA_BEGIN
+	cd_message ("'%s' --> permanent !", CD_APPLET_RECEIVED_DATA);
+	
+	if (myConfig.pPersistentItems == NULL)
+	{
+		myConfig.pPersistentItems = g_new0 (gchar *, 2);
+		myConfig.pPersistentItems[0] = g_strdup (CD_APPLET_RECEIVED_DATA);
+	}
+	else
+	{
+		GString *pString = g_string_new ("");
+		int i;
+		for (i = 0; myConfig.pPersistentItems[i] != NULL; i ++)
+		{
+			g_string_append_printf (pString, "%s;", myConfig.pPersistentItems[i]);
+		}
+		g_string_append (pString, CD_APPLET_RECEIVED_DATA);
+		cairo_dock_update_conf_file (myApplet->cConfFilePath,
+			G_TYPE_STRING, "Configuration", "persistent", pString->str,
+			G_TYPE_INVALID);
+		
+		myConfig.pPersistentItems = g_realloc (myConfig.pPersistentItems, (i + 2) * sizeof (gchar*));
+		myConfig.pPersistentItems[i] = g_strdup (CD_APPLET_RECEIVED_DATA);
+		myConfig.pPersistentItems[i+1] = NULL;  // precaution.
+		g_string_free (pString, TRUE);
+	}
+CD_APPLET_ON_DROP_DATA_END

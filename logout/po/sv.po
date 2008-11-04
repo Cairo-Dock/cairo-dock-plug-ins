@@ -118,7 +118,7 @@ msgid "Lock position ?"
 msgstr "Lås position?"
 
 #: ../data/messages:41
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:43
@@ -207,4 +207,16 @@ msgstr "Lämna tomt för att utföra standardkommandot."
 
 #: ../data/messages:83
 msgid "User-defined command to execute to log-out :"
+msgstr "Eget kommando att köra vid utloggning:"
+
+#: ../data/messages:85
+msgid ""
+"It will be available on middle click. Let empty to execute the default "
+"command, that greatly depends on your distribution. Sometimes the command to "
+"shutdown is just the same as the one to log out."
+msgstr ""
+
+#: ../data/messages:87
+#, fuzzy
+msgid "User-defined command to execute to shutdown :"
 msgstr "Eget kommando att köra vid utloggning:"

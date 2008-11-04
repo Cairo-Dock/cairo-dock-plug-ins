@@ -143,7 +143,7 @@ msgid "Lock position ?"
 msgstr "Lås position?"
 
 #: ../data/messages:37
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:39
@@ -174,11 +174,11 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr "Bild som visas under fodralet, t ex en ram."
 
-#: ../data/messages:49 ../data/messages:141
+#: ../data/messages:49
 msgid "Background image :"
 msgstr "Bakgrundsbild:"
 
-#: ../data/messages:51 ../data/messages:143
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr "Genomskinlighet:"
 
@@ -186,7 +186,7 @@ msgstr "Genomskinlighet:"
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:147
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr "Avstånd från vänsterkant:"
 
@@ -194,7 +194,7 @@ msgstr "Avstånd från vänsterkant:"
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:149
+#: ../data/messages:59
 msgid "Top offset :"
 msgstr "Avstånd från ovankant:"
 
@@ -202,7 +202,7 @@ msgstr "Avstånd från ovankant:"
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:151
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr "Avstånd från högerkant:"
 
@@ -210,7 +210,7 @@ msgstr "Avstånd från högerkant:"
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:67 ../data/messages:153
+#: ../data/messages:67
 msgid "Bottom offset :"
 msgstr "Avstånd från nederkant:"
 
@@ -332,90 +332,81 @@ msgid "n° of track"
 msgstr "spårnummer"
 
 #: ../data/messages:123
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
+msgid "Draw desklet in a 3D fashion (experimental) ?"
 msgstr ""
-"Om du anger \"personlig\" kan du själv definiera utseendet. Lämna tomt för "
-"att inte använda dekorationer."
 
 #: ../data/messages:125
-msgid "Choose a decoration for the desklet mode :"
-msgstr "Välj dekoration för deskletläge:"
-
-#: ../data/messages:127
-msgid "Personnal"
-msgstr "Personlig"
-
-#: ../data/messages:129
-msgid "Extended 3D mode"
-msgstr "Utökat 3D läge"
-
-#: ../data/messages:131
-msgid "CD box"
-msgstr "CD fodral"
-
-#: ../data/messages:133
-msgid "frame with reflects"
-msgstr "ram med reflexion"
-
-#: ../data/messages:135
-msgid "scotch"
-msgstr "tejp"
-
-#: ../data/messages:137
-msgid "frame with scotch"
-msgstr "tejpad ram"
-
-#: ../data/messages:139
-msgid ""
-"It's an image that will be displayed below the cover, like a frame for "
-"exemple."
-msgstr "Bild som visas under fodralet, t ex en ram."
-
-#: ../data/messages:145
-msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr "Typiskt bredden på vänstra sidan av ramen, i pixlar."
-
-#: ../data/messages:155
-msgid ""
-"It's an image that will be displayed above the cover, like a reflect for "
-"exemple."
-msgstr "Bild som visas ovanför fodralet, t ex en reflex."
-
-#: ../data/messages:157
-msgid "Reflection image :"
-msgstr "Bild för reflex:"
-
-#: ../data/messages:159
-msgid "Reflection tansparency :"
-msgstr "Genomskinlighet för reflexion:"
-
-#: ../data/messages:161
 msgid "Personnalisation"
 msgstr "Inställningar"
 
-#: ../data/messages:163 ../data/messages:167 ../data/messages:171
-#: ../data/messages:175 ../data/messages:179
+#: ../data/messages:127 ../data/messages:131 ../data/messages:135
+#: ../data/messages:139 ../data/messages:143
 msgid "Let t empty to use the default icon."
 msgstr "Lämna tomt för använda standaralternativet."
 
-#: ../data/messages:165
+#: ../data/messages:129
 msgid "Name of an image for the 'default' icon :"
 msgstr "Bild för standard:"
 
-#: ../data/messages:169
+#: ../data/messages:133
 msgid "Name of an image for the 'play' icon :"
 msgstr "Bild för spela upp:"
 
-#: ../data/messages:173
+#: ../data/messages:137
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Bild för stop:"
 
-#: ../data/messages:177
+#: ../data/messages:141
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Bild för pausa:"
 
-#: ../data/messages:181
+#: ../data/messages:145
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Bild för bruten:"
+
+#~ msgid ""
+#~ "If you choose 'personnal', you can define your own decoration above, or "
+#~ "let it blank to not use any decoration."
+#~ msgstr ""
+#~ "Om du anger \"personlig\" kan du själv definiera utseendet. Lämna tomt "
+#~ "för att inte använda dekorationer."
+
+#~ msgid "Choose a decoration for the desklet mode :"
+#~ msgstr "Välj dekoration för deskletläge:"
+
+#~ msgid "Personnal"
+#~ msgstr "Personlig"
+
+#~ msgid "Extended 3D mode"
+#~ msgstr "Utökat 3D läge"
+
+#~ msgid "CD box"
+#~ msgstr "CD fodral"
+
+#~ msgid "frame with reflects"
+#~ msgstr "ram med reflexion"
+
+#~ msgid "scotch"
+#~ msgstr "tejp"
+
+#~ msgid "frame with scotch"
+#~ msgstr "tejpad ram"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the cover, like a frame for "
+#~ "exemple."
+#~ msgstr "Bild som visas under fodralet, t ex en ram."
+
+#~ msgid "It's typically the width of the left side of your frame, in pixels."
+#~ msgstr "Typiskt bredden på vänstra sidan av ramen, i pixlar."
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the cover, like a reflect for "
+#~ "exemple."
+#~ msgstr "Bild som visas ovanför fodralet, t ex en reflex."
+
+#~ msgid "Reflection image :"
+#~ msgstr "Bild för reflex:"
+
+#~ msgid "Reflection tansparency :"
+#~ msgstr "Genomskinlighet för reflexion:"

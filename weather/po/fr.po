@@ -254,6 +254,7 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:39
+#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -267,7 +268,9 @@ msgstr "Décorations"
 
 #: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+msgstr ""
+"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
+"dessous."
 
 #: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
@@ -277,7 +280,9 @@ msgstr "Choisissez un thème de décorations pour ce desklet :"
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en uiliser aucune."
+msgstr ""
+"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
+"exemple. Laissez vide pour n'en uiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -323,7 +328,9 @@ msgstr "Décalage en bas :"
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en uiliser aucune."
+msgstr ""
+"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
+"par exemple. Laissez vide pour n'en uiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-10-17 02:26+0200\n"
+"POT-Creation-Date: 2008-11-04 02:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,7 +109,7 @@ msgid "Lock position ?"
 msgstr ""
 
 #: ../data/messages:41
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:43
@@ -198,4 +198,15 @@ msgstr ""
 
 #: ../data/messages:83
 msgid "User-defined command to execute to log-out :"
+msgstr ""
+
+#: ../data/messages:85
+msgid ""
+"It will be available on middle click. Let empty to execute the default "
+"command, that greatly depends on your distribution. Sometimes the command to "
+"shutdown is just the same as the one to log out."
+msgstr ""
+
+#: ../data/messages:87
+msgid "User-defined command to execute to shutdown :"
 msgstr ""

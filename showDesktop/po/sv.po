@@ -118,7 +118,7 @@ msgid "Lock position ?"
 msgstr "Lås position?"
 
 #: ../data/messages:41
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:43

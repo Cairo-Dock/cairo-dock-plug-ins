@@ -98,3 +98,8 @@ fg alpha = 1
 #s User-defined command to execute to log-out :
 #{Let empty to execute the default command.}
 user action =
+
+#s User-defined command to execute to shutdown :
+#{It will be available on middle click. Let empty to execute the default command, that greatly depends on your distribution. Sometimes the command to shutdown is just the same as the one to log out.}
+user action2 =
+

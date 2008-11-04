@@ -124,14 +124,14 @@ msgid "Lock position ?"
 msgstr "位置を固定？"
 
 #: ../data/messages:37
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:39
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:41 ../data/messages:131
+#: ../data/messages:41
 msgid "Decorations"
 msgstr ""
 
@@ -152,11 +152,11 @@ msgstr ""
 "例えばフレームのように、スライドの背後に表示される画像です。デフォルトのもの"
 "を使用するには空欄のままにしてください。"
 
-#: ../data/messages:49 ../data/messages:147
+#: ../data/messages:49
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:51 ../data/messages:149
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
@@ -164,7 +164,7 @@ msgstr "背景の透明度 :"
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:153
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr ""
 
@@ -172,7 +172,7 @@ msgstr ""
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:157
+#: ../data/messages:59
 msgid "Top offset :"
 msgstr ""
 
@@ -180,7 +180,7 @@ msgstr ""
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:161
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr ""
 
@@ -188,7 +188,7 @@ msgstr ""
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:67 ../data/messages:165
+#: ../data/messages:67
 msgid "Bottom offset :"
 msgstr ""
 
@@ -326,56 +326,11 @@ msgstr ""
 msgid "Choose a background color :"
 msgstr "背景色の選択 :"
 
-#: ../data/messages:133
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
-msgstr ""
+#~ msgid "Reflection image :"
+#~ msgstr "反射の画像 :"
 
-#: ../data/messages:135
-msgid "Choose a background and foreground decoration :"
-msgstr ""
-
-#: ../data/messages:137
-msgid "Personnal"
-msgstr ""
-
-#: ../data/messages:139
-msgid "frame with reflects"
-msgstr ""
-
-#: ../data/messages:141
-msgid "scotch"
-msgstr ""
-
-#: ../data/messages:143
-msgid "frame with scotch"
-msgstr ""
-
-#: ../data/messages:145
-msgid ""
-"It's an image that will be displayed below the slide, like a frame for "
-"exemple."
-msgstr ""
-
-#: ../data/messages:151 ../data/messages:155 ../data/messages:159
-#: ../data/messages:163
-msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr ""
-
-#: ../data/messages:167
-msgid ""
-"It's an image that will be displayed above the slide, like a reflect for "
-"exemple."
-msgstr ""
-
-#: ../data/messages:169
-msgid "Reflection image :"
-msgstr "反射の画像 :"
-
-#: ../data/messages:171
-msgid "Reflection tansparency :"
-msgstr "反射の透明度 :"
+#~ msgid "Reflection tansparency :"
+#~ msgstr "反射の透明度 :"
 
 #~ msgid "Not yet implemented."
 #~ msgstr "未だ実装していません"

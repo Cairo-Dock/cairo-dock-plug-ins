@@ -4,4 +4,7 @@
  so that you can recall them quickly. It's a clone of the well-know Klipper.</i>
  It supports clipboard and mouse selection,
   predefined actions,
-  and persistent items through middle-click.
+  and persistent items.
+  Left-click to recall clipboard and mouse selection,
+  drop text on the icon to create persistent items,
+  and middle-clck to recall them.

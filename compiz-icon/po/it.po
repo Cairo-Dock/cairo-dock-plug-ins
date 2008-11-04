@@ -16,7 +16,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Configurare Compiz"
 
-#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:178
+#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:190
 msgid "Emerald Manager"
 msgstr "Gestione Emerald"
 
@@ -40,27 +40,33 @@ msgstr ""
 "Questa è l'applet compiz-icon\n"
 " scritta da ChAnGFu per Cairo-Dock"
 
-#: ../src/applet-notifications.c:179
+#: ../src/applet-notifications.c:104
+msgid ""
+"To configure Compiz, you need to install CCSM\n"
+" through your package manager (Synaptic, YasT, etc)"
+msgstr ""
+
+#: ../src/applet-notifications.c:191
 msgid "Reload Emerald"
 msgstr "Ricaricare Emerald"
 
-#: ../src/applet-notifications.c:183
+#: ../src/applet-notifications.c:195
 msgid "Switch Windows Manager"
 msgstr "Cambiare Gestore delle Finestre"
 
-#: ../src/applet-notifications.c:184
+#: ../src/applet-notifications.c:196
 msgid "Switch Windows Decorator"
 msgstr "Cambiare il Decoratore delle Finestre"
 
-#: ../src/applet-notifications.c:193
+#: ../src/applet-notifications.c:205
 msgid "Toggle Exposition Mode"
 msgstr "Attivare il Modo Esposizione"
 
-#: ../src/applet-notifications.c:194
+#: ../src/applet-notifications.c:206
 msgid "Toggle Widgets Layer"
 msgstr "Attivare la Sezione dei Widgets"
 
-#: ../src/applet-notifications.c:196
+#: ../src/applet-notifications.c:208
 msgid "Toggle Show Desktop"
 msgstr "Montare Mostra Desktop"
 
@@ -152,7 +158,7 @@ msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:37
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:39
@@ -338,10 +344,20 @@ msgid "Add Exposition & Widget Layer to sub-dock ?"
 msgstr "Mostrare Esposizione e Sezione dei Widget nella sub-dock?"
 
 #: ../data/messages:117
+msgid ""
+"Display in the applet's sub-dock an icon for the Emerald's configuration "
+"panel."
+msgstr ""
+
+#: ../data/messages:119
+msgid "Add Emerald's Configuration to sub-dock ?"
+msgstr ""
+
+#: ../data/messages:121
 msgid "Compiz Options"
 msgstr "Opzioni di Compiz"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid ""
 "With strict binding textures are bound whenever they are enabled, with loose "
 "binding they are enabled when created. The Nvidia driver seems a bit slow "
@@ -353,97 +369,97 @@ msgstr ""
 "sembrano rallentare al momento del binding delle textures, e perciò questa "
 "opzione dà buoni risultati con schede Nvidia."
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Use Loose Binding ?"
 msgstr "Usare Loose Binding ?"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "Use thoses options only if you know them."
 msgstr "Utilizzate questa opzione solo se sapete ciò che fate."
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Use Indirect Rendering ?"
 msgstr "Usare rendering indiretto (Indirect Rendering) ?"
 
-#: ../data/messages:127
+#: ../data/messages:131
 msgid "Usefull when having dual or more X separate screens."
 msgstr "Utile quando ci sono due o più schermi X attivi (dualscreen)"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid "Only Current Screen ?"
 msgstr "Soltanto lo schermo attuale"
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "By default it will be Emerald."
 msgstr "Sarà Emerald di default."
 
-#: ../data/messages:133
+#: ../data/messages:137
 msgid "Choose your Windows Decorator :"
 msgstr "Scegliete il vostro Decoratore delle Finestre :"
 
-#: ../data/messages:135
+#: ../data/messages:139
 msgid "emerald"
 msgstr "emerald"
 
-#: ../data/messages:137
+#: ../data/messages:141
 msgid "gtk-window-decorator"
 msgstr "gtk-window-decorator"
 
-#: ../data/messages:139
+#: ../data/messages:143
 msgid "kde-window-decorator"
 msgstr "kde-window-decorator"
 
-#: ../data/messages:141
+#: ../data/messages:145
 msgid "heliodor"
 msgstr "heliodor"
 
-#: ../data/messages:143
+#: ../data/messages:147
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciate vuoto per utilizzarre la vista di default per la sub-dock"
 
-#: ../data/messages:145
+#: ../data/messages:149
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
-#: ../data/messages:147
+#: ../data/messages:151
 msgid "Images"
 msgstr "Immagini"
 
-#: ../data/messages:149 ../data/messages:153 ../data/messages:157
-#: ../data/messages:161 ../data/messages:165 ../data/messages:169
-#: ../data/messages:173 ../data/messages:177
+#: ../data/messages:153 ../data/messages:157 ../data/messages:161
+#: ../data/messages:165 ../data/messages:169 ../data/messages:173
+#: ../data/messages:177 ../data/messages:181
 msgid "Let t empty to use the default icon."
 msgstr "Lasciare vuoto per avere l'immagine di default"
 
-#: ../data/messages:151
+#: ../data/messages:155
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nome dell'immagine dell'icona 'Di Default' :"
 
-#: ../data/messages:155
+#: ../data/messages:159
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nome dell'immagine dell'icona 'Non-funzionante' :"
 
-#: ../data/messages:159
+#: ../data/messages:163
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "Nome dell'immagine dell'icona 'Altri wm' :"
 
-#: ../data/messages:163
+#: ../data/messages:167
 msgid "Name of an image for the 'setting' icon :"
 msgstr "Nome dell'immagine dell'icona 'Configurazione' :"
 
-#: ../data/messages:167
+#: ../data/messages:171
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "Nome dell'immagine dell'icona 'Emerald' :"
 
-#: ../data/messages:171
+#: ../data/messages:175
 msgid "Name of an image for the 'reload' icon :"
 msgstr "Nome dell'immagine dell'icona 'Ricaricare' :"
 
-#: ../data/messages:175
+#: ../data/messages:179
 msgid "Name of an image for the 'exposition' icon :"
 msgstr "Nome dell'immagine dell'icona 'Esposizione' :"
 
-#: ../data/messages:179
+#: ../data/messages:183
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Nome dell'immagine dell'icona 'Widget Layer' :"
 

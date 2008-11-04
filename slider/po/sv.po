@@ -126,14 +126,14 @@ msgid "Lock position ?"
 msgstr "Lås position?"
 
 #: ../data/messages:37
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:39
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:41 ../data/messages:131
+#: ../data/messages:41
 msgid "Decorations"
 msgstr "Fönsterdekorationer"
 
@@ -155,11 +155,11 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr "Bild som visas under bildspelet, t ex som en ram."
 
-#: ../data/messages:49 ../data/messages:147
+#: ../data/messages:49
 msgid "Background image :"
 msgstr "Bakgrundsbild:"
 
-#: ../data/messages:51 ../data/messages:149
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr "Genomskinlighet:"
 
@@ -167,7 +167,7 @@ msgstr "Genomskinlighet:"
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:153
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr "Avstånd från vänsterkant:"
 
@@ -175,7 +175,7 @@ msgstr "Avstånd från vänsterkant:"
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:157
+#: ../data/messages:59
 msgid "Top offset :"
 msgstr "Avstånd från ovankant:"
 
@@ -183,7 +183,7 @@ msgstr "Avstånd från ovankant:"
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:161
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr "Avstånd från högerkant:"
 
@@ -191,7 +191,7 @@ msgstr "Avstånd från högerkant:"
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:67 ../data/messages:165
+#: ../data/messages:67
 msgid "Bottom offset :"
 msgstr "Avstånd från nederkant:"
 
@@ -326,55 +326,43 @@ msgstr "Sätt alfakanalen till 0 om du inte vill visa någon bakgrund."
 msgid "Choose a background color :"
 msgstr "Välj bakgrundsfärg:"
 
-#: ../data/messages:133
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
-msgstr ""
-"Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
-"att inte visa några dekorationer."
+#~ msgid ""
+#~ "If you choose 'personnal', you can define your own decoration above, or "
+#~ "let it blank to not use any decoration."
+#~ msgstr ""
+#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt "
+#~ "för att inte visa några dekorationer."
 
-#: ../data/messages:135
-msgid "Choose a background and foreground decoration :"
-msgstr "Välj förgrund- och bakgrundsdekorationer:"
+#~ msgid "Choose a background and foreground decoration :"
+#~ msgstr "Välj förgrund- och bakgrundsdekorationer:"
 
-#: ../data/messages:137
-msgid "Personnal"
-msgstr "Personlig"
+#~ msgid "Personnal"
+#~ msgstr "Personlig"
 
-#: ../data/messages:139
-msgid "frame with reflects"
-msgstr "ram med reflektion"
+#~ msgid "frame with reflects"
+#~ msgstr "ram med reflektion"
 
-#: ../data/messages:141
-msgid "scotch"
-msgstr "tejp"
+#~ msgid "scotch"
+#~ msgstr "tejp"
 
-#: ../data/messages:143
-msgid "frame with scotch"
-msgstr "tejpad ram"
+#~ msgid "frame with scotch"
+#~ msgstr "tejpad ram"
 
-#: ../data/messages:145
-msgid ""
-"It's an image that will be displayed below the slide, like a frame for "
-"exemple."
-msgstr "Bild som visas under bildspelet, t ex som en ram."
+#~ msgid ""
+#~ "It's an image that will be displayed below the slide, like a frame for "
+#~ "exemple."
+#~ msgstr "Bild som visas under bildspelet, t ex som en ram."
 
-#: ../data/messages:151 ../data/messages:155 ../data/messages:159
-#: ../data/messages:163
-msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr "Oftast bredden på den vänstra sidan av ramen, i pixlar."
+#~ msgid "It's typically the width of the left side of your frame, in pixels."
+#~ msgstr "Oftast bredden på den vänstra sidan av ramen, i pixlar."
 
-#: ../data/messages:167
-msgid ""
-"It's an image that will be displayed above the slide, like a reflect for "
-"exemple."
-msgstr "Bild som visas ovanför bildspelet, t ex en reflex."
+#~ msgid ""
+#~ "It's an image that will be displayed above the slide, like a reflect for "
+#~ "exemple."
+#~ msgstr "Bild som visas ovanför bildspelet, t ex en reflex."
 
-#: ../data/messages:169
-msgid "Reflection image :"
-msgstr "Bild för reflektion:"
+#~ msgid "Reflection image :"
+#~ msgstr "Bild för reflektion:"
 
-#: ../data/messages:171
-msgid "Reflection tansparency :"
-msgstr "Genomskinlighet för reflektion:"
+#~ msgid "Reflection tansparency :"
+#~ msgstr "Genomskinlighet för reflektion:"

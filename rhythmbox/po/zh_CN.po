@@ -136,7 +136,7 @@ msgid "Lock position ?"
 msgstr "锁定位置？"
 
 #: ../data/messages:37
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:39
@@ -166,11 +166,11 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr "显示于封面下的图片，比如一个镜框"
 
-#: ../data/messages:49 ../data/messages:141
+#: ../data/messages:49
 msgid "Background image :"
 msgstr "背景图："
 
-#: ../data/messages:51 ../data/messages:143
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr "背景透明度："
 
@@ -178,7 +178,7 @@ msgstr "背景透明度："
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:147
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr "左偏移："
 
@@ -186,7 +186,7 @@ msgstr "左偏移："
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:149
+#: ../data/messages:59
 #, fuzzy
 msgid "Top offset :"
 msgstr "左偏移："
@@ -195,7 +195,7 @@ msgstr "左偏移："
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:151
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr "右偏移："
 
@@ -203,7 +203,7 @@ msgstr "右偏移："
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:67 ../data/messages:153
+#: ../data/messages:67
 #, fuzzy
 msgid "Bottom offset :"
 msgstr "左偏移："
@@ -327,90 +327,81 @@ msgid "n° of track"
 msgstr "第N°首"
 
 #: ../data/messages:123
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
+msgid "Draw desklet in a 3D fashion (experimental) ?"
 msgstr ""
-"如果选择‘个性化’您将可以在上面定义您自己的装饰，否则请留空以使用别的装饰。"
 
 #: ../data/messages:125
-msgid "Choose a decoration for the desklet mode :"
-msgstr "为桌面小应用模式选择装饰："
-
-#: ../data/messages:127
-msgid "Personnal"
-msgstr "个性化"
-
-#: ../data/messages:129
-msgid "Extended 3D mode"
-msgstr "扩展3D模式"
-
-#: ../data/messages:131
-msgid "CD box"
-msgstr "CD盒"
-
-#: ../data/messages:133
-msgid "frame with reflects"
-msgstr "反射镜框"
-
-#: ../data/messages:135
-msgid "scotch"
-msgstr "磨砂"
-
-#: ../data/messages:137
-msgid "frame with scotch"
-msgstr "磨砂镜框"
-
-#: ../data/messages:139
-msgid ""
-"It's an image that will be displayed below the cover, like a frame for "
-"exemple."
-msgstr "显示于封面下的图片，比如一个镜框"
-
-#: ../data/messages:145
-msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr "这是您镜框的左边宽度，以点为单位。"
-
-#: ../data/messages:155
-#, fuzzy
-msgid ""
-"It's an image that will be displayed above the cover, like a reflect for "
-"exemple."
-msgstr "显示于封面之上的图片，如同反射一样"
-
-#: ../data/messages:157
-msgid "Reflection image :"
-msgstr "反射图片："
-
-#: ../data/messages:159
-msgid "Reflection tansparency :"
-msgstr "反射透明度："
-
-#: ../data/messages:161
 msgid "Personnalisation"
 msgstr "个性化"
 
-#: ../data/messages:163 ../data/messages:167 ../data/messages:171
-#: ../data/messages:175 ../data/messages:179
+#: ../data/messages:127 ../data/messages:131 ../data/messages:135
+#: ../data/messages:139 ../data/messages:143
 msgid "Let t empty to use the default icon."
 msgstr "留空以使用默认图标。"
 
-#: ../data/messages:165
+#: ../data/messages:129
 msgid "Name of an image for the 'default' icon :"
 msgstr "“默认”图标的图片名称："
 
-#: ../data/messages:169
+#: ../data/messages:133
 msgid "Name of an image for the 'play' icon :"
 msgstr "“播放”图标的图片名称："
 
-#: ../data/messages:173
+#: ../data/messages:137
 msgid "Name of an image for the 'stop' icon :"
 msgstr "“停止”图标的图片名称："
 
-#: ../data/messages:177
+#: ../data/messages:141
 msgid "Name of an image for the 'pause' icon :"
 msgstr "“暂停”图标的图片名称："
 
-#: ../data/messages:181
+#: ../data/messages:145
 msgid "Name of an image for the 'broken' icon :"
 msgstr "“破损”图标的图片名称："
+
+#~ msgid ""
+#~ "If you choose 'personnal', you can define your own decoration above, or "
+#~ "let it blank to not use any decoration."
+#~ msgstr ""
+#~ "如果选择‘个性化’您将可以在上面定义您自己的装饰，否则请留空以使用别的装饰。"
+
+#~ msgid "Choose a decoration for the desklet mode :"
+#~ msgstr "为桌面小应用模式选择装饰："
+
+#~ msgid "Personnal"
+#~ msgstr "个性化"
+
+#~ msgid "Extended 3D mode"
+#~ msgstr "扩展3D模式"
+
+#~ msgid "CD box"
+#~ msgstr "CD盒"
+
+#~ msgid "frame with reflects"
+#~ msgstr "反射镜框"
+
+#~ msgid "scotch"
+#~ msgstr "磨砂"
+
+#~ msgid "frame with scotch"
+#~ msgstr "磨砂镜框"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the cover, like a frame for "
+#~ "exemple."
+#~ msgstr "显示于封面下的图片，比如一个镜框"
+
+#~ msgid "It's typically the width of the left side of your frame, in pixels."
+#~ msgstr "这是您镜框的左边宽度，以点为单位。"
+
+#, fuzzy
+#~ msgid ""
+#~ "It's an image that will be displayed above the cover, like a reflect for "
+#~ "exemple."
+#~ msgstr "显示于封面之上的图片，如同反射一样"
+
+#~ msgid "Reflection image :"
+#~ msgstr "反射图片："
+
+#~ msgid "Reflection tansparency :"
+#~ msgstr "反射透明度："

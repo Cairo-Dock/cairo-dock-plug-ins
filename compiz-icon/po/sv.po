@@ -20,7 +20,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Konfigurera Compiz"
 
-#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:178
+#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:190
 msgid "Emerald Manager"
 msgstr "Emerald Manager"
 
@@ -44,27 +44,33 @@ msgstr ""
 "compiz-icon applet\n"
 " skapad av ChAnGFu för Cairo-Dock"
 
-#: ../src/applet-notifications.c:179
+#: ../src/applet-notifications.c:104
+msgid ""
+"To configure Compiz, you need to install CCSM\n"
+" through your package manager (Synaptic, YasT, etc)"
+msgstr ""
+
+#: ../src/applet-notifications.c:191
 msgid "Reload Emerald"
 msgstr "Starta om Emerald"
 
-#: ../src/applet-notifications.c:183
+#: ../src/applet-notifications.c:195
 msgid "Switch Windows Manager"
 msgstr "Byt fönsterhanterare"
 
-#: ../src/applet-notifications.c:184
+#: ../src/applet-notifications.c:196
 msgid "Switch Windows Decorator"
 msgstr "Byt fönsterdekorator"
 
-#: ../src/applet-notifications.c:193
+#: ../src/applet-notifications.c:205
 msgid "Toggle Exposition Mode"
 msgstr "Växla expositionsläge"
 
-#: ../src/applet-notifications.c:194
+#: ../src/applet-notifications.c:206
 msgid "Toggle Widgets Layer"
 msgstr "Växla widgetlager"
 
-#: ../src/applet-notifications.c:196
+#: ../src/applet-notifications.c:208
 msgid "Toggle Show Desktop"
 msgstr "Växla visning av skrivbord"
 
@@ -154,7 +160,7 @@ msgid "Lock position ?"
 msgstr "Lås position?"
 
 #: ../data/messages:37
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:39
@@ -339,10 +345,20 @@ msgid "Add Exposition & Widget Layer to sub-dock ?"
 msgstr "Lägg till Exposition och Widgetlager till sub-dockan?"
 
 #: ../data/messages:117
+msgid ""
+"Display in the applet's sub-dock an icon for the Emerald's configuration "
+"panel."
+msgstr ""
+
+#: ../data/messages:119
+msgid "Add Emerald's Configuration to sub-dock ?"
+msgstr ""
+
+#: ../data/messages:121
 msgid "Compiz Options"
 msgstr "Inställningar för Compiz"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid ""
 "With strict binding textures are bound whenever they are enabled, with loose "
 "binding they are enabled when created. The Nvidia driver seems a bit slow "
@@ -353,96 +369,96 @@ msgstr ""
 "de när de skapas. nVidias drivare är lite långsam när den binder texturer så "
 "denna inställning kan snabba upp hastigheten ganska mycket för nVidia."
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Use Loose Binding ?"
 msgstr "Använd lös bindning?"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "Use thoses options only if you know them."
 msgstr "Använd inställningarna bara om du känner till dem."
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Use Indirect Rendering ?"
 msgstr "Använd indirekt rendering?"
 
-#: ../data/messages:127
+#: ../data/messages:131
 msgid "Usefull when having dual or more X separate screens."
 msgstr "Användbart om du har flera separate X fönster"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid "Only Current Screen ?"
 msgstr "Endast aktivt skrivbord?"
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "By default it will be Emerald."
 msgstr "Emerald används som standard."
 
-#: ../data/messages:133
+#: ../data/messages:137
 msgid "Choose your Windows Decorator :"
 msgstr "Välj fönsterhanterare:"
 
-#: ../data/messages:135
+#: ../data/messages:139
 msgid "emerald"
 msgstr "emerald"
 
-#: ../data/messages:137
+#: ../data/messages:141
 msgid "gtk-window-decorator"
 msgstr "gtk-window-decorator"
 
-#: ../data/messages:139
+#: ../data/messages:143
 msgid "kde-window-decorator"
 msgstr "kde-window-decorator"
 
-#: ../data/messages:141
+#: ../data/messages:145
 msgid "heliodor"
 msgstr "heliodor"
 
-#: ../data/messages:143
+#: ../data/messages:147
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lämna tomt för att använda standard sub-docka."
 
-#: ../data/messages:145
+#: ../data/messages:149
 msgid "Name of the view used for the sub-dock :"
 msgstr "Namn på vy för sub-dockan:"
 
-#: ../data/messages:147
+#: ../data/messages:151
 msgid "Images"
 msgstr "Bilder"
 
-#: ../data/messages:149 ../data/messages:153 ../data/messages:157
-#: ../data/messages:161 ../data/messages:165 ../data/messages:169
-#: ../data/messages:173 ../data/messages:177
+#: ../data/messages:153 ../data/messages:157 ../data/messages:161
+#: ../data/messages:165 ../data/messages:169 ../data/messages:173
+#: ../data/messages:177 ../data/messages:181
 msgid "Let t empty to use the default icon."
 msgstr "Lämna tomt för använda standaralternativet."
 
-#: ../data/messages:151
+#: ../data/messages:155
 msgid "Name of an image for the 'default' icon :"
 msgstr "Bild för standard:"
 
-#: ../data/messages:155
+#: ../data/messages:159
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Bild för bruten:"
 
-#: ../data/messages:159
+#: ../data/messages:163
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "Bild för annan fönsterhanterare:"
 
-#: ../data/messages:163
+#: ../data/messages:167
 msgid "Name of an image for the 'setting' icon :"
 msgstr "Bild för inställningar:"
 
-#: ../data/messages:167
+#: ../data/messages:171
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "Bild för emerald:"
 
-#: ../data/messages:171
+#: ../data/messages:175
 msgid "Name of an image for the 'reload' icon :"
 msgstr "Bild för ladda om:"
 
-#: ../data/messages:175
+#: ../data/messages:179
 msgid "Name of an image for the 'exposition' icon :"
 msgstr "Bild för exposition:"
 
-#: ../data/messages:179
+#: ../data/messages:183
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Bild för widget layer:"

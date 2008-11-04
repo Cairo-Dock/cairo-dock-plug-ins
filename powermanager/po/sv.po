@@ -184,7 +184,7 @@ msgstr "Lås position?"
 
 #: ../data/messages:37
 #, fuzzy
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr "i procent."
 
 #: ../data/messages:39

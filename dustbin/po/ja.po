@@ -179,7 +179,7 @@ msgid "Lock position ?"
 msgstr "位置を固定？"
 
 #: ../data/messages:37
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:39

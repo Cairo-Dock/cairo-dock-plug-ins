@@ -140,7 +140,7 @@ msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:37
-msgid "in degrees.1"
+msgid "in degrees."
 msgstr ""
 
 #: ../data/messages:39
@@ -173,11 +173,11 @@ msgstr ""
 "Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
 "cornice."
 
-#: ../data/messages:49 ../data/messages:141
+#: ../data/messages:49
 msgid "Background image :"
 msgstr "Immagine di sfondo :"
 
-#: ../data/messages:51 ../data/messages:143
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
@@ -185,7 +185,7 @@ msgstr "Trasparenza dello sfondo :"
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:55 ../data/messages:147
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr "Spostare a sinistra :"
 
@@ -193,7 +193,7 @@ msgstr "Spostare a sinistra :"
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:59 ../data/messages:149
+#: ../data/messages:59
 #, fuzzy
 msgid "Top offset :"
 msgstr "Spostare a sinistra :"
@@ -202,7 +202,7 @@ msgstr "Spostare a sinistra :"
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:63 ../data/messages:151
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr "Spostare a destra :"
 
@@ -210,7 +210,7 @@ msgstr "Spostare a destra :"
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:67 ../data/messages:153
+#: ../data/messages:67
 #, fuzzy
 msgid "Bottom offset :"
 msgstr "Spostare a sinistra :"
@@ -336,95 +336,86 @@ msgid "n° of track"
 msgstr "N° della traccia"
 
 #: ../data/messages:123
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
+msgid "Draw desklet in a 3D fashion (experimental) ?"
 msgstr ""
-"Se scegliete 'personalizzato', potrete definire la vostra propria "
-"decorazione; lasciate vuoto per non averne."
 
 #: ../data/messages:125
-msgid "Choose a decoration for the desklet mode :"
-msgstr "Scegliete una decorazione per la desklet :"
-
-#: ../data/messages:127
-msgid "Personnal"
-msgstr "Personalizzato"
-
-#: ../data/messages:129
-msgid "Extended 3D mode"
-msgstr "Modo 3D esteso"
-
-#: ../data/messages:131
-msgid "CD box"
-msgstr "Box CD"
-
-#: ../data/messages:133
-msgid "frame with reflects"
-msgstr "Cornice con riflessi"
-
-#: ../data/messages:135
-msgid "scotch"
-msgstr "Scotch"
-
-#: ../data/messages:137
-msgid "frame with scotch"
-msgstr "Cornice con scotch"
-
-#: ../data/messages:139
-msgid ""
-"It's an image that will be displayed below the cover, like a frame for "
-"exemple."
-msgstr ""
-"Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
-"cornice."
-
-#: ../data/messages:145
-msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr "E' la larghezza del lato sinistro della vostra cornice, in pixels."
-
-#: ../data/messages:155
-#, fuzzy
-msgid ""
-"It's an image that will be displayed above the cover, like a reflect for "
-"exemple."
-msgstr ""
-"Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
-"cornice."
-
-#: ../data/messages:157
-msgid "Reflection image :"
-msgstr "Immagine del riflesso :"
-
-#: ../data/messages:159
-msgid "Reflection tansparency :"
-msgstr "Trasparenza del riflesso :"
-
-#: ../data/messages:161
 msgid "Personnalisation"
 msgstr "Personalizzazione"
 
-#: ../data/messages:163 ../data/messages:167 ../data/messages:171
-#: ../data/messages:175 ../data/messages:179
+#: ../data/messages:127 ../data/messages:131 ../data/messages:135
+#: ../data/messages:139 ../data/messages:143
 msgid "Let t empty to use the default icon."
 msgstr "Lasciare vuoto per utilizzare l'icona di default."
 
-#: ../data/messages:165
+#: ../data/messages:129
 msgid "Name of an image for the 'default' icon :"
 msgstr "Immagine per l'icona 'default' :"
 
-#: ../data/messages:169
+#: ../data/messages:133
 msgid "Name of an image for the 'play' icon :"
 msgstr "Immagine per l'icona 'play' :"
 
-#: ../data/messages:173
+#: ../data/messages:137
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Immagine per l'icona 'stop' :"
 
-#: ../data/messages:177
+#: ../data/messages:141
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Immagine per l'icona 'pausa' :"
 
-#: ../data/messages:181
+#: ../data/messages:145
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Immagine per l'icona 'non-funzionante' :"
+
+#~ msgid ""
+#~ "If you choose 'personnal', you can define your own decoration above, or "
+#~ "let it blank to not use any decoration."
+#~ msgstr ""
+#~ "Se scegliete 'personalizzato', potrete definire la vostra propria "
+#~ "decorazione; lasciate vuoto per non averne."
+
+#~ msgid "Choose a decoration for the desklet mode :"
+#~ msgstr "Scegliete una decorazione per la desklet :"
+
+#~ msgid "Personnal"
+#~ msgstr "Personalizzato"
+
+#~ msgid "Extended 3D mode"
+#~ msgstr "Modo 3D esteso"
+
+#~ msgid "CD box"
+#~ msgstr "Box CD"
+
+#~ msgid "frame with reflects"
+#~ msgstr "Cornice con riflessi"
+
+#~ msgid "scotch"
+#~ msgstr "Scotch"
+
+#~ msgid "frame with scotch"
+#~ msgstr "Cornice con scotch"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the cover, like a frame for "
+#~ "exemple."
+#~ msgstr ""
+#~ "Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
+#~ "cornice."
+
+#~ msgid "It's typically the width of the left side of your frame, in pixels."
+#~ msgstr "E' la larghezza del lato sinistro della vostra cornice, in pixels."
+
+#, fuzzy
+#~ msgid ""
+#~ "It's an image that will be displayed above the cover, like a reflect for "
+#~ "exemple."
+#~ msgstr ""
+#~ "Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
+#~ "cornice."
+
+#~ msgid "Reflection image :"
+#~ msgstr "Immagine del riflesso :"
+
+#~ msgid "Reflection tansparency :"
+#~ msgstr "Trasparenza del riflesso :"

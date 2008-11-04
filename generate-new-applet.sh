@@ -5,7 +5,7 @@ if test -e $AppletName; then
 	echo "Directory $AppletName already exists here; delete it before."
 	exit 1
 fi
-export LibName=`echo $AppletName | tr -- - _`
+export LibName=`echo $AppletName | tr "-" "_"`
 read -p "Enter your name : " MyName
 read -p "Enter an e-mail adress to contact you for bugs or congratulations : " MyMail
 read -p "Enter the default label of your applet (Just type enter to leave it empty for the moment) :" AppletLabel
@@ -59,4 +59,7 @@ cd ..
 
 autoreconf -isvf && ./configure --prefix=/usr && make
 
-echo "now it's your turn ! type sudo make install to install it."
+cd po
+../../../cairo-dock/po/generate-translation.sh
+
+echo "now it's your turn ! type 'sudo make install' to install it."

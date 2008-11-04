@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:80
+#: ../src/applet-init.c:83
 msgid "Terminal"
 msgstr "端末"
 
@@ -26,7 +26,7 @@ msgstr ""
 "これは Chiristophe Chapuis によって製作された \n"
 "Cairo-Dock 用の weblets アプレットです。"
 
-#: ../src/applet-widget.c:52 ../src/applet-widget.c:143
+#: ../src/applet-widget.c:52 ../src/applet-widget.c:138
 #, fuzzy
 msgid "Weblet"
 msgstr "デスクレット"
