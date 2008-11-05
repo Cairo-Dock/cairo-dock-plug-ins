@@ -17,6 +17,11 @@ void env_backend_logout (void)
 	cairo_dock_launch_command ("gnome-session-save --kill --gui");
 }
 
+void env_backend_shutdown (void)
+{
+	cairo_dock_launch_command ("gnome-session-save --shutdown-dialog");
+}
+
 void env_backend_setup_time (void)
 {
 	cairo_dock_launch_command ("time-admin");  // utilise PolicyKit => pas de gksudo.
