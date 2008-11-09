@@ -54,6 +54,9 @@ GtkWidget * create_fake_menu (GMenuTreeDirectory *directory)
 				   submenu_to_display_in_idle,
 				   menu,
 				   NULL);
+	if (myData.iSidFakeMenuIdle != 0)
+		g_source_remove (myData.iSidFakeMenuIdle);
+	myData.iSidFakeMenuIdle = idle_id;
 	g_object_set_data_full (G_OBJECT (menu),
 				"panel-menu-idle-id",
 				GUINT_TO_POINTER (idle_id),
@@ -612,6 +615,12 @@ GtkWidget * create_empty_menu (void)
 	return retval;
 }
 
+static _on_remove_tree (GMenuTree  *tree)
+{
+	g_print ("%s (%x)\n", __func__, tree);
+	//gmenu_tree_unref (tree);
+}
+
 GtkWidget * create_applications_menu (const char *menu_file,
 			  const char *menu_path, GtkWidget *parent_menu)
 {
@@ -623,11 +632,12 @@ GtkWidget * create_applications_menu (const char *menu_file,
 	
 	g_print ("%s (%s)\n", __func__, menu_file);
 	tree = gmenu_tree_lookup (menu_file, GMENU_TREE_FLAGS_NONE);
+	g_print ("tree : %x\n", tree);
 
 	g_object_set_data_full (G_OBJECT (menu),
 				"panel-menu-tree",
 				gmenu_tree_ref (tree),
-				(GDestroyNotify) gmenu_tree_unref);
+				(GDestroyNotify) _on_remove_tree);
 
 	g_object_set_data_full (G_OBJECT (menu),
 				"panel-menu-tree-path",
@@ -645,6 +655,9 @@ GtkWidget * create_applications_menu (const char *menu_file,
 				   submenu_to_display_in_idle,
 				   menu,
 				   NULL);
+	if (myData.iSidCreateMenuIdle != 0)
+		g_source_remove (myData.iSidCreateMenuIdle);
+	myData.iSidCreateMenuIdle = idle_id;
 	g_object_set_data_full (G_OBJECT (menu),
 				"panel-menu-idle-id",
 				GUINT_TO_POINTER (idle_id),
@@ -669,6 +682,10 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 	GtkWidget *main_menu;
 
 	main_menu = create_applications_menu ("applications.menu", NULL, NULL);
+	g_signal_connect (G_OBJECT (main_menu),
+			"deactivate",
+			G_CALLBACK (cairo_dock_delete_menu),
+			myContainer);
 	///g_object_set_data (G_OBJECT (main_menu), "menu_panel", panel);
 	myData.pMenu = main_menu;
 	/* FIXME need to update the panel on parent_set */

@@ -16,7 +16,6 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 #include "applet-util.h"
 #include "applet-menu-callbacks.h"
 
-
 static guint load_icons_id = 0;
 static GList *icons_to_load = NULL;
 static GList *icons_to_add = NULL;
@@ -25,6 +24,20 @@ static GList *icons_to_add = NULL;
 void handle_gmenu_tree_changed (GMenuTree *tree,
 			   GtkWidget *menu)
 {
+	g_print ("%s ()\n", __func__);
+	
+	if (myData.pMenu != NULL)
+	{
+		gtk_widget_destroy (myData.pMenu);
+		myData.pMenu = NULL;
+	}
+	
+	if (myData.pMenu == NULL)
+	{
+		myData.pMenu = create_main_menu (NULL);
+	}
+	return ;
+	
 	guint idle_id;
 
 	while (GTK_MENU_SHELL (menu)->children)
@@ -42,6 +55,9 @@ void handle_gmenu_tree_changed (GMenuTree *tree,
 				   submenu_to_display_in_idle,
 				   menu,
 				   NULL);
+	if (myData.iSidTreeChangeIdle != 0)
+		g_source_remove (myData.iSidTreeChangeIdle);
+	myData.iSidTreeChangeIdle = idle_id;
 	g_object_set_data_full (G_OBJECT (menu),
 				"panel-menu-idle-id",
 				GUINT_TO_POINTER (idle_id),
@@ -51,6 +67,7 @@ void handle_gmenu_tree_changed (GMenuTree *tree,
 void remove_gmenu_tree_monitor (GtkWidget *menu,
 			  GMenuTree  *tree)
 {
+	g_print ("%s (%x)\n", __func__, tree);
 	gmenu_tree_remove_monitor (tree,
 				  (GMenuTreeChangedFunc) handle_gmenu_tree_changed,
 				  menu);
@@ -78,6 +95,7 @@ void remove_submenu_to_display_idle (gpointer data)
 gboolean submenu_to_display_in_idle (gpointer data)
 {
 	GtkWidget *menu = GTK_WIDGET (data);
+	g_print ("%s (%x)\n", __func__, menu);
 
 	g_object_set_data (G_OBJECT (menu), "panel-menu-idle-id", NULL);
 
@@ -88,6 +106,7 @@ gboolean submenu_to_display_in_idle (gpointer data)
 
 void submenu_to_display (GtkWidget *menu)
 {
+	g_print ("%s (%x)\n", __func__, menu);
 	GMenuTree           *tree;
 	GMenuTreeDirectory  *directory;
 	const char          *menu_path;
@@ -95,7 +114,10 @@ void submenu_to_display (GtkWidget *menu)
 	gpointer             append_data;
 
 	if (!g_object_get_data (G_OBJECT (menu), "panel-menu-needs-loading"))
+	{
+		g_print ("en fait non\n");
 		return;
+	}
 
 	g_object_set_data (G_OBJECT (menu), "panel-menu-needs-loading", NULL);
 
@@ -104,13 +126,19 @@ void submenu_to_display (GtkWidget *menu)
 	if (!directory) {
 		menu_path = g_object_get_data (G_OBJECT (menu),
 					       "panel-menu-tree-path");
+		g_print ("n'est pas un directory, menu_path : %s\n", menu_path);
 		if (!menu_path)
+		{
+			cd_warning ("menu_path is empty");
 			return;
-
+		}
+		
 		tree = g_object_get_data (G_OBJECT (menu), "panel-menu-tree");
 		if (!tree)
+		{
+			cd_warning ("no tree found in datas");
 			return;
-
+		}
 		directory = gmenu_tree_get_directory_from_path (tree,
 								menu_path);
 
@@ -194,7 +222,7 @@ void main_menu_append (GtkWidget *main_menu,
 	
 	g_object_set_data (G_OBJECT (desktop_menu),
 			   "panel-menu-append-callback",
-			   panel_desktop_menu_item_append_menu);  //panel_desktop_menu_item_append_menu
+			   panel_desktop_menu_item_append_menu);
 	g_object_set_data (G_OBJECT (desktop_menu),
 			   "panel-menu-append-callback-data",
 			   myApplet);
@@ -637,4 +665,3 @@ void  drag_data_get_menu_cb (GtkWidget        *widget,
 	
 	return FALSE;
 }*/
-

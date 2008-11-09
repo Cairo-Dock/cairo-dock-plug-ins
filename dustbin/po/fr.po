@@ -358,17 +358,3 @@ msgstr ""
 #: ../data/messages:117
 msgid "Alternative file browser used to show a trash :"
 msgstr "Ouvrir la poubelle avec :"
-
-#~ msgid "in seconds"
-#~ msgstr "en secondes"
-
-#~ msgid "Here you can specify a list of Trash directory :"
-#~ msgstr "Ici vous pouvez spécifier une liste des répertoires de poubelle ;"
-
-#~ msgid "File browser used to show a trash :"
-#~ msgstr "Navigateur de fichier pour visualiser la poubelle ;"
-
-#~ msgid "You're about to delete all files all dustbins. Sure ?"
-#~ msgstr ""
-#~ "Vous êtes sur le point de détruire tous les fichiers de toutes les "
-#~ "poubelles. Sur ?"

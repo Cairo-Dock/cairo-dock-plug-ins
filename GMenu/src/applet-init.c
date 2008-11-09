@@ -45,7 +45,12 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	
+	if (myData.iSidFakeMenuIdle != 0)
+		g_source_remove (myData.iSidFakeMenuIdle);
+	if (myData.iSidCreateMenuIdle != 0)
+		g_source_remove (myData.iSidCreateMenuIdle);
+	if (myData.iSidTreeChangeIdle != 0)
+		g_source_remove (myData.iSidTreeChangeIdle);
 CD_APPLET_STOP_END
 
 

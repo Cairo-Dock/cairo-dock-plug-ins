@@ -16,8 +16,19 @@ CD_APPLET_GET_CONFIG_BEGIN
 	if (myConfig.card_id == NULL)
 		myConfig.card_id = g_strdup ("default");
 	
-	myConfig.cMixerElementName = CD_CONFIG_GET_STRING ("Configuration", "mixer element");
-	myConfig.cMixerElementName2 = CD_CONFIG_GET_STRING ("Configuration", "mixer element 2");
+	gchar *cMixerElementName = CD_CONFIG_GET_STRING ("Configuration", "mixer element");
+	gchar *cMixerElementName2 = CD_CONFIG_GET_STRING ("Configuration", "mixer element 2");
+	if (cMixerElementName2 != NULL && strcmp (cMixerElementName, cMixerElementName2) == 0)
+	{
+		myConfig.cMixerElementName = g_strconcat (cMixerElementName, ",0", NULL);
+		myConfig.cMixerElementName2 = g_strconcat (cMixerElementName, ",1", NULL);
+		g_free (cMixerElementName);
+		g_free (cMixerElementName2);
+	}
+	else
+	{
+		myConfig.cMixerElementName = cMixerElementName;
+	}
 	
 	myConfig.cShowAdvancedMixerCommand = CD_CONFIG_GET_STRING ("Configuration", "show mixer");
 	

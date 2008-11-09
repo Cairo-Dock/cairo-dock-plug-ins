@@ -59,6 +59,11 @@ msgid "Apr"
 msgstr "4月"
 
 #: ../src/applet-load-icons.c:17
+#, fuzzy
+msgid "May"
+msgstr "月曜日"
+
+#: ../src/applet-load-icons.c:17
 msgid "Jun"
 msgstr "6月"
 

@@ -36,6 +36,9 @@ struct _AppletConfig {
 struct _AppletData {
 	GtkWidget *pMenu;
 	gboolean bIconsLoaded;
+	guint iSidFakeMenuIdle;
+	guint iSidCreateMenuIdle;
+	guint iSidTreeChangeIdle;
 	} ;
 
 

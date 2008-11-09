@@ -26,7 +26,7 @@ msgstr "这是CD_MY_NAME为Cairo-Dock制作的CD_APPLET_NAME。"
 #: ../src/applet-notifications.c:74
 msgid ""
 "No persistent items.\n"
-"You can add some by editing the config of this applet."
+"You can add some by drag and dropping some text on the icon."
 msgstr ""
 
 #: ../data/messages:1

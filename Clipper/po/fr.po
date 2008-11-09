@@ -28,7 +28,120 @@ msgstr ""
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
-msgstr "Encore aucun item persistant.\nVous pouvez en rajouter en glissant-déposant du texte sur l'icône"
+msgstr ""
+"Encore aucun item persistant.\n"
+"Vous pouvez en rajouter en glissant-déposant du texte sur l'icône"
+
+#: ../data/messages:1
+#, fuzzy
+msgid "Action_0"
+msgstr "Actions"
+
+#: ../data/messages:3
+msgid "Action_0/Command_0"
+msgstr ""
+
+#: ../data/messages:5
+#, fuzzy
+msgid "Action_1"
+msgstr "Actions"
+
+#: ../data/messages:7
+msgid "Action_1/Command_0"
+msgstr ""
+
+#: ../data/messages:9
+msgid "Action_1/Command_1"
+msgstr ""
+
+#: ../data/messages:11
+msgid "Action_1/Command_2"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Action_1/Command_3"
+msgstr ""
+
+#: ../data/messages:15
+msgid "Action_1/Command_4"
+msgstr ""
+
+#: ../data/messages:17
+#, fuzzy
+msgid "Action_2"
+msgstr "Actions"
+
+#: ../data/messages:19
+msgid "Action_2/Command_0"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Action_2/Command_1"
+msgstr ""
+
+#: ../data/messages:23
+#, fuzzy
+msgid "Action_3"
+msgstr "Actions"
+
+#: ../data/messages:25
+msgid "Action_3/Command_0"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Action_3/Command_1"
+msgstr ""
+
+#: ../data/messages:29
+#, fuzzy
+msgid "Action_4"
+msgstr "Actions"
+
+#: ../data/messages:31
+msgid "Action_4/Command_0"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Action_4/Command_1"
+msgstr ""
+
+#: ../data/messages:35
+#, fuzzy
+msgid "Action_5"
+msgstr "Actions"
+
+#: ../data/messages:37
+msgid "Action_5/Command_0"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Action_5/Command_1"
+msgstr ""
+
+#: ../data/messages:41
+#, fuzzy
+msgid "Action_6"
+msgstr "Actions"
+
+#: ../data/messages:43
+msgid "Action_6/Command_0"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Action_6/Command_1"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Action_6/Command_2"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Action_6/Command_3"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Action_6/Command_4"
+msgstr ""
 
 #: ../data/messages:53
 msgid "Icon"
@@ -121,29 +234,29 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37
+#: ../data/messages:91
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:39
+#: ../data/messages:93
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:41
+#: ../data/messages:95
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:43
+#: ../data/messages:97
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
 "dessous."
 
-#: ../data/messages:45
+#: ../data/messages:99
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:47
+#: ../data/messages:101
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -151,47 +264,47 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:49
+#: ../data/messages:103
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:51
+#: ../data/messages:105
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:53
+#: ../data/messages:107
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:55
+#: ../data/messages:109
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:57
+#: ../data/messages:111
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:59
+#: ../data/messages:113
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:61
+#: ../data/messages:115
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:63
+#: ../data/messages:117
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:65
+#: ../data/messages:119
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:67
+#: ../data/messages:121
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:69
+#: ../data/messages:123
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -199,11 +312,11 @@ msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
 "par exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:71
+#: ../data/messages:125
 msgid "Foreground image :"
 msgstr "Image d'avant-plan :"
 
-#: ../data/messages:73
+#: ../data/messages:127
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
@@ -215,7 +328,9 @@ msgstr "Configuration"
 msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
-msgstr "Les items du clipboard sont ceux obtenus par CTRL+c. Les items de sélections sont ceux obtenus en sélectionnant une portion de texte avec la souris."
+msgstr ""
+"Les items du clipboard sont ceux obtenus par CTRL+c. Les items de sélections "
+"sont ceux obtenus en sélectionnant une portion de texte avec la souris."
 
 #: ../data/messages:133
 msgid "Which items should be remembered ?"
@@ -245,7 +360,10 @@ msgstr "Nombre d'items :"
 msgid ""
 "It is especially usefull if you often select text with mouse and don't want "
 "to lose your clipboard items because of a great number of selection items."
-msgstr "C'est particulièrement utile si vous sélectionnez souvent du texte et ne voulez pas perdre vos items du clipboard à cause d'un trop grand nombre de sélections."
+msgstr ""
+"C'est particulièrement utile si vous sélectionnez souvent du texte et ne "
+"voulez pas perdre vos items du clipboard à cause d'un trop grand nombre de "
+"sélections."
 
 #: ../data/messages:147
 msgid "Separate clipboard and selection ?"
@@ -258,7 +376,9 @@ msgstr "Si oui, nombre d'items de sélection :"
 #: ../data/messages:151
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
-msgstr "Lorsque vous cliquez sur un item, son contenu deviendra accessible avec CTRL+v"
+msgstr ""
+"Lorsque vous cliquez sur un item, son contenu deviendra accessible avec CTRL"
+"+v"
 
 #: ../data/messages:153
 msgid "Paste into Clipboard ?"
@@ -290,7 +410,9 @@ msgstr "Actions"
 msgid ""
 "If some actions are associated with an item, they will be proposed to you "
 "when the item is created."
-msgstr "Si des actions sont associées avec un item, elles vous seront proposées lorsque l'item est créé."
+msgstr ""
+"Si des actions sont associées avec un item, elles vous seront proposées "
+"lorsque l'item est créé."
 
 #: ../data/messages:167
 msgid "Enable actions ?"
@@ -298,7 +420,8 @@ msgstr "Activer les actions ?"
 
 #: ../data/messages:169
 msgid "Display the actions when selecting an item in the history."
-msgstr "Montre les actions lorsque vous sélectionnez un item dans l'historique."
+msgstr ""
+"Montre les actions lorsque vous sélectionnez un item dans l'historique."
 
 #: ../data/messages:171
 msgid "Replay actions ?"
