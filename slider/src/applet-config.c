@@ -22,6 +22,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iSlideTime 		= CD_CONFIG_GET_INTEGER ("Configuration", "slide time");
 	myConfig.bSubDirs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "sub directories");
 	myConfig.bRandom 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
+	myConfig.bImageName		= CD_CONFIG_GET_BOOLEAN ("Configuration", "image name");
 	
 	myConfig.bNoStretch 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "no stretch");
 	myConfig.bFillIcon 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "fill icon");

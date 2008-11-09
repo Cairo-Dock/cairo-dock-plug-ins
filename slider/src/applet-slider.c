@@ -38,6 +38,19 @@ void cd_slider_free_images_list (GList *pList) {
 	g_list_free (pList);
 }
 
+int cairo_dock_compare_images_order (SliderImage *image2, SliderImage *image1) {
+	if (image1->cPath == NULL)
+		return -1;
+	if (image2->cPath == NULL)
+		return 1;
+	gchar *cURI_1 = g_ascii_strdown (image1->cPath, -1);
+	gchar *cURI_2 = g_ascii_strdown (image2->cPath, -1);
+	int iOrder = strcmp (cURI_1, cURI_2);
+	g_free (cURI_1);
+	g_free (cURI_2);
+	return iOrder;
+}
+
 static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboolean bRecursive) {
 	cd_debug ("%s (%s)", __func__, cDirectory);
 
@@ -58,7 +71,7 @@ static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboo
 		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
 		if (stat (sFilePath->str, &buf) != -1) {
 			if (S_ISDIR (buf.st_mode)) {
-				cd_debug ("%s is a directory, let's look", sFilePath->str);
+				cd_debug ("Slider - %s is a directory, let's look", sFilePath->str);
 				if (bRecursive)
 					pList = cd_slider_measure_directory (pList, sFilePath->str, bRecursive);
 			}
@@ -77,12 +90,13 @@ static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboo
 					else if (g_ascii_strcasecmp(extension, ".xpm") == 0)
 						iFormat = SLIDER_XPM;
 					if (iFormat != SLIDER_UNKNOWN_FORMAT) {
-						cd_debug ("Adding %s to list", cFileName);
+						cd_debug ("Slider - Adding %s to list", cFileName);
 						pImage = g_new (SliderImage, 1);
 						pImage->cPath = g_strdup (sFilePath->str);
 						pImage->iSize = buf.st_size;
 						pImage->iFormat = iFormat;
-						pList = g_list_prepend (pList, pImage);
+						pList = g_list_insert_sorted (pList, pImage, (GCompareFunc) cairo_dock_compare_images_order);
+						//g_list_prepend (pList, pImage);
 					}
 				}
 			}
@@ -105,7 +119,7 @@ void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet) {
 	myData.pList = cd_slider_measure_directory (NULL, myConfig.cDirectory, myConfig.bSubDirs); //Nouveau scan
 	
 	if (myConfig.bRandom) {
-		//cd_debug ("Mixing images ...");
+		//cd_debug ("Slider - Mixing images ...");
 		GRand *pRandomGenerator = g_rand_new ();
 		myData.pList = g_list_sort_with_data (myData.pList, (GCompareDataFunc) _cd_slider_random_compare, pRandomGenerator);
 		g_rand_free (pRandomGenerator);
@@ -136,7 +150,7 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	//\___________________________ On charge la nouvelle surface.
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
-	//cd_debug ("Displaying: %s (size %dbytes)", cImagePath, pImage->iSize);
+	//cd_debug ("Slider - Displaying: %s (size %dbytes)", cImagePath, pImage->iSize);
 	
 	double fImgX, fImgY, fImgW=0, fImgH=0;
 	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;
@@ -177,7 +191,7 @@ gboolean cd_slider_update_slide (CairoDockModuleInstance *myApplet) {
 	
 	switch (myData.iAnimation) {
 		case SLIDER_DEFAULT: default:
-			//cd_debug("Displaying with default");
+			//cd_debug("Slider - Displaying with default");
 			//\______________________ On efface le fond
 			cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 			cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
@@ -198,45 +212,45 @@ gboolean cd_slider_update_slide (CairoDockModuleInstance *myApplet) {
  			CD_APPLET_REDRAW_MY_ICON;
 		break;
 		case SLIDER_FADE:
-			//cd_debug("Displaying with fade");
+			//cd_debug("Slider - Displaying with fade");
 			myData.fAnimAlpha = 0.;
 			myData.fAnimCNT = 1.;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade, (gpointer) myApplet);
 		break;
 		case SLIDER_BLANK_FADE:
-			//cd_debug("Displaying with blank fade");
+			//cd_debug("Slider - Displaying with blank fade");
 			myData.fAnimAlpha = 1.;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_blank_fade, (gpointer) myApplet);
 		break;
 		case SLIDER_FADE_IN_OUT:
-			//cd_debug("Displaying with fade in out");
+			//cd_debug("Slider - Displaying with fade in out");
 			myData.iAnimCNT = 0;
 			myData.fAnimAlpha = 0.;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_fade_in_out, (gpointer) myApplet);
 		break;
 		case SLIDER_SIDE_KICK:
-			//cd_debug("Displaying with side kick");
+			//cd_debug("Slider - Displaying with side kick");
 			myData.fAnimCNT = -myData.pImgL.fImgW;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_side_kick, (gpointer) myApplet);
 		break;
 		case SLIDER_DIAPORAMA:
-			//cd_debug("Displaying with diaporama");
+			//cd_debug("Slider - Displaying with diaporama");
 			myData.fAnimCNT = -myData.pImgL.fImgW - 10;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_diaporama, (gpointer) myApplet);
 		break;
 		case SLIDER_GROW_UP:
-			//cd_debug("Displaying with grow up");
+			//cd_debug("Slider - Displaying with grow up");
 			myData.fAnimAlpha = 0.;
 			if (myData.iAnimTimerID == 0)
 				myData.iAnimTimerID = g_timeout_add (50, (GSourceFunc) cd_slider_grow_up, (gpointer) myApplet);
 		break;
 		case SLIDER_SHRINK_DOWN:
-			//cd_debug("Displaying with shrink down");
+			//cd_debug("Slider - Displaying with shrink down");
 			myData.fAnimAlpha = 2.5;
 			myData.fAnimCNT = .3;
 			if (myData.iAnimTimerID == 0)
@@ -247,8 +261,7 @@ gboolean cd_slider_update_slide (CairoDockModuleInstance *myApplet) {
 	//\______________________ On passe a l'image suivante.
 	myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
 	
-	if (myConfig.iAnimation == SLIDER_DEFAULT)
-	{
+	if (myConfig.iAnimation == SLIDER_DEFAULT) {
 		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_draw_images, (gpointer) myApplet);
 	}
 	else
@@ -283,12 +296,23 @@ gboolean cd_slider_draw_images(CairoDockModuleInstance *myApplet) {
 		(pImage->iFormat == SLIDER_JPG && pImage->iSize > 70e3) ||
 		(pImage->iFormat == SLIDER_GIF && pImage->iSize > 100e3) ||
 		(pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3))) {
-		cd_debug ("  on threade");
+		cd_debug ("Slider -   on threade");
 		cairo_dock_launch_measure (myData.pMeasureImage);
 	}
 	else {
 		cd_slider_read_image (myApplet);
 		cd_slider_update_slide (myApplet);
+	}
+	
+	if (myConfig.bImageName) {
+		gchar *cFileName = g_strdup (pImage->cPath);
+		gchar *strFileWithExtension = strrchr (cFileName, '/');
+		strFileWithExtension++;
+		gchar *strFileWithNoExtension = strrchr (strFileWithExtension, '.');
+		*strFileWithNoExtension = '\0';
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s", strFileWithExtension);
+		cd_debug ("Slider - Image path: %s", pImage->cPath);
+		g_free (cFileName);
 	}
 	
 	return FALSE;  // on quitte la boucle des images car on va effectuer une animation.

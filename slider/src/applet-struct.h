@@ -65,6 +65,7 @@ struct _AppletConfig {
 	gboolean bNoStretch;
 	gboolean bFillIcon;
 	gboolean bRandom;
+	gboolean bImageName;
 	gdouble pBackgroundColor[4];
 	SliderAnimation iAnimation;
 	SliderClickOption iClickOption;

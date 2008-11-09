@@ -100,6 +100,8 @@ directory=
 sub directories=false
 #b Randomly browse files ?
 random = false
+#b Display image name as quickinfo ?
+image name = false
 
 use thread = false
 
