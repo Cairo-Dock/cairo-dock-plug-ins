@@ -36,7 +36,7 @@ CD_APPLET_INCLUDE_MY_VARS
 	str ++; \
 	while (*str == ' ') \
 		str ++; \
-	iValue = atoi (str);
+	iValue = atoll (str);
 void cd_rame_read_data (CairoDockModuleInstance *myApplet)
 {
 	gchar *cContent = NULL;
@@ -55,18 +55,18 @@ void cd_rame_read_data (CairoDockModuleInstance *myApplet)
 		int iNumLine = 1;
 		gchar *str = cContent;
 		
-		get_value (myData.ramTotal)  // MemTotal:
+		get_value (myData.ramTotal)  // MemTotal
 		
 		goto_next_line
-		get_value (myData.ramFree)  // MemFree:
+		get_value (myData.ramFree)  // MemFree
 		
 		myData.ramUsed = myData.ramTotal - myData.ramFree;
 		
 		goto_next_line
-		get_value (myData.ramBuffers)  // Buffers:
+		get_value (myData.ramBuffers)  // Buffers.
 		
 		goto_next_line
-		get_value (myData.ramCached)  // Cached:
+		get_value (myData.ramCached)  // Cached.
 		
 		goto_next_line  // SwapCached:
 		goto_next_line  // Active:
@@ -77,10 +77,10 @@ void cd_rame_read_data (CairoDockModuleInstance *myApplet)
 		goto_next_line  // LowFree:
 		
 		goto_next_line
-		get_value (myData.swapTotal)  // SwapTotal:
+		get_value (myData.swapTotal)  // SwapTotal.
 		
 		goto_next_line
-		get_value (myData.swapFree)  // SwapFree:
+		get_value (myData.swapFree)  // SwapFree.
 		
 		myData.swapUsed = myData.swapTotal - myData.swapFree;
 		
@@ -251,7 +251,7 @@ void cd_rame_get_process_memory (void)
 	const gchar *cPid;
 	gchar *tmp, *cName;
 	CDProcess *pProcess;
-	int iVmSize, iVmRSS, iTotalMemory;  // Quantité de mémoire totale utilisée / (Virtual Memory Resident Stack Size) Taille de la pile en mémoire.
+	unsigned long long iVmSize, iVmRSS, iTotalMemory;  // Quantité de mémoire totale utilisée / (Virtual Memory Resident Stack Size) Taille de la pile en mémoire.
 	int j;
 	while ((cPid = g_dir_read_name (dir)) != NULL)
 	{
@@ -306,9 +306,9 @@ void cd_rame_get_process_memory (void)
 		jump_to_next_value (tmp);
 		jump_to_next_value (tmp);
 		jump_to_next_value (tmp);
-		iVmSize = atoi (tmp);
+		iVmSize = atoll (tmp);
 		jump_to_next_value (tmp);
-		iVmRSS = atoi (tmp);
+		iVmRSS = atoll (tmp);
 		
 		iTotalMemory = iVmRSS * myData.iMemPageSize;
 		if (iTotalMemory > 0)

@@ -37,14 +37,14 @@ typedef struct {
 
 struct _AppletData {
 	CairoDockMeasure *pMeasureTimer;
-	guint ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
-	guint swapTotal, swapFree, swapUsed;
+	unsigned long long ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
+	unsigned long long swapTotal, swapFree, swapUsed;
 	gdouble fPrevRamPercent, fPrevSwapPercent;
 	gboolean bAcquisitionOK;
 	gboolean bInitialized;
 	Gauge *pGauge;
 	CairoDockGraph *pGraph;
-	glong iMemPageSize;
+	gulong iMemPageSize;
 	CDProcess **pTopList;
 	CDProcess **pPreviousTopList;
 	gint iNbDisplayedProcesses;
