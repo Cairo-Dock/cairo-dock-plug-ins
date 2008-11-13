@@ -22,7 +22,7 @@ dock_version = `pkg-config --modversion cairo-dock`
 
 libcd_weblets_la_CFLAGS = \
 	-I$(top_srcdir)/src\
-	$(PACKAGE_CFLAGS) $(XULRUNNER_CFLAGS) $(WEBKIT_CFLAGS)\
+	$(PACKAGE_CFLAGS) $(XULRUNNER_CFLAGS) $(WEBLETS_WEBKIT_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
@@ -53,7 +53,7 @@ libcd_weblets_la_CXXFLAGS = \
 #	-g -ggdb -W -Wall
 
 libcd_weblets_la_LIBADD = \
-	$(PACKAGE_LIBS) $(XULRUNNER_LIBS) $(WEBKIT_LIBS) -lm
+	$(PACKAGE_LIBS) $(XULRUNNER_LIBS) $(WEBLETS_WEBKIT_LIBS) -lm
 
 
 libcd_weblets_la_LDFLAGS =\

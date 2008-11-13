@@ -52,6 +52,14 @@ if WITH_GMENU
 gmenu_dir=GMenu
 endif
 
+if WITH_MAIL
+mail_dir=mail
+endif
+
+if WITH_WEBLETS
+weblets_dir=weblets
+endif
+
 
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
@@ -66,6 +74,7 @@ SUBDIRS = . po\
 	${gnome_dir}\
 	${gnome_old_dir}\
 	logout\
+	${mail_dir}\
 	netspeed\
 	${nvidia_dir}\
 	${powermanager_dir}\
@@ -82,6 +91,7 @@ SUBDIRS = . po\
 	${terminal_dir}\
 	${tomboy_dir}\
 	weather\
+	${weblets_dir}\
 	${wifi_dir}\
 	${xfce_dir}\
 	${xgamma_dir}\

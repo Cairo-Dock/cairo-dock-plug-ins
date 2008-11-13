@@ -10,7 +10,6 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-
 IT_PROG_INTLTOOL([0.35.0])
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
@@ -77,7 +76,7 @@ AC_ARG_ENABLE(nvidia,
 	[ with_nvidia=yes ])
 AC_ARG_ENABLE(compiz-icon,
 	[  --enable-compiz-icon : Enable Compiz-Icon applet (default=yes) ],
-	[ $with_compiz_icon=${enableval} ],
+	[ with_compiz_icon=${enableval} ],
 	[ with_compiz_icon=yes ])
 AC_ARG_ENABLE(xgamma,
 	[  --enable-xgamma : Enable Xgamma applet (default=yes) ],
@@ -91,6 +90,14 @@ AC_ARG_ENABLE(gio,
         [  --enable-gio-in-gmenu : Use gio in GMenu (default=no) ],
         [ with_gio_in_gmenu=${enableval} ],
         [ with_gio_in_gmenu=no])
+AC_ARG_ENABLE(mail,
+	[  --enable-mail : Enable Mail applet (default=yes) ],
+	[ with_mail=${enableval} ],
+	[ with_mail=yes ])
+AC_ARG_ENABLE(weblets,
+	[  --enable-weblets : Enable Weblets applet (default=no) ],
+	[ with_weblets=${enableval} ],
+	[ with_weblets=no ])
 
 if test "$with_old_gnome_support" = "yes" ; then
 	PKG_CHECK_MODULES(OLD_GNOME_INTEGRATION,gnome-vfs-2.0 libgnomeui-2.0, ,[ with_old_gnome_support=false; AC_MSG_WARN(Could not find gnome-vfs and/or gnomeui; Cairo-Dock won't be built with Gnome<2.22 support.) ])
@@ -132,6 +139,25 @@ if test "$with_gio_in_gmenu" = "yes" ; then
 	AC_SUBST(GMENU_GIO_CFLAGS)
 	AC_SUBST(GMENU_GIO_LIBS)
 fi
+if test "$with_mail" = "yes" ; then
+	PKG_CHECK_MODULES(MAIL_PACKAGE,gnutls gnome-keyring-1, ,[ with_mail=false; AC_MSG_WARN(Could not find gnutls or gnome-keyring-1; Cairo-Dock won't be built with Mail applet.) ])
+	AC_SUBST(MAIL_PACKAGE_CFLAGS)
+	AC_SUBST(MAIL_PACKAGE_LIBS)
+
+	AC_CHECK_HEADERS(errno.h fcntl.h math.h netdb.h netinet/in.h signal.h stddef.h string.h sys/select.h sys/socket.h sys/stat.h sys/types.h sys/wait.h time.h unistd.h)
+	AC_CHECK_FUNCS(mmap sigaction srandom)
+
+  # Checks for crypt library
+  AC_CHECK_LIB(crypt, encrypt)
+
+fi
+if test "$with_weblets" = "yes" ; then
+	PKG_CHECK_MODULES(WEBLETS_WEBKIT,webkit-1.0, ,[ with_weblets=false; AC_MSG_WARN(Could not find webkit-1.0; Cairo-Dock won't be built with Weblets applet.) ])
+	AC_SUBST(WEBLETS_WEBKIT_CFLAGS)
+	AC_SUBST(WEBLETS_WEBKIT_LIBS)
+fi
+
+AC_PROG_CXX
 
 AM_CONDITIONAL( [WITH_OLD_GNOME_SUPPORT], [test "$with_old_gnome_support" = "yes"] )
 AM_CONDITIONAL( [WITH_GNOME_SUPPORT], [test "$with_gnome_support" = "yes"] )
@@ -147,7 +173,8 @@ AM_CONDITIONAL( [WITH_COMPIZ_ICON], [test "$with_compiz_icon" = "yes"] )
 AM_CONDITIONAL( [WITH_XGAMMA], [test "$with_xgamma" = "yes"] )
 AM_CONDITIONAL( [WITH_GMENU], [test "$with_gmenu" = "yes"] )
 AM_CONDITIONAL( [WITH_GIO_IN_GMENU], [test "$with_gio_in_gmenu" = "yes"] )
-
+AM_CONDITIONAL( [WITH_MAIL], [test "$with_mail" = "yes"] )
+AM_CONDITIONAL( [WITH_WEBLETS], [test "$with_weblets" = "yes"] )
 
 ############# ALSA_MIXER #################
 ALSA_MIXER_PACKAGE="cd-AlsaMixer"
@@ -254,6 +281,15 @@ AC_SUBST(VERSION_LOGOUT, "1.2.4")
 AC_SUBST(PACKAGE_LOGOUT, "$LOGOUT_PACKAGE")
 
 AC_SUBST(logoutdatadir, "${pkgdatadir}/logout")
+
+############# MAIL #################
+MAIL_PACKAGE=cd-mail
+AC_SUBST(GETTEXT_MAIL, "$MAIL_PACKAGE")
+
+AC_SUBST(VERSION_MAIL, "1.0.2")
+AC_SUBST(PACKAGE_MAIL, "$MAIL_PACKAGE")
+
+AC_SUBST(maildatadir, "${pkgdatadir}/mail")
 
 ############# NETSPEED #################
 NETSPEED_PACKAGE=cd-netspeed
@@ -434,6 +470,18 @@ AC_SUBST(PACKAGE_XMMS, "$XMMS_PACKAGE")
 
 AC_SUBST(xmmsdatadir, "${pkgdatadir}/xmms")
 
+############# WEBLETS #################
+WEBLETS_PACKAGE="cd-weblets"
+
+AC_DEFINE(HAVE_WEBKIT,1,[Defined if we want to use webkit.])
+
+AC_SUBST(GETTEXT_WEBLETS, "$WEBLETS_PACKAGE")
+
+AC_SUBST(VERSION_WEBLETS, "0.2")
+AC_SUBST(PACKAGE_WEBLETS, "$WEBLETS_PACKAGE")
+
+AC_SUBST(webletsdatadir, "${pkgdatadir}/weblets")
+
 
 AC_CONFIG_FILES([
 	Makefile
@@ -558,6 +606,15 @@ AC_CONFIG_FILES([
 	logout/data/readme
 	logout/data/logout.conf
 	
+	mail/Makefile
+	mail/src/Makefile
+	mail/po/Makefile.in
+	mail/data/Makefile
+	mail/data/readme
+	mail/data/mail.conf
+	mail/data/themes/Makefile
+	mail/data/themes/Default/Makefile
+	
 	netspeed/Makefile
 	netspeed/src/Makefile
 	netspeed/po/Makefile.in
@@ -678,6 +735,13 @@ AC_CONFIG_FILES([
 	weather/data/themes/I_Weather/Makefile
 	weather/data/themes/WeatherPod/Makefile
 	
+	weblets/Makefile
+	weblets/src/Makefile
+	weblets/po/Makefile.in
+	weblets/data/Makefile
+	weblets/data/readme
+	weblets/data/weblets.conf
+	
 	wifi/Makefile
 	wifi/src/Makefile
 	wifi/po/Makefile.in
@@ -716,6 +780,7 @@ AC_OUTPUT([po/Makefile
 	dustbin/po/Makefile
 	GMenu/po/Makefile
 	logout/po/Makefile
+	mail/po/Makefile
 	netspeed/po/Makefile
 	nVidia/po/Makefile
 	powermanager/po/Makefile
@@ -732,6 +797,7 @@ AC_OUTPUT([po/Makefile
 	terminal/po/Makefile
 	tomboy/po/Makefile
 	weather/po/Makefile
+	weblets/po/Makefile
 	wifi/po/Makefile
 	Xgamma/po/Makefile
 	xmms/po/Makefile
@@ -751,3 +817,6 @@ echo " * Compil nVidia applet : "${with_nvidia}
 echo " * Compil Xgamma applet : "${with_xgamma}
 echo " * Compil GMenu applet : "${with_gmenu}
 echo " * Enable gio in GMenu applet : "${with_gio_in_gmenu}
+echo " * Compil Mail applet : "${with_mail}
+echo " * Compil Weblets applet : "${with_weblets}
+

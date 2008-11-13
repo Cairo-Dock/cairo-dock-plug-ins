@@ -51,9 +51,6 @@ PKG_CHECK_MODULES(PACKAGE, cairo-dock gnutls gnome-keyring-1)
 # SSL is present ? let's say yes :)
 AC_DEFINE_UNQUOTED([HAVE_SSL_SUPPORT], [1], [Define if SSL support is enabled])
 
-# source will be posix compliant
-AC_DEFINE_UNQUOTED([_POSIX_SOURCE], [1], [source will be posix compliant])
-
 AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
