@@ -1,0 +1,217 @@
+[1;32mmessage : [0m [0;37m(cairo-dock.c:main:427) [0m 
+  Compiled with Glitz (hardware acceleration support)n
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-manager.c:cairo_dock_initialize_dock_manager:59) [0m 
+  
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_initialize_renderer_manager:135) [0m 
+  
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_renderer:57) [0m 
+  cairo_dock_register_renderer (default)
+[1;32mmessage : [0m [0;37m(cairo-dock.c:main:506) [0m 
+  environnement de bureau : 2
+[1;32mmessage : [0m [0;37m(cairo-dock-modules.c:cairo_dock_preload_module_from_directory:268) [0m 
+  cairo_dock_preload_module_from_directory (/users/m340689/usr/lib/cairo-dock)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_desklet_renderer:77) [0m 
+  cairo_dock_register_desklet_renderer (Tree)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_desklet_renderer:77) [0m 
+  cairo_dock_register_desklet_renderer (Caroussel)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_desklet_renderer:77) [0m 
+  cairo_dock_register_desklet_renderer (Simple)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_desklet_renderer:77) [0m 
+  cairo_dock_register_desklet_renderer (Controler)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_desklet_renderer:77) [0m 
+  cairo_dock_register_desklet_renderer (Mediaplayer)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_dialog_renderer:122) [0m 
+  cairo_dock_register_dialog_renderer (Text)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_set_renderer:159) [0m 
+  cairo_dock_set_renderer ((null))
+[1;32mmessage : [0m [0;37m(cairo-dock-keyfile-utilities.c:cairo_dock_write_keys_to_file:18) [0m 
+  cairo_dock_write_keys_to_file (/users/m340689/.cairo-dock/current_theme/cairo-dock.conf)
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-manager.c:cairo_dock_deactivate_temporary_auto_hide:485) [0m 
+  
+[1;32mmessage : [0m [0;37m(cairo-dock-config.c:cairo_dock_read_conf_file:683) [0m 
+  g_cMainDockDefaultRendererName <- default
+[1;38mwarning : [0m [0;37m(cairo-dock-config.c:cairo_dock_read_conf_file:1121) [0m 
+  Sorry but your X server does not support the extension.
+ You can't have window thumbnails in the dock
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-factory.c:cairo_dock_build_docks_tree_with_desktop_files:558) [0m 
+  cairo_dock_build_docks_tree_with_desktop_files (/users/m340689/.cairo-dock/current_theme/launchers)
+[1;32mmessage : [0m [0;37m(cairo-dock-launcher-factory.c:cairo_dock_load_icon_info_from_desktop_file:367) [0m 
+  no class defined for the launcher 01BitTorrent.desktop
+ we will assume that its class is 'transmission-gtk'
+[1;32mmessage : [0m [0;37m(cairo-dock-launcher-factory.c:cairo_dock_create_icon_from_desktop_file:402) [0m 
+  + BitTorrent/transmission-gtk
+[1;32mmessage : [0m [0;37m(cairo-dock-class-manager.c:cairo_dock_inhibate_class:254) [0m 
+  cairo_dock_inhibate_class (transmission-gtk)
+[1;32mmessage : [0m [0;37m(cairo-dock-launcher-factory.c:cairo_dock_load_icon_info_from_desktop_file:367) [0m 
+  no class defined for the launcher 01bmp.desktop
+ we will assume that its class is 'beep-media-player'
+[1;32mmessage : [0m [0;37m(cairo-dock-launcher-factory.c:cairo_dock_create_icon_from_desktop_file:402) [0m 
+  + Musique/beep-media-player
+[1;32mmessage : [0m [0;37m(cairo-dock-class-manager.c:cairo_dock_inhibate_class:254) [0m 
+  cairo_dock_inhibate_class (beep-media-player)
+[1;32mmessage : [0m [0;37m(cairo-dock-launcher-factory.c:cairo_dock_create_icon_from_desktop_file:402) [0m 
+  + Navigateur Web Firefox/firefox
+[1;32mmessage : [0m [0;37m(cairo-dock-class-manager.c:cairo_dock_inhibate_class:254) [0m 
+  cairo_dock_inhibate_class (firefox)
+[1;32mmessage : [0m [0;37m(cairo-dock-launcher-factory.c:cairo_dock_load_icon_info_from_desktop_file:367) [0m 
+  no class defined for the launcher 01gnome-terminal.desktop
+ we will assume that its class is 'gnome-terminal'
+[1;32mmessage : [0m [0;37m(cairo-dock-launcher-factory.c:cairo_dock_create_icon_from_desktop_file:402) [0m 
+  + Console/gnome-terminal
+[1;32mmessage : [0m [0;37m(cairo-dock-class-manager.c:cairo_dock_inhibate_class:254) [0m 
+  cairo_dock_inhibate_class (gnome-terminal)
+[1;32mmessage : [0m [0;37m(cairo-dock-launcher-factory.c:cairo_dock_load_icon_info_from_desktop_file:367) [0m 
+  no class defined for the launcher 01nautilus.desktop
+ we will assume that its class is 'nautilus'
+[1;32mmessage : [0m [0;37m(cairo-dock-launcher-factory.c:cairo_dock_create_icon_from_desktop_file:402) [0m 
+  + Fichiers/nautilus
+[1;32mmessage : [0m [0;37m(cairo-dock-class-manager.c:cairo_dock_inhibate_class:254) [0m 
+  cairo_dock_inhibate_class (nautilus)
+[1;32mmessage : [0m [0;37m(cairo-dock-launcher-factory.c:cairo_dock_create_icon_from_desktop_file:402) [0m 
+  + Courrier/thunderbird-bin
+[1;32mmessage : [0m [0;37m(cairo-dock-class-manager.c:cairo_dock_inhibate_class:254) [0m 
+  cairo_dock_inhibate_class (thunderbird-bin)
+[1;32mmessage : [0m [0;37m(cairo-dock-application-factory.c:cairo_dock_create_icon_from_xwindow:417) [0m 
+  recuperation de 'm340689 on mulx0202: /users/m340689/plug-ins/rendering - modules - Konsole' (bIsHidden : 0)
+[1;32mmessage : [0m [0;37m(cairo-dock-class-manager.c:cairo_dock_add_appli_to_class:193) [0m 
+  cairo_dock_add_appli_to_class (konsole)
+[1;32mmessage : [0m [0;37m(cairo-dock-applications-manager.c:cairo_dock_insert_appli_in_dock:1115) [0m 
+  cairo_dock_insert_appli_in_dock (m340689 on mulx0202: /users/m340689/plug-ins/rendering - modules - Konsole, 71303176)
+[1;32mmessage : [0m [0;37m(cairo-dock-class-manager.c:cairo_dock_prevent_inhibated_class:303) [0m 
+  
+[1;32mmessage : [0m [0;37m(cairo-dock-application-factory.c:cairo_dock_manage_appli_class:236) [0m 
+  cairo_dock_manage_appli_class (m340689 on mulx0202: /users/m340689/plug-ins/rendering - modules - Konsole)
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-factory.c:cairo_dock_insert_icon_in_dock_full:705) [0m 
+  separateur necessaire
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-factory.c:cairo_dock_insert_icon_in_dock_full:752) [0m 
+   insertion de m340689 on mulx0202: /users/m340689/plug-ins/rendering - modules - Konsole -> iSeparatorType : 3
+[1;32mmessage : [0m [0;37m(cairo-dock-applications-manager.c:cairo_dock_insert_appli_in_dock:1126) [0m 
+   insertion de m340689 on mulx0202: /users/m340689/plug-ins/rendering - modules - Konsole complete (0,00 48,00x48,00) dans _MainDock_
+[1;32mmessage : [0m [0;37m(cairo-dock-application-factory.c:cairo_dock_create_icon_from_xwindow:417) [0m 
+  recuperation de 'rendering-diapo-simple.c - Kate' (bIsHidden : 0)
+Impossible de trouver l'icône « kate ». Le thème « hicolor »
+n'a pas non plus été trouvé. Peut-être avez-vous besoin de
+l'installer. Vous pouvez obtenir une copie à :
+	http://icon-theme.freedesktop.org/releases
+[1;32mmessage : [0m [0;37m(cairo-dock-class-manager.c:cairo_dock_add_appli_to_class:193) [0m 
+  cairo_dock_add_appli_to_class (kate)
+[1;32mmessage : [0m [0;37m(cairo-dock-applications-manager.c:cairo_dock_insert_appli_in_dock:1115) [0m 
+  cairo_dock_insert_appli_in_dock (rendering-diapo-simple.c - Kate, 79691791)
+[1;32mmessage : [0m [0;37m(cairo-dock-class-manager.c:cairo_dock_prevent_inhibated_class:303) [0m 
+  
+[1;32mmessage : [0m [0;37m(cairo-dock-application-factory.c:cairo_dock_manage_appli_class:236) [0m 
+  cairo_dock_manage_appli_class (rendering-diapo-simple.c - Kate)
+[1;32mmessage : [0m [0;37m(cairo-dock-applications-manager.c:cairo_dock_insert_appli_in_dock:1126) [0m 
+   insertion de rendering-diapo-simple.c - Kate complete (0,00 48,00x48,00) dans _MainDock_
+[1;32mmessage : [0m [0;37m(cairo-dock-modules.c:cairo_dock_activate_module:453) [0m 
+  cairo_dock_activate_module (clock)
+cairo_dock_instanciate_module (/users/m340689/.cairo-dock/current_theme/plug-ins/clock/clock.conf)
+  ce module est une applet
+[1;32mmessage : [0m [0;37m(cairo-dock-applet-factory.c:cairo_dock_create_applet_surface:31) [0m 
+  cairo_dock_create_applet_surface (48,00x48,00 x 2,00 / 1)
+[1;32mmessage : [0m [0;37m(cairo-dock-applet-factory.c:cairo_dock_create_applet_surface:40) [0m 
+   -> 48,00x48,00 x 2,00
+cairo_dock_read_module_config (40f0b480)
+[1;32mmessage : [0m [0;37m(cairo-dock-keyfile-utilities.c:cairo_dock_write_keys_to_file:18) [0m 
+  cairo_dock_write_keys_to_file (/users/m340689/.cairo-dock/current_theme/plug-ins/clock/clock.conf)
+[1;32mmessage : [0m [0;37m(applet-init.c:init:81) [0m 
+  init (/users/m340689/.cairo-dock/current_theme/plug-ins/clock/clock.conf)
+
+[1;32mmessage : [0m [0;37m(applet-init.c:_load_theme:39) [0m 
+  _load_theme (/users/m340689/usr/share/cairo-dock/plug-ins/clock/themes/silvia)
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-factory.c:cairo_dock_insert_icon_in_dock_full:705) [0m 
+  separateur necessaire
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-factory.c:cairo_dock_insert_icon_in_dock_full:752) [0m 
+   insertion de Poland -> iSeparatorType : 1
+[1;32mmessage : [0m [0;37m(cairo-dock-modules.c:cairo_dock_activate_module:453) [0m 
+  cairo_dock_activate_module (rendering)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_desklet_renderer:77) [0m 
+  cairo_dock_register_desklet_renderer (Tree)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_desklet_renderer:77) [0m 
+  cairo_dock_register_desklet_renderer (Caroussel)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_desklet_renderer:77) [0m 
+  cairo_dock_register_desklet_renderer (Simple)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_desklet_renderer:77) [0m 
+  cairo_dock_register_desklet_renderer (Controler)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_desklet_renderer:77) [0m 
+  cairo_dock_register_desklet_renderer (Mediaplayer)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_dialog_renderer:122) [0m 
+  cairo_dock_register_dialog_renderer (Text)
+cairo_dock_instanciate_module (/users/m340689/.cairo-dock/current_theme/plug-ins/rendering/rendering.conf)
+  ce module est un plug-in
+cairo_dock_read_module_config (40f50ba0)
+[1;32mmessage : [0m [0;37m(rendering-init.c:init:120) [0m 
+  init (/users/m340689/.cairo-dock/current_theme/plug-ins/rendering/rendering.conf)
+
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_renderer:57) [0m 
+  cairo_dock_register_renderer (Caroussel)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_renderer:57) [0m 
+  cairo_dock_register_renderer (3D plane)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_renderer:57) [0m 
+  cairo_dock_register_renderer (Parabolic)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_renderer:57) [0m 
+  cairo_dock_register_renderer (Rainbow)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_renderer:57) [0m 
+  cairo_dock_register_renderer (Slide)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_renderer:57) [0m 
+  cairo_dock_register_renderer (SimpleSlide)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_register_renderer:57) [0m 
+  cairo_dock_register_renderer (Curve)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_set_renderer:159) [0m 
+  cairo_dock_set_renderer ((null))
+[1;32mmessage : [0m [0;37m(cairo-dock-modules.c:cairo_dock_activate_module:453) [0m 
+  cairo_dock_activate_module (switcher)
+cairo_dock_instanciate_module (/users/m340689/.cairo-dock/current_theme/plug-ins/switcher/switcher.conf)
+  ce module est une applet
+[1;32mmessage : [0m [0;37m(cairo-dock-applet-factory.c:cairo_dock_create_applet_surface:31) [0m 
+  cairo_dock_create_applet_surface (32,00x32,00 x 2,00 / 1)
+[1;32mmessage : [0m [0;37m(cairo-dock-applet-factory.c:cairo_dock_create_applet_surface:40) [0m 
+   -> 48,00x48,00 x 2,00
+cairo_dock_read_module_config (40f26450)
+myConfig.bCompactView:0
+[1;32mmessage : [0m [0;37m(applet-init.c:init:83) [0m 
+  init (/users/m340689/.cairo-dock/current_theme/plug-ins/switcher/switcher.conf)
+
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_set_renderer:159) [0m 
+  cairo_dock_set_renderer ((null))
+[1;32mmessage : [0m [0;37m(cairo-dock-applications-manager.c:cairo_dock_update_applis_list:1203) [0m 
+   cette fenetre (88080409) de la pile n'est pas dans la liste
+cd_switcher_draw_main_icon (0)
+[1;32mmessage : [0m [0;37m(cairo-dock-load.c:cairo_dock_load_desktop_background_surface:856) [0m 
+  c'est un fond d'ecran de taille 1024x742
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-factory.c:cairo_dock_reference_dock:476) [0m 
+  position : 1/1
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_set_renderer:159) [0m 
+  cairo_dock_set_renderer ((null))
+[1;32mmessage : [0m [0;37m(cairo-dock-load.c:cairo_dock_reload_buffers_in_dock:502) [0m 
+  cairo_dock_reload_buffers_in_dock ((null), 1)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_set_renderer:159) [0m 
+  cairo_dock_set_renderer (SimpleSlide)
+cd_switcher_draw_main_icon (0)
+ (0,00; 0,00) 38,40x38,40
+ (0,00; 0,00) 38,40x38,40
+ (0,00; 0,00) 38,40x38,40
+ (0,00; 0,00) 38,40x38,40
+cd_switcher_draw_main_icon (0)
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_set_renderer:159) [0m 
+  cairo_dock_set_renderer ((null))
+[1;32mmessage : [0m [0;37m(cairo-dock-renderer-manager.c:cairo_dock_set_renderer:159) [0m 
+  cairo_dock_set_renderer (SimpleSlide)
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-manager.c:cairo_dock_search_max_decorations_size:193) [0m 
+    decorations max : 761x52
+[1;32mmessage : [0m [0;37m(cairo-dock-keyfile-utilities.c:cairo_dock_write_keys_to_file:18) [0m 
+  cairo_dock_write_keys_to_file (/users/m340689/.cairo-dock/current_theme/cairo-dock_easy.conf)
+[1;32mmessage : [0m [0;37m(cairo-dock-keyfile-utilities.c:cairo_dock_write_keys_to_file:18) [0m 
+  cairo_dock_write_keys_to_file (/users/m340689/.cairo-dock/current_theme/cairo-dock_easy.conf)
+cd_switcher_draw_main_icon (0)
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-manager.c:cairo_dock_stop_quick_hide:494) [0m 
+  
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-manager.c:cairo_dock_stop_quick_hide:494) [0m 
+  
+cd_switcher_draw_main_icon (0)
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-manager.c:cairo_dock_stop_quick_hide:494) [0m 
+  
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-manager.c:cairo_dock_hide_child_docks:250) [0m 
+  on est dans le sous-dock, donc on ne le cache pas
+[1;32mmessage : [0m [0;37m(cairo-dock-dock-manager.c:cairo_dock_hide_child_docks:250) [0m 
+  on est dans le sous-dock, donc on ne le cache pas

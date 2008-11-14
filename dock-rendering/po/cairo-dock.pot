@@ -1,0 +1,270 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-10-17 02:29+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/messages:1
+msgid "Inclinated Plane"
+msgstr ""
+
+#: ../data/messages:3
+msgid "The lower, the more the point of view is low on the plane."
+msgstr ""
+
+#: ../data/messages:5
+msgid "Height of the vanishing point :"
+msgstr ""
+
+#: ../data/messages:7 ../data/messages:165
+msgid "Choose the way separators are drawn :"
+msgstr ""
+
+#: ../data/messages:9 ../data/messages:167
+msgid "Normal separator"
+msgstr ""
+
+#: ../data/messages:11 ../data/messages:169
+msgid "Flat separator"
+msgstr ""
+
+#: ../data/messages:13 ../data/messages:171
+msgid "Physical separator"
+msgstr ""
+
+#: ../data/messages:15
+msgid "red, blue, green, alpha"
+msgstr ""
+
+#: ../data/messages:17
+msgid "For flat separators, you can specify their color:"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Caroussel"
+msgstr ""
+
+#: ../data/messages:21
+msgid ""
+"In degrees, regarding the vertical position. It's a sort of inclination of "
+"the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+"the plane is not inclined at all (vertical)."
+msgstr ""
+
+#: ../data/messages:23
+msgid "Inclination of the plane :"
+msgstr ""
+
+#: ../data/messages:25
+msgid ""
+"0.5 means the dock is half-folded, so half the icons are on the foreground, "
+"and half are on the background."
+msgstr ""
+
+#: ../data/messages:27
+msgid "Percentage of the dock's width that appears on the foreground :"
+msgstr ""
+
+#: ../data/messages:29
+msgid ""
+"The greater, the deeper. It is in fact the gap between background icons' "
+"bottom and foreground icons' top (in pixels)."
+msgstr ""
+
+#: ../data/messages:31
+msgid "Depth of the plane :"
+msgstr ""
+
+#: ../data/messages:33
+msgid "otherwise they will turn."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Always show icons' face ?"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Parabolic"
+msgstr ""
+
+#: ../data/messages:39
+msgid "The higher it is, the sooner the parabole will be curved."
+msgstr ""
+
+#: ../data/messages:41
+msgid "Curvature :"
+msgstr ""
+
+#: ../data/messages:43
+msgid "The parabole will be conscricted to a rectangle of this proportion."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Ratio height/width :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "0 means the wave is totally flat, 1 means the wave is maximal."
+msgstr ""
+
+#: ../data/messages:49 ../data/messages:67
+msgid "Magnitude of the wave :"
+msgstr ""
+
+#: ../data/messages:51 ../data/messages:161
+msgid "in pixels."
+msgstr ""
+
+#: ../data/messages:53
+msgid "Space between icons and their label :"
+msgstr ""
+
+#: ../data/messages:55
+msgid ""
+"It may recquire more CPU during the unfolding animation, except if you "
+"launch Cairo-Dock with Glitz."
+msgstr ""
+
+#: ../data/messages:57
+msgid "Draw labels while unfolding ?"
+msgstr ""
+
+#: ../data/messages:59
+msgid "Rainbow"
+msgstr ""
+
+#: ../data/messages:61 ../data/messages:79 ../data/messages:119
+msgid "Space between rows :"
+msgstr ""
+
+#: ../data/messages:63
+msgid "Space between icons :"
+msgstr ""
+
+#: ../data/messages:65
+msgid ""
+"0 means the wave is totally flat, 1 means the wave is identical to other "
+"views."
+msgstr ""
+
+#: ../data/messages:69
+msgid "Number of icons on the first row :"
+msgstr ""
+
+#: ../data/messages:71
+msgid ""
+"in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+"widely opened."
+msgstr ""
+
+#: ../data/messages:73
+msgid "Cone's width :"
+msgstr ""
+
+#: ../data/messages:75
+msgid "Slide"
+msgstr ""
+
+#: ../data/messages:77 ../data/messages:117
+msgid "Space between columns :"
+msgstr ""
+
+#: ../data/messages:81 ../data/messages:121
+msgid "Max size of icons :"
+msgstr ""
+
+#: ../data/messages:83 ../data/messages:123
+msgid "Sinusoidal wave radius :"
+msgstr ""
+
+#: ../data/messages:85 ../data/messages:125
+msgid "Use a linear wave rather than a sinusoidal one ?"
+msgstr ""
+
+#: ../data/messages:87 ../data/messages:127
+msgid "Use a wide shape ?"
+msgstr ""
+
+#: ../data/messages:89 ../data/messages:129
+msgid "Display text only for pointed icon ?"
+msgstr ""
+
+#: ../data/messages:91 ../data/messages:131
+msgid "Display text for all icons ?"
+msgstr ""
+
+#: ../data/messages:93 ../data/messages:133
+msgid "Draw a background ?"
+msgstr ""
+
+#: ../data/messages:95 ../data/messages:135
+msgid "First gradient color (r,v,b,a) :"
+msgstr ""
+
+#: ../data/messages:97 ../data/messages:137
+msgid "Second gradient color (r,v,b,a) :"
+msgstr ""
+
+#: ../data/messages:99 ../data/messages:139
+msgid "Top to bottom gradient ?"
+msgstr ""
+
+#: ../data/messages:101 ../data/messages:141
+msgid "Left to right gradient ?"
+msgstr ""
+
+#: ../data/messages:103 ../data/messages:143
+msgid "Arrow width :"
+msgstr ""
+
+#: ../data/messages:105 ../data/messages:145
+msgid "Arrow Height :"
+msgstr ""
+
+#: ../data/messages:107 ../data/messages:147
+msgid "Arrow shift percent :"
+msgstr ""
+
+#: ../data/messages:109 ../data/messages:149
+msgid "Corner radius :"
+msgstr ""
+
+#: ../data/messages:111 ../data/messages:151
+msgid "Border line width :"
+msgstr ""
+
+#: ../data/messages:113 ../data/messages:153
+msgid "Border line color (r,v,b,a) :"
+msgstr ""
+
+#: ../data/messages:115
+msgid "SimpleSlide"
+msgstr ""
+
+#: ../data/messages:155
+msgid "Curve"
+msgstr ""
+
+#: ../data/messages:157
+msgid "The lower, the more the curve will seem flat."
+msgstr ""
+
+#: ../data/messages:159
+msgid "Curvature of the curve in percent :"
+msgstr ""
+
+#: ../data/messages:163
+msgid "Amplitude of the curve."
+msgstr ""

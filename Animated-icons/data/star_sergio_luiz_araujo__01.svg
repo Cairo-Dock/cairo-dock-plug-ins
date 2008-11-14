@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created with Inkscape (http://www.inkscape.org/) --><svg height="297mm" id="svg1" inkscape:version="0.40" sodipodi:docbase="/home/kurumin/smb4k/DETSRV001/Sergio/inkscape" sodipodi:docname="start.svg" sodipodi:version="0.32" width="210mm" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <metadata>
+    <rdf:RDF xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <cc:Work rdf:about="">
+        <dc:title>star</dc:title>
+        <dc:description>esta estrela é muito alegre</dc:description>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>icon</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://www.openclipart.org">
+            <dc:title>Sérgio Luiz Araújo Silva</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Sérgio Luiz Araújo Silva</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Sérgio Luiz Araújo Silva</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:date></dc:date>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://web.resource.org/cc/PublicDomain"/>
+        <dc:language>en</dc:language>
+      </cc:Work>
+      <cc:License rdf:about="http://web.resource.org/cc/PublicDomain">
+        <cc:permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+        <cc:permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+        <cc:permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <defs id="defs3"/>
+  <sodipodi:namedview bordercolor="#666666" borderopacity="1.0" id="base" inkscape:current-layer="layer1" inkscape:cx="295.60615" inkscape:cy="509.77809" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-height="693" inkscape:window-width="1016" inkscape:window-x="0" inkscape:window-y="0" inkscape:zoom="0.61664800" pagecolor="#ffffff"/>
+  <g id="layer1" inkscape:groupmode="layer" inkscape:label="Layer 1">
+    <g id="g4794">
+      <path d="M 358.48429,484.82963 C 354.07757,492.46230 320.24760,478.22535 312.19612,481.81010 C 304.14463,485.39486 292.08808,520.06180 283.46723,518.22938 C 274.84638,516.39696 277.93249,479.82329 272.03514,473.27362 C 266.13779,466.72396 229.44189,465.97017 228.52064,457.20500 C 227.59938,448.43984 263.33667,440.07302 267.74339,432.44035 C 272.15011,424.80768 261.52735,389.67487 269.57883,386.09012 C 277.63032,382.50537 296.63107,413.90806 305.25192,415.74047 C 313.87277,417.57289 344.00344,396.61341 349.90079,403.16308 C 355.79814,409.71274 331.80396,437.48750 332.72522,446.25266 C 333.64647,455.01783 362.89101,477.19696 358.48429,484.82963 z " id="path3551" inkscape:flatsided="false" inkscape:randomized="0.0000000" inkscape:rounded="0.19000000" sodipodi:arg1="0.52359878" sodipodi:arg2="1.1519173" sodipodi:cx="297.99036" sodipodi:cy="449.90344" sodipodi:r1="69.852379" sodipodi:r2="34.926189" sodipodi:sides="5" sodipodi:type="star" style="fill:#646464;fill-opacity:0.21509434;fill-rule:evenodd;stroke:#54514f;stroke-width:1.2592226;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0000000;stroke-dashoffset:0.0000000;stroke-opacity:0.20000000" transform="matrix(3.596614,2.121748,-2.060458,3.646575,215.6212,-1858.236)"/>
+      <path d="M 358.48429,484.82963 C 354.07757,492.46230 320.24760,478.22535 312.19612,481.81010 C 304.14463,485.39486 292.08808,520.06180 283.46723,518.22938 C 274.84638,516.39696 277.93249,479.82329 272.03514,473.27362 C 266.13779,466.72396 229.44189,465.97017 228.52064,457.20500 C 227.59938,448.43984 263.33667,440.07302 267.74339,432.44035 C 272.15011,424.80768 261.52735,389.67487 269.57883,386.09012 C 277.63032,382.50537 296.63107,413.90806 305.25192,415.74047 C 313.87277,417.57289 344.00344,396.61341 349.90079,403.16308 C 355.79814,409.71274 331.80396,437.48750 332.72522,446.25266 C 333.64647,455.01783 362.89101,477.19696 358.48429,484.82963 z " id="path1061" inkscape:flatsided="false" inkscape:randomized="0.0000000" inkscape:rounded="0.19000000" sodipodi:arg1="0.52359878" sodipodi:arg2="1.1519173" sodipodi:cx="297.99036" sodipodi:cy="449.90344" sodipodi:r1="69.852379" sodipodi:r2="34.926189" sodipodi:sides="5" sodipodi:type="star" style="fill:#6685d1;fill-opacity:1.0000000;fill-rule:evenodd;stroke:#000084;stroke-width:1.2592226;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0000000;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000" transform="matrix(3.445704,1.989378,-1.974003,3.419075,222.0565,-1719.471)"/>
+      <path d="M 385.02712,146.43055 C 353.83879,143.06183 318.66785,288.94669 291.57130,304.46956 C 264.47476,319.99238 129.73368,274.20349 117.07891,302.68867 C 104.42412,331.17387 225.98524,406.62781 232.60589,437.19496 C 239.22654,467.76215 163.13247,583.95511 186.49972,604.92869 C 189.22560,607.37533 163.99448,606.36113 191.76308,606.23966 C 171.64252,556.14926 245.71002,471.29856 239.60596,443.11642 C 232.98530,412.54929 115.24161,335.16000 127.89641,306.67482 C 140.55120,278.18962 267.60419,325.96707 294.70073,310.44423 C 321.19749,295.26497 349.80435,166.49670 380.22189,164.28323 C 376.55324,158.54061 389.86718,146.95332 385.02712,146.43055 z M 456.14570,322.20538 C 457.17431,323.67833 458.22310,325.08891 459.33877,326.09029 C 478.09128,342.92181 565.41887,339.55362 602.65455,353.33784 C 587.67061,330.74583 493.34529,334.73726 456.14570,322.20538 z M 365.75704,548.04781 C 393.71366,569.08529 431.36764,609.64407 457.66433,623.45757 C 427.52850,601.26368 389.54305,559.99495 365.75704,548.04781 z " id="path1685" sodipodi:nodetypes="cccccccccccccccccc" style="fill:#ffffff;fill-opacity:0.69433963;fill-rule:evenodd;stroke:none;stroke-width:0.53918904;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0000000;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000"/>
+    </g>
+  </g>
+</svg>
