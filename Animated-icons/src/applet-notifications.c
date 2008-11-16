@@ -87,6 +87,7 @@ gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 		if (pData->fHaloRotationAngle > 90 && pData->fHaloRotationAngle < 270)
 			cd_animation_render_halo (pIcon, pDock, pData->fRadiusFactor, pData->fHaloRotationAngle);
 	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered)
@@ -170,7 +171,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	
 	if (pData->fRadiusFactor != 0)
 	{
-		if (pIcon->bPointed)
+		if (pIcon->bPointed && pDock->bInside)
 		{
 			pData->fRadiusFactor += 1./myConfig.iSpotDuration * g_iGLAnimationDeltaT;
 			if (pData->fRadiusFactor > 1)

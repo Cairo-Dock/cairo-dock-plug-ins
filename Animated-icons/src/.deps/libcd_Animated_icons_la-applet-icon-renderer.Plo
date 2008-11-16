@@ -437,6 +437,9 @@ libcd_Animated_icons_la-applet-icon-renderer.lo \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-particle-system.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-draw-opengl.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-manager.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-factory.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-callbacks.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-manager.h \
   applet-icon-renderer.h
 
 /usr/include/math.h:
@@ -1434,6 +1437,12 @@ applet-struct.h:
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-particle-system.h:
 
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-draw-opengl.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-manager.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-factory.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-callbacks.h:
 
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-manager.h:
 
