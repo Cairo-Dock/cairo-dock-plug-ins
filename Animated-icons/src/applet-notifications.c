@@ -43,7 +43,8 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 			myData.iSpotFrontTexture = cd_animation_load_spot_front_texture ();
 		if (myData.iRaysTexture == 0)
 			myData.iRaysTexture = cd_animations_load_rays_texture ();
-		pData->pRaysSystem = cd_animations_init_rays (pIcon, pDock, dt);
+		if (pData->pRaysSystem == NULL)
+			pData->pRaysSystem = cd_animations_init_rays (pIcon, pDock, dt);
 		pData->fRadiusFactor = .001;
 		pData->fHaloRotationAngle = 0;
 		*bStartAnimation = TRUE;
