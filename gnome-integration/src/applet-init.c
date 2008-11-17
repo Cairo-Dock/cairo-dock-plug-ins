@@ -13,15 +13,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN("gnome integration", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_PRE_INIT_BEGIN("gnome integration", 1, 6, 2, CAIRO_DOCK_CATEGORY_PLUG_IN)
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && (glib_major_version > 2 || glib_minor_version >= 16))
 	{
 		if (init_vfs_backend ())
 		{
-			pInterface->initModule = init;
-			pInterface->stopModule = stop;
-			pInterface->reloadModule = reload;
-
 			CairoDockVFSBackend *pVFSBackend = g_new0 (CairoDockVFSBackend, 1);
 			pVFSBackend->get_file_info = vfs_backend_get_file_info;
 			pVFSBackend->get_file_properties = vfs_backend_get_file_properties;
@@ -45,19 +41,6 @@ CD_APPLET_PRE_INIT_BEGIN("gnome integration", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKT
 			cairo_dock_fm_register_vfs_backend (pVFSBackend);
 		}
 	}
+	else
+		return FALSE;
 CD_APPLET_PRE_INIT_END
-
-
-CD_APPLET_INIT_BEGIN
-	
-CD_APPLET_INIT_END
-
-
-CD_APPLET_STOP_BEGIN
-	
-CD_APPLET_STOP_END
-
-
-CD_APPLET_RELOAD_BEGIN
-	
-CD_APPLET_RELOAD_END

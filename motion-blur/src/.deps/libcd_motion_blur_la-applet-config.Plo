@@ -431,6 +431,9 @@ libcd_motion_blur_la-applet-config.lo \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-particle-system.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-draw-opengl.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-manager.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-factory.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-callbacks.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-manager.h \
   applet-struct.h applet-config.h
 
 /usr/include/string.h:
@@ -1408,6 +1411,12 @@ libcd_motion_blur_la-applet-config.lo \
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-particle-system.h:
 
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-draw-opengl.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-manager.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-factory.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-callbacks.h:
 
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-manager.h:
 

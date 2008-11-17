@@ -336,6 +336,15 @@ AC_SUBST(PACKAGE_RENDERING, "$RENDERING_PACKAGE")
 
 AC_SUBST(renderingdatadir, "${pkgdatadir}/rendering")
 
+############# DESKLET_RENDERING #################
+DESKLET_RENDERING_PACKAGE=cd-desklet-rendering
+AC_SUBST(GETTEXT_DESKLET_RENDERING, "$DESKLET_RENDERING_PACKAGE")
+
+AC_SUBST(VERSION_DESKLET_RENDERING, "1.5.1")
+AC_SUBST(PACKAGE_DESKLET_RENDERING, "$DESKLET_RENDERING_PACKAGE")
+
+AC_SUBST(desklet_renderingdatadir, "${pkgdatadir}/desklet-rendering")
+
 ############# RHYTHMBOX #################
 RHYTHMBOX_PACKAGE=cd-rhythmbox
 AC_SUBST(GETTEXT_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
@@ -643,12 +652,18 @@ AC_CONFIG_FILES([
 	rame/data/readme
 	rame/data/rame.conf
 	
-	rendering/Makefile
-	rendering/src/Makefile
-	rendering/po/Makefile.in
-	rendering/data/Makefile
-	rendering/data/readme
-	rendering/data/rendering.conf
+	dock-rendering/Makefile
+	dock-rendering/src/Makefile
+	dock-rendering/po/Makefile.in
+	dock-rendering/data/Makefile
+	dock-rendering/data/readme
+	dock-rendering/data/rendering.conf
+	
+	desklet-rendering/Makefile
+	desklet-rendering/src/Makefile
+	desklet-rendering/po/Makefile.in
+	desklet-rendering/data/Makefile
+	desklet-rendering/data/readme
 	
 	rhythmbox/Makefile
 	rhythmbox/src/Makefile
@@ -785,7 +800,8 @@ AC_OUTPUT([po/Makefile
 	nVidia/po/Makefile
 	powermanager/po/Makefile
 	rame/po/Makefile
-	rendering/po/Makefile
+	dock-rendering/po/Makefile
+	desklet-rendering/po/Makefile
 	rhythmbox/po/Makefile
 	shortcuts/po/Makefile
 	showDesklets/po/Makefile

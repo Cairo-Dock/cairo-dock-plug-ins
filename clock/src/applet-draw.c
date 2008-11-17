@@ -64,9 +64,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	
 	if (myDock && myDock->bUseReflect)
 	{
-		cairo_surface_t *pReflet = icon->pReflectionBuffer;
-		icon->pReflectionBuffer = NULL;
-		cairo_surface_destroy (pReflet);
+		cairo_surface_destroy (icon->pReflectionBuffer);
 		
 		icon->pReflectionBuffer = cairo_dock_create_reflection_surface (icon->pIconBuffer,
 			myDrawContext,
@@ -76,6 +74,8 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			1 + g_fAmplitude,
 			myDock->bDirectionUp);
 	}
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		cairo_dock_update_icon_texture (myIcon);
 	
 	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL && myConfig.cLocation == NULL && (epoch_tm.tm_mday != myData.iLastCheckedDay || epoch_tm.tm_mon != myData.iLastCheckedMonth || epoch_tm.tm_year != myData.iLastCheckedYear))
 	{

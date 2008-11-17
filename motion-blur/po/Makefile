@@ -36,7 +36,7 @@ libdir = /usr/local/lib/cairo-dock
 DATADIRNAME = share
 itlocaledir = $(prefix)/$(DATADIRNAME)/locale
 subdir = po
-install_sh = $(SHELL) /home/fab/CD/branches/plug-ins2/motion_blur/install-sh
+install_sh = $(SHELL) /home/fab/CD/trunk/plug-ins/motion-blur/install-sh
 # Automake >= 1.8 provides /bin/mkdir -p.
 # Until it can be supposed, use the safe fallback:
 mkdir_p = $(install_sh) -d

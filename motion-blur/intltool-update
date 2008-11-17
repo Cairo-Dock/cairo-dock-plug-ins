@@ -557,7 +557,7 @@ sub Console_WriteError_InvalidOption
 
 sub GenerateHeaders
 {
-    my $EXTRACT = "/home/fab/CD/branches/plug-ins2/motion_blur/intltool-extract";
+    my $EXTRACT = "/home/fab/CD/trunk/plug-ins/motion-blur/intltool-extract";
     chomp $EXTRACT;
 
     $EXTRACT = $ENV{"INTLTOOL_EXTRACT"} if $ENV{"INTLTOOL_EXTRACT"};

@@ -79,7 +79,8 @@ SUBDIRS = . po\
 	${nvidia_dir}\
 	${powermanager_dir}\
 	rame\
-	rendering\
+	desklet-rendering\
+	dock-rendering\
 	${rhythmbox_dir}\
 	shortcuts\
 	showDesklets\
