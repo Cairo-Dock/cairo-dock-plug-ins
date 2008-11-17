@@ -37,11 +37,8 @@ static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 CD_APPLET_ABOUT (D_("This is the Cairo-Penguin applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
-gboolean CD_APPLET_ON_CLICK (gpointer *data, CairoDockModuleInstance *myApplet)
+gboolean CD_APPLET_ON_CLICK (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState)
 {
-	Icon *pClickedIcon = data[0];
-	CairoContainer *pClickedContainer = data[1];
-	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -97,18 +94,14 @@ static void _wake_up (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	penguin_start_animating (myApplet);
 }
-gboolean CD_APPLET_ON_BUILD_MENU (gpointer *data, CairoDockModuleInstance *myApplet)
+gboolean CD_APPLET_ON_BUILD_MENU (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu)
 {
-	Icon *pClickedIcon = data[0];
-	CairoContainer *pClickedContainer = data[1];
-	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->iMouseX >  (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->iMouseX < (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
-		GtkWidget *pAppletMenu = data[2];
 		GtkWidget *pMenuItem, *image;
 		
 		CD_APPLET_ADD_SEPARATOR (CD_APPLET_MY_MENU);
@@ -127,15 +120,12 @@ gboolean CD_APPLET_ON_BUILD_MENU (gpointer *data, CairoDockModuleInstance *myApp
 		CD_APPLET_ADD_IN_MENU(D_("Stop XPenguins"), _stop_xpenguins, pModuleSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu);
 		
-		data[0] = myIcon;  // astuce pour beneficier du menu cree par le dock :-)
+		///data[0] = myIcon;  // astuce pour beneficier du menu cree par le dock :-)
 CD_APPLET_ON_BUILD_MENU_END
 
 
-gboolean CD_APPLET_ON_MIDDLE_CLICK (gpointer *data, CairoDockModuleInstance *myApplet)
+gboolean CD_APPLET_ON_MIDDLE_CLICK (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer)
 {
-	Icon *pClickedIcon = data[0];
-	CairoContainer *pClickedContainer = data[1];
-	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
