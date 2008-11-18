@@ -37,8 +37,8 @@ CD_APPLET_ON_CLICK_BEGIN
 		}
 		else
 		{
-			iMouseX = - myDesklet->diff_x - myIcon->fDrawX;
-			iMouseY = - myDesklet->diff_y - myIcon->fDrawY;
+			iMouseX = myDesklet->iMouseX - myIcon->fDrawX;
+			iMouseY = myDesklet->iMouseY - myIcon->fDrawY;
 		}
 		if (iMouseX < 0)
 			iMouseX = 0;

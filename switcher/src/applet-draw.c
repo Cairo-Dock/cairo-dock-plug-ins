@@ -154,8 +154,10 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	if (myConfig.bDrawWindows)
 	{
 		cd_switcher_draw_windows_on_each_viewports (xi, yj,myData.switcher.fOneViewportWidth + myConfig.iInLineSize,myData.switcher.fOneViewportHeight + myConfig.iInLineSize);
-	
 	}
+	
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		cairo_dock_update_icon_texture (myIcon);
 }
 
 void cd_switcher_draw_windows_on_each_viewports(double Xposition, double Yposition, double Xsize, double Ysize)
@@ -282,6 +284,9 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 			0.);
 		cairo_paint(myDrawContext);
 		cairo_restore (myDrawContext);
+		
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+			cairo_dock_update_icon_texture (myIcon);
 	}
 	else if (myIcon->acFileName == NULL)
 	{
