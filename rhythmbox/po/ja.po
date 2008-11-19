@@ -7,7 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-11-14 22:59+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,7 +30,8 @@ msgstr ""
 "アルバム : %s\n"
 "タイトル : %s"
 
-#: ../src/rhythmbox-draw.c:140 ../src/rhythmbox-draw.c:141
+#: ../src/rhythmbox-draw.c:140
+#: ../src/rhythmbox-draw.c:141
 #: ../src/rhythmbox-draw.c:142
 msgid "Unknown"
 msgstr "不明"
@@ -81,12 +85,8 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:15
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -94,9 +94,7 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -115,25 +113,16 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -141,35 +130,27 @@ msgstr "位置を固定？"
 
 #: ../data/messages:37
 msgid "in degrees."
-msgstr ""
+msgstr "角度"
 
 #: ../data/messages:39
 msgid "Rotation :"
-msgstr ""
+msgstr "回転 :"
 
 #: ../data/messages:41
-#, fuzzy
 msgid "Decorations"
-msgstr "情報"
+msgstr "装飾"
 
 #: ../data/messages:43
-#, fuzzy
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"「カスタム」を選択した場合、任意の装飾を下で指定できます。装飾を一切使用しな"
-"い場合は、空欄のままにしてください。"
+msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:45
-#, fuzzy
 msgid "Choose a decoration theme for this desklet :"
-msgstr "デスクレット・モード用の装飾の選択 :"
+msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:47
-#, fuzzy
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr "例えばフレームのように、カバーの背後に表示される画像です。"
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
 
 #: ../data/messages:49
 msgid "Background image :"
@@ -181,54 +162,47 @@ msgstr "背景の透明度 :"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
 #: ../data/messages:55
 msgid "Left offset :"
-msgstr "左側のオフセット :"
+msgstr "左方向のオフセット :"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
 #: ../data/messages:59
-#, fuzzy
 msgid "Top offset :"
-msgstr "左側のオフセット :"
+msgstr "上方向のオフセット :"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
 #: ../data/messages:63
 msgid "Right offset :"
-msgstr "右側のオフセット :"
+msgstr "右方向のオフセット :"
 
 #: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
 #: ../data/messages:67
-#, fuzzy
 msgid "Bottom offset :"
-msgstr "左側のオフセット :"
+msgstr "下方向のオフセット :"
 
 #: ../data/messages:69
-#, fuzzy
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr "例えば反射のように、カバー上に表示される画像です。"
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
 
 #: ../data/messages:71
-#, fuzzy
 msgid "Foreground image :"
-msgstr "背景画像 :"
+msgstr "前景画像 :"
 
 #: ../data/messages:73
-#, fuzzy
 msgid "Foreground tansparency :"
-msgstr "背景の透明度 :"
+msgstr "前景の透明度 :"
 
 #: ../data/messages:75
 msgid "Configuration"
@@ -287,13 +261,8 @@ msgid "random"
 msgstr "ランダム"
 
 #: ../data/messages:103
-msgid ""
-"It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
-"icon will then behave as a launcher, an appli, and an applet."
-msgstr ""
-"Rhytmbox のアイコンがタスクバーに表示されないようにします。これによって、アプ"
-"レットのアイコンがランチャーやアプリケーション、アプレットとして動作するよう"
-"になります。"
+msgid "It will prevent the rhythmbox's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
+msgstr "Rhytmbox のアイコンがタスクバーに表示されないようにします。これによって、アプレットのアイコンがランチャーやアプリケーション、アプレットとして動作するようになります。"
 
 #: ../data/messages:105
 msgid "Steal the rhythmbox's icon in taskbar ?"
@@ -328,20 +297,22 @@ msgid "time in %"
 msgstr "時間の割合"
 
 #: ../data/messages:121
-#, fuzzy
 msgid "n° of track"
 msgstr "トラック番号"
 
 #: ../data/messages:123
 msgid "Draw desklet in a 3D fashion (experimental) ?"
-msgstr ""
+msgstr "デスクレットを 3D 風に描画（実験的）？"
 
 #: ../data/messages:125
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:127 ../data/messages:131 ../data/messages:135
-#: ../data/messages:139 ../data/messages:143
+#: ../data/messages:127
+#: ../data/messages:131
+#: ../data/messages:135
+#: ../data/messages:139
+#: ../data/messages:143
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
@@ -365,67 +336,73 @@ msgstr "「一時停止」のアイコン画像の名前 :"
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
 
+msgid "If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration."
+msgstr "「カスタム」を選択した場合、任意の装飾を下で指定できます。装飾を一切使用しない場合は、空欄のままにしてください。"
+
+msgid "Choose a decoration for the desklet mode :"
+msgstr "デスクレット・モード用の装飾の選択 :"
+
+msgid "Personnal"
+msgstr "カスタム"
+
+msgid "Extended 3D mode"
+msgstr "拡張 3D モード"
+
+msgid "CD box"
+msgstr "CD ケース"
+
+msgid "frame with reflects"
+msgstr "フレーム（反射）"
+
+msgid "scotch"
+msgstr "セロテープ"
+
+msgid "frame with scotch"
+msgstr "フレーム（テープ）"
+
+msgid "It's an image that will be displayed below the cover, like a frame for exemple."
+msgstr "例えばフレームのように、カバーの背後に表示される画像です。"
+
+msgid "It's typically the width of the left side of your frame, in pixels."
+msgstr "フレームの左側の幅など（ピクセル単位）"
+
+msgid "It's an image that will be displayed above the cover, like a reflect for exemple."
+msgstr "例えば反射のように、カバー上に表示される画像です。"
+
+msgid "Reflection image :"
+msgstr "反射の画像 :"
+
+msgid "Reflection tansparency :"
+msgstr "反射の透明度 :"
+
+msgid "Animations"
+msgstr "アニメーション"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "It will prevent the rhythmbox's icon to appear in the task bar."
+msgstr "タスクバーに Rhythmbox のアイコンが表示されないようにします。"
+
+msgid "Inhibate the rhythmbox's icon in taskbar ?"
+msgstr "タスクバーでの Rhythmbox アイコンの表示を禁止？"
+
+msgid "Lockposition ?"
+msgstr "位置を固定？"
+
+msgid "Activate extended desklet mode ?"
+msgstr "デスクレットの拡張モードを有効化？"
+
+#~ msgid "Name of the icon as it will appear in its label in the dock :"
+#~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
+#~ msgid "Module"
+#~ msgstr "モジュール"
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
-#~ "「カスタム」を選択した場合、任意の装飾を下で指定できます。装飾を一切使用し"
-#~ "ない場合は、空欄のままにしてください。"
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-#~ msgid "Choose a decoration for the desklet mode :"
-#~ msgstr "デスクレット・モード用の装飾の選択 :"
-
-#~ msgid "Personnal"
-#~ msgstr "カスタム"
-
-#~ msgid "Extended 3D mode"
-#~ msgstr "拡張 3D モード"
-
-#~ msgid "CD box"
-#~ msgstr "CD ケース"
-
-#~ msgid "frame with reflects"
-#~ msgstr "フレーム（反射）"
-
-#~ msgid "scotch"
-#~ msgstr "セロテープ"
-
-#~ msgid "frame with scotch"
-#~ msgstr "フレーム（テープ）"
-
-#~ msgid ""
-#~ "It's an image that will be displayed below the cover, like a frame for "
-#~ "exemple."
-#~ msgstr "例えばフレームのように、カバーの背後に表示される画像です。"
-
-#~ msgid "It's typically the width of the left side of your frame, in pixels."
-#~ msgstr "フレームの左側の幅など（ピクセル単位）"
-
-#~ msgid ""
-#~ "It's an image that will be displayed above the cover, like a reflect for "
-#~ "exemple."
-#~ msgstr "例えば反射のように、カバー上に表示される画像です。"
-
-#~ msgid "Reflection image :"
-#~ msgstr "反射の画像 :"
-
-#~ msgid "Reflection tansparency :"
-#~ msgstr "反射の透明度 :"
-
-#~ msgid "Animations"
-#~ msgstr "アニメーション"
-
-#~ msgid "Next"
-#~ msgstr "次へ"
-
-#~ msgid "It will prevent the rhythmbox's icon to appear in the task bar."
-#~ msgstr "タスクバーに Rhythmbox のアイコンが表示されないようにします。"
-
-#~ msgid "Inhibate the rhythmbox's icon in taskbar ?"
-#~ msgstr "タスクバーでの Rhythmbox アイコンの表示を禁止？"
-
-#~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
-
-#~ msgid "Activate extended desklet mode ?"
-#~ msgstr "デスクレットの拡張モードを有効化？"

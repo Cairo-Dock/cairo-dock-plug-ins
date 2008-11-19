@@ -327,6 +327,7 @@ void cd_switcher_draw_main_icon (void)
 		cd_switcher_draw_main_icon_expanded_mode ();
 	}
 	
-	cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
+	if ((myDesklet && ! myConfig.bCompactView) || (myDock && myDock->bUseReflect))
+		cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
 	CD_APPLET_REDRAW_MY_ICON;
 }

@@ -7,47 +7,49 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-11-15 00:55+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-notifications.c:20
-#, fuzzy
 msgid ""
 "This is the musicPlayer applet\n"
 " made by ChAnGFu & Mav for Cairo-Dock"
 msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+"これは ChAnGFu と Mav によって \n"
+"Cairo-Dock 用に製作された musicPlayer アプレットです。"
 
 #: ../src/applet-notifications.c:77
 msgid "Previous"
-msgstr ""
+msgstr "前へ"
 
 #: ../src/applet-notifications.c:78
 msgid "Play/Pause (left-click)"
-msgstr ""
+msgstr "再生/一時停止（左クリック）"
 
 #: ../src/applet-notifications.c:81
 msgid "Stop"
-msgstr ""
+msgstr "停止"
 
 #: ../src/applet-notifications.c:83
 msgid "Next (middle-click)"
-msgstr ""
+msgstr "次へ（中クリック）"
 
 #: ../src/applet-notifications.c:86
 msgid "Show JumpBox"
-msgstr ""
+msgstr "ジャンプ先の指定"
 
 #: ../src/applet-notifications.c:89
 msgid "Toggle Shuffle"
-msgstr ""
+msgstr "シャッフルのオンオフ"
 
 #: ../src/applet-notifications.c:92
 msgid "Toggle Repeat"
-msgstr ""
+msgstr "リピートのオンオフ"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -66,10 +68,8 @@ msgid "height :"
 msgstr "高さ :"
 
 #: ../data/messages:9
-msgid ""
-"You can put the tag '__Player__' to display the name of the player you "
-"control"
-msgstr ""
+msgid "You can put the tag '__Player__' to display the name of the player you control"
+msgstr "制御するプレイヤーの名前を表示するための '__Player__' タグを付けられます。"
 
 #: ../data/messages:11
 msgid "Name of the icon as it will appear in its label in the dock :"
@@ -77,19 +77,15 @@ msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "帰属先ドックの名前 :"
 
 #: ../data/messages:15
 msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -97,9 +93,7 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -118,340 +112,359 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:31
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:35
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
 
 #: ../data/messages:37
 msgid "Lock position ?"
-msgstr ""
+msgstr "位置を固定？"
 
 #: ../data/messages:39
 msgid "Decorations"
-msgstr ""
+msgstr "装飾"
 
 #: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:45
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
 
-#: ../data/messages:47 ../data/messages:137
+#: ../data/messages:47
+#: ../data/messages:137
 msgid "Background image :"
-msgstr ""
+msgstr "背景画像 :"
 
-#: ../data/messages:49 ../data/messages:139
+#: ../data/messages:49
+#: ../data/messages:139
 msgid "Background tansparency :"
-msgstr ""
+msgstr "背景の透明度 :"
 
 #: ../data/messages:51
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:53 ../data/messages:143
+#: ../data/messages:53
+#: ../data/messages:143
 msgid "Left offset :"
-msgstr ""
+msgstr "左方向のオフセット :"
 
 #: ../data/messages:55
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
 #: ../data/messages:57
 msgid "Top offset :"
-msgstr ""
+msgstr "上方向のオフセット :"
 
 #: ../data/messages:59
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
-#: ../data/messages:61 ../data/messages:145 ../data/messages:147
+#: ../data/messages:61
+#: ../data/messages:145
+#: ../data/messages:147
 #: ../data/messages:149
 msgid "Right offset :"
-msgstr ""
+msgstr "右方向のオフセット :"
 
 #: ../data/messages:63
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
 #: ../data/messages:65
 msgid "Bottom offset :"
-msgstr ""
+msgstr "下方向のオフセット :"
 
 #: ../data/messages:67
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
 
 #: ../data/messages:69
 msgid "Foreground image :"
-msgstr ""
+msgstr "前景画像 :"
 
 #: ../data/messages:71
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "前景の透明度 :"
 
 #: ../data/messages:73
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../data/messages:75
 msgid "Audio Player"
-msgstr ""
+msgstr "オーディオ・プレイヤー"
 
 #: ../data/messages:77
 msgid "Player to control:"
-msgstr ""
+msgstr "制御するプレイヤー :"
 
 #: ../data/messages:79
 msgid "XMMS"
-msgstr ""
+msgstr "XMMS"
 
 #: ../data/messages:81
 msgid "Exaile"
-msgstr ""
+msgstr "Exaile"
 
 #: ../data/messages:83
 msgid "Songbird"
-msgstr ""
+msgstr "Songbird"
 
 #: ../data/messages:85
 msgid "Banshee"
-msgstr ""
+msgstr "Banshee"
 
 #: ../data/messages:87
-msgid ""
-"It will prevent the player's icon to appear in the task bar. The applet's "
-"icon will then behave as a launcher, an appli, and an applet."
-msgstr ""
+msgid "It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
+msgstr "タスクバーにプレイヤーのアイコンが表示されないようにします。これにより、アプレットのアイコンがランチャーやアプリケーション、アプレットとして動作するようになります。"
 
 #: ../data/messages:89
 msgid "Steal the player's icon from taskbar ?"
-msgstr ""
+msgstr "タスクバーからプレイヤーのアイコンを奪取？"
 
 #: ../data/messages:91
 msgid "Display"
-msgstr ""
+msgstr "表示"
 
 #: ../data/messages:93
 msgid "Display the cover ?"
-msgstr ""
+msgstr "カバーを表示？"
 
 #: ../data/messages:95
 msgid "Information to display on the icon :"
-msgstr ""
+msgstr "アイコン上に表示する情報 :"
 
 #: ../data/messages:97
 msgid "Nothing"
-msgstr ""
+msgstr "なし"
 
 #: ../data/messages:99
 msgid "Time Elapsed"
-msgstr ""
+msgstr "経過時間"
 
 #: ../data/messages:101
 msgid "Time Left"
-msgstr ""
+msgstr "残り時間"
 
 #: ../data/messages:103
 msgid "N° of track"
-msgstr ""
+msgstr "トラック番号"
 
 #: ../data/messages:105
 msgid "Desklet display mode :"
-msgstr ""
+msgstr "デスクレットの表示モード :"
 
 #: ../data/messages:107
 msgid "Simple"
-msgstr ""
+msgstr "シンプル"
 
 #: ../data/messages:109
 msgid "Info"
-msgstr ""
+msgstr "情報"
 
 #: ../data/messages:111
 msgid "Info and Controler"
-msgstr ""
+msgstr "情報とコントローラ"
 
 #: ../data/messages:113
 msgid "Caroussel"
-msgstr ""
+msgstr "回転台"
 
 #: ../data/messages:115
 msgid "Controler"
-msgstr ""
+msgstr "コントローラ"
 
 #: ../data/messages:117
-#, fuzzy
 msgid "Simple Desklet"
-msgstr "デスクレット"
+msgstr "シンプル・デスクレット"
 
 #: ../data/messages:119
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
-msgstr ""
+msgid "If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration."
+msgstr "「personnal」を選択した場合、自分の装飾を上で定義できます。装飾を使用しない場合は空欄のままにしてください。"
 
 #: ../data/messages:121
 msgid "Choose a decoration for the desklet mode :"
-msgstr ""
+msgstr "デスクレット・モードの装飾の選択 :"
 
 #: ../data/messages:123
 msgid "Personnal"
-msgstr ""
+msgstr "パーソナル"
 
 #: ../data/messages:125
 msgid "Extended 3D mode"
-msgstr ""
+msgstr "拡張 3D モード"
 
 #: ../data/messages:127
 msgid "CD box"
-msgstr ""
+msgstr "CD ボックス"
 
 #: ../data/messages:129
 msgid "frame with reflects"
-msgstr ""
+msgstr "反射ありのフレーム"
 
 #: ../data/messages:131
 msgid "scotch"
-msgstr ""
+msgstr "テープ"
 
 #: ../data/messages:133
 msgid "frame with scotch"
-msgstr ""
+msgstr "テープ張りフレーム"
 
 #: ../data/messages:135
-msgid ""
-"It's an image that will be displayed below the cover, like a frame for "
-"exemple."
-msgstr ""
+msgid "It's an image that will be displayed below the cover, like a frame for exemple."
+msgstr "例えばフレームのように、カバーの背後に表示される画像です。"
 
 #: ../data/messages:141
 msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr ""
+msgstr "典型的には、フレームの左側の幅です。（ピクセル単位）"
 
 #: ../data/messages:151
-msgid ""
-"It's an image that will be displayed above the cover, like a reflect for "
-"exemple."
-msgstr ""
+msgid "It's an image that will be displayed above the cover, like a reflect for exemple."
+msgstr "例えば反射のように、カバーの手前に表示される画像です。"
 
 #: ../data/messages:153
 msgid "Reflection image :"
-msgstr ""
+msgstr "反射の画像 :"
 
 #: ../data/messages:155
 msgid "Reflection tansparency :"
-msgstr ""
+msgstr "反射の透明度 :"
 
 #: ../data/messages:157
 msgid "Action on music change"
-msgstr ""
+msgstr "音楽切り替わり時のアクション"
 
 #: ../data/messages:159
 msgid "Show an info-bubble ?"
-msgstr ""
+msgstr "吹き出しを表示して情報通知？"
 
 #: ../data/messages:161
 msgid "With a icon ?"
-msgstr ""
+msgstr "アイコンも描画？"
 
 #: ../data/messages:163
 msgid "in ms."
-msgstr ""
+msgstr "ミリ秒単位"
 
 #: ../data/messages:165
 msgid "Time length of info-bubbles :"
-msgstr ""
+msgstr "吹き出しの表示継続時間 :"
 
 #: ../data/messages:167
 msgid "Animate icon ?"
-msgstr ""
+msgstr "アイコンをアニメーション化？"
 
 #: ../data/messages:169
 msgid "Animation when music changes :"
-msgstr ""
+msgstr "音楽の切り替わりの際のアニメーション :"
 
 #: ../data/messages:171
 msgid "bounce"
-msgstr ""
+msgstr "バウンド"
 
 #: ../data/messages:173
 msgid "rotate"
-msgstr ""
+msgstr "回転"
 
 #: ../data/messages:175
 msgid "blink"
-msgstr ""
+msgstr "点滅"
 
 #: ../data/messages:177
 msgid "pulse"
-msgstr ""
+msgstr "波動"
 
 #: ../data/messages:179
 msgid "upside-down"
-msgstr ""
+msgstr "上下逆さま"
 
 #: ../data/messages:181
 msgid "wobbly"
-msgstr ""
+msgstr "伸び縮み"
 
 #: ../data/messages:183
 msgid "random"
-msgstr ""
+msgstr "ランダム"
 
 #: ../data/messages:185
 msgid "Personnalisation"
-msgstr ""
+msgstr "カスタマイズ"
 
-#: ../data/messages:187 ../data/messages:191 ../data/messages:195
-#: ../data/messages:199 ../data/messages:203
+#: ../data/messages:187
+#: ../data/messages:191
+#: ../data/messages:195
+#: ../data/messages:199
+#: ../data/messages:203
 msgid "Let it empty to use the default icon."
-msgstr ""
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #: ../data/messages:189
 msgid "Name of an image for the 'default' icon :"
-msgstr ""
+msgstr "「デフォルト」のアイコン画像の名前 :"
 
 #: ../data/messages:193
 msgid "Name of an image for the 'play' icon :"
-msgstr ""
+msgstr "「再生」のアイコン画像の名前 :"
 
 #: ../data/messages:197
 msgid "Name of an image for the 'stop' icon :"
-msgstr ""
+msgstr "「停止」のアイコン画像の名前 :"
 
 #: ../data/messages:201
 msgid "Name of an image for the 'pause' icon :"
-msgstr ""
+msgstr "「一時停止」のアイコン画像の名前 :"
 
 #: ../data/messages:205
 msgid "Name of an image for the 'broken' icon :"
-msgstr ""
+msgstr "「リンク切れ」のアイコン画像の名前 :"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
-
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+#~ msgid "in degrees."
+#~ msgstr "角度"
+#~ msgid "Rotation :"
+#~ msgstr "回転 :"
+#~ msgid ""
+#~ "This is the xmms applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "これは ChAnGFu によって製作された \n"
+#~ "Cairo-Dock 用の xmms アプレットです。"
+#~ msgid "Audacious"
+#~ msgstr "Audacious"
+#~ msgid "Activate extended desklet mode ?"
+#~ msgstr "デスクレットの拡張モードを有効化？"
+#~ msgid "Extended display mode :"
+#~ msgstr "拡張表示モード :"
+#~ msgid "Play/Pause"
+#~ msgstr "再生/一時停止"
+#~ msgid "Next"
+#~ msgstr "次へ"
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "デフォルトのアイコンを使用するには空欄のままに。"
+

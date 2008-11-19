@@ -36,11 +36,14 @@ CD_APPLET_ON_CLICK_END
 
 static void _cd_tomboy_create_new_note (Icon *pIcon)
 {
+	cd_debug ("");
 	gchar *note_title = cairo_dock_show_demand_and_wait (D_("Note name : "),
 		(pIcon != NULL ? pIcon : myIcon),
 		(pIcon != NULL && myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 		NULL);
+	cd_message ("%s (%s)", __func__, note_title);
 	gchar *note_name = addNote(note_title);
+	cd_debug ("note_name <- %s", note_name);
 	showNote(note_name);
 	g_free (note_name);
 }
