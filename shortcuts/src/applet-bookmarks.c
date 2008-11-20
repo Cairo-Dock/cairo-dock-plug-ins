@@ -104,7 +104,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 					cName = NULL;
 					cRealURI = NULL;
 					cIconName = NULL;
-					if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType))
+					if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, mySystem.iFileSortType))
 					{
 						cd_message (" + 1 signet : %s", cOneBookmark);
 						pNewIcon = g_new0 (Icon, 1);
@@ -303,7 +303,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 			cName = NULL;
 			cRealURI = NULL;
 			cIconName = NULL;
-			if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType))
+			if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, mySystem.iFileSortType))
 			{
 				cd_message (" + 1 signet : %s", cOneBookmark);
 				pNewIcon = g_new0 (Icon, 1);

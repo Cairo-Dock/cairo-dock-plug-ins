@@ -73,8 +73,8 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 			gboolean bIsDirectory;
 			int iVolumeID;
 			double fOrder;
-			cairo_dock_fm_get_file_info (cContent, &cCanonicName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, g_iFileSortType);
-			g_print ("un fichier -> %s , %s\n", cCanonicName, cIconName);
+			cairo_dock_fm_get_file_info (cContent, &cCanonicName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, mySystem.iFileSortType);
+			cd_debug ("un fichier -> %s , %s", cCanonicName, cIconName);
 			g_free (cRealURI);
 			
 			if (myConfig.bFilter && cIconName != NULL && _isin(myConfig.cMimeTypes, cIconName))

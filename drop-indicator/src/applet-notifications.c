@@ -37,12 +37,48 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock)
 	
 	glRotatef (pData->iDropIndicatorRotation, 0., 1., 0.);
 	
+	
+	
+	/*glScalef (myData.fDropIndicatorWidth, myData.fDropIndicatorHeight, myData.fDropIndicatorWidth);
+	glColor4f(1.0f, 1.0f, 1.0f, pData->fAlpha);
+	glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
+	
+	glEnable(GL_TEXTURE);
+	glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
+	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
+	glBindTexture(GL_TEXTURE_2D, myData.iBilinearGradationTexture);
+	
+	glActiveTextureARB(GL_TEXTURE1_ARB); // Go pour le texturing 2eme passe
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, myData.iDropIndicatorTexture);
+	
+	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
+	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);
+	
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-.5,  .5, 0.);  // Bottom Left Of The Texture and Quad
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.); glVertex3f( .5,  .5, 0.);  // Bottom Right Of The Texture and Quad
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.); glVertex3f( .5, -.5, 0.);  // Top Right Of The Texture and Quad
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-.5, -.5, 0.);  // Top Left Of The Texture and Quad
+	
+	glActiveTextureARB(GL_TEXTURE1_ARB);
+	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_GEN_S);
+	glDisable(GL_TEXTURE_GEN_T);
+	glActiveTextureARB(GL_TEXTURE0_ARB);
+	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_GEN_S);
+	glDisable(GL_TEXTURE_GEN_T);
+	glDisable (GL_BLEND);
+	
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;*/
+	
+	
 	glEnable(GL_TEXTURE);
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture (GL_TEXTURE_2D, myData.iDropIndicatorTexture);
 	glEnable (GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+	
 	//\_________________ On decale la texture vers le bas.
 	glMatrixMode(GL_TEXTURE); // On selectionne la matrice des textures
 	glPushMatrix();

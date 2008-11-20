@@ -183,7 +183,7 @@ void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 	{
 		pIcon->acName = cTitle;
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-		cairo_dock_fill_one_text_buffer (pIcon, pCairoContext, &g_iconTextDescription, (g_bTextAlwaysHorizontal ? CAIRO_DOCK_HORIZONTAL : myContainer->bIsHorizontal), myContainer->bDirectionUp);
+		cairo_dock_fill_one_text_buffer (pIcon, pCairoContext, &g_iconTextDescription, (mySystem.bTextAlwaysHorizontal ? CAIRO_DOCK_HORIZONTAL : myContainer->bIsHorizontal), myContainer->bDirectionUp);
 		cairo_destroy (pCairoContext);
 	}
 	else

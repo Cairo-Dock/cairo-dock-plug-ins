@@ -15,12 +15,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include <cairo.h>
 
-#ifdef HAVE_GLITZ
-#include <gdk/gdkx.h>
-#include <glitz-glx.h>
-#include <cairo-glitz.h>
-#endif
-
 #include "rendering-rainbow.h"
 
 extern int my_iSpaceBetweenRows;
@@ -83,16 +77,16 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 		icon = ic->data;
 
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon (icon, pCairoContext, bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, ! g_bTextAlwaysHorizontal, pDock->iCurrentWidth, pDock->bDirectionUp);
+		cairo_dock_render_one_icon (icon, pCairoContext, bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, ! mySystem.bTextAlwaysHorizontal, pDock->iCurrentWidth, pDock->bDirectionUp);
 		
-		if (g_bTextAlwaysHorizontal && icon->pTextBuffer != NULL && icon->fScale > 1.01 && (! g_bLabelForPointedIconOnly || icon->bPointed) && icon->iCount == 0)  // 1.01 car sin(pi) = 1+epsilon :-/
+		if (mySystem.bTextAlwaysHorizontal && icon->pTextBuffer != NULL && icon->fScale > 1.01 && (! mySystem.bLabelForPointedIconOnly || icon->bPointed) && icon->iCount == 0)  // 1.01 car sin(pi) = 1+epsilon :-/
 		{
 			double fOffsetX = -icon->fTextXOffset + icon->fWidthFactor * icon->fWidth * icon->fScale / 2;
 			if (fOffsetX < - icon->fDrawX)
 				fOffsetX = - icon->fDrawX;
 			else if (icon->fDrawX + fOffsetX + icon->iTextWidth > iWidth)
 				fOffsetX = iWidth - icon->iTextWidth - icon->fDrawX;
-			if (icon->fOrientation != 0 && ! g_bTextAlwaysHorizontal)
+			if (icon->fOrientation != 0 && ! mySystem.bTextAlwaysHorizontal)
 			{
 				cairo_rotate (pCairoContext, icon->fOrientation);
 			}
@@ -100,7 +94,7 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 				cairo_scale (pCairoContext,
 					fRatio,
 					fRatio);*/
-			if (! bHorizontalDock && g_bTextAlwaysHorizontal)
+			if (! bHorizontalDock && mySystem.bTextAlwaysHorizontal)
 			{
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
@@ -119,14 +113,14 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 					fOffsetX);
 			
 			double fMagnitude;
-			if (g_bLabelForPointedIconOnly)
+			if (mySystem.bLabelForPointedIconOnly)
 			{
 				fMagnitude = fDockMagnitude;  // (icon->fScale - 1) / g_fAmplitude / sin (icon->fPhase);  // sin (phi ) != 0 puisque fScale > 1.
 			}
 			else
 			{
 				fMagnitude = (icon->fScale - 1) / g_fAmplitude / pDock->fMagnitudeMax;
-				fMagnitude *= (fMagnitude * g_fLabelAlphaThreshold + 1) / (g_fLabelAlphaThreshold + 1);
+				fMagnitude *= (fMagnitude * mySystem.fLabelAlphaThreshold + 1) / (mySystem.fLabelAlphaThreshold + 1);
 			}
 			cairo_paint_with_alpha (pCairoContext, fMagnitude);
 		}

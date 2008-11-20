@@ -56,9 +56,11 @@ void cd_rame_read_data (CairoDockModuleInstance *myApplet)
 		gchar *str = cContent;
 		
 		get_value (myData.ramTotal)  // MemTotal
+		cd_debug ("ramTotal : %lld", myData.ramTotal);
 		
 		goto_next_line
 		get_value (myData.ramFree)  // MemFree
+		cd_debug ("ramFree : %lld", myData.ramFree);
 		
 		myData.ramUsed = myData.ramTotal - myData.ramFree;
 		
@@ -67,6 +69,7 @@ void cd_rame_read_data (CairoDockModuleInstance *myApplet)
 		
 		goto_next_line
 		get_value (myData.ramCached)  // Cached.
+		cd_debug ("ramCached : %lld", myData.ramCached);
 		
 		goto_next_line  // SwapCached:
 		goto_next_line  // Active:
@@ -78,9 +81,11 @@ void cd_rame_read_data (CairoDockModuleInstance *myApplet)
 		
 		goto_next_line
 		get_value (myData.swapTotal)  // SwapTotal.
+		cd_debug ("swapTotal : %lld", myData.swapTotal);
 		
 		goto_next_line
 		get_value (myData.swapFree)  // SwapFree.
+		cd_debug ("swapFree : %lld", myData.swapFree);
 		
 		myData.swapUsed = myData.swapTotal - myData.swapFree;
 		
@@ -127,6 +132,7 @@ gboolean cd_rame_update_from_data (CairoDockModuleInstance *myApplet)
 		{
 			double fRamPercent = 100. * (myData.ramUsed - myData.ramCached) / myData.ramTotal;
 			double fSwapPercent = 100. * myData.swapUsed / myData.swapTotal;
+			cd_debug ("fRamPercent : %.2f %% ; fSwapPercent : %.2f %%", fRamPercent, fSwapPercent);
 			gboolean bRamNeedsUpdate = (fabs (myData.fPrevRamPercent - fRamPercent) > .1);
 			gboolean bSwapNeedsUpdate = (myConfig.bShowSwap && fabs (myData.fPrevSwapPercent - fSwapPercent) > .1);
 			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE && (bRamNeedsUpdate || bSwapNeedsUpdate))
