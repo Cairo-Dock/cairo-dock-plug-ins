@@ -56,21 +56,21 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	pDock->iDecorationsHeight = g_iFrameMargin + my_iCurveAmplitude + .5 * pDock->iMaxIconHeight;  // de bas en haut.
 	
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 0.));  // etendue max des icones, sans le cadre.
-	//g_print ("iMaxDockWidth : %d\n", pDock->iMaxDockWidth);
+	g_print ("iMaxDockWidth : %d\n", pDock->iMaxDockWidth);
 	
 	double h = 4./3 * (pDock->iDecorationsHeight + g_iDockLineWidth);  // hauteur de controle de la courbe de Bezier, de telle facon qu'elle atteigne 'iDecorationsHeight'.
 	double hi = .5 * pDock->iMaxIconHeight + g_iFrameMargin - 1;  // hauteur de la courbe a la 1ere icone.
 	double ti = .5 * (1. - sqrt (MAX (1. - 4./3 * hi / h, 0.01)));
 	double xi = xCurve (my_fCurveCurvature, ti);
 	double fDeltaX = pDock->iMaxDockWidth * xi / (1 - 2 * xi);  // abscisse de la 1ere icone pour satisfaire a la contrainte y=hi.
-	//g_print ("ti = %.2f => xi = %.2f => fDeltaX = %.2f\n", ti, xi, fDeltaX);
-	
+	g_print ("ti = %.2f => xi = %.2f => fDeltaX = %.2f\n", ti, xi, fDeltaX);
+	g_print ("my_fCurveCurvature:%.2f\n", my_fCurveCurvature);
 	pDock->iMaxDockWidth += 2*fDeltaX;
 	double tan_theta = (my_fCurveCurvature != 1 ? h / ((1 - my_fCurveCurvature) * pDock->iMaxDockWidth / 2) : 1e6);  // la tangente a une courbe de Bezier en son origine est la droite reliant les deux premiers points de controle.
 	double fDeltaTip = .5 * g_iDockLineWidth * sqrt (1 + tan_theta * tan_theta) / tan_theta;  // prolongement de la pointe.
 	pDock->iMaxDockWidth += 2 * fDeltaTip;
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2*(fDeltaX+fDeltaTip)));
-	//g_print ("fDeltaTip : %.2f\n", fDeltaTip);
+	g_print ("fDeltaTip : %.2f\n", fDeltaTip);
 	
 	pDock->iMaxDockHeight = g_iDockLineWidth + g_iFrameMargin + my_iCurveAmplitude + (1 + g_fAmplitude) * pDock->iMaxIconHeight + g_iconTextDescription.iSize;  // de bas en haut.
 	

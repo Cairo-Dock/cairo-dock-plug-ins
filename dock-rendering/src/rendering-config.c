@@ -159,14 +159,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_simple_fade2right  = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_fade2right",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_simple_arrowWidth  = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_arrowWidth",  &bFlushConfFileNeeded, 40,   NULL, NULL);
 	my_diapo_simple_arrowHeight = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_arrowHeight", &bFlushConfFileNeeded, 40,   NULL, NULL);
-	my_diapo_simple_arrowShift  = cairo_dock_get_double_key_value  (pKeyFile, "SimpleSlide", "simple_arrowShift",  &bFlushConfFileNeeded, 30,   NULL, NULL) / 100;
+	my_diapo_simple_arrowShift  = cairo_dock_get_double_key_value (pKeyFile, "SimpleSlide", "simple_arrowShift",  &bFlushConfFileNeeded, 30,   NULL, NULL) / 100.;
 	my_diapo_simple_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_lineWidth",   &bFlushConfFileNeeded, 5,    NULL, NULL);
 	my_diapo_simple_radius      = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
 	my_diapo_simple_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_simple_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	
 	
-	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100;
+	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100.;
+	g_print ("my_fCurveCurvature <- %d/100\n", cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL));
 	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "amplitude", &bFlushConfFileNeeded, 20, NULL, NULL);
 	my_curve_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "draw curve separator", &bFlushConfFileNeeded, 0, NULL, NULL);
 CD_APPLET_GET_CONFIG_END

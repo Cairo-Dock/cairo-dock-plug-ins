@@ -100,11 +100,30 @@ CDSpeparatorType my_curve_iDrawSeparator3D;
 
 CD_APPLET_PRE_INIT_BEGIN ("dock rendering", 2, 0, 0, CAIRO_DOCK_CATEGORY_PLUG_IN)
 	//\_______________ On definit notre interface.
-	pInterface->reloadModule = reload;
+	/*pInterface->reloadModule = reload;
 	pInterface->read_conf_file = read_conf_file;
 	pInterface->reset_config = reset_config;
-        pInterface->reset_data = reset_data;
+	pInterface->reset_data = reset_data;*/
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	
+	//\_______________ On enregistre les vues.
+	/*cd_rendering_register_caroussel_renderer 		(CD_RENDERING_CAROUSSEL_VIEW_NAME);
+	
+	cd_rendering_register_3D_plane_renderer 		(CD_RENDERING_3D_PLANE_VIEW_NAME);
+	
+	cd_rendering_register_parabole_renderer 		(CD_RENDERING_PARABOLIC_VIEW_NAME);
+	
+	cd_rendering_register_rainbow_renderer 		(CD_RENDERING_RAINBOW_VIEW_NAME);
+	
+	cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);  // By Paradoxxx_Zero
+
+	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
+	
+	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet*/
+CD_APPLET_PRE_INIT_END
+
+
+CD_APPLET_INIT_BEGIN
 	//\_______________ On enregistre les vues.
 	cd_rendering_register_caroussel_renderer 		(CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	
@@ -119,7 +138,27 @@ CD_APPLET_PRE_INIT_BEGIN ("dock rendering", 2, 0, 0, CAIRO_DOCK_CATEGORY_PLUG_IN
 	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
 	
 	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
-CD_APPLET_PRE_INIT_END
+	
+	if (! cairo_dock_is_loading ())
+	{
+		cairo_dock_set_all_views_to_default ();
+		cairo_dock_update_renderer_list_for_gui ();
+	}
+CD_APPLET_INIT_END
+
+
+CD_APPLET_STOP_BEGIN
+	cairo_dock_remove_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_RAINBOW_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_DIAPO_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_CURVE_VIEW_NAME);
+	
+	cairo_dock_reset_all_views ();
+	cairo_dock_update_renderer_list_for_gui ();
+CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
