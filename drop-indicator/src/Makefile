@@ -242,7 +242,8 @@ libcd_drop_indicator_la_SOURCES = \
 	applet-config.h\
 	applet-notifications.c\
 	applet-notifications.h\
-	applet-struct.h
+	applet-struct.h\
+	bilinear-gradation-texture.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 libcd_drop_indicator_la_CFLAGS = \

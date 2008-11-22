@@ -30,6 +30,7 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 		if (myData.iChromeTexture == 0)
 			myData.iChromeTexture = cd_animation_load_chrome_texture ();
 		pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
+		pData->fRotationBrake = 1.;
 		*bStartAnimation = TRUE;
 	}
 	
@@ -153,7 +154,15 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	
 	if (pData->fRotationSpeed != 0)
 	{
-		pData->iRotationAngle += pData->fRotationSpeed;
+		double delta;
+		if (pData->iRotationAngle > 320)
+		{
+			if (! myConfig.bContinueRotation || ! pIcon->bPointed || ! pDock->bInside)
+			{
+				pData->fRotationBrake = MAX (.25, (360. - pData->iRotationAngle) / (360. - 320.));
+			}
+		}
+		pData->iRotationAngle += pData->fRotationSpeed * pData->fRotationBrake;
 		if (pData->iRotationAngle < 360)
 			*bContinueAnimation = TRUE;
 		else
@@ -166,6 +175,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			else
 			{
 				pData->fRotationSpeed = 0;
+				g_print ("stop\n");
 			}
 		}
 	}

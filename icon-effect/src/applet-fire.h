@@ -7,7 +7,7 @@
 #include "fire-tex.h"
 
 
-#define cd_icon_effect_load_fire_texture(...) cairo_dock_load_texture_from_raw_data (fireTex)
+#define cd_icon_effect_load_fire_texture(...) cairo_dock_load_texture_from_raw_data (fireTex, 32, 32)
 
 
 #define cd_icon_effect_update_fire_system cairo_dock_update_default_particle_system

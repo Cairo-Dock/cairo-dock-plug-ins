@@ -395,6 +395,9 @@ libcd_Animated_icons_la-applet-notifications.lo \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-keyfile-utilities.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-surface-factory.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-renderer-manager.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-desklet.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-struct.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-dock-factory.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-default-view.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-applet-facility.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-modules.h \
@@ -402,7 +405,6 @@ libcd_Animated_icons_la-applet-notifications.lo \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-file-manager.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-keybinder.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-desklet.h \
-  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-struct.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-log.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-X-utilities.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-dbus.h \
@@ -439,6 +441,16 @@ libcd_Animated_icons_la-applet-notifications.lo \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-factory.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-callbacks.h \
   /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-manager.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-position.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-config.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-accessibility.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-system.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-taskbar.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-hidden-dock.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-dialogs.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-load.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-indicators.h \
+  /usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-views.h \
   applet-struct.h applet-rays.h applet-notifications.h
 
 /usr/include/stdlib.h:
@@ -1349,6 +1361,12 @@ applet-icon-renderer.h:
 
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-renderer-manager.h:
 
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-desklet.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-struct.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-dock-factory.h:
+
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-default-view.h:
 
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-applet-facility.h:
@@ -1362,8 +1380,6 @@ applet-icon-renderer.h:
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-keybinder.h:
 
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-desklet.h:
-
-/usr/local/include/cairo-dock/cairo-dock/cairo-dock-struct.h:
 
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-log.h:
 
@@ -1444,6 +1460,26 @@ applet-icon-renderer.h:
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-callbacks.h:
 
 /usr/local/include/cairo-dock/cairo-dock/cairo-dock-gui-manager.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-position.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-config.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-accessibility.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-system.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-taskbar.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-hidden-dock.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-dialogs.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-load.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-indicators.h:
+
+/usr/local/include/cairo-dock/cairo-dock/cairo-dock-internal-views.h:
 
 applet-struct.h:
 

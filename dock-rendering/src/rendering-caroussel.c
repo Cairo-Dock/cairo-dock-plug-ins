@@ -201,7 +201,6 @@ void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, TRUE, FALSE);
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
-	///double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
 	cd_rendering_render_icons_caroussel (pCairoContext, pDock, pDock->fRatio);
 }
 

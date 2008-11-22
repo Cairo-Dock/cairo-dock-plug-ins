@@ -35,7 +35,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbDisplayedProcesses = CD_CONFIG_GET_INTEGER ("Configuration", "top");
 	myConfig.bTopInPercent = CD_CONFIG_GET_BOOLEAN ("Configuration", "top in percent");
 	
-	myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&g_dialogTextDescription);
+	myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogs.dialogTextDescription);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color start", myConfig.pTopTextDescription->fColorStart);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color stop", myConfig.pTopTextDescription->fColorStop);
 	myConfig.pTopTextDescription->bVerticalPattern = TRUE;

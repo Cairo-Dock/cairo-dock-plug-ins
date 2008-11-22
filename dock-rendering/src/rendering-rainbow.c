@@ -61,7 +61,7 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 	//\____________________ On dessine la ficelle qui les joint.
 	
 	//\____________________ On dessine les icones avec leurs etiquettes.
-	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
+	double fRatio = pDock->fRatio;
 	///cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	if (pFirstDrawnElement == NULL)
@@ -191,7 +191,7 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 	double fWaveOffset, fWaveExtrema;
 	double x_abs = fCurvilignAbscisse;
 	int nb_iter = 0;
-	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
+	double fRatio = pDock->fRatio;
 	
 	do
 	{
@@ -303,7 +303,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	double fCone = G_PI - 2 * my_fRainbowConeOffset;
 	int iNbIcons = g_list_length (pDock->icons);
 	int iMinRadius = MIN (my_iRainbowNbIconsMin, iNbIcons) * iMaxIconWidth * fMaxScale / fCone;
-	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
+	double fRatio = pDock->fRatio;
 	double w = pDock->iCurrentWidth;
 	double h = pDock->iCurrentHeight;
 	double fRadius, fTheta;

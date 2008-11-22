@@ -141,7 +141,7 @@ CD_APPLET_INIT_BEGIN
 	
 	if (! cairo_dock_is_loading ())
 	{
-		cairo_dock_set_all_views_to_default ();
+		cairo_dock_set_all_views_to_default (0);
 		cairo_dock_update_renderer_list_for_gui ();
 	}
 CD_APPLET_INIT_END
@@ -171,6 +171,6 @@ CD_APPLET_RELOAD_BEGIN
 		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
 		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
 		
-		cairo_dock_set_all_views_to_default ();
+		cairo_dock_set_all_views_to_default (0);
 	}
 CD_APPLET_RELOAD_END

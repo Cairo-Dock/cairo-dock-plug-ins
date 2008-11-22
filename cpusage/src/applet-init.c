@@ -135,7 +135,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
-		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&g_dialogTextDescription);
+		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogs.dialogTextDescription);
 		memcpy (myConfig.pTopTextDescription->fColorStart, pOldLabelDescription->fColorStart, 3*sizeof (double));
 		memcpy (myConfig.pTopTextDescription->fColorStop, pOldLabelDescription->fColorStop, 3*sizeof (double));
 		myConfig.pTopTextDescription->bVerticalPattern = TRUE;

@@ -15,7 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
-
+#include "bilinear-gradation-texture.h"
 
 gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock)
 {
@@ -25,8 +25,8 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock)
 	
 	double fX = pDock->iMouseX;
 	double fY = (pDock->bDirectionUp ? pDock->iCurrentHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
-	glLoadIdentity();
 	glPushMatrix();
+	glLoadIdentity();
 	
 	if (pDock->bHorizontalDock)
 		glTranslatef (fX, fY, - myData.fDropIndicatorWidth-1.);
@@ -37,28 +37,46 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock)
 	
 	glRotatef (pData->iDropIndicatorRotation, 0., 1., 0.);
 	
+	//\_________________ On decale la texture vers le bas.
+	glMatrixMode(GL_TEXTURE); // On selectionne la matrice des textures
+	glPushMatrix();
+	glLoadIdentity(); // On la reset
+	glTranslatef(.0, - pData->iDropIndicatorOffset / myData.fDropIndicatorHeight, 0.);
+	glScalef (1., -2., 1.);
+	glMatrixMode(GL_MODELVIEW); // On revient sur la matrice d'affichage
 	
+	//\_________________ On dessine l'indicateur.
+	glEnable (GL_BLEND);
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
-	/*glScalef (myData.fDropIndicatorWidth, myData.fDropIndicatorHeight, myData.fDropIndicatorWidth);
+	//glEnable(GL_DEPTH_TEST);
+	glScalef (myData.fDropIndicatorWidth, myData.fDropIndicatorHeight, myData.fDropIndicatorWidth);
 	glColor4f(1.0f, 1.0f, 1.0f, pData->fAlpha);
 	glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 	
 	glEnable(GL_TEXTURE);
 	glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
 	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
-	glBindTexture(GL_TEXTURE_2D, myData.iBilinearGradationTexture);
-	
+	glBindTexture(GL_TEXTURE_2D, myData.iDropIndicatorTexture);
 	glActiveTextureARB(GL_TEXTURE1_ARB); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, myData.iDropIndicatorTexture);
+	glBindTexture(GL_TEXTURE_2D, myData.iBilinearGradationTexture);
+	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); // Le mode de combinaison des textures
+	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_ALPHA_EXT, GL_MODULATE);  // multiplier les alpha.
+	//glTexEnvi (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_EXT, GL_ONE_MINUS_SRC_ALPHA);
 	
-	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
-	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);
-	
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-.5,  .5, 0.);  // Bottom Left Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.); glVertex3f( .5,  .5, 0.);  // Bottom Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.); glVertex3f( .5, -.5, 0.);  // Top Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-.5, -.5, 0.);  // Top Left Of The Texture and Quad
+	glBegin(GL_QUADS);
+	glNormal3f(0,0,1);
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-0.5, -1., 0.);  // Bottom Left Of The Texture and Quad
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.); glVertex3f( 0.5, -1., 0.);  // Bottom Right Of The Texture and Quad
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.); glVertex3f( 0.5, 1., 0.);  // Top Right Of The Texture and Quad
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-0.5, 1., 0.);  // Top Left Of The Texture and Quad
+	glNormal3f(1,0,0);
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.); glVertex3f(0., -1., -0.5);  // Bottom Left Of The Texture and Quad
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.); glVertex3f(0., -1.,  0.5);  // Bottom Right Of The Texture and Quad
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.); glVertex3f(0.,  1.,  0.5);  // Top Right Of The Texture and Quad
+	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.); glVertex3f(0.,  1., -0.5);  // Top Left Of The Texture and Quad
+	glEnd();
 	
 	glActiveTextureARB(GL_TEXTURE1_ARB);
 	glDisable(GL_TEXTURE_2D);
@@ -70,7 +88,13 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock)
 	glDisable(GL_TEXTURE_GEN_T);
 	glDisable (GL_BLEND);
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;*/
+	//\_________________ On remet la matrice des textures.
+	glMatrixMode(GL_TEXTURE);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
 	
 	
 	glEnable(GL_TEXTURE);
@@ -96,9 +120,9 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock)
 	glBegin(GL_QUADS);
 	glNormal3f(0,0,1);
 	glTexCoord2f(0., 0.); glVertex3f(-0.5, -1., 0.);  // Bottom Left Of The Texture and Quad
-	glTexCoord2f(1., 0.); glVertex3f( 0.5,  -1., 0.);  // Bottom Right Of The Texture and Quad
-	glTexCoord2f(1., 1.); glVertex3f( 0.5, 1., 0.);  // Top Right Of The Texture and Quad
-	glTexCoord2f(0., 1.); glVertex3f(-0.5, 1., 0.);  // Top Left Of The Texture and Quad
+	glTexCoord2f(1., 0.); glVertex3f( 0.5, -1., 0.);  // Bottom Right Of The Texture and Quad
+	glTexCoord2f(1., 1.); glVertex3f( 0.5,  1., 0.);  // Top Right Of The Texture and Quad
+	glTexCoord2f(0., 1.); glVertex3f(-0.5,  1., 0.);  // Top Left Of The Texture and Quad
 	glNormal3f(1,0,0);
 	glTexCoord2f(0., 0.); glVertex3f(0., -1., -0.5);  // Bottom Left Of The Texture and Quad
 	glTexCoord2f(1., 0.); glVertex3f(0., -1.,  0.5);  // Bottom Right Of The Texture and Quad
@@ -138,7 +162,6 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock)
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
 	
-	///glDisable(GL_TEXTURE);
 	glDisable(GL_TEXTURE_2D);
 	glDisable (GL_BLEND);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -235,17 +258,9 @@ void cd_drop_indicator_load_drop_indicator (gchar *cImagePath, cairo_t* pSourceC
 		double fWidth=0, fHeight=0;
 		
 		gchar *cGradationTexturePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_MASK_INDICATOR_NAME);
-		cairo_surface_t *pGradationSurface = cairo_dock_create_surface_from_image (cGradationTexturePath,
-			pSourceContext,
-			1.,
-			0.,
-			0.,
-			CAIRO_DOCK_KEEP_RATIO,
-			&fWidth, &fHeight,
-			NULL, NULL);
-		myData.iBilinearGradationTexture = cairo_dock_create_texture_from_surface (pGradationSurface);
+		myData.iBilinearGradationTexture = cairo_dock_create_texture_from_image (cGradationTexturePath);
 		g_free (cGradationTexturePath);
-		cairo_surface_destroy (pGradationSurface);
+		myData.iBilinearGradationTexture = cairo_dock_load_texture_from_raw_data (gradationTex, 1, 32);
 		
 		gdk_gl_drawable_gl_end (pGlDrawable);
 	}

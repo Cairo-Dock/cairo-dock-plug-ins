@@ -131,7 +131,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;  // on recupere le nouveau style des etiquettes en cas de changement de la config du dock.
-		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&g_dialogTextDescription);
+		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogs.dialogTextDescription);
 		memcpy (myConfig.pTopTextDescription->fColorStart, pOldLabelDescription->fColorStart, 3*sizeof (double));
 		memcpy (myConfig.pTopTextDescription->fColorStop, pOldLabelDescription->fColorStop, 3*sizeof (double));
 		myConfig.pTopTextDescription->bVerticalPattern = TRUE;

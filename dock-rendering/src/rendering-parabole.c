@@ -246,7 +246,6 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	pDock->fMagnitudeMax = my_fParaboleMagnitude;
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
-	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
 	int iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 0));
 	GList* ic;
 	Icon *icon;
@@ -321,7 +320,7 @@ void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDock)
 	if (pFirstDrawnElement == NULL)
 		return;
 	
-	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
+	double fRatio = pDock->fRatio;
 	double fDockMagnitude = 1;  // pour le rendu des icones, on utilise la magnitude max.
 	gboolean bHorizontal = pDock->bHorizontalDock;
 	Icon *icon;
@@ -516,7 +515,6 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	
 	//\____________________ On calcule la projection du curseur sur la courbe.
 	double fMaxScale =  1. + my_fParaboleMagnitude * g_fAmplitude;
-	double fRatio = (pDock->iRefCount == 0 ? 1 : g_fSubDockSizeRatio);
 	double w = MAX (1, pDock->iCurrentWidth - pDock->iMaxLabelWidth - pDock->iMaxIconHeight * (.5+sqrt(5./4.)) * fMaxScale);
 	double h = my_fParaboleRatio * w;
 	double alpha = my_fParaboleCurvature, lambda = h / pow (w, alpha);
