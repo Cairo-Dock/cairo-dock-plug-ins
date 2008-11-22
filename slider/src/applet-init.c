@@ -130,6 +130,10 @@ CD_APPLET_RELOAD_BEGIN
 	
 	myData.bPause = FALSE; //On coupe la pause pour repartir de plus belle
 	
+	if ((!myConfig.bImageName || myDock) && myIcon->cQuickInfo != NULL) {
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
+	}
+	
 	//\_______________ Reload all changed data.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cd_slider_free_images_list (myData.pList);

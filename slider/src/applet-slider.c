@@ -311,7 +311,7 @@ gboolean cd_slider_draw_images(CairoDockModuleInstance *myApplet) {
 		gchar *strFileWithNoExtension = strrchr (strFileWithExtension, '.');
 		*strFileWithNoExtension = '\0';
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s", strFileWithExtension);
-		cd_debug ("Slider - Image path: %s", pImage->cPath);
+		//cd_debug ("Slider - Image path: %s", pImage->cPath);
 		g_free (cFileName);
 	}
 	
