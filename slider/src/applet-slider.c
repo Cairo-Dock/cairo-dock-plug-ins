@@ -304,7 +304,7 @@ gboolean cd_slider_draw_images(CairoDockModuleInstance *myApplet) {
 		cd_slider_update_slide (myApplet);
 	}
 	
-	if (myConfig.bImageName) {
+	if (myConfig.bImageName && myDesklet) {
 		gchar *cFileName = g_strdup (pImage->cPath);
 		gchar *strFileWithExtension = strrchr (cFileName, '/');
 		strFileWithExtension++;
