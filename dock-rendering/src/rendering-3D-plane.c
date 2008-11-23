@@ -669,6 +669,129 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
 }
 
+
+static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
+{
+	//\____________________ On trace le cadre.
+	double fLineWidth = g_iDockLineWidth;
+	double fMargin = g_iFrameMargin;
+	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * g_iDockRadius > 0 ? g_iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
+	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
+	
+	int sens;
+	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
+	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
+	if (!pDock->bDirectionUp)
+	{
+		sens = 1;
+		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - 1.5 * fLineWidth;
+	}
+	else
+	{
+		sens = -1;
+		fDockOffsetY = pDock->iDecorationsHeight + 1.5 * fLineWidth;
+	}
+	
+	double fFrameHeight = pDock->iDecorationsHeight + fLineWidth/* - 2 * fRadius*/;
+	double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
+	double fDeltaXTrapeze;
+	int iNbVertex;
+	GLfloat *pVertexTab = cairo_dock_generate_trapeze_path (fDockWidth, fFrameHeight, fRadius, g_bRoundedBottomCorner, fInclinationOnHorizon, &fDeltaXTrapeze, &iNbVertex);
+	
+	//\____________________ On dessine les decorations dedans.
+	//fDockOffsetY = (!pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
+	glPushMatrix ();
+	cairo_dock_draw_frame_background_opengl (g_iBackgroundTexture, fDockWidth+2*fDeltaXTrapeze, fFrameHeight, fDockOffsetX-fDeltaXTrapeze, fDockOffsetY, pVertexTab, iNbVertex);
+	
+	//\____________________ On dessine le cadre.
+	if (fLineWidth != 0)
+		cairo_dock_draw_current_path_opengl (fLineWidth, g_fLineColor, pVertexTab, iNbVertex);
+	glPopMatrix ();
+	
+	/// donner un effet d'epaisseur => chaud du slip avec les separateurs physiques !
+	
+	//\____________________ On dessine la ficelle qui les joint.
+	///if (g_iStringLineWidth > 0)
+	///	cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
+	
+	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
+	double fRatio = (pDock->iRefCount == 0 ? 1 : myViews.fSubDockSizeRatio);
+	fRatio = pDock->fRatio;
+	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	if (pFirstDrawnElement == NULL)
+		return ;
+		
+	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
+	Icon *icon;
+	GList *ic = pFirstDrawnElement;
+	
+// 	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+// 	{
+// 		cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
+// 		do
+// 		{
+// 			icon = ic->data;
+// 			
+// 			if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+// 			{
+// 				cairo_save (pCairoContext);
+// 				cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
+// 				cairo_restore (pCairoContext);
+// 			}
+// 			
+// 			ic = cairo_dock_get_next_element (ic, pDock->icons);
+// 		} while (ic != pFirstDrawnElement);
+// 		
+// 		do
+// 		{
+// 			icon = ic->data;
+// 			
+// 			if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
+// 			{
+// 				cairo_save (pCairoContext);
+// 				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+// 				cairo_restore (pCairoContext);
+// 			}
+// 			
+// 			ic = cairo_dock_get_next_element (ic, pDock->icons);
+// 		} while (ic != pFirstDrawnElement);
+// 		
+// 		if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+// 		{
+// 			do
+// 			{
+// 				icon = ic->data;
+// 				
+// 				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+// 				{
+// 					cairo_save (pCairoContext);
+// 					cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
+// 					cairo_restore (pCairoContext);
+// 				}
+// 				
+// 				ic = cairo_dock_get_next_element (ic, pDock->icons);
+// 			} while (ic != pFirstDrawnElement);
+// 		}
+// 	}
+// 	else
+	{
+		do
+		{
+			icon = ic->data;
+			
+			glPushMatrix ();
+			
+			cairo_dock_render_one_icon_opengl (icon, pDock, fRatio, fDockMagnitude, TRUE);
+			
+			glPopMatrix ();
+			
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+		} while (ic != pFirstDrawnElement);
+	}
+}
+
+
 void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
@@ -678,6 +801,7 @@ void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName)
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_3D_plane;
 	pRenderer->render = cd_rendering_render_3D_plane;
 	pRenderer->render_optimized = cd_rendering_render_optimized_3D_plane;
+	pRenderer->render_opengl = cd_rendering_render_3D_plane_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
 	pRenderer->bUseReflect = TRUE;
 	

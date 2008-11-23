@@ -8,7 +8,7 @@ module_DATA = \
 	readme\
 	preview.png\
 	icon.svg\
-	texture-chrome2.bmp\
+	texture-chrome.png\
 	icon-rotation.png\
 	spot.png\
 	halo.png\

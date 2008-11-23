@@ -31,6 +31,7 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 			myData.iChromeTexture = cd_animation_load_chrome_texture ();
 		pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
 		pData->fRotationBrake = 1.;
+		pData->fAdjustFactor = 0.;
 		*bStartAnimation = TRUE;
 	}
 	
@@ -119,7 +120,7 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	{
 		bInvisibleBackground = (! pDock->bInside);
 		glPushMatrix ();
-		glRotatef (pData->iRotationAngle, 0., 1., 0.);
+		glRotatef (pData->fRotationAngle, 0., 1., 0.);
 		switch (myConfig.iMeshType)
 		{
 			case CD_SQUARE_MESH :
@@ -128,8 +129,8 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 				cd_animation_render_square (pIcon, pDock, bInvisibleBackground);
 			break;
 			case CD_CUBE_MESH :
-				glRotatef (fabs (pData->iRotationAngle/4), 1., 0., 0.);
-				cairo_dock_set_icon_scale (pIcon, pDock, 1.);
+				glRotatef (fabs (pData->fRotationAngle/4), 1., 0., 0.);
+				cairo_dock_set_icon_scale (pIcon, pDock, 1. + pData->fAdjustFactor * (sqrt (2) - 1));
 				cd_animation_render_cube (pIcon, pDock, bInvisibleBackground);
 			break;
 			case CD_CAPSULE_MESH :
@@ -155,19 +156,20 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	if (pData->fRotationSpeed != 0)
 	{
 		double delta;
-		if (pData->iRotationAngle > 320)
+		if (pData->fRotationAngle > 320)
 		{
 			if (! myConfig.bContinueRotation || ! pIcon->bPointed || ! pDock->bInside)
 			{
-				pData->fRotationBrake = MAX (.25, (360. - pData->iRotationAngle) / (360. - 320.));
+				pData->fRotationBrake = MAX (.2, (360. - pData->fRotationAngle) / (360. - 320.));
+				pData->fAdjustFactor = (pData->fRotationAngle - 320) / (360. - 320.);
 			}
 		}
-		pData->iRotationAngle += pData->fRotationSpeed * pData->fRotationBrake;
-		if (pData->iRotationAngle < 360)
+		pData->fRotationAngle += pData->fRotationSpeed * pData->fRotationBrake;
+		if (pData->fRotationAngle < 360)
 			*bContinueAnimation = TRUE;
 		else
 		{
-			pData->iRotationAngle = 0;
+			pData->fRotationAngle = 0;
 			if (myConfig.bContinueRotation && pIcon->bPointed && pDock->bInside)
 			{
 				*bContinueAnimation = TRUE;
@@ -175,7 +177,6 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			else
 			{
 				pData->fRotationSpeed = 0;
-				g_print ("stop\n");
 			}
 		}
 	}

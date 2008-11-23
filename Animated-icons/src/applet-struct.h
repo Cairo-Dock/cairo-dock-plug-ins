@@ -44,8 +44,9 @@ struct _AppletData {
 
 typedef struct _CDAnimationData {
 	gdouble fRotationSpeed;
-	gint iRotationAngle;
+	gdouble fRotationAngle;
 	gdouble fRotationBrake;
+	gdouble fAdjustFactor;
 	
 	gdouble fIconOffsetY;
 	gdouble fRadiusFactor;

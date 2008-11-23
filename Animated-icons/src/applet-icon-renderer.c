@@ -19,6 +19,7 @@ static float fCapsuleObjectPlaneT[4] = { 0., 0.59f*2, 0., 0. };  // le 2 c'est l
 
 void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
 {
+	glPushMatrix ();
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
 	if (bInvisibleBackground)
@@ -26,7 +27,7 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	else
 		glBlendFunc (GL_ONE, GL_ZERO);  // la capsule "ecrase" le fond.
 	glColor4fv(myConfig.pMeshColor);  // ici on peut donner une teinte aux reflets chrome.
-	
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_TEXTURE);
 	
 	glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
@@ -52,7 +53,7 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	glEnable(GL_TEXTURE_GEN_T);        // et en T
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);
-	
+
 	glPolygonMode (GL_FRONT, GL_FILL);
 	glCallList (myData.iCallList[CD_CAPSULE_MESH]);
 	
@@ -66,6 +67,7 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	glDisable(GL_TEXTURE_GEN_T);
 	glDisable (GL_DEPTH_TEST);
 	glDisable (GL_BLEND);
+	glPopMatrix ();
 }
 
 
@@ -78,15 +80,12 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 	else
 		glBlendFunc (GL_ONE, GL_ZERO);  // la capsule "ecrase" le fond.
 	glColor4fv(myConfig.pMeshColor);  // ici on peut donner une teinte aux reflets chrome.
-	//glColor4f(1.0f, 1.0f, 1.0f, 1.);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_TEXTURE);
 	
 	glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
 	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
-	
 	glBindTexture(GL_TEXTURE_2D, myData.iChromeTexture);
-	
 	glEnable(GL_TEXTURE_GEN_S);                                // oui je veux une generation en S
 	glEnable(GL_TEXTURE_GEN_T);
 	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // type de generation des coordonnees de la texture
@@ -97,7 +96,6 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 	glActiveTextureARB(GL_TEXTURE1_ARB); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
-	
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);
 	
@@ -125,7 +123,7 @@ void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisi
 	else
 		glBlendFunc (GL_ONE, GL_ZERO);  // la capsule "ecrase" le fond.
 	glColor4fv(myConfig.pMeshColor);  // ici on peut donner une teinte aux reflets chrome.
-	//glColor4f(1.0f, 1.0f, 1.0f, 1.);
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_TEXTURE);
 	
 	glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe

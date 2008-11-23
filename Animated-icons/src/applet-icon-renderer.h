@@ -5,7 +5,7 @@
 
 #include <cairo-dock.h>
 
-#define cd_animation_load_chrome_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("texture-chrome2.bmp")
+#define cd_animation_load_chrome_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("texture-chrome.png")
 #define cd_animation_load_spot_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("spot.png")
 #define cd_animation_load_halo_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("halo.png")
 #define cd_animation_load_spot_front_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("spot-front2.png")
