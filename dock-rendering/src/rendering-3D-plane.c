@@ -685,7 +685,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	if (!pDock->bDirectionUp)
 	{
 		sens = 1;
-		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - 1.5 * fLineWidth;
+		fDockOffsetY = pDock->iCurrentHeight - 0*pDock->iDecorationsHeight - 1.5 * fLineWidth;
 	}
 	else
 	{
@@ -702,7 +702,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	//\____________________ On dessine les decorations dedans.
 	//fDockOffsetY = (!pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
 	glPushMatrix ();
-	cairo_dock_draw_frame_background_opengl (g_iBackgroundTexture, fDockWidth+2*fDeltaXTrapeze, fFrameHeight, fDockOffsetX-fDeltaXTrapeze, fDockOffsetY, pVertexTab, iNbVertex);
+	cairo_dock_draw_frame_background_opengl (g_iBackgroundTexture, fDockWidth+2*fDeltaXTrapeze, fFrameHeight, fDockOffsetX-fDeltaXTrapeze, fDockOffsetY, pVertexTab, iNbVertex, pDock->bHorizontalDock, pDock->bDirectionUp);
 	
 	//\____________________ On dessine le cadre.
 	if (fLineWidth != 0)

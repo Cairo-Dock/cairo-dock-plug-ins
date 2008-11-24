@@ -19,6 +19,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
+	if (pIcon->bStatic)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		pData = g_new0 (CDAnimationData, 1);
@@ -72,8 +75,6 @@ static void _cd_animations_render_rays (Icon *pIcon, CairoDock *pDock, CDAnimati
 
         glPopMatrix ();
 }
-
-
 gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered)
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
