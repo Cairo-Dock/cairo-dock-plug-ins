@@ -191,9 +191,9 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 				pData->fRadiusFactor = 1.;
 			else
 				*bContinueAnimation = TRUE;
-			pData->fIconOffsetY += 1.*g_iconTextDescription.iSize / myConfig.iSpotDuration * g_iGLAnimationDeltaT;
-			if (pData->fIconOffsetY > g_iconTextDescription.iSize)
-				pData->fIconOffsetY = g_iconTextDescription.iSize;
+			pData->fIconOffsetY += 1.*myLabels.iconTextDescription.iSize / myConfig.iSpotDuration * g_iGLAnimationDeltaT;
+			if (pData->fIconOffsetY > myLabels.iconTextDescription.iSize)
+				pData->fIconOffsetY = myLabels.iconTextDescription.iSize;
 			else
 				*bContinueAnimation = TRUE;
 		}
@@ -204,7 +204,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 				pData->fRadiusFactor = 0.;
 			else
 				*bContinueAnimation = TRUE;
-			pData->fIconOffsetY -= 1.*g_iconTextDescription.iSize / myConfig.iSpotDuration * g_iGLAnimationDeltaT;
+			pData->fIconOffsetY -= 1.*myLabels.iconTextDescription.iSize / myConfig.iSpotDuration * g_iGLAnimationDeltaT;
 			if (pData->fIconOffsetY < 0)
 				pData->fIconOffsetY = 0.;
 			else

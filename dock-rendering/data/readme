@@ -1,5 +1,5 @@
-<b><u>cd-rendering (v1.5.1)</u></b>
-<u>Author</u> : <b>Fabounet (Fabrice Rey)</b> &amp; <b>parAdOxxx_ZeRo</b>
-<i>This module adds different <span color='#0000FF'>views</span> to your dock.</i>
+cd-rendering (v1.5.1)
+Author : Fabounet (Fabrice Rey) &amp; parAdOxxx_ZeRo
+This module adds different views to your dock.
  Any dock or sub-dock can be displayed with the view of your choice.
  Currently, 3D-plane, Caroussel, Parabolic, Rainbow , Slide, SimpleSlide and Curve views are provided.

@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2008-11-15 10:31+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -15,8 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:24
-#: ../src/applet-notifications.c:29
+#: ../src/applet-config.c:24 ../src/applet-notifications.c:29
 msgid "No items yet."
 msgstr "アイテムはまだ有りません。"
 
@@ -173,8 +171,12 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:69
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:71
 msgid "Desklet's dimension (width x height) :"
@@ -182,7 +184,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:73
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:75
 msgid "Desklet's position (x ; y) :"
@@ -201,16 +205,25 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:83
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:85
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:87
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:89
 msgid "Lock position ?"
@@ -230,15 +243,20 @@ msgstr "装飾"
 
 #: ../data/messages:97
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+msgstr ""
+"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:99
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:101
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+"欄のままにしてください。"
 
 #: ../data/messages:103
 msgid "Background image :"
@@ -281,8 +299,12 @@ msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
 #: ../data/messages:123
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+"合は空欄のままにしてください。"
 
 #: ../data/messages:125
 msgid "Foreground image :"
@@ -297,8 +319,12 @@ msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:131
-msgid "Clipboard items are those you get with CTRL+c. Selection items are those you get by selecting some text with the mouse."
-msgstr "クリップボード・アイテムは、CTRL+c で取得するアイテムです。セレクション・アイテムは、マウスでテキストを選択することで取得するアイテムです。"
+msgid ""
+"Clipboard items are those you get with CTRL+c. Selection items are those you "
+"get by selecting some text with the mouse."
+msgstr ""
+"クリップボード・アイテムは、CTRL+c で取得するアイテムです。セレクション・アイ"
+"テムは、マウスでテキストを選択することで取得するアイテムです。"
 
 #: ../data/messages:133
 msgid "Which items should be remembered ?"
@@ -325,8 +351,12 @@ msgid "Number of items :"
 msgstr "アイテム数 :"
 
 #: ../data/messages:145
-msgid "It is especially usefull if you often select text with mouse and don't want to lose your clipboard items because of a great number of selection items."
-msgstr "マウスでテキストを頻繁に選択していて、その大量の選択アイテムによってクリップボード・アイテムが失われてしまうことがないようにしたい場合に特に有用です。"
+msgid ""
+"It is especially usefull if you often select text with mouse and don't want "
+"to lose your clipboard items because of a great number of selection items."
+msgstr ""
+"マウスでテキストを頻繁に選択していて、その大量の選択アイテムによってクリップ"
+"ボード・アイテムが失われてしまうことがないようにしたい場合に特に有用です。"
 
 #: ../data/messages:147
 msgid "Separate clipboard and selection ?"
@@ -337,16 +367,22 @@ msgid "If so, number of selection items :"
 msgstr "分離させる場合のセレクション・アイテム数 :"
 
 #: ../data/messages:151
-msgid "When you click on an item, its content will become accessible with CTRL+v"
-msgstr "アイテムをクリックしたときに、それが CTRL+v でアクセスできる状態になります。"
+msgid ""
+"When you click on an item, its content will become accessible with CTRL+v"
+msgstr ""
+"アイテムをクリックしたときに、それが CTRL+v でアクセスできる状態になります。"
 
 #: ../data/messages:153
 msgid "Paste into Clipboard ?"
 msgstr "クリップボードに貼り付け？"
 
 #: ../data/messages:155
-msgid "When you click on an item, its content will become accessible with the middle-click"
-msgstr "アイテムをクリックしたときに、それが中クリックでアクセスできる状態になります。"
+msgid ""
+"When you click on an item, its content will become accessible with the "
+"middle-click"
+msgstr ""
+"アイテムをクリックしたときに、それが中クリックでアクセスできる状態になりま"
+"す。"
 
 #: ../data/messages:157
 msgid "Paste into Selection ?"
@@ -365,8 +401,12 @@ msgid "Actions"
 msgstr "アクション"
 
 #: ../data/messages:165
-msgid "If some actions are associated with an item, they will be proposed to you when the item is created."
-msgstr "アイテムにアクションが関連付けられている場合、アイテムが作成された時点でそのアクションを提示します。"
+msgid ""
+"If some actions are associated with an item, they will be proposed to you "
+"when the item is created."
+msgstr ""
+"アイテムにアクションが関連付けられている場合、アイテムが作成された時点でその"
+"アクションを提示します。"
 
 #: ../data/messages:167
 msgid "Enable actions ?"
@@ -398,10 +438,10 @@ msgstr "中クリックでアクセス可能な定形文として登録された
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
+
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-

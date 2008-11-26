@@ -1,7 +1,7 @@
-<b><u>@PACKAGE_XMMS@ (v@VERSION_XMMS@)</u></b>
-<u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
-<i>An applet dedicated to <span color='#0000FF'>control XMMS, Audacious, Banshee &amp; Exaile</span>
-XMMS &amp; Audacious are fully supported,
+@PACKAGE_XMMS@ (v@VERSION_XMMS@)
+Author : ChAnGFu (Rémy Robertson)
+An applet dedicated to control XMMS, Audacious, Banshee & Exaile.
+XMMS & Audacious are fully supported,
  but Banshee and Exaile's monitoring is still experimental.
  For XMMS, you have to install the 'xmms-infopipe' plug-in.
 Play/Pause on left click, Next song on middle click.
@@ -10,4 +10,4 @@ Shit + mouse scroll:
  Up play the previous sound
  Down play the next sound
 See configuration for other options.
-Have fun!</i>
+Have fun!

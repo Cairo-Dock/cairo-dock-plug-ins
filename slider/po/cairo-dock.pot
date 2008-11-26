@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-11-10 23:45+0100\n"
+"POT-Creation-Date: 2008-11-25 21:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -217,95 +217,99 @@ msgid "Randomly browse files ?"
 msgstr ""
 
 #: ../data/messages:85
-msgid "Behaviour"
+msgid "Display image name as quickinfo ?"
 msgstr ""
 
 #: ../data/messages:87
-msgid "in seconds."
+msgid "Behaviour"
 msgstr ""
 
 #: ../data/messages:89
-msgid "Sliding delay :"
+msgid "in seconds."
 msgstr ""
 
 #: ../data/messages:91
-msgid "Action when applet is clicked :"
+msgid "Sliding delay :"
 msgstr ""
 
 #: ../data/messages:93
-msgid "play/pause"
+msgid "Action when applet is clicked :"
 msgstr ""
 
 #: ../data/messages:95
-msgid "open image"
+msgid "play/pause"
 msgstr ""
 
 #: ../data/messages:97
-msgid "Effect while changing image :"
+msgid "open image"
 msgstr ""
 
 #: ../data/messages:99
-msgid "none"
+msgid "Effect while changing image :"
 msgstr ""
 
 #: ../data/messages:101
-msgid "fade"
+msgid "none"
 msgstr ""
 
 #: ../data/messages:103
-msgid "blank fade"
+msgid "fade"
 msgstr ""
 
 #: ../data/messages:105
-msgid "fade in out"
+msgid "blank fade"
 msgstr ""
 
 #: ../data/messages:107
-msgid "side kick"
+msgid "fade in out"
 msgstr ""
 
 #: ../data/messages:109
-msgid "diaporama"
+msgid "side kick"
 msgstr ""
 
 #: ../data/messages:111
-msgid "grow up"
+msgid "diaporama"
 msgstr ""
 
 #: ../data/messages:113
-msgid "shrink down"
+msgid "grow up"
 msgstr ""
 
 #: ../data/messages:115
-msgid "random"
+msgid "shrink down"
 msgstr ""
 
 #: ../data/messages:117
-msgid "Display"
+msgid "random"
 msgstr ""
 
 #: ../data/messages:119
-msgid "Gives a better image rendering."
+msgid "Display"
 msgstr ""
 
 #: ../data/messages:121
-msgid "Keep widht/height ratio ?"
+msgid "Gives a better image rendering."
 msgstr ""
 
 #: ../data/messages:123
-msgid "If the image is too small, it will be zoomed in."
+msgid "Keep widht/height ratio ?"
 msgstr ""
 
 #: ../data/messages:125
-msgid "Force the image to fill the icon/desklet ?"
+msgid "If the image is too small, it will be zoomed in."
 msgstr ""
 
 #: ../data/messages:127
+msgid "Force the image to fill the icon/desklet ?"
+msgstr ""
+
+#: ../data/messages:129
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:131
 msgid "Choose a background color :"
 msgstr ""

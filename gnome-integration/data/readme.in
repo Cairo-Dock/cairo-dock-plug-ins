@@ -1,5 +1,5 @@
-<b><u>@PACKAGE_GNOME_INTEGRATION@ (v@VERSION_GNOME_INTEGRATION@)</u></b>
-<u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
-<i>This applet provides functions for a better integration into a <span color='#0000FF'>GNOME environnement</span>.
+@PACKAGE_GNOME_INTEGRATION@ (v@VERSION_GNOME_INTEGRATION@)
+Author : Fabounet (Fabrice Rey)
+This applet provides functions for a better integration into a GNOME environnement.
   It is auto-activated, so you don't need to activate it.
-  It is designed for the a GNOME version >= 2.22</i>
+  It is designed for the a GNOME version >= 2.22

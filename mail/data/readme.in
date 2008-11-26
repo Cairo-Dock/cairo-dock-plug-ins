@@ -1,3 +1,3 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
-<u>Author</u> : <b>Christophe Chapuis</b>
-<i>The new and soon wonderful <span color='#0000FF'>mail</span> applet</i>
+@PACKAGE@ (v@VERSION@)
+Author : Christophe Chapuis
+The new and soon wonderful mail applet

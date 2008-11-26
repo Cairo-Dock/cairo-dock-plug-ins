@@ -1,6 +1,7 @@
-<b><u>@PACKAGE_CAIRO_PENGUIN@ (v@VERSION_CAIRO_PENGUIN@)</u></b>
-<u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
-<i>Add a lively <span color='#0000FF'>Penguin</span> in your dock !</i>
+@PACKAGE_CAIRO_PENGUIN@ (v@VERSION_CAIRO_PENGUIN@)
+Author : Fabounet (Fabrice Rey)
+Add a lively Penguin in your dock !
  Left click to change animation,
  rigth click to disturb him ^_^
  Images are from Pingus, inspiration is from xpenguins.
+ Other characters are available or can be added easily.

@@ -1,4 +1,4 @@
-<b><u>@PACKAGE_DBUS@ (v@VERSION_DBUS@)</u></b>
-<u>Authors</u> : <b>Necropotame &amp; Fabounet</b>
-<i>This plug-in lets extern applications interact on the dock.
-The communication between both sides is based on <span color='#0000FF'>Dbus</span></i>
+@PACKAGE_DBUS@ (v@VERSION_DBUS@)
+Authors : Necropotame &amp; Fabounet
+This plug-in lets extern applications interact on the dock.
+The communication between both sides is based on Dbus

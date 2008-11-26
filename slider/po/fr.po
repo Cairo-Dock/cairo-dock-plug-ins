@@ -230,99 +230,99 @@ msgid "Randomly browse files ?"
 msgstr "Afficher les images aléatoirement ?"
 
 #: ../data/messages:85
+msgid "Display image name as quickinfo ?"
+msgstr "Afficher le nom de l'image en info rapide ?"
+
+#: ../data/messages:87
 msgid "Behaviour"
 msgstr "Comportement"
 
-#: ../data/messages:87
+#: ../data/messages:89
 msgid "in seconds."
 msgstr "en seconde"
 
-#: ../data/messages:89
+#: ../data/messages:91
 msgid "Sliding delay :"
 msgstr "Délais de changement :"
 
-#: ../data/messages:91
+#: ../data/messages:93
 msgid "Action when applet is clicked :"
 msgstr "Action au clique sur l'applet :"
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "play/pause"
 msgstr "jouer/pause"
 
-#: ../data/messages:95
+#: ../data/messages:97
 msgid "open image"
 msgstr "ouvrir l'image"
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Effect while changing image :"
 msgstr "Effet au changement d'image :"
 
-#: ../data/messages:99
+#: ../data/messages:101
 msgid "none"
 msgstr "aucun"
 
-#: ../data/messages:101
+#: ../data/messages:103
 msgid "fade"
 msgstr "fondu"
 
-#: ../data/messages:103
+#: ../data/messages:105
 msgid "blank fade"
 msgstr "flash"
 
-#: ../data/messages:105
+#: ../data/messages:107
 msgid "fade in out"
 msgstr "fondu progressif"
 
-#: ../data/messages:107
+#: ../data/messages:109
 msgid "side kick"
 msgstr "coup de pied"
 
-#: ../data/messages:109
+#: ../data/messages:111
 msgid "diaporama"
 msgstr "diaporama"
 
-#: ../data/messages:111
+#: ../data/messages:113
 msgid "grow up"
 msgstr "agrandissement"
 
-#: ../data/messages:113
+#: ../data/messages:115
 msgid "shrink down"
 msgstr "rétrécissement "
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "random"
 msgstr "aléatoire"
 
-#: ../data/messages:117
+#: ../data/messages:119
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid "Gives a better image rendering."
 msgstr "Donne un meilleur rendu de l'image"
 
-#: ../data/messages:121
+#: ../data/messages:123
 msgid "Keep widht/height ratio ?"
 msgstr "Conserver le ratio entre la hauteur et la largeur ?"
 
-#: ../data/messages:123
+#: ../data/messages:125
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Si l'image est trop petite, elle sera zoomée."
 
-#: ../data/messages:125
+#: ../data/messages:127
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Forcer les images à remplir l'icône/le desklet ?"
 
-#: ../data/messages:127
+#: ../data/messages:129
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Mettez la valeur de la transparence a 0 pour ne pas avoir de fond."
 
-#: ../data/messages:129
+#: ../data/messages:131
 msgid "Choose a background color :"
 msgstr "Choisir la couleur du fond :"
-
-#: ../data/messages:
-msgid "Display image name as quickinfo ?"
-msgstr "Afficher le nom de l'image en info rapide ?"

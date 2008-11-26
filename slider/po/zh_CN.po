@@ -228,98 +228,102 @@ msgid "Randomly browse files ?"
 msgstr "随机浏览文件？"
 
 #: ../data/messages:85
+msgid "Display image name as quickinfo ?"
+msgstr ""
+
+#: ../data/messages:87
 msgid "Behaviour"
 msgstr "行为"
 
-#: ../data/messages:87
+#: ../data/messages:89
 msgid "in seconds."
 msgstr "以秒为单位"
 
-#: ../data/messages:89
+#: ../data/messages:91
 msgid "Sliding delay :"
 msgstr "切换间隔："
 
-#: ../data/messages:91
+#: ../data/messages:93
 msgid "Action when applet is clicked :"
 msgstr "当小应用程序被点击时行动："
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "play/pause"
 msgstr "播放/暂停"
 
-#: ../data/messages:95
+#: ../data/messages:97
 msgid "open image"
 msgstr "打开图片"
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Effect while changing image :"
 msgstr "图片切换效果："
 
-#: ../data/messages:99
+#: ../data/messages:101
 msgid "none"
 msgstr "无"
 
-#: ../data/messages:101
+#: ../data/messages:103
 msgid "fade"
 msgstr "渐隐"
 
-#: ../data/messages:103
+#: ../data/messages:105
 #, fuzzy
 msgid "blank fade"
 msgstr "隐入"
 
-#: ../data/messages:105
+#: ../data/messages:107
 #, fuzzy
 msgid "fade in out"
 msgstr "隐入隐出"
 
-#: ../data/messages:107
+#: ../data/messages:109
 msgid "side kick"
 msgstr "插袋效果"
 
-#: ../data/messages:109
+#: ../data/messages:111
 msgid "diaporama"
 msgstr "幻灯效果"
 
-#: ../data/messages:111
+#: ../data/messages:113
 msgid "grow up"
 msgstr "生长"
 
-#: ../data/messages:113
+#: ../data/messages:115
 msgid "shrink down"
 msgstr "凋落"
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "random"
 msgstr "随机"
 
-#: ../data/messages:117
+#: ../data/messages:119
 msgid "Display"
 msgstr "显示"
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid "Gives a better image rendering."
 msgstr "优化图像渲染"
 
-#: ../data/messages:121
+#: ../data/messages:123
 msgid "Keep widht/height ratio ?"
 msgstr "维持纵横比？"
 
-#: ../data/messages:123
+#: ../data/messages:125
 msgid "If the image is too small, it will be zoomed in."
 msgstr "如果图片太小，将进行放大。"
 
-#: ../data/messages:125
+#: ../data/messages:127
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "强制图片充填图标/桌面小应用？"
 
-#: ../data/messages:127
+#: ../data/messages:129
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "如果您不想使用背景，可将透明度通道设置为0。"
 
-#: ../data/messages:129
+#: ../data/messages:131
 msgid "Choose a background color :"
 msgstr "选择背景色："
 

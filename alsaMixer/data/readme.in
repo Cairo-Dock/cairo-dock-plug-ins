@@ -1,6 +1,6 @@
-<b><u>@PACKAGE_ALSA_MIXER@ (v@VERSION_ALSA_MIXER@)</u></b>
-<u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
-<i>This applet let you set up the <span color='#0000FF'>sound volume</span> from the dock.</i>
+@PACKAGE_ALSA_MIXER@ (v@VERSION_ALSA_MIXER@)
+Author : Fabounet (Fabrice Rey)
+This applet let you set up the sound volume from the dock.
  Click on icon to show/hide volume control
   (You can bind a keyboard shortcut for it.
    You can also hide the dialog by clicking on it.)

@@ -28,7 +28,7 @@ msgstr "Mb"
 msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échouée"
 
-#: ../src/applet-rame.c:116
+#: ../src/applet-rame.c:121
 msgid "Loading"
 msgstr "Chargement"
 

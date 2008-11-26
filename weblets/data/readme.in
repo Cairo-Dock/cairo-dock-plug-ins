@@ -1,6 +1,6 @@
-<b><u>@PACKAGE@ (v@VERSION@)</u></b>
-<u>Author</u> : <b>Christophe Chapuis</b>
-<i>The <span color='#0000FF'>weblets</span> applet allows you to show
+@PACKAGE@ (v@VERSION@)
+Author : Christophe Chapuis
+The weblets applet allows you to show
 an interactive web page on your desktop.
 You can select your web page, set the desired scrolling,
-and hide the scrollbars to get a real 'crop' of the page !</i>
+and hide the scrollbars to get a real 'crop' of the page !

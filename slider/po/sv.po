@@ -233,96 +233,100 @@ msgid "Randomly browse files ?"
 msgstr "Sök efter filer slumpmässigt?"
 
 #: ../data/messages:85
+msgid "Display image name as quickinfo ?"
+msgstr ""
+
+#: ../data/messages:87
 msgid "Behaviour"
 msgstr "Beteende"
 
-#: ../data/messages:87
+#: ../data/messages:89
 msgid "in seconds."
 msgstr "i sekunder."
 
-#: ../data/messages:89
+#: ../data/messages:91
 msgid "Sliding delay :"
 msgstr "Paus mellan bilder:"
 
-#: ../data/messages:91
+#: ../data/messages:93
 msgid "Action when applet is clicked :"
 msgstr "Aktivitet när appleten klickas:"
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "play/pause"
 msgstr "spela/pausa"
 
-#: ../data/messages:95
+#: ../data/messages:97
 msgid "open image"
 msgstr "öppna bild"
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Effect while changing image :"
 msgstr "Effekt när bilden byts:"
 
-#: ../data/messages:99
+#: ../data/messages:101
 msgid "none"
 msgstr "ingen"
 
-#: ../data/messages:101
+#: ../data/messages:103
 msgid "fade"
 msgstr "tona"
 
-#: ../data/messages:103
+#: ../data/messages:105
 msgid "blank fade"
 msgstr "tona till blank"
 
-#: ../data/messages:105
+#: ../data/messages:107
 msgid "fade in out"
 msgstr "tona in ut"
 
-#: ../data/messages:107
+#: ../data/messages:109
 msgid "side kick"
 msgstr "sidokick"
 
-#: ../data/messages:109
+#: ../data/messages:111
 msgid "diaporama"
 msgstr "diaporama"
 
-#: ../data/messages:111
+#: ../data/messages:113
 msgid "grow up"
 msgstr "väx uppåt"
 
-#: ../data/messages:113
+#: ../data/messages:115
 msgid "shrink down"
 msgstr "krymp neråt"
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "random"
 msgstr "slumpmässigt"
 
-#: ../data/messages:117
+#: ../data/messages:119
 msgid "Display"
 msgstr "Utseende"
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid "Gives a better image rendering."
 msgstr "Ger bättre bildrendering."
 
-#: ../data/messages:121
+#: ../data/messages:123
 msgid "Keep widht/height ratio ?"
 msgstr "Behåll ursprungligt bildförhållande?"
 
-#: ../data/messages:123
+#: ../data/messages:125
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Om bilden är för liten, förstoras den automatiskt."
 
-#: ../data/messages:125
+#: ../data/messages:127
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Repetera bilden för att fylla hela dockan?"
 
-#: ../data/messages:127
+#: ../data/messages:129
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Sätt alfakanalen till 0 om du inte vill visa någon bakgrund."
 
-#: ../data/messages:129
+#: ../data/messages:131
 msgid "Choose a background color :"
 msgstr "Välj bakgrundsfärg:"
 

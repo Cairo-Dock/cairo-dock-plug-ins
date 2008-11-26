@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-11-10 23:45+0100\n"
+"POT-Creation-Date: 2008-11-25 21:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,27 +77,27 @@ msgid ""
 " made by Fabrice Rey for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:109
 msgid "Hey, you there !"
 msgstr ""
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:112
 msgid "Keep quiet"
 msgstr ""
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:116
 msgid "Wake up"
 msgstr ""
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:119
 msgid "Start XPenguins"
 msgstr ""
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:120
 msgid "Stop XPenguins"
 msgstr ""
 
-#: ../src/applet-notifications.c:155 ../src/applet-notifications.c:157
+#: ../src/applet-notifications.c:145 ../src/applet-notifications.c:147
 msgid "Zzzzz"
 msgstr ""
 

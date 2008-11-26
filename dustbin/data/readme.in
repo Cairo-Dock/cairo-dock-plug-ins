@@ -1,6 +1,6 @@
-<b><u>@PACKAGE_DUSTBIN@ (v@VERSION_DUSTBIN@)</u></b>
-<u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
-<i>Manage your disks space with this <span color='#0000FF'>trash applet</span> !</i>
+@PACKAGE_DUSTBIN@ (v@VERSION_DUSTBIN@)
+Author : Fabounet (Fabrice Rey)
+Manage your disks space with this trash applet !
 It can handle several trash directories,
  threw files or unmount disks with drag'n'drop,
  warn you if you use too much space,

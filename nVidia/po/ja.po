@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2008-11-15 10:52+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -27,8 +26,7 @@ msgstr "Video Ram:"
 msgid "Driver Version:"
 msgstr "Driver Version:"
 
-#: ../src/applet-draw.c:103
-#: ../src/applet-draw.c:119
+#: ../src/applet-draw.c:103 ../src/applet-draw.c:119
 msgid "Core Temparature:"
 msgstr "コアの温度 :"
 
@@ -103,8 +101,12 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -112,7 +114,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -131,16 +135,25 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:31
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:35
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:37
 msgid "Lock position ?"
@@ -160,15 +173,20 @@ msgstr "装飾"
 
 #: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+msgstr ""
+"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:49
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+"欄のままにしてください。"
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -211,8 +229,12 @@ msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
 #: ../data/messages:71
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+"合は空欄のままにしてください。"
 
 #: ../data/messages:73
 msgid "Foreground image :"
@@ -259,7 +281,9 @@ msgid "Delay between temperature checks :"
 msgstr "温度チェックの間隔時間 :"
 
 #: ../data/messages:95
-msgid "in celcius. The temperature will be displayed between this value and the upper limit."
+msgid ""
+"in celcius. The temperature will be displayed between this value and the "
+"upper limit."
 msgstr "単位は摂氏。この値と上限値との間の温度が表示されます。"
 
 #: ../data/messages:97
@@ -267,7 +291,9 @@ msgid "Lower limit of core temperature :"
 msgstr "コア温度の下限 :"
 
 #: ../data/messages:99
-msgid "in celcius. The temperature will be displayed between the lower limit and this value."
+msgid ""
+"in celcius. The temperature will be displayed between the lower limit and "
+"this value."
 msgstr "単位は摂氏。この値と下限値との間の温度が表示されます。"
 
 #: ../data/messages:101
@@ -351,8 +377,12 @@ msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示に利用可能なテーマのリスト :"
 
 #: ../data/messages:141
-msgid "Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark."
-msgstr "デフォルトの画像を使用するには空欄のままに。透かし模様を表示したくない場合は、透明度を 0 に設定してください。"
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+"デフォルトの画像を使用するには空欄のままに。透かし模様を表示したくない場合"
+"は、透明度を 0 に設定してください。"
 
 #: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
@@ -374,15 +404,15 @@ msgstr "デフォルトのアイコンを使用するには空欄のままに。
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」アイコンの画像の名前 :"
 
-msgid "radium"
-msgstr "radium"
+#~ msgid "radium"
+#~ msgstr "radium"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
+
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-

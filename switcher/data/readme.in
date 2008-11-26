@@ -1,7 +1,7 @@
-<b><u>@PACKAGE_SWITCHER@ (v@VERSION_SWITCHER@)</u></b>
-<u>Author</u> : <b>Cchumi</b>
-<u>Improvments</u> : <b>Fabounet</b>
-<i>This applet allows you to <span color='#0000FF'>switch between your virtual desktops</span>.
+@PACKAGE_SWITCHER@ (v@VERSION_SWITCHER@)
+Author : Cchumi
+Improvments : Fabounet
+This applet allows you to switch between your virtual desktops.
  It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).
  You can also quickly add/remove a desktop through the menu.
- Have Fun :-).</i>
+ Have Fun :-).

@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2008-11-14 16:08+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -240,8 +239,8 @@ msgstr "デフォルトのサブ・ドックの外観を使用するには空欄
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
-msgid "Lockposition ?"
-msgstr "位置を固定？"
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
 
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"

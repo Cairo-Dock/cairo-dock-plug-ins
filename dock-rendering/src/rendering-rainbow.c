@@ -105,11 +105,11 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
 					fOffsetX,
-					pDock->bDirectionUp ? -g_iconTextDescription.iSize : icon->fHeight * icon->fScale - icon->fTextYOffset);
+					pDock->bDirectionUp ? -myLabels.iconTextDescription.iSize : icon->fHeight * icon->fScale - icon->fTextYOffset);
 			else
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
-					pDock->bDirectionUp ? -g_iconTextDescription.iSize : icon->fHeight * icon->fScale - icon->fTextYOffset,
+					pDock->bDirectionUp ? -myLabels.iconTextDescription.iSize : icon->fHeight * icon->fScale - icon->fTextYOffset,
 					fOffsetX);
 			
 			double fMagnitude;
@@ -393,7 +393,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	
 	CairoDockMousePositionType iMousePositionType;
 	//g_print ("fRadius : %.2f ; limite : %.2f\n", fRadius, fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale);
-	if (! pDock->bInside || fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + g_iconTextDescription.iSize - (pDock->fFoldingFactor > 0 ? 20 : 0) || fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset)
+	if (! pDock->bInside || fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + myLabels.iconTextDescription.iSize - (pDock->fFoldingFactor > 0 ? 20 : 0) || fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset)
 	{
 		cd_debug ("<<< on sort du demi-disque >>>\n");
 		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;

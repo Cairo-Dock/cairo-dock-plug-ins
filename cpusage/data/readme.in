@@ -1,6 +1,6 @@
-<b><u>@PACKAGE_CPUSAGE@ (v@VERSION_CPUSAGE@)</u></b>
-<u>Author</u> : <b>parAdOxxx_ZeRo</b>
-<i>The <span color='#0000FF'>cpusage</span> applet show you the amount of CPU currently used</i>
-<i>Middle click on the icon to get some valuable info.</i>
-<i>Left click on the icon to get 
- a list of the most cpu using programs.</i>
+@PACKAGE_CPUSAGE@ (v@VERSION_CPUSAGE@)
+Author : parAdOxxx_ZeRo
+The cpusage applet show you the amount of CPU currently used
+Middle click on the icon to get some valuable info.
+Left click on the icon to get 
+ a list of the most cpu using programs.

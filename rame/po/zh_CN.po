@@ -26,7 +26,7 @@ msgstr "兆"
 msgid "Data acquisition has failed"
 msgstr "数据获取失败"
 
-#: ../src/applet-rame.c:116
+#: ../src/applet-rame.c:121
 msgid "Loading"
 msgstr "载入"
 

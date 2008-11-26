@@ -1,7 +1,7 @@
-<b><u>@PACKAGE_CLIPPER@ (v@VERSION_CLIPPER@)</u></b>
-<u>Author</u> : <b>Fabrice Rey (Fabounet)</b>
-<i>This applet keeps a trace of the <span color='#0000FF'>clipboard and mouse selection</span>,
- so that you can recall them quickly. It's a clone of the well-know Klipper.</i>
+@PACKAGE_CLIPPER@ (v@VERSION_CLIPPER@)
+Author : Fabrice Rey (Fabounet)
+This applet keeps a trace of the clipboard and mouse selection,
+ so that you can recall them quickly. It's a clone of the well-know Klipper.
  It supports clipboard and mouse selection,
   predefined actions,
   and persistent items.

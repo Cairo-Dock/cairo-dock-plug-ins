@@ -22,12 +22,13 @@ extern int iVanishingPointY;
 extern CDSpeparatorType my_iDrawSeparator3D;
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern double my_fSeparatorColor[4];
+extern GLuint iFlatSeparatorTexture;
 
 void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
-	pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + g_fReflectSize) + g_iconTextDescription.iSize + g_iDockLineWidth + g_iFrameMargin;
+	pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + g_fReflectSize) + myLabels.iconTextDescription.iSize + g_iDockLineWidth + g_iFrameMargin;
 	
 	double hi = g_fReflectSize + g_iFrameMargin;
 	
@@ -726,56 +727,55 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
 	
-// 	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
-// 	{
-// 		cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
-// 		do
-// 		{
-// 			icon = ic->data;
-// 			
-// 			if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
-// 			{
-// 				cairo_save (pCairoContext);
-// 				cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
-// 				cairo_restore (pCairoContext);
-// 			}
-// 			
-// 			ic = cairo_dock_get_next_element (ic, pDock->icons);
-// 		} while (ic != pFirstDrawnElement);
-// 		
-// 		do
-// 		{
-// 			icon = ic->data;
-// 			
-// 			if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
-// 			{
-// 				cairo_save (pCairoContext);
-// 				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
-// 				cairo_restore (pCairoContext);
-// 			}
-// 			
-// 			ic = cairo_dock_get_next_element (ic, pDock->icons);
-// 		} while (ic != pFirstDrawnElement);
-// 		
-// 		if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
-// 		{
-// 			do
-// 			{
-// 				icon = ic->data;
-// 				
-// 				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
-// 				{
-// 					cairo_save (pCairoContext);
-// 					cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
-// 					cairo_restore (pCairoContext);
-// 				}
-// 				
-// 				ic = cairo_dock_get_next_element (ic, pDock->icons);
-// 			} while (ic != pFirstDrawnElement);
-// 		}
-// 	}
-// 	else
+/* 	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
 	{
+		do
+		{
+			icon = ic->data;
+			
+			if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+			{
+				cairo_save (pCairoContext);
+				cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
+				cairo_restore (pCairoContext);
+			}
+			
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+		} while (ic != pFirstDrawnElement);
+		
+		do
+		{
+			icon = ic->data;
+			
+			if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
+			{
+				cairo_save (pCairoContext);
+				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+				cairo_restore (pCairoContext);
+			}
+			
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+		} while (ic != pFirstDrawnElement);
+		
+		if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+		{
+			do
+			{
+				icon = ic->data;
+				
+				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+				{
+					cairo_save (pCairoContext);
+					cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
+					cairo_restore (pCairoContext);
+				}
+				
+				ic = cairo_dock_get_next_element (ic, pDock->icons);
+			} while (ic != pFirstDrawnElement);
+		}
+	}
+	else
+ */	{
 		do
 		{
 			icon = ic->data;

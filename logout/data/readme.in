@@ -1,5 +1,5 @@
-<b><u>@PACKAGE_LOGOUT@ (v@VERSION_LOGOUT@)</u></b>
-<u>Author</u> : <b>Fabounet (Fabrice Rey)</b>
-<i>A very simple applet that adds an icon to <span color='#0000FF'>log out</span> from your session</i>
+@PACKAGE_LOGOUT@ (v@VERSION_LOGOUT@)
+Author : Fabounet (Fabrice Rey)
+A very simple applet that adds an icon to log out from your session
 Left click to log out, middle click to shutdown.
 

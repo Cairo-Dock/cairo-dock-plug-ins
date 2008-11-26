@@ -1,7 +1,7 @@
-<b><u>@PACKAGE_STACKS@ (v@VERSION_STACKS@)</u></b>
-<u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
-<i>This applet allows you to build a <span color='#0000FF'>stack of files</span>,
+@PACKAGE_STACKS@ (v@VERSION_STACKS@)
+Author : ChAnGFu (Rémy Robertson)
+This applet allows you to build a stack of files,
 just like the Stacks applet of MacOS X.
 To add file into your stacks, you just have to
  drag and drop it on the Stacks icon and you're done.
- Enjoy!</i>
+ Enjoy!

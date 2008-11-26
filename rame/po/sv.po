@@ -33,7 +33,7 @@ msgstr "Mb"
 msgid "Data acquisition has failed"
 msgstr "Kunde inte hämta data"
 
-#: ../src/applet-rame.c:116
+#: ../src/applet-rame.c:121
 msgid "Loading"
 msgstr "Laddar"
 

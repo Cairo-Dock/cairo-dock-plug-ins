@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2008-11-14 22:16+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -19,51 +18,51 @@ msgstr ""
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
-#: ../src/tomboy-notifications.c:39
+#: ../src/tomboy-notifications.c:40
 msgid "Note name : "
 msgstr "ノートの名前 :"
 
-#: ../src/tomboy-notifications.c:62
+#: ../src/tomboy-notifications.c:65
 msgid "Search for :"
 msgstr "検索 :"
 
-#: ../src/tomboy-notifications.c:83
+#: ../src/tomboy-notifications.c:86
 msgid "Search for tag :"
 msgstr "タグ検索 :"
 
-#: ../src/tomboy-notifications.c:139
+#: ../src/tomboy-notifications.c:142
 msgid "Reload notes"
 msgstr "ノートを再読み込み"
 
-#: ../src/tomboy-notifications.c:142
+#: ../src/tomboy-notifications.c:145
 msgid "Add a note"
 msgstr "ノートを追加"
 
-#: ../src/tomboy-notifications.c:146
+#: ../src/tomboy-notifications.c:149
 msgid "Delete this note"
 msgstr "このノートを削除"
 
-#: ../src/tomboy-notifications.c:149
+#: ../src/tomboy-notifications.c:152
 msgid "Search"
 msgstr "検索"
 
-#: ../src/tomboy-notifications.c:150
+#: ../src/tomboy-notifications.c:153
 msgid "Searh for tag"
 msgstr "タグ検索"
 
-#: ../src/tomboy-notifications.c:152
+#: ../src/tomboy-notifications.c:155
 msgid "Search for today's note"
 msgstr "今日のノートの検索"
 
-#: ../src/tomboy-notifications.c:153
+#: ../src/tomboy-notifications.c:156
 msgid "Search for this week's note"
 msgstr "今週のノートの検索"
 
-#: ../src/tomboy-notifications.c:154
+#: ../src/tomboy-notifications.c:157
 msgid "Search for next week's note"
 msgstr "次週のノートの検索"
 
-#: ../src/tomboy-notifications.c:164
+#: ../src/tomboy-notifications.c:167
 msgid "Reset marks"
 msgstr "マークのリセット"
 
@@ -95,9 +94,7 @@ msgstr "帰属先ドックの名前 :"
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:15
-#: ../data/messages:19
-#: ../data/messages:23
+#: ../data/messages:15 ../data/messages:19 ../data/messages:23
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
@@ -118,8 +115,16 @@ msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:29
-msgid "Depending on your tomboy's version, the note deletion may not be automatically notified to us. Only check this box if you notice some error message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal."
-msgstr "使用中の Tomboy のバージョンによっては、ノートの削除の自動的な通知が行われない可能性があります。端末上で <<No marshaller for signature of signal 'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れてください。"
+msgid ""
+"Depending on your tomboy's version, the note deletion may not be "
+"automatically notified to us. Only check this box if you notice some error "
+"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
+"terminal."
+msgstr ""
+"使用中の Tomboy のバージョンによっては、ノートの削除の自動的な通知が行われな"
+"い可能性があります。端末上で <<No marshaller for signature of signal "
+"'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみこのオプションに"
+"チェックを入れてください。"
 
 #: ../data/messages:31
 msgid "Emulate the 'NoteDeleted' signal ?"
@@ -138,149 +143,176 @@ msgid "Draw note's content on their icon ?"
 msgstr "アイコン上にノートの内容を描画？"
 
 #: ../data/messages:39
-msgid "Write the date format you usually use in your notes. The syntax is the one of 'strftime' : %d for the day, %m for the month, %y for the year (2 digits), etc. Let it blnk to use the default one (%d/%m/%y)."
-msgstr "ノートで普段使用している日付形式を記入してください。記述法は、年（下2桁）が %y、月が %m、日が %d 等の 'strftime' に則ります。デフォルト（%d/%m/%y）を使用するには、空欄のままにしてください。"
+msgid ""
+"Write the date format you usually use in your notes. The syntax is the one "
+"of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+"digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+msgstr ""
+"ノートで普段使用している日付形式を記入してください。記述法は、年（下2桁）が %"
+"y、月が %m、日が %d 等の 'strftime' に則ります。デフォルト（%d/%m/%y）を使用"
+"するには、空欄のままにしてください。"
 
 #: ../data/messages:41
 msgid "Date format to search for :"
 msgstr "検索のための日付フォーマット :"
 
-msgid "Info-bubbles"
-msgstr "情報を通知する吹き出し"
+#~ msgid "Info-bubbles"
+#~ msgstr "情報を通知する吹き出し"
 
-msgid "Activate info-bubbles ?"
-msgstr "吹き出しによる情報表示を有効化？"
+#~ msgid "Activate info-bubbles ?"
+#~ msgstr "吹き出しによる情報表示を有効化？"
 
-msgid "Time length of info-bubbles :"
-msgstr "吹き出しの表示継続時間 :"
+#~ msgid "Time length of info-bubbles :"
+#~ msgstr "吹き出しの表示継続時間 :"
 
-msgid "in ms."
-msgstr "ミリ秒単位"
+#~ msgid "in ms."
+#~ msgstr "ミリ秒単位"
 
-msgid "Animations"
-msgstr "アニメーション"
+#~ msgid "Animations"
+#~ msgstr "アニメーション"
 
-msgid "bounce"
-msgstr "バウンド"
+#~ msgid "bounce"
+#~ msgstr "バウンド"
 
-msgid "rotate"
-msgstr "回転"
+#~ msgid "rotate"
+#~ msgstr "回転"
 
-msgid "blink"
-msgstr "点滅"
+#~ msgid "blink"
+#~ msgstr "点滅"
 
-msgid "pulse"
-msgstr "波動"
+#~ msgid "pulse"
+#~ msgstr "波動"
 
-msgid "upside-down"
-msgstr "上下逆さま"
+#~ msgid "upside-down"
+#~ msgstr "上下逆さま"
 
-msgid "wobbly"
-msgstr "伸び縮み"
+#~ msgid "wobbly"
+#~ msgstr "伸び縮み"
 
-msgid "random"
-msgstr "ランダム"
+#~ msgid "random"
+#~ msgstr "ランダム"
 
-msgid "Animation when music changes :"
-msgstr "音楽切り替わり時のアニメーション:"
+#~ msgid "Animation when music changes :"
+#~ msgstr "音楽切り替わり時のアニメーション:"
 
-msgid "Display"
-msgstr "表示"
+#~ msgid "Display"
+#~ msgstr "表示"
 
-msgid "Display album's cover instead of icon ?"
-msgstr "アイコンの代わりにアルバムのカバーを表示？"
+#~ msgid "Display album's cover instead of icon ?"
+#~ msgstr "アイコンの代わりにアルバムのカバーを表示？"
 
-msgid "Information to display on the icon :"
-msgstr "アイコン上に表示する情報 :"
+#~ msgid "Information to display on the icon :"
+#~ msgstr "アイコン上に表示する情報 :"
 
-msgid ""
-"Artist : %s\n"
-"Album : %s\n"
-"Title : %s"
-msgstr ""
-"アーティスト : %s\n"
-"アルバム : %s\n"
-"タイトル : %s"
+#~ msgid ""
+#~ "Artist : %s\n"
+#~ "Album : %s\n"
+#~ "Title : %s"
+#~ msgstr ""
+#~ "アーティスト : %s\n"
+#~ "アルバム : %s\n"
+#~ "タイトル : %s"
 
-msgid "Unknown"
-msgstr "不明"
+#~ msgid "Unknown"
+#~ msgstr "不明"
 
-msgid "Previous"
-msgstr "前へ"
+#~ msgid "Previous"
+#~ msgstr "前へ"
 
-msgid "Next"
-msgstr "次へ"
+#~ msgid "Next"
+#~ msgstr "次へ"
 
-msgid "Information"
-msgstr "情報"
+#~ msgid "Information"
+#~ msgstr "情報"
 
-msgid "nothing"
-msgstr "なし"
+#~ msgid "nothing"
+#~ msgstr "なし"
 
-msgid "time elapsed"
-msgstr "経過時間"
+#~ msgid "time elapsed"
+#~ msgstr "経過時間"
 
-msgid "time left"
-msgstr "残り時間"
+#~ msgid "time left"
+#~ msgstr "残り時間"
 
-msgid "° of track"
-msgstr "トラック番号"
+#~ msgid "° of track"
+#~ msgstr "トラック番号"
 
-msgid "Name of an image for the 'play' icon :"
-msgstr "「再生」アイコンの画像の名前 :"
+#~ msgid "Name of an image for the 'play' icon :"
+#~ msgstr "「再生」アイコンの画像の名前 :"
 
-msgid "Name of an image for the 'stop' icon :"
-msgstr "「停止」アイコンの画像の名前 :"
+#~ msgid "Name of an image for the 'stop' icon :"
+#~ msgstr "「停止」アイコンの画像の名前 :"
 
-msgid "Name of an image for the 'pause' icon :"
-msgstr "「一時停止」アイコンの画像の名前 :"
+#~ msgid "Name of an image for the 'pause' icon :"
+#~ msgstr "「一時停止」アイコンの画像の名前 :"
 
-msgid "If your tomboy version is not recent enough, it may not have this signal. Only check this box if you notice some message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal."
-msgstr "Tomboy のバージョンが最近のものでない場合、この信号が存在しない可能性があります。端末上で <<No marshaller for signature of signal 'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れてください。"
+#~ msgid ""
+#~ "If your tomboy version is not recent enough, it may not have this signal. "
+#~ "Only check this box if you notice some message like <<No marshaller for "
+#~ "signature of signal 'NoteDeleted'>> in the terminal."
+#~ msgstr ""
+#~ "Tomboy のバージョンが最近のものでない場合、この信号が存在しない可能性があ"
+#~ "ります。端末上で <<No marshaller for signature of signal 'NoteDeleted'>> "
+#~ "のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れ"
+#~ "てください。"
 
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
+
 #~ msgid "Module"
 #~ msgstr "モジュール"
+
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
+
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
 #~ msgid "Desklet"
 #~ msgstr "デスクレット"
+
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + "
 #~ "middle_click or ALT + left_click for exemple."
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリッ"
 #~ "ク、または ALT + 左クリックでサイズ変更できます。"
+
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "デスクレットの寸法（幅×高さ） :"
+
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
 #~ "させることができます。"
+
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "デスクレットの位置（X ; Y） :"
+
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "ドックから分離？"
+
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"
+
 #~ msgid "Keep above other windows ?"
 #~ msgstr "他ウィンドウより常に上に？"
+
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 #~ "(name=cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
 #~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
+
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "ウィジェット・レイヤ上に表示？"
+
 #~ msgid ""
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
@@ -288,54 +320,73 @@ msgstr "Tomboy のバージョンが最近のものでない場合、この信�
 #~ "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは"
 #~ "移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可"
 #~ "能です。"
+
 #~ msgid "Lock position ?"
 #~ msgstr "位置を固定？"
+
 #~ msgid "in degrees."
 #~ msgstr "角度"
+
 #~ msgid "Rotation :"
 #~ msgstr "回転 :"
+
 #~ msgid "Decorations"
 #~ msgstr "装飾"
+
 #~ msgid "Choose the 'personnal' one to define your own decorations below."
 #~ msgstr ""
 #~ "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してくださ"
 #~ "い。"
+
 #~ msgid "Choose a decoration theme for this desklet :"
 #~ msgstr "このデスクレットの装飾テーマの選択 :"
+
 #~ msgid ""
 #~ "It's an image that will be displayed below the drawings, like a frame for "
 #~ "exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は"
 #~ "空欄のままにしてください。"
+
 #~ msgid "Background image :"
 #~ msgstr "背景画像 :"
+
 #~ msgid "Background tansparency :"
 #~ msgstr "背景の透明度 :"
+
 #~ msgid "in pixels. Use this to adjust the left position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
+
 #~ msgid "Left offset :"
 #~ msgstr "左方向のオフセット :"
+
 #~ msgid "in pixels. Use this to adjust the top position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
+
 #~ msgid "Top offset :"
 #~ msgstr "上方向のオフセット :"
+
 #~ msgid "in pixels. Use this to adjust the right position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+
 #~ msgid "Right offset :"
 #~ msgstr "右方向のオフセット :"
+
 #~ msgid "in pixels. Use this to adjust the bottom position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
+
 #~ msgid "Bottom offset :"
 #~ msgstr "下方向のオフセット :"
+
 #~ msgid ""
 #~ "It's an image that will be displayed above the drawings, like a reflect "
 #~ "for exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない"
 #~ "場合は空欄のままにしてください。"
+
 #~ msgid "Foreground image :"
 #~ msgstr "前景画像 :"
+
 #~ msgid "Foreground tansparency :"
 #~ msgstr "前景の透明度 :"
-

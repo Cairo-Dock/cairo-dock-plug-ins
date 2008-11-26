@@ -1,13 +1,13 @@
-<b><u>@PACKAGE_TERMINAL@ (v@VERSION_TERMINAL@)</u></b>
-<u>Author</u> : <b>Cedric GESTES ctaf42@gmail.com</b>
-<u>Enhancements</u> : <b>Fabounet (Fabrice Rey)</b>
-<i>Add a <span color='#0000FF'>terminal</span> to your dock !
+@PACKAGE_TERMINAL@ (v@VERSION_TERMINAL@)
+Author : Cedric GESTES ctaf42@gmail.com
+Enhancements : Fabounet (Fabrice Rey)
+Add a terminal to your dock !
  Left/middle click to show/hide terminal
-  (you can bind a <b>keyboard shortcut</b> for it.)
+  (you can bind a keyboard shortcut for it.)
  You can open many tabs, rename them, change their color.
  You can drag'n'drop files or text and select an action.
  Many shortcuts are available :
   'CTRL+t' and 'CTRL+w' to open/close current tab,
   Right-click on a tab to interact on it,
   Middle-click on a tab to close it,
-  Double-click next to the tabs to open a new one.</i>
+  Double-click next to the tabs to open a new one.

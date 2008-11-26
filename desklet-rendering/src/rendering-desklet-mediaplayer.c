@@ -12,8 +12,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "rendering-desklet-mediaplayer.h"
 
-extern CairoDockLabelDescription g_iconTextDescription;
-
 static gboolean on_button_press_mediaplayer (GtkWidget *widget,
 	GdkEventButton *pButton,
 	CairoDesklet *pDesklet)
@@ -55,13 +53,13 @@ CDMediaplayerParameters *rendering_configure_mediaplayer (CairoDesklet *pDesklet
 		if (pMediaplayer->cArtist != NULL)
 			pMediaplayer->pArtistSurface = cairo_dock_create_surface_from_text (pMediaplayer->cArtist,
 			pSourceContext,
-			&g_iconTextDescription,
+			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			&pMediaplayer->fArtistWidth, &pMediaplayer->fArtistHeight, &pMediaplayer->fArtistXOffset, &pMediaplayer->fArtistYOffset);
 		if (pMediaplayer->cTitle != NULL)
 			pMediaplayer->pTitleSurface = cairo_dock_create_surface_from_text (pMediaplayer->cTitle,
 			pSourceContext,
-			&g_iconTextDescription,
+			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			&pMediaplayer->fTitleWidth, &pMediaplayer->fTitleHeight, &pMediaplayer->fTitleXOffset, &pMediaplayer->fTitleYOffset);
 		
@@ -263,13 +261,13 @@ void rendering_update_text_for_mediaplayer (CairoDesklet *pDesklet, gpointer *pN
 	if (pMediaplayer->cArtist != NULL)
 		pMediaplayer->pArtistSurface = cairo_dock_create_surface_from_text (pMediaplayer->cArtist,
 			pCairoContext,
-			&g_iconTextDescription,
+			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			&pMediaplayer->fArtistWidth, &pMediaplayer->fArtistHeight, &pMediaplayer->fArtistXOffset, &pMediaplayer->fArtistYOffset);
 	if (pMediaplayer->cTitle != NULL)
 		pMediaplayer->pTitleSurface = cairo_dock_create_surface_from_text (pMediaplayer->cTitle,
 			pCairoContext,
-			&g_iconTextDescription,
+			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			&pMediaplayer->fTitleWidth, &pMediaplayer->fTitleHeight, &pMediaplayer->fTitleXOffset, &pMediaplayer->fTitleYOffset);
 			

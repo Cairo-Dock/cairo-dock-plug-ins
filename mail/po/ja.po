@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2008-11-15 10:44+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -50,27 +49,31 @@ msgstr "アカウントの編集"
 msgid "No unread mail in your mailboxes"
 msgstr "Mailbox に未読メールはありません。"
 
-#: ../src/mailwatch-mailbox-gmail.c:213
-#: ../src/mailwatch-mailbox-imap.c:399
+#: ../src/mailwatch-mailbox-gmail.c:213 ../src/mailwatch-mailbox-imap.c:399
 #: ../src/mailwatch-mailbox-pop3.c:356
-msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
-msgstr "ソケットを非ブロック・モードにセットできません。接続試行が中断すると、パネルが閉じるときに固まってしまう可能性があります。"
+msgid ""
+"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+"the panel may hang on close."
+msgstr ""
+"ソケットを非ブロック・モードにセットできません。接続試行が中断すると、パネル"
+"が閉じるときに固まってしまう可能性があります。"
 
-#: ../src/mailwatch-mailbox-gmail.c:252
-#: ../src/mailwatch-mailbox-imap.c:438
+#: ../src/mailwatch-mailbox-gmail.c:252 ../src/mailwatch-mailbox-imap.c:438
 #: ../src/mailwatch-mailbox-pop3.c:395
 #, c-format
 msgid "Failed to connect to server: %s"
 msgstr "サーバへの接続に失敗 : %s"
 
-#: ../src/mailwatch-mailbox-gmail.c:284
-#: ../src/mailwatch-mailbox-imap.c:470
+#: ../src/mailwatch-mailbox-gmail.c:284 ../src/mailwatch-mailbox-imap.c:470
 #: ../src/mailwatch-mailbox-pop3.c:427
-msgid "Unable to return socket to blocking mode.  Data may not be retreived correctly."
-msgstr "ソケットをブロック・モードに戻せません。データが正しく取得できない可能性があります。"
+msgid ""
+"Unable to return socket to blocking mode.  Data may not be retreived "
+"correctly."
+msgstr ""
+"ソケットをブロック・モードに戻せません。データが正しく取得できない可能性があ"
+"ります。"
 
-#: ../src/mailwatch-mailbox-gmail.c:315
-#: ../src/mailwatch-mailbox-imap.c:302
+#: ../src/mailwatch-mailbox-gmail.c:315 ../src/mailwatch-mailbox-imap.c:302
 #: ../src/mailwatch-mailbox-pop3.c:266
 #, c-format
 msgid "TLS handshake failed: %s"
@@ -78,38 +81,42 @@ msgstr "TLS ハンドシェイクに失敗 : %s"
 
 #: ../src/mailwatch-mailbox-gmail.c:363
 #, c-format
-msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
-msgstr "HTTP 応答コード %d を受け取りました。恐らく GMail のユーザー名またはパスワードが正しくありません。"
+msgid ""
+"Received HTTP response code %d.  The most likely reason for this is that "
+"your GMail username or password is incorrect."
+msgstr ""
+"HTTP 応答コード %d を受け取りました。恐らく GMail のユーザー名またはパスワー"
+"ドが正しくありません。"
 
 #: ../src/mailwatch-mailbox-gmail.c:369
 #, c-format
-msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
-msgstr "HTTP 応答コード %d を受け取りましたが、本来 200 であるべきです。Gmail サーバに問題があるか、サーバの認証方式や新規メッセージのフィード元の場所が変更された可能性があります。"
+msgid ""
+"Received HTTP response code %d, which should be 200.  There may be a problem "
+"with GMail's servers, or they have incompatibly changed their authentication "
+"method or location of the new messages feed."
+msgstr ""
+"HTTP 応答コード %d を受け取りましたが、本来 200 であるべきです。Gmail サーバ"
+"に問題があるか、サーバの認証方式や新規メッセージのフィード元の場所が変更され"
+"た可能性があります。"
 
-#: ../src/mailwatch-mailbox-gmail.c:615
-#: ../src/mailwatch-mailbox-imap.c:1742
+#: ../src/mailwatch-mailbox-gmail.c:615 ../src/mailwatch-mailbox-imap.c:1742
 #: ../src/mailwatch-mailbox-pop3.c:924
 msgid "_Username:"
 msgstr "ユーザー名(_U):"
 
-#: ../src/mailwatch-mailbox-gmail.c:634
-#: ../src/mailwatch-mailbox-imap.c:1761
+#: ../src/mailwatch-mailbox-gmail.c:634 ../src/mailwatch-mailbox-imap.c:1761
 #: ../src/mailwatch-mailbox-pop3.c:943
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../src/mailwatch-mailbox-gmail.c:654
-#: ../src/mailwatch-mailbox-imap.c:1799
+#: ../src/mailwatch-mailbox-gmail.c:654 ../src/mailwatch-mailbox-imap.c:1799
 #: ../src/mailwatch-mailbox-pop3.c:974
 msgid "Check for _new messages every"
 msgstr "新着メッセージのチェック(_N):"
 
-#: ../src/mailwatch-mailbox-gmail.c:669
-#: ../src/mailwatch-mailbox-imap.c:1813
-#: ../src/mailwatch-mailbox-maildir.c:462
-#: ../src/mailwatch-mailbox-mbox.c:475
-#: ../src/mailwatch-mailbox-mh.c:643
-#: ../src/mailwatch-mailbox-pop3.c:988
+#: ../src/mailwatch-mailbox-gmail.c:669 ../src/mailwatch-mailbox-imap.c:1813
+#: ../src/mailwatch-mailbox-maildir.c:462 ../src/mailwatch-mailbox-mbox.c:475
+#: ../src/mailwatch-mailbox-mh.c:643 ../src/mailwatch-mailbox-pop3.c:988
 msgid "minute(s)."
 msgstr "分間隔"
 
@@ -118,27 +125,36 @@ msgid "Remote GMail Mailbox"
 msgstr "リモート GMail Mailbox"
 
 #: ../src/mailwatch-mailbox-gmail.c:751
-msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
-msgstr "GMail プラグインは、Google のメールサービスに接続して、新着メッセージの数を安全に取得することができます。"
+msgid ""
+"The GMail plugin can connect to Google's mail service and securely retrieve "
+"the number of new messages."
+msgstr ""
+"GMail プラグインは、Google のメールサービスに接続して、新着メッセージの数を安"
+"全に取得することができます。"
 
 #: ../src/mailwatch-mailbox-imap.c:254
-msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
-msgstr "セキュア IMAP は利用できません。また、IMAP サーバは平文記述のログインに対応していません。"
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
+msgstr ""
+"セキュア IMAP は利用できません。また、IMAP サーバは平文記述のログインに対応し"
+"ていません。"
 
 #: ../src/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
 msgstr "STARTTLS セキュリティを要求しましたが、このサーバは対応していません。"
 
 #: ../src/mailwatch-mailbox-imap.c:591
-msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
-msgstr "IMAP 応答のすべてを受け取るにはバッファが小さすぎます。これはバグです！"
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgstr ""
+"IMAP 応答のすべてを受け取るにはバッファが小さすぎます。これはバグです！"
 
 #: ../src/mailwatch-mailbox-imap.c:1178
 msgid "Failed to get folder list"
 msgstr "フォルダのリストの取得に失敗"
 
-#: ../src/mailwatch-mailbox-imap.c:1304
-#: ../src/mailwatch-mailbox-imap.c:1517
+#: ../src/mailwatch-mailbox-imap.c:1304 ../src/mailwatch-mailbox-imap.c:1517
 msgid "Please wait..."
 msgstr "お待ちください..."
 
@@ -154,18 +170,15 @@ msgstr "新規メールフォルダ"
 msgid "Advanced IMAP Options"
 msgstr "IMAP 詳細オプション"
 
-#: ../src/mailwatch-mailbox-imap.c:1612
-#: ../src/mailwatch-mailbox-pop3.c:816
+#: ../src/mailwatch-mailbox-imap.c:1612 ../src/mailwatch-mailbox-pop3.c:816
 msgid "Connection"
 msgstr "接続"
 
-#: ../src/mailwatch-mailbox-imap.c:1621
-#: ../src/mailwatch-mailbox-pop3.c:825
+#: ../src/mailwatch-mailbox-imap.c:1621 ../src/mailwatch-mailbox-pop3.c:825
 msgid "Use unsecured connection"
 msgstr "非セキュアな接続を使用"
 
-#: ../src/mailwatch-mailbox-imap.c:1622
-#: ../src/mailwatch-mailbox-pop3.c:826
+#: ../src/mailwatch-mailbox-imap.c:1622 ../src/mailwatch-mailbox-pop3.c:826
 msgid "Use SSL/TLS on alternate port"
 msgstr "SSL/TLS を別ポートで使用"
 
@@ -189,13 +202,11 @@ msgstr "IMAP サーバ・ディレクトリ(_D):"
 msgid "IMAP Server"
 msgstr "IMAP サーバ"
 
-#: ../src/mailwatch-mailbox-imap.c:1723
-#: ../src/mailwatch-mailbox-pop3.c:905
+#: ../src/mailwatch-mailbox-imap.c:1723 ../src/mailwatch-mailbox-pop3.c:905
 msgid "_Mail server:"
 msgstr "メールサーバ(_M):"
 
-#: ../src/mailwatch-mailbox-imap.c:1781
-#: ../src/mailwatch-mailbox-pop3.c:963
+#: ../src/mailwatch-mailbox-imap.c:1781 ../src/mailwatch-mailbox-pop3.c:963
 msgid "_Advanced..."
 msgstr "詳細設定(_A)..."
 
@@ -208,13 +219,15 @@ msgid "Remote IMAP Mailbox"
 msgstr "リモート IMAP Mailbox"
 
 #: ../src/mailwatch-mailbox-imap.c:1959
-msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
-msgstr "IMAP プラグインは、IMAP プロトコルに対応しているリモートのメールサーバに接続することができ、リンク保護のため SSL の使用も可能です。"
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"IMAP プラグインは、IMAP プロトコルに対応しているリモートのメールサーバに接続"
+"することができ、リンク保護のため SSL の使用も可能です。"
 
-#: ../src/mailwatch-mailbox-maildir.c:100
-#: ../src/mailwatch-mailbox-mbox.c:99
-#: ../src/mailwatch-mailbox-mh.c:399
-#: ../src/mailwatch-mailbox-mh.c:410
+#: ../src/mailwatch-mailbox-maildir.c:100 ../src/mailwatch-mailbox-mbox.c:99
+#: ../src/mailwatch-mailbox-mh.c:399 ../src/mailwatch-mailbox-mh.c:410
 #, c-format
 msgid "Failed to get status of file %s: %s"
 msgstr "ファイルのステータス取得に失敗 %s: %s"
@@ -232,8 +245,7 @@ msgstr "Maildir フォルダの選択"
 msgid "Maildir _Path:"
 msgstr "Maildir のパス(_P):"
 
-#: ../src/mailwatch-mailbox-maildir.c:446
-#: ../src/mailwatch-mailbox-mbox.c:458
+#: ../src/mailwatch-mailbox-maildir.c:446 ../src/mailwatch-mailbox-mbox.c:458
 #: ../src/mailwatch-mailbox-mh.c:628
 msgid "_Interval:"
 msgstr "インターバル(_I):"
@@ -243,8 +255,12 @@ msgid "Local Maildir Spool"
 msgstr "ローカル Maildir スプール"
 
 #: ../src/mailwatch-mailbox-maildir.c:497
-msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
-msgstr "Maildir プラグインは新着メッセージのためにローカルの Maildir スタイルのメール・スプールを監視できます。"
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
+msgstr ""
+"Maildir プラグインは新着メッセージのためにローカルの Maildir スタイルのメー"
+"ル・スプールを監視できます。"
 
 #: ../src/mailwatch-mailbox-mbox.c:373
 msgid "Select mbox file"
@@ -260,7 +276,9 @@ msgstr "ローカル Mbox スプール"
 
 #: ../src/mailwatch-mailbox-mbox.c:501
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "Mbox プラグインは新着メッセージのためにローカルの Mbox タイプのメール・スプールを監視します。 "
+msgstr ""
+"Mbox プラグインは新着メッセージのためにローカルの Mbox タイプのメール・スプー"
+"ルを監視します。 "
 
 #: ../src/mailwatch-mailbox-mh.c:248
 #, c-format
@@ -304,8 +322,12 @@ msgid "Remote POP3 Mailbox"
 msgstr "リモート POP3 Mailbox"
 
 #: ../src/mailwatch-mailbox-pop3.c:1101
-msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
-msgstr "POP3 プラグインは、POP3 プロトコルに対応するリモートのメールサーバに接続できます。リンク保護のため SSL を使用することも可能です。"
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"POP3 プラグインは、POP3 プロトコルに対応するリモートのメールサーバに接続でき"
+"ます。リンク保護のため SSL を使用することも可能です。"
 
 #: ../src/mailwatch-utils.c:245
 #, c-format
@@ -318,10 +340,10 @@ msgstr "SSL/TLS 対応でコンパイルされていません"
 
 #: ../src/mailwatch-utils.c:257
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-msgstr "XfceMailwatch: TLS ハンドシェイクに失敗: SSL 対応でコンパイルされていません。"
+msgstr ""
+"XfceMailwatch: TLS ハンドシェイクに失敗: SSL 対応でコンパイルされていません。"
 
-#: ../src/mailwatch-utils.c:280
-#: ../src/mailwatch-utils.c:333
+#: ../src/mailwatch-utils.c:280 ../src/mailwatch-utils.c:333
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "セキュア接続を要求しましたが、gnutls は初期化されませんでした。"
 
@@ -333,8 +355,7 @@ msgstr "この mailbox タイプには設定変更の必要はありません。
 msgid "Mailbox _Name:"
 msgstr "Mailbox の名前(_N):"
 
-#: ../src/mailwatch.c:943
-#: ../src/mailwatch.c:1141
+#: ../src/mailwatch.c:943 ../src/mailwatch.c:1141
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Mailbox の編集: %s"
@@ -384,8 +405,12 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -393,7 +418,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -412,132 +439,155 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+"dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
 #: ../data/messages:37
+msgid "in degrees."
+msgstr "角度"
+
+#: ../data/messages:39
+msgid "Rotation :"
+msgstr "回転 :"
+
+#: ../data/messages:41
 msgid "Decorations"
 msgstr "装飾"
 
-#: ../data/messages:39
+#: ../data/messages:43
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+msgstr ""
+"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
-#: ../data/messages:41
+#: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
-#: ../data/messages:43
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+#: ../data/messages:47
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+"欄のままにしてください。"
 
-#: ../data/messages:45
+#: ../data/messages:49
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:47
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "Top offset :"
 msgstr "上方向のオフセット :"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
-#: ../data/messages:65
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+#: ../data/messages:69
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+"合は空欄のままにしてください。"
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "Foreground image :"
 msgstr "前景画像 :"
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Choose one of the available themes :"
 msgstr "利用可能テーマから１つ選択 :"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Theme overriding"
 msgstr "テーマ更新中"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Name of the file for the \"no mail\" image :"
 msgstr "「メールなし」画像のファイルの名前 :"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Name of the file for the \"has mail\" image :"
 msgstr "「メールあり」画像のファイルの名前 :"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Name of the file for the \"new mail\" sound :"
 msgstr "「新着メール」の音ファイル :"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Path to application to launch on left-click"
 msgstr "左クリックで起動させるアプリケーションのパス"
 
-msgid "Lockposition ?"
-msgstr "位置を固定？"
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
+
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
+
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-#~ msgid "in degrees."
-#~ msgstr "角度"
-#~ msgid "Rotation :"
-#~ msgstr "回転 :"
-

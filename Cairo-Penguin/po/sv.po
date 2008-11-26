@@ -83,27 +83,27 @@ msgstr ""
 "Cairo-Penguin applet\n"
 " skapad av Fabrice Rey för Cairo-Dock"
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:109
 msgid "Hey, you there !"
 msgstr "Hallå, du där!"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:112
 msgid "Keep quiet"
 msgstr "Tyst"
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:116
 msgid "Wake up"
 msgstr "Vakna"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:119
 msgid "Start XPenguins"
 msgstr "Starta XPenguins"
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:120
 msgid "Stop XPenguins"
 msgstr "Stoppa XPenguins"
 
-#: ../src/applet-notifications.c:155 ../src/applet-notifications.c:157
+#: ../src/applet-notifications.c:145 ../src/applet-notifications.c:147
 msgid "Zzzzz"
 msgstr "Zzzzz"
 

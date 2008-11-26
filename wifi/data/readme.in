@@ -1,6 +1,6 @@
-<b><u>@PACKAGE_WIFI@ (v@VERSION_WIFI@)</u></b>
-<u>Author</u> : <b>ChAnGFu (Rémy Robertson)</b>
-<i>This applet shows you the signal strength</i>
-<i>of the first active <span color='#0000FF'>wifi</span> connection</i>
+@PACKAGE_WIFI@ (v@VERSION_WIFI@)
+Author : ChAnGFu (Rémy Robertson)
+This applet shows you the signal strength
+of the first active wifi connection
 Left-click to pop-up some info,
 Middle-click to re-check immediately.
