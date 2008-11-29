@@ -31,7 +31,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Module", "setup command");
 	myConfig.cFont = CD_CONFIG_GET_STRING ("Module", "font");
 	if (myConfig.cFont == NULL)
-		myConfig.cFont = g_strdup (g_iconTextDescription.cFont);
+		myConfig.cFont = g_strdup (myLabels.iconTextDescription.cFont);
 	
 	myConfig.cLocation = CD_CONFIG_GET_STRING ("Module", "location");
 	

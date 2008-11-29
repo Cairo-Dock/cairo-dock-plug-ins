@@ -147,7 +147,7 @@ static double _calculate_wave_offset (int x_abs, int iMaxIconHeight, double fMag
 	int x_cumulated = iIconNumber * (iMaxIconHeight + my_iSpaceBetweenRows);
 	cd_debug (" iIconNumber : %d ; x_cumulated : %d\n", iIconNumber, x_cumulated);
 	double fXMiddle = x_cumulated + iMaxIconHeight / 2;
-	double fPhase = (fXMiddle - x_abs) / g_iSinusoidWidth / fRatio * G_PI + G_PI / 2;
+	double fPhase = (fXMiddle - x_abs) / myIcons.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
 	if (fPhase < 0)
 	{
 		fPhase = 0;
@@ -166,7 +166,7 @@ static double _calculate_wave_offset (int x_abs, int iMaxIconHeight, double fMag
 		x_cumulated = iIconNumber * (iMaxIconHeight + my_iSpaceBetweenRows);
 		//cd_debug ("  %d) x_cumulated = %d\n", iIconNumber, x_cumulated);
 		fXMiddle = x_cumulated + iMaxIconHeight / 2;
-		fPhase = (fXMiddle - x_abs) / g_iSinusoidWidth / fRatio * G_PI + G_PI / 2;
+		fPhase = (fXMiddle - x_abs) / myIcons.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
 		if (fPhase < 0)
 		{
 			fPhase = 0;
@@ -235,7 +235,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 		//cd_debug (" ligne %d\n", iNumRow);
 		fXMiddle = x_cumulated + .5*iMaxIconHeight;
 		
-		fPhase = (fXMiddle - x_abs) / g_iSinusoidWidth / fRatio * G_PI + G_PI / 2;
+		fPhase = (fXMiddle - x_abs) / myIcons.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
 		if (fPhase < 0)
 			fPhase = 0;
 		else if (fPhase > G_PI)

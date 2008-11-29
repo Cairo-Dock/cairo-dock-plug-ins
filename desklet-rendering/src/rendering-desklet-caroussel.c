@@ -105,9 +105,9 @@ void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 		fCentralSphereWidth = MAX (1, MIN (pDesklet->iWidth, pDesklet->iHeight) * CAROUSSEL_RATIO_ICON_DESKLET);
 		fCentralSphereHeight = fCentralSphereWidth;
 		
-		pCaroussel->iEllipseHeight = MIN (fCentralSphereHeight, pDesklet->iHeight - 2 * (myLabels.iconTextDescription.iSize + g_fReflectSize) - 1);
+		pCaroussel->iEllipseHeight = MIN (fCentralSphereHeight, pDesklet->iHeight - 2 * (myLabels.iconTextDescription.iSize + myIcons.fReflectSize) - 1);
 		pCaroussel->fInclinationOnHorizon = atan2 (pDesklet->iHeight, pDesklet->iWidth/4);
-		pCaroussel->iFrameHeight = pCaroussel->iEllipseHeight + 0*2 * g_iFrameMargin + g_fReflectSize;
+		pCaroussel->iFrameHeight = pCaroussel->iEllipseHeight + 0*2 * myBackground.iFrameMargin + myIcons.fReflectSize;
 		pCaroussel->fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pCaroussel->iFrameHeight, pCaroussel->fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
 		
 		pCaroussel->a = MAX (pDesklet->iWidth - pCaroussel->fExtraWidth - (pCaroussel->bRotateIconsOnEllipse ? 0 : iMaxIconWidth/2), pCaroussel->iEllipseHeight)/2;
@@ -250,7 +250,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 		
 		//\____________________ On trace le cadre.
 		double fLineWidth = g_iDockLineWidth;
-		double fMargin = 0*g_iFrameMargin;
+		double fMargin = 0*myBackground.iFrameMargin;
 		
 		double fDockWidth = pDesklet->iWidth - fExtraWidth;
 		int sens=1;

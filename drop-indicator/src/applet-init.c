@@ -25,8 +25,8 @@ static void _load_drop_indicator (void)
 {
 	cairo_t* pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
 	double fMaxScale = cairo_dock_get_max_scale (g_pMainDock);
-	myData.iInitialWidth = g_tIconAuthorizedWidth[CAIRO_DOCK_LAUNCHER] * fMaxScale;
-	myData.iInitialHeight = g_tIconAuthorizedHeight[CAIRO_DOCK_LAUNCHER] * fMaxScale / 2;
+	myData.iInitialWidth = myIcons.tIconAuthorizedWidth[CAIRO_DOCK_LAUNCHER] * fMaxScale;
+	myData.iInitialHeight = myIcons.tIconAuthorizedHeight[CAIRO_DOCK_LAUNCHER] * fMaxScale / 2;
 	
 	gchar *cImagePath;
 	if (myConfig.cDropIndicatorImageName != NULL)

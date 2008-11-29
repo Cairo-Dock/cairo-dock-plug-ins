@@ -33,11 +33,10 @@ POST_UNINSTALL = :
 build_triplet = i686-pc-linux-gnu
 host_triplet = i686-pc-linux-gnu
 subdir = .
-DIST_COMMON = $(am__configure_deps) $(srcdir)/../config.guess \
-	$(srcdir)/../config.sub $(srcdir)/../install-sh \
-	$(srcdir)/../ltmain.sh $(srcdir)/../missing \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/config.h.in $(top_srcdir)/configure
+DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(srcdir)/config.h.in \
+	$(top_srcdir)/configure config.guess config.sub depcomp \
+	install-sh ltmain.sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -73,13 +72,13 @@ GZIP_ENV = --best
 distuninstallcheck_listfiles = find . -type f -print
 distcleancheck_listfiles = find . -type f -print
 pkgdatadir = /usr/local/share/cairo-dock/plug-ins/motion_blur
-ACLOCAL = ${SHELL} /home/fab/CD/trunk/plug-ins/missing --run aclocal-1.10
+ACLOCAL = ${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run aclocal-1.10
 ALL_LINGUAS = 
-AMTAR = ${SHELL} /home/fab/CD/trunk/plug-ins/missing --run tar
+AMTAR = ${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /home/fab/CD/trunk/plug-ins/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/fab/CD/trunk/plug-ins/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/fab/CD/trunk/plug-ins/missing --run automake-1.10
+AUTOCONF = ${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run automake-1.10
 AWK = mawk
 CATALOGS = 
 CATOBJEXT = .gmo
@@ -145,9 +144,9 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/fab/CD/trunk/plug-ins/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
-MKINSTALLDIRS = ./../mkinstalldirs
+MKINSTALLDIRS = ./mkinstalldirs
 MSGFMT = /usr/bin/msgfmt
 MSGFMT_OPTS = -c
 MSGMERGE = /usr/bin/msgmerge
@@ -207,7 +206,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /home/fab/CD/trunk/plug-ins/install-sh
+install_sh = $(SHELL) /home/fab/CD/trunk/plug-ins/motion-blur/install-sh
 libdir = /usr/local/lib/cairo-dock
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -216,7 +215,7 @@ mandir = ${datarootdir}/man
 mkdir_p = /bin/mkdir -p
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr
+prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin

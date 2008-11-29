@@ -62,18 +62,22 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 
 static void _cd_animations_render_rays (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, int iDepth)
 {
-        glPushMatrix ();
-        if (pDock->bHorizontalDock)
-                glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
-        else
-                glTranslatef (- pIcon->fHeight * pIcon->fScale/2, 0., 0.);
+	glPushMatrix ();
+	if (pDock->bHorizontalDock)
+		glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
+	else
+		glTranslatef (- pIcon->fHeight * pIcon->fScale/2, 0., 0.);
+	
+	/// A finir ...
+	if (! pDock->bHorizontalDock)
+		glRotatef (90, 0., 0., 1.);
+	
+	if (pData->pRaysSystem != NULL)
+	{
+		cairo_dock_render_particles_full (pData->pRaysSystem, iDepth);
+	}
 
-        if (pData->pRaysSystem != NULL)
-        {
-                cairo_dock_render_particles_full (pData->pRaysSystem, iDepth);
-        }
-
-        glPopMatrix ();
+	glPopMatrix ();
 }
 gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered)
 {

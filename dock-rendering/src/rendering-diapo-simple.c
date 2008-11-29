@@ -108,8 +108,8 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
         }	
 	//\____________________ On dessine la ficelle qui les joint.*/
 	//TODO Rendre joli !
-	if (g_iStringLineWidth > 0)
-		cairo_dock_draw_string (pCairoContext, pDock, g_iStringLineWidth, TRUE, TRUE);
+	if (myIcons.iStringLineWidth > 0)
+		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, TRUE, TRUE);
 	
 	//\____________________ On dessine les icones avec leurs etiquettes.
 	

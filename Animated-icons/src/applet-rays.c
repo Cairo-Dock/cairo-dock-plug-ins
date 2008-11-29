@@ -22,6 +22,7 @@ CairoParticleSystem *cd_animations_init_rays (Icon *pIcon, CairoDock *pDock, dou
 	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	CairoParticleSystem *pRaysParticleSystem = cairo_dock_create_particle_system (myConfig.iNbRaysParticles, myData.iRaysTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
 	pRaysParticleSystem->dt = dt;
+	pRaysParticleSystem->bDirectionUp = pDock->bDirectionUp;
 	
 	double a = myConfig.fRaysParticleSpeed;
 	static double epsilon = 0.1;
@@ -61,9 +62,6 @@ CairoParticleSystem *cd_animations_init_rays (Icon *pIcon, CairoDock *pDock, dou
 			p->color[2] = fBlend * myConfig.pRaysColor1[2] + (1 - fBlend) * myConfig.pRaysColor2[2];
 		}
 		p->color[3] = 1.;
-		
-		//p->fOscillation = G_PI * (2 * g_random_double () - 1);
-		//p->fOmega = 2*G_PI / myConfig.iSpotDuration * dt;  // tr/s
 		
 		p->fSizeFactor = .3;
 		p->fResizeSpeed = .1;

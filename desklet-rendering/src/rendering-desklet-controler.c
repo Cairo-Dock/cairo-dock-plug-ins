@@ -81,9 +81,9 @@ void rendering_load_controler_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 	
 	if (pControler->b3D)
 	{
-		pControler->iEllipseHeight = MIN (pDesklet->pIcon->fHeight, pDesklet->iHeight - 2 * (myLabels.iconTextDescription.iSize + g_fReflectSize) - 1);
+		pControler->iEllipseHeight = MIN (pDesklet->pIcon->fHeight, pDesklet->iHeight - 2 * (myLabels.iconTextDescription.iSize + myIcons.fReflectSize) - 1);
 		pControler->fInclinationOnHorizon = atan2 (pDesklet->iHeight, pDesklet->iWidth/4);
-		pControler->iFrameHeight = pControler->iEllipseHeight + 0*2 * g_iFrameMargin + g_fReflectSize;
+		pControler->iFrameHeight = pControler->iEllipseHeight + 0*2 * myBackground.iFrameMargin + myIcons.fReflectSize;
 		pControler->fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pControler->iFrameHeight, pControler->fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
 	}
 	else
@@ -125,7 +125,7 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourc
 	double fCentralSphereWidth, fCentralSphereHeight;
 	if (pControler->b3D)
 	{
-		fCentralSphereWidth = MAX (1, (MIN (pDesklet->iWidth, pDesklet->iHeight - myLabels.iconTextDescription.iSize) - g_iDockRadius) * CONTROLER_RATIO_ICON_DESKLET - g_fReflectSize);
+		fCentralSphereWidth = MAX (1, (MIN (pDesklet->iWidth, pDesklet->iHeight - myLabels.iconTextDescription.iSize) - g_iDockRadius) * CONTROLER_RATIO_ICON_DESKLET - myIcons.fReflectSize);
 		fCentralSphereHeight = fCentralSphereWidth;
 	}
 	else
@@ -150,7 +150,7 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourc
 	}
 	
 	//\_________________ On charge les boutons.
-	double fX = g_iDockRadius + pControler->fGapBetweenIcons, fY = myLabels.iconTextDescription.iSize + pDesklet->pIcon->fHeight + g_fReflectSize;
+	double fX = g_iDockRadius + pControler->fGapBetweenIcons, fY = myLabels.iconTextDescription.iSize + pDesklet->pIcon->fHeight + myIcons.fReflectSize;
 	GList* ic;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
@@ -205,7 +205,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 	
 	if (pControler->b3D)
 	{
-		double fX = g_iDockRadius + pControler->fGapBetweenIcons, fY = myLabels.iconTextDescription.iSize + pDesklet->pIcon->fHeight + g_fReflectSize;
+		double fX = g_iDockRadius + pControler->fGapBetweenIcons, fY = myLabels.iconTextDescription.iSize + pDesklet->pIcon->fHeight + myIcons.fReflectSize;
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
@@ -223,7 +223,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 		
 		//\____________________ On trace le cadre.
 		double fLineWidth = g_iDockLineWidth;
-		double fMargin = 0*g_iFrameMargin;
+		double fMargin = 0*myBackground.iFrameMargin;
 		
 		double fDockWidth = pDesklet->iWidth - fExtraWidth;
 		int sens=1;
