@@ -29,11 +29,20 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock)
 	glLoadIdentity();
 	
 	if (pDock->bHorizontalDock)
+	{
+		fX = pDock->iMouseX;
+		fY = (pDock->bDirectionUp ? pDock->iCurrentHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
 		glTranslatef (fX, fY, - myData.fDropIndicatorWidth-1.);
+		if (! pDock->bDirectionUp)
+			glScalef (1., -1., 1.);
+	}
 	else
+	{
+		fX = pDock->iCurrentWidth - pDock->iMouseX;
+		fY = (! pDock->bDirectionUp ? pDock->iCurrentHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
 		glTranslatef (fY, fX, - myData.fDropIndicatorWidth-1.);
-	double fRotationAngle = (pDock->bHorizontalDock ? (pDock->bDirectionUp ? 0 : 180.) : (pDock->bDirectionUp ? -90. : 90.));
-	glRotatef (fRotationAngle, 0., 0., 1.);
+		glRotatef ((pDock->bDirectionUp ? 90. : -90.), 0., 0., 1.);
+	}
 	
 	glRotatef (pData->iDropIndicatorRotation, 0., 1., 0.);
 	
@@ -61,7 +70,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock)
 	glActiveTextureARB(GL_TEXTURE1_ARB); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, myData.iBilinearGradationTexture);
-	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); // Le mode de combinaison des textures
+	//glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); // Le mode de combinaison des textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_ALPHA_EXT, GL_MODULATE);  // multiplier les alpha.
 	//glTexEnvi (GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_EXT, GL_ONE_MINUS_SRC_ALPHA);
 	
@@ -208,7 +217,7 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 	pData->iDropIndicatorOffset += myConfig.iSpeed;
 	if (pData->iDropIndicatorOffset > 2*myData.fDropIndicatorHeight)
 		pData->iDropIndicatorOffset -= 2*myData.fDropIndicatorHeight;
-	pData->iDropIndicatorRotation += myConfig.iRotationSpeed;
+	pData->iDropIndicatorRotation += myConfig.fRotationSpeed * 360. * g_iGLAnimationDeltaT/1e3;
 	if (pDock->bCanDrop)
 	{
 		*bContinueAnimation = TRUE;

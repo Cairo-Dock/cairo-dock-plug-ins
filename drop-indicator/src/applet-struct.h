@@ -7,7 +7,7 @@
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gint iSpeed;
-	gint iRotationSpeed;
+	gdouble fRotationSpeed;
 	gchar *cDropIndicatorImageName;
 	} ;
 
