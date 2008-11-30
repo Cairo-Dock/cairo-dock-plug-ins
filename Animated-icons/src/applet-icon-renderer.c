@@ -206,7 +206,7 @@ void cd_animation_render_halo (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFac
 void cd_animation_render_spot_front (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFactor)
 {
 	glPushMatrix ();
-	//\___________________On se place au bas de l'icone.
+	//\___________________On se place au-dessus du spot.
 	if (! pDock->bHorizontalDock)
 		glRotatef (90, 0., 0., 1.);
 	double fY = (- pIcon->fHeight + CD_ANIMATIONS_SPOT_HEIGHT/2 * fRadiusFactor + pIcon->fHeight * fRadiusFactor) * pIcon->fScale/2;
@@ -217,6 +217,7 @@ void cd_animation_render_spot_front (Icon *pIcon, CairoDock *pDock, gdouble fRad
 	glTranslatef (0., fY, 0.);
 	if (! pDock->bDirectionUp)
 		glScalef (1., -1., 1.);
+	
 	cairo_dock_draw_texture (myData.iSpotFrontTexture, fRadiusFactor * pIcon->fWidth * pIcon->fScale, fRadiusFactor * pIcon->fHeight * pIcon->fScale);
 	
 	glPopMatrix ();

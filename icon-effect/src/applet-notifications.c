@@ -29,31 +29,36 @@ gboolean cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock
 	
 	if (myConfig.iFireDuration != 0)
 	{
-		pData->pFireSystem = cd_icon_effect_init_fire (pIcon, pDock, dt);
+		if (pData->pFireSystem == NULL)
+			pData->pFireSystem = cd_icon_effect_init_fire (pIcon, pDock, dt);
 		*bStartAnimation = TRUE;
 	}
 	
 	if (myConfig.iStarDuration != 0)
 	{
-		pData->pStarSystem = cd_icon_effect_init_stars (pIcon, pDock, dt);
+		if (pData->pStarSystem == NULL)
+			pData->pStarSystem = cd_icon_effect_init_stars (pIcon, pDock, dt);
 		*bStartAnimation = TRUE;
 	}
 	
 	if (myConfig.iSnowDuration != 0)
 	{
-		pData->pSnowSystem = cd_icon_effect_init_snow (pIcon, pDock, dt);
+		if (pData->pSnowSystem == NULL)
+			pData->pSnowSystem = cd_icon_effect_init_snow (pIcon, pDock, dt);
 		*bStartAnimation = TRUE;
 	}
 	
 	if (myConfig.iRainDuration != 0)
 	{
-		pData->pRainSystem = cd_icon_effect_init_rain (pIcon, pDock, dt);
+		if (pData->pRainSystem == NULL)
+			pData->pRainSystem = cd_icon_effect_init_rain (pIcon, pDock, dt);
 		*bStartAnimation = TRUE;
 	}
 	
 	if (myConfig.iStormDuration != 0)
 	{
-		pData->pStormSystem = cd_icon_effect_init_storm (pIcon, pDock, dt);
+		if (pData->pStormSystem == NULL)
+			pData->pStormSystem = cd_icon_effect_init_storm (pIcon, pDock, dt);
 		*bStartAnimation = TRUE;
 	}
 	
@@ -65,10 +70,9 @@ gboolean cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock
 static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData)
 {
 	glPushMatrix ();
-	if (pDock->bHorizontalDock)
-		glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
-	else
-		glTranslatef (- pIcon->fHeight * pIcon->fScale/2, 0., 0.);
+	if (!pDock->bHorizontalDock)
+		glRotatef (pDock->bDirectionUp ? 90:-90, 0., 0., 1.);
+	glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
 	
 	if (pData->pFireSystem != NULL)
 	{
@@ -96,10 +100,9 @@ static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIco
 static void _cd_icon_effect_render_effects_with_depth (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData, int iDepth)
 {
 	glPushMatrix ();
-	if (pDock->bHorizontalDock)
-		glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
-	else
-		glTranslatef (- pIcon->fHeight * pIcon->fScale/2, 0., 0.);
+	if (!pDock->bHorizontalDock)
+		glRotatef (pDock->bDirectionUp ? 90:-90, 0., 0., 1.);
+	glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
 	
 	if (pData->pStormSystem != NULL)
 	{

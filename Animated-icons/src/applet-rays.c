@@ -14,7 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-rays.h"
 
-
 CairoParticleSystem *cd_animations_init_rays (Icon *pIcon, CairoDock *pDock, double dt)
 {
 	if (myData.iRaysTexture == 0)
@@ -22,7 +21,7 @@ CairoParticleSystem *cd_animations_init_rays (Icon *pIcon, CairoDock *pDock, dou
 	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	CairoParticleSystem *pRaysParticleSystem = cairo_dock_create_particle_system (myConfig.iNbRaysParticles, myData.iRaysTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
 	pRaysParticleSystem->dt = dt;
-	pRaysParticleSystem->bDirectionUp = pDock->bDirectionUp;
+	pRaysParticleSystem->bDirectionUp = (pDock->bHorizontalDock ? pDock->bDirectionUp : ! pDock->bDirectionUp);
 	
 	double a = myConfig.fRaysParticleSpeed;
 	static double epsilon = 0.1;

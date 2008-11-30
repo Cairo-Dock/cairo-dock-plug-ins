@@ -68,9 +68,8 @@ static void _cd_animations_render_rays (Icon *pIcon, CairoDock *pDock, CDAnimati
 	else
 		glTranslatef (- pIcon->fHeight * pIcon->fScale/2, 0., 0.);
 	
-	/// A finir ...
 	if (! pDock->bHorizontalDock)
-		glRotatef (90, 0., 0., 1.);
+		glRotatef (-90, 0., 0., 1.);
 	
 	if (pData->pRaysSystem != NULL)
 	{
@@ -116,7 +115,10 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		if (pData->pRaysSystem != NULL)
 			_cd_animations_render_rays (pIcon, pDock, pData, 1);
 		
-		glTranslatef (0., pData->fIconOffsetY * (pDock->bDirectionUp ? 1 : -1), 0.);
+		if (pDock->bHorizontalDock)
+			glTranslatef (0., pData->fIconOffsetY * (pDock->bDirectionUp ? 1 : -1), 0.);
+		else
+			glTranslatef (pData->fIconOffsetY * (pDock->bDirectionUp ? -1 : 1), 0., 0.);
 	}
 	
 	
