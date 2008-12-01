@@ -266,9 +266,9 @@ void cd_drop_indicator_load_drop_indicator (gchar *cImagePath, cairo_t* pSourceC
 		
 		double fWidth=0, fHeight=0;
 		
-		gchar *cGradationTexturePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_MASK_INDICATOR_NAME);
+		/*gchar *cGradationTexturePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_MASK_INDICATOR_NAME);
 		myData.iBilinearGradationTexture = cairo_dock_create_texture_from_image (cGradationTexturePath);
-		g_free (cGradationTexturePath);
+		g_free (cGradationTexturePath);*/
 		myData.iBilinearGradationTexture = cairo_dock_load_texture_from_raw_data (gradationTex, 1, 32);
 		
 		gdk_gl_drawable_gl_end (pGlDrawable);
