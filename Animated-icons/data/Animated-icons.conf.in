@@ -61,3 +61,22 @@ part size = 20
 
 #e[1;10] Rays speed :
 part speed = 5.
+
+
+#[@pkgdatadir@/wobbly.png]
+[Wobbly]
+
+#b Use it ?
+use = false
+
+#r[Horizontal stretch;Vertical stretch;Corner stretch] Initial stretch :
+stretch = 0
+
+#i[200;350] Spring constant :
+spring cst = 300
+
+#e[7;12] Friction :
+friction = 8
+
+#I[2;20] Number of points on the grid in one direction :
+grid nodes = 10

@@ -17,7 +17,9 @@ libcd_Animated_icons_la_SOURCES = \
 	applet-notifications.c\
 	applet-notifications.h\
 	applet-rays.c\
-	applet-rays.h
+	applet-rays.h\
+	applet-wobbly.c\
+	applet-wobbly.h
 
 
 dock_version = `pkg-config --modversion cairo-dock`

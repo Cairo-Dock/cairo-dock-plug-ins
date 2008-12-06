@@ -14,6 +14,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-icon-renderer.h"
 #include "applet-struct.h"
 #include "applet-rays.h"
+#include "applet-wobbly.h"
 #include "applet-notifications.h"
 
 
@@ -35,6 +36,7 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 		pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
 		pData->fRotationBrake = 1.;
 		pData->fAdjustFactor = 0.;
+		pData->bRotationBeginning = TRUE;
 		*bStartAnimation = TRUE;
 	}
 	
@@ -54,6 +56,13 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 		pData->fHaloRotationAngle = 0;
 		*bStartAnimation = TRUE;
 	}
+	
+	if (myConfig.fSpringConstant != 0)
+	{
+		cd_animations_init_wobbly (pData);
+		*bStartAnimation = TRUE;
+	}
+	
 	
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -121,11 +130,14 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			glTranslatef (pData->fIconOffsetY * (pDock->bDirectionUp ? -1 : 1), 0., 0.);
 	}
 	
-	
-	gboolean bInvisibleBackground;
-	if (pData->fRotationSpeed != 0)
+	if (pData->bIsWobblying)
 	{
-		bInvisibleBackground = (! pDock->bInside);
+		cd_animations_draw_wobbly_icon (pIcon, pDock, pData);
+		*bHasBeenRendered = TRUE;
+	}
+	else if (pData->fRotationSpeed != 0)
+	{
+		gboolean bInvisibleBackground = (! pDock->bInside);
 		glPushMatrix ();
 		glRotatef (pData->fRotationAngle, 0., 1., 0.);
 		switch (myConfig.iMeshType)
@@ -160,9 +172,23 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	if (pData->fRotationSpeed != 0)
+	if (pData->bIsWobblying)
+	{
+		pData->bIsWobblying = cd_animations_update_wobbly (pData);
+		//g_print ("%s (%d)\n", __func__, pData->bIsWobblying);
+		if (pData->bIsWobblying)
+			*bContinueAnimation = TRUE;
+	}
+	if (! pData->bIsWobblying && pData->fRotationSpeed != 0)
 	{
 		double delta;
+		if (pData->fRotationAngle < 40)
+		{
+			if (pData->bRotationBeginning)
+				pData->fAdjustFactor = (40 - pData->fRotationAngle) / (40. - 0.);
+		}
+		else if (pData->bRotationBeginning)
+			pData->bRotationBeginning = FALSE;
 		if (pData->fRotationAngle > 320)
 		{
 			if (! myConfig.bContinueRotation || ! pIcon->bPointed || ! pDock->bInside)

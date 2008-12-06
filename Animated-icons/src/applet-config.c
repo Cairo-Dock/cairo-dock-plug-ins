@@ -56,7 +56,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.iNbRaysParticles = CD_CONFIG_GET_INTEGER ("Spot", "nb part");
 		myConfig.iRaysParticleSize = CD_CONFIG_GET_INTEGER ("Spot", "part size");
 		myConfig.fRaysParticleSpeed = CD_CONFIG_GET_DOUBLE ("Spot", "part speed");
-		
+	}
+	
+	bUse = CD_CONFIG_GET_BOOLEAN ("Wobbly", "use");
+	if (bUse)
+	{
+		myConfig.iInitialStrecth = CD_CONFIG_GET_INTEGER ("Wobbly", "stretch");
+		myConfig.fSpringConstant = CD_CONFIG_GET_DOUBLE ("Wobbly", "spring cst");
+		myConfig.fFriction = CD_CONFIG_GET_DOUBLE ("Wobbly", "friction");
+		myConfig.iNbGridNodes = CD_CONFIG_GET_INTEGER ("Wobbly", "grid nodes");
 	}
 CD_APPLET_GET_CONFIG_END
 
