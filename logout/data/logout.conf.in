@@ -103,3 +103,5 @@ user action =
 #{It will be available on middle click. Let empty to execute the default command, that greatly depends on your distribution. Sometimes the command to shutdown is just the same as the one to log out.}
 user action2 =
 
+#b Invert buttons ?
+invert = true

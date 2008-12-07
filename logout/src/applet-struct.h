@@ -7,6 +7,7 @@
 struct _AppletConfig {
 	gchar *cUserAction;
 	gchar *cUserAction2;
+	gboolean bInvertButtons;
 	} ;
 
 struct _AppletData {

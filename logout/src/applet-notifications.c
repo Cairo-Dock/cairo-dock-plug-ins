@@ -8,13 +8,10 @@
 #include "applet-notifications.h"
 
 
-CD_APPLET_INCLUDE_MY_VARS
-
-
 CD_APPLET_ABOUT (D_("This is a very simple logout applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
-CD_APPLET_ON_CLICK_BEGIN
+static _logout (void)
 {
 	if (myConfig.cUserAction != NULL)
 	{
@@ -40,10 +37,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		}
 	}
 }
-CD_APPLET_ON_CLICK_END
-
-
-CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+static _shutdown (void)
 {
 	if (myConfig.cUserAction2 != NULL)
 	{
@@ -68,6 +62,23 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			}
 		}
 	}
+}
+CD_APPLET_ON_CLICK_BEGIN
+{
+	if (myConfig.bInvertButtons)
+		_shutdown ();
+	else
+		_logout ();
+}
+CD_APPLET_ON_CLICK_END
+
+
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+{
+	if (myConfig.bInvertButtons)
+		_logout ();
+	else
+		_shutdown ();
 }
 CD_APPLET_ON_MIDDLE_CLICK_END
 
