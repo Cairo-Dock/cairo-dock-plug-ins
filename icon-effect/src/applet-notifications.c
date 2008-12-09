@@ -70,7 +70,7 @@ gboolean cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock
 static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData)
 {
 	glPushMatrix ();
-	if (!pDock->bHorizontalDock)
+	if (!pDock->bHorizontalDock && myConfig.bRotateEffects)
 		glRotatef (pDock->bDirectionUp ? 90:-90, 0., 0., 1.);
 	glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
 	
@@ -100,7 +100,7 @@ static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIco
 static void _cd_icon_effect_render_effects_with_depth (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData, int iDepth)
 {
 	glPushMatrix ();
-	if (!pDock->bHorizontalDock)
+	if (!pDock->bHorizontalDock && myConfig.bRotateEffects)
 		glRotatef (pDock->bDirectionUp ? 90:-90, 0., 0., 1.);
 	glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
 	

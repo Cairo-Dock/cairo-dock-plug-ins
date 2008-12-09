@@ -24,7 +24,7 @@ static GList * _cd_shortcuts_detach_icon_from_list (Icon *icon, GList *pIconList
 	return pIconList;
 }
 
-static void _cd_shortcuts_detach_one_bookmark (Icon *icon, GList **pList)
+static void _cd_shortcuts_detach_one_bookmark (Icon *icon, gpointer unused, GList **pList)
 {
 	*pList = g_list_append (*pList, icon);
 	if (myIcon->pSubDock != NULL)

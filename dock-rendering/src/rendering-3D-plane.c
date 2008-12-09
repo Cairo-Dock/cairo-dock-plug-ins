@@ -733,7 +733,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
 	
-/* 	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+ 	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
 	{
 		do
 		{
@@ -741,9 +741,9 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			
 			if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
-				cairo_save (pCairoContext);
-				cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
-				cairo_restore (pCairoContext);
+				glPushMatrix ();
+				///cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
+				glPopMatrix ();
 			}
 			
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
@@ -755,9 +755,9 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			
 			if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
-				cairo_save (pCairoContext);
-				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
-				cairo_restore (pCairoContext);
+				glPushMatrix ();
+				cairo_dock_render_one_icon_opengl (icon, pDock, fRatio, fDockMagnitude, TRUE);
+				glPopMatrix ();
 			}
 			
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
@@ -771,9 +771,9 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 				
 				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 				{
-					cairo_save (pCairoContext);
-					cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
-					cairo_restore (pCairoContext);
+					glPushMatrix ();
+					///cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
+					glPopMatrix ();
 				}
 				
 				ic = cairo_dock_get_next_element (ic, pDock->icons);
@@ -781,7 +781,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		}
 	}
 	else
- */	{
+	{
 		do
 		{
 			icon = ic->data;

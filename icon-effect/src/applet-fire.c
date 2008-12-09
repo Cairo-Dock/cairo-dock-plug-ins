@@ -36,8 +36,6 @@ CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, do
 		
 		p->x = 2 * g_random_double () - 1;
 		p->x = p->x * p->x * (p->x > 0 ? 1 : -1);
-		//if (fabs (p->x) > .75)  // bof ...
-		//	p->x = (4 * fabs (p->x) - 3) * (p->x > 0 ? 1 : -1);
 		p->y = 0.;
 		p->z = 2 * g_random_double () - 1;
 		p->fWidth = r*(p->z + 2)/3 * g_random_double ();
@@ -58,9 +56,7 @@ CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, do
 		{
 			fBlend = g_random_double ();
 			p->color[0] = fBlend * myConfig.pFireColor1[0] + (1 - fBlend) * myConfig.pFireColor2[0];
-			//fBlend = g_random_double ();
 			p->color[1] = fBlend * myConfig.pFireColor1[1] + (1 - fBlend) * myConfig.pFireColor2[1];
-			//fBlend = g_random_double ();
 			p->color[2] = fBlend * myConfig.pFireColor1[2] + (1 - fBlend) * myConfig.pFireColor2[2];
 		}
 		p->color[3] = 1.;
@@ -84,8 +80,6 @@ void cd_icon_effect_rewind_fire_particle (CairoParticle *p, double dt)
 	double r = myConfig.iFireParticleSize;
 	double vmax = 1. / myConfig.iFireDuration;
 	p->x = 2 * g_random_double () - 1;
-	//if (fabs (p->x) > .75)  // bof ...
-	//	p->x = (4 * fabs (p->x) - 3) * (p->x > 0 ? 1 : -1);
 	p->x = p->x * p->x * (p->x > 0 ? 1 : -1);
 	p->y = 0;
 	p->z = 2 * g_random_double () - 1;

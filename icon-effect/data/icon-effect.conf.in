@@ -9,6 +9,8 @@ effects = 0
 #b Draw in background ?
 background = false
 
+#b Rotate effects with dock ?
+rotate = true
 
 #[@pkgdatadir@/icon-fire.svg]
 [Fire]

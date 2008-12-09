@@ -68,6 +68,7 @@ struct _AppletConfig {
 	
 	gboolean bBackGround;
 	gint iEffectsUsed[CD_ICON_EFFECT_NB_EFFECTS];
+	gboolean bRotateEffects;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
