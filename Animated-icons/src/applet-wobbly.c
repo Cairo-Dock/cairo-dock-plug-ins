@@ -16,10 +16,32 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #define l0 .33
 
-
 static GLfloat pTexPts[2][2][2] = {{{0.0, 0.0}, {1.0, 0.0}}, {{0.0, 1.0}, {1.0, 1.0}}};
-static GLfloat pColorPts[2][2][4] = {{{0., 0., 0., 0.}, {0., 1., 1., 0.}}, {{1., 1., 1., 0.}, {1., 1., 1., 0.}}};
-
+static GLfloat pTexPts2[2][2][2] = {{{0.0, 0.0}, {1.0, 0.0}}, {{0.0, 1.0}, {1.0, 1.0}}};
+static GLfloat pColorPts[2][2][4] = {{{1., 1., 1., 1.}, {1., 1., 1., 1.}}, {{1., 1., 1., 0.}, {1., 1., 1., 0.}}};
+GLfloat colorPoints[4][4][4] =
+{
+	{
+		{1.0, 1.0, 1.0, .0},
+		{1.0, 1.0, 1.0, .0},
+		{1.0, 1.0, 1.0, .0},
+		{1.0, 1.0, 1.0, .0}},
+	{
+		{1.0, 1.0, 1.0, .33},
+		{1.0, 1.0, 1.0, .33},
+		{1.0, 1.0, 1.0, .33},
+		{1.0, 1.0, 1.0, .33}},
+	{
+		{1.0, 1.0, 1.0, .67},
+		{1.0, 1.0, 1.0, .67},
+		{1.0, 1.0, 1.0, .67},
+		{1.0, 1.0, 1.0, .67}},
+	{
+		{1.0, 1.0, 1.0, 1.0},
+		{1.0, 1.0, 1.0, 1.0},
+		{1.0, 1.0, 1.0, 1.0},
+		{1.0, 1.0, 1.0, 1.0}}
+};
 
 void cd_animations_init_wobbly (CDAnimationData *pData)
 {
@@ -27,12 +49,12 @@ void cd_animations_init_wobbly (CDAnimationData *pData)
 	int i,j;
 	for (i=0; i<4; i++)
 	{
-		x = (i-1.5)/3;
-		cx = 1 + fabs (i-1.5) / 3;  // 1.5 -> 1
+		x = (i-1.5)/3;  // -.5 -> .5
+		cx = 1 + fabs (x);  // 1.5 -> 1
 		for (j=0; j<4; j++)
 		{
-			y = - (j-1.5)/3;
-			cy = 1 + fabs (j-1.5) / 3;  // 1.5 -> 1
+			y = - (j-1.5)/3;  // -.5 -> .5
+			cy = 1 + fabs (y);  // 1.5 -> 1
 			switch (myConfig.iInitialStrecth)
 			{
 				case CD_HORIZONTAL_STRECTH :
@@ -245,13 +267,16 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		///glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
 		glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
 		glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
-		glColor4f(1.0f, 1.0f, 1.0f, 1.);  // transparence du reflet.
+		glColor4f(1.0f, 1.0f, 1.0f, 1.);
+		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
 		glEnable(GL_BLEND);
-		glBlendFunc (1, 0);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBlendColor (1., 1., 1., myIcons.fAlbedo * pIcon->fAlpha);
 		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glEnable(GL_MAP2_TEXTURE_COORD_2);
 		glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2,
-			0, 1, 4, 2, &pTexPts[0][0][0]);
+			0, 1, 4, 2, &pTexPts2[0][0][0]);
 		
 		/*glActiveTextureARB(GL_TEXTURE1_ARB); // Go pour le texturing 2eme passe
 		glEnable(GL_TEXTURE_2D);
@@ -264,30 +289,13 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		glEnable(GL_MAP2_TEXTURE_COORD_2);
 		glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2,
 			0, 1, 4, 2, &pTexPts[0][0][0]);*/
-		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glMap2f(GL_MAP2_COLOR_4, 0, 1, 2, 4,
-			0, 1, 8, 4, &pColorPts[0][0][0]);
 		
+		glEnable(GL_MAP2_COLOR_4);
+		//glMap2f(GL_MAP2_COLOR_4, 0, 1, 4, 2,
+		//	0, 1, 8, 2, &pColorPts[0][0][0]);
+		glMap2f(GL_MAP2_COLOR_4, 0.0, 1.0, 4, 4,
+			0.0, 1.0, 16, 4, &colorPoints[0][0][0]);
 		glEvalMesh2(GL_FILL, 0, myConfig.iNbGridNodes, myConfig.iNbGridNodes*y0, myConfig.iNbGridNodes*y1);
-		/*glBegin(GL_QUADS);
-		glNormal3f(0,0,1);
-		glMultiTexCoord2fARB (GL_TEXTURE0_ARB, x0, y0);
-		glMultiTexCoord2fARB (GL_TEXTURE1_ARB, 0., 0.);
-		glVertex3f (-0.5, .5, 0.);  // Bottom Left Of The Texture and Quad
-		
-		glMultiTexCoord2fARB (GL_TEXTURE0_ARB, x1, y0);
-		glMultiTexCoord2fARB (GL_TEXTURE1_ARB, 1., 0.);
-		glVertex3f ( 0.5, .5, 0.);  // Bottom Right Of The Texture and Quad
-		
-		glMultiTexCoord2fARB (GL_TEXTURE0_ARB, x1, y1);
-		glMultiTexCoord2fARB (GL_TEXTURE1_ARB, 1., 1.);
-		glVertex3f ( 0.5, -.5, 0.);  // Top Right Of The Texture and Quad
-		
-		glMultiTexCoord2fARB (GL_TEXTURE0_ARB, x0, y1);
-		glMultiTexCoord2fARB (GL_TEXTURE1_ARB, 0., 1.);
-		glVertex3f (-0.5, -.5, 0.);  // Top Left Of The Texture and Quad
-		glEnd();*/
 		
 		/**glActiveTextureARB(GL_TEXTURE1_ARB);
 		glDisable(GL_TEXTURE_2D);
@@ -300,6 +308,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		glDisable(GL_TEXTURE_2D);
 		glDisable(GL_TEXTURE_GEN_S);
 		glDisable(GL_TEXTURE_GEN_T);
+		glDisable(GL_MAP2_COLOR_4);
 		
 		glPopMatrix ();
 	}

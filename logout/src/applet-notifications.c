@@ -28,6 +28,7 @@ static _logout (void)
 				if (answer == GTK_RESPONSE_YES)
 				{
 					system ("dcop ksmserver default logout 0 0 0");  // kdmctl shutdown reboot forcenow  // kdeinit_shutdown
+					system ("qdbus org.kde.ksmserver /KSMServer logout 0 2 0);
 				}
 			}
 			else

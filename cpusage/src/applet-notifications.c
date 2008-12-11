@@ -128,8 +128,27 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		cairo_dock_show_temporary_dialog(D_("Data acquisition has failed"), myIcon, myContainer, 4e3);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
-
+static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	if (myConfig.cSystemMonitorCommand != NULL)
+	{
+		system (myConfig.cSystemMonitorCommand);
+	}
+	else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)  /// a mettre dans les plug-ins d'integration ...
+	{
+		system ("gnome-system-monitor");
+	}
+	else if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
+	{
+		system ("xfce-task-manager");
+	}
+	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
+	{
+		system ("kde-system-monitor");
+	}
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_SUB_MENU ("cpusage", pSubMenu, CD_APPLET_MY_MENU);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+		CD_APPLET_ADD_IN_MENU (_("Monitor System"), _show_monitor_system, pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

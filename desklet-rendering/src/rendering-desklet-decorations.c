@@ -69,7 +69,7 @@ void cd_rendering_register_desklet_decorations (void)
 		0);  // ...
 	_register_desklet_decorations ("clear",
 		"clear-bg.svg",
-		"",
+		NULL,
 		0,
 		0,
 		0,

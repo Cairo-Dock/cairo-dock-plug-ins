@@ -156,3 +156,7 @@ delay = 2
 #i[1;30] Delay between refresh of the top list :
 #{in seconds.}
 top delay = 2
+
+#s User command to show a system monitor :
+#{Let empty to use he default one.}
+sys monitor =

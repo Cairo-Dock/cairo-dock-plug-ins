@@ -22,6 +22,8 @@ struct _AppletConfig {
 	gint iNbDisplayedProcesses;
 	gint iProcessCheckInterval;
 	CairoDockLabelDescription *pTopTextDescription;
+	
+	gchar *cSystemMonitorCommand;
 } ;
 
 typedef struct {
