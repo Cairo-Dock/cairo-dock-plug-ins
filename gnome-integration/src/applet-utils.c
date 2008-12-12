@@ -26,3 +26,8 @@ void env_backend_setup_time (void)
 {
 	cairo_dock_launch_command ("time-admin");  // utilise PolicyKit => pas de gksudo.
 }
+
+void env_backend_show_system_monitor (void)
+{
+	cairo_dock_launch_command ("gnome-system-monitor");
+}

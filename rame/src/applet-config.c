@@ -39,6 +39,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color start", myConfig.pTopTextDescription->fColorStart);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color stop", myConfig.pTopTextDescription->fColorStop);
 	myConfig.pTopTextDescription->bVerticalPattern = TRUE;
+	
+	myConfig.cSystemMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "sys monitor");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -46,6 +48,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	cairo_dock_free_label_description (myConfig.pTopTextDescription);
 	g_free (myConfig.cWatermarkImagePath);
+	g_free (myConfig.cSystemMonitorCommand);
 CD_APPLET_RESET_CONFIG_END
 
 

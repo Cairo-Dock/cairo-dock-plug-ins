@@ -17,9 +17,4 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground);
 
 
-void cd_animation_render_spot (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFactor);
-void cd_animation_render_halo (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFactor, int iHaloRotationAngle);
-void cd_animation_render_spot_front (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFactor);
-
-
 #endif

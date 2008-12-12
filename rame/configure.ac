@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-rame],[1.1.1],[parAdOxxx_ZeRo (changfu@hollowproject.org)])
+AC_INIT([cd-rame],[1.1.2],[parAdOxxx_ZeRo (changfu@hollowproject.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -11,7 +11,7 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-IT_PROG_INTLTOOL([0.35.0])
+IT_PROG_INTLTOOL()
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
 GETTEXT_RAME=cd-rame

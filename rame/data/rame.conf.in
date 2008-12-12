@@ -171,3 +171,7 @@ delay = 10
 
 #b Show top memory usage in % ?
 top in percent = false
+
+#s User command to show a system monitor :
+#{Let empty to use he default one.}
+sys monitor =

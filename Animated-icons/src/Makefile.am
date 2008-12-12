@@ -16,6 +16,8 @@ libcd_Animated_icons_la_SOURCES = \
 	applet-mesh-factory.h\
 	applet-notifications.c\
 	applet-notifications.h\
+	applet-spot.c\
+	applet-spot.h\
 	applet-rays.c\
 	applet-rays.h\
 	applet-wobbly.c\

@@ -231,10 +231,10 @@ GLuint cairo_dock_load_square_calllist (void)
 	
 	glNormal3f(0,0,1);
 	glBegin(GL_QUADS);
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-.5,  .5, 0.);  // Bottom Left Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.); glVertex3f( .5,  .5, 0.);  // Bottom Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.); glVertex3f( .5, -.5, 0.);  // Top Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-.5, -.5, 0.);  // Top Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-.5,  .5, 0.);  // Bottom Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 0.); glVertex3f( .5,  .5, 0.);  // Bottom Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 1.); glVertex3f( .5, -.5, 0.);  // Top Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-.5, -.5, 0.);  // Top Left Of The Texture and Quad
 	glEnd();
 	
 	glEndList(); // Fini la display list
@@ -251,40 +251,40 @@ GLuint cairo_dock_load_cube_calllist (void)
 	glBegin(GL_QUADS);
 	// Front Face (note that the texture's corners have to match the quad's corners)
 	glNormal3f(0,0,1);
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-a,  a,  a);  // Bottom Left Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.); glVertex3f( a,  a,  a);  // Bottom Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.); glVertex3f( a, -a,  a);  // Top Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-a, -a,  a);  // Top Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-a,  a,  a);  // Bottom Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 0.); glVertex3f( a,  a,  a);  // Bottom Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 1.); glVertex3f( a, -a,  a);  // Top Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-a, -a,  a);  // Top Left Of The Texture and Quad
 	// Back Face
 	glNormal3f(0,0,-1);
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.); glVertex3f( -a, a, -a);  // Bottom Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.); glVertex3f( -a, -a, -a);  // Top Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.); glVertex3f(a, -a, -a);  // Top Left Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.); glVertex3f(a, a, -a);  // Bottom Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 0.); glVertex3f( -a, a, -a);  // Bottom Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 1.); glVertex3f( -a, -a, -a);  // Top Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 1.); glVertex3f(a, -a, -a);  // Top Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 0.); glVertex3f(a, a, -a);  // Bottom Left Of The Texture and Quad
 	// Top Face
 	glNormal3f(0,1,0);
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-a,  a,  a);  // Top Left Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-a,  a, -a);  // Bottom Left Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.); glVertex3f( a,  a, -a);  // Bottom Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.); glVertex3f( a,  a,  a);  // Top Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-a,  a,  a);  // Top Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-a,  a, -a);  // Bottom Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 0.); glVertex3f( a,  a, -a);  // Bottom Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 1.); glVertex3f( a,  a,  a);  // Top Right Of The Texture and Quad
 	// Bottom Face
 	glNormal3f(0,-1,0);
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.); glVertex3f( a, -a, -a);  // Top Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-a, -a, -a);  // Top Left Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-a, -a,  a);  // Bottom Left Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.); glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.); glVertex3f( a, -a,  a);  // Bottom Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 1.); glVertex3f( a, -a, -a);  // Top Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 1.); glVertex3f(-a, -a, -a);  // Top Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 0.); glVertex3f(-a, -a,  a);  // Bottom Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 0.); glVertex3f( a, -a,  a);  // Bottom Right Of The Texture and Quad
 	// Right face
 	glNormal3f(1,0,0);
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.);glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.);  glVertex3f( a,  a, -a);  // Bottom Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.);glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.);  glVertex3f( a, -a, -a);  // Top Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.);glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.);  glVertex3f( a, -a,  a);  // Top Left Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.);glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.);  glVertex3f( a,  a,  a);  // Bottom Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 0.);  glVertex3f( a,  a, -a);  // Bottom Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 1.);  glVertex3f( a, -a, -a);  // Top Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 1.);  glVertex3f( a, -a,  a);  // Top Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 0.);  glVertex3f( a,  a,  a);  // Bottom Left Of The Texture and Quad
 	// Left Face
 	glNormal3f(-1,0,0);
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 0.);glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 0.);  glVertex3f(-a,  a, -a);  // Bottom Left Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 0.);glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 0.);  glVertex3f(-a,  a,  a);  // Bottom Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,1., 1.);glMultiTexCoord2fARB( GL_TEXTURE1_ARB,1., 1.);  glVertex3f(-a, -a,  a);  // Top Right Of The Texture and Quad
-	glMultiTexCoord2fARB( GL_TEXTURE0_ARB,0., 1.);glMultiTexCoord2fARB( GL_TEXTURE1_ARB,0., 1.);  glVertex3f(-a, -a, -a);  // Top Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 0.);  glVertex3f(-a,  a, -a);  // Bottom Left Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 0.);  glVertex3f(-a,  a,  a);  // Bottom Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,1., 1.);  glVertex3f(-a, -a,  a);  // Top Right Of The Texture and Quad
+	glMultiTexCoord2f( GL_TEXTURE1_ARB,0., 1.);  glVertex3f(-a, -a, -a);  // Top Left Of The Texture and Quad
 	glEnd();
 	
 	glEndList(); // Fini la display list

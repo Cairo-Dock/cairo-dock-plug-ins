@@ -943,7 +943,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 		//g_print ("y : %.2f -> fDrawY = %.2f\n", y, icon->fDrawY);
 		icon->fWidthFactor = 1.;
 		icon->fHeightFactor = 1.;
-		icon->fDeltaYReflection = 0.;
+		///icon->fDeltaYReflection = 0.;
 		icon->fOrientation = 0.;
 		if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
 			icon->fAlpha = 1;

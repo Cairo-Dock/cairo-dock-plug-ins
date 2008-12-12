@@ -37,6 +37,7 @@ CD_APPLET_PRE_INIT_BEGIN("gnome integration old", 1, 6, 2, CAIRO_DOCK_CATEGORY_P
 			pVFSBackend->logout = env_backend_logout;
 			pVFSBackend->shutdown = env_backend_logout;
 			pVFSBackend->setup_time = env_backend_setup_time;
+			pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
 			cairo_dock_fm_register_vfs_backend (pVFSBackend);
 		}
 	}

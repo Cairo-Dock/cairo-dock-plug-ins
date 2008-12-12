@@ -24,6 +24,8 @@ struct _AppletConfig {
 	gchar *cInterface;
 	gint iStringLen;
 	CairoDockInfoDisplay iInfoDisplay;
+	
+	gchar *cSystemMonitorCommand;
 } ;
 
 struct _AppletData {

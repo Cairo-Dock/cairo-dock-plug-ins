@@ -34,6 +34,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color2", myConfig.fLowColor2);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color2", myConfig.fHigholor2);
 	myConfig.bMixGraph = CD_CONFIG_GET_BOOLEAN ("Configuration", "mix graph");
+	
+	myConfig.cSystemMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "sys monitor");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -41,6 +43,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cInterface);
 	g_free (myConfig.cWatermarkImagePath);
+	g_free (myConfig.cSystemMonitorCommand);
 CD_APPLET_RESET_CONFIG_END
 
 

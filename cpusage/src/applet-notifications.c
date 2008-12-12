@@ -132,23 +132,19 @@ static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstanc
 {
 	if (myConfig.cSystemMonitorCommand != NULL)
 	{
-		system (myConfig.cSystemMonitorCommand);
-	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)  /// a mettre dans les plug-ins d'integration ...
-	{
-		system ("gnome-system-monitor");
-	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
-	{
-		system ("xfce-task-manager");
+		cairo_dock_launch_command (myConfig.cSystemMonitorCommand);
 	}
 	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 	{
 		system ("kde-system-monitor");
 	}
+	else
+	{
+		cairo_dock_fm_show_system_monitor ();
+	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_SUB_MENU ("cpusage", pSubMenu, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU (D_("Monitor System"), _show_monitor_system, pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-		CD_APPLET_ADD_IN_MENU (_("Monitor System"), _show_monitor_system, pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

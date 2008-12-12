@@ -26,6 +26,8 @@ struct _AppletConfig {
 	gint iNbDisplayedProcesses;
 	gboolean bTopInPercent;
 	CairoDockLabelDescription *pTopTextDescription;
+	
+	gchar *cSystemMonitorCommand;
 } ;
 
 

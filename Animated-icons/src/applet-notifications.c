@@ -12,6 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <math.h>
 
 #include "applet-icon-renderer.h"
+#include "applet-spot.h"
 #include "applet-struct.h"
 #include "applet-rays.h"
 #include "applet-wobbly.h"
@@ -95,7 +96,10 @@ gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 	
 	if (pData->fRadiusFactor != 0)
 	{
-		glTranslatef (0., -pData->fIconOffsetY * (pDock->bDirectionUp ? 1 : -1), 0.);
+		if (pDock->bHorizontalDock)
+			glTranslatef (0., - pData->fIconOffsetY * (pDock->bDirectionUp ? 1 : -1), 0.);
+		else
+			glTranslatef (- pData->fIconOffsetY * (pDock->bDirectionUp ? -1 : 1), 0., 0.);
 		if (pData->pRaysSystem != NULL)
 			_cd_animations_render_rays (pIcon, pDock, pData, 1);
 		
@@ -137,8 +141,12 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	}
 	else if (pData->fRotationSpeed != 0)
 	{
-		gboolean bInvisibleBackground = (! pDock->bInside);
+		gboolean bInvisibleBackground = (pDock->bInside);
 		glPushMatrix ();
+		if (pDock->bHorizontalDock)
+			glTranslatef (0., pData->fIconOffsetY * (pDock->bDirectionUp ? 1 : -1), 0.);
+		else
+			glTranslatef (pData->fIconOffsetY * (pDock->bDirectionUp ? -1 : 1), 0., 0.);
 		glRotatef (pData->fRotationAngle, 0., 1., 0.);
 		switch (myConfig.iMeshType)
 		{
@@ -175,7 +183,6 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	if (pData->bIsWobblying)
 	{
 		pData->bIsWobblying = cd_animations_update_wobbly (pData);
-		//g_print ("%s (%d)\n", __func__, pData->bIsWobblying);
 		if (pData->bIsWobblying)
 			*bContinueAnimation = TRUE;
 	}
@@ -242,6 +249,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			else
 				*bContinueAnimation = TRUE;
 		}
+		pIcon->fDeltaYReflection += 2 * pData->fIconOffsetY;
 		
 		pData->fHaloRotationAngle += 360. / myConfig.iSpotDuration * g_iGLAnimationDeltaT;
 		if (pData->fHaloRotationAngle < 360)

@@ -152,3 +152,7 @@ interface =
 #i[1;30] Delay between 2 measures :
 #{in seconds.}
 delay = 3
+
+#s User command to show a system monitor :
+#{Let empty to use he default one.}
+sys monitor =

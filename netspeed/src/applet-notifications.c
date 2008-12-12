@@ -26,8 +26,24 @@ static void _netspeed_recheck (GtkMenuItem *menu_item, CairoDockModuleInstance *
 	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 }
+static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	if (myConfig.cSystemMonitorCommand != NULL)
+	{
+		cairo_dock_launch_command (myConfig.cSystemMonitorCommand);
+	}
+	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
+	{
+		system ("kde-system-monitor");
+	}
+	else
+	{
+		cairo_dock_fm_show_system_monitor ();
+	}
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("netspeed", pSubMenu, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU (D_("Monitor System"), _show_monitor_system, pSubMenu);
 	if (! myData.bAcquisitionOK) {
 		CD_APPLET_ADD_IN_MENU (D_("Re-check interface"), _netspeed_recheck, pSubMenu);
 	}
