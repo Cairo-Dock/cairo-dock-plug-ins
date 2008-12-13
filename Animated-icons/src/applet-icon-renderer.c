@@ -19,7 +19,6 @@ static float fCapsuleObjectPlaneT[4] = { 0., 0.59f*2, 0., 0. };  // le 2 c'est l
 
 void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
 {
-	///glPushMatrix ();
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
 	if (bInvisibleBackground)
@@ -69,7 +68,6 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	glDisable(GL_TEXTURE_GEN_T);
 	glDisable (GL_DEPTH_TEST);
 	glDisable (GL_BLEND);
-	///glPopMatrix ();
 }
 
 
@@ -79,7 +77,7 @@ static float fObjectT[4] = { 0., 0.59f*2, 0., 0. };  // le 2 c'est le 'c'.
 
 void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
 {
-	///glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
 	if (bInvisibleBackground)
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend la capsule transparente.

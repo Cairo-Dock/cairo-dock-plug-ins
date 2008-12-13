@@ -142,6 +142,7 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	else if (pData->fRotationSpeed != 0)
 	{
 		gboolean bInvisibleBackground = (pDock->bInside);
+		bInvisibleBackground = TRUE;
 		glPushMatrix ();
 		if (pDock->bHorizontalDock)
 			glTranslatef (0., pData->fIconOffsetY * (pDock->bDirectionUp ? 1 : -1), 0.);
