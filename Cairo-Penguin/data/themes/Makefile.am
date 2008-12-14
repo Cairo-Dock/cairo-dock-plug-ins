@@ -1,3 +1,4 @@
 SUBDIRS = \
 	Classic \
-	Wanda
+	Wanda \
+	SantaClaus
