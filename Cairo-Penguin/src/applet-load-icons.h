@@ -8,7 +8,7 @@
 void penguin_load_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath);
 
 
-void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSourceContext, double fAlpha);
+void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSourceContext, double fAlpha, gboolean bLoadTexture);
 
 
 #endif

@@ -49,6 +49,11 @@ static void _penguin_reset_one_animation (PenguinAnimation *pAnimation)
 		g_free (pAnimation->pSurfaces);
 		pAnimation->pSurfaces = NULL;
 	}
+	if (pAnimation->iTexture != 0)
+	{
+		glDeleteTextures (1, &pAnimation->iTexture);
+		pAnimation->iTexture = 0;
+	}
 }
 
 CD_APPLET_RESET_DATA_BEGIN

@@ -11,6 +11,8 @@
 gboolean penguin_move_in_dock (CairoDockModuleInstance *myApplet);
 
 
+gboolean penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer);
+
 gboolean penguin_draw_on_dock (GtkWidget *pWidget, GdkEventExpose *pExpose, CairoDockModuleInstance *myApplet);
 
 

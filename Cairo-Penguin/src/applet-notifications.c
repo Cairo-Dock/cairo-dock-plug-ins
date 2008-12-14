@@ -14,8 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-animation.h"
 #include "applet-notifications.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 #define PENGUIN_NB_MESSAGES 13
 static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
@@ -106,7 +104,7 @@ gboolean CD_APPLET_ON_BUILD_MENU (CairoDockModuleInstance *myApplet, Icon *pClic
 		
 		CD_APPLET_ADD_SEPARATOR (CD_APPLET_MY_MENU);
 		
-		CD_APPLET_ADD_SUB_MENU (_("Hey, you there !"), pModuleSubMenu, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_SUB_MENU (D_("Hey, you there !"), pModuleSubMenu, CD_APPLET_MY_MENU);
 		if (myData.iSidAnimation != 0)
 		{
 			CD_APPLET_ADD_IN_MENU(D_("Keep quiet"), _keep_quiet, pModuleSubMenu);
@@ -119,8 +117,6 @@ gboolean CD_APPLET_ON_BUILD_MENU (CairoDockModuleInstance *myApplet, Icon *pClic
 		CD_APPLET_ADD_IN_MENU(D_("Start XPenguins"), _start_xpenguins, pModuleSubMenu);
 		CD_APPLET_ADD_IN_MENU(D_("Stop XPenguins"), _stop_xpenguins, pModuleSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu);
-		
-		///data[0] = myIcon;  // astuce pour beneficier du menu cree par le dock :-)
 CD_APPLET_ON_BUILD_MENU_END
 
 

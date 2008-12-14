@@ -56,6 +56,56 @@ gboolean penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	return TRUE;
 }
 
+
+gboolean penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer)
+{
+	if (! cairo_dock_animation_will_be_visible (myDock))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	PenguinAnimation *pAnimation = penguin_get_current_animation ();
+	if (pAnimation == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	g_return_val_if_fail (pAnimation->iTexture != 0, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
+	glEnable (GL_SCISSOR_TEST);
+	
+	glScissor ((myDock->iCurrentWidth - myDock->fFlatDockWidth) * .5 + myData.iCurrentPositionX,
+		myData.iCurrentPositionY,
+		pAnimation->iFrameWidth,
+		pAnimation->iFrameHeight);
+	
+	glPushMatrix ();
+	glLoadIdentity ();
+	glTranslatef ((myDock->iCurrentWidth - myDock->fFlatDockWidth) * .5 + myData.iCurrentPositionX + pAnimation->iFrameWidth * (.5 * pAnimation->iNbFrames - myData.iCurrentFrame),
+		myData.iCurrentPositionY + pAnimation->iFrameHeight * (-.5 * pAnimation->iNbDirections + 1 + (myData.iCurrentDirection)),
+		0.);
+	glScalef (pAnimation->iFrameWidth * pAnimation->iNbFrames, pAnimation->iFrameHeight * pAnimation->iNbDirections, 1.);
+	
+	glEnable (GL_BLEND);
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+	glEnable (GL_TEXTURE_2D);
+	glBindTexture (GL_TEXTURE_2D, pAnimation->iTexture);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+	
+	glPolygonMode (GL_FRONT, GL_FILL);
+	
+	glBegin(GL_QUADS);
+	glTexCoord2f(0., 0.); glVertex3f(-.5,  .5, 0.);  // Bottom Left Of The Texture and Quad
+	glTexCoord2f(1., 0.); glVertex3f( .5,  .5, 0.);  // Bottom Right Of The Texture and Quad
+	glTexCoord2f(1., 1.); glVertex3f( .5, -.5, 0.);  // Top Right Of The Texture and Quad
+	glTexCoord2f(0., 1.); glVertex3f(-.5, -.5, 0.);  // Top Left Of The Texture and Quad
+	glEnd();
+	
+	glDisable (GL_TEXTURE_2D);
+	glDisable (GL_BLEND);
+	
+	glPopMatrix ();
+	glDisable (GL_SCISSOR_TEST);
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
 gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 	GdkEventExpose *pExpose,
 	CairoDockModuleInstance *myApplet)
@@ -68,7 +118,7 @@ gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 	if (pAnimation == NULL)
 		return FALSE;
 	
-	g_return_val_if_fail (pAnimation->pSurfaces != NULL, FALSE);
+	g_return_val_if_fail (pAnimation->pSurfaces != NULL || pAnimation->iTexture != 0, FALSE);
 	cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
 	
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
@@ -149,6 +199,8 @@ gboolean penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 			myDock->bDirectionUp);
 	}
 	
+	if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
+		cairo_dock_update_icon_texture (myIcon);
 	CD_APPLET_REDRAW_MY_ICON;
 	
 	penguin_advance_to_next_frame (myApplet, pAnimation);
@@ -385,9 +437,9 @@ void penguin_set_new_animation (CairoDockModuleInstance *myApplet, int iNewAnima
 		return ;
 	myData.iCurrentSpeed = pAnimation->iSpeed;
 	
-	if (pAnimation->pSurfaces == NULL)
+	if (pAnimation->pSurfaces == NULL && pAnimation->iTexture == 0)
 	{
-		penguin_load_animation_buffer (pAnimation, myDrawContext, myConfig.fAlpha);
+		penguin_load_animation_buffer (pAnimation, myDrawContext, myConfig.fAlpha, CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer) && myConfig.bFree);
 	}
 	
 	if (pAnimation->iDirection == PENGUIN_HORIZONTAL)
@@ -414,33 +466,63 @@ void penguin_set_new_animation (CairoDockModuleInstance *myApplet, int iNewAnima
 }
 
 
+/// TODO : inclure sa boucle dans celle du dock...
+gboolean penguin_update_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
+{
+	
+	*bContinueAnimation = TRUE;
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
 void penguin_start_animating (CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (myData.iSidAnimation == 0);
 	int iNewAnimation = penguin_choose_beginning_animation (myApplet);
 	penguin_set_new_animation (myApplet, iNewAnimation);
 	
-	gulong iOnExposeCallbackID = g_signal_handler_find (G_OBJECT (myContainer->pWidget),
-		G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA,
-		0,
-		0,
-		NULL,
-		penguin_draw_on_dock,
-		myApplet);
+	gulong iOnExposeCallbackID = 0;
+	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
+	{
+		gulong iOnExposeCallbackID = g_signal_handler_find (G_OBJECT (myContainer->pWidget),
+			G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA,
+			0,
+			0,
+			NULL,
+			penguin_draw_on_dock,
+			myApplet);
+	}
+	else
+	{
+		///cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
+	}
 	
 	if (myConfig.bFree)
 	{
-		if (iOnExposeCallbackID <= 0)
-			g_signal_connect_after (G_OBJECT (myContainer->pWidget),
-				"expose-event",
-				G_CALLBACK (penguin_draw_on_dock),
-				(gpointer) myApplet);
+		if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
+		{
+			cairo_dock_register_notification (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, CAIRO_DOCK_RUN_AFTER, myApplet);
+		}
+		else
+		{
+			if (iOnExposeCallbackID <= 0)
+				g_signal_connect_after (G_OBJECT (myContainer->pWidget),
+					"expose-event",
+					G_CALLBACK (penguin_draw_on_dock),
+					(gpointer) myApplet);
+		}
 		myData.iSidAnimation = g_timeout_add (1000 * myData.fFrameDelay, (GSourceFunc) penguin_move_in_dock, (gpointer) myApplet);
 	}
 	else
 	{
-		if (iOnExposeCallbackID > 0)
-			g_signal_handler_disconnect (G_OBJECT (myContainer->pWidget), iOnExposeCallbackID);
+		if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
+		{
+			cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, myApplet);
+		}
+		else
+		{
+			if (iOnExposeCallbackID > 0)
+				g_signal_handler_disconnect (G_OBJECT (myContainer->pWidget), iOnExposeCallbackID);
+		}
 		myData.iSidAnimation = g_timeout_add (1000 * myData.fFrameDelay, (GSourceFunc) penguin_move_in_icon, (gpointer) myApplet);
 	}
 }

@@ -22,6 +22,7 @@ typedef struct {
 	PenguinDirectionType iDirection;
 	cairo_surface_t ***pSurfaces;
 	int iFrameWidth, iFrameHeight;
+	GLuint iTexture;
 	} PenguinAnimation;
 
 struct _AppletConfig {
@@ -57,6 +58,7 @@ struct _AppletData {
 	guint iSidRestartDelayed;
 	CairoDialog *pDialog;
 	gboolean bHasBeenStarted;
+	gint iCountStep;
 	} ;
 
 #endif

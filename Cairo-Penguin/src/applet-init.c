@@ -17,10 +17,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("Cairo-Penguin", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("Cairo-Penguin", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 
 CD_APPLET_INIT_BEGIN
+	CD_APPLET_SET_STATIC_ICON;
 	penguin_load_theme (myApplet, myConfig.cThemePath);
 	
 	penguin_start_animating_with_delay (myApplet);
@@ -32,6 +33,10 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer) && myConfig.bFree)
+	{
+		cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, myApplet);
+	}
 	
 	g_source_remove (myData.iSidAnimation);
 	myData.iSidAnimation = 0;

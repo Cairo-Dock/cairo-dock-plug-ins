@@ -13,8 +13,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-load-icons.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAnimationName, PenguinAnimation *pAnimation, PenguinAnimation *pDefaultAnimation)
 {
@@ -93,7 +91,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAn
 void penguin_load_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath)
 {
 	g_return_if_fail (cThemePath != NULL);
-	cd_debug ("%s (%s)", __func__, cThemePath);
+	cd_message ("%s (%s)", __func__, cThemePath);
 	
 	//\___________________ On ouvre le fichier de conf.
 	gchar *cConfFilePath = g_strconcat (cThemePath, "/theme.conf", NULL);
@@ -121,7 +119,6 @@ void penguin_load_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath)
 	gsize length = 0;
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
 	
-	g_print ("myData.pAnimations:%x\n", myData.pAnimations);
 	g_free (myData.pAnimations);
 	myData.iNbAnimations = 0;
 	myData.pAnimations = g_new0 (PenguinAnimation, length - 1);
@@ -154,7 +151,6 @@ void penguin_load_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath)
 		cGroupName = pGroupList[i];
 		if (strcmp (cGroupName, "Theme") != 0 && strcmp (cGroupName, "Default") != 0)
 		{
-			cd_debug ("%d)", iNumAnimation);
 			pAnimation = &myData.pAnimations[iNumAnimation];
 			
 			cFileName = _penguin_get_animation_properties (pKeyFile, cGroupName, pAnimation, &myData.defaultAnimation);
@@ -199,7 +195,7 @@ void penguin_load_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath)
 }
 
 
-void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSourceContext, double fAlpha)
+void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSourceContext, double fAlpha, gboolean bLoadTexture)
 {
 	cd_debug ("%s (%s)", __func__, pAnimation->cFilePath);
 	if (pAnimation->cFilePath == NULL)
@@ -218,28 +214,36 @@ void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSour
 	if (pBigSurface != NULL)
 	{
 		cd_debug ("  surface chargee (%dx%d)", pAnimation->iFrameWidth, pAnimation->iFrameHeight);
-		pAnimation->pSurfaces = g_new (cairo_surface_t **, pAnimation->iNbDirections);
-		int i, j;
-		for (i = 0; i < pAnimation->iNbDirections; i ++)
+		if (bLoadTexture)
 		{
-			pAnimation->pSurfaces[i] = g_new (cairo_surface_t *, pAnimation->iNbFrames);
-			for (j = 0; j < pAnimation->iNbFrames; j ++)
+			pAnimation->iTexture = cairo_dock_create_texture_from_surface (pBigSurface);
+		}
+		else
+		{
+			pAnimation->pSurfaces = g_new (cairo_surface_t **, pAnimation->iNbDirections);
+			int i, j;
+			for (i = 0; i < pAnimation->iNbDirections; i ++)
 			{
-				//cd_debug ("    dir %d, frame %d)", i, j);
-				pAnimation->pSurfaces[i][j] = cairo_surface_create_similar (cairo_get_target (pSourceContext),
-					CAIRO_CONTENT_COLOR_ALPHA,
-					pAnimation->iFrameWidth,
-					pAnimation->iFrameHeight);
-				cairo_t *pCairoContext = cairo_create (pAnimation->pSurfaces[i][j]);
-				
-				cairo_set_source_surface (pCairoContext,
-					pBigSurface,
-					- j * pAnimation->iFrameWidth,
-					- i * pAnimation->iFrameHeight);
-				cairo_paint (pCairoContext);
-				
-				cairo_destroy (pCairoContext);
+				pAnimation->pSurfaces[i] = g_new (cairo_surface_t *, pAnimation->iNbFrames);
+				for (j = 0; j < pAnimation->iNbFrames; j ++)
+				{
+					//cd_debug ("    dir %d, frame %d)", i, j);
+					pAnimation->pSurfaces[i][j] = cairo_surface_create_similar (cairo_get_target (pSourceContext),
+						CAIRO_CONTENT_COLOR_ALPHA,
+						pAnimation->iFrameWidth,
+						pAnimation->iFrameHeight);
+					cairo_t *pCairoContext = cairo_create (pAnimation->pSurfaces[i][j]);
+					
+					cairo_set_source_surface (pCairoContext,
+						pBigSurface,
+						- j * pAnimation->iFrameWidth,
+						- i * pAnimation->iFrameHeight);
+					cairo_paint (pCairoContext);
+					
+					cairo_destroy (pCairoContext);
+				}
 			}
 		}
+		cairo_surface_destroy (pBigSurface);
 	}
 }
