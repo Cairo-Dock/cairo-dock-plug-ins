@@ -512,6 +512,7 @@ AC_CONFIG_FILES([
 	Cairo-Penguin/data/themes/Makefile
 	Cairo-Penguin/data/themes/Classic/Makefile
 	Cairo-Penguin/data/themes/SantaClaus/Makefile
+	Cairo-Penguin/data/themes/The_Simpsons/Makefile
 	Cairo-Penguin/data/themes/Wanda/Makefile
 	
 	Clipper/Makefile
