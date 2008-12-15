@@ -19,8 +19,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-config.h"
 #include "applet-slider.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *pRandomGenerator) {
 	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);

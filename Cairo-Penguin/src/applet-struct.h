@@ -30,6 +30,7 @@ struct _AppletConfig {
 	gint iDelayBetweenChanges;
 	gdouble fAlpha;
 	gboolean bFree;
+	gint iGroundOffset;
 	} ;
 
 

@@ -39,3 +39,7 @@ alpha = 1.
 
 #b Let the penguin wander everywhere in the dock ?
 free = false
+
+#i[0;50] Ground offset :
+#{in pixels.}
+ground = 0

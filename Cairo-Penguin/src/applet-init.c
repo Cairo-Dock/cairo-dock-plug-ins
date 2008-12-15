@@ -33,14 +33,18 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer) && myConfig.bFree)
+	if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
 	{
+		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_container, myApplet);
 		cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, myApplet);
+		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
 	}
 	
-	g_source_remove (myData.iSidAnimation);
-	myData.iSidAnimation = 0;
-	
+	if (myData.iSidAnimation != 0)
+	{
+		g_source_remove (myData.iSidAnimation);
+		myData.iSidAnimation = 0;
+	}
 	if (myData.iSidRestartDelayed != 0)
 	{
 		g_source_remove (myData.iSidRestartDelayed);
@@ -64,13 +68,20 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On stoppe tout.
-		g_source_remove (myData.iSidAnimation);
-		myData.iSidAnimation = 0;
+		if (myData.iSidAnimation != 0)
+		{
+			g_source_remove (myData.iSidAnimation);
+			myData.iSidAnimation = 0;
+		}
 		if (myData.iSidRestartDelayed != 0)
 		{
 			g_source_remove (myData.iSidRestartDelayed);
 			myData.iSidRestartDelayed = 0;
 		}
+		
+		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_container, myApplet);
+		cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, myApplet);
+		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
 		
 		//\_______________ On efface sa derniere position.
 		PenguinAnimation *pAnimation = penguin_get_current_animation ();

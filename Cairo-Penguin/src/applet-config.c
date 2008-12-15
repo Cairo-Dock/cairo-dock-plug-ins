@@ -24,6 +24,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "alpha");
 	
 	myConfig.bFree = CD_CONFIG_GET_BOOLEAN ("Configuration", "free");
+	
+	myConfig.iGroundOffset = CD_CONFIG_GET_INTEGER ("Configuration", "ground");
 CD_APPLET_GET_CONFIG_END
 
 

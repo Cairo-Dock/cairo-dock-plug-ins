@@ -16,47 +16,11 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("slider", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
-
-/*static void _slider_set_desklet_renderer (CairoDockModuleInstance *myApplet)
-{
-	const gchar *cConfigName = NULL;
-	switch (myConfig.iDecoration)
-	{
-		case SLIDER_PERSONNAL :
-		break ;
-		case SLIDER_FRAME_REFLECTS :
-			cConfigName = "frame&reflects";
-		break ;
-		case SLIDER_SCOTCH :
-			cConfigName = "scotch";
-		break ;
-		case SLIDER_FRAME_SCOTCH :
-			cConfigName = "frame with scotch";
-		break ;
-		default :
-			return ;
-	}
-	if (cConfigName != NULL)
-	{
-		CairoDeskletRendererConfigPtr pConfig = cairo_dock_get_desklet_renderer_predefined_config ("Simple", cConfigName);
-		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
-	}
-	else if (myConfig.cFrameImage != NULL || myConfig.cReflectImage != NULL)
-	{
-		gpointer pManualConfig[9] = {myConfig.cFrameImage, myConfig.cReflectImage, GINT_TO_POINTER (CAIRO_DOCK_FILL_SPACE), &myConfig.fFrameAlpha, &myConfig.fReflectAlpha, GINT_TO_POINTER (myConfig.iLeftOffset), GINT_TO_POINTER (myConfig.iTopOffset), GINT_TO_POINTER (myConfig.iRightOffset), GINT_TO_POINTER (myConfig.iBottomOffset)};
-		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pManualConfig);
-	}
-	else
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-	}
-}*/
+CD_APPLET_DEFINITION ("slider", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	if (myDesklet) {
-		//_slider_set_desklet_renderer (myApplet);
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
@@ -119,7 +83,6 @@ CD_APPLET_RELOAD_BEGIN
 	myData.pPrevCairoSurface = NULL;
 	
 	if (myDesklet) {
-		//_slider_set_desklet_renderer (myApplet);
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	

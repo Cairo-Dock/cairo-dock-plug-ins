@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-Cairo-Penguin],[1.0.1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cd-Cairo-Penguin],[1.1.0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -38,5 +38,6 @@ AC_CONFIG_FILES([Makefile
 		data/themes/Makefile
 		data/themes/Classic/Makefile
 		data/themes/Wanda/Makefile
+		data/themes/SantaClaus/Makefile
 		])
 AC_OUTPUT
