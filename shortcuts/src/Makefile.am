@@ -31,6 +31,7 @@ libcd_shortcuts_la_CFLAGS = \
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_SHORTCUTS)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
+	-DCD_APPLET_MULTI_INSTANCE=\"1\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3

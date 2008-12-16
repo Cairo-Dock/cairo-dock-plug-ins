@@ -39,7 +39,7 @@ gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer)
 }
 
 
-gboolean cd_show_mouse_update_container(gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
 	CDShowMouseData *pData = CD_APPLET_GET_MY_CONTAINER_DATA (pContainer);
 	if (pData == NULL)
@@ -73,6 +73,9 @@ gboolean cd_show_mouse_update_container(gpointer pUserData, CairoContainer *pCon
 
 gboolean cd_show_mouse_enter_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
+	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
 	CDShowMouseData *pData = CD_APPLET_GET_MY_CONTAINER_DATA (pContainer);
 	if (pData == NULL)
 	{

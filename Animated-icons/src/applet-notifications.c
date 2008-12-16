@@ -21,7 +21,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
-	if (pIcon->bStatic)
+	if (pIcon->bStatic || ! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);

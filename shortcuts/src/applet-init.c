@@ -27,7 +27,6 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	//\_______________ On charge les icones dans un sous-dock.
-	//cd_shortcuts_launch_measure ();  // asynchrone
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
 		NULL,
 		(CairoDockReadTimerFunc) cd_shortcuts_get_shortcuts_data,
@@ -61,7 +60,6 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_NAME_FOR_MY_ICON (SHORTCUTS_DEFAULT_NAME);
 		}
 		
-		//cd_shortcuts_launch_measure ();  // asynchrone
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
 			NULL,
 			(CairoDockReadTimerFunc) cd_shortcuts_get_shortcuts_data,

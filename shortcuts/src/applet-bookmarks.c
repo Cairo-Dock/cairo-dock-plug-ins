@@ -15,17 +15,16 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-bookmarks.h"
 
 
-CD_APPLET_INCLUDE_MY_VARS
-
-
 static GList * _cd_shortcuts_detach_icon_from_list (Icon *icon, GList *pIconList, gboolean bUseSeparator)
 {
 	pIconList = g_list_remove (pIconList, icon);  // on s'en fout des separateurs en mode desklet.
 	return pIconList;
 }
-
-static void _cd_shortcuts_detach_one_bookmark (Icon *icon, gpointer unused, GList **pList)
+static void _cd_shortcuts_detach_one_bookmark (Icon *icon, gpointer unused, gpointer *data)
 {
+	CairoDockModuleInstance *myApplet = data[0];
+	GList **pList = data[1];
+	
 	*pList = g_list_append (*pList, icon);
 	if (myIcon->pSubDock != NULL)
 		cairo_dock_detach_icon_from_dock (icon, myIcon->pSubDock, myConfig.bUseSeparator);
@@ -34,7 +33,7 @@ static void _cd_shortcuts_detach_one_bookmark (Icon *icon, gpointer unused, GLis
 		myDesklet->icons = _cd_shortcuts_detach_icon_from_list (icon, myDesklet->icons, myConfig.bUseSeparator);
 	}
 }
-void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
+void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	cd_message ("%s (%d)", __func__, iEventType);
 	g_return_if_fail (myIcon->pSubDock != NULL || myDesklet);
@@ -44,7 +43,8 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 		cd_message ("  un signet en plus ou en moins");
 		//\____________________ On detache les icones des signets.
 		GList *pPrevBookmarkIconList = NULL;
-		Icon *pSeparatorIcon = cairo_dock_foreach_icons_of_type ((myDock ? myIcon->pSubDock->icons : myDesklet->icons), 10, (CairoDockForeachIconFunc) _cd_shortcuts_detach_one_bookmark, &pPrevBookmarkIconList);
+		gpointer data[2] = {myApplet, &pPrevBookmarkIconList};
+		Icon *pSeparatorIcon = cairo_dock_foreach_icons_of_type ((myDock ? myIcon->pSubDock->icons : myDesklet->icons), 10, (CairoDockForeachIconFunc) _cd_shortcuts_detach_one_bookmark, data);
 		
 		//\____________________ On lit le fichier des signets.
 		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));

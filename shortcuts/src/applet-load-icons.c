@@ -14,10 +14,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-bookmarks.h"
 #include "applet-load-icons.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
-
-static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
+static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 6);
 	
@@ -27,7 +25,7 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 	gchar *cTargetURI = cairo_dock_fm_is_mounted (cURI, &bIsMounted);
 	if (cTargetURI == NULL)  // version bourrinne.
 	{
-		cd_shortcuts_on_change_bookmarks (CAIRO_DOCK_FILE_MODIFIED, NULL, NULL);
+		cd_shortcuts_on_change_bookmarks (CAIRO_DOCK_FILE_MODIFIED, NULL, myApplet);
 	}
 	else  // version optimisee.
 	{
@@ -67,13 +65,13 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 		g_free (cTargetURI);
 	}
 }
-static void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon)
+static void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 8);
 }
 
 
-static GList * _load_icons (void)
+static GList * _load_icons (CairoDockModuleInstance *myApplet)
 {
 	GList *pIconList = NULL;
 	gchar *cFullURI = NULL;
@@ -87,8 +85,8 @@ static GList * _load_icons (void)
 			cd_warning ("couldn't detect any drives");  // on decide de poursuivre malgre tout, pour les signets.
 		}
 		
-		if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, myIcon))
-			cd_warning ("Attention : can't monitor drives");
+		if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_drives, myApplet))
+			cd_warning ("Shortcuts : can't monitor drives");
 		myData.cDisksURI = cFullURI;
 	}
 	
@@ -106,8 +104,8 @@ static GList * _load_icons (void)
 		
 		pIconList = g_list_concat (pIconList, pIconList2);
 		
-		if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_network, NULL))
-			cd_warning ("Attention : can't monitor network");
+		if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_network, myApplet))
+			cd_warning ("Shortcuts : can't monitor network");
 		myData.cNetworkURI = cFullURI;
 	}
 		
@@ -131,7 +129,7 @@ static GList * _load_icons (void)
 		
 		pIconList = g_list_concat (pIconList, pIconList2);
 		
-		if (! cairo_dock_fm_add_monitor_full (cBookmarkFilePath, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_bookmarks, NULL))
+		if (! cairo_dock_fm_add_monitor_full (cBookmarkFilePath, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_bookmarks, myApplet))
 			cd_warning ("Attention : can't monitor bookmarks");
 		
 		myData.cBookmarksURI = cBookmarkFilePath;
@@ -141,13 +139,13 @@ static GList * _load_icons (void)
 }
 
 
-void cd_shortcuts_get_shortcuts_data (void)
+void cd_shortcuts_get_shortcuts_data (CairoDockModuleInstance *myApplet)
 {
-	myData.pIconList = _load_icons ();
+	myData.pIconList = _load_icons (myApplet);
 }
 
 
-gboolean cd_shortcuts_build_shortcuts_from_data (void)
+gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myApplet)
 {
 	if (myIcon == NULL)
 	{
