@@ -37,6 +37,10 @@ CD_APPLET_INIT_BEGIN
 CD_APPLET_INIT_END
 
 
+static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
+{
+	cd_icon_effect_free_data (NULL, pIcon);
+}
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_icon_effect_start, NULL);
@@ -45,8 +49,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_render_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_icon_effect_free_data, NULL);
 	
-	/// foreach icons : free data.
-	
+	cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _free_data_on_icon, NULL);
 CD_APPLET_STOP_END
 
 

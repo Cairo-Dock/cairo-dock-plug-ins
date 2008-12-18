@@ -61,7 +61,6 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 	//\____________________ On dessine la ficelle qui les joint.
 	
 	//\____________________ On dessine les icones avec leurs etiquettes.
-	double fRatio = pDock->fRatio;
 	///cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	if (pFirstDrawnElement == NULL)
@@ -77,7 +76,7 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 		icon = ic->data;
 
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon (icon, pCairoContext, bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, ! mySystem.bTextAlwaysHorizontal, pDock->iCurrentWidth, pDock->bDirectionUp);
+		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, ! mySystem.bTextAlwaysHorizontal);
 		
 		if (mySystem.bTextAlwaysHorizontal && icon->pTextBuffer != NULL && icon->fScale > 1.01 && (! mySystem.bLabelForPointedIconOnly || icon->bPointed) && icon->iCount == 0)  // 1.01 car sin(pi) = 1+epsilon :-/
 		{

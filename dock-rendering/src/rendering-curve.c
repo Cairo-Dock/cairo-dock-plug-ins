@@ -461,11 +461,10 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
-	double fRatio = pDock->fRatio;
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	if (pFirstDrawnElement == NULL)
 		return ;
-		
+	
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
@@ -494,7 +493,7 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 			if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
 				cairo_save (pCairoContext);
-				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+				cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 				cairo_restore (pCairoContext);
 			}
 			
@@ -525,7 +524,7 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 			icon = ic->data;
 			
 			cairo_save (pCairoContext);
-			cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+			cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 			cairo_restore (pCairoContext);
 			
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
@@ -773,8 +772,6 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 	{
 		double fXMin = (pDock->bHorizontalDock ? pArea->x : pArea->y), fXMax = (pDock->bHorizontalDock ? pArea->x + pArea->width : pArea->y + pArea->height);
 		double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
-		double fRatio = (pDock->iRefCount == 0 ? 1 : myViews.fSubDockSizeRatio);
-		fRatio = pDock->fRatio;
 		double fXLeft, fXRight;
 		Icon *icon;
 		GList *ic = pFirstDrawnElement;
@@ -818,7 +815,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 						
 						cairo_save (pCairoContext);
 						
-						cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+						cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 						
 						cairo_restore (pCairoContext);
 					}
@@ -865,7 +862,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 					
 					cairo_save (pCairoContext);
 					
-					cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+					cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 					
 					cairo_restore (pCairoContext);
 				}

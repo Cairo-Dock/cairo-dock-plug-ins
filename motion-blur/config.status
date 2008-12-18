@@ -428,8 +428,8 @@ _ASBOX
 #
 # INIT-COMMANDS
 #
-AMDEP_TRUE="" ac_aux_dir="."
-INTLTOOL_PERL='/usr/bin/perl' ac_aux_dir='.'
+AMDEP_TRUE="" ac_aux_dir="./.."
+INTLTOOL_PERL='/usr/bin/perl' ac_aux_dir='./..'
 prefix="/usr/local" exec_prefix="${prefix}" INTLTOOL_LIBDIR="/usr/local/lib/cairo-dock"
 INTLTOOL_EXTRACT='$(top_builddir)/intltool-extract'
 
@@ -551,19 +551,19 @@ s,@am__isrc@,|#_!!_#|,g
 s,@CYGPATH_W@,|#_!!_#|echo,g
 s,@PACKAGE@,|#_!!_#|cd-motion_blur,g
 s,@VERSION@,|#_!!_#|0.0.1,g
-s,@ACLOCAL@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run aclocal-1.10,g
-s,@AUTOCONF@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run autoconf,g
-s,@AUTOMAKE@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run automake-1.10,g
-s,@AUTOHEADER@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run autoheader,g
-s,@MAKEINFO@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run makeinfo,g
-s,@install_sh@,|#_!!_#|$(SHELL) /home/fab/CD/trunk/plug-ins/motion-blur/install-sh,g
+s,@ACLOCAL@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/missing --run aclocal-1.10,g
+s,@AUTOCONF@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/missing --run autoconf,g
+s,@AUTOMAKE@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/missing --run automake-1.10,g
+s,@AUTOHEADER@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/missing --run autoheader,g
+s,@MAKEINFO@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/missing --run makeinfo,g
+s,@install_sh@,|#_!!_#|$(SHELL) /home/fab/CD/trunk/plug-ins/install-sh,g
 s,@STRIP@,|#_!!_#|strip,g
 s,@INSTALL_STRIP_PROGRAM@,|#_!!_#|$(install_sh) -c -s,g
 s,@mkdir_p@,|#_!!_#|/bin/mkdir -p,g
 s,@AWK@,|#_!!_#|mawk,g
 s,@SET_MAKE@,|#_!!_#|,g
 s,@am__leading_dot@,|#_!!_#|.,g
-s,@AMTAR@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/motion-blur/missing --run tar,g
+s,@AMTAR@,|#_!!_#|${SHELL} /home/fab/CD/trunk/plug-ins/missing --run tar,g
 s,@am__tar@,|#_!!_#|${AMTAR} chof - "$$tardir",g
 s,@am__untar@,|#_!!_#|${AMTAR} xf -,g
 s,@build@,|#_!!_#|i686-pc-linux-gnu,g
@@ -654,7 +654,7 @@ s,@PO_IN_DATADIR_TRUE@,|#_!!_#|,g
 s,@PO_IN_DATADIR_FALSE@,|#_!!_#|,g
 s,@POFILES@,|#_!!_#|,g
 s,@POSUB@,|#_!!_#|po,g
-s,@MKINSTALLDIRS@,|#_!!_#|./mkinstalldirs,g
+s,@MKINSTALLDIRS@,|#_!!_#|./../mkinstalldirs,g
 s,@GETTEXT_PACKAGE@,|#_!!_#|cd-motion_blur,g
 s,@pkgdatadir@,|#_!!_#|/usr/local/share/cairo-dock/plug-ins/motion_blur,g
 s,@PKG_CONFIG@,|#_!!_#|/usr/bin/pkg-config,g

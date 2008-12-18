@@ -289,7 +289,6 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
-	double fRatio = pDock->fRatio;
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	if (pFirstDrawnElement == NULL)
 		return ;
@@ -322,7 +321,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 			if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
 				cairo_save (pCairoContext);
-				cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+				cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 				cairo_restore (pCairoContext);
 			}
 			
@@ -353,7 +352,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 			icon = ic->data;
 			
 			cairo_save (pCairoContext);
-			cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+			cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 			cairo_restore (pCairoContext);
 			
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
@@ -588,7 +587,7 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 						
 						cairo_save (pCairoContext);
 						
-						cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+						cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 						
 						cairo_restore (pCairoContext);
 					}
@@ -635,7 +634,7 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 					
 					cairo_save (pCairoContext);
 					
-					cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+					cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 					
 					cairo_restore (pCairoContext);
 				}
@@ -756,7 +755,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
 				glPushMatrix ();
-				cairo_dock_render_one_icon_opengl (icon, pDock, fRatio, fDockMagnitude, TRUE);
+				cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, TRUE);
 				glPopMatrix ();
 			}
 			
@@ -788,7 +787,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			
 			glPushMatrix ();
 			
-			cairo_dock_render_one_icon_opengl (icon, pDock, fRatio, fDockMagnitude, TRUE);
+			cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, TRUE);
 			
 			glPopMatrix ();
 			

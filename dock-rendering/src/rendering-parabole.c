@@ -320,7 +320,6 @@ void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDock)
 	if (pFirstDrawnElement == NULL)
 		return;
 	
-	double fRatio = pDock->fRatio;
 	double fDockMagnitude = 1;  // pour le rendu des icones, on utilise la magnitude max.
 	gboolean bHorizontal = pDock->bHorizontalDock;
 	Icon *icon;
@@ -330,7 +329,7 @@ void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDock)
 		icon = ic->data;
 		
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, FALSE, pDock->iCurrentWidth, pDock->bDirectionUp);
+		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, FALSE);
 		cairo_restore (pCairoContext);
 		
 		if (icon->pTextBuffer != NULL && (my_bDrawTextWhileUnfolding || pDock->fFoldingFactor == 0))

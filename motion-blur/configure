@@ -19823,19 +19823,19 @@ echo "$as_me: error: Automake 1.5 or newer is required to use intltool" >&2;}
     ;;
 esac
 
-if test -n "0.35.0"; then
-    { echo "$as_me:$LINENO: checking for intltool >= 0.35.0" >&5
-echo $ECHO_N "checking for intltool >= 0.35.0... $ECHO_C" >&6; }
+if test -n ""; then
+    { echo "$as_me:$LINENO: checking for intltool >= " >&5
+echo $ECHO_N "checking for intltool >= ... $ECHO_C" >&6; }
 
-    INTLTOOL_REQUIRED_VERSION_AS_INT=`echo 0.35.0 | awk -F. '{ print $ 1 * 1000 + $ 2 * 100 + $ 3; }'`
+    INTLTOOL_REQUIRED_VERSION_AS_INT=`echo  | awk -F. '{ print $ 1 * 1000 + $ 2 * 100 + $ 3; }'`
     INTLTOOL_APPLIED_VERSION=`awk -F\" '/\\$VERSION / { print $ 2; }' ${ac_aux_dir}/intltool-update.in`
     INTLTOOL_APPLIED_VERSION_AS_INT=`awk -F\" '/\\$VERSION / { split($ 2, VERSION, "."); print VERSION[1] * 1000 + VERSION[2] * 100 + VERSION[3];}' ${ac_aux_dir}/intltool-update.in`
 
     { echo "$as_me:$LINENO: result: $INTLTOOL_APPLIED_VERSION found" >&5
 echo "${ECHO_T}$INTLTOOL_APPLIED_VERSION found" >&6; }
     test "$INTLTOOL_APPLIED_VERSION_AS_INT" -ge "$INTLTOOL_REQUIRED_VERSION_AS_INT" ||
-	{ { echo "$as_me:$LINENO: error: Your intltool is too old.  You need intltool 0.35.0 or later." >&5
-echo "$as_me: error: Your intltool is too old.  You need intltool 0.35.0 or later." >&2;}
+	{ { echo "$as_me:$LINENO: error: Your intltool is too old.  You need intltool  or later." >&5
+echo "$as_me: error: Your intltool is too old.  You need intltool  or later." >&2;}
    { (exit 1); exit 1; }; }
 fi
 

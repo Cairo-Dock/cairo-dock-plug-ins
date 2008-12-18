@@ -16,8 +16,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define CD_DOCK_IN_MOVMENT(pDock) ((myConfig.bAlways && pDock->iSidGLAnimation) || pDock->bIsShrinkingDown || pDock->bIsGrowingUp)
 
 
-gboolean cd_motion_blur_pre_render (gpointer pUserData, CairoDock *pDock)
+gboolean cd_motion_blur_pre_render (gpointer pUserData, CairoDock *pDock, cairo_t *pCairoContext)
 {
+	if (pCairoContext != NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	
 	if ((pData != NULL && pData->iBlurCount != 0) || CD_DOCK_IN_MOVMENT (pDock))
@@ -26,8 +28,10 @@ gboolean cd_motion_blur_pre_render (gpointer pUserData, CairoDock *pDock)
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-gboolean cd_motion_blur_post_render (gpointer pUserData, CairoDock *pDock)
+gboolean cd_motion_blur_post_render (gpointer pUserData, CairoDock *pDock, cairo_t *pCairoContext)
 {
+	if (pCairoContext != NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	
 	if ((pData != NULL && pData->iBlurCount != 0) || CD_DOCK_IN_MOVMENT (pDock))
@@ -48,6 +52,8 @@ gboolean cd_motion_blur_post_render (gpointer pUserData, CairoDock *pDock)
 
 gboolean cd_motion_blur_mouse_moved (gpointer pUserData, CairoDock *pDock, gboolean *bStartAnimation)
 {
+	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	if (pData == NULL)
 		pData = g_new0 (CDMotionBlurData, 1);
@@ -66,9 +72,9 @@ gboolean cd_motion_blur_update_dock (gpointer pUserData, CairoDock *pDock, gbool
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	if (! pDock->iSidShrinkDown && ! pDock->iSidGrowUp)
+	if (! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
 		pData->iBlurCount --;
-	g_print ("blur <- %d\n", pData->iBlurCount);
+	//g_print ("blur <- %d\n", pData->iBlurCount);
 	
 	if (pData->iBlurCount <= 0)
 	{

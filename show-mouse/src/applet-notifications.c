@@ -18,7 +18,7 @@ static double fRadius = .33;
 static double a = .2;
 
 
-gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer)
+gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext)
 {
 	CDShowMouseData *pData = CD_APPLET_GET_MY_CONTAINER_DATA (pContainer);
 	if (pData == NULL)
@@ -73,7 +73,7 @@ gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pCo
 
 gboolean cd_show_mouse_enter_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
-	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
+	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (pContainer))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CDShowMouseData *pData = CD_APPLET_GET_MY_CONTAINER_DATA (pContainer);

@@ -108,7 +108,7 @@ void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int i
 }
 
 
-void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDock, double fRatio)
+void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	if (pFirstDrawnElement == NULL)
@@ -126,7 +126,7 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_save (pCairoContext);
 		
 		//g_print ("redessin a gauche de %s\n", icon->acName);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 		
 		cairo_restore (pCairoContext);
 		
@@ -137,7 +137,7 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_save (pCairoContext);
 		
 		//g_print ("redessin a droite de %s\n", icon->acName);
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, fRatio, fDockMagnitude, pDock->bUseReflect, TRUE, pDock->iCurrentWidth, pDock->bDirectionUp);
+		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 		
 		cairo_restore (pCairoContext);
 		
@@ -201,7 +201,7 @@ void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, TRUE, FALSE);
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
-	cd_rendering_render_icons_caroussel (pCairoContext, pDock, pDock->fRatio);
+	cd_rendering_render_icons_caroussel (pCairoContext, pDock);
 }
 
 

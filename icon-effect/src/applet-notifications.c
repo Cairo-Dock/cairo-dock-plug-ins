@@ -129,8 +129,10 @@ gboolean cd_icon_effect_pre_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-gboolean cd_icon_effect_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered)
+gboolean cd_icon_effect_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered, cairo_t *pCairoContext)
 {
+	if (pCairoContext != NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;

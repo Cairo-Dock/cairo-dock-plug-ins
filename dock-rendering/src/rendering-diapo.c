@@ -142,7 +142,7 @@ void cd_rendering_render_diapo (cairo_t *pCairoContext, CairoDock *pDock)
 		
 
 //////////////////////////////////////////////////////////////////////////////////////// On affiche l'icone en cours avec les options :		
-		cairo_dock_render_one_icon (icon, pCairoContext, pDock->bHorizontalDock, pDock->fRatio, 0, pDock->bUseReflect, FALSE, pDock->iCurrentWidth, pDock->bDirectionUp);
+		cairo_dock_render_one_icon (icon, pDock, pCairoContext, 0., FALSE);
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On restore le contexte de cairo

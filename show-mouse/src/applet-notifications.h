@@ -7,7 +7,7 @@
 #include "applet-struct.h"
 
 
-gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer);
+gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext);
 
 
 gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation);
