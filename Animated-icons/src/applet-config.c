@@ -66,6 +66,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.fFriction = CD_CONFIG_GET_DOUBLE ("Wobbly", "friction");
 		myConfig.iNbGridNodes = CD_CONFIG_GET_INTEGER ("Wobbly", "grid nodes");
 	}
+	
+	bUse = CD_CONFIG_GET_BOOLEAN ("Wave", "use");
+	if (bUse)
+	{
+		myConfig.iWaveDuration = CD_CONFIG_GET_INTEGER ("Wave", "duration");
+		myConfig.bContinueWave = CD_CONFIG_GET_BOOLEAN ("Wave", "continue");
+		myConfig.fWaveWidth = CD_CONFIG_GET_DOUBLE ("Wave", "width");
+		myConfig.fWaveAmplitude = CD_CONFIG_GET_DOUBLE ("Wave", "amplitude");
+	}
 CD_APPLET_GET_CONFIG_END
 
 
@@ -79,6 +88,14 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	if (myData.iChromeTexture != 0)
 		glDeleteTextures (1, &myData.iChromeTexture);
+	if (myData.iSpotTexture == 0)
+		glDeleteTextures (1, &myData.iSpotTexture);
+	if (myData.iHaloTexture == 0)
+		glDeleteTextures (1, &myData.iHaloTexture);
+	if (myData.iSpotFrontTexture == 0)
+		glDeleteTextures (1, &myData.iSpotFrontTexture);
+	if (myData.iRaysTexture == 0)
+		glDeleteTextures (1, &myData.iRaysTexture);
 	
 	if (myData.iCallList[CD_SQUARE_MESH] != 0)
 		glDeleteLists (myData.iCallList[CD_SQUARE_MESH], 1);
@@ -86,5 +103,4 @@ CD_APPLET_RESET_DATA_BEGIN
 		glDeleteLists (myData.iCallList[CD_CUBE_MESH], 1);
 	if (myData.iCallList[CD_CAPSULE_MESH] != 0)
 		glDeleteLists (myData.iCallList[CD_CAPSULE_MESH], 1);
-	
 CD_APPLET_RESET_DATA_END

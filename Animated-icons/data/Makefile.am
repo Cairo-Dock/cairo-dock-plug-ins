@@ -13,6 +13,7 @@ module_DATA = \
 	spot.png\
 	halo.png\
 	spot-front2.png\
-	ray.png
+	ray.png\
+	icon-wave.png
 
 EXTRA_DIST = $(module_DATA)

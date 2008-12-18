@@ -42,6 +42,11 @@ struct _AppletConfig {
 	CDAnimationsStretchType iInitialStrecth;
 	gdouble fSpringConstant;
 	gdouble fFriction;
+	
+	gint iWaveDuration;
+	gboolean bContinueWave;
+	gdouble fWaveWidth;
+	gdouble fWaveAmplitude;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -60,6 +65,8 @@ typedef struct _CDAnimationGridNode {
 	gdouble fx, fy;
 	} CDAnimationGridNode;
 
+#define CD_WAVE_NB_POINTS 9
+
 typedef struct _CDAnimationData {
 	gdouble fRotationSpeed;
 	gdouble fRotationAngle;
@@ -75,6 +82,16 @@ typedef struct _CDAnimationData {
 	gboolean bIsWobblying;
 	CDAnimationGridNode gridNodes[4][4];
 	GLfloat pCtrlPts[4][4][3];
+	
+	gboolean bIsWaving;
+	gdouble fWavePosition;
+	gint iNumActiveNodes;
+	GLfloat pVertices[3*(2*CD_WAVE_NB_POINTS+2)];
+	GLfloat pCoords[2*(2*CD_WAVE_NB_POINTS+2)];
+	GLfloat pColors[4*(2*CD_WAVE_NB_POINTS+2)];
+	
+	int iCount;
+	
 	} CDAnimationData;
 
 #endif

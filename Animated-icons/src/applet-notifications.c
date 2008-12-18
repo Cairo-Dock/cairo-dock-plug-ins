@@ -16,6 +16,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-rays.h"
 #include "applet-wobbly.h"
+#include "applet-mesh-factory.h"
+#include "applet-wave.h"
 #include "applet-notifications.h"
 
 
@@ -34,6 +36,8 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 	{
 		if (myData.iChromeTexture == 0)
 			myData.iChromeTexture = cd_animation_load_chrome_texture ();
+		if (myData.iCallList[myConfig.iMeshType] == 0)
+			myData.iCallList[myConfig.iMeshType] = cd_animations_load_mesh (myConfig.iMeshType);
 		pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
 		pData->fRotationBrake = 1.;
 		pData->fAdjustFactor = 0.;
@@ -64,6 +68,11 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 		*bStartAnimation = TRUE;
 	}
 	
+	if (myConfig.iWaveDuration != 0)
+	{
+		cd_animations_init_wave (pData);
+		*bStartAnimation = TRUE;
+	}
 	
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -88,8 +97,11 @@ static void _cd_animations_render_rays (Icon *pIcon, CairoDock *pDock, CDAnimati
 
 	glPopMatrix ();
 }
-gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered)
+gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered, cairo_t *pCairoContext)
 {
+	if (pCairoContext != NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -110,8 +122,10 @@ gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered)
+gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered, cairo_t *pCairoContext)
 {
+	if (pCairoContext != NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	if (*bHasBeenRendered)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
@@ -139,10 +153,14 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		cd_animations_draw_wobbly_icon (pIcon, pDock, pData);
 		*bHasBeenRendered = TRUE;
 	}
+	else if (pData->bIsWaving)
+	{
+		cd_animations_draw_wave_icon (pIcon, pDock, pData);
+		*bHasBeenRendered = TRUE;
+	}
 	else if (pData->fRotationSpeed != 0)
 	{
-		gboolean bInvisibleBackground = (pDock->bInside);
-		bInvisibleBackground = TRUE;
+		gboolean bInvisibleBackground = TRUE;
 		glPushMatrix ();
 		if (pDock->bHorizontalDock)
 			glTranslatef (0., pData->fIconOffsetY * (pDock->bDirectionUp ? 1 : -1), 0.);
@@ -187,7 +205,18 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		if (pData->bIsWobblying)
 			*bContinueAnimation = TRUE;
 	}
-	if (! pData->bIsWobblying && pData->fRotationSpeed != 0)
+	if (! pData->bIsWobblying && pData->bIsWaving)
+	{
+		pData->bIsWaving = cd_animations_update_wave (pData);
+		if (! pData->bIsWaving && myConfig.bContinueWave && pIcon->bPointed && pDock->bInside)
+		{
+			pData->bIsWaving = TRUE;
+			pData->fWavePosition = - myConfig.fWaveWidth / 2;
+		}
+		if (pData->bIsWaving)
+			*bContinueAnimation = TRUE;
+	}
+	if (! pData->bIsWobblying && ! pData->bIsWaving && pData->fRotationSpeed != 0)
 	{
 		double delta;
 		if (pData->fRotationAngle < 40)
@@ -280,6 +309,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			}
 		}
 	}
+	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -290,6 +320,8 @@ gboolean cd_animations_free_data (gpointer pUserData, Icon *pIcon)
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	cairo_dock_free_particle_system (pData->pRaysSystem);
 	
 	g_free (pData);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);

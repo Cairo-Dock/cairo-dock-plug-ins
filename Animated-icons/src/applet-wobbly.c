@@ -190,10 +190,6 @@ gboolean cd_animations_update_wobbly (CDAnimationData *pData)
 void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
 {
 	glPushMatrix ();
-	if (pDock->bHorizontalDock)
-		glTranslatef (0., pIcon->fDeltaYReflection * (pDock->bDirectionUp ? 1 : -1), 0.);
-	else
-		glTranslatef (pIcon->fDeltaYReflection * (pDock->bDirectionUp ? -1 : 1), 0., 0.);
 	cairo_dock_set_icon_scale (pIcon, pDock, 1.);
 	
 	glColor4f (1., 1., 1., 1.);
@@ -265,16 +261,11 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 				y1 = 1.;
 			}
 		}
-		glDisable(GL_TEXTURE_2D);
 		
 		///glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
-		glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
 		glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
 		glColor4f(1.0f, 1.0f, 1.0f, 1.);
-		//glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
-		glEnable(GL_BLEND);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
 		glBlendColor (1., 1., 1., 1.);
 		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glEnable(GL_MAP2_TEXTURE_COORD_2);
@@ -308,9 +299,6 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		glDisable(GL_TEXTURE_2D);
 		glDisable(GL_TEXTURE_GEN_S);
 		glDisable(GL_TEXTURE_GEN_T);*/
-		glDisable(GL_TEXTURE_2D);
-		glDisable(GL_TEXTURE_GEN_S);
-		glDisable(GL_TEXTURE_GEN_T);
 		glDisable(GL_MAP2_COLOR_4);
 		
 		glPopMatrix ();
@@ -318,4 +306,5 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	glDisable(GL_MAP2_VERTEX_3);
 	glDisable(GL_MAP2_TEXTURE_COORD_2);
 	glDisable(GL_TEXTURE_2D);
+	glDisable (GL_BLEND);
 }

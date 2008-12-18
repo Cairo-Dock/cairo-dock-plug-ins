@@ -63,7 +63,7 @@ part size = 20
 part speed = 5.
 
 
-#[@pkgdatadir@/wobbly.png]
+#[@pkgdatadir@/icon-wobbly.png]
 [Wobbly]
 
 #b Use it ?
@@ -80,3 +80,24 @@ friction = 8
 
 #I[2;20] Number of points on the grid in one direction :
 grid nodes = 10
+
+
+#[@pkgdatadir@/icon-wave.png]
+[Wave]
+
+#b Use it ?
+use = false
+
+#I[0;1000] Duration of the animation :
+#{In ms.}
+duration = 200
+
+#b Repeat while icon is pointed ?
+continue = false
+
+#e[0.1;2] Width of the wave :
+width = 1.25
+
+#e[0.01;.4] Amplitude of the wave :
+amplitude = .14
+

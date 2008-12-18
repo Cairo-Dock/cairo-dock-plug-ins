@@ -290,3 +290,24 @@ GLuint cairo_dock_load_cube_calllist (void)
 	glEndList(); // Fini la display list
 	return iCallList;
 }
+
+
+GLuint cd_animations_load_mesh (CDAnimationsMeshType iMeshType)
+{
+	GLuint iCallList = 0;
+	switch (iMeshType)
+	{
+		case CD_SQUARE_MESH :
+			iCallList = cairo_dock_load_square_calllist ();
+		break ;
+		
+		case CD_CUBE_MESH :
+			iCallList = cairo_dock_load_cube_calllist ();
+		break ;
+		
+		case CD_CAPSULE_MESH :
+			iCallList = cairo_dock_load_capsule_calllist ();
+		break ;
+	}
+	return iCallList;
+}
