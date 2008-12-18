@@ -31,7 +31,24 @@ CD_APPLET_RESET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
-CD_APPLET_RESET_DATA_BEGIN
-	/// TODO
+void cd_drop_indicator_free_buffers (void)
+{
+	if (myData.iDropIndicatorTexture != 0)
+	{
+		glDeleteTextures (1, &myData.iDropIndicatorTexture);
+		myData.iDropIndicatorTexture = 0;
+	}
 	
+	if (myData.pDropIndicatorSurface != NULL)
+	{
+		cairo_surface_destroy (myData.pDropIndicatorSurface);
+		myData.pDropIndicatorSurface = NULL;
+	}
+}
+
+CD_APPLET_RESET_DATA_BEGIN
+	/// free our data on all docks ..
+	
+	
+	cd_drop_indicator_free_buffers ();
 CD_APPLET_RESET_DATA_END

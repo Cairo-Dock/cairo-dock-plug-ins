@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock);
+gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t *pCairoContext);
 
 
 gboolean cd_drop_indicator_mouse_moved (gpointer pUserData, CairoDock *pDock, gboolean *bStartAnimation);

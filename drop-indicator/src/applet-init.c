@@ -15,18 +15,15 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN("drop indicator", 2, 0, 0, CAIRO_DOCK_CATEGORY_PLUG_IN)
-	if (! g_bUseOpenGL)
-		return FALSE;
-	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
-CD_APPLET_PRE_INIT_END
+CD_APPLET_DEFINITION ("drop indicator", 2, 0, 0, CAIRO_DOCK_CATEGORY_PLUG_IN)
+
 
 static void _load_drop_indicator (void)
 {
 	cairo_t* pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
 	double fMaxScale = cairo_dock_get_max_scale (g_pMainDock);
-	myData.iInitialWidth = myIcons.tIconAuthorizedWidth[CAIRO_DOCK_LAUNCHER] * fMaxScale;
-	myData.iInitialHeight = myIcons.tIconAuthorizedHeight[CAIRO_DOCK_LAUNCHER] * fMaxScale / 2;
+	double iInitialWidth = myIcons.tIconAuthorizedWidth[CAIRO_DOCK_LAUNCHER] * fMaxScale;
+	double iInitialHeight = myIcons.tIconAuthorizedHeight[CAIRO_DOCK_LAUNCHER] * fMaxScale / 2;
 	
 	gchar *cImagePath;
 	if (myConfig.cDropIndicatorImageName != NULL)
@@ -39,8 +36,8 @@ static void _load_drop_indicator (void)
 	}
 	cd_drop_indicator_load_drop_indicator (cImagePath,
 		pCairoContext,
-		myData.iInitialWidth,
-		myData.iInitialHeight);
+		iInitialWidth,
+		iInitialHeight);
 	g_free (cImagePath);
 	cairo_destroy (pCairoContext);
 }
@@ -59,13 +56,21 @@ CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
+static void _free_data_on_dock (gchar *cDockName, CairoDock *pDock, gpointer data)
+{
+	CDDropIndicatorData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
+	if (pData != NULL)
+	{
+		g_free (pData);
+		CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);
+	}
+}
 CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_render, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) cd_drop_indicator_mouse_moved, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_update_dock, NULL);
 	
-	/// foreach dock : free data.
-	
+	cairo_dock_foreach_docks (_free_data_on_dock);
 CD_APPLET_STOP_END
 
 
@@ -73,13 +78,7 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myData.iDropIndicatorTexture != 0)
-			glDeleteTextures (1, &myData.iDropIndicatorTexture);
-		myData.iDropIndicatorTexture = 0;
-		
-		if (myData.pDropIndicatorSurface != NULL)
-			cairo_surface_destroy (myData.pDropIndicatorSurface);
-		myData.pDropIndicatorSurface = NULL;
+		cd_drop_indicator_free_buffers ();
 		_load_drop_indicator ();
 	}
 	

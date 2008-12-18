@@ -7,5 +7,7 @@
 
 CD_APPLET_CONFIG_H
 
+void cd_drop_indicator_free_buffers (void);
+
 
 #endif

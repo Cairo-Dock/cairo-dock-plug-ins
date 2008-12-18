@@ -17,7 +17,6 @@ struct _AppletData {
 	gdouble fDropIndicatorWidth, fDropIndicatorHeight;
 	GLuint iDropIndicatorTexture;
 	GLuint iBilinearGradationTexture;
-	gint iInitialHeight, iInitialWidth;
 	} ;
 
 typedef struct _CDDropIndicatorData {
