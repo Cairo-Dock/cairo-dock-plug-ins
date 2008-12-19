@@ -20,6 +20,16 @@ typedef enum {
 	CD_ANIMATIONS_NB_STRECTH
 	} CDAnimationsStretchType;
 
+typedef enum {
+	CD_ANIMATIONS_BOUNCE=0,
+	CD_ANIMATIONS_ROTATE,
+	CD_ANIMATIONS_PULSE,
+	CD_ANIMATIONS_WOBBLY,
+	CD_ANIMATIONS_WAVE,
+	CD_ANIMATIONS_SPOT,
+	CD_ANIMATIONS_NB_EFFECTS
+	} CDAnimationsEffects;
+
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gint iRotationDuration;
@@ -47,6 +57,9 @@ struct _AppletConfig {
 	gboolean bContinueWave;
 	gdouble fWaveWidth;
 	gdouble fWaveAmplitude;
+	
+	gint iEffectsOnMouseOver[CD_ANIMATIONS_NB_EFFECTS];
+	gint iEffectsOnClick[CD_ANIMATIONS_NB_EFFECTS];
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -91,6 +104,7 @@ typedef struct _CDAnimationData {
 	GLfloat pColors[4*(2*CD_WAVE_NB_POINTS+2)];
 	
 	int iCount;
+	gdouble fWidthFactor, fHeightFactor;
 	
 	} CDAnimationData;
 

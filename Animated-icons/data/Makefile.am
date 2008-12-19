@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(animated_iconsdatadir)
 
 module_DATA = \
 	Animated-icons.conf\

@@ -15,12 +15,15 @@ IT_PROG_INTLTOOL()
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
 GETTEXT_PACKAGE=cd-drop_indicator
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_DROP_INDICATOR,"$GETTEXT_DROP_INDICATOR", [Gettext package.])
+AC_SUBST(GETTEXT_DROP_INDICATOR)
+
+AC_SUBST(VERSION_DROP_INDICATOR, "$VERSION")
+AC_SUBST(PACKAGE_DROP_INDICATOR, "$PACKAGE")
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/drop_indicator]
-AC_SUBST(pkgdatadir)
+drop_indicatordatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/drop_indicator]
+AC_SUBST(drop_indicatordatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

@@ -11,16 +11,19 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-IT_PROG_INTLTOOL([0.35.0])
+IT_PROG_INTLTOOL()
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-icon-effect
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_ICON_EFFECTS=cd-icon-effect
+AC_DEFINE_UNQUOTED(GETTEXT_ICON_EFFECTS,"$GETTEXT_ICON_EFFECTS", [Gettext package.])
+AC_SUBST(GETTEXT_ICON_EFFECTS)
+
+AC_SUBST(VERSION_ICON_EFFECTS, "$VERSION")
+AC_SUBST(PACKAGE_ICON_EFFECTS, "$PACKAGE")
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/icon-effect]
-AC_SUBST(pkgdatadir)
+icon_effectsdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/icon-effect]
+AC_SUBST(icon_effectsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

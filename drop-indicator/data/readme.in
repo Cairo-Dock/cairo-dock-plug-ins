@@ -1,3 +1,3 @@
-@PACKAGE@ (v@VERSION@)
+@PACKAGE_DROP_INDICATOR@ (v@VERSION_DROP_INDICATOR@)
 Author : Fabounet (Fabrice Rey)
 This plug-in displays an animated indicator when you drop something in the dock.

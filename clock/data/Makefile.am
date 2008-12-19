@@ -8,6 +8,7 @@ module_DATA = \
 	readme\
 	preview.png\
 	dates.svg\
-	icon.png
+	icon.png\
+	icon-alarm.png
 
 EXTRA_DIST = $(module_DATA)

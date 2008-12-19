@@ -29,15 +29,21 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		pData = g_new0 (CDAnimationData, 1);
+	else
+		pData->iCount = 0;
 	
-	double dt = g_iGLAnimationDeltaT;
+	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
+	double dt = (bUseOpenGL ? g_iGLAnimationDeltaT : g_iCairoAnimationDeltaT);
 	
 	if (myConfig.iRotationDuration != 0)
 	{
-		if (myData.iChromeTexture == 0)
-			myData.iChromeTexture = cd_animation_load_chrome_texture ();
-		if (myData.iCallList[myConfig.iMeshType] == 0)
-			myData.iCallList[myConfig.iMeshType] = cd_animations_load_mesh (myConfig.iMeshType);
+		if (bUseOpenGL)
+		{
+			if (myData.iChromeTexture == 0)
+				myData.iChromeTexture = cd_animation_load_chrome_texture ();
+			if (myData.iCallList[myConfig.iMeshType] == 0)
+				myData.iCallList[myConfig.iMeshType] = cd_animations_load_mesh (myConfig.iMeshType);
+		}
 		pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
 		pData->fRotationBrake = 1.;
 		pData->fAdjustFactor = 0.;
@@ -45,7 +51,7 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 		*bStartAnimation = TRUE;
 	}
 	
-	if (myConfig.iSpotDuration != 0)
+	if (myConfig.iSpotDuration != 0 && bUseOpenGL)
 	{
 		if (myData.iSpotTexture == 0)
 			myData.iSpotTexture = cd_animation_load_spot_texture ();
@@ -64,11 +70,14 @@ gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock,
 	
 	if (myConfig.fSpringConstant != 0)
 	{
-		cd_animations_init_wobbly (pData);
+		if (bUseOpenGL)
+			cd_animations_init_wobbly (pData);
+		else
+			pData->bIsWobblying = TRUE;
 		*bStartAnimation = TRUE;
 	}
 	
-	if (myConfig.iWaveDuration != 0)
+	if (myConfig.iWaveDuration != 0 && bUseOpenGL)
 	{
 		cd_animations_init_wave (pData);
 		*bStartAnimation = TRUE;
@@ -150,7 +159,10 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	
 	if (pData->bIsWobblying)
 	{
-		cd_animations_draw_wobbly_icon (pIcon, pDock, pData);
+		if (pCairoContext != NULL)
+			cd_animations_draw_wobbly_cairo (pIcon, pDock, pData, pCairoContext);
+		else
+			cd_animations_draw_wobbly_icon (pIcon, pDock, pData);
 		*bHasBeenRendered = TRUE;
 	}
 	else if (pData->bIsWaving)
@@ -160,31 +172,10 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	}
 	else if (pData->fRotationSpeed != 0)
 	{
-		gboolean bInvisibleBackground = TRUE;
-		glPushMatrix ();
-		if (pDock->bHorizontalDock)
-			glTranslatef (0., pData->fIconOffsetY * (pDock->bDirectionUp ? 1 : -1), 0.);
+		if (pCairoContext != NULL)
+			cd_animations_draw_rotating_cairo (pIcon, pDock, pData, pCairoContext);
 		else
-			glTranslatef (pData->fIconOffsetY * (pDock->bDirectionUp ? -1 : 1), 0., 0.);
-		glRotatef (pData->fRotationAngle, 0., 1., 0.);
-		switch (myConfig.iMeshType)
-		{
-			case CD_SQUARE_MESH :
-			default :
-				cairo_dock_set_icon_scale (pIcon, pDock, 1.);
-				cd_animation_render_square (pIcon, pDock, bInvisibleBackground);
-			break;
-			case CD_CUBE_MESH :
-				glRotatef (fabs (pData->fRotationAngle/4), 1., 0., 0.);
-				cairo_dock_set_icon_scale (pIcon, pDock, 1. + pData->fAdjustFactor * (sqrt (2) - 1));
-				cd_animation_render_cube (pIcon, pDock, bInvisibleBackground);
-			break;
-			case CD_CAPSULE_MESH :
-				cairo_dock_set_icon_scale (pIcon, pDock, 1.);
-				cd_animation_render_capsule (pIcon, pDock, bInvisibleBackground);
-			break;
-		}
-		glPopMatrix ();
+			cd_animations_draw_rotating_icon (pIcon, pDock, pData);
 		*bHasBeenRendered = TRUE;
 	}
 	
@@ -198,10 +189,15 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
+	double dt = (bUseOpenGL ? g_iGLAnimationDeltaT : g_iCairoAnimationDeltaT);
 	
 	if (pData->bIsWobblying)
 	{
-		pData->bIsWobblying = cd_animations_update_wobbly (pData);
+		if (bUseOpenGL)
+			pData->bIsWobblying = cd_animations_update_wobbly (pData);
+		else
+			pData->bIsWobblying = cd_animations_update_wobbly_cairo (pIcon, pDock, pData);
 		if (pData->bIsWobblying)
 			*bContinueAnimation = TRUE;
 	}

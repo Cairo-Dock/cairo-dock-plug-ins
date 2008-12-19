@@ -4,7 +4,7 @@
 #undef ENABLE_NLS
 
 /* Gettext package. */
-#undef GETTEXT_PACKAGE
+#undef GETTEXT_MOTION_BLUR
 
 /* Define to 1 if you have the `bind_textdomain_codeset' function. */
 #undef HAVE_BIND_TEXTDOMAIN_CODESET

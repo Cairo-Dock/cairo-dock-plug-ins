@@ -16,64 +16,82 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	gboolean bUse;
-	
-	bUse = CD_CONFIG_GET_BOOLEAN ("Rotation", "use");
-	if (bUse)
+	int i;
+	for (i = 0; i < CD_ANIMATIONS_NB_EFFECTS; i ++)
 	{
-		myConfig.iRotationDuration = CD_CONFIG_GET_INTEGER ("Rotation", "duration");
-		myConfig.bContinueRotation = CD_CONFIG_GET_BOOLEAN ("Rotation", "continue");
-		myConfig.iMeshType = CD_CONFIG_GET_INTEGER ("Rotation", "mesh");
-		gdouble pMeshColor[4];
-		CD_CONFIG_GET_COLOR ("Rotation", "color", pMeshColor);
-		int i;
-		for (i=0; i<4; i++)
-			myConfig.pMeshColor[i] = pMeshColor[i];
+		myConfig.iEffectsOnMouseOver[i] = -1;
+	}
+	for (i = 0; i < CD_ANIMATIONS_NB_EFFECTS; i ++)
+	{
+		myConfig.iEffectsOnClick[i] = -1;
 	}
 	
-	bUse = CD_CONFIG_GET_BOOLEAN ("Spot", "use");
-	if (bUse)
-	{
-		myConfig.iSpotDuration = CD_CONFIG_GET_INTEGER ("Spot", "duration");
-		myConfig.bContinueSpot = CD_CONFIG_GET_BOOLEAN ("Spot", "continue");
-		int i;
-		gdouble pColor[4];
-		CD_CONFIG_GET_COLOR_RVB ("Spot", "spot color", pColor);
-		for (i=0; i<3; i++)
-			myConfig.pSpotColor[i] = pColor[i];
-		CD_CONFIG_GET_COLOR ("Spot", "halo color", pColor);
-		for (i=0; i<4; i++)
-			myConfig.pHaloColor[i] = pColor[i];
-		
-		
-		CD_CONFIG_GET_COLOR_RVB ("Spot", "color1", myConfig.pRaysColor1);
-		//for (i=0; i<3; i++)
-		//	myConfig.pRaysColor1[i] = pColor[i];
-		CD_CONFIG_GET_COLOR_RVB ("Spot", "color2", myConfig.pRaysColor2);
-		//for (i=0; i<3; i++)
-		//	myConfig.pRaysColor2[i] = pColor[i];
-		myConfig.bMysticalRays = CD_CONFIG_GET_BOOLEAN ("Spot", "mystical");
-		myConfig.iNbRaysParticles = CD_CONFIG_GET_INTEGER ("Spot", "nb part");
-		myConfig.iRaysParticleSize = CD_CONFIG_GET_INTEGER ("Spot", "part size");
-		myConfig.fRaysParticleSpeed = CD_CONFIG_GET_DOUBLE ("Spot", "part speed");
-	}
+	CD_CONFIG_GET_INTEGER_LIST ("Global", "hover effects", CD_ANIMATIONS_NB_EFFECTS, myConfig.iEffectsOnMouseOver);
+	CD_CONFIG_GET_INTEGER_LIST ("Global", "click effects", CD_ANIMATIONS_NB_EFFECTS, myConfig.iEffectsOnClick);
 	
-	bUse = CD_CONFIG_GET_BOOLEAN ("Wobbly", "use");
-	if (bUse)
+	for (i = 0; i < CD_ANIMATIONS_NB_EFFECTS; i ++)
 	{
-		myConfig.iInitialStrecth = CD_CONFIG_GET_INTEGER ("Wobbly", "stretch");
-		myConfig.fSpringConstant = CD_CONFIG_GET_DOUBLE ("Wobbly", "spring cst");
-		myConfig.fFriction = CD_CONFIG_GET_DOUBLE ("Wobbly", "friction");
-		myConfig.iNbGridNodes = CD_CONFIG_GET_INTEGER ("Wobbly", "grid nodes");
-	}
-	
-	bUse = CD_CONFIG_GET_BOOLEAN ("Wave", "use");
-	if (bUse)
-	{
-		myConfig.iWaveDuration = CD_CONFIG_GET_INTEGER ("Wave", "duration");
-		myConfig.bContinueWave = CD_CONFIG_GET_BOOLEAN ("Wave", "continue");
-		myConfig.fWaveWidth = CD_CONFIG_GET_DOUBLE ("Wave", "width");
-		myConfig.fWaveAmplitude = CD_CONFIG_GET_DOUBLE ("Wave", "amplitude");
+		switch (myConfig.iEffectsOnMouseOver[i])
+		{
+			case CD_ANIMATIONS_BOUNCE :
+				
+			break;
+			
+			case CD_ANIMATIONS_ROTATE :
+				myConfig.iRotationDuration = CD_CONFIG_GET_INTEGER ("Rotation", "duration");
+				myConfig.bContinueRotation = CD_CONFIG_GET_BOOLEAN ("Rotation", "continue");
+				myConfig.iMeshType = CD_CONFIG_GET_INTEGER ("Rotation", "mesh");
+				gdouble pMeshColor[4];
+				CD_CONFIG_GET_COLOR ("Rotation", "color", pMeshColor);
+				for (i=0; i<4; i++)
+					myConfig.pMeshColor[i] = pMeshColor[i];
+			break;
+			
+			case CD_ANIMATIONS_PULSE :
+				
+			break;
+			
+			case CD_ANIMATIONS_WOBBLY :
+				myConfig.iInitialStrecth = CD_CONFIG_GET_INTEGER ("Wobbly", "stretch");
+				myConfig.fSpringConstant = CD_CONFIG_GET_DOUBLE ("Wobbly", "spring cst");
+				myConfig.fFriction = CD_CONFIG_GET_DOUBLE ("Wobbly", "friction");
+				myConfig.iNbGridNodes = CD_CONFIG_GET_INTEGER ("Wobbly", "grid nodes");
+			break;
+			
+			case CD_ANIMATIONS_SPOT :
+				myConfig.iSpotDuration = CD_CONFIG_GET_INTEGER ("Spot", "duration");
+				myConfig.bContinueSpot = CD_CONFIG_GET_BOOLEAN ("Spot", "continue");
+				gdouble pColor[4];
+				CD_CONFIG_GET_COLOR_RVB ("Spot", "spot color", pColor);
+				for (i=0; i<3; i++)
+					myConfig.pSpotColor[i] = pColor[i];
+				CD_CONFIG_GET_COLOR ("Spot", "halo color", pColor);
+				for (i=0; i<4; i++)
+					myConfig.pHaloColor[i] = pColor[i];
+				
+				
+				CD_CONFIG_GET_COLOR_RVB ("Spot", "color1", myConfig.pRaysColor1);
+				//for (i=0; i<3; i++)
+				//	myConfig.pRaysColor1[i] = pColor[i];
+				CD_CONFIG_GET_COLOR_RVB ("Spot", "color2", myConfig.pRaysColor2);
+				//for (i=0; i<3; i++)
+				//	myConfig.pRaysColor2[i] = pColor[i];
+				myConfig.bMysticalRays = CD_CONFIG_GET_BOOLEAN ("Spot", "mystical");
+				myConfig.iNbRaysParticles = CD_CONFIG_GET_INTEGER ("Spot", "nb part");
+				myConfig.iRaysParticleSize = CD_CONFIG_GET_INTEGER ("Spot", "part size");
+				myConfig.fRaysParticleSpeed = CD_CONFIG_GET_DOUBLE ("Spot", "part speed");
+			break;
+			
+			case CD_ANIMATIONS_WAVE :
+				myConfig.iWaveDuration = CD_CONFIG_GET_INTEGER ("Wave", "duration");
+				myConfig.bContinueWave = CD_CONFIG_GET_BOOLEAN ("Wave", "continue");
+				myConfig.fWaveWidth = CD_CONFIG_GET_DOUBLE ("Wave", "width");
+				myConfig.fWaveAmplitude = CD_CONFIG_GET_DOUBLE ("Wave", "amplitude");
+			break;
+			
+			default :
+			break;
+		}
 	}
 CD_APPLET_GET_CONFIG_END
 

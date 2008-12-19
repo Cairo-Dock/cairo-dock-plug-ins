@@ -14,13 +14,16 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL()
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-motion_blur
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_MOTION_BLUR=cd-motion_blur
+AC_DEFINE_UNQUOTED(GETTEXT_MOTION_BLUR,"$GETTEXT_MOTION_BLUR", [Gettext package.])
+AC_SUBST(GETTEXT_MOTION_BLUR)
+
+AC_SUBST(VERSION_MOTION_BLUR, "$VERSION")
+AC_SUBST(PACKAGE_MOTION_BLUR, "$PACKAGE")
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/motion_blur]
-AC_SUBST(pkgdatadir)
+motion_blurdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/motion_blur]
+AC_SUBST(motion_blurdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

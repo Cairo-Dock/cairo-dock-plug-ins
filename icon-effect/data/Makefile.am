@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(icon_effectsdatadir)
 
 module_DATA = \
 	icon-effect.conf\

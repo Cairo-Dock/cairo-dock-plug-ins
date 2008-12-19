@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(motion_blurdatadir)
 
 module_DATA = \
 	motion_blur.conf\

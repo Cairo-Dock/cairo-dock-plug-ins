@@ -138,6 +138,7 @@ frame3 =
 #{Let empty to use default command.}
 setup command =
 
+#[@clockdatadir@/icon-alarm.png]
 [Alarm]
 
 #F[Alarm n°1]

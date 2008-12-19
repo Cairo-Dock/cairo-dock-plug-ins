@@ -20,13 +20,13 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_drop_indicator_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(drop_indicatordatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""drop_indicator.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""drop_indicator"\"\
-	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION_DROP_INDICATOR)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_DROP_INDICATOR)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.svg"\"\
 	-DMY_APPLET_DEFAULT_DROP_INDICATOR_NAME=\""default-drop-indicator.svg"\"\

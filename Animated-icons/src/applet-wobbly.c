@@ -12,6 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <math.h>
 
 #include "applet-struct.h"
+#include "applet-icon-renderer.h"
 #include "applet-wobbly.h"
 
 #define l0 .33
@@ -73,17 +74,13 @@ void cd_animations_init_wobbly (CDAnimationData *pData)
 				
 			}
 			
-			/*if ((i == 0 || i == 3) && (j == 0 || j == 3))
-				pData->gridNodes[i][j].x *= (1. + g_random_double ()/2);
-			if ((i == 0 || i == 3) && (j == 0 || j == 3))
-				pData->gridNodes[i][j].y *= (1. + g_random_double ()/2);*/
-			
 			pData->gridNodes[i][j].vx = 0.;
 			pData->gridNodes[i][j].vy = 0.;
 		}
 	}
 	pData->bIsWobblying = TRUE;
 }
+
 
 #define _pulled_by(i,j)\
 	pNode2 = &pData->gridNodes[i][j];\
@@ -100,18 +97,10 @@ void cd_animations_init_wobbly (CDAnimationData *pData)
 
 /*y' = f(t, y),
 => y_{n+1} = y_n + {h / 6} (k_1 + 2k_2 + 2k_3 + k_4)
-où
     k_1 = f ( t_n, y_n )
     k_2 = f ( t_n + {h / 2}, y_n + {h / 2} k_1 )
     k_3 = f ( t_n + {h / 2}, y_n + {h / 2} k_2 )
-    k_4 = f ( t_n + h, y_n + h k_3)
-L'idée est que la valeur suivante (yn+1) est approchée par la somme de la valeur actuelle (yn) et du produit de la taille de l'intervalle (h) par la pente estimée. La pente est obtenue par une moyenne pondérée de pentes :
-    * k1 est la pente au début de l'intervalle ;
-    * k2 est la pente au milieu de l'intervalle, en utilisant la pente k1 pour calculer la valeur de y au point tn + h/2 par le biais de la méthode d'Euler ;
-    * k3 est de nouveau la pente au milieu de l'intervalle, mais obtenue cette fois en utilisant la pente k2 pour calculer y;
-    * k4 est la pente à la fin de l'intervalle, avec la valeur de y calculée en utilisant k3.
-Dans la moyenne des quatre pentes, un poids plus grand est donné aux pentes au point milieu.
-    pente = {k_1 + 2k_2 + 2k_3 + k_4} / 6*/
+    k_4 = f ( t_n + h, y_n + h k_3)*/
 
 gboolean cd_animations_update_wobbly (CDAnimationData *pData)
 {
@@ -183,6 +172,34 @@ gboolean cd_animations_update_wobbly (CDAnimationData *pData)
 	}
 	
 	return bContinue;
+}
+
+gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
+{
+	int iNbIterInOneRound = 60;  // 20*3
+	int c = pData->iCount;
+	int n = iNbIterInOneRound / 4;  // nbre d'iteration pour 1 etirement/retrecissement.
+	int k = c%n;
+
+	double fMinSize = .3, fMaxSize = MIN (1.75, pDock->iCurrentHeight / pIcon->fWidth);  // au plus 1.75, soit 3/8 de l'icone qui deborde de part et d'autre de son emplacement. c'est suffisamment faible pour ne pas trop empieter sur ses voisines.
+
+	double fSizeFactor = ((c/n) & 1 ? 1. / (n - k) : 1. / (1 + k));
+	//double fSizeFactor = ((c/n) & 1 ? 1.*(k+1)/n : 1.*(n-k)/n);
+	fSizeFactor = (fMinSize - fMaxSize) * fSizeFactor + fMaxSize;
+	if ((c/(2*n)) & 1)
+	{
+		pData->fWidthFactor = fSizeFactor;
+		pData->fHeightFactor = fMinSize;
+		//g_print ("%d) width <- %.2f ; height <- %.2f (%d)\n", c, pData->fWidthFactor, pData->fHeightFactor, k);
+	}
+	else
+	{
+		pData->fHeightFactor = fSizeFactor;
+		pData->fWidthFactor = fMinSize;
+		//g_print ("%d) height <- %.2f ; width <- %.2f (%d)\n", c, pData->fHeightFactor, pData->fWidthFactor, k);
+	}
+	pData->iCount --;
+	return (pData->iCount > 0);
 }
 
 
@@ -307,4 +324,9 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	glDisable(GL_MAP2_TEXTURE_COORD_2);
 	glDisable(GL_TEXTURE_2D);
 	glDisable (GL_BLEND);
+}
+
+void cd_animations_draw_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
+{
+	cd_animations_draw_cairo_icon (pIcon, pDock, pData, pCairoContext);
 }

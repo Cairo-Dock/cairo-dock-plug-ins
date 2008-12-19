@@ -1,4 +1,4 @@
-#!en;@VERSION@
+#!en;@VERSION_MOTION_BLUR@
 
 #[gtk-preferences]
 [Configuration]

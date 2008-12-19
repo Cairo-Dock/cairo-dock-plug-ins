@@ -5,7 +5,7 @@
 #define ENABLE_NLS 1
 
 /* Gettext package. */
-#define GETTEXT_PACKAGE "cd-motion_blur"
+#define GETTEXT_MOTION_BLUR "cd-motion_blur"
 
 /* Define to 1 if you have the `bind_textdomain_codeset' function. */
 #define HAVE_BIND_TEXTDOMAIN_CODESET 1

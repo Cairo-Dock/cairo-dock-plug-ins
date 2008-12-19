@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(drop_indicatordatadir)
 
 module_DATA = \
 	drop_indicator.conf\
