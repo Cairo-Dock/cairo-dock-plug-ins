@@ -488,7 +488,7 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 	double fDeltaXTrapeze=0.;
 	double fOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
 	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
-	if (g_pBackgroundSurface[pDock->bHorizontalDock] != NULL)
+	if (g_pBackgroundSurface != NULL)
 	{
 		double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
 		double fRadius = myBackground.iDockRadius;

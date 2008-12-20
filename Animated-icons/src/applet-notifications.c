@@ -18,72 +18,120 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-wobbly.h"
 #include "applet-mesh-factory.h"
 #include "applet-wave.h"
+#include "applet-pulse.h"
 #include "applet-notifications.h"
 
 
-gboolean cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
+static void cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, CDAnimationsEffects *pAnimations, gboolean *bStartAnimation)
 {
-	if (pIcon->bStatic || ! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
+	{
 		pData = g_new0 (CDAnimationData, 1);
+		CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
+	}
 	else
 		pData->iCount = 0;
 	
 	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
 	double dt = (bUseOpenGL ? g_iGLAnimationDeltaT : g_iCairoAnimationDeltaT);
 	
-	if (myConfig.iRotationDuration != 0)
+	int i;
+	for (i = 0; i < CD_ANIMATIONS_NB_EFFECTS; i ++)
 	{
-		if (bUseOpenGL)
+		switch (pAnimations[i])
 		{
-			if (myData.iChromeTexture == 0)
-				myData.iChromeTexture = cd_animation_load_chrome_texture ();
-			if (myData.iCallList[myConfig.iMeshType] == 0)
-				myData.iCallList[myConfig.iMeshType] = cd_animations_load_mesh (myConfig.iMeshType);
+			case CD_ANIMATIONS_BOUNCE :
+			
+			break;
+			
+			case CD_ANIMATIONS_ROTATE :
+				if (bUseOpenGL)
+				{
+					if (myData.iChromeTexture == 0)
+						myData.iChromeTexture = cd_animation_load_chrome_texture ();
+					if (myData.iCallList[myConfig.iMeshType] == 0)
+						myData.iCallList[myConfig.iMeshType] = cd_animations_load_mesh (myConfig.iMeshType);
+				}
+				else
+					pData->fWidthFactor = 1.;
+				pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
+				pData->fRotationBrake = 1.;
+				pData->fAdjustFactor = 0.;
+				pData->bRotationBeginning = TRUE;
+				*bStartAnimation = TRUE;
+			break;
+			
+			case CD_ANIMATIONS_BLINK :
+				
+			break;
+			
+			case CD_ANIMATIONS_PULSE :
+				cd_animations_init_pulse (pData, dt);
+				*bStartAnimation = TRUE;
+			break;
+			
+			case CD_ANIMATIONS_WOBBLY :
+				cd_animations_init_wobbly (pData, bUseOpenGL);
+				*bStartAnimation = TRUE;
+			break;
+			
+			case CD_ANIMATIONS_WAVE :
+				if (! bUseOpenGL)
+					break ;
+				cd_animations_init_wave (pData);
+				*bStartAnimation = TRUE;
+			break;
+			
+			case CD_ANIMATIONS_SPOT :
+				if (! bUseOpenGL)
+					break ;
+				if (myData.iSpotTexture == 0)
+					myData.iSpotTexture = cd_animation_load_spot_texture ();
+				if (myData.iHaloTexture == 0)
+					myData.iHaloTexture = cd_animation_load_halo_texture ();
+				if (myData.iSpotFrontTexture == 0)
+					myData.iSpotFrontTexture = cd_animation_load_spot_front_texture ();
+				if (myData.iRaysTexture == 0)
+					myData.iRaysTexture = cd_animations_load_rays_texture ();
+				if (pData->pRaysSystem == NULL)
+					pData->pRaysSystem = cd_animations_init_rays (pIcon, pDock, dt);
+				pData->fRadiusFactor = .001;
+				pData->fHaloRotationAngle = 0;
+				*bStartAnimation = TRUE;
+			break;
+			
+			default :
+				i = CD_ANIMATIONS_NB_EFFECTS - 1;
+			break;
 		}
-		pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
-		pData->fRotationBrake = 1.;
-		pData->fAdjustFactor = 0.;
-		pData->bRotationBeginning = TRUE;
-		*bStartAnimation = TRUE;
 	}
-	
-	if (myConfig.iSpotDuration != 0 && bUseOpenGL)
+}
+
+gboolean cd_animations_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
+{
+	if (pIcon->bStatic || ! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	cd_animations_start (pUserData, pIcon, pDock, myConfig.iEffectsOnMouseOver, bStartAnimation);
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gint iButtonState)
+{
+	if (! CAIRO_DOCK_IS_DOCK (pDock))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	gboolean bStartAnimation = FALSE;
+	CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
+	if (iType == CAIRO_DOCK_APPLI && CAIRO_DOCK_IS_LAUNCHER (pIcon) && iButtonState & GDK_SHIFT_MASK)
+		iType = CAIRO_DOCK_LAUNCHER;
+	cd_animations_start (pUserData, pIcon, pDock, myConfig.iEffectsOnClick[iType], &bStartAnimation);
+	if (bStartAnimation)
 	{
-		if (myData.iSpotTexture == 0)
-			myData.iSpotTexture = cd_animation_load_spot_texture ();
-		if (myData.iHaloTexture == 0)
-			myData.iHaloTexture = cd_animation_load_halo_texture ();
-		if (myData.iSpotFrontTexture == 0)
-			myData.iSpotFrontTexture = cd_animation_load_spot_front_texture ();
-		if (myData.iRaysTexture == 0)
-			myData.iRaysTexture = cd_animations_load_rays_texture ();
-		if (pData->pRaysSystem == NULL)
-			pData->pRaysSystem = cd_animations_init_rays (pIcon, pDock, dt);
-		pData->fRadiusFactor = .001;
-		pData->fHaloRotationAngle = 0;
-		*bStartAnimation = TRUE;
+		CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+		pData->iNumRound = myConfig.iNbRoundsOnClick[iType] - 1;
+		pData->iCount *= myConfig.iNbRoundsOnClick[iType];
 	}
-	
-	if (myConfig.fSpringConstant != 0)
-	{
-		if (bUseOpenGL)
-			cd_animations_init_wobbly (pData);
-		else
-			pData->bIsWobblying = TRUE;
-		*bStartAnimation = TRUE;
-	}
-	
-	if (myConfig.iWaveDuration != 0 && bUseOpenGL)
-	{
-		cd_animations_init_wave (pData);
-		*bStartAnimation = TRUE;
-	}
-	
-	CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
+	/// mark icon...
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -133,14 +181,22 @@ gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 
 gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered, cairo_t *pCairoContext)
 {
-	if (pCairoContext != NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	if (*bHasBeenRendered)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	gboolean bHasBeenPulsed = FALSE;
+	if (*bHasBeenRendered)
+	{
+		if (pData->fPulseAlpha != 0)
+		{
+			if (pCairoContext != NULL)
+				cd_animations_draw_pulse_cairo (pIcon, pDock, pData, pCairoContext);
+			else
+				cd_animations_draw_pulse_icon (pIcon, pDock, pData);
+		}
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
 	
 	if (pData->fRadiusFactor != 0)
 	{
@@ -175,15 +231,26 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		if (pCairoContext != NULL)
 			cd_animations_draw_rotating_cairo (pIcon, pDock, pData, pCairoContext);
 		else
+		{
 			cd_animations_draw_rotating_icon (pIcon, pDock, pData);
+			bHasBeenPulsed = myConfig.bPulseSameShape;
+		}
 		*bHasBeenRendered = TRUE;
 	}
 	
+	if (pData->fPulseAlpha != 0 && ! bHasBeenPulsed)
+	{
+		if (pCairoContext != NULL)
+			cd_animations_draw_pulse_cairo (pIcon, pDock, pData, pCairoContext);
+		else
+			cd_animations_draw_pulse_icon (pIcon, pDock, pData);
+	}
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 
+#define _will_continue(bRepeat) ((pIcon->iAnimationState == CAIRO_DOCK_STATE_CLICKED && pData->iNumRound > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->bInside))
 gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bContinueAnimation)
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
@@ -198,14 +265,22 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			pData->bIsWobblying = cd_animations_update_wobbly (pData);
 		else
 			pData->bIsWobblying = cd_animations_update_wobbly_cairo (pIcon, pDock, pData);
+		
+		if (! pData->bIsWobblying && _will_continue (FALSE))
+		{
+			pData->iNumRound --;
+			cd_animations_init_wobbly (pData, bUseOpenGL);
+			
+		}
 		if (pData->bIsWobblying)
 			*bContinueAnimation = TRUE;
 	}
 	if (! pData->bIsWobblying && pData->bIsWaving)
 	{
 		pData->bIsWaving = cd_animations_update_wave (pData);
-		if (! pData->bIsWaving && myConfig.bContinueWave && pIcon->bPointed && pDock->bInside)
+		if (! pData->bIsWaving && _will_continue (myConfig.bContinueWave))
 		{
+			pData->iNumRound --;
 			pData->bIsWaving = TRUE;
 			pData->fWavePosition = - myConfig.fWaveWidth / 2;
 		}
@@ -224,7 +299,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			pData->bRotationBeginning = FALSE;
 		if (pData->fRotationAngle > 320)
 		{
-			if (! myConfig.bContinueRotation || ! pIcon->bPointed || ! pDock->bInside)
+			if (! _will_continue (myConfig.bContinueRotation))
 			{
 				pData->fRotationBrake = MAX (.2, (360. - pData->fRotationAngle) / (360. - 320.));
 				pData->fAdjustFactor = (pData->fRotationAngle - 320) / (360. - 320.);
@@ -236,8 +311,9 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		else
 		{
 			pData->fRotationAngle = 0;
-			if (myConfig.bContinueRotation && pIcon->bPointed && pDock->bInside)
+			if (_will_continue (myConfig.bContinueRotation))
 			{
+				pData->iNumRound --;
 				*bContinueAnimation = TRUE;
 			}
 			else
@@ -245,18 +321,21 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 				pData->fRotationSpeed = 0;
 			}
 		}
+		if (! bUseOpenGL)
+			cd_animations_update_rotating_cairo (pIcon, pDock, pData);
+
 	}
 	
 	if (pData->fRadiusFactor != 0)
 	{
 		if (pIcon->bPointed && pDock->bInside)
 		{
-			pData->fRadiusFactor += 1./myConfig.iSpotDuration * g_iGLAnimationDeltaT;
+			pData->fRadiusFactor += 1./myConfig.iSpotDuration * dt;
 			if (pData->fRadiusFactor > 1)
 				pData->fRadiusFactor = 1.;
 			else
 				*bContinueAnimation = TRUE;
-			pData->fIconOffsetY += 1.*myLabels.iconTextDescription.iSize / myConfig.iSpotDuration * g_iGLAnimationDeltaT;
+			pData->fIconOffsetY += 1.*myLabels.iconTextDescription.iSize / myConfig.iSpotDuration * dt;
 			if (pData->fIconOffsetY > myLabels.iconTextDescription.iSize)
 				pData->fIconOffsetY = myLabels.iconTextDescription.iSize;
 			else
@@ -264,12 +343,12 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		}
 		else
 		{
-			pData->fRadiusFactor -= 1./myConfig.iSpotDuration * g_iGLAnimationDeltaT;
+			pData->fRadiusFactor -= 1./myConfig.iSpotDuration * dt;
 			if (pData->fRadiusFactor < 0)
 				pData->fRadiusFactor = 0.;
 			else
 				*bContinueAnimation = TRUE;
-			pData->fIconOffsetY -= 1.*myLabels.iconTextDescription.iSize / myConfig.iSpotDuration * g_iGLAnimationDeltaT;
+			pData->fIconOffsetY -= 1.*myLabels.iconTextDescription.iSize / myConfig.iSpotDuration * dt;
 			if (pData->fIconOffsetY < 0)
 				pData->fIconOffsetY = 0.;
 			else
@@ -277,7 +356,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		}
 		pIcon->fDeltaYReflection += 2 * pData->fIconOffsetY;
 		
-		pData->fHaloRotationAngle += 360. / myConfig.iSpotDuration * g_iGLAnimationDeltaT;
+		pData->fHaloRotationAngle += 360. / myConfig.iSpotDuration * dt;
 		if (pData->fHaloRotationAngle < 360)
 		{
 			*bContinueAnimation = TRUE;
@@ -285,7 +364,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		else
 		{
 			pData->fHaloRotationAngle = 0;
-			if (myConfig.bContinueSpot && pIcon->bPointed && pDock->bInside)
+			if (myConfig.bContinueSpot)
 			{
 				*bContinueAnimation = TRUE;
 			}
@@ -294,7 +373,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		if (pData->pRaysSystem != NULL)
 		{
 			gboolean bContinueSpot = cd_animations_update_rays_system (pData->pRaysSystem,
-			(myConfig.bContinueSpot && pIcon->bPointed && pDock->bInside));
+			(myConfig.bContinueSpot));
 			pData->pRaysSystem->fWidth = pIcon->fWidth * pIcon->fScale * pData->fRadiusFactor;
 			if (bContinueSpot)
 				*bContinueAnimation = TRUE;
@@ -303,6 +382,19 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 				cairo_dock_free_particle_system (pData->pRaysSystem);
 				pData->pRaysSystem = NULL;
 			}
+		}
+	}
+	
+	if (pData->fPulseAlpha != 0)
+	{
+		gboolean bContinuePulse = cd_animations_update_pulse (pIcon, pDock, pData, bUseOpenGL);
+		if (bContinuePulse)
+			*bContinueAnimation = TRUE;
+		else if (_will_continue (myConfig.bContinuePulse))
+		{
+			pData->iNumRound --;
+			cd_animations_init_pulse (pData, dt);
+			*bContinueAnimation = TRUE;
 		}
 	}
 	

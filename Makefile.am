@@ -69,12 +69,15 @@ SUBDIRS = . po\
 	${compiz_icon_dir}\
 	cpusage\
 	Dbus\
+	drop-indicator\
 	dustbin\
 	${gmenu_dir}\
 	${gnome_dir}\
 	${gnome_old_dir}\
+	icon-effect\
 	logout\
 	${mail_dir}\
+	motion-blur\
 	netspeed\
 	${nvidia_dir}\
 	${powermanager_dir}\

@@ -43,40 +43,48 @@ GLfloat colorPoints[4][4][4] =
 		{1.0, 1.0, 1.0, .0}}
 };
 
-void cd_animations_init_wobbly (CDAnimationData *pData)
+void cd_animations_init_wobbly (CDAnimationData *pData,gboolean  bUseOpenGL)
 {
-	double x, y, cx, cy;
-	int i,j;
-	for (i=0; i<4; i++)
+	if (bUseOpenGL)
 	{
-		x = (i-1.5)/3;  // -.5 -> .5
-		cx = 1 + fabs (x);  // 1.5 -> 1
-		for (j=0; j<4; j++)
+		double x, y, cx, cy;
+		int i,j;
+		for (i=0; i<4; i++)
 		{
-			y = - (j-1.5)/3;  // -.5 -> .5
-			cy = 1 + fabs (y);  // 1.5 -> 1
-			switch (myConfig.iInitialStrecth)
+			x = (i-1.5)/3;  // -.5 -> .5
+			cx = 1 + fabs (x);  // 1.5 -> 1
+			for (j=0; j<4; j++)
 			{
-				case CD_HORIZONTAL_STRECTH :
-					pData->gridNodes[i][j].x = x * cx * cy;
-					pData->gridNodes[i][j].y = y * cy;
-				break ;
+				y = - (j-1.5)/3;  // -.5 -> .5
+				cy = 1 + fabs (y);  // 1.5 -> 1
+				switch (myConfig.iInitialStrecth)
+				{
+					case CD_HORIZONTAL_STRECTH :
+						pData->gridNodes[i][j].x = x * cx * cy;
+						pData->gridNodes[i][j].y = y * cy;
+					break ;
+					
+					case CD_VERTICAL_STRECTH :
+						pData->gridNodes[i][j].x = x * cx;
+						pData->gridNodes[i][j].y = y * cy * cx;
+					break ;
+					
+					case CD_CORNER_STRECTH :
+						pData->gridNodes[i][j].x = x * cx * cy/sqrt(2);
+						pData->gridNodes[i][j].y = y * cy * cx/sqrt(2);
+					break ;
+					
+				}
 				
-				case CD_VERTICAL_STRECTH :
-					pData->gridNodes[i][j].x = x * cx;
-					pData->gridNodes[i][j].y = y * cy * cx;
-				break ;
-				
-				case CD_CORNER_STRECTH :
-					pData->gridNodes[i][j].x = x * cx * cy/sqrt(2);
-					pData->gridNodes[i][j].y = y * cy * cx/sqrt(2);
-				break ;
-				
+				pData->gridNodes[i][j].vx = 0.;
+				pData->gridNodes[i][j].vy = 0.;
 			}
-			
-			pData->gridNodes[i][j].vx = 0.;
-			pData->gridNodes[i][j].vy = 0.;
 		}
+	}
+	else
+	{
+		pData->iCount = 20;
+		pData->fWidthFactor = 1.;
 	}
 	pData->bIsWobblying = TRUE;
 }
@@ -176,16 +184,21 @@ gboolean cd_animations_update_wobbly (CDAnimationData *pData)
 
 gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
 {
-	int iNbIterInOneRound = 60;  // 20*3
+	int iNbIterInOneRound = 20;  // 20*3
 	int c = pData->iCount;
 	int n = iNbIterInOneRound / 4;  // nbre d'iteration pour 1 etirement/retrecissement.
 	int k = c%n;
-
+	
+	double fDamageWidthFactor = pData->fWidthFactor;
+	double fDamageHeightFactor = pData->fHeightFactor;
 	double fMinSize = .3, fMaxSize = MIN (1.75, pDock->iCurrentHeight / pIcon->fWidth);  // au plus 1.75, soit 3/8 de l'icone qui deborde de part et d'autre de son emplacement. c'est suffisamment faible pour ne pas trop empieter sur ses voisines.
-
+	
 	double fSizeFactor = ((c/n) & 1 ? 1. / (n - k) : 1. / (1 + k));
 	//double fSizeFactor = ((c/n) & 1 ? 1.*(k+1)/n : 1.*(n-k)/n);
 	fSizeFactor = (fMinSize - fMaxSize) * fSizeFactor + fMaxSize;
+	if (fSizeFactor == 0)
+		fSizeFactor = .01;
+	
 	if ((c/(2*n)) & 1)
 	{
 		pData->fWidthFactor = fSizeFactor;
@@ -199,6 +212,24 @@ gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAni
 		//g_print ("%d) height <- %.2f ; width <- %.2f (%d)\n", c, pData->fHeightFactor, pData->fWidthFactor, k);
 	}
 	pData->iCount --;
+	
+	/*if (pDock->bHorizontalDock)
+		pIcon->fDeltaYReflection = pIcon->fHeight * (pData->fHeightFactor * pIcon->fHeightFactor - 1) / 2;
+	else
+		pIcon->fDeltaYReflection = pIcon->fWidth * (pData->fWidthFactor * pIcon->fWidthFactor - 1) / 2;*/
+	
+	if (! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
+	{
+		fDamageWidthFactor = MAX (fDamageWidthFactor, pData->fWidthFactor);
+		fDamageHeightFactor = MAX (fDamageHeightFactor, pData->fHeightFactor);
+		pIcon->fWidthFactor *= fDamageWidthFactor;
+		pIcon->fHeightFactor *= fDamageHeightFactor;
+		
+		cairo_dock_redraw_my_icon (pIcon, CAIRO_CONTAINER (pDock));
+		
+		pIcon->fWidthFactor /= fDamageWidthFactor;
+		pIcon->fHeightFactor /= fDamageHeightFactor;
+	}
 	return (pData->iCount > 0);
 }
 
@@ -328,5 +359,23 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 
 void cd_animations_draw_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
 {
-	cd_animations_draw_cairo_icon (pIcon, pDock, pData, pCairoContext);
+	pIcon->fWidthFactor *= pData->fWidthFactor;
+	pIcon->fHeightFactor *= pData->fHeightFactor;
+	cairo_save (pCairoContext);
+	
+	if (pDock->bHorizontalDock)
+		cairo_translate (pCairoContext,
+			pIcon->fWidth * pIcon->fScale * (1 - pIcon->fWidthFactor) / 2,
+			pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2);
+	else
+		cairo_translate (pCairoContext,
+			pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2,
+			pIcon->fWidth * pIcon->fScale * (1 - pIcon->fWidthFactor) / 2);
+	
+	cairo_dock_draw_icon_cairo (pIcon, pDock, pCairoContext);
+	
+	cairo_restore (pCairoContext);
+	
+	pIcon->fWidthFactor /= pData->fWidthFactor;
+	pIcon->fHeightFactor /= pData->fHeightFactor;
 }

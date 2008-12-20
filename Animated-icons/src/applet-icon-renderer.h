@@ -23,7 +23,7 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 void cd_animations_draw_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext);
 
 
-void cd_animations_draw_cairo_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext);
+void cd_animations_update_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData);
 
 
 #endif

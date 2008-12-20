@@ -10,7 +10,7 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-IT_PROG_INTLTOOL([0.35.0])
+IT_PROG_INTLTOOL()
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
 
@@ -239,6 +239,15 @@ AC_SUBST(PACKAGE_DBUS, "$DBUS_PACKAGE")
 
 AC_SUBST(dbusdatadir, "${pkgdatadir}/Dbus")
 
+############# DROP INDICATOR #################
+DROP_INDICATOR_PACKAGE=cd-drop_indicator
+AC_SUBST(GETTEXT_DROP_INDICATOR, "$DROP_INDICATOR_PACKAGE")
+
+AC_SUBST(VERSION_DROP_INDICATOR, "1.0.0")
+AC_SUBST(PACKAGE_DROP_INDICATOR, "$DROP_INDICATOR_PACKAGE")
+
+AC_SUBST(drop_indicatordatadir, "${pkgdatadir}/drop-indicator")
+
 ############# DUSTBIN #################
 DUSTBIN_PACKAGE=cd-dustbin
 AC_SUBST(GETTEXT_DUSTBIN, "$DUSTBIN_PACKAGE")
@@ -273,6 +282,15 @@ AC_SUBST(PACKAGE_GNOME_INTEGRATION_OLD, "$GNOME_INTEGRATION_OLD_PACKAGE")
 
 AC_SUBST(gnome_integration_olddatadir, "${pkgdatadir}/gnome-integration-old")
 
+############# ICON EFFECT #################
+ICON_EFFECTS_PACKAGE=cd-icon-effect
+AC_SUBST(GETTEXT_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
+
+AC_SUBST(VERSION_ICON_EFFECTS, "1.0.1")
+AC_SUBST(PACKAGE_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
+
+AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
+
 ############# LOGOUT #################
 LOGOUT_PACKAGE=cd-logout
 AC_SUBST(GETTEXT_LOGOUT, "$LOGOUT_PACKAGE")
@@ -290,6 +308,15 @@ AC_SUBST(VERSION_MAIL, "1.0.2")
 AC_SUBST(PACKAGE_MAIL, "$MAIL_PACKAGE")
 
 AC_SUBST(maildatadir, "${pkgdatadir}/mail")
+
+############# MOTION BLUR #################
+$MOTION_BLUR_PACKAGEcd-motion-blur
+AC_SUBST(GETTEXT_MOTION_BLUR, "$MOTION_BLUR_PACKAGE")
+
+AC_SUBST(VERSION_MOTION_BLUR, "1.0.0")
+AC_SUBST(PACKAGE_MOTION_BLUR, "$MOTION_BLUR_PACKAGE")
+
+AC_SUBST(motion_blurdatadir, "${pkgdatadir}/motion-blur")
 
 ############# NETSPEED #################
 NETSPEED_PACKAGE=cd-netspeed
@@ -574,6 +601,13 @@ AC_CONFIG_FILES([
 	Dbus/data/readme
 	Dbus/data/Dbus.conf
 	
+	drop-indicator/Makefile
+	drop-indicator/src/Makefile
+	drop-indicator/po/Makefile.in
+	drop-indicator/data/Makefile
+	drop-indicator/data/readme
+	drop-indicator/data/drop_indicator.conf
+	
 	dustbin/Makefile
 	dustbin/src/Makefile
 	dustbin/po/Makefile.in
@@ -610,6 +644,13 @@ AC_CONFIG_FILES([
 	gnome-integration-old/data/Makefile
 	gnome-integration-old/data/readme
 	
+	icon-effect/Makefile
+	icon-effect/src/Makefile
+	icon-effect/po/Makefile.in
+	icon-effect/data/Makefile
+	icon-effect/data/readme
+	icon-effect/data/icon-effect.conf
+	
 	logout/Makefile
 	logout/src/Makefile
 	logout/po/Makefile.in
@@ -625,6 +666,13 @@ AC_CONFIG_FILES([
 	mail/data/mail.conf
 	mail/data/themes/Makefile
 	mail/data/themes/Default/Makefile
+	
+	motion-blur/Makefile
+	motion-blur/src/Makefile
+	motion-blur/po/Makefile.in
+	motion-blur/data/Makefile
+	motion-blur/data/readme
+	motion-blur/data/motion_blur.conf
 	
 	netspeed/Makefile
 	netspeed/src/Makefile
@@ -794,10 +842,13 @@ AC_OUTPUT([po/Makefile
 	compiz-icon/po/Makefile
 	cpusage/po/Makefile
 	Dbus/po/Makefile
+	drop-indicator/po/Makefile
 	dustbin/po/Makefile
 	GMenu/po/Makefile
+	icon-effect/po/Makefile
 	logout/po/Makefile
 	mail/po/Makefile
+	motion-blur/po/Makefile
 	netspeed/po/Makefile
 	nVidia/po/Makefile
 	powermanager/po/Makefile

@@ -398,9 +398,9 @@ void cairo_dock_calculate_wave_with_position_diapo(GList *pIconList, gint Mx, gi
 		icon = ic->data;
 		cairo_dock_rendering_diapo_get_gridXY_from_index(nRowsX, i, &x, &y);
                 guint x1 = Mx;
-                gdouble x2 = icon->fDrawXAtRest + (icon->fWidth)  / 2 + (my_diapo_fScaleMax - 1) * 20; // formule empirique de chez empirique pour corriger le décalage incalculable... (si vous y arrivez envoyez moi un mail -> mapremierpartiedepseudo.ladeuxieme@gmail.com et je vous appellerais Dieu... merci ! Ateention ! Pas d'entourre les poules hein !)
+                gdouble x2 = icon->fDrawX + (icon->fWidth)  / 2 + (my_diapo_fScaleMax - 1) * 20; // formule empirique de chez empirique pour corriger le décalage incalculable... (si vous y arrivez envoyez moi un mail -> mapremierpartiedepseudo.ladeuxieme@gmail.com et je vous appellerais Dieu... merci ! Ateention ! Pas d'entourre les poules hein !)  // fDrawXAtRest
                 guint y1 = My;
-                gdouble y2 = icon->fDrawYAtRest + (icon->fHeight) / 2 + (my_diapo_fScaleMax - 1) * 20; // idem
+                gdouble y2 = icon->fDrawY + (icon->fHeight) / 2 + (my_diapo_fScaleMax - 1) * 20; // idem  // fDrawYAtRest
 
                 gdouble distanceE = sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
                 if(my_diapo_lineaire)
@@ -444,8 +444,8 @@ void cairo_dock_calculate_icons_positions_at_rest_diapo (GList *pIconList, gint*
 	for (ic = pIconList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-	        icon->fDrawXAtRest = iconeX;
-	        icon->fDrawYAtRest = iconeY;    
+	        icon->fDrawX = iconeX;  // fDrawXAtRest
+	        icon->fDrawY = iconeY;  // fDrawYAtRest
                 if(!(i % nRowsX)) //  si on est à la fin d'une ligne on change
                 {
                         *Wmin = iconeX + icon->fWidth + 2 * my_diapo_iconGapX;

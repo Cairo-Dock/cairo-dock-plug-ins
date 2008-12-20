@@ -67,9 +67,11 @@ static void _stop_xpenguins (GtkMenuItem *menu_item, gpointer *data)
 }
 static void _keep_quiet (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	g_return_if_fail (myData.iSidAnimation != 0);
-	g_source_remove (myData.iSidAnimation);
-	myData.iSidAnimation = 0;
+	if (myData.iSidAnimation != 0)
+	{
+		g_source_remove (myData.iSidAnimation);
+		myData.iSidAnimation = 0;
+	}
 	if (myData.iSidRestartDelayed != 0)
 	{
 		g_source_remove (myData.iSidRestartDelayed);
@@ -112,7 +114,7 @@ gboolean CD_APPLET_ON_BUILD_MENU (CairoDockModuleInstance *myApplet, Icon *pClic
 		CD_APPLET_ADD_SEPARATOR (CD_APPLET_MY_MENU);
 		
 		CD_APPLET_ADD_SUB_MENU (D_("Hey, you there !"), pModuleSubMenu, CD_APPLET_MY_MENU);
-		if (myData.iSidAnimation != 0)
+		if (pAnimation->iNbFrames > 1 || pAnimation->iSpeed > 0)
 		{
 			CD_APPLET_ADD_IN_MENU(D_("Keep quiet"), _keep_quiet, pModuleSubMenu);
 		}
@@ -141,7 +143,7 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK (CairoDockModuleInstance *myApplet, Icon *pCl
 			myData.pDialog = NULL;
 		}
 		PenguinAnimation *pAnimation = penguin_get_current_animation ();
-		if (myData.iSidAnimation == 0 && myData.iSidRestartDelayed == 0)
+		if (pAnimation->iNbFrames <= 1 && pAnimation->iSpeed == 0)
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (myDock->icons);
 			if (pIcon != NULL)

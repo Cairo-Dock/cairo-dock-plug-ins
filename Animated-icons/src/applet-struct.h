@@ -23,6 +23,7 @@ typedef enum {
 typedef enum {
 	CD_ANIMATIONS_BOUNCE=0,
 	CD_ANIMATIONS_ROTATE,
+	CD_ANIMATIONS_BLINK,
 	CD_ANIMATIONS_PULSE,
 	CD_ANIMATIONS_WOBBLY,
 	CD_ANIMATIONS_WAVE,
@@ -58,8 +59,14 @@ struct _AppletConfig {
 	gdouble fWaveWidth;
 	gdouble fWaveAmplitude;
 	
-	gint iEffectsOnMouseOver[CD_ANIMATIONS_NB_EFFECTS];
-	gint iEffectsOnClick[CD_ANIMATIONS_NB_EFFECTS];
+	gint iPulseDuration;
+	gboolean bContinuePulse;
+	gdouble fPulseZoom;
+	gboolean bPulseSameShape;
+	
+	CDAnimationsEffects iEffectsOnMouseOver[CD_ANIMATIONS_NB_EFFECTS];
+	CDAnimationsEffects iEffectsOnClick[CAIRO_DOCK_NB_TYPES][CD_ANIMATIONS_NB_EFFECTS];
+	gint iNbRoundsOnClick[CAIRO_DOCK_NB_TYPES];
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -103,9 +110,14 @@ typedef struct _CDAnimationData {
 	GLfloat pCoords[2*(2*CD_WAVE_NB_POINTS+2)];
 	GLfloat pColors[4*(2*CD_WAVE_NB_POINTS+2)];
 	
-	int iCount;
-	gdouble fWidthFactor, fHeightFactor;
+	gdouble fPulseSpeed;
+	gdouble fPulseAlpha;
 	
+	gint iNumRound;
+	
+	gint iCount;
+	gdouble fWidthFactor, fHeightFactor;
+	gdouble fElevation;
 	} CDAnimationData;
 
 #endif

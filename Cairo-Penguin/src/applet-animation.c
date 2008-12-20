@@ -516,16 +516,16 @@ void penguin_start_animating (CairoDockModuleInstance *myApplet)
 	
 	if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
 	{
+		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
+		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_container, myApplet);
+		cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, myApplet);
 		if (myConfig.bFree)
 		{
 			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
 			cairo_dock_register_notification (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, CAIRO_DOCK_RUN_AFTER, myApplet);
-			cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
 		}
 		else
 		{
-			cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_container, myApplet);
-			cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, myApplet);
 			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
 		}
 	}
