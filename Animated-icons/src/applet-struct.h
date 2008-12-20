@@ -117,7 +117,10 @@ typedef struct _CDAnimationData {
 	
 	gint iCount;
 	gdouble fWidthFactor, fHeightFactor;
+	
+	gint iBounceCount;
 	gdouble fElevation;
+	gdouble fFlattenFactor;
 	} CDAnimationData;
 
 #endif
