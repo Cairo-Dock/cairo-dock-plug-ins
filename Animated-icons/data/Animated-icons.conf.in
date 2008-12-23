@@ -1,6 +1,5 @@
 #!en;@VERSION_ANIMATED_ICONS@
 
-
 #[gtk-preferences]
 [Global]
 
@@ -16,7 +15,7 @@ frame_lau =
 #r4[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on launcher :
 click launchers = 0
 
-#i[0;5] Number of time the animation will play :
+#i[1;5] Number of time the animation will play :
 nb rounds launchers = 1
 
 #F-[when clicking on an appli]
@@ -25,7 +24,7 @@ frame_appli =
 #r4[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on applis :
 click applis = 0
 
-#i[0;5] Number of time the animation will play :
+#i[1;5] Number of time the animation will play :
 nb rounds applis = 1
 
 #F-[when clicking on an applet]
@@ -34,8 +33,8 @@ frame_applet =
 #r4[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on applets :
 click applets = 0
 
-#i[0;5] Number of time the animation will play :
-nb rounds applet = 1
+#i[1;5] Number of time the animation will play :
+nb rounds applets = 1
 
 
 #[@animated_iconsdatadir@/icon-rotation.png]
@@ -142,3 +141,19 @@ zoom = 2
 #b Should the pulse follow the shape of the icon ?
 same shape = true
 
+#[@animated_iconsdatadir@/icon-bounce.png]
+[Bounce]
+
+#I[0;1000] Duration of the bounce :
+#{In ms.}
+duration = 800
+
+#b Repeat while icon is pointed ?
+continue = false
+
+#e[.2;1] When bouncing, resize the icon of :
+resize = .8
+
+#e[.2;1] How much the icon will flatten when hurting the ground :
+#{the smaller, the more it will flatten.}
+flatten = .4

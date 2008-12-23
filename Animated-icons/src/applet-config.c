@@ -88,6 +88,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bContinuePulse = CD_CONFIG_GET_BOOLEAN ("Pulse", "continue");
 	myConfig.fPulseZoom = CD_CONFIG_GET_DOUBLE ("Pulse", "zoom");
 	myConfig.bPulseSameShape = CD_CONFIG_GET_BOOLEAN ("Pulse", "same shape");
+	
+	myConfig.iBounceDuration = CD_CONFIG_GET_INTEGER ("Bounce", "duration");
+	myConfig.bContinueBounce = CD_CONFIG_GET_BOOLEAN ("Bounce", "continue");
+	myConfig.fBounceResize = CD_CONFIG_GET_DOUBLE ("Bounce", "resize");
+	myConfig.fBounceFlatten = CD_CONFIG_GET_DOUBLE ("Bounce", "flatten");
 CD_APPLET_GET_CONFIG_END
 
 

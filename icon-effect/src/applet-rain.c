@@ -21,7 +21,10 @@ CairoParticleSystem *cd_icon_effect_init_rain (Icon *pIcon, CairoDock *pDock, do
 		myData.iRainTexture = cd_icon_effect_load_rain_texture ();
 	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	CairoParticleSystem *pRainParticleSystem = cairo_dock_create_particle_system (myConfig.iNbRainParticles, myData.iRainTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
+	g_return_val_if_fail (pRainParticleSystem != NULL, NULL);
 	pRainParticleSystem->dt = dt;
+	if (myConfig.bRotateEffects && ! pDock->bDirectionUp)
+		pRainParticleSystem->bDirectionUp = FALSE;
 	
 	double a = myConfig.fRainParticleSpeed;
 	static double epsilon = 0.1;
@@ -48,9 +51,7 @@ CairoParticleSystem *cd_icon_effect_init_rain (Icon *pIcon, CairoDock *pDock, do
 		{
 			fBlend = g_random_double ();
 			p->color[0] = fBlend * myConfig.pRainColor1[0] + (1 - fBlend) * myConfig.pRainColor2[0];
-			//fBlend = g_random_double ();
 			p->color[1] = fBlend * myConfig.pRainColor1[1] + (1 - fBlend) * myConfig.pRainColor2[1];
-			//fBlend = g_random_double ();
 			p->color[2] = fBlend * myConfig.pRainColor1[2] + (1 - fBlend) * myConfig.pRainColor2[2];
 		}
 		p->color[3] = 0.;

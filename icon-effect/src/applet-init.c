@@ -29,7 +29,8 @@ CD_APPLET_INIT_BEGIN
 	if (! cairo_dock_reserve_data_slot (myApplet))
 		return;
 	
-	cairo_dock_register_notification (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_icon_effect_start, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_icon_effect_on_enter, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_icon_effect_on_click, CAIRO_DOCK_RUN_FIRST, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_icon_effect_update_icon, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_PRE_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_pre_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
@@ -43,7 +44,8 @@ static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
 }
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_icon_effect_start, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_icon_effect_on_enter, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_icon_effect_on_click, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_icon_effect_update_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_PRE_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_pre_render_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_render_icon, NULL);

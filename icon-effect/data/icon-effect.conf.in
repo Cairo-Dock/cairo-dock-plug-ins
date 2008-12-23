@@ -3,8 +3,32 @@
 #[gtk-preferences]
 [Global]
 
+#F-[when hovering an icon]
+frame_hov =
+
 #r4[Fire;Stars;Rain;Snow;Storm] Effects used :
 effects = 0
+
+#F-[when clicking on an launcher]
+frame_lau =
+
+#r4[Fire;Stars;Rain;Snow;Storm] Effects used on launcher :
+click launchers = 0
+
+#F-[when clicking on an appli]
+frame_appli =
+
+#r4[Fire;Stars;Rain;Snow;Storm] Effects used on applis :
+click applis = 0
+
+#F-[when clicking on an applet]
+frame_applet =
+
+#r4[Fire;Stars;Rain;Snow;Storm] Effects used on applets :
+click applets = 0
+
+#v
+sep =
 
 #b Draw in background ?
 background = false

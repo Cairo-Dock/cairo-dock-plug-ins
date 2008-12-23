@@ -27,7 +27,7 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
 	glEnable(GL_TEXTURE);
 	
-	glActiveTextureARB(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
+	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
 	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
 	glBindTexture(GL_TEXTURE_2D, myData.iChromeTexture);
 	glEnable(GL_TEXTURE_GEN_S);                                // oui je veux une generation en S
@@ -37,7 +37,7 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // pour les bouts de textures qui depassent.
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
-	glActiveTextureARB(GL_TEXTURE1); // Go pour le texturing 2eme passe
+	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
 	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR); // la je veux un mapping tout ce qu'il y a de plus classique
@@ -56,12 +56,12 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	glPolygonMode (GL_FRONT, GL_FILL);
 	glCallList (myData.iCallList[CD_CAPSULE_MESH]);
 	
-	glActiveTextureARB(GL_TEXTURE1);
+	glActiveTexture(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_TEXTURE_GEN_S);
 	glDisable(GL_TEXTURE_GEN_T);
 	glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.);
-	glActiveTextureARB(GL_TEXTURE0);
+	glActiveTexture(GL_TEXTURE0);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_TEXTURE_GEN_S);
 	glDisable(GL_TEXTURE_GEN_T);
@@ -84,7 +84,7 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
 	glEnable(GL_TEXTURE);
 	
-	glActiveTextureARB(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
+	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
 	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
 	glBindTexture(GL_TEXTURE_2D, myData.iChromeTexture);
 	glEnable(GL_TEXTURE_GEN_S);                                // oui je veux une generation en S
@@ -94,7 +94,7 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // pour les bouts de textures qui depassent.
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
-	glActiveTextureARB(GL_TEXTURE1); // Go pour le texturing 2eme passe
+	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
@@ -105,12 +105,12 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 	glPolygonMode (GL_FRONT, GL_FILL);
 	glCallList (myData.iCallList[CD_CUBE_MESH]);
 	
-	glActiveTextureARB(GL_TEXTURE1);
+	glActiveTexture(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_TEXTURE_GEN_S);
 	glDisable(GL_TEXTURE_GEN_T);
 	glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.);
-	glActiveTextureARB(GL_TEXTURE0);
+	glActiveTexture(GL_TEXTURE0);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_TEXTURE_GEN_S);
 	glDisable(GL_TEXTURE_GEN_T);
@@ -128,7 +128,7 @@ void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisi
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
 	glEnable(GL_TEXTURE);
 	
-	glActiveTextureARB(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
+	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
 	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
 	glBindTexture(GL_TEXTURE_2D, myData.iChromeTexture);
 	glEnable(GL_TEXTURE_GEN_S);                                // oui je veux une generation en S
@@ -138,10 +138,9 @@ void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisi
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // pour les bouts de textures qui depassent.
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
-	glActiveTextureARB(GL_TEXTURE1); // Go pour le texturing 2eme passe
+	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
-	
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);
 	//glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_MODULATE);
@@ -150,12 +149,12 @@ void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisi
 	glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 	glCallList (myData.iCallList[CD_SQUARE_MESH]);
 	
-	glActiveTextureARB(GL_TEXTURE1);
+	glActiveTexture(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_TEXTURE_GEN_S);
 	glDisable(GL_TEXTURE_GEN_T);
 	glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.);
-	glActiveTextureARB(GL_TEXTURE0);
+	glActiveTexture(GL_TEXTURE0);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_TEXTURE_GEN_S);
 	glDisable(GL_TEXTURE_GEN_T);
@@ -189,7 +188,16 @@ static void _draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData 
 }
 void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
 {
-	glColor4fv(myConfig.pMeshColor);  // ici on peut donner une teinte aux reflets chrome.
+	double fAlpha;
+	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
+	{
+		fAlpha = pIcon->fAlpha;
+		pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
+		glColor4f (1., 1., 1., pIcon->fAlpha);
+	}
+	else
+		glColor4fv(myConfig.pMeshColor);  // ici on peut donner une teinte aux reflets chrome.
+	
 	_draw_rotating_icon (pIcon, pDock, pData, 1.);
 	
 	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
@@ -198,6 +206,7 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 		double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
 		_draw_rotating_icon (pIcon, pDock, pData, fScaleFactor);
 	}
+	pIcon->fAlpha = fAlpha;
 }
 
 void cd_animations_draw_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)

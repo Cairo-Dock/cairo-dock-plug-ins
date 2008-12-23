@@ -21,6 +21,7 @@ CairoParticleSystem *cd_icon_effect_init_stars (Icon *pIcon, CairoDock *pDock, d
 		myData.iStarTexture = cd_icon_effect_load_star_texture ();
 	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	CairoParticleSystem *pStarParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStarParticles, myData.iStarTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
+	g_return_val_if_fail (pStarParticleSystem != NULL, NULL);
 	pStarParticleSystem->dt = dt;
 	
 	static double a = .4;
@@ -55,9 +56,7 @@ CairoParticleSystem *cd_icon_effect_init_stars (Icon *pIcon, CairoDock *pDock, d
 		{
 			fBlend = g_random_double ();
 			p->color[0] = fBlend * myConfig.pStarColor1[0] + (1 - fBlend) * myConfig.pStarColor2[0];
-			//fBlend = g_random_double ();
 			p->color[1] = fBlend * myConfig.pStarColor1[1] + (1 - fBlend) * myConfig.pStarColor2[1];
-			//fBlend = g_random_double ();
 			p->color[2] = fBlend * myConfig.pStarColor1[2] + (1 - fBlend) * myConfig.pStarColor2[2];
 		}
 		p->color[3] = 0.;  // on va gerer nous-mêmes la transparence.

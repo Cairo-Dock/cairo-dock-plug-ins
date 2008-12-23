@@ -14,11 +14,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-storm.h"
 
-static double ay = .02;
-static double ar = .1;
-static double ad = .5;
-static double at = .6;
-static double n = 2;
+static double ar = .1;  // variation du rayon des particules.
+static double ad = .5;  // dispersion.
+static double at = .6;  // transparence initiale des particules.
+static double n = 2;  // nbre de tours.
 
 CairoParticleSystem *cd_icon_effect_init_storm (Icon *pIcon, CairoDock *pDock, double dt)
 {
@@ -26,7 +25,10 @@ CairoParticleSystem *cd_icon_effect_init_storm (Icon *pIcon, CairoDock *pDock, d
 		myData.iFireTexture = cd_icon_effect_load_storm_texture ();
 	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	CairoParticleSystem *pStormParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStormParticles, myData.iFireTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
+	g_return_val_if_fail (pStormParticleSystem != NULL, NULL);
 	pStormParticleSystem->dt = dt;
+	if (myConfig.bRotateEffects && ! pDock->bDirectionUp)
+		pStormParticleSystem->bDirectionUp = FALSE;
 	
 	static double epsilon = 0.1;
 	double r = myConfig.iStormParticleSize;
@@ -52,9 +54,7 @@ CairoParticleSystem *cd_icon_effect_init_storm (Icon *pIcon, CairoDock *pDock, d
 		
 		fBlend = g_random_double ();
 		p->color[0] = fBlend * myConfig.pStormColor1[0] + (1 - fBlend) * myConfig.pStormColor2[0];
-		//fBlend = g_random_double ();
 		p->color[1] = fBlend * myConfig.pStormColor1[1] + (1 - fBlend) * myConfig.pStormColor2[1];
-		//fBlend = g_random_double ();
 		p->color[2] = fBlend * myConfig.pStormColor1[2] + (1 - fBlend) * myConfig.pStormColor2[2];
 		p->color[3] = at;
 		

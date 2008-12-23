@@ -22,7 +22,7 @@ typedef enum {
 	CD_ICON_EFFECT_SNOW,
 	CD_ICON_EFFECT_SAND,
 	CD_ICON_EFFECT_NB_EFFECTS
-	} CDIconEffectType;
+	} CDIconEffects;
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
@@ -67,7 +67,8 @@ struct _AppletConfig {
 	gint iStormParticleSize;
 	
 	gboolean bBackGround;
-	gint iEffectsUsed[CD_ICON_EFFECT_NB_EFFECTS];
+	CDIconEffects iEffectsUsed[CD_ICON_EFFECT_NB_EFFECTS];
+	CDIconEffects iEffectsOnClick[CAIRO_DOCK_NB_TYPES][CD_ICON_EFFECT_NB_EFFECTS];
 	gboolean bRotateEffects;
 	} ;
 

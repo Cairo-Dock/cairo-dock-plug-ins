@@ -21,7 +21,10 @@ CairoParticleSystem *cd_icon_effect_init_snow (Icon *pIcon, CairoDock *pDock, do
 		myData.iSnowTexture = cd_icon_effect_load_snow_texture ();
 	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	CairoParticleSystem *pSnowParticleSystem = cairo_dock_create_particle_system (myConfig.iNbSnowParticles, myData.iSnowTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
+	g_return_val_if_fail (pSnowParticleSystem != NULL, NULL);
 	pSnowParticleSystem->dt = dt;
+	if (myConfig.bRotateEffects && ! pDock->bDirectionUp)
+		pSnowParticleSystem->bDirectionUp = FALSE;
 	
 	double a = myConfig.fSnowParticleSpeed;
 	static double epsilon = 0.1;
@@ -48,9 +51,7 @@ CairoParticleSystem *cd_icon_effect_init_snow (Icon *pIcon, CairoDock *pDock, do
 		{
 			fBlend = g_random_double ();
 			p->color[0] = fBlend * myConfig.pSnowColor1[0] + (1 - fBlend) * myConfig.pSnowColor2[0];
-			//fBlend = g_random_double ();
 			p->color[1] = fBlend * myConfig.pSnowColor1[1] + (1 - fBlend) * myConfig.pSnowColor2[1];
-			//fBlend = g_random_double ();
 			p->color[2] = fBlend * myConfig.pSnowColor1[2] + (1 - fBlend) * myConfig.pSnowColor2[2];
 		}
 		p->color[3] = 0.;

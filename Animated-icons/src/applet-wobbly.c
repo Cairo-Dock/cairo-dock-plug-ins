@@ -83,8 +83,7 @@ void cd_animations_init_wobbly (CDAnimationData *pData,gboolean  bUseOpenGL)
 	}
 	else
 	{
-		pData->iCount = 20;
-		pData->fWidthFactor = 1.;
+		pData->iCount = 20-1;
 	}
 	pData->bIsWobblying = TRUE;
 }
@@ -182,22 +181,20 @@ gboolean cd_animations_update_wobbly (CDAnimationData *pData)
 	return bContinue;
 }
 
-gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
+gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, gboolean bWillContinue)
 {
-	int iNbIterInOneRound = 20;  // 20*3
+	int iNbIterInOneRound = 20;
 	int c = pData->iCount;
 	int n = iNbIterInOneRound / 4;  // nbre d'iteration pour 1 etirement/retrecissement.
 	int k = c%n;
 	
-	double fDamageWidthFactor = pData->fWidthFactor;
-	double fDamageHeightFactor = pData->fHeightFactor;
+	double fDamageWidthFactor = (c == iNbIterInOneRound-1 ? 1. : pData->fWidthFactor);
+	double fDamageHeightFactor = (c == iNbIterInOneRound-1 ? 1. : pData->fHeightFactor);
 	double fMinSize = .3, fMaxSize = MIN (1.75, pDock->iCurrentHeight / pIcon->fWidth);  // au plus 1.75, soit 3/8 de l'icone qui deborde de part et d'autre de son emplacement. c'est suffisamment faible pour ne pas trop empieter sur ses voisines.
 	
 	double fSizeFactor = ((c/n) & 1 ? 1. / (n - k) : 1. / (1 + k));
 	//double fSizeFactor = ((c/n) & 1 ? 1.*(k+1)/n : 1.*(n-k)/n);
 	fSizeFactor = (fMinSize - fMaxSize) * fSizeFactor + fMaxSize;
-	if (fSizeFactor == 0)
-		fSizeFactor = .01;
 	
 	if ((c/(2*n)) & 1)
 	{
@@ -205,18 +202,19 @@ gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAni
 		pData->fHeightFactor = fMinSize;
 		//g_print ("%d) width <- %.2f ; height <- %.2f (%d)\n", c, pData->fWidthFactor, pData->fHeightFactor, k);
 	}
-	else
+	else if (c != 0 || bWillContinue)
 	{
 		pData->fHeightFactor = fSizeFactor;
 		pData->fWidthFactor = fMinSize;
 		//g_print ("%d) height <- %.2f ; width <- %.2f (%d)\n", c, pData->fHeightFactor, pData->fWidthFactor, k);
 	}
-	pData->iCount --;
-	
-	/*if (pDock->bHorizontalDock)
-		pIcon->fDeltaYReflection = pIcon->fHeight * (pData->fHeightFactor * pIcon->fHeightFactor - 1) / 2;
 	else
-		pIcon->fDeltaYReflection = pIcon->fWidth * (pData->fWidthFactor * pIcon->fWidthFactor - 1) / 2;*/
+	{
+		pData->fHeightFactor = 1.;
+		pData->fWidthFactor = 1.;
+	}
+	pData->iCount --;
+	g_print (">>> %d : %.2f x %.2f\n", c, pData->fWidthFactor, pData->fHeightFactor);
 	
 	if (! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
 	{
@@ -230,7 +228,7 @@ gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAni
 		pIcon->fWidthFactor /= fDamageWidthFactor;
 		pIcon->fHeightFactor /= fDamageHeightFactor;
 	}
-	return (pData->iCount > 0);
+	return (pData->iCount >= 0);
 }
 
 

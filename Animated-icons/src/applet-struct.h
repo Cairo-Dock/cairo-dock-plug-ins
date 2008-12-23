@@ -64,6 +64,11 @@ struct _AppletConfig {
 	gdouble fPulseZoom;
 	gboolean bPulseSameShape;
 	
+	gint iBounceDuration;
+	gboolean bContinueBounce;
+	gdouble fBounceResize;
+	gdouble fBounceFlatten;
+	
 	CDAnimationsEffects iEffectsOnMouseOver[CD_ANIMATIONS_NB_EFFECTS];
 	CDAnimationsEffects iEffectsOnClick[CAIRO_DOCK_NB_TYPES][CD_ANIMATIONS_NB_EFFECTS];
 	gint iNbRoundsOnClick[CAIRO_DOCK_NB_TYPES];
@@ -118,9 +123,11 @@ typedef struct _CDAnimationData {
 	gint iCount;
 	gdouble fWidthFactor, fHeightFactor;
 	
+	gboolean bIsBouncing;
 	gint iBounceCount;
 	gdouble fElevation;
 	gdouble fFlattenFactor;
+	gdouble fResizeFactor;
 	} CDAnimationData;
 
 #endif

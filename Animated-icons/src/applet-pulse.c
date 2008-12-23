@@ -30,8 +30,6 @@ gboolean cd_animations_update_pulse (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	if (pData->fPulseAlpha < 0)
 		pData->fPulseAlpha = 0;
 	
-	pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
-	
 	if (! bUseOpenGL)
 	{
 		double fScaleFactor = 1 + (1 - pData->fPulseAlpha);
@@ -70,6 +68,8 @@ void cd_animations_draw_pulse_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDa
 	glDisable (GL_BLEND);
 	glDisable (GL_TEXTURE_2D);
 	glPopMatrix ();
+	
+	pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
 }
 
 void cd_animations_draw_pulse_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
@@ -88,4 +88,6 @@ void cd_animations_draw_pulse_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0.0, 0.0);
 	cairo_paint_with_alpha (pCairoContext, pData->fPulseAlpha * pIcon->fAlpha);
 	cairo_restore (pCairoContext);
+	
+	pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
 }
