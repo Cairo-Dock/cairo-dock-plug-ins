@@ -9,7 +9,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 void iconWitness(int animationLenght)
 {
-	CD_APPLET_ANIMATE_MY_ICON (1, animationLenght);
+	CD_APPLET_ANIMATE_MY_ICON ("rotate", animationLenght);
 }
 
 void update_icon(void)
@@ -189,7 +189,7 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 	}
 	if (myConfig.batteryWitness) 
 	{
-		CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, 3);
+		CD_APPLET_ANIMATE_MY_ICON ("rotate", 3);
 	}
 	
 	g_free (hms);

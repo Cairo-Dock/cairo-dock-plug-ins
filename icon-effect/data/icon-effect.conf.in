@@ -34,7 +34,7 @@ sep =
 background = false
 
 #b Rotate effects with dock ?
-rotate = true
+rotate = false
 
 #[@pkgdatadir@/icon-fire.svg]
 [Fire]

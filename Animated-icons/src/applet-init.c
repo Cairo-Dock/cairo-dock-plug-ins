@@ -29,10 +29,19 @@ CD_APPLET_INIT_BEGIN
 	
 	cairo_dock_register_notification (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_animations_on_enter, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_animations_on_click, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_REQUEST_ICON_ANIMATION, (CairoDockNotificationFunc) cd_animations_on_request, CAIRO_DOCK_RUN_FIRST, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_animations_update_icon , CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_render_icon, CAIRO_DOCK_RUN_FIRST, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_post_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_animations_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
+	
+	myData.iAnimationID[CD_ANIMATIONS_BOUNCE] = cairo_dock_register_animation ("bounce");
+	myData.iAnimationID[CD_ANIMATIONS_ROTATE] = cairo_dock_register_animation ("rotate");
+	myData.iAnimationID[CD_ANIMATIONS_BLINK] = cairo_dock_register_animation ("blink");
+	myData.iAnimationID[CD_ANIMATIONS_PULSE] = cairo_dock_register_animation ("pulse");
+	myData.iAnimationID[CD_ANIMATIONS_WOBBLY] = cairo_dock_register_animation ("wobbly");
+	myData.iAnimationID[CD_ANIMATIONS_WAVE] = cairo_dock_register_animation ("wave");
+	myData.iAnimationID[CD_ANIMATIONS_SPOT] = cairo_dock_register_animation ("spot");
 CD_APPLET_INIT_END
 
 static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
@@ -43,15 +52,24 @@ static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
 CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_animations_on_enter, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_animations_on_click, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_REQUEST_ICON_ANIMATION, (CairoDockNotificationFunc) cd_animations_on_request, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_animations_update_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_render_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_post_render_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_animations_free_data, NULL);
 	
+	cairo_dock_unregister_animation ("bounce");
+	cairo_dock_unregister_animation ("rotate");
+	cairo_dock_unregister_animation ("blink");
+	cairo_dock_unregister_animation ("pulse");
+	cairo_dock_unregister_animation ("wobbly");
+	cairo_dock_unregister_animation ("wave");
+	cairo_dock_unregister_animation ("spot");
+	
 	cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _free_data_on_icon, NULL);
 CD_APPLET_STOP_END
-
-
+   
+   
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.

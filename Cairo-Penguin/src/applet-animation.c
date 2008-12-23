@@ -566,9 +566,9 @@ static gboolean _penguin_restart_delayed (CairoDockModuleInstance *myApplet)
 		myData.bHasBeenStarted = TRUE;
 		cd_message ("le pingouin demarre pour la 1ere fois");
 		
-		CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+		cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK, CAIRO_DOCK_RUN_FIRST, myApplet);
+		cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK, CAIRO_DOCK_RUN_FIRST, myApplet);
 		CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-		CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 		
 		if (myConfig.bFree)  // attention : c'est un hack moyen; il faudrait pouvoir indiquer a cairo-dock de ne pas inserer notre icone...
 		{

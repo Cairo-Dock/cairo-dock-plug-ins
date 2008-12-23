@@ -53,7 +53,8 @@ gboolean CD_APPLET_ON_CLICK (CairoDockModuleInstance *myApplet, Icon *pClickedIc
 			iNewAnimation = penguin_choose_next_animation (myApplet, pAnimation);
 		penguin_set_new_animation (myApplet, iNewAnimation);
 		
-		pClickedIcon->iCount = 0;
+		cairo_dock_notify (CAIRO_DOCK_STOP_ICON, pClickedIcon);
+		pClickedIcon->iAnimationState = CAIRO_DOCK_STATE_REST;
 CD_APPLET_ON_CLICK_END
 
 
@@ -161,8 +162,7 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK (CairoDockModuleInstance *myApplet, Icon *pCl
 			}
 			else if (iRandom == 1 && ! myConfig.bFree)
 			{
-				cairo_dock_arm_animation (myIcon, CAIRO_DOCK_BOUNCE, 3);
-				cairo_dock_start_animation (myIcon, myDock);
+				CD_APPLET_ANIMATE_MY_ICON ("bounce", 3);
 				myData.pDialog = cairo_dock_show_temporary_dialog ("Olllééééé !", myIcon, myContainer, 2500);
 			}
 			else

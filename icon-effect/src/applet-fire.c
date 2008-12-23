@@ -23,7 +23,7 @@ CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, do
 	CairoParticleSystem *pFireParticleSystem = cairo_dock_create_particle_system (myConfig.iNbFireParticles, myData.iFireTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pFireParticleSystem != NULL, NULL);
 	pFireParticleSystem->dt = dt;
-	if (myConfig.bRotateEffects && ! pDock->bDirectionUp)
+	if (myConfig.bRotateEffects && ! pDock->bDirectionUp && pDock->bHorizontalDock)
 		pFireParticleSystem->bDirectionUp = FALSE;
 	
 	double a = myConfig.fFireParticleSpeed;

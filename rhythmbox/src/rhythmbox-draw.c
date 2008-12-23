@@ -41,7 +41,7 @@ void rhythmbox_add_buttons_to_desklet (void)
 
 void rhythmbox_iconWitness(int animationLength)
 {
-	CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength);
+	CD_APPLET_ANIMATE_MY_ICON ("rotate", animationLength);
 }
 
 gboolean _rhythmbox_check_cover_is_present (gpointer data)

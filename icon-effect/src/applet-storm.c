@@ -27,7 +27,7 @@ CairoParticleSystem *cd_icon_effect_init_storm (Icon *pIcon, CairoDock *pDock, d
 	CairoParticleSystem *pStormParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStormParticles, myData.iFireTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pStormParticleSystem != NULL, NULL);
 	pStormParticleSystem->dt = dt;
-	if (myConfig.bRotateEffects && ! pDock->bDirectionUp)
+	if (myConfig.bRotateEffects && ! pDock->bDirectionUp && pDock->bHorizontalDock)
 		pStormParticleSystem->bDirectionUp = FALSE;
 	
 	static double epsilon = 0.1;
@@ -56,7 +56,7 @@ CairoParticleSystem *cd_icon_effect_init_storm (Icon *pIcon, CairoDock *pDock, d
 		p->color[0] = fBlend * myConfig.pStormColor1[0] + (1 - fBlend) * myConfig.pStormColor2[0];
 		p->color[1] = fBlend * myConfig.pStormColor1[1] + (1 - fBlend) * myConfig.pStormColor2[1];
 		p->color[2] = fBlend * myConfig.pStormColor1[2] + (1 - fBlend) * myConfig.pStormColor2[2];
-		p->color[3] = at;
+		p->color[3] = (p->y < 0 ? 0. : at);
 		
 		p->fOscillation = 0.;
 		p->fOmega = 0.;
@@ -83,7 +83,7 @@ gboolean cd_icon_effect_update_storm_system (CairoParticleSystem *pParticleSyste
 		p->z = (1 + p->vx) * cos (p->y * 2 * n * G_PI);
 		p->fSizeFactor = 1 - (1 - p->z)/2. * .33;  // 33% de variation.
 		//p->color[3] = sqrt (MAX (0, p->y));
-		p->color[3] = at * p->iLife / p->iInitialLife;
+		p->color[3] = (p->y < 0 ? 0. : at * (0.1 + 1.*p->iLife / p->iInitialLife) / 1.1);  // on finit a 0.1 en haut, sinon on voit pas bien la derniere boucle.
 		
 		if (p->iLife > 0)  // p->y > 1
 		{

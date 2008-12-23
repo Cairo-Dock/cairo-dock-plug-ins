@@ -77,6 +77,8 @@ static void _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *p
 gboolean cd_icon_effect_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	_cd_icon_effect_start (pUserData, pIcon, pDock, myConfig.iEffectsUsed, bStartAnimation);
+	if (bStartAnimation)
+		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -84,14 +86,56 @@ gboolean cd_icon_effect_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pD
 {
 	if (! CAIRO_DOCK_IS_DOCK (pDock))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	gboolean bStartAnimation = FALSE;
+	
 	CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
 	if (iType == CAIRO_DOCK_APPLI && CAIRO_DOCK_IS_LAUNCHER (pIcon) && iButtonState & GDK_SHIFT_MASK)
 		iType = CAIRO_DOCK_LAUNCHER;
+	
+	gboolean bStartAnimation = FALSE;
 	_cd_icon_effect_start (pUserData, pIcon, pDock, myConfig.iEffectsOnClick[iType], &bStartAnimation);
-	/// mark icon...
+	if (bStartAnimation)
+		cairo_dock_mark_icon_as_clicked (pIcon);
+	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
+
+gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *pDock, const gchar *cAnimation, gint iNbRounds)
+{
+	if (! CAIRO_DOCK_IS_DOCK (pDock))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	CDIconEffects anim[2] = {0, -1};
+	
+	if (strcmp (cAnimation, "default") == 0)
+	{
+		CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
+		anim[0] = myConfig.iEffectsOnClick[iType][0];
+	}
+	else
+	{
+		int iAnimationID = cairo_dock_get_animation_id (cAnimation);
+		if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_FIRE])
+			anim[0] = CD_ICON_EFFECT_FIRE;
+		else if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_STARS])
+			anim[0] = CD_ICON_EFFECT_STARS;
+		else if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_RAIN])
+			anim[0] = CD_ICON_EFFECT_RAIN;
+		else if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_SNOW])
+			anim[0] = CD_ICON_EFFECT_SNOW;
+		else if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_SAND])
+			anim[0] = CD_ICON_EFFECT_SAND;
+		else
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
+	
+	gboolean bStartAnimation = FALSE;
+	_cd_icon_effect_start (pUserData, pIcon, pDock, anim, &bStartAnimation);
+	if (bStartAnimation)
+		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
+	
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
 
 static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData)
 {

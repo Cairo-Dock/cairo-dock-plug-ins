@@ -92,7 +92,7 @@ void send_mouse_click_to_cd( CairoDockModuleInstance *myApplet, GdkEventButton* 
 {
 	if( myDock )
 	{
-		on_button_press2(myData.pGtkMozEmbed, pButtonEvent, myDock );
+		cairo_dock_on_button_press (myData.pGtkMozEmbed, pButtonEvent, myDock );
 	}
 	else if( myDesklet )
 	{

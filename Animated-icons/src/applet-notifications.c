@@ -23,7 +23,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 
 
-static void cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, CDAnimationsEffects *pAnimations, gboolean *bStartAnimation)
+static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, CDAnimationsEffects *pAnimations, gboolean *bStartAnimation)
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
@@ -42,6 +42,7 @@ static void cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 	{
 		switch (pAnimations[i])
 		{
+			g_print ("%s (%d)\n", __func__, pAnimations[i]);
 			case CD_ANIMATIONS_BOUNCE :
 				cd_animations_init_bounce (pDock, pData, dt, bUseOpenGL);
 				*bStartAnimation = TRUE;
@@ -114,7 +115,14 @@ gboolean cd_animations_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 {
 	if (pIcon->bStatic || ! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	cd_animations_start (pUserData, pIcon, pDock, myConfig.iEffectsOnMouseOver, bStartAnimation);
+	_cd_animations_start (pUserData, pIcon, pDock, myConfig.iEffectsOnMouseOver, bStartAnimation);
+	
+	if (bStartAnimation)
+	{
+		CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+		pData->iNumRound = 0;
+		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
+	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -122,18 +130,63 @@ gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 {
 	if (! CAIRO_DOCK_IS_DOCK (pDock))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	gboolean bStartAnimation = FALSE;
+	
 	CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
 	if (iType == CAIRO_DOCK_APPLI && CAIRO_DOCK_IS_LAUNCHER (pIcon) && iButtonState & GDK_SHIFT_MASK)
 		iType = CAIRO_DOCK_LAUNCHER;
-	cd_animations_start (pUserData, pIcon, pDock, myConfig.iEffectsOnClick[iType], &bStartAnimation);
+	
+	gboolean bStartAnimation = FALSE;
+	_cd_animations_start (pUserData, pIcon, pDock, myConfig.iEffectsOnClick[iType], &bStartAnimation);
 	if (bStartAnimation)
 	{
 		CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 		pData->iNumRound = myConfig.iNbRoundsOnClick[iType] - 1;
-		//pData->iCount *= myConfig.iNbRoundsOnClick[iType];
+		cairo_dock_mark_icon_as_clicked (pIcon);
 	}
-	/// mark icon...
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+gboolean cd_animations_on_request (gpointer pUserData, Icon *pIcon, CairoDock *pDock, const gchar *cAnimation, gint iNbRounds)
+{
+	if (! CAIRO_DOCK_IS_DOCK (pDock) || cAnimation == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	CDAnimationsEffects anim[2] = {0, -1};
+	if (strcmp (cAnimation, "default") == 0)
+	{
+		CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
+		anim[0] =  myConfig.iEffectsOnClick[iType][0];
+	}
+	else
+	{
+		int iAnimationID = cairo_dock_get_animation_id (cAnimation);
+		if (iAnimationID == myData.iAnimationID[CD_ANIMATIONS_BOUNCE])
+			anim[0] = CD_ANIMATIONS_BOUNCE;
+		else if (iAnimationID == myData.iAnimationID[CD_ANIMATIONS_ROTATE])
+			anim[0] = CD_ANIMATIONS_ROTATE;
+		else if (iAnimationID == myData.iAnimationID[CD_ANIMATIONS_BLINK])
+			anim[0] = CD_ANIMATIONS_BLINK;
+		else if (iAnimationID == myData.iAnimationID[CD_ANIMATIONS_PULSE])
+			anim[0] = CD_ANIMATIONS_PULSE;
+		else if (iAnimationID == myData.iAnimationID[CD_ANIMATIONS_WOBBLY])
+			anim[0] = CD_ANIMATIONS_WOBBLY;
+		else if (iAnimationID == myData.iAnimationID[CD_ANIMATIONS_WAVE])
+			anim[0] = CD_ANIMATIONS_WAVE;
+		else if (iAnimationID == myData.iAnimationID[CD_ANIMATIONS_SPOT])
+			anim[0] = CD_ANIMATIONS_SPOT;
+		else
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
+	
+	gboolean bStartAnimation = FALSE;
+	_cd_animations_start (pUserData, pIcon, pDock, anim, &bStartAnimation);
+	
+	if (bStartAnimation)
+	{
+		CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+		pData->iNumRound = iNbRounds - 1;
+		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
+	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -265,7 +318,7 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 }
 
 
-#define _will_continue(bRepeat) ((pIcon->iAnimationState == CAIRO_DOCK_STATE_CLICKED && pData->iNumRound > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->bInside))
+#define _will_continue(bRepeat) ((pData->iNumRound > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->bInside))
 gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bContinueAnimation)
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);

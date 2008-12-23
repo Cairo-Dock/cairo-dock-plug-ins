@@ -21,6 +21,8 @@ void cd_animations_init_bounce (CairoDock *pDock, CDAnimationData *pData, double
 	pData->iBounceCount = myConfig.iBounceDuration / dt - 1 + m;
 	if (pData->fResizeFactor == 0)
 		pData->fResizeFactor = 1.;
+	if (pData->fFlattenFactor == 0)
+		pData->fFlattenFactor = 1.;
 	pData->bIsBouncing = TRUE;
 }
 

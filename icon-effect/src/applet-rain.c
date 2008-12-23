@@ -23,7 +23,7 @@ CairoParticleSystem *cd_icon_effect_init_rain (Icon *pIcon, CairoDock *pDock, do
 	CairoParticleSystem *pRainParticleSystem = cairo_dock_create_particle_system (myConfig.iNbRainParticles, myData.iRainTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pRainParticleSystem != NULL, NULL);
 	pRainParticleSystem->dt = dt;
-	if (myConfig.bRotateEffects && ! pDock->bDirectionUp)
+	if (myConfig.bRotateEffects && ! pDock->bDirectionUp && pDock->bHorizontalDock)
 		pRainParticleSystem->bDirectionUp = FALSE;
 	
 	double a = myConfig.fRainParticleSpeed;

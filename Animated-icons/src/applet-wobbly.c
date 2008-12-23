@@ -84,6 +84,10 @@ void cd_animations_init_wobbly (CDAnimationData *pData,gboolean  bUseOpenGL)
 	else
 	{
 		pData->iCount = 20-1;
+		if (pData->fWidthFactor == 0)
+			pData->fWidthFactor = 1.;
+		if (pData->fHeightFactor == 0)
+			pData->fHeightFactor = 1.;
 	}
 	pData->bIsWobblying = TRUE;
 }
@@ -214,7 +218,6 @@ gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAni
 		pData->fWidthFactor = 1.;
 	}
 	pData->iCount --;
-	g_print (">>> %d : %.2f x %.2f\n", c, pData->fWidthFactor, pData->fHeightFactor);
 	
 	if (! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
 	{

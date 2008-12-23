@@ -162,7 +162,7 @@ void cd_xmms_new_song_playing(CairoDockModuleInstance *myApplet) {
 //Fonction qui anime l'icone au changement de musique
 void cd_xmms_animate_icon(CairoDockModuleInstance *myApplet, int animationLength) {
 	if (myDock) {
-		CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength);
+		CD_APPLET_ANIMATE_MY_ICON ("rotate", animationLength);
 	}
 }
 

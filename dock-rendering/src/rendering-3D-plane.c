@@ -678,27 +678,20 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * myBackground.iDockRadius > 0 ? myBackground.iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
 	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
 	
-	int sens;
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
 	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
 	
-	if (!pDock->bDirectionUp)
-	{
-		sens = 1;
-		fDockOffsetY = (pDock->bHorizontalDock ? pDock->iCurrentHeight - 1.5 * fLineWidth : pDock->iDecorationsHeight + 1.5 * fLineWidth);
-	}
+	if ((pDock->bHorizontalDock && ! pDock->bDirectionUp) || (! pDock->bHorizontalDock && pDock->bDirectionUp))
+		fDockOffsetY = pDock->iCurrentHeight - .5 * fLineWidth;
 	else
-	{
-		sens = -1;
-		fDockOffsetY = (pDock->bHorizontalDock ? pDock->iDecorationsHeight + 1.5 * fLineWidth : pDock->iCurrentHeight - 1.5 * fLineWidth);
-	}
+		fDockOffsetY = pDock->iDecorationsHeight + 1.5 * fLineWidth;
 	
 	double fFrameHeight = pDock->iDecorationsHeight + fLineWidth/* - 2 * fRadius*/;
 	double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
 	double fDeltaXTrapeze;
 	int iNbVertex;
-	GLfloat *pVertexTab = cairo_dock_generate_trapeze_path (fDockWidth, fFrameHeight, fRadius, myBackground.bRoundedBottomCorner, fInclinationOnHorizon, &fDeltaXTrapeze, &iNbVertex);
+	GLfloat *pVertexTab = cairo_dock_generate_trapeze_path (fDockWidth - (myBackground.bRoundedBottomCorner ? 2*fLineWidth : 0), fFrameHeight, fRadius, myBackground.bRoundedBottomCorner, fInclinationOnHorizon, &fDeltaXTrapeze, &iNbVertex);
 	
 	if (! pDock->bHorizontalDock)
 		fDockOffsetX = pDock->iCurrentWidth - fDockOffsetX + fDeltaXTrapeze;

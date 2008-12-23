@@ -31,10 +31,17 @@ CD_APPLET_INIT_BEGIN
 	
 	cairo_dock_register_notification (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_icon_effect_on_enter, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_icon_effect_on_click, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_REQUEST_ICON_ANIMATION, (CairoDockNotificationFunc) cd_icon_effect_on_request, CAIRO_DOCK_RUN_FIRST, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_icon_effect_update_icon, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_PRE_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_pre_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_icon_effect_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
+	
+	myData.iAnimationID[CD_ICON_EFFECT_FIRE] = cairo_dock_register_animation ("fire");
+	myData.iAnimationID[CD_ICON_EFFECT_STARS] = cairo_dock_register_animation ("stars");
+	myData.iAnimationID[CD_ICON_EFFECT_RAIN] = cairo_dock_register_animation ("rain");
+	myData.iAnimationID[CD_ICON_EFFECT_SNOW] = cairo_dock_register_animation ("snow");
+	myData.iAnimationID[CD_ICON_EFFECT_SAND] = cairo_dock_register_animation ("storm");
 CD_APPLET_INIT_END
 
 
@@ -46,10 +53,17 @@ static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
 CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_icon_effect_on_enter, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_icon_effect_on_click, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_REQUEST_ICON_ANIMATION, (CairoDockNotificationFunc) cd_icon_effect_on_request, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_icon_effect_update_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_PRE_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_pre_render_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_render_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_icon_effect_free_data, NULL);
+	
+	cairo_dock_unregister_animation ("fire");
+	cairo_dock_unregister_animation ("stars");
+	cairo_dock_unregister_animation ("rain");
+	cairo_dock_unregister_animation ("snow");
+	cairo_dock_unregister_animation ("storm");
 	
 	cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _free_data_on_icon, NULL);
 CD_APPLET_STOP_END

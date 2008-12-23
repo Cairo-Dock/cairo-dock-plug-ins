@@ -188,10 +188,9 @@ static void _draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData 
 }
 void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
 {
-	double fAlpha;
+	double fAlpha = pIcon->fAlpha;
 	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
 	{
-		fAlpha = pIcon->fAlpha;
 		pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
 		glColor4f (1., 1., 1., pIcon->fAlpha);
 	}

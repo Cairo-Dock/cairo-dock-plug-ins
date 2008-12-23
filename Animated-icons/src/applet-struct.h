@@ -82,6 +82,7 @@ struct _AppletData {
 	GLuint iHaloTexture;
 	GLuint iSpotFrontTexture;
 	GLuint iRaysTexture;
+	gint iAnimationID[CD_ANIMATIONS_NB_EFFECTS];
 	} ;
 
 typedef struct _CDAnimationGridNode {

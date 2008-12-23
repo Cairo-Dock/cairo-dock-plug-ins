@@ -78,6 +78,7 @@ struct _AppletData {
 	GLuint iStarTexture;
 	GLuint iSnowTexture;
 	GLuint iRainTexture;
+	gint iAnimationID[CD_ICON_EFFECT_NB_EFFECTS];
 	} ;
 
 typedef struct _CDAnimationData {
