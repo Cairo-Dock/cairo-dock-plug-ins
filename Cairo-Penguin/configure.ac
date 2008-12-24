@@ -40,5 +40,6 @@ AC_CONFIG_FILES([Makefile
 		data/themes/Wanda/Makefile
 		data/themes/SantaClaus/Makefile
 		data/themes/The_Simpsons/Makefile
+		data/themes/Mario/Makefile
 		])
 AC_OUTPUT

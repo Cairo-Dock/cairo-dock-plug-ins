@@ -2,4 +2,5 @@ SUBDIRS = \
 	Classic \
 	Wanda \
 	SantaClaus \
-	The_Simpsons
+	The_Simpsons\
+	Mario
