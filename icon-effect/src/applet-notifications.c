@@ -226,6 +226,8 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueFire = cairo_dock_update_default_particle_system (pData->pFireSystem,
 		(_will_continue (myConfig.bContinueFire) ? cd_icon_effect_rewind_fire_particle : NULL));
 		pData->pFireSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+		if (! pDock->bInside)
+			pData->pFireSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 		if (bContinueFire)
 			*bContinueAnimation = TRUE;
 		else
@@ -240,6 +242,8 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueStar = cd_icon_effect_update_star_system (pData->pStarSystem,
 		(_will_continue (myConfig.bContinueStar) ? cd_icon_effect_rewind_star_particle : NULL));
 		pData->pStarSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+		if (! pDock->bInside)
+			pData->pStarSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 		if (bContinueStar)
 			*bContinueAnimation = TRUE;
 		else
@@ -254,6 +258,8 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueSnow = cd_icon_effect_update_snow_system (pData->pSnowSystem,
 		(_will_continue (myConfig.bContinueSnow) ? cd_icon_effect_rewind_snow_particle : NULL));
 		pData->pSnowSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+		if (! pDock->bInside)
+			pData->pSnowSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 		if (bContinueSnow)
 			*bContinueAnimation = TRUE;
 		else
@@ -268,6 +274,8 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueRain = cd_icon_effect_update_rain_system (pData->pRainSystem,
 		(_will_continue (myConfig.bContinueRain) ? cd_icon_effect_rewind_rain_particle : NULL));
 		pData->pRainSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+		if (! pDock->bInside)
+			pData->pRainSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 		if (bContinueRain)
 			*bContinueAnimation = TRUE;
 		else
@@ -282,6 +290,8 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueStorm = cd_icon_effect_update_storm_system (pData->pStormSystem,
 		(_will_continue (myConfig.bContinueStorm) ? cd_icon_effect_rewind_storm_particle : NULL));
 		pData->pStormSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+		if (! pDock->bInside)
+			pData->pStormSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 		if (bContinueStorm)
 			*bContinueAnimation = TRUE;
 		else

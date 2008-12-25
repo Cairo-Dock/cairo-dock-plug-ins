@@ -62,13 +62,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iFireParticleSize = CD_CONFIG_GET_INTEGER ("Fire", "part size");
 	myConfig.fFireParticleSpeed = CD_CONFIG_GET_DOUBLE ("Fire", "part speed");
 	
-	myConfig.iRainDuration = CD_CONFIG_GET_INTEGER ("Rain", "duration");
-	myConfig.bContinueRain = CD_CONFIG_GET_BOOLEAN ("Rain", "continue");
-	CD_CONFIG_GET_COLOR_RVB ("Rain", "color1", myConfig.pRainColor1);
-	CD_CONFIG_GET_COLOR_RVB ("Rain", "color2", myConfig.pRainColor2);
-	myConfig.iNbRainParticles = CD_CONFIG_GET_INTEGER ("Rain", "nb part");
-	myConfig.iRainParticleSize = CD_CONFIG_GET_INTEGER ("Rain", "part size") / 2;  // cette texture est pleine alors que les 2 precedentes sont floutees, donc pour conserver un ordre de grandeur identique on divise par 2.
-	myConfig.fRainParticleSpeed = CD_CONFIG_GET_DOUBLE ("Rain", "part speed");
+	myConfig.iStarDuration = CD_CONFIG_GET_INTEGER ("Stars", "duration");
+	myConfig.bContinueStar = CD_CONFIG_GET_BOOLEAN ("Stars", "continue");
+	CD_CONFIG_GET_COLOR_RVB ("Stars", "color1", myConfig.pStarColor1);
+	CD_CONFIG_GET_COLOR_RVB ("Stars", "color2", myConfig.pStarColor2);
+	myConfig.bMysticalStars = CD_CONFIG_GET_BOOLEAN ("Stars", "mystical");
+	myConfig.iNbStarParticles = CD_CONFIG_GET_INTEGER ("Stars", "nb part");
+	myConfig.iStarParticleSize = CD_CONFIG_GET_INTEGER ("Stars", "part size");
 	
 	myConfig.iRainDuration = CD_CONFIG_GET_INTEGER ("Rain", "duration");
 	myConfig.bContinueRain = CD_CONFIG_GET_BOOLEAN ("Rain", "continue");

@@ -23,7 +23,7 @@ CairoParticleSystem *cd_icon_effect_init_storm (Icon *pIcon, CairoDock *pDock, d
 {
 	if (myData.iFireTexture == 0)
 		myData.iFireTexture = cd_icon_effect_load_storm_texture ();
-	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
+	double fMaxScale = pIcon->fScale;  // cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	CairoParticleSystem *pStormParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStormParticles, myData.iFireTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pStormParticleSystem != NULL, NULL);
 	pStormParticleSystem->dt = dt;

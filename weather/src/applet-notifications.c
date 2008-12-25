@@ -22,6 +22,7 @@ CD_APPLET_ABOUT (D_("This is the weather applet\n made by Fabrice Rey for Cairo-
 
 
 CD_APPLET_ON_CLICK_BEGIN
+	g_print ("TOTO\n");
 	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))  // on a clique sur une icone du sous-dock.
 	{
 		cd_debug (" clic sur %s", pClickedIcon->acName);

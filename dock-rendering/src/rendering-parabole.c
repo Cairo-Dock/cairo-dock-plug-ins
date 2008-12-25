@@ -348,10 +348,13 @@ void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDock)
 						icon->fWidth * icon->fScale + my_iParaboleTextGap,
 						(icon->fHeight * icon->fScale - icon->iTextHeight)/2);
 				else
+				{
+					cairo_rotate (pCairoContext, G_PI/2);
 					cairo_set_source_surface (pCairoContext,
 						icon->pTextBuffer,
-						(icon->fHeight * icon->fScale - icon->iTextHeight)/2,
-						icon->fWidth * icon->fScale + my_iParaboleTextGap);
+						icon->fWidth * icon->fScale + my_iParaboleTextGap,
+						(-icon->fHeight * icon->fScale - icon->iTextHeight)/2);
+				}
 			}
 			else
 			{
@@ -361,10 +364,13 @@ void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDock)
 						- (icon->iTextWidth + my_iParaboleTextGap),
 						(icon->fHeight * icon->fScale - icon->iTextHeight)/2);
 				else
+				{
+					cairo_rotate (pCairoContext, G_PI/2);
 					cairo_set_source_surface (pCairoContext,
 						icon->pTextBuffer,
-						(icon->fHeight * icon->fScale - icon->iTextHeight)/2,
-						- (icon->iTextWidth + my_iParaboleTextGap));
+						- (icon->iTextWidth + my_iParaboleTextGap),
+						(-icon->fHeight * icon->fScale - icon->iTextHeight)/2);
+				}
 			}
 			if (pDock->fFoldingFactor != 0)
 				cairo_paint_with_alpha (pCairoContext, (1 - pDock->fFoldingFactor) * (1 - pDock->fFoldingFactor));

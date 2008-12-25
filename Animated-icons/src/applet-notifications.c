@@ -42,7 +42,6 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 	{
 		switch (pAnimations[i])
 		{
-			g_print ("%s (%d)\n", __func__, pAnimations[i]);
 			case CD_ANIMATIONS_BOUNCE :
 				cd_animations_init_bounce (pDock, pData, dt, bUseOpenGL);
 				*bStartAnimation = TRUE;

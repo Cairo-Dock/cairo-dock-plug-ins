@@ -691,7 +691,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
 	double fDeltaXTrapeze;
 	int iNbVertex;
-	GLfloat *pVertexTab = cairo_dock_generate_trapeze_path (fDockWidth - (myBackground.bRoundedBottomCorner ? 2*fLineWidth : 0), fFrameHeight, fRadius, myBackground.bRoundedBottomCorner, fInclinationOnHorizon, &fDeltaXTrapeze, &iNbVertex);
+	GLfloat *pVertexTab = cairo_dock_generate_trapeze_path (fDockWidth - (myBackground.bRoundedBottomCorner ? 0*fLineWidth : 2*fLineWidth/fInclinationOnHorizon), fFrameHeight, fRadius, myBackground.bRoundedBottomCorner, fInclinationOnHorizon, &fDeltaXTrapeze, &iNbVertex);
 	
 	if (! pDock->bHorizontalDock)
 		fDockOffsetX = pDock->iCurrentWidth - fDockOffsetX + fDeltaXTrapeze;
