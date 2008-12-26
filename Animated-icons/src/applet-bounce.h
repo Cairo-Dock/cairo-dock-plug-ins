@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-void cd_animations_init_bounce (CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL);
+void cd_animations_init_bounce (CairoDock *pDock, CDAnimationData *pData, double dt);
 
 
 gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bWillContinue);

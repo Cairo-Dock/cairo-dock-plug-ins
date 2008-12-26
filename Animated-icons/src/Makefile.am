@@ -27,7 +27,9 @@ libcd_Animated_icons_la_SOURCES = \
 	applet-pulse.c\
 	applet-pulse.h\
 	applet-bounce.c\
-	applet-bounce.h
+	applet-bounce.h\
+	applet-blink.c\
+	applet-blink.h
 
 
 dock_version = `pkg-config --modversion cairo-dock`

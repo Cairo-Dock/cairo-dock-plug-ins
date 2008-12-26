@@ -20,6 +20,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-wave.h"
 #include "applet-pulse.h"
 #include "applet-bounce.h"
+#include "applet-blink.h"
 #include "applet-notifications.h"
 
 
@@ -31,8 +32,6 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		pData = g_new0 (CDAnimationData, 1);
 		CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
 	}
-	else
-		pData->iCount = 0;
 	
 	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
 	double dt = (bUseOpenGL ? g_iGLAnimationDeltaT : g_iCairoAnimationDeltaT);
@@ -43,7 +42,7 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		switch (pAnimations[i])
 		{
 			case CD_ANIMATIONS_BOUNCE :
-				cd_animations_init_bounce (pDock, pData, dt, bUseOpenGL);
+				cd_animations_init_bounce (pDock, pData, dt);
 				*bStartAnimation = TRUE;
 			break;
 			
@@ -56,7 +55,7 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 						myData.iCallList[myConfig.iMeshType] = cd_animations_load_mesh (myConfig.iMeshType);
 				}
 				else
-					pData->fWidthFactor = 1.;
+					pData->fRotateWidthFactor = 1.;
 				pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
 				pData->fRotationBrake = 1.;
 				pData->fAdjustFactor = 0.;
@@ -66,6 +65,7 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 			
 			case CD_ANIMATIONS_BLINK :
 				*bStartAnimation = TRUE;
+				cd_animations_init_blink (pData, dt);
 			break;
 			
 			case CD_ANIMATIONS_PULSE :
@@ -222,6 +222,11 @@ gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 			cd_animations_draw_bounce_icon (pIcon, pDock, pData, -1);
 	}
 	
+	if (pData->bIsBlinking)
+	{
+		cd_animations_draw_blink_icon (pIcon, pDock, pData, -1);
+	}
+	
 	if (pData->fRadiusFactor != 0)
 	{
 		if (pDock->bHorizontalDock)
@@ -255,6 +260,11 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 				cd_animations_draw_pulse_icon (pIcon, pDock, pData);
 		}
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
+	
+	if (pData->bIsBlinking)
+	{
+		cd_animations_draw_blink_icon (pIcon, pDock, pData, 1);
 	}
 	
 	if (pData->fRadiusFactor != 0)
@@ -471,9 +481,21 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		if (! pData->bIsBouncing && _will_continue (myConfig.bContinueBounce))
 		{
 			pData->iNumRound --;
-			cd_animations_init_bounce (pDock, pData, dt, bUseOpenGL);
+			cd_animations_init_bounce (pDock, pData, dt);
 		}
 		if (pData->bIsBouncing)
+			*bContinueAnimation = TRUE;
+	}
+	
+	if (pData->bIsBlinking)
+	{
+		pData->bIsBlinking = cd_animations_update_blink (pIcon, pDock, pData, dt, bUseOpenGL);
+		if (! pData->bIsBlinking && _will_continue (myConfig.bContinueBlink))
+		{
+			pData->iNumRound --;
+			cd_animations_init_blink (pData, dt);
+		}
+		if (pData->bIsBlinking)
 			*bContinueAnimation = TRUE;
 	}
 	

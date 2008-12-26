@@ -57,7 +57,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fFriction = CD_CONFIG_GET_DOUBLE ("Wobbly", "friction");
 	myConfig.iNbGridNodes = CD_CONFIG_GET_INTEGER ("Wobbly", "grid nodes");
 	
-	
 	myConfig.iSpotDuration = CD_CONFIG_GET_INTEGER ("Spot", "duration");
 	myConfig.bContinueSpot = CD_CONFIG_GET_BOOLEAN ("Spot", "continue");
 	gdouble pColor[4];
@@ -67,7 +66,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR ("Spot", "halo color", pColor);
 	for (i=0; i<4; i++)
 		myConfig.pHaloColor[i] = pColor[i];
-	
 	CD_CONFIG_GET_COLOR_RVB ("Spot", "color1", myConfig.pRaysColor1);
 	//for (i=0; i<3; i++)
 	//	myConfig.pRaysColor1[i] = pColor[i];
@@ -93,6 +91,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bContinueBounce = CD_CONFIG_GET_BOOLEAN ("Bounce", "continue");
 	myConfig.fBounceResize = CD_CONFIG_GET_DOUBLE ("Bounce", "resize");
 	myConfig.fBounceFlatten = CD_CONFIG_GET_DOUBLE ("Bounce", "flatten");
+	
+	myConfig.iBlinkDuration = CD_CONFIG_GET_INTEGER ("Blink", "duration");
+	myConfig.bContinueBlink = CD_CONFIG_GET_BOOLEAN ("Blink", "continue");
+	
 CD_APPLET_GET_CONFIG_END
 
 

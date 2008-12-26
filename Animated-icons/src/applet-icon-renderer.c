@@ -210,7 +210,7 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 
 void cd_animations_draw_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
 {
-	double fWidthFactor = pData->fWidthFactor;
+	double fWidthFactor = pData->fRotateWidthFactor;
 	pIcon->fWidthFactor *= fWidthFactor;
 	cairo_save (pCairoContext);
 	
@@ -233,14 +233,14 @@ void cd_animations_draw_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimati
 
 void cd_animations_update_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
 {
-	double fDamageWidthFactor = pData->fWidthFactor;
-	pData->fWidthFactor = cos (pData->fRotationAngle/180.*G_PI);
-	if (fabs (pData->fWidthFactor) < .01)
-		pData->fWidthFactor = .01;
+	double fDamageWidthFactor = pData->fRotateWidthFactor;
+	pData->fRotateWidthFactor = cos (pData->fRotationAngle/180.*G_PI);
+	if (fabs (pData->fRotateWidthFactor) < .01)
+		pData->fRotateWidthFactor = .01;
 	
 	if (! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
 	{
-		fDamageWidthFactor = MAX (fabs (fDamageWidthFactor), fabs (pData->fWidthFactor));
+		fDamageWidthFactor = MAX (fabs (fDamageWidthFactor), fabs (pData->fRotateWidthFactor));
 		pIcon->fWidthFactor *= fDamageWidthFactor;
 		
 		cairo_dock_redraw_my_icon (pIcon, CAIRO_CONTAINER (pDock));

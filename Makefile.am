@@ -63,6 +63,7 @@ endif
 
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
+	Animated-icons\
 	Cairo-Penguin\
 	Clipper\
 	clock\
@@ -88,6 +89,7 @@ SUBDIRS = . po\
 	shortcuts\
 	showDesklets\
 	showDesktop\
+	show-mouse\
 	slider\
 	stack\
 	switcher\

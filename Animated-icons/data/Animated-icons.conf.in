@@ -157,3 +157,13 @@ resize = .8
 #e[.2;1] How much the icon will flatten when hurting the ground :
 #{the smaller, the more it will flatten.}
 flatten = .4
+
+#[@animated_iconsdatadir@/icon-blink.png]
+[Blink]
+
+#I[0;2000] Duration of the blink :
+#{In ms.}
+duration = 800
+
+#b Repeat while icon is pointed ?
+continue = false

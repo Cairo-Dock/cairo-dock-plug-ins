@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(show_mousedatadir)
 
 module_DATA = \
 	show_mouse.conf\

@@ -15,9 +15,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-bounce.h"
 
 
-void cd_animations_init_bounce (CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL)
+void cd_animations_init_bounce (CairoDock *pDock, CDAnimationData *pData, double dt)
 {
-	int m = (1 - myConfig.fBounceFlatten) / .1;  // (bUseOpenGL ? 4 : 3)  // nbre d'iterations pour l'applatissement.
+	int m = (1 - myConfig.fBounceFlatten) / .1;
 	pData->iBounceCount = myConfig.iBounceDuration / dt - 1 + m;
 	if (pData->fResizeFactor == 0)
 		pData->fResizeFactor = 1.;

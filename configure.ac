@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[1.6.3.1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.0.0-alpha1],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -185,6 +185,15 @@ AC_SUBST(PACKAGE_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
 
 AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
 
+############# ANIMATED ICONS #################
+ANIMATED_ICONS_PACKAGE=cd-animated-icons
+AC_SUBST(GETTEXT_ANIMATED_ICONS, "$ANIMATED_ICONS_PACKAGE")
+
+AC_SUBST(VERSION_ANIMATED_ICONS, "1.0.0")
+AC_SUBST(PACKAGE_ANIMATED_ICONS, "$ANIMATED_ICONS_PACKAGE")
+
+AC_SUBST(animated_iconsdatadir, "${pkgdatadir}/Animated_icons")
+
 ############# CLIPPER #################
 CLIPPER_PACKAGE="cd-Clipper"
 AC_SUBST(GETTEXT_CLIPPER, "$CLIPPER_PACKAGE")
@@ -310,7 +319,7 @@ AC_SUBST(PACKAGE_MAIL, "$MAIL_PACKAGE")
 AC_SUBST(maildatadir, "${pkgdatadir}/mail")
 
 ############# MOTION BLUR #################
-$MOTION_BLUR_PACKAGEcd-motion-blur
+MOTION_BLUR_PACKAGE=cd-motion_blur
 AC_SUBST(GETTEXT_MOTION_BLUR, "$MOTION_BLUR_PACKAGE")
 
 AC_SUBST(VERSION_MOTION_BLUR, "1.0.0")
@@ -390,7 +399,7 @@ AC_SUBST(PACKAGE_SHORTCUTS, "$SHORTCUTS_PACKAGE")
 
 AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")
 
-############# SHOW_DESKLETS #################
+############# SHOW DESKLETS #################
 SHOW_DESKLETS_PACKAGE=cd-showDesklets
 AC_SUBST(GETTEXT_SHOW_DESKLETS, "$SHOW_DESKLETS_PACKAGE")
 
@@ -399,7 +408,7 @@ AC_SUBST(PACKAGE_SHOW_DESKLETS, "$SHOW_DESKLETS_PACKAGE")
 
 AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
 
-############# SHOW_DESKTOP #################
+############# SHOW DESKTOP #################
 SHOW_DESKTOP_PACKAGE=cd-showDesktop
 AC_SUBST(GETTEXT_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
@@ -407,6 +416,15 @@ AC_SUBST(VERSION_SHOW_DESKTOP, "1.0.3")
 AC_SUBST(PACKAGE_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
 AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
+
+############# SHOW MOUSE #################
+SHOW_MOUSE_PACKAGE=cd-show_mouse
+AC_SUBST(GETTEXT_SHOW_MOUSE, "$SHOW_MOUSE_PACKAGE")
+
+AC_SUBST(VERSION_SHOW_MOUSE, "1.0.0")
+AC_SUBST(PACKAGE_SHOW_MOUSE, "$SHOW_MOUSE_PACKAGE")
+
+AC_SUBST(show_mousedatadir, "${pkgdatadir}/show_mouse")
 
 ############# SLIDER #################
 SLIDER_PACKAGE="cd-slider"
@@ -530,6 +548,13 @@ AC_CONFIG_FILES([
 	alsaMixer/data/readme
 	alsaMixer/data/AlsaMixer.conf
 	
+	Animated-icons/Makefile
+	Animated-icons/src/Makefile
+	Animated-icons/po/Makefile.in
+	Animated-icons/data/Makefile
+	Animated-icons/data/readme
+	Animated-icons/data/Animated-icons.conf
+	
 	Cairo-Penguin/Makefile
 	Cairo-Penguin/src/Makefile
 	Cairo-Penguin/po/Makefile.in
@@ -541,6 +566,7 @@ AC_CONFIG_FILES([
 	Cairo-Penguin/data/themes/SantaClaus/Makefile
 	Cairo-Penguin/data/themes/The_Simpsons/Makefile
 	Cairo-Penguin/data/themes/Wanda/Makefile
+	Cairo-Penguin/data/themes/Mario/Makefile
 	
 	Clipper/Makefile
 	Clipper/src/Makefile
@@ -743,6 +769,13 @@ AC_CONFIG_FILES([
 	showDesktop/data/readme
 	showDesktop/data/showDesktop.conf
 	
+	show-mouse/Makefile
+	show-mouse/src/Makefile
+	show-mouse/po/Makefile.in
+	show-mouse/data/Makefile
+	show-mouse/data/readme
+	show-mouse/data/show-mouse.conf
+	
 	slider/Makefile
 	slider/src/Makefile
 	slider/po/Makefile.in
@@ -836,6 +869,7 @@ AC_CONFIG_FILES([
 
 AC_OUTPUT([po/Makefile
 	alsaMixer/po/Makefile
+	Animated-icons/po/Makefile
 	Cairo-Penguin/po/Makefile
 	Clipper/po/Makefile
 	clock/po/Makefile
@@ -859,6 +893,7 @@ AC_OUTPUT([po/Makefile
 	shortcuts/po/Makefile
 	showDesklets/po/Makefile
 	showDesktop/po/Makefile
+	show-mouse/po/Makefile
 	slider/po/Makefile
 	stack/po/Makefile
 	switcher/po/Makefile

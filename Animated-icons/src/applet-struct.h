@@ -69,6 +69,9 @@ struct _AppletConfig {
 	gdouble fBounceResize;
 	gdouble fBounceFlatten;
 	
+	gint iBlinkDuration;
+	gboolean bContinueBlink;
+	
 	CDAnimationsEffects iEffectsOnMouseOver[CD_ANIMATIONS_NB_EFFECTS];
 	CDAnimationsEffects iEffectsOnClick[CAIRO_DOCK_NB_TYPES][CD_ANIMATIONS_NB_EFFECTS];
 	gint iNbRoundsOnClick[CAIRO_DOCK_NB_TYPES];
@@ -99,6 +102,7 @@ typedef struct _CDAnimationData {
 	gdouble fRotationBrake;
 	gdouble fAdjustFactor;
 	gboolean bRotationBeginning;
+	gdouble fRotateWidthFactor;
 	
 	gdouble fIconOffsetY;
 	gdouble fRadiusFactor;
@@ -121,14 +125,19 @@ typedef struct _CDAnimationData {
 	
 	gint iNumRound;
 	
-	gint iCount;
-	gdouble fWidthFactor, fHeightFactor;
+	gint iWobblyCount;
+	gdouble fWobblyWidthFactor, fWobblyHeightFactor;
 	
 	gboolean bIsBouncing;
 	gint iBounceCount;
 	gdouble fElevation;
 	gdouble fFlattenFactor;
 	gdouble fResizeFactor;
+	
+	gboolean bIsBlinking;
+	gint iBlinkCount;
+	gdouble fBlinkAlpha;
+	
 	} CDAnimationData;
 
 #endif
