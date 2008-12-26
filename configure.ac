@@ -774,7 +774,7 @@ AC_CONFIG_FILES([
 	show-mouse/po/Makefile.in
 	show-mouse/data/Makefile
 	show-mouse/data/readme
-	show-mouse/data/show-mouse.conf
+	show-mouse/data/show_mouse.conf
 	
 	slider/Makefile
 	slider/src/Makefile
