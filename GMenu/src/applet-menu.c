@@ -615,7 +615,7 @@ GtkWidget * create_empty_menu (void)
 	return retval;
 }
 
-static _on_remove_tree (GMenuTree  *tree)
+static void _on_remove_tree (GMenuTree  *tree)
 {
 	g_print ("%s (%x)\n", __func__, tree);
 	//gmenu_tree_unref (tree);

@@ -15,8 +15,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-load-icons.h"
 #include "applet-stack.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_ABOUT (D_("This is the Stack applet\n made by ChAnGFu & Fabounet for Cairo-Dock"))
 
@@ -31,7 +29,8 @@ CD_APPLET_ON_CLICK_BEGIN
 		else
 		{
 			cairo_dock_show_temporary_dialog_with_icon (CD_APPLET_CLICKED_ICON->acCommand, CD_APPLET_CLICKED_ICON, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer), 2000, myConfig.cTextIcon);
-			CD_APPLET_CLICKED_ICON->iCount = 0;
+			cairo_dock_notify (CAIRO_DOCK_STOP_ICON, CD_APPLET_CLICKED_ICON);
+			CD_APPLET_CLICKED_ICON->iAnimationState = CAIRO_DOCK_STATE_REST;
 		}
 	}
 CD_APPLET_ON_CLICK_END

@@ -78,7 +78,7 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 		cairo_save (pCairoContext);
 		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, ! mySystem.bTextAlwaysHorizontal);
 		
-		if (mySystem.bTextAlwaysHorizontal && icon->pTextBuffer != NULL && icon->fScale > 1.01 && (! mySystem.bLabelForPointedIconOnly || icon->bPointed) && icon->iCount == 0)  // 1.01 car sin(pi) = 1+epsilon :-/
+		if (mySystem.bTextAlwaysHorizontal && icon->pTextBuffer != NULL && icon->fScale > 1.01 && (! mySystem.bLabelForPointedIconOnly || icon->bPointed))  // 1.01 car sin(pi) = 1+epsilon :-/
 		{
 			double fOffsetX = -icon->fTextXOffset + icon->fWidthFactor * icon->fWidth * icon->fScale / 2;
 			if (fOffsetX < - icon->fDrawX)
@@ -382,8 +382,6 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		
 		prev_icon = icon;
 		
-		cairo_dock_manage_animations (icon, pDock);
-		
 		iNbInsertedIcons ++;
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
@@ -404,8 +402,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	
 	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
 	
-	//cairo_dock_mark_avoiding_mouse_icons_linear (pDock);
-	
+	/// caluler bCanDrop ...
 	
 	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
 }

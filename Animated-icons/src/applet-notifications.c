@@ -112,7 +112,7 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 
 gboolean cd_animations_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
-	if (pIcon->bStatic || ! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
+	if (pIcon->bStatic || ! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) || pIcon->iAnimationState > CAIRO_DOCK_STATE_MOUSE_HOVERED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	_cd_animations_start (pUserData, pIcon, pDock, myConfig.iEffectsOnMouseOver, bStartAnimation);
 	
@@ -127,7 +127,7 @@ gboolean cd_animations_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 
 gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gint iButtonState)
 {
-	if (! CAIRO_DOCK_IS_DOCK (pDock))
+	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
@@ -147,7 +147,7 @@ gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 
 gboolean cd_animations_on_request (gpointer pUserData, Icon *pIcon, CairoDock *pDock, const gchar *cAnimation, gint iNbRounds)
 {
-	if (! CAIRO_DOCK_IS_DOCK (pDock) || cAnimation == NULL)
+	if (! CAIRO_DOCK_IS_DOCK (pDock) || cAnimation == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CDAnimationsEffects anim[2] = {0, -1};

@@ -9,7 +9,7 @@ CD_APPLET_INCLUDE_MY_VARS
 
 void iconWitness(int animationLenght)
 {
-	CD_APPLET_ANIMATE_MY_ICON ("rotate", animationLenght);
+	CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, animationLenght);
 }
 
 void update_icon(void)

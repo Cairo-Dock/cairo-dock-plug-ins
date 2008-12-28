@@ -18,7 +18,6 @@ Fabrice Rey (fabounet@users.berlios.de)
 #include "applet-infopipe.h"
 #include "applet-draw.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 static char  *s_cTmpFile = NULL;
 
@@ -91,7 +90,7 @@ void cd_xmms_read_data (CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
 	g_file_get_contents(s_cTmpFile, &cContent, &length, &erreur);
 	if (erreur != NULL) {
-		cd_warning("Attention : %s", erreur->message);
+		cd_warning("xmms : %s", erreur->message);
 		g_error_free(erreur);
 		myData.playingStatus = PLAYER_NONE;
 		cd_xmms_player_none(myApplet);

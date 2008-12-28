@@ -191,11 +191,11 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 	double fAlpha = pIcon->fAlpha;
 	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
 	{
-		pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
+		pIcon->fAlpha *= 1. - .3 * pData->fPulseAlpha;
 		glColor4f (1., 1., 1., pIcon->fAlpha);
 	}
 	else
-		glColor4fv(myConfig.pMeshColor);  // ici on peut donner une teinte aux reflets chrome.
+		glColor4f(myConfig.pMeshColor[0], myConfig.pMeshColor[1], myConfig.pMeshColor[2], pIcon->fAlpha);  // ici on peut donner une teinte aux reflets chrome.
 	
 	_draw_rotating_icon (pIcon, pDock, pData, 1.);
 	

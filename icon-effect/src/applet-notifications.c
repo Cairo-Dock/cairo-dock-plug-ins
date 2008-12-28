@@ -76,6 +76,8 @@ static void _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *p
 
 gboolean cd_icon_effect_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
+	if (pIcon->iAnimationState > CAIRO_DOCK_STATE_MOUSE_HOVERED)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	_cd_icon_effect_start (pUserData, pIcon, pDock, myConfig.iEffectsUsed, bStartAnimation);
 	if (bStartAnimation)
 		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
@@ -84,7 +86,7 @@ gboolean cd_icon_effect_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pD
 
 gboolean cd_icon_effect_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gint iButtonState)
 {
-	if (! CAIRO_DOCK_IS_DOCK (pDock))
+	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
@@ -101,7 +103,7 @@ gboolean cd_icon_effect_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pD
 
 gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *pDock, const gchar *cAnimation, gint iNbRounds)
 {
-	if (! CAIRO_DOCK_IS_DOCK (pDock))
+	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CDIconEffects anim[2] = {0, -1};
@@ -226,8 +228,6 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueFire = cairo_dock_update_default_particle_system (pData->pFireSystem,
 		(_will_continue (myConfig.bContinueFire) ? cd_icon_effect_rewind_fire_particle : NULL));
 		pData->pFireSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (! pDock->bInside)
-			pData->pFireSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 		if (bContinueFire)
 			*bContinueAnimation = TRUE;
 		else
@@ -242,8 +242,6 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueStar = cd_icon_effect_update_star_system (pData->pStarSystem,
 		(_will_continue (myConfig.bContinueStar) ? cd_icon_effect_rewind_star_particle : NULL));
 		pData->pStarSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (! pDock->bInside)
-			pData->pStarSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 		if (bContinueStar)
 			*bContinueAnimation = TRUE;
 		else
@@ -258,8 +256,6 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueSnow = cd_icon_effect_update_snow_system (pData->pSnowSystem,
 		(_will_continue (myConfig.bContinueSnow) ? cd_icon_effect_rewind_snow_particle : NULL));
 		pData->pSnowSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (! pDock->bInside)
-			pData->pSnowSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 		if (bContinueSnow)
 			*bContinueAnimation = TRUE;
 		else
@@ -274,8 +270,6 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueRain = cd_icon_effect_update_rain_system (pData->pRainSystem,
 		(_will_continue (myConfig.bContinueRain) ? cd_icon_effect_rewind_rain_particle : NULL));
 		pData->pRainSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (! pDock->bInside)
-			pData->pRainSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 		if (bContinueRain)
 			*bContinueAnimation = TRUE;
 		else
@@ -290,8 +284,6 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueStorm = cd_icon_effect_update_storm_system (pData->pStormSystem,
 		(_will_continue (myConfig.bContinueStorm) ? cd_icon_effect_rewind_storm_particle : NULL));
 		pData->pStormSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (! pDock->bInside)
-			pData->pStormSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 		if (bContinueStorm)
 			*bContinueAnimation = TRUE;
 		else

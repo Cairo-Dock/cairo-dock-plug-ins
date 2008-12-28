@@ -10,9 +10,6 @@ static DBusGProxy *dbus_proxy_player = NULL;
 static DBusGProxy *dbus_proxy_shell = NULL;
 
 
-CD_APPLET_INCLUDE_MY_VARS
-
-
 gboolean rhythmbox_dbus_connect_to_bus (void)
 {
 	cd_message ("");

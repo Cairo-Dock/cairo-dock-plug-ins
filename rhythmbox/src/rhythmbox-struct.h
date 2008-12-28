@@ -36,7 +36,7 @@ struct _AppletConfig {
 	gboolean enableDialogs;
 	gboolean enableCover;
 	gdouble timeDialogs;
-	CairoDockAnimationType changeAnimation;
+	gchar *changeAnimation;
 	MyAppletQuickInfoType quickInfoType;
 	gchar *defaultTitle;
 	gchar *cUserImage[PLAYER_NB_STATUS];

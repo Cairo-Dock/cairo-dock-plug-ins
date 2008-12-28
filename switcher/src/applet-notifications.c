@@ -7,8 +7,6 @@
 #include "applet-desktops.h"
 #include "applet-notifications.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_ABOUT (_D("This is the switcher applet\n made by Cchumi for Cairo-Dock"))
 
@@ -51,13 +49,11 @@ CD_APPLET_ON_CLICK_BEGIN
 		iNumLine = (int) (iMouseY / (myIcon->fHeight * myIcon->fScale) * myData.switcher.iNbLines);
 		iNumColumn = (int) (iMouseX / (myIcon->fWidth * myIcon->fScale) * myData.switcher.iNbColumns);
 		cd_switcher_compute_desktop_from_coordinates (iNumLine, iNumColumn, &iNumDesktop, &iNumViewportX, &iNumViewportY);
-		myIcon->iCount = 0;
 	}
 	else if (pClickedIcon != NULL && pClickedIcon != myIcon)
 	{
 		int iIndex = pClickedIcon->fOrder;
 		cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
-		pClickedIcon->iCount = 0;
 	}
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;

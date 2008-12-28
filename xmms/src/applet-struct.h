@@ -45,7 +45,7 @@ struct _AppletConfig{
 	gboolean extendedDesklet;
 	gdouble timeDialogs;
 	gboolean enableAnim;
-	CairoDockAnimationType changeAnimation;
+	gchar *changeAnimation;
 	MyAppletQuickInfoType quickInfoType;
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	MyPlayerType iPlayer;

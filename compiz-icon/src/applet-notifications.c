@@ -102,7 +102,6 @@ static void _compiz_action_by_id (int k, Icon *pIcon) {
       if (cContents == NULL || *cContents != '/')
       {
         cairo_dock_show_temporary_dialog_with_icon (_("To configure Compiz, you need to install CCSM\n through your package manager (Synaptic, YasT, etc)"), pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 10000, "same icon");
-        pIcon->iCount = 0;
       }
       else
         cairo_dock_launch_command ("ccsm");
@@ -125,7 +124,6 @@ static void _compiz_action_by_id (int k, Icon *pIcon) {
     break;
     default:
      //Rien a faire
-     pIcon->iCount = 0;
     break;
   }
 }

@@ -91,7 +91,7 @@ void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int i
 		icon->fWidthFactor = (G_PI / 2 - fabs (fTheta)) * 2 / G_PI;
 	else
 		icon->fWidthFactor = 1.;
-	icon->fDrawX = fXIconCenterDraw - icon->fWidth * icon->fScale / 2;  // 'cairo_dock_manage_animations' va gerer le placement de profil.
+	icon->fDrawX = fXIconCenterDraw - icon->fWidth * icon->fScale / 2;  /// gerer le placement de profil...
 	
 	if (fabs (fTheta) < G_PI / 2)  // icone a l'avant plan.
 	{
@@ -214,8 +214,6 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
 	
 	//\____________________ On calcule les position/etirements/alpha des icones.
-	cairo_dock_mark_avoiding_mouse_icons_linear (pDock);
-	
 	int iEllipseHeight = pDock->iCurrentHeight - (myBackground.iDockLineWidth + myBackground.iFrameMargin + pDock->iMaxIconHeight + myIcons.fReflectSize);  // >0 par construction de iMinDockHeight.
 	int iFrameHeight = iEllipseHeight + 2 * myBackground.iFrameMargin + myIcons.fReflectSize;
 	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (iFrameHeight, my_fInclinationOnHorizon, myBackground.iDockRadius, myBackground.iDockLineWidth);
@@ -228,8 +226,8 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 	{
 		icon = ic->data;
 		cd_rendering_calculate_construction_parameters_caroussel (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iMaxIconHeight, pDock->iMaxIconHeight, iEllipseHeight, pDock->bDirectionUp, fExtraWidth, fLinearWidth, fXFirstIcon);  // il manque un pDock->iMaxIconWidth en 2eme...
-		cairo_dock_manage_animations (icon, pDock);
 	}
+	cairo_dock_check_can_drop_linear (pDock);  /// marche ?...
 	
 	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
 }

@@ -4,7 +4,6 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-draw.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 static gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 
@@ -41,7 +40,7 @@ void rhythmbox_add_buttons_to_desklet (void)
 
 void rhythmbox_iconWitness(int animationLength)
 {
-	CD_APPLET_ANIMATE_MY_ICON ("rotate", animationLength);
+	CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength);
 }
 
 gboolean _rhythmbox_check_cover_is_present (gpointer data)

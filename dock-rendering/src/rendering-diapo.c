@@ -225,7 +225,7 @@ Icon *cd_rendering_calculate_icons_diapo (CairoDock *pDock)
 	
 	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
 	
-	cairo_dock_mark_avoiding_mouse_icons_linear (pDock);
+	/// caluler bCanDrop ...
 	
 //////////////////////////////////////////////////////////////////////////////////////// On revoie l'icone pointee et NULL sinon
 	return pPointedIcon;
@@ -367,8 +367,6 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
 	                icon->bPointed = FALSE; 
 	                icon->fAlpha = 0.9;
 	        }
-//////////////////////////////////////////////////////////////////////////////////////// On laisse le dock s'occuper des animations
-		cairo_dock_manage_animations (icon, pDock);
 	}
 	return pointed_ic == NULL ? NULL : pointed_ic->data;
 }

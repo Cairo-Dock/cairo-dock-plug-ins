@@ -26,7 +26,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.batteryWitness = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "battery witness", TRUE);
 	
-	myConfig.batteryWitnessAnimation = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "battery animation", 0);
+	myConfig.batteryWitnessAnimation = CD_CONFIG_GET_STRING ("Configuration", "battery_animation");
 	
 	myConfig.lowBatteryValue = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "low value", 15);
 	myConfig.bUseDBusFallback = CD_CONFIG_GET_BOOLEAN ("Configuration", "use dbus");
@@ -51,6 +51,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cUserBatteryIconName);
 	g_free (myConfig.cUserChargeIconName);
+	g_free (myConfig.batteryWitnessAnimation);
 	
 	int i;
 	for (i = 0; i < POWER_MANAGER_NB_CHARGE_LEVEL; i ++) {

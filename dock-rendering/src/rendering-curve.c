@@ -806,9 +806,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 					
 					if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 					{
-						if (icon->iAnimationType == CAIRO_DOCK_AVOID_MOUSE)
-							icon->fAlpha = 0.4;
-						else if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
+						if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
 							icon->fAlpha = 1;
 						else
 							icon->fAlpha = .25;
@@ -853,9 +851,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 				
 				if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 				{
-					if (icon->iAnimationType == CAIRO_DOCK_AVOID_MOUSE)
-						icon->fAlpha = 0.4;
-					else if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
+					if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
 						icon->fAlpha = 1;
 					else
 						icon->fAlpha = .25;
@@ -882,7 +878,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
 	
 	//\____________________ On calcule les position/etirements/alpha des icones.
-	cairo_dock_mark_avoiding_mouse_icons_linear (pDock);
+	cairo_dock_check_can_drop_linear (pDock);
 	
 	double h = 4./3 * (pDock->iDecorationsHeight + myBackground.iDockLineWidth);
 	double hi = .5 * pDock->iMaxIconHeight + myBackground.iFrameMargin - 1;
@@ -947,8 +943,6 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 		else
 			icon->fAlpha = .25;
 		//g_print ("fDrawX:%.2f / %d (%.2f)\n", icon->fDrawX, pDock->iCurrentWidth, icon->fAlpha);
-		
-		cairo_dock_manage_animations (icon, pDock);
 	}
 	
 	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);

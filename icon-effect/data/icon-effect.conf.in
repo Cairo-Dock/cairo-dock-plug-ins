@@ -36,7 +36,7 @@ background = false
 #b Rotate effects with dock ?
 rotate = false
 
-#[@pkgdatadir@/icon-fire.svg]
+#[@icon_effectsdatadir@/icon-fire.svg]
 [Fire]
 
 #I[0;5000] Duration of the animation :
@@ -65,7 +65,7 @@ part size = 20
 part speed = 5.
 
 
-#[@pkgdatadir@/star.png]
+#[@icon_effectsdatadir@/star.png]
 [Stars]
 
 #I[0;5000] Duration of the animation :
@@ -91,7 +91,7 @@ nb part = 35
 part size = 50
 
 
-#[@pkgdatadir@/snow.png]
+#[@icon_effectsdatadir@/snow.png]
 [Snow]
 
 #I[0;5000] Duration of the animation :
@@ -117,7 +117,7 @@ part size = 26
 part speed = 1.
 
 
-#[@pkgdatadir@/rain.png]
+#[@icon_effectsdatadir@/rain.png]
 [Rain]
 
 #I[0;5000] Duration of the animation :

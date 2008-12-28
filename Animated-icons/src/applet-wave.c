@@ -150,7 +150,7 @@ void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDat
 	glPushMatrix ();
 	cairo_dock_set_icon_scale (pIcon, pDock, 1.);
 	
-	glColor4f (1., 1., 1., 1.);
+	glColor4f (1., 1., 1., pIcon->fAlpha);
 	glEnable(GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);

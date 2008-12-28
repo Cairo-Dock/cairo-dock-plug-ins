@@ -103,8 +103,8 @@ time_dialogs=3000
 #F[Behaviour;gtk-execute]
 frame_anim=
 
-#r+[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
-change_animation=5
+#a+ Animation when music changes :
+change animation=rotate
 
 #b Steal the rhythmbox's icon in taskbar ?
 #{It will prevent the rhythmbox's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}

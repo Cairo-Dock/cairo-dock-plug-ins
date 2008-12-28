@@ -241,7 +241,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	glPushMatrix ();
 	cairo_dock_set_icon_scale (pIcon, pDock, 1.);
 	
-	glColor4f (1., 1., 1., 1.);
+	glColor4f (1., 1., 1., pIcon->fAlpha);
 	glEnable(GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -315,7 +315,6 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
 		glColor4f(1.0f, 1.0f, 1.0f, 1.);
 		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
-		glBlendColor (1., 1., 1., 1.);
 		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glEnable(GL_MAP2_TEXTURE_COORD_2);
 		glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2,

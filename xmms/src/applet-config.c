@@ -29,7 +29,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.extendedDesklet	= CD_CONFIG_GET_BOOLEAN ("Configuration", "extended_desklet");
 	
 	myConfig.enableAnim 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_anim");
-	myConfig.changeAnimation 	= CD_CONFIG_GET_ANIMATION_WITH_DEFAULT ("Configuration", "change_animation", CAIRO_DOCK_ROTATE);
+	myConfig.changeAnimation 	= CD_CONFIG_GET_STRING ("Configuration", "change animation");
 	
 	myConfig.bStealTaskBarIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
 	myConfig.bIconBubble 				= CD_CONFIG_GET_BOOLEAN ("Configuration", "bubble icon");
@@ -44,6 +44,7 @@ CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
+	g_free (myConfig.changeAnimation);
 	
 	int i;
 	for (i = 0; i < PLAYER_NB_STATUS; i ++)

@@ -19,8 +19,8 @@ CairoParticleSystem *cd_icon_effect_init_rain (Icon *pIcon, CairoDock *pDock, do
 {
 	if (myData.iRainTexture == 0)
 		myData.iRainTexture = cd_icon_effect_load_rain_texture ();
-	double fMaxScale = pIcon->fScale;  // cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
-	CairoParticleSystem *pRainParticleSystem = cairo_dock_create_particle_system (myConfig.iNbRainParticles, myData.iRainTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
+	double fMaxScale = (pDock->bAtBottom ? 1. : cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock)));
+	CairoParticleSystem *pRainParticleSystem = cairo_dock_create_particle_system (myConfig.iNbRainParticles, myData.iRainTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pRainParticleSystem != NULL, NULL);
 	pRainParticleSystem->dt = dt;
 	if (myConfig.bRotateEffects && ! pDock->bDirectionUp && pDock->bHorizontalDock)

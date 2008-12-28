@@ -122,8 +122,8 @@ frame_anim=
 
 #b Animate icon ?
 enable_anim=true
-#r[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
-change_animation=5
+#a+ Animation when music changes :
+change animation=rotate
 
 
 #F[Personnalisation;gtk-dialog-info]

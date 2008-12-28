@@ -3,8 +3,6 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-config.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.defaultTitle 		= CD_CONFIG_GET_STRING ("Icon", "name");
@@ -12,7 +10,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.enableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");
 	myConfig.enableCover 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_cover");
 	myConfig.timeDialogs 		= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "time_dialogs", 3000);
-	myConfig.changeAnimation 	= CD_CONFIG_GET_ANIMATION_WITH_DEFAULT ("Configuration", "change_animation", CAIRO_DOCK_ROTATE);
+	myConfig.changeAnimation 	= CD_CONFIG_GET_STRING ("Configuration", "change animation");
 	myConfig.quickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
 	myConfig.bStealTaskBarIcon = CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
 	
@@ -28,6 +26,7 @@ CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
+	g_free (myConfig.changeAnimation);
 	
 	int i;
 	for (i = 0; i < PLAYER_NB_STATUS; i ++)

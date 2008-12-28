@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.0.0-alpha1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.0.0-alpha2],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -349,7 +349,7 @@ AC_SUBST(nvidiadatadir, "${pkgdatadir}/nVidia")
 POWERMANAGER_PACKAGE=cd-powermanager
 AC_SUBST(GETTEXT_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
-AC_SUBST(VERSION_POWERMANAGER, "1.2.12")
+AC_SUBST(VERSION_POWERMANAGER, "1.2.13")
 AC_SUBST(PACKAGE_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
 AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
@@ -385,7 +385,7 @@ AC_SUBST(desklet_renderingdatadir, "${pkgdatadir}/desklet-rendering")
 RHYTHMBOX_PACKAGE=cd-rhythmbox
 AC_SUBST(GETTEXT_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
 
-AC_SUBST(VERSION_RHYTHMBOX, "1.2.3")
+AC_SUBST(VERSION_RHYTHMBOX, "1.2.4")
 AC_SUBST(PACKAGE_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
 
 AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
@@ -519,7 +519,7 @@ AC_SUBST(xgammadatadir, "${pkgdatadir}/Xgamma")
 XMMS_PACKAGE="cd-xmms"
 AC_SUBST(GETTEXT_XMMS, "$XMMS_PACKAGE")
 
-AC_SUBST(VERSION_XMMS, "0.2.4")
+AC_SUBST(VERSION_XMMS, "0.2.5")
 AC_SUBST(PACKAGE_XMMS, "$XMMS_PACKAGE")
 
 AC_SUBST(xmmsdatadir, "${pkgdatadir}/xmms")

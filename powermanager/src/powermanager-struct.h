@@ -35,7 +35,7 @@ struct _AppletConfig {
 	gboolean lowBatteryWitness;
 	gboolean criticalBatteryWitness;
 	gboolean bUseApprox;
-	CairoDockAnimationType batteryWitnessAnimation;
+	gchar *batteryWitnessAnimation;
 	gint lowBatteryValue;
 	const gchar *cGThemePath;
 	gchar *cSoundPath[POWER_MANAGER_NB_CHARGE_LEVEL];

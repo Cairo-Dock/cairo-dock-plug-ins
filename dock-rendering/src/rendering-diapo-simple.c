@@ -272,8 +272,8 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 	
 	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
 	
-	cairo_dock_mark_avoiding_mouse_icons_linear (pDock);
-
+	/// caluler bCanDrop ...
+	
 //////////////////////////////////////////////////////////////////////////////////////// On revoie l'icone pointee et NULL sinon
 	return pPointedIcon;
 }
@@ -376,9 +376,6 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 	        icon->fPhase = 0.;
 	        icon->fOrientation = 0.;//2. * G_PI * pDock->fFoldingFactor;                // rotation de l'icone  -----> idee sympa ! par contre il faut placer l'icone du coup.
             icon->fWidthFactor = icon->fHeightFactor = 1. - pDock->fFoldingFactor;
-
-//////////////////////////////////////////////////////////////////////////////////////// On laisse le dock s'occuper des animations
-		cairo_dock_manage_animations (icon, pDock);
 	}
 	return pointed_ic == NULL ? NULL : pointed_ic->data;
 }

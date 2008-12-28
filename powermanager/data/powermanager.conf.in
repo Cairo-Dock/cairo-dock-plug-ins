@@ -145,5 +145,5 @@ sound_0 =
 
 #b Animate icon during the alert ?
 battery witness=true
-#r+[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation during alert :
-battery animation=5
+#a+ Animation during alert :
+battery_animation=pulse
