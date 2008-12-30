@@ -42,6 +42,9 @@ CD_APPLET_INIT_BEGIN
 	myData.iAnimationID[CD_ICON_EFFECT_RAIN] = cairo_dock_register_animation ("rain");
 	myData.iAnimationID[CD_ICON_EFFECT_SNOW] = cairo_dock_register_animation ("snow");
 	myData.iAnimationID[CD_ICON_EFFECT_SAND] = cairo_dock_register_animation ("storm");
+	
+	if (! cairo_dock_is_loading ())
+		cairo_dock_update_animations_list_for_gui ();
 CD_APPLET_INIT_END
 
 
@@ -64,6 +67,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_unregister_animation ("rain");
 	cairo_dock_unregister_animation ("snow");
 	cairo_dock_unregister_animation ("storm");
+	cairo_dock_update_animations_list_for_gui ();
 	
 	cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _free_data_on_icon, NULL);
 CD_APPLET_STOP_END

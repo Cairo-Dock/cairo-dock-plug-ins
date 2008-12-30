@@ -11,7 +11,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <string.h>
 #include <math.h>
 
-#include "applet-icon-renderer.h"
+#include "applet-rotation.h"
 #include "applet-spot.h"
 #include "applet-struct.h"
 #include "applet-rays.h"

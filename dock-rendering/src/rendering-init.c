@@ -34,6 +34,7 @@ CDSpeparatorType my_iDrawSeparator3D;
 double my_fInclinationOnHorizon;  // inclinaison de la ligne de fuite vers l'horizon.
 cairo_surface_t *my_pFlatSeparatorSurface[2] = {NULL, NULL};
 double my_fSeparatorColor[4];
+GLuint my_iFlatSeparatorTexture;
 
 double my_fForegroundRatio;  // fraction des icones presentes en avant-plan (represente donc l'etirement en profondeur de l'ellipse).
 double my_iGapOnEllipse;  // regle la profondeur du caroussel.
@@ -99,27 +100,7 @@ CDSpeparatorType my_curve_iDrawSeparator3D;
 
 
 CD_APPLET_PRE_INIT_BEGIN ("dock rendering", 2, 0, 0, CAIRO_DOCK_CATEGORY_PLUG_IN)
-	//\_______________ On definit notre interface.
-	/*pInterface->reloadModule = reload;
-	pInterface->read_conf_file = read_conf_file;
-	pInterface->reset_config = reset_config;
-	pInterface->reset_data = reset_data;*/
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
-	
-	//\_______________ On enregistre les vues.
-	/*cd_rendering_register_caroussel_renderer 		(CD_RENDERING_CAROUSSEL_VIEW_NAME);
-	
-	cd_rendering_register_3D_plane_renderer 		(CD_RENDERING_3D_PLANE_VIEW_NAME);
-	
-	cd_rendering_register_parabole_renderer 		(CD_RENDERING_PARABOLIC_VIEW_NAME);
-	
-	cd_rendering_register_rainbow_renderer 		(CD_RENDERING_RAINBOW_VIEW_NAME);
-	
-	cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);  // By Paradoxxx_Zero
-
-	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
-	
-	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet*/
 CD_APPLET_PRE_INIT_END
 
 
@@ -170,6 +151,12 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
 		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
 		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
+		
+		if (my_iFlatSeparatorTexture != 0)
+		{
+			glDeleteTextures (1, &my_iFlatSeparatorTexture);
+			my_iFlatSeparatorTexture = 0;
+		}
 		
 		cairo_dock_set_all_views_to_default (0);
 	}

@@ -56,13 +56,13 @@ color2 = 1;1;0
 mystical = false
 
 #I[10;500] Number of particles :
-nb part = 300
+nb part = 150
 
 #I[10;60] Particle size :
-part size = 20
+part size = 30
 
 #e[1;10] Particle speed :
-part speed = 5.
+part speed = 4.
 
 
 #[@icon_effectsdatadir@/star.png]

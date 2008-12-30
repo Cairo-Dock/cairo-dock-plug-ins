@@ -16,9 +16,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-mixer.h"
 #include "applet-draw.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
-
 
 int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 {
@@ -102,12 +99,11 @@ void mixer_apply_zoom_effect (cairo_surface_t *pSurface)
 
 void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
 {
-	cd_debug ("%s (%x)", __func__, pSurface);
 	double fAlpha = .3 + .7 * myData.iCurrentVolume / 100.;
 	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha);
 }
 
 void mixer_draw_bar (cairo_surface_t *pSurface)
 {
-	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR(pSurface, myData.iCurrentVolume * .01);
+	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.iCurrentVolume * .01);
 }

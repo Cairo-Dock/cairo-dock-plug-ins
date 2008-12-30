@@ -26,16 +26,17 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	cd_debug ("%s (%d;%d)", __func__, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 	// On efface l'icone.
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
-	cairo_set_source_rgba(myDrawContext, 0., 0., 0., 0.);
+	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
 	cairo_paint (myDrawContext);
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	
 	cairo_save (myDrawContext);
+	double fRatio = (myDock ? myDock->fRatio : 1.);
 	
 	// definition des parametres de dessin.
 	double fMaxScale = cairo_dock_get_max_scale (myContainer); //coefficient Max icone Width
-	myData.switcher.fOneViewportHeight = (myIcon->fHeight * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
-	myData.switcher.fOneViewportWidth = (myIcon->fWidth * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	myData.switcher.fOneViewportHeight = (myIcon->fHeight/fRatio * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	myData.switcher.fOneViewportWidth = (myIcon->fWidth/fRatio * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
 	
 	cairo_surface_t *pSurface = NULL;
 	double fZoomX, fZoomY;
@@ -48,8 +49,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	if (pSurface == NULL)
 	{
 		pSurface = myData.pDefaultMapSurface;
-		fZoomX = (double) myData.switcher.fOneViewportWidth / (myIcon->fWidth * fMaxScale);
-		fZoomY = (double) myData.switcher.fOneViewportHeight / (myIcon->fHeight * fMaxScale);
+		fZoomX = (double) myData.switcher.fOneViewportWidth / (myIcon->fWidth/fRatio * fMaxScale);
+		fZoomY = (double) myData.switcher.fOneViewportHeight / (myIcon->fHeight/fRatio * fMaxScale);
 	}
 	
 	// cadre exterieur.
@@ -58,8 +59,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	cairo_rectangle(myDrawContext,
 		.5*myConfig.iLineSize,
 		.5*myConfig.iLineSize,
-		myIcon->fWidth * fMaxScale - myConfig.iLineSize,
-		myIcon->fHeight * fMaxScale - myConfig.iLineSize);
+		myIcon->fWidth/fRatio * fMaxScale - myConfig.iLineSize,
+		myIcon->fHeight/fRatio * fMaxScale - myConfig.iLineSize);
 
 	cairo_stroke (myDrawContext);
 	
@@ -72,14 +73,14 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	{
 		xi = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
 		cairo_move_to (myDrawContext, xi, myConfig.iLineSize);
-		cairo_rel_line_to (myDrawContext, 0, myIcon->fHeight * fMaxScale - 2*myConfig.iLineSize);
+		cairo_rel_line_to (myDrawContext, 0, myIcon->fHeight/fRatio * fMaxScale - 2*myConfig.iLineSize);
 		cairo_stroke (myDrawContext);
 	}
 	for (j = 1; j < myData.switcher.iNbLines; j ++)  // lignes horizontales.
 	{
 		yj = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
 		cairo_move_to (myDrawContext, myConfig.iLineSize, yj);
-		cairo_rel_line_to (myDrawContext, myIcon->fWidth * fMaxScale - 2*myConfig.iLineSize, 0);
+		cairo_rel_line_to (myDrawContext, myIcon->fWidth/fRatio * fMaxScale - 2*myConfig.iLineSize, 0);
 		cairo_stroke (myDrawContext);
 	}
 	
@@ -259,17 +260,18 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
 	
 	// definition des parametres de dessin.
+	double fRatio = (myDock ? myDock->fRatio : 1.);
 	double fMaxScale = cairo_dock_get_max_scale (myContainer); //coefficient Max icone Width
-	myData.switcher.fOneViewportHeight = (myIcon->fHeight * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
-	myData.switcher.fOneViewportWidth = (myIcon->fWidth * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	myData.switcher.fOneViewportHeight = (myIcon->fHeight/fRatio * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	myData.switcher.fOneViewportWidth = (myIcon->fWidth/fRatio * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
 
 	cairo_surface_t *pSurface = NULL;
 	double fZoomX, fZoomY;
 	if (myConfig.bMapWallpaper)
 	{
 		pSurface = cairo_dock_get_desktop_bg_surface ();
-		fZoomX = (double) myIcon->fHeight * fMaxScale/g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
-		fZoomY= (double) myIcon->fHeight * fMaxScale/g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];	
+		fZoomX = (double) myIcon->fHeight/fRatio * fMaxScale/g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
+		fZoomY= (double) myIcon->fHeight/fRatio * fMaxScale/g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];	
 		cairo_translate (myDrawContext,
 			0.,
 			0.);
@@ -302,12 +304,12 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 		
 	if (myConfig.bDrawWindows)
 	{
-		double XWgeo= (myIcon->fWidth* fMaxScale/myData.switcher.fOneViewportWidth)* fMaxScale;
-		double YWgeo = (myIcon->fHeight* fMaxScale/myData.switcher.fOneViewportHeight)* fMaxScale;
+		double XWgeo= (myIcon->fWidth/fRatio* fMaxScale/myData.switcher.fOneViewportWidth)* fMaxScale;
+		double YWgeo = (myIcon->fHeight/fRatio* fMaxScale/myData.switcher.fOneViewportHeight)* fMaxScale;
 		cd_debug ("XWgeo : %f",XWgeo);
 		cd_debug ("YWgeo : %f",YWgeo);
-		fZoomX = myIcon->fWidth * fMaxScale;
-		fZoomY = myIcon->fHeight * fMaxScale;
+		fZoomX = myIcon->fWidth/fRatio * fMaxScale;
+		fZoomY = myIcon->fHeight/fRatio * fMaxScale;
 		cairo_save(myDrawContext);
 		cd_switcher_draw_windows_on_each_viewports(XWgeo,YWgeo,fZoomX,fZoomY);
 		cairo_restore (myDrawContext);

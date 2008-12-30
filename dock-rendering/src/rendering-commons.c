@@ -18,6 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern double my_fSeparatorColor[4];
+extern GLuint my_iFlatSeparatorTexture;
 
 cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceContext, int iWidth, int iHeight)
 {
@@ -64,8 +65,7 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceCon
 		hk -= fStep;
 	}
 	
-	cairo_surface_t *pNewSurface = cairo_surface_create_similar (cairo_get_target (pSourceContext),
-		CAIRO_CONTENT_COLOR_ALPHA,
+	cairo_surface_t *pNewSurface = _cairo_dock_create_blank_surface (pSourceContext,
 		iWidth,
 		iHeight);
 	cairo_t *pImageContext = cairo_create (pNewSurface);
@@ -84,9 +84,12 @@ void cd_rendering_load_flat_separator (CairoContainer *pContainer)
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
 	
 	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pContainer);
-	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (pSourceContext, 400, 150);
-	my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], pSourceContext, 400, 150, -G_PI / 2);
+	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (pSourceContext, 300, 150);
+	my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], pSourceContext, 300, 150, -G_PI / 2);
 	cairo_destroy (pSourceContext);
+	
+	if (g_bUseOpenGL)
+		my_iFlatSeparatorTexture = cairo_dock_create_texture_from_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 }
 
 

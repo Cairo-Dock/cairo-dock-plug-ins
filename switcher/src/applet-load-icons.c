@@ -151,10 +151,11 @@ void cd_switcher_paint_icons (void)
 	}
 	if (pSurface == NULL)
 	{
+		double fRatio = (myDock ? myDock->fRatio : 1.);
 		cd_switcher_load_default_map_surface ();
 		pSurface = myData.pDefaultMapSurface;
-		fZoomX = pFirstIcon->fWidth / myIcon->fWidth;
-		fZoomY = pFirstIcon->fHeight / myIcon->fHeight;
+		fZoomX = pFirstIcon->fWidth / myIcon->fWidth * fRatio;
+		fZoomY = pFirstIcon->fHeight / myIcon->fHeight * fRatio;
 	}
 	
 	cairo_t *pIconContext;

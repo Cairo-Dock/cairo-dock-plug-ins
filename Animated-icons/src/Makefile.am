@@ -9,8 +9,8 @@ libcd_Animated_icons_la_SOURCES = \
 	applet-init.h\
 	applet-config.c\
 	applet-config.h\
-	applet-icon-renderer.c\
-	applet-icon-renderer.h\
+	applet-rotation.c\
+	applet-rotation.h\
 	applet-struct.h\
 	applet-mesh-factory.c\
 	applet-mesh-factory.h\

@@ -167,7 +167,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	
 	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100.;
-	g_print ("my_fCurveCurvature <- %d/100\n", cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL));
 	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "amplitude", &bFlushConfFileNeeded, 20, NULL, NULL);
 	my_curve_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "draw curve separator", &bFlushConfFileNeeded, 0, NULL, NULL);
 CD_APPLET_GET_CONFIG_END

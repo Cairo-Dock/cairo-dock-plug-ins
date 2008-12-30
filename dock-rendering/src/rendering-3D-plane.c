@@ -22,7 +22,7 @@ extern int iVanishingPointY;
 extern CDSpeparatorType my_iDrawSeparator3D;
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern double my_fSeparatorColor[4];
-extern GLuint iFlatSeparatorTexture;
+extern GLuint my_iFlatSeparatorTexture;
 
 void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 {
@@ -37,10 +37,10 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	fInclinationOnHorizon = 0.5 * pDock->iMaxDockWidth / iVanishingPointY;
 	pDock->iDecorationsHeight = hi + (pDock->iMaxIconHeight + myBackground.iFrameMargin) / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
 	fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclinationOnHorizon, myBackground.iDockRadius, myBackground.iDockLineWidth);
-	cd_debug ("iMaxDockWidth <- %d; fInclinationOnHorizon <- %.2f; fExtraWidth <- %.2f", pDock->iMaxDockWidth, fInclinationOnHorizon, fExtraWidth);
+	//cd_debug ("iMaxDockWidth <- %d; fInclinationOnHorizon <- %.2f; fExtraWidth <- %.2f", pDock->iMaxDockWidth, fInclinationOnHorizon, fExtraWidth);
 	
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
-	cd_debug ("pDock->iMaxDockWidth <- %d", pDock->iMaxDockWidth);
+	//cd_debug ("pDock->iMaxDockWidth <- %d", pDock->iMaxDockWidth);
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	
@@ -650,8 +650,6 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
 	
 	//\____________________ On calcule les position/etirements/alpha des icones.
-	cairo_dock_check_can_drop_linear (pDock);
-	
 	double fReflectionOffsetY = (pDock->bDirectionUp ? -1 : 1) * myIcons.fReflectSize;
 	Icon* icon;
 	GList* ic;
@@ -660,6 +658,8 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 		icon = ic->data;
 		cd_rendering_calculate_construction_parameters_3D_plane (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iMaxDockWidth, fReflectionOffsetY);
 	}
+	
+	cairo_dock_check_can_drop_linear (pDock);
 	
 	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
 }
@@ -720,6 +720,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
 	
+	glLoadIdentity ();
  	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
 	{
 		do
@@ -729,6 +730,8 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
 				glPushMatrix ();
+				if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+					cd_rendering_draw_flat_separator_opengl (icon, pDock);
 				///cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
 				glPopMatrix ();
 			}
@@ -800,3 +803,95 @@ void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName)
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }
+
+
+void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
+{
+	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	
+	double fHeight, fBigWidth, fLittleWidth;
+	
+	fHeight = pDock->iDecorationsHeight - 0*myBackground.iDockLineWidth;
+	fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
+	fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
+	
+	double fDeltaXLeft = fHeight * fLeftInclination;
+	double fDeltaXRight = fHeight * fRightInclination;
+	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
+	
+	double fDockOffsetX, fDockOffsetY;
+	
+	fDockOffsetX = icon->fDrawX - (fHeight - hi) * fLeftInclination;
+	
+	glEnable (GL_BLEND);
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glColor4f (1., 1., 1., 1.);
+	
+	glEnable (GL_TEXTURE_2D);
+	glBindTexture (GL_TEXTURE_2D, my_iFlatSeparatorTexture);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	
+	glPolygonMode (GL_FRONT, GL_FILL);
+	
+	if (pDock->bHorizontalDock)
+	{
+		if (pDock->bDirectionUp)
+		{
+			fDockOffsetY = fHeight + myBackground.iDockLineWidth;
+		}
+		else
+		{
+			fDockOffsetY = pDock->iCurrentHeight - (fHeight + myBackground.iDockLineWidth);
+		}
+		glTranslatef (fDockOffsetX, fDockOffsetY, 0.);  // coin haut gauche.
+		if (! pDock->bDirectionUp)
+			glScalef (1., -1., 1.);
+		
+		glBegin(GL_QUADS);
+		glTexCoord2f(0., 0.);
+		glVertex3f(0., 0., 0.);  // Bottom Left Of The Texture and Quad
+		glTexCoord2f(1., 0.);
+		glVertex3f(fLittleWidth, 0., 0.);  // Bottom Right Of The Texture and Quad
+		glTexCoord2f(1., 1.);
+		glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);  // Top Right Of The Texture and Quad
+		glTexCoord2f(0., 1.);
+		glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);  // Top Left Of The Texture and Quad
+		glEnd();
+	}
+	else
+	{
+		if (!pDock->bDirectionUp)
+		{
+			fDockOffsetY = fHeight + myBackground.iDockLineWidth;
+		}
+		else
+		{
+			fDockOffsetY = pDock->iCurrentHeight - (fHeight + myBackground.iDockLineWidth);
+		}
+		fDockOffsetX = pDock->iCurrentWidth - fDockOffsetX;
+		glTranslatef (fDockOffsetY, fDockOffsetX, 0.);
+		
+		
+		glRotatef (90., 0., 0., 1.);
+		
+		if (! pDock->bDirectionUp)
+			glScalef (1., -1., 1.);
+		
+		glBegin(GL_QUADS);
+		glTexCoord2f(0., 0.);
+		glVertex3f(0., 0., 0.);  // Bottom Left Of The Texture and Quad
+		glTexCoord2f(1., 0.);
+		glVertex3f(-fLittleWidth, 0., 0.);  // Bottom Right Of The Texture and Quad
+		glTexCoord2f(1., 1.);
+		glVertex3f(-(fLittleWidth + fDeltaXRight), - fHeight, 0.);  // Top Right Of The Texture and Quad
+		glTexCoord2f(0., 1.);
+		glVertex3f(-(fLittleWidth + fDeltaXRight - fBigWidth), - fHeight, 0.);  // Top Left Of The Texture and Quad
+		glEnd();
+	}
+	
+	glDisable (GL_TEXTURE_2D);
+	glDisable (GL_BLEND);
+}
+

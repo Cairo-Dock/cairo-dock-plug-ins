@@ -24,6 +24,28 @@ void cd_animations_init_wave (CDAnimationData *pData)
 	pData->pVertices[1] = 0.;
 	pData->pVertices[2] = 0.;
 	pData->fWavePosition = - myConfig.fWaveWidth / 2;
+	
+	pData->iNumActiveNodes = 6;
+	pData->pVertices[3*1+0] = -.5;
+	pData->pVertices[3*1+1] = -.5;
+	pData->pVertices[3*2+0] = .5;
+	pData->pVertices[3*2+1] = -.5;
+	pData->pVertices[3*3+0] = .5;
+	pData->pVertices[3*3+1] = .5;
+	pData->pVertices[3*4+0] = -.5;
+	pData->pVertices[3*4+1] = .5;
+	pData->pVertices[3*5+0] = -.5;
+	pData->pVertices[3*5+1] = -.5;
+	pData->pCoords[2*1+0] = 0.;
+	pData->pCoords[2*1+1] = 1.;
+	pData->pCoords[2*2+0] = 1.;
+	pData->pCoords[2*2+1] = 1.;
+	pData->pCoords[2*3+0] = 1.;
+	pData->pCoords[2*3+1] = 0.;
+	pData->pCoords[2*4+0] = 0.;
+	pData->pCoords[2*4+1] = 0.;
+	pData->pCoords[2*5+0] = 0.;
+	pData->pCoords[2*5+1] = 1.;
 	pData->bIsWaving = TRUE;
 }
 
@@ -159,7 +181,6 @@ void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDat
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
 	glPolygonMode(GL_FRONT, GL_FILL);
 	
-	
 	glEnableClientState (GL_TEXTURE_COORD_ARRAY);
 	glEnableClientState (GL_VERTEX_ARRAY);
 	
@@ -168,19 +189,111 @@ void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDat
 
 	glDrawArrays (GL_TRIANGLE_FAN, 0, pData->iNumActiveNodes);
 	
+	glPopMatrix ();
 	
 	if (pDock->bUseReflect)
 	{
-		glEnableClientState(GL_COLOR_ARRAY);
+		glPushMatrix ();
+		double x0, y0, x1, y1;
+		double fReflectRatio = myIcons.fReflectSize * pDock->fRatio / pIcon->fHeight / pIcon->fScale;
+		double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIcons.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->fRatio;
+		if (pDock->bHorizontalDock)
+		{
+			if (pDock->bDirectionUp)
+			{
+				fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
+				glTranslatef (0., - fOffsetY, 0.);
+				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);  // taille du reflet et on se retourne.
+				x0 = 0.;
+				y0 = 1. - fReflectRatio;
+				x1 = 1.;
+				y1 = 1.;
+			}
+			else
+			{
+				glTranslatef (0., fOffsetY, 0.);
+				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->fRatio, 1.);
+				x0 = 0.;
+				y0 = fReflectRatio;
+				x1 = 1.;
+				y1 = 0.;
+			}
+		}
+		else
+		{
+			if (pDock->bDirectionUp)
+			{
+				glTranslatef (fOffsetY, 0., 0.);
+				glScalef (- myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				x0 = 1. - fReflectRatio;
+				y0 = 0.;
+				x1 = 1.;
+				y1 = 1.;
+			}
+			else
+			{
+				glTranslatef (- fOffsetY, 0., 0.);
+				glScalef (myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				x0 = fReflectRatio;
+				y0 = 0.;
+				x1 = 0.;
+				y1 = 1.;
+			}
+		}
+		//glEnableClientState(GL_COLOR_ARRAY);
 		
-		glColorPointer(4, GL_FLOAT, 0, pData->pColors);
+		//glColorPointer(4, GL_FLOAT, 0, pData->pColors);
+		//glDrawArrays (GL_TRIANGLE_FAN, 0, pData->iNumActiveNodes);
 		
-		glDisableClientState(GL_COLOR_ARRAY);
+		//glDisableClientState(GL_COLOR_ARRAY);
+		
+		
+		glActiveTexture(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
+		glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
+		glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+		
+		glColor4f(1., 1., 1., myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
+		glEnable(GL_BLEND);
+		glBlendFunc (1, 0);
+		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		
+		glActiveTexture(GL_TEXTURE1_ARB); // Go pour le texturing 2eme passe
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, g_pGradationTexture[pDock->bHorizontalDock]);
+		glColor4f(1., 1., 1., 1.);  // transparence du reflet.
+		glEnable(GL_BLEND);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); // Le mode de combinaison des textures
+		glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_ALPHA_EXT, GL_MODULATE);  // multiplier les alpha.
+		/*glEnable(GL_TEXTURE_GEN_S);                                // generation texture en S
+		glEnable(GL_TEXTURE_GEN_T);        // et en T
+		glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR); // la je veux un mapping tout ce qu'il y a de plus classique
+		glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);*/
+		glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+		glEnableClientState (GL_VERTEX_ARRAY);
+		
+	glTexCoordPointer (2, GL_FLOAT, 0, pData->pCoords);
+	glVertexPointer (3, GL_FLOAT, 0, pData->pVertices);
+		
+		glDrawArrays (GL_TRIANGLE_FAN, 0, pData->iNumActiveNodes);
+		
+		glActiveTexture(GL_TEXTURE1_ARB);
+		glDisable(GL_TEXTURE_2D);
+		glDisableClientState (GL_TEXTURE_COORD_ARRAY);
+		glDisableClientState (GL_VERTEX_ARRAY);
+		glDisable(GL_TEXTURE_GEN_S);
+		glDisable(GL_TEXTURE_GEN_T);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		glActiveTexture(GL_TEXTURE0_ARB);
+		glDisable(GL_TEXTURE_2D);
+		glDisable(GL_TEXTURE_GEN_S);
+		glDisable(GL_TEXTURE_GEN_T);
+		
+		glPopMatrix ();
 	}
 	
-	glPopMatrix ();
 	glDisableClientState (GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState (GL_VERTEX_ARRAY);
-	glDisable(GL_TEXTURE_2D);
+	glDisable (GL_TEXTURE_2D);
 	glDisable (GL_BLEND);
 }

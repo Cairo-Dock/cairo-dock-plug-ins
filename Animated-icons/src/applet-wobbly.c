@@ -12,7 +12,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <math.h>
 
 #include "applet-struct.h"
-#include "applet-icon-renderer.h"
 #include "applet-wobbly.h"
 
 #define l0 .33
@@ -265,8 +264,8 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	{
 		glPushMatrix ();
 		double x0, y0, x1, y1;
-		double fReflectRatio = myIcons.fReflectSize / pIcon->fHeight / pIcon->fScale;
-		double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + myIcons.fReflectSize/2 + pIcon->fDeltaYReflection;
+		double fReflectRatio = myIcons.fReflectSize * pDock->fRatio / pIcon->fHeight / pIcon->fScale;
+		double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIcons.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->fRatio;
 		if (pDock->bHorizontalDock)
 		{
 			if (pDock->bDirectionUp)
@@ -282,7 +281,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 			else
 			{
 				glTranslatef (0., fOffsetY, 0.);
-				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize, 1.);
+				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->fRatio, 1.);
 				x0 = 0.;
 				y0 = fReflectRatio;
 				x1 = 1.;
@@ -294,7 +293,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 			if (pDock->bDirectionUp)
 			{
 				glTranslatef (fOffsetY, 0., 0.);
-				glScalef (- myIcons.fReflectSize, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				glScalef (- myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 				x0 = 1. - fReflectRatio;
 				y0 = 0.;
 				x1 = 1.;
@@ -303,7 +302,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 			else
 			{
 				glTranslatef (- fOffsetY, 0., 0.);
-				glScalef (myIcons.fReflectSize, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				glScalef (myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 				x0 = fReflectRatio;
 				y0 = 0.;
 				x1 = 0.;

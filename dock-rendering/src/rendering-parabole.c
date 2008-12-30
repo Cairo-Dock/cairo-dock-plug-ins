@@ -643,7 +643,6 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	
 	cairo_dock_check_can_drop_linear (pDock);  /// marche ?...
 	
-	
 	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
 }
 
