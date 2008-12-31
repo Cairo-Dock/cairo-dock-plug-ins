@@ -143,7 +143,7 @@ part size = 20
 part speed = 8
 
 
-#[gtk-media-record]
+#[@icon_effectsdatadir@/icon-storm.png]
 [Storm]
 
 #I[0;8000] Duration of the animation :

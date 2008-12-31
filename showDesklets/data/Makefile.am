@@ -8,6 +8,8 @@ module_DATA = \
 	readme\
 	preview.png\
 	show-desklets.svg\
-	hide-desklets.svg
+	hide-desklets.svg\
+	icon.png
+
 EXTRA_DIST = $(module_DATA)
 

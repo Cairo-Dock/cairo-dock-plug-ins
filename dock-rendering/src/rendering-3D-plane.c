@@ -732,7 +732,8 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 				glPushMatrix ();
 				if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 					cd_rendering_draw_flat_separator_opengl (icon, pDock);
-				///cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
+				else
+					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE);
 				glPopMatrix ();
 			}
 			
@@ -762,7 +763,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 				{
 					glPushMatrix ();
-					///cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
+					cd_rendering_draw_physical_separator_opengl (icon, pDock, FALSE);
 					glPopMatrix ();
 				}
 				
@@ -813,7 +814,7 @@ void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 	
 	double fHeight, fBigWidth, fLittleWidth;
 	
-	fHeight = pDock->iDecorationsHeight - 0*myBackground.iDockLineWidth;
+	fHeight = pDock->iDecorationsHeight;
 	fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
 	fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
 	
@@ -822,8 +823,8 @@ void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
 	
 	double fDockOffsetX, fDockOffsetY;
-	
 	fDockOffsetX = icon->fDrawX - (fHeight - hi) * fLeftInclination;
+	fDockOffsetY = fHeight + myBackground.iDockLineWidth;
 	
 	glEnable (GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -837,61 +838,135 @@ void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 	
 	if (pDock->bHorizontalDock)
 	{
-		if (pDock->bDirectionUp)
-		{
-			fDockOffsetY = fHeight + myBackground.iDockLineWidth;
-		}
-		else
-		{
-			fDockOffsetY = pDock->iCurrentHeight - (fHeight + myBackground.iDockLineWidth);
-		}
+		if (! pDock->bDirectionUp)
+			fDockOffsetY = pDock->iCurrentHeight - fDockOffsetY;
+		
 		glTranslatef (fDockOffsetX, fDockOffsetY, 0.);  // coin haut gauche.
 		if (! pDock->bDirectionUp)
 			glScalef (1., -1., 1.);
-		
-		glBegin(GL_QUADS);
-		glTexCoord2f(0., 0.);
-		glVertex3f(0., 0., 0.);  // Bottom Left Of The Texture and Quad
-		glTexCoord2f(1., 0.);
-		glVertex3f(fLittleWidth, 0., 0.);  // Bottom Right Of The Texture and Quad
-		glTexCoord2f(1., 1.);
-		glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);  // Top Right Of The Texture and Quad
-		glTexCoord2f(0., 1.);
-		glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);  // Top Left Of The Texture and Quad
-		glEnd();
 	}
 	else
 	{
-		if (!pDock->bDirectionUp)
-		{
-			fDockOffsetY = fHeight + myBackground.iDockLineWidth;
-		}
-		else
-		{
-			fDockOffsetY = pDock->iCurrentHeight - (fHeight + myBackground.iDockLineWidth);
-		}
+		if (pDock->bDirectionUp)
+			fDockOffsetY = pDock->iCurrentHeight - fDockOffsetY;
 		fDockOffsetX = pDock->iCurrentWidth - fDockOffsetX;
+		
 		glTranslatef (fDockOffsetY, fDockOffsetX, 0.);
-		
-		
-		glRotatef (90., 0., 0., 1.);
-		
-		if (! pDock->bDirectionUp)
+		glRotatef (-90., 0., 0., 1.);
+		if (pDock->bDirectionUp)
 			glScalef (1., -1., 1.);
-		
-		glBegin(GL_QUADS);
-		glTexCoord2f(0., 0.);
-		glVertex3f(0., 0., 0.);  // Bottom Left Of The Texture and Quad
-		glTexCoord2f(1., 0.);
-		glVertex3f(-fLittleWidth, 0., 0.);  // Bottom Right Of The Texture and Quad
-		glTexCoord2f(1., 1.);
-		glVertex3f(-(fLittleWidth + fDeltaXRight), - fHeight, 0.);  // Top Right Of The Texture and Quad
-		glTexCoord2f(0., 1.);
-		glVertex3f(-(fLittleWidth + fDeltaXRight - fBigWidth), - fHeight, 0.);  // Top Left Of The Texture and Quad
-		glEnd();
 	}
+	
+	glBegin(GL_QUADS);
+	glTexCoord2f(0., 0.);
+	glVertex3f(0., 0., 0.);  // Bottom Left Of The Texture and Quad
+	glTexCoord2f(1., 0.);
+	glVertex3f(fLittleWidth, 0., 0.);  // Bottom Right Of The Texture and Quad
+	glTexCoord2f(1., 1.);
+	glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);  // Top Right Of The Texture and Quad
+	glTexCoord2f(0., 1.);
+	glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);  // Top Left Of The Texture and Quad
+	glEnd();
 	
 	glDisable (GL_TEXTURE_2D);
 	glDisable (GL_BLEND);
 }
 
+void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, gboolean bBackGround)
+{
+	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	
+	double fHeight, fBigWidth, fLittleWidth;
+	
+	if (bBackGround)
+	{
+		fHeight = pDock->iDecorationsHeight + myBackground.iDockLineWidth - hi;
+		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + 0);
+		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + 0 - fHeight);
+	}
+	else
+	{
+		fHeight = hi + myBackground.iDockLineWidth;
+		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
+		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
+	}
+	double fDeltaXLeft = fHeight * fLeftInclination;
+	double fDeltaXRight = fHeight * fRightInclination;
+	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
+	
+	double fDockOffsetX, fDockOffsetY;
+	if (bBackGround)
+	{
+		fDockOffsetX = icon->fDrawX - fHeight * fLeftInclination;
+		fDockOffsetY = pDock->iDecorationsHeight + 2*myBackground.iDockLineWidth;
+	}
+	else
+	{
+		fDockOffsetX = icon->fDrawX;
+		fDockOffsetY = fHeight;
+	}
+	
+	glEnable (GL_BLEND);
+	glBlendFunc (GL_ONE, GL_ZERO);
+	glColor4f (0., 0., 0., 0.);
+	
+	glPolygonMode (GL_FRONT, GL_FILL);
+	
+	if (pDock->bHorizontalDock)
+	{
+		if (! pDock->bDirectionUp)
+			fDockOffsetY = pDock->iCurrentHeight - fDockOffsetY;
+		
+		glTranslatef (fDockOffsetX, fDockOffsetY, 0.);  // coin haut gauche.
+		if (! pDock->bDirectionUp)
+			glScalef (1., -1., 1.);
+	}
+	else
+	{
+		if (pDock->bDirectionUp)
+			fDockOffsetY = pDock->iCurrentHeight - fDockOffsetY;
+		fDockOffsetX = pDock->iCurrentWidth - fDockOffsetX;
+		
+		glTranslatef (fDockOffsetY, fDockOffsetX, 0.);
+		glRotatef (-90., 0., 0., 1.);
+		if (pDock->bDirectionUp)
+			glScalef (1., -1., 1.);
+	}
+	
+	glBegin(GL_QUADS);
+	glTexCoord2f(0., 0.);
+	glVertex3f(0., 0., 0.);  // Bottom Left Of The Texture and Quad
+	glTexCoord2f(1., 0.);
+	glVertex3f(fLittleWidth, 0., 0.);  // Bottom Right Of The Texture and Quad
+	glTexCoord2f(1., 1.);
+	glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);  // Top Right Of The Texture and Quad
+	glTexCoord2f(0., 1.);
+	glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);  // Top Left Of The Texture and Quad
+	glEnd();
+	
+	
+	glPolygonMode (GL_FRONT, GL_LINE);
+	glEnable (GL_LINE_SMOOTH);
+	glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+	glLineWidth (myBackground.iDockLineWidth);
+	glColor4f (myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
+	
+	glBegin(GL_LINES);
+	glVertex3f(fLittleWidth, 0., 0.);
+	glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);
+	glEnd();
+	
+	glBegin(GL_LINES);
+	glVertex3f(0., 0., 0.);
+	glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);
+	glEnd();
+	
+	glDisable(GL_LINE_SMOOTH);
+	
+	glDisable (GL_TEXTURE_2D);
+	glDisable (GL_BLEND);
+}

@@ -11,6 +11,7 @@ module_DATA = \
 	star.png\
 	snow.png\
 	rain.png\
-	icon-fire.svg
+	icon-fire.svg\
+	icon-storm.png
 
 EXTRA_DIST = $(module_DATA)
