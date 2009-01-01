@@ -12,7 +12,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-desktops.h"
 #include "applet-load-icons.h"
 #include "applet-draw.h"
-CD_APPLET_INCLUDE_MY_VARS
 
 
 static GList * _load_icons (void)
@@ -145,8 +144,8 @@ void cd_switcher_paint_icons (void)
 		cd_switcher_draw_main_icon();
 		pSurface = cairo_dock_get_desktop_bg_surface ();
 		double fMaxScale = cairo_dock_get_max_scale (pContainer);
-		fZoomX = (double) pFirstIcon->fWidth * fMaxScale / g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
-		fZoomY = (double) pFirstIcon->fHeight * fMaxScale / g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		fZoomX = (double) pFirstIcon->fWidth * fMaxScale / g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
+		fZoomY = (double) pFirstIcon->fHeight * fMaxScale / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
 
 	}
 	if (pSurface == NULL)

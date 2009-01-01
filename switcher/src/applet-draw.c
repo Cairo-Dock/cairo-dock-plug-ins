@@ -14,7 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-load-icons.h"
 #include "applet-draw.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 gboolean my_bRotateIconsOnEllipse = TRUE;
 
@@ -43,8 +42,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	if (myConfig.bMapWallpaper)
 	{
 		pSurface = cairo_dock_get_desktop_bg_surface ();
-		fZoomX = (double) myData.switcher.fOneViewportWidth / g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
-		fZoomY= (double) myData.switcher.fOneViewportHeight / g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		fZoomX = (double) myData.switcher.fOneViewportWidth / g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
+		fZoomY= (double) myData.switcher.fOneViewportHeight / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
 	}
 	if (pSurface == NULL)
 	{
@@ -191,15 +190,15 @@ void cd_switcher_draw_windows_on_each_viewports(double Xposition, double Ypositi
 		Xgeo = Xposition;
 		Ygeo = Yposition;
 	
-		double 	XWgeo= ((double)icon->windowGeometry.x/((double)g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]))* (myData.switcher.fOneViewportWidth + myConfig.iInLineSize);
-		double 	YWgeo = ((double)icon->windowGeometry.y/((double)g_iScreenHeight[CAIRO_DOCK_HORIZONTAL]))* (myData.switcher.fOneViewportHeight + myConfig.iInLineSize);
+		double 	XWgeo= ((double)icon->windowGeometry.x/((double)g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]))* (myData.switcher.fOneViewportWidth + myConfig.iInLineSize);
+		double 	YWgeo = ((double)icon->windowGeometry.y/((double)g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]))* (myData.switcher.fOneViewportHeight + myConfig.iInLineSize);
 		
 		
 
 		double 	x0       =   XWgeo+Xgeo,
 			y0	=   YWgeo+Ygeo,
-			rect_width  = ((double)icon->windowGeometry.width/(double)g_iScreenWidth[CAIRO_DOCK_HORIZONTAL])*Xsize,
-			rect_height = ((double)icon->windowGeometry.height/(double)g_iScreenHeight[CAIRO_DOCK_HORIZONTAL])*Ysize,
+			rect_width  = ((double)icon->windowGeometry.width/(double)g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL])*Xsize,
+			rect_height = ((double)icon->windowGeometry.height/(double)g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL])*Ysize,
 			radius = 8.0,   
 			windowtitle = 3.0;
 		
@@ -270,8 +269,8 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 	if (myConfig.bMapWallpaper)
 	{
 		pSurface = cairo_dock_get_desktop_bg_surface ();
-		fZoomX = (double) myIcon->fHeight/fRatio * fMaxScale/g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
-		fZoomY= (double) myIcon->fHeight/fRatio * fMaxScale/g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];	
+		fZoomX = (double) myIcon->fHeight/fRatio * fMaxScale/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
+		fZoomY= (double) myIcon->fHeight/fRatio * fMaxScale/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];	
 		cairo_translate (myDrawContext,
 			0.,
 			0.);

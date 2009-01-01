@@ -11,8 +11,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-desktops.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 void cd_switcher_get_current_desktop (void)
 {
@@ -20,8 +18,8 @@ void cd_switcher_get_current_desktop (void)
 	
 	int iCurrentViewportX, iCurrentViewportY;
 	cairo_dock_get_current_viewport (&iCurrentViewportX, &iCurrentViewportY);
-	myData.switcher.iCurrentViewportX = iCurrentViewportX / g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
-	myData.switcher.iCurrentViewportY = iCurrentViewportY / g_iScreenHeight[CAIRO_DOCK_HORIZONTAL];
+	myData.switcher.iCurrentViewportX = iCurrentViewportX / g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
+	myData.switcher.iCurrentViewportY = iCurrentViewportY / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
 	
 	cd_debug ("%s () -> %d;%d;%d", __func__, myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
@@ -45,10 +43,10 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 			if (iNbViewports % iNbLines != 0)
 				continue;
 			iNbDesktopByLine = iNbViewports / iNbLines;
-			fZoomX = myIcon->fWidth / (iNbDesktopByLine * g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]);
-			fZoomY = myIcon->fHeight / (iNbLines * g_iScreenHeight[CAIRO_DOCK_HORIZONTAL]);
+			fZoomX = myIcon->fWidth / (iNbDesktopByLine * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
+			fZoomY = myIcon->fHeight / (iNbLines * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
 			fZoom = MIN (fZoomX, fZoomY);  // zoom qui conserve le ratio.
-			fUsedSurface = (fZoom * iNbDesktopByLine * g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]) * (fZoom * iNbLines * g_iScreenHeight[CAIRO_DOCK_HORIZONTAL]);
+			fUsedSurface = (fZoom * iNbDesktopByLine * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]) * (fZoom * iNbLines * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
 			g_print ("%d lignes => fUsedSurface: %.2f pix^2\n", iNbLines, fUsedSurface);
 			
 			if (fUsedSurface > fMaxUsedSurface)
@@ -64,8 +62,8 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 			if (iNbViewports % iNbLines != 0)
 				continue;
 			iNbDesktopByLine = iNbViewports / iNbLines;
-			fZoomX = myIcon->fWidth / (iNbDesktopByLine * g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]);
-			fZoomY = myIcon->fHeight / (iNbLines * g_iScreenHeight[CAIRO_DOCK_HORIZONTAL]);
+			fZoomX = myIcon->fWidth / (iNbDesktopByLine * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
+			fZoomY = myIcon->fHeight / (iNbLines * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
 			fRatio = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // ratio ramene dans [1, inf].
 			cd_debug ("%d lignes => fRatio: %.2f", iNbLines, fRatio);
 			if (fRatio < fMinRatio)
