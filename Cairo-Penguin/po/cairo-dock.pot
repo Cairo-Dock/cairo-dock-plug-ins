@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-11-25 21:18+0100\n"
+"POT-Creation-Date: 2009-01-01 03:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,88 +16,88 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:20
 msgid "Hey, I'm here !"
 msgstr ""
 
-#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:21
 msgid "Sorry but I'm busy right now."
 msgstr ""
 
-#: ../src/applet-notifications.c:24
+#: ../src/applet-notifications.c:22
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
 
-#: ../src/applet-notifications.c:25
+#: ../src/applet-notifications.c:23
 msgid "Your dock is so messy ! Let me clean it."
 msgstr ""
 
-#: ../src/applet-notifications.c:26
+#: ../src/applet-notifications.c:24
 msgid "Admit my superiority on you as a penguin !"
 msgstr ""
 
-#: ../src/applet-notifications.c:27
+#: ../src/applet-notifications.c:25
 msgid "Wait, do you want to kill me ?!"
 msgstr ""
 
-#: ../src/applet-notifications.c:28
+#: ../src/applet-notifications.c:26
 msgid "Do you know how much painful it is to be clicked on ??"
 msgstr ""
 
-#: ../src/applet-notifications.c:29
+#: ../src/applet-notifications.c:27
 msgid "It's my dock now, mwahahaha !"
 msgstr ""
 
-#: ../src/applet-notifications.c:30
+#: ../src/applet-notifications.c:28
 msgid "I want to be a pirate !"
 msgstr ""
 
-#: ../src/applet-notifications.c:31
+#: ../src/applet-notifications.c:29
 msgid "You shall not pass !"
 msgstr ""
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:30
 msgid "I'm your father !"
 msgstr ""
 
-#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:31
 msgid ""
 "- What will we do tonight Cortex ?\n"
 "- The same thing as every nights, Minus. Try to take over the Dock !"
 msgstr ""
 
-#: ../src/applet-notifications.c:34
+#: ../src/applet-notifications.c:32
 msgid "For Aiur !"
 msgstr ""
 
-#: ../src/applet-notifications.c:37
+#: ../src/applet-notifications.c:35
 msgid ""
 "This is the Cairo-Penguin applet\n"
 " made by Fabrice Rey for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:117
 msgid "Hey, you there !"
 msgstr ""
 
-#: ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:120
 msgid "Keep quiet"
 msgstr ""
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:124
 msgid "Wake up"
 msgstr ""
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:127
 msgid "Start XPenguins"
 msgstr ""
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:128
 msgid "Stop XPenguins"
 msgstr ""
 
-#: ../src/applet-notifications.c:145 ../src/applet-notifications.c:147
+#: ../src/applet-notifications.c:151 ../src/applet-notifications.c:153
 msgid "Zzzzz"
 msgstr ""
 
@@ -151,4 +151,12 @@ msgstr ""
 
 #: ../data/messages:25
 msgid "Let the penguin wander everywhere in the dock ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid "in pixels."
+msgstr ""
+
+#: ../data/messages:29
+msgid "Ground offset :"
 msgstr ""

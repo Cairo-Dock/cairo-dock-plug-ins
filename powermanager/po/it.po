@@ -379,33 +379,26 @@ msgstr "Animare l'icona durante l'allerta ?"
 msgid "Animation during alert :"
 msgstr "Animazione durante l'allerta :"
 
-#: ../data/messages:141
-msgid "bounce"
-msgstr "Rimbalzo"
+#~ msgid "bounce"
+#~ msgstr "Rimbalzo"
 
-#: ../data/messages:143
-msgid "rotate"
-msgstr "Rotazione"
+#~ msgid "rotate"
+#~ msgstr "Rotazione"
 
-#: ../data/messages:145
-msgid "blink"
-msgstr "Lampeggiamento"
+#~ msgid "blink"
+#~ msgstr "Lampeggiamento"
 
-#: ../data/messages:147
-msgid "pulse"
-msgstr "Pulsazione"
+#~ msgid "pulse"
+#~ msgstr "Pulsazione"
 
-#: ../data/messages:149
-msgid "upside-down"
-msgstr "Capovolgimento"
+#~ msgid "upside-down"
+#~ msgstr "Capovolgimento"
 
-#: ../data/messages:151
-msgid "wobbly"
-msgstr "Molla"
+#~ msgid "wobbly"
+#~ msgstr "Molla"
 
-#: ../data/messages:153
-msgid "random"
-msgstr "Casuale"
+#~ msgid "random"
+#~ msgstr "Casuale"
 
 #~ msgid "Options"
 #~ msgstr "Opzioni"

@@ -54,6 +54,10 @@ msgstr "稼働時間"
 msgid "Activity time"
 msgstr "動作時間"
 
+#: ../src/applet-notifications.c:148
+msgid "Monitor System"
+msgstr ""
+
 #: ../data/messages:1
 msgid "Icon"
 msgstr "アイコン"
@@ -366,6 +370,15 @@ msgstr "更新の間隔時間 :"
 msgid "Delay between refresh of the top list :"
 msgstr "トップリストの更新間隔 :"
 
+#: ../data/messages:145
+#, fuzzy
+msgid "Let empty to use he default one."
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
+
+#: ../data/messages:147
+msgid "User command to show a system monitor :"
+msgstr ""
+
 #~ msgid "turbo-night-fuel"
 #~ msgstr "turbo-night-fuel"
 
@@ -377,9 +390,6 @@ msgstr "トップリストの更新間隔 :"
 
 #~ msgid "Personnalisation"
 #~ msgstr "カスタマイズ"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #~ msgid "Delay between signal checks :"
 #~ msgstr "信号チェックの間隔時間 :"

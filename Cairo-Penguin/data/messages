@@ -24,3 +24,7 @@ _("Transparency of the penguin :")
 
 _("Let the penguin wander everywhere in the dock ?")
 
+_("in pixels.")
+
+_("Ground offset :")
+

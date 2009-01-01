@@ -335,61 +335,54 @@ msgid "Animation when music changes :"
 msgstr "Animazione al cambiamento della musica :"
 
 #: ../data/messages:131
-msgid "bounce"
-msgstr "Rimbalzo"
-
-#: ../data/messages:133
-msgid "rotate"
-msgstr "Rotazione"
-
-#: ../data/messages:135
-msgid "blink"
-msgstr "Lampeggiamento"
-
-#: ../data/messages:137
-msgid "pulse"
-msgstr "Pulsazione"
-
-#: ../data/messages:139
-msgid "upside-down"
-msgstr "Capovolgimento"
-
-#: ../data/messages:141
-msgid "wobbly"
-msgstr "Molla"
-
-#: ../data/messages:143
-msgid "random"
-msgstr "Casuale"
-
-#: ../data/messages:145
 msgid "Personnalisation"
 msgstr "Personalizzazione"
 
-#: ../data/messages:147 ../data/messages:151 ../data/messages:155
-#: ../data/messages:159 ../data/messages:163
+#: ../data/messages:133 ../data/messages:137 ../data/messages:141
+#: ../data/messages:145 ../data/messages:149
 msgid "Let it empty to use the default icon."
 msgstr "Lasciare vuoto per avere l'icona di default."
 
-#: ../data/messages:149
+#: ../data/messages:135
 msgid "Name of an image for the 'default' icon :"
 msgstr "Immagine per l'icona 'Default' :"
 
-#: ../data/messages:153
+#: ../data/messages:139
 msgid "Name of an image for the 'play' icon :"
 msgstr "Immagine per l'icona 'Play' :"
 
-#: ../data/messages:157
+#: ../data/messages:143
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Immagine per l'icona 'Stop' :"
 
-#: ../data/messages:161
+#: ../data/messages:147
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Immagine per l'icona 'Pausa' :"
 
-#: ../data/messages:165
+#: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Immagine per l'icona 'Non-funzionante' :"
+
+#~ msgid "bounce"
+#~ msgstr "Rimbalzo"
+
+#~ msgid "rotate"
+#~ msgstr "Rotazione"
+
+#~ msgid "blink"
+#~ msgstr "Lampeggiamento"
+
+#~ msgid "pulse"
+#~ msgstr "Pulsazione"
+
+#~ msgid "upside-down"
+#~ msgstr "Capovolgimento"
+
+#~ msgid "wobbly"
+#~ msgstr "Molla"
+
+#~ msgid "random"
+#~ msgstr "Casuale"
 
 #~ msgid "Play/Pause"
 #~ msgstr "Play/Pause"

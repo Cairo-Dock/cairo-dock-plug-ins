@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-11-25 21:34+0100\n"
+"POT-Creation-Date: 2009-01-01 03:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr ""
 
-#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:190
+#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:188
 msgid "Emerald Manager"
 msgstr ""
 
@@ -48,27 +48,27 @@ msgid ""
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
 
-#: ../src/applet-notifications.c:191
+#: ../src/applet-notifications.c:189
 msgid "Reload Emerald"
 msgstr ""
 
-#: ../src/applet-notifications.c:195
+#: ../src/applet-notifications.c:193
 msgid "Switch Windows Manager"
 msgstr ""
 
-#: ../src/applet-notifications.c:196
+#: ../src/applet-notifications.c:194
 msgid "Switch Windows Decorator"
 msgstr ""
 
-#: ../src/applet-notifications.c:205
+#: ../src/applet-notifications.c:203
 msgid "Toggle Exposition Mode"
 msgstr ""
 
-#: ../src/applet-notifications.c:206
+#: ../src/applet-notifications.c:204
 msgid "Toggle Widgets Layer"
 msgstr ""
 
-#: ../src/applet-notifications.c:208
+#: ../src/applet-notifications.c:206
 msgid "Toggle Show Desktop"
 msgstr ""
 

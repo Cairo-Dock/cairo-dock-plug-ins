@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-11-25 21:20+0100\n"
+"POT-Creation-Date: 2009-01-01 03:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,6 +28,10 @@ msgstr ""
 
 #: ../src/applet-notifications.c:96
 msgid "Data acquisition has failed"
+msgstr ""
+
+#: ../src/applet-notifications.c:117
+msgid "Monitor System"
 msgstr ""
 
 #: ../src/applet-rame.c:121
@@ -342,4 +346,12 @@ msgstr ""
 
 #: ../data/messages:153
 msgid "Show top memory usage in % ?"
+msgstr ""
+
+#: ../data/messages:155
+msgid "Let empty to use he default one."
+msgstr ""
+
+#: ../data/messages:157
+msgid "User command to show a system monitor :"
 msgstr ""

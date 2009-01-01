@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-11-25 21:25+0100\n"
+"POT-Creation-Date: 2009-01-01 03:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,6 +52,10 @@ msgstr ""
 
 #: ../src/applet-notifications.c:123
 msgid "Activity time"
+msgstr ""
+
+#: ../src/applet-notifications.c:148
+msgid "Monitor System"
 msgstr ""
 
 #: ../data/messages:1
@@ -346,4 +350,12 @@ msgstr ""
 
 #: ../data/messages:143
 msgid "Delay between refresh of the top list :"
+msgstr ""
+
+#: ../data/messages:145
+msgid "Let empty to use he default one."
+msgstr ""
+
+#: ../data/messages:147
+msgid "User command to show a system monitor :"
 msgstr ""

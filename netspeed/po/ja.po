@@ -63,7 +63,11 @@ msgstr "アップロード"
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "インターフェイス '%s' は存在しないか、読み込みできないようです。"
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:46
+msgid "Monitor System"
+msgstr ""
+
+#: ../src/applet-notifications.c:48
 msgid "Re-check interface"
 msgstr "インターフェイスの再チェック"
 
@@ -361,6 +365,15 @@ msgstr "秒単位"
 msgid "Delay between 2 measures :"
 msgstr "計測の間隔時間 :"
 
+#: ../data/messages:139
+#, fuzzy
+msgid "Let empty to use he default one."
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
+
+#: ../data/messages:141
+msgid "User command to show a system monitor :"
+msgstr ""
+
 #~ msgid ""
 #~ "Total amount of data :\n"
 #~ "  downloaded : %.2f%s\n"
@@ -378,9 +391,6 @@ msgstr "計測の間隔時間 :"
 
 #~ msgid "Personnalisation"
 #~ msgstr "カスタマイズ"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #~ msgid "Delay between signal checks :"
 #~ msgstr "信号チェックの間隔時間 :"

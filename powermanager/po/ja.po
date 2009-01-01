@@ -379,33 +379,26 @@ msgstr "通告中にアイコンをアニメーション化？"
 msgid "Animation during alert :"
 msgstr "通告中のアニメーション :"
 
-#: ../data/messages:141
-msgid "bounce"
-msgstr "バウンド"
+#~ msgid "bounce"
+#~ msgstr "バウンド"
 
-#: ../data/messages:143
-msgid "rotate"
-msgstr "回転"
+#~ msgid "rotate"
+#~ msgstr "回転"
 
-#: ../data/messages:145
-msgid "blink"
-msgstr "点滅"
+#~ msgid "blink"
+#~ msgstr "点滅"
 
-#: ../data/messages:147
-msgid "pulse"
-msgstr "波動"
+#~ msgid "pulse"
+#~ msgstr "波動"
 
-#: ../data/messages:149
-msgid "upside-down"
-msgstr "上下逆さま"
+#~ msgid "upside-down"
+#~ msgstr "上下逆さま"
 
-#: ../data/messages:151
-msgid "wobbly"
-msgstr "伸び縮み"
+#~ msgid "wobbly"
+#~ msgstr "伸び縮み"
 
-#: ../data/messages:153
-msgid "random"
-msgstr "ランダム"
+#~ msgid "random"
+#~ msgstr "ランダム"
 
 #~ msgid "ICON"
 #~ msgstr "アイコン"

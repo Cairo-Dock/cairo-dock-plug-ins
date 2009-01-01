@@ -329,61 +329,54 @@ msgid "Animation when music changes :"
 msgstr "音乐切换时的动画："
 
 #: ../data/messages:131
-msgid "bounce"
-msgstr "弹跳"
-
-#: ../data/messages:133
-msgid "rotate"
-msgstr "旋转"
-
-#: ../data/messages:135
-msgid "blink"
-msgstr "闪烁"
-
-#: ../data/messages:137
-msgid "pulse"
-msgstr "脉冲"
-
-#: ../data/messages:139
-msgid "upside-down"
-msgstr "倒立"
-
-#: ../data/messages:141
-msgid "wobbly"
-msgstr "抖动"
-
-#: ../data/messages:143
-msgid "random"
-msgstr "随机"
-
-#: ../data/messages:145
 msgid "Personnalisation"
 msgstr "个性化"
 
-#: ../data/messages:147 ../data/messages:151 ../data/messages:155
-#: ../data/messages:159 ../data/messages:163
+#: ../data/messages:133 ../data/messages:137 ../data/messages:141
+#: ../data/messages:145 ../data/messages:149
 msgid "Let it empty to use the default icon."
 msgstr "留空以使用默认图标。"
 
-#: ../data/messages:149
+#: ../data/messages:135
 msgid "Name of an image for the 'default' icon :"
 msgstr "做为默认图标的图片文件名："
 
-#: ../data/messages:153
+#: ../data/messages:139
 msgid "Name of an image for the 'play' icon :"
 msgstr "做为播放图标的图片文件名："
 
-#: ../data/messages:157
+#: ../data/messages:143
 msgid "Name of an image for the 'stop' icon :"
 msgstr "做为停止图标的图片文件名："
 
-#: ../data/messages:161
+#: ../data/messages:147
 msgid "Name of an image for the 'pause' icon :"
 msgstr "做为暂停图标的图片文件名："
 
-#: ../data/messages:165
+#: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr "做为损毁图标的图片文件名："
+
+#~ msgid "bounce"
+#~ msgstr "弹跳"
+
+#~ msgid "rotate"
+#~ msgstr "旋转"
+
+#~ msgid "blink"
+#~ msgstr "闪烁"
+
+#~ msgid "pulse"
+#~ msgstr "脉冲"
+
+#~ msgid "upside-down"
+#~ msgstr "倒立"
+
+#~ msgid "wobbly"
+#~ msgstr "抖动"
+
+#~ msgid "random"
+#~ msgstr "随机"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"

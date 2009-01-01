@@ -17,11 +17,11 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/rhythmbox-draw.c:76
+#: ../src/rhythmbox-draw.c:75
 msgid "Track"
 msgstr "Spår"
 
-#: ../src/rhythmbox-draw.c:136
+#: ../src/rhythmbox-draw.c:135
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -32,8 +32,8 @@ msgstr ""
 "Album : %s\n"
 "Titel : %s"
 
-#: ../src/rhythmbox-draw.c:140 ../src/rhythmbox-draw.c:141
-#: ../src/rhythmbox-draw.c:142
+#: ../src/rhythmbox-draw.c:139 ../src/rhythmbox-draw.c:140
+#: ../src/rhythmbox-draw.c:141
 msgid "Unknown"
 msgstr "Okänt"
 
@@ -260,34 +260,6 @@ msgid "Animation when music changes :"
 msgstr "Animering när musiken ändras:"
 
 #: ../data/messages:89
-msgid "bounce"
-msgstr "studsa"
-
-#: ../data/messages:91
-msgid "rotate"
-msgstr "rotera"
-
-#: ../data/messages:93
-msgid "blink"
-msgstr "blinka"
-
-#: ../data/messages:95
-msgid "pulse"
-msgstr "pulsera"
-
-#: ../data/messages:97
-msgid "upside-down"
-msgstr "upp och ner"
-
-#: ../data/messages:99
-msgid "wobbly"
-msgstr "vingla"
-
-#: ../data/messages:101
-msgid "random"
-msgstr "slumpmässig"
-
-#: ../data/messages:103
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -295,74 +267,95 @@ msgstr ""
 "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
 "bete sig som programmet."
 
-#: ../data/messages:105
+#: ../data/messages:91
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "Stjäl programmets ikon från aktivitetsfältet?"
 
-#: ../data/messages:107
+#: ../data/messages:93
 msgid "Display"
 msgstr "Visning"
 
-#: ../data/messages:109
+#: ../data/messages:95
 msgid "Display album's cover instead of icon ?"
 msgstr "Visa skivfodral istället för ikonen?"
 
-#: ../data/messages:111
+#: ../data/messages:97
 msgid "Information to display on the icon :"
 msgstr "Information att visa på ikonen:"
 
-#: ../data/messages:113
+#: ../data/messages:99
 msgid "nothing"
 msgstr "inget"
 
-#: ../data/messages:115
+#: ../data/messages:101
 msgid "time elapsed"
 msgstr "tid som gått"
 
-#: ../data/messages:117
+#: ../data/messages:103
 msgid "time left"
 msgstr "tid kvar"
 
-#: ../data/messages:119
+#: ../data/messages:105
 msgid "time in %"
 msgstr "tid i %"
 
-#: ../data/messages:121
+#: ../data/messages:107
 msgid "n° of track"
 msgstr "spårnummer"
 
-#: ../data/messages:123
+#: ../data/messages:109
 msgid "Draw desklet in a 3D fashion (experimental) ?"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:111
 msgid "Personnalisation"
 msgstr "Inställningar"
 
-#: ../data/messages:127 ../data/messages:131 ../data/messages:135
-#: ../data/messages:139 ../data/messages:143
+#: ../data/messages:113 ../data/messages:117 ../data/messages:121
+#: ../data/messages:125 ../data/messages:129
 msgid "Let t empty to use the default icon."
 msgstr "Lämna tomt för använda standaralternativet."
 
-#: ../data/messages:129
+#: ../data/messages:115
 msgid "Name of an image for the 'default' icon :"
 msgstr "Bild för standard:"
 
-#: ../data/messages:133
+#: ../data/messages:119
 msgid "Name of an image for the 'play' icon :"
 msgstr "Bild för spela upp:"
 
-#: ../data/messages:137
+#: ../data/messages:123
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Bild för stop:"
 
-#: ../data/messages:141
+#: ../data/messages:127
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Bild för pausa:"
 
-#: ../data/messages:145
+#: ../data/messages:131
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Bild för bruten:"
+
+#~ msgid "bounce"
+#~ msgstr "studsa"
+
+#~ msgid "rotate"
+#~ msgstr "rotera"
+
+#~ msgid "blink"
+#~ msgstr "blinka"
+
+#~ msgid "pulse"
+#~ msgstr "pulsera"
+
+#~ msgid "upside-down"
+#~ msgstr "upp och ner"
+
+#~ msgid "wobbly"
+#~ msgstr "vingla"
+
+#~ msgid "random"
+#~ msgstr "slumpmässig"
 
 #~ msgid ""
 #~ "If you choose 'personnal', you can define your own decoration above, or "

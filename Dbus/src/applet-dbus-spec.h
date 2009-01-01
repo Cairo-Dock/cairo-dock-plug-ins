@@ -197,6 +197,7 @@ G_END_DECLS
 #endif /* __dbus_glib_marshal_cd_dbus_callback_MARSHAL_H__ */
 
 #include <dbus/dbus-glib.h>
+#include <applet-dbus.h>
 static const DBusGMethodInfo dbus_glib_cd_dbus_callback_methods[] = {
   { (GCallback) cd_dbus_callback_reboot, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__POINTER, 0 },
   { (GCallback) cd_dbus_callback_hello, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__POINTER, 34 },

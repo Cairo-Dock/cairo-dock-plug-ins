@@ -334,58 +334,51 @@ msgid "Animation when music changes :"
 msgstr "Animering när musiken ändras:"
 
 #: ../data/messages:131
-msgid "bounce"
-msgstr "studsa"
-
-#: ../data/messages:133
-msgid "rotate"
-msgstr "rotera"
-
-#: ../data/messages:135
-msgid "blink"
-msgstr "blinka"
-
-#: ../data/messages:137
-msgid "pulse"
-msgstr "pulsera"
-
-#: ../data/messages:139
-msgid "upside-down"
-msgstr "upp och ner"
-
-#: ../data/messages:141
-msgid "wobbly"
-msgstr "vingla"
-
-#: ../data/messages:143
-msgid "random"
-msgstr "slumpmässig"
-
-#: ../data/messages:145
 msgid "Personnalisation"
 msgstr "Inställningar"
 
-#: ../data/messages:147 ../data/messages:151 ../data/messages:155
-#: ../data/messages:159 ../data/messages:163
+#: ../data/messages:133 ../data/messages:137 ../data/messages:141
+#: ../data/messages:145 ../data/messages:149
 msgid "Let it empty to use the default icon."
 msgstr "Lämna tomt för att använda standardkortet."
 
-#: ../data/messages:149
+#: ../data/messages:135
 msgid "Name of an image for the 'default' icon :"
 msgstr "Bild för standard:"
 
-#: ../data/messages:153
+#: ../data/messages:139
 msgid "Name of an image for the 'play' icon :"
 msgstr "Bild för spela upp:"
 
-#: ../data/messages:157
+#: ../data/messages:143
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Bild för stop:"
 
-#: ../data/messages:161
+#: ../data/messages:147
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Bild för pausa:"
 
-#: ../data/messages:165
+#: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Bild för bruten:"
+
+#~ msgid "bounce"
+#~ msgstr "studsa"
+
+#~ msgid "rotate"
+#~ msgstr "rotera"
+
+#~ msgid "blink"
+#~ msgstr "blinka"
+
+#~ msgid "pulse"
+#~ msgstr "pulsera"
+
+#~ msgid "upside-down"
+#~ msgstr "upp och ner"
+
+#~ msgid "wobbly"
+#~ msgstr "vingla"
+
+#~ msgid "random"
+#~ msgstr "slumpmässig"

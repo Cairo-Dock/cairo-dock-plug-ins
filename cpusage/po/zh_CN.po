@@ -52,6 +52,10 @@ msgstr "运行时间"
 msgid "Activity time"
 msgstr "活动时间"
 
+#: ../src/applet-notifications.c:148
+msgid "Monitor System"
+msgstr ""
+
 #: ../data/messages:1
 msgid "Icon"
 msgstr "图标"
@@ -356,6 +360,15 @@ msgstr "刷新间歇："
 msgid "Delay between refresh of the top list :"
 msgstr "top列表刷新间歇："
 
+#: ../data/messages:145
+#, fuzzy
+msgid "Let empty to use he default one."
+msgstr "Laissez vide pour utiliser l'icône par défaut."
+
+#: ../data/messages:147
+msgid "User command to show a system monitor :"
+msgstr ""
+
 #~ msgid "turbo-night-fuel"
 #~ msgstr "夜色油量表"
 
@@ -370,9 +383,6 @@ msgstr "top列表刷新间歇："
 
 #~ msgid "Personnalisation"
 #~ msgstr "Personnalisation"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #~ msgid "Delay between signal checks :"
 #~ msgstr "Ecart entre 2 vérifications :"

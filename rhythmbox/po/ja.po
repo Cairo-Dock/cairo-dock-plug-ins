@@ -14,11 +14,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:76
+#: ../src/rhythmbox-draw.c:75
 msgid "Track"
 msgstr "トラック"
 
-#: ../src/rhythmbox-draw.c:136
+#: ../src/rhythmbox-draw.c:135
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -29,8 +29,8 @@ msgstr ""
 "アルバム : %s\n"
 "タイトル : %s"
 
-#: ../src/rhythmbox-draw.c:140 ../src/rhythmbox-draw.c:141
-#: ../src/rhythmbox-draw.c:142
+#: ../src/rhythmbox-draw.c:139 ../src/rhythmbox-draw.c:140
+#: ../src/rhythmbox-draw.c:141
 msgid "Unknown"
 msgstr "不明"
 
@@ -255,34 +255,6 @@ msgid "Animation when music changes :"
 msgstr "音楽切り替わり時のアニメーション:"
 
 #: ../data/messages:89
-msgid "bounce"
-msgstr "バウンド"
-
-#: ../data/messages:91
-msgid "rotate"
-msgstr "回転"
-
-#: ../data/messages:93
-msgid "blink"
-msgstr "点滅"
-
-#: ../data/messages:95
-msgid "pulse"
-msgstr "波動"
-
-#: ../data/messages:97
-msgid "upside-down"
-msgstr "上下逆さま"
-
-#: ../data/messages:99
-msgid "wobbly"
-msgstr "伸び縮み"
-
-#: ../data/messages:101
-msgid "random"
-msgstr "ランダム"
-
-#: ../data/messages:103
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -291,74 +263,95 @@ msgstr ""
 "レットのアイコンがランチャーやアプリケーション、アプレットとして動作するよう"
 "になります。"
 
-#: ../data/messages:105
+#: ../data/messages:91
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "タスクバーの Rhythmbox のアイコンを奪取？"
 
-#: ../data/messages:107
+#: ../data/messages:93
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:109
+#: ../data/messages:95
 msgid "Display album's cover instead of icon ?"
 msgstr "アイコンの代わりにアルバムのカバーを表示？"
 
-#: ../data/messages:111
+#: ../data/messages:97
 msgid "Information to display on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: ../data/messages:113
+#: ../data/messages:99
 msgid "nothing"
 msgstr "なし"
 
-#: ../data/messages:115
+#: ../data/messages:101
 msgid "time elapsed"
 msgstr "経過時間"
 
-#: ../data/messages:117
+#: ../data/messages:103
 msgid "time left"
 msgstr "残り時間"
 
-#: ../data/messages:119
+#: ../data/messages:105
 msgid "time in %"
 msgstr "時間の割合"
 
-#: ../data/messages:121
+#: ../data/messages:107
 msgid "n° of track"
 msgstr "トラック番号"
 
-#: ../data/messages:123
+#: ../data/messages:109
 msgid "Draw desklet in a 3D fashion (experimental) ?"
 msgstr "デスクレットを 3D 風に描画（実験的）？"
 
-#: ../data/messages:125
+#: ../data/messages:111
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:127 ../data/messages:131 ../data/messages:135
-#: ../data/messages:139 ../data/messages:143
+#: ../data/messages:113 ../data/messages:117 ../data/messages:121
+#: ../data/messages:125 ../data/messages:129
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:129
+#: ../data/messages:115
 msgid "Name of an image for the 'default' icon :"
 msgstr "「デフォルト」のアイコン画像の名前 :"
 
-#: ../data/messages:133
+#: ../data/messages:119
 msgid "Name of an image for the 'play' icon :"
 msgstr "「再生」のアイコン画像の名前 :"
 
-#: ../data/messages:137
+#: ../data/messages:123
 msgid "Name of an image for the 'stop' icon :"
 msgstr "「停止」のアイコン画像の名前 :"
 
-#: ../data/messages:141
+#: ../data/messages:127
 msgid "Name of an image for the 'pause' icon :"
 msgstr "「一時停止」のアイコン画像の名前 :"
 
-#: ../data/messages:145
+#: ../data/messages:131
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
+
+#~ msgid "bounce"
+#~ msgstr "バウンド"
+
+#~ msgid "rotate"
+#~ msgstr "回転"
+
+#~ msgid "blink"
+#~ msgstr "点滅"
+
+#~ msgid "pulse"
+#~ msgstr "波動"
+
+#~ msgid "upside-down"
+#~ msgstr "上下逆さま"
+
+#~ msgid "wobbly"
+#~ msgstr "伸び縮み"
+
+#~ msgid "random"
+#~ msgstr "ランダム"
 
 #~ msgid ""
 #~ "If you choose 'personnal', you can define your own decoration above, or "

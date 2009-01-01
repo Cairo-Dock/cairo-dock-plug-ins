@@ -13,19 +13,19 @@ effects = 0
 frame_lau =
 
 #r4[Fire;Stars;Rain;Snow;Storm] Effects used on launcher :
-click launchers = 0
+click launchers = 1
 
 #F-[when clicking on an appli]
 frame_appli =
 
 #r4[Fire;Stars;Rain;Snow;Storm] Effects used on applis :
-click applis = 0
+click applis = 2
 
 #F-[when clicking on an applet]
 frame_applet =
 
 #r4[Fire;Stars;Rain;Snow;Storm] Effects used on applets :
-click applets = 0
+click applets = 3
 
 #v
 sep =

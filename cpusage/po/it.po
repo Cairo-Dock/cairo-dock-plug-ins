@@ -52,6 +52,10 @@ msgstr "Up time"
 msgid "Activity time"
 msgstr "Tempi di attività"
 
+#: ../src/applet-notifications.c:148
+msgid "Monitor System"
+msgstr ""
+
 #: ../data/messages:1
 msgid "Icon"
 msgstr "Icona"
@@ -365,6 +369,15 @@ msgstr "Ritardo tra gli aggiornamenti"
 msgid "Delay between refresh of the top list :"
 msgstr "Ritardo tra gli aggiornamenti della 'top list'"
 
+#: ../data/messages:145
+#, fuzzy
+msgid "Let empty to use he default one."
+msgstr "Lasciare vuoto per utilizzare l'icona di default."
+
+#: ../data/messages:147
+msgid "User command to show a system monitor :"
+msgstr ""
+
 #~ msgid "turbo-night-fuel"
 #~ msgstr "turbo-night-fuel"
 
@@ -382,9 +395,6 @@ msgstr "Ritardo tra gli aggiornamenti della 'top list'"
 
 #~ msgid "Personnalisation"
 #~ msgstr "Personalizzazione"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "Lasciare vuoto per utilizzare l'icona di default."
 
 #~ msgid "Delay between signal checks :"
 #~ msgstr "Ritardo tra i controlli del segnale :"

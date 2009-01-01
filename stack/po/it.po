@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:19
 #, fuzzy
 msgid ""
 "This is the Stack applet\n"
@@ -21,31 +21,31 @@ msgstr ""
 "Questa è l'applet stacks\n"
 " scritta da ChAnGFu & Fabounet per Cairo-Dock"
 
-#: ../src/applet-notifications.c:63
+#: ../src/applet-notifications.c:62
 msgid "Set new name for this item :"
 msgstr "Inserisci un nuovo nome per questo oggetto :"
 
-#: ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:100
 msgid "Paste (drag'n'drop)"
 msgstr "Incolla (copia-incolla)"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:103
 msgid "Copy (middle click)"
 msgstr "Copia (click centrale)"
 
-#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:104
 msgid "Cut"
 msgstr "Taglia"
 
-#: ../src/applet-notifications.c:106
+#: ../src/applet-notifications.c:105
 msgid "Rename this item"
 msgstr "Rinomina questo oggetto"
 
-#: ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:106
 msgid "Remove this item"
 msgstr "Rimuovi questo oggetto"
 
-#: ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:108
 msgid "Clear the stack"
 msgstr "Pulisci lo stack"
 

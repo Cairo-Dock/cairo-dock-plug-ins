@@ -28,6 +28,10 @@ msgstr "Mb"
 msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échouée"
 
+#: ../src/applet-notifications.c:117
+msgid "Monitor System"
+msgstr ""
+
 #: ../src/applet-rame.c:121
 msgid "Loading"
 msgstr "Chargement"
@@ -361,6 +365,14 @@ msgstr "Intervalle entre chaque rafraîchissement :"
 #: ../data/messages:153
 msgid "Show top memory usage in % ?"
 msgstr "Montrer l'usage mémoire en % ?"
+
+#: ../data/messages:155
+msgid "Let empty to use he default one."
+msgstr ""
+
+#: ../data/messages:157
+msgid "User command to show a system monitor :"
+msgstr ""
 
 #~ msgid "turbo-night-fuel"
 #~ msgstr "turbo-night-fuel"

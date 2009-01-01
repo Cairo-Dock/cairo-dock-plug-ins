@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-11-25 21:20+0100\n"
+"POT-Creation-Date: 2009-01-01 03:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,11 @@ msgstr ""
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr ""
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:46
+msgid "Monitor System"
+msgstr ""
+
+#: ../src/applet-notifications.c:48
 msgid "Re-check interface"
 msgstr ""
 
@@ -343,4 +347,12 @@ msgstr ""
 
 #: ../data/messages:137
 msgid "Delay between 2 measures :"
+msgstr ""
+
+#: ../data/messages:139
+msgid "Let empty to use he default one."
+msgstr ""
+
+#: ../data/messages:141
+msgid "User command to show a system monitor :"
 msgstr ""

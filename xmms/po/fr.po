@@ -342,58 +342,51 @@ msgid "Animation when music changes :"
 msgstr "Animation au changement de musique"
 
 #: ../data/messages:131
-msgid "bounce"
-msgstr "Rebond"
-
-#: ../data/messages:133
-msgid "rotate"
-msgstr "Rotation"
-
-#: ../data/messages:135
-msgid "blink"
-msgstr "Clignotement"
-
-#: ../data/messages:137
-msgid "pulse"
-msgstr "Pulsation"
-
-#: ../data/messages:139
-msgid "upside-down"
-msgstr "Sens dessus-dessous"
-
-#: ../data/messages:141
-msgid "wobbly"
-msgstr "Élastique"
-
-#: ../data/messages:143
-msgid "random"
-msgstr "Aléatoire"
-
-#: ../data/messages:145
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:147 ../data/messages:151 ../data/messages:155
-#: ../data/messages:159 ../data/messages:163
+#: ../data/messages:133 ../data/messages:137 ../data/messages:141
+#: ../data/messages:145 ../data/messages:149
 msgid "Let it empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
-#: ../data/messages:149
+#: ../data/messages:135
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
-#: ../data/messages:153
+#: ../data/messages:139
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom de l'image 'Jouer' :"
 
-#: ../data/messages:157
+#: ../data/messages:143
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom de l'image 'Stop' :"
 
-#: ../data/messages:161
+#: ../data/messages:147
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom de l'image 'Pause' :"
 
-#: ../data/messages:165
+#: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Pas de Signal': "
+
+#~ msgid "bounce"
+#~ msgstr "Rebond"
+
+#~ msgid "rotate"
+#~ msgstr "Rotation"
+
+#~ msgid "blink"
+#~ msgstr "Clignotement"
+
+#~ msgid "pulse"
+#~ msgstr "Pulsation"
+
+#~ msgid "upside-down"
+#~ msgstr "Sens dessus-dessous"
+
+#~ msgid "wobbly"
+#~ msgstr "Élastique"
+
+#~ msgid "random"
+#~ msgstr "Aléatoire"

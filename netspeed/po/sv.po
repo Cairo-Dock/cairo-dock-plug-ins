@@ -66,7 +66,11 @@ msgstr "skickatSkickat:"
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "Gränssnittet '%s' finns inte eller kan inte läsas"
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:46
+msgid "Monitor System"
+msgstr ""
+
+#: ../src/applet-notifications.c:48
 msgid "Re-check interface"
 msgstr "Kontrollera gränssnitt igen"
 
@@ -359,3 +363,11 @@ msgstr "i sekunder."
 #: ../data/messages:137
 msgid "Delay between 2 measures :"
 msgstr "Tid mellan mätningar:"
+
+#: ../data/messages:139
+msgid "Let empty to use he default one."
+msgstr ""
+
+#: ../data/messages:141
+msgid "User command to show a system monitor :"
+msgstr ""

@@ -61,7 +61,11 @@ msgstr "inviati"
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "L'interfaccia '%s' sembra non esistere o non è leggibile"
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:46
+msgid "Monitor System"
+msgstr ""
+
+#: ../src/applet-notifications.c:48
 msgid "Re-check interface"
 msgstr "Ri-verifica dell'interfaccia"
 
@@ -357,6 +361,15 @@ msgstr "in secondi."
 msgid "Delay between 2 measures :"
 msgstr "Intervallo tra le due misure :"
 
+#: ../data/messages:139
+#, fuzzy
+msgid "Let empty to use he default one."
+msgstr "Lasciare vuoto per usare l'icona di default."
+
+#: ../data/messages:141
+msgid "User command to show a system monitor :"
+msgstr ""
+
 #~ msgid ""
 #~ "Total amount of data :\n"
 #~ "  downloaded : %.2f%s\n"
@@ -380,9 +393,6 @@ msgstr "Intervallo tra le due misure :"
 
 #~ msgid "Personnalisation"
 #~ msgstr "Personalizzazione"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "Lasciare vuoto per usare l'icona di default."
 
 #~ msgid "Delay between signal checks :"
 #~ msgstr "Intervallo tra le verifice del segnale :"

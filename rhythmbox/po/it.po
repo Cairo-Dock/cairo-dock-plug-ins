@@ -12,11 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:76
+#: ../src/rhythmbox-draw.c:75
 msgid "Track"
 msgstr "Traccia"
 
-#: ../src/rhythmbox-draw.c:136
+#: ../src/rhythmbox-draw.c:135
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -27,8 +27,8 @@ msgstr ""
 "Album : %s\n"
 "Titolo : %s"
 
-#: ../src/rhythmbox-draw.c:140 ../src/rhythmbox-draw.c:141
-#: ../src/rhythmbox-draw.c:142
+#: ../src/rhythmbox-draw.c:139 ../src/rhythmbox-draw.c:140
+#: ../src/rhythmbox-draw.c:141
 msgid "Unknown"
 msgstr "Sconosciuto"
 
@@ -263,34 +263,6 @@ msgid "Animation when music changes :"
 msgstr "Animazione al cambiamento di musica"
 
 #: ../data/messages:89
-msgid "bounce"
-msgstr "Rimbalzo"
-
-#: ../data/messages:91
-msgid "rotate"
-msgstr "Rotazione"
-
-#: ../data/messages:93
-msgid "blink"
-msgstr "Lampeggiamento"
-
-#: ../data/messages:95
-msgid "pulse"
-msgstr "Pulsazione"
-
-#: ../data/messages:97
-msgid "upside-down"
-msgstr "Capovolgimento"
-
-#: ../data/messages:99
-msgid "wobbly"
-msgstr "Molla"
-
-#: ../data/messages:101
-msgid "random"
-msgstr "Casuale"
-
-#: ../data/messages:103
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -298,75 +270,96 @@ msgstr ""
 "Questo impedirà all'icona di Rhythmbox di apparire nella TaskBar. L'icona "
 "dell'applet si comporterà così da lanciatore, da applicazione e da applet."
 
-#: ../data/messages:105
+#: ../data/messages:91
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "Rubare l'icona dalla taskbar ?"
 
-#: ../data/messages:107
+#: ../data/messages:93
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:109
+#: ../data/messages:95
 msgid "Display album's cover instead of icon ?"
 msgstr "Mostrare la copertina dell'album al posto dell'icona ?"
 
-#: ../data/messages:111
+#: ../data/messages:97
 msgid "Information to display on the icon :"
 msgstr "Info da mostrare sull'icona :"
 
-#: ../data/messages:113
+#: ../data/messages:99
 msgid "nothing"
 msgstr "Niente"
 
-#: ../data/messages:115
+#: ../data/messages:101
 msgid "time elapsed"
 msgstr "Tempo Trascorso"
 
-#: ../data/messages:117
+#: ../data/messages:103
 msgid "time left"
 msgstr "Tempo Residuo"
 
-#: ../data/messages:119
+#: ../data/messages:105
 msgid "time in %"
 msgstr "Tempo in %"
 
-#: ../data/messages:121
+#: ../data/messages:107
 #, fuzzy
 msgid "n° of track"
 msgstr "N° della traccia"
 
-#: ../data/messages:123
+#: ../data/messages:109
 msgid "Draw desklet in a 3D fashion (experimental) ?"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:111
 msgid "Personnalisation"
 msgstr "Personalizzazione"
 
-#: ../data/messages:127 ../data/messages:131 ../data/messages:135
-#: ../data/messages:139 ../data/messages:143
+#: ../data/messages:113 ../data/messages:117 ../data/messages:121
+#: ../data/messages:125 ../data/messages:129
 msgid "Let t empty to use the default icon."
 msgstr "Lasciare vuoto per utilizzare l'icona di default."
 
-#: ../data/messages:129
+#: ../data/messages:115
 msgid "Name of an image for the 'default' icon :"
 msgstr "Immagine per l'icona 'default' :"
 
-#: ../data/messages:133
+#: ../data/messages:119
 msgid "Name of an image for the 'play' icon :"
 msgstr "Immagine per l'icona 'play' :"
 
-#: ../data/messages:137
+#: ../data/messages:123
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Immagine per l'icona 'stop' :"
 
-#: ../data/messages:141
+#: ../data/messages:127
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Immagine per l'icona 'pausa' :"
 
-#: ../data/messages:145
+#: ../data/messages:131
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Immagine per l'icona 'non-funzionante' :"
+
+#~ msgid "bounce"
+#~ msgstr "Rimbalzo"
+
+#~ msgid "rotate"
+#~ msgstr "Rotazione"
+
+#~ msgid "blink"
+#~ msgstr "Lampeggiamento"
+
+#~ msgid "pulse"
+#~ msgstr "Pulsazione"
+
+#~ msgid "upside-down"
+#~ msgstr "Capovolgimento"
+
+#~ msgid "wobbly"
+#~ msgstr "Molla"
+
+#~ msgid "random"
+#~ msgstr "Casuale"
 
 #~ msgid ""
 #~ "If you choose 'personnal', you can define your own decoration above, or "

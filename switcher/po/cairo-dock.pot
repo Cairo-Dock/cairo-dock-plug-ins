@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-11-25 21:33+0100\n"
+"POT-Creation-Date: 2009-01-01 03:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,17 +24,17 @@ msgstr ""
 msgid "Current"
 msgstr ""
 
-#: ../src/applet-notifications.c:13
+#: ../src/applet-notifications.c:11
 msgid ""
 "This is the switcher applet\n"
 " made by Cchumi for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:82
+#: ../src/applet-notifications.c:78
 msgid "Add a desktop"
 msgstr ""
 
-#: ../src/applet-notifications.c:83
+#: ../src/applet-notifications.c:79
 msgid "Remove last desktop"
 msgstr ""
 

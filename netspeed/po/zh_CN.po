@@ -59,7 +59,11 @@ msgstr ""
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "网卡'%s'不存在或不可用"
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:46
+msgid "Monitor System"
+msgstr ""
+
+#: ../src/applet-notifications.c:48
 msgid "Re-check interface"
 msgstr "重新检查网卡"
 
@@ -349,6 +353,15 @@ msgstr "以秒为单位"
 msgid "Delay between 2 measures :"
 msgstr "两次取值间歇："
 
+#: ../data/messages:139
+#, fuzzy
+msgid "Let empty to use he default one."
+msgstr "Laissez vide pour utiliser l'icône par défaut."
+
+#: ../data/messages:141
+msgid "User command to show a system monitor :"
+msgstr ""
+
 #~ msgid ""
 #~ "Total amount of data :\n"
 #~ "  downloaded : %.2f%s\n"
@@ -372,9 +385,6 @@ msgstr "两次取值间歇："
 
 #~ msgid "Personnalisation"
 #~ msgstr "Personnalisation"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #~ msgid "Delay between signal checks :"
 #~ msgstr "Intervalle entre chaque vérification du signal :"

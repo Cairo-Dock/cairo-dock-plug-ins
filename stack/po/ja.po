@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the Stack applet\n"
 " made by ChAnGFu & Fabounet for Cairo-Dock"
@@ -22,31 +22,31 @@ msgstr ""
 "これは ChAnGFu と Fabounet によって製作された \n"
 "Cairo-Dock 用の Stack アプレットです。"
 
-#: ../src/applet-notifications.c:63
+#: ../src/applet-notifications.c:62
 msgid "Set new name for this item :"
 msgstr "このアイテムに新しい名前を設定 :"
 
-#: ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:100
 msgid "Paste (drag'n'drop)"
 msgstr "貼り付け（ドラッグ＆ドロップ）"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:103
 msgid "Copy (middle click)"
 msgstr "コピー（中クリック）"
 
-#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:104
 msgid "Cut"
 msgstr "切り取り"
 
-#: ../src/applet-notifications.c:106
+#: ../src/applet-notifications.c:105
 msgid "Rename this item"
 msgstr "このアイテムをリネーム"
 
-#: ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:106
 msgid "Remove this item"
 msgstr "このアイテムを削除"
 
-#: ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:108
 msgid "Clear the stack"
 msgstr "スタックをクリア"
 

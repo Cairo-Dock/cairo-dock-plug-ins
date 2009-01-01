@@ -24,7 +24,7 @@ msgstr "Skrivbord"
 msgid "Current"
 msgstr "Aktuell"
 
-#: ../src/applet-notifications.c:13
+#: ../src/applet-notifications.c:11
 msgid ""
 "This is the switcher applet\n"
 " made by Cchumi for Cairo-Dock"
@@ -32,11 +32,11 @@ msgstr ""
 "switcher applet\n"
 " skapad av Cchumi för Cairo-Dock"
 
-#: ../src/applet-notifications.c:82
+#: ../src/applet-notifications.c:78
 msgid "Add a desktop"
 msgstr "Lägg till skrivbord"
 
-#: ../src/applet-notifications.c:83
+#: ../src/applet-notifications.c:79
 msgid "Remove last desktop"
 msgstr "Ta bort sista skrivbordet"
 

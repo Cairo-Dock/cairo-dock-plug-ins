@@ -22,7 +22,7 @@ msgstr "デスクトップ"
 msgid "Current"
 msgstr "現在"
 
-#: ../src/applet-notifications.c:13
+#: ../src/applet-notifications.c:11
 msgid ""
 "This is the switcher applet\n"
 " made by Cchumi for Cairo-Dock"
@@ -30,11 +30,11 @@ msgstr ""
 "これは Cchumi によって製作された \n"
 "Cairo-Dock 用の switcher アプレットです。"
 
-#: ../src/applet-notifications.c:82
+#: ../src/applet-notifications.c:78
 msgid "Add a desktop"
 msgstr "デスクトップを追加"
 
-#: ../src/applet-notifications.c:83
+#: ../src/applet-notifications.c:79
 msgid "Remove last desktop"
 msgstr "最後のデスクトップを削除"
 

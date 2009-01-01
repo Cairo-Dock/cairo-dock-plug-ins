@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-Country: SWEDEN\n"
 
 #: ../src/applet-bookmarks.c:122 ../src/applet-bookmarks.c:321
-#: ../src/applet-load-icons.c:54
+#: ../src/applet-load-icons.c:52
 msgid "Unmounted"
 msgstr "Avmonterad"
 

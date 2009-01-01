@@ -299,7 +299,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 
 gboolean cd_icon_effect_free_data (gpointer pUserData, Icon *pIcon)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;

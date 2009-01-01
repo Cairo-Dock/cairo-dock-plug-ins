@@ -54,6 +54,10 @@ msgstr ""
 msgid "Activity time"
 msgstr ""
 
+#: ../src/applet-notifications.c:148
+msgid "Monitor System"
+msgstr ""
+
 #: ../data/messages:1
 msgid "Icon"
 msgstr "Ikon"
@@ -357,4 +361,12 @@ msgstr "Tid mellan uppdateringar:"
 
 #: ../data/messages:143
 msgid "Delay between refresh of the top list :"
+msgstr ""
+
+#: ../data/messages:145
+msgid "Let empty to use he default one."
+msgstr ""
+
+#: ../data/messages:147
+msgid "User command to show a system monitor :"
 msgstr ""

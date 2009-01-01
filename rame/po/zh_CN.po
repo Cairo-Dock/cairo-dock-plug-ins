@@ -26,6 +26,10 @@ msgstr "兆"
 msgid "Data acquisition has failed"
 msgstr "数据获取失败"
 
+#: ../src/applet-notifications.c:117
+msgid "Monitor System"
+msgstr ""
+
 #: ../src/applet-rame.c:121
 msgid "Loading"
 msgstr "载入"
@@ -350,6 +354,15 @@ msgstr "刷新间歇："
 msgid "Show top memory usage in % ?"
 msgstr "以百分比显示内存使用率？"
 
+#: ../data/messages:155
+#, fuzzy
+msgid "Let empty to use he default one."
+msgstr "Lasciate vuoto per usare l'icona di default."
+
+#: ../data/messages:157
+msgid "User command to show a system monitor :"
+msgstr ""
+
 #~ msgid "turbo-night-fuel"
 #~ msgstr "油量表夜光版"
 
@@ -367,9 +380,6 @@ msgstr "以百分比显示内存使用率？"
 
 #~ msgid "Personnalisation"
 #~ msgstr "Personalizzazione"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "Lasciate vuoto per usare l'icona di default."
 
 #~ msgid "TB"
 #~ msgstr "TB"

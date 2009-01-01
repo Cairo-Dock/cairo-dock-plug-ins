@@ -14,54 +14,54 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:20
 msgid "Hey, I'm here !"
 msgstr "ヘイ、おいらはここだよ！"
 
-#: ../src/applet-notifications.c:23
+#: ../src/applet-notifications.c:21
 msgid "Sorry but I'm busy right now."
 msgstr "申し訳ないが今ちょうど忙しいんで。"
 
-#: ../src/applet-notifications.c:24
+#: ../src/applet-notifications.c:22
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
 "ここいらのアイコンを全部掘ったり埋めたりしなきゃいかんから、君に付き合ってる"
 "暇なんかないよ。"
 
-#: ../src/applet-notifications.c:25
+#: ../src/applet-notifications.c:23
 msgid "Your dock is so messy ! Let me clean it."
 msgstr "君のドックは散らかりすぎだろう！私に片付けさせなさい。"
 
-#: ../src/applet-notifications.c:26
+#: ../src/applet-notifications.c:24
 msgid "Admit my superiority on you as a penguin !"
 msgstr "君より私の方がペンギンとして優れていることを認めなさい！"
 
-#: ../src/applet-notifications.c:27
+#: ../src/applet-notifications.c:25
 msgid "Wait, do you want to kill me ?!"
 msgstr "待った、おいらを殺す気 ?!"
 
-#: ../src/applet-notifications.c:28
+#: ../src/applet-notifications.c:26
 msgid "Do you know how much painful it is to be clicked on ??"
 msgstr "クリックされるのがどれだけ痛いかわかってんの？？"
 
-#: ../src/applet-notifications.c:29
+#: ../src/applet-notifications.c:27
 msgid "It's my dock now, mwahahaha !"
 msgstr "ドックは今や私のものだ。わっはっはっは！"
 
-#: ../src/applet-notifications.c:30
+#: ../src/applet-notifications.c:28
 msgid "I want to be a pirate !"
 msgstr "おいら海賊になりたい！"
 
-#: ../src/applet-notifications.c:31
+#: ../src/applet-notifications.c:29
 msgid "You shall not pass !"
 msgstr "貴様だけは、決して通さぬ！"
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:30
 msgid "I'm your father !"
 msgstr "私がお前の父親なのだ！"
 
-#: ../src/applet-notifications.c:33
+#: ../src/applet-notifications.c:31
 msgid ""
 "- What will we do tonight Cortex ?\n"
 "- The same thing as every nights, Minus. Try to take over the Dock !"
@@ -69,11 +69,11 @@ msgstr ""
 "- ねぇ、ブレイン。今夜は何するの？\n"
 "- いつもと同じさ、ピンキー。ドック征服を狙うのさ！"
 
-#: ../src/applet-notifications.c:34
+#: ../src/applet-notifications.c:32
 msgid "For Aiur !"
 msgstr "アイアーのために！"
 
-#: ../src/applet-notifications.c:37
+#: ../src/applet-notifications.c:35
 msgid ""
 "This is the Cairo-Penguin applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -81,27 +81,27 @@ msgstr ""
 "これは Fabrice Rey によって製作された\n"
 "Cairo-Dock 用の Cairo-Penguin アプレットです。"
 
-#: ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:117
 msgid "Hey, you there !"
 msgstr "ヘイ、そこのあんた！"
 
-#: ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:120
 msgid "Keep quiet"
 msgstr "大人しくさせる"
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:124
 msgid "Wake up"
 msgstr "起こす"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:127
 msgid "Start XPenguins"
 msgstr "XPenguins 開始"
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:128
 msgid "Stop XPenguins"
 msgstr "XPenguins 停止"
 
-#: ../src/applet-notifications.c:145 ../src/applet-notifications.c:147
+#: ../src/applet-notifications.c:151 ../src/applet-notifications.c:153
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -156,6 +156,15 @@ msgstr "ペンギンの透明度 :"
 #: ../data/messages:25
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr "ペンギンにドックの至る所を徘徊させる？"
+
+#: ../data/messages:27
+msgid "in pixels."
+msgstr ""
+
+#: ../data/messages:29
+#, fuzzy
+msgid "Ground offset :"
+msgstr "上方向のオフセット :"
 
 #~ msgid "You're dock is so messy ! Let me clean it."
 #~ msgstr "君のドックは散らかりすぎだろう！私に片付けさせなさい。"
@@ -260,9 +269,6 @@ msgstr "ペンギンにドックの至る所を徘徊させる？"
 
 #~ msgid "in pixels. Use this to adjust the top position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
-
-#~ msgid "Top offset :"
-#~ msgstr "上方向のオフセット :"
 
 #~ msgid "in pixels. Use this to adjust the right position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"

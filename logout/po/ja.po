@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:11
 msgid ""
 "This is a very simple logout applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -228,6 +228,10 @@ msgstr ""
 #: ../data/messages:87
 msgid "User-defined command to execute to shutdown :"
 msgstr "シャットダウンを実行するユーザー定義コマンド :"
+
+#: ../data/messages:89
+msgid "Invert buttons ?"
+msgstr ""
 
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"

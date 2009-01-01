@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-11-25 21:28+0100\n"
+"POT-Creation-Date: 2009-01-01 03:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -323,58 +323,30 @@ msgid "Animation when music changes :"
 msgstr ""
 
 #: ../data/messages:131
-msgid "bounce"
-msgstr ""
-
-#: ../data/messages:133
-msgid "rotate"
-msgstr ""
-
-#: ../data/messages:135
-msgid "blink"
-msgstr ""
-
-#: ../data/messages:137
-msgid "pulse"
-msgstr ""
-
-#: ../data/messages:139
-msgid "upside-down"
-msgstr ""
-
-#: ../data/messages:141
-msgid "wobbly"
-msgstr ""
-
-#: ../data/messages:143
-msgid "random"
-msgstr ""
-
-#: ../data/messages:145
 msgid "Personnalisation"
 msgstr ""
 
-#: ../data/messages:147 ../data/messages:151 ../data/messages:155
-#: ../data/messages:159 ../data/messages:163
+#: ../data/messages:133 ../data/messages:137 ../data/messages:141
+#: ../data/messages:145 ../data/messages:149
 msgid "Let it empty to use the default icon."
 msgstr ""
 
-#: ../data/messages:149
+#: ../data/messages:135
 msgid "Name of an image for the 'default' icon :"
 msgstr ""
 
-#: ../data/messages:153
+#: ../data/messages:139
 msgid "Name of an image for the 'play' icon :"
 msgstr ""
 
-#: ../data/messages:157
+#: ../data/messages:143
 msgid "Name of an image for the 'stop' icon :"
 msgstr ""
 
-#: ../data/messages:161
+#: ../data/messages:147
 msgid "Name of an image for the 'pause' icon :"
 msgstr ""
 
-#: ../data/messages:165
+#: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""

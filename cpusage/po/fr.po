@@ -51,6 +51,10 @@ msgstr "Temps d'activité système"
 msgid "Activity time"
 msgstr "Temps d'activité"
 
+#: ../src/applet-notifications.c:148
+msgid "Monitor System"
+msgstr ""
+
 #: ../data/messages:1
 msgid "Icon"
 msgstr "Icône"
@@ -364,3 +368,11 @@ msgstr "Délai entre les rafraîchissements"
 #: ../data/messages:143
 msgid "Delay between refresh of the top list :"
 msgstr "Délai entre les rafraîchissements de la top liste :"
+
+#: ../data/messages:145
+msgid "Let empty to use he default one."
+msgstr ""
+
+#: ../data/messages:147
+msgid "User command to show a system monitor :"
+msgstr ""

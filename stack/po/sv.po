@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the Stack applet\n"
 " made by ChAnGFu & Fabounet for Cairo-Dock"
@@ -24,31 +24,31 @@ msgstr ""
 "Stack applet\n"
 " skapad av ChAnGFu & Fabounet för Cairo-Dock"
 
-#: ../src/applet-notifications.c:63
+#: ../src/applet-notifications.c:62
 msgid "Set new name for this item :"
 msgstr "Nytt namn:"
 
-#: ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:100
 msgid "Paste (drag'n'drop)"
 msgstr "Klistra in (dra-och-släpp)"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:103
 msgid "Copy (middle click)"
 msgstr "Kopiera (mellanklick)"
 
-#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:104
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: ../src/applet-notifications.c:106
+#: ../src/applet-notifications.c:105
 msgid "Rename this item"
 msgstr "Byt namn"
 
-#: ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:106
 msgid "Remove this item"
 msgstr "Ta bort"
 
-#: ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:108
 msgid "Clear the stack"
 msgstr "Töm stacken"
 

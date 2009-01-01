@@ -28,6 +28,10 @@ msgstr ""
 msgid "Data acquisition has failed"
 msgstr "L'acquisizione dei dati è fallita"
 
+#: ../src/applet-notifications.c:117
+msgid "Monitor System"
+msgstr ""
+
 #: ../src/applet-rame.c:121
 msgid "Loading"
 msgstr "Caricamento"
@@ -360,6 +364,15 @@ msgstr "Ritardo tra gli aggiornamenti  :"
 msgid "Show top memory usage in % ?"
 msgstr "Mostrare il massimo della memoria usata in % ?"
 
+#: ../data/messages:155
+#, fuzzy
+msgid "Let empty to use he default one."
+msgstr "Lasciate vuoto per usare l'icona di default."
+
+#: ../data/messages:157
+msgid "User command to show a system monitor :"
+msgstr ""
+
 #~ msgid "turbo-night-fuel"
 #~ msgstr "turbo-night-fuel"
 
@@ -377,9 +390,6 @@ msgstr "Mostrare il massimo della memoria usata in % ?"
 
 #~ msgid "Personnalisation"
 #~ msgstr "Personalizzazione"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "Lasciate vuoto per usare l'icona di default."
 
 #~ msgid "TB"
 #~ msgstr "TB"

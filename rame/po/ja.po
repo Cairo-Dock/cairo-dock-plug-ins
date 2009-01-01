@@ -30,6 +30,10 @@ msgstr "Mb"
 msgid "Data acquisition has failed"
 msgstr "データの取得に失敗"
 
+#: ../src/applet-notifications.c:117
+msgid "Monitor System"
+msgstr ""
+
 #: ../src/applet-rame.c:121
 msgid "Loading"
 msgstr "読み込み中"
@@ -362,6 +366,15 @@ msgstr "更新の間隔時間 :"
 msgid "Show top memory usage in % ?"
 msgstr "メモリ使用のトップを％で表示？"
 
+#: ../data/messages:155
+#, fuzzy
+msgid "Let empty to use he default one."
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
+
+#: ../data/messages:157
+msgid "User command to show a system monitor :"
+msgstr ""
+
 #~ msgid "turbo-night-fuel"
 #~ msgstr "turbo-night-fuel"
 
@@ -373,9 +386,6 @@ msgstr "メモリ使用のトップを％で表示？"
 
 #~ msgid "Personnalisation"
 #~ msgstr "カスタマイズ"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #~ msgid "TB"
 #~ msgstr "TB"

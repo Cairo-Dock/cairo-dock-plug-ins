@@ -12,11 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:76
+#: ../src/rhythmbox-draw.c:75
 msgid "Track"
 msgstr "Piste"
 
-#: ../src/rhythmbox-draw.c:136
+#: ../src/rhythmbox-draw.c:135
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -27,8 +27,8 @@ msgstr ""
 "Album : %s\n"
 "Titre : %s"
 
-#: ../src/rhythmbox-draw.c:140 ../src/rhythmbox-draw.c:141
-#: ../src/rhythmbox-draw.c:142
+#: ../src/rhythmbox-draw.c:139 ../src/rhythmbox-draw.c:140
+#: ../src/rhythmbox-draw.c:141
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -255,34 +255,6 @@ msgid "Animation when music changes :"
 msgstr "Animation au changement de musique"
 
 #: ../data/messages:89
-msgid "bounce"
-msgstr "rebond"
-
-#: ../data/messages:91
-msgid "rotate"
-msgstr "rotation"
-
-#: ../data/messages:93
-msgid "blink"
-msgstr "clignotement"
-
-#: ../data/messages:95
-msgid "pulse"
-msgstr "pulsation"
-
-#: ../data/messages:97
-msgid "upside-down"
-msgstr "sens dessus-dessous"
-
-#: ../data/messages:99
-msgid "wobbly"
-msgstr "élastique"
-
-#: ../data/messages:101
-msgid "random"
-msgstr "aléatoire"
-
-#: ../data/messages:103
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -291,74 +263,95 @@ msgstr ""
 "L'icône de l'applet se comportera alors comme un lanceur, une appli et une "
 "applet."
 
-#: ../data/messages:105
+#: ../data/messages:91
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "Voler l'icône de la barre des tâches ?"
 
-#: ../data/messages:107
+#: ../data/messages:93
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:109
+#: ../data/messages:95
 msgid "Display album's cover instead of icon ?"
 msgstr "Afficher l'album au lieu de l'icône ?"
 
-#: ../data/messages:111
+#: ../data/messages:97
 msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
-#: ../data/messages:113
+#: ../data/messages:99
 msgid "nothing"
 msgstr "rien"
 
-#: ../data/messages:115
+#: ../data/messages:101
 msgid "time elapsed"
 msgstr "temps écoulé"
 
-#: ../data/messages:117
+#: ../data/messages:103
 msgid "time left"
 msgstr "temps restant"
 
-#: ../data/messages:119
+#: ../data/messages:105
 msgid "time in %"
 msgstr "temps en %"
 
-#: ../data/messages:121
+#: ../data/messages:107
 msgid "n° of track"
 msgstr "n° de piste"
 
-#: ../data/messages:123
+#: ../data/messages:109
 msgid "Draw desklet in a 3D fashion (experimental) ?"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:111
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:127 ../data/messages:131 ../data/messages:135
-#: ../data/messages:139 ../data/messages:143
+#: ../data/messages:113 ../data/messages:117 ../data/messages:121
+#: ../data/messages:125 ../data/messages:129
 msgid "Let t empty to use the default icon."
 msgstr "Laisser vide pour utiliser l'icône par défaut"
 
-#: ../data/messages:129
+#: ../data/messages:115
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom d'une image pour l'icône 'défaut' :"
 
-#: ../data/messages:133
+#: ../data/messages:119
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom d'une image pour l'icône 'jouer' :"
 
-#: ../data/messages:137
+#: ../data/messages:123
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom d'une image pour l'icône 'stop' :"
 
-#: ../data/messages:141
+#: ../data/messages:127
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom d'une image pour l'icône 'pause' :"
 
-#: ../data/messages:145
+#: ../data/messages:131
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom d'une image pour l'icône 'cassé' :"
+
+#~ msgid "bounce"
+#~ msgstr "rebond"
+
+#~ msgid "rotate"
+#~ msgstr "rotation"
+
+#~ msgid "blink"
+#~ msgstr "clignotement"
+
+#~ msgid "pulse"
+#~ msgstr "pulsation"
+
+#~ msgid "upside-down"
+#~ msgstr "sens dessus-dessous"
+
+#~ msgid "wobbly"
+#~ msgstr "élastique"
+
+#~ msgid "random"
+#~ msgstr "aléatoire"
 
 #~ msgid ""
 #~ "If you choose 'personnal', you can define your own decoration above, or "

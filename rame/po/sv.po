@@ -33,6 +33,10 @@ msgstr "Mb"
 msgid "Data acquisition has failed"
 msgstr "Kunde inte hämta data"
 
+#: ../src/applet-notifications.c:117
+msgid "Monitor System"
+msgstr ""
+
 #: ../src/applet-rame.c:121
 msgid "Loading"
 msgstr "Laddar"
@@ -361,3 +365,11 @@ msgstr "Tid mellan uppdateringar:"
 #: ../data/messages:153
 msgid "Show top memory usage in % ?"
 msgstr "Visa max minnesanvänding i %?"
+
+#: ../data/messages:155
+msgid "Let empty to use he default one."
+msgstr ""
+
+#: ../data/messages:157
+msgid "User command to show a system monitor :"
+msgstr ""

@@ -61,7 +61,11 @@ msgstr ""
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "L'interface '%s' semble ne pas exister ou n'est pas lisible"
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:46
+msgid "Monitor System"
+msgstr ""
+
+#: ../src/applet-notifications.c:48
 msgid "Re-check interface"
 msgstr "Revérifier l'interface"
 
@@ -360,6 +364,14 @@ msgstr "en secondes."
 #: ../data/messages:137
 msgid "Delay between 2 measures :"
 msgstr "Intervalle entre 2 mesures :"
+
+#: ../data/messages:139
+msgid "Let empty to use he default one."
+msgstr ""
+
+#: ../data/messages:141
+msgid "User command to show a system monitor :"
+msgstr ""
 
 #~ msgid ""
 #~ "Total amount of data :\n"

@@ -505,7 +505,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 
 gboolean cd_animations_free_data (gpointer pUserData, Icon *pIcon)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("");
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;

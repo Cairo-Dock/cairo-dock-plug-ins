@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2008-11-25 21:22+0100\n"
+"POT-Creation-Date: 2009-01-01 03:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:76
+#: ../src/rhythmbox-draw.c:75
 msgid "Track"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:136
+#: ../src/rhythmbox-draw.c:135
 #, c-format
 msgid ""
 "Artist : %s\n"
@@ -28,8 +28,8 @@ msgid ""
 "Title : %s"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:140 ../src/rhythmbox-draw.c:141
-#: ../src/rhythmbox-draw.c:142
+#: ../src/rhythmbox-draw.c:139 ../src/rhythmbox-draw.c:140
+#: ../src/rhythmbox-draw.c:141
 msgid "Unknown"
 msgstr ""
 
@@ -240,104 +240,76 @@ msgid "Animation when music changes :"
 msgstr ""
 
 #: ../data/messages:89
-msgid "bounce"
-msgstr ""
-
-#: ../data/messages:91
-msgid "rotate"
-msgstr ""
-
-#: ../data/messages:93
-msgid "blink"
-msgstr ""
-
-#: ../data/messages:95
-msgid "pulse"
-msgstr ""
-
-#: ../data/messages:97
-msgid "upside-down"
-msgstr ""
-
-#: ../data/messages:99
-msgid "wobbly"
-msgstr ""
-
-#: ../data/messages:101
-msgid "random"
-msgstr ""
-
-#: ../data/messages:103
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:91
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:93
 msgid "Display"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:95
 msgid "Display album's cover instead of icon ?"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:97
 msgid "Information to display on the icon :"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:99
 msgid "nothing"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:101
 msgid "time elapsed"
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:103
 msgid "time left"
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:105
 msgid "time in %"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:107
 msgid "n° of track"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:109
 msgid "Draw desklet in a 3D fashion (experimental) ?"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:111
 msgid "Personnalisation"
 msgstr ""
 
-#: ../data/messages:127 ../data/messages:131 ../data/messages:135
-#: ../data/messages:139 ../data/messages:143
+#: ../data/messages:113 ../data/messages:117 ../data/messages:121
+#: ../data/messages:125 ../data/messages:129
 msgid "Let t empty to use the default icon."
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:115
 msgid "Name of an image for the 'default' icon :"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:119
 msgid "Name of an image for the 'play' icon :"
 msgstr ""
 
-#: ../data/messages:137
+#: ../data/messages:123
 msgid "Name of an image for the 'stop' icon :"
 msgstr ""
 
-#: ../data/messages:141
+#: ../data/messages:127
 msgid "Name of an image for the 'pause' icon :"
 msgstr ""
 
-#: ../data/messages:145
+#: ../data/messages:131
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""

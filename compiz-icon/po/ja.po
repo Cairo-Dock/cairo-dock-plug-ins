@@ -18,7 +18,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Compiz の設定"
 
-#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:190
+#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:188
 msgid "Emerald Manager"
 msgstr "Emerald マネージャ"
 
@@ -51,27 +51,27 @@ msgstr ""
 "て\n"
 "CCSM をインストールする必要があります。"
 
-#: ../src/applet-notifications.c:191
+#: ../src/applet-notifications.c:189
 msgid "Reload Emerald"
 msgstr "Emerald の再読み込み"
 
-#: ../src/applet-notifications.c:195
+#: ../src/applet-notifications.c:193
 msgid "Switch Windows Manager"
 msgstr "ウィンドウ・マネージャの切り替え"
 
-#: ../src/applet-notifications.c:196
+#: ../src/applet-notifications.c:194
 msgid "Switch Windows Decorator"
 msgstr "ウィンドウ・デコレータの切り替え"
 
-#: ../src/applet-notifications.c:205
+#: ../src/applet-notifications.c:203
 msgid "Toggle Exposition Mode"
 msgstr "展開モードのオンオフ"
 
-#: ../src/applet-notifications.c:206
+#: ../src/applet-notifications.c:204
 msgid "Toggle Widgets Layer"
 msgstr "ウィジェット・レイヤのオンオフ"
 
-#: ../src/applet-notifications.c:208
+#: ../src/applet-notifications.c:206
 msgid "Toggle Show Desktop"
 msgstr "デスクトップの表示のオンオフ"
 

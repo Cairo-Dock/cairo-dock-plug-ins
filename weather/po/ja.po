@@ -99,7 +99,7 @@ msgstr ""
 "これは Fabrice Rey によって \n"
 "Cairo-Dock 用に製作された Weather アプレットです。"
 
-#: ../src/applet-notifications.c:69
+#: ../src/applet-notifications.c:70
 msgid ""
 "Enter your location\n"
 " (for exemple : Paris, France)"
@@ -107,7 +107,7 @@ msgstr ""
 "現在地の入力\n"
 "（例 : Tokyo, Japan）"
 
-#: ../src/applet-notifications.c:82 ../src/applet-notifications.c:95
+#: ../src/applet-notifications.c:83 ../src/applet-notifications.c:96
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -115,19 +115,19 @@ msgstr ""
 "情報の取得が出来ませんでした。\n"
 "回線接続に問題はありませんか？"
 
-#: ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:129
 msgid "Choose your location :"
 msgstr "現在地の選択 :"
 
-#: ../src/applet-notifications.c:152
+#: ../src/applet-notifications.c:153
 msgid "Search for your location"
 msgstr "現在地の検索"
 
-#: ../src/applet-notifications.c:153
+#: ../src/applet-notifications.c:154
 msgid "Reload now"
 msgstr "直ちに再読み込み"
 
-#: ../src/applet-notifications.c:178 ../src/applet-notifications.c:207
+#: ../src/applet-notifications.c:179 ../src/applet-notifications.c:208
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -135,35 +135,35 @@ msgstr ""
 "データの取得が出来ませんでした。\n"
 "回線接続に問題はありませんか？"
 
-#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:220
 msgid "Temperature"
 msgstr "気温"
 
-#: ../src/applet-notifications.c:195
+#: ../src/applet-notifications.c:196
 msgid "Precipitation Probability"
 msgstr ""
 
-#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
 msgid "Wind"
 msgstr "風"
 
-#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:198 ../src/applet-notifications.c:222
 msgid "Humidity"
 msgstr "湿度"
 
-#: ../src/applet-notifications.c:198 ../src/applet-notifications.c:222
+#: ../src/applet-notifications.c:199 ../src/applet-notifications.c:223
 msgid "SunRise"
 msgstr "日の出"
 
-#: ../src/applet-notifications.c:198 ../src/applet-notifications.c:222
+#: ../src/applet-notifications.c:199 ../src/applet-notifications.c:223
 msgid "SunSet"
 msgstr "日の入り"
 
-#: ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:220
 msgid "feeled"
 msgstr "体感温度"
 
-#: ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:222
 msgid "Pressure"
 msgstr "気圧"
 

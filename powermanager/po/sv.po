@@ -377,30 +377,23 @@ msgstr "Animera ikonen vid meddelande?"
 msgid "Animation during alert :"
 msgstr "Animering:"
 
-#: ../data/messages:141
-msgid "bounce"
-msgstr "studsa"
+#~ msgid "bounce"
+#~ msgstr "studsa"
 
-#: ../data/messages:143
-msgid "rotate"
-msgstr "rotera"
+#~ msgid "rotate"
+#~ msgstr "rotera"
 
-#: ../data/messages:145
-msgid "blink"
-msgstr "blinka"
+#~ msgid "blink"
+#~ msgstr "blinka"
 
-#: ../data/messages:147
-msgid "pulse"
-msgstr "pulsera"
+#~ msgid "pulse"
+#~ msgstr "pulsera"
 
-#: ../data/messages:149
-msgid "upside-down"
-msgstr "upp och ner"
+#~ msgid "upside-down"
+#~ msgstr "upp och ner"
 
-#: ../data/messages:151
-msgid "wobbly"
-msgstr "vingla"
+#~ msgid "wobbly"
+#~ msgstr "vingla"
 
-#: ../data/messages:153
-msgid "random"
-msgstr "slumpmässig"
+#~ msgid "random"
+#~ msgstr "slumpmässig"

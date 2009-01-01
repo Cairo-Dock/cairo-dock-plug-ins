@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:11
 msgid ""
 "This is a very simple logout applet\n"
 " made by Fabrice Rey for Cairo-Dock"
@@ -218,6 +218,10 @@ msgstr ""
 #, fuzzy
 msgid "User-defined command to execute to shutdown :"
 msgstr "Comando specifico da eseguire per il logout :"
+
+#: ../data/messages:89
+msgid "Invert buttons ?"
+msgstr ""
 
 #~ msgid "Module"
 #~ msgstr "Modulo"

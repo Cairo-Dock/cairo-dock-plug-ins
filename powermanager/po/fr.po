@@ -377,33 +377,26 @@ msgstr "Animer l'icône pendant l'alerte ?"
 msgid "Animation during alert :"
 msgstr "Animation pendant l'alerte :"
 
-#: ../data/messages:141
-msgid "bounce"
-msgstr "Rebond"
+#~ msgid "bounce"
+#~ msgstr "Rebond"
 
-#: ../data/messages:143
-msgid "rotate"
-msgstr "Rotation"
+#~ msgid "rotate"
+#~ msgstr "Rotation"
 
-#: ../data/messages:145
-msgid "blink"
-msgstr "Clignotement"
+#~ msgid "blink"
+#~ msgstr "Clignotement"
 
-#: ../data/messages:147
-msgid "pulse"
-msgstr "Pulsation"
+#~ msgid "pulse"
+#~ msgstr "Pulsation"
 
-#: ../data/messages:149
-msgid "upside-down"
-msgstr "Sens dessus-dessous"
+#~ msgid "upside-down"
+#~ msgstr "Sens dessus-dessous"
 
-#: ../data/messages:151
-msgid "wobbly"
-msgstr "Élastique"
+#~ msgid "wobbly"
+#~ msgstr "Élastique"
 
-#: ../data/messages:153
-msgid "random"
-msgstr "Aléatoire"
+#~ msgid "random"
+#~ msgstr "Aléatoire"
 
 #~ msgid "Options"
 #~ msgstr "Options"

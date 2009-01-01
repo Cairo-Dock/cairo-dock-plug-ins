@@ -20,7 +20,7 @@ msgstr ""
 msgid "Current"
 msgstr "Attuale"
 
-#: ../src/applet-notifications.c:13
+#: ../src/applet-notifications.c:11
 msgid ""
 "This is the switcher applet\n"
 " made by Cchumi for Cairo-Dock"
@@ -28,11 +28,11 @@ msgstr ""
 "Questa è l'applet switcher\n"
 " scritta da Cchumi per Cairo-Dock"
 
-#: ../src/applet-notifications.c:82
+#: ../src/applet-notifications.c:78
 msgid "Add a desktop"
 msgstr "Aggiungi un desktop"
 
-#: ../src/applet-notifications.c:83
+#: ../src/applet-notifications.c:79
 msgid "Remove last desktop"
 msgstr "Rimuovi l'ultimo desktop"
 
