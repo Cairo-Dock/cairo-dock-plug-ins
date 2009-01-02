@@ -16,11 +16,11 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-init.c:52 ../src/applet-load-icons.c:36
+#: ../src/applet-init.c:52 ../src/applet-load-icons.c:35
 msgid "Desktop"
 msgstr "Skrivbord"
 
-#: ../src/applet-init.c:60 ../src/applet-load-icons.c:30
+#: ../src/applet-init.c:60 ../src/applet-load-icons.c:29
 msgid "Current"
 msgstr "Aktuell"
 

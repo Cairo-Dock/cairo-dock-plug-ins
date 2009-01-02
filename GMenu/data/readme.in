@@ -1,3 +1,4 @@
-@PACKAGE@ (v@VERSION@)
+@PACKAGE_GMENU@ (v@VERSION_GMENU@)
 Author : Fabounet (Fabrice Rey)
-The new and soon wonderful GMenu applet
+Displays the common Applications menu.
+It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)

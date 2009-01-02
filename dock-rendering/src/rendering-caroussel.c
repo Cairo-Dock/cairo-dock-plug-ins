@@ -33,7 +33,7 @@ extern gboolean my_bRotateIconsOnEllipse;
 	if (pSubDock->bHorizontalDock == pDock->bHorizontalDock)
 	{
 		pSubDock->fAlign = 0.5;
-		pSubDock->iGapX = iX + pDock->iWindowPositionX - g_iScreenWidth[pDock->bHorizontalDock] / 2;  // les sous-dock ont un alignement egal a 0.5.  // pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2
+		pSubDock->iGapX = iX + pDock->iWindowPositionX - g_iXScreenWidth[pDock->bHorizontalDock] / 2;  // les sous-dock ont un alignement egal a 0.5.  // pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2
 		pSubDock->iGapY = pDock->iGapY + pDock->iMaxDockHeight;
 	}
 	else
@@ -41,7 +41,7 @@ extern gboolean my_bRotateIconsOnEllipse;
 		pSubDock->fAlign = (pDock->bDirectionUp ? 1 : 0);
 		pSubDock->iGapX = (pDock->iGapY + pDock->iMaxDockHeight) * (pDock->bDirectionUp ? -1 : 1);
 		if (pDock->bDirectionUp)
-			pSubDock->iGapY = g_iScreenWidth[pDock->bHorizontalDock] - (iX + pDock->iWindowPositionX) - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 1.
+			pSubDock->iGapY = g_iXScreenWidth[pDock->bHorizontalDock] - (iX + pDock->iWindowPositionX) - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 1.
 		else
 			pSubDock->iGapY = iX + pDock->iWindowPositionX - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 0.
 	}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-01-01 03:29+0100\n"
+"POT-Creation-Date: 2009-01-02 04:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:52 ../src/applet-load-icons.c:36
+#: ../src/applet-init.c:52 ../src/applet-load-icons.c:35
 msgid "Desktop"
 msgstr ""
 
-#: ../src/applet-init.c:60 ../src/applet-load-icons.c:30
+#: ../src/applet-init.c:60 ../src/applet-load-icons.c:29
 msgid "Current"
 msgstr ""
 
