@@ -51,7 +51,7 @@ msgstr "Nom de l'icône :"
 
 #: ../data/messages:15
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du dock elle appartient:"
 
 #: ../data/messages:17
 msgid "Desklet"

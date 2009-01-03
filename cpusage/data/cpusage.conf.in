@@ -160,3 +160,5 @@ top delay = 2
 #s User command to show a system monitor :
 #{Let empty to use he default one.}
 sys monitor =
+
+HZ = 100

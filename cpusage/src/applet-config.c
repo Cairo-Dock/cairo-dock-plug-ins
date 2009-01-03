@@ -5,8 +5,6 @@
 #include "applet-struct.h"
 #include "applet-config.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
@@ -36,6 +34,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.pTopTextDescription->bVerticalPattern = TRUE;
 	
 	myConfig.cSystemMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "sys monitor");
+	myConfig.fUserHZ = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "HZ", 100);
 CD_APPLET_GET_CONFIG_END
 
 

@@ -33,18 +33,16 @@ msgstr ""
 "Vous pouvez en rajouter en glissant-déposant du texte sur l'icône"
 
 #: ../data/messages:1
-#, fuzzy
 msgid "Action_0"
-msgstr "Actions"
+msgstr ""
 
 #: ../data/messages:3
 msgid "Action_0/Command_0"
 msgstr ""
 
 #: ../data/messages:5
-#, fuzzy
 msgid "Action_1"
-msgstr "Actions"
+msgstr ""
 
 #: ../data/messages:7
 msgid "Action_1/Command_0"
@@ -67,9 +65,8 @@ msgid "Action_1/Command_4"
 msgstr ""
 
 #: ../data/messages:17
-#, fuzzy
 msgid "Action_2"
-msgstr "Actions"
+msgstr ""
 
 #: ../data/messages:19
 msgid "Action_2/Command_0"
@@ -80,9 +77,8 @@ msgid "Action_2/Command_1"
 msgstr ""
 
 #: ../data/messages:23
-#, fuzzy
 msgid "Action_3"
-msgstr "Actions"
+msgstr ""
 
 #: ../data/messages:25
 msgid "Action_3/Command_0"
@@ -93,9 +89,8 @@ msgid "Action_3/Command_1"
 msgstr ""
 
 #: ../data/messages:29
-#, fuzzy
 msgid "Action_4"
-msgstr "Actions"
+msgstr ""
 
 #: ../data/messages:31
 msgid "Action_4/Command_0"
@@ -106,9 +101,8 @@ msgid "Action_4/Command_1"
 msgstr ""
 
 #: ../data/messages:35
-#, fuzzy
 msgid "Action_5"
-msgstr "Actions"
+msgstr ""
 
 #: ../data/messages:37
 msgid "Action_5/Command_0"
@@ -119,9 +113,8 @@ msgid "Action_5/Command_1"
 msgstr ""
 
 #: ../data/messages:41
-#, fuzzy
 msgid "Action_6"
-msgstr "Actions"
+msgstr ""
 
 #: ../data/messages:43
 msgid "Action_6/Command_0"
@@ -169,7 +162,7 @@ msgstr "Nom de l'icône :"
 
 #: ../data/messages:65
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du dock auquel elle appartient:"
 
 #: ../data/messages:67
 msgid "Desklet"

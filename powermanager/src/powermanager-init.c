@@ -34,8 +34,6 @@ CD_APPLET_INIT_BEGIN
 			
 			myData.previous_battery_charge = -1;
 			myData.previous_battery_time = -1;
-			myData.iAveragePresentState = 0;
-			myData.iMaxPresentState = 0;
 			myData.alerted = TRUE;
 			myData.bCritical = TRUE;
 			update_stats();

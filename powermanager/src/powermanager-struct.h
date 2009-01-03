@@ -47,25 +47,25 @@ struct _AppletConfig {
 	MyAppletEffect iEffect;
   } ;
 
-#define PM_NB_VALUES 10
+#define PM_NB_VALUES 100
 struct _AppletData {
 	cairo_surface_t *pSurfaceBattery;
 	cairo_surface_t *pSurfaceCharge;
 	gboolean dbus_enable;
 	gboolean battery_present;
+	gint iCapacity;
 	gboolean on_battery, previously_on_battery;
-	gint battery_time, previous_battery_time;
-	gint battery_charge, previous_battery_charge;
+	gdouble battery_time, previous_battery_time;
+	gdouble battery_charge, previous_battery_charge;
 	gboolean alerted;
 	gboolean bCritical;
 	gint checkLoop;
 	Gauge *pGauge;
-	gint iCapacity;
 	gchar *cBatteryStateFilePath;
-	gint iMaxPresentState;
-	gint iAveragePresentState;
+	
 	gdouble fRateHistory[PM_NB_VALUES];
 	gint iCurrentIndex;
+	gint iIndexMax;
 	gboolean bUseDBus;
 	} ;
 

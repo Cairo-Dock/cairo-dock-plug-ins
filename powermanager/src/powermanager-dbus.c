@@ -39,7 +39,7 @@ static gboolean cd_powermanager_find_battery (void) {
 		
 		g_string_printf (sBatteryStateFilePath, "%s/%s/info", MY_BATTERY_DIR, cBatteryName);
 		length=0;
-		cd_debug ("  examen de la batterie '%s' ...", sBatteryStateFilePath->str);
+		cd_message ("  examen de la batterie '%s' ...", sBatteryStateFilePath->str);
 		g_file_get_contents(sBatteryStateFilePath->str, &cContent, &length, &erreur);
 		if (erreur != NULL)
 		{
@@ -121,13 +121,13 @@ gboolean dbus_connect_to_bus (void)
 			
 			/**cd_message ("Battery Name : %s", cBatteryName);
 			gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", cBatteryName);
-			cd_debug ("  batteryPath : %s", batteryPath);
+			cd_message ("  batteryPath : %s", batteryPath);
 			dbus_proxy_battery = cairo_dock_create_new_system_proxy (
 				"org.freedesktop.Hal",
 				batteryPath,
 				"org.freedesktop.Hal.Device"
 			);
-			cd_debug ("  acquisition de la batterie -> %x", dbus_proxy_battery);
+			cd_message ("  acquisition de la batterie -> %x", dbus_proxy_battery);
 			myData.battery_present = (dbus_proxy_battery != NULL);  // a priori toujours vrai.
 			g_free (batteryPath);
 			
@@ -236,7 +236,7 @@ gboolean update_stats(void)
 	g_file_get_contents(myData.cBatteryStateFilePath, &cContent, &length, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning("powermanager : %s", erreur->message);
+		cd_warning ("powermanager : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
 		return FALSE;
@@ -266,6 +266,7 @@ gboolean update_stats(void)
 			for (k = 0; k < PM_NB_VALUES; k ++)
 				myData.fRateHistory[k] = 0;
 			myData.iCurrentIndex = 0;
+			myData.iIndexMax = 0;
 		}
 		
 		go_to_next_line  // "present: yes"
@@ -281,29 +282,13 @@ gboolean update_stats(void)
 			for (k = 0; k < PM_NB_VALUES; k ++)
 				myData.fRateHistory[k] = 0;
 			myData.iCurrentIndex = 0;
+			myData.iIndexMax = 0;
 		}
 		
 		go_to_next_line  // charging state: discharging
 		
 		jump_to_value
-		double iPresentRate = atoi (cCurVal);  // 15000 mW OU 1400 mA
-		
-		if (myConfig.bUseApprox) { //Se rapprocher un peu de powermanager.
-			if (myData.on_battery) {
-				g_print ("Before approx Average:%d Rate:%.2f\n", myData.iAveragePresentState, iPresentRate);
-				if (myData.iMaxPresentState < iPresentRate)
-					myData.iMaxPresentState = iPresentRate; //On peut se baser sur la consomation maximum d'énergie de l'ordinateur pour le calcul
-			
-				if (myData.iAveragePresentState != 0) //Ou sur la moyenne des consomations d'énergie.
-					myData.iAveragePresentState = (myData.iAveragePresentState + iPresentRate) / 2;
-				else
-					myData.iAveragePresentState = iPresentRate;
-				g_print ("After approx Max:%d Average:%d\n", myData.iMaxPresentState, myData.iAveragePresentState);
-			}
-			
-			iPresentRate = myData.iAveragePresentState; //Il faudra tester pour savoir quelle valeur s'avère être la plus fiable
-			//iPresentRate = myData.iMaxPresentState;
-		}
+		double fPresentRate = atoi (cCurVal);  // 15000 mW OU 1400 mA
 		
 		/*cCurVal ++;
 		while (*cCurVal != ' ')
@@ -331,57 +316,80 @@ gboolean update_stats(void)
 		int iPresentVoltage = atoi (cCurVal);  // 15000 mV
 		
 		myData.battery_charge = 100. * iRemainingCapacity / myData.iCapacity;
+		g_print ("myData.battery_charge : %.2f (%d / %d)\n", myData.battery_charge, iRemainingCapacity, myData.iCapacity);
 		if (myData.battery_charge > 100)
 			myData.battery_charge = 100;
 		if (myData.battery_charge < 0)
 			myData.battery_charge = 0.;
 		
-		if (iPresentRate == 0 && myConfig.bUseDBusFallback)
+		if (fPresentRate == 0 && myConfig.bUseDBusFallback)
 		{
-			cd_debug ("on se rabat sur DBus");
+			cd_message ("on se rabat sur DBus");
 			myData.battery_time = get_stats("time");
 		}
-		else if (iPresentRate == 0 && myData.previous_battery_charge > 0)
+		else if (fPresentRate == 0 && myData.previous_battery_charge > 0)
 		{
-			iPresentRate = (myData.previous_battery_charge - myData.battery_charge) * 36. * myData.iCapacity / myConfig.iCheckInterval;
-			cd_debug ("estimated rate : %.2f -> %.2f => %.2f", myData.previous_battery_charge, myData.battery_charge, iPresentRate);
-			myData.fRateHistory[myData.iCurrentIndex] = iPresentRate;
-			myData.iCurrentIndex ++;
-			if (myData.iCurrentIndex == PM_NB_VALUES)
-				myData.iCurrentIndex = 0;
+			fPresentRate = (myData.previous_battery_charge - myData.battery_charge) * 36. * myData.iCapacity / myConfig.iCheckInterval;
+			cd_message ("instant rate : %.2f -> %.2f => %.2f", myData.previous_battery_charge, myData.battery_charge, fPresentRate);
+			myData.fRateHistory[myData.iCurrentIndex] = fPresentRate;
+			
 			double fMeanRate = 0.;
 			int nb_values=0;
-			for (k = 0; k < PM_NB_VALUES; k ++)
+			double fNextValue = 0.;
+			int iNbStackingValues = 0;
+			int i;
+			for (k = 0; k < myData.iIndexMax; k ++)
 			{
-				if (myData.fRateHistory[k] != 0)
+				if (myData.iIndexMax == PM_NB_VALUES)
+					i = (myData.iCurrentIndex + 1 + k) % PM_NB_VALUES;
+				else
+					i = k;
+				if (myData.fRateHistory[i] != 0)
 				{
-					fMeanRate += myData.fRateHistory[k];
-					nb_values ++;
+					if (fNextValue != 0)
+					{
+						nb_values += iNbStackingValues;
+						fMeanRate += fNextValue;
+					}
+					fNextValue = myData.fRateHistory[i];
+					iNbStackingValues = 1;
+				}
+				else
+				{
+					iNbStackingValues ++;
 				}
 			}
-			cd_debug ("mean calculated on %d value(s) : %.2f", nb_values, fabs (fMeanRate) / nb_values);
 			if (nb_values != 0)
-				iPresentRate = fabs (fMeanRate) / nb_values;
+				fPresentRate = fabs (fMeanRate) / nb_values;
+			cd_message ("mean calculated on %d value(s) : %.2f (current index:%d/%d)", nb_values, fPresentRate, myData.iCurrentIndex, myData.iIndexMax);
+			
+			myData.iCurrentIndex ++;
+			if (myData.iIndexMax < PM_NB_VALUES)
+				myData.iIndexMax = myData.iCurrentIndex;
+			if (myData.iCurrentIndex == PM_NB_VALUES)
+				myData.iCurrentIndex = 0;
 		}
+		else
+			cd_message ("found fPresentRate = %.2f\n", fPresentRate);
 		
 		
 		//Utile de connaitre l'autonomie estimée quand la batterie est chargée
 		if (myData.on_battery || myData.battery_charge == 100) { //Decompte avant décharge complete
-			if (iPresentRate > 0) {
-				myData.battery_time = 3600. * iRemainingCapacity / iPresentRate;
+			if (fPresentRate > 0) {
+				myData.battery_time = 3600. * iRemainingCapacity / fPresentRate;
 			}
 			else
 				myData.battery_time = 0.;
 		}
 		else {
-			if (iPresentRate > 0) { //Decompte avant charge complete
-				myData.battery_time = 3600. * (myData.iCapacity - iRemainingCapacity) / iPresentRate;
+			if (fPresentRate > 0) { //Decompte avant charge complete
+				myData.battery_time = 3600. * (myData.iCapacity - iRemainingCapacity) / fPresentRate;
 			}
 			else
 				myData.battery_time = 0.;
 		}
 		
-		cd_debug ("PowerManager : On Battery:%d ; iCapacity:%dmWh ; iRemainingCapacity:%dmWh ; iPresentRate:%dmW ; iPresentVoltage:%dmV", myData.on_battery, myData.iCapacity, iRemainingCapacity, iPresentRate, iPresentVoltage); 
+		//cd_message ("PowerManager : On Battery:%d ; iCapacity:%dmWh ; iRemainingCapacity:%dmWh ; fPresentRate:%.2fmW ; iPresentVoltage:%dmV", myData.on_battery, myData.iCapacity, iRemainingCapacity, fPresentRate, iPresentVoltage); 
 		g_free (cContent);
 		
 		update_icon();
@@ -444,7 +452,7 @@ int get_stats(gchar *dataType)  // code repris de Gnome-power-manager.
 	}
 	g_ptr_array_free (ptrarray, TRUE);
 	
-	cd_debug ("PowerManager [%s]: %d", dataType, y);
+	cd_message ("PowerManager [%s]: %d", dataType, y);
 	return y;  /// a quoi servent x et col alors ??
 }
 

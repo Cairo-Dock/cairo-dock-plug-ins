@@ -18,9 +18,6 @@
 #define CPUSAGE_UPTIME_PIPE "/proc/uptime"
 #define CPUSAGE_LOADAVG_PIPE "/proc/loadavg"
 #define CPUSAGE_PROC_INFO_PIPE "/proc/cpuinfo"
-#define USER_HZ 100.
-
-CD_APPLET_INCLUDE_MY_VARS
 
 
 void cd_cpusage_get_uptime (gchar **cUpTime, gchar **cActivityTime)
@@ -176,7 +173,7 @@ void cd_cpusage_read_data (CairoDockModuleInstance *myApplet)
 	
 	if (myData.bInitialized)  // la 1ere iteration on ne peut pas calculer la frequence.
 	{
-		myData.cpu_usage = 100. * (1. - (new_cpu_idle - myData.cpu_idle) / USER_HZ / myData.iNbCPU / fTimeElapsed);
+		myData.cpu_usage = 100. * (1. - (new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);
 		cd_debug ("CPU(%d) user : %d -> %d / nice : %d -> %d / sys : %d -> %d / idle : %d -> %d",
 			myData.iNbCPU,
 			myData.cpu_user, new_cpu_user,
@@ -184,10 +181,10 @@ void cd_cpusage_read_data (CairoDockModuleInstance *myApplet)
 			myData.cpu_system, new_cpu_system,
 			myData.cpu_idle, new_cpu_idle);
 		cd_debug ("=> CPU user : %.3f / nice : %.3f / sys : %.3f / idle : %.3f",
-			(new_cpu_user - myData.cpu_user) / USER_HZ / myData.iNbCPU / fTimeElapsed,
-			(new_cpu_user_nice - myData.cpu_user_nice) / USER_HZ / myData.iNbCPU / fTimeElapsed,
-			(new_cpu_system - myData.cpu_system) / USER_HZ / myData.iNbCPU / fTimeElapsed,
-			(new_cpu_idle - myData.cpu_idle) / USER_HZ / myData.iNbCPU / fTimeElapsed);
+			(new_cpu_user - myData.cpu_user) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
+			(new_cpu_user_nice - myData.cpu_user_nice) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
+			(new_cpu_system - myData.cpu_system) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
+			(new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);
 	}
 	myData.bAcquisitionOK = TRUE;
 	myData.cpu_user = new_cpu_user;
@@ -374,7 +371,7 @@ void cd_cpusage_get_process_times (double fTime, double fTimeElapsed)
 		
 		//g_print ("%s : %d -> %d\n", pProcess->cName, pProcess->iCpuTime, iNewCpuTime);
 		if (pProcess->iCpuTime != 0 && fTimeElapsed != 0)
-			pProcess->fCpuPercent = (iNewCpuTime - pProcess->iCpuTime) / USER_HZ / myData.iNbCPU / fTimeElapsed;
+			pProcess->fCpuPercent = (iNewCpuTime - pProcess->iCpuTime) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed;
 		pProcess->iCpuTime = iNewCpuTime;
 		
 		if (pProcess->fCpuPercent > 0)

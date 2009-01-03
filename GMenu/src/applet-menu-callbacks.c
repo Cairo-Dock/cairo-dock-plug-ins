@@ -95,7 +95,7 @@ void remove_submenu_to_display_idle (gpointer data)
 gboolean submenu_to_display_in_idle (gpointer data)
 {
 	GtkWidget *menu = GTK_WIDGET (data);
-	g_print ("%s (%x)\n", __func__, menu);
+	cd_message ("%s (%x)", __func__, menu);
 
 	g_object_set_data (G_OBJECT (menu), "panel-menu-idle-id", NULL);
 
@@ -106,7 +106,7 @@ gboolean submenu_to_display_in_idle (gpointer data)
 
 void submenu_to_display (GtkWidget *menu)
 {
-	g_print ("%s (%x)\n", __func__, menu);
+	cd_message ("%s (%x)", __func__, menu);
 	GMenuTree           *tree;
 	GMenuTreeDirectory  *directory;
 	const char          *menu_path;

@@ -617,7 +617,7 @@ GtkWidget * create_empty_menu (void)
 
 static void _on_remove_tree (GMenuTree  *tree)
 {
-	g_print ("%s (%x)\n", __func__, tree);
+	cd_message ("%s (%x)", __func__, tree);
 	//gmenu_tree_unref (tree);
 }
 
@@ -630,9 +630,9 @@ GtkWidget * create_applications_menu (const char *menu_file,
 
 	menu = (parent_menu ? parent_menu : create_empty_menu ());
 	
-	g_print ("%s (%s)\n", __func__, menu_file);
+	cd_message ("%s (%s)", __func__, menu_file);
 	tree = gmenu_tree_lookup (menu_file, GMENU_TREE_FLAGS_NONE);
-	g_print ("tree : %x\n", tree);
+	cd_debug (" tree : %x", tree);
 
 	g_object_set_data_full (G_OBJECT (menu),
 				"panel-menu-tree",

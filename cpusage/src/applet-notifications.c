@@ -6,9 +6,6 @@
 #include "applet-notifications.h"
 #include "applet-cpusage.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
-
 CD_APPLET_ABOUT (D_("This is the cpusage applet\n made by parAdOxxx_ZeRo for Cairo-Dock"))
 
 

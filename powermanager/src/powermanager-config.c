@@ -3,8 +3,6 @@
 #include "powermanager-struct.h"
 #include "powermanager-config.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_GET_CONFIG_BEGIN
 	
@@ -29,7 +27,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.batteryWitnessAnimation = CD_CONFIG_GET_STRING ("Configuration", "battery_animation");
 	
 	myConfig.lowBatteryValue = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "low value", 15);
-	myConfig.bUseDBusFallback = CD_CONFIG_GET_BOOLEAN ("Configuration", "use dbus");
+	myConfig.bUseDBusFallback = CD_CONFIG_GET_BOOLEAN ("Configuration", "use_dbus");
 	
 	GString *sKeyName = g_string_new ("");
 	int i;

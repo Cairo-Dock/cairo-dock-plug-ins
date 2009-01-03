@@ -24,6 +24,7 @@ struct _AppletConfig {
 	CairoDockLabelDescription *pTopTextDescription;
 	
 	gchar *cSystemMonitorCommand;
+	gdouble fUserHZ;
 } ;
 
 typedef struct {

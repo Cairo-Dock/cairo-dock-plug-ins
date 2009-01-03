@@ -4,8 +4,6 @@
 #include "powermanager-struct.h"
 #include "powermanager-draw.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 void iconWitness(int animationLenght)
 {
@@ -15,7 +13,7 @@ void iconWitness(int animationLenght)
 void update_icon(void)
 {
 	gboolean bNeedRedraw = FALSE;
-	cd_debug ("%s (time:%d->%d ; charge:%d->%d)\n", __func__, myData.previous_battery_time, myData.battery_time, myData.previous_battery_charge, myData.battery_charge);
+	cd_message ("%s (time:%.2f -> %.2f ; charge:%.2f -> %.2f)", __func__, myData.previous_battery_time, myData.battery_time, myData.previous_battery_charge, myData.battery_charge);
 	if(myData.battery_present)
 	{
 		if (myData.previous_battery_time != myData.battery_time)
@@ -31,7 +29,7 @@ void update_icon(void)
 			}
 			else if(myConfig.quickInfoType == POWER_MANAGER_CHARGE)
 			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.battery_charge);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", (int)myData.battery_charge);
 			}
 			else
 			{
@@ -146,11 +144,11 @@ void cd_powermanager_bubble (void)
 			hms = g_strdup_printf ("%s", D_("Unknown"));
 		if(myData.on_battery)
 		{
-			g_string_printf (sInfo, "%s %d%%%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+			g_string_printf (sInfo, "%s %.2f%%%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 		}
 		else
 		{
-			g_string_printf (sInfo, "%s %d%%%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated Charge time:"), hms);
+			g_string_printf (sInfo, "%s %.2f%%%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated Charge time:"), hms);
 		}
 		g_free (hms);
 	}
@@ -176,13 +174,13 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 		
 	if ((alert == POWER_MANAGER_CHARGE_LOW && myConfig.lowBatteryWitness) || (alert == POWER_MANAGER_CHARGE_CRITICAL && myConfig.criticalBatteryWitness))
 	{
-		g_string_printf (sInfo, "%s (%d%%%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
+		g_string_printf (sInfo, "%s (%.2f%%%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
 		_cd_powermanager_dialog (sInfo);
 	}
 	
 	else if (alert == POWER_MANAGER_CHARGE_FULL && myConfig.highBatteryWitness)
 	{
-		g_string_printf (sInfo, "%s (%d%%%%) \n %s %s ", D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+		g_string_printf (sInfo, "%s (%.2f%%%%) \n %s %s ", D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 		_cd_powermanager_dialog (sInfo);
 		if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_FULL] != NULL)
 			cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_FULL]);
