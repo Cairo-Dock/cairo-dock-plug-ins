@@ -478,7 +478,7 @@ gboolean penguin_update_container (CairoDockModuleInstance *myApplet, CairoConta
 	if (pContainer != myContainer)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	myData.iCountStep ++;
-	if (myData.iCountStep * g_iGLAnimationDeltaT >= 90)
+	if (myData.iCountStep * mySystem.iGLAnimationDeltaT >= 90)
 	{
 		*bContinueAnimation = penguin_move_in_dock (myApplet);
 		myData.iCountStep = 0;
@@ -495,7 +495,7 @@ gboolean penguin_update_icon (CairoDockModuleInstance *myApplet, CairoContainer 
 	if (pContainer != myContainer)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	myData.iCountStep ++;
-	if (myData.iCountStep * g_iGLAnimationDeltaT >= 90)
+	if (myData.iCountStep * mySystem.iGLAnimationDeltaT >= 90)
 	{
 		*bContinueAnimation = penguin_move_in_icon (myApplet);
 		myData.iCountStep = 0;

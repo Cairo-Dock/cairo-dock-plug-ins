@@ -215,7 +215,7 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 	pData->iDropIndicatorOffset += myConfig.iSpeed;
 	if (pData->iDropIndicatorOffset > 2*myData.fDropIndicatorHeight)
 		pData->iDropIndicatorOffset -= 2*myData.fDropIndicatorHeight;
-	double dt = (CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) ? g_iGLAnimationDeltaT : g_iCairoAnimationDeltaT);
+	double dt = (CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) ? mySystem.iGLAnimationDeltaT : mySystem.iCairoAnimationDeltaT);
 	pData->iDropIndicatorRotation += myConfig.fRotationSpeed * 360. * dt/1e3;
 	if (pDock->bCanDrop)
 	{

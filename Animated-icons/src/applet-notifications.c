@@ -34,7 +34,7 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 	}
 	
 	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
-	double dt = (bUseOpenGL ? g_iGLAnimationDeltaT : g_iCairoAnimationDeltaT);
+	double dt = (bUseOpenGL ? mySystem.iGLAnimationDeltaT : mySystem.iCairoAnimationDeltaT);
 	
 	int i;
 	for (i = 0; i < CD_ANIMATIONS_NB_EFFECTS; i ++)
@@ -334,12 +334,12 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
-	double dt = (bUseOpenGL ? g_iGLAnimationDeltaT : g_iCairoAnimationDeltaT);
+	double dt = (bUseOpenGL ? mySystem.iGLAnimationDeltaT : mySystem.iCairoAnimationDeltaT);
 	
 	if (pData->bIsWobblying)
 	{
 		if (bUseOpenGL)
-			pData->bIsWobblying = cd_animations_update_wobbly (pData);
+			pData->bIsWobblying = cd_animations_update_wobbly (pData, dt);
 		else
 			pData->bIsWobblying = cd_animations_update_wobbly_cairo (pIcon, pDock, pData, _will_continue (FALSE));
 		
@@ -354,7 +354,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	}
 	if (! pData->bIsWobblying && pData->bIsWaving)
 	{
-		pData->bIsWaving = cd_animations_update_wave (pData);
+		pData->bIsWaving = cd_animations_update_wave (pData, dt);
 		if (! pData->bIsWaving && _will_continue (myConfig.bContinueWave))
 		{
 			pData->iNumRound --;

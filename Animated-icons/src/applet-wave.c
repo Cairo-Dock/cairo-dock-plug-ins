@@ -50,7 +50,7 @@ void cd_animations_init_wave (CDAnimationData *pData)
 }
 
 
-gboolean cd_animations_update_wave (CDAnimationData *pData)
+gboolean cd_animations_update_wave (CDAnimationData *pData, double dt)
 {
 	GLfloat *pVertices = &pData->pVertices[3];
 	GLfloat *pCoords = &pData->pCoords[2];
@@ -162,7 +162,7 @@ gboolean cd_animations_update_wave (CDAnimationData *pData)
 	pVertices[3*j+1] = pVertices[1];
 	pVertices[3*j+2] = 0.;
 	
-	pData->fWavePosition += 1. * g_iGLAnimationDeltaT / myConfig.iWaveDuration;
+	pData->fWavePosition += dt / myConfig.iWaveDuration;
 	pData->iNumActiveNodes = j + 2;
 	return (pData->fWavePosition - w/2 < 1);
 }

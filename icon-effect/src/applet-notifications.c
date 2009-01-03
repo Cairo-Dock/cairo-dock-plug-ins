@@ -30,7 +30,7 @@ static void _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *p
 		pData = g_new0 (CDIconEffectData, 1);
 		CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
 	}
-	double dt = g_iGLAnimationDeltaT;
+	double dt = mySystem.iGLAnimationDeltaT;
 	
 	int i;
 	for (i = 0; i < CD_ICON_EFFECT_NB_EFFECTS; i ++)

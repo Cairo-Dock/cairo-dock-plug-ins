@@ -112,12 +112,12 @@ void cd_animations_init_wobbly (CDAnimationData *pData,gboolean  bUseOpenGL)
     k_3 = f ( t_n + {h / 2}, y_n + {h / 2} k_2 )
     k_4 = f ( t_n + h, y_n + h k_3)*/
 
-gboolean cd_animations_update_wobbly (CDAnimationData *pData)
+gboolean cd_animations_update_wobbly (CDAnimationData *pData, double dt)
 {
 	const int n = 20;
 	double k = myConfig.fSpringConstant;
 	double f = myConfig.fFriction;
-	double dt = g_iGLAnimationDeltaT / 1e3 / n;
+	dt /= 1e3 * n;
 	CDAnimationGridNode *pNode, *pNode2;
 	gboolean bContinue = FALSE;
 	
