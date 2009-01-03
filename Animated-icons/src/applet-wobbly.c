@@ -250,6 +250,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	
 	glEnable(GL_MAP2_VERTEX_3);  // active l'evaluateur 2D des sommets 3D
 	glEnable(GL_MAP2_TEXTURE_COORD_2);
+	glPolygonMode (GL_FRONT, GL_FILL);
 	
 	glMap2f(GL_MAP2_VERTEX_3, 0, 1, 3, 4,
 		0, 1, 12, 4, &pData->pCtrlPts[0][0][0]);

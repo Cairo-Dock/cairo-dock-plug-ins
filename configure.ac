@@ -186,13 +186,13 @@ AC_SUBST(PACKAGE_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
 AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
 
 ############# ANIMATED ICONS #################
-ANIMATED_ICONS_PACKAGE=cd-animated-icons
+ANIMATED_ICONS_PACKAGE=cd-Animated-icons
 AC_SUBST(GETTEXT_ANIMATED_ICONS, "$ANIMATED_ICONS_PACKAGE")
 
 AC_SUBST(VERSION_ANIMATED_ICONS, "1.0.0")
 AC_SUBST(PACKAGE_ANIMATED_ICONS, "$ANIMATED_ICONS_PACKAGE")
 
-AC_SUBST(animated_iconsdatadir, "${pkgdatadir}/Animated_icons")
+AC_SUBST(animated_iconsdatadir, "${pkgdatadir}/Animated-icons")
 
 ############# CLIPPER #################
 CLIPPER_PACKAGE="cd-Clipper"
