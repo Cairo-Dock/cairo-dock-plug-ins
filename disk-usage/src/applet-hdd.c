@@ -79,7 +79,7 @@ void cd_hdd_read_data(CairoDockModuleInstance *myApplet)
 	myData.llAvail = (long long)sts.f_bavail * sts.f_bsize;
 	myData.llFree  = (long long)sts.f_bfree  * sts.f_bsize;
 	myData.llTotal = (long long)sts.f_blocks * sts.f_bsize;
-	myData.llUsed  = (long long)myData.llTotal - myData.llFree;
+	myData.llUsed  = (long long)myData.llTotal - myData.llAvail;
 
 	if (myConfig.iPercentDisplay == CD_AVAIL_SPACE)
 		myData.fPourcent = (myData.llAvail * 1.0) / (myData.llTotal * 1.0);
