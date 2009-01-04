@@ -15,6 +15,7 @@ struct _AppletConfig {
 	gchar *cDevice;
 	gchar *cWatermarkImagePath;
 	gchar *defaultTitle;
+	gchar *cDefaultName;
 	
 	const gchar *cGThemePath;
 	

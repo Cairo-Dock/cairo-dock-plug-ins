@@ -104,16 +104,16 @@ gboolean cd_hdd_update_from_data (CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDevice);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultName);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myDesklet ?
-						(myData.fPourcent < 0.1 ? "HDD:%.1f%%" : "HDD:%.0f%%") :
-						(myData.fPourcent < 0.1 ? "%.1f%%" : "%.0f%%")),
-					(myData.fPourcent * 100.0));
+				if (myDesklet)
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myData.fPourcent < 0.1 ? "%s:%.1f%%" : "%s:%.0f%%"),myConfig.cDefaultName,(myData.fPourcent * 100.0));
+				else
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myData.fPourcent < 0.1 ? "%.1f%%" : "%.0f%%"),(myData.fPourcent * 100.0));
 			}
 			else
 			{

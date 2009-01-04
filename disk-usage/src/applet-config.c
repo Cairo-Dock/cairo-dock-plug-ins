@@ -18,6 +18,7 @@ CD_APPLET_INCLUDE_MY_VARS
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
 	myConfig.cDevice = CD_CONFIG_GET_STRING ("Configuration", "device");
+	myConfig.cDefaultName = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "name_default", myConfig.cDevice);
 	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER ("Configuration", "interval");
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
 	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "watermark alpha");
