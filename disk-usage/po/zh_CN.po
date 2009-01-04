@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Icon"
+msgstr "图标"
+
+msgid "Desired icon size for this applet"
+msgstr "此小应用程序期望的图标大小"
+
+msgid "width :"
+msgstr "宽："
+
+msgid "height :"
+msgstr "高："
+
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "显示于dock上的标签上的此图标的名称："
+
+msgid "Module"
+msgstr "模块"
+
+msgid "Icon's name :"
+msgstr "图标名称："
+
+#: src/applet-notifications.c:13
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr "这是CD_MY_NAME为Cairo-Dock制作的CD_APPLET_NAME。"
+
+#: ../data/messages:11
+msgid "Desklet"
+msgstr "桌面应用程序"
+
+#: ../data/messages:13
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理器"
+
+#: ../data/messages:15
+msgid "Desklet's dimension (width x height) :"
+msgstr "桌面小应用程序大小（宽x高）："
+
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+
+#: ../data/messages:19
+msgid "Desklet's position (x ; y) :"
+msgstr "桌面小应用程序位置(x ; y)："
+
+#: ../data/messages:21
+msgid "Is detached from the dock ?"
+msgstr "从dock移开？"
+
+#: ../data/messages:23
+msgid "Keep below other windows ?"
+msgstr "位于最下窗口？"
+
+#: ../data/messages:25
+msgid "Keep above other windows ?"
+msgstr "窗口置顶？"
+
+#: ../data/messages:27
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
+
+#: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr "保持于小应用程序层？"
+
