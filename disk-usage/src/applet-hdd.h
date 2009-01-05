@@ -13,4 +13,6 @@ gboolean cd_hdd_update_from_data (CairoDockModuleInstance *myApplet);
 
 gchar *cd_human_readable(long long num);
 
+void cd_mount_unmount_device (CairoDockModuleInstance *myApplet);
+
 #endif __HDD_FS__

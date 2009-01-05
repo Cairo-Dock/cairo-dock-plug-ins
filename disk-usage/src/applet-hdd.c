@@ -62,6 +62,12 @@ gchar *cd_get_fs_type(const char *path) {
 		return g_strdup (me->mnt_type);
 }
 
+void cd_mount_unmount_device (CairoDockModuleInstance *myApplet) {
+	
+	g_print ("%s %s... \n",myData.bAcquisitionOK ? "Unmount" : "Mount", myConfig.cDevice);
+	//g_free (cDevice);
+}
+
 void cd_hdd_read_data(CairoDockModuleInstance *myApplet)
 {
 	g_timer_stop (myData.pClock);
@@ -96,9 +102,12 @@ gboolean cd_hdd_update_from_data (CairoDockModuleInstance *myApplet)
 	if ( ! myData.bAcquisitionOK)
 	{
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultName);
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
+			if (!myDesklet)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
+			else
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s:N/A",myConfig.cDefaultName);
 		
 		CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
 	}

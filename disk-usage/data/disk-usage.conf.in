@@ -95,10 +95,13 @@ use size=
 
 #i[30;60] Delay between refresh :
 #{in seconds.}
-interval = 1
+interval = 30
 
 #s File system you'd like to monitor :
 device = /
+
+#s Name of the applet :
+name_default = 
 
 #R+[] List of available themes for the gauge :/
 theme = turbo-night-fuel
@@ -115,4 +118,4 @@ watermark alpha = .6
 info display = 1
 
 #r[Free;Used] Display percentage of space :
-percentage = 0
+percentage = 1

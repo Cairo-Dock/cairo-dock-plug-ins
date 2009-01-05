@@ -28,6 +28,7 @@ CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
+		gtk_widget_queue_draw (myDesklet->pWidget);
 	}
 	
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
@@ -64,6 +65,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
+		gtk_widget_queue_draw (myDesklet->pWidget);
 	}
 	
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
@@ -80,5 +82,8 @@ CD_APPLET_RELOAD_BEGIN
 		memcpy (myConfig.pTopTextDescription->fColorStop, pOldLabelDescription->fColorStop, 3*sizeof (double));
 		myConfig.pTopTextDescription->bVerticalPattern = TRUE;
 		cairo_dock_free_label_description (pOldLabelDescription);
+		
+		//if (!cairo_dock_fm_add_monitor_full(myConfig.cDevice, FALSE, NULL, (CairoDockFMMonitorCallback) cairo_dock_fm_action_on_file_event, myIcon))
+		//	cd_warning ("Disk-usage : can't monitor drives");
 	}
 CD_APPLET_RELOAD_END
