@@ -237,6 +237,21 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 	}
 }
 
+static void _cd_rendering_check_if_mouse_inside_diapo_simple (CairoDock *pDock)
+{
+	if (! pDock->bInside)
+	{
+		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+	}
+	else if ((pDock->iMouseX < (X_BORDER_SPACE/2)) || (pDock->iMouseX > pDock->iMaxDockWidth - (X_BORDER_SPACE/2)) || (pDock->iMouseY < (Y_BORDER_SPACE/2)) || (pDock->iMouseY > pDock->iMaxDockHeight - (Y_BORDER_SPACE/2)))
+	{
+		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
+	}
+	else
+	{
+		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
+	}
+}
 Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 {
         guint nRowsX = 0;
@@ -256,21 +271,7 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 	Icon *pPointedIcon = cairo_dock_calculate_icons_position_for_diapo_simple(pDock, nRowsX, nRowsY, pDock->iMouseX, pDock->iMouseY);
 
 
-	CairoDockMousePositionType iMousePositionType;
-	if (! pDock->bInside)
-	{
-		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
-	}
-	else if ((pDock->iMouseX < (X_BORDER_SPACE/2)) || (pDock->iMouseX > pDock->iMaxDockWidth - (X_BORDER_SPACE/2)) || (pDock->iMouseY < (Y_BORDER_SPACE/2)) || (pDock->iMouseY > pDock->iMaxDockHeight - (Y_BORDER_SPACE/2)))
-	{
-		iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
-	}
-	else
-	{
-		iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
-	}
-	
-	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
+	_cd_rendering_check_if_mouse_inside_diapo_simple (pDock);
 	
 	/// caluler bCanDrop ...
 	

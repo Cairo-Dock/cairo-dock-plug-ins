@@ -645,10 +645,6 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 {
 	Icon *pPointedIcon = cairo_dock_apply_wave_effect (pDock);
 	
-	CairoDockMousePositionType iMousePositionType = cairo_dock_check_if_mouse_inside_linear (pDock);
-	
-	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
-	
 	//\____________________ On calcule les position/etirements/alpha des icones.
 	double fReflectionOffsetY = (pDock->bDirectionUp ? -1 : 1) * myIcons.fReflectSize;
 	Icon* icon;
@@ -659,9 +655,11 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 		cd_rendering_calculate_construction_parameters_3D_plane (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iMaxDockWidth, fReflectionOffsetY);
 	}
 	
+	cairo_dock_check_if_mouse_inside_linear (pDock);
+	
 	cairo_dock_check_can_drop_linear (pDock);
 	
-	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
+	return pPointedIcon;
 }
 
 

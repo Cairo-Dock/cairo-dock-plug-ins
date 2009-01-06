@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-01-02 04:38+0100\n"
+"POT-Creation-Date: 2009-01-06 02:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,45 +16,45 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:44 ../src/applet-cpusage.c:49
+#: ../src/applet-cpusage.c:41 ../src/applet-cpusage.c:46
 msgid "day(s)"
 msgstr ""
 
-#: ../src/applet-cpusage.c:228
+#: ../src/applet-cpusage.c:225
 msgid "Loading"
 msgstr ""
 
-#: ../src/applet-notifications.c:12
+#: ../src/applet-notifications.c:9
 msgid ""
 "This is the cpusage applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:110 ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:107 ../src/applet-notifications.c:125
 msgid "Data acquisition has failed"
 msgstr ""
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:120
 msgid "Model Name"
 msgstr ""
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:120
 msgid "Frequency"
 msgstr ""
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:120
 msgid "core(s)"
 msgstr ""
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:120
 msgid "Up time"
 msgstr ""
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:120
 msgid "Activity time"
 msgstr ""
 
-#: ../src/applet-notifications.c:148
+#: ../src/applet-notifications.c:145
 msgid "Monitor System"
 msgstr ""
 

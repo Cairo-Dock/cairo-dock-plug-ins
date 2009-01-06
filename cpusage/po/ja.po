@@ -14,15 +14,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:44 ../src/applet-cpusage.c:49
+#: ../src/applet-cpusage.c:41 ../src/applet-cpusage.c:46
 msgid "day(s)"
 msgstr "日"
 
-#: ../src/applet-cpusage.c:228
+#: ../src/applet-cpusage.c:225
 msgid "Loading"
 msgstr "読み込み中"
 
-#: ../src/applet-notifications.c:12
+#: ../src/applet-notifications.c:9
 msgid ""
 "This is the cpusage applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
@@ -30,31 +30,31 @@ msgstr ""
 "これは parAdOxxx_ZeRo によって製作された \n"
 "Cairo-Dock 用の cpusage アプレットです。"
 
-#: ../src/applet-notifications.c:110 ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:107 ../src/applet-notifications.c:125
 msgid "Data acquisition has failed"
 msgstr "データの取得に失敗"
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:120
 msgid "Model Name"
 msgstr "モデル名"
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:120
 msgid "Frequency"
 msgstr "周波数"
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:120
 msgid "core(s)"
 msgstr "コア"
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:120
 msgid "Up time"
 msgstr "稼働時間"
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:120
 msgid "Activity time"
 msgstr "動作時間"
 
-#: ../src/applet-notifications.c:148
+#: ../src/applet-notifications.c:145
 msgid "Monitor System"
 msgstr ""
 

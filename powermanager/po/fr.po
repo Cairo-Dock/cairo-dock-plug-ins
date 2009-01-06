@@ -11,15 +11,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/powermanager-draw.c:117
+#: ../src/powermanager-draw.c:115
 msgid "None"
 msgstr "Aucun"
 
-#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:175
+#: ../src/powermanager-draw.c:144 ../src/powermanager-draw.c:173
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../src/powermanager-draw.c:149
+#: ../src/powermanager-draw.c:147
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -27,12 +27,12 @@ msgstr ""
 "Portable sur Batterie.\n"
 " Batterie chargée à:"
 
-#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:179
-#: ../src/powermanager-draw.c:185
+#: ../src/powermanager-draw.c:147 ../src/powermanager-draw.c:177
+#: ../src/powermanager-draw.c:183
 msgid "Estimated time with Charge:"
 msgstr "Temp de batterie estimé:"
 
-#: ../src/powermanager-draw.c:153
+#: ../src/powermanager-draw.c:151
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -40,15 +40,15 @@ msgstr ""
 "Portable en Charge.\n"
 " Batterie chargée à:"
 
-#: ../src/powermanager-draw.c:153
+#: ../src/powermanager-draw.c:151
 msgid "Estimated Charge time:"
 msgstr "Temps de charge estimé:"
 
-#: ../src/powermanager-draw.c:159
+#: ../src/powermanager-draw.c:157
 msgid "No Battery found."
 msgstr "Aucune Batterie trouvée."
 
-#: ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:177
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -56,11 +56,11 @@ msgstr ""
 "PowerManager.\n"
 "Le niveau de la batterie semble être bas"
 
-#: ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:177
 msgid "Please put your Laptop on charge."
 msgstr "Veuillez mettre votre portable en charge."
 
-#: ../src/powermanager-draw.c:185
+#: ../src/powermanager-draw.c:183
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"

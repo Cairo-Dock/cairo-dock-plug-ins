@@ -618,32 +618,29 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	} while (ic != pFirstDrawnElement);
 	
 	//cd_debug ("  derniere icone : %.2f (s:%.2f)", icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX, fCurvilignAbscisse);
-	CairoDockMousePositionType iMousePositionType;
 	if (! pDock->bInside || fCurvilignAbscisse > icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX - (pDock->fFoldingFactor > 0 ? 20 : 0) || fCurvilignAbscisse <= 0)
 	{
 		//cd_debug ("<<< on sort de la parabole >>>");
-		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 	}
 	else if ((pDock->fAlign == 0 && pDock->iMouseX > fXOnCurve) || (pDock->fAlign == 1 && pDock->iMouseX < fXOnCurve))
 	{
 		double fDistanceToCurve2 = (fXOnCurve - pDock->iMouseX) * (fXOnCurve - pDock->iMouseX) + (fYOnCurve - pDock->iMouseY) * (fYOnCurve - pDock->iMouseY);
 		if (fDistanceToCurve2 > PARABOLE_DISTANCE_OUT2)
-			iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+			pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 		else if (fDistanceToCurve2 < PARABOLE_DISTANCE_EDGE2)
-			iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
+			pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
 		else
-			iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
+			pDock->iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
 	}
 	else
 	{
-		iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
+		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
 	}
-	
-	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
 	
 	cairo_dock_check_can_drop_linear (pDock);  /// marche ?...
 	
-	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
+	return pPointedIcon;
 }
 
 

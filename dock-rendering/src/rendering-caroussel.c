@@ -209,10 +209,6 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 {
 	Icon *pPointedIcon = cairo_dock_apply_wave_effect (pDock);
 	
-	CairoDockMousePositionType iMousePositionType = (pDock->bInside ? CAIRO_DOCK_MOUSE_INSIDE : CAIRO_DOCK_MOUSE_OUTSIDE);
-	
-	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
-	
 	//\____________________ On calcule les position/etirements/alpha des icones.
 	int iEllipseHeight = pDock->iCurrentHeight - (myBackground.iDockLineWidth + myBackground.iFrameMargin + pDock->iMaxIconHeight + myIcons.fReflectSize);  // >0 par construction de iMinDockHeight.
 	int iFrameHeight = iEllipseHeight + 2 * myBackground.iFrameMargin + myIcons.fReflectSize;
@@ -227,9 +223,12 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 		icon = ic->data;
 		cd_rendering_calculate_construction_parameters_caroussel (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iMaxIconHeight, pDock->iMaxIconHeight, iEllipseHeight, pDock->bDirectionUp, fExtraWidth, fLinearWidth, fXFirstIcon);  // il manque un pDock->iMaxIconWidth en 2eme...
 	}
+	
+	pDock->iMousePositionType = (pDock->bInside ? CAIRO_DOCK_MOUSE_INSIDE : CAIRO_DOCK_MOUSE_OUTSIDE);
+	
 	cairo_dock_check_can_drop_linear (pDock);  /// marche ?...
 	
-	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
+	return pPointedIcon;
 }
 
 

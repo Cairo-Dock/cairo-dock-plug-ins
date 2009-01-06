@@ -873,9 +873,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 {
 	Icon *pPointedIcon = cairo_dock_apply_wave_effect (pDock);
 	
-	CairoDockMousePositionType iMousePositionType = cairo_dock_check_if_mouse_inside_linear (pDock);
-	
-	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
+	cairo_dock_check_if_mouse_inside_linear (pDock);
 	
 	//\____________________ On calcule les position/etirements/alpha des icones.
 	double h = 4./3 * (pDock->iDecorationsHeight + myBackground.iDockLineWidth);
@@ -945,7 +943,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 	
 	cairo_dock_check_can_drop_linear (pDock);
 	
-	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
+	return pPointedIcon;
 }
 
 void cd_rendering_register_curve_renderer (const gchar *cRendererName)

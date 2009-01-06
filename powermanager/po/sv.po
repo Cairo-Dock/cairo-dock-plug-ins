@@ -16,15 +16,15 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/powermanager-draw.c:117
+#: ../src/powermanager-draw.c:115
 msgid "None"
 msgstr "Ingen"
 
-#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:175
+#: ../src/powermanager-draw.c:144 ../src/powermanager-draw.c:173
 msgid "Unknown"
 msgstr "Okänt"
 
-#: ../src/powermanager-draw.c:149
+#: ../src/powermanager-draw.c:147
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -32,12 +32,12 @@ msgstr ""
 "Dator kör på batteri.\n"
 " Batteriladdning:"
 
-#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:179
-#: ../src/powermanager-draw.c:185
+#: ../src/powermanager-draw.c:147 ../src/powermanager-draw.c:177
+#: ../src/powermanager-draw.c:183
 msgid "Estimated time with Charge:"
 msgstr "Beräknad laddningstid:"
 
-#: ../src/powermanager-draw.c:153
+#: ../src/powermanager-draw.c:151
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -45,15 +45,15 @@ msgstr ""
 "Batteriet laddas.\n"
 " Batteriladdning:"
 
-#: ../src/powermanager-draw.c:153
+#: ../src/powermanager-draw.c:151
 msgid "Estimated Charge time:"
 msgstr "Uppskattad laddningstid:"
 
-#: ../src/powermanager-draw.c:159
+#: ../src/powermanager-draw.c:157
 msgid "No Battery found."
 msgstr "Hittade inget batteri."
 
-#: ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:177
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -61,11 +61,11 @@ msgstr ""
 "Energihanterare.\n"
 "Batterinivån verkar vara låg"
 
-#: ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:177
 msgid "Please put your Laptop on charge."
 msgstr "Var vänlig ladda ditt batteri."
 
-#: ../src/powermanager-draw.c:185
+#: ../src/powermanager-draw.c:183
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"

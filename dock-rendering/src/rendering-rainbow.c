@@ -388,23 +388,20 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	} while (ic != pFirstDrawnElement);
 	g_free (pScales);
 	
-	CairoDockMousePositionType iMousePositionType;
 	//g_print ("fRadius : %.2f ; limite : %.2f\n", fRadius, fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale);
 	if (! pDock->bInside || fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + myLabels.iconTextDescription.iSize - (pDock->fFoldingFactor > 0 ? 20 : 0) || fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset)
 	{
 		cd_debug ("<<< on sort du demi-disque >>>\n");
-		iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 	}
 	else
 	{
-		iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
+		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
 	}
-	
-	cairo_dock_manage_mouse_position (pDock, iMousePositionType);
 	
 	/// caluler bCanDrop ...
 	
-	return (iMousePositionType == CAIRO_DOCK_MOUSE_INSIDE ? pPointedIcon : NULL);
+	return pPointedIcon;
 }
 
 

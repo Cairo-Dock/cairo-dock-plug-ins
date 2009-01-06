@@ -351,7 +351,9 @@ msgstr "Ajouter l'Exposition et le Widget Layer au sous-dock?"
 msgid ""
 "Display in the applet's sub-dock an icon for the Emerald's configuration "
 "panel."
-msgstr "Affiche dans le sous-dock de l'appet une icône pour la configuration d'Emerald."
+msgstr ""
+"Affiche dans le sous-dock de l'appet une icône pour la configuration "
+"d'Emerald."
 
 #: ../data/messages:119
 msgid "Add Emerald's Configuration to sub-dock ?"
@@ -466,4 +468,3 @@ msgstr "Nom de l'image 'Exposition' :"
 #: ../data/messages:183
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Nom de l'image 'Widget Layer' :"
-

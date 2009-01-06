@@ -162,4 +162,3 @@ msgstr "en pixels."
 #: ../data/messages:29
 msgid "Ground offset :"
 msgstr "Décalage du sol :"
-
