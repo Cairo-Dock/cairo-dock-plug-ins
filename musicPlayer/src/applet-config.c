@@ -34,7 +34,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fTimeDialogs 			= CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "time_dialogs", 3000);
 	
 	myConfig.bEnableAnim 				= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_anim");
-	myConfig.pChangeAnimation 	= CD_CONFIG_GET_ANIMATION_WITH_DEFAULT ("Configuration", "change_animation", CAIRO_DOCK_PULSE);
+	myConfig.cChangeAnimation 	= CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "change_animation", "wobbly");
 	myConfig.bEnableCover				= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_cover");
 	myConfig.bStealTaskBarIcon 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
 	myConfig.bIconBubble 				= CD_CONFIG_GET_BOOLEAN ("Configuration", "bubble icon");

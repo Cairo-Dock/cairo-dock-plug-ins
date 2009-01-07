@@ -313,13 +313,14 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cRawURI, Ic
 		_sort_my_new_icon (cURI, pAddedIcon);
 		if (myDock && pAddedIcon != NULL) {
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
-			if (myData.iNbAnimation < 20) /*Le dock n'est pas prévu pour gérer autant d'animations, au dela il freeze.
+			if (myData.iNbAnimation < 10) /*Le dock n'est pas prévu pour gérer autant d'animations, au dela il freeze.
 			/ ---> pardon ???
 			Avec > 20 icônes les animations se figent et c'est pas très jolie d'ou la limite
 			Avec 10 j'ai juste la monté et je doit bougé la souris dans le sous dock pour que l'animation continue
 			L'openGL reglèrera surment ca.*/
 			/// oki je vois, effectivement sans acceleration materielle animer 20 icones ca devient limite.
-				cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BOUNCE, 2);
+				//cairo_dock_animate_icon (pAddedIcon, myIcon->pSubDock, CAIRO_DOCK_BOUNCE, 2);
+				cairo_dock_request_icon_animation (pAddedIcon, myIcon->pSubDock, "bounce", 2);
 			if (myData.iSidTimer != 0) {
 				g_source_remove (myData.iSidTimer);
 				myData.iSidTimer = 0;
@@ -351,7 +352,8 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cRawURI, Ic
 		if (myDock && pDeletedIcon != NULL) {
 			pDeletedIcon->cWorkingDirectory = NULL;
 			cairo_dock_show_subdock (myIcon, FALSE, myDock);
-			cairo_dock_animate_icon (pDeletedIcon, myIcon->pSubDock, CAIRO_DOCK_BLINK, 2);
+			//cairo_dock_animate_icon (pDeletedIcon, myIcon->pSubDock, CAIRO_DOCK_BLINK, 2);
+			cairo_dock_request_icon_animation (pDeletedIcon, myIcon->pSubDock, "blink", 2);
 			//Il faut attendre que l'animation se termine pour virer l'icône du sous-dock - 1.5sec est-ce suffisant?
 			g_timeout_add (1500, (GSourceFunc) _on_animation_complete, (gpointer) pDeletedIcon);
 		}

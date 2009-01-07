@@ -207,7 +207,7 @@ void cd_musicplayer_new_song_playing (void) {
 //Fonction qui anime l'icone au changement de musique
 void cd_musicplayer_animate_icon (int animationLength) {
 	if (myDock) {
-		CD_APPLET_ANIMATE_MY_ICON ("rotate", animationLength);
+		CD_APPLET_ANIMATE_MY_ICON (myConfig.cChangeAnimation, animationLength);
 	}
 }
 
