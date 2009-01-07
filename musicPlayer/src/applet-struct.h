@@ -104,7 +104,7 @@ struct _AppletConfig {
 	gdouble fTimeDialogs;
 	gboolean bEnableCover;
 	gboolean bEnableAnim;
-	gchar cChangeAnimation;
+	gchar *cChangeAnimation;
 	gchar *cMusicPlayer;
 	MyAppletQuickInfoType pQuickInfoType;
 	gchar *cDefaultTitle;
