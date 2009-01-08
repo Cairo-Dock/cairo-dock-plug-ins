@@ -9,6 +9,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "applet-struct.h"
 #include "applet-load-icons.h"
@@ -33,7 +34,7 @@ gboolean penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	
 	penguin_calculate_new_position (myApplet, pAnimation, iXMin, iXMax, iHeight);
 	
-	area.x = (myDock->iCurrentWidth - myDock->fFlatDockWidth) * .5 + MIN (iPreviousPositionX, myData.iCurrentPositionX);
+	area.x = (int) ((myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + MIN (iPreviousPositionX, myData.iCurrentPositionX));
 	area.y = myDock->iCurrentHeight - MAX (iPreviousPositionY, myData.iCurrentPositionY) - pAnimation->iFrameHeight;
 	area.width = abs (iPreviousPositionX - myData.iCurrentPositionX) + pAnimation->iFrameWidth;
 	area.height = abs (iPreviousPositionY - myData.iCurrentPositionY) + pAnimation->iFrameHeight;
@@ -134,7 +135,7 @@ gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 		cairo_clip (pCairoContext);
 	}
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
-	cairo_translate (pCairoContext, (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX, myDock->iCurrentHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight);
+	cairo_translate (pCairoContext, floor ((myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX), myDock->iCurrentHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight);
 	cairo_set_source_surface (pCairoContext, pSurface, 0.0, 0.0);
 	cairo_paint (pCairoContext);
 
