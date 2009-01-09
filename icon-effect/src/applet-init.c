@@ -74,25 +74,52 @@ CD_APPLET_STOP_END
 
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
+static gboolean _effect_is_used_in_table (CDIconEffects iEffect, CDIconEffects *pEffectList)
+{
+	int i;
+	for (i = 0; i < CD_ICON_EFFECT_NB_EFFECTS; i ++)
+	{
+		if (pEffectList[i] == iEffect)
+			return TRUE;
+		else if (myConfig.iEffectsUsed[i] == -1)
+			break ;
+	}
+	return FALSE;
+}
+static gboolean _effect_is_used (CDIconEffects iEffect)
+{
+	gboolean bUsed;
+	bUsed = _effect_is_used_in_table (iEffect, myConfig.iEffectsUsed);
+	if (bUsed)
+		return TRUE;
+	bUsed = _effect_is_used_in_table (iEffect, myConfig.iEffectsOnClick[CAIRO_DOCK_LAUNCHER]);
+	if (bUsed)
+		return TRUE;
+	bUsed = _effect_is_used_in_table (iEffect, myConfig.iEffectsOnClick[CAIRO_DOCK_APPLI]);
+	if (bUsed)
+		return TRUE;
+	bUsed = _effect_is_used_in_table (iEffect, myConfig.iEffectsOnClick[CAIRO_DOCK_APPLET]);
+	return bUsed;
+}
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myData.iFireTexture != 0 && (myConfig.iFireDuration == 0 && myConfig.iStormDuration == 0))
+		if (myData.iFireTexture != 0 && ! _effect_is_used (CD_ICON_EFFECT_FIRE) && ! _effect_is_used (CD_ICON_EFFECT_SAND))
 		{
 			glDeleteTextures (1, &myData.iFireTexture);
 			myData.iFireTexture = 0;
 		}
-		if (myData.iStarTexture != 0 && myConfig.iStarDuration == 0)
+		if (myData.iStarTexture != 0 && ! _effect_is_used (CD_ICON_EFFECT_STARS))
 		{
 			glDeleteTextures (1, &myData.iStarTexture);
 			myData.iStarTexture = 0;
 		}
-		if (myData.iSnowTexture != 0 && myConfig.iSnowDuration == 0)
+		if (myData.iSnowTexture != 0 && ! _effect_is_used (CD_ICON_EFFECT_SNOW))
 		{
 			glDeleteTextures (1, &myData.iSnowTexture);
 			myData.iSnowTexture = 0;
 		}
-		if (myData.iRainTexture != 0 && myConfig.iRainDuration == 0)
+		if (myData.iRainTexture != 0 && ! _effect_is_used (CD_ICON_EFFECT_RAIN))
 		{
 			glDeleteTextures (1, &myData.iRainTexture);
 			myData.iRainTexture = 0;
