@@ -25,6 +25,8 @@ cpusage
 rame
 netspeed
 slider
+Clipper
+GMenu
 ###Stable as far as we know :
 wifi
 tomboy
@@ -34,12 +36,11 @@ stack
 ###Stable but still under development :
 powermanager
 switcher
-Clipper
-GMenu
 ###Last addition of v2.0.0 :
 Animated-icons
 icon-effect
 drop-indicator
 motion-blur
 show-mouse
+illusion
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.

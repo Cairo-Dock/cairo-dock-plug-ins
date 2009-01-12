@@ -62,11 +62,11 @@ msgstr ""
 "Questa è l'applet wifi\n"
 " scritta da ChAnGFu per Cairo-Dock"
 
-#: ../src/applet-notifications.c:56
+#: ../src/applet-notifications.c:62
 msgid "Check for Wireless Extension"
 msgstr "Verifica dell'Estensione Wifi"
 
-#: ../src/applet-notifications.c:58
+#: ../src/applet-notifications.c:64
 msgid "Network Administration"
 msgstr "Amministrazione della Rete"
 

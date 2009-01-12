@@ -29,7 +29,7 @@ gboolean cd_illusion_init_explode (Icon *pIcon, CairoDock *pDock, CDIllusionData
 		for (j = 0; j < myConfig.iExplodeNbPiecesY; j ++)
 		{
 			pPart = &pData->pExplosionPart[i*myConfig.iExplodeNbPiecesY+j];
-			pPart->fAngleOffset = g_random_double () * 360.;
+			pPart->fRotationSpeed = 2 * g_random_double ();
 			pPart->vz = vmax * (2 * g_random_double () - 1);
 			pPart->v = sqrt (1 - pPart->vz * pPart->vz);
 		}
@@ -96,18 +96,13 @@ void cd_illusion_draw_explode_icon (Icon *pIcon, CairoDock *pDock, CDIllusionDat
 			x = pData->fExplosionRadius * (u - .5 + dTexCoordX/2) * pPart->v;
 			y = pData->fExplosionRadius * (.5 - v - dTexCoordY/2) * pPart->v;
 			z = .5 * (pData->fExplosionRadius - 1) * pPart->vz;
-			angle = pPart->fAngleOffset + pData->fExplosionRotation;
-			g_print ("(%.2f;%.2f) , (%.2f;%.2f)\n", x, y, u, v);
+			angle = pPart->fRotationSpeed * pData->fExplosionRotation;
 			glPushMatrix ();
 			
 			glTranslatef (x * fWidth, y * fHeight, 0.);
 			glRotatef (angle, 0., 1., 0.);
 			glRotatef (angle, 1., 0., 0.);
 			glScalef (fWidth / myConfig.iExplodeNbPiecesX * (1 + z), fHeight / myConfig.iExplodeNbPiecesY * (1 + z), fHeight / myConfig.iExplodeNbPiecesY * (1 + z));
-			
-			/*double tmp = v;
-			v = v_;
-			v_ = tmp;*/
 			
 			glBegin(GL_QUADS);
 			if (myConfig.bExplodeCube)

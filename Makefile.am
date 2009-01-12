@@ -76,6 +76,7 @@ SUBDIRS = . po\
 	${gnome_dir}\
 	${gnome_old_dir}\
 	icon-effect\
+	illusion\
 	logout\
 	${mail_dir}\
 	motion-blur\

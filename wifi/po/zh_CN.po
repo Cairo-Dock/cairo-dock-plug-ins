@@ -60,11 +60,11 @@ msgid ""
 " made by ChAnGFu for Cairo-Dock"
 msgstr "这是ChAnGFu为Cairo-Dock制作的wifi小应用程序"
 
-#: ../src/applet-notifications.c:56
+#: ../src/applet-notifications.c:62
 msgid "Check for Wireless Extension"
 msgstr "检查无线扩展"
 
-#: ../src/applet-notifications.c:58
+#: ../src/applet-notifications.c:64
 msgid "Network Administration"
 msgstr "网络管理"
 

@@ -62,11 +62,11 @@ msgstr ""
 "これは ChAnGFu によって製作された\n"
 "Cairo-Dock 用の wifi アプレットです。"
 
-#: ../src/applet-notifications.c:56
+#: ../src/applet-notifications.c:62
 msgid "Check for Wireless Extension"
 msgstr "Wireless Extension のチェック"
 
-#: ../src/applet-notifications.c:58
+#: ../src/applet-notifications.c:64
 msgid "Network Administration"
 msgstr "ネットワーク管理"
 

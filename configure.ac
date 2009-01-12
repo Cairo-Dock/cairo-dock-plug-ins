@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.0.0-beta0],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.0.0-beta1],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -299,6 +299,15 @@ AC_SUBST(VERSION_ICON_EFFECTS, "1.0.1")
 AC_SUBST(PACKAGE_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
 
 AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
+
+############# ILLUSION #################
+ICON_EFFECTS_PACKAGE=cd-illusion
+AC_SUBST(GETTEXT_ILLUSION, "$ILLUSION_PACKAGE")
+
+AC_SUBST(VERSION_ILLUSION, "0.3.0")
+AC_SUBST(PACKAGE_ILLUSION, "$ILLUSION_PACKAGE")
+
+AC_SUBST(illusiondatadir, "${pkgdatadir}/illusion")
 
 ############# LOGOUT #################
 LOGOUT_PACKAGE=cd-logout
@@ -676,6 +685,13 @@ AC_CONFIG_FILES([
 	icon-effect/data/Makefile
 	icon-effect/data/readme
 	icon-effect/data/icon-effect.conf
+	
+	illusion/Makefile
+	illusion/src/Makefile
+	illusion/po/Makefile.in
+	illusion/data/Makefile
+	illusion/data/readme
+	illusion/data/illusion.conf
 	
 	logout/Makefile
 	logout/src/Makefile

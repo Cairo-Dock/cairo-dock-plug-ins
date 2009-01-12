@@ -200,9 +200,9 @@ void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 	}
 }
 
-static gboolean _cd_tomboy_remove_old_notes (gchar *cNoteURI, Icon *pIcon, double *fTime)
+static gboolean _cd_tomboy_remove_old_notes (gchar *cNoteURI, Icon *pIcon, int iTime)
 {
-	if (pIcon->fLastCheckTime < *fTime)
+	if (pIcon->iLastCheckTime < iTime)
 	{
 		cd_message ("cette note (%s) est trop vieille", cNoteURI);
 		if (myDock)
@@ -223,6 +223,8 @@ static gboolean _cd_tomboy_remove_old_notes (gchar *cNoteURI, Icon *pIcon, doubl
 }
 gboolean cd_tomboy_check_deleted_notes (gpointer data)
 {
+	static int iTime = 0;
+	iTime ++;
 	cd_message ("");
 	gchar **cNotes = NULL;
 	if(dbus_g_proxy_call (dbus_proxy_tomboy, "ListAllNotes", NULL,
@@ -239,18 +241,15 @@ gboolean cd_tomboy_check_deleted_notes (gpointer data)
 			
 			gchar *cNoteURI;
 			Icon *pIcon;
-			GTimeVal time_val;
-			g_get_current_time (&time_val);
-			double fTime = time_val.tv_sec + time_val.tv_usec * 1e-6;
 			for (i = 0; cNotes[i] != NULL; i ++)
 			{
 				cNoteURI = cNotes[i];
 				pIcon = _cd_tomboy_find_note_from_uri (cNoteURI);
 				if (pIcon != NULL)
-					pIcon->fLastCheckTime = fTime;
+					pIcon->iLastCheckTime = iTime;
 			}
 			
-			int iNbRemovedIcons = g_hash_table_foreach_remove (myData.hNoteTable, (GHRFunc) _cd_tomboy_remove_old_notes, &fTime);
+			int iNbRemovedIcons = g_hash_table_foreach_remove (myData.hNoteTable, (GHRFunc) _cd_tomboy_remove_old_notes, GINT_TO_POINTER (iTime));
 			if (iNbRemovedIcons != 0)
 			{
 				cd_message ("%d notes enlevees", iNbRemovedIcons);

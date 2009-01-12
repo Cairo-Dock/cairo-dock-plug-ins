@@ -40,7 +40,7 @@ struct _AppletData {
 	} ;
 
 typedef struct {
-	gdouble fAngleOffset;
+	gdouble fRotationSpeed;
 	gdouble v, vz;
 	} CDIllusionExplosion;
 
