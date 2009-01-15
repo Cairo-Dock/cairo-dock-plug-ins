@@ -23,15 +23,18 @@ gboolean cd_illusion_init_explode (Icon *pIcon, CairoDock *pDock, CDIllusionData
 	
 	pData->pExplosionPart = g_new0 (CDIllusionExplosion, myConfig.iExplodeNbPiecesX * myConfig.iExplodeNbPiecesY);
 	CDIllusionExplosion *pPart;
+	double v;
 	int i, j;
 	for (i = 0; i < myConfig.iExplodeNbPiecesX; i ++)
 	{
 		for (j = 0; j < myConfig.iExplodeNbPiecesY; j ++)
 		{
 			pPart = &pData->pExplosionPart[i*myConfig.iExplodeNbPiecesY+j];
-			pPart->fRotationSpeed = 2 * g_random_double ();
+			pPart->fRotationSpeed = 2 * g_random_double ();  // au plus 2 tours sur lui-meme.
 			pPart->vz = vmax * (2 * g_random_double () - 1);
-			pPart->v = sqrt (1 - pPart->vz * pPart->vz);
+			v = sqrt (1 - pPart->vz * pPart->vz);
+			pPart->vx = v * (1 + .2 * (2 * g_random_double () - 1)) * sqrt (2)/2;
+			pPart->vy = sqrt (1 - pPart->vx * pPart->vx);
 		}
 	}
 	
@@ -93,8 +96,8 @@ void cd_illusion_draw_explode_icon (Icon *pIcon, CairoDock *pDock, CDIllusionDat
 			v = j * dTexCoordY;
 			u_ = u + dTexCoordX;
 			v_ = v + dTexCoordY;
-			x = pData->fExplosionRadius * (u - .5 + dTexCoordX/2) * pPart->v;
-			y = pData->fExplosionRadius * (.5 - v - dTexCoordY/2) * pPart->v;
+			x = pData->fExplosionRadius * (u - .5 + dTexCoordX/2) * pPart->vx;
+			y = pData->fExplosionRadius * (.5 - v - dTexCoordY/2) * pPart->vy;
 			z = .5 * (pData->fExplosionRadius - 1) * pPart->vz;
 			angle = pPart->fRotationSpeed * pData->fExplosionRotation;
 			glPushMatrix ();

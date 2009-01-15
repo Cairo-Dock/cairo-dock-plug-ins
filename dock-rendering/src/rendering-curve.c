@@ -5,7 +5,8 @@ released under the terms of the GNU General Public License.
 
 Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
-This rendering is (was) written by parAdOxxx_ZeRo, co mah blog : http://paradoxxx.zero.free.fr/ :D
+This rendering has been written by parAdOxxx_ZeRo (http://paradoxxx.zero.free.fr)
+ and Fabounet.
 
 ******************************************************************************/
 #include <math.h>
@@ -955,6 +956,7 @@ void cd_rendering_register_curve_renderer (const gchar *cRendererName)
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_curve;
 	pRenderer->render = cd_rendering_render_curve;
 	pRenderer->render_optimized = cd_rendering_render_optimized_curve;
+	pRenderer->render_opengl = cd_rendering_render_curve_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
 	pRenderer->bUseReflect = TRUE;
 	
@@ -1031,3 +1033,161 @@ double cd_rendering_interpol_curve_height (double x)
 {
 	return cd_rendering_interpol (x, s_pReferenceCurveX, s_pReferenceCurveY);
 }
+
+
+
+
+
+
+void cd_rendering_render_curve_opengl (CairoDock *pDock)
+{
+	//\____________________ On trace le cadre.
+	double fLineWidth = myBackground.iDockLineWidth;
+	double fMargin = myBackground.iFrameMargin;
+	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock) - 2 * myBackground.iFrameMargin;
+	
+	double h = 4./3 * (pDock->iDecorationsHeight + myBackground.iDockLineWidth);
+	double hi = .5 * pDock->iMaxIconHeight + myBackground.iFrameMargin - 1;
+	double ti = .5 * (1. - sqrt (MAX (1. - 4./3 * hi / h, 0)));
+	double xi = xCurve (my_fCurveCurvature, ti);
+	double curveOffsetX = fDockWidth * xi / (1 - 2 * xi);
+	
+	double fFrameHeight = pDock->iDecorationsHeight + fLineWidth;
+	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
+	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - curveOffsetX : fLineWidth / 2);
+	if ((pDock->bHorizontalDock && ! pDock->bDirectionUp) || (! pDock->bHorizontalDock && pDock->bDirectionUp))
+		fDockOffsetY = pDock->iCurrentHeight - .5 * fLineWidth;
+	else
+		fDockOffsetY = pDock->iDecorationsHeight + 1.5 * fLineWidth;
+	if (! pDock->bHorizontalDock)
+		fDockOffsetX = pDock->iCurrentWidth - fDockOffsetX + 0;
+	else
+		fDockOffsetX = fDockOffsetX-0;
+	
+	//\________________ On dessine le cadre.
+	int iNbVertex;
+	GLfloat *pVertexTab = cairo_dock_generate_curve_path (4./3, &iNbVertex);
+	//cairo_dock_draw_curved_frame (pCairoContext, fDockWidth + 2 * curveOffsetX, h, fDockOffsetX, fDockOffsetY, pDock->bHorizontalDock, sens);
+	
+	//\____________________ On dessine les decorations dedans.
+	glPushMatrix ();
+	//cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY, fDockOffsetX, fDockWidth + 2 * curveOffsetX);
+	cairo_dock_draw_frame_background_opengl (g_iBackgroundTexture, fDockWidth+2*curveOffsetX, fFrameHeight, fDockOffsetX, fDockOffsetY, pVertexTab, iNbVertex, pDock->bHorizontalDock, pDock->bDirectionUp, pDock->fDecorationsOffsetX);
+	
+	//\____________________ On dessine le cadre.
+	if (fLineWidth > 0)
+	{
+		//cairo_set_line_width (pCairoContext, fLineWidth);
+		//cairo_set_source_rgba (pCairoContext, myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
+		//cairo_stroke (pCairoContext);
+		cairo_dock_draw_current_path_opengl (fLineWidth, myBackground.fLineColor, pVertexTab, iNbVertex);
+	}
+	
+	glPopMatrix ();
+	
+	//\____________________ On dessine la ficelle qui les joint.
+	//if (myIcons.iStringLineWidth > 0)
+	//	cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
+	
+	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
+	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	if (pFirstDrawnElement == NULL)
+		return ;
+	
+	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
+	Icon *icon;
+	GList *ic = pFirstDrawnElement;
+	
+	if (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+	{
+		do
+		{
+			icon = ic->data;
+			
+			if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+			{
+				glPushMatrix ();
+				//cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
+				glPopMatrix ();
+			}
+			
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+		} while (ic != pFirstDrawnElement);
+		
+		do
+		{
+			icon = ic->data;
+			
+			if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
+			{
+				glPushMatrix ();
+				cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, TRUE);
+				glPopMatrix ();
+			}
+			
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+		} while (ic != pFirstDrawnElement);
+		
+		if (my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+		{
+			do
+			{
+				icon = ic->data;
+				
+				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+				{
+					glPushMatrix ();
+					//cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
+					glPopMatrix ();
+				}
+				
+				ic = cairo_dock_get_next_element (ic, pDock->icons);
+			} while (ic != pFirstDrawnElement);
+		}
+	}
+	else
+	{
+		do
+		{
+			icon = ic->data;
+			
+			glPushMatrix ();
+			cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, TRUE);
+			glPopMatrix ();
+			
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+		} while (ic != pFirstDrawnElement);
+	}
+}
+
+
+#define DELTA_ROUND_DEGREE 1
+#define RADIAN (G_PI / 180.0)  // Conversion Radian/Degres
+#define P(t,p,q,r,s) (1-t) * (1-t) * (1-t) * p + 3 * t * (1-t) * (1 - t) * q + 3 * t * t * (1-t) * r + t * t * t * s
+GLfloat *cairo_dock_generate_curve_path (double fRelativeControlHeight, int *iNbPoints)
+{
+	static GLfloat pVertexTab[((180/DELTA_ROUND_DEGREE+1)+1)*3];
+	
+	double w = 1. / 2;
+	double h = 1. / 2;
+	double xp = -w, xq = - (1 - my_fCurveCurvature) * w, xr = - xq, xs = - xp;
+	double yp = 0., yq = fRelativeControlHeight, yr = yq, ys = yp;
+	
+	//g_print ("%s (%.2f)\n", __func__, yq);
+	int iPrecision = DELTA_ROUND_DEGREE;
+	int i=0, t;
+	for (t = 0; t <= 180; t += iPrecision, i++)
+	{
+		pVertexTab[3*i] = P (t/180., xp, xq, xr, xs);
+		pVertexTab[3*i+1] = P (t/180., yp, yq, yr, ys) - h;
+	}
+	
+	// on trace la ligne du bas.
+	pVertexTab[3*i] = pVertexTab[0];  // on boucle.
+	pVertexTab[3*i+1] = pVertexTab[1];
+	
+	*iNbPoints = i+1;
+	return pVertexTab;
+}
+

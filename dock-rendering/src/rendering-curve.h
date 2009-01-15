@@ -30,4 +30,8 @@ double cd_rendering_interpol_curve_parameter (double x);
 double cd_rendering_interpol_curve_height (double x);
 
 
+void cd_rendering_render_curve_opengl (CairoDock *pDock);
+GLfloat *cairo_dock_generate_curve_path (double fRelativeControlHeight, int *iNbPoints);
+
 #endif
+

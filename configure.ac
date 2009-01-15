@@ -896,6 +896,7 @@ AC_OUTPUT([po/Makefile
 	dustbin/po/Makefile
 	GMenu/po/Makefile
 	icon-effect/po/Makefile
+	illusion/po/Makefile
 	logout/po/Makefile
 	mail/po/Makefile
 	motion-blur/po/Makefile
