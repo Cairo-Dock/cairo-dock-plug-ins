@@ -15,9 +15,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-mixer.h"
 #include "applet-notifications.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
-
 
 CD_APPLET_ABOUT (D_("This is the AlsaMixer applet\n made by Fabounet (Fabrice Rey) for Cairo-Dock"))
 

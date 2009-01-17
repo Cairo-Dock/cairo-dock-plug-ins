@@ -14,11 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:108 ../src/applet-notifications.c:31
-#: ../src/applet-xgamma.c:158
-msgid "Set up gamma :"
-msgstr "ガンマ値設定 :"
-
 #: ../src/applet-notifications.c:22
 msgid ""
 "This is the Xgamma applet\n"
@@ -26,6 +21,10 @@ msgid ""
 msgstr ""
 "これは Fabrice Rey によって\n"
 "Cairo-Dock 用に製作された Xgamma アプレットです。"
+
+#: ../src/applet-notifications.c:31 ../src/applet-xgamma.c:149
+msgid "Set up gamma :"
+msgstr "ガンマ値設定 :"
 
 #: ../data/messages:1
 msgid "Icon"

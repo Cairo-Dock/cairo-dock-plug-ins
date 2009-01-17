@@ -113,19 +113,19 @@ msgstr ""
 "Kunde inte hämta information\n"
 "Är du ansluten till Internet?"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:128
 msgid "Choose your location :"
 msgstr "Välj geografisk plats:"
 
-#: ../src/applet-notifications.c:150
+#: ../src/applet-notifications.c:159
 msgid "Search for your location"
 msgstr "Sök efter geografisk plats:"
 
-#: ../src/applet-notifications.c:151
+#: ../src/applet-notifications.c:160
 msgid "Reload now"
 msgstr "Uppdatera nu"
 
-#: ../src/applet-notifications.c:176 ../src/applet-notifications.c:205
+#: ../src/applet-notifications.c:185 ../src/applet-notifications.c:214
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -133,35 +133,35 @@ msgstr ""
 "Inga data hittades\n"
 "Är du ansluten till Internet?"
 
-#: ../src/applet-notifications.c:192 ../src/applet-notifications.c:217
+#: ../src/applet-notifications.c:201 ../src/applet-notifications.c:226
 msgid "Temperature"
 msgstr "Temperatur"
 
-#: ../src/applet-notifications.c:193
+#: ../src/applet-notifications.c:202
 msgid "Precipitation Probability"
 msgstr "Risk för nederbörd"
 
-#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:203 ../src/applet-notifications.c:227
 msgid "Wind"
 msgstr "Vind"
 
-#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:204 ../src/applet-notifications.c:228
 msgid "Humidity"
 msgstr "Fuktighet"
 
-#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:205 ../src/applet-notifications.c:229
 msgid "SunRise"
 msgstr "Soluppgång"
 
-#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:205 ../src/applet-notifications.c:229
 msgid "SunSet"
 msgstr "Solnedgång"
 
-#: ../src/applet-notifications.c:217
+#: ../src/applet-notifications.c:226
 msgid "feeled"
 msgstr "upplevd"
 
-#: ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:228
 msgid "Pressure"
 msgstr "Tryck"
 

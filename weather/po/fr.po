@@ -115,19 +115,19 @@ msgstr ""
 "Je n'ai pas pu récupérer les info\n"
 " la connexion est-elle établie ?"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:128
 msgid "Choose your location :"
 msgstr "Choisissez votre location :"
 
-#: ../src/applet-notifications.c:150
+#: ../src/applet-notifications.c:159
 msgid "Search for your location"
 msgstr "Chercher votre location"
 
-#: ../src/applet-notifications.c:151
+#: ../src/applet-notifications.c:160
 msgid "Reload now"
 msgstr "Recharger maintenant"
 
-#: ../src/applet-notifications.c:176 ../src/applet-notifications.c:205
+#: ../src/applet-notifications.c:185 ../src/applet-notifications.c:214
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -135,35 +135,35 @@ msgstr ""
 "Aucune donnée disponible\n"
 " la connexion est-elle établie ?"
 
-#: ../src/applet-notifications.c:192 ../src/applet-notifications.c:217
+#: ../src/applet-notifications.c:201 ../src/applet-notifications.c:226
 msgid "Temperature"
 msgstr "Température"
 
-#: ../src/applet-notifications.c:193
+#: ../src/applet-notifications.c:202
 msgid "Precipitation Probability"
 msgstr "Probabilité de précipitation"
 
-#: ../src/applet-notifications.c:194 ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:203 ../src/applet-notifications.c:227
 msgid "Wind"
 msgstr "Vent"
 
-#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:204 ../src/applet-notifications.c:228
 msgid "Humidity"
 msgstr "Humidité"
 
-#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:205 ../src/applet-notifications.c:229
 msgid "SunRise"
 msgstr "Lever du soleil"
 
-#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:205 ../src/applet-notifications.c:229
 msgid "SunSet"
 msgstr "Coucher du soleil"
 
-#: ../src/applet-notifications.c:217
+#: ../src/applet-notifications.c:226
 msgid "feeled"
 msgstr "ressentie"
 
-#: ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:228
 msgid "Pressure"
 msgstr "Pression"
 

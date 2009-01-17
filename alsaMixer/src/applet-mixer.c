@@ -16,8 +16,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-draw.h"
 #include "applet-mixer.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 static int	 mixer_level = 0;
 static struct snd_mixer_selem_regopt mixer_options;

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-01-12 01:50+0100\n"
+"POT-Creation-Date: 2009-01-17 02:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,47 +16,47 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:328
+#: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:334
 msgid "Copy"
 msgstr ""
 
-#: ../src/terminal-init.c:82 ../src/terminal-widget.c:658
-msgid "Terminal"
-msgstr ""
-
-#: ../src/terminal-menu-functions.c:84 ../src/terminal-widget.c:344
+#: ../src/terminal-menu-functions.c:81 ../src/terminal-widget.c:350
 msgid "New Tab"
 msgstr ""
 
-#: ../src/terminal-menu-functions.c:85
+#: ../src/terminal-menu-functions.c:82
 msgid "Rename current Tab"
 msgstr ""
 
-#: ../src/terminal-menu-functions.c:86
+#: ../src/terminal-menu-functions.c:83
 msgid "Close current Tab"
 msgstr ""
 
-#: ../src/terminal-widget.c:133
+#: ../src/terminal-widget.c:45
+msgid "Terminal"
+msgstr ""
+
+#: ../src/terminal-widget.c:139
 msgid "Set title for this tab :"
 msgstr ""
 
-#: ../src/terminal-widget.c:187
+#: ../src/terminal-widget.c:193
 msgid "Select a color"
 msgstr ""
 
-#: ../src/terminal-widget.c:334
+#: ../src/terminal-widget.c:340
 msgid "Paste"
 msgstr ""
 
-#: ../src/terminal-widget.c:350
+#: ../src/terminal-widget.c:356
 msgid "Rename this Tab"
 msgstr ""
 
-#: ../src/terminal-widget.c:356
+#: ../src/terminal-widget.c:362
 msgid "Change this Tab's color"
 msgstr ""
 
-#: ../src/terminal-widget.c:362
+#: ../src/terminal-widget.c:368
 msgid "Close this Tab"
 msgstr ""
 

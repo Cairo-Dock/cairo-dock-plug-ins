@@ -16,11 +16,6 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-init.c:108 ../src/applet-notifications.c:31
-#: ../src/applet-xgamma.c:158
-msgid "Set up gamma :"
-msgstr "Justera gamma:"
-
 #: ../src/applet-notifications.c:22
 msgid ""
 "This is the Xgamma applet\n"
@@ -28,6 +23,10 @@ msgid ""
 msgstr ""
 "Xgamma applet\n"
 " skapad av Fabrice Rey för Cairo-Dock"
+
+#: ../src/applet-notifications.c:31 ../src/applet-xgamma.c:149
+msgid "Set up gamma :"
+msgstr "Justera gamma:"
 
 #: ../data/messages:1
 msgid "Icon"

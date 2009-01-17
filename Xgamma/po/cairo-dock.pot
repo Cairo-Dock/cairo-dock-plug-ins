@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-01-12 01:50+0100\n"
+"POT-Creation-Date: 2009-01-17 02:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,15 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:108 ../src/applet-notifications.c:31
-#: ../src/applet-xgamma.c:158
-msgid "Set up gamma :"
-msgstr ""
-
 #: ../src/applet-notifications.c:22
 msgid ""
 "This is the Xgamma applet\n"
 " made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+
+#: ../src/applet-notifications.c:31 ../src/applet-xgamma.c:149
+msgid "Set up gamma :"
 msgstr ""
 
 #: ../data/messages:1

@@ -77,7 +77,7 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, CairoDockMo
 		if (erreur != NULL)
 		{
 			gchar *cIconPath = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
-			cairo_dock_show_temporary_dialog_with_icon (_("I couldn't get the info\n Is connexion alive ?"),
+			cairo_dock_show_temporary_dialog_with_icon (D_("I couldn't get the info\n Is connexion alive ?"),
 				myIcon,
 				myContainer,
 				0,
@@ -90,7 +90,7 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, CairoDockMo
 		else if (pLocationsList == NULL)
 		{
 			gchar *cIconPath = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
-			cairo_dock_show_temporary_dialog_with_icon (_("I couldn't get the info\n Is connexion alive ?"),
+			cairo_dock_show_temporary_dialog_with_icon (D_("I couldn't get the info\n Is connexion alive ?"),
 				myIcon,
 				myContainer,
 				0,

@@ -12,11 +12,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:108 ../src/applet-notifications.c:31
-#: ../src/applet-xgamma.c:158
-msgid "Set up gamma :"
-msgstr "Regolate il gamma :"
-
 #: ../src/applet-notifications.c:22
 msgid ""
 "This is the Xgamma applet\n"
@@ -24,6 +19,10 @@ msgid ""
 msgstr ""
 "Questa è l'applet Xgamma\n"
 " scritta da Fabrice Rey per Cairo-Dock"
+
+#: ../src/applet-notifications.c:31 ../src/applet-xgamma.c:149
+msgid "Set up gamma :"
+msgstr "Regolate il gamma :"
 
 #: ../data/messages:1
 msgid "Icon"

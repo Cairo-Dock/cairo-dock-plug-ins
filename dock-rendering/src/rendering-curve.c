@@ -1068,21 +1068,14 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	//\________________ On dessine le cadre.
 	int iNbVertex;
 	GLfloat *pVertexTab = cairo_dock_generate_curve_path (4./3, &iNbVertex);
-	//cairo_dock_draw_curved_frame (pCairoContext, fDockWidth + 2 * curveOffsetX, h, fDockOffsetX, fDockOffsetY, pDock->bHorizontalDock, sens);
 	
 	//\____________________ On dessine les decorations dedans.
 	glPushMatrix ();
-	//cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY, fDockOffsetX, fDockWidth + 2 * curveOffsetX);
 	cairo_dock_draw_frame_background_opengl (g_iBackgroundTexture, fDockWidth+2*curveOffsetX, fFrameHeight, fDockOffsetX, fDockOffsetY, pVertexTab, iNbVertex, pDock->bHorizontalDock, pDock->bDirectionUp, pDock->fDecorationsOffsetX);
 	
 	//\____________________ On dessine le cadre.
 	if (fLineWidth > 0)
-	{
-		//cairo_set_line_width (pCairoContext, fLineWidth);
-		//cairo_set_source_rgba (pCairoContext, myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
-		//cairo_stroke (pCairoContext);
 		cairo_dock_draw_current_path_opengl (fLineWidth, myBackground.fLineColor, pVertexTab, iNbVertex);
-	}
 	
 	glPopMatrix ();
 	

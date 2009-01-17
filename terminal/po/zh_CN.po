@@ -12,47 +12,47 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:328
+#: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:334
 msgid "Copy"
 msgstr "拷贝"
 
-#: ../src/terminal-init.c:82 ../src/terminal-widget.c:658
-msgid "Terminal"
-msgstr "终端"
-
-#: ../src/terminal-menu-functions.c:84 ../src/terminal-widget.c:344
+#: ../src/terminal-menu-functions.c:81 ../src/terminal-widget.c:350
 msgid "New Tab"
 msgstr "新标签"
 
-#: ../src/terminal-menu-functions.c:85
+#: ../src/terminal-menu-functions.c:82
 msgid "Rename current Tab"
 msgstr "更名当前标签"
 
-#: ../src/terminal-menu-functions.c:86
+#: ../src/terminal-menu-functions.c:83
 msgid "Close current Tab"
 msgstr "关闭当前标签"
 
-#: ../src/terminal-widget.c:133
+#: ../src/terminal-widget.c:45
+msgid "Terminal"
+msgstr "终端"
+
+#: ../src/terminal-widget.c:139
 msgid "Set title for this tab :"
 msgstr "设置此标签标题"
 
-#: ../src/terminal-widget.c:187
+#: ../src/terminal-widget.c:193
 msgid "Select a color"
 msgstr "选择颜色"
 
-#: ../src/terminal-widget.c:334
+#: ../src/terminal-widget.c:340
 msgid "Paste"
 msgstr "粘贴"
 
-#: ../src/terminal-widget.c:350
+#: ../src/terminal-widget.c:356
 msgid "Rename this Tab"
 msgstr "更名此标签"
 
-#: ../src/terminal-widget.c:356
+#: ../src/terminal-widget.c:362
 msgid "Change this Tab's color"
 msgstr "变更此标签颜色"
 
-#: ../src/terminal-widget.c:362
+#: ../src/terminal-widget.c:368
 msgid "Close this Tab"
 msgstr "关闭此标签"
 
