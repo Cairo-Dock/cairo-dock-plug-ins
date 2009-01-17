@@ -12,9 +12,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-xgamma.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
-void toto (void);
 
 double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 {
@@ -145,6 +142,18 @@ void xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data)
 	
 }
 
+CairoDialog *xgamma_build_dialog (void)
+{
+	CairoDialogAttribute attr;
+	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	attr.cText = D_("Set up gamma :");
+	attr.pInteractiveWidget = myData.pWidget;
+	attr.iButtonsType = GTK_BUTTONS_OK_CANCEL;
+	attr.pActionFunc = (CairoDockActionOnAnswerFunc) xgamma_apply_values;
+	attr.pUserData = myApplet;
+	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
+}
+
 void xgamma_build_and_show_widget (void)
 {
 	cd_message ("");
@@ -155,7 +164,8 @@ void xgamma_build_and_show_widget (void)
 	
 	if (myDock)
 	{
-		myData.pDialog = cairo_dock_build_dialog (D_("Set up gamma :"),
+		myData.pDialog = xgamma_build_dialog ();
+		/*myData.pDialog = cairo_dock_build_dialog (D_("Set up gamma :"),
 			myIcon,
 			myContainer,
 			NULL,
@@ -163,7 +173,7 @@ void xgamma_build_and_show_widget (void)
 			GTK_BUTTONS_OK_CANCEL,
 			(CairoDockActionOnAnswerFunc) xgamma_apply_values,
 			NULL,
-			NULL);
+			NULL);*/
 	}
 	else
 	{

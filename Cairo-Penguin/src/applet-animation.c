@@ -28,7 +28,12 @@ gboolean penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	g_return_val_if_fail (pAnimation != NULL, TRUE);
 	int iPreviousPositionX = myData.iCurrentPositionX, iPreviousPositionY = myData.iCurrentPositionY;
 	
-	int iXMin = ((Icon *)myDock->pFirstDrawnElement->data)->fXAtRest;
+	Icon *pFirstDrawnIcon = NULL;
+	if (myDock->pFirstDrawnElement != NULL)
+		pFirstDrawnIcon = myDock->pFirstDrawnElement->data;
+	if (pFirstDrawnIcon == NULL && myDock->icons != NULL)
+		pFirstDrawnIcon = myDock->icons->data;
+	int iXMin = (pFirstDrawnIcon != NULL ? pFirstDrawnIcon->fXAtRest : 0);
 	int iXMax = iXMin + myDock->fFlatDockWidth;
 	int iHeight = myDock->iCurrentHeight;
 	

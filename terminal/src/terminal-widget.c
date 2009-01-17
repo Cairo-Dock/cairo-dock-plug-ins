@@ -38,8 +38,14 @@
 #include "terminal-widget.h"
 
 
-CD_APPLET_INCLUDE_MY_VARS
-
+CairoDialog *cd_terminal_build_dialog (void)
+{
+	CairoDialogAttribute attr;
+	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	attr.cText = D_ ("Terminal");
+	attr.pInteractiveWidget = myData.tab;
+	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
+}
 
 void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 {
@@ -655,7 +661,8 @@ void terminal_build_and_show_tab (void)
 
 	if (myDock)
 	{
-		myData.dialog = cairo_dock_build_dialog (D_("Terminal"), myIcon, myContainer, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		myData.dialog = cd_terminal_build_dialog ();
+		//myData.dialog = cairo_dock_build_dialog (D_("Terminal"), myIcon, myContainer, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 	}
 	else
 	{

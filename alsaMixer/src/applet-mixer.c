@@ -275,15 +275,22 @@ void mixer_show_hide_dialog (void)
 			cMessage = D_("Set up volume :");
 			pScale = mixer_build_widget (TRUE);
 		}
-		myData.pDialog = cairo_dock_build_dialog (cMessage,
+		
+		CairoDialogAttribute attr;
+		memset (&attr, 0, sizeof (CairoDialogAttribute));
+		attr.cText = cMessage;
+		attr.pInteractiveWidget = pScale;
+		CairoDialog *pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
+		/*myData.pDialog = cairo_dock_show_dialog_full (cMessage,
 			myIcon,
 			myContainer,
+			0,
 			NULL,
-			pScale,
 			GTK_BUTTONS_NONE,
+			pScale,
 			NULL,
 			NULL,
-			NULL);
+			NULL);*/
 		g_signal_connect (G_OBJECT (myData.pDialog->pWidget),
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),

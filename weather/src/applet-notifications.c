@@ -123,7 +123,16 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, CairoDockMo
 				g_free (cImageFilePath);
 				cImageFilePath = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, "32");
 			}
-			CairoDialog *pDialog = cairo_dock_build_dialog (_("Choose your location :"),
+			CairoDialogAttribute attr;
+			memset (&attr, 0, sizeof (CairoDialogAttribute));
+			attr.cText = D_("Choose your location :");
+			attr.cImageFilePath = cImageFilePath;
+			attr.pInteractiveWidget = pCombo;
+			attr.iButtonsType = GTK_BUTTONS_OK_CANCEL;
+			attr.pActionFunc = (CairoDockActionOnAnswerFunc) _cd_weather_location_choosed;
+			attr.pUserData = myApplet;
+			CairoDialog *pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
+			/*CairoDialog *pDialog = cairo_dock_build_dialog (D_("Choose your location :"),
 				myIcon,
 				myContainer,
 				cImageFilePath,
@@ -131,7 +140,7 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, CairoDockMo
 				GTK_BUTTONS_OK_CANCEL,
 				(CairoDockActionOnAnswerFunc) _cd_weather_location_choosed,
 				myApplet,
-				NULL);
+				NULL);*/
 			g_free (cImageFilePath);
 		}
 		

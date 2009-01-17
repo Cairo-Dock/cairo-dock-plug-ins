@@ -26,6 +26,8 @@
 #include <cairo-dock.h>
 
 
+CairoDialog *cd_terminal_build_dialog (void);
+
 void term_on_keybinding_pull(const char *keystring, gpointer user_data);
 
 void terminal_rename_tab (GtkWidget *vterm);

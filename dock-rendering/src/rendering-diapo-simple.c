@@ -243,7 +243,7 @@ static void _cd_rendering_check_if_mouse_inside_diapo_simple (CairoDock *pDock)
 	{
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 	}
-	else if ((pDock->iMouseX < (X_BORDER_SPACE/2)) || (pDock->iMouseX > pDock->iMaxDockWidth - (X_BORDER_SPACE/2)) || (pDock->iMouseY < (Y_BORDER_SPACE/2)) || (pDock->iMouseY > pDock->iMaxDockHeight - (Y_BORDER_SPACE/2)))
+	else if ((pDock->iMouseX < 0) || (pDock->iMouseX > pDock->iMaxDockWidth - 0) || (pDock->iMouseY < 0) || (pDock->iMouseY > pDock->iMaxDockHeight - 0))  // (X_BORDER_SPACE/2)
 	{
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
 	}

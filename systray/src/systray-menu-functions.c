@@ -29,11 +29,16 @@
 #include "systray-struct.h"
 #include "cd-tray.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_ABOUT("This is a simple systray applet\n made by Cedric GESTES for Cairo-Dock");
 
-
+CairoDialog *cd_systray_build_dialog (void)
+{
+	CairoDialogAttribute attr;
+	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	attr.pInteractiveWidget = myData.tray->widget;
+	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
+}
 static void systray_build_new_dialog();
 void systray_on_keybinding_pull (const char *keystring, gpointer user_data);
 
@@ -66,7 +71,8 @@ void systray_build_and_show (void)
 
 	if (myDock)
 	{
-		myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myContainer, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		myData.dialog = cd_systray_build_dialog ();
+		//myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myContainer, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 		gtk_window_set_resizable(GTK_WINDOW(myData.dialog->pWidget), FALSE);
 		//	gtk_window_resize(GTK_WINDOW(myData.dialog->pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
 	}

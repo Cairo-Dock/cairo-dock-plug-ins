@@ -968,3 +968,4 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 	glDisable (GL_TEXTURE_2D);
 	glDisable (GL_BLEND);
 }
+

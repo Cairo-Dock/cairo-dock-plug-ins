@@ -105,7 +105,8 @@ CD_APPLET_RELOAD_BEGIN
 			}
 			else  // il faut passer du desklet au dialogue
 			{
-				myData.pDialog = cairo_dock_build_dialog (D_("Set up gamma :"),
+				myData.pDialog = xgamma_build_dialog ();
+				/*myData.pDialog = cairo_dock_build_dialog (D_("Set up gamma :"),
 					myIcon,
 					myContainer,
 					NULL,
@@ -113,7 +114,7 @@ CD_APPLET_RELOAD_BEGIN
 					GTK_BUTTONS_OK_CANCEL,
 					(CairoDockActionOnAnswerFunc) xgamma_apply_values,
 					NULL,
-					NULL);
+					NULL);*/
 				cairo_dock_hide_dialog (myData.pDialog);
 			}
 		}

@@ -22,6 +22,7 @@ void xgamma_create_scales_widget (double fGamma, XF86VidModeGamma *pGamma);
 
 void xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data);
 
+CairoDialog *xgamma_build_dialog (void);
 void xgamma_build_and_show_widget (void);
 
 
