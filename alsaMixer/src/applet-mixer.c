@@ -278,7 +278,7 @@ void mixer_show_hide_dialog (void)
 		memset (&attr, 0, sizeof (CairoDialogAttribute));
 		attr.cText = cMessage;
 		attr.pInteractiveWidget = pScale;
-		CairoDialog *pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
+		myData.pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
 		/*myData.pDialog = cairo_dock_show_dialog_full (cMessage,
 			myIcon,
 			myContainer,
