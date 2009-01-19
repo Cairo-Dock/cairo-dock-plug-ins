@@ -63,8 +63,10 @@ void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog
 	
 	cairo_set_source_surface (pCairoContext,
 		pText->pTextSurface,
-		pDialog->iMargin,
-		(pDialog->bDirectionUp ? pDialog->iMargin + pDialog->iMessageHeight : pDialog->iHeight - pDialog->iMargin - pDialog->iInteractiveHeight));
+		pDialog->iLeftMargin,
+		(pDialog->bDirectionUp ? 
+			pDialog->iTopMargin + pDialog->iMessageHeight :
+			pDialog->iHeight - (pDialog->iTopMargin + pDialog->iBubbleHeight) + pDialog->iMessageHeight));
 	cairo_paint (pCairoContext);
 }
 

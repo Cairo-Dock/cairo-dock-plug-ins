@@ -959,6 +959,7 @@ void cd_rendering_register_curve_renderer (const gchar *cRendererName)
 	pRenderer->render_opengl = cd_rendering_render_curve_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
 	pRenderer->bUseReflect = TRUE;
+	pRenderer->bUseStencil = TRUE;
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }
@@ -1041,7 +1042,7 @@ double cd_rendering_interpol_curve_height (double x)
 
 void cd_rendering_render_curve_opengl (CairoDock *pDock)
 {
-	//\____________________ On trace le cadre.
+	//\____________________ On genere le cadre.
 	double fLineWidth = myBackground.iDockLineWidth;
 	double fMargin = myBackground.iFrameMargin;
 	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock) - 2 * myBackground.iFrameMargin;
@@ -1065,9 +1066,33 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	else
 		fDockOffsetX = fDockOffsetX-0;
 	
-	//\________________ On dessine le cadre.
 	int iNbVertex;
 	GLfloat *pVertexTab = cairo_dock_generate_curve_path (4./3, &iNbVertex);
+	
+	//\________________ On met en place le clipping.
+	glDisable (GL_DEPTH_TEST);
+	glEnable (GL_STENCIL_TEST);  // active le tampon 'stencil'.
+	glClear (GL_STENCIL_BUFFER_BIT);  // on le remplit de 0.
+	glStencilFunc (GL_ALWAYS, 1, 1);  // valeur de reference = 1, et on ecrira un 1 sans condition.
+	glStencilOp (GL_KEEP, GL_KEEP, GL_REPLACE);  // on remplace tout ce qui est dedans.
+	glColorMask (FALSE, FALSE, FALSE, FALSE);  // desactive l'ecriture dans toutes les composantes du Tampon Chromatique.
+	
+	/**glPolygonMode(GL_FRONT, GL_FILL);
+	glBegin(GL_QUADS);
+	glVertex3f(0,  100, 0.);
+	glVertex3f(200, 100, 0.);
+	glVertex3f(200, 0, 0.);
+	glVertex3f(0, 0, 0.);
+	glEnd();*/
+	/*glPolygonMode(GL_FRONT, GL_FILL);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glVertexPointer(3, GL_FLOAT, 0, pVertexTab);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, iNbVertex);
+	glDisableClientState(GL_VERTEX_ARRAY);*/
+	glColorMask (TRUE, TRUE, TRUE, TRUE);
+	glStencilFunc (GL_EQUAL, 1, 1); /* draw if ==1 */
+	glStencilOp (GL_KEEP, GL_KEEP, GL_KEEP);  // read only.
+	//glDisable (GL_STENCIL_TEST);
 	
 	//\____________________ On dessine les decorations dedans.
 	glPushMatrix ();
@@ -1184,3 +1209,234 @@ GLfloat *cairo_dock_generate_curve_path (double fRelativeControlHeight, int *iNb
 	return pVertexTab;
 }
 
+
+
+
+
+
+
+
+/*static void cd_rendering_draw_curve_flat_separator_opengl (Icon *icon, CairoDock *pDock)
+{
+	double fLineWidth = myBackground.iDockLineWidth;
+	double fMargin = myBackground.iFrameMargin;
+	double hi;
+	
+	Icon *pPrevIcon = cairo_dock_get_previous_icon (pDock->icons, icon);
+	if (pPrevIcon == NULL)
+		pPrevIcon = icon;
+	Icon *pNextIcon = cairo_dock_get_next_icon (pDock->icons, icon);
+	if (pNextIcon == NULL)
+		pNextIcon = icon;
+	
+	double fVanishingDistanceLeft, fVanishingDistanceRight;
+	double fDeltaInterIconLeft, fDeltaInterIconRight;
+	if (pDock->bDirectionUp)
+	{
+		hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+		fVanishingDistanceLeft = iVanishingPointY + pPrevIcon->fDrawY + pPrevIcon->fHeight * pPrevIcon->fScale;
+		fVanishingDistanceRight = iVanishingPointY + pNextIcon->fDrawY + pNextIcon->fHeight * pNextIcon->fScale;
+		
+		fDeltaInterIconLeft = (pPrevIcon->fDrawY + pPrevIcon->fHeight * pPrevIcon->fScale) - (icon->fDrawY + icon->fHeight * icon->fScale);
+		fDeltaInterIconRight = (icon->fDrawY + icon->fHeight * icon->fScale) - (pNextIcon->fDrawY + pNextIcon->fHeight * pNextIcon->fScale);
+	}
+	else
+	{
+		hi = icon->fDrawY;
+		fVanishingDistanceLeft = iVanishingPointY + pDock->iCurrentHeight - pPrevIcon->fDrawY;
+		fVanishingDistanceRight = iVanishingPointY + pDock->iCurrentHeight - pNextIcon->fDrawY;
+		
+		fDeltaInterIconLeft = (pPrevIcon->fDrawY) - (icon->fDrawY);
+		fDeltaInterIconRight = (icon->fDrawY) - (pNextIcon->fDrawY);
+	}
+	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / fVanishingDistanceLeft;
+	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / fVanishingDistanceRight;
+	
+	if (bBackGround || ! bIncludeEdges)  // pour s'arreter sur la courbe, on realise un clippage.
+	{
+		//\________________ On se ramene au cas du dessin optimise.
+		double x0, y0, xf, yf, w0, h0;
+		if (pDock->bDirectionUp)
+		{
+			x0 = icon->fDrawX - MAX (0, fLeftInclination * (pPrevIcon->fDrawY + pPrevIcon->fHeight * pPrevIcon->fScale));
+			xf = icon->fDrawX + icon->fWidth * icon->fScale - MIN (0, fRightInclination * (pNextIcon->fDrawY + pNextIcon->fHeight * pNextIcon->fScale));
+		}
+		else
+		{
+			x0 = icon->fDrawX - MAX (0, fLeftInclination * (pDock->iCurrentHeight - (pPrevIcon->fDrawY)));
+			xf = icon->fDrawX + icon->fWidth * icon->fScale - MIN (0, fRightInclination * (pDock->iCurrentHeight - (pNextIcon->fDrawY)));
+		}
+		if (! bIncludeEdges)  // on prolonge jusqu'en bas.
+		{
+			if (pDock->bDirectionUp)
+			{
+				x0 += MIN (0, fLeftInclination * (pDock->iCurrentHeight - icon->fDrawY - icon->fHeight * icon->fScale));
+				xf += MAX (0, fRightInclination * (pDock->iCurrentHeight - icon->fDrawY - icon->fHeight * icon->fScale));
+			}
+			else
+			{
+				x0 += MIN (0, fLeftInclination * (pPrevIcon->fDrawY));
+				xf += MAX (0, fRightInclination * (pNextIcon->fDrawY));
+			}
+		}
+		//g_print ("x0:%.2f -> xf:%.2f\n", x0, xf);
+		y0 = 0;
+		yf = icon->fDrawY;
+		w0 = xf - x0;
+		h0 = yf - y0;
+		
+		int sens;
+		double fDockOffsetY;  // Offset du coin haut gauche du cadre.
+		if (pDock->bDirectionUp)
+		{
+			sens = 1;
+			fDockOffsetY = pDock->iCurrentHeight - .5 * fLineWidth;
+		}
+		else
+		{
+			sens = -1;
+			fDockOffsetY = .5 * fLineWidth;
+		}
+		
+		double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock) - 2 * myBackground.iFrameMargin;
+		
+		double h = 4./3 * (pDock->iDecorationsHeight + myBackground.iDockLineWidth);
+		double hi_ = .5 * pDock->iMaxIconHeight + myBackground.iFrameMargin - 1;
+		double ti = .5 * (1. - sqrt (MAX (1. - 4./3 * hi_ / h, 0)));
+		double xi = xCurve (my_fCurveCurvature, ti);
+		double curveOffsetX = fDockWidth * xi / (1 - 2 * xi);
+		
+		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		double fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - curveOffsetX : fLineWidth / 2);
+		
+		
+		//\________________ On approche le morceau de courbe de Bezier par des trapezes.
+		double x = (x0 - fDockOffsetX) / (fDockWidth + 2 * curveOffsetX);
+		double s = cd_rendering_interpol_curve_parameter (x);
+		double y = yCurve (s);
+		double x_ = (x0 + w0 - fDockOffsetX) / (fDockWidth + 2 * curveOffsetX);
+		double s_ = cd_rendering_interpol_curve_parameter (x_);
+		double y_ = yCurve (s_);
+		int i, iNbMidPoints = MAX (0, w0 / 20 - 1);  // nombre de points intermediaires a calculer.
+		double *pMidPointCoord = g_new (double, 2 * (iNbMidPoints+2));
+		pMidPointCoord[0] = x0 - fDockOffsetX;
+		pMidPointCoord[1] = y * h;
+		pMidPointCoord[2*(iNbMidPoints+1)] = x0 + w0 - fDockOffsetX;
+		pMidPointCoord[2*(iNbMidPoints+1)+1] = y_ * h;
+		double si=s, ds = (s_ - s) / (iNbMidPoints+1);
+		for (i = 1; i < iNbMidPoints+1; i ++)
+		{
+			si += ds;
+			pMidPointCoord[2*i] = (fDockWidth + 2 * curveOffsetX) * xCurve (my_fCurveCurvature, si);
+			pMidPointCoord[2*i+1] = h * yCurve (si);
+		}
+		
+		cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_BUTT);
+		cairo_save (pCairoContext);
+		double fDeltaLineWidth = 0.;
+		if (bIncludeEdges)
+		{
+			double tan_theta = MAX (fabs (pMidPointCoord[1] - pMidPointCoord[3]) / (pMidPointCoord[2] - pMidPointCoord[0]), fabs (pMidPointCoord[2*iNbMidPoints+1] - pMidPointCoord[2*iNbMidPoints+3]) / (pMidPointCoord[2*iNbMidPoints+2] - pMidPointCoord[2*iNbMidPoints]));
+			fDeltaLineWidth = (fLineWidth / 2 + .1) * sqrt (1. + tan_theta*tan_theta);
+		}
+		if (pDock->bHorizontalDock)
+		{
+			cairo_move_to (pCairoContext, x0, fDockOffsetY - sens * (y * h + fDeltaLineWidth));
+			for (i = 0; i < iNbMidPoints+1; i ++)
+				cairo_rel_line_to (pCairoContext, pMidPointCoord[2*(i+1)] - pMidPointCoord[2*i], sens * (pMidPointCoord[2*i+1] - pMidPointCoord[2*i+3]));
+			cairo_rel_line_to (pCairoContext, 0, sens * (y_ * h + fDeltaLineWidth));
+			cairo_rel_line_to (pCairoContext, - w0, 0);
+			cairo_rel_line_to (pCairoContext, 0, - sens * (y * h + fDeltaLineWidth));
+		}
+		else
+		{
+			cairo_move_to (pCairoContext, fDockOffsetY - sens * (y * h + fDeltaLineWidth), x0);
+			for (i = 0; i < iNbMidPoints+1; i ++)
+				cairo_rel_line_to (pCairoContext, sens * (pMidPointCoord[2*i+1] - pMidPointCoord[2*i+3]), pMidPointCoord[2*(i+1)] - pMidPointCoord[2*i]);
+			cairo_rel_line_to (pCairoContext, sens * (y_ * h + fDeltaLineWidth), 0);
+			cairo_rel_line_to (pCairoContext, 0, - w0);
+			cairo_rel_line_to (pCairoContext, - sens * (y * h + fDeltaLineWidth), 0);
+		}
+		
+		g_free (pMidPointCoord);
+		cairo_clip (pCairoContext);
+	}
+	
+	
+	double fHeight, fBigWidth, fLittleWidth;
+	if (bIncludeEdges)
+	{
+		fHeight = (bBackGround ? pDock->iDecorationsHeight - hi : hi) + myBackground.iDockLineWidth;
+		fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
+		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
+	}
+	else
+	{
+		fHeight = pDock->iDecorationsHeight - myBackground.iDockLineWidth;
+		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
+		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
+	}
+	double fDeltaXLeft = fHeight * fLeftInclination;
+	double fDeltaXRight = fHeight * fRightInclination;
+	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
+	
+	int sens;
+	double fDockOffsetX, fDockOffsetY;
+	if (pDock->bDirectionUp)
+	{
+		sens = 1;
+		if (bIncludeEdges)
+			fDockOffsetY = pDock->iCurrentHeight - fHeight - (bBackGround ? myBackground.iDockLineWidth + hi : 0);
+		else
+			fDockOffsetY = pDock->iCurrentHeight - fHeight - myBackground.iDockLineWidth;
+	}
+	else
+	{
+		sens = -1;
+		if (bIncludeEdges)
+			fDockOffsetY = fHeight + (bBackGround ? myBackground.iDockLineWidth + hi : 0);
+		else
+			fDockOffsetY = fHeight + myBackground.iDockLineWidth;
+	}
+	
+	if (bIncludeEdges)
+		fDockOffsetX = icon->fDrawX - (bBackGround ? fHeight * fLeftInclination : 0);
+	else
+		fDockOffsetX = (pDock->bDirectionUp ? icon->fDrawX - (fHeight - hi) * fLeftInclination : icon->fDrawX - (fHeight - hi) * fLeftInclination);
+	fDockOffsetX -= fDeltaInterIconLeft * fLeftInclination*sens;
+	
+	if (pDock->bHorizontalDock)
+	{
+		cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);  // coin haut gauche.
+		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
+		
+		cairo_rel_line_to (pCairoContext, fLittleWidth, 0);
+		cairo_rel_line_to (pCairoContext, fDeltaXRight, sens * fHeight);
+		cairo_rel_line_to (pCairoContext, - fBigWidth, 0);
+		cairo_rel_line_to (pCairoContext, - fDeltaXLeft, - sens * fHeight);
+		
+		if (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+		{
+			if (! pDock->bDirectionUp)
+				cairo_scale (pCairoContext, 1, -1);
+			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], MIN (0, (fHeight + hi) * fLeftInclination), 0);
+		}
+	}
+	else
+	{
+		cairo_translate (pCairoContext, fDockOffsetY, fDockOffsetX);  // coin haut gauche.
+		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
+		
+		cairo_rel_line_to (pCairoContext, 0, fLittleWidth);
+		cairo_rel_line_to (pCairoContext, sens * fHeight, fDeltaXRight);
+		cairo_rel_line_to (pCairoContext, 0, - fBigWidth);
+		cairo_rel_line_to (pCairoContext, - sens * fHeight, - fDeltaXLeft);
+		
+		if (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+		{
+			if (! pDock->bDirectionUp)
+				cairo_scale (pCairoContext, -1, 1);
+			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, MIN (0, (fHeight + hi) * fLeftInclination));
+		}
+	}
+}*/

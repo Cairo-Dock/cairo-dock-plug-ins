@@ -665,7 +665,7 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 
 static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 {
-	//\____________________ On trace le cadre.
+	//\____________________ On genere le cadre.
 	double fLineWidth = myBackground.iDockLineWidth;
 	double fMargin = myBackground.iFrameMargin;
 	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * myBackground.iDockRadius > 0 ? myBackground.iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
@@ -934,13 +934,9 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 	}
 	
 	glBegin(GL_QUADS);
-	glTexCoord2f(0., 0.);
 	glVertex3f(0., 0., 0.);  // Bottom Left Of The Texture and Quad
-	glTexCoord2f(1., 0.);
 	glVertex3f(fLittleWidth, 0., 0.);  // Bottom Right Of The Texture and Quad
-	glTexCoord2f(1., 1.);
 	glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);  // Top Right Of The Texture and Quad
-	glTexCoord2f(0., 1.);
 	glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);  // Top Left Of The Texture and Quad
 	glEnd();
 	
@@ -965,7 +961,6 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 	
 	glDisable(GL_LINE_SMOOTH);
 	
-	glDisable (GL_TEXTURE_2D);
 	glDisable (GL_BLEND);
 }
 
