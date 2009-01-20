@@ -55,7 +55,7 @@ void rendering_free_text_data (CairoDialog *pDialog)
 }
 
 
-void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog)
+void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog, double fAlpha)
 {
 	CDTextParameters *pText = (CDTextParameters *) pDialog->pRendererData;
 	if (pText == NULL)
@@ -67,7 +67,10 @@ void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog
 		(pDialog->bDirectionUp ? 
 			pDialog->iTopMargin + pDialog->iMessageHeight :
 			pDialog->iHeight - (pDialog->iTopMargin + pDialog->iBubbleHeight) + pDialog->iMessageHeight));
-	cairo_paint (pCairoContext);
+	if (fAlpha != 0)
+		cairo_paint_with_alpha (pCairoContext, fAlpha);
+	else
+		cairo_paint (pCairoContext);
 }
 
 

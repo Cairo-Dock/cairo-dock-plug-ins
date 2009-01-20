@@ -20,6 +20,7 @@ This rendering has been written by parAdOxxx_ZeRo (http://paradoxxx.zero.free.fr
 
 #include "rendering-commons.h"
 #include "rendering-curve.h"
+#include "rendering-3D-plane.h"
 
 
 static double *s_pReferenceCurveS = NULL;
@@ -1077,22 +1078,15 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	glStencilOp (GL_KEEP, GL_KEEP, GL_REPLACE);  // on remplace tout ce qui est dedans.
 	glColorMask (FALSE, FALSE, FALSE, FALSE);  // desactive l'ecriture dans toutes les composantes du Tampon Chromatique.
 	
-	/**glPolygonMode(GL_FRONT, GL_FILL);
-	glBegin(GL_QUADS);
-	glVertex3f(0,  100, 0.);
-	glVertex3f(200, 100, 0.);
-	glVertex3f(200, 0, 0.);
-	glVertex3f(0, 0, 0.);
-	glEnd();*/
-	/*glPolygonMode(GL_FRONT, GL_FILL);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(3, GL_FLOAT, 0, pVertexTab);
-	glDrawArrays(GL_TRIANGLE_FAN, 0, iNbVertex);
-	glDisableClientState(GL_VERTEX_ARRAY);*/
+	double fEpsilon = (my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR ? 2. : 0);  // erreur d'arrondi quand tu nous tiens.
+	glPushMatrix ();
+	cairo_dock_draw_frame_background_opengl (0, fDockWidth+2*curveOffsetX, fFrameHeight+fLineWidth+fEpsilon, fDockOffsetX, fDockOffsetY+(fLineWidth+fEpsilon)/2, pVertexTab, iNbVertex, pDock->bHorizontalDock, pDock->bDirectionUp, pDock->fDecorationsOffsetX);  // le cadre est trace au milieu de la ligne, donc on augmente de l la hauteur (et donc de l/2 pixels la hauteur du cadre, car [-.5, .5]), et pour compenser on se translate de l/2.
+	glPopMatrix ();
+	
 	glColorMask (TRUE, TRUE, TRUE, TRUE);
 	glStencilFunc (GL_EQUAL, 1, 1); /* draw if ==1 */
 	glStencilOp (GL_KEEP, GL_KEEP, GL_KEEP);  // read only.
-	//glDisable (GL_STENCIL_TEST);
+	glDisable (GL_STENCIL_TEST);
 	
 	//\____________________ On dessine les decorations dedans.
 	glPushMatrix ();
@@ -1125,9 +1119,18 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 			
 			if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
+				glEnable (GL_STENCIL_TEST);
+				glStencilFunc (GL_EQUAL, 1, 1);
+				glStencilOp (GL_KEEP, GL_KEEP, GL_KEEP);
+				
 				glPushMatrix ();
-				//cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
+				if (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+					cd_rendering_draw_flat_separator_opengl (icon, pDock);
+				else
+					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE);
 				glPopMatrix ();
+				
+				glDisable (GL_STENCIL_TEST);
 			}
 			
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
@@ -1155,9 +1158,15 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 				
 				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 				{
+					glEnable (GL_STENCIL_TEST);
+					glStencilFunc (GL_EQUAL, 1, 1);
+					glStencilOp (GL_KEEP, GL_KEEP, GL_KEEP);
+					
 					glPushMatrix ();
-					//cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
+					cd_rendering_draw_physical_separator_opengl (icon, pDock, FALSE);
 					glPopMatrix ();
+					
+					glDisable (GL_STENCIL_TEST);
 				}
 				
 				ic = cairo_dock_get_next_element (ic, pDock->icons);

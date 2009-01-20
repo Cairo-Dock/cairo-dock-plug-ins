@@ -19,7 +19,7 @@ CDTextParameters *rendering_configure_text (CairoDialog *pDialog, cairo_t *pSour
 
 void rendering_free_text_data (CairoDialog *pDialog);
 
-void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog);
+void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog, double fAlpha);
 
 void rendering_update_text (CairoDialog *pDialog, gpointer *pNewData);
 
