@@ -122,7 +122,7 @@ mix graph = false
 #c+4[0;1] Background color of the graphic :
 bg color = .5;.5;1.;.4
 
-#R+[] List of available themes for the gauge :/
+#g List of available themes for the gauge :
 theme = turbo-night-fuel
 
 #v

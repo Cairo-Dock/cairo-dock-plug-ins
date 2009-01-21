@@ -234,7 +234,7 @@ AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
 CPUSAGE_PACKAGE="cd-cpusage"
 AC_SUBST(GETTEXT_CPUSAGE, "$CPUSAGE_PACKAGE")
 
-AC_SUBST(VERSION_CPUSAGE, "1.2.2")
+AC_SUBST(VERSION_CPUSAGE, "1.2.3")
 AC_SUBST(PACKAGE_CPUSAGE, "$CPUSAGE_PACKAGE")
 
 AC_SUBST(cpusagedatadir, "${pkgdatadir}/cpusage")
@@ -340,7 +340,7 @@ AC_SUBST(motion_blurdatadir, "${pkgdatadir}/motion-blur")
 NETSPEED_PACKAGE=cd-netspeed
 AC_SUBST(GETTEXT_NETSPEED, "$NETSPEED_PACKAGE")
 
-AC_SUBST(VERSION_NETSPEED, "1.1.2")
+AC_SUBST(VERSION_NETSPEED, "1.1.3")
 AC_SUBST(PACKAGE_NETSPEED, "$NETSPEED_PACKAGE")
 
 AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
@@ -349,7 +349,7 @@ AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
 NVIDIA_PACKAGE=cd-nVidia
 AC_SUBST(GETTEXT_NVIDIA, "$NVIDIA_PACKAGE")
 
-AC_SUBST(VERSION_NVIDIA, "1.0.3")
+AC_SUBST(VERSION_NVIDIA, "1.0.6")
 AC_SUBST(PACKAGE_NVIDIA, "$NVIDIA_PACKAGE")
 
 AC_SUBST(nvidiadatadir, "${pkgdatadir}/nVidia")
@@ -358,7 +358,7 @@ AC_SUBST(nvidiadatadir, "${pkgdatadir}/nVidia")
 POWERMANAGER_PACKAGE=cd-powermanager
 AC_SUBST(GETTEXT_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
-AC_SUBST(VERSION_POWERMANAGER, "1.2.14")
+AC_SUBST(VERSION_POWERMANAGER, "1.2.15")
 AC_SUBST(PACKAGE_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
 AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
@@ -367,7 +367,7 @@ AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
 RAME_PACKAGE=cd-rame
 AC_SUBST(GETTEXT_RAME, "$RAME_PACKAGE")
 
-AC_SUBST(VERSION_RAME, "1.1.2")
+AC_SUBST(VERSION_RAME, "1.1.3")
 AC_SUBST(PACKAGE_RAME, "$RAME_PACKAGE")
 
 AC_SUBST(ramedatadir, "${pkgdatadir}/rame")

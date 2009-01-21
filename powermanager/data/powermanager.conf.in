@@ -113,7 +113,7 @@ effect=0
 
 #b+ Use a gauge instead of icons ?
 use gauge = false
-#R+1[] List of available gauges :/
+#g List of available gauges :
 theme = battery
 
 #r+[nothing;charge;time] Information to be displayed on the icon :
