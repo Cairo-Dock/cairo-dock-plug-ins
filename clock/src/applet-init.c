@@ -31,9 +31,11 @@ static char s_cFileNames[CLOCK_ELEMENTS][30] = {
 	"clock-glass.svg",
 	"clock-frame.svg" };
 
-
-CD_APPLET_DEFINITION ("clock", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
-
+CD_APPLET_PRE_INIT_BEGIN ("clock", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	pInterface->load_custom_widget = cd_clock_load_custom_widget;
+	pInterface->save_custom_widget = cd_clock_save_custom_widget;
+CD_APPLET_PRE_INIT_END
 
 static void _load_theme (CairoDockModuleInstance *myApplet)
 {

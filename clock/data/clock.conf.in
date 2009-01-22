@@ -141,62 +141,6 @@ setup command =
 #[@clockdatadir@/icon-alarm.png]
 [Alarm]
 
-#F[Alarm n°1]
-frame1 = 
-
-#s Time you want to be notified :
-#{in the form xx:xx. For exemple, 20:35 for 8:35pm}
-time1 = 
-
-#r[Never;Day;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday;Sunday;Week Day;Week End;Month] Repeat every
-repeat1 = 
-
-#i[1;31] If every month, which day of the month ? :
-day1 =
-
-#s Message you want to use to be notified :
-message1 = 
-
-#s Command to execute :
-#{For exemple, < play /path/to/file.ogg >.}
-command1 = 
-
-#F[Alarm n°2]
-frame2 = 
-
-#s Time you want to be notified :
-#{in the form xx:xx. For exemple, 20:35 for 8:35pm}
-time2 = 
-
-#r[Never;Day;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday;Sunday;Week Day;Week End;Month] Repeat every
-repeat2 = 
-
-#i[1;31] If every month, which day of the month ? :
-day2 =
-
-#s Message you want to use to be notified :
-message2 = 
-
-#s Command to execute :
-#{For exemple, < play /path/to/file.ogg >.}
-command2 = 
-
-#F[Alarm n°3]
-frame3 = 
-
-#s Time you want to be notified :
-#{in the form xx:xx. For exemple, 20:35 for 8:35pm}
-time3 = 
-
-#r[Never;Day;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday;Sunday;Week Day;Week End;Month] Repeat every
-repeat3 = 
-
-#i[1;31] If every month, which day of the month ? :
-day3 =
-
-#s Message you want to use to be notified :
-message3 = 
-
-#s Command to execute :
-#{For exemple, < play /path/to/file.ogg >.}
-command3 = 
+#_ Add or remove an alarm :
+#{The new alarm will be added to the end / the last alarm will be removed.}
+add new =

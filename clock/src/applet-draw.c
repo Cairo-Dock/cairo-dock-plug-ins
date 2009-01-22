@@ -17,9 +17,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-digital.h" //Digital html like renderer
 #include "applet-draw.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
-
 #define CD_CLOCK_DATE_BUFFER_LENGTH 50
 static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
 
@@ -365,7 +362,7 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 	{
 		cairo_save (pSourceContext);
 		cairo_set_source_rgb (pSourceContext, 1.0f, 0.5f, 0.0f);
-		cairo_set_line_width (pSourceContext, 9.0f);
+		cairo_set_line_width (pSourceContext, 8.0f);
 		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a%d%b", pTime);
 		cairo_text_extents (pSourceContext, s_cDateBuffer, &textExtents);
 		cairo_move_to (pSourceContext,
