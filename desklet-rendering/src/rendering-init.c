@@ -40,7 +40,6 @@ CD_APPLET_PRE_INIT_BEGIN ("desklet rendering", 2,0,0, CAIRO_DOCK_CATEGORY_PLUG_I
 CD_APPLET_PRE_INIT_END
 
 
-
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
@@ -48,3 +47,4 @@ CD_APPLET_RELOAD_BEGIN
 		///cairo_dock_set_all_views_to_default ();
 	}
 CD_APPLET_RELOAD_END
+
