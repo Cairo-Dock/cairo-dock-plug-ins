@@ -26,7 +26,14 @@
 #include "applet-struct.h"
 #include "applet-widget.h"
 
-CD_APPLET_INCLUDE_MY_VARS
+CairoDialog *cd_weblets_build_dialog(CairoDockModuleInstance *myApplet)
+{
+	CairoDialogAttribute attr;
+	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	attr.cText = D_ ("Weblets");
+	attr.pInteractiveWidget = myData.pGtkMozEmbed;
+	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
+}
 
 #if !HAVE_WEBKIT
 
@@ -49,7 +56,7 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 
 	if (myDock)
 	{
-		myData.dialog = cairo_dock_build_dialog (D_("Weblet"), myIcon, myContainer, NULL, myData.pGtkMozEmbed, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		myData.dialog = cd_weblets_build_dialog(myApplet);
 	}
 	else
 	{
@@ -135,7 +142,7 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 					 					 
 	if (myDock)
 	{
-		myData.dialog = cairo_dock_build_dialog (D_("Weblet"), myIcon, myContainer, NULL, myData.pGtkMozEmbed, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		myData.dialog = cd_weblets_build_dialog(myApplet);
 	}
 	else
 	{
