@@ -95,7 +95,7 @@ fg alpha = 1
 [Configuration]
 
 #S URI to load in weblet
-weblet URI=about:blank
+weblet URI=http://www.google.com
 
 #b Show scrollbars ?
 show scrollbars = true
@@ -107,10 +107,13 @@ scroll x = 0
 #{Vertical scroll of the browser in pixel}
 scroll y = 0
 
+#b Transparent background ?
+transparent background = false
+
 #i Time between two page refreshes
 #{Time before reloading the weblet URI, in seconds. Zero means never reload.}
 reload timeout = 0
 
 #s99 Predefined bookmarks to show in applet's menu :
-#{Any URI accepted by firefox should work.}/
+#{Any valid URI should work.}/
 uri list = http://www.cairo-dock.org;http://www.google.com;https://m.google.com/mail;about:plugins;

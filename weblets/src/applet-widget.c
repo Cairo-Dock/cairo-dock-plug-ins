@@ -26,6 +26,9 @@
 #include "applet-struct.h"
 #include "applet-widget.h"
 
+#include <gtk/gtk.h>
+#include <webkit/webkit.h>
+
 CairoDialog *cd_weblets_build_dialog(CairoDockModuleInstance *myApplet)
 {
 	CairoDialogAttribute attr;
@@ -34,97 +37,6 @@ CairoDialog *cd_weblets_build_dialog(CairoDockModuleInstance *myApplet)
 	attr.pInteractiveWidget = myData.pGtkMozEmbed;
 	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
 }
-
-#if !HAVE_WEBKIT
-
-#include "gtkmozembed.h"
-#include "applet-widget-itf.h"
-
-void load_started_cb(GtkMozEmbed *embed, CairoDockModuleInstance *myApplet);
-void load_finished_cb(GtkMozEmbed *embed, CairoDockModuleInstance *myApplet);
-
-void weblet_build_and_show(CairoDockModuleInstance *myApplet)
-{
-	myData.pGtkMozEmbed = gtk_moz_embed_new();
-	gtk_widget_show(myData.pGtkMozEmbed);
-	gtk_signal_connect(GTK_OBJECT(myData.pGtkMozEmbed), "net_start",
-					 					 GTK_SIGNAL_FUNC(load_started_cb), myApplet);
-	gtk_signal_connect(GTK_OBJECT(myData.pGtkMozEmbed), "net_stop",
-					 					 GTK_SIGNAL_FUNC(load_finished_cb), myApplet);
-	// register for right-click on the moz-embed widget
-	register_menu_cb( myApplet, myData.pGtkMozEmbed );
-
-	if (myDock)
-	{
-		myData.dialog = cd_weblets_build_dialog(myApplet);
-	}
-	else
-	{
-		cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
-		
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-	}
-}
-
-gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet)
-{
-		// load the page
-		if(myData.pGtkMozEmbed)
-		{
-			gtk_moz_embed_load_url(GTK_MOZ_EMBED(myData.pGtkMozEmbed), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
-		}
-
-		return TRUE;
-}
-
-void load_started_cb(GtkMozEmbed *embed, CairoDockModuleInstance *myApplet)
-{
-	// update scrollbars status
-	show_hide_scrollbars(myApplet);
-}
-
-void load_finished_cb(GtkMozEmbed *embed, CairoDockModuleInstance *myApplet)
-{
-	// update scrollbars status
-	show_hide_scrollbars(myApplet);
-}
-
-// hide/show the scrollbars
-void show_hide_scrollbars(CairoDockModuleInstance *myApplet)
-{
-    set_gecko_scrollbars( myData.pGtkMozEmbed, myConfig.bShowScrollbars, myConfig.iPosScrollX , myConfig.iPosScrollY );
-}
-
-void send_mouse_click_to_cd( CairoDockModuleInstance *myApplet, GdkEventButton* pButtonEvent )
-{
-	if( myDock )
-	{
-		cairo_dock_on_button_press (myData.pGtkMozEmbed, pButtonEvent, myDock );
-	}
-	else if( myDesklet )
-	{
-		Icon *pClickedIcon = cairo_dock_find_clicked_icon_in_desklet (myDesklet);
-		GtkWidget *menu = cairo_dock_build_menu (pClickedIcon, CAIRO_CONTAINER (myDesklet));  // genere un CAIRO_DOCK_BUILD_MENU.
-		gtk_widget_show_all (menu);
-		gtk_menu_popup (GTK_MENU (menu),
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			1,
-			gtk_get_current_event_time ());
-		myDesklet->bInside = FALSE;
-		myDesklet->iGradationCount = 0;  // on force le fond a redevenir transparent.
-		gtk_widget_queue_draw (myDesklet->pWidget);
-	}
-}
-
-#else
-
-///////// WEBKIT VERSION /////////
-
-#include <gtk/gtk.h>
-#include <webkit/webkit.h>
 
 /* Will be called when loading of the page is finished*/
 void load_finished_cb(WebKitWebView *pWebKitView, WebKitWebFrame* widget
@@ -190,9 +102,8 @@ gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet)
 			webkit_web_view_open(WEBKIT_WEB_VIEW(myData.pWebKitView), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
 		}
 		/* available since rev. 30985, from fev. 2008 */
-		//webkit_web_view_set_transparent(myData.pWebKitView, TRUE/*myConfig.bIsTransparent*/);
+		webkit_web_view_set_transparent(myData.pWebKitView, myConfig.bIsTransparent);
 
 		return TRUE;
 }
 
-#endif

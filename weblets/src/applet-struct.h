@@ -9,14 +9,13 @@
 #include "config.h"
 #endif
 
-#if HAVE_WEBKIT
 #include <webkit/webkit.h>
-#endif
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	   gchar *cURI_to_load;
 	   gboolean bShowScrollbars;
+	   gboolean bIsTransparent;
 	   gint iPosScrollX;
 	   gint iPosScrollY;
 	   guint iReloadTimeout;
@@ -27,9 +26,7 @@ struct _AppletConfig {
 struct _AppletData {
       CairoDialog *dialog;
 	    GtkWidget *pGtkMozEmbed;
-#if HAVE_WEBKIT
 	    WebKitWebView *pWebKitView;
-#endif
 	    CairoDockMeasure *pRefreshTimer;
 	} ;
 

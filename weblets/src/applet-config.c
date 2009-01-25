@@ -22,6 +22,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	gsize length = 0;
 	myConfig.cURI_to_load = CD_CONFIG_GET_STRING ("Configuration", "weblet URI");
 	myConfig.bShowScrollbars = CD_CONFIG_GET_BOOLEAN ("Configuration", "show scrollbars");
+	myConfig.bIsTransparent = CD_CONFIG_GET_BOOLEAN ("Configuration", "transparent background");
 	myConfig.iPosScrollX = CD_CONFIG_GET_INTEGER ("Configuration", "scroll x");
 	myConfig.iPosScrollY = CD_CONFIG_GET_INTEGER ("Configuration", "scroll y");
 	myConfig.iReloadTimeout = CD_CONFIG_GET_INTEGER ("Configuration", "reload timeout");

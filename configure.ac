@@ -97,7 +97,7 @@ AC_ARG_ENABLE(mail,
 AC_ARG_ENABLE(weblets,
 	[  --enable-weblets : Enable Weblets applet (default=no) ],
 	[ with_weblets=${enableval} ],
-	[ with_weblets=no ])
+	[ with_weblets=yes ])
 
 if test "$with_old_gnome_support" = "yes" ; then
 	PKG_CHECK_MODULES(OLD_GNOME_INTEGRATION,gnome-vfs-2.0 libgnomeui-2.0, ,[ with_old_gnome_support=false; AC_MSG_WARN(Could not find gnome-vfs and/or gnomeui; Cairo-Dock won't be built with Gnome<2.22 support.) ])
@@ -540,7 +540,7 @@ AC_DEFINE(HAVE_WEBKIT,1,[Defined if we want to use webkit.])
 
 AC_SUBST(GETTEXT_WEBLETS, "$WEBLETS_PACKAGE")
 
-AC_SUBST(VERSION_WEBLETS, "0.2")
+AC_SUBST(VERSION_WEBLETS, "0.3")
 AC_SUBST(PACKAGE_WEBLETS, "$WEBLETS_PACKAGE")
 
 AC_SUBST(webletsdatadir, "${pkgdatadir}/weblets")
