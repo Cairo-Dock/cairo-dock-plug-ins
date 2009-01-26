@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cairo-Dock II\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2009-01-17 02:16+0100\n"
+"PO-Revision-Date: 2009-01-25 17:17+0500\n"
+"Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+
+#: ../src/tomboy-notifications.c:12
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Апплет создан Necropotame (Adrien Pilleboue)"
+
+#: ../src/tomboy-notifications.c:40
+msgid "Note name : "
+msgstr "Имя записки : "
+
+#: ../src/tomboy-notifications.c:65
+msgid "Search for :"
+msgstr "Искать :"
+
+#: ../src/tomboy-notifications.c:86
+msgid "Search for tag :"
+msgstr "Искать по тэгу :"
+
+#: ../src/tomboy-notifications.c:142
+msgid "Reload notes"
+msgstr "Перезагрузить записки"
+
+#: ../src/tomboy-notifications.c:145
+msgid "Add a note"
+msgstr "Добавить записку"
+
+#: ../src/tomboy-notifications.c:149
+msgid "Delete this note"
+msgstr "Удалить эту записку"
+
+#: ../src/tomboy-notifications.c:152
+msgid "Search"
+msgstr "Искать"
+
+#: ../src/tomboy-notifications.c:153
+msgid "Searh for tag"
+msgstr "Искать тэг"
+
+#: ../src/tomboy-notifications.c:155
+msgid "Search for today's note"
+msgstr "Искать сегодняшние"
+
+#: ../src/tomboy-notifications.c:156
+msgid "Search for this week's note"
+msgstr "Искать на этой неделе"
+
+#: ../src/tomboy-notifications.c:157
+msgid "Search for next week's note"
+msgstr "Искать на следующей неделе"
+
+#: ../src/tomboy-notifications.c:167
+msgid "Reset marks"
+msgstr "Сбросить отметки"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Значок"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Определите размер значка для этого апплета"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "ширина:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "высота:"
+
+#: ../data/messages:9
+msgid "Default title :"
+msgstr "Стандартный заголовок:"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Имя панели которой он принадлежит:"
+
+#: ../data/messages:13
+msgid "Personnalisation"
+msgstr "Персонализация"
+
+#: ../data/messages:15
+#: ../data/messages:19
+#: ../data/messages:23
+msgid "Let t empty to use the default icon."
+msgstr "Оставьте пустым, чтобы использовать стандартный значок."
+
+#: ../data/messages:17
+msgid "Name of an image for the 'default' icon :"
+msgstr "Изображение для стандартного значка:"
+
+#: ../data/messages:21
+msgid "Name of an image for the 'close' icon :"
+msgstr "Изображение для значка 'закрыто':"
+
+#: ../data/messages:25
+msgid "Name of an image for the 'broken' icon :"
+msgstr "Изображение для значка поломки:"
+
+#: ../data/messages:27
+msgid "Configuration"
+msgstr "Настройки"
+
+#: ../data/messages:29
+msgid "Depending on your tomboy's version, the note deletion may not be automatically notified to us. Only check this box if you notice some error message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal."
+msgstr "В зависимости от версии вашего Tomboy, удаление записок может пройти без автоматического уведомления нас. Отметьте галочкой, только если вы получаете ошибки вида <<No marshaller for signature of signal 'NoteDeleted'>> в терминале."
+
+#: ../data/messages:31
+msgid "Emulate the 'NoteDeleted' signal ?"
+msgstr "Эмулировать сигнал 'Записка Удалена'?"
+
+#: ../data/messages:33
+msgid "Let it empty to use default sub-dock view."
+msgstr "Оставьте пустым, чтобы использовать стандартный вид суб-панели."
+
+#: ../data/messages:35
+msgid "Name of the view used for the sub-dock :"
+msgstr "Имя темы для суб-панели:"
+
+#: ../data/messages:37
+msgid "Draw note's content on their icon ?"
+msgstr "Отрисовывать содержимое записки на её значке?"
+
+#: ../data/messages:39
+msgid "Write the date format you usually use in your notes. The syntax is the one of 'strftime' : %d for the day, %m for the month, %y for the year (2 digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+msgstr "Укажите формат даты, который вы обычно используете в записках. Синтаксис таков: : %d-день, %m-месяц, %y-год (2 символа), и т.д. Оставьте пустым, чтобы использовать стандартный формат (%d/%m/%y)."
+
+#: ../data/messages:41
+msgid "Date format to search for :"
+msgstr "Формат даты для поиска:"
+

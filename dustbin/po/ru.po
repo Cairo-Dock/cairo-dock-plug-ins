@@ -1,0 +1,330 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cairo-Dock II\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2009-01-17 02:16+0100\n"
+"PO-Revision-Date: 2009-01-25 15:29+0500\n"
+"Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+
+#: ../src/applet-draw.c:146
+msgid "calculating"
+msgstr "вычисляю"
+
+#: ../src/applet-draw.c:156
+msgid " trashe(s)"
+msgstr " корзин(ы)"
+
+#: ../src/applet-draw.c:160
+msgid " file(s)"
+msgstr " файл(ы)"
+
+#: ../src/applet-notifications.c:19
+msgid ""
+"This is the dustbin applet for Cairo-Dock\n"
+" made by Fabrice Rey (fabounet@users.berlios.de)"
+msgstr ""
+"Апплет мусорной корзины для Cairo-Dock\n"
+" создан Fabrice Rey (fabounet@users.berlios.de)"
+
+#: ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:41
+msgid "Show Trash"
+msgstr "Показывать корзину"
+
+#: ../src/applet-notifications.c:37
+#: ../src/applet-notifications.c:50
+msgid "Delete Trash"
+msgstr "Удалить корзину"
+
+#: ../src/applet-notifications.c:45
+#, c-format
+msgid "Show %s"
+msgstr "Показать %s"
+
+#: ../src/applet-notifications.c:48
+msgid "Show All"
+msgstr "Показать всё"
+
+#: ../src/applet-notifications.c:54
+#, c-format
+msgid "Delete %s"
+msgstr "Удалить %s"
+
+#: ../src/applet-notifications.c:57
+msgid "Delete All"
+msgstr "Удалить всё"
+
+#: ../src/applet-notifications.c:72
+#, c-format
+msgid "%s is now unmounted"
+msgstr "%s теперь отсоединено"
+
+#: ../src/applet-notifications.c:76
+#, c-format
+msgid "failed to unmount %s"
+msgstr "не удалось отсоеденить %s"
+
+#: ../src/applet-trashes-manager.c:412
+#, c-format
+msgid "You're about to delete all files in %s. Sure ?"
+msgstr "Вы собираетесь удалить все файлы в %s. Уверены?"
+
+#: ../src/applet-trashes-manager.c:414
+msgid "You're about to delete all files in all dustbins. Sure ?"
+msgstr "Вы собираетеся удалить все файлы во всех корзинах. Уверены?"
+
+#: ../src/applet-trashes-manager.c:487
+#, c-format
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual file browser,\n"
+"you can change it in the conf panel of this module"
+msgstr ""
+"Возникла проблема.\n"
+"Если '%s не является вашим обычным обозревателем,\n"
+"вы можете изменить его в настройках этого модуля"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Значок"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Определите размер значка для этого апплета"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "ширина:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "высота:"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Имя значка, который появится на подписи в панели:"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Имя панели которой он принадлежит:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Десклет"
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "В зависимости от вашего Оконного менеджера, вы можете изменить размер с помощью сочетания клавиш ALT + средний щелчок или ALT + левый щелчок."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Размер десклета (ширина х высота):"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen"
+msgstr "В зависимости от Оконного Менеджера, вы можете перемещать его помощью  клавиш ALT + левый щелчок. Отрицательные значения идут в расчёт от правого/ниженого края экрана"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Позиция десклета (x ; y):"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "Открепить от панели?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Держать позади окон?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Держать поверх окон?"
+
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "Для \"слоя виджетов\" Compiz Fusion, установите поведение в Compiz на (имя=cairo-dock & тип=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Держать на слое виджетов?"
+
+#: ../data/messages:33
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Если заблокировано, то десклет можно легко перемещать с помощью левой кнопки мыши. И, кончено, вы по-прежнему можете использовать ALT + левый щелчок."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Заблокировать позицию?"
+
+#: ../data/messages:37
+msgid "in degrees."
+msgstr "в градусах."
+
+#: ../data/messages:39
+msgid "Rotation :"
+msgstr "Вращение:"
+
+#: ../data/messages:41
+msgid "Decorations"
+msgstr "Оформление"
+
+#: ../data/messages:43
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "Выберите 'персональный', чтобы самостоятельно настроить оформление."
+
+#: ../data/messages:45
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Выберите тему оформления лоя этого десклета:"
+
+#: ../data/messages:47
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "Изображение показываемое позади рисунка, например рамка. Оставьте пустым, чтобы не использовать."
+
+#: ../data/messages:49
+msgid "Background image :"
+msgstr "Фоновое изображение:"
+
+#: ../data/messages:51
+msgid "Background tansparency :"
+msgstr "Фоновая прозрачность:"
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "в пикселях. Определяет левую позицию рисунка."
+
+#: ../data/messages:55
+msgid "Left offset :"
+msgstr "Левое смещение:"
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "в пикселях. Определяет верхнюю позицию рисунка."
+
+#: ../data/messages:59
+msgid "Top offset :"
+msgstr "Верхнее смещение:"
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "в пикселях. Определяет правую позицию рисунка."
+
+#: ../data/messages:63
+msgid "Right offset :"
+msgstr "Правое смещение:"
+
+#: ../data/messages:65
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "в пикселях. Определяет нижнюю позицию рисунка."
+
+#: ../data/messages:67
+msgid "Bottom offset :"
+msgstr "Нижнее смещение:"
+
+#: ../data/messages:69
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "Изображение показываемое поверх рисунка, например отражение. Оставьте пустым, чтобы не использовать."
+
+#: ../data/messages:71
+msgid "Foreground image :"
+msgstr "Фоновое изображение:"
+
+#: ../data/messages:73
+msgid "Foreground tansparency :"
+msgstr "Фоновая прозрачность:"
+
+#: ../data/messages:75
+msgid "Module"
+msgstr "Модуль"
+
+#: ../data/messages:77
+msgid "Theme"
+msgstr "Тема"
+
+#: ../data/messages:79
+msgid "Choose one of the available themes :"
+msgstr "Выберите одну из тем:"
+
+#: ../data/messages:81
+msgid "Name of an image to overwrite the theme's empty image :"
+msgstr "Файл для пустого изображения:"
+
+#: ../data/messages:83
+msgid "Name of an image to overwrite the theme's full image :"
+msgstr "Файл для заполненного изображения:"
+
+#: ../data/messages:85
+msgid "Config"
+msgstr "Конфиг"
+
+#: ../data/messages:87
+msgid "They don't even need to be real trash directories."
+msgstr "Ему даже не нужно настоящих мусорных папок."
+
+#: ../data/messages:89
+msgid "Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr "Здесь вы можете указать список Мусорных папок для отслеживания:"
+
+#: ../data/messages:91
+msgid "Display the following quick info :"
+msgstr "Показывать следующую информацию:"
+
+#: ../data/messages:93
+msgid "None"
+msgstr "Ничего"
+
+#: ../data/messages:95
+msgid "Number of trashes"
+msgstr "Количество корзин"
+
+#: ../data/messages:97
+msgid "Total number of files"
+msgstr "Общее количество файлов"
+
+#: ../data/messages:99
+msgid "Total weight"
+msgstr "Суммарный размер"
+
+#: ../data/messages:101
+#: ../data/messages:105
+msgid "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+msgstr "в Мб. При превышении этого лимита, вы будете уведомлены, . Установите в 0, чтобы не использовать."
+
+#: ../data/messages:103
+msgid "Maximum total size of all dustbins :"
+msgstr "Максимальный общий размер всех корзин:"
+
+#: ../data/messages:107
+msgid "Maximum size authorized for each dustbin :"
+msgstr "Максимальный размер для каждой корзины:"
+
+#: ../data/messages:109
+msgid "Desktop-less support"
+msgstr "Без использования на рабочем столе"
+
+#: ../data/messages:111
+msgid "in seconds, only used if you can't monitor directories."
+msgstr "в секундах, используйте, только если вы не можете контролировать папки."
+
+#: ../data/messages:113
+msgid "Interval of time to check if dustbin is full/empty :"
+msgstr "Интервал проверок на заполненность:"
+
+#: ../data/messages:115
+msgid "Only use this if you notice that the applet can't display the trash on click."
+msgstr "Используйте, только если задействовали показ корзины по щелчку."
+
+#: ../data/messages:117
+msgid "Alternative file browser used to show a trash :"
+msgstr "Альтернативный обозреватель корзины:"
+

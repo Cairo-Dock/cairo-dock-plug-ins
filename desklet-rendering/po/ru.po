@@ -1,0 +1,285 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cairo-Dock II\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2008-10-17 02:29+0200\n"
+"PO-Revision-Date: 2009-01-25 15:14+0500\n"
+"Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+
+#: ../data/messages:1
+msgid "Inclinated Plane"
+msgstr "Наклонная плоскость"
+
+#: ../data/messages:3
+msgid "The lower, the more the point of view is low on the plane."
+msgstr "Чем меньше значение, тем ниже плоскости находится точка обзора."
+
+#: ../data/messages:5
+msgid "Height of the vanishing point :"
+msgstr "Высота точки схождения:"
+
+#: ../data/messages:7
+#: ../data/messages:165
+msgid "Choose the way separators are drawn :"
+msgstr "Тип отображения разделителей:"
+
+#: ../data/messages:9
+#: ../data/messages:167
+msgid "Normal separator"
+msgstr "Нормальный разделитель"
+
+#: ../data/messages:11
+#: ../data/messages:169
+msgid "Flat separator"
+msgstr "Плоский разделитель"
+
+#: ../data/messages:13
+#: ../data/messages:171
+msgid "Physical separator"
+msgstr "Физический разделитель"
+
+#: ../data/messages:15
+msgid "red, blue, green, alpha"
+msgstr "красный, синий, зелёный, альфа"
+
+#: ../data/messages:17
+msgid "For flat separators, you can specify their color:"
+msgstr "Для плоского разделителя, вы можете указать его цвет: "
+
+#: ../data/messages:19
+msgid "Caroussel"
+msgstr "Карусель"
+
+#: ../data/messages:21
+msgid "In degrees, regarding the vertical position. It's a sort of inclination of the plane on the horizontal, giving the 3D feeling. So setting it to 0 means the plane is not inclined at all (vertical)."
+msgstr "В градусах, относительно вертикальной позиции. Вид наклонности плоскости по горизонтали, дающий ощущение 3D. Поэтому установив значение в ноль, плоскость вообще не будет наклонена (будет вертикальной)."
+
+#: ../data/messages:23
+msgid "Inclination of the plane :"
+msgstr "Наклон плоскости:"
+
+#: ../data/messages:25
+msgid "0.5 means the dock is half-folded, so half the icons are on the foreground, and half are on the background."
+msgstr "0.5 - означает, что панель будет наполовину раскрыта, отчего часть значков останется на заднем фоне."
+
+#: ../data/messages:27
+msgid "Percentage of the dock's width that appears on the foreground :"
+msgstr "Ширина отображаемой панели в фоне, в процентах:"
+
+#: ../data/messages:29
+msgid "The greater, the deeper. It is in fact the gap between background icons' bottom and foreground icons' top (in pixels)."
+msgstr "Чем больше значение, тем глубже. Фактически, это промежуток между низом фоновых знаков и вершиной значков на переднем плане (в пикселях). "
+
+#: ../data/messages:31
+msgid "Depth of the plane :"
+msgstr "Глубина плоскости :"
+
+#: ../data/messages:33
+msgid "otherwise they will turn."
+msgstr "в противном случае они будут повёрнуты."
+
+#: ../data/messages:35
+msgid "Always show icons' face ?"
+msgstr "Всегда показывать лицевцю часть значков ?"
+
+#: ../data/messages:37
+msgid "Parabolic"
+msgstr "Парабола"
+
+#: ../data/messages:39
+msgid "The higher it is, the sooner the parabole will be curved."
+msgstr "Чем выше она будет, тем скорее парабола искривится."
+
+#: ../data/messages:41
+msgid "Curvature :"
+msgstr "Кривизна :"
+
+#: ../data/messages:43
+msgid "The parabole will be conscricted to a rectangle of this proportion."
+msgstr "Парабола будет сжата в прямоугольник таких пропорций."
+
+#: ../data/messages:45
+msgid "Ratio height/width :"
+msgstr "Отношение высоты/ширины:"
+
+#: ../data/messages:47
+msgid "0 means the wave is totally flat, 1 means the wave is maximal."
+msgstr "0 означает, что волна будет абсолютно плоской. 1 - волна имеет максимальный размер"
+
+#: ../data/messages:49
+#: ../data/messages:67
+msgid "Magnitude of the wave :"
+msgstr "Величина волны :"
+
+#: ../data/messages:51
+#: ../data/messages:161
+msgid "in pixels."
+msgstr "в пикселях."
+
+#: ../data/messages:53
+msgid "Space between icons and their label :"
+msgstr "Расстояние между значками и их подписями:"
+
+#: ../data/messages:55
+msgid "It may recquire more CPU during the unfolding animation, except if you launch Cairo-Dock with Glitz."
+msgstr "Может понадобиться больше мощностей процессора во время анимации раскрытия, за исключением того, что Cairo-Dock запущен с Glitz."
+
+#: ../data/messages:57
+msgid "Draw labels while unfolding ?"
+msgstr "Отрисовывать подписи во время раскрытия?"
+
+#: ../data/messages:59
+msgid "Rainbow"
+msgstr "Радуга"
+
+#: ../data/messages:61
+#: ../data/messages:79
+#: ../data/messages:119
+msgid "Space between rows :"
+msgstr "Расстояние между строками:"
+
+#: ../data/messages:63
+msgid "Space between icons :"
+msgstr "Расстояние между значками:"
+
+#: ../data/messages:65
+msgid "0 means the wave is totally flat, 1 means the wave is identical to other views."
+msgstr "0 означает, что волна будет абсолютно плоской, 1 - волна будет идентична остальным видам."
+
+#: ../data/messages:69
+msgid "Number of icons on the first row :"
+msgstr "Количество значков в первой строке:"
+
+#: ../data/messages:71
+msgid "in degree. The smaller, the more the cone is narrow. 180° means the cone is widely opened."
+msgstr "в градусах. Чем меньше значение, тем больше будет усечён конус. При 180° конус будет широко открыт."
+
+#: ../data/messages:73
+msgid "Cone's width :"
+msgstr "Ширина конуса:"
+
+#: ../data/messages:75
+msgid "Slide"
+msgstr "Скольжение"
+
+#: ../data/messages:77
+#: ../data/messages:117
+msgid "Space between columns :"
+msgstr "Расстояние между столбцами:"
+
+#: ../data/messages:81
+#: ../data/messages:121
+msgid "Max size of icons :"
+msgstr "Максимальный размер значков:"
+
+#: ../data/messages:83
+#: ../data/messages:123
+msgid "Sinusoidal wave radius :"
+msgstr "Синусоидальный радиус волны:"
+
+#: ../data/messages:85
+#: ../data/messages:125
+msgid "Use a linear wave rather than a sinusoidal one ?"
+msgstr "Использовать линейную волну вместо синусоидальной?"
+
+#: ../data/messages:87
+#: ../data/messages:127
+msgid "Use a wide shape ?"
+msgstr "Использовать широкую форму?"
+
+#: ../data/messages:89
+#: ../data/messages:129
+msgid "Display text only for pointed icon ?"
+msgstr "Показывать текст только на наведённом значке?"
+
+#: ../data/messages:91
+#: ../data/messages:131
+msgid "Display text for all icons ?"
+msgstr "Показывать текст на всех значках?"
+
+#: ../data/messages:93
+#: ../data/messages:133
+msgid "Draw a background ?"
+msgstr "Отрисовывать фон?"
+
+#: ../data/messages:95
+#: ../data/messages:135
+msgid "First gradient color (r,v,b,a) :"
+msgstr "Начальный цвет градации (к,з,с,а):"
+
+#: ../data/messages:97
+#: ../data/messages:137
+msgid "Second gradient color (r,v,b,a) :"
+msgstr "Конечный цвет градации (к,з,с,а):"
+
+#: ../data/messages:99
+#: ../data/messages:139
+msgid "Top to bottom gradient ?"
+msgstr "Градиент сверху-вниз?"
+
+#: ../data/messages:101
+#: ../data/messages:141
+msgid "Left to right gradient ?"
+msgstr "Градиент слева-направо?"
+
+#: ../data/messages:103
+#: ../data/messages:143
+msgid "Arrow width :"
+msgstr "Ширина стрелки:"
+
+#: ../data/messages:105
+#: ../data/messages:145
+msgid "Arrow Height :"
+msgstr "Высота стрелки:"
+
+#: ../data/messages:107
+#: ../data/messages:147
+msgid "Arrow shift percent :"
+msgstr "Сдвиг стрелки в процентах:"
+
+#: ../data/messages:109
+#: ../data/messages:149
+msgid "Corner radius :"
+msgstr "Радиус угла:"
+
+#: ../data/messages:111
+#: ../data/messages:151
+msgid "Border line width :"
+msgstr "Ширина линии границы:"
+
+#: ../data/messages:113
+#: ../data/messages:153
+msgid "Border line color (r,v,b,a) :"
+msgstr "Цвет линии границы (к,з,с,а):"
+
+#: ../data/messages:115
+msgid "SimpleSlide"
+msgstr "Простое скольжение"
+
+#: ../data/messages:155
+msgid "Curve"
+msgstr "Кривая"
+
+#: ../data/messages:157
+msgid "The lower, the more the curve will seem flat."
+msgstr "Чем меньше значение, тем больше кривая будет казаться плоской."
+
+#: ../data/messages:159
+msgid "Curvature of the curve in percent :"
+msgstr "Кривизна в процентах :"
+
+#: ../data/messages:163
+msgid "Amplitude of the curve."
+msgstr "Амплитуда кривой."
+

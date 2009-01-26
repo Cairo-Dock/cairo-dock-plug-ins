@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cairo-Dock II\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2009-01-17 02:15+0100\n"
+"PO-Revision-Date: 2009-01-25 16:51+0500\n"
+"Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+
+#: ../src/applet-notifications.c:19
+msgid ""
+"This is the showDesklets applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"Апплет showDesklets\n"
+" создан Fabrice Rey для Cairo-Dock"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Значок"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Определите размер значка для этого апплета"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "ширина:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "высота:"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Имя значка, который появится на подписи в панели:"
+
+#: ../data/messages:11
+#: ../data/messages:15
+msgid "Let empty to use the default one."
+msgstr "Оставьте пустым для использования стандартного."
+
+#: ../data/messages:13
+msgid "Image name to show desklets :"
+msgstr "Изображение для показа десклетов:"
+
+#: ../data/messages:17
+msgid "Image name to hide desklets :"
+msgstr "Изображение для скрытия десклетов:"
+
+#: ../data/messages:19
+msgid "Name of the dock it belongs to:"
+msgstr "Имя панели которой он принадлежит:"
+
+#: ../data/messages:21
+msgid "Configuration"
+msgstr "Настройки"
+
+#: ../data/messages:23
+msgid "Show/hide desklets that are on the widget layer too ?"
+msgstr "Показывать/скрывать десклеты находящиеся на слое виджетов?"
+
+#: ../data/messages:25
+msgid "Shortkey to show/hide the desklets :"
+msgstr "Горячая клавиша:"
+

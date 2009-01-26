@@ -1,0 +1,367 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cairo-Dock II\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2009-01-17 02:15+0100\n"
+"PO-Revision-Date: 2009-01-25 16:06+0500\n"
+"Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+
+#: ../src/powermanager-draw.c:115
+msgid "None"
+msgstr "Нет данных"
+
+#: ../src/powermanager-draw.c:144
+#: ../src/powermanager-draw.c:173
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: ../src/powermanager-draw.c:147
+msgid ""
+"Laptop on Battery.\n"
+" Battery charged at:"
+msgstr ""
+"Питание от батареи.\n"
+" Батарея заряжена на:"
+
+#: ../src/powermanager-draw.c:147
+#: ../src/powermanager-draw.c:177
+#: ../src/powermanager-draw.c:183
+msgid "Estimated time with Charge:"
+msgstr "Оставшееся время работы:"
+
+#: ../src/powermanager-draw.c:151
+msgid ""
+"Laptop on Charge.\n"
+" Battery charged at:"
+msgstr ""
+"Питание от сети.\n"
+" Батарея заряжена на:"
+
+#: ../src/powermanager-draw.c:151
+msgid "Estimated Charge time:"
+msgstr "Оставшееся время зарядки:"
+
+#: ../src/powermanager-draw.c:157
+msgid "No Battery found."
+msgstr "Батарея не найдена."
+
+#: ../src/powermanager-draw.c:177
+msgid ""
+"PowerManager.\n"
+"Battery charge seems to be low"
+msgstr ""
+"PowerManager.\n"
+"Низкий заряд батареи"
+
+#: ../src/powermanager-draw.c:177
+msgid "Please put your Laptop on charge."
+msgstr "Пожалуйста, поставьте на зарядку."
+
+#: ../src/powermanager-draw.c:183
+msgid ""
+"PowerManager.\n"
+"Your battery is now Charged"
+msgstr ""
+"PowerManager.\n"
+"Батарея заряжена"
+
+#: ../src/powermanager-menu-functions.c:15
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Апплет создан Necropotame (Adrien Pilleboue)"
+
+#: ../src/powermanager-menu-functions.c:46
+msgid "Set up power management"
+msgstr "Настроить управление питанием"
+
+#: ../src/powermanager-menu-functions.c:49
+msgid "Halt"
+msgstr "Завершение"
+
+#: ../src/powermanager-menu-functions.c:50
+msgid "Hibernate"
+msgstr "Спящий режим"
+
+#: ../src/powermanager-menu-functions.c:51
+msgid "Suspend"
+msgstr "Ждущий режим"
+
+#: ../src/powermanager-menu-functions.c:52
+msgid "Reboot"
+msgstr "Перезагрузка"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Значок"
+
+#: ../data/messages:3
+msgid "Icon size"
+msgstr "Размер значка"
+
+#: ../data/messages:5
+msgid "Width :"
+msgstr "Ширина:"
+
+#: ../data/messages:7
+msgid "Height :"
+msgstr "Высота:"
+
+#: ../data/messages:9
+msgid "Icon name :"
+msgstr "Имя значка:"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Имя панели которой он принадлежит:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Десклет"
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "В зависимости от вашего Оконного менеджера, вы можете изменить размер с помощью сочетания клавиш ALT + средний щелчок или ALT + левый щелчок."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Размер десклета (ширина х высота):"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "В зависимости от вашего Оконного менеджера, вы можете переместить его с помощью сочетания клавиш ALT + левый щелчок"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Позиция десклета (x ; y):"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "Открепить от панели?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Держать позади окон?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Держать поверх окон?"
+
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "Для \"слоя виджетов\" Compiz Fusion, установите поведение в Compiz на (имя=cairo-dock & тип=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Держать на слое виджетов?"
+
+#: ../data/messages:33
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Если заблокировано, то десклет можно легко перемещать с помощью левой кнопки мыши. И, кончено, вы по-прежнему можете использовать ALT + левый щелчок."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Заблокировать позицию?"
+
+#: ../data/messages:37
+msgid "in degrees."
+msgstr "в градусах."
+
+#: ../data/messages:39
+msgid "Rotation :"
+msgstr "Вращение:"
+
+#: ../data/messages:41
+msgid "Decorations"
+msgstr "Оформление"
+
+#: ../data/messages:43
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "Выберите 'персональный', чтобы самостоятельно настроить оформление."
+
+#: ../data/messages:45
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Выберите тему оформления лоя этого десклета:"
+
+#: ../data/messages:47
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "Изображение показываемое позади рисунка, например рамка. Оставьте пустым, чтобы не использовать."
+
+#: ../data/messages:49
+msgid "Background image :"
+msgstr "Фоновое изображение:"
+
+#: ../data/messages:51
+msgid "Background tansparency :"
+msgstr "Фоновая прозрачность:"
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "в пикселях. Определяет левую позицию рисунка."
+
+#: ../data/messages:55
+msgid "Left offset :"
+msgstr "Левое смещение:"
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "в пикселях. Определяет верхнюю позицию рисунка."
+
+#: ../data/messages:59
+msgid "Top offset :"
+msgstr "Верхнее смещение:"
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "в пикселях. Определяет правую позицию рисунка."
+
+#: ../data/messages:63
+msgid "Right offset :"
+msgstr "Правое смещение:"
+
+#: ../data/messages:65
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "в пикселях. Определяет нижнюю позицию рисунка."
+
+#: ../data/messages:67
+msgid "Bottom offset :"
+msgstr "Нижнее смещение:"
+
+#: ../data/messages:69
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "Изображение показываемое поверх рисунка, например отражение. Оставьте пустым, чтобы не использовать."
+
+#: ../data/messages:71
+msgid "Foreground image :"
+msgstr "Фоновое изображение:"
+
+#: ../data/messages:73
+msgid "Foreground tansparency :"
+msgstr "Фоновая прозрачность:"
+
+#: ../data/messages:75
+msgid "Configuration"
+msgstr "Настройки"
+
+#: ../data/messages:77
+msgid "in seconds."
+msgstr "в секундах."
+
+#: ../data/messages:79
+msgid "Interval of time between 2 checks :"
+msgstr "Интервал проверок:"
+
+#: ../data/messages:81
+msgid "Use average system ?"
+msgstr "Использовать среднюю систему?"
+
+#: ../data/messages:83
+msgid "Display"
+msgstr "Отображение"
+
+#: ../data/messages:85
+msgid "Icon's filename when on battery :"
+msgstr "Файла значка при работе от батареи:"
+
+#: ../data/messages:87
+msgid "Icon's filename when on charge :"
+msgstr "Файла значка при работе от сети:"
+
+#: ../data/messages:89
+msgid "Effect to apply on the icon according to charge :"
+msgstr "При зарядке, применять эффект на значке:"
+
+#: ../data/messages:91
+#: ../data/messages:105
+msgid "nothing"
+msgstr "Ничего"
+
+#: ../data/messages:93
+msgid "zoom"
+msgstr "Приближение"
+
+#: ../data/messages:95
+msgid "transparency"
+msgstr "Прозрачность"
+
+#: ../data/messages:97
+msgid "draw bar"
+msgstr "Рисовать полосы"
+
+#: ../data/messages:99
+msgid "Use a gauge instead of icons ?"
+msgstr "Использовать датчик вместо значков?"
+
+#: ../data/messages:101
+msgid "List of available gauges :"
+msgstr "Список доступных датчиков:"
+
+#: ../data/messages:103
+msgid "Information to be displayed on the icon :"
+msgstr "Отображать информацию на значке:"
+
+#: ../data/messages:107
+msgid "charge"
+msgstr "зарядка"
+
+#: ../data/messages:109
+msgid "time"
+msgstr "время"
+
+#: ../data/messages:111
+msgid "Alert"
+msgstr "Оповещение"
+
+#: ../data/messages:113
+msgid "Alert when battery charged ?"
+msgstr "Оповещать когда батарея заряжена?"
+
+#: ../data/messages:115
+#: ../data/messages:125
+#: ../data/messages:133
+msgid "Let it empty to have no sound"
+msgstr "Оставьте пустым, чтобы не использовать звуки"
+
+#: ../data/messages:117
+#: ../data/messages:127
+#: ../data/messages:135
+msgid "Use a sound :"
+msgstr "Проигрывать звук:"
+
+#: ../data/messages:119
+msgid "Alert when low battery ?"
+msgstr "Оповещать при низком заряде?"
+
+#: ../data/messages:121
+msgid "in percent."
+msgstr "в процентах."
+
+#: ../data/messages:123
+msgid "Battery level :"
+msgstr "Уровень заряда:"
+
+#: ../data/messages:129
+msgid "When battery level is under 4%"
+msgstr "Когда уровень опустится ниже 4%"
+
+#: ../data/messages:131
+msgid "Alert when battery charge is critical ?"
+msgstr "Оповещать при критическом заряде?"
+
+#: ../data/messages:137
+msgid "Animate icon during the alert ?"
+msgstr "Анимировать значок во время оповещения?"
+
+#: ../data/messages:139
+msgid "Animation during alert :"
+msgstr "Анимация во время оповещения:"
+

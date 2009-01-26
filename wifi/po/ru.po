@@ -1,0 +1,412 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cairo-Dock II\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2009-01-17 02:15+0100\n"
+"PO-Revision-Date: 2009-01-25 17:27+0500\n"
+"Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+
+#: ../src/applet-draw.c:13
+#: ../data/messages:81
+#: ../data/messages:111
+msgid "None"
+msgstr "Нет"
+
+#: ../src/applet-draw.c:13
+msgid "Very Low"
+msgstr "Очень слабый"
+
+#: ../src/applet-draw.c:13
+msgid "Low"
+msgstr "Слабый"
+
+#: ../src/applet-draw.c:13
+msgid "Middle"
+msgstr "Средний"
+
+#: ../src/applet-draw.c:13
+msgid "Good"
+msgstr "Хороший"
+
+#: ../src/applet-draw.c:13
+msgid "Excellent"
+msgstr "Отличный"
+
+#: ../src/applet-draw.c:131
+msgid "Wifi disabled."
+msgstr "Wifi отключен."
+
+#: ../src/applet-draw.c:135
+msgid ""
+"Wifi enabled. \n"
+" Connected on:"
+msgstr ""
+"Wifi включен. \n"
+" Соединён:"
+
+#: ../src/applet-draw.c:135
+msgid "Signal Strength:"
+msgstr "Мощность сигнала:"
+
+#: ../src/applet-notifications.c:13
+msgid ""
+"This is the wifi applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+"Апплет wifi\n"
+" создан ChAnGFu для Cairo-Dock"
+
+#: ../src/applet-notifications.c:62
+msgid "Check for Wireless Extension"
+msgstr "Проверьте рсширение Wifi"
+
+#: ../src/applet-notifications.c:64
+msgid "Network Administration"
+msgstr "Администрирование сети"
+
+#: ../src/applet-wifi.c:128
+#: ../src/applet-wifi.c:133
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Значок"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Определите размер значка для этого апплета"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "ширина:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "высота:"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Имя значка, который появится на подписи в панели:"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Имя панели которой он принадлежит:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Десклет"
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "В зависимости от вашего Оконного менеджера, вы можете изменить размер с помощью сочетания клавиш ALT + средний щелчок или ALT + левый щелчок."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Размер десклета (ширина х высота):"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "В зависимости от вашего Оконного менеджера, вы можете переместить его с помощью сочетания клавиш ALT + левый щелчок"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Позиция десклета (x ; y):"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "Открепить от панели?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Держать позади окон?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Держать поверх окон?"
+
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "Для \"слоя виджетов\" Compiz Fusion, установите поведение в Compiz на (имя=cairo-dock & тип=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Держать на слое виджетов?"
+
+#: ../data/messages:33
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Если заблокировано, то десклет можно легко перемещать с помощью левой кнопки мыши. И, кончено, вы по-прежнему можете использовать ALT + левый щелчок."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Заблокировать позицию?"
+
+#: ../data/messages:37
+msgid "in degrees."
+msgstr "в градусах."
+
+#: ../data/messages:39
+msgid "Rotation :"
+msgstr "Вращение:"
+
+#: ../data/messages:41
+msgid "Decorations"
+msgstr "Оформление"
+
+#: ../data/messages:43
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "Выберите 'персональный', чтобы самостоятельно настроить оформление."
+
+#: ../data/messages:45
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Выберите тему оформления лоя этого десклета:"
+
+#: ../data/messages:47
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "Изображение показываемое позади рисунка, например рамка. Оставьте пустым, чтобы не использовать."
+
+#: ../data/messages:49
+msgid "Background image :"
+msgstr "Фоновое изображение:"
+
+#: ../data/messages:51
+msgid "Background tansparency :"
+msgstr "Фоновая прозрачность:"
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "в пикселях. Определяет левую позицию рисунка."
+
+#: ../data/messages:55
+msgid "Left offset :"
+msgstr "Левое смещение:"
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "в пикселях. Определяет верхнюю позицию рисунка."
+
+#: ../data/messages:59
+msgid "Top offset :"
+msgstr "Верхнее смещение:"
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "в пикселях. Определяет правую позицию рисунка."
+
+#: ../data/messages:63
+msgid "Right offset :"
+msgstr "Правое смещение:"
+
+#: ../data/messages:65
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "в пикселях. Определяет нижнюю позицию рисунка."
+
+#: ../data/messages:67
+msgid "Bottom offset :"
+msgstr "Нижнее смещение:"
+
+#: ../data/messages:69
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "Изображение показываемое поверх рисунка, например отражение. Оставьте пустым, чтобы не использовать."
+
+#: ../data/messages:71
+msgid "Foreground image :"
+msgstr "Фоновое изображение:"
+
+#: ../data/messages:73
+msgid "Foreground tansparency :"
+msgstr "Фоновая прозрачность:"
+
+#: ../data/messages:75
+msgid "Configuration"
+msgstr "Настройки"
+
+#: ../data/messages:77
+msgid "Information"
+msgstr "Информация"
+
+#: ../data/messages:79
+msgid "Information to display on the icon :"
+msgstr "Информация на значке:"
+
+#: ../data/messages:83
+msgid "Signal Strength"
+msgstr "Мощность сигнала"
+
+#: ../data/messages:85
+msgid "Signal Strength in percent"
+msgstr "Мощность сигнала в процентах"
+
+#: ../data/messages:87
+msgid "Raw Signal Informations"
+msgstr "Информация о сигнале"
+
+#: ../data/messages:89
+msgid "in seconds."
+msgstr "в секундах."
+
+#: ../data/messages:91
+msgid "Delay between signal checks :"
+msgstr "Интервал проверок:"
+
+#: ../data/messages:93
+msgid "Allow you to overwrite applet's default command line and launch you wireless configuration interface."
+msgstr "Позволяет переназначить стандартную команду запуска и использовать ваши собственные настройки беспроводного интерфейса."
+
+#: ../data/messages:95
+msgid "Alternative command line to launch Wireless Configuration :"
+msgstr "Альтернативная команда для запуска:"
+
+#: ../data/messages:97
+msgid "Display"
+msgstr "Отображение"
+
+#: ../data/messages:99
+msgid "Overwrite the default label with the connection point name ?"
+msgstr "Заменить подпись на имя подключённой точки?"
+
+#: ../data/messages:101
+msgid "Display type :"
+msgstr "Тип отображения:"
+
+#: ../data/messages:103
+#: ../data/messages:153
+msgid "Images"
+msgstr "Изображения"
+
+#: ../data/messages:105
+msgid "Gauges"
+msgstr "Датчики"
+
+#: ../data/messages:107
+msgid "Graphic"
+msgstr "Графика"
+
+#: ../data/messages:109
+msgid "Effect to apply on the icon according to strength :"
+msgstr "Эффект применяемый в зависимости от мощности:"
+
+#: ../data/messages:113
+msgid "Zoom"
+msgstr "Приближение"
+
+#: ../data/messages:115
+msgid "Transparency"
+msgstr "Прозрачность"
+
+#: ../data/messages:117
+msgid "Draw Bar"
+msgstr "Рисовать полосы"
+
+#: ../data/messages:119
+msgid "Type of graphic :"
+msgstr "Тип графики:"
+
+#: ../data/messages:121
+msgid "Line"
+msgstr "Линии"
+
+#: ../data/messages:123
+msgid "Plain"
+msgstr "Плоский"
+
+#: ../data/messages:125
+msgid "Bar"
+msgstr "Столбцы"
+
+#: ../data/messages:127
+msgid "Circle"
+msgstr "Окружность"
+
+#: ../data/messages:129
+msgid "Plain Circle"
+msgstr "Плоский круг"
+
+#: ../data/messages:131
+msgid "It's the color of the graphic for high Strength values."
+msgstr "Цвет графики при высокой мощности."
+
+#: ../data/messages:133
+msgid "High values color :"
+msgstr "Цвет при высоких значениях:"
+
+#: ../data/messages:135
+msgid "It's the color of the graphic for low Strength values."
+msgstr "Цвет графики при низкой мощности."
+
+#: ../data/messages:137
+msgid "Low values color :"
+msgstr "Цвет при низких значениях:"
+
+#: ../data/messages:139
+msgid "Background color of the graphic :"
+msgstr "Фоновый цвет графики:"
+
+#: ../data/messages:141
+msgid "List of available themes for the analogic display :"
+msgstr "Список тем:"
+
+#: ../data/messages:143
+msgid "radium"
+msgstr "радиум"
+
+#: ../data/messages:145
+msgid "Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark."
+msgstr "Оставьте пустым, чтобы использовать стандартное изображение. Установите прозрачность в 0, если не хотите иметь водяной знак."
+
+#: ../data/messages:147
+msgid "Image to display as a watermark on the gauge :"
+msgstr "Изображение для водяного знака:"
+
+#: ../data/messages:149
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr "Установите в ноль, если не хотите иметь водяной знак."
+
+#: ../data/messages:151
+msgid "Transparency of the watermark :"
+msgstr "Прозрачность водяного знака:"
+
+#: ../data/messages:155
+#: ../data/messages:159
+#: ../data/messages:163
+#: ../data/messages:167
+#: ../data/messages:171
+#: ../data/messages:175
+msgid "Let it empty to use the default icon."
+msgstr "Оставьте пустым, чтобы использовать стандартный значок."
+
+#: ../data/messages:157
+msgid "Name of an image for the 'no signal' icon :"
+msgstr "Имя файла для значка 'нет сигнала':"
+
+#: ../data/messages:161
+msgid "Name of an image for the 'very low' icon :"
+msgstr "Имя файла для значка 'очень слабый' :"
+
+#: ../data/messages:165
+msgid "Name of an image for the 'low' icon :"
+msgstr "Имя файла для значка 'слабый' :"
+
+#: ../data/messages:169
+msgid "Name of an image for the 'middle' icon :"
+msgstr "Имя файла для значка 'средний' :"
+
+#: ../data/messages:173
+msgid "Name of an image for the 'good' icon :"
+msgstr "Имя файла для значка 'хороший' :"
+
+#: ../data/messages:177
+msgid "Name of an image for the 'exellent' icon :"
+msgstr "Имя файла для значка 'отличный' :"
+

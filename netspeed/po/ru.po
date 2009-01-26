@@ -1,0 +1,353 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cairo-Dock II\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2009-01-17 02:15+0100\n"
+"PO-Revision-Date: 2009-01-25 15:57+0500\n"
+"Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+
+#: ../src/applet-netspeed.c:25
+#: ../src/applet-netspeed.c:33
+msgid "B"
+msgstr "Б"
+
+#: ../src/applet-netspeed.c:41
+msgid "KB"
+msgstr "КБ"
+
+#: ../src/applet-netspeed.c:49
+#: ../src/applet-notifications.c:18
+msgid "MB"
+msgstr "МБ"
+
+#: ../src/applet-netspeed.c:57
+msgid "GB"
+msgstr "ГБ"
+
+#: ../src/applet-netspeed.c:65
+msgid "TB"
+msgstr "ТБ"
+
+#: ../src/applet-netspeed.c:167
+msgid "Loading"
+msgstr "Загрузка"
+
+#: ../src/applet-notifications.c:11
+msgid ""
+"This is the netspeed applet\n"
+" made by parAdOxxx_ZeRo for Cairo-Dock"
+msgstr ""
+"Апплет netspeed\n"
+" создан parAdOxxx_ZeRo для Cairo-Dock"
+
+#: ../src/applet-notifications.c:18
+msgid "Total amount of data"
+msgstr "Общее количество"
+
+#: ../src/applet-notifications.c:18
+msgid "downloaded"
+msgstr "скачано"
+
+#: ../src/applet-notifications.c:18
+msgid "uploaded"
+msgstr "закачано"
+
+#: ../src/applet-notifications.c:21
+#, c-format
+msgid "Interface '%s' seems to not exist or is not readable"
+msgstr "Интерфейс '%s' похоже не существует или не читаем"
+
+#: ../src/applet-notifications.c:46
+msgid "Monitor System"
+msgstr "Отслеживаемая система"
+
+#: ../src/applet-notifications.c:48
+msgid "Re-check interface"
+msgstr "Перепроверка интерфейса"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Значок"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Определите размер значка для этого апплета"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "ширина:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "высота:"
+
+#: ../data/messages:9
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Имя значка, который появится на подписи в панели:"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Имя панели которой он принадлежит:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Десклет"
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "В зависимости от вашего Оконного менеджера, вы можете изменить размер с помощью сочетания клавиш ALT + средний щелчок или ALT + левый щелчок."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Размер десклета (ширина х высота):"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen"
+msgstr "В зависимости от Оконного Менеджера, вы можете перемещать его помощью  клавиш ALT + левый щелчок. Отрицательные значения идут в расчёт от правого/ниженого края экрана"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Позиция десклета (x ; y):"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "Открепить от панели?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Держать позади окон?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Держать поверх окон?"
+
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "Для \"слоя виджетов\" Compiz Fusion, установите поведение в Compiz на (имя=cairo-dock & тип=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Держать на слое виджетов?"
+
+#: ../data/messages:33
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Если заблокировано, то десклет можно легко перемещать с помощью левой кнопки мыши. И, кончено, вы по-прежнему можете использовать ALT + левый щелчок."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Заблокировать позицию?"
+
+#: ../data/messages:37
+msgid "in degrees."
+msgstr "в градусах."
+
+#: ../data/messages:39
+msgid "Rotation :"
+msgstr "Вращение:"
+
+#: ../data/messages:41
+msgid "Decorations"
+msgstr "Оформление"
+
+#: ../data/messages:43
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "Выберите 'персональный', чтобы самостоятельно настроить оформление."
+
+#: ../data/messages:45
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Выберите тему оформления лоя этого десклета:"
+
+#: ../data/messages:47
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "Изображение показываемое позади рисунка, например рамка. Оставьте пустым, чтобы не использовать."
+
+#: ../data/messages:49
+msgid "Background image :"
+msgstr "Фоновое изображение:"
+
+#: ../data/messages:51
+msgid "Background tansparency :"
+msgstr "Фоновая прозрачность:"
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "в пикселях. Определяет левую позицию рисунка."
+
+#: ../data/messages:55
+msgid "Left offset :"
+msgstr "Левое смещение:"
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "в пикселях. Определяет верхнюю позицию рисунка."
+
+#: ../data/messages:59
+msgid "Top offset :"
+msgstr "Верхнее смещение:"
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "в пикселях. Определяет правую позицию рисунка."
+
+#: ../data/messages:63
+msgid "Right offset :"
+msgstr "Правое смещение:"
+
+#: ../data/messages:65
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "в пикселях. Определяет нижнюю позицию рисунка."
+
+#: ../data/messages:67
+msgid "Bottom offset :"
+msgstr "Нижнее смещение:"
+
+#: ../data/messages:69
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "Изображение показываемое поверх рисунка, например отражение. Оставьте пустым, чтобы не использовать."
+
+#: ../data/messages:71
+msgid "Foreground image :"
+msgstr "Фоновое изображение:"
+
+#: ../data/messages:73
+msgid "Foreground tansparency :"
+msgstr "Фоновая прозрачность:"
+
+#: ../data/messages:75
+#: ../data/messages:129
+msgid "Configuration"
+msgstr "Настройки"
+
+#: ../data/messages:77
+msgid "Display a graphic rather than a gauge ?"
+msgstr "Отображать графически вместо датчика?"
+
+#: ../data/messages:79
+msgid "Type of graphic :"
+msgstr "Тип графики:"
+
+#: ../data/messages:81
+msgid "Line"
+msgstr "Линии"
+
+#: ../data/messages:83
+msgid "Plain"
+msgstr "Плоский"
+
+#: ../data/messages:85
+msgid "Bar"
+msgstr "Столбцы"
+
+#: ../data/messages:87
+msgid "Circle"
+msgstr "Окружность"
+
+#: ../data/messages:89
+msgid "Plain Circle"
+msgstr "Плоский круг"
+
+#: ../data/messages:91
+#: ../data/messages:99
+msgid "It's the color of the graphic for high CPU values."
+msgstr "Цвет графики при высоких значения CPU."
+
+#: ../data/messages:93
+msgid "High values color for the download speed :"
+msgstr "Цвет высоких значении при загрузке:"
+
+#: ../data/messages:95
+#: ../data/messages:103
+msgid "It's the color of the graphic for low CPU values."
+msgstr "Цвет графики при низких значениях CPU."
+
+#: ../data/messages:97
+msgid "Low values color for the download speed :"
+msgstr "Цвет низких значении при загрузке:"
+
+#: ../data/messages:101
+msgid "High values color for the upload speed :"
+msgstr "Цвет высоких значении при закачке:"
+
+#: ../data/messages:105
+msgid "Low values color for the upload speed :"
+msgstr "Цвет низких значении при закачке:"
+
+#: ../data/messages:107
+msgid "Draw both values on the same graph ?"
+msgstr "Рисовать оба значения на одном графике?"
+
+#: ../data/messages:109
+msgid "Background color of the graphic :"
+msgstr "Фоновый цвет графики:"
+
+#: ../data/messages:111
+msgid "List of available themes for the gauge :"
+msgstr "Список доступных тем для датчика:"
+
+#: ../data/messages:113
+msgid "Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark."
+msgstr "Оставьте пустым, чтобы использовать стандартное изображение. Установите прозрачность в 0, если не хотите иметь водяной знак."
+
+#: ../data/messages:115
+msgid "Image to display as a watermark on the gauge :"
+msgstr "Изображение для водяного знака:"
+
+#: ../data/messages:117
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr "Установите в ноль, если не хотите иметь водяной знак."
+
+#: ../data/messages:119
+msgid "Transparency of the watermark :"
+msgstr "Прозрачность водяного знака:"
+
+#: ../data/messages:121
+msgid "Display speed values :"
+msgstr "Показывать значения скорости:"
+
+#: ../data/messages:123
+msgid "No"
+msgstr "Нет"
+
+#: ../data/messages:125
+msgid "On icon"
+msgstr "На значке"
+
+#: ../data/messages:127
+msgid "On label"
+msgstr "В подписи"
+
+#: ../data/messages:131
+msgid "By default it will be 'eth0'."
+msgstr "По умолчанию 'eth0'."
+
+#: ../data/messages:133
+msgid "interface :"
+msgstr "Интерфейс:"
+
+#: ../data/messages:135
+msgid "in seconds."
+msgstr "в секундах."
+
+#: ../data/messages:137
+msgid "Delay between 2 measures :"
+msgstr "Интервал обновления:"
+
+#: ../data/messages:139
+msgid "Let empty to use he default one."
+msgstr "Оставьте пустым, чтобы использовать стандартный значок."
+
+#: ../data/messages:141
+msgid "User command to show a system monitor :"
+msgstr "Пользовательская команда для системного монитора:"
+

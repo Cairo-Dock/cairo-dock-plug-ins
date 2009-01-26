@@ -1,0 +1,17 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+

@@ -1,0 +1,312 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cairo-Dock\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2009-01-17 02:15+0100\n"
+"PO-Revision-Date: 2009-01-25 16:35+0500\n"
+"Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+
+#: ../src/rhythmbox-draw.c:75
+msgid "Track"
+msgstr "Дорожка"
+
+#: ../src/rhythmbox-draw.c:135
+#, c-format
+msgid ""
+"Artist : %s\n"
+"Album : %s\n"
+"Title : %s"
+msgstr ""
+"Исполнитель : %s\n"
+"Альбом : %s\n"
+"Заголовок : %s"
+
+#: ../src/rhythmbox-draw.c:139
+#: ../src/rhythmbox-draw.c:140
+#: ../src/rhythmbox-draw.c:141
+msgid "Unknown"
+msgstr "Неизвестный"
+
+#: ../src/rhythmbox-menu-functions.c:45
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Апплет создан Necropotame (Adrien Pilleboue)"
+
+#: ../src/rhythmbox-menu-functions.c:55
+msgid "Previous"
+msgstr "Предыдущий"
+
+#: ../src/rhythmbox-menu-functions.c:57
+msgid "Next (middle-click)"
+msgstr "Следующий (средний щелчок)"
+
+#: ../src/rhythmbox-menu-functions.c:59
+msgid "Play/Pause (left-click)"
+msgstr "Играть/Пауза (левый щелчок)"
+
+#: ../src/rhythmbox-menu-functions.c:61
+msgid "Information"
+msgstr "Информация"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Значок"
+
+#: ../data/messages:3
+msgid "Desired icon size for this applet"
+msgstr "Определите размер значка для этого апплета"
+
+#: ../data/messages:5
+msgid "width :"
+msgstr "ширина:"
+
+#: ../data/messages:7
+msgid "height :"
+msgstr "высота:"
+
+#: ../data/messages:9
+msgid "Default title :"
+msgstr "Стандартный заголовок :"
+
+#: ../data/messages:11
+msgid "Name of the dock it belongs to:"
+msgstr "Имя панели которой он принадлежит:"
+
+#: ../data/messages:13
+msgid "Desklet"
+msgstr "Десклет"
+
+#: ../data/messages:15
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "В зависимости от вашего Оконного менеджера, вы можете изменить размер с помощью сочетания клавиш ALT + средний щелчок или ALT + левый щелчок."
+
+#: ../data/messages:17
+msgid "Desklet's dimension (width x height) :"
+msgstr "Размер десклета (ширина х высота):"
+
+#: ../data/messages:19
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "В зависимости от вашего Оконного менеджера, вы можете переместить его с помощью сочетания клавиш ALT + левый щелчок"
+
+#: ../data/messages:21
+msgid "Desklet's position (x ; y) :"
+msgstr "Позиция десклета (x ; y):"
+
+#: ../data/messages:23
+msgid "Is detached from the dock ?"
+msgstr "Открепить от панели?"
+
+#: ../data/messages:25
+msgid "Keep below other windows ?"
+msgstr "Держать позади окон?"
+
+#: ../data/messages:27
+msgid "Keep above other windows ?"
+msgstr "Держать поверх окон?"
+
+#: ../data/messages:29
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "Для \"слоя виджетов\" Compiz Fusion, установите поведение в Compiz на (имя=cairo-dock & тип=utility)"
+
+#: ../data/messages:31
+msgid "Keep on widget layer ?"
+msgstr "Держать на слое виджетов?"
+
+#: ../data/messages:33
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Если заблокировано, то десклет можно легко перемещать с помощью левой кнопки мыши. И, кончено, вы по-прежнему можете использовать ALT + левый щелчок."
+
+#: ../data/messages:35
+msgid "Lock position ?"
+msgstr "Заблокировать позицию?"
+
+#: ../data/messages:37
+msgid "in degrees."
+msgstr "в градусах."
+
+#: ../data/messages:39
+msgid "Rotation :"
+msgstr "Вращение:"
+
+#: ../data/messages:41
+msgid "Decorations"
+msgstr "Оформление"
+
+#: ../data/messages:43
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "Выберите 'персональный', чтобы самостоятельно настроить оформление."
+
+#: ../data/messages:45
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Выберите тему оформления лоя этого десклета:"
+
+#: ../data/messages:47
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "Изображение показываемое позади рисунка, например рамка. Оставьте пустым, чтобы не использовать."
+
+#: ../data/messages:49
+msgid "Background image :"
+msgstr "Фоновое изображение:"
+
+#: ../data/messages:51
+msgid "Background tansparency :"
+msgstr "Фоновая прозрачность:"
+
+#: ../data/messages:53
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "в пикселях. Определяет левую позицию рисунка."
+
+#: ../data/messages:55
+msgid "Left offset :"
+msgstr "Левое смещение:"
+
+#: ../data/messages:57
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "в пикселях. Определяет верхнюю позицию рисунка."
+
+#: ../data/messages:59
+msgid "Top offset :"
+msgstr "Верхнее смещение:"
+
+#: ../data/messages:61
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "в пикселях. Определяет правую позицию рисунка."
+
+#: ../data/messages:63
+msgid "Right offset :"
+msgstr "Правое смещение:"
+
+#: ../data/messages:65
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "в пикселях. Определяет нижнюю позицию рисунка."
+
+#: ../data/messages:67
+msgid "Bottom offset :"
+msgstr "Нижнее смещение:"
+
+#: ../data/messages:69
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "Изображение показываемое поверх рисунка, например отражение. Оставьте пустым, чтобы не использовать."
+
+#: ../data/messages:71
+msgid "Foreground image :"
+msgstr "Фоновое изображение:"
+
+#: ../data/messages:73
+msgid "Foreground tansparency :"
+msgstr "Фоновая прозрачность:"
+
+#: ../data/messages:75
+msgid "Configuration"
+msgstr "Настройки"
+
+#: ../data/messages:77
+msgid "Info-bubbles"
+msgstr "Облачко напоминаний"
+
+#: ../data/messages:79
+msgid "Activate info-bubbles ?"
+msgstr "Включить облачки напоминаний?"
+
+#: ../data/messages:81
+msgid "in ms."
+msgstr "в мсек."
+
+#: ../data/messages:83
+msgid "Time length of info-bubbles :"
+msgstr "Длительность облачка напоминаний:"
+
+#: ../data/messages:85
+msgid "Behaviour"
+msgstr "Поведение"
+
+#: ../data/messages:87
+msgid "Animation when music changes :"
+msgstr "Анимация при проигрывании музыки:"
+
+#: ../data/messages:89
+msgid "It will prevent the rhythmbox's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
+msgstr "Предотвратит появление значка rhythmbox на панели задач. Значок апплет будет реагировать и как значок запуска, и как приложение, и как апплет."
+
+#: ../data/messages:91
+msgid "Steal the rhythmbox's icon in taskbar ?"
+msgstr "Убрать значок rhythmbox из панели задач?"
+
+#: ../data/messages:93
+msgid "Display"
+msgstr "Отображение"
+
+#: ../data/messages:95
+msgid "Display album's cover instead of icon ?"
+msgstr "Показывать обложку альбома вместо значка?"
+
+#: ../data/messages:97
+msgid "Information to display on the icon :"
+msgstr "Информация на значке:"
+
+#: ../data/messages:99
+msgid "nothing"
+msgstr "Ничего"
+
+#: ../data/messages:101
+msgid "time elapsed"
+msgstr "Прошедшее время"
+
+#: ../data/messages:103
+msgid "time left"
+msgstr "Оставшееся время"
+
+#: ../data/messages:105
+msgid "time in %"
+msgstr "Время в %"
+
+#: ../data/messages:107
+msgid "n° of track"
+msgstr "N° дорожки"
+
+#: ../data/messages:109
+msgid "Draw desklet in a 3D fashion (experimental) ?"
+msgstr "Использовать 3D (экспериментально)?"
+
+#: ../data/messages:111
+msgid "Personnalisation"
+msgstr "Персонализация"
+
+#: ../data/messages:113
+#: ../data/messages:117
+#: ../data/messages:121
+#: ../data/messages:125
+#: ../data/messages:129
+msgid "Let t empty to use the default icon."
+msgstr "Оставьте пустым, чтобы использовать стандартный значок."
+
+#: ../data/messages:115
+msgid "Name of an image for the 'default' icon :"
+msgstr "Изображение для стандартного значка:"
+
+#: ../data/messages:119
+msgid "Name of an image for the 'play' icon :"
+msgstr "Изображение для значка 'играть':"
+
+#: ../data/messages:123
+msgid "Name of an image for the 'stop' icon :"
+msgstr "Изображение для значка 'стоп':"
+
+#: ../data/messages:127
+msgid "Name of an image for the 'pause' icon :"
+msgstr "Изображение для значка 'пауза':"
+
+#: ../data/messages:131
+msgid "Name of an image for the 'broken' icon :"
+msgstr "Изображение для значка поломки:"
+
