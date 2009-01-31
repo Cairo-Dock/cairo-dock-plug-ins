@@ -18,5 +18,26 @@
 		<method name="ShowDock">
 			<arg name="show" type="b" direction="in"/>
 		</method>
+		<method name="LoadLauncherFromFile">
+			<arg name="cDesktopFile" type="s" direction="in"/>
+		</method>
+		<method name="CreateLauncherFromScratch">
+			<arg name="cIconFile" type="s" direction="in"/>
+			<arg name="cLabel" type="s" direction="in"/>
+			<arg name="cCommand" type="s" direction="in"/>
+			<arg name="cParentDockName" type="s" direction="in"/>
+		</method>
+		<method name="SetQuickInfo">
+			<arg name="cQuickInfo" type="s" direction="in"/>
+			<arg name="cIconName" type="s" direction="in"/>
+			<arg name="cIconCommand" type="s" direction="in"/>
+			<arg name="cModuleName" type="s" direction="in"/>
+		</method>
+		<method name="SetLabel">
+			<arg name="cQuickInfo" type="s" direction="in"/>
+			<arg name="cIconName" type="s" direction="in"/>
+			<arg name="cIconCommand" type="s" direction="in"/>
+			<arg name="cModuleName" type="s" direction="in"/>
+		</method>
 	</interface>
 </node>

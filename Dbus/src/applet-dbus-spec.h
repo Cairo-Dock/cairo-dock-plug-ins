@@ -53,7 +53,7 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* BOOLEAN:BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.JWRUMU:1) */
+/* BOOLEAN:BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.T1WWOU:1) */
 extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__BOOLEAN_POINTER (GClosure     *closure,
                                                                          GValue       *return_value,
                                                                          guint         n_param_values,
@@ -100,7 +100,60 @@ dbus_glib_marshal_cd_dbus_callback_BOOLEAN__BOOLEAN_POINTER (GClosure     *closu
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.JWRUMU:2) */
+/* BOOLEAN:STRING,STRING,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.T1WWOU:2) */
+extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_STRING_STRING_STRING_POINTER (GClosure     *closure,
+                                                                                             GValue       *return_value,
+                                                                                             guint         n_param_values,
+                                                                                             const GValue *param_values,
+                                                                                             gpointer      invocation_hint,
+                                                                                             gpointer      marshal_data);
+void
+dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_STRING_STRING_STRING_POINTER (GClosure     *closure,
+                                                                                 GValue       *return_value G_GNUC_UNUSED,
+                                                                                 guint         n_param_values,
+                                                                                 const GValue *param_values,
+                                                                                 gpointer      invocation_hint G_GNUC_UNUSED,
+                                                                                 gpointer      marshal_data)
+{
+  typedef gboolean (*GMarshalFunc_BOOLEAN__STRING_STRING_STRING_STRING_POINTER) (gpointer     data1,
+                                                                                 gpointer     arg_1,
+                                                                                 gpointer     arg_2,
+                                                                                 gpointer     arg_3,
+                                                                                 gpointer     arg_4,
+                                                                                 gpointer     arg_5,
+                                                                                 gpointer     data2);
+  register GMarshalFunc_BOOLEAN__STRING_STRING_STRING_STRING_POINTER callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register gpointer data1, data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 6);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+  callback = (GMarshalFunc_BOOLEAN__STRING_STRING_STRING_STRING_POINTER) (marshal_data ? marshal_data : cc->callback);
+
+  v_return = callback (data1,
+                       g_marshal_value_peek_string (param_values + 1),
+                       g_marshal_value_peek_string (param_values + 2),
+                       g_marshal_value_peek_string (param_values + 3),
+                       g_marshal_value_peek_string (param_values + 4),
+                       g_marshal_value_peek_pointer (param_values + 5),
+                       data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.T1WWOU:3) */
 extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_POINTER (GClosure     *closure,
                                                                         GValue       *return_value,
                                                                         guint         n_param_values,
@@ -147,7 +200,7 @@ dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_POINTER (GClosure     *closur
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:POINTER (/tmp/dbus-binding-tool-c-marshallers.JWRUMU:3) */
+/* BOOLEAN:POINTER (/tmp/dbus-binding-tool-c-marshallers.T1WWOU:4) */
 extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__POINTER (GClosure     *closure,
                                                                  GValue       *return_value,
                                                                  guint         n_param_values,
@@ -197,7 +250,7 @@ G_END_DECLS
 #endif /* __dbus_glib_marshal_cd_dbus_callback_MARSHAL_H__ */
 
 #include <dbus/dbus-glib.h>
-#include <applet-dbus.h>
+#include "applet-dbus.h"
 static const DBusGMethodInfo dbus_glib_cd_dbus_callback_methods[] = {
   { (GCallback) cd_dbus_callback_reboot, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__POINTER, 0 },
   { (GCallback) cd_dbus_callback_hello, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__POINTER, 34 },
@@ -205,13 +258,17 @@ static const DBusGMethodInfo dbus_glib_cd_dbus_callback_methods[] = {
   { (GCallback) cd_dbus_callback_show_dialog, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_POINTER, 122 },
   { (GCallback) cd_dbus_callback_reload_module, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_POINTER, 172 },
   { (GCallback) cd_dbus_callback_show_dock, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__BOOLEAN_POINTER, 228 },
+  { (GCallback) cd_dbus_callback_load_launcher_from_file, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_POINTER, 273 },
+  { (GCallback) cd_dbus_callback_create_launcher_from_scratch, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_STRING_STRING_STRING_POINTER, 338 },
+  { (GCallback) cd_dbus_callback_set_quick_info, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_STRING_STRING_STRING_POINTER, 449 },
+  { (GCallback) cd_dbus_callback_set_label, dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_STRING_STRING_STRING_POINTER, 551 },
 };
 
 const DBusGObjectInfo dbus_glib_cd_dbus_callback_object_info = {
   0,
   dbus_glib_cd_dbus_callback_methods,
-  6,
-"org.cairodock.CairoDock\0Reboot\0S\0\0org.cairodock.CairoDock\0Hello\0S\0\0org.cairodock.CairoDock\0ShowDesklet\0S\0widgetLayer\0I\0b\0\0org.cairodock.CairoDock\0ShowDialog\0S\0message\0I\0s\0\0org.cairodock.CairoDock\0ReloadModule\0S\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0ShowDock\0S\0show\0I\0b\0\0\0",
+  10,
+"org.cairodock.CairoDock\0Reboot\0S\0\0org.cairodock.CairoDock\0Hello\0S\0\0org.cairodock.CairoDock\0ShowDesklet\0S\0widgetLayer\0I\0b\0\0org.cairodock.CairoDock\0ShowDialog\0S\0message\0I\0s\0\0org.cairodock.CairoDock\0ReloadModule\0S\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0ShowDock\0S\0show\0I\0b\0\0org.cairodock.CairoDock\0LoadLauncherFromFile\0S\0cDesktopFile\0I\0s\0\0org.cairodock.CairoDock\0CreateLauncherFromScratch\0S\0cIconFile\0I\0s\0cLabel\0I\0s\0cCommand\0I\0s\0cParentDockName\0I\0s\0\0org.cairodock.CairoDock\0SetQuickInfo\0S\0cQuickInfo\0I\0s\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0SetLabel\0S\0cQuickInfo\0I\0s\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0\0",
 "\0",
 "\0"
 };

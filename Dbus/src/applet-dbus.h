@@ -31,4 +31,13 @@ gboolean cd_dbus_callback_reload_module (dbusCallback *pDbusCallback, gchar *cMo
 
 gboolean cd_dbus_callback_show_dock (dbusCallback *pDbusCallback, gboolean bShow, GError **error);
 
+gboolean cd_dbus_callback_load_launcher_from_file (dbusCallback *pDbusCallback, gchar *cDesktopFile, GError **error);
+
+gboolean cd_dbus_callback_create_launcher_from_scratch (dbusCallback *pDbusCallback, gchar *cIconFile, gchar *cLabel, gchar *cCommand, gchar *cParentDockName, GError **error);
+
+gboolean cd_dbus_callback_set_quick_info (dbusCallback *pDbusCallback, gchar *cQuickInfo, gchar *cIconName, gchar *cIconCommand, gchar *cModuleName, GError **error);
+
+gboolean cd_dbus_callback_set_label (dbusCallback *pDbusCallback, gchar *cLabel, gchar *cIconName, gchar *cIconCommand, gchar *cModuleName, GError **error);
+
+
 #endif
