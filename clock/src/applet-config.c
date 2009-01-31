@@ -85,8 +85,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	g_string_free (sKeyName, TRUE);
 	
 	
-	//\_______________ On liste les themes disponibles et on recupere celui choisi.
-	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "default");
+	//\_______________ On on recupere le thme choisi.
+	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "glassy");
 CD_APPLET_GET_CONFIG_END
 
 

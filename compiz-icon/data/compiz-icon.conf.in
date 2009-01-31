@@ -13,7 +13,7 @@ height = 32
 frame1_ = 
 #s Name of the icon as it will appear in its label in the dock :
 name = Compiz Icon
-#E[] Name of the dock it belongs to:
+#d Name of the dock it belongs to:
 dock name = 
 
 icon=

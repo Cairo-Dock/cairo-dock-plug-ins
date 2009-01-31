@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-dustbin],[2.1.4],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cd-dustbin],[2.2.0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -21,6 +21,8 @@ AC_SUBST(GETTEXT_DUSTBIN)
 AC_SUBST(VERSION_DUSTBIN, "$VERSION")
 AC_SUBST(PACKAGE_DUSTBIN, "$PACKAGE")
 
+dustbinuserdirname="dustbin"
+AC_SUBST(dustbinuserdirname)
 dustbindatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/dustbin]
 AC_SUBST(dustbindatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]

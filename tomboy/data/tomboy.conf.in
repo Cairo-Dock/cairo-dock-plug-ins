@@ -15,7 +15,7 @@ frame1_fin =
 #s Default title :
 name = TomBoy
 
-#E[] Name of the dock it belongs to:
+#d Name of the dock it belongs to:
 dock name = 
 
 #F[Personnalisation;gtk-info]

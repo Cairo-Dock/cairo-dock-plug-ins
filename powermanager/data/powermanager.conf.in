@@ -15,7 +15,7 @@ frame1_fin =
 #s Icon name :
 name = Battery
 
-#E[] Name of the dock it belongs to:
+#d Name of the dock it belongs to:
 dock name = 
 
 icon=
@@ -113,7 +113,7 @@ effect=0
 
 #b+ Use a gauge instead of icons ?
 use gauge = false
-#g List of available gauges :
+#g+ List of available gauges :
 theme = battery
 
 #r+[nothing;charge;time] Information to be displayed on the icon :

@@ -16,7 +16,7 @@ frame1_ =
 name = disk-usage
 
 
-#E[] Name of the dock it belongs to:
+#d Name of the dock it belongs to:
 dock name = 
 
 order=

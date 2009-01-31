@@ -70,7 +70,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) cd_drop_indicator_mouse_moved, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_update_dock, NULL);
 	
-	cairo_dock_foreach_docks (_free_data_on_dock);
+	cairo_dock_foreach_docks (_free_data_on_dock, NULL);
 CD_APPLET_STOP_END
 
 

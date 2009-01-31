@@ -16,7 +16,7 @@ frame1_fin =
 #{Let it empty to use the location's name if available.}
 name = horloge
 
-#E[] Name of the dock it belongs to:
+#d Name of the dock it belongs to:
 dock name = 
 
 order=
@@ -129,7 +129,7 @@ font =
 #{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
 old fashion style = true
 
-#R+1[] List of available themes for the analogic display :/
+#h+[@clockdatadir@/themes;@clockuserdirname@] List of available themes for the analogic display :/
 theme = glassy
 
 #F[Setup time and date;gtk-file]

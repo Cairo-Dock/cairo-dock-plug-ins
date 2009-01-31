@@ -15,7 +15,7 @@ frame1_ =
 #s Name of the icon as it will appear in its label in the dock :
 name = Slider
 
-#E[] Name of the dock it belongs to:
+#d Name of the dock it belongs to:
 dock name = 
 
 order=

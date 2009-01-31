@@ -69,6 +69,9 @@ SUBDIRS = . po\
 	clock\
 	${compiz_icon_dir}\
 	cpusage\
+	desklet-rendering\
+	dialog-rendering\
+	dock-rendering\
 	Dbus\
 	drop-indicator\
 	dustbin\
@@ -84,8 +87,6 @@ SUBDIRS = . po\
 	${nvidia_dir}\
 	${powermanager_dir}\
 	rame\
-	desklet-rendering\
-	dock-rendering\
 	${rhythmbox_dir}\
 	shortcuts\
 	showDesklets\

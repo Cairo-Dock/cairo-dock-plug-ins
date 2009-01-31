@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-weather],[1.1.7],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cd-weather],[1.2.0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -21,6 +21,8 @@ AC_SUBST(GETTEXT_WEATHER)
 AC_SUBST(VERSION_WEATHER, "$VERSION")
 AC_SUBST(PACKAGE_WEATHER, "$PACKAGE")
 
+weatheruserdirname="weather"
+AC_SUBST(weatheruserdirname)
 weatherdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/weather]
 AC_SUBST(weatherdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]

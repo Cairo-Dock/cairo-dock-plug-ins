@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-clock],[1.3.9],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cd-clock],[1.4.0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -21,6 +21,8 @@ AC_SUBST(GETTEXT_CLOCK)
 AC_SUBST(VERSION_CLOCK, "$VERSION")
 AC_SUBST(PACKAGE_CLOCK, "$PACKAGE")
 
+clockuserdirname="clock"
+AC_SUBST(clockuserdirname)
 clockdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/clock]
 AC_SUBST(clockdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]

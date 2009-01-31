@@ -18,7 +18,7 @@ name = Cairo-Penguin
 #S Icon's name :
 icon = 
 
-#E[] Name of the dock it belongs to:
+#d Name of the dock it belongs to:
 dock name = 
 
 order = 
@@ -27,7 +27,7 @@ order =
 #[gtk-preferences]
 [Configuration]
 
-#R1[] Choose one of the available themes :/
+#h[@cairo_penguindatadir@/themes;@cairo_penguinuserdirname@] Choose one of the available themes :/
 theme = Classic
 
 #i Delay between animation changes :

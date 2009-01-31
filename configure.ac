@@ -207,8 +207,10 @@ AC_SUBST(Clipperdatadir, "${pkgdatadir}/Clipper")
 CAIRO_PENGUIN_PACKAGE="cd-Cairo-Penguin"
 AC_SUBST(GETTEXT_CAIRO_PENGUIN, "$CAIRO_PENGUIN_PACKAGE")
 
-AC_SUBST(VERSION_CAIRO_PENGUIN, "1.1.0")
+AC_SUBST(VERSION_CAIRO_PENGUIN, "1.1.1")
 AC_SUBST(PACKAGE_CAIRO_PENGUIN, "$CAIRO_PENGUIN_PACKAGE")
+cairo_penguinuserdirname="Cairo-Penguin"
+AC_SUBST(cairo_penguinuserdirname)
 
 AC_SUBST(cairo_penguindatadir, "${pkgdatadir}/Cairo-Penguin")
 
@@ -216,8 +218,10 @@ AC_SUBST(cairo_penguindatadir, "${pkgdatadir}/Cairo-Penguin")
 CLOCK_PACKAGE="cd-clock"
 AC_SUBST(GETTEXT_CLOCK, "$CLOCK_PACKAGE")
 
-AC_SUBST(VERSION_CLOCK, "1.3.8")
+AC_SUBST(VERSION_CLOCK, "1.4.0")
 AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
+clockuserdirname="clock"
+AC_SUBST(clockuserdirname, "clock")
 
 AC_SUBST(clockdatadir, "${pkgdatadir}/clock")
 
@@ -243,7 +247,7 @@ AC_SUBST(cpusagedatadir, "${pkgdatadir}/cpusage")
 DBUS_PACKAGE="cd-Dbus"
 AC_SUBST(GETTEXT_DBUS, "$DBUS_PACKAGE")
 
-AC_SUBST(VERSION_DBUS, "0.3.0")
+AC_SUBST(VERSION_DBUS, "0.4.0")
 AC_SUBST(PACKAGE_DBUS, "$DBUS_PACKAGE")
 
 AC_SUBST(dbusdatadir, "${pkgdatadir}/Dbus")
@@ -261,8 +265,11 @@ AC_SUBST(drop_indicatordatadir, "${pkgdatadir}/drop-indicator")
 DUSTBIN_PACKAGE=cd-dustbin
 AC_SUBST(GETTEXT_DUSTBIN, "$DUSTBIN_PACKAGE")
 
-AC_SUBST(VERSION_DUSTBIN, "2.1.4")
+AC_SUBST(VERSION_DUSTBIN, "2.2.0")
 AC_SUBST(PACKAGE_DUSTBIN, "$DUSTBIN_PACKAGE")
+dustbinuserdirname="dustbin"
+AC_SUBST(dustbinuserdirname)
+
 
 AC_SUBST(dustbindatadir, "${pkgdatadir}/dustbin")
 
@@ -301,7 +308,7 @@ AC_SUBST(PACKAGE_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
 AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
 
 ############# ILLUSION #################
-ICON_EFFECTS_PACKAGE=cd-illusion
+ILLUSION_PACKAGE=cd-illusion
 AC_SUBST(GETTEXT_ILLUSION, "$ILLUSION_PACKAGE")
 
 AC_SUBST(VERSION_ILLUSION, "0.3.0")
@@ -389,6 +396,15 @@ AC_SUBST(VERSION_DESKLET_RENDERING, "1.5.1")
 AC_SUBST(PACKAGE_DESKLET_RENDERING, "$DESKLET_RENDERING_PACKAGE")
 
 AC_SUBST(desklet_renderingdatadir, "${pkgdatadir}/desklet-rendering")
+
+############# DIALOG_RENDERING #################
+DIALOG_RENDERING_PACKAGE=cd-dialog-rendering
+AC_SUBST(GETTEXT_DIALOG_RENDERING, "$DIALOG_RENDERING_PACKAGE")
+
+AC_SUBST(VERSION_DIALOG_RENDERING, "0.4.0")
+AC_SUBST(PACKAGE_DIALOG_RENDERING, "$DIALOG_RENDERING_PACKAGE")
+
+AC_SUBST(dialog_renderingdatadir, "${pkgdatadir}/dialog-rendering")
 
 ############# RHYTHMBOX #################
 RHYTHMBOX_PACKAGE=cd-rhythmbox
@@ -493,8 +509,10 @@ AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")
 WEATHER_PACKAGE="cd-weather"
 AC_SUBST(GETTEXT_WEATHER, "$WEATHER_PACKAGE")
 
-AC_SUBST(VERSION_WEATHER, "1.1.7")
+AC_SUBST(VERSION_WEATHER, "1.2.0")
 AC_SUBST(PACKAGE_WEATHER, "$WEATHER_PACKAGE")
+weatheruserdirname="weather"
+AC_SUBST(weatheruserdirname)
 
 AC_SUBST(weatherdatadir, "${pkgdatadir}/weather")
 
@@ -757,6 +775,13 @@ AC_CONFIG_FILES([
 	desklet-rendering/data/Makefile
 	desklet-rendering/data/readme
 	
+	dialog-rendering/Makefile
+	dialog-rendering/src/Makefile
+	dialog-rendering/po/Makefile.in
+	dialog-rendering/data/Makefile
+	dialog-rendering/data/readme
+	dialog-rendering/data/dialog-rendering.conf
+	
 	rhythmbox/Makefile
 	rhythmbox/src/Makefile
 	rhythmbox/po/Makefile.in
@@ -906,6 +931,7 @@ AC_OUTPUT([po/Makefile
 	rame/po/Makefile
 	dock-rendering/po/Makefile
 	desklet-rendering/po/Makefile
+	dialog-rendering/po/Makefile
 	rhythmbox/po/Makefile
 	shortcuts/po/Makefile
 	showDesklets/po/Makefile

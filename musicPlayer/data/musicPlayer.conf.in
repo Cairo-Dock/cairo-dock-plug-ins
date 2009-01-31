@@ -16,7 +16,7 @@ frame1_ =
 #{You can put the tag '__Player__' to display the name of the player you control}
 name = Music Player
 
-#E[] Name of the dock it belongs to:
+#d Name of the dock it belongs to:
 dock name = 
 
 order=

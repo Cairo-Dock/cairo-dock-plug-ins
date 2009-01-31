@@ -1,0 +1,15 @@
+#!en;@VERSION_DIALOG_RENDERING@
+
+#[gtk-preference]
+[Comics]
+
+#[gtk-preference]
+[Modern]
+
+#[gtk-preference]
+
+#[gtk-preference]
+[3D plane]
+
+#[gtk-preference]
+[Tooltip]

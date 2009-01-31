@@ -21,7 +21,7 @@ name = _Stack_
 #{Let it empty to use the default icon.}
 icon = 
 
-#E[] Name of the dock it belongs to:
+#d Name of the dock it belongs to:
 dock name = 
 
 order=

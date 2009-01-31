@@ -23,7 +23,7 @@ show image =
 #{Let empty to use the default one.}
 hide image = 
 
-#E[] Name of the dock it belongs to:
+#d Name of the dock it belongs to:
 dock name = 
 
 icon=

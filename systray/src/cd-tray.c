@@ -143,27 +143,23 @@ static gboolean tray_clean_up(GtkWidget *widget,
   g_object_unref (tray);
 }
 
-/*
- * try to get transparency working
- *
- *
- * static gboolean cd_desklet_on_expose(GtkWidget *pWidget, */
-/*                                      GdkEventExpose *pExpose, */
-/*                                      gpointer pDialog) */
-/* { */
-/* cairo_t *pCairoContext = gdk_cairo_create (pWidget->window); */
-/*   if (cairo_status (pCairoContext) != CAIRO_STATUS_SUCCESS, FALSE) { */
-/*     cairo_destroy (pCairoContext); */
-/*     return FALSE; */
-/*   } */
-
-/*   //erase the background */
-/*   cairo_set_source_rgba (pCairoContext, 0., 0., 0., 0.); */
-/*   cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE); */
-/*   cairo_paint (pCairoContext); */
-/*   cairo_destroy (pCairoContext); */
-/*   return FALSE; */
-/* } */
+ 
+  static gboolean cd_desklet_on_expose(GtkWidget *pWidget, 
+                                      GdkEventExpose *pExpose, 
+                                      gpointer pDialog) 
+ { 
+ cairo_t *pCairoContext = gdk_cairo_create (pWidget->window); 
+   if (cairo_status (pCairoContext) != CAIRO_STATUS_SUCCESS, FALSE) { 
+     cairo_destroy (pCairoContext); 
+     return FALSE; 
+   } 
+   //erase the background
+   cairo_set_source_rgba (pCairoContext, 0., 0., 0., 0.); 
+   cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE); 
+   cairo_paint (pCairoContext); 
+   cairo_destroy (pCairoContext); 
+   return FALSE; 
+ } 
 
 static void tray_create_widget(TrayApplet *applet)
 {
@@ -181,8 +177,8 @@ static void tray_create_widget(TrayApplet *applet)
                     G_CALLBACK (tray_icon_message_sent), applet);
   g_signal_connect (applet->manager, "message_cancelled",
                     G_CALLBACK (tray_icon_message_cancelled), applet);
-/*   g_signal_connect (applet->box, "expose-event", */
-/*                     G_CALLBACK (cd_desklet_on_expose), applet); */
+  g_signal_connect (applet->box, "expose-event",
+                     G_CALLBACK (cd_desklet_on_expose), applet->box);
 
   gtk_widget_set_colormap (applet->box, gdk_screen_get_rgb_colormap (applet->screen));
   gtk_container_add (GTK_CONTAINER (applet->widget), applet->box);
@@ -213,14 +209,17 @@ TrayApplet* tray_init (GtkWidget *parent)
   applet->screen = screen;
 
   applet->widget = gtk_event_box_new ();
-  gtk_event_box_set_visible_window(GTK_EVENT_BOX (applet->widget), TRUE);
-  gtk_widget_set_colormap(applet->widget, gdk_screen_get_rgb_colormap (screen));
-
+  //gtk_event_box_set_visible_window(GTK_EVENT_BOX (applet->widget), TRUE);  /// utile ?...
+  ///gtk_widget_set_colormap(applet->widget, gdk_screen_get_rgb_colormap (screen));
+	GdkColormap* pColormap = gdk_screen_get_rgba_colormap (screen);  /// utile ?...
+	//if (!pColormap)
+		pColormap = gdk_screen_get_rgb_colormap (screen);
+	gtk_widget_set_colormap (applet->widget, pColormap);
+  
+  
   if (na_tray_manager_check_running(screen)) {
-    GtkWidget *w;
-
-    g_warning ("There is already another notification area running on this screen\n");
-    w = gtk_button_new_with_label("TRY to steal systray icons");
+    cd_warning ("There is already another notification area running on this screen");
+    GtkWidget *w = gtk_button_new_with_label("TRY to steal systray icons");
     gtk_widget_show(w);
     gtk_container_add (GTK_CONTAINER (applet->widget), w);
     g_signal_connect (w, "clicked",
