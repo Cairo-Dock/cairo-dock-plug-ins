@@ -82,6 +82,7 @@ void systray_build_and_show (void)
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		gtk_window_set_resizable(GTK_WINDOW(myDesklet->pWidget), FALSE);
 //		gtk_window_resize(GTK_WINDOW(myDesklet->pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
+		//cairo_dock_set_xwindow_type_hint (GDK_WINDOW_XID (myDesklet->pWidget->window), "_NET_WM_WINDOW_TYPE_DOCK");
 	}
 }
 

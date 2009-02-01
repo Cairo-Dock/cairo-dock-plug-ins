@@ -7,12 +7,10 @@
 disappearance = 0
 
 
-
 #[@illusiondatadir@/icon-evaporate.svg]
 [Evaporate]
 
 #I[0;5000] Duration of the animation :
-#{In ms. Set 0 to not use this effect.}
 duration = 1000
 
 #c+3 1st color of gradation :
@@ -41,7 +39,6 @@ from bottom = true
 [Fade out]
 
 #I[0;5000] Duration of the animation :
-#{In ms. Set 0 to not use this effect.}
 duration = 1000
 
 
@@ -49,8 +46,7 @@ duration = 1000
 [Explode]
 
 #I[0;5000] Duration of the animation :
-#{In ms. Set 0 to not use this effect.}
-duration = 1000
+duration = 800
 
 #i[4;100] Number of pieces :
 nb pieces = 49
