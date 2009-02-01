@@ -39,6 +39,7 @@
 #include <gtk/gtkwindow.h>
 
 #include "na-marshal.h"
+#include <cairo-dock.h>
 
 /* Signals */
 enum
@@ -332,7 +333,6 @@ na_tray_manager_handle_dock_request (NaTrayManager       *manager,
    */
   window = g_new (Window, 1);
   *window = xevent->data.l[2];
-
   g_object_set_data_full (G_OBJECT (socket),
 			  "na-tray-child-window",
 			  window, g_free);

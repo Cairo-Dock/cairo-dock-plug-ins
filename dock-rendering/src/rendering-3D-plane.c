@@ -873,6 +873,7 @@ void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, gboolean bBackGround)
 {
 	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	
