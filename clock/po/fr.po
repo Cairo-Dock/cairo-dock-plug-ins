@@ -333,89 +333,76 @@ msgid "Alarm"
 msgstr "Alarme"
 
 #: ../data/messages:129
-msgid "Alarm n°1"
-msgstr "Alarme n°1"
+msgid ""
+"The new alarm will be added to the end / the last alarm will be removed."
+msgstr ""
 
-#: ../data/messages:131 ../data/messages:171 ../data/messages:211
-msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
-msgstr "de la forme xx:xx. Par exemple, 20:35 pour 8:35pm"
+#: ../data/messages:131
+msgid "Add or remove an alarm :"
+msgstr ""
 
-#: ../data/messages:133 ../data/messages:173 ../data/messages:213
-msgid "Time you want to be notified :"
-msgstr "Heure de la notification :"
+#~ msgid "Alarm n°1"
+#~ msgstr "Alarme n°1"
 
-#: ../data/messages:135 ../data/messages:175 ../data/messages:215
-msgid "Repeat every"
-msgstr "Répeter tous les"
+#~ msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
+#~ msgstr "de la forme xx:xx. Par exemple, 20:35 pour 8:35pm"
 
-#: ../data/messages:137 ../data/messages:177 ../data/messages:217
-msgid "Never"
-msgstr "Jamais"
+#~ msgid "Time you want to be notified :"
+#~ msgstr "Heure de la notification :"
 
-#: ../data/messages:139 ../data/messages:179 ../data/messages:219
-msgid "Day"
-msgstr "Jours"
+#~ msgid "Repeat every"
+#~ msgstr "Répeter tous les"
 
-#: ../data/messages:141 ../data/messages:181 ../data/messages:221
-msgid "Monday"
-msgstr "Lundi"
+#~ msgid "Never"
+#~ msgstr "Jamais"
 
-#: ../data/messages:143 ../data/messages:183 ../data/messages:223
-msgid "Tuesday"
-msgstr "Mardi"
+#~ msgid "Day"
+#~ msgstr "Jours"
 
-#: ../data/messages:145 ../data/messages:185 ../data/messages:225
-msgid "Wednesday"
-msgstr "Mercredi"
+#~ msgid "Monday"
+#~ msgstr "Lundi"
 
-#: ../data/messages:147 ../data/messages:187 ../data/messages:227
-msgid "Thursday"
-msgstr "Jeudi"
+#~ msgid "Tuesday"
+#~ msgstr "Mardi"
 
-#: ../data/messages:149 ../data/messages:189 ../data/messages:229
-msgid "Friday"
-msgstr "Vendredi"
+#~ msgid "Wednesday"
+#~ msgstr "Mercredi"
 
-#: ../data/messages:151 ../data/messages:191 ../data/messages:231
-msgid "Saturday"
-msgstr "Samedi"
+#~ msgid "Thursday"
+#~ msgstr "Jeudi"
 
-#: ../data/messages:153 ../data/messages:193 ../data/messages:233
-msgid "Sunday"
-msgstr "Dimanche"
+#~ msgid "Friday"
+#~ msgstr "Vendredi"
 
-#: ../data/messages:155 ../data/messages:195 ../data/messages:235
-msgid "Week Day"
-msgstr "Jours de la semaine"
+#~ msgid "Saturday"
+#~ msgstr "Samedi"
 
-#: ../data/messages:157 ../data/messages:197 ../data/messages:237
-msgid "Week End"
-msgstr "Week Ends"
+#~ msgid "Sunday"
+#~ msgstr "Dimanche"
 
-#: ../data/messages:159 ../data/messages:199 ../data/messages:239
-msgid "Month"
-msgstr "Mois"
+#~ msgid "Week Day"
+#~ msgstr "Jours de la semaine"
 
-#: ../data/messages:161 ../data/messages:201 ../data/messages:241
-msgid "If every month, which day of the month ? :"
-msgstr "Si chaque mois, quel jour du mois ? :"
+#~ msgid "Week End"
+#~ msgstr "Week Ends"
 
-#: ../data/messages:163 ../data/messages:203 ../data/messages:243
-msgid "Message you want to use to be notified :"
-msgstr "Message utilisé pour être notifié :"
+#~ msgid "Month"
+#~ msgstr "Mois"
 
-#: ../data/messages:165 ../data/messages:205 ../data/messages:245
-msgid "For exemple, < play /path/to/file.ogg >."
-msgstr "Par exemple, < play /chemin/vers/le/fichier.ogg >."
+#~ msgid "If every month, which day of the month ? :"
+#~ msgstr "Si chaque mois, quel jour du mois ? :"
 
-#: ../data/messages:167 ../data/messages:207 ../data/messages:247
-msgid "Command to execute :"
-msgstr "Commande à exécuter"
+#~ msgid "Message you want to use to be notified :"
+#~ msgstr "Message utilisé pour être notifié :"
 
-#: ../data/messages:169
-msgid "Alarm n°2"
-msgstr "Alarme n°2"
+#~ msgid "For exemple, < play /path/to/file.ogg >."
+#~ msgstr "Par exemple, < play /chemin/vers/le/fichier.ogg >."
 
-#: ../data/messages:209
-msgid "Alarm n°3"
-msgstr "Alarme n°3"
+#~ msgid "Command to execute :"
+#~ msgstr "Commande à exécuter"
+
+#~ msgid "Alarm n°2"
+#~ msgstr "Alarme n°2"
+
+#~ msgid "Alarm n°3"
+#~ msgstr "Alarme n°3"

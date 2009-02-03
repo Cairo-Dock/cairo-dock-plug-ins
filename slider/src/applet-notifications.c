@@ -42,16 +42,15 @@ static void _cd_slider_open_current_slide (GtkMenuItem *menu_item, CairoDockModu
 		g_return_if_fail (pCurrentDisplayedElement != NULL);
 		SliderImage *pImage = pCurrentDisplayedElement->data;
 		gchar *cImagePath = pImage->cPath;
-		GError *erreur = NULL;
+		cd_debug ("opening %s ...", cImagePath);
+		/*GError *erreur = NULL;
 		gchar *cURI = g_filename_to_uri (cImagePath, NULL, &erreur);
-		//cd_debug ("Now opening image URI:%s Filename:%s", cURI, cImagePath);
 		if (erreur != NULL) {
 			cd_warning ("Slider : %s", erreur->message);
 			g_error_free (erreur);
 			return ;
-		}
-		cairo_dock_fm_launch_uri (cURI);  /// proposer un editeur d'image dans le panneau de conf ou une liste dans le menu...
-		g_free (cURI);
+		}*/
+		cairo_dock_fm_launch_uri (cImagePath);  /// proposer un editeur d'image dans le panneau de conf ou une liste dans le menu...
 	}
 }
 

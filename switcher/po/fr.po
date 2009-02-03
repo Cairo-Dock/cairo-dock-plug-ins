@@ -27,11 +27,11 @@ msgstr ""
 "Ceci est l'applet switcher\n"
 " écrit par Cchumi pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:78
+#: ../src/applet-notifications.c:77
 msgid "Add a desktop"
 msgstr "Ajouter un bureau"
 
-#: ../src/applet-notifications.c:79
+#: ../src/applet-notifications.c:78
 msgid "Remove last desktop"
 msgstr "Retirer le dernier bureau"
 

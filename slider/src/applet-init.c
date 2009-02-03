@@ -76,7 +76,6 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iAnimTimerID = 0;
 	}
 	
-	
 	cairo_surface_destroy (myData.pCairoSurface);
 	myData.pCairoSurface = NULL;
 	cairo_surface_destroy (myData.pPrevCairoSurface);
@@ -101,6 +100,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cd_slider_free_images_list (myData.pList);
 		myData.pList = NULL;
+		myData.pElement = NULL;
 		cairo_dock_stop_measure_timer (myData.pMeasureImage);
 		cairo_dock_stop_measure_timer (myData.pMeasureDirectory);
 		cairo_dock_launch_measure (myData.pMeasureDirectory);

@@ -10,6 +10,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <math.h>
 #include <cairo-dock.h>
 
+#include "applet-struct.h"
 #include "applet-decorator-tooltip.h"
 
 //A bosser
@@ -23,9 +24,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 
 void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog) {
-  double fRadius = myDialogs.iCornerRadius;
-  double fLineWidth = myDialogs.iLineWidth;
-  int iMargin = .5 * fLineWidth + (1. - sqrt (2) / 2) * fRadius;
+  int iMargin = .5 * myConfig.iTooltipLineWidth + (1. - sqrt (2) / 2) * myConfig.iTooltipRadius;
   pDialog->iRightMargin = iMargin;
   pDialog->iLeftMargin = iMargin;
   pDialog->iTopMargin = 0;
@@ -38,8 +37,8 @@ void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog) {
 
 
 void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog *pDialog) {
-  double fLineWidth = myDialogs.iLineWidth;
-  double fRadius = myDialogs.iCornerRadius;
+  double fLineWidth = myConfig.iTooltipLineWidth;
+  double fRadius = myConfig.iTooltipRadius;
 
   double fOffsetX = fRadius +     fLineWidth / 2;
   double fOffsetY = (pDialog->bDirectionUp ? fLineWidth / 2 : pDialog->iHeight - fLineWidth / 2);
@@ -101,7 +100,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 
   cairo_set_source_rgba (pCairoContext, myDialogs.fDialogColor[0], myDialogs.fDialogColor[1],     myDialogs.fDialogColor[2], myDialogs.fDialogColor[3]);
   cairo_fill_preserve (pCairoContext); //Notre fond
-  cairo_set_source_rgba (pCairoContext, myDialogs.fLineColor[0], myDialogs.fLineColor[1], myDialogs.fLineColor[2], myDialogs.fLineColor[3]);
+  cairo_set_source_rgba (pCairoContext, myConfig.fTooltipLineColor[0], myConfig.fTooltipLineColor[1], myConfig.fTooltipLineColor[2], myConfig.fTooltipLineColor[3]);
   cairo_set_line_width (pCairoContext, fLineWidth); //La ligne externe
 
   cairo_stroke (pCairoContext); //On ferme notre chemin
@@ -135,7 +134,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
     if (fRadius < 1)
       cairo_close_path (pCairoContext);
 
-    double fBorderDialogColor[3];
+   /* double fBorderDialogColor[3];
     if (myDialogs.fDialogColor[0] <= .5 || myDialogs.fDialogColor[1] <= .5 || myDialogs.fDialogColor[2] <= .5) {
       fBorderDialogColor[0] = myDialogs.fDialogColor[0] + .1;
       fBorderDialogColor[1] = myDialogs.fDialogColor[1] + .1;
@@ -147,10 +146,10 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
       fBorderDialogColor[1] = myDialogs.fDialogColor[1] - .1;
       fBorderDialogColor[2] = myDialogs.fDialogColor[2] - .1;
       //On fonce le fond
-    }
-    cairo_set_source_rgba (pCairoContext, fBorderDialogColor[0], fBorderDialogColor[1],  fBorderDialogColor[2], myDialogs.fDialogColor[3]);
+    }*/
+    cairo_set_source_rgba (pCairoContext, myConfig.fTooltipMarginColor[0], myConfig.fTooltipMarginColor[1],  myConfig.fTooltipMarginColor[2], myConfig.fTooltipMarginColor[3]);
     cairo_fill_preserve (pCairoContext);
-    cairo_set_source_rgba (pCairoContext, myDialogs.fLineColor[0], myDialogs.fLineColor[1], myDialogs.fLineColor[2], myDialogs.fLineColor[3]);
+    cairo_set_source_rgba (pCairoContext, myConfig.fTooltipLineColor[0], myConfig.fTooltipLineColor[1], myConfig.fTooltipLineColor[2], myConfig.fTooltipLineColor[3]);
     cairo_set_line_width (pCairoContext, fLineWidth);
     
     cairo_stroke (pCairoContext);

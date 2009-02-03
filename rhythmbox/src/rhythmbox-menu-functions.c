@@ -6,9 +6,6 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-menu-functions.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
-
 
 //*********************************************************************************
 // rhythmbox_previous : Joue la piste précédante

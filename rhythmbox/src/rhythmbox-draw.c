@@ -45,8 +45,10 @@ void rhythmbox_iconWitness(int animationLength)
 
 gboolean _rhythmbox_check_cover_is_present (gpointer data)
 {
+	cd_debug ("%s (%s)", __func__, myData.playing_cover);
 	if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 	{
+		cd_message ("la couverture '%s' est desormais disponible", myData.playing_cover);
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
 		CD_APPLET_REDRAW_MY_ICON;
 		myData.cover_exist = TRUE;
@@ -80,6 +82,7 @@ void update_icon(gboolean make_witness)
 		//cd_message ("  cover : %s", cover);
 		if (myConfig.enableCover && myData.playing_cover != NULL && g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 		{
+			cd_message ("la couverture '%s' est deja dispo", myData.playing_cover);
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
 			CD_APPLET_REDRAW_MY_ICON;
 			myData.cover_exist = TRUE;
@@ -121,7 +124,7 @@ void update_icon(gboolean make_witness)
 	else
 	{
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		if (myData.opening)
 			rhythmbox_set_surface (PLAYER_STOPPED);  // je ne sais pas si en mode Stopped la chanson est NULL ou pas...
 		else
@@ -132,12 +135,15 @@ void update_icon(gboolean make_witness)
 void music_dialog(void)
 {
 	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog (D_("Artist : %s\nAlbum : %s\nTitle : %s"),
+	cairo_dock_show_temporary_dialog ("%s : %s\n%s : %s\n%s : %s",
 		myIcon,
 		myContainer,
 		myConfig.timeDialogs,
+		D_("Artist"),
 		myData.playing_artist != NULL ? myData.playing_artist : D_("Unknown"),
+		D_("Album"),
 		myData.playing_album != NULL ? myData.playing_album : D_("Unknown"),
+		D_("Title"),
 		myData.playing_title != NULL ? myData.playing_title : D_("Unknown"));
 }
 

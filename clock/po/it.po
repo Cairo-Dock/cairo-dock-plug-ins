@@ -332,95 +332,82 @@ msgid "Alarm"
 msgstr "Allarme"
 
 #: ../data/messages:129
+msgid ""
+"The new alarm will be added to the end / the last alarm will be removed."
+msgstr ""
+
+#: ../data/messages:131
+msgid "Add or remove an alarm :"
+msgstr ""
+
 #, fuzzy
-msgid "Alarm n°1"
-msgstr "Allarme n°1"
+#~ msgid "Alarm n°1"
+#~ msgstr "Allarme n°1"
 
-#: ../data/messages:131 ../data/messages:171 ../data/messages:211
-msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
-msgstr "nella forma xx:xx. Per esempio, 20:35 per 8:35pm"
+#~ msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
+#~ msgstr "nella forma xx:xx. Per esempio, 20:35 per 8:35pm"
 
-#: ../data/messages:133 ../data/messages:173 ../data/messages:213
-msgid "Time you want to be notified :"
-msgstr "Ora della notifica :"
+#~ msgid "Time you want to be notified :"
+#~ msgstr "Ora della notifica :"
 
-#: ../data/messages:135 ../data/messages:175 ../data/messages:215
-msgid "Repeat every"
-msgstr "Ripetere ogni"
+#~ msgid "Repeat every"
+#~ msgstr "Ripetere ogni"
 
-#: ../data/messages:137 ../data/messages:177 ../data/messages:217
-msgid "Never"
-msgstr "Mai"
+#~ msgid "Never"
+#~ msgstr "Mai"
 
-#: ../data/messages:139 ../data/messages:179 ../data/messages:219
-msgid "Day"
-msgstr "Giorni"
+#~ msgid "Day"
+#~ msgstr "Giorni"
 
-#: ../data/messages:141 ../data/messages:181 ../data/messages:221
-msgid "Monday"
-msgstr "Lundedì"
+#~ msgid "Monday"
+#~ msgstr "Lundedì"
 
-#: ../data/messages:143 ../data/messages:183 ../data/messages:223
-msgid "Tuesday"
-msgstr "Martedì"
+#~ msgid "Tuesday"
+#~ msgstr "Martedì"
 
-#: ../data/messages:145 ../data/messages:185 ../data/messages:225
-msgid "Wednesday"
-msgstr "Mercoledì"
+#~ msgid "Wednesday"
+#~ msgstr "Mercoledì"
 
-#: ../data/messages:147 ../data/messages:187 ../data/messages:227
-msgid "Thursday"
-msgstr "Giovedì"
+#~ msgid "Thursday"
+#~ msgstr "Giovedì"
 
-#: ../data/messages:149 ../data/messages:189 ../data/messages:229
-msgid "Friday"
-msgstr "Venerdì"
+#~ msgid "Friday"
+#~ msgstr "Venerdì"
 
-#: ../data/messages:151 ../data/messages:191 ../data/messages:231
-msgid "Saturday"
-msgstr "Sabato"
+#~ msgid "Saturday"
+#~ msgstr "Sabato"
 
-#: ../data/messages:153 ../data/messages:193 ../data/messages:233
-msgid "Sunday"
-msgstr "Domenica"
+#~ msgid "Sunday"
+#~ msgstr "Domenica"
 
-#: ../data/messages:155 ../data/messages:195 ../data/messages:235
-msgid "Week Day"
-msgstr "Giorni della settimana"
+#~ msgid "Week Day"
+#~ msgstr "Giorni della settimana"
 
-#: ../data/messages:157 ../data/messages:197 ../data/messages:237
-msgid "Week End"
-msgstr "Week End"
+#~ msgid "Week End"
+#~ msgstr "Week End"
 
-#: ../data/messages:159 ../data/messages:199 ../data/messages:239
-msgid "Month"
-msgstr "Mesi"
+#~ msgid "Month"
+#~ msgstr "Mesi"
 
-#: ../data/messages:161 ../data/messages:201 ../data/messages:241
-msgid "If every month, which day of the month ? :"
-msgstr "Se ogni mese, quale giorno del mese ? :"
+#~ msgid "If every month, which day of the month ? :"
+#~ msgstr "Se ogni mese, quale giorno del mese ? :"
 
-#: ../data/messages:163 ../data/messages:203 ../data/messages:243
-msgid "Message you want to use to be notified :"
-msgstr "Messaggio da utilizzare per la notifica :"
+#~ msgid "Message you want to use to be notified :"
+#~ msgstr "Messaggio da utilizzare per la notifica :"
 
-#: ../data/messages:165 ../data/messages:205 ../data/messages:245
-msgid "For exemple, < play /path/to/file.ogg >."
-msgstr "Per esempio, < play /percorso/del/file.ogg >."
+#~ msgid "For exemple, < play /path/to/file.ogg >."
+#~ msgstr "Per esempio, < play /percorso/del/file.ogg >."
 
-#: ../data/messages:167 ../data/messages:207 ../data/messages:247
-msgid "Command to execute :"
-msgstr "Commando da eseguire :"
+#~ msgid "Command to execute :"
+#~ msgstr "Commando da eseguire :"
 
-#: ../data/messages:169
 #, fuzzy
-msgid "Alarm n°2"
-msgstr "Allarme n°2"
+#~ msgid "Alarm n°2"
+#~ msgstr "Allarme n°2"
 
-#: ../data/messages:209
 #, fuzzy
-msgid "Alarm n°3"
-msgstr "Allarme n°3"
+#~ msgid "Alarm n°3"
+#~ msgstr "Allarme n°3"
 
 #~ msgid "Show the date ?"
 #~ msgstr "Mostrare la data ?"

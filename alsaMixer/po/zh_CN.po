@@ -12,42 +12,42 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-mixer.c:42
+#: ../src/applet-mixer.c:40
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "无法打开声卡'%s'"
 
-#: ../src/applet-mixer.c:47
+#: ../src/applet-mixer.c:45
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "声卡'%s'已打开但无法获取信息。"
 
-#: ../src/applet-mixer.c:55
+#: ../src/applet-mixer.c:53
 msgid "I couldn't open the mixer"
 msgstr "无法打开混音器。"
 
-#: ../src/applet-mixer.c:62
+#: ../src/applet-mixer.c:60
 msgid "I couldn't attach the mixer to the card"
 msgstr "无法连接混音器至声卡"
 
-#: ../src/applet-mixer.c:69
+#: ../src/applet-mixer.c:67
 msgid "I couldn't register options"
 msgstr "无法注册选项"
 
-#: ../src/applet-mixer.c:77
+#: ../src/applet-mixer.c:75
 msgid "I couldn't load the mixer"
 msgstr "无法载入混音器"
 
-#: ../src/applet-mixer.c:135
+#: ../src/applet-mixer.c:133
 #, c-format
 msgid "I couldn't find any element '%s'"
 msgstr "无法找到原件：'%s'"
 
-#: ../src/applet-mixer.c:275
+#: ../src/applet-mixer.c:273
 msgid "Set up volume :"
 msgstr "设置音量："
 
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the AlsaMixer applet\n"
 " made by Fabounet (Fabrice Rey) for Cairo-Dock"
@@ -55,7 +55,7 @@ msgstr ""
 "AlsaMixer小应用程序\n"
 "作者Fabounet (Fabrice Rey)"
 
-#: ../src/applet-notifications.c:50
+#: ../src/applet-notifications.c:47
 msgid "Adjsut channels"
 msgstr "调整通道"
 

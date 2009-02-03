@@ -14,10 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:83
-msgid "Terminal"
-msgstr "端末"
-
 #: ../src/applet-notifications.c:31
 msgid ""
 "This is the weblets applet\n"
@@ -26,8 +22,9 @@ msgstr ""
 "これは Chiristophe Chapuis によって製作された \n"
 "Cairo-Dock 用の weblets アプレットです。"
 
-#: ../src/applet-widget.c:52 ../src/applet-widget.c:138
-msgid "Weblet"
+#: ../src/applet-widget.c:36
+#, fuzzy
+msgid "Weblets"
 msgstr "Weblet"
 
 #: ../data/messages:1
@@ -235,23 +232,31 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "縦スクロールバーの位置（ピクセル単位）"
 
 #: ../data/messages:91
+msgid "Transparent background ?"
+msgstr ""
+
+#: ../data/messages:93
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
 "Weblet URI の再読み込みを開始するまでの時間（秒）。ゼロの場合は再読み込みしま"
 "せん。"
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "Time between two page refreshes"
 msgstr "ページの更新の間隔時間"
 
-#: ../data/messages:95
-msgid "Any URI accepted by firefox should work."
+#: ../data/messages:97
+#, fuzzy
+msgid "Any valid URI should work."
 msgstr "Firefox が受け付ける URI がすべて"
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr "アプレットのメニューに表示する既定ブックマーク :"
+
+#~ msgid "Terminal"
+#~ msgstr "端末"
 
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"

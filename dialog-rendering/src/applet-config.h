@@ -1,6 +1,6 @@
 
-#ifndef __RENDERING_CONFIG__
-#define  __RENDERING_CONFIG__
+#ifndef __DIALOG_RENDERING_CONFIG__
+#define  __DIALOG_RENDERING_CONFIG__
 
 
 #include <cairo-dock.h>

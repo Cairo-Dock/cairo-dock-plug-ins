@@ -10,6 +10,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <math.h>
 #include <cairo-dock.h>
 
+#include "applet-struct.h"
 #include "applet-decorator-comics.h"
 
 #define CAIRO_DIALOG_MIN_GAP 20
@@ -20,9 +21,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 {
-	double fRadius = myDialogs.iCornerRadius;
-	double fLineWidth = myDialogs.iLineWidth;
-	int iMargin = .5 * fLineWidth + (1. - sqrt (2) / 2) * fRadius;
+	int iMargin = .5 * myConfig.iComicsLineWidth + (1. - sqrt (2) / 2) * myConfig.iComicsRadius;
 	pDialog->iRightMargin = iMargin;
 	pDialog->iLeftMargin = iMargin;
 	pDialog->iTopMargin = iMargin;
@@ -30,13 +29,13 @@ void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 	pDialog->iMinBottomGap = CAIRO_DIALOG_MIN_GAP;
 	pDialog->iMinFrameWidth = CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_ROUNDING_MARGIN + CAIRO_DIALOG_TIP_BASE;  // dans l'ordre.
 	pDialog->fAlign = 0.;  // la pointe colle au bord du dialogue.
-	pDialog->fReflectAlpha = 0.;
+	pDialog->fReflectAlpha = 0.;  // pas de reflet merci.
 }
 
 void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *pDialog)
 {
-	double fLineWidth = myDialogs.iLineWidth;
-	double fRadius = myDialogs.iCornerRadius;
+	double fLineWidth = myConfig.iComicsLineWidth;
+	double fRadius = myConfig.iComicsRadius;
 	
 	double fGapFromDock = pDialog->iDistanceToDock + .5 * fLineWidth;
 	double cos_gamma = 1 / sqrt (1. + 1. * (CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_BASE) / fGapFromDock * (CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_BASE) / fGapFromDock);
@@ -114,7 +113,7 @@ void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *
 	cairo_fill_preserve (pCairoContext);
 
 	cairo_set_line_width (pCairoContext, fLineWidth);
-	cairo_set_source_rgba (pCairoContext, myDialogs.fLineColor[0], myDialogs.fLineColor[1], myDialogs.fLineColor[2], myDialogs.fLineColor[3]);
+	cairo_set_source_rgba (pCairoContext, myConfig.fComicsLineColor[0], myConfig.fComicsLineColor[1], myConfig.fComicsLineColor[2], myConfig.fComicsLineColor[3]);
 	cairo_stroke (pCairoContext);
 }
 

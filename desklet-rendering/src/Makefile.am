@@ -17,8 +17,6 @@ libcd_desklet_rendering_la_SOURCES = \
 	rendering-desklet-simple.c\
 	rendering-desklet-controler.h\
 	rendering-desklet-controler.c\
-	rendering-dialog-text.c\
-	rendering-dialog-text.h\
 	rendering-desklet-mediaplayer.c\
 	rendering-desklet-mediaplayer.h\
 	rendering-desklet-decorations.c\

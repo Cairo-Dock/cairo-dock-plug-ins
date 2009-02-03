@@ -123,7 +123,7 @@ void cd_animations_draw_bounce_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	if (pDock->bHorizontalDock)
 		glTranslatef (0., (pDock->bDirectionUp ? 1 : -1) * pData->fElevation * sens, 0.);
 	else
-		glTranslatef ((pDock->bDirectionUp ? 1 : -1) * pData->fElevation * sens, 0., 0.);
+		glTranslatef ((pDock->bDirectionUp ? -1 : 1) * pData->fElevation * sens, 0., 0.);
 }
 
 

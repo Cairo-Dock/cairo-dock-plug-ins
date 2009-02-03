@@ -14,10 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:83
-msgid "Terminal"
-msgstr "Terminale"
-
 #: ../src/applet-notifications.c:31
 msgid ""
 "This is the weblets applet\n"
@@ -26,9 +22,9 @@ msgstr ""
 "Questa è l'applet weblets\n"
 " scritta da Christophe Chapuis per Cairo-Dock"
 
-#: ../src/applet-widget.c:52 ../src/applet-widget.c:138
+#: ../src/applet-widget.c:36
 #, fuzzy
-msgid "Weblet"
+msgid "Weblets"
 msgstr "Weblet"
 
 #: ../data/messages:1
@@ -232,23 +228,31 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Posizione dello scroll verticale"
 
 #: ../data/messages:91
+msgid "Transparent background ?"
+msgstr ""
+
+#: ../data/messages:93
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
 "Tempo prima di ricaricare l'URI nella weblet, in secondi. Zero per non farlo "
 "ricaricare."
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "Time between two page refreshes"
 msgstr "Tempo prima di rinnovare le due pagine"
 
-#: ../data/messages:95
-msgid "Any URI accepted by firefox should work."
+#: ../data/messages:97
+#, fuzzy
+msgid "Any valid URI should work."
 msgstr "Qualsiasi URI accettato da firefox dovrebbe funzionare."
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr "Segnalibri predefinito da mostrare nel menu dell'applet :"
+
+#~ msgid "Terminal"
+#~ msgstr "Terminale"
 
 #~ msgid "Module"
 #~ msgstr "Modulo"

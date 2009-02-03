@@ -1,11 +1,28 @@
 
-#ifndef __RENDERING_STRUCT__
-#define  __RENDERING_STRUCT__
+#ifndef __DIALOG_RENDERING_STRUCT__
+#define  __DIALOG_RENDERING_STRUCT__
 
 #include <cairo-dock.h>
 
 struct _AppletConfig {
-	gint no_config_yet;
+	gint iComicsRadius;
+	gint iComicsLineWidth;
+	gdouble fComicsLineColor[4];
+	
+	gint iModernRadius;
+	gint iModernLineWidth;
+	gdouble fModernLineColor[4];
+	gint iModernLineSpacing;
+	
+	gint iPlaneRadius;
+	gint iPlaneLineWidth;
+	gdouble fPlaneLineColor[4];
+	gdouble fPlaneColor[4];
+	
+	gint iTooltipRadius;
+	gint iTooltipLineWidth;
+	gdouble fTooltipLineColor[4];
+	gdouble fTooltipMarginColor[4];
 } ;
 
 struct _AppletData {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-01-17 02:15+0100\n"
+"POT-Creation-Date: 2009-02-03 01:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,18 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:83
-msgid "Terminal"
-msgstr ""
-
 #: ../src/applet-notifications.c:31
 msgid ""
 "This is the weblets applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-widget.c:52 ../src/applet-widget.c:138
-msgid "Weblet"
+#: ../src/applet-widget.c:36
+msgid "Weblets"
 msgstr ""
 
 #: ../data/messages:1
@@ -221,18 +217,22 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../data/messages:91
+msgid "Transparent background ?"
+msgstr ""
+
+#: ../data/messages:93
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "Time between two page refreshes"
 msgstr ""
 
-#: ../data/messages:95
-msgid "Any URI accepted by firefox should work."
+#: ../data/messages:97
+msgid "Any valid URI should work."
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr ""

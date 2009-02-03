@@ -17,42 +17,42 @@ msgstr ""
 "X-Poedit-Country: SWEDEN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../src/applet-mixer.c:42
+#: ../src/applet-mixer.c:40
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "Kunde inte öppna kortet '%s'"
 
-#: ../src/applet-mixer.c:47
+#: ../src/applet-mixer.c:45
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "Kortet '%s' är öppet men kan inte hitta någon information"
 
-#: ../src/applet-mixer.c:55
+#: ../src/applet-mixer.c:53
 msgid "I couldn't open the mixer"
 msgstr "Kunde inte öppna mixern"
 
-#: ../src/applet-mixer.c:62
+#: ../src/applet-mixer.c:60
 msgid "I couldn't attach the mixer to the card"
 msgstr "Kunde inte ansluta mixern till kortet"
 
-#: ../src/applet-mixer.c:69
+#: ../src/applet-mixer.c:67
 msgid "I couldn't register options"
 msgstr "Kunde inte registrera alternativ"
 
-#: ../src/applet-mixer.c:77
+#: ../src/applet-mixer.c:75
 msgid "I couldn't load the mixer"
 msgstr "Kunde inte ladda mixern"
 
-#: ../src/applet-mixer.c:135
+#: ../src/applet-mixer.c:133
 #, c-format
 msgid "I couldn't find any element '%s'"
 msgstr "Kunde inte hitta något element '%s'"
 
-#: ../src/applet-mixer.c:275
+#: ../src/applet-mixer.c:273
 msgid "Set up volume :"
 msgstr "Volymkontroll:"
 
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the AlsaMixer applet\n"
 " made by Fabounet (Fabrice Rey) for Cairo-Dock"
@@ -60,7 +60,7 @@ msgstr ""
 "AlsaMixer applet\n"
 " av Fabounet (Fabrice Rey) för Cairo-Dock"
 
-#: ../src/applet-notifications.c:50
+#: ../src/applet-notifications.c:47
 msgid "Adjsut channels"
 msgstr "Justera kanaler"
 

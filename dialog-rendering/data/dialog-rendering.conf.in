@@ -3,13 +3,60 @@
 #[gtk-preference]
 [Comics]
 
+#i+[0;30] Corner radius :
+corner = 8
+
+#i+[0;10] Border width :
+border = 1
+
+#c+4[0;1] Line color of the bubble :
+line color = 1.0; 1.0; 1.0; 1.0
+
+
 #[gtk-preference]
 [Modern]
 
-#[gtk-preference]
+#i+[0;40] Corner radius :
+corner = 30
+
+#i+[0;10] Border width :
+border = 1
+
+#c+4[0;1] Line color of the bubble :
+line color = 1.0; 1.0; 1.0; 1.0
+
+#i+[1;5] Space between lines of the tip :
+line space = 2
+
 
 #[gtk-preference]
 [3D plane]
 
+#i+[0;10] Corner radius :
+corner = 0
+
+#i+[0;10] Border width of the plane :
+border = 1
+
+#c+4[0;1] Line color of the plane :
+line color = 1.0; 1.0; 1.0; 1.0
+
+#c+4[0;1] Color of the plane :
+plane color = 1.0; 1.0; 1.0; 0.5
+
+
 #[gtk-preference]
 [Tooltip]
+
+#i+[0;20] Corner radius :
+corner = 8
+
+#i+[0;10] Border width :
+border = 1
+
+#c+4[0;1] Line color of the bubble :
+line color = 1.0; 1.0; 1.0; 1.0
+
+#c+4[0;1] Color of the margin :
+line color = .9;.9;.9;1.0
+

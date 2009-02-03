@@ -8,12 +8,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-01-17 02:15+0100\n"
+"POT-Creation-Date: 2009-02-03 01:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-notifications.c:166
@@ -311,89 +311,10 @@ msgid "Alarm"
 msgstr ""
 
 #: ../data/messages:129
-msgid "Alarm n°1"
+msgid ""
+"The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 
-#: ../data/messages:131 ../data/messages:171 ../data/messages:211
-msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
-msgstr ""
-
-#: ../data/messages:133 ../data/messages:173 ../data/messages:213
-msgid "Time you want to be notified :"
-msgstr ""
-
-#: ../data/messages:135 ../data/messages:175 ../data/messages:215
-msgid "Repeat every"
-msgstr ""
-
-#: ../data/messages:137 ../data/messages:177 ../data/messages:217
-msgid "Never"
-msgstr ""
-
-#: ../data/messages:139 ../data/messages:179 ../data/messages:219
-msgid "Day"
-msgstr ""
-
-#: ../data/messages:141 ../data/messages:181 ../data/messages:221
-msgid "Monday"
-msgstr ""
-
-#: ../data/messages:143 ../data/messages:183 ../data/messages:223
-msgid "Tuesday"
-msgstr ""
-
-#: ../data/messages:145 ../data/messages:185 ../data/messages:225
-msgid "Wednesday"
-msgstr ""
-
-#: ../data/messages:147 ../data/messages:187 ../data/messages:227
-msgid "Thursday"
-msgstr ""
-
-#: ../data/messages:149 ../data/messages:189 ../data/messages:229
-msgid "Friday"
-msgstr ""
-
-#: ../data/messages:151 ../data/messages:191 ../data/messages:231
-msgid "Saturday"
-msgstr ""
-
-#: ../data/messages:153 ../data/messages:193 ../data/messages:233
-msgid "Sunday"
-msgstr ""
-
-#: ../data/messages:155 ../data/messages:195 ../data/messages:235
-msgid "Week Day"
-msgstr ""
-
-#: ../data/messages:157 ../data/messages:197 ../data/messages:237
-msgid "Week End"
-msgstr ""
-
-#: ../data/messages:159 ../data/messages:199 ../data/messages:239
-msgid "Month"
-msgstr ""
-
-#: ../data/messages:161 ../data/messages:201 ../data/messages:241
-msgid "If every month, which day of the month ? :"
-msgstr ""
-
-#: ../data/messages:163 ../data/messages:203 ../data/messages:243
-msgid "Message you want to use to be notified :"
-msgstr ""
-
-#: ../data/messages:165 ../data/messages:205 ../data/messages:245
-msgid "For exemple, < play /path/to/file.ogg >."
-msgstr ""
-
-#: ../data/messages:167 ../data/messages:207 ../data/messages:247
-msgid "Command to execute :"
-msgstr ""
-
-#: ../data/messages:169
-msgid "Alarm n°2"
-msgstr ""
-
-#: ../data/messages:209
-msgid "Alarm n°3"
+#: ../data/messages:131
+msgid "Add or remove an alarm :"
 msgstr ""

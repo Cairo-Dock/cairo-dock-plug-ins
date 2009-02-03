@@ -1,6 +1,6 @@
 
-#ifndef __RENDERING_DIALOG_TEXT__
-#define __RENDERING_DIALOG_TEXT__
+#ifndef __DIALOG_RENDERING_DIALOG_TEXT__
+#define __DIALOG_RENDERING_DIALOG_TEXT__
 
 #include "cairo.h"
 

@@ -14,19 +14,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:83
-msgid "Terminal"
-msgstr "终端"
-
 #: ../src/applet-notifications.c:31
 msgid ""
 "This is the weblets applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
 msgstr "这是Chiristophe Chapuis为Cairo-Dock制作的weblets小应用程序。"
 
-#: ../src/applet-widget.c:52 ../src/applet-widget.c:138
+#: ../src/applet-widget.c:36
 #, fuzzy
-msgid "Weblet"
+msgid "Weblets"
 msgstr "桌面应用程序"
 
 #: ../data/messages:1
@@ -225,21 +221,28 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "垂直卷轴位置"
 
 #: ../data/messages:91
+msgid "Transparent background ?"
+msgstr ""
+
+#: ../data/messages:93
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr "重载URI的时间间隔，以秒为单位。为0则不重载"
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "Time between two page refreshes"
 msgstr "页面刷新时间"
 
-#: ../data/messages:95
-msgid "Any URI accepted by firefox should work."
+#: ../data/messages:97
+msgid "Any valid URI should work."
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr ""
+
+#~ msgid "Terminal"
+#~ msgstr "终端"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"

@@ -1,6 +1,6 @@
 
-#ifndef __RENDERING_INIT__
-#define  __RENDERING_INIT__
+#ifndef __DIALOG_RENDERING_INIT__
+#define  __DIALOG_RENDERING_INIT__
 
 
 #include <cairo-dock.h>

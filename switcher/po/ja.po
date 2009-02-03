@@ -30,11 +30,11 @@ msgstr ""
 "これは Cchumi によって製作された \n"
 "Cairo-Dock 用の switcher アプレットです。"
 
-#: ../src/applet-notifications.c:78
+#: ../src/applet-notifications.c:77
 msgid "Add a desktop"
 msgstr "デスクトップを追加"
 
-#: ../src/applet-notifications.c:79
+#: ../src/applet-notifications.c:78
 msgid "Remove last desktop"
 msgstr "最後のデスクトップを削除"
 

@@ -22,19 +22,19 @@ msgstr ""
 "これは ChAnGFu によって製作された \n"
 "Cairo-Dock 用の Slider アプレットです。"
 
-#: ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:123
 msgid "Play"
 msgstr "再生"
 
-#: ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:123
 msgid "Pause"
 msgstr "停止"
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:126
 msgid "Open current image"
 msgstr "現在の画像を開く"
 
-#: ../src/applet-notifications.c:129
+#: ../src/applet-notifications.c:128
 msgid "Browse images folder"
 msgstr "画像フォルダを参照"
 

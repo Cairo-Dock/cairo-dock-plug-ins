@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-01-17 02:15+0100\n"
+"POT-Creation-Date: 2009-02-03 01:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,48 +16,48 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-mixer.c:42
+#: ../src/applet-mixer.c:40
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr ""
 
-#: ../src/applet-mixer.c:47
+#: ../src/applet-mixer.c:45
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr ""
 
-#: ../src/applet-mixer.c:55
+#: ../src/applet-mixer.c:53
 msgid "I couldn't open the mixer"
 msgstr ""
 
-#: ../src/applet-mixer.c:62
+#: ../src/applet-mixer.c:60
 msgid "I couldn't attach the mixer to the card"
 msgstr ""
 
-#: ../src/applet-mixer.c:69
+#: ../src/applet-mixer.c:67
 msgid "I couldn't register options"
 msgstr ""
 
-#: ../src/applet-mixer.c:77
+#: ../src/applet-mixer.c:75
 msgid "I couldn't load the mixer"
 msgstr ""
 
-#: ../src/applet-mixer.c:135
+#: ../src/applet-mixer.c:133
 #, c-format
 msgid "I couldn't find any element '%s'"
 msgstr ""
 
-#: ../src/applet-mixer.c:275
+#: ../src/applet-mixer.c:273
 msgid "Set up volume :"
 msgstr ""
 
-#: ../src/applet-notifications.c:22
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the AlsaMixer applet\n"
 " made by Fabounet (Fabrice Rey) for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:50
+#: ../src/applet-notifications.c:47
 msgid "Adjsut channels"
 msgstr ""
 
