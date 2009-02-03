@@ -3,7 +3,15 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Necropotame (for any bug report, please mail me to adrien.pilleboue@gmail.com)
+Written by Necropotame & Fabounet (for any bug report, please mail me to adrien.pilleboue@gmail.com)
+
+exemple : 
+
+dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.CreateLauncherFromScratch string:inkscape string:yep string:rien  string:none
+
+dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetLabel string:new_label string:icon_name string:any string:none
+
+dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetQuickInfo string:123 string:none string:none string:dustbin
 
 ******************************************************************************/
 #include <glib.h>
@@ -14,7 +22,9 @@ Written by Necropotame (for any bug report, please mail me to adrien.pilleboue@g
 #include "applet-dbus-spec.h"
 #include "applet-dbus.h"
 
-CD_APPLET_INCLUDE_MY_VARS
+#define nullify_argument(string) do {\
+	if (string != NULL && (*string == '\0' || strcmp (string, "any") == 0 || strcmp (string, "none") == 0))\
+		string = NULL; } while (0)
 
 static gboolean dbus_deskletVisible = FALSE;
 static guint dbus_xLastActiveWindow;
@@ -135,6 +145,13 @@ gboolean cd_dbus_callback_load_launcher_from_file (dbusCallback *pDbusCallback, 
 	Icon *pIcon = cairo_dock_create_icon_from_desktop_file (cDesktopFile, pCairoContext);
 	cairo_destroy (pCairoContext);
 	
+	CairoDock * pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
+	if (pParentDock != NULL)  // a priori toujours vrai.
+	{
+		cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, CAIRO_DOCK_INSERT_SEPARATOR);
+		cairo_dock_start_icon_animation (pIcon, pParentDock);
+	}
+	
 	return TRUE;
 }
 
@@ -143,6 +160,7 @@ gboolean cd_dbus_callback_create_launcher_from_scratch (dbusCallback *pDbusCallb
 	if (! myConfig.bEnableCreateLauncher)
 		return FALSE;
 	
+	nullify_argument (cParentDockName);
 	if (cParentDockName == NULL)
 		cParentDockName = CAIRO_DOCK_MAIN_DOCK_NAME;
 	
@@ -173,7 +191,8 @@ static void _find_icon_in_dock (Icon *pIcon, CairoDock *pDock, gpointer *data)
 	gchar *cIconName = data[0];
 	gchar *cIconCommand = data[1];
 	Icon **pFoundIcon = data[2];
-	if ((cIconName == NULL || (pIcon->acName && strcmp (cIconName, pIcon->acName) == 0)) &&
+	gchar *cName = (pIcon->cInitialName != NULL ? pIcon->cInitialName : pIcon->acName);
+	if ((cIconName == NULL || (cName && strcmp (cIconName, cName) == 0)) &&
 		(cIconCommand == NULL || (pIcon->acCommand && strcmp (cIconCommand, pIcon->acCommand) == 0)))
 	{
 		*pFoundIcon = pIcon;
@@ -209,6 +228,10 @@ gboolean cd_dbus_callback_set_quick_info (dbusCallback *pDbusCallback, gchar *cQ
 	if (! myConfig.bEnableSetQuickInfo)
 		return FALSE;
 	
+	nullify_argument (cIconName);
+	nullify_argument (cIconCommand);
+	nullify_argument (cModuleName);
+	
 	Icon *pIcon = cd_dbus_find_icon (cIconName, cIconCommand, cModuleName);
 	if (pIcon == NULL)
 		return FALSE;
@@ -227,6 +250,10 @@ gboolean cd_dbus_callback_set_label (dbusCallback *pDbusCallback, gchar *cLabel,
 {
 	if (! myConfig.bEnableSetLabel)
 		return FALSE;
+	
+	nullify_argument (cIconName);
+	nullify_argument (cIconCommand);
+	nullify_argument (cModuleName);
 	
 	Icon *pIcon = cd_dbus_find_icon (cIconName, cIconCommand, cModuleName);
 	if (pIcon == NULL)
