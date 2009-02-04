@@ -162,25 +162,30 @@ void getSongInfos(void)
 		
 		value = (GValue *) g_hash_table_lookup(data_list, "rb:coverArt-uri");
 		g_free (myData.playing_cover);
+		myData.playing_cover = NULL;
 		if (value != NULL && G_VALUE_HOLDS_STRING(value))
 		{
-			GError *erreur = NULL;
 			const gchar *cString = g_value_get_string(value);
-			if (cString != NULL && strncmp (cString, "file://", 7) == 0)
+			cd_debug ("RB nous a refile cette adresse : %s", cString);
+			if (cString != NULL)
 			{
-				myData.playing_cover = g_filename_from_uri (cString, NULL, &erreur);
-				if (erreur != NULL)
+				if (strncmp (cString, "file://", 7) == 0)
 				{
-					cd_warning ("Attention : %s", erreur->message);
-					g_error_free (erreur);
+					GError *erreur = NULL;
+					myData.playing_cover = g_filename_from_uri (cString, NULL, &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning ("Attention : %s", erreur->message);
+						g_error_free (erreur);
+					}
+				}
+				else if (*cString == '/')
+				{
+					myData.playing_cover = g_strdup (cString);
 				}
 			}
-			else
-			{
-				myData.playing_cover = g_strdup (cString);
-			}
 		}
-		else
+		if (myData.playing_cover == NULL)
 		{
 			gchar *cSongPath = g_filename_from_uri (myData.playing_uri, NULL, NULL);  // on teste d'abord dans le repertoire de la chanson.
 			if (cSongPath != NULL)
@@ -188,15 +193,15 @@ void getSongInfos(void)
 				gchar *cSongDir = g_path_get_dirname (cSongPath);
 				g_free (cSongPath);
 				myData.playing_cover = g_strdup_printf ("%s/%s - %s.jpg", cSongDir, myData.playing_artist, myData.playing_album);
-				g_print ("test de %s\n", myData.playing_cover);
+				cd_debug ("test de %s", myData.playing_cover);
 				if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 				{
 					g_free (myData.playing_cover);
 					myData.playing_cover = g_strdup_printf ("%s/cover.jpg", cSongDir);
-					g_print ("  test de %s\n", myData.playing_cover);
+					cd_debug ("  test de %s", myData.playing_cover);
 					if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 					{
-						myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
+						myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);  /// gerer le repertoire ~/.cache/rhythmbox/covers ...
 					}
 				}
 				g_free (cSongDir);
