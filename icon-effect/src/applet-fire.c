@@ -41,13 +41,13 @@ CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, do
 		p->x = p->x * p->x * (p->x > 0 ? 1 : -1);
 		p->y = 0.;
 		p->z = 2 * g_random_double () - 1;
-		p->fWidth = r*(p->z + 2)/3 * g_random_double ();
+		p->fWidth = r*(p->z + 2)/3 * .5;
 		p->fHeight = p->fWidth;
 		
 		p->vx = 0.;
-		p->vy = a * vmax * ((p->z + 1)/2 * g_random_double () + epsilon) * dt;
+		p->vy = a * vmax * ((p->z + 1)/2 * 1. + epsilon) * dt;
 		p->iInitialLife = MIN (1./ p->vy, ceil (myConfig.iFireDuration / dt));
-		p->iLife = p->iInitialLife;
+		p->iLife = p->iInitialLife * (.8+.3*g_random_double ());  // dispersion entre .8 et 1.1
 		
 		if (myConfig.bMysticalFire)
 		{
@@ -75,24 +75,54 @@ CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, do
 }
 
 
+gboolean cd_icon_effect_update_fire_system (CairoParticleSystem *pParticleSystem, CairoDockRewindParticleFunc pRewindParticle)
+{
+	gboolean bAllParticlesEnded = TRUE;
+	CairoParticle *p;
+	int i;
+	for (i = 0; i < pParticleSystem->iNbParticles; i ++)
+	{
+		p = &(pParticleSystem->pParticles[i]);
+		
+		p->fOscillation += p->fOmega;
+		p->x += p->vx + (p->z + 2)/3. * .02 * sin (p->fOscillation);  // 3%
+		p->y += p->vy;
+		p->color[3] = .8*p->iLife / p->iInitialLife;
+		p->fSizeFactor += p->fResizeSpeed;
+		if (p->iLife > 0)
+		{
+			p->iLife --;
+			if (pRewindParticle && p->iLife == 0)
+			{
+				pRewindParticle (p, pParticleSystem->dt);
+			}
+			if (bAllParticlesEnded && p->iLife != 0)
+				bAllParticlesEnded = FALSE;
+		}
+		else if (pRewindParticle)
+			pRewindParticle (p, pParticleSystem->dt);
+	}
+	return ! bAllParticlesEnded;
+}
 
 void cd_icon_effect_rewind_fire_particle (CairoParticle *p, double dt)
 {
 	static double epsilon = 0.1;
-	double a = myConfig.fFireParticleSpeed/3;
+	double a = myConfig.fFireParticleSpeed/myConfig.fFireParticleSpeed;
 	double r = myConfig.iFireParticleSize;
 	double vmax = 1. / myConfig.iFireDuration;
 	p->x = 2 * g_random_double () - 1;
 	p->x = p->x * p->x * (p->x > 0 ? 1 : -1);
 	p->y = 0;
 	p->z = 2 * g_random_double () - 1;
-	p->fWidth = r*(p->z + 2)/3 * g_random_double ();
+	p->fWidth = r*(p->z + 2)/3 * .5;
 	p->fHeight = p->fWidth;
-	p->vy = a * vmax * ((p->z + 1)/2 * g_random_double () + epsilon) * dt;
+	p->vy = a * vmax * ((p->z + 1)/2 * 1. + epsilon) * dt;
 	
 	p->iInitialLife = MIN (1./ p->vy, ceil (myConfig.iFireDuration / dt));
-	p->iLife = p->iInitialLife;
+	p->iLife = p->iInitialLife * (.9+.2*g_random_double ());  // dispersion entre .9 et 1.1
 	
 	p->fSizeFactor = 1.;
+	p->color[3] = 1.;
 }
 

@@ -225,7 +225,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	
 	if (pData->pFireSystem != NULL)
 	{
-		gboolean bContinueFire = cairo_dock_update_default_particle_system (pData->pFireSystem,
+		gboolean bContinueFire = cd_icon_effect_update_fire_system (pData->pFireSystem,
 		(_will_continue (myConfig.bContinueFire) ? cd_icon_effect_rewind_fire_particle : NULL));
 		pData->pFireSystem->fWidth = pIcon->fWidth * pIcon->fScale;
 		if (bContinueFire)
