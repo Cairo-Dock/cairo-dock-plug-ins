@@ -361,7 +361,7 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
 	{
 		cairo_save (pSourceContext);
-		cairo_set_source_rgb (pSourceContext, 1.0f, 0.5f, 0.0f);
+		cairo_set_source_rgba (pSourceContext, myConfig.fDateColor[0], myConfig.fDateColor[1], myConfig.fDateColor[2], myConfig.fDateColor[3]);
 		cairo_set_line_width (pSourceContext, 8.0f);
 		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a%d%b", pTime);
 		cairo_text_extents (pSourceContext, s_cDateBuffer, &textExtents);

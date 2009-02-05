@@ -60,6 +60,20 @@ static void _cd_clock_delete_menu (GtkMenuShell *menu, gpointer data)
 	g_print ("%s ()\n", __func__);
 }
 
+int _cd_clock_compare_path_order (gpointer *data2, gpointer *data1) {
+  gchar *cPath1 = data1[1], *cPath2 = data2[1];
+	if (cPath1 == NULL)
+		return -1;
+	if (cPath2 == NULL)
+		return 1;
+	gchar *cURI_1 = g_ascii_strdown (cPath1, -1);
+	gchar *cURI_2 = g_ascii_strdown (cPath2, -1);
+	int iOrder = strcmp (cURI_1, cURI_2);
+	g_free (cURI_1);
+	g_free (cURI_2);
+	return iOrder;
+}
+
 static GList *_parse_dir (const gchar *cDirPath, const gchar *cCurrentLocation, GtkWidget *pMenu, GList *pLocationPathList, CairoDockModuleInstance *myApplet)
 {
 	GError *erreur = NULL;
@@ -80,7 +94,7 @@ static GList *_parse_dir (const gchar *cDirPath, const gchar *cCurrentLocation, 
 	while ((cFileName = g_dir_read_name (dir)) != NULL)
 	{
 		if (g_str_has_suffix (cFileName, ".tab") || strcmp (cFileName, "posix") == 0 || strcmp (cFileName, "right") == 0)
-			continue ;
+			continue;
 		
 		pMenuItem = gtk_menu_item_new_with_label (cFileName);
 		gtk_menu_shell_append (GTK_MENU_SHELL (pMenu), pMenuItem);
@@ -104,6 +118,7 @@ static GList *_parse_dir (const gchar *cDirPath, const gchar *cCurrentLocation, 
 			data[0] = myApplet;
 			data[1] = cLocationPath;
 			pPathList = g_list_prepend (pPathList, data);
+			//pPathList = g_list_insert_sorted (pPathList, data, (GCompareFunc) _cd_clock_compare_path_order); //Sorted location is better no?
 			g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_cd_clock_select_location), data);
 		}
 	}

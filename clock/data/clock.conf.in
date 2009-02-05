@@ -125,12 +125,19 @@ text color = 0.0; 0.0; 0.5; 1.
 #{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
 font = 
 
+#v
+sep_deco_mod =
+
 #b+ Use the analogic view ?
 #{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
 old fashion style = true
 
 #h+[@clockdatadir@/themes;@clockuserdirname@] List of available themes for the analogic display :/
 theme = glassy
+
+#c+4[0;1] Text color of the date :
+#{r, v, b, a}
+date color = 1.0; 5.0; 0.9; 1.
 
 #F[Setup time and date;gtk-file]
 frame3 =

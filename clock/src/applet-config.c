@@ -24,6 +24,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bOldStyle 		= CD_CONFIG_GET_BOOLEAN ("Module", "old fashion style");
 	double couleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "text color", myConfig.fTextColor, couleur);
+	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "date color", myConfig.fDateColor, couleur);
 	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Module", "setup command");
 	myConfig.cFont = CD_CONFIG_GET_STRING ("Module", "font");
 	if (myConfig.cFont == NULL)

@@ -75,6 +75,7 @@ struct _AppletConfig {
 	gboolean bOldStyle;
 	gboolean b24Mode;
 	double fTextColor[4];
+	double fDateColor[4];
 	gchar *cThemePath;
 	GPtrArray *pAlarms;
 	gchar *cSetupTimeCommand;

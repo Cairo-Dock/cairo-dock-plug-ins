@@ -34,7 +34,7 @@ msgstr "Régler la date et l'heure"
 
 #: ../src/applet-notifications.c:193
 msgid "Choose a location"
-msgstr "Choisisez une localité"
+msgstr "Choisissez une localité"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -315,6 +315,9 @@ msgstr "Utiliser la vue analogique ?"
 #: ../data/messages:119
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour la vue analogique :"
+
+msgid "Text color of the date :"
+msgstr "Couleur du texte de la date :"
 
 #: ../data/messages:121
 msgid "Setup time and date"
