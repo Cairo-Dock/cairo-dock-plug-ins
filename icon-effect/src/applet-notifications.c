@@ -228,6 +228,8 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueFire = cd_icon_effect_update_fire_system (pData->pFireSystem,
 		(_will_continue (myConfig.bContinueFire) ? cd_icon_effect_rewind_fire_particle : NULL));
 		pData->pFireSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+		if (pDock->bAtBottom)
+			pData->pFireSystem->fHeight = pIcon->fHeight;
 		if (bContinueFire)
 			*bContinueAnimation = TRUE;
 		else

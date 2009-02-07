@@ -206,7 +206,8 @@ gboolean cd_slider_update_slide (CairoDockModuleInstance *myApplet) {
 			//\______________________ On dessine la nouvelle surface.
 			cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 			cairo_paint (myDrawContext);
-			cairo_dock_update_icon_texture (myIcon);
+			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+				cairo_dock_update_icon_texture (myIcon);
 			
  			CD_APPLET_REDRAW_MY_ICON;
 		break;
@@ -357,7 +358,8 @@ gboolean cd_slider_fade (CairoDockModuleInstance *myApplet) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
-	cairo_dock_update_icon_texture (myIcon);
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		cairo_dock_update_icon_texture (myIcon);
 	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
@@ -394,7 +396,8 @@ gboolean cd_slider_blank_fade (CairoDockModuleInstance *myApplet) {
 	cairo_rectangle(myDrawContext, 0., 0., myData.fSurfaceWidth, myData.fSurfaceHeight);
 	cairo_fill(myDrawContext);
 	
-	cairo_dock_update_icon_texture (myIcon);
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		cairo_dock_update_icon_texture (myIcon);
 	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
@@ -438,7 +441,8 @@ gboolean cd_slider_fade_in_out (CairoDockModuleInstance *myApplet) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.pImgL.fImgX, myData.pImgL.fImgY);
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
-	cairo_dock_update_icon_texture (myIcon);
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		cairo_dock_update_icon_texture (myIcon);
 	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
@@ -468,7 +472,8 @@ gboolean cd_slider_side_kick (CairoDockModuleInstance *myApplet) {
 	cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.fAnimCNT, myData.pImgL.fImgY);
 	cairo_paint (myDrawContext);
 	
-	cairo_dock_update_icon_texture (myIcon);
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		cairo_dock_update_icon_texture (myIcon);
 	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
@@ -518,7 +523,8 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 		cairo_paint(myDrawContext);
 	}
   
-	cairo_dock_update_icon_texture (myIcon);
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		cairo_dock_update_icon_texture (myIcon);
 	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
@@ -553,7 +559,8 @@ gboolean cd_slider_grow_up (CairoDockModuleInstance *myApplet) {
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 	
-	cairo_dock_update_icon_texture (myIcon);
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		cairo_dock_update_icon_texture (myIcon);
 	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
@@ -589,7 +596,8 @@ gboolean cd_slider_shrink_down (CairoDockModuleInstance *myApplet) {
 	
 	cairo_paint_with_alpha (myDrawContext, myData.fAnimCNT);
 	
-	cairo_dock_update_icon_texture (myIcon);
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		cairo_dock_update_icon_texture (myIcon);
 	CD_APPLET_REDRAW_MY_ICON;
 	cairo_restore(myDrawContext);
 	
