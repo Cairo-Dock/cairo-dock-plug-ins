@@ -33,6 +33,7 @@ gboolean cd_illusion_update_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionD
 	if (pData->fFadeOutAlpha < CD_ILLUSION_FADE_OUT_LIMIT)
 		cairo_dock_update_removing_inserting_icon_size_default (pIcon);
 	
+	cairo_dock_redraw_icon (pIcon, pDock);
 	return (pData->fFadeOutAlpha > 0 || pIcon->fPersonnalScale > .05);
 }
 

@@ -29,11 +29,10 @@ gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer, c
 	if (CAIRO_DOCK_IS_DESKLET (pContainer))
 	{
 		CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
-		glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, -pDesklet->iWidth*(sqrt(3)/2));
-		
+		glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, -pDesklet->iHeight*(sqrt(3)/2));
 	}
 	if (pContainer->bIsHorizontal)
-		glTranslatef (pContainer->iMouseX ,pContainer->iHeight - pContainer->iMouseY , 0.);
+		glTranslatef (pContainer->iMouseX, pContainer->iHeight - pContainer->iMouseY, 0.);
 	else
 		glTranslatef (pContainer->iMouseY, pContainer->iWidth - pContainer->iMouseX, 0.);
 	cairo_dock_render_particles (pData->pSystem);
@@ -70,6 +69,23 @@ gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pCo
 	pData->pSystem->fWidth = 2 * MIN (96, pContainer->iHeight);
 	pData->pSystem->fHeight =  MIN (96, pContainer->iHeight);
 	cd_show_mouse_update_particle_system (pData->pSystem, pData);
+	
+	GdkRectangle area;
+	if (pContainer->bIsHorizontal)
+	{
+		area.x = pContainer->iMouseX - pData->pSystem->fWidth/2;
+		area.y = MAX (0, pContainer->iMouseY - pData->pSystem->fHeight);
+		area.width = pData->pSystem->fWidth;
+		area.height = pData->pSystem->fHeight*2;
+	}
+	else
+	{
+		area.y = pContainer->iMouseX - pData->pSystem->fWidth/2;
+		area.x = MAX (0, pContainer->iMouseY - pData->pSystem->fHeight);
+		area.height = pData->pSystem->fWidth;
+		area.width = pData->pSystem->fHeight*2;
+	}
+	cairo_dock_redraw_container_area (pContainer, &area);
 	
 	*bContinueAnimation = TRUE;
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;

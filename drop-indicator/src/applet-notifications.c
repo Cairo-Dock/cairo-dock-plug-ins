@@ -233,7 +233,7 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 			*bContinueAnimation = TRUE;
 	}
 	
-	if (! CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
+	//if (! CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
 	{
 		GdkRectangle rect = {(int) pDock->iMouseX - myData.fDropIndicatorWidth/2,
 			(int) (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight - 2*myData.fDropIndicatorHeight),

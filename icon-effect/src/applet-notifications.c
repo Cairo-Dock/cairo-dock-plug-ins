@@ -295,6 +295,31 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		}
 	}
 	
+	double fMaxScale = cairo_dock_get_max_scale (pDock);
+	GdkRectangle area;
+	if (pDock->bHorizontalDock)
+	{
+		area.x = pIcon->fDrawX - .2 * pIcon->fWidth * pIcon->fScale;
+		area.y = pIcon->fDrawY;
+		if (pDock->bDirectionUp)
+			area.y -= (pIcon->fScale - fMaxScale) * pIcon->fHeight + myLabels.iconTextDescription.iSize;
+		area.width = pIcon->fWidth * pIcon->fScale * 1.4;
+		area.height = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize;
+	}
+	else
+	{
+		area.y = pIcon->fDrawX - .2 * pIcon->fWidth * pIcon->fScale;
+		area.x = pIcon->fDrawY;
+		if (pDock->bDirectionUp)
+			area.x -= (pIcon->fScale - fMaxScale) * pIcon->fHeight + myLabels.iconTextDescription.iSize;
+		area.height = pIcon->fWidth * pIcon->fScale * 1.4;
+		area.width = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize;
+	}
+	cairo_dock_redraw_container_area (pDock, &area);
+	
+	if (! *bContinueAnimation)
+		cd_icon_effect_free_data (pUserData, pIcon);
+	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 

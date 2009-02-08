@@ -88,6 +88,9 @@ gboolean cd_illusion_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pD
 	else if (pData->fExplodeDeltaT != 0)
 		*bContinueAnimation = cd_illusion_update_explode (pIcon, pDock, pData);
 	
+	if (! *bContinueAnimation)
+		cd_illusion_free_data (pUserData, pIcon);
+	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 

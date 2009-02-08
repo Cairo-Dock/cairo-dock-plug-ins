@@ -44,16 +44,7 @@ gboolean penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	area.width = abs (iPreviousPositionX - myData.iCurrentPositionX) + pAnimation->iFrameWidth;
 	area.height = abs (iPreviousPositionY - myData.iCurrentPositionY) + pAnimation->iFrameHeight;
 	
-	//g_print (" -> (%d;%d) (%dx%d)\n", area.x, area.y, area.width, area.height);
-	if (area.width > 0 && area.height > 0 && ! CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
-	{
-#ifdef HAVE_GLITZ
-		if (myContainer->pDrawFormat && myContainer->pDrawFormat->doublebuffer)
-			gtk_widget_queue_draw (myContainer->pWidget);
-		else
-#endif
-		gdk_window_invalidate_rect (myContainer->pWidget->window, &area, FALSE);
-	}
+	cairo_dock_redraw_container_area (myDock, &area);
 	
 	penguin_advance_to_next_frame (myApplet, pAnimation);
 	
@@ -145,10 +136,6 @@ gboolean penguin_draw_on_dock (GtkWidget *pWidget,
 	cairo_paint (pCairoContext);
 
 	cairo_destroy (pCairoContext);
-#ifdef HAVE_GLITZ
-	if (myContainer->pDrawFormat && myContainer->pDrawFormat->doublebuffer)
-		glitz_drawable_swap_buffers (myContainer->pGlitzDrawable);
-#endif
 	return FALSE;
 }
 
@@ -483,24 +470,16 @@ gboolean penguin_update_container (CairoDockModuleInstance *myApplet, CairoConta
 {
 	if (pContainer != myContainer)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	myData.iCountStep ++;
-	if (myData.iCountStep * mySystem.iGLAnimationDeltaT >= 90)
-	{
-		*bContinueAnimation = penguin_move_in_dock (myApplet);
-		myData.iCountStep = 0;
-	}
-	else
-	{
-		*bContinueAnimation = TRUE;
-	}
+	
+	*bContinueAnimation = penguin_move_in_dock (myApplet);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-gboolean penguin_update_icon (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean penguin_update_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
-	if (pContainer != myContainer)
+	if (pIcon != myIcon)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	myData.iCountStep ++;
+	/*myData.iCountStep ++;
 	if (myData.iCountStep * mySystem.iGLAnimationDeltaT >= 90)
 	{
 		*bContinueAnimation = penguin_move_in_icon (myApplet);
@@ -509,7 +488,9 @@ gboolean penguin_update_icon (CairoDockModuleInstance *myApplet, CairoContainer 
 	else
 	{
 		*bContinueAnimation = TRUE;
-	}
+	}*/
+	*bContinueAnimation = penguin_move_in_icon (myApplet);
+	cairo_dock_redraw_icon (myIcon, myContainer);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -522,17 +503,17 @@ void penguin_start_animating (CairoDockModuleInstance *myApplet)
 	
 	if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
 	{
-		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
-		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_container, myApplet);
+		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
+		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
 		cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, myApplet);
 		if (myConfig.bFree)
 		{
-			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
+			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
 			cairo_dock_register_notification (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, CAIRO_DOCK_RUN_AFTER, myApplet);
 		}
 		else
 		{
-			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) penguin_update_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
+			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
 		}
 	}
 	else

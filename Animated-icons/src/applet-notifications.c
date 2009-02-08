@@ -499,6 +499,8 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			*bContinueAnimation = TRUE;
 	}
 	
+	if (bUseOpenGL)
+		cairo_dock_redraw_container (pDock);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 

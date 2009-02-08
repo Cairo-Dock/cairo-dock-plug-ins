@@ -54,6 +54,22 @@ gboolean cd_illusion_update_explode (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 		cairo_dock_update_removing_inserting_icon_size_default (pIcon);
 	}
 	
+	GdkRectangle area;
+	if (pDock->bHorizontalDock)
+	{
+		area.x = pIcon->fDrawX + (.5 - pData->fExplosionRadius/2) * pIcon->fWidth * pIcon->fScale;
+		area.y = MAX (0, pIcon->fDrawY + (.5 - pData->fExplosionRadius/2) * pIcon->fHeight * pIcon->fScale);
+		area.width = pData->fExplosionRadius * pIcon->fWidth * pIcon->fScale * 1;
+		area.height = pData->fExplosionRadius * pIcon->fHeight * pIcon->fScale * 1;
+	}
+	else
+	{
+		area.y = pIcon->fDrawX + (.5 - pData->fExplosionRadius/2) * pIcon->fWidth * pIcon->fScale;
+		area.x = MAX (0, pIcon->fDrawY + (.5 - pData->fExplosionRadius/2) * pIcon->fHeight * pIcon->fScale);
+		area.height = pData->fExplosionRadius * pIcon->fWidth * pIcon->fScale * 1;
+		area.width = pData->fExplosionRadius * pIcon->fHeight * pIcon->fScale * 1;
+	}
+	cairo_dock_redraw_container_area (pDock, &area);
 	return (pIcon->fPersonnalScale > .05);
 }
 

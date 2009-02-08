@@ -20,7 +20,7 @@ gboolean penguin_update_container (CairoDockModuleInstance *myApplet, CairoConta
 
 gboolean penguin_move_in_icon (CairoDockModuleInstance *myApplet);
 
-gboolean penguin_update_icon (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation);
+gboolean penguin_update_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation);
 
 
 void penguin_calculate_new_position (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation, int iXMin, int iXMax, int iHeight);

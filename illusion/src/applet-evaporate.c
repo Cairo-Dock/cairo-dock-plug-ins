@@ -142,6 +142,7 @@ gboolean cd_illusion_update_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusion
 	if (pData->fEvaporatePercent > CD_ILLUSION_EVAPORATE_LIMIT)
 		cairo_dock_update_removing_inserting_icon_size_default (pIcon);
 	
+	cairo_dock_redraw_icon (pIcon, pDock);
 	return (pData->fEvaporatePercent < 1 || pIcon->fPersonnalScale > .05);
 }
 
