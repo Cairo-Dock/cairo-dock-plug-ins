@@ -72,7 +72,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			myContainer,
 			0,
 			cIconPath,
-			GTK_BUTTONS_NONE,
+			/*GTK_BUTTONS_NONE,*/
 			pInteractiveWidget,
 			NULL,
 			NULL,

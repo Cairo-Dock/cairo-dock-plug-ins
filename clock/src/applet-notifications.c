@@ -194,7 +194,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		myData.pCalendarDialog = cairo_dock_show_dialog_full (_("Calendar"),
 			myIcon, myContainer,
 			0,
-			cImagePath, GTK_BUTTONS_NONE,
+			cImagePath, /*GTK_BUTTONS_NONE,*/
 			pCalendar,
 			NULL, NULL, NULL);
 		g_free (cImagePath);
