@@ -28,8 +28,8 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (myConfig.bCompactView && pClickedIcon == myIcon)
 	{
 		int iMouseX, iMouseY;
-		iMouseX = myDock->iMouseX - myIcon->fDrawX;
-		iMouseY = myDock->iMouseY - myIcon->fDrawY;
+		iMouseX = myContainer->iMouseX - myIcon->fDrawX;
+		iMouseY = myContainer->iMouseY - myIcon->fDrawY;
 		if (! myContainer->bIsHorizontal)
 		{
 			double tmp = iMouseX;

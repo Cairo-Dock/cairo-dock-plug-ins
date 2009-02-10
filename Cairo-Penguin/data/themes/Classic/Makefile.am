@@ -2,6 +2,7 @@ themedir = $(cairo_penguindatadir)/themes/Classic
 
 theme_DATA =	    \
 	theme.conf\
+	readme\
 	basher.png\
 	blocker.png\
 	boarder.png\

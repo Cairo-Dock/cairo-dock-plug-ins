@@ -8,8 +8,6 @@
 
 static DBusGProxy *dbus_proxy_tomboy = NULL;
 
-CD_APPLET_INCLUDE_MY_VARS
-
 extern struct tm *localtime_r (time_t *timer, struct tm *tp);
 
 
@@ -183,7 +181,7 @@ void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 	{
 		pIcon->acName = cTitle;
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-		cairo_dock_fill_one_text_buffer (pIcon, pCairoContext, &myLabels.iconTextDescription, (mySystem.bTextAlwaysHorizontal ? CAIRO_DOCK_HORIZONTAL : myContainer->bIsHorizontal), myContainer->bDirectionUp);
+		cairo_dock_fill_one_text_buffer (pIcon, pCairoContext, &myLabels.iconTextDescription);
 		cairo_destroy (pCairoContext);
 	}
 	else

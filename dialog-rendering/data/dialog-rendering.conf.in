@@ -58,5 +58,5 @@ border = 1
 line color = 1.0; 1.0; 1.0; 1.0
 
 #c+4[0;1] Color of the margin :
-line color = .9;.9;.9;1.0
+margin color = .9;.9;.9;1.0
 

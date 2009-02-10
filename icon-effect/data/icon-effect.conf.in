@@ -59,10 +59,10 @@ mystical = false
 nb part = 150
 
 #I[10;60] Particle size :
-part size = 30
+part size = 32
 
 #e[1;10] Particle speed :
-part speed = 4.
+part speed = 3.
 
 
 #[@icon_effectsdatadir@/star.png]
