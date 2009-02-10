@@ -31,47 +31,45 @@ CD_APPLET_INCLUDE_MY_VARS
 void _exaile_getTime (void)
 {
 	cd_debug ("");
-	guchar* uValue=NULL;
+	gint uValue=NULL;
 	gchar* temps=NULL; 
 	gchar* length=NULL;
 	gint minutes, secondes;
 	
 	/* Récupération du temps total! */
 	length = cd_musicplayer_getLength_string();
-	if (length != NULL) { //Sinon ca plante!
-		cd_debug ("Length : %s", length);
-		temps = strtok (length, ":");
-		minutes = atoi(temps);
-		temps = strtok (NULL, "\0");
-		secondes = atoi(temps);
-		myData.iSongLength = secondes + 60 * minutes;
-	} //Plante quand le player est stopper, d'ailleurs l'applet ne m'affiche aucun changement de status
-	//Revois cette partie du code, pour le reste ca fonctionne maintenant.
-	else {
-		myData.iSongLength = 0;
-	}
-	
+	//cd_debug ("MP : Length : %s", length);
+	temps = strtok (length, ":");
+	minutes = atoi(temps);
+	temps = strtok (NULL, "\0");
+	secondes = atoi(temps);
+	myData.iSongLength = secondes + 60 * minutes;
+		
 	/* On récupère le pourcentage de la position actuelle */
-	uValue = cd_musicplayer_getCurPos_string();
-	
+	uValue = (gint)cd_musicplayer_getCurPos_string();
+	//cd_debug("MP : uValue = %d", uValue);
 	/* Calcul de la position actuelle */
 	myData.iPreviousCurrentTime = myData.iCurrentTime;
-	if (uValue != NULL) //Sinon ca plante bien évidement...
-		myData.iCurrentTime = (myData.iSongLength * (int) uValue) / 100;
-	else 
-		myData.iCurrentTime = 0;
 	
-	/* Décalage dû à l'utilisation du pourcentage par exaile : marchotte mais sans plus */
-	if (myData.iPreviousCurrentTime == myData.iCurrentTime && myData.pPlayingStatus == PLAYER_PLAYING)
+	/* Décalage dû à l'utilisation du pourcentage par exaile */	
+	if (myData.iPreviousuValue == uValue && myData.pPlayingStatus == PLAYER_PLAYING && myData.iCurrentTime < ((myData.iSongLength * (uValue + 1)) / 100))
 		myData.iCurrentTime = myData.iCurrentTime +1;
-		
-	//cd_debug("MP : Position actuelle : %i", myData.iCurrentTime);
+	else if (myData.iPreviousuValue != uValue)
+		myData.iCurrentTime = (myData.iSongLength * uValue) / 100;
+	
+	myData.iPreviousuValue = uValue;
+	/*g_free(uValue);
+	g_free(temps);
+	g_free(length);
+	g_free(minutes);
+	g_free(secondes);*/
 }
 
 
 
-void cd_exaile_free_data (void) //Permet de libéré la mémoire prise par notre controleur
+void cd_exaile_free_data (void) //Permet de libérer la mémoire prise par notre controleur
 {
+	cd_debug("MP : Deconnexion de DBus");
 	musicplayer_dbus_disconnect_from_bus();
 }
 
@@ -111,6 +109,7 @@ void cd_exaile_control (MyPlayerControl pControl, char* nothing) //Permet d'effe
 		cd_debug ("MP : Handeler Exaile : will use '%s'", cCommand);
 		cd_musicplayer_dbus_command (cCommand);
 	}
+	//g_free(cCommand);
 }
 
 /* Permet de renseigner l'applet des fonctions supportées par le lecteur */

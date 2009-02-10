@@ -158,11 +158,13 @@ gboolean cd_musicplayer_draw_icon (void) {
 		
 		switch (myData.pPlayingStatus) {
 			case PLAYER_PLAYING :
-				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_PLAY, CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
+				cd_debug("MP : Le lecteur est en mode Play");
+				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_PLAY, CAIRO_DOCK_EMBLEM_MIDDLE);
 				break;
 				
 			case PLAYER_PAUSED :
-				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_PAUSE, CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
+				cd_debug("MP : Le lecteur est en mode Pause");
+				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_PAUSE, CAIRO_DOCK_EMBLEM_MIDDLE);
 				break;
 				
 			case PLAYER_STOPPED :
@@ -206,7 +208,7 @@ void cd_musicplayer_new_song_playing (void) {
 
 //Fonction qui anime l'icone au changement de musique
 void cd_musicplayer_animate_icon (int animationLength) {
-	if (myDock) {
+	if (myDock && myConfig.cChangeAnimation != NULL) {
 	  cd_debug ("Animation: %s", myConfig.cChangeAnimation);
 		CD_APPLET_ANIMATE_MY_ICON (myConfig.cChangeAnimation, animationLength);
 	}

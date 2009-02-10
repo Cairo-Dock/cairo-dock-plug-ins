@@ -193,8 +193,8 @@ int cd_musicplayer_getLength_integer (void)
 gchar* cd_musicplayer_getLength_string (void)
 {
 	gchar* duration=NULL;
-	duration = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.duration);
-	return duration;
+	if ((duration = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.duration)) != NULL)	return duration;
+	else return "0:00";
 }
 
 //*********************************************************************************

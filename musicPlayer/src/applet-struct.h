@@ -138,6 +138,7 @@ struct _AppletData {
 	gint iTrackNumber, iPreviousTrackNumber;
 	gint iCurrentTime, iPreviousCurrentTime;
 	gint iSongLength;
+	gint iPreviousuValue;
 
 	// Pour les lecteurs utilisant DBus
 	MusicPlayerDBus DBus_commands;
