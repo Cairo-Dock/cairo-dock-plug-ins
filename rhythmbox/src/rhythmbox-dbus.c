@@ -188,10 +188,11 @@ void getSongInfos(void)
 		if (myData.playing_cover == NULL)
 		{
 			gchar *cSongPath = g_filename_from_uri (myData.playing_uri, NULL, NULL);  // on teste d'abord dans le repertoire de la chanson.
-			if (cSongPath != NULL)
+			if (cSongPath != NULL)  // c'est un fichier local.
 			{
 				gchar *cSongDir = g_path_get_dirname (cSongPath);
 				g_free (cSongPath);
+				
 				myData.playing_cover = g_strdup_printf ("%s/%s - %s.jpg", cSongDir, myData.playing_artist, myData.playing_album);
 				cd_debug ("test de %s", myData.playing_cover);
 				if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
@@ -201,10 +202,16 @@ void getSongInfos(void)
 					cd_debug ("  test de %s", myData.playing_cover);
 					if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 					{
-						myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);  /// gerer le repertoire ~/.cache/rhythmbox/covers ...
+						g_free (myData.playing_cover);
+						myData.playing_cover = NULL;
 					}
 				}
 				g_free (cSongDir);
+			}
+			
+			if (myData.playing_cover == NULL)  // on regarde maintenant dans le cache de RB.
+			{
+				myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);  /// gerer le repertoire ~/.cache/rhythmbox/covers ...
 			}
 		}
 		g_print ("  playing_cover <- %s", myData.playing_cover);
