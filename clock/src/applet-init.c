@@ -48,18 +48,17 @@ static void _load_theme (CairoDockModuleInstance *myApplet)
 		for (i = 0; i < CLOCK_ELEMENTS; i ++)
 		{
 			g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, s_cFileNames[i]);
+
 			myData.pSvgHandles[i] = rsvg_handle_new_from_file (sElementPath->str, NULL);
+			//g_print (" + %s\n", cElementPath);
 		}
 		g_string_free (sElementPath, TRUE);
 		rsvg_handle_get_dimensions (myData.pSvgHandles[CLOCK_DROP_SHADOW], &myData.DimensionData);
-		rsvg_handle_get_dimensions (myData.pSvgHandles[CLOCK_HOUR_HAND], &myData.needleDimension);
 	}
 	else
 	{
-		myData.DimensionData.width = 48;  // valeurs par defaut si aucun theme.
+		myData.DimensionData.width = 48;  // valeur par defaut si aucun theme.
 		myData.DimensionData.height = 48;
-		myData.needleDimension.width = 48;
-		myData.needleDimension.height = 48;
 	}
 }
 static void _load_back_and_fore_ground (CairoDockModuleInstance *myApplet)
@@ -80,14 +79,6 @@ static void _load_back_and_fore_ground (CairoDockModuleInstance *myApplet)
 		myIcon->fWidth * fMaxScale,
 		myIcon->fHeight * fMaxScale,
 		KIND_FOREGROUND);
-	if (g_bUseOpenGL)
-	{
-		if (myData.pBackgroundSurface)
-			myData.iBgTexture = cairo_dock_create_texture_from_surface (myData.pBackgroundSurface);
-		if (myData.pForegroundSurface)
-			myData.iFgTexture = cairo_dock_create_texture_from_surface (myData.pForegroundSurface);
-		cairo_surface_t *pNeedleSurface = 
-	}
 }
 
 CD_APPLET_INIT_BEGIN

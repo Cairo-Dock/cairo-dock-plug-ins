@@ -140,17 +140,6 @@ CD_APPLET_RESET_DATA_BEGIN
 			cairo_surface_destroy (myData.pDigitalClock.pText[i].pTextSurface);
 	}
 	
-	if (myData.iBgTexture != 0)
-		glDeleteTextures (1, &myData.iBgTexture);
-	if (myData.iFgTexture != 0)
-		glDeleteTextures (1, &myData.iFgTexture);
-	if (myData.iHourNeedleTexture != 0)
-		glDeleteTextures (1, &myData.iHourNeedleTexture);
-	if (myData.iMinuteNeedleTexture != 0)
-		glDeleteTextures (1, &myData.iMinuteNeedleTexture);
-	if (myData.iSecondNeedleTexture != 0)
-		glDeleteTextures (1, &myData.iSecondNeedleTexture);
-	
 	g_free (myData.cSystemLocation);
 CD_APPLET_RESET_DATA_END
 
