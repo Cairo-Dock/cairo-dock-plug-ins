@@ -88,6 +88,7 @@ struct _AppletData {
 	cairo_surface_t *pBackgroundSurface;
 	cairo_surface_t *pForegroundSurface;
 	RsvgDimensionData DimensionData;
+	RsvgDimensionData needleDimension;
 	RsvgHandle *pSvgHandles[CLOCK_ELEMENTS];
 	int iSidUpdateClock;
 	GPid iAlarmPID;
@@ -96,6 +97,9 @@ struct _AppletData {
 	gint iLastCheckedMinute, iLastCheckedDay, iLastCheckedMonth, iLastCheckedYear;
 	
 	ClockDigital pDigitalClock;
+	
+	GLuint iBgTexture, iFgTexture, iHourNeedleTexture, iMinuteNeedleTexture, iSecondNeedleTexture;
+	gint iSmoothAnimationStep;
 	} ;
 
 #endif

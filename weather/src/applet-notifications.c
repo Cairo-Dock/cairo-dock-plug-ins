@@ -37,9 +37,9 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
-static void _cd_weather_location_choosed (int iAnswer, GtkWidget *pWidget, CairoDockModuleInstance *myApplet)
+static void _cd_weather_location_choosed (int iClickedButton, GtkWidget *pWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
 {
-	if (iAnswer == GTK_RESPONSE_OK)
+	if (iClickedButton == 0)
 	{
 		//\____________________ On recupere le code choisi.
 		gchar *cChoosedText = gtk_combo_box_get_active_text (GTK_COMBO_BOX (pWidget));
@@ -128,19 +128,11 @@ static void _cd_weather_search_for_location (GtkMenuItem *menu_item, CairoDockMo
 			attr.cText = D_("Choose your location :");
 			attr.cImageFilePath = cImageFilePath;
 			attr.pInteractiveWidget = pCombo;
-			attr.iButtonsType = GTK_BUTTONS_OK_CANCEL;
+			gchar *cButtons[3] = {"ok", "cancel", NULL};
+			attr.cButtonsImage = cButtons;
 			attr.pActionFunc = (CairoDockActionOnAnswerFunc) _cd_weather_location_choosed;
 			attr.pUserData = myApplet;
 			CairoDialog *pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
-			/*CairoDialog *pDialog = cairo_dock_build_dialog (D_("Choose your location :"),
-				myIcon,
-				myContainer,
-				cImageFilePath,
-				pCombo,
-				GTK_BUTTONS_OK_CANCEL,
-				(CairoDockActionOnAnswerFunc) _cd_weather_location_choosed,
-				myApplet,
-				NULL);*/
 			g_free (cImageFilePath);
 		}
 		

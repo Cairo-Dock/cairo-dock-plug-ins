@@ -76,7 +76,6 @@ static gboolean on_change_screen_geometry (gpointer *data, CairoDockModuleInstan
 	cd_switcher_compute_nb_lines_and_columns ();
 	cd_switcher_get_current_desktop ();
 	cd_switcher_load_icons ();
-	cd_switcher_load_icons ();
 	cd_switcher_draw_main_icon ();
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

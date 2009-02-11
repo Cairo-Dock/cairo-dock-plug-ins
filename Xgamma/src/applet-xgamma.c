@@ -125,11 +125,11 @@ void xgamma_create_scales_widget (double fGamma, XF86VidModeGamma *pGamma)
 }
 
 
-void xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data)
+void xgamma_apply_values (int iClickedButton, GtkWidget *pWidget, gpointer data, CairoDialog *pDialog)
 {
-	if (iAnswer == GTK_RESPONSE_OK)
+	if (iClickedButton == 0)
 	{
-		cd_message ("%s (ok)");
+		cd_message ("%s (ok)", __func__);
 	}
 	else
 	{
@@ -137,8 +137,8 @@ void xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data)
 		myData.Xgamma = myData.XoldGamma;
 		xgamma_set_gamma (&myData.Xgamma);
 	}
-	cairo_dock_hide_dialog (myData.pDialog);  // apres cette fonction, ref --
-	cairo_dock_dialog_reference (myData.pDialog);
+	cairo_dock_hide_dialog (myData.pDialog);
+	cairo_dock_dialog_reference (myData.pDialog);  // pour garder notre dialogue en vie.
 	
 }
 
@@ -148,7 +148,8 @@ CairoDialog *xgamma_build_dialog (void)
 	memset (&attr, 0, sizeof (CairoDialogAttribute));
 	attr.cText = D_("Set up gamma :");
 	attr.pInteractiveWidget = myData.pWidget;
-	attr.iButtonsType = GTK_BUTTONS_OK_CANCEL;
+	gchar *cButtons[3] = {"ok", "cancel", NULL};
+	attr.cButtonsImage = cButtons;
 	attr.pActionFunc = (CairoDockActionOnAnswerFunc) xgamma_apply_values;
 	attr.pUserData = myApplet;
 	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
@@ -165,15 +166,6 @@ void xgamma_build_and_show_widget (void)
 	if (myDock)
 	{
 		myData.pDialog = xgamma_build_dialog ();
-		/*myData.pDialog = cairo_dock_build_dialog (D_("Set up gamma :"),
-			myIcon,
-			myContainer,
-			NULL,
-			myData.pWidget,
-			GTK_BUTTONS_OK_CANCEL,
-			(CairoDockActionOnAnswerFunc) xgamma_apply_values,
-			NULL,
-			NULL);*/
 	}
 	else
 	{

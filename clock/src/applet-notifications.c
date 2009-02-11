@@ -21,7 +21,7 @@ static GList *s_pTimeZoneList = NULL;
 
 void cd_clock_free_timezone_list (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("");
 	gpointer *data;
 	GList *e;
 	for (e = s_pTimeZoneList; e != NULL; e = e->next)
@@ -117,8 +117,8 @@ static GList *_parse_dir (const gchar *cDirPath, const gchar *cCurrentLocation, 
 			data = g_new (gpointer, 2);
 			data[0] = myApplet;
 			data[1] = cLocationPath;
-			pPathList = g_list_prepend (pPathList, data);
-			//pPathList = g_list_insert_sorted (pPathList, data, (GCompareFunc) _cd_clock_compare_path_order); //Sorted location is better no?
+			//pPathList = g_list_prepend (pPathList, data);
+			pPathList = g_list_insert_sorted (pPathList, data, (GCompareFunc) _cd_clock_compare_path_order); //Sorted location is better no?
 			g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_cd_clock_select_location), data);
 		}
 	}
@@ -194,7 +194,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		myData.pCalendarDialog = cairo_dock_show_dialog_full (_("Calendar"),
 			myIcon, myContainer,
 			0,
-			cImagePath, /*GTK_BUTTONS_NONE,*/
+			cImagePath,
 			pCalendar,
 			NULL, NULL, NULL);
 		g_free (cImagePath);

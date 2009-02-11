@@ -30,11 +30,6 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 
 gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 {
-	static gboolean bBusy = FALSE;
-	if (bBusy)
-		return TRUE;
-	bBusy = TRUE;
-	
 	struct tm epoch_tm;
 	time_t epoch = (time_t) time (NULL);
 	if (myConfig.cLocation != NULL)
@@ -55,9 +50,9 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	double fRatio = (myDock ? myDock->fRatio : 1);
 	if (myConfig.bOldStyle)
-		cd_clock_draw_old_fashionned_clock (myApplet, (int) icon->fWidth / fRatio, (int) icon->fHeight / fRatio, fMaxScale, &epoch_tm);
+		cd_clock_draw_analogic (myApplet, (int) icon->fWidth / fRatio * fMaxScale, (int) icon->fHeight / fRatio * fMaxScale, &epoch_tm);
 	else
-		cd_clock_draw_text (myApplet, (int) icon->fWidth / fRatio, (int) icon->fHeight / fRatio, fMaxScale, &epoch_tm);
+		cd_clock_draw_text (myApplet, (int) icon->fWidth / fRatio * fMaxScale, (int) icon->fHeight / fRatio * fMaxScale, fMaxScale, &epoch_tm);
 	
 	if (myDock && myDock->bUseReflect)
 	{
@@ -163,7 +158,6 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 		}
 	}
 	
-	bBusy = FALSE;
 	return TRUE;
 }
 
@@ -172,7 +166,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	cd_clock_put_text_on_frames (myApplet, width, height, fMaxScale, pTime);
 }*/
 
-void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int width, int height, double fMaxScale, struct tm *pTime)
+void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
 	cairo_t *pSourceContext = myDrawContext;
 	GString *sFormat = g_string_new ("");
@@ -237,7 +231,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int width, int heigh
 	cairo_save (pSourceContext);
 	cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
 	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_OVER);
-	cairo_scale (pSourceContext, width * fMaxScale / ink.width, height * fMaxScale / ink.height);
+	cairo_scale (pSourceContext, (double) iWidth / ink.width, (double) iHeight / ink.height);
 	cairo_set_source_surface (pSourceContext,
 		pNewSurface,
 		0,
@@ -251,15 +245,8 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int width, int heigh
 
 
 
-void draw_background (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext, int iWidth, int iHeight)
+static void paint_background (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext)
 {
-	//g_print ("%s (%.2f, %.2f)\n", __func__, (double) iWidth / (double) myConfig.DimensionData.width, (double) iHeight / (double) myConfig.DimensionData.height);
-	cairo_scale (pDrawingContext,
-		(double) iWidth / (double) myData.DimensionData.width,
-		(double) iHeight / (double) myData.DimensionData.height);
-	cairo_set_source_rgba (pDrawingContext, 1.0f, 1.0f, 1.0f, 0.0f);
-	cairo_paint (pDrawingContext);
-	
 	if (myData.pSvgHandles[CLOCK_DROP_SHADOW] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_DROP_SHADOW], pDrawingContext);
 	if (myData.pSvgHandles[CLOCK_FACE] != NULL)
@@ -267,16 +254,8 @@ void draw_background (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContex
 	if (myData.pSvgHandles[CLOCK_MARKS] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_MARKS], pDrawingContext);
 }
-
-void draw_foreground (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext, int iWidth, int iHeight)
+static void paint_foreground (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext)
 {
-	//g_print ("%s (%.2f, %.2f)\n", __func__, (double) iWidth / (double) myConfig.DimensionData.width, (double) iHeight / (double) myConfig.DimensionData.height);
-	cairo_scale (pDrawingContext,
-		(double) iWidth / (double) myData.DimensionData.width,
-		(double) iHeight / (double) myData.DimensionData.height);
-	cairo_set_source_rgba (pDrawingContext, 1.0f, 1.0f, 1.0f, 0.0f);
-	cairo_paint (pDrawingContext);
-	
 	if (myData.pSvgHandles[CLOCK_FACE_SHADOW] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_FACE_SHADOW], pDrawingContext);
 	if (myData.pSvgHandles[CLOCK_GLASS] != NULL)
@@ -284,38 +263,34 @@ void draw_foreground (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContex
 	if (myData.pSvgHandles[CLOCK_FRAME] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_FRAME], pDrawingContext);
 }
-
-cairo_surface_t* update_surface (CairoDockModuleInstance *myApplet,
-	cairo_surface_t* pOldSurface,
-	cairo_t* pSourceContext,
-	int iWidth,
-	int iHeight,
-	SurfaceKind kind)
+cairo_surface_t* update_surface (CairoDockModuleInstance *myApplet, cairo_surface_t* pOldSurface, cairo_t* pSourceContext, int iWidth, int iHeight, SurfaceKind kind)
 {
 	//g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
-	cairo_surface_t* pNewSurface = NULL;
-	cairo_t* pDrawingContext = NULL;
-	
 	if (pOldSurface != NULL)
 		cairo_surface_destroy (pOldSurface);
-	pNewSurface = cairo_surface_create_similar (cairo_get_target (pSourceContext),
-		CAIRO_CONTENT_COLOR_ALPHA,
-		iWidth,
-		iHeight);
+	cairo_surface_t* pNewSurface =_cairo_dock_create_blank_surface (pSourceContext, iWidth, iHeight);
 	g_return_val_if_fail (cairo_surface_status (pNewSurface) == CAIRO_STATUS_SUCCESS, NULL);
 	
-	pDrawingContext = cairo_create (pNewSurface);
+	cairo_t* pDrawingContext = cairo_create (pNewSurface);
 	g_return_val_if_fail (cairo_status (pDrawingContext) == CAIRO_STATUS_SUCCESS, NULL);
+	
+	cairo_set_operator (pSourceContext, CAIRO_OPERATOR_SOURCE);
+	cairo_set_source_rgba (pDrawingContext, 1.0f, 1.0f, 1.0f, 0.0f);
+	cairo_paint (pDrawingContext);
+	
 	cairo_set_operator (pDrawingContext, CAIRO_OPERATOR_OVER);
+	cairo_scale (pDrawingContext,
+		(double) iWidth / (double) myData.DimensionData.width,
+		(double) iHeight / (double) myData.DimensionData.height);
 	
 	switch (kind)
 	{
 		case KIND_BACKGROUND :
-			draw_background (myApplet, pDrawingContext, iWidth, iHeight);
+			paint_background (myApplet, pDrawingContext);
 		break;
 		
 		case KIND_FOREGROUND :
-			draw_foreground (myApplet, pDrawingContext, iWidth, iHeight);
+			paint_foreground (myApplet, pDrawingContext);
 		break;
 	}
 	
@@ -325,7 +300,7 @@ cairo_surface_t* update_surface (CairoDockModuleInstance *myApplet,
 }
 
 
-void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int width, int height, double fMaxScale, struct tm *pTime)
+void cd_clock_draw_analogic (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
 	//g_print ("%s (%dx%d)\n", __func__, width, height);
 	cairo_t *pSourceContext = myDrawContext;
@@ -338,9 +313,9 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 	fHalfX = myData.DimensionData.width / 2.0f;
 	fHalfY = myData.DimensionData.height / 2.0f;
 	
-	int g_iSeconds = pTime->tm_sec;
-	int g_iMinutes = pTime->tm_min;
-	int g_iHours = pTime->tm_hour;
+	int iSeconds = pTime->tm_sec;
+	int iMinutes = pTime->tm_min;
+	int iHours = pTime->tm_hour;
 	
 	//cairo_set_tolerance (pSourceContext, 0.1);
 	cairo_set_source_rgba (pSourceContext, 0.0, 0.0, 0.0, 0.0);
@@ -353,8 +328,8 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 	cairo_paint (pSourceContext);
 	
 	cairo_scale (pSourceContext,
-		(double) width / (double) myData.DimensionData.width * fMaxScale,
-		(double) height / (double) myData.DimensionData.height * fMaxScale);
+		(double) iWidth / (double) myData.DimensionData.width,
+		(double) iHeight / (double) myData.DimensionData.height);
 		
 	cairo_translate (pSourceContext, fHalfX, fHalfY);
 	
@@ -373,16 +348,15 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 		cairo_restore (pSourceContext);
 	}
 	
-	///cairo_rotate (pSourceContext, -G_PI/2.0f);
 	cairo_save (pSourceContext);
 	cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
-	cairo_rotate (pSourceContext, (g_iHours % 12) * G_PI/6 + g_iMinutes * G_PI/360.0f - G_PI/2.0f);
+	cairo_rotate (pSourceContext, (iHours % 12 + iMinutes/60.) * G_PI/6 - G_PI/2.0f);
 	rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_HOUR_HAND_SHADOW], pSourceContext);
 	cairo_restore (pSourceContext);
 	
 	cairo_save (pSourceContext);
 	cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
-	cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iMinutes - G_PI/2.0f);
+	cairo_rotate (pSourceContext, (G_PI/30.0f) * (iMinutes + iSeconds/60.) - G_PI/2.0f);
 	rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_MINUTE_HAND_SHADOW], pSourceContext);
 	cairo_restore (pSourceContext);
 	
@@ -390,25 +364,25 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 	{
 		cairo_save (pSourceContext);
 		cairo_translate (pSourceContext, fShadowOffsetX, fShadowOffsetY);
-		cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iSeconds - G_PI/2.0f);
+		cairo_rotate (pSourceContext, (G_PI/30.0f) * iSeconds - G_PI/2.0f);
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_SECOND_HAND_SHADOW], pSourceContext);
 		cairo_restore (pSourceContext);
 	}
 	
 	cairo_save (pSourceContext);
-	cairo_rotate (pSourceContext, (g_iHours % 12) * G_PI/6 + g_iMinutes * G_PI/360.0f - G_PI/2.0f);
+	cairo_rotate (pSourceContext, (iHours % 12 + iMinutes/60.) * G_PI/6 - G_PI/2.0f);
 	rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_HOUR_HAND], pSourceContext);
 	cairo_restore (pSourceContext);
 	
 	cairo_save (pSourceContext);
-	cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iMinutes - G_PI/2.0f);
+	cairo_rotate (pSourceContext, (G_PI/30.0f) * (iMinutes + iSeconds/60.) - G_PI/2.0f);
 	rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_MINUTE_HAND], pSourceContext);
 	cairo_restore (pSourceContext);
 	
 	if (myConfig.bShowSeconds)
 	{
 		cairo_save (pSourceContext);
-		cairo_rotate (pSourceContext, (G_PI/30.0f) * g_iSeconds - G_PI/2.0f);
+		cairo_rotate (pSourceContext, (G_PI/30.0f) * iSeconds - G_PI/2.0f);
 		
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_SECOND_HAND], pSourceContext);
 		cairo_restore (pSourceContext);
@@ -417,4 +391,42 @@ void cd_clock_draw_old_fashionned_clock (CairoDockModuleInstance *myApplet, int 
 	cairo_restore (pSourceContext);
 	cairo_set_source_surface (pSourceContext, myData.pForegroundSurface, 0.0f, 0.0f);
 	cairo_paint (pSourceContext);
+}
+
+
+
+void cd_clock_draw_analogic_opengl (CairoDockModuleInstance *myApplet, int width, int height, double fMaxScale, struct tm *pTime)
+{
+	// push
+	// draw texture bg
+	
+	// push
+	// translate middle
+	// rotate
+	// draw texture needles minutes
+	
+	// draw texture fg
+	// pop
+}
+
+gboolean cd_clock_update_icon_slow (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation)
+{
+	if (pIcon != myIcon)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	myData.iSmoothAnimationStep ++;
+	if (myData.iSmoothAnimationStep > 5)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	// begin
+	// clear buffer
+	
+	// cd_clock_draw_analogic_opengl
+	
+	// copy tex buffer
+	//end
+	
+	*bContinueAnimation = TRUE;
+	CD_APPLET_REDRAW_MY_ICON;
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

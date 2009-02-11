@@ -128,12 +128,11 @@ linesize = 3
 #{r, v, b, a}
 rgblinecolor = 0.0; 0.0; 0.5; 0.5
 
-#i+[0;8] Size of the Windows line :
-wlinesize = 3
 
 #c+4[0;1] Color of the Windows line :
 #{r, v, b, a}
 rgbwlinecolor = 0.0; 0.0; 0.5; 0.5
+
 
 #c+4[0;1] Color of the current desktop :
 #{r, v, b, a}

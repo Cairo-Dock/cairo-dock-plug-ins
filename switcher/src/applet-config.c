@@ -16,25 +16,28 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bDisplayNumDesk = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display numero desktop", TRUE);
 	myConfig.bDrawWindows = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Draw Windows", TRUE);
 	
-	double inlinesize = 0.300;
+	// couleur des lignes interieures
 	myConfig.iInLineSize = CD_CONFIG_GET_INTEGER("Configuration", "inlinesize");
 	double inlinecouleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbinlinecolor",myConfig.RGBInLineColors, inlinecouleur);
+	
+	// couleur du bureau courant.
 	double indcouleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbindcolor",myConfig.RGBIndColors, indcouleur);
-	double linesize = 0.300;
+	myConfig.iDrawCurrentDesktopMode = CD_CONFIG_GET_INTEGER ("Configuration", "fill current");
+	
+	// couleur des lignes exterieures.
 	myConfig.iLineSize = CD_CONFIG_GET_INTEGER("Configuration", "linesize");
 	double linecouleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgblinecolor",myConfig.RGBLineColors, linecouleur);
-	double wlinesize = 0.300;
-	myConfig.iWLineSize = CD_CONFIG_GET_INTEGER("Configuration", "wlinesize");
+	
+	// couleur des traits des fenetres.
 	double wlinecouleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbwlinecolor",myConfig.RGBWLineColors, wlinecouleur);
 
 	myConfig.cDefaultIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "default icon", "default.svg");
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	myConfig.bDesklet3D = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
-	myConfig.iDrawCurrentDesktopMode = CD_CONFIG_GET_INTEGER ("Configuration", "fill current");
 CD_APPLET_GET_CONFIG_END
 
 
