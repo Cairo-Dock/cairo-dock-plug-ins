@@ -21,4 +21,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock);
 void cd_rendering_register_rainbow_renderer (const gchar *cRendererName);
 
 
+void cd_rendering_reload_rainbow_buffers (void);
+
+
 #endif

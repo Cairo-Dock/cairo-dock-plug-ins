@@ -12,6 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-struct.h"
 #include "rendering-commons.h"
 #include "rendering-config.h"
+#include "rendering-rainbow.h"
 
 extern int iVanishingPointY;double my_fRainbowColor[4];
 double my_fRainbowLineColor[4];
@@ -179,6 +180,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100.;
 	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "amplitude", &bFlushConfFileNeeded, 20, NULL, NULL);
 	my_curve_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "draw curve separator", &bFlushConfFileNeeded, 0, NULL, NULL);
+	
+	cd_rendering_reload_rainbow_buffers ();
 CD_APPLET_GET_CONFIG_END
 
 
