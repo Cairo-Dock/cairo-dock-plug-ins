@@ -1,6 +1,6 @@
 
-#ifndef __RENDERING_3D_PLANE2_VIEW__
-#define  __RENDERING_3D_PLANE2_VIEW__
+#ifndef __RENDERING_3D_PLANE_VIEW__
+#define  __RENDERING_3D_PLANE_VIEW__
 
 #include "cairo-dock.h"
 

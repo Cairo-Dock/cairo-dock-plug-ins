@@ -21,7 +21,8 @@ CD_APPLET_ABOUT (D_("This is the Stack applet\n made by ChAnGFu & Fabounet for C
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
-	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon) {
+	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
+	{
 		if (CD_APPLET_CLICKED_ICON->iVolumeID == 1)
 		{
 			cairo_dock_fm_launch_uri (CD_APPLET_CLICKED_ICON->acCommand);
@@ -29,10 +30,12 @@ CD_APPLET_ON_CLICK_BEGIN
 		else
 		{
 			cairo_dock_show_temporary_dialog_with_icon (CD_APPLET_CLICKED_ICON->acCommand, CD_APPLET_CLICKED_ICON, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer), 2000, myConfig.cTextIcon);
-			cairo_dock_notify (CAIRO_DOCK_STOP_ICON, CD_APPLET_CLICKED_ICON);
-			CD_APPLET_CLICKED_ICON->iAnimationState = CAIRO_DOCK_STATE_REST;
+			
+			cairo_dock_stop_icon_animation (CD_APPLET_CLICKED_ICON);
 		}
 	}
+	else
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_CLICK_END
 
 

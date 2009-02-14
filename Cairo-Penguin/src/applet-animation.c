@@ -12,20 +12,19 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <math.h>
 
 #include "applet-struct.h"
-#include "applet-load-icons.h"
 #include "applet-notifications.h"
+#include "applet-theme.h"
 #include "applet-animation.h"
 
 
-gboolean penguin_move_in_dock (CairoDockModuleInstance *myApplet)
+void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 {
 	static GdkRectangle area;
-	//cd_message ("");
 	if (! cairo_dock_animation_will_be_visible (myDock))
-		return TRUE;
+		return ;
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
-	g_return_val_if_fail (pAnimation != NULL, TRUE);
+	g_return_if_fail (pAnimation != NULL);
 	int iPreviousPositionX = myData.iCurrentPositionX, iPreviousPositionY = myData.iCurrentPositionY;
 	
 	Icon *pFirstDrawnIcon = NULL;
@@ -44,26 +43,32 @@ gboolean penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	area.width = abs (iPreviousPositionX - myData.iCurrentPositionX) + pAnimation->iFrameWidth;
 	area.height = abs (iPreviousPositionY - myData.iCurrentPositionY) + pAnimation->iFrameHeight;
 	
-	cairo_dock_redraw_container_area (myDock, &area);
+	cairo_dock_redraw_container_area (myContainer, &area);
 	
 	penguin_advance_to_next_frame (myApplet, pAnimation);
-	
-	return TRUE;
 }
 
-
-gboolean penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer)
+gboolean penguin_render_on_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
 {
 	if (pContainer != myContainer)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	if (! cairo_dock_animation_will_be_visible (myDock))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
+	if (pCairoContext != NULL)
+		penguin_draw_on_dock (myApplet, pContainer, pCairoContext);
+	else
+		penguin_draw_on_dock_opengl (myApplet, pContainer);
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+void penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer)
+{
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if (pAnimation == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return ;
 	
-	g_return_val_if_fail (pAnimation->iTexture != 0, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_if_fail (pAnimation->iTexture != 0);
 	
 	glEnable (GL_SCISSOR_TEST);
 	
@@ -77,78 +82,45 @@ gboolean penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoCo
 	glTranslatef ((myDock->iCurrentWidth - myDock->fFlatDockWidth) * .5 + myData.iCurrentPositionX + pAnimation->iFrameWidth * (.5 * pAnimation->iNbFrames - myData.iCurrentFrame),
 		myData.iCurrentPositionY + pAnimation->iFrameHeight * (-.5 * pAnimation->iNbDirections + 1 + (myData.iCurrentDirection)),
 		0.);
-	glScalef (pAnimation->iFrameWidth * pAnimation->iNbFrames, pAnimation->iFrameHeight * pAnimation->iNbDirections, 1.);
 	
-	glEnable (GL_BLEND);
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
-	glEnable (GL_TEXTURE_2D);
-	glBindTexture (GL_TEXTURE_2D, pAnimation->iTexture);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-	
-	glPolygonMode (GL_FRONT, GL_FILL);
-	
-	glBegin(GL_QUADS);
-	glTexCoord2f(0., 0.); glVertex3f(-.5,  .5, 0.);  // Bottom Left Of The Texture and Quad
-	glTexCoord2f(1., 0.); glVertex3f( .5,  .5, 0.);  // Bottom Right Of The Texture and Quad
-	glTexCoord2f(1., 1.); glVertex3f( .5, -.5, 0.);  // Top Right Of The Texture and Quad
-	glTexCoord2f(0., 1.); glVertex3f(-.5, -.5, 0.);  // Top Left Of The Texture and Quad
-	glEnd();
-	
-	glDisable (GL_TEXTURE_2D);
-	glDisable (GL_BLEND);
+	cairo_dock_draw_texture (pAnimation->iTexture,
+		pAnimation->iFrameWidth * pAnimation->iNbFrames,
+		pAnimation->iFrameHeight * pAnimation->iNbDirections);
 	
 	glPopMatrix ();
 	glDisable (GL_SCISSOR_TEST);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-gboolean penguin_draw_on_dock (GtkWidget *pWidget,
-	GdkEventExpose *pExpose,
-	CairoDockModuleInstance *myApplet)
+void penguin_draw_on_dock (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
 {
-	//g_print ("%s (%d,%d ; %d;%d)\n", __func__, myData.iCurrentDirection, myData.iCurrentFrame, myData.iCurrentPositionX, myData.iCurrentPositionY);
-	if (! cairo_dock_animation_will_be_visible (myDock))
-		return FALSE;
-	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if (pAnimation == NULL)
-		return FALSE;
+		return ;
 	
-	g_return_val_if_fail (pAnimation->pSurfaces != NULL || pAnimation->iTexture != 0, FALSE);
+	g_return_if_fail (pAnimation->pSurfaces != NULL);
 	cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-	g_return_val_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS, FALSE);
-	
-	if (pExpose->area.x + pExpose->area.y != 0)  // x et/ou y sont > 0.
-	{
-		cairo_rectangle (pCairoContext,
-			pExpose->area.x,
-			pExpose->area.y,
-			pExpose->area.width,
-			pExpose->area.height);
-		cairo_clip (pCairoContext);
-	}
+	cairo_save (pCairoContext);
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 	cairo_translate (pCairoContext, floor ((myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX), myDock->iCurrentHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight);
 	cairo_set_source_surface (pCairoContext, pSurface, 0.0, 0.0);
 	cairo_paint (pCairoContext);
-
-	cairo_destroy (pCairoContext);
-	return FALSE;
+	cairo_restore (pCairoContext);
 }
 
-gboolean penguin_move_in_icon (CairoDockModuleInstance *myApplet)
+
+
+
+void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 {
 	//g_print ("%s (%d,%d) ; (%d,%d)\n", __func__, myData.iCurrentDirection, myData.iCurrentFrame, myData.iCurrentPositionX, myData.iCurrentPositionY);
 	if (! cairo_dock_animation_will_be_visible (myDock))
-		return TRUE;
+		return ;
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
-	g_return_val_if_fail (pAnimation != NULL && pAnimation->pSurfaces != NULL, TRUE);
+	g_return_if_fail (pAnimation != NULL && pAnimation->pSurfaces != NULL);
 	cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
-	g_return_val_if_fail (pSurface != NULL, TRUE);
+	g_return_if_fail (pSurface != NULL);
 	
 	double fScale = (pAnimation->iNbFrames > 1 || pAnimation->iSpeed != 0 || pAnimation->iAcceleration != 0 ? myIcon->fScale : 1.);  // s'il est a l'arret on le met a la taille de l'icone au repos.
 	int iXMin = - myIcon->fWidth / myDock->fRatio * fScale / 2;
@@ -194,11 +166,10 @@ gboolean penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 	
 	if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
 		cairo_dock_update_icon_texture (myIcon);
-	else
-		CD_APPLET_REDRAW_MY_ICON;
+	
+	CD_APPLET_REDRAW_MY_ICON;
 	
 	penguin_advance_to_next_frame (myApplet, pAnimation);
-	return TRUE;
 }
 
 
@@ -280,12 +251,7 @@ void penguin_advance_to_next_frame (CairoDockModuleInstance *myApplet, PenguinAn
 		{
 			if (pAnimation->bEnding)
 			{
-				if (myData.iSidAnimation != 0)
-				{
-					g_source_remove (myData.iSidAnimation);
-					myData.iSidAnimation = 0;
-				}
-				
+				myData.iSleepingTime = 0;
 				if (! myConfig.bFree)
 				{
 					cairo_save (myDrawContext);  // on n'utilise pas CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL) car il nous cree le pFullIconBuffer qui apres ecrase notre dessin.
@@ -471,7 +437,8 @@ gboolean penguin_update_container (CairoDockModuleInstance *myApplet, CairoConta
 	if (pContainer != myContainer)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	*bContinueAnimation = penguin_move_in_dock (myApplet);
+	penguin_move_in_dock (myApplet);
+	*bContinueAnimation = TRUE;
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -479,67 +446,29 @@ gboolean penguin_update_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, Ca
 {
 	if (pIcon != myIcon)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	/*myData.iCountStep ++;
-	if (myData.iCountStep * mySystem.iGLAnimationDeltaT >= 90)
-	{
-		*bContinueAnimation = penguin_move_in_icon (myApplet);
-		myData.iCountStep = 0;
-	}
-	else
-	{
-		*bContinueAnimation = TRUE;
-	}*/
-	*bContinueAnimation = penguin_move_in_icon (myApplet);
-	cairo_dock_redraw_icon (myIcon, myContainer);
+	
+	penguin_move_in_icon (myApplet);
+	*bContinueAnimation = TRUE;
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 
 void penguin_start_animating (CairoDockModuleInstance *myApplet)
 {
-	g_return_if_fail (myData.iSidAnimation == 0);
 	int iNewAnimation = penguin_choose_beginning_animation (myApplet);
 	penguin_set_new_animation (myApplet, iNewAnimation);
 	
-	if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
+	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, myApplet);
+	if (myConfig.bFree)
 	{
-		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
-		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
-		cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, myApplet);
-		if (myConfig.bFree)
-		{
-			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
-			cairo_dock_register_notification (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, CAIRO_DOCK_RUN_AFTER, myApplet);
-		}
-		else
-		{
-			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
-		}
+		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
+		cairo_dock_register_notification (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, CAIRO_DOCK_RUN_AFTER, myApplet);
 	}
 	else
 	{
-		gulong iOnExposeCallbackID = g_signal_handler_find (G_OBJECT (myContainer->pWidget),
-			G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA,
-			0,
-			0,
-			NULL,
-			penguin_draw_on_dock,
-			myApplet);
-		if (myConfig.bFree)
-		{
-			if (iOnExposeCallbackID <= 0)
-				g_signal_connect_after (G_OBJECT (myContainer->pWidget),
-					"expose-event",
-					G_CALLBACK (penguin_draw_on_dock),
-					(gpointer) myApplet);
-			myData.iSidAnimation = g_timeout_add (1000 * myData.fFrameDelay, (GSourceFunc) penguin_move_in_dock, (gpointer) myApplet);
-		}
-		else
-		{
-			if (iOnExposeCallbackID > 0)
-				g_signal_handler_disconnect (G_OBJECT (myContainer->pWidget), iOnExposeCallbackID);
-			myData.iSidAnimation = g_timeout_add (1000 * myData.fFrameDelay, (GSourceFunc) penguin_move_in_icon, (gpointer) myApplet);
-		}
+		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
 	}
 }
 
@@ -552,10 +481,6 @@ static gboolean _penguin_restart_delayed (CairoDockModuleInstance *myApplet)
 	{
 		myData.bHasBeenStarted = TRUE;
 		cd_message ("le pingouin demarre pour la 1ere fois");
-		
-		cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK, CAIRO_DOCK_RUN_FIRST, myApplet);
-		cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK, CAIRO_DOCK_RUN_FIRST, myApplet);
-		CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 		
 		if (myConfig.bFree)  // attention : c'est un hack moyen; il faudrait pouvoir indiquer a cairo-dock de ne pas inserer notre icone...
 		{
@@ -576,10 +501,10 @@ void penguin_start_animating_with_delay (CairoDockModuleInstance *myApplet)
 		return ;
 	if (cairo_dock_is_loading ())
 	{
-		myData.iSidRestartDelayed = g_timeout_add_seconds (2, (GSourceFunc) _penguin_restart_delayed, (gpointer) myApplet);
+		myData.iSidRestartDelayed = g_timeout_add_seconds (2, (GSourceFunc) _penguin_restart_delayed, (gpointer) myApplet);  // priorite au chargement du dock, on demarrera plus tard.
 	}
 	else
 	{
-		myData.iSidRestartDelayed = g_timeout_add_seconds (1, (GSourceFunc) _penguin_restart_delayed, (gpointer) myApplet);  // on est oblige de faire c, pour detacher l'icone apres que le dock l'ait inseree.
+		myData.iSidRestartDelayed = g_idle_add ((GSourceFunc) _penguin_restart_delayed, (gpointer) myApplet);  // on est oblige de faire ca, pour detacher l'icone apres que le dock l'ait inseree.
 	}
 }

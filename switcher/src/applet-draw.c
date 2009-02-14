@@ -47,7 +47,7 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
 		y + h <= iNumViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL] ||
 		y >= (iNumViewportY + 1) * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL])
 		return ;
-	g_print (" > on la dessine (%x)\n", pIcon->pIconBuffer);
+	//g_print (" > on la dessine (%x)\n", pIcon->pIconBuffer);
 	
 	// on dessine ses traits.
 	cairo_save (pCairoContext);

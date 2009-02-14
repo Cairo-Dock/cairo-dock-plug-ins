@@ -11,6 +11,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-draw.h"
+#include "applet-theme.h"
 #include "applet-config.h"
 
 #define CD_CLOCK_NB_FREQUENCIES 12
@@ -114,24 +115,9 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
+	cd_clock_clear_theme (myApplet, TRUE);  // TRU <=> tout.
+	
 	int i;
-	for (i = 0; i < CLOCK_ELEMENTS; i ++)
-	{
-		if (myData.pSvgHandles[i] != NULL)
-		{
-			rsvg_handle_free (myData.pSvgHandles[i]);
-		}
-	}
-	
-	if (myData.pForegroundSurface != NULL)
-	{
-		cairo_surface_destroy (myData.pForegroundSurface);
-	}
-	if (myData.pBackgroundSurface != NULL)
-	{
-		cairo_surface_destroy (myData.pBackgroundSurface);
-	}
-	
 	for (i = 0; i < 4; i ++) {
 		if (myData.pDigitalClock.pFrame[i].pFrameSurface != NULL)
 			cairo_surface_destroy (myData.pDigitalClock.pFrame[i].pFrameSurface);

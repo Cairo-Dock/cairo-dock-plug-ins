@@ -11,8 +11,8 @@ libcd_Cairo_Penguin_la_SOURCES = \
 	applet-config.h\
 	applet-notifications.c\
 	applet-notifications.h\
-	applet-load-icons.c\
-	applet-load-icons.h\
+	applet-theme.c\
+	applet-theme.h\
 	applet-animation.c\
 	applet-animation.h\
 	applet-struct.h

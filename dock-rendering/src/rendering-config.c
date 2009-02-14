@@ -13,8 +13,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-commons.h"
 #include "rendering-config.h"
 
-extern int iVanishingPointY;
+extern int iVanishingPointY;double my_fRainbowColor[4];
+double my_fRainbowLineColor[4];
 extern CDSpeparatorType my_iDrawSeparator3D;
+extern GLuint my_iFlatSeparatorTexture;
 
 extern double my_fInclinationOnHorizon;
 extern double my_fForegroundRatio;
@@ -38,6 +40,8 @@ extern int my_iSpaceBetweenIcons;
 extern double my_fRainbowMagnitude;
 extern int my_iRainbowNbIconsMin;
 extern double my_fRainbowConeOffset;
+extern double my_fRainbowColor[4];
+extern double my_fRainbowLineColor[4];
 
 extern gint     my_diapo_iconGapX;
 extern gint     my_diapo_iconGapY;
@@ -112,7 +116,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_fRainbowMagnitude = cairo_dock_get_double_key_value (pKeyFile, "Rainbow", "wave magnitude", &bFlushConfFileNeeded, .3, NULL, NULL);
 	my_iRainbowNbIconsMin = cairo_dock_get_integer_key_value (pKeyFile, "Rainbow", "nb icons min", &bFlushConfFileNeeded, 3, NULL, NULL);
 	my_fRainbowConeOffset = G_PI * (1 - cairo_dock_get_double_key_value (pKeyFile, "Rainbow", "cone", &bFlushConfFileNeeded, 130, NULL, NULL) / 180) / 2;
-
+	if (my_fRainbowConeOffset < 0) my_fRainbowConeOffset = 0;
+	if (my_fRainbowConeOffset > G_PI/2) my_fRainbowConeOffset = G_PI/2;
+	double bow_couleur[4] = {0.7,0.9,1.0,0.5};
+	cairo_dock_get_double_list_key_value (pKeyFile, "Rainbow", "bow color", &bFlushConfFileNeeded, my_fRainbowColor, 4, bow_couleur, NULL, NULL);
+	double line_couleur[4] = {0.5,1.0,0.9,0.6};
+	cairo_dock_get_double_list_key_value (pKeyFile, "Rainbow", "line color", &bFlushConfFileNeeded, my_fRainbowLineColor, 4, line_couleur, NULL, NULL);
+	
 	
 	my_diapo_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapX",             &bFlushConfFileNeeded,     5, NULL, NULL);
 	my_diapo_iconGapY             = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapY",             &bFlushConfFileNeeded,    10, NULL, NULL);
@@ -181,8 +191,11 @@ CD_APPLET_RESET_DATA_BEGIN
 	if (my_pFlatSeparatorSurface[0] != NULL)
 	{
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
-		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
-		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
+	}
+	
+	if (my_iFlatSeparatorTexture != 0)
+	{
+		glDeleteTextures (1, &my_iFlatSeparatorTexture);
 	}
 CD_APPLET_RESET_DATA_END

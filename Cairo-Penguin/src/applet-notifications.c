@@ -53,8 +53,7 @@ gboolean CD_APPLET_ON_CLICK (CairoDockModuleInstance *myApplet, Icon *pClickedIc
 			iNewAnimation = penguin_choose_next_animation (myApplet, pAnimation);
 		penguin_set_new_animation (myApplet, iNewAnimation);
 		
-		cairo_dock_notify (CAIRO_DOCK_STOP_ICON, pClickedIcon);
-		pClickedIcon->iAnimationState = CAIRO_DOCK_STATE_REST;
+		cairo_dock_stop_icon_animation (pClickedIcon);
 CD_APPLET_ON_CLICK_END
 
 
@@ -68,17 +67,16 @@ static void _stop_xpenguins (GtkMenuItem *menu_item, gpointer *data)
 }
 static void _keep_quiet (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	if (myData.iSidAnimation != 0)
-	{
-		g_source_remove (myData.iSidAnimation);
-		myData.iSidAnimation = 0;
-	}
+	//\_______________ On arrete tout.
 	if (myData.iSidRestartDelayed != 0)
 	{
 		g_source_remove (myData.iSidRestartDelayed);
 		myData.iSidRestartDelayed = 0;
 	}
+	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
 	
+	//\_______________ On met l'animation de repos et on la dessine.
 	int iNewAnimation = penguin_choose_resting_animation (myApplet);
 	penguin_set_new_animation (myApplet, iNewAnimation);
 	myData.iCurrentPositionY = (myConfig.bFree ? g_iDockLineWidth : 0);

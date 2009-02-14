@@ -15,7 +15,9 @@ libcd_clock_la_SOURCES = \
 	applet-config.c\
 	applet-config.h\
 	applet-notifications.c\
-	applet-notifications.h
+	applet-notifications.h\
+	applet-theme.c\
+	applet-theme.h
 
 
 dock_version = `pkg-config --modversion cairo-dock`

@@ -55,7 +55,10 @@ typedef enum _LayerElement
 typedef enum _SurfaceKind
 {
 	KIND_BACKGROUND = 0,
-	KIND_FOREGROUND
+	KIND_FOREGROUND,
+	KIND_HOUR,
+	KIND_MINUTE,
+	KIND_SECOND,
 } SurfaceKind;
 
 
@@ -88,14 +91,20 @@ struct _AppletData {
 	cairo_surface_t *pBackgroundSurface;
 	cairo_surface_t *pForegroundSurface;
 	RsvgDimensionData DimensionData;
+	RsvgDimensionData needleDimension;
 	RsvgHandle *pSvgHandles[CLOCK_ELEMENTS];
 	int iSidUpdateClock;
 	GPid iAlarmPID;
 	CairoDialog *pCalendarDialog;
 	gchar *cSystemLocation;
 	gint iLastCheckedMinute, iLastCheckedDay, iLastCheckedMonth, iLastCheckedYear;
+	struct tm currentTime;
 	
 	ClockDigital pDigitalClock;
+	
+	GLuint iBgTexture, iFgTexture, iHourNeedleTexture, iMinuteNeedleTexture, iSecondNeedleTexture;
+	gint iNeedleWidth, iNeedleHeight;
+	gint iSmoothAnimationStep;
 	} ;
 
 #endif

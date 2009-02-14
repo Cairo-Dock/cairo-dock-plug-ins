@@ -55,11 +55,11 @@ struct _AppletData {
 	gint *pGoUpAnimations;
 	gint iNbRestAnimations;
 	gint *pRestAnimations;
-	guint iSidAnimation;
 	guint iSidRestartDelayed;
 	CairoDialog *pDialog;
 	gboolean bHasBeenStarted;
 	gint iCountStep;
+	gint iSleepingTime;
 	} ;
 
 #endif

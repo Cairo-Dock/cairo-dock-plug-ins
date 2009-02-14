@@ -51,6 +51,8 @@ int my_iSpaceBetweenIcons;
 double my_fRainbowMagnitude;
 int my_iRainbowNbIconsMin;
 double my_fRainbowConeOffset;
+double my_fRainbowColor[4];
+double my_fRainbowLineColor[4];
 
 gint     my_diapo_iconGapX;
 gint     my_diapo_iconGapY;
@@ -147,11 +149,13 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		reset_data (myApplet);  // on ne se sert pas des myData et autres donc ca va.
 		
-		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
-		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
-		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
-		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
-		
+		if (my_pFlatSeparatorSurface[0] != NULL)
+		{
+			cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
+			cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
+			my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
+			my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
+		}
 		if (my_iFlatSeparatorTexture != 0)
 		{
 			glDeleteTextures (1, &my_iFlatSeparatorTexture);

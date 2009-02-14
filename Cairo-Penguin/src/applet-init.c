@@ -12,7 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-config.h"
 #include "applet-notifications.h"
-#include "applet-load-icons.h"
+#include "applet-theme.h"
 #include "applet-animation.h"
 #include "applet-init.h"
 
@@ -25,6 +25,10 @@ CD_APPLET_INIT_BEGIN
 	penguin_load_theme (myApplet, myConfig.cThemePath);
 	
 	penguin_start_animating_with_delay (myApplet);
+	
+	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK, CAIRO_DOCK_RUN_FIRST, myApplet);
+	cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK, CAIRO_DOCK_RUN_FIRST, myApplet);
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_INIT_END
 
 
@@ -33,33 +37,15 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
-	{
-		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
-		cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, myApplet);
-		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
-	}
+	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, myApplet);
 	
-	if (myData.iSidAnimation != 0)
-	{
-		g_source_remove (myData.iSidAnimation);
-		myData.iSidAnimation = 0;
-	}
 	if (myData.iSidRestartDelayed != 0)
 	{
 		g_source_remove (myData.iSidRestartDelayed);
 		myData.iSidRestartDelayed = 0;
 	}
-	
-	gulong iOnExposeCallbackID = g_signal_handler_find (G_OBJECT (myContainer->pWidget),
-		G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA,
-		0,
-		0,
-		NULL,
-		penguin_draw_on_dock,
-		myApplet);
-	if (iOnExposeCallbackID > 0)
-		g_signal_handler_disconnect (G_OBJECT (myContainer->pWidget), iOnExposeCallbackID);
 CD_APPLET_STOP_END
 
 
@@ -68,19 +54,13 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On stoppe tout.
-		if (myData.iSidAnimation != 0)
-		{
-			g_source_remove (myData.iSidAnimation);
-			myData.iSidAnimation = 0;
-		}
 		if (myData.iSidRestartDelayed != 0)
 		{
 			g_source_remove (myData.iSidRestartDelayed);
 			myData.iSidRestartDelayed = 0;
 		}
-		
 		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
-		cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_draw_on_dock_opengl, myApplet);
+		cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, myApplet);
 		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
 		
 		//\_______________ On efface sa derniere position.
@@ -92,15 +72,8 @@ CD_APPLET_RELOAD_BEGIN
 			area.y = myDock->iCurrentHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight;
 			area.width = pAnimation->iFrameWidth;
 			area.height = pAnimation->iFrameHeight + myDock->bUseReflect * g_fReflectSize;
-#ifdef HAVE_GLITZ
-			if (myContainer->pDrawFormat && myContainer->pDrawFormat->doublebuffer)
-				gtk_widget_queue_draw (myContainer->pWidget);
-			else
-#endif
 			gdk_window_invalidate_rect (myContainer->pWidget->window, &area, FALSE);
 		}
-		
-		/// Si le dock a change, enlever le redessin sur pOldContainer et le remettre sur le nouveau ...
 		
 		//\_______________ On recharge tout de zero (changement de theme).
 		reset_data (myApplet);  // applet multi-instance => ok.

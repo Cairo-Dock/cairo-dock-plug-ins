@@ -8,19 +8,21 @@
 #define penguin_get_current_animation() (myData.iCurrentAnimation >= 0 ? &myData.pAnimations[myData.iCurrentAnimation] : NULL);
 
 
-gboolean penguin_move_in_dock (CairoDockModuleInstance *myApplet);
+void penguin_move_in_dock (CairoDockModuleInstance *myApplet);
+gboolean penguin_render_on_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext);
+void penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer);
+void penguin_draw_on_dock (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext);
 
 
-gboolean penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer);
+void penguin_move_in_icon (CairoDockModuleInstance *myApplet);
 
-gboolean penguin_draw_on_dock (GtkWidget *pWidget, GdkEventExpose *pExpose, CairoDockModuleInstance *myApplet);
 
 gboolean penguin_update_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation);
-
-
-gboolean penguin_move_in_icon (CairoDockModuleInstance *myApplet);
-
 gboolean penguin_update_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation);
+
+
+
+
 
 
 void penguin_calculate_new_position (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation, int iXMin, int iXMax, int iHeight);

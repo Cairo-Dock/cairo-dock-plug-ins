@@ -13,23 +13,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-draw.h"
 #include "applet-digital.h" //Digital html like renderer
 #include "applet-config.h"
+#include "applet-theme.h"
 #include "applet-notifications.h"
 #include "applet-init.h"
 
-
-static char s_cFileNames[CLOCK_ELEMENTS][30] = {
-	"clock-drop-shadow.svg",
-	"clock-face.svg",
-	"clock-marks.svg",
-	"clock-hour-hand-shadow.svg",
-	"clock-minute-hand-shadow.svg",
-	"clock-second-hand-shadow.svg",
-	"clock-hour-hand.svg",
-	"clock-minute-hand.svg",
-	"clock-second-hand.svg",
-	"clock-face-shadow.svg",
-	"clock-glass.svg",
-	"clock-frame.svg" };
 
 CD_APPLET_PRE_INIT_BEGIN ("clock", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
@@ -37,49 +24,6 @@ CD_APPLET_PRE_INIT_BEGIN ("clock", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
 	pInterface->save_custom_widget = cd_clock_save_custom_widget;
 CD_APPLET_PRE_INIT_END
 
-static void _load_theme (CairoDockModuleInstance *myApplet)
-{
-	cd_message ("%s (%s)", __func__, myConfig.cThemePath);
-	//\_______________ On charge le theme choisi (on n'a pas besoin de connaitre les dimmensions de l'icone).
-	if (myConfig.cThemePath != NULL)
-	{
-		GString *sElementPath = g_string_new ("");
-		int i;
-		for (i = 0; i < CLOCK_ELEMENTS; i ++)
-		{
-			g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, s_cFileNames[i]);
-
-			myData.pSvgHandles[i] = rsvg_handle_new_from_file (sElementPath->str, NULL);
-			//g_print (" + %s\n", cElementPath);
-		}
-		g_string_free (sElementPath, TRUE);
-		rsvg_handle_get_dimensions (myData.pSvgHandles[CLOCK_DROP_SHADOW], &myData.DimensionData);
-	}
-	else
-	{
-		myData.DimensionData.width = 48;  // valeur par defaut si aucun theme.
-		myData.DimensionData.height = 48;
-	}
-}
-static void _load_back_and_fore_ground (CairoDockModuleInstance *myApplet)
-{
-	cd_debug ("");
-	double fMaxScale = (myDock != NULL ? (1 + g_fAmplitude) / myDock->fRatio : 1);
-
-	//\_______________ On construit les surfaces d'arriere-plan et d'avant-plan une bonne fois pour toutes.
-	myData.pBackgroundSurface = update_surface (myApplet,
-		NULL,
-		myDrawContext,
-		myIcon->fWidth * fMaxScale,
-		myIcon->fHeight * fMaxScale,
-		KIND_BACKGROUND);
-	myData.pForegroundSurface = update_surface (myApplet,
-		NULL,
-		myDrawContext,
-		myIcon->fWidth * fMaxScale,
-		myIcon->fHeight * fMaxScale,
-		KIND_FOREGROUND);
-}
 
 CD_APPLET_INIT_BEGIN
 	//\_______________ On charge nos surfaces.
@@ -91,8 +35,10 @@ CD_APPLET_INIT_BEGIN
 	if (myConfig.cLocation != NULL)
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1);
 	
-	_load_theme (myApplet);
-	_load_back_and_fore_ground (myApplet);
+	cd_clock_load_theme (myApplet);
+	cd_clock_load_back_and_fore_ground (myApplet);
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		cd_clock_load_textures (myApplet);
 	
 	cd_clock_configure_digital (myApplet);
 	
@@ -106,6 +52,8 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle)
+		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_clock_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
 	
 	//\_______________ On lance le timer.
 	cd_clock_update_with_time (myApplet);
@@ -118,7 +66,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-
+	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_clock_update_icon_slow, myApplet);
+	
 	//\_______________ On stoppe le timer.
 	g_source_remove (myData.iSidUpdateClock);
 	myData.iSidUpdateClock = 0;
@@ -141,14 +90,25 @@ CD_APPLET_RELOAD_BEGIN
 		//\_______________ On stoppe le timer.
 		g_source_remove (myData.iSidUpdateClock);
 		myData.iSidUpdateClock = 0;
-
+		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_clock_update_icon_slow, myApplet);
+		//\_______________ On efface tout
+		cd_clock_clear_theme (myApplet, TRUE);
 		//\_______________ On charge notre theme.
-		_load_theme (myApplet);
+		cd_clock_load_theme (myApplet);
 		//\_______________ On charge les surfaces d'avant et arriere-plan.
-		_load_back_and_fore_ground (myApplet);
+		cd_clock_load_back_and_fore_ground (myApplet);
+		//\_______________ On charge les textures.
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		{
+			cd_clock_load_textures (myApplet);
+			cairo_dock_launch_animation (myContainer);
+		}
 		
 		if (myConfig.cLocation != NULL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1);
+		
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle)
+			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_clock_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
 		
 		//\_______________ On relance le timer.
 		cd_clock_update_with_time (myApplet);
@@ -156,10 +116,11 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else
 	{
-		//\_______________ On charge les surfaces d'avant et arriere-plan, les rsvg_handle ne dependent pas de g_fAmplitude.
-		cairo_surface_destroy (myData.pForegroundSurface);
-		cairo_surface_destroy (myData.pBackgroundSurface);
-		_load_back_and_fore_ground (myApplet);
+		//\_______________ On charge les surfaces d'avant et arriere-plan et les textures, les rsvg_handle ne dependent pas de la taille.
+		cd_clock_clear_theme (myApplet, FALSE);
+		cd_clock_load_back_and_fore_ground (myApplet);
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+			cd_clock_load_textures (myApplet);
 
 		cd_clock_update_with_time (myApplet);
 	}

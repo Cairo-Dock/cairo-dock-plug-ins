@@ -87,7 +87,7 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 			
 			pIcon = g_new0 (Icon, 1);
 			pIcon->acCommand = cContent;
-			pIcon->iVolumeID = 1;
+			pIcon->iVolumeID = 1;  // on l'utilisera comme un flag.
 			if (pIcon->acName == NULL)
 				pIcon->acName = cCanonicName;
 			else

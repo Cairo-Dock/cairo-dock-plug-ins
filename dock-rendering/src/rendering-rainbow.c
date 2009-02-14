@@ -22,6 +22,8 @@ extern int my_iSpaceBetweenIcons;
 extern double my_fRainbowMagnitude;
 extern int my_iRainbowNbIconsMin;
 extern double my_fRainbowConeOffset;
+extern double my_fRainbowColor[4];
+extern double my_fRainbowLineColor[4];
 
 void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 {
@@ -51,12 +53,107 @@ void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
-	
-	//\____________________ On trace le cadre.
-	
-	//\____________________ On dessine les decorations dedans.
+	double fRadius=0;
+	if (my_fRainbowColor[3] != 0)
+	{
+		//\____________________ On trace le cadre.
+		cairo_move_to (pCairoContext, 0., pDock->iCurrentHeight * (1 - sin (my_fRainbowConeOffset)));
+		cairo_line_to (pCairoContext, pDock->iCurrentWidth/2, pDock->iCurrentHeight);
+		cairo_line_to (pCairoContext, pDock->iCurrentWidth, pDock->iCurrentHeight * (1 - sin (my_fRainbowConeOffset)));
+		cairo_line_to (pCairoContext, pDock->iCurrentWidth, 0.);
+		cairo_line_to (pCairoContext, 0., 0.);
+		cairo_close_path (pCairoContext);
+		cairo_clip (pCairoContext);
+		
+		//\____________________ On dessine les decorations dedans.
+		cairo_pattern_t *pGradationPattern = cairo_pattern_create_radial (pDock->iCurrentWidth/2,
+			pDock->iCurrentHeight,
+			0.,
+			pDock->iCurrentWidth/2,
+			pDock->iCurrentHeight,
+			pDock->iCurrentHeight);
+		g_return_if_fail (cairo_pattern_status (pGradationPattern) == CAIRO_STATUS_SUCCESS);
+		
+		cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
+		cairo_pattern_add_color_stop_rgba (pGradationPattern,
+			0.,
+			0.,
+			0.,
+			0.,
+			0.);
+		
+		GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+		GList *ic = pFirstDrawnElement;
+		Icon *pFirstIcon = pFirstDrawnElement->data;
+		double fCurrentRadius=0;
+		Icon *icon;
+		do
+		{
+			icon = ic->data;
+			fRadius = icon->fX - (pDock->bDirectionUp ? pDock->iMaxIconHeight * icon->fScale : 0);
+			if (fRadius != fCurrentRadius)
+			{
+				if (fCurrentRadius == 0)  // 1er coup.
+				{
+					cairo_pattern_add_color_stop_rgba (pGradationPattern,
+						(fRadius - my_iSpaceBetweenRows/2)/ pDock->iCurrentHeight,
+						0.,
+						0.,
+						0.,
+						0.);
+				}
+				/*else
+				{
+					cairo_pattern_add_color_stop_rgba (pGradationPattern,
+						fRadius / pDock->iCurrentHeight,
+						0.,
+						0.,
+						0.,
+						0.);
+				}*/
+				cairo_pattern_add_color_stop_rgba (pGradationPattern,
+					(fRadius + .5 * pDock->iMaxIconHeight)/ pDock->iCurrentHeight,
+					my_fRainbowColor[0],
+					my_fRainbowColor[1],
+					my_fRainbowColor[2],
+					my_fRainbowColor[3]);
+				cairo_pattern_add_color_stop_rgba (pGradationPattern,
+					(fRadius + pDock->iMaxIconHeight + my_iSpaceBetweenRows/2)/ pDock->iCurrentHeight,
+					0.,
+					0.,
+					0.,
+					0.);
+				fCurrentRadius = fRadius;
+			}
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+		} while (ic != pFirstDrawnElement);
+		
+		cairo_set_source (pCairoContext, pGradationPattern);
+		cairo_paint (pCairoContext);
+		cairo_pattern_destroy (pGradationPattern);
+	}
 	
 	//\____________________ On dessine le cadre.
+	if (fRadius == 0)
+	{
+		Icon *icon = cairo_dock_get_last_drawn_icon (pDock);
+		if (icon)
+			fRadius = icon->fX - (pDock->bDirectionUp ? pDock->iMaxIconHeight * icon->fScale : 0);
+	}
+	fRadius += .5 * pDock->iMaxIconHeight;
+	if (my_fRainbowLineColor[3] != 0)
+	{
+		cairo_set_line_width (pCairoContext, myBackground.iDockLineWidth);
+		cairo_move_to (pCairoContext, pDock->iCurrentWidth/2 - fRadius * cos (my_fRainbowConeOffset), pDock->iCurrentHeight - fRadius * sin (my_fRainbowConeOffset));
+		cairo_line_to (pCairoContext, pDock->iCurrentWidth/2, pDock->iCurrentHeight);
+		cairo_line_to (pCairoContext, pDock->iCurrentWidth/2 + fRadius * cos (my_fRainbowConeOffset), pDock->iCurrentHeight - fRadius * sin (my_fRainbowConeOffset));
+		cairo_set_source_rgba (pCairoContext,
+			my_fRainbowLineColor[0],
+			my_fRainbowLineColor[1],
+			my_fRainbowLineColor[2],
+			my_fRainbowLineColor[3]);
+		cairo_stroke (pCairoContext);
+	}
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	
@@ -325,7 +422,6 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	double *pScales = g_new0 (double, 2*iNbRows+2);
 	cd_rendering_calculate_wave_on_each_lines (x_abs, pDock->iMaxIconHeight, fMagnitude, fFlatDockWidth, fFlatDockWidth, 0*pDock->fAlign, pDock->fFoldingFactor, fRatio, iNbRows, pScales);
 	
-	
 	//\____________________ On en deduit les position/etirements/alpha des icones.
 	Icon* icon, *prev_icon;
 	GList* ic;
@@ -393,15 +489,188 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	{
 		cd_debug ("<<< on sort du demi-disque >>>\n");
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+		pDock->bCanDrop = TRUE;
 	}
 	else
 	{
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
+		pDock->bCanDrop = FALSE;
 	}
 	
-	/// caluler bCanDrop ...
-	
 	return pPointedIcon;
+}
+
+
+static double *_generate_cos_sin (double fConeOffset, double fDelta, double *pTabValues)
+{
+	int i, n = (int) ceil ((G_PI/2 - fConeOffset) / fDelta);
+	pTabValues[2*n] = 0.;  // point au milieu.
+	pTabValues[2*n+1] = 1.;
+	
+	double fTheta;
+	for (i = 0; i < n; i ++)
+	{
+		fTheta = (i == 0 ? G_PI/2 - fConeOffset : (n - i) * fDelta);
+		pTabValues[2*i] = sin (fTheta);
+		pTabValues[2*i+1] = cos (fTheta);
+		
+		pTabValues[2*(2*n-i)] = - pTabValues[2*i];
+		pTabValues[2*(2*n-i)+1] = pTabValues[2*i+1];
+	}
+	return pTabValues;
+}
+static GLfloat *_generate_sector_path (double fConeOffset, double fRadius1, double fRadius2, double fDelta, double *pCosSinTab, GLfloat *pTabValues)
+{
+	int i, n = (int) ceil ((G_PI/2 - fConeOffset) / fDelta), N = (2*n+1) * 2;
+	for (i = 0; i < 2*n+1; i ++)
+	{
+		pTabValues[3*i] = fRadius1 * pCosSinTab[2*i+0];
+		pTabValues[3*i+1] = fRadius1 * pCosSinTab[2*i+1];
+		
+		pTabValues[3*(N-1-i)] = fRadius2 * pCosSinTab[2*i+0];
+		pTabValues[3*(N-1-i)+1] = fRadius2 * pCosSinTab[2*i+1];
+		//g_print ("%.2f;%.2f\n", pTabValues[3*i], pTabValues[3*i+1]);
+	}
+	pTabValues[3*N] = pTabValues[3*0];
+	pTabValues[3*N+1] = pTabValues[3*0+1];
+	
+	return pTabValues;
+}
+
+void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
+{
+	static double *pCosSinTab = NULL;
+	static GLfloat *pVertexTab = NULL;
+	static GLfloat* pColorTab = NULL;
+	static double fDelta = 1.;
+	if (pCosSinTab == NULL)
+	{
+		pCosSinTab = g_new0 (double, (180./fDelta+1) * 2);
+		_generate_cos_sin (my_fRainbowConeOffset, fDelta/180.*G_PI, pCosSinTab);
+	}
+	if (pVertexTab == NULL)
+		pVertexTab = g_new0 (GLfloat, ((180./fDelta+1) * 2 + 1) * 3);  // 1+ pour boucler
+	if (pColorTab == NULL)
+		pColorTab = g_new0 (GLfloat, ((180./fDelta+1) * 2 + 1) * 4);  // 1+ pour boucler
+	g_print ("--------------------------------\n");
+	double fRadius=0;
+	if (my_fRainbowColor[3] != 0)
+	{
+		//\____________________ On trace le cadre.
+		//\____________________ On dessine les decorations dedans.
+		glEnable (GL_POLYGON_SMOOTH);
+		glHint (GL_POLYGON_SMOOTH_HINT, GL_NICEST);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
+		
+		glPolygonMode(GL_FRONT, GL_LINE);  // GL_FILL
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glEnableClientState(GL_COLOR_ARRAY);
+		
+		int i, n = (int) ceil ((G_PI/2 - my_fRainbowConeOffset) / (fDelta/180.*G_PI)), N = (2*n+1) * 2;
+		for (i = 0; i < 2*n+1; i ++)
+		{
+			pColorTab[4*i+0] = my_fRainbowColor[0];
+			pColorTab[4*i+1] = my_fRainbowColor[1];
+			pColorTab[4*i+2] = my_fRainbowColor[2];
+			pColorTab[4*i+3] = my_fRainbowColor[3];
+		}
+		pColorTab[4*N+0] = my_fRainbowColor[0];
+		pColorTab[4*N+1] = my_fRainbowColor[1];
+		pColorTab[4*N+2] = my_fRainbowColor[2];
+		pColorTab[4*N+3] = my_fRainbowColor[3];
+		
+		glPushMatrix ();
+		glTranslatef (pDock->iCurrentWidth/2, 0., 0.);
+		
+		GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+		GList *ic = pFirstDrawnElement;
+		Icon *pFirstIcon = pFirstDrawnElement->data;
+		double fCurrentRadius=0;
+		Icon *icon;
+		do
+		{
+			icon = ic->data;
+			fRadius = icon->fX - (pDock->bDirectionUp ? pDock->iMaxIconHeight * icon->fScale : 0);
+			if (fRadius != fCurrentRadius)
+			{
+				_generate_sector_path (my_fRainbowConeOffset,
+					fRadius - my_iSpaceBetweenRows/2,
+					fRadius + .5 * pDock->iMaxIconHeight,
+					fDelta/180.*G_PI, pCosSinTab, pVertexTab);
+				
+				glVertexPointer(3, GL_FLOAT, 0, pVertexTab);
+				glColorPointer(4, GL_FLOAT, 0, pColorTab);
+				glDrawArrays(GL_LINE_STRIP, 0, N+1);  // GL_TRIANGLE_FAN
+				
+				/*_generate_sector_path (my_fRainbowConeOffset,
+					fRadius + pDock->iMaxIconHeight + my_iSpaceBetweenRows/2,
+					fRadius + .5 * pDock->iMaxIconHeight,
+					fDelta/180.*G_PI, pCosSinTab, pVertexTab);
+				
+				glVertexPointer(3, GL_FLOAT, 0, pVertexTab);
+				glColorPointer(4, GL_FLOAT, 0, pColorTab);
+				glDrawArrays(GL_TRIANGLE_FAN, 0, N+1);*/
+				
+				fCurrentRadius = fRadius;
+			}
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+		} while (ic != pFirstDrawnElement);
+		
+		glPopMatrix ();
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_COLOR_ARRAY);
+		glDisable(GL_POLYGON_SMOOTH);
+		glDisable(GL_BLEND);
+	}
+	
+	//\____________________ On dessine le cadre.
+	if (fRadius == 0)
+	{
+		Icon *icon = cairo_dock_get_last_drawn_icon (pDock);
+		if (icon)
+			fRadius = icon->fX - (pDock->bDirectionUp ? pDock->iMaxIconHeight * icon->fScale : 0);
+	}
+	fRadius += .5 * pDock->iMaxIconHeight;
+	if (my_fRainbowLineColor[3] != 0)
+	{
+		glPushMatrix ();
+		glTranslatef (pDock->iCurrentWidth/2, 0., 0.);
+		pVertexTab[3*0+0] = - fRadius * cos (my_fRainbowConeOffset);
+		pVertexTab[3*0+1] = fRadius * sin (my_fRainbowConeOffset);
+		pVertexTab[3*1+0] = 0.;
+		pVertexTab[3*1+1] = 0.;
+		pVertexTab[3*2+0] = fRadius * cos (my_fRainbowConeOffset);
+		pVertexTab[3*2+1] = fRadius * sin (my_fRainbowConeOffset);
+		
+		cairo_dock_draw_current_path_opengl (myBackground.iDockLineWidth, my_fRainbowLineColor, pVertexTab, 3);
+		glPopMatrix ();
+	}
+	
+	//\____________________ On dessine les icones.
+	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	if (pFirstDrawnElement == NULL)
+		return;
+
+	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex)/** * pDock->fMagnitudeMax*/;
+	Icon *icon;
+	int iWidth = pDock->iCurrentWidth;
+	gboolean bHorizontalDock = pDock->bHorizontalDock;
+	GList *ic = pFirstDrawnElement;
+	do
+	{
+		icon = ic->data;
+		
+		glPushMatrix ();
+		cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, TRUE);  // ! mySystem.bTextAlwaysHorizontal
+		glPopMatrix ();
+		
+		if (mySystem.bTextAlwaysHorizontal && icon->pTextBuffer != NULL && icon->fScale > 1.01 && (! mySystem.bLabelForPointedIconOnly || icon->bPointed))  // 1.01 car sin(pi) = 1+epsilon :-/
+		{
+			
+		}
+		ic = cairo_dock_get_next_element (ic, pDock->icons);
+	} while (ic != pFirstDrawnElement);
 }
 
 
@@ -414,6 +683,7 @@ void cd_rendering_register_rainbow_renderer (const gchar *cRendererName)
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_rainbow;
 	pRenderer->render = cd_rendering_render_rainbow;
 	pRenderer->render_optimized = NULL;
+	pRenderer->render_opengl = cd_rendering_render_rainbow_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
