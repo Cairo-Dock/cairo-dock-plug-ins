@@ -4,7 +4,6 @@
 
 
 #include <cairo-dock.h>
-#include "mailwatch.h"
 
 CD_APPLET_ABOUT_H
 
@@ -14,6 +13,6 @@ CD_APPLET_ON_BUILD_MENU_H
 
 CD_APPLET_ON_MIDDLE_CLICK_H
 
-void mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg, gpointer user_data);
+void cd_mail_update_status( gpointer *data );
 
 #endif

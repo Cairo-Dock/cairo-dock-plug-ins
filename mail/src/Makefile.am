@@ -5,32 +5,26 @@ lib_LTLIBRARIES = \
 
 
 libcd_mail_la_SOURCES = \
-	applet-init.c\
-	applet-init.h\
-	applet-config.c\
-	applet-config.h\
-	applet-notifications.c\
-	applet-notifications.h\
-	applet-struct.h\
-	mailwatch.c\
-	mailwatch.h\
-	mailwatch-mailbox-gmail.c\
-	mailwatch-mailbox-imap.c\
-	mailwatch-mailbox-pop3.c\
-	mailwatch-mailbox-maildir.c\
-	mailwatch-mailbox-mbox.c\
-	mailwatch-mailbox-mh.c\
-	mailwatch-mailbox.h\
-	mailwatch-utils.c\
-	mailwatch-utils.h
-
+	cd-mail-applet-init.c\
+	cd-mail-applet-init.h\
+	cd-mail-applet-config.c\
+	cd-mail-applet-config.h\
+	cd-mail-applet-notifications.c\
+	cd-mail-applet-notifications.h\
+	cd-mail-applet-struct.h\
+	cd-mail-applet-etpan.c\
+	cd-mail-applet-etpan.h
 
 dock_version = `pkg-config --modversion cairo-dock`
+
+libetpan_CFLAGS=`libetpan-config --cflags`
+libetpan_LDFLAGS=`libetpan-config --libs`
 
 libcd_mail_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	$(MAIL_PACKAGE_CFLAGS)\
+	$(libetpan_CFLAGS) \
 	-D_POSIX_SOURCE=1 -DHAVE_SSL_SUPPORT=1\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(maildatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
@@ -53,4 +47,5 @@ libcd_mail_la_LIBADD = \
 
 
 libcd_mail_la_LDFLAGS =\
-	-avoid-version -module
+	-avoid-version -module \
+	$(libetpan_LDFLAGS)

@@ -36,6 +36,13 @@ AC_HEADER_STDC
 AC_CHECK_HEADERS(errno.h fcntl.h math.h netdb.h netinet/in.h signal.h stddef.h string.h sys/select.h sys/socket.h sys/stat.h sys/types.h sys/wait.h time.h unistd.h)
 AC_CHECK_FUNCS(mmap sigaction srandom)
 
+# Check for libetpan header files
+AC_CHECK_HEADERS(libetpan/libetpan.h)
+
+# Checks for libetpan library
+AC_CHECK_LIB(etpan, mailstorage_connect)
+
+
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_TYPE_PID_T

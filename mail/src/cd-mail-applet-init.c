@@ -9,14 +9,18 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "stdlib.h"
 
-#include "applet-config.h"
-#include "applet-notifications.h"
-#include "applet-struct.h"
-#include "applet-init.h"
+#include "cd-mail-applet-config.h"
+#include "cd-mail-applet-notifications.h"
+#include "cd-mail-applet-struct.h"
+#include "cd-mail-applet-init.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
-CD_APPLET_DEFINITION ("mail", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_PRE_INIT_BEGIN ("mail", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	pInterface->load_custom_widget = cd_mail_load_custom_widget;
+	pInterface->save_custom_widget = cd_mail_save_custom_widget;
+CD_APPLET_PRE_INIT_END
 
 static void _load_theme (GError **erreur)
 {
@@ -82,11 +86,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 
-    xfce_mailwatch_signal_connect(myData.mailwatch,
-            XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED,
-            mailwatch_new_messages_changed_cb, NULL);
-
-    xfce_mailwatch_force_update(myData.mailwatch);
+	cd_mail_update_status( NULL );
 
 CD_APPLET_INIT_END
 
@@ -99,7 +99,7 @@ CD_APPLET_STOP_BEGIN
 
 
 	//\_________________ On libere toutes nos ressources.
-    xfce_mailwatch_destroy(myData.mailwatch);
+//    xfce_mailwatch_destroy(myData.mailwatch);
 CD_APPLET_STOP_END
 
 
@@ -126,6 +126,6 @@ CD_APPLET_RELOAD_BEGIN
 	{
 	}
 
-    xfce_mailwatch_force_update(myData.mailwatch);  /// utile ?
-
+	cd_mail_update_status( NULL );
+	
 CD_APPLET_RELOAD_END

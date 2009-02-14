@@ -113,3 +113,6 @@ frame2_fin =
 #S Path to application to launch on left-click
 mail application =
 
+#_ Add an account with specified type and name:
+#{The new account will be created with specified type and name.}
+add account =
