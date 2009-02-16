@@ -66,9 +66,11 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL && pClickedIcon != myIcon) {  // clic sur une des icones du desklet.
 		_musicplayer_action_by_id (pClickedIcon->iType);
 	}
-	else {
+	else if (myData.opening) {
 	  myData.pCurrentHandeler->control (PLAYER_PLAY_PAUSE, NULL);
 	}
+	// Ici, il faudrait rajouter la possibilite d'ouvrir le lecteur s'il n'est pas ouvert
+		
 CD_APPLET_ON_CLICK_END
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.

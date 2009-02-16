@@ -27,29 +27,29 @@ CD_APPLET_INCLUDE_MY_VARS
 
 //Les Fonctions
 
-
-void _exaile_getTime (void)
+/* Fonction specifique a Exaile pour le calcul du temps ecoule qui est donne en % du temps total */
+void cd_exaile_getTime (void)
 {
-	cd_debug ("");
-	gint uValue=NULL;
-	gchar* temps=NULL; 
-	gchar* length=NULL;
-	gint minutes, secondes;
+	static gint uValue;
+	static gchar* temps=NULL; 
+	gchar* length;
+	static gint minutes, secondes;
 	
-	/* Récupération du temps total! */
-	length = cd_musicplayer_getLength_string();
+	/* Récupération du temps total */
+	length = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.duration);
 	//cd_debug ("MP : Length : %s", length);
-	temps = strtok (length, ":");
-	minutes = atoi(temps);
-	temps = strtok (NULL, "\0");
-	secondes = atoi(temps);
-	myData.iSongLength = secondes + 60 * minutes;
-		
+	if ((length != NULL))
+	{	
+		temps = strtok (length, ":");
+		minutes = atoi(temps);
+		temps = strtok (NULL, "\0");
+		secondes = atoi(temps);
+		myData.iSongLength = secondes + 60 * minutes;
+	}
+	else myData.iSongLength = -1;	
+	
 	/* On récupère le pourcentage de la position actuelle */
-	uValue = (gint)cd_musicplayer_getCurPos_string();
-	//cd_debug("MP : uValue = %d", uValue);
-	/* Calcul de la position actuelle */
-	myData.iPreviousCurrentTime = myData.iCurrentTime;
+	uValue = (gint)cairo_dock_dbus_get_uchar (myData.dbus_proxy_player, myData.DBus_commands.current_position);
 	
 	/* Décalage dû à l'utilisation du pourcentage par exaile */	
 	if (myData.iPreviousuValue == uValue && myData.pPlayingStatus == PLAYER_PLAYING && myData.iCurrentTime < ((myData.iSongLength * (uValue + 1)) / 100))
@@ -57,17 +57,27 @@ void _exaile_getTime (void)
 	else if (myData.iPreviousuValue != uValue)
 		myData.iCurrentTime = (myData.iSongLength * uValue) / 100;
 	
+	/*Pour permettre de comparer le pourcentage au top suivant et squizzer le decalage*/
 	myData.iPreviousuValue = uValue;
-	/*g_free(uValue);
-	g_free(temps);
-	g_free(length);
-	g_free(minutes);
-	g_free(secondes);*/
 }
 
+void cd_exaile_getSongInfos(void)
+{
+	if (myData.cRawTitle != NULL) 
+		myData.cPreviousRawTitle = myData.cRawTitle; 
+	
+	myData.cAlbum = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_album);
 
+	myData.cArtist = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_artist);
 
-void cd_exaile_free_data (void) //Permet de libérer la mémoire prise par notre controleur
+	//Artist & Title = RawTitle
+	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_title));
+	
+	cd_message("MP : %s - %s", myData.cRawTitle, myData.cAlbum);
+}
+
+/* Permet de libérer la mémoire prise par notre controleur */
+void cd_exaile_free_data (void)
 {
 	cd_debug("MP : Deconnexion de DBus");
 	musicplayer_dbus_disconnect_from_bus();
@@ -78,7 +88,7 @@ void cd_exaile_control (MyPlayerControl pControl, char* nothing) //Permet d'effe
 { 
 	cd_debug ("");
 	
-	gchar *cCommand = NULL;
+	static gchar *cCommand = NULL;
 	/* Conseil de ChangFu pour redetecter le titre à coup sûr */
 	g_free (myData.cRawTitle);
 	myData.cRawTitle = NULL;
@@ -98,18 +108,16 @@ void cd_exaile_control (MyPlayerControl pControl, char* nothing) //Permet d'effe
 		
 		/*case PLAYER_ENQUEUE :
 			// A faire
-		break;*/
-		
+		*/
 		default :
 			return;
-		break; //Ca ne bloque pas l'execution du code plus bas
+		break;
 	}
 	
 	if (cCommand != NULL) {
 		cd_debug ("MP : Handeler Exaile : will use '%s'", cCommand);
 		cd_musicplayer_dbus_command (cCommand);
 	}
-	//g_free(cCommand);
 }
 
 /* Permet de renseigner l'applet des fonctions supportées par le lecteur */
@@ -154,10 +162,14 @@ void cd_exaile_read_data (void)
 			cd_musicplayer_getStatus_string(); // On récupère l'état de la lecture (play/pause/stop)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
 			{
-				cd_musicplayer_getSongInfos(); // On récupère toutes les infos de la piste en cours
-				_exaile_getTime();
+				cd_exaile_getSongInfos(); // On récupère toutes les infos de la piste en cours
+				cd_exaile_getTime();
 				cd_musicplayer_getCoverPath();
-			}	
+			}
+			else if (myData.pPlayingStatus == PLAYER_PAUSED)
+			{
+				
+			}
 		}
 		else
 		{

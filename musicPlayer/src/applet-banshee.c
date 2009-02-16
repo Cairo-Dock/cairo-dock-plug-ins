@@ -125,7 +125,7 @@ void cd_banshee_read_data (void)
 void cd_banshee_load_dbus_commands (void)
 {
 	cd_debug("MP : On charge les commande pour Banshee");
-	myData.DBus_commands.service = "org.gnome.Banshee";
+	myData.DBus_commands.service = "org.bansheeproject.Banshee";
 	myData.DBus_commands.path = "/org/gnome/Banshee/Player";
 	myData.DBus_commands.interface = "org.gnome.Banshee.Core";
 	myData.DBus_commands.play = "Play";

@@ -158,12 +158,12 @@ gboolean cd_musicplayer_draw_icon (void) {
 		
 		switch (myData.pPlayingStatus) {
 			case PLAYER_PLAYING :
-				cd_debug("MP : Le lecteur est en mode Play");
+				//cd_debug("MP : Le lecteur est en mode Play");
 				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_PLAY, CAIRO_DOCK_EMBLEM_MIDDLE);
 				break;
 				
 			case PLAYER_PAUSED :
-				cd_debug("MP : Le lecteur est en mode Pause");
+				//cd_debug("MP : Le lecteur est en mode Pause");
 				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_PAUSE, CAIRO_DOCK_EMBLEM_MIDDLE);
 				break;
 				

@@ -21,7 +21,7 @@ gboolean cd_musicplayer_dbus_connect_to_bus (void)
 {
 	if (cairo_dock_bdus_is_enabled () && myData.opening)
 	{
-		dbus_proxy_player = cairo_dock_create_new_session_proxy (
+		myData.dbus_proxy_player = cairo_dock_create_new_session_proxy (
 			myData.DBus_commands.service,
 			myData.DBus_commands.path,
 			myData.DBus_commands.interface);
@@ -34,7 +34,7 @@ gboolean musicplayer_dbus_connect_to_bus_Shell (void)
 {
 	if (cairo_dock_bdus_is_enabled ())
 	{
-		dbus_proxy_shell = cairo_dock_create_new_session_proxy (
+		myData.dbus_proxy_shell = cairo_dock_create_new_session_proxy (
 			myData.DBus_commands.service,
 			myData.DBus_commands.path2,
 			myData.DBus_commands.interface2);
@@ -45,41 +45,47 @@ gboolean musicplayer_dbus_connect_to_bus_Shell (void)
 
 void musicplayer_dbus_disconnect_from_bus (void)
 {
-	cd_message ("");
-	if (dbus_proxy_player != NULL)
+	if (myData.dbus_proxy_player != NULL)
 	{
-		g_object_unref (dbus_proxy_player);
-		dbus_proxy_player = NULL;
+		g_object_unref (myData.dbus_proxy_player);
+		myData.dbus_proxy_player = NULL;
 	}
 }
 
 void musicplayer_dbus_disconnect_from_bus_Shell (void)
 {
-	cd_message ("");
-	if (dbus_proxy_shell != NULL)
+	if (myData.dbus_proxy_shell != NULL)
 	{
-		g_object_unref (dbus_proxy_shell);
-		dbus_proxy_shell = NULL;
+		g_object_unref (myData.dbus_proxy_shell);
+		myData.dbus_proxy_shell = NULL;
 	}
 }
 
-void cd_musicplayer_dbus_detection(void)
+gboolean cd_musicplayer_dbus_detection(void)
 {
-	myData.opening = cairo_dock_dbus_detect_application (myData.DBus_commands.service);
+	return cairo_dock_dbus_detect_application (myData.DBus_commands.service);
 }
 
 
+//*********************************************************************************
+// cd_musicplayer_check_dbus_connection() : Verifie l'etat de la connexion DBus
+//*********************************************************************************
 void cd_musicplayer_check_dbus_connection (void)
 {
-	//cd_debug("MP : Vérification de la connexion DBus");
-	cd_musicplayer_dbus_detection();
-	if (myData.opening) //On vérifie si notre lecteur est ouvert
+	cd_debug("MP : Vérification de la connexion DBus");
+	myData.opening = cd_musicplayer_dbus_detection();
+	if ((myData.opening) && (!myData.dbus_enable)) // On vérifie si notre lecteur est ouvert et si on n'est pas déjà connecté au bus
 	{
+		cd_debug("MP : On se connecte au bus pour la première fois");
 		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // Alors on se connecte au bus
 	}
-	//else cd_debug("MP : Lecteur non ouvert");
-
-	// Les autres cas sont gérés dans chaque lecteur
+	else if ((myData.dbus_enable) && (myData.opening)) // Sinon on est deja connecte au bus, on lit juste les donnees
+		cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
+	else // Sinon le lecteur n'est pas ouvert
+	{
+		myData.dbus_enable = 0;
+		cd_debug("MP : lecteur non ouvert");	
+	}
 }
 
 //*********************************************************************************
@@ -88,17 +94,26 @@ void cd_musicplayer_check_dbus_connection (void)
 void cd_musicplayer_dbus_command(const char *command)
 {
 	cd_message("MP : On demande %s", command);
-	cairo_dock_dbus_call(dbus_proxy_player, command);
+	cairo_dock_dbus_call(myData.dbus_proxy_player, command);
+}
+
+
+//*********************************************************************************
+// musicplayer_dbus_command_Shell() : Envoie une commande à musicplayer
+//*********************************************************************************
+void cd_musicplayer_dbus_command_Shell(const char *command)
+{
+	cd_message("MP : On demande %s", command);
+	cairo_dock_dbus_call(myData.dbus_proxy_shell, command);
 }
 
 //*********************************************************************************
 // musicplayer_getValue() : Retourne une chaine de caractère selon une méthode
 //*********************************************************************************
-
 gchar* cd_musicplayer_dbus_getValue (const char *method)
 {
 	gchar *value=NULL;
-	value = cairo_dock_dbus_get_string (dbus_proxy_player, method);
+	value = cairo_dock_dbus_get_string (myData.dbus_proxy_player, method);
 	return value;
 	
 }
@@ -110,18 +125,22 @@ gchar* cd_musicplayer_dbus_getValue (const char *method)
 void cd_musicplayer_getStatus_string (void)
 {
 		gchar *status=NULL;
-		status = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_status);
+		status = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_status);
+		//cd_debug ("MP : retour de DBUS sur status : %s", status);
 		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
-		if (! g_ascii_strcasecmp(status, "playing"))
+		if ((! g_ascii_strcasecmp(status, "playing")) || (!g_ascii_strcasecmp(status, "1")))
 		{
+			//cd_debug("MP : le lecteur est en statut PLAYING");
 			myData.pPlayingStatus = PLAYER_PLAYING;
 		}
 		else if (! g_ascii_strcasecmp(status, "paused"))
 		{
+			//cd_debug("MP : le lecteur est en statut PAUSED");
 			myData.pPlayingStatus = PLAYER_PAUSED;
 		}
 		else if (! g_ascii_strcasecmp(status, "stopped"))
 		{
+			//cd_debug("MP : le lecteur est en statut STOPPED");
 			myData.pPlayingStatus = PLAYER_STOPPED;
 		}
 		
@@ -131,69 +150,42 @@ void cd_musicplayer_getStatus_string (void)
 
 void cd_musicplayer_getStatus_integer (void)
 {
-	GError *error = 0;
 	int status;
-
-	dbus_g_proxy_call (dbus_proxy_player, myData.DBus_commands.get_status, &error,
-			G_TYPE_INVALID,
-			G_TYPE_INT, &status,
-			G_TYPE_INVALID); // A rajouter dans cairo-dock-dbus.c --> cairo_dock_dbus_get_integer()
 	
+	status=cairo_dock_dbus_get_integer(myData.dbus_proxy_player, myData.DBus_commands.get_status);
+	//cd_debug("MP : Statut du lecteur : %d",status);
 	if (status == 0) myData.pPlayingStatus = PLAYER_PAUSED;
 	else if (status == 1) myData.pPlayingStatus = PLAYER_PLAYING;
 	else myData.pPlayingStatus = PLAYER_STOPPED;
-	
-	//cd_message("MP : Status (integer) --> %i", myData.pPlayingStatus);
-	g_free(error);
 }
 
-
-
-//*********************************************************************************
-// musicplayer_getSongInfos() : Retourne les infos de la musique jouée
-//*********************************************************************************
-
-void cd_musicplayer_getSongInfos(void)
-{
-	if (myData.cRawTitle != NULL) 
-		myData.cPreviousRawTitle = myData.cRawTitle; 
-	
-	myData.cAlbum = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_album);
-
-	myData.cArtist = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_artist);
-
-	//Artist & Title = RawTitle
-	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_title));
-	
-	cd_message("MP : %s - %s - %s", myData.cRawTitle, myData.cArtist, myData.cAlbum);
-}
 
 
 int cd_musicplayer_getCurPos_integer (void) 
 {
 	int CurPos = NULL;
-	CurPos = cairo_dock_dbus_get_integer (dbus_proxy_player, myData.DBus_commands.current_position);
+	CurPos = cairo_dock_dbus_get_integer (myData.dbus_proxy_player, myData.DBus_commands.current_position);
 	return CurPos;
 }
 
 guchar* cd_musicplayer_getCurPos_string (void) 
 {
 	guchar* CurPos = NULL;
-	CurPos = cairo_dock_dbus_get_uchar (dbus_proxy_player, myData.DBus_commands.current_position);
+	CurPos = cairo_dock_dbus_get_uchar (myData.dbus_proxy_player, myData.DBus_commands.current_position);
 	return CurPos;
 }
 
 int cd_musicplayer_getLength_integer (void)
 {
 	int duration=0;
-	duration = cairo_dock_dbus_get_integer (dbus_proxy_player, myData.DBus_commands.duration);	
+	duration = cairo_dock_dbus_get_integer (myData.dbus_proxy_player, myData.DBus_commands.duration);	
 	return duration;
 }
 
 gchar* cd_musicplayer_getLength_string (void)
 {
 	gchar* duration=NULL;
-	if ((duration = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.duration)) != NULL)	return duration;
+	if ((duration = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.duration)) != NULL)	return duration;
 	else return "0:00";
 }
 
@@ -208,11 +200,21 @@ void cd_musicplayer_getCoverPath (void)
 		myData.cCoverPath = NULL;
 	}
 	
-	myData.cCoverPath = cairo_dock_dbus_get_string (dbus_proxy_player, myData.DBus_commands.get_cover_path);
+	myData.cCoverPath = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_cover_path);
 	if (myData.cCoverPath != NULL)
-	{
-		//myData.cover_exist=1;
-	}
-	cd_message("MP : Couverture -> %s", myData.cCoverPath);
+		cd_message("MP : Couverture -> %s", myData.cCoverPath);
+	else
+		cd_message("MP : Pas de couverture dispo");
 }
+
+
+gchar* cd_musicplayer_getString_player (const char* Method)
+{
+	gchar* value;
+	value=cairo_dock_dbus_get_string (myData.dbus_proxy_player, Method);
+	return value;
+}
+
+
+
 

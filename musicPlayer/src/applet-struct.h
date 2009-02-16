@@ -129,11 +129,14 @@ struct _AppletData {
 	MusicPlayerHandeler *pCurrentHandeler;
 	
 	//Informations essentielles
-	gchar *cRawTitle, *cPreviousRawTitle;
+	DBusGProxy *dbus_proxy_player;
+	DBusGProxy *dbus_proxy_shell;
+	gchar *cRawTitle, *cPreviousRawTitle; 
 	gchar *cTitle;
 	gchar *cArtist;
 	gchar *cAlbum;
 	gchar *cCoverPath, *cPreviousCoverPath;
+	gchar* cPlayingUri;
 	MyPlayerStatus pPlayingStatus, pPreviousPlayingStatus;
 	gint iTrackNumber, iPreviousTrackNumber;
 	gint iCurrentTime, iPreviousCurrentTime;
@@ -143,6 +146,7 @@ struct _AppletData {
 	// Pour les lecteurs utilisant DBus
 	MusicPlayerDBus DBus_commands;
 	gboolean dbus_enable;
+	gboolean dbus_enable_shell;
 	gboolean opening;
 	
 	//Données de dessin

@@ -21,6 +21,12 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-banshee.h\
 	applet-exaile.c\
 	applet-exaile.h\
+	applet-listen.c\
+	applet-listen.h\
+	applet-quodlibet.c\
+	applet-quodlibet.h\
+	applet-rhythmbox.c\
+	applet-rhythmbox.h\
 	applet-songbird.c\
 	applet-songbird.h\
 	applet-xmms.c\

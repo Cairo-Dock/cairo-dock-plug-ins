@@ -12,7 +12,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 
 #include "applet-struct.h"
 #include "applet-draw.h"
-#include "applet-dbus.h" // A virer quand le pb avec le configure sera reglé
 #include "applet-musicplayer.h"
 
 CD_APPLET_INCLUDE_MY_VARS
@@ -28,7 +27,10 @@ MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName) {
 	return NULL;
 }
 
-void cd_musicplayer_arm_handeler (void) { //Prépare l'handeler et le lance
+
+/* Prepare l'handeler et le lance */
+void cd_musicplayer_arm_handeler (void) 
+{ 
 	cd_debug ("MP : Arming %s (with class %s)", myData.pCurrentHandeler->name, myData.pCurrentHandeler->appclass);
 	if (myData.pCurrentHandeler->configure != NULL)
 		myData.pCurrentHandeler->configure();
@@ -39,24 +41,35 @@ void cd_musicplayer_arm_handeler (void) { //Prépare l'handeler et le lance
 		cd_musicplayer_draw_icon,
 		NULL);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
-	myData.pCurrentHandeler->free_data; // On arrive pas à passer dedans non plus
+	myData.pCurrentHandeler->free_data();
 }
 
-void cd_musicplayer_disarm_handeler (void) { //Arrete l'handeler en nettoyant la mémoire
+
+/* Arrete l'handeler en nettoyant la memoire */
+void cd_musicplayer_disarm_handeler (void) 
+{ 
 	cd_debug ("MP : Disarming %s", myData.pCurrentHandeler->name);
-	myData.pCurrentHandeler->free_data;
+	myData.pCurrentHandeler->free_data();
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 }
 
-void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const gchar *cName) { //Ajout un Handeler a la GList
+
+/* Ajout d'un Handeler a la GList */
+void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const gchar *cName) 
+{ 
 	MusicPlayerHandeler *handeler = cd_musicplayer_get_handeler_by_name (cName);
 	if (handeler == NULL) //Inutile de rajouter un player déjà présent
+	{
 		myData.pHandelers = g_list_append (myData.pHandelers, pHandeler);
+	}
 	else
 		cd_warning ("MP : Handeler %s already listed", cName);
 }
 
-void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler) { //Libère la mémoire de l'handeler
+
+/* Libere la memoire de l'handeler */
+void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler) 
+{
 	myData.pHandelers = g_list_remove (myData.pHandelers, pHandeler);
 	pHandeler->free_data;
 	
