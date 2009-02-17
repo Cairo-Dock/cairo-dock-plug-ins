@@ -13,6 +13,7 @@ theme_DATA =	    \
 	clock-minute-hand-shadow.svg    \
 	clock-minute-hand.svg	    \
 	clock-second-hand-shadow.svg    \
-	clock-second-hand.svg   
+	clock-second-hand.svg\
+	theme.conf 
 
 EXTRA_DIST = $(theme_DATA)

@@ -505,6 +505,7 @@ void penguin_start_animating_with_delay (CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		myData.iSidRestartDelayed = g_idle_add ((GSourceFunc) _penguin_restart_delayed, (gpointer) myApplet);  // on est oblige de faire ca, pour detacher l'icone apres que le dock l'ait inseree.
+		myData.iSidRestartDelayed = g_timeout_add_seconds (1, (GSourceFunc) _penguin_restart_delayed, (gpointer) myApplet);  // on est oblige de faire ca, pour detacher l'icone apres que le dock l'ait inseree.
+		//myData.iSidRestartDelayed = g_idle_add ((GSourceFunc) _penguin_restart_delayed, (gpointer) myApplet);  // on est oblige de faire ca, pour detacher l'icone apres que le dock l'ait inseree.
 	}
 }

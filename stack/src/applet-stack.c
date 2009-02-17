@@ -36,19 +36,19 @@ void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile
 		myConfig.cStackDir = sDirPath->str;
 		g_string_free (sDirPath, FALSE);
 		g_key_file_set_string (pKeyFile, "Configuration", "stack dir", myConfig.cStackDir);
-		cairo_dock_write_keys_to_file (pKeyFile, myApplet->cConfFilePath);
+		///cairo_dock_write_keys_to_file (pKeyFile, myApplet->cConfFilePath);
 	}
-	g_print ("stack : reperoire local : %s\n", myConfig.cStackDir);
+	cd_debug ("Stack : reperoire local : %s", myConfig.cStackDir);
 	
 	if (! g_file_test (myConfig.cStackDir, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE)) {
 		g_mkdir_with_parents (myConfig.cStackDir, 7*8*8+7*8+5);
-		cd_debug("Stack local directory made (%s)", myConfig.cStackDir);
+		cd_debug ("Stack local directory created (%s)", myConfig.cStackDir);
 	}
 }
 
 void cd_stack_clear_stack (CairoDockModuleInstance *myApplet) {
 	gchar *cCommand = g_strdup_printf("rm -rf \"%s\"/*", myConfig.cStackDir);
-	cd_debug("Stacks: will use '%s'", cCommand);
+	cd_debug("Stack: will use '%s'", cCommand);
 	system (cCommand);
 	g_free(cCommand);
 	
@@ -59,7 +59,7 @@ void cd_stack_clear_stack (CairoDockModuleInstance *myApplet) {
 void cd_stack_remove_item (CairoDockModuleInstance *myApplet, Icon *pIcon)
 {
 	gchar *cFilePath = g_strdup_printf ("%s/%s", myConfig.cStackDir, pIcon->acDesktopFileName);
-	g_print ("removing %s...\n", cFilePath);
+	cd_message ("removing %s...", cFilePath);
 	g_remove (cFilePath);
 	g_free (cFilePath);
 	

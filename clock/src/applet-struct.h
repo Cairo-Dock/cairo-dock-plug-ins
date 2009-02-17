@@ -92,8 +92,11 @@ struct _AppletData {
 	cairo_surface_t *pForegroundSurface;
 	RsvgDimensionData DimensionData;
 	RsvgDimensionData needleDimension;
+	gint iNeedleRealWidth, iNeedleRealHeight;
+	gdouble iNeedleOffsetX, iNeedleOffsetY;
+	gdouble fNeedleScale;
 	RsvgHandle *pSvgHandles[CLOCK_ELEMENTS];
-	int iSidUpdateClock;
+	guint iSidUpdateClock;
 	GPid iAlarmPID;
 	CairoDialog *pCalendarDialog;
 	gchar *cSystemLocation;

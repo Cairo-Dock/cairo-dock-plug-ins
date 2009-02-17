@@ -43,11 +43,48 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 			g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, s_cFileNames[i]);
 			myData.pSvgHandles[i] = rsvg_handle_new_from_file (sElementPath->str, NULL);
 		}
-		g_string_free (sElementPath, TRUE);
 		rsvg_handle_get_dimensions (myData.pSvgHandles[CLOCK_DROP_SHADOW], &myData.DimensionData);
 		rsvg_handle_get_dimensions (myData.pSvgHandles[CLOCK_HOUR_HAND], &myData.needleDimension);
 		g_print ("clock bg dimension : %dx%d\n", (int) myData.DimensionData.width, (int) myData.DimensionData.height);
 		g_print ("clock needle dimension : %dx%d\n", (int) myData.needleDimension.width, (int) myData.needleDimension.height);
+		
+		
+		// recuperation des parametres des aiguilles.
+		g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, "theme.conf");
+		if (0 && g_file_test (sElementPath->str, G_FILE_TEST_EXISTS))
+		{
+			GError *erreur = NULL;
+			GKeyFile *pKeyFile = g_key_file_new ();
+			g_key_file_load_from_file (pKeyFile, sElementPath->str, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
+			if (erreur != NULL)
+			{
+				cd_warning (erreur->message);
+				g_error_free (erreur);
+				erreur = NULL;
+			}
+			else
+			{
+				myData.iNeedleRealHeight = g_key_file_get_integer (pKeyFile, "Needle", "height", &erreur);
+				if (erreur != NULL)
+				{
+					cd_warning (erreur->message);
+					g_error_free (erreur);
+					erreur = NULL;
+				}
+				myData.iNeedleOffsetX = g_key_file_get_double (pKeyFile, "Needle", "offset x", &erreur);
+				if (erreur != NULL)
+				{
+					cd_warning (erreur->message);
+					g_error_free (erreur);
+					erreur = NULL;
+				}
+				myData.iNeedleRealWidth = myData.needleDimension.width/2 + myData.iNeedleOffsetX;
+				myData.iNeedleOffsetY = .5 * myData.iNeedleRealHeight;
+			}
+			g_key_file_free (pKeyFile);
+		}
+		
+		g_string_free (sElementPath, TRUE);
 	}
 	else
 	{
@@ -55,6 +92,17 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 		myData.DimensionData.height = 48;
 		myData.needleDimension.width = 48;
 		myData.needleDimension.height = 48;
+	}
+	
+	if (myData.iNeedleRealHeight == 0)
+	{
+		myData.iNeedleRealHeight = .1*myData.needleDimension.height;  // 10px utiles sur les 100
+		myData.iNeedleOffsetY = myData.iNeedleRealHeight/2;
+	}
+	if (myData.iNeedleRealWidth == 0)
+	{
+		myData.iNeedleRealWidth = myData.needleDimension.width;  // 100px utiles sur les 100
+		myData.iNeedleOffsetX = 10;
 	}
 }
 
@@ -119,7 +167,7 @@ static void paint_hour (CairoDockModuleInstance *myApplet, cairo_t* pDrawingCont
 	double fShadowOffsetX = -0.75f;
 	double fShadowOffsetY = 0.75f;
 	cairo_save (pDrawingContext);
-	cairo_translate(pDrawingContext, fShadowOffsetX,fShadowOffsetY );
+	cairo_translate(pDrawingContext, fShadowOffsetX, fShadowOffsetY);
 	if (myData.pSvgHandles[CLOCK_HOUR_HAND_SHADOW] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_HOUR_HAND_SHADOW], pDrawingContext);
 	cairo_restore (pDrawingContext);
@@ -131,7 +179,7 @@ static void paint_minute (CairoDockModuleInstance *myApplet, cairo_t* pDrawingCo
 	double fShadowOffsetX = -0.75f;
 	double fShadowOffsetY = 0.75f;
 	cairo_save (pDrawingContext);
-	cairo_translate(pDrawingContext, fShadowOffsetX,fShadowOffsetY );
+	cairo_translate(pDrawingContext, fShadowOffsetX, fShadowOffsetY);
 	if (myData.pSvgHandles[CLOCK_MINUTE_HAND_SHADOW] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_MINUTE_HAND_SHADOW], pDrawingContext);
 	cairo_restore (pDrawingContext);
@@ -143,20 +191,16 @@ static void paint_second (CairoDockModuleInstance *myApplet, cairo_t* pDrawingCo
 	double fShadowOffsetX = -0.75f;
 	double fShadowOffsetY = 0.75f;
 	cairo_save (pDrawingContext);
-	cairo_translate(pDrawingContext, fShadowOffsetX,fShadowOffsetY );
+	cairo_translate(pDrawingContext, fShadowOffsetX, fShadowOffsetY);
 	if (myData.pSvgHandles[CLOCK_SECOND_HAND_SHADOW] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_SECOND_HAND_SHADOW], pDrawingContext);
 	cairo_restore (pDrawingContext);
 	if (myData.pSvgHandles[CLOCK_SECOND_HAND] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_SECOND_HAND], pDrawingContext);
 }
-static cairo_surface_t *create_needle_surface (CairoDockModuleInstance *myApplet, cairo_t* pSourceContext, int iWidth, int iHeight, SurfaceKind kind)
+static cairo_surface_t *create_needle_surface (CairoDockModuleInstance *myApplet, cairo_t* pSourceContext, SurfaceKind kind)
 {
-	int iSize = MIN (iWidth, iHeight);
-	double fScale = (double) iSize / (double) myData.needleDimension.width;  // car l'aiguille est a l'horizontale dans le fichier svg.
-	myData.iNeedleWidth = iSize;
-	myData.iNeedleHeight = (double) myData.needleDimension.height * fScale;
-	cairo_surface_t* pNewSurface =_cairo_dock_create_blank_surface (pSourceContext, myData.iNeedleWidth, myData.iNeedleHeight + 1);  // +1 pour les ombres.
+	cairo_surface_t* pNewSurface =_cairo_dock_create_blank_surface (pSourceContext, myData.iNeedleWidth, myData.iNeedleHeight + 0);  // +1 pour les ombres.
 	g_return_val_if_fail (cairo_surface_status (pNewSurface) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	cairo_t* pDrawingContext = cairo_create (pNewSurface);
@@ -167,8 +211,9 @@ static cairo_surface_t *create_needle_surface (CairoDockModuleInstance *myApplet
 	cairo_paint (pDrawingContext);
 	
 	cairo_set_operator (pDrawingContext, CAIRO_OPERATOR_OVER);
-	cairo_scale (pDrawingContext, fScale, fScale);
 	
+	cairo_scale (pDrawingContext, myData.fNeedleScale, myData.fNeedleScale);
+	cairo_translate (pDrawingContext, myData.iNeedleOffsetX, myData.iNeedleOffsetY);
 	switch (kind)
 	{
 		case KIND_HOUR :
@@ -218,10 +263,14 @@ void cd_clock_load_textures (CairoDockModuleInstance *myApplet)
 	double fMaxScale = (myDock ? (1 + g_fAmplitude) / myDock->fRatio : 1);
 	int iWidth = myIcon->fWidth * fMaxScale;
 	int iHeight = myIcon->fHeight * fMaxScale;
+	
+	int iSize = MIN (iWidth, iHeight);
+	myData.fNeedleScale = (double) iSize / (double) myData.needleDimension.width;  // car l'aiguille est a l'horizontale dans le fichier svg.
+	myData.iNeedleWidth = (double) myData.iNeedleRealWidth * myData.fNeedleScale;
+	myData.iNeedleHeight = (double) myData.iNeedleRealHeight * myData.fNeedleScale;
+	
 	cairo_surface_t *pNeedleSurface = create_needle_surface (myApplet,
 		myDrawContext,
-		iWidth,
-		iHeight,
 		KIND_HOUR);
 	if (pNeedleSurface != NULL)
 	{
@@ -231,8 +280,6 @@ void cd_clock_load_textures (CairoDockModuleInstance *myApplet)
 	
 	pNeedleSurface = create_needle_surface (myApplet,
 		myDrawContext,
-		iWidth,
-		iHeight,
 		KIND_MINUTE);
 	if (pNeedleSurface != NULL)
 	{
@@ -242,8 +289,6 @@ void cd_clock_load_textures (CairoDockModuleInstance *myApplet)
 	
 	pNeedleSurface = create_needle_surface (myApplet,
 		myDrawContext,
-		iWidth,
-		iHeight,
 		KIND_SECOND);
 	if (pNeedleSurface != NULL)
 	{

@@ -24,7 +24,8 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceCo
 	pIcon->fHeight = MAX (1, pDesklet->iHeight - g_iDockRadius);
 	pIcon->fDrawX = .5 * g_iDockRadius;
 	pIcon->fDrawY = .5 * g_iDockRadius;
-	pIcon->fScale = 1;
+	pIcon->fScale = 1.;
+	pIcon->fGlideScale = 1.;
 	cd_debug ("%s (%.2fx%.2f)", __func__, pIcon->fWidth, pIcon->fHeight);
 	cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 }
@@ -69,9 +70,7 @@ void rendering_draw_simple_in_desklet_opengl (CairoDesklet *pDesklet)
 	if (pIcon->iIconTexture != 0)
 	{
 		glPushMatrix ();
-		cairo_dock_draw_texture (pIcon->iIconTexture,
-			pIcon->fWidth,
-			pIcon->fHeight);
+		cairo_dock_draw_icon_texture (pIcon, CAIRO_CONTAINER (pDesklet));
 		glPopMatrix ();
 	}
 	if (pIcon->iQuickInfoTexture != 0)

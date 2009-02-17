@@ -42,19 +42,13 @@ AC_CONFIG_FILES([Makefile
 		data/themes/Makefile
 		data/themes/antique/Makefile
 		data/themes/default/Makefile
-		data/themes/default-24/Makefile
 		data/themes/fdo/Makefile
 		data/themes/funky/Makefile
 		data/themes/glassy/Makefile
 		data/themes/ipulse/Makefile
-		data/themes/ipulse-24/Makefile
-		data/themes/quartz-24/Makefile
 		data/themes/radium/Makefile
-		data/themes/radium-24/Makefile
 		data/themes/silvia/Makefile
-		data/themes/silvia-24/Makefile
 		data/themes/simple/Makefile
-		data/themes/simple-24/Makefile
 		data/themes/tango/Makefile
 		data/themes/I_Clock/Makefile
 		data/themes/BlueSlim/Makefile

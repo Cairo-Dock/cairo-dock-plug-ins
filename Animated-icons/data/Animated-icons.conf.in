@@ -82,7 +82,7 @@ color2 = .1;1;.1
 #b+ Random colors ?
 mystical = false
 
-#I[10;500] Number of rays :
+#I[0;500] Number of rays :
 nb part = 300
 
 #I[10;60] Rays size :

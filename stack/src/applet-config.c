@@ -21,11 +21,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 
 	gsize length = 0;
 	myConfig.cMimeTypes = CD_CONFIG_GET_STRING_LIST ("Configuration", "mime", &length);
-	//myConfig.cMonitoredDirectory = CD_CONFIG_GET_STRING_LIST ("Configuration", "directory", &length);
 	
-	//myConfig.bHiddenFiles = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "hidden", FALSE);
 	myConfig.bFilter = CD_CONFIG_GET_BOOLEAN ("Configuration", "filter");
-	//myConfig.bUseSeparator = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "use separator", TRUE);
 	
 	myConfig.iSortType = CD_CONFIG_GET_INTEGER ("Configuration", "sort by");
 	myConfig.bSelectionClipBoard = CD_CONFIG_GET_BOOLEAN ("Configuration", "selection");
@@ -47,7 +44,6 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cTextIcon);
 	g_free (myConfig.cUrlIcon);
 	g_free (myConfig.cStackDir);
-	//g_strfreev (myConfig.cMonitoredDirectory);
 	
 CD_APPLET_RESET_CONFIG_END
 

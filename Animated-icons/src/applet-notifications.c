@@ -96,7 +96,7 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 					myData.iSpotFrontTexture = cd_animation_load_spot_front_texture ();
 				if (myData.iRaysTexture == 0)
 					myData.iRaysTexture = cd_animations_load_rays_texture ();
-				if (pData->pRaysSystem == NULL)
+				if (pData->pRaysSystem == NULL && myConfig.iNbRaysParticles != 0)
 					pData->pRaysSystem = cd_animations_init_rays (pIcon, pDock, dt);
 				pData->fRadiusFactor = .001;
 				pData->fHaloRotationAngle = 0;
