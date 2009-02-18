@@ -4,6 +4,10 @@
 
 #include <cairo-dock.h>
 
+void cd_exaile_getSongInfos(void);
+
+void cd_exaile_getCoverPath(void);
+
 void cd_exaile_free_data (void);
 
 void cd_exaile_control (MyPlayerControl pControl, char*);

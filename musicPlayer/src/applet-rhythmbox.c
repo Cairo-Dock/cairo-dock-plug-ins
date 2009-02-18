@@ -27,12 +27,12 @@ CD_APPLET_INCLUDE_MY_VARS
 
 //Les Fonctions
 
-void _getSongInfos (void)
+void cd_rhythmbox_getSongInfos (void)
 {	
 	GHashTable *data_list = NULL;
 	GValue *value;
 	
-	myData.cPlayingUri = cd_musicplayer_getString_player("getPlayingUri");
+	myData.cPlayingUri = cairo_dock_dbus_get_string(myData.dbus_proxy_player,"getPlayingUri");
 	
 	if(dbus_g_proxy_call (myData.dbus_proxy_shell, "getSongProperties", NULL,
 		G_TYPE_STRING, myData.cPlayingUri,
@@ -134,13 +134,42 @@ void _getSongInfos (void)
 	else
 	{
 		cd_warning ("  can't get song properties");
-		//g_free (playing_uri);
-		//g_free (myData.playing_cover);
 		myData.cCoverPath = NULL;
 	}
 	
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 	
+}
+
+
+void cd_rhythmbox_proxy_connection (void)
+{
+	cd_debug("MP : Debut des connexions aux proxys");
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingChanged",
+			G_TYPE_BOOLEAN,
+			G_TYPE_INVALID);
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingUriChanged",
+			G_TYPE_STRING,
+			G_TYPE_INVALID);
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "elapsedChanged",
+			G_TYPE_UINT,
+			G_TYPE_INVALID);
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
+			G_TYPE_STRING,
+			G_TYPE_INVALID);
+		
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingChanged",
+			G_CALLBACK(onChangePlaying), NULL, NULL);
+			
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingUriChanged",
+			G_CALLBACK(onChangeSong), NULL, NULL);
+		
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "elapsedChanged",
+			G_CALLBACK(onElapsedChanged), NULL, NULL);
+		
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
+			G_CALLBACK(onCovertArtChanged), NULL, NULL);	
+	cd_debug("MP : Fin des connexions aux proxys");
 }
 
 
@@ -169,7 +198,6 @@ void cd_rhythmbox_free_data (void) //Permet de libérer la mémoire prise par no
 	musicplayer_dbus_disconnect_from_bus_Shell();
 	
 	cd_debug("MP : Deconnexion du bus effectuee");
-	/* !!!!! Ne pas oublier de se déco des proxys */
 }
 
 /* Controle du lecteur */
@@ -198,25 +226,24 @@ void cd_rhythmbox_control (MyPlayerControl pControl, char* nothing) //Permet d'e
 		
 		default :
 			return;
-		break; //Ca ne bloque pas l'execution du code plus bas
+		break;
 	}
 	
 	if (pControl == PLAYER_PLAY_PAUSE) // Cas special pour RB qui necessite un argument pour le PlayPause
 	{
-		char *arg;
+		gboolean toggle;
 		cd_debug ("MP : Handeler rhythmbox : will use Play Pause", cCommand);
-		if (myData.pPlayingStatus == PLAYER_PLAYING)
-			arg=0;
-		else arg =1;
+		if (myData.pPlayingStatus == PLAYER_PLAYING) toggle=FALSE;
+		else toggle=TRUE;
 		dbus_g_proxy_call_no_reply (myData.dbus_proxy_player, "playPause", 
-		G_TYPE_BOOLEAN, arg,
+		G_TYPE_BOOLEAN, toggle,
 		G_TYPE_INVALID,
 		G_TYPE_INVALID);
 	}
 	else if (cCommand != NULL) 
 	{
 		cd_debug ("MP : Handeler rhythmbox : will use '%s'", cCommand);
-		cd_musicplayer_dbus_command (cCommand);
+		cairo_dock_dbus_call(myData.dbus_proxy_player, cCommand);
 	}
 }
 
@@ -264,7 +291,7 @@ void cd_rhythmbox_acquisition (void)
 			//cd_debug("MP : On s'est connecte au bus Shell");
 		
 		if ((myData.dbus_enable) && (myData.dbus_enable_shell))
-			cd_musicplayer_rhythmbox_proxy_connection();
+			cd_rhythmbox_proxy_connection();
 		
 		cd_debug("MP : Connexions aux bus OK");
 		
@@ -272,10 +299,7 @@ void cd_rhythmbox_acquisition (void)
 			myData.pPlayingStatus = PLAYER_PLAYING;
 		else
 			myData.pPlayingStatus = PLAYER_PAUSED;
-		_getSongInfos();
-		
-		
-
+		cd_rhythmbox_getSongInfos;
 	}
 	else if ((myData.opening) && (myData.dbus_enable))
 		//cd_debug("MP : Deja connecte au bus");
@@ -315,35 +339,7 @@ void cd_rhythmbox_load_dbus_commands (void)
 	myData.DBus_commands.previous = "previous";
 }
 
-void cd_musicplayer_rhythmbox_proxy_connection (void)
-{
-	cd_debug("MP : Debut des connexions aux proxys");
-	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingChanged",
-			G_TYPE_BOOLEAN,
-			G_TYPE_INVALID);
-	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingUriChanged",
-			G_TYPE_STRING,
-			G_TYPE_INVALID);
-	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "elapsedChanged",
-			G_TYPE_UINT,
-			G_TYPE_INVALID);
-	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
-			G_TYPE_STRING,
-			G_TYPE_INVALID);
-		
-	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingChanged",
-			G_CALLBACK(onChangePlaying), NULL, NULL);
-			
-	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingUriChanged",
-			G_CALLBACK(onChangeSong), NULL, NULL);
-		
-	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "elapsedChanged",
-			G_CALLBACK(onElapsedChanged), NULL, NULL);
-		
-	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
-			G_CALLBACK(onCovertArtChanged), NULL, NULL);	
-	cd_debug("MP : Fin des connexions aux proxys");
-}
+
 
 
 void cd_musicplayer_register_rhythmbox_handeler (void) { //On enregistre notre lecteur
@@ -376,7 +372,7 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 	{
 		myData.cPlayingUri = g_strdup (uri);
 		myData.opening = TRUE;
-		_getSongInfos();
+		cd_rhythmbox_getSongInfos();
 	}
 	else
 	{

@@ -25,7 +25,20 @@ Rémy Robertson (changfu@cairo-dock.org)
 CD_APPLET_INCLUDE_MY_VARS
 
 
-//Les Fonctions
+void cd_songbird_getSongInfos (void)
+{
+	if (myData.cRawTitle != NULL) 
+			myData.cPreviousRawTitle = myData.cRawTitle; 
+	
+	myData.cAlbum = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_album);
+	myData.cArtist = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_artist);
+	myData.cTitle = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_title);
+	//Artist & Title = RawTitle
+	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist,myData.cTitle );
+	//cd_message("MP : %s - %s - %s", myData.cRawTitle, myData.cArtist, myData.cAlbum);
+}
+
+
 void cd_songbird_free_data (void) //Permet de libéré la mémoire prise par notre controleur
 {
 	musicplayer_dbus_disconnect_from_bus();
@@ -62,7 +75,7 @@ void cd_songbird_read_data (void)
 			cd_musicplayer_getStatus_string(); // On récupère l'état de la lecture (play/pause/stop)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
 			{
-				cd_musicplayer_getSongInfos(); // On récupère toutes les infos de la piste en cours
+				cd_songbird_getSongInfos(); // On récupère toutes les infos de la piste en cours
 			}	
 		}
 		else
@@ -89,9 +102,7 @@ void cd_songbird_load_dbus_commands (void)
 	myData.DBus_commands.get_artist = "getArtist";
 	myData.DBus_commands.get_album = "getAlbum";
 	myData.DBus_commands.get_status = "getStatus";
-	cd_debug("MP : Chargement des fonctions DBus effectué");
-	return;
-	
+	//cd_debug("MP : Chargement des fonctions DBus effectué");	
 }
 
 

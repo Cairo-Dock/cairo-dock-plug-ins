@@ -45,36 +45,38 @@ void cd_quodlibet_getSongInfos(void)
 		value = (const char *) g_hash_table_lookup(data_list, "artist");
 		if (value != NULL) myData.cArtist = g_strdup(value);
 		else myData.cArtist = NULL;
-		cd_message ("\tMP : playing_artist <- %s", myData.cArtist);
+		//cd_message ("\tMP : playing_artist <- %s", myData.cArtist);
 		
 		g_free (myData.cAlbum);
 		value = (const char *) g_hash_table_lookup(data_list, "album");
 		if (value != NULL) myData.cAlbum = g_strdup(value);
 		else myData.cAlbum = NULL;
-		cd_message ("\tMP : playing_album <- %s", myData.cAlbum);
+		//cd_message ("\tMP : playing_album <- %s", myData.cAlbum);
 		
 		g_free (myData.cTitle);
 		value = (const char *) g_hash_table_lookup(data_list, "title");
 		if (value != NULL) myData.cTitle = g_strdup(value);
 		else myData.cTitle = NULL;
-		cd_message ("\tMP : playing_title <- %s", myData.cTitle);
+		//cd_message ("\tMP : playing_title <- %s", myData.cTitle);
 		
 		value = (const char *) g_hash_table_lookup(data_list, "tracknumber");
 		if (value != NULL) myData.iTrackNumber = g_strdup(value);
 		else myData.iTrackNumber = 0;
-		cd_message ("\tMP : playing_track <- %s", myData.iTrackNumber);
+		//cd_message ("\tMP : playing_track <- %s", myData.iTrackNumber);
 		
 		value = (const char *) g_hash_table_lookup(data_list, "~#length");
 		if (value != NULL) 
 			myData.iSongLength = g_strdup(value);
 		else myData.iSongLength = 0;
-		cd_message ("\tMP : playing_duration <- %s", myData.iSongLength);	
+		//cd_message ("\tMP : playing_duration <- %s", myData.iSongLength);
+		
+		g_value_unset(value);	
+		g_hash_table_destroy (data_list);
 	}
 	else
 	{
 		cd_warning ("MP : Can't get song properties");
 	}
-	
 	
 	/* Probleme sur la recup' du temps ecoule, impossible de determiner le format de sortie*/
 	//myData.iCurrentTime = cairo_dock_dbus_get_uinteger (myData.dbus_proxy_player, myData.DBus_commands.current_position);
@@ -83,8 +85,6 @@ void cd_quodlibet_getSongInfos(void)
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 	
 }
-
-
 
 
 /* Permet de libérer la mémoire prise par notre controleur */
@@ -97,9 +97,8 @@ void cd_quodlibet_free_data (void)
 /* Controle du lecteur */
 void cd_quodlibet_control (MyPlayerControl pControl, char* nothing) //Permet d'effectuer les actions de bases sur le lecteur
 { 
-	cd_debug ("");
-	
-	static gchar *cCommand = NULL;
+	//cd_debug ("");
+	gchar *cCommand = NULL;
 	/* Conseil de ChangFu pour redetecter le titre à coup sûr */
 	g_free (myData.cRawTitle);
 	myData.cRawTitle = NULL;
@@ -124,14 +123,14 @@ void cd_quodlibet_control (MyPlayerControl pControl, char* nothing) //Permet d'e
 	
 	if (cCommand != NULL) {
 		cd_debug ("MP : Handeler QuodLibet : will use '%s'", cCommand);
-		cd_musicplayer_dbus_command (cCommand);
+		cairo_dock_dbus_call(myData.dbus_proxy_player, cCommand);
 	}
 }
 
 /* Permet de renseigner l'applet des fonctions supportées par le lecteur */
 gboolean cd_quodlibet_ask_control (MyPlayerControl pControl) 
 {
-	cd_debug ("");
+	//cd_debug ("");
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
 			return TRUE;
@@ -194,7 +193,7 @@ void cd_quodlibet_read_data (void)
 
 void cd_quodlibet_load_dbus_commands (void)
 {
-	cd_debug ("");
+	//cd_debug ("");
 	myData.DBus_commands.service = "net.sacredchao.QuodLibet";
 	myData.DBus_commands.path = "/net/sacredchao/QuodLibet";
 	myData.DBus_commands.interface = "net.sacredchao.QuodLibet";
@@ -216,7 +215,7 @@ void cd_quodlibet_load_dbus_commands (void)
 
 
 void cd_musicplayer_register_quodlibet_handeler (void) { //On enregistre notre lecteur
-	cd_debug ("");
+	//cd_debug ("");
 	MusicPlayerHandeler *pquodlibet = g_new0 (MusicPlayerHandeler, 1);
 	pquodlibet->acquisition = cd_quodlibet_acquisition;
 	pquodlibet->read_data = cd_quodlibet_read_data;

@@ -25,26 +25,24 @@ Rémy Robertson (changfu@cairo-dock.org)
 CD_APPLET_INCLUDE_MY_VARS
 
 
-//Les Fonctions
-
-/* Fonction specifique a Exaile pour le calcul du temps ecoule qui est donne en % du temps total */
-void cd_exaile_getTime (void)
+void cd_exaile_getSongInfos(void)
 {
-	static gint uValue;
-	static gchar* temps=NULL; 
-	gchar* length;
-	static gint minutes, secondes;
+	gint uValue;	
+	gchar* length=NULL;
 	
 	/* Récupération du temps total */
 	length = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.duration);
 	//cd_debug ("MP : Length : %s", length);
 	if ((length != NULL))
-	{	
+	{
+		gchar* temps=NULL; 
+		gint minutes, secondes;
 		temps = strtok (length, ":");
 		minutes = atoi(temps);
-		temps = strtok (NULL, "\0");
+		temps = strtok (NULL, ":");
 		secondes = atoi(temps);
 		myData.iSongLength = secondes + 60 * minutes;
+		g_free(length); 
 	}
 	else myData.iSongLength = -1;	
 	
@@ -59,21 +57,34 @@ void cd_exaile_getTime (void)
 	
 	/*Pour permettre de comparer le pourcentage au top suivant et squizzer le decalage*/
 	myData.iPreviousuValue = uValue;
-}
-
-void cd_exaile_getSongInfos(void)
-{
+	
+	/*Recuperation des infos de la piste*/
 	if (myData.cRawTitle != NULL) 
 		myData.cPreviousRawTitle = myData.cRawTitle; 
 	
 	myData.cAlbum = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_album);
-
 	myData.cArtist = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_artist);
-
 	//Artist & Title = RawTitle
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_title));
+	//cd_message("MP : %s - %s", myData.cRawTitle, myData.cAlbum);
+}
+
+
+void cd_exaile_getCoverPath (void)
+{
+	if (myData.cCoverPath != NULL) 
+	{
+		g_free (myData.cCoverPath);
+		myData.cCoverPath = NULL;
+	}
 	
-	cd_message("MP : %s - %s", myData.cRawTitle, myData.cAlbum);
+	myData.cCoverPath = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_cover_path);
+	if (myData.cCoverPath != NULL)
+		;//cd_message("MP : Couverture -> %s", myData.cCoverPath);
+	else
+		;//cd_message("MP : Pas de couverture dispo");
+	
+	
 }
 
 /* Permet de libérer la mémoire prise par notre controleur */
@@ -81,14 +92,13 @@ void cd_exaile_free_data (void)
 {
 	cd_debug("MP : Deconnexion de DBus");
 	musicplayer_dbus_disconnect_from_bus();
+	
 }
 
 /* Controle du lecteur */
 void cd_exaile_control (MyPlayerControl pControl, char* nothing) //Permet d'effectuer les actions de bases sur le lecteur
 { 
-	cd_debug ("");
-	
-	static gchar *cCommand = NULL;
+	gchar *cCommand = NULL;
 	/* Conseil de ChangFu pour redetecter le titre à coup sûr */
 	g_free (myData.cRawTitle);
 	myData.cRawTitle = NULL;
@@ -105,10 +115,7 @@ void cd_exaile_control (MyPlayerControl pControl, char* nothing) //Permet d'effe
 		case PLAYER_NEXT :
 			cCommand = myData.DBus_commands.next;
 		break;
-		
-		/*case PLAYER_ENQUEUE :
-			// A faire
-		*/
+
 		default :
 			return;
 		break;
@@ -116,14 +123,13 @@ void cd_exaile_control (MyPlayerControl pControl, char* nothing) //Permet d'effe
 	
 	if (cCommand != NULL) {
 		cd_debug ("MP : Handeler Exaile : will use '%s'", cCommand);
-		cd_musicplayer_dbus_command (cCommand);
+		cairo_dock_dbus_call(myData.dbus_proxy_player, cCommand);
 	}
 }
 
 /* Permet de renseigner l'applet des fonctions supportées par le lecteur */
 gboolean cd_exaile_ask_control (MyPlayerControl pControl) 
 {
-	cd_debug ("");
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
 			return TRUE;
@@ -163,8 +169,7 @@ void cd_exaile_read_data (void)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_exaile_getSongInfos(); // On récupère toutes les infos de la piste en cours
-				cd_exaile_getTime();
-				cd_musicplayer_getCoverPath();
+				cd_exaile_getCoverPath();
 			}
 			else if (myData.pPlayingStatus == PLAYER_PAUSED)
 			{
@@ -188,7 +193,7 @@ void cd_exaile_read_data (void)
 
 void cd_exaile_load_dbus_commands (void)
 {
-	cd_debug ("");
+	//cd_debug ("");
 	myData.DBus_commands.service = "org.exaile.DBusInterface";
 	myData.DBus_commands.path = "/DBusInterfaceObject";
 	myData.DBus_commands.interface = "org.exaile.DBusInterface";
@@ -210,7 +215,7 @@ void cd_exaile_load_dbus_commands (void)
 
 
 void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lecteur
-	cd_debug ("");
+	//cd_debug ("");
 	MusicPlayerHandeler *pExaile = g_new0 (MusicPlayerHandeler, 1);
 	pExaile->acquisition = cd_exaile_acquisition;
 	pExaile->read_data = cd_exaile_read_data;

@@ -76,8 +76,10 @@ void cd_musicplayer_check_dbus_connection (void)
 	myData.opening = cd_musicplayer_dbus_detection();
 	if ((myData.opening) && (!myData.dbus_enable)) // On vérifie si notre lecteur est ouvert et si on n'est pas déjà connecté au bus
 	{
-		cd_debug("MP : On se connecte au bus pour la première fois");
+		cd_message("MP : On se connecte au bus pour la première fois");
 		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // Alors on se connecte au bus
+		if (myData.dbus_enable)
+			cd_message("MP : Connexion au bus effectuee");
 	}
 	else if ((myData.dbus_enable) && (myData.opening)) // Sinon on est deja connecte au bus, on lit juste les donnees
 		cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
@@ -88,35 +90,31 @@ void cd_musicplayer_check_dbus_connection (void)
 	}
 }
 
-//*********************************************************************************
-// musicplayer_dbus_command() : Envoie une commande à musicplayer
-//*********************************************************************************
-void cd_musicplayer_dbus_command(const char *command)
-{
-	cd_message("MP : On demande %s", command);
-	cairo_dock_dbus_call(myData.dbus_proxy_player, command);
-}
-
 
 //*********************************************************************************
-// musicplayer_dbus_command_Shell() : Envoie une commande à musicplayer
+// cd_musicplayer_check_dbus_connection() : Verifie l'etat de la connexion DBus sur le Player et sur le Shell
 //*********************************************************************************
-void cd_musicplayer_dbus_command_Shell(const char *command)
+void cd_musicplayer_check_dbus_connection_with_two_interfaces (void)
 {
-	cd_message("MP : On demande %s", command);
-	cairo_dock_dbus_call(myData.dbus_proxy_shell, command);
+	cd_debug("MP : Vérification de la connexion DBus");
+	myData.opening = cd_musicplayer_dbus_detection();
+	if ((myData.opening) && (!myData.dbus_enable) && (!myData.dbus_enable_shell)) // On vérifie si notre lecteur est ouvert et si on n'est pas déjà connecté au bus
+	{
+		cd_message("MP : On se connecte au bus pour la première fois");
+		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // Alors on se connecte au bus
+		myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell ();
+		if ((myData.dbus_enable) && (myData.dbus_enable_shell))
+			cd_message("MP : Connexions aux bus effectuees");
+	}
+	else if ((myData.dbus_enable) && (myData.opening)) // Sinon on est deja connecte au bus, on lit juste les donnees
+		cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
+	else // Sinon le lecteur n'est pas ouvert
+	{
+		myData.dbus_enable = 0;
+		cd_debug("MP : lecteur non ouvert");	
+	}
 }
 
-//*********************************************************************************
-// musicplayer_getValue() : Retourne une chaine de caractère selon une méthode
-//*********************************************************************************
-gchar* cd_musicplayer_dbus_getValue (const char *method)
-{
-	gchar *value=NULL;
-	value = cairo_dock_dbus_get_string (myData.dbus_proxy_player, method);
-	return value;
-	
-}
 
 
 //*********************************************************************************
@@ -130,12 +128,10 @@ void cd_musicplayer_getStatus_string (void)
 		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
 		if ((! g_ascii_strcasecmp(status, "playing")) || (!g_ascii_strcasecmp(status, "1")))
 		{
-			//cd_debug("MP : le lecteur est en statut PLAYING");
 			myData.pPlayingStatus = PLAYER_PLAYING;
 		}
 		else if (! g_ascii_strcasecmp(status, "paused"))
 		{
-			//cd_debug("MP : le lecteur est en statut PAUSED");
 			myData.pPlayingStatus = PLAYER_PAUSED;
 		}
 		else if (! g_ascii_strcasecmp(status, "stopped"))
@@ -145,7 +141,7 @@ void cd_musicplayer_getStatus_string (void)
 		}
 		
 		g_free(status);
-	}
+}
 
 
 void cd_musicplayer_getStatus_integer (void)
@@ -160,34 +156,6 @@ void cd_musicplayer_getStatus_integer (void)
 }
 
 
-
-int cd_musicplayer_getCurPos_integer (void) 
-{
-	int CurPos = NULL;
-	CurPos = cairo_dock_dbus_get_integer (myData.dbus_proxy_player, myData.DBus_commands.current_position);
-	return CurPos;
-}
-
-guchar* cd_musicplayer_getCurPos_string (void) 
-{
-	guchar* CurPos = NULL;
-	CurPos = cairo_dock_dbus_get_uchar (myData.dbus_proxy_player, myData.DBus_commands.current_position);
-	return CurPos;
-}
-
-int cd_musicplayer_getLength_integer (void)
-{
-	int duration=0;
-	duration = cairo_dock_dbus_get_integer (myData.dbus_proxy_player, myData.DBus_commands.duration);	
-	return duration;
-}
-
-gchar* cd_musicplayer_getLength_string (void)
-{
-	gchar* duration=NULL;
-	if ((duration = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.duration)) != NULL)	return duration;
-	else return "0:00";
-}
 
 //*********************************************************************************
 // musicplayer_getCoverPath() : Retourne l'adresse de la pochette
@@ -207,13 +175,6 @@ void cd_musicplayer_getCoverPath (void)
 		cd_message("MP : Pas de couverture dispo");
 }
 
-
-gchar* cd_musicplayer_getString_player (const char* Method)
-{
-	gchar* value;
-	value=cairo_dock_dbus_get_string (myData.dbus_proxy_player, Method);
-	return value;
-}
 
 
 

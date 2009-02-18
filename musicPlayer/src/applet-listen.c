@@ -26,14 +26,11 @@ CD_APPLET_INCLUDE_MY_VARS
 
 //Les Fonctions
 
-static void cd_listen_getSongInfos(void)
+void cd_listen_getSongInfos(void)
 {
-	gchar* playing_uri;
 	myData.cPreviousRawTitle = myData.cRawTitle;
 	myData.cRawTitle=cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_title);	
 }
-
-
 
 
 /* Permet de libérer la mémoire prise par notre controleur */
@@ -73,9 +70,10 @@ void cd_listen_control (MyPlayerControl pControl, char* nothing) //Permet d'effe
 		break;
 	}
 	
-	if (cCommand != NULL) {
+	if (cCommand != NULL) 
+	{
 		cd_debug ("MP : Handeler Listen : will use '%s'", cCommand);
-		cd_musicplayer_dbus_command (cCommand);
+		cairo_dock_dbus_call(myData.dbus_proxy_player, cCommand);
 	}
 }
 

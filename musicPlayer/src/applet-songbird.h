@@ -1,10 +1,9 @@
-
-
 #ifndef __APPLET_SONGBIRD__
 #define  __APPLET_SONGBIRD__
 
-
 #include <cairo-dock.h>
+
+void cd_songbird_getSongInfos (void);
 
 void cd_songbird_free_data (void);
 
