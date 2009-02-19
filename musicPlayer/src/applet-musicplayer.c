@@ -31,7 +31,7 @@ MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName) {
 /* Prepare l'handeler et le lance */
 void cd_musicplayer_arm_handeler (void) 
 { 
-	cd_debug ("MP : Arming %s (with class %s)", myData.pCurrentHandeler->name, myData.pCurrentHandeler->appclass);
+	//cd_debug ("MP : Arming %s (with class %s)", myData.pCurrentHandeler->name, myData.pCurrentHandeler->appclass);
 	if (myData.pCurrentHandeler->configure != NULL)
 		myData.pCurrentHandeler->configure();
 		
@@ -72,7 +72,6 @@ void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const 
 /* Libere la memoire de l'handeler */
 void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler) 
 {
-	cd_debug("MP : Coucou");
 	myData.pHandelers = g_list_remove (myData.pHandelers, pHandeler);
 	pHandeler->free_data();
 	

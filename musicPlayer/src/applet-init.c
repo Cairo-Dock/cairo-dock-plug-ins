@@ -22,8 +22,9 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-songbird.h" //Support Songbird
 #include "applet-banshee.h" //Support Banshee
 #include "applet-rhythmbox.h" //Support Rhythmbox
-#include "applet-quodlibet.h" //Support Rhythmbox
-#include "applet-listen.h" //Support Rhythmbox
+#include "applet-quodlibet.h" //Support QuodLibet
+#include "applet-listen.h" //Support Listen
+#include "applet-amarok2.h" //Support Amarok 2
 
 CD_APPLET_DEFINITION ("musicPlayer", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
 
@@ -74,6 +75,7 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_register_rhythmbox_handeler();
 	cd_musicplayer_register_quodlibet_handeler();
 	cd_musicplayer_register_listen_handeler();
+	cd_musicplayer_register_amarok2_handeler();
 	
 	
 	if (myDesklet) {

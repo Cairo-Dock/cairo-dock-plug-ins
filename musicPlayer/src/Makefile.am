@@ -17,6 +17,8 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-draw.h\
 	applet-musicplayer.c\
 	applet-musicplayer.h\
+	applet-amarok2.c\
+	applet-amarok2.h\
 	applet-banshee.c\
 	applet-banshee.h\
 	applet-exaile.c\
