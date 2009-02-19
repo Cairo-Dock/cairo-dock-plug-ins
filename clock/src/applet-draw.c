@@ -70,7 +70,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			cairo_dock_update_icon_texture (myIcon);
 	}
 	
-	if (myDock && myDock->bUseReflect && (! myDock->render_opengl || !myConfig.bOldStyle))  // les reflets pour cairo.
+	if (myDock && myDock->bUseReflect && (! CD_APPLET_MY_CONTAINER_IS_OPENGL || !myConfig.bOldStyle))  // les reflets pour cairo.
 	{
 		cairo_surface_destroy (myIcon->pReflectionBuffer);
 		myIcon->pReflectionBuffer = cairo_dock_create_reflection_surface (myIcon->pIconBuffer,
@@ -374,7 +374,7 @@ void cd_clock_draw_analogic_opengl (CairoDockModuleInstance *myApplet, int iWidt
 	glRotatef (-6. * (iSeconds + myData.iSmoothAnimationStep / 5.) + 90., 0., 0., 1.);
 	glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, -0*myData.iNeedleHeight/2, 0.);
 	cairo_dock_draw_texture (myData.iSecondNeedleTexture, myData.iNeedleWidth, myData.iNeedleHeight+1);
-	glPopMatrix ();
+	glPopMatrix ();*/
 	
 	// draw texture fg
 	cairo_dock_draw_texture (myData.iFgTexture, iWidth, iHeight);
