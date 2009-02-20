@@ -109,7 +109,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 			-fRadius, 0,
 			-fRadius, -sens * fRadius);
 		//On trace une ligne BasGauche -> HautGauche
-		cairo_rel_line_to (pCairoContext, 0, - sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + 2 * (fLineWidth + 2.5))));
+		cairo_rel_line_to (pCairoContext, 0, - sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + 2 * (fLineWidth + 3.5))));
 		
 		// Coin haut gauche.
 		cairo_rel_curve_to (pCairoContext,
