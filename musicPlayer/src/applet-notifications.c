@@ -72,7 +72,16 @@ CD_APPLET_ON_CLICK_BEGIN
 	else if (!myData.dbus_enable) { //Player commandé par le shell
 	  cd_musicplayer_pp ();
 	}
-	// Ici, il faudrait rajouter la possibilite d'ouvrir le lecteur s'il n'est pas ouvert
+	else if (myData.dbus_enable && !myData.opening && myData.pCurrentHandeler->launch != NULL) { //lancer le player dBus
+	  GError *erreur = NULL;
+	  g_spawn_command_line_async (myData.pCurrentHandeler->launch, &erreur);
+	  if (erreur != NULL) {
+		  cd_warning ("Attention : when trying to execute command : %s", erreur->message);
+		  g_error_free (erreur);
+		  CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_ERROR, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
+	  }
+	}
+	// Ici, il faudrait rajouter la possibilite d'ouvrir le lecteur s'il n'est pas ouvert //C'est fait
 		
 CD_APPLET_ON_CLICK_END
 

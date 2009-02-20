@@ -227,7 +227,7 @@ void cd_xmms_read_data (void) {
 					if ((strcmp(str," (null)") != 0) && (myData.cRawTitle == NULL || strcmp(str, myData.cRawTitle) != 0)) {
 						g_free (myData.cRawTitle);
 						myData.cRawTitle = g_strdup (str);
-						cd_message("On a changé de son! (%s)", myData.cRawTitle);
+						cd_message ("On a changé de son! (%s)", myData.cRawTitle);
 						cd_musicplayer_change_desklet_data();
 					}
 				}
@@ -251,5 +251,6 @@ void cd_musicplayer_register_xmms_handeler (void) { //On enregistre notre lecteu
 	pXMMS->ask_control = cd_xmms_ask_control;
 	pXMMS->appclass = g_strdup("xmms"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pXMMS->name = g_strdup("XMMS");
+	pXMMS->launch = NULL;
 	cd_musicplayer_register_my_handeler (pXMMS, "XMMS");
 }

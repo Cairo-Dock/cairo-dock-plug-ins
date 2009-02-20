@@ -75,6 +75,11 @@ void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler) {
 	g_free (pHandeler->appclass);
 	pHandeler->appclass = NULL;
 	
+	if (pHandeler->launch != NULL) {
+	  g_free (pHandeler->launch);
+	  pHandeler->launch = NULL;
+	}
+	
 	g_free (pHandeler);
 	pHandeler = NULL;
 }

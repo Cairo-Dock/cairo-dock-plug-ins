@@ -66,6 +66,7 @@ struct _MusicPlayerHandeler {
 	MusicPlayerAskControlerFunc	ask_control;
 	gchar *appclass;
 	gchar *name; //Servira a repérer le lecteur dans la GList.
+	gchar *launch;
 };
 
 //Structures essentielles de l'applet
