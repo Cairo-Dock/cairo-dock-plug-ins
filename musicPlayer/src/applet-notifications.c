@@ -58,7 +58,7 @@ static void _musicplayer_action_by_id (int iAction) {
 			myData.pCurrentHandeler->control (PLAYER_NEXT, NULL);
 		break;
 		default :
-			cd_warning ("No action defined, Halt.");
+			cd_warning ("MP: No action defined, Halt.");
 		break;
 	}
 }
@@ -66,8 +66,11 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL && pClickedIcon != myIcon) {  // clic sur une des icones du desklet.
 		_musicplayer_action_by_id (pClickedIcon->iType);
 	}
-	else if (myData.opening) {
-	  myData.pCurrentHandeler->control (PLAYER_PLAY_PAUSE, NULL);
+	else if (myData.dbus_enable && myData.opening) { //Player dBus
+	  cd_musicplayer_pp (); //Faut faire gaffe...
+	}
+	else if (!myData.dbus_enable) { //Player commandé par le shell
+	  cd_musicplayer_pp ();
 	}
 	// Ici, il faudrait rajouter la possibilite d'ouvrir le lecteur s'il n'est pas ouvert
 		
@@ -98,7 +101,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-  myData.pCurrentHandeler->control (PLAYER_NEXT, NULL);
+  cd_musicplayer_next ();
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 

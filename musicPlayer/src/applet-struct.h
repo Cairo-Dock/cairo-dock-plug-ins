@@ -68,8 +68,6 @@ struct _MusicPlayerHandeler {
 	gchar *name; //Servira a repérer le lecteur dans la GList.
 };
 
-
-
 //Structures essentielles de l'applet
 typedef enum {
 	MY_APPLET_NOTHING = 0,
