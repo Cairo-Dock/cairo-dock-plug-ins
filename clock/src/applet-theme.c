@@ -51,7 +51,7 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 		
 		// recuperation des parametres des aiguilles.
 		g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, "theme.conf");
-		if (0 && g_file_test (sElementPath->str, G_FILE_TEST_EXISTS))
+		if (g_file_test (sElementPath->str, G_FILE_TEST_EXISTS))
 		{
 			GError *erreur = NULL;
 			GKeyFile *pKeyFile = g_key_file_new ();
@@ -80,6 +80,7 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 				}
 				myData.iNeedleRealWidth = myData.needleDimension.width/2 + myData.iNeedleOffsetX;
 				myData.iNeedleOffsetY = .5 * myData.iNeedleRealHeight;
+				g_print ("*** %d;%d\n", myData.iNeedleRealHeight, myData.iNeedleOffsetX);
 			}
 			g_key_file_free (pKeyFile);
 		}
@@ -96,7 +97,7 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 	
 	if (myData.iNeedleRealHeight == 0)
 	{
-		myData.iNeedleRealHeight = .1*myData.needleDimension.height;  // 10px utiles sur les 100
+		myData.iNeedleRealHeight = .12*myData.needleDimension.height;  // 12px utiles sur les 100
 		myData.iNeedleOffsetY = myData.iNeedleRealHeight/2;
 	}
 	if (myData.iNeedleRealWidth == 0)

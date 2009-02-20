@@ -94,28 +94,21 @@ void mixer_stop (void)
 }
 
 
-
-gchar *mixer_get_elements_list (void)
+GList *mixer_get_elements_list (void)
 {
 	snd_mixer_elem_t *elem;
 	if (myData.mixer_handle == NULL)
 		return NULL;
 	cd_message ("");
 	
-	GString *sMixerElements = g_string_new ("");
+	GList *pList = NULL;
 	for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
 	{
 		if (snd_mixer_selem_is_active (elem) && snd_mixer_selem_has_playback_volume (elem))
-			g_string_append_printf (sMixerElements, "%s;", snd_mixer_selem_get_name (elem));
+			pList = g_list_prepend (pList, snd_mixer_selem_get_name (elem));
 	}
-	if (sMixerElements->len > 0)
-		sMixerElements->str[sMixerElements->len-1] = '\0';
-	
-	gchar *cList = sMixerElements->str;
-	g_string_free (sMixerElements, FALSE);
-	return cList;
+	return pList;
 }
-
 
 
 static snd_mixer_elem_t *_mixer_get_element_by_name (gchar *cName)
@@ -279,16 +272,6 @@ void mixer_show_hide_dialog (void)
 		attr.cText = cMessage;
 		attr.pInteractiveWidget = pScale;
 		myData.pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
-		/*myData.pDialog = cairo_dock_show_dialog_full (cMessage,
-			myIcon,
-			myContainer,
-			0,
-			NULL,
-			GTK_BUTTONS_NONE,
-			pScale,
-			NULL,
-			NULL,
-			NULL);*/
 		g_signal_connect (G_OBJECT (myData.pDialog->pWidget),
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),

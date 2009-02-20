@@ -10,7 +10,7 @@ void mixer_init (gchar *cCardID);
 
 void mixer_stop (void);
 
-gchar *mixer_get_elements_list (void);
+GList *mixer_get_elements_list (void);
 
 void mixer_get_controlled_element (void);
 

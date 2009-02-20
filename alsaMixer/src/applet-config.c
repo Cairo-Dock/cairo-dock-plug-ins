@@ -23,12 +23,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.cMixerElementName = g_strconcat (cMixerElementName, ",0", NULL);
 		myConfig.cMixerElementName2 = g_strconcat (cMixerElementName, ",1", NULL);
 		g_free (cMixerElementName);
-		g_free (cMixerElementName2);
 	}
 	else
 	{
 		myConfig.cMixerElementName = cMixerElementName;
 	}
+	g_free (cMixerElementName2);
 	
 	myConfig.cShowAdvancedMixerCommand = CD_CONFIG_GET_STRING ("Configuration", "show mixer");
 	
@@ -79,7 +79,7 @@ CD_APPLET_RESET_DATA_BEGIN
 CD_APPLET_RESET_DATA_END
 
 
-void mixer_write_elements_list (gchar *cConfFilePath, GKeyFile *pKeyFile)
+/*void mixer_write_elements_list (gchar *cConfFilePath, GKeyFile *pKeyFile)
 {
 	gchar *cElements = mixer_get_elements_list ();
 	
@@ -89,4 +89,24 @@ void mixer_write_elements_list (gchar *cConfFilePath, GKeyFile *pKeyFile)
 	
 	g_free (cElements);
 	g_free (cElements2);
+}*/
+
+void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
+{
+	g_print ("%s (%s)\n", __func__, myIcon->acName);
+	//\____________ On construit la liste des canaux a controler.
+	GList *pList = mixer_get_elements_list ();
+	
+	//\____________ On recupere la combo.
+	GtkWidget *pCombo = cairo_dock_get_widget_from_name ("Configuration", "mixer element");
+	g_return_if_fail (pCombo != NULL);
+	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName);
+	
+	//\____________ Idem pour la 2eme, avec une entree vide au debut.
+	pCombo = cairo_dock_get_widget_from_name ("Configuration", "mixer element 2");
+	g_return_if_fail (pCombo != NULL);
+	pList = g_list_prepend (pList, "");
+	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName2);
+	
+	g_list_free (pList);  // les elements appartiennent au mixer_handle.
 }

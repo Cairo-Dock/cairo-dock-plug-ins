@@ -54,9 +54,7 @@ CD_APPLET_ON_CLICK_BEGIN
       {
         cd_warning ("Attention : when trying to execute '%s' : %s", myConfig.cMailApplication, erreur->message);
         g_error_free (erreur);
-        //gchar *cTipMessage = g_strdup_printf ("A problem occured\nIf '%s' is not your usual file browser, you can change it in the conf panel of this module", myConfig.cDefaultBrowser);
-        cairo_dock_show_temporary_dialog (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myDock, 5000, myConfig.cMailApplication);
-        //g_free (cTipMessage);
+        cairo_dock_show_temporary_dialog (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, myConfig.cMailApplication);
       }
     }
 
@@ -64,7 +62,7 @@ CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 
-    cd_mail_force_update(myData);
+    cd_mail_force_update();
 
 CD_APPLET_ON_MIDDLE_CLICK_END
 
@@ -97,18 +95,18 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 
 
-void cd_mail_force_update()
+void cd_mail_force_update(void)
 {
 	int i;
 	if (myData.pMailAccounts != NULL)
 	{
 		for (i = 0; i < myData.pMailAccounts->len; i ++)
 		{
-    	CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
-    	if( pMailAccount )
-    	{
-    	  cairo_dock_launch_measure(pMailAccount->pAccountMailTimer);
-      }
+			CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
+			if( pMailAccount )
+			{
+				cairo_dock_launch_measure(pMailAccount->pAccountMailTimer);
+			}
 		}
 	}
 }

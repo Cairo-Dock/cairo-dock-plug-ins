@@ -180,7 +180,7 @@ AM_CONDITIONAL( [WITH_WEBLETS], [test "$with_weblets" = "yes"] )
 ALSA_MIXER_PACKAGE="cd-AlsaMixer"
 AC_SUBST(GETTEXT_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
 
-AC_SUBST(VERSION_ALSA_MIXER, "1.0.4")
+AC_SUBST(VERSION_ALSA_MIXER, "1.0.6")
 AC_SUBST(PACKAGE_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
 
 AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
@@ -613,19 +613,13 @@ AC_CONFIG_FILES([
 	clock/data/themes/Makefile
 	clock/data/themes/antique/Makefile
 	clock/data/themes/default/Makefile
-	clock/data/themes/default-24/Makefile
 	clock/data/themes/fdo/Makefile
 	clock/data/themes/funky/Makefile
 	clock/data/themes/glassy/Makefile
 	clock/data/themes/ipulse/Makefile
-	clock/data/themes/ipulse-24/Makefile
-	clock/data/themes/quartz-24/Makefile
 	clock/data/themes/radium/Makefile
-	clock/data/themes/radium-24/Makefile
 	clock/data/themes/silvia/Makefile
-	clock/data/themes/silvia-24/Makefile
 	clock/data/themes/simple/Makefile
-	clock/data/themes/simple-24/Makefile
 	clock/data/themes/tango/Makefile
 	clock/data/themes/I_Clock/Makefile
 	clock/data/themes/BlueSlim/Makefile

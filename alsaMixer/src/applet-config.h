@@ -8,6 +8,9 @@
 CD_APPLET_CONFIG_H
 
 
-void mixer_write_elements_list (gchar *cConfFilePath, GKeyFile *pKeyFile);
+//void mixer_write_elements_list (gchar *cConfFilePath, GKeyFile *pKeyFile);
+
+void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile);
+
 
 #endif

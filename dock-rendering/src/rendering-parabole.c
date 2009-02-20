@@ -625,7 +625,8 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	}
 	else if ((pDock->fAlign == 0 && pDock->iMouseX > fXOnCurve) || (pDock->fAlign == 1 && pDock->iMouseX < fXOnCurve))
 	{
-		double fDistanceToCurve2 = (fXOnCurve - pDock->iMouseX) * (fXOnCurve - pDock->iMouseX) + (fYOnCurve - pDock->iMouseY) * (fYOnCurve - pDock->iMouseY);
+		int iMouseY = (pDock->bDirectionUp ? pDock->iMouseY : pDock->iCurrentHeight - pDock->iMouseY);
+		double fDistanceToCurve2 = (fXOnCurve - pDock->iMouseX) * (fXOnCurve - pDock->iMouseX) + (fYOnCurve - iMouseY) * (fYOnCurve - iMouseY);
 		if (fDistanceToCurve2 > PARABOLE_DISTANCE_OUT2)
 			pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 		else if (fDistanceToCurve2 < PARABOLE_DISTANCE_EDGE2)

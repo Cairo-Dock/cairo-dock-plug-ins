@@ -79,6 +79,7 @@ struct _AppletData {
 	gboolean bErrorRetrievingData;
 	gchar *cCCDataFilePath;
 	gchar *cForecastDataFilePath;
+	GList *pLocationsList;
 	} ;
 
 

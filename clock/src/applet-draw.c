@@ -350,34 +350,50 @@ void cd_clock_draw_analogic_opengl (CairoDockModuleInstance *myApplet, int iWidt
 	// translate middle
 	glTranslatef (iWidth/2, iHeight/2, 0.);
 	
+	glEnable (GL_BLEND);
+	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);  // ne me demandez pas pourquoi...
+	
+	glEnable (GL_TEXTURE_2D);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	
+	glPolygonMode (GL_FRONT, GL_FILL);
+	
 	// draw texture bg
 	glPushMatrix ();
-	cairo_dock_draw_texture (myData.iBgTexture, iWidth, iHeight);
+	glScalef (iWidth, iHeight, 1.);
+	cairo_dock_apply_texture (myData.iBgTexture);
 	glPopMatrix ();
 	
 	// heure
 	glPushMatrix ();
 	glRotatef (-(iHours % 12 + iMinutes/60.) * 30. + 90., 0., 0., 1.);
-	glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, -0*myData.iNeedleHeight/2, 0.);
-	cairo_dock_draw_texture (myData.iHourNeedleTexture, myData.iNeedleWidth, myData.iNeedleHeight+1);
+	glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, 0., 0.);
+	glScalef (myData.iNeedleWidth, myData.iNeedleHeight+1, 1.);
+	cairo_dock_apply_texture (myData.iHourNeedleTexture);
 	glPopMatrix ();
 	
 	// minute
 	glPushMatrix ();
 	glRotatef (-6. * (iMinutes + iSeconds/60.) + 90., 0., 0., 1.);
-	glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, -0*myData.iNeedleHeight/2, 0.);
-	cairo_dock_draw_texture (myData.iMinuteNeedleTexture, myData.iNeedleWidth, myData.iNeedleHeight+1);
+	glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, 0., 0.);
+	glScalef (myData.iNeedleWidth, myData.iNeedleHeight+1, 1.);
+	cairo_dock_apply_texture (myData.iMinuteNeedleTexture);
 	glPopMatrix ();
 	
 	// seconde
 	glPushMatrix ();
 	glRotatef (-6. * (iSeconds + myData.iSmoothAnimationStep / 5.) + 90., 0., 0., 1.);
-	glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, -0*myData.iNeedleHeight/2, 0.);
-	cairo_dock_draw_texture (myData.iSecondNeedleTexture, myData.iNeedleWidth, myData.iNeedleHeight+1);
-	glPopMatrix ();*/
+	glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, 0., 0.);
+	glScalef (myData.iNeedleWidth, myData.iNeedleHeight+1, 1.);
+	cairo_dock_apply_texture (myData.iSecondNeedleTexture);
+	glPopMatrix ();
 	
 	// draw texture fg
-	cairo_dock_draw_texture (myData.iFgTexture, iWidth, iHeight);
+	glScalef (iWidth, iHeight, 1.);
+	cairo_dock_apply_texture (myData.iFgTexture);
+	
+	glDisable (GL_TEXTURE_2D);
+	glDisable (GL_BLEND);
 }
 
 void cd_clock_render_analogic_to_texture (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)

@@ -9,7 +9,10 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("AlsaMixer", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_PRE_INIT_BEGIN ("AlsaMixer", 2, 0, 0, CAIRO_DOCK_CATEGORY_CONTROLER)
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	pInterface->load_custom_widget = cd_mixer_load_custom_widget;
+CD_APPLET_PRE_INIT_END
 
 
 static void _load_surfaces (void)
@@ -97,7 +100,7 @@ CD_APPLET_INIT_BEGIN
 	
 	mixer_init (myConfig.card_id);
 	
-	mixer_write_elements_list (CD_APPLET_MY_CONF_FILE, CD_APPLET_MY_KEY_FILE);
+	///mixer_write_elements_list (CD_APPLET_MY_CONF_FILE, CD_APPLET_MY_KEY_FILE);
 	mixer_get_controlled_element ();
 	
 	if (myData.pControledElement == NULL)
@@ -193,7 +196,7 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 		
 		mixer_init (myConfig.card_id);
-		mixer_write_elements_list (CD_APPLET_MY_CONF_FILE, CD_APPLET_MY_KEY_FILE);
+		///mixer_write_elements_list (CD_APPLET_MY_CONF_FILE, CD_APPLET_MY_KEY_FILE);
 		mixer_get_controlled_element ();
 		
 		if (myData.pControledElement == NULL)
