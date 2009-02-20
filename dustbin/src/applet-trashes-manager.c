@@ -21,8 +21,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 extern int lstat (const char *path, struct stat *buf);
 
-CD_APPLET_INCLUDE_MY_VARS
-
 static GStaticRWLock s_mTasksMutex = G_STATIC_RW_LOCK_INIT;
 static GList *s_pTasksList = NULL;
 static int s_iThreadIsRunning = 0;
@@ -53,10 +51,6 @@ gpointer cd_dustbin_threaded_calculation (gpointer data)
 		
 		//\________________________ On l'enleve de la liste.
 		s_pTasksList = g_list_remove (s_pTasksList, pMessage);
-		/*s_pTasksList = pFirstElement->next;
-		if (s_pTasksList != NULL)
-			s_pTasksList->prev = NULL;
-		g_list_free (pFirstElement);*/
 		g_free (pMessage);
 		
 		g_static_rw_lock_writer_unlock (&s_mTasksMutex);
@@ -110,42 +104,18 @@ void cd_dustbin_remove_all_messages (void)
 void cd_dustbin_remove_messages (CdDustbin *pDustbin)
 {
 	CdDustbinMessage *pMessage;
-	GList *pElement, *pNextElement;
-	if (s_pTasksList == NULL)
-		return ;
-	
-	pElement = s_pTasksList;
-	do
+	GList *pElement = s_pTasksList, *pNextElement;
+	while (pElement != NULL)
 	{
+		pMessage = pElement->data;
 		pNextElement = pElement->next;
-		if (pNextElement == NULL)
-			break;
-		
-		pMessage = pNextElement->data;  // on ne peut pas enlever l'element courant, sinon on perd 'pElement'.
+
 		if (pMessage->pDustbin == pDustbin)  // on l'enleve de la liste et on l'efface.
 		{
 			s_pTasksList = g_list_remove (s_pTasksList, pMessage);
 			cd_dustbin_free_message (pMessage);
-			/*pElement->next = pNextElement->next;
-			if (pNextElement->next != NULL)
-				pNextElement->next->prev = pElement;
-			g_list_free (pNextElement);*/
 		}
-		else
-		{
-			pElement = pNextElement;
-		}
-	} while (TRUE);
-	
-	pElement = s_pTasksList;
-	pMessage = pElement->data;
-	if (pMessage->pDustbin == pDustbin)  // on l'enleve de la liste et on l'efface.
-	{
-		s_pTasksList = g_list_remove (s_pTasksList, pMessage);
-		cd_dustbin_free_message (pMessage);
-		/*cd_dustbin_free_message (pMessage);
-		s_pTasksList = pElement->next;
-		g_list_free (pElement);*/
+		pElement = pNextElement;
 	}
 }
 
@@ -153,7 +123,7 @@ void cd_dustbin_remove_messages (CdDustbin *pDustbin)
 gboolean cd_dustbin_is_calculating (void)
 {
 	int iThreadIsRunning = g_atomic_int_get (&s_iThreadIsRunning);
-	return (iThreadIsRunning != 0 || s_iSidDelayMeasure != 0/* || s_pTasksList != NULL*/);
+	return (iThreadIsRunning != 0 || s_iSidDelayMeasure != 0);
 }
 
 static gboolean _cd_dustbin_check_for_redraw (gpointer data)
@@ -380,27 +350,10 @@ void cd_dustbin_measure_all_dustbins (int *iNbFiles, int *iSize)
 
 static void _cd_dustbin_empty_dir (const gchar *cDirectory)
 {
-	/*GError *erreur = NULL;
-	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("Dustbin : %s", erreur->message);
-		g_error_free (erreur);
-		return ;
-	}
-	
-	const gchar *cFileName;
-	GString *sFilePath = g_string_new ("");
-	while ((cFileName = g_dir_read_name (dir)) != NULL)
-	{
-		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
-		g_remove (sFilePath->str);
-	}
-	
-	g_string_free (sFilePath, TRUE);
-	g_dir_close (dir);*/
-	gchar *cCommand = g_strdup_printf ("find %s -maxdepth 1 -mindepth 1 -exec rm -rf {} \\;", cDirectory);
+	g_return_if_fail (cDirectory != NULL && *cDirectory != '\0' && strcmp (cDirectory, g_getenv ("HOME")) != 0);
+	gchar *cCommand = g_strdup_printf ("find '%s' -maxdepth 1 -mindepth 1 -exec rm -rf '{}' \\;", cDirectory);  // un rm -rf * n'efface pas les fichiers caches.
 	cd_message (cCommand);
+	g_print ("***\n***%s\n***\n", cCommand);
 	system (cCommand);
 	g_free (cCommand);
 }
@@ -418,10 +371,10 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 	g_free (cQuestion);
 	if (answer == GTK_RESPONSE_YES)
 	{
-		///GString *sCommand = g_string_new ("rm -rf ");
+		GString *sCommand = g_string_new ("");
 		if (cDirectory != NULL)
 		{
-			///g_string_append_printf (sCommand, "\"%s\"/* \"%s\"/.*", cDirectory, cDirectory);
+			g_string_printf (sCommand, "rm -rf '%s'/* '%s'/.*", cDirectory, cDirectory);
 			_cd_dustbin_empty_dir (cDirectory);
 		}
 		else
@@ -566,4 +519,5 @@ void cd_dustbin_remove_all_dustbins (void)
 	}
 	g_list_free (myData.pDustbinsList);
 	myData.pDustbinsList = NULL;
+	myData.iNbTrashes = 0;
 }

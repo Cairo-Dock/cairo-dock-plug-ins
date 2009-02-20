@@ -69,34 +69,13 @@ static void _load_theme (GError **erreur)
 	}
 	if (myData.pFullBinSurface == NULL || myData.pFullBinSurface == NULL)
 	{
-		cd_warning ("Attention : couldn't find images, this theme is not valid");
+		cd_warning ("dustbin : couldn't find images, check the existence of te files in %s", myConfig.cThemePath);
 	}
 }
 
-CD_APPLET_INIT_BEGIN
-	//\_______________ On charge le theme choisi.
-	if (myDesklet)
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-	}
-	
-	GError *erreur = NULL;
-	_load_theme (&erreur);
-	if (erreur != NULL)
-	{
-		g_print ("dustbin : %s", erreur->message);
-		g_error_free (erreur);
-		return;
-	}
-	
-	//\_______________ On enregistre nos notifications.
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
-	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
-	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
-	
+static void _cd_dusbin_start (CairoDockModuleInstance *myApplet)
+{
 	//\_______________ On commence a surveiller les repertoires.
-	myData.iNbTrashes = 0;
 	gboolean bMonitoringOK = FALSE;
 	gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), NULL);
 	if (cDustbinPath != NULL)
@@ -107,6 +86,12 @@ CD_APPLET_INIT_BEGIN
 		int i = 0;
 		while (myConfig.cAdditionnalDirectoriesList[i] != NULL)
 		{
+			if (*myConfig.cAdditionnalDirectoriesList[i] == '\0' || *myConfig.cAdditionnalDirectoriesList[i] == ' ')
+			{
+				cd_warning ("dustbin : this directory (%s) is not valid, be careful with it !", myConfig.cAdditionnalDirectoriesList[i]);
+				i ++;
+				continue ;
+			}
 			if (*myConfig.cAdditionnalDirectoriesList[i] == '~')
 				bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup_printf ("%s%s", getenv ("HOME"), myConfig.cAdditionnalDirectoriesList[i]+1), 0);
 			else
@@ -117,7 +102,7 @@ CD_APPLET_INIT_BEGIN
 	}
 	cd_message ("  %d dechet(s) actuellement (%d)", myData.iNbTrashes, bMonitoringOK);
 	
-	
+	//\_______________ On met l'icone qui va bien.
 	if (myData.iNbTrashes <= 0)
 	{
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface);
@@ -127,7 +112,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface);
 	}
 	
-	//\_______________ On lance la surveillancce de nos poubelles.
+	//\_______________ On lance le comptage de nos poubelles.
 	if (bMonitoringOK)
 	{
 		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
@@ -148,6 +133,32 @@ CD_APPLET_INIT_BEGIN
 			myData.iSidCheckTrashes = g_timeout_add_seconds ((int) (myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
 		}
 	}
+}
+
+CD_APPLET_INIT_BEGIN
+	//\_______________ On charge le theme choisi.
+	if (myDesklet)
+	{
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+	}
+	
+	GError *erreur = NULL;
+	_load_theme (&erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("dustbin : %s", erreur->message);
+		g_error_free (erreur);
+		return;
+	}
+	
+	//\_______________ On enregistre nos notifications.
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
+	
+	//\_______________ On d�marre la surveillance des nos poubelles.
+	_cd_dusbin_start (myApplet);
 CD_APPLET_INIT_END
 
 
@@ -207,56 +218,8 @@ CD_APPLET_RELOAD_BEGIN
 			myData.iSidCheckTrashes = 0;
 		}
 		
-		//\_______________ On commence a surveiller les repertoires.
-		myData.iNbTrashes = 0;
-		gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), NULL);
-		gboolean bMonitoringOK = cd_dustbin_add_one_dustbin (cDustbinPath, 0);  // cDustbinPath ne nous appartient plus.
-		
-		if (myConfig.cAdditionnalDirectoriesList != NULL)
-		{
-			int i = 0;
-			while (myConfig.cAdditionnalDirectoriesList[i] != NULL)
-			{
-				if (*myConfig.cAdditionnalDirectoriesList[i] == '~')
-					bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup_printf ("%s%s", getenv ("HOME"), myConfig.cAdditionnalDirectoriesList[i]+1), 0);
-				else
-					bMonitoringOK |= cd_dustbin_add_one_dustbin (g_strdup (myConfig.cAdditionnalDirectoriesList[i]), 0);
-				i ++;
-			}
-			cd_message ("  %d dossier(s) poubelle", i);
-		}
-		cd_message ("  %d dechet(s) actuellement (%d)", myData.iNbTrashes, bMonitoringOK);
-		
-		if (myData.iNbTrashes <= 0)
-		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pEmptyBinSurface);
-		}
-		else
-		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pFullBinSurface);
-		}
-		
-		if (bMonitoringOK)
-		{
-			if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
-			{
-				cd_dustbin_add_message (NULL, NULL);
-			}
-			else
-			{
-				cd_dustbin_draw_quick_info (FALSE);
-			}
-		}
-		else  // methode par defaut.
-		{
-			if (myConfig.cAdditionnalDirectoriesList != NULL)
-			{
-				cd_message ("***methode par defaut");
-				myData.iNbTrashes = -1;
-				cd_dustbin_check_trashes (myIcon);
-				myData.iSidCheckTrashes = g_timeout_add_seconds ((int) (myConfig.fCheckInterval), (GSourceFunc) cd_dustbin_check_trashes, (gpointer) myIcon);
-			}
-		}
+		//\_______________ On la redemarre.
+		_cd_dusbin_start (myApplet);
 	}
 	else  // on redessine
 	{

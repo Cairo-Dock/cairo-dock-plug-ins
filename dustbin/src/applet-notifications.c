@@ -13,8 +13,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-trashes-manager.h"
 #include "applet-notifications.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_ABOUT (D_("This is the dustbin applet for Cairo-Dock\n made by Fabrice Rey (fabounet@users.berlios.de)"))
 
@@ -116,7 +114,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		gchar *cFileName = g_filename_from_uri (CD_APPLET_RECEIVED_DATA, &cHostname, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("Attention : can't find valid URI for '%s' : %s", CD_APPLET_RECEIVED_DATA, erreur->message);
+			cd_warning ("can't find valid URI for '%s' : %s", CD_APPLET_RECEIVED_DATA, erreur->message);
 			g_error_free (erreur);
 		}
 		else if ((cHostname == NULL || strcmp (cHostname, "localhost") == 0) && myData.pDustbinsList != NULL)
