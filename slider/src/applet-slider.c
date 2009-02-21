@@ -13,6 +13,10 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include <unistd.h>
 #include <time.h>
 
+#ifdef HAVE_EXIF
+#include <libexif/exif-data.h>
+#endif
+
 #include "cairo-dock.h"
 
 #include "applet-struct.h"
@@ -60,6 +64,8 @@ static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboo
 		return pList;
 	}
 	
+	gchar ebuf[1024];
+	memset (ebuf, 0, 1024);
 	struct stat buf;
 	SliderImage *pImage;
 	SliderImageFormat iFormat;
@@ -96,6 +102,77 @@ static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboo
 						pList = g_list_insert_sorted (pList, pImage, (GCompareFunc) cairo_dock_compare_images_order);
 						//g_list_prepend (pList, pImage);
 					}
+					#ifdef HAVE_EXIF
+					if (iFormat == SLIDER_JPG)
+					{
+						ExifData *pExifData = exif_data_new_from_file (sFilePath->str);
+						
+						ExifEntry *pExifEntry = exif_data_get_entry (pExifData, EXIF_TAG_ORIENTATION);
+						if (pExifEntry != NULL)
+						{
+							ExifByteOrder byteOrder = exif_data_get_byte_order (pExifData);
+							pImage->iOrientation = exif_get_short (pExifEntry->data, byteOrder);
+							if (pImage->iOrientation != 0)
+								g_print ("iOrientation : %d\n", pImage->iOrientation);
+								/* 0th Row      0th Column
+								1  top          left side
+								2  top          right side
+								3  bottom       right side
+								4  bottom       left side
+								5  left side    top
+								6  right side   top
+								7  right side   bottom
+								8  left side    bottom */
+								/*
+								//The following lines are taken from GwenView,
+						+         //Copyright 2000-2004 Aur�lien G�teau
+						+         enum Orientation 
+						+         { 
+						+            NORMAL=1, HFLIP=2, ROT_180=3, VFlip=4, ROT_90_HFLIP=5, ROT_90=6, ROT_90_VFLIP=7, ROT_270=8
+						+         };
+						+         Orientation orientation = (Orientation)s;
+						+         doXform = (orientation != NORMAL);
+						+         
+						+         switch (orientation) {
+						+         case NORMAL:
+						+            break;
+						+      
+						+         case HFLIP:
+						+            matrix.scale(-1,1);
+						+            break;
+						+      
+						+         case ROT_180:
+						+            matrix.rotate(180);
+						+            break;
+						+      
+						+         case VFlip:
+						+            matrix.scale(1,-1);
+						+            break;
+						+         
+						+         case ROT_90_HFLIP:
+						+            matrix.scale(-1,1);
+						+            matrix.rotate(90);
+						+            break;
+						+            
+						+         case ROT_90:      
+						+            matrix.rotate(90);
+						+            break;
+						+         
+						+         case ROT_90_VFLIP:
+						+            matrix.scale(1,-1);
+						+            matrix.rotate(90);
+						+            break;
+						+            
+						+         case ROT_270:      
+						+            matrix.rotate(270);
+						+            break;
+						+         }
+						+      }*/
+						}
+						
+						exif_data_unref (pExifData);
+					}
+					#endif
 				}
 			}
 		}

@@ -4,6 +4,10 @@ lib_LTLIBRARIES = \
 	libcd-slider.la
 
 
+if WITH_EXIF
+have_exif=-DHAVE_EXIF="1"
+endif
+
 libcd_slider_la_SOURCES = \
 	applet-init.c\
 	applet-init.h\
@@ -21,6 +25,8 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_slider_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
+	$(EXIF_CFLAGS) \
+	$(have_exif)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(sliderdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
@@ -38,6 +44,7 @@ libcd_slider_la_CFLAGS = \
 
 
 libcd_slider_la_LIBADD = \
+	$(EXIF_LIBS) \
 	$(PACKAGE_LIBS) -lm
 
 

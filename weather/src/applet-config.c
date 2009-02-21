@@ -104,12 +104,13 @@ void cd_weather_reset_all_datas (CairoDockModuleInstance *myApplet)
 		_reset_current_one_day (&myData.days[i]);
 	}
 	
+	cd_weather_free_location_list (myApplet);
+	
 	if (myIcon->pSubDock != NULL)
 	{
 		CD_APPLET_DESTROY_MY_SUBDOCK;
 	}
 	memset (myDataPtr, 0, sizeof (AppletData));
-	cd_weather_free_location_list (myApplet);
 }
 
 CD_APPLET_RESET_DATA_BEGIN

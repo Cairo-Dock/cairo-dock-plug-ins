@@ -25,6 +25,17 @@ typedef enum {
 	SLIDER_NB_CLICK_OPTION
 } SliderClickOption;
 
+typedef enum {
+	SLIDER_ORIENTATION_NORMAL=1,
+	SLIDER_ORIENTATION_HFLIP,
+	SLIDER_ORIENTATION_ROT_180,
+	SLIDER_ORIENTATION_VFLIP,
+	SLIDER_ORIENTATION_ROT_90_HFLIP,
+	SLIDER_ORIENTATION_ROT_90,
+	SLIDER_ORIENTATION_ROT_90_VFLIP,
+	SLIDER_ORIENTATION_ROT_270
+} SliderOrientation;
+
 typedef struct {
 	double fImgX;
 	double fImgY;
@@ -55,6 +66,7 @@ typedef struct {
 	gchar *cPath;
 	gint iSize;
 	SliderImageFormat iFormat;
+	gboolean iOrientation;
 } SliderImage;
 
 //\___________ structure containing the applet's configuration parameters.

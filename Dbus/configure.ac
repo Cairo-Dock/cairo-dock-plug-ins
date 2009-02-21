@@ -27,7 +27,7 @@ libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
 
-PKG_CHECK_MODULES(PACKAGE, cairo-dock dbus-1 dbus-glib-1)
+PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
