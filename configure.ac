@@ -14,6 +14,8 @@ IT_PROG_INTLTOOL()
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
 
+
+############# PACKAGE CAIRO-DOCK #################
 GETTEXT_PACKAGE=cairo-dock-plugins
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"GETTEXT_PACKAGE", [Gettext package.])
 AC_SUBST(GETTEXT_PACKAGE)
@@ -95,10 +97,16 @@ AC_ARG_ENABLE(mail,
 	[ with_mail=${enableval} ],
 	[ with_mail=yes ])
 AC_ARG_ENABLE(weblets,
-	[  --enable-weblets : Enable Weblets applet (default=no) ],
+	[  --enable-weblets : Enable Weblets applet (default=yes) ],
 	[ with_weblets=${enableval} ],
 	[ with_weblets=yes ])
+AC_ARG_ENABLE(exif,
+	[  --enable-exif : for auto-rotating pictures in Slider (default=yes) ],
+	[ with_exif=${enableval} ],
+	[ with_exif=yes ])
 
+
+############# PACKAGES ADDITIONNELS #################
 if test "$with_old_gnome_support" = "yes" ; then
 	PKG_CHECK_MODULES(OLD_GNOME_INTEGRATION,gnome-vfs-2.0 libgnomeui-2.0, ,[ with_old_gnome_support=false; AC_MSG_WARN(Could not find gnome-vfs and/or gnomeui; Cairo-Dock won't be built with Gnome<2.22 support.) ])
 	AC_SUBST(OLD_GNOME_INTEGRATION_CFLAGS)
@@ -156,6 +164,11 @@ if test "$with_weblets" = "yes" ; then
 	AC_SUBST(WEBLETS_WEBKIT_CFLAGS)
 	AC_SUBST(WEBLETS_WEBKIT_LIBS)
 fi
+if test "$with_exif" = "yes" ; then
+	PKG_CHECK_MODULES(EXIF,libexif, ,[ with_exif=false; AC_MSG_WARN(Could not find libexif; Slider won't be built with exif capbilities.) ])
+	AC_SUBST(EXIF_CFLAGS)
+	AC_SUBST(EXIF_LIBS)
+fi
 
 AC_PROG_CXX
 
@@ -175,6 +188,7 @@ AM_CONDITIONAL( [WITH_GMENU], [test "$with_gmenu" = "yes"] )
 AM_CONDITIONAL( [WITH_GIO_IN_GMENU], [test "$with_gio_in_gmenu" = "yes"] )
 AM_CONDITIONAL( [WITH_MAIL], [test "$with_mail" = "yes"] )
 AM_CONDITIONAL( [WITH_WEBLETS], [test "$with_weblets" = "yes"] )
+AM_CONDITIONAL( [WITH_EXIF], [test "$with_exif" = "yes"] )
 
 ############# ALSA_MIXER #################
 ALSA_MIXER_PACKAGE="cd-AlsaMixer"

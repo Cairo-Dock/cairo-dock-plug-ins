@@ -2,26 +2,19 @@
 
 #[gtk-preference]
 [Comics]
-
 #i+[0;30] Corner radius :
 corner = 8
 
 #i+[0;10] Border width :
 border = 1
-
 #c+4[0;1] Line color of the bubble :
 line color = 1.0; 1.0; 1.0; 1.0
-
-
 #[gtk-preference]
 [Modern]
-
 #i+[0;40] Corner radius :
 corner = 30
-
 #i+[0;10] Border width :
 border = 1
-
 #c+4[0;1] Line color of the bubble :
 line color = 1.0; 1.0; 1.0; 1.0
 
@@ -59,4 +52,3 @@ line color = 1.0; 1.0; 1.0; 1.0
 
 #c+4[0;1] Color of the margin :
 margin color = .9;.9;.9;1.0
-
