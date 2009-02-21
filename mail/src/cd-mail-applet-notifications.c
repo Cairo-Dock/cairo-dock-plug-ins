@@ -18,7 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_INCLUDE_MY_VARS
 
-
+void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet);
 
 CD_APPLET_ABOUT (D_("This is the mail applet\n made by Christophe Chapuis for Cairo-Dock"))
 
@@ -62,7 +62,7 @@ CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 
-    cd_mail_force_update();
+    cd_mail_force_update(myApplet);
 
 CD_APPLET_ON_MIDDLE_CLICK_END
 
@@ -95,7 +95,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 
 
-void cd_mail_force_update(void)
+void cd_mail_force_update(CairoDockModuleInstance *myApplet)
 {
 	int i;
 	if (myData.pMailAccounts != NULL)
@@ -118,6 +118,9 @@ void cd_mail_force_update(void)
  */
 void cd_mail_read_folder_data(CDMailAccount *pMailAccount)
 {
+  if( !pMailAccount ) return;
+  CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+  
   if( pMailAccount->dirtyfied == TRUE )
   {
     cd_debug( "cd_mail: The mailbox %s has changed", pMailAccount->name );
@@ -127,7 +130,7 @@ void cd_mail_read_folder_data(CDMailAccount *pMailAccount)
 }
 
 void
-_mail_draw_main_icon (gchar **mailbox_names, guint *new_message_counts)
+_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gchar **mailbox_names, guint *new_message_counts)
 {
 	g_return_if_fail (myDrawContext != NULL);
 
@@ -138,19 +141,13 @@ _mail_draw_main_icon (gchar **mailbox_names, guint *new_message_counts)
 	    {
         cairo_dock_show_temporary_dialog (_("No unread mail in your mailboxes"), myIcon, myContainer, 1000);
       }
-/*
-	    if( myData.pNoMailSurface )
-	    {
-            CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pNoMailSurface)
-        }
-        else */
-        {
-            g_free (myIcon->acFileName);
+      
+      {
+          g_free (myIcon->acFileName);
 
-            //Chargement de l'image "pas de mail"
-            myIcon->acFileName = g_strdup(myConfig.cNoMailUserImage);
-            CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName);
-        }
+          //Chargement de l'image "pas de mail"
+          myIcon->acFileName = g_strdup(myConfig.cNoMailUserImage);
+      }
 	}
 	else
 	{
@@ -182,21 +179,118 @@ _mail_draw_main_icon (gchar **mailbox_names, guint *new_message_counts)
 
           g_string_free(ttip_str, TRUE);
         }
-/*	    if( myData.pHasMailSurface )
-	    {
-            CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pHasMailSurface)
-	    }
-        else */
+
         {
+          g_free (myIcon->acFileName);
+
             //Chargement de l'image "il y a un des mails"
-            CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHasMailUserImage);
+          myIcon->acFileName = g_strdup(myConfig.cHasMailUserImage);
         }
 	}
+
+  if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+  {
+    if( myData.iNbUnreadMails > 0 )
+    {
+      cairo_dock_launch_animation (myContainer);
+    }
+
+    cd_mail_render_3D_to_texture (myApplet);
+  }
+  else
+  {
+    CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName);
+  }
 
   CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.iNbUnreadMails);
 }
 
-void cd_mail_update_status( gpointer *data )
+gboolean cd_mail_update_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation)
+{                             
+	if (pContainer != myContainer)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+  if( myData.iNbUnreadMails > 0 || myData.current_rotX != 0 )
+  {
+    myData.current_rotX += 5;
+  }
+  if( myData.iNbUnreadMails > 0 || (myData.current_rotY % 90) != 0 )
+  {
+    myData.current_rotY += 2;
+  }
+
+  if( myData.current_rotX>=360.f ) myData.current_rotX -= 360.f;
+  if( myData.current_rotY>=360.f ) myData.current_rotY -= 360.f;
+
+  cd_mail_render_3D_to_texture (myApplet);
+
+  if( myData.iNbUnreadMails > 0 || myData.current_rotX != 0 || (myData.current_rotY % 90) != 0 )
+  {
+    *bContinueAnimation = TRUE;
+  }
+  else
+  {
+    *bContinueAnimation = FALSE;
+  }
+  
+  return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet)
+{
+	if (! cairo_dock_begin_draw_icon (myIcon, myContainer))
+		return ;
+
+	double fMaxScale = cairo_dock_get_max_scale (myContainer);
+	double fRatio = (myDock ? myDock->fRatio : 1);
+	int iWidth = (int) myIcon->fWidth / fRatio * fMaxScale;
+	int iHeight = (int) myIcon->fHeight / fRatio * fMaxScale;
+
+	glPushMatrix ();
+
+  glScalef(0.8*iWidth, 0.8*iHeight, 0.8*iWidth);
+  glTranslatef(0.6, 0.7, -1.0);
+
+  glRotatef(myData.current_rotX, 1.0f, 0.0f, 0.0f);  /* rotate on the X axis */
+  glRotatef(myData.current_rotY, 0.0f, 1.0f, 0.0f);  /* rotate on the Y axis */
+//  glRotatef(30.f, 0.0f, 0.0f, 1.0f);  /* rotate on the Z axis */
+
+	glEnable(GL_DEPTH_TEST);
+	glEnable (GL_BLEND);
+  glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend le cube transparent.
+	
+	glEnable(GL_TEXTURE_2D);
+	//glEnable(GL_TEXTURE_GEN_S);                                // oui je veux une generation en S
+	//glEnable(GL_TEXTURE_GEN_T);
+	glBindTexture(GL_TEXTURE_2D, myData.iNbUnreadMails > 0?myData.iHasMailTexture:myData.iNoMailTexture);
+	//glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR); // type de generation des coordonnees de la texture
+	//glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+	//glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // type de generation des coordonnees de la texture
+	//glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // pour les bouts de textures qui depassent.
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	//glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+
+	glCallList (myData.iCubeCallList);
+//	glCallList (myData.iCapsuleCallList);
+
+	glDisable(GL_TEXTURE_2D);
+	glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.);
+	glDisable (GL_BLEND);
+	glDisable (GL_DEPTH_TEST);
+	glPopMatrix ();
+
+	cairo_dock_end_draw_icon (myIcon, myContainer);
+	CD_APPLET_REDRAW_MY_ICON;
+}
+
+void cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
+{
+  if( !pUpdatedMailAccount ) return;
+  cd_mail_update_status( pUpdatedMailAccount->pAppletInstance );
+}
+
+void cd_mail_update_status( CairoDockModuleInstance *myApplet )
 {
 	CDMailAccount *pMailAccount;
   GList *pIconList = NULL;
@@ -293,7 +387,7 @@ void cd_mail_update_status( gpointer *data )
     myDrawContext = cairo_create (myIcon->pIconBuffer);
   }
 
-  _mail_draw_main_icon(mailbox_names, new_message_counts);
+  _mail_draw_main_icon(myApplet, mailbox_names, new_message_counts);
 
   if (myDesklet)
       gtk_widget_queue_draw (myDesklet->pWidget);

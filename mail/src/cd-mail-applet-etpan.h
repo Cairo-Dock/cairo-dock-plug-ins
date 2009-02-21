@@ -21,7 +21,7 @@ void cd_mail_retrieve_maildir_params (CDMailAccount *mailaccount, GKeyFile *pKey
 void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name);
 void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name);
 
-void cd_mail_init_accounts(GPtrArray *pMailAccounts);
+void cd_mail_init_accounts(CairoDockModuleInstance *myApplet);
 void cd_mail_free_account (CDMailAccount *pMailAccount);
 
 void cd_mail_acquire_folder_data(CDMailAccount *pMailAccount);

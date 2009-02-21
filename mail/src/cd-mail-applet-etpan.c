@@ -14,6 +14,8 @@ Written by Christophe Chapuis (for any bug report, please mail me to tofe@users.
 #include "cd-mail-applet-struct.h"
 #include "cd-mail-applet-etpan.h"
 
+void cd_mail_update_account_status( CDMailAccount *pMailAccount );
+
 CD_APPLET_INCLUDE_MY_VARS
 
 enum {
@@ -391,7 +393,7 @@ void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 };
 */
 
-void cd_mail_init_accounts(GPtrArray *pMailAccounts)
+void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 {	
 	if (myData.pMailAccounts != NULL)
 	{
@@ -453,7 +455,7 @@ void cd_mail_init_accounts(GPtrArray *pMailAccounts)
           pMailAccount->pAccountMailTimer = cairo_dock_new_measure_timer (pMailAccount->timeout,
           cd_mail_acquire_folder_data,
           cd_mail_read_folder_data,
-          cd_mail_update_status,
+          cd_mail_update_account_status,
           pMailAccount);
 
           if( pMailAccount->pAccountMailTimer )

@@ -23,10 +23,19 @@ struct _AppletData {
         guint iNbUnreadMails;
         gboolean bNewMailFound;
     	  CairoDockMeasure *pGlobalMailTimer;
+
+    	  GLuint iNoMailTexture;
+    	  GLuint iHasMailTexture;
+    	  GLuint iCubeCallList;
+    	  GLuint iCapsuleCallList;
+
+    	  guint current_rotX;
+    	  guint current_rotY;
 	} ;
 
 typedef struct {
         gboolean dirtyfied;
+        CairoDockModuleInstance *pAppletInstance;
   
         gchar *name;
         struct mailstorage *storage;
@@ -46,6 +55,5 @@ typedef struct {
 
 
 void cd_mail_read_folder_data(CDMailAccount *pMailAccount);
-void cd_mail_update_status( gpointer *data );
 
 #endif
