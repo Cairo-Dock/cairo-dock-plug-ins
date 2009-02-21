@@ -109,6 +109,7 @@ CD_APPLET_GET_CONFIG_BEGIN
         /* in case the account type is unknown, just don't crash... */
         if( j >= MAIL_NB_STORAGE_TYPES ) continue;
 
+        pMailAccount->pAppletInstance = myApplet;
         pMailAccount->iNbUnseenMails = 0;
         pMailAccount->dirtyfied = FALSE;
         (storage_tab[account_type].pfillFunc)( pMailAccount, pKeyFile, cMailAccountName );
@@ -119,7 +120,7 @@ CD_APPLET_GET_CONFIG_BEGIN
     g_string_free (sKeyName, TRUE);
   }
 
-  cd_mail_init_accounts(myData.pMailAccounts);
+  cd_mail_init_accounts(myApplet);
 
 CD_APPLET_GET_CONFIG_END
 
@@ -154,6 +155,13 @@ CD_APPLET_RESET_DATA_BEGIN
 		}
 		g_ptr_array_free (myData.pMailAccounts, TRUE);
 	}
+
+	if (myData.iCubeCallList != 0)
+    glDeleteLists (myData.iCubeCallList, 1);
+	if (myData.iNoMailTexture != 0)
+		glDeleteTextures (1, &myData.iNoMailTexture);
+	if (myData.iHasMailTexture != 0)
+		glDeleteTextures (1, &myData.iHasMailTexture);
 CD_APPLET_RESET_DATA_END
 
 static void _cd_mail_add_account (GtkButton *pButton, CairoDockModuleInstance *myApplet)
