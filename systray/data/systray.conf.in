@@ -56,4 +56,4 @@ decorations =
 #[gtk-preferences]
 [GUI]
 #k Shortkey to toggle the systray
-shortkey = <Shift><Ctrl>F2
+shortkey = <Shift>F4

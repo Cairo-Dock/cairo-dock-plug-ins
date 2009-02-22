@@ -225,7 +225,7 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	//\___________________________ On charge la nouvelle surface.
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
-	g_print ("Slider - Displaying: %s (size %dbytes)\n", cImagePath, pImage->iSize);
+	g_print ("Slider - Displaying: %s (size %dbytes, orientation:%d)\n", cImagePath, pImage->iSize, pImage->iOrientation);
 	
 	double fImgX, fImgY, fImgW=0, fImgH=0;
 	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;

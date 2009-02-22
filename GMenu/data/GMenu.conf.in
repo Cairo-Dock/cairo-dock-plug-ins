@@ -97,3 +97,9 @@ fg alpha = 1
 
 #b Display icons in the menu ?
 has icons=true
+
+#k Shortkey to show/hide the menu :
+menu shortkey = <Shift>F1
+
+#k Shortkey to show/hide the quick-launch dialog :
+quick launch shortkey = <Shift>F2

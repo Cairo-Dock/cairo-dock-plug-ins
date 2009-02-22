@@ -16,7 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("GMenu", 1, 6, 3, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("GMenu", 2, 0, 0, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
@@ -33,16 +33,19 @@ CD_APPLET_INIT_BEGIN
 	
 	myData.pMenu = create_main_menu (myApplet);
 	
-	
-	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	
+	cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, NULL);
+	cd_keybinder_bind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch, NULL);
 CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
 	if (myData.iSidFakeMenuIdle != 0)
@@ -67,6 +70,9 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);  // set a default icon if none is specified.
 		}
+		
+		cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, NULL);
+		cd_keybinder_bind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch, NULL);
 		
 		if (myData.pMenu != NULL && myConfig.bHasIcons != myData.bIconsLoaded)
 		{

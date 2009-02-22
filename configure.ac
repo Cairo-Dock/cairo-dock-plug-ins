@@ -291,7 +291,7 @@ AC_SUBST(dustbindatadir, "${pkgdatadir}/dustbin")
 GMENU_PACKAGE=cd-GMenu
 AC_SUBST(GETTEXT_GMENU, "$GMENU_PACKAGE")
 
-AC_SUBST(VERSION_GMENU, "1.0.1")
+AC_SUBST(VERSION_GMENU, "1.1.0")
 AC_SUBST(PACKAGE_GMENU, "$GMENU_PACKAGE")
 
 AC_SUBST(gmenudatadir, "${pkgdatadir}/GMenu")

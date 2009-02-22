@@ -30,11 +30,14 @@ typedef struct {
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gboolean bHasIcons;
+	gchar *cMenuShortkey;
+	gchar *cQuickLaunchShortkey;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	GtkWidget *pMenu;
+	CairoDialog *pQuickLaunchDialog;
 	gboolean bIconsLoaded;
 	guint iSidFakeMenuIdle;
 	guint iSidCreateMenuIdle;

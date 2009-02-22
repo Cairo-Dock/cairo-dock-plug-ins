@@ -114,7 +114,7 @@ show mixer =
 frame_ctrl =
 
 #k Shortkey to show/hide the sound control dialog :
-shortkey = <Shift><Ctrl>F3
+shortkey = <Shift>F3
 
 #i[1;50] Variation for 1 mouse scroll, in % :
 scroll variation = 5
