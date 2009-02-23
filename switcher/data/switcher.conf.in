@@ -111,6 +111,9 @@ display numero desktop = true
 #b Draw the windows on icon ?
 Draw Windows = true
 
+#b Draw hidden windows too ?
+Draw hidden Windows = false
+
 #F[Display options]
 frame_disp =
 

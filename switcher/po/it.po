@@ -14,7 +14,7 @@ msgstr ""
 
 #: ../src/applet-init.c:52 ../src/applet-load-icons.c:35
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 #: ../src/applet-init.c:60 ../src/applet-load-icons.c:29
 msgid "Current"
@@ -77,19 +77,16 @@ msgid "Desklet's position (x ; y) :"
 msgstr "Posizione della desklet (x ; y) :"
 
 #: ../data/messages:21
-#, fuzzy
 msgid "Is detached ?"
-msgstr "E' staccata dalla barra ?"
+msgstr "E' staccata ?"
 
 #: ../data/messages:23
-#, fuzzy
 msgid "Keep below ?"
-msgstr "Mantenere al di sotto delle altre finestre ?"
+msgstr "Mantenere al di sotto ?"
 
 #: ../data/messages:25
-#, fuzzy
 msgid "Keep above ?"
-msgstr "Mantenere al di sopra delle altre finestre ?"
+msgstr "Mantenere al di sopra ?"
 
 #: ../data/messages:27
 msgid "Keep on widget layer ?"
@@ -110,83 +107,94 @@ msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:33
 msgid "in degrees."
-msgstr ""
+msgstr "in gradi."
 
 #: ../data/messages:35
 msgid "Rotation :"
-msgstr ""
+msgstr "Rotazione :"
 
 #: ../data/messages:37
 msgid "Decorations"
-msgstr ""
+msgstr "Decorazioni"
 
 #: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
 #: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "Scegliere un tema decorativo per questa desklet :"
 
 #: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
+"E' un'immagine che viene mostrata sotto i disegni, come un motivo per esempio."
+"Lasciare vuoto per non utilizzarne."
 
 #: ../data/messages:45
 msgid "Background image :"
-msgstr ""
+msgstr "Immagine dello sfondo :"
 
 #: ../data/messages:47
 msgid "Background tansparency :"
-msgstr ""
+msgstr "Trasparenza dello sfondo :"
 
 #: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
+"a sinistra dei disegni."
 
 #: ../data/messages:51
 msgid "Left offset :"
-msgstr ""
+msgstr "Compensazione a sinistra :"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
+"in alto dei disegni."
 
 #: ../data/messages:55
 msgid "Top offset :"
-msgstr ""
+msgstr "Compensazione in alto :"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
+"a destra dei disegni."
 
 #: ../data/messages:59
 msgid "Right offset :"
-msgstr ""
+msgstr "Compensazione a destra :"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
+"in basso dei disegni."
 
 #: ../data/messages:63
 msgid "Bottom offset :"
-msgstr ""
+msgstr "Compensazione in basso :"
 
 #: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
+"E' un'immagine che viene mostrata sopra i disegni, come un riflesso per esempio."
+"Lasciare vuoto per non utilizzarne."
 
 #: ../data/messages:67
 msgid "Foreground image :"
-msgstr ""
+msgstr "Immagine in superficie :"
 
 #: ../data/messages:69
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "Trasparenza della superficie :"
 
 #: ../data/messages:71 ../data/messages:73
 msgid "Configuration"
@@ -219,9 +227,8 @@ msgid "Show desktop number on the icons ?"
 msgstr "Mostrare il numero del dektop nell'icona ?"
 
 #: ../data/messages:85
-#, fuzzy
 msgid "Draw the windows on icon ?"
-msgstr "Tracciare il wallpaper nell'icona ?"
+msgstr "Disegnare il wallpaper nell'icona ?"
 
 #: ../data/messages:87
 msgid "Display options"
@@ -249,24 +256,20 @@ msgid "Color of the extern line :"
 msgstr "Colore delle linee esterne :"
 
 #: ../data/messages:101
-#, fuzzy
 msgid "Size of the Windows line :"
-msgstr "Dimensione delle linee interne :"
+msgstr "Dimensione delle linee delle Finestre :"
 
 #: ../data/messages:105
-#, fuzzy
 msgid "Color of the Windows line :"
-msgstr "Colore delle linee interne :"
+msgstr "Colore delle linee delle Finestre :"
 
 #: ../data/messages:109
-#, fuzzy
 msgid "Color of the current desktop :"
 msgstr "Colore del desktop attuale :"
 
 #: ../data/messages:111
-#, fuzzy
 msgid "How to draw the current desktop :"
-msgstr "Colore del desktop attuale :"
+msgstr "Come disegnare il desktop attuale :"
 
 #: ../data/messages:113
 msgid "draw a frame"
@@ -285,9 +288,8 @@ msgid "Let empty to use the default one."
 msgstr "Lasciare vuoto per utilizzare quella di default."
 
 #: ../data/messages:121
-#, fuzzy
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
-msgstr "Icona da usare se non si traccia il wallpaper"
+msgstr "Icona da usare nel modo esteso se non si traccia il wallpaper :"
 
 #: ../data/messages:123
 msgid "Let it empty to use default sub-dock view."
@@ -298,7 +300,6 @@ msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
 #: ../data/messages:127
-#, fuzzy
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "Se in modo esteso, rendere la desklet in 3D ?"
 

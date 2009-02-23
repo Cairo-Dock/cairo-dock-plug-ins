@@ -1,11 +1,16 @@
+/************************************************************************************
 
+This file is a part of the cairo-dock program, 
+released under the terms of the GNU General Public License.
+
+Written by Cchumi & Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+
+************************************************************************************/
 #include <string.h>
 
 #include "applet-struct.h"
 #include "applet-config.h"
 #include "applet-load-icons.h"
-
-CD_APPLET_INCLUDE_MY_VARS
 
 
 CD_APPLET_GET_CONFIG_BEGIN
@@ -15,6 +20,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bMapWallpaper = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Map Wallpaper", TRUE);
 	myConfig.bDisplayNumDesk = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display numero desktop", TRUE);
 	myConfig.bDrawWindows = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Draw Windows", TRUE);
+	myConfig.bDisplayHiddenWindows = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Draw hidden Windows", TRUE);
 	
 	// couleur des lignes interieures
 	myConfig.iInLineSize = CD_CONFIG_GET_INTEGER("Configuration", "inlinesize");

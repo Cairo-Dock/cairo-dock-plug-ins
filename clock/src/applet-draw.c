@@ -347,9 +347,6 @@ void cd_clock_draw_analogic_opengl (CairoDockModuleInstance *myApplet, int iWidt
 	int iMinutes = pTime->tm_min;
 	int iHours = pTime->tm_hour;
 	
-	// translate middle
-	glTranslatef (iWidth/2, iHeight/2, 0.);
-	
 	glEnable (GL_BLEND);
 	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);  // ne me demandez pas pourquoi...
 	

@@ -140,99 +140,88 @@ msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:37
-msgid "in degrees."
-msgstr ""
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:39
-msgid "Rotation :"
-msgstr ""
+msgid "in degrees."
+msgstr "in gradi."
 
 #: ../data/messages:41
-#, fuzzy
-msgid "Decorations"
-msgstr "Informazione"
+msgid "Rotation :"
+msgstr "Rotazione :"
 
 #: ../data/messages:43
-#, fuzzy
-msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"Se scegliete 'personalizzato', potrete definire la vostra propria "
-"decorazione; lasciate vuoto per non averne."
+msgid "Decorations"
+msgstr "Decorazioni"
 
 #: ../data/messages:45
-#, fuzzy
-msgid "Choose a decoration theme for this desklet :"
-msgstr "Scegliete una decorazione per la desklet :"
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
 #: ../data/messages:47
-#, fuzzy
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Scegliere un tema decorativo per questa desklet :"
+
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
-"Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
-"cornice."
-
-#: ../data/messages:49
-msgid "Background image :"
-msgstr "Immagine di sfondo :"
+"E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
+"esempio. Lasciare vuoto per non utilizzarne."
 
 #: ../data/messages:51
+msgid "Background image :"
+msgstr "Immagine dello sfondo :"
+
+#: ../data/messages:53
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:53
-msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
-
 #: ../data/messages:55
-msgid "Left offset :"
-msgstr "Spostare a sinistra :"
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
 #: ../data/messages:57
-msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgid "Left offset :"
+msgstr "Compensazione a sinistra :"
 
 #: ../data/messages:59
-#, fuzzy
-msgid "Top offset :"
-msgstr "Spostare a sinistra :"
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
 #: ../data/messages:61
-msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgid "Top offset :"
+msgstr "Compensazione in alto :"
 
 #: ../data/messages:63
-msgid "Right offset :"
-msgstr "Spostare a destra :"
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
 #: ../data/messages:65
-msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgid "Right offset :"
+msgstr "Compensazione a destra :"
 
 #: ../data/messages:67
-#, fuzzy
-msgid "Bottom offset :"
-msgstr "Spostare a sinistra :"
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
 #: ../data/messages:69
-#, fuzzy
+msgid "Bottom offset :"
+msgstr "Compensazione in basso :"
+
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
-"Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
-"cornice."
-
-#: ../data/messages:71
-#, fuzzy
-msgid "Foreground image :"
-msgstr "Immagine di sfondo :"
+"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per esempio. "
+"Lasciare vuoto per non usarla."
 
 #: ../data/messages:73
-#, fuzzy
-msgid "Foreground tansparency :"
-msgstr "Trasparenza dello sfondo :"
+msgid "Foreground image :"
+msgstr "Immagine in primo piano :"
 
 #: ../data/messages:75
 msgid "Configuration"
@@ -303,9 +292,8 @@ msgid "time in %"
 msgstr "Tempo in %"
 
 #: ../data/messages:107
-#, fuzzy
 msgid "n° of track"
-msgstr "N° della traccia"
+msgstr "n° della traccia"
 
 #: ../data/messages:109
 msgid "Draw desklet in a 3D fashion (experimental) ?"
@@ -399,13 +387,12 @@ msgstr "Immagine per l'icona 'non-funzionante' :"
 #~ msgid "It's typically the width of the left side of your frame, in pixels."
 #~ msgstr "E' la larghezza del lato sinistro della vostra cornice, in pixels."
 
-#, fuzzy
 #~ msgid ""
 #~ "It's an image that will be displayed above the cover, like a reflect for "
 #~ "exemple."
 #~ msgstr ""
-#~ "Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
-#~ "cornice."
+#~ "Si tratta di un'immagine che sarà mostrata dietro la copertina, come un "
+#~ "riflesso per esempio."
 
 #~ msgid "Reflection image :"
 #~ msgstr "Immagine del riflesso :"

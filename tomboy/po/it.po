@@ -60,7 +60,7 @@ msgstr "Cercare note della settimana"
 
 #: ../src/tomboy-notifications.c:157
 msgid "Search for next week's note"
-msgstr "cercare note della prossima settimana"
+msgstr "Cercare note della prossima settimana"
 
 #: ../src/tomboy-notifications.c:167
 msgid "Reset marks"

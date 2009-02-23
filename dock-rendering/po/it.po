@@ -120,11 +120,9 @@ msgid "Ratio height/width :"
 msgstr "Rapporto altezza/larghezza :"
 
 #: ../data/messages:47
-#, fuzzy
 msgid "0 means the wave is totally flat, 1 means the wave is maximal."
 msgstr ""
-"0 significa che l'onda è totalmente piatta, 1 che l'onda è identica alle "
-"altre viste."
+"0 significa che l'onda è totalmente piatta, 1 che l'onda è massima."
 
 #: ../data/messages:49 ../data/messages:67
 msgid "Magnitude of the wave :"
@@ -175,12 +173,11 @@ msgid "Number of icons on the first row :"
 msgstr "Numero di icone nella prima fila :"
 
 #: ../data/messages:71
-#, fuzzy
 msgid ""
 "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
 "widely opened."
 msgstr ""
-"in gradi. Più è piccolo più il cono sarà stretto. 180° significa che il cono "
+"in gradi. Più è piccolo più il cono sarà acuto. 180° significa che il cono "
 "è completamente aperto."
 
 #: ../data/messages:73
@@ -272,19 +269,16 @@ msgid "Curve"
 msgstr "Curva"
 
 #: ../data/messages:157
-#, fuzzy
 msgid "The lower, the more the curve will seem flat."
-msgstr "Più è basso, più il punto di vista del piano si abbassa."
+msgstr "Più è basso, più la curva sembrerà piatta."
 
 #: ../data/messages:159
-#, fuzzy
 msgid "Curvature of the curve in percent :"
-msgstr "Ampiezza della curva in percentuale :"
+msgstr "Curvatura della curva in percentuale :"
 
 #: ../data/messages:163
-#, fuzzy
 msgid "Amplitude of the curve."
-msgstr "Ampiezza della curva in percentuale :"
+msgstr "Ampiezza della curva."
 
 #~ msgid "it's the 'a' in y=k*x^a"
 #~ msgstr "rappresenta 'a' in y=k*x^a"

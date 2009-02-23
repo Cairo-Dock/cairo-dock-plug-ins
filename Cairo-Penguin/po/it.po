@@ -24,24 +24,24 @@ msgstr "Spiacente ma sono occupato."
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
-"Non ho il tempo per giocare con voi, devo scavare e minare tutte queste "
+"Non ho il tempo per giocare con te, devo scavare e minare tutte queste "
 "icone."
 
 #: ../src/applet-notifications.c:23
 msgid "Your dock is so messy ! Let me clean it."
-msgstr "La vostra barra è un casino !. Lasciate che ve la riordini."
+msgstr "La tua barra è un casino !. Lascia che te la riordini."
 
 #: ../src/applet-notifications.c:24
 msgid "Admit my superiority on you as a penguin !"
-msgstr "Ammettete la mia superiorità su di voi, poiché pinguino !"
+msgstr "Ammetti la mia superiorità su di te come pinguino !"
 
 #: ../src/applet-notifications.c:25
 msgid "Wait, do you want to kill me ?!"
-msgstr "Aspettate, volete uccidermi ?!"
+msgstr "Aspetta, vuoi uccidermi ?!"
 
 #: ../src/applet-notifications.c:26
 msgid "Do you know how much painful it is to be clicked on ??"
-msgstr "Avete idea di quanto sia doloroso farsi cliccare sopra ??"
+msgstr "Hai idea di quanto sia doloroso farsi cliccare addosso ??"
 
 #: ../src/applet-notifications.c:27
 msgid "It's my dock now, mwahahaha !"
@@ -64,12 +64,12 @@ msgid ""
 "- What will we do tonight Cortex ?\n"
 "- The same thing as every nights, Minus. Try to take over the Dock !"
 msgstr ""
-"Che fa questa notte Cortex ?\n"
-"La stessa cosa che fa ogni notte, Minus. Tentare di conquistare la barra !"
+"Che fa questa notte il Prof ?\n"
+"La stessa cosa che fa ogni notte, Mignolo. Tentare di conquistare la barra !"
 
 #: ../src/applet-notifications.c:32
 msgid "For Aiur !"
-msgstr "Per Aïur !"
+msgstr "Per Aiur !"
 
 #: ../src/applet-notifications.c:35
 msgid ""
@@ -77,7 +77,7 @@ msgid ""
 " made by Fabrice Rey for Cairo-Dock"
 msgstr ""
 "Questa è l'applet Cairo-Penguin\n"
-" scritta par Fabrice Rey per Cairo-Dock"
+" scritta da Fabrice Rey per Cairo-Dock"
 
 #: ../src/applet-notifications.c:117
 #, fuzzy
@@ -138,7 +138,7 @@ msgstr "Configurazione"
 
 #: ../data/messages:17
 msgid "Choose one of the available themes :"
-msgstr "Scegliete uno dei temi disponibili :"
+msgstr "Scegliere uno dei temi disponibili :"
 
 #: ../data/messages:19
 msgid "in seconds"
@@ -158,11 +158,11 @@ msgstr "Lasciare che il pinguino passeggi dappertutto sulla barra ?"
 
 #: ../data/messages:27
 msgid "in pixels."
-msgstr ""
+msgstr "in pixels."
 
 #: ../data/messages:29
 msgid "Ground offset :"
-msgstr ""
+msgstr "Compensazione del piano :"
 
 #~ msgid "Module"
 #~ msgstr "Modulo"

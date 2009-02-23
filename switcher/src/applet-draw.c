@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+Written by Cchumi & Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
 
 ************************************************************************************/
 #include <string.h>
@@ -20,6 +20,8 @@ gboolean my_bRotateIconsOnEllipse = TRUE;
 static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
 {
 	if (pIcon == NULL || pIcon->fPersonnalScale > 0)
+		return ;
+	if (pIcon->bIsHidden && ! myConfig.bDisplayHiddenWindows)
 		return ;
 	int iNumDesktop = data[0];
 	int iNumViewportX = data[1];
@@ -273,82 +275,6 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 		cairo_dock_update_icon_texture (myIcon);
 }
-
-/*void cd_switcher_draw_windows_on_each_viewports(double Xposition, double Yposition, double Xsize, double Ysize)
-{
-	cairo_save (myDrawContext);
-	cairo_set_line_width (myDrawContext,myConfig.iWLineSize);
-
-	GList *iWinList = cairo_dock_get_current_applis_list ();
-
-	double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	Window windowactive = cairo_dock_get_current_active_window ();
-
-	Icon *icon;
-	GList *ic;
-	for (ic = iWinList; ic != NULL; ic = ic->next)
-	{
-		icon = ic->data;
-		if (! CAIRO_DOCK_IS_APPLI (icon) || icon->bIsHidden)  // ce peut etre une icon NULL si c'est une fenetre qu'on ignore.
-			continue ;
-
-		
-		//printf("icon->acName : %s \n",icon->acName);
-
-		cairo_set_source_rgba(myDrawContext,myConfig.RGBWLineColors[0],myConfig.RGBWLineColors[1],myConfig.RGBWLineColors[2],myConfig.RGBWLineColors[3]);
-
-		double Xgeo, Ygeo;
-		int i, j;
-				cairo_save (myDrawContext);
-	
-		Xgeo = Xposition;
-		Ygeo = Yposition;
-	
-		double 	XWgeo= ((double)icon->windowGeometry.x/((double)g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]))* (myData.switcher.fOneViewportWidth + myConfig.iInLineSize);
-		double 	YWgeo = ((double)icon->windowGeometry.y/((double)g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]))* (myData.switcher.fOneViewportHeight + myConfig.iInLineSize);
-		
-		
-
-		double 	x0       =   XWgeo+Xgeo,
-			y0	=   YWgeo+Ygeo,
-			rect_width  = ((double)icon->windowGeometry.width/(double)g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL])*Xsize,
-			rect_height = ((double)icon->windowGeometry.height/(double)g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL])*Ysize,
-			radius = 8.0,   
-			windowtitle = 3.0;
-		
-		double x1,y1;
-		x1=x0+rect_width;
-		y1=y0+rect_height;
-		
-		// # Dessin du contour des fenetres.
-		
-		cairo_move_to  (myDrawContext, x0, y0 + radius);
-		cairo_curve_to (myDrawContext, x0 ,y0, x0, y0, (x0 + x1)/2, y0);
-		cairo_curve_to (myDrawContext, x1, y0, x1, y0, x1, y0 + radius);
-		cairo_line_to (myDrawContext, x1 , y1);
-		cairo_line_to (myDrawContext, x0 , y1);
-		cairo_close_path                    (myDrawContext);
-	
-		// # Dessin des la barre de titre.
-	
-		cairo_move_to  (myDrawContext, x0, y0 + (radius-windowtitle));
-		cairo_line_to (myDrawContext, x1 , y0 + (radius-windowtitle));
-
-		if (windowactive!=icon->Xid)
-		{
-			// # Si fenetre non active on laisse telle quelle en ligne.
-			cairo_stroke (myDrawContext);
-		}
-		else
-		{
-			// # Si fenetre active on la remplit.
-			cairo_fill (myDrawContext);
-		}
-	}
-	
-	g_list_free (iWinList);  // le contenu appartient a la hash table, mais pas la liste.
-	cairo_restore (myDrawContext);
-}*/
 
 
 void cd_switcher_draw_main_icon_expanded_mode (void)

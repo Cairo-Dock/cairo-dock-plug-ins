@@ -11,12 +11,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-02-07 19:44+0900\n"
+"Language-Team: \n"
 
-#: ../src/terminal-callbacks.c:67 ../src/terminal-widget.c:334
+#: ../src/terminal-callbacks.c:67
+#: ../src/terminal-widget.c:334
 msgid "Copy"
 msgstr "コピー"
 
-#: ../src/terminal-menu-functions.c:81 ../src/terminal-widget.c:350
+#: ../src/terminal-menu-functions.c:81
+#: ../src/terminal-widget.c:350
 msgid "New Tab"
 msgstr "新しいタブ"
 
@@ -86,21 +91,15 @@ msgstr "デスクレット"
 
 #: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
 #: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
 #: ../data/messages:19
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:21
 msgid "Desklet's dimension (width x height) :"
@@ -119,24 +118,16 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
 #: ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
-"ます。その場合でも ALT + 左クリックで移動させることはできます。"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなります。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -144,85 +135,79 @@ msgstr "位置を固定？"
 
 #: ../data/messages:37
 msgid "in degrees."
-msgstr ""
+msgstr "角度"
 
 #: ../data/messages:39
 msgid "Rotation :"
-msgstr ""
+msgstr "回転 :"
 
 #: ../data/messages:41
 msgid "Decorations"
-msgstr ""
+msgstr "装飾"
 
 #: ../data/messages:43
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:47
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
 
 #: ../data/messages:49
 msgid "Background image :"
-msgstr ""
+msgstr "背景画像 :"
 
 #: ../data/messages:51
-#, fuzzy
 msgid "Background tansparency :"
-msgstr "端末の透明度 :"
+msgstr "背景の透明度 :"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
 #: ../data/messages:55
 msgid "Left offset :"
-msgstr ""
+msgstr "左方向のオフセット :"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
 #: ../data/messages:59
 msgid "Top offset :"
-msgstr ""
+msgstr "上方向のオフセット :"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #: ../data/messages:63
 msgid "Right offset :"
-msgstr ""
+msgstr "右方向のオフセット :"
 
 #: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
 #: ../data/messages:67
 msgid "Bottom offset :"
-msgstr ""
+msgstr "下方向のオフセット :"
 
 #: ../data/messages:69
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
 
 #: ../data/messages:71
 msgid "Foreground image :"
-msgstr ""
+msgstr "前景画像 :"
 
 #: ../data/messages:73
-#, fuzzy
 msgid "Foreground tansparency :"
-msgstr "端末の透明度 :"
+msgstr "前景の透明度 :"
 
 #: ../data/messages:75
 msgid "GUI"
@@ -245,12 +230,8 @@ msgid "Background color (r, v, b):"
 msgstr "背景の色（赤、緑、青） :"
 
 #: ../data/messages:85
-msgid ""
-"When the terminal is in a dialog. When it is in a desklet, you can just "
-"resize the desklet as usual."
-msgstr ""
-"ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレット"
-"のサイズ変更が可能です。"
+msgid "When the terminal is in a dialog. When it is in a desklet, you can just resize the desklet as usual."
+msgstr "ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレットのサイズ変更が可能です。"
 
 #: ../data/messages:87
 msgid "Size of the terminal (line x columns) :"
@@ -262,18 +243,14 @@ msgstr "端末を表示するショートカットキー :"
 
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "このアプレットのアイコンの大きさ"
-
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
-
 #~ msgid "Always on top ?"
 #~ msgstr "常に最前面に表示？"
-
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
-
 #~ msgid "Rename Tab"
 #~ msgstr "タブ名の変更"
-
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"
+

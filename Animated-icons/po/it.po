@@ -5,7 +5,6 @@
 #
 #: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
 #: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -49,8 +48,8 @@ msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"centrale o ALT + click sinistro come esempio."
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click_centrale "
+" o ALT + click_sinistro come esempio."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"

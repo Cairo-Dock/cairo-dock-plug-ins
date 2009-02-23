@@ -31,13 +31,11 @@ msgstr ""
 "Autorizzare le applicazioni esterne a mostrare/nascondere le desklets ?"
 
 #: ../data/messages:9
-#, fuzzy
 msgid "Let extern applications reload the applets ?"
 msgstr ""
-"Autorizzare le applicazioni esterne a mostrare/nascondere le desklets ?"
+"Autorizzare le applicazioni esterne a ricaricare le applets ?"
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Let extern applications show/hide the docks ?"
 msgstr ""
-"Autorizzare le applicazioni esterne a mostrare/nascondere le desklets ?"
+"Autorizzare le applicazioni esterne a mostrare/nascondere le docks ?"

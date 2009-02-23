@@ -96,7 +96,7 @@ msgid ""
 msgstr ""
 "Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
-"con ALT + click sinistro."
+"con ALT + click_sinistro."
 
 #: ../data/messages:35
 msgid "Lock position ?"

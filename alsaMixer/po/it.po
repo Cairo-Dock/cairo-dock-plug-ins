@@ -2,7 +2,7 @@
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
-#
+
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -100,13 +100,12 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
 #: ../data/messages:19
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"sinistro"
+"In base al vostro WindowManager, è possibile muoverla con ALT + click_sinistro. "
+"Valori negativi sono contati a partire dal lato in basso a destra dello schermo"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -151,85 +150,94 @@ msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:37
 msgid "in degrees."
-msgstr ""
+msgstr "in gradi."
 
 #: ../data/messages:39
 msgid "Rotation :"
-msgstr ""
+msgstr "Rotazione :"
 
 #: ../data/messages:41
 msgid "Decorations"
-msgstr ""
+msgstr "Decorazioni"
 
 #: ../data/messages:43
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
 #: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "Scegliere un tema decorativo per questa desklet :"
 
 #: ../data/messages:47
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
+"E' un'immagine che viene mostrata sotto i disegni, come un motivo per esempio."
+"Lasciare vuoto per non utilizzarne."
 
 #: ../data/messages:49
 msgid "Background image :"
-msgstr ""
+msgstr "Immagine dello sfondo :"
 
 #: ../data/messages:51
-#, fuzzy
 msgid "Background tansparency :"
-msgstr "Transparenza"
+msgstr "Trasparenza dello sfondo :"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
+"a sinistra dei disegni."
 
 #: ../data/messages:55
 msgid "Left offset :"
-msgstr ""
+msgstr "Compensazione a sinistra :"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
+"in alto dei disegni."
 
 #: ../data/messages:59
 msgid "Top offset :"
-msgstr ""
+msgstr "Compensazione in alto :"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
+"a destra dei disegni."
 
 #: ../data/messages:63
 msgid "Right offset :"
-msgstr ""
+msgstr "Compensazione a destra :"
 
 #: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
+"in basso dei disegni."
 
 #: ../data/messages:67
 msgid "Bottom offset :"
-msgstr ""
+msgstr "Compensazione in basso :"
 
 #: ../data/messages:69
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
+"E' un'immagine che viene mostrata sopra i disegni, come un riflesso per esempio."
+"Lasciare vuoto per non utilizzarne."
 
 #: ../data/messages:71
 msgid "Foreground image :"
-msgstr ""
+msgstr "Immagine in superficie :"
 
 #: ../data/messages:73
-#, fuzzy
 msgid "Foreground tansparency :"
-msgstr "Transparenza"
+msgstr "Trasparenza della superficie :"
 
 #: ../data/messages:75
 msgid "Configuration"
@@ -257,11 +265,13 @@ msgid ""
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just let it empty."
 msgstr ""
+"In certe schede il canale controlla soltanto un lato (sinistra o destra). "
+"Qui si deve pertanto specificare un secondo canale per controllare entrambi "
+"i lati. La maggior parte dei casi si risolve lasciando vuoto il campo."
 
 #: ../data/messages:87
-#, fuzzy
 msgid "Optionnally, choose a second channel to control :"
-msgstr "Scegliere quale canale controllare :"
+msgstr "Se lo si desidera, scegliere un secondo canale da controllare :"
 
 #: ../data/messages:89
 msgid "Let empty to use the defaut command."
@@ -291,11 +301,11 @@ msgstr "Nascondere la scala quando il mouse abbandona la desklet ?"
 
 #: ../data/messages:101
 msgid "Display"
-msgstr "Mostra"
+msgstr "Mostrare"
 
 #: ../data/messages:103
 msgid "Display volume :"
-msgstr "Mostra il volume :"
+msgstr "Mostrare il volume :"
 
 #: ../data/messages:105
 msgid "No"
@@ -323,7 +333,7 @@ msgstr "Zoom"
 
 #: ../data/messages:117
 msgid "Transparency"
-msgstr "Transparenza"
+msgstr "Trasparenza"
 
 #: ../data/messages:119
 msgid "Draw Bar"
@@ -343,7 +353,7 @@ msgstr "Icona 'non-funzionante' :"
 
 #: ../data/messages:131
 msgid "Mute icon :"
-msgstr "Icona muta :"
+msgstr "Icona 'muto' :"
 
 #~ msgid "Module"
 #~ msgstr "Modulo"

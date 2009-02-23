@@ -15,7 +15,7 @@ msgstr ""
 
 #: ../src/applet-draw.c:103
 msgid "GPU Name:"
-msgstr "Nome della Scheda:"
+msgstr "Nome della GPU:"
 
 #: ../src/applet-draw.c:103
 msgid "Video Ram:"
@@ -36,8 +36,8 @@ msgid ""
 " You need at least the 1.0.0 version"
 msgstr ""
 "nVidia \n"
-"La vostra versione di 'nvidia-settings' è troppo vecchia\n"
-" Dovete avere almeno la 1.0.0"
+"La versione di 'nvidia-settings' è troppo vecchia\n"
+" Si deve avere almeno la 1.0.0"
 
 #: ../src/applet-draw.c:111
 msgid ""
@@ -65,7 +65,7 @@ msgid ""
 " made by ChAnGFu for Cairo-Dock"
 msgstr ""
 "Questa è l'applet nVidia\n"
-" scritta ChAnGFu per Cairo-Dock"
+" scritta da ChAnGFu per Cairo-Dock"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -146,14 +146,13 @@ msgid "Keep on widget layer ?"
 msgstr "Mantenere nella sezione dei widget ?"
 
 #: ../data/messages:35
-#, fuzzy
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
-"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
-"con ALT + click sinistro."
+"Se bloccata, la desklet non può essere mossa con un semplice copia/incolla "
+"con il bottone sinistro del mouse. E' possibile comunque muoverla con ALT "
+"+ click_sinistro."
 
 #: ../data/messages:37
 msgid "Lock position ?"
@@ -161,84 +160,87 @@ msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:39
 msgid "in degrees."
-msgstr ""
+msgstr "in gradi."
 
 #: ../data/messages:41
 msgid "Rotation :"
-msgstr ""
+msgstr "Rotazione :"
 
 #: ../data/messages:43
-#, fuzzy
 msgid "Decorations"
-msgstr "Informazioni"
+msgstr "Decorazioni"
 
 #: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
 #: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "Scegliere un tema decorativo per questa desklet :"
 
 #: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
+"E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
+"esempio. Lasciare vuoto per non utilizzarne."
 
 #: ../data/messages:51
 msgid "Background image :"
-msgstr ""
+msgstr "Immagine dello sfondo :"
 
 #: ../data/messages:53
 msgid "Background tansparency :"
-msgstr ""
+msgstr "Trasparenza dello sfondo :"
 
 #: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
 #: ../data/messages:57
 msgid "Left offset :"
-msgstr ""
+msgstr "Compensazione a sinistra :"
 
 #: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
 #: ../data/messages:61
 msgid "Top offset :"
-msgstr ""
+msgstr "Compensazione in alto :"
 
 #: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
 #: ../data/messages:65
 msgid "Right offset :"
-msgstr ""
+msgstr "Compensazione a destra :"
 
 #: ../data/messages:67
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
 #: ../data/messages:69
 msgid "Bottom offset :"
-msgstr ""
+msgstr "Compensazione in basso :"
 
 #: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
+"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per esempio. "
+"Lasciare vuoto per non usarla."
 
 #: ../data/messages:73
 msgid "Foreground image :"
-msgstr ""
+msgstr "Immagine in primo piano :"
 
 #: ../data/messages:75
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "Trasparenza in primo piano :"
 
 #: ../data/messages:77
 msgid "Configuration"
@@ -269,7 +271,6 @@ msgid "on label"
 msgstr "sull'etichetta"
 
 #: ../data/messages:91
-#, fuzzy
 msgid "in seconds."
 msgstr "in secondi."
 
@@ -327,51 +328,51 @@ msgstr "Immagini"
 
 #: ../data/messages:115
 msgid "Display a graphic rather than a gauge ?"
-msgstr ""
+msgstr "Mostrare un grafico al posto di un indicatore ?"
 
 #: ../data/messages:117
 msgid "Type of graphic :"
-msgstr ""
+msgstr "Tipo di grafico :"
 
 #: ../data/messages:119
 msgid "Line"
-msgstr ""
+msgstr "Linea"
 
 #: ../data/messages:121
 msgid "Plain"
-msgstr ""
+msgstr "Piatto"
 
 #: ../data/messages:123
 msgid "Bar"
-msgstr ""
+msgstr "Barra"
 
 #: ../data/messages:125
 msgid "Circle"
-msgstr ""
+msgstr "Cerchio"
 
 #: ../data/messages:127
 msgid "Plain Circle"
-msgstr ""
+msgstr "Cerchio Piatto"
 
 #: ../data/messages:129
 msgid "It's the color of the graphic for high Temperature values."
-msgstr ""
+msgstr "E' il colore del grafico per i valori alti di Temperatura."
 
 #: ../data/messages:131
 msgid "High values color :"
-msgstr ""
+msgstr "Colore valori alti :"
 
 #: ../data/messages:133
 msgid "It's the color of the graphic for low Temperature values."
-msgstr ""
+msgstr "E' il colore del grafico per i valori bassi di Temperatura."
 
 #: ../data/messages:135
 msgid "Low values color :"
-msgstr ""
+msgstr "Colore valori bassi :"
 
 #: ../data/messages:137
 msgid "Background color of the graphic :"
-msgstr ""
+msgstr "Colore di sfondo del grafico :"
 
 #: ../data/messages:139
 msgid "List of available themes for the analogic display :"
@@ -387,7 +388,7 @@ msgstr ""
 
 #: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
-msgstr "Immagine da mostrare come filigrana nell'indicatore :"
+msgstr "Immagine da mostrare come filigrana nel grafico :"
 
 #: ../data/messages:145
 msgid "Set it up to 0 if you don't want to have a watermark."

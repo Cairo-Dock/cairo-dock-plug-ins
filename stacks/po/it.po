@@ -136,9 +136,8 @@ msgstr ""
 "basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
 
 #: ../data/messages:45
-#, fuzzy
 msgid "Use only Stacks local directory ?"
-msgstr "Utilizzare la cartella locale Stacks ?"
+msgstr "Utilizzare soltanto la cartella locale Stacks ?"
 
 #: ../data/messages:47
 msgid ""
@@ -150,7 +149,6 @@ msgstr ""
 "'Utilizzare la cartella locale Stacks' attiva."
 
 #: ../data/messages:49
-#, fuzzy
 msgid "Monitored Directories :"
 msgstr "Cartelle sorvegliate :"
 

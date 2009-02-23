@@ -122,83 +122,87 @@ msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:39
 msgid "in degrees."
-msgstr ""
+msgstr "in gradi."
 
 #: ../data/messages:41
 msgid "Rotation :"
-msgstr ""
+msgstr "Rotazione :"
 
 #: ../data/messages:43
 msgid "Decorations"
-msgstr ""
+msgstr "Decorazioni"
 
 #: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
 #: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "Scegliere un tema decorativo per questa desklet :"
 
 #: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
+"E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
+"esempio. Lasciare vuoto per non utilizzarne."
 
 #: ../data/messages:51
 msgid "Background image :"
-msgstr ""
+msgstr "Immagine dello sfondo :"
 
 #: ../data/messages:53
 msgid "Background tansparency :"
-msgstr ""
+msgstr "Trasparenza dello sfondo :"
 
 #: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
 #: ../data/messages:57
 msgid "Left offset :"
-msgstr ""
+msgstr "Compensazione a sinistra :"
 
 #: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
 #: ../data/messages:61
 msgid "Top offset :"
-msgstr ""
+msgstr "Compensazione in alto :"
 
 #: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
 #: ../data/messages:65
 msgid "Right offset :"
-msgstr ""
+msgstr "Compensazione a destra :"
 
 #: ../data/messages:67
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
 #: ../data/messages:69
 msgid "Bottom offset :"
-msgstr ""
+msgstr "Compensazione in basso :"
 
 #: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
+"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per esempio. "
+"Lasciare vuoto per non usarla."
 
 #: ../data/messages:73
 msgid "Foreground image :"
-msgstr ""
+msgstr "Immagine in primo piano :"
 
 #: ../data/messages:75
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "Trasparenza in primo piano :"
 
 #: ../data/messages:77
 msgid "Module"

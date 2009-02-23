@@ -59,9 +59,8 @@ msgid "Apr"
 msgstr "Apr"
 
 #: ../src/applet-load-icons.c:17
-#, fuzzy
 msgid "May"
-msgstr "Lundedì"
+msgstr "Mag"
 
 #: ../src/applet-load-icons.c:17
 msgid "Jun"
@@ -184,9 +183,8 @@ msgid "height :"
 msgstr "altezza :"
 
 #: ../data/messages:9
-#, fuzzy
 msgid "Let it empty to use the name of the city."
-msgstr "Lasciate vuoto per utilizzarre la vista di default per la sub-dock"
+msgstr "Lasciare vuoto per utilizzare il nome della città."
 
 #: ../data/messages:11
 msgid "Name of the icon as it will appear in its label in the dock :"
@@ -261,83 +259,87 @@ msgstr "Bloccare la posizione ?"
 
 #: ../data/messages:39
 msgid "in degrees."
-msgstr ""
+msgstr "in gradi."
 
 #: ../data/messages:41
 msgid "Rotation :"
-msgstr ""
+msgstr "Rotazione :"
 
 #: ../data/messages:43
 msgid "Decorations"
-msgstr ""
+msgstr "Decorazioni"
 
 #: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
 #: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "Scegliere un tema decorativo per questa desklet :"
 
 #: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
+"E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
+"esempio. Lasciare vuoto per non utilizzarne."
 
 #: ../data/messages:51
 msgid "Background image :"
-msgstr ""
+msgstr "Immagine dello sfondo :"
 
 #: ../data/messages:53
 msgid "Background tansparency :"
-msgstr ""
+msgstr "Trasparenza dello sfondo :"
 
 #: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
 #: ../data/messages:57
 msgid "Left offset :"
-msgstr ""
+msgstr "Compensazione a sinistra :"
 
 #: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
 #: ../data/messages:61
 msgid "Top offset :"
-msgstr ""
+msgstr "Compensazione in alto :"
 
 #: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
 #: ../data/messages:65
 msgid "Right offset :"
-msgstr ""
+msgstr "Compensazione a destra :"
 
 #: ../data/messages:67
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
 #: ../data/messages:69
 msgid "Bottom offset :"
-msgstr ""
+msgstr "Compensazione in basso :"
 
 #: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
+"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per esempio. "
+"Lasciare vuoto per non usarla."
 
 #: ../data/messages:73
 msgid "Foreground image :"
-msgstr ""
+msgstr "Immagine in primo piano :"
 
 #: ../data/messages:75
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "Trasparenza in primo piano :"
 
 #: ../data/messages:77 ../data/messages:79
 msgid "Configuration"
@@ -348,12 +350,12 @@ msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
 msgstr ""
-"Un click destro sull'icona per fare sì che Cairo-Dock vi aiuti nella ricerca "
-"del codice della vostra località."
+"Un click destro sull'icona per fare sì che Cairo-Dock dia un aiuto nella "
+"ricerca del codice della località."
 
 #: ../data/messages:83
 msgid "Code of your location :"
-msgstr "Codice della vostra località :"
+msgstr "Codice della località :"
 
 #: ../data/messages:85
 msgid "Use International System Units ?"
@@ -361,7 +363,7 @@ msgstr "Utilizzare le unità del Sistema Internazionale ?"
 
 #: ../data/messages:87
 msgid "in seconds. Set 0 to have never-ending dialogs."
-msgstr "in secondi. Mettete 0 per avere dialoghi ininterrotti."
+msgstr "in secondi. Mettere 0 per avere dialoghi ininterrotti."
 
 #: ../data/messages:89
 msgid "Duration of dialogs :"
@@ -406,7 +408,7 @@ msgstr "Scegliete uno dei temi disponibili :"
 
 #: ../data/messages:109
 msgid "Let it empty to use default sub-dock view."
-msgstr "Lasciate vuoto per utilizzarre la vista di default per la sub-dock"
+msgstr "Lasciare vuoto per utilizzare la vista di default per la sub-dock."
 
 #: ../data/messages:111
 msgid "Name of the view used for the sub-dock :"
