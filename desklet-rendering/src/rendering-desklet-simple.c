@@ -20,10 +20,10 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceCo
 	Icon *pIcon = pDesklet->pIcon;
 	g_return_if_fail (pIcon != NULL);
 	
-	pIcon->fWidth = MAX (1, pDesklet->iWidth - g_iDockRadius);  // 2 * g_iDockRadius/2
-	pIcon->fHeight = MAX (1, pDesklet->iHeight - g_iDockRadius);
-	pIcon->fDrawX = .5 * g_iDockRadius;
-	pIcon->fDrawY = .5 * g_iDockRadius;
+	pIcon->fWidth = MAX (1, pDesklet->iWidth - 0);
+	pIcon->fHeight = MAX (1, pDesklet->iHeight - 0);
+	pIcon->fDrawX = .5 * 0;
+	pIcon->fDrawY = .5 * 0;
 	pIcon->fScale = 1.;
 	pIcon->fGlideScale = 1.;
 	cd_debug ("%s (%.2fx%.2f)", __func__, pIcon->fWidth, pIcon->fHeight);

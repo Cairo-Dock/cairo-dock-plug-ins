@@ -16,8 +16,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "cd-mail-applet-notifications.h"
 
 
-CD_APPLET_INCLUDE_MY_VARS
-
 void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet);
 
 CD_APPLET_ABOUT (D_("This is the mail applet\n made by Christophe Chapuis for Cairo-Dock"))
@@ -60,11 +58,13 @@ CD_APPLET_ON_CLICK_BEGIN
 
 CD_APPLET_ON_CLICK_END
 
+
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 
     cd_mail_force_update(myApplet);
 
 CD_APPLET_ON_MIDDLE_CLICK_END
+
 
 void _cd_mail_update_account(CDMailAccount *pMailAccount)
 {
@@ -79,7 +79,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("mail", pSubMenu, CD_APPLET_MY_MENU);
         if(myData.pMailAccounts && myData.pMailAccounts->len > 0)
         {
-          int i;
+          guint i;
           
           CD_APPLET_ADD_SUB_MENU (_("Refresh a mail account"), pRefreshAccountSubMenu, pSubMenu);
 
@@ -97,7 +97,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 void cd_mail_force_update(CairoDockModuleInstance *myApplet)
 {
-	int i;
+	guint i;
 	if (myData.pMailAccounts != NULL)
 	{
 		for (i = 0; i < myData.pMailAccounts->len; i ++)
@@ -298,7 +298,7 @@ void cd_mail_update_status( CairoDockModuleInstance *myApplet )
 
   gchar **mailbox_names = NULL;
   guint *new_message_counts = NULL;
-  gint i;
+  guint i;
 
   myData.iNbUnreadMails = 0;
 	

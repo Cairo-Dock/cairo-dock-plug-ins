@@ -48,47 +48,39 @@ void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	penguin_advance_to_next_frame (myApplet, pAnimation);
 }
 
-gboolean penguin_render_on_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
+static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation, double fOffsetX, double fOffsetY, double fScale)
 {
-	if (pContainer != myContainer)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	if (! cairo_dock_animation_will_be_visible (myDock))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	g_return_if_fail (pAnimation->iTexture != 0);
 	
-	if (pCairoContext != NULL)
-		penguin_draw_on_dock (myApplet, pContainer, pCairoContext);
-	else
-		penguin_draw_on_dock_opengl (myApplet, pContainer);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	glEnable (GL_SCISSOR_TEST);
+	glScissor (fOffsetX + myData.iCurrentPositionX,
+		myData.iCurrentPositionY,
+		pAnimation->iFrameWidth * fScale,
+		pAnimation->iFrameHeight * fScale);
+	
+	glTranslatef (fOffsetX + myData.iCurrentPositionX + pAnimation->iFrameWidth * (.5 * pAnimation->iNbFrames - myData.iCurrentFrame),
+		fOffsetY + myData.iCurrentPositionY + pAnimation->iFrameHeight * (-.5 * pAnimation->iNbDirections + 1 + (myData.iCurrentDirection)),
+		0.);
+	
+	glColor4f (1., 1., 1., 1.);
+	cairo_dock_draw_texture (pAnimation->iTexture,
+		pAnimation->iFrameWidth * pAnimation->iNbFrames * fScale,
+		pAnimation->iFrameHeight * pAnimation->iNbDirections * fScale);
+	
+	glDisable (GL_SCISSOR_TEST);
 }
-
 void penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer)
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if (pAnimation == NULL)
 		return ;
 	
-	g_return_if_fail (pAnimation->iTexture != 0);
-	
-	glEnable (GL_SCISSOR_TEST);
-	
-	glScissor ((myDock->iCurrentWidth - myDock->fFlatDockWidth) * .5 + myData.iCurrentPositionX,
-		myData.iCurrentPositionY,
-		pAnimation->iFrameWidth,
-		pAnimation->iFrameHeight);
-	
 	glPushMatrix ();
 	glLoadIdentity ();
-	glTranslatef ((myDock->iCurrentWidth - myDock->fFlatDockWidth) * .5 + myData.iCurrentPositionX + pAnimation->iFrameWidth * (.5 * pAnimation->iNbFrames - myData.iCurrentFrame),
-		myData.iCurrentPositionY + pAnimation->iFrameHeight * (-.5 * pAnimation->iNbDirections + 1 + (myData.iCurrentDirection)),
-		0.);
 	
-	cairo_dock_draw_texture (pAnimation->iTexture,
-		pAnimation->iFrameWidth * pAnimation->iNbFrames,
-		pAnimation->iFrameHeight * pAnimation->iNbDirections);
+	_penguin_draw_texture (myApplet, pAnimation, (myDock->iCurrentWidth - myDock->fFlatDockWidth) * .5, 0., 1.);
 	
 	glPopMatrix ();
-	glDisable (GL_SCISSOR_TEST);
 }
 
 void penguin_draw_on_dock (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
@@ -107,13 +99,24 @@ void penguin_draw_on_dock (CairoDockModuleInstance *myApplet, CairoContainer *pC
 	cairo_paint (pCairoContext);
 	cairo_restore (pCairoContext);
 }
-
+gboolean penguin_render_on_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
+{
+	if (pContainer != myContainer)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	if (! cairo_dock_animation_will_be_visible (myDock))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	if (pCairoContext != NULL)
+		penguin_draw_on_dock (myApplet, pContainer, pCairoContext);
+	else
+		penguin_draw_on_dock_opengl (myApplet, pContainer);
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
 
 
 
 void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 {
-	//g_print ("%s (%d,%d) ; (%d,%d)\n", __func__, myData.iCurrentDirection, myData.iCurrentFrame, myData.iCurrentPositionX, myData.iCurrentPositionY);
 	if (! cairo_dock_animation_will_be_visible (myDock))
 		return ;
 	
@@ -123,49 +126,47 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 	g_return_if_fail (pSurface != NULL);
 	
 	double fScale = (pAnimation->iNbFrames > 1 || pAnimation->iSpeed != 0 || pAnimation->iAcceleration != 0 ? myIcon->fScale : 1.);  // s'il est a l'arret on le met a la taille de l'icone au repos.
-	int iXMin = - myIcon->fWidth / myDock->fRatio * fScale / 2;
-	int iXMax = - iXMin;
+	int iWidth = myIcon->fWidth / myDock->fRatio * fScale;
 	int iHeight = myIcon->fHeight / myDock->fRatio * fScale;
+	int iXMin = - iWidth / 2;
+	int iXMax = - iXMin;
 	
 	penguin_calculate_new_position (myApplet, pAnimation, iXMin, iXMax, iHeight);
 	
-	//\________________ On efface l'ancienne image.
-	cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (myDrawContext);
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
-	
-	//\________________ On applique la nouvelle image.
-	if (pSurface != NULL)
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 	{
-		cairo_save (myDrawContext);
-		cairo_scale (myDrawContext, (1 + g_fAmplitude) / fScale, (1 + g_fAmplitude) / fScale);
-		cairo_set_source_surface (
-			myDrawContext,
-			pSurface,
-			iXMax + myData.iCurrentPositionX,
-			iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight);
-		cairo_paint (myDrawContext);
-		cairo_restore (myDrawContext);
-	}
-	
-	if (myDock != NULL && myDock->bUseReflect)
-	{
-		cairo_surface_t *pReflet = myIcon->pReflectionBuffer;
-		myIcon->pReflectionBuffer = NULL;
-		cairo_surface_destroy (pReflet);
+		if (! cairo_dock_begin_draw_icon (myIcon, myContainer))
+			return ;
 		
-		myIcon->pReflectionBuffer = cairo_dock_create_reflection_surface (myIcon->pIconBuffer,
-			myDrawContext,
-			(myDock->bHorizontalDock ? myIcon->fWidth : myIcon->fHeight) * (1 + g_fAmplitude) / myDock->fRatio,
-			(myDock->bHorizontalDock ? myIcon->fHeight : myIcon->fWidth) * (1 + g_fAmplitude) / myDock->fRatio,
-			myDock->bHorizontalDock,
-			1 + g_fAmplitude,
-			myDock->bDirectionUp);
+		_penguin_draw_texture (myApplet, pAnimation, 0., - iHeight/2, (1 + g_fAmplitude) / fScale);
+		
+		cairo_dock_end_draw_icon (myIcon, myContainer);
 	}
-	
-	if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
-		cairo_dock_update_icon_texture (myIcon);
+	else
+	{
+		//\________________ On efface l'ancienne image.
+		cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
+		cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
+		cairo_paint (myDrawContext);
+		cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
+		
+		//\________________ On applique la nouvelle image.
+		if (pSurface != NULL)
+		{
+			cairo_save (myDrawContext);
+			cairo_scale (myDrawContext, (1 + g_fAmplitude) / fScale, (1 + g_fAmplitude) / fScale);
+			cairo_set_source_surface (
+				myDrawContext,
+				pSurface,
+				iXMax + myData.iCurrentPositionX,
+				iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight);
+			cairo_paint (myDrawContext);
+			cairo_restore (myDrawContext);
+		}
+		
+		//\________________ les reflets.
+		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
+	}
 	
 	CD_APPLET_REDRAW_MY_ICON;
 	

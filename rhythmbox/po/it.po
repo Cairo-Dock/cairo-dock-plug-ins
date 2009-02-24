@@ -139,10 +139,6 @@ msgstr ""
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:37
-msgid "Lock position ?"
-msgstr "Bloccare la posizione ?"
-
 #: ../data/messages:39
 msgid "in degrees."
 msgstr "in gradi."

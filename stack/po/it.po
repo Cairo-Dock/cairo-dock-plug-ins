@@ -195,7 +195,7 @@ msgstr "Compensazione a sinistra :"
 
 #: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
-"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
+msgstr "in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
 "in alto dei disegni."
 
 #: ../data/messages:65

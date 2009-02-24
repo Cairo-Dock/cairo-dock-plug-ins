@@ -7,14 +7,14 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 ******************************************************************************/
 
-#include "stdlib.h"
+#include <stdlib.h>
+#include <math.h>
 
 #include "cd-mail-applet-config.h"
 #include "cd-mail-applet-notifications.h"
 #include "cd-mail-applet-struct.h"
 #include "cd-mail-applet-init.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_PRE_INIT_BEGIN ("mail", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
