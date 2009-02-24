@@ -73,20 +73,23 @@ gboolean cd_musicplayer_dbus_detection(void)
 void cd_musicplayer_check_dbus_connection (void)
 {
 	cd_debug("MP : Vérification de la connexion DBus");
-	myData.opening = cd_musicplayer_dbus_detection();
-	if ((myData.opening) && (!myData.dbus_enable)) // On vérifie si notre lecteur est ouvert et si on n'est pas déjà connecté au bus
+	if (myData.DBus_commands.service != NULL)
 	{
-		cd_message("MP : On se connecte au bus pour la première fois");
-		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // Alors on se connecte au bus
-		if (myData.dbus_enable)
-			cd_message("MP : Connexion au bus effectuee");
-	}
-	else if ((myData.dbus_enable) && (myData.opening)) // Sinon on est deja connecte au bus, on lit juste les donnees
-		cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
-	else // Sinon le lecteur n'est pas ouvert
-	{
-		myData.dbus_enable = 0;
-		cd_debug("MP : lecteur non ouvert");	
+		myData.opening = cd_musicplayer_dbus_detection();
+		if ((myData.opening) && (!myData.dbus_enable)) // On vérifie si notre lecteur est ouvert et si on n'est pas déjà connecté au bus
+		{
+			cd_message("MP : On se connecte au bus pour la première fois");
+			myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // Alors on se connecte au bus
+			if (myData.dbus_enable)
+				cd_message("MP : Connexion au bus effectuee");
+		}
+		else if ((myData.dbus_enable) && (myData.opening)) // Sinon on est deja connecte au bus, on lit juste les donnees
+			cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
+		else // Sinon le lecteur n'est pas ouvert
+		{
+			myData.dbus_enable = 0;
+			cd_debug("MP : lecteur non ouvert");	
+		}
 	}
 }
 
@@ -97,21 +100,24 @@ void cd_musicplayer_check_dbus_connection (void)
 void cd_musicplayer_check_dbus_connection_with_two_interfaces (void)
 {
 	cd_debug("MP : Vérification de la connexion DBus");
-	myData.opening = cd_musicplayer_dbus_detection();
-	if ((myData.opening) && (!myData.dbus_enable) && (!myData.dbus_enable_shell)) // On vérifie si notre lecteur est ouvert et si on n'est pas déjà connecté au bus
+	if (myData.DBus_commands.service != NULL)
 	{
-		cd_message("MP : On se connecte au bus pour la première fois");
-		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // Alors on se connecte au bus
-		myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell ();
-		if ((myData.dbus_enable) && (myData.dbus_enable_shell))
-			cd_message("MP : Connexions aux bus effectuees");
-	}
-	else if ((myData.dbus_enable) && (myData.opening)) // Sinon on est deja connecte au bus, on lit juste les donnees
-		cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
-	else // Sinon le lecteur n'est pas ouvert
-	{
-		myData.dbus_enable = 0;
-		cd_debug("MP : lecteur non ouvert");	
+		myData.opening = cd_musicplayer_dbus_detection();
+		if ((myData.opening) && (!myData.dbus_enable) && (!myData.dbus_enable_shell)) // On vérifie si notre lecteur est ouvert et si on n'est pas déjà connecté au bus
+		{
+			cd_message("MP : On se connecte au bus pour la première fois");
+			myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // Alors on se connecte au bus
+			myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell ();
+			if ((myData.dbus_enable) && (myData.dbus_enable_shell))
+				cd_message("MP : Connexions aux bus effectuees");
+		}
+		else if ((myData.dbus_enable) && (myData.opening)) // Sinon on est deja connecte au bus, on lit juste les donnees
+			cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
+		else // Sinon le lecteur n'est pas ouvert
+		{
+			myData.dbus_enable = 0;
+			cd_debug("MP : lecteur non ouvert");	
+		}
 	}
 }
 

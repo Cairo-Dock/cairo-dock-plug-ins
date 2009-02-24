@@ -69,11 +69,12 @@ CD_APPLET_ON_CLICK_BEGIN
 	else if (myData.dbus_enable && myData.opening) { //Player dBus
 	  cd_musicplayer_pp (); //Faut faire gaffe...
 	}
-	else if (!myData.dbus_enable) { //Player commandé par le shell
+	else if (!myData.DBus_commands.service) { //Si pas de commandes DBus alors le player commandé par le shell
 	  cd_musicplayer_pp ();
 	}
-	else if (myData.dbus_enable && !myData.opening && myData.pCurrentHandeler->launch != NULL) { //lancer le player dBus
+	else if (!myData.dbus_enable && !myData.opening && myData.pCurrentHandeler->launch != NULL) { //lancer le player dBus
 	  GError *erreur = NULL;
+	  cd_debug("MP : lancement du lecteur");
 	  g_spawn_command_line_async (myData.pCurrentHandeler->launch, &erreur);
 	  if (erreur != NULL) {
 		  cd_warning ("Attention : when trying to execute command : %s", erreur->message);

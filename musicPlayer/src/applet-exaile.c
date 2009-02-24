@@ -226,5 +226,6 @@ void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lect
 	pExaile->ask_control = cd_exaile_ask_control;
 	pExaile->appclass = g_strdup("exaile.py"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pExaile->name = g_strdup("Exaile");
+	pExaile->launch = g_strdup("exaile");
 	cd_musicplayer_register_my_handeler(pExaile, "Exaile");
 }
