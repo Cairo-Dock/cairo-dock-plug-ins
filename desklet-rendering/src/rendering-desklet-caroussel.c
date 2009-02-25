@@ -14,6 +14,30 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #define CAROUSSEL_RATIO_ICON_DESKLET .5
 
+// Pour dessiner une icone, avec son quickinfo, dans la matrice courante.
+void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *pContainer)
+{
+	if (pIcon == NULL)  // peut arriver avant de lier l'icone au desklet.
+		return ;
+
+	if (pIcon->iIconTexture != 0)
+	{
+		glPushMatrix ();
+			cairo_dock_draw_icon_texture (pIcon, pContainer);
+		glPopMatrix ();
+	}
+	if (pIcon->iQuickInfoTexture != 0)
+	{
+		glPushMatrix ();
+			glTranslatef (0.,
+				(- pIcon->fHeight - pIcon->iQuickInfoHeight)/2,
+				0.);
+			cairo_dock_draw_texture (pIcon->iQuickInfoTexture,
+				pIcon->iQuickInfoWidth,
+				pIcon->iQuickInfoHeight);
+		glPopMatrix ();
+	}
+}
 
 static gboolean _caroussel_rotate (CairoDesklet *pDesklet)
 {
@@ -184,6 +208,7 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
+		pIcon->fGlideScale = 1.;
 		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 	}
 	GList* ic;
@@ -200,6 +225,13 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 			pIcon->fWidth = MAX (1, .2 * pDesklet->iWidth - myLabels.iconTextDescription.iSize);
 			pIcon->fHeight = MAX (1, .2 * pDesklet->iHeight - myLabels.iconTextDescription.iSize);
 		}
+
+		pIcon->fScale = 1.;
+		pIcon->fAlpha = 1.;
+		pIcon->fWidthFactor = 1.;
+		pIcon->fHeightFactor = 1.;
+		pIcon->fGlideScale = 1.;
+		
 		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 	}
 }
@@ -362,6 +394,111 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 	}
 }
 
+void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
+{
+	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
+	//g_print ("%s(%x)\n", __func__, pCaroussel);
+	if (pCaroussel == NULL)
+		return ;
+	
+	double fTheta = G_PI/2 + pCaroussel->fRotationAngle, fDeltaTheta = pCaroussel->fDeltaTheta;
+	
+	int iEllipseHeight = pCaroussel->iEllipseHeight;
+	double fInclinationOnHorizon = pCaroussel->fInclinationOnHorizon;
+	
+	int iFrameHeight = pCaroussel->iFrameHeight;
+	double fExtraWidth = pCaroussel->fExtraWidth;
+	double a = pCaroussel->a, b = pCaroussel->b;
+	
+	Icon *pIcon;
+	GList *ic;
+
+	if (pCaroussel->b3D)
+	{
+		glPushMatrix ();
+		glEnable(GL_DEPTH_TEST);
+		glEnable (GL_BLEND);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend le cube transparent.
+
+		//\____________________ On dessine l'icone au milieu
+		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet));
+
+		glRotatef( 30., 1., 0., 0. );
+
+		glPolygonMode (GL_FRONT, GL_FILL);
+		
+		//   4___3
+		//   /   \
+		//  /     \
+		// /_______\
+		// 1        2
+		glBegin(GL_TRIANGLE_FAN);
+			glColor4f(.3, .3, .3, .6);
+			glVertex3f (0, -pDesklet->pIcon->fHeight, 0);
+			for( int iIter = 0; iIter <= 30; iIter++  )
+			{
+				glVertex3f (a*sin(2*G_PI*(double)iIter/30.), -pDesklet->pIcon->fHeight/2, b*cos(2*G_PI*(double)iIter/30.));
+			}
+		glEnd();
+		glColor4f(1., 1., 1., 1.);
+
+		//\____________________ On dessine les icones autour
+		gboolean bFlip = (pDesklet->pIcon->fHeight > pDesklet->pIcon->fWidth);
+		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
+		{
+			pIcon = ic->data;
+			
+			glPushMatrix ();
+			
+			//\____________________ On se decale au bon endroit
+			glTranslatef (a * cos (fTheta) /*- pIcon->fWidth/2*/,
+										0.,
+										b * sin (fTheta));
+
+			//\____________________ Et on dessine l'icone
+			_render_one_icon_and_quickinfo_opengl (pIcon, CAIRO_CONTAINER (pDesklet));
+			
+			glPopMatrix ();
+
+			fTheta += fDeltaTheta;
+			if (fTheta >= G_PI/2 + 2*G_PI)
+				fTheta -= 2*G_PI;
+		}
+		
+		glDisable(GL_DEPTH_TEST);
+		glDisable (GL_BLEND);
+		glPopMatrix ();
+	}
+	else
+	{
+		//\____________________ On dessine l'icone au milieu
+		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet));
+
+		//\____________________ On dessine les icones autour
+		gboolean bFlip = (pDesklet->pIcon->fHeight > pDesklet->pIcon->fWidth);
+		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
+		{
+			pIcon = ic->data;
+			
+			glPushMatrix ();
+			
+			//\____________________ On se decale au bon endroit
+			glTranslatef ((bFlip ? b : a) * cos (fTheta) /*- pIcon->fWidth/2*/,
+										(bFlip ? a : b) * sin (fTheta) - pIcon->fHeight/2 + myLabels.iconTextDescription.iSize,
+										0.);
+
+			//\____________________ Et on dessine l'icone
+			_render_one_icon_and_quickinfo_opengl (pIcon, CAIRO_CONTAINER (pDesklet));
+			
+			glPopMatrix ();
+
+			fTheta += fDeltaTheta;
+			if (fTheta >= G_PI/2 + 2*G_PI)
+				fTheta -= 2*G_PI;
+		}
+	}
+}
+
 
 
 void rendering_register_caroussel_desklet_renderer (void)
@@ -372,6 +509,7 @@ void rendering_register_caroussel_desklet_renderer (void)
 	pRenderer->load_data = rendering_load_caroussel_data;
 	pRenderer->free_data = rendering_free_caroussel_data;
 	pRenderer->load_icons = rendering_load_icons_for_caroussel;
+	pRenderer->render_opengl = rendering_draw_caroussel_in_desklet_opengl;
 	
 	cairo_dock_register_desklet_renderer (MY_APPLET_CAROUSSEL_DESKLET_RENDERER_NAME, pRenderer);
 }

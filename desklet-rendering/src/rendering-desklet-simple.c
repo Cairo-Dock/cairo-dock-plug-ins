@@ -70,17 +70,19 @@ void rendering_draw_simple_in_desklet_opengl (CairoDesklet *pDesklet)
 	if (pIcon->iIconTexture != 0)
 	{
 		glPushMatrix ();
-		cairo_dock_draw_icon_texture (pIcon, CAIRO_CONTAINER (pDesklet));
+			cairo_dock_draw_icon_texture (pIcon, CAIRO_CONTAINER (pDesklet));
 		glPopMatrix ();
 	}
 	if (pIcon->iQuickInfoTexture != 0)
 	{
-		glTranslatef (0.,
-			(- pIcon->fHeight + pIcon->iQuickInfoHeight)/2,
-			0.);
-		cairo_dock_draw_texture (pIcon->iQuickInfoTexture,
-			pIcon->iQuickInfoWidth,
-			pIcon->iQuickInfoHeight);
+		glPushMatrix ();
+			glTranslatef (0.,
+				(- pIcon->fHeight + pIcon->iQuickInfoHeight)/2,
+				0.);
+			cairo_dock_draw_texture (pIcon->iQuickInfoTexture,
+				pIcon->iQuickInfoWidth,
+				pIcon->iQuickInfoHeight);
+		glPopMatrix ();
 	}
 }
 
