@@ -114,60 +114,6 @@ static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboo
 							pImage->iOrientation = exif_get_short (pExifEntry->data, byteOrder);
 							if (pImage->iOrientation != 0)
 								g_print ("iOrientation : %d\n", pImage->iOrientation);
-								/* 0th Row      0th Column
-								1  top          left side
-								2  top          right side
-								3  bottom       right side
-								4  bottom       left side
-								5  left side    top
-								6  right side   top
-								7  right side   bottom
-								8  left side    bottom */
-								/*
-								//The following lines are taken from GwenView,
-						+         //Copyright 2000-2004 Aur�lien G�teau
-						+         enum Orientation 
-						+         { 
-						+            NORMAL=1, HFLIP=2, ROT_180=3, VFlip=4, ROT_90_HFLIP=5, ROT_90=6, ROT_90_VFLIP=7, ROT_270=8
-						+         };
-						+         Orientation orientation = (Orientation)s;
-						+         doXform = (orientation != NORMAL);
-						+         
-						+         switch (orientation) {
-						+         case NORMAL:
-						+            break;
-						+      
-						+         case HFLIP:
-						+            matrix.scale(-1,1);
-						+            break;
-						+      
-						+         case ROT_180:
-						+            matrix.rotate(180);
-						+            break;
-						+      
-						+         case VFlip:
-						+            matrix.scale(1,-1);
-						+            break;
-						+         
-						+         case ROT_90_HFLIP:
-						+            matrix.scale(-1,1);
-						+            matrix.rotate(90);
-						+            break;
-						+            
-						+         case ROT_90:      
-						+            matrix.rotate(90);
-						+            break;
-						+         
-						+         case ROT_90_VFLIP:
-						+            matrix.scale(1,-1);
-						+            matrix.rotate(90);
-						+            break;
-						+            
-						+         case ROT_270:      
-						+            matrix.rotate(270);
-						+            break;
-						+         }
-						+      }*/
 						}
 						
 						exif_data_unref (pExifData);
@@ -228,7 +174,7 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	g_print ("Slider - Displaying: %s (size %dbytes, orientation:%d)\n", cImagePath, pImage->iSize, pImage->iOrientation);
 	
 	double fImgX, fImgY, fImgW=0, fImgH=0;
-	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;
+	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE | ((pImage->iOrientation-1) << 3);
 	if (! myConfig.bFillIcon)
 		iLoadingModifier |= CAIRO_DOCK_DONT_ZOOM_IN;
 	if (myConfig.bNoStretch)

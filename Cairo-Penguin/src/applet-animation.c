@@ -54,7 +54,7 @@ static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAni
 	
 	glEnable (GL_SCISSOR_TEST);
 	glScissor (fOffsetX + myData.iCurrentPositionX,
-		myData.iCurrentPositionY,
+		fOffsetY + myData.iCurrentPositionY,
 		pAnimation->iFrameWidth * fScale,
 		pAnimation->iFrameHeight * fScale);
 	
