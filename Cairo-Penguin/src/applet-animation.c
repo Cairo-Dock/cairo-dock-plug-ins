@@ -121,9 +121,7 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		return ;
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
-	g_return_if_fail (pAnimation != NULL && pAnimation->pSurfaces != NULL);
-	cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
-	g_return_if_fail (pSurface != NULL);
+	g_return_if_fail (pAnimation != NULL);
 	
 	double fScale = (pAnimation->iNbFrames > 1 || pAnimation->iSpeed != 0 || pAnimation->iAcceleration != 0 ? myIcon->fScale : 1.);  // s'il est a l'arret on le met a la taille de l'icone au repos.
 	int iWidth = myIcon->fWidth / myDock->fRatio * fScale;
@@ -138,12 +136,16 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		if (! cairo_dock_begin_draw_icon (myIcon, myContainer))
 			return ;
 		
-		_penguin_draw_texture (myApplet, pAnimation, 0., - iHeight/2, (1 + g_fAmplitude) / fScale);
+		_penguin_draw_texture (myApplet, pAnimation, 0*iWidth/2, -iHeight/2, (1 + g_fAmplitude) / fScale);
 		
 		cairo_dock_end_draw_icon (myIcon, myContainer);
 	}
 	else
 	{
+		g_return_if_fail (pAnimation->pSurfaces != NULL);
+		cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
+		g_return_if_fail (pSurface != NULL);
+		
 		//\________________ On efface l'ancienne image.
 		cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
 		cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
@@ -406,7 +408,7 @@ void penguin_set_new_animation (CairoDockModuleInstance *myApplet, int iNewAnima
 	
 	if (pAnimation->pSurfaces == NULL && pAnimation->iTexture == 0)
 	{
-		penguin_load_animation_buffer (pAnimation, myDrawContext, myConfig.fAlpha, CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer) && myConfig.bFree);
+		penguin_load_animation_buffer (pAnimation, myDrawContext, myConfig.fAlpha, CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer));
 	}
 	
 	if (pAnimation->iDirection == PENGUIN_HORIZONTAL)

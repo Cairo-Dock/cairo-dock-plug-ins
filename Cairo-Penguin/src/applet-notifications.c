@@ -35,7 +35,7 @@ static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 CD_APPLET_ABOUT (D_("This is the Cairo-Penguin applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
-gboolean CD_APPLET_ON_CLICK (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState)
+CD_APPLET_ON_CLICK_PROTO
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
@@ -93,7 +93,7 @@ static void _wake_up (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	penguin_start_animating (myApplet);
 }
-gboolean CD_APPLET_ON_BUILD_MENU (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu)
+CD_APPLET_ON_BUILD_MENU_PROTO
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
@@ -110,7 +110,7 @@ gboolean CD_APPLET_ON_BUILD_MENU (CairoDockModuleInstance *myApplet, Icon *pClic
 		
 		GtkWidget *pMenuItem, *image;
 		
-		CD_APPLET_ADD_SEPARATOR (CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		
 		CD_APPLET_ADD_SUB_MENU (D_("Hey, you there !"), pModuleSubMenu, CD_APPLET_MY_MENU);
 		if (pAnimation->iNbFrames > 1 || pAnimation->iSpeed > 0)
@@ -128,7 +128,7 @@ gboolean CD_APPLET_ON_BUILD_MENU (CairoDockModuleInstance *myApplet, Icon *pClic
 CD_APPLET_ON_BUILD_MENU_END
 
 
-gboolean CD_APPLET_ON_MIDDLE_CLICK (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer)
+gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer)
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
