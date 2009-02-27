@@ -4,21 +4,21 @@
 gchar *cd_human_readable(long long num) {
 	gint cpt = 0;
 	gdouble fnum = 0;
-	const gchar *SUFFIX[] = {"o","ko","Mo","Go"};
+	const gchar *SUFFIXT[] = {"o","ko","Mo","Go","To"};
+	gchar **suffix = SUFFIXT;
 	
 	if (num < 1024LL)
-		return g_strdup_printf("%lld%s\n",num, SUFFIX[cpt]);
+		return g_strdup_printf("%lld%s\n",num, *suffix);
 	
-	while (num / 1024 >= 1000LL && cpt<4) {
+	while (num / 1024 >= 1000LL && **(suffix + 2)) {
 		num /= 1024;
-		cpt++;
+		suffix++;
 	}
-	if (cpt<3)
-		cpt++;
-		
+
+	suffix++;
 	fnum = num / 1024.0;
 	
-	return g_strdup_printf("%.2f%s\n",fnum,SUFFIX[cpt]);
+	return g_strdup_printf("%.2f%s\n",fnum,*suffix);
 }
 
 
@@ -31,7 +31,7 @@ gchar *cd_get_fs_type(const char *path) {
 	char *slash;
 
 	if (mtab == NULL) {
-		return g_strdup("unknown");
+		return "unknown";
 	}
 
 	me = getmntent(mtab);
@@ -59,7 +59,9 @@ gchar *cd_get_fs_type(const char *path) {
 	endmntent(mtab);
 
 	if (me && !match)
-		return g_strdup (me->mnt_type);
+		return strcmp(me->mnt_type,"fuseblk")==0 ? "ntfs" : g_strdup (me->mnt_type);
+	
+	return "unknown";
 }
 
 void cd_mount_unmount_device (CairoDockModuleInstance *myApplet) {
@@ -68,8 +70,8 @@ void cd_mount_unmount_device (CairoDockModuleInstance *myApplet) {
 	//g_free (cDevice);
 }
 
-void cd_hdd_read_data(CairoDockModuleInstance *myApplet)
-{
+void cd_hdd_read_data(CairoDockModuleInstance *myApplet) {
+	
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
 	g_timer_start (myData.pClock);
@@ -97,8 +99,8 @@ void cd_hdd_read_data(CairoDockModuleInstance *myApplet)
 	myData.bAcquisitionOK = TRUE;
 }
 
-gboolean cd_hdd_update_from_data (CairoDockModuleInstance *myApplet)
-{
+gboolean cd_hdd_update_from_data (CairoDockModuleInstance *myApplet) {
+	
 	if ( ! myData.bAcquisitionOK)
 	{
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
@@ -106,8 +108,10 @@ gboolean cd_hdd_update_from_data (CairoDockModuleInstance *myApplet)
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			if (!myDesklet)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
-			else
+			else {
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s:N/A",myConfig.cDefaultName);
+				gtk_widget_queue_draw (myDesklet->pWidget);
+			}
 		
 		CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
 	}
@@ -119,9 +123,10 @@ gboolean cd_hdd_update_from_data (CairoDockModuleInstance *myApplet)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			{
-				if (myDesklet)
+				if (myDesklet) {
 					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myData.fPourcent < 0.1 ? "%s:%.1f%%" : "%s:%.0f%%"),myConfig.cDefaultName,(myData.fPourcent * 100.0));
-				else
+					gtk_widget_queue_draw (myDesklet->pWidget);
+				} else
 					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myData.fPourcent < 0.1 ? "%.1f%%" : "%.0f%%"),(myData.fPourcent * 100.0));
 			}
 			else
@@ -131,10 +136,8 @@ gboolean cd_hdd_update_from_data (CairoDockModuleInstance *myApplet)
 			}
 		}
 			
-		if (myData.pGauge)
-		{
-			CD_APPLET_RENDER_GAUGE (myData.pGauge, myData.fPourcent);
-		}
+
+		CD_APPLET_RENDER_GAUGE (myData.pGauge, myData.fPourcent);
 	}
 	
 	return myData.bAcquisitionOK;

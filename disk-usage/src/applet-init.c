@@ -27,8 +27,8 @@ static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
+		_unthreaded_measure (myApplet);
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
-		gtk_widget_queue_draw (myDesklet->pWidget);
 	}
 	
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
@@ -64,13 +64,14 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 	{
+		_unthreaded_measure (myApplet);
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
-		gtk_widget_queue_draw (myDesklet->pWidget);
 	}
 	
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		cairo_dock_free_gauge (myData.pGauge);
 		myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 		if (myConfig.cWatermarkImagePath != NULL)
 			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
@@ -83,7 +84,13 @@ CD_APPLET_RELOAD_BEGIN
 		myConfig.pTopTextDescription->bVerticalPattern = TRUE;
 		cairo_dock_free_label_description (pOldLabelDescription);
 		
+		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
+		
 		//if (!cairo_dock_fm_add_monitor_full(myConfig.cDevice, FALSE, NULL, (CairoDockFMMonitorCallback) cairo_dock_fm_action_on_file_event, myIcon))
 		//	cd_warning ("Disk-usage : can't monitor drives");
+	} else {
+		cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
+		_unthreaded_measure (myApplet);
 	}
+
 CD_APPLET_RELOAD_END
