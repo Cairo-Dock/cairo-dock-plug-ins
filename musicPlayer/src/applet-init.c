@@ -110,6 +110,7 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_arm_handeler (); //On prépare notre handeler
 	
 	if (myConfig.bStealTaskBarIcon) {
+	  cd_debug ("MP: inhibate %s (1)", myData.pCurrentHandeler->appclass);
 		cairo_dock_inhibate_class (myData.pCurrentHandeler->appclass, myIcon);
 	}
 	
@@ -181,12 +182,18 @@ CD_APPLET_RELOAD_BEGIN
 		cd_musicplayer_disarm_handeler (); //On libère tout ce qu'occupe notre ancien handeler.
 		myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name (myConfig.cMusicPlayer);
 	
-		if (myIcon->cClass != NULL && ((!myConfig.bStealTaskBarIcon) || (strcmp (myIcon->cClass, myData.pCurrentHandeler->appclass))) ) { // on ne veut plus l'inhiber ou on veut inhiber une autre.
-			//cd_debug ("MP: deinhibate %s", myIcon->cClass);
-			cairo_dock_deinhibate_class (myIcon->cClass, myIcon);
+		if (myIcon->cClass != NULL && myData.pCurrentHandeler->appclass != NULL) { //Sécurité pour ne pas planter a cause du strcmp
+			cd_debug ("MP: deinhibate %s (1)", myIcon->cClass);
+			if ((!myConfig.bStealTaskBarIcon) || (strcmp (myIcon->cClass, myData.pCurrentHandeler->appclass))) 
+			  cairo_dock_deinhibate_class (myIcon->cClass, myIcon);
 		}
-		if (myConfig.bStealTaskBarIcon && myIcon->cClass == NULL) { // on comence a inhiber l'appli si on ne le faisait pas, ou qu'on s'est arrete.
-			//cd_debug ("MP: inhibate %s", myData.pCurrentHandeler->appclass);
+		else if (myIcon->cClass != NULL && !myConfig.bStealTaskBarIcon) { // on ne veut plus l'inhiber ou on veut inhiber une autre.
+		  cd_debug ("MP: deinhibate %s (2)", myIcon->cClass);
+		  cairo_dock_deinhibate_class (myIcon->cClass, myIcon);
+		}
+		  
+		if (myConfig.bStealTaskBarIcon && myIcon->cClass == NULL) { // on commence a inhiber l'appli si on ne le faisait pas, ou qu'on s'est arrete.
+			cd_debug ("MP: inhibate %s (2)", myData.pCurrentHandeler->appclass);
 			cairo_dock_inhibate_class (myData.pCurrentHandeler->appclass, myIcon);
 		}
 		
