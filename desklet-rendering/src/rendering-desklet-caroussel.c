@@ -420,24 +420,24 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		glEnable (GL_BLEND);
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend le cube transparent.
 
+	  glAlphaFunc ( GL_GREATER, 0.1 ) ;
+    glEnable ( GL_ALPHA_TEST ) ;
+
 		//\____________________ On dessine l'icone au milieu
 		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet));
 
-		glRotatef( 30., 1., 0., 0. );
+		glTranslatef( 0., -b/2., 0. );
+		glRotatef( 10., 1., 0., 0. );
 
 		glPolygonMode (GL_FRONT, GL_FILL);
 		
-		//   4___3
-		//   /   \
-		//  /     \
-		// /_______\
-		// 1        2
+		//\________ Dessiner un disque en dessous du caroussel
 		glBegin(GL_TRIANGLE_FAN);
 			glColor4f(.3, .3, .3, .6);
 			glVertex3f (0, -pDesklet->pIcon->fHeight, 0);
 			for( int iIter = 0; iIter <= 30; iIter++  )
 			{
-				glVertex3f (a*sin(2*G_PI*(double)iIter/30.), -pDesklet->pIcon->fHeight/2, b*cos(2*G_PI*(double)iIter/30.));
+				glVertex3f (1.5*a*sin(2*G_PI*(double)iIter/30.), -pDesklet->pIcon->fHeight/2, 1.5*b*cos(2*G_PI*(double)iIter/30.));
 			}
 		glEnd();
 		glColor4f(1., 1., 1., 1.);
@@ -465,6 +465,7 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 				fTheta -= 2*G_PI;
 		}
 		
+    glDisable ( GL_ALPHA_TEST ) ;
 		glDisable(GL_DEPTH_TEST);
 		glDisable (GL_BLEND);
 		glPopMatrix ();
