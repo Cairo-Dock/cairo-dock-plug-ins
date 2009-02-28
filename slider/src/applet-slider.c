@@ -102,8 +102,9 @@ static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboo
 		g_error_free (erreur);
 		return pList;
 	}
-	
+#ifdef HAVE_EXIF
 	memset (ebuf, 0, 1024);
+#endif
 	struct stat buf;
 	SliderImage *pImage;
 	SliderImageFormat iFormat;
