@@ -250,7 +250,7 @@ void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet)
   
 	glPushMatrix ();
 
-  glScalef(0.8*iWidth, 0.8*iHeight, 0.8*iWidth);
+  glScalef(0.8*iWidth, 0.8*iHeight, 1.0);
   glTranslatef(0., 0., -1.0);
 
   glRotatef(myData.current_rotX, 1.0f, 0.0f, 0.0f);  /* rotate on the X axis */
@@ -260,7 +260,9 @@ void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet)
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
   glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend le cube transparent.
-	
+  glAlphaFunc ( GL_GREATER, 0.1 ) ;
+  glEnable ( GL_ALPHA_TEST ) ;
+
 	glEnable(GL_TEXTURE_2D);
 	//glEnable(GL_TEXTURE_GEN_S);                                // oui je veux une generation en S
 	//glEnable(GL_TEXTURE_GEN_T);
@@ -278,6 +280,8 @@ void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet)
 
 	glDisable(GL_TEXTURE_2D);
 	glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.);
+
+  glDisable ( GL_ALPHA_TEST ) ;
 	glDisable (GL_BLEND);
 	glDisable (GL_DEPTH_TEST);
 	glPopMatrix ();
