@@ -38,9 +38,14 @@ const int MAIL_NB_STORAGE_TYPES = sizeof(storage_tab) / sizeof(struct storage_ty
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 
-	myConfig.cNoMailUserImage = cairo_dock_generate_file_path (CD_CONFIG_GET_STRING ("Configuration", "no mail image"));
-	myConfig.cHasMailUserImage = cairo_dock_generate_file_path (CD_CONFIG_GET_STRING ("Configuration", "has mail image"));
-	myConfig.cNewMailUserSound = cairo_dock_generate_file_path (CD_CONFIG_GET_STRING ("Configuration", "new mail sound"));
+  char *path = NULL;
+
+  path = CD_CONFIG_GET_STRING ("Configuration", "no mail image");
+	myConfig.cNoMailUserImage = path?cairo_dock_generate_file_path (path):NULL;
+	path = CD_CONFIG_GET_STRING ("Configuration", "has mail image");
+	myConfig.cHasMailUserImage = path?cairo_dock_generate_file_path (path):NULL;
+	path = CD_CONFIG_GET_STRING ("Configuration", "new mail sound");
+	myConfig.cNewMailUserSound = path?cairo_dock_generate_file_path (path):NULL;
 
   myConfig.cMailApplication = CD_CONFIG_GET_STRING ("Configuration", "mail application");
 

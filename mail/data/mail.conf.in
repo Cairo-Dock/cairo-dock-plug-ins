@@ -92,7 +92,7 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#R+1[] Choose one of the available themes :/
+#R+[Default;Default theme;themes/Default/hasmail.svg] Choose one of the available themes :
 theme = Default
 
 #F[Theme overriding] 
