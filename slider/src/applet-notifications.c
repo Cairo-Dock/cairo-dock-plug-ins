@@ -17,30 +17,22 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-notifications.h"
 #include "applet-slider.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 CD_APPLET_ABOUT (D_("This is the Slider applet\n made by ChAnGFu for Cairo-Dock"))
 
 static void _cd_slider_toogle_pause(GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
 	//cd_message("Toggeling pause: %d", myData.bPause);
 	if (!myData.bPause) {
-		myData.bPause = TRUE;
-		if (myData.iTimerID != 0) {
-			g_source_remove(myData.iTimerID); //on coupe le timer en cours
-			myData.iTimerID = 0;
-		}
+		myData.bPause = TRUE;  // coupera le timer.
 	}
 	else {
 		myData.bPause = FALSE;
-		cd_slider_draw_images(myApplet); //on relance le diapo
+		cd_slider_next_slide(myApplet); //on relance le diapo
 	}
 }
 
 static void _cd_slider_open_current_slide (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
 	if (myData.pElement != NULL && myData.pElement->data != NULL) {
-		GList *pCurrentDisplayedElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
-		g_return_if_fail (pCurrentDisplayedElement != NULL);
-		SliderImage *pImage = pCurrentDisplayedElement->data;
+		SliderImage *pImage = myData.pElement->data;
 		gchar *cImagePath = pImage->cPath;
 		cd_debug ("opening %s ...", cImagePath);
 		/*GError *erreur = NULL;
@@ -67,49 +59,50 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 static void _cd_slider_run_dir(GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
-	GError *erreur = NULL;
+	/*GError *erreur = NULL;
 	gchar *cURI = g_filename_to_uri (myConfig.cDirectory, NULL, &erreur);
 	if (erreur != NULL) {
 		cd_warning ("Slider : %s", erreur->message);
 		g_error_free (erreur);
 		return ;
-	}
+	}*/
 	//cd_debug("Slider: will show '%s'", cURI);
-	cairo_dock_fm_launch_uri(cURI);
-	g_free (cURI);
+	cairo_dock_fm_launch_uri(myConfig.cDirectory);
 }
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	_cd_slider_run_dir(NULL, myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
-static void _cd_slider_previous_img(CairoDockModuleInstance *myApplet) {
+static void _cd_slider_previous_slide(CairoDockModuleInstance *myApplet) {
 	myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
 	myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
-	if (myData.iAnimTimerID != 0) {
-		g_source_remove(myData.iAnimTimerID);
-		myData.iAnimTimerID = 0;
-	}
-	cd_slider_draw_images(myApplet);
+	cd_slider_next_slide(myApplet);
 }
 
 CD_APPLET_ON_SCROLL_BEGIN
-	if (myData.iTimerID != 0)
-	{
-		g_source_remove(myData.iTimerID); //on coupe le timer en cours
-		myData.iTimerID = 0;
-	}
-	if (myData.iAnimTimerID != 0)
-	{
-		g_source_remove(myData.iAnimTimerID);
-		myData.iAnimTimerID = 0;
-	}
-	
+	if (myConfig.bUseThread)
+		cairo_dock_stop_measure_timer (myData.pMeasureImage);
 	if (CD_APPLET_SCROLL_DOWN) {
-		cd_slider_draw_images(myApplet);
+		if (myData.iTimerID == 0)  // en cours d'animation, on la finit en affichant l'image courante.
+		{
+			cd_slider_draw_default (myApplet);
+			CD_APPLET_REDRAW_MY_ICON;
+		}
+		else
+		{
+			g_source_remove(myData.iTimerID); //on coupe le timer en cours
+			myData.iTimerID = 0;
+		}
+		cd_slider_next_slide (myApplet);  // on passe a la suivante.
 	}
 	else if (CD_APPLET_SCROLL_UP) {
-		_cd_slider_previous_img(myApplet);
+		if (myData.iTimerID != 0)
+		{
+			g_source_remove(myData.iTimerID); //on coupe le timer en cours
+			myData.iTimerID = 0;
+		}
+		_cd_slider_previous_slide(myApplet);
 	}
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;

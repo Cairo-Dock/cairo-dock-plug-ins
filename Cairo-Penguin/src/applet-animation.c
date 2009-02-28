@@ -53,13 +53,13 @@ static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAni
 	g_return_if_fail (pAnimation->iTexture != 0);
 	
 	glEnable (GL_SCISSOR_TEST);
-	glScissor (fOffsetX + myData.iCurrentPositionX,
-		fOffsetY + myData.iCurrentPositionY,
+	glScissor ((fOffsetX + myData.iCurrentPositionX) * fScale,
+		(fOffsetY * fScale + myData.iCurrentPositionY) * fScale,
 		pAnimation->iFrameWidth * fScale,
 		pAnimation->iFrameHeight * fScale);
 	
-	glTranslatef (fOffsetX + myData.iCurrentPositionX + pAnimation->iFrameWidth * (.5 * pAnimation->iNbFrames - myData.iCurrentFrame),
-		fOffsetY + myData.iCurrentPositionY + pAnimation->iFrameHeight * (-.5 * pAnimation->iNbDirections + 1 + (myData.iCurrentDirection)),
+	glTranslatef ((fOffsetX + myData.iCurrentPositionX + pAnimation->iFrameWidth * (.5 * pAnimation->iNbFrames - myData.iCurrentFrame)) * fScale,
+		(fOffsetY * fScale + myData.iCurrentPositionY + pAnimation->iFrameHeight * (-.5 * pAnimation->iNbDirections + 1 + (myData.iCurrentDirection)) * fScale),
 		0.);
 	
 	glColor4f (1., 1., 1., 1.);
@@ -136,7 +136,29 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		if (! cairo_dock_begin_draw_icon (myIcon, myContainer))
 			return ;
 		
-		_penguin_draw_texture (myApplet, pAnimation, 0*iWidth/2, -iHeight/2, (1 + g_fAmplitude) / fScale);
+		///_penguin_draw_texture (myApplet, pAnimation, iWidth/2, -iHeight/2, 1./*(1 + g_fAmplitude) / fScale*/);
+		g_return_if_fail (pAnimation->iTexture != 0);
+		double fOffsetX = 0;
+		double fOffsetY = 0;
+		fScale = (1 + g_fAmplitude) / fScale;
+		glEnable (GL_SCISSOR_TEST);
+		glScalef (1., -1., 1.);
+		glScissor ((fOffsetX + myData.iCurrentPositionX) * fScale,
+			(fOffsetY * fScale + myData.iCurrentPositionY) * fScale,
+			pAnimation->iFrameWidth * fScale,
+			pAnimation->iFrameHeight * fScale);
+		
+		glTranslatef ((fOffsetX + myData.iCurrentPositionX + pAnimation->iFrameWidth * (.5 * pAnimation->iNbFrames - myData.iCurrentFrame)) * fScale,
+			(fOffsetY * fScale + myData.iCurrentPositionY + pAnimation->iFrameHeight * (-.5 * pAnimation->iNbDirections + 1 + (myData.iCurrentDirection)) * fScale),
+			0.);
+		
+		glScalef (1., -1., 1.);
+		glColor4f (1., 1., 1., 1.);
+		cairo_dock_draw_texture (pAnimation->iTexture,
+			pAnimation->iFrameWidth * pAnimation->iNbFrames * fScale,
+			pAnimation->iFrameHeight * pAnimation->iNbDirections * fScale);
+		
+		glDisable (GL_SCISSOR_TEST);
 		
 		cairo_dock_end_draw_icon (myIcon, myContainer);
 	}

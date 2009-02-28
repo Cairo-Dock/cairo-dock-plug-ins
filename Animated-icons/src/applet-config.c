@@ -52,6 +52,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	for (i=0; i<4; i++)
 		myConfig.pMeshColor[i] = pMeshColor[i];
 	
+	//myConfig.bContinueWobbly = CD_CONFIG_GET_BOOLEAN ("Wobbly", "continue");
 	myConfig.iInitialStrecth = CD_CONFIG_GET_INTEGER ("Wobbly", "stretch");
 	myConfig.fSpringConstant = CD_CONFIG_GET_DOUBLE ("Wobbly", "spring cst");
 	myConfig.fFriction = CD_CONFIG_GET_DOUBLE ("Wobbly", "friction");

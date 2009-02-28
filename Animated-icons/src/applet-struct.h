@@ -49,6 +49,7 @@ struct _AppletConfig {
 	gint iRaysParticleSize;
 	gdouble fRaysParticleSpeed;
 	
+	gboolean bContinueWobbly;
 	gint iNbGridNodes;
 	CDAnimationsStretchType iInitialStrecth;
 	gdouble fSpringConstant;

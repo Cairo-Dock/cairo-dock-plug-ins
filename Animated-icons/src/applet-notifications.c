@@ -339,11 +339,11 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	if (pData->bIsWobblying)
 	{
 		if (bUseOpenGL)
-			pData->bIsWobblying = cd_animations_update_wobbly (pData, dt);
+			pData->bIsWobblying = cd_animations_update_wobbly (pData, dt, _will_continue (myConfig.bContinueWobbly));
 		else
-			pData->bIsWobblying = cd_animations_update_wobbly_cairo (pIcon, pDock, pData, _will_continue (FALSE));
+			pData->bIsWobblying = cd_animations_update_wobbly_cairo (pIcon, pDock, pData, _will_continue (myConfig.bContinueWobbly));
 		
-		if (! pData->bIsWobblying && _will_continue (FALSE))
+		if (! pData->bIsWobblying && _will_continue (myConfig.bContinueWobbly))
 		{
 			pData->iNumRound --;
 			cd_animations_init_wobbly (pData, bUseOpenGL);

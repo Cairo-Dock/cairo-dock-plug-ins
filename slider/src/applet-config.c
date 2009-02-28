@@ -27,6 +27,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bNoStretch 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "no stretch");
 	myConfig.bFillIcon 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "fill icon");
 	myConfig.iAnimation 		= CD_CONFIG_GET_INTEGER ("Configuration", "change animation");
+	myConfig.iNbAnimationStep 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb step", 20);
 	myConfig.iClickOption 		= CD_CONFIG_GET_INTEGER ("Configuration", "click");
 	
 	myConfig.bUseThread = CD_CONFIG_GET_BOOLEAN ("Configuration", "use thread");
@@ -46,6 +47,14 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_measure_timer (myData.pMeasureImage);
 	cd_slider_free_images_list (myData.pList);
 	
-	cairo_surface_destroy (myData.pCairoSurface);
-	cairo_surface_destroy (myData.pPrevCairoSurface);
+	if (myData.pPrevCairoSurface != NULL && myData.pPrevCairoSurface != myData.pCairoSurface)
+		cairo_surface_destroy (myData.pPrevCairoSurface);
+	if (myData.pCairoSurface != NULL)
+		cairo_surface_destroy (myData.pCairoSurface);
+	
+	if (myData.iPrevTexture != 0 && myData.iPrevTexture != myData.iTexture)
+		glDeleteTextures (1, &myData.iPrevTexture);
+	if (myData.iTexture != 0)
+		glDeleteTextures (1, &myData.iTexture);
+	
 CD_APPLET_RESET_DATA_END

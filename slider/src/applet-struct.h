@@ -25,23 +25,12 @@ typedef enum {
 	SLIDER_NB_CLICK_OPTION
 } SliderClickOption;
 
-typedef enum {
-	SLIDER_ORIENTATION_NORMAL=1,
-	SLIDER_ORIENTATION_HFLIP,
-	SLIDER_ORIENTATION_ROT_180,
-	SLIDER_ORIENTATION_VFLIP,
-	SLIDER_ORIENTATION_ROT_90_HFLIP,
-	SLIDER_ORIENTATION_ROT_90,
-	SLIDER_ORIENTATION_ROT_90_VFLIP,
-	SLIDER_ORIENTATION_ROT_270
-} SliderOrientation;
-
 typedef struct {
 	double fImgX;
 	double fImgY;
 	double fImgW;
 	double fImgH;
-} myImgLips;
+} SliderImageArea;
 
 typedef enum {
 	SLIDER_UNKNOWN_FORMAT = 0,
@@ -52,15 +41,6 @@ typedef enum {
 	SLIDER_XPM,
 	SLIDER_NB_IMAGE_FORMAT
 } SliderImageFormat;
-
-typedef enum {
-	SLIDER_PERSONNAL = 0,
-	SLIDER_FRAME_REFLECTS,
-	SLIDER_SCOTCH,
-	SLIDER_FRAME_SCOTCH,
-	SLIDER_NB_DECORATIONS
-} SliderDecoration;
-
 
 typedef struct {
 	gchar *cPath;
@@ -80,28 +60,30 @@ struct _AppletConfig {
 	gboolean bImageName;
 	gdouble pBackgroundColor[4];
 	SliderAnimation iAnimation;
+	gint iNbAnimationStep;
 	SliderClickOption iClickOption;
-	gboolean bUseThread;
+	gboolean bUseThread;  // plante sur certaines images (svg) dans X :-(
 } ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	GList *pList;
-	GList *pElement;
+	GList *pList;  // list d'images.
+	GList *pElement;  // pointeur sur l'element courant de la liste.
+	gint iTimerID;  // timer d'attente de la prochaine image.
 	gboolean bPause;
-	gdouble fAnimAlpha;
-	gdouble fAnimCNT;
+	gdouble fAnimAlpha;  // ces 3 variables sont pour les animations.
 	gint iAnimCNT;
-	gint iAnimTimerID;
-	gint iTimerID;
-	myImgLips pImgL;
-	myImgLips pPrevImgL;
-	cairo_surface_t* pCairoSurface;
-	cairo_surface_t* pPrevCairoSurface;
-	gdouble fSurfaceWidth, fSurfaceHeight;
-	SliderAnimation iAnimation;
-	CairoDockMeasure *pMeasureDirectory;
-	CairoDockMeasure *pMeasureImage;
+	gint sens;
+	SliderImageArea slideArea;  // aire de l'image courante.
+	SliderImageArea prevSlideArea;  // aire de l'image precedente.
+	cairo_surface_t* pCairoSurface;  // surface courante.
+	cairo_surface_t* pPrevCairoSurface;  // surface precedente.
+	GLuint iTexture;  // texture courante.
+	GLuint iPrevTexture;  // texture precedente.
+	gint iSurfaceWidth, iSurfaceHeight;  // dimension de la zone de dessin.
+	SliderAnimation iAnimation;  // animation de transition courante.
+	CairoDockMeasure *pMeasureDirectory;  // mesure pour parcourir le repertoire courant.
+	CairoDockMeasure *pMeasureImage;  // mesure pour charger l'image courante.
 } ;
 
 

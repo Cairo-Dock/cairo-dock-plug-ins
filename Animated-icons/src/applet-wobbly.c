@@ -97,7 +97,7 @@ void cd_animations_init_wobbly (CDAnimationData *pData,gboolean  bUseOpenGL)
 	dx = pNode2->x - pNode->x;\
 	dy = pNode2->y - pNode->y;\
 	l = sqrt (dx*dx + dy*dy);\
-	if (l > 1.5e6*l0) {\
+	if (0 && l > 1.5*l0) {\
 	dx /= l/(l0/2/sqrt(2));\
 	dy /= l/(l0/2/sqrt(2));\
 	l = 1.5*l0;}\
@@ -112,7 +112,7 @@ void cd_animations_init_wobbly (CDAnimationData *pData,gboolean  bUseOpenGL)
     k_3 = f ( t_n + {h / 2}, y_n + {h / 2} k_2 )
     k_4 = f ( t_n + h, y_n + h k_3)*/
 
-gboolean cd_animations_update_wobbly (CDAnimationData *pData, double dt)
+gboolean cd_animations_update_wobbly (CDAnimationData *pData, double dt, gboolean bWillContinue)
 {
 	const int n = 20;
 	double k = myConfig.fSpringConstant;
@@ -313,8 +313,9 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		
 		///glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
 		glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
-		glColor4f(1.0f, 1.0f, 1.0f, 1.);
 		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
+		glBlendFuncSeparate (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA,
+			GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glEnable(GL_MAP2_TEXTURE_COORD_2);
 		glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2,
