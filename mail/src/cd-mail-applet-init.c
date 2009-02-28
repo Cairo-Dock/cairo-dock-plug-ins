@@ -211,7 +211,7 @@ static void _load_theme (CairoDockModuleInstance *myApplet, GError **erreur)
 		cd_warning ("Attention : couldn't find images, this theme is not valid");
 	}
 
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
 	{
 		if (myConfig.cNoMailUserImage != NULL)
 			myData.iNoMailTexture = cairo_dock_create_texture_from_image(myConfig.cNoMailUserImage);
@@ -219,7 +219,7 @@ static void _load_theme (CairoDockModuleInstance *myApplet, GError **erreur)
 			myData.iHasMailTexture = cairo_dock_create_texture_from_image(myConfig.cHasMailUserImage);
 
 		myData.iCubeCallList = cd_mail_load_cube_calllist();
-		myData.iCapsuleCallList = cd_mail_load_capsule_calllist();
+		myData.iCapsuleCallList = 0;//cd_mail_load_capsule_calllist();
 	}
 	else
 	{
@@ -261,7 +261,7 @@ CD_APPLET_INIT_BEGIN
 
 	cd_mail_update_status( myApplet );
 
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
 	{
 		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_mail_update_icon , CAIRO_DOCK_RUN_FIRST, myApplet);
 	}
@@ -303,7 +303,7 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (MAIL_DEFAULT_NAME);
 		}
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
 		{
 			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_mail_update_icon , CAIRO_DOCK_RUN_FIRST, myApplet);
 		}

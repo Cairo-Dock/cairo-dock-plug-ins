@@ -188,7 +188,7 @@ _mail_draw_main_icon (CairoDockModuleInstance *myApplet, gchar **mailbox_names, 
         }
 	}
 
-  if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+  if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
   {
     if( myData.iNbUnreadMails > 0 )
     {
@@ -246,10 +246,12 @@ void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet)
 	int iWidth = (int) myIcon->fWidth / fRatio * fMaxScale;
 	int iHeight = (int) myIcon->fHeight / fRatio * fMaxScale;
 
+  cd_debug( "iWidth=%d iHeight=%d", iWidth, iHeight);
+  
 	glPushMatrix ();
 
   glScalef(0.8*iWidth, 0.8*iHeight, 0.8*iWidth);
-  glTranslatef(0.6, 0.7, -1.0);
+  glTranslatef(0., 0., -1.0);
 
   glRotatef(myData.current_rotX, 1.0f, 0.0f, 0.0f);  /* rotate on the X axis */
   glRotatef(myData.current_rotY, 0.0f, 1.0f, 0.0f);  /* rotate on the Y axis */
