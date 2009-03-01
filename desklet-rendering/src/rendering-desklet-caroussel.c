@@ -394,6 +394,21 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 	}
 }
 
+static gint _caroussel_compare_icons_depths(gconstpointer a, gconstpointer b)
+{
+	const _CarousselPositionedIcon *pSortedIcon1 = (const _CarousselPositionedIcon*)a;
+	const _CarousselPositionedIcon *pSortedIcon2 = (const _CarousselPositionedIcon*)b;
+
+	// calcul de la profondeur pour ces icones
+	double Zicon1 = sin (pSortedIcon1->fTheta);
+	double Zicon2 = sin (pSortedIcon2->fTheta);
+
+	if( Zicon1 < Zicon2 ) return -1;
+	else if( Zicon1 > Zicon2 ) return 1;
+
+	return 0;
+}
+
 void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
@@ -409,24 +424,34 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 	int iFrameHeight = pCaroussel->iFrameHeight;
 	double fExtraWidth = pCaroussel->fExtraWidth;
 	double a = pCaroussel->a, b = pCaroussel->b;
+
+	cd_debug( "iFrameHeight = %d, fExtraWidth = %f",iFrameHeight , fExtraWidth );
+	cd_debug( "pCaroussel->a = %f, pCaroussel->b = %f",pCaroussel->a , pCaroussel->b );
 	
 	Icon *pIcon;
-	GList *ic;
+	GList *ic, *ic2;
 
 	if (pCaroussel->b3D)
 	{
+		double fCentralSphereWidth, fCentralSphereHeight;
+		fCentralSphereWidth = MAX (1, (pDesklet->iWidth - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
+		fCentralSphereHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
+		
+		a = MAX (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iWidth;
+		b = MIN (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iHeight;
+
 		glPushMatrix ();
 		glEnable(GL_DEPTH_TEST);
 		glEnable (GL_BLEND);
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend le cube transparent.
 
+		//\____________________ On dessine l'icone au milieu, mais seulement les parties opaques
 	  glAlphaFunc ( GL_GREATER, 0.1 ) ;
     glEnable ( GL_ALPHA_TEST ) ;
-
-		//\____________________ On dessine l'icone au milieu
 		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet));
+    glDisable ( GL_ALPHA_TEST ) ;
 
-		glTranslatef( 0., -b/2., 0. );
+		glTranslatef( 0., 0., -b/2. );
 		glRotatef( 10., 1., 0., 0. );
 
 		glPolygonMode (GL_FRONT, GL_FILL);
@@ -442,30 +467,52 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		glEnd();
 		glColor4f(1., 1., 1., 1.);
 
-		//\____________________ On dessine les icones autour
 		gboolean bFlip = (pDesklet->pIcon->fHeight > pDesklet->pIcon->fWidth);
+
+		//\________ On trie les icones par profondeur
+		
+		GList *pListSortedIcons = NULL;
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 		{
-			pIcon = ic->data;
-			
-			glPushMatrix ();
-			
-			//\____________________ On se decale au bon endroit
-			glTranslatef (a * cos (fTheta) /*- pIcon->fWidth/2*/,
-										0.,
-										b * sin (fTheta));
+			_CarousselPositionedIcon *pSortedIcon = g_new0 (_CarousselPositionedIcon, 1);
+			pSortedIcon->pIcon = (Icon *)(ic->data);
+			pSortedIcon->fTheta = fTheta;
 
-			//\____________________ Et on dessine l'icone
-			_render_one_icon_and_quickinfo_opengl (pIcon, CAIRO_CONTAINER (pDesklet));
+			pListSortedIcons = g_list_insert_sorted(pListSortedIcons, pSortedIcon, _caroussel_compare_icons_depths);
 			
-			glPopMatrix ();
-
 			fTheta += fDeltaTheta;
 			if (fTheta >= G_PI/2 + 2*G_PI)
 				fTheta -= 2*G_PI;
 		}
+
+		//\____________________ On dessine les icones autour
+		for (ic = pListSortedIcons; ic != NULL; ic = ic->next)
+		{
+			_CarousselPositionedIcon *pSortedIcon = ic->data;
+			pIcon = pSortedIcon->pIcon;
+			fTheta = pSortedIcon->fTheta;
+			
+			glPushMatrix ();
+			
+			//\____________________ On se decale au bon endroit
+			glTranslatef ((bFlip?b:a) * cos (fTheta) /*- pIcon->fWidth/2*/,
+										0.,
+										(bFlip?a:b) * sin (fTheta));
+
+			//\____________________ On calcule la transparence qui va bien
+			//  ici on se base sur la profondeur, representee par sin(fTheta) ici
+			//    Si sin(fTheta)+0.4 > 1., donc si l'objet est assez proche de nous ==> opaque
+			//    Si sin(fTheta)+0.4 < 0., donc assez profond ==> on cache
+			double alphaIcon = MAX(MIN(sin (fTheta) + 0.4, 1.), 0.);
+			glColor4f(1., 1., 1., alphaIcon);
+			
+			//\____________________ Et on dessine l'icone
+			_render_one_icon_and_quickinfo_opengl (pIcon, CAIRO_CONTAINER (pDesklet));
+			glColor4f(1., 1., 1., 1.);
+			
+			glPopMatrix ();
+		}
 		
-    glDisable ( GL_ALPHA_TEST ) ;
 		glDisable(GL_DEPTH_TEST);
 		glDisable (GL_BLEND);
 		glPopMatrix ();

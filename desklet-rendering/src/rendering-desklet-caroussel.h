@@ -23,6 +23,10 @@ typedef struct {
 	gint iRotationCount;
 	} CDCarousselParameters;
 
+typedef struct {
+	Icon *pIcon;
+	double fTheta;
+	} _CarousselPositionedIcon;
 
 CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
 
