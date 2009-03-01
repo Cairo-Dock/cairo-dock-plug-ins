@@ -417,17 +417,8 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		return ;
 	
 	double fTheta = G_PI/2 + pCaroussel->fRotationAngle, fDeltaTheta = pCaroussel->fDeltaTheta;
-	
-	int iEllipseHeight = pCaroussel->iEllipseHeight;
-	double fInclinationOnHorizon = pCaroussel->fInclinationOnHorizon;
-	
-	int iFrameHeight = pCaroussel->iFrameHeight;
-	double fExtraWidth = pCaroussel->fExtraWidth;
 	double a = pCaroussel->a, b = pCaroussel->b;
 
-	cd_debug( "iFrameHeight = %d, fExtraWidth = %f",iFrameHeight , fExtraWidth );
-	cd_debug( "pCaroussel->a = %f, pCaroussel->b = %f",pCaroussel->a , pCaroussel->b );
-	
 	Icon *pIcon;
 	GList *ic, *ic2;
 
@@ -437,8 +428,8 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		fCentralSphereWidth = MAX (1, (pDesklet->iWidth - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
 		fCentralSphereHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
 		
-		a = MAX (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iWidth;
-		b = MIN (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iHeight;
+		a = fCentralSphereWidth/2 + .1*pDesklet->iWidth;
+		b = fCentralSphereHeight/2 + .1*pDesklet->iHeight;
 
 		glPushMatrix ();
 		glEnable(GL_DEPTH_TEST);
@@ -467,8 +458,6 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		glEnd();
 		glColor4f(1., 1., 1., 1.);
 
-		gboolean bFlip = (pDesklet->pIcon->fHeight > pDesklet->pIcon->fWidth);
-
 		//\________ On trie les icones par profondeur
 		
 		GList *pListSortedIcons = NULL;
@@ -495,9 +484,9 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			glPushMatrix ();
 			
 			//\____________________ On se decale au bon endroit
-			glTranslatef ((bFlip?b:a) * cos (fTheta) /*- pIcon->fWidth/2*/,
+			glTranslatef (a * cos (fTheta) /*- pIcon->fWidth/2*/,
 										0.,
-										(bFlip?a:b) * sin (fTheta));
+										b * sin (fTheta));
 
 			//\____________________ On calcule la transparence qui va bien
 			//  ici on se base sur la profondeur, representee par sin(fTheta) ici
@@ -523,7 +512,6 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet));
 
 		//\____________________ On dessine les icones autour
-		gboolean bFlip = (pDesklet->pIcon->fHeight > pDesklet->pIcon->fWidth);
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
@@ -531,8 +519,8 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			glPushMatrix ();
 			
 			//\____________________ On se decale au bon endroit
-			glTranslatef ((bFlip ? b : a) * cos (fTheta) /*- pIcon->fWidth/2*/,
-										(bFlip ? a : b) * sin (fTheta) - pIcon->fHeight/2 + myLabels.iconTextDescription.iSize,
+			glTranslatef (a * cos (fTheta) /*- pIcon->fWidth/2*/,
+										b * sin (fTheta) - pIcon->fHeight/2 + myLabels.iconTextDescription.iSize,
 										0.);
 
 			//\____________________ Et on dessine l'icone
