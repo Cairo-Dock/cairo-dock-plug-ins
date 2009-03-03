@@ -42,7 +42,6 @@ void cd_songbird_getSongInfos (void)
 void cd_songbird_free_data (void) //Permet de libéré la mémoire prise par notre controleur
 {
 	musicplayer_dbus_disconnect_from_bus();
-	cd_musicplayer_free_handeler(myData.pCurrentHandeler);
 }
 
 /* Controle du lecteur */
