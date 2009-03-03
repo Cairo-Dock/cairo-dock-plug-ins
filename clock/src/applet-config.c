@@ -14,6 +14,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-theme.h"
 #include "applet-config.h"
 
+#define CD_CLOCK_TIMEZONE_DIR "/usr/share/zoneinfo"
+static GList *s_pTimeZoneList = NULL;
+
 #define CD_CLOCK_NB_FREQUENCIES 12
 
 
@@ -130,8 +133,9 @@ CD_APPLET_RESET_DATA_BEGIN
 CD_APPLET_RESET_DATA_END
 
 
-
-
+  ///////////////
+ /// ALARMES ///
+///////////////
 #define _add_new_entry(cEntryName, cEntryType, cDescription, cValue) do {\
 	g_string_printf (sKeyName, cEntryName"%d", iNumNewAlarm);\
 	g_key_file_set_string (pKeyFile, cGroupName, sKeyName->str, cValue);\
@@ -225,8 +229,153 @@ static void _cd_clock_remove_alarm (GtkButton *button, CairoDockModuleInstance *
 	
 	//\____________ On recharge le panneau de config.
 	cairo_dock_reload_current_group_widget (myApplet);
-
 }
+
+  /////////////////
+ /// LOCATIONS ///
+/////////////////
+static void _cd_clock_select_location (GtkMenuItem *pMenuItem, gpointer *data)
+{
+	CairoDockModuleInstance *myApplet = data[0];
+	gchar *cLocationPath = data[1];
+	g_return_if_fail (cLocationPath != NULL);
+	g_print ("%s (%s, %s)\n", __func__, cLocationPath, myApplet->cConfFilePath);
+	
+	//\____________________ On met a jour le panneau de conf.
+	GtkWidget *pLocationEntry = cairo_dock_get_widget_from_name ("Module", "location");
+	gtk_entry_set_text (GTK_ENTRY (pLocationEntry), cLocationPath);
+	
+	cd_clock_free_timezone_list ();
+}
+
+static void _cd_clock_delete_menu (GtkMenuShell *menu, gpointer data)
+{
+	g_print ("%s ()\n", __func__);
+}
+
+static int _cd_clock_compare_path_order (gpointer *data1, gpointer *data2) {
+	gchar *cPath1 = data1[1], *cPath2 = data2[1];
+	if (cPath1 == NULL)
+		return -1;
+	if (cPath2 == NULL)
+		return 1;
+	gchar *cURI_1 = g_ascii_strdown (cPath1, -1);
+	gchar *cURI_2 = g_ascii_strdown (cPath2, -1);
+	int iOrder = strcmp (cURI_1, cURI_2);
+	g_free (cURI_1);
+	g_free (cURI_2);
+	return iOrder;
+}
+static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentLocation, GtkWidget *pMenu, GList *pLocationPathList, CairoDockModuleInstance *myApplet)
+{
+	//\__________________ Ouverture du (sous-)repertoire.
+	GError *erreur = NULL;
+	GDir *dir = g_dir_open (cDirPath, 0, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("clock : %s", erreur->message);
+		g_error_free (erreur);
+		return pLocationPathList;
+	}
+	
+	//\__________________ On parcourt ce repertoire et on met tout dans une liste temporaire.
+	GList *pPathList = pLocationPathList;
+	GtkWidget *pMenuItem, *pSubMenu;
+	const gchar *cFileName;
+	GString *sFilePath = g_string_new ("");
+	gchar *cLocationPath;
+	gpointer *data;
+	GList *pLocalList = NULL;  // liste temporaire ordonnee.
+	gpointer *pLocalData;
+	while ((cFileName = g_dir_read_name (dir)) != NULL)
+	{
+		// on saute les trucs inutiles.
+		if (g_str_has_suffix (cFileName, ".tab") || strcmp (cFileName, "posix") == 0 || strcmp (cFileName, "right") == 0)
+			continue;
+		
+		// on cree une nouvelle entree au menu, mais on ne la rajoute pas encore, on la stocke juste dans une liste temporaire, ordonnee par ordre alphabetique sur cFileName.
+		pMenuItem = gtk_menu_item_new_with_label (cFileName);
+		pLocalData = g_new (gpointer, 2);
+		pLocalData[0] = pMenuItem;
+		pLocalData[1] = cFileName;
+		pLocalList = g_list_insert_sorted (pLocalList, pLocalData, (GCompareFunc) _cd_clock_compare_path_order);
+		
+		// location de cette entree.
+		if (cCurrentLocation != NULL)
+			cLocationPath = g_strdup_printf ("%s/%s", cCurrentLocation, cFileName);
+		else
+			cLocationPath = g_strdup_printf (":%s", cFileName);
+		
+		// si c'est un menu, on le parcourt et le menu item pointe sur le sous-menu, sinon il devient cliquable.
+		g_string_printf (sFilePath, "%s/%s", cDirPath, cFileName);
+		if (g_file_test (sFilePath->str, G_FILE_TEST_IS_DIR))
+		{
+			pSubMenu = gtk_menu_new ();
+			gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), pSubMenu);
+			pPathList = _cd_clock_parse_dir (sFilePath->str, cLocationPath, pSubMenu, pPathList, myApplet);
+			g_free (cLocationPath);
+		}
+		else
+		{
+			data = g_new (gpointer, 2);
+			data[0] = myApplet;
+			data[1] = cLocationPath;
+			pPathList = g_list_prepend (pPathList, data);
+			g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_cd_clock_select_location), data);
+		}
+	}
+	
+	//\__________________ Maintenant qu'on a toutes les entrees de ce menu classes, on les insere dans l'ordre.
+	GList *l;
+	for (l = pLocalList; l != NULL; l = l->next)
+	{
+		pLocalData = l->data;
+		gtk_menu_shell_append (GTK_MENU_SHELL (pMenu), pLocalData[0]);
+		g_free (pLocalData);  // le filename appartient au GDir.
+	}
+	g_list_free (pLocalList);
+	
+	g_string_free (sFilePath, TRUE);
+	g_dir_close (dir);
+	return pPathList;
+}
+static void _cd_clock_search_for_location (GtkButton *pButton, CairoDockModuleInstance *myApplet)
+{
+	GtkWidget *pMenu = gtk_menu_new ();
+	if (s_pTimeZoneList != NULL)
+		cd_clock_free_timezone_list ();
+	s_pTimeZoneList = _cd_clock_parse_dir (CD_CLOCK_TIMEZONE_DIR, NULL, pMenu, NULL, myApplet);
+	gtk_widget_show_all (pMenu);
+	
+	g_signal_connect_after (G_OBJECT (pMenu),
+		"deactivate",
+		G_CALLBACK (_cd_clock_delete_menu),
+		NULL);
+	
+	gtk_menu_popup (GTK_MENU (pMenu),
+		NULL,
+		NULL,
+		NULL,
+		NULL,
+		1,
+		gtk_get_current_event_time ());
+}
+
+void cd_clock_free_timezone_list (void)
+{
+	cd_debug ("");
+	gpointer *data;
+	GList *e;
+	for (e = s_pTimeZoneList; e != NULL; e = e->next)
+	{
+		data = e->data;
+		g_free (data[1]);
+		g_free (data);
+	}
+	g_list_free (s_pTimeZoneList);
+	s_pTimeZoneList = NULL;
+}
+
 void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {
 	g_print ("%s (%s)\n", __func__, myIcon->acName);
@@ -256,6 +405,19 @@ void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 		FALSE,
 		FALSE,
 		0);
+	
+	//\____________ On recupere le widget de la location (un gtk_entry).
+	GtkWidget *pLocationEntry = cairo_dock_get_widget_from_name ("Module", "location");
+	g_return_if_fail (pLocationEntry != NULL);
+	
+	GtkWidget *pWidgetBox = gtk_widget_get_parent (pLocationEntry);
+	
+	GtkWidget *pLabel = gtk_label_new (D_("Search for your location :"));
+	gtk_box_pack_start (GTK_BOX (pWidgetBox), pLabel, FALSE, FALSE, 0);
+	
+	GtkWidget *pLocationButton = gtk_button_new_from_stock (GTK_STOCK_FIND);
+	gtk_box_pack_start (GTK_BOX (pWidgetBox), pLocationButton, FALSE, FALSE, 0);
+	g_signal_connect (pLocationButton, "clicked", G_CALLBACK (_cd_clock_search_for_location), myApplet);
 }
 
 

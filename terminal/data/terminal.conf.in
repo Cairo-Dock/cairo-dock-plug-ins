@@ -2,21 +2,15 @@
 
 #[gtk-about]
 [Icon]
-#F[Size of the icon you wish this applet has (in pixels)]
-frame1 =
-#i width :
-width = 32
-#i height :
-height = 32
-
-#F
-frame1_fin =
+#j[0;128] Desired icon size for this applet
+icon size = 48;48
 
 #s Name of the icon as it will appear in its label in cairo-dock :
 name = terminal
 
-#S Icon's name :
-icon = gnome-terminal
+#S+ Image's filename :
+#{Let empty to use the default one.}
+icon = 
 
 #d Name of the dock it belongs to:
 dock name = 

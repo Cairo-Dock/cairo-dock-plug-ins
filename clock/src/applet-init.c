@@ -26,7 +26,6 @@ CD_APPLET_PRE_INIT_END
 
 
 CD_APPLET_INIT_BEGIN
-	//\_______________ On charge nos surfaces.
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
@@ -35,6 +34,7 @@ CD_APPLET_INIT_BEGIN
 	if (myConfig.cLocation != NULL)
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1);
 	
+	//\_______________ On charge notre theme.
 	cd_clock_load_theme (myApplet);
 	cd_clock_load_back_and_fore_ground (myApplet);
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
@@ -52,8 +52,11 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle)
-		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_clock_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle && myConfig.bShowSeconds)
+	{
+		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
+		cairo_dock_launch_animation (myContainer);
+	}
 	
 	//\_______________ On lance le timer.
 	cd_clock_update_with_time (myApplet);
@@ -66,7 +69,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_clock_update_icon_slow, myApplet);
+	CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 	
 	//\_______________ On stoppe le timer.
 	g_source_remove (myData.iSidUpdateClock);
@@ -90,7 +93,7 @@ CD_APPLET_RELOAD_BEGIN
 		//\_______________ On stoppe le timer.
 		g_source_remove (myData.iSidUpdateClock);
 		myData.iSidUpdateClock = 0;
-		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_clock_update_icon_slow, myApplet);
+		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 		//\_______________ On efface tout
 		cd_clock_clear_theme (myApplet, TRUE);
 		//\_______________ On charge notre theme.
@@ -107,8 +110,11 @@ CD_APPLET_RELOAD_BEGIN
 		if (myConfig.cLocation != NULL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1);
 		
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle)
-			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_clock_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle && myConfig.bShowSeconds)
+		{
+			CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
+			cairo_dock_launch_animation (myContainer);
+		}
 		
 		//\_______________ On relance le timer.
 		cd_clock_update_with_time (myApplet);

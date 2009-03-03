@@ -4,13 +4,8 @@
 [Icon]
 
 #F[Icon size]
-frame1 = 
-#i+ Width :
-width = 48
-#i+ Height :
-height = 48
-#F
-frame1_fin = 
+#j[0;128] Desired icon size for this applet
+icon size = 48;48
 
 #s Icon name :
 name = Battery

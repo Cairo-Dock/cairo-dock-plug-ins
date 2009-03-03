@@ -15,6 +15,7 @@ typedef enum {
 	SLIDER_DIAPORAMA,
 	SLIDER_GROW_UP,
 	SLIDER_SHRINK_DOWN,
+	SLIDER_CUBE,
 	SLIDER_RANDOM,
 	SLIDER_NB_ANIMATION
 } SliderAnimation;
@@ -84,6 +85,8 @@ struct _AppletData {
 	SliderAnimation iAnimation;  // animation de transition courante.
 	CairoDockMeasure *pMeasureDirectory;  // mesure pour parcourir le repertoire courant.
 	CairoDockMeasure *pMeasureImage;  // mesure pour charger l'image courante.
+	guint iScrollID;
+	gint iNbScroll;
 } ;
 
 

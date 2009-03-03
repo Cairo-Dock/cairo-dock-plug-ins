@@ -26,10 +26,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	if (myIcon->acFileName == NULL)  // set a default icon if none is specified.
-	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
-	}
+	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	myData.pMenu = create_main_menu (myApplet);
 	
@@ -66,12 +63,9 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myIcon->acFileName == NULL)
-		{
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);  // set a default icon if none is specified.
-		}
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, NULL);
+		cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, NULL);  // shortkey were unbinded during reset_config.
 		cd_keybinder_bind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch, NULL);
 		
 		if (myData.pMenu != NULL && myConfig.bHasIcons != myData.bIconsLoaded)
@@ -84,6 +78,5 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			myData.pMenu = create_main_menu (myApplet);
 		}
-		
 	}
 CD_APPLET_RELOAD_END

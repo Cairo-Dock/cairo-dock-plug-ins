@@ -39,12 +39,11 @@ CD_APPLET_INIT_BEGIN
 		myApplet);  // 0 <=> one shot measure.
 	cairo_dock_launch_measure_delayed (myData.pMeasureDirectory, 1500.);
 	
-	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_slider_update_icon, CAIRO_DOCK_RUN_FIRST, myApplet);
-	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
+	CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;
 CD_APPLET_INIT_END
 
 
@@ -54,10 +53,12 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
+	CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 	
 	if (myData.iTimerID != 0)
 		g_source_remove (myData.iTimerID);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_slider_update_icon, myApplet);
+	if (myData.iScrollID != 0)
+		g_source_remove (myData.iScrollID);
 CD_APPLET_STOP_END
 
 
@@ -68,7 +69,11 @@ CD_APPLET_RELOAD_BEGIN
 		g_source_remove(myData.iTimerID);
 		myData.iTimerID = 0;
 	}
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_slider_update_icon, myApplet);
+	if (myData.iScrollID != 0) {
+		g_source_remove (myData.iScrollID);
+		myData.iScrollID = 0;
+	}
+	CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 	
 	cairo_surface_destroy (myData.pCairoSurface);
 	myData.pCairoSurface = NULL;
@@ -100,5 +105,5 @@ CD_APPLET_RELOAD_BEGIN
 		//Nothing to do ^^
 		cd_slider_next_slide (myApplet); //restart sliding
 	}
-	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_slider_update_icon, CAIRO_DOCK_RUN_FIRST, myApplet);
+	CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;
 CD_APPLET_RELOAD_END

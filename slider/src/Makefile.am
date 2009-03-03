@@ -17,6 +17,8 @@ libcd_slider_la_SOURCES = \
 	applet-notifications.h\
 	applet-slider.c\
 	applet-slider.h\
+	applet-transitions.c\
+	applet-transitions.h\
 	applet-struct.h
 
 
@@ -37,8 +39,9 @@ libcd_slider_la_CFLAGS = \
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-DCD_APPLET_MULTI_INSTANCE=\"1\"\
-	-std=c99\
+	-DGL_GLEXT_PROTOTYPES=\""1"\"\
 	-Werror-implicit-function-declaration\
+	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall
 

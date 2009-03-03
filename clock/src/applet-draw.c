@@ -30,6 +30,9 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 
 gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 {
+	if (cairo_dock_is_loading ())  // soyons gentils, laissons le dock se charger.
+		return TRUE;
+	
 	//\________________ On recupere l'heure courante.
 	time_t epoch = (time_t) time (NULL);
 	if (myConfig.cLocation != NULL)
@@ -55,7 +58,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	if (myConfig.bOldStyle)
 	{
 		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-			cd_clock_render_analogic_to_texture (myApplet, iWidth, iHeight, &myData.currentTime);
+			cd_clock_render_analogic_to_texture (myApplet, iWidth, iHeight, &myData.currentTime, 0.);
 		else
 			cd_clock_draw_analogic (myApplet, iWidth, iHeight, &myData.currentTime);
 	}
@@ -95,10 +98,6 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	
 	//\________________ On redessine notre icone.
 	CD_APPLET_REDRAW_MY_ICON;
-	
-	//\_______________ On lance l'animation "smooth" si ce n'etait pas deja fait.
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle)
-		cairo_dock_launch_animation (myContainer);
 	
 	//\________________ On teste les alarmes.
 	if (!myConfig.bShowSeconds || myData.currentTime.tm_min != myData.iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement à exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.
@@ -341,87 +340,56 @@ void cd_clock_draw_analogic (CairoDockModuleInstance *myApplet, int iWidth, int 
 
 
 
-void cd_clock_draw_analogic_opengl (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
+void cd_clock_draw_analogic_opengl (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime, double fFraction)
 {
 	int iSeconds = pTime->tm_sec;
 	int iMinutes = pTime->tm_min;
 	int iHours = pTime->tm_hour;
 	
-	glEnable (GL_BLEND);
-	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);  // ne me demandez pas pourquoi...
+	_cairo_dock_enable_texture ();
 	
-	glEnable (GL_TEXTURE_2D);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	
-	glPolygonMode (GL_FRONT, GL_FILL);
+	_cairo_dock_set_blend_over ();  // bof
+	//_cairo_dock_set_blend_alpha ();  // pas mal
+	//glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);  // mieux, ne me demandez pas pourquoi...
 	
 	// draw texture bg
-	glPushMatrix ();
-	glScalef (iWidth, iHeight, 1.);
-	cairo_dock_apply_texture (myData.iBgTexture);
-	glPopMatrix ();
+	_cairo_dock_apply_texture_at_size_with_alpha (myData.iBgTexture, iWidth, iHeight, 1.);
 	
 	// heure
 	glPushMatrix ();
 	glRotatef (-(iHours % 12 + iMinutes/60.) * 30. + 90., 0., 0., 1.);
 	glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, 0., 0.);
-	glScalef (myData.iNeedleWidth, myData.iNeedleHeight+1, 1.);
-	cairo_dock_apply_texture (myData.iHourNeedleTexture);
+	cairo_dock_apply_texture_at_size (myData.iHourNeedleTexture, myData.iNeedleWidth, myData.iNeedleHeight+1);
 	glPopMatrix ();
 	
 	// minute
 	glPushMatrix ();
 	glRotatef (-6. * (iMinutes + iSeconds/60.) + 90., 0., 0., 1.);
 	glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, 0., 0.);
-	glScalef (myData.iNeedleWidth, myData.iNeedleHeight+1, 1.);
-	cairo_dock_apply_texture (myData.iMinuteNeedleTexture);
+	cairo_dock_apply_texture_at_size (myData.iMinuteNeedleTexture, myData.iNeedleWidth, myData.iNeedleHeight+1);
 	glPopMatrix ();
 	
 	// seconde
-	glPushMatrix ();
-	glRotatef (-6. * (iSeconds + myData.iSmoothAnimationStep / 5.) + 90., 0., 0., 1.);
-	glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, 0., 0.);
-	glScalef (myData.iNeedleWidth, myData.iNeedleHeight+1, 1.);
-	cairo_dock_apply_texture (myData.iSecondNeedleTexture);
-	glPopMatrix ();
+	if (myConfig.bShowSeconds)
+	{
+		glPushMatrix ();
+		glRotatef (-6. * (iSeconds + fFraction) + 90., 0., 0., 1.);
+		glTranslatef (myData.iNeedleWidth/2 - myData.fNeedleScale * myData.iNeedleOffsetX, 0., 0.);
+		cairo_dock_apply_texture_at_size (myData.iSecondNeedleTexture, myData.iNeedleWidth, myData.iNeedleHeight+1);
+		glPopMatrix ();
+	}
 	
 	// draw texture fg
-	glScalef (iWidth, iHeight, 1.);
-	cairo_dock_apply_texture (myData.iFgTexture);
+	cairo_dock_apply_texture_at_size (myData.iFgTexture, iWidth, iHeight);
 	
-	glDisable (GL_TEXTURE_2D);
-	glDisable (GL_BLEND);
+	_cairo_dock_disable_texture ();
 }
 
-void cd_clock_render_analogic_to_texture (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
+void cd_clock_render_analogic_to_texture (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime, double fFraction)
 {
-	if (! cairo_dock_begin_draw_icon (myIcon, myContainer))
-		return ;
+	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN ();
 	
-	cd_clock_draw_analogic_opengl (myApplet, iWidth, iHeight, pTime);
+	cd_clock_draw_analogic_opengl (myApplet, iWidth, iHeight, pTime, fFraction);
 	
-	cairo_dock_end_draw_icon (myIcon, myContainer);
-}
-
-gboolean cd_clock_update_icon_slow (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation)
-{
-	if (pIcon != myIcon)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	*bContinueAnimation = TRUE;
-	myData.iSmoothAnimationStep ++;
-	if (myData.iSmoothAnimationStep > 5)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	// taille de la texture.
-	double fMaxScale = cairo_dock_get_max_scale (pContainer);
-	double fRatio = pContainer->fRatio;
-	int iWidth = (int) pIcon->fWidth / fRatio * fMaxScale;
-	int iHeight = (int) pIcon->fHeight / fRatio * fMaxScale;
-	
-	// render to texture
-	cd_clock_render_analogic_to_texture (myApplet, iWidth, iHeight, &myData.currentTime);
-	
-	CD_APPLET_REDRAW_MY_ICON;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_FINISH_DRAWING_MY_ICON;
 }

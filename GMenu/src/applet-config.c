@@ -21,11 +21,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bHasIcons = CD_CONFIG_GET_BOOLEAN ("Configuration", "has icons");
 	myConfig.cMenuShortkey = CD_CONFIG_GET_STRING ("Configuration", "menu shortkey");
 	myConfig.cQuickLaunchShortkey = CD_CONFIG_GET_STRING ("Configuration", "quick launch shortkey");
+	myConfig.cConfigureMenuCommand = CD_CONFIG_GET_STRING ("Configuration", "config menu");
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
+	g_free (myConfig.cConfigureMenuCommand);
 	if (myConfig.cMenuShortkey)
 		cd_keybinder_unbind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu);
 	g_free (myConfig.cMenuShortkey);

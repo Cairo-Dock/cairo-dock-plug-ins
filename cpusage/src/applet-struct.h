@@ -36,8 +36,8 @@ typedef struct {
 	} CDProcess;
 
 struct _AppletData {
-	Gauge *pGauge;
-	CairoDockGraph *pGraph;
+	//Gauge *pGauge;
+	//CairoDockGraph *pGraph;
 	
 	gint iNbCPU;
 	gint iFrequency;

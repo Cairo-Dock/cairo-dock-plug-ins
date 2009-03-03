@@ -48,21 +48,13 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 		g_print ("clock bg dimension : %dx%d\n", (int) myData.DimensionData.width, (int) myData.DimensionData.height);
 		g_print ("clock needle dimension : %dx%d\n", (int) myData.needleDimension.width, (int) myData.needleDimension.height);
 		
-		
 		// recuperation des parametres des aiguilles.
 		g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, "theme.conf");
 		if (g_file_test (sElementPath->str, G_FILE_TEST_EXISTS))
 		{
 			GError *erreur = NULL;
-			GKeyFile *pKeyFile = g_key_file_new ();
-			g_key_file_load_from_file (pKeyFile, sElementPath->str, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
-			if (erreur != NULL)
-			{
-				cd_warning (erreur->message);
-				g_error_free (erreur);
-				erreur = NULL;
-			}
-			else
+			GKeyFile *pKeyFile = cairo_dock_open_key_file (sElementPath->str);
+			if (pKeyFile != NULL)
 			{
 				myData.iNeedleRealHeight = g_key_file_get_integer (pKeyFile, "Needle", "height", &erreur);
 				if (erreur != NULL)
@@ -78,32 +70,26 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 					g_error_free (erreur);
 					erreur = NULL;
 				}
-				myData.iNeedleRealWidth = myData.needleDimension.width/2 + myData.iNeedleOffsetX;
-				myData.iNeedleOffsetY = .5 * myData.iNeedleRealHeight;
-				g_print ("*** %d;%d\n", myData.iNeedleRealHeight, myData.iNeedleOffsetX);
+				g_key_file_free (pKeyFile);
 			}
-			g_key_file_free (pKeyFile);
+			else  // on prend des valeurs par defaut assez larges.
+			{
+				myData.iNeedleRealHeight = .16*myData.needleDimension.height;
+				myData.iNeedleOffsetX = .2 * myData.needleDimension.width;
+			}
+			myData.iNeedleRealWidth = myData.needleDimension.width/2 + myData.iNeedleOffsetX;
+			myData.iNeedleOffsetY = .5 * myData.iNeedleRealHeight;
+			cd_debug ("clock needle : H=%d; dx=%d\n", myData.iNeedleRealHeight, myData.iNeedleOffsetX);
 		}
 		
 		g_string_free (sElementPath, TRUE);
 	}
 	else
 	{
-		myData.DimensionData.width = 48;  // valeurs par defaut si aucun theme.
+		myData.DimensionData.width = 48;  // valeurs par defaut si aucun theme trouve.
 		myData.DimensionData.height = 48;
 		myData.needleDimension.width = 48;
 		myData.needleDimension.height = 48;
-	}
-	
-	if (myData.iNeedleRealHeight == 0)
-	{
-		myData.iNeedleRealHeight = .12*myData.needleDimension.height;  // 12px utiles sur les 100
-		myData.iNeedleOffsetY = myData.iNeedleRealHeight/2;
-	}
-	if (myData.iNeedleRealWidth == 0)
-	{
-		myData.iNeedleRealWidth = myData.needleDimension.width;  // 100px utiles sur les 100
-		myData.iNeedleOffsetX = 10;
 	}
 }
 
@@ -239,18 +225,19 @@ static cairo_surface_t *create_needle_surface (CairoDockModuleInstance *myApplet
 
 void cd_clock_load_back_and_fore_ground (CairoDockModuleInstance *myApplet)
 {
-	double fMaxScale = (myDock ? (1 + g_fAmplitude) / myDock->fRatio : 1);
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 
 	//\_______________ On construit les surfaces d'arriere-plan et d'avant-plan une bonne fois pour toutes.
 	myData.pBackgroundSurface = cd_clock_create_bg_surface (myApplet,
 		myDrawContext,
-		myIcon->fWidth * fMaxScale,
-		myIcon->fHeight * fMaxScale,
+		iWidth,
+		iHeight,
 		KIND_BACKGROUND);
 	myData.pForegroundSurface = cd_clock_create_bg_surface (myApplet,
 		myDrawContext,
-		myIcon->fWidth * fMaxScale,
-		myIcon->fHeight * fMaxScale,
+		iWidth,
+		iHeight,
 		KIND_FOREGROUND);
 }
 
@@ -261,9 +248,8 @@ void cd_clock_load_textures (CairoDockModuleInstance *myApplet)
 	if (myData.pForegroundSurface != NULL)
 		myData.iFgTexture = cairo_dock_create_texture_from_surface (myData.pForegroundSurface);
 	
-	double fMaxScale = (myDock ? (1 + g_fAmplitude) / myDock->fRatio : 1);
-	int iWidth = myIcon->fWidth * fMaxScale;
-	int iHeight = myIcon->fHeight * fMaxScale;
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
 	int iSize = MIN (iWidth, iHeight);
 	myData.fNeedleScale = (double) iSize / (double) myData.needleDimension.width;  // car l'aiguille est a l'horizontale dans le fichier svg.

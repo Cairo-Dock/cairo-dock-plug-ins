@@ -8,6 +8,8 @@
 
 CD_APPLET_CONFIG_H
 
+void cd_clock_free_timezone_list (void);
+
 void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile);
 
 void cd_clock_save_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile);

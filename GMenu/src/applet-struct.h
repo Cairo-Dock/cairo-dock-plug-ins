@@ -32,6 +32,7 @@ struct _AppletConfig {
 	gboolean bHasIcons;
 	gchar *cMenuShortkey;
 	gchar *cQuickLaunchShortkey;
+	gchar *cConfigureMenuCommand;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

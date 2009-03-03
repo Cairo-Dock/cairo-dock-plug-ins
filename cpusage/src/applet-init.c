@@ -16,13 +16,42 @@ static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 	return TRUE;
 }
 
+static void _cd_cpusage_write_value (double fValue, gchar *cFormatBuffer, int iBufferLength)
+{
+	snprintf (cFormatBuffer, iBufferLength, (fValue < 10 ? "%.1f%%" : "%.0f%%"), fValue);
+}
+
 CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	//Initialisation du rendu jauge/graphique.
-	double fMaxScale = cairo_dock_get_max_scale (myContainer);
+	CairoDataRendererAttribute *pAttr;
+	if (myConfig.bUseGraphic)
+	{
+		/*pAttr = g_new0 (CairoGraphAttribute, 1);
+		pAttr->iType = myConfig.iGraphType;
+		pAttr->pHighColor = myConfig.fHigholor;
+		pAttr->pLowColor = myConfig.fLowColor;
+		memcpy (pAttr->fBackGroundColor, myConfig.fBgColor, 4 * sizeof (double));
+		pAttr->iRadius = 5;*/
+	}
+	else
+	{
+		pAttr = g_new0 (CairoGaugeAttribute, 1);
+		gattr = 
+		pAttr->cThemePath = myConfig.cGThemePath;
+	}
+	pAttr->cModelName = "graphic";
+	pAttr->iNbValues = 1;
+	pAttr->pMinMaxValues = {0., 100.};
+	pAttr->bWriteValues = (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON);
+	pAttr->iLatencyTime = 500;
+	pAttr->format_value = _cd_cpusage_write_value;
+	cairo_dock_add_new_data_renderer_on_icon (myIcon, myContainer, myDrawContext, pAttr);
+	g_free (pAttr);
+	/*double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	if (myConfig.bUseGraphic)
 	{
 		myData.pGraph = cairo_dock_create_graph (myDrawContext,
@@ -39,7 +68,7 @@ CD_APPLET_INIT_BEGIN
 		if (myConfig.cWatermarkImagePath != NULL)
 			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 		CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
-	}
+	}*/
 	
 	//Initialisation du timer de mesure.
 	myData.pClock = g_timer_new ();
@@ -74,7 +103,7 @@ CD_APPLET_RELOAD_BEGIN
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		
-		cairo_dock_free_gauge (myData.pGauge);
+		/*cairo_dock_free_gauge (myData.pGauge);
 		cairo_dock_free_graph (myData.pGraph);
 		if (myConfig.bUseGraphic)
 		{
@@ -94,7 +123,7 @@ CD_APPLET_RELOAD_BEGIN
 				myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
 			if (myConfig.cWatermarkImagePath != NULL)
 				cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		}
+		}*/
 		
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_ICON)
 		{
@@ -113,7 +142,7 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_change_measure_frequency (myData.pTopMeasureTimer, myConfig.iProcessCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
-		if (myData.pGauge != NULL)
+		/*if (myData.pGauge != NULL)
 			cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
 		else if (myData.pGraph != NULL)
 			cairo_dock_reload_graph (myDrawContext, myData.pGraph, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
@@ -132,7 +161,7 @@ CD_APPLET_RELOAD_BEGIN
 				cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 			else
 				cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		}
+		}*/
 		
 		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
 		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogs.dialogTextDescription);

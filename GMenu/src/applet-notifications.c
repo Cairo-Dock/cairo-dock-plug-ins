@@ -13,8 +13,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-notifications.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_ABOUT (D_("This is the GMenu applet\n made by Fabounet (Fabrice Rey) for Cairo-Dock"))
 
@@ -68,10 +66,25 @@ CD_APPLET_ON_CLICK_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
+static void _cd_menu_configure_menu (GtkMenuItem *menu_item, gpointer data)
+{
+	if (myConfig.cConfigureMenuCommand != NULL)
+	{
+		cairo_dock_launch_command (myConfig.cConfigureMenuCommand);
+	}
+	else
+	{
+		if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE)  /// a confirmer pour XFCE ...
+			cairo_dock_launch_command ("alacarte");
+		else
+			cd_warning ("Sorry, couldn't guess what to do to configure the menu");
+	}
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("GMenu", pSubMenu, CD_APPLET_MY_MENU);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 		CD_APPLET_ADD_IN_MENU (D_("Quick launch"), cd_menu_show_hide_quick_launch, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Configure Menu"), _cd_menu_configure_menu, pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 
@@ -89,5 +102,3 @@ void cd_menu_on_shortkey_quick_launch (const char *keystring, gpointer data)
 {
 	cd_menu_show_hide_quick_launch ();
 }
-
-

@@ -16,7 +16,6 @@
 #define CD_CPUSAGE_PROC_FS "/proc"
 #define CPUSAGE_DATA_PIPE "/proc/stat"
 #define CPUSAGE_UPTIME_PIPE "/proc/uptime"
-#define CPUSAGE_LOADAVG_PIPE "/proc/loadavg"
 #define CPUSAGE_PROC_INFO_PIPE "/proc/cpuinfo"
 
 
@@ -139,6 +138,11 @@ void cd_cpusage_read_data (CairoDockModuleInstance *myApplet)
 	g_timer_start (myData.pClock);
 	g_return_if_fail (fTimeElapsed > 0.1);  // en conf, c'est 1s minimum.
 	
+	if (! myData.bInitialized)
+	{
+		cd_cpusage_get_cpu_info ();
+	}
+	
 	FILE *fd = fopen (CPUSAGE_DATA_PIPE, "r");
 	if (fd == NULL)
 	{
@@ -186,17 +190,14 @@ void cd_cpusage_read_data (CairoDockModuleInstance *myApplet)
 			(new_cpu_system - myData.cpu_system) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
 			(new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);
 	}
+	else
+		myData.bInitialized = TRUE;
+	
 	myData.bAcquisitionOK = TRUE;
 	myData.cpu_user = new_cpu_user;
 	myData.cpu_user_nice = new_cpu_user_nice;
 	myData.cpu_system = new_cpu_system;
 	myData.cpu_idle = new_cpu_idle;
-	
-	if (! myData.bInitialized)
-	{
-		cd_cpusage_get_cpu_info ();
-		myData.bInitialized = TRUE;
-	}
 }
 
 
@@ -208,14 +209,16 @@ gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
-		if (myData.pGauge)
+		double fNoValue = 0.;
+		cairo_dock_render_new_data_on_icon (myIcon, myContainer, myDrawContext, &fNoValue);
+		/*if (myData.pGauge)
 		{
 			CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
 		}
 		else
 		{
 			CD_APPLET_RENDER_GRAPH (myData.pGraph);
-		}
+		}*/
 	}
 	else
 	{
@@ -223,14 +226,16 @@ gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 		{
 			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
-			if (myData.pGauge)
+			double fNoValue = 0.;
+			cairo_dock_render_new_data_on_icon (myIcon, myContainer, myDrawContext, &fNoValue);
+			/*if (myData.pGauge)
 			{
 				CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
 			}
 			else
 			{
 				CD_APPLET_RENDER_GRAPH (myData.pGraph);
-			}
+			}*/
 		}
 		else
 		{
@@ -249,15 +254,16 @@ gboolean cd_cpusage_update_from_data (CairoDockModuleInstance *myApplet)
 						CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("CPU : %.1f%%", myData.cpu_usage);
 				}
 			}
-			
-			if (myData.pGauge)
+			double fNewValue = (double) myData.cpu_usage;
+		cairo_dock_render_new_data_on_icon (myIcon, myContainer, myDrawContext, &fNewValue);
+			/*if (myData.pGauge)
 			{
 				CD_APPLET_RENDER_GAUGE (myData.pGauge, (double) myData.cpu_usage / 100);
 			}
 			else
 			{
 				CD_APPLET_RENDER_GRAPH_NEW_VALUE (myData.pGraph, (double) myData.cpu_usage / 100);
-			}
+			}*/
 		}
 	}
 	return myData.bAcquisitionOK;
