@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+Written by ChanGFu (for any bug report, please mail me to fabounet@users.berlios.de)
 
 *********************************************************************************/
 #include <string.h>
@@ -56,7 +56,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	// Ligne droite. (Haut droit -> Bas droit)
 	cairo_rel_line_to (pCairoContext, 0, sens *     (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth)));
 	
-	// Coin bas     droit.
+	// Coin bas droit.
 	cairo_rel_curve_to (pCairoContext,
 	0, 0,
 	0, sens * fRadius,
@@ -69,20 +69,22 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, -sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
 	cairo_rel_line_to (pCairoContext, - fDemiWidth, 0);
 	
-	// Coin bas     gauche.
+	// Coin bas gauche.
 	cairo_rel_curve_to (pCairoContext,
-	0, 0,
-	-fRadius, 0,
-	-fRadius, -sens * fRadius);
+		0, 0,
+		-fRadius, 0,
+		-fRadius, -sens * fRadius);
+	
+	// On remonte.
 	cairo_rel_line_to (pCairoContext, 0, - sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth)));
 	
 	// Coin haut gauche.
 	cairo_rel_curve_to (pCairoContext,
-	0, 0,
-	0, -sens * fRadius,
-	fRadius, -sens * fRadius);
+		0, 0,
+		0, -sens * fRadius,
+		fRadius, -sens * fRadius);
 	if (fRadius     < 1)
-	cairo_close_path (pCairoContext);
+		cairo_close_path (pCairoContext);
 	
 	cairo_set_source_rgba (pCairoContext, myDialogs.fDialogColor[0], myDialogs.fDialogColor[1],     myDialogs.fDialogColor[2], myDialogs.fDialogColor[3]);
 	cairo_fill_preserve (pCairoContext); //Notre fond

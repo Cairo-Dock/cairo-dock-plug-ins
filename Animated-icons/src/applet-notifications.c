@@ -147,7 +147,7 @@ gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 
 gboolean cd_animations_on_request (gpointer pUserData, Icon *pIcon, CairoDock *pDock, const gchar *cAnimation, gint iNbRounds)
 {
-	if (! CAIRO_DOCK_IS_DOCK (pDock) || cAnimation == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
+	if (cAnimation == NULL || pIcon == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CDAnimationsEffects anim[2] = {0, -1};

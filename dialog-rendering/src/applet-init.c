@@ -13,6 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-decorator-modern.h"
 #include "applet-decorator-3Dplane.h"
 #include "applet-decorator-tooltip.h"
+#include "applet-decorator-curly.h"
 #include "applet-renderer-text.h"
 #include "applet-struct.h"
 #include "applet-init.h"
@@ -43,6 +44,7 @@ CD_APPLET_INIT_BEGIN
 	cd_decorator_register_modern ();
 	cd_decorator_register_3Dplane ();
 	cd_decorator_register_tooltip ();  // By ChAnGFu
+	cd_decorator_register_curly ();
 	
 	if (! cairo_dock_is_loading ())
 		cairo_dock_update_dialog_decorator_list_for_gui ();

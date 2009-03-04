@@ -7,7 +7,7 @@
 
 CD_APPLET_CONFIG_H
 
-void cd_weather_free_location_list (CairoDockModuleInstance *myApplet);
+void cd_weather_free_location_list (void);
 
 void cd_weather_reset_all_datas (CairoDockModuleInstance *myApplet);
 

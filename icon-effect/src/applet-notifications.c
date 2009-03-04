@@ -86,7 +86,7 @@ gboolean cd_icon_effect_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pD
 
 gboolean cd_icon_effect_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gint iButtonState)
 {
-	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
+	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
@@ -103,7 +103,7 @@ gboolean cd_icon_effect_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pD
 
 gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *pDock, const gchar *cAnimation, gint iNbRounds)
 {
-	if (! CAIRO_DOCK_IS_DOCK (pDock) || (pIcon && pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED))
+	if (pIcon == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CDIconEffects anim[2] = {0, -1};

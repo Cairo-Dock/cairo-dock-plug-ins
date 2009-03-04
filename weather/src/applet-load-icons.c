@@ -12,8 +12,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-read-data.h"
 #include "applet-load-icons.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("Thursday") , N_("Friday") , N_("Saturday") , N_("Sunday") , N_("Jan") , N_("Feb") , N_("Mar") , N_("Apr") , N_("May") ,N_("Jun") , N_("Jui") , N_("Aug") , N_("Sep") , N_("Oct") , N_("Nov") , N_("Dec") };
 
 #define _add_icon(i, j)\
@@ -89,6 +87,10 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 		}
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName);
 	}
+	else
+	{
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+	}
 }
 
 gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
@@ -103,64 +105,15 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	GList *pIconList = _list_icons (myApplet);  // ne nous appartiendra plus, donc ne pas desallouer.
 	
 	//\_______________________ On efface l'ancienne liste.
-	if (myDesklet && myDesklet->icons != NULL)
-	{
-		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
-		g_list_free (myDesklet->icons);
-		myDesklet->icons = NULL;
-	}
-	if (myIcon->pSubDock != NULL)
-	{
-		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
-		g_list_free (myIcon->pSubDock->icons);
-		myIcon->pSubDock->icons = NULL;
-	}
+	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
-	if (myDock)  // en mode 'dock', on affiche la meteo dans un sous-dock.
-	{
-		if (myIcon->pSubDock == NULL)
-		{
-			if (pIconList != NULL)  // l'applet peut montrer les conditions courantes.
-			{
-				cd_message ("  creation du sous-dock meteo");
-				CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer);
-				g_print ("weather : applet : %x, icon : %x, subdock <- %x\n", myApplet, myIcon, myIcon->pSubDock);
-			}
-		}
-		else  // on a deja notre sous-dock, on remplace juste ses icones.
-		{
-			cd_message ("  rechargement du sous-dock meteo");
-			if (pIconList == NULL)  // inutile de le garder.
-			{
-				CD_APPLET_DESTROY_MY_SUBDOCK;
-			}
-			else
-			{
-				CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList);
-				g_print ("weather : applet : %x, icon : %x, subdock = %x\n", myApplet, myIcon, myIcon->pSubDock);
-			}
-		}
-	}
-	else
-	{
-		if (myIcon->pSubDock != NULL)
-		{
-			CD_APPLET_DESTROY_MY_SUBDOCK;
-		}
-		myDesklet->icons = pIconList;
-		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
-		g_print ("myIcon->pIconBuffer:%x\n", myIcon->pIconBuffer);
-		gtk_widget_queue_draw (myDesklet->pWidget);  /// utile ?...
-	}
+	gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
 	
 	//\_______________________ On recharge l'icone principale.
 	_weather_draw_current_conditions (myApplet);  // ne lance pas le redraw.
-	if (myDesklet)
-		gtk_widget_queue_draw (myDesklet->pWidget);
-	else
-		CD_APPLET_REDRAW_MY_ICON;
+	CD_APPLET_REDRAW_MY_ICON;
 	
 	return TRUE;
 }

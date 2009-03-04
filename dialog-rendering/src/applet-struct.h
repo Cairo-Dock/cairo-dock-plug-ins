@@ -23,6 +23,11 @@ struct _AppletConfig {
 	gint iTooltipLineWidth;
 	gdouble fTooltipLineColor[4];
 	gdouble fTooltipMarginColor[4];
+	
+	gint iCurlyRadius;
+	gint iCurlyLineWidth;
+	gdouble fCurlyLineColor[4];
+	gdouble fCurlyCurvature;
 } ;
 
 struct _AppletData {

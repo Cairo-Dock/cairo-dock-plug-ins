@@ -19,6 +19,8 @@ libcd_dialog_rendering_la_SOURCES = \
 	applet-decorator-3Dplane.h\
 	applet-decorator-tooltip.c\
 	applet-decorator-tooltip.h\
+	applet-decorator-curly.c\
+	applet-decorator-curly.h\
 	applet-struct.h
 
 

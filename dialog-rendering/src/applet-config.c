@@ -32,6 +32,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iTooltipLineWidth = CD_CONFIG_GET_INTEGER ("Tooltip", "border");
 	CD_CONFIG_GET_COLOR ("Tooltip", "line color", &myConfig.fTooltipLineColor);
 	CD_CONFIG_GET_COLOR ("Tooltip", "margin color", &myConfig.fTooltipMarginColor);
+	
+	myConfig.iCurlyRadius = CD_CONFIG_GET_INTEGER ("Curly", "corner");
+	myConfig.iCurlyLineWidth = CD_CONFIG_GET_INTEGER ("Curly", "border");
+	CD_CONFIG_GET_COLOR ("Curly", "line color", &myConfig.fCurlyLineColor);
+	myConfig.fCurlyCurvature = CD_CONFIG_GET_DOUBLE ("Curly", "curvature");
 CD_APPLET_GET_CONFIG_END
 
 

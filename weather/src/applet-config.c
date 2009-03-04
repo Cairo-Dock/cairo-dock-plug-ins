@@ -14,8 +14,7 @@ Fabrice Rey (fabounet@users.berlios.de)
 #include "applet-read-data.h"
 #include "applet-config.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
+GList *s_pLocationsList = NULL;
 
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
@@ -104,12 +103,10 @@ void cd_weather_reset_all_datas (CairoDockModuleInstance *myApplet)
 		_reset_current_one_day (&myData.days[i]);
 	}
 	
-	cd_weather_free_location_list (myApplet);
+	cd_weather_free_location_list ();
 	
-	if (myIcon->pSubDock != NULL)
-	{
-		CD_APPLET_DESTROY_MY_SUBDOCK;
-	}
+	CD_APPLET_DELETE_MY_ICONS_LIST;
+	
 	memset (myDataPtr, 0, sizeof (AppletData));
 }
 
@@ -118,13 +115,16 @@ CD_APPLET_RESET_DATA_BEGIN
 CD_APPLET_RESET_DATA_END
 
 
-void cd_weather_free_location_list (CairoDockModuleInstance *myApplet)
+  /////////////////////
+ /// CUSTOM WIDGET ///
+/////////////////////
+void cd_weather_free_location_list (void)
 {
-	if (myData.pLocationsList == NULL)
+	if (s_pLocationsList == NULL)
 		return ;
-	g_list_foreach (myData.pLocationsList, (GFunc) g_free, NULL);
-	g_list_free (myData.pLocationsList);
-	myData.pLocationsList = NULL;
+	g_list_foreach (s_pLocationsList, (GFunc) g_free, NULL);
+	g_list_free (s_pLocationsList);
+	s_pLocationsList = NULL;
 }
 
 static void _cd_weather_location_choosed (GtkMenuItem *pMenuItem, gchar *cLocationCode)
@@ -134,6 +134,7 @@ static void _cd_weather_location_choosed (GtkMenuItem *pMenuItem, gchar *cLocati
 	//\____________________ On met a jour le panneau de conf.
 	GtkWidget *pCodeEntry = cairo_dock_get_widget_from_name ("Configuration", "location code");
 	gtk_entry_set_text (GTK_ENTRY (pCodeEntry), cLocationCode);
+	cd_weather_free_location_list ();
 }
 static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleInstance *myApplet)
 {
@@ -144,8 +145,8 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 	gchar *cFilePath = cd_weather_get_location_data (cLocationName);
 	
 	GError *erreur = NULL;
-	cd_weather_free_location_list (myApplet);
-	myData.pLocationsList = cd_weather_parse_location_data (cFilePath, &erreur);
+	cd_weather_free_location_list ();
+	s_pLocationsList = cd_weather_parse_location_data (cFilePath, &erreur);
 	if (erreur != NULL)
 	{
 		gchar *cIconPath = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
@@ -159,7 +160,7 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 		g_error_free (erreur);
 		erreur = NULL;  // on ne garde pas trace de l'erreur, c'est deja fait au (re)chargement.
 	}
-	else if (myData.pLocationsList == NULL)
+	else if (s_pLocationsList == NULL)
 	{
 		gchar *cIconPath = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
 		cairo_dock_show_temporary_dialog_with_icon (D_("I couldn't find this location"),
@@ -179,7 +180,7 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 		GtkWidget *pMenuItem;
 		gchar *cLocationName, *cLocationCode;
 		GList *list, *data;
-		for (list = myData.pLocationsList; list != NULL; list = list->next)
+		for (list = s_pLocationsList; list != NULL; list = list->next)
 		{
 			data = list;
 			cLocationCode = list->data;
