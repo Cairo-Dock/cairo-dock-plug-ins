@@ -65,8 +65,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 
 CD_APPLET_ON_MIDDLE_CLICK_END
 
-
-void _cd_mail_update_account(CDMailAccount *pMailAccount)
+static void _cd_mail_update_account (GtkMenuItem *menu_item, CDMailAccount *pMailAccount)
 {
   if( pMailAccount )
   {
@@ -296,7 +295,7 @@ void cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
   cd_mail_update_status( pUpdatedMailAccount->pAppletInstance );
 }
 
-void cd_mail_update_status( CairoDockModuleInstance *myApplet )
+gboolean cd_mail_update_status( CairoDockModuleInstance *myApplet )
 {
 	CDMailAccount *pMailAccount;
   GList *pIconList = NULL;
@@ -404,5 +403,7 @@ void cd_mail_update_status( CairoDockModuleInstance *myApplet )
   g_free(new_message_counts);
 
   myData.bNewMailFound = FALSE;
+
+  return TRUE;
 }
 

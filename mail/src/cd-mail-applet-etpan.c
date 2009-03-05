@@ -459,7 +459,9 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
           pMailAccount);
 
           if( pMailAccount->pAccountMailTimer )
+          {
             cairo_dock_launch_measure (pMailAccount->pAccountMailTimer);
+          }
       }
       else
       {
