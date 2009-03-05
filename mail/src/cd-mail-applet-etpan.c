@@ -14,7 +14,7 @@ Written by Christophe Chapuis (for any bug report, please mail me to tofe@users.
 #include "cd-mail-applet-struct.h"
 #include "cd-mail-applet-etpan.h"
 
-void cd_mail_update_account_status( CDMailAccount *pMailAccount );
+gboolean cd_mail_update_account_status( CDMailAccount *pMailAccount );
 
 CD_APPLET_INCLUDE_MY_VARS
 
