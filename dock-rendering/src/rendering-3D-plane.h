@@ -19,6 +19,9 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock);
 
 
+void cd_rendering_render_3D_plane_opengl (CairoDock *pDock);
+
+
 void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName);
 
 

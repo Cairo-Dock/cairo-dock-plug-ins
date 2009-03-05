@@ -23,6 +23,7 @@ CairoParticleSystem *cd_icon_effect_init_stars (Icon *pIcon, CairoDock *pDock, d
 	CairoParticleSystem *pStarParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStarParticles, myData.iStarTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pStarParticleSystem != NULL, NULL);
 	pStarParticleSystem->dt = dt;
+	pStarParticleSystem->bAddLuminance = TRUE;
 	
 	static double a = .4;
 	static double epsilon = 0.1;

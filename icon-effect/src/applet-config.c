@@ -61,6 +61,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbFireParticles = CD_CONFIG_GET_INTEGER ("Fire", "nb part");
 	myConfig.iFireParticleSize = CD_CONFIG_GET_INTEGER ("Fire", "part size");
 	myConfig.fFireParticleSpeed = CD_CONFIG_GET_DOUBLE ("Fire", "part speed");
+	myConfig.bFireLuminance = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Fire", "luminous", TRUE);
 	
 	myConfig.iStarDuration = CD_CONFIG_GET_INTEGER ("Stars", "duration");
 	myConfig.bContinueStar = CD_CONFIG_GET_BOOLEAN ("Stars", "continue");

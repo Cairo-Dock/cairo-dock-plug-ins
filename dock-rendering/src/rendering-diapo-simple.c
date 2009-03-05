@@ -43,7 +43,7 @@ extern gboolean my_diapo_simple_display_all_icons;
 
 const  gint X_BORDER_SPACE = 40;
 const  gint Y_BORDER_SPACE = 40;
-const  gint  MaxTextWidthSimple = 125; 
+//const  gint  MaxTextWidthSimple = 125; 
 
 /// On considere qu'on a my_diapo_simple_iconGapX entre chaque icone horizontalement, et my_diapo_simple_iconGapX/2 entre les icones et les bords (pour aerer un peu plus le dessin). Idem verticalement. X_BORDER_SPACE est la pour empecher que les icones debordent de la fenetre au zoom (?).
 
@@ -61,13 +61,13 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	   ///pDock->iMinDockWidth  = pDock->iMaxDockWidth  = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + 2 * my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
 	   ///pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + 2 * my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 3 + my_diapo_simple_arrowHeight-30;	// 30 -> pour que la fleche aille plus bas
 	   pDock->iMinDockWidth = pDock->iMaxDockWidth = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
-	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 2 + my_diapo_simple_arrowHeight-30 + myLabels.iconTextDescription.iSize;  // 30 -> pour que la fleche aille plus bas
+	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + my_diapo_simple_iconGapY) + Y_BORDER_SPACE + my_diapo_simple_arrowHeight+10 + myLabels.iconTextDescription.iSize;  // +10 -> pour que la fleche aille plus bas
         }
         else
         {
                 ///pDock->iMaxDockWidth = pDock->iMaxDockHeight = pDock->iMinDockWidth = pDock->iMinDockHeight = 0;
-                pDock->iMaxDockWidth = pDock->iMinDockWidth = X_BORDER_SPACE * 2;
-                pDock->iMaxDockHeight = pDock->iMinDockHeight = Y_BORDER_SPACE * 2 + my_diapo_simple_arrowHeight-30;
+                pDock->iMaxDockWidth = pDock->iMinDockWidth = X_BORDER_SPACE * 2 + 1;
+                pDock->iMaxDockHeight = pDock->iMinDockHeight = Y_BORDER_SPACE + 1 + my_diapo_simple_arrowHeight+10;
         }
 
 //////////////////////////////////////////////////////////////////////////////////////// Définition de la zone de déco avec Valérie Damidot - 0 car on s'en fout un peu comme l'emission de cette grognasse... :D
@@ -76,6 +76,7 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	
 //////////////////////////////////////////////////////////////////////////////////////// On affecte ca aussi au cas où
 	pDock->fFlatDockWidth = pDock->iMinDockWidth;
+	pDock->fMagnitudeMax = my_diapo_simple_fScaleMax / (1+g_fAmplitude);
 
 }
 
@@ -106,7 +107,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 	        	cairo_new_path (pCairoContext);
 	        cairo_restore (pCairoContext);
         }	
-	//\____________________ On dessine la ficelle qui les joint.*/
+	//\____________________ On dessine la ficelle qui les joint.
 	//TODO Rendre joli !
 	if (myIcons.iStringLineWidth > 0)
 		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, TRUE, TRUE);
@@ -203,7 +204,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 				cairo_restore (pCairoContext);
 			}
 		}
-               if(FALSE && icon->pTextBuffer != NULL)
+               /*if(FALSE && icon->pTextBuffer != NULL)
                 {
                 	cairo_save (pCairoContext);
                 	zoom = 1;
@@ -233,7 +234,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 			        cairo_paint_with_alpha (pCairoContext, 1. + (icon->fScale - my_diapo_simple_fScaleMax)/(my_diapo_simple_fScaleMax - 1));
 	
 			cairo_restore (pCairoContext);
-                }
+                }*/
 	}
 }
 
@@ -291,6 +292,7 @@ void cd_rendering_register_diapo_simple_renderer (const gchar *cRendererName)
 	pRenderer->render = cd_rendering_render_diapo_simple;                                                          //qui initie le calcul du rendu         
 	pRenderer->render_optimized = NULL;//cd_rendering_render_diapo_simple_optimized;                                      //pareil en mieux                       
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;                               // ?                                    
+	pRenderer->render_opengl = cd_rendering_render_diapo_simple_opengl;
 	
 	pRenderer->bUseReflect = FALSE;                                                                         // On dit non au reflections
 	
@@ -456,9 +458,9 @@ static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoCo
 {
         const gdouble arrow_dec = 2;
 	gdouble fFrameWidth  = pDock->iMaxDockWidth-2*X_BORDER_SPACE;
-	gdouble fFrameHeight = pDock->iMaxDockHeight-2*Y_BORDER_SPACE - my_diapo_simple_arrowHeight + 30; //  30->pour que la fleche aille plus bas...  -----> quel petit joueur, regarde les calculs de malade que je me suis tape pour la pointe des dialogues ! :-)
+	gdouble fFrameHeight = pDock->iMaxDockHeight - Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10); // +10->pour que la fleche aille plus bas...  -----> quel petit joueur, regarde les calculs de malade que je me suis tape pour la pointe des dialogues ! :-)
 	gdouble fDockOffsetX = X_BORDER_SPACE;
-	gdouble fDockOffsetY = Y_BORDER_SPACE;
+	gdouble fDockOffsetY = (pDock->bDirectionUp ? Y_BORDER_SPACE : 10);
 	
 	
 
@@ -528,10 +530,10 @@ static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoCo
 static void cairo_dock_draw_frame_vertical_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
         const gdouble arrow_dec = 2;
-	gdouble fFrameWidth  = pDock->iMaxDockWidth-2*X_BORDER_SPACE;
-	gdouble fFrameHeight = pDock->iMaxDockHeight-2*Y_BORDER_SPACE - my_diapo_simple_arrowHeight;
+	gdouble fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;
+	gdouble fFrameHeight = pDock->iMaxDockHeight - Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);
 	gdouble fDockOffsetX = X_BORDER_SPACE;
-	gdouble fDockOffsetY = Y_BORDER_SPACE;
+	gdouble fDockOffsetY = (pDock->bDirectionUp ? Y_BORDER_SPACE : 10);;
 	
 
         cairo_move_to (pCairoContext, fDockOffsetY, fDockOffsetX);
@@ -601,7 +603,7 @@ void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoCon
 {
 ////////////////////////////////////////////////////////////////////////////////////////On se fait un beau pattern dégradé :
         cairo_pattern_t *mon_super_pattern;
-        cairo_save (pCairoContext);       
+        ///cairo_save (pCairoContext);       
         mon_super_pattern = cairo_pattern_create_linear (0.0, 0.0,
                                                 my_diapo_simple_fade2right  ? pDock->iMaxDockWidth  : 0.0,      // Y'aurait surement des calculs complexes à faire mais 
                                                 my_diapo_simple_fade2bottom ? pDock->iMaxDockHeight : 0.0);     //  a quelques pixels près pour un dégradé : OSEF !
@@ -614,11 +616,257 @@ void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoCon
         cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1, my_diapo_simple_color_frame_stop[0] ,                  
                                                                  my_diapo_simple_color_frame_stop[1] , 
                                                                  my_diapo_simple_color_frame_stop[2] , 
-                                                                 my_diapo_simple_color_frame_stop[3]  * (1. - pDock->fFoldingFactor)); 
+                                                                 my_diapo_simple_color_frame_stop[3]  * (1. - pDock->fFoldingFactor));
         cairo_set_source (pCairoContext, mon_super_pattern);
         
 ////////////////////////////////////////////////////////////////////////////////////////On remplit le contexte en le préservant -> pourquoi ?  ----> parce qu'on va tracer le contour plus tard ;-)
-        cairo_fill_preserve (pCairoContext);  
-        cairo_pattern_destroy (mon_super_pattern);    
-        cairo_restore (pCairoContext);
+        cairo_fill_preserve (pCairoContext);
+        cairo_pattern_destroy (mon_super_pattern);
+        ///cairo_restore (pCairoContext);
+}
+
+
+void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
+{
+	//\____________________ On genere le chemin du cadre.
+	int iNbVertex;
+	GLfloat *pColorTab, *pVertexTab;
+	pVertexTab = cd_rendering_generate_path_for_diapo_simple_opengl (pDock, &pColorTab, &iNbVertex);
+	
+	//\____________________ On remplit.
+	glEnable (GL_BLEND); // On active le blend
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glColor4f (1., 1., 1., 1.); // Couleur a fond
+	glPolygonMode (GL_FRONT, GL_FILL);
+	
+	double fRadius = my_diapo_simple_radius;
+	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
+	double fFrameHeight = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
+	double fDockOffsetX, fDockOffsetY;
+	if (pDock->bHorizontalDock)
+	{
+		fDockOffsetX = X_BORDER_SPACE;
+		fDockOffsetY = (!pDock->bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight+10);
+		fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
+		fFrameHeight = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
+	}
+	else
+	{
+		fDockOffsetY = X_BORDER_SPACE;
+		fDockOffsetX = (!pDock->bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight+10);
+		fFrameHeight = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
+		fFrameWidth = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
+	}
+	glPushMatrix ();
+	glTranslatef ((int) (fDockOffsetX + fFrameWidth/2), (int) (fDockOffsetY + fFrameHeight/2), -100);  // (int) -pDock->iMaxIconHeight * (1 + myIcons.fAmplitude) + 1
+	glScalef (fFrameWidth, fFrameHeight, 1.);
+	
+	glEnableClientState (GL_VERTEX_ARRAY);
+	glEnableClientState (GL_COLOR_ARRAY);
+	glVertexPointer (3, GL_FLOAT, 0, pVertexTab);
+	glColorPointer (4, GL_FLOAT, 0, pColorTab);
+	glDrawArrays (GL_TRIANGLE_FAN, 0, iNbVertex);
+	glDisableClientState (GL_COLOR_ARRAY);
+	glDisableClientState (GL_VERTEX_ARRAY);
+	
+	//\____________________ On trace le contour.
+	cairo_dock_draw_current_path_opengl (my_diapo_simple_lineWidth, my_diapo_simple_color_border_line, iNbVertex);
+	glPopMatrix ();
+	
+	//\____________________ On dessine la ficelle.
+	/// A FAIRE...
+	
+	//\____________________ On dessine les icones.
+	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	if (pFirstDrawnElement == NULL)
+		return ;
+	
+	if (pFirstDrawnElement != NULL)
+	{
+		Icon *icon;
+		GList *ic = pFirstDrawnElement;
+		do
+		{
+			icon = ic->data;
+			
+			glPushMatrix ();
+			
+			cairo_dock_render_one_icon_opengl (icon, pDock, 1., TRUE);
+			
+			glPopMatrix ();
+			
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+		} while (ic != pFirstDrawnElement);
+	}
+}
+
+
+#define RADIAN (G_PI / 180.0)  // Conversion Radian/Degres
+#define DELTA_ROUND_DEGREE 5
+#define _recopy_prev_color(pColorTab, i) memcpy (&pColorTab[4*i], &pColorTab[4*(i-1)], 4*sizeof (GLfloat));
+#define _copy_color(pColorTab, i, pDock, c) do { \
+	pColorTab[4*i]   = c[0];\
+	pColorTab[4*i+1] = c[1];\
+	pColorTab[4*i+2] = c[2];\
+	pColorTab[4*i+3] = c[3] * (1. - pDock->fFoldingFactor); } while (0)
+#define _copy_mean_color(pColorTab, i, pDock, c1, c2, f) do { \
+	pColorTab[4*i]   = c1[0]*f + c2[0]*(1-f);\
+	pColorTab[4*i+1] = c1[1]*f + c2[1]*(1-f);\
+	pColorTab[4*i+2] = c1[2]*f + c2[2]*(1-f);\
+	pColorTab[4*i+3] = (c1[3]*f + c2[3]*(1-f)) * (1. - pDock->fFoldingFactor); } while (0)
+GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, GLfloat **colors, int *iNbPoints)
+{
+	static GLfloat pVertexTab[((90/DELTA_ROUND_DEGREE+1)*4+1+3)*3];  // +3 pour la pointe.
+	static GLfloat pColorTab[((90/DELTA_ROUND_DEGREE+1)*4+1+3)*4];  // +3 pour la pointe.
+	double fRadius = my_diapo_simple_radius;
+	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
+	double fFrameHeight = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
+	
+	const gdouble arrow_dec = 2;
+	double fTotalWidth = fFrameWidth + 2 * fRadius;
+	double w = fFrameWidth / fTotalWidth / 2;
+	double h = MAX (0, fFrameHeight - 2 * fRadius) / fFrameHeight / 2;
+	double rw = fRadius / fTotalWidth;
+	double rh = fRadius / fFrameHeight;
+	int i=0, t;
+	int iPrecision = DELTA_ROUND_DEGREE;
+	
+	double *pTopRightColor, *pTopLeftColor, *pBottomLeftColor, *pBottomRightColor;
+	double pMeanColor[4] = {(my_diapo_simple_color_frame_start[0] + my_diapo_simple_color_frame_stop[0])/2,
+		(my_diapo_simple_color_frame_start[1] + my_diapo_simple_color_frame_stop[1])/2,
+		(my_diapo_simple_color_frame_start[2] + my_diapo_simple_color_frame_stop[2])/2,
+		(my_diapo_simple_color_frame_start[3] + my_diapo_simple_color_frame_stop[3])/2};
+	if (my_diapo_simple_draw_background)
+	{
+		pTopLeftColor = my_diapo_simple_color_frame_start;
+		if (my_diapo_simple_fade2bottom || my_diapo_simple_fade2right)
+		{
+			pBottomRightColor = my_diapo_simple_color_frame_stop;
+			if (my_diapo_simple_fade2bottom && my_diapo_simple_fade2right)
+			{
+				pBottomLeftColor = pMeanColor;
+				pTopRightColor = pMeanColor;
+			}
+			else if (my_diapo_simple_fade2bottom)
+			{
+				pBottomLeftColor = my_diapo_simple_color_frame_stop;
+				pTopRightColor = my_diapo_simple_color_frame_start;
+			}
+			else
+			{
+				pBottomLeftColor = my_diapo_simple_color_frame_start;
+				pTopRightColor = my_diapo_simple_color_frame_stop;
+			}
+		}
+		else
+		{
+			pBottomRightColor = my_diapo_simple_color_frame_start;
+			pBottomLeftColor = my_diapo_simple_color_frame_start;
+			pTopRightColor = my_diapo_simple_color_frame_start;
+		}
+	}
+	else
+	{
+		pMeanColor[0] = 0.;
+		pMeanColor[1] = 0.;
+		pMeanColor[2] = 0.;
+		pMeanColor[3] = 0.;
+		pTopLeftColor = pMeanColor;
+		pBottomLeftColor = pMeanColor;
+		pTopRightColor = pMeanColor;
+		pBottomRightColor = pMeanColor;
+	}
+	
+	int n;
+	for (t = 0;t <= 90;t += iPrecision, i++) // cote haut droit.
+	{
+		pVertexTab[3*i] = w + rw * cos (t*RADIAN);
+		pVertexTab[3*i+1] = h + rh * sin (t*RADIAN);
+		_copy_color (pColorTab, i, pDock, pTopRightColor);
+	}
+	if (!pDock->bDirectionUp && pDock->bHorizontalDock)  // dessin de la pointe vers le haut.
+	{
+		pVertexTab[3*i] = 0. + (my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * (fFrameWidth/2 - my_diapo_simple_arrowWidth/2))/fTotalWidth;
+		pVertexTab[3*i+1] = h + rh;
+		_copy_mean_color (pColorTab, i, pDock, pTopRightColor, pTopLeftColor, .5 + pVertexTab[3*i]);
+		i ++;
+		pVertexTab[3*i] = pVertexTab[3*(i-1)] - my_diapo_simple_arrowWidth/2 * (1 + my_diapo_simple_arrowShift)/fTotalWidth;
+		pVertexTab[3*i+1] = h + rh + my_diapo_simple_arrowHeight/fFrameHeight;
+		_recopy_prev_color (pColorTab, i);
+		i ++;
+		pVertexTab[3*i] = pVertexTab[3*(i-2)] - my_diapo_simple_arrowWidth/fFrameHeight;
+		pVertexTab[3*i+1] = h + rh;
+		_recopy_prev_color (pColorTab, i);
+		i ++;
+	}
+	for (t = 90;t <= 180;t += iPrecision, i++) // haut gauche.
+	{
+		pVertexTab[3*i] = -w + rw * cos (t*RADIAN);
+		pVertexTab[3*i+1] = h + rh * sin (t*RADIAN);
+		_copy_color (pColorTab, i, pDock, pTopLeftColor);
+	}
+	if (!pDock->bDirectionUp && !pDock->bHorizontalDock)  // dessin de la pointe vers la gauche.
+	{
+		pVertexTab[3*i] = -w - rw;
+		pVertexTab[3*i+1] = 0. + (my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * ((fFrameHeight-2*fRadius)/2))/fFrameHeight;
+		_copy_mean_color (pColorTab, i, pDock, pTopLeftColor, pBottomLeftColor, .5 + pVertexTab[3*i+1]);
+		i ++;
+		pVertexTab[3*i] = -w - rw - my_diapo_simple_arrowHeight/fFrameHeight;
+		pVertexTab[3*i+1] = pVertexTab[3*(i-1)+1] - my_diapo_simple_arrowWidth/2 * (1 + my_diapo_simple_arrowShift);
+		_recopy_prev_color (pColorTab, i);
+		i ++;
+		pVertexTab[3*i] = -w - rw;
+		pVertexTab[3*i+1] = pVertexTab[3*(i-2)+1] - my_diapo_simple_arrowWidth/fFrameHeight;
+		_recopy_prev_color (pColorTab, i);
+		i ++;
+	}
+	for (t = 180;t <= 270;t += iPrecision, i++) // bas gauche.
+	{
+		pVertexTab[3*i] = -w + rw * cos (t*RADIAN);
+		pVertexTab[3*i+1] = -h + rh * sin (t*RADIAN);
+		_copy_color (pColorTab, i, pDock, pBottomLeftColor);
+	}
+	if (pDock->bDirectionUp && pDock->bHorizontalDock)  // dessin de la pointe vers le bas.
+	{
+		pVertexTab[3*i] = 0. + (my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * (fFrameWidth/2 - my_diapo_simple_arrowWidth/2))/fTotalWidth;
+		pVertexTab[3*i+1] = - h - rh;
+		_copy_mean_color (pColorTab, i, pDock, pBottomRightColor, pBottomLeftColor, .5 + pVertexTab[3*i]);
+		i ++;
+		pVertexTab[3*i] = pVertexTab[3*(i-1)] + my_diapo_simple_arrowWidth/2 * (1 + my_diapo_simple_arrowShift)/fTotalWidth;
+		pVertexTab[3*i+1] = - h - rh - my_diapo_simple_arrowHeight/fFrameHeight;
+		_recopy_prev_color (pColorTab, i);
+		i ++;
+		pVertexTab[3*i] = pVertexTab[3*(i-2)] + my_diapo_simple_arrowWidth/fTotalWidth;
+		pVertexTab[3*i+1] = - h - rh;
+		_recopy_prev_color (pColorTab, i);
+		i ++;
+	}
+	for (t = 270;t <= 360;t += iPrecision, i++) // bas droit.
+	{
+		pVertexTab[3*i] = w + rw * cos (t*RADIAN);
+		pVertexTab[3*i+1] = -h + rh * sin (t*RADIAN);
+		_copy_color (pColorTab, i, pDock, pBottomRightColor);
+	}
+	if (pDock->bDirectionUp && !pDock->bHorizontalDock)  // dessin de la pointe vers la droite.
+	{
+		pVertexTab[3*i] = w + rw;
+		pVertexTab[3*i+1] = 0. + (my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * ((fFrameHeight-2*fRadius)/2))/fFrameHeight;
+		_copy_mean_color (pColorTab, i, pDock, pTopRightColor, pBottomRightColor, .5 + pVertexTab[3*i+1]);
+		i ++;
+		pVertexTab[3*i] = w + rw + my_diapo_simple_arrowHeight/fTotalWidth;
+		pVertexTab[3*i+1] = pVertexTab[3*(i-1)+1] - my_diapo_simple_arrowWidth/2 * (1 + my_diapo_simple_arrowShift);
+		_recopy_prev_color (pColorTab, i);
+		i ++;
+		pVertexTab[3*i] = w + rw;
+		pVertexTab[3*i+1] = pVertexTab[3*(i-2)+1] - my_diapo_simple_arrowWidth/fFrameHeight;
+		_recopy_prev_color (pColorTab, i);
+		i ++;          
+	}
+	pVertexTab[3*i] = w + rw;  // on boucle.
+	pVertexTab[3*i+1] = h;
+	memset (&pColorTab[4*i], &pColorTab[0], 4*sizeof (GLfloat));
+	
+	*iNbPoints = i+1;
+	*colors = pColorTab;
+	return pVertexTab;
 }

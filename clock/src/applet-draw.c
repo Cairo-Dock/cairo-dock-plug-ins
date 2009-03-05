@@ -348,8 +348,9 @@ void cd_clock_draw_analogic_opengl (CairoDockModuleInstance *myApplet, int iWidt
 	
 	_cairo_dock_enable_texture ();
 	
-	_cairo_dock_set_blend_over ();  // bof
-	//_cairo_dock_set_blend_alpha ();  // pas mal
+	//_cairo_dock_set_blend_over ();  // bof
+	_cairo_dock_set_blend_alpha ();  // pas mal
+	_cairo_dock_set_blend_pbuffer ();
 	//glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);  // mieux, ne me demandez pas pourquoi...
 	
 	// draw texture bg

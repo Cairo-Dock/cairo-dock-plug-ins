@@ -34,6 +34,7 @@ struct _AppletConfig {
 	gint iNbFireParticles;
 	gint iFireParticleSize;
 	gdouble fFireParticleSpeed;
+	gboolean bFireLuminance;
 	
 	gint iStarDuration;
 	gboolean bContinueStar;

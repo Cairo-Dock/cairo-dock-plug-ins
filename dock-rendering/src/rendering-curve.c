@@ -1094,7 +1094,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	
 	//\____________________ On dessine le cadre.
 	if (fLineWidth > 0)
-		cairo_dock_draw_current_path_opengl (fLineWidth, myBackground.fLineColor, pVertexTab, iNbVertex);
+		cairo_dock_draw_current_path_opengl (fLineWidth, myBackground.fLineColor, iNbVertex);
 	
 	glPopMatrix ();
 	

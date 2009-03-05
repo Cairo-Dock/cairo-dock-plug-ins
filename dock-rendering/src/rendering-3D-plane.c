@@ -663,7 +663,7 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 }
 
 
-static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
+void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 {
 	//\____________________ On genere le cadre.
 	double fLineWidth = myBackground.iDockLineWidth;
@@ -698,7 +698,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	
 	//\____________________ On dessine le cadre.
 	if (fLineWidth != 0)
-		cairo_dock_draw_current_path_opengl (fLineWidth, myBackground.fLineColor, pVertexTab, iNbVertex);
+		cairo_dock_draw_current_path_opengl (fLineWidth, myBackground.fLineColor, iNbVertex);
 	glPopMatrix ();
 	
 	/// donner un effet d'epaisseur => chaud du slip avec les separateurs physiques !

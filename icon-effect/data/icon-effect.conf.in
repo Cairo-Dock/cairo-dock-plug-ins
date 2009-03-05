@@ -55,6 +55,11 @@ color2 = 1;.95;0
 #b+ Random colors ?
 mystical = false
 
+#b+ Add luminance ?
+#{It will slightly alter the colors, so you may have to modify them.}
+luminous = true
+
+
 #I[10;500] Number of particles :
 nb part = 150
 
@@ -76,7 +81,7 @@ duration = 2000
 continue = true
 
 #c+3 1st color of gradation :
-color1 = 1;1;0
+color1 = 1;1;.7
 
 #c+3 2nd color of gradation :
 color2 = .9;.9;.9
@@ -102,19 +107,19 @@ duration = 2000
 continue = false
 
 #c+3 1st color of gradation :
-color1 = .7;.7;.7
+color1 = 1.;1.;1.
 
 #c+3 2nd color of gradation :
-color2 = .6;.6;1.
+color2 = .8;.9;.9
 
 #I[10;300] Number of particles :
 nb part = 50
 
-#I[2;30] Particle size :
+#I[2;40] Particle size :
 part size = 26
 
 #e[.5;3] Particle speed :
-part speed = 1.
+part speed = 1.5
 
 
 #[@icon_effectsdatadir@/rain.png]

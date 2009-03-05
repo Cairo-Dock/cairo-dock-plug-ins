@@ -716,6 +716,7 @@ void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		my_fRainbowLineColor[0], my_fRainbowLineColor[1], my_fRainbowLineColor[2], 0.};
 		glEnableClientState(GL_COLOR_ARRAY);
 		glColorPointer(4, GL_FLOAT, 0, color);
+		glVertexPointer(3, GL_FLOAT, 0, pVertexTab);
 		
 		pVertexTab[3*0+0] = - (fRadius + .5 * pDock->iMaxIconHeight * fMaxScale + my_iSpaceBetweenRows/2) * pCosSinTab[2*0];
 		pVertexTab[3*0+1] = (fRadius + .5 * pDock->iMaxIconHeight * fMaxScale + my_iSpaceBetweenRows/2) * pCosSinTab[2*0+1];
@@ -728,7 +729,7 @@ void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		pVertexTab[3*4+0] = - pVertexTab[3*0+0];
 		pVertexTab[3*4+1] = pVertexTab[3*0+1];
 		
-		cairo_dock_draw_current_path_opengl (myBackground.iDockLineWidth, my_fRainbowLineColor, pVertexTab, 5);
+		cairo_dock_draw_current_path_opengl (myBackground.iDockLineWidth, my_fRainbowLineColor, 5);
 		
 		glDisableClientState(GL_COLOR_ARRAY);
 		glPopMatrix ();

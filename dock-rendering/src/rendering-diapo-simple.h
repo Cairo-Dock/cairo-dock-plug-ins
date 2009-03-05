@@ -43,4 +43,8 @@ void cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *
 void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock);
 
 
+void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock);
+
+GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, GLfloat **colors, int *iNbPoints);
+
 #endif
