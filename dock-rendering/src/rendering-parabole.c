@@ -654,7 +654,94 @@ void cd_rendering_register_parabole_renderer (const gchar *cRendererName)
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_parabole;
 	pRenderer->render = cd_rendering_render_parabole;
 	pRenderer->render_optimized = NULL;
+	pRenderer->render_opengl = cd_rendering_render_parabole_opengl;
 	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_parabole;
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
+}
+
+
+void cd_rendering_render_parabole_opengl (CairoDock *pDock)
+{
+	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
+	
+	//\____________________ On trace le cadre.
+	
+	//\____________________ On dessine les decorations dedans.
+	
+	//\____________________ On dessine le cadre.
+	
+	//\____________________ On dessine la ficelle qui les joint.
+	///if (myIcons.iStringLineWidth > 0)
+	///	cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, FALSE);
+	
+	
+	//\____________________ On dessine les icones et leurs etiquettes, mais separement.
+	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	if (pFirstDrawnElement == NULL)
+		return;
+	
+	glPushMatrix ();
+	double fDockMagnitude = 1;  // pour le rendu des icones, on utilise la magnitude max.
+	gboolean bHorizontal = pDock->bHorizontalDock;
+	Icon *icon;
+	GList *ic = pFirstDrawnElement;
+	do
+	{
+		icon = ic->data;
+		
+		cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, FALSE);  // nous laisse au milieu de l'icone.
+		
+		if (icon->pTextBuffer != NULL)  // en opengl on dessine les etiquettes meme pendant le depliage.
+		{
+			glTranslatef (-icon->fWidth * icon->fScale/2, icon->fHeight * icon->fScale/2, 0.);
+			glRotatef (-icon->fOrientation/G_PI*180., 0., 0., 1.);
+			glTranslatef (icon->fWidth * icon->fScale/2, -icon->fHeight * icon->fScale/2, 0.);
+			
+			_cairo_dock_enable_texture ();
+			_cairo_dock_set_blend_over ();
+			_cairo_dock_set_alpha ((1 - pDock->fFoldingFactor) * (1 - pDock->fFoldingFactor));
+			
+			if (pDock->fAlign == 1)
+			{
+				if (bHorizontal)
+				{
+					glTranslatef (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->iTextWidth/2,
+						0.,
+						0.);
+				}
+				else
+				{
+					glRotatef (-90., 0., 0., 1.);
+					glTranslatef (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->iTextWidth/2,
+						0.,
+						0.);
+				}
+			}
+			else
+			{
+				if (bHorizontal)
+				{
+					glTranslatef (- (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->iTextWidth/2),
+						0.,
+						0.);
+				}
+				else
+				{
+					glRotatef (-90., 0., 0., 1.);
+					glTranslatef (- (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->iTextWidth/2),
+						0.,
+						0.);
+				}
+			}
+			cairo_dock_apply_texture_at_size (icon->iLabelTexture,
+				icon->iTextWidth,
+				icon->iTextHeight);
+			
+			_cairo_dock_disable_texture ();
+		}
+		
+		ic = cairo_dock_get_next_element (ic, pDock->icons);
+	} while (ic != pFirstDrawnElement);
+	glPopMatrix ();
 }

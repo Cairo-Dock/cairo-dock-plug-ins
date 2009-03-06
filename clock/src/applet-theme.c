@@ -74,8 +74,8 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 			}
 			else  // on prend des valeurs par defaut assez larges.
 			{
-				myData.iNeedleRealHeight = .16*myData.needleDimension.height;
-				myData.iNeedleOffsetX = .2 * myData.needleDimension.width;
+				myData.iNeedleRealHeight = .2*myData.needleDimension.height;
+				myData.iNeedleOffsetX = .3 * myData.needleDimension.width;
 			}
 			myData.iNeedleRealWidth = myData.needleDimension.width/2 + myData.iNeedleOffsetX;
 			myData.iNeedleOffsetY = .5 * myData.iNeedleRealHeight;

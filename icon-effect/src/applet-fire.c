@@ -19,7 +19,7 @@ CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, do
 {
 	if (myData.iFireTexture == 0)
 		myData.iFireTexture = cd_icon_effect_load_fire_texture ();
-	double fMaxScale = (pDock->bAtBottom ? 1. : cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock)) * pDock->fMagnitudeMax);
+	double fMaxScale = (pDock->bAtBottom ? 1. : 1. + g_fAmplitude * pDock->fMagnitudeMax);
 	CairoParticleSystem *pFireParticleSystem = cairo_dock_create_particle_system (myConfig.iNbFireParticles, myData.iFireTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pFireParticleSystem != NULL, NULL);
 	pFireParticleSystem->dt = dt;

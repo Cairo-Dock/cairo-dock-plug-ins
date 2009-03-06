@@ -25,5 +25,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock);
 
 void cd_rendering_register_parabole_renderer (const gchar *cRendererName);
 
+void cd_rendering_render_parabole_opengl (CairoDock *pDock);
+
 
 #endif
