@@ -14,6 +14,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-config.h"
 #include "applet-musicplayer.h"
 
+CD_APPLET_INCLUDE_MY_VARS
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
@@ -101,8 +102,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	myData.cCoverPath = NULL;
 	
 	myData.cPreviousCoverPath = NULL;
-	if( myData.cPreviousRawTitle )
-		g_free (myData.cPreviousRawTitle);
 	myData.cPreviousRawTitle = NULL;
 	myData.cQuickInfo = NULL;
 	

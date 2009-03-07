@@ -15,6 +15,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-draw.h"
 #include "applet-musicplayer.h"
 
+CD_APPLET_INCLUDE_MY_VARS
 
 gboolean cd_musicplayer_dbus_connect_to_bus (void)
 {

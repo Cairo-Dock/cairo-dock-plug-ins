@@ -87,7 +87,7 @@ fg alpha = 1
 [Configuration]
 #F[Audio Player]
 frame1 =
-#E[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2] Player to control:
+#E[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;Amarok 1.4] Player to control:
 current-player=XMMS
 
 #b Steal the player's icon from taskbar ?

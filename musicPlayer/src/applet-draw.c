@@ -14,8 +14,9 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-draw.h"
 #include "applet-musicplayer.h"
 
+CD_APPLET_INCLUDE_MY_VARS
 
-static const gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
+static gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 
 static GList * _list_icons (void) {
 	GList *pIconList = NULL;
@@ -27,7 +28,7 @@ static GList * _list_icons (void) {
 		pIcon->acName = NULL;
 		pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
 		pIcon->fOrder = i;
-		pIcon->iType = 2*i;
+		pIcon->iType = i;
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
@@ -48,14 +49,7 @@ void cd_musicplayer_add_buttons_to_desklet(void) {
 }
 
 void _set_new_title (void) {
-	if( myData.cPreviousRawTitle )
-	{
-		g_free( myData.cPreviousRawTitle ); myData.cPreviousRawTitle = NULL;
-	}
-	if( myData.cRawTitle )
-	{
-		myData.cPreviousRawTitle = g_strdup(myData.cRawTitle);
-	}
+	myData.cPreviousRawTitle = myData.cRawTitle;
 	if (myData.cRawTitle == NULL || strcmp (myData.cRawTitle, "(null)") == 0) {
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
 	}
@@ -76,7 +70,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 	if (myData.pPlayingStatus == PLAYER_NONE) {
 		myData.cQuickInfo = NULL;
 		if (myData.cQuickInfo != myData.cPreviousQuickInfo) {
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 			myData.cPreviousQuickInfo = myData.cQuickInfo;
 		}
 	}
@@ -85,7 +79,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 			case MY_APPLET_NOTHING :
 				myData.cQuickInfo = NULL;
 				if (myData.cQuickInfo != myData.cPreviousQuickInfo) {
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 					myData.cPreviousQuickInfo = myData.cQuickInfo;
 				}
 			break ;
@@ -231,9 +225,9 @@ void cd_musicplayer_set_surface (MyPlayerStatus iStatus) {
 			g_free (cUserImagePath);
 		}
 		else {
-			gchar *cLocalImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iStatus]);
-			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cLocalImagePath);
-			g_free (cLocalImagePath);
+			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iStatus]);
+			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+			g_free (cImagePath);
 		}
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaces[iStatus]);
 	}
@@ -251,19 +245,17 @@ void cd_musicplayer_change_desklet_data (void) {
 		return;
 	
 	gpointer data[2] = {NULL, NULL};
-	gchar *artist=NULL, *title=NULL, *str=NULL;
+	gchar **rawTitle=NULL, *artist=NULL, *title=NULL;
 	if (myData.cArtist == NULL && myData.cTitle == NULL) { //On détermine l'artist (par default le 1er avant le tiret)
-		if (myData.cRawTitle != NULL)
-		{
-			str = strchr (myData.cRawTitle, '-');
-			if (str != NULL)
-			{
-				*str = '\0';
-				artist = myData.cRawTitle;
-				title = str + 1;
-				while (*title == ' ')
-					title ++;
-			}
+		rawTitle = g_strsplit (myData.cRawTitle, "-", -1);
+		if (rawTitle[0] != NULL)
+			artist = rawTitle[0];
+			
+		if (rawTitle[1] != NULL) {
+			title = strchr (myData.cRawTitle, '-');
+			title ++;
+			while (*title == ' ')
+				title ++;
 		}
 		data[0] = artist;
 		data[1] = title;
@@ -274,8 +266,7 @@ void cd_musicplayer_change_desklet_data (void) {
 	}
 	
 	cairo_dock_render_desklet_with_new_data (myDesklet, data);
-	if (str != NULL)  // on remet le tiret (utile ? si on a souvent besoin de artist/title, autant les sauvegarder dans myData non ?)
-		*str = '-';
+	g_strfreev (rawTitle);
 }
 
 void cd_musicplayer_player_none (void) {

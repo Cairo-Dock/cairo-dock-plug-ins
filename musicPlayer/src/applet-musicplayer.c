@@ -14,6 +14,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-draw.h"
 #include "applet-musicplayer.h"
 
+CD_APPLET_INCLUDE_MY_VARS
 
 MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName) {
 	GList *ic;
@@ -46,13 +47,10 @@ void cd_musicplayer_arm_handeler (void) {
 
 /* Arrete l'handeler en nettoyant la memoire */
 void cd_musicplayer_disarm_handeler (void) {
-	if (myData.pCurrentHandeler == NULL)
-		return ;
 	cd_debug ("MP : Disarming %s", myData.pCurrentHandeler->name);
 	myData.pCurrentHandeler->free_data();
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
-	//cd_musicplayer_free_handeler(myData.pCurrentHandeler);
-	myData.pCurrentHandeler = NULL;
+	cd_musicplayer_free_handeler(myData.pCurrentHandeler);
 }
 
 
@@ -69,15 +67,19 @@ void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const 
 
 /* Libere la memoire de l'handeler */
 void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler) {
-	if (pHandeler == NULL)
-		return ;
 	myData.pHandelers = g_list_remove (myData.pHandelers, pHandeler);
 	pHandeler->free_data();
 	
 	g_free (pHandeler->name);
+	pHandeler->name = NULL;
 	g_free (pHandeler->appclass);
+	pHandeler->appclass = NULL;
 	
-	g_free (pHandeler->launch);
+	if (pHandeler->launch != NULL) {
+	  g_free (pHandeler->launch);
+	  pHandeler->launch = NULL;
+	}
 	
 	g_free (pHandeler);
+	pHandeler = NULL;
 }

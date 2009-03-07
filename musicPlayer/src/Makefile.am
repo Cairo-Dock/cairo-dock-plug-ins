@@ -1,5 +1,7 @@
  #dnl Process this file with automake to produce Makefile.in
 
+ #applet-amazon.c applet-amazon.h
+
 lib_LTLIBRARIES = \
 	libcd-musicPlayer.la
 
@@ -13,10 +15,14 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-notifications.h\
 	applet-dbus.c\
 	applet-dbus.h\
+	applet-dcop.c\
+	applet-dcop.h\
 	applet-draw.c\
 	applet-draw.h\
 	applet-musicplayer.c\
 	applet-musicplayer.h\
+	applet-amarok1.c\
+	applet-amarok1.h\
 	applet-amarok2.c\
 	applet-amarok2.h\
 	applet-banshee.c\

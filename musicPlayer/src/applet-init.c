@@ -25,9 +25,44 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-quodlibet.h" //Support QuodLibet
 #include "applet-listen.h" //Support Listen
 #include "applet-amarok2.h" //Support Amarok 2
+#include "applet-amarok1.h" //Support Amarok 1.4
 
 CD_APPLET_DEFINITION ("musicPlayer", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
 
+
+static void _musciplayer_set_simple_renderer (void) {
+	cd_debug ("");
+	const gchar *cConfigName = NULL;
+	switch (myConfig.iDecoration) {
+		case MY_APPLET_PERSONNAL :
+		break ;
+		case MY_APPLET_CD_BOX:
+			cConfigName = "CD box";
+		break ;
+		case MY_APPLET_FRAME_REFLECTS :
+			cConfigName = "frame&reflects";
+		break ;
+		case MY_APPLET_SCOTCH :
+				cConfigName = "scotch";
+		break ;
+		case MY_APPLET_FRAME_SCOTCH :
+				cConfigName = "frame with scotch";
+		break ;
+		default :
+			return ;
+	}
+	if (cConfigName != NULL) {
+		CairoDeskletRendererConfigPtr pConfig = cairo_dock_get_desklet_renderer_predefined_config ("Simple", cConfigName);
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
+	}
+	else if (myConfig.cFrameImage != NULL || myConfig.cReflectImage != NULL) {
+		gpointer pManualConfig[9] = {myConfig.cFrameImage, myConfig.cReflectImage, GINT_TO_POINTER (CAIRO_DOCK_FILL_SPACE), &myConfig.fFrameAlpha, &myConfig.fReflectAlpha, GINT_TO_POINTER (myConfig.iLeftOffset), GINT_TO_POINTER (myConfig.iTopOffset), GINT_TO_POINTER (myConfig.iRightOffset), GINT_TO_POINTER (myConfig.iBottomOffset)};
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pManualConfig);
+	}
+	else {
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+	}
+}
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -42,6 +77,7 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_register_quodlibet_handeler();
 	cd_musicplayer_register_listen_handeler();
 	cd_musicplayer_register_amarok2_handeler();
+	cd_musicplayer_register_amarok1_handeler();
 	
 	
 	if (myDesklet) {
@@ -55,14 +91,12 @@ CD_APPLET_INIT_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
 		}
 		else {
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			_musciplayer_set_simple_renderer ();
 		}
 	}
 	
 	myData.pPlayingStatus = PLAYER_NONE;
 	myData.pPreviousPlayingStatus = -1;
-	if( myData.cPreviousRawTitle )
-		g_free (myData.cPreviousRawTitle);
 	myData.cPreviousRawTitle = NULL;
 	myData.cPreviousCoverPath = NULL;
 	myData.iPreviousTrackNumber = -1;
@@ -134,15 +168,13 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
 		}
 		else {
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			_musciplayer_set_simple_renderer ();
 		}
 	}
 	
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	myData.pPlayingStatus = PLAYER_NONE;
 	myData.pPreviousPlayingStatus = -1;
-	if( myData.cPreviousRawTitle )
-		g_free (myData.cPreviousRawTitle);
 	myData.cPreviousRawTitle = NULL;
 	myData.cPreviousCoverPath = NULL;
 	myData.iPreviousTrackNumber = -1;
@@ -151,30 +183,23 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cd_musicplayer_disarm_handeler (); //On libère tout ce qu'occupe notre ancien handeler.
 		myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name (myConfig.cMusicPlayer);
-
-		if( myData.pCurrentHandeler )
-		{
-			if (myIcon->cClass != NULL && myData.pCurrentHandeler->appclass != NULL) { //Sécurité pour ne pas planter a cause du strcmp
-				cd_debug ("MP: deinhibate %s (1)", myIcon->cClass);
-				if ((!myConfig.bStealTaskBarIcon) || (strcmp (myIcon->cClass, myData.pCurrentHandeler->appclass))) 
-					cairo_dock_deinhibate_class (myIcon->cClass, myIcon);
-			}
-			else if (myIcon->cClass != NULL && !myConfig.bStealTaskBarIcon) { // on ne veut plus l'inhiber ou on veut inhiber une autre.
-				cd_debug ("MP: deinhibate %s (2)", myIcon->cClass);
-				cairo_dock_deinhibate_class (myIcon->cClass, myIcon);
-			}
-				
-			if (myConfig.bStealTaskBarIcon && myIcon->cClass == NULL) { // on commence a inhiber l'appli si on ne le faisait pas, ou qu'on s'est arrete.
-				cd_debug ("MP: inhibate %s (2)", myData.pCurrentHandeler->appclass);
-				cairo_dock_inhibate_class (myData.pCurrentHandeler->appclass, myIcon);
-			}
+	
+		if (myIcon->cClass != NULL && myData.pCurrentHandeler->appclass != NULL) { //Sécurité pour ne pas planter a cause du strcmp
+			cd_debug ("MP: deinhibate %s (1)", myIcon->cClass);
+			if ((!myConfig.bStealTaskBarIcon) || (strcmp (myIcon->cClass, myData.pCurrentHandeler->appclass))) 
+			  cairo_dock_deinhibate_class (myIcon->cClass, myIcon);
+		}
+		else if (myIcon->cClass != NULL && !myConfig.bStealTaskBarIcon) { // on ne veut plus l'inhiber ou on veut inhiber une autre.
+		  cd_debug ("MP: deinhibate %s (2)", myIcon->cClass);
+		  cairo_dock_deinhibate_class (myIcon->cClass, myIcon);
+		}
+		  
+		if (myConfig.bStealTaskBarIcon && myIcon->cClass == NULL) { // on commence a inhiber l'appli si on ne le faisait pas, ou qu'on s'est arrete.
+			cd_debug ("MP: inhibate %s (2)", myData.pCurrentHandeler->appclass);
+			cairo_dock_inhibate_class (myData.pCurrentHandeler->appclass, myIcon);
+		}
 		
-			cd_musicplayer_arm_handeler (); //et on arme le bon.
-		}
-		else
-		{
-			cd_error( "myData.pCurrentHandeler = NULL !" );
-		}
+		cd_musicplayer_arm_handeler (); //et on arme le bon.
 	}
 	else  // on redessine juste l'icone.
 		cd_musicplayer_draw_icon ();
