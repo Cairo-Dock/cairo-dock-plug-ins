@@ -16,9 +16,9 @@ Fabrice Rey (fabounet@users.berlios.de)
 #include "applet-struct.h"
 #include "applet-musicplayer.h"
 #include "applet-draw.h"
-
 #include "applet-amarok1.h"
 #include "applet-dcop.h"
+#include "applet-cover.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -161,7 +161,7 @@ void cd_amarok1_read_data (void) {
 	myData.iTrackNumber = cd_dcop_get_int("dcop amarok player trackPlayCounter");
 	myData.iSongLength = cd_dcop_get_int("dcop amarok player trackTotalTime");
 	myData.iCurrentTime = cd_dcop_get_int("dcop amarok player trackCurrentTime");
-	myData.cCoverPath = cd_dcop_get_string("dcop amarok player coverImage");
+	myData.cCoverPath = cd_check_musicPlayer_cover_exists(cd_dcop_get_string("dcop amarok player coverImage"),MP_AMAROK1); // On recupere l'URI et on verifie que l'image existe et n'est pas l'image par defaut d'amarok
 	
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 }

@@ -21,6 +21,7 @@ Rémy Robertson (changfu@cairo-dock.org)
 
 #include "applet-draw.h"
 #include "applet-exaile.h"
+#include "applet-cover.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -78,7 +79,7 @@ void cd_exaile_getCoverPath (void)
 		myData.cCoverPath = NULL;
 	}
 	
-	myData.cCoverPath = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_cover_path);
+	myData.cCoverPath = cd_check_musicPlayer_cover_exists(cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_cover_path),MP_EXAILE);
 	if (myData.cCoverPath != NULL)
 		;//cd_message("MP : Couverture -> %s", myData.cCoverPath);
 	else

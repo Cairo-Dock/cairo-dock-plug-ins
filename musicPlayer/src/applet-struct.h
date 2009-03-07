@@ -7,6 +7,27 @@
 //Canevas
 typedef struct _MusicPlayerHandeler MusicPlayerHandeler;
 
+/**
+ * Tailles possible pour le téléchargement des pochettes
+ */
+typedef enum {
+	MEDIUM_IMAGE,
+	LARGE_IMAGE
+} DownloadedImageSizes;
+
+// Players supportes
+typedef enum {
+	MP_AMAROK1 = 0,
+	MP_AMAROK2,
+	MP_RHYTHMBOX,
+	MP_EXAILE,
+	MP_LISTEN,
+	MP_XMMS,
+	MP_SONGBIRD,
+	MP_QUODLIBET,
+	MP_BANSHEE
+} MySupportedPlayers;
+
 typedef enum {
 	PLAYER_NONE = 0,
 	PLAYER_PLAYING,
@@ -119,6 +140,10 @@ struct _AppletConfig {
 	gchar *cReflectImage;
 	gdouble fFrameAlpha;
 	gdouble fReflectAlpha;
+	
+	gboolean bDownload;
+	DownloadedImageSizes iImagesSize;
+	gint iTimeToWait;
 };
 
 struct _AppletData {
@@ -152,6 +177,9 @@ struct _AppletData {
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
 	cairo_surface_t *pCover;
 	gchar *cQuickInfo, *cPreviousQuickInfo;
+	
+	// Telechargement des pochettes
+	gint iCheckIter;
 	
 	guint iSidCheckCover;
 };

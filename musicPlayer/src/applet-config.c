@@ -57,6 +57,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.iRightOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "right offset");
 		myConfig.iBottomOffset	= CD_CONFIG_GET_INTEGER ("Configuration", "bottom offset");
 	}
+	
+	myConfig.bDownload   = CD_CONFIG_GET_BOOLEAN ("Configuration", "DOWNLOAD");
+	myConfig.iImagesSize = CD_CONFIG_GET_INTEGER ("Configuration", "D_SIZE");
+	myConfig.iTimeToWait = CD_CONFIG_GET_INTEGER ("Configuration", "DELAY");
 CD_APPLET_GET_CONFIG_END
 
 

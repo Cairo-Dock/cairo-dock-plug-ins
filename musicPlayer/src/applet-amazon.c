@@ -1,14 +1,5 @@
-/*
-   *
-   *                     cid-amazon.c
-   *                       -------
-   *                 Conky Images Display
-   *             ----------------------------
-   *
-   *
-*/
-
-#ifdef LIBXML_READER_ENABLED
+#include "applet-amazon.h"
+#include "applet-struct.h"
 
 static gboolean flag, found;
 
@@ -28,7 +19,7 @@ static void cd_process_node (xmlTextReaderPtr reader, gchar **cValue) {
 		name = BAD_CAST "--";
 
 		value = xmlTextReaderConstValue(reader);
-		if ((strcmp(name,TAB_IMAGE_SIZES[cid->iImageSize])==0 || flag) && !found) {
+		if ((strcmp(name,TAB_IMAGE_SIZES[myConfig.iImagesSize])==0 || flag) && !found) {
 			//printf("node: %s ", name);
 		if (value != NULL) {
 			cd_message ("%s\n", value);
@@ -113,6 +104,3 @@ gboolean cd_download_missing_cover (const gchar *cURL, const gchar *cDestPath) {
 	g_free (cCommand);
 	return TRUE;
 }
-
-#endif
-

@@ -1,7 +1,8 @@
 
-#ifndef __CID_AMAZON__
-#define  __CID_AMAZON__
+#ifndef __CD_AMAZON__
+#define  __CD_AMAZON__
 
+#include <cairo-dock.h>
 #include <libxml/xmlreader.h>
 
 G_BEGIN_DECLS
@@ -9,7 +10,7 @@ G_BEGIN_DECLS
 #define LICENCE_KEY "0C3430YZ2MVJKQ4JEKG2"
 #define AMAZON_API_URL_1 "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId="
 #define AMAZON_API_URL_2 "&AssociateTag=webservices-20&ResponseGroup=Images,ItemAttributes&Operation=ItemSearch&ItemSearch.Shared.SearchIndex=Music"
-#define DEFAULT_XML_LOCATION "/tmp/cid_amazon.xml"
+#define DEFAULT_XML_LOCATION "/tmp/cd_amazon.xml"
 #define DEFAULT_DOWNLOADED_IMAGE_LOCATION "/tmp/default.jpg"
 
 /**

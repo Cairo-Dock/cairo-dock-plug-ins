@@ -167,3 +167,19 @@ pause icon =
 #S+ Name of an image for the 'broken' icon :
 #{Let it empty to use the default icon.}
 broken icon = 
+
+
+#X+[Downloads;gtk-convert]
+frame_launcher =
+
+#b Allow CID to download missing covers :
+#{You need to be connected to the Internet.}
+DOWNLOAD=FALSE
+
+#i[0;15] Delay before checking for missing covers :
+#{in seconds}
+DELAY=3
+
+#r[Medium;Large] Size of the downloaded covers :
+#{The smaller image will be downloaded faster than a big one.}
+D_SIZE=
