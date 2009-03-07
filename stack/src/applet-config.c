@@ -12,7 +12,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-struct.h"
 #include "applet-config.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
@@ -51,7 +50,6 @@ CD_APPLET_RESET_CONFIG_END
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped.
 CD_APPLET_RESET_DATA_BEGIN
 	
-	if (myIcon->pSubDock != NULL) {
-		CD_APPLET_DESTROY_MY_SUBDOCK;
-	}
+	CD_APPLET_DELETE_MY_ICONS_LIST;
+	
 CD_APPLET_RESET_DATA_END

@@ -703,9 +703,10 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	
 	/// donner un effet d'epaisseur => chaud du slip avec les separateurs physiques !
 	
+	
 	//\____________________ On dessine la ficelle qui les joint.
-	///if (myIcons.iStringLineWidth > 0)
-	///	cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
+	if (myIcons.iStringLineWidth > 0)
+		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	double fRatio = (pDock->iRefCount == 0 ? 1 : myViews.fSubDockSizeRatio);
@@ -963,4 +964,3 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 	
 	glDisable (GL_BLEND);
 }
-

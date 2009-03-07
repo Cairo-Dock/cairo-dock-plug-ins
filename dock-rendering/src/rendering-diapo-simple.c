@@ -673,8 +673,9 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	cairo_dock_draw_current_path_opengl (my_diapo_simple_lineWidth, my_diapo_simple_color_border_line, iNbVertex);
 	glPopMatrix ();
 	
-	//\____________________ On dessine la ficelle.
-	/// A FAIRE...
+	//\____________________ On dessine la ficelle qui les joint.
+	if (myIcons.iStringLineWidth > 0)
+		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, FALSE);
 	
 	//\____________________ On dessine les icones.
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);

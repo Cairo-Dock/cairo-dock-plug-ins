@@ -24,6 +24,7 @@ gboolean cd_illusion_init_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 	CairoParticleSystem *pEvaporateParticleSystem = cairo_dock_create_particle_system (myConfig.iNbEvaporateParticles, myData.iEvaporateTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pEvaporateParticleSystem != NULL, FALSE);
 	pEvaporateParticleSystem->dt = dt;
+	pEvaporateParticleSystem->bAddLuminance = TRUE;
 	pData->pEvaporateSystem = pEvaporateParticleSystem;
 	
 	double a = myConfig.fEvaporateParticleSpeed;

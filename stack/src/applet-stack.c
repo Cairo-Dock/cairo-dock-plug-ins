@@ -13,8 +13,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-load-icons.h"
 #include "applet-stack.h"
  
-CD_APPLET_INCLUDE_MY_VARS
-
 
 void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile) {
 	
@@ -209,7 +207,7 @@ void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gch
 		
 		cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myDesklet));
 		myDesklet->icons = pStacksIconList;
-		gtk_widget_queue_draw (myDesklet->pWidget);
+		gtk_widget_queue_draw (myDesklet->pWidget);  /// il faudrait recharger le Tree non ?...
 	}
 }
 

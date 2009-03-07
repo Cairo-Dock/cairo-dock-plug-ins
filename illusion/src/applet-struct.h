@@ -32,6 +32,9 @@ struct _AppletConfig {
 	gint iExplodeNbPiecesX, iExplodeNbPiecesY;
 	gdouble fExplosionRadius;
 	gboolean bExplodeCube;
+	
+	gint iBreakNbPieces;
+	gint iBreakNbBorderPoints;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -43,6 +46,11 @@ typedef struct {
 	gdouble fRotationSpeed;
 	gdouble vx, vy, vz;
 	} CDIllusionExplosion;
+
+typedef struct {
+	gdouble fRotationAngle;
+	gdouble vy, y;
+	} CDIllusionBreak;
 
 typedef struct _CDIllusionData {
 	gdouble fEvaporateSpeed;
@@ -58,6 +66,8 @@ typedef struct _CDIllusionData {
 	gdouble fExplosionRotation;
 	gdouble fExplodeAlpha;
 	CDIllusionExplosion *pExplosionPart;
+	
+	
 	
 	} CDIllusionData;
 

@@ -5,7 +5,7 @@
 
 #include <cairo-dock.h>
 
-void cd_stack_destroy_icons (CairoDockModuleInstance *myApplet);
+//void cd_stack_destroy_icons (CairoDockModuleInstance *myApplet);
 
 Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile);
 Icon *cd_stack_build_one_icon_from_file (CairoDockModuleInstance *myApplet, gchar *cDesktopFilePath);

@@ -39,5 +39,5 @@ gboolean cd_illusion_update_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionD
 
 void cd_illusion_draw_fade_out_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
-	pIcon->fAlpha = pData->fFadeOutAlpha;
+	pIcon->fAlpha = pData->fFadeOutAlpha;  // on laisse l'icone se faire redessiner par quelqu'un d'autre.
 }

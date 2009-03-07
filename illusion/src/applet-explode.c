@@ -77,9 +77,10 @@ void cd_illusion_draw_explode_icon (Icon *pIcon, CairoDock *pDock, CDIllusionDat
 {
 	if (pData->fExplodeAlpha == 0)
 		return ;
+	
 	glEnable (GL_BLEND);
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glColor4f (1., 1., 1., pData->fExplodeAlpha);
+	_cairo_dock_set_blend_alpha ();
+	_cairo_dock_set_alpha (pData->fExplodeAlpha);
 	
 	glEnable (GL_TEXTURE_2D);
 	glBindTexture (GL_TEXTURE_2D, pIcon->iIconTexture);

@@ -58,7 +58,7 @@ margin color = .9;.9;.9;1.0
 [Curly]
 
 #i+[4;20] Corner radius :
-corner = 12
+corner = 8
 
 #i+[1;10] Border width :
 border = 1

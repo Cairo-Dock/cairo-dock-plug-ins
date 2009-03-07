@@ -330,17 +330,19 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
+		//glMatrixMode(GL_PROJECTION);
+		//glPushMatrix ();
+		/*glLoadIdentity();
 		gluPerspective(60.0, 1.0*(GLfloat)myData.iSurfaceWidth/(GLfloat)myData.iSurfaceHeight, 1., 4*myData.iSurfaceHeight);
 		glMatrixMode (GL_MODELVIEW);
 		
 		glLoadIdentity ();
-		gluLookAt (myData.iSurfaceWidth/2, myData.iSurfaceHeight/2, 3.,
-			myData.iSurfaceWidth/2, myData.iSurfaceHeight/2, 0.,
+		gluLookAt (0., 0., 3.,
+			0. ,0., 0.,
 			0.0f, 1.0f, 0.0f);
 		glTranslatef (0.0f, 0.0f, -3);
-		glTranslatef (myData.iSurfaceWidth/2, myData.iSurfaceHeight/2, -myData.iSurfaceHeight*(sqrt(3)/2));
+		glTranslatef (0., 0., -myData.iSurfaceHeight*(sqrt(3)/2));*/
+		cairo_dock_set_perspective_view (myData.iSurfaceWidth, myData.iSurfaceHeight);
 		glScalef (1., -1., 1.);
 		
 		if (myData.iPrevTexture != 0 && myData.fAnimAlpha < a)
@@ -382,7 +384,10 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 		
 		_cairo_dock_disable_texture ();
 		
-		cairo_dock_set_ortho_view (myData.iSurfaceWidth, myData.iSurfaceHeight);CD_APPLET_FINISH_DRAWING_MY_ICON;
+		CD_APPLET_FINISH_DRAWING_MY_ICON;
+		/*glMatrixMode(GL_PROJECTION);
+		glPopMatrix ();
+		glMatrixMode (GL_MODELVIEW);*/
 	}
 	else
 	{
@@ -405,7 +410,7 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 		cairo_paint(myDrawContext);
 	}
 	
-	return (myData.fAnimAlpha < .99);
+	return (myData.fAnimAlpha < .999);
 }
 
 gboolean cd_slider_grow_up (CairoDockModuleInstance *myApplet) {

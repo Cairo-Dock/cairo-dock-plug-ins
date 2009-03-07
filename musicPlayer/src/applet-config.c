@@ -14,7 +14,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-config.h"
 #include "applet-musicplayer.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
@@ -45,32 +44,19 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserImage[PLAYER_STOPPED] 	= CD_CONFIG_GET_STRING ("Configuration", "stop icon");
 	myConfig.cUserImage[PLAYER_BROKEN] 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 	
-	myConfig.iDecoration 		  = CD_CONFIG_GET_INTEGER ("Configuration", "desklet decoration");
+	myConfig.iDecoration 		  = CD_CONFIG_GET_INTEGER ("Configuration", "desklet decoration");  /// ne sert plus a rien il me semble.
 	myConfig.extendedDesklet  = (myConfig.iDecoration == MY_APPLET_EXTENDED);
-	if (myConfig.iDecoration == MY_APPLET_PERSONNAL) {
-		myConfig.fFrameAlpha		= CD_CONFIG_GET_DOUBLE ("Configuration", "frame alpha");
-		myConfig.cFrameImage 	  = CD_CONFIG_GET_FILE_PATH ("Configuration", "frame", NULL);
-		myConfig.fReflectAlpha	= CD_CONFIG_GET_DOUBLE ("Configuration", "reflect alpha");
-		myConfig.cReflectImage 	= CD_CONFIG_GET_FILE_PATH ("Configuration", "reflect", NULL);
-		myConfig.iLeftOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "left offset");
-		myConfig.iTopOffset		  = CD_CONFIG_GET_INTEGER ("Configuration", "top offset");
-		myConfig.iRightOffset		= CD_CONFIG_GET_INTEGER ("Configuration", "right offset");
-		myConfig.iBottomOffset	= CD_CONFIG_GET_INTEGER ("Configuration", "bottom offset");
-	}
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cDefaultTitle);
-	myConfig.cDefaultTitle = NULL;
-	//g_free (myConfig.cMusicPlayer);
-	myConfig.cMusicPlayer = NULL;
+	g_free (myConfig.cMusicPlayer);
 	
 	int i;
 	for (i = 0; i < PLAYER_NB_STATUS; i ++) {
 		g_free (myConfig.cUserImage[i]);
-		myConfig.cUserImage[i] = NULL;
 	}
 CD_APPLET_RESET_CONFIG_END
 
@@ -81,29 +67,18 @@ CD_APPLET_RESET_DATA_BEGIN
 	for (i = 0; i < PLAYER_NB_STATUS; i ++) {
 		if (myData.pSurfaces[i] != NULL) {
 			cairo_surface_destroy (myData.pSurfaces[i]);
-			myData.pSurfaces[i] = NULL;
 		}
 	}
 	
 	if (myData.pCover != NULL) {
 		cairo_surface_destroy (myData.pCover);
-		myData.pCover = NULL;
 	}
 	
 	g_free (myData.cRawTitle);
-	myData.cRawTitle = NULL;
 	g_free (myData.cTitle);
-	myData.cTitle = NULL;
 	g_free (myData.cArtist);
-	myData.cArtist = NULL;
 	g_free (myData.cAlbum);
-	myData.cAlbum = NULL;
 	g_free (myData.cCoverPath);
-	myData.cCoverPath = NULL;
-	
-	myData.cPreviousCoverPath = NULL;
-	myData.cPreviousRawTitle = NULL;
-	myData.cQuickInfo = NULL;
 	
 	//On s'occupe des handelers.
 	g_list_foreach (myData.pHandelers, (GFunc) cd_musicplayer_free_handeler, NULL);

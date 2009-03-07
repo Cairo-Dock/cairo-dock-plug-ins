@@ -51,25 +51,16 @@ void cd_animations_draw_pulse_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDa
 	if (pData->fPulseAlpha == 0 || pData->fPulseAlpha == 1 || pIcon->iIconTexture == 0)
 		return ;
 	
+	pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
 	glPushMatrix ();
 	double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
-	cairo_dock_set_icon_scale (pIcon, pDock, fScaleFactor/2);
-	glColor4f(1., 1., 1., pData->fPulseAlpha * pIcon->fAlpha);
-	glEnable (GL_TEXTURE_2D);
-	glEnable (GL_BLEND);
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBindTexture (GL_TEXTURE_2D, pIcon->iIconTexture);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0., 0.); glVertex3f(-1., 1,  0.);  // Bottom Left Of The Texture and Quad
-	glTexCoord2f(1., 0.); glVertex3f( 1., 1,  0.);  // Bottom Right Of The Texture and Quad
-	glTexCoord2f(1., 1.); glVertex3f( 1., -1,  0.);  // Top Right Of The Texture and Quad
-	glTexCoord2f(0., 1.); glVertex3f(-1.,  -1,  0.);  // Top Left Of The Texture and Quad
-	glEnd();
-	glDisable (GL_BLEND);
-	glDisable (GL_TEXTURE_2D);
+	cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), fScaleFactor);
+	_cairo_dock_enable_texture ();
+	_cairo_dock_set_blend_alpha ();
+	_cairo_dock_set_alpha (pData->fPulseAlpha * pIcon->fAlpha);
+	_cairo_dock_apply_texture (pIcon->iIconTexture);
+	_cairo_dock_disable_texture ();
 	glPopMatrix ();
-	
-	pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
 }
 
 void cd_animations_draw_pulse_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)

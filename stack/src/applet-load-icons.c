@@ -12,10 +12,8 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-load-icons.h"
 #include "applet-stack.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
-
-void cd_stack_destroy_icons (CairoDockModuleInstance *myApplet) {
+/*void cd_stack_destroy_icons (CairoDockModuleInstance *myApplet) {
 	cd_debug ("");
 	if (myDock && myIcon->pSubDock != NULL) {
 		CD_APPLET_DESTROY_MY_SUBDOCK;
@@ -25,7 +23,7 @@ void cd_stack_destroy_icons (CairoDockModuleInstance *myApplet) {
 		g_list_free (myDesklet->icons);
 		myDesklet->icons = NULL;
 	}
-}
+}*/
 
 
 static gboolean _isin (gchar **cString, gchar *cCompar) {
@@ -137,15 +135,8 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 
 Icon *cd_stack_build_one_icon_from_file (CairoDockModuleInstance *myApplet, gchar *cDesktopFilePath)
 {
-	GError *erreur = NULL;
-	GKeyFile *pKeyFile = g_key_file_new();
-	g_key_file_load_from_file (pKeyFile, cDesktopFilePath, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("Stack : while trying to load %s : %s", cDesktopFilePath, erreur->message);
-		g_error_free (erreur);
-		return NULL;
-	}
+	GKeyFile *pKeyFile = cairo_dock_open_key_file (cDesktopFilePath);
+	g_return_if_fail (pKeyFile != NULL)	;
 	
 	Icon *pIcon = cd_stack_build_one_icon (myApplet, pKeyFile);
 	
@@ -204,14 +195,18 @@ GList *cd_stack_build_icons_list (CairoDockModuleInstance *myApplet, gchar *cSta
 
 void cd_stack_build_icons (CairoDockModuleInstance *myApplet)
 {
-	cd_stack_destroy_icons (myApplet);
-	if (myIcon->acName == NULL && myDock)
-	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (CD_STACK_DEFAULT_NAME);
-	}
+	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	GList *pIconList = cd_stack_build_icons_list (myApplet, myConfig.cStackDir);
 	
+	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Tree", NULL);
+	/*cd_stack_destroy_icons (myApplet);
+	if (myIcon->acName == NULL && myDock)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (CD_STACK_DEFAULT_NAME);
+	
+	GList *pIconList = cd_stack_build_icons_list (myApplet, myConfig.cStackDir);
+	
+	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Tree", NULL);
 	if (myDock) {
 		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer);
 	}
@@ -219,5 +214,5 @@ void cd_stack_build_icons (CairoDockModuleInstance *myApplet)
 		myDesklet->icons = pIconList;
 		CD_APPLET_SET_DESKLET_RENDERER ("Tree");
 		///gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
-	}
+	}*/
 }

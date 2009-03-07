@@ -672,9 +672,8 @@ void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 	//\____________________ On dessine le cadre.
 	
 	//\____________________ On dessine la ficelle qui les joint.
-	///if (myIcons.iStringLineWidth > 0)
-	///	cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, FALSE);
-	
+	if (myIcons.iStringLineWidth > 0)
+		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, FALSE);
 	
 	//\____________________ On dessine les icones et leurs etiquettes, mais separement.
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);

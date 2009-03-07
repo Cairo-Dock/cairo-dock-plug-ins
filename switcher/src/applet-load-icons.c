@@ -56,10 +56,11 @@ void cd_switcher_load_icons (void)
 {
 	if (myConfig.bCompactView)
 	{
-		if (myIcon->pSubDock != NULL)
+		CD_APPLET_DELETE_MY_ICONS_LIST;
+		/*if (myIcon->pSubDock != NULL)
 		{
 			CD_APPLET_DESTROY_MY_SUBDOCK;
-		}
+		}*/
 		if (myDesklet)
 		{
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
@@ -73,16 +74,18 @@ void cd_switcher_load_icons (void)
 		//\_______________________ On cree la liste des icones de prevision.
 		GList *pIconList = _load_icons ();
 		
-		//\_______________________ On efface l'ancienne liste.
+		/*//\_______________________ On efface l'ancienne liste.
 		if (myIcon->pSubDock != NULL)
 		{
 			g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
 			g_list_free (myIcon->pSubDock->icons);
 			myIcon->pSubDock->icons = NULL;
 		}
-		
+		*/
 		//\_______________________ On charge la nouvelle liste.
-		if (myDock)
+		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
+		/*if (myDock)
 		{
 			if (myIcon->pSubDock == NULL)
 			{
@@ -119,7 +122,7 @@ void cd_switcher_load_icons (void)
 			
 			gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
-		}
+		}*/
 		
 		//\_______________________ On peint les icones.
 		cd_switcher_paint_icons ();

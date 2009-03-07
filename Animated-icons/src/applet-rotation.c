@@ -23,7 +23,7 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
 	if (bInvisibleBackground)
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend la capsule transparente.
+		_cairo_dock_set_blend_alpha ();  // rend la capsule transparente.
 	else
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
 	glEnable(GL_TEXTURE);
@@ -80,9 +80,10 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
 	if (bInvisibleBackground)
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend la capsule transparente.
+		_cairo_dock_set_blend_alpha ();  // rend la capsule transparente.
 	else
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
+	_cairo_dock_set_blend_alpha ();
 	glEnable(GL_TEXTURE);
 	
 	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
@@ -124,7 +125,7 @@ void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisi
 {
 	glEnable (GL_BLEND);
 	if (bInvisibleBackground)
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend la capsule transparente.
+		_cairo_dock_set_blend_alpha ();  // rend la capsule transparente.
 	else
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
 	glEnable(GL_TEXTURE);
@@ -192,8 +193,8 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 	double fAlpha = pIcon->fAlpha;
 	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
 	{
-		pIcon->fAlpha *= 1. - .3 * pData->fPulseAlpha;
-		glColor4f (1., 1., 1., pIcon->fAlpha);
+		glColor4f (1., 1., 1., pIcon->fAlpha * (1. - .5 * pData->fPulseAlpha));
+		///pIcon->fAlpha *= 1. - .5 * pData->fPulseAlpha;
 	}
 	else
 		glColor4f(myConfig.pMeshColor[0], myConfig.pMeshColor[1], myConfig.pMeshColor[2], pIcon->fAlpha);  // ici on peut donner une teinte aux reflets chrome.
@@ -202,9 +203,11 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 	
 	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
 	{
-		glColor4f (1., 1., 1., pData->fPulseAlpha);
+		_cairo_dock_set_alpha (pData->fPulseAlpha);
 		double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
+		glTranslatef (0., 0., -fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
 		_draw_rotating_icon (pIcon, pDock, pData, fScaleFactor);
+		glTranslatef (0., 0., fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
 	}
 	pIcon->fAlpha = fAlpha;
 }

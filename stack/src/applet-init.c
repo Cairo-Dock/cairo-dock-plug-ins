@@ -23,17 +23,19 @@ CD_APPLET_DEFINITION ("stack", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	if (myIcon->acName == NULL && myDock)
+	/*if (myIcon->acName == NULL && myDock)
 	{
 		CD_APPLET_SET_NAME_FOR_MY_ICON (CD_STACK_DEFAULT_NAME);
-	}
+	}*/
 	
 	cd_stack_check_local (myApplet, CD_APPLET_MY_KEY_FILE);
 	cd_stack_build_icons (myApplet);
-	if (myIcon->acFileName == NULL)
+	
+	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+	/*if (myIcon->acFileName == NULL)
 	{
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (CD_STACK_DEFAULT_ICON_FILE);
-	}
+	}*/
 	
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);  // on se met en premier pour pas que le dock essaye de lancer nos icones, car ce ne sont pas toutes des lanceurs, donc on va le faire nous-memes.
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -64,10 +66,6 @@ CD_APPLET_RELOAD_BEGIN
 		cd_stack_build_icons (myApplet);  // pour les mimes.
 	}
 	else if (myDesklet) {
-		CD_APPLET_SET_DESKLET_RENDERER ("Tree");
-	}
-	else {
-		//cairo_dock_glander();
-		// hahaha tres drole ;-)
+		CD_APPLET_SET_DESKLET_RENDERER ("Tree");  // on recharge juste les surfaces/textures des icones.
 	}
 CD_APPLET_RELOAD_END

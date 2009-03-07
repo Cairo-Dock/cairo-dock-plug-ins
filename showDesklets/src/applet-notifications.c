@@ -13,8 +13,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-notifications.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_ABOUT (D_("This is the showDesklets applet\n made by Fabrice Rey for Cairo-Dock"))
 
@@ -49,13 +47,11 @@ CD_APPLET_ON_BUILD_MENU_END
 
 gboolean cd_show_desklet_active_window_changed (Window *pXid)
 {
-	cd_debug ("%s (%d , %d)", __func__, *pXid, myData.bHide);
 	if (pXid != NULL && myData.bHide)
 	{
 		if (cairo_dock_get_desklet_by_Xid (*pXid) == NULL)
 		{
 			myData.xLastActiveWindow = *pXid;
-			cd_debug ("xLastActiveWindow <- %d" ,myData.xLastActiveWindow);
 		}
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;

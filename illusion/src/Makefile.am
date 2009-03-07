@@ -32,6 +32,7 @@ libcd_illusion_la_CFLAGS = \
 	-DMY_APPLET_VERSION=\""$(VERSION_ILLUSION)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_ILLUSION)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
+	-DGL_GLEXT_PROTOTYPES=\""1"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.svg"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\

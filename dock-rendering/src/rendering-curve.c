@@ -1099,8 +1099,8 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	glPopMatrix ();
 	
 	//\____________________ On dessine la ficelle qui les joint.
-	//if (myIcons.iStringLineWidth > 0)
-	//	cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
+	if (myIcons.iStringLineWidth > 0)
+		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);

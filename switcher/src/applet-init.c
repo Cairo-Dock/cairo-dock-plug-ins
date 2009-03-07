@@ -131,10 +131,7 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	if (myIcon->acName == NULL || *myIcon->acName == '\0')
-		myIcon->acName = g_strdup (SWITCHER_DEFAULT_NAME);
-	
-	if (myDesklet != NULL)
+	if (myDesklet)
 	{
 		if (myConfig.bCompactView)
 		{
@@ -146,6 +143,8 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
 		}
 	}
+	else if (myIcon->acName == NULL || *myIcon->acName == '\0')  // il faut un nom en cas de sous-dock.
+		myIcon->acName = g_strdup (SWITCHER_DEFAULT_NAME);  // l'afficher ne nous interesse pas.
 	
 	cd_switcher_compute_nb_lines_and_columns ();
 	
