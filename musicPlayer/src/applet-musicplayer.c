@@ -50,7 +50,9 @@ void cd_musicplayer_disarm_handeler (void) {
 	cd_debug ("MP : Disarming %s", myData.pCurrentHandeler->name);
 	myData.pCurrentHandeler->free_data();
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+
 	cd_musicplayer_free_handeler(myData.pCurrentHandeler);
+	myData.pCurrentHandeler = NULL;
 }
 
 

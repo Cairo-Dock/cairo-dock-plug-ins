@@ -168,6 +168,7 @@ void cd_musicplayer_register_listen_handeler (void) { //On enregistre notre lect
 	plisten->ask_control = cd_listen_ask_control;
 	plisten->appclass = g_strdup("listen.py"); //Toujours g_strdup sinon l'applet plante au free_handler
 	plisten->name = g_strdup("Listen");
+	plisten->iPlayer = MP_LISTEN;
 	cd_musicplayer_register_my_handeler(plisten, "Listen");
 }
 

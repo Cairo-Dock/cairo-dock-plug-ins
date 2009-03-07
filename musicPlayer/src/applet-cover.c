@@ -6,8 +6,9 @@ gboolean _cd_proceed_download_cover (gpointer p) {
 		gchar *cImageURL = NULL;
 		cd_stream_file(DEFAULT_XML_LOCATION,&cImageURL);
 		if (cImageURL && cd_download_missing_cover(cImageURL,DEFAULT_DOWNLOADED_IMAGE_LOCATION))
-				myData.cCoverPath = g_strdup(DEFAULT_DOWNLOADED_IMAGE_LOCATION);
-		cd_debug ("URL : %s",cImageURL);
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (DEFAULT_DOWNLOADED_IMAGE_LOCATION);
+		cd_debug ("URL : %s\n",cImageURL);
+		g_print ("URL : %s\n%s\n",cImageURL,myData.cCoverPath);
 	} else
 		cd_debug ("Téléchargement impossible\n");
 	return FALSE;
@@ -26,7 +27,6 @@ gchar *cd_check_musicPlayer_cover_exists (gchar *cURI, MySupportedPlayers iSMP) 
 	gchar **cCleanURI;
 	gchar **cSplitedURI;
 	gint cpt=0;
-
 	switch (iSMP) {
 		case MP_AMAROK1 :
 			cCleanURI = g_strsplit (cURI,"@",0);
@@ -35,9 +35,9 @@ gchar *cd_check_musicPlayer_cover_exists (gchar *cURI, MySupportedPlayers iSMP) 
 				g_free (cCleanURI);
 				g_free (cSplitedURI);
 				myData.iCheckIter = 0;
-				if (myData.cPreviousRawTitle != NULL && myData.cRawTitle != NULL) // Si les titres sont définis...
-					if (strcmp (myData.cPreviousRawTitle, myData.cRawTitle)) // ... et qu'ils sont différents
-						g_timeout_add (1000, (GSourceFunc) cd_download_musicPlayer_cover, (gpointer) NULL);
+				
+				if (myData.pPlayingStatus == PLAYER_PLAYING)
+					g_timeout_add (1000, (GSourceFunc) cd_download_musicPlayer_cover, (gpointer) NULL);
 				return NULL;
 			}
 			g_free (cCleanURI);
@@ -53,9 +53,9 @@ gchar *cd_check_musicPlayer_cover_exists (gchar *cURI, MySupportedPlayers iSMP) 
 				g_free (cCleanURI);
 				g_free (cSplitedURI);
 				myData.iCheckIter = 0;
-				if (myData.cPreviousRawTitle != NULL && myData.cRawTitle != NULL) // Si les titres sont définis...
-					if (strcmp (myData.cPreviousRawTitle, myData.cRawTitle)) // ... et qu'ils sont différents
-						g_timeout_add (1000, (GSourceFunc) cd_download_musicPlayer_cover, (gpointer) NULL);
+				
+				if (myData.pPlayingStatus == PLAYER_PLAYING)
+					g_timeout_add (1000, (GSourceFunc) cd_download_musicPlayer_cover, (gpointer) NULL);
 				return NULL;
 			}
 			g_free (cCleanURI);

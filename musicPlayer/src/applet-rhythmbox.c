@@ -354,6 +354,7 @@ void cd_musicplayer_register_rhythmbox_handeler (void) { //On enregistre notre l
 	prhythmbox->ask_control = cd_rhythmbox_ask_control;
 	prhythmbox->appclass = g_strdup("rhythmbox"); //Toujours g_strdup sinon l'applet plante au free_handler
 	prhythmbox->name = g_strdup("Rhythmbox");
+	prhythmbox->iPlayer = MP_RHYTHMBOX;
 	cd_musicplayer_register_my_handeler(prhythmbox, "rhythmbox");
 }
 

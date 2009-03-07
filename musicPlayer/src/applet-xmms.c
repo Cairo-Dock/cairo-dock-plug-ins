@@ -252,5 +252,6 @@ void cd_musicplayer_register_xmms_handeler (void) { //On enregistre notre lecteu
 	pXMMS->appclass = g_strdup("xmms"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pXMMS->name = g_strdup("XMMS");
 	pXMMS->launch = NULL;
+	pXMMS->iPlayer = MP_XMMS;
 	cd_musicplayer_register_my_handeler (pXMMS, "XMMS");
 }

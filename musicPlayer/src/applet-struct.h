@@ -88,6 +88,8 @@ struct _MusicPlayerHandeler {
 	gchar *appclass;
 	gchar *name; //Servira a repérer le lecteur dans la GList.
 	gchar *launch;
+	
+	MySupportedPlayers iPlayer;
 };
 
 //Structures essentielles de l'applet

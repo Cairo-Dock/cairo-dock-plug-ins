@@ -119,6 +119,7 @@ void cd_musicplayer_register_songbird_handeler (void) { //On enregistre notre le
 	pSongbird->ask_control = cd_songbird_ask_control;
 	pSongbird->appclass = g_strdup("Songbird"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pSongbird->name = g_strdup("Songbird");
+	pSongbird->iPlayer = MP_SONGBIRD;
 	cd_musicplayer_register_my_handeler(pSongbird,"Songbird");
 }
 

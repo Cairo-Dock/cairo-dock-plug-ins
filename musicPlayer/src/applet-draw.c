@@ -13,6 +13,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-struct.h"
 #include "applet-draw.h"
 #include "applet-musicplayer.h"
+#include "applet-cover.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -121,8 +122,10 @@ gboolean cd_musicplayer_draw_icon (void) {
 	
 	/* Vérifie si le titre a changé */
 	if (myData.cPreviousRawTitle != NULL && myData.cRawTitle != NULL) { // Si les titres sont définis...
-		if (strcmp (myData.cPreviousRawTitle, myData.cRawTitle)) // ... et qu'ils sont différents
+		if (strcmp (myData.cPreviousRawTitle, myData.cRawTitle)) { // ... et qu'ils sont différents
 			_set_new_title ();
+			cd_check_musicPlayer_cover_exists(myData.cCoverPath,myData.pCurrentHandeler->iPlayer);
+		}
 	}
 	else if (myData.cRawTitle != NULL) { // Si seulement le titre courant est défini
 		_set_new_title ();
@@ -148,9 +151,15 @@ gboolean cd_musicplayer_draw_icon (void) {
 	/* Affichage de la pochette */	
 	if (myConfig.bEnableCover) {
 		if (myData.cCoverPath != NULL && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS)) {
-			if (myData.cPreviousCoverPath != myData.cCoverPath) { //On évite de dessiner pour rien
-				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCoverPath);
-				myData.cPreviousCoverPath = myData.cCoverPath;
+			if (myData.cPreviousCoverPath==NULL || (myData.cCoverPath && g_strcasecmp(myData.cCoverPath,myData.cPreviousCoverPath)!=0)) { //On évite de dessiner pour rien
+				gchar *cTmpPath = cd_check_musicPlayer_cover_exists(myData.cCoverPath,myData.pCurrentHandeler->iPlayer);
+				if (cTmpPath)
+					CD_APPLET_SET_IMAGE_ON_MY_ICON (cTmpPath);
+				else
+					cd_musicplayer_set_surface (0);
+				//CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCoverPath);
+				myData.cPreviousCoverPath = g_strdup(myData.cCoverPath);
+				g_free (cTmpPath);
 			}
 		}
 		else

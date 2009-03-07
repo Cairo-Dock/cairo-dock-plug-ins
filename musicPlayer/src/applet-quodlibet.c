@@ -226,6 +226,7 @@ void cd_musicplayer_register_quodlibet_handeler (void) { //On enregistre notre l
 	pquodlibet->ask_control = cd_quodlibet_ask_control;
 	pquodlibet->appclass = g_strdup("Quodlibet"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pquodlibet->name = g_strdup("QuodLibet");
+	pquodlibet->iPlayer = MP_QUODLIBET;
 	cd_musicplayer_register_my_handeler(pquodlibet, "QuodLibet");
 }
 

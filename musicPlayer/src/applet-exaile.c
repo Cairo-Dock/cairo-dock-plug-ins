@@ -21,7 +21,6 @@ Rémy Robertson (changfu@cairo-dock.org)
 
 #include "applet-draw.h"
 #include "applet-exaile.h"
-#include "applet-cover.h"
 
 CD_APPLET_INCLUDE_MY_VARS
 
@@ -79,7 +78,7 @@ void cd_exaile_getCoverPath (void)
 		myData.cCoverPath = NULL;
 	}
 	
-	myData.cCoverPath = cd_check_musicPlayer_cover_exists(cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_cover_path),MP_EXAILE);
+	myData.cCoverPath = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_cover_path);
 	if (myData.cCoverPath != NULL)
 		;//cd_message("MP : Couverture -> %s", myData.cCoverPath);
 	else
@@ -228,5 +227,6 @@ void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lect
 	pExaile->appclass = g_strdup("exaile.py"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pExaile->name = g_strdup("Exaile");
 	pExaile->launch = g_strdup("exaile");
+	pExaile->iPlayer = MP_EXAILE;
 	cd_musicplayer_register_my_handeler(pExaile, "Exaile");
 }

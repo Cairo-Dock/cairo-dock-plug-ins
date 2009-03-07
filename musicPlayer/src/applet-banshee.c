@@ -236,6 +236,7 @@ void cd_musicplayer_register_banshee_handeler (void) { //On enregistre notre lec
 	pBanshee->ask_control = cd_banshee_ask_control;
 	pBanshee->appclass = g_strdup("Banshee"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pBanshee->name = g_strdup("Banshee");
+	pBanshee->iPlayer = MP_BANSHEE;
 	cd_musicplayer_register_my_handeler(pBanshee,"Banshee");
 }
 

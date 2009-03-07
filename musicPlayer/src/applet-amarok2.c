@@ -308,6 +308,7 @@ void cd_musicplayer_register_amarok2_handeler (void) { //On enregistre notre lec
 	pamarok2->ask_control = cd_amarok2_ask_control;
 	pamarok2->appclass = g_strdup("amarok"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pamarok2->name = g_strdup("Amarok 2");
+	pamarok2->iPlayer = MP_AMAROK2;
 	cd_musicplayer_register_my_handeler(pamarok2, "Amarok 2");
 }
 

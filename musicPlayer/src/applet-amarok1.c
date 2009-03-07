@@ -161,7 +161,7 @@ void cd_amarok1_read_data (void) {
 	myData.iTrackNumber = cd_dcop_get_int("dcop amarok player trackPlayCounter");
 	myData.iSongLength = cd_dcop_get_int("dcop amarok player trackTotalTime");
 	myData.iCurrentTime = cd_dcop_get_int("dcop amarok player trackCurrentTime");
-	myData.cCoverPath = cd_check_musicPlayer_cover_exists(cd_dcop_get_string("dcop amarok player coverImage"),MP_AMAROK1); // On recupere l'URI et on verifie que l'image existe et n'est pas l'image par defaut d'amarok
+	myData.cCoverPath = cd_dcop_get_string("dcop amarok player coverImage"); // On recupere l'URI et on verifie que l'image existe et n'est pas l'image par defaut d'amarok
 	
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 }
@@ -178,5 +178,6 @@ void cd_musicplayer_register_amarok1_handeler (void) { //On enregistre notre lec
 	pAmarok1->appclass = g_strdup("amarok"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pAmarok1->name = g_strdup("Amarok 1.4");
 	pAmarok1->launch = NULL;
+	pAmarok1->iPlayer = MP_AMAROK1;
 	cd_musicplayer_register_my_handeler (pAmarok1, "Amarok 1.4");
 }
