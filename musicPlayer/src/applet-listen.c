@@ -28,7 +28,14 @@ CD_APPLET_INCLUDE_MY_VARS
 
 void cd_listen_getSongInfos(void)
 {
-	myData.cPreviousRawTitle = myData.cRawTitle;
+	if( myData.cPreviousRawTitle )
+	{
+		g_free( myData.cPreviousRawTitle ); myData.cPreviousRawTitle = NULL;
+	}
+	if( myData.cRawTitle )
+	{
+		myData.cPreviousRawTitle = g_strdup(myData.cRawTitle);
+	}
 	myData.cRawTitle=cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_title);	
 }
 

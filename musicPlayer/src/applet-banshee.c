@@ -68,7 +68,14 @@ void cd_banshee_getSongInfos (void)
 	myData.iSongLength = cairo_dock_dbus_get_uinteger(myData.dbus_proxy_shell, myData.DBus_commands.duration) / 1000;
 	myData.iCurrentTime = cairo_dock_dbus_get_uinteger(myData.dbus_proxy_shell, myData.DBus_commands.current_position) / 1000;
 
-	myData.cPreviousRawTitle = myData.cRawTitle;
+	if( myData.cPreviousRawTitle )
+	{
+		g_free( myData.cPreviousRawTitle ); myData.cPreviousRawTitle = NULL;
+	}
+	if( myData.cRawTitle )
+	{
+		myData.cPreviousRawTitle = g_strdup(myData.cRawTitle);
+	}
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 }
 

@@ -59,8 +59,14 @@ void cd_exaile_getSongInfos(void)
 	myData.iPreviousuValue = uValue;
 	
 	/*Recuperation des infos de la piste*/
-	if (myData.cRawTitle != NULL) 
-		myData.cPreviousRawTitle = myData.cRawTitle; 
+	if( myData.cPreviousRawTitle )
+	{
+		g_free( myData.cPreviousRawTitle ); myData.cPreviousRawTitle = NULL;
+	}
+	if( myData.cRawTitle )
+	{
+		myData.cPreviousRawTitle = g_strdup(myData.cRawTitle);
+	}
 	
 	myData.cAlbum = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_album);
 	myData.cArtist = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_artist);

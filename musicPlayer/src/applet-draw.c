@@ -48,7 +48,14 @@ void cd_musicplayer_add_buttons_to_desklet(void) {
 }
 
 void _set_new_title (void) {
-	myData.cPreviousRawTitle = myData.cRawTitle;
+	if( myData.cPreviousRawTitle )
+	{
+		g_free( myData.cPreviousRawTitle ); myData.cPreviousRawTitle = NULL;
+	}
+	if( myData.cRawTitle )
+	{
+		myData.cPreviousRawTitle = g_strdup(myData.cRawTitle);
+	}
 	if (myData.cRawTitle == NULL || strcmp (myData.cRawTitle, "(null)") == 0) {
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
 	}
