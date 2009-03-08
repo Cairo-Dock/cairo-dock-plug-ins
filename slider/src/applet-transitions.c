@@ -330,18 +330,6 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		//glMatrixMode(GL_PROJECTION);
-		//glPushMatrix ();
-		/*glLoadIdentity();
-		gluPerspective(60.0, 1.0*(GLfloat)myData.iSurfaceWidth/(GLfloat)myData.iSurfaceHeight, 1., 4*myData.iSurfaceHeight);
-		glMatrixMode (GL_MODELVIEW);
-		
-		glLoadIdentity ();
-		gluLookAt (0., 0., 3.,
-			0. ,0., 0.,
-			0.0f, 1.0f, 0.0f);
-		glTranslatef (0.0f, 0.0f, -3);
-		glTranslatef (0., 0., -myData.iSurfaceHeight*(sqrt(3)/2));*/
 		cairo_dock_set_perspective_view (myData.iSurfaceWidth, myData.iSurfaceHeight);
 		glScalef (1., -1., 1.);
 		
@@ -385,9 +373,6 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 		_cairo_dock_disable_texture ();
 		
 		CD_APPLET_FINISH_DRAWING_MY_ICON;
-		/*glMatrixMode(GL_PROJECTION);
-		glPopMatrix ();
-		glMatrixMode (GL_MODELVIEW);*/
 	}
 	else
 	{
@@ -512,14 +497,16 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
 		cairo_dock_set_perspective_view (myData.iSurfaceWidth, myData.iSurfaceHeight);
+		glScalef (1., -1., 1.);
 		
-		double fTheta = - 45 + myData.fAnimAlpha * 90;
-		glTranslatef (0., 0., - myData.iSurfaceWidth * sqrt(2)/2 * cos (fTheta/180.*G_PI));
+		double fTheta = - 45. + myData.fAnimAlpha * 90.;  // -45 -> 45
+		glTranslatef (0., 0., - myData.iSurfaceWidth * sqrt(2)/2 * cos (fTheta/180.*G_PI));  // pour faire tenir le cube dans la fenetre.
+		glEnable (GL_DEPTH_TEST);
 		
 		// image precedente.
 		glPushMatrix ();
-		glRotatef (45 + fTheta, 0., 1., 0.);
-		glTranslatef (0., 0., myData.iSurfaceWidth/2);
+		glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
+		glTranslatef (0., 0., myData.slideArea.fImgW/2);
 		
 		_cd_slider_add_background_to_prev_slide_opengl (myApplet, 0., 0., 1.);
 		
@@ -529,13 +516,17 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 		
 		glColor4f (1., 1., 1., 1.);
 		cairo_dock_apply_texture_at_size (myData.iPrevTexture, myData.prevSlideArea.fImgW, myData.prevSlideArea.fImgH);
-		
 		glDisable (GL_TEXTURE_2D);
 		glPopMatrix ();
 		
 		// image courante a 90deg.
-		glRotatef (135 + fTheta, 0., 1., 0.);
-		glTranslatef (myData.iSurfaceWidth/2, 0., 0.);
+		glPushMatrix ();
+		glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
+		if (myData.prevSlideArea.fImgW != 0)
+			glTranslatef (- myData.prevSlideArea.fImgW/2, 0., 0.);
+		else
+			glTranslatef (- myData.iSurfaceWidth/2, 0., 0.);
+		glRotatef (-90., 0., 1., 0.);
 		
 		_cd_slider_add_background_to_current_slide_opengl (myApplet, 0., 0., 1.);
 		
@@ -545,15 +536,18 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 		
 		glColor4f (1., 1., 1., 1.);
 		cairo_dock_apply_texture_at_size (myData.iTexture, myData.slideArea.fImgW, myData.slideArea.fImgH);
+		glDisable (GL_TEXTURE_2D);
+		glPopMatrix ();
 		
+		glDisable (GL_DEPTH_TEST);
 		glDisable (GL_TEXTURE_2D);
 		glDisable (GL_BLEND);
 		CD_APPLET_FINISH_DRAWING_MY_ICON;
-		cairo_dock_set_ortho_view (myData.iSurfaceWidth, myData.iSurfaceHeight);
 	}
 	else
 	{
 		cd_slider_draw_default (myApplet);
+		return FALSE;
 	}
 	return (myData.fAnimAlpha < .99);
 }

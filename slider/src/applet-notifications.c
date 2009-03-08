@@ -225,6 +225,6 @@ CD_APPLET_ON_UPDATE_ICON_BEGIN
 	if (! bContinueTransition)  // la transition est finie, on se place en attente de l'image suivante et on quitte la boucle.
 	{
 		cd_slider_schedule_next_slide (myApplet);
-		CD_APPLET_STOP_UPDATE_ICON;
+		CD_APPLET_PAUSE_UPDATE_ICON;
 	}
 CD_APPLET_ON_UPDATE_ICON_END
