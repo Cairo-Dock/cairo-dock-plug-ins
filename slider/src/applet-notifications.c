@@ -188,7 +188,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_UPDATE_ICON_BEGIN
-	if (cd_slider_next_slide_is_scheduled (myApplet))  // on est en attente d'une image, on quitte la boucle.
+	if (cd_slider_next_slide_is_scheduled (myApplet) || cairo_dock_measure_is_running (myData.pMeasureImage))  // on est en attente d'une image, on quitte la boucle tout de suite.
 		CD_APPLET_STOP_UPDATE_ICON;
 	
 	gboolean bContinueTransition = FALSE;
@@ -222,7 +222,7 @@ CD_APPLET_ON_UPDATE_ICON_BEGIN
 			CD_APPLET_STOP_UPDATE_ICON;
 	}
 	
-	if (! bContinueTransition)  // la transition est finie, on se place en attente de l'image suivante et on quitte la boucle.
+	if (! bContinueTransition)  // la transition est finie, on dessine une derniere fois, on se place en attente de l'image suivante et on quitte la boucle.
 	{
 		cd_slider_schedule_next_slide (myApplet);
 		CD_APPLET_PAUSE_UPDATE_ICON;

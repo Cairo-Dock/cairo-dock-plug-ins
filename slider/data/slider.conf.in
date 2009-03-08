@@ -96,7 +96,9 @@ random = false
 #b Display image name as quickinfo ?
 image name = false
 
-use thread = false
+#b Use another thread to load the images ?
+#{It will prevent the dock from freezing during the image loading, but does not work with cairo.}
+use_thread = true
 
 #F[Behaviour;gtk-execute]
 frame_ops=

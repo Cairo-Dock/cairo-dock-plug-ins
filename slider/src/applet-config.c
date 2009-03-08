@@ -14,23 +14,22 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-slider.h"
 #include "applet-config.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDirectory 		= CD_CONFIG_GET_STRING("Configuration", "directory");
 	myConfig.iSlideTime 		= CD_CONFIG_GET_INTEGER ("Configuration", "slide time");
 	myConfig.bSubDirs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "sub directories");
-	myConfig.bRandom 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
+	myConfig.bRandom 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
 	myConfig.bImageName		= CD_CONFIG_GET_BOOLEAN ("Configuration", "image name");
 	
 	myConfig.bNoStretch 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "no stretch");
-	myConfig.bFillIcon 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "fill icon");
+	myConfig.bFillIcon 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "fill icon");
 	myConfig.iAnimation 		= CD_CONFIG_GET_INTEGER ("Configuration", "change animation");
-	myConfig.iNbAnimationStep 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb step", 20);
+	myConfig.iNbAnimationStep 	= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb step", 20);
 	myConfig.iClickOption 		= CD_CONFIG_GET_INTEGER ("Configuration", "click");
 	
-	myConfig.bUseThread = CD_CONFIG_GET_BOOLEAN ("Configuration", "use thread");
+	myConfig.bUseThread 		= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "use_thread", TRUE);
 	CD_CONFIG_GET_COLOR ("Configuration", "background color", myConfig.pBackgroundColor);
 CD_APPLET_GET_CONFIG_END
 

@@ -156,7 +156,7 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
 	cd_debug ("Slider - Displaying: %s (size %dbytes, orientation:%d)", cImagePath, pImage->iSize, pImage->iOrientation);
-	
+	g_print ("  chargement %s...\n", cImagePath);
 	//\_______________ On definit comment charger l'image.
 	double fImgX, fImgY, fImgW=0, fImgH=0;
 	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;
@@ -185,10 +185,12 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	myData.slideArea.fImgY = fImgY;
 	myData.slideArea.fImgW = fImgW;
 	myData.slideArea.fImgH = fImgH;
+	g_print ("  %s chargee\n", cImagePath);
 }
 
 
 gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
+	g_print ("%s ()\n", __func__);
 	//\_______________ On cree la texture (en-dehors du thread).
 	if (g_bUseOpenGL)
 	{
@@ -215,15 +217,17 @@ gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
 	}
 	else  // on dessine tout de suite et on attend l'image suivante.
 	{
+		g_print ("---default animation\n");
 		cd_slider_draw_default (myApplet);
 		CD_APPLET_REDRAW_MY_ICON;
 		cd_slider_schedule_next_slide (myApplet);
 	}
 	
-	return TRUE;
+	return FALSE;
 }
 
 gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
+	g_print ("%s (%d)\n", __func__, myData.iTimerID);
 	if (myData.bPause)  // on est en pause.
 	{
 		myData.iTimerID = 0;
@@ -255,20 +259,7 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 	
 	myData.prevSlideArea = myData.slideArea;
 	
-	//\___________________________ On charge la nouvelle surface/texture et on lance l'animation de transition.
-	if (myConfig.bUseThread && pImage->iFormat != SLIDER_SVG &&  // pour certains SVG, ca plante dans X :-(
-		((pImage->iFormat == SLIDER_PNG && pImage->iSize > 100e3) ||
-		(pImage->iFormat == SLIDER_JPG && pImage->iSize > 70e3) ||
-		(pImage->iFormat == SLIDER_GIF && pImage->iSize > 100e3) ||
-		(pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3))) {
-		cd_debug ("Slider -   on threade");
-		cairo_dock_launch_measure (myData.pMeasureImage);
-	}
-	else {
-		cd_slider_read_image (myApplet);
-		cd_slider_update_transition (myApplet);
-	}
-	
+	//\___________________________ On ecrit le nom de la nouvelle image en info.
 	if (myConfig.bImageName && myDesklet) {
 		gchar *cFileName = g_strdup (pImage->cPath);
 		gchar *strFileWithExtension = strrchr (cFileName, '/');
@@ -280,13 +271,30 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 		g_free (cFileName);
 	}
 	
-	if (myConfig.iAnimation == SLIDER_DEFAULT)
-	{
-		return TRUE;  // pas d'animation => on ne quitte pas la boucle d'attente.
-	}
-	else
-	{
+	//\___________________________ On charge la nouvelle surface/texture et on lance l'animation de transition.
+	if (myConfig.bUseThread && CD_APPLET_MY_CONTAINER_IS_OPENGL && pImage->iFormat != SLIDER_SVG &&  // pour certains SVG, ca plante dans X :-(
+		((pImage->iFormat == SLIDER_PNG && pImage->iSize > 100e3) ||
+		(pImage->iFormat == SLIDER_JPG && pImage->iSize > 70e3) ||
+		(pImage->iFormat == SLIDER_GIF && pImage->iSize > 100e3) ||
+		(pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3))) {
+		cd_debug ("Slider -   on threade");
+		cairo_dock_launch_measure (myData.pMeasureImage);
 		myData.iTimerID = 0;
+		g_print ("bye\n");
 		return FALSE;  // on quitte la boucle d'attente car on va effectuer une animation.
+	}
+	else {
+		cd_slider_read_image (myApplet);
+		cd_slider_update_transition (myApplet);
+		
+		if (myConfig.iAnimation == SLIDER_DEFAULT)
+		{
+			return TRUE;  // pas d'animation => on ne quitte pas la boucle d'attente.
+		}
+		else
+		{
+			myData.iTimerID = 0;
+			return FALSE;  // on quitte la boucle d'attente car on va effectuer une animation.
+		}
 	}
 }
