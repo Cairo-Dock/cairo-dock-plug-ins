@@ -97,7 +97,11 @@ CD_APPLET_INIT_BEGIN
 	
 	myData.pPlayingStatus = PLAYER_NONE;
 	myData.pPreviousPlayingStatus = -1;
+	if( myData.cPreviousRawTitle )
+		g_free (myData.cPreviousRawTitle);
 	myData.cPreviousRawTitle = NULL;
+	if( myData.cPreviousCoverPath )
+		g_free (myData.cPreviousCoverPath);
 	myData.cPreviousCoverPath = NULL;
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
@@ -175,7 +179,11 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	myData.pPlayingStatus = PLAYER_NONE;
 	myData.pPreviousPlayingStatus = -1;
+	if( myData.cPreviousRawTitle )
+		g_free (myData.cPreviousRawTitle);
 	myData.cPreviousRawTitle = NULL;
+	if( myData.cPreviousCoverPath )
+		g_free (myData.cPreviousCoverPath);
 	myData.cPreviousCoverPath = NULL;
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
@@ -184,6 +192,8 @@ CD_APPLET_RELOAD_BEGIN
 		cd_musicplayer_disarm_handeler (); //On libère tout ce qu'occupe notre ancien handeler.
 		myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name (myConfig.cMusicPlayer);
 	
+		if( myData.pCurrentHandeler )
+		{
 		if (myIcon->cClass != NULL && myData.pCurrentHandeler->appclass != NULL) { //Sécurité pour ne pas planter a cause du strcmp
 			cd_debug ("MP: deinhibate %s (1)", myIcon->cClass);
 			if ((!myConfig.bStealTaskBarIcon) || (strcmp (myIcon->cClass, myData.pCurrentHandeler->appclass))) 
@@ -200,6 +210,11 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		cd_musicplayer_arm_handeler (); //et on arme le bon.
+	}
+		else
+		{
+			cd_error( "myData.pCurrentHandeler = NULL !" );
+		}
 	}
 	else  // on redessine juste l'icone.
 		cd_musicplayer_draw_icon ();
