@@ -27,21 +27,24 @@ gchar *cd_check_musicPlayer_cover_exists (gchar *cURI, MySupportedPlayers iSMP) 
 	gchar **cCleanURI;
 	gchar **cSplitedURI;
 	gint cpt=0;
+
+	if( !cURI ) return NULL;
+	
 	switch (iSMP) {
 		case MP_AMAROK1 :
 			cCleanURI = g_strsplit (cURI,"@",0);
 			cSplitedURI = g_strsplit (cCleanURI[1],".",0);
 			if (g_strcasecmp(cSplitedURI[0],"nocover")==0) {
-				g_free (cCleanURI);
-				g_free (cSplitedURI);
+				g_strfreev (cCleanURI);
+				g_strfreev (cSplitedURI);
 				myData.iCheckIter = 0;
 				
 				if (myData.pPlayingStatus == PLAYER_PLAYING)
 					g_timeout_add (1000, (GSourceFunc) cd_download_musicPlayer_cover, (gpointer) NULL);
 				return NULL;
 			}
-			g_free (cCleanURI);
-			g_free (cSplitedURI);
+			g_strfreev (cCleanURI);
+			g_strfreev (cSplitedURI);
 		break;
 		
 		case MP_EXAILE :
@@ -50,16 +53,16 @@ gchar *cd_check_musicPlayer_cover_exists (gchar *cURI, MySupportedPlayers iSMP) 
 				cpt++;
 			cSplitedURI = g_strsplit (cCleanURI[cpt-1],".",0);
 			if (g_strcasecmp(cSplitedURI[0],"nocover")==0) {
-				g_free (cCleanURI);
-				g_free (cSplitedURI);
+				g_strfreev (cCleanURI);
+				g_strfreev (cSplitedURI);
 				myData.iCheckIter = 0;
 				
 				if (myData.pPlayingStatus == PLAYER_PLAYING)
 					g_timeout_add (1000, (GSourceFunc) cd_download_musicPlayer_cover, (gpointer) NULL);
 				return NULL;
 			}
-			g_free (cCleanURI);
-			g_free (cSplitedURI);
+			g_strfreev (cCleanURI);
+			g_strfreev (cSplitedURI);
 		break;
 	}
 	return cURI;

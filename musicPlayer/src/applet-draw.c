@@ -15,9 +15,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-musicplayer.h"
 #include "applet-cover.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
-static gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
+static const gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 
 static GList * _list_icons (void) {
 	GList *pIconList = NULL;
@@ -50,7 +48,14 @@ void cd_musicplayer_add_buttons_to_desklet(void) {
 }
 
 void _set_new_title (void) {
-	myData.cPreviousRawTitle = myData.cRawTitle;
+	if( myData.cPreviousRawTitle )
+	{
+		g_free( myData.cPreviousRawTitle ); myData.cPreviousRawTitle = NULL;
+	}
+	if( myData.cRawTitle )
+	{
+		myData.cPreviousRawTitle = g_strdup(myData.cRawTitle);
+	}
 	if (myData.cRawTitle == NULL || strcmp (myData.cRawTitle, "(null)") == 0) {
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
 	}
@@ -71,7 +76,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 	if (myData.pPlayingStatus == PLAYER_NONE) {
 		myData.cQuickInfo = NULL;
 		if (myData.cQuickInfo != myData.cPreviousQuickInfo) {
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			myData.cPreviousQuickInfo = myData.cQuickInfo;
 		}
 	}
@@ -80,7 +85,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 			case MY_APPLET_NOTHING :
 				myData.cQuickInfo = NULL;
 				if (myData.cQuickInfo != myData.cPreviousQuickInfo) {
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 					myData.cPreviousQuickInfo = myData.cQuickInfo;
 				}
 			break ;
@@ -151,6 +156,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 	/* Affichage de la pochette */	
 	if (myConfig.bEnableCover) {
 		if (myData.cCoverPath != NULL && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS)) {
+				myData.cPreviousCoverPath = g_strdup(myData.cCoverPath);
 			if (myData.cPreviousCoverPath==NULL || (myData.cCoverPath && g_strcasecmp(myData.cCoverPath,myData.cPreviousCoverPath)!=0)) { //On évite de dessiner pour rien
 				gchar *cTmpPath = cd_check_musicPlayer_cover_exists(myData.cCoverPath,myData.pCurrentHandeler->iPlayer);
 				if (cTmpPath)
@@ -234,9 +240,9 @@ void cd_musicplayer_set_surface (MyPlayerStatus iStatus) {
 			g_free (cUserImagePath);
 		}
 		else {
-			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iStatus]);
-			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
-			g_free (cImagePath);
+			gchar *cLocalImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iStatus]);
+			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cLocalImagePath);
+			g_free (cLocalImagePath);
 		}
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaces[iStatus]);
 	}

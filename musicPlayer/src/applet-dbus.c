@@ -63,7 +63,12 @@ void musicplayer_dbus_disconnect_from_bus_Shell (void)
 
 gboolean cd_musicplayer_dbus_detection(void)
 {
-	return cairo_dock_dbus_detect_application (myData.DBus_commands.service);
+	gboolean isConnectedToBus = cairo_dock_dbus_detect_application (myData.DBus_commands.service);
+	gboolean isProxyCorrect = isConnectedToBus?DBUS_IS_G_PROXY(myData.dbus_proxy_player):FALSE;
+
+	if( !isProxyCorrect ) myData.dbus_proxy_player = NULL;
+
+	return isConnectedToBus && isProxyCorrect;
 }
 
 
