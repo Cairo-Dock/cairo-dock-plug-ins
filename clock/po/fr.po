@@ -11,7 +11,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:166
+#: ../src/applet-config.c:415
+msgid "Search for your location :"
+msgstr ""
+
+#: ../src/applet-notifications.c:41
 #, fuzzy
 msgid ""
 "This is the Cairo-Dock's clock applet\n"
@@ -24,17 +28,13 @@ msgstr ""
 "La représentation analogique est un port de la fameuse Cairo-Clock\n"
 " écrite par MacSlow (http://macslow.thepimp.net)."
 
-#: ../src/applet-notifications.c:179
+#: ../src/applet-notifications.c:53
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: ../src/applet-notifications.c:192
+#: ../src/applet-notifications.c:65
 msgid "Set up time and date"
 msgstr "Régler la date et l'heure"
-
-#: ../src/applet-notifications.c:193
-msgid "Choose a location"
-msgstr "Choisissez une localité"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -45,30 +45,22 @@ msgid "Desired icon size for this applet"
 msgstr "Taille d'icône souhaitée pour cette applet"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "largeur :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "hauteur :"
-
-#: ../data/messages:9
 msgid "Let it empty to use the location's name if available."
 msgstr ""
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
 
-#: ../data/messages:15
+#: ../data/messages:11
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -76,11 +68,11 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:21
+#: ../data/messages:17
 #, fuzzy
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
@@ -89,23 +81,23 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -113,11 +105,11 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -126,34 +118,34 @@ msgstr ""
 "simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
 "contre toujours le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:39
+#: ../data/messages:35
 #, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:43
+#: ../data/messages:39
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:45
+#: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
 "dessous."
 
-#: ../data/messages:47
+#: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:49
+#: ../data/messages:45
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -161,47 +153,47 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:51
+#: ../data/messages:47
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:53
+#: ../data/messages:49
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:55
+#: ../data/messages:51
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:57
+#: ../data/messages:53
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:59
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:61
+#: ../data/messages:57
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:63
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:65
+#: ../data/messages:61
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:67
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:69
+#: ../data/messages:65
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:71
+#: ../data/messages:67
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -209,86 +201,86 @@ msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
 "par exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:73
+#: ../data/messages:69
 msgid "Foreground image :"
 msgstr "Image d'avant-plan"
 
-#: ../data/messages:75
+#: ../data/messages:71
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan"
 
-#: ../data/messages:77
+#: ../data/messages:73
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:79
+#: ../data/messages:75
 msgid "Behaviour"
 msgstr "Comportement"
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "Show the date :"
 msgstr "Montrer la date :"
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "On icon"
 msgstr "Sur l'icone"
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "if not, then the applet will update time once a minute, saving CPU."
 msgstr ""
 "Si non, alors l'applet se rafraîchira une fois par minute, épargnant le CPU."
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "Show seconds ?"
 msgstr "Montrer les secondes ?"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "for numeric format only."
 msgstr "pour l'affichage en mode numérique seulement."
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Should the time be displayed as a 24h format ?"
 msgstr "Afficher l'heure au format 24h ?"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid ""
 "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
 "your location from a list. Let empty to get the local time."
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:95
 msgid "Timezone :"
 msgstr "Fuseau horaire :"
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Style"
 msgstr "Style"
 
-#: ../data/messages:103
+#: ../data/messages:99
 msgid "List of available themes for the numeric display :"
 msgstr "Liste des thèmes disponibles pour la vue numérique :"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "default"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:103 ../data/messages:117
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
-#: ../data/messages:109
+#: ../data/messages:105
 msgid "Text color for the numeric display:"
 msgstr "Couleur du texte pour l'affiche numérique:"
 
-#: ../data/messages:111
+#: ../data/messages:107
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
@@ -296,11 +288,11 @@ msgstr ""
 "par exemple Monospace, Purisa, ... Ecrivez simplement la nom de la police "
 "sans nombres"
 
-#: ../data/messages:113
+#: ../data/messages:109
 msgid "Font used for the numeric display :"
 msgstr "Police utilisée pour l'affichage numérique :"
 
-#: ../data/messages:115
+#: ../data/messages:111
 msgid ""
 "The analogic view is based on CairoClock; otherwise it will be displayed in "
 "a numeric way."
@@ -308,14 +300,15 @@ msgstr ""
 "La vue analogique est basée sur CairoClock; autrement il sera affiché en "
 "mode numérique."
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid "Use the analogic view ?"
 msgstr "Utiliser la vue analogique ?"
 
-#: ../data/messages:119
+#: ../data/messages:115
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour la vue analogique :"
 
+#: ../data/messages:119
 msgid "Text color of the date :"
 msgstr "Couleur du texte de la date :"
 
@@ -343,6 +336,15 @@ msgstr ""
 #: ../data/messages:131
 msgid "Add or remove an alarm :"
 msgstr ""
+
+#~ msgid "Choose a location"
+#~ msgstr "Choisissez une localité"
+
+#~ msgid "width :"
+#~ msgstr "largeur :"
+
+#~ msgid "height :"
+#~ msgstr "hauteur :"
 
 #~ msgid "Alarm n°1"
 #~ msgstr "Alarme n°1"

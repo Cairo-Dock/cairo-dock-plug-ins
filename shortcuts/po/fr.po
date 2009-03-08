@@ -37,30 +37,28 @@ msgid "Desired icon size for this applet"
 msgstr "Taille d'icône souhaitée pour cette applet"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "largeur :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "hauteur :"
-
-#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-#: ../data/messages:11
-msgid "Icon's name :"
+#: ../data/messages:7
+#, fuzzy
+msgid "Let empty to use the default one."
+msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
+
+#: ../data/messages:9
+#, fuzzy
+msgid "Image's filename :"
 msgstr "Nom de l'icône :"
 
-#: ../data/messages:13
+#: ../data/messages:11
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
 
-#: ../data/messages:15
+#: ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:17
+#: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -68,33 +66,33 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic_milieu ou ALT + clic_droit par exemple."
 
-#: ../data/messages:19
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:21
+#: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:23
+#: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:25
+#: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:27
+#: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:29
+#: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:31
+#: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -102,11 +100,11 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:33
+#: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:35
+#: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -115,121 +113,127 @@ msgstr ""
 "simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
 "contre toujours le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:37
+#: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Verrouiller la position"
 
-#: ../data/messages:39
+#: ../data/messages:37
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:39
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:41
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:43
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:47
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:49
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:59
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:67
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:69
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:71
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:73
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:75
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:79
+#: ../data/messages:77
 msgid "List drives and volumes ?"
 msgstr "Lister les disques et volumes ?"
 
-#: ../data/messages:81
+#: ../data/messages:79
 msgid "List network ?"
 msgstr "Lister les points réseau ?"
 
-#: ../data/messages:83
+#: ../data/messages:81
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "Signets GTK, utilisés par Nautilus par exemple."
 
-#: ../data/messages:85
+#: ../data/messages:83
 msgid "List bookmarks ?"
 msgstr "Lister les signets ?"
 
-#: ../data/messages:87
+#: ../data/messages:85
 msgid "Separate different shortcuts with separators ?"
 msgstr "Séparer les différents racourcis avec des séparateurs ?"
 
-#: ../data/messages:89
+#: ../data/messages:87
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
 
-#: ../data/messages:91
+#: ../data/messages:89
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
+
+#~ msgid "width :"
+#~ msgstr "largeur :"
+
+#~ msgid "height :"
+#~ msgstr "hauteur :"
 
 #~ msgid "Lockposition ?"
 #~ msgstr "Verrouiller la position ?"

@@ -704,6 +704,7 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 
 #define RADIAN (G_PI / 180.0)  // Conversion Radian/Degres
 #define DELTA_ROUND_DEGREE 5
+#define TIP_OFFSET_FACTOR 2.
 #define _recopy_prev_color(pColorTab, i) memcpy (&pColorTab[4*i], &pColorTab[4*(i-1)], 4*sizeof (GLfloat));
 #define _copy_color(pColorTab, i, pDock, c) do { \
 	pColorTab[4*i]   = c[0];\
@@ -720,7 +721,7 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, G
 	static GLfloat pVertexTab[((90/DELTA_ROUND_DEGREE+1)*4+1+3)*3];  // +3 pour la pointe.
 	static GLfloat pColorTab[((90/DELTA_ROUND_DEGREE+1)*4+1+3)*4];  // +3 pour la pointe.
 	double fRadius = my_diapo_simple_radius;
-	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
+	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE - 2*fRadius;  // longueur du trait horizontal.
 	double fFrameHeight = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
 	
 	const gdouble arrow_dec = 2;
@@ -787,15 +788,15 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, G
 	}
 	if (!pDock->bDirectionUp && pDock->bHorizontalDock)  // dessin de la pointe vers le haut.
 	{
-		pVertexTab[3*i] = 0. + (my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * (fFrameWidth/2 - my_diapo_simple_arrowWidth/2))/fTotalWidth;
+		pVertexTab[3*i] = 0. + my_diapo_simple_arrowShift * (fFrameWidth/2 - my_diapo_simple_arrowWidth/2)/fTotalWidth + my_diapo_simple_arrowWidth/2/fTotalWidth;
 		pVertexTab[3*i+1] = h + rh;
-		_copy_mean_color (pColorTab, i, pDock, pTopRightColor, pTopLeftColor, .5 + pVertexTab[3*i]);
+		_copy_mean_color (pColorTab, i, pDock, pBottomRightColor, pBottomLeftColor, .5 + pVertexTab[3*i]);
 		i ++;
 		pVertexTab[3*i] = pVertexTab[3*(i-1)] - my_diapo_simple_arrowWidth/2 * (1 + my_diapo_simple_arrowShift)/fTotalWidth;
 		pVertexTab[3*i+1] = h + rh + my_diapo_simple_arrowHeight/fFrameHeight;
 		_recopy_prev_color (pColorTab, i);
 		i ++;
-		pVertexTab[3*i] = pVertexTab[3*(i-2)] - my_diapo_simple_arrowWidth/fFrameHeight;
+		pVertexTab[3*i] = pVertexTab[3*(i-2)] - my_diapo_simple_arrowWidth/fTotalWidth;
 		pVertexTab[3*i+1] = h + rh;
 		_recopy_prev_color (pColorTab, i);
 		i ++;
@@ -829,11 +830,11 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, G
 	}
 	if (pDock->bDirectionUp && pDock->bHorizontalDock)  // dessin de la pointe vers le bas.
 	{
-		pVertexTab[3*i] = 0. + (my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * (fFrameWidth/2 - my_diapo_simple_arrowWidth/2))/fTotalWidth;
+		pVertexTab[3*i] = 0. + my_diapo_simple_arrowShift * (fFrameWidth/2 - my_diapo_simple_arrowWidth/2)/fTotalWidth - my_diapo_simple_arrowWidth/2/fTotalWidth;
 		pVertexTab[3*i+1] = - h - rh;
 		_copy_mean_color (pColorTab, i, pDock, pBottomRightColor, pBottomLeftColor, .5 + pVertexTab[3*i]);
 		i ++;
-		pVertexTab[3*i] = pVertexTab[3*(i-1)] + my_diapo_simple_arrowWidth/2 * (1 + my_diapo_simple_arrowShift)/fTotalWidth;
+		pVertexTab[3*i] = pVertexTab[3*(i-1)] + my_diapo_simple_arrowWidth/2 * (1 - my_diapo_simple_arrowShift)/fTotalWidth;
 		pVertexTab[3*i+1] = - h - rh - my_diapo_simple_arrowHeight/fFrameHeight;
 		_recopy_prev_color (pColorTab, i);
 		i ++;
@@ -851,17 +852,17 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, G
 	if (pDock->bDirectionUp && !pDock->bHorizontalDock)  // dessin de la pointe vers la droite.
 	{
 		pVertexTab[3*i] = w + rw;
-		pVertexTab[3*i+1] = 0. + (my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * ((fFrameHeight-2*fRadius)/2))/fFrameHeight;
+		pVertexTab[3*i+1] = 0. + my_diapo_simple_arrowShift * (fFrameHeight/2 - fRadius - my_diapo_simple_arrowWidth/2)/fFrameHeight - my_diapo_simple_arrowWidth/2/fFrameHeight;
 		_copy_mean_color (pColorTab, i, pDock, pTopRightColor, pBottomRightColor, .5 + pVertexTab[3*i+1]);
 		i ++;
 		pVertexTab[3*i] = w + rw + my_diapo_simple_arrowHeight/fTotalWidth;
-		pVertexTab[3*i+1] = pVertexTab[3*(i-1)+1] - my_diapo_simple_arrowWidth/2 * (1 + my_diapo_simple_arrowShift);
+		pVertexTab[3*i+1] = pVertexTab[3*(i-1)+1] - my_diapo_simple_arrowWidth/2 * (1 + my_diapo_simple_arrowShift)/fFrameHeight;
 		_recopy_prev_color (pColorTab, i);
 		i ++;
 		pVertexTab[3*i] = w + rw;
 		pVertexTab[3*i+1] = pVertexTab[3*(i-2)+1] - my_diapo_simple_arrowWidth/fFrameHeight;
 		_recopy_prev_color (pColorTab, i);
-		i ++;          
+		i ++;
 	}
 	pVertexTab[3*i] = w + rw;  // on boucle.
 	pVertexTab[3*i+1] = h;

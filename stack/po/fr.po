@@ -19,31 +19,31 @@ msgstr ""
 "Ceci est l'applet Stack\n"
 " écrite par ChAnGFu & Fabounet pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:62
+#: ../src/applet-notifications.c:65
 msgid "Set new name for this item :"
 msgstr ""
 
-#: ../src/applet-notifications.c:100
+#: ../src/applet-notifications.c:103
 msgid "Paste (drag'n'drop)"
 msgstr ""
 
-#: ../src/applet-notifications.c:103
+#: ../src/applet-notifications.c:106
 msgid "Copy (middle click)"
 msgstr ""
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:107
 msgid "Cut"
 msgstr ""
 
-#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:108
 msgid "Rename this item"
 msgstr ""
 
-#: ../src/applet-notifications.c:106
+#: ../src/applet-notifications.c:109
 msgid "Remove this item"
 msgstr ""
 
-#: ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:111
 msgid "Clear the stack"
 msgstr ""
 
@@ -56,38 +56,32 @@ msgid "Desired icon size for this applet"
 msgstr "Taille d'icône souhaitée pour cette applet"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "largeur :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "hauteur :"
-
-#: ../data/messages:9
 msgid "Let empty to use a default name"
 msgstr "Laissez vide pour utiliser un nom par défaut"
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-#: ../data/messages:13
-msgid "Let it empty to use the default icon."
+#: ../data/messages:9
+#, fuzzy
+msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser l'icône par défaut"
 
-#: ../data/messages:15
-msgid "Icon's name :"
+#: ../data/messages:11
+#, fuzzy
+msgid "Image's filename :"
 msgstr "Nom de l'icône :"
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient :"
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -95,33 +89,33 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic_milieu ou ALT + clic_droit par exemple."
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic gauche."
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -129,11 +123,11 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -142,34 +136,34 @@ msgstr ""
 "avec le bouton gauche de la souris. Bien sur il pourra toujourêtre bouger "
 "avec ALT + clique_gauche"
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:43
+#: ../data/messages:39
 #, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:45
+#: ../data/messages:41
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:47
+#: ../data/messages:43
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:49
+#: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
 "dessous."
 
-#: ../data/messages:51
+#: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:53
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -177,47 +171,47 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:55
+#: ../data/messages:51
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:57
+#: ../data/messages:53
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:59
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:61
+#: ../data/messages:57
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:63
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:65
+#: ../data/messages:61
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:67
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:69
+#: ../data/messages:65
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:71
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:73
+#: ../data/messages:69
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:75
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -225,51 +219,51 @@ msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
 "par exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:77
+#: ../data/messages:73
 msgid "Foreground image :"
 msgstr "Image d'avant-plan :"
 
-#: ../data/messages:79
+#: ../data/messages:75
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "Display"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue des sous-docks par défaut"
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "They are items created by dropping a text into the Stack."
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "Image for the 'text' items :"
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "They are items created by dropping an URL into the Stack."
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Image for the 'URL' items :"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Options"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:95
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
@@ -277,45 +271,51 @@ msgstr ""
 "Cette option vous permet d'éviter que certains fichiers soit affihcer dans "
 "le stacks en prenant en compte leur types (video, images, etc...)"
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Filter files with their mime types ?"
 msgstr "Filtrer les fichiers avec leur mime types ?"
 
-#: ../data/messages:103
+#: ../data/messages:99
 msgid "Eg: image, text, video, audio, application, ..."
 msgstr "Ex: image, text, video, audio, application, ..."
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr "Vous pouvez spécifié ici une liste de mime type a éviter:"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Sort items by :"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:105
 msgid "Name"
 msgstr "Nom"
 
-#: ../data/messages:111
+#: ../data/messages:107
 msgid "Date"
 msgstr "Date"
 
-#: ../data/messages:113
+#: ../data/messages:109
 msgid "Type"
 msgstr "Type"
 
-#: ../data/messages:115
+#: ../data/messages:111
 msgid "Manual order"
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid ""
 "It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
 "+v clipboard"
 msgstr ""
 "C'est la sélection faite à la souris, par opposition à celle de ctrl+c/ctrl+v"
 
-#: ../data/messages:119
+#: ../data/messages:115
 msgid "When copy/paste/cut, use the selection clipboard ?"
 msgstr "Lors d'un copier/coller/couper, utiliser la sélection X ?"
+
+#~ msgid "width :"
+#~ msgstr "largeur :"
+
+#~ msgid "height :"
+#~ msgstr "hauteur :"

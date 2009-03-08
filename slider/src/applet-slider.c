@@ -76,7 +76,6 @@ static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboo
 		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
 		if (stat (sFilePath->str, &buf) != -1) {
 			if (S_ISDIR (buf.st_mode) && bRecursive) {
-				cd_debug ("Slider - %s is a directory, let's look", sFilePath->str);
 				pList = cd_slider_measure_directory (pList, sFilePath->str, bRecursive, bSortAlpha);
 			}
 			else {
@@ -111,7 +110,7 @@ static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboo
 							{
 								byteOrder = exif_data_get_byte_order (pExifData);
 								pImage->iOrientation = exif_get_short (pExifEntry->data, byteOrder);
-								g_print ("iOrientation : %d\n", pImage->iOrientation);
+								cd_debug ("iOrientation : %d", pImage->iOrientation);
 							}
 							
 							exif_data_unref (pExifData);
@@ -155,8 +154,7 @@ void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet) {
 void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
-	cd_debug ("Slider - Displaying: %s (size %dbytes, orientation:%d)", cImagePath, pImage->iSize, pImage->iOrientation);
-	g_print ("  chargement %s...\n", cImagePath);
+	cd_debug ("  Slider - loading %s (size %dbytes, orientation:%d)", cImagePath, pImage->iSize, pImage->iOrientation);
 	//\_______________ On definit comment charger l'image.
 	double fImgX, fImgY, fImgW=0, fImgH=0;
 	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;
@@ -185,12 +183,11 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	myData.slideArea.fImgY = fImgY;
 	myData.slideArea.fImgW = fImgW;
 	myData.slideArea.fImgH = fImgH;
-	g_print ("  %s chargee\n", cImagePath);
+	cd_debug ("  %s loaded", cImagePath);
 }
 
 
 gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
-	g_print ("%s ()\n", __func__);
 	//\_______________ On cree la texture (en-dehors du thread).
 	if (g_bUseOpenGL)
 	{
@@ -217,7 +214,6 @@ gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
 	}
 	else  // on dessine tout de suite et on attend l'image suivante.
 	{
-		g_print ("---default animation\n");
 		cd_slider_draw_default (myApplet);
 		CD_APPLET_REDRAW_MY_ICON;
 		cd_slider_schedule_next_slide (myApplet);
@@ -227,7 +223,6 @@ gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
 }
 
 gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
-	g_print ("%s (%d)\n", __func__, myData.iTimerID);
 	if (myData.bPause)  // on est en pause.
 	{
 		myData.iTimerID = 0;
@@ -277,10 +272,9 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 		(pImage->iFormat == SLIDER_JPG && pImage->iSize > 70e3) ||
 		(pImage->iFormat == SLIDER_GIF && pImage->iSize > 100e3) ||
 		(pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3))) {
-		cd_debug ("Slider -   on threade");
+		cd_debug ("Slider - on threade");
 		cairo_dock_launch_measure (myData.pMeasureImage);
 		myData.iTimerID = 0;
-		g_print ("bye\n");
 		return FALSE;  // on quitte la boucle d'attente car on va effectuer une animation.
 	}
 	else {

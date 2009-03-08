@@ -121,8 +121,7 @@ msgstr "Rapporto altezza/larghezza :"
 
 #: ../data/messages:47
 msgid "0 means the wave is totally flat, 1 means the wave is maximal."
-msgstr ""
-"0 significa che l'onda è totalmente piatta, 1 che l'onda è massima."
+msgstr "0 significa che l'onda è totalmente piatta, 1 che l'onda è massima."
 
 #: ../data/messages:49 ../data/messages:67
 msgid "Magnitude of the wave :"
@@ -177,8 +176,8 @@ msgid ""
 "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
 "widely opened."
 msgstr ""
-"in gradi. Più è piccolo più il cono sarà acuto. 180° significa che il cono "
-"è completamente aperto."
+"in gradi. Più è piccolo più il cono sarà acuto. 180° significa che il cono è "
+"completamente aperto."
 
 #: ../data/messages:73
 msgid "Cone's width :"

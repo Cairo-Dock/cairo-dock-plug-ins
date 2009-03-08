@@ -61,26 +61,18 @@ msgid "Desired icon size for this applet"
 msgstr "Önskad storlek för ikonen"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "bredd:"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "höjd:"
-
-#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Ikonens etikett:"
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr "Docka som appleten tillhör:"
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:15
+#: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -88,32 +80,32 @@ msgstr ""
 "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
 "eller ALT+vänsterklick"
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
 msgstr "Storlek på Desklet (bredd x höjd):"
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
 msgstr "Deskletens position (x, y):"
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Is detached from the dock ?"
 msgstr "Koppla loss från dockan?"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Keep below other windows ?"
 msgstr "Placera under andra fönster?"
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Keep above other windows ?"
 msgstr "Placera ovanför andra fönster?"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -121,11 +113,11 @@ msgstr ""
 "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 "type=utility)"
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -133,119 +125,119 @@ msgstr ""
 "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
 "använda ALT+vänsterklick."
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:45
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:47
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:51
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:55
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:59
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:63
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:67
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:69
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:77
+#: ../data/messages:73
 msgid "Audio Player"
 msgstr "Ljudspelare"
 
-#: ../data/messages:79
+#: ../data/messages:75
 msgid "Player to control:"
 msgstr "Spelare som ska kontrolleras:"
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "XMMS"
 msgstr "XMMS"
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "Audacious"
 msgstr "Audacious"
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Banshee"
 msgstr "Banshee"
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid "Exaile"
 msgstr "Exaile"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -253,114 +245,120 @@ msgstr ""
 "Gör att spelarens ikon inte visas i aktivitetsfältet. Appletens ikon används "
 "istället för att styra programmet."
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "Steal the player's icon from taskbar ?"
 msgstr "Stjäl spelarens ikon från aktivitetsfältet?"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Display"
 msgstr "Uteseende"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Information to display on the icon :"
 msgstr "Information att visa på ikonen:"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Nothing"
 msgstr "inget"
 
-#: ../data/messages:99
+#: ../data/messages:95
 msgid "Time Elapsed"
 msgstr "Använd tid"
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Time Left"
 msgstr "Tid kvar"
 
-#: ../data/messages:103
+#: ../data/messages:99
 msgid "N° of track"
 msgstr "Spårnummer"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Activate extended desklet mode ?"
 msgstr "Aktivera utökat visningsläge?"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Extended display mode :"
 msgstr "Utökat visningsläge:"
 
-#: ../data/messages:109
+#: ../data/messages:105
 msgid "Info"
 msgstr "Info"
 
-#: ../data/messages:111
+#: ../data/messages:107
 msgid "Info and Controler"
 msgstr "Info och Controller"
 
-#: ../data/messages:113
+#: ../data/messages:109
 msgid "Caroussel"
 msgstr "Karussel"
 
-#: ../data/messages:115
+#: ../data/messages:111
 msgid "Controler"
 msgstr "Controller"
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid "Action on music change"
 msgstr "Aktivitet vid musikbyte:"
 
-#: ../data/messages:119
+#: ../data/messages:115
 msgid "Show an info-bubble ?"
 msgstr "Visa infobubbla?"
 
-#: ../data/messages:121
+#: ../data/messages:117
 msgid "With a icon ?"
 msgstr "Med ikon?"
 
-#: ../data/messages:123
+#: ../data/messages:119
 msgid "in ms."
 msgstr "i ms."
 
-#: ../data/messages:125
+#: ../data/messages:121
 msgid "Time length of info-bubbles :"
 msgstr "Tid som infobubblor visas:"
 
-#: ../data/messages:127
+#: ../data/messages:123
 msgid "Animate icon ?"
 msgstr "Animera ikonen?"
 
-#: ../data/messages:129
+#: ../data/messages:125
 msgid "Animation when music changes :"
 msgstr "Animering när musiken ändras:"
 
-#: ../data/messages:131
+#: ../data/messages:127
 msgid "Personnalisation"
 msgstr "Inställningar"
 
-#: ../data/messages:133 ../data/messages:137 ../data/messages:141
-#: ../data/messages:145 ../data/messages:149
+#: ../data/messages:129 ../data/messages:133 ../data/messages:137
+#: ../data/messages:141 ../data/messages:145
 msgid "Let it empty to use the default icon."
 msgstr "Lämna tomt för att använda standardkortet."
 
-#: ../data/messages:135
+#: ../data/messages:131
 msgid "Name of an image for the 'default' icon :"
 msgstr "Bild för standard:"
 
-#: ../data/messages:139
+#: ../data/messages:135
 msgid "Name of an image for the 'play' icon :"
 msgstr "Bild för spela upp:"
 
-#: ../data/messages:143
+#: ../data/messages:139
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Bild för stop:"
 
-#: ../data/messages:147
+#: ../data/messages:143
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Bild för pausa:"
 
-#: ../data/messages:151
+#: ../data/messages:147
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Bild för bruten:"
+
+#~ msgid "width :"
+#~ msgstr "bredd:"
+
+#~ msgid "height :"
+#~ msgstr "höjd:"
 
 #~ msgid "bounce"
 #~ msgstr "studsa"

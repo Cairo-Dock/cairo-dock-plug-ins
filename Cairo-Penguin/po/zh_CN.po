@@ -77,28 +77,28 @@ msgstr ""
 "这是Cairo企鹅小应用程序\n"
 " Fabrice Rey为Cairo-Dock所作"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:115
 #, fuzzy
 msgid "Hey, you there !"
 msgstr "嘿，我在这儿！"
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:118
 msgid "Keep quiet"
 msgstr "肃静！"
 
-#: ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:122
 msgid "Wake up"
 msgstr "醒醒！"
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:125
 msgid "Start XPenguins"
 msgstr "启动XPenguins"
 
-#: ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:126
 msgid "Stop XPenguins"
 msgstr "停止XPenguins"
 
-#: ../src/applet-notifications.c:151 ../src/applet-notifications.c:153
+#: ../src/applet-notifications.c:149 ../src/applet-notifications.c:151
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -107,60 +107,61 @@ msgid "Icon"
 msgstr "图标"
 
 #: ../data/messages:3
-msgid "Desired icon size for this applet"
-msgstr "此小应用程序将使用的图标大小"
+msgid "Icon size when the penguin is not free :"
+msgstr ""
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "宽："
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "高："
-
-#: ../data/messages:9
-msgid "Name of the icon as it will appear in its label in the dock :"
+#, fuzzy
+msgid "Name of the icon when the penguin is not free :"
 msgstr "在dock上显示的图标名称："
 
-#: ../data/messages:11
-msgid "Icon's name :"
-msgstr "图标的名称："
-
-#: ../data/messages:13
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr "归属dock的名称："
 
-#: ../data/messages:15
+#: ../data/messages:9
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:17
+#: ../data/messages:11
 msgid "Choose one of the available themes :"
 msgstr "选择主题："
 
-#: ../data/messages:19
+#: ../data/messages:13
 msgid "in seconds"
 msgstr "以秒为单位。"
 
-#: ../data/messages:21
+#: ../data/messages:15
 msgid "Delay between animation changes :"
 msgstr "动画间隔时间："
 
-#: ../data/messages:23
+#: ../data/messages:17
 msgid "Transparency of the penguin :"
 msgstr "企鹅透明度："
 
-#: ../data/messages:25
+#: ../data/messages:19
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr "允许企鹅在dock的任何地方漫步？"
 
-#: ../data/messages:27
+#: ../data/messages:21
 msgid "in pixels."
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:23
 msgid "Ground offset :"
 msgstr ""
+
+#~ msgid "Desired icon size for this applet"
+#~ msgstr "此小应用程序将使用的图标大小"
+
+#~ msgid "width :"
+#~ msgstr "宽："
+
+#~ msgid "height :"
+#~ msgstr "高："
+
+#~ msgid "Icon's name :"
+#~ msgstr "图标的名称："
 
 #~ msgid "Module"
 #~ msgstr "模块"

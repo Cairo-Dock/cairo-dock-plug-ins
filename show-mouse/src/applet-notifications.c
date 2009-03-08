@@ -43,20 +43,36 @@ gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer, c
 }
 
 
+#define _compute_area(area, pContainer, pData) do {\
+if (pContainer->bIsHorizontal) {\
+	area.x = pContainer->iMouseX - pData->pSystem->fWidth/2;\
+	area.y = MAX (0, pContainer->iMouseY - pData->pSystem->fHeight);\
+	area.width = pData->pSystem->fWidth;\
+	area.height = pData->pSystem->fHeight*2; }\
+else {\
+	area.y = pContainer->iMouseX - pData->pSystem->fWidth/2;\
+	area.x = MAX (0, pContainer->iMouseY - pData->pSystem->fHeight);\
+	area.height = pData->pSystem->fWidth;\
+	area.width = pData->pSystem->fHeight*2; } } while (0)
 gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
 	CDShowMouseData *pData = CD_APPLET_GET_MY_CONTAINER_DATA (pContainer);
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
+	GdkRectangle area;
 	if (! pContainer->bInside)
 	{
 		pData->fAlpha -= .05;
 		if (pData->fAlpha <= 0)
 		{
+			_compute_area (area, pContainer, pData);
+			cairo_dock_redraw_container_area (pContainer, &area);
+			
 			cairo_dock_free_particle_system (pData->pSystem);
 			g_free (pData);
 			CD_APPLET_SET_MY_CONTAINER_DATA (pContainer, NULL);
+			
 			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		}
 	}
@@ -70,21 +86,7 @@ gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pCo
 	pData->pSystem->fHeight =  MIN (96, pContainer->iHeight);
 	cd_show_mouse_update_particle_system (pData->pSystem, pData);
 	
-	GdkRectangle area;
-	if (pContainer->bIsHorizontal)
-	{
-		area.x = pContainer->iMouseX - pData->pSystem->fWidth/2;
-		area.y = MAX (0, pContainer->iMouseY - pData->pSystem->fHeight);
-		area.width = pData->pSystem->fWidth;
-		area.height = pData->pSystem->fHeight*2;
-	}
-	else
-	{
-		area.y = pContainer->iMouseX - pData->pSystem->fWidth/2;
-		area.x = MAX (0, pContainer->iMouseY - pData->pSystem->fHeight);
-		area.height = pData->pSystem->fWidth;
-		area.width = pData->pSystem->fHeight*2;
-	}
+	_compute_area (area, pContainer, pData);
 	cairo_dock_redraw_container_area (pContainer, &area);
 	
 	*bContinueAnimation = TRUE;
@@ -233,4 +235,17 @@ void cd_show_mouse_update_particle_system (CairoParticleSystem *pParticleSystem,
 			}
 		}
 	}
+}
+
+gboolean cd_show_mouse_free_data (gpointer pUserData, CairoContainer *pContainer)
+{
+	cd_message ("");
+	CDShowMouseData *pData = CD_APPLET_GET_MY_CONTAINER_DATA (pContainer);
+	if (pData == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	cairo_dock_free_particle_system (pData->pSystem);
+	g_free (pData);
+	CD_APPLET_SET_MY_CONTAINER_DATA (pContainer, NULL);
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

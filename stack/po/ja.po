@@ -22,31 +22,31 @@ msgstr ""
 "これは ChAnGFu と Fabounet によって製作された \n"
 "Cairo-Dock 用の Stack アプレットです。"
 
-#: ../src/applet-notifications.c:62
+#: ../src/applet-notifications.c:65
 msgid "Set new name for this item :"
 msgstr "このアイテムに新しい名前を設定 :"
 
-#: ../src/applet-notifications.c:100
+#: ../src/applet-notifications.c:103
 msgid "Paste (drag'n'drop)"
 msgstr "貼り付け（ドラッグ＆ドロップ）"
 
-#: ../src/applet-notifications.c:103
+#: ../src/applet-notifications.c:106
 msgid "Copy (middle click)"
 msgstr "コピー（中クリック）"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:107
 msgid "Cut"
 msgstr "切り取り"
 
-#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:108
 msgid "Rename this item"
 msgstr "このアイテムをリネーム"
 
-#: ../src/applet-notifications.c:106
+#: ../src/applet-notifications.c:109
 msgid "Remove this item"
 msgstr "このアイテムを削除"
 
-#: ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:111
 msgid "Clear the stack"
 msgstr "スタックをクリア"
 
@@ -59,38 +59,32 @@ msgid "Desired icon size for this applet"
 msgstr "このアプレットのアイコンの大きさ"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "幅 :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "高さ :"
-
-#: ../data/messages:9
 msgid "Let empty to use a default name"
 msgstr "デフォルトの名前を使用するには空欄のままに。"
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#: ../data/messages:13
-msgid "Let it empty to use the default icon."
+#: ../data/messages:9
+#, fuzzy
+msgid "Let empty to use the default one."
 msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
 
-#: ../data/messages:15
-msgid "Icon's name :"
+#: ../data/messages:11
+#, fuzzy
+msgid "Image's filename :"
 msgstr "アイコンの名前 :"
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -98,33 +92,33 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。"
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -132,11 +126,11 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -145,32 +139,32 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:43
+#: ../data/messages:39
 msgid "in degrees."
 msgstr "角度"
 
-#: ../data/messages:45
+#: ../data/messages:41
 msgid "Rotation :"
 msgstr "回転 :"
 
-#: ../data/messages:47
+#: ../data/messages:43
 msgid "Decorations"
 msgstr "装飾"
 
-#: ../data/messages:49
+#: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
-#: ../data/messages:51
+#: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
-#: ../data/messages:53
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -178,47 +172,47 @@ msgstr ""
 "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
 "欄のままにしてください。"
 
-#: ../data/messages:55
+#: ../data/messages:51
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:57
+#: ../data/messages:53
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:59
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:61
+#: ../data/messages:57
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
 
-#: ../data/messages:63
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
-#: ../data/messages:65
+#: ../data/messages:61
 msgid "Top offset :"
 msgstr "上方向のオフセット :"
 
-#: ../data/messages:67
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
-#: ../data/messages:69
+#: ../data/messages:65
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
 
-#: ../data/messages:71
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
-#: ../data/messages:73
+#: ../data/messages:69
 msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
-#: ../data/messages:75
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -226,51 +220,51 @@ msgstr ""
 "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
 "合は空欄のままにしてください。"
 
-#: ../data/messages:77
+#: ../data/messages:73
 msgid "Foreground image :"
 msgstr "前景画像 :"
 
-#: ../data/messages:79
+#: ../data/messages:75
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Let it empty to use default sub-dock view."
 msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "They are items created by dropping a text into the Stack."
 msgstr "テキストを Stack にドロップして作成されたアイテムを指します。"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "Image for the 'text' items :"
 msgstr "テキスト・アイテム用の画像 :"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "They are items created by dropping an URL into the Stack."
 msgstr "URL を Stack にドロップして作成したアイテムを指します。"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Image for the 'URL' items :"
 msgstr "URL アイテム用の画像 :"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Options"
 msgstr "オプション"
 
-#: ../data/messages:99
+#: ../data/messages:95
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
@@ -278,39 +272,39 @@ msgstr ""
 "このオプションを使用すると、特定の種類（動画、画像、等々）のファイルを "
 "Stacks で表示しないようにすることができます。"
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Filter files with their mime types ?"
 msgstr "MIME タイプによってファイルをフィルタ？"
 
-#: ../data/messages:103
+#: ../data/messages:99
 msgid "Eg: image, text, video, audio, application, ..."
 msgstr "例 : image, text, video, audio, application..."
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr "表示除外対象にする MIME タイプのリストの指定 :"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Sort items by :"
 msgstr "アイテムの並べ替え :"
 
-#: ../data/messages:109
+#: ../data/messages:105
 msgid "Name"
 msgstr "名前"
 
-#: ../data/messages:111
+#: ../data/messages:107
 msgid "Date"
 msgstr "日付"
 
-#: ../data/messages:113
+#: ../data/messages:109
 msgid "Type"
 msgstr "種類"
 
-#: ../data/messages:115
+#: ../data/messages:111
 msgid "Manual order"
 msgstr "手動の順番"
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid ""
 "It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
 "+v clipboard"
@@ -318,9 +312,15 @@ msgstr ""
 "通常の Ctrl+c/Ctrl+v クリップボードとは異なる、マウスによる選択の方のクリップ"
 "ボードです。"
 
-#: ../data/messages:119
+#: ../data/messages:115
 msgid "When copy/paste/cut, use the selection clipboard ?"
 msgstr "コピー/貼り付け/切り取り 時にセレクションの方のクリップボードを使用？"
+
+#~ msgid "width :"
+#~ msgstr "幅 :"
+
+#~ msgid "height :"
+#~ msgstr "高さ :"
 
 #~ msgid "Reload Stacks"
 #~ msgstr "Stack の再読み込み"

@@ -24,19 +24,19 @@ msgstr "Più è basso, più il punto di vista del piano si abbassa."
 msgid "Height of the vanishing point :"
 msgstr "Altezza del punto di fuga :"
 
-#: ../data/messages:7 ../data/messages:165
+#: ../data/messages:7 ../data/messages:171
 msgid "Choose the way separators are drawn :"
 msgstr "Scegliere il modo in cui i separatori sono disegnati :"
 
-#: ../data/messages:9 ../data/messages:167
+#: ../data/messages:9 ../data/messages:173
 msgid "Normal separator"
 msgstr "Separatori normali"
 
-#: ../data/messages:11 ../data/messages:169
+#: ../data/messages:11 ../data/messages:175
 msgid "Flat separator"
 msgstr "Separatori piatti"
 
-#: ../data/messages:13 ../data/messages:171
+#: ../data/messages:13 ../data/messages:177
 msgid "Physical separator"
 msgstr "Separatori fisici"
 
@@ -121,14 +121,13 @@ msgstr "Rapporto altezza/larghezza :"
 
 #: ../data/messages:47
 msgid "0 means the wave is totally flat, 1 means the wave is maximal."
-msgstr ""
-"0 significa che l'onda è totalmente piatta, 1 che l'onda è massima."
+msgstr "0 significa che l'onda è totalmente piatta, 1 che l'onda è massima."
 
 #: ../data/messages:49 ../data/messages:67
 msgid "Magnitude of the wave :"
 msgstr "Magnitudo dell'onda :"
 
-#: ../data/messages:51 ../data/messages:161
+#: ../data/messages:51 ../data/messages:167
 msgid "in pixels."
 msgstr "in pixels."
 
@@ -152,7 +151,7 @@ msgstr "Disegnare le etichette durante lo sfogliamento ?"
 msgid "Rainbow"
 msgstr "Arcobaleno"
 
-#: ../data/messages:61 ../data/messages:79 ../data/messages:119
+#: ../data/messages:61 ../data/messages:85 ../data/messages:125
 msgid "Space between rows :"
 msgstr "Spazio tra le file :"
 
@@ -177,106 +176,118 @@ msgid ""
 "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
 "widely opened."
 msgstr ""
-"in gradi. Più è piccolo più il cono sarà acuto. 180° significa che il cono "
-"è completamente aperto."
+"in gradi. Più è piccolo più il cono sarà acuto. 180° significa che il cono è "
+"completamente aperto."
 
 #: ../data/messages:73
 msgid "Cone's width :"
 msgstr "Apertura del cono :"
 
 #: ../data/messages:75
+msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
+msgstr ""
+
+#: ../data/messages:77
+msgid "Bow color :"
+msgstr ""
+
+#: ../data/messages:79
+msgid "Line color :"
+msgstr ""
+
+#: ../data/messages:81
 msgid "Slide"
 msgstr "Diapositiva"
 
-#: ../data/messages:77 ../data/messages:117
+#: ../data/messages:83 ../data/messages:123
 msgid "Space between columns :"
 msgstr "Spazio tra le colonne :"
 
-#: ../data/messages:81 ../data/messages:121
+#: ../data/messages:87 ../data/messages:127
 msgid "Max size of icons :"
 msgstr "Dimensione massima delle icone"
 
-#: ../data/messages:83 ../data/messages:123
+#: ../data/messages:89 ../data/messages:129
 msgid "Sinusoidal wave radius :"
 msgstr "Raggio dell'onda sinusoidale :"
 
-#: ../data/messages:85 ../data/messages:125
+#: ../data/messages:91 ../data/messages:131
 msgid "Use a linear wave rather than a sinusoidal one ?"
 msgstr "Utilizzare un'onda lineare piuttosto che sinusoidale ?"
 
-#: ../data/messages:87 ../data/messages:127
+#: ../data/messages:93 ../data/messages:133
 msgid "Use a wide shape ?"
 msgstr "Utilizzare una forma allungata ?"
 
-#: ../data/messages:89 ../data/messages:129
+#: ../data/messages:95 ../data/messages:135
 msgid "Display text only for pointed icon ?"
 msgstr "Mostrare il testo solo per l'icona puntata ?"
 
-#: ../data/messages:91 ../data/messages:131
+#: ../data/messages:97 ../data/messages:137
 msgid "Display text for all icons ?"
 msgstr "Mostrare il testo per tutte le icone ?"
 
-#: ../data/messages:93 ../data/messages:133
+#: ../data/messages:99 ../data/messages:139
 msgid "Draw a background ?"
 msgstr "Disegnare uno sfondo ?"
 
-#: ../data/messages:95 ../data/messages:135
+#: ../data/messages:101 ../data/messages:141
 msgid "First gradient color (r,v,b,a) :"
 msgstr "Primo colore della gradazione (r,v,b,a) :"
 
-#: ../data/messages:97 ../data/messages:137
+#: ../data/messages:103 ../data/messages:143
 msgid "Second gradient color (r,v,b,a) :"
 msgstr "Secondo colore della gradazione (r,v,b,a) :"
 
-#: ../data/messages:99 ../data/messages:139
+#: ../data/messages:105 ../data/messages:145
 msgid "Top to bottom gradient ?"
 msgstr "Gradazione dall'alto in basso?"
 
-#: ../data/messages:101 ../data/messages:141
+#: ../data/messages:107 ../data/messages:147
 msgid "Left to right gradient ?"
 msgstr "Gradazione da sinistra a destra ?"
 
-#: ../data/messages:103 ../data/messages:143
+#: ../data/messages:109 ../data/messages:149
 msgid "Arrow width :"
 msgstr "Larghezza del puntatore :"
 
-#: ../data/messages:105 ../data/messages:145
+#: ../data/messages:111 ../data/messages:151
 msgid "Arrow Height :"
 msgstr "Altezza del puntatore :"
 
-#: ../data/messages:107 ../data/messages:147
+#: ../data/messages:113 ../data/messages:153
 msgid "Arrow shift percent :"
 msgstr "Percentuale del turno del puntatore :"
 
-#: ../data/messages:109 ../data/messages:149
+#: ../data/messages:115 ../data/messages:155
 msgid "Corner radius :"
 msgstr "Raggio degli angoli :"
 
-#: ../data/messages:111 ../data/messages:151
+#: ../data/messages:117 ../data/messages:157
 msgid "Border line width :"
 msgstr "Larghezza del contorno :"
 
-#: ../data/messages:113 ../data/messages:153
+#: ../data/messages:119 ../data/messages:159
 msgid "Border line color (r,v,b,a) :"
 msgstr "Colore del contorno (r,v,b,a) :"
 
-#: ../data/messages:115
+#: ../data/messages:121
 msgid "SimpleSlide"
 msgstr "Diapositiva Semplice"
 
-#: ../data/messages:155
+#: ../data/messages:161
 msgid "Curve"
 msgstr "Curva"
 
-#: ../data/messages:157
+#: ../data/messages:163
 msgid "The lower, the more the curve will seem flat."
 msgstr "Più è basso, più la curva sembrerà piatta."
 
-#: ../data/messages:159
+#: ../data/messages:165
 msgid "Curvature of the curve in percent :"
 msgstr "Curvatura della curva in percentuale :"
 
-#: ../data/messages:163
+#: ../data/messages:169
 msgid "Amplitude of the curve."
 msgstr "Ampiezza della curva."
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-02-03 01:31+0100\n"
+"POT-Creation-Date: 2009-03-08 04:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,27 +77,27 @@ msgid ""
 " made by Fabrice Rey for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:115
 msgid "Hey, you there !"
 msgstr ""
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:118
 msgid "Keep quiet"
 msgstr ""
 
-#: ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:122
 msgid "Wake up"
 msgstr ""
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:125
 msgid "Start XPenguins"
 msgstr ""
 
-#: ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:126
 msgid "Stop XPenguins"
 msgstr ""
 
-#: ../src/applet-notifications.c:151 ../src/applet-notifications.c:153
+#: ../src/applet-notifications.c:149 ../src/applet-notifications.c:151
 msgid "Zzzzz"
 msgstr ""
 
@@ -106,57 +106,45 @@ msgid "Icon"
 msgstr ""
 
 #: ../data/messages:3
-msgid "Desired icon size for this applet"
+msgid "Icon size when the penguin is not free :"
 msgstr ""
 
 #: ../data/messages:5
-msgid "width :"
+msgid "Name of the icon when the penguin is not free :"
 msgstr ""
 
 #: ../data/messages:7
-msgid "height :"
-msgstr ""
-
-#: ../data/messages:9
-msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr ""
-
-#: ../data/messages:11
-msgid "Icon's name :"
-msgstr ""
-
-#: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:9
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:11
 msgid "Choose one of the available themes :"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:13
 msgid "in seconds"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:15
 msgid "Delay between animation changes :"
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:17
 msgid "Transparency of the penguin :"
 msgstr ""
 
-#: ../data/messages:25
+#: ../data/messages:19
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr ""
 
-#: ../data/messages:27
+#: ../data/messages:21
 msgid "in pixels."
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:23
 msgid "Ground offset :"
 msgstr ""

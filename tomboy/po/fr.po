@@ -75,46 +75,38 @@ msgid "Desired icon size for this applet"
 msgstr "Taille d'icône souhaitée pour cette applet"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "largeur :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "hauteur :"
-
-#: ../data/messages:9
 msgid "Default title :"
 msgstr "Titre par défaut :"
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du conteneur auquel il appartient:"
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:15 ../data/messages:19 ../data/messages:23
+#: ../data/messages:11 ../data/messages:15 ../data/messages:19
 msgid "Let t empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom d'une image pour l'icône 'défaut' :"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Name of an image for the 'close' icon :"
 msgstr "Nom d'une image pour l'icône 'fermer' :"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom d'une image pour l'icône 'cassé' :"
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -126,29 +118,35 @@ msgstr ""
 "marshaller for signature of signal 'NoteDeleted'>> dans le terminal en mode "
 "Debug."
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "Emuler le signal 'NoteSupprimée' ?"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue de sous-docks par défaut."
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour les sous-docks :"
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "Draw note's content on their icon ?"
 msgstr "Dessiner le contenu des notes sur leur icône ?"
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Date format to search for :"
 msgstr "Format de la date à chercher :"
+
+#~ msgid "width :"
+#~ msgstr "largeur :"
+
+#~ msgid "height :"
+#~ msgstr "hauteur :"

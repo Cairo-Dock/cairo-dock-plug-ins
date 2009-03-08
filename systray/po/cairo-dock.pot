@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-02-03 01:31+0100\n"
+"POT-Creation-Date: 2009-03-08 04:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,73 +21,65 @@ msgid "Icon"
 msgstr ""
 
 #: ../data/messages:3
-msgid "Size of the icon you wish this applet has (in pixels)"
+msgid "Desired icon size for this applet"
 msgstr ""
 
 #: ../data/messages:5
-msgid "width :"
-msgstr ""
-
-#: ../data/messages:7
-msgid "height :"
-msgstr ""
-
-#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
 msgstr ""
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Desklet"
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:11
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Desklet's position (x ; y) :"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Is detached from the dock ?"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Keep below other windows ?"
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Keep above other windows ?"
 msgstr ""
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
 msgstr ""
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Keep on widget layer ?"
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid "GUI"
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid "Shortkey to toggle the systray"
 msgstr ""

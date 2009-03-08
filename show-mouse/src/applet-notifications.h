@@ -23,4 +23,7 @@ void cd_show_mouse_update_sources (CDShowMouseData *pData);
 void cd_show_mouse_update_particle_system (CairoParticleSystem *pParticleSystem, CDShowMouseData *pData);
 
 
+gboolean cd_show_mouse_free_data (gpointer pUserData, CairoContainer *pContainer);
+
+
 #endif

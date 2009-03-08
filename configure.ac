@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.0.0-beta2.1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.0.0-beta3],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -469,7 +469,7 @@ AC_SUBST(show_mousedatadir, "${pkgdatadir}/show_mouse")
 SLIDER_PACKAGE="cd-slider"
 AC_SUBST(GETTEXT_SLIDER, "$SLIDER_PACKAGE")
 
-AC_SUBST(VERSION_SLIDER, "1.0.2")
+AC_SUBST(VERSION_SLIDER, "2.0.0")
 AC_SUBST(PACKAGE_SLIDER, "$SLIDER_PACKAGE")
 
 AC_SUBST(sliderdatadir, "${pkgdatadir}/slider")

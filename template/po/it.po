@@ -62,8 +62,9 @@ msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"In base al vostro WindowManager, è possibile ridimensionarla con ALT + click_sinistro. "
-"Valori negativi saranno contati dal lato in basso a destra dello schermo."
+"In base al vostro WindowManager, è possibile ridimensionarla con ALT + "
+"click_sinistro. Valori negativi saranno contati dal lato in basso a destra "
+"dello schermo."
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -120,7 +121,8 @@ msgstr "Decorazioni"
 
 #: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
+msgstr ""
+"Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
 #: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
@@ -144,7 +146,8 @@ msgstr "Trasparenza dello sfondo :"
 
 #: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
 #: ../data/messages:57
 msgid "Left offset :"
@@ -152,7 +155,8 @@ msgstr "Compensazione a sinistra :"
 
 #: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
 #: ../data/messages:61
 msgid "Top offset :"
@@ -160,7 +164,8 @@ msgstr "Compensazione in alto :"
 
 #: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
 #: ../data/messages:65
 msgid "Right offset :"
@@ -168,7 +173,8 @@ msgstr "Compensazione a destra :"
 
 #: ../data/messages:67
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
 #: ../data/messages:69
 msgid "Bottom offset :"
@@ -179,8 +185,8 @@ msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
-"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per esempio. "
-"Lasciare vuoto per non usarla."
+"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per "
+"esempio. Lasciare vuoto per non usarla."
 
 #: ../data/messages:73
 msgid "Foreground image :"

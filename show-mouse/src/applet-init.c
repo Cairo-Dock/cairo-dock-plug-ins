@@ -57,18 +57,30 @@ CD_APPLET_INIT_BEGIN
 		_cd_mouse_register_on_desklet ();
 	}
 	myData.iContainerType = myConfig.iContainerType;
+	
+	cairo_dock_register_notification (CAIRO_DOCK_STOP_DOCK, (CairoDockNotificationFunc) cd_show_mouse_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_STOP_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
+static void _free_dock_data (gchar *cDockName, CairoDock *pDock, gpointer data)
+{
+	cd_show_mouse_free_data (data, CAIRO_CONTAINER (pDock));
+}
+static gboolean _free_desklet_data (CairoDesklet *pDesklet, CairoDockModuleInstance *pInstance, gpointer data)
+{
+	cd_show_mouse_free_data (data, CAIRO_CONTAINER (pDesklet));
+	return FALSE;
+}
 CD_APPLET_STOP_BEGIN
 	_cd_mouse_unregister_from_dock ();
 	_cd_mouse_unregister_from_desklet ();
+	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_DOCK, (CairoDockNotificationFunc) cd_show_mouse_free_data, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_free_data, NULL);
 	
-	glDeleteTextures (1, &myData.iTexture);
-
-	/// foreach dock & foreach desklet : free data.
-	
+	cairo_dock_foreach_docks (_free_dock_data, NULL);
+	cairo_dock_foreach_desklet (_free_desklet_data, NULL);
 CD_APPLET_STOP_END
 
 

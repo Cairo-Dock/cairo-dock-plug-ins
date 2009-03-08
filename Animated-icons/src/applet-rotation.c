@@ -173,16 +173,16 @@ static void _draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData 
 	{
 		case CD_SQUARE_MESH :
 		default :
-			cairo_dock_set_icon_scale (pIcon, pDock, fScaleFactor);
+			cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), fScaleFactor);
 			cd_animation_render_square (pIcon, pDock, bInvisibleBackground);
 		break;
 		case CD_CUBE_MESH :
 			glRotatef (fabs (pData->fRotationAngle/4), 1., 0., 0.);
-			cairo_dock_set_icon_scale (pIcon, pDock, (1. + pData->fAdjustFactor * (sqrt (2) - 1)) * fScaleFactor);
+			cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), (1. + pData->fAdjustFactor * (sqrt (2) - 1)) * fScaleFactor);
 			cd_animation_render_cube (pIcon, pDock, bInvisibleBackground);
 		break;
 		case CD_CAPSULE_MESH :
-			cairo_dock_set_icon_scale (pIcon, pDock, fScaleFactor);
+			cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), fScaleFactor);
 			cd_animation_render_capsule (pIcon, pDock, bInvisibleBackground);
 		break;
 	}
@@ -208,6 +208,46 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 		glTranslatef (0., 0., -fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
 		_draw_rotating_icon (pIcon, pDock, pData, fScaleFactor);
 		glTranslatef (0., 0., fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
+	}
+	
+	if (pDock->bUseReflect)
+	{
+		glPushMatrix ();
+		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
+		double fOffsetY = pIcon->fHeight * pIcon->fScale + (0 + pIcon->fDeltaYReflection) * pDock->fRatio;
+		if (pDock->bHorizontalDock)
+		{
+			if (pDock->bDirectionUp)
+			{
+				fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
+				glTranslatef (0., - fOffsetY, 0.);
+				//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);  // taille du reflet et on se retourne.
+			}
+			else
+			{
+				glTranslatef (0., fOffsetY, 0.);
+				//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->fRatio, 1.);
+			}
+			glScalef (1., -1., 1.);
+		}
+		else
+		{
+			if (pDock->bDirectionUp)
+			{
+				glTranslatef (fOffsetY, 0., 0.);
+				//glScalef (- myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+			}
+			else
+			{
+				glTranslatef (- fOffsetY, 0., 0.);
+				//glScalef (myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+			}
+			glScalef (-1., 1., 1.);
+		}
+		
+		_draw_rotating_icon (pIcon, pDock, pData, 1.);
+		glPopMatrix ();
+		
 	}
 	pIcon->fAlpha = fAlpha;
 }

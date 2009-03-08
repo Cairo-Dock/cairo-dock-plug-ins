@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-02-03 01:31+0100\n"
+"POT-Creation-Date: 2009-03-08 04:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,46 +77,38 @@ msgid "Desired icon size for this applet"
 msgstr ""
 
 #: ../data/messages:5
-msgid "width :"
-msgstr ""
-
-#: ../data/messages:7
-msgid "height :"
-msgstr ""
-
-#: ../data/messages:9
 msgid "Default title :"
 msgstr ""
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Personnalisation"
 msgstr ""
 
-#: ../data/messages:15 ../data/messages:19 ../data/messages:23
+#: ../data/messages:11 ../data/messages:15 ../data/messages:19
 msgid "Let t empty to use the default icon."
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Name of an image for the 'default' icon :"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Name of an image for the 'close' icon :"
 msgstr ""
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -124,29 +116,29 @@ msgid ""
 "terminal."
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "Draw note's content on their icon ?"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Date format to search for :"
 msgstr ""

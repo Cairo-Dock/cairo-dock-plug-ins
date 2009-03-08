@@ -14,19 +14,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:146
+#: ../src/applet-draw.c:144
 msgid "calculating"
 msgstr "計算中"
 
-#: ../src/applet-draw.c:156
+#: ../src/applet-draw.c:154
 msgid " trashe(s)"
 msgstr "ゴミ"
 
-#: ../src/applet-draw.c:160
+#: ../src/applet-draw.c:158
 msgid " file(s)"
 msgstr "ファイル"
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:17
 msgid ""
 "This is the dustbin applet for Cairo-Dock\n"
 " made by Fabrice Rey (fabounet@users.berlios.de)"
@@ -34,52 +34,52 @@ msgstr ""
 "これは Fabrice Rey (fabounet@users.berlios.de) により\n"
 "Cairo-Dock 用に製作された dustbin アプレットです。"
 
-#: ../src/applet-notifications.c:36 ../src/applet-notifications.c:41
+#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:39
 msgid "Show Trash"
 msgstr "中身を表示"
 
-#: ../src/applet-notifications.c:37 ../src/applet-notifications.c:50
+#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:48
 msgid "Delete Trash"
 msgstr "中身を削除"
 
-#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:43
 #, c-format
 msgid "Show %s"
 msgstr "%s を表示"
 
-#: ../src/applet-notifications.c:48
+#: ../src/applet-notifications.c:46
 msgid "Show All"
 msgstr "すべて表示"
 
-#: ../src/applet-notifications.c:54
+#: ../src/applet-notifications.c:52
 #, c-format
 msgid "Delete %s"
 msgstr "%s を削除"
 
-#: ../src/applet-notifications.c:57
+#: ../src/applet-notifications.c:55
 msgid "Delete All"
 msgstr "すべて削除"
 
-#: ../src/applet-notifications.c:72
+#: ../src/applet-notifications.c:70
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s は現在アンマウントされています"
 
-#: ../src/applet-notifications.c:76
+#: ../src/applet-notifications.c:74
 #, c-format
 msgid "failed to unmount %s"
 msgstr "%s のアンマウントに失敗"
 
-#: ../src/applet-trashes-manager.c:412
+#: ../src/applet-trashes-manager.c:365
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "%s の全ファイルを削除しようとしています。よろしいですか？"
 
-#: ../src/applet-trashes-manager.c:414
+#: ../src/applet-trashes-manager.c:367
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
 
-#: ../src/applet-trashes-manager.c:487
+#: ../src/applet-trashes-manager.c:440
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -99,26 +99,18 @@ msgid "Desired icon size for this applet"
 msgstr "このアプレットのアイコンの大きさ"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "幅 :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "高さ :"
-
-#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:15
+#: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -126,11 +118,11 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
@@ -138,23 +130,23 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。マイナスの値では、スクリーンの右/下から数えられます。"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -162,11 +154,11 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -175,32 +167,32 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "in degrees."
 msgstr "角度"
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid "Rotation :"
 msgstr "回転 :"
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Decorations"
 msgstr "装飾"
 
-#: ../data/messages:43
+#: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
-#: ../data/messages:45
+#: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
-#: ../data/messages:47
+#: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -208,47 +200,47 @@ msgstr ""
 "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
 "欄のままにしてください。"
 
-#: ../data/messages:49
+#: ../data/messages:45
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:51
+#: ../data/messages:47
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:53
+#: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:55
+#: ../data/messages:51
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
 
-#: ../data/messages:57
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
-#: ../data/messages:59
+#: ../data/messages:55
 msgid "Top offset :"
 msgstr "上方向のオフセット :"
 
-#: ../data/messages:61
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
-#: ../data/messages:63
+#: ../data/messages:59
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
 
-#: ../data/messages:65
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
-#: ../data/messages:67
+#: ../data/messages:63
 msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
-#: ../data/messages:69
+#: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -256,103 +248,109 @@ msgstr ""
 "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
 "合は空欄のままにしてください。"
 
-#: ../data/messages:71
+#: ../data/messages:67
 msgid "Foreground image :"
 msgstr "前景画像 :"
 
-#: ../data/messages:73
+#: ../data/messages:69
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:75
+#: ../data/messages:71
 msgid "Module"
 msgstr "モジュール"
 
-#: ../data/messages:77
+#: ../data/messages:73
 msgid "Theme"
 msgstr "テーマ"
 
-#: ../data/messages:79
+#: ../data/messages:75
 msgid "Choose one of the available themes :"
 msgstr "利用可能なテーマから1つ選択 :"
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "Name of an image to overwrite the theme's empty image :"
 msgstr "空状態を表すテーマ画像に置き換える画像の名前 :"
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "Name of an image to overwrite the theme's full image :"
 msgstr "満杯状態を表すテーマ画像に置き換える画像の名前 :"
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Config"
 msgstr "設定"
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid "They don't even need to be real trash directories."
 msgstr "システムの実際のゴミ箱用ディレクトリ（.Trash）でなくとも指定可能です。"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid ""
 "Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr "監視対象に含める追加的なゴミ箱ディレクトリのリストの指定 :"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "Display the following quick info :"
 msgstr "クイック情報の表示 :"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "None"
 msgstr "なし"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Number of trashes"
 msgstr "ゴミの数"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Total number of files"
 msgstr "ファイルの総数"
 
-#: ../data/messages:99
+#: ../data/messages:95
 msgid "Total weight"
 msgstr "総量"
 
-#: ../data/messages:101 ../data/messages:105
+#: ../data/messages:97 ../data/messages:101
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
 "Mb 単位。この上限値を越えた際に通知を行います。0 に設定すると通知を使用しませ"
 "ん。"
 
-#: ../data/messages:103
+#: ../data/messages:99
 msgid "Maximum total size of all dustbins :"
 msgstr "全ゴミ箱の最大総量 :"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Maximum size authorized for each dustbin :"
 msgstr "各ゴミ箱に割り当てる最大量 :"
 
-#: ../data/messages:109
+#: ../data/messages:105
 msgid "Desktop-less support"
 msgstr "デスクトップレスのサポート"
 
-#: ../data/messages:111
+#: ../data/messages:107
 msgid "in seconds, only used if you can't monitor directories."
 msgstr "秒単位。ディレクトリを監視できない場合にのみ使用されます。"
 
-#: ../data/messages:113
+#: ../data/messages:109
 msgid "Interval of time to check if dustbin is full/empty :"
 msgstr "ゴミ箱が満杯か空かをチェックする間隔時間 :"
 
-#: ../data/messages:115
+#: ../data/messages:111
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr ""
 "アプレットがクリックでゴミ箱の中身を表示できない場合にのみ使用してください。"
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid "Alternative file browser used to show a trash :"
 msgstr "ゴミ箱の表示に使用する代替ファイルブラウザ :"
+
+#~ msgid "width :"
+#~ msgstr "幅 :"
+
+#~ msgid "height :"
+#~ msgstr "高さ :"
 
 #~ msgid "in seconds"
 #~ msgstr "秒単位"

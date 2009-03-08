@@ -59,26 +59,18 @@ msgid "Desired icon size for this applet"
 msgstr "Dimensione dell'icona desiderata per questa applet"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "larghezza :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "altezza :"
-
-#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr "Nome del contenitore al quale appartiene:"
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:15
+#: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -86,33 +78,33 @@ msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "centrale o ALT + click sinistro come esempio."
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
 msgstr "Posizione della desklet (x ; y) :"
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Keep below other windows ?"
 msgstr "Mantenere al di sotto delle altre finestre ?"
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Keep above other windows ?"
 msgstr "Mantenere al di sopra delle altre finestre ?"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -120,11 +112,11 @@ msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Keep on widget layer ?"
 msgstr "Mantenere nella sezione dei widget ?"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -133,130 +125,133 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-##: ../data/messages:37
+# #: ../data/messages:37
+#: ../data/messages:33
 msgid "in degrees."
 msgstr "in gradi."
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid "Rotation :"
 msgstr "Rotazione :"
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Decorations"
 msgstr "Decorazioni"
 
-#: ../data/messages:43
+#: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
+msgstr ""
+"Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
-#: ../data/messages:45
+#: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Scegliere un tema decorativo per questa desklet :"
 
-#: ../data/messages:47
+#: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
-"E' un'immagine che viene mostrata sotto i disegni, come un motivo per esempio."
-"Lasciare vuoto per non utilizzarne."
+"E' un'immagine che viene mostrata sotto i disegni, come un motivo per "
+"esempio.Lasciare vuoto per non utilizzarne."
 
-#: ../data/messages:49
+#: ../data/messages:45
 msgid "Background image :"
 msgstr "Immagine dello sfondo :"
 
-#: ../data/messages:51
+#: ../data/messages:47
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:53
+#: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
-"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
-"a sinistra dei disegni."
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione a "
+"sinistra dei disegni."
 
-#: ../data/messages:55
+#: ../data/messages:51
 msgid "Left offset :"
 msgstr "Compensazione a sinistra :"
 
-#: ../data/messages:57
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr "in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
-"in alto dei disegni."
+msgstr ""
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione in "
+"alto dei disegni."
 
-#: ../data/messages:59
+#: ../data/messages:55
 msgid "Top offset :"
 msgstr "Compensazione in alto :"
 
-#: ../data/messages:61
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
-"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
-"a destra dei disegni."
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione a "
+"destra dei disegni."
 
-#: ../data/messages:63
+#: ../data/messages:59
 msgid "Right offset :"
 msgstr "Compensazione a destra :"
 
-#: ../data/messages:65
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
-"in pixels. Potete utilizzare questo parametro per aggiustare la posizione "
-"in basso dei disegni."
+"in pixels. Potete utilizzare questo parametro per aggiustare la posizione in "
+"basso dei disegni."
 
-#: ../data/messages:67
+#: ../data/messages:63
 msgid "Bottom offset :"
 msgstr "Compensazione in basso :"
 
-#: ../data/messages:69
+#: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
-"E' un'immagine che viene mostrata sopra i disegni, come un riflesso per esempio."
-"Lasciare vuoto per non utilizzarne."
+"E' un'immagine che viene mostrata sopra i disegni, come un riflesso per "
+"esempio.Lasciare vuoto per non utilizzarne."
 
-#: ../data/messages:71
+#: ../data/messages:67
 msgid "Foreground image :"
 msgstr "Immagine in superficie :"
 
-#: ../data/messages:73
+#: ../data/messages:69
 msgid "Foreground tansparency :"
 msgstr "Trasparenza della superficie :"
 
-#: ../data/messages:75
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:77
+#: ../data/messages:73
 msgid "Audio Player"
 msgstr "Lettore Audio"
 
-#: ../data/messages:79
+#: ../data/messages:75
 msgid "Player to control:"
 msgstr "Lettore da controllare:"
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "XMMS"
 msgstr "XMMS"
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "Audacious"
 msgstr "Audacious"
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Banshee"
 msgstr "Banshee"
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid "Exaile"
 msgstr "Exaile"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -264,114 +259,120 @@ msgstr ""
 "Questo impedirà all'icona del lettore di apparire nella TaskBar. L'icona "
 "dell'applet si comporterà così da lanciatore, da applicazione e da applet."
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "Steal the player's icon from taskbar ?"
 msgstr "Rubare l'icona dalla taskbar ?"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Information to display on the icon :"
 msgstr "Informazioni da mostrare sull'icona :"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Nothing"
 msgstr "Niente"
 
-#: ../data/messages:99
+#: ../data/messages:95
 msgid "Time Elapsed"
 msgstr "Tempo Trascorso"
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Time Left"
 msgstr "Tempo Residuo"
 
-#: ../data/messages:103
+#: ../data/messages:99
 msgid "N° of track"
 msgstr "N° della traccia"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Activate extended desklet mode ?"
 msgstr "Attivare il modo esteso della desklet ?"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Extended display mode :"
 msgstr "Modo 3D esteso :"
 
-#: ../data/messages:109
+#: ../data/messages:105
 msgid "Info"
 msgstr "Info"
 
-#: ../data/messages:111
+#: ../data/messages:107
 msgid "Info and Controler"
 msgstr "Info e Controlli"
 
-#: ../data/messages:113
+#: ../data/messages:109
 msgid "Caroussel"
 msgstr "Carosello"
 
-#: ../data/messages:115
+#: ../data/messages:111
 msgid "Controler"
 msgstr "Controlli"
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid "Action on music change"
 msgstr "Azione al cambiamento della musica :"
 
-#: ../data/messages:119
+#: ../data/messages:115
 msgid "Show an info-bubble ?"
 msgstr "Mostrare una info-bubble ?"
 
-#: ../data/messages:121
+#: ../data/messages:117
 msgid "With a icon ?"
 msgstr "Con un'icona ?"
 
-#: ../data/messages:123
+#: ../data/messages:119
 msgid "in ms."
 msgstr "in ms."
 
-#: ../data/messages:125
+#: ../data/messages:121
 msgid "Time length of info-bubbles :"
 msgstr "Durata dell'info-bubbles :"
 
-#: ../data/messages:127
+#: ../data/messages:123
 msgid "Animate icon ?"
 msgstr "Animare l'icona ?"
 
-#: ../data/messages:129
+#: ../data/messages:125
 msgid "Animation when music changes :"
 msgstr "Animazione al cambiamento della musica :"
 
-#: ../data/messages:131
+#: ../data/messages:127
 msgid "Personnalisation"
 msgstr "Personalizzazione"
 
-#: ../data/messages:133 ../data/messages:137 ../data/messages:141
-#: ../data/messages:145 ../data/messages:149
+#: ../data/messages:129 ../data/messages:133 ../data/messages:137
+#: ../data/messages:141 ../data/messages:145
 msgid "Let it empty to use the default icon."
 msgstr "Lasciare vuoto per avere l'icona di default."
 
-#: ../data/messages:135
+#: ../data/messages:131
 msgid "Name of an image for the 'default' icon :"
 msgstr "Immagine per l'icona 'Default' :"
 
-#: ../data/messages:139
+#: ../data/messages:135
 msgid "Name of an image for the 'play' icon :"
 msgstr "Immagine per l'icona 'Play' :"
 
-#: ../data/messages:143
+#: ../data/messages:139
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Immagine per l'icona 'Stop' :"
 
-#: ../data/messages:147
+#: ../data/messages:143
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Immagine per l'icona 'Pausa' :"
 
-#: ../data/messages:151
+#: ../data/messages:147
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Immagine per l'icona 'Non-funzionante' :"
+
+#~ msgid "width :"
+#~ msgstr "larghezza :"
+
+#~ msgid "height :"
+#~ msgstr "altezza :"
 
 #~ msgid "bounce"
 #~ msgstr "Rimbalzo"

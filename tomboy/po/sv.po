@@ -77,46 +77,38 @@ msgid "Desired icon size for this applet"
 msgstr "Önskad storlek för ikonen"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "bredd:"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "höjd:"
-
-#: ../data/messages:9
 msgid "Default title :"
 msgstr "Standardtitel:"
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr "Docka som appleten tillhör:"
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Personnalisation"
 msgstr "Inställningar"
 
-#: ../data/messages:15 ../data/messages:19 ../data/messages:23
+#: ../data/messages:11 ../data/messages:15 ../data/messages:19
 msgid "Let t empty to use the default icon."
 msgstr "Lämna tomt för att använda standardikonen."
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Name of an image for the 'default' icon :"
 msgstr "Bild för standard:"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Name of an image for the 'close' icon :"
 msgstr "Bild för stäng:"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Bild för bruten:"
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -128,23 +120,23 @@ msgstr ""
 "<<No marshaller for signature of signal 'NoteDeleted'>> i ett "
 "terminalfönster."
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "Emulera 'NoteDeleted' meddelanden?"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lämna tomt för att använda standard sub-docka."
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid "Name of the view used for the sub-dock :"
 msgstr "Namn på vy för sub-dockan:"
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "Draw note's content on their icon ?"
 msgstr "Visa noteringens innehåll på ikonen?"
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
@@ -154,6 +146,12 @@ msgstr ""
 "%d för dag, %m för månad, %y för år (2 siffror) etc. Lämna tomt för att "
 "använda standardformatet (%d/%m/%y)."
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Date format to search for :"
 msgstr "Datumformat att söka efter:"
+
+#~ msgid "width :"
+#~ msgstr "bredd:"
+
+#~ msgid "height :"
+#~ msgstr "höjd:"

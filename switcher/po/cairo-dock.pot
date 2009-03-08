@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-02-03 01:31+0100\n"
+"POT-Creation-Date: 2009-03-08 04:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:52 ../src/applet-load-icons.c:35
+#: ../src/applet-init.c:59 ../src/applet-load-icons.c:35
 msgid "Desktop"
 msgstr ""
 
-#: ../src/applet-init.c:60 ../src/applet-load-icons.c:29
+#: ../src/applet-init.c:67 ../src/applet-load-icons.c:29
 msgid "Current"
 msgstr ""
 
@@ -47,171 +47,171 @@ msgid "Desired icon size for this applet"
 msgstr ""
 
 #: ../data/messages:5
-msgid "width :"
-msgstr ""
-
-#: ../data/messages:7
-msgid "height :"
-msgstr ""
-
-#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr ""
 
-#: ../data/messages:11
-msgid "Icon's name :"
+#: ../data/messages:7 ../data/messages:117
+msgid "Let empty to use the default one."
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:9
+msgid "Image's filename :"
+msgstr ""
+
+#: ../data/messages:11
 msgid "Name of the dock it belongs to:"
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:13
 msgid "Desklet"
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:19
 msgid "Is detached ?"
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:21
 msgid "Keep below ?"
 msgstr ""
 
-#: ../data/messages:25
+#: ../data/messages:23
 msgid "Keep above ?"
 msgstr ""
 
-#: ../data/messages:27
+#: ../data/messages:25
 msgid "Keep on widget layer ?"
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:27
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:29
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:31
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:33
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:35
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:37
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:39
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:41
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:43
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:45
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:47
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:49
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:51
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:53
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:57
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:61
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:63
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:65
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:67
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:71 ../data/messages:73
+#: ../data/messages:69 ../data/messages:71
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:73
 msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:75
 msgid "Use the compact mode ?"
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:77
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
 msgstr ""
 
-#: ../data/messages:81
+#: ../data/messages:79
 msgid "Map the wallpaper on icon ?"
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:81
 msgid "Show desktop number on the icons ?"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:83
 msgid "Draw the windows on icon ?"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Draw hidden windows too ?"
 msgstr ""
 
 #: ../data/messages:87
@@ -222,8 +222,8 @@ msgstr ""
 msgid "Size of the inside lines :"
 msgstr ""
 
-#: ../data/messages:91 ../data/messages:97 ../data/messages:103
-#: ../data/messages:107
+#: ../data/messages:91 ../data/messages:97 ../data/messages:101
+#: ../data/messages:105
 msgid "r, v, b, a"
 msgstr ""
 
@@ -239,50 +239,42 @@ msgstr ""
 msgid "Color of the extern line :"
 msgstr ""
 
-#: ../data/messages:101
-msgid "Size of the Windows line :"
-msgstr ""
-
-#: ../data/messages:105
+#: ../data/messages:103
 msgid "Color of the Windows line :"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:107
 msgid "Color of the current desktop :"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:109
 msgid "How to draw the current desktop :"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:111
 msgid "draw a frame"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:113
 msgid "fill"
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:115
 msgid "fill others"
 msgstr ""
 
 #: ../data/messages:119
-msgid "Let empty to use the default one."
-msgstr ""
-
-#: ../data/messages:121
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:121
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:123
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:125
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr ""

@@ -28,7 +28,7 @@ msgstr "重新载入窗口管理器"
 msgid "Exposition"
 msgstr "展示"
 
-#: ../src/applet-load-icon.c:22 ../data/messages:87
+#: ../src/applet-load-icon.c:22 ../data/messages:83
 msgid "Widget Layer"
 msgstr "Widget层"
 
@@ -79,26 +79,18 @@ msgid "Desired icon size for this applet"
 msgstr "此小应用程序期望的图标大小"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "宽："
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "高："
-
-#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "显现于dock之上的图标标签名称："
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr "归属于dock的名称："
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Desklet"
 msgstr "桌面应用程序"
 
-#: ../data/messages:15
+#: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -106,31 +98,31 @@ msgstr ""
 "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
 "器"
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
 msgstr "桌面小应用程序位置(x ; y)："
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
 msgstr "桌面小应用程序位置(x ; y)："
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Is detached from the dock ?"
 msgstr "从dock移开？"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Keep below other windows ?"
 msgstr "位于最下窗口？"
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Keep above other windows ?"
 msgstr "窗口置顶？"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -138,111 +130,111 @@ msgstr ""
 "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
 "type=utility) "
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Keep on widget layer ?"
 msgstr "保持于小应用程序层？"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
 "锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid "Lock position ?"
 msgstr "锁定位置？"
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:37
 #, fuzzy
 msgid "Decorations"
 msgstr "动作"
 
-#: ../data/messages:43
+#: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:45
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:47
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:51
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:55
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:59
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:63
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:67
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:69
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:77
+#: ../data/messages:73
 msgid "Actions"
 msgstr "动作"
 
-#: ../data/messages:79
+#: ../data/messages:75
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
@@ -250,48 +242,48 @@ msgstr ""
 "除非要切换至其他窗口管理器，您必须启用Dbus插件，并根据您需要的动作启用相应插"
 "件"
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "Choose an action for the middle click on the icon :"
 msgstr "选择中间点击图标执行的行为："
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "None"
 msgstr "无"
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Switch WM"
 msgstr "切换窗口管理器"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "Expose"
 msgstr "展示"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "Show Desktop"
 msgstr "显示桌面"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid ""
 "This command will be used to launch the system WM; let it blank to use the "
 "default one."
 msgstr "此命令用于载入系统窗口管理器；留空则使用默认窗口管理器。"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Custom command for system's Windows Manager :"
 msgstr "系统窗口管理器自定义命令："
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
 msgstr ""
 "如果Compiz异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出Compiz。"
 
-#: ../data/messages:99
+#: ../data/messages:95
 msgid "Auto-reload Compiz ?"
 msgstr "自动重载Compiz？"
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
@@ -299,19 +291,19 @@ msgstr ""
 "如果窗口装饰器异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出"
 "Compiz"
 
-#: ../data/messages:103
+#: ../data/messages:99
 msgid "Auto-reload the Decorator ?"
 msgstr "自动重载装饰器？"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Load Compiz with options at applet's startup."
 msgstr "小应用程序启动的时候载入包括设置的Compiz。"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Force Compiz settings at startup ?"
 msgstr "启动时强制使用Compiz设置？"
 
-#: ../data/messages:109
+#: ../data/messages:105
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
@@ -319,36 +311,36 @@ msgstr ""
 "这将避免CSSM或Emerald的图标出现在任务栏上。子dock上相应的图标将取代它们实现起"
 "动器和应用程序的功能"
 
-#: ../data/messages:111
+#: ../data/messages:107
 msgid "Steal the application's icon in taskbar ?"
 msgstr "取代任务栏应用程序图标？"
 
-#: ../data/messages:113
+#: ../data/messages:109
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins. Otherwise they will be available in the menu."
 msgstr ""
 "在小应用程序的子dock中显示Compiz展示和Widget层插件。否则，它们将位于菜单中。"
 
-#: ../data/messages:115
+#: ../data/messages:111
 msgid "Add Exposition & Widget Layer to sub-dock ?"
 msgstr "在子dock上添加展示和Widget层图标？"
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid ""
 "Display in the applet's sub-dock an icon for the Emerald's configuration "
 "panel."
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:115
 msgid "Add Emerald's Configuration to sub-dock ?"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:117
 msgid "Compiz Options"
 msgstr "Compiz首选项"
 
-#: ../data/messages:123
+#: ../data/messages:119
 msgid ""
 "With strict binding textures are bound whenever they are enabled, with loose "
 "binding they are enabled when created. The Nvidia driver seems a bit slow "
@@ -359,99 +351,105 @@ msgstr ""
 "Nvidia驱动在纹理绑定的时候有些慢。所以使用此选项时，Nvidia显卡的用户会感到性"
 "能影响。"
 
-#: ../data/messages:125
+#: ../data/messages:121
 msgid "Use Loose Binding ?"
 msgstr "使用松散绑定？"
 
-#: ../data/messages:127
+#: ../data/messages:123
 msgid "Use thoses options only if you know them."
 msgstr "仅当你了解这些选项时方可使用。"
 
-#: ../data/messages:129
+#: ../data/messages:125
 msgid "Use Indirect Rendering ?"
 msgstr "使用间接渲染？"
 
-#: ../data/messages:131
+#: ../data/messages:127
 msgid "Usefull when having dual or more X separate screens."
 msgstr "当使用双头显示或多个X屏幕时有用。"
 
-#: ../data/messages:133
+#: ../data/messages:129
 msgid "Only Current Screen ?"
 msgstr "仅使用当前屏幕？"
 
-#: ../data/messages:135
+#: ../data/messages:131
 msgid "By default it will be Emerald."
 msgstr "默认为Emerald。"
 
-#: ../data/messages:137
+#: ../data/messages:133
 msgid "Choose your Windows Decorator :"
 msgstr "选择您的窗口装饰器："
 
-#: ../data/messages:139
+#: ../data/messages:135
 msgid "emerald"
 msgstr "emerald"
 
-#: ../data/messages:141
+#: ../data/messages:137
 msgid "gtk-window-decorator"
 msgstr "gtk窗口装饰器"
 
-#: ../data/messages:143
+#: ../data/messages:139
 msgid "kde-window-decorator"
 msgstr "kde窗口装饰器"
 
-#: ../data/messages:145
+#: ../data/messages:141
 msgid "heliodor"
 msgstr "heliodor"
 
-#: ../data/messages:147
+#: ../data/messages:143
 msgid "Let it empty to use default sub-dock view."
 msgstr "保持为空则使用默认的子dock界面。"
 
-#: ../data/messages:149
+#: ../data/messages:145
 msgid "Name of the view used for the sub-dock :"
 msgstr "子dock使用的界面："
 
-#: ../data/messages:151
+#: ../data/messages:147
 msgid "Images"
 msgstr "图像"
 
-#: ../data/messages:153 ../data/messages:157 ../data/messages:161
-#: ../data/messages:165 ../data/messages:169 ../data/messages:173
-#: ../data/messages:177 ../data/messages:181
+#: ../data/messages:149 ../data/messages:153 ../data/messages:157
+#: ../data/messages:161 ../data/messages:165 ../data/messages:169
+#: ../data/messages:173 ../data/messages:177
 msgid "Let t empty to use the default icon."
 msgstr "保持为空则使用默认图标。"
 
-#: ../data/messages:155
+#: ../data/messages:151
 msgid "Name of an image for the 'default' icon :"
 msgstr "'默认'图标使用的图片名称："
 
-#: ../data/messages:159
+#: ../data/messages:155
 msgid "Name of an image for the 'broken' icon :"
 msgstr "'破坏'图标使用的图片名称："
 
-#: ../data/messages:163
+#: ../data/messages:159
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "'其它窗口管理器'图标使用的图片名称："
 
-#: ../data/messages:167
+#: ../data/messages:163
 msgid "Name of an image for the 'setting' icon :"
 msgstr "'设置'图标使用的图片名称："
 
-#: ../data/messages:171
+#: ../data/messages:167
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "'emerald'图标使用的图片名称："
 
-#: ../data/messages:175
+#: ../data/messages:171
 msgid "Name of an image for the 'reload' icon :"
 msgstr "'重新载入'图标使用的图片名称："
 
-#: ../data/messages:179
+#: ../data/messages:175
 msgid "Name of an image for the 'exposition' icon :"
 msgstr "'展示'图标使用的图片名称："
 
-#: ../data/messages:183
+#: ../data/messages:179
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "'widget层'图标使用的图片名称："
+
+#~ msgid "width :"
+#~ msgstr "宽："
+
+#~ msgid "height :"
+#~ msgstr "高："
 
 #~ msgid "Module"
 #~ msgstr "Module"

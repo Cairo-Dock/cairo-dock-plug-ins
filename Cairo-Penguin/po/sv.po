@@ -83,27 +83,27 @@ msgstr ""
 "Cairo-Penguin applet\n"
 " skapad av Fabrice Rey för Cairo-Dock"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:115
 msgid "Hey, you there !"
 msgstr "Hallå, du där!"
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:118
 msgid "Keep quiet"
 msgstr "Tyst"
 
-#: ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:122
 msgid "Wake up"
 msgstr "Vakna"
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:125
 msgid "Start XPenguins"
 msgstr "Starta XPenguins"
 
-#: ../src/applet-notifications.c:128
+#: ../src/applet-notifications.c:126
 msgid "Stop XPenguins"
 msgstr "Stoppa XPenguins"
 
-#: ../src/applet-notifications.c:151 ../src/applet-notifications.c:153
+#: ../src/applet-notifications.c:149 ../src/applet-notifications.c:151
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -112,57 +112,58 @@ msgid "Icon"
 msgstr "Ikon"
 
 #: ../data/messages:3
-msgid "Desired icon size for this applet"
-msgstr "Önskad storlek för ikonen"
+msgid "Icon size when the penguin is not free :"
+msgstr ""
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "bredd:"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "höjd:"
-
-#: ../data/messages:9
-msgid "Name of the icon as it will appear in its label in the dock :"
+#, fuzzy
+msgid "Name of the icon when the penguin is not free :"
 msgstr "Ikonens etikett:"
 
-#: ../data/messages:11
-msgid "Icon's name :"
-msgstr "Ikonens namn:"
-
-#: ../data/messages:13
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr "Docka som appleten tillhör:"
 
-#: ../data/messages:15
+#: ../data/messages:9
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:17
+#: ../data/messages:11
 msgid "Choose one of the available themes :"
 msgstr "Välj ett tema:"
 
-#: ../data/messages:19
+#: ../data/messages:13
 msgid "in seconds"
 msgstr "i sekunder"
 
-#: ../data/messages:21
+#: ../data/messages:15
 msgid "Delay between animation changes :"
 msgstr "Tid mellan animeringsändringar:"
 
-#: ../data/messages:23
+#: ../data/messages:17
 msgid "Transparency of the penguin :"
 msgstr "Pingvinens genomskinlighet:"
 
-#: ../data/messages:25
+#: ../data/messages:19
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr "Tillåt pingvinen att vandra överallt?"
 
-#: ../data/messages:27
+#: ../data/messages:21
 msgid "in pixels."
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:23
 msgid "Ground offset :"
 msgstr ""
+
+#~ msgid "Desired icon size for this applet"
+#~ msgstr "Önskad storlek för ikonen"
+
+#~ msgid "width :"
+#~ msgstr "bredd:"
+
+#~ msgid "height :"
+#~ msgstr "höjd:"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Ikonens namn:"

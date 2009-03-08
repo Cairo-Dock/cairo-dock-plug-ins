@@ -28,7 +28,7 @@ msgstr "Ricaricare WM"
 msgid "Exposition"
 msgstr "Expo"
 
-#: ../src/applet-load-icon.c:22 ../data/messages:87
+#: ../src/applet-load-icon.c:22 ../data/messages:83
 msgid "Widget Layer"
 msgstr "Sezione dei Widgets"
 
@@ -79,26 +79,18 @@ msgid "Desired icon size for this applet"
 msgstr "Dimensione dell'icona desiderata per questa applet"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "larghezza :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "altezza :"
-
-#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the dock it belongs to:"
 msgstr "Nome del contenitore al quale appartiene :"
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:15
+#: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -106,33 +98,33 @@ msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "centrale o ALT + click sinistro come esempio."
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
 msgstr "Posizione della desklet (x ; y) :"
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Keep below other windows ?"
 msgstr "Mantenere al di sotto delle altre finestre ?"
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Keep above other windows ?"
 msgstr "Mantenere al di sopra delle altre finestre ?"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -140,11 +132,11 @@ msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid "Keep on widget layer ?"
 msgstr "Mantenere nella sezione dei widget ?"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -153,31 +145,32 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "in degrees."
 msgstr "in gradi."
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid "Rotation :"
 msgstr "Rotazione :"
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Decorations"
 msgstr "Decorazioni"
 
-#: ../data/messages:43
+#: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
+msgstr ""
+"Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
-#: ../data/messages:45
+#: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Scegliere un tema decorativo per questa desklet :"
 
-#: ../data/messages:47
+#: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -185,71 +178,75 @@ msgstr ""
 "E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
 "esempio. Lasciare vuoto per non utilizzarne."
 
-#: ../data/messages:49
+#: ../data/messages:45
 msgid "Background image :"
 msgstr "Immagine dello sfondo :"
 
-#: ../data/messages:51
+#: ../data/messages:47
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:53
+#: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
-#: ../data/messages:55
+#: ../data/messages:51
 msgid "Left offset :"
 msgstr "Compensazione a sinistra :"
 
-#: ../data/messages:57
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
-#: ../data/messages:59
+#: ../data/messages:55
 msgid "Top offset :"
 msgstr "Compensazione in alto :"
 
-#: ../data/messages:61
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
-#: ../data/messages:63
+#: ../data/messages:59
 msgid "Right offset :"
 msgstr "Compensazione a destra :"
 
-#: ../data/messages:65
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
-#: ../data/messages:67
+#: ../data/messages:63
 msgid "Bottom offset :"
 msgstr "Compensazione in basso :"
 
-#: ../data/messages:69
+#: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
-"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per esempio. "
-"Lasciare vuoto per non usarla."
+"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per "
+"esempio. Lasciare vuoto per non usarla."
 
-#: ../data/messages:71
+#: ../data/messages:67
 msgid "Foreground image :"
 msgstr "Immagine in primo piano :"
 
-#: ../data/messages:73
+#: ../data/messages:69
 msgid "Foreground tansparency :"
 msgstr "Trasparenza in primo piano :"
 
-#: ../data/messages:75
+#: ../data/messages:71
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:77
+#: ../data/messages:73
 msgid "Actions"
 msgstr "Azioni"
 
-#: ../data/messages:79
+#: ../data/messages:75
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
@@ -257,27 +254,27 @@ msgstr ""
 "Tranne che per 'Cambia Gestore delle Finestre', si deve attivare il plug-in "
 "Dbus di compiz, oltre che i plug-ins delle azioni desiderate."
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "Choose an action for the middle click on the icon :"
 msgstr "Scegliere un'azione per il click centrale sull'icona :"
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "None"
 msgstr "Nessuna"
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Switch WM"
 msgstr "Cambia WM"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "Expose"
 msgstr "Expo"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "Show Desktop"
 msgstr "Mostra il Desktop"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid ""
 "This command will be used to launch the system WM; let it blank to use the "
 "default one."
@@ -285,11 +282,11 @@ msgstr ""
 "Quest comando si utilizza per lanciare il Gestore delle Finestre; lasciare "
 "vuoto per utilizzare quello di default."
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Custom command for system's Windows Manager :"
 msgstr "Comando personalizzato per il Gestore delle Finestre di sistema :"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
@@ -297,11 +294,11 @@ msgstr ""
 "Se Compiz si arresta in modo inatteso, Cairo-Dock lo ri-lancerà. In questo "
 "caso dovrete arrestare Compiz dalla barra."
 
-#: ../data/messages:99
+#: ../data/messages:95
 msgid "Auto-reload Compiz ?"
 msgstr "Ricaricare automaticamente Compiz ?"
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
@@ -309,19 +306,19 @@ msgstr ""
 "Se il decoratore si arresta in modo inatteso, Cairo-Dock lo ri-lancerà. In "
 "questo caso dovrete arrestare il decoratore dalla barra."
 
-#: ../data/messages:103
+#: ../data/messages:99
 msgid "Auto-reload the Decorator ?"
 msgstr "Ricaricare automaticamente il decoratore?"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Load Compiz with options at applet's startup."
 msgstr "Carica Compiz e le sue opzioni all'avvio dell'applet."
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Force Compiz settings at startup ?"
 msgstr "Forzare le opzioni di Compiz all'avvio?"
 
-#: ../data/messages:109
+#: ../data/messages:105
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
@@ -330,38 +327,39 @@ msgstr ""
 "Le icone della sub-dock si comporteranno come un lanciatore e "
 "un'applicazione."
 
-#: ../data/messages:111
+#: ../data/messages:107
 msgid "Steal the application's icon in taskbar ?"
 msgstr "Rubare l'icona dell'applicazione dalla TaskBar ?"
 
-#: ../data/messages:113
+#: ../data/messages:109
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins. Otherwise they will be available in the menu."
 msgstr ""
-"Mostra nella sub-dock dell'applet due icone per i plug-ins Expo e "
-"Sezione dei Widget. Altrimenti saranno accessibili dal menu."
+"Mostra nella sub-dock dell'applet due icone per i plug-ins Expo e Sezione "
+"dei Widget. Altrimenti saranno accessibili dal menu."
 
-#: ../data/messages:115
+#: ../data/messages:111
 msgid "Add Exposition & Widget Layer to sub-dock ?"
 msgstr "Mostrare Expo e Sezione dei Widget nella sub-dock?"
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid ""
 "Display in the applet's sub-dock an icon for the Emerald's configuration "
 "panel."
-msgstr "Mostra nella sub-dock dell'applet un'icona per il pannello della "
+msgstr ""
+"Mostra nella sub-dock dell'applet un'icona per il pannello della "
 "configurazione di Emerald."
 
-#: ../data/messages:119
+#: ../data/messages:115
 msgid "Add Emerald's Configuration to sub-dock ?"
 msgstr "Aggiungere la Configurazione di Emerald nella sub-dock"
 
-#: ../data/messages:121
+#: ../data/messages:117
 msgid "Compiz Options"
 msgstr "Opzioni di Compiz"
 
-#: ../data/messages:123
+#: ../data/messages:119
 msgid ""
 "With strict binding textures are bound whenever they are enabled, with loose "
 "binding they are enabled when created. The Nvidia driver seems a bit slow "
@@ -373,100 +371,107 @@ msgstr ""
 "sembrano rallentare al momento del binding delle textures, e perciò questa "
 "opzione dà buoni risultati con schede Nvidia."
 
-#: ../data/messages:125
+#: ../data/messages:121
 msgid "Use Loose Binding ?"
 msgstr "Usare Loose Binding ?"
 
-#: ../data/messages:127
+#: ../data/messages:123
 msgid "Use thoses options only if you know them."
-msgstr "Questa opzione si deve uilizzare solo se si è a conoscenza di cosa si stia "
+msgstr ""
+"Questa opzione si deve uilizzare solo se si è a conoscenza di cosa si stia "
 "facendo."
 
-#: ../data/messages:129
+#: ../data/messages:125
 msgid "Use Indirect Rendering ?"
 msgstr "Usare rendering indiretto (Indirect Rendering) ?"
 
-#: ../data/messages:131
+#: ../data/messages:127
 msgid "Usefull when having dual or more X separate screens."
 msgstr "Utile quando ci sono due o più schermi X attivi (dualscreen)"
 
-#: ../data/messages:133
+#: ../data/messages:129
 msgid "Only Current Screen ?"
 msgstr "Soltanto lo schermo attuale"
 
-#: ../data/messages:135
+#: ../data/messages:131
 msgid "By default it will be Emerald."
 msgstr "Sarà Emerald di default."
 
-#: ../data/messages:137
+#: ../data/messages:133
 msgid "Choose your Windows Decorator :"
 msgstr "Scegliere il Decoratore delle Finestre :"
 
-#: ../data/messages:139
+#: ../data/messages:135
 msgid "emerald"
 msgstr "emerald"
 
-#: ../data/messages:141
+#: ../data/messages:137
 msgid "gtk-window-decorator"
 msgstr "gtk-window-decorator"
 
-#: ../data/messages:143
+#: ../data/messages:139
 msgid "kde-window-decorator"
 msgstr "kde-window-decorator"
 
-#: ../data/messages:145
+#: ../data/messages:141
 msgid "heliodor"
 msgstr "heliodor"
 
-#: ../data/messages:147
+#: ../data/messages:143
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciare vuoto per utilizzare la vista di default per la sub-dock"
 
-#: ../data/messages:149
+#: ../data/messages:145
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
-#: ../data/messages:151
+#: ../data/messages:147
 msgid "Images"
 msgstr "Immagini"
 
-#: ../data/messages:153 ../data/messages:157 ../data/messages:161
-#: ../data/messages:165 ../data/messages:169 ../data/messages:173
-#: ../data/messages:177 ../data/messages:181
+#: ../data/messages:149 ../data/messages:153 ../data/messages:157
+#: ../data/messages:161 ../data/messages:165 ../data/messages:169
+#: ../data/messages:173 ../data/messages:177
 msgid "Let t empty to use the default icon."
 msgstr "Lasciare vuoto per avere l'immagine di default"
 
-#: ../data/messages:155
+#: ../data/messages:151
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nome dell'immagine dell'icona 'Di Default' :"
 
-#: ../data/messages:159
+#: ../data/messages:155
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nome dell'immagine dell'icona 'Non-funzionante' :"
 
-#: ../data/messages:163
+#: ../data/messages:159
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "Nome dell'immagine dell'icona 'Altri wm' :"
 
-#: ../data/messages:167
+#: ../data/messages:163
 msgid "Name of an image for the 'setting' icon :"
 msgstr "Nome dell'immagine dell'icona 'Configurazione' :"
 
-#: ../data/messages:171
+#: ../data/messages:167
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "Nome dell'immagine dell'icona 'Emerald' :"
 
-#: ../data/messages:175
+#: ../data/messages:171
 msgid "Name of an image for the 'reload' icon :"
 msgstr "Nome dell'immagine dell'icona 'Ricaricare' :"
 
-#: ../data/messages:179
+#: ../data/messages:175
 msgid "Name of an image for the 'exposition' icon :"
 msgstr "Nome dell'immagine dell'icona 'Expo' :"
 
-#: ../data/messages:183
+#: ../data/messages:179
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Nome dell'immagine dell'icona 'Widget Layer' :"
+
+#~ msgid "width :"
+#~ msgstr "larghezza :"
+
+#~ msgid "height :"
+#~ msgstr "altezza :"
 
 #~ msgid "Module"
 #~ msgstr "Modulo"

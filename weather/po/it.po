@@ -14,79 +14,96 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-load-icons.c:17
-msgid "Monday"
-msgstr "Lundedì"
+#: ../src/applet-config.c:153 ../src/applet-notifications.c:80
+msgid ""
+"I couldn't get the info\n"
+" Is connexion alive ?"
+msgstr ""
+"Non ho potuto recuperare le info\n"
+" la connessione è attiva ?"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-config.c:166 ../src/applet-notifications.c:93
+msgid "I couldn't find this location"
+msgstr ""
+
+#: ../src/applet-config.c:220
+#, fuzzy
+msgid "Search for your location :"
+msgstr "Ricerca della vostra località"
+
+#: ../src/applet-load-icons.c:15
+msgid "Monday"
+msgstr "Lunedì"
+
+#: ../src/applet-load-icons.c:15
 msgid "Tuesday"
 msgstr "Martedì"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Wednesday"
 msgstr "Mercoledì"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Thursday"
 msgstr "Giovedì"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Friday"
 msgstr "Venerdì"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Saturday"
 msgstr "Sabato"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Sunday"
 msgstr "Domenica"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Jan"
 msgstr "Gen"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Feb"
 msgstr "Feb"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Mar"
 msgstr "Mar"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Apr"
 msgstr "Apr"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "May"
 msgstr "Mag"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Jun"
 msgstr "Giu"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Jui"
 msgstr "Lug"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Aug"
 msgstr "Ago"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Sep"
 msgstr "Set"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Oct"
 msgstr "Ott"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Nov"
 msgstr "Nov"
 
-#: ../src/applet-load-icons.c:17
+#: ../src/applet-load-icons.c:15
 msgid "Dec"
 msgstr "Dic"
 
@@ -106,27 +123,19 @@ msgstr ""
 "Inserite la vostra località\n"
 " (per esempio : Rome, Italy)"
 
-#: ../src/applet-notifications.c:80 ../src/applet-notifications.c:93
-msgid ""
-"I couldn't get the info\n"
-" Is connexion alive ?"
-msgstr ""
-"Non ho potuto recuperare le info\n"
-" la connessione è attiva ?"
-
 #: ../src/applet-notifications.c:128
 msgid "Choose your location :"
 msgstr "Scegliete la vostra località :"
 
-#: ../src/applet-notifications.c:159
+#: ../src/applet-notifications.c:151
 msgid "Search for your location"
 msgstr "Ricerca della vostra località"
 
-#: ../src/applet-notifications.c:160
+#: ../src/applet-notifications.c:152
 msgid "Reload now"
 msgstr "Ricaricare adesso"
 
-#: ../src/applet-notifications.c:185 ../src/applet-notifications.c:214
+#: ../src/applet-notifications.c:177 ../src/applet-notifications.c:206
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -134,35 +143,35 @@ msgstr ""
 "Nessun dato disponible\n"
 " la connessione è attiva ?"
 
-#: ../src/applet-notifications.c:201 ../src/applet-notifications.c:226
+#: ../src/applet-notifications.c:193 ../src/applet-notifications.c:218
 msgid "Temperature"
 msgstr "Temperatura"
 
-#: ../src/applet-notifications.c:202
+#: ../src/applet-notifications.c:194
 msgid "Precipitation Probability"
 msgstr "Probabilità di precipitazione"
 
-#: ../src/applet-notifications.c:203 ../src/applet-notifications.c:227
+#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
 msgid "Wind"
 msgstr "Vento"
 
-#: ../src/applet-notifications.c:204 ../src/applet-notifications.c:228
+#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
 msgid "Humidity"
 msgstr "Umidità"
 
-#: ../src/applet-notifications.c:205 ../src/applet-notifications.c:229
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
 msgid "SunRise"
 msgstr "Alba"
 
-#: ../src/applet-notifications.c:205 ../src/applet-notifications.c:229
+#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
 msgid "SunSet"
 msgstr "Tramonto"
 
-#: ../src/applet-notifications.c:226
+#: ../src/applet-notifications.c:218
 msgid "feeled"
 msgstr "risentito"
 
-#: ../src/applet-notifications.c:228
+#: ../src/applet-notifications.c:220
 msgid "Pressure"
 msgstr "Pressione"
 
@@ -175,30 +184,22 @@ msgid "Desired icon size for this applet"
 msgstr "Dimensione dell'icona desiderata per questa applet"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "larghezza :"
-
-#: ../data/messages:7
-msgid "height :"
-msgstr "altezza :"
-
-#: ../data/messages:9
 msgid "Let it empty to use the name of the city."
 msgstr "Lasciare vuoto per utilizzare il nome della città."
 
-#: ../data/messages:11
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Nome del contenitore al quale appartiene:"
 
-#: ../data/messages:15
+#: ../data/messages:11
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -206,33 +207,33 @@ msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "centrale o ALT + click sinistro come esempio."
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr "Posizione della desklet (x ; y) :"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
-#: ../data/messages:27
+#: ../data/messages:23
 msgid "Keep below other windows ?"
 msgstr "Mantenere al di sotto delle altre finestre ?"
 
-#: ../data/messages:29
+#: ../data/messages:25
 msgid "Keep above other windows ?"
 msgstr "Mantenere al di sopra delle altre finestre ?"
 
-#: ../data/messages:31
+#: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
@@ -240,11 +241,11 @@ msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:33
+#: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Mantenere nella sezione dei widget ?"
 
-#: ../data/messages:35
+#: ../data/messages:31
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -253,31 +254,32 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:37
+#: ../data/messages:33
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:39
+#: ../data/messages:35
 msgid "in degrees."
 msgstr "in gradi."
 
-#: ../data/messages:41
+#: ../data/messages:37
 msgid "Rotation :"
 msgstr "Rotazione :"
 
-#: ../data/messages:43
+#: ../data/messages:39
 msgid "Decorations"
 msgstr "Decorazioni"
 
-#: ../data/messages:45
+#: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
+msgstr ""
+"Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
-#: ../data/messages:47
+#: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Scegliere un tema decorativo per questa desklet :"
 
-#: ../data/messages:49
+#: ../data/messages:45
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -285,67 +287,71 @@ msgstr ""
 "E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
 "esempio. Lasciare vuoto per non utilizzarne."
 
-#: ../data/messages:51
+#: ../data/messages:47
 msgid "Background image :"
 msgstr "Immagine dello sfondo :"
 
-#: ../data/messages:53
+#: ../data/messages:49
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:55
+#: ../data/messages:51
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
-#: ../data/messages:57
+#: ../data/messages:53
 msgid "Left offset :"
 msgstr "Compensazione a sinistra :"
 
-#: ../data/messages:59
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
-#: ../data/messages:61
+#: ../data/messages:57
 msgid "Top offset :"
 msgstr "Compensazione in alto :"
 
-#: ../data/messages:63
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
-#: ../data/messages:65
+#: ../data/messages:61
 msgid "Right offset :"
 msgstr "Compensazione a destra :"
 
-#: ../data/messages:67
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
-#: ../data/messages:69
+#: ../data/messages:65
 msgid "Bottom offset :"
 msgstr "Compensazione in basso :"
 
-#: ../data/messages:71
+#: ../data/messages:67
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
-"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per esempio. "
-"Lasciare vuoto per non usarla."
+"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per "
+"esempio. Lasciare vuoto per non usarla."
 
-#: ../data/messages:73
+#: ../data/messages:69
 msgid "Foreground image :"
 msgstr "Immagine in primo piano :"
 
-#: ../data/messages:75
+#: ../data/messages:71
 msgid "Foreground tansparency :"
 msgstr "Trasparenza in primo piano :"
 
-#: ../data/messages:77 ../data/messages:79
+#: ../data/messages:73 ../data/messages:75
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
@@ -353,67 +359,73 @@ msgstr ""
 "Un click destro sull'icona per fare sì che Cairo-Dock dia un aiuto nella "
 "ricerca del codice della località."
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "Code of your location :"
 msgstr "Codice della località :"
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Use International System Units ?"
 msgstr "Utilizzare le unità del Sistema Internazionale ?"
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "in secondi. Mettere 0 per avere dialoghi ininterrotti."
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "Duration of dialogs :"
 msgstr "Durata dei dialoghi :"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "in minutes."
 msgstr "in minuti"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Interval of time between 2 checks :"
 msgstr "Intervallo di tempo tra le 2 verifiche :"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Info"
 msgstr "Info"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr ""
 "Mostrare le condizioni attuali nell'icona al posto che quelle di default ?"
 
-#: ../data/messages:99
+#: ../data/messages:95
 msgid "Number of days you want to forecast :"
 msgstr "Numero dei giorni da prevedere :"
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Display nights too ?"
 msgstr "Mostrare anche le notti ?"
 
-#: ../data/messages:103
+#: ../data/messages:99
 msgid "Display temperature as quick info ?"
 msgstr "Mostrare la temperatura come info veloce ?"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Choose one of the available themes :"
 msgstr "Scegliete uno dei temi disponibili :"
 
-#: ../data/messages:109
+#: ../data/messages:105
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciare vuoto per utilizzare la vista di default per la sub-dock."
 
-#: ../data/messages:111
+#: ../data/messages:107
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
-#: ../data/messages:113
+#: ../data/messages:109
 msgid "Render desklet in 3D ?"
 msgstr "Disegnare la desklet in 3D ?"
+
+#~ msgid "width :"
+#~ msgstr "larghezza :"
+
+#~ msgid "height :"
+#~ msgstr "altezza :"

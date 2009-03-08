@@ -23,19 +23,19 @@ msgstr "Plus la valeur est faible, plus le point de vue est bas sur le plan."
 msgid "Height of the vanishing point :"
 msgstr "Hauteur du point de fuite :"
 
-#: ../data/messages:7 ../data/messages:165
+#: ../data/messages:7 ../data/messages:171
 msgid "Choose the way separators are drawn :"
 msgstr "Choisissez la manière dont les séparateurs seront dessinés :"
 
-#: ../data/messages:9 ../data/messages:167
+#: ../data/messages:9 ../data/messages:173
 msgid "Normal separator"
 msgstr "Séparateur normaux"
 
-#: ../data/messages:11 ../data/messages:169
+#: ../data/messages:11 ../data/messages:175
 msgid "Flat separator"
 msgstr "Séparateur plat"
 
-#: ../data/messages:13 ../data/messages:171
+#: ../data/messages:13 ../data/messages:177
 msgid "Physical separator"
 msgstr "Séparateur physique"
 
@@ -127,7 +127,7 @@ msgstr ""
 msgid "Magnitude of the wave :"
 msgstr "Magnitude de la vague :"
 
-#: ../data/messages:51 ../data/messages:161
+#: ../data/messages:51 ../data/messages:167
 msgid "in pixels."
 msgstr "en pixels."
 
@@ -151,7 +151,7 @@ msgstr "Dessiner les étiquettes pendant le dépliage ?"
 msgid "Rainbow"
 msgstr "Arc-en-ciel"
 
-#: ../data/messages:61 ../data/messages:79 ../data/messages:119
+#: ../data/messages:61 ../data/messages:85 ../data/messages:125
 msgid "Space between rows :"
 msgstr "Espacement entre les lignes :"
 
@@ -184,97 +184,109 @@ msgid "Cone's width :"
 msgstr "Ouverture du cône :"
 
 #: ../data/messages:75
+msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
+msgstr ""
+
+#: ../data/messages:77
+msgid "Bow color :"
+msgstr ""
+
+#: ../data/messages:79
+msgid "Line color :"
+msgstr ""
+
+#: ../data/messages:81
 msgid "Slide"
 msgstr "Diapositive"
 
-#: ../data/messages:77 ../data/messages:117
+#: ../data/messages:83 ../data/messages:123
 msgid "Space between columns :"
 msgstr "Espacement entre les colonnes :"
 
-#: ../data/messages:81 ../data/messages:121
+#: ../data/messages:87 ../data/messages:127
 msgid "Max size of icons :"
 msgstr "Taille maximale des icones"
 
-#: ../data/messages:83 ../data/messages:123
+#: ../data/messages:89 ../data/messages:129
 msgid "Sinusoidal wave radius :"
 msgstr "Rayon de la vague sinusoïdale :"
 
-#: ../data/messages:85 ../data/messages:125
+#: ../data/messages:91 ../data/messages:131
 msgid "Use a linear wave rather than a sinusoidal one ?"
 msgstr "Utiliser une vague linéaire plutôt que sinusoïdale ?"
 
-#: ../data/messages:87 ../data/messages:127
+#: ../data/messages:93 ../data/messages:133
 msgid "Use a wide shape ?"
 msgstr "Utiliser une forme alongée ?"
 
-#: ../data/messages:89 ../data/messages:129
+#: ../data/messages:95 ../data/messages:135
 msgid "Display text only for pointed icon ?"
 msgstr "Afficher le texte seulement pour l'icône pointée ?"
 
-#: ../data/messages:91 ../data/messages:131
+#: ../data/messages:97 ../data/messages:137
 msgid "Display text for all icons ?"
 msgstr "Montrer le texte pour toutes les icones ?"
 
-#: ../data/messages:93 ../data/messages:133
+#: ../data/messages:99 ../data/messages:139
 msgid "Draw a background ?"
 msgstr "Dessiner un fond ?"
 
-#: ../data/messages:95 ../data/messages:135
+#: ../data/messages:101 ../data/messages:141
 msgid "First gradient color (r,v,b,a) :"
 msgstr "Première couleur du dégradé (r,v,b,a) :"
 
-#: ../data/messages:97 ../data/messages:137
+#: ../data/messages:103 ../data/messages:143
 msgid "Second gradient color (r,v,b,a) :"
 msgstr "Seconde couleur du dégradé (r,v,b,a) :"
 
-#: ../data/messages:99 ../data/messages:139
+#: ../data/messages:105 ../data/messages:145
 msgid "Top to bottom gradient ?"
 msgstr "Dégradé de haut en bas?"
 
-#: ../data/messages:101 ../data/messages:141
+#: ../data/messages:107 ../data/messages:147
 msgid "Left to right gradient ?"
 msgstr "Dégradé de droite à gauche ?"
 
-#: ../data/messages:103 ../data/messages:143
+#: ../data/messages:109 ../data/messages:149
 msgid "Arrow width :"
 msgstr "Largeur de la flèche :"
 
-#: ../data/messages:105 ../data/messages:145
+#: ../data/messages:111 ../data/messages:151
 msgid "Arrow Height :"
 msgstr "Hauteur de la flèche :"
 
-#: ../data/messages:107 ../data/messages:147
+#: ../data/messages:113 ../data/messages:153
 msgid "Arrow shift percent :"
 msgstr "Décalage de la flèche au centre en pourcent :"
 
-#: ../data/messages:109 ../data/messages:149
+#: ../data/messages:115 ../data/messages:155
 msgid "Corner radius :"
 msgstr "Rayon des coins :"
 
-#: ../data/messages:111 ../data/messages:151
+#: ../data/messages:117 ../data/messages:157
 msgid "Border line width :"
 msgstr "Largeur de la ligne externe :"
 
-#: ../data/messages:113 ../data/messages:153
+#: ../data/messages:119 ../data/messages:159
 msgid "Border line color (r,v,b,a) :"
 msgstr "Couleur de la ligne externe (r,v,b,a) :"
 
-#: ../data/messages:115
+#: ../data/messages:121
 msgid "SimpleSlide"
 msgstr "Diapositive Simple"
 
-#: ../data/messages:155
+#: ../data/messages:161
 msgid "Curve"
 msgstr "Courbure"
 
-#: ../data/messages:157
+#: ../data/messages:163
 msgid "The lower, the more the curve will seem flat."
 msgstr "Plus la valeur est faible, plus la courbure semblera flasque."
 
-#: ../data/messages:159
+#: ../data/messages:165
 msgid "Curvature of the curve in percent :"
 msgstr "Pourcentage de courbure :"
 
-#: ../data/messages:163
+#: ../data/messages:169
 msgid "Amplitude of the curve."
 msgstr "Amplitude de la courbure :"
