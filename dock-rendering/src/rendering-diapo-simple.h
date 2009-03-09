@@ -45,6 +45,11 @@ void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoCon
 
 void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock);
 
-GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, GLfloat **colors, int *iNbPoints);
+GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, int *iNbPoints);
+
+GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (CairoDock *pDock, GLfloat **colors, int *iNbPoints);
+
+GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pDock, GLfloat *color);
+
 
 #endif
