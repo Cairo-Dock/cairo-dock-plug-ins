@@ -26,6 +26,17 @@ void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *pContai
 			cairo_dock_draw_icon_texture (pIcon, pContainer);
 		glPopMatrix ();
 	}
+	if (pIcon->iLabelTexture != 0)
+	{
+		glPushMatrix ();
+			glTranslatef (0.,
+				(pIcon->fHeight + pIcon->iTextHeight)/2,
+				0.);
+			cairo_dock_draw_texture (pIcon->iLabelTexture,
+				pIcon->iTextWidth,
+				pIcon->iTextHeight);
+		glPopMatrix ();
+	}
 	if (pIcon->iQuickInfoTexture != 0)
 	{
 		glPushMatrix ();
@@ -437,12 +448,14 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend le cube transparent.
 
 		//\____________________ On dessine l'icone au milieu, mais seulement les parties opaques
+		glTranslatef( 0., 0.2*b, 0. ); // on se decale un peu plus vers le haut
+
 	  glAlphaFunc ( GL_GREATER, 0.1 ) ;
     glEnable ( GL_ALPHA_TEST ) ;
 		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet));
     glDisable ( GL_ALPHA_TEST ) ;
 
-		glTranslatef( 0., 0., -b/2. );
+		glTranslatef( 0., -0.2*b, -b/2. );
 		glRotatef( 10., 1., 0., 0. );
 
 		glPolygonMode (GL_FRONT, GL_FILL);
@@ -450,10 +463,10 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		//\________ Dessiner un disque en dessous du caroussel
 		glBegin(GL_TRIANGLE_FAN);
 			glColor4f(.3, .3, .3, .6);
-			glVertex3f (0, -pDesklet->pIcon->fHeight, 0);
+			glVertex3f (0, -pDesklet->pIcon->fHeight/2., 0);
 			for( int iIter = 0; iIter <= 30; iIter++  )
 			{
-				glVertex3f (1.5*a*sin(2*G_PI*(double)iIter/30.), -pDesklet->pIcon->fHeight/2, 1.5*b*cos(2*G_PI*(double)iIter/30.));
+				glVertex3f (1.5*a*sin(2*G_PI*(double)iIter/30.), -pDesklet->pIcon->fHeight/2., 1.5*b*cos(2*G_PI*(double)iIter/30.));
 			}
 		glEnd();
 		glColor4f(1., 1., 1., 1.);
@@ -482,22 +495,26 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			fTheta = pSortedIcon->fTheta;
 			
 			glPushMatrix ();
-			
+
 			//\____________________ On se decale au bon endroit
 			glTranslatef (a * cos (fTheta) /*- pIcon->fWidth/2*/,
 										0.,
-										b * sin (fTheta));
+										1.5 * b * sin (fTheta));
+
+			//\____________________ On se remet droit
+			glRotatef( -10., 1., 0., 0. );
 
 			//\____________________ On calcule la transparence qui va bien
 			//  ici on se base sur la profondeur, representee par sin(fTheta) ici
 			//    Si sin(fTheta)+0.4 > 1., donc si l'objet est assez proche de nous ==> opaque
 			//    Si sin(fTheta)+0.4 < 0., donc assez profond ==> on cache
 			double alphaIcon = MAX(MIN(sin (fTheta) + 0.4, 1.), 0.);
-			glColor4f(1., 1., 1., alphaIcon);
+			double previousAlphaIcon = pIcon->fAlpha;
+			pIcon->fAlpha *= alphaIcon;
 			
 			//\____________________ Et on dessine l'icone
 			_render_one_icon_and_quickinfo_opengl (pIcon, CAIRO_CONTAINER (pDesklet));
-			glColor4f(1., 1., 1., 1.);
+			pIcon->fAlpha = previousAlphaIcon;
 			
 			glPopMatrix ();
 		}
