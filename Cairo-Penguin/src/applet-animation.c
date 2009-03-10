@@ -136,27 +136,30 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		if (! cairo_dock_begin_draw_icon (myIcon, myContainer))
 			return ;
 		
+		int iIconWidth, iIconHeight;
+		cairo_dock_get_icon_extent (myIcon, myContainer, &iIconWidth, &iIconHeight);
+		
 		///_penguin_draw_texture (myApplet, pAnimation, iWidth/2, -iHeight/2, 1./*(1 + g_fAmplitude) / fScale*/);
 		g_return_if_fail (pAnimation->iTexture != 0);
-		double fOffsetX = 0;
-		double fOffsetY = 0;
-		fScale = (1 + g_fAmplitude) / fScale;
-		glEnable (GL_SCISSOR_TEST);
-		glScalef (1., -1., 1.);
-		glScissor ((fOffsetX + myData.iCurrentPositionX) * fScale,
-			(fOffsetY * fScale + myData.iCurrentPositionY) * fScale,
-			pAnimation->iFrameWidth * fScale,
-			pAnimation->iFrameHeight * fScale);
+		double f = (1 + g_fAmplitude) / fScale;
+		double x, y;  // centre du pingouin.
+		x = myData.iCurrentPositionX - iXMin - iIconWidth/2 + pAnimation->iFrameWidth/2*f;
+		y = myData.iCurrentPositionY + pAnimation->iFrameHeight/2*f;
 		
-		glTranslatef ((fOffsetX + myData.iCurrentPositionX + pAnimation->iFrameWidth * (.5 * pAnimation->iNbFrames - myData.iCurrentFrame)) * fScale,
-			(fOffsetY * fScale + myData.iCurrentPositionY + pAnimation->iFrameHeight * (-.5 * pAnimation->iNbDirections + 1 + (myData.iCurrentDirection)) * fScale),
+		glEnable (GL_SCISSOR_TEST);
+		glScissor (iIconWidth/2 + x-pAnimation->iFrameWidth * f/2,
+			iIconHeight - (y + pAnimation->iFrameHeight * f/2),
+			pAnimation->iFrameWidth * f,
+			pAnimation->iFrameHeight * f);
+		
+		glTranslatef (x + (1.*(pAnimation->iNbFrames-1)/2 - myData.iCurrentFrame) * pAnimation->iFrameWidth * f,
+			- iIconHeight/2 + y - (2*(.5-myData.iCurrentDirection)) * (pAnimation->iNbDirections - 1) * pAnimation->iFrameHeight/2*f,
 			0.);
 		
-		glScalef (1., -1., 1.);
 		glColor4f (1., 1., 1., 1.);
 		cairo_dock_draw_texture (pAnimation->iTexture,
-			pAnimation->iFrameWidth * pAnimation->iNbFrames * fScale,
-			pAnimation->iFrameHeight * pAnimation->iNbDirections * fScale);
+			pAnimation->iFrameWidth * pAnimation->iNbFrames * f,
+			pAnimation->iFrameHeight * pAnimation->iNbDirections * f);
 		
 		glDisable (GL_SCISSOR_TEST);
 		
