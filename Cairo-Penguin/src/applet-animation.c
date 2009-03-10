@@ -139,14 +139,13 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		int iIconWidth, iIconHeight;
 		cairo_dock_get_icon_extent (myIcon, myContainer, &iIconWidth, &iIconHeight);
 		
-		///_penguin_draw_texture (myApplet, pAnimation, iWidth/2, -iHeight/2, 1./*(1 + g_fAmplitude) / fScale*/);
 		g_return_if_fail (pAnimation->iTexture != 0);
 		double f = (1 + g_fAmplitude) / fScale;
-		double x, y;  // centre du pingouin.
+		double x, y;  // centre du pingouin, en coordonnées absolues.
 		x = myData.iCurrentPositionX - iXMin - iIconWidth/2 + pAnimation->iFrameWidth/2*f;
 		y = myData.iCurrentPositionY + pAnimation->iFrameHeight/2*f;
 		
-		glEnable (GL_SCISSOR_TEST);
+		glEnable (GL_SCISSOR_TEST);  // coordonnées de la texture, donc attention a l'inversion en Y.
 		glScissor (iIconWidth/2 + x-pAnimation->iFrameWidth * f/2,
 			iIconHeight - (y + pAnimation->iFrameHeight * f/2),
 			pAnimation->iFrameWidth * f,

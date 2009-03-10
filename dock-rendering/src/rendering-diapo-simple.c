@@ -1011,6 +1011,7 @@ GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pD
 		i ++;
 		_set_arrow_color (pTopRightColor, pBottomRightColor, .5+my_diapo_simple_arrowShift/2, pDock, color);
 	}
-	
+	pVertexTab[3*i] = pVertexTab[0];
+	pVertexTab[3*i+1] = pVertexTab[1];
 	return pVertexTab;
 }
