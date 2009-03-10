@@ -543,7 +543,7 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			for( int iIter = 0; iIter <= 30; iIter++  )
 			{
 				glColor4f(0.1, 0.1, ((iIter%2)==0)?0.5:0.3, 0.8);
-				glVertex3f (1.5*a*sin(-fTheta+2*G_PI*(double)iIter/30.), -pDesklet->pIcon->fHeight/2., 1.5*b*cos(-fTheta+2*G_PI*(double)iIter/30.));
+				glVertex3f (1.5*a*sin(fTheta+2*G_PI*(double)iIter/30.), -pDesklet->pIcon->fHeight/2., 1.5*b*cos(fTheta+2*G_PI*(double)iIter/30.));
 			}
 		glEnd();
 		glColor4f(1., 1., 1., 1.);
@@ -576,7 +576,7 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			glPushMatrix ();
 			
 			//\____________________ On se decale au bon endroit
-			glTranslatef (a * cos (fTheta),
+			glTranslatef (-a * cos (fTheta),
 										-pDesklet->pIcon->fHeight/2.+0.1,
 										b * sin (fTheta));
 
@@ -585,7 +585,7 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			
 			//\____________________ On tourne sur l'axe du disque pour avoir
 			//                      le haut de l'icone vers le centre
-			glRotatef( fTheta*180./G_PI - 90., 0., 0., 1. );
+			glRotatef( -fTheta*180./G_PI + 90., 0., 0., 1. );
 
 			//\____________________ Un reflet, c'est inverse --> on inverse
 			glScalef( 0.75, -0.75, 0.75 );
@@ -601,7 +601,7 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			glPushMatrix ();
 
 			//\____________________ On se decale au bon endroit
-			glTranslatef (a * cos (fTheta),
+			glTranslatef (-a * cos (fTheta),
 										0.,
 										1.5 * b * sin (fTheta));
 
