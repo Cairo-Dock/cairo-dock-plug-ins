@@ -263,7 +263,7 @@ CD_APPLET_INIT_BEGIN
 
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
 	{
-		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_mail_update_icon , CAIRO_DOCK_RUN_FIRST, myApplet);
+		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_mail_update_icon , CAIRO_DOCK_RUN_FIRST, myApplet);
 	}
 
 CD_APPLET_INIT_END
@@ -275,7 +275,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 
-	cairo_dock_remove_notification_func(CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_mail_update_icon , myApplet);
+	cairo_dock_remove_notification_func(CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_mail_update_icon , myApplet);
 CD_APPLET_STOP_END
 
 
@@ -288,7 +288,7 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED )
 	{
-		cairo_dock_remove_notification_func(CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_mail_update_icon , myApplet);
+		cairo_dock_remove_notification_func(CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_mail_update_icon , myApplet);
 	
 		GError *erreur = NULL;
 		_load_theme (myApplet, &erreur);
@@ -305,7 +305,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
 		{
-			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_mail_update_icon , CAIRO_DOCK_RUN_FIRST, myApplet);
+			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_mail_update_icon , CAIRO_DOCK_RUN_FIRST, myApplet);
 		}
 	}
 	else

@@ -205,9 +205,19 @@ _mail_draw_main_icon (CairoDockModuleInstance *myApplet, gchar **mailbox_names, 
 }
 
 gboolean cd_mail_update_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation)
-{                             
+{
+  static gboolean bSkipThisFrame = TRUE;
+  
 	if (pContainer != myContainer)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+
+  bSkipThisFrame = !bSkipThisFrame;
+  
+  if( bSkipThisFrame && bContinueAnimation )
+  {
+    *bContinueAnimation = TRUE;
+    return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+  }
 	
   if( myData.iNbUnreadMails > 0 || myData.current_rotX != 0 )
   {
@@ -223,13 +233,16 @@ gboolean cd_mail_update_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, Ca
 
   cd_mail_render_3D_to_texture (myApplet);
 
-  if( myData.iNbUnreadMails > 0 || myData.current_rotX != 0 || (myData.current_rotY % 90) != 0 )
+  if( bContinueAnimation )
   {
-    *bContinueAnimation = TRUE;
-  }
-  else
-  {
-    *bContinueAnimation = FALSE;
+    if( myData.iNbUnreadMails > 0 || myData.current_rotX != 0 || (myData.current_rotY % 90) != 0 )
+    {
+      *bContinueAnimation = TRUE;
+    }
+    else
+    {
+      *bContinueAnimation = FALSE;
+    }
   }
   
   return CAIRO_DOCK_LET_PASS_NOTIFICATION;
