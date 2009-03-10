@@ -50,18 +50,28 @@ void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *pContai
 	}
 }
 
-static gboolean _caroussel_rotate (CairoDesklet *pDesklet)
+static void _caroussel_rotate_delta(CairoDesklet *pDesklet, double fDeltaTheta)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
 		return FALSE;
-	pCaroussel->iRotationCount += (pCaroussel->iRotationDirection == GDK_SCROLL_UP ? 1 : -1);
-	pCaroussel->fRotationAngle += (pCaroussel->iRotationDirection == GDK_SCROLL_UP ? 1 : -1) * pCaroussel->fDeltaTheta / 10;
+	pCaroussel->fRotationAngle += (pCaroussel->iRotationDirection == GDK_SCROLL_UP ? 1 : -1) * fDeltaTheta;
 	if (pCaroussel->fRotationAngle >= 2*G_PI)
 		pCaroussel->fRotationAngle -= 2*G_PI;
 	else if (pCaroussel->fRotationAngle < 0)
 		pCaroussel->fRotationAngle += 2*G_PI;
 	gtk_widget_queue_draw (pDesklet->pWidget);
+}
+
+static gboolean _caroussel_rotate (CairoDesklet *pDesklet)
+{
+	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
+	if (pCaroussel == NULL)
+		return FALSE;
+
+	_caroussel_rotate_delta(pDesklet, pCaroussel->fDeltaTheta / 10.);
+
+	pCaroussel->iRotationCount += (pCaroussel->iRotationDirection == GDK_SCROLL_UP ? 1 : -1);
 	if (abs (pCaroussel->iRotationCount) >= 10 || pCaroussel->iRotationCount == 0)
 	{
 		pCaroussel->iRotationCount = 0;
@@ -71,6 +81,7 @@ static gboolean _caroussel_rotate (CairoDesklet *pDesklet)
 	else
 		return TRUE;
 }
+
 static gboolean on_scroll_desklet (GtkWidget* pWidget,
 	GdkEventScroll* pScroll,
 	CairoDesklet *pDesklet)
@@ -98,6 +109,43 @@ static gboolean on_scroll_desklet (GtkWidget* pWidget,
 			}
 		}
 		_caroussel_rotate (pDesklet);
+	}
+	return FALSE;
+}
+
+static gboolean on_motion_desklet (GtkWidget* pWidget,
+	GdkEventMotion *pMotionEvent,
+	CairoDesklet *pDesklet)
+{
+	if (pDesklet->icons != NULL && pMotionEvent != NULL && ((pMotionEvent->state & (GDK_MODIFIER_MASK ^ GDK_MODIFIER_MASK) ) == 0))
+	{
+		CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
+		if (pCaroussel == NULL)
+			return FALSE;
+
+		// si on est dans les entre 0% et 30% de la largeur du desklet,
+		// alors on tourne a gauche (GDK_SCROLL_DOWN)
+		if( pMotionEvent->x <= pDesklet->iWidth*0.3 )
+		{
+			pCaroussel->iRotationDirection = GDK_SCROLL_DOWN;
+			// La force de rotation va de 0 (lorsqu'on est a 30%) jusqu'a
+			// pCaroussel->fDeltaTheta / 10. (lorsqu'on est a 0%)
+			double fDeltaRotation = (pCaroussel->fDeltaTheta / 10) *
+			                        (pDesklet->iWidth*0.3 - pMotionEvent->x)/(pDesklet->iWidth*0.3);
+			_caroussel_rotate_delta( pDesklet, fDeltaRotation );
+		}
+		// si on est dans les entre 80% et 100% de la largeur du desklet,
+		// alors on tourne a droite (GDK_SCROLL_UP)
+		else if( pMotionEvent->x >= pDesklet->iWidth*0.7 )
+		{
+			// La force de rotation va de 0 (lorsqu'on est a 70%) jusqu'a
+			// pCaroussel->fDeltaTheta / 10. (lorsqu'on est a 100%)
+			double fDeltaRotation = (pCaroussel->fDeltaTheta / 10) *
+			                        (pMotionEvent->x - pDesklet->iWidth*0.7)/(pDesklet->iWidth*0.3);
+			pCaroussel->iRotationDirection = GDK_SCROLL_UP;
+			_caroussel_rotate_delta( pDesklet, fDeltaRotation );
+		} 
+
 	}
 	return FALSE;
 }
@@ -156,7 +204,8 @@ void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 		pCaroussel->a = MAX (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iWidth;
 		pCaroussel->b = MIN (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iHeight;
 	}
-	
+
+	// brancher la rotation sur la molette de la souris
 	gulong iOnScrollCallbackID = g_signal_handler_find (pDesklet->pWidget,
 		G_SIGNAL_MATCH_FUNC,
 		0,
@@ -169,6 +218,23 @@ void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 			"scroll-event",
 			G_CALLBACK (on_scroll_desklet),
 			pDesklet);
+
+
+	// brancher la rotation sur le survol de la souris
+	gulong iOnMotionCallbackID = g_signal_handler_find (pDesklet->pWidget,
+		G_SIGNAL_MATCH_FUNC,
+		0,
+		0,
+		NULL,
+		on_motion_desklet,
+		NULL);
+	if (iOnMotionCallbackID == 0)
+		g_signal_connect (G_OBJECT (pDesklet->pWidget),
+			"motion-notify-event",
+			G_CALLBACK (on_motion_desklet),
+			pDesklet);
+	// activer le feedback de GdkWindow pour ce widget
+	gtk_widget_add_events(pDesklet->pWidget, GDK_POINTER_MOTION_MASK);
 }
 
 
@@ -183,6 +249,16 @@ void rendering_free_caroussel_data (CairoDesklet *pDesklet)
 		NULL);
 	if (iOnScrollCallbackID != 0)
 		g_signal_handler_disconnect (G_OBJECT (pDesklet->pWidget), iOnScrollCallbackID);
+
+	gulong iOnMotionCallbackID = g_signal_handler_find (pDesklet->pWidget,
+		G_SIGNAL_MATCH_FUNC,
+		0,
+		0,
+		NULL,
+		on_motion_desklet,
+		NULL);
+	if (iOnMotionCallbackID != 0)
+		g_signal_handler_disconnect (G_OBJECT (pDesklet->pWidget), iOnMotionCallbackID);
 	
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -448,25 +524,26 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend le cube transparent.
 
 		//\____________________ On dessine l'icone au milieu, mais seulement les parties opaques
-		glTranslatef( 0., 0.2*b, 0. ); // on se decale un peu plus vers le haut
+		glTranslatef( 0., 0.3*b, 0. ); // on se decale un peu plus vers le haut
 
 	  glAlphaFunc ( GL_GREATER, 0.1 ) ;
     glEnable ( GL_ALPHA_TEST ) ;
 		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet));
     glDisable ( GL_ALPHA_TEST ) ;
 
-		glTranslatef( 0., -0.2*b, -b/2. );
+		glTranslatef( 0., -0.3*b, -b/2. );
 		glRotatef( 10., 1., 0., 0. );
 
 		glPolygonMode (GL_FRONT, GL_FILL);
 		
 		//\________ Dessiner un disque en dessous du caroussel
 		glBegin(GL_TRIANGLE_FAN);
-			glColor4f(.3, .3, .3, .6);
+			glColor4f(0., 0., 0., 0.);
 			glVertex3f (0, -pDesklet->pIcon->fHeight/2., 0);
 			for( int iIter = 0; iIter <= 30; iIter++  )
 			{
-				glVertex3f (1.5*a*sin(2*G_PI*(double)iIter/30.), -pDesklet->pIcon->fHeight/2., 1.5*b*cos(2*G_PI*(double)iIter/30.));
+				glColor4f(0.1, 0.1, ((iIter%2)==0)?0.5:0.3, 0.8);
+				glVertex3f (1.5*a*sin(-fTheta+2*G_PI*(double)iIter/30.), -pDesklet->pIcon->fHeight/2., 1.5*b*cos(-fTheta+2*G_PI*(double)iIter/30.));
 			}
 		glEnd();
 		glColor4f(1., 1., 1., 1.);
@@ -493,11 +570,38 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			_CarousselPositionedIcon *pSortedIcon = ic->data;
 			pIcon = pSortedIcon->pIcon;
 			fTheta = pSortedIcon->fTheta;
+			double previousAlphaIcon = pIcon->fAlpha;
+
+			//\__________ On dessine un reflet sur le disque
+			glPushMatrix ();
+			
+			//\____________________ On se decale au bon endroit
+			glTranslatef (a * cos (fTheta),
+										-pDesklet->pIcon->fHeight/2.+0.1,
+										b * sin (fTheta));
+
+			//\____________________ On se couche sur le plan du disque
+			glRotatef( 90., 1., 0., 0. );
+			
+			//\____________________ On tourne sur l'axe du disque pour avoir
+			//                      le haut de l'icone vers le centre
+			glRotatef( fTheta*180./G_PI - 90., 0., 0., 1. );
+
+			//\____________________ Un reflet, c'est inverse --> on inverse
+			glScalef( 0.75, -0.75, 0.75 );
+
+			//\____________________ On met le reflet un peu transparent
+			pIcon->fAlpha *= 0.4;			
+			//\____________________ Et on dessine l'icone
+			_render_one_icon_and_quickinfo_opengl (pIcon, CAIRO_CONTAINER (pDesklet));
+			pIcon->fAlpha = previousAlphaIcon;
+			
+			glPopMatrix ();
 			
 			glPushMatrix ();
 
 			//\____________________ On se decale au bon endroit
-			glTranslatef (a * cos (fTheta) /*- pIcon->fWidth/2*/,
+			glTranslatef (a * cos (fTheta),
 										0.,
 										1.5 * b * sin (fTheta));
 
@@ -509,7 +613,7 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			//    Si sin(fTheta)+0.4 > 1., donc si l'objet est assez proche de nous ==> opaque
 			//    Si sin(fTheta)+0.4 < 0., donc assez profond ==> on cache
 			double alphaIcon = MAX(MIN(sin (fTheta) + 0.4, 1.), 0.);
-			double previousAlphaIcon = pIcon->fAlpha;
+
 			pIcon->fAlpha *= alphaIcon;
 			
 			//\____________________ Et on dessine l'icone
