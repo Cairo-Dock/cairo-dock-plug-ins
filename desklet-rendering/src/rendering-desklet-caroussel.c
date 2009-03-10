@@ -526,7 +526,10 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 	else
 	{
 		//\____________________ On dessine l'icone au milieu
+		glPushMatrix ();
+		glScalef( 0.8, 0.8, 0 );
 		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet));
+		glPopMatrix ();
 
 		//\____________________ On dessine les icones autour
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
@@ -536,9 +539,11 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			glPushMatrix ();
 			
 			//\____________________ On se decale au bon endroit
-			glTranslatef (a * cos (fTheta) /*- pIcon->fWidth/2*/,
-										b * sin (fTheta) - pIcon->fHeight/2 + myLabels.iconTextDescription.iSize,
+			glTranslatef (a * cos (fTheta),
+										b * sin (fTheta),
 										0.);
+
+			glScalef( 0.8, 0.8, 0 );
 
 			//\____________________ Et on dessine l'icone
 			_render_one_icon_and_quickinfo_opengl (pIcon, CAIRO_CONTAINER (pDesklet));
