@@ -8,6 +8,7 @@ typedef enum _CDIllusionEffect {
 	CD_ILLUSION_EVAPORATE=0,
 	CD_ILLUSION_FADE_OUT,
 	CD_ILLUSION_EXPLODE,
+	CD_ILLUSION_BREAK,
 	CD_ILLUSION_NB_EFFECTS
 	} CDIllusionEffect;
 
@@ -33,7 +34,7 @@ struct _AppletConfig {
 	gdouble fExplosionRadius;
 	gboolean bExplodeCube;
 	
-	gint iBreakNbPieces;
+	gint iBreakDuration;
 	gint iBreakNbBorderPoints;
 	} ;
 
@@ -48,8 +49,10 @@ typedef struct {
 	} CDIllusionExplosion;
 
 typedef struct {
+	gdouble pCoords[4*2];
+	gint iNbPts;
 	gdouble fRotationAngle;
-	gdouble vy, y;
+	gdouble yinf;
 	} CDIllusionBreak;
 
 typedef struct _CDIllusionData {
@@ -67,7 +70,11 @@ typedef struct _CDIllusionData {
 	gdouble fExplodeAlpha;
 	CDIllusionExplosion *pExplosionPart;
 	
-	
+	gdouble fBreakDeltaT;
+	gint iBreakCount;
+	CDIllusionBreak *pBreakPart;
+	gint iNbBreakParts;
+	gdouble dh;
 	
 	} CDIllusionData;
 

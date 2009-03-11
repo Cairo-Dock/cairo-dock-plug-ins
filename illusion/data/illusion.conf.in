@@ -3,7 +3,7 @@
 #[gtk-preference]
 [Global]
 
-#r+[Evaporate;Fade out;Explode] Animation on disappearance :
+#r+[Evaporate;Fade out;Explode;Break] Animation on disappearance :
 disappearance = 0
 
 
@@ -56,3 +56,13 @@ radius = 1
 
 #b Break the icon in cubes ?
 cubes = true
+
+
+#[@illusiondatadir@/icon-break.svg]
+[Break]
+
+#I[0;5000] Duration of the animation :
+duration = 600
+
+#i[5;50] Number of pieces :
+nb pieces = 21

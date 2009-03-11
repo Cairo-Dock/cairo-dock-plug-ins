@@ -69,7 +69,7 @@ gboolean cd_illusion_update_explode (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 		area.height = pData->fExplosionRadius * pIcon->fWidth * pIcon->fScale * 1;
 		area.width = pData->fExplosionRadius * pIcon->fHeight * pIcon->fScale * 1;
 	}
-	cairo_dock_redraw_container_area (pDock, &area);
+	cairo_dock_redraw_container_area (CAIRO_CONTAINER (pDock), &area);
 	return (pIcon->fPersonnalScale > .05);
 }
 

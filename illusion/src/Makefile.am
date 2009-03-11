@@ -17,7 +17,9 @@ libcd_illusion_la_SOURCES = \
 	applet-fade-out.c\
 	applet-fade-out.h\
 	applet-explode.c\
-	applet-explode.h
+	applet-explode.h\
+	applet-break.c\
+	applet-break.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 
