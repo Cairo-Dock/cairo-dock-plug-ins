@@ -506,7 +506,7 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 		// image precedente.
 		glPushMatrix ();
 		glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
-		glTranslatef (0., 0., myData.slideArea.fImgW/2);
+		glTranslatef (0., 0., myData.slideArea.fImgW/2-1);
 		
 		_cd_slider_add_background_to_prev_slide_opengl (myApplet, 0., 0., 1.);
 		
@@ -514,30 +514,31 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 		glEnable (GL_TEXTURE_2D);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		
+		glTranslatef (0., 0., 1.);
 		glColor4f (1., 1., 1., 1.);
 		cairo_dock_apply_texture_at_size (myData.iPrevTexture, myData.prevSlideArea.fImgW, myData.prevSlideArea.fImgH);
 		glDisable (GL_TEXTURE_2D);
 		glPopMatrix ();
 		
 		// image courante a 90deg.
-		glPushMatrix ();
 		glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
 		if (myData.prevSlideArea.fImgW != 0)
-			glTranslatef (- myData.prevSlideArea.fImgW/2, 0., 0.);
+			glTranslatef (- myData.prevSlideArea.fImgW/2+1, 0., 0.);
 		else
-			glTranslatef (- myData.iSurfaceWidth/2, 0., 0.);
-		glRotatef (-90., 0., 1., 0.);
+			glTranslatef (- myData.iSurfaceWidth/2+1, 0., 0.);
 		
+		glPushMatrix ();
+		glRotatef (-90., 0., 1., 0.);
 		_cd_slider_add_background_to_current_slide_opengl (myApplet, 0., 0., 1.);
+		glPopMatrix ();
 		
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable (GL_TEXTURE_2D);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		
+		glTranslatef (-1., 0., 0.);
+		glRotatef (-90., 0., 1., 0.);
 		glColor4f (1., 1., 1., 1.);
 		cairo_dock_apply_texture_at_size (myData.iTexture, myData.slideArea.fImgW, myData.slideArea.fImgH);
-		glDisable (GL_TEXTURE_2D);
-		glPopMatrix ();
 		
 		glDisable (GL_DEPTH_TEST);
 		glDisable (GL_TEXTURE_2D);
