@@ -38,7 +38,7 @@ CD_APPLET_ABOUT (D_("This is the Cairo-Penguin applet\n made by Fabrice Rey for 
 CD_APPLET_ON_CLICK_PROTO
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
-	if(pAnimation == NULL)
+	if (penguin_is_resting (pAnimation))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->iMouseX >  (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->iMouseX < (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
@@ -113,13 +113,13 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		
 		CD_APPLET_ADD_SUB_MENU (D_("Hey, you there !"), pModuleSubMenu, CD_APPLET_MY_MENU);
-		if (pAnimation->iNbFrames > 1 || pAnimation->iSpeed > 0)
+		if (penguin_is_resting (pAnimation))
 		{
-			CD_APPLET_ADD_IN_MENU(D_("Keep quiet"), _keep_quiet, pModuleSubMenu);
+			CD_APPLET_ADD_IN_MENU(D_("Wake up"), _wake_up, pModuleSubMenu);
 		}
 		else
 		{
-			CD_APPLET_ADD_IN_MENU(D_("Wake up"), _wake_up, pModuleSubMenu);
+			CD_APPLET_ADD_IN_MENU(D_("Keep quiet"), _keep_quiet, pModuleSubMenu);
 		}
 		
 		CD_APPLET_ADD_IN_MENU(D_("Start XPenguins"), _start_xpenguins, pModuleSubMenu);
@@ -142,7 +142,7 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (CairoDockModuleInstance *myApplet, Icon
 			myData.pDialog = NULL;
 		}
 		PenguinAnimation *pAnimation = penguin_get_current_animation ();
-		if (pAnimation->iNbFrames <= 1 && pAnimation->iSpeed == 0)
+		if (penguin_is_resting (pAnimation))
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (myDock->icons);
 			if (pIcon != NULL)

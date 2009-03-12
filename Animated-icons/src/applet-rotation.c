@@ -213,7 +213,7 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 	if (pDock->bUseReflect)
 	{
 		glPushMatrix ();
-		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
+		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * sqrt (myIcons.fAlbedo) * pIcon->fAlpha);  // transparence du reflet, arrange pour essayer de cacher l'absence de degrade :p
 		double fOffsetY = pIcon->fHeight * pIcon->fScale + (0 + pIcon->fDeltaYReflection) * pDock->fRatio;
 		if (pDock->bHorizontalDock)
 		{

@@ -52,7 +52,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle && myConfig.bShowSeconds)
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle && myConfig.bShowSeconds && myConfig.iSmoothAnimationDuration != 0)
 	{
 		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 		cairo_dock_launch_animation (myContainer);
@@ -110,7 +110,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (myConfig.cLocation != NULL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1);
 		
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle && myConfig.bShowSeconds)
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle && myConfig.bShowSeconds && myConfig.iSmoothAnimationDuration != 0)
 		{
 			CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 			cairo_dock_launch_animation (myContainer);

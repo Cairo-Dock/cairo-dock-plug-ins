@@ -81,7 +81,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CD_APPLET_ON_UPDATE_ICON_BEGIN
 	myData.iSmoothAnimationStep ++;
 	int iDetlaT = cairo_dock_get_slow_animation_delta_t (myContainer);
-	int iNbSteps = 500 / iDetlaT;  // on anime l'aiguille sur 500ms.
+	int iNbSteps = 1.*myConfig.iSmoothAnimationDuration / iDetlaT;  // on anime l'aiguille sur 500ms.
 	if (myData.iSmoothAnimationStep > iNbSteps)
 		CD_APPLET_SKIP_UPDATE_ICON;
 	

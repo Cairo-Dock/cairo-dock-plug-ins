@@ -7,6 +7,7 @@
 
 #define penguin_get_current_animation() (myData.iCurrentAnimation >= 0 ? &myData.pAnimations[myData.iCurrentAnimation] : NULL);
 
+#define penguin_is_resting(pAnimation) ((pAnimation) == NULL || (pAnimation)->iNbFrames <= 1 && (pAnimation)->iSpeed == 0)
 
 void penguin_move_in_dock (CairoDockModuleInstance *myApplet);
 gboolean penguin_render_on_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext);

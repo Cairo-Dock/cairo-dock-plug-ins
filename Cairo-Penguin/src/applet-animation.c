@@ -51,8 +51,21 @@ void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation, double fOffsetX, double fOffsetY, double fScale)
 {
 	g_return_if_fail (pAnimation->iTexture != 0);
+	int iIconWidth, iIconHeight;
+	cairo_dock_get_icon_extent (myIcon, myContainer, &iIconWidth, &iIconHeight);
 	
-	glEnable (GL_SCISSOR_TEST);
+	_cairo_dock_enable_texture ();
+	_cairo_dock_set_blend_alpha ();
+	_cairo_dock_set_alpha (1.);
+	
+	glBindTexture (GL_TEXTURE_2D, pAnimation->iTexture);
+	_cairo_dock_apply_current_texture_portion_at_size_with_offset (1.*myData.iCurrentFrame/pAnimation->iNbFrames, 
+		.5*myData.iCurrentDirection, 1./pAnimation->iNbFrames, 1./pAnimation->iNbDirections,
+		pAnimation->iFrameWidth*fScale, pAnimation->iFrameHeight*fScale,
+		fOffsetX + myData.iCurrentPositionX, fOffsetY + myData.iCurrentPositionY + pAnimation->iFrameHeight*fScale/2);
+	_cairo_dock_disable_texture ();
+	
+	/*glEnable (GL_SCISSOR_TEST);
 	glScissor ((fOffsetX + myData.iCurrentPositionX) * fScale,
 		(fOffsetY * fScale + myData.iCurrentPositionY) * fScale,
 		pAnimation->iFrameWidth * fScale,
@@ -67,7 +80,7 @@ static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAni
 		pAnimation->iFrameWidth * pAnimation->iNbFrames * fScale,
 		pAnimation->iFrameHeight * pAnimation->iNbDirections * fScale);
 	
-	glDisable (GL_SCISSOR_TEST);
+	glDisable (GL_SCISSOR_TEST);*/
 }
 void penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer)
 {
@@ -145,22 +158,16 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		x = myData.iCurrentPositionX - iXMin - iIconWidth/2 + pAnimation->iFrameWidth/2*f;
 		y = myData.iCurrentPositionY + pAnimation->iFrameHeight/2*f;
 		
-		glEnable (GL_SCISSOR_TEST);  // coordonnées de la texture, donc attention a l'inversion en Y.
-		glScissor (iIconWidth/2 + x-pAnimation->iFrameWidth * f/2,
-			iIconHeight - (y + pAnimation->iFrameHeight * f/2),
-			pAnimation->iFrameWidth * f,
-			pAnimation->iFrameHeight * f);
+		_cairo_dock_enable_texture ();
+		_cairo_dock_set_blend_alpha ();
+		_cairo_dock_set_alpha (1.);
 		
-		glTranslatef (x + (1.*(pAnimation->iNbFrames-1)/2 - myData.iCurrentFrame) * pAnimation->iFrameWidth * f,
-			- iIconHeight/2 + y - (2*(.5-myData.iCurrentDirection)) * (pAnimation->iNbDirections - 1) * pAnimation->iFrameHeight/2*f,
-			0.);
-		
-		glColor4f (1., 1., 1., 1.);
-		cairo_dock_draw_texture (pAnimation->iTexture,
-			pAnimation->iFrameWidth * pAnimation->iNbFrames * f,
-			pAnimation->iFrameHeight * pAnimation->iNbDirections * f);
-		
-		glDisable (GL_SCISSOR_TEST);
+		glBindTexture (GL_TEXTURE_2D, pAnimation->iTexture);
+		_cairo_dock_apply_current_texture_portion_at_size_with_offset (1.*myData.iCurrentFrame/pAnimation->iNbFrames, 
+			.5*myData.iCurrentDirection, 1./pAnimation->iNbFrames, 1./pAnimation->iNbDirections,
+			pAnimation->iFrameWidth*f, pAnimation->iFrameHeight*f,
+			x, - iIconHeight/2 + y);
+		_cairo_dock_disable_texture ();
 		
 		cairo_dock_end_draw_icon (myIcon, myContainer);
 	}

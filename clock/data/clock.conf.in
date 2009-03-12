@@ -89,18 +89,22 @@ fg alpha = 1
 #F[Behaviour;gtk-execute]
 frame1 =
 
-#r[No;On icon;On label] Show the date :
+#r-[No;On icon;On label] Show the date :
 show date = 1
 
-#b Show seconds ?
-#{if not, then the applet will update time once a minute, saving CPU.}
-show seconds = false
-
-#b Should the time be displayed as a 24h format ?
+#b- Should the time be displayed as a 24h format ?
 #{for numeric format only.}
 24h mode = true
 
-#s Timezone :
+#b- Show seconds ?
+#{if not, then the applet will update time once a minute, saving CPU.}
+show seconds = false
+
+#I-[0;1000] Display seconds with smooth animation of a duration of :
+#{It requires OpenGL. Set 0 to not have a smooth animation, set 1000 to have a continuous animation.}
+smooth = 500
+
+#s- Timezone :
 #{For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select your location from a list. Let empty to get the local time.}
 location =
 

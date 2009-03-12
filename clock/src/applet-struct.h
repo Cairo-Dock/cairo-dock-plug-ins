@@ -85,6 +85,7 @@ struct _AppletConfig {
 	gchar *cFont;
 	gchar *cLocation;
 	gchar *cDigital;
+	gint iSmoothAnimationDuration;
 	} ;
 
 struct _AppletData {

@@ -24,7 +24,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	//\_______________ On recupere les parametres de fonctionnement.
 	myConfig.iShowDate 		= CD_CONFIG_GET_INTEGER ("Module", "show date");
 	myConfig.bShowSeconds 		= CD_CONFIG_GET_BOOLEAN ("Module", "show seconds");
-	myConfig.b24Mode 		= CD_CONFIG_GET_BOOLEAN ("Module", "24h mode");
+	myConfig.iSmoothAnimationDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT  ("Module", "smooth", 500);
+	myConfig.b24Mode 			= CD_CONFIG_GET_BOOLEAN ("Module", "24h mode");
 	myConfig.bOldStyle 		= CD_CONFIG_GET_BOOLEAN ("Module", "old fashion style");
 	double couleur[4] = {0., 0., 0.5, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "text color", myConfig.fTextColor, couleur);
@@ -34,9 +35,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	if (myConfig.cFont == NULL)
 		myConfig.cFont = g_strdup (myLabels.iconTextDescription.cFont);
 	
-	myConfig.cLocation = CD_CONFIG_GET_STRING ("Module", "location");
+	myConfig.cLocation 		= CD_CONFIG_GET_STRING ("Module", "location");
 	
-	myConfig.cDigital = CD_CONFIG_GET_STRING ("Module", "digital");
+	myConfig.cDigital 		= CD_CONFIG_GET_STRING ("Module", "digital");
 	
 	//\_______________ On recupere les alarmes.
 	myConfig.pAlarms = g_ptr_array_new ();

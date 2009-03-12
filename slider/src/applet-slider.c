@@ -247,10 +247,12 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 	if (myData.pPrevCairoSurface != NULL && myData.pPrevCairoSurface != myData.pCairoSurface)
 		cairo_surface_destroy (myData.pPrevCairoSurface);
 	myData.pPrevCairoSurface = myData.pCairoSurface;
+	myData.pCairoSurface = NULL;
 	
 	if (myData.iPrevTexture != 0 && myData.iPrevTexture != myData.iTexture)
 		glDeleteTextures (1, &myData.iPrevTexture);
 	myData.iPrevTexture = myData.iTexture;
+	myData.iTexture = 0;
 	
 	myData.prevSlideArea = myData.slideArea;
 	
