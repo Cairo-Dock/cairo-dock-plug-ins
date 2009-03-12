@@ -19,6 +19,7 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-musicplayer.h"
 #include "applet-dbus.h"
 
+
 #include "applet-draw.h"
 #include "applet-exaile.h"
 
@@ -29,6 +30,8 @@ void cd_exaile_getSongInfos(void)
 {
 	gint uValue;	
 	gchar* length=NULL;
+	GError *error = NULL;
+
 	
 	/* Récupération du temps total */
 	length = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.duration);
@@ -44,11 +47,11 @@ void cd_exaile_getSongInfos(void)
 		myData.iSongLength = secondes + 60 * minutes;
 		g_free(length); 
 	}
-	else myData.iSongLength = -1;	
+	else myData.iSongLength = -1;
 	
 	/* On récupère le pourcentage de la position actuelle */
-	uValue = (gint)cairo_dock_dbus_get_uchar (myData.dbus_proxy_player, myData.DBus_commands.current_position);
-	
+	uValue = (gint) cairo_dock_dbus_get_uchar (myData.dbus_proxy_player, myData.DBus_commands.current_position);
+
 	/* Décalage dû à l'utilisation du pourcentage par exaile */	
 	if (myData.iPreviousuValue == uValue && myData.pPlayingStatus == PLAYER_PLAYING && myData.iCurrentTime < ((myData.iSongLength * (uValue + 1)) / 100))
 		myData.iCurrentTime = myData.iCurrentTime +1;
@@ -57,7 +60,6 @@ void cd_exaile_getSongInfos(void)
 	
 	/*Pour permettre de comparer le pourcentage au top suivant et squizzer le decalage*/
 	myData.iPreviousuValue = uValue;
-	
 	/*Recuperation des infos de la piste*/
 	if( myData.cPreviousRawTitle )
 	{
@@ -67,12 +69,12 @@ void cd_exaile_getSongInfos(void)
 	{
 		myData.cPreviousRawTitle = g_strdup(myData.cRawTitle);
 	}
-	
 	myData.cAlbum = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_album);
 	myData.cArtist = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_artist);
+	myData.cTitle = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_title);
 	//Artist & Title = RawTitle
-	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_title));
-	//cd_message("MP : %s - %s", myData.cRawTitle, myData.cAlbum);
+	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
+	cd_message("MP : %s - %s", myData.cRawTitle, myData.cAlbum);
 }
 
 
@@ -86,9 +88,9 @@ void cd_exaile_getCoverPath (void)
 	
 	myData.cCoverPath = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_cover_path);
 	if (myData.cCoverPath != NULL)
-		;//cd_message("MP : Couverture -> %s", myData.cCoverPath);
+		cd_message("MP : Couverture -> %s", myData.cCoverPath);
 	else
-		;//cd_message("MP : Pas de couverture dispo");
+		cd_message("MP : Pas de couverture dispo");
 	
 	
 }
@@ -167,6 +169,7 @@ void cd_exaile_acquisition (void)
 /* Fonction de lecture des infos */
 void cd_exaile_read_data (void) 
 {
+	//cd_debug("MP : on va aller lire les donnees");
 	if (myData.opening)
 	{
 		if (myData.dbus_enable)

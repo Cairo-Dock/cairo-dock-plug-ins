@@ -64,6 +64,10 @@ gchar *cd_check_musicPlayer_cover_exists (gchar *cURI, MySupportedPlayers iSMP) 
 			g_strfreev (cCleanURI);
 			g_strfreev (cSplitedURI);
 		break;
+		
+		default:
+			return NULL;
+		break;
 	}
 	return cURI;
 }

@@ -27,6 +27,14 @@ MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName) {
 }
 
 
+void cd_musicplayer_get_data (void)
+{
+		myData.pCurrentHandeler->acquisition();
+		myData.pCurrentHandeler->read_data();
+		cd_musicplayer_draw_icon();
+	
+}
+
 /* Prepare l'handeler et le lance */
 void cd_musicplayer_arm_handeler (void) { 
 	//cd_debug ("MP : Arming %s (with class %s)", myData.pCurrentHandeler->name, myData.pCurrentHandeler->appclass);
@@ -34,14 +42,16 @@ void cd_musicplayer_arm_handeler (void) {
 		myData.pCurrentHandeler->configure();
 		
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (1,
-		myData.pCurrentHandeler->acquisition,
-		myData.pCurrentHandeler->read_data,
-		cd_musicplayer_draw_icon,
+		NULL,
+		NULL,
+		cd_musicplayer_get_data,
 		NULL);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	myData.pCurrentHandeler->free_data();
 }
+
+
 
 
 /* Arrete l'handeler en nettoyant la memoire */
@@ -51,7 +61,6 @@ void cd_musicplayer_disarm_handeler (void) {
 	cd_debug ("MP : Disarming %s", myData.pCurrentHandeler->name);
 	myData.pCurrentHandeler->free_data();
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
-	//cd_musicplayer_free_handeler(myData.pCurrentHandeler);
 	myData.pCurrentHandeler = NULL;
 }
 

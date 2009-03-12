@@ -64,10 +64,17 @@ void musicplayer_dbus_disconnect_from_bus_Shell (void)
 gboolean cd_musicplayer_dbus_detection(void)
 {
 	gboolean isConnectedToBus = cairo_dock_dbus_detect_application (myData.DBus_commands.service);
-	gboolean isProxyCorrect = isConnectedToBus?DBUS_IS_G_PROXY(myData.dbus_proxy_player):FALSE;
+	gboolean isProxyCorrect;
+	
+	if (myData.dbus_enable)
+		isProxyCorrect = isConnectedToBus?DBUS_IS_G_PROXY(myData.dbus_proxy_player):FALSE;	
+	else 
+		isProxyCorrect = TRUE; //C'est la premiere connexion, le proxy n'est pas encore actif
 
-	if( !isProxyCorrect ) myData.dbus_proxy_player = NULL;
-
+	
+	if( !isProxyCorrect ) 
+		myData.dbus_proxy_player = NULL;
+	
 	return isConnectedToBus && isProxyCorrect;
 }
 
@@ -89,11 +96,11 @@ void cd_musicplayer_check_dbus_connection (void)
 				cd_message("MP : Connexion au bus effectuee");
 		}
 		else if ((myData.dbus_enable) && (myData.opening)) // Sinon on est deja connecte au bus, on lit juste les donnees
-			cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
+			;//cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
 		else // Sinon le lecteur n'est pas ouvert
 		{
 			myData.dbus_enable = 0;
-			cd_debug("MP : lecteur non ouvert");	
+			//cd_debug("MP : lecteur non ouvert");	
 		}
 	}
 }
@@ -117,11 +124,11 @@ void cd_musicplayer_check_dbus_connection_with_two_interfaces (void)
 				cd_message("MP : Connexions aux bus effectuees");
 		}
 		else if ((myData.dbus_enable) && (myData.opening)) // Sinon on est deja connecte au bus, on lit juste les donnees
-			cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
+			;//cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
 		else // Sinon le lecteur n'est pas ouvert
 		{
 			myData.dbus_enable = 0;
-			cd_debug("MP : lecteur non ouvert");	
+			//cd_debug("MP : lecteur non ouvert");	
 		}
 	}
 }
@@ -135,14 +142,15 @@ void cd_musicplayer_getStatus_string (void)
 {
 		gchar *status=NULL;
 		status = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_status);
-		//cd_debug ("MP : retour de DBUS sur status : %s", status);
 		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
 		if ((! g_ascii_strcasecmp(status, "playing")) || (!g_ascii_strcasecmp(status, "1")))
 		{
+			//cd_debug("MP : le lecteur est en statut PLAY");
 			myData.pPlayingStatus = PLAYER_PLAYING;
 		}
 		else if (! g_ascii_strcasecmp(status, "paused"))
 		{
+			//cd_debug("MP : le lecteur est en statut PAUSED");
 			myData.pPlayingStatus = PLAYER_PAUSED;
 		}
 		else if (! g_ascii_strcasecmp(status, "stopped"))
@@ -150,8 +158,11 @@ void cd_musicplayer_getStatus_string (void)
 			//cd_debug("MP : le lecteur est en statut STOPPED");
 			myData.pPlayingStatus = PLAYER_STOPPED;
 		}
-		
-		g_free(status);
+		if (status != NULL)
+		{
+			g_free(status);
+			status=NULL;
+		}
 }
 
 
