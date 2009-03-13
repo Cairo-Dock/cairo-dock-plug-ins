@@ -18,19 +18,19 @@ msgid ""
 " made by ChAnGFu for Cairo-Dock"
 msgstr "这是ChAnGFu为Cairo-Dock制作的幻灯片小应用程序"
 
-#: ../src/applet-notifications.c:179
+#: ../src/applet-notifications.c:154
 msgid "Play"
 msgstr "播放"
 
-#: ../src/applet-notifications.c:179
+#: ../src/applet-notifications.c:154
 msgid "Pause"
 msgstr "暂停"
 
-#: ../src/applet-notifications.c:182
+#: ../src/applet-notifications.c:157
 msgid "Open current image"
 msgstr "打开当前图片"
 
-#: ../src/applet-notifications.c:184
+#: ../src/applet-notifications.c:159
 msgid "Browse images folder"
 msgstr ""
 

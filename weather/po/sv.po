@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:153 ../src/applet-notifications.c:80
+#: ../src/applet-config.c:153
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -22,7 +22,7 @@ msgstr ""
 "Kunde inte hämta information\n"
 "Är du ansluten till Internet?"
 
-#: ../src/applet-config.c:166 ../src/applet-notifications.c:93
+#: ../src/applet-config.c:166
 msgid "I couldn't find this location"
 msgstr ""
 
@@ -116,25 +116,11 @@ msgstr ""
 "weather applet\n"
 " skapad av Fabrice Rey för Cairo-Dock"
 
-#: ../src/applet-notifications.c:67
-msgid ""
-"Enter your location\n"
-" (for exemple : Paris, France)"
-msgstr "Ange geografiska plats (t ex Stockholm, Sweden)"
-
-#: ../src/applet-notifications.c:128
-msgid "Choose your location :"
-msgstr "Välj geografisk plats:"
-
-#: ../src/applet-notifications.c:151
-msgid "Search for your location"
-msgstr "Sök efter geografisk plats:"
-
-#: ../src/applet-notifications.c:152
+#: ../src/applet-notifications.c:48
 msgid "Reload now"
 msgstr "Uppdatera nu"
 
-#: ../src/applet-notifications.c:177 ../src/applet-notifications.c:206
+#: ../src/applet-notifications.c:73 ../src/applet-notifications.c:102
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -142,35 +128,35 @@ msgstr ""
 "Inga data hittades\n"
 "Är du ansluten till Internet?"
 
-#: ../src/applet-notifications.c:193 ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:89 ../src/applet-notifications.c:114
 msgid "Temperature"
 msgstr "Temperatur"
 
-#: ../src/applet-notifications.c:194
+#: ../src/applet-notifications.c:90
 msgid "Precipitation Probability"
 msgstr "Risk för nederbörd"
 
-#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:115
 msgid "Wind"
 msgstr "Vind"
 
-#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
 msgid "Humidity"
 msgstr "Fuktighet"
 
-#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:117
 msgid "SunRise"
 msgstr "Soluppgång"
 
-#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:117
 msgid "SunSet"
 msgstr "Solnedgång"
 
-#: ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:114
 msgid "feeled"
 msgstr "upplevd"
 
-#: ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:116
 msgid "Pressure"
 msgstr "Tryck"
 
@@ -410,6 +396,17 @@ msgstr "Namn på vy för sub-dockan:"
 #: ../data/messages:109
 msgid "Render desklet in 3D ?"
 msgstr "Använd 3D för Desklet?"
+
+#~ msgid ""
+#~ "Enter your location\n"
+#~ " (for exemple : Paris, France)"
+#~ msgstr "Ange geografiska plats (t ex Stockholm, Sweden)"
+
+#~ msgid "Choose your location :"
+#~ msgstr "Välj geografisk plats:"
+
+#~ msgid "Search for your location"
+#~ msgstr "Sök efter geografisk plats:"
 
 #~ msgid "width :"
 #~ msgstr "bredd:"

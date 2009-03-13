@@ -86,12 +86,12 @@ msgid "Hey, you there !"
 msgstr "ヘイ、そこのあんた！"
 
 #: ../src/applet-notifications.c:118
-msgid "Keep quiet"
-msgstr "大人しくさせる"
-
-#: ../src/applet-notifications.c:122
 msgid "Wake up"
 msgstr "起こす"
+
+#: ../src/applet-notifications.c:122
+msgid "Keep quiet"
+msgstr "大人しくさせる"
 
 #: ../src/applet-notifications.c:125
 msgid "Start XPenguins"

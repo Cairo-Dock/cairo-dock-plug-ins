@@ -84,12 +84,12 @@ msgid "Hey, you there !"
 msgstr "Hey, sono qui !"
 
 #: ../src/applet-notifications.c:118
-msgid "Keep quiet"
-msgstr "Stai calmo !"
-
-#: ../src/applet-notifications.c:122
 msgid "Wake up"
 msgstr "Sveglia !"
+
+#: ../src/applet-notifications.c:122
+msgid "Keep quiet"
+msgstr "Stai calmo !"
 
 #: ../src/applet-notifications.c:125
 msgid "Start XPenguins"

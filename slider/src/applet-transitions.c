@@ -504,22 +504,24 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 		glEnable (GL_DEPTH_TEST);
 		
 		// image precedente.
-		glPushMatrix ();
-		glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
-		glTranslatef (0., 0., myData.slideArea.fImgW/2-1);
-		
-		_cd_slider_add_background_to_prev_slide_opengl (myApplet, 0., 0., 1.);
-		
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glEnable (GL_TEXTURE_2D);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-		
-		glTranslatef (0., 0., 1.);
-		glColor4f (1., 1., 1., 1.);
-		cairo_dock_apply_texture_at_size (myData.iPrevTexture, myData.prevSlideArea.fImgW, myData.prevSlideArea.fImgH);
-		glDisable (GL_TEXTURE_2D);
-		glPopMatrix ();
-		
+		if (fTheta < 25)  // inutile de dessiner si elle est derriere l'image courante, par l'effet de perspective (en fait 22.5, mais bizarrement ca a l'air un peu trop tot).
+		{
+			glPushMatrix ();
+			glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
+			glTranslatef (0., 0., myData.slideArea.fImgW/2-1);
+			
+			_cd_slider_add_background_to_prev_slide_opengl (myApplet, 0., 0., 1.);
+			
+			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			glEnable (GL_TEXTURE_2D);
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+			
+			glTranslatef (0., 0., 1.);
+			glColor4f (1., 1., 1., 1.);
+			cairo_dock_apply_texture_at_size (myData.iPrevTexture, myData.prevSlideArea.fImgW, myData.prevSlideArea.fImgH);
+			glDisable (GL_TEXTURE_2D);
+			glPopMatrix ();
+		}
 		// image courante a 90deg.
 		glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
 		if (myData.prevSlideArea.fImgW != 0)

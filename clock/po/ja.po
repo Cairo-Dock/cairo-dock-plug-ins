@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:415
+#: ../src/applet-config.c:416
 msgid "Search for your location :"
 msgstr ""
 
@@ -234,22 +234,32 @@ msgid "On label"
 msgstr "ラベル上に"
 
 #: ../data/messages:85
-msgid "if not, then the applet will update time once a minute, saving CPU."
-msgstr "CPU の使用を抑えて、アプレットを 1 分置きに更新します。"
-
-#: ../data/messages:87
-msgid "Show seconds ?"
-msgstr "秒を表示？"
-
-#: ../data/messages:89
 msgid "for numeric format only."
 msgstr "デジタル表示のみに適用"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "Should the time be displayed as a 24h format ?"
 msgstr "時刻を24時間形式で表示？"
 
+#: ../data/messages:89
+msgid "if not, then the applet will update time once a minute, saving CPU."
+msgstr "CPU の使用を抑えて、アプレットを 1 分置きに更新します。"
+
+#: ../data/messages:91
+msgid "Show seconds ?"
+msgstr "秒を表示？"
+
 #: ../data/messages:93
+msgid ""
+"It requires OpenGL. Set 0 to not have a smooth animation, set 1000 to have a "
+"continuous animation."
+msgstr ""
+
+#: ../data/messages:95
+msgid "Display seconds with smooth animation of a duration of :"
+msgstr ""
+
+#: ../data/messages:97
 msgid ""
 "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
 "your location from a list. Let empty to get the local time."
@@ -258,31 +268,31 @@ msgstr ""
 "右クリックしてください。ローカルの時間を取得するには空欄のままにしてくださ"
 "い。"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Timezone :"
 msgstr "タイムゾーン :"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "Style"
 msgstr "スタイル"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "List of available themes for the numeric display :"
 msgstr "デジタル表示用に利用可能なテーマのリスト :"
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "default"
 msgstr "デフォルト"
 
-#: ../data/messages:103 ../data/messages:117
+#: ../data/messages:107 ../data/messages:121
 msgid "r, v, b, a"
 msgstr "赤、緑、青、透明"
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Text color for the numeric display:"
 msgstr "デジタル表示時のテキスト色 :"
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
@@ -290,11 +300,11 @@ msgstr ""
 "例えば Monospace や Purisa など....。数字の類などなしにフォント名を入力してく"
 "ださい。"
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "Font used for the numeric display :"
 msgstr "デジタル表示時に使用するフォント :"
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid ""
 "The analogic view is based on CairoClock; otherwise it will be displayed in "
 "a numeric way."
@@ -302,41 +312,41 @@ msgstr ""
 "アナログ表示は CairoClock を元にしています。それ以外の場合、デジタル方式で表"
 "示されます。"
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Use the analogic view ?"
 msgstr "アナログ表示を使用？"
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示用に利用可能なテーマのリスト :"
 
-#: ../data/messages:119
+#: ../data/messages:123
 #, fuzzy
 msgid "Text color of the date :"
 msgstr "デジタル表示時のテキスト色 :"
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Setup time and date"
 msgstr "時刻と日付の設定"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "Let empty to use default command."
 msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Specific command to run :"
 msgstr "実行するコマンドの指定 :"
 
-#: ../data/messages:127
+#: ../data/messages:131
 msgid "Alarm"
 msgstr "アラーム"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "Add or remove an alarm :"
 msgstr ""
 

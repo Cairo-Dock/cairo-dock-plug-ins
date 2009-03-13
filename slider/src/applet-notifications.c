@@ -144,31 +144,6 @@ CD_APPLET_ON_SCROLL_BEGIN
 	
 	myData.iScrollID = g_timeout_add (100, (GSourceFunc) _cd_slider_scroll_delayed, myApplet);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	/**if (myConfig.bUseThread)
-		cairo_dock_stop_measure_timer (myData.pMeasureImage);
-	if (CD_APPLET_SCROLL_DOWN) {
-		if (myData.iTimerID == 0)  // en cours d'animation, on la finit en affichant l'image courante.
-		{
-			cd_slider_draw_default (myApplet);
-			CD_APPLET_REDRAW_MY_ICON;
-		}
-		else
-		{
-			g_source_remove(myData.iTimerID); //on coupe le timer en cours
-			myData.iTimerID = 0;
-		}
-		cd_slider_next_slide (myApplet);  // on passe a la suivante.
-	}
-	else if (CD_APPLET_SCROLL_UP) {
-		if (myData.iTimerID != 0)
-		{
-			g_source_remove(myData.iTimerID); //on coupe le timer en cours
-			myData.iTimerID = 0;
-		}
-		_cd_slider_previous_slide(myApplet);
-	}
-	else
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;*/
 CD_APPLET_ON_SCROLL_END
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.

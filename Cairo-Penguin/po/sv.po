@@ -88,12 +88,12 @@ msgid "Hey, you there !"
 msgstr "Hallå, du där!"
 
 #: ../src/applet-notifications.c:118
-msgid "Keep quiet"
-msgstr "Tyst"
-
-#: ../src/applet-notifications.c:122
 msgid "Wake up"
 msgstr "Vakna"
+
+#: ../src/applet-notifications.c:122
+msgid "Keep quiet"
+msgstr "Tyst"
 
 #: ../src/applet-notifications.c:125
 msgid "Start XPenguins"

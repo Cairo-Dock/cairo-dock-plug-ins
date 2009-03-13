@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-08 04:48+0100\n"
+"POT-Creation-Date: 2009-03-13 02:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:153 ../src/applet-notifications.c:80
+#: ../src/applet-config.c:153
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
 msgstr ""
 
-#: ../src/applet-config.c:166 ../src/applet-notifications.c:93
+#: ../src/applet-config.c:166
 msgid "I couldn't find this location"
 msgstr ""
 
@@ -112,59 +112,45 @@ msgid ""
 " made by Fabrice Rey for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:67
-msgid ""
-"Enter your location\n"
-" (for exemple : Paris, France)"
-msgstr ""
-
-#: ../src/applet-notifications.c:128
-msgid "Choose your location :"
-msgstr ""
-
-#: ../src/applet-notifications.c:151
-msgid "Search for your location"
-msgstr ""
-
-#: ../src/applet-notifications.c:152
+#: ../src/applet-notifications.c:48
 msgid "Reload now"
 msgstr ""
 
-#: ../src/applet-notifications.c:177 ../src/applet-notifications.c:206
+#: ../src/applet-notifications.c:73 ../src/applet-notifications.c:102
 msgid ""
 "No data were available\n"
 " is connection alive ?"
 msgstr ""
 
-#: ../src/applet-notifications.c:193 ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:89 ../src/applet-notifications.c:114
 msgid "Temperature"
 msgstr ""
 
-#: ../src/applet-notifications.c:194
+#: ../src/applet-notifications.c:90
 msgid "Precipitation Probability"
 msgstr ""
 
-#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:115
 msgid "Wind"
 msgstr ""
 
-#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
 msgid "Humidity"
 msgstr ""
 
-#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:117
 msgid "SunRise"
 msgstr ""
 
-#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:117
 msgid "SunSet"
 msgstr ""
 
-#: ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:114
 msgid "feeled"
 msgstr ""
 
-#: ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:116
 msgid "Pressure"
 msgstr ""
 

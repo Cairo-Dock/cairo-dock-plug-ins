@@ -1,7 +1,7 @@
 #!/bin/sh
 
 read -p "Enter applet's name : " AppletName
-if test -e $AppletName; then
+if test -e "$AppletName"; then
 	echo "Directory $AppletName already exists here; delete it before."
 	exit 1
 fi
@@ -15,11 +15,11 @@ read -p "Will your applet draw its icon dynamically (like the clock or dustbin a
 
 
 echo "creation de l'arborescence de l'applet $AppletName ..."
-cp -r template $AppletName
-find $AppletName -name ".svn" -execdir rm -rf .svn \; > /dev/null
+cp -r template "$AppletName"
+find "$AppletName" -name ".svn" -execdir rm -rf .svn \; > /dev/null
 
 
-cd $AppletName
+cd "$AppletName"
 sed -i "s/CD_APPLET_NAME/$AppletName/g" configure.ac
 sed -i "s/CD_MY_NAME/$MyName/g" configure.ac
 sed -i "s/CD_MY_MAIL/$MyMail/g" configure.ac
@@ -53,13 +53,13 @@ sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-init.c
 
 sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-notifications.c
 sed -i "s/CD_MY_NAME/$MyName/g" applet-notifications.c
-sed -i "s/CD_PKG/$UpperName/g" Makevars
-sed -i "s/CD_PKG/$UpperName/g" Makefile.in.in
 
 
 cd ../po
 sed -i "s/CD_APPLET_NAME/$AppletName/g" fr.po
 sed -i "s/CD_MY_NAME/$MyName/g" fr.po
+sed -i "s/CD_PKG/$UpperName/g" Makevars
+sed -i "s/CD_PKG/$UpperName/g" Makefile.in.in
 
 
 cd ..

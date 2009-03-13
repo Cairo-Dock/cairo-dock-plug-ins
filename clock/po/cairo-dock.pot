@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-08 04:48+0100\n"
+"POT-Creation-Date: 2009-03-13 02:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:415
+#: ../src/applet-config.c:416
 msgid "Search for your location :"
 msgstr ""
 
@@ -217,100 +217,110 @@ msgid "On label"
 msgstr ""
 
 #: ../data/messages:85
-msgid "if not, then the applet will update time once a minute, saving CPU."
-msgstr ""
-
-#: ../data/messages:87
-msgid "Show seconds ?"
-msgstr ""
-
-#: ../data/messages:89
 msgid "for numeric format only."
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "Should the time be displayed as a 24h format ?"
 msgstr ""
 
+#: ../data/messages:89
+msgid "if not, then the applet will update time once a minute, saving CPU."
+msgstr ""
+
+#: ../data/messages:91
+msgid "Show seconds ?"
+msgstr ""
+
 #: ../data/messages:93
+msgid ""
+"It requires OpenGL. Set 0 to not have a smooth animation, set 1000 to have a "
+"continuous animation."
+msgstr ""
+
+#: ../data/messages:95
+msgid "Display seconds with smooth animation of a duration of :"
+msgstr ""
+
+#: ../data/messages:97
 msgid ""
 "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
 "your location from a list. Let empty to get the local time."
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Timezone :"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "Style"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "List of available themes for the numeric display :"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "default"
 msgstr ""
 
-#: ../data/messages:103 ../data/messages:117
+#: ../data/messages:107 ../data/messages:121
 msgid "r, v, b, a"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Text color for the numeric display:"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "Font used for the numeric display :"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid ""
 "The analogic view is based on CairoClock; otherwise it will be displayed in "
 "a numeric way."
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Use the analogic view ?"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "List of available themes for the analogic display :"
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid "Text color of the date :"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Setup time and date"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "Let empty to use default command."
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Specific command to run :"
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:131
 msgid "Alarm"
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "Add or remove an alarm :"
 msgstr ""

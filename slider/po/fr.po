@@ -19,19 +19,19 @@ msgstr ""
 "Ceci est l'applet Slider\n"
 " écrit par ChAnGFu pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:179
+#: ../src/applet-notifications.c:154
 msgid "Play"
 msgstr "Jouer"
 
-#: ../src/applet-notifications.c:179
+#: ../src/applet-notifications.c:154
 msgid "Pause"
 msgstr "Pause"
 
-#: ../src/applet-notifications.c:182
+#: ../src/applet-notifications.c:157
 msgid "Open current image"
 msgstr "Ouvrir l'image courante"
 
-#: ../src/applet-notifications.c:184
+#: ../src/applet-notifications.c:159
 msgid "Browse images folder"
 msgstr ""
 

@@ -8,7 +8,6 @@
 
 #define cd_slider_schedule_next_slide(myApplet) do {\
 	if (myData.iTimerID == 0) {\
-		g_print ("+++on attend l'image suivante\n");\
 		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_next_slide, (gpointer) myApplet); } } while (0)
 
 #define cd_slider_next_slide_is_scheduled(myApplet) (myData.iTimerID != 0)

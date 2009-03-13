@@ -24,19 +24,19 @@ msgstr ""
 "Slider applet\n"
 " skapad av ChAnGFu för Cairo-Dock"
 
-#: ../src/applet-notifications.c:179
+#: ../src/applet-notifications.c:154
 msgid "Play"
 msgstr "Spela"
 
-#: ../src/applet-notifications.c:179
+#: ../src/applet-notifications.c:154
 msgid "Pause"
 msgstr "Pausa"
 
-#: ../src/applet-notifications.c:182
+#: ../src/applet-notifications.c:157
 msgid "Open current image"
 msgstr "Öppna aktuell bild"
 
-#: ../src/applet-notifications.c:184
+#: ../src/applet-notifications.c:159
 msgid "Browse images folder"
 msgstr "Bläddra i bildkatalog"
 

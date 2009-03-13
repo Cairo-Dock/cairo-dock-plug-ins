@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:415
+#: ../src/applet-config.c:416
 msgid "Search for your location :"
 msgstr ""
 
@@ -234,53 +234,63 @@ msgid "On label"
 msgstr "Sur l'étiquette"
 
 #: ../data/messages:85
+msgid "for numeric format only."
+msgstr "pour l'affichage en mode numérique seulement."
+
+#: ../data/messages:87
+msgid "Should the time be displayed as a 24h format ?"
+msgstr "Afficher l'heure au format 24h ?"
+
+#: ../data/messages:89
 msgid "if not, then the applet will update time once a minute, saving CPU."
 msgstr ""
 "Si non, alors l'applet se rafraîchira une fois par minute, épargnant le CPU."
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Show seconds ?"
 msgstr "Montrer les secondes ?"
 
-#: ../data/messages:89
-msgid "for numeric format only."
-msgstr "pour l'affichage en mode numérique seulement."
-
-#: ../data/messages:91
-msgid "Should the time be displayed as a 24h format ?"
-msgstr "Afficher l'heure au format 24h ?"
-
 #: ../data/messages:93
+msgid ""
+"It requires OpenGL. Set 0 to not have a smooth animation, set 1000 to have a "
+"continuous animation."
+msgstr ""
+
+#: ../data/messages:95
+msgid "Display seconds with smooth animation of a duration of :"
+msgstr ""
+
+#: ../data/messages:97
 msgid ""
 "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
 "your location from a list. Let empty to get the local time."
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Timezone :"
 msgstr "Fuseau horaire :"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "Style"
 msgstr "Style"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "List of available themes for the numeric display :"
 msgstr "Liste des thèmes disponibles pour la vue numérique :"
 
-#: ../data/messages:101
+#: ../data/messages:105
 msgid "default"
 msgstr ""
 
-#: ../data/messages:103 ../data/messages:117
+#: ../data/messages:107 ../data/messages:121
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Text color for the numeric display:"
 msgstr "Couleur du texte pour l'affiche numérique:"
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
@@ -288,11 +298,11 @@ msgstr ""
 "par exemple Monospace, Purisa, ... Ecrivez simplement la nom de la police "
 "sans nombres"
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "Font used for the numeric display :"
 msgstr "Police utilisée pour l'affichage numérique :"
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid ""
 "The analogic view is based on CairoClock; otherwise it will be displayed in "
 "a numeric way."
@@ -300,40 +310,40 @@ msgstr ""
 "La vue analogique est basée sur CairoClock; autrement il sera affiché en "
 "mode numérique."
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Use the analogic view ?"
 msgstr "Utiliser la vue analogique ?"
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour la vue analogique :"
 
-#: ../data/messages:119
+#: ../data/messages:123
 msgid "Text color of the date :"
 msgstr "Couleur du texte de la date :"
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Setup time and date"
 msgstr "Régler la date et l'heure"
 
-#: ../data/messages:123
+#: ../data/messages:127
 msgid "Let empty to use default command."
 msgstr "Laissez vide pour utiliser la commande par défaut."
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Specific command to run :"
 msgstr "Commande spécifique à exécuter :"
 
-#: ../data/messages:127
+#: ../data/messages:131
 msgid "Alarm"
 msgstr "Alarme"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:135
 msgid "Add or remove an alarm :"
 msgstr ""
 

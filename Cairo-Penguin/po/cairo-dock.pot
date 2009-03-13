@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-08 04:48+0100\n"
+"POT-Creation-Date: 2009-03-13 02:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,11 +82,11 @@ msgid "Hey, you there !"
 msgstr ""
 
 #: ../src/applet-notifications.c:118
-msgid "Keep quiet"
+msgid "Wake up"
 msgstr ""
 
 #: ../src/applet-notifications.c:122
-msgid "Wake up"
+msgid "Keep quiet"
 msgstr ""
 
 #: ../src/applet-notifications.c:125

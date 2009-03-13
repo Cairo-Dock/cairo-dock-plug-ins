@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:153 ../src/applet-notifications.c:80
+#: ../src/applet-config.c:153
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -22,7 +22,7 @@ msgstr ""
 "Je n'ai pas pu récupérer les info\n"
 " la connexion est-elle établie ?"
 
-#: ../src/applet-config.c:166 ../src/applet-notifications.c:93
+#: ../src/applet-config.c:166
 msgid "I couldn't find this location"
 msgstr ""
 
@@ -116,27 +116,11 @@ msgstr ""
 "Ceci est l'applet weather\n"
 " écrite par Fabrice Rey pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:67
-msgid ""
-"Enter your location\n"
-" (for exemple : Paris, France)"
-msgstr ""
-"Entrez votre location\n"
-" (par exemple : Paris, France)"
-
-#: ../src/applet-notifications.c:128
-msgid "Choose your location :"
-msgstr "Choisissez votre location :"
-
-#: ../src/applet-notifications.c:151
-msgid "Search for your location"
-msgstr "Chercher votre location"
-
-#: ../src/applet-notifications.c:152
+#: ../src/applet-notifications.c:48
 msgid "Reload now"
 msgstr "Recharger maintenant"
 
-#: ../src/applet-notifications.c:177 ../src/applet-notifications.c:206
+#: ../src/applet-notifications.c:73 ../src/applet-notifications.c:102
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -144,35 +128,35 @@ msgstr ""
 "Aucune donnée disponible\n"
 " la connexion est-elle établie ?"
 
-#: ../src/applet-notifications.c:193 ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:89 ../src/applet-notifications.c:114
 msgid "Temperature"
 msgstr "Température"
 
-#: ../src/applet-notifications.c:194
+#: ../src/applet-notifications.c:90
 msgid "Precipitation Probability"
 msgstr "Probabilité de précipitation"
 
-#: ../src/applet-notifications.c:195 ../src/applet-notifications.c:219
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:115
 msgid "Wind"
 msgstr "Vent"
 
-#: ../src/applet-notifications.c:196 ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
 msgid "Humidity"
 msgstr "Humidité"
 
-#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:117
 msgid "SunRise"
 msgstr "Lever du soleil"
 
-#: ../src/applet-notifications.c:197 ../src/applet-notifications.c:221
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:117
 msgid "SunSet"
 msgstr "Coucher du soleil"
 
-#: ../src/applet-notifications.c:218
+#: ../src/applet-notifications.c:114
 msgid "feeled"
 msgstr "ressentie"
 
-#: ../src/applet-notifications.c:220
+#: ../src/applet-notifications.c:116
 msgid "Pressure"
 msgstr "Pression"
 
@@ -422,6 +406,19 @@ msgstr "Nom de la vue utilisée pour le sous-dock :"
 #: ../data/messages:109
 msgid "Render desklet in 3D ?"
 msgstr "Dessiner le desklet en 3D ?"
+
+#~ msgid ""
+#~ "Enter your location\n"
+#~ " (for exemple : Paris, France)"
+#~ msgstr ""
+#~ "Entrez votre location\n"
+#~ " (par exemple : Paris, France)"
+
+#~ msgid "Choose your location :"
+#~ msgstr "Choisissez votre location :"
+
+#~ msgid "Search for your location"
+#~ msgstr "Chercher votre location"
 
 #~ msgid "width :"
 #~ msgstr "largeur :"
