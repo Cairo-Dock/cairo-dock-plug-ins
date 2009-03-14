@@ -11,6 +11,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <string.h>
 
 #include "applet-struct.h"
+#include "applet-recent.h"
 #include "applet-notifications.h"
 
 
@@ -19,6 +20,8 @@ CD_APPLET_ABOUT (D_("This is the GMenu applet\n made by Fabounet (Fabrice Rey) f
 static void cd_menu_show_menu (void)
 {
 	if (myData.pMenu != NULL)
+	{
+		myDock->bMenuVisible = TRUE;
 		gtk_menu_popup (GTK_MENU (myData.pMenu),
 			NULL,
 			NULL,
@@ -26,6 +29,7 @@ static void cd_menu_show_menu (void)
 			NULL,
 			1,
 			gtk_get_current_event_time ());
+	}
 }
 static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
 {
@@ -83,8 +87,9 @@ static void _cd_menu_configure_menu (GtkMenuItem *menu_item, gpointer data)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_SUB_MENU ("GMenu", pSubMenu, CD_APPLET_MY_MENU);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-		CD_APPLET_ADD_IN_MENU (D_("Quick launch"), cd_menu_show_hide_quick_launch, pSubMenu);
-		CD_APPLET_ADD_IN_MENU (D_("Configure Menu"), _cd_menu_configure_menu, pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Quick launch"), GTK_STOCK_EXECUTE, cd_menu_show_hide_quick_launch, pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"), GTK_STOCK_PREFERENCES, _cd_menu_configure_menu, pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear recent"), GTK_STOCK_CLEAR, cd_menu_clear_recent, pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

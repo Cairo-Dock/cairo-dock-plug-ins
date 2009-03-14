@@ -64,5 +64,5 @@ cubes = true
 #I[0;5000] Duration of the animation :
 duration = 600
 
-#i[5;50] Number of pieces :
-nb pieces = 21
+#i[5;21] Number of pieces :
+nb pieces = 7

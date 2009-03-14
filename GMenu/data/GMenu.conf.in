@@ -91,6 +91,9 @@ fg alpha = 1
 #b Display icons in the menu ?
 has icons=true
 
+#b Show recent documents ?
+show recent = true
+
 #k Shortkey to show/hide the menu :
 menu shortkey = <Shift>F1
 

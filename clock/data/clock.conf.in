@@ -101,7 +101,7 @@ show date = 1
 show seconds = false
 
 #I-[0;1000] Display seconds with smooth animation of a duration of :
-#{It requires OpenGL. Set 0 to not have a smooth animation, set 1000 to have a continuous animation.}
+#{In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous animation. It requires OpenGL.}
 smooth = 500
 
 #s- Timezone :

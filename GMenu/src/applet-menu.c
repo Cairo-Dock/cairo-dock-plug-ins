@@ -494,7 +494,7 @@ void setup_menuitem (GtkWidget   *menuitem,
 
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	gtk_widget_show (label);
-       
+
 	gtk_container_add (GTK_CONTAINER (menuitem), label);
 
 	if (image) {

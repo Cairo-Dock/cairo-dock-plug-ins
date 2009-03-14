@@ -30,6 +30,7 @@ typedef struct {
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gboolean bHasIcons;
+	gboolean bShowRecent;
 	gchar *cMenuShortkey;
 	gchar *cQuickLaunchShortkey;
 	gchar *cConfigureMenuCommand;
@@ -43,6 +44,8 @@ struct _AppletData {
 	guint iSidFakeMenuIdle;
 	guint iSidCreateMenuIdle;
 	guint iSidTreeChangeIdle;
+	GtkRecentManager *pRecentManager;
+	GtkWidget *pRecentMenuItem;
 	} ;
 
 

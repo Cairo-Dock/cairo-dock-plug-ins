@@ -38,7 +38,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bExplodeCube = CD_CONFIG_GET_BOOLEAN ("Explode", "cubes");
 	
 	myConfig.iBreakDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Break", "duration", 600);
-	int iBreakNbPieces = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Break", "nb pieces", 21);
+	int iBreakNbPieces = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Break", "nb pieces", 7);
 	myConfig.iBreakNbBorderPoints = MAX (1, (iBreakNbPieces - 3) / 2);
 CD_APPLET_GET_CONFIG_END
 

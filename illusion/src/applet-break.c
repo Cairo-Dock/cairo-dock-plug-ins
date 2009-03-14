@@ -31,17 +31,18 @@ gboolean cd_illusion_init_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *
 	yctrl(0) = 1.;
 	xctrl(1) = 1.;
 	yctrl(1) = 1.;
-	double f;
+	double f, f0 = 1. / (myConfig.iBreakNbBorderPoints + 1);  // f0 = fraction moyenne.
 	int i,j=2;
 	for (i = 0; i < 2*myConfig.iBreakNbBorderPoints+1; i ++, j++)
 	{
 		// un nouveau point sur l'un des cotes.
 		if (i == 2*myConfig.iBreakNbBorderPoints)  // dernier coup.
-			f = 0.;
+			f = 1.;
 		else
-			f = g_random_double ();
+			f = f0 * (.5 + g_random_double ());  // entre .5f0 et 1.5f0, sachant que 1.5f0 <= 3/4 < 1
 		xctrl(j) = ((j>>1) & 1);
-		yctrl(j) = f * (j > 3 ? yctrl(j-4) : yctrl(0));
+		yctrl(j) = (1 - f) * (j > 3 ? yctrl(j-4) : yctrl(0));
+		g_print ("yctrl(j) : %.3f (%.2f)\n", yctrl(j), f);
 		
 		// une brisure au milieu du segment forme.
 		j ++;
@@ -104,7 +105,7 @@ gboolean cd_illusion_init_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *
 		pPart->yinf = MIN (MIN (ypart(0), ypart(1)), ypart(2));
 		if (pPart->iNbPts == 4)
 			pPart->yinf = MIN (pPart->yinf, ypart(3));
-		pPart->fRotationAngle = g_random_double () * 15.;  // ca separe un peu les morceaux, pour donner l'effet de brisure des le debut.
+		pPart->fRotationAngle = 5 + g_random_double () * 15.;  // ca separe un peu les morceaux, pour donner l'effet de brisure des le debut.
 	}
 	
 	return TRUE;

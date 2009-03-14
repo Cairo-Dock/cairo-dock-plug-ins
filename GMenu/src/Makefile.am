@@ -21,6 +21,8 @@ libcd_GMenu_la_SOURCES = \
 	applet-menu.h\
 	applet-util.c\
 	applet-util.h\
+	applet-recent.c\
+	applet-recent.h\
 	applet-struct.h
 
 

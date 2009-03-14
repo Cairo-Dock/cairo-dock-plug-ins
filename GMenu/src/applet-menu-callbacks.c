@@ -14,6 +14,7 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 #include "applet-struct.h"
 #include "applet-menu.h"
 #include "applet-util.h"
+#include "applet-recent.h"
 #include "applet-menu-callbacks.h"
 
 static guint load_icons_id = 0;
@@ -227,6 +228,10 @@ void main_menu_append (GtkWidget *main_menu,
 			   "panel-menu-append-callback-data",
 			   myApplet);
 	
+	if (myConfig.bShowRecent)
+	{
+		cd_menu_append_recent_to_menu (main_menu, myData.pRecentManager);
+	}
 	/*item = panel_place_menu_item_new (TRUE);
 	panel_place_menu_item_set_panel (item, panel);
 	gtk_menu_shell_append (GTK_MENU_SHELL (main_menu), item);

@@ -28,6 +28,8 @@ CD_APPLET_INIT_BEGIN
 	
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
+	if (myConfig.bShowRecent)
+		myData.pRecentManager = gtk_recent_manager_get_default ();
 	myData.pMenu = create_main_menu (myApplet);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -68,10 +70,21 @@ CD_APPLET_RELOAD_BEGIN
 		cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, NULL);  // shortkey were unbinded during reset_config.
 		cd_keybinder_bind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch, NULL);
 		
-		if (myData.pMenu != NULL && myConfig.bHasIcons != myData.bIconsLoaded)
+		if (myConfig.bShowRecent && myData.pRecentManager == NULL)
+			myData.pRecentManager = gtk_recent_manager_get_default ();
+		
+		if (! myConfig.bShowRecent && myData.pRecentMenuItem != NULL)
+		{
+			gtk_widget_destroy (myData.pRecentMenuItem);
+			myData.pRecentMenuItem = NULL;
+		}
+		
+		if (myData.pMenu != NULL &&
+			(myConfig.bHasIcons != myData.bIconsLoaded) || (myConfig.bShowRecent && myData.pRecentMenuItem == NULL))
 		{
 			gtk_widget_destroy (myData.pMenu);
 			myData.pMenu = NULL;
+			myData.pRecentMenuItem = NULL;
 		}
 		
 		if (myData.pMenu == NULL)
