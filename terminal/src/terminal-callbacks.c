@@ -5,7 +5,6 @@
 #include "terminal-struct.h"
 #include "terminal-callbacks.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 static void _terminal_write_command_with_data (GtkWidget *pWidget, gchar *cCommand, gchar *cData)

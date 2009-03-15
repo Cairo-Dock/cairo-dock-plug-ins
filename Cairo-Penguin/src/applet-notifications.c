@@ -112,7 +112,8 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		
-		CD_APPLET_ADD_SUB_MENU (D_("Hey, you there !"), pModuleSubMenu, CD_APPLET_MY_MENU);
+		GtkWidget *pModuleSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Hey, you there !"), CD_APPLET_MY_MENU);
+		//GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		if (penguin_is_resting (pAnimation))
 		{
 			CD_APPLET_ADD_IN_MENU(D_("Wake up"), _wake_up, pModuleSubMenu);

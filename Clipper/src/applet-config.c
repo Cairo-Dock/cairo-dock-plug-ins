@@ -14,7 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-clipboard.h"
 #include "applet-config.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 static void _cd_clipper_on_keybinding_pull (const char *keystring, gpointer user_data)
 {

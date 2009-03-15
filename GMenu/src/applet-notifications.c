@@ -85,7 +85,7 @@ static void _cd_menu_configure_menu (GtkMenuItem *menu_item, gpointer data)
 	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("GMenu", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Quick launch"), GTK_STOCK_EXECUTE, cd_menu_show_hide_quick_launch, pSubMenu);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"), GTK_STOCK_PREFERENCES, _cd_menu_configure_menu, pSubMenu);

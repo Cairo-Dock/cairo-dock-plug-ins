@@ -6,8 +6,6 @@
 #include "applet-notifications.h"
 #include "applet-rame.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_ABOUT (D_("This is the rame applet\n made by parAdOxxx_ZeRo for Cairo-Dock"))
 
@@ -112,7 +110,7 @@ static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstanc
 	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-		CD_APPLET_ADD_SUB_MENU ("ram-meter", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_IN_MENU (D_("Monitor System"), _show_monitor_system, pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

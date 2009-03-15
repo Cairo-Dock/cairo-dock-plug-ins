@@ -20,7 +20,6 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-draw.h"
 #include "applet-nvidia.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 static char  *s_cTmpFileConfig = NULL;
 static char  *s_cTmpFile = NULL;

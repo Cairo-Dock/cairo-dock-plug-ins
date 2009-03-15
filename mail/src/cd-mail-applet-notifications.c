@@ -75,12 +75,12 @@ static void _cd_mail_update_account (GtkMenuItem *menu_item, CDMailAccount *pMai
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 
-	CD_APPLET_ADD_SUB_MENU ("mail", pSubMenu, CD_APPLET_MY_MENU);
+	 GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
         if(myData.pMailAccounts && myData.pMailAccounts->len > 0)
         {
           guint i;
           
-          CD_APPLET_ADD_SUB_MENU (_("Refresh a mail account"), pRefreshAccountSubMenu, pSubMenu);
+          GtkWidget *pRefreshAccountSubMenu = CD_APPLET_ADD_SUB_MENU (_("Refresh a mail account"), pSubMenu);
 
           /* add a "update account" item for each mailbox */
           for (i = 0; i < myData.pMailAccounts->len; i ++)

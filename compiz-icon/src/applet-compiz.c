@@ -19,7 +19,6 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-load-icon.h"
 #include "applet-compiz.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 static char  *s_cTmpFile = NULL;
 

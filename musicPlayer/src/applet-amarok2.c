@@ -22,7 +22,6 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-draw.h"
 #include "applet-amarok2.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 //Les Fonctions

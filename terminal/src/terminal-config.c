@@ -27,7 +27,6 @@
 #include "terminal-widget.h"
 #include "terminal-config.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 static void set_color(GdkColor *color, double src[3]) {

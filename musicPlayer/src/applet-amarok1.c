@@ -20,7 +20,6 @@ Fabrice Rey (fabounet@users.berlios.de)
 #include "applet-dcop.h"
 #include "applet-cover.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 //Les Fonctions
 void cd_amarok1_free_data (void) { //Permet de libéré la mémoire prise par notre controleur

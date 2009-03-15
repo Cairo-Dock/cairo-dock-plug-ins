@@ -23,7 +23,6 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-draw.h"
 #include "applet-exaile.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 void cd_exaile_getSongInfos(void)

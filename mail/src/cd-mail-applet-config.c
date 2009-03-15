@@ -14,7 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "cd-mail-applet-config.h"
 #include "cd-mail-applet-etpan.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 struct storage_type_def {
   char * name;

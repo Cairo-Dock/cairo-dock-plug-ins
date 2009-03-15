@@ -12,7 +12,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-struct.h"
 #include "applet-stacks.h"
  
-CD_APPLET_INCLUDE_MY_VARS
 
 //ajouter dans applet facility?
 static gboolean _isin (gchar **cString, gchar *cCompar) {

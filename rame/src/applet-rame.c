@@ -14,7 +14,6 @@
 #include "applet-rame.h"
 #include "cairo-dock.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 #define RAME_DATA_PIPE "/proc/meminfo"
 #define CD_RAME_PROC_FS "/proc"

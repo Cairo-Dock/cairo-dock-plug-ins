@@ -23,7 +23,7 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("Dustbin", pModuleSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
 	GString *sLabel = g_string_new ("");
 	CdDustbin *pDustbin;
@@ -36,7 +36,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	else
 	{
-		CD_APPLET_ADD_SUB_MENU (D_("Show Trash"), pShowSubMenu, pModuleSubMenu);
+		GtkWidget *pShowSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Show Trash"), pModuleSubMenu);
 		for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 		{
 			pDustbin = pElement->data;
@@ -45,7 +45,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		}
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Show All"), cd_dustbin_show_trash, pShowSubMenu, NULL);
 	
-		CD_APPLET_ADD_SUB_MENU (D_("Delete Trash"), pDeleteSubMenu, pModuleSubMenu);
+		GtkWidget *pDeleteSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Delete Trash"), pModuleSubMenu);
 		for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 		{
 			pDustbin = pElement->data;

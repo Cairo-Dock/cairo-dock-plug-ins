@@ -10,7 +10,6 @@
 #include "applet-netspeed.h"
 #include "cairo-dock.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 #define NETSPEED_DATA_PIPE "/proc/net/dev"
 

@@ -13,7 +13,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-config.h"
 #include "applet-digital.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 #define CD_CLOCK_DATE_BUFFER_LENGTH 50
 static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];

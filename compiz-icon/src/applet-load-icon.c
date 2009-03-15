@@ -14,7 +14,6 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-load-icon.h"
 #include "applet-compiz.h"
  
-CD_APPLET_INCLUDE_MY_VARS
 
 #define MY_NB_ICON_STATE 3
 #define MY_NB_SUB_ICONS 5

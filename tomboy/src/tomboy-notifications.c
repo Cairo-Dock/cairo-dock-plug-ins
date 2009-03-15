@@ -6,7 +6,6 @@
 #include "tomboy-struct.h"
 #include "tomboy-notifications.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 CD_APPLET_ABOUT (D_("Applet by Necropotame (Adrien Pilleboue)"))

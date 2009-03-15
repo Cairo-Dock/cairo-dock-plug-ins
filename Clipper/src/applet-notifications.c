@@ -15,7 +15,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-clipboard.h"
 #include "applet-notifications.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 CD_APPLET_ABOUT (D_("This is the Clipper applet\n made by Fabrice Rey (Fabounet) for Cairo-Dock"))
@@ -61,7 +60,7 @@ static void _cd_clipper_clear_history (GtkMenuItem *menu_item, gpointer *data)
 	        myData.iNbItems[i] = 0;
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("Clipper", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Clear clipboard History", "gtk-clear", _cd_clipper_clear_history, pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

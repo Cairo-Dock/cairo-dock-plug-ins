@@ -15,8 +15,6 @@ Fabrice Rey (fabounet@users.berlios.de)
 #include "applet-notifications.h"
 #include "applet-infopipe.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 void cd_xmms_prev(CairoDockModuleInstance *myApplet) {
 	GError *erreur = NULL;
@@ -256,7 +254,7 @@ static void _on_repeat (GtkMenuItem *menu_item, CairoDockModuleInstance *myApple
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("XMMS", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	CD_APPLET_ADD_IN_MENU (D_("Previous"), _on_prev, CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), _on_play_pause, CD_APPLET_MY_MENU);
 	if (myConfig.iPlayer != MY_BANSHEE) {

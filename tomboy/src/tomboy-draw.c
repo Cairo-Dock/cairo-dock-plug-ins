@@ -4,7 +4,6 @@
 #include "tomboy-struct.h"
 #include "tomboy-draw.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 void load_all_surfaces(void)

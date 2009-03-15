@@ -19,7 +19,6 @@ Fabrice Rey (fabounet@users.berlios.de)
 
 #include "applet-xmms.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 //Structure et données necessaires
 enum {

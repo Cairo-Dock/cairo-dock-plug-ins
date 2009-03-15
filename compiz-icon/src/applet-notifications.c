@@ -20,8 +20,6 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-notifications.h"
 #include "applet-compiz.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_ABOUT (D_("This is the compiz-icon applet\n made by ChAnGFu for Cairo-Dock"))
 
@@ -189,9 +187,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU (D_("Reload Emerald"), cd_compiz_start_favorite_decorator, CD_APPLET_MY_MENU);
 	}
 	
-	CD_APPLET_ADD_SUB_MENU ("Compiz Icon", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	CD_APPLET_ADD_IN_MENU (D_("Switch Windows Manager"), cd_compiz_switch_manager, pSubMenu);
-	CD_APPLET_ADD_SUB_MENU (D_("Switch Windows Decorator"), pDecoratorSubMenu, pSubMenu);
+	GtkWidget *pDecoratorSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Switch Windows Decorator"), pSubMenu);
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cDecorators[DECORATOR_EMERALD], cd_compiz_switch_decorator, pDecoratorSubMenu, GINT_TO_POINTER (DECORATOR_EMERALD));
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cDecorators[DECORATOR_GTK], cd_compiz_switch_decorator, pDecoratorSubMenu, GINT_TO_POINTER (DECORATOR_GTK));
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cDecorators[DECORATOR_KDE], cd_compiz_switch_decorator, pDecoratorSubMenu, GINT_TO_POINTER (DECORATOR_KDE));

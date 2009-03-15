@@ -14,7 +14,6 @@ static DBusGProxy *dbus_proxy_power = NULL;
 static DBusGProxy *dbus_proxy_stats = NULL;
 static DBusGProxy *dbus_proxy_battery = NULL;
 
-CD_APPLET_INCLUDE_MY_VARS
 
 static gboolean cd_powermanager_find_battery (void) {
 	GError *erreur = NULL;

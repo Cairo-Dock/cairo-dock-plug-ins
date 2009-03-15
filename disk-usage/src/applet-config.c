@@ -13,7 +13,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-config.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");

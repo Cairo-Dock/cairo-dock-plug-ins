@@ -7,7 +7,6 @@
 #include "applet-nvidia.h"
 #include "applet-draw.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 void cd_nvidia_draw_no_data (void) {

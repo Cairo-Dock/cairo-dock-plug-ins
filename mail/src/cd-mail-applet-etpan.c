@@ -16,7 +16,6 @@ Written by Christophe Chapuis (for any bug report, please mail me to tofe@users.
 
 gboolean cd_mail_update_account_status( CDMailAccount *pMailAccount );
 
-CD_APPLET_INCLUDE_MY_VARS
 
 enum {
   POP3_STORAGE = 1,

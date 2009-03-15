@@ -13,7 +13,6 @@ Fabrice Rey (fabounet@users.berlios.de)
 #include "applet-struct.h"
 #include "applet-draw.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 static gchar *s_cIconName[PLAYER_NB_STATUS] = {"xmms.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 

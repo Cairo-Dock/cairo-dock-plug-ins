@@ -27,7 +27,6 @@
 #include "cd-tray.h"
 #include "systray-struct.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 static const guint icon_size_w = 24;
 static const guint icon_size_h = 24;

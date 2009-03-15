@@ -22,7 +22,6 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-draw.h"
 #include "applet-rhythmbox.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 //Les Fonctions

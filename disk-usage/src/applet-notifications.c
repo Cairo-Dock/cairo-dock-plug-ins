@@ -16,8 +16,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-hdd.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_ABOUT (D_("This is the disk-usage applet\n made by Benjamin SANS for Cairo-Dock"))
 
@@ -41,7 +39,7 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("disk-usage", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
 		//CD_APPLET_ADD_IN_MENU_WITH_DATA (D_(myData.bAcquisitionOK ? "Unmount" : "Mount"), cd_mount_unmount_device, CD_APPLET_MY_MENU, myApplet);
 			

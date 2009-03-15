@@ -17,7 +17,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 static GList *s_pUriList = NULL;
 
-CD_APPLET_INCLUDE_MY_VARS
 
 void cd_weblet_free_uri_list (void)
 {
@@ -84,7 +83,7 @@ static void _cd_weblets_open_URI (GtkMenuItem *menu_item, gpointer *data)
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gint i = 0;
-	CD_APPLET_ADD_SUB_MENU ("weblets", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		if( myConfig.cListURI != NULL )
 		{
 			cd_weblet_free_uri_list ();

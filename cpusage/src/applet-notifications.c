@@ -140,7 +140,7 @@ static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstanc
 	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-		CD_APPLET_ADD_SUB_MENU ("cpusage", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_IN_MENU (D_("Monitor System"), _show_monitor_system, pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

@@ -13,7 +13,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-load-icons.h"
 #include "applet-stacks.h"
  
-CD_APPLET_INCLUDE_MY_VARS
 
 void cd_stacks_build_icons (void) {
 	if (myConfig.bLocalDir) {

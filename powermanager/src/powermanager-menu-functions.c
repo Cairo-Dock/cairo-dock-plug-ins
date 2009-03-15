@@ -6,7 +6,6 @@
 #include "powermanager-struct.h"
 #include "powermanager-menu-functions.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 //*********************************************************************************
@@ -42,7 +41,7 @@ void power_config(void) {  /// a mettre dans les plug-ins d'integration.
 //*********************************************************************************
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	//on rajoute un sous menu, sinon ce n'est pas esthétique
-	CD_APPLET_ADD_SUB_MENU ("PowerManager", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	CD_APPLET_ADD_IN_MENU (D_("Set up power management"), power_config, pSubMenu);
 	if (myData.dbus_enable)
 	{

@@ -14,9 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "applet-struct.h"
 #include "applet-notifications.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
-
 
 CD_APPLET_ABOUT (D_("This is the shortcuts applet\n made by Fabounet for Cairo-Dock"))
 
@@ -38,7 +35,7 @@ static void _cd_shortcuts_remove_bookmark (GtkMenuItem *menu_item, gchar *cURI)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if ((myDock && CD_APPLET_CLICKED_ICON == myIcon) || myDesklet)
 	{
-		CD_APPLET_ADD_SUB_MENU ("shortcuts", pSubMenu, CD_APPLET_MY_MENU);
+		GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	}
 	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == 10)

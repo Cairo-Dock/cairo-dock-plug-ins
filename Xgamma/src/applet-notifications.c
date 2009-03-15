@@ -16,8 +16,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-xgamma.h"
 #include "applet-notifications.h"
 
-CD_APPLET_INCLUDE_MY_VARS
-
 
 CD_APPLET_ABOUT (D_("This is the Xgamma applet\n made by Fabrice Rey for Cairo-Dock"))
 
@@ -44,7 +42,7 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_SUB_MENU ("Xgamma", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
@@ -87,3 +85,22 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		}
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+CD_APPLET_ON_SCROLL_BEGIN
+	double fGamma = xgamma_get_gamma (&myData.Xgamma);
+	if (CD_APPLET_SCROLL_UP)
+	{
+		myData.Xgamma.red *= .99;
+		myData.Xgamma.green *= .99;
+		myData.Xgamma.blue *= .99;
+	}
+	else
+	{
+		myData.Xgamma.red *= 1.01;
+		myData.Xgamma.green *= 1.01;
+		myData.Xgamma.blue *= 1.01;
+	}
+	
+	xgamma_set_gamma (&myData.Xgamma);
+CD_APPLET_ON_SCROLL_END

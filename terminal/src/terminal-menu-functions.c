@@ -77,7 +77,7 @@ static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
-	CD_APPLET_ADD_SUB_MENU("Terminal", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	CD_APPLET_ADD_IN_MENU(D_("New Tab"), on_new_tab, pSubMenu);
 	CD_APPLET_ADD_IN_MENU(D_("Rename current Tab"), on_rename_tab, pSubMenu);
 	CD_APPLET_ADD_IN_MENU(D_("Close current Tab"), on_close_tab, pSubMenu);

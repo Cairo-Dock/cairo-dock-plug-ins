@@ -7,7 +7,6 @@
 #include "applet-notifications.h"
 #include "applet-config.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 
 CD_APPLET_GET_CONFIG_BEGIN

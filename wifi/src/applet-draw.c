@@ -7,7 +7,6 @@
 #include "applet-wifi.h"
 #include "applet-draw.h"
 
-CD_APPLET_INCLUDE_MY_VARS
 
 static gchar *s_cIconName[WIFI_NB_QUALITY] = {"link-0.svg", "link-1.svg", "link-2.svg", "link-3.svg", "link-4.svg", "link-5.svg"};
 static gchar *s_cLevelQualityName[WIFI_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Excellent")};

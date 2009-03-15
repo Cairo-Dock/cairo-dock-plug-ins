@@ -99,7 +99,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	static gpointer data[2] = {NULL, NULL};
 	data[0] = myApplet;
 	data[1] = pClickedIcon;
-	CD_APPLET_ADD_SUB_MENU ("Stack", pSubMenu, CD_APPLET_MY_MENU);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste (drag'n'drop)"), GTK_STOCK_PASTE, _cd_stack_paste_content, pSubMenu);
 		if (pClickedIcon != NULL && pClickedIcon != myIcon)
 		{
