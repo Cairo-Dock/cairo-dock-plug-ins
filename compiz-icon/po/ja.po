@@ -14,27 +14,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-load-icon.c:22
+#: ../src/applet-load-icon.c:21
 msgid "Configure Compiz"
 msgstr "Compiz の設定"
 
-#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:188
+#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:186
 msgid "Emerald Manager"
 msgstr "Emerald マネージャ"
 
-#: ../src/applet-load-icon.c:22
+#: ../src/applet-load-icon.c:21
 msgid "Reload WM"
 msgstr "WM の再読み込み"
 
-#: ../src/applet-load-icon.c:22
+#: ../src/applet-load-icon.c:21
 msgid "Exposition"
 msgstr "展開"
 
-#: ../src/applet-load-icon.c:22 ../data/messages:83
+#: ../src/applet-load-icon.c:21 ../data/messages:83
 msgid "Widget Layer"
 msgstr "ウィジェット・レイヤ"
 
-#: ../src/applet-notifications.c:26
+#: ../src/applet-notifications.c:24
 msgid ""
 "This is the compiz-icon applet\n"
 " made by ChAnGFu for Cairo-Dock"
@@ -42,7 +42,7 @@ msgstr ""
 "これは ChAnGFu によって製作された \n"
 "Cairo-Dock 用の compiz-icon アプレットです。"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:102
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
@@ -51,27 +51,27 @@ msgstr ""
 "て\n"
 "CCSM をインストールする必要があります。"
 
-#: ../src/applet-notifications.c:189
+#: ../src/applet-notifications.c:187
 msgid "Reload Emerald"
 msgstr "Emerald の再読み込み"
 
-#: ../src/applet-notifications.c:193
+#: ../src/applet-notifications.c:191
 msgid "Switch Windows Manager"
 msgstr "ウィンドウ・マネージャの切り替え"
 
-#: ../src/applet-notifications.c:194
+#: ../src/applet-notifications.c:192
 msgid "Switch Windows Decorator"
 msgstr "ウィンドウ・デコレータの切り替え"
 
-#: ../src/applet-notifications.c:203
+#: ../src/applet-notifications.c:201
 msgid "Toggle Exposition Mode"
 msgstr "展開モードのオンオフ"
 
-#: ../src/applet-notifications.c:204
+#: ../src/applet-notifications.c:202
 msgid "Toggle Widgets Layer"
 msgstr "ウィジェット・レイヤのオンオフ"
 
-#: ../src/applet-notifications.c:206
+#: ../src/applet-notifications.c:204
 msgid "Toggle Show Desktop"
 msgstr "デスクトップの表示のオンオフ"
 

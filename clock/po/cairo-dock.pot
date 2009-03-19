@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-13 02:45+0100\n"
+"POT-Creation-Date: 2009-03-15 23:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,8 +234,8 @@ msgstr ""
 
 #: ../data/messages:93
 msgid ""
-"It requires OpenGL. Set 0 to not have a smooth animation, set 1000 to have a "
-"continuous animation."
+"In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
+"animation. It requires OpenGL."
 msgstr ""
 
 #: ../data/messages:95

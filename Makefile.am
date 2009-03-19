@@ -60,6 +60,9 @@ if WITH_WEBLETS
 weblets_dir=weblets
 endif
 
+if WITH_KEYBOARD_INDICATOR
+keyboard_indicator_dir=keyboard-indicator
+endif
 
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
@@ -80,6 +83,7 @@ SUBDIRS = . po\
 	${gnome_old_dir}\
 	icon-effect\
 	illusion\
+	${keyboard_indicator_dir}\
 	logout\
 	${mail_dir}\
 	motion-blur\

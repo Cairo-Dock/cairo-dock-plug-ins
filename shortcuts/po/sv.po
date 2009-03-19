@@ -21,7 +21,7 @@ msgstr ""
 msgid "Unmounted"
 msgstr "Avmonterad"
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:18
 msgid ""
 "This is the shortcuts applet\n"
 " made by Fabounet for Cairo-Dock"
@@ -29,7 +29,7 @@ msgstr ""
 "shortcuts applet\n"
 " skapad av Fabounet för Cairo-Dock"
 
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:44
 msgid "Remove this bookmark"
 msgstr "Ta bort bokmärket"
 

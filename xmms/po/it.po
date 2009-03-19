@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:197
+#: ../src/applet-notifications.c:195
 msgid ""
 "This is the xmms applet\n"
 " made by ChAnGFu for Cairo-Dock"
@@ -22,31 +22,31 @@ msgstr ""
 "Questa è l'applet xmms\n"
 " scritta da ChAnGFu per Cairo-Dock"
 
-#: ../src/applet-notifications.c:260
+#: ../src/applet-notifications.c:258
 msgid "Previous"
 msgstr "Precedente"
 
-#: ../src/applet-notifications.c:261
+#: ../src/applet-notifications.c:259
 msgid "Play/Pause (left-click)"
 msgstr "Play/Pause (click sinistro)"
 
-#: ../src/applet-notifications.c:263
+#: ../src/applet-notifications.c:261
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/applet-notifications.c:265
+#: ../src/applet-notifications.c:263
 msgid "Next (middle-click)"
 msgstr "Seguente (click centrale)"
 
-#: ../src/applet-notifications.c:267
+#: ../src/applet-notifications.c:265
 msgid "Show JumpBox"
 msgstr "Mostrare il JumpBox"
 
-#: ../src/applet-notifications.c:268
+#: ../src/applet-notifications.c:266
 msgid "Toggle Shuffle"
 msgstr "Selezione casuale"
 
-#: ../src/applet-notifications.c:269
+#: ../src/applet-notifications.c:267
 msgid "Toggle Repeat"
 msgstr "Ripetizione"
 

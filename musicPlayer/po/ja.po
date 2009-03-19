@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:18
 msgid ""
 "This is the musicPlayer applet\n"
 " made by ChAnGFu & Mav for Cairo-Dock"
@@ -22,31 +22,31 @@ msgstr ""
 "これは ChAnGFu と Mav によって \n"
 "Cairo-Dock 用に製作された musicPlayer アプレットです。"
 
-#: ../src/applet-notifications.c:92
+#: ../src/applet-notifications.c:90
 msgid "Previous"
 msgstr "前へ"
 
-#: ../src/applet-notifications.c:93
+#: ../src/applet-notifications.c:91
 msgid "Play/Pause (left-click)"
 msgstr "再生/一時停止（左クリック）"
 
-#: ../src/applet-notifications.c:96
+#: ../src/applet-notifications.c:94
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/applet-notifications.c:98
+#: ../src/applet-notifications.c:96
 msgid "Next (middle-click)"
 msgstr "次へ（中クリック）"
 
-#: ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:99
 msgid "Show JumpBox"
 msgstr "ジャンプ先の指定"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:102
 msgid "Toggle Shuffle"
 msgstr "シャッフルのオンオフ"
 
-#: ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:105
 msgid "Toggle Repeat"
 msgstr "リピートのオンオフ"
 

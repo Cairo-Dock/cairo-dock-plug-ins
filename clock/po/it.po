@@ -255,8 +255,8 @@ msgstr "Mostrare i secondi ?"
 
 #: ../data/messages:93
 msgid ""
-"It requires OpenGL. Set 0 to not have a smooth animation, set 1000 to have a "
-"continuous animation."
+"In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
+"animation. It requires OpenGL."
 msgstr ""
 
 #: ../data/messages:95

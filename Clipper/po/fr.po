@@ -12,11 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:24 ../src/applet-notifications.c:29
+#: ../src/applet-config.c:23 ../src/applet-notifications.c:28
 msgid "No items yet."
 msgstr "Encore aucun item."
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:20
 msgid ""
 "This is the Clipper applet\n"
 " made by Fabrice Rey (Fabounet) for Cairo-Dock"
@@ -24,7 +24,7 @@ msgstr ""
 "Ceci est l'applet Clipper\n"
 " écrite par Fabrice Rey (Fabounet) pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:74
+#: ../src/applet-notifications.c:73
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."

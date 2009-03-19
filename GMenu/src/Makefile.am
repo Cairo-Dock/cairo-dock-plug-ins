@@ -23,6 +23,8 @@ libcd_GMenu_la_SOURCES = \
 	applet-util.h\
 	applet-recent.c\
 	applet-recent.h\
+	applet-run-dialog.c\
+	applet-run-dialog.h\
 	applet-struct.h
 
 

@@ -14,23 +14,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:103
+#: ../src/applet-draw.c:102
 msgid "GPU Name:"
 msgstr "GPU名 :"
 
-#: ../src/applet-draw.c:103
+#: ../src/applet-draw.c:102
 msgid "Video Ram:"
 msgstr "Video Ram:"
 
-#: ../src/applet-draw.c:103
+#: ../src/applet-draw.c:102
 msgid "Driver Version:"
 msgstr "Driver Version:"
 
-#: ../src/applet-draw.c:103 ../src/applet-draw.c:119
+#: ../src/applet-draw.c:102 ../src/applet-draw.c:118
 msgid "Core Temparature:"
 msgstr "コアの温度 :"
 
-#: ../src/applet-draw.c:108
+#: ../src/applet-draw.c:107
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
@@ -40,7 +40,7 @@ msgstr ""
 "'nvidia-settings' のバージョンが古すぎます。\n"
 "少なくとも 1.0.0 バージョンが必要です。"
 
-#: ../src/applet-draw.c:111
+#: ../src/applet-draw.c:110
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -52,15 +52,15 @@ msgstr ""
 "'nvidia-settings' がシステムにインストールされ、\n"
 "GPU の温度を監視するように設定されていますか？"
 
-#: ../src/applet-draw.c:119
+#: ../src/applet-draw.c:118
 msgid "Alert!"
 msgstr "警告！"
 
-#: ../src/applet-draw.c:119
+#: ../src/applet-draw.c:118
 msgid "passed alert temperature level"
 msgstr "警告温度レベル突破"
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the nVidia applet\n"
 " made by ChAnGFu for Cairo-Dock"

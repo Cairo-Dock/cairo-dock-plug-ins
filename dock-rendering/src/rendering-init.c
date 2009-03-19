@@ -39,6 +39,8 @@ GLuint my_iFlatSeparatorTexture;
 double my_fForegroundRatio;  // fraction des icones presentes en avant-plan (represente donc l'etirement en profondeur de l'ellipse).
 double my_iGapOnEllipse;  // regle la profondeur du caroussel.
 gboolean my_bRotateIconsOnEllipse;  // tourner les icones de profil ou pas.
+double my_fScrollAcceleration;
+double my_fScrollSpeed;
 
 double my_fParaboleCurvature;  // puissance de x.
 double my_fParaboleRatio;  // hauteur/largeur.
@@ -122,15 +124,19 @@ CD_APPLET_INIT_BEGIN
 	
 	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	
-	if (! cairo_dock_is_loading ())
+	if (! cairo_dock_is_loading ())  // plug-in active a la main (en-dehors du chargement du theme).
 	{
 		cairo_dock_set_all_views_to_default (0);
 		cairo_dock_update_renderer_list_for_gui ();
 	}
+	
+	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
+	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, NULL);
+	
 	cairo_dock_remove_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);

@@ -3,7 +3,8 @@
 #[gtk-preferences]
 [Icon]
 #j+[0;128] Icon size when the penguin is not free :
-icon size = 48;48
+#{Set to 0 to use the default applet size}
+icon size = 0;0
 
 #s Name of the icon when the penguin is not free :
 name = Cairo-Penguin

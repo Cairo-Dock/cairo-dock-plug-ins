@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:12
+#: ../src/applet-notifications.c:10
 msgid ""
 "This is the rame applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
@@ -22,19 +22,19 @@ msgstr ""
 "これは parAdOxxx_ZeRo によって \n"
 "Cairo-Dock 用に製作された rame アプレットです。"
 
-#: ../src/applet-notifications.c:41
+#: ../src/applet-notifications.c:39
 msgid "Mb"
 msgstr "Mb"
 
-#: ../src/applet-notifications.c:95
+#: ../src/applet-notifications.c:93
 msgid "Data acquisition has failed"
 msgstr "データの取得に失敗"
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:114
 msgid "Monitor System"
 msgstr "システム・モニタ"
 
-#: ../src/applet-rame.c:121
+#: ../src/applet-rame.c:120
 msgid "Loading"
 msgstr "読み込み中"
 

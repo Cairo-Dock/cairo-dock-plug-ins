@@ -14,35 +14,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:13 ../data/messages:77 ../data/messages:107
+#: ../src/applet-draw.c:12 ../data/messages:77 ../data/messages:107
 msgid "None"
 msgstr "无"
 
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:12
 msgid "Very Low"
 msgstr "很低"
 
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:12
 msgid "Low"
 msgstr "低"
 
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:12
 msgid "Middle"
 msgstr "中等"
 
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:12
 msgid "Good"
 msgstr "良好"
 
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:12
 msgid "Excellent"
 msgstr "很好"
 
-#: ../src/applet-draw.c:131
+#: ../src/applet-draw.c:130
 msgid "Wifi disabled."
 msgstr "Wifi已禁用。"
 
-#: ../src/applet-draw.c:135
+#: ../src/applet-draw.c:134
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -50,25 +50,25 @@ msgstr ""
 "Wifi已启用。\n"
 "接入："
 
-#: ../src/applet-draw.c:135
+#: ../src/applet-draw.c:134
 msgid "Signal Strength:"
 msgstr "信号强度："
 
-#: ../src/applet-notifications.c:13
+#: ../src/applet-notifications.c:11
 msgid ""
 "This is the wifi applet\n"
 " made by ChAnGFu for Cairo-Dock"
 msgstr "这是ChAnGFu为Cairo-Dock制作的wifi小应用程序"
 
-#: ../src/applet-notifications.c:62
+#: ../src/applet-notifications.c:60
 msgid "Check for Wireless Extension"
 msgstr "检查无线扩展"
 
-#: ../src/applet-notifications.c:64
+#: ../src/applet-notifications.c:62
 msgid "Network Administration"
 msgstr "网络管理"
 
-#: ../src/applet-wifi.c:128 ../src/applet-wifi.c:133
+#: ../src/applet-wifi.c:127 ../src/applet-wifi.c:132
 msgid "Unknown"
 msgstr "未知"
 

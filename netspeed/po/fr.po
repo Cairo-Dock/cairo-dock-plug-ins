@@ -12,31 +12,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-netspeed.c:25 ../src/applet-netspeed.c:33
+#: ../src/applet-netspeed.c:24 ../src/applet-netspeed.c:32
 msgid "B"
 msgstr "o"
 
-#: ../src/applet-netspeed.c:41
+#: ../src/applet-netspeed.c:40
 msgid "KB"
 msgstr "Ko"
 
-#: ../src/applet-netspeed.c:49 ../src/applet-notifications.c:18
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:17
 msgid "MB"
 msgstr "Mo"
 
-#: ../src/applet-netspeed.c:57
+#: ../src/applet-netspeed.c:56
 msgid "GB"
 msgstr "Go"
 
-#: ../src/applet-netspeed.c:65
+#: ../src/applet-netspeed.c:64
 msgid "TB"
 msgstr "To"
 
-#: ../src/applet-netspeed.c:167
+#: ../src/applet-netspeed.c:166
 msgid "Loading"
 msgstr "Chargement"
 
-#: ../src/applet-notifications.c:11
+#: ../src/applet-notifications.c:10
 msgid ""
 "This is the netspeed applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
@@ -44,28 +44,28 @@ msgstr ""
 "Ceci est l'applet netspeed\n"
 " écrite par parAdOxxx_ZeRo pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:18
+#: ../src/applet-notifications.c:17
 msgid "Total amount of data"
 msgstr ""
 
-#: ../src/applet-notifications.c:18
+#: ../src/applet-notifications.c:17
 msgid "downloaded"
 msgstr ""
 
-#: ../src/applet-notifications.c:18
+#: ../src/applet-notifications.c:17
 msgid "uploaded"
 msgstr ""
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:20
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "L'interface '%s' semble ne pas exister ou n'est pas lisible"
 
-#: ../src/applet-notifications.c:46
+#: ../src/applet-notifications.c:45
 msgid "Monitor System"
 msgstr ""
 
-#: ../src/applet-notifications.c:48
+#: ../src/applet-notifications.c:47
 msgid "Re-check interface"
 msgstr "Revérifier l'interface"
 

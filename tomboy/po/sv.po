@@ -16,55 +16,55 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/tomboy-notifications.c:12
+#: ../src/tomboy-notifications.c:11
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Applet av Necropotame (Adrien Pilleboue)"
 
-#: ../src/tomboy-notifications.c:40
+#: ../src/tomboy-notifications.c:39
 msgid "Note name : "
 msgstr "Antekningsnamn:"
 
-#: ../src/tomboy-notifications.c:65
+#: ../src/tomboy-notifications.c:64
 msgid "Search for :"
 msgstr "Sök efter:"
 
-#: ../src/tomboy-notifications.c:86
+#: ../src/tomboy-notifications.c:85
 msgid "Search for tag :"
 msgstr "Sök efter nyckelord:"
 
-#: ../src/tomboy-notifications.c:142
+#: ../src/tomboy-notifications.c:141
 msgid "Reload notes"
 msgstr "Ladda om anteckningar"
 
-#: ../src/tomboy-notifications.c:145
+#: ../src/tomboy-notifications.c:144
 msgid "Add a note"
 msgstr "<b>Kompiskommentar</b>: %s"
 
-#: ../src/tomboy-notifications.c:149
+#: ../src/tomboy-notifications.c:148
 msgid "Delete this note"
 msgstr "Ta bort anteckning"
 
-#: ../src/tomboy-notifications.c:152
+#: ../src/tomboy-notifications.c:151
 msgid "Search"
 msgstr "Sök"
 
-#: ../src/tomboy-notifications.c:153
+#: ../src/tomboy-notifications.c:152
 msgid "Searh for tag"
 msgstr "Sök efter nyckelord"
 
-#: ../src/tomboy-notifications.c:155
+#: ../src/tomboy-notifications.c:154
 msgid "Search for today's note"
 msgstr "Sök efter dagens anteckningar"
 
-#: ../src/tomboy-notifications.c:156
+#: ../src/tomboy-notifications.c:155
 msgid "Search for this week's note"
 msgstr "Sök efter denna veckas anteckningar"
 
-#: ../src/tomboy-notifications.c:157
+#: ../src/tomboy-notifications.c:156
 msgid "Search for next week's note"
 msgstr "Sök efter nästa veckas anteckningar"
 
-#: ../src/tomboy-notifications.c:167
+#: ../src/tomboy-notifications.c:166
 msgid "Reset marks"
 msgstr "Återställ markeringar"
 

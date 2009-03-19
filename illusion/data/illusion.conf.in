@@ -61,8 +61,8 @@ cubes = true
 #[@illusiondatadir@/icon-break.svg]
 [Break]
 
-#I[0;5000] Duration of the animation :
-duration = 600
+#I[0;2000] Duration of the animation :
+duration = 650
 
 #i[5;21] Number of pieces :
-nb pieces = 7
+nb pieces = 11

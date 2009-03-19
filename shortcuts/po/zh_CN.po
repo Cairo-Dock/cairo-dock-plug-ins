@@ -17,13 +17,13 @@ msgstr ""
 msgid "Unmounted"
 msgstr "卸载"
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:18
 msgid ""
 "This is the shortcuts applet\n"
 " made by Fabounet for Cairo-Dock"
 msgstr "这是Fabounet为Cairo-Dock制作的Shortcuts小应用程序"
 
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:44
 msgid "Remove this bookmark"
 msgstr "移除此书签"
 

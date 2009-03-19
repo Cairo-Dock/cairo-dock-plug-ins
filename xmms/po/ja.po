@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:197
+#: ../src/applet-notifications.c:195
 msgid ""
 "This is the xmms applet\n"
 " made by ChAnGFu for Cairo-Dock"
@@ -22,31 +22,31 @@ msgstr ""
 "これは ChAnGFu によって製作された \n"
 "Cairo-Dock 用の xmms アプレットです。"
 
-#: ../src/applet-notifications.c:260
+#: ../src/applet-notifications.c:258
 msgid "Previous"
 msgstr "前へ"
 
-#: ../src/applet-notifications.c:261
+#: ../src/applet-notifications.c:259
 msgid "Play/Pause (left-click)"
 msgstr "再生/一時停止（左クリック）"
 
-#: ../src/applet-notifications.c:263
+#: ../src/applet-notifications.c:261
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/applet-notifications.c:265
+#: ../src/applet-notifications.c:263
 msgid "Next (middle-click)"
 msgstr "次へ（中クリック）"
 
-#: ../src/applet-notifications.c:267
+#: ../src/applet-notifications.c:265
 msgid "Show JumpBox"
 msgstr "ジャンプ先の指定"
 
-#: ../src/applet-notifications.c:268
+#: ../src/applet-notifications.c:266
 msgid "Toggle Shuffle"
 msgstr "シャッフルのオンオフ"
 
-#: ../src/applet-notifications.c:269
+#: ../src/applet-notifications.c:267
 msgid "Toggle Repeat"
 msgstr "リピートのオンオフ"
 

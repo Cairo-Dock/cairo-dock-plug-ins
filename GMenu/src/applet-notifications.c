@@ -12,6 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-recent.h"
+#include "applet-run-dialog.h"
 #include "applet-notifications.h"
 
 
@@ -21,7 +22,8 @@ static void cd_menu_show_menu (void)
 {
 	if (myData.pMenu != NULL)
 	{
-		myDock->bMenuVisible = TRUE;
+		if (myDock)
+			myDock->bMenuVisible = TRUE;
 		gtk_menu_popup (GTK_MENU (myData.pMenu),
 			NULL,
 			NULL,
@@ -31,30 +33,12 @@ static void cd_menu_show_menu (void)
 			gtk_get_current_event_time ());
 	}
 }
-static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
-{
-	if (iClickedButton == 0 || iClickedButton == -1)  // ok ou entree.
-	{
-		const gchar *cCommand = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
-		if (cCommand != NULL && *cCommand != '0')
-			cairo_dock_launch_command (cCommand);
-	}
-	else
-	{
-		gtk_entry_set_text (GTK_ENTRY (pInteractiveWidget), "");
-	}
-	cairo_dock_dialog_reference (myData.pQuickLaunchDialog);
-	cairo_dock_hide_dialog (myData.pQuickLaunchDialog);
-}
+
 static void cd_menu_show_hide_quick_launch (void)
 {
 	if (myData.pQuickLaunchDialog == NULL)
 	{
-		myData.pQuickLaunchDialog = cairo_dock_show_dialog_with_entry (D_("Enter a command to launch :"),
-			myIcon, myContainer,
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-			NULL,
-			(CairoDockActionOnAnswerFunc) _cd_menu_on_quick_launch, NULL, NULL);
+		myData.pQuickLaunchDialog = cd_menu_create_quick_launch_dialog (myApplet);
 		cairo_dock_dialog_reference (myData.pQuickLaunchDialog);
 	}
 	else
@@ -64,8 +48,79 @@ static void cd_menu_show_hide_quick_launch (void)
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
+static void _on_activate_item (GtkWidget *pMenuItem, gpointer *data);
+static void _fill_menu_with_dir (gchar *cDirPath, GtkWidget *pMenu)
+{
+	GError *erreur = NULL;
+	GDir *dir = g_dir_open (cDirPath, 0, &erreur);
+	if (erreur != NULL)
+	{
+		return ;
+	}
+	
+	const gchar *cFileName;
+	gchar *cPath;
+	gpointer *data;
+	GtkWidget *pMenuItem;
+	do
+	{
+		cFileName = g_dir_read_name (dir);
+		if (cFileName == NULL)
+			break ;
+		
+		cPath = g_strdup_printf ("%s/%s", cDirPath, cFileName);
+		pMenuItem = gtk_menu_item_new_with_label (cFileName);
+		data = g_new (gpointer, 2);
+		data[0] = cPath;
+		
+		gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
+		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), data);
+		
+		if (g_file_test (cPath, G_FILE_TEST_IS_DIR))
+		{
+			GtkWidget *pSubMenu = gtk_menu_new ();
+			gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), pSubMenu);
+			data[1] = pSubMenu;
+		}
+	}
+	while (1);
+	g_dir_close (dir);
+}
+static void _on_activate_item (GtkWidget *pMenuItem, gpointer *data)
+{
+	gchar *cPath = data[0];
+	g_print ("%s (%s)\n", __func__, cPath);
+	
+	if (g_file_test (cPath, G_FILE_TEST_IS_DIR))
+	{
+		g_print ("c'est un repertoire\n");
+		GtkWidget *pSubMenu = data[1];
+		_fill_menu_with_dir (cPath, pSubMenu);
+		gtk_widget_show_all (pSubMenu);
+	}
+	else
+	{
+		cairo_dock_fm_launch_uri (cPath);
+	}
+}
 CD_APPLET_ON_CLICK_BEGIN
 	cd_menu_show_menu ();
+	
+	/*gchar *cDirPath = g_getenv ("HOME");
+	GtkWidget *pMenu = gtk_menu_new ();
+	
+	_fill_menu_with_dir (cDirPath, pMenu);
+	
+	gtk_widget_show_all (pMenu);
+	
+	gtk_menu_popup (GTK_MENU (pMenu),
+		NULL,
+		NULL,
+		NULL,
+		NULL,
+		1,
+		gtk_get_current_event_time ());*/
+	
 CD_APPLET_ON_CLICK_END
 
 

@@ -23,6 +23,8 @@ extern double my_fInclinationOnHorizon;
 extern double my_fForegroundRatio;
 extern double my_iGapOnEllipse;
 extern gboolean my_bRotateIconsOnEllipse;
+extern double my_fScrollAcceleration;
+extern double my_fScrollSpeed;
 
 extern double my_fParabolePower;
 extern double my_fParaboleFactor;
@@ -103,7 +105,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10, NULL, NULL);
 	my_bRotateIconsOnEllipse = ! cairo_dock_get_boolean_key_value (pKeyFile, "Caroussel", "show face", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	my_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5, NULL, NULL);
-	
+	my_fScrollSpeed = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "scroll speed", &bFlushConfFileNeeded, 10., NULL, NULL);
+	my_fScrollAcceleration = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "scroll accel", &bFlushConfFileNeeded, .9, NULL, NULL);
 	
 	my_fParaboleCurvature = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "curvature", &bFlushConfFileNeeded, .5, NULL, NULL);
 	my_fParaboleRatio = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "ratio", &bFlushConfFileNeeded, 5, NULL, NULL);

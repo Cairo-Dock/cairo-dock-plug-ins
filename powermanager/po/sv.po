@@ -73,27 +73,27 @@ msgstr ""
 "Energihanterare.\n"
 "Batteriet är nu uppladdat"
 
-#: ../src/powermanager-menu-functions.c:15
+#: ../src/powermanager-menu-functions.c:14
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Applet av Necropotame (Adrien Pilleboue)"
 
-#: ../src/powermanager-menu-functions.c:46
+#: ../src/powermanager-menu-functions.c:45
 msgid "Set up power management"
 msgstr "Konfigurera energialternativ"
 
-#: ../src/powermanager-menu-functions.c:49
+#: ../src/powermanager-menu-functions.c:48
 msgid "Halt"
 msgstr "Stanna"
 
-#: ../src/powermanager-menu-functions.c:50
+#: ../src/powermanager-menu-functions.c:49
 msgid "Hibernate"
 msgstr "Viloläge"
 
-#: ../src/powermanager-menu-functions.c:51
+#: ../src/powermanager-menu-functions.c:50
 msgid "Suspend"
 msgstr "Vänteläge"
 
-#: ../src/powermanager-menu-functions.c:52
+#: ../src/powermanager-menu-functions.c:51
 msgid "Reboot"
 msgstr "Starta om"
 

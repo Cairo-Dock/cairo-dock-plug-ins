@@ -68,27 +68,27 @@ msgstr ""
 "PowerManager.\n"
 "Votre batterie est maintenant Chargée"
 
-#: ../src/powermanager-menu-functions.c:15
+#: ../src/powermanager-menu-functions.c:14
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Applet par Necropotame (Adrien Pilleboue)"
 
-#: ../src/powermanager-menu-functions.c:46
+#: ../src/powermanager-menu-functions.c:45
 msgid "Set up power management"
 msgstr "Gestionnaire d'énergie"
 
-#: ../src/powermanager-menu-functions.c:49
+#: ../src/powermanager-menu-functions.c:48
 msgid "Halt"
 msgstr "Arrêter"
 
-#: ../src/powermanager-menu-functions.c:50
+#: ../src/powermanager-menu-functions.c:49
 msgid "Hibernate"
 msgstr "Hiberner"
 
-#: ../src/powermanager-menu-functions.c:51
+#: ../src/powermanager-menu-functions.c:50
 msgid "Suspend"
 msgstr "Mettre en Veille"
 
-#: ../src/powermanager-menu-functions.c:52
+#: ../src/powermanager-menu-functions.c:51
 msgid "Reboot"
 msgstr "Redémarrer"
 

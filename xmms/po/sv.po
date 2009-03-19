@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-notifications.c:197
+#: ../src/applet-notifications.c:195
 msgid ""
 "This is the xmms applet\n"
 " made by ChAnGFu for Cairo-Dock"
@@ -24,31 +24,31 @@ msgstr ""
 "xmms applet\n"
 " skapad av ChAnGFu för Cairo-Dock"
 
-#: ../src/applet-notifications.c:260
+#: ../src/applet-notifications.c:258
 msgid "Previous"
 msgstr "Föregående"
 
-#: ../src/applet-notifications.c:261
+#: ../src/applet-notifications.c:259
 msgid "Play/Pause (left-click)"
 msgstr "Spela/Pausa (vänsterklick)"
 
-#: ../src/applet-notifications.c:263
+#: ../src/applet-notifications.c:261
 msgid "Stop"
 msgstr "Stopp"
 
-#: ../src/applet-notifications.c:265
+#: ../src/applet-notifications.c:263
 msgid "Next (middle-click)"
 msgstr "Nästa (mellanklick)"
 
-#: ../src/applet-notifications.c:267
+#: ../src/applet-notifications.c:265
 msgid "Show JumpBox"
 msgstr "Visa JumpBox"
 
-#: ../src/applet-notifications.c:268
+#: ../src/applet-notifications.c:266
 msgid "Toggle Shuffle"
 msgstr "Växla blanda"
 
-#: ../src/applet-notifications.c:269
+#: ../src/applet-notifications.c:267
 msgid "Toggle Repeat"
 msgstr "Växla repetera"
 

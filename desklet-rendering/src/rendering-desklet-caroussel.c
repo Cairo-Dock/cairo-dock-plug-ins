@@ -84,7 +84,8 @@ static gboolean _caroussel_rotate (CairoDesklet *pDesklet)
 
 gboolean on_scroll_desklet(gpointer pUserData, Icon *pClickedIcon, CairoDesklet *pDesklet, int iDirection)
 {
-	if( pDesklet != pUserData || (pDesklet && !pDesklet->bInside))
+	if (! pDesklet->pRenderer || pDesklet->pRenderer->render != rendering_draw_caroussel_in_desklet)
+	//if( pDesklet != pUserData || (pDesklet && !pDesklet->bInside))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	if (pDesklet->icons != NULL && (iDirection == GDK_SCROLL_DOWN || iDirection == GDK_SCROLL_UP))
@@ -117,14 +118,12 @@ gboolean on_scroll_desklet(gpointer pUserData, Icon *pClickedIcon, CairoDesklet 
 //gboolean cd_drop_indicator_mouse_moved (gpointer pUserData, CairoDock *pDock, gboolean *bStartAnimation);
 //gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDesklet *pDock, gboolean *bContinueAnimation);
 
-gboolean on_motion_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bContinueAnimation)
+gboolean on_motion_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bStartAnimation)
 {
 	cd_message( "pUserData = %x, pDesklet = %x", pUserData, pDesklet );
-	
-	if( bContinueAnimation )
-		*bContinueAnimation = TRUE;
 
-	if( pDesklet != pUserData || (pDesklet && !pDesklet->bInside) )
+	if (! pDesklet->pRenderer || pDesklet->pRenderer->render != rendering_draw_caroussel_in_desklet || ! pDesklet->bInside)
+	//if( pDesklet != pUserData || (pDesklet && !pDesklet->bInside) )
 	  return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 
 	 cd_message( "this is our stuff !");
@@ -145,6 +144,7 @@ gboolean on_motion_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean
 			double fDeltaRotation = (pCaroussel->fDeltaTheta / 10) *
 			                        (pDesklet->iWidth*0.3 - pDesklet->iMouseX)/(pDesklet->iWidth*0.3);
 			_caroussel_rotate_delta( pDesklet, fDeltaRotation );
+			*bStartAnimation = TRUE;
 		}
 		// si on est dans les entre 80% et 100% de la largeur du desklet,
 		// alors on tourne a gauche (-1)
@@ -156,15 +156,23 @@ gboolean on_motion_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean
 			                        (pDesklet->iMouseX - pDesklet->iWidth*0.7)/(pDesklet->iWidth*0.3);
 			pCaroussel->iRotationDirection = -1;
 			_caroussel_rotate_delta( pDesklet, fDeltaRotation );
-		} 
-
+			*bStartAnimation = TRUE;
+		}
 	}
-
-	if( bContinueAnimation )
-		*bContinueAnimation = TRUE;
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
+
+/*gboolean on_enter_desklet (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
+{
+	CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
+	if( pDesklet != pUserData || (pDesklet && !pDesklet->bInside) )
+	  return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	*bStartAnimation = TRUE;
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}*/
+
 
 CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
@@ -220,22 +228,21 @@ void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 		pCaroussel->a = MAX (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iWidth;
 		pCaroussel->b = MIN (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iHeight;
 	}
-
-	// brancher la rotation sur la position de la souris, lors de l'update du desklet
+	
+	/*// brancher la rotation sur la position de la souris, lors de l'update du desklet
 	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, CAIRO_DOCK_RUN_AFTER, pDesklet);
 	//  on garde quand meme la notif pour le scroll, pour les nostalgiques
 	cairo_dock_register_notification (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) on_scroll_desklet, CAIRO_DOCK_RUN_AFTER, pDesklet);
-
-	// c'est partiiiiiii
-	cairo_dock_launch_animation (pDesklet);
+	//cairo_dock_register_notification (CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, CAIRO_DOCK_RUN_AFTER, NULL);*/
 }
 
 
 void rendering_free_caroussel_data (CairoDesklet *pDesklet)
 {
 //	cairo_dock_remove_notification_func (CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_motion_desklet, pDesklet);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, pDesklet);
+	/*cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, pDesklet);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) on_scroll_desklet, pDesklet);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, NULL);*/
 	
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -689,4 +696,13 @@ void rendering_register_caroussel_desklet_renderer (void)
 	pRenderer->render_opengl = rendering_draw_caroussel_in_desklet_opengl;
 	
 	cairo_dock_register_desklet_renderer (MY_APPLET_CAROUSSEL_DESKLET_RENDERER_NAME, pRenderer);
+	
+	/// je deplace ca la pour le moment, il faudrait les enregistrer sur le desklet en particulier plutot que tous.
+	/// le scroll fait planter ...
+	
+	// brancher la rotation sur la position de la souris, lors de l'update du desklet
+	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
+	//  on garde quand meme la notif pour le scroll, pour les nostalgiques
+	///cairo_dock_register_notification (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) on_scroll_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
+	//cairo_dock_register_notification (CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
 }

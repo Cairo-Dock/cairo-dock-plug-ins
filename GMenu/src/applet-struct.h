@@ -44,8 +44,15 @@ struct _AppletData {
 	guint iSidFakeMenuIdle;
 	guint iSidCreateMenuIdle;
 	guint iSidTreeChangeIdle;
+	
 	GtkRecentManager *pRecentManager;
 	GtkWidget *pRecentMenuItem;
+	
+	GHashTable *dir_hash;
+	GList *possible_executables;
+	GList *completion_items;
+	GCompletion *completion;
+	gboolean completion_started;
 	} ;
 
 

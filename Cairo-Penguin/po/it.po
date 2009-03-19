@@ -83,23 +83,23 @@ msgstr ""
 msgid "Hey, you there !"
 msgstr "Hey, sono qui !"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:119
 msgid "Wake up"
 msgstr "Sveglia !"
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:123
 msgid "Keep quiet"
 msgstr "Stai calmo !"
 
-#: ../src/applet-notifications.c:125
+#: ../src/applet-notifications.c:126
 msgid "Start XPenguins"
 msgstr "Lancia XPenguins"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:127
 msgid "Stop XPenguins"
 msgstr "Arresta XPenguins"
 
-#: ../src/applet-notifications.c:149 ../src/applet-notifications.c:151
+#: ../src/applet-notifications.c:150 ../src/applet-notifications.c:152
 msgid "Zzzzz"
 msgstr "Zzzzz"
 

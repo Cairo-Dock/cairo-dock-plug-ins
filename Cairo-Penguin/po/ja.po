@@ -85,23 +85,23 @@ msgstr ""
 msgid "Hey, you there !"
 msgstr "ヘイ、そこのあんた！"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:119
 msgid "Wake up"
 msgstr "起こす"
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:123
 msgid "Keep quiet"
 msgstr "大人しくさせる"
 
-#: ../src/applet-notifications.c:125
+#: ../src/applet-notifications.c:126
 msgid "Start XPenguins"
 msgstr "XPenguins 開始"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:127
 msgid "Stop XPenguins"
 msgstr "XPenguins 停止"
 
-#: ../src/applet-notifications.c:149 ../src/applet-notifications.c:151
+#: ../src/applet-notifications.c:150 ../src/applet-notifications.c:152
 msgid "Zzzzz"
 msgstr "Zzzzz"
 

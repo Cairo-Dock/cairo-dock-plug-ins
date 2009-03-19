@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:31
+#: ../src/applet-notifications.c:30
 msgid ""
 "This is the weblets applet\n"
 " made by Christophe Chapuis for Cairo-Dock"

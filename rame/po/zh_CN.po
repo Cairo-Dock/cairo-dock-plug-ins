@@ -12,25 +12,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:12
+#: ../src/applet-notifications.c:10
 msgid ""
 "This is the rame applet\n"
 " made by parAdOxxx_ZeRo for Cairo-Dock"
 msgstr "这是由parAdOxxx_ZeRo为Cairo-Dock制作的rame小应用程序"
 
-#: ../src/applet-notifications.c:41
+#: ../src/applet-notifications.c:39
 msgid "Mb"
 msgstr "兆"
 
-#: ../src/applet-notifications.c:95
+#: ../src/applet-notifications.c:93
 msgid "Data acquisition has failed"
 msgstr "数据获取失败"
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:114
 msgid "Monitor System"
 msgstr ""
 
-#: ../src/applet-rame.c:121
+#: ../src/applet-rame.c:120
 msgid "Loading"
 msgstr "载入"
 

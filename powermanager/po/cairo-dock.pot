@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-13 02:45+0100\n"
+"POT-Creation-Date: 2009-03-15 23:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,27 +65,27 @@ msgid ""
 "Your battery is now Charged"
 msgstr ""
 
-#: ../src/powermanager-menu-functions.c:15
+#: ../src/powermanager-menu-functions.c:14
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr ""
 
-#: ../src/powermanager-menu-functions.c:46
+#: ../src/powermanager-menu-functions.c:45
 msgid "Set up power management"
 msgstr ""
 
-#: ../src/powermanager-menu-functions.c:49
+#: ../src/powermanager-menu-functions.c:48
 msgid "Halt"
 msgstr ""
 
-#: ../src/powermanager-menu-functions.c:50
+#: ../src/powermanager-menu-functions.c:49
 msgid "Hibernate"
 msgstr ""
 
-#: ../src/powermanager-menu-functions.c:51
+#: ../src/powermanager-menu-functions.c:50
 msgid "Suspend"
 msgstr ""
 
-#: ../src/powermanager-menu-functions.c:52
+#: ../src/powermanager-menu-functions.c:51
 msgid "Reboot"
 msgstr ""
 

@@ -14,35 +14,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:13 ../data/messages:77 ../data/messages:107
+#: ../src/applet-draw.c:12 ../data/messages:77 ../data/messages:107
 msgid "None"
 msgstr "Aucune"
 
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:12
 msgid "Very Low"
 msgstr "Très Faible"
 
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:12
 msgid "Low"
 msgstr "Faible"
 
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:12
 msgid "Middle"
 msgstr "Moyen"
 
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:12
 msgid "Good"
 msgstr "Bon"
 
-#: ../src/applet-draw.c:13
+#: ../src/applet-draw.c:12
 msgid "Excellent"
 msgstr "Excellent"
 
-#: ../src/applet-draw.c:131
+#: ../src/applet-draw.c:130
 msgid "Wifi disabled."
 msgstr "Wifi désactivé."
 
-#: ../src/applet-draw.c:135
+#: ../src/applet-draw.c:134
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -50,11 +50,11 @@ msgstr ""
 "Wifi activé. \n"
 " Connecté sur:"
 
-#: ../src/applet-draw.c:135
+#: ../src/applet-draw.c:134
 msgid "Signal Strength:"
 msgstr "Puissance du Signal:"
 
-#: ../src/applet-notifications.c:13
+#: ../src/applet-notifications.c:11
 msgid ""
 "This is the wifi applet\n"
 " made by ChAnGFu for Cairo-Dock"
@@ -62,15 +62,15 @@ msgstr ""
 "Ceci est l'applet wifi\n"
 " écrite par ChAnGFu pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:62
+#: ../src/applet-notifications.c:60
 msgid "Check for Wireless Extension"
 msgstr "Verifier les Extensions Wifi"
 
-#: ../src/applet-notifications.c:64
+#: ../src/applet-notifications.c:62
 msgid "Network Administration"
 msgstr "Administration du Réseau"
 
-#: ../src/applet-wifi.c:128 ../src/applet-wifi.c:133
+#: ../src/applet-wifi.c:127 ../src/applet-wifi.c:132
 msgid "Unknown"
 msgstr "Inconnu"
 

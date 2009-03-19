@@ -19,7 +19,7 @@ msgstr ""
 msgid "Unmounted"
 msgstr "アンマウント済み"
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:18
 msgid ""
 "This is the shortcuts applet\n"
 " made by Fabounet for Cairo-Dock"
@@ -27,7 +27,7 @@ msgstr ""
 "これは Fabounet により製作された\n"
 "Cairo-Dock用の Shortcuts アプレットです。"
 
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:44
 msgid "Remove this bookmark"
 msgstr "このブックマークを削除"
 

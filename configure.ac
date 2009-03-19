@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.0.0-beta3],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.0.0-beta3.1],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -104,7 +104,10 @@ AC_ARG_ENABLE(exif,
 	[  --enable-exif : for auto-rotating pictures in Slider (default=yes) ],
 	[ with_exif=${enableval} ],
 	[ with_exif=yes ])
-
+AC_ARG_ENABLE(keyboard-indicator,
+	[  --enable-keyboard-indicator : Enable keyboard-indicator applet (default=yes) ],
+	[ with_keyboard_indicator=${enableval} ],
+	[ with_keyboard_indicator=yes ])
 
 ############# PACKAGES ADDITIONNELS #################
 if test "$with_old_gnome_support" = "yes" ; then
@@ -169,6 +172,11 @@ if test "$with_exif" = "yes" ; then
 	AC_SUBST(EXIF_CFLAGS)
 	AC_SUBST(EXIF_LIBS)
 fi
+if test "$with_keyboard_indicator" = "yes" ; then
+	PKG_CHECK_MODULES(KEYBOARD_INDICATOR_PACKAGE,libxklavier, ,[ with_keyboard_indicator=false; AC_MSG_WARN(Could not find libxklavier; Cairo-Dock won't be built with keyboard-indicator applet.) ])
+	AC_SUBST(KEYBOARD_INDICATOR_PACKAGE_CFLAGS)
+	AC_SUBST(KEYBOARD_INDICATOR_PACKAGE_LIBS)
+fi
 
 AC_PROG_CXX
 
@@ -189,6 +197,7 @@ AM_CONDITIONAL( [WITH_GIO_IN_GMENU], [test "$with_gio_in_gmenu" = "yes"] )
 AM_CONDITIONAL( [WITH_MAIL], [test "$with_mail" = "yes"] )
 AM_CONDITIONAL( [WITH_WEBLETS], [test "$with_weblets" = "yes"] )
 AM_CONDITIONAL( [WITH_EXIF], [test "$with_exif" = "yes"] )
+AM_CONDITIONAL( [WITH_KEYBOARD_INDICATOR], [test "$with_keyboard_indicator" = "yes"] )
 
 ############# ALSA_MIXER #################
 ALSA_MIXER_PACKAGE="cd-AlsaMixer"
@@ -329,6 +338,15 @@ AC_SUBST(VERSION_ILLUSION, "0.3.0")
 AC_SUBST(PACKAGE_ILLUSION, "$ILLUSION_PACKAGE")
 
 AC_SUBST(illusiondatadir, "${pkgdatadir}/illusion")
+
+############# KEYBOARD_INDICATOR #################
+KEYBOARD_INDICATOR_PACKAGE="cd-keyboard-indicator"
+AC_SUBST(GETTEXT_KEYBOARD_INDICATOR, "$KEYBOARD_INDICATOR_PACKAGE")
+
+AC_SUBST(VERSION_KEYBOARD_INDICATOR, "1.0.0")
+AC_SUBST(PACKAGE_KEYBOARD_INDICATOR, "$KEYBOARD_INDICATOR_PACKAGE")
+
+AC_SUBST(keyboard_indicatordatadir, "${pkgdatadir}/keyboard-indicator")
 
 ############# LOGOUT #################
 LOGOUT_PACKAGE=cd-logout
@@ -719,6 +737,13 @@ AC_CONFIG_FILES([
 	illusion/data/readme
 	illusion/data/illusion.conf
 	
+	keyboard-indicator/Makefile
+	keyboard-indicator/src/Makefile
+	keyboard-indicator/po/Makefile.in
+	keyboard-indicator/data/Makefile
+	keyboard-indicator/data/readme
+	keyboard-indicator/data/keyboard-indicator.conf
+	
 	logout/Makefile
 	logout/src/Makefile
 	logout/po/Makefile.in
@@ -930,6 +955,7 @@ AC_OUTPUT([po/Makefile
 	GMenu/po/Makefile
 	icon-effect/po/Makefile
 	illusion/po/Makefile
+	keyboard-indicator/po/Makefile
 	logout/po/Makefile
 	mail/po/Makefile
 	motion-blur/po/Makefile
@@ -974,4 +1000,5 @@ echo " * Compil GMenu applet : "${with_gmenu}
 echo " * Enable gio in GMenu applet : "${with_gio_in_gmenu}
 echo " * Compil Mail applet : "${with_mail}
 echo " * Compil Weblets applet : "${with_weblets}
+echo " * Compil keyboard-indicator applet : "${with_keyboard_indicator}
 

@@ -2,8 +2,10 @@
 
 #[gtk-about]
 [Icon]
+
 #j[0;128] Desired icon size for this applet
-icon size = 48;48
+#{Set to 0 to use the default applet size}
+icon size = 0;0
 
 #s Name of the icon as it will appear in its label in the dock :
 name = CD_APPLET_LABEL
@@ -42,7 +44,7 @@ order=
 ##b Keep above other windows ?
 #keep above=false
 ##b Keep on widget layer ?
-##{for CompizFusion's "widget layer", set behaviour in Compiz to: (name=cairo-dock & type=utility)}
+##{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=cairo-dock & type=utility)}
 #on widget layer=false
 ##b Lock position ?
 ##{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
@@ -52,40 +54,7 @@ order=
 #{in degrees.}
 rotation = 0
 
-#F[Decorations;gtk-orientation-portrait]
-frame_deco=
-
-#o+ Choose a decoration theme for this desklet :
-#{Choose the 'personnal' one to define your own decorations below.}
-decorations = default
-
-#v
-sep_deco =
-
-#S+ Background image :
-#{It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any.}
-bg desklet =
-#e+[0;1] Background tansparency :
-bg alpha = 1
-#i+[0;256] Left offset :
-#{in pixels. Use this to adjust the left position of the drawings.}
-left offset = 0
-#i+[0;256] Top offset :
-#{in pixels. Use this to adjust the top position of the drawings.}
-top offset = 0
-#i+[0;256] Right offset :
-#{in pixels. Use this to adjust the right position of the drawings.}
-right offset = 0
-#i+[0;256] Bottom offset :
-#{in pixels. Use this to adjust the bottom position of the drawings.}
-bottom offset = 0
-#S+ Foreground image :
-#{It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any.}
-fg desklet =
-#e+[0;1] Foreground tansparency :
-fg alpha = 1
-
-use size=
+#use size=true
 
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
@@ -119,6 +88,7 @@ bottom offset = 0
 fg desklet =
 #e+[0;1] Foreground tansparency :
 fg alpha = 1
+
 
 #[gtk-preferences]
 [Configuration]

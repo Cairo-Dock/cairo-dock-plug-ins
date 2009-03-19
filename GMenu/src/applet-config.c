@@ -44,5 +44,20 @@ CD_APPLET_RESET_CONFIG_END
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
 	if (myData.pMenu)
-		gtk_widget_destroy (myData.pMenu);
+		gtk_widget_destroy (myData.pMenu);  // detruit aussi pRecentMenuItem.
+	
+	if (myData.dir_hash)
+		g_hash_table_destroy (myData.dir_hash);
+	
+	GList *l;
+	for (l = myData.possible_executables; l; l = l->next)
+		g_free (l->data);
+	g_list_free (myData.possible_executables);
+	
+	for (l = myData.completion_items; l; l = l->next)
+		g_free (l->data);
+	g_list_free (myData.completion_items);
+	
+	if (myData.completion)
+		g_completion_free (myData.completion);
 CD_APPLET_RESET_DATA_END

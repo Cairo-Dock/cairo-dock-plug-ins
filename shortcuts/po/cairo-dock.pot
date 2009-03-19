@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-13 02:45+0100\n"
+"POT-Creation-Date: 2009-03-15 23:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,13 +21,13 @@ msgstr ""
 msgid "Unmounted"
 msgstr ""
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:18
 msgid ""
 "This is the shortcuts applet\n"
 " made by Fabounet for Cairo-Dock"
 msgstr ""
 
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:44
 msgid "Remove this bookmark"
 msgstr ""
 

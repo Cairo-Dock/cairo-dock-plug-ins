@@ -16,23 +16,23 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-draw.c:103
+#: ../src/applet-draw.c:102
 msgid "GPU Name:"
 msgstr "Namn på GPU:"
 
-#: ../src/applet-draw.c:103
+#: ../src/applet-draw.c:102
 msgid "Video Ram:"
 msgstr "Videominne:"
 
-#: ../src/applet-draw.c:103
+#: ../src/applet-draw.c:102
 msgid "Driver Version:"
 msgstr "Drivarversion:"
 
-#: ../src/applet-draw.c:103 ../src/applet-draw.c:119
+#: ../src/applet-draw.c:102 ../src/applet-draw.c:118
 msgid "Core Temparature:"
 msgstr "Kärntemperatur:"
 
-#: ../src/applet-draw.c:108
+#: ../src/applet-draw.c:107
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
@@ -42,7 +42,7 @@ msgstr ""
 "Programmet 'nvidia-settings' är för gammalt\n"
 " Du behöver åtminstone version 1.0.0"
 
-#: ../src/applet-draw.c:111
+#: ../src/applet-draw.c:110
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -53,15 +53,15 @@ msgstr ""
 "Kunde inte läsa grafikkortets temperatur är 'nvidia-settings' installerat\n"
 " och konfigurerat att övervaka temperaturen?"
 
-#: ../src/applet-draw.c:119
+#: ../src/applet-draw.c:118
 msgid "Alert!"
 msgstr "Varning!"
 
-#: ../src/applet-draw.c:119
+#: ../src/applet-draw.c:118
 msgid "passed alert temperature level"
 msgstr "Temperaturgräns för meddelande överskriden"
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the nVidia applet\n"
 " made by ChAnGFu for Cairo-Dock"

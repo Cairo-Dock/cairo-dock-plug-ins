@@ -71,27 +71,27 @@ msgstr ""
 "PowerManager.\n"
 "バッテリーの充電が完了しました。"
 
-#: ../src/powermanager-menu-functions.c:15
+#: ../src/powermanager-menu-functions.c:14
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
-#: ../src/powermanager-menu-functions.c:46
+#: ../src/powermanager-menu-functions.c:45
 msgid "Set up power management"
 msgstr "電源管理の設定"
 
-#: ../src/powermanager-menu-functions.c:49
+#: ../src/powermanager-menu-functions.c:48
 msgid "Halt"
 msgstr "終了"
 
-#: ../src/powermanager-menu-functions.c:50
+#: ../src/powermanager-menu-functions.c:49
 msgid "Hibernate"
 msgstr "ハイバネート"
 
-#: ../src/powermanager-menu-functions.c:51
+#: ../src/powermanager-menu-functions.c:50
 msgid "Suspend"
 msgstr "サスペンド"
 
-#: ../src/powermanager-menu-functions.c:52
+#: ../src/powermanager-menu-functions.c:51
 msgid "Reboot"
 msgstr "再起動"
 

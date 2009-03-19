@@ -22,7 +22,8 @@ extern double my_fInclinationOnHorizon;
 extern double my_fForegroundRatio;
 extern double my_iGapOnEllipse;
 extern gboolean my_bRotateIconsOnEllipse;
-
+extern double my_fScrollAcceleration;
+extern double my_fScrollSpeed;
 
 /*void cd_rendering_set_subdock_position_caroussel (Icon *pPointedIcon, CairoDock *pDock)
 {
@@ -75,7 +76,6 @@ void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int i
 {
 	double fXIconCenter = icon->fX + icon->fWidth * icon->fScale / 2 - fXFirstIcon;  // abscisse du centre de l'icone.
 	double fTheta = (fXIconCenter - .5*fLinearWidth) / fLinearWidth * 2 * G_PI;  // changement de repere, dans ]-pi, pi[.
-	//g_print ("fXIconCenter : %.2f / %.2f => Theta : %.2f (%dx%d)\n", fXIconCenter, fLinearWidth, fTheta, iCurrentWidth, iCurrentHeight);
 	
 	double a = .5 * iEllipseHeight;  // parametres de l'ellipse, theta=0 en bas (c'est-a-dire devant nous).
 	double b = .5 * (iCurrentWidth - fExtraWidth - (my_bRotateIconsOnEllipse ? 0 : iMaxIconWidth));
@@ -106,6 +106,45 @@ void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int i
 	icon->fDrawY = fYIconBottomDraw  - (bDirectionUp ? icon->fHeight * icon->fScale : 0);
 	//g_print ("%s : fTheta = %.2f ; fWidthFactor = %.2f ; fDrawX = %.2f\n", icon->acName, fTheta, icon->fWidthFactor, icon->fDrawX);
 }
+
+void cd_rendering_calculate_construction_parameters_caroussel2 (Icon *icon, CairoDock *pDock, int iEllipseHeight, double fExtraWidth, double fLinearWidth)
+{
+	int iCurrentWidth = pDock->iCurrentWidth;
+	int iMaxIconWidth = pDock->iMaxIconHeight;
+	int iMaxIconHeight = pDock->iMaxIconHeight;
+	gboolean bDirectionUp = pDock->bDirectionUp;
+	double fTheta = 2*G_PI * icon->fXAtRest / pDock->fFlatDockWidth;
+	double a = .5 * iEllipseHeight;  // parametres de l'ellipse, theta=0 en bas (c'est-a-dire devant nous).
+	double b = .5 * (iCurrentWidth - fExtraWidth - (my_bRotateIconsOnEllipse ? 0 : iMaxIconWidth));
+	
+	icon->fScale = 1.;
+	
+	double fXIconCenterDraw, fYIconBottomDraw;  // coordonnees du centre bas de l'icone une fois positionnee sur l'ellipse.
+	fXIconCenterDraw = b * sin (fTheta) + .5 * iCurrentWidth;
+	fYIconBottomDraw = (bDirectionUp ? a * cos (fTheta) + iMaxIconHeight + a : a + myBackground.iDockLineWidth - a * cos (fTheta));
+	
+	icon->fHeightFactor = 1.;
+	icon->fOrientation = 0.;
+	
+	if (my_bRotateIconsOnEllipse)
+		icon->fWidthFactor = (G_PI / 2 - fabs (fTheta)) * 2 / G_PI;
+	else
+		icon->fWidthFactor = 1.;
+	icon->fDrawX = fXIconCenterDraw - icon->fWidth * icon->fScale / 2;  /// gerer le placement de profil...
+	
+	if (fabs (fTheta) < G_PI / 2)  // icone a l'avant plan.
+	{
+		icon->fDrawX = fXIconCenterDraw - icon->fWidth * icon->fScale / 2;
+		icon->fAlpha = 1.;
+	}
+	else
+	{
+		icon->fScale *= MAX (0.75, sin ((G_PI - fabs (fTheta)) / 3));
+		icon->fAlpha = MAX (0.5, sin (fTheta) * sin (fTheta));
+	}
+	icon->fDrawY = fYIconBottomDraw  - (bDirectionUp ? icon->fHeight * icon->fScale : 0);
+}
+
 
 
 void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
@@ -205,8 +244,21 @@ void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 }
 
 
+static double _cd_rendering_get_rotation_speed (CairoDock *pDock)  // donne la vitesse de rotation entre -1 et 1.
+{
+	static double a=.2;  // entre -a/2 et a/2 la rotation est nulle.
+	double x = 2.*(pDock->iMouseX - pDock->iCurrentWidth/2) / pDock->iCurrentWidth;  // [-1 ; 1]
+	if (x > a)
+		return (x - a) / (1 - a);
+	else if (x < -a)
+		return (x + a) / (1 - a);
+	else
+		return 0.;
+}
 Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 {
+	// (x;y) => theta.
+	
 	Icon *pPointedIcon = cairo_dock_apply_wave_effect (pDock);
 	
 	//\____________________ On calcule les position/etirements/alpha des icones.
@@ -221,12 +273,20 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		cd_rendering_calculate_construction_parameters_caroussel (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iMaxIconHeight, pDock->iMaxIconHeight, iEllipseHeight, pDock->bDirectionUp, fExtraWidth, fLinearWidth, fXFirstIcon);  // il manque un pDock->iMaxIconWidth en 2eme...
+		///cd_rendering_calculate_construction_parameters_caroussel (icon, pDock->iCurrentWidth, pDock->iCurrentHeight, pDock->iMaxIconHeight, pDock->iMaxIconHeight, iEllipseHeight, pDock->bDirectionUp, fExtraWidth, fLinearWidth, fXFirstIcon);  // il manque un pDock->iMaxIconWidth en 2eme...
+		cd_rendering_calculate_construction_parameters_caroussel2 (icon, pDock, iEllipseHeight, fExtraWidth, fLinearWidth);
 	}
 	
 	pDock->iMousePositionType = (pDock->bInside ? CAIRO_DOCK_MOUSE_INSIDE : CAIRO_DOCK_MOUSE_OUTSIDE);
 	
 	cairo_dock_check_can_drop_linear (pDock);  /// marche ?...
+	
+	if (pDock->bInside && ! cairo_dock_container_is_animating (pDock))
+	{
+		double fRotationSpeed = _cd_rendering_get_rotation_speed (pDock);
+		if (fRotationSpeed != 0)
+			cairo_dock_launch_animation (CAIRO_CONTAINER (pDock));
+	}
 	
 	return pPointedIcon;
 }
@@ -245,4 +305,36 @@ void cd_rendering_register_caroussel_renderer (const gchar *cRendererName)
 	pRenderer->bUseReflect = TRUE;
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
+}
+
+gboolean cd_rendering_caroussel_update_dock (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
+{
+	if (! CAIRO_DOCK_IS_DOCK (pContainer))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CairoDock *pDock = CAIRO_DOCK (pContainer);
+	if (pDock->calculate_icons != cd_rendering_calculate_icons_caroussel)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	if (pDock->bInside)
+	{
+		double fRotationSpeed = _cd_rendering_get_rotation_speed (pDock);
+		int iScrollAmount = ceil (my_fScrollSpeed * fRotationSpeed);
+		cairo_dock_scroll_dock_icons (pDock, iScrollAmount);  // avec un scroll de 0, cela termine le scroll.
+		*bContinueAnimation |= (fRotationSpeed != 0);
+	}
+	else if (my_fScrollAcceleration != 0 && pDock->iScrollOffset != 0)  // on de-scrolle.
+	{
+		int iScrollAmount;
+		if (pDock->iScrollOffset < pDock->fFlatDockWidth / 2)
+		{
+			iScrollAmount = - MAX (2, ceil (pDock->iScrollOffset * my_fScrollAcceleration));
+		}
+		else
+		{
+			iScrollAmount = MAX (2, ceil ((pDock->fFlatDockWidth - pDock->iScrollOffset) * my_fScrollAcceleration));
+		}
+		cairo_dock_scroll_dock_icons (pDock, iScrollAmount);  // avec un scroll de 0, cela termine le scroll.
+		*bContinueAnimation |= (pDock->iScrollOffset != 0);
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

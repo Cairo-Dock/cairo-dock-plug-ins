@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:18
 msgid ""
 "This is the GMenu applet\n"
 " made by Fabounet (Fabrice Rey) for Cairo-Dock"
@@ -22,18 +22,30 @@ msgstr ""
 "これは Fabounet (Fabrice Rey) によって \n"
 "Cairo-Dock 用に製作された Gmenu アプレットです。"
 
-#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:53
 msgid "Enter a command to launch :"
 msgstr ""
 
-#: ../src/applet-notifications.c:86
+#: ../src/applet-notifications.c:90
 msgid "Quick launch"
 msgstr ""
 
-#: ../src/applet-notifications.c:87
+#: ../src/applet-notifications.c:91
 #, fuzzy
-msgid "Configure Menu"
+msgid "Configure menu"
 msgstr "設定"
+
+#: ../src/applet-notifications.c:92
+msgid "Clear recent"
+msgstr ""
+
+#: ../src/applet-recent.c:46
+msgid "Recent Documents"
+msgstr ""
+
+#: ../src/applet-recent.c:89
+msgid "Clear the list of the recently used documents ?"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -47,7 +59,7 @@ msgstr "このアプレットのアイコンの大きさ"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#: ../data/messages:7 ../data/messages:83
+#: ../data/messages:7 ../data/messages:85
 msgid "Let empty to use the default one."
 msgstr "デフォルトを使用するには空欄のままに。"
 
@@ -217,14 +229,18 @@ msgid "Display icons in the menu ?"
 msgstr "メニューにアイコンを表示？"
 
 #: ../data/messages:79
-msgid "Shortkey to show/hide the menu :"
+msgid "Show recent documents ?"
 msgstr ""
 
 #: ../data/messages:81
+msgid "Shortkey to show/hide the menu :"
+msgstr ""
+
+#: ../data/messages:83
 msgid "Shortkey to show/hide the quick-launch dialog :"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:87
 msgid "Command to use to configure the menu :"
 msgstr ""
 

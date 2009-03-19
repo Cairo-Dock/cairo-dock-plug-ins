@@ -16,27 +16,27 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-load-icon.c:22
+#: ../src/applet-load-icon.c:21
 msgid "Configure Compiz"
 msgstr "Konfigurera Compiz"
 
-#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:188
+#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:186
 msgid "Emerald Manager"
 msgstr "Emerald Manager"
 
-#: ../src/applet-load-icon.c:22
+#: ../src/applet-load-icon.c:21
 msgid "Reload WM"
 msgstr "Starta om fönsterhanteraren"
 
-#: ../src/applet-load-icon.c:22
+#: ../src/applet-load-icon.c:21
 msgid "Exposition"
 msgstr "Exposition"
 
-#: ../src/applet-load-icon.c:22 ../data/messages:83
+#: ../src/applet-load-icon.c:21 ../data/messages:83
 msgid "Widget Layer"
 msgstr "Widgetlager"
 
-#: ../src/applet-notifications.c:26
+#: ../src/applet-notifications.c:24
 msgid ""
 "This is the compiz-icon applet\n"
 " made by ChAnGFu for Cairo-Dock"
@@ -44,33 +44,33 @@ msgstr ""
 "compiz-icon applet\n"
 " skapad av ChAnGFu för Cairo-Dock"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:102
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
 
-#: ../src/applet-notifications.c:189
+#: ../src/applet-notifications.c:187
 msgid "Reload Emerald"
 msgstr "Starta om Emerald"
 
-#: ../src/applet-notifications.c:193
+#: ../src/applet-notifications.c:191
 msgid "Switch Windows Manager"
 msgstr "Byt fönsterhanterare"
 
-#: ../src/applet-notifications.c:194
+#: ../src/applet-notifications.c:192
 msgid "Switch Windows Decorator"
 msgstr "Byt fönsterdekorator"
 
-#: ../src/applet-notifications.c:203
+#: ../src/applet-notifications.c:201
 msgid "Toggle Exposition Mode"
 msgstr "Växla expositionsläge"
 
-#: ../src/applet-notifications.c:204
+#: ../src/applet-notifications.c:202
 msgid "Toggle Widgets Layer"
 msgstr "Växla widgetlager"
 
-#: ../src/applet-notifications.c:206
+#: ../src/applet-notifications.c:204
 msgid "Toggle Show Desktop"
 msgstr "Växla visning av skrivbord"
 

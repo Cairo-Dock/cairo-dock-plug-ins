@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-13 02:45+0100\n"
+"POT-Creation-Date: 2009-03-15 23:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,30 +16,30 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:103
+#: ../src/applet-draw.c:102
 msgid "GPU Name:"
 msgstr ""
 
-#: ../src/applet-draw.c:103
+#: ../src/applet-draw.c:102
 msgid "Video Ram:"
 msgstr ""
 
-#: ../src/applet-draw.c:103
+#: ../src/applet-draw.c:102
 msgid "Driver Version:"
 msgstr ""
 
-#: ../src/applet-draw.c:103 ../src/applet-draw.c:119
+#: ../src/applet-draw.c:102 ../src/applet-draw.c:118
 msgid "Core Temparature:"
 msgstr ""
 
-#: ../src/applet-draw.c:108
+#: ../src/applet-draw.c:107
 msgid ""
 "nVidia \n"
 "Your version of 'nvidia-settings' is too old\n"
 " You need at least the 1.0.0 version"
 msgstr ""
 
-#: ../src/applet-draw.c:111
+#: ../src/applet-draw.c:110
 msgid ""
 "nVidia \n"
 "Couldn't acquire GPU temperature\n"
@@ -47,15 +47,15 @@ msgid ""
 " and configured to monitor GPU temperature ?"
 msgstr ""
 
-#: ../src/applet-draw.c:119
+#: ../src/applet-draw.c:118
 msgid "Alert!"
 msgstr ""
 
-#: ../src/applet-draw.c:119
+#: ../src/applet-draw.c:118
 msgid "passed alert temperature level"
 msgstr ""
 
-#: ../src/applet-notifications.c:21
+#: ../src/applet-notifications.c:19
 msgid ""
 "This is the nVidia applet\n"
 " made by ChAnGFu for Cairo-Dock"

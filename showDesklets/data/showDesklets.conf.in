@@ -3,7 +3,8 @@
 #[gtk-about]
 [Icon]
 #j[0;128] Desired icon size for this applet
-icon size = 48;48
+#{Set to 0 to use the default applet size}
+icon size = 0;0
 
 #s Name of the icon as it will appear in its label in the dock :
 name = show desklets

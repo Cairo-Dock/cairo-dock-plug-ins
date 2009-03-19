@@ -11,27 +11,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-load-icon.c:22
+#: ../src/applet-load-icon.c:21
 msgid "Configure Compiz"
 msgstr "Configurer Compiz"
 
-#: ../src/applet-load-icon.c:22 ../src/applet-notifications.c:188
+#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:186
 msgid "Emerald Manager"
 msgstr "Gestionnaire Emerald"
 
-#: ../src/applet-load-icon.c:22
+#: ../src/applet-load-icon.c:21
 msgid "Reload WM"
 msgstr "Recharger WM"
 
-#: ../src/applet-load-icon.c:22
+#: ../src/applet-load-icon.c:21
 msgid "Exposition"
 msgstr "Exposé"
 
-#: ../src/applet-load-icon.c:22 ../data/messages:83
+#: ../src/applet-load-icon.c:21 ../data/messages:83
 msgid "Widget Layer"
 msgstr "Couche des Widgets"
 
-#: ../src/applet-notifications.c:26
+#: ../src/applet-notifications.c:24
 msgid ""
 "This is the compiz-icon applet\n"
 " made by ChAnGFu for Cairo-Dock"
@@ -39,33 +39,33 @@ msgstr ""
 "Ceci est l'applet compiz-icon\n"
 " écrite par ChAnGFu pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:102
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
 
-#: ../src/applet-notifications.c:189
+#: ../src/applet-notifications.c:187
 msgid "Reload Emerald"
 msgstr "Recharger Emerald"
 
-#: ../src/applet-notifications.c:193
+#: ../src/applet-notifications.c:191
 msgid "Switch Windows Manager"
 msgstr "Changer de Gestionnaire de Fenêtres"
 
-#: ../src/applet-notifications.c:194
+#: ../src/applet-notifications.c:192
 msgid "Switch Windows Decorator"
 msgstr "Changer le Décorateur de Fenêtres"
 
-#: ../src/applet-notifications.c:203
+#: ../src/applet-notifications.c:201
 msgid "Toggle Exposition Mode"
 msgstr "Activer le Mode Exposition"
 
-#: ../src/applet-notifications.c:204
+#: ../src/applet-notifications.c:202
 msgid "Toggle Widgets Layer"
 msgstr "Activer la Couche des Widgets"
 
-#: ../src/applet-notifications.c:206
+#: ../src/applet-notifications.c:204
 msgid "Toggle Show Desktop"
 msgstr "Monter le Bureau"
 
