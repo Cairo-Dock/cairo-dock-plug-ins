@@ -17,4 +17,9 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Window *pWindow);
 
 
+gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet);
+
+gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet);
+
+
 #endif

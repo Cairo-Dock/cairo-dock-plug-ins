@@ -85,3 +85,8 @@ bottom offset = 0
 fg desklet =
 #e+[0;1] Foreground tansparency :
 fg alpha = 1
+
+[Configuration]
+
+#i[1;50] Variation for 1 mouse scroll, in % :
+scroll variation = 5

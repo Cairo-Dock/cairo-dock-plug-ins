@@ -25,9 +25,17 @@ static void _load_bg_image (void)
 		cairo_surface_destroy (myData.pBackgroundSurface);
 		myData.pBackgroundSurface = NULL;
 	}
+	if (myData.iBackgroundTexture != 0)
+	{
+		_cairo_dock_delete_texture (myData.iBackgroundTexture);
+		myData.iBackgroundTexture = 0;
+	}
+	
 	if (myConfig.cBackgroundImage != NULL)
 	{
 		myData.pBackgroundSurface = CD_APPLET_LOAD_USER_SURFACE_FOR_MY_APPLET (myConfig.cBackgroundImage, NULL);
+		if (g_bUseOpenGL)
+			myData.iBackgroundTexture = cairo_dock_create_texture_from_surface (myData.pBackgroundSurface);
 	}
 }
 
@@ -50,6 +58,8 @@ CD_APPLET_INIT_BEGIN
 	
 	_load_bg_image ();
 	
+	myData.iCurrentGroup = -1;
+	
 	Window Xid = cairo_dock_get_current_active_window ();
 	cd_xkbd_keyboard_state_changed (myApplet, &Xid);
 	g_print (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
@@ -64,6 +74,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_KBD_STATE_CHANGED,
 		(CairoDockNotificationFunc) cd_xkbd_keyboard_state_changed,
 		myApplet);
+	cairo_dock_remove_transition_on_icon (myIcon);
 CD_APPLET_STOP_END
 
 
@@ -78,7 +89,10 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		cairo_dock_remove_transition_on_icon (myIcon);  // prudence.
 		_load_bg_image ();
+		
+		myData.iCurrentGroup = -1;
 		
 		//\_____________ On declenche le redessin de l'icone.
 		Window Xid = cairo_dock_get_current_active_window ();

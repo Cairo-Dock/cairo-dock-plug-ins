@@ -14,7 +14,7 @@
 #include <X11/extensions/xf86vmode.h>
 
 struct _AppletConfig {
-	gint no_parameter_yet;
+	gint iScrollVariation;
 	} ;
 
 struct _AppletData {

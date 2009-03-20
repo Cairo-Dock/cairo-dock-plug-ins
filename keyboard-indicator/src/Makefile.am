@@ -31,6 +31,7 @@ libcd_keyboard_indicator_la_CFLAGS = \
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_KEYBOARD_INDICATOR)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.svg"\"\
+	-DGL_GLEXT_PROTOTYPES=\""1"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3

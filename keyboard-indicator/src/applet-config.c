@@ -38,4 +38,14 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	if (myData.pBackgroundSurface != NULL)
 		cairo_surface_destroy (myData.pBackgroundSurface);
+	if (myData.iBackgroundTexture != 0)
+		_cairo_dock_delete_texture (myData.iBackgroundTexture);
+	if (myData.pOldSurface != NULL)
+		cairo_surface_destroy (myData.pOldSurface);
+	if (myData.iOldTexture != 0)
+		_cairo_dock_delete_texture (myData.iOldTexture);
+	if (myData.pCurrentSurface != NULL)
+		cairo_surface_destroy (myData.pCurrentSurface);
+	if (myData.iCurrentTexture != 0)
+		_cairo_dock_delete_texture (myData.iCurrentTexture);
 CD_APPLET_RESET_DATA_END

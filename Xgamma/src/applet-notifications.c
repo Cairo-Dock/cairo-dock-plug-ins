@@ -89,17 +89,21 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 CD_APPLET_ON_SCROLL_BEGIN
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
+	g_print ("%.2f;%.2f;%.2f\n", myData.Xgamma.red, myData.Xgamma.green, myData.Xgamma.blue);
+	double f;
 	if (CD_APPLET_SCROLL_UP)
 	{
-		myData.Xgamma.red *= .99;
-		myData.Xgamma.green *= .99;
-		myData.Xgamma.blue *= .99;
+		f = (1. - myConfig.iScrollVariation/100.);
+		myData.Xgamma.red *= f;
+		myData.Xgamma.green *= f;
+		myData.Xgamma.blue *= f;
 	}
 	else
 	{
-		myData.Xgamma.red *= 1.01;
-		myData.Xgamma.green *= 1.01;
-		myData.Xgamma.blue *= 1.01;
+		f = (1. + myConfig.iScrollVariation/100.);
+		myData.Xgamma.red *= f;
+		myData.Xgamma.green *= f;
+		myData.Xgamma.blue *= f;
 	}
 	
 	xgamma_set_gamma (&myData.Xgamma);

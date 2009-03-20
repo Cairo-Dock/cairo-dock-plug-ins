@@ -8,6 +8,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 ******************************************************************************/
 
 #include <stdlib.h>
+#include <math.h>
 #include <string.h>
 #include <glib/gi18n.h>
 #include <alsa/asoundlib.h>
@@ -162,13 +163,14 @@ int mixer_get_mean_volume (void)
 	
 	int iMeanVolume = (iVolumeLeft + iVolumeRight) / (bHasLeft + bHasRight);
 	
-	return ((int) 100. * (iMeanVolume - myData.iVolumeMin) / (myData.iVolumeMax - myData.iVolumeMin));
+	g_print ("myData.iVolumeMin : %d ; myData.iVolumeMax : %d ; iMeanVolume : %d\n", myData.iVolumeMin, myData.iVolumeMax, iMeanVolume);
+	return (100. * (iMeanVolume - myData.iVolumeMin) / (myData.iVolumeMax - myData.iVolumeMin));
 }
 
 void mixer_set_volume (int iNewVolume)
 {
 	g_return_if_fail (myData.pControledElement != NULL);
-	int iVolume = myData.iVolumeMin + (myData.iVolumeMax - myData.iVolumeMin) * iNewVolume / 100;
+	int iVolume = ceil (myData.iVolumeMin + (myData.iVolumeMax - myData.iVolumeMin) * iNewVolume / 100.);
 	snd_mixer_selem_set_playback_volume_all (myData.pControledElement, iVolume);
 	if (myData.pControledElement2 != NULL)
 		snd_mixer_selem_set_playback_volume_all (myData.pControledElement2, iVolume);
