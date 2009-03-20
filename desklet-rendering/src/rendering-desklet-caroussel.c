@@ -24,6 +24,7 @@ void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *pContai
 	{
 		glPushMatrix ();
 			cairo_dock_draw_icon_texture (pIcon, pContainer);
+			glColor4f(1., 1., 1., 1.);
 		glPopMatrix ();
 	}
 	if (pIcon->iLabelTexture != 0 && !bIsReflect)
@@ -497,11 +498,11 @@ static void _draw_disc_caroussel(CairoDesklet *pDesklet, double fTheta, double a
 	//\________ Dessiner un disque en dessous du caroussel			
 	glBegin(GL_TRIANGLE_FAN);
 		glColor4f(0., 0., 0., 0.);
-		glVertex3f (0, -pDesklet->pIcon->fHeight/2., 0);
+		glVertex3f (0, 0., 0);
 		for( int iIter = 0; iIter <= 30; iIter++  )
 		{
-			glColor4f(0.1, 0.1, ((iIter%2)==0)?0.5:0.3, 0.8);
-			glVertex3f (1.5*a*sin(fTheta+2*G_PI*(double)iIter/30.), -pDesklet->pIcon->fHeight/2., 1.5*b*cos(fTheta+2*G_PI*(double)iIter/30.));
+			glColor4f(0.1, 0.1, ((iIter%2)==0)?0.5:0.3, 0.5);
+			glVertex3f (1.5*a*sin(fTheta+2*G_PI*(double)iIter/30.), 0., 1.5*b*cos(fTheta+2*G_PI*(double)iIter/30.));
 		}
 	glEnd();
 	glColor4f(1., 1., 1., 1.);
@@ -550,8 +551,20 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet), FALSE);
     glDisable ( GL_ALPHA_TEST ) ;
 
-		glTranslatef( 0., -0.3*b, -b/2. );
-		glRotatef( 10., 1., 0., 0. );
+		glTranslatef( 0., -0.6*b, 0. );
+		//glRotatef( 10., 1., 0., 0. );
+
+		// On se met a la bonne hauteur pour le plan, c-a-d en dessous des quickinfos
+		if( pDesklet->icons )
+		{
+			pIcon = (Icon *)(pDesklet->icons->data);
+			glTranslatef( 0., -(pIcon->fHeight/2 + pIcon->iQuickInfoHeight), -b/2. );
+		}
+		else
+		{
+			// Au cas ou il n'y a aucune sous-icone !
+			glTranslatef( 0., -pDesklet->pIcon->fHeight/2., -b/2. );
+		}
 
 		glPolygonMode (GL_FRONT, GL_FILL);
 		
@@ -587,19 +600,25 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			fTheta = pSortedIcon->fTheta;
 			double previousAlphaIcon = pIcon->fAlpha;
 
-			//\__________ On dessine un reflet sur le disque
 			glPushMatrix ();
 			
 			//\____________________ On se decale au bon endroit
 			glTranslatef (-a * cos (fTheta),
-										pDesklet->pIcon->fHeight/2.+0.1,
+										-pIcon->fHeight/2.-pIcon->iQuickInfoHeight,
 										b * sin (fTheta));
 
 			//\____________________ Un reflet, c'est inverse --> on inverse
 			glScalef( 1, -1, 1 );
 
+			//\____________________ On calcule la transparence qui va bien
+			//  ici on se base sur la profondeur, representee par sin(fTheta) ici
+			//    Si sin(fTheta)+0.4 > 1., donc si l'objet est assez proche de nous ==> opaque
+			//    Si sin(fTheta)+0.4 < 0., donc assez profond ==> on cache
+			double alphaIcon = MAX(MIN(sin (fTheta) + 0.4, 1.), 0.2);
+
 			//\____________________ On met le reflet un peu transparent
-			pIcon->fAlpha *= 0.4;			
+			pIcon->fAlpha = alphaIcon * 0.4;			
+
 			//\____________________ Et on dessine l'icone
 			_render_one_icon_and_quickinfo_opengl (pIcon, CAIRO_CONTAINER (pDesklet), TRUE);
 			pIcon->fAlpha = previousAlphaIcon;
@@ -610,6 +629,8 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		glClear( GL_STENCIL_BUFFER_BIT );
 
 		//\________ Dessiner un disque en dessous du caroussel au dessus des reflets
+		glEnable (GL_BLEND);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend le cube transparent.
 		_draw_disc_caroussel(pDesklet, fTheta, a, b, FALSE);
 
 		//\____________________ On dessine les icones autour: les "vraies" icones !
@@ -624,17 +645,17 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 
 			//\____________________ On se decale au bon endroit
 			glTranslatef (-a * cos (fTheta),
-										0.,
-										1.5 * b * sin (fTheta));
+										pIcon->fHeight/2 + pIcon->iQuickInfoHeight,
+										b * sin (fTheta));
 
 			//\____________________ On se remet droit
-			glRotatef( -10., 1., 0., 0. );
+			//glRotatef( -10., 1., 0., 0. );
 
 			//\____________________ On calcule la transparence qui va bien
 			//  ici on se base sur la profondeur, representee par sin(fTheta) ici
 			//    Si sin(fTheta)+0.4 > 1., donc si l'objet est assez proche de nous ==> opaque
 			//    Si sin(fTheta)+0.4 < 0., donc assez profond ==> on cache
-			double alphaIcon = MAX(MIN(sin (fTheta) + 0.4, 1.), 0.);
+			double alphaIcon = MAX(MIN(sin (fTheta) + 0.4, 1.), 0.2);
 
 			pIcon->fAlpha *= alphaIcon;
 			
