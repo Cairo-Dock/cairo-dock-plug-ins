@@ -1,0 +1,5 @@
+@PACKAGE_QUICK_BROWSER@ (v@VERSION_QUICK_BROWSER@)
+Author : Fabounet (Fabrice Rey)
+This applet lets you browse a folder and its sub-folders very quickly.
+You can set up a shortkey to pop up the menu.
+This applet can be instanciated several times, if you want to browse different folders.
