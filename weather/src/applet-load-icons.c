@@ -64,7 +64,7 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 	if (myConfig.bCurrentConditions)
 	{
 		cd_message ("  chargement de l'icone meteo (%x)", myApplet);
-		if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL)
+		if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL && myConfig.iDeskletRenderer != MY_DESKLET_MAIN_ICON)
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp);
 		}
@@ -91,6 +91,24 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 	{
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	}
+	
+	if (myConfig.iDeskletRenderer == MY_DESKLET_MAIN_ICON)
+	{ 
+	  char *cTemp = NULL;
+	  if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL)
+	    cTemp = g_strdup_printf ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp);
+	  char *cConditions = NULL;
+	  if (myData.currentConditions.cWeatherDescription != NULL)
+	     cConditions = g_strdup (myData.currentConditions.cWeatherDescription);
+	     
+    gpointer data[2] = {cConditions, cTemp};
+    cairo_dock_render_desklet_with_new_data (myDesklet, (CairoDeskletRendererDataPtr) data);
+    
+    if (cConditions != NULL)
+      g_free (cConditions);
+    if (cTemp != NULL)
+      g_free (cTemp);
+  }
 }
 
 gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
@@ -108,8 +126,11 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
-	gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
+	if (myConfig.iDeskletRenderer == MY_DESKLET_CAROUSSEL)
+	{
+	  gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+	  CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
+	}
 	
 	//\_______________________ On recharge l'icone principale.
 	_weather_draw_current_conditions (myApplet);  // ne lance pas le redraw.

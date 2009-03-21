@@ -130,5 +130,11 @@ theme = basic
 #{Let it empty to use default sub-dock view.}/
 renderer = 
 
+#v
+sep_deco_desk =
+
+#r[Carrousel;Main Icon] Desklet Rendering :
+current desklet=0
+
 #b+ Render desklet in 3D ?
 3D desket = true

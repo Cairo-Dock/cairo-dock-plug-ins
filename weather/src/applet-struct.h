@@ -12,6 +12,11 @@
 
 #define _display(cValue) (cValue == NULL || *cValue == 'N' ? "?" : cValue)
 
+typedef enum {
+  MY_DESKLET_CAROUSSEL = 0,
+  MY_DESKLET_MAIN_ICON
+  } MyDeskletRender ;
+
 struct _AppletConfig {
 	gchar *cLocationCode;
 	gboolean bISUnits;
@@ -24,6 +29,7 @@ struct _AppletConfig {
 	gint iCheckInterval;
 	gchar *cThemePath;
 	gboolean bDesklet3D;
+	MyDeskletRender iDeskletRenderer;
 	} ;
 
 typedef struct {
