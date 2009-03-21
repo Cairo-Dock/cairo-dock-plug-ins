@@ -7,7 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"POT-Creation-Date: 2009-03-08 04:48+0100\n"
+"PO-Revision-Date: 2009-03-19 16:33+0800\n"
+"Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,7 +35,7 @@ msgstr "打开当前图片"
 
 #: ../src/applet-notifications.c:159
 msgid "Browse images folder"
-msgstr ""
+msgstr "浏览图片文件夹"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -40,164 +43,150 @@ msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "此小应用程序期望的图标大小"
+msgstr "此小程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "显现于dock之上的图标标签名称："
+msgstr "在dock中显示的图标标签名称:"
 
 #: ../data/messages:7
 msgid "Name of the dock it belongs to:"
-msgstr "归属于dock的名称："
+msgstr "所属dock名称:"
 
 #: ../data/messages:9
 msgid "Desklet"
-msgstr "桌面应用程序"
+msgstr "桌面小工具"
 
 #: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
-"器"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
-msgstr "桌面小程序尺寸（宽x高）："
+msgstr "桌面小工具尺寸(宽×高):"
 
 #: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
 
 #: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
-msgstr "桌面小应用程序位置(x ; y)："
+msgstr "桌面小工具位置(x ; y):"
 
 #: ../data/messages:19
 msgid "Is detached from the dock ?"
-msgstr "从dock移开？"
+msgstr "与dock分离?"
 
 #: ../data/messages:21
 msgid "Keep below other windows ?"
-msgstr "位于最下窗口？"
+msgstr "在其他窗口之下?"
 
 #: ../data/messages:23
 msgid "Keep above other windows ?"
-msgstr "窗口置顶？"
+msgstr "在其他窗口之上?"
 
 #: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr ""
-"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
-"type=utility) "
+msgstr "面向CompizFusion的“小工具层”，将Compiz的行为设置为:(name=cairo-dock & type=utility) "
 
 #: ../data/messages:27
 msgid "Keep on widget layer ?"
-msgstr "保持于小应用程序层？"
+msgstr "保持于小工具层?"
 
 #: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../data/messages:31
 msgid "Lock position ?"
-msgstr "锁定位置？"
+msgstr "锁定位置?"
 
 #: ../data/messages:33
 msgid "in degrees."
-msgstr ""
+msgstr "以角度为单位。"
 
 #: ../data/messages:35
 msgid "Rotation :"
-msgstr ""
+msgstr "旋转:"
 
 #: ../data/messages:37
 msgid "Decorations"
 msgstr "装饰"
 
 #: ../data/messages:39
-#, fuzzy
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"如果选择‘个性化’您将可以在上面定义您自己的装饰，否则请留空以使用别的装饰。"
+msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
 #: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "为这个桌面小工具选择一个装饰主题:"
 
 #: ../data/messages:43
 #, fuzzy
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
-"例えばフレームのように、スライドの背後に表示される画像です。デフォルトのもの"
-"を使用するには空欄のままにしてください。"
+msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
 #: ../data/messages:45
 msgid "Background image :"
-msgstr "背景图："
+msgstr "背景图片:"
 
 #: ../data/messages:47
 msgid "Background tansparency :"
-msgstr "背景透明度："
+msgstr "背景透明度:"
 
 #: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
 #: ../data/messages:51
 msgid "Left offset :"
-msgstr "左偏移："
+msgstr "左偏移:"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
 #: ../data/messages:55
 msgid "Top offset :"
-msgstr "上偏移："
+msgstr "顶偏移:"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
 #: ../data/messages:59
 msgid "Right offset :"
-msgstr "右偏移："
+msgstr "右偏移:"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
 #: ../data/messages:63
 msgid "Bottom offset :"
-msgstr "底偏移"
+msgstr "底偏移:"
 
 #: ../data/messages:65
-#, fuzzy
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
-"例えば反射のように、スライドの前面に表示される画像です。デフォルトのものを使"
-"用するには空欄のままにしてください。"
+msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
 #: ../data/messages:67
-#, fuzzy
 msgid "Foreground image :"
-msgstr "背景图："
+msgstr "前景图片:"
 
 #: ../data/messages:69
-#, fuzzy
 msgid "Foreground tansparency :"
-msgstr "背景透明度："
+msgstr "前景透明度:"
 
 #: ../data/messages:71
 msgid "Configuration"
@@ -209,30 +198,29 @@ msgstr "目录"
 
 #: ../data/messages:75
 msgid "Directory of the images :"
-msgstr "图片目录："
+msgstr "图片目录:"
 
 #: ../data/messages:77
 msgid "Scan in sub direcotries ?"
-msgstr "扫描子目录？"
+msgstr "扫描子目录?"
 
 #: ../data/messages:79
 msgid "Randomly browse files ?"
-msgstr "随机浏览文件？"
+msgstr "随机浏览文件?"
 
 #: ../data/messages:81
 msgid "Display image name as quickinfo ?"
-msgstr ""
+msgstr "在快捷信息中显示图片名称?"
 
 #: ../data/messages:83
 msgid ""
 "It will prevent the dock from freezing during the image loading, but does "
 "not work with cairo."
-msgstr ""
+msgstr "这可以防止dock在转入图片时无法响应，但不能在cairo模式下使用。"
 
 #: ../data/messages:85
-#, fuzzy
 msgid "Use another thread to load the images ?"
-msgstr "使用线程载入大图片"
+msgstr "使用另一个线程载入图片?"
 
 #: ../data/messages:87
 msgid "Behaviour"
@@ -240,15 +228,15 @@ msgstr "行为"
 
 #: ../data/messages:89
 msgid "in seconds."
-msgstr "以秒为单位"
+msgstr "以秒为单位。"
 
 #: ../data/messages:91
 msgid "Sliding delay :"
-msgstr "切换间隔："
+msgstr "切换间隔:"
 
 #: ../data/messages:93
 msgid "Action when applet is clicked :"
-msgstr "当小应用程序被点击时行动："
+msgstr "当小程序被点击时执行操作:"
 
 #: ../data/messages:95
 msgid "play/pause"
@@ -260,7 +248,7 @@ msgstr "打开图片"
 
 #: ../data/messages:99
 msgid "Effect while changing image :"
-msgstr "图片切换效果："
+msgstr "图片切换效果:"
 
 #: ../data/messages:101
 msgid "none"
@@ -271,14 +259,12 @@ msgid "fade"
 msgstr "渐隐"
 
 #: ../data/messages:105
-#, fuzzy
 msgid "blank fade"
-msgstr "隐入"
+msgstr "空白渐隐"
 
 #: ../data/messages:107
-#, fuzzy
 msgid "fade in out"
-msgstr "隐入隐出"
+msgstr "淡入淡出"
 
 #: ../data/messages:109
 msgid "side kick"
@@ -298,7 +284,7 @@ msgstr "凋落"
 
 #: ../data/messages:117
 msgid "cube"
-msgstr ""
+msgstr "立方体"
 
 #: ../data/messages:119
 msgid "random"
@@ -306,7 +292,7 @@ msgstr "随机"
 
 #: ../data/messages:121
 msgid "Number of steps for a transition :"
-msgstr ""
+msgstr "转换步数:"
 
 #: ../data/messages:123
 msgid "Display"
@@ -318,7 +304,7 @@ msgstr "优化图像渲染"
 
 #: ../data/messages:127
 msgid "Keep widht/height ratio ?"
-msgstr "维持纵横比？"
+msgstr "维持纵横比?"
 
 #: ../data/messages:129
 msgid "If the image is too small, it will be zoomed in."
@@ -326,7 +312,7 @@ msgstr "如果图片太小，将进行放大。"
 
 #: ../data/messages:131
 msgid "Force the image to fill the icon/desklet ?"
-msgstr "强制图片充填图标/桌面小应用？"
+msgstr "强制图片充填图标/桌面小工具?"
 
 #: ../data/messages:133
 msgid ""
@@ -336,13 +322,13 @@ msgstr "如果您不想使用背景，可将透明度通道设置为0。"
 
 #: ../data/messages:135
 msgid "Choose a background color :"
-msgstr "选择背景色："
+msgstr "选择背景色:"
 
 #~ msgid "width :"
-#~ msgstr "宽："
+#~ msgstr "宽:"
 
 #~ msgid "height :"
-#~ msgstr "高："
+#~ msgstr "高:"
 
 #~ msgid ""
 #~ "If you choose 'personnal', you can define your own decoration above, or "
@@ -351,7 +337,7 @@ msgstr "选择背景色："
 #~ "如果选择‘个性化’您将可以在上面定义您自己的装饰，否则请留空以使用别的装饰。"
 
 #~ msgid "Choose a background and foreground decoration :"
-#~ msgstr "选择背景和前景的装饰："
+#~ msgstr "选择背景和前景的装饰:"
 
 #~ msgid "Personnal"
 #~ msgstr "个性化"
@@ -379,10 +365,10 @@ msgstr "选择背景色："
 #~ msgstr "显示于封面之上的图片，如同反射一样"
 
 #~ msgid "Reflection image :"
-#~ msgstr "反射图片："
+#~ msgstr "反射图片:"
 
 #~ msgid "Reflection tansparency :"
-#~ msgstr "反射透明度："
+#~ msgstr "反射透明度:"
 
 #~ msgid "Not yet implemented."
 #~ msgstr "尚未实现"

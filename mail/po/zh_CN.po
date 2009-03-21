@@ -6,22 +6,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
+"PO-Revision-Date: 2009-03-19 15:25+0800\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
+"Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/cd-mail-applet-config.c:369
-#, fuzzy
 msgid "Remove Account"
-msgstr "移除邮件用户"
+msgstr "移除账户"
 
 #: ../src/cd-mail-applet-notifications.c:21
 msgid ""
 "This is the mail applet\n"
 " made by Christophe Chapuis for Cairo-Dock"
-msgstr "这是Christophe Chapuis为Cairo-Dock开发的邮件小应用程序"
+msgstr ""
+"这是邮件小程序\n"
+"由Christophe Chapuis为Cairo-Dock开发"
 
 #: ../src/cd-mail-applet-notifications.c:55
 #, c-format
@@ -30,13 +33,12 @@ msgid ""
 "If '%s' is not your usual mail application,\n"
 "you can change it in the conf panel of this module"
 msgstr ""
-"遇到问题\n"
-"如果'%s'不是您日常使用的邮件程序，您可以在此模块的配置面板中进行更改"
+"出现问题\n"
+"如果“%s”不是您日常使用的邮件程序，您可以在此模块的配置面板中进行更改"
 
 #: ../src/cd-mail-applet-notifications.c:83
-#, fuzzy
 msgid "Refresh a mail account"
-msgstr "移除邮件用户"
+msgstr "移除邮件账号"
 
 #: ../src/cd-mail-applet-notifications.c:141
 msgid "No unread mail in your mailboxes"
@@ -44,15 +46,15 @@ msgstr "您的邮箱中没有未读邮件"
 
 #: ../src/cd-mail-applet-notifications.c:167
 msgid "You have"
-msgstr ""
+msgstr "您有"
 
 #: ../src/cd-mail-applet-notifications.c:167
 msgid "new mails :"
-msgstr ""
+msgstr "新邮件:"
 
 #: ../src/cd-mail-applet-notifications.c:167
 msgid "new mail :"
-msgstr ""
+msgstr "新邮件:"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -60,154 +62,149 @@ msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "此小应用程序期望的图标大小"
+msgstr "此小程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "显现于dock之上的图标标签名称："
+msgstr "在dock中显示的图标标签名称:"
 
 #: ../data/messages:7
 msgid "Name of the dock it belongs to:"
-msgstr "归属于dock的名称："
+msgstr "所属dock名称:"
 
 #: ../data/messages:9
 msgid "Desklet"
-msgstr "桌面应用程序"
+msgstr "桌面小工具"
 
 #: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
-"器"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
-msgstr "桌面小程序尺寸（宽x高）："
+msgstr "桌面小工具尺寸(宽×高):"
 
 #: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
 
 #: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
-msgstr "桌面小应用程序位置(x ; y)："
+msgstr "桌面小工具位置(x ; y):"
 
 #: ../data/messages:19
 msgid "Is detached from the dock ?"
-msgstr "从dock移开？"
+msgstr "与dock分离?"
 
 #: ../data/messages:21
 msgid "Keep below other windows ?"
-msgstr "位于最下窗口？"
+msgstr "在其他窗口之下?"
 
 #: ../data/messages:23
 msgid "Keep above other windows ?"
-msgstr "窗口置顶？"
+msgstr "在其他窗口之上?"
 
 #: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr ""
-"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
-"type=utility) "
+msgstr "面向CompizFusion的“小工具层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
 
 #: ../data/messages:27
 msgid "Keep on widget layer ?"
-msgstr "保持于小应用程序层？"
+msgstr "保持于小工具层?"
 
 #: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../data/messages:31
 msgid "Lock position ?"
-msgstr "锁定位置？"
+msgstr "锁定位置?"
 
 #: ../data/messages:33
 msgid "in degrees."
-msgstr ""
+msgstr "以角度为单位。"
 
 #: ../data/messages:35
 msgid "Rotation :"
-msgstr ""
+msgstr "旋转:"
 
 #: ../data/messages:37
 msgid "Decorations"
-msgstr ""
+msgstr "装饰"
 
 #: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
 #: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "为这个桌面小工具选择一个装饰主题:"
 
 #: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
 #: ../data/messages:45
 msgid "Background image :"
-msgstr ""
+msgstr "背景图片:"
 
 #: ../data/messages:47
 msgid "Background tansparency :"
-msgstr ""
+msgstr "背景透明度:"
 
 #: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
 #: ../data/messages:51
 msgid "Left offset :"
-msgstr ""
+msgstr "左偏移:"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
 #: ../data/messages:55
 msgid "Top offset :"
-msgstr ""
+msgstr "顶偏移:"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
 #: ../data/messages:59
 msgid "Right offset :"
-msgstr ""
+msgstr "右偏移:"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
 #: ../data/messages:63
 msgid "Bottom offset :"
-msgstr ""
+msgstr "底偏移:"
 
 #: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
 #: ../data/messages:67
 msgid "Foreground image :"
-msgstr ""
+msgstr "前景图片:"
 
 #: ../data/messages:69
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "前景透明度:"
 
 #: ../data/messages:71
 msgid "Configuration"
@@ -215,29 +212,27 @@ msgstr "配置"
 
 #: ../data/messages:73
 msgid "Choose one of the available themes :"
-msgstr ""
+msgstr "选择一个可用主题:"
 
 #: ../data/messages:75
 msgid "Default"
-msgstr ""
+msgstr "默认"
 
 #: ../data/messages:77
 msgid "Theme overriding"
-msgstr ""
+msgstr "覆盖主题"
 
 #: ../data/messages:79
-#, fuzzy
 msgid "Name of the file for the \"no mail\" image :"
-msgstr "用于覆盖主题无新邮件的图像的图像名称："
+msgstr "“无邮件”图像文件名:"
 
 #: ../data/messages:81
-#, fuzzy
 msgid "Name of the file for the \"has mail\" image :"
-msgstr "用于覆盖主题有新邮件的图像的图像名称："
+msgstr "“有邮件”图像文件名:"
 
 #: ../data/messages:83
 msgid "Name of the file for the \"new mail\" sound :"
-msgstr ""
+msgstr "“新邮件”声音文件名:"
 
 #: ../data/messages:85
 msgid "Path to application to launch on left-click"
@@ -245,11 +240,11 @@ msgstr "左键点击时启动的应用程序路径"
 
 #: ../data/messages:87
 msgid "The new account will be created with specified type and name."
-msgstr ""
+msgstr "新账户将用指定类型和名称创建。"
 
 #: ../data/messages:89
 msgid "Add an account with specified type and name:"
-msgstr ""
+msgstr "用指定类型和名称增加一个账户:"
 
 #~ msgid "Add a new mail account"
 #~ msgstr "添加一个新邮件用户"
@@ -265,7 +260,7 @@ msgstr ""
 #~ "应"
 
 #~ msgid "Failed to connect to server: %s"
-#~ msgstr "无法连接到服务器：%s"
+#~ msgstr "无法连接到服务器:%s"
 
 #~ msgid ""
 #~ "Unable to return socket to blocking mode.  Data may not be retreived "
@@ -273,12 +268,12 @@ msgstr ""
 #~ msgstr "无法将socket置于阻塞模式，取回的数据可能会失真。"
 
 #~ msgid "TLS handshake failed: %s"
-#~ msgstr "TLS握手失败：%s "
+#~ msgstr "TLS握手失败:%s "
 
 #~ msgid ""
 #~ "Received HTTP response code %d.  The most likely reason for this is that "
 #~ "your GMail username or password is incorrect."
-#~ msgstr "收到HTTP响应码：%d。 最可能的原因是您的Gmail用户名或密码错误。"
+#~ msgstr "收到HTTP响应码:%d。 最可能的原因是您的Gmail用户名或密码错误。"
 
 #~ msgid ""
 #~ "Received HTTP response code %d, which should be 200.  There may be a "
@@ -289,10 +284,10 @@ msgstr ""
 #~ "式或新邮件推送位置做了不兼容的变更。"
 
 #~ msgid "_Username:"
-#~ msgstr "_用户名："
+#~ msgstr "_用户名:"
 
 #~ msgid "_Password:"
-#~ msgstr "_密码："
+#~ msgstr "_密码:"
 
 #~ msgid "Check for _new messages every"
 #~ msgstr "检查新邮件间隔每"
@@ -349,19 +344,19 @@ msgstr ""
 #~ msgstr "通过STARTTLS使用SSL/TLS"
 
 #~ msgid "Use non-standard IMAP _port:"
-#~ msgstr "使用非标准IMAP端口："
+#~ msgstr "使用非标准IMAP端口:"
 
 #~ msgid "Folders"
 #~ msgstr "邮件夹"
 
 #~ msgid "IMAP server _directory:"
-#~ msgstr "IMAP服务器目录："
+#~ msgstr "IMAP服务器目录:"
 
 #~ msgid "IMAP Server"
 #~ msgstr "IMAP服务器"
 
 #~ msgid "_Mail server:"
-#~ msgstr "_邮件服务器："
+#~ msgstr "_邮件服务器:"
 
 #~ msgid "_Advanced..."
 #~ msgstr "_高级……"
@@ -382,16 +377,16 @@ msgstr ""
 #~ msgstr "获取文件 %s: %s 状态失败"
 
 #~ msgid "%s is not a directory. Is %s really a valid maildir?"
-#~ msgstr "%s 不是一个目录。%s真的是一个合法的邮件目录么？"
+#~ msgstr "%s 不是一个目录。%s真的是一个合法的邮件目录么?"
 
 #~ msgid "Select Maildir Folder"
 #~ msgstr "选择邮件目录"
 
 #~ msgid "Maildir _Path:"
-#~ msgstr "邮件目录_路径："
+#~ msgstr "邮件目录_路径:"
 
 #~ msgid "_Interval:"
-#~ msgstr "_间隔："
+#~ msgstr "_间隔:"
 
 #~ msgid "Local Maildir Spool"
 #~ msgstr "本地邮件目录缓冲池"
@@ -405,7 +400,7 @@ msgstr ""
 #~ msgstr "选择mbox文件"
 
 #~ msgid "Mbox _Filename:"
-#~ msgstr "Mbox_文件名："
+#~ msgstr "Mbox_文件名:"
 
 #~ msgid "Local Mbox spool"
 #~ msgstr "本地Mbox缓冲池"
@@ -434,7 +429,7 @@ msgstr ""
 #~ msgstr "通过STLS使用SSL/TLS"
 
 #~ msgid "Use non-standard POP3 _port:"
-#~ msgstr "使用非标准POP3_端口："
+#~ msgstr "使用非标准POP3_端口:"
 
 #~ msgid "POP3 Server"
 #~ msgstr "POP3服务器"
@@ -448,13 +443,13 @@ msgstr ""
 #~ msgstr "POP3插件可以连接至支持POP3协议的远程邮件服务器，并支持SSL链接保护"
 
 #~ msgid "XfceMailwatch: TLS handshake failed: %s"
-#~ msgstr "XfceMailwatch：TLS握手失败：%s"
+#~ msgstr "XfceMailwatch:TLS握手失败:%s"
 
 #~ msgid "Not compiled with SSL/TLS support"
 #~ msgstr "编译时未加入SSL/TLS支持"
 
 #~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-#~ msgstr "XfceMailwatch：TLS握手失败：编译时未加入SSL/TLS支持"
+#~ msgstr "XfceMailwatch:TLS握手失败:编译时未加入SSL/TLS支持"
 
 #~ msgid "A secure connection was requested, but gnutls was not initialised"
 #~ msgstr "需要安全链接，但gnutls未初始化"
@@ -463,10 +458,10 @@ msgstr ""
 #~ msgstr "此邮箱类型不必进行配置"
 
 #~ msgid "Mailbox _Name:"
-#~ msgstr "邮箱_名称："
+#~ msgstr "邮箱_名称:"
 
 #~ msgid "Edit Mailbox: %s"
-#~ msgstr "编辑邮箱：%s"
+#~ msgstr "编辑邮箱:%s"
 
 #~ msgid "Select Mailbox Type"
 #~ msgstr "选择邮箱类型"
@@ -481,10 +476,10 @@ msgstr ""
 #~ msgstr "邮箱"
 
 #~ msgid "width :"
-#~ msgstr "宽："
+#~ msgstr "宽:"
 
 #~ msgid "height :"
-#~ msgstr "高："
+#~ msgstr "高:"
 
 #~ msgid "Module"
 #~ msgstr "Module"

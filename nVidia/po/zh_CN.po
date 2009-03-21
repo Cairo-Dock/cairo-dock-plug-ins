@@ -3,31 +3,32 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
+"PO-Revision-Date: 2009-03-19 15:50+0800\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
+"Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-draw.c:102
 msgid "GPU Name:"
-msgstr "GPU名称："
+msgstr "GPU名称:"
 
 #: ../src/applet-draw.c:102
 msgid "Video Ram:"
-msgstr "显存："
+msgstr "显存:"
 
 #: ../src/applet-draw.c:102
 msgid "Driver Version:"
-msgstr "驱动版本："
+msgstr "驱动版本:"
 
 #: ../src/applet-draw.c:102 ../src/applet-draw.c:118
 msgid "Core Temparature:"
-msgstr "核心温度："
+msgstr "核心温度:"
 
 #: ../src/applet-draw.c:107
 msgid ""
@@ -36,7 +37,7 @@ msgid ""
 " You need at least the 1.0.0 version"
 msgstr ""
 "nVidia\n"
-"您的'nvidia-settings'版本过低\n"
+"您的“nvidia-settings”版本过低\n"
 "您需要至少1.0.0的版本"
 
 #: ../src/applet-draw.c:110
@@ -48,11 +49,11 @@ msgid ""
 msgstr ""
 "nVidia \n"
 "无法获取GPU温度\n"
-"您确定'nvidia-settings'已经安装并开启了监视GPU温度的选项了么？"
+"您确定“nvidia-settings”已经安装并开启了监视GPU温度的选项吗?"
 
 #: ../src/applet-draw.c:118
 msgid "Alert!"
-msgstr "警告！"
+msgstr "警告!"
 
 #: ../src/applet-draw.c:118
 msgid "passed alert temperature level"
@@ -62,7 +63,9 @@ msgstr "报警温度等级"
 msgid ""
 "This is the nVidia applet\n"
 " made by ChAnGFu for Cairo-Dock"
-msgstr "这是由ChAnGFu为Cairo-Dock制作的nVidia小应用程序"
+msgstr ""
+"这是nVidia小程序\n"
+"由ChAnGFu为Cairo-Dock制作"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -70,165 +73,157 @@ msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "此小应用程序期望的图标大小"
+msgstr "此小程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "显现于dock之上的图标标签名称："
+msgstr "在dock中显示的图标标签名称:"
 
 #: ../data/messages:7
-#, fuzzy
 msgid "Let empty to use the default one."
-msgstr "留空以使用默认图标。"
+msgstr "留空以使用默认图片。"
 
 #: ../data/messages:9
-#, fuzzy
 msgid "Image's filename :"
-msgstr "图标名称："
+msgstr "图片名:"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr "归属于dock的名称："
+msgstr "所属dock名称:"
 
 #: ../data/messages:13
 msgid "Desklet"
-msgstr "桌面应用程序"
+msgstr "桌面小工具"
 
 #: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
-"器"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
-msgstr "桌面小程序尺寸（宽x高）："
+msgstr "桌面小工具尺寸(宽×高):"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
-msgstr "桌面小应用程序位置(x ; y)："
+msgstr "桌面小工具位置(x ; y):"
 
 #: ../data/messages:23
 msgid "Is detached from the dock ?"
-msgstr "从dock移开？"
+msgstr "与dock分离?"
 
 #: ../data/messages:25
 msgid "Keep below other windows ?"
-msgstr "位于最下窗口？"
+msgstr "在其他窗口之下?"
 
 #: ../data/messages:27
 msgid "Keep above other windows ?"
-msgstr "窗口置顶？"
+msgstr "在其他窗口之上?"
 
 #: ../data/messages:29
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr ""
-"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
-"type=utility) "
+msgstr "面向CompizFusion的“小工具层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
-msgstr "保持于小应用程序层？"
+msgstr "保持于小工具层?"
 
 #: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
-msgstr "锁定位置？"
+msgstr "锁定位置?"
 
 #: ../data/messages:37
 msgid "in degrees."
-msgstr ""
+msgstr "以角度为单位。"
 
 #: ../data/messages:39
 msgid "Rotation :"
-msgstr ""
+msgstr "旋转:"
 
 #: ../data/messages:41
-#, fuzzy
 msgid "Decorations"
-msgstr "信息"
+msgstr "装饰"
 
 #: ../data/messages:43
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
 #: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "为这个桌面小工具选择一个装饰主题:"
 
 #: ../data/messages:47
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
 #: ../data/messages:49
 msgid "Background image :"
-msgstr ""
+msgstr "背景图片:"
 
 #: ../data/messages:51
 msgid "Background tansparency :"
-msgstr ""
+msgstr "背景透明度:"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
 #: ../data/messages:55
 msgid "Left offset :"
-msgstr ""
+msgstr "左偏移:"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
 #: ../data/messages:59
 msgid "Top offset :"
-msgstr ""
+msgstr "顶偏移:"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
 #: ../data/messages:63
 msgid "Right offset :"
-msgstr ""
+msgstr "右偏移:"
 
 #: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
 #: ../data/messages:67
 msgid "Bottom offset :"
-msgstr ""
+msgstr "底偏移:"
 
 #: ../data/messages:69
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
 #: ../data/messages:71
 msgid "Foreground image :"
-msgstr ""
+msgstr "前景图片:"
 
 #: ../data/messages:73
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "前景透明度:"
 
 #: ../data/messages:75
 msgid "Configuration"
@@ -244,7 +239,7 @@ msgstr "标签上显示显卡名称"
 
 #: ../data/messages:81
 msgid "Display core temperature :"
-msgstr "显示核心温度："
+msgstr "显示核心温度:"
 
 #: ../data/messages:83
 msgid "no"
@@ -252,7 +247,7 @@ msgstr "否"
 
 #: ../data/messages:85
 msgid "on icon"
-msgstr "sur l'icône"
+msgstr "在图标上"
 
 #: ../data/messages:87
 msgid "on label"
@@ -264,47 +259,47 @@ msgstr "以秒为单位。"
 
 #: ../data/messages:91
 msgid "Delay between temperature checks :"
-msgstr "温度检查延迟间隔："
+msgstr "温度检查延迟间隔:"
 
 #: ../data/messages:93
 msgid ""
 "in celcius. The temperature will be displayed between this value and the "
 "upper limit."
-msgstr ""
+msgstr "以摄氏度为单位。如果显卡温度介于这个温度和上限温度之间就显示温度。"
 
 #: ../data/messages:95
 msgid "Lower limit of core temperature :"
-msgstr "核心温度下限："
+msgstr "核心温度下限:"
 
 #: ../data/messages:97
 msgid ""
 "in celcius. The temperature will be displayed between the lower limit and "
 "this value."
-msgstr ""
+msgstr "以摄氏度为单位。如果显卡温度介于下限温度和这个温度之间就显示温度。"
 
 #: ../data/messages:99
 msgid "Upper limit of core temperature :"
-msgstr "核心温度上限："
+msgstr "核心温度上限:"
 
 #: ../data/messages:101
 msgid "Alert when core temperature is high ?"
-msgstr "当核心温度过高时报警？"
+msgstr "当核心温度过高时报警?"
 
 #: ../data/messages:103
 msgid "in celcius."
-msgstr "以摄氏度为单位"
+msgstr "以摄氏度为单位。"
 
 #: ../data/messages:105
 msgid "Alert limit of core temperature :"
-msgstr "核心温度报警门限："
+msgstr "核心温度报警极限:"
 
 #: ../data/messages:107
 msgid "Play a sound during the alert ?"
-msgstr "报警时播放声音？"
+msgstr "报警时播放声音?"
 
 #: ../data/messages:109
 msgid "Sound path :"
-msgstr "声音路径："
+msgstr "声音路径:"
 
 #: ../data/messages:111
 msgid "Images"
@@ -312,73 +307,73 @@ msgstr "图像"
 
 #: ../data/messages:113
 msgid "Display a graphic rather than a gauge ?"
-msgstr ""
+msgstr "显示图像代替表盘?"
 
 #: ../data/messages:115
 msgid "Type of graphic :"
-msgstr ""
+msgstr "图像类型:"
 
 #: ../data/messages:117
 msgid "Line"
-msgstr ""
+msgstr "直线图"
 
 #: ../data/messages:119
 msgid "Plain"
-msgstr ""
+msgstr "平面图"
 
 #: ../data/messages:121
 msgid "Bar"
-msgstr ""
+msgstr "柱状图"
 
 #: ../data/messages:123
 msgid "Circle"
-msgstr ""
+msgstr "圆环图"
 
 #: ../data/messages:125
 msgid "Plain Circle"
-msgstr ""
+msgstr "平面圆环图"
 
 #: ../data/messages:127
 msgid "It's the color of the graphic for high Temperature values."
-msgstr ""
+msgstr "温度高时的图像颜色。"
 
 #: ../data/messages:129
 msgid "High values color :"
-msgstr ""
+msgstr "高温颜色:"
 
 #: ../data/messages:131
 msgid "It's the color of the graphic for low Temperature values."
-msgstr ""
+msgstr "温度低时的图像颜色。"
 
 #: ../data/messages:133
 msgid "Low values color :"
-msgstr ""
+msgstr "低温颜色:"
 
 #: ../data/messages:135
 msgid "Background color of the graphic :"
-msgstr ""
+msgstr "图像背景色:"
 
 #: ../data/messages:137
 msgid "List of available themes for the analogic display :"
-msgstr "模拟显示能够使用的主题列表："
+msgstr "表盘可用主题列表:"
 
 #: ../data/messages:139
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
-msgstr ""
+msgstr "留空则使用默认图像。如果您不想要水印，请将透明度设为0。"
 
 #: ../data/messages:141
 msgid "Image to display as a watermark on the gauge :"
-msgstr ""
+msgstr "显示在表盘上的水印图片:"
 
 #: ../data/messages:143
 msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
+msgstr "如果您不想要水印，请设为0."
 
 #: ../data/messages:145
 msgid "Transparency of the watermark :"
-msgstr ""
+msgstr "水印透明度:"
 
 #: ../data/messages:147
 msgid "Let it empty to use the default icon."
@@ -386,13 +381,13 @@ msgstr "留空以使用默认图标。"
 
 #: ../data/messages:149
 msgid "Name of an image for the 'broken' icon :"
-msgstr "“破损”图标的图形文件名称："
+msgstr "“破损”图标的图像文件名:"
 
 #~ msgid "width :"
-#~ msgstr "宽："
+#~ msgstr "宽:"
 
 #~ msgid "height :"
-#~ msgstr "高："
+#~ msgstr "高:"
 
 #~ msgid "on quickinfo"
 #~ msgstr "在快速信息上"

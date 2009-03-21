@@ -2,6 +2,7 @@
 
 #[gtk-about]
 [Icon]
+
 #j[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
@@ -10,14 +11,12 @@ icon size = 0;0
 #{Let empty to use the folder's name.}
 name = 
 
-#S+ Image's filename :
-#{Let empty to use the default one.}
 icon = 
 
 #d Name of the dock it belongs to:
 dock name = 
 
-order=
+order=0
 
 #[gtk-convert]
 [Desklet]
@@ -108,3 +107,4 @@ show hidden = false
 
 #k Shortkey to show/hide the menu :
 menu shortkey = <Shift>F6
+

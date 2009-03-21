@@ -6,8 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
+"PO-Revision-Date: 2009-03-19 19:05+0800\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
+"Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +22,7 @@ msgstr "这是由parAdOxxx_ZeRo为Cairo-Dock制作的rame小应用程序"
 
 #: ../src/applet-notifications.c:39
 msgid "Mb"
-msgstr "兆"
+msgstr "Mb"
 
 #: ../src/applet-notifications.c:93
 msgid "Data acquisition has failed"
@@ -28,11 +30,11 @@ msgstr "数据获取失败"
 
 #: ../src/applet-notifications.c:114
 msgid "Monitor System"
-msgstr ""
+msgstr "系统监视器"
 
 #: ../src/applet-rame.c:120
 msgid "Loading"
-msgstr "载入"
+msgstr "正在载入"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -40,155 +42,149 @@ msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "此小应用程序期望的图标大小"
+msgstr "此小程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "显现于dock之上的图标标签名称："
+msgstr "在dock中显示的图标标签名称:"
 
 #: ../data/messages:7
 msgid "Name of the dock it belongs to:"
-msgstr "归属于dock的名称："
+msgstr "所属dock名称:"
 
 #: ../data/messages:9
 msgid "Desklet"
-msgstr "桌面应用程序"
+msgstr "桌面小工具"
 
 #: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
-"器"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
-msgstr "桌面小程序尺寸（宽x高）："
+msgstr "桌面小工具尺寸(宽×高):"
 
 #: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
 
 #: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
-msgstr "桌面小应用程序位置(x ; y)："
+msgstr "桌面小工具位置(x ; y):"
 
 #: ../data/messages:19
 msgid "Is detached from the dock ?"
-msgstr "从dock移开？"
+msgstr "与dock分离?"
 
 #: ../data/messages:21
 msgid "Keep below other windows ?"
-msgstr "位于最下窗口？"
+msgstr "在其他窗口之下?"
 
 #: ../data/messages:23
 msgid "Keep above other windows ?"
-msgstr "窗口置顶？"
+msgstr "在其他窗口之上?"
 
 #: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr ""
-"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
-"type=utility) "
+msgstr "面向CompizFusion的“小工具层”，将Compiz的行为设置为:(name=cairo-dock & type=utility) "
 
 #: ../data/messages:27
 msgid "Keep on widget layer ?"
-msgstr "保持于小应用程序层？"
+msgstr "保持于小工具层?"
 
 #: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../data/messages:31
 msgid "Lock position ?"
-msgstr "锁定位置？"
+msgstr "锁定位置?"
 
 #: ../data/messages:33
 msgid "in degrees."
-msgstr ""
+msgstr "以角度为单位。"
 
 #: ../data/messages:35
 msgid "Rotation :"
-msgstr ""
+msgstr "旋转:"
 
 #: ../data/messages:37
-#, fuzzy
 msgid "Decorations"
-msgstr "Informazione"
+msgstr "装饰"
 
 #: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
 #: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "为这个桌面小工具选择一个装饰主题:"
 
 #: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
 #: ../data/messages:45
 msgid "Background image :"
-msgstr ""
+msgstr "背景图片:"
 
 #: ../data/messages:47
 msgid "Background tansparency :"
-msgstr ""
+msgstr "背景透明度:"
 
 #: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
 #: ../data/messages:51
 msgid "Left offset :"
-msgstr ""
+msgstr "左偏移:"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
 #: ../data/messages:55
 msgid "Top offset :"
-msgstr ""
+msgstr "顶偏移:"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
 #: ../data/messages:59
 msgid "Right offset :"
-msgstr ""
+msgstr "右偏移:"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
 #: ../data/messages:63
 msgid "Bottom offset :"
-msgstr ""
+msgstr "底偏移:"
 
 #: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
 #: ../data/messages:67
 msgid "Foreground image :"
-msgstr ""
+msgstr "前景图片:"
 
 #: ../data/messages:69
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "前景透明度:"
 
 #: ../data/messages:71 ../data/messages:143
 msgid "Configuration"
@@ -200,93 +196,89 @@ msgstr "显示"
 
 #: ../data/messages:75
 msgid "Display a graphic rather than a gauge ?"
-msgstr ""
+msgstr "显示图表而不是表盘?"
 
 #: ../data/messages:77
 msgid "Type of graphic :"
-msgstr ""
+msgstr "图表类型:"
 
 #: ../data/messages:79
 msgid "Line"
-msgstr ""
+msgstr "折线图"
 
 #: ../data/messages:81
 msgid "Plain"
-msgstr ""
+msgstr "平面图"
 
 #: ../data/messages:83
 msgid "Bar"
-msgstr ""
+msgstr "柱状图"
 
 #: ../data/messages:85
 msgid "Circle"
-msgstr ""
+msgstr "圆环图"
 
 #: ../data/messages:87
 msgid "Plain Circle"
-msgstr ""
+msgstr "平面圆环图"
 
 #: ../data/messages:89 ../data/messages:97
-#, fuzzy
 msgid "It's the color of the graphic for high RAM values."
-msgstr "用于显示top列表的渐变色的第一种颜色。"
+msgstr "内在占用率高时的图表颜色。"
 
 #: ../data/messages:91
 msgid "High values color for RAM :"
-msgstr ""
+msgstr "高内存占用率颜色:"
 
 #: ../data/messages:93 ../data/messages:101
-#, fuzzy
 msgid "It's the color of the graphic for low RAM values."
-msgstr "用于显示top列表的渐变色的第一种颜色。"
+msgstr "内在占用率低时的图表颜色。"
 
 #: ../data/messages:95
 msgid "Low values color for RAM :"
-msgstr ""
+msgstr "低内存占用率颜色:"
 
 #: ../data/messages:99
 msgid "High values color for SWAP :"
-msgstr ""
+msgstr "交换分区使用率高时的颜色:"
 
 #: ../data/messages:103
 msgid "Low values color for SWAP :"
-msgstr ""
+msgstr "交换分区使用率低时的颜色:"
 
 #: ../data/messages:105
 msgid "Draw both values on the same graph ?"
-msgstr ""
+msgstr "在同一张图表上绘制内存和交换分区数值?"
 
 #: ../data/messages:107
-#, fuzzy
 msgid "Background color of the graphic :"
-msgstr "top列表的起始颜色："
+msgstr "图表背景色:"
 
 #: ../data/messages:109
-#, fuzzy
 msgid "List of available themes for the gauge :"
-msgstr "模拟显示所用的主题列表"
+msgstr "可用表盘主题:"
 
 #: ../data/messages:111
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
-msgstr ""
+msgstr "留空则使用默认图像。如果您不想要水印，请将透明度设为0。"
 
 #: ../data/messages:113
 msgid "Image to display as a watermark on the gauge :"
-msgstr ""
+msgstr "表盘水印图片:"
 
 #: ../data/messages:115
 msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
+msgstr "如果您不想要水印，请设为0。"
 
 #: ../data/messages:117
 msgid "Transparency of the watermark :"
-msgstr ""
+msgstr "水印透明度:"
 
 #: ../data/messages:119
 msgid "Display memory values :"
-msgstr "显示内存数："
+msgstr "显示内存数:"
 
 #: ../data/messages:121
 msgid "No"
@@ -302,37 +294,37 @@ msgstr "在标签上"
 
 #: ../data/messages:127
 msgid "Display SWAP too ?"
-msgstr "同时显示交换空间？"
+msgstr "同时显示交换空间?"
 
 #: ../data/messages:129
 msgid "Top List"
-msgstr ""
+msgstr "占用率列表"
 
 #: ../data/messages:131
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
-msgstr "左击图标时,将显示您指定数目的内存占有率最高的程序的列表"
+msgstr "左键单击图标时,将显示您指定数目的内存占用率最高的程序的列表。"
 
 #: ../data/messages:133
 msgid "Number of programs to display in the top list :"
-msgstr "top列表上显示的程序数目："
+msgstr "占用率列表上显示的程序数目:"
 
 #: ../data/messages:135
 msgid "It's the first color of the gradation used to write the top list."
-msgstr "用于显示top列表的渐变色的第一种颜色。"
+msgstr "用于显示占用率列表的渐变色的第一种颜色。"
 
 #: ../data/messages:137
 msgid "Start color of the top list :"
-msgstr "top列表的起始颜色："
+msgstr "占用率列表的起始颜色:"
 
 #: ../data/messages:139
 msgid "It's the second color of the gradation used to write the top list."
-msgstr "用于显示top列表的渐变色的第二种颜色。"
+msgstr "用于显示CPU占用率列表的渐变色的第二种颜色。"
 
 #: ../data/messages:141
 msgid "Stop color of the top list :"
-msgstr "top列表的结束颜色："
+msgstr "占用率列表的结束颜色:"
 
 #: ../data/messages:145
 msgid "in seconds."
@@ -340,26 +332,25 @@ msgstr "以秒为单位。"
 
 #: ../data/messages:147
 msgid "Delay between refresh :"
-msgstr "刷新间歇："
+msgstr "刷新间隔:"
 
 #: ../data/messages:149
 msgid "Show top memory usage in % ?"
-msgstr "以百分比显示内存使用率？"
+msgstr "以百分比显示内存使用率?"
 
 #: ../data/messages:151
-#, fuzzy
 msgid "Let empty to use he default one."
-msgstr "Lasciate vuoto per usare l'icona di default."
+msgstr "留空则使用默认值。"
 
 #: ../data/messages:153
 msgid "User command to show a system monitor :"
-msgstr ""
+msgstr "显示系统监视器的用户命令:"
 
 #~ msgid "width :"
-#~ msgstr "宽："
+#~ msgstr "宽:"
 
 #~ msgid "height :"
-#~ msgstr "高："
+#~ msgstr "高:"
 
 #~ msgid "turbo-night-fuel"
 #~ msgstr "油量表夜光版"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-07-16 13:28+0800\n"
+"PO-Revision-Date: 2009-03-19 17:03+0800\n"
 "Last-Translator: biAji <biaji.cn@gmail.com>\n"
 "Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -16,23 +16,23 @@ msgstr ""
 
 #: ../src/tomboy-notifications.c:11
 msgid "Applet by Necropotame (Adrien Pilleboue)"
-msgstr "Necropotame (Adrien Pilleboue)制作的小应用程序"
+msgstr "Necropotame (Adrien Pilleboue)制作的小程序"
 
 #: ../src/tomboy-notifications.c:39
 msgid "Note name : "
-msgstr "便签名称："
+msgstr "便签名称:"
 
 #: ../src/tomboy-notifications.c:64
 msgid "Search for :"
-msgstr "搜索："
+msgstr "搜索:"
 
 #: ../src/tomboy-notifications.c:85
 msgid "Search for tag :"
-msgstr "搜索标签："
+msgstr "搜索标签:"
 
 #: ../src/tomboy-notifications.c:141
 msgid "Reload notes"
-msgstr "相关便签："
+msgstr "相关便签:"
 
 #: ../src/tomboy-notifications.c:144
 msgid "Add a note"
@@ -72,15 +72,15 @@ msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "此小应用程序期望的图标大小"
+msgstr "此小程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "Default title :"
-msgstr "默认标题："
+msgstr "默认标题:"
 
 #: ../data/messages:7
 msgid "Name of the dock it belongs to:"
-msgstr "归属于dock的名称："
+msgstr "所属dock名称:"
 
 #: ../data/messages:9
 msgid "Personnalisation"
@@ -119,7 +119,7 @@ msgstr ""
 
 #: ../data/messages:27
 msgid "Emulate the 'NoteDeleted' signal ?"
-msgstr "模拟“删除便签”信号？"
+msgstr "模拟“删除便签”信号?"
 
 #: ../data/messages:29
 msgid "Let it empty to use default sub-dock view."
@@ -127,11 +127,11 @@ msgstr "留空以使用默认子dock视图"
 
 #: ../data/messages:31
 msgid "Name of the view used for the sub-dock :"
-msgstr "用于子dock的视图名称："
+msgstr "用于子dock的视图名称:"
 
 #: ../data/messages:33
 msgid "Draw note's content on their icon ?"
-msgstr "在图标上绘制便签内容？"
+msgstr "在图标上绘制便签内容?"
 
 #: ../data/messages:35
 msgid ""
@@ -139,24 +139,24 @@ msgid ""
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
 msgstr ""
-"写下您便签平时使用的日期格式。语法为'strftime'的一种： %d表示日，%m表示月, %y"
+"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, %y"
 "表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
 
 #: ../data/messages:37
 msgid "Date format to search for :"
-msgstr "搜索使用的日期格式："
+msgstr "搜索使用的日期格式:"
 
 #~ msgid "width :"
-#~ msgstr "宽："
+#~ msgstr "宽:"
 
 #~ msgid "height :"
-#~ msgstr "高："
+#~ msgstr "高:"
 
 #~ msgid "Info-bubbles"
 #~ msgstr "情報を通知する吹き出し"
 
 #~ msgid "Activate info-bubbles ?"
-#~ msgstr "吹き出しによる情報表示を有効化？"
+#~ msgstr "吹き出しによる情報表示を有効化?"
 
 #~ msgid "Time length of info-bubbles :"
 #~ msgstr "吹き出しの表示継続時間 :"
@@ -195,7 +195,7 @@ msgstr "搜索使用的日期格式："
 #~ msgstr "表示"
 
 #~ msgid "Display album's cover instead of icon ?"
-#~ msgstr "アイコンの代わりにアルバムのカバーを表示？"
+#~ msgstr "アイコンの代わりにアルバムのカバーを表示?"
 
 #~ msgid "Information to display on the icon :"
 #~ msgstr "アイコン上に表示する情報 :"

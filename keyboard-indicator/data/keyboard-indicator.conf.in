@@ -9,8 +9,6 @@ icon size = 0;0
 #s Name of the icon as it will appear in its label in the dock :
 name = Keyboard
 
-#S+ Image's filename :
-#{Let empty to use the default one.}
 icon = 
 
 #d Name of the dock it belongs to:
@@ -93,7 +91,14 @@ fg alpha = 1
 #{caps lock, num lock, etc}
 show indic = true
 
-#S- Background image :
+#i-[0;1500] Duration of the transition animation :
+#{in ms. Set it to 0 if you don't want an animation when the keyboard layout changes.}
+transition = 1000
+
+#F[Display]
+disp=
+
+#S+ Background image :
 bg image =
 
 #c+3[0;1] Text color
@@ -105,5 +110,5 @@ text weight = 3
 #b+ Outline text ?
 outlined = truer
 
-#P Font :
+#P+ Font :
 font = 

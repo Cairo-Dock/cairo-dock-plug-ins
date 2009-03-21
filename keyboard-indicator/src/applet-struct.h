@@ -9,6 +9,7 @@ struct _AppletConfig {
 	gboolean bShowKbdIndicator;
 	gchar *cBackgroundImage;
 	CairoDockLabelDescription textDescription;
+	gint iTransitionDuration;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -21,7 +22,7 @@ struct _AppletData {
 	GLuint iBackgroundTexture;
 	GLuint iOldTexture;
 	GLuint iCurrentTexture;
-	gint iCurrentGroup;
+	gint iCurrentGroup, iCurrentIndic;
 	} ;
 
 

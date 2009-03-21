@@ -6,8 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
+"PO-Revision-Date: 2009-03-19 15:05+0800\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
+"Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,12 +31,12 @@ msgid ""
 "This is the dustbin applet for Cairo-Dock\n"
 " made by Fabrice Rey (fabounet@users.berlios.de)"
 msgstr ""
-"这是回收站小应用程序。\n"
+"这是回收站小程序。\n"
 "由Fabrice Rey(fabounet@users.berlios.de)为Cairo-Dock制作"
 
 #: ../src/applet-notifications.c:34 ../src/applet-notifications.c:39
 msgid "Show Trash"
-msgstr "翻翻垃圾"
+msgstr "显示垃圾"
 
 #: ../src/applet-notifications.c:35 ../src/applet-notifications.c:48
 msgid "Delete Trash"
@@ -47,7 +49,7 @@ msgstr "显示%s"
 
 #: ../src/applet-notifications.c:46
 msgid "Show All"
-msgstr "显示所有"
+msgstr "全部显示"
 
 #: ../src/applet-notifications.c:52
 #, c-format
@@ -56,7 +58,7 @@ msgstr "删除%s"
 
 #: ../src/applet-notifications.c:55
 msgid "Delete All"
-msgstr "删除所有"
+msgstr "全部删除"
 
 #: ../src/applet-notifications.c:70
 #, c-format
@@ -71,11 +73,11 @@ msgstr "卸载%s失败"
 #: ../src/applet-trashes-manager.c:365
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
-msgstr "您将删除%s中的所有文件，确定么？"
+msgstr "您将删除%s中的所有文件，确定?"
 
 #: ../src/applet-trashes-manager.c:367
 msgid "You're about to delete all files in all dustbins. Sure ?"
-msgstr "您将删除所有回收站中的所有文件。确定么？"
+msgstr "您将删除全部回收站中的所有文件。确定?"
 
 #: ../src/applet-trashes-manager.c:440
 #, c-format
@@ -84,8 +86,9 @@ msgid ""
 "If '%s' is not your usual file browser,\n"
 "you can change it in the conf panel of this module"
 msgstr ""
-"搞出问题来了。\n"
-"如果'%s'不是您平时使用的浏览器，您可以在此模块的配置面板中进行改换。"
+"发生问题。\n"
+"如果“%s”不是您平时使用的文件浏览器，\n"
+"您可以在此模块的配置面板中进行更改。"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -97,153 +100,147 @@ msgstr "此小应用程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "显现于dock之上的图标标签名称："
+msgstr "在dock中显示的图标标签名称:"
 
 #: ../data/messages:7
 msgid "Name of the dock it belongs to:"
-msgstr "归属于dock的名称："
+msgstr "所属dock名称:"
 
 #: ../data/messages:9
 msgid "Desklet"
-msgstr "桌面应用程序"
+msgstr "桌面小工具"
 
 #: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
-"器"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
-msgstr "桌面小程序尺寸（宽x高）："
+msgstr "桌面小工具尺寸(宽×高):"
 
 #: ../data/messages:15
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+msgstr "您可用ALT+左键移动它，此功能依赖窗口管理器支持。负值由屏幕右下角开始计算"
 
 #: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
-msgstr "桌面小应用程序位置(x ; y)："
+msgstr "桌面小工具位置(x ; y):"
 
 #: ../data/messages:19
 msgid "Is detached from the dock ?"
-msgstr "从dock移开？"
+msgstr "与dock分离?"
 
 #: ../data/messages:21
 msgid "Keep below other windows ?"
-msgstr "位于最下窗口？"
+msgstr "在其他窗口之下?"
 
 #: ../data/messages:23
 msgid "Keep above other windows ?"
-msgstr "窗口置顶？"
+msgstr "在其他窗口之上?"
 
 #: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr ""
-"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
-"type=utility) "
+msgstr "面向CompizFusion的“小工具层”，将Compiz的行为设置为:(name=cairo-dock & type=utility) "
 
 #: ../data/messages:27
 msgid "Keep on widget layer ?"
-msgstr "保持于小应用程序层？"
+msgstr "保持于小工具层?"
 
 #: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../data/messages:31
 msgid "Lock position ?"
-msgstr "锁定位置？"
+msgstr "锁定位置?"
 
 #: ../data/messages:33
 msgid "in degrees."
-msgstr ""
+msgstr "以角度为单位。"
 
 #: ../data/messages:35
 msgid "Rotation :"
-msgstr ""
+msgstr "旋转:"
 
 #: ../data/messages:37
 msgid "Decorations"
-msgstr ""
+msgstr "装饰"
 
 #: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
 #: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "为这个桌面小工具选择一个装饰主题:"
 
 #: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
 #: ../data/messages:45
 msgid "Background image :"
-msgstr ""
+msgstr "背景图片:"
 
 #: ../data/messages:47
 msgid "Background tansparency :"
-msgstr ""
+msgstr "背景透明度:"
 
 #: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
 #: ../data/messages:51
 msgid "Left offset :"
-msgstr ""
+msgstr "左偏移:"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
 #: ../data/messages:55
 msgid "Top offset :"
-msgstr ""
+msgstr "顶偏移:"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
 #: ../data/messages:59
 msgid "Right offset :"
-msgstr ""
+msgstr "右偏移:"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
 #: ../data/messages:63
 msgid "Bottom offset :"
-msgstr ""
+msgstr "底偏移:"
 
 #: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
 #: ../data/messages:67
 msgid "Foreground image :"
-msgstr ""
+msgstr "前景图片:"
 
 #: ../data/messages:69
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "前景透明度:"
 
 #: ../data/messages:71
 msgid "Module"
@@ -255,15 +252,15 @@ msgstr "主题"
 
 #: ../data/messages:75
 msgid "Choose one of the available themes :"
-msgstr "选择主题："
+msgstr "选择一个可用的主题:"
 
 #: ../data/messages:77
 msgid "Name of an image to overwrite the theme's empty image :"
-msgstr "用于覆盖主题空回收站的图片名称："
+msgstr "用于覆盖主题空回收站的图片名称:"
 
 #: ../data/messages:79
 msgid "Name of an image to overwrite the theme's full image :"
-msgstr "用于覆盖主题满回收站的图片名称："
+msgstr "用于覆盖主题满回收站的图片名称:"
 
 #: ../data/messages:81
 msgid "Config"
@@ -276,11 +273,11 @@ msgstr "它们甚至不必真的是回收站目录。"
 #: ../data/messages:85
 msgid ""
 "Here you can specify a list of additionnal Trash directories to monitor :"
-msgstr "您可以在此指定需要监视的额外的回收站目录："
+msgstr "您可以在此指定需要监视的额外的回收站目录:"
 
 #: ../data/messages:87
 msgid "Display the following quick info :"
-msgstr "显示以下快捷信息："
+msgstr "显示以下快捷信息:"
 
 #: ../data/messages:89
 msgid "None"
@@ -305,11 +302,11 @@ msgstr "以Mb为单位。当超过这个限额的时候，您会得到通知。�
 
 #: ../data/messages:99
 msgid "Maximum total size of all dustbins :"
-msgstr "所有回收站最大容量："
+msgstr "所有回收站最大容量:"
 
 #: ../data/messages:103
 msgid "Maximum size authorized for each dustbin :"
-msgstr "每个回收站的最大容量："
+msgstr "每个回收站的最大容量:"
 
 #: ../data/messages:105
 msgid "Desktop-less support"
@@ -321,7 +318,7 @@ msgstr "以秒为单位，仅用于无法监视目录的情况。"
 
 #: ../data/messages:109
 msgid "Interval of time to check if dustbin is full/empty :"
-msgstr "监视回收站满/空状态的时间间隔："
+msgstr "监视回收站满/空状态的时间间隔:"
 
 #: ../data/messages:111
 msgid ""
@@ -330,10 +327,10 @@ msgstr "仅用于您发现在回收站上点击后，小应用程序无法显示
 
 #: ../data/messages:113
 msgid "Alternative file browser used to show a trash :"
-msgstr "用于显示垃圾的替代文件浏览器："
+msgstr "用于显示垃圾的替代文件浏览器:"
 
 #~ msgid "width :"
-#~ msgstr "宽："
+#~ msgstr "宽:"
 
 #~ msgid "height :"
-#~ msgstr "高："
+#~ msgstr "高:"

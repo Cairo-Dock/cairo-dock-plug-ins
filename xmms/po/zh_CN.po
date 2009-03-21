@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-07-16 16:08+0800\n"
-"Last-Translator: biAji <biaji.cn@gmail.com>\n"
-"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"PO-Revision-Date: 2009-03-19 19:11+0800\n"
+"Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
+"Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +26,7 @@ msgstr "上一首"
 
 #: ../src/applet-notifications.c:259
 msgid "Play/Pause (left-click)"
-msgstr "播放/暂停（左键点击）"
+msgstr "播放/暂停(左键点击)"
 
 #: ../src/applet-notifications.c:261
 msgid "Stop"
@@ -34,7 +34,7 @@ msgstr "停止"
 
 #: ../src/applet-notifications.c:263
 msgid "Next (middle-click)"
-msgstr "下一首（中键点击）"
+msgstr "下一首(中键点击)"
 
 #: ../src/applet-notifications.c:265
 msgid "Show JumpBox"
@@ -54,154 +54,149 @@ msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "此小应用程序期望的图标大小"
+msgstr "此小程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "显示于dock上的标签上的此图标的名称："
+msgstr "在dock中显示的图标标签名称:"
 
 #: ../data/messages:7
 msgid "Name of the dock it belongs to:"
-msgstr "归属于dock的名称："
+msgstr "所属dock名称:"
 
 #: ../data/messages:9
 msgid "Desklet"
-msgstr "桌面应用程序"
+msgstr "桌面小工具"
 
 #: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
-"器"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
-msgstr "桌面小应用程序大小（宽x高）："
+msgstr "桌面小工具尺寸(宽×高):"
 
 #: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
 
 #: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
-msgstr "桌面小应用程序位置(x ; y)："
+msgstr "桌面小工具位置(x ; y):"
 
 #: ../data/messages:19
 msgid "Is detached from the dock ?"
-msgstr "从dock移开？"
+msgstr "与dock分离?"
 
 #: ../data/messages:21
 msgid "Keep below other windows ?"
-msgstr "位于最下窗口？"
+msgstr "在其他窗口之下?"
 
 #: ../data/messages:23
 msgid "Keep above other windows ?"
-msgstr "窗口置顶？"
+msgstr "在其他窗口之上?"
 
 #: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr ""
-"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
-"type=utility) "
+msgstr "面向CompizFusion的“小工具层”，将Compiz的行为设置为:(name=cairo-dock & type=utility) "
 
 #: ../data/messages:27
 msgid "Keep on widget layer ?"
-msgstr "保持于小应用程序层？"
+msgstr "保持于小工具层?"
 
 #: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../data/messages:31
 msgid "Lock position ?"
-msgstr "锁定位置？"
+msgstr "锁定位置?"
 
 #: ../data/messages:33
 msgid "in degrees."
-msgstr ""
+msgstr "以角度为单位。"
 
 #: ../data/messages:35
 msgid "Rotation :"
-msgstr ""
+msgstr "旋转:"
 
 #: ../data/messages:37
 msgid "Decorations"
-msgstr ""
+msgstr "装饰"
 
 #: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
 #: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "为这个桌面小工具选择一个装饰主题:"
 
 #: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
 #: ../data/messages:45
 msgid "Background image :"
-msgstr ""
+msgstr "背景图片:"
 
 #: ../data/messages:47
 msgid "Background tansparency :"
-msgstr ""
+msgstr "背景透明度:"
 
 #: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
 #: ../data/messages:51
 msgid "Left offset :"
-msgstr ""
+msgstr "左偏移:"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
 #: ../data/messages:55
 msgid "Top offset :"
-msgstr ""
+msgstr "顶偏移:"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
 #: ../data/messages:59
 msgid "Right offset :"
-msgstr ""
+msgstr "右偏移:"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
 #: ../data/messages:63
 msgid "Bottom offset :"
-msgstr ""
+msgstr "底偏移:"
 
 #: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
 #: ../data/messages:67
 msgid "Foreground image :"
-msgstr ""
+msgstr "前景图片:"
 
 #: ../data/messages:69
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "前景透明度:"
 
 #: ../data/messages:71
 msgid "Configuration"
@@ -235,9 +230,7 @@ msgstr "Exaile"
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
-msgstr ""
-"这将阻止播放器的图标显示在任务栏上。此小应用程序的图标将形如启动器、应用程序"
-"或小应用程序"
+msgstr "这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
 
 #: ../data/messages:87
 msgid "Steal the player's icon from taskbar ?"
@@ -249,7 +242,7 @@ msgstr "显示"
 
 #: ../data/messages:91
 msgid "Information to display on the icon :"
-msgstr "图标上显示的信息："
+msgstr "图标上显示的信息:"
 
 #: ../data/messages:93
 msgid "Nothing"
@@ -264,13 +257,12 @@ msgid "Time Left"
 msgstr "剩余时间"
 
 #: ../data/messages:99
-#, fuzzy
 msgid "N° of track"
 msgstr "第N°首"
 
 #: ../data/messages:101
 msgid "Activate extended desklet mode ?"
-msgstr "启用扩展桌面小应用模式？"
+msgstr "启用扩展桌面小工具模式？"
 
 #: ../data/messages:103
 msgid "Extended display mode :"
@@ -306,7 +298,7 @@ msgstr "使用图标？"
 
 #: ../data/messages:119
 msgid "in ms."
-msgstr "以毫秒为单位"
+msgstr "以毫秒为单位。"
 
 #: ../data/messages:121
 msgid "Time length of info-bubbles :"
@@ -318,7 +310,7 @@ msgstr "动画图标？"
 
 #: ../data/messages:125
 msgid "Animation when music changes :"
-msgstr "音乐切换时的动画："
+msgstr "音乐切换时的动画:"
 
 #: ../data/messages:127
 msgid "Personnalisation"
@@ -331,23 +323,23 @@ msgstr "留空以使用默认图标。"
 
 #: ../data/messages:131
 msgid "Name of an image for the 'default' icon :"
-msgstr "做为默认图标的图片文件名："
+msgstr "“默认”图标的图片名称:"
 
 #: ../data/messages:135
 msgid "Name of an image for the 'play' icon :"
-msgstr "做为播放图标的图片文件名："
+msgstr "“播放”图标的图片名称:"
 
 #: ../data/messages:139
 msgid "Name of an image for the 'stop' icon :"
-msgstr "做为停止图标的图片文件名："
+msgstr "“停止”图标的图片名称:"
 
 #: ../data/messages:143
 msgid "Name of an image for the 'pause' icon :"
-msgstr "做为暂停图标的图片文件名："
+msgstr "“暂停”图标的图片名称:"
 
 #: ../data/messages:147
 msgid "Name of an image for the 'broken' icon :"
-msgstr "做为损毁图标的图片文件名："
+msgstr "“破损”图标的图片名称:"
 
 #~ msgid "width :"
 #~ msgstr "宽："

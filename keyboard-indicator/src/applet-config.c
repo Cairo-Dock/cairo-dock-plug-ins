@@ -18,6 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowKbdIndicator = CD_CONFIG_GET_BOOLEAN ("Configuration", "show indic");
 	myConfig.cBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "bg image");
+	myConfig.iTransitionDuration = CD_CONFIG_GET_INTEGER ("Configuration", "transition");
 	CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStart);
 	CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStop);
 	int iWeight = CD_CONFIG_GET_INTEGER ("Configuration", "text weight");

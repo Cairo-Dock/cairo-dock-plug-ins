@@ -5,7 +5,6 @@ moduledir = $(pkgdatadir)
 
 module_DATA = \
 	keyboard-indicator.conf\
-	readme\
 	preview.png\
 	icon.svg
 

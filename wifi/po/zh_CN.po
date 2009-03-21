@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-07-16 15:51+0800\n"
-"Last-Translator: biAji <biaji.cn@gmail.com>\n"
-"Language-Team: Simplified Chinese <biaji.cn@gmail.com>\n"
+"PO-Revision-Date: 2009-03-19 18:57+0800\n"
+"Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
+"Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,17 +48,17 @@ msgid ""
 " Connected on:"
 msgstr ""
 "Wifi已启用。\n"
-"接入："
+"接入:"
 
 #: ../src/applet-draw.c:134
 msgid "Signal Strength:"
-msgstr "信号强度："
+msgstr "信号强度:"
 
 #: ../src/applet-notifications.c:11
 msgid ""
 "This is the wifi applet\n"
 " made by ChAnGFu for Cairo-Dock"
-msgstr "这是ChAnGFu为Cairo-Dock制作的wifi小应用程序"
+msgstr "这是ChAnGFu为Cairo-Dock制作的wifi小程序"
 
 #: ../src/applet-notifications.c:60
 msgid "Check for Wireless Extension"
@@ -78,157 +78,149 @@ msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "此小应用程序期望的图标大小"
+msgstr "此小程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "显现于dock之上的图标标签名称："
+msgstr "在dock中显示的图标标签名称:"
 
 #: ../data/messages:7
 msgid "Name of the dock it belongs to:"
-msgstr "归属于dock的名称："
+msgstr "所属dock名称:"
 
 #: ../data/messages:9
 msgid "Desklet"
-msgstr "桌面应用程序"
+msgstr "桌面小工具"
 
 #: ../data/messages:11
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
-"器"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../data/messages:13
 msgid "Desklet's dimension (width x height) :"
-msgstr "桌面小程序尺寸（宽x高）："
+msgstr "桌面小工具尺寸(宽×高):"
 
 #: ../data/messages:15
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
 
 #: ../data/messages:17
 msgid "Desklet's position (x ; y) :"
-msgstr "桌面小应用程序位置(x ; y)："
+msgstr "桌面小工具位置(x ; y):"
 
 #: ../data/messages:19
 msgid "Is detached from the dock ?"
-msgstr "从dock移开？"
+msgstr "与dock分离?"
 
 #: ../data/messages:21
 msgid "Keep below other windows ?"
-msgstr "位于最下窗口？"
+msgstr "在其他窗口之下?"
 
 #: ../data/messages:23
 msgid "Keep above other windows ?"
-msgstr "窗口置顶？"
+msgstr "在其他窗口之上?"
 
 #: ../data/messages:25
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
 "dock & type=utility)"
-msgstr ""
-"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
-"type=utility) "
+msgstr "面向CompizFusion的“小工具层”，将Compiz的行为设置为:(name=cairo-dock & type=utility) "
 
 #: ../data/messages:27
 msgid "Keep on widget layer ?"
-msgstr "保持于小应用程序层？"
+msgstr "保持于小工具层?"
 
 #: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../data/messages:31
 msgid "Lock position ?"
-msgstr "锁定位置？"
+msgstr "锁定位置?"
 
 #: ../data/messages:33
 msgid "in degrees."
-msgstr ""
+msgstr "以角度为单位。"
 
 #: ../data/messages:35
 msgid "Rotation :"
-msgstr ""
+msgstr "旋转:"
 
 #: ../data/messages:37
-#, fuzzy
 msgid "Decorations"
-msgstr "信息"
+msgstr "装饰"
 
 #: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
 #: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "为这个桌面小工具选择一个装饰主题:"
 
 #: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
 #: ../data/messages:45
 msgid "Background image :"
-msgstr ""
+msgstr "背景图片:"
 
 #: ../data/messages:47
-#, fuzzy
 msgid "Background tansparency :"
-msgstr "透明度"
+msgstr "背景透明度:"
 
 #: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
 #: ../data/messages:51
 msgid "Left offset :"
-msgstr ""
+msgstr "左偏移:"
 
 #: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
 #: ../data/messages:55
 msgid "Top offset :"
-msgstr ""
+msgstr "顶偏移:"
 
 #: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
 #: ../data/messages:59
 msgid "Right offset :"
-msgstr ""
+msgstr "右偏移:"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
 #: ../data/messages:63
 msgid "Bottom offset :"
-msgstr ""
+msgstr "底偏移:"
 
 #: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
 #: ../data/messages:67
 msgid "Foreground image :"
-msgstr ""
+msgstr "前景图片:"
 
 #: ../data/messages:69
-#, fuzzy
 msgid "Foreground tansparency :"
-msgstr "透明度"
+msgstr "前景透明度:"
 
 #: ../data/messages:71
 msgid "Configuration"
@@ -240,7 +232,7 @@ msgstr "信息"
 
 #: ../data/messages:75
 msgid "Information to display on the icon :"
-msgstr "显示于图标上的信息："
+msgstr "显示在图标上的信息:"
 
 #: ../data/messages:79
 msgid "Signal Strength"
@@ -248,7 +240,7 @@ msgstr "信号强度"
 
 #: ../data/messages:81
 msgid "Signal Strength in percent"
-msgstr "以百分比为单位的信号强度"
+msgstr "信号强度百分比"
 
 #: ../data/messages:83
 msgid "Raw Signal Informations"
@@ -256,21 +248,21 @@ msgstr "原始信号信息"
 
 #: ../data/messages:85
 msgid "in seconds."
-msgstr "以秒为单位"
+msgstr "以秒为单位。"
 
 #: ../data/messages:87
 msgid "Delay between signal checks :"
-msgstr "信号检查间隔"
+msgstr "信号检查间隔:"
 
 #: ../data/messages:89
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
-msgstr "允许您启动自己的无线配置界面以替代默认命令行"
+msgstr "允许您启动自己的无线配置界面以替代默认命令行。"
 
 #: ../data/messages:91
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "载入无线配置界面替代命令"
+msgstr "载入无线配置界面替代命令:"
 
 #: ../data/messages:93
 msgid "Display"
@@ -281,26 +273,24 @@ msgid "Overwrite the default label with the connection point name ?"
 msgstr "以接入点名称替代默认标签"
 
 #: ../data/messages:97
-#, fuzzy
 msgid "Display type :"
-msgstr "显示"
+msgstr "显示类型"
 
 #: ../data/messages:99 ../data/messages:149
 msgid "Images"
 msgstr "图像"
 
 #: ../data/messages:101
-#, fuzzy
 msgid "Gauges"
-msgstr "图像"
+msgstr "表盘"
 
 #: ../data/messages:103
 msgid "Graphic"
-msgstr ""
+msgstr "图表"
 
 #: ../data/messages:105
 msgid "Effect to apply on the icon according to strength :"
-msgstr "依据信号强度加于图标的效果："
+msgstr "依据信号强度对图标施加效果:"
 
 #: ../data/messages:109
 msgid "Zoom"
@@ -316,73 +306,73 @@ msgstr "绘制状态条"
 
 #: ../data/messages:115
 msgid "Type of graphic :"
-msgstr ""
+msgstr "图表类型:"
 
 #: ../data/messages:117
 msgid "Line"
-msgstr ""
+msgstr "折线图"
 
 #: ../data/messages:119
 msgid "Plain"
-msgstr ""
+msgstr "平面图"
 
 #: ../data/messages:121
 msgid "Bar"
-msgstr ""
+msgstr "柱状图"
 
 #: ../data/messages:123
 msgid "Circle"
-msgstr ""
+msgstr "圆环图"
 
 #: ../data/messages:125
 msgid "Plain Circle"
-msgstr ""
+msgstr "平面圆环图"
 
 #: ../data/messages:127
 msgid "It's the color of the graphic for high Strength values."
-msgstr ""
+msgstr "信号强度高时的图表颜色。"
 
 #: ../data/messages:129
 msgid "High values color :"
-msgstr ""
+msgstr "高信号强度颜色:"
 
 #: ../data/messages:131
 msgid "It's the color of the graphic for low Strength values."
-msgstr ""
+msgstr "信号强度低时的图表颜色。"
 
 #: ../data/messages:133
 msgid "Low values color :"
-msgstr ""
+msgstr "低信号强度颜色:"
 
 #: ../data/messages:135
 msgid "Background color of the graphic :"
-msgstr ""
+msgstr "图表背景色:"
 
 #: ../data/messages:137
 msgid "List of available themes for the analogic display :"
-msgstr "用于模拟显示的现有主题列表："
+msgstr "可用的表盘主题列表:"
 
 #: ../data/messages:139
 msgid "radium"
-msgstr "radium"
+msgstr "镭"
 
 #: ../data/messages:141
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
-msgstr ""
+msgstr "留空则使用默认图像。如果您不想要水印，请将透明度设为0。"
 
 #: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
-msgstr ""
+msgstr "表盘水印图片:"
 
 #: ../data/messages:145
 msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
+msgstr "如果您不想要水印，请设为0."
 
 #: ../data/messages:147
 msgid "Transparency of the watermark :"
-msgstr ""
+msgstr "水印透明度:"
 
 #: ../data/messages:151 ../data/messages:155 ../data/messages:159
 #: ../data/messages:163 ../data/messages:167 ../data/messages:171
@@ -391,36 +381,36 @@ msgstr "留空以使用默认图标。"
 
 #: ../data/messages:153
 msgid "Name of an image for the 'no signal' icon :"
-msgstr "用于“无信号”图标的图片名称："
+msgstr "用于“无信号”图标的图片名称:"
 
 #: ../data/messages:157
 msgid "Name of an image for the 'very low' icon :"
-msgstr "用于“信号很弱”图标的图片名称："
+msgstr "用于“信号很弱”图标的图片名称:"
 
 #: ../data/messages:161
 msgid "Name of an image for the 'low' icon :"
-msgstr "用于“信号弱”图标的图片名称："
+msgstr "用于“信号弱”图标的图片名称:"
 
 #: ../data/messages:165
 msgid "Name of an image for the 'middle' icon :"
-msgstr "用于“信号中等”图标的图片名称："
+msgstr "用于“信号中等”图标的图片名称:"
 
 #: ../data/messages:169
 msgid "Name of an image for the 'good' icon :"
-msgstr "用于“信号良好”图标的图片名称："
+msgstr "用于“信号良好”图标的图片名称:"
 
 #: ../data/messages:173
 msgid "Name of an image for the 'exellent' icon :"
-msgstr "用于“信号很好”图标的图片名称："
+msgstr "用于“信号很好”图标的图片名称:"
 
 #~ msgid "width :"
-#~ msgstr "宽："
+#~ msgstr "宽:"
 
 #~ msgid "height :"
-#~ msgstr "高："
+#~ msgstr "高:"
 
 #~ msgid "Use a jauge instead of icons?"
-#~ msgstr "以标尺替代图标？"
+#~ msgstr "以标尺替代图标?"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
@@ -436,7 +426,7 @@ msgstr "用于“信号很好”图标的图片名称："
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
 #~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
+#~ msgstr "位置を固定?"
 
 #~ msgid "Let t empty to use the default icon."
 #~ msgstr "デフォルトのアイコンを使用するには空欄のままに。"

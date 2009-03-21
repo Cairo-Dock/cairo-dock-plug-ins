@@ -6,8 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
+"PO-Revision-Date: 2009-03-19 14:55+0800\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Last-Translator: tigersoldi <tigersoldi@gmail.com>\n"
+"Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,11 +24,11 @@ msgstr "越低，则视点相对于板平面越低。"
 
 #: ../data/messages:5
 msgid "Height of the vanishing point :"
-msgstr "消失点高度："
+msgstr "消失点高度:"
 
 #: ../data/messages:7 ../data/messages:171
 msgid "Choose the way separators are drawn :"
-msgstr "选择间隔的绘制方式："
+msgstr "选择间隔的绘制方式:"
 
 #: ../data/messages:9 ../data/messages:173
 msgid "Normal separator"
@@ -46,7 +48,7 @@ msgstr "红，蓝，绿，alpha"
 
 #: ../data/messages:17
 msgid "For flat separators, you can specify their color:"
-msgstr "您可以指定平间隔的颜色："
+msgstr "您可以指定平间隔的颜色:"
 
 #: ../data/messages:19
 msgid "Caroussel"
@@ -73,7 +75,7 @@ msgstr "0.5意味着半折叠，于是图标的一半位于前景，一半位于
 
 #: ../data/messages:27
 msgid "Percentage of the dock's width that appears on the foreground :"
-msgstr "显示于前景的dock的宽度的百分比："
+msgstr "显示于前景的dock的宽度的百分比:"
 
 #: ../data/messages:29
 msgid ""
@@ -84,17 +86,15 @@ msgstr ""
 
 #: ../data/messages:31
 msgid "Depth of the plane :"
-msgstr "板深度："
+msgstr "板深度:"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "otherwise they will turn."
 msgstr "否则它们会翻转。"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "Always show icons' face ?"
-msgstr "总是显示图标？"
+msgstr "总是显示图标?"
 
 #: ../data/messages:37
 msgid "Parabolic"
@@ -106,16 +106,15 @@ msgstr "取值越高，抛物线越陡"
 
 #: ../data/messages:41
 msgid "Curvature :"
-msgstr "弧度："
+msgstr "弧度:"
 
 #: ../data/messages:43
-#, fuzzy
 msgid "The parabole will be conscricted to a rectangle of this proportion."
 msgstr "抛物线将受限于此比例"
 
 #: ../data/messages:45
 msgid "Ratio height/width :"
-msgstr "高宽比："
+msgstr "高宽比:"
 
 #: ../data/messages:47
 msgid "0 means the wave is totally flat, 1 means the wave is maximal."
@@ -123,7 +122,7 @@ msgstr "0意味着无波，1意味着大波。"
 
 #: ../data/messages:49 ../data/messages:67
 msgid "Magnitude of the wave :"
-msgstr "波幅："
+msgstr "波幅:"
 
 #: ../data/messages:51 ../data/messages:167
 msgid "in pixels."
@@ -131,7 +130,7 @@ msgstr "以点为单位。"
 
 #: ../data/messages:53
 msgid "Space between icons and their label :"
-msgstr "图标及其标签之间的空隙："
+msgstr "图标及其标签之间的空隙:"
 
 #: ../data/messages:55
 msgid ""
@@ -149,14 +148,13 @@ msgstr "彩虹"
 
 #: ../data/messages:61 ../data/messages:85 ../data/messages:125
 msgid "Space between rows :"
-msgstr "行间隔："
+msgstr "行间隔:"
 
 #: ../data/messages:63
 msgid "Space between icons :"
-msgstr "图标间隔："
+msgstr "图标间隔:"
 
 #: ../data/messages:65
-#, fuzzy
 msgid ""
 "0 means the wave is totally flat, 1 means the wave is identical to other "
 "views."
@@ -164,10 +162,9 @@ msgstr "0意味着平波，1意味着与其它视图一样"
 
 #: ../data/messages:69
 msgid "Number of icons on the first row :"
-msgstr "第一行的图标数："
+msgstr "第一行的图标数:"
 
 #: ../data/messages:71
-#, fuzzy
 msgid ""
 "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
 "widely opened."
@@ -175,19 +172,19 @@ msgstr "以角度为单位，取值越小则锥体越窄。180°意味着圆锥�
 
 #: ../data/messages:73
 msgid "Cone's width :"
-msgstr "锥形宽度："
+msgstr "锥形宽度:"
 
 #: ../data/messages:75
 msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
-msgstr ""
+msgstr "将透明度设为0则不使用此颜色。在使用cairo时很慢。"
 
 #: ../data/messages:77
 msgid "Bow color :"
-msgstr ""
+msgstr "弓形颜色:"
 
 #: ../data/messages:79
 msgid "Line color :"
-msgstr ""
+msgstr "直线颜色:"
 
 #: ../data/messages:81
 msgid "Slide"
@@ -195,61 +192,59 @@ msgstr "滑动"
 
 #: ../data/messages:83 ../data/messages:123
 msgid "Space between columns :"
-msgstr "列间隙："
+msgstr "列间隙:"
 
 #: ../data/messages:87 ../data/messages:127
 msgid "Max size of icons :"
-msgstr "图标最大尺寸："
+msgstr "图标最大尺寸:"
 
 #: ../data/messages:89 ../data/messages:129
 msgid "Sinusoidal wave radius :"
-msgstr "正弦曲线半径："
+msgstr "正弦曲线半径:"
 
 #: ../data/messages:91 ../data/messages:131
-#, fuzzy
 msgid "Use a linear wave rather than a sinusoidal one ?"
-msgstr "使用线性波替代正弦曲线？"
+msgstr "使用线性波替代正弦曲线?"
 
 #: ../data/messages:93 ../data/messages:133
-#, fuzzy
 msgid "Use a wide shape ?"
-msgstr "使用宽的形状？"
+msgstr "使用宽的形状?"
 
 #: ../data/messages:95 ../data/messages:135
 msgid "Display text only for pointed icon ?"
-msgstr "仅为指向的图标显示文本？"
+msgstr "仅为指向的图标显示文本?"
 
 #: ../data/messages:97 ../data/messages:137
 msgid "Display text for all icons ?"
-msgstr "为所有图标显示文本？"
+msgstr "为所有图标显示文本?"
 
 #: ../data/messages:99 ../data/messages:139
 msgid "Draw a background ?"
-msgstr "绘制背景？"
+msgstr "绘制背景?"
 
 #: ../data/messages:101 ../data/messages:141
 msgid "First gradient color (r,v,b,a) :"
-msgstr "第一种渐变颜色（红，绿，蓝，透明）："
+msgstr "第一种渐变颜色（红，绿，蓝，透明）:"
 
 #: ../data/messages:103 ../data/messages:143
 msgid "Second gradient color (r,v,b,a) :"
-msgstr "第二种渐变颜色（红，绿，蓝，透明）："
+msgstr "第二种渐变颜色（红，绿，蓝，透明）:"
 
 #: ../data/messages:105 ../data/messages:145
 msgid "Top to bottom gradient ?"
-msgstr "由上至下渐变？"
+msgstr "由上至下渐变?"
 
 #: ../data/messages:107 ../data/messages:147
 msgid "Left to right gradient ?"
-msgstr "由左至右渐变？"
+msgstr "由左至右渐变?"
 
 #: ../data/messages:109 ../data/messages:149
 msgid "Arrow width :"
-msgstr "箭头宽度："
+msgstr "箭头宽度:"
 
 #: ../data/messages:111 ../data/messages:151
 msgid "Arrow Height :"
-msgstr "箭头高度："
+msgstr "箭头高度:"
 
 #: ../data/messages:113 ../data/messages:153
 msgid "Arrow shift percent :"
@@ -257,15 +252,15 @@ msgstr "箭头变换百分比"
 
 #: ../data/messages:115 ../data/messages:155
 msgid "Corner radius :"
-msgstr "角弧度："
+msgstr "角弧度:"
 
 #: ../data/messages:117 ../data/messages:157
 msgid "Border line width :"
-msgstr "边线宽度："
+msgstr "边线宽度:"
 
 #: ../data/messages:119 ../data/messages:159
 msgid "Border line color (r,v,b,a) :"
-msgstr "边线颜色（红，绿，蓝，透明）："
+msgstr "边线颜色（红，绿，蓝，透明）:"
 
 #: ../data/messages:121
 msgid "SimpleSlide"
@@ -280,9 +275,8 @@ msgid "The lower, the more the curve will seem flat."
 msgstr "取值越低，曲线越平。"
 
 #: ../data/messages:165
-#, fuzzy
 msgid "Curvature of the curve in percent :"
-msgstr "曲线弧度，以百分比表示："
+msgstr "曲线弧度，以百分比表示:"
 
 #: ../data/messages:169
 msgid "Amplitude of the curve."

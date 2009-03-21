@@ -6,8 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
+"PO-Revision-Date: 2009-03-19 16:23+0800\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
+"Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,27 +26,27 @@ msgstr "图标"
 
 #: ../data/messages:3
 msgid "Desired icon size for this applet"
-msgstr "此小应用程序期望的图标大小"
+msgstr "此小程序期望的图标大小"
 
 #: ../data/messages:5
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "显现于dock之上的图标标签名称："
+msgstr "在dock中显示的图标标签名称:"
 
 #: ../data/messages:7 ../data/messages:11
 msgid "Let empty to use the default one."
-msgstr ""
+msgstr "留空则使用默认值。"
 
 #: ../data/messages:9
 msgid "Image name to show desklets :"
-msgstr "显示桌面小应用的图片名称："
+msgstr "显示桌面小工具的图片名称:"
 
 #: ../data/messages:13
 msgid "Image name to hide desklets :"
-msgstr "隐藏桌面小应用的图片名称："
+msgstr "隐藏桌面小工具的图片名称:"
 
 #: ../data/messages:15
 msgid "Name of the dock it belongs to:"
-msgstr "归属于dock的名称："
+msgstr "所属dock名称:"
 
 #: ../data/messages:17
 msgid "Configuration"
@@ -52,17 +54,17 @@ msgstr "设置"
 
 #: ../data/messages:19
 msgid "Show/hide desklets that are on the widget layer too ?"
-msgstr "同时显示/隐藏在桌面工具层的桌面小应用"
+msgstr "同时显示/隐藏在小工具层的桌面小工具?"
 
 #: ../data/messages:21
 msgid "Shortkey to show/hide the desklets :"
-msgstr "用于显示/隐藏桌面小应用的快捷键"
+msgstr "用于显示/隐藏桌面小应用的快捷键:"
 
 #~ msgid "width :"
-#~ msgstr "宽："
+#~ msgstr "宽:"
 
 #~ msgid "height :"
-#~ msgstr "高："
+#~ msgstr "高:"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
@@ -100,13 +102,13 @@ msgstr "用于显示/隐藏桌面小应用的快捷键"
 #~ msgstr "デスクレットの位置（X ; Y） :"
 
 #~ msgid "Is detached from the dock ?"
-#~ msgstr "ドックから分離？"
+#~ msgstr "ドックから分離?"
 
 #~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+#~ msgstr "他ウィンドウより常に下に?"
 
 #~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+#~ msgstr "他ウィンドウより常に上に?"
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -116,4 +118,4 @@ msgstr "用于显示/隐藏桌面小应用的快捷键"
 #~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
 
 #~ msgid "Keep on widget layer ?"
-#~ msgstr "ウィジェット・レイヤ上に表示？"
+#~ msgstr "ウィジェット・レイヤ上に表示?"

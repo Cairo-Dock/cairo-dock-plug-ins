@@ -16,9 +16,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 
 
-CD_APPLET_ABOUT (D_("This is the keyboard-indicator applet\n made by Fabounet (Fabrice Rey) for Cairo-Dock"))
-
-
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
 	cd_xkbd_set_prev_next_group (+1);
@@ -38,11 +35,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		const XklEngine *pEngine = xkl_engine_get_instance (cairo_dock_get_Xdisplay ());
 		const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
 		int i;
-		for (i = 0; pGroupNames[i] != NULL; i ++)
+		for (i = 0; pGroupNames[i] != NULL && *pGroupNames[i] != '-'; i ++)
 		{
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (pGroupNames[i], _select_group, pSubMenu, GINT_TO_POINTER (i));
 		}
-		
 CD_APPLET_ON_BUILD_MENU_END
 
 

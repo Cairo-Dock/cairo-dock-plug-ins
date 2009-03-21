@@ -16,7 +16,14 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("keyboard indicator", 2, 0, 0, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION (N_("keyboard indicator"),
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_DESKTOP,
+	N_("This applet lets you control the keyboard layout.\n\
+	It can also display the current num and caps lock.\n\
+	Left-click to switch to the next layout\n\
+	Scroll up/down to select the previous/next layout\n\
+	Right-click gives you access to the list of available layouts."))
 
 static void _load_bg_image (void)
 {
@@ -33,7 +40,7 @@ static void _load_bg_image (void)
 	
 	if (myConfig.cBackgroundImage != NULL)
 	{
-		myData.pBackgroundSurface = CD_APPLET_LOAD_USER_SURFACE_FOR_MY_APPLET (myConfig.cBackgroundImage, NULL);
+		myData.pBackgroundSurface = CD_APPLET_LOAD_USER_SURFACE_FOR_MY_APPLET (myConfig.cBackgroundImage, (gchar *)NULL);
 		if (g_bUseOpenGL)
 			myData.iBackgroundTexture = cairo_dock_create_texture_from_surface (myData.pBackgroundSurface);
 	}
@@ -58,7 +65,7 @@ CD_APPLET_INIT_BEGIN
 	
 	_load_bg_image ();
 	
-	myData.iCurrentGroup = -1;
+	myData.iCurrentGroup = -1;  // pour forcer le redessin.
 	
 	Window Xid = cairo_dock_get_current_active_window ();
 	cd_xkbd_keyboard_state_changed (myApplet, &Xid);
@@ -74,7 +81,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_KBD_STATE_CHANGED,
 		(CairoDockNotificationFunc) cd_xkbd_keyboard_state_changed,
 		myApplet);
-	cairo_dock_remove_transition_on_icon (myIcon);
+	CD_APPLET_REMOVE_TRANSITION_ON_MY_ICON;
 CD_APPLET_STOP_END
 
 
@@ -89,10 +96,10 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		cairo_dock_remove_transition_on_icon (myIcon);  // prudence.
+		CD_APPLET_REMOVE_TRANSITION_ON_MY_ICON;  // prudence.
 		_load_bg_image ();
 		
-		myData.iCurrentGroup = -1;
+		myData.iCurrentGroup = -1;  // pour forcer le redessin.
 		
 		//\_____________ On declenche le redessin de l'icone.
 		Window Xid = cairo_dock_get_current_active_window ();

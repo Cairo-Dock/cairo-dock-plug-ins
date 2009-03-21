@@ -1,17 +1,17 @@
-libcd_keyboard_indicator_la-applet-config.lo \
-  .libs/libcd_keyboard_indicator_la-applet-config.o: applet-config.c \
+libcd_keyboard_indicator_la-applet-config.lo: applet-config.c \
   /usr/include/string.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
   /usr/include/gnu/stubs-32.h \
-  /usr/lib/gcc/i486-linux-gnu/4.2.4/include/stddef.h \
+  /usr/lib/gcc/i486-linux-gnu/4.3.2/include/stddef.h \
   /usr/include/bits/string.h /usr/include/bits/string2.h \
   /usr/include/endian.h /usr/include/bits/endian.h \
   /usr/include/bits/types.h /usr/include/bits/typesizes.h \
-  /usr/include/cairo-dock/cairo-dock.h /usr/include/stdlib.h \
-  /usr/include/GL/gl.h /usr/include/GL/glext.h /usr/include/inttypes.h \
-  /usr/include/stdint.h /usr/include/bits/wchar.h /usr/include/GL/glu.h \
-  /usr/include/GL/glx.h /usr/include/X11/Xlib.h /usr/include/sys/types.h \
-  /usr/include/time.h /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h \
+  /usr/include/bits/string3.h /usr/include/cairo-dock/cairo-dock.h \
+  /usr/include/stdlib.h /usr/include/bits/stdlib.h /usr/include/GL/gl.h \
+  /usr/include/GL/glext.h /usr/include/inttypes.h /usr/include/stdint.h \
+  /usr/include/bits/wchar.h /usr/include/GL/glu.h /usr/include/GL/glx.h \
+  /usr/include/X11/Xlib.h /usr/include/sys/types.h /usr/include/time.h \
+  /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h \
   /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h \
   /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h \
   /usr/include/GL/glxext.h \
@@ -20,17 +20,18 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/glib-2.0/glib/gtypes.h \
   /usr/lib/glib-2.0/include/glibconfig.h \
   /usr/include/glib-2.0/glib/gmacros.h \
-  /usr/lib/gcc/i486-linux-gnu/4.2.4/include/limits.h \
-  /usr/lib/gcc/i486-linux-gnu/4.2.4/include/syslimits.h \
-  /usr/include/limits.h /usr/lib/gcc/i486-linux-gnu/4.2.4/include/float.h \
+  /usr/lib/gcc/i486-linux-gnu/4.3.2/include-fixed/limits.h \
+  /usr/lib/gcc/i486-linux-gnu/4.3.2/include-fixed/syslimits.h \
+  /usr/include/limits.h /usr/lib/gcc/i486-linux-gnu/4.3.2/include/float.h \
   /usr/include/glib-2.0/glib/garray.h \
   /usr/include/glib-2.0/glib/gasyncqueue.h \
   /usr/include/glib-2.0/glib/gthread.h \
   /usr/include/glib-2.0/glib/gerror.h /usr/include/glib-2.0/glib/gquark.h \
   /usr/include/glib-2.0/glib/gutils.h \
-  /usr/lib/gcc/i486-linux-gnu/4.2.4/include/stdarg.h \
+  /usr/lib/gcc/i486-linux-gnu/4.3.2/include/stdarg.h \
   /usr/include/glib-2.0/glib/gatomic.h \
-  /usr/include/glib-2.0/glib/gbacktrace.h \
+  /usr/include/glib-2.0/glib/gbacktrace.h /usr/include/signal.h \
+  /usr/include/bits/sigset.h /usr/include/bits/signum.h \
   /usr/include/glib-2.0/glib/gbase64.h \
   /usr/include/glib-2.0/glib/gbookmarkfile.h /usr/include/bits/time.h \
   /usr/include/glib-2.0/glib/gcache.h /usr/include/glib-2.0/glib/glist.h \
@@ -64,16 +65,9 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/glib-2.0/glib/gthreadpool.h \
   /usr/include/glib-2.0/glib/gtimer.h /usr/include/glib-2.0/glib/gtree.h \
   /usr/include/glib-2.0/glib/gurifuncs.h /usr/include/gtk-2.0/gdk/gdk.h \
-  /usr/include/gtk-2.0/gdk/gdkcairo.h /usr/include/gtk-2.0/gdk/gdkcolor.h \
-  /usr/local/include/cairo/cairo.h \
-  /usr/local/include/cairo/cairo-features.h \
-  /usr/local/include/cairo/cairo-deprecated.h \
-  /usr/include/gtk-2.0/gdk/gdktypes.h \
-  /usr/include/pango-1.0/pango/pango.h \
-  /usr/include/pango-1.0/pango/pango-attributes.h \
-  /usr/include/pango-1.0/pango/pango-font.h \
-  /usr/include/pango-1.0/pango/pango-coverage.h \
-  /usr/include/pango-1.0/pango/pango-types.h \
+  /usr/include/gtk-2.0/gdk/gdkapplaunchcontext.h \
+  /usr/include/glib-2.0/gio/gio.h /usr/include/glib-2.0/gio/giotypes.h \
+  /usr/include/glib-2.0/gio/gioenums.h \
   /usr/include/glib-2.0/glib-object.h \
   /usr/include/glib-2.0/gobject/gboxed.h \
   /usr/include/glib-2.0/gobject/gtype.h \
@@ -90,10 +84,59 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/glib-2.0/gobject/gtypeplugin.h \
   /usr/include/glib-2.0/gobject/gvaluearray.h \
   /usr/include/glib-2.0/gobject/gvaluetypes.h \
+  /usr/include/glib-2.0/gio/gappinfo.h \
+  /usr/include/glib-2.0/gio/gasyncresult.h \
+  /usr/include/glib-2.0/gio/gbufferedinputstream.h \
+  /usr/include/glib-2.0/gio/gfilterinputstream.h \
+  /usr/include/glib-2.0/gio/ginputstream.h \
+  /usr/include/glib-2.0/gio/gbufferedoutputstream.h \
+  /usr/include/glib-2.0/gio/gfilteroutputstream.h \
+  /usr/include/glib-2.0/gio/goutputstream.h \
+  /usr/include/glib-2.0/gio/gcancellable.h \
+  /usr/include/glib-2.0/gio/gcontenttype.h \
+  /usr/include/glib-2.0/gio/gdatainputstream.h \
+  /usr/include/glib-2.0/gio/gdataoutputstream.h \
+  /usr/include/glib-2.0/gio/gdrive.h \
+  /usr/include/glib-2.0/gio/gemblemedicon.h \
+  /usr/include/glib-2.0/gio/gicon.h /usr/include/glib-2.0/gio/gemblem.h \
+  /usr/include/glib-2.0/gio/gfile.h \
+  /usr/include/glib-2.0/gio/gfileattribute.h \
+  /usr/include/glib-2.0/gio/gfileenumerator.h \
+  /usr/include/glib-2.0/gio/gfileicon.h \
+  /usr/include/glib-2.0/gio/gfileinfo.h \
+  /usr/include/glib-2.0/gio/gfileinputstream.h \
+  /usr/include/glib-2.0/gio/gfilemonitor.h \
+  /usr/include/glib-2.0/gio/gfilenamecompleter.h \
+  /usr/include/glib-2.0/gio/gfileoutputstream.h \
+  /usr/include/glib-2.0/gio/gioenumtypes.h \
+  /usr/include/glib-2.0/gio/gioerror.h \
+  /usr/include/glib-2.0/gio/giomodule.h /usr/include/glib-2.0/gmodule.h \
+  /usr/include/glib-2.0/gio/gioscheduler.h \
+  /usr/include/glib-2.0/gio/gloadableicon.h \
+  /usr/include/glib-2.0/gio/gmemoryinputstream.h \
+  /usr/include/glib-2.0/gio/gmemoryoutputstream.h \
+  /usr/include/glib-2.0/gio/gmount.h \
+  /usr/include/glib-2.0/gio/gmountoperation.h \
+  /usr/include/glib-2.0/gio/gnativevolumemonitor.h \
+  /usr/include/glib-2.0/gio/gvolumemonitor.h \
+  /usr/include/glib-2.0/gio/gseekable.h \
+  /usr/include/glib-2.0/gio/gsimpleasyncresult.h \
+  /usr/include/glib-2.0/gio/gthemedicon.h \
+  /usr/include/glib-2.0/gio/gvfs.h /usr/include/glib-2.0/gio/gvolume.h \
+  /usr/include/gtk-2.0/gdk/gdkscreen.h /usr/include/cairo/cairo.h \
+  /usr/include/cairo/cairo-version.h /usr/include/cairo/cairo-features.h \
+  /usr/include/cairo/cairo-deprecated.h \
+  /usr/include/gtk-2.0/gdk/gdktypes.h \
+  /usr/include/pango-1.0/pango/pango.h \
+  /usr/include/pango-1.0/pango/pango-attributes.h \
+  /usr/include/pango-1.0/pango/pango-font.h \
+  /usr/include/pango-1.0/pango/pango-coverage.h \
+  /usr/include/pango-1.0/pango/pango-types.h \
   /usr/include/pango-1.0/pango/pango-gravity.h \
   /usr/include/pango-1.0/pango/pango-matrix.h \
   /usr/include/pango-1.0/pango/pango-script.h \
   /usr/include/pango-1.0/pango/pango-language.h \
+  /usr/include/pango-1.0/pango/pango-bidi-type.h \
   /usr/include/pango-1.0/pango/pango-break.h \
   /usr/include/pango-1.0/pango/pango-item.h \
   /usr/include/pango-1.0/pango/pango-context.h \
@@ -110,7 +153,12 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/pango-1.0/pango/pango-utils.h /usr/include/stdio.h \
   /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
   /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
-  /usr/include/bits/stdio.h /usr/lib/gtk-2.0/include/gdkconfig.h \
+  /usr/include/bits/stdio.h /usr/include/bits/stdio2.h \
+  /usr/lib/gtk-2.0/include/gdkconfig.h \
+  /usr/include/gtk-2.0/gdk/gdkdisplay.h \
+  /usr/include/gtk-2.0/gdk/gdkevents.h \
+  /usr/include/gtk-2.0/gdk/gdkcolor.h /usr/include/gtk-2.0/gdk/gdkdnd.h \
+  /usr/include/gtk-2.0/gdk/gdkinput.h /usr/include/gtk-2.0/gdk/gdkcairo.h \
   /usr/include/gtk-2.0/gdk/gdkpixbuf.h /usr/include/gtk-2.0/gdk/gdkrgb.h \
   /usr/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf.h \
   /usr/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf-features.h \
@@ -119,28 +167,23 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf-animation.h \
   /usr/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf-simple-anim.h \
   /usr/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf-io.h \
-  /usr/include/glib-2.0/gmodule.h \
   /usr/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf-loader.h \
   /usr/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h \
   /usr/include/pango-1.0/pango/pangocairo.h \
   /usr/include/gtk-2.0/gdk/gdkcursor.h \
-  /usr/include/gtk-2.0/gdk/gdkdisplay.h \
-  /usr/include/gtk-2.0/gdk/gdkevents.h /usr/include/gtk-2.0/gdk/gdkdnd.h \
-  /usr/include/gtk-2.0/gdk/gdkinput.h \
+  /usr/include/gtk-2.0/gdk/gdkdisplaymanager.h \
   /usr/include/gtk-2.0/gdk/gdkdrawable.h /usr/include/gtk-2.0/gdk/gdkgc.h \
   /usr/include/gtk-2.0/gdk/gdkenumtypes.h \
   /usr/include/gtk-2.0/gdk/gdkfont.h /usr/include/gtk-2.0/gdk/gdkimage.h \
-  /usr/include/gtk-2.0/gdk/gdkkeys.h \
-  /usr/include/gtk-2.0/gdk/gdkdisplaymanager.h \
-  /usr/include/gtk-2.0/gdk/gdkpango.h \
+  /usr/include/gtk-2.0/gdk/gdkkeys.h /usr/include/gtk-2.0/gdk/gdkpango.h \
   /usr/include/gtk-2.0/gdk/gdkpixmap.h \
   /usr/include/gtk-2.0/gdk/gdkproperty.h \
   /usr/include/gtk-2.0/gdk/gdkregion.h \
-  /usr/include/gtk-2.0/gdk/gdkscreen.h \
   /usr/include/gtk-2.0/gdk/gdkselection.h \
   /usr/include/gtk-2.0/gdk/gdkspawn.h \
-  /usr/include/gtk-2.0/gdk/gdkvisual.h \
-  /usr/include/gtk-2.0/gdk/gdkwindow.h /usr/include/gtk-2.0/gtk/gtk.h \
+  /usr/include/gtk-2.0/gdk/gdktestutils.h \
+  /usr/include/gtk-2.0/gdk/gdkwindow.h \
+  /usr/include/gtk-2.0/gdk/gdkvisual.h /usr/include/gtk-2.0/gtk/gtk.h \
   /usr/include/gtk-2.0/gtk/gtkaboutdialog.h \
   /usr/include/gtk-2.0/gtk/gtkdialog.h \
   /usr/include/gtk-2.0/gtk/gtkwindow.h \
@@ -155,15 +198,9 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/gtk-2.0/gtk/gtkadjustment.h \
   /usr/include/gtk-2.0/gtk/gtkstyle.h \
   /usr/include/gtk-2.0/gtk/gtksettings.h /usr/include/gtk-2.0/gtk/gtkrc.h \
-  /usr/include/atk-1.0/atk/atkobject.h \
+  /usr/include/atk-1.0/atk/atk.h /usr/include/atk-1.0/atk/atkobject.h \
   /usr/include/atk-1.0/atk/atkstate.h \
   /usr/include/atk-1.0/atk/atkrelationtype.h \
-  /usr/include/gtk-2.0/gtk/gtkaccellabel.h \
-  /usr/include/gtk-2.0/gtk/gtklabel.h /usr/include/gtk-2.0/gtk/gtkmisc.h \
-  /usr/include/gtk-2.0/gtk/gtkmenu.h \
-  /usr/include/gtk-2.0/gtk/gtkmenushell.h \
-  /usr/include/gtk-2.0/gtk/gtkaccelmap.h \
-  /usr/include/gtk-2.0/gtk/gtkaccessible.h /usr/include/atk-1.0/atk/atk.h \
   /usr/include/atk-1.0/atk/atkaction.h \
   /usr/include/atk-1.0/atk/atkcomponent.h \
   /usr/include/atk-1.0/atk/atkutil.h \
@@ -187,9 +224,14 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/atk-1.0/atk/atkstreamablecontent.h \
   /usr/include/atk-1.0/atk/atktable.h /usr/include/atk-1.0/atk/atkmisc.h \
   /usr/include/atk-1.0/atk/atkvalue.h \
+  /usr/include/gtk-2.0/gtk/gtkaccellabel.h \
+  /usr/include/gtk-2.0/gtk/gtklabel.h /usr/include/gtk-2.0/gtk/gtkmisc.h \
+  /usr/include/gtk-2.0/gtk/gtkmenu.h \
+  /usr/include/gtk-2.0/gtk/gtkmenushell.h \
+  /usr/include/gtk-2.0/gtk/gtkaccelmap.h \
+  /usr/include/gtk-2.0/gtk/gtkaccessible.h \
   /usr/include/gtk-2.0/gtk/gtkaction.h \
   /usr/include/gtk-2.0/gtk/gtkactiongroup.h \
-  /usr/include/gtk-2.0/gtk/gtkitemfactory.h \
   /usr/include/gtk-2.0/gtk/gtkalignment.h \
   /usr/include/gtk-2.0/gtk/gtkarrow.h \
   /usr/include/gtk-2.0/gtk/gtkaspectframe.h \
@@ -204,16 +246,15 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/gtk-2.0/gtk/gtkcalendar.h \
   /usr/include/gtk-2.0/gtk/gtksignal.h \
   /usr/include/gtk-2.0/gtk/gtkmarshal.h \
+  /usr/include/gtk-2.0/gtk/gtkcelleditable.h \
   /usr/include/gtk-2.0/gtk/gtkcelllayout.h \
   /usr/include/gtk-2.0/gtk/gtkcellrenderer.h \
-  /usr/include/gtk-2.0/gtk/gtkcelleditable.h \
   /usr/include/gtk-2.0/gtk/gtktreeviewcolumn.h \
   /usr/include/gtk-2.0/gtk/gtktreemodel.h \
   /usr/include/gtk-2.0/gtk/gtktreesortable.h \
   /usr/include/gtk-2.0/gtk/gtkcellrendereraccel.h \
   /usr/include/gtk-2.0/gtk/gtkcellrenderertext.h \
   /usr/include/gtk-2.0/gtk/gtkcellrenderercombo.h \
-  /usr/include/gtk-2.0/gtk/gtkcellrenderertext.h \
   /usr/include/gtk-2.0/gtk/gtkcellrendererpixbuf.h \
   /usr/include/gtk-2.0/gtk/gtkcellrendererprogress.h \
   /usr/include/gtk-2.0/gtk/gtkcellrendererspin.h \
@@ -229,16 +270,10 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/gtk-2.0/gtk/gtktextiter.h \
   /usr/include/gtk-2.0/gtk/gtktexttag.h \
   /usr/include/gtk-2.0/gtk/gtktextchild.h \
-  /usr/include/gtk-2.0/gtk/gtkclist.h \
-  /usr/include/gtk-2.0/gtk/gtkhscrollbar.h \
-  /usr/include/gtk-2.0/gtk/gtkscrollbar.h \
-  /usr/include/gtk-2.0/gtk/gtkrange.h \
-  /usr/include/gtk-2.0/gtk/gtkvscrollbar.h \
   /usr/include/gtk-2.0/gtk/gtkcolorbutton.h \
   /usr/include/gtk-2.0/gtk/gtkcolorsel.h \
   /usr/include/gtk-2.0/gtk/gtkvbox.h \
   /usr/include/gtk-2.0/gtk/gtkcolorseldialog.h \
-  /usr/include/gtk-2.0/gtk/gtkcombo.h /usr/include/gtk-2.0/gtk/gtkhbox.h \
   /usr/include/gtk-2.0/gtk/gtkcombobox.h \
   /usr/include/gtk-2.0/gtk/gtktreeview.h \
   /usr/include/gtk-2.0/gtk/gtkdnd.h /usr/include/gtk-2.0/gtk/gtkentry.h \
@@ -248,17 +283,16 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/gtk-2.0/gtk/gtkliststore.h \
   /usr/include/gtk-2.0/gtk/gtktreemodelfilter.h \
   /usr/include/gtk-2.0/gtk/gtkcomboboxentry.h \
-  /usr/include/gtk-2.0/gtk/gtkctree.h /usr/include/gtk-2.0/gtk/gtkcurve.h \
+  /usr/include/gtk-2.0/gtk/gtkcurve.h \
   /usr/include/gtk-2.0/gtk/gtkdrawingarea.h \
   /usr/include/gtk-2.0/gtk/gtkeventbox.h \
   /usr/include/gtk-2.0/gtk/gtkexpander.h \
-  /usr/include/gtk-2.0/gtk/gtkfilesel.h \
   /usr/include/gtk-2.0/gtk/gtkfixed.h \
-  /usr/include/gtk-2.0/gtk/gtkfilechooserbutton.h \
   /usr/include/gtk-2.0/gtk/gtkfilechooser.h \
   /usr/include/gtk-2.0/gtk/gtkfilefilter.h \
+  /usr/include/gtk-2.0/gtk/gtkfilechooserbutton.h \
+  /usr/include/gtk-2.0/gtk/gtkhbox.h \
   /usr/include/gtk-2.0/gtk/gtkfilechooserdialog.h \
-  /usr/include/gtk-2.0/gtk/gtkfilechooser.h \
   /usr/include/gtk-2.0/gtk/gtkfilechooserwidget.h \
   /usr/include/gtk-2.0/gtk/gtkfontbutton.h \
   /usr/include/gtk-2.0/gtk/gtkfontsel.h \
@@ -270,15 +304,16 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/gtk-2.0/gtk/gtkhruler.h \
   /usr/include/gtk-2.0/gtk/gtkruler.h \
   /usr/include/gtk-2.0/gtk/gtkhscale.h \
-  /usr/include/gtk-2.0/gtk/gtkscale.h \
+  /usr/include/gtk-2.0/gtk/gtkscale.h /usr/include/gtk-2.0/gtk/gtkrange.h \
+  /usr/include/gtk-2.0/gtk/gtkhscrollbar.h \
+  /usr/include/gtk-2.0/gtk/gtkscrollbar.h \
   /usr/include/gtk-2.0/gtk/gtkhseparator.h \
   /usr/include/gtk-2.0/gtk/gtkseparator.h \
+  /usr/include/gtk-2.0/gtk/gtkhsv.h \
   /usr/include/gtk-2.0/gtk/gtkiconfactory.h \
   /usr/include/gtk-2.0/gtk/gtkicontheme.h \
   /usr/include/gtk-2.0/gtk/gtkiconview.h \
   /usr/include/gtk-2.0/gtk/gtktooltip.h \
-  /usr/include/gtk-2.0/gtk/gtkwidget.h \
-  /usr/include/gtk-2.0/gtk/gtkwindow.h \
   /usr/include/gtk-2.0/gtk/gtkimagemenuitem.h \
   /usr/include/gtk-2.0/gtk/gtkimcontextsimple.h \
   /usr/include/gtk-2.0/gtk/gtkimmulticontext.h \
@@ -286,74 +321,61 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/gtk-2.0/gtk/gtkinvisible.h \
   /usr/include/gtk-2.0/gtk/gtklayout.h \
   /usr/include/gtk-2.0/gtk/gtklinkbutton.h \
-  /usr/include/gtk-2.0/gtk/gtklist.h \
-  /usr/include/gtk-2.0/gtk/gtklistitem.h \
   /usr/include/gtk-2.0/gtk/gtkmain.h \
   /usr/include/gtk-2.0/gtk/gtkmenubar.h \
   /usr/include/gtk-2.0/gtk/gtkmenutoolbutton.h \
-  /usr/include/gtk-2.0/gtk/gtkmenu.h \
   /usr/include/gtk-2.0/gtk/gtktoolbutton.h \
   /usr/include/gtk-2.0/gtk/gtktoolitem.h \
   /usr/include/gtk-2.0/gtk/gtktooltips.h \
   /usr/include/gtk-2.0/gtk/gtkmessagedialog.h \
   /usr/include/gtk-2.0/gtk/gtkmodules.h \
+  /usr/include/gtk-2.0/gtk/gtkmountoperation.h \
   /usr/include/gtk-2.0/gtk/gtknotebook.h \
-  /usr/include/gtk-2.0/gtk/gtkoldeditable.h \
-  /usr/include/gtk-2.0/gtk/gtkoptionmenu.h \
-  /usr/include/gtk-2.0/gtk/gtkpixmap.h /usr/include/gtk-2.0/gtk/gtkplug.h \
-  /usr/include/gtk-2.0/gtk/gtksocket.h \
-  /usr/include/gtk-2.0/gtk/gtkpreview.h \
-  /usr/include/gtk-2.0/gtk/gtkprintoperation.h \
-  /usr/include/gtk-2.0/gtk/gtkmain.h /usr/include/gtk-2.0/gtk/gtkenums.h \
   /usr/include/gtk-2.0/gtk/gtkpagesetup.h \
   /usr/include/gtk-2.0/gtk/gtkpapersize.h \
-  /usr/include/gtk-2.0/gtk/gtkprintsettings.h \
+  /usr/include/gtk-2.0/gtk/gtkplug.h /usr/include/gtk-2.0/gtk/gtksocket.h \
   /usr/include/gtk-2.0/gtk/gtkprintcontext.h \
+  /usr/include/gtk-2.0/gtk/gtkprintoperation.h \
+  /usr/include/gtk-2.0/gtk/gtkprintsettings.h \
   /usr/include/gtk-2.0/gtk/gtkprintoperationpreview.h \
-  /usr/include/gtk-2.0/gtk/gtkprogress.h \
   /usr/include/gtk-2.0/gtk/gtkprogressbar.h \
+  /usr/include/gtk-2.0/gtk/gtkprogress.h \
   /usr/include/gtk-2.0/gtk/gtkradioaction.h \
   /usr/include/gtk-2.0/gtk/gtktoggleaction.h \
   /usr/include/gtk-2.0/gtk/gtkradiobutton.h \
   /usr/include/gtk-2.0/gtk/gtkradiomenuitem.h \
   /usr/include/gtk-2.0/gtk/gtkradiotoolbutton.h \
   /usr/include/gtk-2.0/gtk/gtktoggletoolbutton.h \
-  /usr/include/gtk-2.0/gtk/gtktoolbutton.h \
   /usr/include/gtk-2.0/gtk/gtkrecentaction.h \
   /usr/include/gtk-2.0/gtk/gtkrecentmanager.h \
   /usr/include/gtk-2.0/gtk/gtkrecentchooser.h \
-  /usr/include/gtk-2.0/gtk/gtkrecentmanager.h \
   /usr/include/gtk-2.0/gtk/gtkrecentfilter.h \
   /usr/include/gtk-2.0/gtk/gtkrecentchooserdialog.h \
-  /usr/include/gtk-2.0/gtk/gtkrecentchooser.h \
   /usr/include/gtk-2.0/gtk/gtkrecentchoosermenu.h \
   /usr/include/gtk-2.0/gtk/gtkrecentchooserwidget.h \
-  /usr/include/gtk-2.0/gtk/gtkrecentfilter.h \
   /usr/include/gtk-2.0/gtk/gtkscalebutton.h \
   /usr/include/gtk-2.0/gtk/gtkscrolledwindow.h \
+  /usr/include/gtk-2.0/gtk/gtkvscrollbar.h \
   /usr/include/gtk-2.0/gtk/gtkviewport.h \
   /usr/include/gtk-2.0/gtk/gtkseparatormenuitem.h \
   /usr/include/gtk-2.0/gtk/gtkseparatortoolitem.h \
+  /usr/include/gtk-2.0/gtk/gtkshow.h \
   /usr/include/gtk-2.0/gtk/gtksizegroup.h \
   /usr/include/gtk-2.0/gtk/gtkspinbutton.h \
   /usr/include/gtk-2.0/gtk/gtkstatusbar.h \
   /usr/include/gtk-2.0/gtk/gtkstatusicon.h \
   /usr/include/gtk-2.0/gtk/gtkstock.h /usr/include/gtk-2.0/gtk/gtktable.h \
   /usr/include/gtk-2.0/gtk/gtktearoffmenuitem.h \
-  /usr/include/gtk-2.0/gtk/gtktext.h \
   /usr/include/gtk-2.0/gtk/gtktextbuffer.h \
   /usr/include/gtk-2.0/gtk/gtktexttagtable.h \
   /usr/include/gtk-2.0/gtk/gtktextmark.h \
   /usr/include/gtk-2.0/gtk/gtktextbufferrichtext.h \
   /usr/include/gtk-2.0/gtk/gtktextview.h \
-  /usr/include/gtk-2.0/gtk/gtktipsquery.h \
-  /usr/include/gtk-2.0/gtk/gtktoggletoolbutton.h \
   /usr/include/gtk-2.0/gtk/gtktoolbar.h \
-  /usr/include/gtk-2.0/gtk/gtktoolbutton.h \
-  /usr/include/gtk-2.0/gtk/gtktoolitem.h \
-  /usr/include/gtk-2.0/gtk/gtktree.h \
+  /usr/include/gtk-2.0/gtk/gtkpixmap.h \
+  /usr/include/gtk-2.0/gtk/gtktoolshell.h \
+  /usr/include/gtk-2.0/gtk/gtktestutils.h \
   /usr/include/gtk-2.0/gtk/gtktreednd.h \
-  /usr/include/gtk-2.0/gtk/gtktreeitem.h \
   /usr/include/gtk-2.0/gtk/gtktreemodelsort.h \
   /usr/include/gtk-2.0/gtk/gtktreeselection.h \
   /usr/include/gtk-2.0/gtk/gtktreestore.h \
@@ -365,6 +387,18 @@ libcd_keyboard_indicator_la-applet-config.lo \
   /usr/include/gtk-2.0/gtk/gtkvruler.h \
   /usr/include/gtk-2.0/gtk/gtkvscale.h \
   /usr/include/gtk-2.0/gtk/gtkvseparator.h \
+  /usr/include/gtk-2.0/gtk/gtktext.h /usr/include/gtk-2.0/gtk/gtktree.h \
+  /usr/include/gtk-2.0/gtk/gtktreeitem.h \
+  /usr/include/gtk-2.0/gtk/gtkclist.h /usr/include/gtk-2.0/gtk/gtkcombo.h \
+  /usr/include/gtk-2.0/gtk/gtkctree.h \
+  /usr/include/gtk-2.0/gtk/gtkfilesel.h \
+  /usr/include/gtk-2.0/gtk/gtkitemfactory.h \
+  /usr/include/gtk-2.0/gtk/gtklist.h \
+  /usr/include/gtk-2.0/gtk/gtklistitem.h \
+  /usr/include/gtk-2.0/gtk/gtkoldeditable.h \
+  /usr/include/gtk-2.0/gtk/gtkoptionmenu.h \
+  /usr/include/gtk-2.0/gtk/gtkpreview.h \
+  /usr/include/gtk-2.0/gtk/gtktipsquery.h \
   /usr/include/librsvg-2/librsvg/rsvg.h \
   /usr/include/librsvg-2/librsvg/rsvg-cairo.h \
   /usr/include/glib-2.0/glib/gi18n.h /usr/include/libintl.h \
@@ -501,7 +535,7 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gnu/stubs-32.h:
 
-/usr/lib/gcc/i486-linux-gnu/4.2.4/include/stddef.h:
+/usr/lib/gcc/i486-linux-gnu/4.3.2/include/stddef.h:
 
 /usr/include/bits/string.h:
 
@@ -515,9 +549,13 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/bits/typesizes.h:
 
+/usr/include/bits/string3.h:
+
 /usr/include/cairo-dock/cairo-dock.h:
 
 /usr/include/stdlib.h:
+
+/usr/include/bits/stdlib.h:
 
 /usr/include/GL/gl.h:
 
@@ -565,13 +603,13 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/glib-2.0/glib/gmacros.h:
 
-/usr/lib/gcc/i486-linux-gnu/4.2.4/include/limits.h:
+/usr/lib/gcc/i486-linux-gnu/4.3.2/include-fixed/limits.h:
 
-/usr/lib/gcc/i486-linux-gnu/4.2.4/include/syslimits.h:
+/usr/lib/gcc/i486-linux-gnu/4.3.2/include-fixed/syslimits.h:
 
 /usr/include/limits.h:
 
-/usr/lib/gcc/i486-linux-gnu/4.2.4/include/float.h:
+/usr/lib/gcc/i486-linux-gnu/4.3.2/include/float.h:
 
 /usr/include/glib-2.0/glib/garray.h:
 
@@ -585,11 +623,17 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/glib-2.0/glib/gutils.h:
 
-/usr/lib/gcc/i486-linux-gnu/4.2.4/include/stdarg.h:
+/usr/lib/gcc/i486-linux-gnu/4.3.2/include/stdarg.h:
 
 /usr/include/glib-2.0/glib/gatomic.h:
 
 /usr/include/glib-2.0/glib/gbacktrace.h:
+
+/usr/include/signal.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/bits/signum.h:
 
 /usr/include/glib-2.0/glib/gbase64.h:
 
@@ -681,27 +725,13 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gdk/gdk.h:
 
-/usr/include/gtk-2.0/gdk/gdkcairo.h:
+/usr/include/gtk-2.0/gdk/gdkapplaunchcontext.h:
 
-/usr/include/gtk-2.0/gdk/gdkcolor.h:
+/usr/include/glib-2.0/gio/gio.h:
 
-/usr/local/include/cairo/cairo.h:
+/usr/include/glib-2.0/gio/giotypes.h:
 
-/usr/local/include/cairo/cairo-features.h:
-
-/usr/local/include/cairo/cairo-deprecated.h:
-
-/usr/include/gtk-2.0/gdk/gdktypes.h:
-
-/usr/include/pango-1.0/pango/pango.h:
-
-/usr/include/pango-1.0/pango/pango-attributes.h:
-
-/usr/include/pango-1.0/pango/pango-font.h:
-
-/usr/include/pango-1.0/pango/pango-coverage.h:
-
-/usr/include/pango-1.0/pango/pango-types.h:
+/usr/include/glib-2.0/gio/gioenums.h:
 
 /usr/include/glib-2.0/glib-object.h:
 
@@ -735,6 +765,112 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/glib-2.0/gobject/gvaluetypes.h:
 
+/usr/include/glib-2.0/gio/gappinfo.h:
+
+/usr/include/glib-2.0/gio/gasyncresult.h:
+
+/usr/include/glib-2.0/gio/gbufferedinputstream.h:
+
+/usr/include/glib-2.0/gio/gfilterinputstream.h:
+
+/usr/include/glib-2.0/gio/ginputstream.h:
+
+/usr/include/glib-2.0/gio/gbufferedoutputstream.h:
+
+/usr/include/glib-2.0/gio/gfilteroutputstream.h:
+
+/usr/include/glib-2.0/gio/goutputstream.h:
+
+/usr/include/glib-2.0/gio/gcancellable.h:
+
+/usr/include/glib-2.0/gio/gcontenttype.h:
+
+/usr/include/glib-2.0/gio/gdatainputstream.h:
+
+/usr/include/glib-2.0/gio/gdataoutputstream.h:
+
+/usr/include/glib-2.0/gio/gdrive.h:
+
+/usr/include/glib-2.0/gio/gemblemedicon.h:
+
+/usr/include/glib-2.0/gio/gicon.h:
+
+/usr/include/glib-2.0/gio/gemblem.h:
+
+/usr/include/glib-2.0/gio/gfile.h:
+
+/usr/include/glib-2.0/gio/gfileattribute.h:
+
+/usr/include/glib-2.0/gio/gfileenumerator.h:
+
+/usr/include/glib-2.0/gio/gfileicon.h:
+
+/usr/include/glib-2.0/gio/gfileinfo.h:
+
+/usr/include/glib-2.0/gio/gfileinputstream.h:
+
+/usr/include/glib-2.0/gio/gfilemonitor.h:
+
+/usr/include/glib-2.0/gio/gfilenamecompleter.h:
+
+/usr/include/glib-2.0/gio/gfileoutputstream.h:
+
+/usr/include/glib-2.0/gio/gioenumtypes.h:
+
+/usr/include/glib-2.0/gio/gioerror.h:
+
+/usr/include/glib-2.0/gio/giomodule.h:
+
+/usr/include/glib-2.0/gmodule.h:
+
+/usr/include/glib-2.0/gio/gioscheduler.h:
+
+/usr/include/glib-2.0/gio/gloadableicon.h:
+
+/usr/include/glib-2.0/gio/gmemoryinputstream.h:
+
+/usr/include/glib-2.0/gio/gmemoryoutputstream.h:
+
+/usr/include/glib-2.0/gio/gmount.h:
+
+/usr/include/glib-2.0/gio/gmountoperation.h:
+
+/usr/include/glib-2.0/gio/gnativevolumemonitor.h:
+
+/usr/include/glib-2.0/gio/gvolumemonitor.h:
+
+/usr/include/glib-2.0/gio/gseekable.h:
+
+/usr/include/glib-2.0/gio/gsimpleasyncresult.h:
+
+/usr/include/glib-2.0/gio/gthemedicon.h:
+
+/usr/include/glib-2.0/gio/gvfs.h:
+
+/usr/include/glib-2.0/gio/gvolume.h:
+
+/usr/include/gtk-2.0/gdk/gdkscreen.h:
+
+/usr/include/cairo/cairo.h:
+
+/usr/include/cairo/cairo-version.h:
+
+/usr/include/cairo/cairo-features.h:
+
+/usr/include/cairo/cairo-deprecated.h:
+
+/usr/include/gtk-2.0/gdk/gdktypes.h:
+
+/usr/include/pango-1.0/pango/pango.h:
+
+/usr/include/pango-1.0/pango/pango-attributes.h:
+
+/usr/include/pango-1.0/pango/pango-font.h:
+
+/usr/include/pango-1.0/pango/pango-coverage.h:
+
+/usr/include/pango-1.0/pango/pango-types.h:
+
 /usr/include/pango-1.0/pango/pango-gravity.h:
 
 /usr/include/pango-1.0/pango/pango-matrix.h:
@@ -742,6 +878,8 @@ libcd_keyboard_indicator_la-applet-config.lo \
 /usr/include/pango-1.0/pango/pango-script.h:
 
 /usr/include/pango-1.0/pango/pango-language.h:
+
+/usr/include/pango-1.0/pango/pango-bidi-type.h:
 
 /usr/include/pango-1.0/pango/pango-break.h:
 
@@ -785,7 +923,21 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/bits/stdio.h:
 
+/usr/include/bits/stdio2.h:
+
 /usr/lib/gtk-2.0/include/gdkconfig.h:
+
+/usr/include/gtk-2.0/gdk/gdkdisplay.h:
+
+/usr/include/gtk-2.0/gdk/gdkevents.h:
+
+/usr/include/gtk-2.0/gdk/gdkcolor.h:
+
+/usr/include/gtk-2.0/gdk/gdkdnd.h:
+
+/usr/include/gtk-2.0/gdk/gdkinput.h:
+
+/usr/include/gtk-2.0/gdk/gdkcairo.h:
 
 /usr/include/gtk-2.0/gdk/gdkpixbuf.h:
 
@@ -805,8 +957,6 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf-io.h:
 
-/usr/include/glib-2.0/gmodule.h:
-
 /usr/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf-loader.h:
 
 /usr/include/gtk-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h:
@@ -815,13 +965,7 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gdk/gdkcursor.h:
 
-/usr/include/gtk-2.0/gdk/gdkdisplay.h:
-
-/usr/include/gtk-2.0/gdk/gdkevents.h:
-
-/usr/include/gtk-2.0/gdk/gdkdnd.h:
-
-/usr/include/gtk-2.0/gdk/gdkinput.h:
+/usr/include/gtk-2.0/gdk/gdkdisplaymanager.h:
 
 /usr/include/gtk-2.0/gdk/gdkdrawable.h:
 
@@ -835,8 +979,6 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gdk/gdkkeys.h:
 
-/usr/include/gtk-2.0/gdk/gdkdisplaymanager.h:
-
 /usr/include/gtk-2.0/gdk/gdkpango.h:
 
 /usr/include/gtk-2.0/gdk/gdkpixmap.h:
@@ -845,15 +987,15 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gdk/gdkregion.h:
 
-/usr/include/gtk-2.0/gdk/gdkscreen.h:
-
 /usr/include/gtk-2.0/gdk/gdkselection.h:
 
 /usr/include/gtk-2.0/gdk/gdkspawn.h:
 
-/usr/include/gtk-2.0/gdk/gdkvisual.h:
+/usr/include/gtk-2.0/gdk/gdktestutils.h:
 
 /usr/include/gtk-2.0/gdk/gdkwindow.h:
+
+/usr/include/gtk-2.0/gdk/gdkvisual.h:
 
 /usr/include/gtk-2.0/gtk/gtk.h:
 
@@ -889,27 +1031,13 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtkrc.h:
 
+/usr/include/atk-1.0/atk/atk.h:
+
 /usr/include/atk-1.0/atk/atkobject.h:
 
 /usr/include/atk-1.0/atk/atkstate.h:
 
 /usr/include/atk-1.0/atk/atkrelationtype.h:
-
-/usr/include/gtk-2.0/gtk/gtkaccellabel.h:
-
-/usr/include/gtk-2.0/gtk/gtklabel.h:
-
-/usr/include/gtk-2.0/gtk/gtkmisc.h:
-
-/usr/include/gtk-2.0/gtk/gtkmenu.h:
-
-/usr/include/gtk-2.0/gtk/gtkmenushell.h:
-
-/usr/include/gtk-2.0/gtk/gtkaccelmap.h:
-
-/usr/include/gtk-2.0/gtk/gtkaccessible.h:
-
-/usr/include/atk-1.0/atk/atk.h:
 
 /usr/include/atk-1.0/atk/atkaction.h:
 
@@ -959,11 +1087,23 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/atk-1.0/atk/atkvalue.h:
 
+/usr/include/gtk-2.0/gtk/gtkaccellabel.h:
+
+/usr/include/gtk-2.0/gtk/gtklabel.h:
+
+/usr/include/gtk-2.0/gtk/gtkmisc.h:
+
+/usr/include/gtk-2.0/gtk/gtkmenu.h:
+
+/usr/include/gtk-2.0/gtk/gtkmenushell.h:
+
+/usr/include/gtk-2.0/gtk/gtkaccelmap.h:
+
+/usr/include/gtk-2.0/gtk/gtkaccessible.h:
+
 /usr/include/gtk-2.0/gtk/gtkaction.h:
 
 /usr/include/gtk-2.0/gtk/gtkactiongroup.h:
-
-/usr/include/gtk-2.0/gtk/gtkitemfactory.h:
 
 /usr/include/gtk-2.0/gtk/gtkalignment.h:
 
@@ -995,11 +1135,11 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtkmarshal.h:
 
+/usr/include/gtk-2.0/gtk/gtkcelleditable.h:
+
 /usr/include/gtk-2.0/gtk/gtkcelllayout.h:
 
 /usr/include/gtk-2.0/gtk/gtkcellrenderer.h:
-
-/usr/include/gtk-2.0/gtk/gtkcelleditable.h:
 
 /usr/include/gtk-2.0/gtk/gtktreeviewcolumn.h:
 
@@ -1012,8 +1152,6 @@ libcd_keyboard_indicator_la-applet-config.lo \
 /usr/include/gtk-2.0/gtk/gtkcellrenderertext.h:
 
 /usr/include/gtk-2.0/gtk/gtkcellrenderercombo.h:
-
-/usr/include/gtk-2.0/gtk/gtkcellrenderertext.h:
 
 /usr/include/gtk-2.0/gtk/gtkcellrendererpixbuf.h:
 
@@ -1045,16 +1183,6 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtktextchild.h:
 
-/usr/include/gtk-2.0/gtk/gtkclist.h:
-
-/usr/include/gtk-2.0/gtk/gtkhscrollbar.h:
-
-/usr/include/gtk-2.0/gtk/gtkscrollbar.h:
-
-/usr/include/gtk-2.0/gtk/gtkrange.h:
-
-/usr/include/gtk-2.0/gtk/gtkvscrollbar.h:
-
 /usr/include/gtk-2.0/gtk/gtkcolorbutton.h:
 
 /usr/include/gtk-2.0/gtk/gtkcolorsel.h:
@@ -1062,10 +1190,6 @@ libcd_keyboard_indicator_la-applet-config.lo \
 /usr/include/gtk-2.0/gtk/gtkvbox.h:
 
 /usr/include/gtk-2.0/gtk/gtkcolorseldialog.h:
-
-/usr/include/gtk-2.0/gtk/gtkcombo.h:
-
-/usr/include/gtk-2.0/gtk/gtkhbox.h:
 
 /usr/include/gtk-2.0/gtk/gtkcombobox.h:
 
@@ -1087,8 +1211,6 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtkcomboboxentry.h:
 
-/usr/include/gtk-2.0/gtk/gtkctree.h:
-
 /usr/include/gtk-2.0/gtk/gtkcurve.h:
 
 /usr/include/gtk-2.0/gtk/gtkdrawingarea.h:
@@ -1097,19 +1219,17 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtkexpander.h:
 
-/usr/include/gtk-2.0/gtk/gtkfilesel.h:
-
 /usr/include/gtk-2.0/gtk/gtkfixed.h:
-
-/usr/include/gtk-2.0/gtk/gtkfilechooserbutton.h:
 
 /usr/include/gtk-2.0/gtk/gtkfilechooser.h:
 
 /usr/include/gtk-2.0/gtk/gtkfilefilter.h:
 
-/usr/include/gtk-2.0/gtk/gtkfilechooserdialog.h:
+/usr/include/gtk-2.0/gtk/gtkfilechooserbutton.h:
 
-/usr/include/gtk-2.0/gtk/gtkfilechooser.h:
+/usr/include/gtk-2.0/gtk/gtkhbox.h:
+
+/usr/include/gtk-2.0/gtk/gtkfilechooserdialog.h:
 
 /usr/include/gtk-2.0/gtk/gtkfilechooserwidget.h:
 
@@ -1137,9 +1257,17 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtkscale.h:
 
+/usr/include/gtk-2.0/gtk/gtkrange.h:
+
+/usr/include/gtk-2.0/gtk/gtkhscrollbar.h:
+
+/usr/include/gtk-2.0/gtk/gtkscrollbar.h:
+
 /usr/include/gtk-2.0/gtk/gtkhseparator.h:
 
 /usr/include/gtk-2.0/gtk/gtkseparator.h:
+
+/usr/include/gtk-2.0/gtk/gtkhsv.h:
 
 /usr/include/gtk-2.0/gtk/gtkiconfactory.h:
 
@@ -1148,10 +1276,6 @@ libcd_keyboard_indicator_la-applet-config.lo \
 /usr/include/gtk-2.0/gtk/gtkiconview.h:
 
 /usr/include/gtk-2.0/gtk/gtktooltip.h:
-
-/usr/include/gtk-2.0/gtk/gtkwidget.h:
-
-/usr/include/gtk-2.0/gtk/gtkwindow.h:
 
 /usr/include/gtk-2.0/gtk/gtkimagemenuitem.h:
 
@@ -1167,17 +1291,11 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtklinkbutton.h:
 
-/usr/include/gtk-2.0/gtk/gtklist.h:
-
-/usr/include/gtk-2.0/gtk/gtklistitem.h:
-
 /usr/include/gtk-2.0/gtk/gtkmain.h:
 
 /usr/include/gtk-2.0/gtk/gtkmenubar.h:
 
 /usr/include/gtk-2.0/gtk/gtkmenutoolbutton.h:
-
-/usr/include/gtk-2.0/gtk/gtkmenu.h:
 
 /usr/include/gtk-2.0/gtk/gtktoolbutton.h:
 
@@ -1189,39 +1307,29 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtkmodules.h:
 
+/usr/include/gtk-2.0/gtk/gtkmountoperation.h:
+
 /usr/include/gtk-2.0/gtk/gtknotebook.h:
-
-/usr/include/gtk-2.0/gtk/gtkoldeditable.h:
-
-/usr/include/gtk-2.0/gtk/gtkoptionmenu.h:
-
-/usr/include/gtk-2.0/gtk/gtkpixmap.h:
-
-/usr/include/gtk-2.0/gtk/gtkplug.h:
-
-/usr/include/gtk-2.0/gtk/gtksocket.h:
-
-/usr/include/gtk-2.0/gtk/gtkpreview.h:
-
-/usr/include/gtk-2.0/gtk/gtkprintoperation.h:
-
-/usr/include/gtk-2.0/gtk/gtkmain.h:
-
-/usr/include/gtk-2.0/gtk/gtkenums.h:
 
 /usr/include/gtk-2.0/gtk/gtkpagesetup.h:
 
 /usr/include/gtk-2.0/gtk/gtkpapersize.h:
 
-/usr/include/gtk-2.0/gtk/gtkprintsettings.h:
+/usr/include/gtk-2.0/gtk/gtkplug.h:
+
+/usr/include/gtk-2.0/gtk/gtksocket.h:
 
 /usr/include/gtk-2.0/gtk/gtkprintcontext.h:
 
+/usr/include/gtk-2.0/gtk/gtkprintoperation.h:
+
+/usr/include/gtk-2.0/gtk/gtkprintsettings.h:
+
 /usr/include/gtk-2.0/gtk/gtkprintoperationpreview.h:
 
-/usr/include/gtk-2.0/gtk/gtkprogress.h:
-
 /usr/include/gtk-2.0/gtk/gtkprogressbar.h:
+
+/usr/include/gtk-2.0/gtk/gtkprogress.h:
 
 /usr/include/gtk-2.0/gtk/gtkradioaction.h:
 
@@ -1235,37 +1343,33 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtktoggletoolbutton.h:
 
-/usr/include/gtk-2.0/gtk/gtktoolbutton.h:
-
 /usr/include/gtk-2.0/gtk/gtkrecentaction.h:
 
 /usr/include/gtk-2.0/gtk/gtkrecentmanager.h:
 
 /usr/include/gtk-2.0/gtk/gtkrecentchooser.h:
 
-/usr/include/gtk-2.0/gtk/gtkrecentmanager.h:
-
 /usr/include/gtk-2.0/gtk/gtkrecentfilter.h:
 
 /usr/include/gtk-2.0/gtk/gtkrecentchooserdialog.h:
-
-/usr/include/gtk-2.0/gtk/gtkrecentchooser.h:
 
 /usr/include/gtk-2.0/gtk/gtkrecentchoosermenu.h:
 
 /usr/include/gtk-2.0/gtk/gtkrecentchooserwidget.h:
 
-/usr/include/gtk-2.0/gtk/gtkrecentfilter.h:
-
 /usr/include/gtk-2.0/gtk/gtkscalebutton.h:
 
 /usr/include/gtk-2.0/gtk/gtkscrolledwindow.h:
+
+/usr/include/gtk-2.0/gtk/gtkvscrollbar.h:
 
 /usr/include/gtk-2.0/gtk/gtkviewport.h:
 
 /usr/include/gtk-2.0/gtk/gtkseparatormenuitem.h:
 
 /usr/include/gtk-2.0/gtk/gtkseparatortoolitem.h:
+
+/usr/include/gtk-2.0/gtk/gtkshow.h:
 
 /usr/include/gtk-2.0/gtk/gtksizegroup.h:
 
@@ -1281,8 +1385,6 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtktearoffmenuitem.h:
 
-/usr/include/gtk-2.0/gtk/gtktext.h:
-
 /usr/include/gtk-2.0/gtk/gtktextbuffer.h:
 
 /usr/include/gtk-2.0/gtk/gtktexttagtable.h:
@@ -1293,21 +1395,15 @@ libcd_keyboard_indicator_la-applet-config.lo \
 
 /usr/include/gtk-2.0/gtk/gtktextview.h:
 
-/usr/include/gtk-2.0/gtk/gtktipsquery.h:
-
-/usr/include/gtk-2.0/gtk/gtktoggletoolbutton.h:
-
 /usr/include/gtk-2.0/gtk/gtktoolbar.h:
 
-/usr/include/gtk-2.0/gtk/gtktoolbutton.h:
+/usr/include/gtk-2.0/gtk/gtkpixmap.h:
 
-/usr/include/gtk-2.0/gtk/gtktoolitem.h:
+/usr/include/gtk-2.0/gtk/gtktoolshell.h:
 
-/usr/include/gtk-2.0/gtk/gtktree.h:
+/usr/include/gtk-2.0/gtk/gtktestutils.h:
 
 /usr/include/gtk-2.0/gtk/gtktreednd.h:
-
-/usr/include/gtk-2.0/gtk/gtktreeitem.h:
 
 /usr/include/gtk-2.0/gtk/gtktreemodelsort.h:
 
@@ -1330,6 +1426,34 @@ libcd_keyboard_indicator_la-applet-config.lo \
 /usr/include/gtk-2.0/gtk/gtkvscale.h:
 
 /usr/include/gtk-2.0/gtk/gtkvseparator.h:
+
+/usr/include/gtk-2.0/gtk/gtktext.h:
+
+/usr/include/gtk-2.0/gtk/gtktree.h:
+
+/usr/include/gtk-2.0/gtk/gtktreeitem.h:
+
+/usr/include/gtk-2.0/gtk/gtkclist.h:
+
+/usr/include/gtk-2.0/gtk/gtkcombo.h:
+
+/usr/include/gtk-2.0/gtk/gtkctree.h:
+
+/usr/include/gtk-2.0/gtk/gtkfilesel.h:
+
+/usr/include/gtk-2.0/gtk/gtkitemfactory.h:
+
+/usr/include/gtk-2.0/gtk/gtklist.h:
+
+/usr/include/gtk-2.0/gtk/gtklistitem.h:
+
+/usr/include/gtk-2.0/gtk/gtkoldeditable.h:
+
+/usr/include/gtk-2.0/gtk/gtkoptionmenu.h:
+
+/usr/include/gtk-2.0/gtk/gtkpreview.h:
+
+/usr/include/gtk-2.0/gtk/gtktipsquery.h:
 
 /usr/include/librsvg-2/librsvg/rsvg.h:
 

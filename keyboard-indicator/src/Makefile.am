@@ -13,6 +13,8 @@ libcd_keyboard_indicator_la_SOURCES = \
 	applet-notifications.h\
 	applet-xklavier.c\
 	applet-xklavier.h\
+	applet-draw.c\
+	applet-draw.h\
 	applet-struct.h
 
 
