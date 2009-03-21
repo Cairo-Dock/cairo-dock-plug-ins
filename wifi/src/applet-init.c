@@ -73,8 +73,15 @@ CD_APPLET_RELOAD_BEGIN
 			}
 		}
 
-		cairo_dock_free_gauge (myData.pGauge);
-		cairo_dock_free_graph (myData.pGraph);
+    if (myData.pGauge != NULL) {
+		  cairo_dock_free_gauge (myData.pGauge);
+		  myData.pGauge = NULL;
+		}
+		if (myData.pGraph != NULL) {
+      myData.pGraph = NULL;
+		  cairo_dock_free_graph (myData.pGraph);
+		}
+		
 		if (myConfig.iDisplay == WIFI_GRAPHIC) {
 			myData.pGauge = NULL;
 			myData.pGraph = cairo_dock_create_graph (myDrawContext,

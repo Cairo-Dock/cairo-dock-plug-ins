@@ -24,7 +24,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
 	
 	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
-	myConfig.iDisplay = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
+	myConfig.iDisplay = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "display type", 0);
 	
 	myConfig.cGThemePath = cairo_dock_get_gauge_key_value (CD_APPLET_MY_CONF_FILE, pKeyFile, "Configuration", "theme", &bFlushConfFileNeeded, "radium");
 	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "watermark alpha");
