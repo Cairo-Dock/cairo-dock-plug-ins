@@ -20,7 +20,7 @@ void cd_decorator_set_frame_size_curly (CairoDialog *pDialog) {
 	pDialog->iLeftMargin = iMargin;
 	pDialog->iTopMargin = iMargin;
 	pDialog->iBottomMargin = iMargin;
-	pDialog->iMinBottomGap = MAX (30, myConfig.iCurlyRadius);
+	pDialog->iMinBottomGap = MAX (20, myConfig.iCurlyRadius);
 	pDialog->iMinFrameWidth = 10;  // au pif.
 	pDialog->fAlign = .5;
 	pDialog->fReflectAlpha = 0.;
@@ -117,7 +117,7 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 		cairo_move_to (pCairoContext,
 			pDialog->iWidth/2,
 			pDialog->bDirectionUp ? pDialog->iHeight - fGap : fGap);
-		cairo_rel_line_to (pCairoContext, 0, -sens * fGap);
+		cairo_rel_line_to (pCairoContext, 0, sens * fGap);
 		cairo_stroke (pCairoContext);
 	}
 }

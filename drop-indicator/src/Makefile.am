@@ -31,6 +31,7 @@ libcd_drop_indicator_la_CFLAGS = \
 	-DMY_APPLET_ICON_FILE=\""icon.svg"\"\
 	-DMY_APPLET_DEFAULT_DROP_INDICATOR_NAME=\""default-drop-indicator.svg"\"\
 	-DMY_APPLET_MASK_INDICATOR_NAME=\""texture-bilinear-gradation.png"\"\
+        -DGL_GLEXT_PROTOTYPES=\""1"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3
