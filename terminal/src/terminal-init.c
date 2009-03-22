@@ -39,9 +39,9 @@ CD_APPLET_INIT_BEGIN
 
 	if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
 		terminal_build_and_show_tab ();
-	if (myDock && myIcon->acFileName == NULL)  // en mode desklet, on n'a pas besoin de l'icone.
+	if (myDock)  // en mode desklet, on n'a pas besoin de l'icone.
 	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	}
 }
 CD_APPLET_INIT_END
@@ -90,9 +90,9 @@ CD_APPLET_RELOAD_BEGIN
 			term_apply_settings();
 		}
 		
-		if (myDock && myIcon->acFileName == NULL)  // en mode desklet, on n'a pas besoin de l'icone.
+		if (myDock)  // en mode desklet, on n'a pas besoin de l'icone.
 		{
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		}
 	}
 }

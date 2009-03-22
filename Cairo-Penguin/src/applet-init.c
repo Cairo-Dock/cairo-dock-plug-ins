@@ -17,7 +17,14 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("Cairo-Penguin", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("Cairo-Penguin",
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("Add a lively Penguin in your dock !\n"
+	"Left click to change the animation,\n"
+	"Middle-click to disturb him ^_^\n"
+	"Tux images are taken from Pingus, some other characters are available or can be added easily."),
+	"Fabounet (Fabrice Rey)")
 
 
 CD_APPLET_INIT_BEGIN

@@ -27,7 +27,16 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-amarok2.h" //Support Amarok 2
 #include "applet-amarok1.h" //Support Amarok 1.4
 
-CD_APPLET_DEFINITION ("musicPlayer", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION (N_("musicPlayer"),
+	2,0,0,
+	CAIRO_DOCK_CATEGORY_CONTROLER,
+	N_("This applet lets you control any music player.\n"
+	"Left click to Play/Pause, middle-click to play Next song.\n"
+	"Scroll up/down to play previous/next song.\n"
+	"You can drag and drop songs to put them in the queue (depends on Player).\n"
+	"Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
+	"       For SongBird, you have to install its dbus add-on.\n"),
+	"ChanGFu (Rémy Robertson), Mav (Yann SLADEK), Tofe, Jackass")
 
 
 static void _musciplayer_set_simple_renderer (void) {

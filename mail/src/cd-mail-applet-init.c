@@ -16,7 +16,12 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "cd-mail-applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN ("mail", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_PRE_INIT_BEGIN (N_("mail"),
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("This applet is very useful to warn you when you get new e-mails\n"
+	"It can check in any kind of mailbox (yahoo, gmail, etc)"),
+	"Tofe (Christophe Chapuis)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_mail_load_custom_widget;
 	pInterface->save_custom_widget = cd_mail_save_custom_widget;

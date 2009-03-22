@@ -56,16 +56,16 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (myDesklet) //Placé avant pour être sur d'avoir les infos affichées au redraw.
   	{
-  	  if (myConfig.iDeskletRenderer == MY_DESKLET_CAROUSSEL)
+  	  ///if (myConfig.iDeskletRenderer == MY_DESKLET_CAROUSSEL)
   	  {
   		  gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
   		  CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
   		}
-  		else if (myConfig.iDeskletRenderer == MY_DESKLET_MAIN_ICON)
+  		/**else if (myConfig.iDeskletRenderer == MY_DESKLET_MAIN_ICON)
   		{
   		  gpointer data[3] = {"Loading...", NULL, FALSE};
   			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
-  		}
+  		}*/
   	}
 	
 		cd_weather_reset_all_datas (myApplet);  // on bourrine.
@@ -83,3 +83,4 @@ CD_APPLET_RELOAD_BEGIN
 		// rien a faire, cairo-dock va recharger notre sous-dock.
 	}
 CD_APPLET_RELOAD_END
+

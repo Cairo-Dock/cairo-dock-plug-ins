@@ -15,7 +15,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN("motion blur", 2, 0, 0, CAIRO_DOCK_CATEGORY_PLUG_IN)
+CD_APPLET_PRE_INIT_BEGIN(N_("motion blur"),
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	N_("This plug-in adds a motion blur effect on docks."),
+	"Fabounet (Fabrice Rey)")
 	if (! g_bUseOpenGL)
 		return FALSE;
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE

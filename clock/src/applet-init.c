@@ -18,7 +18,15 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN ("clock", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_PRE_INIT_BEGIN (N_("clock"),
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("This applet displays time and date in your dock.\n"
+	"2 view are available : numeric and analogic, based on Cairo-Clock.\n"
+	"It is compatible with the Cairo-Clock's themes, and you can detach itself to be a perfect clone of Cairo-Clock.\n"
+	"It supports alarms, and a basic calendar, and allows you to setup time and date.\n"
+	"Left-click to show/hide the calendar, Middle-click to stop an alarm."),
+	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_clock_load_custom_widget;
 	pInterface->save_custom_widget = cd_clock_save_custom_widget;
@@ -59,7 +67,8 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	//\_______________ On lance le timer.
-	cd_clock_update_with_time (myApplet);
+	if (! myConfig.bShowSeconds)  // pour ne pas attendre 1 mn avant d'avoir le dessin.
+		cd_clock_update_with_time (myApplet);
 	myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
 CD_APPLET_INIT_END
 

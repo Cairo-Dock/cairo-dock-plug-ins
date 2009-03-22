@@ -30,9 +30,6 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 
 gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 {
-	if (cairo_dock_is_loading ())  // soyons gentils, laissons le dock se charger.
-		return TRUE;
-	
 	//\________________ On recupere l'heure courante.
 	time_t epoch = (time_t) time (NULL);
 	if (myConfig.cLocation != NULL)

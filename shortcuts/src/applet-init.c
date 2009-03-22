@@ -25,6 +25,7 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_NAME_FOR_MY_ICON (SHORTCUTS_DEFAULT_NAME);
 	}
+	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	//\_______________ On charge les icones dans un sous-dock.
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
@@ -59,6 +60,7 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (SHORTCUTS_DEFAULT_NAME);
 		}
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
 			NULL,
@@ -76,3 +78,4 @@ CD_APPLET_RELOAD_BEGIN
 		// rien a faire, cairo-dock va recharger notre sous-dock.
 	}
 CD_APPLET_RELOAD_END
+

@@ -36,6 +36,7 @@ libcd_stack_la_CFLAGS = \
 	-DCD_STACK_DEFAULT_TEXT_ICON=\""text-icon.svg"\"\
 	-DCD_STACK_DEFAULT_URL_ICON=\""url-icon.svg"\"\
 	-DCD_APPLET_MULTI_INSTANCE=\"1\"\
+	-Werror-implicit-function-declaration\
 	-std=c99\
 	-O3
 #	-g -ggdb -W -Wall

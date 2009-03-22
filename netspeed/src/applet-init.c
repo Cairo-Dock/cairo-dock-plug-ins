@@ -7,7 +7,13 @@
 #include "applet-netspeed.h"
 
 
-CD_APPLET_DEFINITION ("netspeed", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("netspeed",
+	1, 6, 2,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("This applet shows you the bit rate of your internet connection and some stats about it.\n"
+	"Left-click on the icon to have the total amount of data transfered\n"
+	"Middle-click to (de)activate the network (needs NetworManager)"),
+	"parAdOxxx_ZeRo");
 
 
 CD_APPLET_INIT_BEGIN

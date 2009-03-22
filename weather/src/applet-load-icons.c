@@ -113,6 +113,8 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 
 gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 {
+	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
+	
 	//\_______________________ On etablit le nom de l'icone.
 	if (myIcon->acName == NULL && myDock)
 	{
@@ -126,7 +128,7 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
-	if (myConfig.iDeskletRenderer == MY_DESKLET_CAROUSSEL)
+	///if (myConfig.iDeskletRenderer == MY_DESKLET_CAROUSSEL)
 	{
 	  gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 	  CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);

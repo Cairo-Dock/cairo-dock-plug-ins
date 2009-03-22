@@ -7,7 +7,13 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("logout", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("logout",
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_DESKTOP,
+	N_("A very simple applet that adds an icon to log out from your session\n"
+	"Left click to log out, middle click to shutdown\n"
+	"You can invert this order if you prefer to shutdown on left-click."),
+	"Fabounet (Fabrice Rey)")
 
 
 CD_APPLET_INIT_BEGIN
@@ -16,10 +22,8 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	if (myIcon->acFileName == NULL)
-	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
-	}
+	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+	
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -43,9 +47,6 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myIcon->acFileName == NULL)
-		{
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
-		}
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	}
 CD_APPLET_RELOAD_END

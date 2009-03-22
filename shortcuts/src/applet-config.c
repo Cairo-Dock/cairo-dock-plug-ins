@@ -49,10 +49,7 @@ void cd_shortcuts_reset_all_datas (CairoDockModuleInstance *myApplet)
 		g_free (myData.cBookmarksURI);
 	}
 	
-	if (myIcon->pSubDock != NULL)
-	{
-		CD_APPLET_DESTROY_MY_SUBDOCK;
-	}
+	CD_APPLET_DELETE_MY_ICONS_LIST;
 	memset (myDataPtr, 0, sizeof (AppletData));
 }
 

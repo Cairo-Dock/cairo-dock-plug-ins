@@ -23,7 +23,8 @@ CD_APPLET_DEFINITION (N_("keyboard indicator"),
 	It can also display the current num and caps lock.\n\
 	Left-click to switch to the next layout\n\
 	Scroll up/down to select the previous/next layout\n\
-	Right-click gives you access to the list of available layouts."))
+	Right-click gives you access to the list of available layouts."),
+	"Fabounet (Fabrice Rey)")
 
 static void _load_bg_image (void)
 {

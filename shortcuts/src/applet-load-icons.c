@@ -147,33 +147,23 @@ void cd_shortcuts_get_shortcuts_data (CairoDockModuleInstance *myApplet)
 
 gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myApplet)
 {
-	if (myIcon == NULL)
+	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
+	/*if (myIcon == NULL)
 	{
 		g_print ("annulation du chargement des raccourcis\n");
 		g_list_foreach (myData.pIconList, (GFunc) cairo_dock_free_icon, NULL);
 		g_list_free (myData.pIconList);
 		myData.pIconList = NULL;
 		return FALSE;
-	}
+	}*/
 	cd_message ("  chargement du sous-dock des raccourcis");
 	
 	//\_______________________ On efface l'ancienne liste.
-	//if (myData.pDeskletIconList != NULL)
-	if (myDesklet && myDesklet->icons != NULL)
-	{
-		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
-		g_list_free (myDesklet->icons);
-		myDesklet->icons = NULL;
-	}
-	if (myIcon->pSubDock != NULL)
-	{
-		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
-		g_list_free (myIcon->pSubDock->icons);
-		myIcon->pSubDock->icons = NULL;
-	}
+	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
-	if (myDock)  // en mode 'dock', on affiche les raccourcis dans un sous-dock.
+	CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList, myConfig.cRenderer, "Tree", NULL);
+	/*if (myDock)  // en mode 'dock', on affiche les raccourcis dans un sous-dock.
 	{
 		if (myIcon->pSubDock == NULL)
 		{
@@ -210,8 +200,9 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on n'a pas besoin du context sur myIcon.
 		
 		gtk_widget_queue_draw (myDesklet->pWidget);
-	}
+	}*/
 	
 	myData.pIconList = NULL;
 	return TRUE;
 }
+

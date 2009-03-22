@@ -9,7 +9,16 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN ("AlsaMixer", 2, 0, 0, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_PRE_INIT_BEGIN (N_("AlsaMixer"),
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_CONTROLER,
+	N_("This applet lets you control the sound volume from the dock.\n"
+	"Scroll up/down on the icon to increase/decrease the volume.\n"
+	"Click on icon to show/hide volume control (you can bind a keyboard shortcut for it)\n"
+	"You can also hide the dialog by clicking on it.\n"
+	"Middle-click to set or unset to mute.\n"
+	"This applet works with the Alsa sound driver."),
+	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_mixer_load_custom_widget;
 CD_APPLET_PRE_INIT_END

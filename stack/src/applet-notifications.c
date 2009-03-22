@@ -47,7 +47,9 @@ static void _on_text_received (GtkClipboard *clipboard, const gchar *text, Cairo
 }
 static void _cd_stack_clear_stack (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	cd_stack_clear_stack (myApplet);
+	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the stack ?"), myIcon,  myContainer);
+	if (iAnswer == GTK_RESPONSE_YES)
+		cd_stack_clear_stack (myApplet);
 }
 static void _cd_stack_remove_item (GtkMenuItem *menu_item, gpointer *data)
 {

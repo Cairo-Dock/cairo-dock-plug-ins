@@ -25,13 +25,17 @@ void cd_xkbd_set_prev_next_group (int iDelta)
 	xkl_engine_get_state (pEngine, Xid, &state);
 	cd_debug ("keyboard current state : %d;%d", state.group, state.indicators);
 	
-	int n = xkl_engine_get_num_groups (pEngine);
-	
-	state.group += iDelta;  // xkl_engine_get_next_group ne marche pas.
-	if (state.group == n)
-		state.group = 0;
-	else if (state.group < 0)
-		state.group = n - 1;
+	int i=0, n = xkl_engine_get_num_groups (pEngine);
+	const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
+	do  // on passe au groupe suivant/precedent en sautant les faux (-).
+	{
+		i ++;
+		state.group += iDelta;  // xkl_engine_get_next_group ne marche pas.
+		if (state.group == n)
+			state.group = 0;
+		else if (state.group < 0)
+			state.group = n - 1;
+	} while (i < n && (pGroupNames[state.group] == NULL || *pGroupNames[state.group] == '-'));
 	
 	///xkl_engine_allow_one_switch_to_secondary_group (pEngine);  // sert a quoi ??
 	xkl_engine_save_state (pEngine, Xid, &state);

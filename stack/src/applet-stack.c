@@ -47,10 +47,10 @@ void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile
 void cd_stack_clear_stack (CairoDockModuleInstance *myApplet) {
 	gchar *cCommand = g_strdup_printf("rm -rf \"%s\"/*", myConfig.cStackDir);
 	cd_debug("Stack: will use '%s'", cCommand);
-	system (cCommand);
+	int r = system (cCommand);
 	g_free(cCommand);
 	
-	cd_stack_destroy_icons (myApplet);
+	CD_APPLET_DELETE_MY_ICONS_LIST;
 }
 
 
