@@ -3,6 +3,8 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-config.h"
 
+#include "3dcover-draw.h"
+
 
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.defaultTitle 		= CD_CONFIG_GET_STRING ("Icon", "name");
@@ -21,6 +23,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserImage[PLAYER_BROKEN] 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 	
 	myConfig.extendedDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
+	
+	
+	//\_______________ On on recupere le theme choisi.
+	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");
+	myConfig.cTheme = CD_CONFIG_GET_STRING ("Configuration", "theme");
+	cd_opengl_load_external_conf_theme_values (myApplet);
+	
 CD_APPLET_GET_CONFIG_END
 
 
@@ -31,6 +40,12 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	int i;
 	for (i = 0; i < PLAYER_NB_STATUS; i ++)
 		g_free (myConfig.cUserImage[i]);
+	
+	g_free (myConfig.cThemePath);
+	g_free (myConfig.cTheme);
+	g_free (myData.cThemeFrame);
+	g_free (myData.cThemeReflect);
+	
 CD_APPLET_RESET_CONFIG_END
 
 
@@ -48,4 +63,10 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.playing_artist);
 	g_free (myData.playing_album);
 	g_free (myData.playing_title);
+	
+	glDeleteTextures (1, &myData.TextureFrame);
+	glDeleteTextures (1, &myData.TextureCover);
+	glDeleteTextures (1, &myData.TextureReflect);
+	glDeleteTextures (1, &myData.TextureName);
+	
 CD_APPLET_RESET_DATA_END

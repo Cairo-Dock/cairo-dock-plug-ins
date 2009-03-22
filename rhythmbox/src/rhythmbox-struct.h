@@ -42,6 +42,9 @@ struct _AppletConfig {
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	gboolean bStealTaskBarIcon;
 	gboolean extendedDesklet;
+	
+	gchar *cTheme;
+	gchar *cThemePath;
 	} ;
 
 struct _AppletData {
@@ -59,6 +62,21 @@ struct _AppletData {
 	gchar *playing_title;
 	gchar *playing_cover;
 	guint iSidCheckCover;
+	
+	GLuint TextureName;
+	GLuint TextureFrame;
+	GLuint TextureCover;
+	GLuint TextureReflect;
+	gchar *cThemeFrame;
+	gchar *cThemeReflect;
+	gint itopleftX;
+	gint itopleftY;
+	gint ibottomleftX;
+	gint ibottomleftY;
+	gint ibottomrightX;
+	gint ibottomrightY;
+	gint itoprightX;
+	gint itoprightY;
 	} ;
 
 

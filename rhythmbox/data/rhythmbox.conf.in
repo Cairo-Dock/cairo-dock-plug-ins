@@ -7,7 +7,7 @@
 icon size = 0;0
 
 #s Default title :
-name = Rythmbox
+name = Rhythmbox
 
 #d Name of the dock it belongs to:
 dock name = 
@@ -31,7 +31,7 @@ x position=0
 y position=0
 
 #b Is detached from the dock ?
-initially detached=false
+initially detached=true
 
 #b Keep below other windows ?
 keep below=false
@@ -85,6 +85,12 @@ fg alpha = 1
 
 #[gtk-preferences]
 [Configuration]
+
+#F[Decorations;gtk-orientation-portrait]
+frame_deco=
+#h+[@rhythmboxdatadir@/themes;@rhythmboxdatadirname@] List of available specific themes (OPENGL only) :/
+theme = cd_box_3d
+sep_deco =
 
 #F[Info-bubbles]
 frame_info=

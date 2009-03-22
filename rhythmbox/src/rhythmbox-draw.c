@@ -3,9 +3,9 @@
 
 #include "rhythmbox-struct.h"
 #include "rhythmbox-draw.h"
+#include "3dcover-draw.h"
 
-
-static gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
+static gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.png", "play.png", "pause.png", "stop.png", "broken.png"};
 
 static GList * _list_icons (void)
 {
@@ -16,7 +16,7 @@ static GList * _list_icons (void)
 	{
 		pIcon = g_new0 (Icon, 1);
 		pIcon->acName = NULL;
-		pIcon->acFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
+		pIcon->acFileName = g_strdup_printf ("%s/%d.png", MY_APPLET_SHARE_DATA_DIR, i);
 		pIcon->fOrder = i;
 		pIcon->iType = i;
 		pIcon->fScale = 1.;
@@ -83,8 +83,19 @@ void update_icon(gboolean make_witness)
 		if (myConfig.enableCover && myData.playing_cover != NULL && g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 		{
 			cd_message ("la couverture '%s' est deja dispo", myData.playing_cover);
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
-			CD_APPLET_REDRAW_MY_ICON;
+			
+			
+			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+			{	
+				myData.TextureCover = cd_opengl_load_texture (myApplet, myData.playing_cover);
+			}
+			else
+			{
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+				CD_APPLET_REDRAW_MY_ICON;
+			}
+			
+			
 			myData.cover_exist = TRUE;
 			if (myData.iSidCheckCover != 0)
 			{
@@ -129,6 +140,7 @@ void update_icon(gboolean make_witness)
 			rhythmbox_set_surface (PLAYER_STOPPED);  // je ne sais pas si en mode Stopped la chanson est NULL ou pas...
 		else
 			rhythmbox_set_surface (PLAYER_NONE);
+			
 	}
 }
 
@@ -155,12 +167,27 @@ void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 	if (pSurface == NULL) {
 		if (myConfig.cUserImage[iStatus] != NULL) {
 			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iStatus]);
-			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+			
+			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+			{	
+				myData.TextureCover = cd_opengl_load_texture (myApplet, cUserImagePath);
+			}
+			else
+			{			
+				myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+			}
 			g_free (cUserImagePath);
 		}
 		else {
 			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iStatus]);
-			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+			{	
+				myData.TextureCover = cd_opengl_load_texture (myApplet, cImagePath);
+			}
+			else
+			{
+				myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+			}
 			g_free (cImagePath);
 		}
 		CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[iStatus]);

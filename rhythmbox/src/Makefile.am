@@ -15,7 +15,9 @@ libcd_rhythmbox_la_SOURCES = \
 	rhythmbox-dbus.h\
 	rhythmbox-menu-functions.c\
 	rhythmbox-menu-functions.h\
-	rhythmbox-struct.h
+	rhythmbox-struct.h\
+	3dcover-draw.c\
+	3dcover-draw.h
 
 
 dock_version = `pkg-config --modversion cairo-dock`

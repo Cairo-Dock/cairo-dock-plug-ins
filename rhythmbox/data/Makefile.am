@@ -1,14 +1,14 @@
 
-SUBDIRS = . 
+SUBDIRS = . themes
 
 moduledir = $(rhythmboxdatadir)
 
 module_DATA = \
-	default.svg\
-	broken.svg\
-	play.svg\
-	pause.svg\
-	stop.svg\
+	default.png\
+	broken.png\
+	play.png\
+	pause.png\
+	stop.png\
 	rhythmbox.conf\
 	readme\
 	preview.png\

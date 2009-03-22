@@ -8,8 +8,10 @@
 #include "rhythmbox-struct.h"
 #include "rhythmbox-init.h"
 
+#include "3dcover-draw.h"
 
-CD_APPLET_DEFINITION ("Rhythmbox", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
+
+CD_APPLET_DEFINITION ("Rhythmbox", 1, 6, 3, CAIRO_DOCK_CATEGORY_CONTROLER)
 
 
 CD_APPLET_INIT_BEGIN
@@ -26,6 +28,12 @@ CD_APPLET_INIT_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 	}
+		
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	{		
+		cd_opengl_init_opengl_datas ();						
+	}
+	
 	
 	myData.dbus_enable = rhythmbox_dbus_connect_to_bus ();
 	if (myData.dbus_enable)
@@ -58,6 +66,14 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
+	
+	
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	{
+		cairo_dock_launch_animation (myContainer);
+		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_FIRST, myApplet);
+	}
+	
 CD_APPLET_INIT_END
 
 
@@ -122,6 +138,19 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			cairo_dock_inhibate_class ("rhythmbox", myIcon);
 		}
+		
+		
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		{
+			cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, myApplet);
+		
+			cd_opengl_init_opengl_datas ();
+					
+			cairo_dock_launch_animation (myContainer);
+			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
+		}
+		
+		
 	}
 	
 	//\_______________ On redessine notre icone.
