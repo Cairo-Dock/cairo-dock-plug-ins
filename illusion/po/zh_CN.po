@@ -12,70 +12,145 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Icon"
-msgstr "图标"
+#: ../src/applet-init.c:20
+msgid "illusion"
+msgstr ""
 
-msgid "Desired icon size for this applet"
-msgstr "此小应用程序期望的图标大小"
-
-msgid "width :"
-msgstr "宽："
-
-msgid "height :"
-msgstr "高："
-
-msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "显示于dock上的标签上的此图标的名称："
-
-msgid "Module"
-msgstr "模块"
-
-msgid "Icon's name :"
-msgstr "图标名称："
-
-#: src/applet-notifications.c:13
+#: ../src/applet-init.c:23
 msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr "这是CD_MY_NAME为Cairo-Dock制作的CD_APPLET_NAME。"
+"This plug-in provides animations for appearance & disappearance of icons."
+msgstr ""
 
-#: ../data/messages:11
-msgid "Desklet"
-msgstr "桌面应用程序"
+#: ../data/messages:1
+msgid "Global"
+msgstr ""
 
-#: ../data/messages:13
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理器"
+#: ../data/messages:3
+msgid "Animation on disappearance :"
+msgstr ""
 
-#: ../data/messages:15
-msgid "Desklet's dimension (width x height) :"
-msgstr "桌面小应用程序大小（宽x高）："
+#: ../data/messages:5 ../data/messages:13
+msgid "Evaporate"
+msgstr ""
+
+#: ../data/messages:7 ../data/messages:31
+msgid "Fade out"
+msgstr ""
+
+#: ../data/messages:9 ../data/messages:35
+msgid "Explode"
+msgstr ""
+
+#: ../data/messages:11 ../data/messages:45
+msgid "Break"
+msgstr ""
+
+#: ../data/messages:15 ../data/messages:33 ../data/messages:37
+#: ../data/messages:47
+msgid "Duration of the animation :"
+msgstr ""
 
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+msgid "1st color of gradation :"
+msgstr ""
 
 #: ../data/messages:19
-msgid "Desklet's position (x ; y) :"
-msgstr "桌面小应用程序位置(x ; y)："
+msgid "2nd color of gradation :"
+msgstr ""
 
 #: ../data/messages:21
-msgid "Is detached from the dock ?"
-msgstr "从dock移开？"
+msgid "Random colors ?"
+msgstr ""
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "位于最下窗口？"
+msgid "Number of particles :"
+msgstr ""
 
 #: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "窗口置顶？"
+msgid "Particle size :"
+msgstr ""
 
 #: ../data/messages:27
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
-msgstr "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
+msgid "Particle speed :"
+msgstr ""
 
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "保持于小应用程序层？"
+msgid "Evaporate upward ?"
+msgstr ""
 
+#: ../data/messages:39 ../data/messages:49
+msgid "Number of pieces :"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Explosion radius :"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Break the icon in cubes ?"
+msgstr ""
+
+#~ msgid "Icon"
+#~ msgstr "图标"
+
+#~ msgid "Desired icon size for this applet"
+#~ msgstr "此小应用程序期望的图标大小"
+
+#~ msgid "width :"
+#~ msgstr "宽："
+
+#~ msgid "height :"
+#~ msgstr "高："
+
+#~ msgid "Name of the icon as it will appear in its label in the dock :"
+#~ msgstr "显示于dock上的标签上的此图标的名称："
+
+#~ msgid "Module"
+#~ msgstr "模块"
+
+#~ msgid "Icon's name :"
+#~ msgstr "图标名称："
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr "这是CD_MY_NAME为Cairo-Dock制作的CD_APPLET_NAME。"
+
+#~ msgid "Desklet"
+#~ msgstr "桌面应用程序"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple."
+#~ msgstr ""
+#~ "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管"
+#~ "理器"
+
+#~ msgid "Desklet's dimension (width x height) :"
+#~ msgstr "桌面小应用程序大小（宽x高）："
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "桌面小应用程序位置(x ; y)："
+
+#~ msgid "Is detached from the dock ?"
+#~ msgstr "从dock移开？"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "位于最下窗口？"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "窗口置顶？"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(name=cairo-dock & type=utility)"
+#~ msgstr ""
+#~ "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock "
+#~ "& type=utility) "
+
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "保持于小应用程序层？"

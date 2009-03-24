@@ -8,7 +8,6 @@
 #include "applet-notifications.h"
 
 
-CD_APPLET_ABOUT (D_("This is a very simple logout applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
 static _logout (void)

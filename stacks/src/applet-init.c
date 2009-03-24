@@ -17,7 +17,14 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-stacks.h"
 
 
-CD_APPLET_DEFINITION ("stacks", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("stacks",
+	1, 6, 2,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("This applet allows you to build a stack of files, just like the Stacks applet of MacOS X.\n"
+	"To add file into your stacks, you just have to drag and drop it on the Stacks icon and you're done.\n"
+	"You can drop any file, or web URL, or even some piece of text\n"
+	"You can quickly copy the path/url/text to the clipboard, or open it."),
+	"ChAnGFu (Rémy Robertson)")
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

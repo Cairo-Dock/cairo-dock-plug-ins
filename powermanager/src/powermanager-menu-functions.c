@@ -11,7 +11,6 @@
 //*********************************************************************************
 // Informations sur l'applet et l'auteur.
 //*********************************************************************************
-CD_APPLET_ABOUT (D_("Applet by Necropotame (Adrien Pilleboue)"))
 
 CD_APPLET_ON_CLICK_BEGIN
 	cairo_dock_remove_dialog_if_any (myIcon);

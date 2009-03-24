@@ -45,55 +45,60 @@ msgid "Icon"
 msgstr "Ikon"
 
 #: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "Lämna tomt för använda standaralternativet."
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Önskad storlek för ikonen"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Ikonens etikett:"
 
-#: ../data/messages:7 ../data/messages:117
+#: ../data/messages:9 ../data/messages:119
 msgid "Let empty to use the default one."
 msgstr "Lämna tomt för använda standaralternativet."
 
-#: ../data/messages:9
+#: ../data/messages:11
 #, fuzzy
 msgid "Image's filename :"
 msgstr "Ikonens namn:"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "Docka som appleten tillhör:"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Storlek på Desklet (bredd x höjd):"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr "Deskletens position (x, y):"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Is detached ?"
 msgstr "Koppla loss från dockan?"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Keep below ?"
 msgstr "Placera under andra fönster?"
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep above ?"
 msgstr "Placera överst"
 
-#: ../data/messages:25
+#: ../data/messages:27
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
-#: ../data/messages:27
+#: ../data/messages:29
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -101,95 +106,95 @@ msgstr ""
 "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
 "använda ALT+vänsterklick."
 
-#: ../data/messages:29
+#: ../data/messages:31
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:41
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:49
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:69 ../data/messages:71
+#: ../data/messages:71 ../data/messages:73
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:73
+#: ../data/messages:75
 msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
@@ -197,95 +202,95 @@ msgstr ""
 "Markera för att visa alla skrivbord på huvudikonen, avmarkera för att visa "
 "skrivbord i en sub-docka."
 
-#: ../data/messages:75
+#: ../data/messages:77
 msgid "Use the compact mode ?"
 msgstr "Använd kompakt läge?"
 
-#: ../data/messages:77
+#: ../data/messages:79
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
 msgstr "Försök bibehålla storleksförhållande i kompakt läge?"
 
-#: ../data/messages:79
+#: ../data/messages:81
 msgid "Map the wallpaper on icon ?"
 msgstr "Visa skrivbordsbakgrund på ikonen?"
 
-#: ../data/messages:81
+#: ../data/messages:83
 msgid "Show desktop number on the icons ?"
 msgstr "Visa skrivbordsnummer på ikonen?"
 
-#: ../data/messages:83
+#: ../data/messages:85
 msgid "Draw the windows on icon ?"
 msgstr "Visa fönsterinnehåll på ikonen?"
 
-#: ../data/messages:85
+#: ../data/messages:87
 #, fuzzy
 msgid "Draw hidden windows too ?"
 msgstr "Visa fönsterinnehåll på ikonen?"
 
-#: ../data/messages:87
+#: ../data/messages:89
 msgid "Display options"
 msgstr "Visningsalternativ"
 
-#: ../data/messages:89
+#: ../data/messages:91
 msgid "Size of the inside lines :"
 msgstr "Storlek på inre linjer:"
 
-#: ../data/messages:91 ../data/messages:97 ../data/messages:101
-#: ../data/messages:105
+#: ../data/messages:93 ../data/messages:99 ../data/messages:103
+#: ../data/messages:107
 msgid "r, v, b, a"
 msgstr "r, g, b, a"
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "Color of the inside lines :"
 msgstr "Färg på inre linjer:"
 
-#: ../data/messages:95
+#: ../data/messages:97
 msgid "Size of the extern line :"
 msgstr "Storlek på yttre linje:"
 
-#: ../data/messages:99
+#: ../data/messages:101
 msgid "Color of the extern line :"
 msgstr "Färg på yttre linje:"
 
-#: ../data/messages:103
+#: ../data/messages:105
 msgid "Color of the Windows line :"
 msgstr "Färg på fönsterlinje:"
 
-#: ../data/messages:107
+#: ../data/messages:109
 msgid "Color of the current desktop :"
 msgstr "Färg för aktivt skrivbord:"
 
-#: ../data/messages:109
+#: ../data/messages:111
 msgid "How to draw the current desktop :"
 msgstr "Hur ska aktivt skrivbord visas:"
 
-#: ../data/messages:111
+#: ../data/messages:113
 msgid "draw a frame"
 msgstr "rita en ram"
 
-#: ../data/messages:113
+#: ../data/messages:115
 msgid "fill"
 msgstr "fyll"
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "fill others"
 msgstr "fyll övriga"
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr ""
 "Ikon som ska användas i expanderat läge om om du inte visar "
 "skrivbordsbakgrunden:"
 
-#: ../data/messages:121
+#: ../data/messages:123
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lämna tomt för att använda standard sub-docka."
 
-#: ../data/messages:123
+#: ../data/messages:125
 msgid "Name of the view used for the sub-dock :"
 msgstr "Namn på vy för sub-dockan:"
 
-#: ../data/messages:125
+#: ../data/messages:127
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "I expanderat läge, visa deskleten i 3D?"
 

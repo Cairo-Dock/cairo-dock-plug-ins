@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:12 ../data/messages:77 ../data/messages:107
+#: ../src/applet-draw.c:12 ../data/messages:79 ../data/messages:109
 msgid "None"
 msgstr "Nessun Segnale"
 
@@ -54,6 +54,13 @@ msgstr ""
 msgid "Signal Strength:"
 msgstr "Potenza del segnale:"
 
+#: ../src/applet-init.c:14
+msgid ""
+"This applet shows you the signal strength of the first active wifi "
+"connection\n"
+"Left-click to pop-up some info,Middle-click to re-check immediately."
+msgstr ""
+
 #: ../src/applet-notifications.c:11
 msgid ""
 "This is the wifi applet\n"
@@ -79,22 +86,27 @@ msgid "Icon"
 msgstr "Icona"
 
 #: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "Lasciate vuoto per utilizzare l'icona di default."
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Dimensione dell'icona desiderata per questa applet"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-#: ../data/messages:7
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Nome del contenitore al quale appartiene:"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -102,45 +114,46 @@ msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "centrale o ALT + click sinistro come esempio."
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr "Posizione della desklet (x ; y) :"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Keep below other windows ?"
 msgstr "Mantenere al di sotto delle altre finestre ?"
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep above other windows ?"
 msgstr "Mantenere al di sopra delle altre finestre ?"
 
-#: ../data/messages:25
+#: ../data/messages:27
+#, fuzzy
 msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:27
+#: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Mantenere nella sezione dei widget ?"
 
-#: ../data/messages:29
+#: ../data/messages:31
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -149,32 +162,32 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid "in degrees."
 msgstr "in gradi."
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Rotation :"
 msgstr "Rotazione :"
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "Decorations"
 msgstr "Decorazioni"
 
-#: ../data/messages:39
+#: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Scegliere un tema decorativo per questa desklet :"
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -182,51 +195,51 @@ msgstr ""
 "E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
 "esempio. Lasciare vuoto per non utilizzarne."
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid "Background image :"
 msgstr "Immagine dello sfondo :"
 
-#: ../data/messages:47
+#: ../data/messages:49
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "Left offset :"
 msgstr "Compensazione a sinistra :"
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Top offset :"
 msgstr "Compensazione in alto :"
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Right offset :"
 msgstr "Compensazione a destra :"
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Bottom offset :"
 msgstr "Compensazione in basso :"
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -234,47 +247,47 @@ msgstr ""
 "E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per "
 "esempio. Lasciare vuoto per non usarla."
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid "Foreground image :"
 msgstr "Immagine in primo piano :"
 
-#: ../data/messages:69
+#: ../data/messages:71
 msgid "Foreground tansparency :"
 msgstr "Trasparenza in primo piano :"
 
-#: ../data/messages:71
+#: ../data/messages:73
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:73
+#: ../data/messages:75
 msgid "Information"
 msgstr "Informazione"
 
-#: ../data/messages:75
+#: ../data/messages:77
 msgid "Information to display on the icon :"
 msgstr "Informazioni da mostrare sull'icona :"
 
-#: ../data/messages:79
+#: ../data/messages:81
 msgid "Signal Strength"
 msgstr "Forza del Segnale"
 
-#: ../data/messages:81
+#: ../data/messages:83
 msgid "Signal Strength in percent"
 msgstr "Forza del Segnale in percentuale"
 
-#: ../data/messages:83
+#: ../data/messages:85
 msgid "Raw Signal Informations"
 msgstr "Info brute sul segnale"
 
-#: ../data/messages:85
+#: ../data/messages:87
 msgid "in seconds."
 msgstr "in secondi."
 
-#: ../data/messages:87
+#: ../data/messages:89
 msgid "Delay between signal checks :"
 msgstr "Ritardo tra le verifiche del segnale :"
 
-#: ../data/messages:89
+#: ../data/messages:91
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
@@ -282,103 +295,103 @@ msgstr ""
 "Permette di sovrascrivere la linea di comando di default dell'applet e "
 "lanciare l'interfaccia di configurazione wireless."
 
-#: ../data/messages:91
+#: ../data/messages:93
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Linea di comando alternativa per lanciare la Configurazione Wireless :"
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:95
+#: ../data/messages:97
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Display type :"
 msgstr "Tipi di indicazioni :"
 
-#: ../data/messages:99 ../data/messages:149
+#: ../data/messages:101 ../data/messages:151
 msgid "Images"
 msgstr "Immagini"
 
-#: ../data/messages:101
+#: ../data/messages:103
 msgid "Gauges"
 msgstr "Indicatori"
 
-#: ../data/messages:103
+#: ../data/messages:105
 msgid "Graphic"
 msgstr "Grafico"
 
-#: ../data/messages:105
+#: ../data/messages:107
 msgid "Effect to apply on the icon according to strength :"
 msgstr "Effetti da attivare all'icona in base alla forza :"
 
-#: ../data/messages:109
+#: ../data/messages:111
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../data/messages:111
+#: ../data/messages:113
 msgid "Transparency"
 msgstr "Trasparenza"
 
-#: ../data/messages:113
+#: ../data/messages:115
 msgid "Draw Bar"
 msgstr "Disegnare una barra"
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "Type of graphic :"
 msgstr "Tipo di grafico :"
 
-#: ../data/messages:117
+#: ../data/messages:119
 msgid "Line"
 msgstr "Linea"
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid "Plain"
 msgstr "Piano"
 
-#: ../data/messages:121
+#: ../data/messages:123
 msgid "Bar"
 msgstr "Barra"
 
-#: ../data/messages:123
+#: ../data/messages:125
 msgid "Circle"
 msgstr "Cerchio"
 
-#: ../data/messages:125
+#: ../data/messages:127
 msgid "Plain Circle"
 msgstr "Cerchio Piatto"
 
-#: ../data/messages:127
+#: ../data/messages:129
 msgid "It's the color of the graphic for high Strength values."
 msgstr "E' il colore del grafico per i valori alti del Segnale."
 
-#: ../data/messages:129
+#: ../data/messages:131
 msgid "High values color :"
 msgstr "Colore valori alti :"
 
-#: ../data/messages:131
+#: ../data/messages:133
 msgid "It's the color of the graphic for low Strength values."
 msgstr "E' il colore del grafico per i valori bassi del Segnale."
 
-#: ../data/messages:133
+#: ../data/messages:135
 msgid "Low values color :"
 msgstr "Colore valori bassi :"
 
-#: ../data/messages:135
+#: ../data/messages:137
 msgid "Background color of the graphic :"
 msgstr "Colore di sfondo del grafico :"
 
-#: ../data/messages:137
+#: ../data/messages:139
 msgid "List of available themes for the analogic display :"
 msgstr "Lista dei temi disponibili per la vista analogica :"
 
-#: ../data/messages:139
+#: ../data/messages:141
 msgid "radium"
 msgstr "radium"
 
-#: ../data/messages:141
+#: ../data/messages:143
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -386,44 +399,44 @@ msgstr ""
 "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
 "se si vuole alcuna filigrana."
 
-#: ../data/messages:143
+#: ../data/messages:145
 msgid "Image to display as a watermark on the gauge :"
 msgstr "Immagine da mostrare come filigrana nel grafico :"
 
-#: ../data/messages:145
+#: ../data/messages:147
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "Settare a 0 se si vuole alcuna filigrana."
 
-#: ../data/messages:147
+#: ../data/messages:149
 msgid "Transparency of the watermark :"
 msgstr "Trasparenza della filigrana :"
 
-#: ../data/messages:151 ../data/messages:155 ../data/messages:159
-#: ../data/messages:163 ../data/messages:167 ../data/messages:171
+#: ../data/messages:153 ../data/messages:157 ../data/messages:161
+#: ../data/messages:165 ../data/messages:169 ../data/messages:173
 msgid "Let it empty to use the default icon."
 msgstr "Lasciate vuoto per utilizzare l'icona di default."
 
-#: ../data/messages:153
+#: ../data/messages:155
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Immagine dell'icona 'Nessun Segnale' :"
 
-#: ../data/messages:157
+#: ../data/messages:159
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Immagine dell'icona 'Molto Basso' :"
 
-#: ../data/messages:161
+#: ../data/messages:163
 msgid "Name of an image for the 'low' icon :"
 msgstr "Immagine dell'icona 'Basso' :"
 
-#: ../data/messages:165
+#: ../data/messages:167
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Immagine dell'icona 'Normale' :"
 
-#: ../data/messages:169
+#: ../data/messages:171
 msgid "Name of an image for the 'good' icon :"
 msgstr "Immagine dell'icona 'Buono' :"
 
-#: ../data/messages:173
+#: ../data/messages:175
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Immagine dell'icona 'Eccellente' :"
 
@@ -462,6 +475,3 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 
 #~ msgid "Lockposition ?"
 #~ msgstr "Bloccare la posizione ?"
-
-#~ msgid "Let t empty to use the default icon."
-#~ msgstr "Lasciate vuoto per utilizzare l'icona di default."

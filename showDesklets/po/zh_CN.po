@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"PO-Revision-Date: 2009-03-19 16:23+0800\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"PO-Revision-Date: 2009-03-19 16:23+0800\n"
 "Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
 "Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -25,38 +25,43 @@ msgid "Icon"
 msgstr "图标"
 
 #: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "留空则使用默认值。"
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "此小程序期望的图标大小"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "在dock中显示的图标标签名称:"
 
-#: ../data/messages:7 ../data/messages:11
+#: ../data/messages:9 ../data/messages:13
 msgid "Let empty to use the default one."
 msgstr "留空则使用默认值。"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Image name to show desklets :"
 msgstr "显示桌面小工具的图片名称:"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Image name to hide desklets :"
 msgstr "隐藏桌面小工具的图片名称:"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Name of the dock it belongs to:"
 msgstr "所属dock名称:"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Configuration"
 msgstr "设置"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Show/hide desklets that are on the widget layer too ?"
 msgstr "同时显示/隐藏在小工具层的桌面小工具?"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Shortkey to show/hide the desklets :"
 msgstr "用于显示/隐藏桌面小应用的快捷键:"
 

@@ -8,7 +8,6 @@
 #include "applet-notifications.h"
 
 
-CD_APPLET_ABOUT (_D("This is the switcher applet\n made by Cchumi for Cairo-Dock"))
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN

@@ -27,7 +27,14 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 static gboolean s_bVideoExtensionChecked = FALSE;
 
 
-CD_APPLET_DEFINITION ("Xgamma", 1, 6, 2, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("Xgamma",
+	1, 6, 2,
+	CAIRO_DOCK_CATEGORY_CONTROLER,
+	N_("Setup the luminosity of your screen directly from your dock.\n"
+	"Scroll up/down to increase/decrease the luminosity\n"
+	"Left-click to open a dialog to setup the luminosity\n"
+	"Middle-click to set it up for each color."),
+	"Fabounet (Fabrice Rey)")
 
 
 CD_APPLET_INIT_BEGIN

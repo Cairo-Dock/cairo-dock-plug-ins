@@ -39,6 +39,5 @@ AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
 		data/Makefile
-		data/readme
 		data/rendering.conf])
 AC_OUTPUT

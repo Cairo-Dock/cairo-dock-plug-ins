@@ -8,7 +8,6 @@
 
 
 
-CD_APPLET_ABOUT (D_("Applet by Necropotame (Adrien Pilleboue)"))
 
 
 CD_APPLET_ON_CLICK_BEGIN

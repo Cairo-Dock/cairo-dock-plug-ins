@@ -15,7 +15,14 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("showDesklets", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION (N_("showDesklets"),
+	1, 6, 2,
+	CAIRO_DOCK_CATEGORY_DESKTOP,
+	N_("This applet let you access quickly to your desklets.\n"
+	"Left click to show/hide your desklets.\n"
+	"Basically, if you run under Compiz, you don't need this applet;\n"
+	" you should just use the 'Widget Layer' capabilities of desklets."),
+	"Fabounet (Fabrice Rey)")
 
 
 CD_APPLET_INIT_BEGIN

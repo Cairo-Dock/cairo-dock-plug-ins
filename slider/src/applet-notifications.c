@@ -18,7 +18,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-transitions.h"
 #include "applet-slider.h"
 
-CD_APPLET_ABOUT (D_("This is the Slider applet\n made by ChAnGFu for Cairo-Dock"))
 
 static void _cd_slider_toogle_pause(GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
 	//cd_message("Toggeling pause: %d", myData.bPause);

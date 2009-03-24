@@ -216,9 +216,9 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	PangoFontDescription *pDesc = pango_font_description_new ();
 	
-	pango_font_description_set_absolute_size (pDesc, myLabels.iconTextDescription.iSize * PANGO_SCALE);
+	pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * PANGO_SCALE);
 	pango_font_description_set_family_static (pDesc, myConfig.cFont);
-	pango_font_description_set_weight (pDesc, myLabels.iconTextDescription.iWeight);
+	pango_font_description_set_weight (pDesc, myConfig.iWeight);
 	pango_font_description_set_style (pDesc, myLabels.iconTextDescription.iStyle);
 	pango_layout_set_font_description (pLayout, pDesc);
 	pango_font_description_free (pDesc);
@@ -232,7 +232,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	cairo_save (myDrawContext);
 	
 	cairo_set_source_rgba (myDrawContext, myConfig.fTextColor[0], myConfig.fTextColor[1], myConfig.fTextColor[2], myConfig.fTextColor[3]);
-	cairo_scale (myDrawContext, (double) iWidth / ink.width, (double) iHeight / ink.height);
+	cairo_scale (myDrawContext, (double) (iWidth - 1) / ink.width, (double) iHeight / ink.height);
 	cairo_translate (myDrawContext, -ink.x, -ink.y);
 	
 	pango_cairo_show_layout (myDrawContext, pLayout);

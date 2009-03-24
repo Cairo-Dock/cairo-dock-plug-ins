@@ -28,7 +28,18 @@
 #include "terminal-init.h"
 
 
-CD_APPLET_DEFINITION ("terminal", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("terminal",
+	1, 6, 2,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("Add a terminal to your dock !\n"
+	"Left/middle click to show/hide terminal (you can bind a keyboard shortcut for it.)\n"
+	"You can open many tabs, rename them, change their color.\n"
+	"You can drag'n'drop files or text and select an action.\n"
+	"Shortcuts are available : 'CTRL+t' and 'CTRL+w' to open/close current tab,\n"
+	"Right-click on a tab to interact on it,\n"
+	"Middle-click on a tab to close it,\n"
+	"Double-click next to the tabs to open a new one."),
+	"Ctaf (Cedric Gestes) & Fabounet (Fabrice Rey)")
 
 
 CD_APPLET_INIT_BEGIN

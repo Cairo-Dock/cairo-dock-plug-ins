@@ -9,7 +9,11 @@
 #include "powermanager-init.h"
 
 
-CD_APPLET_DEFINITION ("PowerManager", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("PowerManager",
+	1, 6, 2,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("A power manager for laptop's battery. It works with ACPI and DBus."),
+	"Necropotame (Adrien Pilleboue)")
 
 
 CD_APPLET_INIT_BEGIN

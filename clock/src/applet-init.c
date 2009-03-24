@@ -48,7 +48,7 @@ CD_APPLET_INIT_BEGIN
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 		cd_clock_load_textures (myApplet);
 	
-	cd_clock_configure_digital (myApplet);
+	///cd_clock_configure_digital (myApplet);  // mis en commentaire jusqu'a ce que ca soit fini.
 	
 	myData.cSystemLocation = g_strdup (g_getenv ("TZ"));
 	myData.iLastCheckedMinute = -1;
@@ -95,7 +95,7 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	cd_clock_configure_digital (myApplet);
+	///cd_clock_configure_digital (myApplet);  // mis en commentaire jusqu'a ce que ca soit fini.
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{

@@ -32,12 +32,14 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "date color", myConfig.fDateColor, couleur);
 	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Module", "setup command");
 	myConfig.cFont = CD_CONFIG_GET_STRING ("Module", "font");
+	int iWeight = CD_CONFIG_GET_INTEGER_WITH_DEFAULT  ("Module", "weight", 5);
+	myConfig.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
 	if (myConfig.cFont == NULL)
 		myConfig.cFont = g_strdup (myLabels.iconTextDescription.cFont);
 	
 	myConfig.cLocation 		= CD_CONFIG_GET_STRING ("Module", "location");
 	
-	myConfig.cDigital 		= CD_CONFIG_GET_STRING ("Module", "digital");
+	//myConfig.cDigital 		= CD_CONFIG_GET_STRING ("Module", "digital");
 	
 	//\_______________ On recupere les alarmes.
 	myConfig.pAlarms = g_ptr_array_new ();

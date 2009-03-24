@@ -18,7 +18,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet);
 
-CD_APPLET_ABOUT (D_("This is the mail applet\n made by Christophe Chapuis for Cairo-Dock"))
 
 
 #define _add_icon(account_name, associated_command, nbUnreadMails, i)\

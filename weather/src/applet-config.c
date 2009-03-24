@@ -33,7 +33,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	
-	myConfig.iDeskletRenderer = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "current desklet", 0);
+	///myConfig.iDeskletRenderer = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "current desklet", 0);
 CD_APPLET_GET_CONFIG_END
 
 

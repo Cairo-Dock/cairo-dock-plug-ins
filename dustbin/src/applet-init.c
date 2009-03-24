@@ -17,7 +17,14 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("dustbin", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("dustbin",
+	1, 6, 2,
+	CAIRO_DOCK_CATEGORY_DESKTOP,
+	N_("This applet manages the dustbin\n"
+	"You can threw files and unmount disks by drag andn droping them on the icon.\n"
+	"The applet can warn you if you use too much space\n"
+	"Middle-click to display usefull info about the dustbin."),
+	"Fabounet (Fabrice Rey)")
 
 
 static void _load_theme (GError **erreur)

@@ -38,7 +38,6 @@ static void _cd_clock_launch_time_admin (GtkMenuItem *menu_item, CairoDockModule
 }
 
 
-CD_APPLET_ABOUT (D_("This is the Cairo-Dock's clock applet\n made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\nThe analogic representation is a port of the well-known Cairo-Clock\n from MacSlow (http://macslow.thepimp.net)."))
 
 
 CD_APPLET_ON_CLICK_BEGIN

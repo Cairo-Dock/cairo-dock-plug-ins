@@ -12,6 +12,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/applet-init.c:23
+msgid ""
+"Add a lively Penguin in your dock !\n"
+"Left click to change the animation,\n"
+"Middle-click to disturb him ^_^\n"
+"Tux images are taken from Pingus, some other characters are available or can "
+"be added easily."
+msgstr ""
+
 #: ../src/applet-notifications.c:20
 msgid "Hey, I'm here !"
 msgstr "Hey, sono qui !"
@@ -108,47 +117,51 @@ msgid "Icon"
 msgstr "Icona"
 
 #: ../data/messages:3
-msgid "Icon size when the penguin is not free :"
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
+msgid "Icon size when the penguin is not free :"
+msgstr ""
+
+#: ../data/messages:7
 #, fuzzy
 msgid "Name of the icon when the penguin is not free :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-#: ../data/messages:7
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Nome del contenitore al quale appartiene :"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid "Choose one of the available themes :"
 msgstr "Scegliere uno dei temi disponibili :"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "in seconds"
 msgstr "in secondi."
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Delay between animation changes :"
 msgstr "Ritardo nel cambiamento delle animazioni :"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Transparency of the penguin :"
 msgstr "Trasparenza del pinguino :"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr "Lasciare che il pinguino passeggi dappertutto sulla barra ?"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "in pixels."
 msgstr "in pixels."
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Ground offset :"
 msgstr "Compensazione del piano :"
 

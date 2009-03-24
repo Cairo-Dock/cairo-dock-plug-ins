@@ -33,6 +33,5 @@ AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
 		data/Makefile
-		data/readme
 		data/CD_APPLET_NAME.conf])
 AC_OUTPUT

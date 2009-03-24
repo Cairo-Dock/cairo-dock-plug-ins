@@ -15,7 +15,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN("show mouse", 2, 0, 0, CAIRO_DOCK_CATEGORY_PLUG_IN)
+CD_APPLET_PRE_INIT_BEGIN(N_("show mouse"),
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	N_("This plug-in draw some animation around the cursor when it's inside a dock/desklet."),
+	"Fabounet (Fabrice Rey)")
 	if (! g_bUseOpenGL)
 		return FALSE;
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE

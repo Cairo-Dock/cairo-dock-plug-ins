@@ -12,6 +12,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/applet-init.c:23
+msgid ""
+"Add a lively Penguin in your dock !\n"
+"Left click to change the animation,\n"
+"Middle-click to disturb him ^_^\n"
+"Tux images are taken from Pingus, some other characters are available or can "
+"be added easily."
+msgstr ""
+
 #: ../src/applet-notifications.c:20
 msgid "Hey, I'm here !"
 msgstr "嘿，我在这儿！"
@@ -107,47 +116,51 @@ msgid "Icon"
 msgstr "图标"
 
 #: ../data/messages:3
-msgid "Icon size when the penguin is not free :"
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
+msgid "Icon size when the penguin is not free :"
+msgstr ""
+
+#: ../data/messages:7
 #, fuzzy
 msgid "Name of the icon when the penguin is not free :"
 msgstr "在dock上显示的图标名称："
 
-#: ../data/messages:7
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "归属dock的名称："
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid "Choose one of the available themes :"
 msgstr "选择主题："
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "in seconds"
 msgstr "以秒为单位。"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Delay between animation changes :"
 msgstr "动画间隔时间："
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Transparency of the penguin :"
 msgstr "企鹅透明度："
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr "允许企鹅在dock的任何地方漫步？"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "in pixels."
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Ground offset :"
 msgstr ""
 

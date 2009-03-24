@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:153
+#: ../src/applet-config.c:155
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -22,14 +22,27 @@ msgstr ""
 "Non ho potuto recuperare le info\n"
 " la connessione è attiva ?"
 
-#: ../src/applet-config.c:166
+#: ../src/applet-config.c:168
 msgid "I couldn't find this location"
 msgstr ""
 
-#: ../src/applet-config.c:220
+#: ../src/applet-config.c:222
 #, fuzzy
 msgid "Search for your location :"
 msgstr "Ricerca della vostra località"
+
+#: ../src/applet-init.c:18
+msgid "weather"
+msgstr ""
+
+#: ../src/applet-init.c:21
+msgid ""
+"This applet displays weather into your dock.\n"
+"Data are provided by www.weather.com, you can find your location in the "
+"config panel.\n"
+"It can detach itself to be a totally eye-candy 3D deskelt.\n"
+"You can have many valuable info by middle or left clicking on the icons."
+msgstr ""
 
 #: ../src/applet-load-icons.c:15
 msgid "Monday"
@@ -164,26 +177,30 @@ msgid "Icon"
 msgstr "Icona"
 
 #: ../data/messages:3
+msgid "Set to 0 to use the default applet size"
+msgstr ""
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Dimensione dell'icona desiderata per questa applet"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Let it empty to use the name of the city."
 msgstr "Lasciare vuoto per utilizzare il nome della città."
 
-#: ../data/messages:7
+#: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Name of the dock it belongs to:"
 msgstr "Nome del contenitore al quale appartiene:"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -191,45 +208,46 @@ msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "centrale o ALT + click sinistro come esempio."
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Posizione della desklet (x ; y) :"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Mantenere al di sotto delle altre finestre ?"
 
-#: ../data/messages:25
+#: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Mantenere al di sopra delle altre finestre ?"
 
-#: ../data/messages:27
+#: ../data/messages:29
+#, fuzzy
 msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
+#: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Mantenere nella sezione dei widget ?"
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -238,32 +256,32 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "in degrees."
 msgstr "in gradi."
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "Rotation :"
 msgstr "Rotazione :"
 
-#: ../data/messages:39
+#: ../data/messages:41
 msgid "Decorations"
 msgstr "Decorazioni"
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Scegliere un tema decorativo per questa desklet :"
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -271,51 +289,51 @@ msgstr ""
 "E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
 "esempio. Lasciare vuoto per non utilizzarne."
 
-#: ../data/messages:47
+#: ../data/messages:49
 msgid "Background image :"
 msgstr "Immagine dello sfondo :"
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr "Compensazione a sinistra :"
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "Top offset :"
 msgstr "Compensazione in alto :"
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr "Compensazione a destra :"
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid "Bottom offset :"
 msgstr "Compensazione in basso :"
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -323,19 +341,19 @@ msgstr ""
 "E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per "
 "esempio. Lasciare vuoto per non usarla."
 
-#: ../data/messages:69
+#: ../data/messages:71
 msgid "Foreground image :"
 msgstr "Immagine in primo piano :"
 
-#: ../data/messages:71
+#: ../data/messages:73
 msgid "Foreground tansparency :"
 msgstr "Trasparenza in primo piano :"
 
-#: ../data/messages:73 ../data/messages:75
+#: ../data/messages:75 ../data/messages:77
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:77
+#: ../data/messages:79
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
@@ -343,70 +361,74 @@ msgstr ""
 "Un click destro sull'icona per fare sì che Cairo-Dock dia un aiuto nella "
 "ricerca del codice della località."
 
-#: ../data/messages:79
+#: ../data/messages:81
 msgid "Code of your location :"
 msgstr "Codice della località :"
 
-#: ../data/messages:81
+#: ../data/messages:83
 msgid "Use International System Units ?"
 msgstr "Utilizzare le unità del Sistema Internazionale ?"
 
-#: ../data/messages:83
+#: ../data/messages:85
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "in secondi. Mettere 0 per avere dialoghi ininterrotti."
 
-#: ../data/messages:85
+#: ../data/messages:87
 msgid "Duration of dialogs :"
 msgstr "Durata dei dialoghi :"
 
-#: ../data/messages:87
+#: ../data/messages:89
 msgid "in minutes."
 msgstr "in minuti"
 
-#: ../data/messages:89
+#: ../data/messages:91
 msgid "Interval of time between 2 checks :"
 msgstr "Intervallo di tempo tra le 2 verifiche :"
 
-#: ../data/messages:91
+#: ../data/messages:93
 msgid "Info"
 msgstr "Info"
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr ""
 "Mostrare le condizioni attuali nell'icona al posto che quelle di default ?"
 
-#: ../data/messages:95
+#: ../data/messages:97
 msgid "Number of days you want to forecast :"
 msgstr "Numero dei giorni da prevedere :"
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Display nights too ?"
 msgstr "Mostrare anche le notti ?"
 
-#: ../data/messages:99
+#: ../data/messages:101
 msgid "Display temperature as quick info ?"
 msgstr "Mostrare la temperatura come info veloce ?"
 
-#: ../data/messages:101
+#: ../data/messages:103
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:103
+#: ../data/messages:105
 msgid "Choose one of the available themes :"
 msgstr "Scegliete uno dei temi disponibili :"
 
-#: ../data/messages:105
+#: ../data/messages:107
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciare vuoto per utilizzare la vista di default per la sub-dock."
 
-#: ../data/messages:107
+#: ../data/messages:109
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
-#: ../data/messages:109
+#: ../data/messages:111
 msgid "Render desklet in 3D ?"
 msgstr "Disegnare la desklet in 3D ?"
+
+#, fuzzy
+#~ msgid "Main Icon"
+#~ msgstr "Icona"
 
 #~ msgid ""
 #~ "Enter your location\n"

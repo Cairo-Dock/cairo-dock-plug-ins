@@ -3,15 +3,90 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/applet-init.c:20
+msgid "illusion"
+msgstr ""
+
+#: ../src/applet-init.c:23
+msgid ""
+"This plug-in provides animations for appearance & disappearance of icons."
+msgstr ""
+
+#: ../data/messages:1
+msgid "Global"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Animation on disappearance :"
+msgstr ""
+
+#: ../data/messages:5 ../data/messages:13
+msgid "Evaporate"
+msgstr ""
+
+#: ../data/messages:7 ../data/messages:31
+msgid "Fade out"
+msgstr ""
+
+#: ../data/messages:9 ../data/messages:35
+msgid "Explode"
+msgstr ""
+
+#: ../data/messages:11 ../data/messages:45
+msgid "Break"
+msgstr ""
+
+#: ../data/messages:15 ../data/messages:33 ../data/messages:37
+#: ../data/messages:47
+msgid "Duration of the animation :"
+msgstr ""
+
+#: ../data/messages:17
+msgid "1st color of gradation :"
+msgstr ""
+
+#: ../data/messages:19
+msgid "2nd color of gradation :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Random colors ?"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Number of particles :"
+msgstr ""
+
+#: ../data/messages:25
+msgid "Particle size :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Particle speed :"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Evaporate upward ?"
+msgstr ""
+
+#: ../data/messages:39 ../data/messages:49
+msgid "Number of pieces :"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Explosion radius :"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Break the icon in cubes ?"
+msgstr ""

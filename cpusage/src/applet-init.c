@@ -7,7 +7,13 @@
 #include "applet-cpusage.h"
 
 
-CD_APPLET_DEFINITION ("cpusage", 1, 6, 3, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION (N_("cpusage"),
+	1, 6, 3,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("The cpusage applet show you the amount of CPU currently used.\n"
+	"Middle click on the icon to get some valuable info.\n"
+	"Left click on the icon to get a list of the most cpu using programs."),
+	"parAdOxxx_ZeRo")
 
 static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 {

@@ -20,6 +20,19 @@ msgstr ""
 msgid "Copy"
 msgstr "Kopiera"
 
+#: ../src/terminal-init.c:34
+msgid ""
+"Add a terminal to your dock !\n"
+"Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
+"for it.)\n"
+"You can open many tabs, rename them, change their color.\n"
+"You can drag'n'drop files or text and select an action.\n"
+"Shortcuts are available : 'CTRL+t' and 'CTRL+w' to open/close current tab,\n"
+"Right-click on a tab to interact on it,\n"
+"Middle-click on a tab to close it,\n"
+"Double-click next to the tabs to open a new one."
+msgstr ""
+
 #: ../src/terminal-menu-functions.c:81 ../src/terminal-widget.c:350
 msgid "New Tab"
 msgstr "Ny flik"
@@ -65,31 +78,35 @@ msgid "Icon"
 msgstr "Ikon"
 
 #: ../data/messages:3
-msgid "Desired icon size for this applet"
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
+msgid "Desired icon size for this applet"
+msgstr ""
+
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
 msgstr "Ikonens etikett:"
 
-#: ../data/messages:7
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Docka som appleten tillhör:"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet's position (x ; y) :"
 msgstr "Deskletens position (x, y):"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -97,35 +114,36 @@ msgstr ""
 "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
 "eller ALT+vänsterklick"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Storlek på Desklet (bredd x höjd):"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Is detached from the dock ?"
 msgstr "Koppla loss från dockan?"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Keep below other windows ?"
 msgstr "Placera under andra fönster?"
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep above other windows ?"
 msgstr "Placera ovanför andra fönster?"
 
-#: ../data/messages:25
+#: ../data/messages:27
+#, fuzzy
 msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 "type=utility)"
 
-#: ../data/messages:27
+#: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Behåll på widgetlager?"
 
-#: ../data/messages:29
+#: ../data/messages:31
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -133,113 +151,113 @@ msgstr ""
 "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
 "använda ALT+vänsterklick."
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:49
 #, fuzzy
 msgid "Background tansparency :"
 msgstr "Genomskinlighet för terminalfönstret:"
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:71
 #, fuzzy
 msgid "Foreground tansparency :"
 msgstr "Genomskinlighet för terminalfönstret:"
 
-#: ../data/messages:71
+#: ../data/messages:73
 msgid "GUI"
 msgstr "Gränssnitt"
 
-#: ../data/messages:73
+#: ../data/messages:75
 msgid "needs to restart the applet."
 msgstr "behöver starta om appleten."
 
-#: ../data/messages:75
+#: ../data/messages:77
 msgid "Terminal's transparency :"
 msgstr "Genomskinlighet för terminalfönstret:"
 
-#: ../data/messages:77
+#: ../data/messages:79
 msgid "Foreground color (r, v, b):"
 msgstr "Förgrundsfärg (r,g.b):"
 
-#: ../data/messages:79
+#: ../data/messages:81
 msgid "Background color (r, v, b):"
 msgstr "Bakgrundsfärg (r,g.b):"
 
-#: ../data/messages:81
+#: ../data/messages:83
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -247,11 +265,11 @@ msgstr ""
 "När terminalen visas i ett fönster. När den är i en desklet, kan du ändra "
 "storlek som vanligt."
 
-#: ../data/messages:83
+#: ../data/messages:85
 msgid "Size of the terminal (line x columns) :"
 msgstr "Storlek på terminal (rader x kolumner):"
 
-#: ../data/messages:85
+#: ../data/messages:87
 msgid "Shortkey to show the terminal"
 msgstr "Tangentkombination for att visa terminalen"
 

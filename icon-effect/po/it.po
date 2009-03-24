@@ -3,101 +3,215 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Icon"
-msgstr "Icona"
+#: ../src/applet-init.c:20
+msgid "icon effects"
+msgstr ""
 
-msgid "Desired icon size for this applet"
-msgstr "Dimensione dell'icona desiderata per questa applet"
+#: ../src/applet-init.c:23
+msgid "This plug-in adds many special effects to your icons."
+msgstr ""
 
-msgid "width :"
-msgstr "larghezza :"
+#: ../data/messages:1
+msgid "Global"
+msgstr ""
 
-msgid "height :"
-msgstr "altezza :"
+#: ../data/messages:3
+msgid "when hovering an icon"
+msgstr ""
 
-msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+#: ../data/messages:5
+msgid "Effects used :"
+msgstr ""
 
-msgid "Module"
-msgstr "Modulo"
+#: ../data/messages:7
+msgid "when clicking on an launcher"
+msgstr ""
 
-msgid "Icon's name :"
-msgstr "Nome dell'icona :"
-
-#: src/applet-notifications.c:13
-msgid "This is the CD_APPLET_NAME applet\n made by CD_MY_NAME for Cairo-Dock"
-msgstr "Questa è CD_APPLET_NAME\n scritta da CD_MY_NAME per Cairo-Dock"
+#: ../data/messages:9
+msgid "Effects used on launcher :"
+msgstr ""
 
 #: ../data/messages:11
-msgid "Desklet"
-msgstr "Desklet"
+msgid "when clicking on an appli"
+msgstr ""
 
 #: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
+msgid "Effects used on applis :"
 msgstr ""
-"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"centrale o ALT + click sinistro come esempio."
 
 #: ../data/messages:15
-msgid "Desklet's dimension (width x height) :"
-msgstr "Dimensione della desklet (larghezza x altezza) :"
+msgid "when clicking on an applet"
+msgstr ""
 
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"sinistro"
+msgid "Effects used on applets :"
+msgstr ""
 
 #: ../data/messages:19
-msgid "Desklet's position (x ; y) :"
-msgstr "Posizione della desklet (x ; y) :"
+msgid "Draw in background ?"
+msgstr ""
 
 #: ../data/messages:21
-msgid "Is detached from the dock ?"
-msgstr "E' staccata dalla barra ?"
+msgid "Rotate effects with dock ?"
+msgstr ""
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Mantenere al di sotto delle altre finestre ?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Mantenere al di sopra delle altre finestre ?"
-
-#: ../data/messages:27
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
+msgid "Fire"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
-"Compiz a : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Mantenere nella sezione dei widget ?"
-
-#: ../data/messages:35 ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
+#: ../data/messages:25 ../data/messages:49 ../data/messages:67
+#: ../data/messages:85 ../data/messages:103
+msgid "In ms. Set 0 to not use this effect."
 msgstr ""
-"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
-"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
-"con ALT + click sinistro."
 
-#: ../data/messages:35
-msgid "Lock position ?"
-msgstr "Bloccare la posizione ?"
+#: ../data/messages:27 ../data/messages:51 ../data/messages:69
+#: ../data/messages:87 ../data/messages:105
+msgid "Duration of the animation :"
+msgstr ""
+
+#: ../data/messages:29 ../data/messages:53 ../data/messages:71
+#: ../data/messages:89 ../data/messages:107
+msgid "Repeat while icon is pointed ?"
+msgstr ""
+
+#: ../data/messages:31 ../data/messages:55 ../data/messages:73
+#: ../data/messages:91 ../data/messages:109
+msgid "1st color of gradation :"
+msgstr ""
+
+#: ../data/messages:33 ../data/messages:57 ../data/messages:75
+#: ../data/messages:93 ../data/messages:111
+msgid "2nd color of gradation :"
+msgstr ""
+
+#: ../data/messages:35 ../data/messages:59
+msgid "Random colors ?"
+msgstr ""
+
+#: ../data/messages:37
+msgid "It will slightly alter the colors, so you may have to modify them."
+msgstr ""
+
+#: ../data/messages:39
+msgid "Add luminance ?"
+msgstr ""
+
+#: ../data/messages:41 ../data/messages:61 ../data/messages:77
+#: ../data/messages:95 ../data/messages:113
+msgid "Number of particles :"
+msgstr ""
+
+#: ../data/messages:43 ../data/messages:63 ../data/messages:79
+#: ../data/messages:97 ../data/messages:115
+msgid "Particle size :"
+msgstr ""
+
+#: ../data/messages:45 ../data/messages:81 ../data/messages:99
+msgid "Particle speed :"
+msgstr ""
+
+#: ../data/messages:47
+msgid "Stars"
+msgstr ""
+
+#: ../data/messages:65
+msgid "Snow"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Rain"
+msgstr ""
+
+#: ../data/messages:101
+msgid "Storm"
+msgstr ""
+
+#~ msgid "Icon"
+#~ msgstr "Icona"
+
+#~ msgid "Desired icon size for this applet"
+#~ msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#~ msgid "width :"
+#~ msgstr "larghezza :"
+
+#~ msgid "height :"
+#~ msgstr "altezza :"
+
+#~ msgid "Name of the icon as it will appear in its label in the dock :"
+#~ msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nome dell'icona :"
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è CD_APPLET_NAME\n"
+#~ " scritta da CD_MY_NAME per Cairo-Dock"
+
+#~ msgid "Desklet"
+#~ msgstr "Desklet"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple."
+#~ msgstr ""
+#~ "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+#~ "centrale o ALT + click sinistro come esempio."
+
+#~ msgid "Desklet's dimension (width x height) :"
+#~ msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+#~ "sinistro"
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "Posizione della desklet (x ; y) :"
+
+#~ msgid "Is detached from the dock ?"
+#~ msgstr "E' staccata dalla barra ?"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(name=cairo-dock & type=utility)"
+#~ msgstr ""
+#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il "
+#~ "comportamento di Compiz a : (name=cairo-dock & type=utility)"
+
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "Mantenere nella sezione dei widget ?"
+
+#~ msgid ""
+#~ "If locked, the desklet can't be moved by simply dragging it with the left "
+#~ "mouse button. Of course you can still move it with ALT + left_click."
+#~ msgstr ""
+#~ "Se la posizione è bloccata, la desklet non può essere mossa con un "
+#~ "semplice copia/incolla con il bottone sinistro del mouse. Potete comunque "
+#~ "muoverla con ALT + click sinistro."
+
+#~ msgid "Lock position ?"
+#~ msgstr "Bloccare la posizione ?"

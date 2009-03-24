@@ -16,6 +16,15 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
+#: ../src/applet-init.c:23
+msgid ""
+"Add a lively Penguin in your dock !\n"
+"Left click to change the animation,\n"
+"Middle-click to disturb him ^_^\n"
+"Tux images are taken from Pingus, some other characters are available or can "
+"be added easily."
+msgstr ""
+
 #: ../src/applet-notifications.c:20
 msgid "Hey, I'm here !"
 msgstr "Hallå, här är jag!"
@@ -112,47 +121,51 @@ msgid "Icon"
 msgstr "Ikon"
 
 #: ../data/messages:3
-msgid "Icon size when the penguin is not free :"
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
+msgid "Icon size when the penguin is not free :"
+msgstr ""
+
+#: ../data/messages:7
 #, fuzzy
 msgid "Name of the icon when the penguin is not free :"
 msgstr "Ikonens etikett:"
 
-#: ../data/messages:7
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Docka som appleten tillhör:"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid "Choose one of the available themes :"
 msgstr "Välj ett tema:"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "in seconds"
 msgstr "i sekunder"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Delay between animation changes :"
 msgstr "Tid mellan animeringsändringar:"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Transparency of the penguin :"
 msgstr "Pingvinens genomskinlighet:"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr "Tillåt pingvinen att vandra överallt?"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "in pixels."
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Ground offset :"
 msgstr ""
 

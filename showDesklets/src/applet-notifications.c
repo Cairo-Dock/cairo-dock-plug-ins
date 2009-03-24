@@ -14,7 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 
 
-CD_APPLET_ABOUT (D_("This is the showDesklets applet\n made by Fabrice Rey for Cairo-Dock"))
 
 static void _hide_unhide_desklets (void)
 {

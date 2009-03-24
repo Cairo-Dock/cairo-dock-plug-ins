@@ -8,12 +8,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-15 23:11+0100\n"
+"POT-Creation-Date: 2009-03-24 02:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-notifications.c:17
@@ -27,37 +27,41 @@ msgid "Icon"
 msgstr ""
 
 #: ../data/messages:3
-msgid "Desired icon size for this applet"
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
+msgid "Desired icon size for this applet"
+msgstr ""
+
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr ""
 
-#: ../data/messages:7 ../data/messages:11
+#: ../data/messages:9 ../data/messages:13
 msgid "Let empty to use the default one."
 msgstr ""
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Image name to show desklets :"
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Image name to hide desklets :"
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Name of the dock it belongs to:"
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Show/hide desklets that are on the widget layer too ?"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Shortkey to show/hide the desklets :"
 msgstr ""

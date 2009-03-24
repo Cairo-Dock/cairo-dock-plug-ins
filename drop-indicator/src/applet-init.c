@@ -15,7 +15,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("drop indicator", 2, 0, 0, CAIRO_DOCK_CATEGORY_PLUG_IN)
+CD_APPLET_DEFINITION (N_("drop indicator"),
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	N_("This plug-in displays an animated indicator when you drop something in the dock."),
+	"Fabounet (Fabrice Rey)")
 
 
 static void _load_drop_indicator (void)

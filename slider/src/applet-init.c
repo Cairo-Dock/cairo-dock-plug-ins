@@ -16,7 +16,14 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("slider", 2, 0, 0, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION (N_("slider"),
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("This applet is a basic image slider\n"
+	" You just have to select a directory and a display effect and you're done\n"
+	"Click to play/pause or to edit the current image.\n"
+	"Middle-click to open the images folder."),
+	"ChAnGFu (Rémy Robertson) & Fabounet (Fabrice Rey)")
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN

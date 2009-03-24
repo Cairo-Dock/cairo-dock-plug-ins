@@ -16,7 +16,13 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("Quick Browser", 2, 0, 0, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("Quick Browser",
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_DESKTOP,
+	N_("This applet lets you browse a folder and its sub-folders very quickly.\n"
+	"You can set up a shortkey to pop up the menu.\n"
+	"This applet can be instanciated several times, if you want to browse different folders."),
+	"Fabounet (Fabrice Rey)")
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

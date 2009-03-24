@@ -112,12 +112,21 @@ location =
 #F[Style;gtk-dnd-multiple]
 frame2 =
 
-#r+[default] List of available themes for the numeric display :/
+#b+ Use the analogic view ?
+#{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
+old fashion style = true
+
+#v
+sep_deco =
+
 digital = default
 
 #c+4[0;1] Text color for the numeric display:
 #{r, v, b, a}
 text color = 0.0; 0.0; 0.5; 1.
+
+#i[1;9] Weight of the text :
+weight = 5
 
 #P+ Font used for the numeric display :
 #{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
@@ -125,10 +134,6 @@ font =
 
 #v
 sep_deco_mod =
-
-#b+ Use the analogic view ?
-#{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
-old fashion style = true
 
 #h+[@clockdatadir@/themes;@clockuserdirname@] List of available themes for the analogic display :/
 theme = glassy

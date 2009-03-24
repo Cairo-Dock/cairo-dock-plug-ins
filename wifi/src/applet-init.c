@@ -8,7 +8,13 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("wifi", 1, 6, 2, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("wifi",
+	1, 6, 2,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("This applet shows you the signal strength of the first active wifi connection\n"
+	"Left-click to pop-up some info,"
+	"Middle-click to re-check immediately."),
+	"ChAnGFu (Rémy Robertson)");
 
 
 CD_APPLET_INIT_BEGIN

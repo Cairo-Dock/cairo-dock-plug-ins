@@ -14,7 +14,6 @@ void cd_xmms_repeat(CairoDockModuleInstance *myApplet);
 void cd_xmms_jumpbox(CairoDockModuleInstance *myApplet);
 void cd_xmms_enqueue(CairoDockModuleInstance *myApplet, const gchar *cFile);
 
-CD_APPLET_ABOUT_H
 
 CD_APPLET_ON_CLICK_H
 

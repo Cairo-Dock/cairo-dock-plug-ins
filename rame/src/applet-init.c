@@ -6,7 +6,12 @@
 #include "applet-init.h"
 #include "applet-rame.h"
 
-CD_APPLET_DEFINITION ("ram-meter", 1, 6, 3, CAIRO_DOCK_CATEGORY_ACCESSORY);
+CD_APPLET_DEFINITION ("ram-meter",
+	1, 6, 3,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("This applet shows you the amount of RAM and SWAP that is curently used\n"
+	"Left-click to show a list of the most memory using programs"),
+	"parAdOxxx_ZeRo");
 
 CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL) {

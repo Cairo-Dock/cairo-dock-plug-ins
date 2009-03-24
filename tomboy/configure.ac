@@ -34,5 +34,5 @@ AC_CONFIG_FILES([Makefile
 		po/Makefile.in
 		data/Makefile
 		data/tomboy.conf
-		data/readme])
+		data/])
 AC_OUTPUT

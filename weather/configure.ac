@@ -35,7 +35,6 @@ AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
 		data/Makefile
-		data/readme
 		data/weather.conf
 		data/themes/Makefile
 		data/themes/basic/Makefile

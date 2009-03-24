@@ -14,6 +14,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/tomboy-init.c:14
+msgid "Control your TomBoy's notes directly in the dock !"
+msgstr ""
+
 #: ../src/tomboy-notifications.c:11
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
@@ -71,42 +75,47 @@ msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "このアプレットのアイコンの大きさ"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Default title :"
 msgstr "デフォルトのタイトル :"
 
-#: ../data/messages:7
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:11 ../data/messages:15 ../data/messages:19
+#: ../data/messages:13 ../data/messages:17 ../data/messages:21
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Name of an image for the 'default' icon :"
 msgstr "「デフォルト」アイコンの画像の名前 :"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Name of an image for the 'close' icon :"
 msgstr "「閉じる」のアイコン画像の名前 :"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」アイコンの画像の名前 :"
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:25
+#: ../data/messages:27
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -118,23 +127,23 @@ msgstr ""
 "'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみこのオプションに"
 "チェックを入れてください。"
 
-#: ../data/messages:27
+#: ../data/messages:29
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "'NoteDeleted' 信号をエミュレート？"
 
-#: ../data/messages:29
+#: ../data/messages:31
 msgid "Let it empty to use default sub-dock view."
 msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid "Draw note's content on their icon ?"
 msgstr "アイコン上にノートの内容を描画？"
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
@@ -144,7 +153,7 @@ msgstr ""
 "y、月が %m、日が %d 等の 'strftime' に則ります。デフォルト（%d/%m/%y）を使用"
 "するには、空欄のままにしてください。"
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "Date format to search for :"
 msgstr "検索のための日付フォーマット :"
 

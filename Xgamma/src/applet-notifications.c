@@ -17,7 +17,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 
 
-CD_APPLET_ABOUT (D_("This is the Xgamma applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN

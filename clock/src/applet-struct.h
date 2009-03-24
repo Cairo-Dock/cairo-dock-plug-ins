@@ -83,6 +83,7 @@ struct _AppletConfig {
 	GPtrArray *pAlarms;
 	gchar *cSetupTimeCommand;
 	gchar *cFont;
+	gint iWeight;
 	gchar *cLocation;
 	gchar *cDigital;
 	gint iSmoothAnimationDuration;

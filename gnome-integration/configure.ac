@@ -25,5 +25,5 @@ PKG_CHECK_MODULES(GNOME_INTEGRATION,gio-2.0)
 AC_CONFIG_FILES([Makefile
 		src/Makefile
 		data/Makefile
-		data/readme])
+		data/])
 AC_OUTPUT

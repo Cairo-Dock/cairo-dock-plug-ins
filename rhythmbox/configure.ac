@@ -34,7 +34,6 @@ AC_CONFIG_FILES([Makefile
 		po/Makefile.in
 		data/Makefile
 		data/rhythmbox.conf
-		data/readme
 		data/themes/Makefile
 		data/themes/None/Makefile
 		data/themes/cd_box_3d/Makefile

@@ -22,6 +22,17 @@ msgstr "日"
 msgid "Loading"
 msgstr "読み込み中"
 
+#: ../src/applet-init.c:10
+msgid "cpusage"
+msgstr ""
+
+#: ../src/applet-init.c:13
+msgid ""
+"The cpusage applet show you the amount of CPU currently used.\n"
+"Middle click on the icon to get some valuable info.\n"
+"Left click on the icon to get a list of the most cpu using programs."
+msgstr ""
+
 #: ../src/applet-notifications.c:9
 msgid ""
 "This is the cpusage applet\n"
@@ -63,22 +74,27 @@ msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "デフォルトのコマンドを使用するには空欄のままに。"
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "このアプレットのアイコンの大きさ"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#: ../data/messages:7
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -86,45 +102,46 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:25
+#: ../data/messages:27
+#, fuzzy
 msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:27
+#: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../data/messages:29
+#: ../data/messages:31
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -133,32 +150,32 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid "in degrees."
 msgstr "角度"
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Rotation :"
 msgstr "回転 :"
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "Decorations"
 msgstr "装飾"
 
-#: ../data/messages:39
+#: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -166,47 +183,47 @@ msgstr ""
 "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
 "欄のままにしてください。"
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:47
+#: ../data/messages:49
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Top offset :"
 msgstr "上方向のオフセット :"
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -214,75 +231,75 @@ msgstr ""
 "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
 "合は空欄のままにしてください。"
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid "Foreground image :"
 msgstr "前景画像 :"
 
-#: ../data/messages:69
+#: ../data/messages:71
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:71 ../data/messages:131
+#: ../data/messages:73 ../data/messages:133
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:73
+#: ../data/messages:75
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:75
+#: ../data/messages:77
 msgid "Display a graphic rather than a gauge ?"
 msgstr "ゲージの代りにグラフを表示？"
 
-#: ../data/messages:77
+#: ../data/messages:79
 msgid "Type of graphic :"
 msgstr "グラフの種類 :"
 
-#: ../data/messages:79
+#: ../data/messages:81
 msgid "Line"
 msgstr "線"
 
-#: ../data/messages:81
+#: ../data/messages:83
 msgid "Plain"
 msgstr "面"
 
-#: ../data/messages:83
+#: ../data/messages:85
 msgid "Bar"
 msgstr "棒"
 
-#: ../data/messages:85
+#: ../data/messages:87
 msgid "Circle"
 msgstr "円（線）"
 
-#: ../data/messages:87
+#: ../data/messages:89
 msgid "Plain Circle"
 msgstr "円（面）"
 
-#: ../data/messages:89
+#: ../data/messages:91
 msgid "It's the color of the graphic for high CPU values."
 msgstr "CPU 高負荷値のグラフの色"
 
-#: ../data/messages:91
+#: ../data/messages:93
 msgid "High values color :"
 msgstr "高負荷値時の色 :"
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "It's the color of the graphic for low CPU values."
 msgstr "CPU 低負荷値のグラフの色"
 
-#: ../data/messages:95
+#: ../data/messages:97
 msgid "Low values color :"
 msgstr "低負荷値時の色 :"
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Background color of the graphic :"
 msgstr "グラフの背景色 :"
 
-#: ../data/messages:99
+#: ../data/messages:101
 msgid "List of available themes for the gauge :"
 msgstr "ゲージに利用可能なテーマのリスト :"
 
-#: ../data/messages:101
+#: ../data/messages:103
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -290,39 +307,39 @@ msgstr ""
 "デフォルトの画像を使用するには空欄のままにしてください。透かし模様を使用した"
 "くない場合は、透明度を 0 に設定してください。"
 
-#: ../data/messages:103
+#: ../data/messages:105
 msgid "Image to display as a watermark :"
 msgstr "透かし模様として表示する画像 :"
 
-#: ../data/messages:105
+#: ../data/messages:107
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "透かし模様を使用したくない場合は、0 に設定してください。"
 
-#: ../data/messages:107
+#: ../data/messages:109
 msgid "Transparency of the watermark :"
 msgstr "透かし模様の透明度 :"
 
-#: ../data/messages:109
+#: ../data/messages:111
 msgid "Display CPU usage values :"
 msgstr "CPU 使用率の表示 :"
 
-#: ../data/messages:111
+#: ../data/messages:113
 msgid "No"
 msgstr "なし"
 
-#: ../data/messages:113
+#: ../data/messages:115
 msgid "On icon"
 msgstr "アイコン上"
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "On label"
 msgstr "ラベル上"
 
-#: ../data/messages:117
+#: ../data/messages:119
 msgid "Top List"
 msgstr "トップリスト"
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU-"
 "using programs."
@@ -330,43 +347,43 @@ msgstr ""
 "アイコンを左クリックすると、CPU を最も使用している上位 N のプログラムのリスト"
 "が得られます。"
 
-#: ../data/messages:121
+#: ../data/messages:123
 msgid "Number of programs to display in the top list :"
 msgstr "トップリストに表示するプログラム数 :"
 
-#: ../data/messages:123
+#: ../data/messages:125
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "トップリストの記載に使用するグラデーションの開始色"
 
-#: ../data/messages:125
+#: ../data/messages:127
 msgid "Start color of the top list :"
 msgstr "トップリストの開始色 :"
 
-#: ../data/messages:127
+#: ../data/messages:129
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "トップリストの記載に使用するグラデーションの終了色"
 
-#: ../data/messages:129
+#: ../data/messages:131
 msgid "Stop color of the top list :"
 msgstr "トップリストの終了色 :"
 
-#: ../data/messages:133 ../data/messages:137
+#: ../data/messages:135 ../data/messages:139
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:135
+#: ../data/messages:137
 msgid "Delay between refresh :"
 msgstr "更新の間隔時間 :"
 
-#: ../data/messages:139
+#: ../data/messages:141
 msgid "Delay between refresh of the top list :"
 msgstr "トップリストの更新間隔 :"
 
-#: ../data/messages:141
+#: ../data/messages:143
 msgid "Let empty to use he default one."
 msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
-#: ../data/messages:143
+#: ../data/messages:145
 msgid "User command to show a system monitor :"
 msgstr "システム・モニタを表示するためのユーザー定義コマンド :"
 

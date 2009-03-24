@@ -3,177 +3,225 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Icon"
-msgstr "Icône"
+#: ../src/applet-init.c:21
+msgid "dialog rendering"
+msgstr ""
 
-msgid "Desired icon size for this applet"
-msgstr "Taille d'icône souhaitée pour cette applet"
+#: ../src/applet-init.c:24
+msgid "This plug-in provides some dialog decorators for dialog bubbles."
+msgstr ""
 
-msgid "width :"
+#: ../data/messages:1
+msgid "Comics"
+msgstr ""
+
+#: ../data/messages:3 ../data/messages:11 ../data/messages:21
+#: ../data/messages:31 ../data/messages:41
+msgid "Corner radius :"
+msgstr ""
+
+#: ../data/messages:5 ../data/messages:13 ../data/messages:33
+#: ../data/messages:43
+#, fuzzy
+msgid "Border width :"
 msgstr "largeur :"
 
-msgid "height :"
-msgstr "hauteur :"
+#: ../data/messages:7 ../data/messages:15 ../data/messages:35
+#: ../data/messages:45
+msgid "Line color of the bubble :"
+msgstr ""
 
-msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
-
-msgid "Module"
+#: ../data/messages:9
+#, fuzzy
+msgid "Modern"
 msgstr "Module"
 
-msgid "Icon's name :"
-msgstr "Nom de l'icône :"
-
-#: src/applet-notifications.c:13
-msgid "This is the dialog-rendering applet\n made by Fabrice Rey (Fabounet) for Cairo-Dock"
-msgstr "Ceci est l'applet dialog-rendering\n écrite par Fabrice Rey (Fabounet) pour Cairo-Dock"
-
-#: ../data/messages:11
-msgid "Desklet"
-msgstr "Desklet"
-
-#: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
-
-#: ../data/messages:15
-msgid "Desklet's dimension (width x height) :"
-msgstr "Dimension du desklet (largeur x hauteur) :"
-
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgid "Space between lines of the tip :"
+msgstr ""
 
 #: ../data/messages:19
-msgid "Desklet's position (x ; y) :"
-msgstr "Position du desklet (x ; y) :"
-
-#: ../data/messages:21
-msgid "Is detached from the dock ?"
-msgstr "Est-il détaché du dock ?"
+msgid "3D plane"
+msgstr ""
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
+msgid "Border width of the plane :"
+msgstr ""
 
 #: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
+msgid "Line color of the plane :"
+msgstr ""
 
 #: ../data/messages:27
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-"
-"dock & type=utility)"
+msgid "Color of the plane :"
+msgstr ""
 
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
-
-#: ../data/messages:35 ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
+msgid "Tooltip"
 msgstr ""
-"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
-"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
-"avec ALT + clique_gauche"
 
-#: ../data/messages:35
-msgid "Lock position ?"
-msgstr "Verrouiller la position ?"
+#: ../data/messages:37
+msgid "Color of the margin :"
+msgstr ""
 
 #: ../data/messages:39
-msgid "in degrees."
-msgstr "en degrés."
-
-#: ../data/messages:41
-msgid "Rotation :"
-msgstr "Rotation :"
-
-#: ../data/messages:43
-msgid "Decorations"
-msgstr "Décorations"
-
-#: ../data/messages:45
-msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+msgid "Curly"
+msgstr ""
 
 #: ../data/messages:47
-msgid "Choose a decoration theme for this desklet :"
-msgstr "Choisissez un thème de décorations pour ce desklet :"
+msgid "Curvature of the tip :"
+msgstr ""
 
-#: ../data/messages:49
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en uiliser aucune."
+#~ msgid "Icon"
+#~ msgstr "Icône"
 
-#: ../data/messages:51
-msgid "Background image :"
-msgstr "Image de fond :"
+#~ msgid "Desired icon size for this applet"
+#~ msgstr "Taille d'icône souhaitée pour cette applet"
 
-#: ../data/messages:53
-msgid "Background tansparency :"
-msgstr "Transparence du fond :"
+#~ msgid "height :"
+#~ msgstr "hauteur :"
 
-#: ../data/messages:55
-msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
+#~ msgid "Name of the icon as it will appear in its label in the dock :"
+#~ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-#: ../data/messages:57
-msgid "Left offset :"
-msgstr "Décalage à gauche :"
+#~ msgid "Icon's name :"
+#~ msgstr "Nom de l'icône :"
 
-#: ../data/messages:59
-msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
+#~ msgid ""
+#~ "This is the dialog-rendering applet\n"
+#~ " made by Fabrice Rey (Fabounet) for Cairo-Dock"
+#~ msgstr ""
+#~ "Ceci est l'applet dialog-rendering\n"
+#~ " écrite par Fabrice Rey (Fabounet) pour Cairo-Dock"
 
-#: ../data/messages:61
-msgid "Top offset :"
-msgstr "Décalage en haut :"
+#~ msgid "Desklet"
+#~ msgstr "Desklet"
 
-#: ../data/messages:63
-msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+#~ msgid ""
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple."
+#~ msgstr ""
+#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner "
+#~ "avec ALT + clic_milieu ou ALT + clic_droit par exemple."
 
-#: ../data/messages:65
-msgid "Right offset :"
-msgstr "Décalage à droite :"
+#~ msgid "Desklet's dimension (width x height) :"
+#~ msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:67
-msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
+#~ "+ clic gauche."
 
-#: ../data/messages:69
-msgid "Bottom offset :"
-msgstr "Décalage en bas :"
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:71
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en uiliser aucune."
+#~ msgid "Is detached from the dock ?"
+#~ msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:73
-msgid "Foreground image :"
-msgstr "Image d'avant-plan :"
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:75
-msgid "Foreground tansparency :"
-msgstr "Transparence de l'avant-plan :"
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Garder au-dessus des autres fenêtres ?"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(name=cairo-dock & type=utility)"
+#~ msgstr ""
+#~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
+#~ "de Compiz à : (name=cairo-dock & type=utility)"
+
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "Garder sur la couche des widgets ?"
+
+#~ msgid ""
+#~ "If locked, the desklet can't be moved by simply dragging it with the left "
+#~ "mouse button. Of course you can still move it with ALT + left_click."
+#~ msgstr ""
+#~ "Si verrouillé, le desklet ne pourra pas être bougé simplement en le "
+#~ "tirant avec le bouton gauche de la souris. Bien sur il pourra toujours "
+#~ "être bougé avec ALT + clique_gauche"
+
+#~ msgid "Lock position ?"
+#~ msgstr "Verrouiller la position ?"
+
+#~ msgid "in degrees."
+#~ msgstr "en degrés."
+
+#~ msgid "Rotation :"
+#~ msgstr "Rotation :"
+
+#~ msgid "Decorations"
+#~ msgstr "Décorations"
+
+#~ msgid "Choose the 'personnal' one to define your own decorations below."
+#~ msgstr ""
+#~ "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
+#~ "dessous."
+
+#~ msgid "Choose a decoration theme for this desklet :"
+#~ msgstr "Choisissez un thème de décorations pour ce desklet :"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the drawings, like a frame for "
+#~ "exemple. Let empty to not use any."
+#~ msgstr ""
+#~ "C'est une image qui sera affichée derrière les dessins, comme un cadre "
+#~ "par exemple. Laissez vide pour n'en uiliser aucune."
+
+#~ msgid "Background image :"
+#~ msgstr "Image de fond :"
+
+#~ msgid "Background tansparency :"
+#~ msgstr "Transparence du fond :"
+
+#~ msgid "in pixels. Use this to adjust the left position of the drawings."
+#~ msgstr ""
+#~ "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
+
+#~ msgid "Left offset :"
+#~ msgstr "Décalage à gauche :"
+
+#~ msgid "in pixels. Use this to adjust the top position of the drawings."
+#~ msgstr ""
+#~ "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
+
+#~ msgid "Top offset :"
+#~ msgstr "Décalage en haut :"
+
+#~ msgid "in pixels. Use this to adjust the right position of the drawings."
+#~ msgstr ""
+#~ "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+
+#~ msgid "Right offset :"
+#~ msgstr "Décalage à droite :"
+
+#~ msgid "in pixels. Use this to adjust the bottom position of the drawings."
+#~ msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
+
+#~ msgid "Bottom offset :"
+#~ msgstr "Décalage en bas :"
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the drawings, like a reflect "
+#~ "for exemple. Let empty to not use any."
+#~ msgstr ""
+#~ "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
+#~ "par exemple. Laissez vide pour n'en uiliser aucune."
+
+#~ msgid "Foreground image :"
+#~ msgstr "Image d'avant-plan :"
+
+#~ msgid "Foreground tansparency :"
+#~ msgstr "Transparence de l'avant-plan :"

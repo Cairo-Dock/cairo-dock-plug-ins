@@ -32,7 +32,6 @@ static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 	N_("For Aiur !")};
 
 
-CD_APPLET_ABOUT (D_("This is the Cairo-Penguin applet\n made by Fabrice Rey for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_PROTO

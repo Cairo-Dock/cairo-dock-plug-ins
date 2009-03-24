@@ -8,13 +8,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-15 23:11+0100\n"
+"POT-Creation-Date: 2009-03-24 02:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-init.c:23
+msgid ""
+"Add a lively Penguin in your dock !\n"
+"Left click to change the animation,\n"
+"Middle-click to disturb him ^_^\n"
+"Tux images are taken from Pingus, some other characters are available or can "
+"be added easily."
+msgstr ""
 
 #: ../src/applet-notifications.c:20
 msgid "Hey, I'm here !"
@@ -106,45 +115,49 @@ msgid "Icon"
 msgstr ""
 
 #: ../data/messages:3
-msgid "Icon size when the penguin is not free :"
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
-msgid "Name of the icon when the penguin is not free :"
+msgid "Icon size when the penguin is not free :"
 msgstr ""
 
 #: ../data/messages:7
-msgid "Name of the dock it belongs to:"
+msgid "Name of the icon when the penguin is not free :"
 msgstr ""
 
 #: ../data/messages:9
-msgid "Configuration"
+msgid "Name of the dock it belongs to:"
 msgstr ""
 
 #: ../data/messages:11
-msgid "Choose one of the available themes :"
+msgid "Configuration"
 msgstr ""
 
 #: ../data/messages:13
-msgid "in seconds"
+msgid "Choose one of the available themes :"
 msgstr ""
 
 #: ../data/messages:15
-msgid "Delay between animation changes :"
+msgid "in seconds"
 msgstr ""
 
 #: ../data/messages:17
-msgid "Transparency of the penguin :"
+msgid "Delay between animation changes :"
 msgstr ""
 
 #: ../data/messages:19
-msgid "Let the penguin wander everywhere in the dock ?"
+msgid "Transparency of the penguin :"
 msgstr ""
 
 #: ../data/messages:21
-msgid "in pixels."
+msgid "Let the penguin wander everywhere in the dock ?"
 msgstr ""
 
 #: ../data/messages:23
+msgid "in pixels."
+msgstr ""
+
+#: ../data/messages:25
 msgid "Ground offset :"
 msgstr ""

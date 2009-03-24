@@ -21,7 +21,6 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-compiz.h"
 
 
-CD_APPLET_ABOUT (D_("This is the compiz-icon applet\n made by ChAnGFu for Cairo-Dock"))
 
 static void _compiz_get_version (void) {
 	if (myData.iCompizMajor != 0 || myData.iCompizMinor != 0 || myData.iCompizMicro != 0)

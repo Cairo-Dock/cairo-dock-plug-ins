@@ -17,7 +17,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN("icon effects", 2, 0, 0, CAIRO_DOCK_CATEGORY_PLUG_IN)
+CD_APPLET_PRE_INIT_BEGIN (N_("icon effects"),
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	N_("This plug-in adds many special effects to your icons."),
+	"Fabounet (Fabrice Rey)")
 	if (! g_bUseOpenGL)
 		return FALSE;
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE

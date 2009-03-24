@@ -15,7 +15,12 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 #include "applet-hdd.h"
 
-CD_APPLET_DEFINITION ("disk-usage", 1, 6, 3, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION (N_("disk-usage"),
+	1, 6, 3,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("This applet shows you the Available/Used space of a storage system.\n"
+	"You can have more details with a middle-click."),
+	"BJackass (enjamin SANS)")
 
 static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 {

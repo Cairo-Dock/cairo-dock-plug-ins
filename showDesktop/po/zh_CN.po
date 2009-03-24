@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"PO-Revision-Date: 2009-03-19 16:26+0800\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"PO-Revision-Date: 2009-03-19 16:26+0800\n"
 "Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
 "Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -25,156 +25,168 @@ msgid "Icon"
 msgstr "图标"
 
 #: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "留空则使用默认值。"
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "此小程序期望的图标大小"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "在dock中显示的图标标签名称:"
 
-#: ../data/messages:7
+#: ../data/messages:9
 msgid "Let empty to use the default one."
 msgstr "留空则使用默认值。"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Image's filename :"
 msgstr "图片文件名:"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "所属dock名称:"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet"
 msgstr "桌面小工具"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
+msgstr ""
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理"
+"器。"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "桌面小工具尺寸(宽×高):"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
 msgstr "桌面小工具位置(x ; y):"
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "与dock分离?"
 
-#: ../data/messages:25
+#: ../data/messages:27
 msgid "Keep below other windows ?"
 msgstr "在其他窗口之下?"
 
-#: ../data/messages:27
+#: ../data/messages:29
 msgid "Keep above other windows ?"
 msgstr "在其他窗口之上?"
 
-#: ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr "面向CompizFusion的“小工具层”，将Compiz的行为设置为：(name=cairo-dock & type=utility) "
-
 #: ../data/messages:31
+#, fuzzy
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=cairo-dock & type=utility)"
+msgstr ""
+"面向CompizFusion的“小工具层”，将Compiz的行为设置为：(name=cairo-dock & "
+"type=utility) "
+
+#: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "保持于小工具层?"
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
+msgstr ""
+"一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
+"移动。"
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Lock position ?"
 msgstr "锁定位置?"
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "in degrees."
 msgstr "以角度为单位。"
 
-#: ../data/messages:39
+#: ../data/messages:41
 msgid "Rotation :"
 msgstr "旋转:"
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid "Decorations"
 msgstr "装饰"
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
 msgstr "为这个桌面小工具选择一个装饰主题:"
 
-#: ../data/messages:47
+#: ../data/messages:49
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "Background image :"
 msgstr "背景图片:"
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "Background tansparency :"
 msgstr "背景透明度:"
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Left offset :"
 msgstr "左偏移:"
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Top offset :"
 msgstr "顶偏移:"
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Right offset :"
 msgstr "右偏移:"
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid "Bottom offset :"
 msgstr "底偏移:"
 
-#: ../data/messages:69
+#: ../data/messages:71
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
-#: ../data/messages:71
+#: ../data/messages:73
 msgid "Foreground image :"
 msgstr "前景图片:"
 
-#: ../data/messages:73
+#: ../data/messages:75
 msgid "Foreground tansparency :"
 msgstr "前景透明度:"
 

@@ -3,8 +3,8 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: ../data/messages:81 ../data/messages:83 ../data/messages:89
-#: ../data/messages:91
+#: ../data/messages:83 ../data/messages:85 ../data/messages:91
+#: ../data/messages:93
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -16,38 +16,54 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-mixer.c:40
+#: ../src/applet-init.c:12
+#, fuzzy
+msgid "AlsaMixer"
+msgstr "Alsa"
+
+#: ../src/applet-init.c:15
+msgid ""
+"This applet lets you control the sound volume from the dock.\n"
+"Scroll up/down on the icon to increase/decrease the volume.\n"
+"Click on icon to show/hide volume control (you can bind a keyboard shortcut "
+"for it)\n"
+"You can also hide the dialog by clicking on it.\n"
+"Middle-click to set or unset to mute.\n"
+"This applet works with the Alsa sound driver."
+msgstr ""
+
+#: ../src/applet-mixer.c:41
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "カード '%s' が開けません"
 
-#: ../src/applet-mixer.c:45
+#: ../src/applet-mixer.c:46
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "カード '%s' は開かれましたが、情報を取得できません"
 
-#: ../src/applet-mixer.c:53
+#: ../src/applet-mixer.c:54
 msgid "I couldn't open the mixer"
 msgstr "ミキサーが開けません"
 
-#: ../src/applet-mixer.c:60
+#: ../src/applet-mixer.c:61
 msgid "I couldn't attach the mixer to the card"
 msgstr "カードにミキサーを接続できません"
 
-#: ../src/applet-mixer.c:67
+#: ../src/applet-mixer.c:68
 msgid "I couldn't register options"
 msgstr "オプションを登録できません"
 
-#: ../src/applet-mixer.c:75
+#: ../src/applet-mixer.c:76
 msgid "I couldn't load the mixer"
 msgstr "ミキサーを読み込めません"
 
-#: ../src/applet-mixer.c:126
+#: ../src/applet-mixer.c:127
 #, c-format
 msgid "I couldn't find any element '%s'"
 msgstr "要素 '%s' が見つかりません"
 
-#: ../src/applet-mixer.c:266
+#: ../src/applet-mixer.c:268
 msgid "Set up volume :"
 msgstr "ボリューム設定 :"
 
@@ -68,22 +84,27 @@ msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "デフォルトを使用するには空欄のままに。"
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "このアプレットのアイコンの大きさ"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#: ../data/messages:7
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:11
+#: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -91,11 +112,11 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
@@ -103,35 +124,36 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。マイナスの値では、画面の右/下から数えられます。"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr "デスクレットの位置（X ; Y） :"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Keep below other windows ?"
 msgstr "他ウィンドウより常に下に？"
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
-#: ../data/messages:25
+#: ../data/messages:27
+#, fuzzy
 msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:27
+#: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "ウィジェット・レイヤ上に表示？"
 
-#: ../data/messages:29
+#: ../data/messages:31
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -140,32 +162,32 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid "in degrees."
 msgstr "角度"
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Rotation :"
 msgstr "回転 :"
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "Decorations"
 msgstr "装飾"
 
-#: ../data/messages:39
+#: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -173,47 +195,47 @@ msgstr ""
 "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
 "欄のままにしてください。"
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:47
+#: ../data/messages:49
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Top offset :"
 msgstr "上方向のオフセット :"
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -221,35 +243,35 @@ msgstr ""
 "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
 "合は空欄のままにしてください。"
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid "Foreground image :"
 msgstr "前景画像 :"
 
-#: ../data/messages:69
+#: ../data/messages:71
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:71
+#: ../data/messages:73
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:73
+#: ../data/messages:75
 msgid "Alsa"
 msgstr "Alsa"
 
-#: ../data/messages:75
+#: ../data/messages:77
 msgid "Let empty to use the default sound card."
 msgstr "デフォルトのサウンドカードを使用するには空欄のままに。"
 
-#: ../data/messages:77
+#: ../data/messages:79
 msgid "Sound card to control :"
 msgstr "制御するサウンドカード :"
 
-#: ../data/messages:79
+#: ../data/messages:81
 msgid "Choose which channel to control :"
 msgstr "制御するチャンネルの選択 :"
 
-#: ../data/messages:85
+#: ../data/messages:87
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
@@ -259,87 +281,87 @@ msgstr ""
 "す。そのときは、両側の制御のために第2チャンネルの指定が必要になります。大抵の"
 "場合、ここは空欄のままにしてください。"
 
-#: ../data/messages:87
+#: ../data/messages:89
 msgid "Optionnally, choose a second channel to control :"
 msgstr "制御する第2チャンネルの選択（オプション） :"
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "Let empty to use the defaut command."
 msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
-#: ../data/messages:95
+#: ../data/messages:97
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr "高機能サウンドミキサー表示のために実行する特別コマンド :"
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Control"
 msgstr "制御"
 
-#: ../data/messages:99
+#: ../data/messages:101
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr "サウンド制御ダイアログの表示/隠すのショートカットキー :"
 
-#: ../data/messages:101
+#: ../data/messages:103
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "1 マウススクロールによる変更量（％単位） :"
 
-#: ../data/messages:103
+#: ../data/messages:105
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr "マウスがデスクレットから離れた際に目盛りを隠す？"
 
-#: ../data/messages:105
+#: ../data/messages:107
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:107
+#: ../data/messages:109
 msgid "Display volume :"
 msgstr "ボリューム表示 :"
 
-#: ../data/messages:109
+#: ../data/messages:111
 msgid "No"
 msgstr "なし"
 
-#: ../data/messages:111
+#: ../data/messages:113
 msgid "On label"
 msgstr "ラベル上"
 
-#: ../data/messages:113
+#: ../data/messages:115
 msgid "On icon"
 msgstr "アイコン上"
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "Effet to apply on the icon according to volume :"
 msgstr "音量に合わせてアイコンに適用する効果 :"
 
-#: ../data/messages:117
+#: ../data/messages:119
 msgid "None"
 msgstr "なし"
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid "Zoom"
 msgstr "ズーム"
 
-#: ../data/messages:121
+#: ../data/messages:123
 msgid "Transparency"
 msgstr "透過"
 
-#: ../data/messages:123
+#: ../data/messages:125
 msgid "Draw Bar"
 msgstr "バーの描画"
 
-#: ../data/messages:125 ../data/messages:129 ../data/messages:133
+#: ../data/messages:127 ../data/messages:131 ../data/messages:135
 msgid "Let empty to use the default one."
 msgstr "デフォルトを使用するには空欄のままに。"
 
-#: ../data/messages:127
+#: ../data/messages:129
 msgid "Default icon :"
 msgstr "デフォルトのアイコン :"
 
-#: ../data/messages:131
+#: ../data/messages:133
 msgid "Broken icon :"
 msgstr "制御不可時のアイコン :"
 
-#: ../data/messages:135
+#: ../data/messages:137
 msgid "Mute icon :"
 msgstr "ミュート時のアイコン :"
 

@@ -18,7 +18,13 @@ Written by Cchumi & Fabrice Rey (for any bug report, please mail me to fabounet@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("switcher", 1, 6, 2, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("switcher",
+	1, 6, 2,
+	CAIRO_DOCK_CATEGORY_DESKTOP,
+	N_("This applet allows you to switch between your virtual desktops.\n"
+	"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
+	"You can also quickly add/remove a desktop through the right-click menu."),
+	"Cchumi")
 
 
 static gboolean on_change_desktop (gpointer *data, CairoDockModuleInstance *myApplet)

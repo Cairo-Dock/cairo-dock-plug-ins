@@ -7,7 +7,6 @@
 #include "applet-netspeed.h"
 
 
-CD_APPLET_ABOUT (D_("This is the netspeed applet\n made by parAdOxxx_ZeRo for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN

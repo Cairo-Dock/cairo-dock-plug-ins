@@ -30,7 +30,6 @@ PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 AC_CONFIG_FILES([Makefile
 		src/Makefile
 		data/Makefile
-                data/readme
                 data/systray.conf
                 po/Makefile.in])
 AC_OUTPUT

@@ -192,7 +192,6 @@ void cd_xmms_enqueue(CairoDockModuleInstance *myApplet, const gchar *cFile) {
 }
 
 
-CD_APPLET_ABOUT (D_("This is the xmms applet\n made by ChAnGFu for Cairo-Dock"))
 
 
 static void _xmms_action_by_id (CairoDockModuleInstance *myApplet, int iAction) {

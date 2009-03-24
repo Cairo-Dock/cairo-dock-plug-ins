@@ -7,7 +7,6 @@
 #include "applet-rame.h"
 
 
-CD_APPLET_ABOUT (D_("This is the rame applet\n made by parAdOxxx_ZeRo for Cairo-Dock"))
 
 
 static void _cd_rame_get_top_list (CairoDockModuleInstance *myApplet)

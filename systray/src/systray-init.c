@@ -29,7 +29,14 @@
 #include "systray-struct.h"
 
 
-CD_APPLET_DEFINITION ("systray", 1, 5, 4, CAIRO_DOCK_CATEGORY_DESKTOP)
+CD_APPLET_DEFINITION ("systray",
+	1, 5, 4,
+	CAIRO_DOCK_CATEGORY_DESKTOP,
+	N_("Add a systray to your dock.\n"
+	"Left-click to show the systray in a dialog (you can bind a keyboard shortcut for it.)\n"
+	"Middle-click to close the dalog.\n"
+	"But the best way to use it id to detach it from the dock, and place it somewhere, above other windows."),
+	"Ctaf (Cedric Gestes)")
 
 
 CD_APPLET_INIT_BEGIN

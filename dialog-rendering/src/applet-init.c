@@ -18,7 +18,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-init.h"
 
-CD_APPLET_PRE_INIT_BEGIN ("dialog rendering", 2,0,0, CAIRO_DOCK_CATEGORY_PLUG_IN)
+CD_APPLET_PRE_INIT_BEGIN (N_("dialog rendering"),
+	2,0,0,
+	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	N_("This plug-in provides some dialog decorators for dialog bubbles."),
+	"Fabrice Rey (Fabounet)")
 	/*//\_______________ On definit notre interface.
 	pInterface->reloadModule = reload;
 	pInterface->read_conf_file = read_conf_file;

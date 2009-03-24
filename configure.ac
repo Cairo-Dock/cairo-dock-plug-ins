@@ -241,7 +241,7 @@ AC_SUBST(cairo_penguindatadir, "${pkgdatadir}/Cairo-Penguin")
 CLOCK_PACKAGE="cd-clock"
 AC_SUBST(GETTEXT_CLOCK, "$CLOCK_PACKAGE")
 
-AC_SUBST(VERSION_CLOCK, "1.4.0")
+AC_SUBST(VERSION_CLOCK, "2.0.1")
 AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
 clockuserdirname="clock"
 AC_SUBST(clockuserdirname, "clock")
@@ -604,21 +604,18 @@ AC_CONFIG_FILES([
 	alsaMixer/src/Makefile
 	alsaMixer/po/Makefile.in
 	alsaMixer/data/Makefile
-	alsaMixer/data/readme
 	alsaMixer/data/AlsaMixer.conf
 	
 	Animated-icons/Makefile
 	Animated-icons/src/Makefile
 	Animated-icons/po/Makefile.in
 	Animated-icons/data/Makefile
-	Animated-icons/data/readme
 	Animated-icons/data/Animated-icons.conf
 	
 	Cairo-Penguin/Makefile
 	Cairo-Penguin/src/Makefile
 	Cairo-Penguin/po/Makefile.in
 	Cairo-Penguin/data/Makefile
-	Cairo-Penguin/data/readme
 	Cairo-Penguin/data/Cairo-Penguin.conf
 	Cairo-Penguin/data/themes/Makefile
 	Cairo-Penguin/data/themes/Classic/Makefile
@@ -631,14 +628,12 @@ AC_CONFIG_FILES([
 	Clipper/src/Makefile
 	Clipper/po/Makefile.in
 	Clipper/data/Makefile
-	Clipper/data/readme
 	Clipper/data/Clipper.conf
 	
 	clock/Makefile
 	clock/src/Makefile
 	clock/po/Makefile.in
 	clock/data/Makefile
-	clock/data/readme
 	clock/data/clock.conf
 	clock/data/digital/Makefile
 	clock/data/digital/default/Makefile
@@ -663,28 +658,24 @@ AC_CONFIG_FILES([
 	compiz-icon/src/Makefile
 	compiz-icon/po/Makefile.in
 	compiz-icon/data/Makefile
-	compiz-icon/data/readme
 	compiz-icon/data/compiz-icon.conf
 	
 	cpusage/Makefile
 	cpusage/src/Makefile
 	cpusage/po/Makefile.in
 	cpusage/data/Makefile
-	cpusage/data/readme
 	cpusage/data/cpusage.conf
 	
 	Dbus/Makefile
 	Dbus/src/Makefile
 	Dbus/po/Makefile.in
 	Dbus/data/Makefile
-	Dbus/data/readme
 	Dbus/data/Dbus.conf
 	
 	drop-indicator/Makefile
 	drop-indicator/src/Makefile
 	drop-indicator/po/Makefile.in
 	drop-indicator/data/Makefile
-	drop-indicator/data/readme
 	drop-indicator/data/drop_indicator.conf
 	
 	dustbin/Makefile
@@ -692,7 +683,6 @@ AC_CONFIG_FILES([
 	dustbin/po/Makefile.in
 	dustbin/data/Makefile
 	dustbin/data/dustbin.conf
-	dustbin/data/readme
 	dustbin/data/themes/Makefile
 	dustbin/data/themes/Gion/Makefile
 	dustbin/data/themes/Crystal/Makefile
@@ -710,52 +700,44 @@ AC_CONFIG_FILES([
 	GMenu/src/Makefile
 	GMenu/po/Makefile.in
 	GMenu/data/Makefile
-	GMenu/data/readme
 	GMenu/data/GMenu.conf
 	
 	gnome-integration/Makefile
 	gnome-integration/src/Makefile
 	gnome-integration/data/Makefile
-	gnome-integration/data/readme
 	
 	gnome-integration-old/Makefile
 	gnome-integration-old/src/Makefile
 	gnome-integration-old/data/Makefile
-	gnome-integration-old/data/readme
 	
 	icon-effect/Makefile
 	icon-effect/src/Makefile
 	icon-effect/po/Makefile.in
 	icon-effect/data/Makefile
-	icon-effect/data/readme
 	icon-effect/data/icon-effect.conf
 	
 	illusion/Makefile
 	illusion/src/Makefile
 	illusion/po/Makefile.in
 	illusion/data/Makefile
-	illusion/data/readme
 	illusion/data/illusion.conf
 	
 	keyboard-indicator/Makefile
 	keyboard-indicator/src/Makefile
 	keyboard-indicator/po/Makefile.in
 	keyboard-indicator/data/Makefile
-	keyboard-indicator/data/readme
 	keyboard-indicator/data/keyboard-indicator.conf
 	
 	logout/Makefile
 	logout/src/Makefile
 	logout/po/Makefile.in
 	logout/data/Makefile
-	logout/data/readme
 	logout/data/logout.conf
 	
 	mail/Makefile
 	mail/src/Makefile
 	mail/po/Makefile.in
 	mail/data/Makefile
-	mail/data/readme
 	mail/data/mail.conf
 	mail/data/themes/Makefile
 	mail/data/themes/Default/Makefile
@@ -764,21 +746,18 @@ AC_CONFIG_FILES([
 	motion-blur/src/Makefile
 	motion-blur/po/Makefile.in
 	motion-blur/data/Makefile
-	motion-blur/data/readme
 	motion-blur/data/motion_blur.conf
 	
 	netspeed/Makefile
 	netspeed/src/Makefile
 	netspeed/po/Makefile.in
 	netspeed/data/Makefile
-	netspeed/data/readme
 	netspeed/data/netspeed.conf
 	
 	nVidia/Makefile
 	nVidia/src/Makefile
 	nVidia/po/Makefile.in
 	nVidia/data/Makefile
-	nVidia/data/readme
 	nVidia/data/nVidia.conf
 	
 	powermanager/Makefile
@@ -786,33 +765,28 @@ AC_CONFIG_FILES([
 	powermanager/po/Makefile.in
 	powermanager/data/Makefile
 	powermanager/data/powermanager.conf
-	powermanager/data/readme
 	
 	rame/Makefile
 	rame/src/Makefile
 	rame/po/Makefile.in
 	rame/data/Makefile
-	rame/data/readme
 	rame/data/rame.conf
 	
 	dock-rendering/Makefile
 	dock-rendering/src/Makefile
 	dock-rendering/po/Makefile.in
 	dock-rendering/data/Makefile
-	dock-rendering/data/readme
 	dock-rendering/data/rendering.conf
 	
 	desklet-rendering/Makefile
 	desklet-rendering/src/Makefile
 	desklet-rendering/po/Makefile.in
 	desklet-rendering/data/Makefile
-	desklet-rendering/data/readme
 	
 	dialog-rendering/Makefile
 	dialog-rendering/src/Makefile
 	dialog-rendering/po/Makefile.in
 	dialog-rendering/data/Makefile
-	dialog-rendering/data/readme
 	dialog-rendering/data/dialog-rendering.conf
 	
 	rhythmbox/Makefile
@@ -820,69 +794,64 @@ AC_CONFIG_FILES([
 	rhythmbox/po/Makefile.in
 	rhythmbox/data/Makefile
 	rhythmbox/data/rhythmbox.conf
-	rhythmbox/data/readme
+	rhythmbox/data/themes/Makefile
+	rhythmbox/data/themes/None/Makefile
+	rhythmbox/data/themes/cd_box_3d/Makefile
+	rhythmbox/data/themes/cd_box_simple/Makefile
+	rhythmbox/data/themes/super_jewel/Makefile
 	
 	shortcuts/Makefile
 	shortcuts/src/Makefile
 	shortcuts/po/Makefile.in
 	shortcuts/data/Makefile
-	shortcuts/data/readme
 	shortcuts/data/shortcuts.conf
 	
 	showDesklets/Makefile
 	showDesklets/src/Makefile
 	showDesklets/po/Makefile.in
 	showDesklets/data/Makefile
-	showDesklets/data/readme
 	showDesklets/data/showDesklets.conf
 	
 	showDesktop/Makefile
 	showDesktop/src/Makefile
 	showDesktop/po/Makefile.in
 	showDesktop/data/Makefile
-	showDesktop/data/readme
 	showDesktop/data/showDesktop.conf
 	
 	show-mouse/Makefile
 	show-mouse/src/Makefile
 	show-mouse/po/Makefile.in
 	show-mouse/data/Makefile
-	show-mouse/data/readme
 	show-mouse/data/show_mouse.conf
 	
 	slider/Makefile
 	slider/src/Makefile
 	slider/po/Makefile.in
 	slider/data/Makefile
-	slider/data/readme
 	slider/data/slider.conf
 	
 	stack/Makefile
 	stack/src/Makefile
 	stack/po/Makefile.in
 	stack/data/Makefile
-	stack/data/readme
 	stack/data/stack.conf
 
 	switcher/Makefile
 	switcher/src/Makefile
 	switcher/po/Makefile.in
 	switcher/data/Makefile
-	switcher/data/readme
 	switcher/data/switcher.conf
 	
 	systray/Makefile
 	systray/src/Makefile
 	systray/po/Makefile.in
 	systray/data/Makefile
-	systray/data/readme
 	systray/data/systray.conf
 	
 	terminal/Makefile
 	terminal/src/Makefile
 	terminal/po/Makefile.in
 	terminal/data/Makefile
-	terminal/data/readme
 	terminal/data/terminal.conf
 	
 	tomboy/Makefile
@@ -890,13 +859,11 @@ AC_CONFIG_FILES([
 	tomboy/po/Makefile.in
 	tomboy/data/Makefile
 	tomboy/data/tomboy.conf
-	tomboy/data/readme
 	
 	weather/Makefile
 	weather/src/Makefile
 	weather/po/Makefile.in
 	weather/data/Makefile
-	weather/data/readme
 	weather/data/weather.conf
 	weather/data/themes/Makefile
 	weather/data/themes/basic/Makefile
@@ -911,33 +878,28 @@ AC_CONFIG_FILES([
 	weblets/src/Makefile
 	weblets/po/Makefile.in
 	weblets/data/Makefile
-	weblets/data/readme
 	weblets/data/weblets.conf
 	
 	wifi/Makefile
 	wifi/src/Makefile
 	wifi/po/Makefile.in
 	wifi/data/Makefile
-	wifi/data/readme
 	wifi/data/wifi.conf
 	
 	xfce-integration/Makefile
 	xfce-integration/src/Makefile
 	xfce-integration/data/Makefile
-	xfce-integration/data/readme
 	
 	Xgamma/Makefile
 	Xgamma/src/Makefile
 	Xgamma/po/Makefile.in
 	Xgamma/data/Makefile
-	Xgamma/data/readme
 	Xgamma/data/Xgamma.conf
 	
 	xmms/Makefile
 	xmms/src/Makefile
 	xmms/po/Makefile.in
 	xmms/data/Makefile
-	xmms/data/readme
 	xmms/data/xmms.conf
 	])
 

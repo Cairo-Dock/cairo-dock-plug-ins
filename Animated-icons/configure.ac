@@ -34,6 +34,5 @@ AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
 		data/Makefile
-		data/readme
 		data/Animated-icons.conf])
 AC_OUTPUT

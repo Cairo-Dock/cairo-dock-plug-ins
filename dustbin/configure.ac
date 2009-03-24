@@ -36,7 +36,6 @@ AC_CONFIG_FILES([Makefile
 		po/Makefile.in
 		data/Makefile
 		data/dustbin.conf
-		data/readme
 		data/themes/Makefile
 		data/themes/Gion/Makefile
 		data/themes/Crystal/Makefile

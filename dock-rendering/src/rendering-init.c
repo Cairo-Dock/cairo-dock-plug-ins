@@ -23,8 +23,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define CD_RENDERING_3D_PLANE_VIEW_NAME "3D plane"
 #define CD_RENDERING_PARABOLIC_VIEW_NAME "Parabolic"
 #define CD_RENDERING_RAINBOW_VIEW_NAME "Rainbow"
-#define CD_RENDERING_DIAPO_VIEW_NAME "Slide"
-#define CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME "SimpleSlide"
+//#define CD_RENDERING_DIAPO_VIEW_NAME "Slide"
+#define CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME "Slide"
 #define CD_RENDERING_CURVE_VIEW_NAME "Curve"
 
 
@@ -103,7 +103,13 @@ gint my_iCurveAmplitude;
 CDSpeparatorType my_curve_iDrawSeparator3D;
 
 
-CD_APPLET_PRE_INIT_BEGIN ("dock rendering", 2, 0, 0, CAIRO_DOCK_CATEGORY_PLUG_IN)
+CD_APPLET_PRE_INIT_BEGIN ("dock rendering",
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	N_("This module adds different views to your dock.\n"
+	"Any dock or sub-dock can be displayed with the view of your choice.\n"
+	"Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views are provided."),
+	"Fabounet (Fabrice Rey) & parAdOxxx_ZeRo")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 CD_APPLET_PRE_INIT_END
 
@@ -118,7 +124,7 @@ CD_APPLET_INIT_BEGIN
 	
 	cd_rendering_register_rainbow_renderer 		(CD_RENDERING_RAINBOW_VIEW_NAME);
 	
-	cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);  // By Paradoxxx_Zero
+	//cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);  // By Paradoxxx_Zero
 
 	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
 	
@@ -141,7 +147,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_RAINBOW_VIEW_NAME);
-	cairo_dock_remove_renderer (CD_RENDERING_DIAPO_VIEW_NAME);
+	//cairo_dock_remove_renderer (CD_RENDERING_DIAPO_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_CURVE_VIEW_NAME);
 	

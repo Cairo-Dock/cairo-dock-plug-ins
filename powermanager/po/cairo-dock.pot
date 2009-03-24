@@ -8,12 +8,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-15 23:11+0100\n"
+"POT-Creation-Date: 2009-03-24 02:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/powermanager-draw.c:115
@@ -65,6 +65,10 @@ msgid ""
 "Your battery is now Charged"
 msgstr ""
 
+#: ../src/powermanager-init.c:15
+msgid "A power manager for laptop's battery. It works with ACPI and DBus."
+msgstr ""
+
 #: ../src/powermanager-menu-functions.c:14
 msgid "Applet by Necropotame (Adrien Pilleboue)"
 msgstr ""
@@ -94,259 +98,263 @@ msgid "Icon"
 msgstr ""
 
 #: ../data/messages:3
-msgid "Icon size"
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
-msgid "Icon name :"
+msgid "Icon size"
 msgstr ""
 
 #: ../data/messages:7
-msgid "Name of the dock it belongs to:"
+msgid "Icon name :"
 msgstr ""
 
 #: ../data/messages:9
-msgid "Desklet"
+msgid "Name of the dock it belongs to:"
 msgstr ""
 
 #: ../data/messages:11
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Is detached from the dock ?"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Keep below other windows ?"
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep above other windows ?"
 msgstr ""
 
-#: ../data/messages:25
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-
 #: ../data/messages:27
-msgid "Keep on widget layer ?"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=cairo-dock & type=utility)"
 msgstr ""
 
 #: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:31
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:49
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:71
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:73
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:75
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:77
 msgid "Interval of time between 2 checks :"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:79
 msgid "Use average system ?"
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:81
 msgid "Display"
 msgstr ""
 
-#: ../data/messages:81
+#: ../data/messages:83
 msgid "Icon's filename when on battery :"
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:85
 msgid "Icon's filename when on charge :"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:87
 msgid "Effect to apply on the icon according to charge :"
 msgstr ""
 
-#: ../data/messages:87 ../data/messages:101
+#: ../data/messages:89 ../data/messages:103
 msgid "nothing"
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:91
 msgid "zoom"
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:93
 msgid "transparency"
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "draw bar"
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:97
 msgid "Use a gauge instead of icons ?"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "List of available gauges :"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:101
 msgid "Information to be displayed on the icon :"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:105
 msgid "charge"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:107
 msgid "time"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:109
 msgid "Alert"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:111
 msgid "Alert when battery charged ?"
 msgstr ""
 
-#: ../data/messages:111 ../data/messages:121 ../data/messages:129
+#: ../data/messages:113 ../data/messages:123 ../data/messages:131
 msgid "Let it empty to have no sound"
 msgstr ""
 
-#: ../data/messages:113 ../data/messages:123 ../data/messages:131
+#: ../data/messages:115 ../data/messages:125 ../data/messages:133
 msgid "Use a sound :"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "Alert when low battery ?"
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:119
 msgid "in percent."
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid "Battery level :"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:127
 msgid "When battery level is under 4%"
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:129
 msgid "Alert when battery charge is critical ?"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:135
 msgid "Animate icon during the alert ?"
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:137
 msgid "Animation during alert :"
 msgstr ""

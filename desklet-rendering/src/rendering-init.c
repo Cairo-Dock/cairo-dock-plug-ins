@@ -18,7 +18,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN ("desklet rendering", 2,0,0, CAIRO_DOCK_CATEGORY_PLUG_IN)
+CD_APPLET_PRE_INIT_BEGIN (N_("desklet rendering"),
+	2,0,0,
+	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	N_("This module provides different views for your desklets."),
+	"Fabounet (Fabrice Rey)")
 	//\_______________ On definit notre interface.
 	pInterface->reloadModule = reload;
 	pInterface->read_conf_file = read_conf_file;

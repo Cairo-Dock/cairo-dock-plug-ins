@@ -13,6 +13,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/applet-init.c:21
+msgid ""
+"This plug-in lets extern applications interact on the dock.\n"
+"The communication between both sides is based on Dbus"
+msgstr ""
+
 #: ../data/messages:1
 msgid "Configuration"
 msgstr "配置"

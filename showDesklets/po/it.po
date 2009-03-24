@@ -25,38 +25,43 @@ msgid "Icon"
 msgstr "Icona"
 
 #: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "Lasciare vuoto per utilizzare quella di default."
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Dimensione dell'icona desiderata per questa applet"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-#: ../data/messages:7 ../data/messages:11
+#: ../data/messages:9 ../data/messages:13
 msgid "Let empty to use the default one."
 msgstr "Lasciare vuoto per utilizzare quella di default."
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Image name to show desklets :"
 msgstr "Nome di un'immagine per mostrare le desklets :"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Image name to hide desklets :"
 msgstr "Nome di un'immagine per nascondere le desklets :"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Name of the dock it belongs to:"
 msgstr "Nome del contenitore al quale appartiene :"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Show/hide desklets that are on the widget layer too ?"
 msgstr "Mostrare/nascondere anche le deklets che sono nella Sezione Widget ?"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Shortkey to show/hide the desklets :"
 msgstr "Scorciatoia da tastiera per mostrare/nascondere le deklets :"
 

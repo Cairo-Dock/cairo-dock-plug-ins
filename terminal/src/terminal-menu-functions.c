@@ -36,7 +36,6 @@
 #include "terminal-menu-functions.h"
 
 
-CD_APPLET_ABOUT ("This is a very convenient terminal applet made by Cedric GESTES for Cairo-Dock");
 
 
 CD_APPLET_ON_CLICK_BEGIN

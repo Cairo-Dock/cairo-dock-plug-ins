@@ -15,7 +15,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 #include "applet-notifications.h"
 
 
-CD_APPLET_ABOUT (D_("This is the shortcuts applet\n made by Fabounet for Cairo-Dock"))
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN

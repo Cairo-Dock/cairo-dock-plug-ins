@@ -64,7 +64,7 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 	if (myConfig.bCurrentConditions)
 	{
 		cd_message ("  chargement de l'icone meteo (%x)", myApplet);
-		if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL && myConfig.iDeskletRenderer != MY_DESKLET_MAIN_ICON)
+		if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL/** && myConfig.iDeskletRenderer != MY_DESKLET_MAIN_ICON*/)
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp);
 		}
@@ -92,7 +92,7 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	}
 	
-	if (myConfig.iDeskletRenderer == MY_DESKLET_MAIN_ICON)
+	/**if (myConfig.iDeskletRenderer == MY_DESKLET_MAIN_ICON)
 	{ 
 	  char *cTemp = NULL;
 	  if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL)
@@ -108,7 +108,7 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
       g_free (cConditions);
     if (cTemp != NULL)
       g_free (cTemp);
-  }
+  }*/
 }
 
 gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)

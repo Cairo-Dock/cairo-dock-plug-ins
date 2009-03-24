@@ -17,7 +17,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-hdd.h"
 
 
-CD_APPLET_ABOUT (D_("This is the disk-usage applet\n made by Benjamin SANS for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN

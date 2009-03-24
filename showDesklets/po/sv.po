@@ -29,38 +29,43 @@ msgid "Icon"
 msgstr "Ikon"
 
 #: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "Lämna tomt för använda standaralternativet."
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Önskad storlek för ikonen"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Ikonens etikett:"
 
-#: ../data/messages:7 ../data/messages:11
+#: ../data/messages:9 ../data/messages:13
 msgid "Let empty to use the default one."
 msgstr "Lämna tomt för använda standaralternativet."
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Image name to show desklets :"
 msgstr "Bild för att visa desklet:"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Image name to hide desklets :"
 msgstr "Bild för att dölja desklet:"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Name of the dock it belongs to:"
 msgstr "Docka som appleten tillhör:"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Show/hide desklets that are on the widget layer too ?"
 msgstr "Visa/dölj desklets på widgetlagret också?"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Shortkey to show/hide the desklets :"
 msgstr "Tangentkombination för att visa/dölja desklet:"
 

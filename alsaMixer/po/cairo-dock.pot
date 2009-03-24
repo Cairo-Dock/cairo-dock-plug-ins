@@ -3,53 +3,68 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: ../data/messages:81 ../data/messages:83 ../data/messages:89
-#: ../data/messages:91
+#: ../data/messages:83 ../data/messages:85 ../data/messages:91
+#: ../data/messages:93
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-15 23:11+0100\n"
+"POT-Creation-Date: 2009-03-24 02:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-mixer.c:40
+#: ../src/applet-init.c:12
+msgid "AlsaMixer"
+msgstr ""
+
+#: ../src/applet-init.c:15
+msgid ""
+"This applet lets you control the sound volume from the dock.\n"
+"Scroll up/down on the icon to increase/decrease the volume.\n"
+"Click on icon to show/hide volume control (you can bind a keyboard shortcut "
+"for it)\n"
+"You can also hide the dialog by clicking on it.\n"
+"Middle-click to set or unset to mute.\n"
+"This applet works with the Alsa sound driver."
+msgstr ""
+
+#: ../src/applet-mixer.c:41
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr ""
 
-#: ../src/applet-mixer.c:45
+#: ../src/applet-mixer.c:46
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr ""
 
-#: ../src/applet-mixer.c:53
+#: ../src/applet-mixer.c:54
 msgid "I couldn't open the mixer"
 msgstr ""
 
-#: ../src/applet-mixer.c:60
+#: ../src/applet-mixer.c:61
 msgid "I couldn't attach the mixer to the card"
 msgstr ""
 
-#: ../src/applet-mixer.c:67
+#: ../src/applet-mixer.c:68
 msgid "I couldn't register options"
 msgstr ""
 
-#: ../src/applet-mixer.c:75
+#: ../src/applet-mixer.c:76
 msgid "I couldn't load the mixer"
 msgstr ""
 
-#: ../src/applet-mixer.c:126
+#: ../src/applet-mixer.c:127
 #, c-format
 msgid "I couldn't find any element '%s'"
 msgstr ""
 
-#: ../src/applet-mixer.c:266
+#: ../src/applet-mixer.c:268
 msgid "Set up volume :"
 msgstr ""
 
@@ -68,260 +83,264 @@ msgid "Icon"
 msgstr ""
 
 #: ../data/messages:3
-msgid "Desired icon size for this applet"
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
-msgid "Name of the icon as it will appear in its label in the dock :"
+msgid "Desired icon size for this applet"
 msgstr ""
 
 #: ../data/messages:7
-msgid "Name of the dock it belongs to:"
+msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr ""
 
 #: ../data/messages:9
-msgid "Desklet"
+msgid "Name of the dock it belongs to:"
 msgstr ""
 
 #: ../data/messages:11
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Is detached from the dock ?"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Keep below other windows ?"
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep above other windows ?"
 msgstr ""
 
-#: ../data/messages:25
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-
 #: ../data/messages:27
-msgid "Keep on widget layer ?"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=cairo-dock & type=utility)"
 msgstr ""
 
 #: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:31
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:39
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:49
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:71
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:73
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:75
 msgid "Alsa"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:77
 msgid "Let empty to use the default sound card."
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:79
 msgid "Sound card to control :"
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:81
 msgid "Choose which channel to control :"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:87
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just let it empty."
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:89
 msgid "Optionnally, choose a second channel to control :"
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:95
 msgid "Let empty to use the defaut command."
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:97
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:99
 msgid "Control"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:101
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:103
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:105
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:107
 msgid "Display"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:109
 msgid "Display volume :"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:111
 msgid "No"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:113
 msgid "On label"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:115
 msgid "On icon"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "Effet to apply on the icon according to volume :"
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:119
 msgid "None"
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid "Zoom"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:123
 msgid "Transparency"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:125
 msgid "Draw Bar"
 msgstr ""
 
-#: ../data/messages:125 ../data/messages:129 ../data/messages:133
+#: ../data/messages:127 ../data/messages:131 ../data/messages:135
 msgid "Let empty to use the default one."
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:129
 msgid "Default icon :"
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:133
 msgid "Broken icon :"
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:137
 msgid "Mute icon :"
 msgstr ""

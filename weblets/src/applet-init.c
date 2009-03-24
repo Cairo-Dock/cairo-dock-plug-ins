@@ -15,7 +15,13 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-widget.h"
 #include "applet-init.h"
 
-CD_APPLET_DEFINITION ("weblets", 1, 6, 4, CAIRO_DOCK_CATEGORY_ACCESSORY)
+CD_APPLET_DEFINITION ("weblets",
+	1, 6, 4,
+	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	N_("The weblets applet allows you to show an interactive web page on your desktop.\n"
+	"You can select your web page, set the desired scrolling,\n"
+	"and hide the scrollbars to get a real 'crop' of the page."),
+	"Tofe (Christophe Chapuis)")
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN

@@ -27,38 +27,43 @@ msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "デフォルトのものを使用するには空欄のままに。"
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "このアプレットのアイコンの大きさ"
 
-#: ../data/messages:5
+#: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#: ../data/messages:7 ../data/messages:11
+#: ../data/messages:9 ../data/messages:13
 msgid "Let empty to use the default one."
 msgstr "デフォルトのものを使用するには空欄のままに。"
 
-#: ../data/messages:9
+#: ../data/messages:11
 msgid "Image name to show desklets :"
 msgstr "「デスクレットを表示」時の画像の名前 :"
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Image name to hide desklets :"
 msgstr "「デスクレットと隠す」時の画像の名前 :"
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Show/hide desklets that are on the widget layer too ?"
 msgstr "ウィジェット・レイヤ上のデスクレットも表示/隠す？"
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Shortkey to show/hide the desklets :"
 msgstr "デスクレットの表示/隠すのキーショートカット :"
 

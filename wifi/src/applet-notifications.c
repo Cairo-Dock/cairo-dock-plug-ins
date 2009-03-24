@@ -8,7 +8,6 @@
 #include "applet-draw.h"
 
 
-CD_APPLET_ABOUT (D_("This is the wifi applet\n made by ChAnGFu for Cairo-Dock"))
 
 
 CD_APPLET_ON_CLICK_BEGIN

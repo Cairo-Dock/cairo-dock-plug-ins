@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-15 23:11+0100\n"
+"POT-Creation-Date: 2009-03-24 02:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,21 +20,29 @@ msgstr ""
 msgid "Track"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:142
+#: ../src/rhythmbox-draw.c:154
 msgid "Artist"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:143 ../src/rhythmbox-draw.c:145
-#: ../src/rhythmbox-draw.c:147
+#: ../src/rhythmbox-draw.c:155 ../src/rhythmbox-draw.c:157
+#: ../src/rhythmbox-draw.c:159
 msgid "Unknown"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:144
+#: ../src/rhythmbox-draw.c:156
 msgid "Album"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:146
+#: ../src/rhythmbox-draw.c:158
 msgid "Title"
+msgstr ""
+
+#: ../src/rhythmbox-init.c:17
+msgid ""
+"Control your Rhythmbox player directly in the dock !\n"
+"Play/pause with left click, next song with middle click.\n"
+"You can drag and drop covers (jpg) on the icon to use them, or songs to put "
+"them in the queue."
 msgstr ""
 
 #: ../src/rhythmbox-menu-functions.c:42
@@ -62,250 +70,258 @@ msgid "Icon"
 msgstr ""
 
 #: ../data/messages:3
-msgid "Desired icon size for this applet"
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
-msgid "Default title :"
+msgid "Desired icon size for this applet"
 msgstr ""
 
 #: ../data/messages:7
-msgid "Name of the dock it belongs to:"
+msgid "Default title :"
 msgstr ""
 
 #: ../data/messages:9
-msgid "Desklet"
+msgid "Name of the dock it belongs to:"
 msgstr ""
 
 #: ../data/messages:11
+msgid "Desklet"
+msgstr ""
+
+#: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:13
+#: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 
-#: ../data/messages:17
+#: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:21
 msgid "Is detached from the dock ?"
 msgstr ""
 
-#: ../data/messages:21
+#: ../data/messages:23
 msgid "Keep below other windows ?"
 msgstr ""
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid "Keep above other windows ?"
 msgstr ""
 
-#: ../data/messages:25
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr ""
-
 #: ../data/messages:27
-msgid "Keep on widget layer ?"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=cairo-dock & type=utility)"
 msgstr ""
 
 #: ../data/messages:29
+msgid "Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:31
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:33
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:35
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:39 ../data/messages:75
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:45
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:47
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:49
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:51
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:53
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:55
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:57
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:61
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:65
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:67
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:69
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:71
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:73
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:73
-msgid "Info-bubbles"
-msgstr ""
-
-#: ../data/messages:75
-msgid "Activate info-bubbles ?"
-msgstr ""
-
 #: ../data/messages:77
-msgid "in ms."
+msgid "List of available specific themes (OPENGL only) :"
 msgstr ""
 
 #: ../data/messages:79
-msgid "Time length of info-bubbles :"
+msgid "Info-bubbles"
 msgstr ""
 
 #: ../data/messages:81
-msgid "Behaviour"
+msgid "Activate info-bubbles ?"
 msgstr ""
 
 #: ../data/messages:83
-msgid "Animation when music changes :"
+msgid "in ms."
 msgstr ""
 
 #: ../data/messages:85
+msgid "Time length of info-bubbles :"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Behaviour"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Animation when music changes :"
+msgstr ""
+
+#: ../data/messages:91
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:93
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:95
 msgid "Display"
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:97
 msgid "Display album's cover instead of icon ?"
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:99
 msgid "Information to display on the icon :"
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:101
 msgid "nothing"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:103
 msgid "time elapsed"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:105
 msgid "time left"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:107
 msgid "time in %"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:109
 msgid "n° of track"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:111
 msgid "Draw desklet in a 3D fashion (experimental) ?"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:113
 msgid "Personnalisation"
 msgstr ""
 
-#: ../data/messages:109 ../data/messages:113 ../data/messages:117
-#: ../data/messages:121 ../data/messages:125
+#: ../data/messages:115 ../data/messages:119 ../data/messages:123
+#: ../data/messages:127 ../data/messages:131
 msgid "Let t empty to use the default icon."
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:117
 msgid "Name of an image for the 'default' icon :"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:121
 msgid "Name of an image for the 'play' icon :"
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:125
 msgid "Name of an image for the 'stop' icon :"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:129
 msgid "Name of an image for the 'pause' icon :"
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:133
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""

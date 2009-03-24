@@ -39,7 +39,6 @@ static void rhythmbox_music (GtkMenuItem *menu_item, gpointer *data)
 //*********************************************************************************
 // Informations sur l'applet et l'auteur.
 //*********************************************************************************
-CD_APPLET_ABOUT (D_("Applet by Necropotame (Adrien Pilleboue)"))
 
 
 //*********************************************************************************

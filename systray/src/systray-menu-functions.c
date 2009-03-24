@@ -30,7 +30,6 @@
 #include "cd-tray.h"
 
 
-CD_APPLET_ABOUT("This is a simple systray applet\n made by Cedric GESTES for Cairo-Dock");
 
 CairoDialog *cd_systray_build_dialog (void)
 {

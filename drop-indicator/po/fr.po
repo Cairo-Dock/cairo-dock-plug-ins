@@ -3,97 +3,128 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Icon"
-msgstr "Icône"
+#: ../src/applet-init.c:18
+msgid "drop indicator"
+msgstr ""
 
-msgid "Desired icon size for this applet"
-msgstr "Taille d'icône souhaitée pour cette applet"
+#: ../src/applet-init.c:21
+msgid ""
+"This plug-in displays an animated indicator when you drop something in the "
+"dock."
+msgstr ""
 
-msgid "width :"
-msgstr "largeur :"
+#: ../data/messages:1
+msgid "Configuration"
+msgstr ""
 
-msgid "height :"
-msgstr "hauteur :"
+#: ../data/messages:3
+msgid ""
+"Typically an arrow, that will be displayed when you try to drop a new "
+"launcher into the dock. Let empty to use the default one."
+msgstr ""
 
-msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+#: ../data/messages:5
+msgid "Image for the drag'n'drop animation :"
+msgstr ""
 
-msgid "Module"
-msgstr "Module"
+#: ../data/messages:7
+msgid "Speed :"
+msgstr ""
 
-msgid "Icon's name :"
-msgstr "Nom de l'icône :"
-
-#: src/applet-notifications.c:13
-msgid "This is the drop_indicator applet\n made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr "Ceci est l'applet drop_indicator\n écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
+#: ../data/messages:9
+msgid "Number of round per second."
+msgstr ""
 
 #: ../data/messages:11
-msgid "Desklet"
-msgstr "Desklet"
-
-#: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
-
-#: ../data/messages:15
-msgid "Desklet's dimension (width x height) :"
-msgstr "Dimension du desklet (largeur x hauteur) :"
-
-#: ../data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
-
-#: ../data/messages:19
-msgid "Desklet's position (x ; y) :"
-msgstr "Position du desklet (x ; y) :"
-
-#: ../data/messages:21
-msgid "Is detached from the dock ?"
-msgstr "Est-il détaché du dock ?"
-
-#: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
-
-#: ../data/messages:27
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (name=cairo-"
-"dock & type=utility)"
-
-#: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
-
-#: ../data/messages:35 ../data/messages:33
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
+msgid "Rotation speed :"
 msgstr ""
-"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
-"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
-"avec ALT + clique_gauche"
 
-#: ../data/messages:35
-msgid "Lock position ?"
-msgstr "Verrouiller la position ?"
+#~ msgid "Icon"
+#~ msgstr "Icône"
+
+#~ msgid "Desired icon size for this applet"
+#~ msgstr "Taille d'icône souhaitée pour cette applet"
+
+#~ msgid "width :"
+#~ msgstr "largeur :"
+
+#~ msgid "height :"
+#~ msgstr "hauteur :"
+
+#~ msgid "Name of the icon as it will appear in its label in the dock :"
+#~ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+
+#~ msgid "Module"
+#~ msgstr "Module"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nom de l'icône :"
+
+#~ msgid ""
+#~ "This is the drop_indicator applet\n"
+#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
+#~ msgstr ""
+#~ "Ceci est l'applet drop_indicator\n"
+#~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
+
+#~ msgid "Desklet"
+#~ msgstr "Desklet"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple."
+#~ msgstr ""
+#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner "
+#~ "avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+
+#~ msgid "Desklet's dimension (width x height) :"
+#~ msgstr "Dimension du desklet (largeur x hauteur) :"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
+#~ "+ clic gauche."
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "Position du desklet (x ; y) :"
+
+#~ msgid "Is detached from the dock ?"
+#~ msgstr "Est-il détaché du dock ?"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Garder en-dessous des autres fenêtres ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Garder au-dessus des autres fenêtres ?"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(name=cairo-dock & type=utility)"
+#~ msgstr ""
+#~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
+#~ "de Compiz à : (name=cairo-dock & type=utility)"
+
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "Garder sur la couche des widgets ?"
+
+#~ msgid ""
+#~ "If locked, the desklet can't be moved by simply dragging it with the left "
+#~ "mouse button. Of course you can still move it with ALT + left_click."
+#~ msgstr ""
+#~ "Si verrouillé, le desklet ne pourra pas être bougé simplement en le "
+#~ "tirant avec le bouton gauche de la souris. Bien sur il pourra toujours "
+#~ "être bougé avec ALT + clique_gauche"
+
+#~ msgid "Lock position ?"
+#~ msgstr "Verrouiller la position ?"

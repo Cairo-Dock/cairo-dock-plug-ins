@@ -8,7 +8,11 @@
 #include "tomboy-init.h"
 
 
-CD_APPLET_DEFINITION ("TomBoy", 1, 5, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("TomBoy",
+	1, 5, 4,
+	CAIRO_DOCK_CATEGORY_CONTROLER,
+	N_("Control your TomBoy's notes directly in the dock !"),
+	"Necropotame (Adrien Pilleboue)")
 
 CD_APPLET_INIT_BEGIN
 	if (myIcon->acName == NULL && myDock)
