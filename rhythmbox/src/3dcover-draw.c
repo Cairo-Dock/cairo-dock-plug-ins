@@ -89,7 +89,7 @@ void cd_opengl_load_external_conf_theme_values (CairoDockModuleInstance *myApple
 				g_error_free (erreur);
 				erreur = NULL;
 			}
-			myData.cThemeFrame = g_strdup_printf ("%s/themes/%s/%s", MY_APPLET_SHARE_DATA_DIR, myConfig.cTheme, sFramePic);
+			myData.cThemeFrame = g_strdup_printf ("%s/%s", myConfig.cThemePath, sFramePic);
 						
 			
 			sReflectPic = g_key_file_get_string (pKeyFile, "Pictures", "reflect", &erreur);
@@ -99,7 +99,7 @@ void cd_opengl_load_external_conf_theme_values (CairoDockModuleInstance *myApple
 				g_error_free (erreur);
 				erreur = NULL;
 			}
-			myData.cThemeReflect = g_strdup_printf ("%s/themes/%s/%s", MY_APPLET_SHARE_DATA_DIR, myConfig.cTheme, sReflectPic);
+			myData.cThemeReflect = g_strdup_printf ("%s/%s", myConfig.cThemePath, sReflectPic);
 						
 			g_key_file_free (pKeyFile);
 		}

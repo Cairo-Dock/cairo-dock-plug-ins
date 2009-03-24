@@ -42,8 +42,7 @@ struct _AppletConfig {
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	gboolean bStealTaskBarIcon;
 	gboolean extendedDesklet;
-	
-	gchar *cTheme;
+
 	gchar *cThemePath;
 	} ;
 

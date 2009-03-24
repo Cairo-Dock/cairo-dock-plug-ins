@@ -88,7 +88,7 @@ fg alpha = 1
 
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
-#h+[@rhythmboxdatadir@/themes;@rhythmboxdatadirname@] List of available specific themes (OPENGL only) :/
+#h+[@rhythmboxdatadir@/themes;rhythmbox] List of available specific themes (OPENGL only) :/
 theme = cd_box_3d
 sep_deco =
 

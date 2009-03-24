@@ -27,7 +27,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	//\_______________ On on recupere le theme choisi.
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");
-	myConfig.cTheme = CD_CONFIG_GET_STRING ("Configuration", "theme");
 	cd_opengl_load_external_conf_theme_values (myApplet);
 	
 CD_APPLET_GET_CONFIG_END
@@ -42,7 +41,6 @@ CD_APPLET_RESET_CONFIG_BEGIN
 		g_free (myConfig.cUserImage[i]);
 	
 	g_free (myConfig.cThemePath);
-	g_free (myConfig.cTheme);
 	g_free (myData.cThemeFrame);
 	g_free (myData.cThemeReflect);
 	
