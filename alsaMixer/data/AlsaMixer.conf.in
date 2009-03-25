@@ -7,7 +7,7 @@
 icon size = 0;0
 
 #s Name of the icon as it will appear in its label in the dock :
-name = Sound
+name = 
 
 #d Name of the dock it belongs to:
 dock name = 
@@ -124,7 +124,7 @@ frame_disp =
 display volume = 0
 
 #r+[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to volume :
-effect = 0
+effect = 3
 
 #S+ Default icon :
 #{Let empty to use the default one.}

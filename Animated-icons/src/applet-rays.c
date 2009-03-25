@@ -22,6 +22,7 @@ CairoParticleSystem *cd_animations_init_rays (Icon *pIcon, CairoDock *pDock, dou
 	CairoParticleSystem *pRaysParticleSystem = cairo_dock_create_particle_system (myConfig.iNbRaysParticles, myData.iRaysTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
 	pRaysParticleSystem->dt = dt;
 	pRaysParticleSystem->bDirectionUp = (pDock->bHorizontalDock ? pDock->bDirectionUp : ! pDock->bDirectionUp);
+	pRaysParticleSystem->bAddLuminance = TRUE;
 	
 	double a = myConfig.fRaysParticleSpeed;
 	static double epsilon = 0.1;

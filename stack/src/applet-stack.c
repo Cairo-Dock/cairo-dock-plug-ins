@@ -34,7 +34,7 @@ void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile
 		myConfig.cStackDir = sDirPath->str;
 		g_string_free (sDirPath, FALSE);
 		g_key_file_set_string (pKeyFile, "Configuration", "stack dir", myConfig.cStackDir);
-		///cairo_dock_write_keys_to_file (pKeyFile, myApplet->cConfFilePath);
+		cairo_dock_write_keys_to_file (pKeyFile, myApplet->cConfFilePath);
 	}
 	cd_debug ("Stack : reperoire local : %s", myConfig.cStackDir);
 	

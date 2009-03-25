@@ -11,7 +11,14 @@
 #include "3dcover-draw.h"
 
 
-CD_APPLET_DEFINITION ("Rhythmbox", 1, 6, 4, CAIRO_DOCK_CATEGORY_CONTROLER)
+CD_APPLET_DEFINITION ("Rhythmbox",
+	2, 0, 0,
+	CAIRO_DOCK_CATEGORY_CONTROLER,
+	N_("Control your Rhythmbox player directly in the dock !\n"
+	"Play/pause with left click, next song with middle click.\n"
+	"You can drag and drop covers (jpg) on the icon to use them,\n"
+	"or songs to put them in the queue."),
+	"Adrien Pilleboue (Necropotame)")
 
 
 CD_APPLET_INIT_BEGIN

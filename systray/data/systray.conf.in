@@ -29,11 +29,11 @@ x position=0
 y position=0
 
 use size=false
-width=52
+width=32
 height=28
 
 #b Is detached from the dock ?
-initially detached=false
+initially detached=true
 
 #b Keep below other windows ?
 keep below=false
