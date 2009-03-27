@@ -33,6 +33,5 @@ AC_CONFIG_FILES([Makefile
 	src/Makefile
 	po/Makefile.in
 	data/Makefile
-	data/powermanager.conf
-	data/])
+	data/powermanager.conf])
 AC_OUTPUT
