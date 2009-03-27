@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:05+0100\n"
+"POT-Creation-Date: 2009-03-26 01:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,44 +37,38 @@ msgid ""
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 
-#: ../src/applet-notifications.c:17
-msgid ""
-"This is the dustbin applet for Cairo-Dock\n"
-" made by Fabrice Rey (fabounet@users.berlios.de)"
-msgstr ""
-
-#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:39
+#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:38
 msgid "Show Trash"
 msgstr ""
 
-#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:48
+#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:47
 msgid "Delete Trash"
 msgstr ""
 
-#: ../src/applet-notifications.c:43
+#: ../src/applet-notifications.c:42
 #, c-format
 msgid "Show %s"
 msgstr ""
 
-#: ../src/applet-notifications.c:46
+#: ../src/applet-notifications.c:45
 msgid "Show All"
 msgstr ""
 
-#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:51
 #, c-format
 msgid "Delete %s"
 msgstr ""
 
-#: ../src/applet-notifications.c:55
+#: ../src/applet-notifications.c:54
 msgid "Delete All"
 msgstr ""
 
-#: ../src/applet-notifications.c:70
+#: ../src/applet-notifications.c:69
 #, c-format
 msgid "%s is now unmounted"
 msgstr ""
 
-#: ../src/applet-notifications.c:74
+#: ../src/applet-notifications.c:73
 #, c-format
 msgid "failed to unmount %s"
 msgstr ""

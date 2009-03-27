@@ -84,35 +84,27 @@ msgstr ""
 msgid "For Aiur !"
 msgstr "För Auir!"
 
-#: ../src/applet-notifications.c:35
-msgid ""
-"This is the Cairo-Penguin applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"Cairo-Penguin applet\n"
-" skapad av Fabrice Rey för Cairo-Dock"
-
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:114
 msgid "Hey, you there !"
 msgstr "Hallå, du där!"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Wake up"
 msgstr "Vakna"
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:122
 msgid "Keep quiet"
 msgstr "Tyst"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:125
 msgid "Start XPenguins"
 msgstr "Starta XPenguins"
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:126
 msgid "Stop XPenguins"
 msgstr "Stoppa XPenguins"
 
-#: ../src/applet-notifications.c:150 ../src/applet-notifications.c:152
+#: ../src/applet-notifications.c:149 ../src/applet-notifications.c:151
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -168,6 +160,13 @@ msgstr ""
 #: ../data/messages:25
 msgid "Ground offset :"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the Cairo-Penguin applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "Cairo-Penguin applet\n"
+#~ " skapad av Fabrice Rey för Cairo-Dock"
 
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "Önskad storlek för ikonen"

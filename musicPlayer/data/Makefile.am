@@ -3,7 +3,6 @@ moduledir = $(musicplayerdatadir)
 
 module_DATA = \
 	musicPlayer.conf\
-	readme\
 	broken.svg\
 	pause.svg\
 	play.svg\

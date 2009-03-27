@@ -1,5 +1,0 @@
-@PACKAGE_SYSTRAY@ (v@VERSION_SYSTRAY@)
-Author : Cedric GESTES ctaf42@gmail.com
-Add a systray to your dock !
- Left/middle click to show/hide the systray
-  (you can bind a keyboard shortcut for it.)

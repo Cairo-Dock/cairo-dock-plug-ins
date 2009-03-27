@@ -1,6 +1,0 @@
-@PACKAGE_NETSPEED@ (v@VERSION_NETSPEED@)
-Author : parAdOxxx_ZeRo
-The netspeed applet show you the bit rate of your internet connection
-and make some stats on it.
-  Click on the icon to have the total amount of data transfered
-  Middle click to (de)activate the network (needs NetworManager)

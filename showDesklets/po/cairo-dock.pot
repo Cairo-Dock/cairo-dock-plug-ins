@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:05+0100\n"
+"POT-Creation-Date: 2009-03-26 01:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,10 +16,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:17
+#: ../src/applet-init.c:18
+msgid "showDesklets"
+msgstr ""
+
+#: ../src/applet-init.c:21
 msgid ""
-"This is the showDesklets applet\n"
-" made by Fabrice Rey for Cairo-Dock"
+"This applet let you access quickly to your desklets.\n"
+"Left click to show/hide your desklets.\n"
+"Basically, if you run under Compiz, you don't need this applet;\n"
+" you should just use the 'Widget Layer' capabilities of desklets."
 msgstr ""
 
 #: ../data/messages:1

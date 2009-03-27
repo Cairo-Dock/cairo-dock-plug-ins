@@ -1,8 +1,0 @@
-@PACKAGE_STACK@ (v@VERSION_STACK@)
-Author : ChAnGFu (Rémy Robertson) &amp; Fabounet (Fabrice Rey)
-This applet allows you to build a stack of items,
-just like the Stack applet of MacOS X.
-Items can be files, folders, URL, or even pieces of text.
-To add an item into your stack,
- just drag and drop it on the Stack icon and you're done.
- Enjoy!

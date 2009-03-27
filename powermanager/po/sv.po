@@ -77,27 +77,23 @@ msgstr ""
 msgid "A power manager for laptop's battery. It works with ACPI and DBus."
 msgstr ""
 
-#: ../src/powermanager-menu-functions.c:14
-msgid "Applet by Necropotame (Adrien Pilleboue)"
-msgstr "Applet av Necropotame (Adrien Pilleboue)"
-
-#: ../src/powermanager-menu-functions.c:45
+#: ../src/powermanager-menu-functions.c:44
 msgid "Set up power management"
 msgstr "Konfigurera energialternativ"
 
-#: ../src/powermanager-menu-functions.c:48
+#: ../src/powermanager-menu-functions.c:47
 msgid "Halt"
 msgstr "Stanna"
 
-#: ../src/powermanager-menu-functions.c:49
+#: ../src/powermanager-menu-functions.c:48
 msgid "Hibernate"
 msgstr "Viloläge"
 
-#: ../src/powermanager-menu-functions.c:50
+#: ../src/powermanager-menu-functions.c:49
 msgid "Suspend"
 msgstr "Vänteläge"
 
-#: ../src/powermanager-menu-functions.c:51
+#: ../src/powermanager-menu-functions.c:50
 msgid "Reboot"
 msgstr "Starta om"
 
@@ -377,6 +373,9 @@ msgstr "Animera ikonen vid meddelande?"
 #: ../data/messages:137
 msgid "Animation during alert :"
 msgstr "Animering:"
+
+#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
+#~ msgstr "Applet av Necropotame (Adrien Pilleboue)"
 
 #~ msgid "Width :"
 #~ msgstr "Bredd:"

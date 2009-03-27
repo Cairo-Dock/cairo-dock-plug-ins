@@ -10,7 +10,6 @@ module_DATA = \
 	pause.png\
 	stop.png\
 	rhythmbox.conf\
-	readme\
 	preview.png\
 	icon.png\
 	0.svg\

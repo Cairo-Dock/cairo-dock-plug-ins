@@ -24,16 +24,7 @@
 # define   	CD_TRAY_H_
 
 # include "na-tray-manager.h"
-
-typedef struct {
-  NaTrayManager  *manager;
-  GtkWidget      *box;
-  GtkWidget      *widget;
-  GdkScreen      *screen;
-
-  GList          *icons;
-  guint          idle_redraw_id;
-} TrayApplet;
+# include "systray-struct.h"
 
 
 TrayApplet* tray_init (GtkWidget *applet);

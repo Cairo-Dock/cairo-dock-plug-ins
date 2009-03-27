@@ -5,7 +5,6 @@ moduledir = $(dustbindatadir)
 
 module_DATA = \
 	dustbin.conf\
-	readme\
 	preview.png\
 	icon.png
 

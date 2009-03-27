@@ -4,7 +4,6 @@ SUBDIRS = .
 moduledir = $(desklet_renderingdatadir)
 
 module_DATA = \
-	readme\
 	icon.svg\
 	branche1.svg\
 	branche2.svg\

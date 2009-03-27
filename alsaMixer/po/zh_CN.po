@@ -65,15 +65,7 @@ msgstr "无法找到原件：'%s'"
 msgid "Set up volume :"
 msgstr "设置音量："
 
-#: ../src/applet-notifications.c:19
-msgid ""
-"This is the AlsaMixer applet\n"
-" made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr ""
-"AlsaMixer小应用程序\n"
-"作者Fabounet (Fabrice Rey)"
-
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:44
 msgid "Adjsut channels"
 msgstr "调整通道"
 
@@ -354,6 +346,13 @@ msgstr "毁坏的图标："
 #: ../data/messages:137
 msgid "Mute icon :"
 msgstr "静音图标："
+
+#~ msgid ""
+#~ "This is the AlsaMixer applet\n"
+#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
+#~ msgstr ""
+#~ "AlsaMixer小应用程序\n"
+#~ "作者Fabounet (Fabrice Rey)"
 
 #~ msgid "width :"
 #~ msgstr "宽："

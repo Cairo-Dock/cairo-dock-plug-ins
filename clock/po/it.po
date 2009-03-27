@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:416
+#: ../src/applet-config.c:418
 msgid "Search for your location :"
 msgstr ""
 
@@ -31,23 +31,11 @@ msgid ""
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
 
-#: ../src/applet-notifications.c:41
-msgid ""
-"This is the Cairo-Dock's clock applet\n"
-" made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
-"The analogic representation is a port of the well-known Cairo-Clock\n"
-" from MacSlow (http://macslow.thepimp.net)."
-msgstr ""
-"Questo è l'applet-orologio di Cairo-Dock\n"
-"scritta da Fabrice Rey (fabounet_03@yahoo.fr).\n"
-"La rappresentazione analogica è un port del famoso Cairo-Clock\n"
-" da MacSlow (http://macslow.thepimp.net)."
-
-#: ../src/applet-notifications.c:53
+#: ../src/applet-notifications.c:52
 msgid "Calendar"
 msgstr "Calendario"
 
-#: ../src/applet-notifications.c:65
+#: ../src/applet-notifications.c:64
 msgid "Set up time and date"
 msgstr "Regolare data e ora"
 
@@ -301,15 +289,18 @@ msgid "Style"
 msgstr "Stile"
 
 #: ../data/messages:105
-#, fuzzy
-msgid "List of available themes for the numeric display :"
-msgstr "Lista dei temi disponibili per la vista analogica :"
+msgid ""
+"The analogic view is based on CairoClock; otherwise it will be displayed in "
+"a numeric way."
+msgstr ""
+"La vista analogica è basata su CairoClock; altrimenti sarà mostrato in modo "
+"numerico."
 
 #: ../data/messages:107
-msgid "default"
-msgstr "default"
+msgid "Use the analogic view ?"
+msgstr "Utilizzare la vista analogica ?"
 
-#: ../data/messages:109 ../data/messages:123
+#: ../data/messages:109 ../data/messages:121
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
@@ -318,6 +309,11 @@ msgid "Text color for the numeric display:"
 msgstr "Colore del testo per il display numerico:"
 
 #: ../data/messages:113
+#, fuzzy
+msgid "Weight of the text :"
+msgstr "Compensazione a destra :"
+
+#: ../data/messages:115
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
@@ -325,56 +321,62 @@ msgstr ""
 "per esempio Monospace, Purisa, ... Scrivete soltanto il nome della famiglia "
 "dei caratteri, senza numeri"
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "Font used for the numeric display :"
 msgstr "Carattere usato per il display numerico :"
 
-#: ../data/messages:117
-msgid ""
-"The analogic view is based on CairoClock; otherwise it will be displayed in "
-"a numeric way."
-msgstr ""
-"La vista analogica è basata su CairoClock; altrimenti sarà mostrato in modo "
-"numerico."
-
 #: ../data/messages:119
-msgid "Use the analogic view ?"
-msgstr "Utilizzare la vista analogica ?"
-
-#: ../data/messages:121
 msgid "List of available themes for the analogic display :"
 msgstr "Lista dei temi disponibili per la vista analogica :"
 
-#: ../data/messages:125
+#: ../data/messages:123
 #, fuzzy
 msgid "Text color of the date :"
 msgstr "Colore del testo per il display numerico:"
 
-#: ../data/messages:127
+#: ../data/messages:125
 msgid "Setup time and date"
 msgstr "Regolare la data e l'ora"
 
-#: ../data/messages:129
+#: ../data/messages:127
 msgid "Let empty to use default command."
 msgstr "Lasciare vuoto per usare i comandi di default."
 
-#: ../data/messages:131
+#: ../data/messages:129
 msgid "Specific command to run :"
 msgstr "Comando specifico da eseguire :"
 
-#: ../data/messages:133
+#: ../data/messages:131
 msgid "Alarm"
 msgstr "Allarme"
 
-#: ../data/messages:135
+#: ../data/messages:133
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "Il nuovo allarme sarà aggiunto alla fine / l'ultimo allarme verrà rimosso."
 
-#: ../data/messages:137
+#: ../data/messages:135
 msgid "Add or remove an alarm :"
 msgstr "Aggiungere o rimuovere un'allarme"
+
+#~ msgid ""
+#~ "This is the Cairo-Dock's clock applet\n"
+#~ " made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
+#~ "The analogic representation is a port of the well-known Cairo-Clock\n"
+#~ " from MacSlow (http://macslow.thepimp.net)."
+#~ msgstr ""
+#~ "Questo è l'applet-orologio di Cairo-Dock\n"
+#~ "scritta da Fabrice Rey (fabounet_03@yahoo.fr).\n"
+#~ "La rappresentazione analogica è un port del famoso Cairo-Clock\n"
+#~ " da MacSlow (http://macslow.thepimp.net)."
+
+#, fuzzy
+#~ msgid "List of available themes for the numeric display :"
+#~ msgstr "Lista dei temi disponibili per la vista analogica :"
+
+#~ msgid "default"
+#~ msgstr "default"
 
 #~ msgid "Choose a location"
 #~ msgstr "Scegli una località"

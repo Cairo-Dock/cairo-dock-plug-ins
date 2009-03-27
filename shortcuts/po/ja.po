@@ -19,15 +19,16 @@ msgstr ""
 msgid "Unmounted"
 msgstr "アンマウント済み"
 
-#: ../src/applet-notifications.c:18
+#: ../src/applet-init.c:23
 msgid ""
-"This is the shortcuts applet\n"
-" made by Fabounet for Cairo-Dock"
+"An applet that let you access quickly to all of your shortcuts.\n"
+"It can manage disks, network points, and Nautilus bookmarks.\n"
+"You can add or remove bookmarks by drag'n'drop, even if you don't have "
+"Nautilus.\n"
+"Middle-click to acces your desktop easily."
 msgstr ""
-"これは Fabounet により製作された\n"
-"Cairo-Dock用の Shortcuts アプレットです。"
 
-#: ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:43
 msgid "Remove this bookmark"
 msgstr "このブックマークを削除"
 
@@ -242,6 +243,13 @@ msgstr "デフォルトのサブ・ドックの外観を使用するには空欄
 #: ../data/messages:91
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
+
+#~ msgid ""
+#~ "This is the shortcuts applet\n"
+#~ " made by Fabounet for Cairo-Dock"
+#~ msgstr ""
+#~ "これは Fabounet により製作された\n"
+#~ "Cairo-Dock用の Shortcuts アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

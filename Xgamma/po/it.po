@@ -20,15 +20,7 @@ msgid ""
 "Middle-click to set it up for each color."
 msgstr ""
 
-#: ../src/applet-notifications.c:20
-msgid ""
-"This is the Xgamma applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"Questa è l'applet Xgamma\n"
-" scritta da Fabrice Rey per Cairo-Dock"
-
-#: ../src/applet-notifications.c:29 ../src/applet-xgamma.c:149
+#: ../src/applet-notifications.c:28 ../src/applet-xgamma.c:149
 msgid "Set up gamma :"
 msgstr "Regolare il valore gamma :"
 
@@ -221,6 +213,13 @@ msgstr ""
 #: ../data/messages:79
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the Xgamma applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet Xgamma\n"
+#~ " scritta da Fabrice Rey per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

@@ -78,36 +78,28 @@ msgstr ""
 msgid "For Aiur !"
 msgstr "为了Aiur！"
 
-#: ../src/applet-notifications.c:35
-msgid ""
-"This is the Cairo-Penguin applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"这是Cairo企鹅小应用程序\n"
-" Fabrice Rey为Cairo-Dock所作"
-
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:114
 #, fuzzy
 msgid "Hey, you there !"
 msgstr "嘿，我在这儿！"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Wake up"
 msgstr "醒醒！"
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:122
 msgid "Keep quiet"
 msgstr "肃静！"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:125
 msgid "Start XPenguins"
 msgstr "启动XPenguins"
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:126
 msgid "Stop XPenguins"
 msgstr "停止XPenguins"
 
-#: ../src/applet-notifications.c:150 ../src/applet-notifications.c:152
+#: ../src/applet-notifications.c:149 ../src/applet-notifications.c:151
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -163,6 +155,13 @@ msgstr ""
 #: ../data/messages:25
 msgid "Ground offset :"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the Cairo-Penguin applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "这是Cairo企鹅小应用程序\n"
+#~ " Fabrice Rey为Cairo-Dock所作"
 
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "此小应用程序将使用的图标大小"

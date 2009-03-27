@@ -1,6 +1,0 @@
-@PACKAGE_GMENU@ (v@VERSION_GMENU@)
-Author : Fabounet (Fabrice Rey)
-Displays the common Applications menu.
-It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)
-You can set up a shortkey to pop up the menu (like ALT+F1),
-and another to pop up a quick-launch dialog (like ALT+F2).

@@ -20,23 +20,15 @@ msgid ""
 "Left-click to show a list of the most memory using programs"
 msgstr ""
 
-#: ../src/applet-notifications.c:10
-msgid ""
-"This is the rame applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-"これは parAdOxxx_ZeRo によって \n"
-"Cairo-Dock 用に製作された rame アプレットです。"
-
-#: ../src/applet-notifications.c:39
+#: ../src/applet-notifications.c:38
 msgid "Mb"
 msgstr "Mb"
 
-#: ../src/applet-notifications.c:93
+#: ../src/applet-notifications.c:92
 msgid "Data acquisition has failed"
 msgstr "データの取得に失敗"
 
-#: ../src/applet-notifications.c:114
+#: ../src/applet-notifications.c:113
 msgid "Monitor System"
 msgstr "システム・モニタ"
 
@@ -377,6 +369,13 @@ msgstr "デフォルトのコマンドを使用するには空欄のままに。
 #: ../data/messages:155
 msgid "User command to show a system monitor :"
 msgstr "システム・モニタを表示するためのユーザー定義コマンド :"
+
+#~ msgid ""
+#~ "This is the rame applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr ""
+#~ "これは parAdOxxx_ZeRo によって \n"
+#~ "Cairo-Dock 用に製作された rame アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

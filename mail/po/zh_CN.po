@@ -28,15 +28,7 @@ msgid ""
 "It can check in any kind of mailbox (yahoo, gmail, etc)"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:21
-msgid ""
-"This is the mail applet\n"
-" made by Christophe Chapuis for Cairo-Dock"
-msgstr ""
-"这是邮件小程序\n"
-"由Christophe Chapuis为Cairo-Dock开发"
-
-#: ../src/cd-mail-applet-notifications.c:55
+#: ../src/cd-mail-applet-notifications.c:54
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -46,23 +38,23 @@ msgstr ""
 "出现问题\n"
 "如果“%s”不是您日常使用的邮件程序，您可以在此模块的配置面板中进行更改"
 
-#: ../src/cd-mail-applet-notifications.c:83
+#: ../src/cd-mail-applet-notifications.c:82
 msgid "Refresh a mail account"
 msgstr "移除邮件账号"
 
-#: ../src/cd-mail-applet-notifications.c:141
+#: ../src/cd-mail-applet-notifications.c:140
 msgid "No unread mail in your mailboxes"
 msgstr "您的邮箱中没有未读邮件"
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "You have"
 msgstr "您有"
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "new mails :"
 msgstr "新邮件:"
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "new mail :"
 msgstr "新邮件:"
 
@@ -266,6 +258,13 @@ msgstr "新账户将用指定类型和名称创建。"
 #: ../data/messages:91
 msgid "Add an account with specified type and name:"
 msgstr "用指定类型和名称增加一个账户:"
+
+#~ msgid ""
+#~ "This is the mail applet\n"
+#~ " made by Christophe Chapuis for Cairo-Dock"
+#~ msgstr ""
+#~ "这是邮件小程序\n"
+#~ "由Christophe Chapuis为Cairo-Dock开发"
 
 #~ msgid "Add a new mail account"
 #~ msgstr "添加一个新邮件用户"

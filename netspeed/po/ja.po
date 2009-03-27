@@ -30,7 +30,7 @@ msgstr "B"
 msgid "KB"
 msgstr "KB"
 
-#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:17
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:16
 msgid "MB"
 msgstr "MB"
 
@@ -46,36 +46,28 @@ msgstr "TB"
 msgid "Loading"
 msgstr "読み込み中"
 
-#: ../src/applet-notifications.c:10
-msgid ""
-"This is the netspeed applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-"これは parAdOxxx_ZeRo によって製作された \n"
-"Cairo-Dock 用の netspeed アプレットです。"
-
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:16
 msgid "Total amount of data"
 msgstr "データ総量"
 
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:16
 msgid "downloaded"
 msgstr "ダウンロード"
 
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:16
 msgid "uploaded"
 msgstr "アップロード"
 
-#: ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:19
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "インターフェイス '%s' は存在しないか、読み込みできないようです。"
 
-#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:44
 msgid "Monitor System"
 msgstr "システム・モニタ"
 
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:46
 msgid "Re-check interface"
 msgstr "インターフェイスの再チェック"
 
@@ -378,6 +370,13 @@ msgstr "デフォルトのコマンドを使用するには空欄のままに。
 #: ../data/messages:139
 msgid "User command to show a system monitor :"
 msgstr "システム・モニタを表示するためのユーザー定義コマンド :"
+
+#~ msgid ""
+#~ "This is the netspeed applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr ""
+#~ "これは parAdOxxx_ZeRo によって製作された \n"
+#~ "Cairo-Dock 用の netspeed アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

@@ -39,27 +39,23 @@ msgstr ""
 msgid ""
 "Control your Rhythmbox player directly in the dock !\n"
 "Play/pause with left click, next song with middle click.\n"
-"You can drag and drop covers (jpg) on the icon to use them, or songs to put "
-"them in the queue."
+"You can drag and drop covers (jpg) on the icon to use them,\n"
+"or songs to put them in the queue."
 msgstr ""
 
-#: ../src/rhythmbox-menu-functions.c:42
-msgid "Applet by Necropotame (Adrien Pilleboue)"
-msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
-
-#: ../src/rhythmbox-menu-functions.c:52
+#: ../src/rhythmbox-menu-functions.c:51
 msgid "Previous"
 msgstr "前へ"
 
-#: ../src/rhythmbox-menu-functions.c:54
+#: ../src/rhythmbox-menu-functions.c:53
 msgid "Next (middle-click)"
 msgstr "次へ（中クリック）"
 
-#: ../src/rhythmbox-menu-functions.c:56
+#: ../src/rhythmbox-menu-functions.c:55
 msgid "Play/Pause (left-click)"
 msgstr "再生/一時停止（左クリック）"
 
-#: ../src/rhythmbox-menu-functions.c:58
+#: ../src/rhythmbox-menu-functions.c:57
 msgid "Information"
 msgstr "情報"
 
@@ -342,6 +338,9 @@ msgstr "「一時停止」のアイコン画像の名前 :"
 #: ../data/messages:133
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
+
+#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
+#~ msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
 #~ msgid ""
 #~ "Artist : %s\n"

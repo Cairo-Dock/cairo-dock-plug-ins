@@ -70,15 +70,7 @@ msgstr "Kunde inte hitta något element '%s'"
 msgid "Set up volume :"
 msgstr "Volymkontroll:"
 
-#: ../src/applet-notifications.c:19
-msgid ""
-"This is the AlsaMixer applet\n"
-" made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr ""
-"AlsaMixer applet\n"
-" av Fabounet (Fabrice Rey) för Cairo-Dock"
-
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:44
 msgid "Adjsut channels"
 msgstr "Justera kanaler"
 
@@ -361,6 +353,13 @@ msgstr "Bruten ikon:"
 #: ../data/messages:137
 msgid "Mute icon :"
 msgstr "Tysta ikon:"
+
+#~ msgid ""
+#~ "This is the AlsaMixer applet\n"
+#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
+#~ msgstr ""
+#~ "AlsaMixer applet\n"
+#~ " av Fabounet (Fabrice Rey) för Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "bredd:"

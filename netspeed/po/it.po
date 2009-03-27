@@ -28,7 +28,7 @@ msgstr "B"
 msgid "KB"
 msgstr "KB"
 
-#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:17
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:16
 msgid "MB"
 msgstr "MB"
 
@@ -44,36 +44,28 @@ msgstr "TB"
 msgid "Loading"
 msgstr "Caricamento"
 
-#: ../src/applet-notifications.c:10
-msgid ""
-"This is the netspeed applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-"Questa è l'applet netspeed\n"
-" scritta da parAdOxxx_ZeRo per Cairo-Dock"
-
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:16
 msgid "Total amount of data"
 msgstr "Totale dei dati"
 
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:16
 msgid "downloaded"
 msgstr "ricevuti"
 
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:16
 msgid "uploaded"
 msgstr "inviati"
 
-#: ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:19
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "L'interfaccia '%s' sembra non esistere o non è leggibile"
 
-#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:44
 msgid "Monitor System"
 msgstr ""
 
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:46
 msgid "Re-check interface"
 msgstr "Ri-verifica dell'interfaccia"
 
@@ -375,6 +367,13 @@ msgstr "Lasciare vuoto per usare l'icona di default."
 #: ../data/messages:139
 msgid "User command to show a system monitor :"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the netspeed applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet netspeed\n"
+#~ " scritta da parAdOxxx_ZeRo per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

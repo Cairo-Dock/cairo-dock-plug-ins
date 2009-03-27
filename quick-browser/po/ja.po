@@ -26,12 +26,6 @@ msgstr ""
 msgid "Open this folder"
 msgstr ""
 
-#: ../src/applet-notifications.c:18
-msgid ""
-"This is the Quick Browser applet\n"
-" made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr ""
-
 #: ../data/messages:1
 msgid "Icon"
 msgstr "アイコン"

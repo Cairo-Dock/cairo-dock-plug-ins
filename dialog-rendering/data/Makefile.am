@@ -5,7 +5,6 @@ moduledir = $(dialog_renderingdatadir)
 
 module_DATA = \
 	dialog-rendering.conf\
-	readme\
 	preview.png\
 	icon.svg
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:05+0100\n"
+"POT-Creation-Date: 2009-03-26 01:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,17 +61,11 @@ msgid ""
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
 
-#: ../src/applet-notifications.c:11
-msgid ""
-"This is the wifi applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-
-#: ../src/applet-notifications.c:60
+#: ../src/applet-notifications.c:59
 msgid "Check for Wireless Extension"
 msgstr ""
 
-#: ../src/applet-notifications.c:62
+#: ../src/applet-notifications.c:61
 msgid "Network Administration"
 msgstr ""
 

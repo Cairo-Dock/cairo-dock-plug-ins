@@ -119,51 +119,45 @@ msgstr "11月"
 msgid "Dec"
 msgstr "12月"
 
-#: ../src/applet-notifications.c:19
-msgid ""
-"This is the weather applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr "这是由Fabrice Rey为Cairo-Dock制作的天气小应用程序。"
-
-#: ../src/applet-notifications.c:48
+#: ../src/applet-notifications.c:47
 msgid "Reload now"
 msgstr "重新载入"
 
-#: ../src/applet-notifications.c:73 ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:72 ../src/applet-notifications.c:101
 msgid ""
 "No data were available\n"
 " is connection alive ?"
 msgstr "无数据。请检查互联网连接"
 
-#: ../src/applet-notifications.c:89 ../src/applet-notifications.c:114
+#: ../src/applet-notifications.c:88 ../src/applet-notifications.c:113
 msgid "Temperature"
 msgstr "气温"
 
-#: ../src/applet-notifications.c:90
+#: ../src/applet-notifications.c:89
 msgid "Precipitation Probability"
 msgstr "冰雹概率"
 
-#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:90 ../src/applet-notifications.c:114
 msgid "Wind"
 msgstr "风"
 
-#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:115
 msgid "Humidity"
 msgstr "湿度"
 
-#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
 msgid "SunRise"
 msgstr "日出"
 
-#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
 msgid "SunSet"
 msgstr "日落"
 
-#: ../src/applet-notifications.c:114
+#: ../src/applet-notifications.c:113
 msgid "feeled"
 msgstr "体感温度"
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:115
 msgid "Pressure"
 msgstr "气压"
 
@@ -405,6 +399,11 @@ msgstr "子dock使用的视图名称:"
 #: ../data/messages:111
 msgid "Render desklet in 3D ?"
 msgstr "以3D渲染桌面小应用?"
+
+#~ msgid ""
+#~ "This is the weather applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr "这是由Fabrice Rey为Cairo-Dock制作的天气小应用程序。"
 
 #, fuzzy
 #~ msgid "Main Icon"

@@ -1,6 +1,0 @@
-@PACKAGE_WIFI@ (v@VERSION_WIFI@)
-Author : ChAnGFu (Rémy Robertson)
-This applet shows you the signal strength
-of the first active wifi connection
-Left-click to pop-up some info,
-Middle-click to re-check immediately.

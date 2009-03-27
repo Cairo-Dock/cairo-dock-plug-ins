@@ -79,36 +79,28 @@ msgstr ""
 msgid "For Aiur !"
 msgstr "Per Aiur !"
 
-#: ../src/applet-notifications.c:35
-msgid ""
-"This is the Cairo-Penguin applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"Questa è l'applet Cairo-Penguin\n"
-" scritta da Fabrice Rey per Cairo-Dock"
-
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:114
 #, fuzzy
 msgid "Hey, you there !"
 msgstr "Hey, sono qui !"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Wake up"
 msgstr "Sveglia !"
 
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:122
 msgid "Keep quiet"
 msgstr "Stai calmo !"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:125
 msgid "Start XPenguins"
 msgstr "Lancia XPenguins"
 
-#: ../src/applet-notifications.c:127
+#: ../src/applet-notifications.c:126
 msgid "Stop XPenguins"
 msgstr "Arresta XPenguins"
 
-#: ../src/applet-notifications.c:150 ../src/applet-notifications.c:152
+#: ../src/applet-notifications.c:149 ../src/applet-notifications.c:151
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -164,6 +156,13 @@ msgstr "in pixels."
 #: ../data/messages:25
 msgid "Ground offset :"
 msgstr "Compensazione del piano :"
+
+#~ msgid ""
+#~ "This is the Cairo-Penguin applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet Cairo-Penguin\n"
+#~ " scritta da Fabrice Rey per Cairo-Dock"
 
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "Dimensione dell'icona desiderata per questa applet"

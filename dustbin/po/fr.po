@@ -32,46 +32,38 @@ msgid ""
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 
-#: ../src/applet-notifications.c:17
-msgid ""
-"This is the dustbin applet for Cairo-Dock\n"
-" made by Fabrice Rey (fabounet@users.berlios.de)"
-msgstr ""
-"Ceci est l'applet Dustbin\n"
-" écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
-#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:39
+#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:38
 msgid "Show Trash"
 msgstr "Ouvrir la poubelle"
 
-#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:48
+#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:47
 msgid "Delete Trash"
 msgstr "Vider la poubelle"
 
-#: ../src/applet-notifications.c:43
+#: ../src/applet-notifications.c:42
 #, c-format
 msgid "Show %s"
 msgstr "Ouvrir %s"
 
-#: ../src/applet-notifications.c:46
+#: ../src/applet-notifications.c:45
 msgid "Show All"
 msgstr "Ouvrir toutes"
 
-#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:51
 #, c-format
 msgid "Delete %s"
 msgstr "Vider %s"
 
-#: ../src/applet-notifications.c:55
+#: ../src/applet-notifications.c:54
 msgid "Delete All"
 msgstr "Vider toutes"
 
-#: ../src/applet-notifications.c:70
+#: ../src/applet-notifications.c:69
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s est maintenant démonté"
 
-#: ../src/applet-notifications.c:74
+#: ../src/applet-notifications.c:73
 #, c-format
 msgid "failed to unmount %s"
 msgstr "échec au démontage de %s"
@@ -364,6 +356,13 @@ msgstr ""
 #: ../data/messages:115
 msgid "Alternative file browser used to show a trash :"
 msgstr "Ouvrir la poubelle avec :"
+
+#~ msgid ""
+#~ "This is the dustbin applet for Cairo-Dock\n"
+#~ " made by Fabrice Rey (fabounet@users.berlios.de)"
+#~ msgstr ""
+#~ "Ceci est l'applet Dustbin\n"
+#~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "largeur :"

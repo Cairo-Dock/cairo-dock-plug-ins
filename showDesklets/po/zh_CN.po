@@ -14,11 +14,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:17
+#: ../src/applet-init.c:18
+#, fuzzy
+msgid "showDesklets"
+msgstr "デスクレット"
+
+#: ../src/applet-init.c:21
 msgid ""
-"This is the showDesklets applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr "这是由Fabrice Rey为Cairo-Dock制作的showDesklets小应用程序"
+"This applet let you access quickly to your desklets.\n"
+"Left click to show/hide your desklets.\n"
+"Basically, if you run under Compiz, you don't need this applet;\n"
+" you should just use the 'Widget Layer' capabilities of desklets."
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -65,6 +72,11 @@ msgstr "同时显示/隐藏在小工具层的桌面小工具?"
 msgid "Shortkey to show/hide the desklets :"
 msgstr "用于显示/隐藏桌面小应用的快捷键:"
 
+#~ msgid ""
+#~ "This is the showDesklets applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr "这是由Fabrice Rey为Cairo-Dock制作的showDesklets小应用程序"
+
 #~ msgid "width :"
 #~ msgstr "宽:"
 
@@ -83,9 +95,6 @@ msgstr "用于显示/隐藏桌面小应用的快捷键:"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-
-#~ msgid "Desklet"
-#~ msgstr "デスクレット"
 
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + "

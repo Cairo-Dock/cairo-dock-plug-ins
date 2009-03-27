@@ -20,13 +20,7 @@ msgid ""
 "Middle-click to set it up for each color."
 msgstr ""
 
-#: ../src/applet-notifications.c:20
-msgid ""
-"This is the Xgamma applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr "这是Fabrice Rey为Cairo-Dock制作的Xgamma小应用程序。"
-
-#: ../src/applet-notifications.c:29 ../src/applet-xgamma.c:149
+#: ../src/applet-notifications.c:28 ../src/applet-xgamma.c:149
 msgid "Set up gamma :"
 msgstr "设置Gamma值："
 
@@ -206,6 +200,11 @@ msgstr ""
 #: ../data/messages:79
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the Xgamma applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr "这是Fabrice Rey为Cairo-Dock制作的Xgamma小应用程序。"
 
 #~ msgid "width :"
 #~ msgstr "宽："

@@ -11,43 +11,45 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-init.c:24
 msgid ""
-"This is the Stack applet\n"
-" made by ChAnGFu & Fabounet for Cairo-Dock"
+"This applet allows you to build a stack of files, just like the Stacks "
+"applet of MacOS X.\n"
+"To add file into your stacks, you just have to drag and drop it on the "
+"Stacks icon and you're done.\n"
+"You can drop any file, or web URL, or even some piece of text\n"
+"You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
-"Ceci est l'applet Stack\n"
-" écrite par ChAnGFu & Fabounet pour Cairo-Dock"
 
-#: ../src/applet-notifications.c:50
+#: ../src/applet-notifications.c:49
 msgid "Clear the stack ?"
 msgstr ""
 
-#: ../src/applet-notifications.c:67
+#: ../src/applet-notifications.c:66
 msgid "Set new name for this item :"
 msgstr ""
 
-#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:104
 msgid "Paste (drag'n'drop)"
 msgstr ""
 
-#: ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:107
 msgid "Copy (middle click)"
 msgstr ""
 
-#: ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:108
 msgid "Cut"
 msgstr ""
 
-#: ../src/applet-notifications.c:110
+#: ../src/applet-notifications.c:109
 msgid "Rename this item"
 msgstr ""
 
-#: ../src/applet-notifications.c:111
+#: ../src/applet-notifications.c:110
 msgid "Remove this item"
 msgstr ""
 
-#: ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:112
 msgid "Clear the stack"
 msgstr ""
 
@@ -323,6 +325,13 @@ msgstr ""
 #: ../data/messages:117
 msgid "When copy/paste/cut, use the selection clipboard ?"
 msgstr "Lors d'un copier/coller/couper, utiliser la sélection X ?"
+
+#~ msgid ""
+#~ "This is the Stack applet\n"
+#~ " made by ChAnGFu & Fabounet for Cairo-Dock"
+#~ msgstr ""
+#~ "Ceci est l'applet Stack\n"
+#~ " écrite par ChAnGFu & Fabounet pour Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "largeur :"

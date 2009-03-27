@@ -5,7 +5,6 @@ moduledir = $(nvidiadatadir)
 
 module_DATA = \
 	nVidia.conf\
-	readme\
 	nvidia\
 	nvidia-config\
 	preview.png\

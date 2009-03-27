@@ -67,15 +67,7 @@ msgstr "要素 '%s' が見つかりません"
 msgid "Set up volume :"
 msgstr "ボリューム設定 :"
 
-#: ../src/applet-notifications.c:19
-msgid ""
-"This is the AlsaMixer applet\n"
-" made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr ""
-"これは Fabounet (Fabrice Rey) によって\n"
-"Cairo-Dock 用に製作された AlsaMixer アプレットです。"
-
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:44
 msgid "Adjsut channels"
 msgstr "チャンネル調整"
 
@@ -364,6 +356,13 @@ msgstr "制御不可時のアイコン :"
 #: ../data/messages:137
 msgid "Mute icon :"
 msgstr "ミュート時のアイコン :"
+
+#~ msgid ""
+#~ "This is the AlsaMixer applet\n"
+#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
+#~ msgstr ""
+#~ "これは Fabounet (Fabrice Rey) によって\n"
+#~ "Cairo-Dock 用に製作された AlsaMixer アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

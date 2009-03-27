@@ -27,15 +27,7 @@ msgid ""
 "It can check in any kind of mailbox (yahoo, gmail, etc)"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:21
-msgid ""
-"This is the mail applet\n"
-" made by Christophe Chapuis for Cairo-Dock"
-msgstr ""
-"Questa è la mail-applet\n"
-" scritta da Christophe Chapuis per Cairo-Dock"
-
-#: ../src/cd-mail-applet-notifications.c:55
+#: ../src/cd-mail-applet-notifications.c:54
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -46,24 +38,24 @@ msgstr ""
 "Se '%s non è la'applicazione mail predefinita,\n"
 "potete cambiarla nel pannello di configurazione di questa applet."
 
-#: ../src/cd-mail-applet-notifications.c:83
+#: ../src/cd-mail-applet-notifications.c:82
 #, fuzzy
 msgid "Refresh a mail account"
 msgstr "Cancellare un account e-mail"
 
-#: ../src/cd-mail-applet-notifications.c:141
+#: ../src/cd-mail-applet-notifications.c:140
 msgid "No unread mail in your mailboxes"
 msgstr "Non ci sono messaggi non letti nelle vostre mailboxes"
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "You have"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "new mails :"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "new mail :"
 msgstr ""
 
@@ -279,6 +271,13 @@ msgstr ""
 #: ../data/messages:91
 msgid "Add an account with specified type and name:"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the mail applet\n"
+#~ " made by Christophe Chapuis for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è la mail-applet\n"
+#~ " scritta da Christophe Chapuis per Cairo-Dock"
 
 #~ msgid "Add a new mail account"
 #~ msgstr "Aggiungere un nuovo account e-mail"

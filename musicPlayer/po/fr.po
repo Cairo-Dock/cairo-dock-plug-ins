@@ -27,39 +27,31 @@ msgid ""
 "       For SongBird, you have to install its dbus add-on.\n"
 msgstr ""
 
-#: ../src/applet-notifications.c:18
-msgid ""
-"This is the musicPlayer applet\n"
-" made by ChAnGFu & Mav for Cairo-Dock"
-msgstr ""
-"Ceci est l'applet musicPlayer\n"
-" fait par ChAnGFu & Mav for Cairo-Dock"
-
-#: ../src/applet-notifications.c:90
+#: ../src/applet-notifications.c:89
 msgid "Previous"
 msgstr "Précédent"
 
-#: ../src/applet-notifications.c:91
+#: ../src/applet-notifications.c:90
 msgid "Play/Pause (left-click)"
 msgstr "Jouer/Pause (clic gauche)"
 
-#: ../src/applet-notifications.c:94
+#: ../src/applet-notifications.c:93
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/applet-notifications.c:96
+#: ../src/applet-notifications.c:95
 msgid "Next (middle-click)"
 msgstr "Suivant (clic du milieu)"
 
-#: ../src/applet-notifications.c:99
+#: ../src/applet-notifications.c:98
 msgid "Show JumpBox"
 msgstr "Montrer la boite de Recherche"
 
-#: ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:101
 msgid "Toggle Shuffle"
 msgstr "Lecture Aléatoire"
 
-#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:104
 msgid "Toggle Repeat"
 msgstr "Répétition de la Liste"
 
@@ -544,6 +536,13 @@ msgstr ""
 #: ../data/messages:235
 msgid "Large"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the musicPlayer applet\n"
+#~ " made by ChAnGFu & Mav for Cairo-Dock"
+#~ msgstr ""
+#~ "Ceci est l'applet musicPlayer\n"
+#~ " fait par ChAnGFu & Mav for Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "largeur :"

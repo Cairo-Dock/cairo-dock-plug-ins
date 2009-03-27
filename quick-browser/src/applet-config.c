@@ -24,6 +24,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bFoldersFirst = CD_CONFIG_GET_BOOLEAN ("Configuration", "folders first");
 	myConfig.bCaseUnsensitive = CD_CONFIG_GET_BOOLEAN ("Configuration", "case unsensitive");
 	myConfig.bShowHiddenFiles = CD_CONFIG_GET_BOOLEAN ("Configuration", "show hidden");
+	myConfig.iNbSubItemsAtOnce = CD_CONFIG_GET_INTEGER ("Configuration", "granularity");
+	if (myConfig.iNbSubItemsAtOnce < 1)
+		myConfig.iNbSubItemsAtOnce = 1;
 	
 	// On gere les chemins relatifs.
 	if (myConfig.cDirPath != NULL && *myConfig.cDirPath == '~')

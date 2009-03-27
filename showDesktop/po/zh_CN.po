@@ -14,11 +14,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:18
+#: ../src/applet-init.c:18
+msgid "showDesktop"
+msgstr ""
+
+#: ../src/applet-init.c:21
 msgid ""
-"This is the showDesktop applet\n"
-" made by Romain Perol for Cairo-Dock"
-msgstr "这是Romain Perol为Cairo-Dock制作的显示桌面小程序。"
+"This is a very simple icon to show your desktop\n"
+"Left-click to show/hide the desktop\n"
+"Middle-click does the same but doesn't hide your desklets"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -189,6 +194,11 @@ msgstr "前景图片:"
 #: ../data/messages:75
 msgid "Foreground tansparency :"
 msgstr "前景透明度:"
+
+#~ msgid ""
+#~ "This is the showDesktop applet\n"
+#~ " made by Romain Perol for Cairo-Dock"
+#~ msgstr "这是Romain Perol为Cairo-Dock制作的显示桌面小程序。"
 
 #~ msgid "width :"
 #~ msgstr "宽:"

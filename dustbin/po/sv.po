@@ -37,46 +37,38 @@ msgid ""
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 
-#: ../src/applet-notifications.c:17
-msgid ""
-"This is the dustbin applet for Cairo-Dock\n"
-" made by Fabrice Rey (fabounet@users.berlios.de)"
-msgstr ""
-"dustbin applet för Cairo-Dock\n"
-" skapad av Fabrice Rey (fabounet@users.berlios.de)"
-
-#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:39
+#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:38
 msgid "Show Trash"
 msgstr "Visa Papperskorg"
 
-#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:48
+#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:47
 msgid "Delete Trash"
 msgstr "Töm Papperskorg"
 
-#: ../src/applet-notifications.c:43
+#: ../src/applet-notifications.c:42
 #, c-format
 msgid "Show %s"
 msgstr "Visa %s"
 
-#: ../src/applet-notifications.c:46
+#: ../src/applet-notifications.c:45
 msgid "Show All"
 msgstr "Visa alla"
 
-#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:51
 #, c-format
 msgid "Delete %s"
 msgstr "Ta bort %s"
 
-#: ../src/applet-notifications.c:55
+#: ../src/applet-notifications.c:54
 msgid "Delete All"
 msgstr "Ta bort alla"
 
-#: ../src/applet-notifications.c:70
+#: ../src/applet-notifications.c:69
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s har nu avmonterats"
 
-#: ../src/applet-notifications.c:74
+#: ../src/applet-notifications.c:73
 #, c-format
 msgid "failed to unmount %s"
 msgstr "kunde inte avmontera %s"
@@ -354,6 +346,13 @@ msgstr "Använd bara om papperskorgen inte visas när ikonen klickas."
 #: ../data/messages:115
 msgid "Alternative file browser used to show a trash :"
 msgstr "Alternativ filhanterare för att visa papperskorgens innehåll:"
+
+#~ msgid ""
+#~ "This is the dustbin applet for Cairo-Dock\n"
+#~ " made by Fabrice Rey (fabounet@users.berlios.de)"
+#~ msgstr ""
+#~ "dustbin applet för Cairo-Dock\n"
+#~ " skapad av Fabrice Rey (fabounet@users.berlios.de)"
 
 #~ msgid "width :"
 #~ msgstr "bredd:"

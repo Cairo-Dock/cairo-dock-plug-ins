@@ -43,12 +43,9 @@ CD_APPLET_INIT_BEGIN
 			cd_weblets_refresh_page,
 			myApplet);
 		cairo_dock_launch_measure (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
-		if( myConfig.iReloadTimeout == 0 )
-		{
-			// oublions le, il ne sert deja plus a rien...
-			myData.pRefreshTimer = NULL;
-		}
 	}
+	else  // en desklet on n'affiche pas l'icone.
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 
 CD_APPLET_INIT_END
 
@@ -58,8 +55,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 
-
-
 CD_APPLET_STOP_END
 
 
@@ -68,6 +63,15 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if( myData.pRefreshTimer )
+		{
+			cairo_dock_free_measure_timer( myData.pRefreshTimer );
+			myData.pRefreshTimer = NULL;
+		}
+		
+		if (myDock)  // en desklet on n'affiche pas l'icone.
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+		
 		if (myData.pGtkMozEmbed == NULL)
 		{
 			if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
@@ -93,20 +97,11 @@ CD_APPLET_RELOAD_BEGIN
 		}
 
 		// on remet en place un timer tout frais
-		if( myData.pRefreshTimer )
-		{
-			cairo_dock_free_measure_timer( myData.pRefreshTimer );
-			myData.pRefreshTimer = NULL;
-		}
 		myData.pRefreshTimer = cairo_dock_new_measure_timer (myConfig.iReloadTimeout,
 			NULL,
 			NULL,
 			cd_weblets_refresh_page,
 			myApplet);
 		cairo_dock_launch_measure (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
-		if( myConfig.iReloadTimeout == 0 )
-		{
-			myData.pRefreshTimer = NULL;
-		}
 	}
 CD_APPLET_RELOAD_END

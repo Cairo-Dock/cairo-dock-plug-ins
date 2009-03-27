@@ -18,55 +18,51 @@ msgstr ""
 msgid "Control your TomBoy's notes directly in the dock !"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:11
-msgid "Applet by Necropotame (Adrien Pilleboue)"
-msgstr "Applet scritta da Necropotame (Adrien Pilleboue)"
-
-#: ../src/tomboy-notifications.c:39
+#: ../src/tomboy-notifications.c:38
 msgid "Note name : "
 msgstr "Nome della nota :"
 
-#: ../src/tomboy-notifications.c:64
+#: ../src/tomboy-notifications.c:63
 msgid "Search for :"
 msgstr "Cercare per :"
 
-#: ../src/tomboy-notifications.c:85
+#: ../src/tomboy-notifications.c:84
 msgid "Search for tag :"
 msgstr "cercare per parole chiave :"
 
-#: ../src/tomboy-notifications.c:141
+#: ../src/tomboy-notifications.c:140
 msgid "Reload notes"
 msgstr "Ricaricare le note"
 
-#: ../src/tomboy-notifications.c:144
+#: ../src/tomboy-notifications.c:143
 msgid "Add a note"
 msgstr "Aggiungere una nota"
 
-#: ../src/tomboy-notifications.c:148
+#: ../src/tomboy-notifications.c:147
 msgid "Delete this note"
 msgstr "Cancellare questa nota"
 
-#: ../src/tomboy-notifications.c:151
+#: ../src/tomboy-notifications.c:150
 msgid "Search"
 msgstr "Cercare"
 
-#: ../src/tomboy-notifications.c:152
+#: ../src/tomboy-notifications.c:151
 msgid "Searh for tag"
 msgstr "Cercare per parole chiave"
 
-#: ../src/tomboy-notifications.c:154
+#: ../src/tomboy-notifications.c:153
 msgid "Search for today's note"
 msgstr "Cercare note odierne "
 
-#: ../src/tomboy-notifications.c:155
+#: ../src/tomboy-notifications.c:154
 msgid "Search for this week's note"
 msgstr "Cercare note della settimana"
 
-#: ../src/tomboy-notifications.c:156
+#: ../src/tomboy-notifications.c:155
 msgid "Search for next week's note"
 msgstr "Cercare note della prossima settimana"
 
-#: ../src/tomboy-notifications.c:166
+#: ../src/tomboy-notifications.c:165
 msgid "Reset marks"
 msgstr "Azzerare i segni"
 
@@ -157,6 +153,9 @@ msgstr ""
 #: ../data/messages:39
 msgid "Date format to search for :"
 msgstr "Formato data da ricercare :"
+
+#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
+#~ msgstr "Applet scritta da Necropotame (Adrien Pilleboue)"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

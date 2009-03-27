@@ -26,37 +26,31 @@ msgid ""
 "Down play the next sound"
 msgstr ""
 
-#: ../src/applet-notifications.c:195
-msgid ""
-"This is the xmms applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr "这是ChAnGFu为Cairo-Dock制作的xmms小应用程序。"
-
-#: ../src/applet-notifications.c:258
+#: ../src/applet-notifications.c:257
 msgid "Previous"
 msgstr "上一首"
 
-#: ../src/applet-notifications.c:259
+#: ../src/applet-notifications.c:258
 msgid "Play/Pause (left-click)"
 msgstr "播放/暂停(左键点击)"
 
-#: ../src/applet-notifications.c:261
+#: ../src/applet-notifications.c:260
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/applet-notifications.c:263
+#: ../src/applet-notifications.c:262
 msgid "Next (middle-click)"
 msgstr "下一首(中键点击)"
 
-#: ../src/applet-notifications.c:265
+#: ../src/applet-notifications.c:264
 msgid "Show JumpBox"
 msgstr "显示JumpBox"
 
-#: ../src/applet-notifications.c:266
+#: ../src/applet-notifications.c:265
 msgid "Toggle Shuffle"
 msgstr "乱序"
 
-#: ../src/applet-notifications.c:267
+#: ../src/applet-notifications.c:266
 msgid "Toggle Repeat"
 msgstr "重复"
 
@@ -366,6 +360,11 @@ msgstr "“暂停”图标的图片名称:"
 #: ../data/messages:149
 msgid "Name of an image for the 'broken' icon :"
 msgstr "“破损”图标的图片名称:"
+
+#~ msgid ""
+#~ "This is the xmms applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr "这是ChAnGFu为Cairo-Dock制作的xmms小应用程序。"
 
 #~ msgid "width :"
 #~ msgstr "宽："

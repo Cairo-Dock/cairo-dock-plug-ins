@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:05+0100\n"
+"POT-Creation-Date: 2009-03-26 01:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,37 +30,31 @@ msgid ""
 "       For SongBird, you have to install its dbus add-on.\n"
 msgstr ""
 
-#: ../src/applet-notifications.c:18
-msgid ""
-"This is the musicPlayer applet\n"
-" made by ChAnGFu & Mav for Cairo-Dock"
-msgstr ""
-
-#: ../src/applet-notifications.c:90
+#: ../src/applet-notifications.c:89
 msgid "Previous"
 msgstr ""
 
-#: ../src/applet-notifications.c:91
+#: ../src/applet-notifications.c:90
 msgid "Play/Pause (left-click)"
 msgstr ""
 
-#: ../src/applet-notifications.c:94
+#: ../src/applet-notifications.c:93
 msgid "Stop"
 msgstr ""
 
-#: ../src/applet-notifications.c:96
+#: ../src/applet-notifications.c:95
 msgid "Next (middle-click)"
 msgstr ""
 
-#: ../src/applet-notifications.c:99
+#: ../src/applet-notifications.c:98
 msgid "Show JumpBox"
 msgstr ""
 
-#: ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:101
 msgid "Toggle Shuffle"
 msgstr ""
 
-#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:104
 msgid "Toggle Repeat"
 msgstr ""
 

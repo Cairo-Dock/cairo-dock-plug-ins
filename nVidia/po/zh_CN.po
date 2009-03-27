@@ -67,14 +67,6 @@ msgid ""
 "won't work."
 msgstr ""
 
-#: ../src/applet-notifications.c:19
-msgid ""
-"This is the nVidia applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"这是nVidia小程序\n"
-"由ChAnGFu为Cairo-Dock制作"
-
 #: ../data/messages:1
 msgid "Icon"
 msgstr "图标"
@@ -402,6 +394,13 @@ msgstr "留空以使用默认图标。"
 #: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr "“破损”图标的图像文件名:"
+
+#~ msgid ""
+#~ "This is the nVidia applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "这是nVidia小程序\n"
+#~ "由ChAnGFu为Cairo-Dock制作"
 
 #~ msgid "width :"
 #~ msgstr "宽:"

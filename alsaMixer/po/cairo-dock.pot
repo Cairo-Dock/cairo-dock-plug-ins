@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:05+0100\n"
+"POT-Creation-Date: 2009-03-26 01:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,13 +68,7 @@ msgstr ""
 msgid "Set up volume :"
 msgstr ""
 
-#: ../src/applet-notifications.c:19
-msgid ""
-"This is the AlsaMixer applet\n"
-" made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr ""
-
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:44
 msgid "Adjsut channels"
 msgstr ""
 

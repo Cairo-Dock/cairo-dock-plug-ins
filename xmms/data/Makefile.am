@@ -5,7 +5,6 @@ moduledir = $(xmmsdatadir)
 
 module_DATA = \
 	xmms.conf\
-	readme\
 	broken.svg\
 	pause.svg\
 	play.svg\

@@ -61,19 +61,11 @@ msgid ""
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
 
-#: ../src/applet-notifications.c:11
-msgid ""
-"This is the wifi applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"Questa è l'applet wifi\n"
-" scritta da ChAnGFu per Cairo-Dock"
-
-#: ../src/applet-notifications.c:60
+#: ../src/applet-notifications.c:59
 msgid "Check for Wireless Extension"
 msgstr "Verifica dell'Estensione Wifi"
 
-#: ../src/applet-notifications.c:62
+#: ../src/applet-notifications.c:61
 msgid "Network Administration"
 msgstr "Amministrazione della Rete"
 
@@ -439,6 +431,13 @@ msgstr "Immagine dell'icona 'Buono' :"
 #: ../data/messages:175
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Immagine dell'icona 'Eccellente' :"
+
+#~ msgid ""
+#~ "This is the wifi applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet wifi\n"
+#~ " scritta da ChAnGFu per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

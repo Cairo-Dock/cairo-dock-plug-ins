@@ -68,14 +68,6 @@ msgid ""
 "won't work."
 msgstr ""
 
-#: ../src/applet-notifications.c:19
-msgid ""
-"This is the nVidia applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"これは ChAnGFu によって製作された \n"
-"Cairo-Dock 用の nVidia アプレットです。"
-
 #: ../data/messages:1
 msgid "Icon"
 msgstr "アイコン"
@@ -415,6 +407,13 @@ msgstr "デフォルトのアイコンを使用するには空欄のままに。
 #: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」アイコンの画像の名前 :"
+
+#~ msgid ""
+#~ "This is the nVidia applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "これは ChAnGFu によって製作された \n"
+#~ "Cairo-Dock 用の nVidia アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

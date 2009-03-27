@@ -19,14 +19,6 @@ msgid ""
 "You can invert this order if you prefer to shutdown on left-click."
 msgstr ""
 
-#: ../src/applet-notifications.c:11
-msgid ""
-"This is a very simple logout applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"Questa è un'applet davvero basilare per il logout\n"
-" scritta da Fabrice Rey per Cairo-Dock"
-
 #: ../data/messages:1
 msgid "Icon"
 msgstr "Icona"
@@ -237,6 +229,13 @@ msgstr "Comando utente da eseguire per lo shutdown :"
 #: ../data/messages:87
 msgid "Invert buttons ?"
 msgstr "Invertire i bottoni ?"
+
+#~ msgid ""
+#~ "This is a very simple logout applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è un'applet davvero basilare per il logout\n"
+#~ " scritta da Fabrice Rey per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

@@ -27,22 +27,23 @@
 # define   	SYSTRAY_STRUCT_H_
 
 #include <cairo-dock.h>
-
-
-typedef struct s_systray {
-  TrayApplet *tray;
-  CairoDesklet *dialog;
-
-  gboolean always_on_top;
-  gchar *shortcut;
-  gchar *prev_shortcut;
-} t_systray;
-
+#include "na-tray-manager.h"
 
 struct _AppletConfig {
   gchar *shortcut;
 } ;
 
+
+
+typedef struct {
+  NaTrayManager  *manager;
+  GtkWidget      *box;
+  GtkWidget      *widget;
+  GdkScreen      *screen;
+
+  GList          *icons;
+  guint          idle_redraw_id;
+} TrayApplet;
 
 struct _AppletData {
   CairoDialog *dialog;

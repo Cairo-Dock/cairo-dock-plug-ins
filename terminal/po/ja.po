@@ -31,15 +31,15 @@ msgid ""
 "Double-click next to the tabs to open a new one."
 msgstr ""
 
-#: ../src/terminal-menu-functions.c:81 ../src/terminal-widget.c:350
+#: ../src/terminal-menu-functions.c:80 ../src/terminal-widget.c:350
 msgid "New Tab"
 msgstr "新しいタブ"
 
-#: ../src/terminal-menu-functions.c:82
+#: ../src/terminal-menu-functions.c:81
 msgid "Rename current Tab"
 msgstr "現在のタブの名前変更"
 
-#: ../src/terminal-menu-functions.c:83
+#: ../src/terminal-menu-functions.c:82
 msgid "Close current Tab"
 msgstr "現在のタブを閉じる"
 

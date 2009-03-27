@@ -5,7 +5,6 @@ moduledir = $(stackdatadir)
 
 module_DATA = \
 	stack.conf\
-	readme\
 	preview.png\
 	icon.png\
 	default-icon.png\

@@ -5,7 +5,6 @@ moduledir = $(illusiondatadir)
 
 module_DATA = \
 	illusion.conf\
-	readme\
 	preview.png\
 	icon.svg
 

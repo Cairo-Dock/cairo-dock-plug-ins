@@ -29,7 +29,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Konfigurera Compiz"
 
-#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:186
+#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:185
 msgid "Emerald Manager"
 msgstr "Emerald Manager"
 
@@ -45,41 +45,33 @@ msgstr "Exposition"
 msgid "Widget Layer"
 msgstr "Widgetlager"
 
-#: ../src/applet-notifications.c:24
-msgid ""
-"This is the compiz-icon applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"compiz-icon applet\n"
-" skapad av ChAnGFu för Cairo-Dock"
-
-#: ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:101
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
 
-#: ../src/applet-notifications.c:187
+#: ../src/applet-notifications.c:186
 msgid "Reload Emerald"
 msgstr "Starta om Emerald"
 
-#: ../src/applet-notifications.c:191
+#: ../src/applet-notifications.c:190
 msgid "Switch Windows Manager"
 msgstr "Byt fönsterhanterare"
 
-#: ../src/applet-notifications.c:192
+#: ../src/applet-notifications.c:191
 msgid "Switch Windows Decorator"
 msgstr "Byt fönsterdekorator"
 
-#: ../src/applet-notifications.c:201
+#: ../src/applet-notifications.c:200
 msgid "Toggle Exposition Mode"
 msgstr "Växla expositionsläge"
 
-#: ../src/applet-notifications.c:202
+#: ../src/applet-notifications.c:201
 msgid "Toggle Widgets Layer"
 msgstr "Växla widgetlager"
 
-#: ../src/applet-notifications.c:204
+#: ../src/applet-notifications.c:203
 msgid "Toggle Show Desktop"
 msgstr "Växla visning av skrivbord"
 
@@ -469,6 +461,13 @@ msgstr "Bild för exposition:"
 #: ../data/messages:181
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Bild för widget layer:"
+
+#~ msgid ""
+#~ "This is the compiz-icon applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "compiz-icon applet\n"
+#~ " skapad av ChAnGFu för Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "bredd:"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:05+0100\n"
+"POT-Creation-Date: 2009-03-26 01:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,37 +35,31 @@ msgid ""
 "Left click on the icon to get a list of the most cpu using programs."
 msgstr ""
 
-#: ../src/applet-notifications.c:9
-msgid ""
-"This is the cpusage applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-
-#: ../src/applet-notifications.c:106 ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:105 ../src/applet-notifications.c:123
 msgid "Data acquisition has failed"
 msgstr ""
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Model Name"
 msgstr ""
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Frequency"
 msgstr ""
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "core(s)"
 msgstr ""
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Up time"
 msgstr ""
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Activity time"
 msgstr ""
 
-#: ../src/applet-notifications.c:144
+#: ../src/applet-notifications.c:143
 msgid "Monitor System"
 msgstr ""
 

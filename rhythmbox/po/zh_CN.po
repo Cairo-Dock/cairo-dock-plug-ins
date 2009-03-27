@@ -39,27 +39,23 @@ msgstr "标题"
 msgid ""
 "Control your Rhythmbox player directly in the dock !\n"
 "Play/pause with left click, next song with middle click.\n"
-"You can drag and drop covers (jpg) on the icon to use them, or songs to put "
-"them in the queue."
+"You can drag and drop covers (jpg) on the icon to use them,\n"
+"or songs to put them in the queue."
 msgstr ""
 
-#: ../src/rhythmbox-menu-functions.c:42
-msgid "Applet by Necropotame (Adrien Pilleboue)"
-msgstr "Necropotame (Adrien Pilleboue)制作的小程序"
-
-#: ../src/rhythmbox-menu-functions.c:52
+#: ../src/rhythmbox-menu-functions.c:51
 msgid "Previous"
 msgstr "上一首"
 
-#: ../src/rhythmbox-menu-functions.c:54
+#: ../src/rhythmbox-menu-functions.c:53
 msgid "Next (middle-click)"
 msgstr "下一首(中键点击)"
 
-#: ../src/rhythmbox-menu-functions.c:56
+#: ../src/rhythmbox-menu-functions.c:55
 msgid "Play/Pause (left-click)"
 msgstr "播放/暂停(左键点击)"
 
-#: ../src/rhythmbox-menu-functions.c:58
+#: ../src/rhythmbox-menu-functions.c:57
 msgid "Information"
 msgstr "信息"
 
@@ -333,6 +329,9 @@ msgstr "“暂停”图标的图片名称:"
 #: ../data/messages:133
 msgid "Name of an image for the 'broken' icon :"
 msgstr "“破损”图标的图片名称:"
+
+#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
+#~ msgstr "Necropotame (Adrien Pilleboue)制作的小程序"
 
 #~ msgid ""
 #~ "Artist : %s\n"

@@ -26,39 +26,31 @@ msgid ""
 "Down play the next sound"
 msgstr ""
 
-#: ../src/applet-notifications.c:195
-msgid ""
-"This is the xmms applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"これは ChAnGFu によって製作された \n"
-"Cairo-Dock 用の xmms アプレットです。"
-
-#: ../src/applet-notifications.c:258
+#: ../src/applet-notifications.c:257
 msgid "Previous"
 msgstr "前へ"
 
-#: ../src/applet-notifications.c:259
+#: ../src/applet-notifications.c:258
 msgid "Play/Pause (left-click)"
 msgstr "再生/一時停止（左クリック）"
 
-#: ../src/applet-notifications.c:261
+#: ../src/applet-notifications.c:260
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/applet-notifications.c:263
+#: ../src/applet-notifications.c:262
 msgid "Next (middle-click)"
 msgstr "次へ（中クリック）"
 
-#: ../src/applet-notifications.c:265
+#: ../src/applet-notifications.c:264
 msgid "Show JumpBox"
 msgstr "ジャンプ先の指定"
 
-#: ../src/applet-notifications.c:266
+#: ../src/applet-notifications.c:265
 msgid "Toggle Shuffle"
 msgstr "シャッフルのオンオフ"
 
-#: ../src/applet-notifications.c:267
+#: ../src/applet-notifications.c:266
 msgid "Toggle Repeat"
 msgstr "リピートのオンオフ"
 
@@ -377,6 +369,13 @@ msgstr "「一時停止」のアイコン画像の名前 :"
 #: ../data/messages:149
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
+
+#~ msgid ""
+#~ "This is the xmms applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "これは ChAnGFu によって製作された \n"
+#~ "Cairo-Dock 用の xmms アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

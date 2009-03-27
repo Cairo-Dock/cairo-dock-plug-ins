@@ -28,52 +28,34 @@ void cd_weblet_free_uri_list (void)
 }
 
 
-
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
-	/// si on ne s'en sert pas, autant l'enlever.
-	
+	if (myDock)
+	{
+		if (myData.dialog == NULL)
+			weblet_build_and_show (myApplet);
+		else
+			cairo_dock_unhide_dialog (myData.dialog);
+	}
 CD_APPLET_ON_CLICK_END
 
 static void _cd_weblets_open_URI (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
-	gint index_URI = GPOINTER_TO_UINT(data[1]);
-
-  cd_message( "weblets: opening predefined URI %d (%s).\n", index_URI, myConfig.cListURI[index_URI] );
-
+	gint index_URI = GPOINTER_TO_INT(data[1]);
+	cd_message( "weblets: opening predefined URI %d (%s).", index_URI, myConfig.cListURI[index_URI] );
+	
+	// on se souvient de la derniere URL chargee.
 	g_free (myConfig.cURI_to_load);
-#if 0
-  // note de Christope: juste une idee de code, qui en soit ne marche pas car pKeyFile n'existe pas ici.
-  // Pour avoir un code qui marche, on peut s'inspirer de l'applet mail (dans les notifications).
-  // Cependant: changer la configuration de l'applet est-il vraiment ce qu'on veut ?
-	g_key_file_set_string (pKeyFile, "Configuration", "weblet URI", myConfig.cListURI[index_URI]);
-	myConfig.cURI_to_load = CD_CONFIG_GET_STRING ("Configuration", "weblet URI");
-#else
-	myConfig.cURI_to_load = g_strdup(myConfig.cListURI[index_URI]);
-#endif
-	/// utiliser cairo_dock_update_conf_file (myApplet->cConfFilePath, G_TYPE_STRING, "Configuration", cURI, G_TYPE_INVALID); si on veut mettre a jour le fichier de conf ;-)
+	myConfig.cURI_to_load = g_strdup (myConfig.cListURI[index_URI]);
+	cairo_dock_update_conf_file (myApplet->cConfFilePath,
+		G_TYPE_STRING,
+		"Configuration",
+		"weblet URI",
+		G_TYPE_INVALID);
 
 	// on rafraichit le tout !
-	if( myData.pRefreshTimer != NULL )
-	{
-		cairo_dock_relaunch_measure_immediately (myData.pRefreshTimer, myConfig.iReloadTimeout);
-	}
-	else
-	{
-		// mise en place du timer
-		myData.pRefreshTimer = cairo_dock_new_measure_timer (myConfig.iReloadTimeout,
-			NULL,
-			NULL,
-			cd_weblets_refresh_page,
-			myApplet);
-	}
-	cairo_dock_launch_measure (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
-	if( myConfig.iReloadTimeout == 0 )
-	{
-		// oublions le, il ne sert deja plus a rien...
-		myData.pRefreshTimer = NULL;  /// ? c'est un one-shot-timer ? il faut mettre le iReloadTimeout a 0 alors, et le detruire lors du reset_data.
-	}
+	cairo_dock_relaunch_measure_immediately (myData.pRefreshTimer, myConfig.iReloadTimeout);
 	
 	cd_weblet_free_uri_list ();
 }

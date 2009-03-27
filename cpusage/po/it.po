@@ -31,39 +31,31 @@ msgid ""
 "Left click on the icon to get a list of the most cpu using programs."
 msgstr ""
 
-#: ../src/applet-notifications.c:9
-msgid ""
-"This is the cpusage applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-"Questa è l'applet cpusage\n"
-" scritta da parAdOxxx_ZeRo per Cairo-Dock"
-
-#: ../src/applet-notifications.c:106 ../src/applet-notifications.c:124
+#: ../src/applet-notifications.c:105 ../src/applet-notifications.c:123
 msgid "Data acquisition has failed"
 msgstr "L'acquisizione dei dati è fallita"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Model Name"
 msgstr "Nome del modello"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Frequency"
 msgstr "Frequenza"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "core(s)"
 msgstr "core(s)"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Up time"
 msgstr "Up time"
 
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:118
 msgid "Activity time"
 msgstr "Tempi di attività"
 
-#: ../src/applet-notifications.c:144
+#: ../src/applet-notifications.c:143
 msgid "Monitor System"
 msgstr "Monitorare il sistema"
 
@@ -389,6 +381,13 @@ msgstr "Lasciare vuoto per utilizzare l'icona di default."
 #: ../data/messages:145
 msgid "User command to show a system monitor :"
 msgstr "Comando utente per mostrare il monitor di sistema :"
+
+#~ msgid ""
+#~ "This is the cpusage applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet cpusage\n"
+#~ " scritta da parAdOxxx_ZeRo per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

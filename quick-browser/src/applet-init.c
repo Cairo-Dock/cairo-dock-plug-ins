@@ -21,6 +21,7 @@ CD_APPLET_DEFINITION ("Quick Browser",
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("This applet lets you browse a folder and its sub-folders very quickly.\n"
 	"You can set up a shortkey to pop up the menu.\n"
+	"Midlle-click will open the main folder.\n"
 	"This applet can be instanciated several times, if you want to browse different folders."),
 	"Fabounet (Fabrice Rey)")
 
@@ -42,6 +43,7 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	
 	cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_quick_browser_on_shortkey_menu, myApplet);
@@ -52,6 +54,7 @@ CD_APPLET_INIT_END
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_STOP_END
 

@@ -21,22 +21,15 @@ msgid ""
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
 
-#: ../src/applet-notifications.c:19
-#, fuzzy
-msgid ""
-"This is the GMenu applet\n"
-" made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr "这是CD_MY_NAME为Cairo-Dock制作的CD_APPLET_NAME。"
-
-#: ../src/applet-notifications.c:145
+#: ../src/applet-notifications.c:144
 msgid "Quick launch"
 msgstr ""
 
-#: ../src/applet-notifications.c:146
+#: ../src/applet-notifications.c:145
 msgid "Configure menu"
 msgstr ""
 
-#: ../src/applet-notifications.c:147
+#: ../src/applet-notifications.c:146
 msgid "Clear recent"
 msgstr ""
 
@@ -243,6 +236,12 @@ msgstr ""
 #: ../data/messages:89
 msgid "Command to use to configure the menu :"
 msgstr ""
+
+#, fuzzy
+#~ msgid ""
+#~ "This is the GMenu applet\n"
+#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
+#~ msgstr "这是CD_MY_NAME为Cairo-Dock制作的CD_APPLET_NAME。"
 
 #~ msgid "width :"
 #~ msgstr "宽："

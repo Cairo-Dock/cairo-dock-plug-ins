@@ -67,14 +67,6 @@ msgid ""
 "won't work."
 msgstr ""
 
-#: ../src/applet-notifications.c:19
-msgid ""
-"This is the nVidia applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"Questa è l'applet nVidia\n"
-" scritta da ChAnGFu per Cairo-Dock"
-
 #: ../data/messages:1
 msgid "Icon"
 msgstr "Icona"
@@ -422,6 +414,13 @@ msgstr "Lasciate vuoto per utilizare l'icona di default."
 #: ../data/messages:151
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nome dell'immagine dell'icona 'Non-funzionante' :"
+
+#~ msgid ""
+#~ "This is the nVidia applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet nVidia\n"
+#~ " scritta da ChAnGFu per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

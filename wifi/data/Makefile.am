@@ -3,7 +3,6 @@ moduledir = $(wifidatadir)
 
 module_DATA = \
 	wifi.conf\
-	readme\
 	preview.png\
 	link-0.svg\
 	link-1.svg\

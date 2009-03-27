@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:05+0100\n"
+"POT-Creation-Date: 2009-03-26 01:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,37 +28,31 @@ msgid ""
 "Down play the next sound"
 msgstr ""
 
-#: ../src/applet-notifications.c:195
-msgid ""
-"This is the xmms applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-
-#: ../src/applet-notifications.c:258
+#: ../src/applet-notifications.c:257
 msgid "Previous"
 msgstr ""
 
-#: ../src/applet-notifications.c:259
+#: ../src/applet-notifications.c:258
 msgid "Play/Pause (left-click)"
 msgstr ""
 
-#: ../src/applet-notifications.c:261
+#: ../src/applet-notifications.c:260
 msgid "Stop"
 msgstr ""
 
-#: ../src/applet-notifications.c:263
+#: ../src/applet-notifications.c:262
 msgid "Next (middle-click)"
 msgstr ""
 
-#: ../src/applet-notifications.c:265
+#: ../src/applet-notifications.c:264
 msgid "Show JumpBox"
 msgstr ""
 
-#: ../src/applet-notifications.c:266
+#: ../src/applet-notifications.c:265
 msgid "Toggle Shuffle"
 msgstr ""
 
-#: ../src/applet-notifications.c:267
+#: ../src/applet-notifications.c:266
 msgid "Toggle Repeat"
 msgstr ""
 

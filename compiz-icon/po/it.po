@@ -25,7 +25,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Configurare Compiz"
 
-#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:186
+#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:185
 msgid "Emerald Manager"
 msgstr "Gestione Emerald"
 
@@ -41,41 +41,33 @@ msgstr "Expo"
 msgid "Widget Layer"
 msgstr "Sezione dei Widgets"
 
-#: ../src/applet-notifications.c:24
-msgid ""
-"This is the compiz-icon applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"Questa è l'applet compiz-icon\n"
-" scritta da ChAnGFu per Cairo-Dock"
-
-#: ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:101
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
 
-#: ../src/applet-notifications.c:187
+#: ../src/applet-notifications.c:186
 msgid "Reload Emerald"
 msgstr "Ricaricare Emerald"
 
-#: ../src/applet-notifications.c:191
+#: ../src/applet-notifications.c:190
 msgid "Switch Windows Manager"
 msgstr "Cambiare Gestore delle Finestre"
 
-#: ../src/applet-notifications.c:192
+#: ../src/applet-notifications.c:191
 msgid "Switch Windows Decorator"
 msgstr "Cambiare il Decoratore delle Finestre"
 
-#: ../src/applet-notifications.c:201
+#: ../src/applet-notifications.c:200
 msgid "Toggle Exposition Mode"
 msgstr "Attivare la Modalità Expo"
 
-#: ../src/applet-notifications.c:202
+#: ../src/applet-notifications.c:201
 msgid "Toggle Widgets Layer"
 msgstr "Attivare la Sezione dei Widgets"
 
-#: ../src/applet-notifications.c:204
+#: ../src/applet-notifications.c:203
 msgid "Toggle Show Desktop"
 msgstr "Montare Mostra Desktop"
 
@@ -481,6 +473,13 @@ msgstr "Nome dell'immagine dell'icona 'Expo' :"
 #: ../data/messages:181
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Nome dell'immagine dell'icona 'Widget Layer' :"
+
+#~ msgid ""
+#~ "This is the compiz-icon applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet compiz-icon\n"
+#~ " scritta da ChAnGFu per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

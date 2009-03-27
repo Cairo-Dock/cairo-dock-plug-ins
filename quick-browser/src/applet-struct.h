@@ -8,8 +8,10 @@ typedef struct {
 	gchar *cPath;
 	GtkWidget *pSubMenu;
 	CairoDockModuleInstance *pApplet;
-	gboolean bFilled;
+	gboolean bMenuBuilt;
 	const gchar *cTmpFileName;
+	GList *pLocalItemList;
+	GList *pCurrentItem;
 	} CDQuickBrowserItem;
 
 //\___________ structure containing the applet's configuration parameters.
@@ -20,12 +22,13 @@ struct _AppletConfig {
 	gboolean bShowHiddenFiles;
 	gchar *cMenuShortkey;
 	gchar *cDirPath;
+	gint iNbSubItemsAtOnce;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	gboolean bFoldersFirst;
-	GtkWidget *pMenu;
+	CDQuickBrowserItem *pRootItem;
 	gint iSidFillDirIdle;
 	} ;
 

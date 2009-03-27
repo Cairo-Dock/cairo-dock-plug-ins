@@ -33,7 +33,7 @@ msgstr "B"
 msgid "KB"
 msgstr "KB"
 
-#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:17
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:16
 msgid "MB"
 msgstr "MB"
 
@@ -49,36 +49,28 @@ msgstr "TB"
 msgid "Loading"
 msgstr "Laddar"
 
-#: ../src/applet-notifications.c:10
-msgid ""
-"This is the netspeed applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-"netspeed applet\n"
-" skapad av parAdOxxx_ZeRo för Cairo-Dock"
-
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:16
 msgid "Total amount of data"
 msgstr "Total mängd data"
 
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:16
 msgid "downloaded"
 msgstr "hämtatHämtat:"
 
-#: ../src/applet-notifications.c:17
+#: ../src/applet-notifications.c:16
 msgid "uploaded"
 msgstr "skickatSkickat:"
 
-#: ../src/applet-notifications.c:20
+#: ../src/applet-notifications.c:19
 #, c-format
 msgid "Interface '%s' seems to not exist or is not readable"
 msgstr "Gränssnittet '%s' finns inte eller kan inte läsas"
 
-#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:44
 msgid "Monitor System"
 msgstr ""
 
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:46
 msgid "Re-check interface"
 msgstr "Kontrollera gränssnitt igen"
 
@@ -376,6 +368,13 @@ msgstr ""
 #: ../data/messages:139
 msgid "User command to show a system monitor :"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the netspeed applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr ""
+#~ "netspeed applet\n"
+#~ " skapad av parAdOxxx_ZeRo för Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "bredd:"

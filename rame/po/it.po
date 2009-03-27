@@ -18,23 +18,15 @@ msgid ""
 "Left-click to show a list of the most memory using programs"
 msgstr ""
 
-#: ../src/applet-notifications.c:10
-msgid ""
-"This is the rame applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-"Questa è l'applet rame\n"
-" scritta da parAdOxxx_ZeRo per Cairo-Dock"
-
-#: ../src/applet-notifications.c:39
+#: ../src/applet-notifications.c:38
 msgid "Mb"
 msgstr "Mb"
 
-#: ../src/applet-notifications.c:93
+#: ../src/applet-notifications.c:92
 msgid "Data acquisition has failed"
 msgstr "L'acquisizione dei dati è fallita"
 
-#: ../src/applet-notifications.c:114
+#: ../src/applet-notifications.c:113
 msgid "Monitor System"
 msgstr "Monitor di Sistema"
 
@@ -380,6 +372,13 @@ msgstr "Lasciate vuoto per usare quella di default."
 #: ../data/messages:155
 msgid "User command to show a system monitor :"
 msgstr "Comando utente per mostrare il monitor di sistema :"
+
+#~ msgid ""
+#~ "This is the rame applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet rame\n"
+#~ " scritta da parAdOxxx_ZeRo per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

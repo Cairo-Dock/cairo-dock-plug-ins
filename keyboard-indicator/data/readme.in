@@ -1,5 +1,0 @@
-@PACKAGE_KEYBOARD_INDICATOR@ (v@VERSION_KEYBOARD_INDICATOR@)
-Author : Fabounet (Fabrice Rey)
-This applet let you control the keyboard layout.
-Left-click to switch to the next layout,
-Scroll up/down to select the previous/next layout.

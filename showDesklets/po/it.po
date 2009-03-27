@@ -12,13 +12,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:17
+#: ../src/applet-init.c:18
+#, fuzzy
+msgid "showDesklets"
+msgstr "Desklet"
+
+#: ../src/applet-init.c:21
 msgid ""
-"This is the showDesklets applet\n"
-" made by Fabrice Rey for Cairo-Dock"
+"This applet let you access quickly to your desklets.\n"
+"Left click to show/hide your desklets.\n"
+"Basically, if you run under Compiz, you don't need this applet;\n"
+" you should just use the 'Widget Layer' capabilities of desklets."
 msgstr ""
-"Questa è l'applet showDesklets\n"
-" scritta da Fabrice Rey per Cairo-Dock"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -65,6 +70,13 @@ msgstr "Mostrare/nascondere anche le deklets che sono nella Sezione Widget ?"
 msgid "Shortkey to show/hide the desklets :"
 msgstr "Scorciatoia da tastiera per mostrare/nascondere le deklets :"
 
+#~ msgid ""
+#~ "This is the showDesklets applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet showDesklets\n"
+#~ " scritta da Fabrice Rey per Cairo-Dock"
+
 #~ msgid "width :"
 #~ msgstr "larghezza :"
 
@@ -76,9 +88,6 @@ msgstr "Scorciatoia da tastiera per mostrare/nascondere le deklets :"
 
 #~ msgid "Icon's name :"
 #~ msgstr "Nome dell'icona :"
-
-#~ msgid "Desklet"
-#~ msgstr "Desklet"
 
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + "

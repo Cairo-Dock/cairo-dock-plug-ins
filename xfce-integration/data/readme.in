@@ -1,4 +1,0 @@
-@PACKAGE_XFCE_INTEGRATION@ (v@VERSION_XFCE_INTEGRATION@)
-Author : Tofe
-This applet provides functions for a better integration into a XFCE environnement.
-  It is auto-activated, so you don't need to activate it.

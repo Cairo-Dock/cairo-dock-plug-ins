@@ -11,13 +11,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:17
-msgid ""
-"This is the showDesklets applet\n"
-" made by Fabrice Rey for Cairo-Dock"
+#: ../src/applet-init.c:18
+msgid "showDesklets"
 msgstr ""
-"Ceci est l'applet showDesklets\n"
-" écrite par Fabrice Rey pour Cairo-Dock"
+
+#: ../src/applet-init.c:21
+msgid ""
+"This applet let you access quickly to your desklets.\n"
+"Left click to show/hide your desklets.\n"
+"Basically, if you run under Compiz, you don't need this applet;\n"
+" you should just use the 'Widget Layer' capabilities of desklets."
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -62,6 +66,13 @@ msgstr "Montrer/cacher aussi les deklets qui sont sur la WidgetLayer ?"
 #: ../data/messages:23
 msgid "Shortkey to show/hide the desklets :"
 msgstr "Raccourci clavier pour montrer/cacher les deklets:"
+
+#~ msgid ""
+#~ "This is the showDesklets applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "Ceci est l'applet showDesklets\n"
+#~ " écrite par Fabrice Rey pour Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "largeur :"

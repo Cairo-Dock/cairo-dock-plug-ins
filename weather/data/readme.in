@@ -1,8 +1,0 @@
-@PACKAGE_WEATHER@ (v@VERSION_WEATHER@)
-Author : Fabounet (Fabrice Rey)
-This applet displays weather into you dock.
- It can detach itself to be a totally eye-candy 3D deskelt.
- You can have many valuable info by middle or left clicking on the icons,
-  and make icons scroll with mouse's wheel.
- Data are provided by www.weather.com.
- Right click to let Cairo-Dock help you to find your location code.

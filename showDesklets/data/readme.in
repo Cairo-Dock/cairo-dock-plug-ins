@@ -1,6 +1,0 @@
-@PACKAGE_SHOW_DESKLETS@ (v@VERSION_SHOW_DESKLETS@)
-Author : Fabounet (Fabrice Rey)
-This applet let you access quickly to your desklets.
- Left click to show/hide your desklets.
- Basically, if you run under Compiz, you don't need this applet;
-  you should just use the "Widget Layer" capabilities of desklets.

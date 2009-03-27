@@ -1,3 +1,0 @@
-@PACKAGE_SHOW_MOUSE@ (v@VERSION_SHOW_MOUSE@)
-Author : Fabounet (Fabrice Rey)
-This plug-in draw some animation around the cursor when it's inside a dock/desklet.

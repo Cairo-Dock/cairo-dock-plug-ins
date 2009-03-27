@@ -5,7 +5,6 @@ moduledir = $(compiz_icondatadir)
 
 module_DATA = \
 	compiz-icon.conf\
-	readme\
 	compiz\
 	compiz-kill\
 	preview.png\

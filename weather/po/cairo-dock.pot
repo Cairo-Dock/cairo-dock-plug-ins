@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:05+0100\n"
+"POT-Creation-Date: 2009-03-26 01:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,51 +119,45 @@ msgstr ""
 msgid "Dec"
 msgstr ""
 
-#: ../src/applet-notifications.c:19
-msgid ""
-"This is the weather applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-
-#: ../src/applet-notifications.c:48
+#: ../src/applet-notifications.c:47
 msgid "Reload now"
 msgstr ""
 
-#: ../src/applet-notifications.c:73 ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:72 ../src/applet-notifications.c:101
 msgid ""
 "No data were available\n"
 " is connection alive ?"
 msgstr ""
 
-#: ../src/applet-notifications.c:89 ../src/applet-notifications.c:114
+#: ../src/applet-notifications.c:88 ../src/applet-notifications.c:113
 msgid "Temperature"
 msgstr ""
 
-#: ../src/applet-notifications.c:90
+#: ../src/applet-notifications.c:89
 msgid "Precipitation Probability"
 msgstr ""
 
-#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:90 ../src/applet-notifications.c:114
 msgid "Wind"
 msgstr ""
 
-#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:115
 msgid "Humidity"
 msgstr ""
 
-#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
 msgid "SunRise"
 msgstr ""
 
-#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
 msgid "SunSet"
 msgstr ""
 
-#: ../src/applet-notifications.c:114
+#: ../src/applet-notifications.c:113
 msgid "feeled"
 msgstr ""
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:115
 msgid "Pressure"
 msgstr ""
 

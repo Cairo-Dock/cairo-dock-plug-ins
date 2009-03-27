@@ -16,13 +16,17 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-notifications.c:17
-msgid ""
-"This is the showDesklets applet\n"
-" made by Fabrice Rey for Cairo-Dock"
+#: ../src/applet-init.c:18
+msgid "showDesklets"
 msgstr ""
-"showDesklets applet\n"
-" skapad av Fabrice Rey för Cairo-Dock"
+
+#: ../src/applet-init.c:21
+msgid ""
+"This applet let you access quickly to your desklets.\n"
+"Left click to show/hide your desklets.\n"
+"Basically, if you run under Compiz, you don't need this applet;\n"
+" you should just use the 'Widget Layer' capabilities of desklets."
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -68,6 +72,13 @@ msgstr "Visa/dölj desklets på widgetlagret också?"
 #: ../data/messages:23
 msgid "Shortkey to show/hide the desklets :"
 msgstr "Tangentkombination för att visa/dölja desklet:"
+
+#~ msgid ""
+#~ "This is the showDesklets applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "showDesklets applet\n"
+#~ " skapad av Fabrice Rey för Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "bredd:"

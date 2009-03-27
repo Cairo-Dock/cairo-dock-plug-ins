@@ -24,7 +24,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Configurer Compiz"
 
-#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:186
+#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:185
 msgid "Emerald Manager"
 msgstr "Gestionnaire Emerald"
 
@@ -40,41 +40,33 @@ msgstr "Exposé"
 msgid "Widget Layer"
 msgstr "Couche des Widgets"
 
-#: ../src/applet-notifications.c:24
-msgid ""
-"This is the compiz-icon applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"Ceci est l'applet compiz-icon\n"
-" écrite par ChAnGFu pour Cairo-Dock"
-
-#: ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:101
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
 
-#: ../src/applet-notifications.c:187
+#: ../src/applet-notifications.c:186
 msgid "Reload Emerald"
 msgstr "Recharger Emerald"
 
-#: ../src/applet-notifications.c:191
+#: ../src/applet-notifications.c:190
 msgid "Switch Windows Manager"
 msgstr "Changer de Gestionnaire de Fenêtres"
 
-#: ../src/applet-notifications.c:192
+#: ../src/applet-notifications.c:191
 msgid "Switch Windows Decorator"
 msgstr "Changer le Décorateur de Fenêtres"
 
-#: ../src/applet-notifications.c:201
+#: ../src/applet-notifications.c:200
 msgid "Toggle Exposition Mode"
 msgstr "Activer le Mode Exposition"
 
-#: ../src/applet-notifications.c:202
+#: ../src/applet-notifications.c:201
 msgid "Toggle Widgets Layer"
 msgstr "Activer la Couche des Widgets"
 
-#: ../src/applet-notifications.c:204
+#: ../src/applet-notifications.c:203
 msgid "Toggle Show Desktop"
 msgstr "Monter le Bureau"
 
@@ -475,6 +467,13 @@ msgstr "Nom de l'image 'Exposition' :"
 #: ../data/messages:181
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Nom de l'image 'Widget Layer' :"
+
+#~ msgid ""
+#~ "This is the compiz-icon applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "Ceci est l'applet compiz-icon\n"
+#~ " écrite par ChAnGFu pour Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "largeur :"

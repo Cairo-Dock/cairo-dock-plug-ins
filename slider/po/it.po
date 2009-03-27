@@ -12,27 +12,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:21
-msgid ""
-"This is the Slider applet\n"
-" made by ChAnGFu for Cairo-Dock"
+#: ../src/applet-init.c:19
+msgid "slider"
 msgstr ""
-"Questa è l'applet Slider\n"
-" scritta da ChAnGFu per Cairo-Dock"
 
-#: ../src/applet-notifications.c:154
+#: ../src/applet-init.c:22
+msgid ""
+"This applet is a basic image slider\n"
+" You just have to select a directory and a display effect and you're done\n"
+"Click to play/pause or to edit the current image.\n"
+"Middle-click to open the images folder."
+msgstr ""
+
+#: ../src/applet-notifications.c:153
 msgid "Play"
 msgstr "Play"
 
-#: ../src/applet-notifications.c:154
+#: ../src/applet-notifications.c:153
 msgid "Pause"
 msgstr "Pausa"
 
-#: ../src/applet-notifications.c:157
+#: ../src/applet-notifications.c:156
 msgid "Open current image"
 msgstr "Aprire l'immagine attuale"
 
-#: ../src/applet-notifications.c:159
+#: ../src/applet-notifications.c:158
 msgid "Browse images folder"
 msgstr "Naviga nella cartella Immagini"
 
@@ -349,6 +353,13 @@ msgstr "Mettete il valore a 0 della trasparenza per non avere sfondo."
 #: ../data/messages:137
 msgid "Choose a background color :"
 msgstr "Scegliere il colore di sfondo :"
+
+#~ msgid ""
+#~ "This is the Slider applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet Slider\n"
+#~ " scritta da ChAnGFu per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

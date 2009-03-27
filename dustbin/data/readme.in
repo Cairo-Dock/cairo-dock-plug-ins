@@ -1,7 +1,0 @@
-@PACKAGE_DUSTBIN@ (v@VERSION_DUSTBIN@)
-Author : Fabounet (Fabrice Rey)
-Manage your disks space with this trash applet !
-It can handle several trash directories,
- threw files or unmount disks with drag'n'drop,
- warn you if you use too much space,
- and display usefull info about your dustbins (middle-click).

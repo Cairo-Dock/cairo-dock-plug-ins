@@ -1,4 +1,0 @@
-@PACKAGE_POWERMANAGER@ (v@VERSION_POWERMANAGER@)
-Author : Adrien Pilleboue (Necropotame)
-A power manager for laptop's battery
- It works with ACPI and DBus.

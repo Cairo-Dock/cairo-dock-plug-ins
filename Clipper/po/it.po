@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:23 ../src/applet-notifications.c:28
+#: ../src/applet-config.c:23 ../src/applet-notifications.c:27
 msgid "No items yet."
 msgstr "Nessun oggetto ancora."
 
@@ -28,15 +28,7 @@ msgid ""
 "them."
 msgstr ""
 
-#: ../src/applet-notifications.c:20
-msgid ""
-"This is the Clipper applet\n"
-" made by Fabrice Rey (Fabounet) for Cairo-Dock"
-msgstr ""
-"Questa è l'applet Clipper\n"
-" scritta da Fabrice Rey (Fabounet) per Cairo-Dock"
-
-#: ../src/applet-notifications.c:73
+#: ../src/applet-notifications.c:72
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
@@ -456,6 +448,13 @@ msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr ""
 "Una lista degli oggetti persistenti sarà accessibile col tasto centrale del "
 "mouse :"
+
+#~ msgid ""
+#~ "This is the Clipper applet\n"
+#~ " made by Fabrice Rey (Fabounet) for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet Clipper\n"
+#~ " scritta da Fabrice Rey (Fabounet) per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

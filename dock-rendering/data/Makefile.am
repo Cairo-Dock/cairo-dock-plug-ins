@@ -5,15 +5,7 @@ moduledir = $(renderingdatadir)
 
 module_DATA = \
 	rendering.conf\
-	readme\
 	icon.svg\
-	readme-caroussel-view\
-	readme-parabolic-view\
-	readme-3D-plane-view\
-	readme-rainbow-view\
-	readme-diapo-view\
-	readme-diapo-simple-view\
-	readme-curve-view\
 	preview-caroussel.png\
 	preview-parabolic.png\
 	preview-3D-plane.png\

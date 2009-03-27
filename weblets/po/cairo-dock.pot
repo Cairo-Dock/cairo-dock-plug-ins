@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:05+0100\n"
+"POT-Creation-Date: 2009-03-26 01:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,12 +22,6 @@ msgid ""
 "desktop.\n"
 "You can select your web page, set the desired scrolling,\n"
 "and hide the scrollbars to get a real 'crop' of the page."
-msgstr ""
-
-#: ../src/applet-notifications.c:30
-msgid ""
-"This is the weblets applet\n"
-" made by Christophe Chapuis for Cairo-Dock"
 msgstr ""
 
 #: ../src/applet-widget.c:36

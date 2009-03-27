@@ -27,7 +27,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Compiz の設定"
 
-#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:186
+#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:185
 msgid "Emerald Manager"
 msgstr "Emerald マネージャ"
 
@@ -43,15 +43,7 @@ msgstr "展開"
 msgid "Widget Layer"
 msgstr "ウィジェット・レイヤ"
 
-#: ../src/applet-notifications.c:24
-msgid ""
-"This is the compiz-icon applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"これは ChAnGFu によって製作された \n"
-"Cairo-Dock 用の compiz-icon アプレットです。"
-
-#: ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:101
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
@@ -60,27 +52,27 @@ msgstr ""
 "て\n"
 "CCSM をインストールする必要があります。"
 
-#: ../src/applet-notifications.c:187
+#: ../src/applet-notifications.c:186
 msgid "Reload Emerald"
 msgstr "Emerald の再読み込み"
 
-#: ../src/applet-notifications.c:191
+#: ../src/applet-notifications.c:190
 msgid "Switch Windows Manager"
 msgstr "ウィンドウ・マネージャの切り替え"
 
-#: ../src/applet-notifications.c:192
+#: ../src/applet-notifications.c:191
 msgid "Switch Windows Decorator"
 msgstr "ウィンドウ・デコレータの切り替え"
 
-#: ../src/applet-notifications.c:201
+#: ../src/applet-notifications.c:200
 msgid "Toggle Exposition Mode"
 msgstr "展開モードのオンオフ"
 
-#: ../src/applet-notifications.c:202
+#: ../src/applet-notifications.c:201
 msgid "Toggle Widgets Layer"
 msgstr "ウィジェット・レイヤのオンオフ"
 
-#: ../src/applet-notifications.c:204
+#: ../src/applet-notifications.c:203
 msgid "Toggle Show Desktop"
 msgstr "デスクトップの表示のオンオフ"
 
@@ -478,6 +470,13 @@ msgstr "「展開」のアイコン画像の名前 :"
 #: ../data/messages:181
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "「ウィジェット・レイヤ」のアイコン画像の名前 :"
+
+#~ msgid ""
+#~ "This is the compiz-icon applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "これは ChAnGFu によって製作された \n"
+#~ "Cairo-Dock 用の compiz-icon アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

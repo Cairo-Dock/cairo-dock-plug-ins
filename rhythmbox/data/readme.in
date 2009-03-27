@@ -1,6 +1,0 @@
-@PACKAGE_RHYTHMBOX@ (v@VERSION_RHYTHMBOX@)
-Author : Adrien Pilleboue (Necropotame)
-Control your Rhythmbox player directly in the dock !
- Play/pause with left click, next song with middle click.
- You can drag and drop covers (jpg) on the icon to use them,
- or songs to put them in the queue.

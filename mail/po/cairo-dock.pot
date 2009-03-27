@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:05+0100\n"
+"POT-Creation-Date: 2009-03-26 01:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,13 +30,7 @@ msgid ""
 "It can check in any kind of mailbox (yahoo, gmail, etc)"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:21
-msgid ""
-"This is the mail applet\n"
-" made by Christophe Chapuis for Cairo-Dock"
-msgstr ""
-
-#: ../src/cd-mail-applet-notifications.c:55
+#: ../src/cd-mail-applet-notifications.c:54
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -44,23 +38,23 @@ msgid ""
 "you can change it in the conf panel of this module"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:83
+#: ../src/cd-mail-applet-notifications.c:82
 msgid "Refresh a mail account"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:141
+#: ../src/cd-mail-applet-notifications.c:140
 msgid "No unread mail in your mailboxes"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "You have"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "new mails :"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "new mail :"
 msgstr ""
 

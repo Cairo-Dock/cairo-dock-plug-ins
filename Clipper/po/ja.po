@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:23 ../src/applet-notifications.c:28
+#: ../src/applet-config.c:23 ../src/applet-notifications.c:27
 msgid "No items yet."
 msgstr "アイテムはまだ有りません。"
 
@@ -29,15 +29,7 @@ msgid ""
 "them."
 msgstr ""
 
-#: ../src/applet-notifications.c:20
-msgid ""
-"This is the Clipper applet\n"
-" made by Fabrice Rey (Fabounet) for Cairo-Dock"
-msgstr ""
-"これは Fabrice Rey (Fabounet) によって \n"
-"Cairo-Dock 用に製作された Clipper アプレットです。"
-
-#: ../src/applet-notifications.c:73
+#: ../src/applet-notifications.c:72
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
@@ -448,6 +440,13 @@ msgstr "定形文登録アイテム"
 #: ../data/messages:179
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr "中クリックでアクセス可能な定形文として登録されたアイテムのリスト :"
+
+#~ msgid ""
+#~ "This is the Clipper applet\n"
+#~ " made by Fabrice Rey (Fabounet) for Cairo-Dock"
+#~ msgstr ""
+#~ "これは Fabrice Rey (Fabounet) によって \n"
+#~ "Cairo-Dock 用に製作された Clipper アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

@@ -21,14 +21,6 @@ msgid ""
 "You can invert this order if you prefer to shutdown on left-click."
 msgstr ""
 
-#: ../src/applet-notifications.c:11
-msgid ""
-"This is a very simple logout applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"これは Fabrice Rey によって Cairo-Dock 用に製作された\n"
-"とてもシンプルな logout アプレットです。"
-
 #: ../data/messages:1
 msgid "Icon"
 msgstr "アイコン"
@@ -239,6 +231,13 @@ msgstr "シャットダウンを実行するユーザー定義コマンド :"
 #: ../data/messages:87
 msgid "Invert buttons ?"
 msgstr "左/中ボタンによる呼び出しを反転？"
+
+#~ msgid ""
+#~ "This is a very simple logout applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "これは Fabrice Rey によって Cairo-Dock 用に製作された\n"
+#~ "とてもシンプルな logout アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

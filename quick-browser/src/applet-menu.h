@@ -5,7 +5,7 @@
 #include <cairo-dock.h>
 
 
-GtkWidget *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet);
+CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet);
 
 
 void cd_quick_browser_destroy_menu (CairoDockModuleInstance *myApplet);

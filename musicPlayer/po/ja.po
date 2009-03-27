@@ -29,39 +29,31 @@ msgid ""
 "       For SongBird, you have to install its dbus add-on.\n"
 msgstr ""
 
-#: ../src/applet-notifications.c:18
-msgid ""
-"This is the musicPlayer applet\n"
-" made by ChAnGFu & Mav for Cairo-Dock"
-msgstr ""
-"これは ChAnGFu と Mav によって \n"
-"Cairo-Dock 用に製作された musicPlayer アプレットです。"
-
-#: ../src/applet-notifications.c:90
+#: ../src/applet-notifications.c:89
 msgid "Previous"
 msgstr "前へ"
 
-#: ../src/applet-notifications.c:91
+#: ../src/applet-notifications.c:90
 msgid "Play/Pause (left-click)"
 msgstr "再生/一時停止（左クリック）"
 
-#: ../src/applet-notifications.c:94
+#: ../src/applet-notifications.c:93
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/applet-notifications.c:96
+#: ../src/applet-notifications.c:95
 msgid "Next (middle-click)"
 msgstr "次へ（中クリック）"
 
-#: ../src/applet-notifications.c:99
+#: ../src/applet-notifications.c:98
 msgid "Show JumpBox"
 msgstr "ジャンプ先の指定"
 
-#: ../src/applet-notifications.c:102
+#: ../src/applet-notifications.c:101
 msgid "Toggle Shuffle"
 msgstr "シャッフルのオンオフ"
 
-#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:104
 msgid "Toggle Repeat"
 msgstr "リピートのオンオフ"
 
@@ -540,6 +532,13 @@ msgstr ""
 #: ../data/messages:235
 msgid "Large"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the musicPlayer applet\n"
+#~ " made by ChAnGFu & Mav for Cairo-Dock"
+#~ msgstr ""
+#~ "これは ChAnGFu と Mav によって \n"
+#~ "Cairo-Dock 用に製作された musicPlayer アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

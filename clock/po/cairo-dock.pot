@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-24 02:08+0100\n"
+"POT-Creation-Date: 2009-03-26 01:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:416
+#: ../src/applet-config.c:418
 msgid "Search for your location :"
 msgstr ""
 
@@ -35,19 +35,11 @@ msgid ""
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
 
-#: ../src/applet-notifications.c:41
-msgid ""
-"This is the Cairo-Dock's clock applet\n"
-" made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
-"The analogic representation is a port of the well-known Cairo-Clock\n"
-" from MacSlow (http://macslow.thepimp.net)."
-msgstr ""
-
-#: ../src/applet-notifications.c:53
+#: ../src/applet-notifications.c:52
 msgid "Calendar"
 msgstr ""
 
-#: ../src/applet-notifications.c:65
+#: ../src/applet-notifications.c:64
 msgid "Set up time and date"
 msgstr ""
 
@@ -276,14 +268,16 @@ msgid "Style"
 msgstr ""
 
 #: ../data/messages:105
-msgid "List of available themes for the numeric display :"
+msgid ""
+"The analogic view is based on CairoClock; otherwise it will be displayed in "
+"a numeric way."
 msgstr ""
 
 #: ../data/messages:107
-msgid "default"
+msgid "Use the analogic view ?"
 msgstr ""
 
-#: ../data/messages:109 ../data/messages:123
+#: ../data/messages:109 ../data/messages:121
 msgid "r, v, b, a"
 msgstr ""
 
@@ -292,54 +286,48 @@ msgid "Text color for the numeric display:"
 msgstr ""
 
 #: ../data/messages:113
+msgid "Weight of the text :"
+msgstr ""
+
+#: ../data/messages:115
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "Font used for the numeric display :"
 msgstr ""
 
-#: ../data/messages:117
-msgid ""
-"The analogic view is based on CairoClock; otherwise it will be displayed in "
-"a numeric way."
-msgstr ""
-
 #: ../data/messages:119
-msgid "Use the analogic view ?"
-msgstr ""
-
-#: ../data/messages:121
 msgid "List of available themes for the analogic display :"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:123
 msgid "Text color of the date :"
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:125
 msgid "Setup time and date"
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:127
 msgid "Let empty to use default command."
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:129
 msgid "Specific command to run :"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:131
 msgid "Alarm"
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:133
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 
-#: ../data/messages:137
+#: ../data/messages:135
 msgid "Add or remove an alarm :"
 msgstr ""

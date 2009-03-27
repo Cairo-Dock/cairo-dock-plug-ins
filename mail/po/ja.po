@@ -29,15 +29,7 @@ msgid ""
 "It can check in any kind of mailbox (yahoo, gmail, etc)"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:21
-msgid ""
-"This is the mail applet\n"
-" made by Christophe Chapuis for Cairo-Dock"
-msgstr ""
-"これは Christophe Chapuis によって製作された \n"
-"Cairo-Dock 用の mail アプレットです。"
-
-#: ../src/cd-mail-applet-notifications.c:55
+#: ../src/cd-mail-applet-notifications.c:54
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -48,24 +40,24 @@ msgstr ""
 "'%s' が普段使用している標準のメーラーでない場合は、\n"
 "このモジュールの設定パネルで変更可能です。"
 
-#: ../src/cd-mail-applet-notifications.c:83
+#: ../src/cd-mail-applet-notifications.c:82
 #, fuzzy
 msgid "Refresh a mail account"
 msgstr "アカウントの削除"
 
-#: ../src/cd-mail-applet-notifications.c:141
+#: ../src/cd-mail-applet-notifications.c:140
 msgid "No unread mail in your mailboxes"
 msgstr "Mailbox に未読メールはありません。"
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "You have"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "new mails :"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:167
+#: ../src/cd-mail-applet-notifications.c:166
 msgid "new mail :"
 msgstr ""
 
@@ -277,6 +269,13 @@ msgstr ""
 #: ../data/messages:91
 msgid "Add an account with specified type and name:"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the mail applet\n"
+#~ " made by Christophe Chapuis for Cairo-Dock"
+#~ msgstr ""
+#~ "これは Christophe Chapuis によって製作された \n"
+#~ "Cairo-Dock 用の mail アプレットです。"
 
 #~ msgid "Add a new mail account"
 #~ msgstr "新規アカウントの追加"

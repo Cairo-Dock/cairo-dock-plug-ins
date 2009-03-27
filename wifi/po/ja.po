@@ -61,19 +61,11 @@ msgid ""
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
 
-#: ../src/applet-notifications.c:11
-msgid ""
-"This is the wifi applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"これは ChAnGFu によって製作された\n"
-"Cairo-Dock 用の wifi アプレットです。"
-
-#: ../src/applet-notifications.c:60
+#: ../src/applet-notifications.c:59
 msgid "Check for Wireless Extension"
 msgstr "Wireless Extension のチェック"
 
-#: ../src/applet-notifications.c:62
+#: ../src/applet-notifications.c:61
 msgid "Network Administration"
 msgstr "ネットワーク管理"
 
@@ -435,6 +427,13 @@ msgstr "「良好」のアイコン画像の名前 :"
 #: ../data/messages:175
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "「最高」のアイコン画像の名前 :"
+
+#~ msgid ""
+#~ "This is the wifi applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "これは ChAnGFu によって製作された\n"
+#~ "Cairo-Dock 用の wifi アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

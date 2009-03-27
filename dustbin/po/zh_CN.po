@@ -35,46 +35,38 @@ msgid ""
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 
-#: ../src/applet-notifications.c:17
-msgid ""
-"This is the dustbin applet for Cairo-Dock\n"
-" made by Fabrice Rey (fabounet@users.berlios.de)"
-msgstr ""
-"这是回收站小程序。\n"
-"由Fabrice Rey(fabounet@users.berlios.de)为Cairo-Dock制作"
-
-#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:39
+#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:38
 msgid "Show Trash"
 msgstr "显示垃圾"
 
-#: ../src/applet-notifications.c:35 ../src/applet-notifications.c:48
+#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:47
 msgid "Delete Trash"
 msgstr "清空回收站"
 
-#: ../src/applet-notifications.c:43
+#: ../src/applet-notifications.c:42
 #, c-format
 msgid "Show %s"
 msgstr "显示%s"
 
-#: ../src/applet-notifications.c:46
+#: ../src/applet-notifications.c:45
 msgid "Show All"
 msgstr "全部显示"
 
-#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:51
 #, c-format
 msgid "Delete %s"
 msgstr "删除%s"
 
-#: ../src/applet-notifications.c:55
+#: ../src/applet-notifications.c:54
 msgid "Delete All"
 msgstr "全部删除"
 
-#: ../src/applet-notifications.c:70
+#: ../src/applet-notifications.c:69
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s已经卸载"
 
-#: ../src/applet-notifications.c:74
+#: ../src/applet-notifications.c:73
 #, c-format
 msgid "failed to unmount %s"
 msgstr "卸载%s失败"
@@ -349,6 +341,13 @@ msgstr "仅用于您发现在回收站上点击后，小应用程序无法显示
 #: ../data/messages:115
 msgid "Alternative file browser used to show a trash :"
 msgstr "用于显示垃圾的替代文件浏览器:"
+
+#~ msgid ""
+#~ "This is the dustbin applet for Cairo-Dock\n"
+#~ " made by Fabrice Rey (fabounet@users.berlios.de)"
+#~ msgstr ""
+#~ "这是回收站小程序。\n"
+#~ "由Fabrice Rey(fabounet@users.berlios.de)为Cairo-Dock制作"
 
 #~ msgid "width :"
 #~ msgstr "宽:"

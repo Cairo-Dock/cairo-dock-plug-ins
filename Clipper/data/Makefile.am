@@ -5,7 +5,6 @@ moduledir = $(Clipperdatadir)
 
 module_DATA = \
 	Clipper.conf\
-	readme\
 	preview.png\
 	icon.svg\
 	Clipper-actions-gnome.conf\

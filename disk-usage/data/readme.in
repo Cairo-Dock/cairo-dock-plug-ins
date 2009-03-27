@@ -1,4 +1,0 @@
-@PACKAGE@ (v@VERSION@)
-Author : Benjamin SANS
-The disk-usage applet shows you the Available/Used space of a storage system.
-You can have more details with a middle-click.

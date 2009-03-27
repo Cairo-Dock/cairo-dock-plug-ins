@@ -9,7 +9,6 @@ module_DATA = \
 	broken.svg\
 	note.svg\
 	tomboy.conf\
-	readme\
 	icon.png\
 	preview.png
 

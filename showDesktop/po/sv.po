@@ -16,13 +16,16 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-notifications.c:18
-msgid ""
-"This is the showDesktop applet\n"
-" made by Romain Perol for Cairo-Dock"
+#: ../src/applet-init.c:18
+msgid "showDesktop"
 msgstr ""
-"showDesktop applet\n"
-" skapad av Romain Perol för Cairo-Dock"
+
+#: ../src/applet-init.c:21
+msgid ""
+"This is a very simple icon to show your desktop\n"
+"Left-click to show/hide the desktop\n"
+"Middle-click does the same but doesn't hide your desklets"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -196,6 +199,13 @@ msgstr ""
 #: ../data/messages:75
 msgid "Foreground tansparency :"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the showDesktop applet\n"
+#~ " made by Romain Perol for Cairo-Dock"
+#~ msgstr ""
+#~ "showDesktop applet\n"
+#~ " skapad av Romain Perol för Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "bredd:"

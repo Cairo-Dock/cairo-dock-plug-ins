@@ -25,15 +25,6 @@ msgstr ""
 msgid "Open this folder"
 msgstr ""
 
-#: ../src/applet-notifications.c:18
-#, fuzzy
-msgid ""
-"This is the Quick Browser applet\n"
-" made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr ""
-"Ceci est l'applet quick-browser\n"
-" écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
 #: ../data/messages:1
 msgid "Icon"
 msgstr "Icône"
@@ -240,6 +231,14 @@ msgstr ""
 #: ../data/messages:89
 msgid "Shortkey to show/hide the menu :"
 msgstr ""
+
+#, fuzzy
+#~ msgid ""
+#~ "This is the Quick Browser applet\n"
+#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
+#~ msgstr ""
+#~ "Ceci est l'applet quick-browser\n"
+#~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "largeur :"

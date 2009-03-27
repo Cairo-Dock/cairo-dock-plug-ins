@@ -18,55 +18,51 @@ msgstr ""
 msgid "Control your TomBoy's notes directly in the dock !"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:11
-msgid "Applet by Necropotame (Adrien Pilleboue)"
-msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
-
-#: ../src/tomboy-notifications.c:39
+#: ../src/tomboy-notifications.c:38
 msgid "Note name : "
 msgstr "Nom de la note :"
 
-#: ../src/tomboy-notifications.c:64
+#: ../src/tomboy-notifications.c:63
 msgid "Search for :"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:85
+#: ../src/tomboy-notifications.c:84
 msgid "Search for tag :"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:141
+#: ../src/tomboy-notifications.c:140
 msgid "Reload notes"
 msgstr "Recharger les notes"
 
-#: ../src/tomboy-notifications.c:144
+#: ../src/tomboy-notifications.c:143
 msgid "Add a note"
 msgstr "Ajouter une note"
 
-#: ../src/tomboy-notifications.c:148
+#: ../src/tomboy-notifications.c:147
 msgid "Delete this note"
 msgstr "Supprimer cette note"
 
-#: ../src/tomboy-notifications.c:151
+#: ../src/tomboy-notifications.c:150
 msgid "Search"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:152
+#: ../src/tomboy-notifications.c:151
 msgid "Searh for tag"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:154
+#: ../src/tomboy-notifications.c:153
 msgid "Search for today's note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:155
+#: ../src/tomboy-notifications.c:154
 msgid "Search for this week's note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:156
+#: ../src/tomboy-notifications.c:155
 msgid "Search for next week's note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:166
+#: ../src/tomboy-notifications.c:165
 msgid "Reset marks"
 msgstr ""
 
@@ -153,6 +149,9 @@ msgstr ""
 #: ../data/messages:39
 msgid "Date format to search for :"
 msgstr "Format de la date à chercher :"
+
+#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
+#~ msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
 
 #~ msgid "width :"
 #~ msgstr "largeur :"

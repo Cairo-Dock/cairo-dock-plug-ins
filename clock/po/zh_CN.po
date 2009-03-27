@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:416
+#: ../src/applet-config.c:418
 msgid "Search for your location :"
 msgstr ""
 
@@ -36,23 +36,11 @@ msgid ""
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
 
-#: ../src/applet-notifications.c:41
-msgid ""
-"This is the Cairo-Dock's clock applet\n"
-" made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
-"The analogic representation is a port of the well-known Cairo-Clock\n"
-" from MacSlow (http://macslow.thepimp.net)."
-msgstr ""
-"这是Cairo-Dock的时钟小应用程序。\n"
-"由Fabrice Rey (fabounet_03@yahoo.fr)为Cario-Dock制作。 \n"
-"指针式时钟由著名的MacSlow（http://macslow.thepimp.net）\n"
-"的Cairo-Clock移植而来。"
-
-#: ../src/applet-notifications.c:53
+#: ../src/applet-notifications.c:52
 msgid "Calendar"
 msgstr "日历"
 
-#: ../src/applet-notifications.c:65
+#: ../src/applet-notifications.c:64
 msgid "Set up time and date"
 msgstr "设置时间和日期"
 
@@ -291,14 +279,16 @@ msgid "Style"
 msgstr "风格"
 
 #: ../data/messages:105
-msgid "List of available themes for the numeric display :"
-msgstr "指针时钟存在的主题列表："
+msgid ""
+"The analogic view is based on CairoClock; otherwise it will be displayed in "
+"a numeric way."
+msgstr "指针时钟基于CairoClock；否则将以数字时钟显示。"
 
 #: ../data/messages:107
-msgid "default"
-msgstr "默认"
+msgid "Use the analogic view ?"
+msgstr "使用指针时钟？"
 
-#: ../data/messages:109 ../data/messages:123
+#: ../data/messages:109 ../data/messages:121
 msgid "r, v, b, a"
 msgstr "红, 绿, 蓝, 阿尔法"
 
@@ -307,58 +297,70 @@ msgid "Text color for the numeric display:"
 msgstr "数字时钟使用的文字颜色："
 
 #: ../data/messages:113
+#, fuzzy
+msgid "Weight of the text :"
+msgstr "右偏移："
+
+#: ../data/messages:115
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
 msgstr "比如：Monospace，Purisa，……只写下字体名，不用加数字之类。"
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid "Font used for the numeric display :"
 msgstr "用于数字显示的字体："
 
-#: ../data/messages:117
-msgid ""
-"The analogic view is based on CairoClock; otherwise it will be displayed in "
-"a numeric way."
-msgstr "指针时钟基于CairoClock；否则将以数字时钟显示。"
-
 #: ../data/messages:119
-msgid "Use the analogic view ?"
-msgstr "使用指针时钟？"
-
-#: ../data/messages:121
 msgid "List of available themes for the analogic display :"
 msgstr "指针时钟存在的主题列表："
 
-#: ../data/messages:125
+#: ../data/messages:123
 #, fuzzy
 msgid "Text color of the date :"
 msgstr "数字时钟使用的文字颜色："
 
-#: ../data/messages:127
+#: ../data/messages:125
 msgid "Setup time and date"
 msgstr "设置时间和日期"
 
-#: ../data/messages:129
+#: ../data/messages:127
 msgid "Let empty to use default command."
 msgstr "保持为空以使用默认的命令。"
 
-#: ../data/messages:131
+#: ../data/messages:129
 msgid "Specific command to run :"
 msgstr "指定运行的命令："
 
-#: ../data/messages:133
+#: ../data/messages:131
 msgid "Alarm"
 msgstr "闹钟"
 
-#: ../data/messages:135
+#: ../data/messages:133
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 
-#: ../data/messages:137
+#: ../data/messages:135
 msgid "Add or remove an alarm :"
 msgstr ""
+
+#~ msgid ""
+#~ "This is the Cairo-Dock's clock applet\n"
+#~ " made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
+#~ "The analogic representation is a port of the well-known Cairo-Clock\n"
+#~ " from MacSlow (http://macslow.thepimp.net)."
+#~ msgstr ""
+#~ "这是Cairo-Dock的时钟小应用程序。\n"
+#~ "由Fabrice Rey (fabounet_03@yahoo.fr)为Cario-Dock制作。 \n"
+#~ "指针式时钟由著名的MacSlow（http://macslow.thepimp.net）\n"
+#~ "的Cairo-Clock移植而来。"
+
+#~ msgid "List of available themes for the numeric display :"
+#~ msgstr "指针时钟存在的主题列表："
+
+#~ msgid "default"
+#~ msgstr "默认"
 
 #~ msgid "Choose a location"
 #~ msgstr "选择位置"

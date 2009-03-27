@@ -5,7 +5,6 @@ moduledir = $(show_mousedatadir)
 
 module_DATA = \
 	show_mouse.conf\
-	readme\
 	preview.png\
 	icon.png
 

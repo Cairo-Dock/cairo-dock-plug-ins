@@ -18,55 +18,51 @@ msgstr ""
 msgid "Control your TomBoy's notes directly in the dock !"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:11
-msgid "Applet by Necropotame (Adrien Pilleboue)"
-msgstr "Necropotame (Adrien Pilleboue)制作的小程序"
-
-#: ../src/tomboy-notifications.c:39
+#: ../src/tomboy-notifications.c:38
 msgid "Note name : "
 msgstr "便签名称:"
 
-#: ../src/tomboy-notifications.c:64
+#: ../src/tomboy-notifications.c:63
 msgid "Search for :"
 msgstr "搜索:"
 
-#: ../src/tomboy-notifications.c:85
+#: ../src/tomboy-notifications.c:84
 msgid "Search for tag :"
 msgstr "搜索标签:"
 
-#: ../src/tomboy-notifications.c:141
+#: ../src/tomboy-notifications.c:140
 msgid "Reload notes"
 msgstr "相关便签:"
 
-#: ../src/tomboy-notifications.c:144
+#: ../src/tomboy-notifications.c:143
 msgid "Add a note"
 msgstr "添加便签"
 
-#: ../src/tomboy-notifications.c:148
+#: ../src/tomboy-notifications.c:147
 msgid "Delete this note"
 msgstr "删除此便签"
 
-#: ../src/tomboy-notifications.c:151
+#: ../src/tomboy-notifications.c:150
 msgid "Search"
 msgstr "搜索"
 
-#: ../src/tomboy-notifications.c:152
+#: ../src/tomboy-notifications.c:151
 msgid "Searh for tag"
 msgstr "搜索标签"
 
-#: ../src/tomboy-notifications.c:154
+#: ../src/tomboy-notifications.c:153
 msgid "Search for today's note"
 msgstr "搜索今日便签"
 
-#: ../src/tomboy-notifications.c:155
+#: ../src/tomboy-notifications.c:154
 msgid "Search for this week's note"
 msgstr "搜索本周便签"
 
-#: ../src/tomboy-notifications.c:156
+#: ../src/tomboy-notifications.c:155
 msgid "Search for next week's note"
 msgstr "搜索下周便签"
 
-#: ../src/tomboy-notifications.c:166
+#: ../src/tomboy-notifications.c:165
 msgid "Reset marks"
 msgstr "重置标记"
 
@@ -154,6 +150,9 @@ msgstr ""
 #: ../data/messages:39
 msgid "Date format to search for :"
 msgstr "搜索使用的日期格式:"
+
+#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
+#~ msgstr "Necropotame (Adrien Pilleboue)制作的小程序"
 
 #~ msgid "width :"
 #~ msgstr "宽:"

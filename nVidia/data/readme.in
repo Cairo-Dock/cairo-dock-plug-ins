@@ -1,6 +1,0 @@
-@PACKAGE_NVIDIA@ (v@VERSION_NVIDIA@)
-Author : ChAnGFu (Rémy Robertson)
-The nVidia applet display info on you GPU
-  like temperature, video ram, driver version, etc...
-  Ensure that you have nvidia-settings installed otherwise this plug-in wont work.
-  Enjoy!

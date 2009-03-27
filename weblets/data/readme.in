@@ -1,6 +1,0 @@
-@PACKAGE@ (v@VERSION@)
-Author : Christophe Chapuis
-The weblets applet allows you to show
-an interactive web page on your desktop.
-You can select your web page, set the desired scrolling,
-and hide the scrollbars to get a real 'crop' of the page !

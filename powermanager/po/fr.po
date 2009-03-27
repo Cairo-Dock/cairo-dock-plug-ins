@@ -72,27 +72,23 @@ msgstr ""
 msgid "A power manager for laptop's battery. It works with ACPI and DBus."
 msgstr ""
 
-#: ../src/powermanager-menu-functions.c:14
-msgid "Applet by Necropotame (Adrien Pilleboue)"
-msgstr "Applet par Necropotame (Adrien Pilleboue)"
-
-#: ../src/powermanager-menu-functions.c:45
+#: ../src/powermanager-menu-functions.c:44
 msgid "Set up power management"
 msgstr "Gestionnaire d'énergie"
 
-#: ../src/powermanager-menu-functions.c:48
+#: ../src/powermanager-menu-functions.c:47
 msgid "Halt"
 msgstr "Arrêter"
 
-#: ../src/powermanager-menu-functions.c:49
+#: ../src/powermanager-menu-functions.c:48
 msgid "Hibernate"
 msgstr "Hiberner"
 
-#: ../src/powermanager-menu-functions.c:50
+#: ../src/powermanager-menu-functions.c:49
 msgid "Suspend"
 msgstr "Mettre en Veille"
 
-#: ../src/powermanager-menu-functions.c:51
+#: ../src/powermanager-menu-functions.c:50
 msgid "Reboot"
 msgstr "Redémarrer"
 
@@ -377,6 +373,9 @@ msgstr "Animer l'icône pendant l'alerte ?"
 #: ../data/messages:137
 msgid "Animation during alert :"
 msgstr "Animation pendant l'alerte :"
+
+#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
+#~ msgstr "Applet par Necropotame (Adrien Pilleboue)"
 
 #~ msgid "Width :"
 #~ msgstr "Largeur :"

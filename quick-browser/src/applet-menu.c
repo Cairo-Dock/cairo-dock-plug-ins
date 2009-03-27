@@ -35,7 +35,7 @@ static int _sort_item (CDQuickBrowserItem *pItem1, CDQuickBrowserItem *pItem2)
 	else
 		return strcmp (pItem1->cTmpFileName, pItem2->cTmpFileName);
 }
-static void _fill_menu_with_dir (const gchar *cDirPath, GtkWidget *pMenu, CairoDockModuleInstance *myApplet)
+static GList *_list_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet)
 {
 	//\______________ On ouvre le repertoire en lecture.
 	GError *erreur = NULL;
@@ -44,31 +44,11 @@ static void _fill_menu_with_dir (const gchar *cDirPath, GtkWidget *pMenu, CairoD
 	{
 		cd_warning (erreur->message);
 		g_error_free (erreur);
-		return ;
+		return NULL;
 	}
-	
-	CDQuickBrowserItem *pItem;
-	GtkWidget *pMenuItem;
-	
-	//\______________ On rajoute en premier une entree pour ouvrir le repertoire.
-	if (myConfig.bHasIcons)
-	{
-		pMenuItem = gtk_image_menu_item_new_with_label (D_("Open this folder"));
-		GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU);
-		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
-	}
-	else
-	{
-		pMenuItem = gtk_menu_item_new_with_label (D_("Open this folder"));
-	}
-	pItem = g_new0 (CDQuickBrowserItem, 1);
-	pItem->cPath = g_strdup (cDirPath);
-	pItem->pApplet = myApplet;
-	s_pItemList = g_list_prepend (s_pItemList, pItem);
-	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
-	g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), pItem);
 	
 	//\______________ On recupere chaque item, qu'on classe dans une liste temporaire.
+	CDQuickBrowserItem *pItem;
 	const gchar *cFileName;
 	GList *pLocalItemList = NULL;
 	do
@@ -92,14 +72,56 @@ static void _fill_menu_with_dir (const gchar *cDirPath, GtkWidget *pMenu, CairoD
 	while (1);
 	g_dir_close (dir);
 	
-	//\______________ On ajoute chaque item au menu.
+	return pLocalItemList;
+}
+static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
+{
+	const gchar *cDirPath = pItem->cPath;
+	GtkWidget *pMenu = pItem->pSubMenu;
+	CairoDockModuleInstance *myApplet = pItem->pApplet;
+	
+	//\______________ On recupere les items du repertoire.
+	GList *pLocalItemList = _list_dir (cDirPath, myApplet);
+	
+	//\______________ On rajoute en premier une entree pour ouvrir le repertoire.
+	CDQuickBrowserItem *pOpenDirItem = g_new0 (CDQuickBrowserItem, 1);
+	pOpenDirItem->cPath = g_strdup (cDirPath);
+	pOpenDirItem->pApplet = myApplet;
+	pItem->pLocalItemList = g_list_prepend (pLocalItemList, pOpenDirItem);
+	pItem->pCurrentItem = pItem->pLocalItemList->next;  // on la rajoute au menu ici, pas en meme temps que les autres.
+	
+	//\______________ On ajoute cette entree dans le menu des maintenant.
+	GtkWidget *pMenuItem;
+	if (myConfig.bHasIcons)
+	{
+		pMenuItem = gtk_image_menu_item_new_with_label (D_("Open this folder"));
+		GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU);
+		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+	}
+	else
+	{
+		pMenuItem = gtk_menu_item_new_with_label (D_("Open this folder"));
+	}
+	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
+	g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), pOpenDirItem);
+}
+static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubItemsAtOnce)
+{
+	CairoDockModuleInstance *myApplet = pRootItem->pApplet;
+	GtkWidget *pMenu = pRootItem->pSubMenu;
+	GList *pFirstItem = pRootItem->pCurrentItem;
+	
+	CDQuickBrowserItem *pItem;
+	gchar *cFileName;
+	GtkWidget *pMenuItem;
 	gboolean bSetImage;
 	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
 	gboolean bIsDirectory;
 	int iVolumeID;
 	double fOrder;
 	GList *l;
-	for (l = pLocalItemList; l != NULL; l = l->next)
+	int i;
+	for (l = pFirstItem, i = 0; l != NULL && i < iNbSubItemsAtOnce; l = l->next, i ++)
 	{
 		pItem = l->data;
 		
@@ -140,26 +162,42 @@ static void _fill_menu_with_dir (const gchar *cDirPath, GtkWidget *pMenu, CairoD
 			gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), pItem->pSubMenu);
 		}
 	}
-	s_pItemList = g_list_concat (s_pItemList, pLocalItemList);
+	pRootItem->pCurrentItem = l;
 }
 static gboolean _fill_submenu_idle (CDQuickBrowserItem *pItem)
 {
-	_fill_menu_with_dir (pItem->cPath, pItem->pSubMenu, pItem->pApplet);
-	gtk_widget_show_all (pItem->pSubMenu);
-	pItem->bFilled = TRUE;
 	CairoDockModuleInstance *myApplet = pItem->pApplet;
-	myData.iSidFillDirIdle = 0;
-	return FALSE;
+	if (pItem->pLocalItemList == NULL)
+	{
+		_init_fill_menu_from_dir (pItem);
+		if (pItem->pLocalItemList == NULL)  // cas particulier d'un repertoire vide, inutile de revenir ici pour rien faire.
+			pItem->bMenuBuilt = TRUE;
+	}
+	else
+	{
+		_fill_submenu_with_items (pItem, myConfig.iNbSubItemsAtOnce);
+		if (pItem->pCurrentItem == NULL)
+			pItem->bMenuBuilt = TRUE;
+	}
+
+	if (pItem->bMenuBuilt)
+	{
+		CairoDockModuleInstance *myApplet = pItem->pApplet;
+		myData.iSidFillDirIdle = 0;
+		gtk_widget_show_all (pItem->pSubMenu);
+		return FALSE;
+	}
+	return TRUE;
 }
 static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem)
 {
-	g_print ("%s (%s, %x)\n", __func__, pItem->cPath, pItem->pSubMenu);
+	//g_print ("%s (%s, %x)\n", __func__, pItem->cPath, pItem->pSubMenu);
 	CairoDockModuleInstance *myApplet = pItem->pApplet;
 	if (pItem->pSubMenu != NULL)
 	{
-		if (! pItem->bFilled)
+		if (! pItem->bMenuBuilt)
 		{
-			g_print ("  c'est un repertoire\n");
+			//g_print ("  c'est un repertoire (tache courante : %d)\n", myData.iSidFillDirIdle);
 			if (myData.iSidFillDirIdle != 0)
 				g_source_remove (myData.iSidFillDirIdle);
 			myData.iSidFillDirIdle = g_idle_add ((GSourceFunc) _fill_submenu_idle, pItem);
@@ -171,62 +209,66 @@ static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem)
 		cd_quick_browser_destroy_menu (myApplet);
 	}
 }
-GtkWidget *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet)
+
+
+CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet)
 {
-	GtkWidget *pMenu = gtk_menu_new ();
+	CDQuickBrowserItem *pRootItem = g_new0 (CDQuickBrowserItem, 1);
+	pRootItem->cPath = g_strdup (cDirPath);
+	pRootItem->pApplet = myApplet;
+	pRootItem->pSubMenu = gtk_menu_new ();
 	
-	_fill_menu_with_dir (cDirPath, pMenu, myApplet);
+	_init_fill_menu_from_dir (pRootItem);
+	_fill_submenu_with_items (pRootItem, 1e6);
+	pRootItem->bMenuBuilt = TRUE;
+	gtk_widget_show_all (pRootItem->pSubMenu);
 	
-	gtk_widget_show_all (pMenu);
-	
-	return pMenu;
+	return pRootItem;
 }
 
-
+static void _free_item (CDQuickBrowserItem *pItem)
+{
+	g_free (pItem->cPath);
+	if (pItem->pLocalItemList != NULL)
+	{
+		g_list_foreach (pItem->pLocalItemList, (GFunc) _free_item, NULL);
+		g_list_free (pItem->pLocalItemList);
+	}
+	g_free (pItem);
+}
 void cd_quick_browser_destroy_menu (CairoDockModuleInstance *myApplet)
 {
 	if (myData.iSidFillDirIdle != 0)
 		g_source_remove (myData.iSidFillDirIdle);
 	myData.iSidFillDirIdle = 0;
 	
-	if (myData.pMenu)
+	if (myData.pRootItem != NULL)
 	{
-		gtk_widget_destroy (myData.pMenu);  // detruit aussi les pSubMenu des items.
-		myData.pMenu = NULL;
+		gtk_widget_destroy (myData.pRootItem->pSubMenu);  // detruit tous les pSubMenu en cascade.
+		_free_item (myData.pRootItem);
+		myData.pRootItem = NULL;
 	}
-	CDQuickBrowserItem *pItem;
-	GList *l;
-	for (l = s_pItemList; l != NULL; l = l->next)
-	{
-		pItem = l->data;
-		g_free (pItem->cPath);
-		g_free (pItem);
-	}
-	g_list_free (s_pItemList);
-	s_pItemList = NULL;
 }
-
 
 void cd_quick_browser_show_menu (CairoDockModuleInstance *myApplet)
 {
 	cd_quick_browser_destroy_menu (myApplet);
 	
-	myData.pMenu = cd_quick_browser_make_menu_from_dir (myConfig.cDirPath, myApplet);
-	g_signal_connect (G_OBJECT (myData.pMenu),
+	myData.pRootItem = cd_quick_browser_make_menu_from_dir (myConfig.cDirPath, myApplet);
+	g_return_if_fail (myData.pRootItem != NULL && myData.pRootItem->pSubMenu != NULL);
+	
+	g_signal_connect (G_OBJECT (myData.pRootItem->pSubMenu),
 		"deactivate",
 		G_CALLBACK (cairo_dock_delete_menu),
 		myContainer);
 	
-	if (myData.pMenu != NULL)
-	{
-		if (myDock)
-			myDock->bMenuVisible = TRUE;
-		gtk_menu_popup (GTK_MENU (myData.pMenu),
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			1,
-			gtk_get_current_event_time ());
-	}
+	if (myDock)
+		myDock->bMenuVisible = TRUE;
+	gtk_menu_popup (GTK_MENU (myData.pRootItem->pSubMenu),
+		NULL,
+		NULL,
+		NULL,
+		NULL,
+		1,
+		gtk_get_current_event_time ());
 }

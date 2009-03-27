@@ -22,14 +22,6 @@ msgid ""
 "and hide the scrollbars to get a real 'crop' of the page."
 msgstr ""
 
-#: ../src/applet-notifications.c:30
-msgid ""
-"This is the weblets applet\n"
-" made by Christophe Chapuis for Cairo-Dock"
-msgstr ""
-"これは Chiristophe Chapuis によって製作された \n"
-"Cairo-Dock 用の weblets アプレットです。"
-
 #: ../src/applet-widget.c:36
 #, fuzzy
 msgid "Weblets"
@@ -264,6 +256,13 @@ msgstr "Firefox が受け付ける URI がすべて"
 #: ../data/messages:99
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr "アプレットのメニューに表示する既定ブックマーク :"
+
+#~ msgid ""
+#~ "This is the weblets applet\n"
+#~ " made by Christophe Chapuis for Cairo-Dock"
+#~ msgstr ""
+#~ "これは Chiristophe Chapuis によって製作された \n"
+#~ "Cairo-Dock 用の weblets アプレットです。"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

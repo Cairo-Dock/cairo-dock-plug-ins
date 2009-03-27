@@ -37,27 +37,23 @@ msgstr ""
 msgid ""
 "Control your Rhythmbox player directly in the dock !\n"
 "Play/pause with left click, next song with middle click.\n"
-"You can drag and drop covers (jpg) on the icon to use them, or songs to put "
-"them in the queue."
+"You can drag and drop covers (jpg) on the icon to use them,\n"
+"or songs to put them in the queue."
 msgstr ""
 
-#: ../src/rhythmbox-menu-functions.c:42
-msgid "Applet by Necropotame (Adrien Pilleboue)"
-msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
-
-#: ../src/rhythmbox-menu-functions.c:52
+#: ../src/rhythmbox-menu-functions.c:51
 msgid "Previous"
 msgstr "Précédent"
 
-#: ../src/rhythmbox-menu-functions.c:54
+#: ../src/rhythmbox-menu-functions.c:53
 msgid "Next (middle-click)"
 msgstr "Suivant (clique du milieu)"
 
-#: ../src/rhythmbox-menu-functions.c:56
+#: ../src/rhythmbox-menu-functions.c:55
 msgid "Play/Pause (left-click)"
 msgstr "Jouer/Pause (clique gauche)"
 
-#: ../src/rhythmbox-menu-functions.c:58
+#: ../src/rhythmbox-menu-functions.c:57
 msgid "Information"
 msgstr "Information"
 
@@ -342,6 +338,9 @@ msgstr "Nom d'une image pour l'icône 'pause' :"
 #: ../data/messages:133
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom d'une image pour l'icône 'cassé' :"
+
+#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
+#~ msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
 
 #~ msgid ""
 #~ "Artist : %s\n"

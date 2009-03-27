@@ -64,15 +64,7 @@ msgstr "Impossible de trouver l'élément '%s'"
 msgid "Set up volume :"
 msgstr "Réglez le volume :"
 
-#: ../src/applet-notifications.c:19
-msgid ""
-"This is the AlsaMixer applet\n"
-" made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr ""
-"Ceci est l'applet AlsaMixer\n"
-" écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:44
 msgid "Adjsut channels"
 msgstr "Ajustez les canaux"
 
@@ -365,6 +357,13 @@ msgstr "Icône 'cassé'"
 #: ../data/messages:137
 msgid "Mute icon :"
 msgstr "Icône 'muet' :"
+
+#~ msgid ""
+#~ "This is the AlsaMixer applet\n"
+#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
+#~ msgstr ""
+#~ "Ceci est l'applet AlsaMixer\n"
+#~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "largeur :"

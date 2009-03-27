@@ -26,39 +26,31 @@ msgid ""
 "Down play the next sound"
 msgstr ""
 
-#: ../src/applet-notifications.c:195
-msgid ""
-"This is the xmms applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"Questa è l'applet xmms\n"
-" scritta da ChAnGFu per Cairo-Dock"
-
-#: ../src/applet-notifications.c:258
+#: ../src/applet-notifications.c:257
 msgid "Previous"
 msgstr "Precedente"
 
-#: ../src/applet-notifications.c:259
+#: ../src/applet-notifications.c:258
 msgid "Play/Pause (left-click)"
 msgstr "Play/Pause (click sinistro)"
 
-#: ../src/applet-notifications.c:261
+#: ../src/applet-notifications.c:260
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/applet-notifications.c:263
+#: ../src/applet-notifications.c:262
 msgid "Next (middle-click)"
 msgstr "Seguente (click centrale)"
 
-#: ../src/applet-notifications.c:265
+#: ../src/applet-notifications.c:264
 msgid "Show JumpBox"
 msgstr "Mostrare il JumpBox"
 
-#: ../src/applet-notifications.c:266
+#: ../src/applet-notifications.c:265
 msgid "Toggle Shuffle"
 msgstr "Selezione casuale"
 
-#: ../src/applet-notifications.c:267
+#: ../src/applet-notifications.c:266
 msgid "Toggle Repeat"
 msgstr "Ripetizione"
 
@@ -385,6 +377,13 @@ msgstr "Immagine per l'icona 'Pausa' :"
 #: ../data/messages:149
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Immagine per l'icona 'Non-funzionante' :"
+
+#~ msgid ""
+#~ "This is the xmms applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet xmms\n"
+#~ " scritta da ChAnGFu per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

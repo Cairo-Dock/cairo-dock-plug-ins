@@ -21,14 +21,6 @@ msgid ""
 "You can invert this order if you prefer to shutdown on left-click."
 msgstr ""
 
-#: ../src/applet-notifications.c:11
-msgid ""
-"This is a very simple logout applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"这是一个非常简单的注销小程序\n"
-"由Fabrice Rey为Cairo-Dock作的"
-
 #: ../data/messages:1
 msgid "Icon"
 msgstr "图标"
@@ -227,6 +219,13 @@ msgstr "用户指定执行的关机命令:"
 #: ../data/messages:87
 msgid "Invert buttons ?"
 msgstr "反转按钮?"
+
+#~ msgid ""
+#~ "This is a very simple logout applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "这是一个非常简单的注销小程序\n"
+#~ "由Fabrice Rey为Cairo-Dock作的"
 
 #~ msgid "width :"
 #~ msgstr "宽:"

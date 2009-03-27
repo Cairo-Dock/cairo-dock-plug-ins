@@ -1,6 +1,0 @@
-@PACKAGE_XGAMMA@ (v@VERSION_XGAMMA@)
-Author : Fabounet (Fabrice Rey)
-Setup the gama of your screen directly from the dock.
- It is a simple port of xgamma.
- Left-click to quickly setup gamma,
-  Middle-click to set it up more accurately.

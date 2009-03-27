@@ -19,13 +19,16 @@ msgstr ""
 msgid "Unmounted"
 msgstr "卸载"
 
-#: ../src/applet-notifications.c:18
+#: ../src/applet-init.c:23
 msgid ""
-"This is the shortcuts applet\n"
-" made by Fabounet for Cairo-Dock"
-msgstr "这是Fabounet为Cairo-Dock制作的Shortcuts小应用程序"
+"An applet that let you access quickly to all of your shortcuts.\n"
+"It can manage disks, network points, and Nautilus bookmarks.\n"
+"You can add or remove bookmarks by drag'n'drop, even if you don't have "
+"Nautilus.\n"
+"Middle-click to acces your desktop easily."
+msgstr ""
 
-#: ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:43
 msgid "Remove this bookmark"
 msgstr "移除此书签"
 
@@ -230,6 +233,11 @@ msgstr "留空则使用默认的子dock视图。"
 #: ../data/messages:91
 msgid "Name of the view used for the sub-dock :"
 msgstr "用于子dock的视图名称:"
+
+#~ msgid ""
+#~ "This is the shortcuts applet\n"
+#~ " made by Fabounet for Cairo-Dock"
+#~ msgstr "这是Fabounet为Cairo-Dock制作的Shortcuts小应用程序"
 
 #~ msgid "width :"
 #~ msgstr "宽:"

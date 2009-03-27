@@ -17,15 +17,16 @@ msgstr ""
 msgid "Unmounted"
 msgstr "Smontato"
 
-#: ../src/applet-notifications.c:18
+#: ../src/applet-init.c:23
 msgid ""
-"This is the shortcuts applet\n"
-" made by Fabounet for Cairo-Dock"
+"An applet that let you access quickly to all of your shortcuts.\n"
+"It can manage disks, network points, and Nautilus bookmarks.\n"
+"You can add or remove bookmarks by drag'n'drop, even if you don't have "
+"Nautilus.\n"
+"Middle-click to acces your desktop easily."
 msgstr ""
-"Questa è l'applet shortcuts\n"
-" scritta da Fabounet per Cairo-Dock"
 
-#: ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:43
 msgid "Remove this bookmark"
 msgstr "Rimuovere questo segnalibro"
 
@@ -244,6 +245,13 @@ msgstr "Lasciate vuoto per utilizzare la vista di default della sub-dock."
 #: ../data/messages:91
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
+
+#~ msgid ""
+#~ "This is the shortcuts applet\n"
+#~ " made by Fabounet for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet shortcuts\n"
+#~ " scritta da Fabounet per Cairo-Dock"
 
 #~ msgid "width :"
 #~ msgstr "larghezza :"

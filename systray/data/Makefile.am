@@ -5,7 +5,6 @@ moduledir = $(systraydatadir)
 
 module_DATA = \
 	systray.conf\
-	readme\
 	preview.png\
 	icon.png
 

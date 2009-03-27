@@ -1,7 +1,0 @@
-@PACKAGE_COMPIZ_ICON@ (v@VERSION_COMPIZ_ICON@)
-Author : ChAnGFu (Rémy Robertson)
-The compiz-icon applet allows you to manage compiz and other windows manager
- The sub-dock gives you to acces to CCSM, Emerald and some basic Compiz actions.
- You can define one of these actions for the middle-click.
- The configuration pannel gives you some options for Compiz
- A special thanks to Coz for his icons.

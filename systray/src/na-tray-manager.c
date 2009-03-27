@@ -25,6 +25,7 @@
 #include <libintl.h>
 
 #include "na-tray-manager.h"
+#include "systray-struct.h"
 
 #include <gdkconfig.h>
 #include <glib/gi18n.h>
@@ -287,6 +288,16 @@ na_tray_manager_socket_exposed (GtkWidget      *widget,
   gdk_window_clear_area (widget->window,
                          event->area.x, event->area.y,
                          event->area.width, event->area.height);
+  cairo_t *pCairoContext = gdk_cairo_create (widget->window);
+   if (cairo_status (pCairoContext) != CAIRO_STATUS_SUCCESS, FALSE) { 
+     cairo_destroy (pCairoContext); 
+     return FALSE; 
+   } 
+   //erase the background
+   cairo_set_source_rgba (pCairoContext, 0., 0., 1., 0.15); 
+   cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE); 
+   cairo_paint (pCairoContext); 
+   cairo_destroy (pCairoContext); 
   return FALSE;
 }
 
@@ -315,17 +326,32 @@ na_tray_manager_handle_dock_request (NaTrayManager       *manager,
       return;
     }
 
-  socket = gtk_socket_new ();
+	socket = gtk_socket_new ();
+	
+	TrayApplet *applet = myData.tray;
+	GdkColormap* pColormap = gdk_screen_get_rgba_colormap (applet->screen);
+	gtk_widget_set_colormap (socket, pColormap);
+	GdkVisual* pVisual = gdk_rgb_get_visual ();
+	Visual *vis = GDK_VISUAL_XVISUAL (pVisual);
+	VisualID visualid = vis->visualid;
+	
+	Window Xid = GDK_DRAWABLE_XID (socket);
+	Atom aNetVisualID = XInternAtom (cairo_dock_get_Xdisplay (), "_NET_SYSTEM_TRAY_VISUAL", False);
+	XChangeProperty (cairo_dock_get_Xdisplay (),
+		Xid,
+		aNetVisualID,
+		XA_VISUALID, 32, PropModeReplace,
+		(guchar *)&visualid, 1);
 
-  gtk_widget_set_app_paintable (socket, TRUE);
+  //gtk_widget_set_app_paintable (socket, TRUE);
   //FIXME: need to find a theme where this (and expose event) is needed
   gtk_widget_set_double_buffered (socket, FALSE);
-  g_signal_connect (socket, "realize",
-                    G_CALLBACK (na_tray_manager_make_socket_transparent), NULL);
+  ///g_signal_connect (socket, "realize",
+  ///                  G_CALLBACK (na_tray_manager_make_socket_transparent), NULL);
   g_signal_connect (socket, "expose_event",
                     G_CALLBACK (na_tray_manager_socket_exposed), NULL);
-  g_signal_connect_after (socket, "style_set",
-                          G_CALLBACK (na_tray_manager_socket_style_set), NULL);
+  ///g_signal_connect_after (socket, "style_set",
+  ///                        G_CALLBACK (na_tray_manager_socket_style_set), NULL);
 
   /* We need to set the child window here
    * so that the client can call _get functions

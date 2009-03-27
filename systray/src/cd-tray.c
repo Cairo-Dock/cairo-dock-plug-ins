@@ -20,7 +20,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <gtk/gtk.h>
-
+#include <X11/Xatom.h>
 #include <math.h>
 
 #include <cairo-dock.h>
@@ -97,8 +97,9 @@ tray_icon_added (NaTrayManager *manager,
   applet->icons = g_list_append (applet->icons, icon);
   gtk_widget_set_colormap(icon, gdk_screen_get_rgb_colormap (gdk_screen_get_default()));
   gtk_box_pack_start(GTK_BOX(applet->box), icon, TRUE, TRUE, 0);
+  //gtk_widget_set_size_request((applet->box), 52, 28);
   gtk_widget_set_size_request(icon, 24, 24);
-  tray_resize_container(applet);
+  //tray_resize_container(applet);
   force_redraw(applet);
 }
 
@@ -153,7 +154,7 @@ static gboolean tray_clean_up(GtkWidget *widget,
      return FALSE; 
    } 
    //erase the background
-   cairo_set_source_rgba (pCairoContext, 0., 0., 0., 0.); 
+   cairo_set_source_rgba (pCairoContext, 0., 0., 1., 0.15); 
    cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE); 
    cairo_paint (pCairoContext); 
    cairo_destroy (pCairoContext); 
@@ -179,8 +180,23 @@ static void tray_create_widget(TrayApplet *applet)
   g_signal_connect (applet->box, "expose-event",
                      G_CALLBACK (cd_desklet_on_expose), applet->box);
 
-  gtk_widget_set_colormap (applet->box, gdk_screen_get_rgb_colormap (applet->screen));
-  gtk_container_add (GTK_CONTAINER (applet->widget), applet->box);
+
+	GdkColormap* pColormap = gdk_screen_get_rgba_colormap (applet->screen);
+	gtk_widget_set_colormap (applet->box, pColormap);
+	
+// 	GdkVisual* pVisual = gdk_rgb_get_visual ();
+// 	Visual *vis = GDK_VISUAL_XVISUAL (pVisual);
+// 	VisualID visualid = vis->visualid;
+// 	
+// 	Window Xid = GDK_DRAWABLE_XID (applet->box);
+// 	Atom aNetVisualID = XInternAtom (cairo_dock_get_Xdisplay (), "_NET_SYSTEM_TRAY_VISUAL", False);
+// 	XChangeProperty (cairo_dock_get_Xdisplay (),
+// 		Xid,
+// 		aNetVisualID,
+// 		XA_VISUALID, 32, PropModeReplace,
+// 		(guchar *)&visualid, 1);
+	
+	gtk_container_add (GTK_CONTAINER (applet->widget), applet->box);
 }
 
 static void tray_icon_cb_click_steal(GtkWidget *w, TrayApplet* applet)
@@ -210,10 +226,10 @@ TrayApplet* tray_init (GtkWidget *parent)
   applet->widget = gtk_event_box_new ();
   //gtk_event_box_set_visible_window(GTK_EVENT_BOX (applet->widget), TRUE);  /// utile ?...
   ///gtk_widget_set_colormap(applet->widget, gdk_screen_get_rgb_colormap (screen));
-	GdkColormap* pColormap = gdk_screen_get_rgba_colormap (screen);  /// utile ?...
+	//GdkColormap* pColormap = gdk_screen_get_rgba_colormap (screen);  /// utile ?...
 	//if (!pColormap)
-		pColormap = gdk_screen_get_rgb_colormap (screen);
-	gtk_widget_set_colormap (applet->widget, pColormap);
+	//	pColormap = gdk_screen_get_rgb_colormap (screen);
+	//gtk_widget_set_colormap (applet->widget, pColormap);
   
   
   if (na_tray_manager_check_running(screen)) {
