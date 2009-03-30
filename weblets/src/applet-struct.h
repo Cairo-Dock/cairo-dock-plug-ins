@@ -9,7 +9,7 @@
 #include "config.h"
 #endif
 
-#include <webkit/webkit.h>
+#include <WebKit/webkit.h>
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {

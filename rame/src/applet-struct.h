@@ -9,6 +9,7 @@ struct _AppletConfig {
 	gint iCheckInterval;
 	CairoDockInfoDisplay iInfoDisplay;
 	gboolean bShowSwap;
+	gboolean bShowFreeMemory;
 	
 	const gchar *cGThemePath;
 	gchar *cWatermarkImagePath;

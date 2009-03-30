@@ -32,7 +32,7 @@ msgstr "データの取得に失敗"
 msgid "Monitor System"
 msgstr "システム・モニタ"
 
-#: ../src/applet-rame.c:120
+#: ../src/applet-rame.c:119
 msgid "Loading"
 msgstr "読み込み中"
 
@@ -206,7 +206,7 @@ msgstr "前景画像 :"
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:73 ../data/messages:145
+#: ../data/messages:73 ../data/messages:147
 msgid "Configuration"
 msgstr "設定"
 
@@ -318,11 +318,15 @@ msgstr "ラベル上"
 msgid "Display SWAP too ?"
 msgstr "スワップも表示？"
 
-#: ../data/messages:131
+#: ../data/messages:131 ../data/messages:155
+msgid "Show free memory instead of used memory ?"
+msgstr ""
+
+#: ../data/messages:133
 msgid "Top List"
 msgstr "トップリスト"
 
-#: ../data/messages:133
+#: ../data/messages:135
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
@@ -330,43 +334,43 @@ msgstr ""
 "アイコンを左クリックすると、メモリを最も使用している上位 N までのプログラムの"
 "リストが得られます。"
 
-#: ../data/messages:135
+#: ../data/messages:137
 msgid "Number of programs to display in the top list :"
 msgstr "トップリストに表示するプログラム数 :"
 
-#: ../data/messages:137
+#: ../data/messages:139
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "トップリストの記載に使用するグラデーションの開始色"
 
-#: ../data/messages:139
+#: ../data/messages:141
 msgid "Start color of the top list :"
 msgstr "トップリストの開始色 :"
 
-#: ../data/messages:141
+#: ../data/messages:143
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "トップリストの記載に使用するグラデーションの終了色"
 
-#: ../data/messages:143
+#: ../data/messages:145
 msgid "Stop color of the top list :"
 msgstr "トップリストの終了色 :"
 
-#: ../data/messages:147
+#: ../data/messages:149
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:149
+#: ../data/messages:151
 msgid "Delay between refresh :"
 msgstr "更新の間隔時間 :"
 
-#: ../data/messages:151
+#: ../data/messages:153
 msgid "Show top memory usage in % ?"
 msgstr "メモリ使用のトップを％で表示？"
 
-#: ../data/messages:153
+#: ../data/messages:157
 msgid "Let empty to use he default one."
 msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
-#: ../data/messages:155
+#: ../data/messages:159
 msgid "User command to show a system monitor :"
 msgstr "システム・モニタを表示するためのユーザー定義コマンド :"
 

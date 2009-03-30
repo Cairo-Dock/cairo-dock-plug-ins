@@ -27,7 +27,6 @@
 #include "applet-widget.h"
 
 #include <gtk/gtk.h>
-#include <webkit/webkit.h>
 
 CairoDialog *cd_weblets_build_dialog(CairoDockModuleInstance *myApplet)
 {

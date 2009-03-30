@@ -303,6 +303,8 @@ void cd_clock_clear_theme (CairoDockModuleInstance *myApplet, gboolean bClearAll
 		glDeleteTextures (1, &myData.iMinuteNeedleTexture);
 	if (myData.iSecondNeedleTexture != 0)
 		glDeleteTextures (1, &myData.iSecondNeedleTexture);
+	if (myData.iDateTexture != 0)
+		_cairo_dock_delete_texture (myData.iDateTexture);
 	
 	if (bClearAll)
 	{
@@ -324,5 +326,6 @@ void cd_clock_clear_theme (CairoDockModuleInstance *myApplet, gboolean bClearAll
 		myData.iHourNeedleTexture = 0;
 		myData.iMinuteNeedleTexture = 0;
 		myData.iSecondNeedleTexture = 0;
+		myData.iDateTexture = 0;
 	}
 }

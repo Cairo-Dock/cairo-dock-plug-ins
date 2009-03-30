@@ -1,13 +1,12 @@
 #include <stdlib.h>
 #include <glib/gi18n.h>
+#define __USE_POSIX
+#include <time.h>
 
 #include "tomboy-dbus.h"
 #include "tomboy-draw.h"
 #include "tomboy-struct.h"
 #include "tomboy-notifications.h"
-
-
-
 
 
 CD_APPLET_ON_CLICK_BEGIN
@@ -34,16 +33,28 @@ CD_APPLET_ON_CLICK_END
 
 static void _cd_tomboy_create_new_note (Icon *pIcon)
 {
-	cd_debug ("");
-	gchar *note_title = cairo_dock_show_demand_and_wait (D_("Note name : "),
-		(pIcon != NULL ? pIcon : myIcon),
-		(pIcon != NULL && myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
-		NULL);
+	gchar *note_title;
+	if (myConfig.bAutoNaming)
+	{
+		note_title = g_new0 (gchar, 50+1);
+		time_t epoch = (time_t) time (NULL);
+		struct tm currentTime;
+		localtime_r (&epoch, &currentTime);
+		strftime (note_title, 50, "%a-%d-%b_%r", &currentTime);
+	}
+	else
+	{
+		note_title = cairo_dock_show_demand_and_wait (D_("Note name : "),
+			(pIcon != NULL ? pIcon : myIcon),
+			(pIcon != NULL && myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
+			NULL);
+	}
 	cd_message ("%s (%s)", __func__, note_title);
 	gchar *note_name = addNote(note_title);
-	cd_debug ("note_name <- %s", note_name);
+	cd_debug (" note_name <- %s", note_name);
 	showNote(note_name);
 	g_free (note_name);
+	g_free (note_title);
 }
 static void _cd_tomboy_add_note (GtkMenuItem *menu_item, Icon *pIcon)
 {
@@ -51,6 +62,16 @@ static void _cd_tomboy_add_note (GtkMenuItem *menu_item, Icon *pIcon)
 }
 static void _cd_tomboy_delete_note (GtkMenuItem *menu_item, Icon *pIcon)
 {
+	if (pIcon == NULL)
+		return ;
+	if (myConfig.bAskBeforeDelete)
+	{
+		gchar *cQuestion = g_strdup_printf ("%s (%s)", D_("Delete this note ?"), pIcon->acName);
+		int iAnswer = cairo_dock_ask_question_and_wait (cQuestion, pIcon, myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
+		g_free (cQuestion);
+		if (iAnswer != GTK_RESPONSE_YES)
+			return ;
+	}
 	deleteNote (pIcon->acCommand);
 }
 static void _cd_tomboy_reload_notes (GtkMenuItem *menu_item, Icon *pIcon)

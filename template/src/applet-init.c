@@ -20,7 +20,7 @@ CD_APPLET_DEFINITION (N_("CD_APPLET_NAME"),
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("Useful description\n"
 	"and manual"),
-	"Your name here")
+	"CD_MY_NAME")
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.0.0-beta3.1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.0.0-rc1],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -406,7 +406,7 @@ AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
 RAME_PACKAGE=cd-rame
 AC_SUBST(GETTEXT_RAME, "$RAME_PACKAGE")
 
-AC_SUBST(VERSION_RAME, "1.1.3")
+AC_SUBST(VERSION_RAME, "1.1.4")
 AC_SUBST(PACKAGE_RAME, "$RAME_PACKAGE")
 
 AC_SUBST(ramedatadir, "${pkgdatadir}/rame")
@@ -532,7 +532,7 @@ AC_SUBST(terminaldatadir, "${pkgdatadir}/terminal")
 TOMBOY_PACKAGE="cd-tomboy"
 AC_SUBST(GETTEXT_TOMBOY, "$TOMBOY_PACKAGE")
 
-AC_SUBST(VERSION_TOMBOY, "1.0.1")
+AC_SUBST(VERSION_TOMBOY, "1.0.2")
 AC_SUBST(PACKAGE_TOMBOY, "$TOMBOY_PACKAGE")
 
 AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")

@@ -107,8 +107,9 @@ struct _AppletData {
 	
 	ClockDigital pDigitalClock;
 	
-	GLuint iBgTexture, iFgTexture, iHourNeedleTexture, iMinuteNeedleTexture, iSecondNeedleTexture;
+	GLuint iBgTexture, iFgTexture, iHourNeedleTexture, iMinuteNeedleTexture, iSecondNeedleTexture, iDateTexture;
 	gint iNeedleWidth, iNeedleHeight;
+	gint iDateWidth, iDateHeight;
 	gint iSmoothAnimationStep;
 	} ;
 

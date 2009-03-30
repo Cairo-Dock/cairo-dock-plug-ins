@@ -15,6 +15,8 @@ struct _AppletConfig {
 	gchar *cRenderer;
 	gboolean bDrawContent;
 	gchar *cDateFormat;
+	gboolean bAutoNaming;
+	gboolean bAskBeforeDelete;
 	} ;
 
 struct _AppletData {

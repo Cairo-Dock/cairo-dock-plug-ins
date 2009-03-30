@@ -121,7 +121,7 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	cd_clock_clear_theme (myApplet, TRUE);  // TRU <=> tout.
+	cd_clock_clear_theme (myApplet, TRUE);  // TRUE <=> tout.
 	
 	int i;
 	for (i = 0; i < 4; i ++) {

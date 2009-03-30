@@ -43,3 +43,10 @@ draw content = true
 #s Date format to search for :
 #{Write the date format you usually use in your notes. The syntax is the one of 'strftime' : %d for the day, %m for the month, %y for the year (2 digits), etc. Let it blnk to use the default one (%d/%m/%y).}
 date format = 
+
+#b Ask confirùation before deleting a note ?
+ask delete = false
+
+#b Automatically name a new note ?
+#{Otherwise you will be asked to name it.}
+auto-naming = false

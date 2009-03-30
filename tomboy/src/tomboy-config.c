@@ -17,6 +17,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDateFormat 		= CD_CONFIG_GET_STRING ("Configuration", "date format");
 	if (myConfig.cDateFormat == NULL)
 		myConfig.cDateFormat = g_strdup ("%d/%m/%y");
+	myConfig.bAutoNaming = CD_CONFIG_GET_BOOLEAN ("Configuration", "auto-naming");
+	myConfig.bAskBeforeDelete = CD_CONFIG_GET_BOOLEAN ("Configuration", "ask delete");
 CD_APPLET_GET_CONFIG_END
 
 

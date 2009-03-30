@@ -18,51 +18,56 @@ msgstr ""
 msgid "Control your TomBoy's notes directly in the dock !"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:38
+#: ../src/tomboy-notifications.c:47
 msgid "Note name : "
 msgstr "Nome della nota :"
 
-#: ../src/tomboy-notifications.c:63
+#: ../src/tomboy-notifications.c:69
+#, fuzzy
+msgid "Delete this note ?"
+msgstr "Cancellare questa nota"
+
+#: ../src/tomboy-notifications.c:84
 msgid "Search for :"
 msgstr "Cercare per :"
 
-#: ../src/tomboy-notifications.c:84
+#: ../src/tomboy-notifications.c:105
 msgid "Search for tag :"
 msgstr "cercare per parole chiave :"
 
-#: ../src/tomboy-notifications.c:140
+#: ../src/tomboy-notifications.c:161
 msgid "Reload notes"
 msgstr "Ricaricare le note"
 
-#: ../src/tomboy-notifications.c:143
+#: ../src/tomboy-notifications.c:164
 msgid "Add a note"
 msgstr "Aggiungere una nota"
 
-#: ../src/tomboy-notifications.c:147
+#: ../src/tomboy-notifications.c:168
 msgid "Delete this note"
 msgstr "Cancellare questa nota"
 
-#: ../src/tomboy-notifications.c:150
+#: ../src/tomboy-notifications.c:171
 msgid "Search"
 msgstr "Cercare"
 
-#: ../src/tomboy-notifications.c:151
+#: ../src/tomboy-notifications.c:172
 msgid "Searh for tag"
 msgstr "Cercare per parole chiave"
 
-#: ../src/tomboy-notifications.c:153
+#: ../src/tomboy-notifications.c:174
 msgid "Search for today's note"
 msgstr "Cercare note odierne "
 
-#: ../src/tomboy-notifications.c:154
+#: ../src/tomboy-notifications.c:175
 msgid "Search for this week's note"
 msgstr "Cercare note della settimana"
 
-#: ../src/tomboy-notifications.c:155
+#: ../src/tomboy-notifications.c:176
 msgid "Search for next week's note"
 msgstr "Cercare note della prossima settimana"
 
-#: ../src/tomboy-notifications.c:165
+#: ../src/tomboy-notifications.c:186
 msgid "Reset marks"
 msgstr "Azzerare i segni"
 
@@ -153,6 +158,18 @@ msgstr ""
 #: ../data/messages:39
 msgid "Date format to search for :"
 msgstr "Formato data da ricercare :"
+
+#: ../data/messages:41
+msgid "Ask confirùation before deleting a note ?"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Otherwise you will be asked to name it."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Automatically name a new note ?"
+msgstr ""
 
 #~ msgid "Applet by Necropotame (Adrien Pilleboue)"
 #~ msgstr "Applet scritta da Necropotame (Adrien Pilleboue)"

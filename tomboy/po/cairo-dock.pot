@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-26 01:56+0100\n"
+"POT-Creation-Date: 2009-03-29 23:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,51 +20,55 @@ msgstr ""
 msgid "Control your TomBoy's notes directly in the dock !"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:38
+#: ../src/tomboy-notifications.c:47
 msgid "Note name : "
 msgstr ""
 
-#: ../src/tomboy-notifications.c:63
-msgid "Search for :"
+#: ../src/tomboy-notifications.c:69
+msgid "Delete this note ?"
 msgstr ""
 
 #: ../src/tomboy-notifications.c:84
+msgid "Search for :"
+msgstr ""
+
+#: ../src/tomboy-notifications.c:105
 msgid "Search for tag :"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:140
+#: ../src/tomboy-notifications.c:161
 msgid "Reload notes"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:143
+#: ../src/tomboy-notifications.c:164
 msgid "Add a note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:147
+#: ../src/tomboy-notifications.c:168
 msgid "Delete this note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:150
+#: ../src/tomboy-notifications.c:171
 msgid "Search"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:151
+#: ../src/tomboy-notifications.c:172
 msgid "Searh for tag"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:153
+#: ../src/tomboy-notifications.c:174
 msgid "Search for today's note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:154
+#: ../src/tomboy-notifications.c:175
 msgid "Search for this week's note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:155
+#: ../src/tomboy-notifications.c:176
 msgid "Search for next week's note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:165
+#: ../src/tomboy-notifications.c:186
 msgid "Reset marks"
 msgstr ""
 
@@ -145,4 +149,16 @@ msgstr ""
 
 #: ../data/messages:39
 msgid "Date format to search for :"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Ask confirùation before deleting a note ?"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Otherwise you will be asked to name it."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Automatically name a new note ?"
 msgstr ""

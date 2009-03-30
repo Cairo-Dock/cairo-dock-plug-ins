@@ -138,6 +138,8 @@ info display = 1
 #b Display SWAP too ?
 show swap = false
 
+#b Show free memory instead of used memory ?
+show remaining = false
 
 #F[Top List;gtk-sort-ascending]
 frame_top=
@@ -164,6 +166,9 @@ delay = 10
 
 #b Show top memory usage in % ?
 top in percent = false
+
+#b Show free memory instead of used memory ?
+show free = false
 
 #s User command to show a system monitor :
 #{Let empty to use he default one.}

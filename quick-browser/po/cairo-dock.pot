@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-26 01:56+0100\n"
+"POT-Creation-Date: 2009-03-29 23:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,12 @@ msgstr ""
 msgid ""
 "This applet lets you browse a folder and its sub-folders very quickly.\n"
 "You can set up a shortkey to pop up the menu.\n"
+"Midlle-click will open the main folder.\n"
 "This applet can be instanciated several times, if you want to browse "
 "different folders."
 msgstr ""
 
-#: ../src/applet-menu.c:56 ../src/applet-menu.c:62
+#: ../src/applet-menu.c:97 ../src/applet-menu.c:103
 msgid "Open this folder"
 msgstr ""
 
@@ -216,4 +217,14 @@ msgstr ""
 
 #: ../data/messages:89
 msgid "Shortkey to show/hide the menu :"
+msgstr ""
+
+#: ../data/messages:91
+msgid ""
+"Number of items loaded at once. Setting a high value speeds up a little the "
+"loading, but blocks the appli more."
+msgstr ""
+
+#: ../data/messages:93
+msgid "Granularity of the menu's building :"
 msgstr ""

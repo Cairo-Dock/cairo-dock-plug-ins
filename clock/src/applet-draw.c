@@ -46,12 +46,61 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			g_unsetenv ("TZ");
 	}
 	
+	//\________________ On change la date si necessaire.
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	gboolean bNewDate = (myData.currentTime.tm_mday != myData.iLastCheckedDay || myData.currentTime.tm_mon != myData.iLastCheckedMonth || myData.currentTime.tm_year != myData.iLastCheckedYear);
+	if (bNewDate)
+	{
+		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", &myData.currentTime);
+		myData.iLastCheckedDay = myData.currentTime.tm_mday;
+		myData.iLastCheckedMonth = myData.currentTime.tm_mon;
+		myData.iLastCheckedYear = myData.currentTime.tm_year;
+	}
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle && myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
+	{
+		if (bNewDate || myData.iDateTexture == 0)
+		{
+			strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", &myData.currentTime);
+			
+			if (myData.iDateTexture != 0)
+				_cairo_dock_delete_texture (myData.iDateTexture);
+			
+			double fScale = (double) iWidth / (double) myData.DimensionData.width;
+			CairoDockLabelDescription labelDescription;
+			labelDescription.iSize = 10;
+			labelDescription.cFont = "Sans";
+			labelDescription.iWeight = cairo_dock_get_pango_weight_from_1_9(4);
+			labelDescription.iStyle = PANGO_STYLE_NORMAL;
+			labelDescription.fColorStart[0] = myConfig.fDateColor[0];
+			labelDescription.fColorStart[1] = myConfig.fDateColor[1];
+			labelDescription.fColorStart[2] = myConfig.fDateColor[2];
+			labelDescription.fColorStart[3] = myConfig.fDateColor[3];
+			memcpy (&labelDescription.fColorStop[0], &labelDescription.fColorStart[0], sizeof (labelDescription.fColorStop));
+			labelDescription.fBackgroundColor[3] = 0;
+			labelDescription.bOutlined = FALSE;
+			double fTextXOffset, fTextYOffset;
+			cairo_surface_t *pDateSurface = cairo_dock_create_surface_from_text_full (s_cDateBuffer,
+				myDrawContext,
+				&labelDescription,
+				fScale,
+				iWidth,
+				&myData.iDateWidth, &myData.iDateHeight,
+				&fTextXOffset, &fTextYOffset);
+			myData.iDateWidth *= fScale;
+			myData.iDateHeight *= fScale;
+			//g_print ("date : %dx%d\n", myData.iDateWidth, myData.iDateHeight);
+			myData.iDateTexture = cairo_dock_create_texture_from_surface (pDateSurface);
+			cairo_surface_destroy (pDateSurface);
+		}
+	}
+	if (bNewDate && myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL && myConfig.cLocation == NULL)
+	{
+		CD_APPLET_SET_NAME_FOR_MY_ICON (s_cDateBuffer);
+	}
+	
 	//\________________ On dessine avec cette heure.
 	myData.iSmoothAnimationStep = 0;
-	double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	double fRatio = (myDock ? myDock->fRatio : 1);
-	int iWidth = (int) myIcon->fWidth / fRatio * fMaxScale;
-	int iHeight = (int) myIcon->fHeight / fRatio * fMaxScale;
 	if (myConfig.bOldStyle)
 	{
 		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
@@ -62,35 +111,13 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	else
 	{
 		cd_clock_draw_text (myApplet, iWidth, iHeight, &myData.currentTime);
-	}
-	
-	if (!myConfig.bOldStyle)  // on ne gere pas encore le dessin de la vue numerique en opengl, donc on fait une copie a partir de la surface cairo.
-	{
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)  // on ne sait pas bien dessiner du texte, donc on le fait en cairo, et on transfere tout sur notre texture.
 			cairo_dock_update_icon_texture (myIcon);
 	}
 	
-	if (myDock && myDock->bUseReflect && (! CD_APPLET_MY_CONTAINER_IS_OPENGL || !myConfig.bOldStyle))  // les reflets pour cairo.
+	if (myDock && ! CD_APPLET_MY_CONTAINER_IS_OPENGL)  // les reflets pour cairo.
 	{
-		cairo_surface_destroy (myIcon->pReflectionBuffer);
-		myIcon->pReflectionBuffer = cairo_dock_create_reflection_surface (myIcon->pIconBuffer,
-			myDrawContext,
-			(myDock->bHorizontalDock ? myIcon->fWidth : myIcon->fHeight) / fRatio * (1 + g_fAmplitude),
-			(myDock->bHorizontalDock ? myIcon->fHeight : myIcon->fWidth) / fRatio * (1 + g_fAmplitude),
-			myDock->bHorizontalDock,
-			1 + g_fAmplitude,
-			myDock->bDirectionUp);
-	}
-	
-	//\________________ On change la date si necessaire.
-	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL && myConfig.cLocation == NULL && (myData.currentTime.tm_mday != myData.iLastCheckedDay || myData.currentTime.tm_mon != myData.iLastCheckedMonth || myData.currentTime.tm_year != myData.iLastCheckedYear))
-	{
-		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", &myData.currentTime);
-		CD_APPLET_SET_NAME_FOR_MY_ICON (s_cDateBuffer);
-		
-		myData.iLastCheckedDay = myData.currentTime.tm_mday;
-		myData.iLastCheckedMonth = myData.currentTime.tm_mon;
-		myData.iLastCheckedYear = myData.currentTime.tm_year;
+		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 	}
 	
 	//\________________ On redessine notre icone.
@@ -348,10 +375,19 @@ void cd_clock_draw_analogic_opengl (CairoDockModuleInstance *myApplet, int iWidt
 	//_cairo_dock_set_blend_over ();  // bof
 	_cairo_dock_set_blend_alpha ();  // pas mal
 	//_cairo_dock_set_blend_pbuffer ();
-	//glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);  // mieux, ne me demandez pas pourquoi...
+	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);  // mieux, ne me demandez pas pourquoi...
 	
 	// draw texture bg
 	_cairo_dock_apply_texture_at_size_with_alpha (myData.iBgTexture, iWidth, iHeight, 1.);
+	
+	g_print ("%s (%d)\n", __func__, myData.iDateTexture);
+	if (myData.iDateTexture != 0 && myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
+	{
+		glPushMatrix ();
+		glTranslatef (0., - 3*myData.iDateHeight/2, 0.);
+		cairo_dock_apply_texture_at_size (myData.iDateTexture, myData.iDateWidth, myData.iDateHeight);
+		glPopMatrix ();
+	}
 	
 	// heure
 	glPushMatrix ();

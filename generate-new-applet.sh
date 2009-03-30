@@ -7,6 +7,7 @@ if test -e "$AppletName"; then
 fi
 export LibName=`echo $AppletName | tr "-" "_"`
 export UpperName=`echo $LibName | tr "[a-z]" "[A-Z]"`
+export LowerName=`echo $LibName | tr "[A-Z]" "[a-z]"`
 
 read -p "Enter your name : " MyName
 read -p "Enter an e-mail adress to contact you for bugs or congratulations : " MyMail
@@ -24,6 +25,9 @@ sed -i "s/CD_APPLET_NAME/$AppletName/g" configure.ac
 sed -i "s/CD_MY_NAME/$MyName/g" configure.ac
 sed -i "s/CD_MY_MAIL/$MyMail/g" configure.ac
 sed -i "s/CD_PKG/$UpperName/g" configure.ac
+sed -i "s/pkgdatadir/${LowerName}datadir/g" configure.ac
+sed -i "s/pkguserdirname/${LowerName}userdirname/g" configure.ac
+
 
 cd data
 if test "x$AppletLabel" = "x"; then
@@ -37,18 +41,17 @@ fi
 sed -i "s/CD_PKG/$UpperName/g" template.conf.in
 mv template.conf.in "$AppletName.conf.in"
 
-sed -i "s/CD_APPLET_NAME/$AppletName/g" readme.in
-sed -i "s/CD_MY_NAME/$MyName/g" readme.in
-
 sed -i "s/CD_APPLET_NAME/$AppletName/g" Makefile.am
-sed -i "s/CD_PKG/$UpperName/g" readme.in
-sed -i "s/CD_PKG/$UpperName/g" readme.in
+sed -i "s/pkgdatadir/${LowerName}datadir/g" configure.ac
+
 
 cd ../src
 sed -i "s/CD_APPLET_NAME/$AppletName/g" Makefile.am
 sed -i "s/CD_LIB_NAME/$LibName/g" Makefile.am
 sed -i "s/CD_PKG/$UpperName/g" Makefile.am
+sed -i "s/pkgdatadir/${LowerName}datadir/g" configure.ac
 
+sed -i "s/CD_MY_NAME/$MyName/g" applet-init.c
 sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-init.c
 
 sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-notifications.c

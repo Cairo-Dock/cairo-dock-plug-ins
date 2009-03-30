@@ -22,7 +22,7 @@ msgid ""
 "and hide the scrollbars to get a real 'crop' of the page."
 msgstr ""
 
-#: ../src/applet-widget.c:36
+#: ../src/applet-widget.c:35
 #, fuzzy
 msgid "Weblets"
 msgstr "Weblet"

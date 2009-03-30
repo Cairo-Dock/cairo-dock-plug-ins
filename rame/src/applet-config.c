@@ -20,7 +20,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	{
 		myConfig.cWatermarkImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "watermark image", MY_APPLET_ICON_FILE);
 	}
-
+	myConfig.bShowFreeMemory = CD_CONFIG_GET_BOOLEAN ("Configuration", "show free");
+	
 	myConfig.bUseGraphic = CD_CONFIG_GET_BOOLEAN ("Configuration", "use graphic");
 	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);

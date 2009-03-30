@@ -288,11 +288,13 @@ na_tray_manager_socket_exposed (GtkWidget      *widget,
   gdk_window_clear_area (widget->window,
                          event->area.x, event->area.y,
                          event->area.width, event->area.height);
+  g_print ("TOTO\n");
   cairo_t *pCairoContext = gdk_cairo_create (widget->window);
    if (cairo_status (pCairoContext) != CAIRO_STATUS_SUCCESS, FALSE) { 
      cairo_destroy (pCairoContext); 
      return FALSE; 
    } 
+   g_print ("TOTO2\n");
    //erase the background
    cairo_set_source_rgba (pCairoContext, 0., 0., 1., 0.15); 
    cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE); 
@@ -325,7 +327,7 @@ na_tray_manager_handle_dock_request (NaTrayManager       *manager,
       /* We already got this notification earlier, ignore this one */
       return;
     }
-
+	
 	socket = gtk_socket_new ();
 	
 	TrayApplet *applet = myData.tray;
@@ -348,7 +350,7 @@ na_tray_manager_handle_dock_request (NaTrayManager       *manager,
   gtk_widget_set_double_buffered (socket, FALSE);
   ///g_signal_connect (socket, "realize",
   ///                  G_CALLBACK (na_tray_manager_make_socket_transparent), NULL);
-  g_signal_connect (socket, "expose_event",
+  g_signal_connect (socket, "expose-event",
                     G_CALLBACK (na_tray_manager_socket_exposed), NULL);
   ///g_signal_connect_after (socket, "style_set",
   ///                        G_CALLBACK (na_tray_manager_socket_style_set), NULL);

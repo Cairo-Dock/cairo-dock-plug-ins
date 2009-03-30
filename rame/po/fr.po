@@ -30,7 +30,7 @@ msgstr "L'acquisition des données a échouée"
 msgid "Monitor System"
 msgstr ""
 
-#: ../src/applet-rame.c:120
+#: ../src/applet-rame.c:119
 msgid "Loading"
 msgstr "Chargement"
 
@@ -205,7 +205,7 @@ msgstr "Image d'avant-plan :"
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:73 ../data/messages:145
+#: ../data/messages:73 ../data/messages:147
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -317,11 +317,15 @@ msgstr "Sur l'étiquette"
 msgid "Display SWAP too ?"
 msgstr "Afficher aussi la SWAP ?"
 
-#: ../data/messages:131
+#: ../data/messages:131 ../data/messages:155
+msgid "Show free memory instead of used memory ?"
+msgstr ""
+
+#: ../data/messages:133
 msgid "Top List"
 msgstr "Liste Top"
 
-#: ../data/messages:133
+#: ../data/messages:135
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
@@ -329,43 +333,43 @@ msgstr ""
 "Le clic gauche sur l'icône affiche la liste des programmes les plus "
 "gourmands en mémoire."
 
-#: ../data/messages:135
+#: ../data/messages:137
 msgid "Number of programs to display in the top list :"
 msgstr "Nombre de programmes à afficher dans la top liste : "
 
-#: ../data/messages:137
+#: ../data/messages:139
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "Première couleur de la graduation utilisée pour écrire la top liste."
 
-#: ../data/messages:139
+#: ../data/messages:141
 msgid "Start color of the top list :"
 msgstr "Couleur du premier élément de la top liste : "
 
-#: ../data/messages:141
+#: ../data/messages:143
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "Seconde couleur de la graduation utilisée pour écrire la top liste."
 
-#: ../data/messages:143
+#: ../data/messages:145
 msgid "Stop color of the top list :"
 msgstr "Couleur du dernier élément de la top liste :"
 
-#: ../data/messages:147
+#: ../data/messages:149
 msgid "in seconds."
 msgstr "en secondes."
 
-#: ../data/messages:149
+#: ../data/messages:151
 msgid "Delay between refresh :"
 msgstr "Intervalle entre chaque rafraîchissement :"
 
-#: ../data/messages:151
+#: ../data/messages:153
 msgid "Show top memory usage in % ?"
 msgstr "Montrer l'usage mémoire en % ?"
 
-#: ../data/messages:153
+#: ../data/messages:157
 msgid "Let empty to use he default one."
 msgstr ""
 
-#: ../data/messages:155
+#: ../data/messages:159
 msgid "User command to show a system monitor :"
 msgstr ""
 
