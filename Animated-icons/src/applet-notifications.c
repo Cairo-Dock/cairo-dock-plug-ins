@@ -23,6 +23,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-blink.h"
 #include "applet-notifications.h"
 
+#define _REFLECT_FADE_NB_STEP 12
 
 static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, CDAnimationsEffects *pAnimations, gboolean *bStartAnimation)
 {
@@ -347,10 +348,14 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		{
 			pData->iNumRound --;
 			cd_animations_init_wobbly (pData, bUseOpenGL);
-			
 		}
 		if (pData->bIsWobblying)
+		{
+			pData->iReflectShadeCount = 0;
 			*bContinueAnimation = TRUE;
+		}
+		else if (bUseOpenGL)
+			pData->iReflectShadeCount = _REFLECT_FADE_NB_STEP;
 	}
 	if (! pData->bIsWobblying && pData->bIsWaving)
 	{
@@ -362,7 +367,12 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			pData->fWavePosition = - myConfig.fWaveWidth / 2;
 		}
 		if (pData->bIsWaving)
+		{
+			pData->iReflectShadeCount = 0;
 			*bContinueAnimation = TRUE;
+		}
+		else if (bUseOpenGL)
+			pData->iReflectShadeCount = _REFLECT_FADE_NB_STEP;
 	}
 	if (! pData->bIsWobblying && ! pData->bIsWaving && pData->fRotationSpeed != 0)
 	{
@@ -384,23 +394,36 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		}
 		pData->fRotationAngle += pData->fRotationSpeed * pData->fRotationBrake;
 		if (pData->fRotationAngle < 360)
+		{
+			pData->iReflectShadeCount = 0;
 			*bContinueAnimation = TRUE;
+		}
 		else
 		{
 			pData->fRotationAngle = 0;
 			if (_will_continue (myConfig.bContinueRotation))
 			{
 				pData->iNumRound --;
+				pData->iReflectShadeCount = 0;
 				*bContinueAnimation = TRUE;
 			}
 			else
 			{
 				pData->fRotationSpeed = 0;
+				if (bUseOpenGL)
+					pData->iReflectShadeCount = _REFLECT_FADE_NB_STEP;
 			}
 		}
 		if (! bUseOpenGL)
 			cd_animations_update_rotating_cairo (pIcon, pDock, pData);
-
+	}
+	
+	if (pData->iReflectShadeCount != 0)
+	{
+		pData->iReflectShadeCount --;
+		pIcon->fReflectShading = (double) pData->iReflectShadeCount / _REFLECT_FADE_NB_STEP;
+		if (pData->iReflectShadeCount != 0)
+			*bContinueAnimation = TRUE;
 	}
 	
 	if (pData->fRadiusFactor != 0)
@@ -500,19 +523,20 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	}
 	
 	if (bUseOpenGL)
-		cairo_dock_redraw_container (pDock);
+		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 
 gboolean cd_animations_free_data (gpointer pUserData, Icon *pIcon)
 {
-	cd_message ("");
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	cairo_dock_free_particle_system (pData->pRaysSystem);
+	
+	pIcon->fReflectShading = 0.;
 	
 	g_free (pData);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);

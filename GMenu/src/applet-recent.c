@@ -33,13 +33,14 @@ panel_recent_manager_changed_cb (GtkRecentManager *manager,
 	gtk_widget_set_sensitive (menu_item, size > 0);
 }
 
-void cd_menu_append_recent_to_menu (GtkWidget *top_menu, GtkRecentManager *manager)
+void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance *myApplet)
 {
-	g_return_if_fail (myData.pRecentMenuItem == NULL && manager != NULL);
+	g_return_if_fail (myData.pRecentMenuItem == NULL && myData.pRecentManager != NULL);
 	GtkWidget      *recent_menu;
 	GtkWidget      *pMenuItem;
 	int             size;
 
+	//\_____________ On construit une entree de sous-menu.
 	pMenuItem = gtk_separator_menu_item_new ();
 	gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pMenuItem);
 	
@@ -50,45 +51,90 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, GtkRecentManager *manag
 	g_object_unref (pixbuf);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
 	
-	recent_menu = gtk_recent_chooser_menu_new_for_manager (manager);
-	gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), recent_menu);
-
+	//\_____________ On construit le menu des fichiers recents.
+	recent_menu = gtk_recent_chooser_menu_new_for_manager (myData.pRecentManager);
+	gtk_recent_chooser_set_show_icons (GTK_RECENT_CHOOSER (recent_menu), myConfig.bHasIcons);
+	if (myData.pRecentFilter != NULL)
+	{
+		gtk_recent_chooser_add_filter (GTK_RECENT_CHOOSER (recent_menu), myData.pRecentFilter);
+	}
+	
+	//\_____________ les signaux
 	g_signal_connect (G_OBJECT (recent_menu), "button_press_event",
 		  G_CALLBACK (menu_dummy_button_press_event), NULL);  // utile ?
-
-	gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pMenuItem);
-	gtk_widget_show_all (pMenuItem);
 	
-	gtk_recent_chooser_set_local_only (GTK_RECENT_CHOOSER (recent_menu),
-		 FALSE);
-	gtk_recent_chooser_set_show_tips (GTK_RECENT_CHOOSER (recent_menu),
-		TRUE);
-	gtk_recent_chooser_set_sort_type (GTK_RECENT_CHOOSER (recent_menu),
-		GTK_RECENT_SORT_MRU);
-
 	g_signal_connect (GTK_RECENT_CHOOSER (recent_menu),
 		"item-activated",
 		G_CALLBACK (recent_documents_activate_cb),
 		NULL);
 
-	g_signal_connect_object (manager, "changed",
+	g_signal_connect_object (myData.pRecentManager, "changed",
 		G_CALLBACK (panel_recent_manager_changed_cb),
 		 pMenuItem, 0);
-
+	
+	//\_____________ On le personnalise un peu.
+	gtk_recent_chooser_set_local_only (GTK_RECENT_CHOOSER (recent_menu),
+		 FALSE);
+	gtk_recent_chooser_set_show_tips (GTK_RECENT_CHOOSER (recent_menu),
+		TRUE);
+	gtk_recent_chooser_set_sort_type (GTK_RECENT_CHOOSER (recent_menu),
+		GTK_RECENT_SORT_MRU);  // most recently used
+	
+	//\_____________ On l'insere dans le menu global.
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), recent_menu);
+	gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pMenuItem);
+	gtk_widget_show_all (pMenuItem);
+	
 	size = 0;
-	g_object_get (manager, "size", &size, NULL);
+	g_object_get (myData.pRecentManager, "size", &size, NULL);
 	gtk_widget_set_sensitive (pMenuItem, size > 0);
-	g_print ("size : %d\n", size);
 	
 	myData.pRecentMenuItem = pMenuItem;
 }
 
 
-void cd_menu_clear_recent (GtkMenuItem *menu_item, gpointer data)
+
+void cd_menu_clear_recent (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the list of the recently used documents ?"), myIcon, myContainer);
 	if (iAnswer == GTK_RESPONSE_YES)
 	{
 		gtk_recent_manager_purge_items (myData.pRecentManager, NULL);
+	}
+}
+
+
+
+static gboolean _recent_uri_filter (const GtkRecentFilterInfo *filter_info, CairoDockModuleInstance *myApplet)
+{
+	g_return_val_if_fail (myConfig.cRecentRootDirFilter != NULL, TRUE);
+	return (filter_info->uri != NULL && strncmp (myConfig.cRecentRootDirFilter, filter_info->uri, strlen (myConfig.cRecentRootDirFilter)) == 0);
+}
+void cd_menu_init_recent (CairoDockModuleInstance *myApplet)
+{
+	if (myData.pRecentManager == NULL)
+		myData.pRecentManager = gtk_recent_manager_get_default ();
+	
+	if (myConfig.cRecentRootDirFilter != NULL && myData.pRecentFilter == NULL)
+	{
+		myData.pRecentFilter = gtk_recent_filter_new ();
+		gtk_recent_filter_add_custom (myData.pRecentFilter,
+			GTK_RECENT_FILTER_URI,
+			(GtkRecentFilterFunc) _recent_uri_filter,
+			myApplet,
+			NULL);
+		if (myConfig.iRecentAge != 0)
+			gtk_recent_filter_add_age (myData.pRecentFilter, myConfig.iRecentAge);
+	}
+}
+
+void cd_menu_reset_recent (CairoDockModuleInstance *myApplet)
+{
+	if (myData.pRecentFilter != NULL)
+	{
+		if (myData.pRecentMenuItem != NULL)
+			gtk_recent_chooser_remove_filter (GTK_RECENT_CHOOSER (myData.pRecentMenuItem), myData.pRecentFilter);
+		g_object_unref (myData.pRecentFilter);  // verifier que ca ne pose pas de probleme avec le remove d'avant.
+		myData.pRecentFilter = NULL;
 	}
 }

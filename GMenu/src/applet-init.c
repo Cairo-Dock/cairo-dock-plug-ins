@@ -13,6 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-struct.h"
 #include "applet-menu.h"
+#include "applet-recent.h"
 #include "applet-init.h"
 
 
@@ -36,15 +37,17 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	if (myConfig.bShowRecent)
-		myData.pRecentManager = gtk_recent_manager_get_default ();
+	{
+		cd_menu_init_recent (myApplet);
+	}
 	myData.pMenu = create_main_menu (myApplet);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	
-	cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, NULL);
-	cd_keybinder_bind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch, NULL);
+	cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, myApplet);
+	cd_keybinder_bind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch, myApplet);
 CD_APPLET_INIT_END
 
 
@@ -74,29 +77,47 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, NULL);  // shortkey were unbinded during reset_config.
-		cd_keybinder_bind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch, NULL);
+		cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, myApplet);  // shortkey were unbinded during reset_config.
+		cd_keybinder_bind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch, myApplet);
 		
-		if (myConfig.bShowRecent && myData.pRecentManager == NULL)
-			myData.pRecentManager = gtk_recent_manager_get_default ();
-		
-		if (! myConfig.bShowRecent && myData.pRecentMenuItem != NULL)
-		{
-			gtk_widget_destroy (myData.pRecentMenuItem);
-			myData.pRecentMenuItem = NULL;
-		}
-		
+		// on reset ce qu'il faut.
+		cd_menu_reset_recent (myApplet);  // le fitre peut avoir change.
 		if (myData.pMenu != NULL &&
 			(myConfig.bHasIcons != myData.bIconsLoaded) || (myConfig.bShowRecent && myData.pRecentMenuItem == NULL))
 		{
-			gtk_widget_destroy (myData.pMenu);
+			gtk_widget_destroy (myData.pMenu);  // detruit le sous-menu des recent items ?
 			myData.pMenu = NULL;
 			myData.pRecentMenuItem = NULL;
 		}
 		
+		// on reconstruit ce qu'il faut.
 		if (myData.pMenu == NULL)
 		{
 			myData.pMenu = create_main_menu (myApplet);
+		}
+		else  // menu deja existant, on rajoute/enleve les recents a la main.
+		{
+			if (! myConfig.bShowRecent)  // on ne veut plus des recent items.
+			{
+				if (myData.pRecentMenuItem != NULL)
+				{
+					gtk_widget_destroy (myData.pRecentMenuItem);
+					myData.pRecentMenuItem = NULL;
+				}
+			}
+			else  // on veut les recent items.
+			{
+				cd_menu_init_recent (myApplet);
+				if (myData.pRecentMenuItem != NULL)  // ils existent deja.
+				{
+					if (myData.pRecentFilter != NULL)
+						gtk_recent_chooser_add_filter (GTK_RECENT_CHOOSER (myData.pRecentMenuItem), myData.pRecentFilter);
+				}
+				else  // il faut les construire.
+				{
+					// rien a faire, dans ce cas on a detruit le menu, car il faut placer les recent items a l'interieur.
+				}
+			}
 		}
 	}
 CD_APPLET_RELOAD_END

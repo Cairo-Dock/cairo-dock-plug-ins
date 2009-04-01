@@ -683,32 +683,16 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 
 	main_menu = create_applications_menu ("applications.menu", NULL, NULL);
 	g_signal_connect (G_OBJECT (main_menu),
-			"deactivate",
-			G_CALLBACK (cairo_dock_delete_menu),
-			myContainer);
-	///g_object_set_data (G_OBJECT (main_menu), "menu_panel", panel);
-	myData.pMenu = main_menu;
-	/* FIXME need to update the panel on parent_set */
+		"deactivate",
+		G_CALLBACK (cairo_dock_delete_menu),
+		myContainer);
 
 	g_object_set_data (G_OBJECT (main_menu),
-			   "panel-menu-append-callback",
-			   main_menu_append);
+		"panel-menu-append-callback",
+		main_menu_append);
 	g_object_set_data (G_OBJECT (main_menu),
-			   "panel-menu-append-callback-data",
-			   myApplet);
-	
-	
-// 	GtkWidget *desktop_menu;
-// 
-// 	desktop_menu = create_applications_menu ("settings.menu", NULL, main_menu);
-// 	myData.pMenu2 = desktop_menu;
-// 	
-// 	g_object_set_data (G_OBJECT (desktop_menu),
-// 			   "panel-menu-append-callback",
-// 			   panel_desktop_menu_item_append_menu);  //panel_desktop_menu_item_append_menu
-// 	g_object_set_data (G_OBJECT (desktop_menu),
-// 			   "panel-menu-append-callback-data",
-// 			   myApplet);
+		"panel-menu-append-callback-data",
+		myApplet);
 	
 	myData.bIconsLoaded = myConfig.bHasIcons;
 	

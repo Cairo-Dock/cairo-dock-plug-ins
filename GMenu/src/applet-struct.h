@@ -34,6 +34,8 @@ struct _AppletConfig {
 	gchar *cMenuShortkey;
 	gchar *cQuickLaunchShortkey;
 	gchar *cConfigureMenuCommand;
+	gchar *cRecentRootDirFilter;
+	gint iRecentAge;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -47,6 +49,7 @@ struct _AppletData {
 	
 	GtkRecentManager *pRecentManager;
 	GtkWidget *pRecentMenuItem;
+	GtkRecentFilter *pRecentFilter;
 	
 	GHashTable *dir_hash;
 	GList *possible_executables;

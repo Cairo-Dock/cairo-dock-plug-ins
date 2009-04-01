@@ -43,6 +43,7 @@ libcd_rendering_la_CFLAGS = \
 	-DMY_APPLET_CONF_FILE=\""rendering.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""rendering"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.svg"\"\
+	-DGL_GLEXT_PROTOTYPES=\""1"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3

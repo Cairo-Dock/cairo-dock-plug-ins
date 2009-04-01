@@ -28,7 +28,7 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
 	int iNumViewportY = data[2];
 	int iOneViewportWidth = data[3];
 	int iOneViewportHeight = data[4];
-	cairo_t *pCairoContext = data[5];
+	cairo_t *pCairoContext = GINT_TO_POINTER (data[5]);
 	
 	// On calcule les coordonnees en repere absolu.
 	int x = pIcon->windowGeometry.x;  // par rapport au viewport courant.
@@ -108,19 +108,17 @@ static int _compare_icons_stack_order (Icon *icon1, Icon *icon2)
 }
 void cd_switcher_draw_main_icon_compact_mode (void)
 {
-	cd_debug ("%s (%d;%d)", __func__, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
+	//cd_debug ("%s (%d;%d)", __func__, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 	// On efface l'icone.
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
-	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);
-	cairo_paint (myDrawContext);
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
-	
-	double fRatio = (myDock ? myDock->fRatio : 1.);
+	cairo_dock_erase_cairo_context (myDrawContext);
 	
 	// definition des parametres de dessin.
-	double fMaxScale = cairo_dock_get_max_scale (myContainer); //coefficient Max icone Width
-	myData.switcher.fOneViewportHeight = (myIcon->fHeight/fRatio * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
-	myData.switcher.fOneViewportWidth = (myIcon->fWidth/fRatio * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	//double fRatio = (myDock ? myDock->fRatio : 1.);
+	//double fMaxScale = cairo_dock_get_max_scale (myContainer); //coefficient Max icone Width
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	myData.switcher.fOneViewportHeight = (iHeight - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	myData.switcher.fOneViewportWidth = (iWidth - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
 	
 	cairo_surface_t *pSurface = NULL;
 	double fZoomX, fZoomY;
@@ -133,8 +131,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	if (pSurface == NULL)
 	{
 		pSurface = myData.pDefaultMapSurface;
-		fZoomX = (double) myData.switcher.fOneViewportWidth / (myIcon->fWidth/fRatio * fMaxScale);
-		fZoomY = (double) myData.switcher.fOneViewportHeight / (myIcon->fHeight/fRatio * fMaxScale);
+		fZoomX = (double) myData.switcher.fOneViewportWidth / iWidth;
+		fZoomY = (double) myData.switcher.fOneViewportHeight / iHeight;
 	}
 	
 	// cadre exterieur.
@@ -143,8 +141,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	cairo_rectangle(myDrawContext,
 		.5*myConfig.iLineSize,
 		.5*myConfig.iLineSize,
-		myIcon->fWidth/fRatio * fMaxScale - myConfig.iLineSize,
-		myIcon->fHeight/fRatio * fMaxScale - myConfig.iLineSize);
+		iWidth - myConfig.iLineSize,
+		iHeight - myConfig.iLineSize);
 
 	cairo_stroke (myDrawContext);
 	
@@ -157,14 +155,14 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	{
 		xi = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
 		cairo_move_to (myDrawContext, xi, myConfig.iLineSize);
-		cairo_rel_line_to (myDrawContext, 0, myIcon->fHeight/fRatio * fMaxScale - 2*myConfig.iLineSize);
+		cairo_rel_line_to (myDrawContext, 0, iHeight - 2*myConfig.iLineSize);
 		cairo_stroke (myDrawContext);
 	}
 	for (j = 1; j < myData.switcher.iNbLines; j ++)  // lignes horizontales.
 	{
 		yj = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
 		cairo_move_to (myDrawContext, myConfig.iLineSize, yj);
-		cairo_rel_line_to (myDrawContext, myIcon->fWidth/fRatio * fMaxScale - 2*myConfig.iLineSize, 0);
+		cairo_rel_line_to (myDrawContext, iWidth - 2*myConfig.iLineSize, 0);
 		cairo_stroke (myDrawContext);
 	}
 	
@@ -232,8 +230,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 				cairo_clip (myDrawContext);
 				
 				//g_print (" dessin des fenetres du bureau (%d;%d;%d) ...\n", iNumDesktop, iNumViewportX, iNumViewportY);
-				gint data[6] = {iNumDesktop, iNumViewportX, iNumViewportY, (int) myData.switcher.fOneViewportWidth, (int) myData.switcher.fOneViewportHeight, myDrawContext};
-				g_list_foreach (pWindowList, _cd_switcher_draw_windows_on_viewport, data);
+				gint data[6] = {iNumDesktop, iNumViewportX, iNumViewportY, (int) myData.switcher.fOneViewportWidth, (int) myData.switcher.fOneViewportHeight, GPOINTER_TO_INT (myDrawContext)};
+				g_list_foreach (pWindowList, (GFunc) _cd_switcher_draw_windows_on_viewport, data);
 				
 				cairo_restore (myDrawContext);
 			}
@@ -274,29 +272,30 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 		cairo_dock_update_icon_texture (myIcon);
+	else
+		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 }
 
 
 void cd_switcher_draw_main_icon_expanded_mode (void)
 {
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
-	cairo_set_source_rgba(myDrawContext, 0., 0., 0., 0.);
-	cairo_paint (myDrawContext);
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
-	
 	// definition des parametres de dessin.
-	double fRatio = (myDock ? myDock->fRatio : 1.);
-	double fMaxScale = cairo_dock_get_max_scale (myContainer); //coefficient Max icone Width
-	myData.switcher.fOneViewportHeight = (myIcon->fHeight/fRatio * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
-	myData.switcher.fOneViewportWidth = (myIcon->fWidth/fRatio * fMaxScale - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	//double fRatio = (myDock ? myDock->fRatio : 1.);
+	//double fMaxScale = cairo_dock_get_max_scale (myContainer); //coefficient Max icone Width
+	myData.switcher.fOneViewportHeight = (iHeight - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	myData.switcher.fOneViewportWidth = (iWidth - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
 
 	cairo_surface_t *pSurface = NULL;
 	double fZoomX, fZoomY;
 	if (myConfig.bMapWallpaper)
 	{
+		cairo_dock_erase_cairo_context (myDrawContext);
+		
 		pSurface = cairo_dock_get_desktop_bg_surface ();
-		fZoomX = (double) myIcon->fHeight/fRatio * fMaxScale/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
-		fZoomY= (double) myIcon->fHeight/fRatio * fMaxScale/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];	
+		fZoomX = 1. * iWidth / g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
+		fZoomY= 1. * iHeight / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
 		cairo_translate (myDrawContext,
 			0.,
 			0.);
@@ -314,56 +313,44 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 		
 		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 			cairo_dock_update_icon_texture (myIcon);
+		else
+			CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 	}
-	else if (myIcon->acFileName == NULL)
+	else
 	{
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
 	}
 
-	/*if (pSurface == NULL)
-	{
-		pSurface = myData.pDefaultMapSurface;
-		//fZoomX = (double) myData.switcher.fOneViewportWidth / (myIcon->fWidth * fMaxScale);
-		//fZoomY = (double) myData.switcher.fOneViewportHeight / (myIcon->fHeight * fMaxScale);
-	}*/
-		
 	if (myConfig.bDrawWindows)
 	{
-		/*double XWgeo= (myIcon->fWidth/fRatio* fMaxScale/myData.switcher.fOneViewportWidth)* fMaxScale;
-		double YWgeo = (myIcon->fHeight/fRatio* fMaxScale/myData.switcher.fOneViewportHeight)* fMaxScale;
-		cd_debug ("XWgeo : %f",XWgeo);
-		cd_debug ("YWgeo : %f",YWgeo);
-		fZoomX = myIcon->fWidth/fRatio * fMaxScale;
-		fZoomY = myIcon->fHeight/fRatio * fMaxScale;
-		cairo_save(myDrawContext);
-		cd_switcher_draw_windows_on_each_viewports(XWgeo,YWgeo,fZoomX,fZoomY);
-		cairo_restore (myDrawContext);*/
 		GList *pWindowList = cairo_dock_get_current_applis_list ();
 		pWindowList = g_list_sort (pWindowList, (GCompareFunc) _compare_icons_stack_order);
 		
-		fMaxScale = (myIcon->pSubDock != NULL ? cairo_dock_get_max_scale (myIcon->pSubDock) : 1);
-		fRatio = (myIcon->pSubDock != NULL ? myIcon->pSubDock->fRatio : 1);
+		//fMaxScale = (myIcon->pSubDock != NULL ? cairo_dock_get_max_scale (myIcon->pSubDock) : 1);
+		//fRatio = (myIcon->pSubDock != NULL ? myIcon->pSubDock->fRatio : 1);
 		gint data[6];
 		int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
 		cairo_t *pCairoContext;
 		Icon *pIcon;
-		GList *pIconsList = (myDock ? myDock->icons : myDesklet->icons);
+		CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+		GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 		GList *ic;
 		for (ic = pIconsList; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
+			cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
 			
 			data[0] = iNumDesktop;
 			data[1] = iNumViewportX;
 			data[2] = iNumViewportY;
-			data[3] = (int) pIcon->fWidth/fRatio*fMaxScale;
-			data[4] = (int) pIcon->fHeight/fRatio*fMaxScale;
+			data[3] = iWidth;
+			data[4] = iHeight;
 			pCairoContext = cairo_create (pIcon->pIconBuffer);
 			data[5] = GPOINTER_TO_INT (pCairoContext);
 			cairo_set_line_width (pCairoContext, 1.);
 			cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
 		
-			g_list_foreach (pWindowList, _cd_switcher_draw_windows_on_viewport, data);
+			g_list_foreach (pWindowList, (GFunc) _cd_switcher_draw_windows_on_viewport, data);
 			
 			iNumViewportX ++;
 			if (iNumViewportX == g_iNbViewportX)
@@ -391,7 +378,5 @@ void cd_switcher_draw_main_icon (void)
 		cd_switcher_draw_main_icon_expanded_mode ();
 	}
 	
-	if ((myDesklet && ! myConfig.bCompactView) || (myDock && myDock->bUseReflect))
-		cairo_dock_add_reflection_to_icon (myDrawContext, myIcon, myContainer);
 	CD_APPLET_REDRAW_MY_ICON;
 }

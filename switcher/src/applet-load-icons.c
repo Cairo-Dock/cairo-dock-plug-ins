@@ -42,7 +42,7 @@ static GList * _load_icons (void)
 		pIcon->fHeightFactor = 1.;
 		pIcon->acCommand = g_strdup ("none");
 		pIcon->cParentDockName = g_strdup (myIcon->acName);
-		pIcon->acFileName = (myConfig.bMapWallpaper ? NULL : (myConfig.cDefaultIcon != NULL ? g_strdup (myConfig.cDefaultIcon) : g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default.svg")));
+		pIcon->acFileName = (myConfig.bMapWallpaper ? NULL : (myConfig.cDefaultIcon != NULL ? g_strdup (myConfig.cDefaultIcon) : g_strdup (MY_APPLET_SHARE_DATA_DIR"/default.svg")));
 		
 		pIconList = g_list_append (pIconList, pIcon);
 	}
@@ -57,10 +57,10 @@ void cd_switcher_load_icons (void)
 	if (myConfig.bCompactView)
 	{
 		CD_APPLET_DELETE_MY_ICONS_LIST;
-		/*if (myIcon->pSubDock != NULL)
+		if (myIcon->pSubDock != NULL)  // si on est passe de expanded a compact, le sous-dock vide reste.
 		{
 			CD_APPLET_DESTROY_MY_SUBDOCK;
-		}*/
+		}
 		if (myDesklet)
 		{
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
@@ -131,33 +131,36 @@ void cd_switcher_load_icons (void)
 
 void cd_switcher_paint_icons (void)
 {
-	if (myConfig.bCompactView)
-		return ;
-	
 	//\_______________________ On applique la surface.
-	CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
-	GList *pIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
+	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GList *pIconList = CD_APPLET_MY_ICONS_LIST;
+	if (pIconList == NULL)
+		return ;
 	
 	cairo_surface_t *pSurface = NULL;
 	double fZoomX, fZoomY;
 	Icon *pFirstIcon = pIconList->data;
+	
+	int iWidth, iHeight;
+	cairo_dock_get_icon_extent (pFirstIcon, pContainer, &iWidth, &iHeight);
 	
 	if (myConfig.bMapWallpaper)
 	{
 		cd_switcher_draw_main_icon();
 		pSurface = cairo_dock_get_desktop_bg_surface ();
 		double fMaxScale = cairo_dock_get_max_scale (pContainer);
-		fZoomX = (double) pFirstIcon->fWidth * fMaxScale / g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
-		fZoomY = (double) pFirstIcon->fHeight * fMaxScale / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		fZoomX = 1. * iWidth / g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
+		fZoomY = 1. * iHeight / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
 
 	}
 	if (pSurface == NULL)
 	{
-		double fRatio = (myDock ? myDock->fRatio : 1.);
+		int _iWidth, _iHeight;
+		CD_APPLET_GET_MY_ICON_EXTENT (&_iWidth, &_iHeight);
 		cd_switcher_load_default_map_surface ();
 		pSurface = myData.pDefaultMapSurface;
-		fZoomX = pFirstIcon->fWidth / myIcon->fWidth * fRatio;
-		fZoomY = pFirstIcon->fHeight / myIcon->fHeight * fRatio;
+		fZoomX = 1. * iWidth / _iWidth;
+		fZoomY = 1. * iHeight / _iHeight;
 	}
 	
 	cairo_t *pIconContext;
@@ -175,7 +178,6 @@ void cd_switcher_paint_icons (void)
 		cairo_dock_set_icon_surface_with_reflect (pIconContext, pSurface, icon, pContainer);
 		cairo_destroy (pIconContext);
 	}
-
 }
 
 

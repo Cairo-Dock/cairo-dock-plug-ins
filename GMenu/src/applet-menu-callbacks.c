@@ -230,7 +230,7 @@ void main_menu_append (GtkWidget *main_menu,
 	
 	if (myConfig.bShowRecent)
 	{
-		cd_menu_append_recent_to_menu (main_menu, myData.pRecentManager);
+		cd_menu_append_recent_to_menu (main_menu, myApplet);
 	}
 	/*item = panel_place_menu_item_new (TRUE);
 	panel_place_menu_item_set_panel (item, panel);

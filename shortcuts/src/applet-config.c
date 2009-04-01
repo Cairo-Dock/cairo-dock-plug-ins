@@ -13,7 +13,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-config.h"
 
 
-
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bListDrives = CD_CONFIG_GET_BOOLEAN ("Module", "list drives");
 	myConfig.bListNetwork = CD_CONFIG_GET_BOOLEAN ("Module", "list network");

@@ -45,8 +45,8 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 		}
 		rsvg_handle_get_dimensions (myData.pSvgHandles[CLOCK_DROP_SHADOW], &myData.DimensionData);
 		rsvg_handle_get_dimensions (myData.pSvgHandles[CLOCK_HOUR_HAND], &myData.needleDimension);
-		g_print ("clock bg dimension : %dx%d\n", (int) myData.DimensionData.width, (int) myData.DimensionData.height);
-		g_print ("clock needle dimension : %dx%d\n", (int) myData.needleDimension.width, (int) myData.needleDimension.height);
+		//g_print ("clock bg dimension : %dx%d\n", (int) myData.DimensionData.width, (int) myData.DimensionData.height);
+		//g_print ("clock needle dimension : %dx%d\n", (int) myData.needleDimension.width, (int) myData.needleDimension.height);
 		
 		// recuperation des parametres des aiguilles.
 		g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, "theme.conf");
@@ -74,8 +74,9 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 			}
 			else  // on prend des valeurs par defaut assez larges.
 			{
-				myData.iNeedleRealHeight = .2*myData.needleDimension.height;
-				myData.iNeedleOffsetX = .3 * myData.needleDimension.width;
+				g_print ("clock : default needle size\n");
+				myData.iNeedleRealHeight = .33 * myData.needleDimension.height;
+				myData.iNeedleOffsetX = .33 * myData.needleDimension.width;
 			}
 			myData.iNeedleRealWidth = myData.needleDimension.width/2 + myData.iNeedleOffsetX;
 			myData.iNeedleOffsetY = .5 * myData.iNeedleRealHeight;

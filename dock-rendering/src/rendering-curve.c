@@ -1194,7 +1194,8 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 #define P(t,p,q,r,s) (1-t) * (1-t) * (1-t) * p + 3 * t * (1-t) * (1 - t) * q + 3 * t * t * (1-t) * r + t * t * t * s
 GLfloat *cairo_dock_generate_curve_path (double fRelativeControlHeight, int *iNbPoints)
 {
-	static GLfloat pVertexTab[((180/DELTA_ROUND_DEGREE+1)+1)*3];
+	//static GLfloat pVertexTab[((180/DELTA_ROUND_DEGREE+1)+1)*3];
+	_cairo_dock_define_static_vertex_tab ((180/DELTA_ROUND_DEGREE+1)+1);
 	
 	double w = 1. / 2;
 	double h = 1. / 2;
@@ -1206,16 +1207,20 @@ GLfloat *cairo_dock_generate_curve_path (double fRelativeControlHeight, int *iNb
 	int i=0, t;
 	for (t = 0; t <= 180; t += iPrecision, i++)
 	{
-		pVertexTab[3*i] = P (t/180., xp, xq, xr, xs);
-		pVertexTab[3*i+1] = P (t/180., yp, yq, yr, ys) - h;
+		_cairo_dock_set_vertex_xy (i,
+			P (t/180., xp, xq, xr, xs),
+			P (t/180., yp, yq, yr, ys) - h);
+		//vx(i) = P (t/180., xp, xq, xr, xs);
+		//vy(i) = P (t/180., yp, yq, yr, ys) - h;
 	}
 	
 	// on trace la ligne du bas.
-	pVertexTab[3*i] = pVertexTab[0];  // on boucle.
-	pVertexTab[3*i+1] = pVertexTab[1];
+	_cairo_dock_close_path (i);  // on boucle.
+	//vx(i) = vx(0);  // on boucle.
+	//vy(i) = vy(0);
 	
 	*iNbPoints = i+1;
-	return pVertexTab;
+	_cairo_dock_return_vertex_tab ();
 }
 
 

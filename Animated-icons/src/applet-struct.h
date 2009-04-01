@@ -139,6 +139,7 @@ typedef struct _CDAnimationData {
 	gint iBlinkCount;
 	gdouble fBlinkAlpha;
 	
+	gint iReflectShadeCount;
 	} CDAnimationData;
 
 #endif

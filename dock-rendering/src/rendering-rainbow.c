@@ -616,7 +616,8 @@ void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		//\____________________ On dessine les decorations dedans.
 		glEnable (GL_LINE_SMOOTH);
 		glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		///_cairo_dock_set_blend_alpha ();  // qqch cloche ...
+		_cairo_dock_set_blend_over ();
 		glEnable(GL_BLEND);
 		
 		glPolygonMode(GL_FRONT, GL_FILL);  // GL_FILL

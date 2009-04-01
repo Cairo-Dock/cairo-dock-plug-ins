@@ -32,7 +32,7 @@ struct _AppletConfig {
 	gint iWLineSize;
 	gboolean bPreserveScreenRatio;
 	SwitcherDrawCurrentDesktopMode iDrawCurrentDesktopMode;
-	gboolean bDisplayHiddenWindows
+	gboolean bDisplayHiddenWindows;
 	} ;
 
 typedef struct

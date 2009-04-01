@@ -16,7 +16,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 static float fCapsuleObjectPlaneS[4] = { 0.59f*2, 0., 0., 0. }; // pour un plaquages propre des textures
 static float fCapsuleObjectPlaneT[4] = { 0., 0.59f*2, 0., 0. };  // le 2 c'est le 'c'.
-static float fCapsuleObjectPlaneTinv[4] = { 0., - 0.59f*2, 0., 0. };  // le 2 c'est le 'c'.
 
 void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
 {
@@ -35,8 +34,8 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	glEnable(GL_TEXTURE_GEN_T);
 	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // type de generation des coordonnees de la texture
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // pour les bouts de textures qui depassent.
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);  // pour les bouts de textures qui depassent.
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	
 	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
@@ -70,10 +69,6 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	glDisable (GL_BLEND);
 }
 
-
-
-static float fObjectS[4] = { 0.59f*2, 0., 0., 0. }; // pour un plaquages propre des textures
-static float fObjectT[4] = { 0., 0.59f*2, 0., 0. };  // le 2 c'est le 'c'.
 
 void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
 {
@@ -247,7 +242,6 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 		
 		_draw_rotating_icon (pIcon, pDock, pData, 1.);
 		glPopMatrix ();
-		
 	}
 	pIcon->fAlpha = fAlpha;
 }

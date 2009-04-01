@@ -19,19 +19,20 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 {
 	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 6);
 	
+	//\________________ On met a jour les signets qui pointeraient sur un repertoire du point de montage nouvellement (de)monte.
 	GList *ic;
 	Icon *icon;
 	gboolean bIsMounted;
 	gchar *cTargetURI = cairo_dock_fm_is_mounted (cURI, &bIsMounted);
 	if (cTargetURI == NULL)  // version bourrinne.
 	{
-		cd_shortcuts_on_change_bookmarks (CAIRO_DOCK_FILE_MODIFIED, NULL, myApplet);
+		cd_shortcuts_on_change_bookmarks (CAIRO_DOCK_FILE_MODIFIED, NULL, myApplet);  // NULL <=> on recharge tout.
 	}
 	else  // version optimisee.
 	{
 		for (ic = (myDock ? myIcon->pSubDock->icons : myDesklet->icons); ic != NULL; ic = ic->next)
 		{
-			icon =ic->data;
+			icon = ic->data;
 			if (icon->iType == 10)
 			{
 				if (strncmp (cTargetURI, icon->cBaseURI, strlen (cTargetURI)) == 0)
@@ -156,7 +157,6 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 		myData.pIconList = NULL;
 		return FALSE;
 	}*/
-	cd_message ("  chargement du sous-dock des raccourcis");
 	
 	//\_______________________ On efface l'ancienne liste.
 	CD_APPLET_DELETE_MY_ICONS_LIST;

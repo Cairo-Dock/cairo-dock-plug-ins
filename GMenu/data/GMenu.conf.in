@@ -92,9 +92,6 @@ fg alpha = 1
 #b Display icons in the menu ?
 has icons=true
 
-#b Show recent documents ?
-show recent = true
-
 #k Shortkey to show/hide the menu :
 menu shortkey = <Shift>F1
 
@@ -104,3 +101,18 @@ quick launch shortkey = <Shift>F2
 #s Command to use to configure the menu :
 #{Let empty to use the default one.}
 config menu =
+
+#F[Recent documents]
+recent=
+
+#b Show recent documents ?
+show recent = true
+
+#D Only show files that are under this folder or its sub-folder :
+#{Let blank to not use this filter.}
+recent root dir =
+
+#i[0;30] Only show files whose last modification date is less than ;
+#{in days. Set 0 to not use this filter.}
+recent age = 0
+
