@@ -21,6 +21,8 @@ void cd_xkbd_set_prev_next_group (int iDelta)
 {
 	const XklEngine *pEngine = xkl_engine_get_instance (cairo_dock_get_Xdisplay ());
 	Window Xid = cairo_dock_get_current_active_window ();
+	if (Xid == 0)
+		Xid = DefaultRootWindow (cairo_dock_get_Xdisplay ());
 	XklState state;
 	xkl_engine_get_state (pEngine, Xid, &state);
 	cd_debug ("keyboard current state : %d;%d", state.group, state.indicators);
@@ -46,6 +48,8 @@ void cd_xkbd_set_group (int iNumGroup)
 {
 	const XklEngine *pEngine = xkl_engine_get_instance (cairo_dock_get_Xdisplay ());
 	Window Xid = cairo_dock_get_current_active_window ();
+	if (Xid == 0)
+		Xid = DefaultRootWindow (cairo_dock_get_Xdisplay ());
 	XklState state;
 	xkl_engine_get_state (pEngine, Xid, &state);
 	cd_debug ("keyboard current state : %d;%d", state.group, state.indicators);
@@ -59,10 +63,11 @@ void cd_xkbd_set_group (int iNumGroup)
 
 gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Window *pWindow)
 {
-	if (pWindow == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	g_print ("%s (%d)\n", __func__, (pWindow ? *pWindow : 0));
+	///if (pWindow == NULL)
+	///	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	Window Xid = *pWindow;
+	Window Xid = (pWindow ? *pWindow : 0);
 	if (Xid == 0)
 		Xid = DefaultRootWindow (cairo_dock_get_Xdisplay ());
 	gchar *cShortGroupName = NULL;

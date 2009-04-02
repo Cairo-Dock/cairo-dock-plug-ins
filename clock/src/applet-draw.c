@@ -380,7 +380,7 @@ void cd_clock_draw_analogic_opengl (CairoDockModuleInstance *myApplet, int iWidt
 	// draw texture bg
 	_cairo_dock_apply_texture_at_size_with_alpha (myData.iBgTexture, iWidth, iHeight, 1.);
 	
-	g_print ("%s (%d)\n", __func__, myData.iDateTexture);
+	//g_print ("%s (%d)\n", __func__, myData.iDateTexture);
 	if (myData.iDateTexture != 0 && myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
 	{
 		glPushMatrix ();
