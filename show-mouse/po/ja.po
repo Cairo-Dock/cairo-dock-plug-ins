@@ -11,152 +11,137 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
 
 #: ../src/applet-init.c:18
 msgid "show mouse"
-msgstr ""
+msgstr "マウス表示"
 
 #: ../src/applet-init.c:21
-msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
-msgstr ""
+msgid "This plug-in draw some animation around the cursor when it's inside a dock/desklet."
+msgstr "ドック/デスクレット内のマウスカーソルの周囲にアニメーションを描画するプラグイン"
 
 #: ../data/messages:1
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../data/messages:3
 msgid "Numbrer of sources :"
-msgstr ""
+msgstr "源泉の数 :"
 
 #: ../data/messages:5
 msgid "In round per second."
-msgstr ""
+msgstr "秒当りの回転数"
 
 #: ../data/messages:7
 msgid "Rotation speed :"
-msgstr ""
+msgstr "回転速度 :"
 
 #: ../data/messages:9
 msgid "Show mouse on :"
-msgstr ""
+msgstr "マウス表示効果対象 :"
 
 #: ../data/messages:11
 msgid "dock"
-msgstr ""
+msgstr "ドック"
 
 #: ../data/messages:13
-#, fuzzy
 msgid "desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:15
 msgid "both"
-msgstr ""
+msgstr "両方"
 
 #: ../data/messages:17
 msgid "Number of particles per source :"
-msgstr ""
+msgstr "源泉当りの粒の数 :"
 
 #: ../data/messages:19
 msgid "in ms."
-msgstr ""
+msgstr "ミリ秒単位"
 
 #: ../data/messages:21
 msgid "Particles life time :"
-msgstr ""
+msgstr "粒の持続時間"
 
 #: ../data/messages:23
 msgid "In pixels."
-msgstr ""
+msgstr "ピクセル単位"
 
 #: ../data/messages:25
 msgid "Particle size :"
-msgstr ""
+msgstr "粒の大きさ :"
 
 #: ../data/messages:27
 msgid "1st color of gradation :"
-msgstr ""
+msgstr "グラデーションの１番色 :"
 
 #: ../data/messages:29
 msgid "2nd color of gradation :"
-msgstr ""
+msgstr "グラデーションの２番色 :"
 
 #: ../data/messages:31
 msgid "Random colors ?"
-msgstr ""
+msgstr "ランダムな色？"
 
 #: ../data/messages:33
 msgid "The higher, the more particles will scatter from their source."
-msgstr ""
+msgstr "高い数値ほど、より広範囲に各源泉から粒が散乱します。"
 
 #: ../data/messages:35
 msgid "Scattering :"
-msgstr ""
+msgstr "散乱 :"
 
 #~ msgid "Icon"
 #~ msgstr "アイコン"
-
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "このアプレットのアイコンの大きさ"
-
 #~ msgid "width :"
 #~ msgstr "幅 :"
-
 #~ msgid "height :"
 #~ msgstr "高さ :"
-
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
-
 #~ msgid "Module"
 #~ msgstr "モジュール"
-
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
-
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + "
 #~ "middle_click or ALT + left_click for exemple."
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリッ"
 #~ "ク、または ALT + 左クリックでサイズ変更できます。"
-
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "デスクレットの寸法（幅×高さ） :"
-
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
 #~ "させることができます。"
-
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "デスクレットの位置（X ; Y） :"
-
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "ドックから分離？"
-
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"
-
 #~ msgid "Keep above other windows ?"
 #~ msgstr "他ウィンドウより常に上に？"
-
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 #~ "(name=cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
 #~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
-
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "ウィジェット・レイヤ上に表示？"
+

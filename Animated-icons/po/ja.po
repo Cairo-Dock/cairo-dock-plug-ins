@@ -11,286 +11,285 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
 
 #: ../src/applet-init.c:22
 msgid "Animated icons"
-msgstr ""
+msgstr "動画アイコン"
 
 #: ../src/applet-init.c:25
 msgid "This plug-in provides many different animations for your icons."
-msgstr ""
+msgstr "アイコンの多様なアニメーションを提供するプラグイン"
 
 #: ../data/messages:1
 msgid "Global"
-msgstr ""
+msgstr "全般"
 
 #: ../data/messages:3
 msgid "when hovering an icon"
-msgstr ""
+msgstr "アイコン ホバー時"
 
 #: ../data/messages:5
 msgid "Effects used :"
-msgstr ""
+msgstr "使用する効果 :"
 
 #: ../data/messages:7
 msgid "when clicking on an launcher"
-msgstr ""
+msgstr "ランチャー クリック時"
 
 #: ../data/messages:9
 msgid "Effects used on launcher :"
-msgstr ""
+msgstr "ランチャーに使用する効果 :"
 
-#: ../data/messages:11 ../data/messages:17 ../data/messages:23
+#: ../data/messages:11
+#: ../data/messages:17
+#: ../data/messages:23
 msgid "Number of time the animation will play :"
-msgstr ""
+msgstr "アニメーション再生回数"
 
 #: ../data/messages:13
 msgid "when clicking on an appli"
-msgstr ""
+msgstr "アプリ クリック時"
 
 #: ../data/messages:15
 msgid "Effects used on applis :"
-msgstr ""
+msgstr "アプリに使用する効果 :"
 
 #: ../data/messages:19
 msgid "when clicking on an applet"
-msgstr ""
+msgstr "アプレット クリック時"
 
 #: ../data/messages:21
 msgid "Effects used on applets :"
-msgstr ""
+msgstr "アプレットに使用する効果 :"
 
 #: ../data/messages:25
 msgid "Rotation"
-msgstr ""
+msgstr "回転"
 
-#: ../data/messages:27 ../data/messages:45 ../data/messages:87
-#: ../data/messages:99 ../data/messages:111 ../data/messages:125
+#: ../data/messages:27
+#: ../data/messages:45
+#: ../data/messages:87
+#: ../data/messages:99
+#: ../data/messages:111
+#: ../data/messages:125
 msgid "In ms."
-msgstr ""
+msgstr "ミリ秒単位"
 
-#: ../data/messages:29 ../data/messages:47 ../data/messages:89
+#: ../data/messages:29
+#: ../data/messages:47
+#: ../data/messages:89
 msgid "Duration of the animation :"
-msgstr ""
+msgstr "アニメーションの持続時間 :"
 
-#: ../data/messages:31 ../data/messages:49 ../data/messages:91
-#: ../data/messages:103 ../data/messages:115 ../data/messages:129
+#: ../data/messages:31
+#: ../data/messages:49
+#: ../data/messages:91
+#: ../data/messages:103
+#: ../data/messages:115
+#: ../data/messages:129
 msgid "Repeat while icon is pointed ?"
-msgstr ""
+msgstr "アイコンがポイントされている間は繰り返し再生？"
 
 #: ../data/messages:33
 msgid "Type of mesh :"
-msgstr ""
+msgstr "メッシュの種類 :"
 
 #: ../data/messages:35
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:37
 msgid "Cube"
-msgstr ""
+msgstr "キューブ"
 
 #: ../data/messages:39
 msgid "Capsule"
-msgstr ""
+msgstr "カプセル"
 
 #: ../data/messages:41
 msgid "color of the mesh :"
-msgstr ""
+msgstr "メッシュの色 :"
 
 #: ../data/messages:43
 msgid "Spot"
-msgstr ""
+msgstr "スポット"
 
 #: ../data/messages:51
 msgid "color of the spot :"
-msgstr ""
+msgstr "スポットの色 :"
 
 #: ../data/messages:53
 msgid "color of the halo :"
-msgstr ""
+msgstr "光の輪の色 :"
 
 #: ../data/messages:55
 msgid "Rays"
-msgstr ""
+msgstr "光線"
 
 #: ../data/messages:57
 msgid "1st color of gradation :"
-msgstr ""
+msgstr "グラデーションの１番色"
 
 #: ../data/messages:59
 msgid "2nd color of gradation :"
-msgstr ""
+msgstr "グラデーションの２番色"
 
 #: ../data/messages:61
 msgid "Random colors ?"
-msgstr ""
+msgstr "ランダムな色？"
 
 #: ../data/messages:63
 msgid "Number of rays :"
-msgstr ""
+msgstr "光線の数 :"
 
 #: ../data/messages:65
 msgid "Rays size :"
-msgstr ""
+msgstr "光線の大きさ :"
 
 #: ../data/messages:67
 msgid "Rays speed :"
-msgstr ""
+msgstr "光線の速度 :"
 
 #: ../data/messages:69
 msgid "Wobbly"
-msgstr ""
+msgstr "伸び縮み"
 
 #: ../data/messages:71
 msgid "Initial stretch :"
-msgstr ""
+msgstr "最初の引き伸ばし方向 :"
 
 #: ../data/messages:73
 msgid "Horizontal stretch"
-msgstr ""
+msgstr "水平方向の引き伸ばし"
 
 #: ../data/messages:75
 msgid "Vertical stretch"
-msgstr ""
+msgstr "垂直方向の引き伸ばし"
 
 #: ../data/messages:77
 msgid "Corner stretch"
-msgstr ""
+msgstr "角方向の引き伸ばし"
 
 #: ../data/messages:79
 msgid "Spring constant :"
-msgstr ""
+msgstr "バネ定数 :"
 
 #: ../data/messages:81
 msgid "Friction :"
-msgstr ""
+msgstr "摩擦 :"
 
 #: ../data/messages:83
 msgid "Number of points on the grid in one direction :"
-msgstr ""
+msgstr "１方向におけるグリッド上のポイント数 :"
 
 #: ../data/messages:85
 msgid "Wave"
-msgstr ""
+msgstr "ウェーブ"
 
 #: ../data/messages:93
 msgid "Width of the wave :"
-msgstr ""
+msgstr "ウェーブの幅 :"
 
 #: ../data/messages:95
 msgid "Amplitude of the wave :"
-msgstr ""
+msgstr "ウェーブの振幅 :"
 
 #: ../data/messages:97
 msgid "Pulse"
-msgstr ""
+msgstr "パルス"
 
 #: ../data/messages:101
 msgid "Duration of the pulse :"
-msgstr ""
+msgstr "パルスの持続時間 :"
 
 #: ../data/messages:105
 msgid "Zoom max of the pulse :"
-msgstr ""
+msgstr "パルスの最大ズーム率 :"
 
 #: ../data/messages:107
 msgid "Should the pulse follow the shape of the icon ?"
-msgstr ""
+msgstr "パルスをアイコンの形に従わせる？"
 
 #: ../data/messages:109
 msgid "Bounce"
-msgstr ""
+msgstr "バウンド"
 
 #: ../data/messages:113
 msgid "Duration of the bounce :"
-msgstr ""
+msgstr "バウンドの持続時間 :"
 
 #: ../data/messages:117
 msgid "When bouncing, resize the icon of :"
-msgstr ""
+msgstr "跳ね上がっている時のアイコンのサイズ変更割合 :"
 
 #: ../data/messages:119
 msgid "the smaller, the more it will flatten."
-msgstr ""
+msgstr "小さい数値ほど、平らになります。"
 
 #: ../data/messages:121
 msgid "How much the icon will flatten when hurting the ground :"
-msgstr ""
+msgstr "跳ねる直前にアイコンが平らに縮む割合 :"
 
 #: ../data/messages:123
 msgid "Blink"
-msgstr ""
+msgstr "点滅"
 
 #: ../data/messages:127
 msgid "Duration of the blink :"
-msgstr ""
+msgstr "点滅の持続時間 :"
 
 #~ msgid "Icon"
 #~ msgstr "アイコン"
-
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "このアプレットのアイコンの大きさ"
-
 #~ msgid "width :"
 #~ msgstr "幅 :"
-
 #~ msgid "height :"
 #~ msgstr "高さ :"
-
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
-
 #~ msgid "Module"
 #~ msgstr "モジュール"
-
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
-
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-
 #~ msgid "Desklet"
 #~ msgstr "デスクレット"
-
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + "
 #~ "middle_click or ALT + left_click for exemple."
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリッ"
 #~ "ク、または ALT + 左クリックでサイズ変更できます。"
-
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "デスクレットの寸法（幅×高さ） :"
-
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
 #~ "させることができます。"
-
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "デスクレットの位置（X ; Y） :"
-
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "ドックから分離？"
-
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"
-
 #~ msgid "Keep above other windows ?"
 #~ msgstr "他ウィンドウより常に上に？"
-
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 #~ "(name=cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
 #~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
-
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "ウィジェット・レイヤ上に表示？"
+

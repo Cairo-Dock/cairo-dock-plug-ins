@@ -92,6 +92,7 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		const gchar **pIndicatorNames = xkl_engine_get_indicators_names (pEngine);
 		
 		cCurrentGroup = pGroupNames[state.group];
+		g_print ("group : %d (%s)\n", state.group, cCurrentGroup);
 		
 		int i;
 		if (myConfig.bShowKbdIndicator)

@@ -16,20 +16,24 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 
 
-
-
 CD_APPLET_ON_CLICK_BEGIN
-	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock))  // on a clique sur une icone du sous-dock.
+	if (myDock)
 	{
-		cd_debug (" clic sur %s", pClickedIcon->acName);
-		cd_weather_show_forecast_dialog (myApplet, pClickedIcon);
-	}
-	else if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL)  // on a clique sur une icone du desklet.
-	{
-		if (pClickedIcon == myIcon)
-			cd_weather_show_current_conditions_dialog (myApplet);
-		else
+		if (pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock) && pClickedIcon != NULL)  // on a clique sur une icone du sous-dock.
+		{
+			cd_debug (" clic sur %s", pClickedIcon->acName);
 			cd_weather_show_forecast_dialog (myApplet, pClickedIcon);
+		}
+	}
+	else if (myDesklet)  // on a clique sur une icone du desklet.
+	{
+		if (pClickedIcon != NULL)
+		{
+			if (pClickedIcon == myIcon)
+				cd_weather_show_current_conditions_dialog (myApplet);
+			else
+				cd_weather_show_forecast_dialog (myApplet, pClickedIcon);
+		}
 	}
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -64,7 +68,6 @@ CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet,
 	if (myDock != NULL)
 		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_remove_dialog_if_any, NULL);
 	else
-		//g_list_foreach (myData.pDeskletIconList, (GFunc) cairo_dock_remove_dialog_if_any, NULL);
 		cairo_dock_remove_dialog_if_any (myIcon);
 	
 	if (myData.bErrorRetrievingData)

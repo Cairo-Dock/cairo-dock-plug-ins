@@ -21,7 +21,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("weather"),
 	N_("This applet displays weather into your dock.\n"
 	"Data are provided by www.weather.com, you can find your location in the config panel.\n"
 	"It can detach itself to be a totally eye-candy 3D deskelt.\n"
-	"You can have many valuable info by middle or left clicking on the icons."),
+	"Middle-click on the main icon to have current conditions information, left-click on a sub-icon to have forcast information.\n"),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_weather_load_custom_widget;

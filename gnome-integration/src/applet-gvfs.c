@@ -213,6 +213,7 @@ static gchar *_cd_find_volume_name_from_drive_name (const gchar *cName)
 		}
 		else
 		{
+			return g_strdup ("discard");
 			pVolume = pAssociatedVolumes->data;
 			cVolumeName = g_volume_get_name  (pVolume);
 			g_object_unref (pVolume);
@@ -603,6 +604,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		return NULL;
 	}
 	
+	int iOrder = 0;
 	GList *pIconList = NULL;
 	Icon *icon;
 	GFileInfo *pFileInfo;
@@ -686,8 +688,13 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 								if (cVolumeName != NULL)
 								{
 									g_free (cName);
-									cName = cVolumeName;
-								}  /// sinon ne pas afficher ce disque, mais uniquement ses volumes ?...
+									g_free (cVolumeName);
+									continue;  /// apparemment il n'est plus necessaire d'afficher les .drives qui ont 1 (ou plusieurs ?) volumes, car ces derniers sont dans la liste, donc ca fait redondant.
+									/**if (strcmp (cVolumeName, "discard") == 0)
+										continue;
+									g_free (cName);
+									cName = cVolumeName;*/
+								}
 							}
 						}
 					}
@@ -733,7 +740,13 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				}
 				else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
 					icon->fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
-				pIconList = g_list_prepend (pIconList, icon);
+				if (icon->fOrder == 0)  // un peu moyen mais mieux que rien non ?
+					icon->fOrder = iOrder;
+				pIconList = g_list_insert_sorted (pIconList,
+					icon,
+					(GCompareFunc) cairo_dock_compare_icons_order);
+				//g_list_prepend (pIconList, icon);
+				iOrder ++;
 			}
 		}
 	} while (TRUE);  // 'g_file_enumerator_close' est appelee lors du dernier 'g_file_enumerator_next_file'.

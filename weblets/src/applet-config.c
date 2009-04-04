@@ -28,7 +28,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cListURI = CD_CONFIG_GET_STRING_LIST ("Configuration", "uri list", &length);
 
 	if (myConfig.cListURI == NULL) {
-		g_key_file_set_string (CD_APPLET_MY_KEY_FILE, "Configuration", "uri list", "www.cairo-dock.org;www.google.com;m.google.com/mail;www.rememberthemilk.com/services/modules/googleig;https://www.meebo.com/mobile;https://www.pandora.com/radio/tuner_8_7_0_0_pandora.swf;about:plugins");
+		g_key_file_set_string (CD_APPLET_MY_KEY_FILE, "Configuration", "uri list", "www.cairo-dock.org;www.google.com;m.google.com/mail;www.rememberthemilk.com/services/modules/googleig;https://www.meebo.com/mobile;https://www.pandora.com/radio/tuner_8_7_0_0_pandora.swf;http://digg.com/iphone#_stories;about:plugins");
 		cairo_dock_write_keys_to_file (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE);
 		myConfig.cListURI = CD_CONFIG_GET_STRING_LIST ("Configuration", "uri list", &length);
 	}

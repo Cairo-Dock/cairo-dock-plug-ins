@@ -111,4 +111,4 @@ reload timeout = 0
 
 #s99 Predefined bookmarks to show in applet's menu :
 #{Any valid URI should work.}/
-uri list = http://www.cairo-dock.org;http://www.google.com;https://m.google.com/mail;www.rememberthemilk.com/services/modules/googleig;https://www.meebo.com/mobile;https://www.pandora.com/radio/tuner_8_7_0_0_pandora.swf;about:plugins;
+uri list = http://www.cairo-dock.org;http://www.google.com;https://m.google.com/mail;www.rememberthemilk.com/services/modules/googleig;https://www.meebo.com/mobile;https://www.pandora.com/radio/tuner_8_7_0_0_pandora.swf;http://digg.com/iphone#_stories;about:plugins

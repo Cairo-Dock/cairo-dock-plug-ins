@@ -17,7 +17,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName, const gchar *cIndicatorName, gboolean bRedrawSurface)
 {
-	//g_print ("%s (%s;%s)\n", __func__, cGroupName, cShortGroupName);
+	//g_print ("%s (%s;%s;%d)\n", __func__, cGroupName, cShortGroupName, bRedrawSurface);
 	
 	if (bRedrawSurface)
 	{
@@ -90,6 +90,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 {
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
+	//g_print ("%s (%.2f)\n", __func__, f);
 	
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);

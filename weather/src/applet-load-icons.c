@@ -33,7 +33,6 @@ char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("
 		pIcon->fWidthFactor = 1.;\
 		pIcon->fHeightFactor = 1.;\
 		pIcon->acCommand = g_strdup ("none");\
-		pIcon->cParentDockName = g_strdup (myIcon->acName);\
 		cd_debug (" + %s (%s , %s)", pIcon->acName, myData.days[i].part[j].cWeatherDescription, pIcon->acFileName);\
 		pIconList = g_list_append (pIconList, pIcon);\
 	}
@@ -75,7 +74,19 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 		
 		g_free (myIcon->acFileName);
 		if (myData.bErrorRetrievingData)
-			myIcon->acFileName = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
+		{
+			myIcon->acFileName = g_strdup_printf ("%s/na.png", myConfig.cThemePath);
+			if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
+			{
+				g_free (myIcon->acFileName);
+				myIcon->acFileName = g_strdup_printf ("%s/%na.svg", myConfig.cThemePath);
+				if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
+				{
+					g_free (myIcon->acFileName);
+					myIcon->acFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/broken.png");
+				}
+			}
+		}
 		else
 		{
 			myIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);

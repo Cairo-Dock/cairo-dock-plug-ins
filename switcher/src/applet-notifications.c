@@ -27,8 +27,17 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (myConfig.bCompactView && pClickedIcon == myIcon)
 	{
 		int iMouseX, iMouseY;
-		iMouseX = myContainer->iMouseX - myIcon->fDrawX;
-		iMouseY = myContainer->iMouseY - myIcon->fDrawY;
+		if (myDesklet)
+		{
+			cairo_dock_get_coords_on_3D_desklet (myDesklet, &iMouseX, &iMouseY);
+			iMouseX -= myIcon->fDrawX;
+			iMouseY -= myIcon->fDrawY;
+		}
+		else
+		{
+			iMouseX = myContainer->iMouseX - myIcon->fDrawX;
+			iMouseY = myContainer->iMouseY - myIcon->fDrawY;
+		}
 		if (! myContainer->bIsHorizontal)
 		{
 			double tmp = iMouseX;
@@ -44,6 +53,8 @@ CD_APPLET_ON_CLICK_BEGIN
 			iMouseX = myIcon->fWidth * myIcon->fScale;
 		if (iMouseY > myIcon->fHeight * myIcon->fScale)
 			iMouseY = myIcon->fHeight * myIcon->fScale;
+		
+		
 		iNumLine = (int) (iMouseY / (myIcon->fHeight * myIcon->fScale) * myData.switcher.iNbLines);
 		iNumColumn = (int) (iMouseX / (myIcon->fWidth * myIcon->fScale) * myData.switcher.iNbColumns);
 		cd_switcher_compute_desktop_from_coordinates (iNumLine, iNumColumn, &iNumDesktop, &iNumViewportX, &iNumViewportY);
