@@ -13,7 +13,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-struct.h"
 #include "applet-config.h"
 #include "applet-musicplayer.h"
-
+#include "3dcover-draw.h"
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
@@ -62,21 +62,32 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iImagesSize = CD_CONFIG_GET_INTEGER ("Configuration", "D_SIZE");
 	myConfig.iTimeToWait = CD_CONFIG_GET_INTEGER ("Configuration", "DELAY");
 	
+	//\_______________ On on recupere le theme choisi.
+	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");
+	cd_opengl_load_external_conf_theme_values (myApplet);
+	
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
+
 	g_free (myConfig.cDefaultTitle);
 	myConfig.cDefaultTitle = NULL;
 	//g_free (myConfig.cMusicPlayer);
 	myConfig.cMusicPlayer = NULL;
 	
 	int i;
-	for (i = 0; i < PLAYER_NB_STATUS; i ++) {
+	for (i = 0; i < PLAYER_NB_STATUS; i ++)
+	{
 		g_free (myConfig.cUserImage[i]);
 		myConfig.cUserImage[i] = NULL;
 	}
+	
+	g_free (myConfig.cThemePath);
+	g_free (myData.cThemeFrame);
+	g_free (myData.cThemeReflect);
+	
 CD_APPLET_RESET_CONFIG_END
 
 
@@ -119,4 +130,10 @@ CD_APPLET_RESET_DATA_BEGIN
 	//On s'occupe des handelers.
 	g_list_foreach (myData.pHandelers, (GFunc) cd_musicplayer_free_handeler, NULL);
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	
+	glDeleteTextures (1, &myData.TextureFrame);
+	glDeleteTextures (1, &myData.TextureCover);
+	glDeleteTextures (1, &myData.TextureReflect);
+	glDeleteTextures (1, &myData.TextureName);
+	
 CD_APPLET_RESET_DATA_END

@@ -41,7 +41,9 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-songbird.h\
 	applet-xmms.c\
 	applet-xmms.h\
-	applet-struct.h
+	applet-struct.h\
+	3dcover-draw.c\
+	3dcover-draw.h
 
 
 dock_version = `pkg-config --modversion cairo-dock`

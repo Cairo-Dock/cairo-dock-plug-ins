@@ -3,7 +3,7 @@
 #[gtk-about]
 [Icon]
 #j[0;128] Desired icon size for this applet
-#{Set to 0 to use the default applet size}
+#{Set to 0 to use the default applet size}
 icon size = 0;0
 
 #s Name of the icon as it will appear in its label in the dock :
@@ -11,10 +11,10 @@ icon size = 0;0
 name = Music Player
 
 #d Name of the dock it belongs to:
-dock name = 
+dock name =
 
 order=
-icon = 
+icon =
 
 #[gtk-convert]
 [Desklet]
@@ -95,7 +95,6 @@ current-player=XMMS
 #{It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
 inhibate appli = true
 
-
 #F[Display;gtk-dnd-multiple]
 frame_disp=
 
@@ -106,33 +105,12 @@ enable_cover=true
 quick-info_type=1
 
 #r+[Simple;Info;Info and Controler;Caroussel;Controler] Desklet display mode :
-extended_mode=2
+extended_mode=0
 
-#X[Simple Desklet]
+#X[False 3D Themes (OpenGL only)]
 frame_simple=
-#r+[Personnal;Extended 3D mode;CD box;frame with reflects;scotch;frame with scotch] Choose a decoration for the desklet mode :
-#{If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration.}
-desklet decoration = 3
-
-#S+ Background image :
-#{It's an image that will be displayed below the cover, like a frame for exemple.}
-frame =
-#e+[0;1] Background tansparency :
-frame alpha = 1
-#i+ Left offset :
-#{It's typically the width of the left side of your frame, in pixels.}
-left offset = 0
-#i+ Right offset :
-top offset = 0
-#i+ Right offset :
-right offset = 0
-#i+ Right offset :
-bottom offset = 0
-#S+ Reflection image :
-#{It's an image that will be displayed above the cover, like a reflect for exemple.}
-reflect =
-#e+[0;1] Reflection tansparency :
-reflect alpha = 1
+#h+[@musicplayerdatadir@/themes;musicPlayer] List of available specific themes :/
+theme = cd_box_3d
 
 #F[Action on music change;gtk-preferences]
 frame_info=
@@ -150,25 +128,23 @@ enable_anim=true
 #E[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
 change_animation=wobbly
 
-
 #X[Personnalisation;gtk-dialog-info]
 frame_perso =
 #S+ Name of an image for the 'default' icon :
 #{Let it empty to use the default icon.}
-default icon = 
+default icon =
 #S+ Name of an image for the 'play' icon :
 #{Let it empty to use the default icon.}
-play icon = 
+play icon =
 #S+ Name of an image for the 'stop' icon :
 #{Let it empty to use the default icon.}
-stop icon = 
+stop icon =
 #S+ Name of an image for the 'pause' icon :
 #{Let it empty to use the default icon.}
-pause icon = 
+pause icon =
 #S+ Name of an image for the 'broken' icon :
 #{Let it empty to use the default icon.}
-broken icon = 
-
+broken icon =
 
 #X+[Downloads;gtk-convert]
 frame_launcher =

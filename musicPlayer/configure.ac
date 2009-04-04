@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-musicPlayer],[0.1.1],[ChAnGFu (Robertson Rémy)(changfu@cairo-dock.org)])
+AC_INIT([cd-musicPlayer],[1.0.0],[ChAnGFu (Robertson Rémy)(changfu@cairo-dock.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -33,5 +33,10 @@ AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
 		data/Makefile
-		data/musicPlayer.conf])
+		data/musicPlayer.conf
+		data/themes/Makefile
+		data/themes/None/Makefile
+		data/themes/cd_box_3d/Makefile
+		data/themes/cd_box_simple/Makefile
+		data/themes/super_jewel/Makefile])
 AC_OUTPUT

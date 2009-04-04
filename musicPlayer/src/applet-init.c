@@ -16,6 +16,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-draw.h"
 #include "applet-musicplayer.h"
 #include "applet-dbus.h" //Test
+#include "3dcover-draw.h"
 
 #include "applet-xmms.h" //Support XMMS
 #include "applet-exaile.h" //Support Exaile
@@ -36,7 +37,7 @@ CD_APPLET_DEFINITION (N_("musicPlayer"),
 	"You can drag and drop songs to put them in the queue (depends on Player).\n"
 	"Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 	"       For SongBird, you have to install its dbus add-on.\n"),
-	"ChanGFu (Rémy Robertson), Mav (Yann SLADEK), Tofe, Jackass")
+	"ChanGFu (Rémy Robertson), Mav (Yann SLADEK), Tofe, Jackass, Nochka85")
 
 
 static void _musciplayer_set_simple_renderer (void) {
@@ -103,7 +104,7 @@ CD_APPLET_INIT_BEGIN
 			_musciplayer_set_simple_renderer ();
 		}
 	}
-	
+		
 	//On initialise les variables pour la connexion aux proxys
 	myData.dbus_enable = 0;
 	myData.opening= 0;
@@ -138,6 +139,14 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
+	
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	{
+		cd_opengl_init_opengl_datas ();
+		cairo_dock_launch_animation (myContainer);
+		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_FIRST, myApplet);
+	}
+	
 CD_APPLET_INIT_END
 
 
@@ -229,8 +238,20 @@ CD_APPLET_RELOAD_BEGIN
 			}
 			
 			cd_musicplayer_arm_handeler (); //et on arme le bon.
+			
+			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+			{
+				cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, myApplet);
+			
+				cd_opengl_init_opengl_datas ();
+						
+				cairo_dock_launch_animation (myContainer);
+				cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
+			}
 		}
 	}
 	else  // on redessine juste l'icone.
+	{
 		cd_musicplayer_draw_icon ();
+	}
 CD_APPLET_RELOAD_END

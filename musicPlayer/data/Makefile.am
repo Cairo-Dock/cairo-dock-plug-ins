@@ -1,4 +1,6 @@
 
+SUBDIRS = . themes
+
 moduledir = $(musicplayerdatadir)
 
 module_DATA = \
