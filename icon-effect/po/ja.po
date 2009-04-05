@@ -7,13 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"PO-Revision-Date: \n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Language-Team: \n"
 
 #: ../src/applet-init.c:20
 msgid "icon effects"
@@ -71,78 +70,56 @@ msgstr "ドックに従って効果を回転？"
 msgid "Fire"
 msgstr "炎"
 
-#: ../data/messages:25
-#: ../data/messages:49
-#: ../data/messages:67
-#: ../data/messages:85
-#: ../data/messages:103
+#: ../data/messages:25 ../data/messages:49 ../data/messages:67
+#: ../data/messages:85 ../data/messages:103
 msgid "In ms. Set 0 to not use this effect."
 msgstr "ミリ秒単位。0 に設定すると効果は使用されません。"
 
-#: ../data/messages:27
-#: ../data/messages:51
-#: ../data/messages:69
-#: ../data/messages:87
-#: ../data/messages:105
+#: ../data/messages:27 ../data/messages:51 ../data/messages:69
+#: ../data/messages:87 ../data/messages:105
 msgid "Duration of the animation :"
 msgstr "アニメーションの持続時間 :"
 
-#: ../data/messages:29
-#: ../data/messages:53
-#: ../data/messages:71
-#: ../data/messages:89
-#: ../data/messages:107
+#: ../data/messages:29 ../data/messages:53 ../data/messages:71
+#: ../data/messages:89 ../data/messages:107
 msgid "Repeat while icon is pointed ?"
 msgstr "アイコンがポイントされている間は繰り返し再生？"
 
-#: ../data/messages:31
-#: ../data/messages:55
-#: ../data/messages:73
-#: ../data/messages:91
-#: ../data/messages:109
+#: ../data/messages:31 ../data/messages:55 ../data/messages:73
+#: ../data/messages:91 ../data/messages:109
 msgid "1st color of gradation :"
 msgstr "グラデーションの１番色 :"
 
-#: ../data/messages:33
-#: ../data/messages:57
-#: ../data/messages:75
-#: ../data/messages:93
-#: ../data/messages:111
+#: ../data/messages:33 ../data/messages:57 ../data/messages:75
+#: ../data/messages:93 ../data/messages:111
 msgid "2nd color of gradation :"
 msgstr "グラデーションの２番色 :"
 
-#: ../data/messages:35
-#: ../data/messages:59
+#: ../data/messages:35 ../data/messages:59
 msgid "Random colors ?"
 msgstr "ランダムな色？"
 
 #: ../data/messages:37
 msgid "It will slightly alter the colors, so you may have to modify them."
-msgstr "これを使用すると色が若干変化してしまうので、炎の色設定を修正する必要があるかもしれません。"
+msgstr ""
+"これを使用すると色が若干変化してしまうので、炎の色設定を修正する必要があるか"
+"もしれません。"
 
 #: ../data/messages:39
 msgid "Add luminance ?"
 msgstr "輝く効果を追加？"
 
-#: ../data/messages:41
-#: ../data/messages:61
-#: ../data/messages:77
-#: ../data/messages:95
-#: ../data/messages:113
+#: ../data/messages:41 ../data/messages:61 ../data/messages:77
+#: ../data/messages:95 ../data/messages:113
 msgid "Number of particles :"
 msgstr "粒の数"
 
-#: ../data/messages:43
-#: ../data/messages:63
-#: ../data/messages:79
-#: ../data/messages:97
-#: ../data/messages:115
+#: ../data/messages:43 ../data/messages:63 ../data/messages:79
+#: ../data/messages:97 ../data/messages:115
 msgid "Particle size :"
 msgstr "粒の大きさ :"
 
-#: ../data/messages:45
-#: ../data/messages:81
-#: ../data/messages:99
+#: ../data/messages:45 ../data/messages:81 ../data/messages:99
 msgid "Particle speed :"
 msgstr "粒の速度 :"
 
@@ -164,53 +141,69 @@ msgstr "嵐"
 
 #~ msgid "Icon"
 #~ msgstr "アイコン"
+
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "このアプレットのアイコンの大きさ"
+
 #~ msgid "width :"
 #~ msgstr "幅 :"
+
 #~ msgid "height :"
 #~ msgstr "高さ :"
+
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
+
 #~ msgid "Module"
 #~ msgstr "モジュール"
+
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
+
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
 #~ msgid "Desklet"
 #~ msgstr "デスクレット"
+
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + "
 #~ "middle_click or ALT + left_click for exemple."
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリッ"
 #~ "ク、または ALT + 左クリックでサイズ変更できます。"
+
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "デスクレットの寸法（幅×高さ） :"
+
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
 #~ "させることができます。"
+
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "デスクレットの位置（X ; Y） :"
+
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "ドックから分離？"
+
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"
+
 #~ msgid "Keep above other windows ?"
 #~ msgstr "他ウィンドウより常に上に？"
+
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 #~ "(name=cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
 #~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
+
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "ウィジェット・レイヤ上に表示？"
-

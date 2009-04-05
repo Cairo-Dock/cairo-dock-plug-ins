@@ -163,9 +163,9 @@ if test "$with_mail" = "yes" ; then
 
 fi
 if test "$with_weblets" = "yes" ; then
-	PKG_CHECK_MODULES(WEBLETS_WEBKIT,webkit-1.0, ,[ with_weblets=false; AC_MSG_WARN(Could not find webkit-1.0; Cairo-Dock won't be built with Weblets applet.) ])
-	AC_SUBST(WEBLETS_WEBKIT_CFLAGS)
-	AC_SUBST(WEBLETS_WEBKIT_LIBS)
+	PKG_CHECK_MODULES(WEBKIT,webkit-1.0, ,[ with_weblets=false; AC_MSG_WARN(Could not find webkit-1.0; Cairo-Dock won't be built with Weblets applet.) ])
+	AC_SUBST(WEBKIT_CFLAGS)
+	AC_SUBST(WEBKIT_LIBS)
 fi
 if test "$with_exif" = "yes" ; then
 	PKG_CHECK_MODULES(EXIF,libexif, ,[ with_exif=false; AC_MSG_WARN(Could not find libexif; Slider won't be built with exif capbilities.) ])
