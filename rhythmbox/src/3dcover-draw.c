@@ -205,7 +205,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 	cairo_dock_apply_texture (myData.TextureReflect);
 	
 		
-	glDepthMask(GL_TRUE);
+	//glDepthMask(GL_TRUE);
 	
 		
 	glDisable(GL_TEXTURE_2D);
