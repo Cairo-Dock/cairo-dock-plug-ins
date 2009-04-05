@@ -26,7 +26,7 @@ AC_SUBST(libdir)
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
-PKG_CHECK_MODULES(WEBKIT,WebKitGtk, [webkit_detected=true], [ webkit_detected=false; AC_MSG_ERROR(Could not find webkit-1.0; Weblets plugin requires webkit to be installed.) ])
+PKG_CHECK_MODULES(WEBKIT,webkit-1.0, [webkit_detected=true], [ webkit_detected=false; AC_MSG_ERROR(Could not find webkit-1.0; Weblets plugin requires webkit to be installed.) ])
 AC_SUBST(WEBKIT_CFLAGS)
 AC_SUBST(WEBKIT_LIBS)
 
