@@ -85,7 +85,6 @@ void cd_xeyes_render_to_surface (CairoDockModuleInstance *myApplet, int iWidth, 
 {
 	cairo_dock_erase_cairo_context (myDrawContext);
 	
-	
 	if (myData.bWink && myData.pEyelidSurface)
 	{
 		cairo_set_source_surface (myDrawContext,

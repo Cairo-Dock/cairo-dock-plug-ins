@@ -44,7 +44,14 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	
-	pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidth;
+	double fInclination = 0.5 * pDock->fFlatDockWidth / iVanishingPointY;
+	double fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
+	pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidthMin;
+	
+	fInclination = 0.5 * pDock->iMinDockWidth / iVanishingPointY;
+	fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
+	//pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidthMin;
+	
 	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + myIcons.fReflectSize + pDock->iMaxIconHeight;
 	
 	if (my_pFlatSeparatorSurface[0] == NULL && (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR))

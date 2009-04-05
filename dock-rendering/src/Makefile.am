@@ -17,8 +17,6 @@ libcd_rendering_la_SOURCES = \
 	rendering-3D-plane.h\
 	rendering-rainbow.c\
 	rendering-rainbow.h\
-	rendering-diapo.c\
-	rendering-diapo.h\
 	rendering-diapo-simple.c\
 	rendering-diapo-simple.h\
 	rendering-curve.c\

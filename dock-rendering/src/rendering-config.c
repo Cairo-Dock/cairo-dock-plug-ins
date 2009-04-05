@@ -46,7 +46,7 @@ extern double my_fRainbowConeOffset;
 extern double my_fRainbowColor[4];
 extern double my_fRainbowLineColor[4];
 
-extern gint     my_diapo_iconGapX;
+/*extern gint     my_diapo_iconGapX;
 extern gint     my_diapo_iconGapY;
 extern gdouble  my_diapo_fScaleMax;
 extern gint     my_diapo_sinW;
@@ -65,7 +65,7 @@ extern guint    my_diapo_lineWidth;
 extern guint    my_diapo_radius;
 extern gdouble  my_diapo_color_border_line[4];
 extern gboolean my_diapo_draw_background;
-extern gboolean my_diapo_display_all_icons;
+extern gboolean my_diapo_display_all_icons;*/
 
 extern gint     my_diapo_simple_iconGapX;
 extern gint     my_diapo_simple_iconGapY;
@@ -128,7 +128,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	cairo_dock_get_double_list_key_value (pKeyFile, "Rainbow", "line color", &bFlushConfFileNeeded, my_fRainbowLineColor, 4, line_couleur, NULL, NULL);
 	
 	
-	my_diapo_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapX",             &bFlushConfFileNeeded,     5, NULL, NULL);
+	/*my_diapo_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapX",             &bFlushConfFileNeeded,     5, NULL, NULL);
 	my_diapo_iconGapY             = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapY",             &bFlushConfFileNeeded,    10, NULL, NULL);
 	my_diapo_fScaleMax            = cairo_dock_get_double_key_value  (pKeyFile, "Slide", "fScaleMax",            &bFlushConfFileNeeded,    2., NULL, NULL);
 	my_diapo_sinW                 = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "sinW",                 &bFlushConfFileNeeded,   300, NULL, NULL);
@@ -151,7 +151,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "lineWidth",   &bFlushConfFileNeeded, 5,    NULL, NULL);
 	my_diapo_radius      = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
 	my_diapo_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
-	my_diapo_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);
+	my_diapo_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);*/
 	
 	
 	my_diapo_simple_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapX",             &bFlushConfFileNeeded,    20, NULL, NULL);

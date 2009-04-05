@@ -56,7 +56,7 @@ double my_fRainbowConeOffset;
 double my_fRainbowColor[4];
 double my_fRainbowLineColor[4];
 
-gint     my_diapo_iconGapX;
+/*gint     my_diapo_iconGapX;
 gint     my_diapo_iconGapY;
 gdouble  my_diapo_fScaleMax;
 gint     my_diapo_sinW;
@@ -75,6 +75,7 @@ guint    my_diapo_lineWidth;
 guint    my_diapo_radius;
 gdouble  my_diapo_color_border_line[4];
 gboolean my_diapo_draw_background;
+gboolean my_diapo_display_all_icons;*/
 
 gint     my_diapo_simple_iconGapX;
 gint     my_diapo_simple_iconGapY;
@@ -96,7 +97,7 @@ guint    my_diapo_simple_lineWidth;
 guint    my_diapo_simple_radius;
 gdouble  my_diapo_simple_color_border_line[4];
 gboolean my_diapo_simple_draw_background;
-gboolean my_diapo_display_all_icons;
+
 
 gdouble my_fCurveCurvature;
 gint my_iCurveAmplitude;

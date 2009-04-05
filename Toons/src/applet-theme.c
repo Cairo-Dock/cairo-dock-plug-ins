@@ -25,7 +25,6 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 {
 	GString *sPath = g_string_new ("");
 	g_string_printf (sPath, "%s/theme.conf", myConfig.cThemePath);
-	g_print ("theme conf : %s\n", sPath->str);
 	
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (sPath->str);
 	g_return_val_if_fail (pKeyFile != NULL, FALSE);
@@ -145,7 +144,6 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 		myConfig.iLoadingModifier,
 		&fImageWidth, &fImageHeight,
 		NULL, NULL);
-	g_print ("eyelid : %.2fx%.2f\n", fImageWidth, fImageHeight);
 	myData.iEyelidWidth = fImageWidth;
 	myData.iEyelidHeight = fImageHeight;
 	myData.iXeyelid = iXeyelid * fZoomX + dx;
