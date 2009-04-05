@@ -116,15 +116,24 @@ gboolean on_scroll_desklet(gpointer pUserData, Icon *pClickedIcon, CairoDesklet 
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-//gboolean cd_drop_indicator_mouse_moved (gpointer pUserData, CairoDock *pDock, gboolean *bStartAnimation);
-//gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDesklet *pDock, gboolean *bContinueAnimation);
+gboolean on_enter_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bStartAnimation)
+{
+	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (pDesklet))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+
+	if (! pDesklet->pRenderer || pDesklet->pRenderer->render != rendering_draw_caroussel_in_desklet || ! pDesklet->bInside)
+	  return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+
+	*bStartAnimation = TRUE;
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
 
 gboolean on_motion_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bStartAnimation)
 {
 	cd_message( "pUserData = %x, pDesklet = %x", pUserData, pDesklet );
+	cd_message( "pDesklet->pIcon->acName = %s", pDesklet->pIcon->acName );
 
-	if (! pDesklet->pRenderer || pDesklet->pRenderer->render != rendering_draw_caroussel_in_desklet || ! pDesklet->bInside)
-	//if( pDesklet != pUserData || (pDesklet && !pDesklet->bInside) )
+	if ( !pDesklet || !pDesklet->pRenderer || !pDesklet->bInside || pDesklet->pRenderer->render != rendering_draw_caroussel_in_desklet || ! pDesklet->bInside)
 	  return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 
 	 cd_message( "this is our stuff !");
@@ -145,7 +154,6 @@ gboolean on_motion_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean
 			double fDeltaRotation = (pCaroussel->fDeltaTheta / 10) *
 			                        (pDesklet->iWidth*0.3 - pDesklet->iMouseX)/(pDesklet->iWidth*0.3);
 			_caroussel_rotate_delta( pDesklet, fDeltaRotation );
-			*bStartAnimation = TRUE;
 		}
 		// si on est dans les entre 80% et 100% de la largeur du desklet,
 		// alors on tourne a gauche (-1)
@@ -157,9 +165,10 @@ gboolean on_motion_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean
 			                        (pDesklet->iMouseX - pDesklet->iWidth*0.7)/(pDesklet->iWidth*0.3);
 			pCaroussel->iRotationDirection = -1;
 			_caroussel_rotate_delta( pDesklet, fDeltaRotation );
-			*bStartAnimation = TRUE;
 		}
 	}
+
+	*bStartAnimation = TRUE;
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
@@ -725,5 +734,5 @@ void rendering_register_caroussel_desklet_renderer (void)
 	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
 	//  on garde quand meme la notif pour le scroll, pour les nostalgiques
 	///cairo_dock_register_notification (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) on_scroll_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
-	//cairo_dock_register_notification (CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, CAIRO_DOCK_RUN_FIRST, NULL);
 }
