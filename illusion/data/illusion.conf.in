@@ -31,7 +31,7 @@ part size = 10
 #e[0;10] Particle speed :
 part speed = 3.5
 
-#b Evaporate upward ?
+#b+ Evaporate upward ?
 from bottom = true
 
 

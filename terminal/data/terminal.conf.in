@@ -2,7 +2,7 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -93,17 +93,17 @@ fg alpha = 1
 #{needs to restart the applet.}
 terminal transparency=.5
 
-#c3[0;1] Foreground color (r, v, b):
+#c+3[0;1] Foreground color (r, v, b):
 foreground color= 1.; 1.; 1.
 
-#c3[0;1] Background color (r, v, b):
+#c+3[0;1] Background color (r, v, b):
 background color= 0.; 0.; 0.
 
-#I-[5;999] Size of the terminal (line x columns) :
+#I[5;999] Size of the terminal (line x columns) :
 #{When the terminal is in a dialog. When it is in a desklet, you can just resize the desklet as usual.}
 nb lines = 25
-#I-[5;999] ...
+#I[5;999] ...
 nb columns = 70
 
-#k Shortkey to show the terminal
-shortkey = <Shift>F5
+#k Shortkey to show the terminal :
+shortkey = <Ctrl>F5

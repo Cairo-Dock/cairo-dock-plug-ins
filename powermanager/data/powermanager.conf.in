@@ -3,8 +3,7 @@
 #[gtk-about]
 [Icon]
 
-#F[Icon size]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -91,7 +90,7 @@ fg alpha = 1
 #i[20;180] Interval of time between 2 checks :
 #{in seconds.}
 check interval = 30
-#b+ Use average system ?
+
 use approx = false
 
 use_dbus = false

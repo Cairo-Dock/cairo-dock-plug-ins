@@ -2,7 +2,7 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -17,10 +17,10 @@ icon=
 
 #[gtk-convert]
 [Desklet]
-#i[48;500] Desklet's dimension (width x height) :
+#i+[48;500] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
-#i[48;256] ...
+#i+[48;256] ...
 height=92
 
 #i[-2048;2048] Desklet's position (x ; y) :
@@ -109,12 +109,11 @@ extended_mode=1
 frame_info=
 #b Show an info-bubble ?
 enable_dialogs=true
-#b With a icon ?
-bubble icon=false
+#b With an icon ?
+bubble icon=true
 #i Time length of info-bubbles :
 #{in ms.}
 time_dialogs=3000
-frame_anim=
 
 #b Animate icon ?
 enable_anim=true
@@ -124,18 +123,18 @@ change animation=rotate
 
 #F[Personnalisation;gtk-dialog-info]
 frame_app =
-#S Name of an image for the 'default' icon :
+#S+ Name of an image for the 'default' icon :
 #{Let it empty to use the default icon.}
 default icon = 
-#S Name of an image for the 'play' icon :
+#S+ Name of an image for the 'play' icon :
 #{Let it empty to use the default icon.}
 play icon = 
-#S Name of an image for the 'stop' icon :
+#S+ Name of an image for the 'stop' icon :
 #{Let it empty to use the default icon.}
 stop icon = 
-#S Name of an image for the 'pause' icon :
+#S+ Name of an image for the 'pause' icon :
 #{Let it empty to use the default icon.}
 pause icon = 
-#S Name of an image for the 'broken' icon :
+#S+ Name of an image for the 'broken' icon :
 #{Let it empty to use the default icon.}
 broken icon = 

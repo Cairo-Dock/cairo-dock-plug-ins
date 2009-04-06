@@ -2,7 +2,7 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -22,10 +22,10 @@ order=
 #[gtk-convert]
 [Desklet]
 
-#i[48;256] Desklet's dimension (width x height) :
+#i+[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
-#i[48;256] ...
+#i+[48;256] ...
 height=92
 
 #i[-2048;2048] Desklet's position (x ; y) :
@@ -113,7 +113,7 @@ paste clipboard = true
 paste selection = true
 
 #k Shortkey to pop-up the items menu :
-shortkey = <Shift><Ctrl>F1
+shortkey = <Ctrl>F1
 
 #b Pop-up menus at mouse position ?
 menu on mouse = true

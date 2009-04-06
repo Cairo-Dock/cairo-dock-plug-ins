@@ -2,11 +2,11 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
-#s+ Name of the icon as it will appear in its label in the dock :
+#s Name of the icon as it will appear in its label in the dock :
 name = Wifi
 
 #d Name of the dock it belongs to:
@@ -23,10 +23,10 @@ width=92
 #i+[48;256] ...
 height=92
 
-#i+[-2048;2048] Desklet's position (x ; y) :
+#i[-2048;2048] Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click}
 x position=0
-#i+[-2048;2048] ...
+#i[-2048;2048] ...
 y position=0
 
 #b+ Is detached from the dock ?
@@ -86,18 +86,18 @@ fg alpha = 1
 [Configuration]
 #F+[Information;gtk-info]
 frame_info=
-#r+[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
+#r[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
 signal_type=2
-#i+[1;60] Delay between signal checks :
+#i[1;60] Delay between signal checks :
 #{in seconds.}
 delay = 10
-#s+ Alternative command line to launch Wireless Configuration :
+#s Alternative command line to launch Wireless Configuration :
 #{Allow you to overwrite applet's default command line and launch you wireless configuration interface.}
 command = 
 
 #F+[Display;gtk-dnd-multiple]
 frame_disp=
-#b+ Overwrite the default label with the connection point name ?
+#b Overwrite the default label with the connection point name ?
 essid = true
 
 #r+[Images;Gauges;Graphic] Display type :
@@ -120,7 +120,7 @@ low color = 1;1;0
 #c+4[0;1] Background color of the graphic :
 bg color = .5;.5;1.;.4
 
-#R1[radium] List of available themes for the analogic display :/
+#g+ List of available themes for the analogic display :/
 theme = radium
 
 #S+ Image to display as a watermark on the gauge :
@@ -131,7 +131,7 @@ watermark image =
 #{Set it up to 0 if you don't want to have a watermark.}
 watermark alpha = .6
 
-#X+[Images;gtk-dialog-info]
+#X+[Alternative images;gtk-dialog-info]
 frame_img =
 #S+ Name of an image for the 'no signal' icon :
 #{Let it empty to use the default icon.}

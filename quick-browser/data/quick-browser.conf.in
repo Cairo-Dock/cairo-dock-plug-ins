@@ -3,7 +3,7 @@
 #[gtk-about]
 [Icon]
 
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -16,12 +16,12 @@ icon =
 #d Name of the dock it belongs to:
 dock name = 
 
-order=0
+order=
 
 #[gtk-convert]
 [Desklet]
 
-#i[48;256] Desklet's dimension (width x height) :
+#i+[48;256] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 width=92
 #i[48;256] ...
@@ -106,7 +106,7 @@ case unsensitive = true
 show hidden = false
 
 #k Shortkey to show/hide the menu :
-menu shortkey = <Shift>F6
+menu shortkey = <Ctrl>F6
 
 #i[1;20] Granularity of the menu's building :
 #{Number of items loaded at once. Setting a high value speeds up a little the loading, but blocks the appli more.}

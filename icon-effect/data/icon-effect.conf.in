@@ -12,28 +12,28 @@ effects = 0
 #F-[when clicking on an launcher]
 frame_lau =
 
-#r4[Fire;Stars;Rain;Snow;Storm] Effects used on launcher :
-click launchers = 1
+#r+4[Fire;Stars;Rain;Snow;Storm] Effects used on launcher :
+click launchers = 0
 
 #F-[when clicking on an appli]
 frame_appli =
 
-#r4[Fire;Stars;Rain;Snow;Storm] Effects used on applis :
-click applis = 2
+#r+4[Fire;Stars;Rain;Snow;Storm] Effects used on applis :
+click applis = 1
 
 #F-[when clicking on an applet]
 frame_applet =
 
-#r4[Fire;Stars;Rain;Snow;Storm] Effects used on applets :
-click applets = 3
+#r+4[Fire;Stars;Rain;Snow;Storm] Effects used on applets :
+click applets = 2
 
 #v
 sep =
 
-#b Draw in background ?
+#+b Draw in background ?
 background = false
 
-#b Rotate effects with dock ?
+#+b Rotate effects with dock ?
 rotate = false
 
 #[@icon_effectsdatadir@/icon-fire.svg]
@@ -43,7 +43,7 @@ rotate = false
 #{In ms. Set 0 to not use this effect.}
 duration = 1000
 
-#b Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed ?
 continue = false
 
 #c+3 1st color of gradation :
@@ -77,7 +77,7 @@ part speed = 3.
 #{In ms. Set 0 to not use this effect.}
 duration = 2000
 
-#b Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed ?
 continue = true
 
 #c+3 1st color of gradation :
@@ -103,7 +103,7 @@ part size = 50
 #{In ms. Set 0 to not use this effect.}
 duration = 2000
 
-#b Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed ?
 continue = false
 
 #c+3 1st color of gradation :
@@ -129,7 +129,7 @@ part speed = 1.5
 #{In ms. Set 0 to not use this effect.}
 duration = 2000
 
-#b Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed ?
 continue = true
 
 #c+3 1st color of gradation :
@@ -155,7 +155,7 @@ part speed = 8
 #{In ms. Set 0 to not use this effect.}
 duration = 4000
 
-#b Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed ?
 continue = true
 
 #c+3 1st color of gradation :

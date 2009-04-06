@@ -2,7 +2,7 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -103,14 +103,14 @@ use_thread = true
 
 #F[Behaviour;gtk-execute]
 frame_ops=
-#i-[1;500] Sliding delay :
+#i[1;500] Sliding delay :
 #{in seconds.}
 slide time=30
-#r-[play/pause;open image] Action when applet is clicked :
+#r[play/pause;open image] Action when applet is clicked :
 click=0
 #r[none;fade;blank fade;fade in out;side kick;diaporama;grow up;shrink down;cube;random] Effect while changing image :
 change animation=1
-#i-[8;50] Number of steps for a transition :
+#i[8;60] Number of steps for a transition :
 nb step = 20
 
 #F[Display;gtk-dnd-multiple]
@@ -124,4 +124,3 @@ fill icon = false
 #c+4[0;1] Choose a background color :
 #{Set the transparency channel to 0 if you just don't want to have a background.}
 background color = 1.0; 1.0; 1.0; 1.0
-

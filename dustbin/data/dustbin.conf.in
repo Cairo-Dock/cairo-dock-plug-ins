@@ -2,7 +2,7 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -119,7 +119,7 @@ global size limit = 0
 #X[Desktop-less support]
 frame3 =
 
-#f[0.2;10.0] Interval of time to check if dustbin is full/empty :
+#f[0.5;10.0] Interval of time to check if dustbin is full/empty :
 #{in seconds, only used if you can't monitor directories.}
 check interval = 2.0
 

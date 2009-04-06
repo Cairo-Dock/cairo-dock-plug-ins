@@ -7,7 +7,7 @@
 frame_hov =
 
 #r+7[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot] Effects used :
-hover effects = 0
+hover effects = 1
 
 #F-[when clicking on an launcher]
 frame_lau =
@@ -82,7 +82,7 @@ color2 = .1;1;.1
 #b+ Random colors ?
 mystical = false
 
-#I-[0;500] Number of rays :
+#I+[0;500] Number of rays :
 nb part = 300
 
 #I+[10;60] Rays size :
@@ -95,16 +95,16 @@ part speed = 5.
 #[@animated_iconsdatadir@/icon-wobbly.png]
 [Wobbly]
 
-#r-[Horizontal stretch;Vertical stretch;Corner stretch] Initial stretch :
+#r+[Horizontal stretch;Vertical stretch;Corner stretch] Initial stretch :
 stretch = 0
 
-#i-[200;350] Spring constant :
+#i+[200;350] Spring constant :
 spring cst = 300
 
-#e-[7;12] Friction :
+#e+[7;12] Friction :
 friction = 8
 
-#I-[2;20] Number of points on the grid in one direction :
+#I+[2;20] Number of points on the grid in one direction :
 grid nodes = 10
 
 
@@ -118,10 +118,10 @@ duration = 290
 #b+ Repeat while icon is pointed ?
 continue = false
 
-#e-[0.1;2] Width of the wave :
+#e+[0.1;2] Width of the wave :
 width = 1.7
 
-#e-[0.01;.4] Amplitude of the wave :
+#e+[0.01;.4] Amplitude of the wave :
 amplitude = .14
 
 

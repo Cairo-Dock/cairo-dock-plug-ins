@@ -3,7 +3,7 @@
 #[gtk-about]
 [Icon]
 
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 

@@ -88,10 +88,13 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#b Display a graphic rather than a gauge ?
+#b+ Display a graphic rather than a gauge ?
 use graphic = false
 
-#r[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
+#v
+sep_graph =
+
+#r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
 #c+3[0;1] High values color for the download speed :
@@ -116,7 +119,10 @@ mix graph = false
 #c+4[0;1] Background color of the graphic :
 bg color = .5;.5;1.;.4
 
-#g List of available themes for the gauge :
+#v
+sep_gauge =
+
+#g+ List of available themes for the gauge :
 theme = turbo-night-fuel
 
 #v

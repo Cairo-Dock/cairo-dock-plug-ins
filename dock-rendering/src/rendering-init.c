@@ -136,6 +136,8 @@ CD_APPLET_INIT_BEGIN
 		cairo_dock_set_all_views_to_default (0);
 		cairo_dock_update_renderer_list_for_gui ();
 	}
+	else
+		gtk_widget_queue_draw (g_pMainDock);
 	
 	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
@@ -154,14 +156,13 @@ CD_APPLET_STOP_BEGIN
 	
 	cairo_dock_reset_all_views ();
 	cairo_dock_update_renderer_list_for_gui ();
+	gtk_widget_queue_draw (g_pMainDock);
 CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		reset_data (myApplet);  // on ne se sert pas des myData et autres donc ca va.
-		
 		if (my_pFlatSeparatorSurface[0] != NULL)
 		{
 			cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);

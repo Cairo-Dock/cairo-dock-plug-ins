@@ -2,7 +2,7 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -93,10 +93,10 @@ fg alpha = 1
 has icons=true
 
 #k Shortkey to show/hide the menu :
-menu shortkey = <Shift>F1
+menu shortkey = <Ctrl>F1
 
 #k Shortkey to show/hide the quick-launch dialog :
-quick launch shortkey = <Shift>F2
+quick launch shortkey = <Ctrl>F2
 
 #s Command to use to configure the menu :
 #{Let empty to use the default one.}

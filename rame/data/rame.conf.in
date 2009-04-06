@@ -2,7 +2,7 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -87,10 +87,10 @@ fg alpha = 1
 #F[Display;gtk-dialog-info]
 frame_disp=
 
-#b Display a graphic rather than a gauge ?
+#b+ Display a graphic rather than a gauge ?
 use graphic = false
 
-#r[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
+#r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
 #c+3[0;1] High values color for RAM :
@@ -115,7 +115,7 @@ mix graph = false
 #c+4[0;1] Background color of the graphic :
 bg color = .5;.5;1.;.4
 
-#g List of available themes for the gauge :
+#g+ List of available themes for the gauge :
 theme = turbo-night-fuel
 
 #v
@@ -135,11 +135,6 @@ sep2=
 #r[No;On icon;On label] Display memory values :
 info display = 1
 
-#b Display SWAP too ?
-show swap = false
-
-#b Show free memory instead of used memory ?
-show remaining = false
 
 #F[Top List;gtk-sort-ascending]
 frame_top=
@@ -159,6 +154,9 @@ top color stop = 0;0;1
 
 #F[Configuration;gtk-preferences]
 frame_conf=
+
+#b Display SWAP too ?
+show swap = false
 
 #i[1;60] Delay between refresh :
 #{in seconds.}

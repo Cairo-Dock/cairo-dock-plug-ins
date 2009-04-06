@@ -2,7 +2,7 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -86,12 +86,6 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#F[Decorations;gtk-orientation-portrait]
-frame_deco=
-#h+[@rhythmboxdatadir@/themes;rhythmbox] List of available specific themes (OPENGL only) :/
-theme = cd_box_3d
-sep_deco =
-
 #F[Info-bubbles]
 frame_info=
 #b Activate info-bubbles ?
@@ -114,13 +108,15 @@ inhibate appli = true
 #F[Display;gtk-dialog-info]
 frame_disp=
 
-#b Display album's cover instead of icon ?
+#b Display album's cover ?
 enable_cover=true
+
+#h+[@rhythmboxdatadir@/themes;rhythmbox] List of available themes for covers (requires OPENGL) :/
+theme = cd_box_3d
 
 #r[nothing;time elapsed;time left;time in %;n° of track] Information to display on the icon :
 quick-info_type=1
 
-#b Draw desklet in a 3D fashion (experimental) ?
 3D desklet = false
 
 #X[Personnalisation;gtk-info]

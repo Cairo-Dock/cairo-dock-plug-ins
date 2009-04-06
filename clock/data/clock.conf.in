@@ -2,13 +2,13 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
 #s Name of the icon as it will appear in its label in the dock :
 #{Let it empty to use the location's name if available.}
-name = horloge
+name = 
 
 #d Name of the dock it belongs to:
 dock name = 
@@ -90,22 +90,22 @@ fg alpha = 1
 #F[Behaviour;gtk-execute]
 frame1 =
 
-#r-[No;On icon;On label] Show the date :
+#r[No;On icon;On label] Show the date :
 show date = 1
 
-#b- Should the time be displayed as a 24h format ?
+#b Should the time be displayed as a 24h format ?
 #{for numeric format only.}
 24h mode = true
 
-#b- Show seconds ?
+#b Show seconds ?
 #{if not, then the applet will update time once a minute, saving CPU.}
 show seconds = false
 
-#I-[0;1000] Display seconds with smooth animation of a duration of :
+#I[0;1000] Display seconds with smooth animation of a duration of :
 #{In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous animation. It requires OpenGL.}
 smooth = 500
 
-#s- Timezone :
+#s Timezone :
 #{For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select your location from a list. Let empty to get the local time.}
 location =
 
@@ -125,7 +125,7 @@ digital = default
 #{r, v, b, a}
 text color = 0.0; 0.0; 0.5; 1.
 
-#i[1;9] Weight of the text :
+#i+[1;9] Weight of the text :
 weight = 5
 
 #P+ Font used for the numeric display :

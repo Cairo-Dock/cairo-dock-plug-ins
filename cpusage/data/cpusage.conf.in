@@ -2,7 +2,7 @@
 
 #[gtk-about]
 [Icon]
-#j[0;128] Desired icon size for this applet
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
@@ -87,10 +87,10 @@ fg alpha = 1
 #F[Display;gtk-dialog-info]
 frame_disp=
 
-#b Display a graphic rather than a gauge ?
+#b+ Display a graphic rather than a gauge ?
 use graphic = false
 
-#r[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
+#r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
 #c+3[0;1] High values color :
@@ -104,7 +104,7 @@ low color = 1;1;0
 #c+4[0;1] Background color of the graphic :
 bg color = .5;.5;1.;.4
 
-#g List of available themes for the gauge :
+#g+ List of available themes for the gauge :
 theme = turbo-night-fuel
 
 #v
