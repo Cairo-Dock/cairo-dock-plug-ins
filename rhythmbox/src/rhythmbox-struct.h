@@ -42,6 +42,8 @@ struct _AppletConfig {
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	gboolean bStealTaskBarIcon;
 	gboolean extendedDesklet;
+	gint iDeskletWidth;
+	gint iDeskletHeight;
 
 	gchar *cThemePath;
 	} ;
@@ -66,6 +68,9 @@ struct _AppletData {
 	GLuint TextureFrame;
 	GLuint TextureCover;
 	GLuint TextureReflect;
+	
+	GLuint TextureEmblemPause;
+	
 	gchar *cThemeFrame;
 	gchar *cThemeReflect;
 	gint itopleftX;
@@ -76,6 +81,61 @@ struct _AppletData {
 	gint ibottomrightY;
 	gint itoprightX;
 	gint itoprightY;
+	
+	gint numberButtons;
+	gboolean osd;
+	
+	// A passer en structure :
+	gint button1coordX;
+	gint button1coordY;
+	gint button1sizeX;
+	gint button1sizeY;
+	gchar *cThemeButton1;
+	GLuint TextureButton1;
+	gboolean mouseOnButton1;
+	gchar *cOsdPlay;
+	GLuint TextureOsdPlay;
+	gchar *cOsdPause;
+	GLuint TextureOsdPause;
+	
+	
+	// A passer en structure :
+	gint button2coordX;
+	gint button2coordY;
+	gint button2sizeX;
+	gint button2sizeY;
+	gchar *cThemeButton2;
+	GLuint TextureButton2;
+	gboolean mouseOnButton2;
+	gchar *cOsdPrev;
+	GLuint TextureOsdPrev;
+	
+	// A passer en structure :
+	gint button3coordX;
+	gint button3coordY;
+	gint button3sizeX;
+	gint button3sizeY;
+	gchar *cThemeButton3;
+	GLuint TextureButton3;
+	gboolean mouseOnButton3;
+	gchar *cOsdNext;
+	GLuint TextureOsdNext;
+	
+	// A passer en structure :
+	gint button4coordX;
+	gint button4coordY;
+	gint button4sizeX;
+	gint button4sizeY;
+	gchar *cThemeButton4;
+	GLuint TextureButton4;
+	gboolean mouseOnButton4;
+	gchar *cOsdHome;
+	GLuint TextureOsdHome;
+	
+	gint iMouseX;
+	gint iMouseY;
+	
+	
 	} ;
 
 

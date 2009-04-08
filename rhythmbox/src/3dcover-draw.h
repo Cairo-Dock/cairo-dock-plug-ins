@@ -18,4 +18,6 @@ void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet, int iWidth,
 
 gboolean cd_opengl_test_update_icon_slow (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation);
 
+void cd_opengl_mouse_on_buttons (void);
+
 #endif //__CD_3DCOVER_DRAW__

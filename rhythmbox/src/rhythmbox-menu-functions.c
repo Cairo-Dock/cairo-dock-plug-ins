@@ -5,6 +5,7 @@
 #include "rhythmbox-draw.h"
 #include "rhythmbox-struct.h"
 #include "rhythmbox-menu-functions.h"
+#include "3dcover-draw.h"
 
 
 //*********************************************************************************
@@ -65,22 +66,60 @@ CD_APPLET_ON_BUILD_MENU_END
 // Cette fonction met le lecteur en pause ou en lecture selon son état.
 //*********************************************************************************
 CD_APPLET_ON_CLICK_BEGIN
-	cd_message ("");
-	
-	if(myData.opening)
-	{
-		if(myData.playing)
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	{			
+		// Actions au clic sur un bouton :
+		if (myData.mouseOnButton1)
 		{
-			g_spawn_command_line_async ("rhythmbox-client --pause", NULL);
+			if(myData.opening)
+			{
+				if(myData.playing)
+				{
+					g_spawn_command_line_async ("rhythmbox-client --pause", NULL);
+				}
+				else
+				{
+					g_spawn_command_line_async ("rhythmbox-client --play", NULL);
+				}
+			}
+			else
+			{
+				g_spawn_command_line_async ("rhythmbox", NULL);
+			}
 		}
+		else if (myData.mouseOnButton2)
+			g_spawn_command_line_async ("rhythmbox-client --previous", NULL);
+		else if (myData.mouseOnButton3)
+			g_spawn_command_line_async ("rhythmbox-client --next", NULL);
+		else if (myData.mouseOnButton4)
+			g_spawn_command_line_async ("rhythmbox", NULL);
 		else
 		{
-			g_spawn_command_line_async ("rhythmbox-client --play", NULL);
+			if(myData.opening)
+				music_dialog();
+			else
+				g_spawn_command_line_async ("rhythmbox", NULL);
 		}
 	}
 	else
 	{
-		g_spawn_command_line_async ("rhythmbox", NULL);
+		cd_message ("");
+		
+		if(myData.opening)
+		{
+			if(myData.playing)
+			{
+				g_spawn_command_line_async ("rhythmbox-client --pause", NULL);
+			}
+			else
+			{
+				g_spawn_command_line_async ("rhythmbox-client --play", NULL);
+			}
+		}
+		else
+		{
+			g_spawn_command_line_async ("rhythmbox", NULL);
+		}
 	}
 CD_APPLET_ON_CLICK_END
 
@@ -89,9 +128,8 @@ CD_APPLET_ON_CLICK_END
 // Fonction appelée au clique du milieu sur l'icone.
 // Cette fonction passe a la chanson suivante.
 //*********************************************************************************
-CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN	
 	cd_message ("");
-	
 	rhythmbox_getPlaying();
 	if (myData.playing)
 	{
@@ -159,3 +197,12 @@ CD_APPLET_ON_SCROLL_BEGIN
 		else
 			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_SCROLL_END
+
+CD_APPLET_ON_UPDATE_ICON_BEGIN
+
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	{
+		cd_opengl_mouse_on_buttons ();	
+	}
+	
+CD_APPLET_ON_UPDATE_ICON_END

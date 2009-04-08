@@ -16,10 +16,10 @@ CD_APPLET_DEFINITION ("Rhythmbox",
 	CAIRO_DOCK_CATEGORY_CONTROLER,
 	N_("Control your Rhythmbox player directly in the dock !\n"
 	"Play/pause with left click, next song with middle click.\n"
-	"You can drag and drop covers (jpg) on the icon to use them,\n"
-	"or songs to put them in the queue."),
-	"Adrien Pilleboue (Necropotame)")
-
+	"You can drag and drop covers (jpg) on the icon to use theme,\n"
+	"or songs to put them in the queue. \n"
+	"Adrien Pilleboue (Necropotame)"),
+	"Opengl display : Nochka85")
 
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
@@ -77,6 +77,7 @@ CD_APPLET_INIT_BEGIN
 	
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 	{
+		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 		cairo_dock_launch_animation (myContainer);
 		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_FIRST, myApplet);
 	}
@@ -90,6 +91,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
+
 	
 	rhythmbox_dbus_disconnect_from_bus ();
 	
@@ -152,7 +156,8 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, myApplet);
 		
 			cd_opengl_init_opengl_datas ();
-					
+			
+				
 			cairo_dock_launch_animation (myContainer);
 			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
 		}
@@ -161,6 +166,12 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	
 	//\_______________ On redessine notre icone.
+	
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	{
+		cd_opengl_mouse_on_buttons ();
+	}
+	
 	if (myData.dbus_enable)
 	{
 		if(myData.opening)

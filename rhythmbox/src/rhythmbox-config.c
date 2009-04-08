@@ -24,6 +24,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.extendedDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
 	
+	myConfig.iDeskletWidth	= CD_CONFIG_GET_INTEGER ("Desklet", "width");
+	myConfig.iDeskletHeight	= CD_CONFIG_GET_INTEGER ("Desklet", "height");
+	
 	
 	//\_______________ On on recupere le theme choisi.
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");
@@ -66,5 +69,14 @@ CD_APPLET_RESET_DATA_BEGIN
 	glDeleteTextures (1, &myData.TextureCover);
 	glDeleteTextures (1, &myData.TextureReflect);
 	glDeleteTextures (1, &myData.TextureName);
+	glDeleteTextures (1, &myData.TextureButton1);
+	glDeleteTextures (1, &myData.TextureButton2);
+	glDeleteTextures (1, &myData.TextureButton3);
+	glDeleteTextures (1, &myData.TextureButton4);
+	glDeleteTextures (1, &myData.TextureOsdPlay);
+	glDeleteTextures (1, &myData.TextureOsdPause);
+	glDeleteTextures (1, &myData.TextureOsdPrev);
+	glDeleteTextures (1, &myData.TextureOsdNext);
+	glDeleteTextures (1, &myData.TextureOsdHome);
 	
 CD_APPLET_RESET_DATA_END

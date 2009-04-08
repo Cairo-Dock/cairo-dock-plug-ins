@@ -8,7 +8,7 @@
 
 /* Declaration des Diplaylists */
 GLuint draw_cover;
-
+GLuint draw_emblem_on_screen;
 
 void cd_opengl_load_external_conf_theme_values (CairoDockModuleInstance *myApplet)
 {
@@ -100,7 +100,261 @@ void cd_opengl_load_external_conf_theme_values (CairoDockModuleInstance *myApple
 				erreur = NULL;
 			}
 			myData.cThemeReflect = g_strdup_printf ("%s/%s", myConfig.cThemePath, sReflectPic);
-						
+			
+			
+			// Ajout récup zones cliquables
+			myData.numberButtons = g_key_file_get_integer (pKeyFile, "Buttons", "number", &erreur);
+			if (erreur != NULL)
+			{
+				cd_warning (erreur->message);
+				g_error_free (erreur);
+				erreur = NULL;
+			}
+			// et de l'OSD
+			myData.osd = g_key_file_get_boolean (pKeyFile, "Buttons", "osd", &erreur);
+			if (erreur != NULL)
+			{
+				cd_warning (erreur->message);
+				g_error_free (erreur);
+				erreur = NULL;
+			}		
+			
+			if (myData.numberButtons != 0)
+			{
+				gchar *sButtonPic = NULL;
+												
+				sButtonPic = g_key_file_get_string (pKeyFile, "Button1", "picture", &erreur);
+				if (erreur != NULL)
+				{
+					cd_warning (erreur->message);
+					g_error_free (erreur);
+					erreur = NULL;
+				}
+				myData.cThemeButton1 = g_strdup_printf ("%s/%s", myConfig.cThemePath, sButtonPic);
+				
+				myData.button1coordX = g_key_file_get_integer (pKeyFile, "Button1", "X", &erreur);
+				if (erreur != NULL)
+				{
+					cd_warning (erreur->message);
+					g_error_free (erreur);
+					erreur = NULL;
+				}
+				myData.button1coordY = g_key_file_get_integer (pKeyFile, "Button1", "Y", &erreur);
+				if (erreur != NULL)
+				{
+					cd_warning (erreur->message);
+					g_error_free (erreur);
+					erreur = NULL;
+				}
+				myData.button1sizeX = g_key_file_get_integer (pKeyFile, "Button1", "sizeX", &erreur);
+				if (erreur != NULL)
+				{
+					cd_warning (erreur->message);
+					g_error_free (erreur);
+					erreur = NULL;
+				}
+				myData.button1sizeY = g_key_file_get_integer (pKeyFile, "Button1", "sizeY", &erreur);
+				if (erreur != NULL)
+				{
+					cd_warning (erreur->message);
+					g_error_free (erreur);
+					erreur = NULL;
+				}
+				if (myData.osd)
+				{
+					sButtonPic = g_key_file_get_string (pKeyFile, "Button1", "osd_play", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.cOsdPlay = g_strdup_printf ("%s/%s", myConfig.cThemePath, sButtonPic);
+					
+					sButtonPic = g_key_file_get_string (pKeyFile, "Button1", "osd_pause", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.cOsdPause = g_strdup_printf ("%s/%s", myConfig.cThemePath, sButtonPic);
+				}
+					
+				
+				
+				
+				
+				if (myData.numberButtons > 3)
+				{
+					sButtonPic = g_key_file_get_string (pKeyFile, "Button4", "picture", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.cThemeButton4 = g_strdup_printf ("%s/%s", myConfig.cThemePath, sButtonPic);
+					
+					myData.button4coordX = g_key_file_get_integer (pKeyFile, "Button4", "X", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.button4coordY = g_key_file_get_integer (pKeyFile, "Button4", "Y", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.button4sizeX = g_key_file_get_integer (pKeyFile, "Button4", "sizeX", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.button4sizeY = g_key_file_get_integer (pKeyFile, "Button4", "sizeY", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					
+					if (myData.osd)
+					{
+						sButtonPic = g_key_file_get_string (pKeyFile, "Button4", "osd", &erreur);
+						if (erreur != NULL)
+						{
+							cd_warning (erreur->message);
+							g_error_free (erreur);
+							erreur = NULL;
+						}
+						myData.cOsdHome = g_strdup_printf ("%s/%s", myConfig.cThemePath, sButtonPic);
+					}
+				}
+				
+				
+				if (myData.numberButtons > 2)
+				{
+					sButtonPic = g_key_file_get_string (pKeyFile, "Button3", "picture", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.cThemeButton3 = g_strdup_printf ("%s/%s", myConfig.cThemePath, sButtonPic);
+					
+					myData.button3coordX = g_key_file_get_integer (pKeyFile, "Button3", "X", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.button3coordY = g_key_file_get_integer (pKeyFile, "Button3", "Y", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.button3sizeX = g_key_file_get_integer (pKeyFile, "Button3", "sizeX", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.button3sizeY = g_key_file_get_integer (pKeyFile, "Button3", "sizeY", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					
+					if (myData.osd)
+					{
+						sButtonPic = g_key_file_get_string (pKeyFile, "Button3", "osd", &erreur);
+						if (erreur != NULL)
+						{
+							cd_warning (erreur->message);
+							g_error_free (erreur);
+							erreur = NULL;
+						}
+						myData.cOsdNext = g_strdup_printf ("%s/%s", myConfig.cThemePath, sButtonPic);
+					}
+				}
+				
+				
+				if (myData.numberButtons > 1)
+				{
+					sButtonPic = g_key_file_get_string (pKeyFile, "Button2", "picture", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.cThemeButton2 = g_strdup_printf ("%s/%s", myConfig.cThemePath, sButtonPic);
+					
+					myData.button2coordX = g_key_file_get_integer (pKeyFile, "Button2", "X", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.button2coordY = g_key_file_get_integer (pKeyFile, "Button2", "Y", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.button2sizeX = g_key_file_get_integer (pKeyFile, "Button2", "sizeX", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					myData.button2sizeY = g_key_file_get_integer (pKeyFile, "Button2", "sizeY", &erreur);
+					if (erreur != NULL)
+					{
+						cd_warning (erreur->message);
+						g_error_free (erreur);
+						erreur = NULL;
+					}
+					
+					if (myData.osd)
+					{
+						sButtonPic = g_key_file_get_string (pKeyFile, "Button2", "osd", &erreur);
+						if (erreur != NULL)
+						{
+							cd_warning (erreur->message);
+							g_error_free (erreur);
+							erreur = NULL;
+						}
+						myData.cOsdPrev = g_strdup_printf ("%s/%s", myConfig.cThemePath, sButtonPic);
+					}
+				}
+				
+				g_free (sButtonPic);
+			}
+				
+			else
+			{
+				// Si aucun paramètre de bouton n'est rentré OU si le nombre est à zéro -> On ne fait rien
+			}
+			
+								
 			g_key_file_free (pKeyFile);
 		}
 		else  // on prend des valeurs par defaut assez larges.
@@ -148,6 +402,36 @@ void cd_opengl_init_opengl_datas (void)
 	//\_______________ On charge les textures.
 	myData.TextureFrame = cd_opengl_load_texture (myApplet, myData.cThemeFrame);	
 	myData.TextureReflect = cd_opengl_load_texture (myApplet, myData.cThemeReflect);
+	
+	if (myData.numberButtons != 0)
+	{
+		myData.TextureButton1 = cd_opengl_load_texture (myApplet, myData.cThemeButton1);
+		if (myData.osd)
+		{
+			myData.TextureOsdPlay = cd_opengl_load_texture (myApplet, myData.cOsdPlay);
+			myData.TextureOsdPause = cd_opengl_load_texture (myApplet, myData.cOsdPause);
+		}		
+		
+		if (myData.numberButtons > 3)
+		{
+			myData.TextureButton4 = cd_opengl_load_texture (myApplet, myData.cThemeButton4);
+			if (myData.osd)
+				myData.TextureOsdHome = cd_opengl_load_texture (myApplet, myData.cOsdHome);
+		}
+		if (myData.numberButtons > 2)
+		{
+			myData.TextureButton3 = cd_opengl_load_texture (myApplet, myData.cThemeButton3);
+			if (myData.osd)
+				myData.TextureOsdNext = cd_opengl_load_texture (myApplet, myData.cOsdNext);
+		}
+		if (myData.numberButtons > 1)
+		{
+			myData.TextureButton2 = cd_opengl_load_texture (myApplet, myData.cThemeButton2);
+			if (myData.osd)
+				myData.TextureOsdPrev = cd_opengl_load_texture (myApplet, myData.cOsdPrev);
+		}
+	}
+	
 
 	//\_______________ On definie la calllist qui déforme la pochette.
 	draw_cover = glGenLists(1);
@@ -164,7 +448,6 @@ void cd_opengl_init_opengl_datas (void)
 	glVertex3d(myData.itoprightX/1000., myData.itoprightY/1000., 0);
 	glEnd();
 	glEndList();
-	
 }
 
 void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
@@ -172,7 +455,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode( GL_MODELVIEW );
     glLoadIdentity( );
-		
+	glColor4ub(255,255,255,255);	
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
 	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
@@ -189,23 +472,106 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 	
 	glDepthMask(GL_FALSE);		/* Je passe le depth en lecture seul -> Tout s'affichera dans l'ordre
 								de création sans tenir compte de la profondeur. */
-	
-		
+			
 	cairo_dock_apply_texture (myData.TextureFrame);
 	
-	
-	
-	
 	glBindTexture(GL_TEXTURE_2D, myData.TextureCover);
-	//~ cd_message ("RB_YDU : la couverture '%s' est deja dispo", myData.playing_cover);
 	glCallList(draw_cover);
 	
+	
+	// Affichage de l'osd PAUSE
+	if (myData.osd && myData.cover_exist)
+	{
+		if (myData.opening)
+		{
+			if (myData.playing)
+			{
+				// On n'affiche rien si on est en lecture
+			}
+			else
+			{
+				// Affichage de la pause
+				glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPause);
+				glCallList(draw_cover);
+			}
+		}
+	}
+	
+			
+	// On affiche les images des boutons survolés et de l'OSD ;)
+	if (myData.numberButtons != 0)
+	{
+		if (myData.mouseOnButton1)
+		{
+			cairo_dock_apply_texture (myData.TextureButton1);
+			if (myData.osd)
+			{
+				if (myData.opening)
+				{
+					if (myData.playing)
+					{
+						glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPause);
+						glCallList(draw_cover);
+					}
+					else
+					{
+						glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPlay);
+						glCallList(draw_cover);
+					}
+				}
+				else
+				{
+					glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPlay);
+					glCallList(draw_cover);
+				}
+			}
+					
+		}
+		
+		if (myData.numberButtons > 3)
+		{
+			if (myData.mouseOnButton4)
+			{
+				cairo_dock_apply_texture (myData.TextureButton4);
+				if (myData.osd)
+				{
+					glBindTexture(GL_TEXTURE_2D, myData.TextureOsdHome);
+					glCallList(draw_cover);
+				}
+			}
+		}
+		if (myData.numberButtons > 2)
+		{
+			if (myData.mouseOnButton3)
+			{
+				cairo_dock_apply_texture (myData.TextureButton3);
+				if (myData.osd)
+				{
+					glBindTexture(GL_TEXTURE_2D, myData.TextureOsdNext);
+					glCallList(draw_cover);
+				}
+			}
+		}
+		if (myData.numberButtons > 1)
+		{
+			if (myData.mouseOnButton2)
+			{
+				cairo_dock_apply_texture (myData.TextureButton2);
+				if (myData.osd)
+				{
+					glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPrev);
+					glCallList(draw_cover);
+				}
+			}
+		}
+	}
 	
 	
 	cairo_dock_apply_texture (myData.TextureReflect);
 	
+	
 		
-	//glDepthMask(GL_TRUE);
+	glDepthMask(GL_TRUE);
 	
 		
 	glDisable(GL_TEXTURE_2D);
@@ -245,4 +611,89 @@ gboolean cd_opengl_test_update_icon_slow (CairoDockModuleInstance *myApplet, Ico
 	*bContinueAnimation = TRUE;
 
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+void cd_opengl_mouse_on_buttons (void)
+{	
+	//\_________________ On chope les coordonnees du curseur par rapport a notre container et on les limite à la taille
+	// du desklet.
+	int iMouseXglobal, iMouseYglobal;
+	gdk_window_get_pointer (myContainer->pWidget->window, &iMouseXglobal, &iMouseYglobal, NULL);
+	if (iMouseXglobal < 0 || iMouseYglobal < 0 || iMouseXglobal > myConfig.iDeskletWidth || iMouseYglobal > myConfig.iDeskletHeight)
+	{
+		iMouseXglobal = 0;
+		iMouseYglobal = 0;
+	}
+		
+	//\_________________ On recale l'origine au centre et se met à la même echelle que les thèmes : -500,-500 à 500,500.
+	
+	myData.iMouseX =  (iMouseXglobal *1000 / myConfig.iDeskletWidth) - 500;
+	myData.iMouseY =  - ((iMouseYglobal *1000 / myConfig.iDeskletHeight) - 500);
+	
+	//~ cd_debug("RB-YDU : myData.iMouseX = %i    -    myData.iMouseY = %i", myData.iMouseX, myData.iMouseY);
+	
+	//\_________________ On teste le survole :
+	if (myData.numberButtons != 0)
+	{
+		// Test du survol button 1 :
+		if ( myData.iMouseX > (myData.button1coordX - (myData.button1sizeX/2))  &&  myData.iMouseX < (myData.button1coordX + (myData.button1sizeX/2)))
+		{
+			if ( myData.iMouseY > (myData.button1coordY - (myData.button1sizeY/2))  &&  myData.iMouseY < (myData.button1coordY + (myData.button1sizeY/2)))
+			{
+				myData.mouseOnButton1 = TRUE;
+			}
+			else
+				myData.mouseOnButton1 = FALSE;
+		}
+		else
+			myData.mouseOnButton1 = FALSE;
+				
+		
+		
+		if (myData.numberButtons > 3)
+		{
+			// Test du survol button 4 :
+			if ( myData.iMouseX > (myData.button4coordX - (myData.button4sizeX/2))  &&  myData.iMouseX < (myData.button4coordX + (myData.button4sizeX/2)))
+			{
+				if ( myData.iMouseY > (myData.button4coordY - (myData.button4sizeY/2))  &&  myData.iMouseY < (myData.button4coordY + (myData.button4sizeY/2)))
+				{
+					myData.mouseOnButton4 = TRUE;
+				}
+				else
+					myData.mouseOnButton4 = FALSE;
+			}
+			else
+				myData.mouseOnButton4 = FALSE;
+		}
+		if (myData.numberButtons > 2)
+		{
+			// Test du survol button 3 :
+			if ( myData.iMouseX > (myData.button3coordX - (myData.button3sizeX/2))  &&  myData.iMouseX < (myData.button3coordX + (myData.button3sizeX/2)))
+			{
+				if ( myData.iMouseY > (myData.button3coordY - (myData.button3sizeY/2))  &&  myData.iMouseY < (myData.button3coordY + (myData.button3sizeY/2)))
+				{
+					myData.mouseOnButton3 = TRUE;
+				}
+				else
+					myData.mouseOnButton3 = FALSE;
+			}
+			else
+				myData.mouseOnButton3 = FALSE;
+		}
+		if (myData.numberButtons > 1)
+		{
+			// Test du survol button 2 :
+			if ( myData.iMouseX > (myData.button2coordX - (myData.button2sizeX/2))  &&  myData.iMouseX < (myData.button2coordX + (myData.button2sizeX/2)))
+			{
+				if ( myData.iMouseY > (myData.button2coordY - (myData.button2sizeY/2))  &&  myData.iMouseY < (myData.button2coordY + (myData.button2sizeY/2)))
+				{
+					myData.mouseOnButton2 = TRUE;
+				}
+				else
+					myData.mouseOnButton2 = FALSE;
+			}
+			else
+				myData.mouseOnButton2 = FALSE;
+		}
+	}
 }

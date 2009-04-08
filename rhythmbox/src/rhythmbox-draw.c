@@ -49,8 +49,16 @@ gboolean _rhythmbox_check_cover_is_present (gpointer data)
 	if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 	{
 		cd_message ("la couverture '%s' est desormais disponible", myData.playing_cover);
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
-		CD_APPLET_REDRAW_MY_ICON;
+		
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		{	
+			myData.TextureCover = cd_opengl_load_texture (myApplet, myData.playing_cover);
+		}
+		else
+		{
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+			CD_APPLET_REDRAW_MY_ICON;
+		}
 		myData.cover_exist = TRUE;
 		myData.iSidCheckCover = 0;
 		return FALSE;
