@@ -130,13 +130,13 @@ gboolean on_enter_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean 
 
 gboolean on_motion_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bStartAnimation)
 {
-	cd_message( "pUserData = %x, pDesklet = %x", pUserData, pDesklet );
-	cd_message( "pDesklet->pIcon->acName = %s", pDesklet->pIcon->acName );
+	//cd_message( "pUserData = %x, pDesklet = %x", pUserData, pDesklet );
+	//cd_message( "pDesklet->pIcon->acName = %s", pDesklet->pIcon->acName );
 
 	if ( !pDesklet || !pDesklet->pRenderer || !pDesklet->bInside || pDesklet->pRenderer->render != rendering_draw_caroussel_in_desklet || ! pDesklet->bInside)
 	  return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 
-	 cd_message( "this is our stuff !");
+	cd_message( "desklet-rendering : this is our stuff !");
 	
 	if (pDesklet->icons != NULL)
 	{

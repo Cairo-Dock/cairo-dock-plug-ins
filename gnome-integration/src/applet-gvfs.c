@@ -81,17 +81,16 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 	cd_message ("%s (%s)", __func__, cVolumeName);
 	GFile *pFile = g_file_new_for_uri ("computer://");
 	GError *erreur = NULL;
-	gchar *cAttributes = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_TYPE, ",",
-		G_FILE_ATTRIBUTE_STANDARD_NAME, ",",
-		G_FILE_ATTRIBUTE_STANDARD_ICON, ",",
-		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI, ",",
-		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE, NULL);
+	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TYPE","
+		G_FILE_ATTRIBUTE_STANDARD_NAME","
+		G_FILE_ATTRIBUTE_STANDARD_ICON","
+		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
+		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		cAttributes,
 		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
 		NULL,
 		&erreur);
-	g_free (cAttributes);
 	//g_object_unref (pFile);
 	if (erreur != NULL)
 	{
@@ -289,20 +288,19 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	
 	GFile *pFile = g_file_new_for_uri (cFullURI);
 	
-	gchar *cQuery = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_TYPE, ",",
-		G_FILE_ATTRIBUTE_STANDARD_SIZE, ",",
-		G_FILE_ATTRIBUTE_TIME_MODIFIED, ",",
-		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, ",",
-		G_FILE_ATTRIBUTE_STANDARD_NAME, ",",
-		G_FILE_ATTRIBUTE_STANDARD_ICON, ",",
-		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI, ",",
-		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE, NULL);
+	const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_TYPE","
+		G_FILE_ATTRIBUTE_STANDARD_SIZE","
+		G_FILE_ATTRIBUTE_TIME_MODIFIED","
+		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
+		G_FILE_ATTRIBUTE_STANDARD_NAME","
+		G_FILE_ATTRIBUTE_STANDARD_ICON","
+		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
+		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
 	GFileInfo *pFileInfo = g_file_query_info (pFile,
 		cQuery,
 		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
 		NULL,
 		&erreur);
-	g_free (cQuery);
 	//g_object_unref (pFile);
 	if (erreur != NULL)
 	{
@@ -580,22 +578,21 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	
 	GFile *pFile = g_file_new_for_uri (cURI);
 	GError *erreur = NULL;
-	gchar *cAttributes = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_TYPE, ",",
-		G_FILE_ATTRIBUTE_STANDARD_SIZE, ",",
-		G_FILE_ATTRIBUTE_TIME_MODIFIED, ",",
-		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, ",",
-		G_FILE_ATTRIBUTE_STANDARD_NAME, ",",
-		G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN, ",",
-		G_FILE_ATTRIBUTE_STANDARD_ICON, ",",
-		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI, ",",
-		G_FILE_ATTRIBUTE_UNIX_RDEV, ",",
-		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE, NULL);
+	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TYPE","
+		G_FILE_ATTRIBUTE_STANDARD_SIZE","
+		G_FILE_ATTRIBUTE_TIME_MODIFIED","
+		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
+		G_FILE_ATTRIBUTE_STANDARD_NAME","
+		G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN","
+		G_FILE_ATTRIBUTE_STANDARD_ICON","
+		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
+		G_FILE_ATTRIBUTE_UNIX_RDEV","
+		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		cAttributes,
 		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
 		NULL,
 		&erreur);
-	//g_free (cAttributes);
 	//g_object_unref (pFile);
 	if (erreur != NULL)
 	{
@@ -1175,13 +1172,19 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 	g_return_if_fail (cURI != NULL);
 	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
 	GError *erreur = NULL;
-	gchar *cQuery = g_strconcat (G_FILE_ATTRIBUTE_STANDARD_SIZE, ",", G_FILE_ATTRIBUTE_TIME_MODIFIED, ",", G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, ",", G_FILE_ATTRIBUTE_UNIX_UID, ",", G_FILE_ATTRIBUTE_UNIX_GID, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_READ, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE, ",", G_FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE, NULL);
+	const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_SIZE","
+		G_FILE_ATTRIBUTE_TIME_MODIFIED","
+		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
+		G_FILE_ATTRIBUTE_UNIX_UID","
+		G_FILE_ATTRIBUTE_UNIX_GID","
+		G_FILE_ATTRIBUTE_ACCESS_CAN_READ","
+		G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE","
+		G_FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE;
 	GFileInfo *pFileInfo = g_file_query_info (pFile,
 		cQuery,
 		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
 		NULL,
 		&erreur);
-	g_free (cQuery);
 	if (erreur != NULL)
 	{
 		cd_warning ("Attention : couldn't get file properties for '%s' [%s]", cURI, erreur->message);

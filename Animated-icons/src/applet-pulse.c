@@ -56,7 +56,7 @@ void cd_animations_draw_pulse_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDa
 	double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
 	cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), fScaleFactor);
 	_cairo_dock_enable_texture ();
-	_cairo_dock_set_blend_alpha ();
+	_cairo_dock_set_blend_over ();
 	_cairo_dock_set_alpha (pData->fPulseAlpha * pIcon->fAlpha);
 	_cairo_dock_apply_texture (pIcon->iIconTexture);
 	_cairo_dock_disable_texture ();

@@ -131,7 +131,10 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		
 		//\_________________ On dessine l'indicateur.
 		glEnable (GL_BLEND);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		if (pData->fAlpha != 1)
+			_cairo_dock_set_blend_alpha ();
+		else
+			_cairo_dock_set_blend_over();
 		
 		//glEnable(GL_DEPTH_TEST);
 		glScalef (myData.fDropIndicatorWidth, myData.fDropIndicatorHeight, myData.fDropIndicatorWidth);
@@ -171,6 +174,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		glDisable(GL_TEXTURE_GEN_S);
 		glDisable(GL_TEXTURE_GEN_T);
 		glDisable (GL_BLEND);
+		_cairo_dock_set_blend_alpha ();
 		
 		//\_________________ On remet la matrice des textures.
 		glMatrixMode(GL_TEXTURE);

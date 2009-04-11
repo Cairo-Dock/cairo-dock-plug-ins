@@ -30,4 +30,4 @@ order=
 show widget layer = false
 
 #k Shortkey to show/hide the desklets :
-shortkey = <Ctrl>F4
+shortkey = <Control>F4

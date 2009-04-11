@@ -438,6 +438,15 @@ AC_SUBST(PACKAGE_DIALOG_RENDERING, "$DIALOG_RENDERING_PACKAGE")
 
 AC_SUBST(dialog_renderingdatadir, "${pkgdatadir}/dialog-rendering")
 
+############# QUICK BROWSER #################
+QUICK_BROWSER_PACKAGE=cd-quick-browser
+AC_SUBST(GETTEXT_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
+
+AC_SUBST(VERSION_QUICK_BROWSER, "1.0.0")
+AC_SUBST(PACKAGE_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
+
+AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
+
 ############# RHYTHMBOX #################
 RHYTHMBOX_PACKAGE=cd-rhythmbox
 AC_SUBST(GETTEXT_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
@@ -536,6 +545,15 @@ AC_SUBST(VERSION_TOMBOY, "1.0.2")
 AC_SUBST(PACKAGE_TOMBOY, "$TOMBOY_PACKAGE")
 
 AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")
+
+############# TOONS #################
+TOONS_PACKAGE="cd-Toons"
+AC_SUBST(GETTEXT_TOONS, "$TOONS_PACKAGE")
+
+AC_SUBST(VERSION_TOONS, "1.0.0")
+AC_SUBST(PACKAGE_TOONS, "$TOONS_PACKAGE")
+
+AC_SUBST(toonsdatadir, "${pkgdatadir}/Toons")
 
 ############# WEATHER #################
 WEATHER_PACKAGE="cd-weather"
@@ -789,6 +807,12 @@ AC_CONFIG_FILES([
 	dialog-rendering/data/Makefile
 	dialog-rendering/data/dialog-rendering.conf
 	
+	quick-browser/Makefile
+	quick-browser/src/Makefile
+	quick-browser/po/Makefile.in
+	quick-browser/data/Makefile
+	quick-browser/data/quick-browser.conf
+	
 	rhythmbox/Makefile
 	rhythmbox/src/Makefile
 	rhythmbox/po/Makefile.in
@@ -860,6 +884,12 @@ AC_CONFIG_FILES([
 	tomboy/data/Makefile
 	tomboy/data/tomboy.conf
 	
+	Toons/Makefile
+	Toons/src/Makefile
+	Toons/po/Makefile.in
+	Toons/data/Makefile
+	Toons/data/Toons.conf
+	
 	weather/Makefile
 	weather/src/Makefile
 	weather/po/Makefile.in
@@ -928,6 +958,7 @@ AC_OUTPUT([po/Makefile
 	dock-rendering/po/Makefile
 	desklet-rendering/po/Makefile
 	dialog-rendering/po/Makefile
+	quick-browser/po/Makefile
 	rhythmbox/po/Makefile
 	shortcuts/po/Makefile
 	showDesklets/po/Makefile
@@ -939,6 +970,7 @@ AC_OUTPUT([po/Makefile
 	systray/po/Makefile
 	terminal/po/Makefile
 	tomboy/po/Makefile
+	Toons/po/Makefile
 	weather/po/Makefile
 	weblets/po/Makefile
 	wifi/po/Makefile

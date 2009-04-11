@@ -93,10 +93,10 @@ fg alpha = 1
 has icons=true
 
 #k Shortkey to show/hide the menu :
-menu shortkey = <Ctrl>F1
+menu shortkey = <Control>F1
 
 #k Shortkey to show/hide the quick-launch dialog :
-quick launch shortkey = <Ctrl>F2
+quick launch shortkey = <Control>F2
 
 #s Command to use to configure the menu :
 #{Let empty to use the default one.}

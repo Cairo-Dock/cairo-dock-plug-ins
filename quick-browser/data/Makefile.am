@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(quick_browserdatadir)
 
 module_DATA = \
 	quick-browser.conf\

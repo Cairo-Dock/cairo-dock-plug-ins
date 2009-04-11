@@ -21,8 +21,8 @@ AC_SUBST(GETTEXT_QUICK_BROWSER)
 AC_SUBST(VERSION_QUICK_BROWSER, "$VERSION")
 AC_SUBST(PACKAGE_QUICK_BROWSER, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/quick-browser]
-AC_SUBST(pkgdatadir)
+quick_browserdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/quick-browser]
+AC_SUBST(quick_browserdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

@@ -106,7 +106,7 @@ case unsensitive = true
 show hidden = false
 
 #k Shortkey to show/hide the menu :
-menu shortkey = <Ctrl>F6
+menu shortkey = <Control>F6
 
 #i[1;20] Granularity of the menu's building :
 #{Number of items loaded at once. Setting a high value speeds up a little the loading, but blocks the appli more.}

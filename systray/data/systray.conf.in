@@ -51,4 +51,4 @@ decorations =
 #[gtk-preferences]
 [GUI]
 #k Shortkey to toggle the systray in dock mode :
-shortkey = <Ctrl>F4
+shortkey = <Control>F4

@@ -106,4 +106,4 @@ nb lines = 25
 nb columns = 70
 
 #k Shortkey to show the terminal :
-shortkey = <Ctrl>F5
+shortkey = <Control>F5

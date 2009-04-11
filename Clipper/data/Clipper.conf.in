@@ -113,7 +113,7 @@ paste clipboard = true
 paste selection = true
 
 #k Shortkey to pop-up the items menu :
-shortkey = <Ctrl>F1
+shortkey = <Control>F1
 
 #b Pop-up menus at mouse position ?
 menu on mouse = true
