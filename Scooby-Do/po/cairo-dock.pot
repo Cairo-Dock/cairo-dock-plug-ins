@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2009-04-11 17:09+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-init.c:21
+msgid ""
+"A Gnome-Do-like plug-in.\n"
+"It lets you control the dock and quickly launch any command with the "
+"keyboard :\n"
+" Start a session with the shortkey of your choice, Escape, Return or "
+"shortkey to close it.\n"
+" use the arrows to navigate into the docks and sub-docks,\n"
+" or type a command to find the corresponding launcher, or to launch any "
+"command\n"
+" Press Tab to automatically jump to the next suitable launcher\n"
+" Press enter to click the icon or validate the command, Shift+Enter for Shift"
+"+click, Alt+Enter for middle click, and Ctrl+Enter for left click."
+msgstr ""
+
+#: ../data/messages:1
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:3
+msgid "Shortkey to activate/deactivate Do :"
+msgstr ""
+
+#: ../data/messages:5
+msgid "Animations"
+msgstr ""
+
+#: ../data/messages:7 ../data/messages:11 ../data/messages:15
+msgid "In ms."
+msgstr ""
+
+#: ../data/messages:9
+msgid "Duration of the character animation :"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Duration of the appearance animation :"
+msgstr ""
+
+#: ../data/messages:17
+msgid "Duration of the stop animation :"
+msgstr ""
+
+#: ../data/messages:19
+msgid "Animation of the current icon :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Characters"
+msgstr ""
+
+#: ../data/messages:23
+msgid ""
+"for exemple Monospace, Purisa, ... Just write the font name wihtout any "
+"number or so."
+msgstr ""
+
+#: ../data/messages:25
+msgid "Font used to display what you type :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "r, v, b, a"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Color of the background of the characters :"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Font size, relatively to the dock's size :"
+msgstr ""
+
+#: ../data/messages:33
+msgid "between 1 and 9, the bigger, the heavier."
+msgstr ""
+
+#: ../data/messages:35
+msgid "Text weight :"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should the text be outilned ?"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Text color :"
+msgstr ""
