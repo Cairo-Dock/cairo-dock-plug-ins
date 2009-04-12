@@ -79,6 +79,25 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 
 }
 
+GList *_get_first_drawn_element (GList *icons)
+{
+	Icon *icon;
+	GList *ic;
+	GList *pFirstDrawnElement = NULL;
+	for (ic = icons; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		if (icon->bPointed)
+			break ;
+	}
+	
+	if (ic == NULL || ic->next == NULL)  // derniere icone ou aucune pointee.
+		pFirstDrawnElement = icons;
+	else
+		pFirstDrawnElement = ic->next;
+	return pFirstDrawnElement;
+}
+
 void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	if(my_diapo_simple_draw_background)
@@ -105,36 +124,33 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 	        else
 	        	cairo_new_path (pCairoContext);
 	        cairo_restore (pCairoContext);
-        }	
+        }
+	
+	if (pDock->icons == NULL)
+		return;
+	
 	//\____________________ On dessine la ficelle qui les joint.
 	//TODO Rendre joli !
 	if (myIcons.iStringLineWidth > 0)
 		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, TRUE, TRUE);
 	
 	//\____________________ On dessine les icones avec leurs etiquettes.
+	// on determine la 1ere icone a tracer : l'icone suivant l'icone pointee.
+	GList *pFirstDrawnElement = _get_first_drawn_element (pDock->icons);
 	
-//////////////////////////////////////////////////////////////////////////////////////// Si y'en a pas on se barre (dock vide)
-        if (pDock->icons == NULL) return;
-	
-//////////////////////////////////////////////////////////////////////////////////////// On parcourt la liste les icones :
+	// on dessine les icones, l'icone pointee en dernier.
 	Icon *icon;
-	GList *ic;
-	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	GList *ic = pFirstDrawnElement;
+	do
 	{
-//////////////////////////////////////////////////////////////////////////////////////// On recupere la structure d'infos
 		icon = ic->data;
-
-//////////////////////////////////////////////////////////////////////////////////////// On sauvegarde le contexte de cairo
-		cairo_save (pCairoContext);
 		
-//////////////////////////////////////////////////////////////////////////////////////// On affiche l'icone en cours avec les options :
+		cairo_save (pCairoContext);
 		cairo_dock_render_one_icon (icon, pDock, pCairoContext, 1., FALSE);
-
-//////////////////////////////////////////////////////////////////////////////////////// On restore le contexte de cairo
 		cairo_restore (pCairoContext);
 		
-                gdouble zoom;
 //////////////////////////////////////////////////////////////////////////////////////// On affiche le texte !
+		gdouble zoom;
 		if(icon->pTextBuffer != NULL)
 		{
 			double fAlpha;
@@ -234,7 +250,9 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 	
 			cairo_restore (pCairoContext);
                 }*/
+		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	}
+	while (ic != pFirstDrawnElement);
 }
 
 static void _cd_rendering_check_if_mouse_inside_diapo_simple (CairoDock *pDock)
@@ -691,33 +709,33 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	cairo_dock_draw_current_path_opengl (my_diapo_simple_lineWidth, my_diapo_simple_color_border_line, iNbVertex);
 	
 	glPopMatrix ();
+	if (pDock->icons == NULL)
+		return ;
 	
 	//\____________________ On dessine la ficelle.
 	if (myIcons.iStringLineWidth > 0)
 		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, FALSE);
 	
 	//\____________________ On dessine les icones.
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
-	if (pFirstDrawnElement == NULL)
-		return ;
+	// on determine la 1ere icone a tracer : l'icone suivant l'icone pointee.
+	GList *pFirstDrawnElement = _get_first_drawn_element (pDock->icons);
 	
-	if (pFirstDrawnElement != NULL)
+	// on dessine les icones, l'icone pointee en dernier.
+	Icon *icon;
+	GList *ic = pFirstDrawnElement;
+	do
 	{
-		Icon *icon;
-		GList *ic = pFirstDrawnElement;
-		do
-		{
-			icon = ic->data;
-			
-			glPushMatrix ();
-			
-			cairo_dock_render_one_icon_opengl (icon, pDock, 1., TRUE);
-			
-			glPopMatrix ();
-			
-			ic = cairo_dock_get_next_element (ic, pDock->icons);
-		} while (ic != pFirstDrawnElement);
+		icon = ic->data;
+		
+		glPushMatrix ();
+		
+		cairo_dock_render_one_icon_opengl (icon, pDock, 1., TRUE);
+		
+		glPopMatrix ();
+		
+		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	}
+	while (ic != pFirstDrawnElement);
 }
 
 

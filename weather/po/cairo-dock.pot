@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-29 23:46+0200\n"
+"POT-Creation-Date: 2009-04-11 17:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,8 @@ msgid ""
 "Data are provided by www.weather.com, you can find your location in the "
 "config panel.\n"
 "It can detach itself to be a totally eye-candy 3D deskelt.\n"
-"You can have many valuable info by middle or left clicking on the icons."
+"Middle-click on the main icon to have current conditions information, left-"
+"click on a sub-icon to have forcast information.\n"
 msgstr ""
 
 #: ../src/applet-load-icons.c:15
@@ -119,45 +120,51 @@ msgstr ""
 msgid "Dec"
 msgstr ""
 
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:51
 msgid "Reload now"
 msgstr ""
 
-#: ../src/applet-notifications.c:72 ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:75
 msgid ""
 "No data were available\n"
 " is connection alive ?"
 msgstr ""
 
-#: ../src/applet-notifications.c:88 ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:118
 msgid "Temperature"
 msgstr ""
 
-#: ../src/applet-notifications.c:89
+#: ../src/applet-notifications.c:92
 msgid "Precipitation Probability"
 msgstr ""
 
-#: ../src/applet-notifications.c:90 ../src/applet-notifications.c:114
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:119
 msgid "Wind"
 msgstr ""
 
-#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:120
 msgid "Humidity"
 msgstr ""
 
-#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
 msgid "SunRise"
 msgstr ""
 
-#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
 msgid "SunSet"
 msgstr ""
 
-#: ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:104
+msgid ""
+"No data were available\n"
+"Re-trying now ..."
+msgstr ""
+
+#: ../src/applet-notifications.c:118
 msgid "feeled"
 msgstr ""
 
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:120
 msgid "Pressure"
 msgstr ""
 

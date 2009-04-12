@@ -29,11 +29,11 @@ msgstr "デスクトップ"
 msgid "Current"
 msgstr "現在"
 
-#: ../src/applet-notifications.c:76
+#: ../src/applet-notifications.c:87
 msgid "Add a desktop"
 msgstr "デスクトップを追加"
 
-#: ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:88
 msgid "Remove last desktop"
 msgstr "最後のデスクトップを削除"
 

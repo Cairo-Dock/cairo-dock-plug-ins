@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-29 23:46+0200\n"
+"POT-Creation-Date: 2009-04-11 17:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:73 ../data/messages:147
+#: ../data/messages:73 ../data/messages:143
 msgid "Configuration"
 msgstr ""
 
@@ -299,59 +299,59 @@ msgid "On label"
 msgstr ""
 
 #: ../data/messages:129
-msgid "Display SWAP too ?"
-msgstr ""
-
-#: ../data/messages:131 ../data/messages:155
-msgid "Show free memory instead of used memory ?"
-msgstr ""
-
-#: ../data/messages:133
 msgid "Top List"
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:131
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
 msgstr ""
 
-#: ../data/messages:137
+#: ../data/messages:133
 msgid "Number of programs to display in the top list :"
 msgstr ""
 
-#: ../data/messages:139
+#: ../data/messages:135
 msgid "It's the first color of the gradation used to write the top list."
 msgstr ""
 
-#: ../data/messages:141
+#: ../data/messages:137
 msgid "Start color of the top list :"
 msgstr ""
 
-#: ../data/messages:143
+#: ../data/messages:139
 msgid "It's the second color of the gradation used to write the top list."
 msgstr ""
 
-#: ../data/messages:145
+#: ../data/messages:141
 msgid "Stop color of the top list :"
 msgstr ""
 
-#: ../data/messages:149
+#: ../data/messages:145
+msgid "Display SWAP too ?"
+msgstr ""
+
+#: ../data/messages:147
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:151
+#: ../data/messages:149
 msgid "Delay between refresh :"
 msgstr ""
 
-#: ../data/messages:153
+#: ../data/messages:151
 msgid "Show top memory usage in % ?"
 msgstr ""
 
-#: ../data/messages:157
+#: ../data/messages:153
+msgid "Show free memory instead of used memory ?"
+msgstr ""
+
+#: ../data/messages:155
 msgid "Let empty to use he default one."
 msgstr ""
 
-#: ../data/messages:159
+#: ../data/messages:157
 msgid "User command to show a system monitor :"
 msgstr ""

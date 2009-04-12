@@ -290,22 +290,45 @@ void cd_clock_load_textures (CairoDockModuleInstance *myApplet)
 void cd_clock_clear_theme (CairoDockModuleInstance *myApplet, gboolean bClearAll)
 {
 	if (myData.pBackgroundSurface != NULL)
+	{
 		cairo_surface_destroy (myData.pBackgroundSurface);
+		myData.pBackgroundSurface = NULL;
+	}
 	if (myData.pForegroundSurface != NULL)
+	{
 		cairo_surface_destroy (myData.pForegroundSurface);
-	
+		myData.pForegroundSurface = NULL;
+	}
 	if (myData.iBgTexture != 0)
+	{
 		glDeleteTextures (1, &myData.iBgTexture);
+		myData.iBgTexture = 0;
+	}
 	if (myData.iFgTexture != 0)
+	{
 		glDeleteTextures (1, &myData.iFgTexture);
+		myData.iFgTexture = 0;
+	}
 	if (myData.iHourNeedleTexture != 0)
+	{
 		glDeleteTextures (1, &myData.iHourNeedleTexture);
+		myData.iHourNeedleTexture = 0;
+	}
 	if (myData.iMinuteNeedleTexture != 0)
+	{
 		glDeleteTextures (1, &myData.iMinuteNeedleTexture);
+		myData.iMinuteNeedleTexture = 0;
+	}
 	if (myData.iSecondNeedleTexture != 0)
+	{
 		glDeleteTextures (1, &myData.iSecondNeedleTexture);
+		myData.iSecondNeedleTexture = 0;
+	}
 	if (myData.iDateTexture != 0)
+	{
 		_cairo_dock_delete_texture (myData.iDateTexture);
+		myData.iDateTexture = 0;
+	}
 	
 	if (bClearAll)
 	{
@@ -315,18 +338,8 @@ void cd_clock_clear_theme (CairoDockModuleInstance *myApplet, gboolean bClearAll
 			if (myData.pSvgHandles[i] != NULL)
 			{
 				rsvg_handle_free (myData.pSvgHandles[i]);
+				myData.pSvgHandles[i] = NULL;
 			}
 		}
-	}
-	else
-	{
-		myData.pBackgroundSurface = NULL;
-		myData.pForegroundSurface = NULL;
-		myData.iBgTexture = 0;
-		myData.iFgTexture = 0;
-		myData.iHourNeedleTexture = 0;
-		myData.iMinuteNeedleTexture = 0;
-		myData.iSecondNeedleTexture = 0;
-		myData.iDateTexture = 0;
 	}
 }

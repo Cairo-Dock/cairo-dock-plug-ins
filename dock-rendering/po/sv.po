@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/rendering-init.c:109
+#: ../src/rendering-init.c:110
 msgid ""
 "This module adds different views to your dock.\n"
 "Any dock or sub-dock can be displayed with the view of your choice.\n"
@@ -36,19 +36,19 @@ msgstr "Ju lägre värde, desto mer horisontellt är planet."
 msgid "Height of the vanishing point :"
 msgstr "Höjd på flyktpunkten:"
 
-#: ../data/messages:7 ../data/messages:171
+#: ../data/messages:7 ../data/messages:131
 msgid "Choose the way separators are drawn :"
 msgstr "Välj hur avgränsare visas:"
 
-#: ../data/messages:9 ../data/messages:173
+#: ../data/messages:9 ../data/messages:133
 msgid "Normal separator"
 msgstr "Normal"
 
-#: ../data/messages:11 ../data/messages:175
+#: ../data/messages:11 ../data/messages:135
 msgid "Flat separator"
 msgstr "Platt"
 
-#: ../data/messages:13 ../data/messages:177
+#: ../data/messages:13 ../data/messages:137
 msgid "Physical separator"
 msgstr "Fysisk"
 
@@ -137,7 +137,7 @@ msgstr "0 betyder att vågen är helt platt, 1 betyder vågens maxvärde."
 msgid "Magnitude of the wave :"
 msgstr "Vågens styrka:"
 
-#: ../data/messages:51 ../data/messages:167
+#: ../data/messages:51 ../data/messages:127
 msgid "in pixels."
 msgstr "i pixlar."
 
@@ -160,7 +160,7 @@ msgstr "Visa etiketter under animering?"
 msgid "Rainbow"
 msgstr "Regnbåge"
 
-#: ../data/messages:61 ../data/messages:85 ../data/messages:125
+#: ../data/messages:61 ../data/messages:85
 msgid "Space between rows :"
 msgstr "Avstånd mellan rader:"
 
@@ -205,97 +205,96 @@ msgid "Line color :"
 msgstr ""
 
 #: ../data/messages:81
-msgid "Slide"
-msgstr "Rutnät"
+msgid "SimpleSlide"
+msgstr "Enkelt rutnät"
 
-#: ../data/messages:83 ../data/messages:123
+#: ../data/messages:83
 msgid "Space between columns :"
 msgstr "Avstånd mellan kolumner:"
 
-#: ../data/messages:87 ../data/messages:127
+#: ../data/messages:87
 msgid "Max size of icons :"
 msgstr "Ikonens maxstorlek:"
 
-#: ../data/messages:89 ../data/messages:129
+#: ../data/messages:89
 msgid "Sinusoidal wave radius :"
 msgstr "Sinusvågens radie:"
 
-#: ../data/messages:91 ../data/messages:131
+#: ../data/messages:91
 msgid "Use a linear wave rather than a sinusoidal one ?"
 msgstr "Använd linjär våg istället för sinusformad?"
 
-#: ../data/messages:93 ../data/messages:133
+#: ../data/messages:93
 msgid "Use a wide shape ?"
 msgstr "Använd bred form?"
 
-#: ../data/messages:95 ../data/messages:135
+#: ../data/messages:95
 msgid "Display text only for pointed icon ?"
 msgstr "Visa text endast på aktiv ikon?"
 
-#: ../data/messages:97 ../data/messages:137
+#: ../data/messages:97
 msgid "Display text for all icons ?"
 msgstr "Visa text för alla ikoner?"
 
-#: ../data/messages:99 ../data/messages:139
+#: ../data/messages:99
 msgid "Draw a background ?"
 msgstr "Rita bakgrund?"
 
-#: ../data/messages:101 ../data/messages:141
+#: ../data/messages:101
 msgid "First gradient color (r,v,b,a) :"
 msgstr "Startfärg (r,g,b,a):"
 
-#: ../data/messages:103 ../data/messages:143
+#: ../data/messages:103
 msgid "Second gradient color (r,v,b,a) :"
 msgstr "Slutfärg (r,g,b,a):"
 
-#: ../data/messages:105 ../data/messages:145
+#: ../data/messages:105
 msgid "Top to bottom gradient ?"
 msgstr "Uppifrån och ner?"
 
-#: ../data/messages:107 ../data/messages:147
+#: ../data/messages:107
 msgid "Left to right gradient ?"
 msgstr "Vänster till höger?"
 
-#: ../data/messages:109 ../data/messages:149
+#: ../data/messages:109
 msgid "Arrow width :"
 msgstr "Pilens bredd:"
 
-#: ../data/messages:111 ../data/messages:151
+#: ../data/messages:111
 msgid "Arrow Height :"
 msgstr "Pilens höjd:"
 
-#: ../data/messages:113 ../data/messages:153
+#: ../data/messages:113
 msgid "Arrow shift percent :"
 msgstr "Pilens förskjutning i procent:"
 
-#: ../data/messages:115 ../data/messages:155
+#: ../data/messages:115
 msgid "Corner radius :"
 msgstr "Hörnradie:"
 
-#: ../data/messages:117 ../data/messages:157
+#: ../data/messages:117
 msgid "Border line width :"
 msgstr "Linjebredd för ram:"
 
-#: ../data/messages:119 ../data/messages:159
+#: ../data/messages:119
 msgid "Border line color (r,v,b,a) :"
 msgstr "Linjefärg (r.g.b.a):"
 
 #: ../data/messages:121
-msgid "SimpleSlide"
-msgstr "Enkelt rutnät"
-
-#: ../data/messages:161
 msgid "Curve"
 msgstr "Kurva"
 
-#: ../data/messages:163
+#: ../data/messages:123
 msgid "The lower, the more the curve will seem flat."
 msgstr "Ju lägre värde, desto plattare kurva."
 
-#: ../data/messages:165
+#: ../data/messages:125
 msgid "Curvature of the curve in percent :"
 msgstr "Kurvans böjning i procent:"
 
-#: ../data/messages:169
+#: ../data/messages:129
 msgid "Amplitude of the curve."
 msgstr "Kurvans amplitud."
+
+#~ msgid "Slide"
+#~ msgstr "Rutnät"

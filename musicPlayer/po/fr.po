@@ -12,12 +12,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:30
+#: ../src/applet-init.c:31
 #, fuzzy
 msgid "musicPlayer"
 msgstr "Lecteur Audio"
 
-#: ../src/applet-init.c:33
+#: ../src/applet-init.c:34
 msgid ""
 "This applet lets you control any music player.\n"
 "Left click to Play/Pause, middle-click to play Next song.\n"

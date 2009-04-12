@@ -296,7 +296,7 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 msgid "Display type :"
 msgstr "Utseende"
 
-#: ../data/messages:101 ../data/messages:151
+#: ../data/messages:101
 msgid "Images"
 msgstr "Bilder"
 
@@ -374,55 +374,58 @@ msgid "List of available themes for the analogic display :"
 msgstr "Teman för analogic:"
 
 #: ../data/messages:141
-msgid "radium"
-msgstr "radium"
-
-#: ../data/messages:143
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:145
+#: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:147
+#: ../data/messages:145
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:149
+#: ../data/messages:147
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:153 ../data/messages:157 ../data/messages:161
-#: ../data/messages:165 ../data/messages:169 ../data/messages:173
+#: ../data/messages:149
+msgid "Alternative images"
+msgstr ""
+
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
 msgid "Let it empty to use the default icon."
 msgstr "Lämna tomt för att använda standardikonen."
 
-#: ../data/messages:155
+#: ../data/messages:153
 msgid "Name of an image for the 'no signal' icon :"
 msgstr ""
 
-#: ../data/messages:159
+#: ../data/messages:157
 msgid "Name of an image for the 'very low' icon :"
 msgstr ""
 
-#: ../data/messages:163
+#: ../data/messages:161
 msgid "Name of an image for the 'low' icon :"
 msgstr ""
 
-#: ../data/messages:167
+#: ../data/messages:165
 msgid "Name of an image for the 'middle' icon :"
 msgstr ""
 
-#: ../data/messages:171
+#: ../data/messages:169
 msgid "Name of an image for the 'good' icon :"
 msgstr ""
 
-#: ../data/messages:175
+#: ../data/messages:173
 msgid "Name of an image for the 'exellent' icon :"
 msgstr ""
+
+#~ msgid "radium"
+#~ msgstr "radium"
 
 #~ msgid ""
 #~ "This is the wifi applet\n"

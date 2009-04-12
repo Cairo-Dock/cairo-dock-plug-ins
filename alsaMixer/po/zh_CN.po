@@ -3,8 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: ../data/messages:83 ../data/messages:85 ../data/messages:91
-#: ../data/messages:93
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -255,95 +253,95 @@ msgstr "控制的声卡："
 msgid "Choose which channel to control :"
 msgstr "选择控制的通道："
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just let it empty."
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:85
 #, fuzzy
 msgid "Optionnally, choose a second channel to control :"
 msgstr "选择控制的通道："
 
-#: ../data/messages:95
+#: ../data/messages:87
 msgid "Let empty to use the defaut command."
 msgstr "留空则使用默认指令。"
 
-#: ../data/messages:97
+#: ../data/messages:89
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr "指定显示高级混音器的命令："
 
-#: ../data/messages:99
+#: ../data/messages:91
 msgid "Control"
 msgstr "控制"
 
-#: ../data/messages:101
+#: ../data/messages:93
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr "用于显示/隐藏音量控制对话框的快捷键："
 
-#: ../data/messages:103
+#: ../data/messages:95
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "鼠标卷动一下的变化值，以百分比为单位："
 
-#: ../data/messages:105
+#: ../data/messages:97
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr "鼠标离开桌面提示时，隐藏刻度？"
 
-#: ../data/messages:107
+#: ../data/messages:99
 msgid "Display"
 msgstr "显示"
 
-#: ../data/messages:109
+#: ../data/messages:101
 msgid "Display volume :"
 msgstr "显示音量："
 
-#: ../data/messages:111
+#: ../data/messages:103
 msgid "No"
 msgstr "否"
 
-#: ../data/messages:113
+#: ../data/messages:105
 msgid "On label"
 msgstr "于标签上"
 
-#: ../data/messages:115
+#: ../data/messages:107
 msgid "On icon"
 msgstr "于图标上"
 
-#: ../data/messages:117
+#: ../data/messages:109
 msgid "Effet to apply on the icon according to volume :"
 msgstr "根据音量置于图标的效果："
 
-#: ../data/messages:119
+#: ../data/messages:111
 msgid "None"
 msgstr "没有"
 
-#: ../data/messages:121
+#: ../data/messages:113
 msgid "Zoom"
 msgstr "缩放"
 
-#: ../data/messages:123
+#: ../data/messages:115
 msgid "Transparency"
 msgstr "透明度"
 
-#: ../data/messages:125
+#: ../data/messages:117
 msgid "Draw Bar"
 msgstr "绘制条"
 
-#: ../data/messages:127 ../data/messages:131 ../data/messages:135
+#: ../data/messages:119 ../data/messages:123 ../data/messages:127
 msgid "Let empty to use the default one."
 msgstr "留空使用默认的。"
 
-#: ../data/messages:129
+#: ../data/messages:121
 msgid "Default icon :"
 msgstr "默认图标："
 
-#: ../data/messages:133
+#: ../data/messages:125
 msgid "Broken icon :"
 msgstr "毁坏的图标："
 
-#: ../data/messages:137
+#: ../data/messages:129
 msgid "Mute icon :"
 msgstr "静音图标："
 

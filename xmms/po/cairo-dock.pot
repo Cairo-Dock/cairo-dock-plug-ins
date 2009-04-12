@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-29 23:46+0200\n"
+"POT-Creation-Date: 2009-04-11 17:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -305,7 +305,7 @@ msgid "Show an info-bubble ?"
 msgstr ""
 
 #: ../data/messages:119
-msgid "With a icon ?"
+msgid "With an icon ?"
 msgstr ""
 
 #: ../data/messages:121

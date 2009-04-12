@@ -101,8 +101,8 @@ msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
-msgid "Icon size"
-msgstr "Taille d'icône"
+msgid "Desired icon size for this applet"
+msgstr ""
 
 #: ../data/messages:7
 msgid "Icon name :"
@@ -275,104 +275,106 @@ msgid "Interval of time between 2 checks :"
 msgstr "Intervale entre 2 vérifications :"
 
 #: ../data/messages:79
-msgid "Use average system ?"
-msgstr "Utiliser le temps moyen ?"
-
-#: ../data/messages:81
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:83
+#: ../data/messages:81
 msgid "Icon's filename when on battery :"
 msgstr "Nom d'une icône en mode batterie :"
 
-#: ../data/messages:85
+#: ../data/messages:83
 msgid "Icon's filename when on charge :"
 msgstr "Nom d'une icône en mode recharge :"
 
-#: ../data/messages:87
+#: ../data/messages:85
 msgid "Effect to apply on the icon according to charge :"
 msgstr "Effet à appliquer à l'icône en fonction de la charge :"
 
-#: ../data/messages:89 ../data/messages:103
+#: ../data/messages:87 ../data/messages:101
 msgid "nothing"
 msgstr "Aucune"
 
-#: ../data/messages:91
+#: ../data/messages:89
 msgid "zoom"
 msgstr "Zoom"
 
-#: ../data/messages:93
+#: ../data/messages:91
 msgid "transparency"
 msgstr "Transparence"
 
-#: ../data/messages:95
+#: ../data/messages:93
 msgid "draw bar"
 msgstr "Dessiner une barre"
 
-#: ../data/messages:97
+#: ../data/messages:95
 msgid "Use a gauge instead of icons ?"
 msgstr "Utiliser une jauge au lieu d'icônes ?"
 
-#: ../data/messages:99
+#: ../data/messages:97
 msgid "List of available gauges :"
 msgstr "Liste des jauges disponibles :"
 
-#: ../data/messages:101
+#: ../data/messages:99
 msgid "Information to be displayed on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
-#: ../data/messages:105
+#: ../data/messages:103
 msgid "charge"
 msgstr "Charge"
 
-#: ../data/messages:107
+#: ../data/messages:105
 msgid "time"
 msgstr "Temps"
 
-#: ../data/messages:109
+#: ../data/messages:107
 msgid "Alert"
 msgstr "Alerte"
 
-#: ../data/messages:111
+#: ../data/messages:109
 msgid "Alert when battery charged ?"
 msgstr "M'alerter quand la batterie est chargée ?"
 
-#: ../data/messages:113 ../data/messages:123 ../data/messages:131
+#: ../data/messages:111 ../data/messages:121 ../data/messages:129
 msgid "Let it empty to have no sound"
 msgstr "Laissez vide pour ne pas avoir de son"
 
-#: ../data/messages:115 ../data/messages:125 ../data/messages:133
+#: ../data/messages:113 ../data/messages:123 ../data/messages:131
 msgid "Use a sound :"
 msgstr "Utiliser un son :"
 
-#: ../data/messages:117
+#: ../data/messages:115
 msgid "Alert when low battery ?"
 msgstr "M'alerter quand la charge est basse ?"
 
-#: ../data/messages:119
+#: ../data/messages:117
 msgid "in percent."
 msgstr "en pourcent"
 
-#: ../data/messages:121
+#: ../data/messages:119
 msgid "Battery level :"
 msgstr "Niveau de batterie"
 
-#: ../data/messages:127
+#: ../data/messages:125
 msgid "When battery level is under 4%"
 msgstr "Quand la charge est en dessou de 4%"
 
-#: ../data/messages:129
+#: ../data/messages:127
 msgid "Alert when battery charge is critical ?"
 msgstr "M'alerter quand la charge est critique ?"
 
-#: ../data/messages:135
+#: ../data/messages:133
 msgid "Animate icon during the alert ?"
 msgstr "Animer l'icône pendant l'alerte ?"
 
-#: ../data/messages:137
+#: ../data/messages:135
 msgid "Animation during alert :"
 msgstr "Animation pendant l'alerte :"
+
+#~ msgid "Icon size"
+#~ msgstr "Taille d'icône"
+
+#~ msgid "Use average system ?"
+#~ msgstr "Utiliser le temps moyen ?"
 
 #~ msgid "Applet by Necropotame (Adrien Pilleboue)"
 #~ msgstr "Applet par Necropotame (Adrien Pilleboue)"

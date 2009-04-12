@@ -40,6 +40,7 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 	
 	//On se déplace la ou il le faut
 	cairo_move_to (pCairoContext, fOffsetX, fOffsetY);
+	cairo_set_tolerance (pCairoContext, 0.33);
 	
 	// Ligne du haut (Haut gauche -> Haut Droite)
 	///cairo_rel_line_to (pCairoContext, iWidth - (2 * fRadius + fLineWidth), 0);

@@ -289,7 +289,7 @@ msgstr "以接入点名称替代默认标签"
 msgid "Display type :"
 msgstr "显示类型"
 
-#: ../data/messages:101 ../data/messages:151
+#: ../data/messages:101
 msgid "Images"
 msgstr "图像"
 
@@ -366,55 +366,58 @@ msgid "List of available themes for the analogic display :"
 msgstr "可用的表盘主题列表:"
 
 #: ../data/messages:141
-msgid "radium"
-msgstr "镭"
-
-#: ../data/messages:143
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr "留空则使用默认图像。如果您不想要水印，请将透明度设为0。"
 
-#: ../data/messages:145
+#: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
 msgstr "表盘水印图片:"
 
-#: ../data/messages:147
+#: ../data/messages:145
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "如果您不想要水印，请设为0."
 
-#: ../data/messages:149
+#: ../data/messages:147
 msgid "Transparency of the watermark :"
 msgstr "水印透明度:"
 
-#: ../data/messages:153 ../data/messages:157 ../data/messages:161
-#: ../data/messages:165 ../data/messages:169 ../data/messages:173
+#: ../data/messages:149
+msgid "Alternative images"
+msgstr ""
+
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
 msgid "Let it empty to use the default icon."
 msgstr "留空以使用默认图标。"
 
-#: ../data/messages:155
+#: ../data/messages:153
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "用于“无信号”图标的图片名称:"
 
-#: ../data/messages:159
+#: ../data/messages:157
 msgid "Name of an image for the 'very low' icon :"
 msgstr "用于“信号很弱”图标的图片名称:"
 
-#: ../data/messages:163
+#: ../data/messages:161
 msgid "Name of an image for the 'low' icon :"
 msgstr "用于“信号弱”图标的图片名称:"
 
-#: ../data/messages:167
+#: ../data/messages:165
 msgid "Name of an image for the 'middle' icon :"
 msgstr "用于“信号中等”图标的图片名称:"
 
-#: ../data/messages:171
+#: ../data/messages:169
 msgid "Name of an image for the 'good' icon :"
 msgstr "用于“信号良好”图标的图片名称:"
 
-#: ../data/messages:175
+#: ../data/messages:173
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "用于“信号很好”图标的图片名称:"
+
+#~ msgid "radium"
+#~ msgstr "镭"
 
 #~ msgid ""
 #~ "This is the wifi applet\n"

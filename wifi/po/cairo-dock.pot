@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-29 23:46+0200\n"
+"POT-Creation-Date: 2009-04-11 17:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -281,7 +281,7 @@ msgstr ""
 msgid "Display type :"
 msgstr ""
 
-#: ../data/messages:101 ../data/messages:151
+#: ../data/messages:101
 msgid "Images"
 msgstr ""
 
@@ -358,52 +358,52 @@ msgid "List of available themes for the analogic display :"
 msgstr ""
 
 #: ../data/messages:141
-msgid "radium"
-msgstr ""
-
-#: ../data/messages:143
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:145
+#: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:147
+#: ../data/messages:145
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:149
+#: ../data/messages:147
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:153 ../data/messages:157 ../data/messages:161
-#: ../data/messages:165 ../data/messages:169 ../data/messages:173
+#: ../data/messages:149
+msgid "Alternative images"
+msgstr ""
+
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
 msgid "Let it empty to use the default icon."
 msgstr ""
 
-#: ../data/messages:155
+#: ../data/messages:153
 msgid "Name of an image for the 'no signal' icon :"
 msgstr ""
 
-#: ../data/messages:159
+#: ../data/messages:157
 msgid "Name of an image for the 'very low' icon :"
 msgstr ""
 
-#: ../data/messages:163
+#: ../data/messages:161
 msgid "Name of an image for the 'low' icon :"
 msgstr ""
 
-#: ../data/messages:167
+#: ../data/messages:165
 msgid "Name of an image for the 'middle' icon :"
 msgstr ""
 
-#: ../data/messages:171
+#: ../data/messages:169
 msgid "Name of an image for the 'good' icon :"
 msgstr ""
 
-#: ../data/messages:175
+#: ../data/messages:173
 msgid "Name of an image for the 'exellent' icon :"
 msgstr ""

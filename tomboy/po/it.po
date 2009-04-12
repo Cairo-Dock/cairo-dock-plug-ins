@@ -160,7 +160,7 @@ msgid "Date format to search for :"
 msgstr "Formato data da ricercare :"
 
 #: ../data/messages:41
-msgid "Ask confirùation before deleting a note ?"
+msgid "Ask confirmation before deleting a note ?"
 msgstr ""
 
 #: ../data/messages:43

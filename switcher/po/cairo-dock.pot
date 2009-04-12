@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-29 23:46+0200\n"
+"POT-Creation-Date: 2009-04-11 17:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,11 +31,11 @@ msgstr ""
 msgid "Current"
 msgstr ""
 
-#: ../src/applet-notifications.c:76
+#: ../src/applet-notifications.c:87
 msgid "Add a desktop"
 msgstr ""
 
-#: ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:88
 msgid "Remove last desktop"
 msgstr ""
 

@@ -272,7 +272,8 @@ msgid "Size of the terminal (line x columns) :"
 msgstr "端末の大きさ（行×列） :"
 
 #: ../data/messages:87
-msgid "Shortkey to show the terminal"
+#, fuzzy
+msgid "Shortkey to show the terminal :"
 msgstr "端末を表示するショートカットキー :"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"

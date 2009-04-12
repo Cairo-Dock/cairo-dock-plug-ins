@@ -52,7 +52,7 @@ duration = 800
 nb pieces = 49
 
 #e[1;10] Explosion radius :
-radius = 1
+radius = 2
 
 #b Break the icon in cubes ?
 cubes = true

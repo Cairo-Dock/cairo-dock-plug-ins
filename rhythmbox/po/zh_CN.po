@@ -14,24 +14,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:77
+#: ../src/rhythmbox-draw.c:85
 msgid "Track"
 msgstr "音轨"
 
-#: ../src/rhythmbox-draw.c:154
+#: ../src/rhythmbox-draw.c:162
 msgid "Artist"
 msgstr "艺术家"
 
-#: ../src/rhythmbox-draw.c:155 ../src/rhythmbox-draw.c:157
-#: ../src/rhythmbox-draw.c:159
+#: ../src/rhythmbox-draw.c:163 ../src/rhythmbox-draw.c:165
+#: ../src/rhythmbox-draw.c:167
 msgid "Unknown"
 msgstr "未知"
 
-#: ../src/rhythmbox-draw.c:156
+#: ../src/rhythmbox-draw.c:164
 msgid "Album"
 msgstr "专辑"
 
-#: ../src/rhythmbox-draw.c:158
+#: ../src/rhythmbox-draw.c:166
 msgid "Title"
 msgstr "标题"
 
@@ -39,23 +39,24 @@ msgstr "标题"
 msgid ""
 "Control your Rhythmbox player directly in the dock !\n"
 "Play/pause with left click, next song with middle click.\n"
-"You can drag and drop covers (jpg) on the icon to use them,\n"
-"or songs to put them in the queue."
+"You can drag and drop covers (jpg) on the icon to use theme,\n"
+"or songs to put them in the queue. \n"
+"Adrien Pilleboue (Necropotame)"
 msgstr ""
 
-#: ../src/rhythmbox-menu-functions.c:51
+#: ../src/rhythmbox-menu-functions.c:52
 msgid "Previous"
 msgstr "上一首"
 
-#: ../src/rhythmbox-menu-functions.c:53
+#: ../src/rhythmbox-menu-functions.c:54
 msgid "Next (middle-click)"
 msgstr "下一首(中键点击)"
 
-#: ../src/rhythmbox-menu-functions.c:55
+#: ../src/rhythmbox-menu-functions.c:56
 msgid "Play/Pause (left-click)"
 msgstr "播放/暂停(左键点击)"
 
-#: ../src/rhythmbox-menu-functions.c:57
+#: ../src/rhythmbox-menu-functions.c:58
 msgid "Information"
 msgstr "信息"
 
@@ -149,7 +150,7 @@ msgstr "以角度为单位。"
 msgid "Rotation :"
 msgstr "旋转:"
 
-#: ../data/messages:39 ../data/messages:75
+#: ../data/messages:39
 msgid "Decorations"
 msgstr "装饰"
 
@@ -225,35 +226,31 @@ msgstr "前景透明度:"
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:77
-msgid "List of available specific themes (OPENGL only) :"
-msgstr ""
-
-#: ../data/messages:79
+#: ../data/messages:75
 msgid "Info-bubbles"
 msgstr "信息泡泡"
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "Activate info-bubbles ?"
 msgstr "激活信息泡泡?"
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "in ms."
 msgstr "以毫秒为单位。"
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Time length of info-bubbles :"
 msgstr "信息泡泡的显示时间:"
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid "Behaviour"
 msgstr "行为"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "Animation when music changes :"
 msgstr "音乐切换时的动画:"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -261,74 +258,78 @@ msgstr ""
 "这将阻止rhythmbox的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程"
 "序的功能。"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "由任务栏偷取rhythmbox的图标?"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Display"
 msgstr "显示"
 
-#: ../data/messages:97
-msgid "Display album's cover instead of icon ?"
+#: ../data/messages:93
+#, fuzzy
+msgid "Display album's cover ?"
 msgstr "以专辑封面取代图标?"
 
-#: ../data/messages:99
+#: ../data/messages:95
+msgid "List of available themes for covers (requires OPENGL) :"
+msgstr ""
+
+#: ../data/messages:97
 msgid "Information to display on the icon :"
 msgstr "图标上显示的信息:"
 
-#: ../data/messages:101
+#: ../data/messages:99
 msgid "nothing"
 msgstr "无"
 
-#: ../data/messages:103
+#: ../data/messages:101
 msgid "time elapsed"
 msgstr "已播放时间"
 
-#: ../data/messages:105
+#: ../data/messages:103
 msgid "time left"
 msgstr "剩余时间"
 
-#: ../data/messages:107
+#: ../data/messages:105
 msgid "time in %"
 msgstr "%之后"
 
-#: ../data/messages:109
+#: ../data/messages:107
 msgid "n° of track"
 msgstr "第N°首"
 
-#: ../data/messages:111
-msgid "Draw desklet in a 3D fashion (experimental) ?"
-msgstr "以3D效果绘制桌面小工具(实验性)?"
-
-#: ../data/messages:113
+#: ../data/messages:109
 msgid "Personnalisation"
 msgstr "个性化"
 
-#: ../data/messages:115 ../data/messages:119 ../data/messages:123
-#: ../data/messages:127 ../data/messages:131
+#: ../data/messages:111 ../data/messages:115 ../data/messages:119
+#: ../data/messages:123 ../data/messages:127
 msgid "Let t empty to use the default icon."
 msgstr "留空以使用默认图标。"
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid "Name of an image for the 'default' icon :"
 msgstr "“默认”图标的图片名称:"
 
-#: ../data/messages:121
+#: ../data/messages:117
 msgid "Name of an image for the 'play' icon :"
 msgstr "“播放”图标的图片名称:"
 
-#: ../data/messages:125
+#: ../data/messages:121
 msgid "Name of an image for the 'stop' icon :"
 msgstr "“停止”图标的图片名称:"
 
-#: ../data/messages:129
+#: ../data/messages:125
 msgid "Name of an image for the 'pause' icon :"
 msgstr "“暂停”图标的图片名称:"
 
-#: ../data/messages:133
+#: ../data/messages:129
 msgid "Name of an image for the 'broken' icon :"
 msgstr "“破损”图标的图片名称:"
+
+#~ msgid "Draw desklet in a 3D fashion (experimental) ?"
+#~ msgstr "以3D效果绘制桌面小工具(实验性)?"
 
 #~ msgid "Applet by Necropotame (Adrien Pilleboue)"
 #~ msgstr "Necropotame (Adrien Pilleboue)制作的小程序"

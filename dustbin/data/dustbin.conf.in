@@ -101,10 +101,6 @@ full image =
 #F[Config;gtk-preferences]
 frame2 =
 
-#D99 Here you can specify a list of additionnal Trash directories to monitor :
-#{They don't even need to be real trash directories.}/
-additionnal directories = 
-
 #r[None;Number of trashes;Total number of files;Total weight] Display the following quick info :
 quick info = 1
 
@@ -118,6 +114,10 @@ global size limit = 0
 
 #X[Desktop-less support]
 frame3 =
+
+#D99 Here you can specify a list of additionnal Trash directories to monitor :
+#{They don't even need to be real trash directories.}/
+additionnal directories = 
 
 #f[0.5;10.0] Interval of time to check if dustbin is full/empty :
 #{in seconds, only used if you can't monitor directories.}

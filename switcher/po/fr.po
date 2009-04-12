@@ -26,11 +26,11 @@ msgstr "Bureau"
 msgid "Current"
 msgstr "Courant"
 
-#: ../src/applet-notifications.c:76
+#: ../src/applet-notifications.c:87
 msgid "Add a desktop"
 msgstr "Ajouter un bureau"
 
-#: ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:88
 msgid "Remove last desktop"
 msgstr "Retirer le dernier bureau"
 

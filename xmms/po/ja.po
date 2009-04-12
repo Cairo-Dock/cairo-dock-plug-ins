@@ -322,7 +322,8 @@ msgid "Show an info-bubble ?"
 msgstr "吹き出しを表示して情報通知？"
 
 #: ../data/messages:119
-msgid "With a icon ?"
+#, fuzzy
+msgid "With an icon ?"
 msgstr "アイコンも描画？"
 
 #: ../data/messages:121

@@ -137,7 +137,7 @@ CD_APPLET_INIT_BEGIN
 		cairo_dock_update_renderer_list_for_gui ();
 	}
 	else
-		gtk_widget_queue_draw (g_pMainDock);
+		gtk_widget_queue_draw (g_pMainDock->pWidget);
 	
 	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
@@ -156,7 +156,7 @@ CD_APPLET_STOP_BEGIN
 	
 	cairo_dock_reset_all_views ();
 	cairo_dock_update_renderer_list_for_gui ();
-	gtk_widget_queue_draw (g_pMainDock);
+	gtk_widget_queue_draw (g_pMainDock->pWidget);
 CD_APPLET_STOP_END
 
 

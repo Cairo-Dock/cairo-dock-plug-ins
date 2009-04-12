@@ -303,7 +303,7 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 msgid "Display type :"
 msgstr "Tipi di indicazioni :"
 
-#: ../data/messages:101 ../data/messages:151
+#: ../data/messages:101
 msgid "Images"
 msgstr "Immagini"
 
@@ -380,10 +380,6 @@ msgid "List of available themes for the analogic display :"
 msgstr "Lista dei temi disponibili per la vista analogica :"
 
 #: ../data/messages:141
-msgid "radium"
-msgstr "radium"
-
-#: ../data/messages:143
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -391,46 +387,53 @@ msgstr ""
 "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
 "se si vuole alcuna filigrana."
 
-#: ../data/messages:145
+#: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
 msgstr "Immagine da mostrare come filigrana nel grafico :"
 
-#: ../data/messages:147
+#: ../data/messages:145
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "Settare a 0 se si vuole alcuna filigrana."
 
-#: ../data/messages:149
+#: ../data/messages:147
 msgid "Transparency of the watermark :"
 msgstr "Trasparenza della filigrana :"
 
-#: ../data/messages:153 ../data/messages:157 ../data/messages:161
-#: ../data/messages:165 ../data/messages:169 ../data/messages:173
+#: ../data/messages:149
+msgid "Alternative images"
+msgstr ""
+
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
 msgid "Let it empty to use the default icon."
 msgstr "Lasciate vuoto per utilizzare l'icona di default."
 
-#: ../data/messages:155
+#: ../data/messages:153
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Immagine dell'icona 'Nessun Segnale' :"
 
-#: ../data/messages:159
+#: ../data/messages:157
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Immagine dell'icona 'Molto Basso' :"
 
-#: ../data/messages:163
+#: ../data/messages:161
 msgid "Name of an image for the 'low' icon :"
 msgstr "Immagine dell'icona 'Basso' :"
 
-#: ../data/messages:167
+#: ../data/messages:165
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Immagine dell'icona 'Normale' :"
 
-#: ../data/messages:171
+#: ../data/messages:169
 msgid "Name of an image for the 'good' icon :"
 msgstr "Immagine dell'icona 'Buono' :"
 
-#: ../data/messages:175
+#: ../data/messages:173
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Immagine dell'icona 'Eccellente' :"
+
+#~ msgid "radium"
+#~ msgstr "radium"
 
 #~ msgid ""
 #~ "This is the wifi applet\n"

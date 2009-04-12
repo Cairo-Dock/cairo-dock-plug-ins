@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-29 23:46+0200\n"
+"POT-Creation-Date: 2009-04-11 17:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rendering-init.c:109
+#: ../src/rendering-init.c:110
 msgid ""
 "This module adds different views to your dock.\n"
 "Any dock or sub-dock can be displayed with the view of your choice.\n"
@@ -36,19 +36,19 @@ msgstr ""
 msgid "Height of the vanishing point :"
 msgstr ""
 
-#: ../data/messages:7 ../data/messages:171
+#: ../data/messages:7 ../data/messages:131
 msgid "Choose the way separators are drawn :"
 msgstr ""
 
-#: ../data/messages:9 ../data/messages:173
+#: ../data/messages:9 ../data/messages:133
 msgid "Normal separator"
 msgstr ""
 
-#: ../data/messages:11 ../data/messages:175
+#: ../data/messages:11 ../data/messages:135
 msgid "Flat separator"
 msgstr ""
 
-#: ../data/messages:13 ../data/messages:177
+#: ../data/messages:13 ../data/messages:137
 msgid "Physical separator"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Magnitude of the wave :"
 msgstr ""
 
-#: ../data/messages:51 ../data/messages:167
+#: ../data/messages:51 ../data/messages:127
 msgid "in pixels."
 msgstr ""
 
@@ -153,7 +153,7 @@ msgstr ""
 msgid "Rainbow"
 msgstr ""
 
-#: ../data/messages:61 ../data/messages:85 ../data/messages:125
+#: ../data/messages:61 ../data/messages:85
 msgid "Space between rows :"
 msgstr ""
 
@@ -194,97 +194,93 @@ msgid "Line color :"
 msgstr ""
 
 #: ../data/messages:81
-msgid "Slide"
+msgid "SimpleSlide"
 msgstr ""
 
-#: ../data/messages:83 ../data/messages:123
+#: ../data/messages:83
 msgid "Space between columns :"
 msgstr ""
 
-#: ../data/messages:87 ../data/messages:127
+#: ../data/messages:87
 msgid "Max size of icons :"
 msgstr ""
 
-#: ../data/messages:89 ../data/messages:129
+#: ../data/messages:89
 msgid "Sinusoidal wave radius :"
 msgstr ""
 
-#: ../data/messages:91 ../data/messages:131
+#: ../data/messages:91
 msgid "Use a linear wave rather than a sinusoidal one ?"
 msgstr ""
 
-#: ../data/messages:93 ../data/messages:133
+#: ../data/messages:93
 msgid "Use a wide shape ?"
 msgstr ""
 
-#: ../data/messages:95 ../data/messages:135
+#: ../data/messages:95
 msgid "Display text only for pointed icon ?"
 msgstr ""
 
-#: ../data/messages:97 ../data/messages:137
+#: ../data/messages:97
 msgid "Display text for all icons ?"
 msgstr ""
 
-#: ../data/messages:99 ../data/messages:139
+#: ../data/messages:99
 msgid "Draw a background ?"
 msgstr ""
 
-#: ../data/messages:101 ../data/messages:141
+#: ../data/messages:101
 msgid "First gradient color (r,v,b,a) :"
 msgstr ""
 
-#: ../data/messages:103 ../data/messages:143
+#: ../data/messages:103
 msgid "Second gradient color (r,v,b,a) :"
 msgstr ""
 
-#: ../data/messages:105 ../data/messages:145
+#: ../data/messages:105
 msgid "Top to bottom gradient ?"
 msgstr ""
 
-#: ../data/messages:107 ../data/messages:147
+#: ../data/messages:107
 msgid "Left to right gradient ?"
 msgstr ""
 
-#: ../data/messages:109 ../data/messages:149
+#: ../data/messages:109
 msgid "Arrow width :"
 msgstr ""
 
-#: ../data/messages:111 ../data/messages:151
+#: ../data/messages:111
 msgid "Arrow Height :"
 msgstr ""
 
-#: ../data/messages:113 ../data/messages:153
+#: ../data/messages:113
 msgid "Arrow shift percent :"
 msgstr ""
 
-#: ../data/messages:115 ../data/messages:155
+#: ../data/messages:115
 msgid "Corner radius :"
 msgstr ""
 
-#: ../data/messages:117 ../data/messages:157
+#: ../data/messages:117
 msgid "Border line width :"
 msgstr ""
 
-#: ../data/messages:119 ../data/messages:159
+#: ../data/messages:119
 msgid "Border line color (r,v,b,a) :"
 msgstr ""
 
 #: ../data/messages:121
-msgid "SimpleSlide"
-msgstr ""
-
-#: ../data/messages:161
 msgid "Curve"
 msgstr ""
 
-#: ../data/messages:163
+#: ../data/messages:123
 msgid "The lower, the more the curve will seem flat."
 msgstr ""
 
-#: ../data/messages:165
+#: ../data/messages:125
 msgid "Curvature of the curve in percent :"
 msgstr ""
 
-#: ../data/messages:169
+#: ../data/messages:129
 msgid "Amplitude of the curve."
 msgstr ""

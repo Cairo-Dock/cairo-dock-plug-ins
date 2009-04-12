@@ -313,7 +313,8 @@ msgid "Show an info-bubble ?"
 msgstr "显示信息泡泡？"
 
 #: ../data/messages:119
-msgid "With a icon ?"
+#, fuzzy
+msgid "With an icon ?"
 msgstr "使用图标？"
 
 #: ../data/messages:121

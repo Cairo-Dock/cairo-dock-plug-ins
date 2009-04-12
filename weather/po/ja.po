@@ -41,7 +41,8 @@ msgid ""
 "Data are provided by www.weather.com, you can find your location in the "
 "config panel.\n"
 "It can detach itself to be a totally eye-candy 3D deskelt.\n"
-"You can have many valuable info by middle or left clicking on the icons."
+"Middle-click on the main icon to have current conditions information, left-"
+"click on a sub-icon to have forcast information.\n"
 msgstr ""
 
 #: ../src/applet-load-icons.c:15
@@ -121,11 +122,11 @@ msgstr "11月"
 msgid "Dec"
 msgstr "12月"
 
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:51
 msgid "Reload now"
 msgstr "直ちに再読み込み"
 
-#: ../src/applet-notifications.c:72 ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:75
 msgid ""
 "No data were available\n"
 " is connection alive ?"
@@ -133,35 +134,44 @@ msgstr ""
 "データの取得が出来ませんでした。\n"
 "回線接続に問題はありませんか？"
 
-#: ../src/applet-notifications.c:88 ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:118
 msgid "Temperature"
 msgstr "気温"
 
-#: ../src/applet-notifications.c:89
+#: ../src/applet-notifications.c:92
 msgid "Precipitation Probability"
 msgstr ""
 
-#: ../src/applet-notifications.c:90 ../src/applet-notifications.c:114
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:119
 msgid "Wind"
 msgstr "風"
 
-#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:120
 msgid "Humidity"
 msgstr "湿度"
 
-#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
 msgid "SunRise"
 msgstr "日の出"
 
-#: ../src/applet-notifications.c:92 ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
 msgid "SunSet"
 msgstr "日の入り"
 
-#: ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:104
+#, fuzzy
+msgid ""
+"No data were available\n"
+"Re-trying now ..."
+msgstr ""
+"データの取得が出来ませんでした。\n"
+"回線接続に問題はありませんか？"
+
+#: ../src/applet-notifications.c:118
 msgid "feeled"
 msgstr "体感温度"
 
-#: ../src/applet-notifications.c:115
+#: ../src/applet-notifications.c:120
 msgid "Pressure"
 msgstr "気圧"
 

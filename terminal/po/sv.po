@@ -270,7 +270,8 @@ msgid "Size of the terminal (line x columns) :"
 msgstr "Storlek på terminal (rader x kolumner):"
 
 #: ../data/messages:87
-msgid "Shortkey to show the terminal"
+#, fuzzy
+msgid "Shortkey to show the terminal :"
 msgstr "Tangentkombination for att visa terminalen"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"

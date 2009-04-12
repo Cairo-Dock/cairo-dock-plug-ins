@@ -26,5 +26,5 @@ PKG_CHECK_MODULES(XFCE_INTEGRATION,thunar-vfs-1)
 AC_CONFIG_FILES([Makefile
 		src/Makefile
 		data/Makefile
-		data/])
+		])
 AC_OUTPUT

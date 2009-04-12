@@ -106,8 +106,8 @@ msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../data/messages:5
-msgid "Icon size"
-msgstr "Ikonstorlek"
+msgid "Desired icon size for this applet"
+msgstr ""
 
 #: ../data/messages:7
 msgid "Icon name :"
@@ -275,104 +275,103 @@ msgid "Interval of time between 2 checks :"
 msgstr "Tid mellan uppdateringar:"
 
 #: ../data/messages:79
-msgid "Use average system ?"
-msgstr ""
-
-#: ../data/messages:81
 msgid "Display"
 msgstr "Utseende"
 
-#: ../data/messages:83
+#: ../data/messages:81
 msgid "Icon's filename when on battery :"
 msgstr "Ikon när datorn körs på batteri:"
 
-#: ../data/messages:85
+#: ../data/messages:83
 msgid "Icon's filename when on charge :"
 msgstr "Ikon när batteriet laddasi"
 
-#: ../data/messages:87
+#: ../data/messages:85
 msgid "Effect to apply on the icon according to charge :"
 msgstr "Effekt för laddningsnivå:"
 
-#: ../data/messages:89 ../data/messages:103
+#: ../data/messages:87 ../data/messages:101
 msgid "nothing"
 msgstr "inget"
 
-#: ../data/messages:91
+#: ../data/messages:89
 msgid "zoom"
 msgstr "zooma"
 
-#: ../data/messages:93
+#: ../data/messages:91
 msgid "transparency"
 msgstr "genomskinlighet"
 
-#: ../data/messages:95
+#: ../data/messages:93
 msgid "draw bar"
 msgstr "visa stapel"
 
-#: ../data/messages:97
+#: ../data/messages:95
 msgid "Use a gauge instead of icons ?"
 msgstr "Använd visare istället för ikon?"
 
-#: ../data/messages:99
+#: ../data/messages:97
 msgid "List of available gauges :"
 msgstr "Visare:"
 
-#: ../data/messages:101
+#: ../data/messages:99
 msgid "Information to be displayed on the icon :"
 msgstr "Information på ikonen:"
 
-#: ../data/messages:105
+#: ../data/messages:103
 msgid "charge"
 msgstr "ladda"
 
-#: ../data/messages:107
+#: ../data/messages:105
 msgid "time"
 msgstr "tid"
 
-#: ../data/messages:109
+#: ../data/messages:107
 msgid "Alert"
 msgstr "Meddelande"
 
-#: ../data/messages:111
+#: ../data/messages:109
 msgid "Alert when battery charged ?"
 msgstr "Meddela när batteriet är laddat?"
 
-#: ../data/messages:113 ../data/messages:123 ../data/messages:131
+#: ../data/messages:111 ../data/messages:121 ../data/messages:129
 msgid "Let it empty to have no sound"
 msgstr "Lämna tomt om du inte vill spela upp ett ljud"
 
-#: ../data/messages:115 ../data/messages:125 ../data/messages:133
+#: ../data/messages:113 ../data/messages:123 ../data/messages:131
 msgid "Use a sound :"
 msgstr "Använd ljud:"
 
-#: ../data/messages:117
+#: ../data/messages:115
 msgid "Alert when low battery ?"
 msgstr "Meddela vid låg batterinivå?"
 
-#: ../data/messages:119
+#: ../data/messages:117
 msgid "in percent."
 msgstr "i procent."
 
-#: ../data/messages:121
+#: ../data/messages:119
 msgid "Battery level :"
 msgstr "Batterinivå:"
 
-#: ../data/messages:127
+#: ../data/messages:125
 msgid "When battery level is under 4%"
 msgstr "När laddningsnivån är under 4%"
 
-#: ../data/messages:129
+#: ../data/messages:127
 msgid "Alert when battery charge is critical ?"
 msgstr "Meddela när batterinivån är kritisk?"
 
-#: ../data/messages:135
+#: ../data/messages:133
 msgid "Animate icon during the alert ?"
 msgstr "Animera ikonen vid meddelande?"
 
-#: ../data/messages:137
+#: ../data/messages:135
 msgid "Animation during alert :"
 msgstr "Animering:"
+
+#~ msgid "Icon size"
+#~ msgstr "Ikonstorlek"
 
 #~ msgid "Applet by Necropotame (Adrien Pilleboue)"
 #~ msgstr "Applet av Necropotame (Adrien Pilleboue)"

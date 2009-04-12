@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-Country: SWEDEN\n"
 
 #: ../src/applet-bookmarks.c:122 ../src/applet-bookmarks.c:321
-#: ../src/applet-load-icons.c:52
+#: ../src/applet-load-icons.c:53
 msgid "Unmounted"
 msgstr "Avmonterad"
 
@@ -30,7 +30,7 @@ msgid ""
 "Middle-click to acces your desktop easily."
 msgstr ""
 
-#: ../src/applet-notifications.c:43
+#: ../src/applet-notifications.c:41
 msgid "Remove this bookmark"
 msgstr "Ta bort bokmärket"
 

@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-init.c:22
+#: ../src/applet-init.c:23
 msgid ""
 "Displays the common Applications menu and the Recently used files.\n"
 "It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)\n"
@@ -35,11 +35,11 @@ msgstr "Configurazione"
 msgid "Clear recent"
 msgstr ""
 
-#: ../src/applet-recent.c:46
+#: ../src/applet-recent.c:47
 msgid "Recent Documents"
 msgstr ""
 
-#: ../src/applet-recent.c:89
+#: ../src/applet-recent.c:99
 msgid "Clear the list of the recently used documents ?"
 msgstr ""
 
@@ -64,7 +64,7 @@ msgstr "Dimensione dell'icona desiderata per questa applet"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-#: ../data/messages:9 ../data/messages:87
+#: ../data/messages:9 ../data/messages:85
 msgid "Let empty to use the default one."
 msgstr "Lasciare vuoto per usare quello di defaut."
 
@@ -239,19 +239,40 @@ msgid "Display icons in the menu ?"
 msgstr "Mostrare le icone nel menu ?"
 
 #: ../data/messages:81
-msgid "Show recent documents ?"
-msgstr ""
-
-#: ../data/messages:83
 msgid "Shortkey to show/hide the menu :"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:83
 msgid "Shortkey to show/hide the quick-launch dialog :"
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:87
 msgid "Command to use to configure the menu :"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Recent documents"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Show recent documents ?"
+msgstr ""
+
+#: ../data/messages:93
+#, fuzzy
+msgid "Let blank to not use this filter."
+msgstr "Lasciare vuoto per usare quello di defaut."
+
+#: ../data/messages:95
+msgid "Only show files that are under this folder or its sub-folder :"
+msgstr ""
+
+#: ../data/messages:97
+msgid "in days. Set 0 to not use this filter."
+msgstr ""
+
+#: ../data/messages:99
+msgid "Only show files whose last modification date is less than ;"
 msgstr ""
 
 #~ msgid ""

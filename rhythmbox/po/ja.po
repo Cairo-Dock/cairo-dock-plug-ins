@@ -14,24 +14,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:77
+#: ../src/rhythmbox-draw.c:85
 msgid "Track"
 msgstr "トラック"
 
-#: ../src/rhythmbox-draw.c:154
+#: ../src/rhythmbox-draw.c:162
 msgid "Artist"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:155 ../src/rhythmbox-draw.c:157
-#: ../src/rhythmbox-draw.c:159
+#: ../src/rhythmbox-draw.c:163 ../src/rhythmbox-draw.c:165
+#: ../src/rhythmbox-draw.c:167
 msgid "Unknown"
 msgstr "不明"
 
-#: ../src/rhythmbox-draw.c:156
+#: ../src/rhythmbox-draw.c:164
 msgid "Album"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:158
+#: ../src/rhythmbox-draw.c:166
 msgid "Title"
 msgstr ""
 
@@ -39,23 +39,24 @@ msgstr ""
 msgid ""
 "Control your Rhythmbox player directly in the dock !\n"
 "Play/pause with left click, next song with middle click.\n"
-"You can drag and drop covers (jpg) on the icon to use them,\n"
-"or songs to put them in the queue."
+"You can drag and drop covers (jpg) on the icon to use theme,\n"
+"or songs to put them in the queue. \n"
+"Adrien Pilleboue (Necropotame)"
 msgstr ""
 
-#: ../src/rhythmbox-menu-functions.c:51
+#: ../src/rhythmbox-menu-functions.c:52
 msgid "Previous"
 msgstr "前へ"
 
-#: ../src/rhythmbox-menu-functions.c:53
+#: ../src/rhythmbox-menu-functions.c:54
 msgid "Next (middle-click)"
 msgstr "次へ（中クリック）"
 
-#: ../src/rhythmbox-menu-functions.c:55
+#: ../src/rhythmbox-menu-functions.c:56
 msgid "Play/Pause (left-click)"
 msgstr "再生/一時停止（左クリック）"
 
-#: ../src/rhythmbox-menu-functions.c:57
+#: ../src/rhythmbox-menu-functions.c:58
 msgid "Information"
 msgstr "情報"
 
@@ -152,7 +153,7 @@ msgstr "角度"
 msgid "Rotation :"
 msgstr "回転 :"
 
-#: ../data/messages:39 ../data/messages:75
+#: ../data/messages:39
 msgid "Decorations"
 msgstr "装飾"
 
@@ -233,35 +234,31 @@ msgstr "前景の透明度 :"
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:77
-msgid "List of available specific themes (OPENGL only) :"
-msgstr ""
-
-#: ../data/messages:79
+#: ../data/messages:75
 msgid "Info-bubbles"
 msgstr "吹き出しによる情報通知"
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "Activate info-bubbles ?"
 msgstr "吹き出しによる情報通知を有効化？"
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "in ms."
 msgstr "ミリ秒単位"
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Time length of info-bubbles :"
 msgstr "吹き出し表示の継続時間 :"
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid "Behaviour"
 msgstr "動作"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "Animation when music changes :"
 msgstr "音楽切り替わり時のアニメーション:"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -270,74 +267,78 @@ msgstr ""
 "レットのアイコンがランチャーやアプリケーション、アプレットとして動作するよう"
 "になります。"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "タスクバーの Rhythmbox のアイコンを奪取？"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:97
-msgid "Display album's cover instead of icon ?"
+#: ../data/messages:93
+#, fuzzy
+msgid "Display album's cover ?"
 msgstr "アイコンの代わりにアルバムのカバーを表示？"
 
-#: ../data/messages:99
+#: ../data/messages:95
+msgid "List of available themes for covers (requires OPENGL) :"
+msgstr ""
+
+#: ../data/messages:97
 msgid "Information to display on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: ../data/messages:101
+#: ../data/messages:99
 msgid "nothing"
 msgstr "なし"
 
-#: ../data/messages:103
+#: ../data/messages:101
 msgid "time elapsed"
 msgstr "経過時間"
 
-#: ../data/messages:105
+#: ../data/messages:103
 msgid "time left"
 msgstr "残り時間"
 
-#: ../data/messages:107
+#: ../data/messages:105
 msgid "time in %"
 msgstr "時間の割合"
 
-#: ../data/messages:109
+#: ../data/messages:107
 msgid "n° of track"
 msgstr "トラック番号"
 
-#: ../data/messages:111
-msgid "Draw desklet in a 3D fashion (experimental) ?"
-msgstr "デスクレットを 3D 風に描画（実験的）？"
-
-#: ../data/messages:113
+#: ../data/messages:109
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:115 ../data/messages:119 ../data/messages:123
-#: ../data/messages:127 ../data/messages:131
+#: ../data/messages:111 ../data/messages:115 ../data/messages:119
+#: ../data/messages:123 ../data/messages:127
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid "Name of an image for the 'default' icon :"
 msgstr "「デフォルト」のアイコン画像の名前 :"
 
-#: ../data/messages:121
+#: ../data/messages:117
 msgid "Name of an image for the 'play' icon :"
 msgstr "「再生」のアイコン画像の名前 :"
 
-#: ../data/messages:125
+#: ../data/messages:121
 msgid "Name of an image for the 'stop' icon :"
 msgstr "「停止」のアイコン画像の名前 :"
 
-#: ../data/messages:129
+#: ../data/messages:125
 msgid "Name of an image for the 'pause' icon :"
 msgstr "「一時停止」のアイコン画像の名前 :"
 
-#: ../data/messages:133
+#: ../data/messages:129
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
+
+#~ msgid "Draw desklet in a 3D fashion (experimental) ?"
+#~ msgstr "デスクレットを 3D 風に描画（実験的）？"
 
 #~ msgid "Applet by Necropotame (Adrien Pilleboue)"
 #~ msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"

@@ -3,14 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: ../data/messages:83 ../data/messages:85 ../data/messages:91
-#: ../data/messages:93
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-29 23:46+0200\n"
+"POT-Creation-Date: 2009-04-11 17:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -248,93 +246,93 @@ msgstr ""
 msgid "Choose which channel to control :"
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just let it empty."
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "Optionnally, choose a second channel to control :"
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:87
 msgid "Let empty to use the defaut command."
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:89
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:91
 msgid "Control"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:93
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:95
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:97
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:99
 msgid "Display"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:101
 msgid "Display volume :"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:103
 msgid "No"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:105
 msgid "On label"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:107
 msgid "On icon"
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:109
 msgid "Effet to apply on the icon according to volume :"
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:111
 msgid "None"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:113
 msgid "Zoom"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:115
 msgid "Transparency"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:117
 msgid "Draw Bar"
 msgstr ""
 
-#: ../data/messages:127 ../data/messages:131 ../data/messages:135
+#: ../data/messages:119 ../data/messages:123 ../data/messages:127
 msgid "Let empty to use the default one."
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:121
 msgid "Default icon :"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:125
 msgid "Broken icon :"
 msgstr ""
 
-#: ../data/messages:137
+#: ../data/messages:129
 msgid "Mute icon :"
 msgstr ""

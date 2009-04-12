@@ -27,11 +27,11 @@ msgstr "Desktop"
 msgid "Current"
 msgstr "Attuale"
 
-#: ../src/applet-notifications.c:76
+#: ../src/applet-notifications.c:87
 msgid "Add a desktop"
 msgstr "Aggiungi un desktop"
 
-#: ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:88
 msgid "Remove last desktop"
 msgstr "Rimuovi l'ultimo desktop"
 

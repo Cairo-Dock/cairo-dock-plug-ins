@@ -31,11 +31,11 @@ msgstr "Skrivbord"
 msgid "Current"
 msgstr "Aktuell"
 
-#: ../src/applet-notifications.c:76
+#: ../src/applet-notifications.c:87
 msgid "Add a desktop"
 msgstr "Lägg till skrivbord"
 
-#: ../src/applet-notifications.c:77
+#: ../src/applet-notifications.c:88
 msgid "Remove last desktop"
 msgstr "Ta bort sista skrivbordet"
 

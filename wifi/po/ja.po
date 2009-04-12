@@ -299,7 +299,7 @@ msgstr "デフォルトのラベルを接続ポイント名によって上書き
 msgid "Display type :"
 msgstr "表示タイプ :"
 
-#: ../data/messages:101 ../data/messages:151
+#: ../data/messages:101
 msgid "Images"
 msgstr "画像"
 
@@ -376,10 +376,6 @@ msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示に利用可能なテーマのリスト :"
 
 #: ../data/messages:141
-msgid "radium"
-msgstr "radium"
-
-#: ../data/messages:143
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -387,46 +383,53 @@ msgstr ""
 "デフォルトの画像を使用するには空欄のままに。透かし模様を使用したくない場合"
 "は、透明度を 0 に設定してください。"
 
-#: ../data/messages:145
+#: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
 msgstr "ゲージ上に透かし模様として表示する画像 :"
 
-#: ../data/messages:147
+#: ../data/messages:145
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "透かし模様を使用したくない場合は 0 に設定してください。"
 
-#: ../data/messages:149
+#: ../data/messages:147
 msgid "Transparency of the watermark :"
 msgstr "透かし模様の透明度 :"
 
-#: ../data/messages:153 ../data/messages:157 ../data/messages:161
-#: ../data/messages:165 ../data/messages:169 ../data/messages:173
+#: ../data/messages:149
+msgid "Alternative images"
+msgstr ""
+
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
 msgid "Let it empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:155
+#: ../data/messages:153
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "「信号なし」のアイコン画像の名前 :"
 
-#: ../data/messages:159
+#: ../data/messages:157
 msgid "Name of an image for the 'very low' icon :"
 msgstr "「非常に弱い」のアイコン画像の名前 :"
 
-#: ../data/messages:163
+#: ../data/messages:161
 msgid "Name of an image for the 'low' icon :"
 msgstr "「弱い」のアイコン画像の名前 :"
 
-#: ../data/messages:167
+#: ../data/messages:165
 msgid "Name of an image for the 'middle' icon :"
 msgstr "「中程度」のアイコン画像の名前 :"
 
-#: ../data/messages:171
+#: ../data/messages:169
 msgid "Name of an image for the 'good' icon :"
 msgstr "「良好」のアイコン画像の名前 :"
 
-#: ../data/messages:175
+#: ../data/messages:173
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "「最高」のアイコン画像の名前 :"
+
+#~ msgid "radium"
+#~ msgstr "radium"
 
 #~ msgid ""
 #~ "This is the wifi applet\n"

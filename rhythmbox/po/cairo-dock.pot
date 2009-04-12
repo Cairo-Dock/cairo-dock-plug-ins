@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-03-26 01:56+0100\n"
+"POT-Creation-Date: 2009-04-11 17:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:77
+#: ../src/rhythmbox-draw.c:85
 msgid "Track"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:154
+#: ../src/rhythmbox-draw.c:162
 msgid "Artist"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:155 ../src/rhythmbox-draw.c:157
-#: ../src/rhythmbox-draw.c:159
+#: ../src/rhythmbox-draw.c:163 ../src/rhythmbox-draw.c:165
+#: ../src/rhythmbox-draw.c:167
 msgid "Unknown"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:156
+#: ../src/rhythmbox-draw.c:164
 msgid "Album"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:158
+#: ../src/rhythmbox-draw.c:166
 msgid "Title"
 msgstr ""
 
@@ -41,23 +41,24 @@ msgstr ""
 msgid ""
 "Control your Rhythmbox player directly in the dock !\n"
 "Play/pause with left click, next song with middle click.\n"
-"You can drag and drop covers (jpg) on the icon to use them,\n"
-"or songs to put them in the queue."
+"You can drag and drop covers (jpg) on the icon to use theme,\n"
+"or songs to put them in the queue. \n"
+"Adrien Pilleboue (Necropotame)"
 msgstr ""
 
-#: ../src/rhythmbox-menu-functions.c:51
+#: ../src/rhythmbox-menu-functions.c:52
 msgid "Previous"
 msgstr ""
 
-#: ../src/rhythmbox-menu-functions.c:53
+#: ../src/rhythmbox-menu-functions.c:54
 msgid "Next (middle-click)"
 msgstr ""
 
-#: ../src/rhythmbox-menu-functions.c:55
+#: ../src/rhythmbox-menu-functions.c:56
 msgid "Play/Pause (left-click)"
 msgstr ""
 
-#: ../src/rhythmbox-menu-functions.c:57
+#: ../src/rhythmbox-menu-functions.c:58
 msgid "Information"
 msgstr ""
 
@@ -143,7 +144,7 @@ msgstr ""
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:39 ../data/messages:75
+#: ../data/messages:39
 msgid "Decorations"
 msgstr ""
 
@@ -219,105 +220,101 @@ msgstr ""
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:77
-msgid "List of available specific themes (OPENGL only) :"
-msgstr ""
-
-#: ../data/messages:79
+#: ../data/messages:75
 msgid "Info-bubbles"
 msgstr ""
 
-#: ../data/messages:81
+#: ../data/messages:77
 msgid "Activate info-bubbles ?"
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:79
 msgid "in ms."
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:81
 msgid "Time length of info-bubbles :"
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid "Behaviour"
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "Animation when music changes :"
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Display"
 msgstr ""
 
-#: ../data/messages:97
-msgid "Display album's cover instead of icon ?"
+#: ../data/messages:93
+msgid "Display album's cover ?"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:95
+msgid "List of available themes for covers (requires OPENGL) :"
+msgstr ""
+
+#: ../data/messages:97
 msgid "Information to display on the icon :"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:99
 msgid "nothing"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:101
 msgid "time elapsed"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:103
 msgid "time left"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:105
 msgid "time in %"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:107
 msgid "n° of track"
 msgstr ""
 
-#: ../data/messages:111
-msgid "Draw desklet in a 3D fashion (experimental) ?"
-msgstr ""
-
-#: ../data/messages:113
+#: ../data/messages:109
 msgid "Personnalisation"
 msgstr ""
 
-#: ../data/messages:115 ../data/messages:119 ../data/messages:123
-#: ../data/messages:127 ../data/messages:131
+#: ../data/messages:111 ../data/messages:115 ../data/messages:119
+#: ../data/messages:123 ../data/messages:127
 msgid "Let t empty to use the default icon."
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:113
 msgid "Name of an image for the 'default' icon :"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:117
 msgid "Name of an image for the 'play' icon :"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:121
 msgid "Name of an image for the 'stop' icon :"
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:125
 msgid "Name of an image for the 'pause' icon :"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:129
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""

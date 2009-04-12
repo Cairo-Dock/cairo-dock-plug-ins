@@ -159,7 +159,7 @@ msgid "Date format to search for :"
 msgstr "検索のための日付フォーマット :"
 
 #: ../data/messages:41
-msgid "Ask confirùation before deleting a note ?"
+msgid "Ask confirmation before deleting a note ?"
 msgstr ""
 
 #: ../data/messages:43

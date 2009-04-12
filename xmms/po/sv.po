@@ -316,7 +316,8 @@ msgid "Show an info-bubble ?"
 msgstr "Visa infobubbla?"
 
 #: ../data/messages:119
-msgid "With a icon ?"
+#, fuzzy
+msgid "With an icon ?"
 msgstr "Med ikon?"
 
 #: ../data/messages:121

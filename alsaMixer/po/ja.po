@@ -3,8 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: ../data/messages:83 ../data/messages:85 ../data/messages:91
-#: ../data/messages:93
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -263,7 +261,7 @@ msgstr "制御するサウンドカード :"
 msgid "Choose which channel to control :"
 msgstr "制御するチャンネルの選択 :"
 
-#: ../data/messages:87
+#: ../data/messages:83
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
@@ -273,87 +271,87 @@ msgstr ""
 "す。そのときは、両側の制御のために第2チャンネルの指定が必要になります。大抵の"
 "場合、ここは空欄のままにしてください。"
 
-#: ../data/messages:89
+#: ../data/messages:85
 msgid "Optionnally, choose a second channel to control :"
 msgstr "制御する第2チャンネルの選択（オプション） :"
 
-#: ../data/messages:95
+#: ../data/messages:87
 msgid "Let empty to use the defaut command."
 msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
-#: ../data/messages:97
+#: ../data/messages:89
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr "高機能サウンドミキサー表示のために実行する特別コマンド :"
 
-#: ../data/messages:99
+#: ../data/messages:91
 msgid "Control"
 msgstr "制御"
 
-#: ../data/messages:101
+#: ../data/messages:93
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr "サウンド制御ダイアログの表示/隠すのショートカットキー :"
 
-#: ../data/messages:103
+#: ../data/messages:95
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "1 マウススクロールによる変更量（％単位） :"
 
-#: ../data/messages:105
+#: ../data/messages:97
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr "マウスがデスクレットから離れた際に目盛りを隠す？"
 
-#: ../data/messages:107
+#: ../data/messages:99
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:109
+#: ../data/messages:101
 msgid "Display volume :"
 msgstr "ボリューム表示 :"
 
-#: ../data/messages:111
+#: ../data/messages:103
 msgid "No"
 msgstr "なし"
 
-#: ../data/messages:113
+#: ../data/messages:105
 msgid "On label"
 msgstr "ラベル上"
 
-#: ../data/messages:115
+#: ../data/messages:107
 msgid "On icon"
 msgstr "アイコン上"
 
-#: ../data/messages:117
+#: ../data/messages:109
 msgid "Effet to apply on the icon according to volume :"
 msgstr "音量に合わせてアイコンに適用する効果 :"
 
-#: ../data/messages:119
+#: ../data/messages:111
 msgid "None"
 msgstr "なし"
 
-#: ../data/messages:121
+#: ../data/messages:113
 msgid "Zoom"
 msgstr "ズーム"
 
-#: ../data/messages:123
+#: ../data/messages:115
 msgid "Transparency"
 msgstr "透過"
 
-#: ../data/messages:125
+#: ../data/messages:117
 msgid "Draw Bar"
 msgstr "バーの描画"
 
-#: ../data/messages:127 ../data/messages:131 ../data/messages:135
+#: ../data/messages:119 ../data/messages:123 ../data/messages:127
 msgid "Let empty to use the default one."
 msgstr "デフォルトを使用するには空欄のままに。"
 
-#: ../data/messages:129
+#: ../data/messages:121
 msgid "Default icon :"
 msgstr "デフォルトのアイコン :"
 
-#: ../data/messages:133
+#: ../data/messages:125
 msgid "Broken icon :"
 msgstr "制御不可時のアイコン :"
 
-#: ../data/messages:137
+#: ../data/messages:129
 msgid "Mute icon :"
 msgstr "ミュート時のアイコン :"
 

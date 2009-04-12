@@ -101,11 +101,13 @@ CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance 
 	
 	if (myData.bErrorRetrievingData)
 	{
-		cairo_dock_show_temporary_dialog_with_icon (_("No data were available\n is connection alive ?"), 
+		cairo_dock_show_temporary_dialog_with_icon (_("No data were available\nRe-trying now ..."), 
 			myIcon,
 			myContainer,
 			myConfig.cDialogDuration,
 			myIcon->acFileName);
+		_cd_weather_reload (NULL, myApplet);
+		
 		return NULL;
 	}
 	
