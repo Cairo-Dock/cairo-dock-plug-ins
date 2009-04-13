@@ -15,6 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-draw.h"
 #include "applet-icon-finder.h"
 #include "applet-command-finder.h"
+#include "applet-session.h"
 #include "applet-notifications.h"
 
 
@@ -66,30 +67,37 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 			*bContinueAnimation = TRUE;
 		cairo_dock_redraw_container (pContainer);  // definir une aire plus precisement (pour cairo) ...
 	}
-	else  // if (CAIRO_DOCK_CONTAINER_IS_OPENGL (pContainer))
+	else
 	{
 		if (myData.iAppearanceTime != 0)  // apparition d'un nouveau caractere.
 		{
 			myData.iAppearanceTime -= iDeltaT;
 			if (myData.iAppearanceTime < 0)
 				myData.iAppearanceTime = 0;
+			else
+				*bContinueAnimation = TRUE;
 		}
 		
-		double f = (double) myData.iAppearanceTime / myConfig.iAppearanceDuration;
-		CDChar *pChar;
-		GList *c;
-		for (c = myData.pCharList; c != NULL; c = c->next)
+		//if (CAIRO_DOCK_CONTAINER_IS_OPENGL (pContainer))
 		{
-			pChar = c->data;
-			pChar->iAnimationTime += iDeltaT;
-			if (pChar->iAnimationTime >= myConfig.iAnimationDuration)
-				pChar->iAnimationTime -= myConfig.iAnimationDuration;
-			pChar->iCurrentX = f * pChar->iInitialX + (1-f) * pChar->iFinalX;
-			pChar->iCurrentY = f * pChar->iInitialY + (1-f) * pChar->iFinalY;
-			g_print ("%c : (%d;%d) -> (%d;%d) -> (%d;%d)\n", pChar->c, pChar->iInitialX,pChar->iInitialY, pChar->iCurrentX,pChar->iCurrentY, pChar->iFinalX,pChar->iFinalY);
+			double f = (double) myData.iAppearanceTime / myConfig.iAppearanceDuration;
+			CDChar *pChar;
+			GList *c;
+			for (c = myData.pCharList; c != NULL; c = c->next)
+			{
+				pChar = c->data;
+				pChar->iAnimationTime += iDeltaT;
+				if (pChar->iAnimationTime >= myConfig.iAnimationDuration)
+					pChar->iAnimationTime -= myConfig.iAnimationDuration;
+				pChar->iCurrentX = f * pChar->iInitialX + (1-f) * pChar->iFinalX;
+				pChar->iCurrentY = f * pChar->iInitialY + (1-f) * pChar->iFinalY;
+				g_print ("%c : (%d;%d) -> (%d;%d) -> (%d;%d)\n", pChar->c, pChar->iInitialX,pChar->iInitialY, pChar->iCurrentX,pChar->iCurrentY, pChar->iFinalX,pChar->iFinalY);
+			}
+			
+			if (CAIRO_DOCK_CONTAINER_IS_OPENGL (pContainer) || f != 0)
+				*bContinueAnimation = TRUE;
 		}
 		
-		*bContinueAnimation = TRUE;
 		cairo_dock_redraw_container (pContainer);  // definir une aire plus precisement (pour cairo) ...
 	}
 	
@@ -97,7 +105,7 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 }
 
 
-gboolean cd_do_enter_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
+/*gboolean cd_do_enter_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
 	if (myData.sCurrentText == NULL || myData.bIgnoreIconState)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -106,7 +114,7 @@ gboolean cd_do_enter_container (gpointer pUserData, CairoContainer *pContainer, 
 	
 	*bStartAnimation = TRUE;
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
+}*/
 
 
 gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
@@ -124,7 +132,26 @@ gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
 }
 
 
-void _place_menu (GtkMenu *menu,
+static void _check_is_dock (gchar *cDockName, CairoDock *pDock, gpointer *data)
+{
+	Window xActiveWindow = GPOINTER_TO_INT (data[0]);
+	if (GDK_WINDOW_XID (pDock->pWidget->window) == xActiveWindow)
+		data[1] = GINT_TO_POINTER (1);
+}
+gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
+{
+	if (myData.sCurrentText == NULL || XActiveWindow == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	gpointer data[2] = {GINT_TO_POINTER (*XActiveWindow), 0};
+	cairo_dock_foreach_docks ((GHFunc) _check_is_dock, data);
+	
+	if (data[1] == 0)
+		gtk_window_present (GTK_WINDOW (g_pMainDock->pWidget));
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+
+static void _place_menu (GtkMenu *menu,
 	gint *x,
 	gint *y,
 	gboolean *push_in,
@@ -136,14 +163,14 @@ void _place_menu (GtkMenu *menu,
 	*push_in = TRUE;
 }
 
-gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType)
+gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string)
 {
 	if (myData.sCurrentText == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	const gchar *cKeyName = gdk_keyval_name (iKeyVal);  // gdk_keyval_to_unicode
 	guint32 iUnicodeChar = gdk_keyval_to_unicode (iKeyVal);
-	g_print ("+ cKeyName : %s (%c)\n", cKeyName, iUnicodeChar);
+	g_print ("+ cKeyName : %s (%c, %s)\n", cKeyName, iUnicodeChar, string);
 	
 	if (iKeyVal == GDK_Escape)
 	{
@@ -414,81 +441,5 @@ void cd_do_on_shortkey (const char *keystring, gpointer data)
 	else  // le raccourci sert aussi a arreter, pour ceux qui ont une touche ESC cassee.
 	{
 		cd_do_close_session ();
-	}
-}
-
-
-void cd_do_open_session (void)
-{
-	// on termine l'animation de fin de la precedente session.
-	cd_do_exit_session ();
-	
-	// on se met en attente de texte.
-	myData.sCurrentText = g_string_sized_new (20);
-	
-	// on montre le main dock.
-	myData.bIgnoreIconState = TRUE;
-	cairo_dock_emit_enter_signal (g_pMainDock);
-	myData.bIgnoreIconState = FALSE;
-	
-	// le main dock prend le focus.
-	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
-	gtk_window_present (GTK_WINDOW (g_pMainDock->pWidget));
-	
-	myConfig.labelDescription.iSize = MIN (50, myConfig.fFontSizeRatio * g_pMainDock->iMaxDockHeight);
-}
-
-void cd_do_close_session (void)
-{
-	// on ne veut plus de texte.
-	g_string_free (myData.sCurrentText, TRUE);
-	myData.sCurrentText = NULL;
-	myData.iNbValidCaracters = 0;
-	
-	// on remet a zero la session.
-	if (myData.pCurrentIcon != NULL)
-	{
-		myData.bIgnoreIconState = TRUE;
-		cairo_dock_stop_icon_animation (myData.pCurrentIcon);
-		myData.bIgnoreIconState = FALSE;
-		myData.pCurrentIcon = NULL;
-	}
-	
-	if (myData.pCurrentDock != NULL)
-	{
-		//cairo_dock_leave_from_main_dock (myData.pCurrentDock);  /// voir avec un emit_leave_signal ...
-		cairo_dock_emit_leave_signal (myData.pCurrentDock);
-		myData.pCurrentDock = NULL;
-	}
-	if (myData.pCurrentDock != g_pMainDock)
-	{
-		cairo_dock_emit_leave_signal (g_pMainDock);
-	}
-	
-	// on redonne le focus a l'ancienne fenetre.
-	if (myData.iPreviouslyActiveWindow != 0)
-	{
-		/// ne le faire que si on a encore le focus, sinon c'est que l'utilisateur a change lui-meme de fenetre...
-		Window iActiveWindo = cairo_dock_get_active_xwindow ();
-		
-		cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
-		myData.iPreviouslyActiveWindow = 0;
-	}
-	
-	// on quitte dans une animation.
-	myData.iCloseTime = myConfig.iCloseDuration;
-	cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
-}
-
-void cd_do_exit_session (void)
-{
-	myData.iCloseTime = 0;
-	if (myData.pCharList != NULL)
-	{
-		cd_do_free_char_list (myData.pCharList);
-		myData.pCharList = NULL;
-		myData.iTextWidth = 0;
-		myData.iTextHeight = 0;
-		cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 	}
 }

@@ -61,7 +61,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 #, fuzzy
-msgid "Set to 0 to use the default applet size"
+msgid "Set to 0 to use the default applet size"
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
 #: ../data/messages:5
@@ -178,11 +178,11 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en uiliser aucune."
 
-#: ../data/messages:49 ../data/messages:149
+#: ../data/messages:49
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:51 ../data/messages:151
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
@@ -190,7 +190,7 @@ msgstr "Transparence du fond :"
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:55 ../data/messages:155
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
@@ -206,8 +206,7 @@ msgstr "Décalage en haut :"
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:63 ../data/messages:157 ../data/messages:159
-#: ../data/messages:161
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
@@ -350,192 +349,170 @@ msgid "Controler"
 msgstr "Controleur"
 
 #: ../data/messages:129
-#, fuzzy
-msgid "Simple Desklet"
-msgstr "Desklet"
+msgid "False 3D Themes (OpenGL only)"
+msgstr ""
 
 #: ../data/messages:131
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
+msgid "List of available specific themes :"
 msgstr ""
 
 #: ../data/messages:133
-msgid "Choose a decoration for the desklet mode :"
-msgstr "Choisissez une décoration pour le mode desklet"
-
-#: ../data/messages:135
-#, fuzzy
-msgid "Personnal"
-msgstr "Personnalisation"
-
-#: ../data/messages:137
-msgid "Extended 3D mode"
-msgstr "Mode 3D étendu"
-
-#: ../data/messages:139
-msgid "CD box"
-msgstr ""
-
-#: ../data/messages:141
-msgid "frame with reflects"
-msgstr "Images avec reflets"
-
-#: ../data/messages:143
-msgid "scotch"
-msgstr ""
-
-#: ../data/messages:145
-msgid "frame with scotch"
-msgstr "Images avec bouts de scotch"
-
-#: ../data/messages:147
-msgid ""
-"It's an image that will be displayed below the cover, like a frame for "
-"exemple."
-msgstr ""
-
-#: ../data/messages:153
-msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr "C'est la largeur du coté gauche de votre image, en pixels"
-
-#: ../data/messages:163
-msgid ""
-"It's an image that will be displayed above the cover, like a reflect for "
-"exemple."
-msgstr ""
-"C'est une image qui sera affichée par-dessus la pochette, comme un reflet "
-"par exemple."
-
-#: ../data/messages:165
-msgid "Reflection image :"
-msgstr "Image de reflexion :"
-
-#: ../data/messages:167
-msgid "Reflection tansparency :"
-msgstr "Transparence de la reflexion"
-
-#: ../data/messages:169
 #, fuzzy
 msgid "Action on music change"
 msgstr "Actions au changement de musique"
 
-#: ../data/messages:171
+#: ../data/messages:135
 msgid "Show an info-bubble ?"
 msgstr "Montrer une info-bulle ?"
 
-#: ../data/messages:173
+#: ../data/messages:137
 msgid "With a icon ?"
 msgstr "Avec une icône ?"
 
-#: ../data/messages:175
+#: ../data/messages:139
 msgid "in ms."
 msgstr "en ms."
 
-#: ../data/messages:177
+#: ../data/messages:141
 msgid "Time length of info-bubbles :"
 msgstr "Durée des info-bulles :"
 
-#: ../data/messages:179
+#: ../data/messages:143
 msgid "Animate icon ?"
 msgstr "Animer l'icône ?"
 
-#: ../data/messages:181
+#: ../data/messages:145
 msgid "Animation when music changes :"
 msgstr "Animation au changement de musique :"
 
-#: ../data/messages:183
+#: ../data/messages:147
 msgid "bounce"
 msgstr "Rebond"
 
-#: ../data/messages:185
+#: ../data/messages:149
 msgid "rotate"
 msgstr "Rotation"
 
-#: ../data/messages:187
+#: ../data/messages:151
 msgid "blink"
 msgstr "Clignotement"
 
-#: ../data/messages:189
+#: ../data/messages:153
 msgid "pulse"
 msgstr "Pulsation"
 
-#: ../data/messages:191
+#: ../data/messages:155
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
-#: ../data/messages:193
+#: ../data/messages:157
 msgid "wobbly"
 msgstr "Élastique"
 
-#: ../data/messages:195
+#: ../data/messages:159
 msgid "random"
 msgstr "Aléatoire"
 
-#: ../data/messages:197
+#: ../data/messages:161
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:199 ../data/messages:203 ../data/messages:207
-#: ../data/messages:211 ../data/messages:215
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
+#: ../data/messages:175 ../data/messages:179
 msgid "Let it empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
-#: ../data/messages:201
+#: ../data/messages:165
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
-#: ../data/messages:205
+#: ../data/messages:169
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom de l'image 'Jouer' :"
 
-#: ../data/messages:209
+#: ../data/messages:173
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom de l'image 'Stop' :"
 
-#: ../data/messages:213
+#: ../data/messages:177
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom de l'image 'Pause' :"
 
-#: ../data/messages:217
+#: ../data/messages:181
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Pas de Signal': "
 
-#: ../data/messages:219
+#: ../data/messages:183
 msgid "Downloads"
 msgstr ""
 
-#: ../data/messages:221
+#: ../data/messages:185
 msgid "You need to be connected to the Internet."
 msgstr ""
 
-#: ../data/messages:223
+#: ../data/messages:187
 msgid "Allow CID to download missing covers :"
 msgstr ""
 
-#: ../data/messages:225
+#: ../data/messages:189
 msgid "in seconds"
 msgstr ""
 
-#: ../data/messages:227
+#: ../data/messages:191
 msgid "Delay before checking for missing covers :"
 msgstr ""
 
-#: ../data/messages:229
+#: ../data/messages:193
 msgid "The smaller image will be downloaded faster than a big one."
 msgstr ""
 
-#: ../data/messages:231
+#: ../data/messages:195
 msgid "Size of the downloaded covers :"
 msgstr ""
 
-#: ../data/messages:233
+#: ../data/messages:197
 msgid "Medium"
 msgstr ""
 
-#: ../data/messages:235
+#: ../data/messages:199
 msgid "Large"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Simple Desklet"
+#~ msgstr "Desklet"
+
+#~ msgid "Choose a decoration for the desklet mode :"
+#~ msgstr "Choisissez une décoration pour le mode desklet"
+
+#, fuzzy
+#~ msgid "Personnal"
+#~ msgstr "Personnalisation"
+
+#~ msgid "Extended 3D mode"
+#~ msgstr "Mode 3D étendu"
+
+#~ msgid "frame with reflects"
+#~ msgstr "Images avec reflets"
+
+#~ msgid "frame with scotch"
+#~ msgstr "Images avec bouts de scotch"
+
+#~ msgid "It's typically the width of the left side of your frame, in pixels."
+#~ msgstr "C'est la largeur du coté gauche de votre image, en pixels"
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the cover, like a reflect for "
+#~ "exemple."
+#~ msgstr ""
+#~ "C'est une image qui sera affichée par-dessus la pochette, comme un reflet "
+#~ "par exemple."
+
+#~ msgid "Reflection image :"
+#~ msgstr "Image de reflexion :"
+
+#~ msgid "Reflection tansparency :"
+#~ msgstr "Transparence de la reflexion"
 
 #~ msgid ""
 #~ "This is the musicPlayer applet\n"

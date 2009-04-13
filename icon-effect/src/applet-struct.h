@@ -88,6 +88,8 @@ typedef struct _CDAnimationData {
 	CairoParticleSystem *pSnowSystem;
 	CairoParticleSystem *pRainSystem;
 	CairoParticleSystem *pStormSystem;
+	gint iNumRound;
+	gint iRequestTime;
 	} CDIconEffectData;
 
 #endif

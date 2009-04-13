@@ -5,9 +5,8 @@
 #include "applet-struct.h"
 #include "applet-load-icons.h"
 #include "applet-desktops.h"
+#include "applet-draw.h"
 #include "applet-notifications.h"
-
-
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
@@ -90,3 +89,83 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 
 
+
+gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XActiveWindow)
+{
+	cd_switcher_draw_main_icon ();
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+gboolean on_change_desktop (CairoDockModuleInstance *myApplet, gpointer null)
+{
+	cd_debug ("");
+	int iPreviousIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	
+	cd_switcher_get_current_desktop ();
+	int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	
+	
+	if (myConfig.bDisplayNumDesk)
+	{
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
+	}
+	
+	if (myConfig.bCompactView)
+	{
+		cd_switcher_draw_main_icon ();
+	}
+	else
+	{
+		CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
+		g_return_val_if_fail (pContainer != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		
+		if (myDock && myConfig.bDisplayNumDesk)
+			CD_APPLET_REDRAW_MY_ICON;
+		
+		// On redessine les 2 icones du sous-dock impactees.
+		GList *pIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
+		Icon *icon;
+		GList *ic;
+		for (ic = pIconList; ic != NULL; ic = ic->next)
+		{
+			icon = ic->data;
+			if (icon->fOrder == iPreviousIndex)  // l'ancienne icone du bureau courant.
+			{
+				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Desktop"), iPreviousIndex+1);
+				icon->bHasIndicator = FALSE;
+				icon->fAlpha = 1.;
+				if (myDock)
+					cairo_dock_redraw_my_icon (icon, pContainer);
+			}
+			if (icon->fOrder == iIndex)  // c'est l'icone du bureau courant.
+			{
+				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Current"), iIndex+1);
+				icon->bHasIndicator = TRUE;
+				icon->fAlpha = .7;
+				if (myDock)
+					cairo_dock_redraw_my_icon (icon, pContainer);
+			}
+		}
+		if (myDesklet)
+			gtk_widget_queue_draw (myDesklet->pWidget);
+	}
+	
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet, gpointer null)
+{
+	cd_debug ("");
+	cd_switcher_compute_nb_lines_and_columns ();
+	cd_switcher_get_current_desktop ();
+	cd_switcher_load_icons ();
+	cd_switcher_draw_main_icon ();
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+gboolean on_window_configured (CairoDockModuleInstance *myApplet, XConfigureEvent *xconfigure)
+{
+	cd_debug ("");
+	cd_switcher_draw_main_icon ();
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}

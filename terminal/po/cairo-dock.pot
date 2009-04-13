@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-04-11 17:04+0200\n"
+"POT-Creation-Date: 2009-04-13 03:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,21 +97,13 @@ msgstr ""
 msgid "Desklet"
 msgstr ""
 
-#: ../data/messages:13
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-
-#: ../data/messages:15
-msgid "Desklet's position (x ; y) :"
-msgstr ""
-
-#: ../data/messages:17
+#: ../data/messages:13 ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:19
+#: ../data/messages:15 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr ""
 

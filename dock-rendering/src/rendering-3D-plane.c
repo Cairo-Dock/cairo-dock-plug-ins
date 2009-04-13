@@ -296,14 +296,14 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
 	if (pFirstDrawnElement == NULL)
-		return ;
+		return;
 		
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
+	
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
-	
 	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
 	{
 		cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
@@ -550,7 +550,6 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 	{
 		double fXMin = (pDock->bHorizontalDock ? pArea->x : pArea->y), fXMax = (pDock->bHorizontalDock ? pArea->x + pArea->width : pArea->y + pArea->height);
 		double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
-		double fRatio = pDock->fRatio;
 		double fXLeft, fXRight;
 		Icon *icon;
 		GList *ic = pFirstDrawnElement;
@@ -716,11 +715,9 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
-	double fRatio = (pDock->iRefCount == 0 ? 1 : myViews.fSubDockSizeRatio);
-	fRatio = pDock->fRatio;
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
 	if (pFirstDrawnElement == NULL)
-		return ;
+		return;
 		
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
 	Icon *icon;

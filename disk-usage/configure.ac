@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-disk-usage],[0.0.2],[Benjamin SANS (sans_ben@yahoo.fr)])
+AC_INIT([cd-disk-usage],[0.0.3],[Benjamin SANS (sans_ben@yahoo.fr)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

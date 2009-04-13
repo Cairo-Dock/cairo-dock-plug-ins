@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-weblets],[0.0.4],[Christophe Chapuis (chris.chapuis@gmail.com)])
+AC_INIT([cd-weblets],[0.0.5],[Christophe Chapuis (chris.chapuis@gmail.com)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

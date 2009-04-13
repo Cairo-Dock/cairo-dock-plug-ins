@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-Clipper],[1.0.1],[Fabrice Rey (Fabounet) (fabounet@users.berlios.de)])
+AC_INIT([cd-Clipper],[1.0.2],[Fabrice Rey (Fabounet) (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

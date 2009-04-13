@@ -95,17 +95,7 @@ msgstr "帰属先ドックの名前 :"
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:13
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
-
-#: ../data/messages:15
-msgid "Desklet's position (x ; y) :"
-msgstr "デスクレットの位置（X ; Y） :"
-
-#: ../data/messages:17
+#: ../data/messages:13 ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -113,7 +103,7 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:19
+#: ../data/messages:15 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
@@ -275,6 +265,15 @@ msgstr "端末の大きさ（行×列） :"
 #, fuzzy
 msgid "Shortkey to show the terminal :"
 msgstr "端末を表示するショートカットキー :"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
+#~ "させることができます。"
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "デスクレットの位置（X ; Y） :"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "このアプレットのアイコンの大きさ（ピクセル単位）"

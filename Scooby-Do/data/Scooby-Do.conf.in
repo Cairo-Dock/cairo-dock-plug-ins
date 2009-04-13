@@ -9,7 +9,7 @@ shortkey = <Control>F9
 #F[Animations]
 anim=
 
-#I[0;5000] Duration of the character animation :
+#I[0;5000] Duration of the character animation (OpenGL only) :
 #{In ms.}
 anim duration = 1500
 

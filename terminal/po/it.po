@@ -93,17 +93,7 @@ msgstr "Nome del contenitore al quale appartiene:"
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"sinistro"
-
-#: ../data/messages:15
-msgid "Desklet's position (x ; y) :"
-msgstr "Posizione della desklet (x ; y) :"
-
-#: ../data/messages:17
+#: ../data/messages:13 ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -111,7 +101,7 @@ msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "centrale o ALT + click sinistro come esempio."
 
-#: ../data/messages:19
+#: ../data/messages:15 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
@@ -278,6 +268,15 @@ msgstr "Dimensione del terminale (linee x colonne) :"
 #, fuzzy
 msgid "Shortkey to show the terminal :"
 msgstr "Scorciatoia da tastiera per mostrare il terminale :"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+#~ "sinistro"
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "Posizione della desklet (x ; y) :"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "Dimensione dell'icona desiderata per questa applet (in pixels)"

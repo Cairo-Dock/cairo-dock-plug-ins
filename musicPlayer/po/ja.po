@@ -63,7 +63,7 @@ msgstr "アイコン"
 
 #: ../data/messages:3
 #, fuzzy
-msgid "Set to 0 to use the default applet size"
+msgid "Set to 0 to use the default applet size"
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
 #: ../data/messages:5
@@ -178,11 +178,11 @@ msgstr ""
 "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
 "欄のままにしてください。"
 
-#: ../data/messages:49 ../data/messages:149
+#: ../data/messages:49
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:51 ../data/messages:151
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
@@ -190,7 +190,7 @@ msgstr "背景の透明度 :"
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:55 ../data/messages:155
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
 
@@ -206,8 +206,7 @@ msgstr "上方向のオフセット :"
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
-#: ../data/messages:63 ../data/messages:157 ../data/messages:159
-#: ../data/messages:161
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
 
@@ -349,189 +348,183 @@ msgid "Controler"
 msgstr "コントローラ"
 
 #: ../data/messages:129
-msgid "Simple Desklet"
-msgstr "シンプル・デスクレット"
+msgid "False 3D Themes (OpenGL only)"
+msgstr ""
 
 #: ../data/messages:131
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
+msgid "List of available specific themes :"
 msgstr ""
-"「personnal」を選択した場合、自分の装飾を上で定義できます。装飾を使用しない場"
-"合は空欄のままにしてください。"
 
 #: ../data/messages:133
-msgid "Choose a decoration for the desklet mode :"
-msgstr "デスクレット・モードの装飾の選択 :"
-
-#: ../data/messages:135
-msgid "Personnal"
-msgstr "パーソナル"
-
-#: ../data/messages:137
-msgid "Extended 3D mode"
-msgstr "拡張 3D モード"
-
-#: ../data/messages:139
-msgid "CD box"
-msgstr "CD ボックス"
-
-#: ../data/messages:141
-msgid "frame with reflects"
-msgstr "反射ありのフレーム"
-
-#: ../data/messages:143
-msgid "scotch"
-msgstr "テープ"
-
-#: ../data/messages:145
-msgid "frame with scotch"
-msgstr "テープ張りフレーム"
-
-#: ../data/messages:147
-msgid ""
-"It's an image that will be displayed below the cover, like a frame for "
-"exemple."
-msgstr "例えばフレームのように、カバーの背後に表示される画像です。"
-
-#: ../data/messages:153
-msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr "典型的には、フレームの左側の幅です。（ピクセル単位）"
-
-#: ../data/messages:163
-msgid ""
-"It's an image that will be displayed above the cover, like a reflect for "
-"exemple."
-msgstr "例えば反射のように、カバーの手前に表示される画像です。"
-
-#: ../data/messages:165
-msgid "Reflection image :"
-msgstr "反射の画像 :"
-
-#: ../data/messages:167
-msgid "Reflection tansparency :"
-msgstr "反射の透明度 :"
-
-#: ../data/messages:169
 msgid "Action on music change"
 msgstr "音楽切り替わり時のアクション"
 
-#: ../data/messages:171
+#: ../data/messages:135
 msgid "Show an info-bubble ?"
 msgstr "吹き出しを表示して情報通知？"
 
-#: ../data/messages:173
+#: ../data/messages:137
 msgid "With a icon ?"
 msgstr "アイコンも描画？"
 
-#: ../data/messages:175
+#: ../data/messages:139
 msgid "in ms."
 msgstr "ミリ秒単位"
 
-#: ../data/messages:177
+#: ../data/messages:141
 msgid "Time length of info-bubbles :"
 msgstr "吹き出しの表示継続時間 :"
 
-#: ../data/messages:179
+#: ../data/messages:143
 msgid "Animate icon ?"
 msgstr "アイコンをアニメーション化？"
 
-#: ../data/messages:181
+#: ../data/messages:145
 msgid "Animation when music changes :"
 msgstr "音楽の切り替わりの際のアニメーション :"
 
-#: ../data/messages:183
+#: ../data/messages:147
 msgid "bounce"
 msgstr "バウンド"
 
-#: ../data/messages:185
+#: ../data/messages:149
 msgid "rotate"
 msgstr "回転"
 
-#: ../data/messages:187
+#: ../data/messages:151
 msgid "blink"
 msgstr "点滅"
 
-#: ../data/messages:189
+#: ../data/messages:153
 msgid "pulse"
 msgstr "波動"
 
-#: ../data/messages:191
+#: ../data/messages:155
 msgid "upside-down"
 msgstr "上下逆さま"
 
-#: ../data/messages:193
+#: ../data/messages:157
 msgid "wobbly"
 msgstr "伸び縮み"
 
-#: ../data/messages:195
+#: ../data/messages:159
 msgid "random"
 msgstr "ランダム"
 
-#: ../data/messages:197
+#: ../data/messages:161
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:199 ../data/messages:203 ../data/messages:207
-#: ../data/messages:211 ../data/messages:215
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
+#: ../data/messages:175 ../data/messages:179
 msgid "Let it empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:201
+#: ../data/messages:165
 msgid "Name of an image for the 'default' icon :"
 msgstr "「デフォルト」のアイコン画像の名前 :"
 
-#: ../data/messages:205
+#: ../data/messages:169
 msgid "Name of an image for the 'play' icon :"
 msgstr "「再生」のアイコン画像の名前 :"
 
-#: ../data/messages:209
+#: ../data/messages:173
 msgid "Name of an image for the 'stop' icon :"
 msgstr "「停止」のアイコン画像の名前 :"
 
-#: ../data/messages:213
+#: ../data/messages:177
 msgid "Name of an image for the 'pause' icon :"
 msgstr "「一時停止」のアイコン画像の名前 :"
 
-#: ../data/messages:217
+#: ../data/messages:181
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
 
-#: ../data/messages:219
+#: ../data/messages:183
 msgid "Downloads"
 msgstr ""
 
-#: ../data/messages:221
+#: ../data/messages:185
 msgid "You need to be connected to the Internet."
 msgstr ""
 
-#: ../data/messages:223
+#: ../data/messages:187
 msgid "Allow CID to download missing covers :"
 msgstr ""
 
-#: ../data/messages:225
+#: ../data/messages:189
 msgid "in seconds"
 msgstr ""
 
-#: ../data/messages:227
+#: ../data/messages:191
 msgid "Delay before checking for missing covers :"
 msgstr ""
 
-#: ../data/messages:229
+#: ../data/messages:193
 msgid "The smaller image will be downloaded faster than a big one."
 msgstr ""
 
-#: ../data/messages:231
+#: ../data/messages:195
 msgid "Size of the downloaded covers :"
 msgstr ""
 
-#: ../data/messages:233
+#: ../data/messages:197
 msgid "Medium"
 msgstr ""
 
-#: ../data/messages:235
+#: ../data/messages:199
 msgid "Large"
 msgstr ""
+
+#~ msgid "Simple Desklet"
+#~ msgstr "シンプル・デスクレット"
+
+#~ msgid ""
+#~ "If you choose 'personnal', you can define your own decoration above, or "
+#~ "let it blank to not use any decoration."
+#~ msgstr ""
+#~ "「personnal」を選択した場合、自分の装飾を上で定義できます。装飾を使用しな"
+#~ "い場合は空欄のままにしてください。"
+
+#~ msgid "Choose a decoration for the desklet mode :"
+#~ msgstr "デスクレット・モードの装飾の選択 :"
+
+#~ msgid "Personnal"
+#~ msgstr "パーソナル"
+
+#~ msgid "Extended 3D mode"
+#~ msgstr "拡張 3D モード"
+
+#~ msgid "CD box"
+#~ msgstr "CD ボックス"
+
+#~ msgid "frame with reflects"
+#~ msgstr "反射ありのフレーム"
+
+#~ msgid "scotch"
+#~ msgstr "テープ"
+
+#~ msgid "frame with scotch"
+#~ msgstr "テープ張りフレーム"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the cover, like a frame for "
+#~ "exemple."
+#~ msgstr "例えばフレームのように、カバーの背後に表示される画像です。"
+
+#~ msgid "It's typically the width of the left side of your frame, in pixels."
+#~ msgstr "典型的には、フレームの左側の幅です。（ピクセル単位）"
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the cover, like a reflect for "
+#~ "exemple."
+#~ msgstr "例えば反射のように、カバーの手前に表示される画像です。"
+
+#~ msgid "Reflection image :"
+#~ msgstr "反射の画像 :"
+
+#~ msgid "Reflection tansparency :"
+#~ msgstr "反射の透明度 :"
 
 #~ msgid ""
 #~ "This is the musicPlayer applet\n"

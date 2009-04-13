@@ -13,6 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-notifications.h"
 #include "applet-draw.h"
+#include "applet-session.h"
 #include "applet-config.h"
 
 
@@ -33,7 +34,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR ("Configuration", "text color", myConfig.labelDescription.fColorStart);
 	CD_CONFIG_GET_COLOR ("Configuration", "text color", myConfig.labelDescription.fColorStop);
 	myConfig.labelDescription.iStyle = PANGO_STYLE_NORMAL;
-	myConfig.labelDescription.fBackgroundColor[3] = 0;
+	myConfig.labelDescription.fBackgroundColor[3] = 1.;
 CD_APPLET_GET_CONFIG_END
 
 

@@ -92,17 +92,7 @@ msgstr "Nom du conteneur auquel il appartient:"
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
-
-#: ../data/messages:15
-msgid "Desklet's position (x ; y) :"
-msgstr "Position du desklet (x ; y) :"
-
-#: ../data/messages:17
+#: ../data/messages:13 ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -110,7 +100,7 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:19
+#: ../data/messages:15 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
@@ -275,6 +265,15 @@ msgstr "Taille du terminal (ligne x colonnes) :"
 #, fuzzy
 msgid "Shortkey to show the terminal :"
 msgstr "Raccourci clavier pour montrer le terminal :"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
+#~ "+ clic gauche."
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "Position du desklet (x ; y) :"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "Taille désirée de l'icône dans le dock (en pixels)"

@@ -97,16 +97,7 @@ msgstr "Docka som appleten tillhör:"
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
-
-#: ../data/messages:15
-msgid "Desklet's position (x ; y) :"
-msgstr "Deskletens position (x, y):"
-
-#: ../data/messages:17
+#: ../data/messages:13 ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -114,7 +105,7 @@ msgstr ""
 "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
 "eller ALT+vänsterklick"
 
-#: ../data/messages:19
+#: ../data/messages:15 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Storlek på Desklet (bredd x höjd):"
 
@@ -273,6 +264,15 @@ msgstr "Storlek på terminal (rader x kolumner):"
 #, fuzzy
 msgid "Shortkey to show the terminal :"
 msgstr "Tangentkombination for att visa terminalen"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "Beroende på din fönsterhanterare, kan du flytta appleten med ALT"
+#~ "+vänsterklick"
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "Deskletens position (x, y):"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "Storlek på ikonen (i pixlar):"

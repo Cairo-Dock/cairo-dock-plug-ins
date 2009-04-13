@@ -287,52 +287,52 @@ msgid "Config"
 msgstr "設定"
 
 #: ../data/messages:85
-msgid "They don't even need to be real trash directories."
-msgstr "システムの実際のゴミ箱用ディレクトリ（.Trash）でなくとも指定可能です。"
-
-#: ../data/messages:87
-msgid ""
-"Here you can specify a list of additionnal Trash directories to monitor :"
-msgstr "監視対象に含める追加的なゴミ箱ディレクトリのリストの指定 :"
-
-#: ../data/messages:89
 msgid "Display the following quick info :"
 msgstr "クイック情報の表示 :"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "None"
 msgstr "なし"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Number of trashes"
 msgstr "ゴミの数"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Total number of files"
 msgstr "ファイルの総数"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Total weight"
 msgstr "総量"
 
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:95 ../data/messages:99
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
 "Mb 単位。この上限値を越えた際に通知を行います。0 に設定すると通知を使用しませ"
 "ん。"
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Maximum total size of all dustbins :"
 msgstr "全ゴミ箱の最大総量 :"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Maximum size authorized for each dustbin :"
 msgstr "各ゴミ箱に割り当てる最大量 :"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Desktop-less support"
 msgstr "デスクトップレスのサポート"
+
+#: ../data/messages:105
+msgid "They don't even need to be real trash directories."
+msgstr "システムの実際のゴミ箱用ディレクトリ（.Trash）でなくとも指定可能です。"
+
+#: ../data/messages:107
+msgid ""
+"Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr "監視対象に含める追加的なゴミ箱ディレクトリのリストの指定 :"
 
 #: ../data/messages:109
 msgid "in seconds, only used if you can't monitor directories."

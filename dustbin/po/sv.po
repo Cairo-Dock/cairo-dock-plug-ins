@@ -283,52 +283,52 @@ msgid "Config"
 msgstr "Konfigurera"
 
 #: ../data/messages:85
-msgid "They don't even need to be real trash directories."
-msgstr "Behöver inte vara riktiga papperskorgsmappar."
-
-#: ../data/messages:87
-msgid ""
-"Here you can specify a list of additionnal Trash directories to monitor :"
-msgstr "Ange andra mappar som ska övervakas:"
-
-#: ../data/messages:89
 msgid "Display the following quick info :"
 msgstr "Visa följande snabbinformation:"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "None"
 msgstr "Ingen"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Number of trashes"
 msgstr "Antal papperskorgar"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Total number of files"
 msgstr "Totalt antal filer"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Total weight"
 msgstr "Total storlek"
 
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:95 ../data/messages:99
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
 "i Mb. Du får ett meddelande om du överskrider gränsen. Ange 0 för att "
 "inaktivera."
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Maximum total size of all dustbins :"
 msgstr "Maximal storlek för alla papperskorgar:"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Maximal storlek för enskild papperskorg:"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Desktop-less support"
 msgstr "Manuell hantering"
+
+#: ../data/messages:105
+msgid "They don't even need to be real trash directories."
+msgstr "Behöver inte vara riktiga papperskorgsmappar."
+
+#: ../data/messages:107
+msgid ""
+"Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr "Ange andra mappar som ska övervakas:"
 
 #: ../data/messages:109
 msgid "in seconds, only used if you can't monitor directories."

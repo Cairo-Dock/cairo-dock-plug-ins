@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-04-11 17:19+0200\n"
+"POT-Creation-Date: 2009-04-13 03:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -271,49 +271,49 @@ msgid "Config"
 msgstr ""
 
 #: ../data/messages:85
-msgid "They don't even need to be real trash directories."
-msgstr ""
-
-#: ../data/messages:87
-msgid ""
-"Here you can specify a list of additionnal Trash directories to monitor :"
-msgstr ""
-
-#: ../data/messages:89
 msgid "Display the following quick info :"
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "None"
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Number of trashes"
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Total number of files"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Total weight"
 msgstr ""
 
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:95 ../data/messages:99
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Maximum total size of all dustbins :"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Maximum size authorized for each dustbin :"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Desktop-less support"
+msgstr ""
+
+#: ../data/messages:105
+msgid "They don't even need to be real trash directories."
+msgstr ""
+
+#: ../data/messages:107
+msgid ""
+"Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr ""
 
 #: ../data/messages:109

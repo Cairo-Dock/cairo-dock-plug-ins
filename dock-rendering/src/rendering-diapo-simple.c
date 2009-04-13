@@ -136,7 +136,9 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 	
 	//\____________________ On dessine les icones avec leurs etiquettes.
 	// on determine la 1ere icone a tracer : l'icone suivant l'icone pointee.
-	GList *pFirstDrawnElement = _get_first_drawn_element (pDock->icons);
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
+	if (pFirstDrawnElement == NULL)
+		return;
 	
 	// on dessine les icones, l'icone pointee en dernier.
 	Icon *icon;
@@ -718,7 +720,9 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	
 	//\____________________ On dessine les icones.
 	// on determine la 1ere icone a tracer : l'icone suivant l'icone pointee.
-	GList *pFirstDrawnElement = _get_first_drawn_element (pDock->icons);
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
+	if (pFirstDrawnElement == NULL)
+		return;
 	
 	// on dessine les icones, l'icone pointee en dernier.
 	Icon *icon;

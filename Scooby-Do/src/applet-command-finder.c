@@ -18,7 +18,9 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 #include <unistd.h>
 #include <sys/stat.h>
 
+#include "applet-struct.h"
 #include "applet-command-finder.h"
+#include "applet-session.h"
 
 
 static GList *

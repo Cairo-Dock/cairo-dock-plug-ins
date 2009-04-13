@@ -13,25 +13,20 @@ gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *
 gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation);
 
 
-gboolean cd_do_enter_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation);
+//gboolean cd_do_enter_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation);
 
 
 gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon);
 
 
-gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType);
+gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow);
+
+
+gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string);
 
 
 void cd_do_on_shortkey (const char *keystring, gpointer data);
 
-
-
-// a deplacer dans leur fichier propre.
-void cd_do_open_session (void);
-
-void cd_do_close_session (void);
-
-void cd_do_exit_session (void);
 
 
 #endif

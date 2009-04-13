@@ -95,15 +95,7 @@ msgstr "所属dock名称:"
 msgid "Desklet"
 msgstr "桌面小工具"
 
-#: ../data/messages:13
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
-
-#: ../data/messages:15
-msgid "Desklet's position (x ; y) :"
-msgstr "桌面小工具位置(x ; y):"
-
-#: ../data/messages:17
+#: ../data/messages:13 ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -111,7 +103,7 @@ msgstr ""
 "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理"
 "器。"
 
-#: ../data/messages:19
+#: ../data/messages:15 ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "桌面小工具尺寸(宽×高):"
 
@@ -268,6 +260,13 @@ msgstr "终端尺寸(行×列):"
 #, fuzzy
 msgid "Shortkey to show the terminal :"
 msgstr "显示终端的快捷键"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "桌面小工具位置(x ; y):"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "期望此小应用程序的图标大小（以点为单位）"

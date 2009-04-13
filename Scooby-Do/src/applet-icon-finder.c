@@ -10,7 +10,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <stdlib.h>
 #include <string.h>
 
+#include "applet-struct.h"
 #include "applet-icon-finder.h"
+#include "applet-session.h"
 
 
 static void _find_icon_in_dock_with_command (Icon *pIcon, CairoDock *pDock, gpointer *data)

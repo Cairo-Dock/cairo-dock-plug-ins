@@ -290,54 +290,54 @@ msgid "Config"
 msgstr "Config"
 
 #: ../data/messages:85
-msgid "They don't even need to be real trash directories."
-msgstr "Non è necessario che questa sia la cartella del Cestino."
-
-#: ../data/messages:87
-msgid ""
-"Here you can specify a list of additionnal Trash directories to monitor :"
-msgstr ""
-"Potete specificare qui una lista addizionale di cartelle Cestino da "
-"monitorare :"
-
-#: ../data/messages:89
 msgid "Display the following quick info :"
 msgstr "Mostrare le seguenti info veloci :"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "None"
 msgstr "Nessuna"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Number of trashes"
 msgstr "Numero di cestini"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Total number of files"
 msgstr "Numero totale di files"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Total weight"
 msgstr "Peso totale"
 
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:95 ../data/messages:99
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
 "in Mb. Verrete notificati se supererete questo limite. Mettere 0 per non "
 "usarlo."
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Maximum total size of all dustbins :"
 msgstr "Dimensione massima di tutti i cestini :"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Dimensione massima per ogni singolo cestino :"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Desktop-less support"
 msgstr "Supporto senza Desktop"
+
+#: ../data/messages:105
+msgid "They don't even need to be real trash directories."
+msgstr "Non è necessario che questa sia la cartella del Cestino."
+
+#: ../data/messages:107
+msgid ""
+"Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr ""
+"Potete specificare qui una lista addizionale di cartelle Cestino da "
+"monitorare :"
 
 #: ../data/messages:109
 msgid "in seconds, only used if you can't monitor directories."

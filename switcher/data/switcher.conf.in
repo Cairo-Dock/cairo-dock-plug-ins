@@ -21,10 +21,9 @@ order=
 #[gtk-convert]
 [Desklet]
 
-#i+[48;500] Desklet's dimension (width x height) :
-width=250
-#i+[48;500] ...
-height=100
+#j+[48;512] Desklet's dimension (width x height) :
+#{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
+size = 96;96
 
 #i[-2048;2048] Desklet's position (x ; y) :
 x position=10

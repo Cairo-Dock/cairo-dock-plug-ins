@@ -286,54 +286,54 @@ msgid "Config"
 msgstr "Config"
 
 #: ../data/messages:85
-msgid "They don't even need to be real trash directories."
-msgstr "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle."
-
-#: ../data/messages:87
-msgid ""
-"Here you can specify a list of additionnal Trash directories to monitor :"
-msgstr ""
-"Vous pouvez spécifier içi une liste additionnelle de répertoire poubelle à "
-"monitorer :"
-
-#: ../data/messages:89
 msgid "Display the following quick info :"
 msgstr "Afficher l'info-rapide suivante :"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "None"
 msgstr "Aucune"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Number of trashes"
 msgstr "Nombre de déchets"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Total number of files"
 msgstr "Nombre total de fichiers"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Total weight"
 msgstr "Poids total"
 
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:95 ../data/messages:99
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
 "en Mo. Vous serez notifié si vous dépassez cette limite. Mettez 0 pour ne "
 "pas l'utiliser."
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Maximum total size of all dustbins :"
 msgstr "Taille maximale totale des poubelles :"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Taille maximale autorisée pour chaque poubelle :"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Desktop-less support"
 msgstr "Utilisation dégradée"
+
+#: ../data/messages:105
+msgid "They don't even need to be real trash directories."
+msgstr "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle."
+
+#: ../data/messages:107
+msgid ""
+"Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr ""
+"Vous pouvez spécifier içi une liste additionnelle de répertoire poubelle à "
+"monitorer :"
 
 #: ../data/messages:109
 msgid "in seconds, only used if you can't monitor directories."

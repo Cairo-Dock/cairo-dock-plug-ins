@@ -280,50 +280,50 @@ msgid "Config"
 msgstr "配置"
 
 #: ../data/messages:85
-msgid "They don't even need to be real trash directories."
-msgstr "它们甚至不必真的是回收站目录。"
-
-#: ../data/messages:87
-msgid ""
-"Here you can specify a list of additionnal Trash directories to monitor :"
-msgstr "您可以在此指定需要监视的额外的回收站目录:"
-
-#: ../data/messages:89
 msgid "Display the following quick info :"
 msgstr "显示以下快捷信息:"
 
-#: ../data/messages:91
+#: ../data/messages:87
 msgid "None"
 msgstr "无"
 
-#: ../data/messages:93
+#: ../data/messages:89
 msgid "Number of trashes"
 msgstr "垃圾数量"
 
-#: ../data/messages:95
+#: ../data/messages:91
 msgid "Total number of files"
 msgstr "文件总数"
 
-#: ../data/messages:97
+#: ../data/messages:93
 msgid "Total weight"
 msgstr "总重"
 
-#: ../data/messages:99 ../data/messages:103
+#: ../data/messages:95 ../data/messages:99
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr "以Mb为单位。当超过这个限额的时候，您会得到通知。设置为0则禁用此功能。"
 
-#: ../data/messages:101
+#: ../data/messages:97
 msgid "Maximum total size of all dustbins :"
 msgstr "所有回收站最大容量:"
 
-#: ../data/messages:105
+#: ../data/messages:101
 msgid "Maximum size authorized for each dustbin :"
 msgstr "每个回收站的最大容量:"
 
-#: ../data/messages:107
+#: ../data/messages:103
 msgid "Desktop-less support"
 msgstr "无桌面支持"
+
+#: ../data/messages:105
+msgid "They don't even need to be real trash directories."
+msgstr "它们甚至不必真的是回收站目录。"
+
+#: ../data/messages:107
+msgid ""
+"Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr "您可以在此指定需要监视的额外的回收站目录:"
 
 #: ../data/messages:109
 msgid "in seconds, only used if you can't monitor directories."
