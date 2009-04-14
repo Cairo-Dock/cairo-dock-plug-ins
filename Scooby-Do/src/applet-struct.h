@@ -15,6 +15,7 @@ struct _AppletConfig {
 	gint iAnimationDuration;
 	gint iAppearanceDuration;
 	gint iCloseDuration;
+	gchar **pDirList;
 	} ;
 
 

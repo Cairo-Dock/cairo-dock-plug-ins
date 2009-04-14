@@ -6,6 +6,8 @@
 #k Shortkey to activate/deactivate Do :
 shortkey = <Control>F9
 
+dirs =
+
 #F[Animations]
 anim=
 

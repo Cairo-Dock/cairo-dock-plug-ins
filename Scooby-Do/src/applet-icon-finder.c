@@ -27,7 +27,14 @@ static void _find_icon_in_dock_with_command (Icon *pIcon, CairoDock *pDock, gpoi
 	if (pDock == g_pMainDock || *pFoundIcon != NULL) // on a deja cherche dans le main dock, ou deja trouve ce qu'on cherchait.
 		return ;
 	
-	if (pIcon->acCommand && strncmp (cCommandPrefix, pIcon->acCommand, length) == 0)
+	gboolean bFound = (pIcon->acCommand && strncmp (cCommandPrefix, pIcon->acCommand, length) == 0);
+	if (! bFound && pIcon->cBaseURI != NULL)
+	{
+		gchar *cFile = g_path_get_basename (pIcon->cBaseURI);
+		bFound = (cFile && strncmp (cCommandPrefix, cFile, length) == 0);
+		g_free (cFile);
+	}
+	if (bFound)
 	{
 		if (pAfterIcon == NULL)
 		{
@@ -164,13 +171,15 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		myData.iMouseX = x;
 		myData.iMouseY = y;
 		cairo_dock_request_icon_animation (pIcon, pDock, myConfig.cIconAnimation, 1e6);  // interrompt l'animation de "mouse over".
-		cairo_dock_launch_animation (pDock);
+		cairo_dock_launch_animation (CAIRO_CONTAINER (pDock));
+		//if (myAccessibility.bShowSubDockOnClick)
+		//	cairo_dock_show_subdock (pIcon, FALSE, pDock);
 	}
 	
 	myData.pCurrentDock = pDock;
 	myData.pCurrentIcon = pIcon;
 	if (myData.pCurrentDock == NULL)
-		gtk_window_present (g_pMainDock->pWidget);
+		gtk_window_present (GTK_WINDOW (g_pMainDock->pWidget));
 }
 
 

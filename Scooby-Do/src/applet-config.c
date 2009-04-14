@@ -25,6 +25,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iCloseDuration = CD_CONFIG_GET_INTEGER ("Configuration", "stop duration");
 	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.pBackgroundColor);
+	gsize length=0;
+	myConfig.pDirList = CD_CONFIG_GET_STRING_LIST ("Configuration", "dirs", &length);
 	
 	myConfig.fFontSizeRatio = CD_CONFIG_GET_DOUBLE ("Configuration", "font size");
 	myConfig.labelDescription.cFont = CD_CONFIG_GET_STRING ("Configuration", "text font");
@@ -40,11 +42,13 @@ CD_APPLET_GET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
+	g_print ("myConfig.cShortkey  %s\n", myConfig.cShortkey);
 	if (myConfig.cShortkey)
 		cd_keybinder_unbind (myConfig.cShortkey, (CDBindkeyHandler) cd_do_on_shortkey);
 	g_free (myConfig.cShortkey);
 	g_free (myConfig.cIconAnimation);
 	g_free (myConfig.labelDescription.cFont);
+	g_strfreev (myConfig.pDirList);
 CD_APPLET_RESET_CONFIG_END
 
 

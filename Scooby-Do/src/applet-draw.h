@@ -13,10 +13,4 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext);
 void cd_do_render_opengl (CairoDock *pMainDock);
 
 
-void cd_do_load_pending_caracters (void);
-
-
-void cd_do_launch_appearance_animation (void);
-
-
 #endif

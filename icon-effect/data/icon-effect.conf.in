@@ -30,10 +30,10 @@ click applets = 2
 #v
 sep =
 
-#+b Draw in background ?
+#b+ Draw in background ?
 background = false
 
-#+b Rotate effects with dock ?
+#b+ Rotate effects with dock ?
 rotate = false
 
 #[@icon_effectsdatadir@/icon-fire.svg]

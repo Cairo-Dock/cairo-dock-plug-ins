@@ -46,7 +46,7 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 	{
 		myData.iMotionCount --;
 		double f = (double) myData.iMotionCount / 10;
-		cairo_dock_emit_motion_signal (pContainer,
+		cairo_dock_emit_motion_signal (CAIRO_DOCK (pContainer),
 			f * myData.iPrevMouseX + (1-f) * myData.iMouseX,
 			f * myData.iPrevMouseY + (1-f) * myData.iMouseY);
 		*bContinueAnimation = TRUE;
@@ -91,7 +91,7 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 					pChar->iAnimationTime -= myConfig.iAnimationDuration;
 				pChar->iCurrentX = f * pChar->iInitialX + (1-f) * pChar->iFinalX;
 				pChar->iCurrentY = f * pChar->iInitialY + (1-f) * pChar->iFinalY;
-				g_print ("%c : (%d;%d) -> (%d;%d) -> (%d;%d)\n", pChar->c, pChar->iInitialX,pChar->iInitialY, pChar->iCurrentX,pChar->iCurrentY, pChar->iFinalX,pChar->iFinalY);
+				//g_print ("%c : (%d;%d) -> (%d;%d) -> (%d;%d)\n", pChar->c, pChar->iInitialX,pChar->iInitialY, pChar->iCurrentX,pChar->iCurrentY, pChar->iFinalX,pChar->iFinalY);
 			}
 			
 			if (CAIRO_DOCK_CONTAINER_IS_OPENGL (pContainer) || f != 0)
@@ -176,11 +176,11 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		cd_do_close_session ();
 	}
-	else if (iKeyVal == GDK_space && myData.iNbValidCaracters == 0)
+	else if (iKeyVal == GDK_space && myData.iNbValidCaracters == 0)  // pas d'espace en debut de chaine.
 	{
 		// on rejette.
 	}
-	else if (iKeyVal >= GDK_Shift_L && iKeyVal <= GDK_Hyper_R)
+	else if (iKeyVal >= GDK_Shift_L && iKeyVal <= GDK_Hyper_R)  // on n'ecrit pas les modificateurs.
 	{
 		// on rejette.
 	}
@@ -209,34 +209,12 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.iNbValidCaracters > 0)
 		{
+			g_print ("%d/%d\n", myData.iNbValidCaracters, myData.sCurrentText->len);
+			if (myData.iNbValidCaracters == myData.sCurrentText->len)  // pas de completion en cours => on efface la derniere lettre tapee.
+				myData.iNbValidCaracters --;
+			
 			// on efface les lettres precedentes jusqu'a la derniere position validee.
-			CDChar *pChar;
-			GList *c = g_list_last (myData.pCharList), *c_prev;
-			int i;
-			for (i = myData.iNbValidCaracters - 1; i < myData.sCurrentText->len && c != NULL; i ++)
-			{
-				g_print ("on efface '%c'\n", myData.sCurrentText->str[i]);
-				c_prev = c->prev;
-				pChar = c->data;
-				
-				myData.iTextWidth -= pChar->iWidth;
-				cd_do_free_char (pChar);
-				myData.pCharList = g_list_delete_link (myData.pCharList, c);  // detruit c.
-				c = c_prev;
-			}
-			
-			// on tronque la chaine de la meme maniere.
-			myData.iNbValidCaracters --;
-			g_string_truncate (myData.sCurrentText, myData.iNbValidCaracters);
-			g_print (" -> '%s'\n", myData.sCurrentText->str);
-			
-			// on remet a jour la hauteur du texte.
-			myData.iTextHeight = 0;
-			for (c = myData.pCharList; c != NULL; c = c->next)
-			{
-				pChar = c->data;
-				myData.iTextHeight = MAX (myData.iTextHeight, pChar->iHeight);
-			}
+			cd_do_delete_invalid_caracters ();
 			
 			// on cherche l'icone courante si aucune.
 			if (myData.pCurrentIcon == NULL)  // sinon l'icone actuelle convient toujours.
@@ -246,14 +224,69 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			
 			// on repositionne les caracteres et on anime tout ca.
 			cd_do_launch_appearance_animation ();
+			if (myData.iNbValidCaracters == 0)  // plus de caracteres => plus d'animation immediatement, donc on force une fois le redessin.
+				cairo_dock_redraw_container (pContainer);
 		}
 	}
 	else if (iKeyVal == GDK_Tab)
 	{
 		if (myData.iNbValidCaracters > 0)  // pCurrentIcon peut etre NULL si elle s'est faite detruire pendant la recherche, auquel cas on cherchera juste normalement.
 		{
-			// on cherche la suivante.
+			gboolean bPrevious = iModifierType & GDK_SHIFT_MASK;
+			
+			// on cherche l'icone suivante.
 			cd_do_search_current_icon (TRUE);
+			
+			if (myData.pCurrentIcon == NULL)
+			{
+				if (myData.completion)
+				{
+					gchar *tmp = g_new0 (gchar, myData.iNbValidCaracters+1);
+					strncpy (tmp, myData.sCurrentText->str, myData.iNbValidCaracters);
+					gchar *new_prefix = NULL;
+					GList *pPossibleItems = g_completion_complete (myData.completion,
+						tmp,
+						&new_prefix);
+					if (new_prefix != NULL)
+					{
+						myData.iNbValidCaracters = strlen (new_prefix);
+						g_print ("myData.iNbValidCaracters <- %d\n", myData.iNbValidCaracters);
+					}
+					if (pPossibleItems != NULL)
+					{
+						gchar *item;
+						GList *it;
+						g_print ("on cherche %s => on a le choix entre :\n", tmp);
+						for (it = pPossibleItems; it != NULL; it = it->next)
+						{
+							item = it->data;
+							g_print (" - %s\n", item);
+							if (strcmp (myData.sCurrentText->str, item) == 0)
+							{
+								g_print ("  on pointe actuellement sur %s\n", item);
+								break ;
+							}
+						}
+						if (it == NULL || it->next == NULL)  // pas trouve ou dernier.
+							item = pPossibleItems->data;
+						else
+							item = it->next->data;
+						g_print ("  --> on complete maintenant avec %s\n", item);
+						
+						// on effacer les anciens caracteres automatiques, et on charge les nouveaux.
+						cd_do_delete_invalid_caracters ();
+						
+						g_string_assign (myData.sCurrentText, item);
+						
+						cd_do_load_pending_caracters ();
+						
+						// on repositionne les caracteres et on anime tout ca.
+						cd_do_launch_appearance_animation ();
+					}
+					g_free (new_prefix);
+					g_free (tmp);
+				}
+			}
 		}
 	}
 	else if (iKeyVal == GDK_Return)
@@ -392,10 +425,10 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		g_print ("on se deplace a l'extremite sur %s\n", pIcon ? pIcon->acName : "none");
 		cd_do_change_current_icon (pIcon, myData.pCurrentDock);
 	}
-	else if (cKeyName && g_ascii_isalnum (*cKeyName))  /// trouver mieux ...
+	else if (string)  /// utiliser l'unichar ...
 	{
 		// on rajoute la lettre au mot
-		g_string_append_c (myData.sCurrentText, *cKeyName);
+		g_string_append_c (myData.sCurrentText, *string);
 		myData.iNbValidCaracters = myData.sCurrentText->len;  // l'utilisateur valide la nouvelle lettre ainsi que celles precedemment ajoutee par completion.
 		
 		// on cherche un lanceur correspondant.
@@ -422,7 +455,9 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		}
 		
 		// on rajoute une surface/texture pour la/les nouvelle(s) lettre(s).
+		myData.iNbValidCaracters --;  // le nouveau caractere n'est pas encore charge.
 		cd_do_load_pending_caracters ();
+		myData.iNbValidCaracters ++;
 		
 		// on repositionne les caracteres et on anime tout ca.
 		cd_do_launch_appearance_animation ();

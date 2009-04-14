@@ -111,3 +111,119 @@ void cd_do_free_char_list (GList *pCharList)
 	g_list_foreach (pCharList, (GFunc) cd_do_free_char, NULL);
 	g_list_free (pCharList);
 }
+
+
+void cd_do_load_pending_caracters (void)
+{
+	cairo_surface_t *pSurface;
+	GLuint iTexture;
+	gboolean bLoadTexture = (CAIRO_CONTAINER_IS_OPENGL (g_pMainDock));
+	gchar c[2] = {'\0', '\0'};
+	double fTextXOffset, fTextYOffset;
+	CDChar *pChar;
+	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
+	int i, iOffsetX=0;
+	for (i = myData.iNbValidCaracters-0; i < myData.sCurrentText->len; i++)
+	{
+		g_print (" on charge la lettre '%c' (%d) tex:%d\n", myData.sCurrentText->str[i], i, bLoadTexture);
+		c[0] = myData.sCurrentText->str[i];
+		
+		pChar = g_new0 (CDChar, 1);
+		pChar->c = c[0];
+		pChar->iInitialX = g_pMainDock->iMaxDockWidth/2 + iOffsetX;  // il part du coin haut droit.
+		pChar->iCurrentX = pChar->iInitialX;
+		g_print (" on commence a x=%d\n", pChar->iInitialX);
+		myData.pCharList = g_list_append (myData.pCharList, pChar);
+		
+		// on cree la surface.
+		pSurface = cairo_dock_create_surface_from_text (c, pCairoContext, &myConfig.labelDescription, 1., &pChar->iWidth, &pChar->iHeight, &fTextXOffset, &fTextYOffset);
+		if (g_pMainDock->bHorizontalDock)
+		{
+			myData.iTextWidth += pChar->iWidth;
+			iOffsetX += pChar->iWidth;
+			pChar->iInitialY = g_pMainDock->iMaxDockHeight - pChar->iHeight;
+			myData.iTextHeight = MAX (myData.iTextHeight, pChar->iHeight);
+		}
+		else
+		{
+			myData.iTextHeight += pChar->iHeight;
+			iOffsetX += pChar->iHeight;
+			pChar->iInitialY = g_pMainDock->iMaxDockHeight - pChar->iWidth;
+			myData.iTextWidth = MAX (myData.iTextWidth, pChar->iWidth);
+		}
+		
+		// on cree la texture.
+		if (bLoadTexture)
+		{
+			pChar->iTexture = cairo_dock_create_texture_from_surface (pSurface);
+			cairo_surface_destroy (pSurface);
+		}
+		else
+		{
+			pChar->pSurface = pSurface;
+		}
+	}
+	cairo_destroy (pCairoContext);
+}
+
+
+void cd_do_compute_final_coords (void)
+{
+	int x = - myData.iTextWidth / 2;  // par rapport au milieu du dock.
+	CDChar *pChar;
+	GList *c;
+	for (c = myData.pCharList; c != NULL; c = c->next)
+	{
+		pChar = c->data;
+		
+		pChar->iFinalX = x;
+		pChar->iFinalY = 0;
+		x += pChar->iWidth;
+		
+		pChar->iInitialX = pChar->iCurrentX;
+		pChar->iInitialY = pChar->iCurrentY;
+	}
+}
+
+
+void cd_do_launch_appearance_animation (void)
+{
+	cd_do_compute_final_coords ();
+	myData.iAppearanceTime = myConfig.iAppearanceDuration;
+	cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));  // animation de disparition.	
+}
+
+
+void cd_do_delete_invalid_caracters (void)
+{
+	if (myData.sCurrentText->len == 0)
+		return;
+	
+	// on efface les lettres precedentes jusqu'a la derniere position validee.
+	CDChar *pChar;
+	GList *c = g_list_last (myData.pCharList), *c_prev;
+	int i;
+	for (i = myData.iNbValidCaracters; i < myData.sCurrentText->len && c != NULL; i ++)
+	{
+		g_print ("on efface '%c'\n", myData.sCurrentText->str[i]);
+		c_prev = c->prev;
+		pChar = c->data;
+		
+		myData.iTextWidth -= pChar->iWidth;
+		cd_do_free_char (pChar);
+		myData.pCharList = g_list_delete_link (myData.pCharList, c);  // detruit c.
+		c = c_prev;
+	}
+	
+	// on tronque la chaine de la meme maniere.
+	g_string_truncate (myData.sCurrentText, myData.iNbValidCaracters);
+	g_print (" -> '%s' (%d)\n", myData.sCurrentText->str, myData.iNbValidCaracters);
+	
+	// on remet a jour la hauteur du texte.
+	myData.iTextHeight = 0;
+	for (c = myData.pCharList; c != NULL; c = c->next)
+	{
+		pChar = c->data;
+		myData.iTextHeight = MAX (myData.iTextHeight, pChar->iHeight);
+	}
+}

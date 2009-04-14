@@ -18,4 +18,13 @@ void cd_do_free_char (CDChar *pChar);
 void cd_do_free_char_list (GList *pCharList);
 
 
+void cd_do_load_pending_caracters (void);
+
+void cd_do_compute_final_coords (void);
+
+void cd_do_launch_appearance_animation (void);
+
+void cd_do_delete_invalid_caracters (void);
+
+
 #endif
