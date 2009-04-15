@@ -148,7 +148,7 @@ void onAddNote(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 		}
 		
 		cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
-		cairo_dock_insert_icon_in_dock (pIcon, myIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, FALSE);
+		cairo_dock_insert_icon_in_dock_full (pIcon, myIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, ! CAIRO_DOCK_INSERT_SEPARATOR, NULL);
 	}
 	else
 	{

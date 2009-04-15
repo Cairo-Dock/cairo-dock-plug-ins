@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(scooby_dodatadir)
 
 module_DATA = \
 	Scooby-Do.conf\

@@ -36,7 +36,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR ("Configuration", "text color", myConfig.labelDescription.fColorStart);
 	CD_CONFIG_GET_COLOR ("Configuration", "text color", myConfig.labelDescription.fColorStop);
 	myConfig.labelDescription.iStyle = PANGO_STYLE_NORMAL;
-	myConfig.labelDescription.fBackgroundColor[3] = 1.;
+	myConfig.labelDescription.fBackgroundColor[3] = (myConfig.iAnimationDuration != 0 && CD_APPLET_MY_CONTAINER_IS_OPENGL ? 1. : 0);  // si pas d'animation, on ne met pas de fond aux lettres.
 CD_APPLET_GET_CONFIG_END
 
 

@@ -94,7 +94,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 					pPrevBookmarkIconList = g_list_remove (pPrevBookmarkIconList, pExistingIcon);
 					pExistingIcon->fOrder = fCurrentOrder ++;
 					if (myDock)
-						cairo_dock_insert_icon_in_dock (pExistingIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
+						cairo_dock_insert_icon_in_dock (pExistingIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON);
 					else
 						myDesklet->icons = g_list_append (myDesklet->icons, pExistingIcon);
 					g_free (cOneBookmark);
@@ -137,7 +137,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 						
 						cairo_dock_load_one_icon_from_scratch (pNewIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
 						if (myDock)
-							cairo_dock_insert_icon_in_dock (pNewIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myConfig.bUseSeparator);
+							cairo_dock_insert_icon_in_dock (pNewIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON);
 						else
 						{
 							myDesklet->icons = g_list_append (myDesklet->icons, pNewIcon);

@@ -39,5 +39,7 @@ AC_CONFIG_FILES([Makefile
 		data/themes/cd_box_3d/Makefile
 		data/themes/cd_box_simple/Makefile
 		data/themes/ipod/Makefile
+		data/themes/iphone/Makefile
+		data/themes/dvd_player/Makefile
 		data/themes/super_jewel/Makefile])
 AC_OUTPUT

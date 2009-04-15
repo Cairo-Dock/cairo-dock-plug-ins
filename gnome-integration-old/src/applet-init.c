@@ -25,7 +25,7 @@ CD_APPLET_PRE_INIT_BEGIN ("gnome integration old",
 	{
 		if (init_vfs_backend ())
 		{
-			CairoDockVFSBackend *pVFSBackend = g_new0 (CairoDockVFSBackend, 1);
+			CairoDockDesktopEnvBackend *pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
 			pVFSBackend->get_file_info = vfs_backend_get_file_info;
 			pVFSBackend->get_file_properties = vfs_backend_get_file_properties;
 			pVFSBackend->list_directory = vfs_backend_list_directory;

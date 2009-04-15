@@ -66,7 +66,7 @@ CD_APPLET_ON_BUILD_MENU_END
 // Cette fonction met le lecteur en pause ou en lecture selon son état.
 //*********************************************************************************
 CD_APPLET_ON_CLICK_BEGIN
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myData.numberButtons != 0  && myConfig.bOpenglThemes)
 	{			
 		// Actions au clic sur un bouton :
 		if (myData.mouseOnButton1)
@@ -155,7 +155,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			if(strncmp(CD_APPLET_RECEIVED_DATA, "http://", 7) == 0)
 			{
 				cd_debug("Le fichier est distant");
-				g_string_printf (command, "wget -O %s/.gnome2/rhythmbox/covers/\"%s - %s.jpg\" %s",
+				g_string_printf (command, "wget -O %s/.cache/rhythmbox/covers/\"%s - %s.jpg\" %s",
 					g_getenv ("HOME"),
 					myData.playing_artist,
 					myData.playing_album,
@@ -165,7 +165,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			{
 				cd_debug("Le fichier est local");
 				gchar *cFilePath = (*CD_APPLET_RECEIVED_DATA == '/' ? g_strdup (CD_APPLET_RECEIVED_DATA) : g_filename_from_uri (CD_APPLET_RECEIVED_DATA, NULL, NULL));
-				g_string_printf (command, "cp %s %s/.gnome2/rhythmbox/covers/\"%s - %s.jpg\"",
+				g_string_printf (command, "cp %s %s/.cache/rhythmbox/covers/\"%s - %s.jpg\"",
 					cFilePath,
 					g_getenv ("HOME"),
 					myData.playing_artist,
@@ -200,7 +200,7 @@ CD_APPLET_ON_SCROLL_END
 
 CD_APPLET_ON_UPDATE_ICON_BEGIN
 
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL  && myConfig.bOpenglThemes)
 	{
 		cd_opengl_mouse_on_buttons ();	
 	}

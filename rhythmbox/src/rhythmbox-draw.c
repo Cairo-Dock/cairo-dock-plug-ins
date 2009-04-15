@@ -48,20 +48,31 @@ gboolean _rhythmbox_check_cover_is_present (gpointer data)
 	cd_debug ("%s (%s)", __func__, myData.playing_cover);
 	if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 	{
-		cd_message ("la couverture '%s' est desormais disponible", myData.playing_cover);
+		cd_message ("RB : la couverture '%s' est desormais disponible", myData.playing_cover);
 		
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-		{	
-			myData.TextureCover = cd_opengl_load_texture (myApplet, myData.playing_cover);
+		if (myData.CoverWasDistant)
+		{
+			// On n'affiche pas tout de suite la pochette sinon on risque un bug avec lastfm
+			cd_debug ("RB : BOUCLE 2 : C'est une pochette qui était distante -> On affiche rien avant la prochaine boucle");
+			myData.CoverWasDistant = FALSE ;
+			return TRUE;
 		}
 		else
 		{
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
-			CD_APPLET_REDRAW_MY_ICON;
+			cd_debug ("RB : BOUCLE 2 : La pochette est locale -> On affiche");
+			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
+			{	
+				myData.TextureCover = cd_opengl_load_texture (myApplet, myData.playing_cover);
+			}
+			else
+			{
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+				CD_APPLET_REDRAW_MY_ICON;
+			}
+			myData.cover_exist = TRUE;
+			myData.iSidCheckCover = 0;
+			return FALSE;
 		}
-		myData.cover_exist = TRUE;
-		myData.iSidCheckCover = 0;
-		return FALSE;
 	}
 	else
 	{
@@ -86,31 +97,41 @@ void update_icon(gboolean make_witness)
 		}
 		
 		//Affichage de la couverture de l'album.
-		//gchar *cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
-		//cd_message ("  cover : %s", cover);
-		if (myConfig.enableCover && myData.playing_cover != NULL && g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
+		if (!myData.cover_exist && myConfig.enableCover && myData.playing_cover != NULL && g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 		{
-			cd_message ("la couverture '%s' est deja dispo", myData.playing_cover);
+			cd_message ("RB : la couverture '%s' est deja dispo", myData.playing_cover);
 			
-			
-			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-			{	
-				myData.TextureCover = cd_opengl_load_texture (myApplet, myData.playing_cover);
+			if (myData.CoverWasDistant)
+			{
+				// On n'affiche pas tout de suite la pochette sinon on risque un bug avec lastfm
+				cd_debug ("RB : BOUCLE 1 : C'est une pochette qui était distante -> On affiche rien avant la prochaine boucle");
+				myData.CoverWasDistant = FALSE ;
 			}
 			else
 			{
-				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
-				CD_APPLET_REDRAW_MY_ICON;
+				cd_debug ("RB : BOUCLE 1 : La pochette est locale -> On affiche");
+			
+				if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
+				{	
+					myData.TextureCover = cd_opengl_load_texture (myApplet, myData.playing_cover);
+				}
+				else
+				{
+					CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+					CD_APPLET_REDRAW_MY_ICON;
+				}
 			}
 			
-			
 			myData.cover_exist = TRUE;
+			
 			if (myData.iSidCheckCover != 0)
 			{
 				g_source_remove (myData.iSidCheckCover);
 				myData.iSidCheckCover = 0;
 			}
 		}
+			
+		
 		else
 		{
 			if(myData.playing)
@@ -124,11 +145,10 @@ void update_icon(gboolean make_witness)
 			myData.cover_exist = FALSE;
 			if (myConfig.enableCover && myData.playing_cover != NULL && myData.iSidCheckCover == 0)
 			{
-				cd_message ("myData.playing_cover : %s, mais n'existe pas encore => on boucle.", myData.playing_cover);
+				cd_message ("RB : myData.playing_cover : %s, mais n'existe pas encore => on boucle.", myData.playing_cover);
 				myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) _rhythmbox_check_cover_is_present, (gpointer) NULL);
 			}
 		}
-		//g_free (cover);
 		
 		//Animation de l'icone et dialogue.
 		if(make_witness)
@@ -176,19 +196,19 @@ void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 		if (myConfig.cUserImage[iStatus] != NULL) {
 			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iStatus]);
 			
-			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 			{	
 				myData.TextureCover = cd_opengl_load_texture (myApplet, cUserImagePath);
 			}
 			else
-			{			
+			{		
 				myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 			}
 			g_free (cUserImagePath);
 		}
 		else {
 			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iStatus]);
-			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 			{	
 				myData.TextureCover = cd_opengl_load_texture (myApplet, cImagePath);
 			}

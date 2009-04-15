@@ -27,10 +27,20 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iDeskletWidth	= CD_CONFIG_GET_INTEGER ("Desklet", "width");
 	myConfig.iDeskletHeight	= CD_CONFIG_GET_INTEGER ("Desklet", "height");
 	
+	myConfig.bOpenglThemes = CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_opengl_themes");
+	if (myConfig.bOpenglThemes)
+	{
+		//\_______________ On on recupere le theme choisi.	
+		myConfig.bOverrideOsd = CD_CONFIG_GET_BOOLEAN ("Configuration", "override_osd");
+		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");
+		myData.LastConfigWasCairo = FALSE;
+		
+		cd_opengl_load_external_conf_theme_values (myApplet);
+	}
+	else
+		myData.LastConfigWasCairo = TRUE;
 	
-	//\_______________ On on recupere le theme choisi.
-	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");
-	cd_opengl_load_external_conf_theme_values (myApplet);
+		
 	
 CD_APPLET_GET_CONFIG_END
 
@@ -43,14 +53,23 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	for (i = 0; i < PLAYER_NB_STATUS; i ++)
 		g_free (myConfig.cUserImage[i]);
 	
-	g_free (myConfig.cThemePath);
-	g_free (myData.cThemeFrame);
-	g_free (myData.cThemeReflect);
+	if (!myData.LastConfigWasCairo)
+	{
+		g_free (myConfig.cThemePath);
+		g_free (myData.cThemeFrame);
+		g_free (myData.cThemeReflect);
+	}
 	
 CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
+			
+	g_free (myData.playing_uri);
+	g_free (myData.playing_artist);
+	g_free (myData.playing_album);
+	g_free (myData.playing_title);
+			
 	int i;
 	for (i = 0; i < PLAYER_NB_STATUS; i ++)
 	{
@@ -59,24 +78,35 @@ CD_APPLET_RESET_DATA_BEGIN
 	}
 	
 	cairo_surface_destroy (myData.pCover);
-	
-	g_free (myData.playing_uri);
-	g_free (myData.playing_artist);
-	g_free (myData.playing_album);
-	g_free (myData.playing_title);
-	
-	glDeleteTextures (1, &myData.TextureFrame);
-	glDeleteTextures (1, &myData.TextureCover);
-	glDeleteTextures (1, &myData.TextureReflect);
-	glDeleteTextures (1, &myData.TextureName);
-	glDeleteTextures (1, &myData.TextureButton1);
-	glDeleteTextures (1, &myData.TextureButton2);
-	glDeleteTextures (1, &myData.TextureButton3);
-	glDeleteTextures (1, &myData.TextureButton4);
-	glDeleteTextures (1, &myData.TextureOsdPlay);
-	glDeleteTextures (1, &myData.TextureOsdPause);
-	glDeleteTextures (1, &myData.TextureOsdPrev);
-	glDeleteTextures (1, &myData.TextureOsdNext);
-	glDeleteTextures (1, &myData.TextureOsdHome);
+		
+	if (!myData.LastConfigWasCairo)
+	{
+		if(myData.TextureFrame != 0)
+			glDeleteTextures (1, &myData.TextureFrame);
+		if(myData.TextureCover != 0)	
+			glDeleteTextures (1, &myData.TextureCover);
+		if(myData.TextureReflect != 0)	
+			glDeleteTextures (1, &myData.TextureReflect);
+		if(myData.TextureName != 0)
+			glDeleteTextures (1, &myData.TextureName);
+		if(myData.TextureButton1 != 0)
+			glDeleteTextures (1, &myData.TextureButton1);
+		if(myData.TextureButton2 != 0)
+			glDeleteTextures (1, &myData.TextureButton2);
+		if(myData.TextureButton3 != 0)
+			glDeleteTextures (1, &myData.TextureButton3);
+		if(myData.TextureButton4 != 0)
+			glDeleteTextures (1, &myData.TextureButton4);
+		if(myData.TextureOsdPlay != 0)
+			glDeleteTextures (1, &myData.TextureOsdPlay);
+		if(myData.TextureOsdPause != 0)
+			glDeleteTextures (1, &myData.TextureOsdPause);
+		if(myData.TextureOsdPrev != 0)
+			glDeleteTextures (1, &myData.TextureOsdPrev);
+		if(myData.TextureOsdNext != 0)
+			glDeleteTextures (1, &myData.TextureOsdNext);
+		if(myData.TextureOsdHome != 0)
+			glDeleteTextures (1, &myData.TextureOsdHome);
+	}
 	
 CD_APPLET_RESET_DATA_END

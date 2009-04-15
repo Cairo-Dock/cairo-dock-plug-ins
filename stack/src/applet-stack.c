@@ -197,7 +197,7 @@ void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gch
 					pCompareFunc = (GCompareFunc) cairo_dock_compare_icons_extension;
 				break;
 			}
-			cairo_dock_insert_icon_in_dock_full (pIcon, myIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, FALSE, pCompareFunc);
+			cairo_dock_insert_icon_in_dock_full (pIcon, myIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON, ! CAIRO_DOCK_INSERT_SEPARATOR, pCompareFunc);
 		}
 	}
 	else

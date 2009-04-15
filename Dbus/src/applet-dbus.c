@@ -148,7 +148,7 @@ gboolean cd_dbus_callback_load_launcher_from_file (dbusCallback *pDbusCallback, 
 	CairoDock * pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 	if (pParentDock != NULL)  // a priori toujours vrai.
 	{
-		cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, CAIRO_DOCK_INSERT_SEPARATOR);
+		cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
 		cairo_dock_start_icon_animation (pIcon, pParentDock);
 	}
 	
@@ -181,7 +181,7 @@ gboolean cd_dbus_callback_create_launcher_from_scratch (dbusCallback *pDbusCallb
 	cairo_dock_fill_icon_buffers_for_dock (pIcon, pCairoContext, pParentDock);
 	cairo_destroy (pCairoContext);
 	
-	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON, CAIRO_DOCK_APPLY_RATIO, myIcons.bUseSeparator);
+	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
 	
 	return TRUE;
 }

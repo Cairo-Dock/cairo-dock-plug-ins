@@ -23,7 +23,7 @@ CD_APPLET_PRE_INIT_BEGIN ("xfce integration",
 	{
 		if (init_vfs_backend ())
 		{
-			CairoDockVFSBackend *pVFSBackend = g_new0 (CairoDockVFSBackend, 1);
+			CairoDockDesktopEnvBackend *pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
 			
 			pVFSBackend->get_file_info = vfs_backend_get_file_info;
 			pVFSBackend->get_file_properties = vfs_backend_get_file_properties;

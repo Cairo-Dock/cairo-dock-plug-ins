@@ -126,6 +126,10 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		//\_______________ On relance le timer.
+		myData.iLastCheckedMinute = -1;
+		myData.iLastCheckedDay = -1;
+		myData.iLastCheckedMonth = -1;
+		myData.iLastCheckedYear = -1;
 		cd_clock_update_with_time (myApplet);
 		myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
 	}

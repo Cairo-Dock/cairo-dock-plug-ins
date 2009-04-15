@@ -44,7 +44,9 @@ struct _AppletConfig {
 	gboolean extendedDesklet;
 	gint iDeskletWidth;
 	gint iDeskletHeight;
-
+	
+	gboolean bOpenglThemes;
+	gboolean bOverrideOsd;
 	gchar *cThemePath;
 	} ;
 
@@ -55,6 +57,7 @@ struct _AppletData {
 	gboolean opening;
 	gboolean playing;
 	gboolean cover_exist;
+	gboolean b3dThemesDebugMode;
 	int playing_duration;
 	int playing_track;
 	gchar *playing_uri;
@@ -132,10 +135,14 @@ struct _AppletData {
 	gchar *cOsdHome;
 	GLuint TextureOsdHome;
 	
+	gint iMyDeskletWidth;
+	gint iMyDeskletHeight;
 	gint iMouseX;
 	gint iMouseY;
+	gboolean NoOSD;
 	
-	
+	gboolean LastConfigWasCairo;
+	gboolean CoverWasDistant;
 	} ;
 
 

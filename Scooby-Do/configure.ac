@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_SCOOBY_DO)
 AC_SUBST(VERSION_SCOOBY_DO, "$VERSION")
 AC_SUBST(PACKAGE_SCOOBY_DO, "$PACKAGE")
 
-scooby_douserdirname="Toons"
+scooby_douserdirname="Scooby-Do"
 AC_SUBST(scooby_douserdirname)
 scooby_dodatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Scooby-Do]
 AC_SUBST(scooby_dodatadir)

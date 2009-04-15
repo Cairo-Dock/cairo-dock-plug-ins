@@ -17,9 +17,8 @@ CD_APPLET_DEFINITION ("Rhythmbox",
 	N_("Control your Rhythmbox player directly in the dock !\n"
 	"Play/pause with left click, next song with middle click.\n"
 	"You can drag and drop covers (jpg) on the icon to use theme,\n"
-	"or songs to put them in the queue. \n"
-	"Adrien Pilleboue (Necropotame)"),
-	"Opengl display : Nochka85")
+	"or songs to put them in the queue. \n"),
+	"Adrien Pilleboue (Necropotame) & Nochka85 (Opengl display)")
 
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
@@ -36,7 +35,7 @@ CD_APPLET_INIT_BEGIN
 		}
 	}
 		
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 	{		
 		cd_opengl_init_opengl_datas ();						
 	}
@@ -75,13 +74,13 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	
 	
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 	{
 		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 		cairo_dock_launch_animation (myContainer);
 		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_FIRST, myApplet);
 	}
-	
+	myData.CoverWasDistant = FALSE;
 CD_APPLET_INIT_END
 
 
@@ -138,6 +137,7 @@ CD_APPLET_RELOAD_BEGIN
 			myData.pSurfaces[i] = NULL;
 		}
 	}
+		
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
@@ -150,27 +150,21 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_inhibate_class ("rhythmbox", myIcon);
 		}
 		
-		
 		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-		{
+		{		
 			cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, myApplet);
+		}
 		
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
+		{
 			cd_opengl_init_opengl_datas ();
-			
-				
+							
 			cairo_dock_launch_animation (myContainer);
 			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
 		}
-		
-		
 	}
 	
 	//\_______________ On redessine notre icone.
-	
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-	{
-		cd_opengl_mouse_on_buttons ();
-	}
 	
 	if (myData.dbus_enable)
 	{
@@ -190,4 +184,6 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		rhythmbox_set_surface (PLAYER_BROKEN);
 	}
+	myData.CoverWasDistant = FALSE;
+	
 CD_APPLET_RELOAD_END

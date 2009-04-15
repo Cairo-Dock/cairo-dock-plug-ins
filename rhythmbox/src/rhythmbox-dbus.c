@@ -124,7 +124,7 @@ void getSongInfos(void)
 	GHashTable *data_list = NULL;
 	GValue *value;
 	const gchar *data;
-	
+		
 	if(dbus_g_proxy_call (dbus_proxy_shell, "getSongProperties", NULL,
 		G_TYPE_STRING, myData.playing_uri,
 		G_TYPE_INVALID,
@@ -166,7 +166,26 @@ void getSongInfos(void)
 		if (value != NULL && G_VALUE_HOLDS_STRING(value))
 		{
 			const gchar *cString = g_value_get_string(value);
-			cd_debug ("RB nous a refile cette adresse : %s", cString);
+			cd_debug ("RB-YDU : RB nous a refile cette adresse : %s", cString);
+			
+			GString *command = g_string_new ("");
+			if(strncmp(cString, "http://", 7) == 0)
+			{
+				cd_debug("RB-YDU : Le fichier est distant");
+				g_string_printf (command, "wget -O %s/.cache/rhythmbox/covers/\"%s - %s.jpg\" %s",
+					g_getenv ("HOME"),
+					myData.playing_artist,
+					myData.playing_album,
+					cString);
+				
+				myData.CoverWasDistant = TRUE;
+			
+			}	
+			g_spawn_command_line_async (command->str, NULL);
+			cd_debug("RB : La commande pour un fichier distant est passée");
+			g_string_free (command, TRUE);
+			
+			
 			if (cString != NULL)
 			{
 				if (strncmp (cString, "file://", 7) == 0)
@@ -199,11 +218,35 @@ void getSongInfos(void)
 				{
 					g_free (myData.playing_cover);
 					myData.playing_cover = g_strdup_printf ("%s/cover.jpg", cSongDir);
-					cd_debug ("  test de %s", myData.playing_cover);
+					cd_debug ("test de %s", myData.playing_cover);
 					if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 					{
-						g_free (myData.playing_cover);
-						myData.playing_cover = NULL;
+						
+						myData.playing_cover = g_strdup_printf ("%s/album.jpg", cSongDir);
+						cd_debug ("test de %s", myData.playing_cover);
+						if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
+						{
+						
+							myData.playing_cover = g_strdup_printf ("%s/albumart.jpg", cSongDir);
+							cd_debug ("test de %s", myData.playing_cover);
+							if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
+							{
+								
+								myData.playing_cover = g_strdup_printf ("%s/.folder.jpg", cSongDir);
+								cd_debug ("test de %s", myData.playing_cover);
+								if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
+								{
+						
+									myData.playing_cover = g_strdup_printf ("%s/folder.jpg", cSongDir);
+									cd_debug ("test de %s", myData.playing_cover);
+									if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
+									{
+										g_free (myData.playing_cover);
+										myData.playing_cover = NULL;
+									}
+								}
+							}
+						}
 					}
 				}
 				g_free (cSongDir);
@@ -211,9 +254,11 @@ void getSongInfos(void)
 			
 			if (myData.playing_cover == NULL)  // on regarde maintenant dans le cache de RB.
 			{
-				myData.playing_cover = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);  /// gerer le repertoire ~/.cache/rhythmbox/covers ...
-			}
+				myData.playing_cover = g_strdup_printf("%s/.cache/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);  /// gerer le repertoire ~/.cache/rhythmbox/covers ...
+			}	
 		}
+		
+				
 		g_print ("  playing_cover <- %s", myData.playing_cover);
 		
 		g_hash_table_destroy (data_list);

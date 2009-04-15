@@ -21,7 +21,7 @@ AC_SUBST(GETTEXT_CD_PKG)
 AC_SUBST(VERSION_CD_PKG, "$VERSION")
 AC_SUBST(PACKAGE_CD_PKG, "$PACKAGE")
 
-pkguserdirname="Toons"
+pkguserdirname="CD_APPLET_NAME"
 AC_SUBST(pkguserdirname)
 pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/CD_APPLET_NAME]
 AC_SUBST(pkgdatadir)

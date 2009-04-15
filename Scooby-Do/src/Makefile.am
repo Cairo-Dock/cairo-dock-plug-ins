@@ -27,7 +27,7 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_Scooby_Do_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(scooby_dodatadir)"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""Scooby-Do.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""Scooby-Do"\"\

@@ -9,11 +9,11 @@ theme_DATA =	    \
 	button2.png\
 	button3.png\
 	button4.png\
-	osd_home.svg\
-	osd_next.svg\
-	osd_pause.svg\
-	osd_play.svg\
-	osd_prev.svg\
+	osd_home.png\
+	osd_next.png\
+	osd_pause.png\
+	osd_play.png\
+	osd_prev.png\
 	theme.conf
 
 EXTRA_DIST = $(theme_DATA)
