@@ -178,7 +178,7 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 	
 	//\____________________ On dessine les icones avec leurs etiquettes.
 	///cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
 	if (pFirstDrawnElement == NULL)
 		return;
 
@@ -192,7 +192,8 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 		icon = ic->data;
 
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, ! mySystem.bTextAlwaysHorizontal);
+		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
+		/*cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, ! mySystem.bTextAlwaysHorizontal);
 		
 		if (mySystem.bTextAlwaysHorizontal && icon->pTextBuffer != NULL && icon->fScale > 1.01 && (! mySystem.bLabelForPointedIconOnly || icon->bPointed))  // 1.01 car sin(pi) = 1+epsilon :-/
 		{
@@ -205,10 +206,6 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 			{
 				cairo_rotate (pCairoContext, icon->fOrientation);
 			}
-			/*if (fRatio < 1)  // bof, finalement spa top de reduire le texte.
-				cairo_scale (pCairoContext,
-					fRatio,
-					fRatio);*/
 			if (! bHorizontalDock && mySystem.bTextAlwaysHorizontal)
 			{
 				cairo_set_source_surface (pCairoContext,
@@ -238,7 +235,7 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 				fMagnitude *= (fMagnitude * mySystem.fLabelAlphaThreshold + 1) / (mySystem.fLabelAlphaThreshold + 1);
 			}
 			cairo_paint_with_alpha (pCairoContext, fMagnitude);
-		}
+		}*/
 		
 		cairo_restore (pCairoContext);
 
@@ -737,7 +734,7 @@ void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 	}
 	
 	//\____________________ On dessine les icones.
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
 	if (pFirstDrawnElement == NULL)
 		return;
 

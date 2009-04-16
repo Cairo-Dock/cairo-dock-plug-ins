@@ -76,7 +76,10 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	if (myDesklet)  // on cree le widget pour avoir qqch a afficher dans le desklet.
+	{
 		xgamma_build_and_show_widget ();
+		CD_APPLET_SET_STATIC_DESKLET;
+	}
 	else
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 CD_APPLET_INIT_END
@@ -109,6 +112,7 @@ CD_APPLET_RELOAD_BEGIN
 				myData.pDialog = NULL;
 				cairo_dock_add_interactive_widget_to_desklet (myData.pWidget, myDesklet);
 				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+				CD_APPLET_SET_STATIC_DESKLET;
 			}
 			else  // il faut passer du desklet au dialogue
 			{

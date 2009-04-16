@@ -45,7 +45,10 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
+	{
 		systray_build_and_show ();
+		CD_APPLET_SET_STATIC_DESKLET;
+	}
 	if (myDock && myIcon->acFileName == NULL)  // en mode desklet, on n'a pas besoin de l'icone.
 	{
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
@@ -81,6 +84,7 @@ CD_APPLET_RELOAD_BEGIN
 				myData.dialog = NULL;
 				cairo_dock_add_interactive_widget_to_desklet (myData.tray->widget, myDesklet);
 				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+				CD_APPLET_SET_STATIC_DESKLET;
 			}
 			else  // il faut passer du desklet au dialogue
 			{

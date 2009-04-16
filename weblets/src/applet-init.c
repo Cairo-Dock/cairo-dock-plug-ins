@@ -35,7 +35,8 @@ CD_APPLET_INIT_BEGIN
 		{
 			weblet_build_and_show (myApplet);
 		}
-
+		CD_APPLET_SET_STATIC_DESKLET;
+		
 		// mise en place du timer
 		myData.pRefreshTimer = cairo_dock_new_measure_timer (myConfig.iReloadTimeout,
 			NULL,
@@ -87,6 +88,7 @@ CD_APPLET_RELOAD_BEGIN
 				cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
 				//myDesklet->renderer = term_draw_in_desklet;
 				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+				CD_APPLET_SET_STATIC_DESKLET;
 			}
 			else  // il faut passer du desklet au dialogue
 			{
