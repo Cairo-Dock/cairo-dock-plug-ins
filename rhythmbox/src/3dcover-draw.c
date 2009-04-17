@@ -681,101 +681,113 @@ gboolean cd_opengl_test_update_icon_slow (CairoDockModuleInstance *myApplet, Ico
 
 void cd_opengl_mouse_on_buttons (void)
 {	
-	//\_________________ On chope les coordonnees du curseur par rapport a notre container et on les limite à la taille
-	// du desklet.
-	int iMouseXglobal, iMouseYglobal;
-	gdk_window_get_pointer (myContainer->pWidget->window, &iMouseXglobal, &iMouseYglobal, NULL);
-	
-	myData.iMyDeskletWidth = myDesklet->iWidth;
-	myData.iMyDeskletHeight = myDesklet->iHeight;
-			
-	
-	if (iMouseXglobal < 0 || iMouseYglobal < 0 || iMouseXglobal > myData.iMyDeskletWidth || iMouseYglobal > myData.iMyDeskletHeight)
+	if (myDesklet) // On ne teste le survol que si l'applet est détachée
 	{
-		iMouseXglobal = 0;
-		iMouseYglobal = 0;
-	}
-	
-	//\_________________ On recale l'origine au centre et se met à la même echelle que les thèmes : 0,0 à 1000,1000.
-	
-	if (myData.iMyDeskletWidth != 0 && myData.iMyDeskletHeight != 0)
-	{
-		myData.iMouseX =  (iMouseXglobal *1000 / myData.iMyDeskletWidth);
-		myData.iMouseY =  (iMouseYglobal *1000 / myData.iMyDeskletHeight);
-	}
-	else
-	{
-		myData.iMouseX =  0; // Pour éviter la division par zéro lors de la première boucle
-		myData.iMouseY =  0; 
-	}
-	
-	
-	//\_________________ On teste le survole :
-	if (myData.numberButtons != 0)
-	{
-		// Test du survol button 1 :
-		if ( myData.iMouseX > (myData.button1coordX - (myData.button1sizeX/2))  &&  myData.iMouseX < (myData.button1coordX + (myData.button1sizeX/2)))
+		//\_________________ On chope les coordonnees du curseur par rapport a notre container et on les limite à la taille
+		// du desklet.
+		int iMouseXglobal, iMouseYglobal;
+		gdk_window_get_pointer (myContainer->pWidget->window, &iMouseXglobal, &iMouseYglobal, NULL);
+		
+		myData.iMyDeskletWidth = myDesklet->iWidth;
+		myData.iMyDeskletHeight = myDesklet->iHeight;
+				
+		
+		if (iMouseXglobal < 0 || iMouseYglobal < 0 || iMouseXglobal > myData.iMyDeskletWidth || iMouseYglobal > myData.iMyDeskletHeight)
 		{
-			if ( myData.iMouseY > (myData.button1coordY - (myData.button1sizeY/2))  &&  myData.iMouseY < (myData.button1coordY + (myData.button1sizeY/2)))
+			iMouseXglobal = 0;
+			iMouseYglobal = 0;
+		}
+		
+		//\_________________ On recale l'origine au centre et se met à la même echelle que les thèmes : 0,0 à 1000,1000.
+		
+		if (myData.iMyDeskletWidth != 0 && myData.iMyDeskletHeight != 0)
+		{
+			myData.iMouseX =  (iMouseXglobal *1000 / myData.iMyDeskletWidth);
+			myData.iMouseY =  (iMouseYglobal *1000 / myData.iMyDeskletHeight);
+		}
+		else
+		{
+			myData.iMouseX =  0; // Pour éviter la division par zéro lors de la première boucle
+			myData.iMouseY =  0; 
+		}
+		
+		
+		//\_________________ On teste le survole :
+		if (myData.numberButtons != 0)
+		{
+			// Test du survol button 1 :
+			if ( myData.iMouseX > (myData.button1coordX - (myData.button1sizeX/2))  &&  myData.iMouseX < (myData.button1coordX + (myData.button1sizeX/2)))
 			{
-				myData.mouseOnButton1 = TRUE;
+				if ( myData.iMouseY > (myData.button1coordY - (myData.button1sizeY/2))  &&  myData.iMouseY < (myData.button1coordY + (myData.button1sizeY/2)))
+				{
+					myData.mouseOnButton1 = TRUE;
+				}
+				else
+					myData.mouseOnButton1 = FALSE;
 			}
 			else
 				myData.mouseOnButton1 = FALSE;
-		}
-		else
-			myData.mouseOnButton1 = FALSE;
-				
-		
-		if (myData.numberButtons > 3)
-		{
-			// Test du survol button 4 :
-			if ( myData.iMouseX > (myData.button4coordX - (myData.button4sizeX/2))  &&  myData.iMouseX < (myData.button4coordX + (myData.button4sizeX/2)))
+					
+			
+			if (myData.numberButtons > 3)
 			{
-				if ( myData.iMouseY > (myData.button4coordY - (myData.button4sizeY/2))  &&  myData.iMouseY < (myData.button4coordY + (myData.button4sizeY/2)))
+				// Test du survol button 4 :
+				if ( myData.iMouseX > (myData.button4coordX - (myData.button4sizeX/2))  &&  myData.iMouseX < (myData.button4coordX + (myData.button4sizeX/2)))
 				{
-					myData.mouseOnButton4 = TRUE;
+					if ( myData.iMouseY > (myData.button4coordY - (myData.button4sizeY/2))  &&  myData.iMouseY < (myData.button4coordY + (myData.button4sizeY/2)))
+					{
+						myData.mouseOnButton4 = TRUE;
+					}
+					else
+						myData.mouseOnButton4 = FALSE;
 				}
 				else
 					myData.mouseOnButton4 = FALSE;
 			}
-			else
-				myData.mouseOnButton4 = FALSE;
-		}
-		if (myData.numberButtons > 2)
-		{
-			// Test du survol button 3 :
-			if ( myData.iMouseX > (myData.button3coordX - (myData.button3sizeX/2))  &&  myData.iMouseX < (myData.button3coordX + (myData.button3sizeX/2)))
+			if (myData.numberButtons > 2)
 			{
-				if ( myData.iMouseY > (myData.button3coordY - (myData.button3sizeY/2))  &&  myData.iMouseY < (myData.button3coordY + (myData.button3sizeY/2)))
+				// Test du survol button 3 :
+				if ( myData.iMouseX > (myData.button3coordX - (myData.button3sizeX/2))  &&  myData.iMouseX < (myData.button3coordX + (myData.button3sizeX/2)))
 				{
-					myData.mouseOnButton3 = TRUE;
+					if ( myData.iMouseY > (myData.button3coordY - (myData.button3sizeY/2))  &&  myData.iMouseY < (myData.button3coordY + (myData.button3sizeY/2)))
+					{
+						myData.mouseOnButton3 = TRUE;
+					}
+					else
+						myData.mouseOnButton3 = FALSE;
 				}
 				else
 					myData.mouseOnButton3 = FALSE;
 			}
-			else
-				myData.mouseOnButton3 = FALSE;
-		}
-		if (myData.numberButtons > 1)
-		{
-			// Test du survol button 2 :
-			if ( myData.iMouseX > (myData.button2coordX - (myData.button2sizeX/2))  &&  myData.iMouseX < (myData.button2coordX + (myData.button2sizeX/2)))
+			if (myData.numberButtons > 1)
 			{
-				if ( myData.iMouseY > (myData.button2coordY - (myData.button2sizeY/2))  &&  myData.iMouseY < (myData.button2coordY + (myData.button2sizeY/2)))
+				// Test du survol button 2 :
+				if ( myData.iMouseX > (myData.button2coordX - (myData.button2sizeX/2))  &&  myData.iMouseX < (myData.button2coordX + (myData.button2sizeX/2)))
 				{
-					myData.mouseOnButton2 = TRUE;
+					if ( myData.iMouseY > (myData.button2coordY - (myData.button2sizeY/2))  &&  myData.iMouseY < (myData.button2coordY + (myData.button2sizeY/2)))
+					{
+						myData.mouseOnButton2 = TRUE;
+					}
+					else
+						myData.mouseOnButton2 = FALSE;
 				}
 				else
 					myData.mouseOnButton2 = FALSE;
 			}
+			
+			if ( myData.mouseOnButton1 || myData.mouseOnButton2 || myData.mouseOnButton3 || myData.mouseOnButton4)
+				myData.NoOSD = FALSE;
 			else
-				myData.mouseOnButton2 = FALSE;
+				myData.NoOSD = TRUE;
 		}
-		
-		if ( myData.mouseOnButton1 || myData.mouseOnButton2 || myData.mouseOnButton3 || myData.mouseOnButton4)
-			myData.NoOSD = FALSE;
-		else
-			myData.NoOSD = TRUE;
+	}
+	else  // Si l'applet est dans le dock
+	{
+		// On ne fait rien
+		myData.NoOSD = TRUE;
+		myData.mouseOnButton1 = FALSE;
+		myData.mouseOnButton2 = FALSE;
+		myData.mouseOnButton3 = FALSE;
+		myData.mouseOnButton4 = FALSE;
 	}
 }

@@ -66,7 +66,7 @@ CD_APPLET_ON_BUILD_MENU_END
 // Cette fonction met le lecteur en pause ou en lecture selon son état.
 //*********************************************************************************
 CD_APPLET_ON_CLICK_BEGIN
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myData.numberButtons != 0  && myConfig.bOpenglThemes)
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myData.numberButtons != 0  && myConfig.bOpenglThemes && myDesklet)
 	{			
 		// Actions au clic sur un bouton :
 		if (myData.mouseOnButton1)
