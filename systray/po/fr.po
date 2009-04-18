@@ -5,7 +5,6 @@
 #
 #: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
 #: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -122,7 +121,7 @@ msgstr "Choisissez un thème de décorations pour ce desklet :"
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en uiliser aucune."
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -168,7 +167,7 @@ msgstr "Décalage en bas :"
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en uiliser aucune."
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"

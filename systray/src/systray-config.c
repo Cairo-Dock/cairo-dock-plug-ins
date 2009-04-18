@@ -29,7 +29,6 @@
 #include "systray-struct.h"
 
 
-
 CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F2");
@@ -46,6 +45,7 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
+	g_print ("CD_APPLET_RESET_DATA_BEGIN\n");
 	if (myData.dialog)
 	{
 		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
@@ -54,6 +54,10 @@ CD_APPLET_RESET_DATA_BEGIN
 	else if (myData.tray)
 	{
 		gtk_widget_destroy (myData.tray->widget);
+		myData.tray->widget = NULL;
 	}
-	myData.tray = NULL;
+	
+	/// detruire la invisible window et la liste des icones ...
+	g_object_unref (myData.tray->manager);
+	g_print ("bye bye\n");
 CD_APPLET_RESET_DATA_END

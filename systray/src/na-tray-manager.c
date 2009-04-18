@@ -318,6 +318,8 @@ static void
 na_tray_manager_handle_dock_request (NaTrayManager       *manager,
 				     XClientMessageEvent *xevent)
 {
+  if (!myApplet)  // precaution au cas ou les callbacks seraient actives apres avoir ete stoppe.
+  	return ;
   GtkWidget *socket;
   Window *window;
   GtkRequisition req;
@@ -410,6 +412,8 @@ na_tray_manager_handle_client_message_message_data (GdkXEvent *xev,
                                                     GdkEvent  *event,
                                                     gpointer   data)
 {
+  if (!myApplet)  // precaution au cas ou les callbacks seraient actives apres avoir ete stoppe.
+  	return ;
   XClientMessageEvent *xevent;
   NaTrayManager       *manager;
   GList               *p;
@@ -459,6 +463,8 @@ static void
 na_tray_manager_handle_begin_message (NaTrayManager       *manager,
 				      XClientMessageEvent *xevent)
 {
+  if (!myApplet)  // precaution au cas ou les callbacks seraient actives apres avoir ete stoppe.
+  	return ;
   GtkSocket      *socket;
   GList          *p;
   PendingMessage *msg;
@@ -516,6 +522,8 @@ static void
 na_tray_manager_handle_cancel_message (NaTrayManager       *manager,
 				       XClientMessageEvent *xevent)
 {
+  if (!myApplet)  // precaution au cas ou les callbacks seraient actives apres avoir ete stoppe.
+  	return ;
   GList     *p;
   GtkSocket *socket;
 
@@ -549,6 +557,8 @@ na_tray_manager_handle_client_message_opcode (GdkXEvent *xev,
                                               GdkEvent  *event,
                                               gpointer   data)
 {
+  if (!myApplet)  // precaution au cas ou les callbacks seraient actives apres avoir ete stoppe.
+  	return ;
   XClientMessageEvent *xevent;
   NaTrayManager       *manager;
 
@@ -582,6 +592,8 @@ na_tray_manager_window_filter (GdkXEvent *xev,
                                GdkEvent  *event,
                                gpointer   data)
 {
+  if (!myApplet)  // precaution au cas ou les callbacks seraient actives apres avoir ete stoppe.
+  	return ;
   XEvent        *xevent = (GdkXEvent *)xev;
   NaTrayManager *manager = data;
 
