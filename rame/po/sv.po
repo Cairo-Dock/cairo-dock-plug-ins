@@ -100,7 +100,7 @@ msgstr "Placera ovanför andra fönster?"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 "type=utility)"
@@ -366,7 +366,7 @@ msgid "Show free memory instead of used memory ?"
 msgstr ""
 
 #: ../data/messages:155
-msgid "Let empty to use he default one."
+msgid "Let empty to use the default one."
 msgstr ""
 
 #: ../data/messages:157

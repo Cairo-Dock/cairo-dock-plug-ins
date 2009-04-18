@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -21,31 +20,35 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
+"Affiche l'usuel Menu d'Applications et les Documents récents.\n"
+"L'applet est compatible avec plusieurs menus XDG conformes (Gnome, XFCE, KDE, ...)\n"
+"Clique du milieu pour ouvrir un lanceur d'applications rapide (vous pouvez définir "
+"un raccourci pour cela, comme ALT+F2\n"
+"Vous pouvez aussi définir un raccourci pour déplier le menu (comme ALT+F1)"
 
 #: ../src/applet-notifications.c:144
 msgid "Quick launch"
-msgstr ""
+msgstr "Lancement rapide"
 
 #: ../src/applet-notifications.c:145
-#, fuzzy
 msgid "Configure menu"
-msgstr "Configuration"
+msgstr "Menu de configuration"
 
 #: ../src/applet-notifications.c:146
 msgid "Clear recent"
-msgstr ""
+msgstr "Nettoyage des récents"
 
 #: ../src/applet-recent.c:47
 msgid "Recent Documents"
-msgstr ""
+msgstr "Documents récents"
 
 #: ../src/applet-recent.c:99
 msgid "Clear the list of the recently used documents ?"
-msgstr ""
+msgstr "Nettoyer la liste des Documents récents ?"
 
 #: ../src/applet-run-dialog.c:337
 msgid "Enter a command to launch :"
-msgstr ""
+msgstr "Entrez une commande pour le lancement :"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -53,7 +56,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser celle par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -65,12 +68,11 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:9 ../data/messages:85
 msgid "Let empty to use the default one."
-msgstr ""
+msgstr "Laissez vide pour utiliser celui par défaut."
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Image's filename :"
-msgstr "Nom de l'icône :"
+msgstr "Nom du fichier de l'image :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
@@ -115,13 +117,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
@@ -168,7 +169,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -216,7 +217,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"
@@ -236,39 +237,39 @@ msgstr "Afficher les icônes dans le menu ?"
 
 #: ../data/messages:81
 msgid "Shortkey to show/hide the menu :"
-msgstr ""
+msgstr "Raccourci pour afficher/cacher le menu :"
 
 #: ../data/messages:83
 msgid "Shortkey to show/hide the quick-launch dialog :"
-msgstr ""
+msgstr "Raccourci pour afficher/cacher le lanceur d'applications rapide :"
 
 #: ../data/messages:87
 msgid "Command to use to configure the menu :"
-msgstr ""
+msgstr "Commande à utiliser pour configurer le menu :"
 
 #: ../data/messages:89
 msgid "Recent documents"
-msgstr ""
+msgstr "Documents récents"
 
 #: ../data/messages:91
 msgid "Show recent documents ?"
-msgstr ""
+msgstr "Montrer les Documents récents ?"
 
 #: ../data/messages:93
 msgid "Let blank to not use this filter."
-msgstr ""
+msgstr "Laisser vide pour ne pas utiliser ce filtre."
 
 #: ../data/messages:95
 msgid "Only show files that are under this folder or its sub-folder :"
-msgstr ""
+msgstr "Afficher uniquement les fichiers en dessous de ce dossier ou des ses sous-dossiers :"
 
 #: ../data/messages:97
 msgid "in days. Set 0 to not use this filter."
-msgstr ""
+msgstr "En jour. Entrez 0 pour ne pas utiliser ce filtre."
 
 #: ../data/messages:99
 msgid "Only show files whose last modification date is less than ;"
-msgstr ""
+msgstr "Afficher uniquement les fichiers dont la dernière date de modification est inférieur :"
 
 #~ msgid ""
 #~ "This is the GMenu applet\n"

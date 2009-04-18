@@ -106,6 +106,6 @@ show hidden = false
 #k Shortkey to show/hide the menu :
 menu shortkey = <Control>F6
 
-#i[1;20] Granularity of the menu's building :
+#i[1;20] Gradual building of the menu :
 #{Number of items loaded at once. Setting a high value speeds up a little the loading, but blocks the appli more.}
 granularity = 3

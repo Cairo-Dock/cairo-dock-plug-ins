@@ -99,7 +99,7 @@ msgstr "他ウィンドウより常に上に？"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
@@ -367,7 +367,7 @@ msgid "Show free memory instead of used memory ?"
 msgstr ""
 
 #: ../data/messages:155
-msgid "Let empty to use he default one."
+msgid "Let empty to use the default one."
 msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
 #: ../data/messages:157

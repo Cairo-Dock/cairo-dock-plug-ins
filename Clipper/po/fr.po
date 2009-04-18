@@ -14,7 +14,7 @@ msgstr ""
 
 #: ../src/applet-config.c:23 ../src/applet-notifications.c:27
 msgid "No items yet."
-msgstr "Encore aucun item."
+msgstr "Encore aucun objet."
 
 #: ../src/applet-init.c:22
 msgid ""
@@ -26,6 +26,13 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
+"Cet applet garde un historique du presse-papier et des objets sélectionnés avec la souris,\n"
+"afin que vous puissiez les rappeler rapidement. C'est un clone du très connu Klipper.\n"
+"Le presse-papier, les sélections avec la souris, les actions prédéfinies et les objets "
+"persistants sont gérés.\n"
+"Clique gauche pour ouvrir l'historique du presse-papier et des sélections par la souris.\n"
+"Déposer du texte sur l'icône pour créer des objets persistants, clique du milieu pour "
+"rappeler ceux-ci."
 
 #: ../src/applet-notifications.c:72
 msgid ""
@@ -145,7 +152,7 @@ msgstr "Icône"
 
 #: ../data/messages:55
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laisser vide pour utiliser celle par défaut."
 
 #: ../data/messages:57
 msgid "Desired icon size for this applet"
@@ -157,12 +164,11 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:61
 msgid "Let empty to use the default one."
-msgstr ""
+msgstr "Laisser vide pour utiliser celle par défaut."
 
 #: ../data/messages:63
-#, fuzzy
 msgid "Image's filename :"
-msgstr "Nom de l'icône :"
+msgstr "Nom du fichier de l'image :"
 
 #: ../data/messages:65
 msgid "Name of the dock it belongs to:"
@@ -207,13 +213,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:83
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:85
 msgid "Keep on widget layer ?"
@@ -260,7 +265,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:103
 msgid "Background image :"
@@ -308,7 +313,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:125
 msgid "Foreground image :"

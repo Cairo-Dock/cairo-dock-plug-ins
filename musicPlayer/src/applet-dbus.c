@@ -122,7 +122,7 @@ void cd_musicplayer_check_dbus_connection_with_two_interfaces (void)
 			if ((myData.dbus_enable) && (myData.dbus_enable_shell))
 				cd_message("MP : Connexions aux bus effectuees");
 		}
-		else if ((myData.dbus_enable) && (myData.opening)) // Sinon on est deja connecte au bus, on lit juste les donnees
+		else if ((myData.dbus_enable) && (myData.opening) && (myData.dbus_enable_shell)) // Sinon on est deja connecte au bus, on lit juste les donnees
 			;//cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
 		else // Sinon le lecteur n'est pas ouvert
 		{
@@ -137,22 +137,22 @@ void cd_musicplayer_check_dbus_connection_with_two_interfaces (void)
 //*********************************************************************************
 // musicplayer_getStatus_*() : Test si musicplayer joue de la musique ou non
 //*********************************************************************************
-void cd_musicplayer_getStatus_string (void)
+void cd_musicplayer_getStatus_string (const char *status_paused, const char *status_playing, const char* status_stopped )
 {
 		gchar *status=NULL;
 		status = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_status);
 		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
-		if ((! g_ascii_strcasecmp(status, "playing")) || (!g_ascii_strcasecmp(status, "1")))
+		if ((! g_ascii_strcasecmp(status, status_playing)) || (!g_ascii_strcasecmp(status, "1")))
 		{
 			//cd_debug("MP : le lecteur est en statut PLAY");
 			myData.pPlayingStatus = PLAYER_PLAYING;
 		}
-		else if (! g_ascii_strcasecmp(status, "paused"))
+		else if (! g_ascii_strcasecmp(status, status_paused))
 		{
 			//cd_debug("MP : le lecteur est en statut PAUSED");
 			myData.pPlayingStatus = PLAYER_PAUSED;
 		}
-		else if (! g_ascii_strcasecmp(status, "stopped"))
+		else if ((status_stopped) &&(! g_ascii_strcasecmp(status, status_stopped)))
 		{
 			//cd_debug("MP : le lecteur est en statut STOPPED");
 			myData.pPlayingStatus = PLAYER_STOPPED;
@@ -165,14 +165,14 @@ void cd_musicplayer_getStatus_string (void)
 }
 
 
-void cd_musicplayer_getStatus_integer (void)
+void cd_musicplayer_getStatus_integer (int status_paused, int status_playing)
 {
 	int status;
 	
 	status=cairo_dock_dbus_get_integer(myData.dbus_proxy_player, myData.DBus_commands.get_status);
 	//cd_debug("MP : Statut du lecteur : %d",status);
-	if (status == 0) myData.pPlayingStatus = PLAYER_PAUSED;
-	else if (status == 1) myData.pPlayingStatus = PLAYER_PLAYING;
+	if (status == status_paused) myData.pPlayingStatus = PLAYER_PAUSED;
+	else if (status == status_playing) myData.pPlayingStatus = PLAYER_PLAYING;
 	else myData.pPlayingStatus = PLAYER_STOPPED;
 }
 

@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -21,6 +20,7 @@ msgstr ""
 msgid ""
 "This plug-in provides animations for appearance & disappearance of icons."
 msgstr ""
+"Ce plug-in ajoute des animations pour l'apparition et la disparition des icônes."
 
 #: ../data/messages:1
 msgid "Global"
@@ -28,65 +28,65 @@ msgstr ""
 
 #: ../data/messages:3
 msgid "Animation on disappearance :"
-msgstr ""
+msgstr "Animation de disparition :"
 
 #: ../data/messages:5 ../data/messages:13
 msgid "Evaporate"
-msgstr ""
+msgstr "Evaporation"
 
 #: ../data/messages:7 ../data/messages:31
 msgid "Fade out"
-msgstr ""
+msgstr "Disparition graduelle"
 
 #: ../data/messages:9 ../data/messages:35
 msgid "Explode"
-msgstr ""
+msgstr "Explosion"
 
 #: ../data/messages:11 ../data/messages:45
 msgid "Break"
-msgstr ""
+msgstr "Casser"
 
 #: ../data/messages:15 ../data/messages:33 ../data/messages:37
 #: ../data/messages:47
 msgid "Duration of the animation :"
-msgstr ""
+msgstr "Durée de l'animation :"
 
 #: ../data/messages:17
 msgid "1st color of gradation :"
-msgstr ""
+msgstr "1ère couleur de la graduation :"
 
 #: ../data/messages:19
 msgid "2nd color of gradation :"
-msgstr ""
+msgstr "2ème couleur de la graduation :"
 
 #: ../data/messages:21
 msgid "Random colors ?"
-msgstr ""
+msgstr "Couleurs au hasard ?"
 
 #: ../data/messages:23
 msgid "Number of particles :"
-msgstr ""
+msgstr "Nombre de particules :"
 
 #: ../data/messages:25
 msgid "Particle size :"
-msgstr ""
+msgstr "Taille des particules :"
 
 #: ../data/messages:27
 msgid "Particle speed :"
-msgstr ""
+msgstr "Vitesse des particules :"
 
 #: ../data/messages:29
 msgid "Evaporate upward ?"
-msgstr ""
+msgstr "Evaporation ascendante ?"
 
 #: ../data/messages:39 ../data/messages:49
 msgid "Number of pieces :"
-msgstr ""
+msgstr "Nombre de pièces :"
 
 #: ../data/messages:41
 msgid "Explosion radius :"
-msgstr ""
+msgstr "Rayon de l'explosion :"
 
 #: ../data/messages:43
 msgid "Break the icon in cubes ?"
-msgstr ""
+msgstr "Casser l'icône en cubes ?"

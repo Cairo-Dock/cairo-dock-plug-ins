@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -25,6 +24,11 @@ msgid ""
 "\tScroll up/down to select the previous/next layout\n"
 "\tRight-click gives you access to the list of available layouts."
 msgstr ""
+"Cet applet vous permet un contrôle de l'agencement de votre clavier.\n"
+"\tUn indicateur du statut de NUM et CAPS lock peut être affiché\n"
+"\tClique gauche pour basculer vers l'agencement suivant,\n"
+"\tRoulette vers le haut/bas pour sélectionner l'agencement précédent/suivant,\n"
+"\tClique droit pour donner un accès à la liste des agencements disponibles."
 
 #: ../data/messages:1
 msgid "Icon"
@@ -32,7 +36,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser celle par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -44,7 +48,7 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:9
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du dock l'appartenant:"
 
 #: ../data/messages:11
 msgid "Desklet"
@@ -63,7 +67,6 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
-#, fuzzy
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
@@ -86,13 +89,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -139,7 +141,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47 ../data/messages:85
 msgid "Background image :"
@@ -187,7 +189,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -203,42 +205,42 @@ msgstr ""
 
 #: ../data/messages:75
 msgid "caps lock, num lock, etc"
-msgstr ""
+msgstr "CAPS lock, NUM lock, etc"
 
 #: ../data/messages:77
 msgid "Display keyboard locks as quick-info ?"
-msgstr ""
+msgstr "Afficher le statut des CAPS et NUM locks en info rapide ?"
 
 #: ../data/messages:79
 msgid ""
 "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
 "changes."
-msgstr ""
+msgstr "en ms. Mettez 0 si vous ne voulez pas d'animation quand l'agencement "
+"du clavier change."
 
 #: ../data/messages:81
 msgid "Duration of the transition animation :"
-msgstr ""
+msgstr "Durée de l'animation de transition :"
 
 #: ../data/messages:83
 msgid "Display"
-msgstr ""
+msgstr "Affichage"
 
 #: ../data/messages:87
 msgid "Text color"
-msgstr ""
+msgstr "Couleur du texte"
 
 #: ../data/messages:89
-#, fuzzy
 msgid "Text weight :"
-msgstr "hauteur :"
+msgstr "Hauteur du texte :"
 
 #: ../data/messages:91
 msgid "Outline text ?"
-msgstr ""
+msgstr "Texte en grand ?"
 
 #: ../data/messages:93
 msgid "Font :"
-msgstr ""
+msgstr "Police"
 
 #, fuzzy
 #~ msgid "Image's filename :"

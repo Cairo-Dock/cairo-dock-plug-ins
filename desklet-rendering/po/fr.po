@@ -104,7 +104,7 @@ msgstr "Parabolique"
 
 #: ../data/messages:39
 msgid "The higher it is, the sooner the parabole will be curved."
-msgstr ""
+msgstr "Au plus c'est grand, au plus tôt la parabole sera courbée"
 
 #: ../data/messages:41
 msgid "Curvature :"
@@ -112,7 +112,7 @@ msgstr "Courbure :"
 
 #: ../data/messages:43
 msgid "The parabole will be conscricted to a rectangle of this proportion."
-msgstr ""
+msgstr "La parabole sera constricte vers un rectangle avec ces proportions."
 
 #: ../data/messages:45
 msgid "Ratio height/width :"

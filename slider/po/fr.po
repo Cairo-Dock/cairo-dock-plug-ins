@@ -13,7 +13,7 @@ msgstr ""
 
 #: ../src/applet-init.c:19
 msgid "slider"
-msgstr ""
+msgstr "slider"
 
 #: ../src/applet-init.c:22
 msgid ""
@@ -22,6 +22,10 @@ msgid ""
 "Click to play/pause or to edit the current image.\n"
 "Middle-click to open the images folder."
 msgstr ""
+"Cet applet est un simple visionneur d'image\n"
+"Vous avez juste à sélectionner le dossier et les effets d'affichage et c'est prêt\n"
+"Clique gauche pour Play/Pause ou pour éditer l'image actuelle\n"
+"Clique du milieu pour ouvrir le dossier des images."
 
 #: ../src/applet-notifications.c:153
 msgid "Play"
@@ -37,7 +41,7 @@ msgstr "Ouvrir l'image courante"
 
 #: ../src/applet-notifications.c:158
 msgid "Browse images folder"
-msgstr ""
+msgstr "Parcourir le dossier d'images"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -45,7 +49,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser l'icône par défaut"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -98,13 +102,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -124,7 +127,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -152,7 +154,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -200,7 +202,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -239,10 +241,12 @@ msgid ""
 "It will prevent the dock from freezing during the image loading, but does "
 "not work with cairo."
 msgstr ""
+"Le dock sera prévenu d'un arrêt durant le chargement de l'image, mais "
+"ne fonctionne pas avec cairo."
 
 #: ../data/messages:87
 msgid "Use another thread to load the images ?"
-msgstr ""
+msgstr "Utiliser un autre processus pour charger les images ?"
 
 #: ../data/messages:89
 msgid "Behaviour"
@@ -306,7 +310,7 @@ msgstr "rétrécissement "
 
 #: ../data/messages:119
 msgid "cube"
-msgstr ""
+msgstr "cube"
 
 #: ../data/messages:121
 msgid "random"
@@ -314,7 +318,7 @@ msgstr "aléatoire"
 
 #: ../data/messages:123
 msgid "Number of steps for a transition :"
-msgstr ""
+msgstr "Nombre d'étapes pour une transition :"
 
 #: ../data/messages:125
 msgid "Display"
@@ -340,7 +344,7 @@ msgstr "Forcer les images à remplir l'icône/le desklet ?"
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "Mettez la valeur de la transparence a 0 pour ne pas avoir de fond."
+msgstr "Mettez la valeur de la transparence à 0 pour ne pas avoir de fond."
 
 #: ../data/messages:137
 msgid "Choose a background color :"

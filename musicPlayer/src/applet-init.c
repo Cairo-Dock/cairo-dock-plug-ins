@@ -15,7 +15,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-init.h"
 #include "applet-draw.h"
 #include "applet-musicplayer.h"
-#include "applet-dbus.h" //Test
+#include "applet-dbus.h" 
 #include "3dcover-draw.h"
 
 #include "applet-xmms.h" //Support XMMS
@@ -40,7 +40,7 @@ CD_APPLET_DEFINITION (N_("musicPlayer"),
 	"ChanGFu (Rémy Robertson), Mav (Yann SLADEK), Tofe, Jackass, Nochka85")
 
 
-static void _musciplayer_set_simple_renderer (void) {
+static void _musicplayer_set_simple_renderer (void) {
 	cd_debug ("");
 	const gchar *cConfigName = NULL;
 	switch (myConfig.iDecoration) {
@@ -90,7 +90,7 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_register_amarok1_handeler();
 	
 	
-	if (myDesklet) {
+	/*if (myDesklet) {
 		cd_musicplayer_add_buttons_to_desklet ();
 		if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
 			gpointer data[3] = {" ", " ", GINT_TO_POINTER (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
@@ -100,10 +100,10 @@ CD_APPLET_INIT_BEGIN
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
 		}
-		else {
-			_musciplayer_set_simple_renderer ();
-		}
-	}
+		else {*/
+			_musicplayer_set_simple_renderer ();
+		/*}
+	}*/
 		
 	//On initialise les variables pour la connexion aux proxys
 	myData.dbus_enable = 0;
@@ -187,19 +187,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 	}
 	
-	if (myDesklet) {
-		if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
-			gpointer data[3] = {" ", " ", GINT_TO_POINTER (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
-			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
-		}
-		else if (myConfig.iExtendedMode == MY_DESKLET_CAROUSSEL || myConfig.iExtendedMode == MY_DESKLET_CONTROLER) {
-			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
-		}
-		else {
-			_musciplayer_set_simple_renderer ();
-		}
-	}
+	_musicplayer_set_simple_renderer ();
 	
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	myData.pPlayingStatus = PLAYER_NONE;
@@ -220,7 +208,6 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cd_musicplayer_disarm_handeler (); //On libère tout ce qu'occupe notre ancien handeler.
 		myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name (myConfig.cMusicPlayer);
-	
 		if( myData.pCurrentHandeler ) {
 			if (myIcon->cClass != NULL && myData.pCurrentHandeler->appclass != NULL) { //Sécurité pour ne pas planter a cause du strcmp
 				cd_debug ("MP: deinhibate %s (1)", myIcon->cClass);
@@ -242,9 +229,7 @@ CD_APPLET_RELOAD_BEGIN
 			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 			{
 				cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, myApplet);
-			
-				cd_opengl_init_opengl_datas ();
-						
+				cd_opengl_init_opengl_datas ();		
 				cairo_dock_launch_animation (myContainer);
 				cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
 			}

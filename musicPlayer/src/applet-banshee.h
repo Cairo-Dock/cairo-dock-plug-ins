@@ -6,8 +6,6 @@
 
 void cd_banshee_getSongInfos (void);
 
-void cd_banshee_get_status (void);
-
 void cd_banshee_free_data (void);
 
 void cd_banshee_control (MyPlayerControl pControl, char*);

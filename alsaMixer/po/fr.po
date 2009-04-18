@@ -12,9 +12,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-init.c:12
-#, fuzzy
 msgid "AlsaMixer"
-msgstr "Alsa"
+msgstr ""
 
 #: ../src/applet-init.c:15
 msgid ""
@@ -26,6 +25,13 @@ msgid ""
 "Middle-click to set or unset to mute.\n"
 "This applet works with the Alsa sound driver."
 msgstr ""
+"Cet applet permet un contrôle aisé du volume depuis le dock.\n"
+"Roulette de vers haut/bas sur l'icône pour augmenter/diminuer le volume.\n"
+"Cliquez sur l'icône pour afficher/cacher le contrôle du volume (vous pouvez "
+"définir un raccourci pour cela)\n"
+"Vous pouvez aussi cacher l'infobulle en cliquant dessus.\n"
+"Clique du milieu pour désactiver ou activer le son.\n"
+"Cet applet fonctionne avec les pilotes de son Alsa."
 
 #: ../src/applet-mixer.c:41
 #, c-format
@@ -71,7 +77,6 @@ msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
 msgstr "Laisser vide pour utiliser celle par défaut."
 
@@ -104,13 +109,12 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche. "
+"Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -129,13 +133,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -155,7 +158,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -183,7 +185,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -231,7 +233,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"

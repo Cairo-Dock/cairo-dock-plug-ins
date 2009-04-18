@@ -13,7 +13,7 @@ msgstr ""
 
 #: ../src/applet-config.c:418
 msgid "Search for your location :"
-msgstr ""
+msgstr "Trouvez votre emplacement :"
 
 #: ../src/applet-init.c:21
 msgid "clock"
@@ -29,6 +29,13 @@ msgid ""
 "date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
+"Cet applet indique l'heure et la date dans votre dock.\n"
+"2 vues sont disponible : numérique et analogique, basée sur Cairo-Clock\n"
+"Les thèmes Cairo-Clock sont compatibles, et vous pouvez détacher l'applet pour "
+"avoir un clone parfait de Cairo-Clock.\n"
+"Des alarmes et un calendrier classique sont disponibles et vous pouvez régler "
+"l'heure et la date.\n"
+"Clique gauche pour afficher/cacher le calendrier. Clique du milieu pour stopper l'alarm."
 
 #: ../src/applet-notifications.c:52
 msgid "Calendar"
@@ -44,7 +51,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laisser vide pour avoir l'icon par défault"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -79,13 +86,12 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:19
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche. "
+"Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -104,13 +110,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -130,7 +135,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:37
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -158,7 +162,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:49
 msgid "Background image :"
@@ -206,7 +210,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:71
 msgid "Foreground image :"
@@ -262,16 +266,20 @@ msgid ""
 "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
 "animation. It requires OpenGL."
 msgstr ""
+"En ms. Indiquez 0 pour ne pas avoir une animation douce et 1000 pour avoir "
+"une animation continue. Ceci nécessite l'OpenGL."
 
 #: ../data/messages:97
 msgid "Display seconds with smooth animation of a duration of :"
-msgstr ""
+msgstr "Affiche les secondes avec une animation douce d'une durée de :"
 
 #: ../data/messages:99
 msgid ""
 "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
 "your location from a list. Let empty to get the local time."
 msgstr ""
+"Par exemple :Europe/Brussels, :Japan, etc. Clique droit sur l'icône pour "
+"sélectionner votre emplacement depuis la liste. Laissez vide pour avoir l'heure locale."
 
 #: ../data/messages:101
 msgid "Timezone :"
@@ -286,7 +294,7 @@ msgid ""
 "The analogic view is based on CairoClock; otherwise it will be displayed in "
 "a numeric way."
 msgstr ""
-"La vue analogique est basée sur CairoClock; autrement il sera affiché en "
+"La vue analogique est basée sur Cairo-Clock; autrement il sera affiché en "
 "mode numérique."
 
 #: ../data/messages:107
@@ -302,9 +310,8 @@ msgid "Text color for the numeric display:"
 msgstr "Couleur du texte pour l'affiche numérique:"
 
 #: ../data/messages:113
-#, fuzzy
 msgid "Weight of the text :"
-msgstr "Décalage à droite :"
+msgstr "Taille du texte :"
 
 #: ../data/messages:115
 msgid ""
@@ -312,7 +319,7 @@ msgid ""
 "number or so."
 msgstr ""
 "par exemple Monospace, Purisa, ... Ecrivez simplement la nom de la police "
-"sans nombres"
+"sans aucun nombre ou autre."
 
 #: ../data/messages:117
 msgid "Font used for the numeric display :"
@@ -346,10 +353,11 @@ msgstr "Alarme"
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
+"La nouvelle alarme sera ajoutée à la fin / la dernière alarme sera enlevée."
 
 #: ../data/messages:135
 msgid "Add or remove an alarm :"
-msgstr ""
+msgstr "Ajoute ou retire une alarme :"
 
 #, fuzzy
 #~ msgid ""

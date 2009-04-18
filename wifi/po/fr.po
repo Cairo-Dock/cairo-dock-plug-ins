@@ -60,6 +60,9 @@ msgid ""
 "connection\n"
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
+"Cet applet vous indique la puissance du signal de votre connexion wifi.\n"
+"Clique gauche pour obtenir des informations dans une petite fenêtre.\n"
+"Clique du milieu pour forcer l'actualisation des informations."
 
 #: ../src/applet-notifications.c:59
 msgid "Check for Wireless Extension"
@@ -78,9 +81,8 @@ msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "Laissez vide pour utiliser l'icône par défaut."
+msgstr "Laissez vide pour utiliser la taille par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -133,13 +135,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -159,7 +160,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -187,7 +187,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -235,7 +235,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -255,7 +255,7 @@ msgstr "Information"
 
 #: ../data/messages:77
 msgid "Information to display on the icon :"
-msgstr "Information a afficher sur l'icon :"
+msgstr "Information à afficher sur l'icône :"
 
 #: ../data/messages:81
 msgid "Signal Strength"
@@ -302,7 +302,7 @@ msgstr "Type d'affichage :"
 
 #: ../data/messages:101
 msgid "Images"
-msgstr ""
+msgstr "Images"
 
 #: ../data/messages:103
 msgid "Gauges"
@@ -334,7 +334,7 @@ msgstr "Type de graphique :"
 
 #: ../data/messages:119
 msgid "Line"
-msgstr "Ligne"
+msgstr "Cartésien (ligne)"
 
 #: ../data/messages:121
 msgid "Plain"
@@ -342,15 +342,15 @@ msgstr "Plein"
 
 #: ../data/messages:123
 msgid "Bar"
-msgstr "Barre"
+msgstr "Histogramme (barres)"
 
 #: ../data/messages:125
 msgid "Circle"
-msgstr "Cercle"
+msgstr "Circulaire"
 
 #: ../data/messages:127
 msgid "Plain Circle"
-msgstr "Cercle Plain"
+msgstr "Circulaire plein"
 
 #: ../data/messages:129
 msgid "It's the color of the graphic for high Strength values."
@@ -398,7 +398,7 @@ msgstr "Transparence du filigrane :"
 
 #: ../data/messages:149
 msgid "Alternative images"
-msgstr ""
+msgstr "Images Alternatives"
 
 #: ../data/messages:151 ../data/messages:155 ../data/messages:159
 #: ../data/messages:163 ../data/messages:167 ../data/messages:171

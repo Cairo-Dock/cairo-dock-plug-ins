@@ -22,9 +22,15 @@ msgid ""
 "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 "Play/Pause on left click, Next song on middle click.\n"
 "You can drag and drop songs to put them in the queue.\n"
-"Scroll updown to play the previous/next sound\n"
-"Down play the next sound"
+"Scroll up/down to play the previous/next sound"
 msgstr ""
+"Un applet dédié au contrôle de XMMS, Audacious, Banshee & Exaile.\n"
+"XMMS & Audacious sont complétement supportés,\n"
+"mais le contrôle de Banshee et Exaile est encore expérimental.\n"
+"Pour XMMS, vous devez installer le plug-in 'xmms-infopipe'.\n"
+"Play/Pause avec le clique gauche, Next avec le clique du milieu.\n"
+"Vous pouvez déposer vos fichiers musicaux sur cet applet pour l'ajouter à la playlist.\n"
+"La roulette de la souris vers le haut/bas, pour passer à la chanson précédente/suivante."
 
 #: ../src/applet-notifications.c:257
 msgid "Previous"
@@ -59,9 +65,8 @@ msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "Laisser vide pour avoir l'icône par défaut"
+msgstr "Laisser vide pour avoir la taille par défaut"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -114,13 +119,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -140,7 +144,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -168,7 +171,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -216,7 +219,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -259,7 +262,7 @@ msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
-"Cela empéchera l'icône du lecteur d'apparaitre dans la barre d'applications. "
+"Cela empêchera l'icône du lecteur d'apparaitre dans la barre d'applications. "
 "L'icône de l'applet se comportera comme un lanceur, une application et un "
 "applet."
 
@@ -301,7 +304,7 @@ msgstr "Mode d'affichage étendu :"
 
 #: ../data/messages:107
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: ../data/messages:109
 msgid "Info and Controler"
@@ -324,7 +327,6 @@ msgid "Show an info-bubble ?"
 msgstr "Montrer une info-bulle ?"
 
 #: ../data/messages:119
-#, fuzzy
 msgid "With an icon ?"
 msgstr "Avec une icône ?"
 

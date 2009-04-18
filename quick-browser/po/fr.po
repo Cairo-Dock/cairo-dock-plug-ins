@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -21,10 +20,15 @@ msgid ""
 "This applet can be instanciated several times, if you want to browse "
 "different folders."
 msgstr ""
+"Cet applet vous permet de naviguer dans un dossier et ses sous-dossier très rapidement.\n"
+"Vous pouvez configurer un raccourci pour ouvrir directement la navigation\n"
+"Clique du milieu pour ouvrir le dossier principal.\n"
+"Plusieurs instances de cet applet peuvent être lancés si vous désirer naviguer "
+"dans différents dossiers."
 
 #: ../src/applet-menu.c:97 ../src/applet-menu.c:103
 msgid "Open this folder"
-msgstr ""
+msgstr "Ouvrir ce dossier"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -32,7 +36,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -40,7 +44,7 @@ msgstr "Taille d'icône souhaitée pour cette applet"
 
 #: ../data/messages:7
 msgid "Let empty to use the folder's name."
-msgstr ""
+msgstr "Laissez vide pour utiliser le nom du dossier."
 
 #: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
@@ -48,7 +52,7 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:11
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "Nom du dock l'appartenant:"
 
 #: ../data/messages:13
 msgid "Desklet"
@@ -67,11 +71,9 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:19
-#, fuzzy
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic_milieu ou ALT + clic_droit par exemple."
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -90,13 +92,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -143,7 +144,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:49
 msgid "Background image :"
@@ -191,7 +192,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:71
 msgid "Foreground image :"
@@ -203,45 +204,47 @@ msgstr "Transparence de l'avant-plan :"
 
 #: ../data/messages:75
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
 #: ../data/messages:77
 msgid "Folder to browse :"
-msgstr ""
+msgstr "Dossier à naviguer"
 
 #: ../data/messages:79
 msgid "It can be quite heavy to load a lot of icons."
-msgstr ""
+msgstr "Le temps de chargement peut être assez long avec beaucoup d'icônes"
 
 #: ../data/messages:81
 msgid "Display icons in the menu ?"
-msgstr ""
+msgstr "Afficher les icônes dans le menu ?"
 
 #: ../data/messages:83
 msgid "List folders first ?"
-msgstr ""
+msgstr "Donner la liste des dossiers en premier ?"
 
 #: ../data/messages:85
 msgid "Ignore case ?"
-msgstr ""
+msgstr "Cas à ignorer ?"
 
 #: ../data/messages:87
 msgid "Show hidden files ?"
-msgstr ""
+msgstr "Montrer les fichiers cachés ?"
 
 #: ../data/messages:89
 msgid "Shortkey to show/hide the menu :"
-msgstr ""
+msgstr "Raccourci pour afficher/cacher le menu :"
 
 #: ../data/messages:91
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
 msgstr ""
+"Nombre d'objets à charger en une fois. Un paramètre trop élevé accélère un peu "
+"le chargement, mais bloque plus l'application."
 
 #: ../data/messages:93
 msgid "Granularity of the menu's building :"
-msgstr ""
+msgstr "Construction graduelle du menu"
 
 #, fuzzy
 #~ msgid ""

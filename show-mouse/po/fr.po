@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -21,7 +20,8 @@ msgstr ""
 msgid ""
 "This plug-in draw some animation around the cursor when it's inside a dock/"
 "desklet."
-msgstr ""
+msgstr "Ce plug-in dessine certaines animations autour du curseur quand il se "
+"trouve à l'intérieur d'un dock/desklet."
 
 #: ../data/messages:1
 msgid "Configuration"
@@ -29,73 +29,71 @@ msgstr ""
 
 #: ../data/messages:3
 msgid "Numbrer of sources :"
-msgstr ""
+msgstr "Nombre de sources :"
 
 #: ../data/messages:5
 msgid "In round per second."
-msgstr ""
+msgstr "Tours par seconde"
 
 #: ../data/messages:7
-#, fuzzy
 msgid "Rotation speed :"
-msgstr "Rotation :"
+msgstr "Vitesse de rotation :"
 
 #: ../data/messages:9
 msgid "Show mouse on :"
-msgstr ""
+msgstr "Montre la souris sur :"
 
 #: ../data/messages:11
 msgid "dock"
-msgstr ""
+msgstr "Dock"
 
 #: ../data/messages:13
-#, fuzzy
 msgid "desklet"
-msgstr "Desklet"
+msgstr "desklet"
 
 #: ../data/messages:15
 msgid "both"
-msgstr ""
+msgstr "Les deux"
 
 #: ../data/messages:17
 msgid "Number of particles per source :"
-msgstr ""
+msgstr "Nombre de particules par sources"
 
 #: ../data/messages:19
 msgid "in ms."
-msgstr ""
+msgstr "en ms"
 
 #: ../data/messages:21
 msgid "Particles life time :"
-msgstr ""
+msgstr "Temps de vie des particules :"
 
 #: ../data/messages:23
 msgid "In pixels."
-msgstr ""
+msgstr "En pixels."
 
 #: ../data/messages:25
 msgid "Particle size :"
-msgstr ""
+msgstr "Taille des particules"
 
 #: ../data/messages:27
 msgid "1st color of gradation :"
-msgstr ""
+msgstr "1ère couleur de graduation :"
 
 #: ../data/messages:29
 msgid "2nd color of gradation :"
-msgstr ""
+msgstr "2ème couleur de graduation :"
 
 #: ../data/messages:31
 msgid "Random colors ?"
-msgstr ""
+msgstr "Couleur au hasard ?"
 
 #: ../data/messages:33
 msgid "The higher, the more particles will scatter from their source."
-msgstr ""
+msgstr "Plus grand, au plus de particules peuvent s'éparpiller de leur source"
 
 #: ../data/messages:35
 msgid "Scattering :"
-msgstr ""
+msgstr "Dispersion :"
 
 #~ msgid "Icon"
 #~ msgstr "Icône"
@@ -155,10 +153,10 @@ msgstr ""
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "(class=Cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
-#~ "de Compiz à : (name=cairo-dock & type=utility)"
+#~ "de Compiz à : (class=Cairo-dock & type=utility)"
 
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "Garder sur la couche des widgets ?"
@@ -193,7 +191,7 @@ msgstr ""
 #~ "exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "C'est une image qui sera affichée derrière les dessins, comme un cadre "
-#~ "par exemple. Laissez vide pour n'en uiliser aucune."
+#~ "par exemple. Laissez vide pour n'en utiliser aucune."
 
 #~ msgid "Background image :"
 #~ msgstr "Image de fond :"
@@ -233,7 +231,7 @@ msgstr ""
 #~ "for exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-#~ "par exemple. Laissez vide pour n'en uiliser aucune."
+#~ "par exemple. Laissez vide pour n'en utiliser aucune."
 
 #~ msgid "Foreground image :"
 #~ msgstr "Image d'avant-plan :"

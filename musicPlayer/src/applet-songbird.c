@@ -76,7 +76,7 @@ void cd_songbird_read_data (void)
 	{
 		if (myData.opening)
 		{
-			cd_musicplayer_getStatus_string(); // On récupère l'état de la lecture (play/pause/stop)
+			cd_musicplayer_getStatus_string("playing", "paused", "stopped"); // On récupère l'état de la lecture (play/pause/stop)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_songbird_getSongInfos(); // On récupère toutes les infos de la piste en cours

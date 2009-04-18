@@ -259,8 +259,8 @@ msgstr "Плоский круг"
 
 #: ../data/messages:91
 #: ../data/messages:99
-msgid "It's the color of the graphic for high CPU values."
-msgstr "Цвет графики при высоких значения CPU."
+msgid "It's the color of the graphic for high speed values."
+msgstr "Цвет графики при высоких значения cкорость."
 
 #: ../data/messages:93
 msgid "High values color for the download speed :"
@@ -268,8 +268,8 @@ msgstr "Цвет высоких значении при загрузке:"
 
 #: ../data/messages:95
 #: ../data/messages:103
-msgid "It's the color of the graphic for low CPU values."
-msgstr "Цвет графики при низких значениях CPU."
+msgid "It's the color of the graphic for low speed values."
+msgstr "Цвет графики при низких значениях cкорость."
 
 #: ../data/messages:97
 msgid "Low values color for the download speed :"

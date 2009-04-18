@@ -86,7 +86,7 @@ msgstr ""
 #: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 
 #: ../data/messages:29

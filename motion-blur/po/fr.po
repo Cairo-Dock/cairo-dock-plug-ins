@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../src/applet-init.c:21
 msgid "This plug-in adds a motion blur effect on docks."
-msgstr ""
+msgstr "Ce plug-in ajoute un effet de mouvements flous au dock"
 
 #: ../data/messages:1
 msgid "Configuration"
@@ -27,11 +26,11 @@ msgstr ""
 
 #: ../data/messages:3
 msgid "Also blur on mouse movement ?"
-msgstr ""
+msgstr "Ajouter du flou sur les mouvements de la souris ?"
 
 #: ../data/messages:5
 msgid "Blur amount :"
-msgstr ""
+msgstr "Quantité de flou :"
 
 #~ msgid "Icon"
 #~ msgstr "Icône"
@@ -94,10 +93,10 @@ msgstr ""
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "(class=Cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
-#~ "de Compiz à : (name=cairo-dock & type=utility)"
+#~ "de Compiz à : (class=Cairo-dock & type=utility)"
 
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "Garder sur la couche des widgets ?"

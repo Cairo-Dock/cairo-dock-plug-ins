@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -13,9 +12,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-init.c:31
-#, fuzzy
 msgid "musicPlayer"
-msgstr "Lecteur Audio"
+msgstr ""
 
 #: ../src/applet-init.c:34
 msgid ""
@@ -26,6 +24,12 @@ msgid ""
 "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 "       For SongBird, you have to install its dbus add-on.\n"
 msgstr ""
+"Cet applet permet le contrôle de plusieurs lecteur de musique.\n"
+"Clique Gauche pour Play/Pause, clique du milieu pour la chanson suivante.\n"
+"Roulette vers le haut/bas pour passer à la chanson précédente/suivante.\n"
+"Vous pouvez déposer vos chansons sur l'applet pour les ajouter à la playlist (dépend des lecteurs).\n"
+"Note : Pour XMMS, vous devez installer le plug-in 'xmms-infopipe'.\n"
+"       Pour SongBird, vous devez installer le greffon DBus.\n"
 
 #: ../src/applet-notifications.c:89
 msgid "Previous"
@@ -60,7 +64,6 @@ msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
@@ -123,13 +126,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -176,7 +178,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:49
 msgid "Background image :"
@@ -224,7 +226,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:71
 msgid "Foreground image :"
@@ -320,7 +322,6 @@ msgid "Time Left"
 msgstr "Temps Restant"
 
 #: ../data/messages:115
-#, fuzzy
 msgid "N° of track"
 msgstr "N° de piste"
 
@@ -350,14 +351,13 @@ msgstr "Controleur"
 
 #: ../data/messages:129
 msgid "False 3D Themes (OpenGL only)"
-msgstr ""
+msgstr "Faux Themes 3D (nécessite l'OpenGL)"
 
 #: ../data/messages:131
 msgid "List of available specific themes :"
-msgstr ""
+msgstr "Liste des thèmes spécifiques :"
 
 #: ../data/messages:133
-#, fuzzy
 msgid "Action on music change"
 msgstr "Actions au changement de musique"
 
@@ -444,39 +444,39 @@ msgstr "Nom de l'image 'Pas de Signal': "
 
 #: ../data/messages:183
 msgid "Downloads"
-msgstr ""
+msgstr "Téléchargements"
 
 #: ../data/messages:185
 msgid "You need to be connected to the Internet."
-msgstr ""
+msgstr "Vous devez être connecté à Internet."
 
 #: ../data/messages:187
 msgid "Allow CID to download missing covers :"
-msgstr ""
+msgstr "Autoriser CD à télécharger les pochettes manquantes :"
 
 #: ../data/messages:189
 msgid "in seconds"
-msgstr ""
+msgstr "en secondes"
 
 #: ../data/messages:191
 msgid "Delay before checking for missing covers :"
-msgstr ""
+msgstr "Délais avant de le contrôle des pochettes manquantes :"
 
 #: ../data/messages:193
 msgid "The smaller image will be downloaded faster than a big one."
-msgstr ""
+msgstr "Une image plus petite sera téléchargée plus rapidement qu'une grande."
 
 #: ../data/messages:195
 msgid "Size of the downloaded covers :"
-msgstr ""
+msgstr "Taille des pochettes téléchargées :"
 
 #: ../data/messages:197
 msgid "Medium"
-msgstr ""
+msgstr "Moyennes"
 
 #: ../data/messages:199
 msgid "Large"
-msgstr ""
+msgstr "Larges"
 
 #, fuzzy
 #~ msgid "Simple Desklet"

@@ -29,6 +29,9 @@ msgid ""
 "Middle click on the icon to get some valuable info.\n"
 "Left click on the icon to get a list of the most cpu using programs."
 msgstr ""
+"Cet applet vous indique l'utilisation en temps réel du CPU.\n"
+"Clique du milieu sur l'icône pour avoir quelques informations précieuses.\n"
+"Clique gauche sur l'icône pour avoir une liste des programmes les plus gourmants en CPU."
 
 #: ../src/applet-notifications.c:105 ../src/applet-notifications.c:123
 msgid "Data acquisition has failed"
@@ -63,7 +66,6 @@ msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
 msgstr "Laissez vide pour utiliser celle par défaut."
 
@@ -118,13 +120,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -171,7 +172,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -219,7 +220,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -247,7 +248,7 @@ msgstr "Type de graphique :"
 
 #: ../data/messages:81
 msgid "Line"
-msgstr "Ligne"
+msgstr "Cartésien (ligne)"
 
 #: ../data/messages:83
 msgid "Plain"
@@ -255,15 +256,15 @@ msgstr "Plein"
 
 #: ../data/messages:85
 msgid "Bar"
-msgstr "Barre"
+msgstr "Histogramme (barres)"
 
 #: ../data/messages:87
 msgid "Circle"
-msgstr "Cercle"
+msgstr "Circulaire"
 
 #: ../data/messages:89
 msgid "Plain Circle"
-msgstr "Cercle Plain"
+msgstr "Circulaire plein"
 
 #: ../data/messages:91
 msgid "It's the color of the graphic for high CPU values."
@@ -327,7 +328,7 @@ msgstr "Sur l'étiquette"
 
 #: ../data/messages:119
 msgid "Top List"
-msgstr ""
+msgstr "Tête de liste"
 
 #: ../data/messages:121
 msgid ""

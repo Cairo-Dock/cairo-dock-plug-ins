@@ -24,12 +24,11 @@ msgstr ""
 
 #: ../src/applet-config.c:168
 msgid "I couldn't find this location"
-msgstr ""
+msgstr "Je ne peux pas trouver cette emplacement"
 
 #: ../src/applet-config.c:222
-#, fuzzy
 msgid "Search for your location :"
-msgstr "Chercher votre location"
+msgstr "Chercher votre emplacement"
 
 #: ../src/applet-init.c:18
 msgid "weather"
@@ -44,6 +43,12 @@ msgid ""
 "Middle-click on the main icon to have current conditions information, left-"
 "click on a sub-icon to have forcast information.\n"
 msgstr ""
+"Cet applet indique, à l'intérieur de votre dock, la météo.\n"
+"Les données sont fournies par www.weather.com, vous pouvez trouver votre "
+"emplacement dans le panneau de configuration.\n"
+"L'applet peut être détaché pour l'avoir dans un desklet en 3D.\n"
+"Clique du milieu sur l'icône principale pour avoir les conditions actuelles,\n"
+"Clique gauche sur un autre jour pour avoir plus d'informations sur les prévisions.\n"
 
 #: ../src/applet-load-icons.c:15
 msgid "Monday"
@@ -90,9 +95,8 @@ msgid "Apr"
 msgstr "Avr"
 
 #: ../src/applet-load-icons.c:15
-#, fuzzy
 msgid "May"
-msgstr "Lundi"
+msgstr "Mai"
 
 #: ../src/applet-load-icons.c:15
 msgid "Jun"
@@ -159,13 +163,12 @@ msgid "SunSet"
 msgstr "Coucher du soleil"
 
 #: ../src/applet-notifications.c:104
-#, fuzzy
 msgid ""
 "No data were available\n"
 "Re-trying now ..."
 msgstr ""
 "Aucune donnée disponible\n"
-" la connexion est-elle établie ?"
+"Nouvel essai ..."
 
 #: ../src/applet-notifications.c:118
 msgid "feeled"
@@ -181,7 +184,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Indiquez 0 pour utiliser la taille par défaut"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -238,13 +241,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -264,7 +266,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:37
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -292,7 +293,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:49
 msgid "Background image :"
@@ -340,7 +341,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:71
 msgid "Foreground image :"
@@ -359,7 +360,7 @@ msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
 msgstr ""
-"Cliquez droit sur l'icone pour laisser Cairo-Dock vous aider à trouver le "
+"Clique droit sur l'icône pour laisser Cairo-Dock vous aider à trouver le "
 "code de votre location."
 
 #: ../data/messages:81

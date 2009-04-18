@@ -132,7 +132,7 @@ msgstr ""
 #: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 
 #: ../data/messages:29
@@ -262,7 +262,7 @@ msgid "Plain Circle"
 msgstr ""
 
 #: ../data/messages:89 ../data/messages:97
-msgid "It's the color of the graphic for high CPU values."
+msgid "It's the color of the graphic for high speed values."
 msgstr ""
 
 #: ../data/messages:91
@@ -270,7 +270,7 @@ msgid "High values color for the download speed :"
 msgstr ""
 
 #: ../data/messages:93 ../data/messages:101
-msgid "It's the color of the graphic for low CPU values."
+msgid "It's the color of the graphic for low speed values."
 msgstr ""
 
 #: ../data/messages:95

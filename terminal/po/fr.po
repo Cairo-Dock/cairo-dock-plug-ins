@@ -27,6 +27,16 @@ msgid ""
 "Middle-click on a tab to close it,\n"
 "Double-click next to the tabs to open a new one."
 msgstr ""
+"Ajoute un terminal à votre dock !\n"
+"Clique gauche/milieu pour afficher/cacher le terminal (vous pouvez définir "
+"un raccourci pour ça).\n"
+"Vous pouvez ouvrir plusieurs onglets, les renommer, changer leur couleur.\n"
+"Vous pouvez déposer sur l'applet fichiers ou textes et sélectionner une action.\n"
+"Ces raccourcis sont disponibles : 'CTRL+t' et 'CTRL+w' pour ouvrir/fermer "
+"l'actuel onglet,\n"
+"Clique droit sur un onglet pour interagir avec lui,\n"
+"Clique du milieu sur un onglet pour le fermer,\n"
+"Double clique sur les onglets pour en ouvrir un nouveau."
 
 #: ../src/terminal-menu-functions.c:80 ../src/terminal-widget.c:350
 msgid "New Tab"
@@ -74,7 +84,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser la taille par défaut"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -117,13 +127,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -143,7 +152,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -171,7 +179,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -219,7 +227,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -262,7 +270,6 @@ msgid "Size of the terminal (line x columns) :"
 msgstr "Taille du terminal (ligne x colonnes) :"
 
 #: ../data/messages:87
-#, fuzzy
 msgid "Shortkey to show the terminal :"
 msgstr "Raccourci clavier pour montrer le terminal :"
 

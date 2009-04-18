@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -36,7 +35,7 @@ msgid ""
 msgstr ""
 "nVidia \n"
 "Votre version de 'nvidia-settings' est trop vieille\n"
-" Vous devez avoir au moin la 1.0.0"
+" Vous devez avoir au-moins la 1.0.0"
 
 #: ../src/applet-draw.c:110
 msgid ""
@@ -46,9 +45,9 @@ msgid ""
 " and configured to monitor GPU temperature ?"
 msgstr ""
 "nVidia \n"
-"Echec de la récupération de la tempérutre\n"
-" Est-ce qu'nvidia-settings est installé\n"
-" et configuré pour récupérer la température du GPU?"
+"Echec de la récupération de la température\n"
+" Est-ce que 'nvidia-settings' est installé\n"
+" et configuré pour récupérer la température du GPU ?"
 
 #: ../src/applet-draw.c:118
 msgid "Alert!"
@@ -67,13 +66,16 @@ msgid ""
 "Ensure that you have 'nvidia-settings' installed otherwise this plug-in "
 "won't work."
 msgstr ""
+"Cet applet affiche les informations de votre GPU nVidia\n"
+" comme la température, la RAM vidéo, la version du driver, etc.\n"
+"Vérifiez de bien posséder 'nvidia-settings' sinon ce plug-in ne pourrait "
+"pas fonctionner."
 
 #: ../data/messages:1
 msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
@@ -86,14 +88,12 @@ msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:9
-#, fuzzy
 msgid "Let empty to use the default one."
-msgstr "Laissez vide pour utiliser l'icône par défaut."
+msgstr "Laissez vide pour utiliser celle par défaut."
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Image's filename :"
-msgstr "Nom de l'icône :"
+msgstr "Nom du fichier de l'image :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
@@ -138,13 +138,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
@@ -164,7 +163,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:39
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -192,7 +190,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -240,7 +238,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"
@@ -252,11 +250,11 @@ msgstr "Transparence de l'avant-plan :"
 
 #: ../data/messages:77
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
 #: ../data/messages:79
 msgid "Informations"
-msgstr ""
+msgstr "Informations"
 
 #: ../data/messages:81
 msgid "Display Card name on the Label ?"
@@ -312,7 +310,7 @@ msgstr "Limite supérieur de la température :"
 
 #: ../data/messages:103
 msgid "Alert when core temperature is high ?"
-msgstr "Alerter quand la température du coeur est elevée ?"
+msgstr "Alerter quand la température du coeur est élevée ?"
 
 #: ../data/messages:105
 msgid "in celcius."
@@ -332,7 +330,7 @@ msgstr "Fichier audio:"
 
 #: ../data/messages:113
 msgid "Images"
-msgstr ""
+msgstr "Images"
 
 #: ../data/messages:115
 msgid "Display a graphic rather than a gauge ?"
@@ -344,7 +342,7 @@ msgstr "Type de graphique :"
 
 #: ../data/messages:119
 msgid "Line"
-msgstr "Ligne"
+msgstr "Cartésien (ligne)"
 
 #: ../data/messages:121
 msgid "Plain"
@@ -352,15 +350,15 @@ msgstr "Plein"
 
 #: ../data/messages:123
 msgid "Bar"
-msgstr "Barre"
+msgstr "Histogramme (barres)"
 
 #: ../data/messages:125
 msgid "Circle"
-msgstr "Cercle"
+msgstr "Circulaire"
 
 #: ../data/messages:127
 msgid "Plain Circle"
-msgstr "Cercle Plain"
+msgstr "Circulaire plein"
 
 #: ../data/messages:129
 msgid "It's the color of the graphic for high Temperature values."

@@ -136,7 +136,7 @@ msgstr "他ウィンドウより常に上に？"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
@@ -276,16 +276,16 @@ msgid "Plain Circle"
 msgstr "円（面）"
 
 #: ../data/messages:89 ../data/messages:97
-msgid "It's the color of the graphic for high CPU values."
-msgstr "高 CPU 値のグラフの色"
+msgid "It's the color of the graphic for high speed values."
+msgstr "高 速度 値のグラフの色"
 
 #: ../data/messages:91
 msgid "High values color for the download speed :"
 msgstr "ダウンロードの高速度値の色 :"
 
 #: ../data/messages:93 ../data/messages:101
-msgid "It's the color of the graphic for low CPU values."
-msgstr "低 CPU 値のグラフの色"
+msgid "It's the color of the graphic for low speed values."
+msgstr "低 速度 値のグラフの色"
 
 #: ../data/messages:95
 msgid "Low values color for the download speed :"

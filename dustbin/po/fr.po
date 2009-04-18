@@ -31,6 +31,11 @@ msgid ""
 "The applet can warn you if you use too much space\n"
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
+"Cet applet gère la corbeille\n"
+"Vous pouvez jeter des fichiers et démonter des disques en les déposants "
+"sur l'icône de l'applet.\n"
+"L'applet peut vous prévenir si vous utilisez trop d'espace\n"
+"Clique du milieu pour afficher des informations utiles à propos de la corbeille."
 
 #: ../src/applet-notifications.c:33 ../src/applet-notifications.c:38
 msgid "Show Trash"
@@ -94,7 +99,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser celle par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -125,13 +130,12 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+"Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -150,13 +154,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -203,7 +206,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -251,7 +254,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -332,8 +335,8 @@ msgstr "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle.
 msgid ""
 "Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr ""
-"Vous pouvez spécifier içi une liste additionnelle de répertoire poubelle à "
-"monitorer :"
+"Vous pouvez spécifier ici une liste additionnelle de répertoire(s) poubelle(s) à "
+"surveiller :"
 
 #: ../data/messages:109
 msgid "in seconds, only used if you can't monitor directories."

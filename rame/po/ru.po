@@ -341,7 +341,7 @@ msgid "Show top memory usage in % ?"
 msgstr "Показывать использование памяти в %?"
 
 #: ../data/messages:155
-msgid "Let empty to use he default one."
+msgid "Let empty to use the default one."
 msgstr "Оставьте пустым, чтобы использовать стандартный значок."
 
 #: ../data/messages:157

@@ -165,7 +165,7 @@ void cd_quodlibet_read_data (void)
 	{
 		if (myData.dbus_enable)
 		{
-			cd_musicplayer_getStatus_integer(); // On récupère l'état de la lecture (play/pause/stop)
+			cd_musicplayer_getStatus_integer(0,1); // On récupère l'état de la lecture (play/pause/stop)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_quodlibet_getSongInfos(); // On récupère toutes les infos de la piste en cours

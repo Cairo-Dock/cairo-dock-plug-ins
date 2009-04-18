@@ -17,6 +17,8 @@ msgid ""
 "This applet shows you the amount of RAM and SWAP that is curently used\n"
 "Left-click to show a list of the most memory using programs"
 msgstr ""
+"Cet applet vous indique la quantité de RAM et de SWAP utilisée à chaque instant\n"
+"Clique gauche pour obtenir une liste des programmes utilisant le plus de mémoire"
 
 #: ../src/applet-notifications.c:38
 msgid "Mb"
@@ -28,7 +30,7 @@ msgstr "L'acquisition des données a échouée"
 
 #: ../src/applet-notifications.c:113
 msgid "Monitor System"
-msgstr ""
+msgstr "Moniteur système"
 
 #: ../src/applet-rame.c:119
 msgid "Loading"
@@ -40,7 +42,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -93,13 +95,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -119,7 +120,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -147,7 +147,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -195,7 +195,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -215,34 +215,33 @@ msgstr "Affichage"
 
 #: ../data/messages:77
 msgid "Display a graphic rather than a gauge ?"
-msgstr ""
+msgstr "Afficher un graphique au lieu d'une jauge ?"
 
 #: ../data/messages:79
 msgid "Type of graphic :"
-msgstr ""
+msgstr "Type de graphique"
 
 #: ../data/messages:81
 msgid "Line"
-msgstr ""
+msgstr "Cartésien (ligne)"
 
 #: ../data/messages:83
 msgid "Plain"
-msgstr ""
+msgstr "Plein"
 
 #: ../data/messages:85
 msgid "Bar"
-msgstr ""
+msgstr "Histogramme (barres)"
 
 #: ../data/messages:87
 msgid "Circle"
-msgstr ""
+msgstr "Circulaire"
 
 #: ../data/messages:89
 msgid "Plain Circle"
-msgstr ""
+msgstr "Circulaire plein"
 
 #: ../data/messages:91 ../data/messages:99
-#, fuzzy
 msgid "It's the color of the graphic for high RAM values."
 msgstr "C'est la couleur du graphique pour les hautes valeurs de RAM."
 
@@ -251,7 +250,6 @@ msgid "High values color for RAM :"
 msgstr "Couleur des hautes valeurs de RAM :"
 
 #: ../data/messages:95 ../data/messages:103
-#, fuzzy
 msgid "It's the color of the graphic for low RAM values."
 msgstr "C'est la couleur du graphique pour les basses valeurs de RAM."
 
@@ -284,10 +282,12 @@ msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
+"Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 "
+"si vous ne voulez pas de filigrane"
 
 #: ../data/messages:115
 msgid "Image to display as a watermark on the gauge :"
-msgstr ""
+msgstr "Image à afficher en filigrane sur la jauge :"
 
 #: ../data/messages:117
 msgid "Set it up to 0 if you don't want to have a watermark."
@@ -363,15 +363,15 @@ msgstr "Montrer l'usage mémoire en % ?"
 
 #: ../data/messages:153
 msgid "Show free memory instead of used memory ?"
-msgstr ""
+msgstr "Montrer l'espace de mémoire libre au lieu d'utilisé ?"
 
 #: ../data/messages:155
-msgid "Let empty to use he default one."
-msgstr ""
+msgid "Let empty to use the default one."
+msgstr "Laisser vide pour utiliser celelepar défaut."
 
 #: ../data/messages:157
 msgid "User command to show a system monitor :"
-msgstr ""
+msgstr "Commande utilisateur pour montrer le moniteur système :"
 
 #~ msgid ""
 #~ "This is the rame applet\n"

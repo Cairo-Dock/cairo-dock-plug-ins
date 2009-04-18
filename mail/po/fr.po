@@ -12,7 +12,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/cd-mail-applet-config.c:369
-#, fuzzy
 msgid "Remove Account"
 msgstr "Supprimer un compte e-mail"
 
@@ -25,6 +24,8 @@ msgid ""
 "This applet is very useful to warn you when you get new e-mails\n"
 "It can check in any kind of mailbox (yahoo, gmail, etc)"
 msgstr ""
+"Cet applet est très utile pour vous avertir de nouveaux courriers.\n"
+"Il peut les vérifier dans plusieurs types de messageries (Yahoo!, Gmail, etc.)"
 
 #: ../src/cd-mail-applet-notifications.c:54
 #, c-format
@@ -38,7 +39,6 @@ msgstr ""
 "vous pouvez le modifier dans le panneau de configuration de ce module"
 
 #: ../src/cd-mail-applet-notifications.c:82
-#, fuzzy
 msgid "Refresh a mail account"
 msgstr "Supprimer un compte e-mail"
 
@@ -48,15 +48,15 @@ msgstr "Pas de messages non lus dans votre boîte de réception"
 
 #: ../src/cd-mail-applet-notifications.c:166
 msgid "You have"
-msgstr ""
+msgstr "Vous avez"
 
 #: ../src/cd-mail-applet-notifications.c:166
 msgid "new mails :"
-msgstr ""
+msgstr "de nouveaux messages :"
 
 #: ../src/cd-mail-applet-notifications.c:166
 msgid "new mail :"
-msgstr ""
+msgstr "un nouveau message :"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -64,7 +64,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser celle par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -117,13 +117,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -170,7 +169,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -218,7 +217,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -234,29 +233,27 @@ msgstr "Configuration"
 
 #: ../data/messages:75
 msgid "Choose one of the available themes :"
-msgstr ""
+msgstr "Choisissez un des thèmes disponibles :"
 
 #: ../data/messages:77
 msgid "Default"
-msgstr ""
+msgstr "Défaut"
 
 #: ../data/messages:79
 msgid "Theme overriding"
-msgstr ""
+msgstr "Personnalisation du thème"
 
 #: ../data/messages:81
-#, fuzzy
 msgid "Name of the file for the \"no mail\" image :"
-msgstr "Nom d'une image pour écraser l'image pas d'e-mail du thème :"
+msgstr "Nom d'une image en cas d'aucun e-mail :"
 
 #: ../data/messages:83
-#, fuzzy
 msgid "Name of the file for the \"has mail\" image :"
-msgstr "Nom d'une image pour écraser l'image nouveaux e-mails du thème :"
+msgstr "Nom d'une image pour les nouveaux e-mails :"
 
 #: ../data/messages:85
 msgid "Name of the file for the \"new mail\" sound :"
-msgstr ""
+msgstr "Nom du fichier son pour les nouveaux e-mails :"
 
 #: ../data/messages:87
 msgid "Path to application to launch on left-click"
@@ -264,11 +261,11 @@ msgstr "Chemin de l'application à exécuter au clic gauche"
 
 #: ../data/messages:89
 msgid "The new account will be created with specified type and name."
-msgstr ""
+msgstr "Le nouveau compte pourra être créé avec un type et un nom spécifiés."
 
 #: ../data/messages:91
 msgid "Add an account with specified type and name:"
-msgstr ""
+msgstr "Ajouter un compte avec un type et un nom spécifiés"
 
 #~ msgid ""
 #~ "This is the mail applet\n"

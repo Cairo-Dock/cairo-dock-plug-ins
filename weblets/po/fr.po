@@ -21,11 +21,14 @@ msgid ""
 "You can select your web page, set the desired scrolling,\n"
 "and hide the scrollbars to get a real 'crop' of the page."
 msgstr ""
+"L'applet weblets vous permet d'afficher une page web interactive sur "
+"votre bureau.\n"
+"Vous pouvez sélectionner votre page, paramétrer le défilement désiré\n"
+"et cacher les barres de défilement pour obtenir un vrai 'rognage' de la page."
 
 #: ../src/applet-widget.c:35
-#, fuzzy
 msgid "Weblets"
-msgstr "Weblet"
+msgstr "Weblets"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -33,7 +36,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser la taille par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -45,12 +48,11 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:9
 msgid "Let empty to use the default one."
-msgstr ""
+msgstr "Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Image's filename :"
-msgstr "Nom de l'icône :"
+msgstr "Nom du fichier de l'image :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
@@ -95,13 +97,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
@@ -148,7 +149,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -196,7 +197,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"
@@ -220,40 +221,41 @@ msgstr "Montrer les barres de défilement ?"
 
 #: ../data/messages:83
 msgid "Horizontal scroll of the browser in pixel"
-msgstr ""
+msgstr "Défilement horizontal du navigateur en pixel"
 
 #: ../data/messages:85
 msgid "Position of horizontal scrollbar"
-msgstr ""
+msgstr "Position de la barre de défilement horizontale"
 
 #: ../data/messages:87
 msgid "Vertical scroll of the browser in pixel"
-msgstr ""
+msgstr "Défilement vertical du navigateur en pixel"
 
 #: ../data/messages:89
 msgid "Position of vertical scrollbar in pixel"
-msgstr ""
+msgstr "Position de la barre de défilement verticale"
 
 #: ../data/messages:91
 msgid "Transparent background ?"
-msgstr ""
+msgstr "Arrière-plan transparent ?"
 
 #: ../data/messages:93
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
+"Temps avec le rechargement du weblet URI, en secondes. 0 pour ne jamais recharger."
 
 #: ../data/messages:95
 msgid "Time between two page refreshes"
-msgstr ""
+msgstr "Temps entre deux actualisations de la page"
 
 #: ../data/messages:97
 msgid "Any valid URI should work."
-msgstr ""
+msgstr "Tout les URI valides devrait fonctionner."
 
 #: ../data/messages:99
 msgid "Predefined bookmarks to show in applet's menu :"
-msgstr ""
+msgstr "Marque-Pages prédéfinis à afficher dans le menu de l'applet"
 
 #~ msgid ""
 #~ "This is the weblets applet\n"

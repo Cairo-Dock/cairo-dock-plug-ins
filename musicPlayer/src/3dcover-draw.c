@@ -202,9 +202,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 		
 	cairo_dock_apply_texture (myData.TextureFrame);
 	
-	
-	
-	
+	myData.TextureCover = cd_opengl_load_texture (myApplet, myData.cCoverPath);	
 	glBindTexture(GL_TEXTURE_2D, myData.TextureCover);
 	//~ cd_message ("RB_YDU : la couverture '%s' est deja dispo", myData.playing_cover);
 	glCallList(draw_cover);

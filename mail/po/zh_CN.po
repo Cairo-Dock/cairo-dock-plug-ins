@@ -118,7 +118,7 @@ msgstr "在其他窗口之上?"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "面向CompizFusion的“小工具层”，将Compiz的行为设置为：(name=cairo-dock & "
 "type=utility) "

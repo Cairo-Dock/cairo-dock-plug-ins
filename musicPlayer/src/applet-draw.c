@@ -143,7 +143,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 	}
 
 	/* Affichage de l'icone ou de la pochette et de son emblème */
-	if (myData.pPlayingStatus != myData.pPreviousPlayingStatus) {  // changement de statut.
+	/*if (myData.pPlayingStatus != myData.pPreviousPlayingStatus) {  // changement de statut.
 		cd_debug ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.pPlayingStatus);
 		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
 		
@@ -154,10 +154,10 @@ gboolean cd_musicplayer_draw_icon (void) {
 		  myData.cRawTitle = NULL; //Rien ne joue
 		  CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
 		}
-	}
+	}*/
 
 	/* Affichage de la pochette */	
-	if (myConfig.bEnableCover) {
+	/*if (myConfig.bEnableCover) {
 		if (myData.cCoverPath != NULL && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS)) {
 				myData.cPreviousCoverPath = g_strdup(myData.cCoverPath);
 			if (myData.cPreviousCoverPath==NULL || (myData.cCoverPath && (!g_strcasecmp(myData.cCoverPath,myData.cPreviousCoverPath)))) { //On évite de dessiner pour rien
@@ -193,7 +193,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 				break;	
 		}
 	}
-	
+	*/
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON;
 	

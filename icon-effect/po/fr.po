@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../src/applet-init.c:23
 msgid "This plug-in adds many special effects to your icons."
-msgstr ""
+msgstr "Ce plug-in ajoute des effets spéciaux à vos icônes."
 
 #: ../data/messages:1
 msgid "Global"
@@ -27,111 +26,111 @@ msgstr ""
 
 #: ../data/messages:3
 msgid "when hovering an icon"
-msgstr ""
+msgstr "Lors du survol d'une icône"
 
 #: ../data/messages:5
 msgid "Effects used :"
-msgstr ""
+msgstr "Effets utilisés :"
 
 #: ../data/messages:7
 msgid "when clicking on an launcher"
-msgstr ""
+msgstr "En cliquant sur un lanceur"
 
 #: ../data/messages:9
 msgid "Effects used on launcher :"
-msgstr ""
+msgstr "Effets utilisés sur les lanceurs"
 
 #: ../data/messages:11
 msgid "when clicking on an appli"
-msgstr ""
+msgstr "En cliquant sur une application"
 
 #: ../data/messages:13
 msgid "Effects used on applis :"
-msgstr ""
+msgstr "Effets utilisés sur les applications"
 
 #: ../data/messages:15
 msgid "when clicking on an applet"
-msgstr ""
+msgstr "En cliquant sur un applet"
 
 #: ../data/messages:17
 msgid "Effects used on applets :"
-msgstr ""
+msgstr "Effets utilisés sur les applets"
 
 #: ../data/messages:19
 msgid "Draw in background ?"
-msgstr ""
+msgstr "Dessiner en arrière-plan ?"
 
 #: ../data/messages:21
 msgid "Rotate effects with dock ?"
-msgstr ""
+msgstr "Effet de rotation avec le dock ?"
 
 #: ../data/messages:23
 msgid "Fire"
-msgstr ""
+msgstr "Feu"
 
 #: ../data/messages:25 ../data/messages:49 ../data/messages:67
 #: ../data/messages:85 ../data/messages:103
 msgid "In ms. Set 0 to not use this effect."
-msgstr ""
+msgstr "En ms. Mettez 0 pour ne pas utiliser cet effet"
 
 #: ../data/messages:27 ../data/messages:51 ../data/messages:69
 #: ../data/messages:87 ../data/messages:105
 msgid "Duration of the animation :"
-msgstr ""
+msgstr "Durée de l'animation :"
 
 #: ../data/messages:29 ../data/messages:53 ../data/messages:71
 #: ../data/messages:89 ../data/messages:107
 msgid "Repeat while icon is pointed ?"
-msgstr ""
+msgstr "Répéter quand l'icône est sous le pointeur ?"
 
 #: ../data/messages:31 ../data/messages:55 ../data/messages:73
 #: ../data/messages:91 ../data/messages:109
 msgid "1st color of gradation :"
-msgstr ""
+msgstr "1ère couleur de graduation :"
 
 #: ../data/messages:33 ../data/messages:57 ../data/messages:75
 #: ../data/messages:93 ../data/messages:111
 msgid "2nd color of gradation :"
-msgstr ""
+msgstr "2ème couleur de graduation :"
 
 #: ../data/messages:35 ../data/messages:59
 msgid "Random colors ?"
-msgstr ""
+msgstr "Couleurs au hasard ?"
 
 #: ../data/messages:37
 msgid "It will slightly alter the colors, so you may have to modify them."
-msgstr ""
+msgstr "Les couleurs vont être légèrement modifiées, donc, vous pourriez avoir à les changer"
 
 #: ../data/messages:39
 msgid "Add luminance ?"
-msgstr ""
+msgstr "Ajouter de l'intensité ?"
 
 #: ../data/messages:41 ../data/messages:61 ../data/messages:77
 #: ../data/messages:95 ../data/messages:113
 msgid "Number of particles :"
-msgstr ""
+msgstr "Nombre de particules :"
 
 #: ../data/messages:43 ../data/messages:63 ../data/messages:79
 #: ../data/messages:97 ../data/messages:115
 msgid "Particle size :"
-msgstr ""
+msgstr "Taille des particules :"
 
 #: ../data/messages:45 ../data/messages:81 ../data/messages:99
 msgid "Particle speed :"
-msgstr ""
+msgstr "Vitesse des particules :"
 
 #: ../data/messages:47
 msgid "Stars"
-msgstr ""
+msgstr "Etoiles"
 
 #: ../data/messages:65
 msgid "Snow"
-msgstr ""
+msgstr "Neige"
 
 #: ../data/messages:83
 msgid "Rain"
-msgstr ""
+msgstr "Pluie"
 
 #: ../data/messages:101
 msgid "Storm"
-msgstr ""
+msgstr "Eclair"

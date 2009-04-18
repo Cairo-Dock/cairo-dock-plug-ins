@@ -17,13 +17,15 @@ msgid ""
 "Left click to log out, middle click to shutdown\n"
 "You can invert this order if you prefer to shutdown on left-click."
 msgstr ""
+"Un simple applet pour ajouter une icône afin de se déconnecter de votre session\n"
+"Clique gauche pour fermer la session, clique du milieu pour éteindre\n"
+"Vous pouvez intervertir ces raccourcis selon vos préférences."
 
 #: ../data/messages:1
 msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
 msgstr "Laisser vide pour utiliser l'icône par défaut."
 
@@ -36,12 +38,10 @@ msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:9
-#, fuzzy
 msgid "Let empty to use the default one."
 msgstr "Laisser vide pour utiliser l'icône par défaut."
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Image's filename :"
 msgstr "Nom de l'icône :"
 
@@ -88,13 +88,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
@@ -114,7 +113,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position"
 
 #: ../data/messages:39
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -142,7 +140,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -190,7 +188,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"
@@ -218,15 +216,17 @@ msgid ""
 "command, that greatly depends on your distribution. Sometimes the command to "
 "shutdown is just the same as the one to log out."
 msgstr ""
+"Ceci peut être disponible avec le clique du milieu. Laissez vide pour exécuter la "
+"commande par défaut, ceci peut changer en fonction de votre distribution. Parfois "
+"la commande pour éteindre est la même que pour fermer la session."
 
 #: ../data/messages:85
-#, fuzzy
 msgid "User-defined command to execute to shutdown :"
-msgstr "Commande spécifique à exécuter pour se déloguer :"
+msgstr "Commande spécifique à exécuter pour se éteindre :"
 
 #: ../data/messages:87
 msgid "Invert buttons ?"
-msgstr ""
+msgstr "Inverser les raccourcis ?"
 
 #~ msgid ""
 #~ "This is a very simple logout applet\n"

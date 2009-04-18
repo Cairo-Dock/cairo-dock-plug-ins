@@ -19,6 +19,10 @@ msgid ""
 "Left-click to open a dialog to setup the luminosity\n"
 "Middle-click to set it up for each color."
 msgstr ""
+"Réglez la luminosité de votre écran directement depuis votre dock.\n"
+"La roulette tournant vers le haut/bas pour augmenter/réduire la luminosité.\n"
+"Clique gauche pour ouvrir un menu pour la configuration de la luminosité.\n"
+"Clique du milieu pour régler chaque couleur."
 
 #: ../src/applet-notifications.c:28 ../src/applet-xgamma.c:149
 msgid "Set up gamma :"
@@ -30,7 +34,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Indiquez 0 pour utiliser la taille par défaut"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -42,12 +46,11 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:9
 msgid "Let empty to use the default one."
-msgstr ""
+msgstr "Laissez vide pour utiliser celle par défaut."
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Image's filename :"
-msgstr "Nom de l'icône :"
+msgstr "Nom du fichier de l'image :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
@@ -92,13 +95,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
@@ -118,7 +120,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
 #: ../data/messages:39
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -146,7 +147,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -194,23 +195,23 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"
-msgstr "Image d'avant-plan"
+msgstr "Image d'avant-plan :"
 
 #: ../data/messages:75
 msgid "Foreground tansparency :"
-msgstr "Transparence de l'avant-plan"
+msgstr "Transparence de l'avant-plan :"
 
 #: ../data/messages:77
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
 #: ../data/messages:79
 msgid "Variation for 1 mouse scroll, in % :"
-msgstr ""
+msgstr "Variation pour un pas de roulette, en % :"
 
 #~ msgid ""
 #~ "This is the Xgamma applet\n"

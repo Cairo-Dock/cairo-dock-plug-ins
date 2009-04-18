@@ -114,7 +114,7 @@ msgstr "窗口置顶？"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
 "type=utility) "

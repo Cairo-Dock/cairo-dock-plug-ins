@@ -19,6 +19,11 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
+"Ajouter un pingouin vivant à votre dock !\n"
+"Clique gauche pour changer l'animation,\n"
+"Clique du milieu pour le déranger ^_^\n"
+"Pingus se base sur des images de Tux, d'autres personnages sont disponibles "
+"et vous pouvez en ajouter facilement."
 
 #: ../src/applet-notifications.c:20
 msgid "Hey, I'm here !"
@@ -80,9 +85,8 @@ msgid "For Aiur !"
 msgstr "Pour Aïur !"
 
 #: ../src/applet-notifications.c:114
-#, fuzzy
 msgid "Hey, you there !"
-msgstr "Hé, je suis là !"
+msgstr "Hé, vous là !"
 
 #: ../src/applet-notifications.c:118
 msgid "Wake up"
@@ -110,16 +114,15 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laisser vide pour utiliser celle par défaut."
 
 #: ../data/messages:5
 msgid "Icon size when the penguin is not free :"
-msgstr ""
+msgstr "Taille de l'icône quand le pingouin n'est pas libre :"
 
 #: ../data/messages:7
-#, fuzzy
 msgid "Name of the icon when the penguin is not free :"
-msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+msgstr "Nom de l'icône quand le pingouin n'est pas libre :"
 
 #: ../data/messages:9
 msgid "Name of the dock it belongs to:"
@@ -131,7 +134,7 @@ msgstr "Configuration"
 
 #: ../data/messages:13
 msgid "Choose one of the available themes :"
-msgstr "Choisissez l'un des thèmes disponibles :"
+msgstr "Choisissez un des thèmes disponibles :"
 
 #: ../data/messages:15
 msgid "in seconds"

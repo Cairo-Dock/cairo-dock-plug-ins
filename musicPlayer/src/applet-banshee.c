@@ -78,28 +78,6 @@ void cd_banshee_getSongInfos (void)
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 }
 
-void cd_banshee_get_status (void)
-{
-	gchar *status=NULL;
-	status = cairo_dock_dbus_get_string (myData.dbus_proxy_shell, myData.DBus_commands.get_status);
-	//cd_debug ("MP : retour de DBUS sur status : %s", status);
-	myData.pPreviousPlayingStatus = myData.pPlayingStatus;
-	if (status != NULL)
-	{
-		if ((! g_ascii_strcasecmp(status, "playing")) || (!g_ascii_strcasecmp(status, "1")))
-		{
-			//cd_debug("MP : le lecteur est en statut PLAYING");
-			myData.pPlayingStatus = PLAYER_PLAYING;
-		}
-		else if (! g_ascii_strcasecmp(status, "paused"))
-		{
-			//cd_debug("MP : le lecteur est en statut PAUSED");
-			myData.pPlayingStatus = PLAYER_PAUSED;
-		}	
-		g_free(status);
-	}
-}
-
 
 //Les Fonctions
 void cd_banshee_free_data (void) //Permet de libéré la mémoire prise par notre controleur
@@ -185,7 +163,7 @@ void cd_banshee_read_data (void)
 	{
 		if (myData.opening)
 		{
-			cd_banshee_get_status(); // On récupère l'état de la lecture (play/pause/stop)
+			cd_musicplayer_getStatus_string("paused", "playing", NULL); // On récupère l'état de la lecture (play/pause/stop)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_banshee_getSongInfos(); // On récupère toutes les infos de la piste en cours

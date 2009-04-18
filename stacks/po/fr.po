@@ -99,7 +99,7 @@ msgid ""
 "dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
@@ -110,9 +110,9 @@ msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"Si verrouillé, le desklet ne pourra pas être bougé simplement enle tirant "
-"avec le bouton gauche de la souris. Bien sur il pourra toujourêtre bouger "
-"avec ALT + clique_gauche"
+"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
+"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
+"contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:37
 msgid "Lock position ?"
@@ -132,26 +132,23 @@ msgid ""
 "just drag and drop it on the Stacks icon"
 msgstr ""
 "Stacks va agir comme l'applet shorcut mais avec des fichiers. Pour ajouter "
-"un fichier, il faute juste faire un glisser-déposé de celui-ci sur l'icon de "
+"un fichier, il faute juste faire un glisser-déposé de celui-ci sur l'icône de "
 "Stacks"
 
 #: ../data/messages:45
-#, fuzzy
 msgid "Use only Stacks local directory ?"
 msgstr "Utiliser seulement le dossier local de Stacks ?"
 
 #: ../data/messages:47
-#, fuzzy
 msgid ""
 "You can use '_LocalDirectory_' tag to have both stack local and all "
 "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 msgstr ""
-"Vous pouvez utiliser le tag '_LocalDirectoru_' pour avoir a la fois le "
-"dossier local et toutLes dossiers surveillés. Il est necessaire de décoché "
+"Vous pouvez utiliser le tag '_LocalDirectoru_' pour avoir à la fois le "
+"dossier local et tous les dossiers surveillés. Il est nécessaire de décoché "
 "'Utiliser seulement le dossier local de Stacks'."
 
 #: ../data/messages:49
-#, fuzzy
 msgid "Monitored Directories :"
 msgstr "Dossiers surveillés :"
 
@@ -175,7 +172,7 @@ msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
 msgstr ""
-"Cette option vous permet d'éviter que certains fichiers soit affihcer dans "
+"Cette option vous permet d'éviter que certains fichiers soit afficher dans "
 "le stacks en prenant en compte leur types (video, images, etc...)"
 
 #: ../data/messages:59

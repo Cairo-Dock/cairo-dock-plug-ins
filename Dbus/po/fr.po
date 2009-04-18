@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -17,6 +16,8 @@ msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
+"Ce plug-in vous permet d'interagir avec des applications externes sur le dock.\n"
+"La communication entre les deux côtés est basé sur DBus"
 
 #: ../data/messages:1
 msgid "Configuration"

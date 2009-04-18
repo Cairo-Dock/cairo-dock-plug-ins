@@ -19,8 +19,8 @@ void cd_musicplayer_check_dbus_connection_with_two_interfaces (void);
 
 
 
-void cd_musicplayer_getStatus_string(void);
-void cd_musicplayer_getStatus_integer (void);
+void cd_musicplayer_getStatus_string(const char*, const char*, const char*);
+void cd_musicplayer_getStatus_integer (int, int);
 
 
 void cd_musicplayer_getCoverPath (void);

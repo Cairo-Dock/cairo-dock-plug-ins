@@ -17,6 +17,9 @@ msgid ""
 "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
 "You can also quickly add/remove a desktop through the right-click menu."
 msgstr ""
+"Cet applet vous permet de basculer entre vos bureaux virtuels.\n"
+"Il y a 2 modes : compact (sur une icône) et étendu (avec un sous-dock).\n"
+"Vous pouvez aussi rapidement ajouter/enlever un bureau grâce au menu (clique droit)"
 
 #: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:142
 msgid "Current"
@@ -39,9 +42,8 @@ msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "Laissez vide pour utiliser l'image par défaut."
+msgstr "Laissez vide pour utiliser la taille par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -56,9 +58,8 @@ msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser l'image par défaut."
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Image's filename :"
-msgstr "Nom de l'icône :"
+msgstr "Nom du fichier de l'image :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
@@ -73,6 +74,8 @@ msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -112,7 +115,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -140,7 +142,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -188,7 +190,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -231,9 +233,8 @@ msgid "Draw the windows on icon ?"
 msgstr "Dessiner les fenêtres sur l'icône ?"
 
 #: ../data/messages:89
-#, fuzzy
 msgid "Draw hidden windows too ?"
-msgstr "Dessiner les fenêtres sur l'icône ?"
+msgstr "Dessiner les fenêtres cachées aussi ?"
 
 #: ../data/messages:91
 msgid "Display options"
@@ -295,7 +296,7 @@ msgstr "Laissez vide pour utiliser la vue par défaut."
 
 #: ../data/messages:127
 msgid "Name of the view used for the sub-dock :"
-msgstr "Nom de la Vue utilisée "
+msgstr "Nom de la vue utilisée "
 
 #: ../data/messages:129
 msgid "In expanded mode, render the desklet in 3D ?"

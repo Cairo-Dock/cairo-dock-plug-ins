@@ -98,7 +98,7 @@ msgstr "他ウィンドウより常に上に？"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"

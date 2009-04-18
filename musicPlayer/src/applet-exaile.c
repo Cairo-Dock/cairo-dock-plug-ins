@@ -19,7 +19,6 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-musicplayer.h"
 #include "applet-dbus.h"
 
-
 #include "applet-draw.h"
 #include "applet-exaile.h"
 
@@ -29,8 +28,6 @@ void cd_exaile_getSongInfos(void)
 {
 	gint uValue;	
 	gchar* length=NULL;
-	GError *error = NULL;
-
 	
 	/* Récupération du temps total */
 	length = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.duration);
@@ -73,7 +70,7 @@ void cd_exaile_getSongInfos(void)
 	myData.cTitle = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_title);
 	//Artist & Title = RawTitle
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
-	cd_message("MP : %s - %s", myData.cRawTitle, myData.cAlbum);
+	cd_debug("MP : \n\t Artist - Title : %s \n\t Album : %s", myData.cRawTitle, myData.cAlbum);
 }
 
 
@@ -173,7 +170,7 @@ void cd_exaile_read_data (void)
 	{
 		if (myData.dbus_enable)
 		{
-			cd_musicplayer_getStatus_string(); // On récupère l'état de la lecture (play/pause/stop)
+			cd_musicplayer_getStatus_string("paused", "playing", "stopped"); // On récupère l'état de la lecture (play/pause/stop)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_exaile_getSongInfos(); // On récupère toutes les infos de la piste en cours

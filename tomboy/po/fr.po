@@ -16,24 +16,23 @@ msgstr ""
 
 #: ../src/tomboy-init.c:14
 msgid "Control your TomBoy's notes directly in the dock !"
-msgstr ""
+msgstr "Contrôlez vos notes TomBoy directement depuis le dock !"
 
 #: ../src/tomboy-notifications.c:47
 msgid "Note name : "
 msgstr "Nom de la note :"
 
 #: ../src/tomboy-notifications.c:69
-#, fuzzy
 msgid "Delete this note ?"
-msgstr "Supprimer cette note"
+msgstr "Supprimer cette note ?"
 
 #: ../src/tomboy-notifications.c:84
 msgid "Search for :"
-msgstr ""
+msgstr "Chercher pour :"
 
 #: ../src/tomboy-notifications.c:105
 msgid "Search for tag :"
-msgstr ""
+msgstr "Chercher pour le tag :"
 
 #: ../src/tomboy-notifications.c:161
 msgid "Reload notes"
@@ -49,36 +48,35 @@ msgstr "Supprimer cette note"
 
 #: ../src/tomboy-notifications.c:171
 msgid "Search"
-msgstr ""
+msgstr "Chercher"
 
 #: ../src/tomboy-notifications.c:172
-msgid "Searh for tag"
-msgstr ""
+msgid "Search for tag"
+msgstr "Chercher pour le tag"
 
 #: ../src/tomboy-notifications.c:174
 msgid "Search for today's note"
-msgstr ""
+msgstr "Chercher pour la note du jour"
 
 #: ../src/tomboy-notifications.c:175
 msgid "Search for this week's note"
-msgstr ""
+msgstr "Chercher pour la note de la semaine"
 
 #: ../src/tomboy-notifications.c:176
 msgid "Search for next week's note"
-msgstr ""
+msgstr "Chercher pour la note de la semaine prochaine"
 
 #: ../src/tomboy-notifications.c:186
 msgid "Reset marks"
-msgstr ""
+msgstr "Redémarrer les marques"
 
 #: ../data/messages:1
 msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "Laissez vide pour utiliser l'icône par défaut."
+msgstr "Laissez vide pour utiliser la taille par défaut"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -157,15 +155,15 @@ msgstr "Format de la date à chercher :"
 
 #: ../data/messages:41
 msgid "Ask confirmation before deleting a note ?"
-msgstr ""
+msgstr "Demander confirmation avant d'effacer une note ?"
 
 #: ../data/messages:43
 msgid "Otherwise you will be asked to name it."
-msgstr ""
+msgstr "Sinon, il vous sera demandé de le nommer"
 
 #: ../data/messages:45
 msgid "Automatically name a new note ?"
-msgstr ""
+msgstr "Nommer automatiquement une nouvelle note ?"
 
 #~ msgid "Applet by Necropotame (Adrien Pilleboue)"
 #~ msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"

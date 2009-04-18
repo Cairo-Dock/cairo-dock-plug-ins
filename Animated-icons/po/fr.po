@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../src/applet-init.c:25
 msgid "This plug-in provides many different animations for your icons."
-msgstr ""
+msgstr "Ce plug-in vous offre différentes animations pour vos icônes."
 
 #: ../data/messages:1
 msgid "Global"
@@ -27,61 +26,61 @@ msgstr ""
 
 #: ../data/messages:3
 msgid "when hovering an icon"
-msgstr ""
+msgstr "Lors du survol d'une icône"
 
 #: ../data/messages:5
 msgid "Effects used :"
-msgstr ""
+msgstr "Effets utilisés :"
 
 #: ../data/messages:7
 msgid "when clicking on an launcher"
-msgstr ""
+msgstr "En cliquant sur un lanceur"
 
 #: ../data/messages:9
 msgid "Effects used on launcher :"
-msgstr ""
+msgstr "Effets utilisés sur les lanceurs"
 
 #: ../data/messages:11 ../data/messages:17 ../data/messages:23
 msgid "Number of time the animation will play :"
-msgstr ""
+msgstr "Nombre de répétitions de l'animation :"
 
 #: ../data/messages:13
 msgid "when clicking on an appli"
-msgstr ""
+msgstr "En cliquant sur une application"
 
 #: ../data/messages:15
 msgid "Effects used on applis :"
-msgstr ""
+msgstr "Effets utilisés sur les applications"
 
 #: ../data/messages:19
 msgid "when clicking on an applet"
-msgstr ""
+msgstr "En cliquant sur un applet"
 
 #: ../data/messages:21
 msgid "Effects used on applets :"
-msgstr ""
+msgstr "Effets utilisés sur les applets"
 
 #: ../data/messages:25
 msgid "Rotation"
-msgstr ""
+msgstr "Rotation"
 
 #: ../data/messages:27 ../data/messages:45 ../data/messages:87
 #: ../data/messages:99 ../data/messages:111 ../data/messages:125
 msgid "In ms."
-msgstr ""
+msgstr "En ms."
 
 #: ../data/messages:29 ../data/messages:47 ../data/messages:89
 msgid "Duration of the animation :"
-msgstr ""
+msgstr "Durée de l'animation :"
 
 #: ../data/messages:31 ../data/messages:49 ../data/messages:91
 #: ../data/messages:103 ../data/messages:115 ../data/messages:129
 msgid "Repeat while icon is pointed ?"
-msgstr ""
+msgstr "Répéter lorsque l'icône est pointée par la souris ?"
 
 #: ../data/messages:33
 msgid "Type of mesh :"
-msgstr ""
+msgstr "Type de rotation :"
 
 #: ../data/messages:35
 msgid "Normal"
@@ -97,7 +96,7 @@ msgstr ""
 
 #: ../data/messages:41
 msgid "color of the mesh :"
-msgstr ""
+msgstr "Couleur de la maille :"
 
 #: ../data/messages:43
 msgid "Spot"
@@ -105,124 +104,124 @@ msgstr ""
 
 #: ../data/messages:51
 msgid "color of the spot :"
-msgstr ""
+msgstr "Couleur du spot"
 
 #: ../data/messages:53
 msgid "color of the halo :"
-msgstr ""
+msgstr "Couleur de l'auréole (halo) :"
 
 #: ../data/messages:55
 msgid "Rays"
-msgstr ""
+msgstr "Rayons"
 
 #: ../data/messages:57
 msgid "1st color of gradation :"
-msgstr ""
+msgstr "Première couleur pour la graduation :"
 
 #: ../data/messages:59
 msgid "2nd color of gradation :"
-msgstr ""
+msgstr "Deuxième couleur pour la graduation :"
 
 #: ../data/messages:61
 msgid "Random colors ?"
-msgstr ""
+msgstr "Couleurs au hasard ?"
 
 #: ../data/messages:63
 msgid "Number of rays :"
-msgstr ""
+msgstr "Nombre de rayons :"
 
 #: ../data/messages:65
 msgid "Rays size :"
-msgstr ""
+msgstr "Taille des rayons :"
 
 #: ../data/messages:67
 msgid "Rays speed :"
-msgstr ""
+msgstr "Vitesse des rayons :"
 
 #: ../data/messages:69
 msgid "Wobbly"
-msgstr ""
+msgstr "Oscillement"
 
 #: ../data/messages:71
 msgid "Initial stretch :"
-msgstr ""
+msgstr "Etirement initial :"
 
 #: ../data/messages:73
 msgid "Horizontal stretch"
-msgstr ""
+msgstr "Etirement horizontal"
 
 #: ../data/messages:75
 msgid "Vertical stretch"
-msgstr ""
+msgstr "Etirement vertical"
 
 #: ../data/messages:77
 msgid "Corner stretch"
-msgstr ""
+msgstr "Etirement des coins"
 
 #: ../data/messages:79
 msgid "Spring constant :"
-msgstr ""
+msgstr "Saut contant :"
 
 #: ../data/messages:81
 msgid "Friction :"
-msgstr ""
+msgstr "Friction :"
 
 #: ../data/messages:83
 msgid "Number of points on the grid in one direction :"
-msgstr ""
+msgstr "Nombre de points sur la grille dans une direction :"
 
 #: ../data/messages:85
 msgid "Wave"
-msgstr ""
+msgstr "Vague"
 
 #: ../data/messages:93
 msgid "Width of the wave :"
-msgstr ""
+msgstr "Largeur de la vague :"
 
 #: ../data/messages:95
 msgid "Amplitude of the wave :"
-msgstr ""
+msgstr "Amplitude de la vague :"
 
 #: ../data/messages:97
 msgid "Pulse"
-msgstr ""
+msgstr "Pulsation"
 
 #: ../data/messages:101
 msgid "Duration of the pulse :"
-msgstr ""
+msgstr "Durée de la pulsation :"
 
 #: ../data/messages:105
 msgid "Zoom max of the pulse :"
-msgstr ""
+msgstr "Zoom maximum de la pulsation :"
 
 #: ../data/messages:107
 msgid "Should the pulse follow the shape of the icon ?"
-msgstr ""
+msgstr "L'impulsion doit-elle suivre la forme de l'icône ?"
 
 #: ../data/messages:109
 msgid "Bounce"
-msgstr ""
+msgstr "Bond"
 
 #: ../data/messages:113
 msgid "Duration of the bounce :"
-msgstr ""
+msgstr "Durée du bond :"
 
 #: ../data/messages:117
 msgid "When bouncing, resize the icon of :"
-msgstr ""
+msgstr "Lors d'un bond, redimensionner l'icône de :"
 
 #: ../data/messages:119
 msgid "the smaller, the more it will flatten."
-msgstr ""
+msgstr "Au plus c'est petit, au plus ce sera plat."
 
 #: ../data/messages:121
 msgid "How much the icon will flatten when hurting the ground :"
-msgstr ""
+msgstr "De combien l'icône peut s'aplatir quand elle heurte le sol :"
 
 #: ../data/messages:123
 msgid "Blink"
-msgstr ""
+msgstr "Clignottement"
 
 #: ../data/messages:127
 msgid "Duration of the blink :"
-msgstr ""
+msgstr "Durée du clignottement"

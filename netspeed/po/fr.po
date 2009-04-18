@@ -19,6 +19,10 @@ msgid ""
 "Left-click on the icon to have the total amount of data transfered\n"
 "Middle-click to (de)activate the network (needs NetworManager)"
 msgstr ""
+"Cet applet vous indique le débit de votre connexion Internet et quelques "
+"statistiques en relation.\n"
+"Clique gauche sur l'icône pour avoir la valeur totale des données transférées\n"
+"Clique du milieu pour (dés)activer le réseau (nécessite NetworManager)"
 
 #: ../src/applet-netspeed.c:24 ../src/applet-netspeed.c:32
 msgid "B"
@@ -46,15 +50,15 @@ msgstr "Chargement"
 
 #: ../src/applet-notifications.c:16
 msgid "Total amount of data"
-msgstr ""
+msgstr "Taille totale des données"
 
 #: ../src/applet-notifications.c:16
 msgid "downloaded"
-msgstr ""
+msgstr "téléchargés"
 
 #: ../src/applet-notifications.c:16
 msgid "uploaded"
-msgstr ""
+msgstr "envoyés"
 
 #: ../src/applet-notifications.c:19
 #, c-format
@@ -63,7 +67,7 @@ msgstr "L'interface '%s' semble ne pas exister ou n'est pas lisible"
 
 #: ../src/applet-notifications.c:44
 msgid "Monitor System"
-msgstr ""
+msgstr "Moniteur système"
 
 #: ../src/applet-notifications.c:46
 msgid "Re-check interface"
@@ -75,7 +79,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser celle par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -106,13 +110,12 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche. "
+"Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -131,13 +134,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -157,7 +159,6 @@ msgid "Lock position ?"
 msgstr "Verrouiller la position"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "in degrees."
 msgstr "en degrés."
 
@@ -185,7 +186,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -233,7 +234,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -249,66 +250,65 @@ msgstr "Configuration"
 
 #: ../data/messages:75
 msgid "Display a graphic rather than a gauge ?"
-msgstr ""
+msgstr "Afficher un graphique au lieu d'une jauge ?"
 
 #: ../data/messages:77
 msgid "Type of graphic :"
-msgstr ""
+msgstr "Type de graphique"
 
 #: ../data/messages:79
 msgid "Line"
-msgstr ""
+msgstr "Cartésien (ligne)"
 
 #: ../data/messages:81
 msgid "Plain"
-msgstr ""
+msgstr "Plein"
 
 #: ../data/messages:83
 msgid "Bar"
-msgstr ""
+msgstr "Histogramme (barres)"
 
 #: ../data/messages:85
 msgid "Circle"
-msgstr ""
+msgstr "Circulaire"
 
 #: ../data/messages:87
 msgid "Plain Circle"
-msgstr ""
+msgstr "Circulaire plein"
 
 #: ../data/messages:89 ../data/messages:97
-msgid "It's the color of the graphic for high CPU values."
-msgstr ""
+msgid "It's the color of the graphic for high speed values."
+msgstr "C'est la couleur du graphique pour les hautes valeurs de téléchargement."
 
 #: ../data/messages:91
 msgid "High values color for the download speed :"
-msgstr ""
+msgstr "Couleur des hautes valeurs de vitesse :"
 
 #: ../data/messages:93 ../data/messages:101
-msgid "It's the color of the graphic for low CPU values."
-msgstr ""
+msgid "It's the color of the graphic for low speed values."
+msgstr "C'est la couleur du graphique pour les basses valeurs de téléchargement."
 
 #: ../data/messages:95
 msgid "Low values color for the download speed :"
-msgstr ""
+msgstr "Couleur des basses valeurs de vitesse :"
 
 #: ../data/messages:99
 msgid "High values color for the upload speed :"
-msgstr ""
+msgstr "Couleur des hautes valeurs de la vitesse d'upload :"
 
 #: ../data/messages:103
 msgid "Low values color for the upload speed :"
-msgstr ""
+msgstr "Couleur des basses valeurs de la vitesse d'upload :"
 
 #: ../data/messages:105
 msgid "Draw both values on the same graph ?"
-msgstr ""
+msgstr "Dessiner les deux valeurs sur le même graph ?"
 
 #: ../data/messages:107
 msgid "Background color of the graphic :"
-msgstr ""
+msgstr "Couleur d'arrière plan du graphique :"
 
 #: ../data/messages:109
-#, fuzzy
 msgid "List of available themes for the gauge :"
 msgstr "Liste des thèmes disponibles pour la jauge :"
 
@@ -317,18 +317,20 @@ msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
+"Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 "
+"si vous ne voulez pas de filigrane"
 
 #: ../data/messages:113
 msgid "Image to display as a watermark on the gauge :"
-msgstr ""
+msgstr "Image à afficher en filigrane sur la jauge :"
 
 #: ../data/messages:115
 msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
+msgstr "Mettez 0 si vous ne voulez pas de filigrane."
 
 #: ../data/messages:117
 msgid "Transparency of the watermark :"
-msgstr ""
+msgstr "Transparence du filigrane :"
 
 #: ../data/messages:119
 msgid "Display speed values :"
@@ -364,11 +366,11 @@ msgstr "Intervalle entre 2 mesures :"
 
 #: ../data/messages:137
 msgid "Let empty to use he default one."
-msgstr ""
+msgstr "Laisser vide pour utiliser celui par défaut."
 
 #: ../data/messages:139
 msgid "User command to show a system monitor :"
-msgstr ""
+msgstr "Commande utilisateur pour montrer le moniteur système :"
 
 #~ msgid ""
 #~ "This is the netspeed applet\n"

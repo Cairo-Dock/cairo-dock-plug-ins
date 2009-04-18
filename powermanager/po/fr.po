@@ -70,7 +70,7 @@ msgstr ""
 
 #: ../src/powermanager-init.c:15
 msgid "A power manager for laptop's battery. It works with ACPI and DBus."
-msgstr ""
+msgstr "Un gestionnaire d'énergie pour les batteries de portable, fonctionnant avec ACPI et DBus."
 
 #: ../src/powermanager-menu-functions.c:44
 msgid "Set up power management"
@@ -98,11 +98,11 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
-msgstr ""
+msgstr "Taille de l'icône désiré pour cet applet"
 
 #: ../data/messages:7
 msgid "Icon name :"
@@ -151,13 +151,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -204,7 +203,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -252,7 +251,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -272,7 +271,7 @@ msgstr "en secondes."
 
 #: ../data/messages:77
 msgid "Interval of time between 2 checks :"
-msgstr "Intervale entre 2 vérifications :"
+msgstr "Intervalle entre 2 vérifications :"
 
 #: ../data/messages:79
 msgid "Display"

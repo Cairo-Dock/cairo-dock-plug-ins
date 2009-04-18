@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -19,68 +18,66 @@ msgstr ""
 
 #: ../src/applet-init.c:24
 msgid "This plug-in provides some dialog decorators for dialog bubbles."
-msgstr ""
+msgstr "Ce plug-in fournit plusieurs décorations pour les infobulles."
 
 #: ../data/messages:1
 msgid "Comics"
-msgstr ""
+msgstr "BD"
 
 #: ../data/messages:3 ../data/messages:11 ../data/messages:21
 #: ../data/messages:31 ../data/messages:41
 msgid "Corner radius :"
-msgstr ""
+msgstr "Rayon du coin :"
 
 #: ../data/messages:5 ../data/messages:13 ../data/messages:33
 #: ../data/messages:43
-#, fuzzy
 msgid "Border width :"
-msgstr "largeur :"
+msgstr "Largeur de la bordure :"
 
 #: ../data/messages:7 ../data/messages:15 ../data/messages:35
 #: ../data/messages:45
 msgid "Line color of the bubble :"
-msgstr ""
+msgstr "Couleur du contour de la bulle :"
 
 #: ../data/messages:9
-#, fuzzy
 msgid "Modern"
-msgstr "Module"
+msgstr "Moderne"
 
 #: ../data/messages:17
 msgid "Space between lines of the tip :"
-msgstr ""
+msgstr "Espace entre les lignes à l'extrémité :"
 
 #: ../data/messages:19
 msgid "3D plane"
-msgstr ""
+msgstr "Plan incliné"
 
 #: ../data/messages:23
 msgid "Border width of the plane :"
-msgstr ""
+msgstr "Largeur de la bordure du plan :"
 
 #: ../data/messages:25
 msgid "Line color of the plane :"
-msgstr ""
+msgstr "Couleur du contour :"
 
 #: ../data/messages:27
 msgid "Color of the plane :"
-msgstr ""
+msgstr "Couleur du plan :"
 
 #: ../data/messages:29
 msgid "Tooltip"
-msgstr ""
+msgstr "Infobulle"
 
 #: ../data/messages:37
 msgid "Color of the margin :"
-msgstr ""
+msgstr "Couleur de la marge :"
 
 #: ../data/messages:39
 msgid "Curly"
-msgstr ""
+msgstr "Courbure"
 
 #: ../data/messages:47
 msgid "Curvature of the tip :"
-msgstr ""
+msgstr "Courbure des extrémités :"
 
 #~ msgid "Icon"
 #~ msgstr "Icône"
@@ -137,10 +134,10 @@ msgstr ""
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "(class=Cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
-#~ "de Compiz à : (name=cairo-dock & type=utility)"
+#~ "de Compiz à : (class=Cairo-dock & type=utility)"
 
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "Garder sur la couche des widgets ?"
@@ -178,7 +175,7 @@ msgstr ""
 #~ "exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "C'est une image qui sera affichée derrière les dessins, comme un cadre "
-#~ "par exemple. Laissez vide pour n'en uiliser aucune."
+#~ "par exemple. Laissez vide pour n'en utiliser aucune."
 
 #~ msgid "Background image :"
 #~ msgstr "Image de fond :"
@@ -218,7 +215,7 @@ msgstr ""
 #~ "for exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-#~ "par exemple. Laissez vide pour n'en uiliser aucune."
+#~ "par exemple. Laissez vide pour n'en utiliser aucune."
 
 #~ msgid "Foreground image :"
 #~ msgstr "Image d'avant-plan :"

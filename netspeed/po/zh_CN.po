@@ -135,7 +135,7 @@ msgstr "在其他窗口之上?"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "面向CompizFusion的“小工具层”，将Compiz的行为设置为:(name=cairo-dock & "
 "type=utility) "
@@ -269,16 +269,16 @@ msgid "Plain Circle"
 msgstr "平面圆环图"
 
 #: ../data/messages:89 ../data/messages:97
-msgid "It's the color of the graphic for high CPU values."
-msgstr "高CPU占用率图像颜色。"
+msgid "It's the color of the graphic for high speed values."
+msgstr "高速度占用率图像颜色。"
 
 #: ../data/messages:91
 msgid "High values color for the download speed :"
 msgstr "下载速度快时的颜色:"
 
 #: ../data/messages:93 ../data/messages:101
-msgid "It's the color of the graphic for low CPU values."
-msgstr "低CPU占用率图像颜色。"
+msgid "It's the color of the graphic for low speed values."
+msgstr "低速度占用率图像颜色。"
 
 #: ../data/messages:95
 msgid "Low values color for the download speed :"

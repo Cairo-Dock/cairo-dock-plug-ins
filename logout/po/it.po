@@ -92,7 +92,7 @@ msgstr "Mantenere al di sopra delle altre finestre ?"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"

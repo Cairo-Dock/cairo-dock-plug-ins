@@ -19,6 +19,10 @@ msgid ""
 "You can bind one of these actions with the middle-click.\n"
 "The configuration panel gives you some options to launch Compiz."
 msgstr ""
+"Cet applet vous permet de gérer Compiz et d'autres gestionnaires de fenêtres\n"
+"Le sous-dock vous donne accès au CCSM, Emerald et d'autres raccourcis pour Compiz.\n"
+"Vous pouvez choisir l'action du clique du milieu.\n"
+"Le panneau de configuration vous donne certaines options pour lancer Compiz."
 
 #: ../src/applet-load-icon.c:21
 msgid "Configure Compiz"
@@ -45,6 +49,8 @@ msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
+"Pour configurer Compiz, vous devez avoir installé CCSM\n"
+" avec votre gestionnaire de paquets (Synaptic, YasT, etc)"
 
 #: ../src/applet-notifications.c:186
 msgid "Reload Emerald"
@@ -75,7 +81,6 @@ msgid "Icon"
 msgstr "Icône"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
 msgstr "Laisser vide pour avoir l'icon par défault"
 
@@ -130,13 +135,12 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (name=cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
@@ -183,7 +187,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en uiliser aucune."
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -231,7 +235,7 @@ msgid ""
 "exemple. Let empty to not use any."
 msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en uiliser aucune."
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -434,7 +438,7 @@ msgstr "Images"
 #: ../data/messages:163 ../data/messages:167 ../data/messages:171
 #: ../data/messages:175 ../data/messages:179
 msgid "Let t empty to use the default icon."
-msgstr "Laisser vide pour avoir l'icon par défault"
+msgstr "Laisser vide pour utiliser l'icône par défaut."
 
 #: ../data/messages:153
 msgid "Name of an image for the 'default' icon :"
