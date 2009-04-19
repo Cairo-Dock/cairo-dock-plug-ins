@@ -98,12 +98,12 @@ CD_APPLET_RELOAD_BEGIN
 			if (myData.iCallList[CD_CAPSULE_MESH] != 0)
 			{
 				glDeleteLists (myData.iCallList[CD_CAPSULE_MESH], 1);
-				myData.iCallList[CD_CUBE_MESH] = 0;
+				myData.iCallList[CD_CAPSULE_MESH] = 0;
 			}
 			if (myData.iCallList[CD_SQUARE_MESH] != 0)
 			{
 				glDeleteLists (myData.iCallList[CD_SQUARE_MESH], 1);
-				myData.iCallList[CD_CUBE_MESH] = 0;
+				myData.iCallList[CD_SQUARE_MESH] = 0;
 			}
 		}
 		else

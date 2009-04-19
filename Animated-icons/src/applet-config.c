@@ -109,13 +109,13 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	if (myData.iChromeTexture != 0)
 		glDeleteTextures (1, &myData.iChromeTexture);
-	if (myData.iSpotTexture == 0)
+	if (myData.iSpotTexture != 0)
 		glDeleteTextures (1, &myData.iSpotTexture);
-	if (myData.iHaloTexture == 0)
+	if (myData.iHaloTexture != 0)
 		glDeleteTextures (1, &myData.iHaloTexture);
-	if (myData.iSpotFrontTexture == 0)
+	if (myData.iSpotFrontTexture != 0)
 		glDeleteTextures (1, &myData.iSpotFrontTexture);
-	if (myData.iRaysTexture == 0)
+	if (myData.iRaysTexture != 0)
 		glDeleteTextures (1, &myData.iRaysTexture);
 	
 	if (myData.iCallList[CD_SQUARE_MESH] != 0)
