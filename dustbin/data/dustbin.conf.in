@@ -87,7 +87,7 @@ fg alpha = 1
 #F[Theme;gtk-dialog-info]
 frame1 =
 
-#h+[@dustbindatadir@/themes;@dustbinuserdirname@] Choose one of the available themes :/
+#h+[@dustbindatadir@/themes;@dustbinuserdirname@;dustbin] Choose one of the available themes :/
 theme = Gion
 
 #S+ Name of an image to overwrite the theme's empty image :
