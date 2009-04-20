@@ -157,7 +157,6 @@ CairoDialog *xgamma_build_dialog (void)
 
 void xgamma_build_and_show_widget (void)
 {
-	cd_message ("");
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
 	g_return_if_fail (fGamma > 0);
 	

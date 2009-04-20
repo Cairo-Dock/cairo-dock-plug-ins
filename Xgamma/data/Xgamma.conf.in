@@ -88,3 +88,7 @@ fg alpha = 1
 
 #i[1;50] Variation for 1 mouse scroll, in % :
 scroll variation = 5
+
+#e[0;2] Luminosity to automatically apply on startup :
+#{Set 0 to not use it.}
+initial gamma = 0

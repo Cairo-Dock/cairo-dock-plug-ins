@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-04-14 03:27+0200\n"
+"POT-Creation-Date: 2009-04-21 02:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,7 +93,7 @@ msgstr ""
 #: ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=cairo-dock & type=utility)"
 msgstr ""
 
 #: ../data/messages:33
@@ -219,22 +219,31 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../data/messages:91
-msgid "Transparent background ?"
+msgid ""
+"This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
 msgstr ""
 
 #: ../data/messages:93
+msgid "Right margin's width, in pixels :"
+msgstr ""
+
+#: ../data/messages:95
+msgid "Transparent background ?"
+msgstr ""
+
+#: ../data/messages:97
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Time between two page refreshes"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "Any valid URI should work."
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr ""

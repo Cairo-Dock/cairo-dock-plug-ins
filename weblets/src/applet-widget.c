@@ -57,7 +57,7 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
+		cairo_dock_add_interactive_widget_to_desklet_full (myData.pGtkMozEmbed, myDesklet, myConfig.iRightMargin);
 		
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
@@ -98,6 +98,21 @@ gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet)
 		if(myData.pGtkMozEmbed)
 		{
 			cd_message( " >> weblets: refresh !\n" );
+			if (myConfig.cURI_to_load == NULL)
+			{
+			  g_free (myConfig.cURI_to_load);
+			  myConfig.cURI_to_load = g_strdup ("http://www.google.com");
+			}
+			else
+			{
+			  if (strchr (myConfig.cURI_to_load, "://") == NULL)  // pas de protocole defini, on prend http par defaut.
+			  {
+			    gchar *tmp = myConfig.cURI_to_load;
+			    myConfig.cURI_to_load = g_strconcat ("http://", (strncmp (myConfig.cURI_to_load, "www.", 4) ? "www." : ""), myConfig.cURI_to_load, NULL);
+			    g_free (tmp);
+			  }
+			}
+			
 			webkit_web_view_open(WEBKIT_WEB_VIEW(myData.pWebKitView), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
 		}
 		/* available since rev. 30985, from fev. 2008 */

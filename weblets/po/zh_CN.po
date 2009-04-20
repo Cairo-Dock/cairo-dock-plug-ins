@@ -96,7 +96,7 @@ msgstr "窗口置顶？"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
 "type=utility) "
@@ -225,23 +225,32 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "垂直卷轴位置"
 
 #: ../data/messages:91
-msgid "Transparent background ?"
+msgid ""
+"This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
 msgstr ""
 
 #: ../data/messages:93
+msgid "Right margin's width, in pixels :"
+msgstr ""
+
+#: ../data/messages:95
+msgid "Transparent background ?"
+msgstr ""
+
+#: ../data/messages:97
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr "重载URI的时间间隔，以秒为单位。为0则不重载"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Time between two page refreshes"
 msgstr "页面刷新时间"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "Any valid URI should work."
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr ""
 

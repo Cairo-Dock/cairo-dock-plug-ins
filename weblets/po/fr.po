@@ -21,8 +21,8 @@ msgid ""
 "You can select your web page, set the desired scrolling,\n"
 "and hide the scrollbars to get a real 'crop' of the page."
 msgstr ""
-"L'applet weblets vous permet d'afficher une page web interactive sur "
-"votre bureau.\n"
+"L'applet weblets vous permet d'afficher une page web interactive sur votre "
+"bureau.\n"
 "Vous pouvez sélectionner votre page, paramétrer le défilement désiré\n"
 "et cacher les barres de défilement pour obtenir un vrai 'rognage' de la page."
 
@@ -97,9 +97,10 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
@@ -236,24 +237,34 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position de la barre de défilement verticale"
 
 #: ../data/messages:91
+msgid ""
+"This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
+msgstr ""
+
+#: ../data/messages:93
+msgid "Right margin's width, in pixels :"
+msgstr ""
+
+#: ../data/messages:95
 msgid "Transparent background ?"
 msgstr "Arrière-plan transparent ?"
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
-"Temps avec le rechargement du weblet URI, en secondes. 0 pour ne jamais recharger."
+"Temps avec le rechargement du weblet URI, en secondes. 0 pour ne jamais "
+"recharger."
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Time between two page refreshes"
 msgstr "Temps entre deux actualisations de la page"
 
-#: ../data/messages:97
+#: ../data/messages:101
 msgid "Any valid URI should work."
 msgstr "Tout les URI valides devrait fonctionner."
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr "Marque-Pages prédéfinis à afficher dans le menu de l'applet"
 

@@ -100,6 +100,10 @@ scroll x = 0
 #{Vertical scroll of the browser in pixel}
 scroll y = 0
 
+#i[0;30] Right margin's width, in pixels :
+#{This lets you right-click on the desklet to pop-up the Cairo-Dock's menu.}
+right margin = 5
+
 #b Transparent background ?
 transparent background = false
 
@@ -109,4 +113,4 @@ reload timeout = 0
 
 #s99 Predefined bookmarks to show in applet's menu :
 #{Any valid URI should work.}/
-uri list = http://www.cairo-dock.org;http://www.google.com;https://m.google.com/mail;http://www.rememberthemilk.com/services/modules/googleig;https://www.meebo.com/mobile;https://www.pandora.com/radio/tuner_8_7_0_0_pandora.swf;http://digg.com/iphone#_stories;http://about:plugins
+uri list = http://www.cairo-dock.org;http://www.google.com;https://m.google.com/mail;http://www.rememberthemilk.com/services/modules/googleig;https://www.meebo.com/mobile;https://www.pandora.com/radio/tuner_8_7_0_0_pandora.swf;http://digg.com/iphone#_stories;http://www.bashfr.org/?sort=top50;http://about:plugins

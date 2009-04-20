@@ -33,7 +33,8 @@ CD_APPLET_DEFINITION ("Xgamma",
 	N_("Setup the luminosity of your screen directly from your dock.\n"
 	"Scroll up/down to increase/decrease the luminosity\n"
 	"Left-click to open a dialog to setup the luminosity\n"
-	"Middle-click to set it up for each color."),
+	"Middle-click to set it up for each color.\n"
+	"You can also define a luminosity value that will be applied automatically on startup.\n"),
 	"Fabounet (Fabrice Rey)")
 
 
@@ -54,25 +55,36 @@ CD_APPLET_INIT_BEGIN
 			return ;
 		}
 		
-		#ifdef XF86VidModeQueryVersion
+		//#ifdef XF86VidModeQueryVersion
 		int MajorVersion, MinorVersion;
 		if (!XF86VidModeQueryVersion(dpy, &MajorVersion, &MinorVersion))
 		{
 			cd_warning ("Xgamma : unable to query video extension version");
 			return ;
 		}
-		#endif
+		//#endif
 		
-		#ifdef XF86VidModeQueryExtension
+		//#ifdef XF86VidModeQueryExtension
 		int EventBase, ErrorBase;
 		if (!XF86VidModeQueryExtension(dpy, &EventBase, &ErrorBase))
 		{
 			cd_warning ("Xgamma : unable to query video extension information");
 			return ;
 		}
-		#endif
+		//#endif
 		
 		myData.bVideoExtensionOK = TRUE;
+		
+		if (myConfig.fInitialGamma != 0)
+		{
+			cd_message ("Applying luminosity as defined in config (gamma=%.2f)...", myConfig.fInitialGamma);
+			xgamma_get_gamma (&myData.Xgamma);
+			myConfig.fInitialGamma = MIN (GAMMA_MAX, MAX (myConfig.fInitialGamma, GAMMA_MIN));
+			myData.Xgamma.red = myConfig.fInitialGamma;
+			myData.Xgamma.blue = myConfig.fInitialGamma;
+			myData.Xgamma.green = myConfig.fInitialGamma;
+			xgamma_set_gamma (&myData.Xgamma);
+		}
 	}
 	
 	if (myDesklet)  // on cree le widget pour avoir qqch a afficher dans le desklet.
@@ -100,12 +112,12 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (! myData.pWidget)
 		{
-			if (myDesklet != NULL)  // on cree le widget pour avoir qqch a afficher dans le desklet.
+			if (myDesklet)  // on cree le widget pour avoir qqch a afficher dans le desklet.
 				xgamma_build_and_show_widget ();
 		}
 		else if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
 		{
-			if (myDesklet != NULL)  // il faut passer du dialogue au desklet.
+			if (myDesklet)  // il faut passer du dialogue au desklet.
 			{
 				myData.pWidget = cairo_dock_steal_widget_from_its_container (myData.pWidget);
 				cairo_dock_dialog_unreference (myData.pDialog);
@@ -117,15 +129,6 @@ CD_APPLET_RELOAD_BEGIN
 			else  // il faut passer du desklet au dialogue
 			{
 				myData.pDialog = xgamma_build_dialog ();
-				/*myData.pDialog = cairo_dock_build_dialog (D_("Set up gamma :"),
-					myIcon,
-					myContainer,
-					NULL,
-					myData.pWidget,
-					GTK_BUTTONS_OK_CANCEL,
-					(CairoDockActionOnAnswerFunc) xgamma_apply_values,
-					NULL,
-					NULL);*/
 				cairo_dock_hide_dialog (myData.pDialog);
 			}
 		}

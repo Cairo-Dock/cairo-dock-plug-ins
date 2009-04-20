@@ -15,6 +15,7 @@
 
 struct _AppletConfig {
 	gint iScrollVariation;
+	gdouble fInitialGamma;
 	} ;
 
 struct _AppletData {

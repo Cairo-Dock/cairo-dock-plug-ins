@@ -13,20 +13,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-init.c:33
+#, fuzzy
 msgid ""
 "Setup the luminosity of your screen directly from your dock.\n"
 "Scroll up/down to increase/decrease the luminosity\n"
 "Left-click to open a dialog to setup the luminosity\n"
-"Middle-click to set it up for each color."
+"Middle-click to set it up for each color.\n"
+"You can also define a luminosity value that will be applied automatically on "
+"startup.\n"
 msgstr ""
 "Réglez la luminosité de votre écran directement depuis votre dock.\n"
 "La roulette tournant vers le haut/bas pour augmenter/réduire la luminosité.\n"
 "Clique gauche pour ouvrir un menu pour la configuration de la luminosité.\n"
 "Clique du milieu pour régler chaque couleur."
 
-#: ../src/applet-notifications.c:28 ../src/applet-xgamma.c:149
+#: ../src/applet-notifications.c:26 ../src/applet-xgamma.c:149
 msgid "Set up gamma :"
 msgstr "Réglez le gamma :"
+
+#: ../src/applet-notifications.c:51
+msgid "Apply current luminosity on startup"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -95,9 +102,10 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
@@ -212,6 +220,14 @@ msgstr "Configuration"
 #: ../data/messages:79
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "Variation pour un pas de roulette, en % :"
+
+#: ../data/messages:81
+msgid "Set 0 to not use it."
+msgstr ""
+
+#: ../data/messages:83
+msgid "Luminosity to automatically apply on startup :"
+msgstr ""
 
 #~ msgid ""
 #~ "This is the Xgamma applet\n"

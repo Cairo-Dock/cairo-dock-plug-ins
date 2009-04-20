@@ -14,10 +14,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-config.h"
 
 
-
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.iScrollVariation = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "scroll variation", 5);
+	myConfig.fInitialGamma = CD_CONFIG_GET_DOUBLE ("Configuration", "initial gamma");
 CD_APPLET_GET_CONFIG_END
 
 

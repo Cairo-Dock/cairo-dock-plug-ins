@@ -20,6 +20,7 @@ struct _AppletConfig {
 	   gint iPosScrollY;
 	   guint iReloadTimeout;
 	   gchar **cListURI;
+	   gint iRightMargin;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

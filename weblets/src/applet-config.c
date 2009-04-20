@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+Written by Christophe Chapuis (for any bug report, please mail me to fabounet@users.berlios.de)
 
 ******************************************************************************/
 
@@ -26,9 +26,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iPosScrollY = CD_CONFIG_GET_INTEGER ("Configuration", "scroll y");
 	myConfig.iReloadTimeout = CD_CONFIG_GET_INTEGER ("Configuration", "reload timeout");
 	myConfig.cListURI = CD_CONFIG_GET_STRING_LIST ("Configuration", "uri list", &length);
+	myConfig.iRightMargin = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "right margin", 5);
 
 	if (myConfig.cListURI == NULL) {
-		g_key_file_set_string (CD_APPLET_MY_KEY_FILE, "Configuration", "uri list", "www.cairo-dock.org;www.google.com;m.google.com/mail;www.rememberthemilk.com/services/modules/googleig;https://www.meebo.com/mobile;https://www.pandora.com/radio/tuner_8_7_0_0_pandora.swf;http://digg.com/iphone#_stories;about:plugins");
+		g_key_file_set_string (CD_APPLET_MY_KEY_FILE, "Configuration", "uri list", "www.cairo-dock.org;www.google.com;m.google.com/mail;www.rememberthemilk.com/services/modules/googleig;https://www.meebo.com/mobile;https://www.pandora.com/radio/tuner_8_7_0_0_pandora.swf;http://digg.com/iphone#_stories;http://www.bashfr.org/?sort=top50;about:plugins");
 		cairo_dock_write_keys_to_file (CD_APPLET_MY_KEY_FILE, CD_APPLET_MY_CONF_FILE);
 		myConfig.cListURI = CD_CONFIG_GET_STRING_LIST ("Configuration", "uri list", &length);
 	}

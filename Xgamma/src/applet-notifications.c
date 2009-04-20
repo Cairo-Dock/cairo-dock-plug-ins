@@ -17,8 +17,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 
 
-
-
 CD_APPLET_ON_CLICK_BEGIN
 	if (myDock)
 	{
@@ -39,9 +37,18 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 CD_APPLET_ON_CLICK_END
 
-
+static void _cd_xgamma_remember_current_gamma (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	double fGamma = xgamma_get_gamma (&myData.Xgamma);
+	g_return_if_fail (fGamma > 0);
+	
+	cairo_dock_update_conf_file (myApplet->cConfFilePath,
+		G_TYPE_DOUBLE, "Configuration", "initial gamma", fGamma,
+		G_TYPE_INVALID);
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+		CD_APPLET_ADD_IN_MENU (D_("Apply current luminosity on startup"), _cd_xgamma_remember_current_gamma, pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 

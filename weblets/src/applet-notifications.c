@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program, 
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+Written by Christophe Chapuis (for any bug report, please mail me to fabounet@users.berlios.de)
 
 ******************************************************************************/
 
@@ -52,6 +52,7 @@ static void _cd_weblets_open_URI (GtkMenuItem *menu_item, gpointer *data)
 		G_TYPE_STRING,
 		"Configuration",
 		"weblet URI",
+		myConfig.cURI_to_load,
 		G_TYPE_INVALID);
 
 	// on rafraichit le tout !

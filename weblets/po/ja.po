@@ -98,7 +98,7 @@ msgstr "他ウィンドウより常に上に？"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
@@ -234,26 +234,35 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "縦スクロールバーの位置（ピクセル単位）"
 
 #: ../data/messages:91
-msgid "Transparent background ?"
+msgid ""
+"This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
 msgstr ""
 
 #: ../data/messages:93
+msgid "Right margin's width, in pixels :"
+msgstr ""
+
+#: ../data/messages:95
+msgid "Transparent background ?"
+msgstr ""
+
+#: ../data/messages:97
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
 "Weblet URI の再読み込みを開始するまでの時間（秒）。ゼロの場合は再読み込みしま"
 "せん。"
 
-#: ../data/messages:95
+#: ../data/messages:99
 msgid "Time between two page refreshes"
 msgstr "ページの更新の間隔時間"
 
-#: ../data/messages:97
+#: ../data/messages:101
 #, fuzzy
 msgid "Any valid URI should work."
 msgstr "Firefox が受け付ける URI がすべて"
 
-#: ../data/messages:99
+#: ../data/messages:103
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr "アプレットのメニューに表示する既定ブックマーク :"
 

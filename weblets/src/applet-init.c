@@ -3,7 +3,7 @@
 This file is a part of the cairo-dock program,
 released under the terms of the GNU General Public License.
 
-Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+Written by Christophe Chapuis (for any bug report, please mail me to fabounet@users.berlios.de)
 
 ******************************************************************************/
 
@@ -16,7 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 CD_APPLET_DEFINITION ("weblets",
-	1, 6, 4,
+	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("The weblets applet allows you to show an interactive web page on your desktop.\n"
 	"You can select your web page, set the desired scrolling,\n"
@@ -96,6 +96,10 @@ CD_APPLET_RELOAD_BEGIN
 				
 				cairo_dock_hide_dialog (myData.dialog);
 			}
+		}
+		else
+		{
+			cairo_dock_set_desklet_margin (myDesklet, myConfig.iRightMargin);
 		}
 
 		// on remet en place un timer tout frais
