@@ -120,7 +120,7 @@ quick-info_type = 1
 #X[Personnalisation;gtk-info]
 frame_app =
 
-#h+[@rhythmboxdatadir@/themes;rhythmbox] List of available themes for covers (requires OPENGL) :/
+#h+[@rhythmboxdatadir@/themes;rhythmbox;rhythmbox] List of available themes for covers (requires OPENGL) :/
 theme = cd_box_3d
 
 #b Override the theme preference to not display the OSD with OpenGL themes ?
