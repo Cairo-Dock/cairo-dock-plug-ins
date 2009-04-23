@@ -26,6 +26,10 @@ stop duration = 700
 #a+ Animation of the current icon :
 animation=rotate
 
+#b use the Navigation mode ?
+nav mode = true
+
+
 #F[Characters]
 char=
 
@@ -33,9 +37,8 @@ char=
 #{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
 text font = 
 
-#c+4[0;1] Color of the background of the characters :
-#{r, v, b, a}
-bg color = 0.9; 0.9; 0.95; .75
+#c+4[0;1] Color of the text's frame  :
+frame color = 0.9; 0.9; 0.95; .75
 
 #e+[.1;1] Font size, relatively to the dock's size :
 font size = .5
@@ -44,8 +47,16 @@ font size = .5
 #{between 1 and 9, the bigger, the heavier.}
 text weight = 5
 
-#b+ Should the text be outilned ?
+#b+ Should the text be outlined ?
 text outlined = false
 
 #c+3[0;1] Text color :
 text color = 1;1.;1.
+
+#c+4[0;1] Color of the background of the characters :
+bg color = 0.0; 0.0; 0.1; .8
+
+
+#e[-1;1] Relative vertical position of the text :
+#{Set 0 to center the text vertically.}
+text position = 0

@@ -27,11 +27,11 @@ static void _find_icon_in_dock_with_command (Icon *pIcon, CairoDock *pDock, gpoi
 	if (pDock == g_pMainDock || *pFoundIcon != NULL) // on a deja cherche dans le main dock, ou deja trouve ce qu'on cherchait.
 		return ;
 	
-	gboolean bFound = (pIcon->acCommand && strncmp (cCommandPrefix, pIcon->acCommand, length) == 0);
+	gboolean bFound = (pIcon->acCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0);
 	if (! bFound && pIcon->cBaseURI != NULL)
 	{
 		gchar *cFile = g_path_get_basename (pIcon->cBaseURI);
-		bFound = (cFile && strncmp (cCommandPrefix, cFile, length) == 0);
+		bFound = (cFile && g_ascii_strncasecmp (cCommandPrefix, cFile, length) == 0);
 		g_free (cFile);
 	}
 	if (bFound)
@@ -67,7 +67,7 @@ Icon *cd_do_search_icon_by_command (const gchar *cCommandPrefix, Icon *pAfterIco
 	for (ic = g_pMainDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->acCommand && strncmp (cCommandPrefix, pIcon->acCommand, length) == 0)
+		if (pIcon->acCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0)
 		{
 			if (pAfterIcon == NULL)
 			{

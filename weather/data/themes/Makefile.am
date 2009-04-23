@@ -1,6 +1,6 @@
 
 SUBDIRS = .\
-	basic\
+	Classic\
 	WeatherPod\
 	Shiny\
 	crystal\

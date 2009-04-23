@@ -1,4 +1,5 @@
 
+
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
@@ -7,15 +8,17 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gdouble fFontSizeRatio;
+	gdouble fFontSizeRatio;  // 1 <=> taille du dock.
+	gdouble fRelativePosition;  // 0 pour centrer en Y.
 	CairoDockLabelDescription labelDescription;
 	gchar *cShortkey;
 	gchar *cIconAnimation;
-	gdouble pBackgroundColor[4];
+	gdouble pFrameColor[4];
 	gint iAnimationDuration;
 	gint iAppearanceDuration;
 	gint iCloseDuration;
 	gchar **pDirList;
+	gboolean bNavigationMode;
 	} ;
 
 
@@ -53,6 +56,8 @@ struct _AppletData {
 	gint iPrevMouseX, iPrevMouseY;
 	gint iMouseX, iMouseY;
 	gint iMotionCount;
+	
+	GList *pMatchingIcons;
 	} ;
 
 

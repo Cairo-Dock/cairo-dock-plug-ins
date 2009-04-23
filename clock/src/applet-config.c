@@ -94,7 +94,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	
 	//\_______________ On on recupere le thme choisi.
-	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "glassy");
+	if (myConfig.bOldStyle)
+		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "glassy");
 CD_APPLET_GET_CONFIG_END
 
 

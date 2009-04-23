@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:418
+#: ../src/applet-config.c:419
 msgid "Search for your location :"
 msgstr "Trouvez votre emplacement :"
 
@@ -31,11 +31,12 @@ msgid ""
 msgstr ""
 "Cet applet indique l'heure et la date dans votre dock.\n"
 "2 vues sont disponible : numérique et analogique, basée sur Cairo-Clock\n"
-"Les thèmes Cairo-Clock sont compatibles, et vous pouvez détacher l'applet pour "
-"avoir un clone parfait de Cairo-Clock.\n"
-"Des alarmes et un calendrier classique sont disponibles et vous pouvez régler "
-"l'heure et la date.\n"
-"Clique gauche pour afficher/cacher le calendrier. Clique du milieu pour stopper l'alarm."
+"Les thèmes Cairo-Clock sont compatibles, et vous pouvez détacher l'applet "
+"pour avoir un clone parfait de Cairo-Clock.\n"
+"Des alarmes et un calendrier classique sont disponibles et vous pouvez "
+"régler l'heure et la date.\n"
+"Clique gauche pour afficher/cacher le calendrier. Clique du milieu pour "
+"stopper l'alarm."
 
 #: ../src/applet-notifications.c:52
 msgid "Calendar"
@@ -90,8 +91,9 @@ msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche. "
-"Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clique gauche. Une valeur négative est comptée à partir du coin inférieur "
+"droit de l'écran"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -110,9 +112,10 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
@@ -279,7 +282,8 @@ msgid ""
 "your location from a list. Let empty to get the local time."
 msgstr ""
 "Par exemple :Europe/Brussels, :Japan, etc. Clique droit sur l'icône pour "
-"sélectionner votre emplacement depuis la liste. Laissez vide pour avoir l'heure locale."
+"sélectionner votre emplacement depuis la liste. Laissez vide pour avoir "
+"l'heure locale."
 
 #: ../data/messages:101
 msgid "Timezone :"

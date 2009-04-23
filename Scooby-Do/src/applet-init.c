@@ -64,7 +64,7 @@ CD_APPLET_RELOAD_BEGIN
 			/// recharger surfaces / textures
 			
 			
-			cairo_dock_redraw_container (g_pMainDock);
+			cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 		}
 	}
 CD_APPLET_RELOAD_END

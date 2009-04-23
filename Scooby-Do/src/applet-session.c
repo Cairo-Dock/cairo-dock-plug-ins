@@ -31,7 +31,8 @@ void cd_do_open_session (void)
 	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
 	gtk_window_present (GTK_WINDOW (g_pMainDock->pWidget));
 	
-	myConfig.labelDescription.iSize = MIN (50, myConfig.fFontSizeRatio * g_pMainDock->iMaxDockHeight);
+	myConfig.labelDescription.iSize = myConfig.fFontSizeRatio * g_pMainDock->iMaxDockHeight;
+	cairo_dock_freeze_docks (TRUE);
 }
 
 void cd_do_close_session (void)
@@ -74,6 +75,7 @@ void cd_do_close_session (void)
 	// on quitte dans une animation.
 	myData.iCloseTime = myConfig.iCloseDuration;
 	cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
+	cairo_dock_freeze_docks (FALSE);
 }
 
 void cd_do_exit_session (void)

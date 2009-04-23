@@ -26,214 +26,91 @@ msgid ""
 " Press enter to click the icon or validate the command, Shift+Enter for Shift"
 "+click, Alt+Enter for middle click, and Ctrl+Enter for left click."
 msgstr ""
+"Un plug-in pour avoir un lanceur d'application rapide comme Gnome-Do (ALT+F2)"
+"Vous pourrez contrôler le dock et lancer n'importe quelle commande avec le "
+"clavier :\n"
+" Démarrez une session avec le raccourci de votre choix, Escape (Echape), "
+"Return (Retour arrière) ou votre raccourci pour le fermer.\n"
+" Utilisez les flèches pour naviguer à l'intérieur des docks et sous-docks,\n"
+" ou tapez une commande pour trouver le lanceur correspondant, ou pour lancer "
+"n'importe quelle commande\n"
+" Pressez 'Tab' pour sauter automatique ou lanceur suivant\n"
+" Presser 'Enter' pour cliquer sur l'icône ou valider votre commande, Shift"
+"+Enter correspond à Shift+clique, Alt+Enter pour le clique du milieu et Ctrl"
+"+Enter pour clique gauche."
 
 #: ../data/messages:1
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
 #: ../data/messages:3
 msgid "Shortkey to activate/deactivate Do :"
-msgstr ""
+msgstr "Raccourci pour l'activation ou la désactivation :"
 
 #: ../data/messages:5
 msgid "Animations"
-msgstr ""
+msgstr "Animations"
 
 #: ../data/messages:7 ../data/messages:11 ../data/messages:15
 msgid "In ms."
-msgstr ""
+msgstr "En ms"
 
 #: ../data/messages:9
 msgid "Duration of the character animation (OpenGL only) :"
-msgstr ""
+msgstr "Durée de l'animation des caractères (Uniquement avec l'OpenGL) :"
 
 #: ../data/messages:13
 msgid "Duration of the appearance animation :"
-msgstr ""
+msgstr "Durée de l'animation d'apparition :"
 
 #: ../data/messages:17
 msgid "Duration of the stop animation :"
-msgstr ""
+msgstr "Durée de l'animation d'arrêt"
 
 #: ../data/messages:19
 msgid "Animation of the current icon :"
-msgstr ""
+msgstr "Animation de l'icône sélectionnée :"
 
 #: ../data/messages:21
 msgid "Characters"
-msgstr ""
+msgstr "Caractères"
 
 #: ../data/messages:23
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
 msgstr ""
+"Par exemple Monospace, Purisa, ... Ecrivez simplement le nom de la police "
+"sans chiffre, etc."
 
 #: ../data/messages:25
 msgid "Font used to display what you type :"
-msgstr ""
+msgstr "Police utilisée pour afficher ce que vous tapez :"
 
 #: ../data/messages:27
 msgid "r, v, b, a"
-msgstr ""
+msgstr "r, v, b, a"
 
 #: ../data/messages:29
 msgid "Color of the background of the characters :"
-msgstr ""
+msgstr "Couleur d'arrière plan des caractères :"
 
 #: ../data/messages:31
 msgid "Font size, relatively to the dock's size :"
-msgstr ""
+msgstr "Taille de la police, en pourcentage de la taille du dock :"
 
 #: ../data/messages:33
 msgid "between 1 and 9, the bigger, the heavier."
-msgstr ""
+msgstr "entre 1 et 9, du plus fin au plus large."
 
 #: ../data/messages:35
-#, fuzzy
 msgid "Text weight :"
-msgstr "hauteur :"
+msgstr "Poids du texte :"
 
 #: ../data/messages:37
-msgid "Should the text be outilned ?"
-msgstr ""
+msgid "Should the text be outlined ?"
+msgstr "Surligner les traits des caractères ?"
 
 #: ../data/messages:39
 msgid "Text color :"
-msgstr ""
-
-#~ msgid "Icon"
-#~ msgstr "Icône"
-
-#~ msgid "Desired icon size for this applet"
-#~ msgstr "Taille d'icône souhaitée pour cette applet"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#~ msgid "Name of the icon as it will appear in its label in the dock :"
-#~ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
-
-#~ msgid "Desklet"
-#~ msgstr "Desklet"
-
-#~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + "
-#~ "middle_click or ALT + left_click for exemple."
-#~ msgstr ""
-#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner "
-#~ "avec ALT + clic_milieu ou ALT + clic_droit par exemple."
-
-#~ msgid "Desklet's dimension (width x height) :"
-#~ msgstr "Dimension du desklet (largeur x hauteur) :"
-
-#, fuzzy
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
-#~ "Negative values are counted from the right/bottom of the screen"
-#~ msgstr ""
-#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
-#~ "+ clic gauche."
-
-#~ msgid "Desklet's position (x ; y) :"
-#~ msgstr "Position du desklet (x ; y) :"
-
-#~ msgid "Is detached from the dock ?"
-#~ msgstr "Est-il détaché du dock ?"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Garder en-dessous des autres fenêtres ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Garder au-dessus des autres fenêtres ?"
-
-#~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
-#~ msgstr ""
-#~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
-#~ "de Compiz à : (name=cairo-dock & type=utility)"
-
-#~ msgid "Keep on widget layer ?"
-#~ msgstr "Garder sur la couche des widgets ?"
-
-#~ msgid ""
-#~ "If locked, the desklet can't be moved by simply dragging it with the left "
-#~ "mouse button. Of course you can still move it with ALT + left_click."
-#~ msgstr ""
-#~ "Si verrouillé, le desklet ne pourra pas être bougé simplement en le "
-#~ "tirant avec le bouton gauche de la souris. Bien sur il pourra toujours "
-#~ "être bougé avec ALT + clique_gauche"
-
-#~ msgid "Lock position ?"
-#~ msgstr "Verrouiller la position ?"
-
-#~ msgid "in degrees."
-#~ msgstr "en degrés."
-
-#~ msgid "Rotation :"
-#~ msgstr "Rotation :"
-
-#~ msgid "Decorations"
-#~ msgstr "Décorations"
-
-#~ msgid "Choose the 'personnal' one to define your own decorations below."
-#~ msgstr ""
-#~ "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
-#~ "dessous."
-
-#~ msgid "Choose a decoration theme for this desklet :"
-#~ msgstr "Choisissez un thème de décorations pour ce desklet :"
-
-#~ msgid ""
-#~ "It's an image that will be displayed below the drawings, like a frame for "
-#~ "exemple. Let empty to not use any."
-#~ msgstr ""
-#~ "C'est une image qui sera affichée derrière les dessins, comme un cadre "
-#~ "par exemple. Laissez vide pour n'en uiliser aucune."
-
-#~ msgid "Background image :"
-#~ msgstr "Image de fond :"
-
-#~ msgid "Background tansparency :"
-#~ msgstr "Transparence du fond :"
-
-#~ msgid "in pixels. Use this to adjust the left position of the drawings."
-#~ msgstr ""
-#~ "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
-
-#~ msgid "Left offset :"
-#~ msgstr "Décalage à gauche :"
-
-#~ msgid "in pixels. Use this to adjust the top position of the drawings."
-#~ msgstr ""
-#~ "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
-
-#~ msgid "Top offset :"
-#~ msgstr "Décalage en haut :"
-
-#~ msgid "in pixels. Use this to adjust the right position of the drawings."
-#~ msgstr ""
-#~ "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
-
-#~ msgid "Right offset :"
-#~ msgstr "Décalage à droite :"
-
-#~ msgid "in pixels. Use this to adjust the bottom position of the drawings."
-#~ msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
-
-#~ msgid "Bottom offset :"
-#~ msgstr "Décalage en bas :"
-
-#~ msgid ""
-#~ "It's an image that will be displayed above the drawings, like a reflect "
-#~ "for exemple. Let empty to not use any."
-#~ msgstr ""
-#~ "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-#~ "par exemple. Laissez vide pour n'en uiliser aucune."
-
-#~ msgid "Foreground image :"
-#~ msgstr "Image d'avant-plan :"
-
-#~ msgid "Foreground tansparency :"
-#~ msgstr "Transparence de l'avant-plan :"
+msgstr "Couleur du texte :"

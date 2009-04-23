@@ -26,19 +26,27 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pMainDock->iMagnitudeIndex);
 	double fScale = (1. + fDockMagnitude * g_fAmplitude) / (1 + g_fAmplitude);
 	
+	double fFrameWidth = myData.iTextWidth * fScale;
+	double fFrameHeight = myData.iTextHeight * fScale;
+	
+	double fRelativePositionOffset = myConfig.fRelativePosition * (pMainDock->iCurrentHeight - fFrameHeight) / 2;
+	
+	if (myConfig.bNavigationMode)
+	{
+		
+	}
+	
 	// dessin du fond.
 	double fRadius = myBackground.iDockRadius * myConfig.fFontSizeRatio;
 	double fLineWidth = 0.;
-	double fFrameWidth = myData.iTextWidth;
-	double fFrameHeight = myData.iTextHeight * fScale;
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
-	fDockOffsetX = (pMainDock->iCurrentWidth - myData.iTextWidth) / 2;
-	fDockOffsetY = (pMainDock->iCurrentHeight - myData.iTextHeight) / 2;
+	fDockOffsetX = (pMainDock->iCurrentWidth - fFrameWidth) / 2;
+	fDockOffsetY = (pMainDock->iCurrentHeight - fFrameHeight) / 2 + fRelativePositionOffset;
 	
 	cairo_save (pCairoContext);
 	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fFrameWidth, fFrameHeight, fDockOffsetX, fDockOffsetY, 1, 0., pMainDock->bHorizontalDock);
 	cairo_set_line_width (pCairoContext, fLineWidth);
-	cairo_set_source_rgba (pCairoContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myConfig.pBackgroundColor[3] * fAlpha);
+	cairo_set_source_rgba (pCairoContext, myConfig.pFrameColor[0], myConfig.pFrameColor[1], myConfig.pFrameColor[2], myConfig.pFrameColor[3] * fAlpha);
 	cairo_fill (pCairoContext);
 	
 	cairo_restore (pCairoContext);
@@ -52,9 +60,11 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 		cairo_save (pCairoContext);
 		
 		cairo_translate (pCairoContext,
-			pChar->iCurrentX + pMainDock->iCurrentWidth/2,
-			pChar->iCurrentY + pMainDock->iCurrentHeight/2 + (myData.iTextHeight/2 - pChar->iHeight) * fScale);  // aligne en bas.
+			pChar->iCurrentX * fScale + pMainDock->iCurrentWidth/2,
+			pChar->iCurrentY + pMainDock->iCurrentHeight/2 + (myData.iTextHeight/2 - pChar->iHeight) * fScale + fRelativePositionOffset);  // aligne en bas.
 		cairo_set_source_surface (pCairoContext, pChar->pSurface, 0., 0.);
+		if (fScale != 1)
+			cairo_scale (pCairoContext, fScale, fScale);
 		cairo_paint_with_alpha (pCairoContext, fAlpha);
 		
 		cairo_restore (pCairoContext);
@@ -71,15 +81,17 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 	
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pMainDock->iMagnitudeIndex);
 	double fScale = (1. + fDockMagnitude * g_fAmplitude) / (1 + g_fAmplitude);
+	double fFrameWidth = myData.iTextWidth * fScale;
+	double fFrameHeight = myData.iTextHeight * fScale;
+	double fRelativePositionOffset = myConfig.fRelativePosition * (pMainDock->iCurrentHeight - fFrameHeight) / 2;
 	
 	// dessin du fond.
 	double fRadius = myBackground.iDockRadius * myConfig.fFontSizeRatio;
 	double fLineWidth = 0.;
-	double fFrameWidth = myData.iTextWidth;
-	double fFrameHeight = myData.iTextHeight * fScale;
+	
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
-	fDockOffsetX = pMainDock->iCurrentWidth/2 - myData.iTextWidth / 2 * fScale;
-	fDockOffsetY = pMainDock->iCurrentHeight/2 + myData.iTextHeight / 2 * fScale;
+	fDockOffsetX = pMainDock->iCurrentWidth/2 - fFrameWidth / 2;
+	fDockOffsetY = pMainDock->iCurrentHeight/2 + fFrameHeight / 2 - fRelativePositionOffset;
 	
 	int iNbVertex = 0;
 	const GLfloat *pVertexTab = cairo_dock_generate_rectangle_path (fFrameWidth, fFrameHeight, fRadius, TRUE, &iNbVertex);
@@ -87,7 +99,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 	glPushMatrix ();
 	glEnable(GL_BLEND);
 	_cairo_dock_set_blend_alpha ();
-	glColor4f (myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], myConfig.pBackgroundColor[3] * fAlpha);
+	glColor4f (myConfig.pFrameColor[0], myConfig.pFrameColor[1], myConfig.pFrameColor[2], myConfig.pFrameColor[3] * fAlpha);
 	cairo_dock_draw_frame_background_opengl (0, fFrameWidth+2*fRadius, fFrameHeight, fDockOffsetX, fDockOffsetY, pVertexTab, iNbVertex, pMainDock->bHorizontalDock, pMainDock->bDirectionUp, 0.);
 	glPopMatrix();
 	
@@ -107,15 +119,15 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		pChar = c->data;
 		glPushMatrix();
 		
-		glTranslatef (pChar->iCurrentX + pMainDock->iCurrentWidth/2 + pChar->iWidth/2,
-			pChar->iCurrentY + pMainDock->iCurrentHeight/2 - (myData.iTextHeight - pChar->iHeight)/2 * fScale,
+		glTranslatef (pChar->iCurrentX * fScale + pMainDock->iCurrentWidth/2 + pChar->iWidth/2,
+			pChar->iCurrentY + pMainDock->iCurrentHeight/2 - (myData.iTextHeight - pChar->iHeight)/2 * fScale - fRelativePositionOffset,
 			0.);  // aligne en bas.
 		
 		if (myConfig.iAnimationDuration != 0)
 		{
 			glBindTexture (GL_TEXTURE_2D, pChar->iTexture);
 			
-			glScalef (pChar->iWidth, fScale * pChar->iHeight, 1.);
+			glScalef (pChar->iWidth * fScale, fScale * pChar->iHeight, 1.);
 			
 			double fRotationAngle = 360. * pChar->iAnimationTime / myConfig.iAnimationDuration;
 			glRotatef (fRotationAngle, 0., 1., 0.);

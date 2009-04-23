@@ -37,7 +37,7 @@ AC_CONFIG_FILES([Makefile
 		data/Makefile
 		data/weather.conf
 		data/themes/Makefile
-		data/themes/basic/Makefile
+		data/themes/Classic/Makefile
 		data/themes/Shiny/Makefile
 		data/themes/crystal/Makefile
 		data/themes/7degrees/Makefile

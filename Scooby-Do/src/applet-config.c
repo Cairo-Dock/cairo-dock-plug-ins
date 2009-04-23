@@ -24,19 +24,25 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iAppearanceDuration = CD_CONFIG_GET_INTEGER ("Configuration", "appear duration");
 	myConfig.iCloseDuration = CD_CONFIG_GET_INTEGER ("Configuration", "stop duration");
 	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
-	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.pBackgroundColor);
+	CD_CONFIG_GET_COLOR ("Configuration", "frame color", myConfig.pFrameColor);
 	gsize length=0;
 	myConfig.pDirList = CD_CONFIG_GET_STRING_LIST ("Configuration", "dirs", &length);
+	myConfig.bNavigationMode = CD_CONFIG_GET_BOOLEAN ("Configuration", "nav mode");
 	
 	myConfig.fFontSizeRatio = CD_CONFIG_GET_DOUBLE ("Configuration", "font size");
+	myConfig.fRelativePosition = CD_CONFIG_GET_DOUBLE ("Configuration", "text position");
 	myConfig.labelDescription.cFont = CD_CONFIG_GET_STRING ("Configuration", "text font");
 	int iWeight = CD_CONFIG_GET_INTEGER ("Configuration", "text weight");
 	myConfig.labelDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
 	myConfig.labelDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "text outlined");
-	CD_CONFIG_GET_COLOR ("Configuration", "text color", myConfig.labelDescription.fColorStart);
-	CD_CONFIG_GET_COLOR ("Configuration", "text color", myConfig.labelDescription.fColorStop);
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStart);
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStop);
 	myConfig.labelDescription.iStyle = PANGO_STYLE_NORMAL;
-	myConfig.labelDescription.fBackgroundColor[3] = (myConfig.iAnimationDuration != 0 && CD_APPLET_MY_CONTAINER_IS_OPENGL ? 1. : 0);  // si pas d'animation, on ne met pas de fond aux lettres.
+	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.labelDescription.fBackgroundColor);
+	if (myConfig.iAnimationDuration == 0 || ! g_bUseOpenGL)  // si pas d'animation, on ne met pas de fond aux lettres.
+	{
+		myConfig.labelDescription.fBackgroundColor[3] = 0;
+	}
 CD_APPLET_GET_CONFIG_END
 
 

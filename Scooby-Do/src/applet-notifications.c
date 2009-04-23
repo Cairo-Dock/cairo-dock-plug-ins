@@ -127,6 +127,10 @@ gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
 		
 		// eventuellement emuler un TAB pour trouver la suivante ...
 	}
+	if (myData.pMatchingIcons != NULL)
+	{
+		myData.pMatchingIcons = g_list_remove (myData.pMatchingIcons, pIcon);
+	}
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
@@ -261,7 +265,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 						{
 							item = it->data;
 							g_print (" - %s\n", item);
-							if (strcmp (myData.sCurrentText->str, item) == 0)
+							if (g_ascii_strncasecmp (myData.sCurrentText->str, item, myData.sCurrentText->len) == 0)
 							{
 								g_print ("  on pointe actuellement sur %s\n", item);
 								break ;

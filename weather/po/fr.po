@@ -47,8 +47,10 @@ msgstr ""
 "Les données sont fournies par www.weather.com, vous pouvez trouver votre "
 "emplacement dans le panneau de configuration.\n"
 "L'applet peut être détaché pour l'avoir dans un desklet en 3D.\n"
-"Clique du milieu sur l'icône principale pour avoir les conditions actuelles,\n"
-"Clique gauche sur un autre jour pour avoir plus d'informations sur les prévisions.\n"
+"Clique du milieu sur l'icône principale pour avoir les conditions "
+"actuelles,\n"
+"Clique gauche sur un autre jour pour avoir plus d'informations sur les "
+"prévisions.\n"
 
 #: ../src/applet-load-icons.c:15
 msgid "Monday"
@@ -241,9 +243,10 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"

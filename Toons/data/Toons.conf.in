@@ -91,7 +91,7 @@ fg alpha = 1
 #b Keep ratio ?
 keep ratio = true
 
-#h+[@toonsdatadir@/themes;@toonsuserdirname@] Choose one of the available themes :/
+#h+[@toonsdatadir@/themes;@toonsuserdirname@;@toonsuserdirname@] Choose one of the available themes :/
 theme = Classic
 
 #i[1;60] Mean delay between winks :
