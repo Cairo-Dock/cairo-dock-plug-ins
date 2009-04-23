@@ -99,7 +99,9 @@ msgstr "Couleurs au hasard ?"
 
 #: ../data/messages:37
 msgid "It will slightly alter the colors, so you may have to modify them."
-msgstr "Les couleurs vont être légèrement modifiées, donc, vous pourriez avoir à les changer"
+msgstr ""
+"Les couleurs vont être légèrement modifiées, donc, vous pourriez avoir à les "
+"changer"
 
 #: ../data/messages:39
 msgid "Add luminance ?"

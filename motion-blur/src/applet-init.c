@@ -29,7 +29,7 @@ CD_APPLET_PRE_INIT_END
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	if (! cairo_dock_reserve_data_slot (myApplet))
+	if (! g_bUseOpenGL || ! cairo_dock_reserve_data_slot (myApplet))
 		return;
 	
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_motion_blur_pre_render, CAIRO_DOCK_RUN_FIRST, NULL);

@@ -20,7 +20,8 @@ msgstr ""
 msgid ""
 "This plug-in provides animations for appearance & disappearance of icons."
 msgstr ""
-"Ce plug-in ajoute des animations pour l'apparition et la disparition des icônes."
+"Ce plug-in ajoute des animations pour l'apparition et la disparition des "
+"icônes."
 
 #: ../data/messages:1
 msgid "Global"
