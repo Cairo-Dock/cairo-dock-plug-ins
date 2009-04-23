@@ -82,7 +82,7 @@ static Icon *_cd_tomboy_create_icon_for_note (const gchar *cNoteURI)
 	pIcon->fHeightFactor = 1.;
 	pIcon->acCommand = g_strdup (cNoteURI);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca devient un vrai lanceur.
 	pIcon->cParentDockName = g_strdup (myIcon->acName);
-	pIcon->acFileName = g_strdup_printf ("%s/note.svg",MY_APPLET_SHARE_DATA_DIR);
+	pIcon->acFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/note.svg");
 	if (myConfig.bDrawContent)
 		pIcon->cClass = getNoteContent (cNoteURI);
 	return pIcon;
@@ -300,8 +300,6 @@ gchar *getNoteContent (const gchar *note_name)
 void getAllNotes(void)
 {
 	cd_message("");
-	
-	free_all_notes ();
 	
 	gchar **note_list = NULL;
 	if(dbus_g_proxy_call (dbus_proxy_tomboy, "ListAllNotes", NULL,

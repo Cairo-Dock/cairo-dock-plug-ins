@@ -14,7 +14,6 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		cd_message("tomboy : %s",pClickedIcon->acCommand);
 		showNote(pClickedIcon->acCommand);
-		///return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
 	else if (pClickedIcon == myIcon && ! myData.opening)  // possible si on l'a quitte apres le demarrage de l'applet.
 	{
@@ -22,6 +21,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (! myData.opening)
 		{
 			dbus_detect_tomboy();
+			free_all_notes ();
 			getAllNotes();
 			cd_tomboy_load_notes();
 		}
@@ -33,9 +33,12 @@ CD_APPLET_ON_CLICK_END
 
 static void _cd_tomboy_create_new_note (Icon *pIcon)
 {
+	if (pIcon == NULL)
+		pIcon = myIcon;
 	gchar *note_title;
 	if (myConfig.bAutoNaming)
 	{
+		g_print ("on nomme automatiquement cette note\n");
 		note_title = g_new0 (gchar, 50+1);
 		time_t epoch = (time_t) time (NULL);
 		struct tm currentTime;
@@ -44,10 +47,12 @@ static void _cd_tomboy_create_new_note (Icon *pIcon)
 	}
 	else
 	{
+		g_print ("on demande le nom de la nouvelle note ...\n");
 		note_title = cairo_dock_show_demand_and_wait (D_("Note name : "),
-			(pIcon != NULL ? pIcon : myIcon),
-			(pIcon != NULL && myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
+			pIcon,
+			(pIcon != myIcon && myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 			NULL);
+		g_print ("on a recu '%s'\n", note_title);
 	}
 	cd_message ("%s (%s)", __func__, note_title);
 	gchar *note_name = addNote(note_title);
@@ -76,6 +81,7 @@ static void _cd_tomboy_delete_note (GtkMenuItem *menu_item, Icon *pIcon)
 }
 static void _cd_tomboy_reload_notes (GtkMenuItem *menu_item, Icon *pIcon)
 {
+	free_all_notes ();
 	getAllNotes();
 	cd_tomboy_load_notes();
 }
@@ -196,6 +202,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (pClickedIcon == myIcon && ! myData.opening)  // possible si on l'a quitte apres le demarrage de l'applet.
 	{
 		dbus_detect_tomboy();
+		free_all_notes ();
 		getAllNotes();
 		cd_tomboy_load_notes();
 	}

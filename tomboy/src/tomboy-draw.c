@@ -8,7 +8,6 @@
 
 void load_all_surfaces(void)
 {
-	GString *sImagePath = g_string_new ("");
 	//Chargement de default.svg
 	if (myData.pSurfaceDefault != NULL)
 		cairo_surface_destroy (myData.pSurfaceDefault);
@@ -20,16 +19,13 @@ void load_all_surfaces(void)
 	}
 	else
 	{
-		g_string_printf (sImagePath, "%s/default.svg",MY_APPLET_SHARE_DATA_DIR);
-		myData.pSurfaceDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
+		myData.pSurfaceDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/default.svg");
 	}
-	//Chargement de close.svg
+	
+	//Chargement de note.svg
 	if (myData.pSurfaceNote != NULL)
 		cairo_surface_destroy (myData.pSurfaceNote);
-	g_string_printf (sImagePath, "%s/note.svg",MY_APPLET_SHARE_DATA_DIR);
-	myData.pSurfaceNote = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	
-	g_string_free (sImagePath, TRUE);
+	myData.pSurfaceNote = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/note.svg");
 }
 
 void update_icon(void)
@@ -106,4 +102,6 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon, gchar *
 	}
 	g_strfreev (cLines);
 	cairo_dock_add_reflection_to_icon (pIconContext, pIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
+	if (g_bUseOpenGL)
+	  cairo_dock_update_icon_texture (pIcon);
 }

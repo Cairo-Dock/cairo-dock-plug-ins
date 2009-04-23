@@ -15,11 +15,6 @@ CD_APPLET_DEFINITION ("TomBoy",
 	"Necropotame (Adrien Pilleboue)")
 
 CD_APPLET_INIT_BEGIN
-	if (myIcon->acName == NULL && myDock)
-	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (TOMBOY_DEFAULT_NAME);
-	}
-	
 	load_all_surfaces();
 	
 	myData.hNoteTable = g_hash_table_new_full (g_str_hash,
@@ -31,6 +26,7 @@ CD_APPLET_INIT_BEGIN
 	if (myData.dbus_enable)
 	{
 		dbus_detect_tomboy();
+		free_all_notes ();  // il faut le faire en-dehors du thread.
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
 				NULL,
 				(CairoDockReadTimerFunc) getAllNotes,
@@ -47,7 +43,7 @@ CD_APPLET_INIT_BEGIN
 		myData.iSidCheckNotes = g_timeout_add_seconds (2, (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
 	
 	//Enregistrement des notifications
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);  // ici on s'enregistre explicitement avant le dock, pour pas qu'il essaye de lancer nos notes.
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_INIT_END
@@ -74,25 +70,17 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les parametres qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myIcon->acName == NULL && myDock)
-		{
-			CD_APPLET_SET_NAME_FOR_MY_ICON (TOMBOY_DEFAULT_NAME);
-		}
 		if (myData.dbus_enable)
 		{
+			cairo_dock_stop_measure_timer (myData.pMeasureTimer);
+			free_all_notes ();  // il faut le faire en-dehors du thread.
+			
 			//\___________ On arrete le timer.
 			if (myData.iSidCheckNotes != 0)
 			{
 				g_source_remove (myData.iSidCheckNotes);
 				myData.iSidCheckNotes = 0;
 			}
-			/**if (myConfig.bNoDeletedSignal && myData.iSidCheckNotes == 0)
-				myData.iSidCheckNotes = g_timeout_add_seconds (2, (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
-			else if (! myConfig.bNoDeletedSignal && myData.iSidCheckNotes != 0)
-			{
-				g_source_remove (myData.iSidCheckNotes);
-				myData.iSidCheckNotes = 0;
-			}*/
 			
 			//\___________ On reconstruit le sous-dock (si l'icone de la note a change).
 			cairo_dock_launch_measure (myData.pMeasureTimer);

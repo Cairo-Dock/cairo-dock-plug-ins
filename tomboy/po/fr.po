@@ -51,7 +51,8 @@ msgid "Search"
 msgstr "Chercher"
 
 #: ../src/tomboy-notifications.c:172
-msgid "Search for tag"
+#, fuzzy
+msgid "Searh for tag"
 msgstr "Chercher pour le tag"
 
 #: ../src/tomboy-notifications.c:174
