@@ -554,6 +554,7 @@ AC_SUBST(VERSION_TOONS, "1.0.1")
 AC_SUBST(PACKAGE_TOONS, "$TOONS_PACKAGE")
 
 AC_SUBST(toonsdatadir, "${pkgdatadir}/Toons")
+AC_SUBST(toonsuserdirname,"Toons")
 
 ############# WEATHER #################
 WEATHER_PACKAGE="cd-weather"
@@ -587,7 +588,7 @@ AC_SUBST(xfce_integrationdatadir, "${pkgdatadir}/xfce-integration")
 XGAMMA_PACKAGE="cd-Xgamma"
 AC_SUBST(GETTEXT_XGAMMA, "$XGAMMA_PACKAGE")
 
-AC_SUBST(VERSION_XGAMMA, "1.0.7")
+AC_SUBST(VERSION_XGAMMA, "1.1.0")
 AC_SUBST(PACKAGE_XGAMMA, "$XGAMMA_PACKAGE")
 
 AC_SUBST(xgammadatadir, "${pkgdatadir}/Xgamma")
@@ -899,7 +900,7 @@ AC_CONFIG_FILES([
 	weather/data/Makefile
 	weather/data/weather.conf
 	weather/data/themes/Makefile
-	weather/data/themes/basic/Makefile
+	weather/data/themes/Classic/Makefile
 	weather/data/themes/Shiny/Makefile
 	weather/data/themes/crystal/Makefile
 	weather/data/themes/7degrees/Makefile
