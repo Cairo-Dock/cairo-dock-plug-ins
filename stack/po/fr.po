@@ -12,21 +12,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-init.c:24
+#, fuzzy
 msgid ""
 "This applet allows you to build a stack of files, just like the Stacks "
 "applet of MacOS X.\n"
 "To add file into your stacks, you just have to drag and drop it on the "
 "Stacks icon and you're done.\n"
-"You can drop any file, or web URL, or even some piece of text.\n"
+"You can drop any file, or web URL, or even some piece of text\n"
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
 "Cet applet vous permet de construire une 'pile' de fichiers, tout comme "
 "l'applet Stacks de MacOs X.\n"
-"Pour ajouter des fichiers dans votre pile, vous avez juste à les déposer "
-"sur l'icône de l'applet et c'est fait.\n"
+"Pour ajouter des fichiers dans votre pile, vous avez juste à les déposer sur "
+"l'icône de l'applet et c'est fait.\n"
 "Vous pouvez déposer des fichiers, des URL web, ou des parties de texte.\n"
-"Vous pouvez rapidement copier le chemin/url/texte vers le presse-papiers, "
-"ou l'ouvrir."
+"Vous pouvez rapidement copier le chemin/url/texte vers le presse-papiers, ou "
+"l'ouvrir."
 
 #: ../src/applet-notifications.c:49
 msgid "Clear the stack ?"
@@ -131,6 +132,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:33
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"

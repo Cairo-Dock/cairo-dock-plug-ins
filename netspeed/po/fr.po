@@ -21,7 +21,8 @@ msgid ""
 msgstr ""
 "Cet applet vous indique le débit de votre connexion Internet et quelques "
 "statistiques en relation.\n"
-"Clique gauche sur l'icône pour avoir la valeur totale des données transférées\n"
+"Clique gauche sur l'icône pour avoir la valeur totale des données "
+"transférées\n"
 "Clique du milieu pour (dés)activer le réseau (nécessite NetworManager)"
 
 #: ../src/applet-netspeed.c:24 ../src/applet-netspeed.c:32
@@ -114,8 +115,9 @@ msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche. "
-"Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clique gauche. Une valeur négative est comptée à partir du coin inférieur "
+"droit de l'écran"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -134,6 +136,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -277,16 +280,20 @@ msgid "Plain Circle"
 msgstr "Circulaire plein"
 
 #: ../data/messages:89 ../data/messages:97
-msgid "It's the color of the graphic for high speed values."
-msgstr "C'est la couleur du graphique pour les hautes valeurs de téléchargement."
+#, fuzzy
+msgid "It's the color of the graphic for high CPU values."
+msgstr ""
+"C'est la couleur du graphique pour les hautes valeurs de téléchargement."
 
 #: ../data/messages:91
 msgid "High values color for the download speed :"
 msgstr "Couleur des hautes valeurs de vitesse :"
 
 #: ../data/messages:93 ../data/messages:101
-msgid "It's the color of the graphic for low speed values."
-msgstr "C'est la couleur du graphique pour les basses valeurs de téléchargement."
+#, fuzzy
+msgid "It's the color of the graphic for low CPU values."
+msgstr ""
+"C'est la couleur du graphique pour les basses valeurs de téléchargement."
 
 #: ../data/messages:95
 msgid "Low values color for the download speed :"
@@ -317,8 +324,8 @@ msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
-"Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 "
-"si vous ne voulez pas de filigrane"
+"Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 si "
+"vous ne voulez pas de filigrane"
 
 #: ../data/messages:113
 msgid "Image to display as a watermark on the gauge :"

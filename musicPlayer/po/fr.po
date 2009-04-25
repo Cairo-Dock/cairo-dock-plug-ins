@@ -27,7 +27,8 @@ msgstr ""
 "Cet applet permet le contrôle de plusieurs lecteur de musique.\n"
 "Clique Gauche pour Play/Pause, clique du milieu pour la chanson suivante.\n"
 "Roulette vers le haut/bas pour passer à la chanson précédente/suivante.\n"
-"Vous pouvez déposer vos chansons sur l'applet pour les ajouter à la playlist (dépend des lecteurs).\n"
+"Vous pouvez déposer vos chansons sur l'applet pour les ajouter à la playlist "
+"(dépend des lecteurs).\n"
 "Note : Pour XMMS, vous devez installer le plug-in 'xmms-infopipe'.\n"
 "       Pour SongBird, vous devez installer le greffon DBus.\n"
 
@@ -126,6 +127,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"

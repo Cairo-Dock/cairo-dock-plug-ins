@@ -17,7 +17,8 @@ msgid ""
 "Left click to log out, middle click to shutdown\n"
 "You can invert this order if you prefer to shutdown on left-click."
 msgstr ""
-"Un simple applet pour ajouter une icône afin de se déconnecter de votre session\n"
+"Un simple applet pour ajouter une icône afin de se déconnecter de votre "
+"session\n"
 "Clique gauche pour fermer la session, clique du milieu pour éteindre\n"
 "Vous pouvez intervertir ces raccourcis selon vos préférences."
 
@@ -88,6 +89,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -216,9 +218,10 @@ msgid ""
 "command, that greatly depends on your distribution. Sometimes the command to "
 "shutdown is just the same as the one to log out."
 msgstr ""
-"Ceci peut être disponible avec le clique du milieu. Laissez vide pour exécuter la "
-"commande par défaut, ceci peut changer en fonction de votre distribution. Parfois "
-"la commande pour éteindre est la même que pour fermer la session."
+"Ceci peut être disponible avec le clique du milieu. Laissez vide pour "
+"exécuter la commande par défaut, ceci peut changer en fonction de votre "
+"distribution. Parfois la commande pour éteindre est la même que pour fermer "
+"la session."
 
 #: ../data/messages:85
 msgid "User-defined command to execute to shutdown :"

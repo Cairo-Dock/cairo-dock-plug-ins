@@ -21,8 +21,8 @@ msgid ""
 "This plug-in displays an animated indicator when you drop something in the "
 "dock."
 msgstr ""
-"Ce plug-in affiche un indicateur animé lorsque vous déposez quelque chose dans "
-"le dock"
+"Ce plug-in affiche un indicateur animé lorsque vous déposez quelque chose "
+"dans le dock"
 
 #: ../data/messages:1
 msgid "Configuration"
@@ -34,8 +34,8 @@ msgid ""
 "launcher into the dock. Let empty to use the default one."
 msgstr ""
 "En général, c'est une flèche qui sera affichée lorsque vous essayez de "
-"déposer un nouveau lanceur dans le dock. Laissez vide pour utiliser celui par défaut."
-
+"déposer un nouveau lanceur dans le dock. Laissez vide pour utiliser celui "
+"par défaut."
 
 #: ../data/messages:5
 msgid "Image for the drag'n'drop animation :"

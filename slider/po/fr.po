@@ -23,7 +23,8 @@ msgid ""
 "Middle-click to open the images folder."
 msgstr ""
 "Cet applet est un simple visionneur d'image\n"
-"Vous avez juste à sélectionner le dossier et les effets d'affichage et c'est prêt\n"
+"Vous avez juste à sélectionner le dossier et les effets d'affichage et c'est "
+"prêt\n"
 "Clique gauche pour Play/Pause ou pour éditer l'image actuelle\n"
 "Clique du milieu pour ouvrir le dossier des images."
 
@@ -102,6 +103,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -241,8 +243,8 @@ msgid ""
 "It will prevent the dock from freezing during the image loading, but does "
 "not work with cairo."
 msgstr ""
-"Le dock sera prévenu d'un arrêt durant le chargement de l'image, mais "
-"ne fonctionne pas avec cairo."
+"Le dock sera prévenu d'un arrêt durant le chargement de l'image, mais ne "
+"fonctionne pas avec cairo."
 
 #: ../data/messages:87
 msgid "Use another thread to load the images ?"

@@ -27,7 +27,8 @@ msgstr ""
 "Cet applet vous permet un contrôle de l'agencement de votre clavier.\n"
 "\tUn indicateur du statut de NUM et CAPS lock peut être affiché\n"
 "\tClique gauche pour basculer vers l'agencement suivant,\n"
-"\tRoulette vers le haut/bas pour sélectionner l'agencement précédent/suivant,\n"
+"\tRoulette vers le haut/bas pour sélectionner l'agencement précédent/"
+"suivant,\n"
 "\tClique droit pour donner un accès à la liste des agencements disponibles."
 
 #: ../data/messages:1
@@ -89,6 +90,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -215,8 +217,9 @@ msgstr "Afficher le statut des CAPS et NUM locks en info rapide ?"
 msgid ""
 "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
 "changes."
-msgstr "en ms. Mettez 0 si vous ne voulez pas d'animation quand l'agencement "
-"du clavier change."
+msgstr ""
+"en ms. Mettez 0 si vous ne voulez pas d'animation quand l'agencement du "
+"clavier change."
 
 #: ../data/messages:81
 msgid "Duration of the transition animation :"

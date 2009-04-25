@@ -25,7 +25,8 @@ msgid ""
 "It can check in any kind of mailbox (yahoo, gmail, etc)"
 msgstr ""
 "Cet applet est très utile pour vous avertir de nouveaux courriers.\n"
-"Il peut les vérifier dans plusieurs types de messageries (Yahoo!, Gmail, etc.)"
+"Il peut les vérifier dans plusieurs types de messageries (Yahoo!, Gmail, "
+"etc.)"
 
 #: ../src/cd-mail-applet-notifications.c:54
 #, c-format
@@ -117,6 +118,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"

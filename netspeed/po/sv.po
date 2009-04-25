@@ -273,7 +273,7 @@ msgid "Plain Circle"
 msgstr ""
 
 #: ../data/messages:89 ../data/messages:97
-msgid "It's the color of the graphic for high speed values."
+msgid "It's the color of the graphic for high CPU values."
 msgstr ""
 
 #: ../data/messages:91
@@ -281,7 +281,7 @@ msgid "High values color for the download speed :"
 msgstr ""
 
 #: ../data/messages:93 ../data/messages:101
-msgid "It's the color of the graphic for low speed values."
+msgid "It's the color of the graphic for low CPU values."
 msgstr ""
 
 #: ../data/messages:95

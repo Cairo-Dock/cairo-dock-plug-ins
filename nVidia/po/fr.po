@@ -68,8 +68,8 @@ msgid ""
 msgstr ""
 "Cet applet affiche les informations de votre GPU nVidia\n"
 " comme la température, la RAM vidéo, la version du driver, etc.\n"
-"Vérifiez de bien posséder 'nvidia-settings' sinon ce plug-in ne pourrait "
-"pas fonctionner."
+"Vérifiez de bien posséder 'nvidia-settings' sinon ce plug-in ne pourrait pas "
+"fonctionner."
 
 #: ../data/messages:1
 msgid "Icon"
@@ -138,6 +138,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"

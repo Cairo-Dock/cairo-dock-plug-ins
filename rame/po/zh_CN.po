@@ -355,7 +355,8 @@ msgid "Show free memory instead of used memory ?"
 msgstr ""
 
 #: ../data/messages:155
-msgid "Let empty to use the default one."
+#, fuzzy
+msgid "Let empty to use he default one."
 msgstr "留空则使用默认值。"
 
 #: ../data/messages:157

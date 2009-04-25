@@ -31,7 +31,8 @@ msgstr ""
 "Clique gauche/milieu pour afficher/cacher le terminal (vous pouvez définir "
 "un raccourci pour ça).\n"
 "Vous pouvez ouvrir plusieurs onglets, les renommer, changer leur couleur.\n"
-"Vous pouvez déposer sur l'applet fichiers ou textes et sélectionner une action.\n"
+"Vous pouvez déposer sur l'applet fichiers ou textes et sélectionner une "
+"action.\n"
 "Ces raccourcis sont disponibles : 'CTRL+t' et 'CTRL+w' pour ouvrir/fermer "
 "l'actuel onglet,\n"
 "Clique droit sur un onglet pour interagir avec lui,\n"
@@ -127,6 +128,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"

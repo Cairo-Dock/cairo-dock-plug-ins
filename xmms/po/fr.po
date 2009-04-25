@@ -15,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-init.c:23
+#, fuzzy
 msgid ""
 "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
 "XMMS & Audacious are fully supported,\n"
@@ -22,15 +23,18 @@ msgid ""
 "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 "Play/Pause on left click, Next song on middle click.\n"
 "You can drag and drop songs to put them in the queue.\n"
-"Scroll up/down to play the previous/next sound"
+"Scroll updown to play the previous/next sound\n"
+"Down play the next sound"
 msgstr ""
 "Un applet dédié au contrôle de XMMS, Audacious, Banshee & Exaile.\n"
 "XMMS & Audacious sont complétement supportés,\n"
 "mais le contrôle de Banshee et Exaile est encore expérimental.\n"
 "Pour XMMS, vous devez installer le plug-in 'xmms-infopipe'.\n"
 "Play/Pause avec le clique gauche, Next avec le clique du milieu.\n"
-"Vous pouvez déposer vos fichiers musicaux sur cet applet pour l'ajouter à la playlist.\n"
-"La roulette de la souris vers le haut/bas, pour passer à la chanson précédente/suivante."
+"Vous pouvez déposer vos fichiers musicaux sur cet applet pour l'ajouter à la "
+"playlist.\n"
+"La roulette de la souris vers le haut/bas, pour passer à la chanson "
+"précédente/suivante."
 
 #: ../src/applet-notifications.c:257
 msgid "Previous"
@@ -119,6 +123,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"

@@ -16,7 +16,8 @@ msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
-"Ce plug-in vous permet d'interagir avec des applications externes sur le dock.\n"
+"Ce plug-in vous permet d'interagir avec des applications externes sur le "
+"dock.\n"
 "La communication entre les deux côtés est basé sur DBus"
 
 #: ../data/messages:1

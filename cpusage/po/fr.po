@@ -31,7 +31,8 @@ msgid ""
 msgstr ""
 "Cet applet vous indique l'utilisation en temps réel du CPU.\n"
 "Clique du milieu sur l'icône pour avoir quelques informations précieuses.\n"
-"Clique gauche sur l'icône pour avoir une liste des programmes les plus gourmants en CPU."
+"Clique gauche sur l'icône pour avoir une liste des programmes les plus "
+"gourmants en CPU."
 
 #: ../src/applet-notifications.c:105 ../src/applet-notifications.c:123
 msgid "Data acquisition has failed"
@@ -120,6 +121,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"

@@ -17,8 +17,10 @@ msgid ""
 "This applet shows you the amount of RAM and SWAP that is curently used\n"
 "Left-click to show a list of the most memory using programs"
 msgstr ""
-"Cet applet vous indique la quantité de RAM et de SWAP utilisée à chaque instant\n"
-"Clique gauche pour obtenir une liste des programmes utilisant le plus de mémoire"
+"Cet applet vous indique la quantité de RAM et de SWAP utilisée à chaque "
+"instant\n"
+"Clique gauche pour obtenir une liste des programmes utilisant le plus de "
+"mémoire"
 
 #: ../src/applet-notifications.c:38
 msgid "Mb"
@@ -95,6 +97,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -282,8 +285,8 @@ msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
-"Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 "
-"si vous ne voulez pas de filigrane"
+"Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 si "
+"vous ne voulez pas de filigrane"
 
 #: ../data/messages:115
 msgid "Image to display as a watermark on the gauge :"
@@ -366,7 +369,8 @@ msgid "Show free memory instead of used memory ?"
 msgstr "Montrer l'espace de mémoire libre au lieu d'utilisé ?"
 
 #: ../data/messages:155
-msgid "Let empty to use the default one."
+#, fuzzy
+msgid "Let empty to use he default one."
 msgstr "Laisser vide pour utiliser celelepar défaut."
 
 #: ../data/messages:157

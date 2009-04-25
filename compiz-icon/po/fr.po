@@ -19,8 +19,10 @@ msgid ""
 "You can bind one of these actions with the middle-click.\n"
 "The configuration panel gives you some options to launch Compiz."
 msgstr ""
-"Cet applet vous permet de gérer Compiz et d'autres gestionnaires de fenêtres\n"
-"Le sous-dock vous donne accès au CCSM, Emerald et d'autres raccourcis pour Compiz.\n"
+"Cet applet vous permet de gérer Compiz et d'autres gestionnaires de "
+"fenêtres\n"
+"Le sous-dock vous donne accès au CCSM, Emerald et d'autres raccourcis pour "
+"Compiz.\n"
 "Vous pouvez choisir l'action du clique du milieu.\n"
 "Le panneau de configuration vous donne certaines options pour lancer Compiz."
 
@@ -135,6 +137,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"

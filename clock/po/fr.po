@@ -115,7 +115,7 @@ msgstr "Garder au-dessus des autres fenêtres ?"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"

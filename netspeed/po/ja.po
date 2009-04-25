@@ -276,7 +276,8 @@ msgid "Plain Circle"
 msgstr "円（面）"
 
 #: ../data/messages:89 ../data/messages:97
-msgid "It's the color of the graphic for high speed values."
+#, fuzzy
+msgid "It's the color of the graphic for high CPU values."
 msgstr "高 速度 値のグラフの色"
 
 #: ../data/messages:91
@@ -284,7 +285,8 @@ msgid "High values color for the download speed :"
 msgstr "ダウンロードの高速度値の色 :"
 
 #: ../data/messages:93 ../data/messages:101
-msgid "It's the color of the graphic for low speed values."
+#, fuzzy
+msgid "It's the color of the graphic for low CPU values."
 msgstr "低 速度 値のグラフの色"
 
 #: ../data/messages:95

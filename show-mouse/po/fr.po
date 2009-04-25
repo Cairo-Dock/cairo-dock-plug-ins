@@ -20,8 +20,9 @@ msgstr ""
 msgid ""
 "This plug-in draw some animation around the cursor when it's inside a dock/"
 "desklet."
-msgstr "Ce plug-in dessine certaines animations autour du curseur quand il se "
-"trouve à l'intérieur d'un dock/desklet."
+msgstr ""
+"Ce plug-in dessine certaines animations autour du curseur quand il se trouve "
+"à l'intérieur d'un dock/desklet."
 
 #: ../data/messages:1
 msgid "Configuration"

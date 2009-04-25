@@ -70,7 +70,9 @@ msgstr ""
 
 #: ../src/powermanager-init.c:15
 msgid "A power manager for laptop's battery. It works with ACPI and DBus."
-msgstr "Un gestionnaire d'énergie pour les batteries de portable, fonctionnant avec ACPI et DBus."
+msgstr ""
+"Un gestionnaire d'énergie pour les batteries de portable, fonctionnant avec "
+"ACPI et DBus."
 
 #: ../src/powermanager-menu-functions.c:44
 msgid "Set up power management"
@@ -151,6 +153,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
