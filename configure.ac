@@ -230,7 +230,7 @@ AC_SUBST(Clipperdatadir, "${pkgdatadir}/Clipper")
 CAIRO_PENGUIN_PACKAGE="cd-Cairo-Penguin"
 AC_SUBST(GETTEXT_CAIRO_PENGUIN, "$CAIRO_PENGUIN_PACKAGE")
 
-AC_SUBST(VERSION_CAIRO_PENGUIN, "1.1.2")
+AC_SUBST(VERSION_CAIRO_PENGUIN, "1.1.3")
 AC_SUBST(PACKAGE_CAIRO_PENGUIN, "$CAIRO_PENGUIN_PACKAGE")
 cairo_penguinuserdirname="Cairo-Penguin"
 AC_SUBST(cairo_penguinuserdirname)
@@ -241,7 +241,7 @@ AC_SUBST(cairo_penguindatadir, "${pkgdatadir}/Cairo-Penguin")
 CLOCK_PACKAGE="cd-clock"
 AC_SUBST(GETTEXT_CLOCK, "$CLOCK_PACKAGE")
 
-AC_SUBST(VERSION_CLOCK, "2.0.2")
+AC_SUBST(VERSION_CLOCK, "2.0.3")
 AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
 clockuserdirname="clock"
 AC_SUBST(clockuserdirname, "clock")
@@ -288,7 +288,7 @@ AC_SUBST(drop_indicatordatadir, "${pkgdatadir}/drop-indicator")
 DUSTBIN_PACKAGE=cd-dustbin
 AC_SUBST(GETTEXT_DUSTBIN, "$DUSTBIN_PACKAGE")
 
-AC_SUBST(VERSION_DUSTBIN, "2.2.1")
+AC_SUBST(VERSION_DUSTBIN, "2.2.2")
 AC_SUBST(PACKAGE_DUSTBIN, "$DUSTBIN_PACKAGE")
 dustbinuserdirname="dustbin"
 AC_SUBST(dustbinuserdirname)
@@ -550,7 +550,7 @@ AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")
 TOONS_PACKAGE="cd-Toons"
 AC_SUBST(GETTEXT_TOONS, "$TOONS_PACKAGE")
 
-AC_SUBST(VERSION_TOONS, "1.0.1")
+AC_SUBST(VERSION_TOONS, "1.0.2")
 AC_SUBST(PACKAGE_TOONS, "$TOONS_PACKAGE")
 
 AC_SUBST(toonsdatadir, "${pkgdatadir}/Toons")
@@ -560,7 +560,7 @@ AC_SUBST(toonsuserdirname,"Toons")
 WEATHER_PACKAGE="cd-weather"
 AC_SUBST(GETTEXT_WEATHER, "$WEATHER_PACKAGE")
 
-AC_SUBST(VERSION_WEATHER, "1.2.3")
+AC_SUBST(VERSION_WEATHER, "1.2.4")
 AC_SUBST(PACKAGE_WEATHER, "$WEATHER_PACKAGE")
 
 AC_SUBST(weatherdatadir, "${pkgdatadir}/weather")
@@ -587,7 +587,7 @@ AC_SUBST(xfce_integrationdatadir, "${pkgdatadir}/xfce-integration")
 XGAMMA_PACKAGE="cd-Xgamma"
 AC_SUBST(GETTEXT_XGAMMA, "$XGAMMA_PACKAGE")
 
-AC_SUBST(VERSION_XGAMMA, "1.1.0")
+AC_SUBST(VERSION_XGAMMA, "1.1.1")
 AC_SUBST(PACKAGE_XGAMMA, "$XGAMMA_PACKAGE")
 
 AC_SUBST(xgammadatadir, "${pkgdatadir}/Xgamma")
@@ -652,21 +652,7 @@ AC_CONFIG_FILES([
 	clock/data/digital/Makefile
 	clock/data/digital/default/Makefile
 	clock/data/themes/Makefile
-	clock/data/themes/antique/Makefile
 	clock/data/themes/default/Makefile
-	clock/data/themes/fdo/Makefile
-	clock/data/themes/funky/Makefile
-	clock/data/themes/glassy/Makefile
-	clock/data/themes/ipulse/Makefile
-	clock/data/themes/radium/Makefile
-	clock/data/themes/silvia/Makefile
-	clock/data/themes/simple/Makefile
-	clock/data/themes/tango/Makefile
-	clock/data/themes/I_Clock/Makefile
-	clock/data/themes/BlueSlim/Makefile
-	clock/data/themes/AmoraSlim/Makefile 
-	clock/data/themes/zen/Makefile
-	clock/data/themes/elegance/Makefile
 	
 	compiz-icon/Makefile
 	compiz-icon/src/Makefile
@@ -698,17 +684,7 @@ AC_CONFIG_FILES([
 	dustbin/data/Makefile
 	dustbin/data/dustbin.conf
 	dustbin/data/themes/Makefile
-	dustbin/data/themes/Gion/Makefile
-	dustbin/data/themes/Crystal/Makefile
-	dustbin/data/themes/NuoveXT-2/Makefile
-	dustbin/data/themes/OpenClipArt1/Makefile
-	dustbin/data/themes/DroplineNeu/Makefile
-	dustbin/data/themes/Human/Makefile
-	dustbin/data/themes/Metal/Makefile
-	dustbin/data/themes/Silver/Makefile
-	dustbin/data/themes/I_Dustbin/Makefile
-	dustbin/data/themes/Neon/Makefile
-	dustbin/data/themes/Clear/Makefile
+	dustbin/data/themes/default/Makefile
 	
 	GMenu/Makefile
 	GMenu/src/Makefile
