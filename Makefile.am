@@ -102,6 +102,7 @@ SUBDIRS = . po\
 	systray\
 	${terminal_dir}\
 	${tomboy_dir}\
+	Toons\
 	weather\
 	${weblets_dir}\
 	${wifi_dir}\

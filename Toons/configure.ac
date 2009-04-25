@@ -38,8 +38,5 @@ AC_CONFIG_FILES([Makefile
 		data/Toons.conf
 		data/themes/Makefile
 		data/themes/Classic/Makefile
-		data/themes/Rei/Makefile
-		data/themes/Rei_head/Makefile
-		data/themes/girl_eyes/Makefile
 		])
 AC_OUTPUT

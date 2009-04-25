@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-weather],[1.2.2],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cd-weather],[1.2.3],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -11,7 +11,7 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-IT_PROG_INTLTOOL([0.35.0])
+IT_PROG_INTLTOOL()
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
 GETTEXT_WEATHER=cd-weather
@@ -38,10 +38,5 @@ AC_CONFIG_FILES([Makefile
 		data/weather.conf
 		data/themes/Makefile
 		data/themes/Classic/Makefile
-		data/themes/Shiny/Makefile
-		data/themes/crystal/Makefile
-		data/themes/7degrees/Makefile
-		data/themes/clear/Makefile
-		data/themes/I_Weather/Makefile
-		data/themes/WeatherPod/Makefile])
+		])
 AC_OUTPUT

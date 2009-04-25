@@ -88,7 +88,7 @@ AC_ARG_ENABLE(gmenu,
 	[  --enable-gmenu : Enable GMenu applet (default=yes) ],
 	[ with_gmenu=${enableval} ],
 	[ with_gmenu=yes ])
-AC_ARG_ENABLE(gio,
+AC_ARG_ENABLE(gio-in-gmenu,
         [  --enable-gio-in-gmenu : Use gio in GMenu (default=no) ],
         [ with_gio_in_gmenu=${enableval} ],
         [ with_gio_in_gmenu=no])
@@ -560,12 +560,11 @@ AC_SUBST(toonsuserdirname,"Toons")
 WEATHER_PACKAGE="cd-weather"
 AC_SUBST(GETTEXT_WEATHER, "$WEATHER_PACKAGE")
 
-AC_SUBST(VERSION_WEATHER, "1.2.1")
+AC_SUBST(VERSION_WEATHER, "1.2.3")
 AC_SUBST(PACKAGE_WEATHER, "$WEATHER_PACKAGE")
-weatheruserdirname="weather"
-AC_SUBST(weatheruserdirname)
 
 AC_SUBST(weatherdatadir, "${pkgdatadir}/weather")
+AC_SUBST(weatheruserdirname, "weather")
 
 ############# WIFI #################
 WIFI_PACKAGE="cd-wifi"
@@ -893,6 +892,8 @@ AC_CONFIG_FILES([
 	Toons/po/Makefile.in
 	Toons/data/Makefile
 	Toons/data/Toons.conf
+	data/themes/Makefile
+	data/themes/Classic/Makefile
 	
 	weather/Makefile
 	weather/src/Makefile
@@ -901,12 +902,6 @@ AC_CONFIG_FILES([
 	weather/data/weather.conf
 	weather/data/themes/Makefile
 	weather/data/themes/Classic/Makefile
-	weather/data/themes/Shiny/Makefile
-	weather/data/themes/crystal/Makefile
-	weather/data/themes/7degrees/Makefile
-	weather/data/themes/clear/Makefile
-	weather/data/themes/I_Weather/Makefile
-	weather/data/themes/WeatherPod/Makefile
 	
 	weblets/Makefile
 	weblets/src/Makefile

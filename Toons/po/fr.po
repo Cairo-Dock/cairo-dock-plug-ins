@@ -14,7 +14,7 @@ msgstr ""
 
 #: ../src/applet-init.c:22
 msgid "This applet displays a toon that will look at your mouse."
-msgstr "Cet applet montre un 'toon' qui regardera votre souris"
+msgstr "Cette applet montre un 'toon' qui regardera votre souris"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -22,7 +22,7 @@ msgstr "Icône"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr "Laissez vide pour utiliser la taille par défaut"
+msgstr "Mettez 0 pour utiliser la taille par défaut"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -78,7 +78,7 @@ msgstr "Garder au-dessus des autres fenêtres ?"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
