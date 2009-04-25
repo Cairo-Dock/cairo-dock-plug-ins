@@ -637,10 +637,6 @@ AC_CONFIG_FILES([
 	Cairo-Penguin/data/Cairo-Penguin.conf
 	Cairo-Penguin/data/themes/Makefile
 	Cairo-Penguin/data/themes/Classic/Makefile
-	Cairo-Penguin/data/themes/SantaClaus/Makefile
-	Cairo-Penguin/data/themes/The_Simpsons/Makefile
-	Cairo-Penguin/data/themes/Wanda/Makefile
-	Cairo-Penguin/data/themes/Mario/Makefile
 	
 	Clipper/Makefile
 	Clipper/src/Makefile
@@ -892,8 +888,8 @@ AC_CONFIG_FILES([
 	Toons/po/Makefile.in
 	Toons/data/Makefile
 	Toons/data/Toons.conf
-	data/themes/Makefile
-	data/themes/Classic/Makefile
+	Toons/data/themes/Makefile
+	Toons/data/themes/Classic/Makefile
 	
 	weather/Makefile
 	weather/src/Makefile
