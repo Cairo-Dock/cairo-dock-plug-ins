@@ -195,7 +195,7 @@ void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin)
 	}
 	g_static_rw_lock_writer_unlock (&s_mTasksMutex);
 	
-	if (! g_atomic_pointer_get (&s_iThreadIsRunning))
+	if (! g_atomic_int_get (&s_iThreadIsRunning))
 	{
 		if (s_iSidDelayMeasure != 0)
 		{

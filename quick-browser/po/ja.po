@@ -240,7 +240,7 @@ msgid ""
 msgstr ""
 
 #: ../data/messages:93
-msgid "Granularity of the menu's building :"
+msgid "Gradual building of the menu :"
 msgstr ""
 
 #~ msgid "width :"

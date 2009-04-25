@@ -1127,7 +1127,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 				if (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 					cd_rendering_draw_flat_separator_opengl (icon, pDock);
 				else
-					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE);
+					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE, (ic->prev ? ic->prev->data : NULL), (ic->next ? ic->next : NULL));
 				glPopMatrix ();
 				
 				glDisable (GL_STENCIL_TEST);
@@ -1163,7 +1163,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 					glStencilOp (GL_KEEP, GL_KEEP, GL_KEEP);
 					
 					glPushMatrix ();
-					cd_rendering_draw_physical_separator_opengl (icon, pDock, FALSE);
+					cd_rendering_draw_physical_separator_opengl (icon, pDock, FALSE, (ic->prev ? ic->prev->data : NULL), (ic->next ? ic->next : NULL));
 					glPopMatrix ();
 					
 					glDisable (GL_STENCIL_TEST);

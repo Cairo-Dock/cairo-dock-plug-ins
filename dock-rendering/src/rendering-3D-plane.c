@@ -736,7 +736,7 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 				if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 					cd_rendering_draw_flat_separator_opengl (icon, pDock);
 				else
-					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE);
+					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE, NULL, NULL);
 				glPopMatrix ();
 			}
 			
@@ -766,7 +766,7 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 				{
 					glPushMatrix ();
-					cd_rendering_draw_physical_separator_opengl (icon, pDock, FALSE);
+					cd_rendering_draw_physical_separator_opengl (icon, pDock, FALSE, NULL, NULL);
 					glPopMatrix ();
 				}
 				
@@ -875,14 +875,18 @@ void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 	glDisable (GL_BLEND);
 }
 
-void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, gboolean bBackGround)
+void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, gboolean bBackGround, Icon *prev_icon, Icon *next_icon)
 {
+	if (prev_icon == NULL)
+		prev_icon = icon;
+	if (next_icon == NULL)
+		next_icon = icon;
 	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	hi = pDock->iCurrentHeight - (icon->fDrawX + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	
 	double fHeight, fBigWidth, fLittleWidth;
-	
 	if (bBackGround)
 	{
 		fHeight = pDock->iDecorationsHeight + myBackground.iDockLineWidth - hi;

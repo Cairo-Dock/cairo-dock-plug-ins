@@ -197,7 +197,9 @@ msgstr "Ouverture du cône :"
 
 #: ../data/messages:75
 msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
-msgstr "Mettez la transparence à 0 pour ne pas l'utiliser. C'est assez lent avec Cairo."
+msgstr ""
+"Mettez la transparence à 0 pour ne pas l'utiliser. C'est assez lent avec "
+"Cairo."
 
 #: ../data/messages:77
 msgid "Bow color :"

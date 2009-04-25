@@ -20,11 +20,12 @@ msgid ""
 "This applet can be instanciated several times, if you want to browse "
 "different folders."
 msgstr ""
-"Cet applet vous permet de naviguer dans un dossier et ses sous-dossier très rapidement.\n"
+"Cet applet vous permet de naviguer dans un dossier et ses sous-dossier très "
+"rapidement.\n"
 "Vous pouvez configurer un raccourci pour ouvrir directement la navigation\n"
 "Clique du milieu pour ouvrir le dossier principal.\n"
-"Plusieurs instances de cet applet peuvent être lancés si vous désirer naviguer "
-"dans différents dossiers."
+"Plusieurs instances de cet applet peuvent être lancés si vous désirer "
+"naviguer dans différents dossiers."
 
 #: ../src/applet-menu.c:97 ../src/applet-menu.c:103
 msgid "Open this folder"
@@ -73,7 +74,8 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche"
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clique gauche"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -92,6 +94,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -239,11 +242,12 @@ msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
 msgstr ""
-"Nombre d'objets à charger en une fois. Un paramètre trop élevé accélère un peu "
-"le chargement, mais bloque plus l'application."
+"Nombre d'objets à charger en une fois. Un paramètre trop élevé accélère un "
+"peu le chargement, mais bloque plus l'application."
 
 #: ../data/messages:93
-msgid "Granularity of the menu's building :"
+#, fuzzy
+msgid "Gradual building of the menu :"
 msgstr "Construction graduelle du menu"
 
 #, fuzzy

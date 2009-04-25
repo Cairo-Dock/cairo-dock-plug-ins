@@ -104,7 +104,7 @@ msgstr "Placera ovanför andra fönster?"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 "type=utility)"

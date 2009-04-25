@@ -27,7 +27,7 @@ void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName);
 
 void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock);
 
-void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, gboolean bBackGround);
+void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, gboolean bBackGround, Icon *prev_icon, Icon *next_icon);
 
 
 #endif

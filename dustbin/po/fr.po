@@ -32,10 +32,11 @@ msgid ""
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 "Cet applet gère la corbeille\n"
-"Vous pouvez jeter des fichiers et démonter des disques en les déposants "
-"sur l'icône de l'applet.\n"
+"Vous pouvez jeter des fichiers et démonter des disques en les déposants sur "
+"l'icône de l'applet.\n"
 "L'applet peut vous prévenir si vous utilisez trop d'espace\n"
-"Clique du milieu pour afficher des informations utiles à propos de la corbeille."
+"Clique du milieu pour afficher des informations utiles à propos de la "
+"corbeille."
 
 #: ../src/applet-notifications.c:33 ../src/applet-notifications.c:38
 msgid "Show Trash"
@@ -134,8 +135,9 @@ msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
-"Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche.Une valeur négative est comptée à partir du coin inférieur droit "
+"de l'écran"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -154,6 +156,7 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
+#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -335,8 +338,8 @@ msgstr "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle.
 msgid ""
 "Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr ""
-"Vous pouvez spécifier ici une liste additionnelle de répertoire(s) poubelle(s) à "
-"surveiller :"
+"Vous pouvez spécifier ici une liste additionnelle de répertoire(s) poubelle"
+"(s) à surveiller :"
 
 #: ../data/messages:109
 msgid "in seconds, only used if you can't monitor directories."

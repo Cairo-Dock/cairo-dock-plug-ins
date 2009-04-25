@@ -92,6 +92,19 @@ void cd_animations_init_wobbly (CDAnimationData *pData,gboolean  bUseOpenGL)
 }
 
 
+#define _pulled_by2(i,j,s)\
+	pNode2 = &pData->gridNodes[i][j];\
+	dx = pNode2->x + pNode2->rk[s][2] - (pNode->x + pNode->rk[s][2]);\
+	dy = pNode2->y + pNode2->rk[s][3] - (pNode->y + pNode->rk[s][3]);\
+	l = sqrt (dx*dx + dy*dy);\
+	if (0 && l > 1.5*l0) {\
+	dx /= l/(l0/2/sqrt(2));\
+	dy /= l/(l0/2/sqrt(2));\
+	l = 1.5*l0;}\
+	pNode->fx += k * dx * (1. - l0 / l);\
+	pNode->fy += k * dy * (1. - l0 / l);\
+	if (!bContinue && fabs (l - l0) > .005) bContinue = TRUE;
+
 #define _pulled_by(i,j)\
 	pNode2 = &pData->gridNodes[i][j];\
 	dx = pNode2->x - pNode->x;\
@@ -110,11 +123,53 @@ void cd_animations_init_wobbly (CDAnimationData *pData,gboolean  bUseOpenGL)
     k_1 = f ( t_n, y_n )
     k_2 = f ( t_n + {h / 2}, y_n + {h / 2} k_1 )
     k_3 = f ( t_n + {h / 2}, y_n + {h / 2} k_2 )
-    k_4 = f ( t_n + h, y_n + h k_3)*/
+    k_4 = f ( t_n + h, y_n + h k_3)
+Ici : X' = f(Xn), avec X = {vx, vy, x, y} et f = {sum(Fx), sum(Fy), d/dt, d/dt}*/
+
+static inline gboolean _calculate_forces (CDAnimationGridNode *pNode, int step, CDAnimationData *pData)
+{
+	double k = myConfig.fSpringConstant;
+	double f = myConfig.fFriction;
+	gboolean bContinue = FALSE;
+	CDAnimationGridNode *pNode2;
+	double dx, dy, l;
+	int i,j;
+	for (i=0; i<4; i++)
+	{
+		for (j=0; j<4; j++)
+		{
+			pNode->fx = 0.;
+			pNode->fy = 0.;
+			
+			if (i > 0)
+			{
+				_pulled_by2 (i-1, j, step);
+			}
+			if (i < 3)
+			{
+				_pulled_by2 (i+1, j, step);
+			}
+			if (j > 0)
+			{
+				_pulled_by2 (i, j-1, step);
+			}
+			if (j < 3)
+			{
+				_pulled_by2 (i, j+1, step);
+			}
+			
+			pNode->fx -= f * (pNode->vx + pNode->rk[step][0]);
+			pNode->fy -= f * (pNode->vy + pNode->rk[step][1]);
+		}
+	}
+	return bContinue;
+}
+
+#define _sum_rk(i) (2*pNode->rk[1][i] + 4*pNode->rk[2][i] + 2*pNode->rk[3][i] + pNode->rk[4][i]) / 6.
 
 gboolean cd_animations_update_wobbly (CDAnimationData *pData, double dt, gboolean bWillContinue)
 {
-	const int n = 20;
+	const int n = 10;
 	double k = myConfig.fSpringConstant;
 	double f = myConfig.fFriction;
 	dt /= 1e3 * n;
@@ -171,6 +226,96 @@ gboolean cd_animations_update_wobbly (CDAnimationData *pData, double dt, gboolea
 			}
 		}
 	}
+	
+	for (i=0; i<4; i++)
+	{
+		for (j=0; j<4; j++)
+		{
+			pNode = &pData->gridNodes[i][j];
+			pData->pCtrlPts[j][i][0] = pNode->x;
+			pData->pCtrlPts[j][i][1] = pNode->y;
+		}
+	}
+	
+	return bContinue;
+}
+
+
+gboolean cd_animations_update_wobbly2 (CDAnimationData *pData, double dt, gboolean bWillContinue)
+{
+	const int n = 20;
+	double k = myConfig.fSpringConstant;
+	double f = myConfig.fFriction;
+	CDAnimationGridNode *pNode, *pNode2;
+	gboolean bContinue = FALSE;
+	
+	int i,j;
+	// k_1 = f ( t_n, y_n ) = f(Xn)
+	for (i=0; i<4; i++)
+	{
+		for (j=0; j<4; j++)
+		{
+			pNode = &pData->gridNodes[i][j];
+			
+			bContinue |= _calculate_forces (pNode, 0, pData);
+			pNode->rk[1][0] = pNode->fx * dt/2;
+			pNode->rk[1][1] = pNode->fy * dt/2;
+			pNode->rk[1][2] = pNode->vx * dt/2;
+			pNode->rk[1][3] = pNode->vy * dt/2;
+		}
+	}
+	// k_2 = f ( t_n + {h / 2}, y_n + {h / 2} k_1 ) = f(Xn + dt/2*k_1)
+	for (i=0; i<4; i++)
+	{
+		for (j=0; j<4; j++)
+		{
+			pNode = &pData->gridNodes[i][j];
+			_calculate_forces (pNode, 1, pData);
+			pNode->rk[2][0] = pNode->fx * dt/2;
+			pNode->rk[2][1] = pNode->fy * dt/2;
+			pNode->rk[2][2] = pNode->vx * dt/2;
+			pNode->rk[2][3] = pNode->vy * dt/2;
+		}
+	}
+	// k_3 = f ( t_n + {h / 2}, y_n + {h / 2} k_2 ) = f(Xn + dt/2*k_2)
+	for (i=0; i<4; i++)
+	{
+		for (j=0; j<4; j++)
+		{
+			pNode = &pData->gridNodes[i][j];
+			_calculate_forces (pNode, 2, pData);
+			pNode->rk[3][0] = pNode->fx * dt;
+			pNode->rk[3][1] = pNode->fy * dt;
+			pNode->rk[3][2] = pNode->vx * dt;
+			pNode->rk[3][3] = pNode->vy * dt;
+		}
+	}
+	// k_4 = f ( t_n + h, y_n + h k_3) = f(Xn + dt*k_3)
+	for (i=0; i<4; i++)
+	{
+		for (j=0; j<4; j++)
+		{
+			pNode = &pData->gridNodes[i][j];
+			_calculate_forces (pNode, 3, pData);
+			pNode->rk[4][0] = pNode->fx * dt;
+			pNode->rk[4][1] = pNode->fy * dt;
+			pNode->rk[4][2] = pNode->vx * dt;
+			pNode->rk[4][3] = pNode->vy * dt;
+		}
+	}
+	// y_{n+1} = y_n + {h / 6} (k_1 + 2k_2 + 2k_3 + k_4)
+	for (i=0; i<4; i++)
+	{
+		for (j=0; j<4; j++)
+		{
+			pNode = &pData->gridNodes[i][j];
+			pNode->vx = _sum_rk (0);
+			pNode->vy = _sum_rk (1);
+			pNode->x = _sum_rk (2);
+			pNode->y = _sum_rk (3);
+		}
+	}
+	
 	for (i=0; i<4; i++)
 	{
 		for (j=0; j<4; j++)

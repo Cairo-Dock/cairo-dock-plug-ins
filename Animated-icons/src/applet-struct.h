@@ -93,6 +93,7 @@ typedef struct _CDAnimationGridNode {
 	gdouble x, y;
 	gdouble vx, vy;
 	gdouble fx, fy;
+	gdouble rk[5][4];
 	} CDAnimationGridNode;
 
 #define CD_WAVE_NB_POINTS 9
