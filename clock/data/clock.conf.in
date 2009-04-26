@@ -133,8 +133,8 @@ font =
 #v
 sep_deco_mod =
 
-#h+[@clockdatadir@/themes;@clockuserdirname@;clock] List of available themes for the analogic display :/
-theme = glassy
+#h+[@clockdatadir@/themes;@clockuserdirname@;@clockuserdirname@] List of available themes for the analogic display :/
+theme = default
 
 #c+4[0;1] Text color of the date :
 #{r, v, b, a}
