@@ -21,10 +21,10 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 {
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
-	if (bInvisibleBackground)
+	/*if (bInvisibleBackground)
 		_cairo_dock_set_blend_alpha ();  // rend la capsule transparente.
 	else
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.*/
 	glEnable(GL_TEXTURE);
 	
 	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
@@ -74,11 +74,11 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 {
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
-	if (bInvisibleBackground)
+	/*if (bInvisibleBackground)
 		_cairo_dock_set_blend_alpha ();  // rend la capsule transparente.
 	else
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
-	_cairo_dock_set_blend_alpha ();
+	_cairo_dock_set_blend_alpha ();*/
 	glEnable(GL_TEXTURE);
 	
 	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
@@ -119,10 +119,10 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
 {
 	glEnable (GL_BLEND);
-	if (bInvisibleBackground)
+	/*if (bInvisibleBackground)
 		_cairo_dock_set_blend_alpha ();  // rend la capsule transparente.
 	else
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.*/
 	glEnable(GL_TEXTURE);
 	
 	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
@@ -188,12 +188,13 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 	double fAlpha = pIcon->fAlpha;
 	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
 	{
-		glColor4f (1., 1., 1., pIcon->fAlpha * (1. - .5 * pData->fPulseAlpha));
+		_cairo_dock_set_alpha (pIcon->fAlpha * (1. - .5 * pData->fPulseAlpha));
 		///pIcon->fAlpha *= 1. - .5 * pData->fPulseAlpha;
 	}
 	else
 		glColor4f(myConfig.pMeshColor[0], myConfig.pMeshColor[1], myConfig.pMeshColor[2], pIcon->fAlpha);  // ici on peut donner une teinte aux reflets chrome.
 	
+	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	_draw_rotating_icon (pIcon, pDock, pData, 1.);
 	
 	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
@@ -201,6 +202,7 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 		_cairo_dock_set_alpha (pData->fPulseAlpha);
 		double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
 		glTranslatef (0., 0., -fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
+		_cairo_dock_set_blend_alpha ();
 		_draw_rotating_icon (pIcon, pDock, pData, fScaleFactor);
 		glTranslatef (0., 0., fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
 	}
@@ -208,7 +210,7 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 	if (pDock->bUseReflect)
 	{
 		glPushMatrix ();
-		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * sqrt (myIcons.fAlbedo) * pIcon->fAlpha);  // transparence du reflet, arrange pour essayer de cacher l'absence de degrade :p
+		_cairo_dock_set_alpha (myIcons.fAlbedo * sqrt (myIcons.fAlbedo) * pIcon->fAlpha);  // transparence du reflet, arrange pour essayer de cacher l'absence de degrade :p
 		double fOffsetY = pIcon->fHeight * pIcon->fScale + (0 + pIcon->fDeltaYReflection) * pDock->fRatio;
 		if (pDock->bHorizontalDock)
 		{
@@ -240,6 +242,7 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 			glScalef (-1., 1., 1.);
 		}
 		
+		_cairo_dock_set_blend_alpha ();
 		_draw_rotating_icon (pIcon, pDock, pData, 1.);
 		glPopMatrix ();
 	}

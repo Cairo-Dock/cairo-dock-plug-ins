@@ -151,16 +151,11 @@ if test "$with_gio_in_gmenu" = "yes" ; then
 	AC_SUBST(GMENU_GIO_LIBS)
 fi
 if test "$with_mail" = "yes" ; then
-	PKG_CHECK_MODULES(MAIL_PACKAGE,gnutls gnome-keyring-1, ,[ with_mail=false; AC_MSG_WARN(Could not find gnutls or gnome-keyring-1; Cairo-Dock won't be built with Mail applet.) ])
-	AC_SUBST(MAIL_PACKAGE_CFLAGS)
-	AC_SUBST(MAIL_PACKAGE_LIBS)
-
 	AC_CHECK_HEADERS(errno.h fcntl.h math.h netdb.h netinet/in.h signal.h stddef.h string.h sys/select.h sys/socket.h sys/stat.h sys/types.h sys/wait.h time.h unistd.h)
 	AC_CHECK_FUNCS(mmap sigaction srandom)
 
-  # Checks for crypt library
-  AC_CHECK_LIB(crypt, encrypt)
-
+	# Checks for crypt library
+	AC_CHECK_LIB(crypt, encrypt)
 fi
 if test "$with_weblets" = "yes" ; then
 	PKG_CHECK_MODULES(WEBKIT,webkit-1.0, ,[ with_weblets=false; AC_MSG_WARN(Could not find webkit-1.0; Cairo-Dock won't be built with Weblets applet.) ])
@@ -523,7 +518,7 @@ AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")
 SYSTRAY_PACKAGE=cd-systray
 AC_SUBST(GETTEXT_SYSTRAY, "$SYSTRAY_PACKAGE")
 
-AC_SUBST(VERSION_SYSTRAY, "0.1.6")
+AC_SUBST(VERSION_SYSTRAY, "0.1.7")
 AC_SUBST(PACKAGE_SYSTRAY, "$SYSTRAY_PACKAGE")
 
 AC_SUBST(systraydatadir, "${pkgdatadir}/systray")

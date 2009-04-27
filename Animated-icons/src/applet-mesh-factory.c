@@ -117,7 +117,8 @@ GLuint cairo_dock_load_capsule_calllist (void)
 	GLfloat fMaterial[4] = {1., 1., 1., 1.};
 	//glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, fMaterial);  // on definit Les proprietes materielles de l'objet.
 	g_print ("iChromeTexture : %d\n", myData.iChromeTexture);
-	glBindTexture(GL_TEXTURE_2D, myData.iChromeTexture);
+	
+	/*glBindTexture(GL_TEXTURE_2D, myData.iChromeTexture);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Ici c'est pour le type de combinaison de texturing en cas de multi
 	glTexEnvf(GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_REPLACE); // pas de multi je remplace donc l'ancienne texture par celle ci
 	
@@ -125,8 +126,19 @@ GLuint cairo_dock_load_capsule_calllist (void)
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // Ce sera du sphere mapping pour un petit effet chrome
 	glEnable(GL_TEXTURE_GEN_S); // oui je veux une generation en S
 	glEnable(GL_TEXTURE_GEN_T); // Et en T aussi
+	*/
 	
+	glActiveTexture(GL_TEXTURE1);
+	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_GEN_S);
+	glDisable(GL_TEXTURE_GEN_T);
+	glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.);
+	glActiveTexture(GL_TEXTURE0);
+	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_GEN_S);
+	glDisable(GL_TEXTURE_GEN_T);
 	
+	glColor4f (.4, .5, .8, .7);
 	rayon = 1.0f/c;
 	glBegin(GL_QUADS);
 	//for (iter = 0;iter < 5;iter ++)
@@ -185,6 +197,8 @@ GLuint cairo_dock_load_ring_calllist (void)
 	double a = .4/c;  // applatissement;
 	double b = 1./nb_iter;
 	double xab, yab, zab, xac, yac, zac, nx, ny, nz, n;
+	
+	glColor4f (.4, .5, .8, .7);
 	
 	rayon = 1.0f/c;
 	glBegin(GL_QUADS);

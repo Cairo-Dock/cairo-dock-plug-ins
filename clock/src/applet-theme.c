@@ -75,8 +75,8 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 			else  // on prend des valeurs par defaut assez larges.
 			{
 				g_print ("clock : default needle size\n");
-				myData.iNeedleRealHeight = .33 * myData.needleDimension.height;
-				myData.iNeedleOffsetX = .33 * myData.needleDimension.width;
+				myData.iNeedleRealHeight = .5 * myData.needleDimension.height;
+				myData.iNeedleOffsetX = .5 * myData.needleDimension.width;
 			}
 			myData.iNeedleRealWidth = myData.needleDimension.width/2 + myData.iNeedleOffsetX;
 			myData.iNeedleOffsetY = .5 * myData.iNeedleRealHeight;

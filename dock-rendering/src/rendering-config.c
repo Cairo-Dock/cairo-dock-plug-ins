@@ -197,11 +197,14 @@ CD_APPLET_RESET_DATA_BEGIN
 	if (my_pFlatSeparatorSurface[0] != NULL)
 	{
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
 		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
 	}
 	
 	if (my_iFlatSeparatorTexture != 0)
 	{
 		glDeleteTextures (1, &my_iFlatSeparatorTexture);
+		my_iFlatSeparatorTexture = 0;
 	}
 CD_APPLET_RESET_DATA_END

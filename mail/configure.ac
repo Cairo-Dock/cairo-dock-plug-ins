@@ -11,7 +11,7 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-IT_PROG_INTLTOOL([0.35.0])
+IT_PROG_INTLTOOL()
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
 GETTEXT_PACKAGE=cd-mail
@@ -53,7 +53,7 @@ AC_CHECK_FUNCS([sscanf])
 # Checks for crypt library
 AC_CHECK_LIB(crypt, encrypt)
 
-PKG_CHECK_MODULES(PACKAGE, cairo-dock gnutls gnome-keyring-1)
+PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
 # SSL is present ? let's say yes :)
 AC_DEFINE_UNQUOTED([HAVE_SSL_SUPPORT], [1], [Define if SSL support is enabled])
