@@ -23,40 +23,48 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-banshee.h"
 
 
-
+//Les Fonctions - CF: Il y a d'autre personne qui passe dans les .c, pensez a la visibilité de vos codes...
 void cd_banshee_getSongInfos (void)
 {
 	GHashTable *data_list = NULL;
 	GValue *value;
 	
-	if(dbus_g_proxy_call (myData.dbus_proxy_shell, myData.DBus_commands.get_title, NULL,G_TYPE_INVALID,
-		dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),
-		&data_list,
-		G_TYPE_INVALID))
+	if (dbus_g_proxy_call (myData.dbus_proxy_shell, myData.DBus_commands.get_title, NULL, G_TYPE_INVALID,
+		dbus_g_type_get_map ("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),
+		  &data_list,
+		  G_TYPE_INVALID))
 	{
-		myData.iPreviousTrackNumber=myData.iTrackNumber;
+		myData.iPreviousTrackNumber = myData.iTrackNumber;
 		
 		g_free (myData.cArtist);
-		value = (GValue *) g_hash_table_lookup(data_list, "artist");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.cArtist = g_strdup (g_value_get_string(value));
-		else myData.cArtist = NULL;
+		value = (GValue *) g_hash_table_lookup (data_list, "artist");
+		if (value != NULL && G_VALUE_HOLDS_STRING (value))
+		  myData.cArtist = g_strdup (g_value_get_string(value));
+		else
+		  myData.cArtist = NULL;
 		//cd_message ("\tMP : playing_artist <- %s", myData.cArtist);
 		
 		g_free (myData.cAlbum);
-		value = (GValue *) g_hash_table_lookup(data_list, "album");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.cAlbum = g_strdup (g_value_get_string(value));
-		else myData.cAlbum = NULL;
+		value = (GValue *) g_hash_table_lookup (data_list, "album");
+		if (value != NULL && G_VALUE_HOLDS_STRING (value))
+		  myData.cAlbum = g_strdup (g_value_get_string(value));
+		else
+		  myData.cAlbum = NULL;
 		//cd_message ("\tMP : playing_album <- %s", myData.cAlbum);
 		
 		g_free (myData.cTitle);
-		value = (GValue *) g_hash_table_lookup(data_list, "name");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.cTitle = g_strdup (g_value_get_string(value));
-		else myData.cTitle = NULL;
+		value = (GValue *) g_hash_table_lookup (data_list, "name");
+		if (value != NULL && G_VALUE_HOLDS_STRING (value))
+		  myData.cTitle = g_strdup (g_value_get_string (value));
+		else
+		  myData.cTitle = NULL;
 		//cd_message ("\tMP : playing_title <- %s", myData.cTitle);	
 		
 		value = (GValue *) g_hash_table_lookup(data_list, "track-number");
-		if (value != NULL && G_VALUE_HOLDS_INT(value)) myData.iTrackNumber = g_value_get_int(value);
-		else myData.iTrackNumber = 0;
+		if (value != NULL && G_VALUE_HOLDS_INT(value))
+		  myData.iTrackNumber = g_value_get_int(value);
+		else
+		  myData.iTrackNumber = 0;
 		//cd_message ("\tMP : playing_track <- %d", myData.iTrackNumber);
 		
 		g_value_unset(value);
@@ -64,32 +72,30 @@ void cd_banshee_getSongInfos (void)
 	}
 	
 	myData.iPreviousCurrentTime = myData.iCurrentTime;
-	myData.iSongLength = cairo_dock_dbus_get_uinteger(myData.dbus_proxy_shell, myData.DBus_commands.duration) / 1000;
-	myData.iCurrentTime = cairo_dock_dbus_get_uinteger(myData.dbus_proxy_shell, myData.DBus_commands.current_position) / 1000;
+	myData.iSongLength = cairo_dock_dbus_get_uinteger (myData.dbus_proxy_shell, myData.DBus_commands.duration) / 1000;
+	myData.iCurrentTime = cairo_dock_dbus_get_uinteger (myData.dbus_proxy_shell, myData.DBus_commands.current_position) / 1000;
 
-	if( myData.cPreviousRawTitle )
+	if (myData.cPreviousRawTitle)
 	{
-		g_free( myData.cPreviousRawTitle ); myData.cPreviousRawTitle = NULL;
+		g_free (myData.cPreviousRawTitle);
+		myData.cPreviousRawTitle = NULL;
 	}
-	if( myData.cRawTitle )
+	if (myData.cRawTitle)
 	{
-		myData.cPreviousRawTitle = g_strdup(myData.cRawTitle);
+		myData.cPreviousRawTitle = g_strdup (myData.cRawTitle);
 	}
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 }
 
 
-//Les Fonctions
-void cd_banshee_free_data (void) //Permet de libéré la mémoire prise par notre controleur
-{
-	musicplayer_dbus_disconnect_from_bus();
-	musicplayer_dbus_disconnect_from_bus_Shell();
+void cd_banshee_free_data (void) { //Permet de libéré la mémoire prise par notre controleur
+	musicplayer_dbus_disconnect_from_bus ();
+	musicplayer_dbus_disconnect_from_bus_Shell ();
 }
 
 
 /* Controle du lecteur */
-void cd_banshee_control (MyPlayerControl pControl, char* nothing) //Permet d'effectuer les actions de bases sur le lecteur
-{ 
+void cd_banshee_control (MyPlayerControl pControl, char* nothing) { //Permet d'effectuer les actions de bases sur le lecteur
 	gchar *cCommand = NULL;
 	/* Conseil de ChangFu pour redetecter le titre à coup sûr */
 	g_free (myData.cRawTitle);
@@ -121,16 +127,15 @@ void cd_banshee_control (MyPlayerControl pControl, char* nothing) //Permet d'eff
 	{
 		cd_debug ("MP : Handeler banshee : will use '%s'", cCommand);
 		dbus_g_proxy_call_no_reply (myData.dbus_proxy_player, cCommand, 
-		G_TYPE_BOOLEAN, FALSE,
-		G_TYPE_INVALID,
-		G_TYPE_INVALID);
+		  G_TYPE_BOOLEAN, FALSE,
+		  G_TYPE_INVALID,
+		  G_TYPE_INVALID);
 		//cairo_dock_dbus_call(myData.dbus_proxy_player,cCommand);
 	}
 }
 
 /* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-gboolean cd_banshee_ask_control (MyPlayerControl pControl) 
-{
+gboolean cd_banshee_ask_control (MyPlayerControl pControl) {
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
 			return TRUE;
@@ -150,15 +155,13 @@ gboolean cd_banshee_ask_control (MyPlayerControl pControl)
 }
 
 /* Fonction de connexion au bus de banshee */
-void cd_banshee_acquisition (void) 
-{
+void cd_banshee_acquisition (void) {
 	cd_musicplayer_check_dbus_connection_with_two_interfaces();
 }
 
 
 /* Fonction de lecture des infos */
-void cd_banshee_read_data (void) 
-{
+void cd_banshee_read_data (void) {
 	if (myData.dbus_enable)
 	{
 		if (myData.opening)
@@ -205,7 +208,6 @@ void cd_banshee_load_dbus_commands (void)
 	myData.DBus_commands.current_position = "GetPosition";
 	//cd_debug("MP : Chargement des fonctions DBus effectué");
 	return;
-	
 }
 
 
@@ -218,9 +220,10 @@ void cd_musicplayer_register_banshee_handeler (void) { //On enregistre notre lec
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pBanshee->control = cd_banshee_control;
 	pBanshee->ask_control = cd_banshee_ask_control;
-	pBanshee->appclass = g_strdup("Banshee"); //Toujours g_strdup sinon l'applet plante au free_handler
-	pBanshee->name = g_strdup("Banshee");
+	pBanshee->appclass = g_strdup ("Banshee"); //Toujours g_strdup sinon l'applet plante au free_handler
+	pBanshee->name = g_strdup ("Banshee");
 	pBanshee->iPlayer = MP_BANSHEE;
+	pBanshee->bSeparateAcquisition = FALSE;
 	cd_musicplayer_register_my_handeler(pBanshee,"Banshee");
 }
 

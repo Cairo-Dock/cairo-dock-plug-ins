@@ -64,7 +64,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		_musicplayer_action_by_id (pClickedIcon->iType);
 	}
 	else if (myData.dbus_enable && myData.opening) { //Player dBus
-	  cd_musicplayer_pp (); //Faut faire gaffe...
+	  cd_musicplayer_pp (); //CF: Faut faire gaffe...
 	}
 	else if (!myData.DBus_commands.service) { //Si pas de commandes DBus alors le player commandé par le shell
 	  cd_musicplayer_pp ();
@@ -85,25 +85,25 @@ CD_APPLET_ON_CLICK_END
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	CD_APPLET_ADD_IN_MENU (D_("Previous"), cd_musicplayer_prev, CD_APPLET_MY_MENU);
-	CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), cd_musicplayer_pp, CD_APPLET_MY_MENU);
-	
-	if (myData.pCurrentHandeler->ask_control (PLAYER_STOP))
-		CD_APPLET_ADD_IN_MENU (D_("Stop"), cd_musicplayer_s, CD_APPLET_MY_MENU);
-		
-	CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), cd_musicplayer_next, CD_APPLET_MY_MENU);
-	
-	if (myData.pCurrentHandeler->ask_control (PLAYER_JUMPBOX))
-		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), cd_musicplayer_jumpbox, pSubMenu);
-		
-	if (myData.pCurrentHandeler->ask_control (PLAYER_SHUFFLE))	
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), cd_musicplayer_shuffle, pSubMenu);
-		
-	if (myData.pCurrentHandeler->ask_control (PLAYER_REPEAT))	
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), cd_musicplayer_repeat, pSubMenu);
-		
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+  GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+  CD_APPLET_ADD_IN_MENU (D_("Previous"), cd_musicplayer_prev, CD_APPLET_MY_MENU);
+  CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), cd_musicplayer_pp, CD_APPLET_MY_MENU);
+
+  if (myData.pCurrentHandeler->ask_control (PLAYER_STOP))
+  	CD_APPLET_ADD_IN_MENU (D_("Stop"), cd_musicplayer_s, CD_APPLET_MY_MENU);
+  	
+  CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), cd_musicplayer_next, CD_APPLET_MY_MENU);
+
+  if (myData.pCurrentHandeler->ask_control (PLAYER_JUMPBOX))
+  	CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), cd_musicplayer_jumpbox, pSubMenu);
+  	
+  if (myData.pCurrentHandeler->ask_control (PLAYER_SHUFFLE))	
+  	CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), cd_musicplayer_shuffle, pSubMenu);
+  	
+  if (myData.pCurrentHandeler->ask_control (PLAYER_REPEAT))	
+  	CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), cd_musicplayer_repeat, pSubMenu);
+  	
+  CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 
@@ -120,12 +120,12 @@ CD_APPLET_ON_DROP_DATA_END
 
 
 CD_APPLET_ON_SCROLL_BEGIN
-		if (CD_APPLET_SCROLL_DOWN) {
-			myData.pCurrentHandeler->control (PLAYER_NEXT, NULL);
-		}
-		else if (CD_APPLET_SCROLL_UP) {
-			myData.pCurrentHandeler->control (PLAYER_PREVIOUS, NULL);
-		}
-		else
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+  if (CD_APPLET_SCROLL_DOWN) {
+  	myData.pCurrentHandeler->control (PLAYER_NEXT, NULL);
+  }
+  else if (CD_APPLET_SCROLL_UP) {
+  	myData.pCurrentHandeler->control (PLAYER_PREVIOUS, NULL);
+  }
+  else
+  	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_SCROLL_END

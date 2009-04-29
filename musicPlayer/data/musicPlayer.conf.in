@@ -102,7 +102,7 @@ enable_cover=true
 #r[Nothing;Time Elapsed;Time Left;N° of track] Information to display on the icon :
 quick-info_type=1
 
-#r+[Simple;Info;Info and Controler;Caroussel;Controler] Desklet display mode :
+#r+[Simple;Info;Info and Controler;Caroussel;Controler;OpenGL] Desklet display mode :
 extended_mode=0
 
 #X[False 3D Themes (OpenGL only)]

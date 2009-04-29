@@ -78,8 +78,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	myConfig.cMusicPlayer = NULL;
 	
 	int i;
-	for (i = 0; i < PLAYER_NB_STATUS; i ++)
-	{
+	for (i = 0; i < PLAYER_NB_STATUS; i ++) {
 		g_free (myConfig.cUserImage[i]);
 		myConfig.cUserImage[i] = NULL;
 	}
@@ -131,6 +130,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_list_foreach (myData.pHandelers, (GFunc) cd_musicplayer_free_handeler, NULL);
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	
+	//Bye bye pauvres textures opengl
 	glDeleteTextures (1, &myData.TextureFrame);
 	glDeleteTextures (1, &myData.TextureCover);
 	glDeleteTextures (1, &myData.TextureReflect);

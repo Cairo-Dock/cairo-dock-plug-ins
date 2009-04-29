@@ -24,49 +24,57 @@ Rémy Robertson (changfu@cairo-dock.org)
 
 
 
-//Les Fonctions
-
-void cd_quodlibet_getSongInfos(void)
+//Les Fonctions - CF: Il y a d'autre personne qui passe dans les .c, pensez a la visibilité de vos codes...
+void cd_quodlibet_getSongInfos (void)
 {
 	GHashTable *data_list = NULL;
 	gchar *value;
 	
-	if(dbus_g_proxy_call (myData.dbus_proxy_player, "CurrentSong", NULL,
+	if (dbus_g_proxy_call (myData.dbus_proxy_player, "CurrentSong", NULL,
 		G_TYPE_INVALID,
-		dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_STRING),
-		&data_list,
-		G_TYPE_INVALID))
+		dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_STRING),
+		  &data_list,
+		  G_TYPE_INVALID))
 	{
-	myData.iPreviousTrackNumber=myData.iTrackNumber;
-	myData.iPreviousCurrentTime=myData.iCurrentTime;
+	myData.iPreviousTrackNumber = myData.iTrackNumber;
+	myData.iPreviousCurrentTime = myData.iCurrentTime;
 	// Tester si la table de hachage n'est pas vide
 		g_free (myData.cArtist);
-		value = (const char *) g_hash_table_lookup(data_list, "artist");
-		if (value != NULL) myData.cArtist = g_strdup(value);
-		else myData.cArtist = NULL;
+		value = (const char *) g_hash_table_lookup (data_list, "artist");
+		if (value != NULL)
+		  myData.cArtist = g_strdup (value);
+		else
+		  myData.cArtist = NULL;
 		//cd_message ("\tMP : playing_artist <- %s", myData.cArtist);
 		
 		g_free (myData.cAlbum);
-		value = (const char *) g_hash_table_lookup(data_list, "album");
-		if (value != NULL) myData.cAlbum = g_strdup(value);
-		else myData.cAlbum = NULL;
+		value = (const char *) g_hash_table_lookup (data_list, "album");
+		if (value != NULL)
+		  myData.cAlbum = g_strdup (value);
+		else
+		  myData.cAlbum = NULL;
 		//cd_message ("\tMP : playing_album <- %s", myData.cAlbum);
 		
 		g_free (myData.cTitle);
-		value = (const char *) g_hash_table_lookup(data_list, "title");
-		if (value != NULL) myData.cTitle = g_strdup(value);
-		else myData.cTitle = NULL;
+		value = (const char *) g_hash_table_lookup (data_list, "title");
+		if (value != NULL)
+		  myData.cTitle = g_strdup (value);
+		else
+		  myData.cTitle = NULL;
 		//cd_message ("\tMP : playing_title <- %s", myData.cTitle);
 		
-		value = (const char *) g_hash_table_lookup(data_list, "tracknumber");
-		if (value != NULL) myData.iTrackNumber = g_strdup(value);
-		else myData.iTrackNumber = 0;
+		value = (const char *) g_hash_table_lookup (data_list, "tracknumber");
+		if (value != NULL)
+		  myData.iTrackNumber = g_strdup (value);
+		else
+		  myData.iTrackNumber = 0;
 		//cd_message ("\tMP : playing_track <- %s", myData.iTrackNumber);
 		
-		value = (const char *) g_hash_table_lookup(data_list, "~#length");
+		value = (const char *) g_hash_table_lookup (data_list, "~#length");
 		if (value != NULL) 
-			myData.iSongLength = g_strdup(value);
-		else myData.iSongLength = 0;
+			myData.iSongLength = g_strdup (value);
+		else 
+		  myData.iSongLength = 0;
 		//cd_message ("\tMP : playing_duration <- %s", myData.iSongLength);
 		
 		g_value_unset(value);	
@@ -87,15 +95,13 @@ void cd_quodlibet_getSongInfos(void)
 
 
 /* Permet de libérer la mémoire prise par notre controleur */
-void cd_quodlibet_free_data (void)
-{
+void cd_quodlibet_free_data (void) {
 	cd_debug("MP : Deconnexion de DBus");
 	musicplayer_dbus_disconnect_from_bus();
 }
 
 /* Controle du lecteur */
-void cd_quodlibet_control (MyPlayerControl pControl, char* nothing) //Permet d'effectuer les actions de bases sur le lecteur
-{ 
+void cd_quodlibet_control (MyPlayerControl pControl, char* nothing) { //Permet d'effectuer les actions de bases sur le lecteur
 	//cd_debug ("");
 	gchar *cCommand = NULL;
 	/* Conseil de ChangFu pour redetecter le titre à coup sûr */
@@ -122,13 +128,12 @@ void cd_quodlibet_control (MyPlayerControl pControl, char* nothing) //Permet d'e
 	
 	if (cCommand != NULL) {
 		cd_debug ("MP : Handeler QuodLibet : will use '%s'", cCommand);
-		cairo_dock_dbus_call(myData.dbus_proxy_player, cCommand);
+		cairo_dock_dbus_call (myData.dbus_proxy_player, cCommand);
 	}
 }
 
 /* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-gboolean cd_quodlibet_ask_control (MyPlayerControl pControl) 
-{
+gboolean cd_quodlibet_ask_control (MyPlayerControl pControl) {
 	//cd_debug ("");
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
@@ -152,15 +157,13 @@ gboolean cd_quodlibet_ask_control (MyPlayerControl pControl)
 }
 
 /* Fonction de connexion au bus de quodlibet */
-void cd_quodlibet_acquisition (void) 
-{
-	cd_musicplayer_check_dbus_connection();	
+void cd_quodlibet_acquisition (void) {
+	cd_musicplayer_check_dbus_connection ();	
 }
 
 
 /* Fonction de lecture des infos */
-void cd_quodlibet_read_data (void) 
-{
+void cd_quodlibet_read_data (void) {
 	if (myData.opening)
 	{
 		if (myData.dbus_enable)
@@ -185,7 +188,6 @@ void cd_quodlibet_read_data (void)
 	{
 		//cd_debug("MP : lecteur non ouvert");
 		myData.pPlayingStatus = PLAYER_NONE;
-
 	}
 	
 }
@@ -211,21 +213,19 @@ void cd_quodlibet_load_dbus_commands (void)
 }
 
 
-
-
 void cd_musicplayer_register_quodlibet_handeler (void) { //On enregistre notre lecteur
 	//cd_debug ("");
-	MusicPlayerHandeler *pquodlibet = g_new0 (MusicPlayerHandeler, 1);
-	pquodlibet->acquisition = cd_quodlibet_acquisition;
-	pquodlibet->read_data = cd_quodlibet_read_data;
-	pquodlibet->free_data = cd_quodlibet_free_data;
-	pquodlibet->configure = cd_quodlibet_load_dbus_commands; //Cette fonction permettera de préparé le controleur
+	MusicPlayerHandeler *pQuodlibet = g_new0 (MusicPlayerHandeler, 1);
+	pQuodlibet->acquisition = cd_quodlibet_acquisition;
+	pQuodlibet->read_data = cd_quodlibet_read_data;
+	pQuodlibet->free_data = cd_quodlibet_free_data;
+	pQuodlibet->configure = cd_quodlibet_load_dbus_commands; //Cette fonction permettera de préparé le controleur
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
-	pquodlibet->control = cd_quodlibet_control;
-	pquodlibet->ask_control = cd_quodlibet_ask_control;
-	pquodlibet->appclass = g_strdup("Quodlibet"); //Toujours g_strdup sinon l'applet plante au free_handler
-	pquodlibet->name = g_strdup("QuodLibet");
-	pquodlibet->iPlayer = MP_QUODLIBET;
-	cd_musicplayer_register_my_handeler(pquodlibet, "QuodLibet");
+	pQuodlibet->control = cd_quodlibet_control;
+	pQuodlibet->ask_control = cd_quodlibet_ask_control;
+	pQuodlibet->appclass = g_strdup ("Quodlibet"); //Toujours g_strdup sinon l'applet plante au free_handler
+	pQuodlibet->name = g_strdup ("QuodLibet");
+	pQuodlibet->iPlayer = MP_QUODLIBET;
+	pQuodlibet->bSeparateAcquisition = FALSE;
+	cd_musicplayer_register_my_handeler (pQuodlibet, "QuodLibet");
 }
-

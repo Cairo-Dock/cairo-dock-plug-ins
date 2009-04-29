@@ -90,7 +90,7 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_register_amarok1_handeler();
 	
 	
-	/*if (myDesklet) {
+	if (myDesklet) {
 		cd_musicplayer_add_buttons_to_desklet ();
 		if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
 			gpointer data[3] = {" ", " ", GINT_TO_POINTER (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
@@ -100,10 +100,10 @@ CD_APPLET_INIT_BEGIN
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
 		}
-		else {*/
+		else {
 			_musicplayer_set_simple_renderer ();
-		/*}
-	}*/
+		}
+	}
 		
 	//On initialise les variables pour la connexion aux proxys
 	myData.dbus_enable = 0;
@@ -140,8 +140,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-	{
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.iExtendedMode == MY_DESKLET_OPENGL) { //On evite de surcharger en travail inutile
 		cd_opengl_init_opengl_datas ();
 		cairo_dock_launch_animation (myContainer);
 		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_FIRST, myApplet);
@@ -169,7 +168,7 @@ CD_APPLET_STOP_END
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (CD_APPLET_MY_CONFIG_CHANGED && myDesklet) {
+	if (CD_APPLET_MY_CONFIG_CHANGED && myDesklet) { //Les icônes ont pu changer, reload.
 		if (myConfig.iExtendedMode == MY_DESKLET_SIMPLE && myDesklet->icons != NULL) {
 			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
 			g_list_free (myDesklet->icons);
@@ -177,6 +176,19 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else
 			cd_musicplayer_add_buttons_to_desklet ();
+		
+		//Chargement du bon moteur de rendu pour le desklet, il a pu changer
+		if (myConfig.iExtendedMode == MY_DESKLET_INFO || myConfig.iExtendedMode == MY_DESKLET_INFO_AND_CONTROLER) {
+			gpointer data[3] = {" ", " ", GINT_TO_POINTER (myConfig.iExtendedMode == MY_DESKLET_INFO ? FALSE : TRUE)};
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
+		}
+		else if (myConfig.iExtendedMode == MY_DESKLET_CAROUSSEL || myConfig.iExtendedMode == MY_DESKLET_CONTROLER) {
+			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", data);
+		}
+		else {
+			_musicplayer_set_simple_renderer ();
+		}
 	}
 	
 	int i;
@@ -186,8 +198,6 @@ CD_APPLET_RELOAD_BEGIN
 			myData.pSurfaces[i] = NULL;
 		}
 	}
-	
-	_musicplayer_set_simple_renderer ();
 	
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	myData.pPlayingStatus = PLAYER_NONE;
@@ -203,7 +213,10 @@ CD_APPLET_RELOAD_BEGIN
 	
 	//On relance la connexion aux proxys
 	myData.dbus_enable = 0;
-	myData.opening= 0;
+	myData.opening = 0;
+	
+	//On vire nos notification opengl si necessaire
+	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, myApplet); //CF: A voir si ca ne crash pas.
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		cd_musicplayer_disarm_handeler (); //On libère tout ce qu'occupe notre ancien handeler.
@@ -226,17 +239,14 @@ CD_APPLET_RELOAD_BEGIN
 			
 			cd_musicplayer_arm_handeler (); //et on arme le bon.
 			
-			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-			{
-				cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, myApplet);
+			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.iExtendedMode == MY_DESKLET_OPENGL) { //CF: Attention a l'intégration, il faut cloisonner chaque options au risque de faire travailler le dock inutilement
 				cd_opengl_init_opengl_datas ();		
 				cairo_dock_launch_animation (myContainer);
 				cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
 			}
 		}
 	}
-	else  // on redessine juste l'icone.
-	{
+	else { // on redessine juste l'icone.
 		cd_musicplayer_draw_icon ();
 	}
 CD_APPLET_RELOAD_END

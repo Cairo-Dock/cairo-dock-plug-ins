@@ -44,34 +44,29 @@ void cd_songbird_getSongInfos (void)
 }
 
 
-void cd_songbird_free_data (void) //Permet de libéré la mémoire prise par notre controleur
-{
+void cd_songbird_free_data (void) { //Permet de libéré la mémoire prise par notre controleur
 	musicplayer_dbus_disconnect_from_bus();
 }
 
 /* Controle du lecteur */
-void cd_songbird_control (MyPlayerControl pControl, char* nothing) //Permet d'effectuer les actions de bases sur le lecteur
-{ 
+void cd_songbird_control (MyPlayerControl pControl, char* nothing) { //Permet d'effectuer les actions de bases sur le lecteur
 	return;
 }
 
 /* Permet de renseigner l'applet des fonctions supportées par le lecteur */
 /* Ici Songbird ne gère aucune commande */
-gboolean cd_songbird_ask_control (MyPlayerControl pControl) 
-{
+gboolean cd_songbird_ask_control (MyPlayerControl pControl) {
 	return FALSE;
 }
 
 /* Fonction de connexion au bus de songbird */
-void cd_songbird_acquisition (void) 
-{
+void cd_songbird_acquisition (void) {
 	cd_musicplayer_check_dbus_connection();	
 }
 
 
 /* Fonction de lecture des infos */
-void cd_songbird_read_data (void) 
-{
+void cd_songbird_read_data (void) {
 	if (myData.dbus_enable)
 	{
 		if (myData.opening)
@@ -110,8 +105,6 @@ void cd_songbird_load_dbus_commands (void)
 }
 
 
-
-
 void cd_musicplayer_register_songbird_handeler (void) { //On enregistre notre lecteur
 	MusicPlayerHandeler *pSongbird = g_new0 (MusicPlayerHandeler, 1);
 	pSongbird->acquisition = cd_songbird_acquisition;
@@ -125,6 +118,6 @@ void cd_musicplayer_register_songbird_handeler (void) { //On enregistre notre le
 	pSongbird->appclass = g_strdup("Songbird"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pSongbird->name = g_strdup("Songbird");
 	pSongbird->iPlayer = MP_SONGBIRD;
+	pSongbird->bSeparateAcquisition = FALSE;
 	cd_musicplayer_register_my_handeler(pSongbird,"Songbird");
 }
-

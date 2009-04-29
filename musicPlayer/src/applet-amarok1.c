@@ -55,10 +55,8 @@ void cd_amarok1_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'ef
 			cCommand = g_strdup_printf("dcop amarok player enableRepeatPlaylist %s",
 										cd_dcop_get_boolean("dcop amarok player repeatPlaylistStatu") ?
 										"true" : "false");
-			/* 
-			 * recuperer le boolean "dcop amarok player repeatPlaylistStatus"
-			 * puis lancer : "dcop amarok player enableRepeatPlaylist false/true"
-			 */
+			 /*recuperer le boolean "dcop amarok player repeatPlaylistStatus"
+			 puis lancer : "dcop amarok player enableRepeatPlaylist false/true"*/
 		break;
 		case PLAYER_ENQUEUE :
 			if (cFile != NULL)
@@ -81,7 +79,7 @@ void cd_amarok1_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'ef
 	}
 }
 
-/*Permet de renseigner l'applet des fonctions supportées par le lecteur*/
+//Permet de renseigner l'applet des fonctions supportées par le lecteur
 gboolean cd_amarok1_ask_control (MyPlayerControl pControl) {
 	cd_debug ("");
 	switch (pControl) {
@@ -141,8 +139,7 @@ void cd_amarok1_getStatus (void)
 void cd_amarok1_acquisition (void) {
 	system ("echo amarok 1.4 >> /dev/null");
 	cd_amarok1_getStatus();
-	if (myData.pPlayingStatus == PLAYER_PLAYING)
-	{	
+	if (myData.pPlayingStatus == PLAYER_PLAYING) {	
 		cd_amarok1_read_data();
 	}
 }
@@ -178,5 +175,6 @@ void cd_musicplayer_register_amarok1_handeler (void) { //On enregistre notre lec
 	pAmarok1->name = g_strdup("Amarok 1.4");
 	pAmarok1->launch = NULL;
 	pAmarok1->iPlayer = MP_AMAROK1;
+	pAmarok1->bSeparateAcquisition = FALSE;
 	cd_musicplayer_register_my_handeler (pAmarok1, "Amarok 1.4");
 }

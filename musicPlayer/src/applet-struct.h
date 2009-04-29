@@ -88,6 +88,7 @@ struct _MusicPlayerHandeler {
 	gchar *appclass;
 	gchar *name; //Servira a repérer le lecteur dans la GList.
 	gchar *launch;
+	gboolean bSeparateAcquisition; //Sert a activé le thread ou pas (TRUE = activé; False = désactivé)
 	MySupportedPlayers iPlayer;
 };
 
@@ -107,6 +108,7 @@ typedef enum {
 	MY_DESKLET_INFO_AND_CONTROLER,
 	MY_DESKLET_CAROUSSEL,
 	MY_DESKLET_CONTROLER,
+	MY_DESKLET_OPENGL,
 	MY_DESKLET_NB_MODE
 } MyExtendedMode;
 

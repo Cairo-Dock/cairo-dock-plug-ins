@@ -23,7 +23,7 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-exaile.h"
 
 
-
+//Les Fonctions
 void cd_exaile_getSongInfos(void)
 {
 	gint uValue;	
@@ -92,16 +92,14 @@ void cd_exaile_getCoverPath (void)
 }
 
 /* Permet de libérer la mémoire prise par notre controleur */
-void cd_exaile_free_data (void)
-{
+void cd_exaile_free_data (void) {
 	cd_debug("MP : Deconnexion de DBus");
 	musicplayer_dbus_disconnect_from_bus();
 	
 }
 
 /* Controle du lecteur */
-void cd_exaile_control (MyPlayerControl pControl, char* nothing) //Permet d'effectuer les actions de bases sur le lecteur
-{ 
+void cd_exaile_control (MyPlayerControl pControl, char* nothing) { //Permet d'effectuer les actions de bases sur le lecteur
 	gchar *cCommand = NULL;
 	/* Conseil de ChangFu pour redetecter le titre à coup sûr */
 	g_free (myData.cRawTitle);
@@ -132,8 +130,7 @@ void cd_exaile_control (MyPlayerControl pControl, char* nothing) //Permet d'effe
 }
 
 /* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-gboolean cd_exaile_ask_control (MyPlayerControl pControl) 
-{
+gboolean cd_exaile_ask_control (MyPlayerControl pControl) {
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
 			return TRUE;
@@ -156,15 +153,13 @@ gboolean cd_exaile_ask_control (MyPlayerControl pControl)
 }
 
 /* Fonction de connexion au bus de Exaile */
-void cd_exaile_acquisition (void) 
-{
+void cd_exaile_acquisition (void) {
 	cd_musicplayer_check_dbus_connection();	
 }
 
 
 /* Fonction de lecture des infos */
-void cd_exaile_read_data (void) 
-{
+void cd_exaile_read_data (void) {
 	//cd_debug("MP : on va aller lire les donnees");
 	if (myData.opening)
 	{
@@ -217,8 +212,6 @@ void cd_exaile_load_dbus_commands (void)
 }
 
 
-
-
 void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lecteur
 	//cd_debug ("");
 	MusicPlayerHandeler *pExaile = g_new0 (MusicPlayerHandeler, 1);
@@ -229,9 +222,10 @@ void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lect
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pExaile->control = cd_exaile_control;
 	pExaile->ask_control = cd_exaile_ask_control;
-	pExaile->appclass = g_strdup("exaile.py"); //Toujours g_strdup sinon l'applet plante au free_handler
-	pExaile->name = g_strdup("Exaile");
-	pExaile->launch = g_strdup("exaile");
+	pExaile->appclass = g_strdup ("exaile.py"); //Toujours g_strdup sinon l'applet plante au free_handler
+	pExaile->name = g_strdup ("Exaile");
+	pExaile->launch = g_strdup ("exaile");
 	pExaile->iPlayer = MP_EXAILE;
-	cd_musicplayer_register_my_handeler(pExaile, "Exaile");
+	pExaile->bSeparateAcquisition = FALSE;
+	cd_musicplayer_register_my_handeler (pExaile, "Exaile");
 }

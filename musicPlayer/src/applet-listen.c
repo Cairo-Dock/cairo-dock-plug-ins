@@ -24,7 +24,6 @@ Rémy Robertson (changfu@cairo-dock.org)
 
 
 //Les Fonctions
-
 void cd_listen_getSongInfos(void)
 {
 	if( myData.cPreviousRawTitle )
@@ -40,17 +39,14 @@ void cd_listen_getSongInfos(void)
 
 
 /* Permet de libérer la mémoire prise par notre controleur */
-void cd_listen_free_data (void)
-{
+void cd_listen_free_data (void) {
 	cd_debug("MP : Deconnexion de DBus");
 	musicplayer_dbus_disconnect_from_bus();
 }
 
 
-
 /* Controle du lecteur */
-void cd_listen_control (MyPlayerControl pControl, char* nothing) //Permet d'effectuer les actions de bases sur le lecteur
-{ 
+void cd_listen_control (MyPlayerControl pControl, char* nothing) { //Permet d'effectuer les actions de bases sur le lecteur
 	cd_debug ("");
 	
 	static gchar *cCommand = NULL;
@@ -76,16 +72,14 @@ void cd_listen_control (MyPlayerControl pControl, char* nothing) //Permet d'effe
 		break;
 	}
 	
-	if (cCommand != NULL) 
-	{
+	if (cCommand != NULL) {
 		cd_debug ("MP : Handeler Listen : will use '%s'", cCommand);
 		cairo_dock_dbus_call(myData.dbus_proxy_player, cCommand);
 	}
 }
 
 /* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-gboolean cd_listen_ask_control (MyPlayerControl pControl) 
-{
+gboolean cd_listen_ask_control (MyPlayerControl pControl) {
 	cd_debug ("");
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
@@ -109,15 +103,13 @@ gboolean cd_listen_ask_control (MyPlayerControl pControl)
 }
 
 /* Fonction de connexion au bus de listen */
-void cd_listen_acquisition (void) 
-{
+void cd_listen_acquisition (void) {
 	cd_musicplayer_check_dbus_connection();	
 }
 
 
 /* Fonction de lecture des infos */
-void cd_listen_read_data (void) 
-{
+void cd_listen_read_data (void) {
 	if (myData.opening)
 	{
 		if (myData.dbus_enable)
@@ -134,9 +126,7 @@ void cd_listen_read_data (void)
 	{
 		//cd_debug("MP : lecteur non ouvert");
 		myData.pPlayingStatus = PLAYER_NONE;
-
 	}
-	
 }
 
 void cd_listen_load_dbus_commands (void)
@@ -160,21 +150,19 @@ void cd_listen_load_dbus_commands (void)
 }
 
 
-
-
 void cd_musicplayer_register_listen_handeler (void) { //On enregistre notre lecteur
 	cd_debug ("");
-	MusicPlayerHandeler *plisten = g_new0 (MusicPlayerHandeler, 1);
-	plisten->acquisition = cd_listen_acquisition;
-	plisten->read_data = cd_listen_read_data;
-	plisten->free_data = cd_listen_free_data;
-	plisten->configure = cd_listen_load_dbus_commands; //Cette fonction permettera de préparé le controleur
+	MusicPlayerHandeler *pListen = g_new0 (MusicPlayerHandeler, 1);
+	pListen->acquisition = cd_listen_acquisition;
+	pListen->read_data = cd_listen_read_data;
+	pListen->free_data = cd_listen_free_data;
+	pListen->configure = cd_listen_load_dbus_commands; //Cette fonction permettera de préparé le controleur
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
-	plisten->control = cd_listen_control;
-	plisten->ask_control = cd_listen_ask_control;
-	plisten->appclass = g_strdup("listen.py"); //Toujours g_strdup sinon l'applet plante au free_handler
-	plisten->name = g_strdup("Listen");
-	plisten->iPlayer = MP_LISTEN;
-	cd_musicplayer_register_my_handeler(plisten, "Listen");
+	pListen->control = cd_listen_control;
+	pListen->ask_control = cd_listen_ask_control;
+	pListen->appclass = g_strdup ("listen.py"); //Toujours g_strdup sinon l'applet plante au free_handler
+	pListen->name = g_strdup ("Listen");
+	pListen->bSeparateAcquisition = FALSE;
+	cd_musicplayer_register_my_handeler (pListen, "Listen");
 }
 

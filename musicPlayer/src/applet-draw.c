@@ -48,12 +48,11 @@ void cd_musicplayer_add_buttons_to_desklet(void) {
 }
 
 void _set_new_title (void) {
-	if( myData.cPreviousRawTitle )
-	{
-		g_free( myData.cPreviousRawTitle ); myData.cPreviousRawTitle = NULL;
+	if (myData.cPreviousRawTitle) {
+		g_free( myData.cPreviousRawTitle );
+		myData.cPreviousRawTitle = NULL;
 	}
-	if( myData.cRawTitle )
-	{
+	if (myData.cRawTitle) {
 		myData.cPreviousRawTitle = g_strdup(myData.cRawTitle);
 	}
 	if (myData.cRawTitle == NULL || strcmp (myData.cRawTitle, "(null)") == 0) {
@@ -91,7 +90,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 			break ;
 			
 			case MY_APPLET_TIME_ELAPSED :
-				myData.cQuickInfo = "elapsed";
+				myData.cQuickInfo = "elapsed"; //Fuite mémoire la non?
 				myData.cPreviousQuickInfo = myData.cQuickInfo;
 				if (myData.iCurrentTime != myData.iPreviousCurrentTime) {
 					myData.iPreviousCurrentTime = myData.iCurrentTime;
@@ -101,7 +100,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 			break ;
 			
 			case MY_APPLET_TIME_LEFT :
-				myData.cQuickInfo = "left";
+				myData.cQuickInfo = "left"; //Fuite mémoire la non?
 				myData.cPreviousQuickInfo = myData.cQuickInfo;
 				if (myData.iCurrentTime != myData.iPreviousCurrentTime) {
 					myData.iPreviousCurrentTime = myData.iCurrentTime;
@@ -111,7 +110,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 			break ;
 			
 			case MY_APPLET_TRACK :
-				myData.cQuickInfo = "track";
+				myData.cQuickInfo = "track"; //Fuite mémoire la non?
 				myData.cPreviousQuickInfo = myData.cQuickInfo;
 				if (myData.iTrackNumber != myData.iPreviousTrackNumber) {
 					myData.iPreviousTrackNumber = myData.iTrackNumber;
@@ -128,11 +127,8 @@ gboolean cd_musicplayer_draw_icon (void) {
 	/* Vérifie si le titre a changé */
 	if (myData.cPreviousRawTitle != NULL && myData.cRawTitle != NULL) { // Si les titres sont définis...
 		if (strcmp (myData.cPreviousRawTitle, myData.cRawTitle)) { // ... et qu'ils sont différents
-		{	
 			_set_new_title ();
 			myData.cCoverPath = NULL; // On reintialise la pochette
-		}
-		cd_check_musicPlayer_cover_exists(myData.cCoverPath,myData.pCurrentHandeler->iPlayer);
 		}
 	}
 	else if (myData.cRawTitle != NULL) { // Si seulement le titre courant est défini
@@ -143,7 +139,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 	}
 
 	/* Affichage de l'icone ou de la pochette et de son emblème */
-	/*if (myData.pPlayingStatus != myData.pPreviousPlayingStatus) {  // changement de statut.
+	if (myData.pPlayingStatus != myData.pPreviousPlayingStatus) {  // changement de statut.
 		cd_debug ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.pPlayingStatus);
 		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
 		
@@ -154,11 +150,12 @@ gboolean cd_musicplayer_draw_icon (void) {
 		  myData.cRawTitle = NULL; //Rien ne joue
 		  CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
 		}
-	}*/
+	}
 
 	/* Affichage de la pochette */	
-	/*if (myConfig.bEnableCover) {
-		if (myData.cCoverPath != NULL && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS)) {
+	if (myConfig.bEnableCover) {
+	  cd_check_musicPlayer_cover_exists (myData.cCoverPath, myData.pCurrentHandeler->iPlayer); //Évitons de casser l'affichage sans raison
+		/*if (myData.cCoverPath != NULL && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS)) {
 				myData.cPreviousCoverPath = g_strdup(myData.cCoverPath);
 			if (myData.cPreviousCoverPath==NULL || (myData.cCoverPath && (!g_strcasecmp(myData.cCoverPath,myData.cPreviousCoverPath)))) { //On évite de dessiner pour rien
 				//gchar *cTmpPath = cd_check_musicPlayer_cover_exists(myData.cCoverPath,myData.pCurrentHandeler->iPlayer);
@@ -191,9 +188,9 @@ gboolean cd_musicplayer_draw_icon (void) {
 			
 			default :
 				break;	
-		}
+		}*/
 	}
-	*/
+	
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON;
 	

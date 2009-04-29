@@ -24,60 +24,69 @@ Rémy Robertson (changfu@cairo-dock.org)
 
 
 
-//Les Fonctions
-
+//Les Fonctions - CF: Il y a d'autre personne qui passe dans les .c, pensez a la visibilité de vos codes...
 void cd_rhythmbox_getSongInfos (void)
 {	
 	GHashTable *data_list = NULL;
 	GValue *value;
 	
-	myData.cPlayingUri = cairo_dock_dbus_get_string(myData.dbus_proxy_player,"getPlayingUri");
+	myData.cPlayingUri = cairo_dock_dbus_get_string (myData.dbus_proxy_player, "getPlayingUri");
 	
-	if(dbus_g_proxy_call (myData.dbus_proxy_shell, "getSongProperties", NULL,
+	if (dbus_g_proxy_call (myData.dbus_proxy_shell, "getSongProperties", NULL,
 		G_TYPE_STRING, myData.cPlayingUri,
 		G_TYPE_INVALID,
-		dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),
-		&data_list,
-		G_TYPE_INVALID))
+		dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_VALUE),
+		  &data_list,
+		  G_TYPE_INVALID))
 	{
-	myData.pPreviousPlayingStatus=myData.pPlayingStatus;
-	myData.iPreviousTrackNumber=myData.iTrackNumber;
-	myData.iPreviousCurrentTime=myData.iCurrentTime;
+	myData.pPreviousPlayingStatus = myData.pPlayingStatus;
+	myData.iPreviousTrackNumber = myData.iTrackNumber;
+	myData.iPreviousCurrentTime = myData.iCurrentTime;
 	// Tester si la table de hachage n'est pas vide
 		g_free (myData.cArtist);
-		value = (GValue *) g_hash_table_lookup(data_list, "artist");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.cArtist = g_strdup (g_value_get_string(value));
-		else myData.cArtist = NULL;
+		value = (GValue *) g_hash_table_lookup (data_list, "artist");
+		if (value != NULL && G_VALUE_HOLDS_STRING (value))
+		  myData.cArtist = g_strdup (g_value_get_string (value));
+		else
+		  myData.cArtist = NULL;
 		cd_message ("\tMP : playing_artist <- %s", myData.cArtist);
 		
 		g_free (myData.cAlbum);
-		value = (GValue *) g_hash_table_lookup(data_list, "album");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.cAlbum = g_strdup (g_value_get_string(value));
-		else myData.cAlbum = NULL;
+		value = (GValue *) g_hash_table_lookup (data_list, "album");
+		if (value != NULL && G_VALUE_HOLDS_STRING (value))
+		  myData.cAlbum = g_strdup (g_value_get_string (value));
+		else
+		  myData.cAlbum = NULL;
 		cd_message ("\tMP : playing_album <- %s", myData.cAlbum);
 		
 		g_free (myData.cTitle);
-		value = (GValue *) g_hash_table_lookup(data_list, "title");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.cTitle = g_strdup (g_value_get_string(value));
-		else myData.cTitle = NULL;
+		value = (GValue *) g_hash_table_lookup (data_list, "title");
+		if (value != NULL && G_VALUE_HOLDS_STRING (value))
+		  myData.cTitle = g_strdup (g_value_get_string (value));
+		else
+		  myData.cTitle = NULL;
 		cd_message ("\tMP : playing_title <- %s", myData.cTitle);
 		
-		value = (GValue *) g_hash_table_lookup(data_list, "track-number");
-		if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.iTrackNumber = g_value_get_uint(value);
-		else myData.iTrackNumber = 0;
+		value = (GValue *) g_hash_table_lookup (data_list, "track-number");
+		if (value != NULL && G_VALUE_HOLDS_UINT (value))
+		  myData.iTrackNumber = g_value_get_uint (value);
+		else
+		  myData.iTrackNumber = 0;
 		cd_message ("\tMP : playing_track <- %d", myData.iTrackNumber);
 		
-		value = (GValue *) g_hash_table_lookup(data_list, "duration");
-		if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.iSongLength = g_value_get_uint(value);
-		else myData.iSongLength = 0;
+		value = (GValue *) g_hash_table_lookup (data_list, "duration");
+		if (value != NULL && G_VALUE_HOLDS_UINT (value))
+		  myData.iSongLength = g_value_get_uint (value);
+		else
+		  myData.iSongLength = 0;
 		cd_message ("\tMP : playing_duration <- %ds", myData.iSongLength);
 		
-		value = (GValue *) g_hash_table_lookup(data_list, "rb:coverArt-uri");
+		value = (GValue *) g_hash_table_lookup (data_list, "rb:coverArt-uri");
 		g_free (myData.cCoverPath);
 		myData.cCoverPath = NULL;
-		if (value != NULL && G_VALUE_HOLDS_STRING(value))
+		if (value != NULL && G_VALUE_HOLDS_STRING (value))
 		{
-			const gchar *cString = g_value_get_string(value);
+			const gchar *cString = g_value_get_string (value);
 			cd_debug ("RB nous a refile cette adresse : %s", cString);
 			if (cString != NULL)
 			{
@@ -141,6 +150,72 @@ void cd_rhythmbox_getSongInfos (void)
 }
 
 
+//*********************************************************************************
+// rhythmbox_onChangeSong() : Fonction executée à chaque changement de musique
+//*********************************************************************************
+void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
+{
+	cd_message ("MP : %s (%s)",__func__,uri);
+	
+	g_free (myData.cPlayingUri);
+	if(uri != NULL && *uri != '\0')
+	{
+		myData.cPlayingUri = g_strdup (uri);
+		myData.opening = TRUE;
+		cd_rhythmbox_getSongInfos();
+	}
+	else
+	{
+		myData.cPlayingUri = NULL;
+		//myData.cover_exist = FALSE;
+		g_free (myData.cArtist);
+		myData.cArtist = NULL;
+		g_free (myData.cAlbum);
+		myData.cAlbum = NULL;
+		g_free (myData.cTitle);
+		myData.cTitle = NULL;
+		g_free (myData.cCoverPath);
+		myData.cCoverPath = NULL;
+		myData.iSongLength = 0;
+		myData.iTrackNumber = 0;
+		
+		myData.opening = cd_musicplayer_dbus_detection();
+	}
+}
+
+//Fonction executée à chaque changement play/pause
+void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
+{
+	if (playing)
+		myData.pPlayingStatus = PLAYER_PLAYING;
+	else
+		myData.pPlayingStatus = PLAYER_PAUSED;
+}
+
+
+//Fonction executée à chaque changement de temps joué
+void onElapsedChanged (DBusGProxy *player_proxy,int elapsed, gpointer data)
+{
+	myData.iCurrentTime = elapsed;
+}
+
+
+void onCovertArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)
+{ //A quoi sert cette fonction vide?
+	/*cd_message ("%s (%s)",__func__,cImageURI);*/
+	/*g_free (myData.cCoverPath);
+	myData.cCoverPath = g_strdup (cImageURI);
+	
+	CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+	CD_APPLET_REDRAW_MY_ICON;
+	myData.cover_exist = TRUE;
+	if (myData.iSidCheckCover != 0)
+	{
+		g_source_remove (myData.iSidCheckCover);
+		myData.iSidCheckCover = 0;
+	}*/
+}
+
 void cd_rhythmbox_proxy_connection (void)
 {
 	cd_debug("MP : Debut des connexions aux proxys");
@@ -172,8 +247,7 @@ void cd_rhythmbox_proxy_connection (void)
 }
 
 
-void cd_rhythmbox_free_data (void) //Permet de libérer la mémoire prise par notre controleur
-{
+void cd_rhythmbox_free_data (void) { //Permet de libérer la mémoire prise par notre controleur
 	if (myData.dbus_proxy_player != NULL)
 	{
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "playingChanged",
@@ -200,8 +274,7 @@ void cd_rhythmbox_free_data (void) //Permet de libérer la mémoire prise par no
 }
 
 /* Controle du lecteur */
-void cd_rhythmbox_control (MyPlayerControl pControl, char* nothing) //Permet d'effectuer les actions de bases sur le lecteur
-{ 
+void cd_rhythmbox_control (MyPlayerControl pControl, char* nothing) { //Permet d'effectuer les actions de bases sur le lecteur
 	cd_debug ("");
 	
 	gchar *cCommand = NULL;
@@ -247,8 +320,7 @@ void cd_rhythmbox_control (MyPlayerControl pControl, char* nothing) //Permet d'e
 }
 
 /* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-gboolean cd_rhythmbox_ask_control (MyPlayerControl pControl) 
-{
+gboolean cd_rhythmbox_ask_control (MyPlayerControl pControl) {
 	cd_debug ("");
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
@@ -272,8 +344,7 @@ gboolean cd_rhythmbox_ask_control (MyPlayerControl pControl)
 }
 
 /* Fonction de connexion au bus de rhythmbox */
-void cd_rhythmbox_acquisition (void) 
-{
+void cd_rhythmbox_acquisition (void) {
 	cd_debug("MP : Vérification de la connexion DBus");
 	myData.opening = cd_musicplayer_dbus_detection();
 	/*cd_debug("MP : Opening : %d", myData.opening);
@@ -312,8 +383,7 @@ void cd_rhythmbox_acquisition (void)
 
 
 /* Fonction de lecture des infos */
-void cd_rhythmbox_read_data (void) 
-{
+void cd_rhythmbox_read_data (void) {
 	/*
 	Rien a lire vu que l'echange de donnees se fait avec les proxys DBUS
 	*/ 
@@ -338,93 +408,19 @@ void cd_rhythmbox_load_dbus_commands (void)
 	myData.DBus_commands.previous = "previous";
 }
 
-
-
-
 void cd_musicplayer_register_rhythmbox_handeler (void) { //On enregistre notre lecteur
 	cd_debug ("");
-	MusicPlayerHandeler *prhythmbox = g_new0 (MusicPlayerHandeler, 1);
-	prhythmbox->acquisition = cd_rhythmbox_acquisition;
-	prhythmbox->read_data = cd_rhythmbox_read_data;
-	prhythmbox->free_data = cd_rhythmbox_free_data;
-	prhythmbox->configure = cd_rhythmbox_load_dbus_commands; //Cette fonction permettera de préparé le controleur
+	MusicPlayerHandeler *pRhythmbox = g_new0 (MusicPlayerHandeler, 1);
+	pRhythmbox->acquisition = cd_rhythmbox_acquisition;
+	pRhythmbox->read_data = cd_rhythmbox_read_data;
+	pRhythmbox->free_data = cd_rhythmbox_free_data;
+	pRhythmbox->configure = cd_rhythmbox_load_dbus_commands; //Cette fonction permettera de préparé le controleur
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
-	prhythmbox->control = cd_rhythmbox_control;
-	prhythmbox->ask_control = cd_rhythmbox_ask_control;
-	prhythmbox->appclass = g_strdup("rhythmbox"); //Toujours g_strdup sinon l'applet plante au free_handler
-	prhythmbox->name = g_strdup("Rhythmbox");
-	prhythmbox->iPlayer = MP_RHYTHMBOX;
-	cd_musicplayer_register_my_handeler(prhythmbox, "rhythmbox");
-}
-
-
-
-
-//*********************************************************************************
-// rhythmbox_onChangeSong() : Fonction executée à chaque changement de musique
-//*********************************************************************************
-void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
-{
-	cd_message ("MP : %s (%s)",__func__,uri);
-	
-	g_free (myData.cPlayingUri);
-	if(uri != NULL && *uri != '\0')
-	{
-		myData.cPlayingUri = g_strdup (uri);
-		myData.opening = TRUE;
-		cd_rhythmbox_getSongInfos();
-	}
-	else
-	{
-		myData.cPlayingUri = NULL;
-		//myData.cover_exist = FALSE;
-		g_free (myData.cArtist);
-		myData.cArtist = NULL;
-		g_free (myData.cAlbum);
-		myData.cAlbum = NULL;
-		g_free (myData.cTitle);
-		myData.cTitle = NULL;
-		g_free (myData.cCoverPath);
-		myData.cCoverPath = NULL;
-		myData.iSongLength = 0;
-		myData.iTrackNumber = 0;
-		
-		myData.opening = cd_musicplayer_dbus_detection();
-	}
-}
-
-//*********************************************************************************
-// rhythmbox_onChangeSong() : Fonction executée à chaque changement play/pause
-//*********************************************************************************
-void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
-{
-	if (playing)
-		myData.pPlayingStatus = PLAYER_PLAYING;
-	else
-		myData.pPlayingStatus = PLAYER_PAUSED;
-}
-
-//*********************************************************************************
-// rhythmbox_elapsedChanged() : Fonction executée à chaque changement de temps joué
-//*********************************************************************************
-void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
-{
-	myData.iCurrentTime=elapsed;
-}
-
-
-void onCovertArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)
-{
-	/*cd_message ("%s (%s)",__func__,cImageURI);*/
-	/*g_free (myData.cCoverPath);
-	myData.cCoverPath = g_strdup (cImageURI);
-	
-	CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
-	CD_APPLET_REDRAW_MY_ICON;
-	myData.cover_exist = TRUE;
-	if (myData.iSidCheckCover != 0)
-	{
-		g_source_remove (myData.iSidCheckCover);
-		myData.iSidCheckCover = 0;
-	}*/
+	pRhythmbox->control = cd_rhythmbox_control;
+	pRhythmbox->ask_control = cd_rhythmbox_ask_control;
+	pRhythmbox->appclass = g_strdup("rhythmbox"); //Toujours g_strdup sinon l'applet plante au free_handler
+	pRhythmbox->name = g_strdup("Rhythmbox");
+	pRhythmbox->iPlayer = MP_RHYTHMBOX;
+	pRhythmbox->bSeparateAcquisition = FALSE;
+	cd_musicplayer_register_my_handeler(pRhythmbox, "rhythmbox");
 }

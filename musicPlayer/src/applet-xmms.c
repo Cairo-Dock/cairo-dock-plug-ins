@@ -252,5 +252,6 @@ void cd_musicplayer_register_xmms_handeler (void) { //On enregistre notre lecteu
 	pXMMS->name = g_strdup("XMMS");
 	pXMMS->launch = NULL;
 	pXMMS->iPlayer = MP_XMMS;
+	pXMMS->bSeparateAcquisition = TRUE;
 	cd_musicplayer_register_my_handeler (pXMMS, "XMMS");
 }
