@@ -56,8 +56,11 @@ msgstr "无法载入混音器"
 
 #: ../src/applet-mixer.c:127
 #, c-format
-msgid "I couldn't find any element '%s'"
-msgstr "无法找到原件：'%s'"
+msgid ""
+"I couldn't find any audio channel named '%s'\n"
+"You should try to open the configuration panel of the applet,\n"
+" and select the proper audio channel you want to control."
+msgstr ""
 
 #: ../src/applet-mixer.c:268
 msgid "Set up volume :"
@@ -344,6 +347,9 @@ msgstr "毁坏的图标："
 #: ../data/messages:129
 msgid "Mute icon :"
 msgstr "静音图标："
+
+#~ msgid "I couldn't find any element '%s'"
+#~ msgstr "无法找到原件：'%s'"
 
 #~ msgid ""
 #~ "This is the AlsaMixer applet\n"

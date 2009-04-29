@@ -18,11 +18,11 @@ msgstr ""
 
 #: ../src/applet-init.c:24
 msgid "This plug-in provides some dialog decorators for dialog bubbles."
-msgstr "Ce plug-in fournit plusieurs décorations pour les infobulles."
+msgstr "Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
 
 #: ../data/messages:1
 msgid "Comics"
-msgstr "BD"
+msgstr "Bande-dessinée"
 
 #: ../data/messages:3 ../data/messages:11 ../data/messages:21
 #: ../data/messages:31 ../data/messages:41
@@ -45,11 +45,11 @@ msgstr "Moderne"
 
 #: ../data/messages:17
 msgid "Space between lines of the tip :"
-msgstr "Espace entre les lignes à l'extrémité :"
+msgstr "Espace entre les lignes de la pointe :"
 
 #: ../data/messages:19
 msgid "3D plane"
-msgstr "Plan incliné"
+msgstr "Plan 3D"
 
 #: ../data/messages:23
 msgid "Border width of the plane :"
@@ -65,7 +65,7 @@ msgstr "Couleur du plan :"
 
 #: ../data/messages:29
 msgid "Tooltip"
-msgstr "Infobulle"
+msgstr "Info-bulle"
 
 #: ../data/messages:37
 msgid "Color of the margin :"
@@ -73,11 +73,11 @@ msgstr "Couleur de la marge :"
 
 #: ../data/messages:39
 msgid "Curly"
-msgstr "Courbure"
+msgstr "Courbé"
 
 #: ../data/messages:47
 msgid "Curvature of the tip :"
-msgstr "Courbure des extrémités :"
+msgstr "Courbure de la pointe :"
 
 #~ msgid "Icon"
 #~ msgstr "Icône"

@@ -18,56 +18,56 @@ msgstr ""
 msgid "Control your TomBoy's notes directly in the dock !"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:47
+#: ../src/tomboy-notifications.c:51
 msgid "Note name : "
 msgstr "便签名称:"
 
-#: ../src/tomboy-notifications.c:69
+#: ../src/tomboy-notifications.c:74
 #, fuzzy
 msgid "Delete this note ?"
 msgstr "删除此便签"
 
-#: ../src/tomboy-notifications.c:84
+#: ../src/tomboy-notifications.c:90
 msgid "Search for :"
 msgstr "搜索:"
 
-#: ../src/tomboy-notifications.c:105
+#: ../src/tomboy-notifications.c:111
 msgid "Search for tag :"
 msgstr "搜索标签:"
 
-#: ../src/tomboy-notifications.c:161
+#: ../src/tomboy-notifications.c:167
 msgid "Reload notes"
 msgstr "相关便签:"
 
-#: ../src/tomboy-notifications.c:164
+#: ../src/tomboy-notifications.c:170
 msgid "Add a note"
 msgstr "添加便签"
 
-#: ../src/tomboy-notifications.c:168
+#: ../src/tomboy-notifications.c:174
 msgid "Delete this note"
 msgstr "删除此便签"
 
-#: ../src/tomboy-notifications.c:171
+#: ../src/tomboy-notifications.c:177
 msgid "Search"
 msgstr "搜索"
 
-#: ../src/tomboy-notifications.c:172
+#: ../src/tomboy-notifications.c:178
 msgid "Searh for tag"
 msgstr "搜索标签"
 
-#: ../src/tomboy-notifications.c:174
+#: ../src/tomboy-notifications.c:180
 msgid "Search for today's note"
 msgstr "搜索今日便签"
 
-#: ../src/tomboy-notifications.c:175
+#: ../src/tomboy-notifications.c:181
 msgid "Search for this week's note"
 msgstr "搜索本周便签"
 
-#: ../src/tomboy-notifications.c:176
+#: ../src/tomboy-notifications.c:182
 msgid "Search for next week's note"
 msgstr "搜索下周便签"
 
-#: ../src/tomboy-notifications.c:186
+#: ../src/tomboy-notifications.c:192
 msgid "Reset marks"
 msgstr "重置标记"
 

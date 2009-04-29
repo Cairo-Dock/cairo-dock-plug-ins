@@ -72,10 +72,14 @@ msgid "Animation of the current icon :"
 msgstr "Animation de l'icône sélectionnée :"
 
 #: ../data/messages:21
+msgid "use the Navigation mode ?"
+msgstr ""
+
+#: ../data/messages:23
 msgid "Characters"
 msgstr "Caractères"
 
-#: ../data/messages:23
+#: ../data/messages:25
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
@@ -83,17 +87,13 @@ msgstr ""
 "Par exemple Monospace, Purisa, ... Ecrivez simplement le nom de la police "
 "sans chiffre, etc."
 
-#: ../data/messages:25
+#: ../data/messages:27
 msgid "Font used to display what you type :"
 msgstr "Police utilisée pour afficher ce que vous tapez :"
 
-#: ../data/messages:27
-msgid "r, v, b, a"
-msgstr "r, v, b, a"
-
 #: ../data/messages:29
-msgid "Color of the background of the characters :"
-msgstr "Couleur d'arrière plan des caractères :"
+msgid "Color of the text's frame  :"
+msgstr ""
 
 #: ../data/messages:31
 msgid "Font size, relatively to the dock's size :"
@@ -114,3 +114,18 @@ msgstr "Surligner les traits des caractères ?"
 #: ../data/messages:39
 msgid "Text color :"
 msgstr "Couleur du texte :"
+
+#: ../data/messages:41
+msgid "Color of the background of the characters :"
+msgstr "Couleur d'arrière plan des caractères :"
+
+#: ../data/messages:43
+msgid "Set 0 to center the text vertically."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Relative vertical position of the text :"
+msgstr ""
+
+#~ msgid "r, v, b, a"
+#~ msgstr "r, v, b, a"

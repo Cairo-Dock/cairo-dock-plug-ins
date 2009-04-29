@@ -68,6 +68,11 @@ CD_APPLET_INIT_END
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
+	if (myData.iSidRedrawMainIconIdle != 0)
+	{
+		g_source_remove (myData.iSidRedrawMainIconIdle);
+		myData.iSidRedrawMainIconIdle = 0;
+	}
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -83,6 +88,12 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
+	if (myData.iSidRedrawMainIconIdle != 0)
+	{
+		g_source_remove (myData.iSidRedrawMainIconIdle);
+		myData.iSidRedrawMainIconIdle = 0;
+	}
+	
 	if (myDesklet)
 	{
 		if (myConfig.bCompactView)

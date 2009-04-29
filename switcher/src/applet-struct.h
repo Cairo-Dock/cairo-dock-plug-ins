@@ -49,5 +49,6 @@ typedef struct
 struct _AppletData {
 	SwitcherApplet switcher;
 	cairo_surface_t *pDefaultMapSurface;
+	gint iSidRedrawMainIconIdle;
 } ;
 #endif

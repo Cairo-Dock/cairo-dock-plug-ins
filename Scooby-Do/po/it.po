@@ -61,25 +61,25 @@ msgid "Animation of the current icon :"
 msgstr ""
 
 #: ../data/messages:21
-msgid "Characters"
+msgid "use the Navigation mode ?"
 msgstr ""
 
 #: ../data/messages:23
+msgid "Characters"
+msgstr ""
+
+#: ../data/messages:25
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
 msgstr ""
 
-#: ../data/messages:25
+#: ../data/messages:27
 msgid "Font used to display what you type :"
 msgstr ""
 
-#: ../data/messages:27
-msgid "r, v, b, a"
-msgstr ""
-
 #: ../data/messages:29
-msgid "Color of the background of the characters :"
+msgid "Color of the text's frame  :"
 msgstr ""
 
 #: ../data/messages:31
@@ -96,11 +96,23 @@ msgid "Text weight :"
 msgstr "altezza :"
 
 #: ../data/messages:37
-msgid "Should the text be outilned ?"
+msgid "Should the text be outlined ?"
 msgstr ""
 
 #: ../data/messages:39
 msgid "Text color :"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Color of the background of the characters :"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Set 0 to center the text vertically."
+msgstr ""
+
+#: ../data/messages:45
+msgid "Relative vertical position of the text :"
 msgstr ""
 
 #~ msgid "Icon"

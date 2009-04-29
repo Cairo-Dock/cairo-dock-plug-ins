@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-04-14 03:27+0200\n"
+"POT-Creation-Date: 2009-04-29 02:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:85
+#: ../src/rhythmbox-draw.c:96
 msgid "Track"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:162
+#: ../src/rhythmbox-draw.c:182
 msgid "Artist"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:163 ../src/rhythmbox-draw.c:165
-#: ../src/rhythmbox-draw.c:167
+#: ../src/rhythmbox-draw.c:183 ../src/rhythmbox-draw.c:185
+#: ../src/rhythmbox-draw.c:187
 msgid "Unknown"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:164
+#: ../src/rhythmbox-draw.c:184
 msgid "Album"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:166
+#: ../src/rhythmbox-draw.c:186
 msgid "Title"
 msgstr ""
 
@@ -43,7 +43,6 @@ msgid ""
 "Play/pause with left click, next song with middle click.\n"
 "You can drag and drop covers (jpg) on the icon to use theme,\n"
 "or songs to put them in the queue. \n"
-"Adrien Pilleboue (Necropotame)"
 msgstr ""
 
 #: ../src/rhythmbox-menu-functions.c:52
@@ -263,7 +262,7 @@ msgid "Display album's cover ?"
 msgstr ""
 
 #: ../data/messages:95
-msgid "List of available themes for covers (requires OPENGL) :"
+msgid "Use Opengl themes (Fake 3D) ?"
 msgstr ""
 
 #: ../data/messages:97
@@ -294,27 +293,36 @@ msgstr ""
 msgid "Personnalisation"
 msgstr ""
 
-#: ../data/messages:111 ../data/messages:115 ../data/messages:119
-#: ../data/messages:123 ../data/messages:127
-msgid "Let t empty to use the default icon."
+#: ../data/messages:111
+msgid "List of available themes for covers (requires OPENGL) :"
 msgstr ""
 
 #: ../data/messages:113
-msgid "Name of an image for the 'default' icon :"
+msgid ""
+"Override the theme preference to not display the OSD with OpenGL themes ?"
+msgstr ""
+
+#: ../data/messages:115 ../data/messages:119 ../data/messages:123
+#: ../data/messages:127 ../data/messages:131
+msgid "Let t empty to use the default icon."
 msgstr ""
 
 #: ../data/messages:117
-msgid "Name of an image for the 'play' icon :"
+msgid "Name of an image for the 'default' icon :"
 msgstr ""
 
 #: ../data/messages:121
-msgid "Name of an image for the 'stop' icon :"
+msgid "Name of an image for the 'play' icon :"
 msgstr ""
 
 #: ../data/messages:125
-msgid "Name of an image for the 'pause' icon :"
+msgid "Name of an image for the 'stop' icon :"
 msgstr ""
 
 #: ../data/messages:129
+msgid "Name of an image for the 'pause' icon :"
+msgstr ""
+
+#: ../data/messages:133
 msgid "Name of an image for the 'broken' icon :"
 msgstr ""

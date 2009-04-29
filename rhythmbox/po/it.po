@@ -12,24 +12,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:85
+#: ../src/rhythmbox-draw.c:96
 msgid "Track"
 msgstr "Traccia"
 
-#: ../src/rhythmbox-draw.c:162
+#: ../src/rhythmbox-draw.c:182
 msgid "Artist"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:163 ../src/rhythmbox-draw.c:165
-#: ../src/rhythmbox-draw.c:167
+#: ../src/rhythmbox-draw.c:183 ../src/rhythmbox-draw.c:185
+#: ../src/rhythmbox-draw.c:187
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: ../src/rhythmbox-draw.c:164
+#: ../src/rhythmbox-draw.c:184
 msgid "Album"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:166
+#: ../src/rhythmbox-draw.c:186
 msgid "Title"
 msgstr ""
 
@@ -39,7 +39,6 @@ msgid ""
 "Play/pause with left click, next song with middle click.\n"
 "You can drag and drop covers (jpg) on the icon to use theme,\n"
 "or songs to put them in the queue. \n"
-"Adrien Pilleboue (Necropotame)"
 msgstr ""
 
 #: ../src/rhythmbox-menu-functions.c:52
@@ -283,7 +282,7 @@ msgid "Display album's cover ?"
 msgstr "Mostrare la copertina dell'album al posto dell'icona ?"
 
 #: ../data/messages:95
-msgid "List of available themes for covers (requires OPENGL) :"
+msgid "Use Opengl themes (Fake 3D) ?"
 msgstr ""
 
 #: ../data/messages:97
@@ -314,28 +313,37 @@ msgstr "n° della traccia"
 msgid "Personnalisation"
 msgstr "Personalizzazione"
 
-#: ../data/messages:111 ../data/messages:115 ../data/messages:119
-#: ../data/messages:123 ../data/messages:127
+#: ../data/messages:111
+msgid "List of available themes for covers (requires OPENGL) :"
+msgstr ""
+
+#: ../data/messages:113
+msgid ""
+"Override the theme preference to not display the OSD with OpenGL themes ?"
+msgstr ""
+
+#: ../data/messages:115 ../data/messages:119 ../data/messages:123
+#: ../data/messages:127 ../data/messages:131
 msgid "Let t empty to use the default icon."
 msgstr "Lasciare vuoto per utilizzare l'icona di default."
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Name of an image for the 'default' icon :"
 msgstr "Immagine per l'icona 'default' :"
 
-#: ../data/messages:117
+#: ../data/messages:121
 msgid "Name of an image for the 'play' icon :"
 msgstr "Immagine per l'icona 'play' :"
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Immagine per l'icona 'stop' :"
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Immagine per l'icona 'pausa' :"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Immagine per l'icona 'non-funzionante' :"
 

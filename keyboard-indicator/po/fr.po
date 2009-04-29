@@ -90,7 +90,6 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -239,33 +238,8 @@ msgstr "Hauteur du texte :"
 
 #: ../data/messages:91
 msgid "Outline text ?"
-msgstr "Texte en grand ?"
+msgstr "Tracer le contour du texte ?"
 
 #: ../data/messages:93
 msgid "Font :"
 msgstr "Police"
-
-#, fuzzy
-#~ msgid "Image's filename :"
-#~ msgstr "Nom de l'icône :"
-
-#~ msgid ""
-#~ "This is the keyboard-indicator applet\n"
-#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
-#~ msgstr ""
-#~ "Ceci est l'applet keyboard-indicator\n"
-#~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#, fuzzy
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
-#~ "Negative values are counted from the right/bottom of the screen"
-#~ msgstr ""
-#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
-#~ "+ clic gauche."
-
-#~ msgid "Module"
-#~ msgstr "Module"

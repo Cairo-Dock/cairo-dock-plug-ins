@@ -22,11 +22,11 @@ msgstr ""
 "Vous pouvez aussi rapidement ajouter/enlever un bureau grâce au menu (clique "
 "droit)"
 
-#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:142
+#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:158
 msgid "Current"
 msgstr "Courant"
 
-#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:134
+#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:150
 msgid "Desktop"
 msgstr "Bureau"
 

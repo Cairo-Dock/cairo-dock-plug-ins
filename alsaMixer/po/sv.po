@@ -61,8 +61,11 @@ msgstr "Kunde inte ladda mixern"
 
 #: ../src/applet-mixer.c:127
 #, c-format
-msgid "I couldn't find any element '%s'"
-msgstr "Kunde inte hitta något element '%s'"
+msgid ""
+"I couldn't find any audio channel named '%s'\n"
+"You should try to open the configuration panel of the applet,\n"
+" and select the proper audio channel you want to control."
+msgstr ""
 
 #: ../src/applet-mixer.c:268
 msgid "Set up volume :"
@@ -351,6 +354,9 @@ msgstr "Bruten ikon:"
 #: ../data/messages:129
 msgid "Mute icon :"
 msgstr "Tysta ikon:"
+
+#~ msgid "I couldn't find any element '%s'"
+#~ msgstr "Kunde inte hitta något element '%s'"
 
 #~ msgid ""
 #~ "This is the AlsaMixer applet\n"

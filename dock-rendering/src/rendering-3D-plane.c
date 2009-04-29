@@ -88,6 +88,7 @@ void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iC
 static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bIncludeEdges, gboolean bBackGround)
 {
 	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	
@@ -170,6 +171,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 static void cd_rendering_draw_3D_separator_edge (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bBackGround)
 {
 	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	
@@ -230,12 +232,15 @@ static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 		cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 1.0);
 		cairo_fill (pCairoContext);
 		
-		cd_rendering_draw_3D_separator_edge (icon, pCairoContext, pDock, bBackGround);
-		
-		cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
-		cairo_set_line_width (pCairoContext, myBackground.iDockLineWidth);
-		cairo_set_source_rgba (pCairoContext, myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
-		cairo_stroke (pCairoContext);
+		if (myBackground.iDockLineWidth != 0)
+		{
+			cd_rendering_draw_3D_separator_edge (icon, pCairoContext, pDock, bBackGround);
+			
+			cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
+			cairo_set_line_width (pCairoContext, myBackground.iDockLineWidth);
+			cairo_set_source_rgba (pCairoContext, myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
+			cairo_stroke (pCairoContext);
+		}
 	}
 	else
 	{
@@ -370,6 +375,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double fXMin, double fXMax, gboolean bBackGround, gboolean bIncludeEdges)
 {
 	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = fabs (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	
@@ -949,26 +955,28 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 	glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);  // Top Left Of The Texture and Quad
 	glEnd();
 	
-	
-	glPolygonMode (GL_FRONT, GL_LINE);
-	glEnable (GL_LINE_SMOOTH);
-	glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
-	glLineWidth (myBackground.iDockLineWidth);
-	glColor4f (myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
-	
-	glBegin(GL_LINES);
-	glVertex3f(fLittleWidth, 0., 0.);
-	glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);
-	glEnd();
-	
-	glBegin(GL_LINES);
-	glVertex3f(0., 0., 0.);
-	glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);
-	glEnd();
-	
-	glDisable(GL_LINE_SMOOTH);
+	if (myBackground.iDockLineWidth != 0)
+	{
+		glPolygonMode (GL_FRONT, GL_LINE);
+		glEnable (GL_LINE_SMOOTH);
+		glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+		glLineWidth (myBackground.iDockLineWidth);
+		glColor4f (myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
+		
+		glBegin(GL_LINES);
+		glVertex3f(fLittleWidth, 0., 0.);
+		glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);
+		glEnd();
+		
+		glBegin(GL_LINES);
+		glVertex3f(0., 0., 0.);
+		glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);
+		glEnd();
+		
+		glDisable(GL_LINE_SMOOTH);
+	}
 	
 	glDisable (GL_BLEND);
 }

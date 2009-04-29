@@ -61,8 +61,11 @@ msgstr "Impossible de charger le mixeur de son"
 
 #: ../src/applet-mixer.c:127
 #, c-format
-msgid "I couldn't find any element '%s'"
-msgstr "Impossible de trouver l'élément '%s'"
+msgid ""
+"I couldn't find any audio channel named '%s'\n"
+"You should try to open the configuration panel of the applet,\n"
+" and select the proper audio channel you want to control."
+msgstr ""
 
 #: ../src/applet-mixer.c:268
 msgid "Set up volume :"
@@ -359,6 +362,9 @@ msgstr "Icône 'cassé'"
 #: ../data/messages:129
 msgid "Mute icon :"
 msgstr "Icône 'muet' :"
+
+#~ msgid "I couldn't find any element '%s'"
+#~ msgstr "Impossible de trouver l'élément '%s'"
 
 #~ msgid ""
 #~ "This is the AlsaMixer applet\n"

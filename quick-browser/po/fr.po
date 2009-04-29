@@ -52,14 +52,24 @@ msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:11
+#, fuzzy
+msgid "Let empty to use the default one."
+msgstr "Laissez vide pour utiliser le nom du dossier."
+
+#: ../data/messages:13
+#, fuzzy
+msgid "Image's filename :"
+msgstr "Nom de l'icône :"
+
+#: ../data/messages:15
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du dock l'appartenant:"
 
-#: ../data/messages:13
+#: ../data/messages:17
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:15
+#: ../data/messages:19
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -67,33 +77,33 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic_milieu ou ALT + clic_droit par exemple."
 
-#: ../data/messages:17
+#: ../data/messages:21
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
-#: ../data/messages:19
+#: ../data/messages:23
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clique gauche"
 
-#: ../data/messages:21
+#: ../data/messages:25
 msgid "Desklet's position (x ; y) :"
 msgstr "Position du desklet (x ; y) :"
 
-#: ../data/messages:23
+#: ../data/messages:27
 msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
-#: ../data/messages:25
+#: ../data/messages:29
 msgid "Keep below other windows ?"
 msgstr "Garder en-dessous des autres fenêtres ?"
 
-#: ../data/messages:27
+#: ../data/messages:31
 msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
-#: ../data/messages:29
+#: ../data/messages:33
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -102,11 +112,11 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
 
-#: ../data/messages:31
+#: ../data/messages:35
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
-#: ../data/messages:33
+#: ../data/messages:37
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -115,33 +125,33 @@ msgstr ""
 "avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
 "avec ALT + clique_gauche"
 
-#: ../data/messages:35
+#: ../data/messages:39
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37
+#: ../data/messages:41
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:39
+#: ../data/messages:43
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:41
+#: ../data/messages:45
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:43
+#: ../data/messages:47
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
 "dessous."
 
-#: ../data/messages:45
+#: ../data/messages:49
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:47
+#: ../data/messages:51
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -149,47 +159,47 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -197,47 +207,47 @@ msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
 "par exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Foreground image :"
 msgstr "Image d'avant-plan :"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Folder to browse :"
 msgstr "Dossier à naviguer"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "It can be quite heavy to load a lot of icons."
 msgstr "Le temps de chargement peut être assez long avec beaucoup d'icônes"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Display icons in the menu ?"
 msgstr "Afficher les icônes dans le menu ?"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "List folders first ?"
 msgstr "Donner la liste des dossiers en premier ?"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Ignore case ?"
 msgstr "Cas à ignorer ?"
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Show hidden files ?"
 msgstr "Montrer les fichiers cachés ?"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "Shortkey to show/hide the menu :"
 msgstr "Raccourci pour afficher/cacher le menu :"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
@@ -245,7 +255,7 @@ msgstr ""
 "Nombre d'objets à charger en une fois. Un paramètre trop élevé accélère un "
 "peu le chargement, mais bloque plus l'application."
 
-#: ../data/messages:93
+#: ../data/messages:97
 #, fuzzy
 msgid "Gradual building of the menu :"
 msgstr "Construction graduelle du menu"
@@ -274,6 +284,3 @@ msgstr "Construction graduelle du menu"
 
 #~ msgid "Module"
 #~ msgstr "Module"
-
-#~ msgid "Icon's name :"
-#~ msgstr "Nom de l'icône :"

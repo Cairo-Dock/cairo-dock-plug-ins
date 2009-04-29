@@ -12,37 +12,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:85
+#: ../src/rhythmbox-draw.c:96
 msgid "Track"
 msgstr "Piste"
 
-#: ../src/rhythmbox-draw.c:162
+#: ../src/rhythmbox-draw.c:182
 msgid "Artist"
 msgstr "Artiste"
 
-#: ../src/rhythmbox-draw.c:163 ../src/rhythmbox-draw.c:165
-#: ../src/rhythmbox-draw.c:167
+#: ../src/rhythmbox-draw.c:183 ../src/rhythmbox-draw.c:185
+#: ../src/rhythmbox-draw.c:187
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../src/rhythmbox-draw.c:164
+#: ../src/rhythmbox-draw.c:184
 msgid "Album"
 msgstr "Album"
 
-#: ../src/rhythmbox-draw.c:166
+#: ../src/rhythmbox-draw.c:186
 msgid "Title"
 msgstr "Titre"
 
 #: ../src/rhythmbox-init.c:17
+#, fuzzy
 msgid ""
 "Control your Rhythmbox player directly in the dock !\n"
 "Play/pause with left click, next song with middle click.\n"
 "You can drag and drop covers (jpg) on the icon to use theme,\n"
 "or songs to put them in the queue. \n"
-"Adrien Pilleboue (Necropotame)"
 msgstr ""
 "Contrôlez votre lecteur Rhythmbox directement depuis le dock !\n"
-"Play/Pause avec le clique gauche, clique du milieu pour la chanson suivante.\n"
+"Play/Pause avec le clique gauche, clique du milieu pour la chanson "
+"suivante.\n"
 "Vous pouvez déposer des pochettes sur l'icône pour les utiliser,\n"
 "ou déposer des chansons pour les ajouter à la lecture. \n"
 "Adrien Pilleboue (Necropotame)"
@@ -282,8 +283,8 @@ msgid "Display album's cover ?"
 msgstr "Afficher la pochette de l'album ?"
 
 #: ../data/messages:95
-msgid "List of available themes for covers (requires OPENGL) :"
-msgstr "Liste des thèmes disponibles (nécessite l'OpenGl) :"
+msgid "Use Opengl themes (Fake 3D) ?"
+msgstr ""
 
 #: ../data/messages:97
 msgid "Information to display on the icon :"
@@ -313,28 +314,37 @@ msgstr "n° de piste"
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:111 ../data/messages:115 ../data/messages:119
-#: ../data/messages:123 ../data/messages:127
+#: ../data/messages:111
+msgid "List of available themes for covers (requires OPENGL) :"
+msgstr "Liste des thèmes disponibles (nécessite l'OpenGl) :"
+
+#: ../data/messages:113
+msgid ""
+"Override the theme preference to not display the OSD with OpenGL themes ?"
+msgstr ""
+
+#: ../data/messages:115 ../data/messages:119 ../data/messages:123
+#: ../data/messages:127 ../data/messages:131
 msgid "Let t empty to use the default icon."
 msgstr "Laisser vide pour utiliser l'icône par défaut"
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom d'une image pour l'icône 'défaut' :"
 
-#: ../data/messages:117
+#: ../data/messages:121
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom d'une image pour l'icône 'jouer' :"
 
-#: ../data/messages:121
+#: ../data/messages:125
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom d'une image pour l'icône 'stop' :"
 
-#: ../data/messages:125
+#: ../data/messages:129
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom d'une image pour l'icône 'pause' :"
 
-#: ../data/messages:129
+#: ../data/messages:133
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom d'une image pour l'icône 'cassé' :"
 

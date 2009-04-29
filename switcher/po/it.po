@@ -19,11 +19,11 @@ msgid ""
 "You can also quickly add/remove a desktop through the right-click menu."
 msgstr ""
 
-#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:142
+#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:158
 msgid "Current"
 msgstr "Attuale"
 
-#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:134
+#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:150
 msgid "Desktop"
 msgstr "Desktop"
 

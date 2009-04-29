@@ -24,7 +24,7 @@ _("Keep below other windows ?")
 
 _("Keep above other windows ?")
 
-_("for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=cairo-dock & type=utility)")
+_("for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)")
 
 _("Keep on widget layer ?")
 

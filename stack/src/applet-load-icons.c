@@ -136,7 +136,7 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 Icon *cd_stack_build_one_icon_from_file (CairoDockModuleInstance *myApplet, gchar *cDesktopFilePath)
 {
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cDesktopFilePath);
-	g_return_if_fail (pKeyFile != NULL)	;
+	g_return_val_if_fail (pKeyFile != NULL, NULL)	;
 	
 	Icon *pIcon = cd_stack_build_one_icon (myApplet, pKeyFile);
 	

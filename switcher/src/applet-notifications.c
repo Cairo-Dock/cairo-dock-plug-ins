@@ -90,9 +90,25 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 
-gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XActiveWindow)
+
+static gboolean _cd_switcher_redraw_main_icon_idle (CairoDockModuleInstance *myApplet)
 {
 	cd_switcher_draw_main_icon ();
+	myData.iSidRedrawMainIconIdle = 0;
+	return FALSE;
+}
+static void _cd_switcher_queue_draw (CairoDockModuleInstance *myApplet)
+{
+	if (myData.iSidRedrawMainIconIdle == 0)
+	{
+		myData.iSidRedrawMainIconIdle = g_idle_add ((GSourceFunc) _cd_switcher_redraw_main_icon_idle, myApplet);
+	}
+}
+
+gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XActiveWindow)
+{
+	_cd_switcher_queue_draw (myApplet);
+	//cd_switcher_draw_main_icon ();
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -104,7 +120,6 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet, gpointer null)
 	cd_switcher_get_current_desktop ();
 	int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
-	
 	if (myConfig.bDisplayNumDesk)
 	{
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
@@ -112,7 +127,8 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet, gpointer null)
 	
 	if (myConfig.bCompactView)
 	{
-		cd_switcher_draw_main_icon ();
+		_cd_switcher_queue_draw (myApplet);
+		//cd_switcher_draw_main_icon ();
 	}
 	else
 	{
@@ -166,6 +182,7 @@ gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet, gpointer 
 gboolean on_window_configured (CairoDockModuleInstance *myApplet, XConfigureEvent *xconfigure)
 {
 	cd_debug ("");
-	cd_switcher_draw_main_icon ();
+	_cd_switcher_queue_draw (myApplet);
+	//cd_switcher_draw_main_icon ();
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
