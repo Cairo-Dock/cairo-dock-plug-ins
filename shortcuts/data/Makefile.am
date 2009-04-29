@@ -5,6 +5,7 @@ moduledir = $(shortcutsdatadir)
 
 module_DATA = \
 	shortcuts.conf\
-	icon.png
+	icon.png\
+	preview.png
 
 EXTRA_DIST = $(module_DATA)
