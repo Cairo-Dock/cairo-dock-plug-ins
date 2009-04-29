@@ -90,6 +90,7 @@ SUBDIRS = . po\
 	netspeed\
 	${nvidia_dir}\
 	${powermanager_dir}\
+	quick-browser\
 	rame\
 	${rhythmbox_dir}\
 	shortcuts\

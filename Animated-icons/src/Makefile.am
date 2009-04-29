@@ -29,7 +29,8 @@ libcd_Animated_icons_la_SOURCES = \
 	applet-bounce.c\
 	applet-bounce.h\
 	applet-blink.c\
-	applet-blink.h
+	applet-blink.h\
+	chrome-tex.h
 
 
 dock_version = `pkg-config --modversion cairo-dock`

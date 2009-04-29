@@ -107,7 +107,7 @@ extended_mode=0
 
 #X[False 3D Themes (OpenGL only)]
 frame_simple=
-#h+[@musicplayerdatadir@/themes;musicPlayer] List of available specific themes :/
+#h+[@musicplayerdatadir@/themes;musicPlayer;musicPlayer] List of available specific themes :/
 theme = cd_box_3d
 
 #F[Action on music change;gtk-preferences]

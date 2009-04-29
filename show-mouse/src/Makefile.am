@@ -11,7 +11,8 @@ libcd_show_mouse_la_SOURCES = \
 	applet-config.h\
 	applet-notifications.c\
 	applet-notifications.h\
-	applet-struct.h
+	applet-struct.h\
+	star-tex.h
 
 
 dock_version = `pkg-config --modversion cairo-dock`
