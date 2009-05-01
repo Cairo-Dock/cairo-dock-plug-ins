@@ -113,7 +113,7 @@ mix graph = false
 #c+4[0;1] Background color of the graphic :
 bg color = .5;.5;1.;.4
 
-#g+ List of available themes for the gauge :
+#h+[/usr/share/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
 theme = turbo-night-fuel
 
 #v
