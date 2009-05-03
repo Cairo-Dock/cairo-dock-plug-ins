@@ -14,8 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 
 
-
-
 CD_APPLET_ON_CLICK_BEGIN
 	cd_dustbin_show_trash (NULL, "trash:/");
 CD_APPLET_ON_CLICK_END
@@ -134,13 +132,20 @@ CD_APPLET_ON_DROP_DATA_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	GString *sInfo = g_string_new ("");
-	g_string_printf (sInfo, "%.2fMb for %d files in all dustbins :", 1.*myData.iSize/(1024*1024), myData.iNbFiles);
+	if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+		g_string_printf (sInfo, "%.2fMb for %d files in all dustbins :", 1.*myData.iSize/(1024*1024), myData.iNbFiles);
+	else
+		g_string_printf (sInfo, "%d elements in all dustbins :", myData.iNbTrashes);
+	
 	CdDustbin *pDustbin;
 	GList *pElement;
 	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
-		g_string_append_printf (sInfo, "\n  %.2fM for %d files for in %s", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
+		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+			g_string_append_printf (sInfo, "\n  %.2fM for %d files in %s", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
+		else
+			g_string_append_printf (sInfo, "\n  %d elements in %s", pDustbin->iNbTrashes, pDustbin->cPath);
 	}
 	
 	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 5000, myData.cDialogIconPath);

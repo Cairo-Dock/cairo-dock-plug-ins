@@ -76,11 +76,11 @@ msgstr "Durée de l'animation :"
 #: ../data/messages:31 ../data/messages:49 ../data/messages:91
 #: ../data/messages:103 ../data/messages:115 ../data/messages:129
 msgid "Repeat while icon is pointed ?"
-msgstr "Répéter lorsque l'icône est pointée par la souris ?"
+msgstr "Répéter tant que l'icône est pointée par la souris ?"
 
 #: ../data/messages:33
 msgid "Type of mesh :"
-msgstr "Type de rotation :"
+msgstr "Type de forme 3D :"
 
 #: ../data/messages:35
 msgid "Normal"
@@ -96,7 +96,7 @@ msgstr ""
 
 #: ../data/messages:41
 msgid "color of the mesh :"
-msgstr "Couleur de la maille :"
+msgstr "Couleur de la forme 3D :"
 
 #: ../data/messages:43
 msgid "Spot"
@@ -108,7 +108,7 @@ msgstr "Couleur du spot"
 
 #: ../data/messages:53
 msgid "color of the halo :"
-msgstr "Couleur de l'auréole (halo) :"
+msgstr "Couleur du halo :"
 
 #: ../data/messages:55
 msgid "Rays"
@@ -116,11 +116,11 @@ msgstr "Rayons"
 
 #: ../data/messages:57
 msgid "1st color of gradation :"
-msgstr "Première couleur pour la graduation :"
+msgstr "Première couleur pour le dégradé :"
 
 #: ../data/messages:59
 msgid "2nd color of gradation :"
-msgstr "Deuxième couleur pour la graduation :"
+msgstr "Deuxième couleur pour le dégradé :"
 
 #: ../data/messages:61
 msgid "Random colors ?"
@@ -140,7 +140,7 @@ msgstr "Vitesse des rayons :"
 
 #: ../data/messages:69
 msgid "Wobbly"
-msgstr "Oscillement"
+msgstr "Elastique"
 
 #: ../data/messages:71
 msgid "Initial stretch :"

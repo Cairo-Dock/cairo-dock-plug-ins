@@ -646,6 +646,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 					GMount *pMount = NULL;
 					if (cTargetURI != NULL)
 					{
+						icon->acCommand = g_strdup (cTargetURI);
 						GFile *file = g_file_new_for_uri (cTargetURI);
 						pMount = g_file_find_enclosing_mount (file, NULL, NULL);
 						//g_object_unref (file);
@@ -701,7 +702,8 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				else
 					cName = g_strdup (cFileName);
 				
-				icon->acCommand = g_strdup (icon->cBaseURI);
+				if (icon->acCommand == NULL)
+					icon->acCommand = g_strdup (icon->cBaseURI);
 				icon->acName = cName;
 				icon->acFileName = NULL;
 				if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)

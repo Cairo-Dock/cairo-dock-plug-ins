@@ -455,7 +455,7 @@ AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
 SHORTCUTS_PACKAGE=cd-shortcuts
 AC_SUBST(GETTEXT_SHORTCUTS, "$SHORTCUTS_PACKAGE")
 
-AC_SUBST(VERSION_SHORTCUTS, "1.1.5")
+AC_SUBST(VERSION_SHORTCUTS, "1.2.0")
 AC_SUBST(PACKAGE_SHORTCUTS, "$SHORTCUTS_PACKAGE")
 
 AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")

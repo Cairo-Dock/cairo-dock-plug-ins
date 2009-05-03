@@ -100,6 +100,22 @@ list bookmarks = true
 #b Separate different shortcuts with separators ?
 use separator = true
 
+#v
+sep1 =
+
+#i[No;Free space;Used space;Free space percent;Used space percent] Show disk usage :
+disk usage = 4
+
+#i[1;30] Delay between disk usage refresh :
+#{In seconds.}
+check interval = 10
+
+#b Display disk usage with a bar ?
+draw bar = true
+
+#v
+sep2 =
+
 #n+ Name of the view used for the sub-dock :
 #{Let it empty to use default sub-dock view.}/
 renderer = 

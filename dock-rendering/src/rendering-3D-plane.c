@@ -275,7 +275,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 	cairo_save (pCairoContext);
 	
 	double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
-        double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
+	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
 	
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
@@ -513,6 +513,9 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 		fDeltaXTrapeze = fDeltaXForLoop + fRadius * cosa;
 		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
 		fOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
+		
+		double sina = cosa * fInclinationOnHorizon;
+		fDeltaXTrapeze = fInclinationOnHorizon * (pDock->iDecorationsHeight - (FALSE ? 2 : 1-sina) * fRadius) + fRadius * (FALSE ? 1 : cosa);
 	}
 	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, pDock->bHorizontalDock ? fDockOffsetY : fDockOffsetX, fOffsetX-fDeltaXTrapeze, fDockWidth+2*fDeltaXTrapeze);
 	

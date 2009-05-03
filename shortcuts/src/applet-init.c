@@ -21,9 +21,11 @@ CD_APPLET_DEFINITION ("shortcuts",
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("An applet that let you access quickly to all of your shortcuts.\n"
-	"It can manage disks, network points, and Nautilus bookmarks.\n"
-	"You can add or remove bookmarks by drag'n'drop, even if you don't have Nautilus.\n"
-	"Middle-click to acces your desktop easily."),
+	"It can manage disks, network points, and Nautilus bookmarks (even if you don't have Nautilus).\n"
+	"Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
+	"Middle-click on the main icon to acces your desktop easily.\n"
+	"Middle-click on a mounting point icon to (un)mount is quickly.\n"
+	"The applet can also display valuable information about your disks, like free space, type, etc."),
 	"Fabounet (Fabrice Rey)")
 
 
@@ -61,7 +63,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On charge les icones dans un sous-dock.
-		cd_shortcuts_reset_all_datas (myApplet);
+		cd_shortcuts_reset_all_datas (myApplet);  // stoppe les mesures.
 		
 		/*if (myIcon->acName == NULL && myDock)
 		{

@@ -8,15 +8,19 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 *********************************************************************************/
 #include <string.h>
 #include <math.h>
+
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
 #include "applet-bookmarks.h"
+#include "applet-disk-usage.h"
 #include "applet-load-icons.h"
 
 
 static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
+	cd_shortcuts_stop_disk_measure (myApplet);
+	
 	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 6);
 	
 	//\________________ On met a jour les signets qui pointeraient sur un repertoire du point de montage nouvellement (de)monte.
@@ -65,6 +69,8 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 		}
 		g_free (cTargetURI);
 	}
+	
+	cd_shortcuts_launch_disk_measure (myApplet);
 }
 static void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
@@ -203,6 +209,11 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 	}*/
 	
 	myData.pIconList = NULL;
+	
+	
+	// launch disk usage
+	cd_shortcuts_launch_disk_measure (myApplet);
+	
 	return TRUE;
 }
 

@@ -62,7 +62,7 @@ msgstr "Dessiner en arrière-plan ?"
 
 #: ../data/messages:21
 msgid "Rotate effects with dock ?"
-msgstr "Effet de rotation avec le dock ?"
+msgstr "Faire tourner les effets avec la position du dock ?"
 
 #: ../data/messages:23
 msgid "Fire"
@@ -86,12 +86,12 @@ msgstr "Répéter quand l'icône est sous le pointeur ?"
 #: ../data/messages:31 ../data/messages:55 ../data/messages:73
 #: ../data/messages:91 ../data/messages:109
 msgid "1st color of gradation :"
-msgstr "1ère couleur de graduation :"
+msgstr "1ère couleur du dégradé :"
 
 #: ../data/messages:33 ../data/messages:57 ../data/messages:75
 #: ../data/messages:93 ../data/messages:111
 msgid "2nd color of gradation :"
-msgstr "2ème couleur de graduation :"
+msgstr "2ème couleur du dégradé :"
 
 #: ../data/messages:35 ../data/messages:59
 msgid "Random colors ?"
@@ -101,11 +101,11 @@ msgstr "Couleurs au hasard ?"
 msgid "It will slightly alter the colors, so you may have to modify them."
 msgstr ""
 "Les couleurs vont être légèrement modifiées, donc, vous pourriez avoir à les "
-"changer"
+"changer."
 
 #: ../data/messages:39
 msgid "Add luminance ?"
-msgstr "Ajouter de l'intensité ?"
+msgstr "Ajouter de la luminosité ?"
 
 #: ../data/messages:41 ../data/messages:61 ../data/messages:77
 #: ../data/messages:95 ../data/messages:113
@@ -135,4 +135,4 @@ msgstr "Pluie"
 
 #: ../data/messages:101
 msgid "Storm"
-msgstr "Eclair"
+msgstr "Tempête"

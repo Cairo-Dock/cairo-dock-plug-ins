@@ -21,9 +21,9 @@ msgid ""
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
 "Affiche l'usuel Menu d'Applications et les Documents récents.\n"
-"L'applet est compatible avec plusieurs menus XDG conformes (Gnome, XFCE, KDE, ...)\n"
+"L'applet est compatible avec tout menu conforme à la norme XDG (Gnome, XFCE, KDE, ...)\n"
 "Clique du milieu pour ouvrir un lanceur d'applications rapide (vous pouvez définir "
-"un raccourci pour cela, comme ALT+F2\n"
+"un raccourci pour cela, comme ALT+F2)\n"
 "Vous pouvez aussi définir un raccourci pour déplier le menu (comme ALT+F1)"
 
 #: ../src/applet-notifications.c:144
@@ -48,7 +48,7 @@ msgstr "Nettoyer la liste des Documents récents ?"
 
 #: ../src/applet-run-dialog.c:337
 msgid "Enter a command to launch :"
-msgstr "Entrez une commande pour le lancement :"
+msgstr "Entrez une commande à lancer :"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -76,7 +76,7 @@ msgstr "Nom du fichier de l'image :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr "Nom du dock elle appartient:"
+msgstr "Nom du dock auquel elle appartient:"
 
 #: ../data/messages:15
 msgid "Desklet"
@@ -270,16 +270,3 @@ msgstr "En jour. Entrez 0 pour ne pas utiliser ce filtre."
 #: ../data/messages:99
 msgid "Only show files whose last modification date is less than ;"
 msgstr "Afficher uniquement les fichiers dont la dernière date de modification est inférieur :"
-
-#~ msgid ""
-#~ "This is the GMenu applet\n"
-#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
-#~ msgstr ""
-#~ "Ceci est l'applet GMenu\n"
-#~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#~ msgid "height :"
-#~ msgstr "hauteur :"

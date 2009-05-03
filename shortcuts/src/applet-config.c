@@ -10,6 +10,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
+#include "applet-disk-usage.h"
 #include "applet-config.h"
 
 
@@ -18,6 +19,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bListNetwork = CD_CONFIG_GET_BOOLEAN ("Module", "list network");
 	myConfig.bListBookmarks = CD_CONFIG_GET_BOOLEAN ("Module", "list bookmarks");
 	myConfig.bUseSeparator = CD_CONFIG_GET_BOOLEAN ("Module", "use separator");
+	
+	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "disk usage", CD_SHOW_USED_SPACE_PERCENT);
+	myConfig.iCheckInterval = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "check interval", 10);
+	myConfig.bDrawBar = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Module", "draw bar", TRUE);
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Module", "renderer");
 CD_APPLET_GET_CONFIG_END
@@ -30,6 +35,7 @@ CD_APPLET_RESET_CONFIG_END
 
 void cd_shortcuts_reset_all_datas (CairoDockModuleInstance *myApplet)
 {
+	cd_shortcuts_stop_disk_measure (myApplet);
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	
 	if (myData.cDisksURI != NULL)

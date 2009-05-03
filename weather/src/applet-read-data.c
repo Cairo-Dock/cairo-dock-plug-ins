@@ -9,7 +9,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define _BSD_SOURCE
 #include <string.h>
 #include <stdio.h>
-#include <stdio.h>
 #include <unistd.h>
 
 #include <libxml/tree.h>

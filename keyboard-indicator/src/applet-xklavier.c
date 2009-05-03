@@ -121,7 +121,7 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		myData.iCurrentIndic = state.indicators;
 		
 		cShortGroupName = cairo_dock_cut_string (cCurrentGroup, 3);
-		if (strlen(cShortGroupName) > 3)
+		if (cShortGroupName && strlen(cShortGroupName) > 3)
 			cShortGroupName[strlen(cShortGroupName)-3] = '\0';
 		/*for (i = 0; i < n; i ++)
 		{
