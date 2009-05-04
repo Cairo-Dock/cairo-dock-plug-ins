@@ -32,22 +32,22 @@ void cd_mail_create_pop3_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "pop3");
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "host", "pop3.myhost.org");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "host", "s server address:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "host", "s0 server address:", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "username", "myLogin");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s username:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 username:", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "password", "");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p password:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 password:\n{The password will be crypted.}", NULL);
 
-	g_key_file_set_integer (pKeyFile, pMailAccountName, "port", 0);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "port", "i port:\n{Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S.}", NULL);
+	g_key_file_set_integer (pKeyFile, pMailAccountName, "port", 110);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "port", "i0 port:\n{Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S.}", NULL);
 
 	g_key_file_set_boolean (pKeyFile, pMailAccountName, "use secure connection", FALSE);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "use secure connection", "b use secure connection (SSL)", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "use secure connection", "b0 use secure connection (SSL)", NULL);
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout", 600);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I timeout:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I0 timeout:\n{In ms.}", NULL);
 }
 
 void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -84,7 +84,7 @@ void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
     if( encryptedPassword ) g_free(encryptedPassword);
   }
   mailaccount->connection_type = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT (mailbox_name, "use secure connection", FALSE)?CONNECTION_TYPE_TLS:CONNECTION_TYPE_PLAIN;
-  mailaccount->port = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "port", 0);
+  mailaccount->port = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "port", 110);
 
   mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout", 600);
 }
@@ -94,25 +94,25 @@ void cd_mail_create_imap_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "imap");
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "host", "imap.myhost.org");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "host", "s server address:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "host", "s0 server address:", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "username", "myLogin");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s username:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 username:", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "password", "");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p password:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 password:", NULL);
 
-	g_key_file_set_integer (pKeyFile, pMailAccountName, "port", 0);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "port", "i port:\n{Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for IMAP4 over SSL.}", NULL);
+	g_key_file_set_integer (pKeyFile, pMailAccountName, "port", 110);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "port", "i0 port:\n{Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for IMAP4 over SSL.}", NULL);
 
 	g_key_file_set_boolean (pKeyFile, pMailAccountName, "use secure connection", FALSE);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "use secure connection", "b use secure connection (SSL)", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "use secure connection", "b0 use secure connection (SSL)", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "server_directory", "Inbox");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "server_directory", "s directory on server:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "server_directory", "s0 directory on server:", NULL);
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout", 600);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I timeout:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I0 timeout:\n{In ms.}", NULL);
 }
 
 void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -149,7 +149,7 @@ void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
     if( encryptedPassword ) g_free(encryptedPassword);
   }
   mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout", 600);
-  mailaccount->port = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "port", 0);
+  mailaccount->port = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "port", 110);
 
   mailaccount->connection_type = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT (mailbox_name, "use secure connection", FALSE)?CONNECTION_TYPE_TLS:CONNECTION_TYPE_PLAIN;
 
@@ -166,10 +166,10 @@ void cd_mail_create_mbox_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "mbox");
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "filename", "");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "filename", "s path of mbox file:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "filename", "s0 path of mbox file:", NULL);
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout", 600);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I timeout:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I0 timeout:\n{In ms.}", NULL);
 }
 
 void cd_mail_retrieve_mbox_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -204,7 +204,7 @@ void cd_mail_create_mh_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "mh");
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout", 600);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I timeout:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I0 timeout:\n{In ms.}", NULL);
 }
 
 void cd_mail_retrieve_mh_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -233,10 +233,10 @@ void cd_mail_create_maildir_params( GKeyFile *pKeyFile, gchar *pMailAccountName 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "maildir");
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "path", "");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s path to mail directory:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 path to mail directory:", NULL);
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout", 600);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I timeout:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I0 timeout:\n{In ms.}", NULL);
 }
 
 void cd_mail_retrieve_maildir_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -271,13 +271,13 @@ void cd_mail_create_gmail_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "gmail");
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "username", "myLogin");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s username:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 username:", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "password", "");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p password:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 password:", NULL);
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout", 600);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I timeout:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I0 timeout:\n{In ms.}", NULL);
 }
 
 void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -345,10 +345,10 @@ void cd_mail_create_feed_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "feed");
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "path", "http://www.cairo-dock.org/rss/cd_svn.xml");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s address of feed:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 address of feed:", NULL);
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout", 600);
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I timeout:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout", "I0 timeout:\n{In ms.}", NULL);
 }
 
 void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -399,6 +399,7 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 	  CDMailAccount *pMailAccount;
   	int i, r;
 
+		g_print ("%s (%d comptes)\n", __func__, myData.pMailAccounts->len);
 		for (i = 0; i < myData.pMailAccounts->len; i ++)
 		{
 			pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);

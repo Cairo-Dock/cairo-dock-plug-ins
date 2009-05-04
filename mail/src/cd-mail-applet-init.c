@@ -213,7 +213,7 @@ static void _load_theme (CairoDockModuleInstance *myApplet, GError **erreur)
 	}
 	if (myConfig.cNoMailUserImage == NULL || myConfig.cHasMailUserImage == NULL || myConfig.cNewMailUserSound == NULL)
 	{
-		cd_warning ("Attention : couldn't find images, this theme is not valid");
+		cd_warning ("mail : couldn't find images, this theme is not valid");
 	}
 
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
@@ -255,12 +255,13 @@ CD_APPLET_INIT_BEGIN
 		return;
 	}
 	
-	if (myIcon->acName == NULL && myDock)
+	/*if (myIcon->acName == NULL && myDock)
 	{
 		CD_APPLET_SET_NAME_FOR_MY_ICON (MAIL_DEFAULT_NAME);
-	}
+	}*/
 	
-	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	//CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);  // on se met en premier pour pas que le dock essaye de lancer nos icones, car ce ne sont pas toutes des lanceurs, donc on va le faire nous-memes.
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 
@@ -268,6 +269,7 @@ CD_APPLET_INIT_BEGIN
 
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
 	{
+		///CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;
 		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_mail_update_icon , CAIRO_DOCK_RUN_FIRST, myApplet);
 	}
 
@@ -280,6 +282,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 
+	///CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 	cairo_dock_remove_notification_func(CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_mail_update_icon , myApplet);
 CD_APPLET_STOP_END
 
@@ -293,6 +296,7 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED )
 	{
+		///CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 		cairo_dock_remove_notification_func(CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_mail_update_icon , myApplet);
 	
 		GError *erreur = NULL;
@@ -304,17 +308,15 @@ CD_APPLET_RELOAD_BEGIN
 			erreur = NULL;
 		}
 		
-		if (myIcon->acName == NULL && myDock)
+		/*if (myIcon->acName == NULL && myDock)
 		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (MAIL_DEFAULT_NAME);
-		}
+		}*/
 		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
 		{
+			///CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;
 			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_mail_update_icon , CAIRO_DOCK_RUN_FIRST, myApplet);
 		}
-	}
-	else
-	{
 	}
 
 	cd_mail_update_status( myApplet );

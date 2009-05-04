@@ -79,7 +79,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
         {
           guint i;
           
-          GtkWidget *pRefreshAccountSubMenu = CD_APPLET_ADD_SUB_MENU (_("Refresh a mail account"), pSubMenu);
+          GtkWidget *pRefreshAccountSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Refresh a mail account"), pSubMenu);
 
           /* add a "update account" item for each mailbox */
           for (i = 0; i < myData.pMailAccounts->len; i ++)
@@ -156,11 +156,11 @@ _mail_draw_main_icon (CairoDockModuleInstance *myApplet, gchar **mailbox_names, 
 
           /* don't play more often than every 4 seconds... */
           time_t currentTime = time(NULL);
-          if(currentTime-myConfig.timeEndOfSound > 4 &&
+          if(currentTime-myData.timeEndOfSound > 4 &&
              myData.bNewMailFound == TRUE)
           {
             cairo_dock_play_sound(myConfig.cNewMailUserSound);
-            myConfig.timeEndOfSound = time(NULL);
+            myData.timeEndOfSound = time(NULL);
           }
 
           g_string_append_printf(ttip_str, "%s %d %s", _("You have"), myData.iNbUnreadMails,myData.iNbUnreadMails>1?_("new mails :"):_("new mail :"));
