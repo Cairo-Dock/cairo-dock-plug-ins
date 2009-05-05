@@ -21,13 +21,11 @@ CD_APPLET_DEFINITION ("xmms",
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_CONTROLER,
 	N_("An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-	"XMMS & Audacious are fully supported,\n"
-	"but Banshee and Exaile's monitoring is still experimental.\n"
+	"XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is still experimental.\n"
 	"For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
-	"Play/Pause on left click, Next song on middle click.\n"
-	"You can drag and drop songs to put them in the queue.\n"
-	"Scroll updown to play the previous/next sound\n"
-	"Down play the next sound"),
+	"Launch/Play/Pause on left click, Next song on middle click.\n"
+	"You can drag and drop songs on the icon to put them in the queue.\n"
+	"Scroll up/down to play the previous/next song."),
 	"ChAnGFu (Rémy Robertson)")
 
 static gchar *s_cPlayerClass[MY_NB_PLAYERS] = {"xmms", "audacious", "banshee", "exaile"};

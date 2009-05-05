@@ -15,9 +15,10 @@ CD_APPLET_DEFINITION ("Rhythmbox",
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_CONTROLER,
 	N_("Control your Rhythmbox player directly in the dock !\n"
-	"Play/pause with left click, next song with middle click.\n"
-	"You can drag and drop covers (jpg) on the icon to use theme,\n"
-	"or songs to put them in the queue. \n"),
+	"Left-click to launch it, and to play/pause."
+	"Middle-click and Scroll-down for next song, Scroll-up for previous song.\n"
+	"You can drag and drop covers (jpg) on the icon to use them,\n"
+	" and songs to put them in the queue.\n"),
 	"Adrien Pilleboue (Necropotame) & Nochka85 (Opengl display)")
 
 CD_APPLET_INIT_BEGIN

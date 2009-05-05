@@ -13,7 +13,7 @@ msgstr ""
 
 #: ../src/cd-mail-applet-config.c:369
 msgid "Remove Account"
-msgstr "Supprimer un compte e-mail"
+msgstr "Supprimer ce compte"
 
 #: ../src/cd-mail-applet-init.c:19
 msgid "mail"
@@ -41,23 +41,17 @@ msgstr ""
 
 #: ../src/cd-mail-applet-notifications.c:82
 msgid "Refresh a mail account"
-msgstr "Supprimer un compte e-mail"
+msgstr "Rafraîchir un compte e-mail"
 
 #: ../src/cd-mail-applet-notifications.c:140
 msgid "No unread mail in your mailboxes"
-msgstr "Pas de messages non lus dans votre boîte de réception"
+msgstr "Aucun message non lu dans votre boîte de réception"
 
-#: ../src/cd-mail-applet-notifications.c:166
-msgid "You have"
-msgstr "Vous avez"
+msgid "You have %d new mails :"
+msgstr "Vous avez %d nouveaux messages"
 
-#: ../src/cd-mail-applet-notifications.c:166
-msgid "new mails :"
-msgstr "de nouveaux messages :"
-
-#: ../src/cd-mail-applet-notifications.c:166
-msgid "new mail :"
-msgstr "un nouveau message :"
+msgid "You have a new mail :"
+msgstr "Vous avez un nouveau message"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -118,7 +112,6 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"

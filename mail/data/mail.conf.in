@@ -84,11 +84,15 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#R+[Default;Default theme;themes/Default/hasmail.svg] Choose one of the available themes :
+#h+[@maildatadir@/themes;mail] Choose one of the available themes :
 theme = Default
 
+#n+ Name of the view used for the sub-dock :
+#{Let it empty to use default sub-dock view.}/
+renderer = 
+
 #F[Theme overriding] 
-frame2 =
+frame_over =
 
 #S+ Name of the file for the "no mail" image :
 no mail image = 
@@ -99,11 +103,23 @@ has mail image =
 #u Name of the file for the "new mail" sound :
 new mail sound = 
 
+#F[Mail application] 
+frame_appli =
+
+#s Prefered mail application to launch on left-click :
+mail application = thunderbird
+
+#s Class of the mail application (optionnal)
+#{only use this if it differs from its name. Generally it is not the case, except for Thunderbird.}
+mail class = Thunderbird-bin
+
+
+#b Steal the application's icon in taskbar ?
+#{It will prevent the application's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
+inhibate appli = true
+
 #F
 frame2_fin =
-
-#S Path to application to launch on left-click
-mail application =
 
 #_ Add an account with specified type and name:
 #{The new account will be created with specified type and name.}

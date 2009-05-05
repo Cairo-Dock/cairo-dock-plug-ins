@@ -5,6 +5,7 @@
 #include <cairo-dock.h>
 #include "cd-mail-applet-struct.h"
 
+
 void cd_mail_create_pop3_params( GKeyFile *pKeyFile, gchar *pMailAccountName );
 void cd_mail_create_imap_params( GKeyFile *pKeyFile, gchar *pMailAccountName );
 void cd_mail_create_mbox_params( GKeyFile *pKeyFile, gchar *pMailAccountName );
@@ -23,7 +24,14 @@ void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 void cd_mail_init_accounts(CairoDockModuleInstance *myApplet);
 void cd_mail_free_account (CDMailAccount *pMailAccount);
+void cd_mail_free_all_accounts (CairoDockModuleInstance *myApplet);
 
 void cd_mail_acquire_folder_data(CDMailAccount *pMailAccount);
+void cd_mail_read_folder_data(CDMailAccount *pMailAccount);
+void cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount );
+
+gboolean cd_mail_load_icons( CairoDockModuleInstance *myApplet );
+void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet);
+
 
 #endif

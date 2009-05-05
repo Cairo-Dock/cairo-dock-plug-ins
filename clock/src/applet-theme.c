@@ -43,10 +43,19 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 			g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, s_cFileNames[i]);
 			myData.pSvgHandles[i] = rsvg_handle_new_from_file (sElementPath->str, NULL);
 		}
-		rsvg_handle_get_dimensions (myData.pSvgHandles[CLOCK_DROP_SHADOW], &myData.DimensionData);
-		rsvg_handle_get_dimensions (myData.pSvgHandles[CLOCK_HOUR_HAND], &myData.needleDimension);
-		//g_print ("clock bg dimension : %dx%d\n", (int) myData.DimensionData.width, (int) myData.DimensionData.height);
-		//g_print ("clock needle dimension : %dx%d\n", (int) myData.needleDimension.width, (int) myData.needleDimension.height);
+		i = 0;
+		while (i < CLOCK_FRAME && myData.pSvgHandles[i] == NULL)
+		{
+			i ++;
+			if (i == CLOCK_HOUR_HAND_SHADOW)
+				i = CLOCK_FACE_SHADOW;
+		}
+		if (i != CLOCK_FRAME)
+			rsvg_handle_get_dimensions (myData.pSvgHandles[i], &myData.DimensionData);
+		if (myData.pSvgHandles[CLOCK_HOUR_HAND] != NULL)
+			rsvg_handle_get_dimensions (myData.pSvgHandles[CLOCK_HOUR_HAND], &myData.needleDimension);
+		cd_debug ("clock bg dimension : %dx%d", (int) myData.DimensionData.width, (int) myData.DimensionData.height);
+		cd_debug ("clock needle dimension : %dx%d", (int) myData.needleDimension.width, (int) myData.needleDimension.height);
 		
 		// recuperation des parametres des aiguilles.
 		g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, "theme.conf");
