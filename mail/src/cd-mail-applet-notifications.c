@@ -14,23 +14,30 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <math.h>
 
 #include "cd-mail-applet-struct.h"
+#include "cd-mail-applet-etpan.h"
 #include "cd-mail-applet-notifications.h"
-
-
-static void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet);
 
 
 CD_APPLET_ON_CLICK_BEGIN
 
-    // spawn the selected program
 	if( myConfig.cMailApplication )
 	{
-		gboolean r = cairo_dock_launch_command (myConfig.cMailApplication);
-		
-		if (!r)
+		if (myIcon->Xid != 0)
 		{
-			cd_warning ("when couldn't execute '%s'", myConfig.cMailApplication);
-			cairo_dock_show_temporary_dialog (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, myConfig.cMailApplication);
+			if (cairo_dock_get_current_active_window () == myIcon->Xid && myTaskBar.bMinimizeOnClick)
+				cairo_dock_minimize_xwindow (myIcon->Xid);
+			else
+				cairo_dock_show_xwindow (myIcon->Xid);
+		}
+		else
+		{
+			gboolean r = cairo_dock_launch_command (myConfig.cMailApplication);
+			
+			if (!r)
+			{
+				cd_warning ("when couldn't execute '%s'", myConfig.cMailApplication);
+				cairo_dock_show_temporary_dialog (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, myConfig.cMailApplication);
+			}
 		}
 	}
 
@@ -139,57 +146,3 @@ CD_APPLET_ON_UPDATE_ICON_BEGIN
 		CD_APPLET_STOP_UPDATE_ICON;
 	}
 CD_APPLET_ON_UPDATE_ICON_END
-
-
-
-static void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet)
-{
-	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN ();
-
-	double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	double fRatio = (myDock ? myDock->fRatio : 1);
-	int iWidth = (int) myIcon->fWidth / fRatio * fMaxScale;
-	int iHeight = (int) myIcon->fHeight / fRatio * fMaxScale;
-
-  //cd_debug( "iWidth=%d iHeight=%d", iWidth, iHeight);
-  
-	glPushMatrix ();
-
-  glScalef(0.8*iWidth, 0.8*iHeight, 1.0);
-  glTranslatef(0., 0., -1.0);
-
-  glRotatef(myData.current_rotX, 1.0f, 0.0f, 0.0f);  /* rotate on the X axis */
-  glRotatef(myData.current_rotY, 0.0f, 1.0f, 0.0f);  /* rotate on the Y axis */
-//  glRotatef(30.f, 0.0f, 0.0f, 1.0f);  /* rotate on the Z axis */
-
-	glEnable(GL_DEPTH_TEST);
-	glEnable (GL_BLEND);
-  glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend le cube transparent.
-  glAlphaFunc ( GL_GREATER, 0.1 ) ;
-  glEnable ( GL_ALPHA_TEST ) ;
-
-	glEnable(GL_TEXTURE_2D);
-	//glEnable(GL_TEXTURE_GEN_S);                                // oui je veux une generation en S
-	//glEnable(GL_TEXTURE_GEN_T);
-	glBindTexture(GL_TEXTURE_2D, myData.iNbUnreadMails > 0?myData.iHasMailTexture:myData.iNoMailTexture);
-	//glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR); // type de generation des coordonnees de la texture
-	//glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-	//glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // type de generation des coordonnees de la texture
-	//glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // pour les bouts de textures qui depassent.
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	//glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-	glCallList (myData.iCubeCallList);
-//	glCallList (myData.iCapsuleCallList);
-
-	glDisable(GL_TEXTURE_2D);
-	glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.);
-
-  glDisable ( GL_ALPHA_TEST ) ;
-	glDisable (GL_BLEND);
-	glDisable (GL_DEPTH_TEST);
-	glPopMatrix ();
-
-	CD_APPLET_FINISH_DRAWING_MY_ICON;
-}

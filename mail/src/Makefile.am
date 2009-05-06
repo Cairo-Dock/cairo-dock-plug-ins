@@ -13,7 +13,9 @@ libcd_mail_la_SOURCES = \
 	cd-mail-applet-notifications.h\
 	cd-mail-applet-struct.h\
 	cd-mail-applet-etpan.c\
-	cd-mail-applet-etpan.h
+	cd-mail-applet-etpan.h\
+	cd-mail-applet-accounts.c\
+	cd-mail-applet-accounts.h
 
 dock_version = `pkg-config --modversion cairo-dock`
 
@@ -36,6 +38,7 @@ libcd_mail_la_CFLAGS = \
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""cd_mail_icon.png"\"\
 	-DCD_APPLET_MULTI_INSTANCE=\"1\"\
+	-DGL_GLEXT_PROTOTYPES=\""1"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-g -ggdb -W

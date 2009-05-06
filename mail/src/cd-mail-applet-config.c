@@ -12,6 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "cd-mail-applet-struct.h"
 #include "cd-mail-applet-config.h"
+#include "cd-mail-applet-accounts.h"
 #include "cd-mail-applet-etpan.h"
 
 
@@ -39,8 +40,8 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 	//\_______________ On remet a zero les comptes mail.
 	cd_mail_free_all_accounts (myApplet);
 	
+	myData.iPrevNbUnreadMails = 0;
 	myData.iNbUnreadMails = 0;
-	myData.bNewMailFound = FALSE;
 	
 	//\_______________ On recupere les comptes mail dans le fichier de conf.
 	CDMailAccount *pMailAccount;
@@ -181,7 +182,11 @@ static void _cd_mail_add_new_account (GtkComboBox *pMailTypesCombo, GtkEntry *pM
 	cairo_dock_write_keys_to_file (pKeyFile, CD_APPLET_MY_CONF_FILE);
 	
 	//\____________ On recharge le panneau de config.
-	cairo_dock_reload_current_group_widget (myApplet);
+	gsize length = 0;
+	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
+	g_strfreev (pGroupList);
+	
+	cairo_dock_reload_current_group_widget_full (myApplet, length-1);  // on se place sur le dernier onglet, qui est celui du nouveau compte.
 	
 	g_key_file_free (pKeyFile);
 }

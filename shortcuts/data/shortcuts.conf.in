@@ -87,6 +87,9 @@ fg alpha = 1
 #[gtk-preferences]
 [Module]
 
+#F[Icons]
+frame_icon=
+
 #b List drives and volumes ?
 list drives = true
 
@@ -100,10 +103,14 @@ list bookmarks = true
 #b Separate different shortcuts with separators ?
 use separator = true
 
-#v
-sep1 =
+#n+ Name of the view used for the sub-dock :
+#{Let it empty to use default sub-dock view.}/
+renderer = 
 
-#i[No;Free space;Used space;Free space percent;Used space percent] Show disk usage :
+#F[Disk usage]
+frame_disk=
+
+#r[No;Free space;Used space;Free space percent;Used space percent] Show disk usage :
 disk usage = 4
 
 #i[1;30] Delay between disk usage refresh :
@@ -112,10 +119,3 @@ check interval = 10
 
 #b Display disk usage with a bar ?
 draw bar = true
-
-#v
-sep2 =
-
-#n+ Name of the view used for the sub-dock :
-#{Let it empty to use default sub-dock view.}/
-renderer = 

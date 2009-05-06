@@ -9,6 +9,17 @@
 
 #define MAIL_DEFAULT_NAME "_Mail_"
 
+typedef enum {
+  POP3_STORAGE = 1,
+  IMAP_STORAGE,
+  NNTP_STORAGE,
+  MBOX_STORAGE,
+  MH_STORAGE,
+  MAILDIR_STORAGE,
+  FEED_STORAGE
+} CDMailAccountType;
+
+
 struct _AppletConfig {
 	gchar *cNoMailUserImage;
 	gchar *cHasMailUserImage;
@@ -22,16 +33,15 @@ struct _AppletConfig {
 
 struct _AppletData {
 	GPtrArray *pMailAccounts;
-	guint iNbUnreadMails;
-	gboolean bNewMailFound;
+	guint iNbUnreadMails, iPrevNbUnreadMails;
 	time_t timeEndOfSound;
 	
 	GLuint iNoMailTexture;
 	GLuint iHasMailTexture;
 	GLuint iCubeCallList;
 
-	guint current_rotX;
-	guint current_rotY;
+	gdouble current_rotX;
+	gdouble current_rotY;
 } ;
 
 typedef struct {
@@ -41,7 +51,7 @@ typedef struct {
     gchar *name;
     struct mailstorage *storage;
     struct mailfolder *folder;
-    guint iNbUnseenMails;
+    guint iNbUnseenMails, iPrevNbUnseenMails;
     int driver;
     gchar *server;
     int port;

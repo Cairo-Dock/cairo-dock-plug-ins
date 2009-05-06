@@ -13,6 +13,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "cd-mail-applet-config.h"
 #include "cd-mail-applet-notifications.h"
 #include "cd-mail-applet-struct.h"
+#include "cd-mail-applet-accounts.h"
+#include "cd-mail-applet-etpan.h"
 #include "cd-mail-applet-init.h"
 
 
