@@ -28,7 +28,8 @@ CD_APPLET_INIT_BEGIN
 
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-
+	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
+	
 	if (myDesklet != NULL)  // on cree le weblet pour avoir qqch a afficher dans le desklet.
 	{
 		if( myData.pGtkMozEmbed == NULL )
@@ -55,7 +56,7 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-
+	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 CD_APPLET_STOP_END
 
 
@@ -86,8 +87,7 @@ CD_APPLET_RELOAD_BEGIN
 				cairo_dock_dialog_unreference (myData.dialog);
 				myData.dialog = NULL;
 				cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
-				//myDesklet->renderer = term_draw_in_desklet;
-				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // pou rempecher le clignotement du au double-buffer.
 				CD_APPLET_SET_STATIC_DESKLET;
 			}
 			else  // il faut passer du desklet au dialogue

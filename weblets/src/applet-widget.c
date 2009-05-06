@@ -92,32 +92,32 @@ void show_hide_scrollbars(CairoDockModuleInstance *myApplet)
 
 gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet)
 {
-		cd_message( "weblets: refreshing page.\n" );
-	
-		// load the page
-		if(myData.pGtkMozEmbed)
-		{
-			cd_message( " >> weblets: refresh !\n" );
-			if (myConfig.cURI_to_load == NULL)
-			{
-			  g_free (myConfig.cURI_to_load);
-			  myConfig.cURI_to_load = g_strdup ("http://www.google.com");
-			}
-			else
-			{
-			  if (strchr (myConfig.cURI_to_load, "://") == NULL)  // pas de protocole defini, on prend http par defaut.
-			  {
-			    gchar *tmp = myConfig.cURI_to_load;
-			    myConfig.cURI_to_load = g_strconcat ("http://", (strncmp (myConfig.cURI_to_load, "www.", 4) ? "www." : ""), myConfig.cURI_to_load, NULL);
-			    g_free (tmp);
-			  }
-			}
-			
-			webkit_web_view_open(WEBKIT_WEB_VIEW(myData.pWebKitView), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
-		}
-		/* available since rev. 30985, from fev. 2008 */
-		webkit_web_view_set_transparent(myData.pWebKitView, myConfig.bIsTransparent);
+	cd_message( "weblets: refreshing page.\n" );
 
-		return TRUE;
+	// load the page
+	if(myData.pGtkMozEmbed)
+	{
+		cd_message( " >> weblets: refresh !\n" );
+		if (myConfig.cURI_to_load == NULL)
+		{
+			g_free (myConfig.cURI_to_load);
+			myConfig.cURI_to_load = g_strdup ("http://www.google.com");
+		}
+		else
+		{
+			if (g_strstr_len (myConfig.cURI_to_load, -1, "://") == NULL)  // pas de protocole defini, on prend http par defaut.
+			{
+				gchar *tmp = myConfig.cURI_to_load;
+				myConfig.cURI_to_load = g_strconcat ("http://", (strncmp (myConfig.cURI_to_load, "www.", 4) ? "www." : ""), myConfig.cURI_to_load, NULL);
+				g_free (tmp);
+			}
+		}
+		
+		webkit_web_view_open(WEBKIT_WEB_VIEW(myData.pWebKitView), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
+	}
+	/* available since rev. 30985, from fev. 2008 */
+	webkit_web_view_set_transparent(myData.pWebKitView, myConfig.bIsTransparent);
+
+	return TRUE;
 }
 
