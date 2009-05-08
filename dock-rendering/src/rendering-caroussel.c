@@ -61,7 +61,7 @@ void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 	///pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
 	
 	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + myIcons.fReflectSize + iEllipseHeight + pDock->iMaxIconHeight;  // de bas en haut;
-	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, myBackground.iDockLineWidth + myBackground.iFrameMargin + (1 + g_fAmplitude) * pDock->iMaxIconHeight + myIcons.fReflectSize + myLabels.iconTextDescription.iSize);
+	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, myBackground.iDockLineWidth + myBackground.iFrameMargin + (1 + g_fAmplitude) * pDock->iMaxIconHeight + myIcons.fReflectSize + myLabels.iLabelSize);
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	

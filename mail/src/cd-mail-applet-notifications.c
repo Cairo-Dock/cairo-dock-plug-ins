@@ -99,8 +99,47 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		g_free (cLabel);
 	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-	
+
 CD_APPLET_ON_BUILD_MENU_END
+
+
+CD_APPLET_ON_SCROLL_BEGIN
+	if (myData.pMailAccounts == NULL)
+		return ;
+	
+	CDMailAccount *pMailAccount;
+	guint i;
+	for (i = 0; i < myData.pMailAccounts->len; i++)
+	{
+		pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
+		if (pMailAccount->name && strcmp (pMailAccount->name, CD_APPLET_CLICKED_ICON->acName) == 0)
+			break ;
+	}
+	if (i == myData.pMailAccounts->len || pMailAccount == NULL)
+		return ;
+	
+	if (cairo_dock_measure_is_running (pMailAccount->pAccountMailTimer))
+	{
+		g_print ("account is being checked, wait a second\n");
+		return ;
+	}
+	
+	struct mail_flags *pFlags = NULL;
+	mailmessage *pMessage = NULL;
+	int r;
+	GList *l;
+	gchar *cMessage;
+	for (l = pMailAccount->pUnseenMessageList; l != NULL; l = l->next)
+	{
+		cMessage = l->data;
+		cairo_dock_remove_dialog_if_any (CD_APPLET_CLICKED_ICON);
+		cairo_dock_show_temporary_dialog_with_icon (cMessage, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, 10e3, "same icon");
+		
+		// on marque le message comme lu.
+		///r = mailmessage_get_flags (pMessage, &pFlags);
+	}
+	
+CD_APPLET_ON_SCROLL_END
 
 
 CD_APPLET_ON_UPDATE_ICON_BEGIN

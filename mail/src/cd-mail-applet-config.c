@@ -106,6 +106,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cMailApplication = CD_CONFIG_GET_STRING ("Configuration", "mail application");
 	myConfig.cMailClass = CD_CONFIG_GET_STRING ("Configuration", "mail class");
 	myConfig.bStealTaskBarIcon = myConfig.cMailApplication && CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "inhibate appli", TRUE);
+	myConfig.bShowMessageContent = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show content", TRUE);
+	myConfig.bShowMessageContent = FALSE;
 	
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "Default");
 	

@@ -25,7 +25,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("mail"),
 	"It can check in any kind of mailbox (yahoo, gmail, etc)\n"
 	"Left-click to launch the prefered mail application,\n"
 	"Middle-click to refresh all the mailboxes."),
-	"Tofe (Christophe Chapuis)")
+	"Tofe (Christophe Chapuis) & Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_mail_load_custom_widget;
 	pInterface->save_custom_widget = cd_mail_save_custom_widget;

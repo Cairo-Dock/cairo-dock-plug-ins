@@ -74,7 +74,7 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2*(fDeltaX+fDeltaTip)));
 	//g_print ("fDeltaTip : %.2f\n", fDeltaTip);
 	
-	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + my_iCurveAmplitude + (1 + g_fAmplitude) * pDock->iMaxIconHeight + myLabels.iconTextDescription.iSize;  // de bas en haut.
+	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + my_iCurveAmplitude + (1 + g_fAmplitude) * pDock->iMaxIconHeight + myLabels.iLabelSize;  // de bas en haut.
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth - 4 * fDeltaTip;
 	

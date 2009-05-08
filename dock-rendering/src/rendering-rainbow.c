@@ -192,50 +192,8 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 		icon = ic->data;
 
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
-		/*cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, ! mySystem.bTextAlwaysHorizontal);
 		
-		if (mySystem.bTextAlwaysHorizontal && icon->pTextBuffer != NULL && icon->fScale > 1.01 && (! mySystem.bLabelForPointedIconOnly || icon->bPointed))  // 1.01 car sin(pi) = 1+epsilon :-/
-		{
-			double fOffsetX = -icon->fTextXOffset + icon->fWidthFactor * icon->fWidth * icon->fScale / 2;
-			if (fOffsetX < - icon->fDrawX)
-				fOffsetX = - icon->fDrawX;
-			else if (icon->fDrawX + fOffsetX + icon->iTextWidth > iWidth)
-				fOffsetX = iWidth - icon->iTextWidth - icon->fDrawX;
-			if (icon->fOrientation != 0 && ! mySystem.bTextAlwaysHorizontal)
-			{
-				cairo_rotate (pCairoContext, icon->fOrientation);
-			}
-			if (! bHorizontalDock && mySystem.bTextAlwaysHorizontal)
-			{
-				cairo_set_source_surface (pCairoContext,
-					icon->pTextBuffer,
-					0,
-					0);
-			}
-			else if (bHorizontalDock)
-				cairo_set_source_surface (pCairoContext,
-					icon->pTextBuffer,
-					fOffsetX,
-					pDock->bDirectionUp ? -myLabels.iconTextDescription.iSize : icon->fHeight * icon->fScale - icon->fTextYOffset);
-			else
-				cairo_set_source_surface (pCairoContext,
-					icon->pTextBuffer,
-					pDock->bDirectionUp ? -myLabels.iconTextDescription.iSize : icon->fHeight * icon->fScale - icon->fTextYOffset,
-					fOffsetX);
-			
-			double fMagnitude;
-			if (mySystem.bLabelForPointedIconOnly)
-			{
-				fMagnitude = fDockMagnitude;  // (icon->fScale - 1) / g_fAmplitude / sin (icon->fPhase);  // sin (phi ) != 0 puisque fScale > 1.
-			}
-			else
-			{
-				fMagnitude = (icon->fScale - 1) / g_fAmplitude / pDock->fMagnitudeMax;
-				fMagnitude *= (fMagnitude * mySystem.fLabelAlphaThreshold + 1) / (mySystem.fLabelAlphaThreshold + 1);
-			}
-			cairo_paint_with_alpha (pCairoContext, fMagnitude);
-		}*/
+		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
 		
 		cairo_restore (pCairoContext);
 
@@ -516,7 +474,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	
 	//g_print ("fRadius : %.2f ; limite : %.2f\n", fRadius, fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale);
 	if (! pDock->bInside ||
-		fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + myLabels.iconTextDescription.iSize - (pDock->fFoldingFactor > 0 ? 20 : 0) ||
+		fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + myLabels.iLabelSize - (pDock->fFoldingFactor > 0 ? 20 : 0) ||
 		(fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset) && fRadius > iMinRadius + .5 * pDock->iMaxIconHeight * fMaxScale)
 	{
 		cd_debug ("<<< on sort du demi-disque >>>\n");

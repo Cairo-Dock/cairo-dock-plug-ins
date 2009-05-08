@@ -474,7 +474,10 @@ void cd_mail_free_account (CDMailAccount *pMailAccount)
 		mailfolder_free(pMailAccount->folder);
 	if( pMailAccount->storage )
 		mailstorage_free(pMailAccount->storage);
-
+	
+	g_list_foreach (pMailAccount->pUnseenMessageList, (GFunc) g_free, NULL);
+	g_list_free (pMailAccount->pUnseenMessageList);
+	
 	g_free( pMailAccount );
 }
 

@@ -29,6 +29,7 @@ struct _AppletConfig {
 	gchar *cMailApplication;
 	gchar *cMailClass;
 	gboolean bStealTaskBarIcon;
+	gboolean bShowMessageContent;
 } ;
 
 struct _AppletData {
@@ -45,9 +46,7 @@ struct _AppletData {
 } ;
 
 typedef struct {
-    gboolean dirtyfied;
     CairoDockModuleInstance *pAppletInstance;
-	
     gchar *name;
     struct mailstorage *storage;
     struct mailfolder *folder;
@@ -63,6 +62,8 @@ typedef struct {
     guint timeout;
     CairoDockMeasure *pAccountMailTimer;
     Icon *icon;
+    gboolean bInitialized;
+    GList *pUnseenMessageList;  // liste de gchar*
 } CDMailAccount;
 
 

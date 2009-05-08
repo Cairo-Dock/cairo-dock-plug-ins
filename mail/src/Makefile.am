@@ -29,12 +29,11 @@ libcd_mail_la_CFLAGS = \
 	$(libetpan_CFLAGS) \
 	-D_POSIX_SOURCE=1 -DHAVE_SSL_SUPPORT=1\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(maildatadir)"\"\
-	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""mail.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""mail"\"\
-	-DMY_APPLET_VERSION=\""$(VERSION)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_PACKAGE)"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION_MAIL)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_MAIL)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""cd_mail_icon.png"\"\
 	-DCD_APPLET_MULTI_INSTANCE=\"1\"\

@@ -1,4 +1,4 @@
-#!en;@VERSION@
+#!en;@VERSION_MAIL@
 
 #[gtk-about]
 [Icon]
@@ -91,6 +91,9 @@ theme = Default
 #{Let it empty to use default sub-dock view.}/
 renderer = 
 
+#b Show new messages' content ?
+show content = true
+
 #F[Theme overriding] 
 frame_over =
 
@@ -118,8 +121,8 @@ mail class = Thunderbird-bin
 #{It will prevent the application's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
 inhibate appli = true
 
-#F
-frame2_fin =
+#F[Add an mail account]
+frame_mail =
 
 #_ Add an account with specified type and name:
 #{The new account will be created with specified type and name.}
