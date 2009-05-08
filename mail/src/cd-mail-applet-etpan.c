@@ -79,6 +79,7 @@ void cd_mail_acquire_folder_data(CDMailAccount *pMailAccount)
 					
 					// On recupere les messages non lus.
 					//if (myConfig.bShowMessageContent && pMailAccount->bInitialized)  // && pMailAccount->iNbUnseenMails > pMailAccount->iPrevNbUnseenMails
+					CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;					
 					if (myConfig.bShowMessageContent)
 					{
 						g_print ("getting %d message body...\n", pMailAccount->iNbUnseenMails);
@@ -96,7 +97,7 @@ void cd_mail_acquire_folder_data(CDMailAccount *pMailAccount)
 						char *cBodyText, *cFrom, *cSubject, *cMessage, *cUid;
 						size_t length;
 						guint i;
-						int iNbCheckedAccounts = MIN (20, pMailAccount->iNbUnseenMails);
+						guint iNbCheckedAccounts = MIN (20, pMailAccount->iNbUnseenMails);
 						for (i = 0; i < iNbCheckedAccounts; i ++)
 						{
 							cFrom = NULL;
