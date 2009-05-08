@@ -10,6 +10,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Yann SLADEK\n"
+"Language-Team: \n"
 
 #: ../src/applet-draw.c:144
 msgid "calculating"
@@ -26,23 +30,22 @@ msgstr "fichier(s)"
 #: ../src/applet-init.c:23
 msgid ""
 "This applet manages the dustbin\n"
-"You can threw files and unmount disks by drag andn droping them on the "
-"icon.\n"
+"You can threw files and unmount disks by drag andn droping them on the icon.\n"
 "The applet can warn you if you use too much space\n"
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 "Cet applet gère la corbeille\n"
-"Vous pouvez jeter des fichiers et démonter des disques en les déposants sur "
-"l'icône de l'applet.\n"
+"Vous pouvez jeter des fichiers et démonter des disques en les déposants sur l'icône de l'applet.\n"
 "L'applet peut vous prévenir si vous utilisez trop d'espace\n"
-"Clique du milieu pour afficher des informations utiles à propos de la "
-"corbeille."
+"Clique du milieu pour afficher des informations utiles à propos de la corbeille."
 
-#: ../src/applet-notifications.c:31 ../src/applet-notifications.c:36
+#: ../src/applet-notifications.c:31
+#: ../src/applet-notifications.c:36
 msgid "Show Trash"
 msgstr "Ouvrir la poubelle"
 
-#: ../src/applet-notifications.c:32 ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:45
 msgid "Delete Trash"
 msgstr "Vider la poubelle"
 
@@ -119,25 +122,16 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can move it with ALT + left_click. "
-"Negative values are counted from the right/bottom of the screen"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche.Une valeur négative est comptée à partir du coin inférieur droit "
-"de l'écran"
+msgid "Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen"
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche.Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -156,26 +150,16 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (class=Cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:31
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si la position est verrouillé, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillé, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche"
 
 #: ../data/messages:33
 msgid "Lock position ?"
@@ -195,21 +179,15 @@ msgstr "Décorations"
 
 #: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
-"dessous."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
 
 #: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:45
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -252,12 +230,8 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:67
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -311,12 +285,10 @@ msgstr "Nombre total de fichiers"
 msgid "Total weight"
 msgstr "Poids total"
 
-#: ../data/messages:95 ../data/messages:99
-msgid ""
-"in Mb. You will be notified when you go over this limit. Set 0 to not use it."
-msgstr ""
-"en Mo. Vous serez notifié si vous dépassez cette limite. Mettez 0 pour ne "
-"pas l'utiliser."
+#: ../data/messages:95
+#: ../data/messages:99
+msgid "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+msgstr "en Mo. Vous serez notifié si vous dépassez cette limite. Mettez 0 pour ne pas l'utiliser."
 
 #: ../data/messages:97
 msgid "Maximum total size of all dustbins :"
@@ -335,29 +307,20 @@ msgid "They don't even need to be real trash directories."
 msgstr "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle."
 
 #: ../data/messages:107
-msgid ""
-"Here you can specify a list of additionnal Trash directories to monitor :"
-msgstr ""
-"Vous pouvez spécifier ici une liste additionnelle de répertoire(s) poubelle"
-"(s) à surveiller :"
+msgid "Here you can specify a list of additionnal Trash directories to monitor :"
+msgstr "Vous pouvez spécifier ici une liste additionnelle de répertoire(s) poubelle(s) à surveiller :"
 
 #: ../data/messages:109
 msgid "in seconds, only used if you can't monitor directories."
-msgstr ""
-"en secondes, seulement utilisé si la surveillance de fichiers n'est pas "
-"disponible."
+msgstr "en secondes, seulement utilisé si la surveillance de fichiers n'est pas disponible."
 
 #: ../data/messages:111
 msgid "Interval of time to check if dustbin is full/empty :"
-msgstr ""
-"Intervalle de temps pour la vérification de la poubelle (vide/pleine) :"
+msgstr "Intervalle de temps pour la vérification de la poubelle (vide/pleine) :"
 
 #: ../data/messages:113
-msgid ""
-"Only use this if you notice that the applet can't display the trash on click."
-msgstr ""
-"N'utilisez cela que si vous notez que l'applet de peut pas afficher la "
-"poubelle au clic."
+msgid "Only use this if you notice that the applet can't display the trash on click."
+msgstr "N'utilisez cela que si vous notez que l'applet de peut pas afficher la poubelle au clic."
 
 #: ../data/messages:115
 msgid "Alternative file browser used to show a trash :"
@@ -369,9 +332,8 @@ msgstr "Ouvrir la poubelle avec :"
 #~ msgstr ""
 #~ "Ceci est l'applet Dustbin\n"
 #~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
+

@@ -7,27 +7,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"Last-Translator: Yann SLADEK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
 
 #: ../src/applet-init.c:22
 msgid ""
 "This applet lets you browse a folder and its sub-folders very quickly.\n"
 "You can set up a shortkey to pop up the menu.\n"
 "Midlle-click will open the main folder.\n"
-"This applet can be instanciated several times, if you want to browse "
-"different folders."
+"This applet can be instanciated several times, if you want to browse different folders."
 msgstr ""
-"Cet applet vous permet de naviguer dans un dossier et ses sous-dossier très "
-"rapidement.\n"
+"Cet applet vous permet de naviguer dans un dossier et ses sous-dossier très rapidement.\n"
 "Vous pouvez configurer un raccourci pour ouvrir directement la navigation\n"
 "Clique du milieu pour ouvrir le dossier principal.\n"
-"Plusieurs instances de cet applet peuvent être lancés si vous désirer "
-"naviguer dans différents dossiers."
+"Plusieurs instances de cet applet peuvent être lancés si vous désirer naviguer dans différents dossiers."
 
-#: ../src/applet-menu.c:97 ../src/applet-menu.c:103
+#: ../src/applet-menu.c:97
+#: ../src/applet-menu.c:103
 msgid "Open this folder"
 msgstr "Ouvrir ce dossier"
 
@@ -52,12 +53,10 @@ msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Let empty to use the default one."
-msgstr "Laissez vide pour utiliser le nom du dossier."
+msgstr "Laissez vide pour utiliser celui par défaut."
 
 #: ../data/messages:13
-#, fuzzy
 msgid "Image's filename :"
 msgstr "Nom de l'icône :"
 
@@ -70,12 +69,8 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:19
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:21
 msgid "Desklet's dimension (width x height) :"
@@ -83,9 +78,7 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:23
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clique gauche"
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche"
 
 #: ../data/messages:25
 msgid "Desklet's position (x ; y) :"
@@ -104,26 +97,16 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:33
-#, fuzzy
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (class=Cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:35
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:37
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
-"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
-"avec ALT + clique_gauche"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé avec ALT + clique_gauche"
 
 #: ../data/messages:39
 msgid "Lock position ?"
@@ -143,21 +126,15 @@ msgstr "Décorations"
 
 #: ../data/messages:47
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
-"dessous."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
 
 #: ../data/messages:49
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:51
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:53
 msgid "Background image :"
@@ -200,12 +177,8 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:73
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:75
 msgid "Foreground image :"
@@ -248,15 +221,10 @@ msgid "Shortkey to show/hide the menu :"
 msgstr "Raccourci pour afficher/cacher le menu :"
 
 #: ../data/messages:95
-msgid ""
-"Number of items loaded at once. Setting a high value speeds up a little the "
-"loading, but blocks the appli more."
-msgstr ""
-"Nombre d'objets à charger en une fois. Un paramètre trop élevé accélère un "
-"peu le chargement, mais bloque plus l'application."
+msgid "Number of items loaded at once. Setting a high value speeds up a little the loading, but blocks the appli more."
+msgstr "Nombre d'objets à charger en une fois. Un paramètre trop élevé accélère un peu le chargement, mais bloque plus l'application."
 
 #: ../data/messages:97
-#, fuzzy
 msgid "Gradual building of the menu :"
 msgstr "Construction graduelle du menu"
 
@@ -267,10 +235,8 @@ msgstr "Construction graduelle du menu"
 #~ msgstr ""
 #~ "Ceci est l'applet quick-browser\n"
 #~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
 
@@ -281,6 +247,6 @@ msgstr "Construction graduelle du menu"
 #~ msgstr ""
 #~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
 #~ "+ clic gauche."
-
 #~ msgid "Module"
 #~ msgstr "Module"
+

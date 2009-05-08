@@ -7,14 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"Last-Translator: Yann SLADEK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
 
 #: ../src/applet-init.c:18
 msgid "motion blur"
-msgstr ""
+msgstr "motion blur"
 
 #: ../src/applet-init.c:21
 msgid "This plug-in adds a motion blur effect on docks."
@@ -22,7 +25,7 @@ msgstr "Ce plug-in ajoute un effet de mouvements flous au dock"
 
 #: ../data/messages:1
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
 #: ../data/messages:3
 msgid "Also blur on mouse movement ?"
@@ -34,73 +37,55 @@ msgstr "Quantité de flou :"
 
 #~ msgid "Icon"
 #~ msgstr "Icône"
-
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "Taille d'icône souhaitée pour cette applet"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
-
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
-
 #~ msgid "Module"
 #~ msgstr "Module"
-
 #~ msgid "Icon's name :"
 #~ msgstr "Nom de l'icône :"
-
 #~ msgid ""
 #~ "This is the motion_blur applet\n"
 #~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
 #~ msgstr ""
 #~ "Ceci est l'applet motion_blur\n"
 #~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
 #~ msgid "Desklet"
 #~ msgstr "Desklet"
-
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + "
 #~ "middle_click or ALT + left_click for exemple."
 #~ msgstr ""
 #~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner "
 #~ "avec ALT + clic_milieu ou ALT + clic_droit par exemple."
-
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "Dimension du desklet (largeur x hauteur) :"
-
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"
 #~ msgstr ""
 #~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
 #~ "+ clic gauche."
-
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "Position du desklet (x ; y) :"
-
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "Est-il détaché du dock ?"
-
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Garder en-dessous des autres fenêtres ?"
-
 #~ msgid "Keep above other windows ?"
 #~ msgstr "Garder au-dessus des autres fenêtres ?"
-
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 #~ "(class=Cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
 #~ "de Compiz à : (class=Cairo-dock & type=utility)"
-
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "Garder sur la couche des widgets ?"
-
 #~ msgid ""
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
@@ -108,6 +93,6 @@ msgstr "Quantité de flou :"
 #~ "Si verrouillé, le desklet ne pourra pas être bougé simplement en le "
 #~ "tirant avec le bouton gauche de la souris. Bien sur il pourra toujours "
 #~ "être bougé avec ALT + clique_gauche"
-
 #~ msgid "Lock position ?"
 #~ msgstr "Verrouiller la position ?"
+

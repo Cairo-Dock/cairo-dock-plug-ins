@@ -11,21 +11,23 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Yann SLADEK\n"
+"Language-Team: \n"
 
 #: ../src/applet-init.c:13
 msgid ""
-"This applet shows you the bit rate of your internet connection and some "
-"stats about it.\n"
+"This applet shows you the bit rate of your internet connection and some stats about it.\n"
 "Left-click on the icon to have the total amount of data transfered\n"
 "Middle-click to (de)activate the network (needs NetworManager)"
 msgstr ""
-"Cet applet vous indique le débit de votre connexion Internet et quelques "
-"statistiques en relation.\n"
-"Clique gauche sur l'icône pour avoir la valeur totale des données "
-"transférées\n"
+"Cet applet vous indique le débit de votre connexion Internet et quelques statistiques en relation.\n"
+"Clique gauche sur l'icône pour avoir la valeur totale des données transférées\n"
 "Clique du milieu pour (dés)activer le réseau (nécessite NetworManager)"
 
-#: ../src/applet-netspeed.c:24 ../src/applet-netspeed.c:32
+#: ../src/applet-netspeed.c:24
+#: ../src/applet-netspeed.c:32
 msgid "B"
 msgstr "o"
 
@@ -33,7 +35,8 @@ msgstr "o"
 msgid "KB"
 msgstr "Ko"
 
-#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:14
+#: ../src/applet-netspeed.c:48
+#: ../src/applet-notifications.c:14
 msgid "MB"
 msgstr "Mo"
 
@@ -65,9 +68,10 @@ msgstr "envoyés"
 #, c-format
 msgid ""
 "Interface '%s' seems to not exist or is not readable.\n"
-" You may need to open the configuration panel of this applet, and choose the "
-"interface you wish to monitor."
+" You may need to open the configuration panel of this applet, and choose the interface you wish to monitor."
 msgstr ""
+"L'interface '%s' semble ne pas exister ou n'est pas lisible.\n"
+"Vous devriez ouvrir la configuration de cette applet, et choisir l'interface que vous voulez monitorer."
 
 #: ../src/applet-notifications.c:44
 msgid "Monitor System"
@@ -102,25 +106,16 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can move it with ALT + left_click. "
-"Negative values are counted from the right/bottom of the screen"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clique gauche. Une valeur négative est comptée à partir du coin inférieur "
-"droit de l'écran"
+msgid "Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen"
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche. Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -139,26 +134,16 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (class=Cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:31
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche."
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:33
 msgid "Lock position ?"
@@ -178,21 +163,15 @@ msgstr "Décorations"
 
 #: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
-"dessous."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
 
 #: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:45
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -235,12 +214,8 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:67
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -250,7 +225,8 @@ msgstr "Image d'avant-plan :"
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:73 ../data/messages:127
+#: ../data/messages:73
+#: ../data/messages:127
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -282,21 +258,19 @@ msgstr "Circulaire"
 msgid "Plain Circle"
 msgstr "Circulaire plein"
 
-#: ../data/messages:89 ../data/messages:97
-#, fuzzy
+#: ../data/messages:89
+#: ../data/messages:97
 msgid "It's the color of the graphic for high CPU values."
-msgstr ""
-"C'est la couleur du graphique pour les hautes valeurs de téléchargement."
+msgstr "C'est la couleur du graphique pour les hautes valeurs de téléchargement."
 
 #: ../data/messages:91
 msgid "High values color for the download speed :"
 msgstr "Couleur des hautes valeurs de vitesse :"
 
-#: ../data/messages:93 ../data/messages:101
-#, fuzzy
+#: ../data/messages:93
+#: ../data/messages:101
 msgid "It's the color of the graphic for low CPU values."
-msgstr ""
-"C'est la couleur du graphique pour les basses valeurs de téléchargement."
+msgstr "C'est la couleur du graphique pour les basses valeurs de téléchargement."
 
 #: ../data/messages:95
 msgid "Low values color for the download speed :"
@@ -319,17 +293,12 @@ msgid "Background color of the graphic :"
 msgstr "Couleur d'arrière plan du graphique :"
 
 #: ../data/messages:109
-#, fuzzy
 msgid "Choose one of the available themes :"
 msgstr "Liste des thèmes disponibles pour la jauge :"
 
 #: ../data/messages:111
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
-msgstr ""
-"Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 si "
-"vous ne voulez pas de filigrane"
+msgid "Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark."
+msgstr "Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 si vous ne voulez pas de filigrane"
 
 #: ../data/messages:113
 msgid "Image to display as a watermark on the gauge :"
@@ -385,20 +354,16 @@ msgstr "Commande utilisateur pour montrer le moniteur système :"
 
 #~ msgid "Interface '%s' seems to not exist or is not readable"
 #~ msgstr "L'interface '%s' semble ne pas exister ou n'est pas lisible"
-
 #~ msgid ""
 #~ "This is the netspeed applet\n"
 #~ " made by parAdOxxx_ZeRo for Cairo-Dock"
 #~ msgstr ""
 #~ "Ceci est l'applet netspeed\n"
 #~ " écrite par parAdOxxx_ZeRo pour Cairo-Dock"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
-
 #~ msgid ""
 #~ "Total amount of data :\n"
 #~ "  downloaded : %.2f%s\n"
@@ -407,3 +372,4 @@ msgstr "Commande utilisateur pour montrer le moniteur système :"
 #~ "Données totales :\n"
 #~ "  téléchargées : %.2f%s\n"
 #~ "  envoyées : %2f%s"
+

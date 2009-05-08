@@ -7,33 +7,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
+"Last-Translator: Yann SLADEK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
 
 #: ../src/applet-init.c:33
-#, fuzzy
 msgid ""
 "Setup the luminosity of your screen directly from your dock.\n"
 "Scroll up/down to increase/decrease the luminosity\n"
 "Left-click to open a dialog to setup the luminosity\n"
 "Middle-click to set it up for each color.\n"
-"You can also define a luminosity value that will be applied automatically on "
-"startup.\n"
+"You can also define a luminosity value that will be applied automatically on startup.\n"
 msgstr ""
 "Réglez la luminosité de votre écran directement depuis votre dock.\n"
 "La roulette tournant vers le haut/bas pour augmenter/réduire la luminosité.\n"
 "Clique gauche pour ouvrir un menu pour la configuration de la luminosité.\n"
 "Clique du milieu pour régler chaque couleur."
 
-#: ../src/applet-notifications.c:26 ../src/applet-xgamma.c:149
+#: ../src/applet-notifications.c:26
+#: ../src/applet-xgamma.c:149
 msgid "Set up gamma :"
 msgstr "Réglez le gamma :"
 
 #: ../src/applet-notifications.c:51
 msgid "Apply current luminosity on startup"
-msgstr ""
+msgstr "Appliquer la luminosité actuelle au démarrage"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -68,12 +70,8 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -81,9 +79,7 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -102,26 +98,16 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
-#, fuzzy
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (class=Cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:35
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche."
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:37
 msgid "Lock position ?"
@@ -141,21 +127,15 @@ msgstr "Décorations"
 
 #: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
-"dessous."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
 
 #: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:49
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -198,12 +178,8 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:71
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"
@@ -223,11 +199,11 @@ msgstr "Variation pour un pas de roulette, en % :"
 
 #: ../data/messages:81
 msgid "Set 0 to not use it."
-msgstr ""
+msgstr "Mettez 0 pour ne pas l'utiliser."
 
 #: ../data/messages:83
 msgid "Luminosity to automatically apply on startup :"
-msgstr ""
+msgstr "Luminosité à appliquer automatiquement au démarrage :"
 
 #~ msgid ""
 #~ "This is the Xgamma applet\n"
@@ -235,9 +211,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Ceci l'applet Xgamma\n"
 #~ " écrite par Fabrice Rey pour Cairo-Dock"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
+

@@ -10,10 +10,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Yann SLADEK\n"
+"Language-Team: \n"
 
 #: ../src/applet-init.c:18
 msgid "showDesklets"
-msgstr ""
+msgstr "showDesklets"
 
 #: ../src/applet-init.c:21
 msgid ""
@@ -43,7 +47,8 @@ msgstr "Taille d'icône souhaitée pour cette applet"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-#: ../data/messages:9 ../data/messages:13
+#: ../data/messages:9
+#: ../data/messages:13
 msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser l'icône par défaut"
 
@@ -77,9 +82,8 @@ msgstr "Raccourci clavier pour montrer/cacher les deklets:"
 #~ msgstr ""
 #~ "Ceci est l'applet showDesklets\n"
 #~ " écrite par Fabrice Rey pour Cairo-Dock"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
+

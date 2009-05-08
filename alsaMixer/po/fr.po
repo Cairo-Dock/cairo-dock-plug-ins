@@ -10,25 +10,27 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Yann SLADEK\n"
+"Language-Team: \n"
 
 #: ../src/applet-init.c:12
 msgid "AlsaMixer"
-msgstr ""
+msgstr "AlsaMixer"
 
 #: ../src/applet-init.c:15
 msgid ""
 "This applet lets you control the sound volume from the dock.\n"
 "Scroll up/down on the icon to increase/decrease the volume.\n"
-"Click on icon to show/hide volume control (you can bind a keyboard shortcut "
-"for it)\n"
+"Click on icon to show/hide volume control (you can bind a keyboard shortcut for it)\n"
 "You can also hide the dialog by clicking on it.\n"
 "Middle-click to set or unset to mute.\n"
 "This applet works with the Alsa sound driver."
 msgstr ""
 "Cet applet permet un contrôle aisé du volume depuis le dock.\n"
 "Roulette de vers haut/bas sur l'icône pour augmenter/diminuer le volume.\n"
-"Cliquez sur l'icône pour afficher/cacher le contrôle du volume (vous pouvez "
-"définir un raccourci pour cela)\n"
+"Cliquez sur l'icône pour afficher/cacher le contrôle du volume (vous pouvez définir un raccourci pour cela)\n"
 "Vous pouvez aussi cacher l'infobulle en cliquant dessus.\n"
 "Clique du milieu pour désactiver ou activer le son.\n"
 "Cet applet fonctionne avec les pilotes de son Alsa."
@@ -66,6 +68,9 @@ msgid ""
 "You should try to open the configuration panel of the applet,\n"
 " and select the proper audio channel you want to control."
 msgstr ""
+"Impossible de trouver un canal audio appelé '%s'\n"
+"Vous devriez essayer d'ouvrir la configuration de cette applet,\n"
+" et de sélectionner le bon canal audio que vous voulez contrôler."
 
 #: ../src/applet-mixer.c:268
 msgid "Set up volume :"
@@ -100,25 +105,16 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can move it with ALT + left_click. "
-"Negative values are counted from the right/bottom of the screen"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clique gauche. Une valeur négative est comptée à partir du coin inférieur "
-"droit de l'écran"
+msgid "Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen"
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche. Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -137,26 +133,16 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (class=Cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:31
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche."
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:33
 msgid "Lock position ?"
@@ -176,21 +162,15 @@ msgstr "Décorations"
 
 #: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
-"dessous."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
 
 #: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:45
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -233,12 +213,8 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:67
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -269,15 +245,8 @@ msgid "Choose which channel to control :"
 msgstr "Choississez quel canal contrôler :"
 
 #: ../data/messages:83
-msgid ""
-"On some cards, a channel only controls 1 side (right or left). You will then "
-"need to specify a second channel here, to control both sides. Most of the "
-"time, you should just let it empty."
-msgstr ""
-"Sur certaines cartes, un canal ne contrôle qu'un seul côté (droit ou "
-"gauche). Vous aurez alors besoin de spécifier un second canal ici, pour "
-"contrôler les 2 côtés. La plupart du temps, vous devriez just laisser ce "
-"paramètre vide."
+msgid "On some cards, a channel only controls 1 side (right or left). You will then need to specify a second channel here, to control both sides. Most of the time, you should just let it empty."
+msgstr "Sur certaines cartes, un canal ne contrôle qu'un seul côté (droit ou gauche). Vous aurez alors besoin de spécifier un second canal ici, pour contrôler les 2 côtés. La plupart du temps, vous devriez just laisser ce paramètre vide."
 
 #: ../data/messages:85
 msgid "Optionnally, choose a second channel to control :"
@@ -347,7 +316,9 @@ msgstr "Transparence"
 msgid "Draw Bar"
 msgstr "Dessiner une barre"
 
-#: ../data/messages:119 ../data/messages:123 ../data/messages:127
+#: ../data/messages:119
+#: ../data/messages:123
+#: ../data/messages:127
 msgid "Let empty to use the default one."
 msgstr "Laisser vide pour utiliser celle par défaut."
 
@@ -365,16 +336,14 @@ msgstr "Icône 'muet' :"
 
 #~ msgid "I couldn't find any element '%s'"
 #~ msgstr "Impossible de trouver l'élément '%s'"
-
 #~ msgid ""
 #~ "This is the AlsaMixer applet\n"
 #~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
 #~ msgstr ""
 #~ "Ceci est l'applet AlsaMixer\n"
 #~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
+

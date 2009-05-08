@@ -10,8 +10,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Yann SLADEK\n"
+"Language-Team: \n"
 
-#: ../src/applet-cpusage.c:41 ../src/applet-cpusage.c:46
+#: ../src/applet-cpusage.c:41
+#: ../src/applet-cpusage.c:46
 msgid "day(s)"
 msgstr "jour(s)"
 
@@ -21,7 +26,7 @@ msgstr "Chargement"
 
 #: ../src/applet-init.c:10
 msgid "cpusage"
-msgstr ""
+msgstr "cpusage"
 
 #: ../src/applet-init.c:13
 msgid ""
@@ -31,10 +36,10 @@ msgid ""
 msgstr ""
 "Cet applet vous indique l'utilisation en temps réel du CPU.\n"
 "Clique du milieu sur l'icône pour avoir quelques informations précieuses.\n"
-"Clique gauche sur l'icône pour avoir une liste des programmes les plus "
-"gourmants en CPU."
+"Clique gauche sur l'icône pour avoir une liste des programmes les plus gourmants en CPU."
 
-#: ../src/applet-notifications.c:105 ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:123
 msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échoué"
 
@@ -87,12 +92,8 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -100,9 +101,7 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -121,26 +120,16 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (class=Cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:31
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si la position est verrouillé, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillé, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche"
 
 #: ../data/messages:33
 msgid "Lock position ?"
@@ -160,21 +149,15 @@ msgstr "Décorations"
 
 #: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
-"dessous."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
 
 #: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:45
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -217,12 +200,8 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:67
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -232,7 +211,8 @@ msgstr "Image d'avant-plan"
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan"
 
-#: ../data/messages:73 ../data/messages:133
+#: ../data/messages:73
+#: ../data/messages:133
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -289,17 +269,12 @@ msgid "Background color of the graphic :"
 msgstr "Couleur de fond du graphique :"
 
 #: ../data/messages:101
-#, fuzzy
 msgid "Choose one of the available themes :"
 msgstr "Liste des thèmes disponibles pour les jauges :"
 
 #: ../data/messages:103
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
-msgstr ""
-"Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si "
-"vous ne voulez pas de filigrane."
+msgid "Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark."
+msgstr "Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si vous ne voulez pas de filigrane."
 
 #: ../data/messages:105
 msgid "Image to display as a watermark :"
@@ -334,12 +309,8 @@ msgid "Top List"
 msgstr "Tête de liste"
 
 #: ../data/messages:121
-msgid ""
-"When you left-click on the icon, you will get the list of the N most CPU-"
-"using programs."
-msgstr ""
-"Le clic droit sur l'icône vous donne la liste des programmes qui utilisent "
-"le plus de CPU."
+msgid "When you left-click on the icon, you will get the list of the N most CPU-using programs."
+msgstr "Le clic droit sur l'icône vous donne la liste des programmes qui utilisent le plus de CPU."
 
 #: ../data/messages:123
 msgid "Number of programs to display in the top list :"
@@ -361,7 +332,8 @@ msgstr "Seconde couleur pour le texte de la graduation de la top liste."
 msgid "Stop color of the top list :"
 msgstr "Couleur de fin de la top liste :"
 
-#: ../data/messages:135 ../data/messages:139
+#: ../data/messages:135
+#: ../data/messages:139
 msgid "in seconds."
 msgstr "en secondes."
 
@@ -387,9 +359,8 @@ msgstr "Commande pour montrer un moniteur système :"
 #~ msgstr ""
 #~ "Ceci est l'applet cpusage\n"
 #~ " écrite par parAdOxxx_ZeRo pour Cairo-Dock"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
+

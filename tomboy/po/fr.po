@@ -7,12 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-05-19 21:21+0100\n"
-"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
+"PO-Revision-Date: 2009-05-08 21:24+0100\n"
+"Last-Translator: Yann SLADEK\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
 
 #: ../src/tomboy-init.c:14
 msgid "Control your TomBoy's notes directly in the dock !"
@@ -51,9 +52,8 @@ msgid "Search"
 msgstr "Chercher"
 
 #: ../src/tomboy-notifications.c:178
-#, fuzzy
 msgid "Searh for tag"
-msgstr "Chercher pour le tag"
+msgstr "Searh for tag"
 
 #: ../src/tomboy-notifications.c:180
 msgid "Search for today's note"
@@ -95,7 +95,9 @@ msgstr "Nom du conteneur auquel il appartient:"
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:13 ../data/messages:17 ../data/messages:21
+#: ../data/messages:13
+#: ../data/messages:17
+#: ../data/messages:21
 msgid "Let t empty to use the default icon."
 msgstr "Laissez vide pour utiliser l'icône par défaut."
 
@@ -116,16 +118,8 @@ msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:27
-msgid ""
-"Depending on your tomboy's version, the note deletion may not be "
-"automatically notified to us. Only check this box if you notice some error "
-"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
-"terminal."
-msgstr ""
-"Suivant votre version de Tomboy, la suppression de message peut ne pas nous "
-"être notifiée. Cochez cette case si vous remarquez un message du style <<No "
-"marshaller for signature of signal 'NoteDeleted'>> dans le terminal en mode "
-"Debug."
+msgid "Depending on your tomboy's version, the note deletion may not be automatically notified to us. Only check this box if you notice some error message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal."
+msgstr "Suivant votre version de Tomboy, la suppression de message peut ne pas nous être notifiée. Cochez cette case si vous remarquez un message du style <<No marshaller for signature of signal 'NoteDeleted'>> dans le terminal en mode Debug."
 
 #: ../data/messages:29
 msgid "Emulate the 'NoteDeleted' signal ?"
@@ -144,11 +138,8 @@ msgid "Draw note's content on their icon ?"
 msgstr "Dessiner le contenu des notes sur leur icône ?"
 
 #: ../data/messages:37
-msgid ""
-"Write the date format you usually use in your notes. The syntax is the one "
-"of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
-"digits), etc. Let it blnk to use the default one (%d/%m/%y)."
-msgstr ""
+msgid "Write the date format you usually use in your notes. The syntax is the one of 'strftime' : %d for the day, %m for the month, %y for the year (2 digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+msgstr "Ecrire le format de date que vous utilisez couramment dans vos notes. La syntaxe est l'une de 'strftime' : %d pour le jour, %m pour le mois, %y pour l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut (%d/%m/%y)."
 
 #: ../data/messages:39
 msgid "Date format to search for :"
@@ -168,9 +159,8 @@ msgstr "Nommer automatiquement une nouvelle note ?"
 
 #~ msgid "Applet by Necropotame (Adrien Pilleboue)"
 #~ msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
+

@@ -7,22 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-05-23 08:58+0100\n"
-"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
+"PO-Revision-Date: 2009-05-08 21:25+0100\n"
+"Last-Translator: Yann SLADEK\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
 
 #: ../src/applet-init.c:21
 msgid ""
-"The weblets applet allows you to show an interactive web page on your "
-"desktop.\n"
+"The weblets applet allows you to show an interactive web page on your desktop.\n"
 "You can select your web page, set the desired scrolling,\n"
 "and hide the scrollbars to get a real 'crop' of the page."
 msgstr ""
-"L'applet weblets vous permet d'afficher une page web interactive sur votre "
-"bureau.\n"
+"L'applet weblets vous permet d'afficher une page web interactive sur votre bureau.\n"
 "Vous pouvez sélectionner votre page, paramétrer le défilement désiré\n"
 "et cacher les barres de défilement pour obtenir un vrai 'rognage' de la page."
 
@@ -63,12 +62,8 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -76,9 +71,7 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -97,25 +90,16 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (class=Cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:35
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
-"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
-"contre toujours le déplacer avec ALT + clic gauche."
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:37
 msgid "Lock position ?"
@@ -135,21 +119,15 @@ msgstr "Décorations"
 
 #: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
-"dessous."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
 
 #: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:49
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -192,12 +170,8 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:71
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"
@@ -236,24 +210,20 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position de la barre de défilement verticale"
 
 #: ../data/messages:91
-msgid ""
-"This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
-msgstr ""
+msgid "This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
+msgstr "Cela vous permet de cliquer gauche sur le desklet pour afficher le pop-up du menu de Cairo-Dock"
 
 #: ../data/messages:93
 msgid "Right margin's width, in pixels :"
-msgstr ""
+msgstr "Largeur de la marge de gauche, en pixels :"
 
 #: ../data/messages:95
 msgid "Transparent background ?"
 msgstr "Arrière-plan transparent ?"
 
 #: ../data/messages:97
-msgid ""
-"Time before reloading the weblet URI, in seconds. Zero means never reload."
-msgstr ""
-"Temps avec le rechargement du weblet URI, en secondes. 0 pour ne jamais "
-"recharger."
+msgid "Time before reloading the weblet URI, in seconds. Zero means never reload."
+msgstr "Temps avec le rechargement du weblet URI, en secondes. 0 pour ne jamais recharger."
 
 #: ../data/messages:99
 msgid "Time between two page refreshes"
@@ -273,18 +243,14 @@ msgstr "Marque-Pages prédéfinis à afficher dans le menu de l'applet"
 #~ msgstr ""
 #~ "Ceci est l'applet weblets\n"
 #~ " écrite par Christophe Chapuis pour Cairo-Dock"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
-
 #~ msgid "Terminal"
 #~ msgstr "Terminal"
-
 #~ msgid "Module"
 #~ msgstr "Module"
-
 #~ msgid "Lockposition ?"
 #~ msgstr "Verrouiller la position ?"
+

@@ -7,19 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-05-23 08:53+0100\n"
-"Last-Translator: Yann SLADEK <mav@cairo-dock.org>\n"
+"PO-Revision-Date: 2009-05-08 21:27+0100\n"
+"Last-Translator: Yann SLADEK\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
 
 #: ../src/applet-init.c:23
-#, fuzzy
 msgid ""
 "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-"XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
-"still experimental.\n"
+"XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is still experimental.\n"
 "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 "Launch/Play/Pause on left click, Next song on middle click.\n"
 "You can drag and drop songs on the icon to put them in the queue.\n"
@@ -30,10 +29,8 @@ msgstr ""
 "mais le contrôle de Banshee et Exaile est encore expérimental.\n"
 "Pour XMMS, vous devez installer le plug-in 'xmms-infopipe'.\n"
 "Play/Pause avec le clique gauche, Next avec le clique du milieu.\n"
-"Vous pouvez déposer vos fichiers musicaux sur cet applet pour l'ajouter à la "
-"playlist.\n"
-"La roulette de la souris vers le haut/bas, pour passer à la chanson "
-"précédente/suivante."
+"Vous pouvez déposer vos fichiers musicaux sur cet applet pour l'ajouter à la playlist.\n"
+"La roulette de la souris vers le haut/bas, pour passer à la chanson précédente/suivante."
 
 #: ../src/applet-notifications.c:257
 msgid "Previous"
@@ -88,12 +85,8 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
-"ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -101,9 +94,7 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clic gauche."
+msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -122,26 +113,16 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-#, fuzzy
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
-msgstr ""
-"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
-"Compiz à : (class=Cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:31
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"Si verrouillé, le desklet ne pourra pas être déplacé simplement en le tirant "
-"avec le bouton gauche de la souris. Bien sur il pourra toujours être déplacé "
-"avec ALT + clique_gauche"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "Si verrouillé, le desklet ne pourra pas être déplacé simplement en le tirant avec le bouton gauche de la souris. Bien sur il pourra toujours être déplacé avec ALT + clique_gauche"
 
 #: ../data/messages:33
 msgid "Lock position ?"
@@ -161,21 +142,15 @@ msgstr "Décorations"
 
 #: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
-"dessous."
+msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
 
 #: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:45
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
-"exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -218,12 +193,8 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:67
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
-"par exemple. Laissez vide pour n'en utiliser aucune."
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -262,13 +233,8 @@ msgid "Exaile"
 msgstr "Exaile"
 
 #: ../data/messages:87
-msgid ""
-"It will prevent the player's icon to appear in the task bar. The applet's "
-"icon will then behave as a launcher, an appli, and an applet."
-msgstr ""
-"Cela empêchera l'icône du lecteur d'apparaitre dans la barre d'applications. "
-"L'icône de l'applet se comportera comme un lanceur, une application et un "
-"applet."
+msgid "It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
+msgstr "Cela empêchera l'icône du lecteur d'apparaitre dans la barre d'applications. L'icône de l'applet se comportera comme un lanceur, une application et un applet."
 
 #: ../data/messages:89
 msgid "Steal the player's icon from taskbar ?"
@@ -316,7 +282,7 @@ msgstr "Info et Controleur"
 
 #: ../data/messages:111
 msgid "Caroussel"
-msgstr ""
+msgstr "Caroussel"
 
 #: ../data/messages:113
 msgid "Controler"
@@ -354,8 +320,11 @@ msgstr "Animation au changement de musique"
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:131 ../data/messages:135 ../data/messages:139
-#: ../data/messages:143 ../data/messages:147
+#: ../data/messages:131
+#: ../data/messages:135
+#: ../data/messages:139
+#: ../data/messages:143
+#: ../data/messages:147
 msgid "Let it empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
@@ -385,30 +354,22 @@ msgstr "Nom de l'image 'Pas de Signal': "
 #~ msgstr ""
 #~ "Ceci est l'applet xmms\n"
 #~ " écrite par ChAnGFu pour Cairo-Dock"
-
 #~ msgid "width :"
 #~ msgstr "largeur :"
-
 #~ msgid "height :"
 #~ msgstr "hauteur :"
-
 #~ msgid "bounce"
 #~ msgstr "Rebond"
-
 #~ msgid "rotate"
 #~ msgstr "Rotation"
-
 #~ msgid "blink"
 #~ msgstr "Clignotement"
-
 #~ msgid "pulse"
 #~ msgstr "Pulsation"
-
 #~ msgid "upside-down"
 #~ msgstr "Sens dessus-dessous"
-
 #~ msgid "wobbly"
 #~ msgstr "Élastique"
-
 #~ msgid "random"
 #~ msgstr "Aléatoire"
+
