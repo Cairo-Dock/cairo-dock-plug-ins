@@ -59,38 +59,35 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 		
 		// recuperation des parametres des aiguilles.
 		g_string_printf (sElementPath, "%s/%s", myConfig.cThemePath, "theme.conf");
-		if (g_file_test (sElementPath->str, G_FILE_TEST_EXISTS))
+		GKeyFile *pKeyFile = cairo_dock_open_key_file (sElementPath->str);
+		if (pKeyFile != NULL)
 		{
 			GError *erreur = NULL;
-			GKeyFile *pKeyFile = cairo_dock_open_key_file (sElementPath->str);
-			if (pKeyFile != NULL)
+			myData.iNeedleRealHeight = g_key_file_get_integer (pKeyFile, "Needle", "height", &erreur);
+			if (erreur != NULL)
 			{
-				myData.iNeedleRealHeight = g_key_file_get_integer (pKeyFile, "Needle", "height", &erreur);
-				if (erreur != NULL)
-				{
-					cd_warning (erreur->message);
-					g_error_free (erreur);
-					erreur = NULL;
-				}
-				myData.iNeedleOffsetX = g_key_file_get_double (pKeyFile, "Needle", "offset x", &erreur);
-				if (erreur != NULL)
-				{
-					cd_warning (erreur->message);
-					g_error_free (erreur);
-					erreur = NULL;
-				}
-				g_key_file_free (pKeyFile);
+				cd_warning (erreur->message);
+				g_error_free (erreur);
+				erreur = NULL;
 			}
-			else  // on prend des valeurs par defaut assez larges.
+			myData.iNeedleOffsetX = g_key_file_get_double (pKeyFile, "Needle", "offset x", &erreur);
+			if (erreur != NULL)
 			{
-				g_print ("clock : default needle size\n");
-				myData.iNeedleRealHeight = .5 * myData.needleDimension.height;
-				myData.iNeedleOffsetX = .5 * myData.needleDimension.width;
+				cd_warning (erreur->message);
+				g_error_free (erreur);
+				erreur = NULL;
 			}
-			myData.iNeedleRealWidth = myData.needleDimension.width/2 + myData.iNeedleOffsetX;
-			myData.iNeedleOffsetY = .5 * myData.iNeedleRealHeight;
-			cd_debug ("clock needle : H=%d; dx=%d\n", myData.iNeedleRealHeight, myData.iNeedleOffsetX);
+			g_key_file_free (pKeyFile);
 		}
+		else  // on prend des valeurs par defaut assez larges.
+		{
+			g_print ("clock : default needle size\n");
+			myData.iNeedleRealHeight = .5 * myData.needleDimension.height;
+			myData.iNeedleOffsetX = .5 * myData.needleDimension.width;
+		}
+		myData.iNeedleRealWidth = myData.needleDimension.width/2 + myData.iNeedleOffsetX;
+		myData.iNeedleOffsetY = .5 * myData.iNeedleRealHeight;
+		cd_debug ("clock needle : H=%d; dx=%d\n", myData.iNeedleRealHeight, myData.iNeedleOffsetX);
 		
 		g_string_free (sElementPath, TRUE);
 	}
