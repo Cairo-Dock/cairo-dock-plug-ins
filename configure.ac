@@ -787,12 +787,7 @@ AC_CONFIG_FILES([
 	rhythmbox/data/rhythmbox.conf
 	rhythmbox/data/themes/Makefile
 	rhythmbox/data/themes/None/Makefile
-	rhythmbox/data/themes/cd_box_3d/Makefile
 	rhythmbox/data/themes/cd_box_simple/Makefile
-	rhythmbox/data/themes/ipod/Makefile
-	rhythmbox/data/themes/iphone/Makefile
-	rhythmbox/data/themes/dvd_player/Makefile
-	rhythmbox/data/themes/super_jewel/Makefile
 	
 	shortcuts/Makefile
 	shortcuts/src/Makefile
