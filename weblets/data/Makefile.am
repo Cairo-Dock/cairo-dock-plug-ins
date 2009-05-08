@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(webletsdatadir)
 
 module_DATA = \
 	weblets.conf\

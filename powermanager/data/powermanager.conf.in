@@ -106,7 +106,7 @@ effect=0
 
 #b+ Use a gauge instead of icons ?
 use gauge = false
-#h+[/usr/share/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
+#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
 theme = battery
 
 #r+[nothing;charge;time] Information to be displayed on the icon :

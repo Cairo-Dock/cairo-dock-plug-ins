@@ -14,13 +14,13 @@ AC_PROG_LIBTOOL
 IT_PROG_INTLTOOL()
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
-GETTEXT_PACKAGE=cd-weblets
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
-AC_SUBST(GETTEXT_PACKAGE)
+GETTEXT_WEBLETS=cd-weblets
+AC_DEFINE_UNQUOTED(GETTEXT_WEBLETS,"$GETTEXT_WEBLETS", [Gettext package.])
+AC_SUBST(GETTEXT_WEBLETS)
 
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/weblets]
-AC_SUBST(pkgdatadir)
+webletsdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/weblets]
+AC_SUBST(webletsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
