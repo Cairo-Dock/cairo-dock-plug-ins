@@ -184,6 +184,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "amplitude", &bFlushConfFileNeeded, 20, NULL, NULL);
 	my_curve_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "draw curve separator", &bFlushConfFileNeeded, 0, NULL, NULL);
 	
+	if (g_key_file_has_group (pKeyFile, "Slide"))
+	{
+		g_key_file_remove_group (pKeyFile, "Slide", NULL);
+		bFlushConfFileNeeded = TRUE;
+	}
+	
 	cd_rendering_reload_rainbow_buffers ();
 CD_APPLET_GET_CONFIG_END
 
@@ -208,3 +214,4 @@ CD_APPLET_RESET_DATA_BEGIN
 		my_iFlatSeparatorTexture = 0;
 	}
 CD_APPLET_RESET_DATA_END
+
