@@ -37,7 +37,7 @@ void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
 		if (pIcon->acCommand != NULL)
 		{
 			cMountPath = (strncmp (pIcon->acCommand, "file://", 7) == 0 ? pIcon->acCommand + 7 : pIcon->acCommand);
-			g_print ("checking device on '%s'...\n", cMountPath);
+			cd_debug ("checking device on '%s'...", cMountPath);
 			
 			if (pElement != NULL)
 			{
@@ -59,7 +59,7 @@ void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
 				pDiskUsage->iFree  = (long long)sts.f_bfree  * sts.f_bsize;  // Blocs libres
 				pDiskUsage->iTotal = (long long)sts.f_blocks * sts.f_bsize;  // Nombre total de blocs
 				pDiskUsage->iUsed  = pDiskUsage->iTotal - pDiskUsage->iAvail;
-				g_print ("%d / %d\n", (int)pDiskUsage->iAvail, (int)pDiskUsage->iTotal);
+				cd_debug ("%d / %d", (int)pDiskUsage->iAvail, (int)pDiskUsage->iTotal);
 			}
 		}
 	}

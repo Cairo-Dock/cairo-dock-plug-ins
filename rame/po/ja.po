@@ -275,7 +275,8 @@ msgid "Background color of the graphic :"
 msgstr "グラフの背景色 :"
 
 #: ../data/messages:111
-msgid "List of available themes for the gauge :"
+#, fuzzy
+msgid "Choose one of the available themes :"
 msgstr "ゲージに利用可能なテーマのリスト :"
 
 #: ../data/messages:113

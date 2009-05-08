@@ -274,7 +274,7 @@ msgstr "Startfärg för topplistan"
 
 #: ../data/messages:111
 #, fuzzy
-msgid "List of available themes for the gauge :"
+msgid "Choose one of the available themes :"
 msgstr "Teman för analogic:"
 
 #: ../data/messages:113

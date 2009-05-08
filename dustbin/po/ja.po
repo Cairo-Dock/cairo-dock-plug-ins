@@ -35,38 +35,38 @@ msgid ""
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 
-#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:31 ../src/applet-notifications.c:36
 msgid "Show Trash"
 msgstr "中身を表示"
 
-#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:32 ../src/applet-notifications.c:45
 msgid "Delete Trash"
 msgstr "中身を削除"
 
-#: ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:40
 #, c-format
 msgid "Show %s"
 msgstr "%s を表示"
 
-#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:43
 msgid "Show All"
 msgstr "すべて表示"
 
-#: ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:49
 #, c-format
 msgid "Delete %s"
 msgstr "%s を削除"
 
-#: ../src/applet-notifications.c:54
+#: ../src/applet-notifications.c:52
 msgid "Delete All"
 msgstr "すべて削除"
 
-#: ../src/applet-notifications.c:69
+#: ../src/applet-notifications.c:67
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s は現在アンマウントされています"
 
-#: ../src/applet-notifications.c:73
+#: ../src/applet-notifications.c:71
 #, c-format
 msgid "failed to unmount %s"
 msgstr "%s のアンマウントに失敗"

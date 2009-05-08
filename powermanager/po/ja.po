@@ -313,8 +313,8 @@ msgid "Use a gauge instead of icons ?"
 msgstr "アイコンの代わりに目盛りを使用？"
 
 #: ../data/messages:97
-msgid "List of available gauges :"
-msgstr "利用可能な目盛りのリスト :"
+msgid "Choose one of the available themes :"
+msgstr "利用可能なテーマから1つ選択 :"
 
 #: ../data/messages:99
 msgid "Information to be displayed on the icon :"
@@ -372,6 +372,9 @@ msgstr "通告中にアイコンをアニメーション化？"
 msgid "Animation during alert :"
 msgstr "通告中のアニメーション :"
 
+#~ msgid "List of available gauges :"
+#~ msgstr "利用可能な目盛りのリスト :"
+
 #~ msgid "Icon size"
 #~ msgstr "アイコンの大きさ"
 
@@ -416,9 +419,6 @@ msgstr "通告中のアニメーション :"
 
 #~ msgid "Theme"
 #~ msgstr "テーマ"
-
-#~ msgid "Choose one of the available themes :"
-#~ msgstr "利用可能なテーマから1つ選択 :"
 
 #~ msgid "Interval of time to check if dustbin is full/empty :"
 #~ msgstr "Interval of time to check if dustbin is full/empty :"

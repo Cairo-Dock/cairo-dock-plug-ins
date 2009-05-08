@@ -30,7 +30,7 @@ msgstr "B"
 msgid "KB"
 msgstr "KB"
 
-#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:16
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:14
 msgid "MB"
 msgstr "MB"
 
@@ -46,22 +46,25 @@ msgstr "TB"
 msgid "Loading"
 msgstr "読み込み中"
 
-#: ../src/applet-notifications.c:16
+#: ../src/applet-notifications.c:14
 msgid "Total amount of data"
 msgstr "データ総量"
 
-#: ../src/applet-notifications.c:16
+#: ../src/applet-notifications.c:14
 msgid "downloaded"
 msgstr "ダウンロード"
 
-#: ../src/applet-notifications.c:16
+#: ../src/applet-notifications.c:14
 msgid "uploaded"
 msgstr "アップロード"
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:18
 #, c-format
-msgid "Interface '%s' seems to not exist or is not readable"
-msgstr "インターフェイス '%s' は存在しないか、読み込みできないようです。"
+msgid ""
+"Interface '%s' seems to not exist or is not readable.\n"
+" You may need to open the configuration panel of this applet, and choose the "
+"interface you wish to monitor."
+msgstr ""
 
 #: ../src/applet-notifications.c:44
 msgid "Monitor System"
@@ -310,7 +313,8 @@ msgid "Background color of the graphic :"
 msgstr "グラフの背景色 :"
 
 #: ../data/messages:109
-msgid "List of available themes for the gauge :"
+#, fuzzy
+msgid "Choose one of the available themes :"
 msgstr "ゲージに利用可能なテーマのリスト :"
 
 #: ../data/messages:111
@@ -372,6 +376,9 @@ msgstr "デフォルトのコマンドを使用するには空欄のままに。
 #: ../data/messages:139
 msgid "User command to show a system monitor :"
 msgstr "システム・モニタを表示するためのユーザー定義コマンド :"
+
+#~ msgid "Interface '%s' seems to not exist or is not readable"
+#~ msgstr "インターフェイス '%s' は存在しないか、読み込みできないようです。"
 
 #~ msgid ""
 #~ "This is the netspeed applet\n"

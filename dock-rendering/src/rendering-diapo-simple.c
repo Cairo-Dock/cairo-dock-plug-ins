@@ -677,7 +677,7 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	glEnable (GL_BLEND); // On active le blend
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
-	if (my_diapo_simple_draw_background)  // On remplit le cadre en 2 temps (avec des polygones convxes).
+	if (my_diapo_simple_draw_background)  // On remplit le cadre en 2 temps (avec des polygones convexes).
 	{
 		glPolygonMode (GL_FRONT, GL_FILL);
 		glEnableClientState (GL_VERTEX_ARRAY);

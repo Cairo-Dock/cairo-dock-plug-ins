@@ -280,7 +280,8 @@ msgid "Background color of the graphic :"
 msgstr "图表背景色:"
 
 #: ../data/messages:101
-msgid "List of available themes for the gauge :"
+#, fuzzy
+msgid "Choose one of the available themes :"
 msgstr "可用表盘主题:"
 
 #: ../data/messages:103

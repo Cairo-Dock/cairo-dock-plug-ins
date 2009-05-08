@@ -319,7 +319,8 @@ msgid "Use a gauge instead of icons ?"
 msgstr "Utilizzare un indicatore al posto dell'icona ?"
 
 #: ../data/messages:97
-msgid "List of available gauges :"
+#, fuzzy
+msgid "Choose one of the available themes :"
 msgstr "Lista degli indicatori possibili :"
 
 #: ../data/messages:99

@@ -26,7 +26,7 @@ CD_APPLET_DEFINITION ("shortcuts",
 	"Middle-click on the main icon to acces your desktop easily.\n"
 	"Middle-click on a mounting point icon to (un)mount is quickly.\n"
 	"The applet can also display valuable information about your disks, like free space, type, etc."),
-	"Fabounet (Fabrice Rey)")
+	"Fabounet (Fabrice Rey) & Jackass (Benjamin SANS)")
 
 
 CD_APPLET_INIT_BEGIN

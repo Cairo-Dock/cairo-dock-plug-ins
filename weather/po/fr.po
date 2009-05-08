@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:155
+#: ../src/applet-config.c:158
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -22,11 +22,11 @@ msgstr ""
 "Je n'ai pas pu récupérer les info\n"
 " la connexion est-elle établie ?"
 
-#: ../src/applet-config.c:168
+#: ../src/applet-config.c:171
 msgid "I couldn't find this location"
 msgstr "Je ne peux pas trouver cette emplacement"
 
-#: ../src/applet-config.c:222
+#: ../src/applet-config.c:225
 msgid "Search for your location :"
 msgstr "Chercher votre emplacement"
 

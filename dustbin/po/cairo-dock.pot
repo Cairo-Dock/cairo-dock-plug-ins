@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-04-29 23:59+0200\n"
+"POT-Creation-Date: 2009-05-08 15:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,38 +37,38 @@ msgid ""
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 
-#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:31 ../src/applet-notifications.c:36
 msgid "Show Trash"
 msgstr ""
 
-#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:32 ../src/applet-notifications.c:45
 msgid "Delete Trash"
 msgstr ""
 
-#: ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:40
 #, c-format
 msgid "Show %s"
 msgstr ""
 
-#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:43
 msgid "Show All"
 msgstr ""
 
-#: ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:49
 #, c-format
 msgid "Delete %s"
 msgstr ""
 
-#: ../src/applet-notifications.c:54
+#: ../src/applet-notifications.c:52
 msgid "Delete All"
 msgstr ""
 
-#: ../src/applet-notifications.c:69
+#: ../src/applet-notifications.c:67
 #, c-format
 msgid "%s is now unmounted"
 msgstr ""
 
-#: ../src/applet-notifications.c:73
+#: ../src/applet-notifications.c:71
 #, c-format
 msgid "failed to unmount %s"
 msgstr ""

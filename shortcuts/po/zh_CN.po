@@ -15,22 +15,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-bookmarks.c:122 ../src/applet-bookmarks.c:321
-#: ../src/applet-load-icons.c:53
+#: ../src/applet-load-icons.c:57
 msgid "Unmounted"
 msgstr "卸载"
 
 #: ../src/applet-init.c:23
 msgid ""
 "An applet that let you access quickly to all of your shortcuts.\n"
-"It can manage disks, network points, and Nautilus bookmarks.\n"
-"You can add or remove bookmarks by drag'n'drop, even if you don't have "
-"Nautilus.\n"
-"Middle-click to acces your desktop easily."
+"It can manage disks, network points, and Nautilus bookmarks (even if you "
+"don't have Nautilus).\n"
+"Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
+"Middle-click on the main icon to acces your desktop easily.\n"
+"Middle-click on a mounting point icon to (un)mount is quickly.\n"
+"The applet can also display valuable information about your disks, like free "
+"space, type, etc."
 msgstr ""
 
-#: ../src/applet-notifications.c:41
+#: ../src/applet-notifications.c:72
 msgid "Remove this bookmark"
 msgstr "移除此书签"
+
+#: ../src/applet-notifications.c:82
+msgid "Get disk info"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -207,32 +214,77 @@ msgid "Module"
 msgstr "模块"
 
 #: ../data/messages:79
+#, fuzzy
+msgid "Icons"
+msgstr "图标"
+
+#: ../data/messages:81
 msgid "List drives and volumes ?"
 msgstr "列出驱动器与卷标?"
 
-#: ../data/messages:81
+#: ../data/messages:83
 msgid "List network ?"
 msgstr "列出网络?"
 
-#: ../data/messages:83
+#: ../data/messages:85
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "GTK书签，由Nautilus之类程序使用。"
 
-#: ../data/messages:85
+#: ../data/messages:87
 msgid "List bookmarks ?"
 msgstr "列出书签?"
 
-#: ../data/messages:87
+#: ../data/messages:89
 msgid "Separate different shortcuts with separators ?"
 msgstr "用间隔隔开不同的快捷方式?"
 
-#: ../data/messages:89
+#: ../data/messages:91
 msgid "Let it empty to use default sub-dock view."
 msgstr "留空则使用默认的子dock视图。"
 
-#: ../data/messages:91
+#: ../data/messages:93
 msgid "Name of the view used for the sub-dock :"
 msgstr "用于子dock的视图名称:"
+
+#: ../data/messages:95
+msgid "Disk usage"
+msgstr ""
+
+#: ../data/messages:97
+msgid "Show disk usage :"
+msgstr ""
+
+#: ../data/messages:99
+msgid "No"
+msgstr ""
+
+#: ../data/messages:101
+msgid "Free space"
+msgstr ""
+
+#: ../data/messages:103
+msgid "Used space"
+msgstr ""
+
+#: ../data/messages:105
+msgid "Free space percent"
+msgstr ""
+
+#: ../data/messages:107
+msgid "Used space percent"
+msgstr ""
+
+#: ../data/messages:109
+msgid "In seconds."
+msgstr ""
+
+#: ../data/messages:111
+msgid "Delay between disk usage refresh :"
+msgstr ""
+
+#: ../data/messages:113
+msgid "Display disk usage with a bar ?"
+msgstr ""
 
 #~ msgid ""
 #~ "This is the shortcuts applet\n"

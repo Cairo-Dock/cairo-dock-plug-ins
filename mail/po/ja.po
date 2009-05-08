@@ -14,22 +14,68 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/cd-mail-applet-config.c:369
+#: ../src/cd-mail-applet-config.c:155
+msgid "Please choose an account type."
+msgstr ""
+
+#: ../src/cd-mail-applet-config.c:160
+#, fuzzy
+msgid "New account's name"
+msgstr "アイコンの名前 :"
+
+#: ../src/cd-mail-applet-config.c:163
+msgid "Please enter a name for this account."
+msgstr ""
+
+#: ../src/cd-mail-applet-config.c:173
+msgid ""
+"This account already exists.\n"
+"Please choose another name for the new account."
+msgstr ""
+
+#: ../src/cd-mail-applet-config.c:258
+msgid "Enter a name for this account. You can give it any name you want."
+msgstr ""
+
+#: ../src/cd-mail-applet-config.c:313
 #, fuzzy
 msgid "Remove Account"
 msgstr "アカウントの削除"
 
-#: ../src/cd-mail-applet-init.c:19
+#: ../src/cd-mail-applet-etpan.c:160
+msgid "unknown"
+msgstr ""
+
+#: ../src/cd-mail-applet-etpan.c:160
+msgid "no subject"
+msgstr ""
+
+#: ../src/cd-mail-applet-etpan.c:296
+msgid "No unread mail in your mailboxes"
+msgstr "Mailbox に未読メールはありません。"
+
+#: ../src/cd-mail-applet-etpan.c:318
+#, c-format
+msgid "You have %d new mails :"
+msgstr ""
+
+#: ../src/cd-mail-applet-etpan.c:320
+msgid "You have a new mail :"
+msgstr ""
+
+#: ../src/cd-mail-applet-init.c:21
 msgid "mail"
 msgstr ""
 
-#: ../src/cd-mail-applet-init.c:22
+#: ../src/cd-mail-applet-init.c:24
 msgid ""
 "This applet is very useful to warn you when you get new e-mails\n"
-"It can check in any kind of mailbox (yahoo, gmail, etc)"
+"It can check in any kind of mailbox (yahoo, gmail, etc)\n"
+"Left-click to launch the prefered mail application,\n"
+"Middle-click to refresh all the mailboxes."
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:54
+#: ../src/cd-mail-applet-notifications.c:39
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -40,25 +86,14 @@ msgstr ""
 "'%s' が普段使用している標準のメーラーでない場合は、\n"
 "このモジュールの設定パネルで変更可能です。"
 
-#: ../src/cd-mail-applet-notifications.c:82
+#: ../src/cd-mail-applet-notifications.c:86
 #, fuzzy
 msgid "Refresh a mail account"
 msgstr "アカウントの削除"
 
-#: ../src/cd-mail-applet-notifications.c:140
-msgid "No unread mail in your mailboxes"
-msgstr "Mailbox に未読メールはありません。"
-
-#: ../src/cd-mail-applet-notifications.c:166
-msgid "You have"
-msgstr ""
-
-#: ../src/cd-mail-applet-notifications.c:166
-msgid "new mails :"
-msgstr ""
-
-#: ../src/cd-mail-applet-notifications.c:166
-msgid "new mail :"
+#: ../src/cd-mail-applet-notifications.c:97
+#, c-format
+msgid "Launch %s"
 msgstr ""
 
 #: ../data/messages:1
@@ -239,34 +274,73 @@ msgid "Choose one of the available themes :"
 msgstr "利用可能テーマから１つ選択 :"
 
 #: ../data/messages:77
-msgid "Default"
+msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
 #: ../data/messages:79
+#, fuzzy
+msgid "Name of the view used for the sub-dock :"
+msgstr "「新着メール」の音ファイル :"
+
+#: ../data/messages:81
+msgid "Show new messages' content ?"
+msgstr ""
+
+#: ../data/messages:83
 msgid "Theme overriding"
 msgstr "テーマ更新中"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "Name of the file for the \"no mail\" image :"
 msgstr "「メールなし」画像のファイルの名前 :"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "Name of the file for the \"has mail\" image :"
 msgstr "「メールあり」画像のファイルの名前 :"
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Name of the file for the \"new mail\" sound :"
 msgstr "「新着メール」の音ファイル :"
 
-#: ../data/messages:87
-msgid "Path to application to launch on left-click"
+#: ../data/messages:91
+msgid "Mail application"
+msgstr ""
+
+#: ../data/messages:93
+#, fuzzy
+msgid "Prefered mail application to launch on left-click :"
 msgstr "左クリックで起動させるアプリケーションのパス"
 
-#: ../data/messages:89
+#: ../data/messages:95
+msgid ""
+"only use this if it differs from its name. Generally it is not the case, "
+"except for Thunderbird."
+msgstr ""
+
+#: ../data/messages:97
+msgid "Class of the mail application (optionnal)"
+msgstr ""
+
+#: ../data/messages:99
+msgid ""
+"It will prevent the application's icon to appear in the task bar. The "
+"applet's icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+
+#: ../data/messages:101
+msgid "Steal the application's icon in taskbar ?"
+msgstr ""
+
+#: ../data/messages:103
+#, fuzzy
+msgid "Add an mail account"
+msgstr "新規アカウントの追加"
+
+#: ../data/messages:105
 msgid "The new account will be created with specified type and name."
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:107
 msgid "Add an account with specified type and name:"
 msgstr ""
 
@@ -276,9 +350,6 @@ msgstr ""
 #~ msgstr ""
 #~ "これは Christophe Chapuis によって製作された \n"
 #~ "Cairo-Dock 用の mail アプレットです。"
-
-#~ msgid "Add a new mail account"
-#~ msgstr "新規アカウントの追加"
 
 #~ msgid "Modify a mail account"
 #~ msgstr "アカウントの編集"
@@ -540,9 +611,6 @@ msgstr ""
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
-
-#~ msgid "Icon's name :"
-#~ msgstr "アイコンの名前 :"
 
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"

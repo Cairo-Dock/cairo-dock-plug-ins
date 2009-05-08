@@ -33,7 +33,7 @@ msgstr "o"
 msgid "KB"
 msgstr "Ko"
 
-#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:16
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:14
 msgid "MB"
 msgstr "Mo"
 
@@ -49,22 +49,25 @@ msgstr "To"
 msgid "Loading"
 msgstr "Chargement"
 
-#: ../src/applet-notifications.c:16
+#: ../src/applet-notifications.c:14
 msgid "Total amount of data"
 msgstr "Taille totale des données"
 
-#: ../src/applet-notifications.c:16
+#: ../src/applet-notifications.c:14
 msgid "downloaded"
 msgstr "téléchargés"
 
-#: ../src/applet-notifications.c:16
+#: ../src/applet-notifications.c:14
 msgid "uploaded"
 msgstr "envoyés"
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:18
 #, c-format
-msgid "Interface '%s' seems to not exist or is not readable"
-msgstr "L'interface '%s' semble ne pas exister ou n'est pas lisible"
+msgid ""
+"Interface '%s' seems to not exist or is not readable.\n"
+" You may need to open the configuration panel of this applet, and choose the "
+"interface you wish to monitor."
+msgstr ""
 
 #: ../src/applet-notifications.c:44
 msgid "Monitor System"
@@ -316,7 +319,8 @@ msgid "Background color of the graphic :"
 msgstr "Couleur d'arrière plan du graphique :"
 
 #: ../data/messages:109
-msgid "List of available themes for the gauge :"
+#, fuzzy
+msgid "Choose one of the available themes :"
 msgstr "Liste des thèmes disponibles pour la jauge :"
 
 #: ../data/messages:111
@@ -378,6 +382,9 @@ msgstr "Laisser vide pour utiliser celui par défaut."
 #: ../data/messages:139
 msgid "User command to show a system monitor :"
 msgstr "Commande utilisateur pour montrer le moniteur système :"
+
+#~ msgid "Interface '%s' seems to not exist or is not readable"
+#~ msgstr "L'interface '%s' semble ne pas exister ou n'est pas lisible"
 
 #~ msgid ""
 #~ "This is the netspeed applet\n"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-04-29 23:59+0200\n"
+"POT-Creation-Date: 2009-05-08 15:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr ""
 msgid "KB"
 msgstr ""
 
-#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:16
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:14
 msgid "MB"
 msgstr ""
 
@@ -48,21 +48,24 @@ msgstr ""
 msgid "Loading"
 msgstr ""
 
-#: ../src/applet-notifications.c:16
+#: ../src/applet-notifications.c:14
 msgid "Total amount of data"
 msgstr ""
 
-#: ../src/applet-notifications.c:16
+#: ../src/applet-notifications.c:14
 msgid "downloaded"
 msgstr ""
 
-#: ../src/applet-notifications.c:16
+#: ../src/applet-notifications.c:14
 msgid "uploaded"
 msgstr ""
 
-#: ../src/applet-notifications.c:19
+#: ../src/applet-notifications.c:18
 #, c-format
-msgid "Interface '%s' seems to not exist or is not readable"
+msgid ""
+"Interface '%s' seems to not exist or is not readable.\n"
+" You may need to open the configuration panel of this applet, and choose the "
+"interface you wish to monitor."
 msgstr ""
 
 #: ../src/applet-notifications.c:44
@@ -294,7 +297,7 @@ msgid "Background color of the graphic :"
 msgstr ""
 
 #: ../data/messages:109
-msgid "List of available themes for the gauge :"
+msgid "Choose one of the available themes :"
 msgstr ""
 
 #: ../data/messages:111

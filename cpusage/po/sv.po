@@ -285,7 +285,7 @@ msgid "Background color of the graphic :"
 msgstr "Startfärg för topplistan:"
 
 #: ../data/messages:101
-msgid "List of available themes for the gauge :"
+msgid "Choose one of the available themes :"
 msgstr ""
 
 #: ../data/messages:103

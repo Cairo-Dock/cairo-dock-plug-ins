@@ -33,38 +33,38 @@ msgid ""
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 
-#: ../src/applet-notifications.c:33 ../src/applet-notifications.c:38
+#: ../src/applet-notifications.c:31 ../src/applet-notifications.c:36
 msgid "Show Trash"
 msgstr "Aprire il Cestino"
 
-#: ../src/applet-notifications.c:34 ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:32 ../src/applet-notifications.c:45
 msgid "Delete Trash"
 msgstr "Svuotare il Cestino"
 
-#: ../src/applet-notifications.c:42
+#: ../src/applet-notifications.c:40
 #, c-format
 msgid "Show %s"
 msgstr "Aprire %s"
 
-#: ../src/applet-notifications.c:45
+#: ../src/applet-notifications.c:43
 msgid "Show All"
 msgstr "Aprire Tutti"
 
-#: ../src/applet-notifications.c:51
+#: ../src/applet-notifications.c:49
 #, c-format
 msgid "Delete %s"
 msgstr "Svuotare %s"
 
-#: ../src/applet-notifications.c:54
+#: ../src/applet-notifications.c:52
 msgid "Delete All"
 msgstr "Svuotare Tutti"
 
-#: ../src/applet-notifications.c:69
+#: ../src/applet-notifications.c:67
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s è smontato adesso"
 
-#: ../src/applet-notifications.c:73
+#: ../src/applet-notifications.c:71
 #, c-format
 msgid "failed to unmount %s"
 msgstr "fallimento nello smontare %s"

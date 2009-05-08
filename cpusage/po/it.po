@@ -290,7 +290,8 @@ msgid "Background color of the graphic :"
 msgstr "Colore di sfondo del grafico :"
 
 #: ../data/messages:101
-msgid "List of available themes for the gauge :"
+#, fuzzy
+msgid "Choose one of the available themes :"
 msgstr "Lista dei temi disponibili per l'indicatore :"
 
 #: ../data/messages:103

@@ -311,7 +311,8 @@ msgid "Use a gauge instead of icons ?"
 msgstr "Använd visare istället för ikon?"
 
 #: ../data/messages:97
-msgid "List of available gauges :"
+#, fuzzy
+msgid "Choose one of the available themes :"
 msgstr "Visare:"
 
 #: ../data/messages:99
