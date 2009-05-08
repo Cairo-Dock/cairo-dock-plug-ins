@@ -95,7 +95,7 @@ AC_ARG_ENABLE(gio-in-gmenu,
 AC_ARG_ENABLE(mail,
 	[  --enable-mail : Enable Mail applet (default=yes) ],
 	[ with_mail=${enableval} ],
-	[ with_mail=yes ])
+	[ with_mail=no ])
 AC_ARG_ENABLE(weblets,
 	[  --enable-weblets : Enable Weblets applet (default=yes) ],
 	[ with_weblets=${enableval} ],
