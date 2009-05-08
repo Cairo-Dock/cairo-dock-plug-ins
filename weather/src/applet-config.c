@@ -32,7 +32,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bDesklet3D = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "3D desket", FALSE);
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
-
+	
+	gchar *cName = CD_CONFIG_GET_STRING ("Icon", "name");
+	myConfig.bSetName = (cName == NULL);
+	g_free (cName);
 	///myConfig.iDeskletRenderer = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "current desklet", 0);
 CD_APPLET_GET_CONFIG_END
 

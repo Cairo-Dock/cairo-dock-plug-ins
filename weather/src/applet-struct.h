@@ -29,6 +29,7 @@ struct _AppletConfig {
 	gint iCheckInterval;
 	gchar *cThemePath;
 	gboolean bDesklet3D;
+	gboolean bSetName;
 	///MyDeskletRender iDeskletRenderer;
 	} ;
 

@@ -61,19 +61,26 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		
+		if (myConfig.bSetName)
+		{
+			CD_APPLET_DELETE_MY_ICONS_LIST;
+			g_free (myIcon->acName);
+			myIcon->acName = NULL;
+		}
 		if (myDesklet) //Placé avant pour être sur d'avoir les infos affichées au redraw.
-  	{
-  	  ///if (myConfig.iDeskletRenderer == MY_DESKLET_CAROUSSEL)
-  	  {
-  		  gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-  		  CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
-  		}
-  		/**else if (myConfig.iDeskletRenderer == MY_DESKLET_MAIN_ICON)
-  		{
-  		  gpointer data[3] = {"Loading...", NULL, FALSE};
-  			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
-  		}*/
-  	}
+	  	{
+	  	  ///if (myConfig.iDeskletRenderer == MY_DESKLET_CAROUSSEL)
+	  	  {
+	  		  gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+	  		  CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
+	  		}
+	  		/**else if (myConfig.iDeskletRenderer == MY_DESKLET_MAIN_ICON)
+	  		{
+	  		  gpointer data[3] = {"Loading...", NULL, FALSE};
+	  			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
+	  		}*/
+	  	}
 	
 		cd_weather_reset_all_datas (myApplet);  // on bourrine.
 		
