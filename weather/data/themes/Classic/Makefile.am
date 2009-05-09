@@ -1,4 +1,4 @@
-themedir = $(weatherdatadir)/themes/basic
+themedir = $(weatherdatadir)/themes/Classic
 
 theme_DATA =\
 		0.png 	\

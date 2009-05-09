@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.0.0-rc5],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.0.0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -93,7 +93,7 @@ AC_ARG_ENABLE(gio-in-gmenu,
         [ with_gio_in_gmenu=${enableval} ],
         [ with_gio_in_gmenu=no])
 AC_ARG_ENABLE(mail,
-	[  --enable-mail : Enable Mail applet (default=yes) ],
+	[  --enable-mail : Enable Mail applet (default=no) ],
 	[ with_mail=${enableval} ],
 	[ with_mail=no ])
 AC_ARG_ENABLE(weblets,
@@ -256,7 +256,7 @@ AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
 CPUSAGE_PACKAGE="cd-cpusage"
 AC_SUBST(GETTEXT_CPUSAGE, "$CPUSAGE_PACKAGE")
 
-AC_SUBST(VERSION_CPUSAGE, "1.2.4")
+AC_SUBST(VERSION_CPUSAGE, "1.2.5")
 AC_SUBST(PACKAGE_CPUSAGE, "$CPUSAGE_PACKAGE")
 
 AC_SUBST(cpusagedatadir, "${pkgdatadir}/cpusage")
@@ -383,7 +383,7 @@ AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
 NVIDIA_PACKAGE=cd-nVidia
 AC_SUBST(GETTEXT_NVIDIA, "$NVIDIA_PACKAGE")
 
-AC_SUBST(VERSION_NVIDIA, "1.0.7")
+AC_SUBST(VERSION_NVIDIA, "1.1.0")
 AC_SUBST(PACKAGE_NVIDIA, "$NVIDIA_PACKAGE")
 
 AC_SUBST(nvidiadatadir, "${pkgdatadir}/nVidia")
@@ -401,7 +401,7 @@ AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
 RAME_PACKAGE=cd-rame
 AC_SUBST(GETTEXT_RAME, "$RAME_PACKAGE")
 
-AC_SUBST(VERSION_RAME, "1.1.5")
+AC_SUBST(VERSION_RAME, "1.1.6")
 AC_SUBST(PACKAGE_RAME, "$RAME_PACKAGE")
 
 AC_SUBST(ramedatadir, "${pkgdatadir}/rame")

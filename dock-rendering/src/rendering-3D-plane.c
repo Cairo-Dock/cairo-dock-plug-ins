@@ -260,7 +260,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 	int sens;
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
+	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fDrawX + 0 - fMargin : fRadius + fLineWidth / 2);
 	if (pDock->bDirectionUp)
 	{
 		sens = 1;
@@ -688,7 +688,7 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
+	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fDrawX + 0 - fMargin : fRadius + fLineWidth / 2);
 	
 	if ((pDock->bHorizontalDock && ! pDock->bDirectionUp) || (! pDock->bHorizontalDock && pDock->bDirectionUp))
 		fDockOffsetY = pDock->iCurrentHeight - .5 * fLineWidth;

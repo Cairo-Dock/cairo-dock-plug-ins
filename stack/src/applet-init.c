@@ -33,7 +33,8 @@ CD_APPLET_INIT_BEGIN
 	cd_stack_check_local (myApplet, CD_APPLET_MY_KEY_FILE);
 	cd_stack_build_icons (myApplet);
 	
-	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+	if (myDock)
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);  // on se met en premier pour pas que le dock essaye de lancer nos icones, car ce ne sont pas toutes des lanceurs, donc on va le faire nous-memes.
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -61,7 +62,8 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+		if (myDock)
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
 		cd_stack_build_icons (myApplet);  // pour les mimes.
 	}

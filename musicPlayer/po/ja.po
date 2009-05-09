@@ -127,7 +127,7 @@ msgstr "他ウィンドウより常に上に？"
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
@@ -348,135 +348,131 @@ msgid "Controler"
 msgstr "コントローラ"
 
 #: ../data/messages:129
-msgid "OpenGL"
-msgstr ""
-
-#: ../data/messages:131
 msgid "False 3D Themes (OpenGL only)"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:131
 msgid "List of available specific themes :"
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:133
 msgid "Action on music change"
 msgstr "音楽切り替わり時のアクション"
 
-#: ../data/messages:137
+#: ../data/messages:135
 msgid "Show an info-bubble ?"
 msgstr "吹き出しを表示して情報通知？"
 
-#: ../data/messages:139
+#: ../data/messages:137
 msgid "With a icon ?"
 msgstr "アイコンも描画？"
 
-#: ../data/messages:141
+#: ../data/messages:139
 msgid "in ms."
 msgstr "ミリ秒単位"
 
-#: ../data/messages:143
+#: ../data/messages:141
 msgid "Time length of info-bubbles :"
 msgstr "吹き出しの表示継続時間 :"
 
-#: ../data/messages:145
+#: ../data/messages:143
 msgid "Animate icon ?"
 msgstr "アイコンをアニメーション化？"
 
-#: ../data/messages:147
+#: ../data/messages:145
 msgid "Animation when music changes :"
 msgstr "音楽の切り替わりの際のアニメーション :"
 
-#: ../data/messages:149
+#: ../data/messages:147
 msgid "bounce"
 msgstr "バウンド"
 
-#: ../data/messages:151
+#: ../data/messages:149
 msgid "rotate"
 msgstr "回転"
 
-#: ../data/messages:153
+#: ../data/messages:151
 msgid "blink"
 msgstr "点滅"
 
-#: ../data/messages:155
+#: ../data/messages:153
 msgid "pulse"
 msgstr "波動"
 
-#: ../data/messages:157
+#: ../data/messages:155
 msgid "upside-down"
 msgstr "上下逆さま"
 
-#: ../data/messages:159
+#: ../data/messages:157
 msgid "wobbly"
 msgstr "伸び縮み"
 
-#: ../data/messages:161
+#: ../data/messages:159
 msgid "random"
 msgstr "ランダム"
 
-#: ../data/messages:163
+#: ../data/messages:161
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:165 ../data/messages:169 ../data/messages:173
-#: ../data/messages:177 ../data/messages:181
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
+#: ../data/messages:175 ../data/messages:179
 msgid "Let it empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:167
+#: ../data/messages:165
 msgid "Name of an image for the 'default' icon :"
 msgstr "「デフォルト」のアイコン画像の名前 :"
 
-#: ../data/messages:171
+#: ../data/messages:169
 msgid "Name of an image for the 'play' icon :"
 msgstr "「再生」のアイコン画像の名前 :"
 
-#: ../data/messages:175
+#: ../data/messages:173
 msgid "Name of an image for the 'stop' icon :"
 msgstr "「停止」のアイコン画像の名前 :"
 
-#: ../data/messages:179
+#: ../data/messages:177
 msgid "Name of an image for the 'pause' icon :"
 msgstr "「一時停止」のアイコン画像の名前 :"
 
-#: ../data/messages:183
+#: ../data/messages:181
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
 
-#: ../data/messages:185
+#: ../data/messages:183
 msgid "Downloads"
 msgstr ""
 
-#: ../data/messages:187
+#: ../data/messages:185
 msgid "You need to be connected to the Internet."
 msgstr ""
 
-#: ../data/messages:189
+#: ../data/messages:187
 msgid "Allow CID to download missing covers :"
 msgstr ""
 
-#: ../data/messages:191
+#: ../data/messages:189
 msgid "in seconds"
 msgstr ""
 
-#: ../data/messages:193
+#: ../data/messages:191
 msgid "Delay before checking for missing covers :"
 msgstr ""
 
-#: ../data/messages:195
+#: ../data/messages:193
 msgid "The smaller image will be downloaded faster than a big one."
 msgstr ""
 
-#: ../data/messages:197
+#: ../data/messages:195
 msgid "Size of the downloaded covers :"
 msgstr ""
 
-#: ../data/messages:199
+#: ../data/messages:197
 msgid "Medium"
 msgstr ""
 
-#: ../data/messages:201
+#: ../data/messages:199
 msgid "Large"
 msgstr ""
 

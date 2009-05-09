@@ -179,7 +179,7 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		double curveOffsetX = fDockWidth * xi / (1 - 2 * xi);
 		
 		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-		double fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - curveOffsetX : fLineWidth / 2);
+		double fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fDrawX - curveOffsetX : fLineWidth / 2);
 		
 		
 		//\________________ On approche le morceau de courbe de Bezier par des trapezes.
@@ -427,7 +427,7 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 	int sens;
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - curveOffsetX : fLineWidth / 2);
+	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fDrawX - curveOffsetX : fLineWidth / 2);
 	if (pDock->bDirectionUp)
 	{
 		sens = 1;
