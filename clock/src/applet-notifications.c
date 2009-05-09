@@ -7,6 +7,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 **********************************************************************************/
 #include <stdlib.h>
+#include <math.h>
 #define __USE_POSIX
 #include <signal.h>
 

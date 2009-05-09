@@ -7,13 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Yann SLADEK\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-config.c:419
 msgid "Search for your location :"
@@ -27,15 +26,20 @@ msgstr "horloge"
 msgid ""
 "This applet displays time and date in your dock.\n"
 "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
-"It is compatible with the Cairo-Clock's themes, and you can detach itself to be a perfect clone of Cairo-Clock.\n"
-"It supports alarms, and a basic calendar, and allows you to setup time and date.\n"
+"It is compatible with the Cairo-Clock's themes, and you can detach itself to "
+"be a perfect clone of Cairo-Clock.\n"
+"It supports alarms, and a basic calendar, and allows you to setup time and "
+"date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
 "Cet applet indique l'heure et la date dans votre dock.\n"
 "2 vues sont disponible : numérique et analogique, basée sur Cairo-Clock\n"
-"Les thèmes Cairo-Clock sont compatibles, et vous pouvez détacher l'applet pour avoir un clone parfait de Cairo-Clock.\n"
-"Des alarmes et un calendrier classique sont disponibles et vous pouvez régler l'heure et la date.\n"
-"Clique gauche pour afficher/cacher le calendrier. Clique du milieu pour stopper l'alarm."
+"Les thèmes Cairo-Clock sont compatibles, et vous pouvez détacher l'applet "
+"pour avoir un clone parfait de Cairo-Clock.\n"
+"Des alarmes et un calendrier classique sont disponibles et vous pouvez "
+"régler l'heure et la date.\n"
+"Clique gauche pour afficher/cacher le calendrier. Clique du milieu pour "
+"stopper l'alarm."
 
 #: ../src/applet-notifications.c:52
 msgid "Calendar"
@@ -74,16 +78,25 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic milieu ou ALT + clic gauche par exemple."
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic milieu ou ALT + clic gauche par exemple."
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:19
-msgid "Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clique gauche. Une valeur négative est comptée à partir du coin inférieur droit de l'écran"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clique gauche. Une valeur négative est comptée à partir du coin inférieur "
+"droit de l'écran"
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -102,16 +115,25 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
+"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
+"contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -131,15 +153,21 @@ msgstr "Décorations"
 
 #: ../data/messages:43
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+msgstr ""
+"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
+"dessous."
 
 #: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:47
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:49
 msgid "Background image :"
@@ -182,8 +210,12 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:69
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:71
 msgid "Foreground image :"
@@ -227,23 +259,33 @@ msgstr "Afficher l'heure au format 24h ?"
 
 #: ../data/messages:91
 msgid "if not, then the applet will update time once a minute, saving CPU."
-msgstr "Si non, alors l'applet se rafraîchira une fois par minute, épargnant le CPU."
+msgstr ""
+"Si non, alors l'applet se rafraîchira une fois par minute, épargnant le CPU."
 
 #: ../data/messages:93
 msgid "Show seconds ?"
 msgstr "Montrer les secondes ?"
 
 #: ../data/messages:95
-msgid "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous animation. It requires OpenGL."
-msgstr "En ms. Indiquez 0 pour ne pas avoir une animation douce et 1000 pour avoir une animation continue. Ceci nécessite l'OpenGL."
+msgid ""
+"In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
+"animation. It requires OpenGL."
+msgstr ""
+"En ms. Indiquez 0 pour ne pas avoir une animation douce et 1000 pour avoir "
+"une animation continue. Ceci nécessite l'OpenGL."
 
 #: ../data/messages:97
 msgid "Display seconds with smooth animation of a duration of :"
 msgstr "Affiche les secondes avec une animation douce d'une durée de :"
 
 #: ../data/messages:99
-msgid "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select your location from a list. Let empty to get the local time."
-msgstr "Par exemple :Europe/Brussels, :Japan, etc. Clique droit sur l'icône pour sélectionner votre emplacement depuis la liste. Laissez vide pour avoir l'heure locale."
+msgid ""
+"For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
+"your location from a list. Let empty to get the local time."
+msgstr ""
+"Par exemple :Europe/Brussels, :Japan, etc. Clique droit sur l'icône pour "
+"sélectionner votre emplacement depuis la liste. Laissez vide pour avoir "
+"l'heure locale."
 
 #: ../data/messages:101
 msgid "Timezone :"
@@ -254,15 +296,18 @@ msgid "Style"
 msgstr "Style"
 
 #: ../data/messages:105
-msgid "The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way."
-msgstr "La vue analogique est basée sur Cairo-Clock; autrement il sera affiché en mode numérique."
+msgid ""
+"The analogic view is based on CairoClock; otherwise it will be displayed in "
+"a numeric way."
+msgstr ""
+"La vue analogique est basée sur Cairo-Clock; autrement il sera affiché en "
+"mode numérique."
 
 #: ../data/messages:107
 msgid "Use the analogic view ?"
 msgstr "Utiliser la vue analogique ?"
 
-#: ../data/messages:109
-#: ../data/messages:121
+#: ../data/messages:109 ../data/messages:121
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
@@ -275,8 +320,12 @@ msgid "Weight of the text :"
 msgstr "Taille du texte :"
 
 #: ../data/messages:115
-msgid "for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so."
-msgstr "par exemple Monospace, Purisa, ... Ecrivez simplement la nom de la police sans aucun nombre ou autre."
+msgid ""
+"for exemple Monospace, Purisa, ... Just write the font name wihtout any "
+"number or so."
+msgstr ""
+"par exemple Monospace, Purisa, ... Ecrivez simplement la nom de la police "
+"sans aucun nombre ou autre."
 
 #: ../data/messages:117
 msgid "Font used for the numeric display :"
@@ -307,8 +356,10 @@ msgid "Alarm"
 msgstr "Alarme"
 
 #: ../data/messages:133
-msgid "The new alarm will be added to the end / the last alarm will be removed."
-msgstr "La nouvelle alarme sera ajoutée à la fin / la dernière alarme sera enlevée."
+msgid ""
+"The new alarm will be added to the end / the last alarm will be removed."
+msgstr ""
+"La nouvelle alarme sera ajoutée à la fin / la dernière alarme sera enlevée."
 
 #: ../data/messages:135
 msgid "Add or remove an alarm :"
@@ -325,56 +376,81 @@ msgstr "Ajoute ou retire une alarme :"
 #~ "écrite par Fabrice Rey (fabounet_03@yahoo.fr).\n"
 #~ "La représentation analogique est un port de la fameuse Cairo-Clock\n"
 #~ " écrite par MacSlow (http://macslow.thepimp.net)."
+
 #~ msgid "List of available themes for the numeric display :"
 #~ msgstr "Liste des thèmes disponibles pour la vue numérique :"
+
 #~ msgid "Choose a location"
 #~ msgstr "Choisissez une localité"
+
 #~ msgid "width :"
 #~ msgstr "largeur :"
+
 #~ msgid "height :"
 #~ msgstr "hauteur :"
+
 #~ msgid "Alarm n°1"
 #~ msgstr "Alarme n°1"
+
 #~ msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
 #~ msgstr "de la forme xx:xx. Par exemple, 20:35 pour 8:35pm"
+
 #~ msgid "Time you want to be notified :"
 #~ msgstr "Heure de la notification :"
+
 #~ msgid "Repeat every"
 #~ msgstr "Répeter tous les"
+
 #~ msgid "Never"
 #~ msgstr "Jamais"
+
 #~ msgid "Day"
 #~ msgstr "Jours"
+
 #~ msgid "Monday"
 #~ msgstr "Lundi"
+
 #~ msgid "Tuesday"
 #~ msgstr "Mardi"
+
 #~ msgid "Wednesday"
 #~ msgstr "Mercredi"
+
 #~ msgid "Thursday"
 #~ msgstr "Jeudi"
+
 #~ msgid "Friday"
 #~ msgstr "Vendredi"
+
 #~ msgid "Saturday"
 #~ msgstr "Samedi"
+
 #~ msgid "Sunday"
 #~ msgstr "Dimanche"
+
 #~ msgid "Week Day"
 #~ msgstr "Jours de la semaine"
+
 #~ msgid "Week End"
 #~ msgstr "Week Ends"
+
 #~ msgid "Month"
 #~ msgstr "Mois"
+
 #~ msgid "If every month, which day of the month ? :"
 #~ msgstr "Si chaque mois, quel jour du mois ? :"
+
 #~ msgid "Message you want to use to be notified :"
 #~ msgstr "Message utilisé pour être notifié :"
+
 #~ msgid "For exemple, < play /path/to/file.ogg >."
 #~ msgstr "Par exemple, < play /chemin/vers/le/fichier.ogg >."
+
 #~ msgid "Command to execute :"
 #~ msgstr "Commande à exécuter"
+
 #~ msgid "Alarm n°2"
 #~ msgstr "Alarme n°2"
+
 #~ msgid "Alarm n°3"
 #~ msgstr "Alarme n°3"
-

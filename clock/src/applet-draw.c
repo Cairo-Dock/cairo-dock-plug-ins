@@ -70,15 +70,15 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			CairoDockLabelDescription labelDescription;
 			labelDescription.iSize = 10;
 			labelDescription.cFont = "Sans";
-			labelDescription.iWeight = cairo_dock_get_pango_weight_from_1_9(4);
+			labelDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (5);
 			labelDescription.iStyle = PANGO_STYLE_NORMAL;
 			labelDescription.fColorStart[0] = myConfig.fDateColor[0];
 			labelDescription.fColorStart[1] = myConfig.fDateColor[1];
 			labelDescription.fColorStart[2] = myConfig.fDateColor[2];
-			labelDescription.fColorStart[3] = myConfig.fDateColor[3];
 			memcpy (&labelDescription.fColorStop[0], &labelDescription.fColorStart[0], sizeof (labelDescription.fColorStop));
 			labelDescription.fBackgroundColor[3] = 0;
 			labelDescription.bOutlined = FALSE;
+			labelDescription.iMargin = 0;
 			double fTextXOffset, fTextYOffset;
 			cairo_surface_t *pDateSurface = cairo_dock_create_surface_from_text_full (s_cDateBuffer,
 				myDrawContext,
@@ -380,7 +380,7 @@ void cd_clock_draw_analogic_opengl (CairoDockModuleInstance *myApplet, int iWidt
 	// draw texture bg
 	_cairo_dock_apply_texture_at_size_with_alpha (myData.iBgTexture, iWidth, iHeight, 1.);
 	
-	//g_print ("%s (%d)\n", __func__, myData.iDateTexture);
+	//g_print ("%s (%d , %dx%d)\n", __func__, myData.iDateTexture, (int)myData.iDateWidth, (int)myData.iDateHeight);
 	if (myData.iDateTexture != 0 && myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
 	{
 		glPushMatrix ();
