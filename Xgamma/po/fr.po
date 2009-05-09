@@ -26,7 +26,8 @@ msgstr ""
 "Réglez la luminosité de votre écran directement depuis votre dock.\n"
 "La roulette tournant vers le haut/bas pour augmenter/réduire la luminosité.\n"
 "Clique gauche pour ouvrir un menu pour la configuration de la luminosité.\n"
-"Clique du milieu pour régler chaque couleur."
+"Clique du milieu pour régler chaque couleur.\n"
+"Vous pouvez aussi définir une valeur qui sera appliquée automatiquement au démarrage.\n"
 
 #: ../src/applet-notifications.c:26
 #: ../src/applet-xgamma.c:149

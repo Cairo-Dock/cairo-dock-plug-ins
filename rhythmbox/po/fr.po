@@ -49,7 +49,6 @@ msgstr ""
 "Play/Pause avec le clique gauche, clique du milieu pour la chanson suivante.\n"
 "Vous pouvez déposer des pochettes sur l'icône pour les utiliser,\n"
 "ou déposer des chansons pour les ajouter à la lecture. \n"
-"Adrien Pilleboue (Necropotame)"
 
 #: ../src/rhythmbox-menu-functions.c:52
 msgid "Previous"
