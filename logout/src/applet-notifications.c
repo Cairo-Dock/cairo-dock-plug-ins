@@ -8,8 +8,6 @@
 #include "applet-notifications.h"
 
 
-
-
 static _logout (void)
 {
 	if (myConfig.cUserAction != NULL)
@@ -65,10 +63,20 @@ static _shutdown (void)
 }
 CD_APPLET_ON_CLICK_BEGIN
 {
-	if (myConfig.bInvertButtons)
-		_shutdown ();
+	if (myIcon->Xid != 0)
+	{
+		if (cairo_dock_get_current_active_window () == myIcon->Xid && myTaskBar.bMinimizeOnClick)
+			cairo_dock_minimize_xwindow (myIcon->Xid);
+		else
+			cairo_dock_show_xwindow (myIcon->Xid);
+	}
 	else
-		_logout ();
+	{
+		if (myConfig.bInvertButtons)
+			_shutdown ();
+		else
+			_logout ();
+	}
 }
 CD_APPLET_ON_CLICK_END
 
