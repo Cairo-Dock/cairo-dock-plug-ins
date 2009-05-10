@@ -13,7 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-parabole.h"
 #include "rendering-3D-plane.h"
 #include "rendering-rainbow.h"
-#include "rendering-diapo.h"
+//#include "rendering-diapo.h"
 #include "rendering-diapo-simple.h"
 #include "rendering-curve.h"
 #include "rendering-commons.h"
