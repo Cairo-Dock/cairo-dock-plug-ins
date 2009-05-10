@@ -6,7 +6,7 @@ moduledir = $(icon_effectsdatadir)
 module_DATA = \
 	icon-effect.conf\
 	preview.png\
-	icon.svg\
+	icon.png\
 	star.png\
 	snow.png\
 	rain.png\

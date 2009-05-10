@@ -7,29 +7,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Yann SLADEK\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Language-Team: \n"
 
 #: ../src/applet-init.c:18
 msgid "drop indicator"
 msgstr "drop indicator"
 
 #: ../src/applet-init.c:21
-msgid "This plug-in displays an animated indicator when you drop something in the dock."
-msgstr "Ce plug-in affiche un indicateur animé lorsque vous déposez quelque chose dans le dock"
+msgid ""
+"This plug-in displays an animated indicator when you drop something in the "
+"dock."
+msgstr ""
+"Ce plug-in affiche un indicateur animé lorsque vous déposez quelque chose "
+"dans le dock"
 
 #: ../data/messages:1
 msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:3
-msgid "Typically an arrow, that will be displayed when you try to drop a new launcher into the dock. Let empty to use the default one."
-msgstr "En général, c'est une flèche qui sera affichée lorsque vous essayez de déposer un nouveau lanceur dans le dock. Laissez vide pour utiliser celui par défaut."
+msgid ""
+"Typically an arrow, that will be displayed when you try to drop a new "
+"launcher into the dock. Let empty to use the default one."
+msgstr ""
+"En général, c'est une flèche qui sera affichée lorsque vous essayez de "
+"déposer un nouveau lanceur dans le dock. Laissez vide pour utiliser celui "
+"par défaut."
 
 #: ../data/messages:5
 msgid "Image for the drag'n'drop animation :"
@@ -49,55 +57,73 @@ msgstr "Vitesse de rotation :"
 
 #~ msgid "Icon"
 #~ msgstr "Icône"
+
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "Taille d'icône souhaitée pour cette applet"
+
 #~ msgid "width :"
 #~ msgstr "largeur :"
+
 #~ msgid "height :"
 #~ msgstr "hauteur :"
+
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
+
 #~ msgid "Module"
 #~ msgstr "Module"
+
 #~ msgid "Icon's name :"
 #~ msgstr "Nom de l'icône :"
+
 #~ msgid ""
 #~ "This is the drop_indicator applet\n"
 #~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
 #~ msgstr ""
 #~ "Ceci est l'applet drop_indicator\n"
 #~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
+
 #~ msgid "Desklet"
 #~ msgstr "Desklet"
+
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + "
 #~ "middle_click or ALT + left_click for exemple."
 #~ msgstr ""
 #~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner "
 #~ "avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "Dimension du desklet (largeur x hauteur) :"
+
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"
 #~ msgstr ""
 #~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
 #~ "+ clic gauche."
+
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "Position du desklet (x ; y) :"
+
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "Est-il détaché du dock ?"
+
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Garder en-dessous des autres fenêtres ?"
+
 #~ msgid "Keep above other windows ?"
 #~ msgstr "Garder au-dessus des autres fenêtres ?"
+
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 #~ "(class=Cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
 #~ "de Compiz à : (class=Cairo-dock & type=utility)"
+
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "Garder sur la couche des widgets ?"
+
 #~ msgid ""
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
@@ -105,6 +131,6 @@ msgstr "Vitesse de rotation :"
 #~ "Si verrouillé, le desklet ne pourra pas être bougé simplement en le "
 #~ "tirant avec le bouton gauche de la souris. Bien sur il pourra toujours "
 #~ "être bougé avec ALT + clique_gauche"
+
 #~ msgid "Lock position ?"
 #~ msgstr "Verrouiller la position ?"
-

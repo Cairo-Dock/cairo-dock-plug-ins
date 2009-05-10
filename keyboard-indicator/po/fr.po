@@ -7,13 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Yann SLADEK\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Language-Team: \n"
 
 #: ../src/applet-init.c:19
 msgid "keyboard indicator"
@@ -30,7 +29,8 @@ msgstr ""
 "Cet applet vous permet un contrôle de l'agencement de votre clavier.\n"
 "\tUn indicateur du statut de NUM et CAPS lock peut être affiché\n"
 "\tClique gauche pour basculer vers l'agencement suivant,\n"
-"\tRoulette vers le haut/bas pour sélectionner l'agencement précédent/suivant,\n"
+"\tRoulette vers le haut/bas pour sélectionner l'agencement précédent/"
+"suivant,\n"
 "\tClique droit pour donner un accès à la liste des agencements disponibles."
 
 #: ../data/messages:1
@@ -58,8 +58,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -67,7 +71,9 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -86,16 +92,25 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:31
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé avec ALT + clique_gauche"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
+"avec ALT + clique_gauche"
 
 #: ../data/messages:33
 msgid "Lock position ?"
@@ -115,18 +130,23 @@ msgstr "Décorations"
 
 #: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+msgstr ""
+"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
+"dessous."
 
 #: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:45
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
+"exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:47
-#: ../data/messages:85
+#: ../data/messages:47 ../data/messages:85
 msgid "Background image :"
 msgstr "Image de fond :"
 
@@ -167,8 +187,12 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:67
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -191,8 +215,12 @@ msgid "Display keyboard locks as quick-info ?"
 msgstr "Afficher le statut des CAPS et NUM locks en info rapide ?"
 
 #: ../data/messages:79
-msgid "in ms. Set it to 0 if you don't want an animation when the keyboard layout changes."
-msgstr "en ms. Mettez 0 si vous ne voulez pas d'animation quand l'agencement du clavier change."
+msgid ""
+"in ms. Set it to 0 if you don't want an animation when the keyboard layout "
+"changes."
+msgstr ""
+"en ms. Mettez 0 si vous ne voulez pas d'animation quand l'agencement du "
+"clavier change."
 
 #: ../data/messages:81
 msgid "Duration of the transition animation :"
@@ -217,4 +245,3 @@ msgstr "Tracer le contour du texte ?"
 #: ../data/messages:93
 msgid "Font :"
 msgstr "Police"
-

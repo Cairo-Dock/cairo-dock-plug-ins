@@ -4,11 +4,11 @@ SUBDIRS = . themes
 moduledir = $(rhythmboxdatadir)
 
 module_DATA = \
-	default.png\
-	broken.png\
-	play.png\
-	pause.png\
-	stop.png\
+	default.jpg\
+	broken.jpg\
+	play.jpg\
+	pause.jpg\
+	stop.jpg\
 	rhythmbox.conf\
 	preview.png\
 	icon.png\

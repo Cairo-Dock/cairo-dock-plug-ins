@@ -7,23 +7,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Yann SLADEK\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-init.c:25
 msgid ""
 "This applet allows you to manage compiz and other windows manager\n"
-"The sub-dock gives you to acces to CCSM, Emerald and some basic Compiz actions.\n"
+"The sub-dock gives you to acces to CCSM, Emerald and some basic Compiz "
+"actions.\n"
 "You can bind one of these actions with the middle-click.\n"
 "The configuration panel gives you some options to launch Compiz."
 msgstr ""
-"Cet applet vous permet de gérer Compiz et d'autres gestionnaires de fenêtres\n"
-"Le sous-dock vous donne accès au CCSM, Emerald et d'autres raccourcis pour Compiz.\n"
+"Cet applet vous permet de gérer Compiz et d'autres gestionnaires de "
+"fenêtres\n"
+"Le sous-dock vous donne accès au CCSM, Emerald et d'autres raccourcis pour "
+"Compiz.\n"
 "Vous pouvez choisir l'action du clique du milieu.\n"
 "Le panneau de configuration vous donne certaines options pour lancer Compiz."
 
@@ -31,8 +33,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Configurer Compiz"
 
-#: ../src/applet-load-icon.c:21
-#: ../src/applet-notifications.c:185
+#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:185
 msgid "Emerald Manager"
 msgstr "Gestionnaire Emerald"
 
@@ -44,8 +45,7 @@ msgstr "Recharger WM"
 msgid "Exposition"
 msgstr "Exposé"
 
-#: ../src/applet-load-icon.c:21
-#: ../data/messages:85
+#: ../src/applet-load-icon.c:21 ../data/messages:85
 msgid "Widget Layer"
 msgstr "Couche des Widgets"
 
@@ -106,8 +106,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -115,7 +119,9 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -134,16 +140,25 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:27
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:31
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si verrouillé, le desklet ne pourra pas être déplacé simplement en le tirant avec le bouton gauche de la souris. Bien sur il pourra toujours être déplacé avec ALT + clique_gauche."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être déplacé simplement en le tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujours être déplacé "
+"avec ALT + clique_gauche."
 
 #: ../data/messages:33
 msgid "Lock position ?"
@@ -163,15 +178,21 @@ msgstr "Décorations"
 
 #: ../data/messages:41
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+msgstr ""
+"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
+"dessous."
 
 #: ../data/messages:43
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:45
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:47
 msgid "Background image :"
@@ -214,8 +235,12 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:67
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:69
 msgid "Foreground image :"
@@ -234,8 +259,12 @@ msgid "Actions"
 msgstr "Actions"
 
 #: ../data/messages:77
-msgid "Except for switching to another WM, you must activate the Dbus plugin in Compiz, along with the plug-in corresponding to the desired action."
-msgstr "Sauf pour 'Changer de WM', vous devez activer le plug-in Dbus de compiz, ainsin que les plug-ins de l'action désirée"
+msgid ""
+"Except for switching to another WM, you must activate the Dbus plugin in "
+"Compiz, along with the plug-in corresponding to the desired action."
+msgstr ""
+"Sauf pour 'Changer de WM', vous devez activer le plug-in Dbus de compiz, "
+"ainsin que les plug-ins de l'action désirée"
 
 #: ../data/messages:79
 msgid "Choose an action for the middle click on the icon :"
@@ -258,24 +287,36 @@ msgid "Show Desktop"
 msgstr "Montrer le Bureau"
 
 #: ../data/messages:91
-msgid "This command will be used to launch the system WM; let it blank to use the default one."
-msgstr "Cette commande va etre utiliser pour lancer le Gestionnaire de fenêtres; Laissez vide pour utiliser celui par défaut"
+msgid ""
+"This command will be used to launch the system WM; let it blank to use the "
+"default one."
+msgstr ""
+"Cette commande va etre utiliser pour lancer le Gestionnaire de fenêtres; "
+"Laissez vide pour utiliser celui par défaut"
 
 #: ../data/messages:93
 msgid "Custom command for system's Windows Manager :"
 msgstr "Commande personnalisée pour le Gestionnaire de Fenêtres système :"
 
 #: ../data/messages:95
-msgid "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then."
-msgstr "Si Compiz se ferme de façon inattendue, Cairo-Dock va le redémarrer. Vous devrez alors quitter Compiz depuis le dock."
+msgid ""
+"If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
+"Compiz from the dock then."
+msgstr ""
+"Si Compiz se ferme de façon inattendue, Cairo-Dock va le redémarrer. Vous "
+"devrez alors quitter Compiz depuis le dock."
 
 #: ../data/messages:97
 msgid "Auto-reload Compiz ?"
 msgstr "Recharger automatiquement Compiz ?"
 
 #: ../data/messages:99
-msgid "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to quit Compiz from the dock then."
-msgstr "Si le décorateur se ferme de façon inattendue, Cairo-Dock va le redémarrerVous devrez alors quitter Compiz depuis le dock"
+msgid ""
+"If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+"quit Compiz from the dock then."
+msgstr ""
+"Si le décorateur se ferme de façon inattendue, Cairo-Dock va le "
+"redémarrerVous devrez alors quitter Compiz depuis le dock"
 
 #: ../data/messages:101
 msgid "Auto-reload the Decorator ?"
@@ -290,24 +331,37 @@ msgid "Force Compiz settings at startup ?"
 msgstr "Forcer les Options de Compiz au démarrage ?"
 
 #: ../data/messages:107
-msgid "It will prevent the CSSM or Emerald icon to appear in the task bar. The corresponding subdock's icons will then behave as launcher and an appli."
-msgstr "Cela empéchera l'icône de CSSM ou d'Emerald d'apparaitre dans la barre d'applications. Les icônes du sous-dock se comporteront comme un lanceur et une application."
+msgid ""
+"It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+"corresponding subdock's icons will then behave as launcher and an appli."
+msgstr ""
+"Cela empéchera l'icône de CSSM ou d'Emerald d'apparaitre dans la barre "
+"d'applications. Les icônes du sous-dock se comporteront comme un lanceur et "
+"une application."
 
 #: ../data/messages:109
 msgid "Steal the application's icon in taskbar ?"
 msgstr "Voler l'icône de l'application dans la barre d'applications ?"
 
 #: ../data/messages:111
-msgid "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget Layer plug-ins. Otherwise they will be available in the menu."
-msgstr "Ajoute dans le sous-dock de l'applet 2 icônes pour les plug-ins Exposition et Widget Layer de Compiz. Sinon elles seront accessibles via le menu."
+msgid ""
+"Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+"Layer plug-ins. Otherwise they will be available in the menu."
+msgstr ""
+"Ajoute dans le sous-dock de l'applet 2 icônes pour les plug-ins Exposition "
+"et Widget Layer de Compiz. Sinon elles seront accessibles via le menu."
 
 #: ../data/messages:113
 msgid "Add Exposition & Widget Layer to sub-dock ?"
 msgstr "Ajouter l'Exposition et le Widget Layer au sous-dock?"
 
 #: ../data/messages:115
-msgid "Display in the applet's sub-dock an icon for the Emerald's configuration panel."
-msgstr "Affiche dans le sous-dock de l'appet une icône pour la configuration d'Emerald."
+msgid ""
+"Display in the applet's sub-dock an icon for the Emerald's configuration "
+"panel."
+msgstr ""
+"Affiche dans le sous-dock de l'appet une icône pour la configuration "
+"d'Emerald."
 
 #: ../data/messages:117
 msgid "Add Emerald's Configuration to sub-dock ?"
@@ -318,8 +372,16 @@ msgid "Compiz Options"
 msgstr "Options de Compiz"
 
 #: ../data/messages:121
-msgid "With strict binding textures are bound whenever they are enabled, with loose binding they are enabled when created. The Nvidia driver seems a bit slow when binding textures, that's why this option gives a heavy performance increase on Nvidia."
-msgstr "Avec le strict binding les textures sont liées lorsqu'elles sont activées, avec le loose binding elles ne sont liées qu'à la création. Le driver Nvidia semble être lent lors du binding des textures, c'est pourquoi cette option donne de bonne peformances avec les Nvidia."
+msgid ""
+"With strict binding textures are bound whenever they are enabled, with loose "
+"binding they are enabled when created. The Nvidia driver seems a bit slow "
+"when binding textures, that's why this option gives a heavy performance "
+"increase on Nvidia."
+msgstr ""
+"Avec le strict binding les textures sont liées lorsqu'elles sont activées, "
+"avec le loose binding elles ne sont liées qu'à la création. Le driver Nvidia "
+"semble être lent lors du binding des textures, c'est pourquoi cette option "
+"donne de bonne peformances avec les Nvidia."
 
 #: ../data/messages:123
 msgid "Use Loose Binding ?"
@@ -377,14 +439,9 @@ msgstr "Nom de la vue utilisée pour le sous-dock :"
 msgid "Images"
 msgstr "Images"
 
-#: ../data/messages:151
-#: ../data/messages:155
-#: ../data/messages:159
-#: ../data/messages:163
-#: ../data/messages:167
-#: ../data/messages:171
-#: ../data/messages:175
-#: ../data/messages:179
+#: ../data/messages:151 ../data/messages:155 ../data/messages:159
+#: ../data/messages:163 ../data/messages:167 ../data/messages:171
+#: ../data/messages:175 ../data/messages:179
 msgid "Let t empty to use the default icon."
 msgstr "Laisser vide pour utiliser l'icône par défaut."
 
@@ -426,8 +483,9 @@ msgstr "Nom de l'image 'Widget Layer' :"
 #~ msgstr ""
 #~ "Ceci est l'applet compiz-icon\n"
 #~ " écrite par ChAnGFu pour Cairo-Dock"
+
 #~ msgid "width :"
 #~ msgstr "largeur :"
+
 #~ msgid "height :"
 #~ msgstr "hauteur :"
-

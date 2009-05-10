@@ -7,13 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Yann SLADEK\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Language-Team: \n"
 
 #: ../src/applet-init.c:22
 msgid "Animated icons"
@@ -43,9 +42,7 @@ msgstr "En cliquant sur un lanceur"
 msgid "Effects used on launcher :"
 msgstr "Effets utilisés sur les lanceurs"
 
-#: ../data/messages:11
-#: ../data/messages:17
-#: ../data/messages:23
+#: ../data/messages:11 ../data/messages:17 ../data/messages:23
 msgid "Number of time the animation will play :"
 msgstr "Nombre de répétitions de l'animation :"
 
@@ -69,27 +66,17 @@ msgstr "Effets utilisés sur les applets"
 msgid "Rotation"
 msgstr "Rotation"
 
-#: ../data/messages:27
-#: ../data/messages:45
-#: ../data/messages:87
-#: ../data/messages:99
-#: ../data/messages:111
-#: ../data/messages:125
+#: ../data/messages:27 ../data/messages:45 ../data/messages:87
+#: ../data/messages:99 ../data/messages:111 ../data/messages:125
 msgid "In ms."
 msgstr "En ms."
 
-#: ../data/messages:29
-#: ../data/messages:47
-#: ../data/messages:89
+#: ../data/messages:29 ../data/messages:47 ../data/messages:89
 msgid "Duration of the animation :"
 msgstr "Durée de l'animation :"
 
-#: ../data/messages:31
-#: ../data/messages:49
-#: ../data/messages:91
-#: ../data/messages:103
-#: ../data/messages:115
-#: ../data/messages:129
+#: ../data/messages:31 ../data/messages:49 ../data/messages:91
+#: ../data/messages:103 ../data/messages:115 ../data/messages:129
 msgid "Repeat while icon is pointed ?"
 msgstr "Répéter tant que l'icône est pointée par la souris ?"
 
@@ -240,4 +227,3 @@ msgstr "Clignottement"
 #: ../data/messages:127
 msgid "Duration of the blink :"
 msgstr "Durée du clignottement"
-

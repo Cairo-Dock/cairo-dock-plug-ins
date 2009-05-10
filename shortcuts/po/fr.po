@@ -7,16 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Yann SLADEK\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-bookmarks.c:122
-#: ../src/applet-bookmarks.c:321
+#: ../src/applet-bookmarks.c:122 ../src/applet-bookmarks.c:321
 #: ../src/applet-load-icons.c:57
 msgid "Unmounted"
 msgstr "Non monté"
@@ -24,18 +22,24 @@ msgstr "Non monté"
 #: ../src/applet-init.c:23
 msgid ""
 "An applet that let you access quickly to all of your shortcuts.\n"
-"It can manage disks, network points, and Nautilus bookmarks (even if you don't have Nautilus).\n"
+"It can manage disks, network points, and Nautilus bookmarks (even if you "
+"don't have Nautilus).\n"
 "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 "Middle-click on the main icon to acces your desktop easily.\n"
 "Middle-click on a mounting point icon to (un)mount is quickly.\n"
-"The applet can also display valuable information about your disks, like free space, type, etc."
+"The applet can also display valuable information about your disks, like free "
+"space, type, etc."
 msgstr ""
 "Un applet qui vous permet d'accéder rapidement à tous vos raccourcis.\n"
-"Il peut gérer des disques, des montages réseaux et les signets Nautilus (même si vous ne possédez pas Nautilus).\n"
-"Glissez/Déposez un dossier sur l'icône principal ou le sous-dock pour ajouter un signet.\n"
+"Il peut gérer des disques, des montages réseaux et les signets Nautilus "
+"(même si vous ne possédez pas Nautilus).\n"
+"Glissez/Déposez un dossier sur l'icône principal ou le sous-dock pour "
+"ajouter un signet.\n"
 "Clic milieu sur l'icône principal pour afficher rapidement votre bureau.\n"
-"Clic milieu sur l'icône d'un point de montage pour le (dé)monter rapidement.\n"
-"L'applet peut aussi afficher des informations sur vos disques, comme l'espace libre, le type, etc. "
+"Clic milieu sur l'icône d'un point de montage pour le (dé)monter "
+"rapidement.\n"
+"L'applet peut aussi afficher des informations sur vos disques, comme "
+"l'espace libre, le type, etc. "
 
 #: ../src/applet-notifications.c:72
 msgid "Remove this bookmark"
@@ -78,8 +82,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -87,7 +95,9 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -106,16 +116,25 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:35
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
+"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
+"contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:37
 msgid "Lock position ?"
@@ -135,15 +154,21 @@ msgstr "Décorations"
 
 #: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+msgstr ""
+"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
+"dessous."
 
 #: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:49
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -186,8 +211,12 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:71
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"
@@ -286,16 +315,19 @@ msgstr "Afficher l'utilisation du disque avec une barre ?"
 #~ "Vous pouvez ajouter ou enlever des favoris en les déposants sur l'applet "
 #~ "si vous ne disposez pas de Nautilus.\n"
 #~ "Clique du milieu pour accéder à votre bureau facilement."
+
 #~ msgid ""
 #~ "This is the shortcuts applet\n"
 #~ " made by Fabounet for Cairo-Dock"
 #~ msgstr ""
 #~ "Ceci est l'applet shortcuts\n"
 #~ " écrite par Fabounet pour Cairo-Dock"
+
 #~ msgid "width :"
 #~ msgstr "largeur :"
+
 #~ msgid "height :"
 #~ msgstr "hauteur :"
+
 #~ msgid "Lockposition ?"
 #~ msgstr "Verrouiller la position ?"
-

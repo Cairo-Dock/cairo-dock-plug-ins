@@ -7,13 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Yann SLADEK\n"
 "Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-draw.c:102
 msgid "GPU Name:"
@@ -27,8 +26,7 @@ msgstr "Mémoire Vidéo:"
 msgid "Driver Version:"
 msgstr "Version du Driver:"
 
-#: ../src/applet-draw.c:102
-#: ../src/applet-draw.c:118
+#: ../src/applet-draw.c:102 ../src/applet-draw.c:118
 msgid "Core Temparature:"
 msgstr "Température du Coeur:"
 
@@ -68,11 +66,13 @@ msgstr ""
 msgid ""
 "This applet displays info on you nVidia GPU\n"
 " like temperature, video ram, driver version, etc.\n"
-"Ensure that you have 'nvidia-settings' installed otherwise this plug-in won't work."
+"Ensure that you have 'nvidia-settings' installed otherwise this plug-in "
+"won't work."
 msgstr ""
 "Cet applet affiche les informations de votre GPU nVidia\n"
 " comme la température, la RAM vidéo, la version du driver, etc.\n"
-"Vérifiez de bien posséder 'nvidia-settings' sinon ce plug-in ne pourrait pas fonctionner."
+"Vérifiez de bien posséder 'nvidia-settings' sinon ce plug-in ne pourrait pas "
+"fonctionner."
 
 #: ../data/messages:1
 msgid "Icon"
@@ -107,8 +107,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -116,7 +120,9 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -135,16 +141,25 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:31
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:35
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé avec ALT + clique_gauche"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
+"avec ALT + clique_gauche"
 
 #: ../data/messages:37
 msgid "Lock position ?"
@@ -164,15 +179,21 @@ msgstr "Décorations"
 
 #: ../data/messages:45
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+msgstr ""
+"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
+"dessous."
 
 #: ../data/messages:47
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:49
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:51
 msgid "Background image :"
@@ -215,8 +236,12 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:71
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:73
 msgid "Foreground image :"
@@ -263,16 +288,24 @@ msgid "Delay between temperature checks :"
 msgstr "Temps entre les vérifications :"
 
 #: ../data/messages:95
-msgid "in celcius. The temperature will be displayed between this value and the upper limit."
-msgstr "en celcius. La température sera affichée entre cette valeur et la limite supérieur."
+msgid ""
+"in celcius. The temperature will be displayed between this value and the "
+"upper limit."
+msgstr ""
+"en celcius. La température sera affichée entre cette valeur et la limite "
+"supérieur."
 
 #: ../data/messages:97
 msgid "Lower limit of core temperature :"
 msgstr "Limite inférieur de la température :"
 
 #: ../data/messages:99
-msgid "in celcius. The temperature will be displayed between the lower limit and this value."
-msgstr "en celcius. La température sera affichée entre la limite inférieur et cette valeur."
+msgid ""
+"in celcius. The temperature will be displayed between the lower limit and "
+"this value."
+msgstr ""
+"en celcius. La température sera affichée entre la limite inférieur et cette "
+"valeur."
 
 #: ../data/messages:101
 msgid "Upper limit of core temperature :"
@@ -355,8 +388,12 @@ msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 
 #: ../data/messages:141
-msgid "Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark."
-msgstr "Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si vous ne voulez pas de filigrane."
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+"Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si "
+"vous ne voulez pas de filigrane."
 
 #: ../data/messages:143
 msgid "Image to display as a watermark on the gauge :"
@@ -384,12 +421,15 @@ msgstr "Nom de l'image 'pas de donnée' :"
 #~ msgstr ""
 #~ "Ceci est l'applet nVidia\n"
 #~ " écrite par ChAnGFu pour Cairo-Dock"
+
 #~ msgid "width :"
 #~ msgstr "largeur :"
+
 #~ msgid "height :"
 #~ msgstr "hauteur :"
+
 #~ msgid "on quickinfo"
 #~ msgstr "info rapide"
+
 #~ msgid "Module"
 #~ msgstr "Module"
-

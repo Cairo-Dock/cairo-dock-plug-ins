@@ -13,7 +13,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
 
 #: ../src/applet-config.c:158
 msgid ""
@@ -38,15 +37,20 @@ msgstr "Météo"
 #: ../src/applet-init.c:21
 msgid ""
 "This applet displays weather into your dock.\n"
-"Data are provided by www.weather.com, you can find your location in the config panel.\n"
+"Data are provided by www.weather.com, you can find your location in the "
+"config panel.\n"
 "It can detach itself to be a totally eye-candy 3D deskelt.\n"
-"Middle-click on the main icon to have current conditions information, left-click on a sub-icon to have forcast information.\n"
+"Middle-click on the main icon to have current conditions information, left-"
+"click on a sub-icon to have forcast information.\n"
 msgstr ""
 "Cet applet indique, à l'intérieur de votre dock, la météo.\n"
-"Les données sont fournies par www.weather.com, vous pouvez trouver votre emplacement dans le panneau de configuration.\n"
+"Les données sont fournies par www.weather.com, vous pouvez trouver votre "
+"emplacement dans le panneau de configuration.\n"
 "L'applet peut être détaché pour l'avoir dans un desklet en 3D.\n"
-"Clique du milieu sur l'icône principale pour avoir les conditions actuelles,\n"
-"Clique gauche sur un autre jour pour avoir plus d'informations sur les prévisions.\n"
+"Clique du milieu sur l'icône principale pour avoir les conditions "
+"actuelles,\n"
+"Clique gauche sur un autre jour pour avoir plus d'informations sur les "
+"prévisions.\n"
 
 #: ../src/applet-load-icons.c:15
 msgid "Monday"
@@ -136,8 +140,7 @@ msgstr ""
 "Aucune donnée disponible\n"
 " la connexion est-elle établie ?"
 
-#: ../src/applet-notifications.c:91
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:118
 msgid "Temperature"
 msgstr "Température"
 
@@ -145,23 +148,19 @@ msgstr "Température"
 msgid "Precipitation Probability"
 msgstr "Probabilité de précipitation"
 
-#: ../src/applet-notifications.c:93
-#: ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:119
 msgid "Wind"
 msgstr "Vent"
 
-#: ../src/applet-notifications.c:94
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:120
 msgid "Humidity"
 msgstr "Humidité"
 
-#: ../src/applet-notifications.c:95
-#: ../src/applet-notifications.c:121
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
 msgid "SunRise"
 msgstr "Lever du soleil"
 
-#: ../src/applet-notifications.c:95
-#: ../src/applet-notifications.c:121
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
 msgid "SunSet"
 msgstr "Coucher du soleil"
 
@@ -210,8 +209,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:15
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_gauche par exemple."
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_gauche par exemple."
 
 #: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
@@ -219,7 +222,9 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
@@ -238,16 +243,25 @@ msgid "Keep above other windows ?"
 msgstr "Garder au-dessus des autres fenêtres ?"
 
 #: ../data/messages:29
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Garder sur la couche des widgets ?"
 
 #: ../data/messages:33
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si la position est verrouillée, le desklet ne peut plus être déplacé par un simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par contre toujours le déplacer avec ALT + clic gauche."
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si la position est verrouillée, le desklet ne peut plus être déplacé par un "
+"simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
+"contre toujours le déplacer avec ALT + clic gauche."
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -267,15 +281,21 @@ msgstr "Décorations"
 
 #: ../data/messages:43
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+msgstr ""
+"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
+"dessous."
 
 #: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
 #: ../data/messages:47
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
+"exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:49
 msgid "Background image :"
@@ -318,8 +338,12 @@ msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
 #: ../data/messages:69
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
 #: ../data/messages:71
 msgid "Foreground image :"
@@ -329,14 +353,17 @@ msgstr "Image d'avant-plan :"
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:75
-#: ../data/messages:77
+#: ../data/messages:75 ../data/messages:77
 msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:79
-msgid "Right click on the icon to let Cairo-Dock help you to find your location code."
-msgstr "Clique droit sur l'icône pour laisser Cairo-Dock vous aider à trouver le code de votre location."
+msgid ""
+"Right click on the icon to let Cairo-Dock help you to find your location "
+"code."
+msgstr ""
+"Clique droit sur l'icône pour laisser Cairo-Dock vous aider à trouver le "
+"code de votre location."
 
 #: ../data/messages:81
 msgid "Code of your location :"
@@ -368,7 +395,8 @@ msgstr "Info"
 
 #: ../data/messages:95
 msgid "Display current conditions on the icon instead of the default one ?"
-msgstr "Afficher les conditions actuelles sur l'icône plutôt que celui par défaut ?"
+msgstr ""
+"Afficher les conditions actuelles sur l'icône plutôt que celui par défaut ?"
 
 #: ../data/messages:97
 msgid "Number of days you want to forecast :"
@@ -412,18 +440,22 @@ msgstr "Dessiner le desklet en 3D ?"
 #, fuzzy
 #~ msgid "Main Icon"
 #~ msgstr "Icône"
+
 #~ msgid ""
 #~ "Enter your location\n"
 #~ " (for exemple : Paris, France)"
 #~ msgstr ""
 #~ "Entrez votre location\n"
 #~ " (par exemple : Paris, France)"
+
 #~ msgid "Choose your location :"
 #~ msgstr "Choisissez votre location :"
+
 #~ msgid "Search for your location"
 #~ msgstr "Chercher votre location"
+
 #~ msgid "width :"
 #~ msgstr "largeur :"
+
 #~ msgid "height :"
 #~ msgstr "hauteur :"
-
