@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-05-10 00:56+0200\n"
+"POT-Creation-Date: 2009-05-10 03:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,11 +35,11 @@ msgid ""
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
 
-#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:53
 msgid "Calendar"
 msgstr ""
 
-#: ../src/applet-notifications.c:64
+#: ../src/applet-notifications.c:65
 msgid "Set up time and date"
 msgstr ""
 

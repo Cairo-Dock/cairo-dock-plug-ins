@@ -35,11 +35,11 @@ msgid ""
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
 
-#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:53
 msgid "Calendar"
 msgstr "Kalender"
 
-#: ../src/applet-notifications.c:64
+#: ../src/applet-notifications.c:65
 msgid "Set up time and date"
 msgstr "Justera datum och tid"
 

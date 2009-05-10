@@ -41,11 +41,11 @@ msgstr ""
 "Clique gauche pour afficher/cacher le calendrier. Clique du milieu pour "
 "stopper l'alarm."
 
-#: ../src/applet-notifications.c:52
+#: ../src/applet-notifications.c:53
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: ../src/applet-notifications.c:64
+#: ../src/applet-notifications.c:65
 msgid "Set up time and date"
 msgstr "Régler la date et l'heure"
 

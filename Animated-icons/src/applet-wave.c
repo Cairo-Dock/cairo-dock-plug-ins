@@ -174,7 +174,11 @@ void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDat
 	
 	glColor4f (1., 1., 1., pIcon->fAlpha);
 	glEnable(GL_BLEND);
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	if (pIcon->fAlpha == 1)
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	else
+		_cairo_dock_set_blend_alpha ();
+	
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	
 	glEnable(GL_TEXTURE_2D); // Je veux de la texture

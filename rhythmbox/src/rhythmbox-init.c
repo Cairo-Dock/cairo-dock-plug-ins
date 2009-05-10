@@ -18,7 +18,7 @@ CD_APPLET_DEFINITION ("Rhythmbox",
 	"Left-click to launch it, and to play/pause."
 	"Middle-click and Scroll-down for next song, Scroll-up for previous song.\n"
 	"You can drag and drop covers (jpg) on the icon to use them,\n"
-	" and songs to put them in the queue.\n"),
+	" and songs to put them in the queue."),
 	"Adrien Pilleboue (Necropotame) & Nochka85 (Opengl display)")
 
 CD_APPLET_INIT_BEGIN

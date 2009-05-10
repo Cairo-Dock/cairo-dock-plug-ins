@@ -34,7 +34,7 @@ CD_APPLET_DEFINITION ("Xgamma",
 	"Scroll up/down to increase/decrease the luminosity\n"
 	"Left-click to open a dialog to setup the luminosity\n"
 	"Middle-click to set it up for each color.\n"
-	"You can also define a luminosity value that will be applied automatically on startup.\n"),
+	"You can also define a luminosity value that will be applied automatically on startup."),
 	"Fabounet (Fabrice Rey)")
 
 
