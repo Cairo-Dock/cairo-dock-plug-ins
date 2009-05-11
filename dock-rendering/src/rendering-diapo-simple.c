@@ -25,7 +25,7 @@ extern gdouble  my_diapo_simple_fScaleMax;
 extern gint     my_diapo_simple_sinW;
 extern gboolean my_diapo_simple_lineaire;
 extern gboolean  my_diapo_simple_wide_grid;
-extern gboolean  my_diapo_simple_text_only_on_pointed;
+//extern gboolean  my_diapo_simple_text_only_on_pointed;
 
 extern gdouble  my_diapo_simple_color_frame_start[4];
 extern gdouble  my_diapo_simple_color_frame_stop[4];
@@ -153,105 +153,69 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 		
 //////////////////////////////////////////////////////////////////////////////////////// On affiche le texte !
 		gdouble zoom;
-		if(icon->pTextBuffer != NULL)
+		if(icon->pTextBuffer != NULL && (my_diapo_simple_display_all_icons || icon->bPointed))
 		{
-			double fAlpha;
-			if ((my_diapo_simple_text_only_on_pointed && icon->bPointed) || my_diapo_simple_display_all_icons)
-				fAlpha = 1.;
-			else if (!my_diapo_simple_text_only_on_pointed)
-				fAlpha = 1. + (icon->fScale - my_diapo_simple_fScaleMax)/(my_diapo_simple_fScaleMax - 1);
-			else
-				fAlpha = 0.;
-			if (fAlpha > 0)
+			double fAlpha = 1.;
+			cairo_save (pCairoContext);
+			
+			double fOffsetX = -icon->fTextXOffset + icon->fWidthFactor * icon->fWidth * icon->fScale / 2;
+			if (fOffsetX < 0)
+				fOffsetX = 0;
+			else if (0 + fOffsetX + icon->iTextWidth > pDock->iCurrentWidth)
+				fOffsetX = pDock->iCurrentWidth - icon->iTextWidth - 0;
+			
+			if (icon->iTextWidth > icon->fWidth * icon->fScale + my_diapo_simple_iconGapX && ! icon->bPointed)
 			{
-				cairo_save (pCairoContext);
+				cairo_translate (pCairoContext,
+					icon->fDrawX - my_diapo_simple_iconGapX/2,
+					icon->fDrawY + icon->fHeight * icon->fScale);
 				
-				if (icon->iTextWidth > icon->fWidth * icon->fScale + my_diapo_simple_iconGapX)
-				{
-					cairo_translate (pCairoContext,
-						icon->fDrawX - my_diapo_simple_iconGapX/2,
-						icon->fDrawY + icon->fHeight * icon->fScale);
-					
-					cairo_set_source_surface (pCairoContext,
-						icon->pTextBuffer,
-						0.,
-						0.);
-					
-					cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (0.,
-						0.,
-						icon->fWidth * icon->fScale + my_diapo_simple_iconGapX,
-						0.);
-					cairo_pattern_set_extend (pGradationPattern, icon->bPointed ? CAIRO_EXTEND_PAD : CAIRO_EXTEND_NONE);
-					cairo_pattern_add_color_stop_rgba (pGradationPattern,
-						0.,
-						0.,
-						0.,
-						0.,
-						fAlpha);
-					cairo_pattern_add_color_stop_rgba (pGradationPattern,
-						0.75,
-						0.,
-						0.,
-						0.,
-						fAlpha);
-					cairo_pattern_add_color_stop_rgba (pGradationPattern,
-						1.,
-						0.,
-						0.,
-						0.,
-						MIN (0.2, fAlpha/2));
-					cairo_mask (pCairoContext, pGradationPattern);
-					cairo_pattern_destroy (pGradationPattern);
-				}
-				else
-				{
-					cairo_translate (pCairoContext,
-						icon->fDrawX + (icon->fWidth * icon->fScale - icon->iTextWidth) / 2,
-						icon->fDrawY + icon->fHeight * icon->fScale);
-					
-					cairo_set_source_surface (pCairoContext,
-						icon->pTextBuffer,
-						0.,
-						0.);
-					if (fAlpha == 1)
-						cairo_paint (pCairoContext);
-					else
-						cairo_paint_with_alpha (pCairoContext, fAlpha);
-				}
-				cairo_restore (pCairoContext);
-			}
-		}
-               /*if(FALSE && icon->pTextBuffer != NULL)
-                {
-                	cairo_save (pCairoContext);
-                	zoom = 1;
-                	if(2*icon->fTextXOffset > MaxTextWidthSimple)
-                	{
-                	        zoom  = MaxTextWidthSimple / (2*icon->fTextXOffset);
-	                        cairo_scale(pCairoContext, zoom, zoom);	
-	                }
-                        if (pDock->bHorizontalDock)
-                        {
-                        	cairo_set_source_surface (pCairoContext,
-				        icon->pTextBuffer,
-				        (icon->fDrawX + (icon->fWidth * icon->fScale)/2)/zoom - icon->fTextXOffset,
-				        (icon->fDrawY +  (icon->fHeight * icon->fScale) + 0*(my_diapo_simple_iconGapY / 2)) / zoom - 6); // 6 ~= hauteur texte / 2
+				cairo_set_source_surface (pCairoContext,
+					icon->pTextBuffer,
+					fOffsetX,
+					0.);
+				
+				cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (0.,
+					0.,
+					icon->fWidth * icon->fScale + my_diapo_simple_iconGapX,
+					0.);
+				cairo_pattern_set_extend (pGradationPattern, icon->bPointed ? CAIRO_EXTEND_PAD : CAIRO_EXTEND_NONE);
+				cairo_pattern_add_color_stop_rgba (pGradationPattern,
+					0.,
+					0.,
+					0.,
+					0.,
+					fAlpha);
+				cairo_pattern_add_color_stop_rgba (pGradationPattern,
+					0.75,
+					0.,
+					0.,
+					0.,
+					fAlpha);
+				cairo_pattern_add_color_stop_rgba (pGradationPattern,
+					1.,
+					0.,
+					0.,
+					0.,
+					MIN (0.2, fAlpha/2));
+				cairo_mask (pCairoContext, pGradationPattern);
+				cairo_pattern_destroy (pGradationPattern);
 			}
 			else
-	                {
-                        	cairo_set_source_surface (pCairoContext,
-				        icon->pTextBuffer,  
-				        (icon->fDrawY + (icon->fWidth * icon->fScale)/2)/zoom -icon->fTextXOffset,
-				        (icon->fDrawX +  (icon->fHeight * icon->fScale)   + (my_diapo_simple_iconGapY / 2)  - 6 )/zoom); // 6 ~= hauteur texte / 2
+			{
+				cairo_translate (pCairoContext,
+					icon->fDrawX + (icon->fWidth * icon->fScale - icon->iTextWidth) / 2,
+					icon->fDrawY + icon->fHeight * icon->fScale);
+				
+				cairo_set_source_surface (pCairoContext,
+					icon->pTextBuffer,
+					fOffsetX,
+					0.);
+				cairo_paint (pCairoContext);
 			}
-
-			if ((my_diapo_simple_text_only_on_pointed && icon->bPointed) || my_diapo_simple_display_all_icons)
-			        cairo_paint (pCairoContext);
-		        else if (!my_diapo_simple_text_only_on_pointed)
-			        cairo_paint_with_alpha (pCairoContext, 1. + (icon->fScale - my_diapo_simple_fScaleMax)/(my_diapo_simple_fScaleMax - 1));
-	
 			cairo_restore (pCairoContext);
-                }*/
+		}
+		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	}
 	while (ic != pFirstDrawnElement);
@@ -733,7 +697,43 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		
 		glPushMatrix ();
 		
-		cairo_dock_render_one_icon_opengl (icon, pDock, 1., TRUE);
+		cairo_dock_render_one_icon_opengl (icon, pDock, 1., FALSE);
+		
+		if(icon->iLabelTexture != 0 && (my_diapo_simple_display_all_icons || icon->bPointed))
+		{
+			double fAlpha = 1.;
+			double fOffsetX = 0.;
+			if (icon->fDrawX + icon->fWidth * icon->fScale/2 - icon->iTextWidth/2 < 0)
+				fOffsetX = icon->iTextWidth/2 - (icon->fDrawX + icon->fWidth * icon->fScale/2);
+			else if (icon->fDrawX + icon->fWidth * icon->fScale/2 + icon->iTextWidth/2 > pDock->iCurrentWidth)
+				fOffsetX = pDock->iCurrentWidth - (icon->fDrawX + icon->fWidth * icon->fScale/2 + icon->iTextWidth/2);
+			
+			glTranslatef (fOffsetX,
+				(pDock->bDirectionUp ? 1:-1) * (icon->fHeight * icon->fScale/2 + myLabels.iLabelSize - icon->iTextHeight / 2),
+				0.);
+			
+			if (icon->iTextWidth > icon->fWidth * icon->fScale + my_diapo_simple_iconGapX && ! icon->bPointed)
+			{
+				_cairo_dock_enable_texture ();
+				_cairo_dock_set_blend_over ();
+				_cairo_dock_set_alpha (icon->fScale / my_diapo_simple_fScaleMax);
+				glBindTexture (GL_TEXTURE_2D, icon->iLabelTexture);
+				
+				double w = icon->fWidth * icon->fScale + my_diapo_simple_iconGapX;
+				double h = icon->iTextHeight;
+				_cairo_dock_apply_current_texture_portion_at_size_with_offset (0., 0., w/icon->iTextWidth, 1.,
+					w, h, 0., 0.);
+				
+				_cairo_dock_disable_texture ();
+			}
+			else
+			{
+				cairo_dock_draw_texture_with_alpha (icon->iLabelTexture,
+					icon->iTextWidth,
+					icon->iTextHeight,
+					icon->fScale / my_diapo_simple_fScaleMax);
+			}
+		}
 		
 		glPopMatrix ();
 		

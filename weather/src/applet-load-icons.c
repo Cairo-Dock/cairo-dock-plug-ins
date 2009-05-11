@@ -79,7 +79,7 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 			if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
 			{
 				g_free (myIcon->acFileName);
-				myIcon->acFileName = g_strdup_printf ("%s/%na.svg", myConfig.cThemePath);
+				myIcon->acFileName = g_strdup_printf ("%s/na.svg", myConfig.cThemePath);
 				if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
 				{
 					g_free (myIcon->acFileName);

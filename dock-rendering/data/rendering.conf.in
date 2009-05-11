@@ -101,9 +101,6 @@ simple_lineaire = false
 #b+ Use a wide shape ?
 simple_wide_grid = false
 
-#b Display text only for pointed icon ?
-simple_text_only_on_pointed = false
-
 #b Display text for all icons ?
 simple_display_all_icons = false
 
