@@ -23,7 +23,8 @@ CD_APPLET_DEFINITION ("switcher",
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("This applet allows you to switch between your virtual desktops.\n"
 	"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
-	"You can also quickly add/remove a desktop through the right-click menu."),
+	"You can also quickly add/remove a desktop through the right-click menu.\n"
+	"Scroll up on the main icon to go to left desktop and scroll down to go to the right desktop."),
 	"Cchumi")
 
 
@@ -32,6 +33,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	cairo_dock_register_notification (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED,
 		(CairoDockNotificationFunc) on_change_screen_geometry,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
@@ -76,6 +78,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	cairo_dock_remove_notification_func (CAIRO_DOCK_SCREEN_GEOMETRY_ALTERED,
 		(CairoDockNotificationFunc) on_change_screen_geometry, myApplet);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_DESKTOP_CHANGED,

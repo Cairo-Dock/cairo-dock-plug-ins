@@ -81,6 +81,36 @@ static void _cd_switcher_remove_last_desktop (GtkMenuItem *menu_item, Icon *pIco
 {
 	cd_switcher_remove_last_desktop ();
 }
+
+CD_APPLET_ON_SCROLL_BEGIN
+  int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+  int iNumDesktop, iNumViewportX, iNumViewportY;
+  cd_debug ("Switcher: current %d", iIndex);
+  if (CD_APPLET_SCROLL_DOWN) {
+    iIndex++;
+    if (iIndex >= myData.switcher.iNbViewportTotal) {
+      iIndex = 0;
+    }
+    cd_debug ("Switcher: switching to %d", iIndex);
+    cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+  }
+  else if (CD_APPLET_SCROLL_UP) {
+    iIndex = iIndex - 1;
+    if (iIndex < 0) {
+      iIndex = myData.switcher.iNbViewportTotal - 1;
+    }
+    cd_debug ("Switcher: switching to %d", iIndex);
+    cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+  }
+  else
+  	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+  	
+	if (iNumDesktop != myData.switcher.iCurrentDesktop)
+		cairo_dock_set_current_desktop (iNumDesktop);
+	if (iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
+		cairo_dock_set_current_viewport (iNumViewportX, iNumViewportY);
+CD_APPLET_ON_SCROLL_END
+
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_IN_MENU (_("Add a desktop"), _cd_switcher_add_desktop, pSubMenu);
