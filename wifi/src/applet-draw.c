@@ -107,10 +107,10 @@ void cd_wifi_draw_icon_with_effect (CDWifiQuality iQuality) {
 	  	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
 	  break;
 	  case WIFI_EFFECT_ZOOM:
-	  	 fScale = .2 + .8 * myData.prcnt / 100.;
+	  	fScale = .2 + .8 * myData.prcnt / 100.;
 	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale);
 	  break;
-	  case WIFI_EFFECT_TRANSPARENCY: 
+	  case WIFI_EFFECT_TRANSPARENCY:
 	  	fAlpha = .2 + .8 * myData.prcnt / 100.;
 	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha);
 	  break;

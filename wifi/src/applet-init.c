@@ -46,7 +46,7 @@ CD_APPLET_INIT_BEGIN
 		cd_wifi_read_data,
 		cd_wifi_update_from_data,
 		myApplet);
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_measure_delayed (myData.pMeasureTimer, 5000);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
