@@ -5,7 +5,7 @@
 #include "rhythmbox-draw.h"
 #include "3dcover-draw.h"
 
-static gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.png", "play.png", "pause.png", "stop.png", "broken.png"};
+static gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg", "pause.jpg", "stop.jpg", "broken.jpg"};
 
 static GList * _list_icons (void)
 {
