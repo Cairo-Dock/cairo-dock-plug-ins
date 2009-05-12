@@ -805,7 +805,7 @@ void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-3D-plane-view", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-3D-plane.png", MY_APPLET_SHARE_DATA_DIR);
+	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-3D-plane.jpg", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_3D_plane;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_3D_plane;
 	pRenderer->render = cd_rendering_render_3D_plane;

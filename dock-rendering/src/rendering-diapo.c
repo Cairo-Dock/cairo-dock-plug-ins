@@ -239,7 +239,7 @@ void cd_rendering_register_diapo_renderer (const gchar *cRendererName)
 //////////////////////////////////////////////////////////////////////////////////////// On definit le renderer :
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);                                           //Nouvelle structure	
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-diapo-view", MY_APPLET_SHARE_DATA_DIR);        //On affecte le readme
-	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-diapo.png", MY_APPLET_SHARE_DATA_DIR);       // la preview
+	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-diapo.jpg", MY_APPLET_SHARE_DATA_DIR);       // la preview
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_diapo;                        //La fonction qui défini les bornes     
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_diapo;                                        //qui calcule les param des icones      
 	pRenderer->render = cd_rendering_render_diapo;                                                          //qui initie le calcul du rendu         

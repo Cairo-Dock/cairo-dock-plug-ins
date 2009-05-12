@@ -718,7 +718,7 @@ void cd_rendering_register_rainbow_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-rainbow-view", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-rainbow.png", MY_APPLET_SHARE_DATA_DIR);
+	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-rainbow.jpg", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_rainbow;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_rainbow;
 	pRenderer->render = cd_rendering_render_rainbow;
