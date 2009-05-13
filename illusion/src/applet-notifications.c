@@ -16,6 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-fade-out.h"
 #include "applet-explode.h"
 #include "applet-break.h"
+#include "applet-black-hole.h"
 #include "applet-notifications.h"
 
 
@@ -44,6 +45,11 @@ gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		break ;
 		case CD_ILLUSION_BREAK :
 			bSartAnimation = cd_illusion_init_break (pIcon, pDock, pData, mySystem.iGLAnimationDeltaT);
+		break ;
+		case CD_ILLUSION_BLACK_HOLE :
+			bSartAnimation = cd_illusion_init_black_hole (pIcon, pDock, pData, (double)mySystem.iGLAnimationDeltaT);
+		break ;
+		default :
 		break ;
 	}
 	if (bSartAnimation)
@@ -79,6 +85,11 @@ gboolean cd_illusion_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		cd_illusion_draw_break_icon (pIcon, pDock, pData);
 		*bHasBeenRendered = TRUE;
 	}
+	else if (pData->fBlackHoleDeltaT != 0)
+	{
+		cd_illusion_draw_black_hole_icon (pIcon, pDock, pData);
+		*bHasBeenRendered = TRUE;
+	}
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
@@ -98,6 +109,8 @@ gboolean cd_illusion_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		*bContinueAnimation = cd_illusion_update_explode (pIcon, pDock, pData);
 	else if (pData->fBreakDeltaT != 0)
 		*bContinueAnimation = cd_illusion_update_break (pIcon, pDock, pData);
+	else if (pData->fBlackHoleDeltaT != 0)
+		*bContinueAnimation = cd_illusion_update_black_hole (pIcon, pDock, pData);
 	
 	if (! *bContinueAnimation)
 		cd_illusion_free_data (pUserData, pIcon);
@@ -117,6 +130,10 @@ gboolean cd_illusion_free_data (gpointer pUserData, Icon *pIcon)
 	g_free (pData->pExplosionPart);
 	
 	g_free (pData->pBreakPart);
+	
+	g_free (pData->pBlackHolePoints);
+	g_free (pData->pBlackHoleCoords);
+	g_free (pData->pBlackHoleVertices);
 	
 	g_free (pData);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);

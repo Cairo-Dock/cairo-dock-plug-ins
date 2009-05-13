@@ -39,7 +39,7 @@ msgstr "Evaporation"
 
 #: ../data/messages:7 ../data/messages:31
 msgid "Fade out"
-msgstr "Disparition graduelle"
+msgstr "Fondu"
 
 #: ../data/messages:9 ../data/messages:35
 msgid "Explode"
@@ -56,15 +56,15 @@ msgstr "Durée de l'animation :"
 
 #: ../data/messages:17
 msgid "1st color of gradation :"
-msgstr "1ère couleur de la graduation :"
+msgstr "1ère couleur du dégradé :"
 
 #: ../data/messages:19
 msgid "2nd color of gradation :"
-msgstr "2ème couleur de la graduation :"
+msgstr "2ème couleur du dégradé :"
 
 #: ../data/messages:21
 msgid "Random colors ?"
-msgstr "Couleurs au hasard ?"
+msgstr "Couleurs aléatoires ?"
 
 #: ../data/messages:23
 msgid "Number of particles :"

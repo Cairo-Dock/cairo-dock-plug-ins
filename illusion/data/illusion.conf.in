@@ -3,7 +3,7 @@
 #[gtk-preference]
 [Global]
 
-#r+[Evaporate;Fade out;Explode;Break] Animation on disappearance :
+#r+[Evaporate;Fade out;Explode;Break;Spiral] Animation on disappearance :
 disappearance = 0
 
 
@@ -66,3 +66,17 @@ duration = 650
 
 #i[5;21] Number of pieces :
 nb pieces = 11
+
+#[@illusiondatadir@/icon-spiral.svg]
+[Black Hole]
+
+#I[0;5000] Duration of the animation :
+duration = 2000
+
+#e[.2;2.] Rotation speed :
+#{in round per second.}
+omega = 1.5
+
+#I[0;10] Attraction of the hole :
+#{The greatest, the fastest the icon will collapse to the center.}
+attraction = 4

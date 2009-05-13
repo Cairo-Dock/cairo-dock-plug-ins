@@ -40,6 +40,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iBreakDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Break", "duration", 600);
 	int iBreakNbPieces = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Break", "nb pieces", 7);
 	myConfig.iBreakNbBorderPoints = MAX (1, (iBreakNbPieces - 3) / 2);
+	
+	myConfig.iBlackHoleDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Black Hole", "duration", 2000);  // ms
+	myConfig.fBlackHoleRotationSpeed = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Black Hole", "omega", 1.5);  // tr/s
+	myConfig.iAttraction = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Black Hole", "attraction", 4);
 CD_APPLET_GET_CONFIG_END
 
 

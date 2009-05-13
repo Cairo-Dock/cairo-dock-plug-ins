@@ -9,6 +9,7 @@ typedef enum _CDIllusionEffect {
 	CD_ILLUSION_FADE_OUT,
 	CD_ILLUSION_EXPLODE,
 	CD_ILLUSION_BREAK,
+	CD_ILLUSION_BLACK_HOLE,
 	CD_ILLUSION_NB_EFFECTS
 	} CDIllusionEffect;
 
@@ -36,6 +37,10 @@ struct _AppletConfig {
 	
 	gint iBreakDuration;
 	gint iBreakNbBorderPoints;
+	
+	gint iBlackHoleDuration;
+	gdouble fBlackHoleRotationSpeed;
+	gint iAttraction;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -54,6 +59,14 @@ typedef struct {
 	gdouble fRotationAngle;
 	gdouble yinf;
 	} CDIllusionBreak;
+
+typedef struct {
+	gdouble u, v;
+	gdouble fTheta0, r0;
+	gdouble fTheta;
+	gdouble x, y;
+	} CDIllusionBlackHole;
+
 
 typedef struct _CDIllusionData {
 	gdouble fEvaporateSpeed;
@@ -75,6 +88,11 @@ typedef struct _CDIllusionData {
 	CDIllusionBreak *pBreakPart;
 	gint iNbBreakParts;
 	gdouble dh;
+	
+	gdouble fBlackHoleDeltaT;
+	gdouble fBlackHoleTime;
+	CDIllusionBlackHole *pBlackHolePoints;
+	GLfloat *pBlackHoleCoords, *pBlackHoleVertices;
 	
 	} CDIllusionData;
 

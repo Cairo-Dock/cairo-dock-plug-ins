@@ -20,6 +20,8 @@ libcd_illusion_la_SOURCES = \
 	applet-explode.h\
 	applet-break.c\
 	applet-break.h\
+	applet-black-hole.c\
+	applet-black-hole.h\
 	evaporate-tex.h
 
 dock_version = `pkg-config --modversion cairo-dock`
