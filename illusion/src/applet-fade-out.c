@@ -13,28 +13,22 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-fade-out.h"
-#define CD_ILLUSION_FADE_OUT_LIMIT .2
 
-gboolean cd_illusion_init_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData, double dt)
+#define _update_alpha(pData) (pData)->fFadeOutAlpha = 1. - (pData)->fTime / myConfig.iFadeOutDuration
+
+gboolean cd_illusion_init_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
-	pData->fFadeOutSpeed = dt / myConfig.iFadeOutDuration;
-	pData->fFadeOutAlpha = 1.;
-	
+	_update_alpha (pData);
 	return TRUE;
 }
 
-
-gboolean cd_illusion_update_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
+void cd_illusion_update_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
-	pData->fFadeOutAlpha -= pData->fFadeOutSpeed;
+	_update_alpha (pData);
 	if (pData->fFadeOutAlpha < 0)
 		pData->fFadeOutAlpha = 0;
 	
-	if (pData->fFadeOutAlpha < CD_ILLUSION_FADE_OUT_LIMIT)
-		cairo_dock_update_removing_inserting_icon_size_default (pIcon);
-	
 	cairo_dock_redraw_icon (pIcon, pDock);
-	return (pData->fFadeOutAlpha > 0 || pIcon->fPersonnalScale > .05);
 }
 
 void cd_illusion_draw_fade_out_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)

@@ -6,10 +6,10 @@
 #include <cairo-dock.h>
 
 
-gboolean cd_illusion_init_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData, double dt);
+gboolean cd_illusion_init_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData);
 
 
-gboolean cd_illusion_update_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData);
+void cd_illusion_update_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData);
 
 
 void cd_illusion_draw_fade_out_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData);

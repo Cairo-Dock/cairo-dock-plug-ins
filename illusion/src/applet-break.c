@@ -19,11 +19,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define xpart(j) pPart->pCoords[2*(j)]
 #define ypart(j) pPart->pCoords[2*(j)+1]
 
-gboolean cd_illusion_init_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData, double dt)
+gboolean cd_illusion_init_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
-	pData->fBreakDeltaT = dt;
-	pData->iBreakCount = 0;
-	
 	int iNbCtrlPts = 4 + (2 * myConfig.iBreakNbBorderPoints) + (2 * myConfig.iBreakNbBorderPoints + 1);
 	double *pCtrlPoints = g_new0 (double, 2 * iNbCtrlPts);
 	//g_print ("iNbCtrlPts : %d\n", iNbCtrlPts);
@@ -42,7 +39,7 @@ gboolean cd_illusion_init_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *
 			f = f0 * (.5 + g_random_double ());  // entre .5f0 et 1.5f0, sachant que 1.5f0 <= 3/4 < 1
 		xctrl(j) = ((j>>1) & 1);
 		yctrl(j) = (1 - f) * (j > 3 ? yctrl(j-4) : yctrl(0));
-		g_print ("yctrl(j) : %.3f (%.2f)\n", yctrl(j), f);
+		//g_print ("yctrl(j) : %.3f (%.2f)\n", yctrl(j), f);
 		
 		// une brisure au milieu du segment forme.
 		j ++;
@@ -105,23 +102,22 @@ gboolean cd_illusion_init_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *
 		pPart->yinf = MIN (MIN (ypart(0), ypart(1)), ypart(2));
 		if (pPart->iNbPts == 4)
 			pPart->yinf = MIN (pPart->yinf, ypart(3));
-		pPart->fRotationAngle = 5 + g_random_double () * 15.;  // ca separe un peu les morceaux, pour donner l'effet de brisure des le debut.
+		pPart->fCrackAngle = 5 + g_random_double () * 15.;  // ca separe un peu les morceaux, pour donner l'effet de brisure des le debut.
+		pPart->fRotationAngle = (pData->sens == 1 ? pPart->fCrackAngle : 91);
 	}
 	
 	return TRUE;
 }
 
 
-gboolean cd_illusion_update_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
+void cd_illusion_update_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
-	pData->iBreakCount ++;
-	
 	int iWidth, iHeight;
 	cairo_dock_get_icon_extent (pIcon, pDock, &iWidth, &iHeight);
 	double fSizeX, fSizeY;
 	cairo_dock_get_current_icon_size (pIcon, pDock, &fSizeX, &fSizeY);
 	
-	double t_ = (pData->iBreakCount * pData->fBreakDeltaT / myConfig.iBreakDuration);  // t/T
+	double t_ = (pData->fTime / myConfig.iBreakDuration);  // t/T
 	pData->dh = t_ * t_;  // dh = 1/2 * g * t^2, avec g = 2/T^2 (hauteur comptee unitairement).
 	
 	double yinf;
@@ -132,17 +128,13 @@ gboolean cd_illusion_update_break (Icon *pIcon, CairoDock *pDock, CDIllusionData
 		pPart = &pData->pBreakPart[i];
 		if (pPart->yinf - pData->dh < 0)  // on a touche le sol.
 		{
-			pPart->fRotationAngle += pData->fBreakDeltaT / (.25 * myConfig.iBreakDuration) * 90.;  // formule faite a la va-vite, avec une acceleration ca serait mieux ...
+			pPart->fRotationAngle += pData->sens * pData->fDeltaT / (.25 * myConfig.iBreakDuration) * 90.;  // formule faite a la va-vite, avec une acceleration ca serait mieux ...
+			if (pPart->fRotationAngle < pPart->fCrackAngle)
+				pPart->fRotationAngle = pPart->fCrackAngle;
 		}
 	}
 	
-	if (pData->iBreakCount * pData->fBreakDeltaT > myConfig.iBreakDuration)
-	{
-		cairo_dock_update_removing_inserting_icon_size_default (pIcon);
-	}
-	
 	cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
-	return (pIcon->fPersonnalScale > .05);
 }
 
 void cd_illusion_draw_break_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)

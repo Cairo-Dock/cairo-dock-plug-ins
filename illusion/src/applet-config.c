@@ -17,9 +17,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.iEffect = CD_CONFIG_GET_INTEGER ("Global", "disappearance");
+	myConfig.iDisappearanceEffect = CD_CONFIG_GET_INTEGER ("Global", "disappearance");
+	myConfig.iAppearanceEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Global", "appearance", CD_ILLUSION_BLACK_HOLE);
 	
-	myConfig.iEvaporateDuration = CD_CONFIG_GET_INTEGER ("Evaporate", "duration");
+	myConfig.iEvaporateDuration = MAX (100, CD_CONFIG_GET_INTEGER ("Evaporate", "duration"));
 	CD_CONFIG_GET_COLOR_RVB ("Evaporate", "color1", myConfig.pEvaporateColor1);
 	CD_CONFIG_GET_COLOR_RVB ("Evaporate", "color2", myConfig.pEvaporateColor2);
 	myConfig.bMysticalEvaporate = CD_CONFIG_GET_BOOLEAN ("Evaporate", "mystical");
@@ -28,20 +29,20 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fEvaporateParticleSpeed = CD_CONFIG_GET_DOUBLE ("Evaporate", "part speed");
 	myConfig.bEvaporateFromBottom = CD_CONFIG_GET_BOOLEAN ("Evaporate", "from bottom");
 	
-	myConfig.iFadeOutDuration = CD_CONFIG_GET_INTEGER ("Evaporate", "duration");
+	myConfig.iFadeOutDuration = MAX (100, CD_CONFIG_GET_INTEGER ("Evaporate", "duration"));
 	
-	myConfig.iExplodeDuration = CD_CONFIG_GET_INTEGER ("Explode", "duration");
+	myConfig.iExplodeDuration = MAX (100, CD_CONFIG_GET_INTEGER ("Explode", "duration"));
 	int iExplodeNbPieces = CD_CONFIG_GET_INTEGER ("Explode", "nb pieces");
 	myConfig.iExplodeNbPiecesX = sqrt (iExplodeNbPieces);
 	myConfig.iExplodeNbPiecesY = iExplodeNbPieces / myConfig.iExplodeNbPiecesX;
 	myConfig.fExplosionRadius = CD_CONFIG_GET_DOUBLE ("Explode", "radius");
 	myConfig.bExplodeCube = CD_CONFIG_GET_BOOLEAN ("Explode", "cubes");
 	
-	myConfig.iBreakDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Break", "duration", 600);
+	myConfig.iBreakDuration = MAX (100, CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Break", "duration", 600));
 	int iBreakNbPieces = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Break", "nb pieces", 7);
 	myConfig.iBreakNbBorderPoints = MAX (1, (iBreakNbPieces - 3) / 2);
 	
-	myConfig.iBlackHoleDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Black Hole", "duration", 2000);  // ms
+	myConfig.iBlackHoleDuration = MAX (100, CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Black Hole", "duration", 2000));  // ms
 	myConfig.fBlackHoleRotationSpeed = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Black Hole", "omega", 1.5);  // tr/s
 	myConfig.iAttraction = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Black Hole", "attraction", 4);
 CD_APPLET_GET_CONFIG_END

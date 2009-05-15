@@ -49,6 +49,9 @@ msgstr "Explosion"
 msgid "Break"
 msgstr "Casser"
 
+msgid "Black Hole"
+msgstr "Trou Noir"
+
 #: ../data/messages:15 ../data/messages:33 ../data/messages:37
 #: ../data/messages:47
 msgid "Duration of the animation :"

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="64"
+   id="svg2"
+   inkscape:version="0.46"
+   sodipodi:docbase="/home/peterm/afbeeldingen/svg/tools"
+   sodipodi:docname="axe_peterm_.svg"
+   sodipodi:version="0.32"
+   width="64"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0">
+  <metadata
+     id="metadata3">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>axe</dc:title>
+        <dc:description />
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>tools</rdf:li>
+            <rdf:li>tool</rdf:li>
+            <rdf:li>axe</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://www.openclipart.org">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>peterm</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>peterm</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:date />
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://web.resource.org/cc/PublicDomain" />
+        <dc:language>en</dc:language>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://web.resource.org/cc/PublicDomain">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective13" />
+  </defs>
+  <sodipodi:namedview
+     bordercolor="#666666"
+     borderopacity="1.0"
+     id="base"
+     inkscape:current-layer="layer1"
+     inkscape:cx="40.784236"
+     inkscape:cy="53.142497"
+     inkscape:document-units="px"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:window-height="726"
+     inkscape:window-width="1014"
+     inkscape:window-x="0"
+     inkscape:window-y="115"
+     inkscape:zoom="2.8"
+     pagecolor="#ffffff"
+     showgrid="false" />
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <g
+       id="g5092"
+       inkscape:export-filename="/home/peterm/afbeeldingen/svg/tools/axe.png"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000"
+       transform="matrix(9.303195e-2,-5.795394e-2,4.7171516e-2,0.1142972,-27.859865,23.457627)">
+      <path
+         d="M 320.29881,89.664237 L 406.78177,212.7549 L 561.35492,387.11961 L 665.34902,518.00172 L 694.26933,544.15555 L 654.5565,576.83259 L 632.64587,541.21091 L 527.47914,422.39379 L 384.71908,230.90881 L 280.58598,122.34127 L 320.29881,89.664237 z"
+         id="rect1291"
+         sodipodi:nodetypes="ccccccccccc"
+         style="fill:#d47839;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         d="M 304.88339,109.86231 L 447.55919,275.8901 L 561.17639,418.05365 L 648.12847,522.76955 L 669.31963,550.62528 L 657.9738,566.1173 L 639.14448,537.55447 L 557.92265,446.49943 C 517.97555,393.55674 478.02846,340.61406 438.08136,287.67137 C 392.42548,229.69839 341.71884,175.26094 290.00205,121.83365 L 304.88339,109.86231 z"
+         id="path4332"
+         sodipodi:nodetypes="ccccccccccc"
+         style="fill:#e4b08d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         d="M 200.50077,217.77705 C 229.08473,180.72138 298.99297,140.75696 322.54131,120.80739 C 346.08967,100.85783 332.78578,108.91854 356.33413,88.968969 L 411.40379,157.87574 C 387.85544,177.8253 396.24082,167.51141 372.69247,187.46098 C 349.14413,207.41054 303.49906,262.12994 258.62985,290.51197 L 200.50077,217.77705 z"
+         id="rect2053"
+         sodipodi:nodetypes="ccccccc"
+         style="fill:#999999;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.27504158;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         d="M 239.80736,185.72835 C 269.4441,165.5598 294.45775,151.53847 312.98891,134.91215 C 331.52008,118.28585 337.47927,113.5752 356.01043,96.948889 L 401.48986,157.23413 C 382.9587,173.86044 374.5575,177.40752 356.02633,194.03385 C 337.49519,210.66015 328.00378,226.26425 296.98008,253.48975 L 239.80736,185.72835 z"
+         id="path2814"
+         sodipodi:nodetypes="ccccccc"
+         style="fill:#dddddd;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.46212435;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

@@ -6,10 +6,10 @@
 #include <cairo-dock.h>
 
 
-gboolean cd_illusion_init_black_hole (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData, double dt);
+gboolean cd_illusion_init_black_hole (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData);
 
 
-gboolean cd_illusion_update_black_hole (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData);
+void cd_illusion_update_black_hole (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData);
 
 
 void cd_illusion_draw_black_hole_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData);

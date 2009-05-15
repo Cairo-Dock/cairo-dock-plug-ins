@@ -16,7 +16,8 @@ typedef enum _CDIllusionEffect {
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	CDIllusionEffect iEffect;
+	CDIllusionEffect iDisappearanceEffect;
+	CDIllusionEffect iAppearanceEffect;
 	
 	gint iEvaporateDuration;
 	gint iEvaporateNbParticles;
@@ -56,6 +57,7 @@ typedef struct {
 typedef struct {
 	gdouble pCoords[4*2];
 	gint iNbPts;
+	gdouble fCrackAngle;
 	gdouble fRotationAngle;
 	gdouble yinf;
 	} CDIllusionBreak;
@@ -69,31 +71,29 @@ typedef struct {
 
 
 typedef struct _CDIllusionData {
-	gdouble fEvaporateSpeed;
+	CDIllusionEffect iCurrentEffect;
+	gint iEffectDuration;
+	gdouble fTimeLimitPercent;
+	gdouble fDeltaT;
+	gint sens;
+	gdouble fTime;
+	
 	gdouble fEvaporatePercent;
 	CairoParticleSystem *pEvaporateSystem;
 	
-	gdouble fFadeOutSpeed;
 	gdouble fFadeOutAlpha;
 	
-	gdouble fExplodeDeltaT;
-	gint iExplosionCount;
 	gdouble fExplosionRadius;
 	gdouble fExplosionRotation;
 	gdouble fExplodeAlpha;
 	CDIllusionExplosion *pExplosionPart;
 	
-	gdouble fBreakDeltaT;
-	gint iBreakCount;
 	CDIllusionBreak *pBreakPart;
 	gint iNbBreakParts;
 	gdouble dh;
 	
-	gdouble fBlackHoleDeltaT;
-	gdouble fBlackHoleTime;
 	CDIllusionBlackHole *pBlackHolePoints;
 	GLfloat *pBlackHoleCoords, *pBlackHoleVertices;
-	
 	} CDIllusionData;
 
 #endif

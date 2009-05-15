@@ -13,16 +13,16 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-evaporate.h"
-#define CD_ILLUSION_EVAPORATE_LIMIT .90
 
 
-gboolean cd_illusion_init_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData, double dt)
+gboolean cd_illusion_init_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
 	if (myData.iEvaporateTexture == 0)
 		myData.iEvaporateTexture = cd_illusion_load_evaporate_texture ();
 	double fMaxScale = (pDock->bAtBottom ? 1. : cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock)));
 	CairoParticleSystem *pEvaporateParticleSystem = cairo_dock_create_particle_system (myConfig.iNbEvaporateParticles, myData.iEvaporateTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pEvaporateParticleSystem != NULL, FALSE);
+	double dt = pData->fDeltaT;
 	pEvaporateParticleSystem->dt = dt;
 	pEvaporateParticleSystem->bAddLuminance = TRUE;
 	pData->pEvaporateSystem = pEvaporateParticleSystem;
@@ -76,8 +76,6 @@ gboolean cd_illusion_init_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 		p->fSizeFactor = 1.;
 		p->fResizeSpeed = -.5 / myConfig.iEvaporateDuration * dt;  // zoom 0.5 a la fin.
 	}
-	
-	pData->fEvaporateSpeed = dt / myConfig.iEvaporateDuration;
 	
 	return TRUE;
 }
@@ -133,18 +131,15 @@ static void cd_illusion_update_evaporate_system (CairoParticleSystem *pParticleS
 	}
 }
 
-gboolean cd_illusion_update_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
+void cd_illusion_update_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
-	pData->fEvaporatePercent += pData->fEvaporateSpeed;
+	pData->fEvaporatePercent = pData->fTime / myConfig.iEvaporateDuration;
 	
 	cd_illusion_update_evaporate_system (pData->pEvaporateSystem, pData);
 	pData->pEvaporateSystem->fHeight = pIcon->fHeight * pIcon->fScale;
-	
-	if (pData->fEvaporatePercent > CD_ILLUSION_EVAPORATE_LIMIT)
-		cairo_dock_update_removing_inserting_icon_size_default (pIcon);
+	pData->pEvaporateSystem->fWidth = pIcon->fWidth * pIcon->fScale;
 	
 	cairo_dock_redraw_icon (pIcon, pDock);
-	return (pData->fEvaporatePercent < 1 || pIcon->fPersonnalScale > .05);
 }
 
 void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
@@ -152,14 +147,11 @@ void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 	glPushMatrix ();
 	cairo_dock_set_icon_scale (pIcon, pDock, 1.);
 	
-	glColor4f (1., 1., 1., pIcon->fAlpha);
-	glEnable(GL_BLEND);
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	_cairo_dock_enable_texture ();
+	_cairo_dock_set_alpha (pIcon->fAlpha);
+	_cairo_dock_set_blend_over ();
 	
-	glEnable(GL_TEXTURE_2D); // Je veux de la texture
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
-	glPolygonMode(GL_FRONT, GL_FILL);
 	
 	glNormal3f(0,0,1);
 	glBegin(GL_QUADS);
@@ -278,10 +270,9 @@ void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 		glPopMatrix ();
 	}*/
 	
-	glDisable (GL_TEXTURE_2D);
-	glDisable (GL_BLEND);
+	_cairo_dock_disable_texture ();
 	
-	if (pData->fEvaporatePercent <= CD_ILLUSION_EVAPORATE_LIMIT)
+	if (pData->fEvaporatePercent < 1 && pData->fEvaporatePercent > 0)
 	{
 		glPushMatrix ();
 		glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);

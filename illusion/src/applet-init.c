@@ -35,6 +35,7 @@ CD_APPLET_INIT_BEGIN
 		return;
 	
 	cairo_dock_register_notification (CAIRO_DOCK_REMOVE_ICON, (CairoDockNotificationFunc) cd_illusion_on_remove_icon, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_INSERT_ICON, (CairoDockNotificationFunc) cd_illusion_on_remove_icon, CAIRO_DOCK_RUN_FIRST, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_illusion_update_icon , CAIRO_DOCK_RUN_FIRST, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_illusion_render_icon, CAIRO_DOCK_RUN_FIRST, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_illusion_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
@@ -47,6 +48,7 @@ static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_REMOVE_ICON, (CairoDockNotificationFunc) cd_illusion_on_remove_icon, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_INSERT_ICON, (CairoDockNotificationFunc) cd_illusion_on_remove_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_illusion_update_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_illusion_render_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_illusion_free_data, NULL);
@@ -57,9 +59,6 @@ CD_APPLET_STOP_END
    
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	//\_______________ On recharge les donnees qui ont pu changer.
-	if (CD_APPLET_MY_CONFIG_CHANGED)
-	{
-		
-	}
+	// rien a faire, l'animation eventuellement en cours se poursuivra inchangee.
+	
 CD_APPLET_RELOAD_END

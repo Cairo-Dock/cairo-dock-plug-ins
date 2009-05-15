@@ -1,16 +1,19 @@
 #!en;@VERSION_ILLUSION@
 
-#[gtk-preference]
+#[gtk-preferences]
 [Global]
 
-#r+[Evaporate;Fade out;Explode;Break;Spiral] Animation on disappearance :
-disappearance = 0
+#r+[Evaporate;Fade out;Explode;Break;BlackHole] Animation on disappearance :
+disappearance = 2
+
+#r+[Evaporate;Fade out;Explode;Break;BlackHole] Animation on appearance :
+appearance = 4
 
 
 #[@illusiondatadir@/icon-evaporate.svg]
 [Evaporate]
 
-#I[0;5000] Duration of the animation :
+#I[100;5000] Duration of the animation :
 duration = 1000
 
 #c+3 1st color of gradation :
@@ -38,14 +41,14 @@ from bottom = true
 #[@illusiondatadir@/icon-fade-out.svg]
 [Fade out]
 
-#I[0;5000] Duration of the animation :
+#I[100;5000] Duration of the animation :
 duration = 1000
 
 
 #[@illusiondatadir@/icon-explode.svg]
 [Explode]
 
-#I[0;5000] Duration of the animation :
+#I[100;5000] Duration of the animation :
 duration = 800
 
 #i[4;100] Number of pieces :
@@ -61,17 +64,17 @@ cubes = true
 #[@illusiondatadir@/icon-break.svg]
 [Break]
 
-#I[0;2000] Duration of the animation :
+#I[100;2000] Duration of the animation :
 duration = 650
 
 #i[5;21] Number of pieces :
 nb pieces = 11
 
-#[@illusiondatadir@/icon-spiral.svg]
+#[@illusiondatadir@/icon-black-hole.svg]
 [Black Hole]
 
-#I[0;5000] Duration of the animation :
-duration = 2000
+#I[100;5000] Duration of the animation :
+duration = 1300
 
 #e[.2;2.] Rotation speed :
 #{in round per second.}

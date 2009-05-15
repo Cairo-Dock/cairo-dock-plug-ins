@@ -16,10 +16,15 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 static double vmax = .4;
 
-gboolean cd_illusion_init_explode (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData, double dt)
+#define _update_explosion(pData)\
+	double f = pData->fTime / myConfig.iExplodeDuration;\
+	pData->fExplosionRadius = (1 + myConfig.fExplosionRadius * f);\
+	pData->fExplosionRotation = 360. * f;\
+	pData->fExplodeAlpha = MAX (0., 1 - f);
+
+gboolean cd_illusion_init_explode (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
-	pData->fExplodeDeltaT = dt;
-	pData->iExplosionCount = 0;
+	_update_explosion (pData);
 	
 	pData->pExplosionPart = g_new0 (CDIllusionExplosion, myConfig.iExplodeNbPiecesX * myConfig.iExplodeNbPiecesY);
 	CDIllusionExplosion *pPart;
@@ -42,17 +47,9 @@ gboolean cd_illusion_init_explode (Icon *pIcon, CairoDock *pDock, CDIllusionData
 }
 
 
-gboolean cd_illusion_update_explode (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
+void cd_illusion_update_explode (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
-	pData->iExplosionCount ++;
-	pData->fExplosionRadius = (1 + myConfig.fExplosionRadius * pData->iExplosionCount / myConfig.iExplodeDuration * pData->fExplodeDeltaT);
-	pData->fExplosionRotation = 360. * pData->iExplosionCount / myConfig.iExplodeDuration * pData->fExplodeDeltaT;
-	pData->fExplodeAlpha = MAX (0., 1 - pData->iExplosionCount * pData->fExplodeDeltaT / myConfig.iExplodeDuration);
-	
-	if (pData->iExplosionCount * pData->fExplodeDeltaT > myConfig.iExplodeDuration)
-	{
-		cairo_dock_update_removing_inserting_icon_size_default (pIcon);
-	}
+	_update_explosion (pData);
 	
 	GdkRectangle area;
 	if (pDock->bHorizontalDock)
@@ -70,7 +67,6 @@ gboolean cd_illusion_update_explode (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 		area.width = pData->fExplosionRadius * pIcon->fHeight * pIcon->fScale * 1;
 	}
 	cairo_dock_redraw_container_area (CAIRO_CONTAINER (pDock), &area);
-	return (pIcon->fPersonnalScale > .05);
 }
 
 void cd_illusion_draw_explode_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
@@ -78,17 +74,13 @@ void cd_illusion_draw_explode_icon (Icon *pIcon, CairoDock *pDock, CDIllusionDat
 	if (pData->fExplodeAlpha == 0)
 		return ;
 	
-	glEnable (GL_BLEND);
+	_cairo_dock_enable_texture ();
 	_cairo_dock_set_blend_alpha ();
 	_cairo_dock_set_alpha (pData->fExplodeAlpha);
-	
-	glEnable (GL_TEXTURE_2D);
 	glBindTexture (GL_TEXTURE_2D, pIcon->iIconTexture);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	if (myConfig.bExplodeCube)
 	{
 		glEnable(GL_DEPTH_TEST);
-		glPolygonMode (GL_FRONT, GL_FILL);
 	}
 	else
 	{
@@ -176,7 +168,6 @@ void cd_illusion_draw_explode_icon (Icon *pIcon, CairoDock *pDock, CDIllusionDat
 			glPopMatrix ();
 		}
 	}
-	glDisable (GL_TEXTURE_2D);
-	glDisable (GL_BLEND);
+	_cairo_dock_disable_texture ();
 	glDisable (GL_DEPTH_TEST);
 }
