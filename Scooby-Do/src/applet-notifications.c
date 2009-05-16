@@ -21,7 +21,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext)
 {
-	if (pContainer != CAIRO_CONTAINER (g_pMainDock) || myData.pCharList == NULL)
+	if (pContainer != CAIRO_CONTAINER (g_pMainDock) || ! cd_do_session_is_running ())
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	if (pCairoContext)
@@ -39,7 +39,7 @@ gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *
 
 gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
-	if (myData.pCharList == NULL)
+	if (! cd_do_session_is_running ())
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	if (myData.iMotionCount != 0)
@@ -56,46 +56,55 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	int iDeltaT = cairo_dock_get_animation_delta_t (pContainer);
-	if (myData.iCloseTime != 0)  // fermeture de la session.
+	if (cd_do_session_is_closing ())
 	{
+		//\___________________ animation de fermeture de la session (disparition des lettres ou du prompt).
 		myData.iCloseTime -= iDeltaT;
 		if (myData.iCloseTime <= 0)
-		{
 			cd_do_exit_session ();
-		}
 		else
 			*bContinueAnimation = TRUE;
 		cairo_dock_redraw_container (pContainer);  // definir une aire plus precisement (pour cairo) ...
 	}
-	else
+	else if (cd_do_session_is_waiting_for_input ())
 	{
-		if (myData.iAppearanceTime != 0)  // apparition d'un nouveau caractere.
+		if (myData.pCharList == NULL)
 		{
+			//\___________________ animation du prompt.
+			if (myData.iPromptAnimationCount > -1)
+			{
+				myData.iPromptAnimationCount ++;
+				*bContinueAnimation = TRUE;
+			}
+		}
+		else
+		{
+			//\___________________ animation des caracteres : deplacement vers la gauche/droite et apparition.
 			myData.iAppearanceTime -= iDeltaT;
 			if (myData.iAppearanceTime < 0)
 				myData.iAppearanceTime = 0;
 			else
 				*bContinueAnimation = TRUE;
-		}
-		
-		//if (CAIRO_DOCK_CONTAINER_IS_OPENGL (pContainer))
-		{
+			
 			double f = (double) myData.iAppearanceTime / myConfig.iAppearanceDuration;
 			CDChar *pChar;
 			GList *c;
 			for (c = myData.pCharList; c != NULL; c = c->next)
 			{
 				pChar = c->data;
+				pChar->iCurrentX = f * pChar->iInitialX + (1-f) * pChar->iFinalX;
+				pChar->iCurrentY = f * pChar->iInitialY + (1-f) * pChar->iFinalY;
+				
+				if (pChar->fRotationAngle != 0)
+				{
+					pChar->fRotationAngle -= 8*360. * iDeltaT / myConfig.iAppearanceDuration;
+					if (pChar->fRotationAngle < 0)
+						pChar->fRotationAngle = 0;
+				}
 				pChar->iAnimationTime += iDeltaT;
 				if (pChar->iAnimationTime >= myConfig.iAnimationDuration)
 					pChar->iAnimationTime -= myConfig.iAnimationDuration;
-				pChar->iCurrentX = f * pChar->iInitialX + (1-f) * pChar->iFinalX;
-				pChar->iCurrentY = f * pChar->iInitialY + (1-f) * pChar->iFinalY;
-				//g_print ("%c : (%d;%d) -> (%d;%d) -> (%d;%d)\n", pChar->c, pChar->iInitialX,pChar->iInitialY, pChar->iCurrentX,pChar->iCurrentY, pChar->iFinalX,pChar->iFinalY);
 			}
-			
-			if (CAIRO_DOCK_CONTAINER_IS_OPENGL (pContainer) || f != 0)
-				*bContinueAnimation = TRUE;
 		}
 		
 		cairo_dock_redraw_container (pContainer);  // definir une aire plus precisement (pour cairo) ...

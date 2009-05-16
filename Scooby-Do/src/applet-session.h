@@ -13,6 +13,11 @@ void cd_do_close_session (void);
 
 void cd_do_exit_session (void);
 
+#define cd_do_session_is_waiting_for_input(...) (myData.sCurrentText != NULL)
+#define cd_do_session_is_closing(...) (myData.iCloseTime != 0)
+#define cd_do_session_is_running(...) (cd_do_session_is_waiting_for_input () || cd_do_session_is_closing ())
+#define cd_do_session_is_in_navigation_mode(...) (myData.pCharList == NULL)
+#define cd_do_session_is_in_selection_mode(...) (myData.pCharList != NUUL)
 
 void cd_do_free_char (CDChar *pChar);
 void cd_do_free_char_list (GList *pCharList);

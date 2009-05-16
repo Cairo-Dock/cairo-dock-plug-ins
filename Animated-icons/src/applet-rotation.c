@@ -40,6 +40,7 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	glColor4f(1., 1., 1., pIcon->fAlpha);
 	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR); // la je veux un mapping tout ce qu'il y a de plus classique
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // pour les bouts de textures qui depassent.
@@ -94,6 +95,7 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	glColor4f(1., 1., 1., pIcon->fAlpha);
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);  /// ca sature ...
 	//glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_MODULATE);
@@ -138,6 +140,7 @@ void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisi
 	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	glColor4f(1., 1., 1., pIcon->fAlpha);
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);
 	//glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_MODULATE);
@@ -192,9 +195,12 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 		///pIcon->fAlpha *= 1. - .5 * pData->fPulseAlpha;
 	}
 	else
-		glColor4f(myConfig.pMeshColor[0], myConfig.pMeshColor[1], myConfig.pMeshColor[2], pIcon->fAlpha);  // ici on peut donner une teinte aux reflets chrome.
+		glColor4f(myConfig.pMeshColor[0], myConfig.pMeshColor[1], myConfig.pMeshColor[2], myConfig.pMeshColor[3] * pIcon->fAlpha);  // ici on peut donner une teinte aux reflets chrome.
 	
-	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	if (myConfig.pMeshColor[3] == 1)
+		glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	else
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	_draw_rotating_icon (pIcon, pDock, pData, 1.);
 	
 	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)

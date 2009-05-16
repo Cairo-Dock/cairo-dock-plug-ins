@@ -31,6 +31,7 @@ typedef struct _CDChar {
 	gint iInitialX, iInitialY;
 	gint iFinalX, iFinalY;
 	gint iCurrentX, iCurrentY;
+	gdouble fRotationAngle;
 	} CDChar;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -57,6 +58,10 @@ struct _AppletData {
 	gint iMouseX, iMouseY;
 	gint iMotionCount;
 	
+	gint iPromptAnimationCount;
+	cairo_surface_t *pPromptSurface;
+	gint iPromptWidth, iPromptHeight;
+	GLuint iPromptTexture;
 	GList *pMatchingIcons;
 	} ;
 

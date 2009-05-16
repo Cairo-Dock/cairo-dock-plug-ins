@@ -21,6 +21,19 @@ void cd_do_open_session (void)
 	
 	// on se met en attente de texte.
 	myData.sCurrentText = g_string_sized_new (20);
+	myConfig.labelDescription.iSize = myConfig.fFontSizeRatio * g_pMainDock->iMaxDockHeight;
+	myData.iPromptAnimationCount = 0;
+	if (myData.pPromptSurface == NULL)
+	{
+		cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
+		double fTextXOffset, fTextYOffset;
+		myData.pPromptSurface = cairo_dock_create_surface_from_text (D_("Enter your search"), pCairoContext, &myConfig.labelDescription, 1., &myData.iPromptWidth, &myData.iPromptHeight, &fTextXOffset, &fTextYOffset);
+		cairo_destroy (pCairoContext);
+		if (g_bUseOpenGL)
+		{
+			myData.iPromptTexture = cairo_dock_create_texture_from_surface (myData.pPromptSurface);
+		}
+	}
 	
 	// on montre le main dock.
 	myData.bIgnoreIconState = TRUE;
@@ -30,9 +43,10 @@ void cd_do_open_session (void)
 	// le main dock prend le focus.
 	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
 	gtk_window_present (GTK_WINDOW (g_pMainDock->pWidget));
-	
-	myConfig.labelDescription.iSize = myConfig.fFontSizeRatio * g_pMainDock->iMaxDockHeight;
 	cairo_dock_freeze_docks (TRUE);
+	
+	// On lance l'animation d'attente.
+	cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
 }
 
 void cd_do_close_session (void)
@@ -134,6 +148,7 @@ void cd_do_load_pending_caracters (void)
 		pChar->c = c[0];
 		pChar->iInitialX = g_pMainDock->iMaxDockWidth/2 + iOffsetX;  // il part du coin haut droit.
 		pChar->iCurrentX = pChar->iInitialX;
+		pChar->fRotationAngle = 8 * 360.;  // il fera 2 tours sur lui-meme.
 		g_print (" on commence a x=%d\n", pChar->iInitialX);
 		myData.pCharList = g_list_append (myData.pCharList, pChar);
 		

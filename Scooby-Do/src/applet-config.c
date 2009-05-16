@@ -77,4 +77,9 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	if (myData.completion)
 		g_completion_free (myData.completion);
+	
+	if (myData.pPromptSurface != NULL)
+		cairo_surface_destroy (myData.pPromptSurface);
+	if (myData.iPromptTexture != 0)
+		_cairo_dock_delete_texture (myData.iPromptTexture);
 CD_APPLET_RESET_DATA_END
