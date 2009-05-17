@@ -146,14 +146,6 @@ msgid "Is detached from the dock ?"
 msgstr "Koppla loss från dockan?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Placera under andra fönster?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Placera ovanför andra fönster?"
-
-#: ../data/messages:27
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -162,11 +154,36 @@ msgstr ""
 "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 "type=utility)"
 
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Behåll på widgetlager?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -174,178 +191,184 @@ msgstr ""
 "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
 "använda ALT+vänsterklick."
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Module"
 msgstr "Inställningar"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Theme"
 msgstr "Tema"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Choose one of the available themes :"
 msgstr "Välj ett tema:"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Name of an image to overwrite the theme's empty image :"
 msgstr "Bild för papperskorgen när den är tom:"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Name of an image to overwrite the theme's full image :"
 msgstr "Bild för papperskorgen när den inte är tom:"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Config"
 msgstr "Konfigurera"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Display the following quick info :"
 msgstr "Visa följande snabbinformation:"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "None"
 msgstr "Ingen"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Number of trashes"
 msgstr "Antal papperskorgar"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "Total number of files"
 msgstr "Totalt antal filer"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Total weight"
 msgstr "Total storlek"
 
-#: ../data/messages:95 ../data/messages:99
+#: ../data/messages:103 ../data/messages:107
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
 "i Mb. Du får ett meddelande om du överskrider gränsen. Ange 0 för att "
 "inaktivera."
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Maximum total size of all dustbins :"
 msgstr "Maximal storlek för alla papperskorgar:"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Maximal storlek för enskild papperskorg:"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Desktop-less support"
 msgstr "Manuell hantering"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "They don't even need to be real trash directories."
 msgstr "Behöver inte vara riktiga papperskorgsmappar."
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid ""
 "Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr "Ange andra mappar som ska övervakas:"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "in seconds, only used if you can't monitor directories."
 msgstr "i sekunder. Används endast om du inte kan övervaka mappar."
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Interval of time to check if dustbin is full/empty :"
 msgstr "Tid mellan uppdateringar:"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr "Använd bara om papperskorgen inte visas när ikonen klickas."
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Alternative file browser used to show a trash :"
 msgstr "Alternativ filhanterare för att visa papperskorgens innehåll:"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Placera under andra fönster?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Placera ovanför andra fönster?"
 
 #~ msgid ""
 #~ "This is the dustbin applet for Cairo-Dock\n"

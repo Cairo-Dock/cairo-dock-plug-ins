@@ -138,6 +138,7 @@ void cd_do_load_pending_caracters (void)
 	double fTextXOffset, fTextYOffset;
 	CDChar *pChar;
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
+	int iDeltaT = cairo_dock_get_animation_delta_t (g_pMainDock);
 	int i, iOffsetX=0;
 	for (i = myData.iNbValidCaracters-0; i < myData.sCurrentText->len; i++)
 	{
@@ -146,9 +147,11 @@ void cd_do_load_pending_caracters (void)
 		
 		pChar = g_new0 (CDChar, 1);
 		pChar->c = c[0];
-		pChar->iInitialX = g_pMainDock->iMaxDockWidth/2 + iOffsetX;  // il part du coin haut droit.
+		pChar->iInitialX = myData.iTextWidth/2 + iOffsetX;  // il part du coin haut droit.
+		pChar->iInitialY = g_pMainDock->iCurrentHeight/2;  // en bas.
 		pChar->iCurrentX = pChar->iInitialX;
-		pChar->fRotationAngle = 8 * 360.;  // il fera 2 tours sur lui-meme.
+		pChar->iCurrentY = pChar->iInitialY;
+		pChar->fRotationAngle = 10. * myConfig.iAppearanceDuration / iDeltaT;
 		g_print (" on commence a x=%d\n", pChar->iInitialX);
 		myData.pCharList = g_list_append (myData.pCharList, pChar);
 		

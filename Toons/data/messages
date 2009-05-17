@@ -20,13 +20,21 @@ _("Desklet's position (x ; y) :")
 
 _("Is detached from the dock ?")
 
-_("Keep below other windows ?")
-
-_("Keep above other windows ?")
-
 _("for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)")
 
-_("Keep on widget layer ?")
+_("Accessibility :")
+
+_("Normal")
+
+_("Keep above")
+
+_("Keep below")
+
+_("On Widget Layer")
+
+_("Reserve space")
+
+_("Should be visible on all desktops ?")
 
 _("If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.")
 

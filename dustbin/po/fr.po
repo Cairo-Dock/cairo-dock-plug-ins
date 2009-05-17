@@ -151,14 +151,6 @@ msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
-
-#: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -166,11 +158,36 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
 
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Garder sur la couche des widgets ?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -179,33 +196,33 @@ msgstr ""
 "simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
 "contre toujours le déplacer avec ALT + clic gauche"
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
 "dessous."
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -213,47 +230,47 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -261,109 +278,115 @@ msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
 "par exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr "Image d'avant-plan :"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Theme"
 msgstr "Thème"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Choose one of the available themes :"
 msgstr "Choisissez un des thèmes disponibles :"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Name of an image to overwrite the theme's empty image :"
 msgstr "Nom d'une image pour écraser l'image vide du thème :"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Name of an image to overwrite the theme's full image :"
 msgstr "Nom d'une image pour écraser l'image pleine du thème :"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Config"
 msgstr "Config"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Display the following quick info :"
 msgstr "Afficher l'info-rapide suivante :"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "None"
 msgstr "Aucune"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Number of trashes"
 msgstr "Nombre de déchets"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "Total number of files"
 msgstr "Nombre total de fichiers"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Total weight"
 msgstr "Poids total"
 
-#: ../data/messages:95 ../data/messages:99
+#: ../data/messages:103 ../data/messages:107
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
 "en Mo. Vous serez notifié si vous dépassez cette limite. Mettez 0 pour ne "
 "pas l'utiliser."
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Maximum total size of all dustbins :"
 msgstr "Taille maximale totale des poubelles :"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Taille maximale autorisée pour chaque poubelle :"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Desktop-less support"
 msgstr "Utilisation dégradée"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "They don't even need to be real trash directories."
 msgstr "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle."
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid ""
 "Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr ""
 "Vous pouvez spécifier ici une liste additionnelle de répertoire(s) poubelle"
 "(s) à surveiller :"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "in seconds, only used if you can't monitor directories."
 msgstr ""
 "en secondes, seulement utilisé si la surveillance de fichiers n'est pas "
 "disponible."
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Interval of time to check if dustbin is full/empty :"
 msgstr ""
 "Intervalle de temps pour la vérification de la poubelle (vide/pleine) :"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr ""
 "N'utilisez cela que si vous notez que l'applet de peut pas afficher la "
 "poubelle au clic."
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Alternative file browser used to show a trash :"
 msgstr "Ouvrir la poubelle avec :"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Garder en-dessous des autres fenêtres ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Garder au-dessus des autres fenêtres ?"
 
 #~ msgid ""
 #~ "This is the dustbin applet for Cairo-Dock\n"

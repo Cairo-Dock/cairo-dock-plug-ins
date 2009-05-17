@@ -31,7 +31,7 @@ libcd_dialog_rendering_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(dialog_renderingdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""none"\"\
 	-DMY_APPLET_CONF_FILE=\""dialog-rendering.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""dialog-rendering"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_DIALOG_RENDERING)"\"\

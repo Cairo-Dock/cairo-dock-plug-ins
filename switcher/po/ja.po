@@ -18,22 +18,24 @@ msgstr ""
 msgid ""
 "This applet allows you to switch between your virtual desktops.\n"
 "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
-"You can also quickly add/remove a desktop through the right-click menu."
+"You can also quickly add/remove a desktop through the right-click menu.\n"
+"Scroll up on the main icon to go to left desktop and scroll down to go to "
+"the right desktop."
 msgstr ""
 
-#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:158
+#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:188
 msgid "Current"
 msgstr "現在"
 
-#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:150
+#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:180
 msgid "Desktop"
 msgstr "デスクトップ"
 
-#: ../src/applet-notifications.c:86
+#: ../src/applet-notifications.c:116
 msgid "Add a desktop"
 msgstr "デスクトップを追加"
 
-#: ../src/applet-notifications.c:87
+#: ../src/applet-notifications.c:117
 msgid "Remove last desktop"
 msgstr "最後のデスクトップを削除"
 
@@ -54,7 +56,7 @@ msgstr "このアプレットのアイコンの大きさ"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#: ../data/messages:9 ../data/messages:121
+#: ../data/messages:9 ../data/messages:129
 msgid "Let empty to use the default one."
 msgstr "デフォルトを使用するに空欄のままに"
 
@@ -92,18 +94,40 @@ msgid "Is detached ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:25
-msgid "Keep below ?"
-msgstr "他ウィンドウより常に下に？"
+msgid ""
+"Accessibility :\n"
+"b Keep below ?\n"
+"b Keep above ?"
+msgstr ""
 
 #: ../data/messages:27
-msgid "Keep above ?"
-msgstr "他ウィンドウより常に上に？"
+msgid "Normal"
+msgstr ""
 
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
+#, fuzzy
+msgid "Keep above"
+msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:31
+#, fuzzy
+msgid "Keep below"
+msgstr "他ウィンドウより常に下に？"
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -112,32 +136,32 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr "角度"
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr "回転 :"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr "装飾"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -145,47 +169,47 @@ msgstr ""
 "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
 "欄のままにしてください。"
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr "上方向のオフセット :"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -193,19 +217,19 @@ msgstr ""
 "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
 "合は空欄のままにしてください。"
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr "前景画像 :"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:73 ../data/messages:75
+#: ../data/messages:81 ../data/messages:83
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
@@ -213,93 +237,93 @@ msgstr ""
 "全てのデスクトップがメイン・アイコン上に描画されます。これが無効の場合は、サ"
 "ブ・ドックに含まれるようになります。"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Use the compact mode ?"
 msgstr "コンパクト・モードを使用？"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
 msgstr "コンパクト・モードでの描画の際に画面縦横比の保持を試行？"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Map the wallpaper on icon ?"
 msgstr "アイコン上に壁紙を配置？"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Show desktop number on the icons ?"
 msgstr "アイコン上にデスクトップ番号を表示？"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "Draw the windows on icon ?"
 msgstr "アイコン上にウィンドウを描画？"
 
-#: ../data/messages:89
+#: ../data/messages:97
 #, fuzzy
 msgid "Draw hidden windows too ?"
 msgstr "アイコン上にウィンドウを描画？"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "Display options"
 msgstr "表示オプション"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Size of the inside lines :"
 msgstr "内側の線のサイズ :"
 
-#: ../data/messages:95 ../data/messages:101 ../data/messages:105
-#: ../data/messages:109
+#: ../data/messages:103 ../data/messages:109 ../data/messages:113
+#: ../data/messages:117
 msgid "r, v, b, a"
 msgstr "赤、緑、青、アルファ"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Color of the inside lines :"
 msgstr "内側の線の色 :"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Size of the extern line :"
 msgstr "外側の線のサイズ :"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Color of the extern line :"
 msgstr "外側の線の色 :"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Color of the Windows line :"
 msgstr "ウィンドウのラインの色 :"
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Color of the current desktop :"
 msgstr "現在のデスクトップの色 :"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "How to draw the current desktop :"
 msgstr "現在のデスクトップの描画の仕方 :"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "draw a frame"
 msgstr "フレームを描画"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "fill"
 msgstr "塗りつぶし"
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "fill others"
 msgstr "その他を塗りつぶし"
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr "壁紙を配置しない場合に拡張モードで使用するアイコン :"
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "Let it empty to use default sub-dock view."
 msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
-#: ../data/messages:129
+#: ../data/messages:137
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "拡張モード時にデスクレットを 3D 描画？"
 

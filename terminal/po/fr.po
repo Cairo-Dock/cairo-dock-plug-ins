@@ -123,14 +123,6 @@ msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
-
-#: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -138,11 +130,36 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
 
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Garder sur la couche des widgets ?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -151,33 +168,33 @@ msgstr ""
 "simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
 "contre toujours le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
 "dessous."
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -185,47 +202,47 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -233,35 +250,35 @@ msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
 "par exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr "Image d'avant-plan :"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "GUI"
 msgstr "IHM"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "needs to restart the applet."
 msgstr "nécessite de recharger l'applet."
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Terminal's transparency :"
 msgstr "Transparence du terminal :"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Foreground color (r, v, b):"
 msgstr "Couleur d'avant-plan (r, v, b):"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Background color (r, v, b):"
 msgstr "Couleur d'arrière-plan (r, v, b):"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -269,13 +286,19 @@ msgstr ""
 "Quand le terminal est dans un dialogue. Quand il est dans un desklet, vous "
 "pouvez le redimensionner comme d'habitude."
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Size of the terminal (line x columns) :"
 msgstr "Taille du terminal (ligne x colonnes) :"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "Shortkey to show the terminal :"
 msgstr "Raccourci clavier pour montrer le terminal :"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Garder en-dessous des autres fenêtres ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Garder au-dessus des autres fenêtres ?"
 
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"

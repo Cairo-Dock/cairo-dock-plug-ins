@@ -92,14 +92,6 @@ msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
-
-#: ../data/messages:27
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -107,11 +99,36 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
 
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Garder sur la couche des widgets ?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -120,33 +137,33 @@ msgstr ""
 "simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
 "contre toujours le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
 "dessous."
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -154,47 +171,47 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -202,87 +219,87 @@ msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
 "par exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr "Image d'avant-plan :"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:73 ../data/messages:143
+#: ../data/messages:81 ../data/messages:151
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Display a graphic rather than a gauge ?"
 msgstr "Afficher un graphique au lieu d'une jauge ?"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Type of graphic :"
 msgstr "Type de graphique"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Line"
 msgstr "Cartésien (ligne)"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Plain"
 msgstr "Plein"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Bar"
 msgstr "Histogramme (barres)"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "Circle"
 msgstr "Circulaire"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Plain Circle"
 msgstr "Circulaire plein"
 
-#: ../data/messages:91 ../data/messages:99
+#: ../data/messages:99 ../data/messages:107
 msgid "It's the color of the graphic for high RAM values."
 msgstr "C'est la couleur du graphique pour les hautes valeurs de RAM."
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "High values color for RAM :"
 msgstr "Couleur des hautes valeurs de RAM :"
 
-#: ../data/messages:95 ../data/messages:103
+#: ../data/messages:103 ../data/messages:111
 msgid "It's the color of the graphic for low RAM values."
 msgstr "C'est la couleur du graphique pour les basses valeurs de RAM."
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Low values color for RAM :"
 msgstr "Couleur des basses valeurs de RAM :"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "High values color for SWAP :"
 msgstr "Couleur des hautes valeurs de SWAP :"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Low values color for SWAP :"
 msgstr "Couleur des basses valeurs de SWAP :"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Draw both values on the same graph ?"
 msgstr "Dessiner les 2 sur le mêmes grapes ?"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Background color of the graphic :"
 msgstr "Couleur de fond du graphique : "
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Choose one of the available themes :"
 msgstr "Liste des thèmes disponibles pour la jauge :"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -290,39 +307,39 @@ msgstr ""
 "Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 si "
 "vous ne voulez pas de filigrane"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Image to display as a watermark on the gauge :"
 msgstr "Image à afficher en filigrane sur la jauge :"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "Mettez 0 si vous ne voulez pas de filigrane."
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "Transparency of the watermark :"
 msgstr "Transparence du filigrane :"
 
-#: ../data/messages:121
+#: ../data/messages:129
 msgid "Display memory values :"
 msgstr "Afficher les valeurs de la mémoire :"
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "On icon"
 msgstr "Sur l'icône"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:129
+#: ../data/messages:137
 msgid "Top List"
 msgstr "Liste Top"
 
-#: ../data/messages:131
+#: ../data/messages:139
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
@@ -330,53 +347,59 @@ msgstr ""
 "Le clic gauche sur l'icône affiche la liste des programmes les plus "
 "gourmands en mémoire."
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "Number of programs to display in the top list :"
 msgstr "Nombre de programmes à afficher dans la top liste : "
 
-#: ../data/messages:135
+#: ../data/messages:143
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "Première couleur de la graduation utilisée pour écrire la top liste."
 
-#: ../data/messages:137
+#: ../data/messages:145
 msgid "Start color of the top list :"
 msgstr "Couleur du premier élément de la top liste : "
 
-#: ../data/messages:139
+#: ../data/messages:147
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "Seconde couleur de la graduation utilisée pour écrire la top liste."
 
-#: ../data/messages:141
+#: ../data/messages:149
 msgid "Stop color of the top list :"
 msgstr "Couleur du dernier élément de la top liste :"
 
-#: ../data/messages:145
+#: ../data/messages:153
 msgid "Display SWAP too ?"
 msgstr "Afficher aussi la SWAP ?"
 
-#: ../data/messages:147
+#: ../data/messages:155
 msgid "in seconds."
 msgstr "en secondes."
 
-#: ../data/messages:149
+#: ../data/messages:157
 msgid "Delay between refresh :"
 msgstr "Intervalle entre chaque rafraîchissement :"
 
-#: ../data/messages:151
+#: ../data/messages:159
 msgid "Show top memory usage in % ?"
 msgstr "Montrer l'usage mémoire en % ?"
 
-#: ../data/messages:153
+#: ../data/messages:161
 msgid "Show free memory instead of used memory ?"
 msgstr "Montrer l'espace de mémoire libre au lieu d'utilisé ?"
 
-#: ../data/messages:155
+#: ../data/messages:163
 msgid "Let empty to use he default one."
 msgstr "Laisser vide pour utiliser celle par défaut."
 
-#: ../data/messages:157
+#: ../data/messages:165
 msgid "User command to show a system monitor :"
 msgstr "Commande utilisateur pour montrer le moniteur système :"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Garder en-dessous des autres fenêtres ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Garder au-dessus des autres fenêtres ?"
 
 #~ msgid ""
 #~ "This is the rame applet\n"

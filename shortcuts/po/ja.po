@@ -101,14 +101,6 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:27
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
-
-#: ../data/messages:29
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
-
-#: ../data/messages:31
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -117,11 +109,36 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
+#: ../data/messages:29
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:33
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:35
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:37
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+#: ../data/messages:39
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:43
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -130,32 +147,32 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "in degrees."
 msgstr "角度"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Rotation :"
 msgstr "回転 :"
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Decorations"
 msgstr "装飾"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -163,47 +180,47 @@ msgstr ""
 "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
 "欄のままにしてください。"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Top offset :"
 msgstr "上方向のオフセット :"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -211,90 +228,96 @@ msgstr ""
 "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
 "合は空欄のままにしてください。"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Foreground image :"
 msgstr "前景画像 :"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Module"
 msgstr "モジュール"
 
-#: ../data/messages:79
+#: ../data/messages:87
 #, fuzzy
 msgid "Icons"
 msgstr "アイコン"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "List drives and volumes ?"
 msgstr "ドライブとボリュームを一覧化？"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "List network ?"
 msgstr "ネットワークを一覧化？"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "例えば Nautilus で使用される、GTK ブックマークです。"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "List bookmarks ?"
 msgstr "ブックマークを一覧化？"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Separate different shortcuts with separators ?"
 msgstr "ショートカットを種類ごとに区切りで分割？"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "Let it empty to use default sub-dock view."
 msgstr "デフォルトのサブ・ドックの外観を使用するには空欄のままに。"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Disk usage"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Show disk usage :"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "No"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Free space"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Used space"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Free space percent"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Used space percent"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "In seconds."
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Delay between disk usage refresh :"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "Display disk usage with a bar ?"
 msgstr ""
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
 
 #~ msgid ""
 #~ "This is the shortcuts applet\n"

@@ -78,14 +78,6 @@ msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Mantenere al di sotto delle altre finestre ?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Mantenere al di sopra delle altre finestre ?"
-
-#: ../data/messages:27
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -94,11 +86,36 @@ msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"
 
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Mantenere nella sezione dei widget ?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -107,32 +124,32 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr "in gradi."
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr "Rotazione :"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr "Decorazioni"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Scegliere un tema decorativo per questa desklet :"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -140,51 +157,51 @@ msgstr ""
 "E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
 "esempio. Lasciare vuoto per non utilizzarne."
 
-#: ../data/messages:47 ../data/messages:85
+#: ../data/messages:55 ../data/messages:93
 msgid "Background image :"
 msgstr "Immagine dello sfondo :"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr "Compensazione a sinistra :"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr "Compensazione in alto :"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr "Compensazione a destra :"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr "Compensazione in basso :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -192,56 +209,62 @@ msgstr ""
 "E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per "
 "esempio. Lasciare vuoto per non usarla."
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr "Immagine in primo piano :"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr "Trasparenza in primo piano :"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "caps lock, num lock, etc"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Display keyboard locks as quick-info ?"
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid ""
 "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
 "changes."
 msgstr ""
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Duration of the transition animation :"
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Display"
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "Text color"
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:97
 #, fuzzy
 msgid "Text weight :"
 msgstr "altezza :"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "Outline text ?"
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Font :"
 msgstr ""
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Mantenere al di sopra delle altre finestre ?"
 
 #, fuzzy
 #~ msgid "Image's filename :"

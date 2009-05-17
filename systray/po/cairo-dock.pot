@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-05-11 02:15+0200\n"
+"POT-Creation-Date: 2009-05-17 03:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,37 +63,53 @@ msgid "Is detached from the dock ?"
 msgstr ""
 
 #: ../data/messages:19
-msgid "Keep below other windows ?"
-msgstr ""
-
-#: ../data/messages:21
-msgid "Keep above other windows ?"
-msgstr ""
-
-#: ../data/messages:23
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 
+#: ../data/messages:21
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:25
-msgid "Keep on widget layer ?"
+msgid "Keep above"
 msgstr ""
 
 #: ../data/messages:27
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:29
+msgid "On Widget Layer"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:35
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:37
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:39
 msgid "GUI"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Shortkey to toggle the systray in dock mode :"
 msgstr ""

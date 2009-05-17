@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-05-11 02:15+0200\n"
+"POT-Creation-Date: 2009-05-17 03:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,10 @@ msgid ""
 " Press Tab to automatically jump to the next suitable launcher\n"
 " Press enter to click the icon or validate the command, Shift+Enter for Shift"
 "+click, Alt+Enter for middle click, and Ctrl+Enter for left click."
+msgstr ""
+
+#: ../src/applet-session.c:30
+msgid "Enter your search"
 msgstr ""
 
 #: ../data/messages:1

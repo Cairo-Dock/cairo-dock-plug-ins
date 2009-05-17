@@ -89,14 +89,6 @@ msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:27
-msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
-
-#: ../data/messages:29
-msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
-
-#: ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -104,11 +96,36 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
 
+#: ../data/messages:29
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:33
-msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:35
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:37
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Garder sur la couche des widgets ?"
+
+#: ../data/messages:39
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:43
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -117,33 +134,33 @@ msgstr ""
 "simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
 "contre toujours le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
 "dessous."
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -151,47 +168,47 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -199,75 +216,81 @@ msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
 "par exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Foreground image :"
 msgstr "Image d'avant-plan :"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "URI to load in weblet"
 msgstr "URI à charger dans le weblet:"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Show scrollbars ?"
 msgstr "Montrer les barres de défilement ?"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Horizontal scroll of the browser in pixel"
 msgstr "Défilement horizontal du navigateur en pixel"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Position of horizontal scrollbar"
 msgstr "Position de la barre de défilement horizontale"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "Vertical scroll of the browser in pixel"
 msgstr "Défilement vertical du navigateur en pixel"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Position of vertical scrollbar in pixel"
 msgstr "Position de la barre de défilement verticale"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid ""
 "This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
 msgstr ""
 "Cela vous permet de cliquer gauche sur le desklet pour afficher le pop-up du "
 "menu de Cairo-Dock"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Right margin's width, in pixels :"
 msgstr "Largeur de la marge de gauche, en pixels :"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Transparent background ?"
 msgstr "Arrière-plan transparent ?"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
 "Temps avec le rechargement du weblet URI, en secondes. 0 pour ne jamais "
 "recharger."
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Time between two page refreshes"
 msgstr "Temps entre deux actualisations de la page"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Any valid URI should work."
 msgstr "Tout les URI valides devrait fonctionner."
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr "Marque-Pages prédéfinis à afficher dans le menu de l'applet"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Garder en-dessous des autres fenêtres ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Garder au-dessus des autres fenêtres ?"
 
 #~ msgid ""
 #~ "This is the weblets applet\n"

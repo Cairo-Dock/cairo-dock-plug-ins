@@ -20,7 +20,7 @@ libcd_logout_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(logoutdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""icon.svg"\"\
 	-DMY_APPLET_CONF_FILE=\""logout.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""logout"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_LOGOUT)"\"\

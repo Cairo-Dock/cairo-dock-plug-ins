@@ -91,14 +91,6 @@ msgid "Is detached from the dock ?"
 msgstr "与dock分离?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "在其他窗口之下?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "在其他窗口之上?"
-
-#: ../data/messages:27
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -107,11 +99,36 @@ msgstr ""
 "面向CompizFusion的“小工具层”，将Compiz的行为设置为:(name=cairo-dock & "
 "type=utility) "
 
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "保持于小工具层?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "保持于小工具层?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -119,226 +136,232 @@ msgstr ""
 "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
 "移动。"
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "锁定位置?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr "以角度为单位。"
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr "旋转:"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr "装饰"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "为这个桌面小工具选择一个装饰主题:"
 
-#: ../data/messages:45
+#: ../data/messages:53
 #, fuzzy
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr "背景图片:"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr "背景透明度:"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr "左偏移:"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr "顶偏移:"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr "右偏移:"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr "底偏移:"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr "前景图片:"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr "前景透明度:"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Directory"
 msgstr "目录"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Directory of the images :"
 msgstr "图片目录:"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Scan in sub direcotries ?"
 msgstr "扫描子目录?"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Randomly browse files ?"
 msgstr "随机浏览文件?"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Display image name as quickinfo ?"
 msgstr "在快捷信息中显示图片名称?"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid ""
 "It will prevent the dock from freezing during the image loading, but does "
 "not work with cairo."
 msgstr "这可以防止dock在转入图片时无法响应，但不能在cairo模式下使用。"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "Use another thread to load the images ?"
 msgstr "使用另一个线程载入图片?"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Behaviour"
 msgstr "行为"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "in seconds."
 msgstr "以秒为单位。"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Sliding delay :"
 msgstr "切换间隔:"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Action when applet is clicked :"
 msgstr "当小程序被点击时执行操作:"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "play/pause"
 msgstr "播放/暂停"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "open image"
 msgstr "打开图片"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Effect while changing image :"
 msgstr "图片切换效果:"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "none"
 msgstr "无"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "fade"
 msgstr "渐隐"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "blank fade"
 msgstr "空白渐隐"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "fade in out"
 msgstr "淡入淡出"
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "side kick"
 msgstr "插袋效果"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "diaporama"
 msgstr "幻灯效果"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "grow up"
 msgstr "生长"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "shrink down"
 msgstr "凋落"
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "cube"
 msgstr "立方体"
 
-#: ../data/messages:121
+#: ../data/messages:129
 msgid "random"
 msgstr "随机"
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid "Number of steps for a transition :"
 msgstr "转换步数:"
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "Display"
 msgstr "显示"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Gives a better image rendering."
 msgstr "优化图像渲染"
 
-#: ../data/messages:129
+#: ../data/messages:137
 msgid "Keep widht/height ratio ?"
 msgstr "维持纵横比?"
 
-#: ../data/messages:131
+#: ../data/messages:139
 msgid "If the image is too small, it will be zoomed in."
 msgstr "如果图片太小，将进行放大。"
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "强制图片充填图标/桌面小工具?"
 
-#: ../data/messages:135
+#: ../data/messages:143
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "如果您不想使用背景，可将透明度通道设置为0。"
 
-#: ../data/messages:137
+#: ../data/messages:145
 msgid "Choose a background color :"
 msgstr "选择背景色:"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "在其他窗口之下?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "在其他窗口之上?"
 
 #~ msgid ""
 #~ "This is the Slider applet\n"

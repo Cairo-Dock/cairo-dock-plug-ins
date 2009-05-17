@@ -229,14 +229,6 @@ msgid "Is detached from the dock ?"
 msgstr "Koppla loss från dockan?"
 
 #: ../data/messages:25
-msgid "Keep below other windows ?"
-msgstr "Placera under andra fönster?"
-
-#: ../data/messages:27
-msgid "Keep above other windows ?"
-msgstr "Placera ovanför andra fönster?"
-
-#: ../data/messages:29
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -245,11 +237,36 @@ msgstr ""
 "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 "type=utility)"
 
+#: ../data/messages:27
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:31
-msgid "Keep on widget layer ?"
-msgstr "Behåll på widgetlager?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:33
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:35
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:37
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:41
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -257,95 +274,95 @@ msgstr ""
 "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
 "använda ALT+vänsterklick."
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:75 ../data/messages:77
+#: ../data/messages:83 ../data/messages:85
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
@@ -353,69 +370,75 @@ msgstr ""
 "Högerklicka ikonen om du vill att Cairo-Dock ska hjälpa dig att hitta kod "
 "för platsen."
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Code of your location :"
 msgstr "Kod för din geografiska plats:"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Use International System Units ?"
 msgstr "Använd internationella enheter?"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "i sekunder. Ange 0 om du vill stänga dialoger manuellt."
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "Duration of dialogs :"
 msgstr "Visningstid för fönster:"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "in minutes."
 msgstr "i minuter."
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "Interval of time between 2 checks :"
 msgstr "Tid mellan uppdateringar:"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Info"
 msgstr "Info"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr "Visa aktuellt väder på ikonen istället för standardbilden?"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Number of days you want to forecast :"
 msgstr "Antal dagar med väderprognoser:"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Display nights too ?"
 msgstr "Visa även nattväder?"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Display temperature as quick info ?"
 msgstr "Visa temperaturen som snabbinformation?"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Display"
 msgstr "Utseende"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Choose one of the available themes :"
 msgstr "Välj ett tema:"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lämna tomt för att använda standard sub-docka."
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Name of the view used for the sub-dock :"
 msgstr "Namn på vy för sub-dockan:"
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Render desklet in 3D ?"
 msgstr "Använd 3D för Desklet?"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Placera under andra fönster?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Placera ovanför andra fönster?"
 
 #~ msgid ""
 #~ "This is the weather applet\n"

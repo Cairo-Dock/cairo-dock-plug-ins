@@ -33,66 +33,95 @@ msgstr "Global"
 msgid "Animation on disappearance :"
 msgstr "Animation de disparition :"
 
-#: ../data/messages:5 ../data/messages:13
+#: ../data/messages:5 ../data/messages:17 ../data/messages:27
 msgid "Evaporate"
 msgstr "Evaporation"
 
-#: ../data/messages:7 ../data/messages:31
+#: ../data/messages:7 ../data/messages:19 ../data/messages:45
 msgid "Fade out"
 msgstr "Fondu"
 
-#: ../data/messages:9 ../data/messages:35
+#: ../data/messages:9 ../data/messages:21 ../data/messages:49
 msgid "Explode"
 msgstr "Explosion"
 
-#: ../data/messages:11 ../data/messages:45
+#: ../data/messages:11 ../data/messages:23 ../data/messages:59
 msgid "Break"
 msgstr "Casser"
 
-msgid "Black Hole"
+#: ../data/messages:13 ../data/messages:25
+#, fuzzy
+msgid "BlackHole"
 msgstr "Trou Noir"
 
-#: ../data/messages:15 ../data/messages:33 ../data/messages:37
-#: ../data/messages:47
+#: ../data/messages:15
+#, fuzzy
+msgid "Animation on appearance :"
+msgstr "Animation de disparition :"
+
+#: ../data/messages:29 ../data/messages:47 ../data/messages:51
+#: ../data/messages:61 ../data/messages:67
 msgid "Duration of the animation :"
 msgstr "Durée de l'animation :"
 
-#: ../data/messages:17
+#: ../data/messages:31
 msgid "1st color of gradation :"
 msgstr "1ère couleur du dégradé :"
 
-#: ../data/messages:19
+#: ../data/messages:33
 msgid "2nd color of gradation :"
 msgstr "2ème couleur du dégradé :"
 
-#: ../data/messages:21
+#: ../data/messages:35
 msgid "Random colors ?"
 msgstr "Couleurs aléatoires ?"
 
-#: ../data/messages:23
+#: ../data/messages:37
 msgid "Number of particles :"
 msgstr "Nombre de particules :"
 
-#: ../data/messages:25
+#: ../data/messages:39
 msgid "Particle size :"
 msgstr "Taille des particules :"
 
-#: ../data/messages:27
+#: ../data/messages:41
 msgid "Particle speed :"
 msgstr "Vitesse des particules :"
 
-#: ../data/messages:29
+#: ../data/messages:43
 msgid "Evaporate upward ?"
 msgstr "Evaporation ascendante ?"
 
-#: ../data/messages:39 ../data/messages:49
+#: ../data/messages:53 ../data/messages:63
 msgid "Number of pieces :"
 msgstr "Nombre de pièces :"
 
-#: ../data/messages:41
+#: ../data/messages:55
 msgid "Explosion radius :"
 msgstr "Rayon de l'explosion :"
 
-#: ../data/messages:43
+#: ../data/messages:57
 msgid "Break the icon in cubes ?"
 msgstr "Casser l'icône en cubes ?"
+
+#: ../data/messages:65
+msgid "Black Hole"
+msgstr "Trou Noir"
+
+#: ../data/messages:69
+msgid "in round per second."
+msgstr ""
+
+#: ../data/messages:71
+#, fuzzy
+msgid "Rotation speed :"
+msgstr "Vitesse des particules :"
+
+#: ../data/messages:73
+msgid "The greatest, the fastest the icon will collapse to the center."
+msgstr ""
+
+#: ../data/messages:75
+#, fuzzy
+msgid "Attraction of the hole :"
+msgstr "Durée de l'animation :"

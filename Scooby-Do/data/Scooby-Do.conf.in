@@ -48,7 +48,7 @@ font size = .5
 text weight = 5
 
 #b+ Should the text be outlined ?
-text outlined = false
+text outlined = true
 
 #c+3[0;1] Text color :
 text color = 1;1.;1.

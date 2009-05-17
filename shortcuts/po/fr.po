@@ -108,14 +108,6 @@ msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:27
-msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
-
-#: ../data/messages:29
-msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
-
-#: ../data/messages:31
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -123,11 +115,37 @@ msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
 
+#: ../data/messages:29
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:33
-msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:35
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:37
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Garder sur la couche des widgets ?"
+
+#: ../data/messages:39
+#, fuzzy
+msgid "Reserve space"
+msgstr "Espace libre"
+
+#: ../data/messages:41
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:43
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -136,33 +154,33 @@ msgstr ""
 "simple glisser-déposer avec le bouton gauche de la souris. Vous pouvez par "
 "contre toujours le déplacer avec ALT + clic gauche."
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Lock position ?"
 msgstr "Verrouiller la position"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
 "dessous."
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -170,47 +188,47 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -218,89 +236,95 @@ msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
 "par exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Foreground image :"
 msgstr "Image d'avant-plan :"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Module"
 msgstr "Module"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Icons"
 msgstr "Icône"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "List drives and volumes ?"
 msgstr "Lister les disques et volumes ?"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "List network ?"
 msgstr "Lister les points réseau ?"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "Signets GTK, utilisés par Nautilus par exemple."
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "List bookmarks ?"
 msgstr "Lister les signets ?"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Separate different shortcuts with separators ?"
 msgstr "Séparer les différents racourcis avec des séparateurs ?"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "Let it empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nom de la vue utilisée pour le sous-dock :"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Disk usage"
 msgstr "Utilisation du disque"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Show disk usage :"
 msgstr "Montrer l'utilisation du disque :"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Free space"
 msgstr "Espace libre"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Used space"
 msgstr "Espace utilisé"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Free space percent"
 msgstr "Pourcentage d'espace libre"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Used space percent"
 msgstr "Pourcentage d'espace utilisé"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "In seconds."
 msgstr "En secondes."
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Delay between disk usage refresh :"
 msgstr "Délai entre chaque mise à jour :"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "Display disk usage with a bar ?"
 msgstr "Afficher l'utilisation du disque avec une barre ?"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Garder en-dessous des autres fenêtres ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Garder au-dessus des autres fenêtres ?"
 
 #~ msgid ""
 #~ "An applet that let you access quickly to all of your shortcuts.\n"

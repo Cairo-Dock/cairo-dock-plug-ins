@@ -222,14 +222,6 @@ msgid "Is detached from the dock ?"
 msgstr "与dock分离?"
 
 #: ../data/messages:25
-msgid "Keep below other windows ?"
-msgstr "在其他窗口之下?"
-
-#: ../data/messages:27
-msgid "Keep above other windows ?"
-msgstr "在其他窗口之上?"
-
-#: ../data/messages:29
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -238,11 +230,36 @@ msgstr ""
 "面向CompizFusion的“小工具层”，将Compiz的行为设置为：(name=cairo-dock & "
 "type=utility) "
 
+#: ../data/messages:27
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:31
-msgid "Keep on widget layer ?"
-msgstr "保持于小工具层？"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:33
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:35
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "保持于小工具层？"
+
+#: ../data/messages:37
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:41
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -250,163 +267,169 @@ msgstr ""
 "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
 "移动。"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "Lock position ?"
 msgstr "锁定位置?"
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "in degrees."
 msgstr "以角度为单位。"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Rotation :"
 msgstr "旋转:"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Decorations"
 msgstr "装饰"
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid "Choose a decoration theme for this desklet :"
 msgstr "为这个桌面小工具选择一个装饰主题:"
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background image :"
 msgstr "背景图片:"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "Background tansparency :"
 msgstr "背景透明度:"
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "Left offset :"
 msgstr "左偏移:"
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "Top offset :"
 msgstr "顶偏移:"
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "Right offset :"
 msgstr "右偏移:"
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "Bottom offset :"
 msgstr "底偏移:"
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground image :"
 msgstr "前景图片:"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Foreground tansparency :"
 msgstr "前景透明度:"
 
-#: ../data/messages:75 ../data/messages:77
+#: ../data/messages:83 ../data/messages:85
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid ""
 "Right click on the icon to let Cairo-Dock help you to find your location "
 "code."
 msgstr "右击图标使Cario-Dock帮助您寻找您的位置代码。"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Code of your location :"
 msgstr "您的位置代码:"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Use International System Units ?"
 msgstr "使用国际单位?"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "以秒为单位。设为0则对话框不自动消失。"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "Duration of dialogs :"
 msgstr "对话框持续时间:"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "in minutes."
 msgstr "以分为单位。"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "Interval of time between 2 checks :"
 msgstr "两次检查间的间隔时间:"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Info"
 msgstr "信息"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr "以当前情况图标取代默认图标?"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Number of days you want to forecast :"
 msgstr "预报天数:"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Display nights too ?"
 msgstr "显示夜晚情况?"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Display temperature as quick info ?"
 msgstr "以快速信息显示温度?"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Display"
 msgstr "显示"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Choose one of the available themes :"
 msgstr "选择主题:"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Let it empty to use default sub-dock view."
 msgstr "留空以使用默认的子dock视图。"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Name of the view used for the sub-dock :"
 msgstr "子dock使用的视图名称:"
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Render desklet in 3D ?"
 msgstr "以3D渲染桌面小应用?"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "在其他窗口之下?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "在其他窗口之上?"
 
 #~ msgid ""
 #~ "This is the weather applet\n"

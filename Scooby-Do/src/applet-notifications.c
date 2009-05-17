@@ -97,13 +97,10 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 				
 				if (pChar->fRotationAngle != 0)
 				{
-					pChar->fRotationAngle -= 8*360. * iDeltaT / myConfig.iAppearanceDuration;
+					pChar->fRotationAngle -= 10.;  // 360. * iDeltaT / myConfig.iAppearanceDuration;
 					if (pChar->fRotationAngle < 0)
 						pChar->fRotationAngle = 0;
 				}
-				pChar->iAnimationTime += iDeltaT;
-				if (pChar->iAnimationTime >= myConfig.iAnimationDuration)
-					pChar->iAnimationTime -= myConfig.iAnimationDuration;
 			}
 		}
 		

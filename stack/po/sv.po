@@ -124,14 +124,6 @@ msgid "Is detached from the dock ?"
 msgstr "Koppla loss från dockan?"
 
 #: ../data/messages:29
-msgid "Keep below other windows ?"
-msgstr "Placera under andra fönster?"
-
-#: ../data/messages:31
-msgid "Keep above other windows ?"
-msgstr "Placera ovanför andra fönster?"
-
-#: ../data/messages:33
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -140,11 +132,36 @@ msgstr ""
 "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 "type=utility)"
 
+#: ../data/messages:31
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:35
-msgid "Keep on widget layer ?"
-msgstr "Behåll på widgetlager?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:37
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:39
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:41
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:45
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -152,127 +169,127 @@ msgstr ""
 "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
 "använda ALT+vänsterklick."
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Display"
 msgstr "Display"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lämna tomt för att använda sub-dockans standardutseende."
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Name of the view used for the sub-dock :"
 msgstr "Namn på vy för sub-dockan:"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "They are items created by dropping a text into the Stack."
 msgstr "Objekt som skapas när text släpps i stacken."
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Image for the 'text' items :"
 msgstr "Bild för textobjekt:"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "They are items created by dropping an URL into the Stack."
 msgstr "Objekt som skapas när URL:er släpps i stacken."
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Image for the 'URL' items :"
 msgstr "Bild för URL-objekt:"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Options"
 msgstr "Alternativ"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
@@ -280,48 +297,54 @@ msgstr ""
 "Gör att du kan utesluta vissa filtyper från att visas i stacken (video, "
 "bilder, etc...)"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Filter files with their mime types ?"
 msgstr "Filtrera filer efter MIME typ?"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Eg: image, text, video, audio, application, ..."
 msgstr "T ex bilder, video, ljud, program..."
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr "MIME typer som skall undvikas:"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Sort items by :"
 msgstr "Sortera efter:"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Name"
 msgstr "Namn"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Date"
 msgstr "Datum"
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Type"
 msgstr "Typ"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "Manual order"
 msgstr "Manuell sortering"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid ""
 "It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
 "+v clipboard"
 msgstr "Urval som görs med musen istället för det vanliga Ctrl+C/Ctrl+V"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "When copy/paste/cut, use the selection clipboard ?"
 msgstr ""
 "Använd urklippshanteraren för markeringar vid kopiera/klipp ut/klistra in?"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Placera under andra fönster?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Placera ovanför andra fönster?"
 
 #~ msgid ""
 #~ "This is the Stack applet\n"

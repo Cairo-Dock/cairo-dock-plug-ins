@@ -39,19 +39,19 @@ msgstr "小さい数値ほど、より低い視点から見た地面になりま
 msgid "Height of the vanishing point :"
 msgstr "消尽点の高さ :"
 
-#: ../data/messages:7 ../data/messages:131
+#: ../data/messages:7 ../data/messages:129
 msgid "Choose the way separators are drawn :"
 msgstr "区切りの描画の仕方 :"
 
-#: ../data/messages:9 ../data/messages:133
+#: ../data/messages:9 ../data/messages:131
 msgid "Normal separator"
 msgstr "通常の区切り"
 
-#: ../data/messages:11 ../data/messages:135
+#: ../data/messages:11 ../data/messages:133
 msgid "Flat separator"
 msgstr "平坦な区切り"
 
-#: ../data/messages:13 ../data/messages:137
+#: ../data/messages:13 ../data/messages:135
 msgid "Physical separator"
 msgstr "物理的な区切り"
 
@@ -142,7 +142,7 @@ msgstr ""
 msgid "Magnitude of the wave :"
 msgstr "波形の振幅 :"
 
-#: ../data/messages:51 ../data/messages:127
+#: ../data/messages:51 ../data/messages:125
 msgid "in pixels."
 msgstr "ピクセル単位"
 
@@ -237,72 +237,71 @@ msgid "Use a wide shape ?"
 msgstr "横に長い型を使用？"
 
 #: ../data/messages:95
-msgid "Display text only for pointed icon ?"
-msgstr "ポイントが置かれたアイコンはテキストのみ表示？"
-
-#: ../data/messages:97
 msgid "Display text for all icons ?"
 msgstr "全てのアイコンのテキストを表示？"
 
-#: ../data/messages:99
+#: ../data/messages:97
 msgid "Draw a background ?"
 msgstr "背景を描画？"
 
-#: ../data/messages:101
+#: ../data/messages:99
 msgid "First gradient color (r,v,b,a) :"
 msgstr "グラデーションの開始色（赤、緑、青、アルファ）:"
 
-#: ../data/messages:103
+#: ../data/messages:101
 msgid "Second gradient color (r,v,b,a) :"
 msgstr "グラデーションの終了色（赤、緑、青、アルファ）:"
 
-#: ../data/messages:105
+#: ../data/messages:103
 msgid "Top to bottom gradient ?"
 msgstr "上から下にグラデーション？"
 
-#: ../data/messages:107
+#: ../data/messages:105
 msgid "Left to right gradient ?"
 msgstr "左から右へグラデーション？"
 
-#: ../data/messages:109
+#: ../data/messages:107
 msgid "Arrow width :"
 msgstr "矢印の幅 :"
 
-#: ../data/messages:111
+#: ../data/messages:109
 msgid "Arrow Height :"
 msgstr "矢印の高さ :"
 
-#: ../data/messages:113
+#: ../data/messages:111
 msgid "Arrow shift percent :"
 msgstr "矢印の位置をずらす割合 :"
 
-#: ../data/messages:115
+#: ../data/messages:113
 msgid "Corner radius :"
 msgstr "角の丸み :"
 
-#: ../data/messages:117
+#: ../data/messages:115
 msgid "Border line width :"
 msgstr "外枠の幅 :"
 
-#: ../data/messages:119
+#: ../data/messages:117
 msgid "Border line color (r,v,b,a) :"
 msgstr "外枠の色（赤、緑、青、アルファ）"
 
-#: ../data/messages:121
+#: ../data/messages:119
 msgid "Curve"
 msgstr "Curve"
 
-#: ../data/messages:123
+#: ../data/messages:121
 msgid "The lower, the more the curve will seem flat."
 msgstr "小さい数値ほど、カーブがより平坦に見えます。"
 
-#: ../data/messages:125
+#: ../data/messages:123
 msgid "Curvature of the curve in percent :"
 msgstr "カーブの曲率 :"
 
-#: ../data/messages:129
+#: ../data/messages:127
 msgid "Amplitude of the curve."
 msgstr "カーブの高さ"
+
+#~ msgid "Display text only for pointed icon ?"
+#~ msgstr "ポイントが置かれたアイコンはテキストのみ表示？"
 
 #~ msgid "Slide"
 #~ msgstr "Slide"

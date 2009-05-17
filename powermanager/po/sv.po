@@ -147,14 +147,6 @@ msgid "Is detached from the dock ?"
 msgstr "Koppla loss från dockan?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Placera under andra fönster?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Placera ovanför andra fönster?"
-
-#: ../data/messages:27
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -163,11 +155,36 @@ msgstr ""
 "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 "type=utility)"
 
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Behåll på widgetlager?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -175,201 +192,207 @@ msgstr ""
 "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
 "använda ALT+vänsterklick."
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 #, fuzzy
 msgid "in degrees."
 msgstr "i procent."
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:57
 #, fuzzy
 msgid "Background tansparency :"
 msgstr "genomskinlighet"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:79
 #, fuzzy
 msgid "Foreground tansparency :"
 msgstr "genomskinlighet"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "in seconds."
 msgstr "i sekunder."
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Interval of time between 2 checks :"
 msgstr "Tid mellan uppdateringar:"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Display"
 msgstr "Utseende"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Icon's filename when on battery :"
 msgstr "Ikon när datorn körs på batteri:"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Icon's filename when on charge :"
 msgstr "Ikon när batteriet laddasi"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Effect to apply on the icon according to charge :"
 msgstr "Effekt för laddningsnivå:"
 
-#: ../data/messages:87 ../data/messages:101
+#: ../data/messages:95 ../data/messages:109
 msgid "nothing"
 msgstr "inget"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "zoom"
 msgstr "zooma"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "transparency"
 msgstr "genomskinlighet"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "draw bar"
 msgstr "visa stapel"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Use a gauge instead of icons ?"
 msgstr "Använd visare istället för ikon?"
 
-#: ../data/messages:97
+#: ../data/messages:105
 #, fuzzy
 msgid "Choose one of the available themes :"
 msgstr "Visare:"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Information to be displayed on the icon :"
 msgstr "Information på ikonen:"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "charge"
 msgstr "ladda"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "time"
 msgstr "tid"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Alert"
 msgstr "Meddelande"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Alert when battery charged ?"
 msgstr "Meddela när batteriet är laddat?"
 
-#: ../data/messages:111 ../data/messages:121 ../data/messages:129
+#: ../data/messages:119 ../data/messages:129 ../data/messages:137
 msgid "Let it empty to have no sound"
 msgstr "Lämna tomt om du inte vill spela upp ett ljud"
 
-#: ../data/messages:113 ../data/messages:123 ../data/messages:131
+#: ../data/messages:121 ../data/messages:131 ../data/messages:139
 msgid "Use a sound :"
 msgstr "Använd ljud:"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Alert when low battery ?"
 msgstr "Meddela vid låg batterinivå?"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "in percent."
 msgstr "i procent."
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "Battery level :"
 msgstr "Batterinivå:"
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "When battery level is under 4%"
 msgstr "När laddningsnivån är under 4%"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Alert when battery charge is critical ?"
 msgstr "Meddela när batterinivån är kritisk?"
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "Animate icon during the alert ?"
 msgstr "Animera ikonen vid meddelande?"
 
-#: ../data/messages:135
+#: ../data/messages:143
 msgid "Animation during alert :"
 msgstr "Animering:"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Placera under andra fönster?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Placera ovanför andra fönster?"
 
 #~ msgid "Icon size"
 #~ msgstr "Ikonstorlek"

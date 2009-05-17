@@ -36,19 +36,19 @@ msgstr "Ju lägre värde, desto mer horisontellt är planet."
 msgid "Height of the vanishing point :"
 msgstr "Höjd på flyktpunkten:"
 
-#: ../data/messages:7 ../data/messages:131
+#: ../data/messages:7 ../data/messages:129
 msgid "Choose the way separators are drawn :"
 msgstr "Välj hur avgränsare visas:"
 
-#: ../data/messages:9 ../data/messages:133
+#: ../data/messages:9 ../data/messages:131
 msgid "Normal separator"
 msgstr "Normal"
 
-#: ../data/messages:11 ../data/messages:135
+#: ../data/messages:11 ../data/messages:133
 msgid "Flat separator"
 msgstr "Platt"
 
-#: ../data/messages:13 ../data/messages:137
+#: ../data/messages:13 ../data/messages:135
 msgid "Physical separator"
 msgstr "Fysisk"
 
@@ -137,7 +137,7 @@ msgstr "0 betyder att vågen är helt platt, 1 betyder vågens maxvärde."
 msgid "Magnitude of the wave :"
 msgstr "Vågens styrka:"
 
-#: ../data/messages:51 ../data/messages:127
+#: ../data/messages:51 ../data/messages:125
 msgid "in pixels."
 msgstr "i pixlar."
 
@@ -229,72 +229,71 @@ msgid "Use a wide shape ?"
 msgstr "Använd bred form?"
 
 #: ../data/messages:95
-msgid "Display text only for pointed icon ?"
-msgstr "Visa text endast på aktiv ikon?"
-
-#: ../data/messages:97
 msgid "Display text for all icons ?"
 msgstr "Visa text för alla ikoner?"
 
-#: ../data/messages:99
+#: ../data/messages:97
 msgid "Draw a background ?"
 msgstr "Rita bakgrund?"
 
-#: ../data/messages:101
+#: ../data/messages:99
 msgid "First gradient color (r,v,b,a) :"
 msgstr "Startfärg (r,g,b,a):"
 
-#: ../data/messages:103
+#: ../data/messages:101
 msgid "Second gradient color (r,v,b,a) :"
 msgstr "Slutfärg (r,g,b,a):"
 
-#: ../data/messages:105
+#: ../data/messages:103
 msgid "Top to bottom gradient ?"
 msgstr "Uppifrån och ner?"
 
-#: ../data/messages:107
+#: ../data/messages:105
 msgid "Left to right gradient ?"
 msgstr "Vänster till höger?"
 
-#: ../data/messages:109
+#: ../data/messages:107
 msgid "Arrow width :"
 msgstr "Pilens bredd:"
 
-#: ../data/messages:111
+#: ../data/messages:109
 msgid "Arrow Height :"
 msgstr "Pilens höjd:"
 
-#: ../data/messages:113
+#: ../data/messages:111
 msgid "Arrow shift percent :"
 msgstr "Pilens förskjutning i procent:"
 
-#: ../data/messages:115
+#: ../data/messages:113
 msgid "Corner radius :"
 msgstr "Hörnradie:"
 
-#: ../data/messages:117
+#: ../data/messages:115
 msgid "Border line width :"
 msgstr "Linjebredd för ram:"
 
-#: ../data/messages:119
+#: ../data/messages:117
 msgid "Border line color (r,v,b,a) :"
 msgstr "Linjefärg (r.g.b.a):"
 
-#: ../data/messages:121
+#: ../data/messages:119
 msgid "Curve"
 msgstr "Kurva"
 
-#: ../data/messages:123
+#: ../data/messages:121
 msgid "The lower, the more the curve will seem flat."
 msgstr "Ju lägre värde, desto plattare kurva."
 
-#: ../data/messages:125
+#: ../data/messages:123
 msgid "Curvature of the curve in percent :"
 msgstr "Kurvans böjning i procent:"
 
-#: ../data/messages:129
+#: ../data/messages:127
 msgid "Amplitude of the curve."
 msgstr "Kurvans amplitud."
+
+#~ msgid "Display text only for pointed icon ?"
+#~ msgstr "Visa text endast på aktiv ikon?"
 
 #~ msgid "Slide"
 #~ msgstr "Rutnät"

@@ -114,27 +114,44 @@ msgid "Is detached from the dock ?"
 msgstr "Koppla loss från dockan?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Placera under andra fönster?"
+msgid "Accessibility :"
+msgstr ""
 
 #: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Placera ovanför andra fönster?"
+msgid "Normal"
+msgstr ""
 
 #: ../data/messages:27
+msgid "Keep above"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:31
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:33
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:35
 #, fuzzy
 msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"or CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-"
+"dock & type=utility)}"
 msgstr ""
 "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 "type=utility)"
 
-#: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Behåll på widgetlager?"
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -142,128 +159,128 @@ msgstr ""
 "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
 "använda ALT+vänsterklick."
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:47
 #, fuzzy
 msgid "Decorations"
 msgstr "Information"
 
-#: ../data/messages:41
+#: ../data/messages:49
 #, fuzzy
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Om du anger \"personlig\" kan du själv definiera utseendet. Lämna tomt för "
 "att inte använda dekorationer."
 
-#: ../data/messages:43
+#: ../data/messages:51
 #, fuzzy
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Välj dekoration för deskletläge:"
 
-#: ../data/messages:45
+#: ../data/messages:53
 #, fuzzy
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr "Bild som visas under fodralet, t ex en ram."
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr "Bakgrundsbild:"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr "Genomskinlighet:"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr "Avstånd från vänsterkant:"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr "Avstånd från ovankant:"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr "Avstånd från högerkant:"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr "Avstånd från nederkant:"
 
-#: ../data/messages:67
+#: ../data/messages:75
 #, fuzzy
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr "Bild som visas ovanför fodralet, t ex en reflex."
 
-#: ../data/messages:69
+#: ../data/messages:77
 #, fuzzy
 msgid "Foreground image :"
 msgstr "Bakgrundsbild:"
 
-#: ../data/messages:71
+#: ../data/messages:79
 #, fuzzy
 msgid "Foreground tansparency :"
 msgstr "Genomskinlighet:"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Info-bubbles"
 msgstr "Infobubblor"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Activate info-bubbles ?"
 msgstr "Aktivera infobubblor?"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "in ms."
 msgstr "i ms."
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Time length of info-bubbles :"
 msgstr "Tid som infobubblor visas:"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Behaviour"
 msgstr "Beteende"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Animation when music changes :"
 msgstr "Animering när musiken ändras:"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid ""
 "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -271,84 +288,90 @@ msgstr ""
 "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
 "bete sig som programmet."
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Steal the rhythmbox's icon in taskbar ?"
 msgstr "Stjäl programmets ikon från aktivitetsfältet?"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "Display"
 msgstr "Visning"
 
-#: ../data/messages:93
+#: ../data/messages:101
 #, fuzzy
 msgid "Display album's cover ?"
 msgstr "Visa skivfodral istället för ikonen?"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Use Opengl themes (Fake 3D) ?"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Information to display on the icon :"
 msgstr "Information att visa på ikonen:"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "nothing"
 msgstr "inget"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "time elapsed"
 msgstr "tid som gått"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "time left"
 msgstr "tid kvar"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "time in %"
 msgstr "tid i %"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "n° of track"
 msgstr "spårnummer"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Personnalisation"
 msgstr "Inställningar"
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "List of available themes for covers (requires OPENGL) :"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid ""
 "Override the theme preference to not display the OSD with OpenGL themes ?"
 msgstr ""
 
-#: ../data/messages:115 ../data/messages:119 ../data/messages:123
-#: ../data/messages:127 ../data/messages:131
+#: ../data/messages:123 ../data/messages:127 ../data/messages:131
+#: ../data/messages:135 ../data/messages:139
 msgid "Let t empty to use the default icon."
 msgstr "Lämna tomt för använda standaralternativet."
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "Name of an image for the 'default' icon :"
 msgstr "Bild för standard:"
 
-#: ../data/messages:121
+#: ../data/messages:129
 msgid "Name of an image for the 'play' icon :"
 msgstr "Bild för spela upp:"
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Bild för stop:"
 
-#: ../data/messages:129
+#: ../data/messages:137
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Bild för pausa:"
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Bild för bruten:"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Placera under andra fönster?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Placera ovanför andra fönster?"
 
 #~ msgid "Applet by Necropotame (Adrien Pilleboue)"
 #~ msgstr "Applet av Necropotame (Adrien Pilleboue)"

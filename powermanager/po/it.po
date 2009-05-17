@@ -144,14 +144,6 @@ msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Mantenere al di sotto delle altre finestre ?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Mantenere al di sopra delle altre finestre ?"
-
-#: ../data/messages:27
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -160,11 +152,36 @@ msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"
 
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Mantenere nella sezione dei widget ?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -173,32 +190,32 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr "in gradi."
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr "Rotazione :"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr "Decorazioni"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Scegliere un tema decorativo per questa desklet :"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -206,55 +223,55 @@ msgstr ""
 "E' un'immagine che viene mostrata sotto i disegni, come un motivo per "
 "esempio.Lasciare vuoto per non utilizzarne."
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr "Immagine dello sfondo :"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 "in pixels. Potete utilizzare questo parametro per aggiustare la posizione a "
 "sinistra dei disegni."
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr "Compensazione a sinistra :"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 "in pixels. Potete utilizzare questo parametro per aggiustare la posizione in "
 "alto dei disegni."
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr "Compensazione in alto :"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 "in pixels. Potete utilizzare questo parametro per aggiustare la posizione a "
 "destra dei disegni."
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr "Compensazione a destra :"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 "in pixels. Potete utilizzare questo parametro per aggiustare la posizione in "
 "basso dei disegni."
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr "Compensazione in basso :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -262,122 +279,128 @@ msgstr ""
 "E' un'immagine che viene mostrata sopra i disegni, come un riflesso per "
 "esempio.Lasciare vuoto per non utilizzarne."
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr "Immagine in superficie :"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr "Trasparenza della superficie :"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "in seconds."
 msgstr "in secondi."
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Interval of time between 2 checks :"
 msgstr "Intervallo tra le due verifiche :"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Display"
 msgstr "Mostrare "
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Icon's filename when on battery :"
 msgstr "Nome dell'icona quando in modalità batteria :"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Icon's filename when on charge :"
 msgstr "Nome dell'icona quando in modalità ricarica :"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Effect to apply on the icon according to charge :"
 msgstr "Effetto da applicare all'icona quando in ricarica :"
 
-#: ../data/messages:87 ../data/messages:101
+#: ../data/messages:95 ../data/messages:109
 msgid "nothing"
 msgstr "Nessuno"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "zoom"
 msgstr "Zoom"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "transparency"
 msgstr "Trasparenza"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "draw bar"
 msgstr "Disegna una barra"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Use a gauge instead of icons ?"
 msgstr "Utilizzare un indicatore al posto dell'icona ?"
 
-#: ../data/messages:97
+#: ../data/messages:105
 #, fuzzy
 msgid "Choose one of the available themes :"
 msgstr "Lista degli indicatori possibili :"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Information to be displayed on the icon :"
 msgstr "Informazioni da mostrare nell'icona :"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "charge"
 msgstr "Carica"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "time"
 msgstr "Tempo"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Alert"
 msgstr "Attenzione"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Alert when battery charged ?"
 msgstr "Allertare quando la batteria è carica?"
 
-#: ../data/messages:111 ../data/messages:121 ../data/messages:129
+#: ../data/messages:119 ../data/messages:129 ../data/messages:137
 msgid "Let it empty to have no sound"
 msgstr "Lasciare vuoto per non avere suoni"
 
-#: ../data/messages:113 ../data/messages:123 ../data/messages:131
+#: ../data/messages:121 ../data/messages:131 ../data/messages:139
 msgid "Use a sound :"
 msgstr "Utilizzare un suono :"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Alert when low battery ?"
 msgstr "Allertare quando la batteria è scarica?"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "in percent."
 msgstr "in percentuale"
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "Battery level :"
 msgstr "Livello della batteria"
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "When battery level is under 4%"
 msgstr "Quando la carica è al di sotto del 4%"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Alert when battery charge is critical ?"
 msgstr "Allertare quando la carica è critica?"
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "Animate icon during the alert ?"
 msgstr "Animare l'icona durante l'allerta ?"
 
-#: ../data/messages:135
+#: ../data/messages:143
 msgid "Animation during alert :"
 msgstr "Animazione durante l'allerta :"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Mantenere al di sopra delle altre finestre ?"
 
 #~ msgid "Icon size"
 #~ msgstr "Dimensione dell'icona"

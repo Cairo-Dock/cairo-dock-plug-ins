@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-05-11 02:15+0200\n"
+"POT-Creation-Date: 2009-05-17 03:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,19 +36,19 @@ msgstr ""
 msgid "Height of the vanishing point :"
 msgstr ""
 
-#: ../data/messages:7 ../data/messages:131
+#: ../data/messages:7 ../data/messages:129
 msgid "Choose the way separators are drawn :"
 msgstr ""
 
-#: ../data/messages:9 ../data/messages:133
+#: ../data/messages:9 ../data/messages:131
 msgid "Normal separator"
 msgstr ""
 
-#: ../data/messages:11 ../data/messages:135
+#: ../data/messages:11 ../data/messages:133
 msgid "Flat separator"
 msgstr ""
 
-#: ../data/messages:13 ../data/messages:137
+#: ../data/messages:13 ../data/messages:135
 msgid "Physical separator"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Magnitude of the wave :"
 msgstr ""
 
-#: ../data/messages:51 ../data/messages:127
+#: ../data/messages:51 ../data/messages:125
 msgid "in pixels."
 msgstr ""
 
@@ -218,69 +218,65 @@ msgid "Use a wide shape ?"
 msgstr ""
 
 #: ../data/messages:95
-msgid "Display text only for pointed icon ?"
-msgstr ""
-
-#: ../data/messages:97
 msgid "Display text for all icons ?"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:97
 msgid "Draw a background ?"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:99
 msgid "First gradient color (r,v,b,a) :"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:101
 msgid "Second gradient color (r,v,b,a) :"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:103
 msgid "Top to bottom gradient ?"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:105
 msgid "Left to right gradient ?"
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:107
 msgid "Arrow width :"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:109
 msgid "Arrow Height :"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:111
 msgid "Arrow shift percent :"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:113
 msgid "Corner radius :"
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:115
 msgid "Border line width :"
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:117
 msgid "Border line color (r,v,b,a) :"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:119
 msgid "Curve"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:121
 msgid "The lower, the more the curve will seem flat."
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:123
 msgid "Curvature of the curve in percent :"
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:127
 msgid "Amplitude of the curve."
 msgstr ""

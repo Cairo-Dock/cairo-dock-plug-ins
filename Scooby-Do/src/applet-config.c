@@ -20,7 +20,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cShortkey = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
-	myConfig.iAnimationDuration = CD_CONFIG_GET_INTEGER ("Configuration", "anim duration");
 	myConfig.iAppearanceDuration = CD_CONFIG_GET_INTEGER ("Configuration", "appear duration");
 	myConfig.iCloseDuration = CD_CONFIG_GET_INTEGER ("Configuration", "stop duration");
 	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
@@ -39,9 +38,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStop);
 	myConfig.labelDescription.iStyle = PANGO_STYLE_NORMAL;
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.labelDescription.fBackgroundColor);
-	if (myConfig.iAnimationDuration == 0 || ! g_bUseOpenGL)  // si pas d'animation, on ne met pas de fond aux lettres.
+	if (myConfig.iAppearanceDuration == 0 || ! g_bUseOpenGL)  // si pas d'animation 3D, on ne met pas de fond aux lettres.
 	{
-		myConfig.labelDescription.fBackgroundColor[3] = 0;
+		//myConfig.labelDescription.fBackgroundColor[3] = 0;
 	}
 CD_APPLET_GET_CONFIG_END
 

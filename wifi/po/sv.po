@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: ../src/applet-draw.c:12 ../data/messages:79 ../data/messages:109
+#: ../src/applet-draw.c:12 ../data/messages:87 ../data/messages:117
 msgid "None"
 msgstr "Ingen"
 
@@ -126,14 +126,6 @@ msgid "Is detached from the dock ?"
 msgstr "Koppla loss från dockan?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Placera under andra fönster?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Placera ovanför andra fönster?"
-
-#: ../data/messages:27
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -142,11 +134,40 @@ msgstr ""
 "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 "type=utility)"
 
+#: ../data/messages:25
+msgid ""
+"Accessibility :\n"
+"b+ Keep below other windows ?\n"
+"b+ Keep above other windows ?\n"
+"b+ Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "Behåll på widgetlager?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Behåll på widgetlager?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -154,275 +175,281 @@ msgstr ""
 "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
 "använda ALT+vänsterklick."
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "Lås position?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:47
 #, fuzzy
 msgid "Decorations"
 msgstr "Information"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:57
 #, fuzzy
 msgid "Background tansparency :"
 msgstr "Transparens"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:79
 #, fuzzy
 msgid "Foreground tansparency :"
 msgstr "Transparens"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Information"
 msgstr "Information"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Information to display on the icon :"
 msgstr "Information att visa på ikonen:"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Signal Strength"
 msgstr "Signalstyrka"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Signal Strength in percent"
 msgstr "Signalstyrka i procent"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Raw Signal Informations"
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "in seconds."
 msgstr "i sekunder."
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Delay between signal checks :"
 msgstr "Tid mellan uppdateringar:"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Display"
 msgstr "Utseende"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Visa anslutningsnamnet på etiketten?"
 
-#: ../data/messages:99
+#: ../data/messages:107
 #, fuzzy
 msgid "Display type :"
 msgstr "Utseende"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Images"
 msgstr "Bilder"
 
-#: ../data/messages:103
+#: ../data/messages:111
 #, fuzzy
 msgid "Gauges"
 msgstr "Bilder"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Graphic"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Effect to apply on the icon according to strength :"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "Transparency"
 msgstr "Transparens"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Draw Bar"
 msgstr "Visa stapel"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "Type of graphic :"
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "Line"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:129
 msgid "Plain"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid "Bar"
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "Circle"
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Plain Circle"
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:137
 msgid "It's the color of the graphic for high Strength values."
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:139
 msgid "High values color :"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "It's the color of the graphic for low Strength values."
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:143
 msgid "Low values color :"
 msgstr ""
 
-#: ../data/messages:137
+#: ../data/messages:145
 msgid "Background color of the graphic :"
 msgstr ""
 
-#: ../data/messages:139
+#: ../data/messages:147
 msgid "List of available themes for the analogic display :"
 msgstr "Teman för analogic:"
 
-#: ../data/messages:141
+#: ../data/messages:149
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr ""
 
-#: ../data/messages:143
+#: ../data/messages:151
 msgid "Image to display as a watermark on the gauge :"
 msgstr ""
 
-#: ../data/messages:145
+#: ../data/messages:153
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr ""
 
-#: ../data/messages:147
+#: ../data/messages:155
 msgid "Transparency of the watermark :"
 msgstr ""
 
-#: ../data/messages:149
+#: ../data/messages:157
 msgid "Alternative images"
 msgstr ""
 
-#: ../data/messages:151 ../data/messages:155 ../data/messages:159
-#: ../data/messages:163 ../data/messages:167 ../data/messages:171
+#: ../data/messages:159 ../data/messages:163 ../data/messages:167
+#: ../data/messages:171 ../data/messages:175 ../data/messages:179
 msgid "Let it empty to use the default icon."
 msgstr "Lämna tomt för att använda standardikonen."
 
-#: ../data/messages:153
+#: ../data/messages:161
 msgid "Name of an image for the 'no signal' icon :"
 msgstr ""
 
-#: ../data/messages:157
+#: ../data/messages:165
 msgid "Name of an image for the 'very low' icon :"
 msgstr ""
 
-#: ../data/messages:161
+#: ../data/messages:169
 msgid "Name of an image for the 'low' icon :"
 msgstr ""
 
-#: ../data/messages:165
+#: ../data/messages:173
 msgid "Name of an image for the 'middle' icon :"
 msgstr ""
 
-#: ../data/messages:169
+#: ../data/messages:177
 msgid "Name of an image for the 'good' icon :"
 msgstr ""
 
-#: ../data/messages:173
+#: ../data/messages:181
 msgid "Name of an image for the 'exellent' icon :"
 msgstr ""
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Placera under andra fönster?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Placera ovanför andra fönster?"
 
 #~ msgid "radium"
 #~ msgstr "radium"

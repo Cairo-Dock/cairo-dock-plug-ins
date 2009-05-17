@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:12 ../data/messages:79 ../data/messages:109
+#: ../src/applet-draw.c:12 ../data/messages:87 ../data/messages:117
 msgid "None"
 msgstr "なし"
 
@@ -125,14 +125,6 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
-
-#: ../data/messages:27
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -141,11 +133,40 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
+#: ../data/messages:25
+msgid ""
+"Accessibility :\n"
+"b+ Keep below other windows ?\n"
+"b+ Keep above other windows ?\n"
+"b+ Keep on widget layer ?"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -154,32 +175,32 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr "角度"
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr "回転 :"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr "装飾"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -187,47 +208,47 @@ msgstr ""
 "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
 "欄のままにしてください。"
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr "上方向のオフセット :"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -235,47 +256,47 @@ msgstr ""
 "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
 "合は空欄のままにしてください。"
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr "前景画像 :"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Information"
 msgstr "情報"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Information to display on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Signal Strength"
 msgstr "信号の強さ"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Signal Strength in percent"
 msgstr "信号の強さ（％単位）"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Raw Signal Informations"
 msgstr "生信号の情報"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Delay between signal checks :"
 msgstr "信号チェックの間隔時間 :"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
@@ -283,99 +304,99 @@ msgstr ""
 "アプレットのデフォルトのコマンドラインを上書きして、自分が使用中の無線設定イ"
 "ンタフェースを起動することができます。"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "無線設定を起動する代替のコマンドライン :"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "デフォルトのラベルを接続ポイント名によって上書き？"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Display type :"
 msgstr "表示タイプ :"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Images"
 msgstr "画像"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Gauges"
 msgstr "ゲージ"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Graphic"
 msgstr "グラフ"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Effect to apply on the icon according to strength :"
 msgstr "電波の強さに合わせてアイコンに適用する効果 :"
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Zoom"
 msgstr "ズーム"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "Transparency"
 msgstr "透過"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Draw Bar"
 msgstr "バーの描画"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "Type of graphic :"
 msgstr "グラフの種類 :"
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "Line"
 msgstr "線"
 
-#: ../data/messages:121
+#: ../data/messages:129
 msgid "Plain"
 msgstr "面"
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid "Bar"
 msgstr "棒"
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "Circle"
 msgstr "円（線）"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Plain Circle"
 msgstr "円（面）"
 
-#: ../data/messages:129
+#: ../data/messages:137
 msgid "It's the color of the graphic for high Strength values."
 msgstr "高強値のグラフの色"
 
-#: ../data/messages:131
+#: ../data/messages:139
 msgid "High values color :"
 msgstr "高値の色 :"
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "It's the color of the graphic for low Strength values."
 msgstr "低弱値のグラフの色"
 
-#: ../data/messages:135
+#: ../data/messages:143
 msgid "Low values color :"
 msgstr "弱値の色 :"
 
-#: ../data/messages:137
+#: ../data/messages:145
 msgid "Background color of the graphic :"
 msgstr "グラフの背景色 :"
 
-#: ../data/messages:139
+#: ../data/messages:147
 msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示に利用可能なテーマのリスト :"
 
-#: ../data/messages:141
+#: ../data/messages:149
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
@@ -383,50 +404,56 @@ msgstr ""
 "デフォルトの画像を使用するには空欄のままに。透かし模様を使用したくない場合"
 "は、透明度を 0 に設定してください。"
 
-#: ../data/messages:143
+#: ../data/messages:151
 msgid "Image to display as a watermark on the gauge :"
 msgstr "ゲージ上に透かし模様として表示する画像 :"
 
-#: ../data/messages:145
+#: ../data/messages:153
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "透かし模様を使用したくない場合は 0 に設定してください。"
 
-#: ../data/messages:147
+#: ../data/messages:155
 msgid "Transparency of the watermark :"
 msgstr "透かし模様の透明度 :"
 
-#: ../data/messages:149
+#: ../data/messages:157
 msgid "Alternative images"
 msgstr ""
 
-#: ../data/messages:151 ../data/messages:155 ../data/messages:159
-#: ../data/messages:163 ../data/messages:167 ../data/messages:171
+#: ../data/messages:159 ../data/messages:163 ../data/messages:167
+#: ../data/messages:171 ../data/messages:175 ../data/messages:179
 msgid "Let it empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
-#: ../data/messages:153
+#: ../data/messages:161
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "「信号なし」のアイコン画像の名前 :"
 
-#: ../data/messages:157
+#: ../data/messages:165
 msgid "Name of an image for the 'very low' icon :"
 msgstr "「非常に弱い」のアイコン画像の名前 :"
 
-#: ../data/messages:161
+#: ../data/messages:169
 msgid "Name of an image for the 'low' icon :"
 msgstr "「弱い」のアイコン画像の名前 :"
 
-#: ../data/messages:165
+#: ../data/messages:173
 msgid "Name of an image for the 'middle' icon :"
 msgstr "「中程度」のアイコン画像の名前 :"
 
-#: ../data/messages:169
+#: ../data/messages:177
 msgid "Name of an image for the 'good' icon :"
 msgstr "「良好」のアイコン画像の名前 :"
 
-#: ../data/messages:173
+#: ../data/messages:181
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "「最高」のアイコン画像の名前 :"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
 
 #~ msgid "radium"
 #~ msgstr "radium"

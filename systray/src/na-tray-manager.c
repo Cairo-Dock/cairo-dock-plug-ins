@@ -413,7 +413,7 @@ na_tray_manager_handle_client_message_message_data (GdkXEvent *xev,
                                                     gpointer   data)
 {
   if (!myApplet)  // precaution au cas ou les callbacks seraient actives apres avoir ete stoppe.
-  	return ;
+  	return GDK_FILTER_CONTINUE;
   XClientMessageEvent *xevent;
   NaTrayManager       *manager;
   GList               *p;
@@ -558,7 +558,7 @@ na_tray_manager_handle_client_message_opcode (GdkXEvent *xev,
                                               gpointer   data)
 {
   if (!myApplet)  // precaution au cas ou les callbacks seraient actives apres avoir ete stoppe.
-  	return ;
+  	return GDK_FILTER_CONTINUE;
   XClientMessageEvent *xevent;
   NaTrayManager       *manager;
 
@@ -593,7 +593,7 @@ na_tray_manager_window_filter (GdkXEvent *xev,
                                gpointer   data)
 {
   if (!myApplet)  // precaution au cas ou les callbacks seraient actives apres avoir ete stoppe.
-  	return ;
+  	return GDK_FILTER_CONTINUE;
   XEvent        *xevent = (GdkXEvent *)xev;
   NaTrayManager *manager = data;
 

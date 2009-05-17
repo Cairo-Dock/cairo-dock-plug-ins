@@ -15,6 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-session.h"
 #include "applet-draw.h"
 
+#define STATIC_ANGLE 15.
 
 void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 {
@@ -178,17 +179,16 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 				pChar->iCurrentY + pMainDock->iCurrentHeight/2 - (myData.iTextHeight - pChar->iHeight)/2 * fScale - fRelativePositionOffset,
 				0.);  // aligne en bas.
 			
-			if (myConfig.iAnimationDuration != 0)
+			double fRotationAngle = pChar->fRotationAngle;
+			if (myConfig.iAppearanceDuration != 0)
 			{
 				glBindTexture (GL_TEXTURE_2D, pChar->iTexture);
 				
 				glScalef (pChar->iWidth * fScale, fScale * pChar->iHeight, 1.);
 				
-				double fRotationAngle = 360. * pChar->iAnimationTime / myConfig.iAnimationDuration;
-				fRotationAngle = pChar->fRotationAngle;
-				glRotatef (fRotationAngle+20, 0., 1., 0.);
-				glRotatef (20, 0., 0., 1.);
-				glRotatef (20, 1., 0., 0.);
+				glRotatef (fRotationAngle+STATIC_ANGLE, 0., 1., 0.);
+				glRotatef (STATIC_ANGLE, 0., 0., 1.);
+				glRotatef (STATIC_ANGLE, 1., 0., 0.);
 				
 				glPolygonMode (GL_FRONT, GL_FILL);
 				double a = .5 / sqrt (2);

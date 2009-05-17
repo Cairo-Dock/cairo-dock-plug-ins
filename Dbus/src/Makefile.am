@@ -22,7 +22,7 @@ libcd_Dbus_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(dbusdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""none"\"\
 	-DMY_APPLET_CONF_FILE=\""Dbus.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""Dbus"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_DBUS)"\"\

@@ -34,19 +34,19 @@ msgstr "越低，则视点相对于板平面越低。"
 msgid "Height of the vanishing point :"
 msgstr "消失点高度:"
 
-#: ../data/messages:7 ../data/messages:131
+#: ../data/messages:7 ../data/messages:129
 msgid "Choose the way separators are drawn :"
 msgstr "选择间隔的绘制方式:"
 
-#: ../data/messages:9 ../data/messages:133
+#: ../data/messages:9 ../data/messages:131
 msgid "Normal separator"
 msgstr "普通间隔"
 
-#: ../data/messages:11 ../data/messages:135
+#: ../data/messages:11 ../data/messages:133
 msgid "Flat separator"
 msgstr "平间隔"
 
-#: ../data/messages:13 ../data/messages:137
+#: ../data/messages:13 ../data/messages:135
 msgid "Physical separator"
 msgstr "物理间隔"
 
@@ -132,7 +132,7 @@ msgstr "0意味着无波，1意味着大波。"
 msgid "Magnitude of the wave :"
 msgstr "波幅:"
 
-#: ../data/messages:51 ../data/messages:127
+#: ../data/messages:51 ../data/messages:125
 msgid "in pixels."
 msgstr "以点为单位。"
 
@@ -219,72 +219,71 @@ msgid "Use a wide shape ?"
 msgstr "使用宽的形状?"
 
 #: ../data/messages:95
-msgid "Display text only for pointed icon ?"
-msgstr "仅为指向的图标显示文本?"
-
-#: ../data/messages:97
 msgid "Display text for all icons ?"
 msgstr "为所有图标显示文本?"
 
-#: ../data/messages:99
+#: ../data/messages:97
 msgid "Draw a background ?"
 msgstr "绘制背景?"
 
-#: ../data/messages:101
+#: ../data/messages:99
 msgid "First gradient color (r,v,b,a) :"
 msgstr "第一种渐变颜色（红，绿，蓝，透明）:"
 
-#: ../data/messages:103
+#: ../data/messages:101
 msgid "Second gradient color (r,v,b,a) :"
 msgstr "第二种渐变颜色（红，绿，蓝，透明）:"
 
-#: ../data/messages:105
+#: ../data/messages:103
 msgid "Top to bottom gradient ?"
 msgstr "由上至下渐变?"
 
-#: ../data/messages:107
+#: ../data/messages:105
 msgid "Left to right gradient ?"
 msgstr "由左至右渐变?"
 
-#: ../data/messages:109
+#: ../data/messages:107
 msgid "Arrow width :"
 msgstr "箭头宽度:"
 
-#: ../data/messages:111
+#: ../data/messages:109
 msgid "Arrow Height :"
 msgstr "箭头高度:"
 
-#: ../data/messages:113
+#: ../data/messages:111
 msgid "Arrow shift percent :"
 msgstr "箭头变换百分比"
 
-#: ../data/messages:115
+#: ../data/messages:113
 msgid "Corner radius :"
 msgstr "角弧度:"
 
-#: ../data/messages:117
+#: ../data/messages:115
 msgid "Border line width :"
 msgstr "边线宽度:"
 
-#: ../data/messages:119
+#: ../data/messages:117
 msgid "Border line color (r,v,b,a) :"
 msgstr "边线颜色（红，绿，蓝，透明）:"
 
-#: ../data/messages:121
+#: ../data/messages:119
 msgid "Curve"
 msgstr "曲线"
 
-#: ../data/messages:123
+#: ../data/messages:121
 msgid "The lower, the more the curve will seem flat."
 msgstr "取值越低，曲线越平。"
 
-#: ../data/messages:125
+#: ../data/messages:123
 msgid "Curvature of the curve in percent :"
 msgstr "曲线弧度，以百分比表示:"
 
-#: ../data/messages:129
+#: ../data/messages:127
 msgid "Amplitude of the curve."
 msgstr "曲线波幅。"
+
+#~ msgid "Display text only for pointed icon ?"
+#~ msgstr "仅为指向的图标显示文本?"
 
 #~ msgid "Slide"
 #~ msgstr "滑动"

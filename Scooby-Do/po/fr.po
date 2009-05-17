@@ -39,6 +39,10 @@ msgstr ""
 "+Enter correspond à Shift+clique, Alt+Enter pour le clique du milieu et Ctrl"
 "+Enter pour clique gauche."
 
+#: ../src/applet-session.c:30
+msgid "Enter your search"
+msgstr ""
+
 #: ../data/messages:1
 msgid "Configuration"
 msgstr "Configuration"

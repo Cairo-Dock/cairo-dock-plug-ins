@@ -86,14 +86,6 @@ msgid "Is detached from the dock ?"
 msgstr "与dock分离?"
 
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "在其他窗口之下?"
-
-#: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "在其他窗口之上?"
-
-#: ../data/messages:27
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -102,11 +94,36 @@ msgstr ""
 "面向CompizFusion的“小工具层”，将Compiz的行为设置为:(name=cairo-dock & "
 "type=utility) "
 
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
-msgstr "保持于小工具层?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "保持于小工具层?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -114,255 +131,261 @@ msgstr ""
 "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
 "移动。"
 
-#: ../data/messages:33
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "锁定位置?"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "in degrees."
 msgstr "以角度为单位。"
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr "旋转:"
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Decorations"
 msgstr "装饰"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "为这个桌面小工具选择一个装饰主题:"
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid "Background image :"
 msgstr "背景图片:"
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr "背景透明度:"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr "左偏移:"
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr "顶偏移:"
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr "右偏移:"
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr "底偏移:"
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr "前景图片:"
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr "前景透明度:"
 
-#: ../data/messages:73 ../data/messages:143
+#: ../data/messages:81 ../data/messages:151
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Display"
 msgstr "显示"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Display a graphic rather than a gauge ?"
 msgstr "显示图表而不是表盘?"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Type of graphic :"
 msgstr "图表类型:"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "Line"
 msgstr "折线图"
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Plain"
 msgstr "平面图"
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Bar"
 msgstr "柱状图"
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "Circle"
 msgstr "圆环图"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Plain Circle"
 msgstr "平面圆环图"
 
-#: ../data/messages:91 ../data/messages:99
+#: ../data/messages:99 ../data/messages:107
 msgid "It's the color of the graphic for high RAM values."
 msgstr "内在占用率高时的图表颜色。"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "High values color for RAM :"
 msgstr "高内存占用率颜色:"
 
-#: ../data/messages:95 ../data/messages:103
+#: ../data/messages:103 ../data/messages:111
 msgid "It's the color of the graphic for low RAM values."
 msgstr "内在占用率低时的图表颜色。"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Low values color for RAM :"
 msgstr "低内存占用率颜色:"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "High values color for SWAP :"
 msgstr "交换分区使用率高时的颜色:"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Low values color for SWAP :"
 msgstr "交换分区使用率低时的颜色:"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Draw both values on the same graph ?"
 msgstr "在同一张图表上绘制内存和交换分区数值?"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Background color of the graphic :"
 msgstr "图表背景色:"
 
-#: ../data/messages:111
+#: ../data/messages:119
 #, fuzzy
 msgid "Choose one of the available themes :"
 msgstr "可用表盘主题:"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid ""
 "Let it empty to use the default image. Set the transparency to 0 if you "
 "don't want to have any watermark."
 msgstr "留空则使用默认图像。如果您不想要水印，请将透明度设为0。"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "Image to display as a watermark on the gauge :"
 msgstr "表盘水印图片:"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "Set it up to 0 if you don't want to have a watermark."
 msgstr "如果您不想要水印，请设为0。"
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "Transparency of the watermark :"
 msgstr "水印透明度:"
 
-#: ../data/messages:121
+#: ../data/messages:129
 msgid "Display memory values :"
 msgstr "显示内存数:"
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid "No"
 msgstr "否"
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "On icon"
 msgstr "在图标上"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "On label"
 msgstr "在标签上"
 
-#: ../data/messages:129
+#: ../data/messages:137
 msgid "Top List"
 msgstr "占用率列表"
 
-#: ../data/messages:131
+#: ../data/messages:139
 msgid ""
 "When you left-click on the icon, you will get the list of the N most memory-"
 "using programs."
 msgstr "左键单击图标时,将显示您指定数目的内存占用率最高的程序的列表。"
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "Number of programs to display in the top list :"
 msgstr "占用率列表上显示的程序数目:"
 
-#: ../data/messages:135
+#: ../data/messages:143
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "用于显示占用率列表的渐变色的第一种颜色。"
 
-#: ../data/messages:137
+#: ../data/messages:145
 msgid "Start color of the top list :"
 msgstr "占用率列表的起始颜色:"
 
-#: ../data/messages:139
+#: ../data/messages:147
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "用于显示CPU占用率列表的渐变色的第二种颜色。"
 
-#: ../data/messages:141
+#: ../data/messages:149
 msgid "Stop color of the top list :"
 msgstr "占用率列表的结束颜色:"
 
-#: ../data/messages:145
+#: ../data/messages:153
 msgid "Display SWAP too ?"
 msgstr "同时显示交换空间?"
 
-#: ../data/messages:147
+#: ../data/messages:155
 msgid "in seconds."
 msgstr "以秒为单位。"
 
-#: ../data/messages:149
+#: ../data/messages:157
 msgid "Delay between refresh :"
 msgstr "刷新间隔:"
 
-#: ../data/messages:151
+#: ../data/messages:159
 msgid "Show top memory usage in % ?"
 msgstr "以百分比显示内存使用率?"
 
-#: ../data/messages:153
+#: ../data/messages:161
 msgid "Show free memory instead of used memory ?"
 msgstr ""
 
-#: ../data/messages:155
+#: ../data/messages:163
 #, fuzzy
 msgid "Let empty to use he default one."
 msgstr "留空则使用默认值。"
 
-#: ../data/messages:157
+#: ../data/messages:165
 msgid "User command to show a system monitor :"
 msgstr "显示系统监视器的用户命令:"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "在其他窗口之下?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "在其他窗口之上?"
 
 #~ msgid ""
 #~ "This is the rame applet\n"
