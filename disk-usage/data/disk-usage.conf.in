@@ -92,7 +92,7 @@ device = /
 #s Name of the applet :
 name_default = 
 
-#h+[/usr/share/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
+#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
 theme = turbo-night-fuel
 
 #S+ Image to display as a watermark :

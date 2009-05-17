@@ -20,7 +20,7 @@ CD_APPLET_DEFINITION (N_("disk-usage"),
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet shows you the Available/Used space of a storage system.\n"
 	"You can have more details with a middle-click."),
-	"BJackass (enjamin SANS)")
+	"Jackass (Benjamin SANS)")
 
 static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 {

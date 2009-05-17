@@ -145,7 +145,7 @@ broken icon =
 #X+[Downloads;gtk-convert]
 frame_launcher =
 
-#b Allow CID to download missing covers :
+#b Allow Cairo-Dock to download missing covers :
 #{You need to be connected to the Internet.}
 DOWNLOAD=FALSE
 
