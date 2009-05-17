@@ -12,11 +12,12 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet_03@yahoo.
 
 #include "applet-bookmarks.h"
 #include "applet-struct.h"
+#include "applet-disk-usage.h"
 #include "applet-notifications.h"
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	if (CD_APPLET_CLICKED_CONTAINER == myDock)  // clic sur l'icone principale dans le dock CD_APPLET_CLICKED_CONTAINER n'est jamais NULL).
+	if (CD_APPLET_CLICKED_CONTAINER == CAIRO_CONTAINER (myDock))  // clic sur l'icone principale dans le dock CD_APPLET_CLICKED_CONTAINER n'est jamais NULL).
 	{
 		gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 		g_print ("bDesktopIsVisible : %d\n", bDesktopIsVisible);
@@ -54,14 +55,22 @@ static void _cd_shortcuts_show_disk_info (GtkMenuItem *menu_item, gpointer *data
 	CairoContainer *pContainer = data[2];
 	g_print ("%s (%s)\n", __func__, pIcon->acCommand);
 	
-	gchar *cText = g_strdup_printf ("pouet");
+	CDDiskUsage diskUsage;
+	cd_shortcuts_get_fs_stat (pIcon->acCommand, &diskUsage);
+	gchar *cFreeSpace = cairo_dock_get_human_readable_size (diskUsage.iAvail);
+	gchar *cCapacity = cairo_dock_get_human_readable_size (diskUsage.iTotal);
+	GString *sInfo = g_string_new ("");
+	g_string_append_printf (sInfo, "Name : %s\nCapacity : %s\nFree space : %s\n", pIcon->acName, cCapacity, cFreeSpace);
+	cd_shortcuts_get_fs_info (pIcon->acCommand, sInfo);
 	
-	cairo_dock_show_temporary_dialog_with_icon (cText, pIcon, pContainer, 7000, "same icon");
-	g_free (cText);
+	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, pIcon, pContainer, 15000, "same icon");
+	g_string_free (sInfo, TRUE);
+	g_free (cCapacity);
+	g_free (cFreeSpace);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	static gpointer *data = NULL;
-	if (CD_APPLET_CLICKED_CONTAINER == myDock)  // clic sur l'icone principale dans le dock CD_APPLET_CLICKED_CONTAINER n'est jamais NULL).
+	if (CD_APPLET_CLICKED_CONTAINER == CAIRO_CONTAINER (myDock))  // clic sur l'icone principale dans le dock CD_APPLET_CLICKED_CONTAINER n'est jamais NULL).
 	{
 		GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);

@@ -18,10 +18,27 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-disk-usage.h"
 
 
-void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
+void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
 {
 	static struct statfs sts;
+	const gchar *cMountPath = (strncmp (cDiskURI, "file://", 7) == 0 ? cDiskURI + 7 : cDiskURI);
+	//g_print ("checking device on '%s'...\n", cMountPath);
 	
+	if (statfs (cMountPath, &sts) == 0)
+	{
+		if (pDiskUsage->iType == 0)
+			pDiskUsage->iType = sts.f_type;
+		pDiskUsage->iPrevAvail = pDiskUsage->iAvail;
+		pDiskUsage->iAvail = (long long)sts.f_bavail * sts.f_bsize;  // Blocs libres pour utilisateurs
+		pDiskUsage->iFree  = (long long)sts.f_bfree  * sts.f_bsize;  // Blocs libres
+		pDiskUsage->iTotal = (long long)sts.f_blocks * sts.f_bsize;  // Nombre total de blocs
+		pDiskUsage->iUsed  = pDiskUsage->iTotal - pDiskUsage->iAvail;
+		//g_print ("%lld / %lld\n", pDiskUsage->iAvail, pDiskUsage->iTotal);
+	}
+}
+
+void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
+{
 	const gchar *cMountPath;
 	GList *pElement = myData.pDiskUsageList;
 	CDDiskUsage *pDiskUsage;
@@ -36,9 +53,6 @@ void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
 			break;
 		if (pIcon->acCommand != NULL)
 		{
-			cMountPath = (strncmp (pIcon->acCommand, "file://", 7) == 0 ? pIcon->acCommand + 7 : pIcon->acCommand);
-			cd_debug ("checking device on '%s'...", cMountPath);
-			
 			if (pElement != NULL)
 			{
 				pDiskUsage = pElement->data;
@@ -50,17 +64,7 @@ void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
 				myData.pDiskUsageList = g_list_append (myData.pDiskUsageList, pDiskUsage);
 			}
 			
-			if (statfs (cMountPath, &sts) == 0)
-			{
-				if (pDiskUsage->iType == 0)
-					pDiskUsage->iType = sts.f_type;
-				pDiskUsage->iPrevAvail = pDiskUsage->iAvail;
-				pDiskUsage->iAvail = (long long)sts.f_bavail * sts.f_bsize;  // Blocs libres pour utilisateurs
-				pDiskUsage->iFree  = (long long)sts.f_bfree  * sts.f_bsize;  // Blocs libres
-				pDiskUsage->iTotal = (long long)sts.f_blocks * sts.f_bsize;  // Nombre total de blocs
-				pDiskUsage->iUsed  = pDiskUsage->iTotal - pDiskUsage->iAvail;
-				cd_debug ("%d / %d", (int)pDiskUsage->iAvail, (int)pDiskUsage->iTotal);
-			}
+			cd_shortcuts_get_fs_stat (pIcon->acCommand, pDiskUsage);
 		}
 	}
 }
@@ -101,7 +105,7 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 						cairo_dock_set_quick_info_full (myDrawContext, pIcon, pContainer, "%.1f%%", 100.*fValue);
 					break ;
 					case CD_SHOW_USED_SPACE_PERCENT :
-						g_print ("+%ld / %ld\n", pDiskUsage->iUsed, pDiskUsage->iTotal);
+						//g_print ("+%lld / %lld\n", pDiskUsage->iUsed, pDiskUsage->iTotal);
 						fValue = (double) pDiskUsage->iUsed / pDiskUsage->iTotal;
 						cairo_dock_set_quick_info_full (myDrawContext, pIcon, pContainer, "%.1f%%", 100.*fValue);
 					break ;
@@ -157,8 +161,9 @@ void cd_shortcuts_launch_disk_measure (CairoDockModuleInstance *myApplet)
 
 
 
-gchar *cd_shortcuts_get_fs_type (const gchar *cMountPath)
+void cd_shortcuts_get_fs_info (const gchar *cDiskURI, GString *sInfo)
 {
+	const gchar *cMountPath = (strncmp (cDiskURI, "file://", 7) == 0 ? cDiskURI + 7 : cDiskURI);
 	struct mntent *me;
 	FILE *mtab = setmntent ("/etc/mtab", "r");
 	char *search_path;
@@ -168,20 +173,24 @@ gchar *cd_shortcuts_get_fs_type (const gchar *cMountPath)
 	if (mtab == NULL)
 	{
 		cd_warning ("couldn't open /etc/mtab");
-		return NULL;
+		return ;
 	}
 	
-	gchar *cFsType = NULL;
+	gchar *cFsInfo = NULL;
 	while ((me = getmntent (mtab)) != NULL)
 	{
 		if (me->mnt_dir && strcmp (me->mnt_dir, cMountPath) == 0)
 		{
-			cFsType = g_strdup (me->mnt_dir);
+			g_string_append_printf (sInfo, "Mount point : %s\nFile system : %s\nDevice : %s\nMount options : %s",
+				me->mnt_dir,
+				me->mnt_type,
+				me->mnt_fsname,
+				me->mnt_opts);
+			if (me->mnt_freq != 0)
+				g_string_append_printf (sInfo, "\nBackup frequency : %d days", me->mnt_freq);
 			break ;
 		}
 	}
 	
 	endmntent (mtab);
-	
-	return cFsType;
 }
