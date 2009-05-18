@@ -16,6 +16,30 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 
+#: ../src/rendering-init.c:22 ../data/messages:19
+msgid "Caroussel"
+msgstr "Karusell"
+
+#: ../src/rendering-init.c:23
+msgid "3D plane"
+msgstr ""
+
+#: ../src/rendering-init.c:24 ../data/messages:37
+msgid "Parabolic"
+msgstr "Parabol"
+
+#: ../src/rendering-init.c:25 ../data/messages:59
+msgid "Rainbow"
+msgstr "Regnbåge"
+
+#: ../src/rendering-init.c:27
+msgid "Slide"
+msgstr "Rutnät"
+
+#: ../src/rendering-init.c:28 ../data/messages:119
+msgid "Curve"
+msgstr "Kurva"
+
 #: ../src/rendering-init.c:110
 msgid ""
 "This module adds different views to your dock.\n"
@@ -59,10 +83,6 @@ msgstr "röd, grön, blå, alfa"
 #: ../data/messages:17
 msgid "For flat separators, you can specify their color:"
 msgstr "För platta avgränsare kan du ange en färg:"
-
-#: ../data/messages:19
-msgid "Caroussel"
-msgstr "Karusell"
 
 #: ../data/messages:21
 msgid ""
@@ -109,10 +129,6 @@ msgstr "annars vänder de."
 msgid "Always show icons' face ?"
 msgstr "Visa alltid ikonens framsida?"
 
-#: ../data/messages:37
-msgid "Parabolic"
-msgstr "Parabol"
-
 #: ../data/messages:39
 msgid "The higher it is, the sooner the parabole will be curved."
 msgstr "Ju högre värde, desto tidigare börjar parabolens kurvatur."
@@ -155,10 +171,6 @@ msgstr ""
 #: ../data/messages:57
 msgid "Draw labels while unfolding ?"
 msgstr "Visa etiketter under animering?"
-
-#: ../data/messages:59
-msgid "Rainbow"
-msgstr "Regnbåge"
 
 #: ../data/messages:61 ../data/messages:85
 msgid "Space between rows :"
@@ -276,10 +288,6 @@ msgstr "Linjebredd för ram:"
 msgid "Border line color (r,v,b,a) :"
 msgstr "Linjefärg (r.g.b.a):"
 
-#: ../data/messages:119
-msgid "Curve"
-msgstr "Kurva"
-
 #: ../data/messages:121
 msgid "The lower, the more the curve will seem flat."
 msgstr "Ju lägre värde, desto plattare kurva."
@@ -294,6 +302,3 @@ msgstr "Kurvans amplitud."
 
 #~ msgid "Display text only for pointed icon ?"
 #~ msgstr "Visa text endast på aktiv ikon?"
-
-#~ msgid "Slide"
-#~ msgstr "Rutnät"

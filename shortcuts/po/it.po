@@ -29,11 +29,11 @@ msgid ""
 "space, type, etc."
 msgstr ""
 
-#: ../src/applet-notifications.c:72
+#: ../src/applet-notifications.c:81
 msgid "Remove this bookmark"
 msgstr "Rimuovere questo segnalibro"
 
-#: ../src/applet-notifications.c:82
+#: ../src/applet-notifications.c:91
 msgid "Get disk info"
 msgstr ""
 

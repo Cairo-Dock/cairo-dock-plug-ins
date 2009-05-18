@@ -14,6 +14,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/rendering-init.c:22 ../data/messages:19
+msgid "Caroussel"
+msgstr "Caroussel"
+
+#: ../src/rendering-init.c:23
+msgid "3D plane"
+msgstr ""
+
+#: ../src/rendering-init.c:24 ../data/messages:37
+msgid "Parabolic"
+msgstr "Parabolic"
+
+#: ../src/rendering-init.c:25 ../data/messages:59
+msgid "Rainbow"
+msgstr "Rainbow"
+
+#: ../src/rendering-init.c:27
+msgid "Slide"
+msgstr "Slide"
+
+#: ../src/rendering-init.c:28 ../data/messages:119
+msgid "Curve"
+msgstr "Curve"
+
 #: ../src/rendering-init.c:110
 msgid ""
 "This module adds different views to your dock.\n"
@@ -63,10 +87,6 @@ msgstr "赤、青、緑、アルファ"
 msgid "For flat separators, you can specify their color:"
 msgstr "平坦な区切りに適用する色の指定 :"
 
-#: ../data/messages:19
-msgid "Caroussel"
-msgstr "Caroussel"
-
 #: ../data/messages:21
 msgid ""
 "In degrees, regarding the vertical position. It's a sort of inclination of "
@@ -111,10 +131,6 @@ msgstr "表示しない場合はアイコンが裏返しになります。"
 #: ../data/messages:35
 msgid "Always show icons' face ?"
 msgstr "常にアイコンの正面を表示？"
-
-#: ../data/messages:37
-msgid "Parabolic"
-msgstr "Parabolic"
 
 #: ../data/messages:39
 msgid "The higher it is, the sooner the parabole will be curved."
@@ -161,10 +177,6 @@ msgstr ""
 #: ../data/messages:57
 msgid "Draw labels while unfolding ?"
 msgstr "展開中にラベルを描画？"
-
-#: ../data/messages:59
-msgid "Rainbow"
-msgstr "Rainbow"
 
 #: ../data/messages:61 ../data/messages:85
 msgid "Space between rows :"
@@ -284,10 +296,6 @@ msgstr "外枠の幅 :"
 msgid "Border line color (r,v,b,a) :"
 msgstr "外枠の色（赤、緑、青、アルファ）"
 
-#: ../data/messages:119
-msgid "Curve"
-msgstr "Curve"
-
 #: ../data/messages:121
 msgid "The lower, the more the curve will seem flat."
 msgstr "小さい数値ほど、カーブがより平坦に見えます。"
@@ -302,9 +310,6 @@ msgstr "カーブの高さ"
 
 #~ msgid "Display text only for pointed icon ?"
 #~ msgstr "ポイントが置かれたアイコンはテキストのみ表示？"
-
-#~ msgid "Slide"
-#~ msgstr "Slide"
 
 #~ msgid "it's the 'a' in y=k*x^a"
 #~ msgstr "y=k*x^a 式の 'a' に該当します。"

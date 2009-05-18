@@ -4,7 +4,7 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_DECORATOR_COMICS_NAME "comics"
+#define MY_APPLET_DECORATOR_COMICS_NAME N_("comics")
 
 
 void cd_decorator_set_frame_size_comics (CairoDialog *pDialog);

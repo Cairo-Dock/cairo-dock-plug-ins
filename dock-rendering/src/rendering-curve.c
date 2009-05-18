@@ -961,6 +961,7 @@ void cd_rendering_register_curve_renderer (const gchar *cRendererName)
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
 	pRenderer->bUseReflect = TRUE;
 	pRenderer->bUseStencil = TRUE;
+	pRenderer->cDisplayedName = D_ (cRendererName);
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

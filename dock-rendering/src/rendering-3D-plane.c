@@ -813,6 +813,7 @@ void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName)
 	pRenderer->render_opengl = cd_rendering_render_3D_plane_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
 	pRenderer->bUseReflect = TRUE;
+	pRenderer->cDisplayedName = D_ (cRendererName);
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

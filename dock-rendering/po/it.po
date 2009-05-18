@@ -12,6 +12,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/rendering-init.c:22 ../data/messages:19
+msgid "Caroussel"
+msgstr "Carosello"
+
+#: ../src/rendering-init.c:23
+msgid "3D plane"
+msgstr ""
+
+#: ../src/rendering-init.c:24 ../data/messages:37
+msgid "Parabolic"
+msgstr "Parabolica"
+
+#: ../src/rendering-init.c:25 ../data/messages:59
+msgid "Rainbow"
+msgstr "Arcobaleno"
+
+#: ../src/rendering-init.c:27
+msgid "Slide"
+msgstr "Diapositiva"
+
+#: ../src/rendering-init.c:28 ../data/messages:119
+msgid "Curve"
+msgstr "Curva"
+
 #: ../src/rendering-init.c:110
 msgid ""
 "This module adds different views to your dock.\n"
@@ -55,10 +79,6 @@ msgstr "rosso, verde, blu, alpha"
 #: ../data/messages:17
 msgid "For flat separators, you can specify their color:"
 msgstr "Per i separatori piatti, potete specificare il colore : "
-
-#: ../data/messages:19
-msgid "Caroussel"
-msgstr "Carosello"
 
 #: ../data/messages:21
 msgid ""
@@ -107,10 +127,6 @@ msgstr "altrimenti esse ruoteranno."
 msgid "Always show icons' face ?"
 msgstr "Mostrare sempre la faccia delle icone ?"
 
-#: ../data/messages:37
-msgid "Parabolic"
-msgstr "Parabolica"
-
 #: ../data/messages:39
 msgid "The higher it is, the sooner the parabole will be curved."
 msgstr "Più è alto, più presto la parabola sarà curvata."
@@ -154,10 +170,6 @@ msgstr ""
 #: ../data/messages:57
 msgid "Draw labels while unfolding ?"
 msgstr "Disegnare le etichette durante lo sfogliamento ?"
-
-#: ../data/messages:59
-msgid "Rainbow"
-msgstr "Arcobaleno"
 
 #: ../data/messages:61 ../data/messages:85
 msgid "Space between rows :"
@@ -275,10 +287,6 @@ msgstr "Larghezza del contorno :"
 msgid "Border line color (r,v,b,a) :"
 msgstr "Colore del contorno (r,v,b,a) :"
 
-#: ../data/messages:119
-msgid "Curve"
-msgstr "Curva"
-
 #: ../data/messages:121
 msgid "The lower, the more the curve will seem flat."
 msgstr "Più è basso, più la curva sembrerà piatta."
@@ -293,9 +301,6 @@ msgstr "Ampiezza della curva."
 
 #~ msgid "Display text only for pointed icon ?"
 #~ msgstr "Mostrare il testo solo per l'icona puntata ?"
-
-#~ msgid "Slide"
-#~ msgstr "Diapositiva"
 
 #~ msgid "it's the 'a' in y=k*x^a"
 #~ msgstr "rappresenta 'a' in y=k*x^a"

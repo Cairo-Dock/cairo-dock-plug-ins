@@ -303,6 +303,7 @@ void cd_rendering_register_caroussel_renderer (const gchar *cRendererName)
 	pRenderer->render_optimized = NULL;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;  // cd_rendering_set_subdock_position_caroussel
 	pRenderer->bUseReflect = TRUE;
+	pRenderer->cDisplayedName = D_ (cRendererName);
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

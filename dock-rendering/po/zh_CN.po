@@ -14,6 +14,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/rendering-init.c:22 ../data/messages:19
+msgid "Caroussel"
+msgstr "链子"
+
+#: ../src/rendering-init.c:23
+msgid "3D plane"
+msgstr ""
+
+#: ../src/rendering-init.c:24 ../data/messages:37
+msgid "Parabolic"
+msgstr "抛物线"
+
+#: ../src/rendering-init.c:25 ../data/messages:59
+msgid "Rainbow"
+msgstr "彩虹"
+
+#: ../src/rendering-init.c:27
+msgid "Slide"
+msgstr "滑动"
+
+#: ../src/rendering-init.c:28 ../data/messages:119
+msgid "Curve"
+msgstr "曲线"
+
 #: ../src/rendering-init.c:110
 msgid ""
 "This module adds different views to your dock.\n"
@@ -58,10 +82,6 @@ msgstr "红，蓝，绿，alpha"
 msgid "For flat separators, you can specify their color:"
 msgstr "您可以指定平间隔的颜色:"
 
-#: ../data/messages:19
-msgid "Caroussel"
-msgstr "链子"
-
 #: ../data/messages:21
 msgid ""
 "In degrees, regarding the vertical position. It's a sort of inclination of "
@@ -104,10 +124,6 @@ msgstr "否则它们会翻转。"
 msgid "Always show icons' face ?"
 msgstr "总是显示图标?"
 
-#: ../data/messages:37
-msgid "Parabolic"
-msgstr "抛物线"
-
 #: ../data/messages:39
 msgid "The higher it is, the sooner the parabole will be curved."
 msgstr "取值越高，抛物线越陡"
@@ -149,10 +165,6 @@ msgstr "这将在展开动画时消耗更多的CPU，除非您是用Glitz加载C
 #: ../data/messages:57
 msgid "Draw labels while unfolding ?"
 msgstr "展开时绘制标签"
-
-#: ../data/messages:59
-msgid "Rainbow"
-msgstr "彩虹"
 
 #: ../data/messages:61 ../data/messages:85
 msgid "Space between rows :"
@@ -266,10 +278,6 @@ msgstr "边线宽度:"
 msgid "Border line color (r,v,b,a) :"
 msgstr "边线颜色（红，绿，蓝，透明）:"
 
-#: ../data/messages:119
-msgid "Curve"
-msgstr "曲线"
-
 #: ../data/messages:121
 msgid "The lower, the more the curve will seem flat."
 msgstr "取值越低，曲线越平。"
@@ -284,9 +292,6 @@ msgstr "曲线波幅。"
 
 #~ msgid "Display text only for pointed icon ?"
 #~ msgstr "仅为指向的图标显示文本?"
-
-#~ msgid "Slide"
-#~ msgstr "滑动"
 
 #~ msgid "it's the 'a' in y=k*x^a"
 #~ msgstr "rappresenta 'a' in y=k*x^a"

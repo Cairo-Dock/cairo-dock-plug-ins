@@ -130,5 +130,6 @@ void cd_decorator_register_curly (void)
 	pDecorator->set_size = cd_decorator_set_frame_size_curly;
 	pDecorator->render = cd_decorator_draw_decorations_curly;
 	pDecorator->render_opengl = NULL;
+	pDecorator->cDisplayedName = D_ (MY_APPLET_DECORATOR_CURLY_NAME);
 	cairo_dock_register_dialog_decorator (MY_APPLET_DECORATOR_CURLY_NAME, pDecorator);
 }

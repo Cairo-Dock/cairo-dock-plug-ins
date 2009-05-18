@@ -4,7 +4,7 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_DECORATOR_3DPLANE_NAME "3Dplane"
+#define MY_APPLET_DECORATOR_3DPLANE_NAME N_("3Dplane")
 
 
 void cd_decorator_set_frame_size_3Dplane (CairoDialog *pDialog);

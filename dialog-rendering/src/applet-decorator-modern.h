@@ -4,7 +4,7 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_DECORATOR_MODERN_NAME "modern"
+#define MY_APPLET_DECORATOR_MODERN_NAME N_("modern")
 
 
 void cd_decorator_set_frame_size_modern (CairoDialog *pDialog);

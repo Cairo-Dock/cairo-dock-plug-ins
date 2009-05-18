@@ -19,13 +19,13 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-commons.h"
 #include "rendering-init.h"
 
-#define CD_RENDERING_CAROUSSEL_VIEW_NAME "Caroussel"
-#define CD_RENDERING_3D_PLANE_VIEW_NAME "3D plane"
-#define CD_RENDERING_PARABOLIC_VIEW_NAME "Parabolic"
-#define CD_RENDERING_RAINBOW_VIEW_NAME "Rainbow"
+#define CD_RENDERING_CAROUSSEL_VIEW_NAME N_("Caroussel")
+#define CD_RENDERING_3D_PLANE_VIEW_NAME N_("3D plane")
+#define CD_RENDERING_PARABOLIC_VIEW_NAME N_("Parabolic")
+#define CD_RENDERING_RAINBOW_VIEW_NAME N_("Rainbow")
 //#define CD_RENDERING_DIAPO_VIEW_NAME "Slide"
-#define CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME "Slide"
-#define CD_RENDERING_CURVE_VIEW_NAME "Curve"
+#define CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME N_("Slide")
+#define CD_RENDERING_CURVE_VIEW_NAME N_("Curve")
 
 
 int iVanishingPointY;  // distance du point de fuite au plan (au niveau du point de contact du plan et des icones).

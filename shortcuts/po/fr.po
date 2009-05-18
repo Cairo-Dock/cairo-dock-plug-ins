@@ -41,11 +41,11 @@ msgstr ""
 "L'applet peut aussi afficher des informations sur vos disques, comme "
 "l'espace libre, le type, etc. "
 
-#: ../src/applet-notifications.c:72
+#: ../src/applet-notifications.c:81
 msgid "Remove this bookmark"
 msgstr "Supprimer ce signet"
 
-#: ../src/applet-notifications.c:82
+#: ../src/applet-notifications.c:91
 msgid "Get disk info"
 msgstr "Récupérer les informations du disque"
 

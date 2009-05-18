@@ -278,6 +278,7 @@ void cd_rendering_register_diapo_simple_renderer (const gchar *cRendererName)
 	pRenderer->render_opengl = cd_rendering_render_diapo_simple_opengl;
 	
 	pRenderer->bUseReflect = FALSE;                                                                         // On dit non au reflections
+	pRenderer->cDisplayedName = D_ (cRendererName);
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);                                    //Puis on signale l'existence de notre rendu
 }

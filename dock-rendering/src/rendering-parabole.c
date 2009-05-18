@@ -656,6 +656,7 @@ void cd_rendering_register_parabole_renderer (const gchar *cRendererName)
 	pRenderer->render_optimized = NULL;
 	pRenderer->render_opengl = cd_rendering_render_parabole_opengl;
 	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_parabole;
+	pRenderer->cDisplayedName = D_ (cRendererName);
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

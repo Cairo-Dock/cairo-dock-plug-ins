@@ -725,6 +725,7 @@ void cd_rendering_register_rainbow_renderer (const gchar *cRendererName)
 	pRenderer->render_optimized = NULL;
 	pRenderer->render_opengl = cd_rendering_render_rainbow_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
+	pRenderer->cDisplayedName = D_ (cRendererName);
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }
