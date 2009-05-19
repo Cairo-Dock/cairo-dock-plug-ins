@@ -16,7 +16,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("AlsaMixer"),
 	"Scroll up/down on the icon to increase/decrease the volume.\n"
 	"Click on icon to show/hide volume control (you can bind a keyboard shortcut for it)\n"
 	"You can also hide the dialog by clicking on it.\n"
-	"Middle-click to set or unset to mute.\n"
+	"Middle-click to set or unset to mute, double-click to raise the channels mixer.\n"
 	"This applet works with the Alsa sound driver."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
@@ -146,7 +146,8 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
-	
+	CD_APPLET_REGISTER_FOR_DOUBLE_CLICK_EVENT;
+
 	cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) mixer_on_keybinding_pull, (gpointer)NULL);
 CD_APPLET_INIT_END
 
@@ -157,6 +158,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
+	CD_APPLET_UNREGISTER_FOR_DOUBLE_CLICK_EVENT;
 	
 	//\_________________ On stoppe le timer.
 	if (myData.iSidCheckVolume != 0)

@@ -51,6 +51,11 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
+CD_APPLET_ON_DOUBLE_CLICK_BEGIN
+	_mixer_show_advanced_mixer (NULL, NULL);
+CD_APPLET_ON_DOUBLE_CLICK_END
+
+
 void mixer_on_keybinding_pull (const char *keystring, gpointer user_data)
 {
 	mixer_show_hide_dialog ();

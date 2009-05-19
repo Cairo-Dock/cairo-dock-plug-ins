@@ -157,7 +157,7 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	cd_debug ("  Slider - loading %s (size %dbytes, orientation:%d)", cImagePath, pImage->iSize, pImage->iOrientation);
 	//\_______________ On definit comment charger l'image.
 	double fImgX, fImgY, fImgW=0, fImgH=0;
-	CairoDockLoadImageModifier iLoadingModifier = CAIRO_DOCK_FILL_SPACE;
+	CairoDockLoadImageModifier iLoadingModifier = 0;  /// CAIRO_DOCK_FILL_SPACE
 	if (pImage->iOrientation != 0)
 		iLoadingModifier |= ((pImage->iOrientation-1) << 3);
 	if (! myConfig.bFillIcon)

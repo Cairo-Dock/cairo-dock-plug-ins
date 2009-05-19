@@ -32,11 +32,11 @@ msgstr "Lancement rapide"
 
 #: ../src/applet-notifications.c:145
 msgid "Configure menu"
-msgstr "Menu de configuration"
+msgstr "Configurer le menu"
 
 #: ../src/applet-notifications.c:146
 msgid "Clear recent"
-msgstr "Nettoyage des récents"
+msgstr "Vider les documents récents"
 
 #: ../src/applet-recent.c:47
 msgid "Recent Documents"
@@ -44,7 +44,7 @@ msgstr "Documents récents"
 
 #: ../src/applet-recent.c:99
 msgid "Clear the list of the recently used documents ?"
-msgstr "Nettoyer la liste des Documents récents ?"
+msgstr "Vider la liste des Documents récents ?"
 
 #: ../src/applet-run-dialog.c:337
 msgid "Enter a command to launch :"
@@ -269,4 +269,4 @@ msgstr "En jour. Entrez 0 pour ne pas utiliser ce filtre."
 
 #: ../data/messages:99
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Afficher uniquement les fichiers dont la dernière date de modification est inférieur :"
+msgstr "Afficher uniquement les fichiers dont la dernière date de modification est inférieur à :"
