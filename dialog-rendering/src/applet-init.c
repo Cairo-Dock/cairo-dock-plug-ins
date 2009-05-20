@@ -20,10 +20,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_PRE_INIT_BEGIN (N_("dialog rendering"),
 	2,0,0,
-	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This plug-in provides some dialog decorators for dialog bubbles."),
 	"Fabrice Rey (Fabounet)")
-	/*//\_______________ On definit notre interface.
+	//\_______________ On definit notre interface.
+	//CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
 	pInterface->reloadModule = reload;
 	pInterface->read_conf_file = read_conf_file;
 	pInterface->reset_config = reset_config;
@@ -33,16 +34,18 @@ CD_APPLET_PRE_INIT_BEGIN (N_("dialog rendering"),
 	cd_decorator_register_comics ();
 	cd_decorator_register_modern ();
 	cd_decorator_register_3Dplane ();
-	cd_decorator_register_tooltip ();  // By ChAnGFu*/
+	cd_decorator_register_tooltip ();  // By ChAnGFu*
+	cd_decorator_register_curly ();
 	
-	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
 	
 	//\_______________ On enregistre les moteurs de rendu.
 	rendering_register_text_dialog_renderer ();
+
+	CD_APPLET_ATTACH_TO_INTERNAL_MODULE ("Dialogs");
 CD_APPLET_PRE_INIT_END
 
 
-CD_APPLET_INIT_BEGIN
+/*CD_APPLET_INIT_BEGIN
 	//\_______________ On enregistre les decorateurs.
 	cd_decorator_register_comics ();
 	cd_decorator_register_modern ();
@@ -64,7 +67,7 @@ CD_APPLET_STOP_BEGIN
 	
 	cairo_dock_update_dialog_decorator_list_for_gui ();
 CD_APPLET_STOP_END
-
+*/
 
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)

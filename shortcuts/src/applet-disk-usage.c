@@ -97,7 +97,7 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 						cairo_dock_set_size_as_quick_info (myDrawContext, pIcon, pContainer, pDiskUsage->iAvail);
 					break ;
 					case CD_SHOW_USED_SPACE :
-						fValue = (double) pDiskUsage->iUsed / pDiskUsage->iTotal;
+						fValue = (double) - pDiskUsage->iUsed / pDiskUsage->iTotal;  // <0 => du vert au rouge.
 						cairo_dock_set_size_as_quick_info (myDrawContext, pIcon, pContainer, pDiskUsage->iUsed);
 					break ;
 					case CD_SHOW_FREE_SPACE_PERCENT :
@@ -105,9 +105,8 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 						cairo_dock_set_quick_info_full (myDrawContext, pIcon, pContainer, "%.1f%%", 100.*fValue);
 					break ;
 					case CD_SHOW_USED_SPACE_PERCENT :
-						//g_print ("+%lld / %lld\n", pDiskUsage->iUsed, pDiskUsage->iTotal);
-						fValue = (double) pDiskUsage->iUsed / pDiskUsage->iTotal;
-						cairo_dock_set_quick_info_full (myDrawContext, pIcon, pContainer, "%.1f%%", 100.*fValue);
+						fValue = (double) - pDiskUsage->iUsed / pDiskUsage->iTotal;  // <0 => du vert au rouge.
+						cairo_dock_set_quick_info_full (myDrawContext, pIcon, pContainer, "%.1f%%", -100.*fValue);
 					break ;
 				}
 				
