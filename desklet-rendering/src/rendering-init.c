@@ -20,11 +20,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_PRE_INIT_BEGIN (N_("desklet rendering"),
 	2,0,0,
-	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This module provides different views for your desklets."),
 	"Fabounet (Fabrice Rey)")
 	//\_______________ On definit notre interface.
-	pInterface->reloadModule = reload;
 	pInterface->read_conf_file = read_conf_file;
 	pInterface->reset_config = reset_config;
 	pInterface->reset_data = reset_data;
@@ -38,14 +37,16 @@ CD_APPLET_PRE_INIT_BEGIN (N_("desklet rendering"),
 	
 	//\_______________ On enregistre les decorations.
 	cd_rendering_register_desklet_decorations ();
+
+	CD_APPLET_ATTACH_TO_INTERNAL_MODULE ("Desklets");
 CD_APPLET_PRE_INIT_END
 
 
-CD_APPLET_RELOAD_BEGIN
+/*CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		
 		///cairo_dock_set_all_views_to_default ();
 	}
-CD_APPLET_RELOAD_END
+CD_APPLET_RELOAD_END*/
 

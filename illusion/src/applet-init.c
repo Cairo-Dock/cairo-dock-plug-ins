@@ -19,7 +19,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_PRE_INIT_BEGIN (N_("illusion"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This plug-in provides animations for appearance & disappearance of icons."),
 	"Fabounet (Fabrice Rey)")
 	if (! g_bUseOpenGL)

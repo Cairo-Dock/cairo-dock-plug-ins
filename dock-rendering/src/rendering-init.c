@@ -106,12 +106,13 @@ CDSpeparatorType my_curve_iDrawSeparator3D;
 
 CD_APPLET_PRE_INIT_BEGIN ("dock rendering",
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This module adds different views to your dock.\n"
 	"Any dock or sub-dock can be displayed with the view of your choice.\n"
 	"Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views are provided."),
 	"Fabounet (Fabrice Rey) & parAdOxxx_ZeRo")
-	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
+	CD_APPLET_ATTACH_TO_INTERNAL_MODULE ("Views");
 CD_APPLET_PRE_INIT_END
 
 

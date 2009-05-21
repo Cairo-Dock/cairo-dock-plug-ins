@@ -5,7 +5,7 @@ moduledir = $(clockdatadir)
 
 module_DATA = \
 	clock.conf\
-	preview.png\
+	preview.jpg\
 	dates.svg\
 	icon.png\
 	icon-alarm.png

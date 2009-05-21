@@ -21,7 +21,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_DEFINITION (N_("Animated icons"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This plug-in provides many different animations for your icons."),
 	"Fabounet (Fabrice Rey)")
 

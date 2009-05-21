@@ -17,7 +17,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_DEFINITION (N_("drop indicator"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This plug-in displays an animated indicator when you drop something in the dock."),
 	"Fabounet (Fabrice Rey)")
 

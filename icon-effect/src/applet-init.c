@@ -19,7 +19,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 CD_APPLET_PRE_INIT_BEGIN (N_("icon effects"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This plug-in adds many special effects to your icons."),
 	"Fabounet (Fabrice Rey)")
 	if (! g_bUseOpenGL)

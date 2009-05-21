@@ -24,6 +24,10 @@ msgstr "Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
 msgid "Comics"
 msgstr "Bande-dessinée"
 
+#: ../data/messages:1
+msgid "comics"
+msgstr "Bande-dessinée"
+
 #: ../data/messages:3 ../data/messages:11 ../data/messages:21
 #: ../data/messages:31 ../data/messages:41
 msgid "Corner radius :"
@@ -41,6 +45,10 @@ msgstr "Couleur du contour de la bulle :"
 
 #: ../data/messages:9
 msgid "Modern"
+msgstr "Moderne"
+
+#: ../data/messages:9
+msgid "modern"
 msgstr "Moderne"
 
 #: ../data/messages:17
@@ -67,12 +75,20 @@ msgstr "Couleur du plan :"
 msgid "Tooltip"
 msgstr "Info-bulle"
 
+#: ../data/messages:29
+msgid "tooltip"
+msgstr "Info-bulle"
+
 #: ../data/messages:37
 msgid "Color of the margin :"
 msgstr "Couleur de la marge :"
 
 #: ../data/messages:39
 msgid "Curly"
+msgstr "Courbé"
+
+#: ../data/messages:39
+msgid "curly"
 msgstr "Courbé"
 
 #: ../data/messages:47

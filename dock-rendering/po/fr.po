@@ -17,7 +17,7 @@ msgstr "Carroussel"
 
 #: ../src/rendering-init.c:23
 msgid "3D plane"
-msgstr ""
+msgstr "plan 3D"
 
 #: ../src/rendering-init.c:24 ../data/messages:37
 msgid "Parabolic"
@@ -33,7 +33,7 @@ msgstr "Diapositive"
 
 #: ../src/rendering-init.c:28 ../data/messages:119
 msgid "Curve"
-msgstr "Courbure"
+msgstr "Courbe"
 
 #: ../src/rendering-init.c:110
 msgid ""
@@ -304,6 +304,3 @@ msgstr "Pourcentage de courbure :"
 #: ../data/messages:127
 msgid "Amplitude of the curve."
 msgstr "Amplitude de la courbure :"
-
-#~ msgid "Display text only for pointed icon ?"
-#~ msgstr "Afficher le texte seulement pour l'icône pointée ?"
