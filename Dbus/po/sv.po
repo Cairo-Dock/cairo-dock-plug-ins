@@ -46,3 +46,18 @@ msgstr "Tillåt externa program att starta om applets?"
 #, fuzzy
 msgid "Let extern applications show/hide the docks ?"
 msgstr "Tillåt externa program att visa/dölja desklets?"
+
+#: ../data/messages:13
+#, fuzzy
+msgid "Let extern applications add launchers into the docks ?"
+msgstr "Tillåt externa program att starta om dockan?"
+
+#: ../data/messages:15
+#, fuzzy
+msgid "Let extern applications modify the labels of the icons ?"
+msgstr "Tillåt externa program att starta om applets?"
+
+#: ../data/messages:17
+#, fuzzy
+msgid "Let extern applications modify the quick-infos on the icons ?"
+msgstr "Tillåt externa program att visa dialoger i dockan?"

@@ -11,10 +11,6 @@ dirs =
 #F[Animations]
 anim=
 
-#I[0;5000] Duration of the character animation (OpenGL only) :
-#{In ms.}
-anim duration = 1500
-
 #I[0;1000] Duration of the appearance animation :
 #{In ms.}
 appear duration = 500
@@ -24,7 +20,7 @@ appear duration = 500
 stop duration = 700
 
 #a+ Animation of the current icon :
-animation=rotate
+animation=pulse
 
 #b use the Navigation mode ?
 nav mode = true

@@ -44,3 +44,18 @@ msgstr "令外部应用程序显示/隐藏桌面小应用程序？"
 #, fuzzy
 msgid "Let extern applications show/hide the docks ?"
 msgstr "令外部应用程序显示/隐藏桌面小应用程序？"
+
+#: ../data/messages:13
+#, fuzzy
+msgid "Let extern applications add launchers into the docks ?"
+msgstr "允许外部应用程序重启dock？"
+
+#: ../data/messages:15
+#, fuzzy
+msgid "Let extern applications modify the labels of the icons ?"
+msgstr "令外部应用程序显示/隐藏桌面小应用程序？"
+
+#: ../data/messages:17
+#, fuzzy
+msgid "Let extern applications modify the quick-infos on the icons ?"
+msgstr "令外部应用程序的弹出对话框出现在dock上？"

@@ -182,7 +182,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	guint32 iUnicodeChar = gdk_keyval_to_unicode (iKeyVal);
 	g_print ("+ cKeyName : %s (%c, %s)\n", cKeyName, iUnicodeChar, string);
 	
-	if (iKeyVal == GDK_Escape)
+	if (iKeyVal == GDK_Escape)  // on clot la session.
 	{
 		cd_do_close_session ();
 	}
@@ -194,7 +194,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		// on rejette.
 	}
-	else if (iKeyVal == GDK_Menu)
+	else if (iKeyVal == GDK_Menu)  // emulation du clic droit.
 	{
 		if (myData.pCurrentIcon != NULL)
 		{
@@ -215,7 +215,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			1,
 			gtk_get_current_event_time ());
 	}
-	else if (iKeyVal == GDK_BackSpace)
+	else if (iKeyVal == GDK_BackSpace)  // on efface la derniere lettre.
 	{
 		if (myData.iNbValidCaracters > 0)
 		{
@@ -238,7 +238,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				cairo_dock_redraw_container (pContainer);
 		}
 	}
-	else if (iKeyVal == GDK_Tab)
+	else if (iKeyVal == GDK_Tab)  // completion.
 	{
 		if (myData.iNbValidCaracters > 0)  // pCurrentIcon peut etre NULL si elle s'est faite detruire pendant la recherche, auquel cas on cherchera juste normalement.
 		{
@@ -247,7 +247,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			// on cherche l'icone suivante.
 			cd_do_search_current_icon (TRUE);
 			
-			if (myData.pCurrentIcon == NULL)
+			//if (myData.pCurrentIcon == NULL)
 			{
 				if (myData.completion)
 				{
@@ -311,7 +311,12 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			
 			myData.bIgnoreIconState = TRUE;
 			if (iModifierType & GDK_MOD1_MASK)  // ALT
+			{
+				myData.bIgnoreIconState = TRUE;
+				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car aucune animation ne va la remplacer.
+				myData.bIgnoreIconState = FALSE;
 				cairo_dock_notify (CAIRO_DOCK_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
+			}
 			else if (iModifierType & GDK_CONTROL_MASK)  // CTRL
 			{
 				myData.bIgnoreIconState = TRUE;

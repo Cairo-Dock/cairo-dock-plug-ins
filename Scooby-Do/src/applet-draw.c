@@ -176,7 +176,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			glPushMatrix();
 			
 			glTranslatef (pChar->iCurrentX * fScale + pMainDock->iCurrentWidth/2 + pChar->iWidth/2,
-				pChar->iCurrentY + pMainDock->iCurrentHeight/2 - (myData.iTextHeight - pChar->iHeight)/2 * fScale - fRelativePositionOffset,
+				- pChar->iCurrentY + pMainDock->iCurrentHeight/2 - (myData.iTextHeight - pChar->iHeight)/2 * fScale - fRelativePositionOffset,
 				0.);  // aligne en bas.
 			
 			double fRotationAngle = pChar->fRotationAngle;
@@ -186,9 +186,9 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 				
 				glScalef (pChar->iWidth * fScale, fScale * pChar->iHeight, 1.);
 				
-				glRotatef (fRotationAngle+STATIC_ANGLE, 0., 1., 0.);
+				glRotatef (fRotationAngle+STATIC_ANGLE, 1., 0., 0.);
 				glRotatef (STATIC_ANGLE, 0., 0., 1.);
-				glRotatef (STATIC_ANGLE, 1., 0., 0.);
+				glRotatef (STATIC_ANGLE, 0., 1., 0.);
 				
 				glPolygonMode (GL_FRONT, GL_FILL);
 				double a = .5 / sqrt (2);

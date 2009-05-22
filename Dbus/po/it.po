@@ -43,3 +43,18 @@ msgstr "Autorizzare le applicazioni esterne a ricaricare le applets ?"
 #: ../data/messages:11
 msgid "Let extern applications show/hide the docks ?"
 msgstr "Autorizzare le applicazioni esterne a mostrare/nascondere le docks ?"
+
+#: ../data/messages:13
+#, fuzzy
+msgid "Let extern applications add launchers into the docks ?"
+msgstr "Autorizzare le applicazioni esterne a ricaricare la barra ?"
+
+#: ../data/messages:15
+#, fuzzy
+msgid "Let extern applications modify the labels of the icons ?"
+msgstr "Autorizzare le applicazioni esterne a ricaricare le applets ?"
+
+#: ../data/messages:17
+#, fuzzy
+msgid "Let extern applications modify the quick-infos on the icons ?"
+msgstr "Autorizzare dialoghi pop-up di applicazioni esterne nella barra?"
