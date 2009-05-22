@@ -563,9 +563,11 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	cd_message ("%s (%s)", __func__, cBaseURI);
 	
 	gchar *cURI;
+	gboolean bAddHome = FALSE;
 	if (strcmp (cBaseURI, CAIRO_DOCK_FM_VFS_ROOT) == 0)
 	{
 		cURI = g_strdup ("computer://");
+		bAddHome = TRUE;
 		///*cFullURI = cURI;
 		///return vfs_backend_list_volumes ();
 		//vfs_backend_list_volumes ();
@@ -586,7 +588,6 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN","
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
 		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
-		G_FILE_ATTRIBUTE_UNIX_RDEV","
 		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		cAttributes,
@@ -613,142 +614,157 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			cd_warning ("gnome_integration : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
+			continue;
 		}
-		else
+		if (pFileInfo == NULL)
+			break ;
+		
+		gboolean bIsHidden = g_file_info_get_is_hidden (pFileInfo);
+		if (bListHiddenFiles || ! bIsHidden)
 		{
-			if (pFileInfo == NULL)
-				break ;
-			
-			gboolean bIsHidden = g_file_info_get_is_hidden (pFileInfo);
-			if (bListHiddenFiles || ! bIsHidden)
+			GFileType iFileType = g_file_info_get_file_type (pFileInfo);
+			GIcon *pFileIcon = g_file_info_get_icon (pFileInfo);
+			if (pFileIcon == NULL)
 			{
-				GFileType iFileType = g_file_info_get_file_type (pFileInfo);
-				GIcon *pFileIcon = g_file_info_get_icon (pFileInfo);
-				if (pFileIcon == NULL)
+				cd_message ("AUCUNE ICONE");
+				continue;
+			}
+			const gchar *cFileName = g_file_info_get_name (pFileInfo);
+			const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
+			gchar *cName = NULL;
+			
+			icon = g_new0 (Icon, 1);
+			icon->iType = iNewIconsType;
+			icon->cBaseURI = g_strconcat (*cFullURI, "/", cFileName, NULL);
+			cd_message ("+ %s (mime:%s)", icon->cBaseURI, cMimeType);
+			
+			if (iFileType == G_FILE_TYPE_MOUNTABLE)
+			{
+				const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
+				cd_message ("  c'est un point de montage correspondant a %s", cTargetURI);
+				
+				GMount *pMount = NULL;
+				if (cTargetURI != NULL)
 				{
-					cd_message ("AUCUNE ICONE");
-					continue;
+					icon->acCommand = g_strdup (cTargetURI);
+					GFile *file = g_file_new_for_uri (cTargetURI);
+					pMount = g_file_find_enclosing_mount (file, NULL, NULL);
+					//g_object_unref (file);
 				}
-				const gchar *cFileName = g_file_info_get_name (pFileInfo);
-				const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
-				gchar *cName = NULL;
-				
-				icon = g_new0 (Icon, 1);
-				icon->iType = iNewIconsType;
-				icon->cBaseURI = g_strconcat (*cFullURI, "/", cFileName, NULL);
-				cd_message ("+ %s (mime:%s)", icon->cBaseURI, cMimeType);
-				
-				if (iFileType == G_FILE_TYPE_MOUNTABLE)
+				if (pMount != NULL)
 				{
-					const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
-					cd_message ("  c'est un point de montage correspondant a %s (ID:%d)", cTargetURI, g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_RDEV));
+					cName = g_mount_get_name (pMount);
+					cd_message ("un GMount existe (%s)", cName);
 					
-					GMount *pMount = NULL;
-					if (cTargetURI != NULL)
+					GVolume *volume = g_mount_get_volume (pMount);
+					if (volume)
+						cd_message ("  volume associe : %s", g_volume_get_name (volume));
+					GDrive *drive = g_mount_get_drive (pMount);
+					if (drive)
+						cd_message ("  disque associe : %s", g_drive_get_name (drive));
+					
+					///pFileIcon = g_mount_get_icon (pMount);
+				}
+				else
+				{
+					cName = g_strdup (cFileName);
+					gchar *str = strrchr (cName, '.');  // on vire l'extension ".volume" ou ".drive".
+					if (str != NULL)
 					{
-						icon->acCommand = g_strdup (cTargetURI);
-						GFile *file = g_file_new_for_uri (cTargetURI);
-						pMount = g_file_find_enclosing_mount (file, NULL, NULL);
-						//g_object_unref (file);
-					}
-					if (pMount != NULL)
-					{
-						cName = g_mount_get_name (pMount);
-						cd_message ("un GMount existe (%s)", cName);
-						
-						GVolume *volume = g_mount_get_volume (pMount);
-						if (volume)
-							cd_message ("  volume associe : %s", g_volume_get_name (volume));
-						GDrive *drive = g_mount_get_drive (pMount);
-						if (drive)
-							cd_message ("  disque associe : %s", g_drive_get_name (drive));
-						
-						///pFileIcon = g_mount_get_icon (pMount);
-					}
-					else
-					{
-						cName = g_strdup (cFileName);
-						gchar *str = strrchr (cName, '.');  // on vire l'extension ".volume" ou ".drive".
-						if (str != NULL)
+						*str = '\0';
+						if (strcmp (str+1, "link") == 0)
 						{
-							*str = '\0';
-							if (strcmp (str+1, "link") == 0)
+							if (strcmp (cName, "root") == 0)
 							{
-								if (strcmp (cName, "root") == 0)
-								{
-									g_free (cName);
-									cName = g_strdup ("/");
-								}
+								g_free (cName);
+								cName = g_strdup ("/");
 							}
-							else if (strcmp (str+1, "drive") == 0)  // on cherche un nom plus parlant si possible.
+						}
+						else if (strcmp (str+1, "drive") == 0)  // on cherche un nom plus parlant si possible.
+						{
+							gchar *cVolumeName = _cd_find_volume_name_from_drive_name (cName);
+							if (cVolumeName != NULL)
 							{
-								gchar *cVolumeName = _cd_find_volume_name_from_drive_name (cName);
-								if (cVolumeName != NULL)
-								{
-									g_free (cName);
-									g_free (cVolumeName);
-									continue;  /// apparemment il n'est plus necessaire d'afficher les .drives qui ont 1 (ou plusieurs ?) volumes, car ces derniers sont dans la liste, donc ca fait redondant.
-									/**if (strcmp (cVolumeName, "discard") == 0)
-										continue;
-									g_free (cName);
-									cName = cVolumeName;*/
-								}
+								g_free (cName);
+								g_free (cVolumeName);
+								continue;  /// apparemment il n'est plus necessaire d'afficher les .drives qui ont 1 (ou plusieurs ?) volumes, car ces derniers sont dans la liste, donc ca fait redondant.
+								/**if (strcmp (cVolumeName, "discard") == 0)
+									continue;
+								g_free (cName);
+								cName = cVolumeName;*/
 							}
 						}
 					}
-					icon->iVolumeID = 1;
-					cd_message ("le nom de ce volume est : %s", cName);
 				}
-				else
-					cName = g_strdup (cFileName);
-				
-				if (icon->acCommand == NULL)
-					icon->acCommand = g_strdup (icon->cBaseURI);
-				icon->acName = cName;
-				icon->acFileName = NULL;
-				if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
-				{
-					gchar *cHostname = NULL;
-					gchar *cFilePath = g_filename_from_uri (icon->cBaseURI, &cHostname, &erreur);
-					if (erreur != NULL)
-					{
-						g_error_free (erreur);
-						erreur = NULL;
-					}
-					else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
-					{
-						icon->acFileName = g_strdup (cFilePath);
-						cairo_dock_remove_html_spaces (icon->acFileName);
-					}
-					g_free (cHostname);
-					g_free (cFilePath);
-				}
-				if (icon->acFileName == NULL)
-				{
-					icon->acFileName = _cd_get_icon_path (pFileIcon);
-					cd_message ("icon->acFileName : %s", icon->acFileName);
-				}
-				
-				if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
-					icon->fOrder = g_file_info_get_size (pFileInfo);
-				else if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
-				{
-					GTimeVal t;
-					g_file_info_get_modification_time (pFileInfo, &t);
-					icon->fOrder = t.tv_sec;
-				}
-				else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
-					icon->fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
-				if (icon->fOrder == 0)  // un peu moyen mais mieux que rien non ?
-					icon->fOrder = iOrder;
-				pIconList = g_list_insert_sorted (pIconList,
-					icon,
-					(GCompareFunc) cairo_dock_compare_icons_order);
-				//g_list_prepend (pIconList, icon);
-				iOrder ++;
+				icon->iVolumeID = 1;
+				cd_message ("le nom de ce volume est : %s", cName);
 			}
+			else
+				cName = g_strdup (cFileName);
+			
+			if (icon->acCommand == NULL)
+				icon->acCommand = g_strdup (icon->cBaseURI);
+			icon->acName = cName;
+			icon->acFileName = NULL;
+			if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
+			{
+				gchar *cHostname = NULL;
+				gchar *cFilePath = g_filename_from_uri (icon->cBaseURI, &cHostname, &erreur);
+				if (erreur != NULL)
+				{
+					g_error_free (erreur);
+					erreur = NULL;
+				}
+				else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
+				{
+					icon->acFileName = g_strdup (cFilePath);
+					cairo_dock_remove_html_spaces (icon->acFileName);
+				}
+				g_free (cHostname);
+				g_free (cFilePath);
+			}
+			if (icon->acFileName == NULL)
+			{
+				icon->acFileName = _cd_get_icon_path (pFileIcon);
+				cd_message ("icon->acFileName : %s", icon->acFileName);
+			}
+			
+			if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
+				icon->fOrder = g_file_info_get_size (pFileInfo);
+			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
+			{
+				GTimeVal t;
+				g_file_info_get_modification_time (pFileInfo, &t);
+				icon->fOrder = t.tv_sec;
+			}
+			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
+				icon->fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
+			if (icon->fOrder == 0)  // un peu moyen mais mieux que rien non ?
+				icon->fOrder = iOrder;
+			pIconList = g_list_insert_sorted (pIconList,
+				icon,
+				(GCompareFunc) cairo_dock_compare_icons_order);
+			//g_list_prepend (pIconList, icon);
+			iOrder ++;
 		}
 	} while (TRUE);  // 'g_file_enumerator_close' est appelee lors du dernier 'g_file_enumerator_next_file'.
+	
+	if (bAddHome && pIconList != NULL)
+	{
+		icon = g_new0 (Icon, 1);
+		icon->iType = iNewIconsType;
+		icon->cBaseURI = g_strdup_printf ("file://%s", "/home");
+		icon->acCommand = g_strdup ("/home");
+		//icon->acCommand = g_strdup (icon->cBaseURI);
+		icon->iVolumeID = 0;
+		icon->acName = g_strdup ("home");
+		Icon *pRootIcon = pIconList->data;
+		icon->acFileName = pRootIcon->acFileName;
+		icon->fOrder = iOrder++;
+		pIconList = g_list_insert_sorted (pIconList,
+			icon,
+			(GCompareFunc) cairo_dock_compare_icons_order);
+	}
 	
 	if (iSortType == CAIRO_DOCK_FM_SORT_BY_NAME)
 		pIconList = cairo_dock_sort_icons_by_name (pIconList);

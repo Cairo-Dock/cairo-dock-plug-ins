@@ -260,7 +260,7 @@ msgstr "Non"
 
 #: ../data/messages:91
 msgid "On icon"
-msgstr "Sur l'icone"
+msgstr "Sur l'icône"
 
 #: ../data/messages:93
 msgid "On label"

@@ -17,3 +17,12 @@ enable reload module = true
 
 #b Let extern applications show/hide the docks ?
 enable show dock = true
+
+#b Let extern applications add launchers into the docks ?
+enable add launcher = true
+
+#b Let extern applications modify the labels of the icons ?
+enable set label = true
+
+#b Let extern applications modify the quick-infos on the icons ?
+enable set quickinfo = true

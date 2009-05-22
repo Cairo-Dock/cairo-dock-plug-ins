@@ -223,7 +223,7 @@ msgstr "Couleur de la ligne :"
 
 #: ../data/messages:81
 msgid "SimpleSlide"
-msgstr "Diapositive Simple"
+msgstr "Diapositive"
 
 #: ../data/messages:83
 msgid "Space between columns :"
@@ -231,7 +231,7 @@ msgstr "Espacement entre les colonnes :"
 
 #: ../data/messages:87
 msgid "Max size of icons :"
-msgstr "Taille maximale des icones"
+msgstr "Taille maximale des icônes"
 
 #: ../data/messages:89
 msgid "Sinusoidal wave radius :"
@@ -247,7 +247,7 @@ msgstr "Utiliser une forme alongée ?"
 
 #: ../data/messages:95
 msgid "Display text for all icons ?"
-msgstr "Montrer le texte pour toutes les icones ?"
+msgstr "Montrer le texte pour toutes les icônes ?"
 
 #: ../data/messages:97
 msgid "Draw a background ?"

@@ -193,7 +193,7 @@ msgstr "Espacement entre les colonnes :"
 
 #: ../data/messages:81 ../data/messages:121
 msgid "Max size of icons :"
-msgstr "Taille maximale des icones"
+msgstr "Taille maximale des icônes"
 
 #: ../data/messages:83 ../data/messages:123
 msgid "Sinusoidal wave radius :"
@@ -213,7 +213,7 @@ msgstr "Afficher le texte seulement pour l'icône pointée ?"
 
 #: ../data/messages:91 ../data/messages:131
 msgid "Display text for all icons ?"
-msgstr "Montrer le texte pour toutes les icones ?"
+msgstr "Montrer le texte pour toutes les icônes ?"
 
 #: ../data/messages:93 ../data/messages:133
 msgid "Draw a background ?"

@@ -79,52 +79,33 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 
 }
 
-GList *_get_first_drawn_element (GList *icons)
-{
-	Icon *icon;
-	GList *ic;
-	GList *pFirstDrawnElement = NULL;
-	for (ic = icons; ic != NULL; ic = ic->next)
-	{
-		icon = ic->data;
-		if (icon->bPointed)
-			break ;
-	}
-	
-	if (ic == NULL || ic->next == NULL)  // derniere icone ou aucune pointee.
-		pFirstDrawnElement = icons;
-	else
-		pFirstDrawnElement = ic->next;
-	return pFirstDrawnElement;
-}
-
 void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	if(my_diapo_simple_draw_background)
-        {
-	        //\____________________ On trace le cadre.
+	{
+		//\____________________ On trace le cadre.
 
-	        cairo_save (pCairoContext);
-	        cairo_dock_draw_frame_for_diapo_simple (pCairoContext, pDock);
+		cairo_save (pCairoContext);
+		cairo_dock_draw_frame_for_diapo_simple (pCairoContext, pDock);
 
-	        //\____________________ On dessine les decorations dedans.
+		//\____________________ On dessine les decorations dedans.
+		cairo_dock_render_decorations_in_frame_for_diapo_simple (pCairoContext, pDock);
 
-	        cairo_dock_render_decorations_in_frame_for_diapo_simple (pCairoContext, pDock);
-	
-	        //\____________________ On dessine le cadre.
-	        if (my_diapo_simple_lineWidth > 0)
-	        {
-		        cairo_set_line_width (pCairoContext,  my_diapo_simple_lineWidth);
-	                cairo_set_source_rgba (pCairoContext, my_diapo_simple_color_border_line[0],
-	                                                      my_diapo_simple_color_border_line[1],
-                                                              my_diapo_simple_color_border_line[2],
-	                                                      my_diapo_simple_color_border_line[3] * (1. - pDock->fFoldingFactor));
-		        cairo_stroke (pCairoContext);
-	        }
-	        else
-	        	cairo_new_path (pCairoContext);
-	        cairo_restore (pCairoContext);
-        }
+		//\____________________ On dessine le cadre.
+		if (my_diapo_simple_lineWidth > 0)
+		{
+			cairo_set_line_width (pCairoContext,  my_diapo_simple_lineWidth);
+			cairo_set_source_rgba (pCairoContext,
+				my_diapo_simple_color_border_line[0],
+				my_diapo_simple_color_border_line[1],
+				my_diapo_simple_color_border_line[2],
+				my_diapo_simple_color_border_line[3] * (1. - pDock->fFoldingFactor));
+			cairo_stroke (pCairoContext);
+		}
+		else
+			cairo_new_path (pCairoContext);
+		cairo_restore (pCairoContext);
+	}
 	
 	if (pDock->icons == NULL)
 		return;
@@ -166,10 +147,18 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 			
 			if (icon->iTextWidth > icon->fWidth * icon->fScale + my_diapo_simple_iconGapX && ! icon->bPointed)
 			{
-				cairo_translate (pCairoContext,
-					icon->fDrawX - my_diapo_simple_iconGapX/2,
-					icon->fDrawY + icon->fHeight * icon->fScale);
-				
+				if (pDock->bHorizontalDock)
+				{
+					cairo_translate (pCairoContext,
+						icon->fDrawX - my_diapo_simple_iconGapX/2,
+						icon->fDrawY - icon->iTextHeight);
+				}
+				else
+				{
+					cairo_translate (pCairoContext,
+						icon->fDrawY - my_diapo_simple_iconGapX/2,
+						icon->fDrawX - icon->iTextHeight);
+				}
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
 					fOffsetX,
@@ -201,15 +190,33 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 				cairo_mask (pCairoContext, pGradationPattern);
 				cairo_pattern_destroy (pGradationPattern);
 			}
-			else
+			else  // le texte tient dans l'icone.
 			{
-				cairo_translate (pCairoContext,
-					icon->fDrawX + (icon->fWidth * icon->fScale - icon->iTextWidth) / 2,
-					icon->fDrawY + icon->fHeight * icon->fScale);
-				
+				if (pDock->bHorizontalDock)
+				{
+					fOffsetX = icon->fDrawX + (icon->fWidth * icon->fScale - icon->iTextWidth) / 2;
+					if (fOffsetX < 0)
+						fOffsetX = 0;
+					else if (fOffsetX + icon->iTextWidth > pDock->iCurrentWidth)
+						fOffsetX = pDock->iCurrentWidth - icon->iTextWidth;
+					cairo_translate (pCairoContext,
+						fOffsetX,
+						icon->fDrawY - icon->iTextHeight);
+				}
+				else
+				{
+						fOffsetX = icon->fDrawY + (icon->fWidth * icon->fScale - icon->iTextWidth) / 2;
+						if (fOffsetX < 0)
+							fOffsetX = 0;
+						else if (fOffsetX + icon->iTextWidth > pDock->iCurrentHeight)
+							fOffsetX = pDock->iCurrentHeight - icon->iTextWidth;
+						cairo_translate (pCairoContext,
+							fOffsetX,
+							icon->fDrawX - icon->iTextHeight);
+				}
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
-					fOffsetX,
+					0.,
 					0.);
 				cairo_paint (pCairoContext);
 			}
@@ -444,8 +451,7 @@ static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoCo
 	gdouble fFrameWidth  = pDock->iMaxDockWidth-2*X_BORDER_SPACE;
 	gdouble fFrameHeight = pDock->iMaxDockHeight - Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10); // +10->pour que la fleche aille plus bas...  -----> quel petit joueur, regarde les calculs de malade que je me suis tape pour la pointe des dialogues ! :-)
 	gdouble fDockOffsetX = X_BORDER_SPACE;
-	gdouble fDockOffsetY = (pDock->bDirectionUp ? Y_BORDER_SPACE : 10);
-	
+	gdouble fDockOffsetY = my_diapo_simple_arrowHeight;  // (pDock->bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight);
 	
 
         cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY);
@@ -509,15 +515,13 @@ static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoCo
                 my_diapo_simple_radius, -my_diapo_simple_radius );
 
 }
-
-
 static void cairo_dock_draw_frame_vertical_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
-        const gdouble arrow_dec = 2;
+	const gdouble arrow_dec = 2;
 	gdouble fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;
 	gdouble fFrameHeight = pDock->iMaxDockHeight - Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);
 	gdouble fDockOffsetX = X_BORDER_SPACE;
-	gdouble fDockOffsetY = (pDock->bDirectionUp ? Y_BORDER_SPACE : 10);;
+	gdouble fDockOffsetY = (pDock->bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight);
 	
 
         cairo_move_to (pCairoContext, fDockOffsetY, fDockOffsetX);
@@ -569,10 +573,6 @@ static void cairo_dock_draw_frame_vertical_for_diapo_simple (cairo_t *pCairoCont
                 -my_diapo_simple_radius, 0,
                 -my_diapo_simple_radius, my_diapo_simple_radius);
 }
-
-
-
-
 void cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
         if (pDock->bHorizontalDock)
