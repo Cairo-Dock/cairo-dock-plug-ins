@@ -3,6 +3,9 @@
 
 static gboolean flag, found;
 
+gboolean bCurrentlyDownloading = FALSE;
+gboolean bCurrentlyDownloadingXML = FALSE;
+
 gchar *URL;
 gchar *TAB_IMAGE_SIZES[] = {"MediumImage","LargeImage"};
 
@@ -79,28 +82,35 @@ void cd_stream_file(const char *filename, gchar **cValue) {
 }
 
 gboolean cd_get_xml_file (const gchar *artist, const gchar *album) {
-	if (g_strcasecmp("Unknown",artist)==0 || g_strcasecmp("Unknown",album)==0)
-		return FALSE;
-		
-	gchar *cFileToDownload = g_strdup_printf("%s%s%s&Artist=%s&Album=%s",AMAZON_API_URL_1,LICENCE_KEY,AMAZON_API_URL_2,artist,album);
-	gchar *cTmpFilePath = g_strdup (DEFAULT_XML_LOCATION);
-	
-	gchar *cCommand = g_strdup_printf ("wget \"%s\" -O '%s' -t 2 -T 2 > /dev/null 2>&1", cFileToDownload, cTmpFilePath);
-	cd_debug ("%s\n",cCommand);
-	system (cCommand);
-	g_free (cCommand);
-	g_free (cTmpFilePath);
-	g_free (cFileToDownload);
-	return TRUE;
+    if (g_strcasecmp("Unknown",artist)==0 || g_strcasecmp("Unknown",album)==0)
+        return FALSE;
+        
+    gchar *cFileToDownload = g_strdup_printf("%s%s%s&Artist=%s&Album=%s",AMAZON_API_URL_1,LICENCE_KEY,AMAZON_API_URL_2,artist,album);
+    gchar *cTmpFilePath = g_strdup (DEFAULT_XML_LOCATION);
+    
+    gchar *cCommand = g_strdup_printf ("rm %s", DEFAULT_DOWNLOADED_IMAGE_LOCATION);
+    if (!system (cCommand)) return FALSE;
+    g_free (cCommand);
+    cCommand = g_strdup_printf ("wget \"%s\" -O '%s-bis' -t 2 -T 2 > /dev/null 2>&1 && mv %s-bis %s", cFileToDownload, cTmpFilePath, cTmpFilePath, cTmpFilePath);
+    cid_debug ("%s\n",cCommand);
+    //system (cCommand);
+    cid_launch_command (cCommand);
+    bCurrentlyDownloadingXML = TRUE;
+    g_free (cCommand);
+    g_free (cTmpFilePath);
+    g_free (cFileToDownload);
+    return TRUE;
 }
 
 gboolean cd_download_missing_cover (const gchar *cURL, const gchar *cDestPath) {
-	gchar *cCommand = g_strdup_printf ("wget \"%s\" -O '%s' -t 2 -T 2 > /dev/null 2>&1", cURL, cDestPath);
-	cd_debug ("%s\n",cCommand);
-	system (cCommand);
-	g_free (cCommand);
-	cCommand = g_strdup_printf ("rm %s", DEFAULT_XML_LOCATION);
-	system (cCommand);
-	g_free (cCommand);
-	return TRUE;
+    gchar *cCommand = g_strdup_printf ("wget \"%s\" -O '%s-bis' -t 2 -T 2 > /dev/null 2>&1 && mv %s-bis %s", cURL, cDestPath, cDestPath, cDestPath);
+    cid_debug ("%s\n",cCommand);
+    //system (cCommand);
+    cid_launch_command (cCommand);
+    bCurrentlyDownloading = TRUE;
+    g_free (cCommand);
+    cCommand = g_strdup_printf ("rm %s", DEFAULT_XML_LOCATION);
+    if (!system (cCommand)) return FALSE;
+    g_free (cCommand);
+    return TRUE;
 }

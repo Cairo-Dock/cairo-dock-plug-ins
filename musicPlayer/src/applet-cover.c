@@ -1,23 +1,64 @@
 #include "applet-cover.h"
 #include "applet-amazon.h"
 
+extern gboolean bCurrentlyDownloading, bCurrentlyDownloadingXML;
+static gchar *cImageURL = NULL;
+static CairoDockMeasure *pMeasureTimer = NULL;
+
 gboolean _cd_proceed_download_cover (gpointer p) {
-	if (myConfig.bDownload && cd_get_xml_file(myData.cArtist,myData.cAlbum)) {
-		gchar *cImageURL = NULL;
-		cd_stream_file(DEFAULT_XML_LOCATION,&cImageURL);
-		if (cImageURL && cd_download_missing_cover(cImageURL,DEFAULT_DOWNLOADED_IMAGE_LOCATION))
-				CD_APPLET_SET_IMAGE_ON_MY_ICON (DEFAULT_DOWNLOADED_IMAGE_LOCATION);
-		cd_debug ("URL : %s\n",cImageURL);
-		g_print ("URL : %s\n%s\n",cImageURL,myData.cCoverPath);
-	} else
-		cd_debug ("Téléchargement impossible\n");
-	return FALSE;
+
+    // Si on ne télécharge pas, on arrête la boucle direct
+    if (!myConfig.bDownload) {
+        cairo_dock_stop_measure_timer (pMeasureTimer);
+        return FALSE;
+    }
+
+    // Avant tout, on dl le xml
+    if (!bCurrentlyDownloadingXML && !bCurrentlyDownloading) 
+        cd_get_xml_file(myData.cArtist,myData.cAlbum);
+
+    // Quand on a le xml, on dl la pochette
+    if (g_file_test (DEFAULT_XML_LOCATION, G_FILE_TEST_EXISTS) && !bCurrentlyDownloading) {
+        if (cImageURL)
+            g_free(cImageURL);
+        cImageURL = NULL;
+        cd_stream_file(DEFAULT_XML_LOCATION,&cImageURL);
+        cd_debug ("URL : %s",cImageURL);
+        if (cImageURL) {
+            cd_download_missing_cover(cImageURL,DEFAULT_DOWNLOADED_IMAGE_LOCATION);
+            bCurrentlyDownloadingXML = FALSE;
+        } else {
+            bCurrentlyDownloadingXML = FALSE;
+            bCurrentlyDownloading = FALSE;
+            cd_debug ("Téléchargement impossible\n");
+            cairo_dock_stop_measure_timer (pMeasureTimer);
+            return FALSE;
+        }
+    }
+
+    // Quand on a la pochette, on l'affiche et on stoppe la boucle
+    if (g_file_test (DEFAULT_DOWNLOADED_IMAGE_LOCATION, G_FILE_TEST_EXISTS)) {
+        bCurrentlyDownloadingXML = FALSE;
+        bCurrentlyDownloading = FALSE;
+        CD_APPLET_SET_IMAGE_ON_MY_ICON (DEFAULT_DOWNLOADED_IMAGE_LOCATION);
+        return FALSE;
+    }
+    
+    return TRUE;
 }
 
 gboolean cd_download_musicPlayer_cover (gpointer data) {
 	myData.iCheckIter++;
-	if (myData.iCheckIter > myConfig.iTimeToWait) {
-		g_timeout_add (0,(GSourceFunc) _cd_proceed_download_cover, NULL);
+	if (myData.iCheckIter > myConfig.iTimeToWait && myConfig.bDownload) {
+		if (pMeasureTimer) {
+            if (cairo_dock_measure_is_running(pMeasureTimer))
+                cairo_dock_stop_measure_timer(pMeasureTimer);
+            if (cairo_dock_measure_is_active(pMeasureTimer))
+                cairo_dock_free_measure_timer(pMeasureTimer);
+        }
+        pMeasureTimer = cairo_dock_new_measure_timer (2 *1000, NULL, NULL, (CairoDockUpdateTimerFunc) _cd_proceed_download_cover, NULL);
+        
+        cairo_dock_launch_measure (pMeasureTimer);
 		return FALSE;
 	}
 	return TRUE;
@@ -66,7 +107,7 @@ gchar *cd_check_musicPlayer_cover_exists (gchar *cURI, MySupportedPlayers iSMP) 
 		break;
 		
 		default:
-			return NULL;
+			return cURI;
 		break;
 	}
 	return cURI;

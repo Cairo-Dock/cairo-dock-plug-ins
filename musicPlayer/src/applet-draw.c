@@ -154,18 +154,13 @@ gboolean cd_musicplayer_draw_icon (void) {
 
 	/* Affichage de la pochette */	
 	if (myConfig.bEnableCover) {
-	  cd_check_musicPlayer_cover_exists (myData.cCoverPath, myData.pCurrentHandeler->iPlayer); //Évitons de casser l'affichage sans raison
-		/*if (myData.cCoverPath != NULL && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS)) {
-				myData.cPreviousCoverPath = g_strdup(myData.cCoverPath);
-			if (myData.cPreviousCoverPath==NULL || (myData.cCoverPath && (!g_strcasecmp(myData.cCoverPath,myData.cPreviousCoverPath)))) { //On évite de dessiner pour rien
-				//gchar *cTmpPath = cd_check_musicPlayer_cover_exists(myData.cCoverPath,myData.pCurrentHandeler->iPlayer);
-				//if (cTmpPath)
-					//CD_APPLET_SET_IMAGE_ON_MY_ICON (cTmpPath);
-				//else
-					//cd_musicplayer_set_surface (0);
-				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCoverPath);
-				myData.cPreviousCoverPath = g_strdup(myData.cCoverPath);
-				//g_free (cTmpPath);
+		// On vérifie que la pochete existe, au besoin on en télécharge une
+		gchar *cCheckedCoverPath = cd_check_musicPlayer_cover_exists (myData.cCoverPath, myData.pCurrentHandeler->iPlayer); 
+		if (cCheckedCoverPath != NULL && g_file_test (cCheckedCoverPath, G_FILE_TEST_EXISTS)) {
+			if (myData.cPreviousCoverPath==NULL || (cCheckedCoverPath!=NULL && (!g_strcasecmp(cCheckedCoverPath,myData.cPreviousCoverPath)))) { //On évite de dessiner pour rien
+				
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (cCheckedCoverPath);
+				myData.cPreviousCoverPath = g_strdup(cCheckedCoverPath);
 			}
 		}
 		else
@@ -188,7 +183,7 @@ gboolean cd_musicplayer_draw_icon (void) {
 			
 			default :
 				break;	
-		}*/
+		}
 	}
 	
 	if (bNeedRedraw)
