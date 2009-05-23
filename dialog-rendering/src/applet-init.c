@@ -28,13 +28,14 @@ CD_APPLET_PRE_INIT_BEGIN (N_("dialog rendering"),
 	pInterface->reset_config = CD_APPLET_RESET_CONFIG_FUNC;
 	pInterface->reset_data = CD_APPLET_RESET_DATA_FUNC;
 	pInterface->read_conf_file = CD_APPLET_READ_CONFIG_FUNC;
+	pInterface->initModule = CD_APPLET_INIT_FUNC;
 
-	//\_______________ On enregistre les decorateurs (on le fait maintenant au cas ou un dialogue serait affiche pendant le chargement initial).
+	/*//\_______________ On enregistre les decorateurs (on le fait maintenant au cas ou un dialogue serait affiche pendant le chargement initial).
 	cd_decorator_register_comics ();
 	cd_decorator_register_modern ();
 	cd_decorator_register_3Dplane ();
 	cd_decorator_register_tooltip ();  // By ChAnGFu*
-	cd_decorator_register_curly ();
+	cd_decorator_register_curly ();*/
 	
 	//\_______________ On enregistre les moteurs de rendu (on le fait maintenant au cas ou un dialogue serait cree avec pendant le chargement initial).
 	rendering_register_text_dialog_renderer ();
@@ -43,7 +44,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("dialog rendering"),
 CD_APPLET_PRE_INIT_END
 
 
-/*CD_APPLET_INIT_BEGIN
+CD_APPLET_INIT_BEGIN
 	//\_______________ On enregistre les decorateurs.
 	cd_decorator_register_comics ();
 	cd_decorator_register_modern ();
@@ -51,12 +52,12 @@ CD_APPLET_PRE_INIT_END
 	cd_decorator_register_tooltip ();  // By ChAnGFu
 	cd_decorator_register_curly ();
 	
-	if (! cairo_dock_is_loading ())  // plug-in active a la main (en-dehors du chargement du theme).
-		cairo_dock_update_dialog_decorator_list_for_gui ();
+	/*if (! cairo_dock_is_loading ())  // plug-in active a la main (en-dehors du chargement du theme).
+		cairo_dock_update_dialog_decorator_list_for_gui ();*/
 CD_APPLET_INIT_END
 
 
-CD_APPLET_STOP_BEGIN
+/*CD_APPLET_STOP_BEGIN
 	//\_______________ On enregistre les decorateurs.
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_COMICS_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_MODERN_NAME);

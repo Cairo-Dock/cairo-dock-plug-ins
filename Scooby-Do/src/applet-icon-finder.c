@@ -14,6 +14,17 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-icon-finder.h"
 #include "applet-session.h"
 
+static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPrefix, int length)
+{
+	gboolean bFound = (pIcon->acCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0);
+	if (! bFound && pIcon->cBaseURI != NULL)
+	{
+		gchar *cFile = g_path_get_basename (pIcon->cBaseURI);
+		bFound = (cFile && g_ascii_strncasecmp (cCommandPrefix, cFile, length) == 0);
+		g_free (cFile);
+	}
+	return bFound;
+}
 
 static void _find_icon_in_dock_with_command (Icon *pIcon, CairoDock *pDock, gpointer *data)
 {
@@ -27,13 +38,7 @@ static void _find_icon_in_dock_with_command (Icon *pIcon, CairoDock *pDock, gpoi
 	if (pDock == g_pMainDock || *pFoundIcon != NULL) // on a deja cherche dans le main dock, ou deja trouve ce qu'on cherchait.
 		return ;
 	
-	gboolean bFound = (pIcon->acCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0);
-	if (! bFound && pIcon->cBaseURI != NULL)
-	{
-		gchar *cFile = g_path_get_basename (pIcon->cBaseURI);
-		bFound = (cFile && g_ascii_strncasecmp (cCommandPrefix, cFile, length) == 0);
-		g_free (cFile);
-	}
+	gboolean bFound = _cd_do_icon_match (pIcon, cCommandPrefix, length);
 	if (bFound)
 	{
 		if (pAfterIcon == NULL)
@@ -150,7 +155,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		myData.bIgnoreIconState = TRUE;
 		cairo_dock_stop_icon_animation (myData.pCurrentIcon);
 		myData.bIgnoreIconState = FALSE;
-		cairo_dock_redraw_icon (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
+		cairo_dock_redraw_icon (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));  /// utile ?...
 	}
 	if (pIcon != NULL && myData.pCurrentIcon != pIcon)  // on anime la nouvelle icone.
 	{
@@ -209,4 +214,58 @@ gboolean cairo_dock_emit_motion_signal (CairoDock *pDock, int iMouseX, int iMous
 	motion.device = gdk_device_get_core_pointer ();
 	g_signal_emit_by_name (pDock->pWidget, "motion-notify-event", &motion, &bReturn);
 	return FALSE;
+}
+
+
+static inline void _cd_do_search_matching_icons_in_dock (CairoDock *pDock)
+{
+	Icon *pIcon;
+	GList *ic;
+	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (_cd_do_icon_match (pIcon, myData.sCurrentText->str, myData.sCurrentText->len))
+		{
+			myData.pMatchingIcons = g_list_prepend (myData.pMatchingIcons, pIcon);
+		}
+	}
+}
+static void _cd_do_search_in_one_dock (Icon *pIcon, CairoDock *pDock, gpointer data)
+{
+	if (_cd_do_icon_match (pIcon, myData.sCurrentText->str, myData.sCurrentText->len))
+	{
+		myData.pMatchingIcons = g_list_prepend (myData.pMatchingIcons, pIcon);
+	}
+}
+void cd_do_search_matching_icons (void)
+{
+	if (myData.pMatchingIcons == NULL)
+	{
+		if (myData.bSessionStartedAutomatically)  // on cherche dans le dock courant.
+		{
+			_cd_do_search_matching_icons_in_dock (myData.pCurrentDock);
+			myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
+		}
+		else
+		{
+			// on parcours tous les docks.
+			cairo_dock_foreach_icons_in_docks ((CairoDockForeachIconFunc) _cd_do_search_in_one_dock, NULL);
+			myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
+		}
+	}
+	else  // optimisation : on peut se contenter de chercher parmi les icones deja trouvees.
+	{
+		GList *ic, *next_ic;
+		Icon *pIcon;
+		ic = myData.pMatchingIcons;
+		while (ic != NULL)
+		{
+			pIcon = ic->data;
+			next_ic = ic->next;
+			if (! _cd_do_icon_match (pIcon, myData.sCurrentText->str, myData.sCurrentText->len))
+				myData.pMatchingIcons = g_list_delete_link (myData.pMatchingIcons, ic);
+			ic = next_ic;
+		}
+	}
+	cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pCurrentDock));
 }

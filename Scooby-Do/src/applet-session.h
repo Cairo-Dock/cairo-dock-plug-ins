@@ -2,7 +2,6 @@
 #ifndef __APPLET_SESSION__
 #define  __APPLET_SESSION__
 
-
 #include <cairo-dock.h>
 #include "applet-struct.h"
 

@@ -3,8 +3,11 @@
 #[gtk-preferences]
 [Configuration]
 
-#k Shortkey to activate/deactivate Do :
-shortkey = <Control>F9
+#k Shortkey to activate/deactivate the navigation mode :
+shortkey = <Control>F8
+
+#k Shortkey to activate/deactivate the finder mode :
+shortkey search = <Control>F9
 
 dirs =
 

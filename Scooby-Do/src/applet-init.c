@@ -39,7 +39,8 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_do_check_icon_stopped, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 	
-	cd_keybinder_bind (myConfig.cShortkey, (CDBindkeyHandler) cd_do_on_shortkey, myApplet);
+	cd_keybinder_bind (myConfig.cShortkeyNav, (CDBindkeyHandler) cd_do_on_shortkey_nav, myApplet);
+	cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);
 CD_APPLET_INIT_END
 
 
@@ -58,7 +59,8 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		cd_keybinder_bind (myConfig.cShortkey, (CDBindkeyHandler) cd_do_on_shortkey, myApplet);  // shortkey were unbinded during reset_config.
+		cd_keybinder_bind (myConfig.cShortkeyNav, (CDBindkeyHandler) cd_do_on_shortkey_nav, myApplet);  // shortkey were unbinded during reset_config.
+		cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);  // shortkey were unbinded during reset_config.
 		if (myData.sCurrentText != NULL)
 		{
 			/// recharger surfaces / textures

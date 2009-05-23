@@ -28,9 +28,9 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pMainDock->iMagnitudeIndex);
 	double fScale = (1. + fDockMagnitude * g_fAmplitude) / (1 + g_fAmplitude);
 	
-	if (cd_do_session_is_in_navigation_mode ())  // aucune lettre de tapee, on est en mode navigation => on montre le prompt.
+	if (myData.pCharList == NULL)  // aucune lettre de tapee => on montre le prompt.
 	{
-		if (myData.pPromptSurface != NULL)
+		if (! myData.bNavigationMode && myData.pPromptSurface != NULL)
 		{
 			double fFrameWidth = myData.iPromptWidth * fScale;
 			double fFrameHeight = myData.iPromptHeight * fScale;
@@ -44,18 +44,65 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			int n = 40;
 			fAlpha *= sqrt (fabs ((double) (((myData.iPromptAnimationCount + n) % (2*n)) - n) / n));
 			
-			cairo_set_source_surface (pCairoContext, myData.pPromptSurface, fDockOffsetX, fDockOffsetY);
+			cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
 			if (fScale != 1)
 				cairo_scale (pCairoContext, fScale, fScale);
+			cairo_set_source_surface (pCairoContext, myData.pPromptSurface, 0., 0.);
+			cairo_paint_with_alpha (pCairoContext, fAlpha);
+		}
+		else if (myData.bNavigationMode && myData.pArrowSurface != NULL)
+		{
+			double fFrameWidth = myData.iArrowWidth * fScale;
+			double fFrameHeight = myData.iArrowHeight * fScale;
+			
+			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
+			fDockOffsetX = (pMainDock->iCurrentWidth - fFrameWidth) / 2;
+			fDockOffsetY = (pMainDock->iCurrentHeight - fFrameHeight) / 2;
+			
+			int n = 40;
+			fAlpha *= sqrt (fabs ((double) (((myData.iPromptAnimationCount + n) % (2*n)) - n) / n));
+			
+			cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
+			if (fScale != 1)
+				cairo_scale (pCairoContext, fScale, fScale);
+			cairo_set_source_surface (pCairoContext, myData.pArrowSurface, 0., 0.);
 			cairo_paint_with_alpha (pCairoContext, fAlpha);
 		}
 	}
-	else  // si des icones sont selectionnees, on les dessine.
+	else  // si du texte a ete entre, on le dessine, ainsi que eventuellement la liste des icones correspondantes.
 	{
+		double fRelativePositionOffset;
+		if (myData.pMatchingIcons != NULL)
+		{
+			int iIconsWidth = 0;
+			Icon *pIcon;
+			GList *ic;
+			for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
+			{
+				pIcon = ic->data;
+				iIconsWidth += pIcon->fWidth * fScale;
+			}
+			double x = (pMainDock->iCurrentWidth - iIconsWidth) / 2;
+			for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
+			{
+				pIcon = ic->data;
+				fRelativePositionOffset = myConfig.fRelativePosition * (pMainDock->iCurrentHeight - pIcon->fHeight) / 2;
+				cairo_save (pCairoContext);
+				
+				cairo_translate (pCairoContext,
+					x,
+					pMainDock->iCurrentHeight/2 + (- pIcon->fHeight) * fScale + fRelativePositionOffset);
+				cairo_scale (pCairoContext, fScale / (1+g_fAmplitude), fScale / (1+g_fAmplitude));			cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0., 0.);
+				cairo_paint (pCairoContext);
+				
+				cairo_restore (pCairoContext);
+				x += pIcon->fWidth * fScale;
+			}
+		}
 		double fFrameWidth = myData.iTextWidth * fScale;
 		double fFrameHeight = myData.iTextHeight * fScale;
 		
-		double fRelativePositionOffset = myConfig.fRelativePosition * (pMainDock->iCurrentHeight - fFrameHeight) / 2;
+		fRelativePositionOffset = myConfig.fRelativePosition * (pMainDock->iCurrentHeight - fFrameHeight) / 2;
 
 		// dessin du fond du texte.
 		double fRadius = myBackground.iDockRadius * myConfig.fFontSizeRatio;
@@ -83,9 +130,10 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			cairo_translate (pCairoContext,
 				pChar->iCurrentX * fScale + pMainDock->iCurrentWidth/2,
 				pChar->iCurrentY + pMainDock->iCurrentHeight/2 + (myData.iTextHeight/2 - pChar->iHeight) * fScale + fRelativePositionOffset);  // aligne en bas.
-			cairo_set_source_surface (pCairoContext, pChar->pSurface, 0., 0.);
+			
 			if (fScale != 1)
 				cairo_scale (pCairoContext, fScale, fScale);
+			cairo_set_source_surface (pCairoContext, pChar->pSurface, 0., 0.);
 			cairo_paint_with_alpha (pCairoContext, fAlpha);
 			
 			cairo_restore (pCairoContext);
@@ -104,9 +152,9 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pMainDock->iMagnitudeIndex);
 	double fScale = (1. + fDockMagnitude * g_fAmplitude) / (1 + g_fAmplitude);
 	
-	if (cd_do_session_is_in_navigation_mode ())  // aucune lettre de tapee, on est en mode navigation => on montre le prompt.
+	if (myData.pCharList == NULL)  // aucune lettre de tapee => on montre le prompt.
 	{
-		if (myData.iPromptTexture != 0)
+		if (! myData.bNavigationMode && myData.iPromptTexture != 0)
 		{
 			double fFrameWidth = myData.iPromptWidth * fScale;
 			double fFrameHeight = myData.iPromptHeight * fScale;
@@ -129,6 +177,32 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			_cairo_dock_set_blend_alpha ();
 			
 			_cairo_dock_apply_texture_at_size_with_alpha (myData.iPromptTexture, fFrameWidth, fFrameHeight, fAlpha);
+			
+			_cairo_dock_disable_texture ();
+			
+			glPopMatrix();
+		}
+		else if (myData.bNavigationMode && myData.iArrowTexture != 0)
+		{
+			double fFrameWidth = myData.iArrowWidth * fScale;
+			double fFrameHeight = myData.iArrowHeight * fScale;
+						
+			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
+			fDockOffsetX = (pMainDock->iCurrentWidth - fFrameWidth) / 2;
+			fDockOffsetY = (pMainDock->iCurrentHeight - fFrameHeight) / 2;
+			
+			int n = 40;
+			fAlpha *= sqrt (fabs ((double) (((myData.iPromptAnimationCount + n) % (2*n)) - n) / n));
+			
+			glPushMatrix ();
+			glTranslatef (pMainDock->iCurrentWidth/2, pMainDock->iCurrentHeight/2, 0.);
+			if (fScale != 1)
+				glScalef (fScale, fScale, 1.);
+			
+			_cairo_dock_enable_texture ();
+			_cairo_dock_set_blend_alpha ();
+			
+			_cairo_dock_apply_texture_at_size_with_alpha (myData.iArrowTexture, fFrameWidth, fFrameHeight, fAlpha);
 			
 			_cairo_dock_disable_texture ();
 			

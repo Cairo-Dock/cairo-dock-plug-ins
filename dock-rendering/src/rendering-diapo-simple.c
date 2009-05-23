@@ -451,7 +451,7 @@ static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoCo
 	gdouble fFrameWidth  = pDock->iMaxDockWidth-2*X_BORDER_SPACE;
 	gdouble fFrameHeight = pDock->iMaxDockHeight - Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10); // +10->pour que la fleche aille plus bas...  -----> quel petit joueur, regarde les calculs de malade que je me suis tape pour la pointe des dialogues ! :-)
 	gdouble fDockOffsetX = X_BORDER_SPACE;
-	gdouble fDockOffsetY = my_diapo_simple_arrowHeight;  // (pDock->bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight);
+	gdouble fDockOffsetY = (pDock->bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight);  // (pDock->bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight);
 	
 
         cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY);

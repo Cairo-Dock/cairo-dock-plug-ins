@@ -23,7 +23,7 @@ void cd_do_open_session (void)
 	myData.sCurrentText = g_string_sized_new (20);
 	myConfig.labelDescription.iSize = myConfig.fFontSizeRatio * g_pMainDock->iMaxDockHeight;
 	myData.iPromptAnimationCount = 0;
-	if (myData.pPromptSurface == NULL)
+	if (! myData.bNavigationMode && myData.pPromptSurface == NULL)
 	{
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
 		double fTextXOffset, fTextYOffset;
@@ -34,7 +34,19 @@ void cd_do_open_session (void)
 			myData.iPromptTexture = cairo_dock_create_texture_from_surface (myData.pPromptSurface);
 		}
 	}
-	
+	else if (myData.bNavigationMode && myData.pArrowSurface == NULL)
+	{
+		cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
+		double fTextXOffset, fTextYOffset;
+		myData.pArrowSurface = cairo_dock_create_surface_for_icon (MY_APPLET_SHARE_DATA_DIR"/arrows.svg", pCairoContext, g_pMainDock->iMaxDockHeight, g_pMainDock->iMaxDockHeight);
+		myData.iArrowWidth = g_pMainDock->iMaxDockHeight;
+		myData.iArrowHeight = g_pMainDock->iMaxDockHeight;
+		cairo_destroy (pCairoContext);
+		if (g_bUseOpenGL)
+		{
+			myData.iArrowTexture = cairo_dock_create_texture_from_surface (myData.pArrowSurface);
+		}
+	}
 	// on montre le main dock.
 	myData.bIgnoreIconState = TRUE;
 	cairo_dock_emit_enter_signal (g_pMainDock);
@@ -102,6 +114,11 @@ void cd_do_exit_session (void)
 		myData.iTextWidth = 0;
 		myData.iTextHeight = 0;
 		cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
+	}
+	if (myData.pMatchingIcons != NULL)
+	{
+		g_list_free (myData.pMatchingIcons);
+		myData.pMatchingIcons = NULL;
 	}
 }
 

@@ -2,7 +2,6 @@
 #ifndef __APPLET_ICON_FINDER__
 #define  __APPLET_ICON_FINDER__
 
-
 #include <cairo-dock.h>
 #include "applet-struct.h"
 
@@ -17,6 +16,9 @@ void cd_do_search_current_icon (gboolean bLoopSearch);
 
 
 gboolean cairo_dock_emit_motion_signal (CairoDock *pDock, int iMouseX, int iMouseY);
+
+
+void cd_do_search_matching_icons (void);
 
 
 #endif

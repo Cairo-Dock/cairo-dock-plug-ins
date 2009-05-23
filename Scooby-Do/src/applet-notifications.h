@@ -25,7 +25,8 @@ gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow);
 gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string);
 
 
-void cd_do_on_shortkey (const char *keystring, gpointer data);
+void cd_do_on_shortkey_nav (const char *keystring, gpointer data);
+void cd_do_on_shortkey_search (const char *keystring, gpointer data);
 
 
 

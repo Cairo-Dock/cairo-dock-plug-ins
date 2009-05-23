@@ -227,9 +227,16 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			cd_do_delete_invalid_caracters ();
 			
 			// on cherche l'icone courante si aucune.
-			if (myData.pCurrentIcon == NULL)  // sinon l'icone actuelle convient toujours.
+			if (myData.bNavigationMode)
 			{
-				cd_do_search_current_icon (FALSE);
+				if (myData.pCurrentIcon == NULL)  // sinon l'icone actuelle convient toujours.
+					cd_do_search_current_icon (FALSE);
+			}
+			else
+			{
+				g_list_free (myData.pMatchingIcons);
+				myData.pMatchingIcons = NULL;
+				cd_do_search_matching_icons ();
 			}
 			
 			// on repositionne les caracteres et on anime tout ca.
@@ -446,8 +453,14 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		g_string_append_c (myData.sCurrentText, *string);
 		myData.iNbValidCaracters = myData.sCurrentText->len;  // l'utilisateur valide la nouvelle lettre ainsi que celles precedemment ajoutee par completion.
 		
-		// on cherche un lanceur correspondant.
-		cd_do_search_current_icon (FALSE);
+		if (myData.bNavigationMode)  // on cherche un lanceur correspondant.
+		{
+			cd_do_search_current_icon (FALSE);
+		}
+		else  // on cherche la liste des icones qui correspondent.
+		{
+			cd_do_search_matching_icons ();
+		}
 		
 		// si on a trouve aucun lanceur, on essaye l'autocompletion.
 		if (myData.pCurrentIcon == NULL)
@@ -482,14 +495,20 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 }
 
 
-void cd_do_on_shortkey (const char *keystring, gpointer data)
-{
-	if (myData.sCurrentText == NULL)
-	{
-		cd_do_open_session ();
-	}
-	else  // le raccourci sert aussi a arreter, pour ceux qui ont une touche ESC cassee.
-	{
+#define _cd_do_on_shortkey(...) \
+	if (myData.sCurrentText == NULL) \
+		cd_do_open_session (); \
+	else \
 		cd_do_close_session ();
-	}
+
+void cd_do_on_shortkey_nav (const char *keystring, gpointer data)
+{
+	myData.bNavigationMode = TRUE;
+	_cd_do_on_shortkey ();
+}
+
+void cd_do_on_shortkey_search (const char *keystring, gpointer data)
+{
+	myData.bNavigationMode = FALSE;
+	_cd_do_on_shortkey ();
 }
