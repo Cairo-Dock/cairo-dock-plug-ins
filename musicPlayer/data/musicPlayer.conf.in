@@ -39,11 +39,11 @@ sticky=true
 
 #b Lock position ?
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
-locked =false
+locked=false
 
 #I[-180;180] Rotation :
 #{in degrees.}
-rotation = 0
+rotation=0
 
 use size=
 
@@ -52,10 +52,10 @@ frame_deco=
 
 #o+ Choose a decoration theme for this desklet :
 #{Choose the 'personnal' one to define your own decorations below.}
-decorations = default
+decorations=default
 
 #v
-sep_deco =
+sep_deco=
 
 #S+ Background image :
 #{It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any.}
@@ -82,9 +82,10 @@ fg alpha = 1
 
 #[gtk-preferences]
 [Configuration]
+
 #F[Audio Player]
 frame1 =
-#E[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;Amarok 1.4] Player to control:
+#r[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;Amarok 1.4] Player to control:
 current-player=XMMS
 
 #b Steal the player's icon from taskbar ?
@@ -103,11 +104,6 @@ quick-info_type=1
 #r+[Simple;Info;Info and Controler;Caroussel;Controler;OpenGL] Desklet display mode :
 extended_mode=0
 
-#X[False 3D Themes (OpenGL only)]
-frame_simple=
-#h+[@musicplayerdatadir@/themes;musicPlayer;musicPlayer] List of available specific themes :/
-theme = cd_box_3d
-
 #F[Action on music change;gtk-preferences]
 frame_info=
 #b Show an info-bubble ?
@@ -123,6 +119,12 @@ frame_anim=
 enable_anim=true
 #E[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
 change_animation=wobbly
+
+#X[False 3D Themes (OpenGL only)]
+frame_simple=
+#h+[@musicplayerdatadir@/themes;musicPlayer;musicPlayer] List of available specific themes :/
+#{Don't forget to choose "OpenGL" in "Desklet display mode"}
+theme = cd_box_3d
 
 #X[Personnalisation;gtk-dialog-info]
 frame_perso =

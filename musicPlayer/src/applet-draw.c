@@ -19,7 +19,6 @@ static const gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", 
 
 static GList * _list_icons (void) {
 	GList *pIconList = NULL;
-	
 	Icon *pIcon;
 	int i;
 	for (i = 0; i < 4; i ++) {
@@ -231,14 +230,22 @@ void cd_musicplayer_set_surface (MyPlayerStatus iStatus) {
 	if (pSurface == NULL) {
 		if (myConfig.cUserImage[iStatus] != NULL) {
 			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iStatus]);
+			cd_debug ("MP - Trying to load: %s", myConfig.cUserImage[iStatus]);
 			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 			g_free (cUserImagePath);
 		}
 		else {
 			gchar *cLocalImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iStatus]);
+			cd_debug ("MP - Trying to load: %s", cLocalImagePath);
 			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cLocalImagePath);
 			g_free (cLocalImagePath);
 		}
+		
+		if (myData.pSurfaces[iStatus] == NULL) {
+		  cd_warning ("MP - No surface found");
+		  return;
+		}
+		
 		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaces[iStatus]);
 	}
 	else {
