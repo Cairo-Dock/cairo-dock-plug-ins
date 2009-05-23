@@ -94,7 +94,7 @@ gboolean cd_get_xml_file (const gchar *artist, const gchar *album) {
     cCommand = g_strdup_printf ("wget \"%s\" -O '%s-bis' -t 2 -T 2 > /dev/null 2>&1 && mv %s-bis %s", cFileToDownload, cTmpFilePath, cTmpFilePath, cTmpFilePath);
     cd_debug ("%s\n",cCommand);
     //system (cCommand);
-    cd_launch_command (cCommand);
+    cairo_dock_launch_command (cCommand);
     bCurrentlyDownloadingXML = TRUE;
     g_free (cCommand);
     g_free (cTmpFilePath);
@@ -106,7 +106,7 @@ gboolean cd_download_missing_cover (const gchar *cURL, const gchar *cDestPath) {
     gchar *cCommand = g_strdup_printf ("wget \"%s\" -O '%s-bis' -t 2 -T 2 > /dev/null 2>&1 && mv %s-bis %s", cURL, cDestPath, cDestPath, cDestPath);
     cd_debug ("%s\n",cCommand);
     //system (cCommand);
-    cd_launch_command (cCommand);
+    cairo_dock_launch_command (cCommand);
     bCurrentlyDownloading = TRUE;
     g_free (cCommand);
     cCommand = g_strdup_printf ("rm %s", DEFAULT_XML_LOCATION);
