@@ -17,6 +17,10 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #define STATIC_ANGLE 15.
 
+#define _alpha_prompt(k,n) cos (G_PI/2*fabs ((double) (((k + n) % (2*n)) - n) / n));
+
+const int s_iNbPromptAnimationSteps = 40;
+
 void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 {
 	double fAlpha;
@@ -35,20 +39,20 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			double fFrameWidth = myData.iPromptWidth * fScale;
 			double fFrameHeight = myData.iPromptHeight * fScale;
 			
-			double fRelativePositionOffset = myConfig.fRelativePosition * (pMainDock->iCurrentHeight - fFrameHeight) / 2;
-			
 			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
 			fDockOffsetX = (pMainDock->iCurrentWidth - fFrameWidth) / 2;
-			fDockOffsetY = (pMainDock->iCurrentHeight - fFrameHeight) / 2 + fRelativePositionOffset;
+			fDockOffsetY = (pMainDock->iCurrentHeight - fFrameHeight) / 2;  // centre verticalement.
 			
-			int n = 40;
-			fAlpha *= sqrt (fabs ((double) (((myData.iPromptAnimationCount + n) % (2*n)) - n) / n));
+			fAlpha *= _alpha_prompt (myData.iPromptAnimationCount, s_iNbPromptAnimationSteps);
 			
-			cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
-			if (fScale != 1)
-				cairo_scale (pCairoContext, fScale, fScale);
-			cairo_set_source_surface (pCairoContext, myData.pPromptSurface, 0., 0.);
-			cairo_paint_with_alpha (pCairoContext, fAlpha);
+			if (fAlpha != 0)
+			{
+				cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
+				if (fScale != 1)
+					cairo_scale (pCairoContext, fScale, fScale);
+				cairo_set_source_surface (pCairoContext, myData.pPromptSurface, 0., 0.);
+				cairo_paint_with_alpha (pCairoContext, fAlpha);
+			}
 		}
 		else if (myData.bNavigationMode && myData.pArrowSurface != NULL)
 		{
@@ -59,64 +63,68 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			fDockOffsetX = (pMainDock->iCurrentWidth - fFrameWidth) / 2;
 			fDockOffsetY = (pMainDock->iCurrentHeight - fFrameHeight) / 2;
 			
-			int n = 40;
-			fAlpha *= sqrt (fabs ((double) (((myData.iPromptAnimationCount + n) % (2*n)) - n) / n));
+			fAlpha *= _alpha_prompt (myData.iPromptAnimationCount, s_iNbPromptAnimationSteps);
 			
-			cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
-			if (fScale != 1)
-				cairo_scale (pCairoContext, fScale, fScale);
-			cairo_set_source_surface (pCairoContext, myData.pArrowSurface, 0., 0.);
-			cairo_paint_with_alpha (pCairoContext, fAlpha);
+			if (fAlpha != 0)
+			{
+				cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
+				if (fScale != 1)
+					cairo_scale (pCairoContext, fScale, fScale);
+				cairo_set_source_surface (pCairoContext, myData.pArrowSurface, 0., 0.);
+				cairo_paint_with_alpha (pCairoContext, fAlpha);
+			}
 		}
 	}
 	else  // si du texte a ete entre, on le dessine, ainsi que eventuellement la liste des icones correspondantes.
 	{
-		double fRelativePositionOffset;
+		// dessin des icones correspondantes.
+		int iIconsWidth = 0;
 		if (myData.pMatchingIcons != NULL)
 		{
-			int iIconsWidth = 0;
+			CairoDock *pParentDock;
 			Icon *pIcon;
 			GList *ic;
 			for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 			{
 				pIcon = ic->data;
-				iIconsWidth += pIcon->fWidth * fScale;
+				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
+				iIconsWidth += pIcon->fWidth * fScale / (pParentDock ? pParentDock->fRatio : 1.);
 			}
-			double x = (pMainDock->iCurrentWidth - iIconsWidth) / 2;
+			double x = (pMainDock->iCurrentWidth - iIconsWidth * fScale) / 2;
 			for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 			{
 				pIcon = ic->data;
-				fRelativePositionOffset = myConfig.fRelativePosition * (pMainDock->iCurrentHeight - pIcon->fHeight) / 2;
+				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 				cairo_save (pCairoContext);
 				
 				cairo_translate (pCairoContext,
 					x,
-					pMainDock->iCurrentHeight/2 + (- pIcon->fHeight) * fScale + fRelativePositionOffset);
-				cairo_scale (pCairoContext, fScale / (1+g_fAmplitude), fScale / (1+g_fAmplitude));			cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0., 0.);
+					(myConfig.bTextOnTop ?
+						pMainDock->iCurrentHeight - pIcon->fHeight * fScale :
+						0.));
+				cairo_scale (pCairoContext, fScale / (1+g_fAmplitude), fScale / (1+g_fAmplitude));
+				cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0., 0.);
 				cairo_paint (pCairoContext);
 				
 				cairo_restore (pCairoContext);
-				x += pIcon->fWidth * fScale;
+				x += pIcon->fWidth * fScale / (pParentDock ? pParentDock->fRatio : 1.);
 			}
 		}
 		double fFrameWidth = myData.iTextWidth * fScale;
 		double fFrameHeight = myData.iTextHeight * fScale;
 		
-		fRelativePositionOffset = myConfig.fRelativePosition * (pMainDock->iCurrentHeight - fFrameHeight) / 2;
-
 		// dessin du fond du texte.
 		double fRadius = myBackground.iDockRadius * myConfig.fFontSizeRatio;
 		double fLineWidth = 0.;
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 		fDockOffsetX = (pMainDock->iCurrentWidth - fFrameWidth) / 2;
-		fDockOffsetY = (pMainDock->iCurrentHeight - fFrameHeight) / 2 + fRelativePositionOffset;
+		fDockOffsetY = (myConfig.bTextOnTop ? 0. : pMainDock->iCurrentHeight - fFrameHeight);
 		
 		cairo_save (pCairoContext);
 		double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fFrameWidth, fFrameHeight, fDockOffsetX, fDockOffsetY, 1, 0., pMainDock->bHorizontalDock);
 		cairo_set_line_width (pCairoContext, fLineWidth);
 		cairo_set_source_rgba (pCairoContext, myConfig.pFrameColor[0], myConfig.pFrameColor[1], myConfig.pFrameColor[2], myConfig.pFrameColor[3] * fAlpha);
 		cairo_fill (pCairoContext);
-		
 		cairo_restore (pCairoContext);
 		
 		// dessin des lettres.
@@ -129,7 +137,9 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			
 			cairo_translate (pCairoContext,
 				pChar->iCurrentX * fScale + pMainDock->iCurrentWidth/2,
-				pChar->iCurrentY + pMainDock->iCurrentHeight/2 + (myData.iTextHeight/2 - pChar->iHeight) * fScale + fRelativePositionOffset);  // aligne en bas.
+				pChar->iCurrentY + (myConfig.bTextOnTop ?
+					(myData.iTextHeight - pChar->iHeight) * fScale :
+					pMainDock->iCurrentHeight - pChar->iHeight * fScale));  // aligne en bas.
 			
 			if (fScale != 1)
 				cairo_scale (pCairoContext, fScale, fScale);
@@ -159,28 +169,26 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			double fFrameWidth = myData.iPromptWidth * fScale;
 			double fFrameHeight = myData.iPromptHeight * fScale;
 			
-			double fRelativePositionOffset = myConfig.fRelativePosition * (pMainDock->iCurrentHeight - fFrameHeight) / 2;
-			
 			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
 			fDockOffsetX = (pMainDock->iCurrentWidth - fFrameWidth) / 2;
-			fDockOffsetY = (pMainDock->iCurrentHeight - fFrameHeight) / 2 + fRelativePositionOffset;
+			fDockOffsetY = (pMainDock->iCurrentHeight - fFrameHeight) / 2;
 			
-			int n = 40;
-			fAlpha *= sqrt (fabs ((double) (((myData.iPromptAnimationCount + n) % (2*n)) - n) / n));
+			fAlpha *= _alpha_prompt (myData.iPromptAnimationCount, s_iNbPromptAnimationSteps);
 			
-			glPushMatrix ();
-			glTranslatef (pMainDock->iCurrentWidth/2, pMainDock->iCurrentHeight/2, 0.);
-			if (fScale != 1)
-				glScalef (fScale, fScale, 1.);
-			
-			_cairo_dock_enable_texture ();
-			_cairo_dock_set_blend_alpha ();
-			
-			_cairo_dock_apply_texture_at_size_with_alpha (myData.iPromptTexture, fFrameWidth, fFrameHeight, fAlpha);
-			
-			_cairo_dock_disable_texture ();
-			
-			glPopMatrix();
+			if (fAlpha != 0)
+			{
+				glPushMatrix ();
+				glTranslatef (pMainDock->iCurrentWidth/2, pMainDock->iCurrentHeight/2, 0.);
+				
+				_cairo_dock_enable_texture ();
+				_cairo_dock_set_blend_alpha ();
+				
+				_cairo_dock_apply_texture_at_size_with_alpha (myData.iPromptTexture, fFrameWidth, fFrameHeight, fAlpha);
+				
+				_cairo_dock_disable_texture ();
+				
+				glPopMatrix();
+			}
 		}
 		else if (myData.bNavigationMode && myData.iArrowTexture != 0)
 		{
@@ -191,29 +199,28 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			fDockOffsetX = (pMainDock->iCurrentWidth - fFrameWidth) / 2;
 			fDockOffsetY = (pMainDock->iCurrentHeight - fFrameHeight) / 2;
 			
-			int n = 40;
-			fAlpha *= sqrt (fabs ((double) (((myData.iPromptAnimationCount + n) % (2*n)) - n) / n));
+			fAlpha *= _alpha_prompt (myData.iPromptAnimationCount, s_iNbPromptAnimationSteps);
 			
-			glPushMatrix ();
-			glTranslatef (pMainDock->iCurrentWidth/2, pMainDock->iCurrentHeight/2, 0.);
-			if (fScale != 1)
-				glScalef (fScale, fScale, 1.);
-			
-			_cairo_dock_enable_texture ();
-			_cairo_dock_set_blend_alpha ();
-			
-			_cairo_dock_apply_texture_at_size_with_alpha (myData.iArrowTexture, fFrameWidth, fFrameHeight, fAlpha);
-			
-			_cairo_dock_disable_texture ();
-			
-			glPopMatrix();
+			if (fAlpha != 0)
+			{
+				glPushMatrix ();
+				glTranslatef (pMainDock->iCurrentWidth/2, pMainDock->iCurrentHeight/2, 0.);
+				
+				_cairo_dock_enable_texture ();
+				_cairo_dock_set_blend_alpha ();
+				
+				_cairo_dock_apply_texture_at_size_with_alpha (myData.iArrowTexture, fFrameWidth, fFrameHeight, fAlpha);
+				
+				_cairo_dock_disable_texture ();
+				
+				glPopMatrix();
+			}
 		}
 	}
 	else  // si des icones sont selectionnees, on les dessine.
 	{
 		double fFrameWidth = myData.iTextWidth * fScale;
 		double fFrameHeight = myData.iTextHeight * fScale;
-		double fRelativePositionOffset = myConfig.fRelativePosition * (pMainDock->iCurrentHeight - fFrameHeight) / 2;
 		
 		// dessin du fond.
 		double fRadius = myBackground.iDockRadius * myConfig.fFontSizeRatio;
@@ -221,7 +228,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 		fDockOffsetX = pMainDock->iCurrentWidth/2 - fFrameWidth / 2;
-		fDockOffsetY = pMainDock->iCurrentHeight/2 + fFrameHeight / 2 - fRelativePositionOffset;
+		fDockOffsetY = pMainDock->iCurrentHeight/2 + fFrameHeight / 2;
 		
 		int iNbVertex = 0;
 		const GLfloat *pVertexTab = cairo_dock_generate_rectangle_path (fFrameWidth, fFrameHeight, fRadius, TRUE, &iNbVertex);
@@ -250,7 +257,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			glPushMatrix();
 			
 			glTranslatef (pChar->iCurrentX * fScale + pMainDock->iCurrentWidth/2 + pChar->iWidth/2,
-				- pChar->iCurrentY + pMainDock->iCurrentHeight/2 - (myData.iTextHeight - pChar->iHeight)/2 * fScale - fRelativePositionOffset,
+				- pChar->iCurrentY + pMainDock->iCurrentHeight/2 - (myData.iTextHeight - pChar->iHeight)/2 * fScale,
 				0.);  // aligne en bas.
 			
 			double fRotationAngle = pChar->fRotationAngle;

@@ -4,10 +4,10 @@
 [Configuration]
 
 #k Shortkey to activate/deactivate the navigation mode :
-shortkey = <Control>F8
+shortkey = <Control>F9
 
 #k Shortkey to activate/deactivate the finder mode :
-shortkey search = <Control>F9
+shortkey search = <Control>F8
 
 dirs =
 
@@ -56,6 +56,5 @@ text color = 1;1.;1.
 bg color = 0.0; 0.0; 0.1; .8
 
 
-#e[-1;1] Relative vertical position of the text :
-#{Set 0 to center the text vertically.}
-text position = 0
+#b Write text on the top of the dock ?
+text on top = true

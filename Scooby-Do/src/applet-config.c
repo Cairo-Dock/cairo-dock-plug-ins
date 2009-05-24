@@ -29,7 +29,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.pDirList = CD_CONFIG_GET_STRING_LIST ("Configuration", "dirs", &length);
 	
 	myConfig.fFontSizeRatio = CD_CONFIG_GET_DOUBLE ("Configuration", "font size");
-	myConfig.fRelativePosition = CD_CONFIG_GET_DOUBLE ("Configuration", "text position");
+	myConfig.bTextOnTop = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "text on top", TRUE);
 	myConfig.labelDescription.cFont = CD_CONFIG_GET_STRING ("Configuration", "text font");
 	int iWeight = CD_CONFIG_GET_INTEGER ("Configuration", "text weight");
 	myConfig.labelDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);

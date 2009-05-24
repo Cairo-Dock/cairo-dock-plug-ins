@@ -309,6 +309,11 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	else if (iKeyVal == GDK_Return)
 	{
 		// on lance soit l'icone soit la commande
+		if (myData.pMatchingIcons != NULL && myData.pMatchingIcons->next == NULL)
+		{
+			myData.pCurrentIcon = myData.pMatchingIcons->data;
+			myData.pCurrentDock = cairo_dock_search_dock_from_name (myData.pCurrentIcon->cParentDockName);
+		}
 		if (myData.pCurrentDock == NULL)
 			myData.pCurrentDock = g_pMainDock;
 		if (myData.pCurrentIcon != NULL || myData.iNbValidCaracters == 0)

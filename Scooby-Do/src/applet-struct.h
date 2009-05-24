@@ -24,8 +24,8 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gdouble fFontSizeRatio;  // 1 <=> taille du dock.
-	gdouble fRelativePosition;  // 0 pour centrer en Y.
+	gdouble fFontSizeRatio;  // 1 <=> taille du dock
+	gboolean bTextOnTop;
 	CairoDockLabelDescription labelDescription;
 	gchar *cShortkeyNav;
 	gchar *cShortkeySearch;

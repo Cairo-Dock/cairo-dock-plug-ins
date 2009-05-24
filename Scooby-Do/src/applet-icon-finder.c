@@ -16,13 +16,16 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPrefix, int length)
 {
-	gboolean bFound = (pIcon->acCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0);
-	if (! bFound && pIcon->cBaseURI != NULL)
+	gboolean bFound;
+	if (pIcon->cBaseURI != NULL)
 	{
-		gchar *cFile = g_path_get_basename (pIcon->cBaseURI);
+		gchar *cFile = g_path_get_basename (pIcon->acCommand);
 		bFound = (cFile && g_ascii_strncasecmp (cCommandPrefix, cFile, length) == 0);
 		g_free (cFile);
 	}
+	else
+		bFound = (pIcon->acCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0);
+
 	return bFound;
 }
 
