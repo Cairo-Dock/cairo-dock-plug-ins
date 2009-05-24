@@ -120,6 +120,7 @@ void cd_do_exit_session (void)
 		g_list_free (myData.pMatchingIcons);
 		myData.pMatchingIcons = NULL;
 	}
+	myData.pCurrentMatchingElement = NULL;
 }
 
 

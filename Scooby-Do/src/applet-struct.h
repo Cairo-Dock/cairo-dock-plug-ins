@@ -82,8 +82,11 @@ struct _AppletData {
 	gint iArrowWidth, iArrowHeight;
 	GLuint iArrowTexture;
 	GList *pMatchingIcons;
+	GList *pCurrentMatchingElement;
 	gboolean bNavigationMode;
 	gboolean bSessionStartedAutomatically;
+	GList *pCompletionItemSurface;
+	GList *pCompletionItemTexture;
 	} ;
 
 

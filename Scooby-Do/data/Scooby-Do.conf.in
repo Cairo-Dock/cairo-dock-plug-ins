@@ -39,7 +39,7 @@ text font =
 #c+4[0;1] Color of the text's frame  :
 frame color = 0.9; 0.9; 0.95; .75
 
-#e+[.1;1] Font size, relatively to the dock's size :
+#e+[.1;.5] Font size, relatively to the dock's size :
 font size = .5
 
 #i+[1;9] Text weight :

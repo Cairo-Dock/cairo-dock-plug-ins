@@ -5,7 +5,7 @@ moduledir = $(toonsdatadir)
 
 module_DATA = \
 	Toons.conf\
-	preview.png\
+	preview.jpg\
 	icon.svg
 
 EXTRA_DIST = $(module_DATA)

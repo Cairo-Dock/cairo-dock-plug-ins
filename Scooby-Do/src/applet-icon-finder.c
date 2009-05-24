@@ -25,7 +25,7 @@ static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPref
 	}
 	else
 		bFound = (pIcon->acCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0);
-
+	
 	return bFound;
 }
 
@@ -270,5 +270,37 @@ void cd_do_search_matching_icons (void)
 			ic = next_ic;
 		}
 	}
+	myData.pCurrentMatchingElement = NULL;
 	cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pCurrentDock));
+}
+
+
+void cd_do_select_previous_next_matching_icon (gboolean bNext)
+{
+	GList *pMatchingElement = myData.pCurrentMatchingElement;
+	if (!bNext)
+		myData.pCurrentMatchingElement = cairo_dock_get_previous_element (myData.pCurrentMatchingElement, myData.pMatchingIcons);
+	else
+		myData.pCurrentMatchingElement = cairo_dock_get_next_element (myData.pCurrentMatchingElement, myData.pMatchingIcons);
+	if (myData.pCurrentMatchingElement != pMatchingElement)  // on complete le texte et on redessine.
+	{
+		Icon *pIcon = myData.pCurrentMatchingElement->data;
+		cd_do_delete_invalid_caracters ();
+		
+		if (pIcon->cBaseURI != NULL)
+		{
+			gchar *cFile = g_path_get_basename (pIcon->acCommand);
+			g_string_assign (myData.sCurrentText, cFile);
+			g_free (cFile);
+		}
+		else
+			g_string_assign (myData.sCurrentText, pIcon->acCommand);
+		
+		
+		cd_do_load_pending_caracters ();
+		
+		// on repositionne les caracteres et on anime tout ca.
+		cd_do_launch_appearance_animation ();
+		cairo_dock_redraw_container (g_pMainDock);
+	}
 }

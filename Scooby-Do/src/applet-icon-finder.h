@@ -20,5 +20,7 @@ gboolean cairo_dock_emit_motion_signal (CairoDock *pDock, int iMouseX, int iMous
 
 void cd_do_search_matching_icons (void);
 
+void cd_do_select_previous_next_matching_icon (gboolean bNext);
+
 
 #endif
