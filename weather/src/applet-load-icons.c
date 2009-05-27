@@ -60,7 +60,7 @@ static GList * _list_icons (CairoDockModuleInstance *myApplet)
 static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (myDrawContext != NULL);
-	if (myConfig.bCurrentConditions)
+	if (myConfig.bCurrentConditions || myData.bErrorRetrievingData)
 	{
 		cd_message ("  chargement de l'icone meteo (%x)", myApplet);
 		if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL/** && myConfig.iDeskletRenderer != MY_DESKLET_MAIN_ICON*/)
@@ -148,6 +148,17 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	//\_______________________ On recharge l'icone principale.
 	_weather_draw_current_conditions (myApplet);  // ne lance pas le redraw.
 	CD_APPLET_REDRAW_MY_ICON;
+	
+	if (myData.bErrorRetrievingData && myData.pMeasureTimer->iCheckInterval > 20)
+	{
+		cd_message ("no data, will re-try in 20s");
+		cairo_dock_change_measure_frequency (myData.pMeasureTimer, 20);  // on re-essaiera dans 20s.
+	}
+	else if (myData.pMeasureTimer->iCheckInterval != myConfig.iCheckInterval)
+	{
+		cd_message ("revert to normal frequency");
+		cairo_dock_change_measure_frequency (myData.pMeasureTimer, myConfig.iCheckInterval);
+	}
 	
 	return TRUE;
 }

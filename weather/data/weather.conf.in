@@ -120,7 +120,7 @@ display temperature = false
 frame_disp =
 
 #h+[@weatherdatadir@/themes;@weatheruserdirname@;weather] Choose one of the available themes :/
-theme = basic
+theme = Classic
 
 #n+ Name of the view used for the sub-dock :
 #{Let it empty to use default sub-dock view.}/

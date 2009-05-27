@@ -30,7 +30,7 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 		return NULL;
 	}
 	gchar *cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/search/search?where=%s\" -O %s -o /dev/null -t 3 -T 10", cLocation, cLocationFilePath);
-	system (cCommand);
+	int r = system (cCommand);
 	g_free (cCommand);
 	close(fds);
 	return cLocationFilePath;
@@ -39,6 +39,7 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 void cd_weather_acquisition (CairoDockModuleInstance *myApplet)
 {
 	gboolean bTest = FALSE;
+	int r;
 	gchar *cCommand;
 	if (myConfig.bCurrentConditions)
 	{
@@ -53,7 +54,7 @@ void cd_weather_acquisition (CairoDockModuleInstance *myApplet)
 		}
 		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?cc=*%s\" -O %s -o /dev/null -t 3 -T 10", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), myData.cCCDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
 		cd_debug ("weather : %s", cCommand);
-		system (cCommand);
+		r = system (cCommand);
 		g_free (cCommand);
 		close(fds);
 	}
@@ -72,7 +73,7 @@ void cd_weather_acquisition (CairoDockModuleInstance *myApplet)
 		}
 		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?dayf=%d%s\" -O %s -o /dev/null -t 3 -T 10", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), myData.cForecastDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
 		cd_debug ("weather : %s", cCommand);
-		system (cCommand);
+		r = system (cCommand);
 		g_free (cCommand);
 		close(fds);
 	}
@@ -80,11 +81,11 @@ void cd_weather_acquisition (CairoDockModuleInstance *myApplet)
 	if (bTest/* && g_file_test ("~/plug-ins/weather/data/frxx0076.xml", G_FILE_TEST_EXISTS)*/)
 	{
 		cCommand = g_strdup_printf ("cp ~/plug-ins/weather/data/frxx0076.xml %s", myData.cCCDataFilePath);
-		system (cCommand);
+		r = system (cCommand);
 		g_free (cCommand);
 		
 		cCommand = g_strdup_printf ("cp ~/plug-ins/weather/data/FRXX0076-meteo.xml %s", myData.cForecastDataFilePath);
-		system (cCommand);
+		r = system (cCommand);
 		g_free (cCommand);
 	}
 }
@@ -103,7 +104,7 @@ static xmlDocPtr _cd_weather_open_xml_file (gchar *cDataFilePath, xmlNodePtr *ro
 	xmlNodePtr noeud = xmlDocGetRootElement (doc);
 	if (noeud == NULL || xmlStrcmp (noeud->name, (const xmlChar *) cRootNodeName) != 0)
 	{
-		g_set_error (erreur, 1, 1, "xml file '%s' is not well formed (weather.com may have changed its data format)", cDataFilePath);
+		g_set_error (erreur, 1, 2, "xml file '%s' is not well formed (weather.com may have changed its data format)", cDataFilePath);
 		return doc;
 	}
 	*root_node = noeud;
