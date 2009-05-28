@@ -151,7 +151,7 @@ CD_APPLET_ON_UPDATE_ICON_BEGIN
 	}
 	else
 	{
-		fSpeedX = 2 * MAX (10., sqrt (myData.iNbUnreadMails));
+		fSpeedX = 2 * MIN (5., sqrt (myData.iNbUnreadMails));
 		fSpeedY = fSpeedX/2;
 	}
 	if( myData.iNbUnreadMails > 0 || myData.current_rotX != 0 )  // mails non lus ou on finit la rotation en cours.

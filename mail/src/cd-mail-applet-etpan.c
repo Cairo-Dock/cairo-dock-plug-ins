@@ -205,12 +205,11 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	}
 	else
 	{
-		cairo_dock_set_quick_info (myDrawContext, NULL, pIcon, cairo_dock_get_max_scale (pContainer));
+		cairo_dock_set_quick_info (myDrawContext, "0", pIcon, cairo_dock_get_max_scale (pContainer));
 		
 		cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
 	}
 	cairo_destroy (pIconContext);
-	cairo_dock_redraw_icon (pIcon, pContainer);
 	
 	//\_______________________ On met a jour l'icone principale.
 	if (pUpdatedMailAccount->iPrevNbUnseenMails != pUpdatedMailAccount->iNbUnseenMails)  // des mails en plus ou en moins.
@@ -219,6 +218,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 		myData.iNbUnreadMails += pUpdatedMailAccount->iNbUnseenMails - pUpdatedMailAccount->iPrevNbUnseenMails;
 		cd_mail_draw_main_icon (myApplet, pUpdatedMailAccount->bInitialized);
 	}
+	cairo_dock_redraw_icon (pIcon, pContainer);
 	
 	pUpdatedMailAccount->bInitialized = TRUE;
 	return TRUE;
@@ -246,7 +246,7 @@ void cd_mail_load_icons( CairoDockModuleInstance *myApplet )
 			if( !pMailAccount )
 				continue;
 			
-			myData.iNbUnreadMails += pMailAccount->iNbUnseenMails;  // a priori c'est a 0.
+			//myData.iNbUnreadMails += pMailAccount->iNbUnseenMails;  // a priori c'est a 0.
 			_add_icon (pMailAccount);
 			iNbIcons ++;
 		}
@@ -270,6 +270,7 @@ void cd_mail_load_icons( CairoDockModuleInstance *myApplet )
 	else
 	{
 		cNewImage = myConfig.cNoMailUserImage;
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("0");
 	}
 	CD_APPLET_SET_IMAGE_ON_MY_ICON (cNewImage);
 	
@@ -297,7 +298,7 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 		}
 		//Chargement de l'image "pas de mail"
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cNoMailUserImage);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("0");
 	}
 	else if (myData.iNbUnreadMails > myData.iPrevNbUnreadMails)  // de nouveaux mails.
 	{
