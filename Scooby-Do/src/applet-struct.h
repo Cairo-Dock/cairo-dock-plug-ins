@@ -35,6 +35,8 @@ struct _AppletConfig {
 	gint iAppearanceDuration;
 	gint iCloseDuration;
 	gchar **pDirList;
+	gint iNbResultMax;
+	CairoDockLabelDescription infoDescription;
 	} ;
 
 
@@ -49,6 +51,23 @@ typedef struct _CDChar {
 	gint iCurrentX, iCurrentY;
 	gdouble fRotationAngle;
 	} CDChar;
+
+typedef struct _CDAppli {
+	gchar *cDesktopFilePath;
+	gchar *cCommand;
+	gchar *cIcon;
+	gchar *cWorkingDirectory;
+	} CDAppli;
+
+typedef enum _CDFileType {
+	DO_TYPE_NONE	=0,
+	DO_TYPE_MUSIC	=1<<0,
+	DO_TYPE_IMAGE	=1<<1,
+	DO_TYPE_VIDEO	=1<<2,
+	DO_TYPE_TEXT	=1<<3,
+	DO_TYPE_HTML	=1<<4,
+	DO_TYPE_SOURCE	=1<<5
+	} CDFileType;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
@@ -74,6 +93,8 @@ struct _AppletData {
 	gint iMouseX, iMouseY;
 	gint iMotionCount;
 	
+	gboolean bNavigationMode;
+	gboolean bSessionStartedAutomatically;
 	gint iPromptAnimationCount;
 	cairo_surface_t *pPromptSurface;
 	gint iPromptWidth, iPromptHeight;
@@ -81,12 +102,27 @@ struct _AppletData {
 	cairo_surface_t *pArrowSurface;
 	gint iArrowWidth, iArrowHeight;
 	GLuint iArrowTexture;
+	
 	GList *pMatchingIcons;
 	GList *pCurrentMatchingElement;
-	gboolean bNavigationMode;
-	gboolean bSessionStartedAutomatically;
+	
+	GList *pApplications;
+	GList *pMonitorList;
+	
+	gint iLocateAvailable;
+	gint iCurrentFilter;
+	gboolean bMatchCase;
+	GtkWidget *pFileMenu;
+	gchar **pMatchingFiles;
+	gint iNbMatchingFiles;
+	CairoDialog *pFilterDialog;
+	
 	GList *pCompletionItemSurface;
 	GList *pCompletionItemTexture;
+	
+	cairo_surface_t *pInfoSurface;
+	GLuint iInfoTexture;
+	gint iInfoWidth, iInfoHeight;
 	} ;
 
 

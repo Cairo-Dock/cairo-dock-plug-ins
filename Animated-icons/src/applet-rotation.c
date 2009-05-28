@@ -140,7 +140,7 @@ void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisi
 	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
-	//glColor4f(1., 1., 1., pIcon->fAlpha);
+	glColor4f(1., 1., 1., pIcon->fAlpha);
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);
 	//glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_MODULATE);
@@ -200,7 +200,8 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 	if (myConfig.pMeshColor[3] == 1)
 		glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	else
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		_cairo_dock_set_blend_alpha ();
 	_draw_rotating_icon (pIcon, pDock, pData, 1.);
 	
 	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)

@@ -11,21 +11,23 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <string.h>
 
 #include "applet-struct.h"
-#include "applet-icon-finder.h"
+#include "applet-command-finder.h"
 #include "applet-session.h"
+#include "applet-icon-finder.h"
 
 static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPrefix, int length)
 {
-	gboolean bFound;
+	gboolean bFound = FALSE;
 	if (pIcon->cBaseURI != NULL)
 	{
 		gchar *cFile = g_path_get_basename (pIcon->acCommand);
 		bFound = (cFile && g_ascii_strncasecmp (cCommandPrefix, cFile, length) == 0);
 		g_free (cFile);
 	}
-	else
-		bFound = (pIcon->acCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0);
-	
+	else if (pIcon->acCommand)
+	{
+		bFound = (g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0);
+	}
 	return bFound;
 }
 
@@ -242,6 +244,14 @@ static void _cd_do_search_in_one_dock (Icon *pIcon, CairoDock *pDock, gpointer d
 }
 void cd_do_search_matching_icons (void)
 {
+	gchar *str = strchr (myData.sCurrentText->str, ' ');  // on ne compte pas les arguments d'une eventuelle commande deja tapee.
+	int length = myData.sCurrentText->len;
+	if (str != NULL)
+	{
+		g_string_set_size (myData.sCurrentText, str - myData.sCurrentText->str + 1);
+		g_print ("str <- '%s' %d\n", myData.sCurrentText->str, myData.sCurrentText->len);
+	}
+		
 	if (myData.pMatchingIcons == NULL)
 	{
 		if (myData.bSessionStartedAutomatically)  // on cherche dans le dock courant.
@@ -254,6 +264,9 @@ void cd_do_search_matching_icons (void)
 			// on parcours tous les docks.
 			cairo_dock_foreach_icons_in_docks ((CairoDockForeachIconFunc) _cd_do_search_in_one_dock, NULL);
 			myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
+			
+			// on rajoute les icones ne venant pas du dock.
+			cd_do_find_matching_applications ();
 		}
 	}
 	else  // optimisation : on peut se contenter de chercher parmi les icones deja trouvees.
@@ -272,6 +285,9 @@ void cd_do_search_matching_icons (void)
 	}
 	myData.pCurrentMatchingElement = NULL;
 	cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pCurrentDock));
+	g_print ("%d / %d\n", length , myData.sCurrentText->len);
+	if (length != myData.sCurrentText->len)
+		g_string_set_size (myData.sCurrentText, length);
 }
 
 

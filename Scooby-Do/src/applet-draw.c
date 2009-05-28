@@ -17,7 +17,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #define STATIC_ANGLE 15.
 
-#define _alpha_prompt(k,n) cos (G_PI/2*fabs ((double) (((k + n) % (2*n)) - n) / n));
+#define _alpha_prompt(k,n) cos (G_PI/2*fabs ((double) (((k + 0) % (2*n)) - n) / n));
 
 const int s_iNbPromptAnimationSteps = 40;
 
@@ -199,6 +199,20 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			cairo_restore (pCairoContext);
 		}
 		
+		// dessin de la zone d'info de resultat.
+		if (myData.pInfoSurface != NULL)
+		{
+			cairo_save (pCairoContext);
+			
+			cairo_translate (pCairoContext,
+				pMainDock->iCurrentWidth - myData.iInfoWidth,
+				0.);
+			cairo_set_source_surface (pCairoContext, myData.pInfoSurface, 0., 0.);
+			cairo_paint (pCairoContext);
+			
+			cairo_restore (pCairoContext);
+		}
+		
 		if (myData.pCompletionItemSurface != NULL)
 		{
 			GList *c;
@@ -214,6 +228,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 		}
 	}
 }
+
 
 void cd_do_render_opengl (CairoDock *pMainDock)
 {
@@ -358,18 +373,10 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		fDockOffsetX = pMainDock->iCurrentWidth/2 - fFrameWidth / 2 - fRadius;
 		fDockOffsetY = (myConfig.bTextOnTop ? pMainDock->iCurrentHeight : fFrameHeight);
 		
-		/**int iNbVertex = 0;
-		const GLfloat *pVertexTab = cairo_dock_generate_rectangle_path (fFrameWidth, fFrameHeight, fRadius, TRUE, &iNbVertex);
-		
 		glPushMatrix ();
-		glEnable(GL_BLEND);
-		_cairo_dock_set_blend_alpha ();
-		glColor4f (myConfig.pFrameColor[0], myConfig.pFrameColor[1], myConfig.pFrameColor[2], myConfig.pFrameColor[3] * fAlpha);
-		cairo_dock_draw_frame_background_opengl (0, fFrameWidth+2*fRadius, fFrameHeight, fDockOffsetX, fDockOffsetY, pVertexTab, iNbVertex, pMainDock->bHorizontalDock, pMainDock->bDirectionUp, 0.);
-		glPopMatrix();*/
 		double fFrameColor[4] = {myConfig.pFrameColor[0], myConfig.pFrameColor[1], myConfig.pFrameColor[2], myConfig.pFrameColor[3] * fAlpha};
 		cairo_dock_draw_rounded_rectangle_opengl (fRadius, 0, fFrameWidth, fFrameHeight, fDockOffsetX, fDockOffsetY, fFrameColor);
-
+		glPopMatrix();
 		
 		// dessin des lettres.
 		_cairo_dock_enable_texture ();
@@ -455,6 +462,21 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		cairo_dock_set_ortho_view (pMainDock->iCurrentWidth, pMainDock->iCurrentHeight);
 		glTranslatef (-pMainDock->iCurrentWidth/2, -pMainDock->iCurrentHeight/2, 0.);
 		glDisable (GL_DEPTH_TEST);
+		
+		
+		// dessin de la zone d'info de resultat.
+		if (myData.iInfoTexture != 0)
+		{
+			glPushMatrix();
+			
+			glTranslatef (
+				pMainDock->iCurrentWidth - myData.iInfoWidth/2,
+				pMainDock->iCurrentHeight - myData.iInfoHeight/2,
+				0.);
+			
+			_cairo_dock_apply_texture_at_size (myData.iInfoTexture, myData.iInfoWidth, myData.iInfoHeight);
+			glPopMatrix();
+		}
 		_cairo_dock_disable_texture ();
 	}
 }

@@ -25,8 +25,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iCloseDuration = CD_CONFIG_GET_INTEGER ("Configuration", "stop duration");
 	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
 	CD_CONFIG_GET_COLOR ("Configuration", "frame color", myConfig.pFrameColor);
-	gsize length=0;
-	myConfig.pDirList = CD_CONFIG_GET_STRING_LIST ("Configuration", "dirs", &length);
 	
 	myConfig.fFontSizeRatio = CD_CONFIG_GET_DOUBLE ("Configuration", "font size");
 	myConfig.bTextOnTop = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "text on top", TRUE);
@@ -37,11 +35,30 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStart);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStop);
 	myConfig.labelDescription.iStyle = PANGO_STYLE_NORMAL;
+	myConfig.labelDescription.iMargin = 2;
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.labelDescription.fBackgroundColor);
 	if (myConfig.iAppearanceDuration == 0 || ! g_bUseOpenGL)  // si pas d'animation 3D, on ne met pas de fond aux lettres.
 	{
 		//myConfig.labelDescription.fBackgroundColor[3] = 0;
 	}
+	
+	myConfig.iNbResultMax = CD_CONFIG_GET_INTEGER ("Configuration", "nb results max");
+	myConfig.infoDescription.cFont = "Sans";
+	myConfig.infoDescription.iSize = 14;
+	myConfig.infoDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (5);
+	myConfig.infoDescription.bOutlined = FALSE;
+	myConfig.infoDescription.fColorStart[0] = 1;
+	myConfig.infoDescription.fColorStart[1] = 0;
+	myConfig.infoDescription.fColorStart[2] = 0;
+	myConfig.infoDescription.fColorStop[0] = 1;
+	myConfig.infoDescription.fColorStop[1] = 0;
+	myConfig.infoDescription.fColorStop[2] = 0;
+	myConfig.infoDescription.iStyle = PANGO_STYLE_NORMAL;
+	myConfig.infoDescription.fBackgroundColor[3] = 1;
+	myConfig.infoDescription.fBackgroundColor[3] = 0;
+	myConfig.infoDescription.fBackgroundColor[3] = 0;
+	myConfig.infoDescription.fBackgroundColor[3] = 0.33;
+	myConfig.infoDescription.iMargin = 8;
 CD_APPLET_GET_CONFIG_END
 
 

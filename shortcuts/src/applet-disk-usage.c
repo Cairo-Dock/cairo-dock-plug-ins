@@ -51,7 +51,7 @@ void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
 		pIcon = ic->data;
 		if (pIcon->iType != 6)
 			break;
-		g_print ("POUIC : %s\n", pIcon->acCommand);
+		//g_print ("%s () : %s\n", __func__, pIcon->acCommand);
 		if (pIcon->acCommand != NULL)
 		{
 			if (pElement != NULL)

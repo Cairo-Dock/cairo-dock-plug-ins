@@ -11,6 +11,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <string.h>
 
 #include "applet-struct.h"
+#include "applet-command-finder.h"
 #include "applet-session.h"
 
 
@@ -18,6 +19,9 @@ void cd_do_open_session (void)
 {
 	// on termine l'animation de fin de la precedente session.
 	cd_do_exit_session ();
+	
+	if (myData.iLocateAvailable == 0)  // comme ca on peut re-verifier la presence de locate en re-activant le module.
+		myData.iLocateAvailable = (cd_do_check_locate_is_available () ? 1 : -1);
 	
 	// on se met en attente de texte.
 	myData.sCurrentText = g_string_sized_new (20);
@@ -77,6 +81,11 @@ void cd_do_close_session (void)
 		myData.pCurrentIcon = NULL;
 	}
 	
+	// on chache le filtre.
+	cd_do_hide_filter_dialog ();
+	myData.iCurrentFilter = 0;
+	myData.bMatchCase = FALSE;
+	
 	if (myData.pCurrentDock != NULL)
 	{
 		//cairo_dock_leave_from_main_dock (myData.pCurrentDock);  /// voir avec un emit_leave_signal ...
@@ -117,10 +126,42 @@ void cd_do_exit_session (void)
 	}
 	if (myData.pMatchingIcons != NULL)
 	{
+		Icon *pIcon;
+		GList *ic;
+		for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
+		{
+			pIcon = ic->data;
+			if (pIcon->acDesktopFileName && strncmp (pIcon->acDesktopFileName, "/usr", 4) == 0 && pIcon->pIconBuffer != NULL)
+			{
+				cairo_surface_destroy (pIcon->pIconBuffer);
+				pIcon->pIconBuffer = NULL;
+				if (pIcon->iIconTexture != 0)
+				{
+					_cairo_dock_delete_texture (pIcon->iIconTexture);
+					pIcon->iIconTexture = 0;
+				}
+			}
+		}
 		g_list_free (myData.pMatchingIcons);
 		myData.pMatchingIcons = NULL;
+		myData.pCurrentMatchingElement = NULL;
 	}
-	myData.pCurrentMatchingElement = NULL;
+	if (myData.pMatchingFiles != NULL)
+	{
+		g_strfreev (myData.pMatchingFiles);
+		myData.pMatchingFiles = NULL;
+		myData.iNbMatchingFiles = 0;
+	}
+	if (myData.pInfoSurface != NULL)
+	{
+		cairo_surface_destroy (myData.pInfoSurface);
+		myData.pInfoSurface = NULL;
+	}
+	if (myData.iInfoTexture != 0)
+	{
+		_cairo_dock_delete_texture (myData.iInfoTexture);
+		myData.iInfoTexture = 0;
+	}
 }
 
 

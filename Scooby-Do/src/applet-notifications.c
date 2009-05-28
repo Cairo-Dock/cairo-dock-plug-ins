@@ -239,6 +239,16 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				g_list_free (myData.pMatchingIcons);
 				myData.pMatchingIcons = NULL;
 				cd_do_search_matching_icons ();
+				if (myData.pMatchingIcons == NULL)  // on n'a trouve aucun programme, on cherche un fichier.
+				{
+					cd_do_find_matching_files ();
+					
+					cd_do_show_filter_dialog ();
+				}
+				else  // on a trouve au moins un programme, on cache le filtre des fichiers.
+				{
+					cd_do_hide_filter_dialog ();
+				}
 			}
 			
 			// on repositionne les caracteres et on anime tout ca.
@@ -321,15 +331,22 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal == GDK_Return)
 	{
-		// on lance soit l'icone soit la commande
-		if (myData.pMatchingIcons != NULL && myData.pMatchingIcons->next == NULL)
+		// en mode recherche, si on a trouve un programme, on en fait l'icone courante.
+		if (myData.pCurrentMatchingElement != NULL)  // on a selectionne un programme parmi la liste.
+		{
+			myData.pCurrentIcon = myData.pCurrentMatchingElement->data;
+			myData.pCurrentDock = cairo_dock_search_dock_from_name (myData.pCurrentIcon->cParentDockName);
+		}
+		else if ((myData.pMatchingIcons != NULL && myData.pMatchingIcons->next == NULL))  // 1 seul programme dans la liste.
 		{
 			myData.pCurrentIcon = myData.pMatchingIcons->data;
 			myData.pCurrentDock = cairo_dock_search_dock_from_name (myData.pCurrentIcon->cParentDockName);
 		}
 		if (myData.pCurrentDock == NULL)
 			myData.pCurrentDock = g_pMainDock;
-		if (myData.pCurrentIcon != NULL || myData.iNbValidCaracters == 0)
+		
+		
+		if (myData.pCurrentIcon != NULL)  // on a une icone a lancer.
 		{
 			if (myData.pCurrentIcon != NULL)
 				g_print ("on valide '%s' (icone %s) [%d, %d]\n", myData.pCurrentIcon->acCommand, myData.pCurrentIcon->acName, iModifierType, GDK_SHIFT_MASK);
@@ -366,7 +383,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			myData.bIgnoreIconState = FALSE;
 			myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
 		}
-		else if (myData.iNbValidCaracters > 0)
+		else if (myData.iNbValidCaracters > 0)  // pas d'icone mais du texte => on l'execute.
 		{
 			g_print ("on valide '%s'\n", myData.sCurrentText->str);
 			gchar *cFile = g_strdup_printf ("%s/%s", g_getenv ("HOME"), myData.sCurrentText->str);
@@ -492,7 +509,12 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			if (myData.pMatchingIcons == NULL)
 			{
 				// on cherche un programme correspondant, cf GMenu.
-				cd_do_update_completion (myData.sCurrentText->str);
+				cd_do_find_matching_files ();
+				
+				// On affiche un filtre sur les fichiers.
+				cd_do_show_filter_dialog ();
+				
+				/*cd_do_update_completion (myData.sCurrentText->str);
 				
 				if (myData.completion)
 				{
@@ -505,7 +527,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 						g_print ("on a pu completer la chaine => %s\n", cCompletedString);
 						g_string_assign (myData.sCurrentText, cCompletedString);
 					}
-				}
+				}*/
 			}
 		}
 		

@@ -19,13 +19,14 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 CD_APPLET_DEFINITION ("Scooby-Do",
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
-	N_("A Gnome-Do-like plug-in.\n"
-	"It lets you control the dock and quickly launch any command with the keyboard :\n"
-	" Start a session with the shortkey of your choice, Escape, Return or shortkey to close it.\n"
-	" use the arrows to navigate into the docks and sub-docks,\n"
-	" or type a command to find the corresponding launcher, or to launch any command\n"
-	" Press Tab to automatically jump to the next suitable launcher\n"
-	" Press enter to click the icon or validate the command, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click."),
+	N_("A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+	"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+	"- the navigation mode : use the arrows to navigate into the docks and sub-docks,\n"
+	"  or type a command to find a corresponding launcher and press Tab to automatically jump to the next suitable launcher\n"
+	"- the finder mode : type a command to find the corresponding launcher, or to launch any command or file\n"
+	"  use the arrows or Tab to navigate between the found launchers if any\n"
+	"Escape, Return or the same shortkey to finish.\n"
+	"Press Enter to click the icon or validate the command, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click."),
 	"Fabounet (Fabrice Rey)")
 
 
