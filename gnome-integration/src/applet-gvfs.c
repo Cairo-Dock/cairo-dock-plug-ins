@@ -758,7 +758,12 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		//icon->acCommand = g_strdup (icon->cBaseURI);
 		icon->iVolumeID = 0;
 		icon->acName = g_strdup ("home");
-		Icon *pRootIcon = pIconList->data;
+		Icon *pRootIcon = cairo_dock_get_icon_with_name (pIconList, "/");
+		if (pRootIcon == NULL)
+		{
+			pRootIcon = cairo_dock_get_first_icon (pIconList);
+			g_print ("domage ! (%s:%s)\n", pRootIcon->acCommand, pRootIcon->acName);
+		}
 		icon->acFileName = g_strdup (pRootIcon->acFileName);
 		icon->fOrder = iOrder++;
 		pIconList = g_list_insert_sorted (pIconList,

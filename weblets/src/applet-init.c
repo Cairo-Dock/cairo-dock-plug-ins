@@ -27,6 +27,7 @@ CD_APPLET_DEFINITION ("weblets",
 CD_APPLET_INIT_BEGIN
 
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	
@@ -42,7 +43,7 @@ CD_APPLET_INIT_BEGIN
 		myData.pRefreshTimer = cairo_dock_new_measure_timer (myConfig.iReloadTimeout,
 			NULL,
 			NULL,
-			cd_weblets_refresh_page,
+			(CairoDockUpdateTimerFunc) cd_weblets_refresh_page,
 			myApplet);
 		cairo_dock_launch_measure (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
 	}
@@ -55,6 +56,7 @@ CD_APPLET_INIT_END
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 CD_APPLET_STOP_END
@@ -106,7 +108,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.pRefreshTimer = cairo_dock_new_measure_timer (myConfig.iReloadTimeout,
 			NULL,
 			NULL,
-			cd_weblets_refresh_page,
+			(CairoDockUpdateTimerFunc) cd_weblets_refresh_page,
 			myApplet);
 		cairo_dock_launch_measure (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
 	}

@@ -226,6 +226,7 @@ void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile*
 	gtk_box_pack_start (GTK_BOX (pWidgetBox), pLabel, FALSE, FALSE, 0);
 	
 	GtkWidget *pLocationEntry = gtk_entry_new ();
+	gtk_widget_set_tooltip_text (pLocationEntry, D_("Enter the name of your location and press Enter to choose amongst results."));
 	if (myData.cLocation != NULL)
 		gtk_entry_set_text (GTK_ENTRY (pLocationEntry), myData.cLocation);
 	gtk_box_pack_start (GTK_BOX (pWidgetBox), pLocationEntry, FALSE, FALSE, 0);

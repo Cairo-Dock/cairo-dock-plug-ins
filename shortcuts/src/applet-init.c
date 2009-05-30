@@ -18,7 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 
 CD_APPLET_DEFINITION ("shortcuts",
-	1, 6, 2,
+	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("An applet that let you access quickly to all of your shortcuts.\n"
 	"It can manage disks, network points, and Nautilus bookmarks (even if you don't have Nautilus).\n"

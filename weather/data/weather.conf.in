@@ -87,7 +87,7 @@ fg alpha = 1
 frame_conf =
 
 #s Code of your location :
-#{Right click on the icon to let Cairo-Dock help you to find your location code.}
+#{Enter the name of your location in the text entry and press Enter.}
 location code = FRXX0076
 
 #b Use International System Units ?

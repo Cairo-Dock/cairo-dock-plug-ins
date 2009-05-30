@@ -28,6 +28,27 @@
 
 #include <gtk/gtk.h>
 
+
+
+void _cd_weblets_set_crop_position (CairoDockModuleInstance *myApplet)
+{
+	GtkAdjustment *pGtkAdjustmentH = gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed));
+	gtk_adjustment_set_value(pGtkAdjustmentH, myConfig.iPosScrollX);
+	GtkAdjustment *pGtkAdjustmentV = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed));
+	gtk_adjustment_set_value(pGtkAdjustmentV, myConfig.iPosScrollY);
+}
+
+// hide/show the scrollbars
+static void show_hide_scrollbars(CairoDockModuleInstance *myApplet)
+{
+	// First, set the position
+	_cd_weblets_set_crop_position (myApplet);
+	
+	// Then, hide or show the scrollbars
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed), myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER, myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER);
+}
+
+
 CairoDialog *cd_weblets_build_dialog(CairoDockModuleInstance *myApplet)
 {
 	CairoDialogAttribute attr;
@@ -41,6 +62,7 @@ CairoDialog *cd_weblets_build_dialog(CairoDockModuleInstance *myApplet)
 void load_finished_cb(WebKitWebView *pWebKitView, WebKitWebFrame* widget
 , CairoDockModuleInstance *myApplet)
 {
+	g_print ("weblets : (re)load finished\n");
 	// update scrollbars status
 	show_hide_scrollbars(myApplet);
 }
@@ -50,44 +72,25 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 {
 	myData.pGtkMozEmbed = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed), myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER, myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER);
-					 					 
+	
+	myData.pWebKitView = WEBKIT_WEB_VIEW (webkit_web_view_new ());
+	gtk_container_add (GTK_CONTAINER (myData.pGtkMozEmbed), GTK_WIDGET (myData.pWebKitView));
+	gtk_signal_connect(GTK_OBJECT(myData.pWebKitView),
+		"load_finished",
+		GTK_SIGNAL_FUNC(load_finished_cb),
+		myApplet);
+	gtk_widget_show_all (myData.pGtkMozEmbed);
+				 					 
 	if (myDock)
 	{
+		gtk_widget_set (GTK_WIDGET (myData.pWebKitView), "width-request", 600, "height-request", 400, NULL);
 		myData.dialog = cd_weblets_build_dialog(myApplet);
 	}
 	else
 	{
 		cairo_dock_add_interactive_widget_to_desklet_full (myData.pGtkMozEmbed, myDesklet, myConfig.iRightMargin);
-		
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
-
-	myData.pWebKitView = WEBKIT_WEB_VIEW (webkit_web_view_new ());
-	gtk_container_add (GTK_CONTAINER (myData.pGtkMozEmbed), GTK_WIDGET (myData.pWebKitView));
-
-	gtk_signal_connect(GTK_OBJECT(myData.pWebKitView), "load_finished",
-					 					 GTK_SIGNAL_FUNC(load_finished_cb), myApplet);
-
-	gtk_widget_show_all (myData.pGtkMozEmbed);
-}
-
-
-// hide/show the scrollbars
-void show_hide_scrollbars(CairoDockModuleInstance *myApplet)
-{
-	// First, set the position
-	GtkAdjustment *pGtkAdjustmentH = gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed));
-	gtk_adjustment_set_value(pGtkAdjustmentH, myConfig.iPosScrollX);
-	GtkAdjustment *pGtkAdjustmentV = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed));
-	gtk_adjustment_set_value(pGtkAdjustmentV, myConfig.iPosScrollY);
-
-/*
- * useful ?
- */
-//	gtk_scrolled_window_set_hadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed),pGtkAdjustmentH);
-
-	// Then, hide or show the scrollbars
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed), myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER, myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER);
 }
 
 gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet)

@@ -40,6 +40,14 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+	if (myDock && myData.dialog != NULL)
+	{
+		cairo_dock_hide_dialog (myData.dialog);
+	}
+CD_APPLET_ON_MIDDLE_CLICK_END
+
+
 static void _cd_weblets_set_current_URI (CairoDockModuleInstance *myApplet, const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
