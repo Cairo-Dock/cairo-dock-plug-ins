@@ -163,38 +163,35 @@ void getSongInfos(void)
 		value = (GValue *) g_hash_table_lookup(data_list, "rb:coverArt-uri");
 		g_free (myData.playing_cover);
 		myData.playing_cover = NULL;
+		myData.CoverWasDistant = FALSE;
 		if (value != NULL && G_VALUE_HOLDS_STRING(value))
 		{
 			const gchar *cString = g_value_get_string(value);
 			cd_debug ("RB-YDU : RB nous a refile cette adresse : %s", cString);
 			
-			GString *command = g_string_new ("");
-			if(strncmp(cString, "http://", 7) == 0)
-			{
-				cd_debug("RB-YDU : Le fichier est distant");
-				g_string_printf (command, "wget -O %s/.cache/rhythmbox/covers/\"%s - %s.jpg\" %s",
-					g_getenv ("HOME"),
-					myData.playing_artist,
-					myData.playing_album,
-					cString);
-				
-				myData.CoverWasDistant = TRUE;
-			
-			}	
-			g_spawn_command_line_async (command->str, NULL);
-			cd_debug("RB : La commande pour un fichier distant est passée");
-			g_string_free (command, TRUE);
-			
-			
 			if (cString != NULL)
 			{
-				if (strncmp (cString, "file://", 7) == 0)
+				if(strncmp(cString, "http://", 7) == 0)
+				{
+					cd_debug("RB-YDU : Le fichier est distant");
+					gchar *cCommand = g_strdup_printf ("wget -O %s/.cache/rhythmbox/covers/\"%s - %s.jpg\" %s",
+						g_getenv ("HOME"),
+						myData.playing_artist,
+						myData.playing_album,
+						cString);
+					
+					myData.CoverWasDistant = TRUE;
+					g_spawn_command_line_async (cCommand, NULL);
+					cd_debug("RB : La commande pour un fichier distant est passée");
+					g_free (cCommand);
+				}
+				else if (strncmp (cString, "file://", 7) == 0)
 				{
 					GError *erreur = NULL;
 					myData.playing_cover = g_filename_from_uri (cString, NULL, &erreur);
 					if (erreur != NULL)
 					{
-						cd_warning ("Attention : %s", erreur->message);
+						cd_warning ("RB : %s", erreur->message);
 						g_error_free (erreur);
 					}
 				}
@@ -204,7 +201,8 @@ void getSongInfos(void)
 				}
 			}
 		}
-		if (myData.playing_cover == NULL)
+		
+		if (myData.playing_cover == NULL)  // soit RB nous a rien file, soit le fichier est distant => on va etablir une adresse locale qu'on testera dans le update_icon.
 		{
 			gchar *cSongPath = g_filename_from_uri (myData.playing_uri, NULL, NULL);  // on teste d'abord dans le repertoire de la chanson.
 			if (cSongPath != NULL)  // c'est un fichier local.
@@ -221,22 +219,22 @@ void getSongInfos(void)
 					cd_debug ("test de %s", myData.playing_cover);
 					if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 					{
-						
+						g_free (myData.playing_cover);
 						myData.playing_cover = g_strdup_printf ("%s/album.jpg", cSongDir);
 						cd_debug ("test de %s", myData.playing_cover);
 						if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 						{
-						
+							g_free (myData.playing_cover);
 							myData.playing_cover = g_strdup_printf ("%s/albumart.jpg", cSongDir);
 							cd_debug ("test de %s", myData.playing_cover);
 							if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 							{
-								
+								g_free (myData.playing_cover);
 								myData.playing_cover = g_strdup_printf ("%s/.folder.jpg", cSongDir);
 								cd_debug ("test de %s", myData.playing_cover);
 								if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 								{
-						
+									g_free (myData.playing_cover);
 									myData.playing_cover = g_strdup_printf ("%s/folder.jpg", cSongDir);
 									cd_debug ("test de %s", myData.playing_cover);
 									if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
@@ -254,12 +252,11 @@ void getSongInfos(void)
 			
 			if (myData.playing_cover == NULL)  // on regarde maintenant dans le cache de RB.
 			{
-				myData.playing_cover = g_strdup_printf("%s/.cache/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);  /// gerer le repertoire ~/.cache/rhythmbox/covers ...
+				myData.playing_cover = g_strdup_printf("%s/.cache/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
 			}	
 		}
-		
 				
-		g_print ("  playing_cover <- %s", myData.playing_cover);
+		g_print ("  playing_cover <- %s", myData.playing_cover);  // a la fin de tout ca, playing_cover est non NULL, mais le fichier n'est peut-etre pas encore dispo sur le disque.
 		
 		g_hash_table_destroy (data_list);
 	}
@@ -281,7 +278,7 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 {
 	cd_message ("%s (%s)",__func__,uri);
 	
-	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);  // on redessine a la fin.
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);  // on redessine a la fin.
 	
 	g_free (myData.playing_uri);
 	if(uri != NULL && *uri != '\0')
@@ -361,7 +358,7 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 
 void onCovertArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)
 {
-	cd_message ("%s (%s)",__func__,cImageURI);
+	g_print ("%s (%s)\n",__func__,cImageURI);
 	g_free (myData.playing_cover);
 	myData.playing_cover = g_strdup (cImageURI);
 	

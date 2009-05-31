@@ -35,13 +35,8 @@ CD_APPLET_INIT_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 	}
-		
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
-	{		
-		cd_opengl_init_opengl_datas ();						
-	}
 	
-	
+	// on initialise DBus.
 	myData.dbus_enable = rhythmbox_dbus_connect_to_bus ();
 	if (myData.dbus_enable)
 	{
@@ -63,23 +58,25 @@ CD_APPLET_INIT_BEGIN
 		rhythmbox_set_surface (PLAYER_BROKEN);
 	}
 	
-	if (myConfig.bStealTaskBarIcon)
-	{
-		cairo_dock_inhibate_class ("rhythmbox", myIcon);
-	}
+	// on gere l'icone de l'appli rhythmbox.
+	CD_APPLET_MANAGE_APPLICATION ("rhythmbox", myConfig.bStealTaskBarIcon);
+	
 	//Enregistrement des notifications
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
-	
-	
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 	{
+		cd_opengl_load_3D_theme (myApplet, myConfig.cThemePath);
 		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
-		cairo_dock_launch_animation (myContainer);
-		cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_FIRST, myApplet);
+		if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
+			cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED,
+				(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
+				CAIRO_DOCK_RUN_AFTER,
+				myApplet);
+		
 	}
 	myData.CoverWasDistant = FALSE;
 CD_APPLET_INIT_END
@@ -91,14 +88,17 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
-
+	CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
+	cairo_dock_remove_notification_func (CAIRO_DOCK_MOUSE_MOVED,
+		(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
+		myApplet);
+	
+	if (myData.iSidCheckCover != 0)
+		g_source_remove (myData.iSidCheckCover);
 	
 	rhythmbox_dbus_disconnect_from_bus ();
 	
-	if (myIcon->cClass != NULL)
-		cairo_dock_deinhibate_class ("rhythmbox", myIcon);
+	CD_APPLET_MANAGE_APPLICATION ("rhythmbox", FALSE);
 CD_APPLET_STOP_END
 
 
@@ -142,31 +142,27 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myIcon->cClass != NULL && ! myConfig.bStealTaskBarIcon)
-		{
-			cairo_dock_deinhibate_class ("rhythmbox", myIcon);
-		}
-		else if (myIcon->cClass == NULL && myConfig.bStealTaskBarIcon)
-		{
-			cairo_dock_inhibate_class ("rhythmbox", myIcon);
-		}
+		CD_APPLET_MANAGE_APPLICATION ("rhythmbox", myConfig.bStealTaskBarIcon);
 		
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-		{		
-			cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, myApplet);
-		}
+		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
+		cairo_dock_remove_notification_func (CAIRO_DOCK_MOUSE_MOVED,
+			(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
+			myApplet);
+		cd_opengl_reset_opengl_datas (myApplet);  // si le theme a change.
 		
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
+		if (myConfig.bOpenglThemes)
 		{
-			cd_opengl_init_opengl_datas ();
-							
-			cairo_dock_launch_animation (myContainer);
-			cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) cd_opengl_test_update_icon_slow, CAIRO_DOCK_RUN_AFTER, myApplet);
+			cd_opengl_load_3D_theme (myApplet, myConfig.cThemePath);			
+			CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
+			if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
+				cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED,
+					(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
+					CAIRO_DOCK_RUN_AFTER,
+					myApplet);
 		}
 	}
 	
 	//\_______________ On redessine notre icone.
-	
 	if (myData.dbus_enable)
 	{
 		if(myData.opening)

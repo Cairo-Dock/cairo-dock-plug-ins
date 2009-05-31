@@ -1,23 +1,19 @@
 #ifndef __CD_3DCOVER_DRAW__
 #define  __CD_3DCOVER_DRAW__
 
-
 #include <cairo-dock.h>
 #include "rhythmbox-struct.h"
 
 
-void cd_opengl_load_external_conf_theme_values (CairoDockModuleInstance *myApplet);
+gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath);
 
-GLuint cd_opengl_load_texture (CairoDockModuleInstance *myApplet, gchar *texture);
-
-void cd_opengl_init_opengl_datas (void);
+void cd_opengl_reset_opengl_datas (CairoDockModuleInstance *myApplet);
 
 void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight);
 
-void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet, int iWidth, int iHeight);
+void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet);
 
-gboolean cd_opengl_test_update_icon_slow (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation);
+gboolean cd_opengl_mouse_is_over_buttons (CairoDockModuleInstance *myApplet);
 
-void cd_opengl_mouse_on_buttons (void);
 
 #endif //__CD_3DCOVER_DRAW__

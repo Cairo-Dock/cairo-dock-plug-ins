@@ -186,7 +186,6 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 CD_APPLET_ON_DROP_DATA_END
 
 
-
 CD_APPLET_ON_SCROLL_BEGIN
 		if (CD_APPLET_SCROLL_DOWN) {
 			rhythmbox_next (NULL, NULL);
@@ -198,11 +197,21 @@ CD_APPLET_ON_SCROLL_BEGIN
 			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_SCROLL_END
 
+
 CD_APPLET_ON_UPDATE_ICON_BEGIN
 
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL  && myConfig.bOpenglThemes)
-	{
-		cd_opengl_mouse_on_buttons ();	
-	}
+	cd_opengl_render_to_texture (myApplet);
 	
 CD_APPLET_ON_UPDATE_ICON_END
+
+
+gboolean cd_opengl_test_mouse_over_buttons (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+{
+	if (pContainer != myContainer)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	if (cd_opengl_mouse_is_over_buttons (myApplet))
+	{
+		*bStartAnimation = TRUE;
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
