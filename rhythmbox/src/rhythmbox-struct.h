@@ -41,7 +41,7 @@ struct _AppletConfig {
 	gchar *defaultTitle;
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	gboolean bStealTaskBarIcon;
-	gboolean extendedDesklet;
+	//gboolean extendedDesklet;
 	
 	gboolean bOpenglThemes;
 	gboolean bOverrideOsd;
@@ -52,7 +52,7 @@ struct _AppletData {
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
 	cairo_surface_t *pCover;
 	gboolean dbus_enable;
-	gboolean opening;
+	gboolean bIsRunning;
 	gboolean playing;
 	gboolean cover_exist;
 	gboolean b3dThemesDebugMode;
@@ -127,6 +127,7 @@ struct _AppletData {
 	gboolean NoOSD;
 	
 	gboolean CoverWasDistant;
+	gint iAnimationCount;
 	} ;
 
 

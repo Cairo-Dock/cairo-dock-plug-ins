@@ -22,33 +22,33 @@ CD_APPLET_DEFINITION ("Rhythmbox",
 	"Adrien Pilleboue (Necropotame) & Nochka85 (Opengl display)")
 
 CD_APPLET_INIT_BEGIN
-	if (myDesklet)
+	if (myDesklet)  // on definit un mode de rendu pour notre desklet.
 	{
-		if (myConfig.extendedDesklet)
+		/*if (myConfig.extendedDesklet)
 		{
 			rhythmbox_add_buttons_to_desklet ();
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Controler", data);
 		}
-		else
+		else*/
 		{
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 	}
 	
-	// on initialise DBus.
+	//\_______________ on initialise DBus et on recupere l'etat courant si RB est deja lance.
 	myData.dbus_enable = rhythmbox_dbus_connect_to_bus ();
 	if (myData.dbus_enable)
 	{
 		dbus_detect_rhythmbox();
-		if(myData.opening)
+		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 		{
 			rhythmbox_getPlaying();
 			rhythmbox_getPlayingUri();
 			getSongInfos();
 			update_icon( FALSE );
 		}
-		else
+		else  // player eteint.
 		{
 			rhythmbox_set_surface (PLAYER_NONE);
 		}
@@ -58,10 +58,10 @@ CD_APPLET_INIT_BEGIN
 		rhythmbox_set_surface (PLAYER_BROKEN);
 	}
 	
-	// on gere l'icone de l'appli rhythmbox.
+	//\_______________ On prend en charge l'icone de l'appli rhythmbox.
 	CD_APPLET_MANAGE_APPLICATION ("rhythmbox", myConfig.bStealTaskBarIcon);
 	
-	//Enregistrement des notifications
+	//\_______________ Enregistrement des notifications
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -69,8 +69,8 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 	{
-		cd_opengl_load_3D_theme (myApplet, myConfig.cThemePath);
-		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
+		myConfig.bOpenglThemes = cd_opengl_load_3D_theme (myApplet, myConfig.cThemePath);
+		//CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 		if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
 			cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED,
 				(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
@@ -78,7 +78,6 @@ CD_APPLET_INIT_BEGIN
 				myApplet);
 		
 	}
-	myData.CoverWasDistant = FALSE;
 CD_APPLET_INIT_END
 
 
@@ -104,7 +103,7 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (CD_APPLET_MY_CONFIG_CHANGED && myDesklet)
+	/*if (CD_APPLET_MY_CONFIG_CHANGED && myDesklet)
 	{
 		if ( ! myConfig.extendedDesklet && myDesklet->icons != NULL)
 		{
@@ -116,16 +115,16 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			rhythmbox_add_buttons_to_desklet ();
 		}
-	}
+	}*/
 	
 	if (myDesklet)
 	{
-		if (myConfig.extendedDesklet)
+		/*if (myConfig.extendedDesklet)
 		{
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Controler", data);
 		}
-		else
+		else*/
 		{
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
@@ -152,8 +151,8 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (myConfig.bOpenglThemes)
 		{
-			cd_opengl_load_3D_theme (myApplet, myConfig.cThemePath);			
-			CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
+			myConfig.bOpenglThemes = cd_opengl_load_3D_theme (myApplet, myConfig.cThemePath);			
+			//CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 			if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
 				cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED,
 					(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
@@ -165,7 +164,7 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On redessine notre icone.
 	if (myData.dbus_enable)
 	{
-		if(myData.opening)
+		if(myData.bIsRunning)
 		{
 			update_icon( FALSE );
 		}

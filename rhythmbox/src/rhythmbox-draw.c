@@ -5,9 +5,10 @@
 #include "rhythmbox-draw.h"
 #include "3dcover-draw.h"
 
-static gchar *s_cIconName[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg", "pause.jpg", "stop.jpg", "broken.jpg"};
+static gchar *s_cDefaultIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
+static gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg", "pause.jpg", "stop.jpg", "broken.jpg"};
 
-static GList * _list_icons (void)
+/*static GList * _list_icons (void)
 {
 	GList *pIconList = NULL;
 	Icon *pIcon;
@@ -36,7 +37,7 @@ void rhythmbox_add_buttons_to_desklet (void)
 		GList *pIconList = _list_icons ();
 		myDesklet->icons = pIconList;
 	}
-}
+}*/
 
 void rhythmbox_iconWitness(int animationLength)
 {
@@ -45,7 +46,7 @@ void rhythmbox_iconWitness(int animationLength)
 
 gboolean _rhythmbox_check_cover_is_present (gpointer data)
 {
-	cd_debug ("%s (%s)", __func__, myData.playing_cover);
+	//g_print ("%s (%s)\n", __func__, myData.playing_cover);
 	if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 	{
 		cd_message ("RB : la couverture '%s' est desormais disponible", myData.playing_cover);
@@ -142,7 +143,7 @@ void update_icon(gboolean make_witness)
 	{
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-		if (myData.opening)
+		if (myData.bIsRunning)
 			rhythmbox_set_surface (PLAYER_STOPPED);  // je ne sais pas si en mode Stopped la chanson est NULL ou pas...
 		else
 			rhythmbox_set_surface (PLAYER_NONE);
@@ -168,19 +169,23 @@ void music_dialog(void)
 void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 {
 	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
+	gboolean bUse3DTheme = (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes);
+	gchar **cIconName = (bUse3DTheme ? s_cDefaultIconName3D : s_cDefaultIconName);
 	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];
-	if (pSurface == NULL) {
+	
+	if (pSurface == NULL)  // surface pas encore chargee.
+	{
 		if (myConfig.cUserImage[iStatus] != NULL) {
 			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iStatus]);
 			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 			g_free (cUserImagePath);
 		}
 		else {
-			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iStatus]);
+			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, cIconName[iStatus]);
 			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
 			g_free (cImagePath);
 		}
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
+		if (bUse3DTheme)
 		{
 			if (myData.TextureCover != 0)
 				_cairo_dock_delete_texture (myData.TextureCover);
@@ -193,8 +198,9 @@ void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 			CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[iStatus]);
 		}
 	}
-	else {
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
+	else  // surface en memoire.
+	{
+		if (bUse3DTheme)
 		{
 			if (myData.TextureCover != 0)
 				_cairo_dock_delete_texture (myData.TextureCover);

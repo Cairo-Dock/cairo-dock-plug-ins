@@ -91,7 +91,7 @@ void rhythmbox_dbus_disconnect_from_bus (void)
 void dbus_detect_rhythmbox(void)
 {
 	cd_message ("");
-	myData.opening = cairo_dock_dbus_detect_application ("org.gnome.Rhythmbox");
+	myData.bIsRunning = cairo_dock_dbus_detect_application ("org.gnome.Rhythmbox");
 }
 
 
@@ -171,7 +171,7 @@ void getSongInfos(void)
 			
 			if (cString != NULL)
 			{
-				if(strncmp(cString, "http://", 7) == 0)
+				if(strncmp(cString, "http://", 7) == 0)  // ce cas arrive-t-il ? j'ai l'impression que RB ne nous file l'adresse que quand il l'a deja dans son cache (ou en local ?).
 				{
 					cd_debug("RB-YDU : Le fichier est distant");
 					gchar *cCommand = g_strdup_printf ("wget -O %s/.cache/rhythmbox/covers/\"%s - %s.jpg\" %s",
@@ -256,7 +256,7 @@ void getSongInfos(void)
 			}	
 		}
 				
-		g_print ("  playing_cover <- %s", myData.playing_cover);  // a la fin de tout ca, playing_cover est non NULL, mais le fichier n'est peut-etre pas encore dispo sur le disque.
+		g_print ("  playing_cover <- %s\n", myData.playing_cover);  // a la fin de tout ca, playing_cover est non NULL, mais le fichier n'est peut-etre pas encore dispo sur le disque.
 		
 		g_hash_table_destroy (data_list);
 	}
@@ -284,7 +284,8 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 	if(uri != NULL && *uri != '\0')
 	{
 		myData.playing_uri = g_strdup (uri);
-		myData.opening = TRUE;
+		myData.bIsRunning = TRUE;  // s'il n'etait pas ouvert au demarrage de l'applet, on ne l'a pas detecte. Il le sera donc ici.
+		myData.cover_exist = FALSE;
 		getSongInfos();
 	}
 	else

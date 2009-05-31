@@ -71,7 +71,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		// Actions au clic sur un bouton :
 		if (myData.mouseOnButton1)
 		{
-			if(myData.opening)
+			if(myData.bIsRunning)
 			{
 				if(myData.playing)
 				{
@@ -95,7 +95,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			g_spawn_command_line_async ("rhythmbox", NULL);
 		else
 		{
-			if(myData.opening)
+			if(myData.bIsRunning)
 				music_dialog();
 			else
 				g_spawn_command_line_async ("rhythmbox", NULL);
@@ -105,7 +105,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		cd_message ("");
 		
-		if(myData.opening)
+		if(myData.bIsRunning)
 		{
 			if(myData.playing)
 			{
@@ -200,7 +200,14 @@ CD_APPLET_ON_SCROLL_END
 
 CD_APPLET_ON_UPDATE_ICON_BEGIN
 
+	myData.iAnimationCount ++;
 	cd_opengl_render_to_texture (myApplet);
+	
+	if (myData.iAnimationCount == 8)
+	{
+		myData.iAnimationCount = 0;
+		CD_APPLET_STOP_UPDATE_ICON;
+	}
 	
 CD_APPLET_ON_UPDATE_ICON_END
 

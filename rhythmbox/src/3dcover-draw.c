@@ -16,7 +16,7 @@
 	_check_error(erreur);\
 	if (cImageName != NULL) {\
 		g_string_printf (sImagePath, "%s/%s", cThemePath, cImageName);\
-		myData.TextureFrame = cairo_dock_create_texture_from_image (sImagePath->str);\
+		texture = cairo_dock_create_texture_from_image (sImagePath->str);\
 		g_free (cImageName); }
 
 gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath)
@@ -241,6 +241,7 @@ void cd_opengl_reset_opengl_datas (CairoDockModuleInstance *myApplet)
 
 void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
 {
+	//g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode( GL_MODELVIEW );
     glLoadIdentity( );
@@ -270,7 +271,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 	// Affichage de l'osd PAUSE
 	if (myConfig.bOverrideOsd && !myData.playing && myData.numberButtons != 0)
 	{
-		if(myData.opening)
+		if(myData.bIsRunning)
 		{
 			glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPause);
 			glCallList(myData.draw_cover);
@@ -278,7 +279,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 	}
 	else if (myData.osd && myData.cover_exist && myData.NoOSD)
 	{
-		if (myData.opening)
+		if (myData.bIsRunning)
 		{
 			if (myData.playing)
 			{
@@ -300,7 +301,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 			cairo_dock_apply_texture (myData.TextureButton1);
 			if (myData.osd && !myConfig.bOverrideOsd)
 			{
-				if (myData.opening)
+				if (myData.bIsRunning)
 				{
 					if (myData.playing)
 					{

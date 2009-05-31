@@ -22,7 +22,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserImage[PLAYER_STOPPED] 		= CD_CONFIG_GET_STRING ("Configuration", "stop icon");
 	myConfig.cUserImage[PLAYER_BROKEN] 		= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 	
-	myConfig.extendedDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
+	//myConfig.extendedDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
 	
 	myConfig.bOpenglThemes = CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_opengl_themes");
 	if (myConfig.bOpenglThemes)
