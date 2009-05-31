@@ -1,6 +1,4 @@
 #!/bin/sh
-if [ ! -w $2 ] ; then exit 1 ; fi
-pgrep compiz > /dev/null && COMPIZ=1 || COMPIZ=0
-pgrep $1 > /dev/null && DECORATOR=1 || DECORATOR=0
 
-echo "$COMPIZ$DECORATOR" > $2
+pgrep compiz > /dev/null && echo -n 1 || echo -n 0
+pgrep $1 > /dev/null && echo -n 1 || echo -n 0

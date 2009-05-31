@@ -33,8 +33,10 @@
 void _cd_weblets_set_crop_position (CairoDockModuleInstance *myApplet)
 {
 	GtkAdjustment *pGtkAdjustmentH = gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed));
+	gtk_adjustment_set_value(pGtkAdjustmentH, 0);
 	gtk_adjustment_set_value(pGtkAdjustmentH, myConfig.iPosScrollX);
 	GtkAdjustment *pGtkAdjustmentV = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed));
+	gtk_adjustment_set_value(pGtkAdjustmentV, 0);
 	gtk_adjustment_set_value(pGtkAdjustmentV, myConfig.iPosScrollY);
 }
 

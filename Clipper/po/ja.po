@@ -201,14 +201,6 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:79
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
-
-#: ../data/messages:81
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
-
-#: ../data/messages:83
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -217,11 +209,36 @@ msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (name=cairo-dock & type=utility)"
 
+#: ../data/messages:81
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:85
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:87
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:89
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+#: ../data/messages:91
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:93
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:95
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -230,32 +247,32 @@ msgstr ""
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Lock position ?"
 msgstr "位置を固定？"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "in degrees."
 msgstr "角度"
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Rotation :"
 msgstr "回転 :"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Decorations"
 msgstr "装飾"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -263,47 +280,47 @@ msgstr ""
 "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
 "欄のままにしてください。"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Background image :"
 msgstr "背景画像 :"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "Top offset :"
 msgstr "上方向のオフセット :"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
-#: ../data/messages:121
+#: ../data/messages:129
 msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -311,19 +328,19 @@ msgstr ""
 "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
 "合は空欄のままにしてください。"
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "Foreground image :"
 msgstr "前景画像 :"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:129
+#: ../data/messages:137
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:131
+#: ../data/messages:139
 msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
@@ -331,31 +348,31 @@ msgstr ""
 "クリップボード・アイテムは、CTRL+c で取得するアイテムです。セレクション・アイ"
 "テムは、マウスでテキストを選択することで取得するアイテムです。"
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "Which items should be remembered ?"
 msgstr "どちらのアイテムを記録？"
 
-#: ../data/messages:135
+#: ../data/messages:143
 msgid "None"
 msgstr "しない"
 
-#: ../data/messages:137
+#: ../data/messages:145
 msgid "Clipboard"
 msgstr "クリップボード"
 
-#: ../data/messages:139
+#: ../data/messages:147
 msgid "Selection"
 msgstr "セレクション"
 
-#: ../data/messages:141
+#: ../data/messages:149
 msgid "Both"
 msgstr "両方"
 
-#: ../data/messages:143
+#: ../data/messages:151
 msgid "Number of items :"
 msgstr "アイテム数 :"
 
-#: ../data/messages:145
+#: ../data/messages:153
 msgid ""
 "It is especially usefull if you often select text with mouse and don't want "
 "to lose your clipboard items because of a great number of selection items."
@@ -363,25 +380,25 @@ msgstr ""
 "マウスでテキストを頻繁に選択していて、その大量の選択アイテムによってクリップ"
 "ボード・アイテムが失われてしまうことがないようにしたい場合に特に有用です。"
 
-#: ../data/messages:147
+#: ../data/messages:155
 msgid "Separate clipboard and selection ?"
 msgstr "クリップボードとセレクションを分離？"
 
-#: ../data/messages:149
+#: ../data/messages:157
 msgid "If so, number of selection items :"
 msgstr "分離させる場合のセレクション・アイテム数 :"
 
-#: ../data/messages:151
+#: ../data/messages:159
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
 "アイテムをクリックしたときに、それが CTRL+v でアクセスできる状態になります。"
 
-#: ../data/messages:153
+#: ../data/messages:161
 msgid "Paste into Clipboard ?"
 msgstr "クリップボードに貼り付け？"
 
-#: ../data/messages:155
+#: ../data/messages:163
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
@@ -389,23 +406,23 @@ msgstr ""
 "アイテムをクリックしたときに、それが中クリックでアクセスできる状態になりま"
 "す。"
 
-#: ../data/messages:157
+#: ../data/messages:165
 msgid "Paste into Selection ?"
 msgstr "セレクションに貼り付け？"
 
-#: ../data/messages:159
+#: ../data/messages:167
 msgid "Shortkey to pop-up the items menu :"
 msgstr "アイテム・メニュー表示のショートカット :"
 
-#: ../data/messages:161
+#: ../data/messages:169
 msgid "Pop-up menus at mouse position ?"
 msgstr "マウス位置にポップアップ表示？"
 
-#: ../data/messages:163
+#: ../data/messages:171
 msgid "Actions"
 msgstr "アクション"
 
-#: ../data/messages:165
+#: ../data/messages:173
 msgid ""
 "If some actions are associated with an item, they will be proposed to you "
 "when the item is created."
@@ -413,33 +430,39 @@ msgstr ""
 "アイテムにアクションが関連付けられている場合、アイテムが作成された時点でその"
 "アクションを提示します。"
 
-#: ../data/messages:167
+#: ../data/messages:175
 msgid "Enable actions ?"
 msgstr "アクションを有効化？"
 
-#: ../data/messages:169
+#: ../data/messages:177
 msgid "Display the actions when selecting an item in the history."
 msgstr "履歴にあるアイテムを選択したときにアクションを表示します。"
 
-#: ../data/messages:171
+#: ../data/messages:179
 msgid "Replay actions ?"
 msgstr "アクションを再提示？"
 
-#: ../data/messages:173
+#: ../data/messages:181
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:175
+#: ../data/messages:183
 msgid "Duration of the action menu :"
 msgstr "アクション・メニューの継続時間 :"
 
-#: ../data/messages:177
+#: ../data/messages:185
 msgid "Persistent items"
 msgstr "定形文登録アイテム"
 
-#: ../data/messages:179
+#: ../data/messages:187
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr "中クリックでアクセス可能な定形文として登録されたアイテムのリスト :"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
 
 #~ msgid ""
 #~ "This is the Clipper applet\n"

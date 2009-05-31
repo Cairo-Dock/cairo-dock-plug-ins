@@ -195,14 +195,6 @@ msgid "Is detached from the dock ?"
 msgstr "从dock移开？"
 
 #: ../data/messages:79
-msgid "Keep below other windows ?"
-msgstr "位于最下窗口？"
-
-#: ../data/messages:81
-msgid "Keep above other windows ?"
-msgstr "窗口置顶？"
-
-#: ../data/messages:83
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -211,212 +203,243 @@ msgstr ""
 "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
 "type=utility) "
 
+#: ../data/messages:81
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:85
-msgid "Keep on widget layer ?"
-msgstr "保持于小应用程序层？"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:87
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:89
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "保持于小应用程序层？"
+
+#: ../data/messages:91
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:93
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:95
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Lock position ?"
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:129
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:129
+#: ../data/messages:137
 msgid "Configuration"
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:139
 msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "Which items should be remembered ?"
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:143
 msgid "None"
 msgstr ""
 
-#: ../data/messages:137
+#: ../data/messages:145
 msgid "Clipboard"
 msgstr ""
 
-#: ../data/messages:139
+#: ../data/messages:147
 msgid "Selection"
 msgstr ""
 
-#: ../data/messages:141
+#: ../data/messages:149
 msgid "Both"
 msgstr ""
 
-#: ../data/messages:143
+#: ../data/messages:151
 msgid "Number of items :"
 msgstr ""
 
-#: ../data/messages:145
+#: ../data/messages:153
 msgid ""
 "It is especially usefull if you often select text with mouse and don't want "
 "to lose your clipboard items because of a great number of selection items."
 msgstr ""
 
-#: ../data/messages:147
+#: ../data/messages:155
 msgid "Separate clipboard and selection ?"
 msgstr ""
 
-#: ../data/messages:149
+#: ../data/messages:157
 msgid "If so, number of selection items :"
 msgstr ""
 
-#: ../data/messages:151
+#: ../data/messages:159
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
 
-#: ../data/messages:153
+#: ../data/messages:161
 msgid "Paste into Clipboard ?"
 msgstr ""
 
-#: ../data/messages:155
+#: ../data/messages:163
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
 msgstr ""
 
-#: ../data/messages:157
+#: ../data/messages:165
 msgid "Paste into Selection ?"
 msgstr ""
 
-#: ../data/messages:159
+#: ../data/messages:167
 msgid "Shortkey to pop-up the items menu :"
 msgstr ""
 
-#: ../data/messages:161
+#: ../data/messages:169
 msgid "Pop-up menus at mouse position ?"
 msgstr ""
 
-#: ../data/messages:163
+#: ../data/messages:171
 msgid "Actions"
 msgstr ""
 
-#: ../data/messages:165
+#: ../data/messages:173
 msgid ""
 "If some actions are associated with an item, they will be proposed to you "
 "when the item is created."
 msgstr ""
 
-#: ../data/messages:167
+#: ../data/messages:175
 msgid "Enable actions ?"
 msgstr ""
 
-#: ../data/messages:169
+#: ../data/messages:177
 msgid "Display the actions when selecting an item in the history."
 msgstr ""
 
-#: ../data/messages:171
+#: ../data/messages:179
 msgid "Replay actions ?"
 msgstr ""
 
-#: ../data/messages:173
+#: ../data/messages:181
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:175
+#: ../data/messages:183
 msgid "Duration of the action menu :"
 msgstr ""
 
-#: ../data/messages:177
+#: ../data/messages:185
 msgid "Persistent items"
 msgstr ""
 
-#: ../data/messages:179
+#: ../data/messages:187
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr ""
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "位于最下窗口？"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "窗口置顶？"
 
 #, fuzzy
 #~ msgid ""

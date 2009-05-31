@@ -1,14 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2007 Cairo-Dock project
-# This file is distributed under the same license as the Cairo-Dock package.
-# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"POT-Creation-Date: 2009-05-31 01:31+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,9 +30,8 @@ msgid "Quick launch"
 msgstr ""
 
 #: ../src/applet-notifications.c:145
-#, fuzzy
 msgid "Configure menu"
-msgstr "Configurazione"
+msgstr ""
 
 #: ../src/applet-notifications.c:146
 msgid "Clear recent"
@@ -49,72 +51,63 @@ msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
-msgstr "Icona"
+msgstr ""
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "Lasciare vuoto per usare quello di defaut."
+msgstr ""
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
-msgstr "Dimensione dell'icona desiderata per questa applet"
+msgstr ""
 
 #: ../data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+msgstr ""
 
 #: ../data/messages:9 ../data/messages:93
 msgid "Let empty to use the default one."
-msgstr "Lasciare vuoto per usare quello di defaut."
+msgstr ""
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Image's filename :"
-msgstr "Nome dell'icona :"
+msgstr ""
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
-msgstr "Nome della barra alla quale appartiene:"
+msgstr ""
 
 #: ../data/messages:15
 msgid "Desklet"
-msgstr "Desklet"
+msgstr ""
 
 #: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"centrale o ALT + click sinistro come esempio."
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
-msgstr "Dimensione della desklet (larghezza x altezza) :"
+msgstr ""
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
-"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"sinistro"
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
-msgstr "Posizione della desklet (x ; y) :"
+msgstr ""
 
 #: ../data/messages:25
 msgid "Is detached from the dock ?"
-msgstr "E' staccata dalla barra ?"
+msgstr ""
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
-"di Compiz a : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Accessibility :"
@@ -133,9 +126,8 @@ msgid "Keep below"
 msgstr ""
 
 #: ../data/messages:37
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "Mantenere nella sezione dei widget ?"
+msgstr ""
 
 #: ../data/messages:39
 msgid "Reserve space"
@@ -150,110 +142,98 @@ msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
-"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
-"con ALT + click sinistro."
 
 #: ../data/messages:45
 msgid "Lock position ?"
-msgstr "Bloccare la posizione ?"
+msgstr ""
 
 #: ../data/messages:47
 msgid "in degrees."
-msgstr "in gradi."
+msgstr ""
 
 #: ../data/messages:49
 msgid "Rotation :"
-msgstr "Rotazione :"
+msgstr ""
 
 #: ../data/messages:51
 msgid "Decorations"
-msgstr "Decorazioni"
+msgstr ""
 
 #: ../data/messages:53
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
-"Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
 #: ../data/messages:55
 msgid "Choose a decoration theme for this desklet :"
-msgstr "Scegliere un tema decorativo per questa desklet :"
+msgstr ""
 
 #: ../data/messages:57
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
-"E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
-"esempio. Lasciare vuoto per non utilizzarne."
 
 #: ../data/messages:59
 msgid "Background image :"
-msgstr "Immagine dello sfondo :"
+msgstr ""
 
 #: ../data/messages:61
 msgid "Background tansparency :"
-msgstr "Trasparenza dello sfondo :"
+msgstr ""
 
 #: ../data/messages:63
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
-"in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
 #: ../data/messages:65
 msgid "Left offset :"
-msgstr "Compensazione a sinistra :"
+msgstr ""
 
 #: ../data/messages:67
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
-"in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
 #: ../data/messages:69
 msgid "Top offset :"
-msgstr "Compensazione in alto :"
+msgstr ""
 
 #: ../data/messages:71
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
-"in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
 #: ../data/messages:73
 msgid "Right offset :"
-msgstr "Compensazione a destra :"
+msgstr ""
 
 #: ../data/messages:75
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
-"in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
 #: ../data/messages:77
 msgid "Bottom offset :"
-msgstr "Compensazione in basso :"
+msgstr ""
 
 #: ../data/messages:79
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
-"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per "
-"esempio. Lasciare vuoto per non usarla."
 
 #: ../data/messages:81
 msgid "Foreground image :"
-msgstr "Immagine in primo piano :"
+msgstr ""
 
 #: ../data/messages:83
 msgid "Foreground tansparency :"
-msgstr "Trasparenza in primo piano :"
+msgstr ""
 
 #: ../data/messages:85
 msgid "Configuration"
-msgstr "Configurazione"
+msgstr ""
 
 #: ../data/messages:87
 msgid "Display icons in the menu ?"
-msgstr "Mostrare le icone nel menu ?"
+msgstr ""
 
 #: ../data/messages:89
 msgid "Shortkey to show/hide the menu :"
@@ -276,9 +256,8 @@ msgid "Show recent documents ?"
 msgstr ""
 
 #: ../data/messages:101
-#, fuzzy
 msgid "Let blank to not use this filter."
-msgstr "Lasciare vuoto per usare quello di defaut."
+msgstr ""
 
 #: ../data/messages:103
 msgid "Only show files that are under this folder or its sub-folder :"
@@ -291,25 +270,3 @@ msgstr ""
 #: ../data/messages:107
 msgid "Only show files whose last modification date is less than ;"
 msgstr ""
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Mantenere al di sotto delle altre finestre ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Mantenere al di sopra delle altre finestre ?"
-
-#~ msgid ""
-#~ "This is the GMenu applet\n"
-#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
-#~ msgstr ""
-#~ "Questa è l'applet GMenu\n"
-#~ " scritta da Fabounet (Fabrice Rey) per Cairo-Dock"
-
-#~ msgid "width :"
-#~ msgstr "larghezza :"
-
-#~ msgid "height :"
-#~ msgstr "altezza :"
-
-#~ msgid "Module"
-#~ msgstr "Modulo"

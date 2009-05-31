@@ -7,16 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Yann SLADEK\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Language-Team: \n"
 
-#: ../src/applet-config.c:23
-#: ../src/applet-notifications.c:27
+#: ../src/applet-config.c:23 ../src/applet-notifications.c:27
 msgid "No items yet."
 msgstr "Encore aucun objet."
 
@@ -24,15 +22,22 @@ msgstr "Encore aucun objet."
 msgid ""
 "This applet keeps a trace of the clipboard and mouse selection,\n"
 "so that you can recall them quickly. It's a clone of the well-know Klipper.\n"
-"It supports clipboard and mouse selection, predefined actions, and persistent items.\n"
+"It supports clipboard and mouse selection, predefined actions, and "
+"persistent items.\n"
 "Left-click to popup the clipboard and mouse selection history,\n"
-"Drop text on the icon to create persistent items, and middle-clck to recall them."
+"Drop text on the icon to create persistent items, and middle-clck to recall "
+"them."
 msgstr ""
-"Cet applet garde un historique du presse-papier et des objets sélectionnés avec la souris,\n"
-"afin que vous puissiez les rappeler rapidement. C'est un clone du très connu Klipper.\n"
-"Le presse-papier, les sélections avec la souris, les actions prédéfinies et les objets persistants sont gérés.\n"
-"Clique gauche pour ouvrir l'historique du presse-papier et des sélections par la souris.\n"
-"Déposer du texte sur l'icône pour créer des objets persistants, clique du milieu pour rappeler ceux-ci."
+"Cet applet garde un historique du presse-papier et des objets sélectionnés "
+"avec la souris,\n"
+"afin que vous puissiez les rappeler rapidement. C'est un clone du très connu "
+"Klipper.\n"
+"Le presse-papier, les sélections avec la souris, les actions prédéfinies et "
+"les objets persistants sont gérés.\n"
+"Clique gauche pour ouvrir l'historique du presse-papier et des sélections "
+"par la souris.\n"
+"Déposer du texte sur l'icône pour créer des objets persistants, clique du "
+"milieu pour rappeler ceux-ci."
 
 #: ../src/applet-notifications.c:72
 msgid ""
@@ -179,8 +184,12 @@ msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:69
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec ALT + clic_milieu ou ALT + clic_droit par exemple."
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
+"ALT + clic_milieu ou ALT + clic_droit par exemple."
 
 #: ../data/messages:71
 msgid "Desklet's dimension (width x height) :"
@@ -188,7 +197,9 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:73
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + clic gauche."
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
 
 #: ../data/messages:75
 msgid "Desklet's position (x ; y) :"
@@ -199,208 +210,271 @@ msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:79
-msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+"Compiz à : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:81
-msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
+msgid "Accessibility :"
+msgstr ""
 
 #: ../data/messages:83
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de Compiz à : (class=Cairo-dock & type=utility)"
+msgid "Normal"
+msgstr ""
 
 #: ../data/messages:85
-msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:87
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé avec ALT + clique_gauche"
+msgid "Keep below"
+msgstr ""
 
 #: ../data/messages:89
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Garder sur la couche des widgets ?"
+
+#: ../data/messages:91
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:93
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:95
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Si verrouillé, le desklet ne pourra pas être bougé simplement en le tirant "
+"avec le bouton gauche de la souris. Bien sur il pourra toujours être bougé "
+"avec ALT + clique_gauche"
+
+#: ../data/messages:97
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Choisissez le thème 'personnal' pour définir vos propres décorations ci-dessous."
+msgstr ""
+"Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
+"dessous."
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:101
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée derrière les dessins, comme un cadre par exemple. Laissez vide pour n'en utiliser aucune."
+#: ../data/messages:109
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée derrière les dessins, comme un cadre par "
+"exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:121
+#: ../data/messages:129
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:123
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "C'est une image qui sera affichée par-dessus les dessins, comme un reflet par exemple. Laissez vide pour n'en utiliser aucune."
+#: ../data/messages:131
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
+"par exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "Foreground image :"
 msgstr "Image d'avant-plan :"
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:129
+#: ../data/messages:137
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:131
-msgid "Clipboard items are those you get with CTRL+c. Selection items are those you get by selecting some text with the mouse."
-msgstr "Les items du clipboard sont ceux obtenus par CTRL+c. Les items de sélections sont ceux obtenus en sélectionnant une portion de texte avec la souris."
+#: ../data/messages:139
+msgid ""
+"Clipboard items are those you get with CTRL+c. Selection items are those you "
+"get by selecting some text with the mouse."
+msgstr ""
+"Les items du clipboard sont ceux obtenus par CTRL+c. Les items de sélections "
+"sont ceux obtenus en sélectionnant une portion de texte avec la souris."
 
-#: ../data/messages:133
+#: ../data/messages:141
 msgid "Which items should be remembered ?"
 msgstr "Quels items doivent être conservés ?"
 
-#: ../data/messages:135
+#: ../data/messages:143
 msgid "None"
 msgstr "Aucun"
 
-#: ../data/messages:137
+#: ../data/messages:145
 msgid "Clipboard"
 msgstr "Clipboard"
 
-#: ../data/messages:139
+#: ../data/messages:147
 msgid "Selection"
 msgstr "Sélection"
 
-#: ../data/messages:141
+#: ../data/messages:149
 msgid "Both"
 msgstr "Les deux"
 
-#: ../data/messages:143
+#: ../data/messages:151
 msgid "Number of items :"
 msgstr "Nombre d'items :"
 
-#: ../data/messages:145
-msgid "It is especially usefull if you often select text with mouse and don't want to lose your clipboard items because of a great number of selection items."
-msgstr "C'est particulièrement utile si vous sélectionnez souvent du texte et ne voulez pas perdre vos items du clipboard à cause d'un trop grand nombre de sélections."
+#: ../data/messages:153
+msgid ""
+"It is especially usefull if you often select text with mouse and don't want "
+"to lose your clipboard items because of a great number of selection items."
+msgstr ""
+"C'est particulièrement utile si vous sélectionnez souvent du texte et ne "
+"voulez pas perdre vos items du clipboard à cause d'un trop grand nombre de "
+"sélections."
 
-#: ../data/messages:147
+#: ../data/messages:155
 msgid "Separate clipboard and selection ?"
 msgstr "Séparer le clipboard de la sélection ?"
 
-#: ../data/messages:149
+#: ../data/messages:157
 msgid "If so, number of selection items :"
 msgstr "Si oui, nombre d'items de sélection :"
 
-#: ../data/messages:151
-msgid "When you click on an item, its content will become accessible with CTRL+v"
-msgstr "Lorsque vous cliquez sur un item, son contenu deviendra accessible avec CTRL+v"
+#: ../data/messages:159
+msgid ""
+"When you click on an item, its content will become accessible with CTRL+v"
+msgstr ""
+"Lorsque vous cliquez sur un item, son contenu deviendra accessible avec CTRL"
+"+v"
 
-#: ../data/messages:153
+#: ../data/messages:161
 msgid "Paste into Clipboard ?"
 msgstr "Copier dans le clipboard ?"
 
-#: ../data/messages:155
-msgid "When you click on an item, its content will become accessible with the middle-click"
-msgstr "Quand vous cliquez sur un item, son contenu sera accessible par un clic milieu"
+#: ../data/messages:163
+msgid ""
+"When you click on an item, its content will become accessible with the "
+"middle-click"
+msgstr ""
+"Quand vous cliquez sur un item, son contenu sera accessible par un clic "
+"milieu"
 
-#: ../data/messages:157
+#: ../data/messages:165
 msgid "Paste into Selection ?"
 msgstr "Copier dans la sélection ?"
 
-#: ../data/messages:159
+#: ../data/messages:167
 msgid "Shortkey to pop-up the items menu :"
 msgstr "Raccourci clavier pour montrer le menu des items :"
 
-#: ../data/messages:161
+#: ../data/messages:169
 msgid "Pop-up menus at mouse position ?"
 msgstr "Montrer les menus à la position du curseur ?"
 
-#: ../data/messages:163
+#: ../data/messages:171
 msgid "Actions"
 msgstr "Actions"
 
-#: ../data/messages:165
-msgid "If some actions are associated with an item, they will be proposed to you when the item is created."
-msgstr "Si des actions sont associées avec un item, elles vous seront proposées lorsque l'item est créé."
+#: ../data/messages:173
+msgid ""
+"If some actions are associated with an item, they will be proposed to you "
+"when the item is created."
+msgstr ""
+"Si des actions sont associées avec un item, elles vous seront proposées "
+"lorsque l'item est créé."
 
-#: ../data/messages:167
+#: ../data/messages:175
 msgid "Enable actions ?"
 msgstr "Activer les actions ?"
 
-#: ../data/messages:169
+#: ../data/messages:177
 msgid "Display the actions when selecting an item in the history."
-msgstr "Montre les actions lorsque vous sélectionnez un item dans l'historique."
+msgstr ""
+"Montre les actions lorsque vous sélectionnez un item dans l'historique."
 
-#: ../data/messages:171
+#: ../data/messages:179
 msgid "Replay actions ?"
 msgstr "Rejouer les actions ?"
 
-#: ../data/messages:173
+#: ../data/messages:181
 msgid "in seconds."
 msgstr "en secondes."
 
-#: ../data/messages:175
+#: ../data/messages:183
 msgid "Duration of the action menu :"
 msgstr "Durée du menu des actions :"
 
-#: ../data/messages:177
+#: ../data/messages:185
 msgid "Persistent items"
 msgstr "Items persistants"
 
-#: ../data/messages:179
+#: ../data/messages:187
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr "Une liste d'item persistant, accessibles par clic milieu :"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Garder en-dessous des autres fenêtres ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Garder au-dessus des autres fenêtres ?"
 
 #~ msgid ""
 #~ "This is the Clipper applet\n"
@@ -408,8 +482,9 @@ msgstr "Une liste d'item persistant, accessibles par clic milieu :"
 #~ msgstr ""
 #~ "Ceci est l'applet Clipper\n"
 #~ " écrite par Fabrice Rey (Fabounet) pour Cairo-Dock"
+
 #~ msgid "width :"
 #~ msgstr "largeur :"
+
 #~ msgid "height :"
 #~ msgstr "hauteur :"
-

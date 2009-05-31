@@ -1,21 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2007 Cairo-Dock project
-# This file is distributed under the same license as the Cairo-Dock package.
-# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"POT-Creation-Date: 2009-05-31 01:30+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-config.c:23 ../src/applet-notifications.c:27
 msgid "No items yet."
-msgstr "Nessun oggetto ancora."
+msgstr ""
 
 #: ../src/applet-init.c:22
 msgid ""
@@ -33,116 +36,114 @@ msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
 msgstr ""
-"Nessun oggetto persistente.\n"
-"Se ne possono aggiungere copiando e incollando dei testi nell'icona."
 
 #: ../data/messages:1
 msgid "Action_0"
-msgstr "Azione_0"
+msgstr ""
 
 #: ../data/messages:3
 msgid "Action_0/Command_0"
-msgstr "Azione_0/Comando_0"
+msgstr ""
 
 #: ../data/messages:5
 msgid "Action_1"
-msgstr "Azione_1"
+msgstr ""
 
 #: ../data/messages:7
 msgid "Action_1/Command_0"
-msgstr "Azione_1/Comando_0"
+msgstr ""
 
 #: ../data/messages:9
 msgid "Action_1/Command_1"
-msgstr "Azione_1/Comando_1"
+msgstr ""
 
 #: ../data/messages:11
 msgid "Action_1/Command_2"
-msgstr "Azione_1/Comando_2"
+msgstr ""
 
 #: ../data/messages:13
 msgid "Action_1/Command_3"
-msgstr "Azione_1/Comando_3"
+msgstr ""
 
 #: ../data/messages:15
 msgid "Action_1/Command_4"
-msgstr "Azione_1/Comando_4"
+msgstr ""
 
 #: ../data/messages:17
 msgid "Action_2"
-msgstr "Azione_2"
+msgstr ""
 
 #: ../data/messages:19
 msgid "Action_2/Command_0"
-msgstr "Azione_2/Comando_0"
+msgstr ""
 
 #: ../data/messages:21
 msgid "Action_2/Command_1"
-msgstr "Azione_2/Comando_1"
+msgstr ""
 
 #: ../data/messages:23
 msgid "Action_3"
-msgstr "Azione_3"
+msgstr ""
 
 #: ../data/messages:25
 msgid "Action_3/Command_0"
-msgstr "Azione_3/Comando_0"
+msgstr ""
 
 #: ../data/messages:27
 msgid "Action_3/Command_1"
-msgstr "Azione_3/Comando_1"
+msgstr ""
 
 #: ../data/messages:29
 msgid "Action_4"
-msgstr "Azione_4"
+msgstr ""
 
 #: ../data/messages:31
 msgid "Action_4/Command_0"
-msgstr "Azione_4/Comando_0"
+msgstr ""
 
 #: ../data/messages:33
 msgid "Action_4/Command_1"
-msgstr "Azione_4/Comando_1"
+msgstr ""
 
 #: ../data/messages:35
 msgid "Action_5"
-msgstr "Azione_5"
+msgstr ""
 
 #: ../data/messages:37
 msgid "Action_5/Command_0"
-msgstr "Azione_5/Comando_0"
+msgstr ""
 
 #: ../data/messages:39
 msgid "Action_5/Command_1"
-msgstr "Azione_5/Comando_1"
+msgstr ""
 
 #: ../data/messages:41
 msgid "Action_6"
-msgstr "Azione_6"
+msgstr ""
 
 #: ../data/messages:43
 msgid "Action_6/Command_0"
-msgstr "Azione_6/Comando_0"
+msgstr ""
 
 #: ../data/messages:45
 msgid "Action_6/Command_1"
-msgstr "Azione_6/Comando_1"
+msgstr ""
 
 #: ../data/messages:47
 msgid "Action_6/Command_2"
-msgstr "Azione_6/Comando_2"
+msgstr ""
 
 #: ../data/messages:49
 msgid "Action_6/Command_3"
-msgstr "Azione_6/Comando_3"
+msgstr ""
 
 #: ../data/messages:51
 msgid "Action_6/Command_4"
-msgstr "Azione_6/Comando_4"
+msgstr ""
 
 #: ../data/messages:53
 msgid "Icon"
-msgstr "Icona"
+msgstr ""
 
 #: ../data/messages:55
 msgid "Set to 0 to use the default applet size"
@@ -150,63 +151,55 @@ msgstr ""
 
 #: ../data/messages:57
 msgid "Desired icon size for this applet"
-msgstr "Dimensione dell'icona desiderata per questa applet"
+msgstr ""
 
 #: ../data/messages:59
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+msgstr ""
 
 #: ../data/messages:61
 msgid "Let empty to use the default one."
 msgstr ""
 
 #: ../data/messages:63
-#, fuzzy
 msgid "Image's filename :"
-msgstr "Nome dell'icona :"
+msgstr ""
 
 #: ../data/messages:65
 msgid "Name of the dock it belongs to:"
-msgstr "Nome della dock alla quale appartiene:"
+msgstr ""
 
 #: ../data/messages:67
 msgid "Desklet"
-msgstr "Desklet"
+msgstr ""
 
 #: ../data/messages:69
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"centrale o ALT + click sinistro come esempio."
 
 #: ../data/messages:71
 msgid "Desklet's dimension (width x height) :"
-msgstr "Dimensione della desklet (larghezza x altezza) :"
+msgstr ""
 
 #: ../data/messages:73
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
-"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"sinistro"
 
 #: ../data/messages:75
 msgid "Desklet's position (x ; y) :"
-msgstr "Posizione della desklet (x ; y) :"
+msgstr ""
 
 #: ../data/messages:77
 msgid "Is detached from the dock ?"
-msgstr "E' staccata dalla barra ?"
+msgstr ""
 
 #: ../data/messages:79
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
-"di Compiz a : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:81
 msgid "Accessibility :"
@@ -225,9 +218,8 @@ msgid "Keep below"
 msgstr ""
 
 #: ../data/messages:89
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "Mantenere nella sezione dei widget ?"
+msgstr ""
 
 #: ../data/messages:91
 msgid "Reserve space"
@@ -242,248 +234,200 @@ msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
-"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
-"con ALT + click sinistro."
 
 #: ../data/messages:97
 msgid "Lock position ?"
-msgstr "Bloccare la posizione ?"
+msgstr ""
 
 #: ../data/messages:99
 msgid "in degrees."
-msgstr "in gradi."
+msgstr ""
 
 #: ../data/messages:101
 msgid "Rotation :"
-msgstr "Rotazione :"
+msgstr ""
 
 #: ../data/messages:103
 msgid "Decorations"
-msgstr "Decorazioni"
+msgstr ""
 
 #: ../data/messages:105
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
-"Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
 #: ../data/messages:107
 msgid "Choose a decoration theme for this desklet :"
-msgstr "Scegliere un tema decorativo per questa desklet :"
+msgstr ""
 
 #: ../data/messages:109
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
-"E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
-"esempio. Lasciare vuoto per non utilizzarne."
 
 #: ../data/messages:111
 msgid "Background image :"
-msgstr "Immagine dello sfondo :"
+msgstr ""
 
 #: ../data/messages:113
 msgid "Background tansparency :"
-msgstr "Trasparenza dello sfondo :"
+msgstr ""
 
 #: ../data/messages:115
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
-"in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
 #: ../data/messages:117
 msgid "Left offset :"
-msgstr "Compensazione a sinistra :"
+msgstr ""
 
 #: ../data/messages:119
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
-"in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
 #: ../data/messages:121
 msgid "Top offset :"
-msgstr "Compensazione in alto :"
+msgstr ""
 
 #: ../data/messages:123
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
-"in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
 #: ../data/messages:125
 msgid "Right offset :"
-msgstr "Compensazione a destra :"
+msgstr ""
 
 #: ../data/messages:127
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
-"in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
 #: ../data/messages:129
 msgid "Bottom offset :"
-msgstr "Compensazione in basso :"
+msgstr ""
 
 #: ../data/messages:131
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
-"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per "
-"esempio. Lasciare vuoto per non usarla."
 
 #: ../data/messages:133
 msgid "Foreground image :"
-msgstr "Immagine in primo piano :"
+msgstr ""
 
 #: ../data/messages:135
 msgid "Foreground tansparency :"
-msgstr "Trasparenza in primo piano :"
+msgstr ""
 
 #: ../data/messages:137
 msgid "Configuration"
-msgstr "Configurazione"
+msgstr ""
 
 #: ../data/messages:139
 msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
 msgstr ""
-"Gli oggetti nella clipboard sono quelli che si acquisiscono con CTRL+c. Gli "
-"oggetti selezionati sono quelli che si acquisiscono scegliendo delle parti "
-"di testo col mouse."
 
 #: ../data/messages:141
 msgid "Which items should be remembered ?"
-msgstr "Quali oggetti devono essere ricordarti ?"
+msgstr ""
 
 #: ../data/messages:143
 msgid "None"
-msgstr "Nessuno"
+msgstr ""
 
 #: ../data/messages:145
 msgid "Clipboard"
-msgstr "Clipboard"
+msgstr ""
 
 #: ../data/messages:147
 msgid "Selection"
-msgstr "Selezione"
+msgstr ""
 
 #: ../data/messages:149
 msgid "Both"
-msgstr "Entrambi"
+msgstr ""
 
 #: ../data/messages:151
 msgid "Number of items :"
-msgstr "Numero degli oggetti :"
+msgstr ""
 
 #: ../data/messages:153
 msgid ""
 "It is especially usefull if you often select text with mouse and don't want "
 "to lose your clipboard items because of a great number of selection items."
 msgstr ""
-"E' particolarmente utile se spesse volte si scelgono parti di testo col "
-"mouse e non si vogliono perdere gli oggetti nella clipboard, per il gran "
-"numero degli oggetti selezionati."
 
 #: ../data/messages:155
 msgid "Separate clipboard and selection ?"
-msgstr "Separare clipboard e selezione ?"
+msgstr ""
 
 #: ../data/messages:157
 msgid "If so, number of selection items :"
-msgstr "Se sì, numero degli oggetti selezionati :"
+msgstr ""
 
 #: ../data/messages:159
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con CTRL"
-"+v"
 
 #: ../data/messages:161
 msgid "Paste into Clipboard ?"
-msgstr "Incollarlo nella Clipboard ?"
+msgstr ""
 
 #: ../data/messages:163
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
 msgstr ""
-"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile col "
-"tasto centrale del mouse"
 
 #: ../data/messages:165
 msgid "Paste into Selection ?"
-msgstr "Incollarlo nella Selezione ?"
+msgstr ""
 
 #: ../data/messages:167
 msgid "Shortkey to pop-up the items menu :"
-msgstr "Scorcatoie di tastiera per rendere pop-up gli oggetti del menu :"
+msgstr ""
 
 #: ../data/messages:169
 msgid "Pop-up menus at mouse position ?"
-msgstr "Menu pop-up in una posizione del mouse ?"
+msgstr ""
 
 #: ../data/messages:171
 msgid "Actions"
-msgstr "Azioni"
+msgstr ""
 
 #: ../data/messages:173
 msgid ""
 "If some actions are associated with an item, they will be proposed to you "
 "when the item is created."
 msgstr ""
-"Se delle azioni sono associate con degli oggetti, queste saranno proposte "
-"alla creazione degli oggetti."
 
 #: ../data/messages:175
 msgid "Enable actions ?"
-msgstr "Abilitare le azioni ?"
+msgstr ""
 
 #: ../data/messages:177
 msgid "Display the actions when selecting an item in the history."
-msgstr "Mostrare le azioni quando si seleziona un oggetto nella cronologia."
+msgstr ""
 
 #: ../data/messages:179
 msgid "Replay actions ?"
-msgstr "Ripetere le azioni ?"
+msgstr ""
 
 #: ../data/messages:181
 msgid "in seconds."
-msgstr "in secondi."
+msgstr ""
 
 #: ../data/messages:183
 msgid "Duration of the action menu :"
-msgstr "Durata del menu azioni :"
+msgstr ""
 
 #: ../data/messages:185
 msgid "Persistent items"
-msgstr "Oggetti persistenti"
+msgstr ""
 
 #: ../data/messages:187
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr ""
-"Una lista degli oggetti persistenti sarà accessibile col tasto centrale del "
-"mouse :"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Mantenere al di sotto delle altre finestre ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Mantenere al di sopra delle altre finestre ?"
-
-#~ msgid ""
-#~ "This is the Clipper applet\n"
-#~ " made by Fabrice Rey (Fabounet) for Cairo-Dock"
-#~ msgstr ""
-#~ "Questa è l'applet Clipper\n"
-#~ " scritta da Fabrice Rey (Fabounet) per Cairo-Dock"
-
-#~ msgid "width :"
-#~ msgstr "larghezza :"
-
-#~ msgid "height :"
-#~ msgstr "altezza :"
-
-#~ msgid "Module"
-#~ msgstr "Modulo"

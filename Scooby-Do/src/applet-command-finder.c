@@ -237,7 +237,7 @@ gboolean cd_do_check_locate_is_available (void)
 		g_error_free (erreur);
 		return FALSE;
 	}
-	if (standard_error != NULL)
+	if (standard_error != NULL && *standard_error != '\0')
 	{
 		cd_warning (standard_error);
 	}

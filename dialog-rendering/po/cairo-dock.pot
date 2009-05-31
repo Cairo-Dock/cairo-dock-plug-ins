@@ -1,15 +1,19 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2007 Cairo-Dock project
-# This file is distributed under the same license as the Cairo-Dock package.
-# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+# Copyright (C) YEAR Cairo-Dock project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: FULL NAME <fabounet@users.berlios.de>\n"
+"POT-Creation-Date: 2009-05-31 01:31+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-init.c:21
@@ -18,75 +22,63 @@ msgstr ""
 
 #: ../src/applet-init.c:24
 msgid "This plug-in provides some dialog decorators for dialog bubbles."
-msgstr "Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
+msgstr ""
 
 #: ../data/messages:1
 msgid "Comics"
-msgstr "Bande-dessinée"
+msgstr ""
 
 #: ../data/messages:3 ../data/messages:11 ../data/messages:21
 #: ../data/messages:31 ../data/messages:41
 msgid "Corner radius :"
-msgstr "Rayon du coin :"
+msgstr ""
 
 #: ../data/messages:5 ../data/messages:13 ../data/messages:33
 #: ../data/messages:43
 msgid "Border width :"
-msgstr "Largeur de la bordure :"
+msgstr ""
 
 #: ../data/messages:7 ../data/messages:15 ../data/messages:35
 #: ../data/messages:45
 msgid "Line color of the bubble :"
-msgstr "Couleur du contour de la bulle :"
+msgstr ""
 
 #: ../data/messages:9
 msgid "Modern"
-msgstr "Moderne"
+msgstr ""
 
 #: ../data/messages:17
 msgid "Space between lines of the tip :"
-msgstr "Espace entre les lignes de la pointe :"
+msgstr ""
 
 #: ../data/messages:19
 msgid "3D plane"
-msgstr "Plan 3D"
+msgstr ""
 
 #: ../data/messages:23
 msgid "Border width of the plane :"
-msgstr "Largeur de la bordure du plan :"
+msgstr ""
 
 #: ../data/messages:25
 msgid "Line color of the plane :"
-msgstr "Couleur du contour :"
+msgstr ""
 
 #: ../data/messages:27
 msgid "Color of the plane :"
-msgstr "Couleur du plan :"
+msgstr ""
 
 #: ../data/messages:29
 msgid "Tooltip"
-msgstr "Info-bulle"
+msgstr ""
 
 #: ../data/messages:37
 msgid "Color of the margin :"
-msgstr "Couleur de la marge :"
+msgstr ""
 
 #: ../data/messages:39
 msgid "Curly"
-msgstr "Courbé"
+msgstr ""
 
 #: ../data/messages:47
 msgid "Curvature of the tip :"
-msgstr "Courbure de la pointe :"
-
-#~ msgid "comics"
-#~ msgstr "Bande-dessinée"
-
-#~ msgid "modern"
-#~ msgstr "Moderne"
-
-#~ msgid "tooltip"
-#~ msgstr "Info-bulle"
-
-#~ msgid "curly"
-#~ msgstr "Courbé"
+msgstr ""

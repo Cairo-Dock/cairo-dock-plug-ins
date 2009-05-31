@@ -79,7 +79,7 @@ msgstr "Activer la Couche des Widgets"
 
 #: ../src/applet-notifications.c:203
 msgid "Toggle Show Desktop"
-msgstr "Monter le Bureau"
+msgstr "Montrer le Bureau"
 
 #: ../data/messages:1
 msgid "Icon"

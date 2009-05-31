@@ -20,21 +20,21 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-compiz.h"
 
 
-static char  *s_cTmpFile = NULL;
+//static char  *s_cTmpFile = NULL;
 
 void cd_compiz_start_system_wm (void) {
 	const gchar * cCommand = NULL;
 	if (myConfig.cUserWMCommand != NULL) {
-		cCommand = g_strdup_printf("%s &",myConfig.cUserWMCommand);
+		cCommand = myConfig.cUserWMCommand;
 	}
 	else {
 		switch (g_iDesktopEnv) {
 			case CAIRO_DOCK_GNOME :
 			case CAIRO_DOCK_XFCE :
-				cCommand = "metacity --replace &";
+				cCommand = "metacity --replace";
 			break;
 			case CAIRO_DOCK_KDE :
-				cCommand = "kwin --replace &";
+				cCommand = "kwin --replace";
 			break ;
 			default :
 				cd_warning ("couldn't guess system WM");
@@ -44,12 +44,8 @@ void cd_compiz_start_system_wm (void) {
 	myData.bCompizRestarted = TRUE;
 	cd_compiz_kill_compmgr(); //On tue tout les compositing managers
 	
-	if (myConfig.cUserWMCommand != NULL)
-		system (cCommand); //Obligatoir pour metacity --replace && xcompmngr -f
-	else
-		cairo_dock_launch_command (cCommand); //Ne prend pas les commandes avec des &
-		
 	cd_message ("Compiz - Run: %s ", cCommand);
+	cairo_dock_launch_command (cCommand);
 }
 
 void cd_compiz_start_compiz (void) {
@@ -87,7 +83,7 @@ void cd_compiz_start_compiz (void) {
 }
 
 void cd_compiz_switch_manager(void) {
-	cd_compiz_acquisition ();
+	//cd_compiz_acquisition ();
 	
 	cd_compiz_read_data ();
 	if (myData.bAcquisitionOK) {
@@ -118,13 +114,13 @@ void cd_compiz_start_decorator (compizDecorator iDecorator) {
 
 void cd_compiz_kill_compmgr(void) {
 	gchar *cCommand = g_strdup_printf("bash %s/compiz-kill", MY_APPLET_SHARE_DATA_DIR);
-	system (cCommand);
+	int r = system (cCommand);
 	g_free (cCommand);
 }
 
 
 void cd_compiz_acquisition (void) {
-	s_cTmpFile = g_strdup ("/tmp/compiz.XXXXXX");
+	/*s_cTmpFile = g_strdup ("/tmp/compiz.XXXXXX");
 	int fds =mkstemp (s_cTmpFile);
 	if (fds == -1) {
 		g_free (s_cTmpFile);
@@ -134,18 +130,53 @@ void cd_compiz_acquisition (void) {
 	gchar *cCommand = g_strdup_printf("bash %s/compiz %s %s", MY_APPLET_SHARE_DATA_DIR, myConfig.cWindowDecorator, s_cTmpFile);
 	system (cCommand);
 	g_free (cCommand);
-	close(fds);
+	close(fds);*/
 }
 
 void cd_compiz_read_data(void) {
-	if (s_cTmpFile == NULL)
+	gchar *cCommand = g_strdup_printf("sh %s/compiz %s", MY_APPLET_SHARE_DATA_DIR, myConfig.cWindowDecorator);  // truc de ouf : sans le 'sh' devant ca renvoit toujours '10' !
+	gchar *standard_output=NULL, *standard_error=NULL;
+	gint exit_status=0;
+	GError *erreur = NULL;
+	gboolean r = g_spawn_command_line_sync (cCommand,
+		&standard_output,
+		&standard_error,
+		&exit_status,
+		&erreur);
+	if (erreur != NULL)
+	{
+		cd_warning (erreur->message);
+		g_error_free (erreur);
+		g_free (cCommand);
+		myData.bAcquisitionOK = FALSE;
+		return ;
+	}
+	if (standard_error != NULL && *standard_error != '\0')
+	{
+		cd_warning (standard_error);
+	}
+	if (standard_output == NULL || *standard_output == '\0')
+	{
+		g_free (cCommand);
+		myData.bAcquisitionOK = FALSE;
+		return ;
+	}
+	myData.bCompizIsRunning = (standard_output[0] == '1');
+	myData.bDecoratorIsRunning = (standard_output[0] != '\0' && standard_output[1] == '1');
+	//g_print ("compiz : '%s' => %d/%d\n", standard_output, myData.bCompizIsRunning, myData.bDecoratorIsRunning);
+	g_free (cCommand);
+	g_free (standard_output);
+	g_free (standard_error);
+	myData.bAcquisitionOK = TRUE;
+	
+	/*if (s_cTmpFile == NULL)
 		return ;
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
 	g_file_get_contents(s_cTmpFile, &cContent, &length, &erreur);
 	if (erreur != NULL) {
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning (erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
 		myData.bAcquisitionOK = FALSE;
@@ -158,7 +189,7 @@ void cd_compiz_read_data(void) {
 	}
 	g_remove (s_cTmpFile);
 	g_free (s_cTmpFile);
-	s_cTmpFile = NULL;
+	s_cTmpFile = NULL;*/
 }
 
 gboolean cd_compiz_update_from_data (void) {

@@ -84,7 +84,7 @@ line color = 0.5,1.0,0.9,0.6
 [SimpleSlide]
 
 #i+[10;100] Space between columns :
-simple_iconGapX = 20
+simple_iconGapX = 40
 
 #i+[15;100] Space between rows :
 simple_iconGapY = 50
