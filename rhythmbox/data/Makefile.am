@@ -9,6 +9,11 @@ module_DATA = \
 	play.jpg\
 	pause.jpg\
 	stop.jpg\
+	default.svg\
+	broken.svg\
+	play.svg\
+	pause.svg\
+	stop.svg\
 	rhythmbox.conf\
 	preview.png\
 	icon.png\

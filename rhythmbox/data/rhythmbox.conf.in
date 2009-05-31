@@ -126,17 +126,17 @@ theme = cd_box_3d
 override_osd = false
 
 #S+ Name of an image for the 'default' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 default icon = 
 #S+ Name of an image for the 'play' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 play icon = 
 #S+ Name of an image for the 'stop' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 stop icon = 
 #S+ Name of an image for the 'pause' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 pause icon = 
 #S+ Name of an image for the 'broken' icon :
-#{Let t empty to use the default icon.}
+#{Let it empty to use the default icon.}
 broken icon = 
